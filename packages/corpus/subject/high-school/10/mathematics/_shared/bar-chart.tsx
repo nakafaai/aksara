@@ -6,13 +6,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import type { ChartConfig } from "@/components/ui/chart";
+} from "@repo/design-system/components/ui/card";
+import type { ChartConfig } from "@repo/design-system/components/ui/chart";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from "@repo/design-system/components/ui/chart";
 import {
   CartesianGrid,
   Bar as RechartsBar,

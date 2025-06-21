@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/design-system/components/ui/card";
 import type React from "react";
 import { useMemo } from "react";
 

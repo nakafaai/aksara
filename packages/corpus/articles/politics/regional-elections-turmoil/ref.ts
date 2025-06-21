@@ -1,4 +1,4 @@
-import type { Reference } from "@/types/content";
+import type { Reference } from "@repo/contents/_types/content";
 
 export const references: Reference[] = [
   {

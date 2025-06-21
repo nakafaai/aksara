@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@repo/design-system/components/ui/table";
 import { useTranslations } from "next-intl";
 
 type Props = {

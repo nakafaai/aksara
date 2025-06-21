@@ -1,12 +1,12 @@
-import { CoordinateSystem } from "@/components/three/coordinate-system";
-import { Vector } from "@/components/three/vector";
+import { CoordinateSystem } from "@repo/design-system/components/three/coordinate-system";
+import { Vector } from "@repo/design-system/components/three/vector";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/design-system/components/ui/card";
 import type { ReactNode } from "react";
 
 type Props = {

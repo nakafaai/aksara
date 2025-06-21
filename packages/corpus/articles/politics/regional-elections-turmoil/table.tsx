@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@repo/design-system/components/ui/table";
 
 export type TableRowData = {
   category: string;

@@ -1,5 +1,5 @@
-import { getMaterialIcon } from "@/lib/utils/subject/material";
-import type { Grade } from "@/types/subject/grade";
+import { getMaterialIcon } from "@repo/contents/_lib/subject/material";
+import type { Grade } from "@repo/contents/_types/subject/grade";
 
 const BASE_PATH = "/subject/university";
 

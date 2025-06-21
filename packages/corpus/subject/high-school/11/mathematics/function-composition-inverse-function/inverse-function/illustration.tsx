@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/design-system/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/design-system/components/ui/card";
 import { ArrowDownIcon, ArrowRightIcon } from "lucide-react";
 import type { ReactNode } from "react";
 

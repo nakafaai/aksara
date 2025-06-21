@@ -1,6 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { useIntersection, useMediaQuery } from "@mantine/hooks";
+import { Button } from "@repo/design-system/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,8 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { useIntersection, useMediaQuery } from "@mantine/hooks";
+} from "@repo/design-system/components/ui/card";
 import { PauseIcon, PlayIcon, TimerResetIcon } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import {

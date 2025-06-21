@@ -1,4 +1,4 @@
-import type { MaterialList } from "@/types/subject/material";
+import type { MaterialList } from "@repo/contents/_types/subject/material";
 import { BASE_PATH } from ".";
 
 const idMaterials: MaterialList = [

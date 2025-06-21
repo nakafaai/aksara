@@ -1,6 +1,6 @@
 "use client";
 
-import { Button as UIButton } from "@/components/ui/button";
+import { Button as UIButton } from "@repo/design-system/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/design-system/components/ui/card";
 import {
   ArrowDownIcon,
   ArrowRightIcon,

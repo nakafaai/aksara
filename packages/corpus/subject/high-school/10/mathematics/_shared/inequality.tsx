@@ -1,12 +1,12 @@
-import { CoordinateSystem } from "@/components/three/coordinate-system";
-import { Inequality as Inequality3D } from "@/components/three/inequality";
+import { CoordinateSystem } from "@repo/design-system/components/three/coordinate-system";
+import { Inequality as Inequality3D } from "@repo/design-system/components/three/inequality";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/design-system/components/ui/card";
 import type { ComponentProps, ReactNode } from "react";
 
 type Props = {
