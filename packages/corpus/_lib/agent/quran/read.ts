@@ -6,9 +6,9 @@ import { buildNakafaContentRef } from "@repo/contents/_lib/agent/refs";
 import {
   NakafaAgentQuranReferenceOptionsSchema,
   NakafaAgentQuranReferenceSchema,
-} from "@repo/contents/_lib/agent/schemas";
+} from "@repo/contents/_lib/agent/schema/quran";
 import { getSurah, getSurahName } from "@repo/contents/_lib/quran";
-import { Effect, Option } from "effect";
+import { Effect, Option, Schema } from "effect";
 
 /** Retrieves bounded Quran verses with translation and optional tafsir. */
 export const getNakafaAgentQuranReference = Effect.fn(
@@ -57,7 +57,7 @@ export const getNakafaAgentQuranReference = Effect.fn(
   }
 
   return Option.some(
-    NakafaAgentQuranReferenceSchema.parse({
+    Schema.decodeUnknownSync(NakafaAgentQuranReferenceSchema)({
       ...ref,
       name: getSurahName({
         locale: parsedOptions.locale,
@@ -73,7 +73,8 @@ export const getNakafaAgentQuranReference = Effect.fn(
 /** Parses Quran reference input with actionable Effect errors. */
 function parseNakafaQuranOptions(options: unknown) {
   return Effect.try({
-    try: () => NakafaAgentQuranReferenceOptionsSchema.parse(options),
+    try: () =>
+      Schema.decodeUnknownSync(NakafaAgentQuranReferenceOptionsSchema)(options),
     catch: (error) =>
       new NakafaAgentInputError({
         cause: getUnknownErrorMessage(error),

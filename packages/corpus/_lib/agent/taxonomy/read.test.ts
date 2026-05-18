@@ -3,7 +3,7 @@ import {
   NAKAFA_MCP_INFORMATIONAL_ROOT,
   NAKAFA_MCP_RECOMMENDED_ENDPOINT,
 } from "@repo/contents/_lib/agent/constants";
-import { getNakafaAgentTaxonomy } from "@repo/contents/_lib/agent/taxonomy";
+import { getNakafaAgentTaxonomy } from "@repo/contents/_lib/agent/taxonomy/read";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
@@ -21,6 +21,10 @@ describe("Nakafa agent taxonomy", () => {
     expect(taxonomy.endpoints.root_note).toContain(
       NAKAFA_MCP_INFORMATIONAL_ROOT
     );
+    expect(taxonomy.exercises.materials).toContainEqual({
+      id: "quantitative-knowledge",
+      label: "Quantitative Knowledge",
+    });
     expect(taxonomy.tools).toStrictEqual([
       "nakafa_search_content",
       "nakafa_get_content",

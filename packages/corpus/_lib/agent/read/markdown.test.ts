@@ -1,4 +1,4 @@
-import { getNakafaAgentMarkdown } from "@repo/contents/_lib/agent/markdown";
+import { getNakafaAgentMarkdown } from "@repo/contents/_lib/agent/read/markdown";
 import { Effect, Option } from "effect";
 import { describe, expect, it, vi } from "vitest";
 
@@ -43,7 +43,12 @@ describe("Nakafa agent markdown", () => {
       getNakafaAgentMarkdown("en/quran/01")
     );
 
-    expect(Option.getOrUndefined(mdxContent)?.text).toContain("Source URL:");
+    expect(Option.getOrUndefined(mdxContent)?.text).not.toContain(
+      "Source URL:"
+    );
+    expect(Option.getOrUndefined(mdxContent)?.text).not.toContain(
+      "Markdown URL:"
+    );
     expect(Option.getOrUndefined(exerciseContent)?.text).toContain(
       "### Choices"
     );
@@ -74,7 +79,7 @@ describe("Nakafa agent markdown", () => {
     }));
 
     const { getNakafaAgentMarkdown } = await import(
-      "@repo/contents/_lib/agent/markdown"
+      "@repo/contents/_lib/agent/read/markdown"
     );
     const content = await Effect.runPromise(
       getNakafaAgentMarkdown(
@@ -106,7 +111,7 @@ describe("Nakafa agent markdown", () => {
     }));
 
     const { getNakafaAgentMarkdown } = await import(
-      "@repo/contents/_lib/agent/markdown"
+      "@repo/contents/_lib/agent/read/markdown"
     );
     const content = await Effect.runPromise(
       getNakafaAgentMarkdown("en/articles/no-description")
@@ -123,19 +128,19 @@ describe("Nakafa agent markdown", () => {
 
   it("returns none when a Quran reference cannot be built for an existing Surah", async () => {
     vi.resetModules();
-    vi.doMock("@repo/contents/_lib/agent/quran", () => ({
+    vi.doMock("@repo/contents/_lib/agent/quran/read", () => ({
       getNakafaAgentQuranReference: () => Effect.succeed(Option.none()),
     }));
 
     const { getNakafaAgentMarkdown } = await import(
-      "@repo/contents/_lib/agent/markdown"
+      "@repo/contents/_lib/agent/read/markdown"
     );
     const content = await Effect.runPromise(
       getNakafaAgentMarkdown("en/quran/1")
     );
 
     expect(Option.isNone(content)).toBe(true);
-    vi.doUnmock("@repo/contents/_lib/agent/quran");
+    vi.doUnmock("@repo/contents/_lib/agent/quran/read");
     vi.resetModules();
   });
 });

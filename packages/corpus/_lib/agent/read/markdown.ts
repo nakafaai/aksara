@@ -1,14 +1,12 @@
-import { getNakafaAgentExercise } from "@repo/contents/_lib/agent/exercises";
+import { getNakafaAgentExercise } from "@repo/contents/_lib/agent/exercise/read";
 import { formatNakafaRouteTitle } from "@repo/contents/_lib/agent/format";
-import { getNakafaAgentQuranReference } from "@repo/contents/_lib/agent/quran";
+import { getNakafaAgentQuranReference } from "@repo/contents/_lib/agent/quran/read";
 import { parseNakafaContentRef } from "@repo/contents/_lib/agent/refs";
-import {
-  type NakafaAgentContentRef,
-  NakafaAgentMarkdownSchema,
-} from "@repo/contents/_lib/agent/schemas";
+import { NakafaAgentMarkdownSchema } from "@repo/contents/_lib/agent/schema/read";
+import type { NakafaAgentContentRef } from "@repo/contents/_lib/agent/schema/ref";
 import { getContentMetadataWithRaw } from "@repo/contents/_lib/metadata";
 import { getSurah } from "@repo/contents/_lib/quran";
-import { Effect, Option } from "effect";
+import { Effect, Option, Schema } from "effect";
 
 const QURAN_ROUTE_SECTION = "quran";
 const QURAN_SURAH_PATTERN = /^\d+$/;
@@ -46,7 +44,7 @@ function renderNakafaMdxMarkdown(ref: NakafaAgentContentRef) {
     }
 
     return Option.some(
-      NakafaAgentMarkdownSchema.parse({
+      Schema.decodeUnknownSync(NakafaAgentMarkdownSchema)({
         ...ref,
         description:
           content.value.metadata.description ??
@@ -54,9 +52,6 @@ function renderNakafaMdxMarkdown(ref: NakafaAgentContentRef) {
           "",
         text: [
           `# ${content.value.metadata.title}`,
-          "",
-          `Source URL: ${ref.url}`,
-          `Markdown URL: ${ref.markdown_url}`,
           "",
           content.value.raw.trim(),
         ].join("\n"),
@@ -76,14 +71,11 @@ function renderNakafaExerciseMarkdown(ref: NakafaAgentContentRef) {
     }
 
     return Option.some(
-      NakafaAgentMarkdownSchema.parse({
+      Schema.decodeUnknownSync(NakafaAgentMarkdownSchema)({
         ...ref,
         description: `${exercise.value.count} exercises`,
         text: [
-          `# ${formatNakafaRouteTitle(exercise.value.route)}`,
-          "",
-          `Source URL: ${exercise.value.url}`,
-          `Markdown URL: ${exercise.value.markdown_url}`,
+          `# ${formatNakafaRouteTitle(exercise.value.route, ref.locale)}`,
           "",
           ...exercise.value.exercises.flatMap((item) => [
             `## Exercise ${item.number}`,
@@ -104,7 +96,7 @@ function renderNakafaExerciseMarkdown(ref: NakafaAgentContentRef) {
             "",
           ]),
         ].join("\n"),
-        title: formatNakafaRouteTitle(exercise.value.route),
+        title: formatNakafaRouteTitle(exercise.value.route, ref.locale),
       })
     );
   });
@@ -137,14 +129,11 @@ function renderNakafaQuranMarkdown(ref: NakafaAgentContentRef) {
     }
 
     return Option.some(
-      NakafaAgentMarkdownSchema.parse({
+      Schema.decodeUnknownSync(NakafaAgentMarkdownSchema)({
         ...ref,
         description: reference.value.translation,
         text: [
           `# ${reference.value.name}`,
-          "",
-          `Source URL: ${reference.value.url}`,
-          `Markdown URL: ${reference.value.markdown_url}`,
           "",
           `Translation: ${reference.value.translation}`,
           `Revelation: ${reference.value.revelation}`,
