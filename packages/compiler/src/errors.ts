@@ -92,6 +92,7 @@ export const AuthoredMetadataSyntaxReasonSchema = Schema.Literal(
   "dynamic-value",
   "invalid-declaration",
   "mixed-metadata-module",
+  "metadata-not-object",
   "spread",
   "unsupported-property"
 );
@@ -121,14 +122,5 @@ export class AuthoredMetadataSyntaxError extends Schema.TaggedError<AuthoredMeta
     reasons: Schema.Array(AuthoredMetadataSyntaxReasonSchema).pipe(
       Schema.minItems(1)
     ),
-  }
-) {}
-
-/** Static metadata did not satisfy the exact authored metadata contract. */
-export class AuthoredMetadataContractError extends Schema.TaggedError<AuthoredMetadataContractError>()(
-  "AuthoredMetadataContractError",
-  {
-    cause: Schema.Unknown,
-    contentKey: ContentKeySchema,
   }
 ) {}

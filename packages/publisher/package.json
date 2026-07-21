@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "imports": {
+    "#publisher/*.js": "./dist/*.js"
+  },
   "exports": {
     "./publication": {
       "types": "./dist/publication.d.ts",
@@ -21,7 +24,7 @@
     "clean": "git clean -xdf dist",
     "prebuild": "pnpm run clean",
     "build": "tsc --project tsconfig.build.json",
-    "test": "vitest run",
+    "test": "vitest run --config ../../vitest.config.mjs",
     "typecheck": "tsc --project tsconfig.json"
   },
   "dependencies": {
@@ -30,6 +33,7 @@
     "effect": "catalog:"
   },
   "devDependencies": {
+    "@nakafaai/typescript-config": "workspace:*",
     "vitest": "catalog:"
   }
 }

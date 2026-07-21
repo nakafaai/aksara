@@ -1,8 +1,8 @@
 # Contracts package publishing
 
-`@nakafaai/aksara-contracts` is the only public npm package in Aksara. It
-contains schemas and verification code, not corpus bodies or renderer
-implementations.
+`@nakafaai/aksara-contracts` is intended to be Aksara's only public npm package.
+It is not published today. It contains schemas and verification code, not
+corpus bodies or renderer implementations.
 
 ## Exact package artifact
 

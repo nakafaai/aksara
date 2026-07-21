@@ -231,14 +231,8 @@ run(resolve(packageRoot, "../../node_modules/.bin/tsc"), ["--project", "."], {
   stdio: "inherit",
 });
 
-const installedVerifier = join(
-  consumerDirectory,
-  "verify-installed-package.mjs"
-);
-copyFileSync(
-  join(scriptDirectory, "verify-installed-package.mjs"),
-  installedVerifier
-);
+const installedVerifier = join(consumerDirectory, "verify-install.mjs");
+copyFileSync(join(scriptDirectory, "verify-install.mjs"), installedVerifier);
 run(process.execPath, [installedVerifier, sourceManifest.name], {
   cwd: consumerDirectory,
   env: childEnvironment,

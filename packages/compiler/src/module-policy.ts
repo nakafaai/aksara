@@ -1,7 +1,7 @@
 import type { Program } from "estree-jsx";
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
-import type { UnsupportedMdxModuleOccurrence } from "./errors.js";
+import type { UnsupportedMdxModuleOccurrence } from "#compiler/errors.js";
 
 function isMdxjsEsm(node: RootContent): node is MdxjsEsm {
   return node.type === "mdxjsEsm";

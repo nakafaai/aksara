@@ -1,32 +1,19 @@
 import { Effect, Schema } from "effect";
-import { ContractDecodeError } from "./errors.js";
+import { ContractDecodeError } from "#contracts/errors.js";
 import {
   ContentKeySchema,
   Ed25519SignatureSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "./ids.js";
-import { AuthoredContentMetadataSchema } from "./metadata.js";
+} from "#contracts/ids.js";
 import {
   CompiledContentRequirementsSchema,
   RendererManifestEnvelopeSchema,
-} from "./renderer.js";
+} from "#contracts/renderer/contract.js";
 
-/** Locales represented by the initial parity fixture. */
+/** Locale baseline pinned to Nakafa 25506da until its contract is migrated. */
 export const ContentLocaleSchema = Schema.Literal("en", "id");
 export type ContentLocale = typeof ContentLocaleSchema.Type;
-
-/** First-class content families understood by the compilation wire contract. */
-export const ContentKindSchema = Schema.Literal(
-  "article",
-  "material",
-  "question",
-  "answer",
-  "curriculum",
-  "tryout",
-  "quran"
-);
-export type ContentKind = typeof ContentKindSchema.Type;
 
 /** Compiler protocol implemented by this Aksara compiler release. */
 export const AKSARA_COMPILER_VERSION = "0.1.0";
@@ -59,7 +46,6 @@ export const CompiledContentPayloadSchema = Schema.Struct({
   format: Schema.Literal("mdx-function-body-v1"),
   locale: ContentLocaleSchema,
   mdxCompilerVersion: Schema.Literal(MDX_COMPILER_VERSION),
-  metadata: AuthoredContentMetadataSchema,
   plainText: Schema.String,
   rawMdx: Schema.String,
   requiredComponents: CompiledContentRequirementsSchema,
@@ -79,20 +65,6 @@ export type SignedContentArtifact = typeof SignedContentArtifactSchema.Type;
 export const CONTENT_ARTIFACT_SIGNATURE_DOMAIN =
   "nakafa.aksara.content-artifact.v1";
 
-function canonicalizeMetadata(
-  metadata: typeof AuthoredContentMetadataSchema.Type
-) {
-  return {
-    authors: metadata.authors.map(({ name }) => ({ name })),
-    date: metadata.date,
-    ...(metadata.description === undefined
-      ? {}
-      : { description: metadata.description }),
-    ...(metadata.subject === undefined ? {} : { subject: metadata.subject }),
-    title: metadata.title,
-  };
-}
-
 /** Serializes a compiled payload with stable field and component order. */
 export function canonicalizeCompiledContentPayload(
   payload: CompiledContentPayload
@@ -106,7 +78,6 @@ export function canonicalizeCompiledContentPayload(
     format: payload.format,
     locale: payload.locale,
     mdxCompilerVersion: payload.mdxCompilerVersion,
-    metadata: canonicalizeMetadata(payload.metadata),
     plainText: payload.plainText,
     rawMdx: payload.rawMdx,
     requiredComponents: payload.requiredComponents.map(({ name, version }) => ({

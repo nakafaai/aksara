@@ -60,19 +60,19 @@ incremented its input from 5 to 6 and rendered `f(x)=13`. AtomShellLab created a
 WebGL canvas; selecting Neon updated the pressed state, electron count, and
 configuration. No hydration or application error occurred.
 
-## Candidate supported by this evidence
+## Accepted direction supported by this evidence
 
 The candidate keeps the global renderer artifact as a pure name/version
 contract and gives Nakafa physical route-domain entrypoints the smallest
 practical static capability union. Shared server page code may receive that
 registry but may not import every rich client implementation.
 
-This topology is not an accepted architecture yet because it differs from the
-selected single global implementation registry. The actual Nakafa candidate
-also showed that the legacy filesystem MDX graph still delivered a Three.js
-chunk to a plain biology route. The result must be reproduced with the
-published-artifact runtime after explicit user approval; otherwise it is not a
-production gate.
+The repository owner approved finite static route-domain registries on
+2026-07-21. This accepts the topology class, not every measured route partition.
+The actual Nakafa candidate also showed that the legacy filesystem MDX graph
+still delivered a Three.js chunk to a plain biology route. The result must be
+reproduced with the published-artifact runtime before it becomes a production
+gate.
 
 The full application must still prove its exact route topology, hosted browser
 behavior, caching, and production performance before corpus migration.

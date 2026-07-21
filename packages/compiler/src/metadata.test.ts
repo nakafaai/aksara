@@ -3,50 +3,47 @@ import { ContentKeySchema } from "@nakafaai/aksara-contracts/ids";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  type AuthoredMetadataCollector,
-  decodeAuthoredMetadata,
-  extractAuthoredMetadata,
-} from "./metadata.js";
+  extractMetadata,
+  type MetadataCollector,
+  validateMetadata,
+} from "#compiler/metadata.js";
 
-const metadataValue = {
-  authors: [{ name: "Nakafa" }],
-  date: "2026-07-21",
-  title: "Metadata title",
-};
-const VALID_METADATA = `export const metadata = ${JSON.stringify(metadataValue)}`;
-const contentKey = ContentKeySchema.make("fixture:metadata");
+const VALID_METADATA = "export const metadata = {}";
+const contentKey = ContentKeySchema.make("test:metadata");
 
 async function collectMetadata(rawMdx: string) {
-  const collector: AuthoredMetadataCollector = {
+  const collector: MetadataCollector = {
     candidates: [],
     syntaxReasons: [],
   };
-  await compile(rawMdx, {
+  const output = await compile(rawMdx, {
     outputFormat: "function-body",
-    remarkPlugins: [extractAuthoredMetadata(collector)],
+    remarkPlugins: [extractMetadata(collector)],
   });
-  return collector;
+  return { collector, output: String(output) };
 }
 
 async function rejectMetadata(rawMdx: string) {
-  const collector = await collectMetadata(rawMdx);
+  const { collector } = await collectMetadata(rawMdx);
   return Effect.runPromise(
-    decodeAuthoredMetadata(contentKey, collector).pipe(Effect.flip)
+    validateMetadata(contentKey, collector).pipe(Effect.flip)
   );
 }
 
 describe("authored metadata", () => {
-  it("extracts one static metadata value and removes it from output", async () => {
-    const collector = await collectMetadata(`${VALID_METADATA}\n\n## Body`);
-    const metadata = await Effect.runPromise(
-      decodeAuthoredMetadata(contentKey, collector)
+  it("accepts one static object and removes it from compiled output", async () => {
+    const { collector, output } = await collectMetadata(
+      `${VALID_METADATA}\n\n## Test`
     );
 
-    expect(metadata).toEqual(metadataValue);
+    await expect(
+      Effect.runPromise(validateMetadata(contentKey, collector))
+    ).resolves.toBeUndefined();
+    expect(output).not.toContain("metadata");
   });
 
   it("requires exactly one authored metadata export", async () => {
-    const missing = await rejectMetadata("## Body");
+    const missing = await rejectMetadata("## Test");
     const duplicate = await rejectMetadata(
       `${VALID_METADATA}\n\n${VALID_METADATA}`
     );
@@ -57,15 +54,10 @@ describe("authored metadata", () => {
 
   it.each([
     ["dynamic-value", "export const metadata = getMetadata()"],
-    [
-      "computed-property",
-      'export const metadata = { ["title"]: "Title", authors: [{ name: "Nakafa" }], date: "2026-07-21" }',
-    ],
-    [
-      "spread",
-      `export const metadata = { ...${JSON.stringify(metadataValue)} }`,
-    ],
+    ["computed-property", 'export const metadata = { ["key"]: "value" }'],
+    ["spread", "export const metadata = { ...{} }"],
     ["mixed-metadata-module", `${VALID_METADATA}; export const hidden = true`],
+    ["metadata-not-object", 'export const metadata = "invalid"'],
   ])("rejects %s metadata syntax", async (reason, rawMdx) => {
     const error = await rejectMetadata(rawMdx);
 
@@ -73,16 +65,5 @@ describe("authored metadata", () => {
     if (error._tag === "AuthoredMetadataSyntaxError") {
       expect(error.reasons).toContain(reason);
     }
-  });
-
-  it.each([
-    { ...metadataValue, category: "algebra" },
-    { ...metadataValue, date: "2025-02-30" },
-  ])("fails exact metadata decoding for invalid value %#", async (value) => {
-    const error = await rejectMetadata(
-      `export const metadata = ${JSON.stringify(value)}`
-    );
-
-    expect(error._tag).toBe("AuthoredMetadataContractError");
   });
 });

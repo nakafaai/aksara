@@ -14,8 +14,8 @@ import { visit as visitUnist } from "unist-util-visit";
 import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,
-} from "./errors.js";
-import { collectUnsupportedMdxModules } from "./module-policy.js";
+} from "#compiler/errors.js";
+import { collectUnsupportedMdxModules } from "#compiler/module-policy.js";
 
 const NETWORK_GLOBALS = new Set(["fetch", "WebSocket", "EventSource"]);
 const PROTOTYPE_ESCAPE_PROPERTIES = new Set([

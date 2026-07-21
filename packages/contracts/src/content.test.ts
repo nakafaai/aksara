@@ -9,12 +9,14 @@ import {
   decodeCompileDocumentRequest,
   decodeCompileDocumentSource,
   SignedContentArtifactSchema,
-} from "./content.js";
+} from "#contracts/content.js";
+
+const TEST_HEADING = "Protocol Test Heading";
 
 const validRequest = {
-  contentKey: "fixture:function",
+  contentKey: "test:content",
   locale: "en",
-  rawMdx: "## Function",
+  rawMdx: `## ${TEST_HEADING}`,
   rendererManifest: {
     authoringComponents: [{ name: "BlockMath", version: 1 }],
     format: "nakafa-mdx-renderer-v1",
@@ -29,7 +31,7 @@ describe("content", () => {
     const request = await Effect.runPromise(
       decodeCompileDocumentRequest(validRequest)
     );
-    expect(request.contentKey).toBe("fixture:function");
+    expect(request.contentKey).toBe("test:content");
   });
 
   it("returns a typed contract error for extra wire fields", async () => {
@@ -59,37 +61,30 @@ describe("content", () => {
       compiledCode: "return {};",
       compilerConfigHash: `sha256:${"c".repeat(64)}`,
       compilerVersion: "0.1.0",
-      contentKey: "fixture:function",
+      contentKey: "test:content",
       format: "mdx-function-body-v1",
       locale: "en",
       mdxCompilerVersion: "3.1.1",
-      metadata: {
-        authors: [{ name: "Nakafa" }],
-        date: "2026-07-21",
-        description: "Exact oracle",
-        subject: "Mathematics",
-        title: "Function",
-      },
-      plainText: "hello",
-      rawMdx: "## Hello",
+      plainText: TEST_HEADING,
+      rawMdx: `## ${TEST_HEADING}`,
       requiredComponents: [
         { name: "BlockMath", version: 1 },
-        { name: "FunctionMachine", version: 2 },
+        { name: "TestWidget", version: 2 },
       ],
       sourceHash:
-        "sha256:8547edb146cd803f907b9b2d9bc69dbf132abaef73e99035517dc01663408bf1",
+        "sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb",
     });
     const canonicalPayload =
-      '{"byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"fixture:function","format":"mdx-function-body-v1","locale":"en","mdxCompilerVersion":"3.1.1","metadata":{"authors":[{"name":"Nakafa"}],"date":"2026-07-21","description":"Exact oracle","subject":"Mathematics","title":"Function"},"plainText":"hello","rawMdx":"## Hello","requiredComponents":[{"name":"BlockMath","version":1},{"name":"FunctionMachine","version":2}],"sourceHash":"sha256:8547edb146cd803f907b9b2d9bc69dbf132abaef73e99035517dc01663408bf1"}';
+      '{"byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body-v1","locale":"en","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","requiredComponents":[{"name":"BlockMath","version":1},{"name":"TestWidget","version":2}],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
     const artifactHash =
-      "sha256:5857141ff2ed209aa5b1419c6a895cc2534f01bb164313890b61b79dcee83242";
+      "sha256:4707616e42057310d59a2194260480d93d47f74af65ba6f40e762a1d2e8f9050";
     const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
       artifactHash,
-      keyId: "content-2026-01",
+      keyId: "test-signing-key",
       payload,
       signature: "A".repeat(86),
     });
-    const canonicalArtifact = `{"artifactHash":"${artifactHash}","keyId":"content-2026-01","payload":${canonicalPayload},"signature":"${"A".repeat(86)}"}`;
+    const canonicalArtifact = `{"artifactHash":"${artifactHash}","keyId":"test-signing-key","payload":${canonicalPayload},"signature":"${"A".repeat(86)}"}`;
 
     expect(canonicalizeCompiledContentPayload(payload)).toBe(canonicalPayload);
     expect(
@@ -104,7 +99,7 @@ describe("content", () => {
     expect(
       `sha256:${createHash("sha256").update(canonicalArtifact).digest("hex")}`
     ).toBe(
-      "sha256:45dfe6ad795bdca5b466f2209ddea40de1384aed40778a33e4f0a4d1c6a4625f"
+      "sha256:a5c4ccf964b3ca67f65c7b8fd6a49af7f4d42e2b8709a694c9a99b8946ddf646"
     );
   });
 });

@@ -13,8 +13,8 @@ import type {
   PublicationReceipt,
   ReleaseVerificationEvidence,
 } from "@nakafaai/aksara-contracts/release";
-import type { VerifiedContentReleaseItems } from "@nakafaai/aksara-contracts/release-items-node";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer";
+import type { VerifiedContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
 import { Effect, Schema } from "effect";
 
 /** Signed payloads do not exactly satisfy their authenticated item stream. */

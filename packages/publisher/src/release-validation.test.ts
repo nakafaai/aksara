@@ -4,7 +4,7 @@ import {
 } from "@nakafaai/aksara-contracts/release";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { validateVerificationEvidence } from "./release-validation.js";
+import { validateVerificationEvidence } from "#publisher/release-validation.js";
 
 const expectedCounts = {
   artifacts: 2,
@@ -22,7 +22,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   expectedDigest: `sha256:${"b".repeat(64)}`,
   itemCount: 0,
   itemsDigest: `sha256:${"c".repeat(64)}`,
-  releaseId: "release-counts",
+  releaseId: "test-release-counts",
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });

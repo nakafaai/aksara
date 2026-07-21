@@ -8,7 +8,7 @@ import {
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "./ids.js";
+} from "#contracts/ids.js";
 
 describe("ids", () => {
   it("decodes canonical hashes and rejects malformed values", () => {
@@ -81,7 +81,7 @@ describe("ids", () => {
   it("accepts canonical public paths and rejects unsafe variants", () => {
     expect(
       Either.isRight(
-        Schema.decodeUnknownEither(PublicPathSchema)("/en/article/functions")
+        Schema.decodeUnknownEither(PublicPathSchema)("/en/test/route")
       )
     ).toBe(true);
     for (const value of [

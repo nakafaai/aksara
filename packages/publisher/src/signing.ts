@@ -5,14 +5,14 @@ import {
   type KeyObject,
   sign as signBytes,
 } from "node:crypto";
-import {
-  hashCompiledContentPayload,
-  verifyCompiledContentSourceHash,
-} from "@nakafaai/aksara-contracts/artifact-verification-node";
 import type {
   ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
-} from "@nakafaai/aksara-contracts/artifact-verification-spec";
+} from "@nakafaai/aksara-contracts/artifact/spec";
+import {
+  hashCompiledContentPayload,
+  verifyCompiledContentSourceHash,
+} from "@nakafaai/aksara-contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
@@ -37,7 +37,7 @@ import { Effect, Schema } from "effect";
 import {
   ContentSigningError,
   SignedArtifactByteLimitError,
-} from "./signing-errors.js";
+} from "#publisher/signing-errors.js";
 
 /** Single-key signer for every authenticated object in one publication run. */
 export interface PublicationSigner {

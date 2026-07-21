@@ -1,4 +1,4 @@
-import { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact-verification-node";
+import { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact/verify";
 import type {
   CompileDocumentSource,
   CompiledContentPayload,
@@ -14,10 +14,10 @@ import type {
   ReleaseVerificationEvidence,
   SignedContentRelease,
 } from "@nakafaai/aksara-contracts/release";
-import { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release-items-node";
-import { verifySignedContentRelease } from "@nakafaai/aksara-contracts/release-verification-node";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer-node";
+import { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+import { verifySignedContentRelease } from "@nakafaai/aksara-contracts/release/verify";
+import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
+import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Context, Effect, Redacted, Schema } from "effect";
 import {
   type ArtifactBatch,
@@ -27,20 +27,20 @@ import {
   partitionArtifactBatches,
   partitionReleaseItemBatches,
   type ReleaseItemBatch,
-} from "./batching.js";
+} from "#publisher/batching.js";
 import {
   ReleaseArtifactMismatchError,
   validateArtifactForItem,
   validatePublicationReceipt,
   validateReleaseRendererManifest,
   validateVerificationEvidence,
-} from "./release-validation.js";
+} from "#publisher/release-validation.js";
 import {
   makeEd25519PublicationSigner,
   type PublicationSigner,
-} from "./signing.js";
-import { compileReleaseSources } from "./source-compilation.js";
-import type { PublicationTargetFailure } from "./target-errors.js";
+} from "#publisher/signing.js";
+import { compileReleaseSources } from "#publisher/source-compilation.js";
+import type { PublicationTargetFailure } from "#publisher/target-errors.js";
 
 /** The exact reviewed Aksara revision could not provide release sources. */
 export class PublicationSourceError extends Schema.TaggedError<PublicationSourceError>()(

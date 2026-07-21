@@ -1,38 +1,39 @@
 import { generateKeyPairSync } from "node:crypto";
 import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact-verification-node";
+import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
 import { CompileDocumentSourceSchema } from "@nakafaai/aksara-contracts/content";
 import {
   ContentKeySchema,
+  type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafaai/aksara-contracts/ids";
 import {
   type ContentChange,
-  type ContentReleaseManifest,
+  ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
-  indexContentChanges,
+  compareContentChanges,
 } from "@nakafaai/aksara-contracts/release";
-import { hashContentReleaseItems } from "@nakafaai/aksara-contracts/release-items-node";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer-node";
+import { hashContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
-} from "@nakafaai/aksara-contracts/signature-verification";
+} from "@nakafaai/aksara-contracts/signature/spec";
 import { Effect, Redacted, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import type { ArtifactBatch, ReleaseItemBatch } from "./batching.js";
+import type { ArtifactBatch, ReleaseItemBatch } from "#publisher/batching.js";
 import {
   PublicationSigningKey,
   PublicationSource,
   PublicationSourceError,
   PublicationTarget,
   publishContentRelease,
-} from "./publication.js";
+} from "#publisher/publication.js";
 import {
   PublicationStaleBaseError,
   PublicationTargetConflictError,
-} from "./target-errors.js";
+} from "#publisher/target-errors.js";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -41,24 +42,23 @@ const rendererManifest = await Effect.runPromise(
   })
 );
 const source = CompileDocumentSourceSchema.make({
-  contentKey: ContentKeySchema.make("fixture:function"),
+  contentKey: ContentKeySchema.make("test:publication"),
   locale: "en",
-  rawMdx:
-    'export const metadata = { authors: [{ name: "Nakafa" }], date: "2026-07-21", title: "Function" }\n\n## Function\n\n<BlockMath math="x" />',
+  rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
 });
 const payload = await Effect.runPromise(
   compileContent({ ...source, rendererManifest })
 );
 const keys = generateKeyPairSync("ed25519");
 const signingKey = PublicationSigningKey.of({
-  keyId: "content-2026-01",
+  keyId: "test-signing-key",
   privateKeyPem: Redacted.make(
     keys.privateKey.export({ format: "pem", type: "pkcs8" }).toString()
   ),
 });
 const resolver = ContentVerificationKeyResolver.of({
   resolve: (requestedKeyId) => {
-    if (requestedKeyId === "content-2026-01") {
+    if (requestedKeyId === "test-signing-key") {
       return Effect.succeed(
         keys.publicKey.export({ format: "pem", type: "spki" }).toString()
       );
@@ -66,12 +66,17 @@ const resolver = ContentVerificationKeyResolver.of({
     return Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId }));
   },
 });
-function makeRelease(
-  releaseIdSource: string,
-  changes: readonly ContentChange[]
-) {
-  const releaseId = ReleaseIdSchema.make(releaseIdSource);
-  const items = indexContentChanges(releaseId, changes);
+function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
+  return [...changes]
+    .sort(compareContentChanges)
+    .map((change, index) =>
+      ContentReleaseItemSchema.make({ change, index, releaseId })
+    );
+}
+
+function makeRelease(releaseSource: string, changes: readonly ContentChange[]) {
+  const releaseId = ReleaseIdSchema.make(releaseSource);
+  const items = makeItems(releaseId, changes);
   const upserts = items.filter((item) => item.change.operation === "upsert");
   const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
     aksaraSha: "a".repeat(40),
@@ -216,10 +221,7 @@ function makeTarget(
 }
 
 function publish(
-  release: {
-    readonly items: readonly unknown[];
-    readonly manifest: ContentReleaseManifest;
-  },
+  release: ReturnType<typeof makeRelease>,
   target: typeof PublicationTarget.Service,
   sources = [source]
 ) {
@@ -233,7 +235,7 @@ function publish(
           new PublicationSourceError({
             aksaraSha,
             cause: null,
-            message: "The exact fixture revision is unavailable.",
+            message: "The exact source revision is unavailable.",
           })
         );
       }
@@ -255,14 +257,13 @@ function publish(
 const upsert = {
   artifactHash: hashCompiledContentPayload(payload),
   contentKey: payload.contentKey,
-  kind: "material",
   locale: payload.locale,
   operation: "upsert",
 } satisfies ContentChange;
 
 describe("publishContentRelease", () => {
   it("stages and activates exact retries idempotently", async () => {
-    const release = makeRelease("release-idempotent", [upsert]);
+    const release = makeRelease("test-release-idempotent", [upsert]);
     const state = makeTarget(release);
 
     const first = await Effect.runPromise(publish(release, state.target));
@@ -275,7 +276,7 @@ describe("publishContentRelease", () => {
   });
 
   it("never activates mismatched pre-activation evidence", async () => {
-    const release = makeRelease("release-evidence", [upsert]);
+    const release = makeRelease("test-release-evidence", [upsert]);
     const state = makeTarget(release, null, true);
     const error = await Effect.runPromise(
       publish(release, state.target).pipe(Effect.flip)
@@ -286,14 +287,14 @@ describe("publishContentRelease", () => {
   });
 
   it("preserves stale-base rejection at atomic activation", async () => {
-    const release = makeRelease("release-stale", [upsert]);
-    const state = makeTarget(release, ReleaseIdSchema.make("another-release"));
+    const release = makeRelease("test-release-stale", [upsert]);
+    const state = makeTarget(release, ReleaseIdSchema.make("test-other"));
     const error = await Effect.runPromise(
       publish(release, state.target).pipe(Effect.flip)
     );
 
     expect(error._tag).toBe("PublicationStaleBaseError");
-    expect(error).toHaveProperty("activeReleaseId", "another-release");
+    expect(error).toHaveProperty("activeReleaseId", "test-other");
     expect(state.activationTransitions).toBe(0);
   });
 });

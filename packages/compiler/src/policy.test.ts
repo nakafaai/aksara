@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,
-} from "./errors.js";
-import { enforceExecutablePolicy } from "./policy.js";
+} from "#compiler/errors.js";
+import { enforceExecutablePolicy } from "#compiler/policy.js";
 
 async function inspectPolicy(rawMdx: string) {
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];

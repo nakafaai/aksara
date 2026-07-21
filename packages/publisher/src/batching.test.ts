@@ -3,7 +3,7 @@
 import { ReleaseIdSchema } from "@nakafaai/aksara-contracts/ids";
 import {
   ContentChangeSchema,
-  indexContentChanges,
+  ContentReleaseItemSchema,
 } from "@nakafaai/aksara-contracts/release";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
@@ -11,18 +11,19 @@ import {
   MAX_RELEASE_ITEMS_PER_BATCH,
   makeReleaseItemBatch,
   partitionReleaseItemBatches,
-} from "./batching.js";
+} from "#publisher/batching.js";
 
-const releaseId = ReleaseIdSchema.make("release-batching");
+const releaseId = ReleaseIdSchema.make("test-release-batching");
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
   Array.from({ length: MAX_RELEASE_ITEMS_PER_BATCH + 1 }, (_, index) => ({
-    contentKey: `article:${index.toString().padStart(4, "0")}`,
-    kind: "article",
+    contentKey: `test:${index.toString().padStart(4, "0")}`,
     locale: "en",
     operation: "delete",
   }))
 );
-const items = indexContentChanges(releaseId, changes);
+const items = changes.map((change, index) =>
+  ContentReleaseItemSchema.make({ change, index, releaseId })
+);
 
 describe("publication batching", () => {
   it("partitions ordered release items below the hard count ceiling", async () => {

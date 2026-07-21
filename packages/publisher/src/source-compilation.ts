@@ -1,18 +1,18 @@
 import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact-verification-node";
+import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
 import {
   type CompileDocumentSource,
   decodeCompileDocumentSource,
 } from "@nakafaai/aksara-contracts/content";
 import type { ContentReleaseItem } from "@nakafaai/aksara-contracts/release";
-import type { VerifiedContentReleaseItems } from "@nakafaai/aksara-contracts/release-items-node";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer";
+import type { VerifiedContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
 import { Effect } from "effect";
 import {
   ReleaseArtifactMismatchError,
   validateCompiledPayloadForItem,
   validateUpsertSourceCount,
-} from "./release-validation.js";
+} from "#publisher/release-validation.js";
 
 function upsertItems(items: readonly ContentReleaseItem[]) {
   return items.filter((item) => item.change.operation === "upsert");

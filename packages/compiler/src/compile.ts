@@ -19,12 +19,12 @@ import {
 import type {
   RendererComponentRequirement,
   RendererManifestEnvelope,
-} from "@nakafaai/aksara-contracts/renderer";
+} from "@nakafaai/aksara-contracts/renderer/contract";
 import {
   canonicalizeRendererAuthoringSelection,
   sortRendererComponentRequirements,
-} from "@nakafaai/aksara-contracts/renderer";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer-node";
+} from "@nakafaai/aksara-contracts/renderer/contract";
+import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";
@@ -41,13 +41,13 @@ import {
   RendererComponentMissingError,
   type UnsupportedMdxModuleOccurrence,
   UnsupportedMdxModuleSyntaxError,
-} from "./errors.js";
+} from "#compiler/errors.js";
 import {
-  type AuthoredMetadataCollector,
-  decodeAuthoredMetadata,
-  extractAuthoredMetadata,
-} from "./metadata.js";
-import { enforceExecutablePolicy } from "./policy.js";
+  extractMetadata,
+  type MetadataCollector,
+  validateMetadata,
+} from "#compiler/metadata.js";
+import { enforceExecutablePolicy } from "#compiler/policy.js";
 
 const PROVIDER_IMPORT_SOURCE = "nakafa-static-renderer-registry";
 const COMPILER_CONFIG = JSON.stringify({
@@ -58,7 +58,7 @@ const COMPILER_CONFIG = JSON.stringify({
   executablePolicy: "trusted-mdx-policy-v2",
   format: "mdx",
   mdxCompilerVersion: MDX_COMPILER_VERSION,
-  metadataExtraction: "metadata-estree-static-v1",
+  metadataExtraction: "metadata-estree-static-v2",
   modulePolicy: "imports-and-reexports-forbidden-v1",
   outputFormat: "function-body",
   plainTextProjection: "mdast-to-string@4.0.0",
@@ -167,7 +167,7 @@ export const compileContent = Effect.fn("AksaraCompiler.compileContent")(
         const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
         const policyViolations: ExecutablePolicyViolation[] = [];
         const requiredComponentNames = new Set<string>();
-        const metadataCollector: AuthoredMetadataCollector = {
+        const metadataCollector: MetadataCollector = {
           candidates: [],
           syntaxReasons: [],
         };
@@ -198,7 +198,7 @@ export const compileContent = Effect.fn("AksaraCompiler.compileContent")(
                   captureRequiredComponents(requiredComponentNames),
                 ],
                 remarkPlugins: [
-                  extractAuthoredMetadata(metadataCollector),
+                  extractMetadata(metadataCollector),
                   enforceExecutablePolicy(unsupportedModules, policyViolations),
                   capturePlainText((value) => {
                     plainText = value;
@@ -209,10 +209,7 @@ export const compileContent = Effect.fn("AksaraCompiler.compileContent")(
               }),
           });
 
-          const metadata = yield* decodeAuthoredMetadata(
-            request.contentKey,
-            metadataCollector
-          );
+          yield* validateMetadata(request.contentKey, metadataCollector);
 
           if (unsupportedModules.length > 0) {
             return yield* new UnsupportedMdxModuleSyntaxError({
@@ -254,7 +251,6 @@ export const compileContent = Effect.fn("AksaraCompiler.compileContent")(
             format: "mdx-function-body-v1",
             locale: request.locale,
             mdxCompilerVersion: MDX_COMPILER_VERSION,
-            metadata,
             plainText,
             rawMdx: request.rawMdx,
             requiredComponents,

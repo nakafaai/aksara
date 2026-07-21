@@ -1,9 +1,5 @@
 import type { ContentKey } from "@nakafaai/aksara-contracts/ids";
-import {
-  type AuthoredContentMetadata,
-  AuthoredContentMetadataSchema,
-} from "@nakafaai/aksara-contracts/metadata";
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import type {
   ArrayExpression,
   Expression,
@@ -15,39 +11,35 @@ import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
 import type { Plugin } from "unified";
 import {
-  AuthoredMetadataContractError,
   AuthoredMetadataDuplicateError,
   AuthoredMetadataMissingError,
   AuthoredMetadataSyntaxError,
   type AuthoredMetadataSyntaxReason,
-} from "./errors.js";
+} from "#compiler/errors.js";
 
-type StaticMetadataValue =
+type StaticValue =
   | boolean
   | null
   | number
   | string
-  | readonly StaticMetadataValue[]
-  | { readonly [key: string]: StaticMetadataValue };
+  | readonly StaticValue[]
+  | { readonly [key: string]: StaticValue };
 
-type StaticDecodeResult =
+type DecodeResult =
   | { readonly reason: AuthoredMetadataSyntaxReason; readonly success: false }
-  | { readonly success: true; readonly value: StaticMetadataValue };
+  | { readonly success: true; readonly value: StaticValue };
 
-type MetadataStatementResult =
+type StatementResult =
   | { readonly matched: false }
-  | {
-      readonly matched: true;
-      readonly result: StaticDecodeResult;
-    };
+  | { readonly matched: true; readonly result: DecodeResult };
 
-/** Mutable state scoped to one official MDX compilation. */
-export interface AuthoredMetadataCollector {
-  readonly candidates: StaticMetadataValue[];
+/** Mutable metadata state scoped to one official MDX compilation. */
+export interface MetadataCollector {
+  readonly candidates: StaticValue[];
   readonly syntaxReasons: AuthoredMetadataSyntaxReason[];
 }
 
-function failed(reason: AuthoredMetadataSyntaxReason): StaticDecodeResult {
+function failed(reason: AuthoredMetadataSyntaxReason): DecodeResult {
   return { reason, success: false };
 }
 
@@ -60,8 +52,8 @@ function propertyName(expression: Expression) {
   }
 }
 
-function decodeStaticArray(node: ArrayExpression): StaticDecodeResult {
-  const values: StaticMetadataValue[] = [];
+function decodeArray(node: ArrayExpression): DecodeResult {
+  const values: StaticValue[] = [];
   for (const element of node.elements) {
     if (element === null) {
       return failed("array-hole");
@@ -69,7 +61,7 @@ function decodeStaticArray(node: ArrayExpression): StaticDecodeResult {
     if (element.type === "SpreadElement") {
       return failed("spread");
     }
-    const decoded = decodeStaticValue(element);
+    const decoded = decodeValue(element);
     if (!decoded.success) {
       return decoded;
     }
@@ -78,8 +70,8 @@ function decodeStaticArray(node: ArrayExpression): StaticDecodeResult {
   return { success: true, value: values };
 }
 
-function decodeStaticObject(node: ObjectExpression): StaticDecodeResult {
-  const entries: [string, StaticMetadataValue][] = [];
+function decodeObject(node: ObjectExpression): DecodeResult {
+  const entries: [string, StaticValue][] = [];
   const names = new Set<string>();
   for (const property of node.properties) {
     if (property.type === "SpreadElement") {
@@ -98,7 +90,7 @@ function decodeStaticObject(node: ObjectExpression): StaticDecodeResult {
     if (names.has(name)) {
       return failed("duplicate-property");
     }
-    const decoded = decodeStaticValue(property.value);
+    const decoded = decodeValue(property.value);
     if (!decoded.success) {
       return decoded;
     }
@@ -108,7 +100,7 @@ function decodeStaticObject(node: ObjectExpression): StaticDecodeResult {
   return { success: true, value: Object.fromEntries(entries) };
 }
 
-function decodeStaticValue(node: Expression | Pattern): StaticDecodeResult {
+function decodeValue(node: Expression | Pattern): DecodeResult {
   if (node.type === "Literal") {
     if (
       node.value === null ||
@@ -121,17 +113,15 @@ function decodeStaticValue(node: Expression | Pattern): StaticDecodeResult {
     return failed("dynamic-value");
   }
   if (node.type === "ArrayExpression") {
-    return decodeStaticArray(node);
+    return decodeArray(node);
   }
   if (node.type === "ObjectExpression") {
-    return decodeStaticObject(node);
+    return decodeObject(node);
   }
   return failed("dynamic-value");
 }
 
-function inspectMetadataStatement(
-  statement: Program["body"][number]
-): MetadataStatementResult {
+function inspectStatement(statement: Program["body"][number]): StatementResult {
   if (statement.type !== "ExportNamedDeclaration") {
     return { matched: false };
   }
@@ -156,17 +146,14 @@ function inspectMetadataStatement(
   if (!initializer) {
     return { matched: true, result: failed("invalid-declaration") };
   }
-  return { matched: true, result: decodeStaticValue(initializer) };
+  return { matched: true, result: decodeValue(initializer) };
 }
 
 function isMdxjsEsm(node: RootContent): node is MdxjsEsm {
   return node.type === "mdxjsEsm";
 }
 
-function collectMetadataNode(
-  node: RootContent,
-  collector: AuthoredMetadataCollector
-) {
+function collectMetadata(node: RootContent, collector: MetadataCollector) {
   if (!isMdxjsEsm(node)) {
     return true;
   }
@@ -174,56 +161,39 @@ function collectMetadataNode(
   if (!program) {
     return true;
   }
-  const results: StaticDecodeResult[] = [];
-  for (const statement of program.body) {
-    const inspected = inspectMetadataStatement(statement);
-    if (!inspected.matched) {
-      continue;
-    }
-    results.push(inspected.result);
-  }
-  if (results.length === 0) {
+  const results = program.body.map(inspectStatement);
+  const metadata = results.filter((result) => result.matched);
+  if (metadata.length === 0) {
     return true;
   }
-  if (results.length !== program.body.length) {
+  if (metadata.length !== results.length) {
     collector.syntaxReasons.push("mixed-metadata-module");
     return false;
   }
-  for (const result of results) {
-    if (result.success) {
-      collector.candidates.push(result.value);
+  for (const result of metadata) {
+    if (result.result.success) {
+      collector.candidates.push(result.result.value);
     } else {
-      collector.syntaxReasons.push(result.reason);
+      collector.syntaxReasons.push(result.result.reason);
     }
   }
   return false;
 }
 
-/** Removes metadata ESM nodes after collecting their static ESTree values. */
-export function extractAuthoredMetadata(
-  collector: AuthoredMetadataCollector
+/** Removes one static metadata export without claiming a family schema. */
+export function extractMetadata(
+  collector: MetadataCollector
 ): Plugin<[], Root> {
   return () => (tree) => {
     tree.children = tree.children.filter((node) =>
-      collectMetadataNode(node, collector)
+      collectMetadata(node, collector)
     );
   };
 }
 
-/** Decodes exactly one collected static metadata value through its schema. */
-export const decodeAuthoredMetadata = Effect.fn(
-  "AksaraCompiler.decodeAuthoredMetadata"
-)(
-  (
-    contentKey: ContentKey,
-    collector: AuthoredMetadataCollector
-  ): Effect.Effect<
-    AuthoredContentMetadata,
-    | AuthoredMetadataContractError
-    | AuthoredMetadataDuplicateError
-    | AuthoredMetadataMissingError
-    | AuthoredMetadataSyntaxError
-  > => {
+/** Requires exactly one static metadata object before body compilation. */
+export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
+  (contentKey: ContentKey, collector: MetadataCollector) => {
     if (collector.syntaxReasons.length > 0) {
       return Effect.fail(
         new AuthoredMetadataSyntaxError({
@@ -243,13 +213,19 @@ export const decodeAuthoredMetadata = Effect.fn(
         })
       );
     }
-    return Schema.decodeUnknown(AuthoredContentMetadataSchema)(
-      collector.candidates[0],
-      { onExcessProperty: "error" }
-    ).pipe(
-      Effect.mapError(
-        (cause) => new AuthoredMetadataContractError({ cause, contentKey })
-      )
-    );
+    const [metadata] = collector.candidates;
+    if (
+      typeof metadata !== "object" ||
+      metadata === null ||
+      Array.isArray(metadata)
+    ) {
+      return Effect.fail(
+        new AuthoredMetadataSyntaxError({
+          contentKey,
+          reasons: ["metadata-not-object"],
+        })
+      );
+    }
+    return Effect.void;
   }
 );

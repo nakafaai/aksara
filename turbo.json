@@ -2,21 +2,11 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
   "envMode": "strict",
-  "globalDependencies": ["tsconfig.base.json"],
+  "globalDependencies": ["packages/typescript-config/*.json"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
-    },
-    "@nakafaai/aksara-corpus#build": {
-      "cache": false,
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
-    },
-    "check": {
-      "cache": false,
-      "dependsOn": ["build"],
-      "outputs": []
     },
     "typecheck": {
       "dependsOn": ["^build"],
@@ -27,8 +17,7 @@
       "outputs": []
     },
     "verify:package": {
-      "cache": false,
-      "outputs": []
+      "cache": false
     }
   }
 }
