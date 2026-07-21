@@ -74,12 +74,14 @@ const COMPILER_CONFIG = JSON.stringify({
   ],
 });
 
+/** Produces the canonical SHA-256 identifier for one UTF-8 value. */
 function sha256(value: string) {
   return Sha256HashSchema.make(
     `sha256:${createHash("sha256").update(value).digest("hex")}`
   );
 }
 
+/** Binds compiler behavior to the manifest's selected authoring versions. */
 function compilerConfigHash(manifest: RendererManifestEnvelope) {
   return sha256(
     `${COMPILER_CONFIG}\n${canonicalizeRendererAuthoringSelection(
@@ -88,6 +90,7 @@ function compilerConfigHash(manifest: RendererManifestEnvelope) {
   );
 }
 
+/** Captures the searchable plain-text projection from the parsed MDX tree. */
 function capturePlainText(
   setPlainText: (value: string) => void
 ): Plugin<[], Root> {
@@ -96,6 +99,7 @@ function capturePlainText(
   };
 }
 
+/** Measures one artifact field and fails when its encoded size exceeds policy. */
 function enforceByteLimit(
   contentKey: ContentKey,
   field: "rawMdx" | "compiledCode" | "plainText" | "canonicalPayload",
@@ -141,6 +145,7 @@ function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
   };
 }
 
+/** Resolves referenced component names to pinned renderer requirements. */
 function selectRendererRequirements(
   contentKey: ContentKey,
   names: ReadonlySet<string>,

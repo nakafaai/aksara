@@ -1,10 +1,18 @@
+import { Sha256HashSchema } from "@nakafaai/aksara-contracts/ids";
 import {
   ContentReleaseManifestSchema,
+  PublicationReceiptSchema,
   ReleaseVerificationEvidenceSchema,
 } from "@nakafaai/aksara-contracts/release";
+import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { validateVerificationEvidence } from "#publisher/release-validation.js";
+import {
+  validatePublicationReceipt,
+  validateReleaseRendererManifest,
+  validateUpsertSourceCount,
+  validateVerificationEvidence,
+} from "#publisher/release-validation.js";
 
 const expectedCounts = {
   artifacts: 2,
@@ -40,8 +48,14 @@ const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
   upsertHeads: 0,
 });
 const summary = { deleteCount: 0, items: [], upsertCount: 0 };
+const rendererManifest = await Effect.runPromise(
+  createRendererManifest({
+    authoringComponents: [{ name: "BlockMath", version: 1 }],
+    supportedComponents: [{ name: "BlockMath", version: 1 }],
+  })
+);
 
-describe("validateVerificationEvidence", () => {
+describe("release validation", () => {
   it("accepts projection counts recomputed by the target", async () => {
     await expect(
       Effect.runPromise(
@@ -62,5 +76,42 @@ describe("validateVerificationEvidence", () => {
     );
 
     expect(error._tag).toBe("ReleaseVerificationMismatchError");
+  });
+
+  it("rejects a missing authored source before compilation", async () => {
+    const error = await Effect.runPromise(
+      validateUpsertSourceCount({ ...summary, upsertCount: 1 }, 0).pipe(
+        Effect.flip
+      )
+    );
+
+    expect(error._tag).toBe("ReleaseArtifactMismatchError");
+  });
+
+  it("rejects a release prepared for another renderer manifest", async () => {
+    const error = await Effect.runPromise(
+      validateReleaseRendererManifest(manifest, rendererManifest).pipe(
+        Effect.flip
+      )
+    );
+
+    expect(error._tag).toBe("ReleaseRendererManifestMismatchError");
+    expect(error).toHaveProperty("actualHash", rendererManifest.hash);
+  });
+
+  it("rejects an activation receipt with a different projection digest", async () => {
+    const receipt = PublicationReceiptSchema.make({
+      activatedHeads: 0,
+      deletedHeads: 0,
+      projectionDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+      releaseId: manifest.releaseId,
+      stagedArtifacts: 0,
+      stagedItems: 0,
+    });
+    const error = await Effect.runPromise(
+      validatePublicationReceipt(manifest, summary, receipt).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("PublicationReceiptMismatchError");
   });
 });

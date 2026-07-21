@@ -8,6 +8,7 @@ import {
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
+  SigningKeyIdSchema,
 } from "#contracts/ids.js";
 
 describe("ids", () => {
@@ -101,5 +102,25 @@ describe("ids", () => {
         Either.isLeft(Schema.decodeUnknownEither(PublicPathSchema)(value))
       ).toBe(true);
     }
+  });
+
+  it("reports actionable diagnostics for each refined identifier", () => {
+    expect(() =>
+      Schema.decodeUnknownSync(PublicPathSchema)("relative")
+    ).toThrow("Expected a canonical absolute public path.");
+    expect(() => Schema.decodeUnknownSync(GitCommitShaSchema)("short")).toThrow(
+      "Expected a 40-character lowercase Git commit SHA."
+    );
+    expect(() => Schema.decodeUnknownSync(Sha256HashSchema)("invalid")).toThrow(
+      "Expected sha256 followed by 64 lowercase hexadecimal characters."
+    );
+    expect(() => Schema.decodeUnknownSync(SigningKeyIdSchema)("UPPER")).toThrow(
+      "Expected a lowercase wire-safe signing key identifier up to 64 characters."
+    );
+    expect(() =>
+      Schema.decodeUnknownSync(Ed25519SignatureSchema)("invalid")
+    ).toThrow(
+      "Expected a canonical unpadded base64url 64-byte Ed25519 signature."
+    );
   });
 });

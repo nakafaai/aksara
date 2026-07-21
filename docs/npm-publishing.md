@@ -34,10 +34,11 @@ Direct publication may use `pnpm publish <exact-tarball>` only after the
 release policy explicitly permits it. A content or application release must
 never select a contracts version that has not completed this package gate.
 
-The current foundation remains pinned to pnpm 10.34.1 so its already-verified
-lockfile stays reproducible. Publishing is blocked until Aksara upgrades to a
-pnpm 11 release with native publishing and `pnpm stage` support. The attempted
-pnpm 11.12.0 upgrade correctly rejected seven tooling dependencies that were
+The current foundation remains pinned to the verified pnpm 10 release declared
+in `package.json` so its lockfile stays reproducible. Publishing is blocked
+until Aksara upgrades to a pnpm 11 release with native publishing and
+`pnpm stage` support. The attempted pnpm 11.12.0 upgrade correctly rejected
+seven tooling dependencies that were
 less than its default 24-hour minimum release age; that supply-chain gate was
 not bypassed. No repository command may invoke the npm CLI as a workaround.
 

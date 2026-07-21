@@ -2,12 +2,13 @@
 
 import { Buffer } from "node:buffer";
 import {
+  type BinaryLike,
   createHash,
   generateKeyPairSync,
   sign as signBytes,
 } from "node:crypto";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   Ed25519SignatureSchema,
   Sha256HashSchema,
@@ -26,6 +27,36 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec.js";
+
+vi.mock("node:crypto", async (importOriginal) => {
+  const crypto = await importOriginal<typeof import("node:crypto")>();
+  return {
+    ...crypto,
+    /** Injects one deterministic manifest-hashing failure. */
+    createHash(algorithm: string) {
+      const hash = crypto.createHash(algorithm);
+      return new Proxy(hash, {
+        /** Preserves real Hash methods while intercepting the failure marker. */
+        get(target, property, receiver) {
+          if (property === "update") {
+            return (data: BinaryLike) => {
+              if (
+                typeof data === "string" &&
+                data.includes('"releaseId":"hash-failure"')
+              ) {
+                throw new TypeError("injected manifest hash failure");
+              }
+              target.update(data);
+              return receiver;
+            };
+          }
+          const value = Reflect.get(target, property, target);
+          return typeof value === "function" ? value.bind(target) : value;
+        },
+      });
+    },
+  };
+});
 
 const keys = generateKeyPairSync("ed25519");
 const keyId = SigningKeyIdSchema.make("test-signing-key");
@@ -52,6 +83,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 
+/** Computes the canonical hash used by signed release test fixtures. */
 function hashManifest(value: ContentReleaseManifest) {
   return Sha256HashSchema.make(
     `sha256:${createHash("sha256")
@@ -60,6 +92,7 @@ function hashManifest(value: ContentReleaseManifest) {
   );
 }
 
+/** Produces a valid signed release for verification scenarios. */
 function signRelease(value = manifest): SignedContentRelease {
   const manifestHash = hashManifest(value);
   return SignedContentReleaseSchema.make({
@@ -80,6 +113,7 @@ function signRelease(value = manifest): SignedContentRelease {
 }
 
 const trustedResolver = ContentVerificationKeyResolver.of({
+  /** Resolves the trusted test key or fails with the production error shape. */
   resolve: (requestedKeyId) => {
     if (requestedKeyId === keyId) {
       return Effect.succeed(publicKeyPem);
@@ -88,6 +122,7 @@ const trustedResolver = ContentVerificationKeyResolver.of({
   },
 });
 
+/** Runs release verification and returns its expected typed failure. */
 function reject(input: unknown, resolver = trustedResolver) {
   return Effect.runPromise(
     verifySignedContentRelease(input).pipe(
@@ -163,5 +198,18 @@ describe("server-only release verification", () => {
 
     expect(error._tag).toBe("ReleaseVerificationDecodeError");
     expect(JSON.stringify(error)).not.toContain(sensitiveSource);
+  });
+
+  it("maps manifest hashing failures to the release identity", async () => {
+    const release = signRelease();
+    const error = await reject({
+      ...release,
+      manifest: { ...release.manifest, releaseId: "hash-failure" },
+    });
+
+    expect(error).toMatchObject({
+      _tag: "ReleaseHashComputationError",
+      releaseId: "hash-failure",
+    });
   });
 });

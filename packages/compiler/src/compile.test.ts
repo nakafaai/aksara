@@ -24,10 +24,12 @@ const rendererManifest = await Effect.runPromise(
 
 const VALID_METADATA = "export const metadata = {}";
 
+/** Prepends valid authored metadata to a test MDX body. */
 function withMetadata(body: string, metadata = VALID_METADATA) {
   return `${metadata}\n\n${body}`;
 }
 
+/** Compiles test MDX through the public compiler boundary. */
 function compileRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest
@@ -42,6 +44,7 @@ function compileRawMdx(
   );
 }
 
+/** Returns the typed compiler failure produced for invalid test MDX. */
 function rejectRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest
@@ -56,6 +59,7 @@ function rejectRawMdx(
   );
 }
 
+/** Reads an installed package version for compiler-identity assertions. */
 function installedVersion(packageName: string) {
   const manifestPath = findPackageJSON(packageName, import.meta.url);
   if (!manifestPath) {
@@ -143,6 +147,7 @@ describe("compileContent", () => {
       })
     );
     const rawMdx = withMetadata("<TestWidget />");
+    /** Compiles the shared fixture against one renderer manifest. */
     const compileWith = (manifest: typeof supportedV1) =>
       Effect.runPromise(
         compileContent({
@@ -230,6 +235,7 @@ describe("compileContent", () => {
 
   it.each([
     ["process", "process", "{process.env.NODE_ENV}"],
+    ["unknown-free-global", "_missingMdxReference", "{_missingMdxReference()}"],
     [
       "prototype-chain-access",
       "constructor",
@@ -240,14 +246,17 @@ describe("compileContent", () => {
       "dangerouslySetInnerHTML",
       '<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />',
     ],
-  ] as const)("surfaces typed %s failures", async (rule, identifier, rawMdx) => {
-    const error = await rejectRawMdx(withMetadata(rawMdx));
+  ] as const)(
+    "surfaces typed %s failures",
+    async (rule, identifier, rawMdx) => {
+      const error = await rejectRawMdx(withMetadata(rawMdx));
 
-    expect(error._tag).toBe("ExecutablePolicyError");
-    if (error._tag === "ExecutablePolicyError") {
-      expect(error.violations).toContainEqual({ identifier, rule });
+      expect(error._tag).toBe("ExecutablePolicyError");
+      if (error._tag === "ExecutablePolicyError") {
+        expect(error.violations).toContainEqual({ identifier, rule });
+      }
     }
-  });
+  );
 
   it("keeps ordinary expressions, fragments, and scoped IIFEs", async () => {
     const payload = await compileRawMdx(
@@ -257,6 +266,12 @@ describe("compileContent", () => {
     );
 
     expect(payload.compiledCode).toContain("values.map");
+  });
+
+  it("wraps malformed authored MDX as a typed compilation failure", async () => {
+    const error = await rejectRawMdx(withMetadata("<Unclosed>"));
+
+    expect(error._tag).toBe("MdxCompilationError");
   });
 
   it("rejects raw MDX above the shared byte ceiling before compilation", async () => {

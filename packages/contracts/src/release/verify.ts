@@ -36,6 +36,7 @@ export class ReleaseManifestHashMismatchError extends Schema.TaggedError<Release
   }
 ) {}
 
+/** Computes a release manifest hash while preserving typed failures. */
 function hashManifest(
   manifest: SignedContentRelease["manifest"]
 ): Effect.Effect<Sha256Hash, ReleaseHashComputationError> {
@@ -51,6 +52,7 @@ function hashManifest(
   });
 }
 
+/** Confirms that a release envelope identifies its canonical manifest. */
 function validateManifestHash(
   releaseId: ReleaseId,
   expectedHash: Sha256Hash,

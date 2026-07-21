@@ -21,6 +21,7 @@ const EXTENSION_SUFFIXES = new Set([
   "yml",
 ]);
 
+/** Lists tracked and untracked repository files that exist on disk. */
 function trackedFiles() {
   return execFileSync(
     "git",
@@ -31,6 +32,7 @@ function trackedFiles() {
     .filter((file) => file.length > 0 && existsSync(file));
 }
 
+/** Returns the semantic words in one file or folder name. */
 function words(segment) {
   if (segment.startsWith(".")) {
     return [];

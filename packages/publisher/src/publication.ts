@@ -77,6 +77,7 @@ export class PublicationSigningKey extends Context.Tag(
 export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
   PublicationSource,
   {
+    /** Loads authored sources from the manifest's exact reviewed Git revision. */
     readonly loadExactRevision: (input: {
       readonly aksaraSha: typeof GitCommitShaSchema.Type;
       readonly items: readonly ContentReleaseItem[];
@@ -95,28 +96,35 @@ export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
 export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
   PublicationTarget,
   {
+    /** Atomically activates a fully verified release. */
     readonly activate: (
       release: SignedContentRelease
     ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
+    /** Stages one immutable artifact batch idempotently. */
     readonly stageArtifactBatch: (
       batch: ArtifactBatch
     ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages one ordered release-item batch idempotently. */
     readonly stageItemBatch: (
       batch: ReleaseItemBatch
     ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages the signed release envelope idempotently. */
     readonly stageRelease: (
       release: SignedContentRelease
     ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Recomputes staged evidence before activation is allowed. */
     readonly verify: (
       release: SignedContentRelease
     ) => Effect.Effect<ReleaseVerificationEvidence, PublicationTargetFailure>;
   }
 >() {}
 
+/** Selects authenticated upserts while preserving canonical release order. */
 function upsertItems(items: readonly ContentReleaseItem[]) {
   return items.filter((item) => item.change.operation === "upsert");
 }
 
+/** Stages every ordered release-item batch through the target seam. */
 const stageItemBatches = Effect.fn("AksaraPublisher.stageItemBatches")(
   function* (
     target: typeof PublicationTarget.Service,
@@ -135,6 +143,7 @@ const stageItemBatches = Effect.fn("AksaraPublisher.stageItemBatches")(
   }
 );
 
+/** Signs, verifies, and stages compiled artifacts in bounded batches. */
 const stageArtifactBatches = Effect.fn("AksaraPublisher.stageArtifactBatches")(
   function* (input: {
     readonly items: readonly ContentReleaseItem[];

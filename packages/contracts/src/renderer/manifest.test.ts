@@ -1,12 +1,40 @@
 // @vitest-environment node
 
+import type { BinaryLike } from "node:crypto";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract.js";
 import {
   createRendererManifest,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest.js";
+
+vi.mock("node:crypto", async (importOriginal) => {
+  const crypto = await importOriginal<typeof import("node:crypto")>();
+  return {
+    ...crypto,
+    /** Injects one deterministic renderer-hashing failure. */
+    createHash(algorithm: string) {
+      const hash = crypto.createHash(algorithm);
+      return new Proxy(hash, {
+        /** Preserves real Hash methods while intercepting the failure marker. */
+        get(target, property, receiver) {
+          if (property === "update") {
+            return (data: BinaryLike) => {
+              if (typeof data === "string" && data.includes("HashFailure")) {
+                throw new TypeError("injected renderer hash failure");
+              }
+              target.update(data);
+              return receiver;
+            };
+          }
+          const value = Reflect.get(target, property, target);
+          return typeof value === "function" ? value.bind(target) : value;
+        },
+      });
+    },
+  };
+});
 
 const ORACLE_AUTHORING = [
   { name: "BlockMath", version: 1 },
@@ -22,6 +50,7 @@ const ORACLE_CANONICAL_BYTES =
 const ORACLE_HASH =
   "sha256:704b98505bd0b68c515f3fe85812801c12d43b754687b0e5ada86c40d9235dcb";
 
+/** Runs manifest creation and returns its expected typed failure. */
 function rejectCreation(
   authoringComponents: readonly {
     readonly name: string;
@@ -36,6 +65,7 @@ function rejectCreation(
   );
 }
 
+/** Runs manifest validation and returns its expected typed failure. */
 function rejectValidation(
   authoringComponents: readonly {
     readonly name: string;
@@ -162,5 +192,16 @@ describe("renderer Node contract", () => {
       }).pipe(Effect.flip)
     );
     expect(mismatch._tag).toBe("RendererManifestHashMismatchError");
+  });
+
+  it("maps renderer hashing failures without exposing raw crypto errors", async () => {
+    const error = await Effect.runPromise(
+      createRendererManifest({
+        authoringComponents: [{ name: "HashFailure", version: 1 }],
+        supportedComponents: [{ name: "HashFailure", version: 1 }],
+      }).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("RendererManifestHashComputeError");
   });
 });

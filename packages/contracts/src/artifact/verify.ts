@@ -39,6 +39,7 @@ import type {
 import { validateRendererManifestHash } from "#contracts/renderer/manifest.js";
 import { verifyEd25519Signature } from "#contracts/signature/verify.js";
 
+/** Rejects signed artifact envelopes that exceed the wire-size ceiling. */
 function enforceSignedWireLimit(artifact: SignedContentArtifact) {
   const actualBytes = Buffer.byteLength(
     canonicalizeSignedContentArtifact(artifact),
@@ -55,6 +56,7 @@ function enforceSignedWireLimit(artifact: SignedContentArtifact) {
   );
 }
 
+/** Rejects an individual payload field that exceeds its byte ceiling. */
 function enforcePayloadFieldLimit(
   payload: CompiledContentPayload,
   field: "rawMdx" | "compiledCode" | "plainText" | "canonicalPayload",
@@ -75,6 +77,7 @@ function enforcePayloadFieldLimit(
   );
 }
 
+/** Verifies declared compiled bytes and every bounded payload field. */
 function validatePayloadByteIntegrity(payload: CompiledContentPayload) {
   return Effect.gen(function* () {
     const compiledBytes = Buffer.byteLength(payload.compiledCode, "utf8");
@@ -121,6 +124,7 @@ export function hashCompiledContentPayload(payload: CompiledContentPayload) {
   );
 }
 
+/** Computes an artifact hash while preserving typed computation failures. */
 function hashPayload(payload: CompiledContentPayload) {
   return Effect.try({
     catch: () =>
@@ -129,6 +133,7 @@ function hashPayload(payload: CompiledContentPayload) {
   });
 }
 
+/** Computes the authenticated hash of the complete authored MDX source. */
 function hashAuthoredSource(payload: CompiledContentPayload) {
   return Effect.try({
     catch: () =>
@@ -162,6 +167,7 @@ export const verifyCompiledContentSourceHash = Effect.fn(
   )
 );
 
+/** Confirms that an artifact envelope identifies its canonical payload. */
 function validateArtifactHash(
   artifact: SignedContentArtifact,
   actualHash: Sha256Hash
@@ -178,6 +184,7 @@ function validateArtifactHash(
   );
 }
 
+/** Confirms that the renderer implements every component an artifact needs. */
 function validateRendererRequirements(
   contentKey: ContentKey,
   required: readonly RendererComponentRequirement[],
@@ -205,6 +212,7 @@ function validateRendererRequirements(
   });
 }
 
+/** Confirms that an artifact targets the active renderer contract. */
 function validateRendererContract(
   request: ArtifactVerificationRequest,
   manifest: RendererManifestEnvelope

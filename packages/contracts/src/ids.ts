@@ -9,22 +9,27 @@ const RELEASE_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,127}$/;
 const PUBLIC_PATH_PATTERN =
   /^\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
 
+/** Checks whether a value is a complete lowercase Git commit SHA. */
 function isGitCommitSha(value: string): value is `${string}` {
   return HEX_40_PATTERN.test(value);
 }
 
+/** Checks whether a value uses Aksara's canonical SHA-256 wire format. */
 function isSha256Hash(value: string): value is `sha256:${string}` {
   return SHA256_PATTERN.test(value);
 }
 
+/** Checks whether a value is a canonical unpadded Ed25519 signature. */
 function isEd25519Signature(value: string) {
   return ED25519_SIGNATURE_PATTERN.test(value);
 }
 
+/** Checks whether a value is a wire-safe signing key identifier. */
 function isSigningKeyId(value: string) {
   return SIGNING_KEY_ID_PATTERN.test(value);
 }
 
+/** Checks whether a value is a bounded canonical public route. */
 function isPublicPath(value: string) {
   return (
     value.length <= 2048 && (value === "/" || PUBLIC_PATH_PATTERN.test(value))

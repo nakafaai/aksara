@@ -27,6 +27,8 @@ pnpm install
 pnpm format
 pnpm lint
 pnpm names
+pnpm jsdocs
+pnpm lines
 pnpm boundaries
 pnpm typecheck
 pnpm test
@@ -43,8 +45,8 @@ pnpm exec turbo run test --filter=@nakafaai/aksara-publisher
 Do not invoke a package test script directly when it consumes another workspace;
 Turbo owns that dependency build order.
 
-`package.json` is the single toolchain source for Node 24, pnpm 10.34.1, and
-their CI setup. Aksara does not duplicate that contract in `.npmrc`,
+`package.json` is the single toolchain source for Node, pnpm, and their CI
+setup. Aksara does not duplicate that contract in `.npmrc`,
 `.node-version`, or `.nvmrc` files.
 
 Package-internal TypeScript imports use private Node aliases such as

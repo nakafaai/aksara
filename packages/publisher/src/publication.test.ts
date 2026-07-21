@@ -21,15 +21,15 @@ import {
   SigningKeyNotFoundError,
 } from "@nakafaai/aksara-contracts/signature/spec";
 import { Effect, Redacted, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { ArtifactBatch, ReleaseItemBatch } from "#publisher/batching.js";
 import {
   PublicationSigningKey,
   PublicationSource,
-  PublicationSourceError,
   PublicationTarget,
   publishContentRelease,
 } from "#publisher/publication.js";
+import { compileReleaseSources } from "#publisher/source-compilation.js";
 import {
   PublicationStaleBaseError,
   PublicationTargetConflictError,
@@ -66,6 +66,7 @@ const resolver = ContentVerificationKeyResolver.of({
     return Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId }));
   },
 });
+/** Builds canonically ordered release items for publication tests. */
 function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
   return [...changes]
     .sort(compareContentChanges)
@@ -73,7 +74,7 @@ function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
       ContentReleaseItemSchema.make({ change, index, releaseId })
     );
 }
-
+/** Builds a release manifest and item stream for publication tests. */
 function makeRelease(releaseSource: string, changes: readonly ContentChange[]) {
   const releaseId = ReleaseIdSchema.make(releaseSource);
   const items = makeItems(releaseId, changes);
@@ -99,7 +100,7 @@ function makeRelease(releaseSource: string, changes: readonly ContentChange[]) {
   });
   return { items, manifest };
 }
-
+/** Stores an idempotent test batch and rejects conflicting retries. */
 function storeExact<T>(
   batches: Map<number, T>,
   batchIndex: number,
@@ -119,7 +120,7 @@ function storeExact<T>(
     batches.set(batchIndex, value);
   });
 }
-
+/** Builds an in-memory publication target with observable activation state. */
 function makeTarget(
   release: ReturnType<typeof makeRelease>,
   activeReleaseId: typeof ReleaseIdSchema.Type | null = null,
@@ -130,10 +131,12 @@ function makeTarget(
   let stagedRelease = "";
   let active = activeReleaseId;
   let activationTransitions = 0;
+  /** Returns staged items in canonical batch order. */
   const stagedItems = () =>
     [...itemBatches.entries()]
       .sort(([left], [right]) => left - right)
       .flatMap(([, batch]) => batch.items);
+  /** Returns every staged artifact across publication batches. */
   const stagedArtifacts = () =>
     [...artifactBatches.values()].flatMap((batch) => batch.artifacts);
   const target = PublicationTarget.of({
@@ -196,6 +199,7 @@ function makeTarget(
       });
     },
   });
+  /** Builds the receipt returned by the in-memory activation seam. */
   function receipt() {
     const items = stagedItems();
     const activatedHeads = items.filter(
@@ -211,6 +215,7 @@ function makeTarget(
     };
   }
   return {
+    /** Exposes how many real activation transitions occurred. */
     get activationTransitions() {
       return activationTransitions;
     },
@@ -219,29 +224,21 @@ function makeTarget(
     target,
   };
 }
-
+/** Runs a test publication with exact source and infrastructure services. */
 function publish(
   release: ReturnType<typeof makeRelease>,
   target: typeof PublicationTarget.Service,
   sources = [source]
 ) {
-  const publicationSource = PublicationSource.of({
-    loadExactRevision: ({ aksaraSha, items }) => {
-      if (
-        aksaraSha !== release.manifest.aksaraSha ||
-        items.length !== sources.length
-      ) {
-        return Effect.fail(
-          new PublicationSourceError({
-            aksaraSha,
-            cause: null,
-            message: "The exact source revision is unavailable.",
-          })
-        );
-      }
-      return Effect.succeed(sources);
-    },
+  /** Loads sources only for the exact reviewed revision and ordered upserts. */
+  const loadExactRevision = vi.fn(({ aksaraSha, items }) => {
+    expect(aksaraSha).toBe(release.manifest.aksaraSha);
+    expect(items).toEqual(
+      release.items.filter((item) => item.change.operation === "upsert")
+    );
+    return Effect.succeed(sources);
   });
+  const publicationSource = PublicationSource.of({ loadExactRevision });
   return publishContentRelease({
     items: release.items,
     manifest: release.manifest,
@@ -253,48 +250,54 @@ function publish(
     Effect.provideService(PublicationTarget, target)
   );
 }
-
 const upsert = {
   artifactHash: hashCompiledContentPayload(payload),
   contentKey: payload.contentKey,
   locale: payload.locale,
   operation: "upsert",
 } satisfies ContentChange;
-
+vi.mock("#publisher/source-compilation.js", { spy: true });
 describe("publishContentRelease", () => {
   it("stages and activates exact retries idempotently", async () => {
     const release = makeRelease("test-release-idempotent", [upsert]);
     const state = makeTarget(release);
-
     const first = await Effect.runPromise(publish(release, state.target));
     const second = await Effect.runPromise(publish(release, state.target));
-
     expect(second).toEqual(first);
     expect(state.itemBatches.size).toBe(1);
     expect(state.artifactBatches.size).toBe(1);
     expect(state.activationTransitions).toBe(1);
   });
-
   it("never activates mismatched pre-activation evidence", async () => {
     const release = makeRelease("test-release-evidence", [upsert]);
     const state = makeTarget(release, null, true);
     const error = await Effect.runPromise(
       publish(release, state.target).pipe(Effect.flip)
     );
-
     expect(error._tag).toBe("ReleaseVerificationMismatchError");
     expect(state.activationTransitions).toBe(0);
   });
-
   it("preserves stale-base rejection at atomic activation", async () => {
     const release = makeRelease("test-release-stale", [upsert]);
     const state = makeTarget(release, ReleaseIdSchema.make("test-other"));
     const error = await Effect.runPromise(
       publish(release, state.target).pipe(Effect.flip)
     );
-
     expect(error._tag).toBe("PublicationStaleBaseError");
     expect(error).toHaveProperty("activeReleaseId", "test-other");
+    expect(state.activationTransitions).toBe(0);
+  });
+
+  it("rejects a compiled payload without an authenticated upsert item", async () => {
+    vi.mocked(compileReleaseSources).mockReturnValueOnce(
+      Effect.succeed([payload, payload])
+    );
+    const release = makeRelease("test-release-extra-payload", [upsert]);
+    const state = makeTarget(release);
+    const error = await Effect.runPromise(
+      publish(release, state.target).pipe(Effect.flip)
+    );
+    expect(error._tag).toBe("ReleaseArtifactMismatchError");
     expect(state.activationTransitions).toBe(0);
   });
 });

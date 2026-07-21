@@ -39,10 +39,12 @@ export interface MetadataCollector {
   readonly syntaxReasons: AuthoredMetadataSyntaxReason[];
 }
 
+/** Creates a failed static-metadata decode result for one syntax reason. */
 function failed(reason: AuthoredMetadataSyntaxReason): DecodeResult {
   return { reason, success: false };
 }
 
+/** Resolves a supported static object-property name. */
 function propertyName(expression: Expression) {
   if (expression.type === "Identifier") {
     return expression.name;
@@ -52,6 +54,7 @@ function propertyName(expression: Expression) {
   }
 }
 
+/** Decodes a metadata array containing only supported static values. */
 function decodeArray(node: ArrayExpression): DecodeResult {
   const values: StaticValue[] = [];
   for (const element of node.elements) {
@@ -70,6 +73,7 @@ function decodeArray(node: ArrayExpression): DecodeResult {
   return { success: true, value: values };
 }
 
+/** Decodes a metadata object while rejecting ambiguous property forms. */
 function decodeObject(node: ObjectExpression): DecodeResult {
   const entries: [string, StaticValue][] = [];
   const names = new Set<string>();
@@ -100,6 +104,7 @@ function decodeObject(node: ObjectExpression): DecodeResult {
   return { success: true, value: Object.fromEntries(entries) };
 }
 
+/** Decodes the supported recursive subset of authored metadata values. */
 function decodeValue(node: Expression | Pattern): DecodeResult {
   if (node.type === "Literal") {
     if (
@@ -121,6 +126,7 @@ function decodeValue(node: Expression | Pattern): DecodeResult {
   return failed("dynamic-value");
 }
 
+/** Detects and statically decodes a metadata export statement. */
 function inspectStatement(statement: Program["body"][number]): StatementResult {
   if (statement.type !== "ExportNamedDeclaration") {
     return { matched: false };
@@ -149,10 +155,12 @@ function inspectStatement(statement: Program["body"][number]): StatementResult {
   return { matched: true, result: decodeValue(initializer) };
 }
 
+/** Narrows an MDX tree child to an embedded ECMAScript module. */
 function isMdxjsEsm(node: RootContent): node is MdxjsEsm {
   return node.type === "mdxjsEsm";
 }
 
+/** Collects metadata candidates and removes matched exports from the body. */
 function collectMetadata(node: RootContent, collector: MetadataCollector) {
   if (!isMdxjsEsm(node)) {
     return true;

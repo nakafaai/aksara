@@ -50,6 +50,7 @@ export class ContentVerificationKeyResolver extends Context.Tag(
 )<
   ContentVerificationKeyResolver,
   {
+    /** Resolves a reviewed public key without exposing key material in errors. */
     readonly resolve: (
       keyId: SigningKeyId
     ) => Effect.Effect<

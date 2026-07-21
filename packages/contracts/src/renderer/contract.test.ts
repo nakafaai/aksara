@@ -2,6 +2,8 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   CompiledContentRequirementsSchema,
+  canonicalizeRendererAuthoringSelection,
+  RendererManifestAuthoringComponentsSchema,
   RendererManifestEnvelopeSchema,
   sortRendererComponentRequirements,
 } from "#contracts/renderer/contract.js";
@@ -106,5 +108,52 @@ describe("renderer", () => {
         Schema.decodeUnknownEither(CompiledContentRequirementsSchema)([])
       )
     ).toBe(true);
+  });
+
+  it("reports exact component and selection contract failures", () => {
+    expect(() =>
+      Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)({
+        authoringComponents: [{ name: "Block-Math", version: 1 }],
+        format: "nakafa-mdx-renderer-v1",
+        hash: `sha256:${"a".repeat(64)}`,
+        rendererContractVersion: "1.0.0",
+        supportedComponents: [{ name: "Block-Math", version: 1 }],
+      })
+    ).toThrow("Expected a component name matching");
+    expect(() =>
+      Schema.decodeUnknownSync(RendererManifestAuthoringComponentsSchema)([
+        { name: "BlockMath", version: 1 },
+        { name: "BlockMath", version: 2 },
+      ])
+    ).toThrow("Expected exactly one authoring version");
+    expect(() =>
+      Schema.decodeUnknownSync(CompiledContentRequirementsSchema)([
+        { name: "BlockMath", version: 1 },
+        { name: "BlockMath", version: 2 },
+      ])
+    ).toThrow("Expected at most one version");
+    expect(() =>
+      Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)({
+        authoringComponents: [{ name: "BlockMath", version: 1 }],
+        format: "nakafa-mdx-renderer-v1",
+        hash: `sha256:${"a".repeat(64)}`,
+        rendererContractVersion: "1.0.0",
+        supportedComponents: [
+          { name: "BlockMath", version: 1 },
+          { name: "TestWidget", version: 1 },
+        ],
+      })
+    ).toThrow("Expected one supported authoring selection");
+  });
+
+  it("canonicalizes the compiler's selected component versions", () => {
+    expect(
+      canonicalizeRendererAuthoringSelection([
+        { name: "BlockMath", version: 1 },
+        { name: "TestWidget", version: 2 },
+      ])
+    ).toBe(
+      '[{"name":"BlockMath","version":1},{"name":"TestWidget","version":2}]'
+    );
   });
 });

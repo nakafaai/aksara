@@ -11,6 +11,7 @@ import {
   SignatureInvalidError,
 } from "#contracts/signature/spec.js";
 
+/** Parses and type-checks a reviewed PEM as an Ed25519 public key. */
 function parseEd25519PublicKey(
   keyId: SigningKeyId,
   publicKeyPem: string,

@@ -38,6 +38,7 @@ const SAFE_GLOBALS = new Set([
   "undefined",
 ]);
 
+/** Narrows unknown unified data to the ESTree program shape we inspect. */
 function isProgram(value: unknown): value is Program {
   if (!(typeof value === "object" && value !== null)) {
     return false;
@@ -48,6 +49,7 @@ function isProgram(value: unknown): value is Program {
   return "body" in value && Array.isArray(value.body);
 }
 
+/** Reads a validated ESTree program attached to a unified node. */
 function nodeProgram(node: UnistNode) {
   const { data } = node;
   if (!(data && "estree" in data)) {
@@ -56,6 +58,7 @@ function nodeProgram(node: UnistNode) {
   return isProgram(data.estree) ? data.estree : undefined;
 }
 
+/** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
   return (
     typeof value === "object" &&
@@ -65,10 +68,12 @@ function isUnistNode(value: unknown): value is UnistNode {
   );
 }
 
+/** Builds the stable deduplication key for one policy violation. */
 function violationKey(violation: ExecutablePolicyViolation) {
   return `${violation.rule}:${violation.identifier ?? ""}`;
 }
 
+/** Resolves a property name only when its syntax is statically knowable. */
 function staticPropertyName(
   property: MemberExpression["property"] | Property["key"]
 ) {
@@ -86,6 +91,7 @@ function staticPropertyName(
   }
 }
 
+/** Resolves the statically knowable property selected by member access. */
 function memberPropertyName(node: MemberExpression) {
   if (node.computed) {
     return staticPropertyName(node.property);
@@ -93,10 +99,12 @@ function memberPropertyName(node: MemberExpression) {
   return node.property.type === "Identifier" ? node.property.name : undefined;
 }
 
+/** Resolves simple JSX attribute names while excluding namespaced forms. */
 function jsxAttributeName(node: JSXAttribute) {
   return node.name.type === "JSXIdentifier" ? node.name.name : undefined;
 }
 
+/** Records executable capabilities visible directly in one ESTree node. */
 function inspectSyntaxNode(
   node: EstreeNode,
   add: (violation: ExecutablePolicyViolation) => void
@@ -154,8 +162,10 @@ function inspectSyntaxNode(
   }
 }
 
+/** Finds forbidden syntax and unresolved runtime globals in one program. */
 function inspectProgram(program: Program) {
   const found = new Map<string, ExecutablePolicyViolation>();
+  /** Adds one violation using its stable identity to remove duplicates. */
   const add = (violation: ExecutablePolicyViolation) => {
     found.set(violationKey(violation), violation);
   };
@@ -206,6 +216,7 @@ function inspectProgram(program: Program) {
   return [...found.values()];
 }
 
+/** Appends violations from an ESTree program attached to a unified node. */
 function appendProgramViolations(
   node: UnistNode,
   violations: ExecutablePolicyViolation[]
@@ -216,6 +227,7 @@ function appendProgramViolations(
   }
 }
 
+/** Inspects MDX JSX attributes and their embedded expression programs. */
 function inspectMdxJsxAttributes(
   node: UnistNode,
   violations: ExecutablePolicyViolation[]

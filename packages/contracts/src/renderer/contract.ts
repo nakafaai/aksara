@@ -30,6 +30,7 @@ export const RendererComponentRequirementSchema = Schema.Struct({
 export type RendererComponentRequirement =
   typeof RendererComponentRequirementSchema.Type;
 
+/** Orders renderer requirements canonically by name and then version. */
 function compareRequirements(
   left: RendererComponentRequirement,
   right: RendererComponentRequirement
@@ -43,6 +44,7 @@ function compareRequirements(
   return left.version - right.version;
 }
 
+/** Checks that requirement pairs are unique and canonically ordered. */
 function hasCanonicalRequirementPairs(
   requirements: readonly RendererComponentRequirement[]
 ) {
@@ -56,6 +58,7 @@ function hasCanonicalRequirementPairs(
   return true;
 }
 
+/** Checks that each component name selects at most one version. */
 function hasOneVersionPerComponent(
   requirements: readonly RendererComponentRequirement[]
 ) {
@@ -69,6 +72,7 @@ function hasOneVersionPerComponent(
   return true;
 }
 
+/** Checks that authoring pins select every supported component exactly once. */
 function hasCompleteAuthoringSelection(components: {
   readonly authoringComponents: readonly RendererComponentRequirement[];
   readonly supportedComponents: readonly RendererComponentRequirement[];

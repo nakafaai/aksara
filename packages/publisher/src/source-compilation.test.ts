@@ -31,6 +31,7 @@ const expectedPayload = await Effect.runPromise(
   compileContent({ ...source, rendererManifest })
 );
 
+/** Builds canonically ordered items for source-compilation tests. */
 function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
   return [...changes]
     .sort(compareContentChanges)
@@ -39,6 +40,7 @@ function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
     );
 }
 
+/** Builds a verified one-upsert summary for source-compilation tests. */
 function makeSummary(change: ContentChange) {
   const items = makeItems(ReleaseIdSchema.make("test-release-source"), [
     change,
@@ -46,6 +48,7 @@ function makeSummary(change: ContentChange) {
   return { deleteCount: 0, items, upsertCount: 1 };
 }
 
+/** Builds the source upsert authenticated by a selected artifact hash. */
 function upsertWithArtifactHash(
   artifactHash: ReturnType<typeof hashCompiledContentPayload>
 ) {
@@ -89,5 +92,39 @@ describe("compileReleaseSources", () => {
     );
 
     expect(error._tag).toBe("ReleaseArtifactMismatchError");
+  });
+
+  it("rejects source identity that differs from its authenticated item", async () => {
+    const mismatchedSource = CompileDocumentSourceSchema.make({
+      ...source,
+      contentKey: ContentKeySchema.make("test:other-source"),
+    });
+    const error = await Effect.runPromise(
+      compileReleaseSources({
+        rendererManifest,
+        sources: [mismatchedSource],
+        summary: makeSummary(
+          upsertWithArtifactHash(hashCompiledContentPayload(expectedPayload))
+        ),
+      }).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("ReleaseArtifactMismatchError");
+    expect(error.message).toContain("does not match release item");
+  });
+
+  it("rejects a source when the verified summary has no matching item", async () => {
+    const error = await Effect.runPromise(
+      compileReleaseSources({
+        rendererManifest,
+        sources: [source],
+        summary: { deleteCount: 0, items: [], upsertCount: 1 },
+      }).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("ReleaseArtifactMismatchError");
+    expect(error.message).toBe(
+      "An authored source has no authenticated upsert item."
+    );
   });
 });

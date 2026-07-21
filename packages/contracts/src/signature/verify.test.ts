@@ -1,15 +1,34 @@
 // @vitest-environment node
 
 import { Buffer } from "node:buffer";
-import { generateKeyPairSync, sign } from "node:crypto";
+import { generateKeyPairSync, type KeyLike, sign } from "node:crypto";
 import { Effect } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids.js";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec.js";
 import { verifyEd25519Signature } from "#contracts/signature/verify.js";
+
+vi.mock("node:crypto", async (importOriginal) => {
+  const crypto = await importOriginal<typeof import("node:crypto")>();
+  return {
+    ...crypto,
+    /** Injects one deterministic Ed25519 verification failure. */
+    verify(
+      algorithm: null,
+      data: NodeJS.ArrayBufferView,
+      key: KeyLike,
+      signatureBytes: NodeJS.ArrayBufferView
+    ) {
+      if (String(data) === "signature-check-failure") {
+        throw new TypeError("injected signature check failure");
+      }
+      return crypto.verify(algorithm, data, key, signatureBytes);
+    },
+  };
+});
 
 const keyId = SigningKeyIdSchema.make("test-signing-key");
 const keys = generateKeyPairSync("ed25519");
@@ -23,6 +42,7 @@ const signature = Ed25519SignatureSchema.make(
   )
 );
 
+/** Runs signature verification with an injected key resolver. */
 function verify(
   resolver: typeof ContentVerificationKeyResolver.Service,
   signedMessage = message,
@@ -38,6 +58,7 @@ function verify(
   );
 }
 
+/** Runs signature verification and returns its expected typed failure. */
 function reject(
   resolver: typeof ContentVerificationKeyResolver.Service,
   signedMessage = message
@@ -85,6 +106,19 @@ describe("verifyEd25519Signature", () => {
     });
   });
 
+  it("maps malformed public-key PEM to a typed parse failure", async () => {
+    const resolver = ContentVerificationKeyResolver.of({
+      resolve: () =>
+        Effect.succeed(
+          "-----BEGIN PUBLIC KEY-----\ninvalid\n-----END PUBLIC KEY-----\n"
+        ),
+    });
+
+    await expect(reject(resolver)).resolves.toMatchObject({
+      _tag: "PublicKeyParseError",
+    });
+  });
+
   it("rejects unknown keys without exposing key material", async () => {
     const resolver = ContentVerificationKeyResolver.of({
       resolve: (requestedKeyId) =>
@@ -123,5 +157,18 @@ describe("verifyEd25519Signature", () => {
 
     expect(keyError).toMatchObject({ _tag: "PublicKeyTypeError" });
     expect(signatureError).toMatchObject({ _tag: "SignatureInvalidError" });
+  });
+
+  it("maps crypto verification failures without exposing key material", async () => {
+    const resolver = ContentVerificationKeyResolver.of({
+      resolve: () => Effect.succeed(publicKey),
+    });
+    const error = await reject(resolver, "signature-check-failure");
+
+    expect(error).toMatchObject({
+      _tag: "SignatureCheckError",
+      keyId,
+      subject: "artifact",
+    });
   });
 });

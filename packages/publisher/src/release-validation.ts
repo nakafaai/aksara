@@ -111,6 +111,7 @@ export function validateReleaseRendererManifest(
   );
 }
 
+/** Compares every materialized projection count required by a release. */
 function projectionCountsMatch(
   expected: ContentReleaseManifest["expectedCounts"],
   actual: ContentReleaseManifest["expectedCounts"]

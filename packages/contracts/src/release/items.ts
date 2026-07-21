@@ -96,6 +96,7 @@ export function hashContentReleaseItems(items: Iterable<ContentReleaseItem>) {
   return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
 }
 
+/** Verifies that one item belongs at its signed release-stream position. */
 function validateItemIdentity(
   manifest: ContentReleaseManifest,
   item: ContentReleaseItem,
@@ -120,6 +121,7 @@ function validateItemIdentity(
   return Effect.void;
 }
 
+/** Rejects release items that are not in canonical content-head order. */
 function validateCanonicalOrder(items: readonly ContentReleaseItem[]) {
   for (let index = 1; index < items.length; index += 1) {
     const previous = items[index - 1];
@@ -134,6 +136,7 @@ function validateCanonicalOrder(items: readonly ContentReleaseItem[]) {
   return Effect.void;
 }
 
+/** Rejects live heads that collide on a locale-specific public route. */
 function validateUniquePublicPaths(items: readonly ContentReleaseItem[]) {
   const firstIndexByRoute = new Map<string, number>();
   for (const item of items) {
@@ -158,6 +161,7 @@ function validateUniquePublicPaths(items: readonly ContentReleaseItem[]) {
   return Effect.void;
 }
 
+/** Counts upserts and tombstones in a verified item stream. */
 function countOperations(items: readonly ContentReleaseItem[]) {
   let upsertCount = 0;
   for (const item of items) {

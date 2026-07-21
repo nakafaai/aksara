@@ -28,6 +28,10 @@ for clarity, measurable scale, and safe releases.
 - Keep React and TSX component implementations in Nakafa. Corpus MDX references
   versioned contract names; Aksara never owns a duplicate preview component.
 - Keep handwritten TypeScript modules at or below 300 lines.
+- Give every stable callable declaration—functions, methods, and callable
+  bindings—useful JSDoc. Keep framework callbacks anonymous instead of
+  inventing names or filler comments solely for compliance. JSDoc-only lines
+  do not count toward the 300-line module limit.
 - Put dependencies in the workspace that uses them and use `workspace:*` for
   internal dependencies.
 - Same-package TypeScript imports use the private `#contracts/*`, `#compiler/*`,

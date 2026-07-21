@@ -14,10 +14,12 @@ import {
   validateUpsertSourceCount,
 } from "#publisher/release-validation.js";
 
+/** Selects authenticated upserts while preserving canonical release order. */
 function upsertItems(items: readonly ContentReleaseItem[]) {
   return items.filter((item) => item.change.operation === "upsert");
 }
 
+/** Requires an authored source to match its authenticated release item. */
 function validateSourceIdentity(
   item: ContentReleaseItem,
   source: CompileDocumentSource

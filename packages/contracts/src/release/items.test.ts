@@ -1,7 +1,8 @@
 // @vitest-environment node
 
+import type { BinaryLike } from "node:crypto";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { ReleaseId } from "#contracts/ids.js";
 import {
   hashContentReleaseItems,
@@ -16,10 +17,38 @@ import {
   compareContentChanges,
 } from "#contracts/release/spec.js";
 
+vi.mock("node:crypto", async (importOriginal) => {
+  const crypto = await importOriginal<typeof import("node:crypto")>();
+  return {
+    ...crypto,
+    /** Injects one deterministic release-item hashing failure. */
+    createHash(algorithm: string) {
+      const hash = crypto.createHash(algorithm);
+      return new Proxy(hash, {
+        /** Preserves real Hash methods while intercepting the failure marker. */
+        get(target, property, receiver) {
+          if (property === "update") {
+            return (data: BinaryLike) => {
+              if (String(data).includes('"contentKey":"hash:failure"')) {
+                throw new TypeError("injected release item hash failure");
+              }
+              target.update(data);
+              return receiver;
+            };
+          }
+          const value = Reflect.get(target, property, target);
+          return typeof value === "function" ? value.bind(target) : value;
+        },
+      });
+    },
+  };
+});
+
 const releaseId = Schema.decodeUnknownSync(
   ContentReleaseManifestSchema.fields.releaseId
 )("test-release-items");
 
+/** Builds canonically ordered release items with deterministic indexes. */
 function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
   return [...input]
     .sort(compareContentChanges)
@@ -62,6 +91,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
 });
 
+/** Runs item verification and returns its expected typed failure. */
 function reject(candidate: readonly unknown[], candidateManifest = manifest) {
   return Effect.runPromise(
     verifyContentReleaseItems({
@@ -71,6 +101,7 @@ function reject(candidate: readonly unknown[], candidateManifest = manifest) {
   );
 }
 
+/** Replaces one item without mutating the shared fixture stream. */
 function replaceItem(
   index: number,
   update: (item: ContentReleaseItem) => unknown
@@ -80,6 +111,7 @@ function replaceItem(
   );
 }
 
+/** Creates a self-consistent candidate manifest and item stream. */
 function makeCandidate(candidateChanges: readonly unknown[]) {
   const decoded = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
     candidateChanges
@@ -100,7 +132,6 @@ describe("release item integrity", () => {
     const verified = await Effect.runPromise(
       verifyContentReleaseItems({ items, manifest })
     );
-
     expect(verified.items).toEqual(items);
     expect(verified.upsertCount).toBe(1);
     expect(verified.deleteCount).toBe(1);
@@ -121,11 +152,13 @@ describe("release item integrity", () => {
         change: { ...item.change, publicPath: "/id/test/changed" },
       })),
     ],
-  ])("rejects %s tampering through the signed digest", async (_label, value) => {
-    const error = await reject(value);
-
-    expect(error._tag).toBe("ReleaseItemsDigestMismatchError");
-  });
+  ])(
+    "rejects %s tampering through the signed digest",
+    async (_label, value) => {
+      const error = await reject(value);
+      expect(error._tag).toBe("ReleaseItemsDigestMismatchError");
+    }
+  );
 
   it("rejects item order tampering before digest comparison", async () => {
     const reversed = [...items].reverse().map((item, index) => ({
@@ -133,7 +166,6 @@ describe("release item integrity", () => {
       index,
     }));
     const error = await reject(reversed);
-
     expect(error._tag).toBe("ReleaseItemOrderError");
   });
 
@@ -141,6 +173,14 @@ describe("release item integrity", () => {
     const error = await reject(items.slice(0, 1));
 
     expect(error._tag).toBe("ReleaseItemCountMismatchError");
+  });
+
+  it("rejects an item from another release", async () => {
+    const error = await reject(
+      replaceItem(0, (item) => ({ ...item, releaseId: "other-release" }))
+    );
+
+    expect(error._tag).toBe("ReleaseItemReleaseMismatchError");
   });
 
   it("rejects duplicate public paths within one locale", async () => {
@@ -233,15 +273,31 @@ describe("release item integrity", () => {
     ["missing", 2],
   ])("rejects a %s item index", async (_label, index) => {
     const error = await reject(replaceItem(1, (item) => ({ ...item, index })));
-
     expect(error._tag).toBe("ReleaseItemIndexMismatchError");
   });
 
   it("rejects excess item fields without exposing their values", async () => {
     const secret = "must-not-leak";
     const error = await reject(replaceItem(0, (item) => ({ ...item, secret })));
-
     expect(error._tag).toBe("ReleaseItemDecodeError");
     expect(JSON.stringify(error)).not.toContain(secret);
+  });
+  it("maps release-item hashing failures to the release identity", async () => {
+    const failureItems = makeItems(releaseId, [
+      Schema.decodeUnknownSync(ContentChangeSchema)({
+        contentKey: "hash:failure",
+        locale: "en",
+        operation: "delete",
+      }),
+    ]);
+    const failureManifest = ContentReleaseManifestSchema.make({
+      ...manifest,
+      itemCount: failureItems.length,
+    });
+    const error = await reject(failureItems, failureManifest);
+    expect(error).toMatchObject({
+      _tag: "ReleaseItemsHashComputationError",
+      releaseId,
+    });
   });
 });

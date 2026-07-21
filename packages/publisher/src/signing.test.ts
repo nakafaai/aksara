@@ -6,6 +6,7 @@ import { compileContent } from "@nakafaai/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
 import {
   CompileDocumentSourceSchema,
+  CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
 } from "@nakafaai/aksara-contracts/content";
 import {
@@ -13,6 +14,7 @@ import {
   type ReleaseId,
   Sha256HashSchema,
 } from "@nakafaai/aksara-contracts/ids";
+import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafaai/aksara-contracts/limits";
 import {
   type ContentChange,
   ContentChangeSchema,
@@ -24,8 +26,24 @@ import {
 import { hashContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
 import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing.js";
+
+const cryptoFailure = vi.hoisted(() => ({ failNextSign: false }));
+
+vi.mock("node:crypto", async (importOriginal) => {
+  const crypto = await importOriginal<typeof import("node:crypto")>();
+  return {
+    ...crypto,
+    sign: (...parameters: Parameters<typeof crypto.sign>) => {
+      if (cryptoFailure.failNextSign) {
+        cryptoFailure.failNextSign = false;
+        throw new Error("Test-controlled signing failure.");
+      }
+      return crypto.sign(...parameters);
+    },
+  };
+});
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -45,6 +63,7 @@ const payload = await Effect.runPromise(
 const releaseId = Schema.decodeUnknownSync(
   ContentReleaseManifestSchema.fields.releaseId
 )("test-release");
+/** Builds canonically ordered release items for signing tests. */
 function makeItems(release: ReleaseId, changes: readonly ContentChange[]) {
   return [...changes]
     .sort(compareContentChanges)
@@ -158,6 +177,78 @@ describe("Ed25519 publication signing", () => {
 
     expect(error._tag).toBe("ContentSigningError");
     expect(JSON.stringify(error)).not.toContain("PRIVATE KEY");
+  });
+
+  it("rejects an invalid signing key identifier", async () => {
+    const { privateKey } = generateKeyPairSync("ed25519");
+    const error = await Effect.runPromise(
+      makeEd25519PublicationSigner({
+        keyId: "INVALID KEY",
+        privateKeyPem: privateKey
+          .export({ format: "pem", type: "pkcs8" })
+          .toString(),
+      }).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("ContentSigningError");
+    expect(error.stage).toBe("configuration");
+  });
+
+  it("rejects private key text that cannot be parsed", async () => {
+    const error = await Effect.runPromise(
+      makeEd25519PublicationSigner({
+        keyId: "test-signing-key",
+        privateKeyPem: "not-a-private-key",
+      }).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("ContentSigningError");
+    expect(error.message).toContain("could not be parsed");
+  });
+
+  it("maps an Ed25519 signing failure to the typed error channel", async () => {
+    const { privateKey } = generateKeyPairSync("ed25519");
+    const signer = await Effect.runPromise(
+      makeEd25519PublicationSigner({
+        keyId: "test-signing-key",
+        privateKeyPem: privateKey
+          .export({ format: "pem", type: "pkcs8" })
+          .toString(),
+      })
+    );
+    cryptoFailure.failNextSign = true;
+    const error = await Effect.runPromise(
+      signer.signRelease(manifest).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("ContentSigningError");
+    expect(error.stage).toBe("release");
+  });
+
+  it("refuses to sign an artifact above the complete wire ceiling", async () => {
+    const { privateKey } = generateKeyPairSync("ed25519");
+    const signer = await Effect.runPromise(
+      makeEd25519PublicationSigner({
+        keyId: "test-signing-key",
+        privateKeyPem: privateKey
+          .export({ format: "pem", type: "pkcs8" })
+          .toString(),
+      })
+    );
+    const compiledCode = "x".repeat(MAX_SIGNED_ARTIFACT_BYTES);
+    const oversizedPayload = CompiledContentPayloadSchema.make({
+      ...payload,
+      byteLength: Buffer.byteLength(compiledCode, "utf8"),
+      compiledCode,
+    });
+    const error = await Effect.runPromise(
+      signer.signArtifact(oversizedPayload).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "SignedArtifactByteLimitError",
+      maxBytes: MAX_SIGNED_ARTIFACT_BYTES,
+    });
   });
 
   it("refuses to sign a payload whose source hash does not identify raw MDX", async () => {

@@ -34,6 +34,7 @@ const RendererManifestWireSchema = Schema.Struct({
   supportedComponents: Schema.Array(RendererComponentRequirementSchema),
 });
 
+/** Strictly decodes one renderer contract and maps failures to its boundary. */
 function decodeContract<A, I>(
   schema: Schema.Schema<A, I>,
   contract: string,
@@ -53,6 +54,7 @@ function decodeContract<A, I>(
   );
 }
 
+/** Hashes the canonical supported and authoring renderer contract. */
 const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(
   (
     supportedComponents: readonly RendererComponentRequirement[],
@@ -74,6 +76,7 @@ const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(
     })
 );
 
+/** Validates canonical authoring pins against supported renderer versions. */
 function validateCanonicalAuthoringSelection(
   supportedComponents: readonly RendererComponentRequirement[],
   authoringComponents: readonly RendererComponentRequirement[]
@@ -96,6 +99,7 @@ function validateCanonicalAuthoringSelection(
   });
 }
 
+/** Rejects duplicate component names in the authoring selection. */
 const validateUniqueAuthoringNames = Effect.fn(
   "AksaraContracts.validateUniqueAuthoringNames"
 )((authoringComponents: readonly RendererComponentRequirement[]) => {
@@ -113,6 +117,7 @@ const validateUniqueAuthoringNames = Effect.fn(
   return Effect.succeed(selectedNames);
 });
 
+/** Rejects authoring selections that are not already canonically ordered. */
 const validateCanonicalAuthoringOrder = Effect.fn(
   "AksaraContracts.validateCanonicalAuthoringOrder"
 )((authoringComponents: readonly RendererComponentRequirement[]) => {
@@ -134,6 +139,7 @@ const validateCanonicalAuthoringOrder = Effect.fn(
   return Effect.void;
 });
 
+/** Rejects authoring pins that the runtime cannot render. */
 const validateSupportedAuthoringSelections = Effect.fn(
   "AksaraContracts.validateSupportedAuthoringSelections"
 )(
@@ -167,6 +173,7 @@ const validateSupportedAuthoringSelections = Effect.fn(
   }
 );
 
+/** Requires an authoring version for every supported component name. */
 const validateCompleteAuthoringNames = Effect.fn(
   "AksaraContracts.validateCompleteAuthoringNames"
 )(
@@ -187,6 +194,7 @@ const validateCompleteAuthoringNames = Effect.fn(
   }
 );
 
+/** Strictly decodes the canonical set of runtime component capabilities. */
 function decodeSupportedComponents(input: unknown) {
   return decodeContract(
     RendererManifestSupportedComponentsSchema,

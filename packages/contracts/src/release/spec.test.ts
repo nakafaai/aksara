@@ -28,6 +28,7 @@ const releaseId = Schema.decodeUnknownSync(
   ContentReleaseManifestSchema.fields.releaseId
 )("test-release");
 
+/** Builds canonically ordered release items with deterministic indexes. */
 function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
   return [...input]
     .sort(compareContentChanges)
@@ -108,5 +109,23 @@ describe("release spec", () => {
     });
 
     expect(result._tag).toBe("Right");
+  });
+
+  it("orders locales within one stable content identity", () => {
+    const decodeChange = Schema.decodeUnknownSync(ContentChangeSchema);
+    const english = decodeChange({
+      contentKey: "test:content",
+      locale: "en",
+      operation: "delete",
+    });
+    const indonesian = decodeChange({
+      contentKey: "test:content",
+      locale: "id",
+      operation: "delete",
+    });
+
+    expect(compareContentChanges(english, indonesian)).toBe(-1);
+    expect(compareContentChanges(indonesian, english)).toBe(1);
+    expect(compareContentChanges(english, english)).toBe(0);
   });
 });

@@ -4,17 +4,22 @@
   "envMode": "strict",
   "globalDependencies": ["packages/typescript-config/*.json"],
   "tasks": {
+    "//#typecheck:root": {
+      "inputs": ["tsconfig.json", "vitest.config.ts"],
+      "outputs": []
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
     "typecheck": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["//#typecheck:root", "^build"],
       "outputs": []
     },
     "test": {
       "dependsOn": ["^build"],
-      "outputs": []
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/vitest.config.ts"],
+      "outputs": ["coverage/**"]
     },
     "verify:package": {
       "cache": false
