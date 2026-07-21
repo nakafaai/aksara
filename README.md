@@ -1,24 +1,24 @@
 # Aksara
 
-Aksara is Nakafa's trusted content-authoring, compilation, and publication
-system. This repository starts as a deliberately small Turborepo and keeps the
-real Nakafa application as the renderer.
+Aksara is the foundation for Nakafa's trusted content compilation and
+publication system. It is a small public Turborepo. The current repository does
+not own the Nakafa corpus and is not connected to the production application.
 
-Repository visibility is public by explicit user decision on 2026-07-21. The
-existing Nakafa corpus was already public-source; protected entitlements must
-come from release, authorization, and delivery controls, never Git secrecy.
-Public visibility is not itself a content-license grant.
+## Current modules
 
-## Workspaces
+- `@nakafaai/aksara-contracts` defines signed artifact, release, and renderer
+  wire contracts.
+- `@nakafaai/aksara-compiler` validates trusted MDX syntax and compiles it into
+  standard `function-body` output without executing it.
+- `@nakafaai/aksara-publisher` verifies, signs, batches, stages, and activates a
+  release through injected source and target interfaces. No Convex adapter is
+  implemented yet.
+- `@nakafaai/typescript-config` owns the single Node ESM compiler contract used
+  by all three domain packages.
 
-- `@nakafaai/aksara-contracts` owns schema-derived IDs and wire contracts.
-- `@nakafaai/aksara-compiler` statically extracts and validates exact authored
-  metadata, then compiles trusted MDX into reviewed `function-body` artifacts
-  without executing either source or metadata.
-- `@nakafaai/aksara-publisher` owns signing and publication interfaces, with no
-  external deployment implementation yet.
-- `@nakafaai/aksara-corpus` owns authored content and the first rich fixture.
-- `@nakafaai/aksara-cli` is the executable boundary for `check`.
+The corpus and CLI modules will be added only when they operate on real Nakafa
+sources. This repository contains no authored educational content or substitute
+fixtures.
 
 ## Commands
 
@@ -26,52 +26,54 @@ Public visibility is not itself a content-license grant.
 pnpm install
 pnpm format
 pnpm lint
+pnpm names
+pnpm jsdocs
+pnpm lines
+pnpm boundaries
 pnpm typecheck
 pnpm test
 pnpm build
 pnpm verify:package
-pnpm check
 ```
 
-`check` compiles the real two-locale corpus fixture through the installed MDX
-compiler and verifies the Node runtime. It does not execute the artifact,
-publish it, or contact Convex, Vercel, or GitHub.
+Run a focused workspace test through Turbo so dependency builds stay current:
 
-Every document contains exactly one `export const metadata` declaration. The
-compiler reads only literal arrays and plain objects from the MDX ESTree,
-validates the exact metadata contract, removes that declaration before body
-compilation, and includes the decoded metadata in the signed payload. The
-payload also preserves the complete authored source in `rawMdx`, and its
-`sourceHash` covers that complete source.
+```bash
+pnpm exec turbo run test --filter=@nakafaai/aksara-publisher
+```
 
-Production execution is reserved for reviewed, source-controlled, signed
-artifacts after hash, signature, and renderer-contract verification. Nakafa
-uses official server-only `@mdx-js/mdx/run`, one pure global contract manifest,
-and finite static route-domain implementation registries. This trusted path is
-not a sandbox and must never accept arbitrary uploads.
+Do not invoke a package test script directly when it consumes another workspace;
+Turbo owns that dependency build order.
 
-The repository currently assigns every path to `@nabilfatih`. Broader ordinary
-corpus ownership remains a governance blocker until a real GitHub user or team
-is explicitly selected; contracts, compiler, publisher, and workflow ownership
-stay maintainer-only. Ownership of the npm `@nakafaai` scope could not be
-verified without an authenticated npm session, so the public-ready contracts
-package must not be published yet.
+`package.json` is the single toolchain source for Node, pnpm, and their CI
+setup. Aksara does not duplicate that contract in `.npmrc`,
+`.node-version`, or `.nvmrc` files.
 
-The checked-in CI is foundation-only. Phase 7 still requires affected-document
-selection, sufficient Git history for rename/delete detection, conditional full
-corpus verification, and OIDC trusted publishing. None of those gates should be
-claimed complete from this initial workflow.
+Package-internal TypeScript imports use private Node aliases such as
+`#contracts/*`; cross-package imports use exact `@nakafaai/*` exports. Tests
+resolve the current package alias to `src`, while emitted JavaScript resolves
+the same alias through `package.json` to `dist`, so stale build output cannot
+silently satisfy source tests.
+
+The compiler requires one static `export const metadata = { ... }` object so it
+can remove that module declaration before body compilation. It deliberately
+does not define family metadata or content taxonomy before the authoritative
+Nakafa contracts are migrated.
+
+Signed artifacts are a proposed trusted-source seam, not a sandbox. Nakafa does
+not execute Aksara artifacts in production yet. The accepted design keeps the
+official server-only `@mdx-js/mdx/run` runtime and finite static route-domain
+registries in Nakafa; production integration still requires a real vertical
+slice, Convex adapter, fidelity proof, and release/rollback gates.
 
 The executable-content decision is recorded in
-[`docs/adr/0001-executable-content-boundary.md`](docs/adr/0001-executable-content-boundary.md).
-Verified external repository controls and the initial-branch gate are recorded
-in [`docs/governance.md`](docs/governance.md).
-The exact npm tarball and trusted-publishing bootstrap boundary are recorded in
-[`docs/npm-publishing.md`](docs/npm-publishing.md).
+[`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md).
+Measured baselines are under [`docs/baselines`](docs/baselines), and repository
+controls are recorded in [`docs/governance.md`](docs/governance.md).
 
 ## License
 
 Software is governed by the [Nakafa Source Available License 1.0](LICENSE).
-Educational corpus is governed by the
+Future educational corpus imports remain governed by the
 [Nakafa Content License 1.0](CONTENT_LICENSE.md). Nakafa brand usage is governed
 by the [Nakafa Trademark and Brand Policy](TRADEMARKS.md).

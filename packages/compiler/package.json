@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "imports": {
+    "#compiler/*.js": "./dist/*.js"
+  },
   "exports": {
     "./compile": {
       "types": "./dist/compile.d.ts",
@@ -11,17 +14,13 @@
     "./errors": {
       "types": "./dist/errors.d.ts",
       "import": "./dist/errors.js"
-    },
-    "./source-graph": {
-      "types": "./dist/source-graph.d.ts",
-      "import": "./dist/source-graph.js"
     }
   },
   "scripts": {
     "clean": "git clean -xdf dist",
     "prebuild": "pnpm run clean",
     "build": "tsc --project tsconfig.build.json",
-    "test": "vitest run",
+    "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json"
   },
   "dependencies": {
@@ -36,9 +35,11 @@
     "unist-util-visit": "catalog:"
   },
   "devDependencies": {
+    "@nakafaai/typescript-config": "workspace:*",
     "@types/estree-jsx": "catalog:",
     "@types/mdast": "catalog:",
     "@types/unist": "catalog:",
+    "@vitest/coverage-istanbul": "catalog:",
     "mdast-util-mdx": "catalog:",
     "unified": "catalog:",
     "vitest": "catalog:"

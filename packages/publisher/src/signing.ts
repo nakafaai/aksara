@@ -5,14 +5,14 @@ import {
   type KeyObject,
   sign as signBytes,
 } from "node:crypto";
-import {
-  hashCompiledContentPayload,
-  verifyCompiledContentSourceHash,
-} from "@nakafaai/aksara-contracts/artifact-verification-node";
 import type {
   ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
-} from "@nakafaai/aksara-contracts/artifact-verification-spec";
+} from "@nakafaai/aksara-contracts/artifact/spec";
+import {
+  hashCompiledContentPayload,
+  verifyCompiledContentSourceHash,
+} from "@nakafaai/aksara-contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
@@ -37,10 +37,11 @@ import { Effect, Schema } from "effect";
 import {
   ContentSigningError,
   SignedArtifactByteLimitError,
-} from "./signing-errors.js";
+} from "#publisher/signing-errors.js";
 
 /** Single-key signer for every authenticated object in one publication run. */
 export interface PublicationSigner {
+  /** Signs one source-verified compiled artifact. */
   readonly signArtifact: (
     payload: CompiledContentPayload
   ) => Effect.Effect<
@@ -50,6 +51,7 @@ export interface PublicationSigner {
     | ContentSigningError
     | SignedArtifactByteLimitError
   >;
+  /** Signs one canonical release manifest. */
   readonly signRelease: (
     manifest: ContentReleaseManifest
   ) => Effect.Effect<SignedContentRelease, ContentSigningError>;
@@ -64,6 +66,7 @@ export function hashContentReleaseManifest(manifest: ContentReleaseManifest) {
   );
 }
 
+/** Signs one domain-separated canonical message with an Ed25519 key. */
 function signCanonicalInput(
   privateKey: KeyObject,
   message: string,
@@ -84,6 +87,7 @@ function signCanonicalInput(
   });
 }
 
+/** Verifies and signs one compiled artifact under the configured key. */
 function signArtifact(
   keyId: typeof SigningKeyIdSchema.Type,
   privateKey: KeyObject,
@@ -122,6 +126,7 @@ function signArtifact(
   );
 }
 
+/** Hashes and signs one complete release manifest. */
 function signRelease(
   keyId: typeof SigningKeyIdSchema.Type,
   privateKey: KeyObject,
@@ -176,9 +181,11 @@ export const makeEd25519PublicationSigner = Effect.fn(
     }
 
     return {
+      /** Signs one source-verified artifact with the configured key. */
       signArtifact: Effect.fn("AksaraPublisher.signArtifact")((payload) =>
         signArtifact(keyId, privateKey, payload)
       ),
+      /** Signs one canonical release manifest with the configured key. */
       signRelease: Effect.fn("AksaraPublisher.signRelease")((manifest) =>
         signRelease(keyId, privateKey, manifest)
       ),

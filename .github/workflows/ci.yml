@@ -37,6 +37,15 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: File names
+        run: pnpm names
+
+      - name: Function documentation
+        run: pnpm jsdocs
+
+      - name: Module size
+        run: pnpm lines
+
       - name: Workspace boundaries
         run: pnpm boundaries
 
@@ -51,6 +60,3 @@ jobs:
 
       - name: Verify contracts package boundary
         run: pnpm verify:package
-
-      - name: Check rich fixture
-        run: pnpm check

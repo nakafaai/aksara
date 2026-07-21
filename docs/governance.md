@@ -7,8 +7,8 @@ artifact signatures, application authorization, or content entitlement checks.
 ## Current GitHub state
 
 - Repository: public `nakafaai/aksara`.
-- Default branch target: `main`; the authorized foundation bootstrap creates
-  the initial branch ref.
+- Default branch: `main`; initial commit
+  `1e5214e474dcbd32eb3a72dff944d657127fa0aa`.
 - Ruleset `19330486` targets `refs/heads/main` and requires pull requests,
   squash merges, resolved review conversations, and blocks deletion and
   non-fast-forward updates. It has no bypass actor.
@@ -16,8 +16,12 @@ artifact signatures, application authorization, or content entitlement checks.
   owner is available. `CODEOWNERS` assigns all paths to `@nabilfatih`; separate
   corpus and compiler/publisher ownership cannot be claimed until a real second
   user or team is selected.
-- The `CI / verify` context becomes a required status check only after the
-  initial branch run exposes its exact GitHub check name.
+- Initial CI run
+  [`29829177311`](https://github.com/nakafaai/aksara/actions/runs/29829177311)
+  passed and exposed the exact GitHub Actions check name `verify`.
+- Ruleset `19330486` requires the `verify` check and tests pull requests against
+  the latest `main`. This was added only after the exact check passed on both
+  the initial main ref and cleanup pull request.
 - GitHub Actions default token permissions are read-only and workflows cannot
   approve pull requests.
 - Actions are limited to GitHub-owned actions plus `pnpm/action-setup@*`, and
@@ -43,13 +47,17 @@ controls.
 ## Bootstrap gate
 
 The repository owner explicitly authorized the bootstrap commit and push on
-2026-07-21. The bootstrap sequence is:
+2026-07-21. Current bootstrap status:
 
-1. create the initial `main` ref without weakening the content-security model;
-2. verify the exact CI workflow on that ref;
-3. add the observed `CI / verify` context as a required status check;
-4. exercise a normal `codex/*` branch and non-draft pull request;
-5. re-read every setting through the GitHub API and record drift.
+1. Completed: create the initial `main` ref without weakening the ruleset.
+2. Completed: verify the exact CI workflow on that ref.
+3. Completed: add the observed `verify` context as a required status check.
+4. Completed: exercise `codex/clean-foundation` through non-draft
+   [pull request 6](https://github.com/nakafaai/aksara/pull/6); its exact cleanup
+   commit passed `verify`.
+5. Completed: re-read the ruleset, Actions permissions, repository merge and
+   security settings, and production environment through the GitHub API after
+   the ruleset update. No other setting drift was found.
 
 The owner selected the existing Nakafa license set for Aksara. Software uses
 the Nakafa Source Available License 1.0, educational corpus uses the Nakafa

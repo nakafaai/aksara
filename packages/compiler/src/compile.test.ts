@@ -3,45 +3,40 @@ import { readFileSync } from "node:fs";
 import { findPackageJSON } from "node:module";
 import { Sha256HashSchema } from "@nakafaai/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafaai/aksara-contracts/limits";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer-node";
+import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { compileContent } from "./compile.js";
+import { compileContent } from "#compiler/compile.js";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
     authoringComponents: [
       { name: "BlockMath", version: 1 },
-      { name: "FunctionMachine", version: 1 },
+      { name: "TestWidget", version: 1 },
     ],
     supportedComponents: [
       { name: "BlockMath", version: 1 },
-      { name: "FunctionMachine", version: 1 },
-      { name: "FunctionMachine", version: 2 },
+      { name: "TestWidget", version: 1 },
+      { name: "TestWidget", version: 2 },
     ],
   })
 );
 
-const metadataValue = {
-  authors: [{ name: "Nakafa" }],
-  date: "2026-07-21",
-  description: "Metadata only description",
-  subject: "Mathematics",
-  title: "Metadata only title",
-};
-const VALID_METADATA = `export const metadata = ${JSON.stringify(metadataValue)}`;
+const VALID_METADATA = "export const metadata = {}";
 
+/** Prepends valid authored metadata to a test MDX body. */
 function withMetadata(body: string, metadata = VALID_METADATA) {
   return `${metadata}\n\n${body}`;
 }
 
+/** Compiles test MDX through the public compiler boundary. */
 function compileRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest
 ) {
   return Effect.runPromise(
     compileContent({
-      contentKey: "fixture:compile",
+      contentKey: "test:compile",
       locale: "en",
       rawMdx,
       rendererManifest: manifest,
@@ -49,13 +44,14 @@ function compileRawMdx(
   );
 }
 
+/** Returns the typed compiler failure produced for invalid test MDX. */
 function rejectRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest
 ) {
   return Effect.runPromise(
     compileContent({
-      contentKey: "fixture:compile",
+      contentKey: "test:compile",
       locale: "en",
       rawMdx,
       rendererManifest: manifest,
@@ -63,6 +59,7 @@ function rejectRawMdx(
   );
 }
 
+/** Reads an installed package version for compiler-identity assertions. */
 function installedVersion(packageName: string) {
   const manifestPath = findPackageJSON(packageName, import.meta.url);
   if (!manifestPath) {
@@ -76,19 +73,17 @@ function installedVersion(packageName: string) {
 describe("compileContent", () => {
   it("selects the pinned authoring version instead of the newest support", async () => {
     const rawMdx = withMetadata(
-      '## Function\n\n<BlockMath math="x" />\n\n<FunctionMachine />'
+      '## Compiler test\n\n<BlockMath math="x" />\n\n<TestWidget />'
     );
     const payload = await compileRawMdx(rawMdx);
-    expect(payload.metadata).toEqual(metadataValue);
     expect(payload.format).toBe("mdx-function-body-v1");
     expect(payload.compiledCode).toContain("_missingMdxReference");
     expect(payload.requiredComponents).toEqual([
       { name: "BlockMath", version: 1 },
-      { name: "FunctionMachine", version: 1 },
+      { name: "TestWidget", version: 1 },
     ]);
-    expect(payload.plainText).toContain("Function");
-    expect(payload.plainText).not.toContain("Metadata only");
-    expect(payload.compiledCode).not.toContain("Metadata only");
+    expect(payload.plainText).toContain("Compiler test");
+    expect(payload.compiledCode).not.toContain("metadata");
     expect(payload.rawMdx).toBe(rawMdx);
     expect(payload.sourceHash).toBe(
       `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
@@ -96,7 +91,7 @@ describe("compileContent", () => {
     expect(payload.byteLength).toBeGreaterThan(0);
     expect(payload).toMatchObject({
       compilerConfigHash:
-        "sha256:dc0981e540a704fe4e332acd47991b85e6d1e62b8c436809ec3d70d8fc087cd5",
+        "sha256:c554b9f5a571b66ec9ac46000c7dd88ca7c47b4eba238ef4c04e6a08b21fb349",
       compilerVersion: "0.1.0",
       mdxCompilerVersion: "3.1.1",
     });
@@ -129,33 +124,34 @@ describe("compileContent", () => {
   it("changes compiler identity only when the authoring selection changes", async () => {
     const supportedV1 = await Effect.runPromise(
       createRendererManifest({
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
+        authoringComponents: [{ name: "TestWidget", version: 1 }],
+        supportedComponents: [{ name: "TestWidget", version: 1 }],
       })
     );
     const supportedV1AndV2 = await Effect.runPromise(
       createRendererManifest({
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
+        authoringComponents: [{ name: "TestWidget", version: 1 }],
         supportedComponents: [
-          { name: "FunctionMachine", version: 1 },
-          { name: "FunctionMachine", version: 2 },
+          { name: "TestWidget", version: 1 },
+          { name: "TestWidget", version: 2 },
         ],
       })
     );
     const authoringV2 = await Effect.runPromise(
       createRendererManifest({
-        authoringComponents: [{ name: "FunctionMachine", version: 2 }],
+        authoringComponents: [{ name: "TestWidget", version: 2 }],
         supportedComponents: [
-          { name: "FunctionMachine", version: 1 },
-          { name: "FunctionMachine", version: 2 },
+          { name: "TestWidget", version: 1 },
+          { name: "TestWidget", version: 2 },
         ],
       })
     );
-    const rawMdx = withMetadata("<FunctionMachine />");
+    const rawMdx = withMetadata("<TestWidget />");
+    /** Compiles the shared fixture against one renderer manifest. */
     const compileWith = (manifest: typeof supportedV1) =>
       Effect.runPromise(
         compileContent({
-          contentKey: "fixture:contract-migration",
+          contentKey: "test:contract-migration",
           locale: "en",
           rawMdx,
           rendererManifest: manifest,
@@ -169,7 +165,7 @@ describe("compileContent", () => {
     ]);
 
     expect(beforeExpand.requiredComponents).toEqual([
-      { name: "FunctionMachine", version: 1 },
+      { name: "TestWidget", version: 1 },
     ]);
     expect(afterExpand.requiredComponents).toEqual(
       beforeExpand.requiredComponents
@@ -178,7 +174,7 @@ describe("compileContent", () => {
       beforeExpand.compilerConfigHash
     );
     expect(afterMigrate.requiredComponents).toEqual([
-      { name: "FunctionMachine", version: 2 },
+      { name: "TestWidget", version: 2 },
     ]);
     expect(afterMigrate.compilerConfigHash).not.toBe(
       beforeExpand.compilerConfigHash
@@ -198,7 +194,7 @@ describe("compileContent", () => {
   it("rejects every import before renderer component selection", async () => {
     const error = await rejectRawMdx(
       withMetadata(
-        'import { readFile as FunctionMachine } from "node:fs"\n\n<FunctionMachine />'
+        'import { readFile as TestWidget } from "node:fs"\n\n<TestWidget />'
       )
     );
 
@@ -215,7 +211,7 @@ describe("compileContent", () => {
   it("fails closed for runtime helper imports", async () => {
     const error = await rejectRawMdx(
       withMetadata(
-        'import { getColor } from "./colors.js"\n\n## Fungsi\n\n{getColor(1)}'
+        'import { getColor } from "./test-helper.js"\n\n## Protocol Test\n\n{getColor(1)}'
       )
     );
 
@@ -239,6 +235,7 @@ describe("compileContent", () => {
 
   it.each([
     ["process", "process", "{process.env.NODE_ENV}"],
+    ["unknown-free-global", "_missingMdxReference", "{_missingMdxReference()}"],
     [
       "prototype-chain-access",
       "constructor",
@@ -249,14 +246,17 @@ describe("compileContent", () => {
       "dangerouslySetInnerHTML",
       '<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />',
     ],
-  ] as const)("surfaces typed %s failures", async (rule, identifier, rawMdx) => {
-    const error = await rejectRawMdx(withMetadata(rawMdx));
+  ] as const)(
+    "surfaces typed %s failures",
+    async (rule, identifier, rawMdx) => {
+      const error = await rejectRawMdx(withMetadata(rawMdx));
 
-    expect(error._tag).toBe("ExecutablePolicyError");
-    if (error._tag === "ExecutablePolicyError") {
-      expect(error.violations).toContainEqual({ identifier, rule });
+      expect(error._tag).toBe("ExecutablePolicyError");
+      if (error._tag === "ExecutablePolicyError") {
+        expect(error.violations).toContainEqual({ identifier, rule });
+      }
     }
-  });
+  );
 
   it("keeps ordinary expressions, fragments, and scoped IIFEs", async () => {
     const payload = await compileRawMdx(
@@ -266,6 +266,12 @@ describe("compileContent", () => {
     );
 
     expect(payload.compiledCode).toContain("values.map");
+  });
+
+  it("wraps malformed authored MDX as a typed compilation failure", async () => {
+    const error = await rejectRawMdx(withMetadata("<Unclosed>"));
+
+    expect(error._tag).toBe("MdxCompilationError");
   });
 
   it("rejects raw MDX above the shared byte ceiling before compilation", async () => {

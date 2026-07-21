@@ -2,33 +2,27 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
   "envMode": "strict",
-  "globalDependencies": ["tsconfig.base.json"],
+  "globalDependencies": ["packages/typescript-config/*.json"],
   "tasks": {
+    "//#typecheck:root": {
+      "inputs": ["tsconfig.json", "vitest.config.ts"],
+      "outputs": []
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "@nakafaai/aksara-corpus#build": {
-      "cache": false,
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
-    },
-    "check": {
-      "cache": false,
-      "dependsOn": ["build"],
-      "outputs": []
-    },
     "typecheck": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["//#typecheck:root", "^build"],
       "outputs": []
     },
     "test": {
       "dependsOn": ["^build"],
-      "outputs": []
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/vitest.config.ts"],
+      "outputs": ["coverage/**"]
     },
     "verify:package": {
-      "cache": false,
-      "outputs": []
+      "cache": false
     }
   }
 }

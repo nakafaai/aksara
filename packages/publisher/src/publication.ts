@@ -1,4 +1,4 @@
-import { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact-verification-node";
+import { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact/verify";
 import type {
   CompileDocumentSource,
   CompiledContentPayload,
@@ -14,10 +14,10 @@ import type {
   ReleaseVerificationEvidence,
   SignedContentRelease,
 } from "@nakafaai/aksara-contracts/release";
-import { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release-items-node";
-import { verifySignedContentRelease } from "@nakafaai/aksara-contracts/release-verification-node";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer-node";
+import { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+import { verifySignedContentRelease } from "@nakafaai/aksara-contracts/release/verify";
+import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
+import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Context, Effect, Redacted, Schema } from "effect";
 import {
   type ArtifactBatch,
@@ -27,20 +27,20 @@ import {
   partitionArtifactBatches,
   partitionReleaseItemBatches,
   type ReleaseItemBatch,
-} from "./batching.js";
+} from "#publisher/batching.js";
 import {
   ReleaseArtifactMismatchError,
   validateArtifactForItem,
   validatePublicationReceipt,
   validateReleaseRendererManifest,
   validateVerificationEvidence,
-} from "./release-validation.js";
+} from "#publisher/release-validation.js";
 import {
   makeEd25519PublicationSigner,
   type PublicationSigner,
-} from "./signing.js";
-import { compileReleaseSources } from "./source-compilation.js";
-import type { PublicationTargetFailure } from "./target-errors.js";
+} from "#publisher/signing.js";
+import { compileReleaseSources } from "#publisher/source-compilation.js";
+import type { PublicationTargetFailure } from "#publisher/target-errors.js";
 
 /** The exact reviewed Aksara revision could not provide release sources. */
 export class PublicationSourceError extends Schema.TaggedError<PublicationSourceError>()(
@@ -77,6 +77,7 @@ export class PublicationSigningKey extends Context.Tag(
 export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
   PublicationSource,
   {
+    /** Loads authored sources from the manifest's exact reviewed Git revision. */
     readonly loadExactRevision: (input: {
       readonly aksaraSha: typeof GitCommitShaSchema.Type;
       readonly items: readonly ContentReleaseItem[];
@@ -95,28 +96,35 @@ export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
 export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
   PublicationTarget,
   {
+    /** Atomically activates a fully verified release. */
     readonly activate: (
       release: SignedContentRelease
     ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
+    /** Stages one immutable artifact batch idempotently. */
     readonly stageArtifactBatch: (
       batch: ArtifactBatch
     ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages one ordered release-item batch idempotently. */
     readonly stageItemBatch: (
       batch: ReleaseItemBatch
     ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages the signed release envelope idempotently. */
     readonly stageRelease: (
       release: SignedContentRelease
     ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Recomputes staged evidence before activation is allowed. */
     readonly verify: (
       release: SignedContentRelease
     ) => Effect.Effect<ReleaseVerificationEvidence, PublicationTargetFailure>;
   }
 >() {}
 
+/** Selects authenticated upserts while preserving canonical release order. */
 function upsertItems(items: readonly ContentReleaseItem[]) {
   return items.filter((item) => item.change.operation === "upsert");
 }
 
+/** Stages every ordered release-item batch through the target seam. */
 const stageItemBatches = Effect.fn("AksaraPublisher.stageItemBatches")(
   function* (
     target: typeof PublicationTarget.Service,
@@ -135,6 +143,7 @@ const stageItemBatches = Effect.fn("AksaraPublisher.stageItemBatches")(
   }
 );
 
+/** Signs, verifies, and stages compiled artifacts in bounded batches. */
 const stageArtifactBatches = Effect.fn("AksaraPublisher.stageArtifactBatches")(
   function* (input: {
     readonly items: readonly ContentReleaseItem[];

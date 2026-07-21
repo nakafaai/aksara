@@ -49,10 +49,12 @@ export interface ArtifactBatch {
   readonly releaseId: ReleaseId;
 }
 
+/** Measures one canonical string using its transmitted UTF-8 representation. */
 function utf8Bytes(value: string) {
   return Buffer.byteLength(value, "utf8");
 }
 
+/** Measures a JSON array from exact serialized member representations. */
 function encodedArrayBytes<T>(
   values: readonly T[],
   serialize: (value: T) => string
@@ -67,10 +69,12 @@ function encodedArrayBytes<T>(
   );
 }
 
+/** Verifies one already-formed batch against its count and byte ceilings. */
 function validateBatch<T>(input: {
   readonly kind: "artifact" | "release-item";
   readonly maxBytes: number;
   readonly maxCount: number;
+  /** Produces the canonical wire representation for one batch value. */
   readonly serialize: (value: T) => string;
   readonly values: readonly T[];
 }) {
@@ -94,10 +98,12 @@ function validateBatch<T>(input: {
   );
 }
 
+/** Partitions ordered values without exceeding either publication ceiling. */
 function partitionBounded<T>(input: {
   readonly kind: "artifact" | "release-item";
   readonly maxBytes: number;
   readonly maxCount: number;
+  /** Produces the canonical wire representation for one batch value. */
   readonly serialize: (value: T) => string;
   readonly values: readonly T[];
 }) {

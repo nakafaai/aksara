@@ -4,7 +4,7 @@
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
-  "packageManager": "pnpm@10.34.1",
+  "packageManager": "pnpm@10.34.5",
   "engines": {
     "node": ">=24.0.0 <25.0.0"
   },
@@ -18,24 +18,28 @@
   "scripts": {
     "boundaries": "turbo boundaries",
     "build": "turbo run build",
-    "check": "turbo run check --filter=@nakafaai/aksara-cli",
     "format": "ultracite fix",
+    "jsdocs": "node scripts/check-docs.mjs",
     "lint": "ultracite check",
+    "lines": "node scripts/check-lines.mjs",
+    "names": "node scripts/check-paths.mjs",
     "test": "turbo run test",
+    "typecheck:root": "tsc --project tsconfig.json",
     "typecheck": "turbo run typecheck",
-    "verify:package": "turbo run verify:package --filter=@nakafaai/aksara-contracts",
+    "verify:package": "turbo run verify:package",
     "changeset": "changeset",
     "version-packages": "changeset version"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.2",
+    "@biomejs/biome": "2.5.5",
     "@changesets/changelog-github": "0.7.0",
-    "@changesets/cli": "2.31.0",
-    "@effect/language-service": "0.86.6",
+    "@changesets/cli": "2.31.1",
+    "@effect/language-service": "0.87.0",
     "@types/node": "24.13.3",
     "@typescript/native": "npm:typescript@7.0.2",
-    "turbo": "2.10.4",
+    "turbo": "2.10.5",
     "typescript": "npm:@typescript/typescript6@6.0.2",
-    "ultracite": "7.9.3"
+    "ultracite": "7.9.4",
+    "vitest": "catalog:"
   }
 }

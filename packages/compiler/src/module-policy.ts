@@ -1,12 +1,14 @@
 import type { Program } from "estree-jsx";
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
-import type { UnsupportedMdxModuleOccurrence } from "./errors.js";
+import type { UnsupportedMdxModuleOccurrence } from "#compiler/errors.js";
 
+/** Narrows an MDX tree child to an embedded ECMAScript module. */
 function isMdxjsEsm(node: RootContent): node is MdxjsEsm {
   return node.type === "mdxjsEsm";
 }
 
+/** Classifies a forbidden MDX module without exposing its source text. */
 function classifyModuleProgram(program: Program | null | undefined) {
   if (!program) {
     return "unknown";
@@ -35,6 +37,7 @@ function classifyModuleProgram(program: Program | null | undefined) {
   return hasExport ? "export" : "unknown";
 }
 
+/** Creates a redacted source occurrence for one forbidden MDX module. */
 function moduleOccurrence(node: MdxjsEsm): UnsupportedMdxModuleOccurrence {
   const start = node.position?.start;
   return {

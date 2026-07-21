@@ -1,4 +1,21 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["ultracite/biome/core"]
+  "extends": ["ultracite/biome/core"],
+  "linter": {
+    "rules": {
+      "style": {
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "patterns": [
+              {
+                "group": ["./**", "../**"],
+                "message": "Use a package alias instead of a relative module import."
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
 }

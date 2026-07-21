@@ -12,9 +12,8 @@ credentials, signing keys, unpublished content, or personal data.
 
 ## Supported code
 
-Only the latest `main` revision and the active production contracts release are
-supported. Aksara is under initial development and has not passed its production
-activation gates yet.
+Only the latest `main` revision is supported. No contracts package or content
+runtime has been released to production yet.
 
 ## Trust boundary
 
@@ -24,9 +23,8 @@ prove arbitrary JavaScript safe and do not create a sandbox. Treat every MDX
 author and reviewer as a production code author. Arbitrary public uploads must
 never reach the artifact compiler or Nakafa's server-side MDX runtime.
 
-Production publication loads authored source through the exact Git revision in
-the release; it does not accept source beside a caller-claimed SHA or accept
-caller-selected function bodies. It recompiles each source with the pinned
-compiler and renderer manifest, matches the canonical artifact hash to the
-signed release item, and only then permits the package-private signing primitive
-to authenticate it.
+The implemented publication module requires an injected source interface to
+return authored MDX for the manifest's exact Git revision. It recompiles that
+source, matches the canonical artifact hash to the signed release item, and only
+then permits the package-private signing primitive to authenticate it. No Git,
+Convex, or production adapter is implemented yet.

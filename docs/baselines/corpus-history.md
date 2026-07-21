@@ -33,8 +33,10 @@ license marker was found inside the filtered corpus history. Absence of a marker
 is not provenance proof. Source attribution and reuse terms still require a
 family-by-family audit before public migration.
 
-The only reachable blob above 10 MiB is the Quran source data, currently
-24,492,363 bytes. It is text rather than binary, but its attribution, license,
+The Nakafa `main` history has three reachable blobs above 10 MiB. All are Quran
+source revisions: one current `packages/contents/quran/source.ts` blob at
+24,492,363 bytes and two historical `packages/contents/_data/quran.ts` blobs at
+24,492,362 bytes. They are text rather than binary, but attribution, license,
 compilation cost, and long-term storage representation remain explicit Quran
 migration gates.
 
@@ -43,12 +45,12 @@ migration gates.
 Run these operations only in a disposable clone of the exact Nakafa baseline:
 
 ```sh
-git subtree split --prefix=packages/contents -b aksara-corpus-history
+git subtree split --prefix=packages/contents -b aksara-corpus
 git rev-parse main:packages/contents
-git rev-parse aksara-corpus-history^{tree}
-git rev-list --count aksara-corpus-history
-git bundle create aksara-corpus-history.bundle aksara-corpus-history
-git bundle verify aksara-corpus-history.bundle
+git rev-parse aksara-corpus^{tree}
+git rev-list --count aksara-corpus
+git bundle create aksara-corpus.bundle aksara-corpus
+git bundle verify aksara-corpus.bundle
 ```
 
 Do not merge or push the filtered branch until commit authorization, dedicated
