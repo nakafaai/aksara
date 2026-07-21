@@ -1,0 +1,89 @@
+{
+  "name": "@nakafaai/aksara-contracts",
+  "version": "0.1.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0 <25.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nakafaai/aksara.git",
+    "directory": "packages/contracts"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "./content": {
+      "types": "./dist/content.d.ts",
+      "import": "./dist/content.js"
+    },
+    "./artifact-verification-node": {
+      "types": "./dist/artifact-verification-node.d.ts",
+      "node": "./dist/artifact-verification-node.js"
+    },
+    "./artifact-verification-spec": {
+      "types": "./dist/artifact-verification-spec.d.ts",
+      "import": "./dist/artifact-verification-spec.js"
+    },
+    "./errors": {
+      "types": "./dist/errors.d.ts",
+      "import": "./dist/errors.js"
+    },
+    "./ids": {
+      "types": "./dist/ids.d.ts",
+      "import": "./dist/ids.js"
+    },
+    "./limits": {
+      "types": "./dist/limits.d.ts",
+      "import": "./dist/limits.js"
+    },
+    "./metadata": {
+      "types": "./dist/metadata.d.ts",
+      "import": "./dist/metadata.js"
+    },
+    "./release": {
+      "types": "./dist/release.d.ts",
+      "import": "./dist/release.js"
+    },
+    "./release-items-node": {
+      "types": "./dist/release-items-node.d.ts",
+      "node": "./dist/release-items-node.js"
+    },
+    "./release-verification-node": {
+      "types": "./dist/release-verification-node.d.ts",
+      "node": "./dist/release-verification-node.js"
+    },
+    "./renderer": {
+      "types": "./dist/renderer.d.ts",
+      "import": "./dist/renderer.js"
+    },
+    "./renderer-node": {
+      "types": "./dist/renderer-node.d.ts",
+      "node": "./dist/renderer-node.js"
+    },
+    "./signature-verification": {
+      "types": "./dist/signature-verification.d.ts",
+      "import": "./dist/signature-verification.js"
+    }
+  },
+  "scripts": {
+    "clean": "git clean -xdf dist",
+    "prebuild": "pnpm run clean",
+    "build": "tsc --project tsconfig.build.json",
+    "prepack": "pnpm run build",
+    "test": "vitest run",
+    "typecheck": "tsc --project tsconfig.json",
+    "verify:package": "node scripts/verify-package.mjs"
+  },
+  "dependencies": {
+    "effect": "catalog:"
+  },
+  "devDependencies": {
+    "vitest": "catalog:"
+  }
+}

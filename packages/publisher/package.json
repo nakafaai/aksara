@@ -1,0 +1,35 @@
+{
+  "name": "@nakafaai/aksara-publisher",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./publication": {
+      "types": "./dist/publication.d.ts",
+      "import": "./dist/publication.js"
+    },
+    "./signing-errors": {
+      "types": "./dist/signing-errors.d.ts",
+      "import": "./dist/signing-errors.js"
+    },
+    "./target-errors": {
+      "types": "./dist/target-errors.d.ts",
+      "import": "./dist/target-errors.js"
+    }
+  },
+  "scripts": {
+    "clean": "git clean -xdf dist",
+    "prebuild": "pnpm run clean",
+    "build": "tsc --project tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@nakafaai/aksara-compiler": "workspace:*",
+    "@nakafaai/aksara-contracts": "workspace:*",
+    "effect": "catalog:"
+  },
+  "devDependencies": {
+    "vitest": "catalog:"
+  }
+}

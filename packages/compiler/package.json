@@ -1,0 +1,46 @@
+{
+  "name": "@nakafaai/aksara-compiler",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./compile": {
+      "types": "./dist/compile.d.ts",
+      "import": "./dist/compile.js"
+    },
+    "./errors": {
+      "types": "./dist/errors.d.ts",
+      "import": "./dist/errors.js"
+    },
+    "./source-graph": {
+      "types": "./dist/source-graph.d.ts",
+      "import": "./dist/source-graph.js"
+    }
+  },
+  "scripts": {
+    "clean": "git clean -xdf dist",
+    "prebuild": "pnpm run clean",
+    "build": "tsc --project tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "catalog:",
+    "@nakafaai/aksara-contracts": "workspace:*",
+    "effect": "catalog:",
+    "eslint-scope": "catalog:",
+    "estree-util-visit": "catalog:",
+    "mdast-util-to-string": "catalog:",
+    "remark-gfm": "catalog:",
+    "remark-math": "catalog:",
+    "unist-util-visit": "catalog:"
+  },
+  "devDependencies": {
+    "@types/estree-jsx": "catalog:",
+    "@types/mdast": "catalog:",
+    "@types/unist": "catalog:",
+    "mdast-util-mdx": "catalog:",
+    "unified": "catalog:",
+    "vitest": "catalog:"
+  }
+}

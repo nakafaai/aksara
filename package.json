@@ -1,0 +1,41 @@
+{
+  "name": "aksara",
+  "version": "0.1.0",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "packageManager": "pnpm@10.34.1",
+  "engines": {
+    "node": ">=24.0.0 <25.0.0"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.0.0",
+      "onFail": "download"
+    }
+  },
+  "scripts": {
+    "boundaries": "turbo boundaries",
+    "build": "turbo run build",
+    "check": "turbo run check --filter=@nakafaai/aksara-cli",
+    "format": "ultracite fix",
+    "lint": "ultracite check",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "verify:package": "turbo run verify:package --filter=@nakafaai/aksara-contracts",
+    "changeset": "changeset",
+    "version-packages": "changeset version"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.2",
+    "@changesets/changelog-github": "0.7.0",
+    "@changesets/cli": "2.31.0",
+    "@effect/language-service": "0.86.6",
+    "@types/node": "24.13.3",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "turbo": "2.10.4",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "ultracite": "7.9.3"
+  }
+}
