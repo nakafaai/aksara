@@ -19,8 +19,9 @@ artifact signatures, application authorization, or content entitlement checks.
 - Initial CI run
   [`29829177311`](https://github.com/nakafaai/aksara/actions/runs/29829177311)
   passed and exposed the exact GitHub Actions check name `verify`.
-- Ruleset `19330486` does not yet require that check. Adding it without
-  weakening any existing rule remains a repository bootstrap task.
+- Ruleset `19330486` requires the `verify` check and tests pull requests against
+  the latest `main`. This was added only after the exact check passed on both
+  the initial main ref and cleanup pull request.
 - GitHub Actions default token permissions are read-only and workflows cannot
   approve pull requests.
 - Actions are limited to GitHub-owned actions plus `pnpm/action-setup@*`, and
@@ -50,9 +51,13 @@ The repository owner explicitly authorized the bootstrap commit and push on
 
 1. Completed: create the initial `main` ref without weakening the ruleset.
 2. Completed: verify the exact CI workflow on that ref.
-3. Pending: add the observed `verify` context as a required status check.
-4. Pending: exercise a normal `codex/*` branch and non-draft pull request.
-5. Pending: re-read every setting through the GitHub API and record drift.
+3. Completed: add the observed `verify` context as a required status check.
+4. Completed: exercise `codex/clean-foundation` through non-draft
+   [pull request 6](https://github.com/nakafaai/aksara/pull/6); its exact cleanup
+   commit passed `verify`.
+5. Completed: re-read the ruleset, Actions permissions, repository merge and
+   security settings, and production environment through the GitHub API after
+   the ruleset update. No other setting drift was found.
 
 The owner selected the existing Nakafa license set for Aksara. Software uses
 the Nakafa Source Available License 1.0, educational corpus uses the Nakafa
