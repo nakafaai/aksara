@@ -1,5 +1,5 @@
 import { compile } from "@mdx-js/mdx";
-import { ContentKeySchema } from "@nakafaai/aksara-contracts/ids";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";

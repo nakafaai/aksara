@@ -1,21 +1,21 @@
-import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
+import { compileContent } from "@nakafa/aksara-compiler/compile";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import {
   CompileDocumentSourceSchema,
   compareContentHeads,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   type ReleaseId,
   ReleaseIdSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import {
   type ContentChange,
   type ContentReleaseItem,
   ContentReleaseItemSchema,
-} from "@nakafaai/aksara-contracts/release";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/release";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileReleaseSources } from "#publisher/source-compilation";

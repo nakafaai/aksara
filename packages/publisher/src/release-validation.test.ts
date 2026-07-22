@@ -1,12 +1,12 @@
-import { CompiledContentPayloadSchema } from "@nakafaai/aksara-contracts/content";
-import { Sha256HashSchema } from "@nakafaai/aksara-contracts/ids";
+import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
   PublicationReceiptSchema,
   ReleaseVerificationEvidenceSchema,
-} from "@nakafaai/aksara-contracts/release";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/release";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {

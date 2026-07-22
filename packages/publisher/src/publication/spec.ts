@@ -1,28 +1,28 @@
-import type { CompileContentError } from "@nakafaai/aksara-compiler/compile";
-import type { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact/verify";
-import type { ContractDecodeError } from "@nakafaai/aksara-contracts/errors";
+import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
+import type { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
+import type { ContractDecodeError } from "@nakafa/aksara-contracts/errors";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import type { verifyContentProjections } from "@nakafaai/aksara-contracts/projection/verify";
+} from "@nakafa/aksara-contracts/ids";
+import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseItem,
   PublicationReceipt,
   ReleaseVerificationEvidence,
   SignedContentRelease,
-} from "@nakafaai/aksara-contracts/release";
-import type { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+} from "@nakafa/aksara-contracts/release";
+import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type {
   ContentReleaseStatus,
   ContentReleaseStatusRequest,
   ReleaseCleanupReceipt,
   ReleaseCleanupRequest,
-} from "@nakafaai/aksara-contracts/release/lifecycle";
-import type { RollbackPageRequest } from "@nakafaai/aksara-contracts/release/rollback";
-import type { verifySignedContentRelease } from "@nakafaai/aksara-contracts/release/verify";
-import type { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/release/lifecycle";
+import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback";
+import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
+import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   Context,
   type Effect,

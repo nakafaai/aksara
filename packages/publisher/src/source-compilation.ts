@@ -1,12 +1,12 @@
-import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
+import { compileContent } from "@nakafa/aksara-compiler/compile";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import {
   type CompileDocumentSource,
   type CompiledContentPayload,
   decodeCompileDocumentSource,
-} from "@nakafaai/aksara-contracts/content";
-import type { ContentReleaseItem } from "@nakafaai/aksara-contracts/release";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
+} from "@nakafa/aksara-contracts/content";
+import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {
   ReleaseArtifactMismatchError,

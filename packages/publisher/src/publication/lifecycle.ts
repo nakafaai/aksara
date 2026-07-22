@@ -1,10 +1,10 @@
-import type { VerifiedContentProjections } from "@nakafaai/aksara-contracts/projection/verify";
+import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   PublicationReceipt,
   SignedContentRelease,
-} from "@nakafaai/aksara-contracts/release";
-import type { VerifiedContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
-import type { ContentReleaseStatus } from "@nakafaai/aksara-contracts/release/lifecycle";
+} from "@nakafa/aksara-contracts/release";
+import type { VerifiedContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect } from "effect";
 import {
   PublicationReleaseAbortedError,

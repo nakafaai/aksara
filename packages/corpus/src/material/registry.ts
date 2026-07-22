@@ -1,14 +1,14 @@
 import {
   compareContentHeads,
   headIdentity,
-} from "@nakafaai/aksara-contracts/content";
-import { ContentDeliveryClassSchema } from "@nakafaai/aksara-contracts/delivery";
+} from "@nakafa/aksara-contracts/content";
+import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import { MaterialLessonRouteSchema } from "@nakafaai/aksara-contracts/projection/material";
-import { RendererDomainSchema } from "@nakafaai/aksara-contracts/renderer/domain";
+} from "@nakafa/aksara-contracts/ids";
+import { MaterialLessonRouteSchema } from "@nakafa/aksara-contracts/projection/material";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 
 const MaterialEntrySchema = Schema.Struct({

@@ -2,7 +2,7 @@ import { Buffer } from "node:buffer";
 import {
   CompiledContentPayloadSchema,
   SignedContentArtifactSchema,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -10,15 +10,15 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import { MaterialLessonProjectionSchema } from "@nakafaai/aksara-contracts/projection/material";
+} from "@nakafa/aksara-contracts/ids";
+import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
   RollbackDeleteSchema,
   type RollbackPageRequest,
   RollbackPageSchema,
   type RollbackRecord,
   RollbackUpsertSchema,
-} from "@nakafaai/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/rollback";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";

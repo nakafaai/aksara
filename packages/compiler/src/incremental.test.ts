@@ -1,5 +1,5 @@
-import { Sha256HashSchema } from "@nakafaai/aksara-contracts/ids";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";

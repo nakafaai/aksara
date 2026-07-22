@@ -1,4 +1,4 @@
-import { ReleaseIdSchema } from "@nakafaai/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 
 const RollbackIndexSchema = Schema.Number.pipe(

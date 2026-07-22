@@ -3,15 +3,15 @@ import {
   CommandExecutor,
   type CommandExecutor as CommandExecutorService,
 } from "@effect/platform/CommandExecutor";
-import { CompileDocumentSourceSchema } from "@nakafaai/aksara-contracts/content";
+import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import { ContentReleaseItemSchema } from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/ids";
+import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { GitPublicationSourceLive } from "#publisher/git/source";

@@ -1,12 +1,12 @@
 import { Buffer } from "node:buffer";
-import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeRollbackPage,
   MAX_ROLLBACK_PAGE_RECORDS,
   type RollbackPage,
   RollbackPageSchema,
   type RollbackRecord,
-} from "@nakafaai/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/rollback";
 import { Chunk, Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {

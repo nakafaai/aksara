@@ -1,5 +1,5 @@
-import { ContentKeySchema } from "@nakafaai/aksara-contracts/ids";
-import { decodeMaterialRegistry } from "@nakafaai/aksara-corpus/material/registry";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { planMaterialEntries } from "#publisher/material/plan";

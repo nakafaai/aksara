@@ -1,18 +1,18 @@
-import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   createProjectionDigest,
   finalizeProjectionDigest,
   updateProjectionDigest,
-} from "@nakafaai/aksara-contracts/projection/digest";
-import { verifyContentProjections } from "@nakafaai/aksara-contracts/projection/verify";
-import { ContentReleaseManifestSchema } from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/projection/digest";
+import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
+import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import {
   createReleaseItemsDigest,
   finalizeReleaseItemsDigest,
   updateReleaseItemsDigest,
-} from "@nakafaai/aksara-contracts/release/digest";
-import { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/release/digest";
+import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import {
   makePreparedRollbackRelease,

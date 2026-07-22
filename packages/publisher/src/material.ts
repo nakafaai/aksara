@@ -1,26 +1,26 @@
 import type { FileSystem, Path } from "@effect/platform";
-import type { CompileContentError } from "@nakafaai/aksara-compiler/compile";
+import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import {
   type CompileReason,
   compileIncremental,
   type IncrementalResult,
   type LocalCache,
-} from "@nakafaai/aksara-compiler/incremental";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
-import { CorpusSourcePathSchema } from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-compiler/incremental";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeMaterialProjection,
   MaterialMetadataSchema,
   makeMaterialLessonProjection,
-} from "@nakafaai/aksara-contracts/projection/material";
+} from "@nakafa/aksara-contracts/projection/material";
 import {
   ContentUpsertSchema,
   canonicalizeContentChange,
-} from "@nakafaai/aksara-contracts/release";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
-import { decodeMaterialRegistry } from "@nakafaai/aksara-corpus/material/registry";
-import { readMaterialDocument } from "@nakafaai/aksara-corpus/material/source";
+} from "@nakafa/aksara-contracts/release";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
+import { readMaterialDocument } from "@nakafa/aksara-corpus/material/source";
 import { Effect, Schema, Stream } from "effect";
 import {
   type MaterialPlanTask,

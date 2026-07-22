@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { Effect, Schema, Stream } from "effect";
 
 type PublicationBatchKind = "artifact" | "material-projection" | "release-item";

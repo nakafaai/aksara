@@ -4,18 +4,18 @@ import { Buffer } from "node:buffer";
 import {
   CompiledContentPayloadSchema,
   SignedContentArtifactSchema,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   Ed25519SignatureSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import {
   ContentChangeSchema,
   ContentReleaseItemSchema,
-} from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/release";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {

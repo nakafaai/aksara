@@ -7,8 +7,8 @@ import { SystemError } from "@effect/platform/Error";
 import {
   CorpusSourcePathSchema,
   GitCommitShaSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import { MAX_RAW_MDX_BYTES } from "@nakafaai/aksara-contracts/limits";
+} from "@nakafa/aksara-contracts/ids";
+import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { GitBlob, GitBlobLive } from "#publisher/git/blob";

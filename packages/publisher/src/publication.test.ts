@@ -1,4 +1,4 @@
-import { digestProjections } from "@nakafaai/aksara-contracts/projection/digest";
+import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {

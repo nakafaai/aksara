@@ -6,18 +6,18 @@ Function Concept vertical slice; it is not connected to Nakafa production yet.
 
 ## Current modules
 
-- `@nakafaai/aksara-contracts` defines signed artifact, release, and renderer
+- `@nakafa/aksara-contracts` defines signed artifact, release, and renderer
   wire contracts.
-- `@nakafaai/aksara-compiler` validates trusted MDX syntax and compiles it into
+- `@nakafa/aksara-compiler` validates trusted MDX syntax and compiles it into
   standard `function-body` output without executing it.
-- `@nakafaai/aksara-publisher` verifies, signs, batches, stages, and activates a
+- `@nakafa/aksara-publisher` verifies, signs, batches, stages, and activates a
   release through injected source and target interfaces. It prepares the real
   material slice from AST-decoded MDX metadata. No Convex adapter is implemented
   yet.
-- `@nakafaai/aksara-corpus` owns the reviewed Function Concept `en` and `id`
+- `@nakafa/aksara-corpus` owns the reviewed Function Concept `en` and `id`
   sources plus their non-React source registry. No substitute lessons or React
   implementations live in this package.
-- `@nakafaai/typescript-config` owns the single Node ESM compiler contract used
+- `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
 
 The CLI will be added only with the actual Nakafa preview caller. Further corpus
@@ -42,7 +42,7 @@ pnpm verify:package
 Run a focused workspace test through Turbo so dependency builds stay current:
 
 ```bash
-pnpm exec turbo run test --filter=@nakafaai/aksara-publisher
+pnpm exec turbo run test --filter=@nakafa/aksara-publisher
 ```
 
 Do not invoke a package test script directly when it consumes another workspace;
@@ -59,7 +59,7 @@ installed `node_modules` package, as documented by Node's
 [TypeScript support](https://nodejs.org/api/typescript.html#type-stripping-in-dependencies).
 
 Package-internal TypeScript imports use private Node aliases such as
-`#contracts/*`; cross-package imports use exact `@nakafaai/*` exports. Tests
+`#contracts/*`; cross-package imports use exact `@nakafa/*` exports. Tests
 resolve the current package alias to `src`, while emitted JavaScript resolves
 the same alias through `package.json` to `dist`, so stale build output cannot
 silently satisfy source tests.

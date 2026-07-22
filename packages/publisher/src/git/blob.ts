@@ -10,9 +10,9 @@ import {
 import type {
   CorpusSourcePath,
   GitCommitSha,
-} from "@nakafaai/aksara-contracts/ids";
-import { GitCommitShaSchema } from "@nakafaai/aksara-contracts/ids";
-import { MAX_RAW_MDX_BYTES } from "@nakafaai/aksara-contracts/limits";
+} from "@nakafa/aksara-contracts/ids";
+import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
+import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { Context, Effect, Layer, Schema } from "effect";
 import {
   collectBoundedBytes,

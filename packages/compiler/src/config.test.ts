@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { findPackageJSON } from "node:module";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { createCompilerConfigHash } from "#compiler/config";

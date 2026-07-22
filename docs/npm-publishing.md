@@ -1,6 +1,6 @@
 # Contracts package publishing
 
-`@nakafaai/aksara-contracts` is intended to be Aksara's only public npm package.
+`@nakafa/aksara-contracts` is intended to be Aksara's only public npm package.
 It is not published today. It contains schemas and verification code, not
 corpus bodies or renderer implementations.
 
@@ -27,7 +27,7 @@ The eventual trusted workflow must stage that already-verified exact tarball
 with pnpm's native staged-publishing command:
 
 ```sh
-pnpm stage publish ./path/to/nakafaai-aksara-contracts-<version>.tgz
+pnpm stage publish ./path/to/nakafa-aksara-contracts-<version>.tgz
 ```
 
 Direct publication may use `pnpm publish <exact-tarball>` only after the
@@ -48,13 +48,13 @@ platform prebuild remains available and its native-acceleration probe passes.
 This keeps installs deterministic without granting an unnecessary dependency
 script execution capability.
 
-## Bootstrap blocker
+## Bootstrap state
 
-The local npm session is not authenticated, so ownership of the `@nakafaai`
-scope cannot be verified and the package cannot be created automatically.
-Trusted publishing can be configured only after the package exists. The first
-publication therefore requires the owner to authenticate interactively, verify
-the exact package name and scope, and complete npm 2FA.
+The authenticated npm identity is `nabilfatih`, and the owner-created
+organization is the real `@nakafa` scope. `@nakafa/aksara-contracts` does not
+exist yet. Trusted publishing can be configured only after that first package
+version exists, so the bootstrap publication must use the verified exact
+tarball and complete the scope's required npm 2FA without exposing a token.
 
 After the pnpm upgrade and package bootstrap, configure a package-scoped GitHub
 Actions trusted publisher on a GitHub-hosted runner. Give the publish job
