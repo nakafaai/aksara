@@ -18,6 +18,12 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "dev": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "env": ["NAKAFA_APP_DIR"],
+      "persistent": true
+    },
     "typecheck": {
       "dependsOn": ["//#typecheck:root", "^build"],
       "outputs": []

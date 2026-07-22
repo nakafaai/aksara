@@ -1,9 +1,10 @@
 import { readFileSync } from "node:fs";
+import { isRecord } from "effect/Predicate";
 import ts from "typescript";
 
 import { typescriptFiles } from "#scripts/files";
 
-const PACKAGE_SOURCE_PATTERN = /^packages\/([^/]+)\//u;
+const WORKSPACE_SOURCE_PATTERN = /^(apps|packages)\/([^/]+)\//u;
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
 const FILESYSTEM_IMPORT_PATTERN = /^(?:\/|file:|packages\/)/u;
 const IMPORT_WILDCARD_PATTERN = /\*$/u;
@@ -20,6 +21,15 @@ const allowedWorkspaceDependencies: ReadonlyMap<
   string,
   ReadonlySet<string>
 > = new Map([
+  [
+    "cli",
+    new Set([
+      "@nakafa/aksara-compiler",
+      "@nakafa/aksara-contracts",
+      "@nakafa/aksara-corpus",
+      "@nakafa/aksara-publisher",
+    ]),
+  ],
   ["compiler", new Set(["@nakafa/aksara-contracts"])],
   ["contracts", new Set()],
   ["corpus", new Set(["@nakafa/aksara-contracts"])],
@@ -98,11 +108,6 @@ function moduleSpecifiers(
   return specifiers;
 }
 
-/** Narrows package metadata to a non-array object record. */
-function isRecord(input: unknown): input is Record<string, unknown> {
-  return typeof input === "object" && input !== null && !Array.isArray(input);
-}
-
 /** Returns declared package names from one manifest dependency section. */
 function dependencyNames(input: unknown): readonly string[] {
   return isRecord(input) ? Object.keys(input) : [];
@@ -110,8 +115,9 @@ function dependencyNames(input: unknown): readonly string[] {
 
 /** Reads one workspace's declared public name and private import aliases. */
 function workspaceIdentity(file: string): WorkspaceIdentity | undefined {
-  const match = PACKAGE_SOURCE_PATTERN.exec(file);
-  const workspace = match?.[1];
+  const match = WORKSPACE_SOURCE_PATTERN.exec(file);
+  const workspaceRoot = match?.[1];
+  const workspace = match?.[2];
   if (!workspace || workspace === "typescript-config") {
     return;
   }
@@ -120,14 +126,18 @@ function workspaceIdentity(file: string): WorkspaceIdentity | undefined {
     return cached;
   }
   const manifest: unknown = JSON.parse(
-    readFileSync(`packages/${workspace}/package.json`, "utf8")
+    readFileSync(`${workspaceRoot}/${workspace}/package.json`, "utf8")
   );
   if (!isRecord(manifest) || typeof manifest.name !== "string") {
-    throw new Error(`packages/${workspace}/package.json has no package name`);
+    throw new Error(
+      `${workspaceRoot}/${workspace}/package.json has no package name`
+    );
   }
   const allowedDependencies = allowedWorkspaceDependencies.get(workspace);
   if (!allowedDependencies) {
-    throw new Error(`packages/${workspace} has no import-boundary policy`);
+    throw new Error(
+      `${workspaceRoot}/${workspace} has no import-boundary policy`
+    );
   }
   const imports = isRecord(manifest.imports)
     ? Object.keys(manifest.imports)
