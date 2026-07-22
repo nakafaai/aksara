@@ -30,6 +30,12 @@ with pnpm's native staged-publishing command:
 pnpm stage publish ./path/to/nakafa-aksara-contracts-<version>.tgz
 ```
 
+The checked-in `publish.yml` workflow preserves the tarball produced by the
+isolated package verifier and stages that same file. It runs only from `main`,
+uses the protected `content-production` environment, disables dependency-cache
+reuse for the release job, and grants only `contents: read` plus
+`id-token: write`.
+
 Direct publication may use `pnpm publish <exact-tarball>` only after the
 release policy explicitly permits it. A content or application release must
 never select a contracts version that has not completed this package gate.
@@ -59,10 +65,11 @@ tarball and complete the scope's required npm 2FA without exposing a token.
 After the pnpm upgrade and package bootstrap, configure a package-scoped GitHub
 Actions trusted publisher on a GitHub-hosted runner. Give the publish job
 `id-token: write` and `contents: read`, do not set a write token, and restrict
-the package to staged publishing. The selected pnpm release must implement the
-registry's OIDC token exchange and provenance flow directly. The registry
-automatically attaches provenance to a public package published with OIDC from
-a public repository.
+the package to `publish.yml`, the `content-production` environment, and staged
+publishing only. The selected pnpm release must implement the registry's OIDC
+token exchange and provenance flow directly. The registry automatically
+attaches provenance to a public package published with OIDC from a public
+repository.
 
 References:
 

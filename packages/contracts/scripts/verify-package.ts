@@ -13,6 +13,7 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseArgs } from "node:util";
 import {
   DEPENDENCY_SECTIONS,
   type PackageManifest,
@@ -23,6 +24,14 @@ import {
 const NPM_CONFIG_ENVIRONMENT_PATTERN = /^(?:NPM|PNPM)_CONFIG_/i;
 const NPM_CREDENTIAL_ENVIRONMENT_PATTERN = /^(?:NODE_AUTH_TOKEN|NPM_TOKEN)$/i;
 const WORKSPACE_PROTOCOL_PATTERN = /^(?:catalog:|workspace:)/;
+const { values } = parseArgs({
+  options: {
+    output: {
+      type: "string",
+    },
+  },
+  strict: true,
+});
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const packageRoot = resolve(scriptDirectory, "..");
 const workspaceRoot = resolve(packageRoot, "../..");
@@ -249,6 +258,13 @@ run(process.execPath, [installedVerifier, sourceManifest.name], {
   env: childEnvironment,
   stdio: "inherit",
 });
+
+if (values.output) {
+  const outputPath = resolve(values.output);
+  mkdirSync(dirname(outputPath), { recursive: true });
+  copyFileSync(tarballPath, outputPath);
+  process.stdout.write(`Preserved the verified tarball at ${outputPath}.\n`);
+}
 
 process.stdout.write(
   `Verified ${sourceManifest.name} as an isolated pnpm tarball consumer.\n`
