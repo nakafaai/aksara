@@ -244,9 +244,10 @@ export function transportSuccess(
         operation: value.operation,
         value: {
           baseReleaseId: value.release.manifest.baseReleaseId,
-          deleteHeads: 0,
+          deleteHeads: 1,
           itemCount: value.release.manifest.itemCount,
           itemsDigest: value.release.manifest.itemsDigest,
+          manifestHash: value.release.manifestHash,
           projectionCount: 1,
           projectionDigest,
           releaseId: value.release.manifest.releaseId,

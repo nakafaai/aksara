@@ -114,12 +114,26 @@ export type SignedContentRelease = typeof SignedContentReleaseSchema.Type;
 
 const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";
 
+/** Checks that every staged head has exactly one matching item and artifact. */
+function hasCoherentVerificationCounts(input: {
+  readonly deleteHeads: number;
+  readonly itemCount: number;
+  readonly stagedArtifacts: number;
+  readonly upsertHeads: number;
+}) {
+  return (
+    input.deleteHeads + input.upsertHeads === input.itemCount &&
+    input.stagedArtifacts === input.upsertHeads
+  );
+}
+
 /** Pre-activation evidence proving the fully staged release is coherent. */
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
   deleteHeads: ProjectionCountSchema,
   itemCount: ProjectionCountSchema,
   itemsDigest: Sha256HashSchema,
+  manifestHash: Sha256HashSchema,
   projectionCount: ProjectionCountSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
@@ -127,7 +141,12 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   rendererManifestHash: Sha256HashSchema,
   stagedArtifacts: ProjectionCountSchema,
   upsertHeads: ProjectionCountSchema,
-});
+}).pipe(
+  Schema.filter(hasCoherentVerificationCounts, {
+    message: () =>
+      "Expected staged head and artifact counts to match the release items.",
+  })
+);
 export type ReleaseVerificationEvidence =
   typeof ReleaseVerificationEvidenceSchema.Type;
 

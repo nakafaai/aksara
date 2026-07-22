@@ -107,7 +107,7 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
       // Target-side recomputation binds every staged replay to signed digests.
       const verification = yield* target.verify(release);
       yield* validateVerificationEvidence(
-        manifest,
+        release,
         summary,
         projectionSummary,
         verification

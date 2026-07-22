@@ -3,8 +3,9 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import { Match } from "effect";
-import { transportResponse, transportSuccess } from "#test/transport";
+import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
+import { Match, Schema } from "effect";
+import { transportSuccess } from "#test/transport";
 
 const foreignReleaseId = ReleaseIdSchema.make("test-foreign-release");
 const foreignHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
@@ -56,5 +57,5 @@ export function foreignTransportSuccess(request: PublicationRequest) {
       verify: (value) => replaceIdentity(value, "releaseId", foreignReleaseId),
     })
   );
-  return transportResponse(foreign);
+  return Schema.decodeUnknownSync(PublicationSuccessSchema)(foreign);
 }

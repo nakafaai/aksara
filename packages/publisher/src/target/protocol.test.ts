@@ -6,7 +6,6 @@ import {
   publicationReleaseId,
   targetStage,
 } from "#publisher/target/protocol";
-import { foreignTransportSuccess } from "#test/foreign";
 import {
   transportRelease,
   transportRequests,
@@ -67,18 +66,7 @@ describe("publication target protocol", () => {
     ]);
   });
 
-  it("rejects success evidence for another request identity", async () => {
-    const tags = await Effect.runPromise(
-      Effect.forEach(transportRequests, (request) =>
-        failureTag(request, foreignTransportSuccess(request), 200)
-      )
-    );
-    expect(tags).toEqual(
-      transportRequests.map(() => "PublicationTargetProtocolError")
-    );
-  });
-
-  it("rejects operation, batch index, count, and HTTP contradictions", async () => {
+  it("rejects operation and HTTP contradictions", async () => {
     const item = transportRequests.find(
       (request) => request.operation === "stageItemBatch"
     );
@@ -94,20 +82,6 @@ describe("publication target protocol", () => {
     const success = transportSuccess(item);
     const contradictions = [
       { body: transportSuccess(status), status: 200 },
-      {
-        body: transportResponse({
-          ...success,
-          value: { ...success.value, batchIndex: 1 },
-        }),
-        status: 200,
-      },
-      {
-        body: transportResponse({
-          ...success,
-          value: { ...success.value, created: 0 },
-        }),
-        status: 200,
-      },
       { body: success, status: 201 },
     ];
     const tags = await Effect.runPromise(

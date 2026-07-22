@@ -24,6 +24,7 @@ const evidence = {
   deleteHeads: 0,
   itemCount: 1,
   itemsDigest: manifestHash,
+  manifestHash,
   projectionCount: 1,
   projectionDigest,
   releaseId,
@@ -208,5 +209,26 @@ describe("publication responses", () => {
         })
       ).toBe(false);
     }
+  });
+
+  it("rejects verification evidence with contradictory staged counts", () => {
+    const invalidHeads = Schema.decodeUnknownEither(PublicationResponseSchema)({
+      ok: true,
+      operation: "verify",
+      value: { ...evidence, deleteHeads: 1 },
+    });
+    expect(Either.isLeft(invalidHeads)).toBe(true);
+    if (Either.isLeft(invalidHeads)) {
+      expect(String(invalidHeads.left)).toContain(
+        "Expected staged head and artifact counts to match the release items."
+      );
+    }
+    expect(
+      accepts({
+        ok: true,
+        operation: "verify",
+        value: { ...evidence, stagedArtifacts: 0 },
+      })
+    ).toBe(false);
   });
 });

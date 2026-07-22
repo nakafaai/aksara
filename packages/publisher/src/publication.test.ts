@@ -47,9 +47,9 @@ describe("publishContentRelease", () => {
       )
     );
     const state = makeTarget(release);
-    state.verify.mockReturnValueOnce(
+    state.verify.mockImplementationOnce((signed) =>
       Effect.succeed({
-        ...state.evidence(),
+        ...state.evidence(signed.manifestHash),
         projectionDigest: changedSummary.digest,
       })
     );

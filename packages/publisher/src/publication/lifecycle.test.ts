@@ -50,6 +50,7 @@ const evidence = {
   deleteHeads: 0,
   itemCount: 1,
   itemsDigest: manifest.itemsDigest,
+  manifestHash: release.manifestHash,
   projectionCount: 1,
   projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,

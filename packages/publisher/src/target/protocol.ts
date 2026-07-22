@@ -3,17 +3,8 @@ import {
   type PublicationFailure,
   publicationFailureStatus,
 } from "@nakafa/aksara-contracts/transport/failure";
-import type {
-  PublicationRequest,
-  StageArtifactBatchRequest,
-  StageItemBatchRequest,
-  StageProjectionBatchRequest,
-} from "@nakafa/aksara-contracts/transport/request";
-import type {
-  PublicationResponse,
-  PublicationSuccess,
-  StageBatchReceipt,
-} from "@nakafa/aksara-contracts/transport/response";
+import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
+import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
 import { Effect, Match } from "effect";
 import {
   PublicationStaleBaseError,
@@ -25,7 +16,7 @@ import {
   PublicationTargetTransportError,
   PublicationTargetUnauthorizedError,
 } from "#publisher/target/errors";
-import { hasBoundFinalizeProgress } from "#publisher/target/progress";
+import { hasBoundPublicationSuccess } from "#publisher/target/evidence";
 
 /** Parsed HTTP status and body returned by publication ingress. */
 export interface PublicationHttpResult {
@@ -70,85 +61,6 @@ function protocolError(request: PublicationRequest) {
     reason: "response-evidence",
     stage: targetStage(request.operation),
   });
-}
-
-/** Returns the exact number of rows carried by one staging request. */
-function publicationBatchCount(
-  request:
-    | StageArtifactBatchRequest
-    | StageItemBatchRequest
-    | StageProjectionBatchRequest
-) {
-  if ("artifacts" in request) {
-    return request.artifacts.length;
-  }
-  if ("items" in request) {
-    return request.items.length;
-  }
-  return request.projections.length;
-}
-
-/** Checks one staging receipt against its exact request identity and count. */
-function hasBoundBatchReceipt(
-  request:
-    | StageArtifactBatchRequest
-    | StageItemBatchRequest
-    | StageProjectionBatchRequest,
-  receipt: StageBatchReceipt
-) {
-  const count = publicationBatchCount(request);
-  return (
-    receipt.batchIndex === request.batchIndex &&
-    receipt.releaseId === request.releaseId &&
-    receipt.created + receipt.unchanged === count
-  );
-}
-
-/** Verifies that success evidence belongs to the exact initiating request. */
-function hasBoundSuccess(
-  request: PublicationRequest,
-  response: PublicationSuccess
-) {
-  if (response.operation !== request.operation) {
-    return false;
-  }
-  return Match.value(request).pipe(
-    Match.discriminatorsExhaustive("operation")({
-      activate: (value) =>
-        response.operation === "activate" &&
-        response.value.releaseId === value.release.manifest.releaseId,
-      cleanup: (value) =>
-        response.operation === "cleanup" &&
-        response.value.releaseId === value.releaseId,
-      finalize: (value) =>
-        response.operation === "finalize" &&
-        response.releaseId === value.release.manifest.releaseId &&
-        hasBoundFinalizeProgress(value, response),
-      rollbackPage: (value) =>
-        response.operation === "rollbackPage" &&
-        response.value.rollbackOf === value.rollbackOf,
-      stageArtifactBatch: (value) =>
-        response.operation === "stageArtifactBatch" &&
-        hasBoundBatchReceipt(value, response.value),
-      stageItemBatch: (value) =>
-        response.operation === "stageItemBatch" &&
-        hasBoundBatchReceipt(value, response.value),
-      stageProjectionBatch: (value) =>
-        response.operation === "stageProjectionBatch" &&
-        hasBoundBatchReceipt(value, response.value),
-      stageRelease: (value) =>
-        response.operation === "stageRelease" &&
-        response.value.releaseId === value.release.manifest.releaseId &&
-        response.value.manifestHash === value.release.manifestHash,
-      status: (value) =>
-        response.operation === "status" &&
-        response.value.releaseId === value.releaseId &&
-        response.value.manifestHash === value.manifestHash,
-      verify: (value) =>
-        response.operation === "verify" &&
-        response.value.releaseId === value.release.manifest.releaseId,
-    })
-  );
 }
 
 /** Checks structured failure evidence before exposing it to domain callers. */
@@ -234,7 +146,10 @@ export const interpretPublicationResponse = Effect.fn(
     return Effect.fail(transientPublicationError(request, result.status));
   }
   if (result.body.ok) {
-    if (result.status !== 200 || !hasBoundSuccess(request, result.body)) {
+    if (
+      result.status !== 200 ||
+      !hasBoundPublicationSuccess(request, result.body)
+    ) {
       return Effect.fail(protocolError(request));
     }
     return Effect.succeed(result.body);

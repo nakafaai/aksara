@@ -13,6 +13,7 @@ import type {
   ContentReleaseManifest,
   PublicationReceipt,
   ReleaseVerificationEvidence,
+  SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type { VerifiedContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
@@ -100,13 +101,15 @@ export function validateReleaseRendererManifest(
 
 /** Proves the target staged the complete authenticated release before activation. */
 export function validateVerificationEvidence(
-  manifest: ContentReleaseManifest,
+  release: SignedContentRelease,
   summary: VerifiedContentReleaseItems,
   projectionSummary: VerifiedContentProjections,
   evidence: ReleaseVerificationEvidence
 ) {
+  const { manifest } = release;
   const matches =
     evidence.releaseId === manifest.releaseId &&
+    evidence.manifestHash === release.manifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
     evidence.itemCount === manifest.itemCount &&
     evidence.itemsDigest === manifest.itemsDigest &&
