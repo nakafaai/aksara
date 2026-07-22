@@ -76,6 +76,7 @@ jobs:
             exit 1
           fi
           package_changes=$(git diff --name-only "$SOURCE_SHA" "$WORKFLOW_SHA" -- \
+            .github/workflows/package-proof.yml \
             .github/workflows/publish.yml \
             biome.jsonc \
             package.json \
