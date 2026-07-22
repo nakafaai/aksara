@@ -4,6 +4,7 @@ import {
   RendererAuthoringComponentDuplicateError,
   RendererAuthoringComponentExtraError,
   RendererAuthoringComponentMissingError,
+  RendererAuthoringComponentsSchema,
   RendererAuthoringComponentUnsupportedError,
   RendererAuthoringSelectionNonCanonicalError,
   type RendererCapability,
@@ -11,6 +12,7 @@ import {
   type RendererComponentRequirement,
   RendererManifestAuthoringComponentsSchema,
   RendererManifestSupportedComponentsSchema,
+  RendererSupportedComponentsSchema,
   sortRendererComponentRequirements,
 } from "#contracts/renderer/component";
 import {
@@ -129,9 +131,15 @@ const validateCompleteAuthoringNames = Effect.fn(
 /** Normalizes one complete physical registry component contract. */
 const normalizeRendererCapability = Effect.fn(
   "AksaraContracts.normalizeRendererCapability"
-)(function* (input: RendererCapabilityInput) {
+)(function* (input: RendererCapabilityInput, allowEmpty: boolean) {
+  const supportedSchema = allowEmpty
+    ? RendererSupportedComponentsSchema
+    : RendererManifestSupportedComponentsSchema;
+  const authoringSchema = allowEmpty
+    ? RendererAuthoringComponentsSchema
+    : RendererManifestAuthoringComponentsSchema;
   const supportedComponents = yield* decodeContract(
-    RendererManifestSupportedComponentsSchema,
+    supportedSchema,
     "RendererManifestSupportedComponents",
     sortRendererComponentRequirements(input.supportedComponents)
   );
@@ -145,26 +153,29 @@ const normalizeRendererCapability = Effect.fn(
   );
   yield* validateCompleteAuthoringNames(supportedComponents, selectedNames);
   const authoringComponents = yield* decodeContract(
-    RendererManifestAuthoringComponentsSchema,
+    authoringSchema,
     "RendererManifestAuthoringComponents",
     input.authoringComponents
   );
+  if (allowEmpty) {
+    return { authoringComponents, supportedComponents };
+  }
   return yield* decodeContract(RendererCapabilitySchema, "RendererCapability", {
     authoringComponents,
     supportedComponents,
   });
 });
 
-/** Normalizes the exact base plus two real route-domain registries. */
+/** Normalizes the exact base plus every canonical route-domain registry. */
 export const normalizeRendererSelection = Effect.fn(
   "AksaraContracts.normalizeRendererSelection"
 )(function* (input: {
   readonly base: RendererCapabilityInput;
   readonly domains: readonly RendererDomainInput[];
 }) {
-  const base = yield* normalizeRendererCapability(input.base);
+  const base = yield* normalizeRendererCapability(input.base, false);
   const domains = yield* Effect.forEach(input.domains, (domain) =>
-    normalizeRendererCapability(domain).pipe(
+    normalizeRendererCapability(domain, true).pipe(
       Effect.flatMap((capability) =>
         decodeContract(
           RendererDomainCapabilitySchema,

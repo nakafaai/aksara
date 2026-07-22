@@ -32,6 +32,7 @@ import {
   deriveRollbackRecords,
   isDerivedRollbackUpsert,
 } from "#publisher/rollback/records";
+import { rendererDomains } from "#test/renderer";
 
 const rawMdx = "## Test protocol";
 const compiledCode = "return {};";
@@ -43,18 +44,10 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "TestBase", version: 1 }],
       supportedComponents: [{ name: "TestBase", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "TestChemistry", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "TestChemistry", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "TestMathematics", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "TestMathematics", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "TestChemistry", version: 1 },
+      mathematics: { name: "TestMathematics", version: 1 },
+    }),
   })
 );
 const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
@@ -68,7 +61,7 @@ const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   mdxCompilerVersion: "3.1.1",
   plainText: "Test protocol",
   rawMdx,
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   requiredComponents: [],
   sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
 });

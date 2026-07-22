@@ -44,7 +44,7 @@ function payload(rawMdx: string, sourceHash?: string) {
     mdxCompilerVersion: "3.1.1",
     plainText: "Source",
     rawMdx,
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     requiredComponents: [],
     sourceHash:
       sourceHash ??

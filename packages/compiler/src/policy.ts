@@ -11,6 +11,7 @@ import type { Root } from "mdast";
 import type { Plugin } from "unified";
 import type { Node as UnistNode } from "unist";
 import { visit as visitUnist } from "unist-util-visit";
+import { readNodeProgram } from "#compiler/ast/program";
 import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,
@@ -36,26 +37,6 @@ const SAFE_GLOBALS = new Set([
   "String",
   "undefined",
 ]);
-
-/** Narrows unknown unified data to the ESTree program shape we inspect. */
-function isProgram(value: unknown): value is Program {
-  if (!(typeof value === "object" && value !== null)) {
-    return false;
-  }
-  if (!("type" in value && value.type === "Program")) {
-    return false;
-  }
-  return "body" in value && Array.isArray(value.body);
-}
-
-/** Reads a validated ESTree program attached to a unified node. */
-function nodeProgram(node: UnistNode) {
-  const { data } = node;
-  if (!(data && "estree" in data)) {
-    return;
-  }
-  return isProgram(data.estree) ? data.estree : undefined;
-}
 
 /** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
@@ -251,7 +232,7 @@ function appendProgramViolations(
   node: UnistNode,
   violations: ExecutablePolicyViolation[]
 ) {
-  const program = nodeProgram(node);
+  const program = readNodeProgram(node);
   if (program) {
     violations.push(...inspectProgram(program));
   }

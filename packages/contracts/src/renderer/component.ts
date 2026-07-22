@@ -74,19 +74,26 @@ const CanonicalRendererRequirementsSchema = Schema.Array(
   })
 );
 
-/** Canonical runtime capabilities; multiple versions per name are allowed. */
-export const RendererManifestSupportedComponentsSchema =
-  CanonicalRendererRequirementsSchema.pipe(Schema.minItems(1));
+/** Canonical runtime capabilities; an empty route domain is valid. */
+export const RendererSupportedComponentsSchema =
+  CanonicalRendererRequirementsSchema;
 
-/** Canonical compiler choices; exactly one version exists for every name. */
-export const RendererManifestAuthoringComponentsSchema =
+/** Canonical compiler choices; an empty route domain is valid. */
+export const RendererAuthoringComponentsSchema =
   CanonicalRendererRequirementsSchema.pipe(
-    Schema.minItems(1),
     Schema.filter(hasOneVersionPerComponent, {
       message: () =>
         "Expected exactly one authoring version for each component name.",
     })
   );
+
+/** Canonical runtime capabilities; multiple versions per name are allowed. */
+export const RendererManifestSupportedComponentsSchema =
+  RendererSupportedComponentsSchema.pipe(Schema.minItems(1));
+
+/** Canonical compiler choices; exactly one version exists for every name. */
+export const RendererManifestAuthoringComponentsSchema =
+  RendererAuthoringComponentsSchema.pipe(Schema.minItems(1));
 
 /** Canonical artifact requirements; an artifact chooses one version per name. */
 export const CompiledContentRequirementsSchema =
@@ -98,7 +105,7 @@ export const CompiledContentRequirementsSchema =
   );
 
 /** Shared schema fields for one physical renderer registry capability. */
-export const RendererCapabilityFields = {
+const RendererCapabilityFields = {
   authoringComponents: RendererManifestAuthoringComponentsSchema,
   supportedComponents: RendererManifestSupportedComponentsSchema,
 };

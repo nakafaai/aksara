@@ -27,7 +27,7 @@ const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
     mdxCompilerVersion: "3.1.1",
     plainText: "x",
     rawMdx: "x",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     requiredComponents: [],
     sourceHash: `sha256:${"c".repeat(64)}`,
   },
@@ -188,7 +188,7 @@ describe("rollback contracts", () => {
     [
       "payload domain",
       {
-        payload: { ...artifact.payload, rendererDomain: "material-chemistry" },
+        payload: { ...artifact.payload, rendererDomain: "chemistry" },
       },
     ],
   ])("rejects an upsert with mismatched %s", (_label, artifactChange) => {

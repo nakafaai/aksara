@@ -28,7 +28,7 @@ const evidence = {
   projectionCount: 1,
   projectionDigest,
   releaseId,
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
   rendererManifestHash,
   stagedArtifacts: 1,
   upsertHeads: 1,

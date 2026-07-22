@@ -8,8 +8,17 @@ import {
 describe("renderer domain", () => {
   it("accepts only real canonically ordered Nakafa route domains", () => {
     expect(RENDERER_DOMAINS).toEqual([
-      "material-chemistry",
-      "material-mathematics",
+      "ai-ds",
+      "biology",
+      "chemistry",
+      "mathematics",
+      "physics",
+      "politics",
+      "snbt-general",
+      "snbt-math",
+      "snbt-plain",
+      "snbt-quant",
+      "tka-math",
     ]);
     expect(
       RENDERER_DOMAINS.every((domain) =>
@@ -18,7 +27,7 @@ describe("renderer domain", () => {
     ).toBe(true);
     expect(
       Either.isLeft(
-        Schema.decodeUnknownEither(RendererDomainSchema)("material-physics")
+        Schema.decodeUnknownEither(RendererDomainSchema)("material-mathematics")
       )
     ).toBe(true);
   });

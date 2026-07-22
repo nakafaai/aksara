@@ -21,6 +21,7 @@ import { describe, expect, it, vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { rendererDomains } from "#test/renderer";
 
 const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
 const releaseId = ReleaseIdSchema.make("test-rollback-forward");
@@ -33,18 +34,10 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "TestBase", version: 1 }],
       supportedComponents: [{ name: "TestBase", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "TestChemistry", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "TestChemistry", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "TestMathematics", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "TestMathematics", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "TestChemistry", version: 1 },
+      mathematics: { name: "TestMathematics", version: 1 },
+    }),
   })
 );
 const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
@@ -58,7 +51,7 @@ const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   mdxCompilerVersion: "3.1.1",
   plainText: "Test protocol",
   rawMdx,
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   requiredComponents: [],
   sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
 });

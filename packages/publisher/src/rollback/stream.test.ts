@@ -71,7 +71,7 @@ function oversizedPage() {
     mdxCompilerVersion: "3.1.1",
     plainText: "Test protocol",
     rawMdx: "## Test protocol",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     requiredComponents: [],
     sourceHash: `sha256:${"c".repeat(64)}`,
   });

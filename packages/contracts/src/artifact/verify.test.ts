@@ -29,6 +29,7 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { rendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -68,6 +69,7 @@ const rendererComponents = [
   { name: "BlockMath", version: 1 },
   { name: "InlineMath", version: 1 },
 ] as const;
+
 /** Builds one exact base plus real route-domain renderer contract. */
 function manifestInput(
   authoringComponents: readonly RendererComponentRequirement[] = rendererComponents,
@@ -75,18 +77,10 @@ function manifestInput(
 ) {
   return {
     base: { authoringComponents, supportedComponents },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   };
 }
 const rendererManifest = await Effect.runPromise(
@@ -103,7 +97,7 @@ const basePayload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   mdxCompilerVersion: "3.1.1",
   plainText: TEST_HEADING,
   rawMdx: `## ${TEST_HEADING}`,
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   requiredComponents: [{ name: "BlockMath", version: 1 }],
   sourceHash: Sha256HashSchema.make(
     `sha256:${createHash("sha256").update(`## ${TEST_HEADING}`).digest("hex")}`
@@ -150,7 +144,7 @@ const trustedResolver = ContentVerificationKeyResolver.of({
 function request(
   artifact: unknown = signArtifact(),
   manifest: unknown = rendererManifest,
-  rendererContractVersion = "2.0.0"
+  rendererContractVersion = "1.0.0"
 ) {
   return { artifact, rendererContractVersion, rendererManifest: manifest };
 }
@@ -265,7 +259,7 @@ describe("server-only artifact verification", () => {
       requiredComponents: [{ name: "FunctionMachine", version: 1 }],
     });
     const chemistry = makePayload({
-      rendererDomain: "material-chemistry",
+      rendererDomain: "chemistry",
       requiredComponents: [{ name: "FunctionMachine", version: 1 }],
     });
 

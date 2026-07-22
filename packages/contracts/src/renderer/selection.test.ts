@@ -1,5 +1,9 @@
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
+import {
+  RENDERER_DOMAINS,
+  type RendererDomain,
+} from "#contracts/renderer/domain";
 import { normalizeRendererSelection } from "#contracts/renderer/selection";
 
 const supported = [
@@ -11,18 +15,21 @@ const authoring = [
   { name: "BlockMath", version: 1 },
   { name: "InlineMath", version: 1 },
 ] as const;
-const domains = [
-  {
-    authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-    name: "material-mathematics",
-    supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-  },
-  {
-    authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-    name: "material-chemistry",
-    supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-  },
-] as const;
+/** Creates one unsorted test domain capability from the canonical source. */
+function rendererDomain(name: RendererDomain) {
+  const componentName = name === "mathematics" ? "FunctionMachine" : undefined;
+  if (!componentName) {
+    return { authoringComponents: [], name, supportedComponents: [] };
+  }
+  const requirement = { name: componentName, version: 1 };
+  return {
+    authoringComponents: [requirement],
+    name,
+    supportedComponents: [requirement],
+  };
+}
+
+const domains = RENDERER_DOMAINS.map(rendererDomain).reverse();
 
 describe("renderer selection", () => {
   it("sorts support and domains while preserving canonical authoring pins", async () => {
@@ -36,10 +43,7 @@ describe("renderer selection", () => {
       })
     );
     expect(selection.base.supportedComponents).toEqual(supported);
-    expect(selection.domains.map(({ name }) => name)).toEqual([
-      "material-chemistry",
-      "material-mathematics",
-    ]);
+    expect(selection.domains.map(({ name }) => name)).toEqual(RENDERER_DOMAINS);
   });
 
   it.each([

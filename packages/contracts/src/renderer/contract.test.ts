@@ -7,121 +7,147 @@ import {
   selectRendererDomainCapability,
   sortRendererDomains,
 } from "#contracts/renderer/contract";
+import {
+  RENDERER_DOMAINS,
+  type RendererDomain,
+} from "#contracts/renderer/domain";
+import type { RendererDomainInput } from "#contracts/renderer/selection";
 
 const hash = `sha256:${"a".repeat(64)}`;
 const base = {
   authoringComponents: [{ name: "BlockMath", version: 1 }],
   supportedComponents: [{ name: "BlockMath", version: 1 }],
 } as const;
-const domains = [
-  {
-    authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-    name: "material-chemistry",
-    supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-  },
-  {
-    authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-    name: "material-mathematics",
-    supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-  },
-] as const;
+
+/** Creates one canonical domain, including the two currently implemented labs. */
+function domainCapability(name: RendererDomain) {
+  let componentName: string | undefined;
+  if (name === "chemistry") {
+    componentName = "AtomShellLab";
+  }
+  if (name === "mathematics") {
+    componentName = "FunctionMachine";
+  }
+  if (!componentName) {
+    return { authoringComponents: [], name, supportedComponents: [] };
+  }
+  const requirement = { name: componentName, version: 1 };
+  return {
+    authoringComponents: [requirement],
+    name,
+    supportedComponents: [requirement],
+  };
+}
+
+const domains = RENDERER_DOMAINS.map(domainCapability);
 const manifest = {
   base,
   domains,
-  format: "nakafa-mdx-renderer-v2",
+  format: "nakafa-mdx-renderer-v1",
   hash,
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
 } as const;
 
+/** Reads one canonical test domain without weakening its literal identity. */
+function findDomain(name: RendererDomain) {
+  const domain = domains.find((candidate) => candidate.name === name);
+  if (!domain) {
+    throw new Error(`Missing test renderer domain: ${name}`);
+  }
+  return domain;
+}
+
+/** Replaces one domain while preserving the canonical domain tuple. */
+function replaceDomain(name: RendererDomain, replacement: RendererDomainInput) {
+  return domains.map((domain) => (domain.name === name ? replacement : domain));
+}
+
 describe("renderer contract", () => {
-  it("selects exactly one route-owned registry", () => {
+  it("selects every route-owned registry without a binary domain branch", () => {
     const decoded = Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)(
       manifest
     );
     expect(
-      selectRendererDomainCapability(decoded, "material-chemistry").name
-    ).toBe("material-chemistry");
-    expect(
-      selectRendererDomainCapability(decoded, "material-mathematics").name
-    ).toBe("material-mathematics");
+      RENDERER_DOMAINS.map(
+        (name) => selectRendererDomainCapability(decoded, name).name
+      )
+    ).toEqual(RENDERER_DOMAINS);
   });
 
-  it("requires canonical domains and one registry owner per component", () => {
+  it("requires every canonical domain while allowing empty capabilities", () => {
     const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
+    const incomplete = decode({
+      ...manifest,
+      domains: domains.slice(0, -1),
+    });
+    expect(Either.isRight(decode(manifest))).toBe(true);
     expect(
       Either.isLeft(decode({ ...manifest, domains: [...domains].reverse() }))
     ).toBe(true);
+    expect(Either.isLeft(incomplete)).toBe(true);
+    if (Either.isLeft(incomplete)) {
+      expect(String(incomplete.left)).toContain(
+        "Expected every renderer domain in canonical order."
+      );
+    }
+  });
+
+  it("keeps base names disjoint while allowing cross-domain names", () => {
+    const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
+    const colliding = {
+      authoringComponents: [{ name: "BlockMath", version: 1 }],
+      name: "chemistry",
+      supportedComponents: [{ name: "BlockMath", version: 1 }],
+    } as const;
     expect(
       Either.isLeft(
         decode({
           ...manifest,
-          domains: [
-            {
-              ...domains[0],
-              authoringComponents: [{ name: "BlockMath", version: 1 }],
-              supportedComponents: [{ name: "BlockMath", version: 1 }],
-            },
-            domains[1],
-          ],
+          domains: replaceDomain("chemistry", colliding),
         })
       )
     ).toBe(true);
+    const shared = {
+      authoringComponents: [{ name: "SharedChart", version: 1 }],
+      name: "chemistry",
+      supportedComponents: [{ name: "SharedChart", version: 1 }],
+    } as const;
+    const sharedMathematics = { ...shared, name: "mathematics" } as const;
+    const sharedDomains = replaceDomain("chemistry", shared).map((domain) =>
+      domain.name === "mathematics" ? sharedMathematics : domain
+    );
+    expect(
+      Either.isRight(decode({ ...manifest, domains: sharedDomains }))
+    ).toBe(true);
   });
 
-  it("explains incomplete capabilities in every domain schema", () => {
-    const incompleteChemistry = {
-      ...domains[0],
+  it("explains incomplete domain capabilities", () => {
+    const chemistry = findDomain("chemistry");
+    const incomplete = {
+      ...chemistry,
       supportedComponents: [
-        ...domains[0].supportedComponents,
+        ...chemistry.supportedComponents,
         { name: "MissingChemistry", version: 1 },
-      ],
-    };
-    const incompleteMathematics = {
-      ...domains[1],
-      supportedComponents: [
-        ...domains[1].supportedComponents,
-        { name: "MissingMathematics", version: 1 },
       ],
     };
     const capability = Schema.decodeUnknownEither(
       RendererDomainCapabilitySchema
-    )(incompleteChemistry);
-    const chemistry = Schema.decodeUnknownEither(
-      RendererManifestEnvelopeSchema
-    )({
-      ...manifest,
-      domains: [incompleteChemistry, domains[1]],
-    });
-    const mathematics = Schema.decodeUnknownEither(
-      RendererManifestEnvelopeSchema
-    )({
-      ...manifest,
-      domains: [domains[0], incompleteMathematics],
-    });
-
+    )(incomplete);
+    const envelope = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema)(
+      { ...manifest, domains: replaceDomain("chemistry", incomplete) }
+    );
     expect(Either.isLeft(capability)).toBe(true);
     if (Either.isLeft(capability)) {
       expect(String(capability.left)).toContain(
         "Expected one supported authoring selection"
       );
     }
-    expect(Either.isLeft(chemistry)).toBe(true);
-    if (Either.isLeft(chemistry)) {
-      expect(String(chemistry.left)).toContain(
-        "Expected one supported authoring selection"
-      );
-    }
-    expect(Either.isLeft(mathematics)).toBe(true);
-    if (Either.isLeft(mathematics)) {
-      expect(String(mathematics.left)).toContain(
-        "Expected one supported authoring selection"
-      );
-    }
+    expect(Either.isLeft(envelope)).toBe(true);
   });
 
   it("canonicalizes domain order independently from caller order", () => {
     const expected =
-      '["nakafa-mdx-renderer-v2","2.0.0",{"authoringComponents":[{"name":"BlockMath","version":1}],"supportedComponents":[{"name":"BlockMath","version":1}]},[{"name":"material-chemistry","authoringComponents":[{"name":"AtomShellLab","version":1}],"supportedComponents":[{"name":"AtomShellLab","version":1}]},{"name":"material-mathematics","authoringComponents":[{"name":"FunctionMachine","version":1}],"supportedComponents":[{"name":"FunctionMachine","version":1}]}]]';
+      '["nakafa-mdx-renderer-v1","1.0.0",{"authoringComponents":[{"name":"BlockMath","version":1}],"supportedComponents":[{"name":"BlockMath","version":1}]},[{"name":"ai-ds","authoringComponents":[],"supportedComponents":[]},{"name":"biology","authoringComponents":[],"supportedComponents":[]},{"name":"chemistry","authoringComponents":[{"name":"AtomShellLab","version":1}],"supportedComponents":[{"name":"AtomShellLab","version":1}]},{"name":"mathematics","authoringComponents":[{"name":"FunctionMachine","version":1}],"supportedComponents":[{"name":"FunctionMachine","version":1}]},{"name":"physics","authoringComponents":[],"supportedComponents":[]},{"name":"politics","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-general","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-math","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-plain","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-quant","authoringComponents":[],"supportedComponents":[]},{"name":"tka-math","authoringComponents":[],"supportedComponents":[]}]]';
     expect(canonicalizeRendererManifestContract({ base, domains })).toBe(
       expected
     );
@@ -131,9 +157,10 @@ describe("renderer contract", () => {
         domains: [...domains].reverse(),
       })
     ).toBe(expected);
-    expect(sortRendererDomains([domains[0], domains[0]])).toEqual([
-      domains[0],
-      domains[0],
+    const chemistry = findDomain("chemistry");
+    expect(sortRendererDomains([chemistry, chemistry])).toEqual([
+      chemistry,
+      chemistry,
     ]);
   });
 });

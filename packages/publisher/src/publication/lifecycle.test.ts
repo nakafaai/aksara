@@ -25,7 +25,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionCount: 1,
   projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId: "test-lifecycle",
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({

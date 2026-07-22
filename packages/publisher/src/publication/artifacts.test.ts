@@ -18,6 +18,7 @@ import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeRollbackArtifacts } from "#publisher/publication/artifacts";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { rendererDomains } from "#test/renderer";
 
 const rawMdx = "Protocol body";
 const sourceHash = Sha256HashSchema.make(
@@ -34,7 +35,7 @@ const payload = CompiledContentPayloadSchema.make({
   mdxCompilerVersion: "3.1.1",
   plainText: rawMdx,
   rawMdx,
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   requiredComponents: [],
   sourceHash,
 });
@@ -44,18 +45,10 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   })
 );
 const { privateKey, publicKey } = generateKeyPairSync("ed25519");

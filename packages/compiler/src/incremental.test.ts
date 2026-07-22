@@ -3,6 +3,7 @@ import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manife
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";
+import { rendererDomains } from "#compiler/test/renderer";
 
 const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const RAW_MDX = `export const metadata = {
@@ -21,18 +22,10 @@ function manifestInput(blockMathVersion: 1 | 2) {
       authoringComponents: [{ name: "BlockMath", version: blockMathVersion }],
       supportedComponents: [{ name: "BlockMath", version: blockMathVersion }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   };
 }
 
@@ -46,7 +39,7 @@ const baseRequest = {
   contentKey: "test:incremental",
   locale: "en",
   rawMdx: RAW_MDX,
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   rendererManifest,
   sourcePath: "packages/corpus/test/incremental/en.mdx",
 };
@@ -103,7 +96,7 @@ describe("incremental compilation", () => {
         sourcePath: "packages/corpus/test/other/en.mdx",
       },
       { ...baseRequest, rawMdx: `${RAW_MDX}\n\nChanged protocol body.` },
-      { ...baseRequest, rendererDomain: "material-chemistry" },
+      { ...baseRequest, rendererDomain: "chemistry" },
       { ...baseRequest, rendererManifest: upgradedManifest },
     ];
 
