@@ -56,6 +56,40 @@ describe("publication success evidence", () => {
     ).toEqual(evidenceCases.map(() => false));
   });
 
+  it("rejects activation receipts that contradict their signed manifest", () => {
+    const request = transportRequests.find(
+      (candidate) => candidate.operation === "activate"
+    );
+    if (request?.operation !== "activate") {
+      return;
+    }
+    const success = transportSuccess(request);
+    if (success.operation !== "activate") {
+      return;
+    }
+    const foreignHash = `sha256:${"f".repeat(64)}`;
+    const receiptCases = [
+      { ...success.value, projectionDigest: foreignHash },
+      {
+        ...success.value,
+        deletedHeads: success.value.deletedHeads + 1,
+        stagedItems: success.value.stagedItems + 1,
+      },
+      { ...success.value, stagedProjections: 2 },
+    ];
+    expect(
+      receiptCases.map((value) =>
+        hasBoundPublicationSuccess(
+          request,
+          Schema.decodeUnknownSync(PublicationSuccessSchema)({
+            ...success,
+            value,
+          })
+        )
+      )
+    ).toEqual(receiptCases.map(() => false));
+  });
+
   it("rejects batch receipts with another index or row count", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "stageItemBatch"

@@ -231,4 +231,18 @@ describe("publication responses", () => {
       })
     ).toBe(false);
   });
+
+  it("rejects activation receipts with contradictory staged counts", () => {
+    const invalid = Schema.decodeUnknownEither(PublicationResponseSchema)({
+      ok: true,
+      operation: "activate",
+      value: { ...receipt, activatedHeads: 0 },
+    });
+    expect(Either.isLeft(invalid)).toBe(true);
+    if (Either.isLeft(invalid)) {
+      expect(String(invalid.left)).toContain(
+        "Expected activated head and artifact counts to match staged items."
+      );
+    }
+  });
 });

@@ -159,7 +159,17 @@ export const PublicationReceiptSchema = Schema.Struct({
   stagedArtifacts: ProjectionCountSchema,
   stagedItems: ProjectionCountSchema,
   stagedProjections: ProjectionCountSchema,
-});
+}).pipe(
+  Schema.filter(
+    (receipt) =>
+      receipt.activatedHeads + receipt.deletedHeads === receipt.stagedItems &&
+      receipt.stagedArtifacts === receipt.activatedHeads,
+    {
+      message: () =>
+        "Expected activated head and artifact counts to match staged items.",
+    }
+  )
+);
 export type PublicationReceipt = typeof PublicationReceiptSchema.Type;
 
 /** Serializes one change with stable fields for item digest computation. */

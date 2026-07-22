@@ -55,6 +55,15 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   index: 0,
   releaseId,
 });
+const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
+  change: {
+    contentKey: "test:deleted",
+    locale: "id",
+    operation: "delete",
+  },
+  index: 1,
+  releaseId,
+});
 
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: "test:http",
@@ -94,7 +103,12 @@ export const transportRequests = Schema.decodeUnknownSync(
   Schema.Array(PublicationRequestSchema)
 )([
   { operation: "stageRelease", release: transportRelease },
-  { batchIndex: 0, items: [item], operation: "stageItemBatch", releaseId },
+  {
+    batchIndex: 0,
+    items: [item, deletedItem],
+    operation: "stageItemBatch",
+    releaseId,
+  },
   {
     batchIndex: 0,
     operation: "stageProjectionBatch",
@@ -122,7 +136,7 @@ export const transportRequests = Schema.decodeUnknownSync(
 
 const publicationReceipt = {
   activatedHeads: 1,
-  deletedHeads: 0,
+  deletedHeads: 1,
   projectionDigest,
   releaseId: transportRelease.manifest.releaseId,
   stagedArtifacts: 1,

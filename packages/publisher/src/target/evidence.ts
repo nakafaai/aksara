@@ -45,6 +45,23 @@ function hasBoundBatchReceipt(
 
 type VerifyRequest = Extract<PublicationRequest, { operation: "verify" }>;
 type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;
+type ActivateRequest = Extract<PublicationRequest, { operation: "activate" }>;
+type ActivateSuccess = Extract<PublicationSuccess, { operation: "activate" }>;
+
+/** Binds an activation receipt to every manifest field it reports. */
+function hasBoundActivation(
+  request: ActivateRequest,
+  response: ActivateSuccess
+) {
+  const { manifest } = request.release;
+  const receipt = response.value;
+  return (
+    receipt.releaseId === manifest.releaseId &&
+    receipt.projectionDigest === manifest.projectionDigest &&
+    receipt.stagedItems === manifest.itemCount &&
+    receipt.stagedProjections === manifest.projectionCount
+  );
+}
 
 /** Binds recomputed verification evidence to one exact signed manifest. */
 function hasBoundVerification(request: VerifyRequest, response: VerifySuccess) {
@@ -74,7 +91,7 @@ export function hasBoundPublicationSuccess(
     Match.discriminatorsExhaustive("operation")({
       activate: (value) =>
         response.operation === "activate" &&
-        response.value.releaseId === value.release.manifest.releaseId,
+        hasBoundActivation(value, response),
       cleanup: (value) =>
         response.operation === "cleanup" &&
         response.value.releaseId === value.releaseId,
