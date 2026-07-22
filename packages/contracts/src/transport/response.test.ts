@@ -85,6 +85,7 @@ const successes = [
       cursor: null,
       deletedArtifacts: 1,
       deletedItems: 2,
+      limit: 100,
       nextCursor: null,
       releaseId,
     },

@@ -169,6 +169,7 @@ export function transportSuccess(
           cursor: value.cursor,
           deletedArtifacts: 0,
           deletedItems: 0,
+          limit: value.limit,
           nextCursor: null,
           releaseId: value.releaseId,
         },

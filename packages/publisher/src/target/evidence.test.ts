@@ -180,6 +180,7 @@ describe("publication success evidence", () => {
         ...success,
         value: { ...success.value, deletedItems: 2 },
       }),
+      success,
     ];
     const limited = Schema.decodeUnknownSync(PublicationRequestSchema)({
       ...request,
@@ -189,7 +190,7 @@ describe("publication success evidence", () => {
       responses.map((response, index) =>
         hasBoundPublicationSuccess(index === 0 ? request : limited, response)
       )
-    ).toEqual([false, false, false]);
+    ).toEqual([false, false, false, false]);
   });
 
   it("rejects batch receipts with another index or row count", () => {

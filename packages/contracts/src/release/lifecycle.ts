@@ -7,6 +7,11 @@ const CleanupCountSchema = Schema.Number.pipe(
   Schema.nonNegative()
 );
 
+const CleanupLimitSchema = Schema.Number.pipe(
+  Schema.int(),
+  Schema.between(1, 100)
+);
+
 /** Exact immutable release identity requested from durable target state. */
 export const ContentReleaseStatusRequestSchema = Schema.Struct({
   manifestHash: Sha256HashSchema,
@@ -63,7 +68,7 @@ export type ContentReleaseStatus = typeof ContentReleaseStatusSchema.Type;
 /** One bounded cleanup page for unreachable rows owned by a release. */
 export const ReleaseCleanupRequestSchema = Schema.Struct({
   cursor: Schema.NullOr(Schema.NonEmptyTrimmedString),
-  limit: Schema.Number.pipe(Schema.int(), Schema.between(1, 100)),
+  limit: CleanupLimitSchema,
   releaseId: ReleaseIdSchema,
 });
 export type ReleaseCleanupRequest = typeof ReleaseCleanupRequestSchema.Type;
@@ -74,6 +79,7 @@ export const ReleaseCleanupReceiptSchema = Schema.Struct({
   cursor: Schema.NullOr(Schema.NonEmptyTrimmedString),
   deletedArtifacts: CleanupCountSchema,
   deletedItems: CleanupCountSchema,
+  limit: CleanupLimitSchema,
   nextCursor: Schema.NullOr(Schema.NonEmptyTrimmedString),
   releaseId: ReleaseIdSchema,
 }).pipe(

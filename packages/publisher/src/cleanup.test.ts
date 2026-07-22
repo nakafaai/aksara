@@ -17,6 +17,7 @@ const receipt: ReleaseCleanupReceipt = {
   cursor: null,
   deletedArtifacts: 2,
   deletedItems: 3,
+  limit: 100,
   nextCursor: "next-page",
   releaseId,
 };
@@ -85,6 +86,7 @@ describe("cleanupContentRelease", () => {
     const invalid = [
       { ...receipt, releaseId: ReleaseIdSchema.make("release-other") },
       { ...receipt, cursor: "another-page" },
+      { ...receipt, limit: 99 },
       { ...receipt, deletedArtifacts: 101 },
       { ...receipt, deletedItems: 101 },
     ];

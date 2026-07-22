@@ -31,6 +31,7 @@ function validateReceipt(
   if (
     receipt.releaseId === request.releaseId &&
     receipt.cursor === request.cursor &&
+    receipt.limit === request.limit &&
     receipt.deletedArtifacts <= request.limit &&
     receipt.deletedItems <= request.limit
   ) {
