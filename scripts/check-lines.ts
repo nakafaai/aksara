@@ -1,29 +1,10 @@
-import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import ts from "typescript";
 
-const TYPESCRIPT_PATTERN = /\.(?:[cm]?ts|tsx)$/u;
-const GENERATED_PATH_PATTERN =
-  /(?:^|\/)(?:dist|node_modules|_generated)(?:\/|$)/u;
+import { typescriptFiles } from "#scripts/files";
+
 const LINE_BREAK_PATTERN = /\r?\n/u;
 const MAXIMUM_LINES = 300;
-
-/** Lists authored TypeScript modules governed by the module-size limit. */
-function sourceFiles(): string[] {
-  return execFileSync(
-    "git",
-    ["ls-files", "--cached", "--others", "--exclude-standard"],
-    { encoding: "utf8" }
-  )
-    .split("\n")
-    .filter(
-      (file) =>
-        file.length > 0 &&
-        existsSync(file) &&
-        TYPESCRIPT_PATTERN.test(file) &&
-        !GENERATED_PATH_PATTERN.test(file)
-    );
-}
 
 /** Masks only parsed JSDoc ranges while preserving offsets and line breaks. */
 function maskDocumentation(file: string, sourceText: string) {
@@ -88,7 +69,7 @@ function countModuleLines(file: string, sourceText: string): number {
   return count;
 }
 
-const violations = sourceFiles().flatMap((file) => {
+const violations = typescriptFiles().flatMap((file) => {
   const lines = countModuleLines(file, readFileSync(file, "utf8"));
   return lines > MAXIMUM_LINES ? [`${file}: ${lines} lines`] : [];
 });

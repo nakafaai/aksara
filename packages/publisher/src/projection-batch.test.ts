@@ -9,7 +9,6 @@ import {
   canonicalizeProjectionBatch,
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTIONS_PER_BATCH,
-  makeProjectionBatch,
   makeProjectionBatches,
 } from "#publisher/projection-batch";
 
@@ -69,28 +68,14 @@ describe("projection batching", () => {
     ).toBe(true);
   });
 
-  it("rejects caller-formed and standalone oversized envelopes", async () => {
-    const values = Array.from(
-      { length: MAX_PROJECTIONS_PER_BATCH + 1 },
-      (_, index) => projection(index)
-    );
-    const countError = await Effect.runPromise(
-      makeProjectionBatch({
-        batchIndex: 0,
-        projections: values,
-        releaseId,
-      }).pipe(Effect.flip)
-    );
+  it("rejects a standalone oversized envelope", async () => {
     const byteError = await Effect.runPromise(
       makeProjectionBatches(
         releaseId,
         Stream.make(projection(0, "x".repeat(MAX_PROJECTION_BATCH_BYTES)))
       ).pipe(Stream.runDrain, Effect.flip)
     );
-    expect([countError._tag, byteError._tag]).toEqual([
-      "PublicationBatchLimitError",
-      "PublicationBatchLimitError",
-    ]);
+    expect(byteError._tag).toBe("PublicationBatchLimitError");
     expect(byteError.actualBytes).toBeGreaterThan(MAX_PROJECTION_BATCH_BYTES);
   });
 });

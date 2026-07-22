@@ -1,20 +1,19 @@
 import { Effect, Schema, Stream } from "effect";
-import { ContentLocaleSchema } from "#contracts/content";
+import {
+  ContentLocaleSchema,
+  compareContentHeads,
+  routeIdentity,
+} from "#contracts/content";
 import {
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import {
-  createReleaseItemsDigest,
-  finalizeReleaseItemsDigest,
-  updateReleaseItemsDigest,
-} from "#contracts/release/digest";
+import { digestItems } from "#contracts/release/digest";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
   type ContentReleaseManifest,
-  compareContentChanges,
 } from "#contracts/release/spec";
 
 const ItemCountSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
@@ -113,7 +112,7 @@ function validateItemOrder(
 ) {
   if (
     state.previous &&
-    compareContentChanges(state.previous.change, item.change) >= 0
+    compareContentHeads(state.previous.change, item.change) >= 0
   ) {
     return Effect.fail(new ReleaseItemOrderError({ itemOffset: item.index }));
   }
@@ -133,8 +132,8 @@ function validatePublicPath(
   if (publicPath === undefined) {
     return Effect.void;
   }
-  const routeIdentity = `${locale}\0${publicPath}`;
-  const firstItemIndex = state.firstIndexByRoute.get(routeIdentity);
+  const identity = routeIdentity({ locale, publicPath });
+  const firstItemIndex = state.firstIndexByRoute.get(identity);
   if (firstItemIndex !== undefined) {
     return Effect.fail(
       new DuplicateReleasePublicPathError({
@@ -145,7 +144,7 @@ function validatePublicPath(
       })
     );
   }
-  state.firstIndexByRoute.set(routeIdentity, item.index);
+  state.firstIndexByRoute.set(identity, item.index);
   return Effect.void;
 }
 
@@ -197,28 +196,25 @@ export const verifyContentReleaseItems = Effect.fn(
   readonly items: Stream.Stream<unknown, E, R>;
   readonly manifest: ContentReleaseManifest;
 }) {
-  const initial = yield* createReleaseItemsDigest(input.manifest.releaseId);
-  const state = yield* decodeContentReleaseItems(input).pipe(
-    Stream.runFoldEffect(initial, (current, item) =>
-      updateReleaseItemsDigest(input.manifest.releaseId, current, item)
-    )
+  const summary = yield* digestItems(
+    input.manifest.releaseId,
+    decodeContentReleaseItems(input)
   );
-  if (state.count !== input.manifest.itemCount) {
+  if (summary.count !== input.manifest.itemCount) {
     return yield* new ReleaseItemCountMismatchError({
-      actualCount: state.count,
+      actualCount: summary.count,
       expectedCount: input.manifest.itemCount,
     });
   }
-  const actualDigest = yield* finalizeReleaseItemsDigest(
-    input.manifest.releaseId,
-    state
-  );
-  if (actualDigest !== input.manifest.itemsDigest) {
+  if (summary.digest !== input.manifest.itemsDigest) {
     return yield* new ReleaseItemsDigestMismatchError({
-      actualDigest,
+      actualDigest: summary.digest,
       expectedDigest: input.manifest.itemsDigest,
       releaseId: input.manifest.releaseId,
     });
   }
-  return { deleteCount: state.deleteCount, upsertCount: state.upsertCount };
+  return {
+    deleteCount: summary.deleteCount,
+    upsertCount: summary.upsertCount,
+  };
 });

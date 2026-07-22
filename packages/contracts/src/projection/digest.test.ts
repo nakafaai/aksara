@@ -1,11 +1,11 @@
 import type { BinaryLike } from "node:crypto";
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import {
   createProjectionDigest,
+  digestProjections,
   finalizeProjectionDigest,
-  hashContentProjections,
   updateProjectionDigest,
 } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
@@ -71,7 +71,7 @@ function projection(contentKey = "test:projection") {
 }
 
 describe("projection digest", () => {
-  it("matches iterable and incremental canonical digests", async () => {
+  it("matches streamed and incremental canonical digests", async () => {
     const value = projection();
     const initial = await Effect.runPromise(createProjectionDigest(releaseId));
     const updated = await Effect.runPromise(
@@ -80,7 +80,10 @@ describe("projection digest", () => {
     const digest = await Effect.runPromise(
       finalizeProjectionDigest(releaseId, updated)
     );
-    expect(digest).toBe(hashContentProjections([value]));
+    const summary = await Effect.runPromise(
+      digestProjections(releaseId, Stream.make(value))
+    );
+    expect(summary).toEqual({ count: 1, digest });
     expect(updated.count).toBe(1);
   });
 

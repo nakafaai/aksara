@@ -2,8 +2,9 @@
 
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
+import { compareContentHeads } from "#contracts/content";
 import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
-import { hashContentReleaseItems } from "#contracts/release/digest";
+import { digestItems } from "#contracts/release/digest";
 import { verifyContentReleaseItems } from "#contracts/release/items";
 import {
   type ContentChange,
@@ -11,7 +12,6 @@ import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
-  compareContentChanges,
 } from "#contracts/release/spec";
 
 const releaseId =
@@ -20,7 +20,7 @@ const releaseId =
 /** Builds canonically ordered release items with deterministic indexes. */
 function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
   return [...input]
-    .sort(compareContentChanges)
+    .sort(compareContentHeads)
     .map((change, index) =>
       ContentReleaseItemSchema.make({ change, index, releaseId: release })
     );
@@ -43,10 +43,13 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   },
 ]);
 const items = makeItems(releaseId, changes);
+const itemSummary = await Effect.runPromise(
+  digestItems(releaseId, Stream.fromIterable(items))
+);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: "test-release-parent",
   itemCount: items.length,
-  itemsDigest: hashContentReleaseItems(items),
+  itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "a".repeat(40) },
   projectionCount: 1,
   projectionDigest: `sha256:${"b".repeat(64)}`,
@@ -81,17 +84,20 @@ function replaceItem(
 }
 
 /** Creates a self-consistent candidate manifest and item collection. */
-function makeCandidate(candidateChanges: readonly unknown[]) {
+async function makeCandidate(candidateChanges: readonly unknown[]) {
   const decoded = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
     candidateChanges
   );
   const candidateItems = makeItems(manifest.releaseId, decoded);
+  const summary = await Effect.runPromise(
+    digestItems(manifest.releaseId, Stream.fromIterable(candidateItems))
+  );
   const candidateManifest = Schema.decodeUnknownSync(
     ContentReleaseManifestSchema
   )({
     ...manifest,
     itemCount: candidateItems.length,
-    itemsDigest: hashContentReleaseItems(candidateItems),
+    itemsDigest: summary.digest,
   });
   return { items: candidateItems, manifest: candidateManifest };
 }
@@ -168,7 +174,7 @@ describe("release item integrity", () => {
   });
 
   it("rejects duplicate public paths within one locale", async () => {
-    const candidate = makeCandidate([
+    const candidate = await makeCandidate([
       {
         artifactHash: `sha256:${"a".repeat(64)}`,
         contentKey: "test:a",
@@ -201,7 +207,7 @@ describe("release item integrity", () => {
   });
 
   it("allows route deletion and locale-specific route reuse", async () => {
-    const transfer = makeCandidate([
+    const transfer = await makeCandidate([
       {
         artifactHash: `sha256:${"a".repeat(64)}`,
         contentKey: "test:a",
@@ -214,7 +220,7 @@ describe("release item integrity", () => {
       },
       { contentKey: "test:b", locale: "en", operation: "delete" },
     ]);
-    const locales = makeCandidate([
+    const locales = await makeCandidate([
       {
         artifactHash: `sha256:${"a".repeat(64)}`,
         contentKey: "test:a",

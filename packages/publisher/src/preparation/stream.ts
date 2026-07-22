@@ -1,11 +1,14 @@
 import { verifyCompiledContentSourceHash } from "@nakafaai/aksara-contracts/artifact/source";
 import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
+import {
+  compareContentHeads,
+  routeIdentity,
+} from "@nakafaai/aksara-contracts/content";
 import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
 import type { MaterialLessonProjection } from "@nakafaai/aksara-contracts/projection/material";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
-  compareContentChanges,
 } from "@nakafaai/aksara-contracts/release";
 import { Effect, Schema, Stream } from "effect";
 import {
@@ -125,7 +128,7 @@ function validateOrder(
 > {
   if (
     state.previous &&
-    compareContentChanges(state.previous.change, record.change) >= 0
+    compareContentHeads(state.previous.change, record.change) >= 0
   ) {
     return Effect.fail(new PreparedContentOrderError({ recordIndex }));
   }
@@ -133,7 +136,7 @@ function validateOrder(
   if (!isPreparedContentUpsert(record)) {
     return Effect.succeed(record);
   }
-  const identity = `${record.change.locale}\0${record.change.publicPath}`;
+  const identity = routeIdentity(record.projection);
   if (state.firstIndexByRoute.has(identity)) {
     return Effect.fail(
       new PreparedContentRouteError({

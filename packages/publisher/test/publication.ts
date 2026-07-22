@@ -21,7 +21,6 @@ import {
   type SignedContentRelease,
 } from "@nakafaai/aksara-contracts/release";
 import type { ContentReleaseStatus } from "@nakafaai/aksara-contracts/release/lifecycle";
-import type { RendererDomain } from "@nakafaai/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafaai/aksara-contracts/signature/spec";
 import { Effect, Redacted, Stream } from "effect";
@@ -38,16 +37,7 @@ import {
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
-
-/** Builds one domain capability from one explicit test component. */
-function rendererDomain(name: RendererDomain, componentName: string) {
-  const components = [{ name: componentName, version: 1 }];
-  return {
-    authoringComponents: components,
-    name,
-    supportedComponents: components,
-  };
-}
+import { rendererDomain } from "#test/renderer";
 
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({

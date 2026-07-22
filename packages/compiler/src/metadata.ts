@@ -167,14 +167,12 @@ function inspectStatement(statement: Program["body"][number]): StatementResult {
   return { matched: true, result: decodeValue(initializer) };
 }
 
-/** Narrows an MDX tree child to an embedded ECMAScript module. */
-function isMdxjsEsm(node: RootContent): node is MdxjsEsm {
-  return node.type === "mdxjsEsm";
-}
-
 /** Collects metadata candidates and removes matched exports from the body. */
-function collectMetadata(node: RootContent, collector: MetadataCollector) {
-  if (!isMdxjsEsm(node)) {
+function collectMetadata(
+  node: RootContent | MdxjsEsm,
+  collector: MetadataCollector
+) {
+  if (node.type !== "mdxjsEsm") {
     return true;
   }
   const program = node.data?.estree;

@@ -1,4 +1,4 @@
-import { hashContentProjections } from "@nakafaai/aksara-contracts/projection/digest";
+import { digestProjections } from "@nakafaai/aksara-contracts/projection/digest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -40,11 +40,17 @@ describe("publishContentRelease", () => {
         replayCount < 7 ? record : { ...record, projection: changedProjection }
       );
     });
+    const changedSummary = await Effect.runPromise(
+      digestProjections(
+        release.manifest.releaseId,
+        Stream.make(changedProjection)
+      )
+    );
     const state = makeTarget(release);
     state.verify.mockReturnValueOnce(
       Effect.succeed({
         ...state.evidence(),
-        projectionDigest: hashContentProjections([changedProjection]),
+        projectionDigest: changedSummary.digest,
       })
     );
     const error = await Effect.runPromise(

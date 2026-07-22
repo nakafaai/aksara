@@ -20,7 +20,7 @@ import {
 import type { PublicationTargetFailure } from "#publisher/target-errors";
 
 /** Complete state needed to resume one exact signed publication lifecycle. */
-export interface PublicationLifecycleInput<E, R> {
+interface PublicationLifecycleInput<E, R> {
   readonly projectionSummary: VerifiedContentProjections;
   readonly release: SignedContentRelease;
   readonly stage: Effect.Effect<void, E, R>;
@@ -29,7 +29,7 @@ export interface PublicationLifecycleInput<E, R> {
 }
 
 /** Every expected failure while resuming one persisted release phase. */
-export type PublicationLifecycleError<E> =
+type PublicationLifecycleError<E> =
   | E
   | PublicationReceiptMismatchError
   | PublicationReleaseAbortedError
@@ -38,7 +38,7 @@ export type PublicationLifecycleError<E> =
   | ReleaseVerificationMismatchError;
 
 /** Complete Effect interface for exact-manifest staging through finalization. */
-export type CompletePublicationLifecycle = <E, R>(
+type CompletePublicationLifecycle = <E, R>(
   input: PublicationLifecycleInput<E, R>
 ) => Effect.Effect<PublicationReceipt, PublicationLifecycleError<E>, R>;
 

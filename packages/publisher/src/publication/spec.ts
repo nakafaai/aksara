@@ -41,10 +41,7 @@ import type {
   ReleaseVerificationMismatchError,
 } from "#publisher/release-validation";
 import type { PublicationSigner } from "#publisher/signing";
-import type {
-  ContentSigningError,
-  SignedArtifactByteLimitError,
-} from "#publisher/signing-errors";
+import type { ContentSigningError } from "#publisher/signing-errors";
 import type { PublicationTargetFailure } from "#publisher/target-errors";
 
 /** The exact reviewed Aksara revision could not provide release sources. */
@@ -199,8 +196,7 @@ export type PublishContentReleaseError<E> =
   | PublicationTargetFailure
   | ReleaseArtifactMismatchError
   | ReleaseRendererManifestMismatchError
-  | ReleaseVerificationMismatchError
-  | SignedArtifactByteLimitError;
+  | ReleaseVerificationMismatchError;
 
 type PublishContentReleaseRequirements<R> =
   | PublicationSigningKey

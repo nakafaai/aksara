@@ -1,5 +1,4 @@
-import { execFileSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { trackedFiles } from "#scripts/files";
 
 const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
 const CAMEL_WORD_PATTERN = /([\p{Ll}\d])(\p{Lu})/gu;
@@ -34,17 +33,6 @@ const EXTENSION_SUFFIXES = new Set([
   "yaml",
   "yml",
 ]);
-
-/** Lists tracked and untracked repository files that exist on disk. */
-function trackedFiles(): string[] {
-  return execFileSync(
-    "git",
-    ["ls-files", "--cached", "--others", "--exclude-standard"],
-    { encoding: "utf8" }
-  )
-    .split("\n")
-    .filter((file) => file.length > 0 && existsSync(file));
-}
 
 /** Returns the semantic words in one file or folder name. */
 function words(segment: string): string[] {

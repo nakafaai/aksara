@@ -1,16 +1,12 @@
 import { Effect, Schema, Stream } from "effect";
+import { compareContentHeads, routeIdentity } from "#contracts/content";
 import {
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
+import { digestProjections } from "#contracts/projection/digest";
 import {
-  createProjectionDigest,
-  finalizeProjectionDigest,
-  updateProjectionDigest,
-} from "#contracts/projection/digest";
-import {
-  compareMaterialProjections,
   type MaterialLessonProjection,
   MaterialLessonProjectionSchema,
 } from "#contracts/projection/material";
@@ -86,13 +82,13 @@ function decodeProjection(
     Effect.tap((projection) => {
       if (
         state.previous &&
-        compareMaterialProjections(state.previous, projection) >= 0
+        compareContentHeads(state.previous, projection) >= 0
       ) {
         return Effect.fail(new ProjectionOrderError({ projectionIndex }));
       }
       state.previous = projection;
-      const routeIdentity = `${projection.locale}\0${projection.publicPath}`;
-      const firstIndex = state.firstIndexByRoute.get(routeIdentity);
+      const identity = routeIdentity(projection);
+      const firstIndex = state.firstIndexByRoute.get(identity);
       if (firstIndex !== undefined) {
         return Effect.fail(
           new ProjectionRouteError({
@@ -102,7 +98,7 @@ function decodeProjection(
           })
         );
       }
-      state.firstIndexByRoute.set(routeIdentity, projectionIndex);
+      state.firstIndexByRoute.set(identity, projectionIndex);
       return Effect.void;
     })
   );
@@ -135,29 +131,23 @@ export const verifyContentProjections = Effect.fn(
   readonly manifest: ContentReleaseManifest;
   readonly projections: Stream.Stream<unknown, E, R>;
 }) {
-  const initial = yield* createProjectionDigest(input.manifest.releaseId);
-  const state = yield* decodeContentProjections(input.projections).pipe(
-    Stream.runFoldEffect(initial, (current, projection) =>
-      updateProjectionDigest(input.manifest.releaseId, current, projection)
-    )
+  const summary = yield* digestProjections(
+    input.manifest.releaseId,
+    decodeContentProjections(input.projections)
   );
-  if (state.count !== input.manifest.projectionCount) {
+  if (summary.count !== input.manifest.projectionCount) {
     return yield* new ProjectionCountError({
-      actualCount: state.count,
+      actualCount: summary.count,
       expectedCount: input.manifest.projectionCount,
       releaseId: input.manifest.releaseId,
     });
   }
-  const actualDigest = yield* finalizeProjectionDigest(
-    input.manifest.releaseId,
-    state
-  );
-  if (actualDigest !== input.manifest.projectionDigest) {
+  if (summary.digest !== input.manifest.projectionDigest) {
     return yield* new ProjectionDigestError({
-      actualDigest,
+      actualDigest: summary.digest,
       expectedDigest: input.manifest.projectionDigest,
       releaseId: input.manifest.releaseId,
     });
   }
-  return { count: state.count } satisfies VerifiedContentProjections;
+  return { count: summary.count } satisfies VerifiedContentProjections;
 });

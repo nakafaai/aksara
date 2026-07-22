@@ -12,7 +12,7 @@ import { Effect, Option, Sink, Stream } from "effect";
 import { NodeInspectSymbol } from "effect/Inspectable";
 
 /** Explicit output returned by one completed test command. */
-export interface TestCommandResult {
+interface TestCommandResult {
   readonly exitCode?: number;
   readonly stderr?: string | Uint8Array;
   readonly stderrChunks?: readonly Uint8Array[];

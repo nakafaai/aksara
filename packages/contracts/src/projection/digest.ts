@@ -1,13 +1,16 @@
 import { createHash } from "node:crypto";
-import { Effect, Schema } from "effect";
-import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
+import { Effect, Schema, Stream } from "effect";
+import {
+  type ReleaseId,
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "#contracts/ids";
 import {
   canonicalizeMaterialProjection,
   type MaterialLessonProjection,
 } from "#contracts/projection/material";
 
-export const CONTENT_PROJECTION_DIGEST_DOMAIN =
-  "nakafa.aksara.content-projections.v1";
+const CONTENT_PROJECTION_DIGEST_DOMAIN = "nakafa.aksara.content-projections.v1";
 
 /** SHA-256 computation failed before projection integrity was established. */
 export class ProjectionHashError extends Schema.TaggedError<ProjectionHashError>()(
@@ -37,20 +40,6 @@ class ProjectionDigestState {
   digest() {
     return Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`);
   }
-}
-
-/** Computes the signed digest for an already materialized projection iterable. */
-export function hashContentProjections(
-  projections: Iterable<MaterialLessonProjection>
-) {
-  const hash = createHash("sha256");
-  hash.update(CONTENT_PROJECTION_DIGEST_DOMAIN);
-  hash.update("\n");
-  for (const projection of projections) {
-    hash.update(canonicalizeMaterialProjection(projection));
-    hash.update("\n");
-  }
-  return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
 }
 
 /** Creates a fresh domain-separated projection digest state. */
@@ -86,3 +75,20 @@ export function finalizeProjectionDigest(
     try: () => state.digest(),
   });
 }
+
+/** Digests a projection stream without retaining its content bodies. */
+export const digestProjections = Effect.fn("AksaraContracts.digestProjections")(
+  function* <E, R>(
+    releaseId: ReleaseId,
+    projections: Stream.Stream<MaterialLessonProjection, E, R>
+  ) {
+    const initial = yield* createProjectionDigest(releaseId);
+    const state = yield* projections.pipe(
+      Stream.runFoldEffect(initial, (current, projection) =>
+        updateProjectionDigest(releaseId, current, projection)
+      )
+    );
+    const digest = yield* finalizeProjectionDigest(releaseId, state);
+    return { count: state.count, digest };
+  }
+);

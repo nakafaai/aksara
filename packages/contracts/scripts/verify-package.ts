@@ -37,12 +37,14 @@ const temporaryRoot = mkdtempSync(join(tmpdir(), "aksara-contracts-package-"));
 const packDirectory = join(temporaryRoot, "pack");
 const consumerDirectory = join(temporaryRoot, "consumer");
 const inspectionDirectory = join(temporaryRoot, "inspection");
+const verifierDirectory = join(consumerDirectory, "verify");
 const emptyGlobalNpmConfig = join(temporaryRoot, "empty-global.npmrc");
 const emptyUserNpmConfig = join(temporaryRoot, "empty-user.npmrc");
 
 mkdirSync(packDirectory);
 mkdirSync(consumerDirectory);
 mkdirSync(inspectionDirectory);
+mkdirSync(verifierDirectory);
 writeFileSync(emptyGlobalNpmConfig, "");
 writeFileSync(emptyUserNpmConfig, "registry=https://registry.npmjs.org/\n");
 
@@ -171,6 +173,9 @@ writeFileSync(
       dependencies: {
         [sourceManifest.name]: `file:${tarballPath}`,
       },
+      imports: {
+        "#scripts/*": "./verify/*.ts",
+      },
       name: "aksara-contracts-external-consumer",
       packageManager: rootManifest.packageManager,
       private: true,
@@ -233,7 +238,11 @@ run(resolve(packageRoot, "../../node_modules/.bin/tsc"), ["--project", "."], {
   stdio: "inherit",
 });
 
-const installedVerifier = join(consumerDirectory, "verify-install.ts");
+const installedVerifier = join(verifierDirectory, "verify-install.ts");
+copyFileSync(
+  join(scriptDirectory, "manifest.ts"),
+  join(verifierDirectory, "manifest.ts")
+);
 copyFileSync(join(scriptDirectory, "verify-install.ts"), installedVerifier);
 run(process.execPath, [installedVerifier, sourceManifest.name], {
   cwd: consumerDirectory,

@@ -1,10 +1,8 @@
-import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import ts from "typescript";
 
-const SOURCE_PATTERN = /\.(?:[cm]?ts|tsx)$/u;
-const GENERATED_PATH_PATTERN =
-  /(?:^|\/)(?:dist|node_modules|_generated)(?:\/|$)/u;
+import { typescriptFiles } from "#scripts/files";
+
 const PACKAGE_SOURCE_PATTERN = /^packages\/([^/]+)\//u;
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
 const FILESYSTEM_IMPORT_PATTERN = /^(?:\/|file:|packages\/)/u;
@@ -34,23 +32,6 @@ const allowedWorkspaceDependencies: ReadonlyMap<
     ]),
   ],
 ]);
-
-/** Lists authored TypeScript files governed by repository import boundaries. */
-function sourceFiles(): string[] {
-  return execFileSync(
-    "git",
-    ["ls-files", "--cached", "--others", "--exclude-standard"],
-    { encoding: "utf8" }
-  )
-    .split("\n")
-    .filter(
-      (file) =>
-        file.length > 0 &&
-        existsSync(file) &&
-        SOURCE_PATTERN.test(file) &&
-        !GENERATED_PATH_PATTERN.test(file)
-    );
-}
 
 /** Returns the statically knowable module specifier owned by one syntax node. */
 function staticModuleSpecifier(
@@ -117,9 +98,9 @@ function moduleSpecifiers(
   return specifiers;
 }
 
-/** Narrows parsed package metadata without introducing an unsafe assertion. */
+/** Narrows package metadata to a non-array object record. */
 function isRecord(input: unknown): input is Record<string, unknown> {
-  return typeof input === "object" && input !== null;
+  return typeof input === "object" && input !== null && !Array.isArray(input);
 }
 
 /** Returns declared package names from one manifest dependency section. */
@@ -221,7 +202,7 @@ function importViolations(file: string): string[] {
   });
 }
 
-const violations = sourceFiles().flatMap(importViolations);
+const violations = typescriptFiles().flatMap(importViolations);
 
 if (violations.length > 0) {
   process.stderr.write(

@@ -2,7 +2,6 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   canonicalizeMaterialProjection,
-  compareMaterialProjections,
   MaterialLessonProjectionSchema,
   MaterialLessonRouteSchema,
   MaterialMetadataSchema,
@@ -87,19 +86,5 @@ describe("material projection", () => {
         "Expected the material parent path to match the lesson public path."
       );
     }
-  });
-
-  it("orders stable content identity before locale", () => {
-    const next = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
-      ...projection,
-      contentKey: "test:material-b",
-    });
-    const localized = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
-      ...projection,
-      locale: "id",
-    });
-    expect(compareMaterialProjections(projection, next)).toBe(-1);
-    expect(compareMaterialProjections(next, projection)).toBe(1);
-    expect(compareMaterialProjections(projection, localized)).toBe(-1);
   });
 });

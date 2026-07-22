@@ -8,6 +8,7 @@ import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
+  compareContentHeads,
 } from "@nakafaai/aksara-contracts/content";
 import {
   type ReleaseId,
@@ -21,11 +22,10 @@ import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
   canonicalizeContentReleaseSigningInput,
-  compareContentChanges,
 } from "@nakafaai/aksara-contracts/release";
-import { hashContentReleaseItems } from "@nakafaai/aksara-contracts/release/digest";
+import { digestItems } from "@nakafaai/aksara-contracts/release/digest";
 import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 
@@ -80,7 +80,7 @@ const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
 /** Builds canonically ordered release items for signing tests. */
 function makeItems(release: ReleaseId, changes: readonly ContentChange[]) {
   return [...changes]
-    .sort(compareContentChanges)
+    .sort(compareContentHeads)
     .map((change, index) =>
       ContentReleaseItemSchema.make({ change, index, releaseId: release })
     );
@@ -101,10 +101,13 @@ const items = makeItems(
     },
   ])
 );
+const itemSummary = await Effect.runPromise(
+  digestItems(releaseId, Stream.fromIterable(items))
+);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
   itemCount: items.length,
-  itemsDigest: hashContentReleaseItems(items),
+  itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "d".repeat(40) },
   projectionCount: 1,
   projectionDigest: `sha256:${"c".repeat(64)}`,
@@ -230,8 +233,10 @@ describe("Ed25519 publication signing", () => {
       signer.signRelease(manifest).pipe(Effect.flip)
     );
 
-    expect(error._tag).toBe("ContentSigningError");
-    expect(error.stage).toBe("release");
+    expect(error).toMatchObject({
+      _tag: "ContentSigningError",
+      stage: "release",
+    });
   });
 
   it("refuses to sign an artifact above the complete wire ceiling", async () => {
@@ -255,7 +260,7 @@ describe("Ed25519 publication signing", () => {
     );
 
     expect(error).toMatchObject({
-      _tag: "SignedArtifactByteLimitError",
+      _tag: "ArtifactVerificationByteLimitError",
       maxBytes: MAX_SIGNED_ARTIFACT_BYTES,
     });
   });

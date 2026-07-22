@@ -1,15 +1,17 @@
 import { createHash } from "node:crypto";
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import {
   type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
-  CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN,
   type ContentReleaseItem,
   canonicalizeContentReleaseItem,
 } from "#contracts/release/spec";
+
+const CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN =
+  "nakafa.aksara.content-release-items.v1";
 
 /** SHA-256 computation failed before item integrity was established. */
 export class ReleaseItemsHashComputationError extends Schema.TaggedError<ReleaseItemsHashComputationError>()(
@@ -48,18 +50,6 @@ class ReleaseItemsDigestState {
   }
 }
 
-/** Computes the domain-separated digest for an already materialized iterable. */
-export function hashContentReleaseItems(items: Iterable<ContentReleaseItem>) {
-  const hash = createHash("sha256");
-  hash.update(CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN);
-  hash.update("\n");
-  for (const item of items) {
-    hash.update(canonicalizeContentReleaseItem(item));
-    hash.update("\n");
-  }
-  return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
-}
-
 /** Creates a fresh domain-separated digest state for one release stream. */
 export function createReleaseItemsDigest(releaseId: ReleaseId) {
   return Effect.try({
@@ -93,3 +83,23 @@ export function finalizeReleaseItemsDigest(
     try: () => state.digest(),
   });
 }
+
+/** Digests a release-item stream without retaining its content changes. */
+export const digestItems = Effect.fn("AksaraContracts.digestItems")(function* <
+  E,
+  R,
+>(releaseId: ReleaseId, items: Stream.Stream<ContentReleaseItem, E, R>) {
+  const initial = yield* createReleaseItemsDigest(releaseId);
+  const state = yield* items.pipe(
+    Stream.runFoldEffect(initial, (current, item) =>
+      updateReleaseItemsDigest(releaseId, current, item)
+    )
+  );
+  const digest = yield* finalizeReleaseItemsDigest(releaseId, state);
+  return {
+    count: state.count,
+    deleteCount: state.deleteCount,
+    digest,
+    upsertCount: state.upsertCount,
+  };
+});

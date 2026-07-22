@@ -1,10 +1,8 @@
-import { createHash } from "node:crypto";
 import {
   type CompileDocumentRequest,
   CompiledContentPayloadSchema,
   ContentLocaleSchema,
   canonicalizeCompiledContentPayload,
-  decodeCompileDocumentRequest,
 } from "@nakafaai/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -12,14 +10,17 @@ import {
   Sha256HashSchema,
 } from "@nakafaai/aksara-contracts/ids";
 import { RendererDomainSchema } from "@nakafaai/aksara-contracts/renderer/domain";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect, Either, Schema } from "effect";
-import {
-  type CompileContentError,
-  type CompiledContentResult,
-  compileContent,
+import type {
+  CompileContentError,
+  CompiledContentResult,
 } from "#compiler/compile";
 import { createCompilerConfigHash } from "#compiler/config";
+import {
+  compileValidatedContent,
+  validateCompileRequest,
+} from "#compiler/engine";
+import { hashUtf8 } from "#compiler/hash";
 import type {
   AuthoredMetadata,
   AuthoredMetadataValue,
@@ -45,7 +46,7 @@ const MetadataSchema: Schema.Schema<AuthoredMetadata> = Schema.Record({
 });
 
 /** Complete input identity that decides whether local compilation is reusable. */
-export const CompileIdentitySchema = Schema.Struct({
+const CompileIdentitySchema = Schema.Struct({
   compilerConfigHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
   locale: ContentLocaleSchema,
@@ -53,7 +54,7 @@ export const CompileIdentitySchema = Schema.Struct({
   sourceHash: Sha256HashSchema,
   sourcePath: CorpusSourcePathSchema,
 });
-export type CompileIdentity = typeof CompileIdentitySchema.Type;
+type CompileIdentity = typeof CompileIdentitySchema.Type;
 
 const CompileResultSchema = Schema.Struct({
   metadata: MetadataSchema,
@@ -61,7 +62,7 @@ const CompileResultSchema = Schema.Struct({
 });
 
 /** Strict unsigned cache contract for local authoring persistence only. */
-export const LocalCacheSchema = Schema.Struct({
+const LocalCacheSchema = Schema.Struct({
   format: Schema.Literal(CACHE_FORMAT),
   identity: CompileIdentitySchema,
   identityHash: Sha256HashSchema,
@@ -90,13 +91,6 @@ export type IncrementalResult =
 type CacheLookup =
   | { readonly entry: LocalCache; readonly kind: "hit" }
   | { readonly kind: "miss"; readonly reason: CompileReason };
-
-/** Produces the canonical SHA-256 identifier for one UTF-8 value. */
-function sha256(value: string) {
-  return Sha256HashSchema.make(
-    `sha256:${createHash("sha256").update(value).digest("hex")}`
-  );
-}
 
 /** Serializes identity fields in one stable cross-machine order. */
 function canonicalizeIdentity(identity: CompileIdentity) {
@@ -128,7 +122,7 @@ function canonicalizeMetadata(value: AuthoredMetadataValue): string {
 
 /** Hashes every cached compiler result field, including static metadata. */
 function hashResult(result: CompiledContentResult) {
-  return sha256(
+  return hashUtf8(
     `${canonicalizeMetadata(result.metadata)}\n${canonicalizeCompiledContentPayload(result.payload)}`
   );
 }
@@ -143,7 +137,7 @@ function makeIdentity(request: CompileDocumentRequest) {
     contentKey: request.contentKey,
     locale: request.locale,
     rendererDomain: request.rendererDomain,
-    sourceHash: sha256(request.rawMdx),
+    sourceHash: hashUtf8(request.rawMdx),
     sourcePath: request.sourcePath,
   });
 }
@@ -156,7 +150,7 @@ function makeCache(
   return LocalCacheSchema.make({
     format: CACHE_FORMAT,
     identity,
-    identityHash: sha256(canonicalizeIdentity(identity)),
+    identityHash: hashUtf8(canonicalizeIdentity(identity)),
     result,
     resultHash: hashResult(result),
   });
@@ -171,7 +165,7 @@ function payloadIdentity(entry: LocalCache) {
     payload.rendererDomain,
     payload.sourceHash,
     payload.compilerConfigHash,
-    sha256(payload.rawMdx),
+    hashUtf8(payload.rawMdx),
   ]);
 }
 
@@ -193,7 +187,7 @@ function isIntact(entry: LocalCache) {
       payloadIdentity(entry),
     ]) ===
     JSON.stringify([
-      sha256(canonicalizeIdentity(identity)),
+      hashUtf8(canonicalizeIdentity(identity)),
       hashResult(entry.result),
       expectedPayloadIdentity,
     ])
@@ -211,7 +205,7 @@ function lookupCache(input: unknown, identity: CompileIdentity): CacheLookup {
   if (Either.isLeft(decoded) || !isIntact(decoded.right)) {
     return { kind: "miss", reason: "corrupt" };
   }
-  if (decoded.right.identityHash !== sha256(canonicalizeIdentity(identity))) {
+  if (decoded.right.identityHash !== hashUtf8(canonicalizeIdentity(identity))) {
     return { kind: "miss", reason: "changed" };
   }
   return { entry: decoded.right, kind: "hit" };
@@ -227,31 +221,27 @@ export const compileIncremental: (
 ) => Effect.Effect<IncrementalResult, CompileContentError> = Effect.fn(
   "AksaraCompiler.compileIncremental"
 )((request: unknown, cache?: unknown) =>
-  decodeCompileDocumentRequest(request).pipe(
-    Effect.flatMap((decoded) =>
-      validateRendererManifestHash(decoded.rendererManifest).pipe(
-        Effect.flatMap(() => {
-          const identity = makeIdentity(decoded);
-          const lookup = lookupCache(cache, identity);
-          if (lookup.kind === "hit") {
-            return Effect.succeed<IncrementalResult>({
-              cache: lookup.entry,
-              kind: "unchanged",
-              result: lookup.entry.result,
-            });
-          }
-          return compileContent(decoded).pipe(
-            Effect.map(
-              (result): IncrementalResult => ({
-                cache: makeCache(identity, result),
-                kind: "compiled",
-                reason: lookup.reason,
-                result,
-              })
-            )
-          );
-        })
-      )
-    )
+  validateCompileRequest(request).pipe(
+    Effect.flatMap((decoded) => {
+      const identity = makeIdentity(decoded);
+      const lookup = lookupCache(cache, identity);
+      if (lookup.kind === "hit") {
+        return Effect.succeed<IncrementalResult>({
+          cache: lookup.entry,
+          kind: "unchanged",
+          result: lookup.entry.result,
+        });
+      }
+      return compileValidatedContent(decoded).pipe(
+        Effect.map(
+          (result): IncrementalResult => ({
+            cache: makeCache(identity, result),
+            kind: "compiled",
+            reason: lookup.reason,
+            result,
+          })
+        )
+      );
+    })
   )
 );

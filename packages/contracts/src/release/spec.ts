@@ -43,26 +43,6 @@ export const ContentChangeSchema = Schema.Union(
 );
 export type ContentChange = typeof ContentChangeSchema.Type;
 
-/** Compares release changes by their stable content-head identity. */
-export function compareContentChanges(
-  left: ContentChange,
-  right: ContentChange
-) {
-  if (left.contentKey < right.contentKey) {
-    return -1;
-  }
-  if (left.contentKey > right.contentKey) {
-    return 1;
-  }
-  if (left.locale < right.locale) {
-    return -1;
-  }
-  if (left.locale > right.locale) {
-    return 1;
-  }
-  return 0;
-}
-
 export const ReleaseItemIndexSchema = Schema.Number.pipe(
   Schema.int(),
   Schema.nonNegative()
@@ -132,11 +112,7 @@ export const SignedContentReleaseSchema = Schema.Struct({
 });
 export type SignedContentRelease = typeof SignedContentReleaseSchema.Type;
 
-export const CONTENT_RELEASE_SIGNATURE_DOMAIN =
-  "nakafa.aksara.content-release.v1";
-
-export const CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN =
-  "nakafa.aksara.content-release-items.v1";
+const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";
 
 /** Pre-activation evidence proving the fully staged release is coherent. */
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({

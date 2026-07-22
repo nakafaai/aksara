@@ -3,8 +3,8 @@ import {
   canonicalizeMaterialProjection,
   type MaterialLessonProjection,
 } from "@nakafaai/aksara-contracts/projection/material";
-import { Effect, Stream } from "effect";
-import { partitionBatch, validateBatch } from "#publisher/batch/core";
+import type { Stream } from "effect";
+import { streamBatches } from "#publisher/batch/core";
 
 /** Maximum material projections held and sent in one target call. */
 export const MAX_PROJECTIONS_PER_BATCH = 100;
@@ -26,51 +26,23 @@ export function canonicalizeProjectionBatch(batch: ProjectionBatch) {
     .join(",")}],"releaseId":${JSON.stringify(batch.releaseId)}}`;
 }
 
-/** Constructs one non-empty projection batch under both hard ceilings. */
-export const makeProjectionBatch = Effect.fn(
-  "AksaraPublisher.makeProjectionBatch"
-)(function* (input: ProjectionBatch) {
-  yield* validateBatch({
-    batch: input,
-    count: input.projections.length,
-    kind: "material-projection",
-    maxBytes: MAX_PROJECTION_BATCH_BYTES,
-    maxCount: MAX_PROJECTIONS_PER_BATCH,
-    serialize: canonicalizeProjectionBatch,
-  });
-  return input;
-});
-
 /** Streams bounded projection envelopes with contiguous batch identities. */
 export function makeProjectionBatches<E, R>(
   releaseId: ReleaseId,
   projections: Stream.Stream<MaterialLessonProjection, E, R>
 ) {
-  return projections.pipe(
-    Stream.grouped(MAX_PROJECTIONS_PER_BATCH),
-    Stream.mapEffect((chunk) =>
-      partitionBatch({
-        kind: "material-projection",
-        maxBytes: MAX_PROJECTION_BATCH_BYTES,
-        maxCount: MAX_PROJECTIONS_PER_BATCH,
-        releaseId,
-        serializeBatch: (values, batchIndex, batchReleaseId) =>
-          canonicalizeProjectionBatch({
-            batchIndex,
-            projections: values,
-            releaseId: batchReleaseId,
-          }),
-        values: [...chunk],
-      })
-    ),
-    Stream.flatMap(Stream.fromIterable),
-    Stream.zipWithIndex,
-    Stream.mapEffect(([batchProjections, batchIndex]) =>
-      makeProjectionBatch({
-        batchIndex,
-        projections: batchProjections,
-        releaseId,
-      })
-    )
-  );
+  return streamBatches({
+    build: (values, batchIndex, batchReleaseId) => ({
+      batchIndex,
+      projections: values,
+      releaseId: batchReleaseId,
+    }),
+    count: (batch) => batch.projections.length,
+    kind: "material-projection",
+    maxBytes: MAX_PROJECTION_BATCH_BYTES,
+    maxCount: MAX_PROJECTIONS_PER_BATCH,
+    releaseId,
+    serialize: canonicalizeProjectionBatch,
+    values: projections,
+  });
 }

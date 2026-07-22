@@ -1,9 +1,7 @@
-import { createHash } from "node:crypto";
 import {
   AKSARA_COMPILER_VERSION,
   MDX_COMPILER_VERSION,
 } from "@nakafaai/aksara-contracts/content";
-import { Sha256HashSchema } from "@nakafaai/aksara-contracts/ids";
 import {
   canonicalizeRendererAuthoringSelection,
   sortRendererComponentRequirements,
@@ -13,6 +11,7 @@ import {
   selectRendererDomainCapability,
 } from "@nakafaai/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafaai/aksara-contracts/renderer/domain";
+import { hashUtf8 } from "#compiler/hash";
 
 /** Stable provider identifier used by the server-owned MDX registry. */
 export const MDX_PROVIDER_SOURCE = "nakafa-static-renderer-registry";
@@ -52,9 +51,5 @@ export function createCompilerConfigHash(
     ...domain.authoringComponents,
   ]);
   const selection = canonicalizeRendererAuthoringSelection(authoringComponents);
-  return Sha256HashSchema.make(
-    `sha256:${createHash("sha256")
-      .update(`${COMPILER_CONFIG}\n${rendererDomain}\n${selection}`)
-      .digest("hex")}`
-  );
+  return hashUtf8(`${COMPILER_CONFIG}\n${rendererDomain}\n${selection}`);
 }

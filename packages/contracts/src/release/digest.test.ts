@@ -1,11 +1,11 @@
 import type { BinaryLike } from "node:crypto";
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import {
   createReleaseItemsDigest,
+  digestItems,
   finalizeReleaseItemsDigest,
-  hashContentReleaseItems,
   updateReleaseItemsDigest,
 } from "#contracts/release/digest";
 import { ContentReleaseItemSchema } from "#contracts/release/spec";
@@ -60,7 +60,7 @@ function item(contentKey = "test:digest") {
 }
 
 describe("release digest", () => {
-  it("matches iterable and incremental canonical digests", async () => {
+  it("matches streamed and incremental canonical digests", async () => {
     const value = item();
     const initial = await Effect.runPromise(
       createReleaseItemsDigest(value.releaseId)
@@ -71,7 +71,15 @@ describe("release digest", () => {
     const digest = await Effect.runPromise(
       finalizeReleaseItemsDigest(value.releaseId, updated)
     );
-    expect(digest).toBe(hashContentReleaseItems([value]));
+    const summary = await Effect.runPromise(
+      digestItems(releaseId, Stream.make(value))
+    );
+    expect(summary).toEqual({
+      count: 1,
+      deleteCount: 1,
+      digest,
+      upsertCount: 0,
+    });
     expect(updated).toMatchObject({ count: 1, deleteCount: 1, upsertCount: 0 });
   });
 

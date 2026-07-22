@@ -26,7 +26,7 @@ type ArtifactVerificationContext = Effect.Effect.Context<
 >;
 
 /** One authenticated rollback item and its optional unchanged prior body. */
-export type DerivedRollbackRecord =
+type DerivedRollbackRecord =
   | { readonly item: ContentReleaseItem; readonly kind: "delete" }
   | {
       readonly artifact: SignedContentArtifact;
