@@ -31,7 +31,9 @@ pnpm stage publish ./path/to/nakafa-aksara-contracts-<version>.tgz
 ```
 
 The checked-in `publish.yml` workflow preserves the tarball produced by the
-isolated package verifier and stages that same file. Its verification job has
+isolated package verifier and stages that same file. It validates the returned
+stage UUID and prints that exact ID, package version, and tarball digest in the
+workflow summary. Its verification job has
 `contents: read` but cannot request an OIDC token. Both jobs use the same static,
 reviewed Node and pnpm versions; repository code cannot select executables for
 the privileged job. Verification records the tarball SHA-256 digest and
@@ -63,11 +65,12 @@ script execution capability.
 
 ## Bootstrap state
 
-The authenticated npm identity is `nabilfatih`, and the owner-created
-organization is the real `@nakafa` scope. `@nakafa/aksara-contracts` does not
-exist yet. Trusted publishing can be configured only after that first package
-version exists, so the bootstrap publication must use the verified exact
-tarball and complete the scope's required npm 2FA without exposing a token.
+The npm account owner is `nabilfatih`, and the owner-created organization is
+the real `@nakafa` scope. CLI authentication is transient and must be verified
+at bootstrap time. `@nakafa/aksara-contracts` does not exist yet. Trusted
+publishing can be configured only after that first package version exists, so
+the bootstrap publication must use the verified exact tarball and complete the
+scope's required npm 2FA without exposing a token.
 
 After the pnpm upgrade and package bootstrap, configure a package-scoped GitHub
 Actions trusted publisher on a GitHub-hosted runner. Give the publish job
@@ -77,6 +80,30 @@ and staged publishing only. The selected pnpm release must implement the
 registry's OIDC token exchange and provenance flow directly. The registry
 automatically attaches provenance to a public package published with OIDC from
 a public repository.
+
+OIDC may stage but cannot approve a package. After reviewing the workflow
+summary and the staged tarball, a package owner must approve the exact stage ID
+through npmjs.com or `pnpm stage approve <stage-id>` and complete npm 2FA. This
+proof-of-presence step is intentionally outside GitHub Actions; no workflow
+secret or permanent registry token may automate it.
+
+After approval, dispatch `package-proof.yml` with the exact package version,
+integrity, and Aksara SHA printed by the staging workflow. The proof requires
+the registry tarball to match that reviewed integrity and requires the SLSA
+provenance subject, repository, workflow, main ref, hosted runner, and resolved
+Git commit to match the reviewed Aksara publication. A package is not available
+to Nakafa until this proof succeeds.
+
+After the proof succeeds, a normal reviewed pull request changes
+`.changeset/bootstrap.json` from `false` to `true`. That source-controlled marker
+is the only switch for version automation; transient registry failures can
+therefore never disable the Changeset gate. It must not be changed based only
+on package existence.
+
+After the initial `0.1.0` package exists, every contracts change carries a
+Changeset. `version.yml` uses the official Changesets action only to create or
+update a ready version pull request through GitHub's API. It never publishes,
+never receives an npm token, and remains inactive before bootstrap.
 
 References:
 

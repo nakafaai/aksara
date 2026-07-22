@@ -81,6 +81,18 @@ jobs:
           fi
           git rev-parse --verify HEAD
 
+      - name: Verify exact production revision
+        run: |
+          pnpm lint
+          pnpm names
+          pnpm jsdocs
+          pnpm lines
+          pnpm boundaries
+          pnpm typecheck
+          pnpm test
+          pnpm build
+          pnpm verify:package
+
       - name: Publish release
         if: inputs.operation == 'release'
         env:

@@ -1,0 +1,115 @@
+name: Package proof
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_integrity:
+        description: Exact integrity printed by the staging workflow
+        required: true
+        type: string
+      package_version:
+        description: Exact approved package version
+        required: true
+        type: string
+      source_sha:
+        description: Exact Aksara commit used by the staging workflow
+        required: true
+        type: string
+
+permissions: {}
+
+env:
+  NODE_VERSION: 24.18.0
+  PNPM_VERSION: 11.15.1
+
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          package-manager-cache: false
+          token: ""
+
+      - name: Verify registry provenance
+        env:
+          EXPECTED_INTEGRITY: ${{ inputs.package_integrity }}
+          PACKAGE_VERSION: ${{ inputs.package_version }}
+          SOURCE_SHA: ${{ inputs.source_sha }}
+        run: |
+          if [[ ! "$PACKAGE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "Package version is malformed." >&2
+            exit 1
+          fi
+          if [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "Source SHA is malformed." >&2
+            exit 1
+          fi
+          if [[ ! "$EXPECTED_INTEGRITY" =~ ^sha512-[A-Za-z0-9+/]+={0,2}$ ]]; then
+            echo "Expected package integrity is malformed." >&2
+            exit 1
+          fi
+
+          metadata=$(pnpm view "@nakafa/aksara-contracts@$PACKAGE_VERSION" dist repository --json --registry=https://registry.npmjs.org/)
+          actual_integrity=$(jq -er '.dist.integrity' <<<"$metadata")
+          if [[ "$actual_integrity" != "$EXPECTED_INTEGRITY" ]]; then
+            echo "Published tarball integrity differs from the reviewed stage." >&2
+            exit 1
+          fi
+          repository=$(jq -er '.repository.url' <<<"$metadata")
+          if [[ "$repository" != "git+https://github.com/nakafaai/aksara.git" ]]; then
+            echo "Published package repository is not Aksara." >&2
+            exit 1
+          fi
+
+          attestation_url=$(jq -er '.dist.attestations.url' <<<"$metadata")
+          expected_url="https://registry.npmjs.org/-/npm/v1/attestations/@nakafa%2faksara-contracts@$PACKAGE_VERSION"
+          if [[ "$attestation_url" != "$expected_url" ]]; then
+            echo "Registry attestation URL is unexpected." >&2
+            exit 1
+          fi
+          attestations=$(curl --fail --silent --show-error --proto '=https' --tlsv1.2 "$attestation_url")
+          provenance_count=$(jq '[.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1")] | length' <<<"$attestations")
+          if [[ "$provenance_count" != "1" ]]; then
+            echo "Expected exactly one SLSA provenance attestation." >&2
+            exit 1
+          fi
+          provenance=$(jq -er '.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1") | .bundle.dsseEnvelope.payload' <<<"$attestations" | base64 --decode)
+          encoded_digest=${EXPECTED_INTEGRITY#sha512-}
+          expected_digest=$(printf '%s' "$encoded_digest" | base64 --decode | xxd -p -c 256)
+          expected_subject="pkg:npm/%40nakafa/aksara-contracts@$PACKAGE_VERSION"
+
+          jq -e \
+            --arg digest "$expected_digest" \
+            --arg sha "$SOURCE_SHA" \
+            --arg subject "$expected_subject" \
+            '.subject == [{name: $subject, digest: {sha512: $digest}}]
+              and .predicate.buildDefinition.buildType == "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1"
+              and .predicate.buildDefinition.externalParameters.workflow == {
+                ref: "refs/heads/main",
+                repository: "https://github.com/nakafaai/aksara",
+                path: ".github/workflows/publish.yml"
+              }
+              and any(.predicate.buildDefinition.resolvedDependencies[];
+                .digest.gitCommit == $sha
+                and .uri == "git+https://github.com/nakafaai/aksara@refs/heads/main")
+              and .predicate.runDetails.builder.id == "https://github.com/actions/runner/github-hosted"' \
+            <<<"$provenance"
+
+          {
+            echo "## Package proof verified"
+            echo
+            echo "- Package: \`@nakafa/aksara-contracts@$PACKAGE_VERSION\`"
+            echo "- Integrity: \`$EXPECTED_INTEGRITY\`"
+            echo "- Source SHA: \`$SOURCE_SHA\`"
+          } >> "$GITHUB_STEP_SUMMARY"

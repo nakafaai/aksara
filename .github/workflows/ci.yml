@@ -20,6 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Setup pnpm
@@ -33,6 +34,23 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Contract version intent
+        if: github.event_name == 'pull_request'
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_HEAD: ${{ github.head_ref }}
+        run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          if [[ "$bootstrapped" != "true" ]]; then
+            echo "Initial package is not published; bootstrap version remains source-controlled."
+            exit 0
+          fi
+          if [[ "$PR_HEAD" == "changeset-release/main" && "$PR_AUTHOR" == "github-actions[bot]" ]]; then
+            echo "Trusted Changesets version pull request has consumed its source changesets."
+            exit 0
+          fi
+          pnpm changeset status --since=origin/main
 
       - name: Lint
         run: pnpm lint
