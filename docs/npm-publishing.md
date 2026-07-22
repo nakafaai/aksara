@@ -90,14 +90,16 @@ through npmjs.com or `pnpm stage approve <stage-id>` and complete npm 2FA. This
 proof-of-presence step is intentionally outside GitHub Actions; no workflow
 secret or permanent registry token may automate it.
 
-After approval, dispatch `package-proof.yml` from the exact staged Aksara commit
-with the package version, integrity, and SHA printed by the staging workflow.
-The proof downloads the exact registry tarball and attestations, verifies their
-Sigstore signatures and SLSA identity with the pinned upstream verifier, then
-checks the verified provenance subject, repository, workflow, main ref, hosted
-runner, and resolved Git commit. A stale source SHA is rejected even if that
-older package is authentic. A package is not available to Nakafa until this
-proof succeeds.
+After approval, dispatch `package-proof.yml` from current protected `main` with
+the package version, integrity, and source SHA printed by the staging workflow.
+The source SHA must remain an ancestor of current `main`, and every contract,
+toolchain, package-verification, and publication input must be unchanged since
+that source. Unrelated main changes may advance while an operator completes npm
+approval. The proof downloads the exact registry tarball and attestations,
+verifies their Sigstore signatures and SLSA identity with the pinned upstream
+verifier, then checks the verified provenance subject, repository, workflow,
+main ref, hosted runner, and exact resolved Git commit. A package is not
+available to Nakafa until this proof succeeds.
 
 After the proof succeeds, a normal reviewed pull request changes
 `.changeset/bootstrap.json` from `false` to `true`. That source-controlled marker

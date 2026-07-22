@@ -27,7 +27,15 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
     steps:
+      - name: Checkout current main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
       - name: Setup pnpm
         uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
         with:
@@ -59,8 +67,29 @@ jobs:
             echo "Source SHA is malformed." >&2
             exit 1
           fi
-          if [[ "$SOURCE_SHA" != "$WORKFLOW_SHA" ]]; then
-            echo "Package proof must run from the exact staged source commit." >&2
+          if ! git cat-file -e "$SOURCE_SHA^{commit}"; then
+            echo "Staged source commit is absent from current main history." >&2
+            exit 1
+          fi
+          if ! git merge-base --is-ancestor "$SOURCE_SHA" "$WORKFLOW_SHA"; then
+            echo "Staged source commit is not an ancestor of current main." >&2
+            exit 1
+          fi
+          package_changes=$(git diff --name-only "$SOURCE_SHA" "$WORKFLOW_SHA" -- \
+            .github/workflows/publish.yml \
+            biome.jsonc \
+            package.json \
+            pnpm-lock.yaml \
+            pnpm-workspace.yaml \
+            scripts \
+            tsconfig.json \
+            turbo.json \
+            vitest.config.ts \
+            packages/contracts \
+            packages/typescript-config)
+          if [[ -n "$package_changes" ]]; then
+            echo "Package or publication inputs changed after the staged source:" >&2
+            echo "$package_changes" >&2
             exit 1
           fi
           if [[ ! "$EXPECTED_INTEGRITY" =~ ^sha512-[A-Za-z0-9+/]+={0,2}$ ]]; then
@@ -87,6 +116,7 @@ jobs:
             exit 1
           fi
           attestation_url=$(jq -er '.dist.attestations.url' <<<"$metadata")
+          attestation_url=${attestation_url//%2F/%2f}
           expected_url="https://registry.npmjs.org/-/npm/v1/attestations/@nakafa%2faksara-contracts@$PACKAGE_VERSION"
           if [[ "$attestation_url" != "$expected_url" ]]; then
             echo "Registry attestation URL is unexpected." >&2

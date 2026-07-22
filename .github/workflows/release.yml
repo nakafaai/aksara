@@ -82,6 +82,7 @@ jobs:
           git rev-parse --verify HEAD
 
       - name: Verify exact production revision
+        if: inputs.operation == 'release' || inputs.operation == 'rollback'
         run: |
           pnpm lint
           pnpm names
