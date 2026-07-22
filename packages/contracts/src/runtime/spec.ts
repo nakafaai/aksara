@@ -1,4 +1,5 @@
 import { Effect, Schema } from "effect";
+import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import {
   ContentLocaleSchema,
   type SignedContentArtifact,
@@ -113,7 +114,11 @@ export const decodeContentRuntimeResponse = Effect.fn(
 /** Decodes and binds one runtime response to its exact initiating request. */
 export const verifyContentRuntimeExchange = Effect.fn(
   "AksaraContracts.verifyContentRuntimeExchange"
-)(function* (input: { readonly request: unknown; readonly response: unknown }) {
+)(function* (input: {
+  readonly rendererManifest: unknown;
+  readonly request: unknown;
+  readonly response: unknown;
+}) {
   const request = yield* decodeContentRuntimeRequest(input.request);
   const response = yield* decodeContentRuntimeResponse(input.response);
   if (response.kind !== "found") {
@@ -128,5 +133,10 @@ export const verifyContentRuntimeExchange = Effect.fn(
   if (response.projection.publicPath !== request.publicPath) {
     return yield* new ContentRuntimeMismatchError({ reason: "publicPath" });
   }
+  yield* verifySignedContentArtifact({
+    artifact: response.artifact,
+    rendererContractVersion: response.rendererContractVersion,
+    rendererManifest: input.rendererManifest,
+  });
   return response;
 });

@@ -41,11 +41,15 @@ jobs:
           package-manager-cache: false
           token: ""
 
+      - name: Install SLSA verifier
+        uses: slsa-framework/slsa-verifier/actions/installer@ea584f4502babc6f60d9bc799dbbb13c1caa9ee6 # v2.7.1
+
       - name: Verify registry provenance
         env:
           EXPECTED_INTEGRITY: ${{ inputs.package_integrity }}
           PACKAGE_VERSION: ${{ inputs.package_version }}
           SOURCE_SHA: ${{ inputs.source_sha }}
+          WORKFLOW_SHA: ${{ github.sha }}
         run: |
           if [[ ! "$PACKAGE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
             echo "Package version is malformed." >&2
@@ -53,6 +57,10 @@ jobs:
           fi
           if [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
             echo "Source SHA is malformed." >&2
+            exit 1
+          fi
+          if [[ "$SOURCE_SHA" != "$WORKFLOW_SHA" ]]; then
+            echo "Package proof must run from the exact staged source commit." >&2
             exit 1
           fi
           if [[ ! "$EXPECTED_INTEGRITY" =~ ^sha512-[A-Za-z0-9+/]+={0,2}$ ]]; then
@@ -72,19 +80,50 @@ jobs:
             exit 1
           fi
 
+          tarball_url=$(jq -er '.dist.tarball' <<<"$metadata")
+          expected_tarball_url="https://registry.npmjs.org/@nakafa/aksara-contracts/-/aksara-contracts-$PACKAGE_VERSION.tgz"
+          if [[ "$tarball_url" != "$expected_tarball_url" ]]; then
+            echo "Registry tarball URL is unexpected." >&2
+            exit 1
+          fi
           attestation_url=$(jq -er '.dist.attestations.url' <<<"$metadata")
           expected_url="https://registry.npmjs.org/-/npm/v1/attestations/@nakafa%2faksara-contracts@$PACKAGE_VERSION"
           if [[ "$attestation_url" != "$expected_url" ]]; then
             echo "Registry attestation URL is unexpected." >&2
             exit 1
           fi
-          attestations=$(curl --fail --silent --show-error --proto '=https' --tlsv1.2 "$attestation_url")
-          provenance_count=$(jq '[.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1")] | length' <<<"$attestations")
+          tarball="$RUNNER_TEMP/aksara-contracts.tgz"
+          attestations="$RUNNER_TEMP/aksara-contracts.attestations.json"
+          curl --fail --silent --show-error --proto '=https' --tlsv1.2 --output "$tarball" "$tarball_url"
+          curl --fail --silent --show-error --proto '=https' --tlsv1.2 --output "$attestations" "$attestation_url"
+
+          downloaded_integrity="sha512-$(openssl dgst -sha512 -binary "$tarball" | openssl base64 -A)"
+          if [[ "$downloaded_integrity" != "$EXPECTED_INTEGRITY" ]]; then
+            echo "Downloaded tarball integrity differs from the reviewed stage." >&2
+            exit 1
+          fi
+
+          provenance_count=$(jq '[.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1")] | length' "$attestations")
           if [[ "$provenance_count" != "1" ]]; then
             echo "Expected exactly one SLSA provenance attestation." >&2
             exit 1
           fi
-          provenance=$(jq -er '.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1") | .bundle.dsseEnvelope.payload' <<<"$attestations" | base64 --decode)
+          publish_count=$(jq '[.attestations[] | select(.predicateType | startswith("https://github.com/npm/attestation/tree/main/specs/publish/v0.1"))] | length' "$attestations")
+          if [[ "$publish_count" != "1" ]]; then
+            echo "Expected exactly one npm publish attestation." >&2
+            exit 1
+          fi
+
+          # v2.7.1 rejects npm branch/print flags; inspect the unique verified
+          # bundle below only after its supported cryptographic checks succeed.
+          SLSA_VERIFIER_EXPERIMENTAL=1 slsa-verifier verify-npm-package "$tarball" \
+            --attestations-path "$attestations" \
+            --builder-id "https://github.com/actions/runner/github-hosted" \
+            --package-name "@nakafa/aksara-contracts" \
+            --package-version "$PACKAGE_VERSION" \
+            --source-uri "github.com/nakafaai/aksara"
+
+          provenance=$(jq -er '.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1") | .bundle.dsseEnvelope.payload' "$attestations" | base64 --decode)
           encoded_digest=${EXPECTED_INTEGRITY#sha512-}
           expected_digest=$(printf '%s' "$encoded_digest" | base64 --decode | xxd -p -c 256)
           expected_subject="pkg:npm/%40nakafa/aksara-contracts@$PACKAGE_VERSION"

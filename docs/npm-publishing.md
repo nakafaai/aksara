@@ -65,12 +65,15 @@ script execution capability.
 
 ## Bootstrap state
 
-The npm account owner is `nabilfatih`, and the owner-created organization is
-the real `@nakafa` scope. CLI authentication is transient and must be verified
-at bootstrap time. `@nakafa/aksara-contracts` does not exist yet. Trusted
-publishing can be configured only after that first package version exists, so
-the bootstrap publication must use the verified exact tarball and complete the
-scope's required npm 2FA without exposing a token.
+Npm identities, scope permissions, package availability, and 2FA policy are
+external state and must never be inferred from repository documentation. At
+bootstrap time, an operator must verify the current pnpm-authenticated identity,
+confirm that it may publish public packages under `@nakafa`, confirm the scope's
+current 2FA policy, and confirm that the selected package version is absent.
+Stop before publication if any check fails. Trusted publishing can be configured
+only after the first package version exists, so the bootstrap publication must
+use the verified exact tarball and complete the scope's required npm 2FA without
+exposing a token.
 
 After the pnpm upgrade and package bootstrap, configure a package-scoped GitHub
 Actions trusted publisher on a GitHub-hosted runner. Give the publish job
@@ -87,12 +90,14 @@ through npmjs.com or `pnpm stage approve <stage-id>` and complete npm 2FA. This
 proof-of-presence step is intentionally outside GitHub Actions; no workflow
 secret or permanent registry token may automate it.
 
-After approval, dispatch `package-proof.yml` with the exact package version,
-integrity, and Aksara SHA printed by the staging workflow. The proof requires
-the registry tarball to match that reviewed integrity and requires the SLSA
-provenance subject, repository, workflow, main ref, hosted runner, and resolved
-Git commit to match the reviewed Aksara publication. A package is not available
-to Nakafa until this proof succeeds.
+After approval, dispatch `package-proof.yml` from the exact staged Aksara commit
+with the package version, integrity, and SHA printed by the staging workflow.
+The proof downloads the exact registry tarball and attestations, verifies their
+Sigstore signatures and SLSA identity with the pinned upstream verifier, then
+checks the verified provenance subject, repository, workflow, main ref, hosted
+runner, and resolved Git commit. A stale source SHA is rejected even if that
+older package is authentic. A package is not available to Nakafa until this
+proof succeeds.
 
 After the proof succeeds, a normal reviewed pull request changes
 `.changeset/bootstrap.json` from `false` to `true`. That source-controlled marker
