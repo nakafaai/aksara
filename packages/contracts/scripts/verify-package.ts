@@ -10,15 +10,23 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
+import { isRecord } from "effect/Predicate";
+import {
+  createConsumerManifest,
+  createConsumerSource,
+  createConsumerTsconfig,
+} from "#scripts/consumer";
 import {
   DEPENDENCY_SECTIONS,
   type PackageManifest,
   parsePackageManifest,
   parseWorkspaceManifest,
+  textField,
 } from "#scripts/manifest";
 
 const NPM_CONFIG_ENVIRONMENT_PATTERN = /^(?:NPM|PNPM)_CONFIG_/i;
@@ -174,25 +182,50 @@ assert.ok(
   "The tarball README.md must not be empty"
 );
 assertPortableDependencies(packedManifest);
+assert.deepEqual(
+  packedManifest.imports["#contracts/*"],
+  {
+    default: "./dist/*.js",
+    types: ["./src/*.ts", "./dist/*.d.ts"],
+  },
+  "The packed contract imports must preserve source and declaration resolution"
+);
+const effectVersion = textField(
+  packedManifest.peerDependencies?.effect,
+  "The packed contract must declare its exact Effect peer runtime"
+);
+assert.match(
+  effectVersion,
+  /^\d+\.\d+\.\d+$/u,
+  "The packed Effect peer must be an exact semantic version"
+);
+assert.equal(
+  packedManifest.dependencies?.effect,
+  undefined,
+  "Effect must not be a nested runtime dependency"
+);
+const require = createRequire(import.meta.url);
+const installedEffectManifest: unknown = JSON.parse(
+  readFileSync(require.resolve("effect/package.json"), "utf8")
+);
+assert.ok(
+  isRecord(installedEffectManifest),
+  "Effect package must be an object"
+);
+assert.equal(
+  effectVersion,
+  installedEffectManifest.version,
+  "Packed and development Effect versions must match"
+);
 
 writeFileSync(
   join(consumerDirectory, "package.json"),
-  `${JSON.stringify(
-    {
-      dependencies: {
-        [sourceManifest.name]: `file:${tarballPath}`,
-      },
-      imports: {
-        "#scripts/*": "./verify/*.ts",
-      },
-      name: "aksara-contracts-external-consumer",
-      packageManager: rootManifest.packageManager,
-      private: true,
-      type: "module",
-    },
-    null,
-    2
-  )}\n`
+  createConsumerManifest({
+    effectVersion,
+    packageManager: rootManifest.packageManager,
+    packageName: sourceManifest.name,
+    tarballPath,
+  })
 );
 
 run(
@@ -210,35 +243,14 @@ const publicSpecifiers = Object.keys(packedManifest.exports).map((subpath) =>
     ? packedManifest.name
     : `${packedManifest.name}/${subpath.slice(2)}`
 );
-const typeImports = publicSpecifiers.map(
-  (specifier, index) =>
-    `import type * as Contract${index} from ${JSON.stringify(specifier)};`
-);
-const typeReferences = publicSpecifiers.map(
-  (_specifier, index) => `typeof Contract${index}`
-);
 
 writeFileSync(
   join(consumerDirectory, "consumer.ts"),
-  `${typeImports.join("\n")}\n\nexport type InstalledContractSurface = [${typeReferences.join(", ")}];\n`
+  createConsumerSource(sourceManifest.name, publicSpecifiers)
 );
 writeFileSync(
   join(consumerDirectory, "tsconfig.json"),
-  `${JSON.stringify(
-    {
-      compilerOptions: {
-        module: "NodeNext",
-        moduleResolution: "NodeNext",
-        noEmit: true,
-        skipLibCheck: false,
-        strict: true,
-        target: "ES2022",
-      },
-      files: ["consumer.ts"],
-    },
-    null,
-    2
-  )}\n`
+  createConsumerTsconfig()
 );
 
 run(resolve(packageRoot, "../../node_modules/.bin/tsc"), ["--project", "."], {

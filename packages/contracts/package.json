@@ -5,7 +5,10 @@
   "type": "module",
   "imports": {
     "#contracts/*": {
-      "types": "./src/*.ts",
+      "types": [
+        "./src/*.ts",
+        "./dist/*.d.ts"
+      ],
       "default": "./dist/*.js"
     },
     "#scripts/*": "./scripts/*.ts"
@@ -147,12 +150,13 @@
     "typecheck": "tsc --project tsconfig.json",
     "verify:package": "node scripts/verify-package.ts"
   },
-  "dependencies": {
-    "effect": "catalog:"
-  },
   "devDependencies": {
     "@nakafa/typescript-config": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
+    "effect": "catalog:",
     "vitest": "catalog:"
+  },
+  "peerDependencies": {
+    "effect": "catalog:"
   }
 }

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { isRecord } from "effect/Predicate";
 
 export const DEPENDENCY_SECTIONS = [
   "dependencies",
@@ -15,6 +16,7 @@ export interface PackageManifest {
   readonly devDependencies: Readonly<Record<string, string>> | undefined;
   readonly engines: { readonly node: string };
   readonly exports: Readonly<Record<string, unknown>>;
+  readonly imports: Readonly<Record<string, unknown>>;
   readonly license: string;
   readonly name: string;
   readonly optionalDependencies: Readonly<Record<string, string>> | undefined;
@@ -30,11 +32,6 @@ interface WorkspaceManifest {
 interface InstalledManifest {
   readonly exports: Readonly<Record<string, Readonly<Record<string, string>>>>;
   readonly name: string;
-}
-
-/** Narrows parsed JSON objects without introducing an unsafe cast. */
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 /** Requires one unknown manifest field to be text. */
@@ -84,16 +81,18 @@ export function parsePackageManifest(source: string): PackageManifest {
   assert.ok(isRecord(parsed), "The package manifest must be an object");
   const name = textField(parsed.name, "Package name must be text");
   const license = textField(parsed.license, "Package license must be text");
-  const { engines, exports: packageExports } = parsed;
+  const { engines, exports: packageExports, imports: packageImports } = parsed;
   assert.ok(isRecord(engines), "Package engines must be an object");
   const node = textField(engines.node, "Package Node engine must be text");
   assert.ok(isRecord(packageExports), "Package exports must be an object");
+  assert.ok(isRecord(packageImports), "Package imports must be an object");
 
   return {
     dependencies: dependencyMap(parsed, "dependencies"),
     devDependencies: dependencyMap(parsed, "devDependencies"),
     engines: { node },
     exports: packageExports,
+    imports: packageImports,
     license,
     name,
     optionalDependencies: dependencyMap(parsed, "optionalDependencies"),
