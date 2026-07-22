@@ -119,11 +119,15 @@ function assertPortableDependencies(manifest: PackageManifest): void {
 }
 
 const childEnvironment = createCredentialFreeEnvironment();
-run("pnpm", ["pack", "--pack-destination", packDirectory], {
-  cwd: packageRoot,
-  env: childEnvironment,
-  stdio: "inherit",
-});
+run(
+  "pnpm",
+  ["pack", "--config.ignore-scripts=true", "--pack-destination", packDirectory],
+  {
+    cwd: packageRoot,
+    env: childEnvironment,
+    stdio: "inherit",
+  }
+);
 const packedArchives = readdirSync(packDirectory).filter((path) =>
   path.endsWith(".tgz")
 );
