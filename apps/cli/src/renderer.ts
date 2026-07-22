@@ -3,7 +3,7 @@ import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/
 import { Effect, Redacted, Schedule, Stream } from "effect";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 
-const LOOPBACK_HOST = "127.0.0.1";
+const LOOPBACK_HOST = "localhost";
 const RENDERER_PATH = "/api/internal/content/renderer";
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;
 
@@ -30,7 +30,7 @@ function hasNoStoreDirective(value: string | null) {
   );
 }
 
-/** Proves renderer discovery cannot leave the spawned IPv4 loopback origin. */
+/** Proves renderer discovery cannot leave the spawned localhost origin. */
 function isNakafaOrigin(origin: URL) {
   return (
     origin.protocol === "http:" &&
