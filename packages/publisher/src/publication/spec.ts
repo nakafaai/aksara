@@ -23,6 +23,11 @@ import type {
 import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type {
+  StageArtifactBatchInput,
+  StageItemBatchInput,
+  StageProjectionBatchInput,
+} from "@nakafa/aksara-contracts/transport/request";
 import {
   Context,
   type Effect,
@@ -31,9 +36,7 @@ import {
   type Stream,
 } from "effect";
 import type { PublicationBatchLimitError } from "#publisher/batch/core";
-import type { ArtifactBatch, ReleaseItemBatch } from "#publisher/batching";
 import type { PreparedContentRelease } from "#publisher/preparation/spec";
-import type { ProjectionBatch } from "#publisher/projection-batch";
 import type {
   PublicationReceiptMismatchError,
   ReleaseArtifactMismatchError,
@@ -42,7 +45,7 @@ import type {
 } from "#publisher/release-validation";
 import type { PublicationSigner } from "#publisher/signing";
 import type { ContentSigningError } from "#publisher/signing-errors";
-import type { PublicationTargetFailure } from "#publisher/target-errors";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
 
 /** The exact reviewed Aksara revision could not provide release sources. */
 export class PublicationSourceError extends Schema.TaggedError<PublicationSourceError>()(
@@ -126,15 +129,15 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     ) => Effect.Effect<unknown, PublicationTargetFailure>;
     /** Stages one immutable artifact batch idempotently. */
     readonly stageArtifactBatch: (
-      batch: ArtifactBatch
+      batch: StageArtifactBatchInput
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages one ordered release-item batch idempotently. */
     readonly stageItemBatch: (
-      batch: ReleaseItemBatch
+      batch: StageItemBatchInput
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages one canonical material projection batch idempotently. */
     readonly stageProjectionBatch: (
-      batch: ProjectionBatch
+      batch: StageProjectionBatchInput
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages the signed release envelope idempotently. */
     readonly stageRelease: (

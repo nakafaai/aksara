@@ -1,0 +1,166 @@
+import { Either, Schema } from "effect";
+import { describe, expect, it } from "vitest";
+import {
+  PUBLICATION_FAILURE_STATUSES,
+  PublicationFailureCodeSchema,
+  PublicationFailureSchema,
+  PublicationFailureStatusSchema,
+  publicationFailureStatus,
+} from "#contracts/transport/failure";
+
+const releaseId = "test-transport";
+
+/** Strictly checks one transport failure without allowing extra properties. */
+function accepts(input: unknown) {
+  return Either.isRight(
+    Schema.decodeUnknownEither(PublicationFailureSchema)(input, {
+      onExcessProperty: "error",
+    })
+  );
+}
+
+describe("publication failures", () => {
+  it("decodes every stable failure kind without implementation messages", () => {
+    expect(
+      accepts({
+        code: "CONTENT_RELEASE_UNAUTHORIZED",
+        kind: "unauthorized",
+      })
+    ).toBe(true);
+    expect(
+      accepts({
+        code: "CONTENT_RELEASE_INTEGRITY",
+        kind: "rejected",
+        operation: "verify",
+        releaseId,
+      })
+    ).toBe(true);
+    expect(
+      accepts({
+        batchIndex: 2,
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: "stageItemBatch",
+        releaseId,
+      })
+    ).toBe(true);
+    expect(
+      accepts({
+        activeReleaseId: "test-active",
+        code: "CONTENT_RELEASE_STALE_BASE",
+        expectedBaseReleaseId: null,
+        kind: "stale-base",
+        operation: "stageRelease",
+        releaseId,
+      })
+    ).toBe(true);
+  });
+
+  it("supports decode failures without pretending an identity was valid", () => {
+    expect(
+      accepts({
+        code: "CONTENT_RELEASE_INVALID_REQUEST",
+        kind: "rejected",
+        operation: null,
+        releaseId: null,
+      })
+    ).toBe(true);
+  });
+
+  it("owns one exhaustive failure-code to HTTP-status contract", () => {
+    expect(PUBLICATION_FAILURE_STATUSES).toEqual({
+      CONTENT_RELEASE_CONFLICT: 409,
+      CONTENT_RELEASE_INTEGRITY: 422,
+      CONTENT_RELEASE_INVALID_REQUEST: 400,
+      CONTENT_RELEASE_LIMIT: 413,
+      CONTENT_RELEASE_MISSING: 404,
+      CONTENT_RELEASE_ROUTE: 422,
+      CONTENT_RELEASE_SIZE: 413,
+      CONTENT_RELEASE_STALE_BASE: 409,
+      CONTENT_RELEASE_STATE: 422,
+      CONTENT_RELEASE_UNAUTHORIZED: 401,
+      CONTENT_RELEASE_UNSUPPORTED: 415,
+    });
+    const codes = Schema.decodeUnknownSync(
+      Schema.Array(PublicationFailureCodeSchema)
+    )(Object.keys(PUBLICATION_FAILURE_STATUSES));
+    for (const code of codes) {
+      expect(
+        Schema.decodeUnknownSync(PublicationFailureStatusSchema)(
+          publicationFailureStatus(code)
+        )
+      ).toBe(PUBLICATION_FAILURE_STATUSES[code]);
+    }
+  });
+
+  it("requires exact identities for authenticated domain rejections", () => {
+    for (const failure of [
+      {
+        code: "CONTENT_RELEASE_INVALID_REQUEST",
+        kind: "rejected",
+        operation: "verify",
+        releaseId,
+      },
+      {
+        code: "CONTENT_RELEASE_INTEGRITY",
+        kind: "rejected",
+        operation: null,
+        releaseId: null,
+      },
+    ]) {
+      expect(accepts(failure)).toBe(false);
+    }
+  });
+
+  it("binds conflict batch indexes to batch staging operations", () => {
+    for (const failure of [
+      {
+        batchIndex: 0,
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: "stageRelease",
+        releaseId,
+      },
+      {
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: "stageItemBatch",
+        releaseId,
+      },
+    ]) {
+      expect(accepts(failure)).toBe(false);
+    }
+  });
+
+  it("rejects unstable codes, stale-base stages, and leaked messages", () => {
+    for (const failure of [
+      {
+        code: "CONTENT_RELEASE_UNKNOWN",
+        kind: "rejected",
+        operation: null,
+        releaseId: null,
+      },
+      {
+        activeReleaseId: null,
+        code: "CONTENT_RELEASE_STALE_BASE",
+        expectedBaseReleaseId: null,
+        kind: "stale-base",
+        operation: "cleanup",
+        releaseId,
+      },
+      {
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: "status",
+        releaseId,
+      },
+      {
+        code: "CONTENT_RELEASE_UNAUTHORIZED",
+        kind: "unauthorized",
+        message: "secret detail",
+      },
+    ]) {
+      expect(accepts(failure)).toBe(false);
+    }
+  });
+});

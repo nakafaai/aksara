@@ -20,6 +20,25 @@ const ContentReleaseStatusIdentity = {
   releaseId: ReleaseIdSchema,
 };
 
+/** Checks completed evidence against the durable status identity. */
+function hasBoundReceipt(status: {
+  readonly receipt: typeof PublicationReceiptSchema.Type;
+  readonly releaseId: typeof ReleaseIdSchema.Type;
+}) {
+  return status.receipt.releaseId === status.releaseId;
+}
+
+const CompletedReleaseStatusSchema = Schema.Struct({
+  phase: Schema.Literal("completed"),
+  receipt: PublicationReceiptSchema,
+  ...ContentReleaseStatusIdentity,
+}).pipe(
+  Schema.filter(hasBoundReceipt, {
+    message: () =>
+      "Expected the completed receipt to match the release status identity.",
+  })
+);
+
 /** Persisted release phase bound to one exact signed manifest identity. */
 export const ContentReleaseStatusSchema = Schema.Union(
   Schema.Struct({
@@ -37,11 +56,7 @@ export const ContentReleaseStatusSchema = Schema.Union(
     ),
     ...ContentReleaseStatusIdentity,
   }),
-  Schema.Struct({
-    phase: Schema.Literal("completed"),
-    receipt: PublicationReceiptSchema,
-    ...ContentReleaseStatusIdentity,
-  })
+  CompletedReleaseStatusSchema
 );
 export type ContentReleaseStatus = typeof ContentReleaseStatusSchema.Type;
 

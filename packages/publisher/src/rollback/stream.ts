@@ -16,7 +16,7 @@ import {
   RollbackPageIdentityError,
   RollbackPageTotalError,
 } from "#publisher/rollback/errors";
-import type { PublicationTargetFailure } from "#publisher/target-errors";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
 
 /** Maximum complete rollback page bytes accepted from publication storage. */
 export const MAX_ROLLBACK_PAGE_BYTES = 4 * 1024 * 1024;

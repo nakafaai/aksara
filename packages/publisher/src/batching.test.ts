@@ -16,22 +16,24 @@ import {
   ContentChangeSchema,
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
+import {
+  MAX_ARTIFACT_BATCH_BYTES,
+  MAX_ARTIFACT_BATCH_COUNT,
+  MAX_ITEM_BATCH_BYTES,
+  MAX_ITEM_BATCH_COUNT,
+} from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   canonicalizeArtifactBatch,
   canonicalizeReleaseItemBatch,
-  MAX_ARTIFACT_BATCH_BYTES,
-  MAX_ARTIFACTS_PER_BATCH,
-  MAX_RELEASE_ITEM_BATCH_BYTES,
-  MAX_RELEASE_ITEMS_PER_BATCH,
   makeArtifactBatches,
   makeReleaseItemBatches,
 } from "#publisher/batching";
 
 const releaseId = ReleaseIdSchema.make("test-release-batching");
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
-  Array.from({ length: MAX_RELEASE_ITEMS_PER_BATCH + 1 }, (_, index) => ({
+  Array.from({ length: MAX_ITEM_BATCH_COUNT + 1 }, (_, index) => ({
     contentKey: `test:${index.toString().padStart(4, "0")}`,
     locale: "en",
     operation: "delete",
@@ -89,20 +91,20 @@ describe("publication batching", () => {
       makeReleaseItemBatches(releaseId, Stream.fromIterable(items))
     );
     expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1]);
-    expect(batches[0]?.items).toHaveLength(MAX_RELEASE_ITEMS_PER_BATCH);
+    expect(batches[0]?.items).toHaveLength(MAX_ITEM_BATCH_COUNT);
     expect(batches[1]?.items).toHaveLength(1);
     expect(
       batches.every(
         (batch) =>
           Buffer.byteLength(canonicalizeReleaseItemBatch(batch), "utf8") <=
-          MAX_RELEASE_ITEM_BATCH_BYTES
+          MAX_ITEM_BATCH_BYTES
       )
     ).toBe(true);
   });
 
   it("streams artifact batches at 8 items and a complete 4 MiB envelope", async () => {
     const values = Array.from(
-      { length: MAX_ARTIFACTS_PER_BATCH + 1 },
+      { length: MAX_ARTIFACT_BATCH_COUNT + 1 },
       (_, index) => artifact(index)
     );
     const batches = await collect(

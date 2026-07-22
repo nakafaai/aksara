@@ -17,7 +17,7 @@ import {
   validatePublicationReceipt,
   validateVerificationEvidence,
 } from "#publisher/release-validation";
-import type { PublicationTargetFailure } from "#publisher/target-errors";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
 
 /** Complete state needed to resume one exact signed publication lifecycle. */
 interface PublicationLifecycleInput<E, R> {

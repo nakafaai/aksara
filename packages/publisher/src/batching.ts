@@ -7,49 +7,35 @@ import {
   type ContentReleaseItem,
   canonicalizeContentReleaseItem,
 } from "@nakafa/aksara-contracts/release";
+import {
+  MAX_ARTIFACT_BATCH_BYTES,
+  MAX_ARTIFACT_BATCH_COUNT,
+  MAX_ITEM_BATCH_BYTES,
+  MAX_ITEM_BATCH_COUNT,
+} from "@nakafa/aksara-contracts/transport/limits";
+import type {
+  StageArtifactBatchInput,
+  StageItemBatchInput,
+} from "@nakafa/aksara-contracts/transport/request";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 
-/** Maximum ordered release items held for one partition decision. */
-export const MAX_RELEASE_ITEMS_PER_BATCH = 100;
-
-/** Maximum complete release-item envelope bytes sent per target call. */
-export const MAX_RELEASE_ITEM_BATCH_BYTES = 512 * 1024;
-
-/** Maximum signed artifacts held and sent in one target call. */
-export const MAX_ARTIFACTS_PER_BATCH = 8;
-
-/** Maximum complete signed artifact envelope bytes sent per target call. */
-export const MAX_ARTIFACT_BATCH_BYTES = 4 * 1024 * 1024;
-
-/** Ordered item batch accepted by the publication infrastructure seam. */
-export interface ReleaseItemBatch {
-  readonly batchIndex: number;
-  readonly items: readonly ContentReleaseItem[];
-  readonly releaseId: ReleaseId;
-}
-
-/** Content-addressed artifact batch accepted by the infrastructure seam. */
-export interface ArtifactBatch {
-  readonly artifacts: readonly SignedContentArtifact[];
-  readonly batchIndex: number;
-  readonly releaseId: ReleaseId;
-}
-
 /** Serializes one complete release-item batch in deterministic wire order. */
-export function canonicalizeReleaseItemBatch(batch: ReleaseItemBatch) {
+export function canonicalizeReleaseItemBatch(batch: StageItemBatchInput) {
   return `{"batchIndex":${batch.batchIndex},"items":[${batch.items
     .map(canonicalizeContentReleaseItem)
-    .join(",")}],"releaseId":${JSON.stringify(batch.releaseId)}}`;
+    .join(
+      ","
+    )}],"operation":"stageItemBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
 }
 
 /** Serializes one complete artifact batch in deterministic wire order. */
-export function canonicalizeArtifactBatch(batch: ArtifactBatch) {
+export function canonicalizeArtifactBatch(batch: StageArtifactBatchInput) {
   return `{"artifacts":[${batch.artifacts
     .map(canonicalizeSignedContentArtifact)
     .join(
       ","
-    )}],"batchIndex":${batch.batchIndex},"releaseId":${JSON.stringify(batch.releaseId)}}`;
+    )}],"batchIndex":${batch.batchIndex},"operation":"stageArtifactBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
 }
 
 /** Streams bounded release-item envelopes with contiguous batch identities. */
@@ -65,8 +51,8 @@ export function makeReleaseItemBatches<E, R>(
     }),
     count: (batch) => batch.items.length,
     kind: "release-item",
-    maxBytes: MAX_RELEASE_ITEM_BATCH_BYTES,
-    maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
+    maxBytes: MAX_ITEM_BATCH_BYTES,
+    maxCount: MAX_ITEM_BATCH_COUNT,
     releaseId,
     serialize: canonicalizeReleaseItemBatch,
     values: items,
@@ -87,7 +73,7 @@ export function makeArtifactBatches<E, R>(
     count: (batch) => batch.artifacts.length,
     kind: "artifact",
     maxBytes: MAX_ARTIFACT_BATCH_BYTES,
-    maxCount: MAX_ARTIFACTS_PER_BATCH,
+    maxCount: MAX_ARTIFACT_BATCH_COUNT,
     releaseId,
     serialize: canonicalizeArtifactBatch,
     values: artifacts,

@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Array as EffectArray, Schema, Stream } from "effect";
+import type { NonEmptyReadonlyArray } from "effect/Array";
 
 type PublicationBatchKind = "artifact" | "material-projection" | "release-item";
 
@@ -66,16 +67,17 @@ function partitionBatch<T>(input: {
   readonly releaseId: ReleaseId;
   /** Serializes candidate values inside a conservative full envelope. */
   readonly serializeBatch: (
-    values: readonly T[],
+    values: NonEmptyReadonlyArray<T>,
     batchIndex: number,
     releaseId: ReleaseId
   ) => string;
   readonly values: readonly T[];
 }) {
-  const batches: T[][] = [];
+  const batches: NonEmptyReadonlyArray<T>[] = [];
   let batch: T[] = [];
   for (const [itemOffset, value] of input.values.entries()) {
-    const candidate = [...batch, value];
+    const isLast = itemOffset === input.values.length - 1;
+    const candidate = EffectArray.append(batch, value);
     const candidateBytes = utf8Bytes(
       input.serializeBatch(candidate, Number.MAX_SAFE_INTEGER, input.releaseId)
     );
@@ -84,14 +86,18 @@ function partitionBatch<T>(input: {
       candidateBytes <= input.maxBytes
     ) {
       batch = candidate;
+      if (isLast) {
+        batches.push(candidate);
+      }
       continue;
     }
-    if (batch.length > 0) {
+    if (EffectArray.isNonEmptyReadonlyArray(batch)) {
       batches.push(batch);
     }
-    batch = [value];
+    const standalone = EffectArray.of(value);
+    batch = standalone;
     const standaloneBytes = utf8Bytes(
-      input.serializeBatch(batch, Number.MAX_SAFE_INTEGER, input.releaseId)
+      input.serializeBatch(standalone, Number.MAX_SAFE_INTEGER, input.releaseId)
     );
     if (standaloneBytes > input.maxBytes) {
       return Effect.fail(
@@ -106,8 +112,10 @@ function partitionBatch<T>(input: {
         })
       );
     }
+    if (isLast) {
+      batches.push(standalone);
+    }
   }
-  batches.push(batch);
   return Effect.succeed(batches);
 }
 
@@ -118,7 +126,7 @@ function partitionBatch<T>(input: {
 export function streamBatches<T, B, E, R>(input: {
   /** Constructs the domain envelope for one ordered partition. */
   readonly build: (
-    values: readonly T[],
+    values: NonEmptyReadonlyArray<T>,
     batchIndex: number,
     releaseId: ReleaseId
   ) => B;
@@ -134,7 +142,7 @@ export function streamBatches<T, B, E, R>(input: {
 }) {
   /** Serializes a conservative candidate with the largest index width. */
   const buildCandidate = (
-    values: readonly T[],
+    values: NonEmptyReadonlyArray<T>,
     batchIndex: number,
     releaseId: ReleaseId
   ) => input.serialize(input.build(values, batchIndex, releaseId));

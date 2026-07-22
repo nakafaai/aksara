@@ -15,7 +15,7 @@ import { PublicationTarget } from "#publisher/publication/spec";
 import {
   PublicationStaleBaseError,
   PublicationTargetConflictError,
-} from "#publisher/target-errors";
+} from "#publisher/target/errors";
 
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
@@ -187,8 +187,12 @@ describe("completePublicationLifecycle", () => {
         stageRelease: () =>
           Effect.fail(
             new PublicationTargetConflictError({
-              message: "The manifest bytes changed.",
-              stage: "release",
+              conflict: {
+                code: "CONTENT_RELEASE_CONFLICT",
+                kind: "conflict",
+                operation: "stageRelease",
+                releaseId: release.manifest.releaseId,
+              },
             })
           ),
       });
@@ -206,9 +210,14 @@ describe("completePublicationLifecycle", () => {
       activate: () =>
         Effect.fail(
           new PublicationStaleBaseError({
-            activeReleaseId: ReleaseIdSchema.make("another-release"),
-            expectedBaseReleaseId: null,
-            releaseId: release.manifest.releaseId,
+            failure: {
+              activeReleaseId: ReleaseIdSchema.make("another-release"),
+              code: "CONTENT_RELEASE_STALE_BASE",
+              expectedBaseReleaseId: null,
+              kind: "stale-base",
+              operation: "activate",
+              releaseId: release.manifest.releaseId,
+            },
           })
         ),
     });

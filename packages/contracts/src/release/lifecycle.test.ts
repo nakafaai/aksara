@@ -59,6 +59,20 @@ describe("release lifecycle", () => {
         })
       )
     ).toBe(true);
+    const mismatchedReceipt = Schema.decodeUnknownEither(
+      ContentReleaseStatusSchema
+    )({
+      manifestHash,
+      phase: "completed",
+      receipt: { ...receipt, releaseId: "release-other" },
+      releaseId,
+    });
+    expect(Either.isLeft(mismatchedReceipt)).toBe(true);
+    if (Either.isLeft(mismatchedReceipt)) {
+      expect(String(mismatchedReceipt.left)).toContain(
+        "Expected the completed receipt to match the release status identity."
+      );
+    }
   });
 
   it("requires both immutable identity fields for status lookup", () => {
