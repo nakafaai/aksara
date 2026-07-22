@@ -5,6 +5,7 @@ import {
   ContentReleaseManifestSchema,
   PublicationReceiptSchema,
   ReleaseVerificationEvidenceSchema,
+  SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
@@ -27,11 +28,18 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rendererContractVersion: "2.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
+const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
+  keyId: "test-release-key",
+  manifest,
+  manifestHash: `sha256:${"e".repeat(64)}`,
+  signature: `${"A".repeat(85)}A`,
+});
 const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
   baseReleaseId: manifest.baseReleaseId,
   deleteHeads: 0,
   itemCount: 0,
   itemsDigest: manifest.itemsDigest,
+  manifestHash: release.manifestHash,
   projectionCount: manifest.projectionCount,
   projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,
@@ -112,7 +120,7 @@ describe("release validation", () => {
     await expect(
       Effect.runPromise(
         validateVerificationEvidence(
-          manifest,
+          release,
           summary,
           projectionSummary,
           evidence
@@ -123,7 +131,7 @@ describe("release validation", () => {
 
   it("rejects a projection count that differs from the signed manifest", async () => {
     const error = await Effect.runPromise(
-      validateVerificationEvidence(manifest, summary, projectionSummary, {
+      validateVerificationEvidence(release, summary, projectionSummary, {
         ...evidence,
         projectionCount: evidence.projectionCount + 1,
       }).pipe(Effect.flip)

@@ -3,27 +3,21 @@ import {
   canonicalizeMaterialProjection,
   type MaterialLessonProjection,
 } from "@nakafa/aksara-contracts/projection/material";
+import {
+  MAX_PROJECTION_BATCH_BYTES,
+  MAX_PROJECTION_BATCH_COUNT,
+} from "@nakafa/aksara-contracts/transport/limits";
+import type { StageProjectionBatchInput } from "@nakafa/aksara-contracts/transport/request";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 
-/** Maximum material projections held and sent in one target call. */
-export const MAX_PROJECTIONS_PER_BATCH = 100;
-
-/** Maximum complete projection envelope bytes sent per target call. */
-export const MAX_PROJECTION_BATCH_BYTES = 4 * 1024 * 1024;
-
-/** Ordered material projection batch accepted by publication infrastructure. */
-export interface ProjectionBatch {
-  readonly batchIndex: number;
-  readonly projections: readonly MaterialLessonProjection[];
-  readonly releaseId: ReleaseId;
-}
-
 /** Serializes one projection batch in deterministic wire field order. */
-export function canonicalizeProjectionBatch(batch: ProjectionBatch) {
+export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {
   return `{"batchIndex":${batch.batchIndex},"projections":[${batch.projections
     .map(canonicalizeMaterialProjection)
-    .join(",")}],"releaseId":${JSON.stringify(batch.releaseId)}}`;
+    .join(
+      ","
+    )}],"operation":"stageProjectionBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
 }
 
 /** Streams bounded projection envelopes with contiguous batch identities. */
@@ -40,7 +34,7 @@ export function makeProjectionBatches<E, R>(
     count: (batch) => batch.projections.length,
     kind: "material-projection",
     maxBytes: MAX_PROJECTION_BATCH_BYTES,
-    maxCount: MAX_PROJECTIONS_PER_BATCH,
+    maxCount: MAX_PROJECTION_BATCH_COUNT,
     releaseId,
     serialize: canonicalizeProjectionBatch,
     values: projections,

@@ -3,12 +3,14 @@
 import { Buffer } from "node:buffer";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import {
+  MAX_PROJECTION_BATCH_BYTES,
+  MAX_PROJECTION_BATCH_COUNT,
+} from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   canonicalizeProjectionBatch,
-  MAX_PROJECTION_BATCH_BYTES,
-  MAX_PROJECTIONS_PER_BATCH,
   makeProjectionBatches,
 } from "#publisher/projection-batch";
 
@@ -51,13 +53,35 @@ describe("projection batching", () => {
 
   it("partitions projection rows at the exact target count ceiling", async () => {
     const values = Array.from(
-      { length: MAX_PROJECTIONS_PER_BATCH + 1 },
+      { length: MAX_PROJECTION_BATCH_COUNT + 1 },
       (_, index) => projection(index)
     );
     const batches = await collect(Stream.fromIterable(values));
     expect(batches.map(({ projections }) => projections.length)).toEqual([
-      MAX_PROJECTIONS_PER_BATCH,
+      MAX_PROJECTION_BATCH_COUNT,
       1,
+    ]);
+    expect(
+      batches.every(
+        (batch) =>
+          Buffer.byteLength(canonicalizeProjectionBatch(batch), "utf8") <=
+          MAX_PROJECTION_BATCH_BYTES
+      )
+    ).toBe(true);
+  });
+
+  it("splits a final projection that only fits a fresh envelope", async () => {
+    const title = "x".repeat(Math.floor(MAX_PROJECTION_BATCH_BYTES / 2));
+    const batches = await collect(
+      Stream.make(
+        projection(0, title),
+        projection(1, title),
+        projection(2, title)
+      )
+    );
+
+    expect(batches.map(({ projections }) => projections.length)).toEqual([
+      1, 1, 1,
     ]);
     expect(
       batches.every(

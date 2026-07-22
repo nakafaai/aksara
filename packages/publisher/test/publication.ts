@@ -168,11 +168,12 @@ export function makeTarget(release: {
     stagedProjections: release.manifest.projectionCount,
   });
   /** Returns target-side evidence recomputed from persisted staged rows. */
-  const evidence = () => ({
+  const evidence = (manifestHash: SignedContentRelease["manifestHash"]) => ({
     baseReleaseId: release.manifest.baseReleaseId,
     deleteHeads: 0,
     itemCount: release.manifest.itemCount,
     itemsDigest: release.manifest.itemsDigest,
+    manifestHash,
     projectionCount: release.manifest.projectionCount,
     projectionDigest: release.manifest.projectionDigest,
     releaseId: release.manifest.releaseId,
@@ -189,7 +190,9 @@ export function makeTarget(release: {
       }
     })
   );
-  const verify = vi.fn(() => Effect.succeed(evidence()));
+  const verify = vi.fn((signed: SignedContentRelease) =>
+    Effect.succeed(evidence(signed.manifestHash))
+  );
   const activate = vi.fn(() =>
     Effect.sync(() => {
       phase = "active";

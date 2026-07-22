@@ -26,7 +26,7 @@ import {
   MAX_ROLLBACK_PAGE_BYTES,
   streamRollbackRecords,
 } from "#publisher/rollback/stream";
-import { PublicationTargetTransportError } from "#publisher/target-errors";
+import { PublicationTargetTransportError } from "#publisher/target/errors";
 
 const rollbackOf = ReleaseIdSchema.make("test-rollback-source");
 
@@ -256,8 +256,7 @@ describe("streamRollbackRecords", () => {
 
   it("preserves typed target transport failures", async () => {
     const transport = new PublicationTargetTransportError({
-      cause: "test transport",
-      message: "Test rollback transport failed.",
+      detail: { reason: "network" },
       stage: "rollback",
     });
     const error = await reject(targetWith(() => Effect.fail(transport)));

@@ -59,6 +59,20 @@ describe("release lifecycle", () => {
         })
       )
     ).toBe(true);
+    const mismatchedReceipt = Schema.decodeUnknownEither(
+      ContentReleaseStatusSchema
+    )({
+      manifestHash,
+      phase: "completed",
+      receipt: { ...receipt, releaseId: "release-other" },
+      releaseId,
+    });
+    expect(Either.isLeft(mismatchedReceipt)).toBe(true);
+    if (Either.isLeft(mismatchedReceipt)) {
+      expect(String(mismatchedReceipt.left)).toContain(
+        "Expected the completed receipt to match the release status identity."
+      );
+    }
   });
 
   it("requires both immutable identity fields for status lookup", () => {
@@ -102,8 +116,10 @@ describe("release lifecycle", () => {
       Either.isRight(
         Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)({
           complete: false,
+          cursor: null,
           deletedArtifacts: 4,
           deletedItems: 8,
+          limit: 100,
           nextCursor: "next-page",
           releaseId,
         })
@@ -113,8 +129,10 @@ describe("release lifecycle", () => {
       Either.isRight(
         Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)({
           complete: true,
+          cursor: "current-page",
           deletedArtifacts: 1,
           deletedItems: 2,
+          limit: 100,
           nextCursor: null,
           releaseId,
         })
@@ -124,27 +142,46 @@ describe("release lifecycle", () => {
       ReleaseCleanupReceiptSchema
     )({
       complete: true,
+      cursor: "current-page",
       deletedArtifacts: 1,
       deletedItems: 2,
+      limit: 100,
       nextCursor: "unexpected-page",
       releaseId,
     });
     expect(Either.isLeft(invalidCursor)).toBe(true);
     if (Either.isLeft(invalidCursor)) {
       expect(String(invalidCursor.left)).toContain(
-        "Expected a cursor only when another cleanup page remains."
+        "Expected a new cursor only when another cleanup page remains."
       );
     }
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)({
-          complete: false,
-          deletedArtifacts: 1,
-          deletedItems: 2,
-          nextCursor: null,
-          releaseId,
-        })
-      )
-    ).toBe(true);
+    for (const invalidReceipt of [
+      {
+        complete: false,
+        cursor: "current-page",
+        deletedArtifacts: 1,
+        deletedItems: 2,
+        limit: 100,
+        nextCursor: null,
+        releaseId,
+      },
+      {
+        complete: false,
+        cursor: "current-page",
+        deletedArtifacts: 1,
+        deletedItems: 2,
+        limit: 100,
+        nextCursor: "current-page",
+        releaseId,
+      },
+    ]) {
+      expect(
+        Either.isLeft(
+          Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)(
+            invalidReceipt
+          )
+        )
+      ).toBe(true);
+    }
   });
 });

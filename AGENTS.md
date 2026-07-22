@@ -43,8 +43,11 @@ for clarity, measurable scale, and safe releases.
 - Run focused workspace tests through `pnpm exec turbo run test --filter=...`.
   Do not bypass Turbo for tests that consume another workspace because Turbo
   owns the dependency build order.
-- Never add deployment credentials to the repository. Publisher code describes
-  release operations but performs no external deployment in this foundation.
+- Never add deployment credentials to the repository. Publisher transport
+  implementations must remain injected, authenticated, and exact-contract.
+  Tests and repository verification never call a remote target; only an
+  explicit CLI or protected release boundary may execute publication after
+  approval.
 - Use colocated `name.test.ts` files to test the real `name.ts` module.
 - Do not add compatibility layers. Migration-only seams need explicit deletion
   gates.

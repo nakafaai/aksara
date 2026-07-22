@@ -23,12 +23,18 @@ function decodeContract<A, I>(
   }).pipe(Effect.mapError(() => new ReleaseCleanupContractError({ contract })));
 }
 
-/** Requires cleanup evidence to belong to the requested release identity. */
+/** Requires cleanup evidence to match the request identity and row ceiling. */
 function validateReceipt(
-  releaseId: (typeof ReleaseCleanupRequestSchema.Type)["releaseId"],
+  request: typeof ReleaseCleanupRequestSchema.Type,
   receipt: ReleaseCleanupReceipt
 ) {
-  if (receipt.releaseId === releaseId) {
+  if (
+    receipt.releaseId === request.releaseId &&
+    receipt.cursor === request.cursor &&
+    receipt.limit === request.limit &&
+    receipt.deletedArtifacts <= request.limit &&
+    receipt.deletedItems <= request.limit
+  ) {
     return Effect.succeed(receipt);
   }
   return Effect.fail(new ReleaseCleanupContractError({ contract: "receipt" }));
@@ -50,5 +56,5 @@ export const cleanupContentRelease = Effect.fn(
     "receipt",
     response
   );
-  return yield* validateReceipt(request.releaseId, receipt);
+  return yield* validateReceipt(request, receipt);
 });

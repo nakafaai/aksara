@@ -11,9 +11,10 @@ Function Concept vertical slice; it is not connected to Nakafa production yet.
 - `@nakafa/aksara-compiler` validates trusted MDX syntax and compiles it into
   standard `function-body` output without executing it.
 - `@nakafa/aksara-publisher` verifies, signs, batches, stages, and activates a
-  release through injected source and target interfaces. It prepares the real
-  material slice from AST-decoded MDX metadata. No Convex adapter is implemented
-  yet.
+  release through injected source and target interfaces. Its strict
+  authenticated HTTP target owns the client half of the publication protocol.
+  It prepares the real material slice from AST-decoded MDX metadata. The Convex
+  ingress and storage implementation are not implemented yet.
 - `@nakafa/aksara-corpus` owns the reviewed Function Concept `en` and `id`
   sources plus their non-React source registry. No substitute lessons or React
   implementations live in this package.
