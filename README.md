@@ -42,7 +42,7 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm verify:package
-pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx
+pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx
 ```
 
 Run a focused workspace test through Turbo so dependency builds stay current:

@@ -109,7 +109,7 @@ describe("ids", () => {
     expect(
       Either.isRight(
         Schema.decodeUnknownEither(CorpusSourcePathSchema)(
-          "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx"
+          "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx"
         )
       )
     ).toBe(true);
