@@ -120,8 +120,9 @@ function sendPublicationRequest(
       HttpClientRequest.bearerToken(config.token),
       HttpClientRequest.bodyText(body, "application/json")
     );
+    const scopedClient = client.pipe(HttpClient.withScope);
     const exchange = Effect.gen(function* () {
-      const response = yield* client
+      const response = yield* scopedClient
         .execute(outgoing)
         .pipe(Effect.mapError(() => networkError(request)));
       if (isTransientPublicationStatus(response.status)) {
@@ -141,7 +142,8 @@ function sendPublicationRequest(
             detail: { reason: "timeout" },
             stage: targetStage(request.operation),
           }),
-      })
+      }),
+      Effect.scoped
     );
   });
 }

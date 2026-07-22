@@ -1,4 +1,5 @@
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
+import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -25,7 +26,7 @@ function interpret(
 /** Runs one expected failure and returns its typed error tag. */
 function failureTag(
   request: PublicationRequest,
-  body: ReturnType<typeof transportResponse>,
+  body: PublicationResponse,
   status: number
 ) {
   return interpret(request, body, status).pipe(
@@ -251,5 +252,27 @@ describe("publication target protocol", () => {
       )
     );
     expect(tags).toEqual(failures.map(() => "PublicationTargetProtocolError"));
+    const contradictoryBases = [null, request.release.manifest.releaseId].map(
+      (activeReleaseId) =>
+        ({
+          failure: {
+            activeReleaseId,
+            code: "CONTENT_RELEASE_STALE_BASE",
+            expectedBaseReleaseId: null,
+            kind: "stale-base",
+            operation: "stageRelease",
+            releaseId: request.release.manifest.releaseId,
+          },
+          ok: false,
+        }) satisfies PublicationResponse
+    );
+    const baseTags = await Effect.runPromise(
+      Effect.forEach(contradictoryBases, (body) =>
+        failureTag(request, body, 409)
+      )
+    );
+    expect(baseTags).toEqual(
+      contradictoryBases.map(() => "PublicationTargetProtocolError")
+    );
   });
 });

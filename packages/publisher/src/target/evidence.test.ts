@@ -1,3 +1,4 @@
+import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
@@ -88,6 +89,107 @@ describe("publication success evidence", () => {
         )
       )
     ).toEqual(receiptCases.map(() => false));
+  });
+
+  it("rejects completed finalization receipts from another manifest", () => {
+    const request = transportRequests.find(
+      (candidate) => candidate.operation === "finalize"
+    );
+    if (request?.operation !== "finalize") {
+      return;
+    }
+    const success = transportSuccess(request);
+    if (success.operation !== "finalize" || !success.value.done) {
+      return;
+    }
+    const response = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ...success,
+      value: {
+        ...success.value,
+        receipt: {
+          ...success.value.receipt,
+          projectionDigest: `sha256:${"f".repeat(64)}`,
+        },
+      },
+    });
+    expect(hasBoundPublicationSuccess(request, response)).toBe(false);
+  });
+
+  it("binds rollback pages to their requested cursor and limit", () => {
+    const request = transportRequests.find(
+      (candidate) => candidate.operation === "rollbackPage"
+    );
+    if (request?.operation !== "rollbackPage") {
+      return;
+    }
+    const records = [0, 1].map((index) => ({
+      change: {
+        contentKey: `test:deleted-${index}`,
+        locale: "en",
+        operation: "delete",
+      },
+      index,
+    }));
+    const response = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ok: true,
+      operation: "rollbackPage",
+      value: {
+        done: true,
+        nextIndex: 1,
+        records,
+        rollbackOf: request.rollbackOf,
+        total: 2,
+      },
+    });
+    const wrongCursor = Schema.decodeUnknownSync(PublicationRequestSchema)({
+      ...request,
+      afterIndex: 0,
+    });
+    const tooSmall = Schema.decodeUnknownSync(PublicationRequestSchema)({
+      ...request,
+      limit: 1,
+    });
+    expect(
+      [wrongCursor, tooSmall].map((candidate) =>
+        hasBoundPublicationSuccess(candidate, response)
+      )
+    ).toEqual([false, false]);
+  });
+
+  it("binds cleanup receipts to their requested cursor and limit", () => {
+    const request = transportRequests.find(
+      (candidate) => candidate.operation === "cleanup"
+    );
+    if (request?.operation !== "cleanup") {
+      return;
+    }
+    const success = transportSuccess(request);
+    if (success.operation !== "cleanup") {
+      return;
+    }
+    const responses = [
+      Schema.decodeUnknownSync(PublicationSuccessSchema)({
+        ...success,
+        value: { ...success.value, cursor: "another-page" },
+      }),
+      Schema.decodeUnknownSync(PublicationSuccessSchema)({
+        ...success,
+        value: { ...success.value, deletedArtifacts: 2 },
+      }),
+      Schema.decodeUnknownSync(PublicationSuccessSchema)({
+        ...success,
+        value: { ...success.value, deletedItems: 2 },
+      }),
+    ];
+    const limited = Schema.decodeUnknownSync(PublicationRequestSchema)({
+      ...request,
+      limit: 1,
+    });
+    expect(
+      responses.map((response, index) =>
+        hasBoundPublicationSuccess(index === 0 ? request : limited, response)
+      )
+    ).toEqual([false, false, false]);
   });
 
   it("rejects batch receipts with another index or row count", () => {

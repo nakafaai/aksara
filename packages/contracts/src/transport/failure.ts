@@ -131,7 +131,17 @@ export const PublicationStaleBaseSchema = Schema.Struct({
   kind: Schema.Literal("stale-base"),
   operation: Schema.Literal("stageRelease", "activate"),
   releaseId: ReleaseIdSchema,
-});
+}).pipe(
+  Schema.filter(
+    ({ activeReleaseId, expectedBaseReleaseId, releaseId }) =>
+      activeReleaseId !== expectedBaseReleaseId &&
+      activeReleaseId !== releaseId,
+    {
+      message: () =>
+        "Expected the active release to differ from the requested base and candidate.",
+    }
+  )
+);
 export type PublicationStaleBase = typeof PublicationStaleBaseSchema.Type;
 
 /** Complete stable publication failure vocabulary returned on the wire. */

@@ -166,6 +166,7 @@ export function transportSuccess(
         operation: value.operation,
         value: {
           complete: true,
+          cursor: value.cursor,
           deletedArtifacts: 0,
           deletedItems: 0,
           nextCursor: null,

@@ -14,6 +14,7 @@ import { PublicationTarget } from "#publisher/publication/spec";
 const releaseId = ReleaseIdSchema.make("release-cleanup");
 const receipt: ReleaseCleanupReceipt = {
   complete: false,
+  cursor: null,
   deletedArtifacts: 2,
   deletedItems: 3,
   nextCursor: "next-page",
@@ -80,15 +81,24 @@ describe("cleanupContentRelease", () => {
     expect(cleanup).not.toHaveBeenCalled();
   });
 
-  it("rejects cleanup evidence for another release", async () => {
-    const error = await Effect.runPromise(
-      runCleanup(
-        { cursor: null, limit: 100, releaseId },
-        { ...receipt, releaseId: ReleaseIdSchema.make("release-other") }
-      ).pipe(Effect.flip)
+  it("rejects cleanup evidence for another request or above its limit", async () => {
+    const invalid = [
+      { ...receipt, releaseId: ReleaseIdSchema.make("release-other") },
+      { ...receipt, cursor: "another-page" },
+      { ...receipt, deletedArtifacts: 101 },
+      { ...receipt, deletedItems: 101 },
+    ];
+    const errors = await Effect.runPromise(
+      Effect.forEach(invalid, (candidate) =>
+        runCleanup({ cursor: null, limit: 100, releaseId }, candidate).pipe(
+          Effect.flip
+        )
+      )
     );
-    expect(error).toEqual(
-      new ReleaseCleanupContractError({ contract: "receipt" })
+    expect(errors).toEqual(
+      invalid.map(
+        () => new ReleaseCleanupContractError({ contract: "receipt" })
+      )
     );
   });
 });

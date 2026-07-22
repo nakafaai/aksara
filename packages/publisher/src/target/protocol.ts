@@ -88,7 +88,10 @@ function hasBoundFailure(
     return (
       (request.operation === "stageRelease" ||
         request.operation === "activate") &&
-      failure.expectedBaseReleaseId === request.release.manifest.baseReleaseId
+      failure.expectedBaseReleaseId ===
+        request.release.manifest.baseReleaseId &&
+      failure.activeReleaseId !== failure.expectedBaseReleaseId &&
+      failure.activeReleaseId !== request.release.manifest.releaseId
     );
   }
   if (failure.operation === "stageRelease") {

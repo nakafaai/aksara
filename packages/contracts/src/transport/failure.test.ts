@@ -5,6 +5,7 @@ import {
   PublicationFailureCodeSchema,
   PublicationFailureSchema,
   PublicationFailureStatusSchema,
+  PublicationStaleBaseSchema,
   publicationFailureStatus,
 } from "#contracts/transport/failure";
 
@@ -149,6 +150,22 @@ describe("publication failures", () => {
         releaseId,
       },
       {
+        activeReleaseId: null,
+        code: "CONTENT_RELEASE_STALE_BASE",
+        expectedBaseReleaseId: null,
+        kind: "stale-base",
+        operation: "stageRelease",
+        releaseId,
+      },
+      {
+        activeReleaseId: releaseId,
+        code: "CONTENT_RELEASE_STALE_BASE",
+        expectedBaseReleaseId: null,
+        kind: "stale-base",
+        operation: "activate",
+        releaseId,
+      },
+      {
         code: "CONTENT_RELEASE_CONFLICT",
         kind: "conflict",
         operation: "status",
@@ -161,6 +178,22 @@ describe("publication failures", () => {
       },
     ]) {
       expect(accepts(failure)).toBe(false);
+    }
+    const invalidStaleBase = Schema.decodeUnknownEither(
+      PublicationStaleBaseSchema
+    )({
+      activeReleaseId: releaseId,
+      code: "CONTENT_RELEASE_STALE_BASE",
+      expectedBaseReleaseId: null,
+      kind: "stale-base",
+      operation: "activate",
+      releaseId,
+    });
+    expect(Either.isLeft(invalidStaleBase)).toBe(true);
+    if (Either.isLeft(invalidStaleBase)) {
+      expect(String(invalidStaleBase.left)).toContain(
+        "Expected the active release to differ from the requested base and candidate."
+      );
     }
   });
 });

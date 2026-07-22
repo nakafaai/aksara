@@ -48,18 +48,44 @@ type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;
 type ActivateRequest = Extract<PublicationRequest, { operation: "activate" }>;
 type ActivateSuccess = Extract<PublicationSuccess, { operation: "activate" }>;
 
-/** Binds an activation receipt to every manifest field it reports. */
-function hasBoundActivation(
-  request: ActivateRequest,
-  response: ActivateSuccess
+/** Binds one publication receipt to every signed manifest field it reports. */
+function hasBoundManifestReceipt(
+  request: ActivateRequest["release"],
+  receipt: ActivateSuccess["value"]
 ) {
-  const { manifest } = request.release;
-  const receipt = response.value;
+  const { manifest } = request;
   return (
     receipt.releaseId === manifest.releaseId &&
     receipt.projectionDigest === manifest.projectionDigest &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount
+  );
+}
+
+/** Binds one cleanup receipt to the exact request cursor and row ceiling. */
+function hasBoundCleanup(
+  request: Extract<PublicationRequest, { operation: "cleanup" }>,
+  response: Extract<PublicationSuccess, { operation: "cleanup" }>
+) {
+  const receipt = response.value;
+  return (
+    receipt.releaseId === request.releaseId &&
+    receipt.cursor === request.cursor &&
+    receipt.deletedArtifacts <= request.limit &&
+    receipt.deletedItems <= request.limit
+  );
+}
+
+/** Binds one rollback page to the exact requested cursor and row ceiling. */
+function hasBoundRollbackPage(
+  request: Extract<PublicationRequest, { operation: "rollbackPage" }>,
+  response: Extract<PublicationSuccess, { operation: "rollbackPage" }>
+) {
+  const page = response.value;
+  return (
+    page.rollbackOf === request.rollbackOf &&
+    page.records.length <= request.limit &&
+    page.nextIndex === request.afterIndex + page.records.length
   );
 }
 
@@ -91,17 +117,18 @@ export function hasBoundPublicationSuccess(
     Match.discriminatorsExhaustive("operation")({
       activate: (value) =>
         response.operation === "activate" &&
-        hasBoundActivation(value, response),
+        hasBoundManifestReceipt(value.release, response.value),
       cleanup: (value) =>
-        response.operation === "cleanup" &&
-        response.value.releaseId === value.releaseId,
+        response.operation === "cleanup" && hasBoundCleanup(value, response),
       finalize: (value) =>
         response.operation === "finalize" &&
         response.releaseId === value.release.manifest.releaseId &&
-        hasBoundFinalizeProgress(value, response),
+        hasBoundFinalizeProgress(value, response) &&
+        (!response.value.done ||
+          hasBoundManifestReceipt(value.release, response.value.receipt)),
       rollbackPage: (value) =>
         response.operation === "rollbackPage" &&
-        response.value.rollbackOf === value.rollbackOf,
+        hasBoundRollbackPage(value, response),
       stageArtifactBatch: (value) =>
         response.operation === "stageArtifactBatch" &&
         hasBoundBatchReceipt(value, response.value),

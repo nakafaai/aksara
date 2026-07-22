@@ -71,6 +71,7 @@ export type ReleaseCleanupRequest = typeof ReleaseCleanupRequestSchema.Type;
 /** Resumable evidence returned after one bounded cleanup page. */
 export const ReleaseCleanupReceiptSchema = Schema.Struct({
   complete: Schema.Boolean,
+  cursor: Schema.NullOr(Schema.NonEmptyTrimmedString),
   deletedArtifacts: CleanupCountSchema,
   deletedItems: CleanupCountSchema,
   nextCursor: Schema.NullOr(Schema.NonEmptyTrimmedString),
@@ -80,10 +81,10 @@ export const ReleaseCleanupReceiptSchema = Schema.Struct({
     (receipt) =>
       receipt.complete
         ? receipt.nextCursor === null
-        : receipt.nextCursor !== null,
+        : receipt.nextCursor !== null && receipt.nextCursor !== receipt.cursor,
     {
       message: () =>
-        "Expected a cursor only when another cleanup page remains.",
+        "Expected a new cursor only when another cleanup page remains.",
     }
   )
 );

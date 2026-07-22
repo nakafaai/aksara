@@ -82,6 +82,7 @@ const successes = [
     operation: "cleanup",
     value: {
       complete: true,
+      cursor: null,
       deletedArtifacts: 1,
       deletedItems: 2,
       nextCursor: null,

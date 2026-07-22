@@ -185,11 +185,13 @@ describe("HTTP publication target", () => {
   });
 
   it("maps response decoding and client transport failures", async () => {
-    const malformed = HttpClient.make((request) =>
-      Effect.succeed(
+    let malformedSignal: AbortSignal | undefined;
+    const malformed = HttpClient.make((request, _url, signal) => {
+      malformedSignal = signal;
+      return Effect.succeed(
         HttpClientResponse.fromWeb(request, new Response("{", { status: 200 }))
-      )
-    );
+      );
+    });
     const malformedTarget = await makeTarget(malformed);
     const malformedError = await Effect.runPromise(
       malformedTarget
@@ -200,6 +202,7 @@ describe("HTTP publication target", () => {
         .pipe(Effect.flip)
     );
     expect(malformedError._tag).toBe("PublicationTargetProtocolError");
+    expect(malformedSignal?.aborted).toBe(true);
 
     const failed = HttpClient.make((request) =>
       Effect.fail(
@@ -219,11 +222,13 @@ describe("HTTP publication target", () => {
   });
 
   it("short-circuits transient status without reading an untyped body", async () => {
-    const transient = HttpClient.make((request) =>
-      Effect.succeed(
+    let transientSignal: AbortSignal | undefined;
+    const transient = HttpClient.make((request, _url, signal) => {
+      transientSignal = signal;
+      return Effect.succeed(
         HttpClientResponse.fromWeb(request, new Response(null, { status: 503 }))
-      )
-    );
+      );
+    });
     const target = await makeTarget(transient);
     const error = await Effect.runPromise(
       target.stageRelease(transportRelease).pipe(Effect.flip)
@@ -233,6 +238,7 @@ describe("HTTP publication target", () => {
       detail: { reason: "transient-status", status: 503 },
       stage: "release",
     });
+    expect(transientSignal?.aborted).toBe(true);
   });
 
   it("times out a stalled ingress with the exact operation stage", async () => {

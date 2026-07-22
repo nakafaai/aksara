@@ -116,6 +116,7 @@ describe("release lifecycle", () => {
       Either.isRight(
         Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)({
           complete: false,
+          cursor: null,
           deletedArtifacts: 4,
           deletedItems: 8,
           nextCursor: "next-page",
@@ -127,6 +128,7 @@ describe("release lifecycle", () => {
       Either.isRight(
         Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)({
           complete: true,
+          cursor: "current-page",
           deletedArtifacts: 1,
           deletedItems: 2,
           nextCursor: null,
@@ -138,6 +140,7 @@ describe("release lifecycle", () => {
       ReleaseCleanupReceiptSchema
     )({
       complete: true,
+      cursor: "current-page",
       deletedArtifacts: 1,
       deletedItems: 2,
       nextCursor: "unexpected-page",
@@ -146,19 +149,34 @@ describe("release lifecycle", () => {
     expect(Either.isLeft(invalidCursor)).toBe(true);
     if (Either.isLeft(invalidCursor)) {
       expect(String(invalidCursor.left)).toContain(
-        "Expected a cursor only when another cleanup page remains."
+        "Expected a new cursor only when another cleanup page remains."
       );
     }
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)({
-          complete: false,
-          deletedArtifacts: 1,
-          deletedItems: 2,
-          nextCursor: null,
-          releaseId,
-        })
-      )
-    ).toBe(true);
+    for (const invalidReceipt of [
+      {
+        complete: false,
+        cursor: "current-page",
+        deletedArtifacts: 1,
+        deletedItems: 2,
+        nextCursor: null,
+        releaseId,
+      },
+      {
+        complete: false,
+        cursor: "current-page",
+        deletedArtifacts: 1,
+        deletedItems: 2,
+        nextCursor: "current-page",
+        releaseId,
+      },
+    ]) {
+      expect(
+        Either.isLeft(
+          Schema.decodeUnknownEither(ReleaseCleanupReceiptSchema)(
+            invalidReceipt
+          )
+        )
+      ).toBe(true);
+    }
   });
 });
