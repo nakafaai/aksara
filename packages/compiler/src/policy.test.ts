@@ -91,6 +91,8 @@ describe("enforceExecutablePolicy", () => {
     ["constructor", '{({})["constructor"]}'],
     ["constructor", '{({})["con" + "structor"]}'],
     ["constructor", ["{({})[`con$", '{"str"}uctor`]}'].join("")],
+    ["constructor", "{(({ constructor }) => constructor)({})}"],
+    ["constructor", '{(({ ["con" + "structor"]: value }) => value)({})}'],
   ] as const)(
     "rejects prototype-chain property %s",
     async (identifier, rawMdx) => {

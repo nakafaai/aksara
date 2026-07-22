@@ -48,7 +48,12 @@ describe("finalization progress", () => {
       ...request,
       release: {
         ...request.release,
-        manifest: { ...request.release.manifest, itemCount: 0 },
+        manifest: {
+          ...request.release.manifest,
+          deleteCount: 0,
+          itemCount: 0,
+          upsertCount: 0,
+        },
       },
     });
     const emptyResponse = progress({

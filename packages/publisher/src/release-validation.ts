@@ -113,8 +113,11 @@ export function validateVerificationEvidence(
     evidence.baseReleaseId === manifest.baseReleaseId &&
     evidence.itemCount === manifest.itemCount &&
     evidence.itemsDigest === manifest.itemsDigest &&
+    evidence.stagedArtifacts === manifest.upsertCount &&
     evidence.stagedArtifacts === summary.upsertCount &&
+    evidence.upsertHeads === manifest.upsertCount &&
     evidence.upsertHeads === summary.upsertCount &&
+    evidence.deleteHeads === manifest.deleteCount &&
     evidence.deleteHeads === summary.deleteCount &&
     evidence.rendererContractVersion === manifest.rendererContractVersion &&
     evidence.rendererManifestHash === manifest.rendererManifestHash &&
@@ -131,21 +134,18 @@ export function validateVerificationEvidence(
   );
 }
 
-/** Requires atomic activation to report the exact authenticated delta. */
-export function validatePublicationReceipt(
+/** Requires target evidence to report the exact signed manifest delta. */
+export function validateManifestReceipt(
   manifest: ContentReleaseManifest,
-  summary: VerifiedContentReleaseItems,
-  projectionSummary: VerifiedContentProjections,
   receipt: PublicationReceipt
 ) {
   const matches =
     receipt.releaseId === manifest.releaseId &&
-    receipt.stagedArtifacts === summary.upsertCount &&
+    receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&
-    receipt.stagedProjections === projectionSummary.count &&
-    receipt.activatedHeads === summary.upsertCount &&
-    receipt.deletedHeads === summary.deleteCount &&
+    receipt.activatedHeads === manifest.upsertCount &&
+    receipt.deletedHeads === manifest.deleteCount &&
     receipt.projectionDigest === manifest.projectionDigest;
   if (matches) {
     return Effect.succeed(receipt);
@@ -155,4 +155,27 @@ export function validatePublicationReceipt(
       message: "Publication receipt does not match the signed release delta.",
     })
   );
+}
+
+/** Binds target evidence to both the signed manifest and replayed streams. */
+export function validatePublicationReceipt(
+  manifest: ContentReleaseManifest,
+  summary: VerifiedContentReleaseItems,
+  projectionSummary: VerifiedContentProjections,
+  receipt: PublicationReceipt
+) {
+  const streamsMatch =
+    receipt.stagedArtifacts === summary.upsertCount &&
+    receipt.stagedProjections === projectionSummary.count &&
+    receipt.activatedHeads === summary.upsertCount &&
+    receipt.deletedHeads === summary.deleteCount;
+  if (!streamsMatch) {
+    return Effect.fail(
+      new PublicationReceiptMismatchError({
+        message:
+          "Publication receipt does not match the replayed release streams.",
+      })
+    );
+  }
+  return validateManifestReceipt(manifest, receipt);
 }

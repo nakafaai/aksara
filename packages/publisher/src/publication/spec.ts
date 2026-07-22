@@ -1,3 +1,4 @@
+import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
 import type { ContractDecodeError } from "@nakafa/aksara-contracts/errors";
@@ -13,10 +14,18 @@ import type {
   ReleaseVerificationEvidence,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import type {
+  HeadPage,
+  HeadPageRequest,
+} from "@nakafa/aksara-contracts/release/head";
 import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type {
+  ContentReleaseBundle,
+  ContentReleaseCurrent,
   ContentReleaseStatus,
   ContentReleaseStatusRequest,
+  ReleaseAbortReceipt,
+  ReleaseAbortRequest,
   ReleaseCleanupReceipt,
   ReleaseCleanupRequest,
 } from "@nakafa/aksara-contracts/release/lifecycle";
@@ -36,13 +45,17 @@ import {
   type Stream,
 } from "effect";
 import type { PublicationBatchLimitError } from "#publisher/batch/core";
-import type { PreparedContentRelease } from "#publisher/preparation/spec";
+import type {
+  PreparedGitRelease,
+  PreparedRollbackRelease,
+} from "#publisher/preparation/spec";
 import type {
   PublicationReceiptMismatchError,
   ReleaseArtifactMismatchError,
   ReleaseRendererManifestMismatchError,
   ReleaseVerificationMismatchError,
 } from "#publisher/release-validation";
+import type { ReplaySpoolError } from "#publisher/replay/error";
 import type { PublicationSigner } from "#publisher/signing";
 import type { ContentSigningError } from "#publisher/signing-errors";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
@@ -72,6 +85,21 @@ export class PublicationStatusMismatchError extends Schema.TaggedError<Publicati
 export class PublicationReleaseAbortedError extends Schema.TaggedError<PublicationReleaseAbortedError>()(
   "PublicationReleaseAbortedError",
   { manifestHash: Sha256HashSchema, releaseId: ReleaseIdSchema }
+) {}
+
+/** A stored release is not yet or no longer safe for direct finalization. */
+export class PublicationResumePhaseError extends Schema.TaggedError<PublicationResumePhaseError>()(
+  "PublicationResumePhaseError",
+  {
+    phase: Schema.Literal(
+      "missing",
+      "staging",
+      "verifying",
+      "verified",
+      "aborting"
+    ),
+    releaseId: ReleaseIdSchema,
+  }
 ) {}
 
 /** A prepared mode disagrees with the provenance signed by its manifest. */
@@ -111,6 +139,19 @@ export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
 export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
   PublicationTarget,
   {
+    /** Advances one bounded server-owned abort page idempotently. */
+    readonly abort: (
+      request: ReleaseAbortRequest
+    ) => Effect.Effect<ReleaseAbortReceipt, PublicationTargetFailure>;
+    /** Reads authoritative active and pending publication identities. */
+    readonly current: () => Effect.Effect<
+      ContentReleaseCurrent,
+      PublicationTargetFailure
+    >;
+    /** Reads one authoritative material-head page for an active release. */
+    readonly headPage: (
+      request: HeadPageRequest
+    ) => Effect.Effect<HeadPage, PublicationTargetFailure>;
     /** Atomically activates a fully verified release. */
     readonly activate: (
       release: SignedContentRelease
@@ -141,7 +182,7 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages the signed release envelope idempotently. */
     readonly stageRelease: (
-      release: SignedContentRelease
+      input: ContentReleaseBundle
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Reads the durable resume phase for one release. */
     readonly status: (
@@ -194,26 +235,38 @@ export type PublishContentReleaseError<E> =
   | PublicationReceiptMismatchError
   | PublicationModeMismatchError
   | PublicationReleaseAbortedError
+  | PublicationResumePhaseError
   | PublicationSourceError
   | PublicationStatusMismatchError
   | PublicationTargetFailure
+  | ReplaySpoolError
   | ReleaseArtifactMismatchError
   | ReleaseRendererManifestMismatchError
   | ReleaseVerificationMismatchError;
 
-type PublishContentReleaseRequirements<R> =
+type PublishReleaseRequirements<R> =
+  | FileSystem.FileSystem
+  | Path.Path
   | PublicationSigningKey
-  | PublicationSource
   | PublicationTarget
   | Effect.Effect.Context<ReturnType<typeof verifySignedContentArtifact>>
   | Effect.Effect.Context<ReturnType<typeof verifySignedContentRelease>>
   | R;
 
-/** Complete Effect interface for one resumable publication attempt. */
-export type PublishContentRelease = <E, R>(
-  input: PreparedContentRelease<E, R>
+/** Exact-Git publication requires the reviewed source adapter it recompiles. */
+export type PublishGitRelease = <E, R>(
+  input: PreparedGitRelease<E, R>
 ) => Effect.Effect<
   PublicationReceipt,
   PublishContentReleaseError<E>,
-  PublishContentReleaseRequirements<R>
+  PublicationSource | PublishReleaseRequirements<R>
+>;
+
+/** Rollback publication reuses authenticated artifacts without a Git source. */
+export type PublishRollbackRelease = <E, R>(
+  input: PreparedRollbackRelease<E, R>
+) => Effect.Effect<
+  PublicationReceipt,
+  PublishContentReleaseError<E>,
+  PublishReleaseRequirements<R>
 >;

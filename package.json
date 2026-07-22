@@ -19,6 +19,8 @@
     }
   },
   "scripts": {
+    "preabort": "turbo run build --filter=@nakafa/aksara-cli",
+    "abort": "turbo run abort --filter=@nakafa/aksara-cli --only",
     "boundaries": "node scripts/check-imports.ts",
     "build": "turbo run build",
     "format": "ultracite fix",
@@ -31,7 +33,13 @@
     "typecheck": "turbo run typecheck",
     "verify:package": "turbo run verify:package",
     "changeset": "changeset",
+    "precleanup": "turbo run build --filter=@nakafa/aksara-cli",
+    "cleanup": "turbo run cleanup --filter=@nakafa/aksara-cli --only",
     "dev": "turbo run dev --filter=@nakafa/aksara-cli",
+    "prerelease": "turbo run build --filter=@nakafa/aksara-cli",
+    "release": "turbo run release --filter=@nakafa/aksara-cli --only",
+    "prerollback": "turbo run build --filter=@nakafa/aksara-cli",
+    "rollback": "turbo run rollback --filter=@nakafa/aksara-cli --only",
     "version-packages": "changeset version"
   },
   "devDependencies": {

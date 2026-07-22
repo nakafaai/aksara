@@ -1,4 +1,3 @@
-import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import {
   decodeContentProjections,
   verifyContentProjections,
@@ -31,11 +30,17 @@ import {
   PublicationSigningKey,
   PublicationSource,
   PublicationTarget,
-  type PublishContentRelease,
+  type PublishGitRelease,
+  type PublishRollbackRelease,
 } from "#publisher/publication/spec";
 import { validateReleaseRendererManifest } from "#publisher/release-validation";
+import { createReplaySpool, type ReplaySpool } from "#publisher/replay/spool";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
-import { compileReleaseSources } from "#publisher/source-compilation";
+import {
+  type CompiledReleaseSource,
+  CompiledReleaseSourceSchema,
+  compileReleaseSources,
+} from "#publisher/source-compilation";
 
 /** Selects authenticated upserts while preserving canonical stream order. */
 function upsertItems<E, R>(items: Stream.Stream<ContentReleaseItem, E, R>) {
@@ -53,10 +58,20 @@ function modeMismatch<E, R>(input: PreparedContentRelease<E, R>) {
   });
 }
 
-type ValidatedPublication<E, R> =
+type PublicationInvocation<E, R> =
   | {
-      readonly aksaraSha: GitCommitSha;
       readonly input: PreparedGitRelease<E, R>;
+      readonly kind: "git";
+      readonly source: typeof PublicationSource.Service;
+    }
+  | {
+      readonly input: PreparedRollbackRelease<E, R>;
+      readonly kind: "rollback";
+    };
+
+type PublicationArtifactPlan<E, R> =
+  | {
+      readonly compiled: ReplaySpool<CompiledReleaseSource>;
       readonly kind: "git";
     }
   | {
@@ -64,125 +79,136 @@ type ValidatedPublication<E, R> =
       readonly kind: "rollback";
     };
 
-/** Binds the prepared discriminant to its signed manifest provenance. */
-function validatePublicationMode<E, R>(
-  input: PreparedContentRelease<E, R>
-): Effect.Effect<ValidatedPublication<E, R>, PublicationModeMismatchError> {
-  if (input.kind === "git") {
-    if (input.manifest.origin.kind !== "git") {
-      return Effect.fail(modeMismatch(input));
-    }
-    return Effect.succeed<ValidatedPublication<E, R>>({
-      aksaraSha: input.manifest.origin.sha,
-      input,
-      kind: "git",
-    });
+/** Requires one Git-prepared release to carry exact Git provenance. */
+function validateGitMode<E, R>(input: PreparedGitRelease<E, R>) {
+  if (input.manifest.origin.kind !== "git") {
+    return Effect.fail(modeMismatch(input));
   }
+  return Effect.succeed(input.manifest.origin.sha);
+}
+
+/** Requires one rollback-prepared release to carry rollback provenance. */
+function validateRollbackMode<E, R>(input: PreparedRollbackRelease<E, R>) {
   if (input.manifest.origin.kind !== "rollback") {
     return Effect.fail(modeMismatch(input));
   }
-  return Effect.succeed<ValidatedPublication<E, R>>({
-    input,
-    kind: "rollback",
-  });
+  return Effect.void;
 }
 
-/** Authenticates, stages, verifies, activates, and finalizes one release. */
-export const publishContentRelease: PublishContentRelease = Effect.fn(
-  "AksaraPublisher.publishContentRelease"
-)(function* <E, R>(input: PreparedContentRelease<E, R>) {
-  const rendererManifest = yield* validateRendererManifestHash(
-    input.rendererManifest
-  );
-  /** Replays strict item decoding with fresh ordering and route state. */
-  const decodedItems = () =>
-    decodeContentReleaseItems({
+/** Runs one publication while retaining scoped exact-Git replay files. */
+const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
+  function* <E, R>(invocation: PublicationInvocation<E, R>) {
+    const { input } = invocation;
+    const rendererManifest = yield* validateRendererManifestHash(
+      input.rendererManifest
+    );
+    /** Replays strict item decoding with fresh ordering and route state. */
+    const decodedItems = () =>
+      decodeContentReleaseItems({
+        items: input.items(),
+        manifest: input.manifest,
+      });
+    /** Replays strict projection decoding with fresh ordering and route state. */
+    const decodedProjections = () =>
+      decodeContentProjections(input.projections());
+    const summary = yield* verifyContentReleaseItems({
       items: input.items(),
       manifest: input.manifest,
     });
-  /** Replays strict projection decoding with fresh ordering and route state. */
-  const decodedProjections = () =>
-    decodeContentProjections(input.projections());
-  const summary = yield* verifyContentReleaseItems({
-    items: input.items(),
-    manifest: input.manifest,
-  });
-  const projectionSummary = yield* verifyContentProjections({
-    manifest: input.manifest,
-    projections: input.projections(),
-  });
-  yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
-  const publication = yield* validatePublicationMode(input);
-  if (publication.kind === "rollback") {
-    yield* makeRollbackArtifacts({
-      artifacts: publication.input.artifacts(),
-      items: upsertItems(decodedItems()),
+    const projectionSummary = yield* verifyContentProjections({
       manifest: input.manifest,
-      rendererManifest,
-    }).pipe(Stream.runDrain);
-  } else {
-    const source = yield* PublicationSource;
-    const items = upsertItems(decodedItems());
-    yield* compileReleaseSources({
-      items,
-      rendererManifest,
-      sources: source.loadExactRevision({
-        aksaraSha: publication.aksaraSha,
-        items,
-      }),
-    }).pipe(Stream.runDrain);
-  }
-
-  const signingKey = yield* PublicationSigningKey;
-  const target = yield* PublicationTarget;
-  const signer = yield* makeEd25519PublicationSigner({
-    keyId: signingKey.keyId,
-    privateKeyPem: Redacted.value(signingKey.privateKeyPem),
-  });
-  const signedRelease = yield* signer.signRelease(input.manifest);
-  const release = yield* verifySignedContentRelease(signedRelease);
-  const stage = Effect.gen(function* () {
-    yield* makeReleaseItemBatches(
-      input.manifest.releaseId,
-      decodedItems()
-    ).pipe(Stream.runForEach(target.stageItemBatch));
-    yield* makeProjectionBatches(
-      input.manifest.releaseId,
-      decodedProjections()
-    ).pipe(Stream.runForEach(target.stageProjectionBatch));
-    if (publication.kind === "rollback") {
-      const artifacts = makeRollbackArtifacts({
-        artifacts: publication.input.artifacts(),
+      projections: input.projections(),
+    });
+    yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
+    let artifactPlan: PublicationArtifactPlan<E, R>;
+    if (invocation.kind === "rollback") {
+      yield* validateRollbackMode(invocation.input);
+      yield* makeRollbackArtifacts({
+        artifacts: invocation.input.artifacts(),
         items: upsertItems(decodedItems()),
         manifest: input.manifest,
         rendererManifest,
+      }).pipe(Stream.runDrain);
+      artifactPlan = { input: invocation.input, kind: "rollback" };
+    } else {
+      const aksaraSha = yield* validateGitMode(invocation.input);
+      const items = upsertItems(decodedItems());
+      const compiled = yield* createReplaySpool({
+        prefix: "aksara-exact-git-",
+        schema: CompiledReleaseSourceSchema,
+        stream: compileReleaseSources({
+          items,
+          rendererManifest,
+          sources: invocation.source.loadExactRevision({
+            aksaraSha,
+            items,
+          }),
+        }),
+      });
+      artifactPlan = { compiled, kind: "git" };
+    }
+
+    const signingKey = yield* PublicationSigningKey;
+    const target = yield* PublicationTarget;
+    const signer = yield* makeEd25519PublicationSigner({
+      keyId: signingKey.keyId,
+      privateKeyPem: Redacted.value(signingKey.privateKeyPem),
+    });
+    const signedRelease = yield* signer.signRelease(input.manifest);
+    const release = yield* verifySignedContentRelease(signedRelease);
+    const stage = Effect.gen(function* () {
+      yield* makeReleaseItemBatches(
+        input.manifest.releaseId,
+        decodedItems()
+      ).pipe(Stream.runForEach(target.stageItemBatch));
+      yield* makeProjectionBatches(
+        input.manifest.releaseId,
+        decodedProjections()
+      ).pipe(Stream.runForEach(target.stageProjectionBatch));
+      if (artifactPlan.kind === "rollback") {
+        const artifacts = makeRollbackArtifacts({
+          artifacts: artifactPlan.input.artifacts(),
+          items: upsertItems(decodedItems()),
+          manifest: input.manifest,
+          rendererManifest,
+        });
+        yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
+          Stream.runForEach(target.stageArtifactBatch)
+        );
+        return;
+      }
+      const artifacts = makeGitArtifacts({
+        compiled: artifactPlan.compiled.replay(),
+        manifest: input.manifest,
+        rendererManifest,
+        signer,
       });
       yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
         Stream.runForEach(target.stageArtifactBatch)
       );
-      return;
-    }
-    const source = yield* PublicationSource;
-    const items = upsertItems(decodedItems());
-    const artifacts = makeGitArtifacts({
-      items,
-      manifest: input.manifest,
-      rendererManifest,
-      signer,
-      sources: source.loadExactRevision({
-        aksaraSha: publication.aksaraSha,
-        items,
-      }),
     });
-    yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
-      Stream.runForEach(target.stageArtifactBatch)
-    );
-  });
-  return yield* completePublicationLifecycle({
-    projectionSummary,
-    release,
-    stage,
-    summary,
-    target,
-  });
+    return yield* completePublicationLifecycle({
+      projectionSummary,
+      release,
+      rendererManifest,
+      stage,
+      summary,
+      target,
+    });
+  }
+);
+
+/** Publishes one exact-Git release after acquiring its reviewed source seam. */
+export const publishGitRelease: PublishGitRelease = Effect.fn(
+  "AksaraPublisher.publishGitRelease"
+)(function* (input) {
+  const source = yield* PublicationSource;
+  return yield* Effect.scoped(
+    publishReleaseScoped({ input, kind: "git", source })
+  );
 });
+
+/** Publishes one forward rollback without acquiring an irrelevant Git source. */
+export const publishRollbackRelease: PublishRollbackRelease = Effect.fn(
+  "AksaraPublisher.publishRollbackRelease"
+)((input) => Effect.scoped(publishReleaseScoped({ input, kind: "rollback" })));

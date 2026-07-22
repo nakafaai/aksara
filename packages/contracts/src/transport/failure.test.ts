@@ -30,9 +30,17 @@ describe("publication failures", () => {
     ).toBe(true);
     expect(
       accepts({
+        code: "CONTENT_RELEASE_STATE",
+        kind: "rejected",
+        operation: "current",
+        releaseId: null,
+      })
+    ).toBe(true);
+    expect(
+      accepts({
         code: "CONTENT_RELEASE_INTEGRITY",
         kind: "rejected",
-        operation: "verify",
+        operation: "headPage",
         releaseId,
       })
     ).toBe(true);
@@ -42,6 +50,14 @@ describe("publication failures", () => {
         code: "CONTENT_RELEASE_CONFLICT",
         kind: "conflict",
         operation: "stageItemBatch",
+        releaseId,
+      })
+    ).toBe(true);
+    expect(
+      accepts({
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: "verify",
         releaseId,
       })
     ).toBe(true);
@@ -58,14 +74,20 @@ describe("publication failures", () => {
   });
 
   it("supports decode failures without pretending an identity was valid", () => {
-    expect(
-      accepts({
-        code: "CONTENT_RELEASE_INVALID_REQUEST",
-        kind: "rejected",
-        operation: null,
-        releaseId: null,
-      })
-    ).toBe(true);
+    for (const code of [
+      "CONTENT_RELEASE_INVALID_REQUEST",
+      "CONTENT_RELEASE_SIZE",
+      "CONTENT_RELEASE_UNSUPPORTED",
+    ]) {
+      expect(
+        accepts({
+          code,
+          kind: "rejected",
+          operation: null,
+          releaseId: null,
+        })
+      ).toBe(true);
+    }
   });
 
   it("owns one exhaustive failure-code to HTTP-status contract", () => {
@@ -108,6 +130,18 @@ describe("publication failures", () => {
         operation: null,
         releaseId: null,
       },
+      {
+        code: "CONTENT_RELEASE_STATE",
+        kind: "rejected",
+        operation: "current",
+        releaseId,
+      },
+      {
+        code: "CONTENT_RELEASE_INVALID_REQUEST",
+        kind: "rejected",
+        operation: null,
+        releaseId,
+      },
     ]) {
       expect(accepts(failure)).toBe(false);
     }
@@ -126,6 +160,12 @@ describe("publication failures", () => {
         code: "CONTENT_RELEASE_CONFLICT",
         kind: "conflict",
         operation: "stageItemBatch",
+        releaseId,
+      },
+      {
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: "headPage",
         releaseId,
       },
     ]) {
@@ -163,12 +203,6 @@ describe("publication failures", () => {
         expectedBaseReleaseId: null,
         kind: "stale-base",
         operation: "activate",
-        releaseId,
-      },
-      {
-        code: "CONTENT_RELEASE_CONFLICT",
-        kind: "conflict",
-        operation: "status",
         releaseId,
       },
       {

@@ -20,7 +20,50 @@ describe("publication success evidence", () => {
       transportRequests.map((request) =>
         hasBoundPublicationSuccess(request, foreignTransportSuccess(request))
       )
-    ).toEqual(transportRequests.map(() => false));
+    ).toEqual(
+      transportRequests.map(({ operation }) => operation === "current")
+    );
+  });
+
+  it("binds head pages to the requested cursor and row ceiling", () => {
+    const request = transportRequests.find(
+      (candidate) => candidate.operation === "headPage"
+    );
+    if (request?.operation !== "headPage") {
+      return;
+    }
+    const success = transportSuccess(request);
+    if (success.operation !== "headPage") {
+      return;
+    }
+    const [head] = success.value.heads;
+    if (head === undefined) {
+      return;
+    }
+    const wrongCursor = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ...success,
+      value: { ...success.value, cursor: "another-page" },
+    });
+    const twoHeads = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ...success,
+      value: {
+        ...success.value,
+        heads: [
+          head,
+          {
+            ...head,
+            contentKey: "test:http-z",
+            sourcePath: "packages/corpus/test/http-z/en.mdx",
+          },
+        ],
+      },
+    });
+    const limited = Schema.decodeUnknownSync(PublicationRequestSchema)({
+      ...request,
+      limit: 1,
+    });
+    expect(hasBoundPublicationSuccess(request, wrongCursor)).toBe(false);
+    expect(hasBoundPublicationSuccess(limited, twoHeads)).toBe(false);
   });
 
   it("rejects verification evidence from another signed manifest", () => {
@@ -156,7 +199,7 @@ describe("publication success evidence", () => {
     ).toEqual([false, false]);
   });
 
-  it("binds cleanup receipts to their requested cursor and limit", () => {
+  it("binds cumulative cleanup evidence to its requested release", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "cleanup"
     );
@@ -167,30 +210,12 @@ describe("publication success evidence", () => {
     if (success.operation !== "cleanup") {
       return;
     }
-    const responses = [
-      Schema.decodeUnknownSync(PublicationSuccessSchema)({
-        ...success,
-        value: { ...success.value, cursor: "another-page" },
-      }),
-      Schema.decodeUnknownSync(PublicationSuccessSchema)({
-        ...success,
-        value: { ...success.value, deletedArtifacts: 2 },
-      }),
-      Schema.decodeUnknownSync(PublicationSuccessSchema)({
-        ...success,
-        value: { ...success.value, deletedItems: 2 },
-      }),
-      success,
-    ];
-    const limited = Schema.decodeUnknownSync(PublicationRequestSchema)({
-      ...request,
-      limit: 1,
+    const progressed = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ...success,
+      value: { ...success.value, complete: false, deletedItems: 2 },
     });
-    expect(
-      responses.map((response, index) =>
-        hasBoundPublicationSuccess(index === 0 ? request : limited, response)
-      )
-    ).toEqual([false, false, false, false]);
+    expect(hasBoundPublicationSuccess(request, success)).toBe(true);
+    expect(hasBoundPublicationSuccess(request, progressed)).toBe(true);
   });
 
   it("rejects batch receipts with another index or row count", () => {

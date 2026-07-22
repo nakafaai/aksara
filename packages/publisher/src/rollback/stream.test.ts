@@ -120,9 +120,12 @@ function targetWith(
   ) => ReturnType<(typeof PublicationTarget.Service)["rollbackPage"]>
 ) {
   return PublicationTarget.of({
+    abort: () => Effect.die("Unused target abort."),
     activate: () => Effect.die("Unused target activation."),
     cleanup: () => Effect.die("Unused target cleanup."),
+    current: () => Effect.die("Unused target current state."),
     finalize: () => Effect.die("Unused target finalization."),
+    headPage: () => Effect.die("Unused target head page."),
     rollbackPage,
     stageArtifactBatch: () => Effect.die("Unused artifact staging."),
     stageItemBatch: () => Effect.die("Unused item staging."),

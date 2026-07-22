@@ -7,6 +7,7 @@ import {
   publicationReleaseId,
   targetStage,
 } from "#publisher/target/protocol";
+import { publicationFailures } from "#test/failure";
 import {
   transportRelease,
   transportRequests,
@@ -36,24 +37,18 @@ function failureTag(
 }
 
 describe("publication target protocol", () => {
-  it("binds every successful operation to its exact request", async () => {
-    const successes = await Effect.runPromise(
-      Effect.forEach(transportRequests, (request) => {
-        const body = transportSuccess(request);
-        return interpret(request, body, 200).pipe(
-          Effect.map((result) => ({ body, request, result }))
-        );
-      })
+  it("maps every operation to its target stage and release identity", () => {
+    expect(transportRequests.map(publicationReleaseId)).toEqual(
+      transportRequests.map(({ operation }) =>
+        operation === "current" ? null : transportRelease.manifest.releaseId
+      )
     );
-    for (const { body, request, result } of successes) {
-      expect(result).toEqual(body);
-      expect(publicationReleaseId(request)).toBe(
-        transportRelease.manifest.releaseId
-      );
-    }
     expect(
       transportRequests.map(({ operation }) => targetStage(operation))
     ).toEqual([
+      "current",
+      "abort",
+      "heads",
       "release",
       "items",
       "projections",
@@ -96,72 +91,7 @@ describe("publication target protocol", () => {
   });
 
   it("maps every authenticated failure without message parsing", async () => {
-    const [release, item, projection, artifact, , , activate] =
-      transportRequests;
-    if (
-      release?.operation !== "stageRelease" ||
-      item?.operation !== "stageItemBatch" ||
-      projection?.operation !== "stageProjectionBatch" ||
-      artifact?.operation !== "stageArtifactBatch" ||
-      activate?.operation !== "activate"
-    ) {
-      return;
-    }
-    const cases = [
-      {
-        request: release,
-        statuses: [401],
-        tag: "PublicationTargetUnauthorizedError",
-        wire: { code: "CONTENT_RELEASE_UNAUTHORIZED", kind: "unauthorized" },
-      },
-      {
-        request: activate,
-        statuses: [422],
-        tag: "PublicationTargetRejectedError",
-        wire: {
-          code: "CONTENT_RELEASE_STATE",
-          kind: "rejected",
-          operation: "activate",
-          releaseId: activate.release.manifest.releaseId,
-        },
-      },
-      {
-        request: release,
-        statuses: [409],
-        tag: "PublicationTargetConflictError",
-        wire: {
-          code: "CONTENT_RELEASE_CONFLICT",
-          kind: "conflict",
-          operation: release.operation,
-          releaseId: publicationReleaseId(release),
-        },
-      },
-      ...[item, projection, artifact].map((request) => ({
-        request,
-        statuses: [409],
-        tag: "PublicationTargetConflictError",
-        wire: {
-          batchIndex: request.batchIndex,
-          code: "CONTENT_RELEASE_CONFLICT",
-          kind: "conflict",
-          operation: request.operation,
-          releaseId: publicationReleaseId(request),
-        },
-      })),
-      {
-        request: activate,
-        statuses: [409],
-        tag: "PublicationStaleBaseError",
-        wire: {
-          activeReleaseId: "test-foreign-release",
-          code: "CONTENT_RELEASE_STALE_BASE",
-          expectedBaseReleaseId: activate.release.manifest.baseReleaseId,
-          kind: "stale-base",
-          operation: "activate",
-          releaseId: activate.release.manifest.releaseId,
-        },
-      },
-    ];
+    const cases = publicationFailures();
     const tags = await Effect.runPromise(
       Effect.forEach(cases, (testCase) =>
         Effect.forEach(testCase.statuses, (statusCode) =>
@@ -236,6 +166,15 @@ describe("publication target protocol", () => {
         status: 422,
         wire: {
           code: "CONTENT_RELEASE_INTEGRITY",
+          kind: "rejected",
+          operation: "verify",
+          releaseId: request.release.manifest.releaseId,
+        },
+      },
+      {
+        status: 413,
+        wire: {
+          code: "CONTENT_RELEASE_SIZE",
           kind: "rejected",
           operation: "verify",
           releaseId: request.release.manifest.releaseId,

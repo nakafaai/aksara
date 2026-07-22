@@ -11,10 +11,7 @@ import {
   validateArtifactForItem,
 } from "#publisher/release-validation";
 import type { PublicationSigner } from "#publisher/signing";
-import {
-  type CompiledReleaseSource,
-  compileReleaseSources,
-} from "#publisher/source-compilation";
+import type { CompiledReleaseSource } from "#publisher/source-compilation";
 
 type ArtifactVerificationError = Effect.Effect.Error<
   ReturnType<typeof verifySignedContentArtifact>
@@ -26,10 +23,6 @@ type ArtifactVerificationContext = Effect.Effect.Context<
 
 type ArtifactSigningError = Effect.Effect.Error<
   ReturnType<PublicationSigner["signArtifact"]>
->;
-
-type CompiledSourceStream<E, R, E2, R2> = ReturnType<
-  typeof compileReleaseSources<E, R, E2, R2>
 >;
 
 type RollbackArtifactPair =
@@ -60,27 +53,21 @@ function signGitArtifact(
   });
 }
 
-/** Recompiles, signs, and verifies exact-Git sources incrementally. */
-export function makeGitArtifacts<E, R, E2, R2>(input: {
-  readonly items: Stream.Stream<ContentReleaseItem, E, R>;
+/** Signs and verifies one replay of preflighted exact-Git compilations. */
+export function makeGitArtifacts<E, R>(input: {
+  readonly compiled: Stream.Stream<CompiledReleaseSource, E, R>;
   readonly manifest: ContentReleaseManifest;
   readonly rendererManifest: RendererManifestEnvelope;
   readonly signer: PublicationSigner;
-  readonly sources: Stream.Stream<unknown, E2, R2>;
 }): Stream.Stream<
   SignedContentArtifact,
   | ArtifactSigningError
   | ArtifactVerificationError
   | ReleaseArtifactMismatchError
-  | Stream.Stream.Error<CompiledSourceStream<E, R, E2, R2>>,
-  | ArtifactVerificationContext
-  | Stream.Stream.Context<CompiledSourceStream<E, R, E2, R2>>
+  | E,
+  ArtifactVerificationContext | R
 > {
-  return compileReleaseSources({
-    items: input.items,
-    rendererManifest: input.rendererManifest,
-    sources: input.sources,
-  }).pipe(
+  return input.compiled.pipe(
     Stream.mapEffect((compiled) =>
       signGitArtifact(
         input.signer,

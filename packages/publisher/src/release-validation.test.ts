@@ -20,6 +20,7 @@ import { rendererDomains } from "#test/renderer";
 
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
+  deleteCount: 0,
   itemCount: 0,
   itemsDigest: `sha256:${"c".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -28,6 +29,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId: "test-release-counts",
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
+  upsertCount: 0,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   keyId: "test-release-key",
@@ -164,5 +166,31 @@ describe("release validation", () => {
     );
 
     expect(error._tag).toBe("PublicationReceiptMismatchError");
+  });
+
+  it("rejects receipt counts from another replayed stream", async () => {
+    const receipt = PublicationReceiptSchema.make({
+      activatedHeads: 0,
+      deletedHeads: 0,
+      projectionDigest: manifest.projectionDigest,
+      releaseId: manifest.releaseId,
+      stagedArtifacts: 0,
+      stagedItems: 0,
+      stagedProjections: manifest.projectionCount - 1,
+    });
+    const error = await Effect.runPromise(
+      validatePublicationReceipt(
+        manifest,
+        summary,
+        projectionSummary,
+        receipt
+      ).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "PublicationReceiptMismatchError",
+      message:
+        "Publication receipt does not match the replayed release streams.",
+    });
   });
 });

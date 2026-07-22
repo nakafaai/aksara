@@ -3,8 +3,11 @@ import { SignedContentArtifactSchema } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { HeadPageRequestSchema } from "#contracts/release/head";
 import {
+  ContentReleaseBundleSchema,
   ContentReleaseStatusRequestSchema,
+  ReleaseAbortRequestSchema,
   ReleaseCleanupRequestSchema,
 } from "#contracts/release/lifecycle";
 import { RollbackPageRequestSchema } from "#contracts/release/rollback";
@@ -20,6 +23,9 @@ import {
 
 /** Stable operation names accepted by the single publication ingress. */
 export const PublicationOperationSchema = Schema.Literal(
+  "abort",
+  "current",
+  "headPage",
   "stageRelease",
   "stageItemBatch",
   "stageProjectionBatch",
@@ -40,11 +46,33 @@ const PageIndexSchema = Schema.Number.pipe(
   Schema.greaterThanOrEqualTo(-1)
 );
 
-/** Starts or idempotently resumes one exact signed release. */
-export const StageReleaseRequestSchema = Schema.Struct({
-  operation: Schema.Literal("stageRelease"),
-  release: SignedContentReleaseSchema,
+/** Reads the authoritative active and pending publication identities. */
+export const PublicationCurrentRequestSchema = Schema.Struct({
+  operation: Schema.Literal("current"),
 });
+export type PublicationCurrentRequest =
+  typeof PublicationCurrentRequestSchema.Type;
+
+/** Abandons one invisible pending release through server-owned progress. */
+export const PublicationAbortRequestSchema = Schema.Struct({
+  ...ReleaseAbortRequestSchema.fields,
+  operation: Schema.Literal("abort"),
+});
+export type PublicationAbortRequest = typeof PublicationAbortRequestSchema.Type;
+
+/** Reads one bounded authoritative material-head page for an active release. */
+export const PublicationHeadPageRequestSchema = Schema.Struct({
+  ...HeadPageRequestSchema.fields,
+  operation: Schema.Literal("headPage"),
+});
+export type PublicationHeadPageRequest =
+  typeof PublicationHeadPageRequestSchema.Type;
+
+/** Starts or idempotently resumes one exact signed release. */
+export const StageReleaseRequestSchema = Schema.extend(
+  ContentReleaseBundleSchema,
+  Schema.Struct({ operation: Schema.Literal("stageRelease") })
+);
 export type StageReleaseRequest = typeof StageReleaseRequestSchema.Type;
 
 const ReleaseItemBatchSchema = Schema.NonEmptyArray(
@@ -188,6 +216,9 @@ export type PublicationCleanupRequest =
 
 /** Complete request vocabulary accepted by publication ingress v1. */
 export const PublicationRequestSchema = Schema.Union(
+  PublicationAbortRequestSchema,
+  PublicationCurrentRequestSchema,
+  PublicationHeadPageRequestSchema,
   StageReleaseRequestSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchRequestSchema,

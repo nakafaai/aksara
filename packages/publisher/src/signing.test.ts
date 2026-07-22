@@ -99,6 +99,7 @@ const itemSummary = await Effect.runPromise(
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
+  deleteCount: 0,
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "d".repeat(40) },
@@ -107,6 +108,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: rendererManifest.hash,
+  upsertCount: items.length,
 });
 
 describe("Ed25519 publication signing", () => {

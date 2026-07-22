@@ -80,6 +80,7 @@ const item = ContentReleaseItemSchema.make({
 });
 const manifest = ContentReleaseManifestSchema.make({
   baseReleaseId: rollbackOf,
+  deleteCount: 0,
   itemCount: 1,
   itemsDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   origin: { kind: "rollback", releaseId: rollbackOf },
@@ -88,6 +89,7 @@ const manifest = ContentReleaseManifestSchema.make({
   releaseId,
   rendererContractVersion: rendererManifest.rendererContractVersion,
   rendererManifestHash: rendererManifest.hash,
+  upsertCount: 1,
 });
 const resolver = ContentVerificationKeyResolver.of({
   resolve: () =>

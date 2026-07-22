@@ -1,8 +1,11 @@
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
 import { ReleaseIdSchema } from "#contracts/ids";
+import { HeadPageSchema } from "#contracts/release/head";
 import {
+  ContentReleaseCurrentSchema,
   ContentReleaseStatusSchema,
+  ReleaseAbortReceiptSchema,
   ReleaseCleanupReceiptSchema,
 } from "#contracts/release/lifecycle";
 import { RollbackPageSchema } from "#contracts/release/rollback";
@@ -13,6 +16,27 @@ import {
 import { PublicationFailureSchema } from "#contracts/transport/failure";
 
 const CountSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
+
+/** Returns authoritative active and pending publication identities. */
+export const PublicationCurrentSuccessSchema = Schema.Struct({
+  ok: Schema.Literal(true),
+  operation: Schema.Literal("current"),
+  value: ContentReleaseCurrentSchema,
+});
+
+/** Returns durable cumulative progress from one release abort page. */
+export const PublicationAbortSuccessSchema = Schema.Struct({
+  ok: Schema.Literal(true),
+  operation: Schema.Literal("abort"),
+  value: ReleaseAbortReceiptSchema,
+});
+
+/** Returns one bounded authoritative material-head page. */
+export const PublicationHeadPageSuccessSchema = Schema.Struct({
+  ok: Schema.Literal(true),
+  operation: Schema.Literal("headPage"),
+  value: HeadPageSchema,
+});
 
 /** Idempotent row counts returned by one bounded staging request. */
 export const StageBatchReceiptSchema = Schema.Struct({
@@ -138,7 +162,7 @@ export const PublicationRollbackSuccessSchema = Schema.Struct({
   value: RollbackPageSchema,
 });
 
-/** Returns one bounded cleanup page with an explicit resume cursor. */
+/** Returns durable cumulative evidence from server-owned cleanup progress. */
 export const PublicationCleanupSuccessSchema = Schema.Struct({
   ok: Schema.Literal(true),
   operation: Schema.Literal("cleanup"),
@@ -147,6 +171,9 @@ export const PublicationCleanupSuccessSchema = Schema.Struct({
 
 /** Complete success vocabulary returned by publication ingress v1. */
 export const PublicationSuccessSchema = Schema.Union(
+  PublicationAbortSuccessSchema,
+  PublicationCurrentSuccessSchema,
+  PublicationHeadPageSuccessSchema,
   StageReleaseSuccessSchema,
   StageItemBatchSuccessSchema,
   StageProjectionBatchSuccessSchema,

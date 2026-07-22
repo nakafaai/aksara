@@ -48,6 +48,7 @@ const itemSummary = await Effect.runPromise(
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: "test-release-parent",
+  deleteCount: itemSummary.deleteCount,
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -56,18 +57,14 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
+  upsertCount: itemSummary.upsertCount,
 });
-
-/** Creates a fresh replayable stream from one ordered item collection. */
-function itemStream(values: readonly unknown[]) {
-  return Stream.fromIterable(values);
-}
 
 /** Runs item verification and returns its expected typed failure. */
 function reject(candidate: readonly unknown[], candidateManifest = manifest) {
   return Effect.runPromise(
     verifyContentReleaseItems({
-      items: itemStream(candidate),
+      items: Stream.fromIterable(candidate),
       manifest: candidateManifest,
     }).pipe(Effect.flip)
   );
@@ -96,8 +93,10 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
     ContentReleaseManifestSchema
   )({
     ...manifest,
+    deleteCount: summary.deleteCount,
     itemCount: candidateItems.length,
     itemsDigest: summary.digest,
+    upsertCount: summary.upsertCount,
   });
   return { items: candidateItems, manifest: candidateManifest };
 }
@@ -105,15 +104,31 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
 describe("release item integrity", () => {
   it("authenticates items without retaining the complete collection", async () => {
     const verified = await Effect.runPromise(
-      verifyContentReleaseItems({ items: itemStream(items), manifest })
+      verifyContentReleaseItems({ items: Stream.fromIterable(items), manifest })
     );
     expect(verified).toEqual({ deleteCount: 1, upsertCount: 1 });
     expect(verified).not.toHaveProperty("items");
   });
 
+  it("rejects operation totals that differ from the signed manifest", async () => {
+    const mismatched = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+      ...manifest,
+      deleteCount: 0,
+      upsertCount: 2,
+    });
+    const error = await reject(items, mismatched);
+    expect(error).toEqual({
+      _tag: "ReleaseItemOperationCountMismatchError",
+      actualDeletes: 1,
+      actualUpserts: 1,
+      expectedDeletes: 0,
+      expectedUpserts: 2,
+    });
+  });
+
   it("replays one stream with fresh ordering and route state", async () => {
     let reads = 0;
-    const replayable = itemStream(items).pipe(
+    const replayable = Stream.fromIterable(items).pipe(
       Stream.tap(() =>
         Effect.sync(() => {
           reads += 1;
@@ -245,7 +260,7 @@ describe("release item integrity", () => {
     await expect(
       Effect.runPromise(
         verifyContentReleaseItems({
-          items: itemStream(transfer.items),
+          items: Stream.fromIterable(transfer.items),
           manifest: transfer.manifest,
         })
       )
@@ -253,7 +268,7 @@ describe("release item integrity", () => {
     await expect(
       Effect.runPromise(
         verifyContentReleaseItems({
-          items: itemStream(locales.items),
+          items: Stream.fromIterable(locales.items),
           manifest: locales.manifest,
         })
       )

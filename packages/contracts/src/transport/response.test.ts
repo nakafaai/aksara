@@ -1,5 +1,6 @@
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
+import { release, rendererManifest } from "#contracts/test/request";
 import {
   decodePublicationResponse,
   PublicationResponseSchema,
@@ -35,6 +36,50 @@ const evidence = {
 };
 
 const successes = [
+  {
+    ok: true,
+    operation: "abort",
+    value: {
+      complete: true,
+      processedItems: 2,
+      releaseId,
+      totalItems: 2,
+    },
+  },
+  {
+    ok: true,
+    operation: "current",
+    value: {
+      activeReleaseId: null,
+      completed: null,
+      pending: { phase: "staging", release, rendererManifest },
+    },
+  },
+  {
+    ok: true,
+    operation: "headPage",
+    value: {
+      activeReleaseId: releaseId,
+      cursor: null,
+      done: true,
+      family: "material",
+      heads: [
+        {
+          artifactHash: manifestHash,
+          compilerConfigHash: manifestHash,
+          contentKey: "test:transport",
+          delivery: "public",
+          locale: "en",
+          projectionHash: projectionDigest,
+          publicPath: "subjects/test/transport",
+          rendererDomain: "mathematics",
+          sourceHash: manifestHash,
+          sourcePath: "packages/corpus/test/transport/en.mdx",
+        },
+      ],
+      nextCursor: null,
+    },
+  },
   { ok: true, operation: "stageRelease", value: status },
   {
     ok: true,
@@ -82,11 +127,8 @@ const successes = [
     operation: "cleanup",
     value: {
       complete: true,
-      cursor: null,
       deletedArtifacts: 1,
       deletedItems: 2,
-      limit: 100,
-      nextCursor: null,
       releaseId,
     },
   },
@@ -107,7 +149,7 @@ describe("publication responses", () => {
       expect(accepts(response)).toBe(true);
     }
     const decoded = await Effect.runPromise(
-      decodePublicationResponse(successes[5])
+      decodePublicationResponse(successes[7])
     );
     expect(decoded.ok).toBe(true);
   });

@@ -1,5 +1,5 @@
 import type { ContentKey } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Effect, Predicate } from "effect";
 import type {
   ArrayExpression,
   Expression,
@@ -34,7 +34,7 @@ export interface AuthoredMetadata {
 function isAuthoredMetadata(
   value: AuthoredMetadataValue
 ): value is AuthoredMetadata {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+  return Predicate.isRecord(value);
 }
 
 type DecodeResult =
@@ -241,5 +241,19 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
       );
     }
     return Effect.succeed(metadata);
+  }
+);
+
+/** Reads static metadata from an already parsed MDX tree without code generation. */
+export const readMetadataTree = Effect.fn("AksaraCompiler.readMetadataTree")(
+  function* (contentKey: ContentKey, tree: Root) {
+    const collector: MetadataCollector = {
+      candidates: [],
+      syntaxReasons: [],
+    };
+    for (const node of tree.children) {
+      collectMetadata(node, collector);
+    }
+    return yield* validateMetadata(contentKey, collector);
   }
 );

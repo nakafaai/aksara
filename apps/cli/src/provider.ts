@@ -22,6 +22,7 @@ import {
 } from "@nakafa/aksara-contracts/preview/spec";
 import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Redacted, Schema } from "effect";
+import { isAddressInfo } from "#cli/address";
 
 export const PREVIEW_MANIFEST_PATH = "/v1/manifest";
 export const PREVIEW_EVENTS_PATH = "/v1/events";
@@ -188,8 +189,8 @@ function listenLoopback(server: Server) {
     server.listen({ host: "127.0.0.1", port: 0 }, () => {
       const address = server.address();
       if (
-        typeof address === "object" &&
-        address?.address === "127.0.0.1" &&
+        isAddressInfo(address) &&
+        address.address === "127.0.0.1" &&
         address.family === "IPv4"
       ) {
         resume(Effect.succeed(address));
@@ -198,6 +199,9 @@ function listenLoopback(server: Server) {
           resume(Effect.fail(new PreviewProviderError({ stage: "listen" })))
         );
       }
+    });
+    return Effect.sync(() => {
+      server.close();
     });
   });
 }
@@ -238,8 +242,12 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
         token,
       })
     );
-    const address = yield* Effect.acquireRelease(listenLoopback(server), () =>
-      closeServer(server, clients)
+    const address = yield* Effect.uninterruptibleMask((restore) =>
+      restore(listenLoopback(server)).pipe(
+        Effect.tap(() =>
+          Effect.addFinalizer(() => closeServer(server, clients))
+        )
+      )
     );
     /** Replaces the complete served state before notifying connected clients. */
     const update = Effect.fn("AksaraCli.updatePreviewProvider")(

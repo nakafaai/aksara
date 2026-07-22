@@ -12,6 +12,7 @@ import {
 } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { hashUtf8 } from "#compiler/hash";
+import { EXECUTABLE_POLICY_REVISION } from "#compiler/policy";
 
 /** Stable provider identifier used by the server-owned MDX registry. */
 export const MDX_PROVIDER_SOURCE = "nakafa-static-renderer-registry";
@@ -21,7 +22,7 @@ const COMPILER_CONFIG = JSON.stringify({
   componentDependencyExtraction: "missing-mdx-reference-v1",
   componentResolution: "base-route-domain-selection-v2",
   development: false,
-  executablePolicy: "trusted-mdx-policy-v3",
+  executablePolicy: EXECUTABLE_POLICY_REVISION,
   format: "mdx",
   mdxCompilerVersion: MDX_COMPILER_VERSION,
   metadataExtraction: "metadata-estree-static-v2",

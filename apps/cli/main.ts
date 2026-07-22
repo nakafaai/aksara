@@ -1,10 +1,22 @@
-import { NodeContext, NodeRuntime } from "@effect/platform-node";
+import {
+  NodeContext,
+  NodeHttpClient,
+  NodeRuntime,
+} from "@effect/platform-node";
 import { Effect } from "effect";
-import { makePreviewProgram } from "#cli/program";
+import { makeCliProgram } from "#cli/program";
+
+/** Builds the complete Node-backed CLI program before the runtime boundary. */
+export function makeMainProgram(input: {
+  readonly args: readonly string[];
+  readonly cwd: string;
+}) {
+  return makeCliProgram(input).pipe(
+    Effect.provide(NodeHttpClient.layer),
+    Effect.provide(NodeContext.layer)
+  );
+}
 
 NodeRuntime.runMain(
-  makePreviewProgram({
-    args: process.argv.slice(2),
-    cwd: process.cwd(),
-  }).pipe(Effect.provide(NodeContext.layer))
+  makeMainProgram({ args: process.argv.slice(2), cwd: process.cwd() })
 );

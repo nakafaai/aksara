@@ -1,4 +1,5 @@
 import { generateKeyPairSync } from "node:crypto";
+import { Path } from "@effect/platform";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
@@ -15,28 +16,29 @@ import {
   MaterialSectionSchema,
 } from "@nakafa/aksara-contracts/projection/material";
 import {
-  type ContentReleaseManifest,
   ContentReleaseManifestSchema,
   ContentUpsertSchema,
-  type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Redacted, Stream } from "effect";
-import { vi } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
 import {
   makePreparedRollbackRelease,
-  type PreparedContentRelease,
+  type PreparedGitRelease,
+  type PreparedRollbackRelease,
 } from "#publisher/preparation/spec";
-import { publishContentRelease } from "#publisher/publication";
+import {
+  publishGitRelease,
+  publishRollbackRelease,
+} from "#publisher/publication";
 import {
   PublicationSigningKey,
   PublicationSource,
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { testFileLayer } from "#test/files";
 import { rendererDomains } from "#test/renderer";
 
 export const rendererManifest = await Effect.runPromise(
@@ -104,6 +106,21 @@ const resolver = ContentVerificationKeyResolver.of({
     ),
 });
 
+/** Public-key resolver paired with the private test publication signer. */
+export const testVerificationResolver = resolver;
+
+/** Creates the signer paired with the exported test verification resolver. */
+function makeTestSigner() {
+  return Effect.runPromise(
+    makeEd25519PublicationSigner({
+      keyId: signingKey.keyId,
+      privateKeyPem: privateKey
+        .export({ format: "pem", type: "pkcs8" })
+        .toString(),
+    })
+  );
+}
+
 /** Prepares one real publisher input through the only public constructor. */
 export async function makeRelease(
   releaseId: string,
@@ -131,14 +148,7 @@ export async function makeRollbackRelease(releaseId: string) {
     baseReleaseId: rollbackOf,
     origin: { kind: "rollback", releaseId: rollbackOf },
   });
-  const signer = await Effect.runPromise(
-    makeEd25519PublicationSigner({
-      keyId: signingKey.keyId,
-      privateKeyPem: privateKey
-        .export({ format: "pem", type: "pkcs8" })
-        .toString(),
-    })
-  );
+  const signer = await makeTestSigner();
   const artifact = await Effect.runPromise(signer.signArtifact(payload));
   const prepared = makePreparedRollbackRelease({
     artifacts: () => Stream.make(artifact),
@@ -150,125 +160,56 @@ export async function makeRollbackRelease(releaseId: string) {
   return { manifest, prepared };
 }
 
-/** Builds an observable durable target with exact manifest identity binding. */
-export function makeTarget(release: {
-  readonly manifest: ContentReleaseManifest;
-}) {
-  let phase: ContentReleaseStatus["phase"] = "missing";
-  let storedHash: SignedContentRelease["manifestHash"] | undefined;
-  let activationTransitions = 0;
-  /** Returns the exact durable publication result for this test release. */
-  const receipt = () => ({
-    activatedHeads: 1,
-    deletedHeads: 0,
-    projectionDigest: release.manifest.projectionDigest,
-    releaseId: release.manifest.releaseId,
-    stagedArtifacts: 1,
-    stagedItems: release.manifest.itemCount,
-    stagedProjections: release.manifest.projectionCount,
-  });
-  /** Returns target-side evidence recomputed from persisted staged rows. */
-  const evidence = (manifestHash: SignedContentRelease["manifestHash"]) => ({
-    baseReleaseId: release.manifest.baseReleaseId,
-    deleteHeads: 0,
-    itemCount: release.manifest.itemCount,
-    itemsDigest: release.manifest.itemsDigest,
-    manifestHash,
-    projectionCount: release.manifest.projectionCount,
-    projectionDigest: release.manifest.projectionDigest,
-    releaseId: release.manifest.releaseId,
-    rendererContractVersion: release.manifest.rendererContractVersion,
-    rendererManifestHash: release.manifest.rendererManifestHash,
-    stagedArtifacts: 1,
-    upsertHeads: 1,
-  });
-  const stageRelease = vi.fn((signed: SignedContentRelease) =>
-    Effect.sync(() => {
-      storedHash = signed.manifestHash;
-      if (phase === "missing") {
-        phase = "staging";
-      }
-    })
+/** Signs one real prepared release for crash-recovery assertions. */
+export async function makeSignedBundle(releaseId: string) {
+  const prepared = await makeRelease(releaseId);
+  const signer = await makeTestSigner();
+  const release = await Effect.runPromise(
+    signer.signRelease(prepared.manifest)
   );
-  const verify = vi.fn((signed: SignedContentRelease) =>
-    Effect.succeed(evidence(signed.manifestHash))
-  );
-  const activate = vi.fn(() =>
-    Effect.sync(() => {
-      phase = "active";
-      activationTransitions += 1;
-      return receipt();
-    })
-  );
-  const finalize = vi.fn(() =>
-    Effect.sync(() => {
-      phase = "completed";
-      return receipt();
-    })
-  );
-  const status = vi.fn(() => {
-    if (storedHash === undefined) {
-      return Effect.die("The signed release must be staged before status.");
-    }
-    return Effect.succeed<ContentReleaseStatus>(
-      phase === "completed"
-        ? {
-            manifestHash: storedHash,
-            phase,
-            receipt: receipt(),
-            releaseId: release.manifest.releaseId,
-          }
-        : {
-            manifestHash: storedHash,
-            phase,
-            releaseId: release.manifest.releaseId,
-          }
-    );
-  });
-  const stageArtifactBatch = vi.fn(() => Effect.void);
-  const stageItemBatch = vi.fn(() => Effect.void);
-  const stageProjectionBatch = vi.fn(() => Effect.void);
-  return {
-    activate,
-    /** Reports how many atomic activation transitions actually occurred. */
-    get activationTransitions() {
-      return activationTransitions;
-    },
-    evidence,
-    stageArtifactBatch,
-    stageItemBatch,
-    stageProjectionBatch,
-    stageRelease,
-    target: PublicationTarget.of({
-      activate,
-      cleanup: () => Effect.die("Cleanup is outside publication tests."),
-      finalize,
-      rollbackPage: () => Effect.die("Rollback is outside publication tests."),
-      stageArtifactBatch,
-      stageItemBatch,
-      stageProjectionBatch,
-      stageRelease,
-      status,
-      verify,
-    }),
-    verify,
-  };
+  return { release, rendererManifest };
 }
 
-/** Runs one prepared release with its exact reviewed Git source adapter. */
+/** Runs one prepared release with an explicitly supplied exact-Git source. */
+export function publishFromSource<E, R>(
+  prepared: PreparedGitRelease<E, R>,
+  target: typeof PublicationTarget.Service,
+  publicationSource: typeof PublicationSource.Service
+) {
+  return publishGitRelease(prepared).pipe(
+    Effect.provide(testFileLayer(new Map())),
+    Effect.provide(Path.layer),
+    Effect.provideService(PublicationSigningKey, signingKey),
+    Effect.provideService(PublicationSource, publicationSource),
+    Effect.provideService(ContentVerificationKeyResolver, resolver),
+    Effect.provideService(PublicationTarget, target)
+  );
+}
+
+/** Runs one prepared release with its default reviewed Git source adapter. */
 export function publishPrepared<E, R>(
-  prepared: PreparedContentRelease<E, R>,
+  prepared: PreparedGitRelease<E, R>,
   target: typeof PublicationTarget.Service,
   rawMdx = source.rawMdx
 ) {
-  return publishContentRelease(prepared).pipe(
+  return publishFromSource(
+    prepared,
+    target,
+    PublicationSource.of({
+      loadExactRevision: () => Stream.make({ ...source, rawMdx }),
+    })
+  );
+}
+
+/** Runs one rollback release without constructing an unrelated Git source. */
+export function publishRollbackPrepared<E, R>(
+  prepared: PreparedRollbackRelease<E, R>,
+  target: typeof PublicationTarget.Service
+) {
+  return publishRollbackRelease(prepared).pipe(
+    Effect.provide(testFileLayer(new Map())),
+    Effect.provide(Path.layer),
     Effect.provideService(PublicationSigningKey, signingKey),
-    Effect.provideService(
-      PublicationSource,
-      PublicationSource.of({
-        loadExactRevision: () => Stream.make({ ...source, rawMdx }),
-      })
-    ),
     Effect.provideService(ContentVerificationKeyResolver, resolver),
     Effect.provideService(PublicationTarget, target)
   );

@@ -8,6 +8,7 @@ import {
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { completePublicationLifecycle } from "#publisher/publication/lifecycle";
@@ -16,9 +17,20 @@ import {
   PublicationStaleBaseError,
   PublicationTargetConflictError,
 } from "#publisher/target/errors";
+import { rendererDomains } from "#test/renderer";
 
+const rendererManifest = await Effect.runPromise(
+  createRendererManifest({
+    base: {
+      authoringComponents: [{ name: "BlockMath", version: 1 }],
+      supportedComponents: [{ name: "BlockMath", version: 1 }],
+    },
+    domains: rendererDomains({}),
+  })
+);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
+  deleteCount: 0,
   itemCount: 1,
   itemsDigest: `sha256:${"b".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -26,7 +38,8 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId: "test-lifecycle",
   rendererContractVersion: "1.0.0",
-  rendererManifestHash: `sha256:${"d".repeat(64)}`,
+  rendererManifestHash: rendererManifest.hash,
+  upsertCount: 1,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   keyId: "test-key",
@@ -89,9 +102,12 @@ function makeTarget(
   const activate = vi.fn(overrides.activate ?? (() => Effect.succeed(receipt)));
   const finalize = vi.fn(() => Effect.succeed(receipt));
   const target = PublicationTarget.of({
+    abort: () => Effect.die("Abort is outside lifecycle tests."),
     activate,
     cleanup: () => Effect.die("Cleanup is outside lifecycle tests."),
+    current: () => Effect.die("Current state is outside lifecycle tests."),
     finalize,
+    headPage: () => Effect.die("Head pages are outside lifecycle tests."),
     rollbackPage: () => Effect.die("Rollback is outside lifecycle tests."),
     stageArtifactBatch: () => Effect.void,
     stageItemBatch: () => Effect.void,
@@ -111,6 +127,7 @@ function runLifecycle(
   return completePublicationLifecycle({
     projectionSummary,
     release,
+    rendererManifest,
     stage,
     summary,
     target,
@@ -133,6 +150,10 @@ describe("completePublicationLifecycle", () => {
       const stage = vi.fn();
       await Effect.runPromise(runLifecycle(state.target, Effect.sync(stage)));
       expect(state.stageRelease).toHaveBeenCalledOnce();
+      expect(state.stageRelease).toHaveBeenCalledWith({
+        release,
+        rendererManifest,
+      });
       expect(state.status).toHaveBeenCalledWith({
         manifestHash: release.manifestHash,
         releaseId: release.manifest.releaseId,

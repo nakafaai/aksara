@@ -48,6 +48,19 @@ type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;
 type ActivateRequest = Extract<PublicationRequest, { operation: "activate" }>;
 type ActivateSuccess = Extract<PublicationSuccess, { operation: "activate" }>;
 
+/** Binds one head page to its active release, scope, cursor, and row ceiling. */
+function hasBoundHeadPage(
+  request: Extract<PublicationRequest, { operation: "headPage" }>,
+  response: Extract<PublicationSuccess, { operation: "headPage" }>
+) {
+  const page = response.value;
+  return (
+    page.activeReleaseId === request.activeReleaseId &&
+    page.cursor === request.cursor &&
+    page.heads.length <= request.limit
+  );
+}
+
 /** Binds one publication receipt to every signed manifest field it reports. */
 function hasBoundManifestReceipt(
   request: ActivateRequest["release"],
@@ -56,25 +69,29 @@ function hasBoundManifestReceipt(
   const { manifest } = request;
   return (
     receipt.releaseId === manifest.releaseId &&
+    receipt.activatedHeads === manifest.upsertCount &&
+    receipt.deletedHeads === manifest.deleteCount &&
     receipt.projectionDigest === manifest.projectionDigest &&
+    receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount
   );
 }
 
-/** Binds one cleanup receipt to the exact request cursor and row ceiling. */
+/** Binds cumulative cleanup evidence to its exact release identity. */
 function hasBoundCleanup(
   request: Extract<PublicationRequest, { operation: "cleanup" }>,
   response: Extract<PublicationSuccess, { operation: "cleanup" }>
 ) {
-  const receipt = response.value;
-  return (
-    receipt.releaseId === request.releaseId &&
-    receipt.cursor === request.cursor &&
-    receipt.limit === request.limit &&
-    receipt.deletedArtifacts <= request.limit &&
-    receipt.deletedItems <= request.limit
-  );
+  return response.value.releaseId === request.releaseId;
+}
+
+/** Binds cumulative abort evidence to its exact release identity. */
+function hasBoundAbort(
+  request: Extract<PublicationRequest, { operation: "abort" }>,
+  response: Extract<PublicationSuccess, { operation: "abort" }>
+) {
+  return response.value.releaseId === request.releaseId;
 }
 
 /** Binds one rollback page to the exact requested cursor and row ceiling. */
@@ -116,17 +133,22 @@ export function hasBoundPublicationSuccess(
   }
   return Match.value(request).pipe(
     Match.discriminatorsExhaustive("operation")({
+      abort: (value) =>
+        response.operation === "abort" && hasBoundAbort(value, response),
       activate: (value) =>
         response.operation === "activate" &&
         hasBoundManifestReceipt(value.release, response.value),
       cleanup: (value) =>
         response.operation === "cleanup" && hasBoundCleanup(value, response),
+      current: () => response.operation === "current",
       finalize: (value) =>
         response.operation === "finalize" &&
         response.releaseId === value.release.manifest.releaseId &&
         hasBoundFinalizeProgress(value, response) &&
         (!response.value.done ||
           hasBoundManifestReceipt(value.release, response.value.receipt)),
+      headPage: (value) =>
+        response.operation === "headPage" && hasBoundHeadPage(value, response),
       rollbackPage: (value) =>
         response.operation === "rollbackPage" &&
         hasBoundRollbackPage(value, response),

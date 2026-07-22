@@ -1,3 +1,4 @@
+import { HttpClient } from "@effect/platform";
 import { CommandExecutor } from "@effect/platform/CommandExecutor";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Context, Effect, Layer, type Redacted } from "effect";
@@ -29,10 +30,13 @@ export class NakafaApp extends Context.Tag("AksaraCliNakafaApp")<
 /** Actual Nakafa process and renderer endpoint implementation. */
 export const NakafaAppLive = Layer.effect(
   NakafaApp,
-  CommandExecutor.pipe(
-    Effect.map((executor) =>
+  Effect.all([CommandExecutor, HttpClient.HttpClient]).pipe(
+    Effect.map(([executor, client]) =>
       NakafaApp.of({
-        fetchRenderer: waitForRenderer,
+        fetchRenderer: (origin, token) =>
+          waitForRenderer(origin, token).pipe(
+            Effect.provideService(HttpClient.HttpClient, client)
+          ),
         start: (input) => startNakafa(executor, input),
       })
     )

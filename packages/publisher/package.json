@@ -11,6 +11,10 @@
     "#test/*": "./test/*.ts"
   },
   "exports": {
+    "./abort": {
+      "types": "./dist/abort.d.ts",
+      "import": "./dist/abort.js"
+    },
     "./cleanup": {
       "types": "./dist/cleanup.d.ts",
       "import": "./dist/cleanup.js"
@@ -19,9 +23,13 @@
       "types": "./dist/git/source.d.ts",
       "import": "./dist/git/source.js"
     },
-    "./material": {
-      "types": "./dist/material.d.ts",
-      "import": "./dist/material.js"
+    "./heads": {
+      "types": "./dist/heads.d.ts",
+      "import": "./dist/heads.js"
+    },
+    "./material/publication": {
+      "types": "./dist/material/publication.d.ts",
+      "import": "./dist/material/publication.js"
     },
     "./preparation": {
       "types": "./dist/preparation.d.ts",
@@ -42,6 +50,10 @@
     "./rollback": {
       "types": "./dist/rollback.d.ts",
       "import": "./dist/rollback.js"
+    },
+    "./resume": {
+      "types": "./dist/resume.d.ts",
+      "import": "./dist/resume.js"
     },
     "./rollback/errors": {
       "types": "./dist/rollback/errors.d.ts",
@@ -83,6 +95,7 @@
     "effect": "catalog:"
   },
   "devDependencies": {
+    "@effect/platform-node": "catalog:",
     "@nakafa/typescript-config": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "vitest": "catalog:"

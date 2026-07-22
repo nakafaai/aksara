@@ -8,17 +8,22 @@ import { describe, expect, it, vi } from "vitest";
 import {
   cleanupContentRelease,
   ReleaseCleanupContractError,
+  ReleaseCleanupDeferredError,
+  ReleaseCleanupIncompleteError,
 } from "#publisher/cleanup";
 import { PublicationTarget } from "#publisher/publication/spec";
 
 const releaseId = ReleaseIdSchema.make("release-cleanup");
-const receipt: ReleaseCleanupReceipt = {
+const progress: ReleaseCleanupReceipt = {
   complete: false,
-  cursor: null,
-  deletedArtifacts: 2,
+  deletedArtifacts: 0,
+  deletedItems: 2,
+  releaseId,
+};
+const complete: ReleaseCleanupReceipt = {
+  complete: true,
+  deletedArtifacts: 1,
   deletedItems: 3,
-  limit: 100,
-  nextCursor: "next-page",
   releaseId,
 };
 
@@ -28,79 +33,122 @@ function makeTarget(
     request: ReleaseCleanupRequest
   ) => Effect.Effect<ReleaseCleanupReceipt>
 ) {
+  /** Makes every target operation outside cleanup fail immediately. */
+  const unused = () => Effect.die("Unused publication target operation.");
   return PublicationTarget.of({
-    activate: () => Effect.die("unused activate"),
+    abort: unused,
+    activate: unused,
     cleanup,
-    finalize: () => Effect.die("unused finalize"),
-    rollbackPage: () => Effect.die("unused rollback page"),
-    stageArtifactBatch: () => Effect.die("unused artifact staging"),
-    stageItemBatch: () => Effect.die("unused item staging"),
-    stageProjectionBatch: () => Effect.die("unused projection staging"),
-    stageRelease: () => Effect.die("unused release staging"),
-    status: () => Effect.die("unused status"),
-    verify: () => Effect.die("unused verification"),
+    current: unused,
+    finalize: unused,
+    headPage: unused,
+    rollbackPage: unused,
+    stageArtifactBatch: unused,
+    stageItemBatch: unused,
+    stageProjectionBatch: unused,
+    stageRelease: unused,
+    status: unused,
+    verify: unused,
   });
 }
 
-/** Executes cleanup with the supplied infrastructure response. */
-function runCleanup(input: unknown, cleanupReceipt: ReleaseCleanupReceipt) {
+/** Returns cumulative receipts in order and defects if the caller overreads. */
+function receiptSequence(receipts: readonly ReleaseCleanupReceipt[]) {
+  let index = 0;
+  return vi.fn(() => {
+    const receipt = receipts[index];
+    index += 1;
+    return receipt
+      ? Effect.succeed(receipt)
+      : Effect.die("Cleanup requested an unexpected extra receipt.");
+  });
+}
+
+/** Executes cleanup with one isolated target implementation. */
+function runCleanup(
+  input: unknown,
+  cleanup: ReturnType<typeof receiptSequence>
+) {
   return cleanupContentRelease(input).pipe(
-    Effect.provideService(
-      PublicationTarget,
-      makeTarget(() => Effect.succeed(cleanupReceipt))
-    )
+    Effect.provideService(PublicationTarget, makeTarget(cleanup))
   );
 }
 
 describe("cleanupContentRelease", () => {
-  it("decodes and forwards one bounded cleanup page", async () => {
-    const cleanup = vi.fn(() => Effect.succeed(receipt));
-    const result = await Effect.runPromise(
-      cleanupContentRelease({ cursor: null, limit: 100, releaseId }).pipe(
-        Effect.provideService(PublicationTarget, makeTarget(cleanup))
-      )
+  it("loops over cumulative progress until cleanup completes", async () => {
+    const cleanup = receiptSequence([
+      progress,
+      { ...complete, deletedItems: 2 },
+    ]);
+    const result = await Effect.runPromise(runCleanup({ releaseId }, cleanup));
+
+    expect(result).toEqual({ ...complete, deletedItems: 2 });
+    expect(cleanup).toHaveBeenCalledTimes(2);
+    expect(cleanup).toHaveBeenCalledWith({ releaseId });
+  });
+
+  it("returns resumable evidence after one bounded call budget", async () => {
+    const cleanup = receiptSequence(
+      Array.from({ length: 100 }, () => progress)
     );
-    expect(result).toEqual(receipt);
-    expect(cleanup).toHaveBeenCalledWith({
-      cursor: null,
-      limit: 100,
-      releaseId,
-    });
+    const error = await Effect.runPromise(
+      runCleanup({ releaseId }, cleanup).pipe(Effect.flip)
+    );
+
+    expect(error).toEqual(
+      new ReleaseCleanupIncompleteError({
+        attempts: 100,
+        deletedArtifacts: 0,
+        deletedItems: 2,
+        releaseId,
+      })
+    );
+    expect(cleanup).toHaveBeenCalledTimes(100);
+  });
+
+  it("returns a typed defer without waiting or requesting another page", async () => {
+    const retryAt = 1_800_000_000_000;
+    const cleanup = receiptSequence([{ ...progress, retryAt }]);
+    const error = await Effect.runPromise(
+      runCleanup({ releaseId }, cleanup).pipe(Effect.flip)
+    );
+
+    expect(error).toEqual(
+      new ReleaseCleanupDeferredError({ releaseId, retryAt })
+    );
+    expect(cleanup).toHaveBeenCalledTimes(1);
   });
 
   it("rejects malformed input before target cleanup", async () => {
-    const cleanup = vi.fn(() => Effect.succeed(receipt));
+    const cleanup = receiptSequence([complete]);
     const error = await Effect.runPromise(
-      cleanupContentRelease({ cursor: null, limit: 0, releaseId }).pipe(
-        Effect.provideService(PublicationTarget, makeTarget(cleanup)),
-        Effect.flip
-      )
+      runCleanup({ cursor: null, releaseId }, cleanup).pipe(Effect.flip)
     );
+
     expect(error).toEqual(
       new ReleaseCleanupContractError({ contract: "request" })
     );
     expect(cleanup).not.toHaveBeenCalled();
   });
 
-  it("rejects cleanup evidence for another request or above its limit", async () => {
-    const invalid = [
-      { ...receipt, releaseId: ReleaseIdSchema.make("release-other") },
-      { ...receipt, cursor: "another-page" },
-      { ...receipt, limit: 99 },
-      { ...receipt, deletedArtifacts: 101 },
-      { ...receipt, deletedItems: 101 },
+  it("rejects foreign identities and decreasing cumulative counts", async () => {
+    const cases = [
+      receiptSequence([
+        { ...complete, releaseId: ReleaseIdSchema.make("release-other") },
+      ]),
+      receiptSequence([
+        { ...progress, deletedItems: 2 },
+        { ...complete, deletedItems: 1 },
+      ]),
     ];
     const errors = await Effect.runPromise(
-      Effect.forEach(invalid, (candidate) =>
-        runCleanup({ cursor: null, limit: 100, releaseId }, candidate).pipe(
-          Effect.flip
-        )
+      Effect.forEach(cases, (cleanup) =>
+        runCleanup({ releaseId }, cleanup).pipe(Effect.flip)
       )
     );
+
     expect(errors).toEqual(
-      invalid.map(
-        () => new ReleaseCleanupContractError({ contract: "receipt" })
-      )
+      cases.map(() => new ReleaseCleanupContractError({ contract: "receipt" }))
     );
   });
 });

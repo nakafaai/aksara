@@ -3,7 +3,7 @@ import { CommandExecutor } from "@effect/platform/CommandExecutor";
 import { SystemError } from "@effect/platform/Error";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import { readRepositoryEvidence } from "#cli/evidence";
+import { readCleanAksaraRevision, readRepositoryEvidence } from "#cli/evidence";
 import {
   inspectTestCommand,
   makeTestExecutor,
@@ -63,6 +63,29 @@ describe("repository evidence", () => {
 
     expect(clean).toEqual({ dirty: false, sha: COMMIT_SHA });
     expect(dirty).toEqual({ dirty: true, sha: COMMIT_SHA });
+  });
+
+  it("accepts only a clean exact Aksara release revision", async () => {
+    const clean = await Effect.runPromise(
+      readCleanAksaraRevision("/code/aksara").pipe(
+        Effect.provideService(CommandExecutor, makeEvidenceExecutor())
+      )
+    );
+    const dirty = await Effect.runPromise(
+      readCleanAksaraRevision("/code/aksara").pipe(
+        Effect.provideService(
+          CommandExecutor,
+          makeEvidenceExecutor({ status: { stdout: " M real-source.mdx\n" } })
+        ),
+        Effect.flip
+      )
+    );
+
+    expect(clean).toBe(COMMIT_SHA);
+    expect(dirty).toMatchObject({
+      _tag: "ReleaseEvidenceError",
+      reason: "dirty",
+    });
   });
 
   it.each([

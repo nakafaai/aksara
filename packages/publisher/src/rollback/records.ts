@@ -1,17 +1,14 @@
 import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
+import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
-import {
-  type ContentReleaseItem,
-  ContentReleaseItemSchema,
-} from "@nakafa/aksara-contracts/release";
+import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import {
   isRollbackUpsert,
   type RollbackRecord,
 } from "@nakafa/aksara-contracts/release/rollback";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import {
   type ReleaseArtifactMismatchError,
   validateArtifactForItem,
@@ -25,15 +22,22 @@ type ArtifactVerificationContext = Effect.Effect.Context<
   ReturnType<typeof verifySignedContentArtifact>
 >;
 
+/** Strict disk-replay contract for one authenticated rollback record. */
+export const DerivedRollbackRecordSchema = Schema.Union(
+  Schema.Struct({
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("delete"),
+  }),
+  Schema.Struct({
+    artifact: SignedContentArtifactSchema,
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("upsert"),
+    projection: MaterialLessonProjectionSchema,
+  })
+);
+
 /** One authenticated rollback item and its optional unchanged prior body. */
-type DerivedRollbackRecord =
-  | { readonly item: ContentReleaseItem; readonly kind: "delete" }
-  | {
-      readonly artifact: SignedContentArtifact;
-      readonly item: ContentReleaseItem;
-      readonly kind: "upsert";
-      readonly projection: MaterialLessonProjection;
-    };
+export type DerivedRollbackRecord = typeof DerivedRollbackRecordSchema.Type;
 
 /** Authenticates one exact old envelope against the current renderer. */
 function deriveRecord(

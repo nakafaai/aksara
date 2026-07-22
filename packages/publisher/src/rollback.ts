@@ -1,3 +1,4 @@
+import type { FileSystem, Path } from "@effect/platform";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   createProjectionDigest,
@@ -13,13 +14,16 @@ import {
 } from "@nakafa/aksara-contracts/release/digest";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
+import { Effect, type Scope, Stream } from "effect";
 import {
   makePreparedRollbackRelease,
   type PreparedRollbackRelease,
 } from "#publisher/preparation/spec";
+import type { ReplaySpoolError } from "#publisher/replay/error";
+import { createReplaySpool } from "#publisher/replay/spool";
 import { RollbackIdentityError } from "#publisher/rollback/errors";
 import {
+  DerivedRollbackRecordSchema,
   deriveRollbackRecords,
   isDerivedRollbackUpsert,
 } from "#publisher/rollback/records";
@@ -36,6 +40,7 @@ type RollbackRecordStream = ReturnType<
 
 type RollbackStreamError = Stream.Stream.Error<RollbackRecordStream>;
 type RollbackStreamContext = Stream.Stream.Context<RollbackRecordStream>;
+type PreparedRollbackStreamError = ReplaySpoolError;
 
 type RendererManifestError = Effect.Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
@@ -53,13 +58,13 @@ type ProjectionDigestError =
 
 type ItemVerificationError = Effect.Effect.Error<
   ReturnType<
-    typeof verifyContentReleaseItems<RollbackStreamError, RollbackStreamContext>
+    typeof verifyContentReleaseItems<PreparedRollbackStreamError, never>
   >
 >;
 
 type ProjectionVerificationError = Effect.Effect.Error<
   ReturnType<
-    typeof verifyContentProjections<RollbackStreamError, RollbackStreamContext>
+    typeof verifyContentProjections<PreparedRollbackStreamError, never>
   >
 >;
 
@@ -77,6 +82,7 @@ export type PrepareRollbackError =
   | ProjectionDigestError
   | ProjectionVerificationError
   | RendererManifestError
+  | ReplaySpoolError
   | RollbackIdentityError
   | RollbackStreamError;
 
@@ -84,9 +90,9 @@ export type PrepareRollbackError =
 export type PrepareRollback = (
   input: PrepareRollbackInput
 ) => Effect.Effect<
-  PreparedRollbackRelease<RollbackStreamError, RollbackStreamContext>,
+  PreparedRollbackRelease<PreparedRollbackStreamError, never>,
   PrepareRollbackError,
-  RollbackStreamContext
+  FileSystem.FileSystem | Path.Path | RollbackStreamContext | Scope.Scope
 >;
 
 /** Prepares one self-verified forward rollback from bounded target pages. */
@@ -102,13 +108,17 @@ export const prepareRollback: PrepareRollback = Effect.fn(
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
-  /** Replays strict pages and authenticates every old artifact envelope. */
-  const records = () =>
-    deriveRollbackRecords({
+  const spool = yield* createReplaySpool({
+    prefix: "aksara-rollback-",
+    schema: DerivedRollbackRecordSchema,
+    stream: deriveRollbackRecords({
       records: streamRollbackRecords(input.rollbackOf),
       releaseId: input.releaseId,
       rendererManifest,
-    });
+    }),
+  });
+  /** Replays authenticated records without reading the target again. */
+  const records = spool.replay;
   /** Replays canonical forward-release items from the same prior records. */
   const items = () => records().pipe(Stream.map((record) => record.item));
   /** Replays only projections restored by authenticated prior upserts. */
@@ -150,6 +160,7 @@ export const prepareRollback: PrepareRollback = Effect.fn(
   );
   const manifest = ContentReleaseManifestSchema.make({
     baseReleaseId: input.rollbackOf,
+    deleteCount: itemState.deleteCount,
     itemCount: itemState.count,
     itemsDigest,
     origin: { kind: "rollback", releaseId: input.rollbackOf },
@@ -158,6 +169,7 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     releaseId: input.releaseId,
     rendererContractVersion: rendererManifest.rendererContractVersion,
     rendererManifestHash: rendererManifest.hash,
+    upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });
   yield* verifyContentProjections({ manifest, projections: projections() });

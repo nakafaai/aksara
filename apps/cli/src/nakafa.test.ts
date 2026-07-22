@@ -1,27 +1,22 @@
+import { HttpClient } from "@effect/platform";
 import { CommandExecutor } from "@effect/platform/CommandExecutor";
 import { Effect } from "effect";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
 import type { PreviewProvider } from "#cli/provider";
 import { makeTestExecutor } from "#test/command";
+import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
-
-afterEach(() => {
-  vi.unstubAllGlobals();
-});
 
 describe("Nakafa app service", () => {
   it("wires renderer discovery and child startup implementations", async () => {
-    const response = new Response(JSON.stringify(RENDERER_MANIFEST), {
-      headers: { "cache-control": "no-store" },
-    });
-    Object.defineProperty(response, "url", {
-      value: "http://localhost:31234/api/internal/content/renderer",
-    });
-    vi.stubGlobal(
-      "fetch",
-      vi.fn(async () => response)
+    const captured = captureClient((request) =>
+      Effect.succeed(
+        webResponse(request, JSON.stringify(RENDERER_MANIFEST), {
+          headers: { "cache-control": "no-store" },
+        })
+      )
     );
     const credentials = await Effect.runPromise(makePreviewCredentials());
     const provider: PreviewProvider = {
@@ -48,11 +43,13 @@ describe("Nakafa app service", () => {
         ),
         Effect.provide(NakafaAppLive),
         Effect.provideService(CommandExecutor, executor),
+        Effect.provideService(HttpClient.HttpClient, captured.client),
         Effect.scoped
       )
     );
 
     expect(result[0]).toEqual(RENDERER_MANIFEST);
     expect(result[1]).toMatchObject({ reason: "child-env" });
+    expect(captured.requests).toHaveLength(1);
   });
 });

@@ -2,7 +2,16 @@ import { existsSync, realpathSync, writeFileSync } from "node:fs";
 import { basename, relative } from "node:path";
 import { FileSystem, Error as PlatformError } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
-import { Effect, Redacted, Ref, Stream } from "effect";
+import {
+  Effect,
+  Fiber,
+  Option,
+  Redacted,
+  Ref,
+  Stream,
+  TestClock,
+  TestContext,
+} from "effect";
 import { afterEach, describe, expect, it } from "vitest";
 import { makeNakafaAppError } from "#cli/app-error";
 import type { RunningNakafa } from "#cli/child";
@@ -95,7 +104,6 @@ describe("selected document watch", () => {
         relative(aksaraRoot, realpathSync(repository.documentPath))
       ).pipe(Effect.provide(NodeContext.layer))
     );
-    const count = await Effect.runPromise(Ref.make(0));
     const events = Stream.concat(
       Stream.make(
         FileSystem.WatchEventUpdate({ path: "id.mdx" }),
@@ -104,21 +112,23 @@ describe("selected document watch", () => {
       Stream.never
     );
     const result = await Effect.runPromise(
-      runWatch(
-        selected,
-        events,
-        Ref.update(count, (value) => value + 1)
-      ).pipe(
-        Effect.timeoutFail({
-          duration: "150 millis",
-          onTimeout: () => "timeout" as const,
-        }),
-        Effect.flip
-      )
+      Effect.gen(function* () {
+        const count = yield* Ref.make(0);
+        const watcher = yield* runWatch(
+          selected,
+          events,
+          Ref.update(count, (value) => value + 1)
+        ).pipe(Effect.fork);
+        yield* TestClock.adjust("75 millis");
+        const refreshes = yield* Ref.get(count);
+        const watcherExit = yield* Fiber.poll(watcher);
+        yield* Fiber.interrupt(watcher);
+        return { refreshes, watcherExit };
+      }).pipe(Effect.provide(TestContext.TestContext))
     );
 
-    expect(result).toBe("timeout");
-    expect(await Effect.runPromise(Ref.get(count))).toBe(1);
+    expect(result.refreshes).toBe(1);
+    expect(Option.isNone(result.watcherExit)).toBe(true);
   });
 
   it("distinguishes provider, filesystem, and ended watch failures", async () => {

@@ -9,8 +9,8 @@ import { readMaterialDocument } from "#corpus/material/source";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..", "..");
 const sourcePaths = [
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx",
+  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx",
+  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/id.mdx",
 ] as const;
 const sourceByPath = new Map(
   sourcePaths.map((sourcePath) => {
@@ -83,7 +83,7 @@ describe("material source", () => {
     expect(error).toMatchObject({
       _tag: "MaterialReadError",
       sourcePath:
-        "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
+        "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx",
     });
   });
 });

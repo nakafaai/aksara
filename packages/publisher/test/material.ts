@@ -1,21 +1,19 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { Path } from "@effect/platform";
+import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
-import {
-  type MaterialCheckout,
-  type MaterialCheckoutSnapshot,
-  prepareMaterialCheckout,
-} from "#publisher/material";
+import { prepareMaterialPublication } from "#publisher/material/publication";
+import { testFileLayer } from "#test/files";
 import { rendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
 export const englishPath =
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx";
 export const indonesianPath =
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/id.mdx";
 export const sourceByPath = new Map(
   [englishPath, indonesianPath].map((sourcePath) => {
     const absolutePath = resolve(checkoutRoot, sourcePath);
@@ -47,50 +45,48 @@ export const rendererManifest = await materialManifest({
   math: 1,
 });
 
-/** Provides deterministic reads for the two checked-in real MDX sources. */
-export function materialFileLayer(sources: ReadonlyMap<string, string>) {
-  return FileSystem.layerNoop({
-    readFileString: (path) => {
-      const source = sources.get(path);
-      if (source !== undefined) {
-        return Effect.succeed(source);
-      }
-      return Effect.fail(
-        new PlatformError.SystemError({
-          method: "readFileString",
-          module: "FileSystem",
-          pathOrDescriptor: path,
-          reason: "NotFound",
-        })
-      );
-    },
-  });
-}
-
-/** Runs the local material checkout only at the Vitest boundary. */
-export function prepareMaterial(input: {
-  readonly previous?: MaterialCheckoutSnapshot;
-  readonly renderer?: RendererManifestEnvelope;
-  readonly sources?: ReadonlyMap<string, string>;
-}) {
+/** Collects first-release records through the authoritative material path. */
+function collectMaterialRecords() {
   return Effect.runPromise(
-    prepareMaterialCheckout({
-      checkoutRoot,
-      ...(input.previous === undefined ? {} : { previous: input.previous }),
-      rendererManifest: input.renderer ?? rendererManifest,
-    }).pipe(
-      Effect.provide(materialFileLayer(input.sources ?? sourceByPath)),
+    Effect.scoped(
+      Effect.gen(function* () {
+        const material = yield* prepareMaterialPublication({
+          checkoutRoot,
+          published: Stream.empty,
+          rendererManifest,
+        });
+        return yield* material.records().pipe(
+          Stream.runCollect,
+          Effect.map((records) => [...records])
+        );
+      })
+    ).pipe(
+      Effect.provide(testFileLayer(sourceByPath)),
       Effect.provide(Path.layer)
     )
   );
 }
 
-/** Replays prepared records only at the Vitest boundary. */
-export function collectMaterialRecords(checkout: MaterialCheckout) {
-  return Effect.runPromise(
-    checkout.records().pipe(
-      Stream.runCollect,
-      Effect.map((records) => [...records])
-    )
-  );
+/** Derives authoritative compact heads from the two real prepared materials. */
+export async function publishedMaterialHeads() {
+  const records = await collectMaterialRecords();
+  return records.flatMap((record) => {
+    if (!("payload" in record)) {
+      return [];
+    }
+    return [
+      MaterialHeadSchema.make({
+        artifactHash: record.change.artifactHash,
+        compilerConfigHash: record.payload.compilerConfigHash,
+        contentKey: record.change.contentKey,
+        delivery: record.change.delivery,
+        locale: record.change.locale,
+        projectionHash: hashMaterialProjection(record.projection),
+        publicPath: record.change.publicPath,
+        rendererDomain: record.change.rendererDomain,
+        sourceHash: record.payload.sourceHash,
+        sourcePath: record.change.sourcePath,
+      }),
+    ];
+  });
 }

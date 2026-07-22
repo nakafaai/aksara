@@ -4,7 +4,10 @@ import {
   type HttpClientRequest,
   HttpClientResponse,
 } from "@effect/platform";
-import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
+import {
+  MAX_PROJECTION_BATCH_BYTES,
+  MAX_PUBLICATION_REQUEST_BYTES,
+} from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
 import { Effect, Layer, Match, Redacted, Schema } from "effect";
@@ -17,6 +20,7 @@ import {
 } from "#publisher/target/http";
 import {
   transportRelease,
+  transportRenderer,
   transportRequests,
   transportSuccess,
 } from "#test/transport";
@@ -85,14 +89,21 @@ function invokeTarget(
 ) {
   return Match.value(request).pipe(
     Match.discriminatorsExhaustive("operation")({
+      abort: (value) => target.abort(value),
       activate: (value) => target.activate(value.release),
       cleanup: (value) => target.cleanup(value),
+      current: () => target.current(),
       finalize: (value) => target.finalize(value.release),
+      headPage: (value) => target.headPage(value),
       rollbackPage: (value) => target.rollbackPage(value),
       stageArtifactBatch: (value) => target.stageArtifactBatch(value),
       stageItemBatch: (value) => target.stageItemBatch(value),
       stageProjectionBatch: (value) => target.stageProjectionBatch(value),
-      stageRelease: (value) => target.stageRelease(value.release),
+      stageRelease: (value) =>
+        target.stageRelease({
+          release: value.release,
+          rendererManifest: value.rendererManifest,
+        }),
       status: (value) => target.status(value),
       verify: (value) => target.verify(value.release),
     })
@@ -112,7 +123,7 @@ describe("HTTP publication target", () => {
         }
       )
     );
-    expect(captured.requests).toHaveLength(11);
+    expect(captured.requests).toHaveLength(14);
     for (const request of captured.requests) {
       expect(request.method).toBe("POST");
       expect(request.url).toBe(endpoint.toString());
@@ -166,6 +177,25 @@ describe("HTTP publication target", () => {
     expect(captured.requests).toHaveLength(0);
   });
 
+  it("rejects an oversized singleton request without inventing an identity", async () => {
+    const captured = capturedClient();
+    const target = await makeTarget(captured.client);
+    vi.spyOn(JSON, "stringify").mockImplementationOnce(() =>
+      "x".repeat(MAX_PUBLICATION_REQUEST_BYTES + 1)
+    );
+    const error = await Effect.runPromise(target.current().pipe(Effect.flip));
+    vi.restoreAllMocks();
+    expect(error).toMatchObject({
+      _tag: "PublicationTargetRejectedError",
+      rejection: {
+        code: "CONTENT_RELEASE_SIZE",
+        operation: "current",
+        releaseId: null,
+      },
+    });
+    expect(captured.requests).toHaveLength(0);
+  });
+
   it("maps impossible request encoding failure to a permanent protocol error", async () => {
     const captured = capturedClient();
     const target = await makeTarget(captured.client);
@@ -173,7 +203,12 @@ describe("HTTP publication target", () => {
       throw new TypeError("Test request encoding failure.");
     });
     const error = await Effect.runPromise(
-      target.stageRelease(transportRelease).pipe(Effect.flip)
+      target
+        .stageRelease({
+          release: transportRelease,
+          rendererManifest: transportRenderer,
+        })
+        .pipe(Effect.flip)
     );
     vi.restoreAllMocks();
     expect(error).toMatchObject({
@@ -211,7 +246,12 @@ describe("HTTP publication target", () => {
     );
     const failedTarget = await makeTarget(failed);
     const failedError = await Effect.runPromise(
-      failedTarget.stageRelease(transportRelease).pipe(Effect.flip)
+      failedTarget
+        .stageRelease({
+          release: transportRelease,
+          rendererManifest: transportRenderer,
+        })
+        .pipe(Effect.flip)
     );
     expect(failedError).toMatchObject({
       _tag: "PublicationTargetTransportError",
@@ -231,7 +271,12 @@ describe("HTTP publication target", () => {
     });
     const target = await makeTarget(transient);
     const error = await Effect.runPromise(
-      target.stageRelease(transportRelease).pipe(Effect.flip)
+      target
+        .stageRelease({
+          release: transportRelease,
+          rendererManifest: transportRenderer,
+        })
+        .pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "PublicationTargetTransportError",

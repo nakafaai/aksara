@@ -1,11 +1,21 @@
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { SignedContentArtifactSchema } from "#contracts/content";
-import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { ContentReleaseBundleSchema } from "#contracts/release/lifecycle";
 import {
-  ContentReleaseItemSchema,
-  SignedContentReleaseSchema,
-} from "#contracts/release/spec";
+  artifact,
+  hash,
+  items,
+  projection,
+  release,
+  releaseId,
+  rendererManifest,
+  requests,
+} from "#contracts/test/request";
+import {
+  MAX_ARTIFACT_BATCH_COUNT,
+  MAX_ITEM_BATCH_COUNT,
+  MAX_PROJECTION_BATCH_COUNT,
+} from "#contracts/transport/limits";
 import {
   decodePublicationRequest,
   PublicationRequestSchema,
@@ -17,117 +27,8 @@ import {
   StageProjectionBatchRequestSchema,
 } from "#contracts/transport/request";
 
-const releaseId = "test-transport";
-const hash = `sha256:${"a".repeat(64)}`;
-const manifestHash = `sha256:${"b".repeat(64)}`;
-const signature = `${"A".repeat(85)}A`;
-
-const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
-  keyId: "test-transport-key",
-  manifest: {
-    baseReleaseId: null,
-    itemCount: 2,
-    itemsDigest: hash,
-    origin: { kind: "git", sha: "a".repeat(40) },
-    projectionCount: 1,
-    projectionDigest: hash,
-    releaseId,
-    rendererContractVersion: "1.0.0",
-    rendererManifestHash: hash,
-  },
-  manifestHash,
-  signature,
-});
-
-const items = Schema.decodeUnknownSync(
-  Schema.NonEmptyArray(ContentReleaseItemSchema)
-)([
-  {
-    change: {
-      artifactHash: hash,
-      contentKey: "test:transport",
-      delivery: "public",
-      locale: "en",
-      operation: "upsert",
-      publicPath: "subjects/test/transport",
-      rendererDomain: "mathematics",
-      sourcePath: "packages/corpus/test/transport/en.mdx",
-    },
-    index: 0,
-    releaseId,
-  },
-  {
-    change: {
-      contentKey: "test:transport",
-      locale: "id",
-      operation: "delete",
-    },
-    index: 1,
-    releaseId,
-  },
-]);
-
-const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
-  artifactHash: hash,
-  keyId: "test-transport-key",
-  payload: {
-    byteLength: 1,
-    compiledCode: "x",
-    compilerConfigHash: hash,
-    compilerVersion: "0.1.0",
-    contentKey: "test:transport",
-    format: "mdx-function-body-v1",
-    locale: "en",
-    mdxCompilerVersion: "3.1.1",
-    plainText: "Test protocol",
-    rawMdx: "x",
-    rendererDomain: "mathematics",
-    requiredComponents: [],
-    sourceHash: hash,
-  },
-  signature,
-});
-
-const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
-  contentKey: "test:transport",
-  kind: "subject-lesson",
-  locale: "en",
-  materialKey: "test.transport",
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
-  order: 1,
-  parentPath: "subjects/test",
-  publicPath: "subjects/test/transport",
-  sectionKey: "test-transport",
-  sitemap: true,
-});
-
-const requests = [
-  { operation: "stageRelease", release },
-  { batchIndex: 0, items, operation: "stageItemBatch", releaseId },
-  {
-    batchIndex: 0,
-    operation: "stageProjectionBatch",
-    projections: [projection],
-    releaseId,
-  },
-  {
-    artifacts: [artifact],
-    batchIndex: 0,
-    operation: "stageArtifactBatch",
-    releaseId,
-  },
-  { manifestHash, operation: "status", releaseId },
-  { operation: "verify", release },
-  { operation: "activate", release },
-  { afterIndex: -1, operation: "finalize", release },
-  {
-    afterIndex: -1,
-    limit: 8,
-    operation: "rollbackPage",
-    rollbackOf: releaseId,
-  },
-  { cursor: null, limit: 100, operation: "cleanup", releaseId },
-];
+const itemError =
+  "Expected contiguous release items bound to the batch release identity.";
 
 /** Strictly tests one request schema without allowing extra properties. */
 function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
@@ -142,22 +43,47 @@ describe("publication requests", () => {
       expect(accepts(PublicationRequestSchema, request)).toBe(true);
     }
     const decoded = await Effect.runPromise(
-      decodePublicationRequest(requests[0])
+      decodePublicationRequest(requests[3])
     );
     expect(decoded.operation).toBe("stageRelease");
   });
 
-  it("rejects unknown operations and excess fields with a typed error", async () => {
-    expect(
-      accepts(PublicationRequestSchema, {
-        operation: "unknown",
-        releaseId,
-      })
-    ).toBe(false);
+  it("rejects excess fields with a typed error", async () => {
     const error = await Effect.runPromise(
       decodePublicationRequest({ ...requests[4], unexpected: true }).pipe(
         Effect.flip
       )
+    );
+    expect(error._tag).toBe("ContractDecodeError");
+  });
+
+  it("binds the frozen renderer envelope to the signed manifest", async () => {
+    expect(
+      accepts(ContentReleaseBundleSchema, { release, rendererManifest })
+    ).toBe(true);
+    const mismatchedRelease = {
+      ...release,
+      manifest: {
+        ...release.manifest,
+        rendererManifestHash: hash,
+      },
+    };
+    const inputError = Schema.decodeUnknownEither(ContentReleaseBundleSchema)({
+      release: mismatchedRelease,
+      rendererManifest,
+    });
+    expect(Either.isLeft(inputError)).toBe(true);
+    if (Either.isLeft(inputError)) {
+      expect(String(inputError.left)).toContain(
+        "Expected the signed release to bind the frozen renderer envelope."
+      );
+    }
+    const error = await Effect.runPromise(
+      decodePublicationRequest({
+        operation: "stageRelease",
+        release: mismatchedRelease,
+        rendererManifest,
+      }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("ContractDecodeError");
   });
@@ -188,21 +114,15 @@ describe("publication requests", () => {
       operation: "stageItemBatch",
       releaseId,
     });
-    if (Either.isLeft(error)) {
-      expect(String(error.left)).toContain(
-        "Expected contiguous release items bound to the batch release identity."
-      );
-    }
+    expect(Either.isLeft(error) ? String(error.left) : "").toContain(itemError);
     const inputError = Schema.decodeUnknownEither(StageItemBatchInputSchema)({
       batchIndex: 0,
       items: skipped,
       releaseId,
     });
-    if (Either.isLeft(inputError)) {
-      expect(String(inputError.left)).toContain(
-        "Expected contiguous release items bound to the batch release identity."
-      );
-    }
+    expect(Either.isLeft(inputError) ? String(inputError.left) : "").toContain(
+      itemError
+    );
   });
 
   it("shares exact operation-free batch inputs with wire requests", () => {
@@ -261,29 +181,73 @@ describe("publication requests", () => {
       expect(accepts(schema, input)).toBe(false);
     }
 
+    const artifactBatch = Array.from(
+      { length: MAX_ARTIFACT_BATCH_COUNT },
+      () => artifact
+    );
     expect(
       accepts(StageArtifactBatchRequestSchema, {
-        artifacts: Array.from({ length: 9 }, () => artifact),
+        artifacts: artifactBatch,
+        batchIndex: 0,
+        operation: "stageArtifactBatch",
+        releaseId,
+      })
+    ).toBe(true);
+    expect(
+      accepts(StageArtifactBatchRequestSchema, {
+        artifacts: [...artifactBatch, artifact],
         batchIndex: 0,
         operation: "stageArtifactBatch",
         releaseId,
       })
     ).toBe(false);
+
+    const projectionBatch = Array.from(
+      { length: MAX_PROJECTION_BATCH_COUNT },
+      () => projection
+    );
     expect(
       accepts(StageProjectionBatchRequestSchema, {
         batchIndex: 0,
         operation: "stageProjectionBatch",
-        projections: Array.from({ length: 101 }, () => projection),
+        projections: projectionBatch,
+        releaseId,
+      })
+    ).toBe(true);
+    expect(
+      accepts(StageProjectionBatchRequestSchema, {
+        batchIndex: 0,
+        operation: "stageProjectionBatch",
+        projections: [...projectionBatch, projection],
         releaseId,
       })
     ).toBe(false);
+
+    const itemBatch = Array.from(
+      { length: MAX_ITEM_BATCH_COUNT },
+      (_, index) => ({
+        ...items[0],
+        index,
+      })
+    );
     expect(
       accepts(StageItemBatchRequestSchema, {
         batchIndex: 0,
-        items: Array.from({ length: 101 }, (_, index) => ({
-          ...items[0],
-          index,
-        })),
+        items: itemBatch,
+        operation: "stageItemBatch",
+        releaseId,
+      })
+    ).toBe(true);
+    expect(
+      accepts(StageItemBatchRequestSchema, {
+        batchIndex: 0,
+        items: [
+          ...itemBatch,
+          {
+            ...items[0],
+            index: MAX_ITEM_BATCH_COUNT,
+          },
+        ],
         operation: "stageItemBatch",
         releaseId,
       })

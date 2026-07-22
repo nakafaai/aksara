@@ -1,6 +1,5 @@
 import { Schema } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
-import { PublicationOperationSchema } from "#contracts/transport/request";
 
 /** Stable rejection codes that require no message parsing by clients. */
 export const PublicationDomainRejectionCodeSchema = Schema.Literal(
@@ -83,24 +82,65 @@ const PublicationInvalidRequestSchema = Schema.Struct({
   releaseId: Schema.Null,
 });
 
-const PublicationDomainRejectedSchema = Schema.Struct({
+/** Request body was rejected before a publication operation could be decoded. */
+export const PublicationPredecodeRejectedSchema = Schema.Struct({
+  code: Schema.Literal("CONTENT_RELEASE_SIZE", "CONTENT_RELEASE_UNSUPPORTED"),
+  kind: Schema.Literal("rejected"),
+  operation: Schema.Null,
+  releaseId: Schema.Null,
+});
+export type PublicationPredecodeRejected =
+  typeof PublicationPredecodeRejectedSchema.Type;
+
+const PublicationReleaseRejectedSchema = Schema.Struct({
   code: PublicationDomainRejectionCodeSchema,
   kind: Schema.Literal("rejected"),
-  operation: PublicationOperationSchema,
+  operation: Schema.Literal(
+    "abort",
+    "stageRelease",
+    "headPage",
+    "stageItemBatch",
+    "stageProjectionBatch",
+    "stageArtifactBatch",
+    "status",
+    "verify",
+    "activate",
+    "finalize",
+    "rollbackPage",
+    "cleanup"
+  ),
   releaseId: ReleaseIdSchema,
+});
+
+const PublicationCurrentRejectedSchema = Schema.Struct({
+  code: PublicationDomainRejectionCodeSchema,
+  kind: Schema.Literal("rejected"),
+  operation: Schema.Literal("current"),
+  releaseId: Schema.Null,
 });
 
 /** One request was invalid or rejected by a stable authenticated domain rule. */
 export const PublicationRejectedSchema = Schema.Union(
   PublicationInvalidRequestSchema,
-  PublicationDomainRejectedSchema
+  PublicationPredecodeRejectedSchema,
+  PublicationReleaseRejectedSchema,
+  PublicationCurrentRejectedSchema
 );
 export type PublicationRejected = typeof PublicationRejectedSchema.Type;
 
 const ReleaseConflictSchema = Schema.Struct({
   code: Schema.Literal("CONTENT_RELEASE_CONFLICT"),
   kind: Schema.Literal("conflict"),
-  operation: Schema.Literal("stageRelease"),
+  operation: Schema.Literal(
+    "abort",
+    "stageRelease",
+    "status",
+    "verify",
+    "activate",
+    "finalize",
+    "rollbackPage",
+    "cleanup"
+  ),
   releaseId: ReleaseIdSchema,
 });
 

@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer";
 import { createHash, generateKeyPairSync } from "node:crypto";
+import { Path } from "@effect/platform";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import {
@@ -21,6 +22,7 @@ import { describe, expect, it, vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { testFileLayer } from "#test/files";
 import { rendererDomains } from "#test/renderer";
 
 const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
@@ -120,9 +122,12 @@ function targetWith(
   loadPage: (typeof PublicationTarget.Service)["rollbackPage"]
 ) {
   return PublicationTarget.of({
+    abort: () => Effect.die("Unused target abort."),
     activate: () => Effect.die("Unused target activation."),
     cleanup: () => Effect.die("Unused target cleanup."),
+    current: () => Effect.die("Unused target current state."),
     finalize: () => Effect.die("Unused target finalization."),
+    headPage: () => Effect.die("Unused target head page."),
     rollbackPage: loadPage,
     stageArtifactBatch: () => Effect.die("Unused artifact staging."),
     stageItemBatch: () => Effect.die("Unused item staging."),
@@ -144,6 +149,8 @@ function prepare(
     rendererManifest: manifest,
     rollbackOf,
   }).pipe(
+    Effect.provide(testFileLayer(new Map())),
+    Effect.provide(Path.layer),
     Effect.provideService(ContentVerificationKeyResolver, resolver),
     Effect.provideService(PublicationTarget, target)
   );
@@ -152,17 +159,20 @@ function prepare(
 describe("prepareRollback", () => {
   it("prepares a signed-envelope replay as a new forward release", async () => {
     const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
-    const prepared = await Effect.runPromise(prepare(targetWith(loadPage)));
-    const [artifacts, items, projections] = await Effect.runPromise(
-      Effect.all([
-        prepared.artifacts().pipe(Stream.runCollect),
-        prepared.items().pipe(Stream.runCollect),
-        prepared.projections().pipe(Stream.runCollect),
-      ]).pipe(
-        Effect.provideService(ContentVerificationKeyResolver, resolver),
-        Effect.provideService(PublicationTarget, targetWith(loadPage))
+    const result = await Effect.runPromise(
+      Effect.scoped(
+        Effect.gen(function* () {
+          const prepared = yield* prepare(targetWith(loadPage));
+          const [artifacts, items, projections] = yield* Effect.all([
+            prepared.artifacts().pipe(Stream.runCollect),
+            prepared.items().pipe(Stream.runCollect),
+            prepared.projections().pipe(Stream.runCollect),
+          ]);
+          return { artifacts, items, prepared, projections };
+        })
       )
     );
+    const { artifacts, items, prepared, projections } = result;
 
     expect(prepared.kind).toBe("rollback");
     expect(prepared.manifest).toMatchObject({
@@ -178,16 +188,18 @@ describe("prepareRollback", () => {
       "delete",
     ]);
     expect([...projections]).toEqual([projection]);
-    expect(loadPage).toHaveBeenCalled();
+    expect(loadPage).toHaveBeenCalledTimes(1);
   });
 
   it("rejects an unauthenticated renderer before reading rollback state", async () => {
     const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
     const error = await Effect.runPromise(
-      prepare(targetWith(loadPage), {
-        ...rendererManifest,
-        hash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-      }).pipe(Effect.flip)
+      Effect.scoped(
+        prepare(targetWith(loadPage), {
+          ...rendererManifest,
+          hash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+        })
+      ).pipe(Effect.flip)
     );
 
     expect(error._tag).toBe("RendererManifestHashMismatchError");
@@ -197,9 +209,9 @@ describe("prepareRollback", () => {
   it("rejects reuse of the active release identity before reading state", async () => {
     const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
     const error = await Effect.runPromise(
-      prepare(targetWith(loadPage), rendererManifest, rollbackOf).pipe(
-        Effect.flip
-      )
+      Effect.scoped(
+        prepare(targetWith(loadPage), rendererManifest, rollbackOf)
+      ).pipe(Effect.flip)
     );
 
     expect(error).toMatchObject({

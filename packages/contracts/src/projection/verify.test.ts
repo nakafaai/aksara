@@ -42,6 +42,7 @@ const projectionSummary = await Effect.runPromise(
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
+  deleteCount: 0,
   itemCount: 0,
   itemsDigest: `sha256:${"b".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -50,6 +51,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
+  upsertCount: 0,
 });
 
 /** Returns the typed projection verification failure for one candidate stream. */

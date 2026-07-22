@@ -1,0 +1,125 @@
+name: Release content
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Publication operation
+        required: true
+        type: choice
+        options:
+          - abort
+          - cleanup
+          - release
+          - rollback
+      release_id:
+        description: Exact release ID for the requested operation
+        required: true
+        type: string
+      rollback_of:
+        description: Exact active release to reverse
+        required: false
+        type: string
+
+permissions: {}
+
+env:
+  NODE_VERSION: 24.18.0
+  PNPM_VERSION: 11.15.1
+
+concurrency:
+  group: content-production
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
+    environment: content-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Validate operation
+        env:
+          OPERATION: ${{ inputs.operation }}
+          ROLLBACK_OF: ${{ inputs.rollback_of }}
+        run: |
+          if [[ "$OPERATION" != "rollback" && -n "$ROLLBACK_OF" ]]; then
+            echo "Only rollback may select prior release state." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "rollback" && -z "$ROLLBACK_OF" ]]; then
+            echo "A rollback must name the exact active release." >&2
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify exact main revision
+        run: |
+          if [[ -n "$(git status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The reviewed production checkout is dirty." >&2
+            exit 1
+          fi
+          git rev-parse --verify HEAD
+
+      - name: Publish release
+        if: inputs.operation == 'release'
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
+          AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
+          AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
+          AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: pnpm release -- --release-id "$RELEASE_ID"
+
+      - name: Publish rollback
+        if: inputs.operation == 'rollback'
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
+          AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
+          AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
+          AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          RELEASE_ID: ${{ inputs.release_id }}
+          ROLLBACK_OF: ${{ inputs.rollback_of }}
+        run: >-
+          pnpm rollback -- --release-id "$RELEASE_ID"
+          --rollback-of "$ROLLBACK_OF"
+
+      - name: Clean unreachable release
+        if: inputs.operation == 'cleanup'
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: pnpm cleanup -- --release-id "$RELEASE_ID"
+
+      - name: Abort pending release
+        if: inputs.operation == 'abort'
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: pnpm abort -- --release-id "$RELEASE_ID"

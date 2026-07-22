@@ -30,6 +30,17 @@ export class ReleaseItemCountMismatchError extends Schema.TaggedError<ReleaseIte
   { actualCount: ItemCountSchema, expectedCount: ItemCountSchema }
 ) {}
 
+/** Upsert and delete totals do not match the counts signed by the manifest. */
+export class ReleaseItemOperationCountMismatchError extends Schema.TaggedError<ReleaseItemOperationCountMismatchError>()(
+  "ReleaseItemOperationCountMismatchError",
+  {
+    actualDeletes: ItemCountSchema,
+    actualUpserts: ItemCountSchema,
+    expectedDeletes: ItemCountSchema,
+    expectedUpserts: ItemCountSchema,
+  }
+) {}
+
 /** An item belongs to another release envelope. */
 export class ReleaseItemReleaseMismatchError extends Schema.TaggedError<ReleaseItemReleaseMismatchError>()(
   "ReleaseItemReleaseMismatchError",
@@ -204,6 +215,14 @@ export const verifyContentReleaseItems = Effect.fn(
     return yield* new ReleaseItemCountMismatchError({
       actualCount: summary.count,
       expectedCount: input.manifest.itemCount,
+    });
+  }
+  if (summary.deleteCount !== input.manifest.deleteCount) {
+    return yield* new ReleaseItemOperationCountMismatchError({
+      actualDeletes: summary.deleteCount,
+      actualUpserts: summary.upsertCount,
+      expectedDeletes: input.manifest.deleteCount,
+      expectedUpserts: input.manifest.upsertCount,
     });
   }
   if (summary.digest !== input.manifest.itemsDigest) {

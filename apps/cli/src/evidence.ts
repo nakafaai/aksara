@@ -22,6 +22,12 @@ export class PreviewEvidenceError extends Schema.TaggedError<PreviewEvidenceErro
   }
 ) {}
 
+/** Production release preparation refuses a dirty authored checkout. */
+export class ReleaseEvidenceError extends Schema.TaggedError<ReleaseEvidenceError>()(
+  "ReleaseEvidenceError",
+  { reason: Schema.Literal("dirty") }
+) {}
+
 /** Collects bounded command bytes before strict UTF-8 decoding. */
 const collectGitOutput = Effect.fn("AksaraCli.collectGitOutput")(
   (stream: Stream.Stream<Uint8Array, unknown>) =>
@@ -108,4 +114,15 @@ export const readRepositoryEvidence = Effect.fn(
     )
   );
   return PreviewRepositorySchema.make({ dirty: status.length > 0, sha });
+});
+
+/** Returns the exact clean Aksara revision accepted for release provenance. */
+export const readCleanAksaraRevision = Effect.fn(
+  "AksaraCli.readCleanAksaraRevision"
+)(function* (root: string) {
+  const evidence = yield* readRepositoryEvidence("aksara", root);
+  if (evidence.dirty) {
+    return yield* new ReleaseEvidenceError({ reason: "dirty" });
+  }
+  return evidence.sha;
 });

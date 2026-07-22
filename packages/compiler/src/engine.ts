@@ -62,8 +62,8 @@ function capturePlainText(
   };
 }
 
-/** Measures one artifact field and fails when encoded size exceeds policy. */
-function enforceByteLimit(
+/** Enforces one compiler-owned UTF-8 field ceiling with a typed failure. */
+export function enforceContentByteLimit(
   contentKey: ContentKey,
   field: "rawMdx" | "compiledCode" | "plainText" | "canonicalPayload",
   value: string,
@@ -155,7 +155,7 @@ export const compileValidatedContent = Effect.fn(
   };
   let plainText = "";
 
-  yield* enforceByteLimit(
+  yield* enforceContentByteLimit(
     request.contentKey,
     "rawMdx",
     request.rawMdx,
@@ -205,13 +205,13 @@ export const compileValidatedContent = Effect.fn(
   }
 
   const compiledCode = String(file);
-  const byteLength = yield* enforceByteLimit(
+  const byteLength = yield* enforceContentByteLimit(
     request.contentKey,
     "compiledCode",
     compiledCode,
     MAX_COMPILED_CODE_BYTES
   );
-  yield* enforceByteLimit(
+  yield* enforceContentByteLimit(
     request.contentKey,
     "plainText",
     plainText,
@@ -241,7 +241,7 @@ export const compileValidatedContent = Effect.fn(
     requiredComponents,
     sourceHash: hashUtf8(request.rawMdx),
   });
-  yield* enforceByteLimit(
+  yield* enforceContentByteLimit(
     request.contentKey,
     "canonicalPayload",
     canonicalizeCompiledContentPayload(payload),

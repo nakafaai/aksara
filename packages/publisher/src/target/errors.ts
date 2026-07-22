@@ -7,6 +7,9 @@ import { Schema } from "effect";
 
 /** Publication capability whose infrastructure request did not complete. */
 export const PublicationTargetStageSchema = Schema.Literal(
+  "abort",
+  "current",
+  "heads",
   "release",
   "items",
   "projections",

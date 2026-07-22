@@ -64,6 +64,7 @@ const ProjectionCountSchema = Schema.Number.pipe(
 /** Deterministic desired-state transition for one content release. */
 const ContentReleaseManifestFields = {
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
+  deleteCount: ProjectionCountSchema,
   itemCount: ProjectionCountSchema,
   itemsDigest: Sha256HashSchema,
   origin: ReleaseOriginSchema,
@@ -72,15 +73,22 @@ const ContentReleaseManifestFields = {
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
+  upsertCount: ProjectionCountSchema,
 };
 
 /** Checks rollback provenance against the forward release identities. */
 function hasCoherentReleaseOrigin(input: {
   readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
+  readonly deleteCount: number;
+  readonly itemCount: number;
   readonly origin: typeof ReleaseOriginSchema.Type;
   readonly releaseId: typeof ReleaseIdSchema.Type;
+  readonly upsertCount: number;
 }) {
-  if (input.baseReleaseId === input.releaseId) {
+  if (
+    input.baseReleaseId === input.releaseId ||
+    input.deleteCount + input.upsertCount !== input.itemCount
+  ) {
     return false;
   }
   if (input.origin.kind === "git") {
@@ -211,6 +219,7 @@ export function canonicalizeContentReleaseManifest(
 ) {
   return JSON.stringify({
     baseReleaseId: manifest.baseReleaseId,
+    deleteCount: manifest.deleteCount,
     itemCount: manifest.itemCount,
     itemsDigest: manifest.itemsDigest,
     origin: canonicalizeReleaseOrigin(manifest.origin),
@@ -219,6 +228,7 @@ export function canonicalizeContentReleaseManifest(
     releaseId: manifest.releaseId,
     rendererContractVersion: manifest.rendererContractVersion,
     rendererManifestHash: manifest.rendererManifestHash,
+    upsertCount: manifest.upsertCount,
   });
 }
 

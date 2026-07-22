@@ -52,6 +52,7 @@ const itemSummary = await Effect.runPromise(
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
+  deleteCount: itemSummary.deleteCount,
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -60,6 +61,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
+  upsertCount: itemSummary.upsertCount,
 });
 
 describe("release spec", () => {
@@ -108,11 +110,13 @@ describe("release spec", () => {
     const first = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...manifest,
       baseReleaseId: releaseId,
+      deleteCount: 0,
       itemCount: 0,
       itemsDigest: firstSummary.digest,
       origin: { kind: "rollback", releaseId },
       projectionCount: 0,
       releaseId: firstId,
+      upsertCount: 0,
     });
     const second = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
       ...first,

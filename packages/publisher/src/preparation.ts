@@ -85,6 +85,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   );
   const manifest = ContentReleaseManifestSchema.make({
     baseReleaseId: input.baseReleaseId,
+    deleteCount: itemState.deleteCount,
     itemCount: itemState.count,
     itemsDigest,
     origin: { kind: "git", sha: input.aksaraSha },
@@ -93,6 +94,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     releaseId: input.releaseId,
     rendererContractVersion: rendererManifest.rendererContractVersion,
     rendererManifestHash: rendererManifest.hash,
+    upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });
   yield* verifyContentProjections({ manifest, projections: projections() });
