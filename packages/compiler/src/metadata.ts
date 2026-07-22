@@ -30,13 +30,6 @@ export interface AuthoredMetadata {
   readonly [key: string]: AuthoredMetadataValue;
 }
 
-/** Distinguishes a plain metadata object from recursive metadata arrays. */
-function isAuthoredMetadata(
-  value: AuthoredMetadataValue
-): value is AuthoredMetadata {
-  return Predicate.isRecord(value);
-}
-
 type DecodeResult =
   | { readonly reason: AuthoredMetadataSyntaxReason; readonly success: false }
   | { readonly success: true; readonly value: AuthoredMetadataValue };
@@ -232,7 +225,7 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
         })
       );
     }
-    if (!isAuthoredMetadata(metadata)) {
+    if (!Predicate.isRecord(metadata)) {
       return Effect.fail(
         new AuthoredMetadataSyntaxError({
           contentKey,
