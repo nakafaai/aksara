@@ -24,15 +24,15 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
 /** Exact production work selected from authoritative durable target state. */
 export type ProductionStateAction =
   | {
-      readonly baseReleaseId: ReleaseId | null;
+      readonly baseBundle: ContentReleaseBundle | null;
       readonly kind: "new";
       readonly mode: "git";
     }
   | {
-      readonly baseReleaseId: ReleaseId;
       readonly kind: "new";
       readonly mode: "rollback";
       readonly rollbackOf: ReleaseId;
+      readonly sourceBundle: ContentReleaseBundle;
     }
   | {
       readonly kind: "rebuild";
@@ -115,7 +115,11 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
     if (pending.phase === "aborting") {
       return yield* new ProductionStateError({ reason: "aborting" });
     }
-    if (pending.phase === "active" || pending.phase === "finalizing") {
+    if (
+      pending.phase === "verified" ||
+      pending.phase === "active" ||
+      pending.phase === "finalizing"
+    ) {
       return {
         bundle: {
           release: pending.release,
@@ -147,21 +151,21 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
   }
   if (args.command === "release") {
     return {
-      baseReleaseId: current.activeReleaseId,
+      baseBundle: completed === null ? null : completedBundle(completed),
       kind: "new",
       mode: "git",
     };
   }
-  if (current.activeReleaseId === null) {
+  if (completed === null) {
     return yield* new ProductionStateError({ reason: "missing-active" });
   }
-  if (args.rollbackOf !== current.activeReleaseId) {
+  if (args.rollbackOf !== completed.release.manifest.releaseId) {
     return yield* new ProductionStateError({ reason: "rollback-mismatch" });
   }
   return {
-    baseReleaseId: current.activeReleaseId,
     kind: "new",
     mode: "rollback",
     rollbackOf: args.rollbackOf,
+    sourceBundle: completedBundle(completed),
   };
 });

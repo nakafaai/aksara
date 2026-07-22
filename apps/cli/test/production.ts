@@ -8,7 +8,10 @@ import { runProductionCommand } from "#cli/production";
 import type { TargetCalls } from "#test/target";
 
 interface ProductionCalls extends TargetCalls {
+  baseManifestHash: string | null | undefined;
   baseReleaseId: string | null | undefined;
+  baseResultCount: number | undefined;
+  baseResultDigest: string | undefined;
   bundleVerifyCalls: number;
   keyId: string | undefined;
   manifestMismatch: boolean;
@@ -19,9 +22,14 @@ interface ProductionCalls extends TargetCalls {
   resumeBundle: ContentReleaseBundle | undefined;
   resumeCalls: number;
   rollbackInput:
-    | { readonly releaseId: string; readonly rollbackOf: string }
+    | {
+        readonly proofManifestHash: string;
+        readonly releaseId: string;
+        readonly rollbackOf: string;
+      }
     | undefined;
   sha: string | undefined;
+  storedRelease: ContentReleaseBundle["release"] | null | undefined;
   targetServiceReads: number;
   verifiedBundle: ContentReleaseBundle | undefined;
 }
@@ -29,14 +37,23 @@ interface ProductionCalls extends TargetCalls {
 const calls = vi.hoisted(() => {
   /** Creates pristine observable state for one production-command test. */
   const initial = (): ProductionCalls => ({
+    baseManifestHash: undefined,
     baseReleaseId: undefined,
+    baseResultCount: undefined,
+    baseResultDigest: undefined,
     bundleVerifyCalls: 0,
     checkoutRoot: undefined,
     cleanReads: 0,
-    current: { activeReleaseId: null, completed: null, pending: null },
+    current: {
+      activeManifestHash: null,
+      activeReleaseId: null,
+      completed: null,
+      pending: null,
+    },
     derivedPublicKeyPem:
       "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAfCo8fdr8VK1t3LoimeUpsXAYnjgRZwYQV761+jRPidQ=\n-----END PUBLIC KEY-----\n",
     environmentKeyId: "content-2026-07",
+    headManifestHash: undefined,
     headReleaseId: undefined,
     keyId: undefined,
     manifestMismatch: false,
@@ -53,6 +70,7 @@ const calls = vi.hoisted(() => {
     rootReads: 0,
     sha: undefined,
     sourceLayers: 0,
+    storedRelease: undefined,
     targetCalls: 0,
     targetServiceReads: 0,
     verifiedBundle: undefined,
@@ -103,13 +121,22 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
   return {
     prepareContentRelease: (input: {
       readonly aksaraSha: string;
-      readonly baseReleaseId: string | null;
+      readonly baseManifestHash: ContentReleaseManifest["baseManifestHash"];
+      readonly baseReleaseId: ContentReleaseManifest["baseReleaseId"];
+      readonly baseResultCount: number;
+      readonly baseResultDigest: ContentReleaseManifest["baseResultDigest"];
       readonly releaseId: string;
     }) => {
       calls.baseReleaseId = input.baseReleaseId;
+      calls.baseManifestHash = input.baseManifestHash;
+      calls.baseResultCount = input.baseResultCount;
+      calls.baseResultDigest = input.baseResultDigest;
       calls.releaseId = input.releaseId;
       calls.sha = input.aksaraSha;
       const bundle = gitBundle(input.releaseId, {
+        ...(input.baseManifestHash === null
+          ? {}
+          : { baseManifestHash: input.baseManifestHash }),
         baseReleaseId: releaseId(input.baseReleaseId ?? "release-placeholder"),
         ...(input.baseReleaseId === null ? { baseReleaseId: null } : {}),
         ...(calls.manifestMismatch
@@ -124,6 +151,7 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
         kind: "git",
         manifest: bundle.release.manifest,
         releaseId: input.releaseId,
+        storedRelease: null,
       });
     },
   };
@@ -134,10 +162,15 @@ vi.mock("@nakafa/aksara-publisher/rollback", async () => {
   const { releaseId, rollbackBundle } = await import("#test/target");
   return {
     prepareRollback: (input: {
+      readonly proofBundle: ContentReleaseBundle;
       readonly releaseId: string;
       readonly rollbackOf: string;
     }) => {
-      calls.rollbackInput = input;
+      calls.rollbackInput = {
+        proofManifestHash: input.proofBundle.release.manifestHash,
+        releaseId: input.releaseId,
+        rollbackOf: input.rollbackOf,
+      };
       const bundle = rollbackBundle(
         input.releaseId,
         releaseId(input.rollbackOf)
@@ -146,6 +179,7 @@ vi.mock("@nakafa/aksara-publisher/rollback", async () => {
         kind: "rollback",
         manifest: bundle.release.manifest,
         releaseId: input.releaseId,
+        storedRelease: null,
       });
     },
   };
@@ -154,6 +188,9 @@ vi.mock("@nakafa/aksara-publisher/rollback", async () => {
 vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
   const { ContentReleaseBundleSchema } = await import(
     "@nakafa/aksara-contracts/release/lifecycle"
+  );
+  const { SignedContentReleaseSchema } = await import(
+    "@nakafa/aksara-contracts/release"
   );
   const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
   return {
@@ -169,6 +206,10 @@ vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
         )
       );
     },
+    verifySignedContentRelease: (input: unknown) =>
+      TestSchema.decodeUnknown(SignedContentReleaseSchema)(input, {
+        onExcessProperty: "error",
+      }),
   };
 });
 
@@ -186,6 +227,7 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
   const publish = (prepared: {
     readonly kind: string;
     readonly manifest: ContentReleaseManifest;
+    readonly storedRelease: ContentReleaseBundle["release"] | null;
   }) => {
     calls.publishCalls += 1;
     return TestEffect.gen(function* () {
@@ -198,6 +240,7 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
       calls.privateKeyMatches =
         TestRedacted.value(signingKey.privateKeyPem) === "test-private-key";
       calls.publishKind = prepared.kind;
+      calls.storedRelease = prepared.storedRelease;
       return receiptFor(prepared.manifest);
     });
   };

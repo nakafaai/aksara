@@ -6,6 +6,7 @@ import {
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { prepareMaterialPublication } from "#publisher/material/publication";
@@ -77,7 +78,12 @@ describe("content publication", () => {
     const release = await makeRelease("test-release-replay", () => {
       replayCount += 1;
       return Stream.make(
-        replayCount < 7 ? record : { ...record, projection: changedProjection }
+        replayCount < 7
+          ? record
+          : {
+              ...record,
+              record: { ...record.record, projection: changedProjection },
+            }
       );
     });
     const changedSummary = await Effect.runPromise(
@@ -124,16 +130,21 @@ describe("content publication", () => {
       Effect.scoped(
         Effect.gen(function* () {
           const material = yield* prepareMaterialPublication({
+            baseCatalog: null,
             checkoutRoot,
             published: Stream.empty,
             rendererManifest: materialRendererManifest,
           });
           const prepared = yield* prepareContentRelease({
             aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
+            baseManifestHash: null,
             baseReleaseId: null,
+            baseResultCount: 0,
+            baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
             records: material.records,
             releaseId: ReleaseIdSchema.make("test-material-replay"),
             rendererManifest: materialRendererManifest,
+            result: material.result,
           });
           const state = makeTarget(prepared);
           const source = PublicationSource.of({
@@ -191,10 +202,20 @@ describe("content publication", () => {
   it("stages rollback artifacts and rejects a mismatched prepared mode", async () => {
     const release = await makeRollbackRelease("test-release-rollback");
     const state = makeTarget(release);
-    await Effect.runPromise(
-      publishRollbackPrepared(release.prepared, state.target)
-    );
+    let artifactReplays = 0;
+    const prepared = makePreparedRollbackRelease({
+      artifacts: () => {
+        artifactReplays += 1;
+        return release.prepared.artifacts();
+      },
+      items: release.prepared.items,
+      manifest: release.prepared.manifest,
+      projections: release.prepared.projections,
+      rendererManifest: release.prepared.rendererManifest,
+    });
+    await Effect.runPromise(publishRollbackPrepared(prepared, state.target));
     expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
+    expect(artifactReplays).toBe(1);
     const mismatch = makePreparedGitRelease({
       items: release.prepared.items,
       manifest: release.manifest,

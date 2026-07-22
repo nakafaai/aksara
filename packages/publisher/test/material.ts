@@ -1,8 +1,13 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Path } from "@effect/platform";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import {
+  type MaterialHead,
+  MaterialHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
+import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
@@ -45,12 +50,75 @@ export const rendererManifest = await materialManifest({
   math: 1,
 });
 
+const baseReleaseId = ReleaseIdSchema.make("test-material-base");
+
+/** Derives exact signed-root evidence for one material test catalog. */
+function materialBaseCatalog(heads: readonly MaterialHead[]) {
+  if (heads.length === 0) {
+    return Effect.succeed(null);
+  }
+  return digestResultCatalog(baseReleaseId, Stream.fromIterable(heads)).pipe(
+    Effect.map((summary) => ({ ...summary, releaseId: baseReleaseId }))
+  );
+}
+
+/** Collects one authoritative material publication through real platform layers. */
+export function collectMaterialPublication(input: {
+  readonly heads: readonly MaterialHead[];
+  readonly renderer?: unknown;
+  readonly sources?: ReadonlyMap<string, string>;
+}) {
+  return Effect.runPromise(
+    Effect.scoped(
+      Effect.gen(function* () {
+        const baseCatalog = yield* materialBaseCatalog(input.heads);
+        const publication = yield* prepareMaterialPublication({
+          baseCatalog,
+          checkoutRoot,
+          published: Stream.fromIterable(input.heads),
+          rendererManifest: input.renderer ?? rendererManifest,
+        });
+        return yield* publication.records().pipe(
+          Stream.runCollect,
+          Effect.map((records) => [...records])
+        );
+      })
+    ).pipe(
+      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
+      Effect.provide(Path.layer)
+    )
+  );
+}
+
+/** Returns an authoritative material planning failure without FiberFailure. */
+export function rejectMaterialPublication(heads: readonly MaterialHead[]) {
+  return Effect.runPromise(
+    Effect.scoped(
+      prepareMaterialPublication({
+        baseCatalog: {
+          count: heads.length,
+          digest: heads[0]?.artifactHash ?? rendererManifest.hash,
+          releaseId: baseReleaseId,
+        },
+        checkoutRoot,
+        published: Stream.fromIterable(heads),
+        rendererManifest,
+      })
+    ).pipe(
+      Effect.provide(testFileLayer(sourceByPath)),
+      Effect.provide(Path.layer),
+      Effect.flip
+    )
+  );
+}
+
 /** Collects first-release records through the authoritative material path. */
 function collectMaterialRecords() {
   return Effect.runPromise(
     Effect.scoped(
       Effect.gen(function* () {
         const material = yield* prepareMaterialPublication({
+          baseCatalog: null,
           checkoutRoot,
           published: Stream.empty,
           rendererManifest,
@@ -70,7 +138,8 @@ function collectMaterialRecords() {
 /** Derives authoritative compact heads from the two real prepared materials. */
 export async function publishedMaterialHeads() {
   const records = await collectMaterialRecords();
-  return records.flatMap((record) => {
+  return records.flatMap((transition) => {
+    const { record } = transition;
     if (!("payload" in record)) {
       return [];
     }

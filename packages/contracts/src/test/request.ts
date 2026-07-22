@@ -1,6 +1,7 @@
 import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
   ContentReleaseItemSchema,
   SignedContentReleaseSchema,
@@ -26,7 +27,10 @@ export const rendererManifest = await Effect.runPromise(
 export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   keyId: "test-transport-key",
   manifest: {
+    baseManifestHash: null,
     baseReleaseId: null,
+    baseResultCount: 0,
+    baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: 1,
     itemCount: 2,
     itemsDigest: hash,
@@ -36,6 +40,10 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
     releaseId,
     rendererContractVersion: "1.0.0",
     rendererManifestHash: rendererManifest.hash,
+    resultCount: 1,
+    resultDigest: hash,
+    rollbackCount: 2,
+    rollbackDigest: hash,
     upsertCount: 1,
   },
   manifestHash,
@@ -111,6 +119,7 @@ export const requests = [
   { operation: "abort", releaseId },
   { operation: "current" },
   {
+    activeManifestHash: manifestHash,
     activeReleaseId: releaseId,
     cursor: null,
     family: "material",
@@ -140,6 +149,7 @@ export const requests = [
     limit: 8,
     operation: "rollbackPage",
     rollbackOf: releaseId,
+    rollbackOfManifestHash: manifestHash,
   },
   { operation: "cleanup", releaseId },
 ];

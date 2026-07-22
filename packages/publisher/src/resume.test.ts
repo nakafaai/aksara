@@ -15,8 +15,11 @@ const { manifest } = bundle.release;
 const receipt = {
   activatedHeads: manifest.upsertCount,
   deletedHeads: manifest.deleteCount,
+  manifestHash: bundle.release.manifestHash,
   projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,
+  resultCount: manifest.resultCount,
+  resultDigest: manifest.resultDigest,
   stagedArtifacts: manifest.upsertCount,
   stagedItems: manifest.itemCount,
   stagedProjections: manifest.projectionCount,
@@ -38,10 +41,11 @@ function makeTarget(
   phase: ContentReleaseStatus["phase"],
   finalizedReceipt = receipt
 ) {
+  const activate = vi.fn(() => Effect.succeed(receipt));
   const finalize = vi.fn(() => Effect.succeed(finalizedReceipt));
   const target = PublicationTarget.of({
     abort: () => Effect.die("Unused abort operation."),
-    activate: () => Effect.die("Unused activation operation."),
+    activate,
     cleanup: () => Effect.die("Unused cleanup operation."),
     current: () => Effect.die("Unused current operation."),
     finalize,
@@ -54,7 +58,7 @@ function makeTarget(
     status: () => Effect.succeed(statusFor(phase)),
     verify: () => Effect.die("Unused verification operation."),
   });
-  return { finalize, target };
+  return { activate, finalize, target };
 }
 
 /** Runs one stored release through its real signature resolver. */
@@ -104,7 +108,16 @@ describe("resumeContentRelease", () => {
     expect(state.finalize).not.toHaveBeenCalled();
   });
 
-  it.each(["missing", "staging", "verifying", "verified", "aborting"] as const)(
+  it("activates and finalizes an exact verified release", async () => {
+    const state = makeTarget("verified");
+    await expect(Effect.runPromise(runResume(state.target))).resolves.toEqual(
+      receipt
+    );
+    expect(state.activate).toHaveBeenCalledWith(bundle.release);
+    expect(state.finalize).toHaveBeenCalledWith(bundle.release);
+  });
+
+  it.each(["missing", "staging", "verifying", "aborting"] as const)(
     "rejects non-finalizable %s state",
     async (phase) => {
       const state = makeTarget(phase);

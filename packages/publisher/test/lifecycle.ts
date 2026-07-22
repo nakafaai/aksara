@@ -20,15 +20,21 @@ export function makeTarget(release: {
   const receipt = () => ({
     activatedHeads: upsertHeads,
     deletedHeads: deleteHeads,
+    manifestHash: storedHash ?? release.manifest.resultDigest,
     projectionDigest: release.manifest.projectionDigest,
     releaseId: release.manifest.releaseId,
+    resultCount: release.manifest.resultCount,
+    resultDigest: release.manifest.resultDigest,
     stagedArtifacts: upsertHeads,
     stagedItems: release.manifest.itemCount,
     stagedProjections: release.manifest.projectionCount,
   });
   /** Returns target-side evidence recomputed from persisted staged rows. */
   const evidence = (manifestHash: SignedContentRelease["manifestHash"]) => ({
+    baseManifestHash: release.manifest.baseManifestHash,
     baseReleaseId: release.manifest.baseReleaseId,
+    baseResultCount: release.manifest.baseResultCount,
+    baseResultDigest: release.manifest.baseResultDigest,
     deleteHeads,
     itemCount: release.manifest.itemCount,
     itemsDigest: release.manifest.itemsDigest,
@@ -38,6 +44,10 @@ export function makeTarget(release: {
     releaseId: release.manifest.releaseId,
     rendererContractVersion: release.manifest.rendererContractVersion,
     rendererManifestHash: release.manifest.rendererManifestHash,
+    resultCount: release.manifest.resultCount,
+    resultDigest: release.manifest.resultDigest,
+    rollbackCount: release.manifest.rollbackCount,
+    rollbackDigest: release.manifest.rollbackDigest,
     stagedArtifacts: upsertHeads,
     upsertHeads,
   });

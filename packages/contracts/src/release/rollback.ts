@@ -3,11 +3,19 @@ import {
   canonicalizeSignedContentArtifact,
   SignedContentArtifactSchema,
 } from "#contracts/content";
-import { ReleaseIdSchema } from "#contracts/ids";
+import {
+  ContentKeySchema,
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "#contracts/ids";
 import {
   canonicalizeMaterialProjection,
   MaterialLessonProjectionSchema,
 } from "#contracts/projection/material";
+import {
+  canonicalizeMaterialHead,
+  MaterialHeadSchema,
+} from "#contracts/release/head";
 import {
   ContentDeleteSchema,
   ContentUpsertSchema,
@@ -15,7 +23,7 @@ import {
   ReleaseItemIndexSchema,
 } from "#contracts/release/spec";
 
-/** Maximum body-bearing rollback records returned by one target page. */
+/** Maximum body-bearing rollback transitions returned by one target page. */
 export const MAX_ROLLBACK_PAGE_RECORDS = 8;
 
 const RollbackCursorSchema = Schema.Number.pipe(
@@ -23,7 +31,48 @@ const RollbackCursorSchema = Schema.Number.pipe(
   Schema.greaterThanOrEqualTo(-1)
 );
 
-/** Checks identity coherence across one prior change, artifact, and projection. */
+/** Explicit proof that a changed content head did not previously exist. */
+export const RollbackAbsentStateSchema = Schema.Struct({
+  contentKey: ContentKeySchema,
+  locale: ContentUpsertSchema.fields.locale,
+  state: Schema.Literal("absent"),
+});
+export type RollbackAbsentState = typeof RollbackAbsentStateSchema.Type;
+
+/** Compact authoritative prior head protected by one rollback snapshot digest. */
+export const RollbackMaterialStateSchema = Schema.Struct({
+  head: MaterialHeadSchema,
+  state: Schema.Literal("material"),
+});
+export type RollbackMaterialState = typeof RollbackMaterialStateSchema.Type;
+
+/** Complete compact state vocabulary authenticated for one future rollback. */
+export const RollbackSnapshotStateSchema = Schema.Union(
+  RollbackAbsentStateSchema,
+  RollbackMaterialStateSchema
+);
+export type RollbackSnapshotState = typeof RollbackSnapshotStateSchema.Type;
+
+/** One ordered prior state covered by a signed release's rollback digest. */
+export const RollbackSnapshotEntrySchema = Schema.Struct({
+  index: ReleaseItemIndexSchema,
+  releaseId: ReleaseIdSchema,
+  snapshot: RollbackSnapshotStateSchema,
+});
+export type RollbackSnapshotEntry = typeof RollbackSnapshotEntrySchema.Type;
+
+/** Serializes one authenticated prior state for incremental digest computation. */
+export function canonicalizeRollbackSnapshotEntry(
+  entry: RollbackSnapshotEntry
+) {
+  const snapshot =
+    entry.snapshot.state === "absent"
+      ? `{"contentKey":${JSON.stringify(entry.snapshot.contentKey)},"locale":${JSON.stringify(entry.snapshot.locale)},"state":"absent"}`
+      : `{"head":${canonicalizeMaterialHead(entry.snapshot.head)},"state":"material"}`;
+  return `{"index":${entry.index},"releaseId":${JSON.stringify(entry.releaseId)},"snapshot":${snapshot}}`;
+}
+
+/** Checks identity coherence across one upsert, artifact, and projection. */
 function hasBoundRollbackUpsert(input: {
   readonly artifact: typeof SignedContentArtifactSchema.Type;
   readonly change: typeof ContentUpsertSchema.Type;
@@ -42,11 +91,10 @@ function hasBoundRollbackUpsert(input: {
   );
 }
 
-/** Exact prior upsert state restored without changing its signed artifact. */
-export const RollbackUpsertSchema = Schema.Struct({
+/** Complete body-bearing state for one existing material head. */
+export const RollbackUpsertStateSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
   change: ContentUpsertSchema,
-  index: ReleaseItemIndexSchema,
   projection: MaterialLessonProjectionSchema,
 }).pipe(
   Schema.filter(hasBoundRollbackUpsert, {
@@ -54,19 +102,42 @@ export const RollbackUpsertSchema = Schema.Struct({
       "Expected rollback change, artifact, and projection identities to match.",
   })
 );
-export type RollbackUpsert = typeof RollbackUpsertSchema.Type;
+export type RollbackUpsertState = typeof RollbackUpsertStateSchema.Type;
 
-/** Body-free tombstone that removes a head created by the source release. */
-export const RollbackDeleteSchema = Schema.Struct({
+/** Body-free state proving that one locale-specific head is absent. */
+export const RollbackDeleteStateSchema = Schema.Struct({
   change: ContentDeleteSchema,
-  index: ReleaseItemIndexSchema,
 });
-export type RollbackDelete = typeof RollbackDeleteSchema.Type;
+export type RollbackDeleteState = typeof RollbackDeleteStateSchema.Type;
 
-/** Complete prior-state record vocabulary for one forward rollback. */
-export const RollbackRecordSchema = Schema.Union(
-  RollbackUpsertSchema,
-  RollbackDeleteSchema
+/** Complete full-state vocabulary used by one rollback transition. */
+export const RollbackStateSchema = Schema.Union(
+  RollbackUpsertStateSchema,
+  RollbackDeleteStateSchema
+);
+export type RollbackState = typeof RollbackStateSchema.Type;
+
+/** Checks that current and prior states describe the same content head. */
+function hasBoundRollbackTransition(input: {
+  readonly current: RollbackState;
+  readonly prior: RollbackState;
+}) {
+  return (
+    input.current.change.contentKey === input.prior.change.contentKey &&
+    input.current.change.locale === input.prior.change.locale
+  );
+}
+
+/** Authenticated source state paired with the exact prior state it replaced. */
+export const RollbackRecordSchema = Schema.Struct({
+  current: RollbackStateSchema,
+  index: ReleaseItemIndexSchema,
+  prior: RollbackStateSchema,
+}).pipe(
+  Schema.filter(hasBoundRollbackTransition, {
+    message: () =>
+      "Expected rollback current and prior states to share one identity.",
+  })
 );
 export type RollbackRecord = typeof RollbackRecordSchema.Type;
 
@@ -78,6 +149,7 @@ export const RollbackPageRequestSchema = Schema.Struct({
     Schema.between(1, MAX_ROLLBACK_PAGE_RECORDS)
   ),
   rollbackOf: ReleaseIdSchema,
+  rollbackOfManifestHash: Sha256HashSchema,
 });
 export type RollbackPageRequest = typeof RollbackPageRequestSchema.Type;
 
@@ -104,7 +176,7 @@ function hasCoherentRollbackPage(page: {
   );
 }
 
-/** Strict bounded response carrying exact prior changes and artifact bodies. */
+/** Strict bounded response carrying current and exact prior release states. */
 export const RollbackPageSchema = Schema.Struct({
   done: Schema.Boolean,
   nextIndex: RollbackCursorSchema,
@@ -112,6 +184,7 @@ export const RollbackPageSchema = Schema.Struct({
     Schema.maxItems(MAX_ROLLBACK_PAGE_RECORDS)
   ),
   rollbackOf: ReleaseIdSchema,
+  rollbackOfManifestHash: Sha256HashSchema,
   total: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
 }).pipe(
   Schema.filter(hasCoherentRollbackPage, {
@@ -121,13 +194,25 @@ export const RollbackPageSchema = Schema.Struct({
 );
 export type RollbackPage = typeof RollbackPageSchema.Type;
 
-/** Serializes one rollback record in stable signed-wire field order. */
-export function canonicalizeRollbackRecord(record: RollbackRecord) {
-  const change = JSON.stringify(canonicalizeContentChange(record.change));
-  if (!("artifact" in record)) {
-    return `{"change":${change},"index":${record.index}}`;
+/** Narrows one full rollback state to its signed prior upsert body. */
+export function isRollbackUpsert(
+  state: RollbackState
+): state is RollbackUpsertState {
+  return "artifact" in state;
+}
+
+/** Serializes one complete rollback state in stable wire field order. */
+function canonicalizeRollbackState(state: RollbackState) {
+  const change = JSON.stringify(canonicalizeContentChange(state.change));
+  if (!isRollbackUpsert(state)) {
+    return `{"change":${change}}`;
   }
-  return `{"artifact":${canonicalizeSignedContentArtifact(record.artifact)},"change":${change},"index":${record.index},"projection":${canonicalizeMaterialProjection(record.projection)}}`;
+  return `{"artifact":${canonicalizeSignedContentArtifact(state.artifact)},"change":${change},"projection":${canonicalizeMaterialProjection(state.projection)}}`;
+}
+
+/** Serializes one rollback transition in stable wire field order. */
+export function canonicalizeRollbackRecord(record: RollbackRecord) {
+  return `{"current":${canonicalizeRollbackState(record.current)},"index":${record.index},"prior":${canonicalizeRollbackState(record.prior)}}`;
 }
 
 /** Serializes the complete body-bearing page for an exact byte ceiling. */
@@ -136,12 +221,5 @@ export function canonicalizeRollbackPage(page: RollbackPage) {
     .map(canonicalizeRollbackRecord)
     .join(
       ","
-    )}],"rollbackOf":${JSON.stringify(page.rollbackOf)},"total":${page.total}}`;
-}
-
-/** Narrows one rollback record to its exact signed prior upsert state. */
-export function isRollbackUpsert(
-  record: RollbackRecord
-): record is RollbackUpsert {
-  return "artifact" in record;
+    )}],"rollbackOfManifestHash":${JSON.stringify(page.rollbackOfManifestHash)},"rollbackOf":${JSON.stringify(page.rollbackOf)},"total":${page.total}}`;
 }

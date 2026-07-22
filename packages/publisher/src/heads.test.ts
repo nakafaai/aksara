@@ -1,4 +1,7 @@
-import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema, Stream } from "effect";
@@ -7,6 +10,7 @@ import { streamMaterialHeads } from "#publisher/heads";
 import { PublicationTarget } from "#publisher/publication/spec";
 
 const activeReleaseId = ReleaseIdSchema.make("release-active");
+const activeManifestHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
 
 /** Creates one exact compact material head for pagination tests. */
 function makeHead(contentKey: string, hashCharacter: string) {
@@ -50,7 +54,7 @@ function makeTarget(headPage: typeof PublicationTarget.Service.headPage) {
 /** Collects a material head stream through one supplied target service. */
 function collectHeads(target: typeof PublicationTarget.Service) {
   return Effect.runPromise(
-    streamMaterialHeads(activeReleaseId).pipe(
+    streamMaterialHeads(activeReleaseId, activeManifestHash).pipe(
       Stream.runCollect,
       Effect.map(Array.from),
       Effect.provideService(PublicationTarget, target)
@@ -61,7 +65,7 @@ function collectHeads(target: typeof PublicationTarget.Service) {
 /** Returns the typed head-stream failure without a FiberFailure wrapper. */
 function rejectHeads(target: typeof PublicationTarget.Service) {
   return Effect.runPromise(
-    streamMaterialHeads(activeReleaseId).pipe(
+    streamMaterialHeads(activeReleaseId, activeManifestHash).pipe(
       Stream.runDrain,
       Effect.provideService(PublicationTarget, target),
       Effect.flip
@@ -75,6 +79,7 @@ describe("material head stream", () => {
       .fn()
       .mockReturnValueOnce(
         Effect.succeed({
+          activeManifestHash,
           activeReleaseId,
           cursor: null,
           done: false,
@@ -85,6 +90,7 @@ describe("material head stream", () => {
       )
       .mockReturnValueOnce(
         Effect.succeed({
+          activeManifestHash,
           activeReleaseId,
           cursor: "cursor-one",
           done: true,
@@ -99,12 +105,14 @@ describe("material head stream", () => {
       secondHead,
     ]);
     expect(headPage).toHaveBeenNthCalledWith(1, {
+      activeManifestHash,
       activeReleaseId,
       cursor: null,
       family: "material",
       limit: MAX_HEAD_PAGE_COUNT,
     });
     expect(headPage).toHaveBeenNthCalledWith(2, {
+      activeManifestHash,
       activeReleaseId,
       cursor: "cursor-one",
       family: "material",
@@ -115,6 +123,7 @@ describe("material head stream", () => {
   it("accepts an empty terminal page for an active release without heads", async () => {
     const target = makeTarget(() =>
       Effect.succeed({
+        activeManifestHash,
         activeReleaseId,
         cursor: null,
         done: true,
@@ -132,6 +141,7 @@ describe("material head stream", () => {
       .fn()
       .mockReturnValueOnce(
         Effect.succeed({
+          activeManifestHash,
           activeReleaseId,
           cursor: null,
           done: false,
@@ -142,6 +152,7 @@ describe("material head stream", () => {
       )
       .mockReturnValueOnce(
         Effect.succeed({
+          activeManifestHash,
           activeReleaseId,
           cursor: "cursor-one",
           done: true,
@@ -160,6 +171,7 @@ describe("material head stream", () => {
   it("rejects non-terminal pages without a progressing cursor or final head", async () => {
     const pages = [
       {
+        activeManifestHash,
         activeReleaseId,
         cursor: null,
         done: false,
@@ -168,6 +180,7 @@ describe("material head stream", () => {
         nextCursor: null,
       },
       {
+        activeManifestHash,
         activeReleaseId,
         cursor: null,
         done: false,

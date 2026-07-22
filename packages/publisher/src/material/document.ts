@@ -7,7 +7,7 @@ import {
   type ContentSourceInspection,
   inspectContentSource,
 } from "@nakafa/aksara-compiler/inspect";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {

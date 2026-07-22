@@ -1,5 +1,5 @@
 import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -73,6 +73,21 @@ const baseRecord: PreparedContentUpsert = {
   source,
 };
 const releaseId = ReleaseIdSchema.make("test-stream-release");
+
+/** Pairs one candidate record with an explicit prior absence proof. */
+function transition(
+  record: unknown,
+  identity: PreparedContentUpsert["change"] = baseRecord.change
+) {
+  return {
+    prior: {
+      contentKey: identity.contentKey,
+      locale: identity.locale,
+      state: "absent",
+    },
+    record,
+  };
+}
 
 /** Runs one replay factory through the canonical derived stream. */
 function derive<E, R>(records: () => Stream.Stream<unknown, E, R>) {
@@ -180,7 +195,9 @@ const mismatchCases = [
 describe("derivePreparedRecords", () => {
   it.each(mismatchCases)("rejects %s incoherence", async (field, mutate) => {
     const error = await Effect.runPromise(
-      derive(() => Stream.make(mutate(baseRecord))).pipe(Effect.flip)
+      derive(() => Stream.make(transition(mutate(baseRecord)))).pipe(
+        Effect.flip
+      )
     );
     expect(error).toMatchObject({
       _tag: "PreparedContentCoherenceError",
@@ -195,14 +212,16 @@ describe("derivePreparedRecords", () => {
     };
     const error = await Effect.runPromise(
       derive(() =>
-        Stream.make({
-          ...baseRecord,
-          change: {
-            ...baseRecord.change,
-            artifactHash: hashCompiledContentPayload(badPayload),
-          },
-          payload: badPayload,
-        })
+        Stream.make(
+          transition({
+            ...baseRecord,
+            change: {
+              ...baseRecord.change,
+              artifactHash: hashCompiledContentPayload(badPayload),
+            },
+            payload: badPayload,
+          })
+        )
       ).pipe(Effect.flip)
     );
     expect(error).toMatchObject({ _tag: "ArtifactSourceHashMismatchError" });
@@ -212,17 +231,60 @@ describe("derivePreparedRecords", () => {
     const first = relocateRecord("test:stream:a", "subjects/test/shared");
     const second = relocateRecord("test:stream:b", "subjects/test/shared");
     const malformed = await Effect.runPromise(
-      derive(() => Stream.make({ change: {} })).pipe(Effect.flip)
+      derive(() => Stream.make(transition({ change: {} }))).pipe(Effect.flip)
     );
     const order = await Effect.runPromise(
-      derive(() => Stream.make(second, first)).pipe(Effect.flip)
+      derive(() =>
+        Stream.make(
+          transition(second, second.change),
+          transition(first, first.change)
+        )
+      ).pipe(Effect.flip)
     );
     const route = await Effect.runPromise(
-      derive(() => Stream.make(first, second)).pipe(Effect.flip)
+      derive(() =>
+        Stream.make(
+          transition(first, first.change),
+          transition(second, second.change)
+        )
+      ).pipe(Effect.flip)
     );
     expect(malformed).toMatchObject({ _tag: "PreparedContentDecodeError" });
     expect(order).toMatchObject({ _tag: "PreparedContentOrderError" });
     expect(route).toMatchObject({ _tag: "PreparedContentRouteError" });
+  });
+
+  it.each([
+    {
+      prior: {
+        contentKey: ContentKeySchema.make("test:another-head"),
+        locale: baseRecord.change.locale,
+        state: "absent",
+      },
+      record: baseRecord,
+    },
+    {
+      prior: {
+        contentKey: baseRecord.change.contentKey,
+        locale: baseRecord.change.locale,
+        state: "absent",
+      },
+      record: {
+        change: {
+          contentKey: baseRecord.change.contentKey,
+          locale: baseRecord.change.locale,
+          operation: "delete",
+        },
+      },
+    },
+  ])("rejects a contradictory prior-state proof", async (record) => {
+    const error = await Effect.runPromise(
+      derive(() => Stream.make(record)).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PreparedContentCoherenceError",
+      field: "priorState",
+    });
   });
 
   it("maps replay throws and preserves source stream failures", async () => {

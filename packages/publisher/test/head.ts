@@ -6,12 +6,14 @@ import { PublicationHeadPageSuccessSchema } from "@nakafa/aksara-contracts/trans
 import { Schema } from "effect";
 
 const artifactHash = `sha256:${"a".repeat(64)}`;
+const activeManifestHash = `sha256:${"b".repeat(64)}`;
 const projectionHash = `sha256:${"c".repeat(64)}`;
 
 /** Canonical material-head request shared by target transport tests. */
 export const headRequest = Schema.decodeUnknownSync(
   PublicationHeadPageRequestSchema
 )({
+  activeManifestHash,
   activeReleaseId: "test-http-release",
   cursor: null,
   family: "material",
@@ -25,6 +27,7 @@ export function headSuccess(request: PublicationHeadPageRequest) {
     ok: true,
     operation: request.operation,
     value: {
+      activeManifestHash: request.activeManifestHash,
       activeReleaseId: request.activeReleaseId,
       cursor: request.cursor,
       done: true,

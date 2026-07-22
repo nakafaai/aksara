@@ -11,9 +11,24 @@ import {
   updateReleaseItemsDigest,
 } from "@nakafa/aksara-contracts/release/digest";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import {
+  createResultCatalogDigest,
+  finalizeResultCatalogDigest,
+  updateResultCatalogDigest,
+  verifyResultCatalog,
+} from "@nakafa/aksara-contracts/release/result-digest";
+import {
+  createRollbackSnapshotDigest,
+  finalizeRollbackSnapshotDigest,
+  updateRollbackSnapshotDigest,
+  verifyRollbackSnapshot,
+} from "@nakafa/aksara-contracts/release/rollback-digest";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
-import { PreparedReleaseIdentityError } from "#publisher/preparation/errors";
+import {
+  PreparedReleaseBaseIdentityError,
+  PreparedReleaseIdentityError,
+} from "#publisher/preparation/errors";
 import {
   makePreparedGitRelease,
   type PrepareContentRelease,
@@ -35,6 +50,12 @@ function isDerivedUpsert(
 export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   "AksaraPublisher.prepareContentRelease"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
+  if ((input.baseReleaseId === null) !== (input.baseManifestHash === null)) {
+    return yield* new PreparedReleaseBaseIdentityError({
+      baseManifestHash: input.baseManifestHash,
+      baseReleaseId: input.baseReleaseId,
+    });
+  }
   if (input.baseReleaseId === input.releaseId) {
     return yield* new PreparedReleaseIdentityError({
       baseReleaseId: input.baseReleaseId,
@@ -58,8 +79,13 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
       Stream.filter(isDerivedUpsert),
       Stream.map((record) => record.projection)
     );
+  /** Replays exact prior states from the same proven transition records. */
+  const rollback = () =>
+    records().pipe(Stream.map((record) => record.rollback));
   const itemState = yield* createReleaseItemsDigest(input.releaseId);
   const projectionState = yield* createProjectionDigest(input.releaseId);
+  const rollbackState = yield* createRollbackSnapshotDigest(input.releaseId);
+  const resultState = yield* createResultCatalogDigest(input.releaseId);
   yield* records().pipe(
     Stream.runForEach((record) =>
       updateReleaseItemsDigest(input.releaseId, itemState, record.item).pipe(
@@ -71,10 +97,24 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
                 record.projection
               )
             : Effect.void
+        ),
+        Effect.zipRight(
+          updateRollbackSnapshotDigest(
+            input.releaseId,
+            rollbackState,
+            record.rollback
+          )
         )
       )
     )
   );
+  yield* input
+    .result()
+    .pipe(
+      Stream.runForEach((head) =>
+        updateResultCatalogDigest(input.releaseId, resultState, head)
+      )
+    );
   const itemsDigest = yield* finalizeReleaseItemsDigest(
     input.releaseId,
     itemState
@@ -83,8 +123,19 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     input.releaseId,
     projectionState
   );
+  const rollbackDigest = yield* finalizeRollbackSnapshotDigest(
+    input.releaseId,
+    rollbackState
+  );
+  const resultDigest = yield* finalizeResultCatalogDigest(
+    input.releaseId,
+    resultState
+  );
   const manifest = ContentReleaseManifestSchema.make({
+    baseManifestHash: input.baseManifestHash,
     baseReleaseId: input.baseReleaseId,
+    baseResultCount: input.baseResultCount,
+    baseResultDigest: input.baseResultDigest,
     deleteCount: itemState.deleteCount,
     itemCount: itemState.count,
     itemsDigest,
@@ -94,10 +145,21 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     releaseId: input.releaseId,
     rendererContractVersion: rendererManifest.rendererContractVersion,
     rendererManifestHash: rendererManifest.hash,
+    resultCount: resultState.count,
+    resultDigest,
+    rollbackCount: rollbackState.count,
+    rollbackDigest,
     upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });
   yield* verifyContentProjections({ manifest, projections: projections() });
+  yield* verifyResultCatalog({
+    expectedCount: manifest.resultCount,
+    expectedDigest: manifest.resultDigest,
+    heads: input.result(),
+    releaseId: manifest.releaseId,
+  });
+  yield* verifyRollbackSnapshot({ entries: rollback(), manifest });
   return makePreparedGitRelease({
     items,
     manifest,

@@ -1,4 +1,5 @@
 import { SignedContentReleaseSchema } from "@nakafa/aksara-contracts/release";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   type PublicationRequest,
@@ -36,7 +37,10 @@ export const transportRelease = Schema.decodeUnknownSync(
 )({
   keyId: "test-http-key",
   manifest: {
+    baseManifestHash: null,
     baseReleaseId: null,
+    baseResultCount: 0,
+    baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: 1,
     itemCount: 2,
     itemsDigest: transportArtifactHash,
@@ -46,6 +50,10 @@ export const transportRelease = Schema.decodeUnknownSync(
     releaseId: transportReleaseId,
     rendererContractVersion: "1.0.0",
     rendererManifestHash: transportRenderer.hash,
+    resultCount: 1,
+    resultDigest: transportArtifactHash,
+    rollbackCount: 2,
+    rollbackDigest: manifestHash,
     upsertCount: 1,
   },
   manifestHash,
@@ -90,6 +98,7 @@ export const transportRequests = Schema.decodeUnknownSync(
     limit: 8,
     operation: "rollbackPage",
     rollbackOf: transportReleaseId,
+    rollbackOfManifestHash: manifestHash,
   },
   { operation: "cleanup", releaseId: transportReleaseId },
 ]);
@@ -97,8 +106,11 @@ export const transportRequests = Schema.decodeUnknownSync(
 const publicationReceipt = {
   activatedHeads: 1,
   deletedHeads: 1,
+  manifestHash,
   projectionDigest,
   releaseId: transportRelease.manifest.releaseId,
+  resultCount: transportRelease.manifest.resultCount,
+  resultDigest: transportRelease.manifest.resultDigest,
   stagedArtifacts: 1,
   stagedItems: 2,
   stagedProjections: 1,
@@ -145,6 +157,7 @@ export function transportSuccess(
         ok: true,
         operation: value.operation,
         value: {
+          activeManifestHash: null,
           activeReleaseId: null,
           completed: null,
           pending: {
@@ -185,6 +198,7 @@ export function transportSuccess(
           nextIndex: -1,
           records: [],
           rollbackOf: value.rollbackOf,
+          rollbackOfManifestHash: value.rollbackOfManifestHash,
           total: 0,
         },
       }),
@@ -240,7 +254,10 @@ export function transportSuccess(
         ok: true,
         operation: value.operation,
         value: {
+          baseManifestHash: value.release.manifest.baseManifestHash,
           baseReleaseId: value.release.manifest.baseReleaseId,
+          baseResultCount: value.release.manifest.baseResultCount,
+          baseResultDigest: value.release.manifest.baseResultDigest,
           deleteHeads: 1,
           itemCount: value.release.manifest.itemCount,
           itemsDigest: value.release.manifest.itemsDigest,
@@ -250,6 +267,10 @@ export function transportSuccess(
           releaseId: value.release.manifest.releaseId,
           rendererContractVersion: "1.0.0",
           rendererManifestHash: transportRenderer.hash,
+          resultCount: value.release.manifest.resultCount,
+          resultDigest: value.release.manifest.resultDigest,
+          rollbackCount: value.release.manifest.rollbackCount,
+          rollbackDigest: value.release.manifest.rollbackDigest,
           stagedArtifacts: 1,
           upsertHeads: 1,
         },

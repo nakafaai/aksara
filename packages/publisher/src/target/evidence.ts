@@ -55,6 +55,7 @@ function hasBoundHeadPage(
 ) {
   const page = response.value;
   return (
+    page.activeManifestHash === request.activeManifestHash &&
     page.activeReleaseId === request.activeReleaseId &&
     page.cursor === request.cursor &&
     page.heads.length <= request.limit
@@ -69,9 +70,12 @@ function hasBoundManifestReceipt(
   const { manifest } = request;
   return (
     receipt.releaseId === manifest.releaseId &&
+    receipt.manifestHash === request.manifestHash &&
     receipt.activatedHeads === manifest.upsertCount &&
     receipt.deletedHeads === manifest.deleteCount &&
     receipt.projectionDigest === manifest.projectionDigest &&
+    receipt.resultCount === manifest.resultCount &&
+    receipt.resultDigest === manifest.resultDigest &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount
@@ -102,6 +106,7 @@ function hasBoundRollbackPage(
   const page = response.value;
   return (
     page.rollbackOf === request.rollbackOf &&
+    page.rollbackOfManifestHash === request.rollbackOfManifestHash &&
     page.records.length <= request.limit &&
     page.nextIndex === request.afterIndex + page.records.length
   );
@@ -114,11 +119,18 @@ function hasBoundVerification(request: VerifyRequest, response: VerifySuccess) {
   return (
     evidence.releaseId === manifest.releaseId &&
     evidence.manifestHash === manifestHash &&
+    evidence.baseManifestHash === manifest.baseManifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
+    evidence.baseResultCount === manifest.baseResultCount &&
+    evidence.baseResultDigest === manifest.baseResultDigest &&
     evidence.itemCount === manifest.itemCount &&
     evidence.itemsDigest === manifest.itemsDigest &&
     evidence.projectionCount === manifest.projectionCount &&
     evidence.projectionDigest === manifest.projectionDigest &&
+    evidence.resultCount === manifest.resultCount &&
+    evidence.resultDigest === manifest.resultDigest &&
+    evidence.rollbackCount === manifest.rollbackCount &&
+    evidence.rollbackDigest === manifest.rollbackDigest &&
     evidence.rendererManifestHash === manifest.rendererManifestHash
   );
 }

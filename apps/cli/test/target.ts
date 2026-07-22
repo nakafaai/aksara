@@ -20,6 +20,7 @@ import {
   type ContentReleaseCurrent,
   ContentReleaseCurrentSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -34,6 +35,7 @@ export interface TargetCalls {
   current: unknown;
   derivedPublicKeyPem: string;
   environmentKeyId: string;
+  headManifestHash: string | undefined;
   headReleaseId: string | undefined;
   materialCalls: number;
   publicationConfig:
@@ -51,10 +53,11 @@ export interface TargetCalls {
 
 /** Signs a structurally valid test manifest with its exact canonical hash. */
 function bundleFromManifest(
-  manifest: ContentReleaseManifest
+  manifest: ContentReleaseManifest,
+  keyId = SigningKeyIdSchema.make("content-2026-07")
 ): ContentReleaseBundle {
   const release = SignedContentReleaseSchema.make({
-    keyId: SigningKeyIdSchema.make("content-2026-07"),
+    keyId,
     manifest,
     manifestHash: Effect.runSync(hashContentReleaseManifest(manifest)),
     signature: Ed25519SignatureSchema.make(`${"A".repeat(85)}A`),
@@ -74,14 +77,21 @@ export function releaseId(value: string) {
 export function gitBundle(
   id: string,
   input: {
+    readonly baseManifestHash?: typeof Sha256HashSchema.Type;
     readonly baseReleaseId?: ReleaseId | null;
+    readonly keyId?: typeof SigningKeyIdSchema.Type;
     readonly projectionDigest?: typeof Sha256HashSchema.Type;
     readonly sha?: typeof GitCommitShaSchema.Type;
   } = {}
 ) {
+  const baseReleaseId = input.baseReleaseId ?? null;
   return bundleFromManifest(
     ContentReleaseManifestSchema.make({
-      baseReleaseId: input.baseReleaseId ?? null,
+      baseManifestHash:
+        baseReleaseId === null ? null : (input.baseManifestHash ?? HASH),
+      baseReleaseId,
+      baseResultCount: 0,
+      baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       deleteCount: 0,
       itemCount: 0,
       itemsDigest: HASH,
@@ -94,8 +104,13 @@ export function gitBundle(
       releaseId: releaseId(id),
       rendererContractVersion: RENDERER_MANIFEST.rendererContractVersion,
       rendererManifestHash: RENDERER_MANIFEST.hash,
+      resultCount: 0,
+      resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+      rollbackCount: 0,
+      rollbackDigest: HASH,
       upsertCount: 0,
-    })
+    }),
+    input.keyId
   );
 }
 
@@ -103,7 +118,10 @@ export function gitBundle(
 export function rollbackBundle(id: string, rollbackOf: ReleaseId) {
   return bundleFromManifest(
     ContentReleaseManifestSchema.make({
+      baseManifestHash: HASH,
       baseReleaseId: rollbackOf,
+      baseResultCount: 0,
+      baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       deleteCount: 0,
       itemCount: 0,
       itemsDigest: HASH,
@@ -113,6 +131,10 @@ export function rollbackBundle(id: string, rollbackOf: ReleaseId) {
       releaseId: releaseId(id),
       rendererContractVersion: RENDERER_MANIFEST.rendererContractVersion,
       rendererManifestHash: RENDERER_MANIFEST.hash,
+      resultCount: 0,
+      resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+      rollbackCount: 0,
+      rollbackDigest: HASH,
       upsertCount: 0,
     })
   );
@@ -132,8 +154,11 @@ export function receiptFor(
   return {
     activatedHeads: manifest.upsertCount,
     deletedHeads: manifest.deleteCount,
+    manifestHash: Effect.runSync(hashContentReleaseManifest(manifest)),
     projectionDigest: manifest.projectionDigest,
     releaseId: manifest.releaseId,
+    resultCount: manifest.resultCount,
+    resultDigest: manifest.resultDigest,
     stagedArtifacts: manifest.upsertCount,
     stagedItems: manifest.itemCount,
     stagedProjections: manifest.projectionCount,
@@ -220,7 +245,11 @@ export function repositoryMock(calls: TargetCalls) {
 /** Exposes an empty authoritative head stream for orchestration tests. */
 export function headsMock(calls: TargetCalls) {
   return {
-    streamMaterialHeads: (activeReleaseId: string) => {
+    streamMaterialHeads: (
+      activeReleaseId: string,
+      activeManifestHash: string
+    ) => {
+      calls.headManifestHash = activeManifestHash;
       calls.headReleaseId = activeReleaseId;
       return Stream.empty;
     },
@@ -233,7 +262,10 @@ export function materialMock(calls: TargetCalls) {
     prepareMaterialPublication: (input: { readonly checkoutRoot: string }) => {
       calls.checkoutRoot = input.checkoutRoot;
       calls.materialCalls += 1;
-      return Effect.succeed({ records: () => Stream.empty });
+      return Effect.succeed({
+        records: () => Stream.empty,
+        result: () => Stream.empty,
+      });
     },
   };
 }

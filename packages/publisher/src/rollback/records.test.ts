@@ -1,199 +1,255 @@
 import { Buffer } from "node:buffer";
-import {
-  createHash,
-  generateKeyPairSync,
-  sign as signBytes,
-} from "node:crypto";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
-import {
-  CompiledContentPayloadSchema,
-  canonicalizeContentArtifactSigningInput,
-  SignedContentArtifactSchema,
-} from "@nakafa/aksara-contracts/content";
-import {
-  ContentKeySchema,
-  CorpusSourcePathSchema,
-  Ed25519SignatureSchema,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-  SigningKeyIdSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { createHash } from "node:crypto";
+import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
-  RollbackDeleteSchema,
   type RollbackRecord,
-  RollbackUpsertSchema,
+  RollbackRecordSchema,
+  RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback";
-import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  deriveRollbackRecords,
-  isDerivedRollbackUpsert,
-} from "#publisher/rollback/records";
-import { rendererDomains } from "#test/renderer";
-
-const rawMdx = "## Test protocol";
-const compiledCode = "return {};";
-const keys = generateKeyPairSync("ed25519");
-const keyId = SigningKeyIdSchema.make("test-rollback-key");
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "TestBase", version: 1 }],
-      supportedComponents: [{ name: "TestBase", version: 1 }],
-    },
-    domains: rendererDomains({
-      chemistry: { name: "TestChemistry", version: 1 },
-      mathematics: { name: "TestMathematics", version: 1 },
-    }),
-  })
-);
-const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
-  byteLength: Buffer.byteLength(compiledCode, "utf8"),
-  compiledCode,
-  compilerConfigHash: `sha256:${"a".repeat(64)}`,
-  compilerVersion: "0.1.0",
-  contentKey: "test:rollback-record",
-  format: "mdx-function-body-v1",
-  locale: "en",
-  mdxCompilerVersion: "3.1.1",
-  plainText: "Test protocol",
-  rawMdx,
-  rendererDomain: "mathematics",
-  requiredComponents: [],
-  sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
-});
-const artifactHash = hashCompiledContentPayload(payload);
-const signature = Ed25519SignatureSchema.make(
-  signBytes(
-    null,
-    Buffer.from(
-      canonicalizeContentArtifactSigningInput(artifactHash, payload),
-      "utf8"
-    ),
-    keys.privateKey
-  ).toString("base64url")
-);
-const artifact = SignedContentArtifactSchema.make({
-  artifactHash,
-  keyId,
-  payload,
-  signature,
-});
-const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
-  contentKey: payload.contentKey,
-  kind: "subject-lesson",
-  locale: payload.locale,
-  materialKey: "test.rollback",
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
-  order: 1,
-  parentPath: "subjects/test/rollback",
-  publicPath: "subjects/test/rollback/record",
-  sectionKey: "test-record",
-  sitemap: true,
-});
-const upsert = RollbackUpsertSchema.make({
-  artifact,
-  change: {
-    artifactHash,
-    contentKey: payload.contentKey,
-    delivery: "public",
-    locale: payload.locale,
-    operation: "upsert",
-    publicPath: projection.publicPath,
-    rendererDomain: payload.rendererDomain,
-    sourcePath: CorpusSourcePathSchema.make(
-      "packages/corpus/test/rollback/record.mdx"
-    ),
-  },
-  index: 0,
-  projection,
-});
-const deletion = RollbackDeleteSchema.make({
-  change: {
-    contentKey: ContentKeySchema.make("test:rollback-delete"),
-    locale: "en",
-    operation: "delete",
-  },
-  index: 1,
-});
-const releaseId = ReleaseIdSchema.make("test-rollback-new");
-const resolver = ContentVerificationKeyResolver.of({
-  resolve: () =>
-    Effect.succeed(
-      keys.publicKey.export({ format: "pem", type: "spki" }).toString()
-    ),
-});
-
-/** Collects derived records through the real signature trust seam. */
-function collect(records: Stream.Stream<RollbackRecord>) {
-  return Effect.runPromise(
-    deriveRollbackRecords({ records, releaseId, rendererManifest }).pipe(
-      Stream.runCollect,
-      Effect.provideService(ContentVerificationKeyResolver, resolver)
-    )
-  );
-}
-
-/** Returns one expected typed failure from record authentication. */
-function reject(records: Stream.Stream<RollbackRecord>) {
-  return Effect.runPromise(
-    deriveRollbackRecords({ records, releaseId, rendererManifest }).pipe(
-      Stream.runCollect,
-      Effect.provideService(ContentVerificationKeyResolver, resolver),
-      Effect.flip
-    )
-  );
-}
-
-/** Changes one signature character while preserving its wire shape. */
-function tamperSignature(value: typeof signature) {
-  const replacement = value.startsWith("A") ? "B" : "A";
-  return Ed25519SignatureSchema.make(`${replacement}${value.slice(1)}`);
-}
+  encodeReplayRecord,
+  MAX_REPLAY_RECORD_BYTES,
+} from "#publisher/replay/record";
+import { isDerivedRollbackUpsert } from "#publisher/rollback/records";
+import {
+  collectRollbackRecords,
+  currentRollbackReleaseId,
+  incompatibleRollbackArtifact,
+  incompatibleRollbackUpsert,
+  matchingRollbackDeletion,
+  priorRollbackReleaseId,
+  rejectRollbackRecords,
+  rollbackArtifact,
+  rollbackDeletion,
+  rollbackDeletionRecord,
+  rollbackProjection,
+  rollbackRendererManifest,
+  rollbackUpsert,
+  rollbackUpsertRecord,
+  signRollbackPayload,
+  tamperRollbackSignature,
+} from "#test/rollback-authentication";
 
 describe("deriveRollbackRecords", () => {
   it("authenticates upserts and preserves body-free deletes", async () => {
-    const records = await collect(Stream.make(upsert, deletion));
+    const records = await collectRollbackRecords(
+      Stream.make(rollbackUpsertRecord, rollbackDeletionRecord)
+    );
     const [derivedUpsert, derivedDelete] = records;
 
     expect(derivedUpsert).toMatchObject({
-      artifact,
-      item: { change: upsert.change, index: 0, releaseId },
-      kind: "upsert",
-      projection,
+      current: {
+        artifact: rollbackArtifact,
+        item: {
+          change: rollbackUpsert.change,
+          index: 0,
+          releaseId: currentRollbackReleaseId,
+        },
+        kind: "upsert",
+        projection: rollbackProjection,
+      },
+      prior: {
+        artifact: rollbackArtifact,
+        item: {
+          change: rollbackUpsert.change,
+          index: 0,
+          releaseId: priorRollbackReleaseId,
+        },
+        kind: "upsert",
+        projection: rollbackProjection,
+      },
     });
     expect(derivedDelete).toEqual({
-      item: { change: deletion.change, index: 1, releaseId },
-      kind: "delete",
+      current: {
+        item: {
+          change: rollbackDeletion.change,
+          index: 1,
+          releaseId: currentRollbackReleaseId,
+        },
+        kind: "delete",
+      },
+      prior: {
+        item: {
+          change: rollbackDeletion.change,
+          index: 1,
+          releaseId: priorRollbackReleaseId,
+        },
+        kind: "delete",
+      },
     });
-    expect(derivedUpsert && isDerivedRollbackUpsert(derivedUpsert)).toBe(true);
-    expect(derivedDelete && isDerivedRollbackUpsert(derivedDelete)).toBe(false);
+    expect(
+      derivedUpsert && isDerivedRollbackUpsert(derivedUpsert.current)
+    ).toBe(true);
+    expect(
+      derivedDelete && isDerivedRollbackUpsert(derivedDelete.current)
+    ).toBe(false);
+  });
+
+  it("spools a valid rollback transition containing two near-limit bodies", async () => {
+    const compiledCode = `/*${"x".repeat(240 * 1024)}*/\nreturn {};`;
+    const rawMdx = `{/*${"m".repeat(90 * 1024)}*/}`;
+    const largePayload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)(
+      {
+        ...rollbackArtifact.payload,
+        byteLength: Buffer.byteLength(compiledCode, "utf8"),
+        compiledCode,
+        plainText: "p".repeat(90 * 1024),
+        rawMdx,
+        sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
+      }
+    );
+    const artifact = signRollbackPayload(largePayload);
+    const projection = MaterialLessonProjectionSchema.make({
+      ...rollbackProjection,
+      metadata: {
+        ...rollbackProjection.metadata,
+        description: "d".repeat(100 * 1024),
+      },
+    });
+    const upsert = RollbackUpsertStateSchema.make({
+      artifact,
+      change: {
+        ...rollbackUpsert.change,
+        artifactHash: artifact.artifactHash,
+      },
+      projection,
+    });
+    const [derived] = await collectRollbackRecords(
+      Stream.make(
+        RollbackRecordSchema.make({ current: upsert, index: 0, prior: upsert })
+      )
+    );
+    expect(derived).toBeDefined();
+    const encoded = await Effect.runPromise(encodeReplayRecord(derived, 0));
+
+    expect(encoded.bytes).toBeGreaterThan(1024 * 1024);
+    expect(encoded.bytes).toBeLessThanOrEqual(MAX_REPLAY_RECORD_BYTES);
   });
 
   it("rejects a signature that no longer authenticates the old envelope", async () => {
-    const tampered = RollbackUpsertSchema.make({
-      ...upsert,
+    const tampered = RollbackUpsertStateSchema.make({
+      ...rollbackUpsert,
       artifact: {
-        ...artifact,
-        signature: tamperSignature(artifact.signature),
+        ...rollbackArtifact,
+        signature: tamperRollbackSignature(rollbackArtifact.signature),
       },
     });
-    const error = await reject(Stream.make(tampered));
+    const error = await rejectRollbackRecords(
+      Stream.make(
+        RollbackRecordSchema.make({
+          current: tampered,
+          index: 0,
+          prior: rollbackUpsert,
+        })
+      )
+    );
     expect(error._tag).toBe("SignatureInvalidError");
   });
 
   it("rejects an authenticated artifact paired with another item hash", async () => {
-    const mismatched = {
-      ...upsert,
-      change: {
-        ...upsert.change,
-        artifactHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+    const mismatched: RollbackRecord = {
+      current: {
+        artifact: rollbackArtifact,
+        change: {
+          ...rollbackUpsert.change,
+          artifactHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+        },
+        projection: rollbackProjection,
       },
+      index: 0,
+      prior: rollbackUpsert,
     };
-    const error = await reject(Stream.make(mismatched));
+    const error = await rejectRollbackRecords(Stream.make(mismatched));
     expect(error._tag).toBe("ReleaseArtifactMismatchError");
+  });
+
+  it("authenticates recovery current state without candidate compatibility", async () => {
+    const record = RollbackRecordSchema.make({
+      current: incompatibleRollbackUpsert,
+      index: 0,
+      prior: matchingRollbackDeletion,
+    });
+    const records = await collectRollbackRecords(Stream.make(record), {
+      currentPolicy: { kind: "integrity" },
+      priorPolicy: {
+        kind: "compatible",
+        rendererManifest: rollbackRendererManifest,
+      },
+    });
+    const [derived] = records;
+
+    expect(derived?.current).toMatchObject({
+      artifact: incompatibleRollbackArtifact,
+      kind: "upsert",
+    });
+  });
+
+  it("rejects tampered recovery current state under integrity-only verification", async () => {
+    const tampered = RollbackUpsertStateSchema.make({
+      ...incompatibleRollbackUpsert,
+      artifact: {
+        ...incompatibleRollbackArtifact,
+        signature: tamperRollbackSignature(
+          incompatibleRollbackArtifact.signature
+        ),
+      },
+    });
+    const error = await rejectRollbackRecords(
+      Stream.make(
+        RollbackRecordSchema.make({
+          current: tampered,
+          index: 0,
+          prior: matchingRollbackDeletion,
+        })
+      ),
+      {
+        currentPolicy: { kind: "integrity" },
+        priorPolicy: {
+          kind: "compatible",
+          rendererManifest: rollbackRendererManifest,
+        },
+      }
+    );
+
+    expect(error._tag).toBe("SignatureInvalidError");
+  });
+
+  it("rejects a restored prior artifact incompatible with the candidate", async () => {
+    const error = await rejectRollbackRecords(
+      Stream.make(
+        RollbackRecordSchema.make({
+          current: matchingRollbackDeletion,
+          index: 0,
+          prior: incompatibleRollbackUpsert,
+        })
+      ),
+      {
+        currentPolicy: { kind: "integrity" },
+        priorPolicy: {
+          kind: "compatible",
+          rendererManifest: rollbackRendererManifest,
+        },
+      }
+    );
+
+    expect(error._tag).toBe("ArtifactRendererComponentMissingError");
+  });
+
+  it("rejects source current state incompatible with its proof renderer", async () => {
+    const error = await rejectRollbackRecords(
+      Stream.make(
+        RollbackRecordSchema.make({
+          current: incompatibleRollbackUpsert,
+          index: 0,
+          prior: matchingRollbackDeletion,
+        })
+      )
+    );
+
+    expect(error._tag).toBe("ArtifactRendererComponentMissingError");
   });
 });

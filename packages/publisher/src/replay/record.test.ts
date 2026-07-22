@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -74,6 +75,7 @@ describe("replay record", () => {
   );
 
   it("accepts usage exactly at every ceiling", async () => {
+    expect(MAX_REPLAY_RECORD_BYTES).toBe(MAX_PUBLICATION_RESPONSE_BYTES);
     await expect(
       Effect.runPromise(
         validateReplaySpoolUsage({

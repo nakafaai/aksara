@@ -110,7 +110,10 @@ export function validateVerificationEvidence(
   const matches =
     evidence.releaseId === manifest.releaseId &&
     evidence.manifestHash === release.manifestHash &&
+    evidence.baseManifestHash === manifest.baseManifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
+    evidence.baseResultCount === manifest.baseResultCount &&
+    evidence.baseResultDigest === manifest.baseResultDigest &&
     evidence.itemCount === manifest.itemCount &&
     evidence.itemsDigest === manifest.itemsDigest &&
     evidence.stagedArtifacts === manifest.upsertCount &&
@@ -123,7 +126,11 @@ export function validateVerificationEvidence(
     evidence.rendererManifestHash === manifest.rendererManifestHash &&
     evidence.projectionCount === manifest.projectionCount &&
     evidence.projectionCount === projectionSummary.count &&
-    evidence.projectionDigest === manifest.projectionDigest;
+    evidence.projectionDigest === manifest.projectionDigest &&
+    evidence.resultCount === manifest.resultCount &&
+    evidence.resultDigest === manifest.resultDigest &&
+    evidence.rollbackCount === manifest.rollbackCount &&
+    evidence.rollbackDigest === manifest.rollbackDigest;
   if (matches) {
     return Effect.void;
   }
@@ -136,17 +143,21 @@ export function validateVerificationEvidence(
 
 /** Requires target evidence to report the exact signed manifest delta. */
 export function validateManifestReceipt(
-  manifest: ContentReleaseManifest,
+  release: SignedContentRelease,
   receipt: PublicationReceipt
 ) {
+  const { manifest } = release;
   const matches =
     receipt.releaseId === manifest.releaseId &&
+    receipt.manifestHash === release.manifestHash &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&
     receipt.activatedHeads === manifest.upsertCount &&
     receipt.deletedHeads === manifest.deleteCount &&
-    receipt.projectionDigest === manifest.projectionDigest;
+    receipt.projectionDigest === manifest.projectionDigest &&
+    receipt.resultCount === manifest.resultCount &&
+    receipt.resultDigest === manifest.resultDigest;
   if (matches) {
     return Effect.succeed(receipt);
   }
@@ -159,7 +170,7 @@ export function validateManifestReceipt(
 
 /** Binds target evidence to both the signed manifest and replayed streams. */
 export function validatePublicationReceipt(
-  manifest: ContentReleaseManifest,
+  release: SignedContentRelease,
   summary: VerifiedContentReleaseItems,
   projectionSummary: VerifiedContentProjections,
   receipt: PublicationReceipt
@@ -177,5 +188,5 @@ export function validatePublicationReceipt(
       })
     );
   }
-  return validateManifestReceipt(manifest, receipt);
+  return validateManifestReceipt(release, receipt);
 }

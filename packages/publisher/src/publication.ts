@@ -1,4 +1,8 @@
 import {
+  type SignedContentArtifact,
+  SignedContentArtifactSchema,
+} from "@nakafa/aksara-contracts/content";
+import {
   decodeContentProjections,
   verifyContentProjections,
 } from "@nakafa/aksara-contracts/projection/verify";
@@ -69,13 +73,13 @@ type PublicationInvocation<E, R> =
       readonly kind: "rollback";
     };
 
-type PublicationArtifactPlan<E, R> =
+type PublicationArtifactPlan =
   | {
       readonly compiled: ReplaySpool<CompiledReleaseSource>;
       readonly kind: "git";
     }
   | {
-      readonly input: PreparedRollbackRelease<E, R>;
+      readonly artifacts: ReplaySpool<SignedContentArtifact>;
       readonly kind: "rollback";
     };
 
@@ -120,16 +124,20 @@ const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
       projections: input.projections(),
     });
     yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
-    let artifactPlan: PublicationArtifactPlan<E, R>;
+    let artifactPlan: PublicationArtifactPlan;
     if (invocation.kind === "rollback") {
       yield* validateRollbackMode(invocation.input);
-      yield* makeRollbackArtifacts({
-        artifacts: invocation.input.artifacts(),
-        items: upsertItems(decodedItems()),
-        manifest: input.manifest,
-        rendererManifest,
-      }).pipe(Stream.runDrain);
-      artifactPlan = { input: invocation.input, kind: "rollback" };
+      const artifacts = yield* createReplaySpool({
+        prefix: "aksara-rollback-artifacts-",
+        schema: SignedContentArtifactSchema,
+        stream: makeRollbackArtifacts({
+          artifacts: invocation.input.artifacts(),
+          items: upsertItems(decodedItems()),
+          manifest: input.manifest,
+          rendererManifest,
+        }),
+      });
+      artifactPlan = { artifacts, kind: "rollback" };
     } else {
       const aksaraSha = yield* validateGitMode(invocation.input);
       const items = upsertItems(decodedItems());
@@ -154,7 +162,9 @@ const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
       keyId: signingKey.keyId,
       privateKeyPem: Redacted.value(signingKey.privateKeyPem),
     });
-    const signedRelease = yield* signer.signRelease(input.manifest);
+    const signedRelease = yield* input.storedRelease === null
+      ? signer.signRelease(input.manifest)
+      : Effect.succeed(input.storedRelease);
     const release = yield* verifySignedContentRelease(signedRelease);
     const stage = Effect.gen(function* () {
       yield* makeReleaseItemBatches(
@@ -166,15 +176,10 @@ const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
         decodedProjections()
       ).pipe(Stream.runForEach(target.stageProjectionBatch));
       if (artifactPlan.kind === "rollback") {
-        const artifacts = makeRollbackArtifacts({
-          artifacts: artifactPlan.input.artifacts(),
-          items: upsertItems(decodedItems()),
-          manifest: input.manifest,
-          rendererManifest,
-        });
-        yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
-          Stream.runForEach(target.stageArtifactBatch)
-        );
+        yield* makeArtifactBatches(
+          input.manifest.releaseId,
+          artifactPlan.artifacts.replay()
+        ).pipe(Stream.runForEach(target.stageArtifactBatch));
         return;
       }
       const artifacts = makeGitArtifacts({

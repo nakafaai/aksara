@@ -56,10 +56,13 @@ function hasBoundCompletedReceipt(input: {
   const { receipt } = input;
   return (
     receipt.releaseId === manifest.releaseId &&
+    receipt.manifestHash === input.release.manifestHash &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&
-    receipt.projectionDigest === manifest.projectionDigest
+    receipt.projectionDigest === manifest.projectionDigest &&
+    receipt.resultCount === manifest.resultCount &&
+    receipt.resultDigest === manifest.resultDigest
   );
 }
 
@@ -93,17 +96,25 @@ export type PendingContentRelease = typeof PendingContentReleaseSchema.Type;
 
 /** Checks active identity against the pending release's durable phase. */
 function hasCoherentCurrentState(input: {
+  readonly activeManifestHash: typeof Sha256HashSchema.Type | null;
   readonly activeReleaseId: typeof ReleaseIdSchema.Type | null;
   readonly completed: CompletedContentRelease | null;
   readonly pending: PendingContentRelease | null;
 }) {
+  if (
+    (input.activeReleaseId === null) !==
+    (input.activeManifestHash === null)
+  ) {
+    return false;
+  }
   if (input.pending === null) {
     if (input.activeReleaseId === null) {
       return input.completed === null;
     }
     return (
       input.completed !== null &&
-      input.completed.release.manifest.releaseId === input.activeReleaseId
+      input.completed.release.manifest.releaseId === input.activeReleaseId &&
+      input.completed.release.manifestHash === input.activeManifestHash
     );
   }
   if (input.completed !== null) {
@@ -114,13 +125,20 @@ function hasCoherentCurrentState(input: {
     input.pending.phase === "active" ||
     input.pending.phase === "finalizing"
   ) {
-    return input.activeReleaseId === manifest.releaseId;
+    return (
+      input.activeReleaseId === manifest.releaseId &&
+      input.activeManifestHash === input.pending.release.manifestHash
+    );
   }
-  return input.activeReleaseId === manifest.baseReleaseId;
+  return (
+    input.activeReleaseId === manifest.baseReleaseId &&
+    input.activeManifestHash === manifest.baseManifestHash
+  );
 }
 
 /** Authoritative singleton publication state used before release preparation. */
 export const ContentReleaseCurrentSchema = Schema.Struct({
+  activeManifestHash: Schema.NullOr(Sha256HashSchema),
   activeReleaseId: Schema.NullOr(ReleaseIdSchema),
   completed: Schema.NullOr(CompletedContentReleaseSchema),
   pending: Schema.NullOr(PendingContentReleaseSchema),

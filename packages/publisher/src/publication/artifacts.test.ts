@@ -79,7 +79,10 @@ const item = ContentReleaseItemSchema.make({
   releaseId,
 });
 const manifest = ContentReleaseManifestSchema.make({
+  baseManifestHash: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
   baseReleaseId: rollbackOf,
+  baseResultCount: 1,
+  baseResultDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
   deleteCount: 0,
   itemCount: 1,
   itemsDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
@@ -89,6 +92,10 @@ const manifest = ContentReleaseManifestSchema.make({
   releaseId,
   rendererContractVersion: rendererManifest.rendererContractVersion,
   rendererManifestHash: rendererManifest.hash,
+  resultCount: 1,
+  resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+  rollbackCount: 1,
+  rollbackDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
   upsertCount: 1,
 });
 const resolver = ContentVerificationKeyResolver.of({

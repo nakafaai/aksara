@@ -1,7 +1,7 @@
 import { generateKeyPairSync } from "node:crypto";
 import { Path } from "@effect/platform";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -9,7 +9,9 @@ import {
   GitCommitShaSchema,
   PublicPathSchema,
   ReleaseIdSchema,
+  Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
@@ -19,6 +21,8 @@ import {
   ContentReleaseManifestSchema,
   ContentUpsertSchema,
 } from "@nakafa/aksara-contracts/release";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Redacted, Stream } from "effect";
@@ -77,7 +81,7 @@ export const projection = MaterialLessonProjectionSchema.make({
   sectionKey: MaterialSectionSchema.make("test-lesson"),
   sitemap: true,
 });
-export const record = {
+export const contentRecord = {
   change: ContentUpsertSchema.make({
     artifactHash: hashCompiledContentPayload(payload),
     contentKey: payload.contentKey,
@@ -91,6 +95,26 @@ export const record = {
   payload,
   projection,
   source,
+};
+export const head = MaterialHeadSchema.make({
+  artifactHash: contentRecord.change.artifactHash,
+  compilerConfigHash: payload.compilerConfigHash,
+  contentKey: contentRecord.change.contentKey,
+  delivery: contentRecord.change.delivery,
+  locale: contentRecord.change.locale,
+  projectionHash: hashMaterialProjection(projection),
+  publicPath: contentRecord.change.publicPath,
+  rendererDomain: contentRecord.change.rendererDomain,
+  sourceHash: payload.sourceHash,
+  sourcePath: contentRecord.change.sourcePath,
+});
+export const record = {
+  prior: {
+    contentKey: contentRecord.change.contentKey,
+    locale: contentRecord.change.locale,
+    state: "absent" as const,
+  },
+  record: contentRecord,
 };
 const { privateKey, publicKey } = generateKeyPairSync("ed25519");
 const signingKey = PublicationSigningKey.of({
@@ -130,10 +154,14 @@ export async function makeRelease(
   const prepared = await Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make(sha),
+      baseManifestHash: null,
       baseReleaseId: null,
+      baseResultCount: 0,
+      baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       records,
       releaseId: ReleaseIdSchema.make(releaseId),
       rendererManifest,
+      result: () => Stream.make(head),
     })
   );
   return { manifest: prepared.manifest, prepared };
@@ -145,7 +173,10 @@ export async function makeRollbackRelease(releaseId: string) {
   const rollbackOf = ReleaseIdSchema.make("test-active-release");
   const manifest = ContentReleaseManifestSchema.make({
     ...git.manifest,
+    baseManifestHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
     baseReleaseId: rollbackOf,
+    baseResultCount: git.manifest.resultCount,
+    baseResultDigest: git.manifest.resultDigest,
     origin: { kind: "rollback", releaseId: rollbackOf },
   });
   const signer = await makeTestSigner();
@@ -157,7 +188,8 @@ export async function makeRollbackRelease(releaseId: string) {
     projections: git.prepared.projections,
     rendererManifest,
   });
-  return { manifest, prepared };
+  const release = await Effect.runPromise(signer.signRelease(manifest));
+  return { manifest, prepared, release };
 }
 
 /** Signs one real prepared release for crash-recovery assertions. */
@@ -174,12 +206,16 @@ export async function makeSignedBundle(releaseId: string) {
 export function publishFromSource<E, R>(
   prepared: PreparedGitRelease<E, R>,
   target: typeof PublicationTarget.Service,
-  publicationSource: typeof PublicationSource.Service
+  publicationSource: typeof PublicationSource.Service,
+  currentKeyId = signingKey.keyId
 ) {
   return publishGitRelease(prepared).pipe(
     Effect.provide(testFileLayer(new Map())),
     Effect.provide(Path.layer),
-    Effect.provideService(PublicationSigningKey, signingKey),
+    Effect.provideService(
+      PublicationSigningKey,
+      PublicationSigningKey.of({ ...signingKey, keyId: currentKeyId })
+    ),
     Effect.provideService(PublicationSource, publicationSource),
     Effect.provideService(ContentVerificationKeyResolver, resolver),
     Effect.provideService(PublicationTarget, target)
@@ -190,14 +226,16 @@ export function publishFromSource<E, R>(
 export function publishPrepared<E, R>(
   prepared: PreparedGitRelease<E, R>,
   target: typeof PublicationTarget.Service,
-  rawMdx = source.rawMdx
+  rawMdx = source.rawMdx,
+  currentKeyId = signingKey.keyId
 ) {
   return publishFromSource(
     prepared,
     target,
     PublicationSource.of({
       loadExactRevision: () => Stream.make({ ...source, rawMdx }),
-    })
+    }),
+    currentKeyId
   );
 }
 

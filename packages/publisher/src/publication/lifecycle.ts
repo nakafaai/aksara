@@ -102,7 +102,7 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
     }
     if (status.phase === "completed") {
       return yield* validatePublicationReceipt(
-        manifest,
+        release,
         summary,
         projectionSummary,
         status.receipt
@@ -111,7 +111,7 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
     if (status.phase === "active" || status.phase === "finalizing") {
       const receipt = yield* target.finalize(release);
       return yield* validatePublicationReceipt(
-        manifest,
+        release,
         summary,
         projectionSummary,
         receipt
@@ -132,14 +132,14 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
     }
     const activated = yield* target.activate(release);
     yield* validatePublicationReceipt(
-      manifest,
+      release,
       summary,
       projectionSummary,
       activated
     );
     const finalized = yield* target.finalize(release);
     return yield* validatePublicationReceipt(
-      manifest,
+      release,
       summary,
       projectionSummary,
       finalized

@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema } from "effect";
 import { replaySpoolFailure } from "#publisher/replay/error";
 
@@ -8,7 +9,7 @@ import { replaySpoolFailure } from "#publisher/replay/error";
 export const MAX_REPLAY_RECORDS = 100_000;
 
 /** Maximum stored bytes accepted for one independently replayable record. */
-export const MAX_REPLAY_RECORD_BYTES = 1024 * 1024;
+export const MAX_REPLAY_RECORD_BYTES = MAX_PUBLICATION_RESPONSE_BYTES;
 
 /** Maximum temporary disk footprint accepted by one publication spool. */
 export const MAX_REPLAY_TOTAL_BYTES = 1024 * 1024 * 1024;

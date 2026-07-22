@@ -4,6 +4,7 @@ import { ReleaseIdSchema } from "#contracts/ids";
 import { digestProjections } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { verifyContentProjections } from "#contracts/projection/verify";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 
 /** Builds one unmistakably test-only canonical material projection. */
@@ -41,7 +42,10 @@ const projectionSummary = await Effect.runPromise(
   digestProjections(releaseId, Stream.fromIterable(projections))
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  baseManifestHash: null,
   baseReleaseId: null,
+  baseResultCount: 0,
+  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: 0,
   itemCount: 0,
   itemsDigest: `sha256:${"b".repeat(64)}`,
@@ -51,6 +55,10 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
+  resultCount: 0,
+  resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+  rollbackCount: 0,
+  rollbackDigest: `sha256:${"d".repeat(64)}`,
   upsertCount: 0,
 });
 

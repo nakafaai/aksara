@@ -4,10 +4,8 @@ import type {
   HttpClient,
   Path,
 } from "@effect/platform";
-import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
   ACTIVE_SIGNING_KEY_ID,
@@ -15,9 +13,6 @@ import {
   TRUSTED_CONTENT_KEYS,
 } from "@nakafa/aksara-contracts/signature/trusted";
 import { GitPublicationSourceLive } from "@nakafa/aksara-publisher/git/source";
-import { streamMaterialHeads } from "@nakafa/aksara-publisher/heads";
-import { prepareMaterialPublication } from "@nakafa/aksara-publisher/material/publication";
-import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import {
   publishGitRelease,
   publishRollbackRelease,
@@ -27,20 +22,17 @@ import {
   PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
-import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
-import { Effect, Stream } from "effect";
+import { Effect } from "effect";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import { readProductionEnvironment } from "#cli/env";
-import { readCleanAksaraRevision } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
-import { fetchProductionRenderer } from "#cli/production-renderer";
 import {
-  validateRecoveryManifest,
-  validateRecoveryRevision,
-} from "#cli/recovery";
-import { findAksaraRoot } from "#cli/repository";
+  prepareProductionGit,
+  prepareProductionRollback,
+} from "#cli/production/preparation";
+import { fetchProductionRenderer } from "#cli/production-renderer";
 import { retryPublicationTarget } from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
 
@@ -50,14 +42,6 @@ const PUBLICATION_TIMEOUT = "30 seconds";
 export interface ProductionInput {
   readonly args: ReleaseArguments | RollbackArguments;
   readonly cwd: string;
-}
-
-interface GitPreparationInput {
-  readonly baseReleaseId: ReleaseId | null;
-  readonly cwd: string;
-  readonly expectedSha?: GitCommitSha;
-  readonly releaseId: ReleaseId;
-  readonly rendererManifest: RendererManifestEnvelope;
 }
 
 type ProductionServices =
@@ -71,37 +55,12 @@ type ProductionCommand = Effect.Effect<
   ProductionError,
   ProductionServices
 >;
-
-/** Streams no prior heads for the first release and target-owned heads later. */
-function publishedMaterialHeads(activeReleaseId: ReleaseId | null) {
-  if (activeReleaseId === null) {
-    return Stream.empty;
-  }
-  return streamMaterialHeads(activeReleaseId);
-}
-
-/** Prepares one exact-Git material delta against authoritative base heads. */
-const prepareGitRelease = Effect.fn("AksaraCli.prepareGitRelease")(function* (
-  input: GitPreparationInput
-) {
-  const checkoutRoot = yield* findAksaraRoot(input.cwd);
-  const aksaraSha = yield* readCleanAksaraRevision(checkoutRoot);
-  if (input.expectedSha !== undefined) {
-    yield* validateRecoveryRevision(input.expectedSha, aksaraSha);
-  }
-  const material = yield* prepareMaterialPublication({
-    checkoutRoot,
-    published: publishedMaterialHeads(input.baseReleaseId),
-    rendererManifest: input.rendererManifest,
-  });
-  return yield* prepareContentRelease({
-    aksaraSha,
-    baseReleaseId: input.baseReleaseId,
-    records: material.records,
-    releaseId: input.releaseId,
-    rendererManifest: input.rendererManifest,
-  });
-});
+type PreparedGit = Effect.Effect.Success<
+  ReturnType<typeof prepareProductionGit>
+>;
+type PreparedRollback = Effect.Effect.Success<
+  ReturnType<typeof prepareProductionRollback>
+>;
 
 /** Emits only non-secret durable evidence after publication completes. */
 function logPublicationReceipt(receipt: PublicationReceipt) {
@@ -109,8 +68,11 @@ function logPublicationReceipt(receipt: PublicationReceipt) {
     Effect.annotateLogs({
       activatedHeads: receipt.activatedHeads,
       deletedHeads: receipt.deletedHeads,
+      manifestHash: receipt.manifestHash,
       projectionDigest: receipt.projectionDigest,
       releaseId: receipt.releaseId,
+      resultCount: receipt.resultCount,
+      resultDigest: receipt.resultDigest,
       stagedArtifacts: receipt.stagedArtifacts,
       stagedItems: receipt.stagedItems,
       stagedProjections: receipt.stagedProjections,
@@ -119,8 +81,8 @@ function logPublicationReceipt(receipt: PublicationReceipt) {
   );
 }
 
-/** Reads and authenticates the frozen renderer for one pending rebuild. */
-function verifyPendingRenderer(
+/** Authenticates the exact signed release and frozen renderer for rebuilding. */
+function verifyPendingBundle(
   action: Extract<ProductionStateAction, { readonly kind: "rebuild" }>,
   resolver: typeof ContentVerificationKeyResolver.Service
 ) {
@@ -129,7 +91,6 @@ function verifyPendingRenderer(
     rendererManifest: action.pending.rendererManifest,
   }).pipe(
     Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.map((bundle) => bundle.rendererManifest),
     Effect.mapError(mapProductionError("state"))
   );
 }
@@ -174,41 +135,42 @@ export const runProductionCommand: (
       return yield* logPublicationReceipt(receipt);
     }
 
-    let rendererManifest: RendererManifestEnvelope;
-    if (action.kind === "rebuild") {
-      rendererManifest = yield* verifyPendingRenderer(action, keyResolver);
-    } else {
-      rendererManifest = yield* fetchProductionRenderer(
-        environment.rendererEndpoint,
-        environment.rendererToken
-      ).pipe(Effect.mapError(mapProductionError("renderer")));
-    }
     const signingKey = PublicationSigningKey.of({
       keyId: environment.keyId,
       privateKeyPem: environment.privateKeyPem,
     });
 
     if (action.mode === "git") {
-      const prepared = yield* prepareGitRelease({
-        baseReleaseId:
-          action.kind === "new"
-            ? action.baseReleaseId
-            : action.pending.release.manifest.baseReleaseId,
-        cwd: input.cwd,
-        ...(action.kind === "rebuild" ? { expectedSha: action.sha } : {}),
-        releaseId: input.args.releaseId,
-        rendererManifest,
-      }).pipe(
-        Effect.provideService(PublicationTarget, target),
-        Effect.mapError(mapProductionError("prepare"))
-      );
-      if (action.kind === "rebuild") {
-        yield* validateRecoveryManifest(
-          action.pending.release,
-          prepared.manifest
-        ).pipe(Effect.mapError(mapProductionError("prepare")));
+      let publishable: PreparedGit;
+      if (action.kind === "new") {
+        const rendererManifest = yield* fetchProductionRenderer(
+          environment.rendererEndpoint,
+          environment.rendererToken
+        ).pipe(Effect.mapError(mapProductionError("renderer")));
+        publishable = yield* prepareProductionGit({
+          baseBundle: action.baseBundle,
+          cwd: input.cwd,
+          kind: "new",
+          releaseId: input.args.releaseId,
+          rendererManifest,
+        }).pipe(
+          Effect.provideService(ContentVerificationKeyResolver, keyResolver),
+          Effect.provideService(PublicationTarget, target)
+        );
+      } else {
+        const bundle = yield* verifyPendingBundle(action, keyResolver);
+        publishable = yield* prepareProductionGit({
+          bundle,
+          cwd: input.cwd,
+          kind: "rebuild",
+          releaseId: input.args.releaseId,
+          sha: action.sha,
+        }).pipe(
+          Effect.provideService(ContentVerificationKeyResolver, keyResolver),
+          Effect.provideService(PublicationTarget, target)
+        );
       }
-      const receipt = yield* publishGitRelease(prepared).pipe(
+      const receipt = yield* publishGitRelease(publishable).pipe(
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationSigningKey, signingKey),
         Effect.provideService(PublicationTarget, target),
@@ -218,22 +180,35 @@ export const runProductionCommand: (
       return yield* logPublicationReceipt(receipt);
     }
 
-    const prepared = yield* prepareRollback({
-      releaseId: input.args.releaseId,
-      rendererManifest,
-      rollbackOf: action.rollbackOf,
-    }).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, keyResolver),
-      Effect.provideService(PublicationTarget, target),
-      Effect.mapError(mapProductionError("prepare"))
-    );
-    if (action.kind === "rebuild") {
-      yield* validateRecoveryManifest(
-        action.pending.release,
-        prepared.manifest
-      ).pipe(Effect.mapError(mapProductionError("prepare")));
+    let publishable: PreparedRollback;
+    if (action.kind === "new") {
+      const rendererManifest = yield* fetchProductionRenderer(
+        environment.rendererEndpoint,
+        environment.rendererToken
+      ).pipe(Effect.mapError(mapProductionError("renderer")));
+      publishable = yield* prepareProductionRollback({
+        kind: "new",
+        releaseId: input.args.releaseId,
+        rendererManifest,
+        rollbackOf: action.rollbackOf,
+        sourceBundle: action.sourceBundle,
+      }).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, keyResolver),
+        Effect.provideService(PublicationTarget, target)
+      );
+    } else {
+      const bundle = yield* verifyPendingBundle(action, keyResolver);
+      publishable = yield* prepareProductionRollback({
+        bundle,
+        kind: "rebuild",
+        releaseId: input.args.releaseId,
+        rollbackOf: action.rollbackOf,
+      }).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, keyResolver),
+        Effect.provideService(PublicationTarget, target)
+      );
     }
-    const receipt = yield* publishRollbackRelease(prepared).pipe(
+    const receipt = yield* publishRollbackRelease(publishable).pipe(
       Effect.provideService(ContentVerificationKeyResolver, keyResolver),
       Effect.provideService(PublicationSigningKey, signingKey),
       Effect.provideService(PublicationTarget, target),

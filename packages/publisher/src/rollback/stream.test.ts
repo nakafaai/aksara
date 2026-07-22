@@ -13,11 +13,12 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
-  RollbackDeleteSchema,
+  RollbackDeleteStateSchema,
   type RollbackPageRequest,
   RollbackPageSchema,
   type RollbackRecord,
-  RollbackUpsertSchema,
+  RollbackRecordSchema,
+  RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
@@ -29,17 +30,20 @@ import {
 import { PublicationTargetTransportError } from "#publisher/target/errors";
 
 const rollbackOf = ReleaseIdSchema.make("test-rollback-source");
+const rollbackOfManifestHash = Sha256HashSchema.make(
+  `sha256:${"d".repeat(64)}`
+);
 
 /** Creates one body-free protocol record at an exact source index. */
 function deletion(index: number) {
-  return RollbackDeleteSchema.make({
+  const state = RollbackDeleteStateSchema.make({
     change: {
       contentKey: ContentKeySchema.make(`test:rollback-delete-${index}`),
       locale: "en",
       operation: "delete",
     },
-    index,
   });
+  return RollbackRecordSchema.make({ current: state, index, prior: state });
 }
 
 /** Creates one internally coherent page for cursor validation tests. */
@@ -47,12 +51,15 @@ function page(input: {
   readonly done: boolean;
   readonly nextIndex: number;
   readonly records: readonly RollbackRecord[];
+  readonly rollbackOfManifestHash?: typeof rollbackOfManifestHash;
   readonly rollbackOf?: typeof rollbackOf;
   readonly total: number;
 }) {
   return RollbackPageSchema.make({
     ...input,
     rollbackOf: input.rollbackOf ?? rollbackOf,
+    rollbackOfManifestHash:
+      input.rollbackOfManifestHash ?? rollbackOfManifestHash,
   });
 }
 
@@ -93,7 +100,7 @@ function oversizedPage() {
     sectionKey: "test-large",
     sitemap: true,
   });
-  const record = RollbackUpsertSchema.make({
+  const state = RollbackUpsertStateSchema.make({
     artifact,
     change: {
       artifactHash,
@@ -107,8 +114,12 @@ function oversizedPage() {
         "packages/corpus/test/rollback/large.mdx"
       ),
     },
-    index: 0,
     projection,
+  });
+  const record = RollbackRecordSchema.make({
+    current: state,
+    index: 0,
+    prior: state,
   });
   return page({ done: true, nextIndex: 0, records: [record], total: 1 });
 }
@@ -137,19 +148,24 @@ function targetWith(
 }
 
 /** Collects one complete rollback replay with the supplied target. */
-function collect(target: typeof PublicationTarget.Service) {
+function collect(target: typeof PublicationTarget.Service, expectedTotal = 3) {
   return Effect.runPromise(
-    streamRollbackRecords(rollbackOf).pipe(
-      Stream.runCollect,
-      Effect.provideService(PublicationTarget, target)
-    )
+    streamRollbackRecords(
+      rollbackOf,
+      rollbackOfManifestHash,
+      expectedTotal
+    ).pipe(Stream.runCollect, Effect.provideService(PublicationTarget, target))
   );
 }
 
 /** Returns the typed failure from one complete rollback replay. */
-function reject(target: typeof PublicationTarget.Service) {
+function reject(target: typeof PublicationTarget.Service, expectedTotal = 3) {
   return Effect.runPromise(
-    streamRollbackRecords(rollbackOf).pipe(
+    streamRollbackRecords(
+      rollbackOf,
+      rollbackOfManifestHash,
+      expectedTotal
+    ).pipe(
       Stream.runCollect,
       Effect.provideService(PublicationTarget, target),
       Effect.flip
@@ -184,6 +200,7 @@ describe("streamRollbackRecords", () => {
       afterIndex: -1,
       limit: 8,
       rollbackOf,
+      rollbackOfManifestHash,
     });
   });
 
@@ -193,7 +210,8 @@ describe("streamRollbackRecords", () => {
         Effect.succeed(
           page({ done: true, nextIndex: -1, records: [], total: 0 })
         )
-      )
+      ),
+      0
     );
     expect([...records]).toEqual([]);
   });
@@ -207,6 +225,7 @@ describe("streamRollbackRecords", () => {
         nextIndex: -1,
         records: [],
         rollbackOf,
+        rollbackOfManifestHash,
         total: 0,
       }),
       "RollbackPageDecodeError",
@@ -231,7 +250,17 @@ describe("streamRollbackRecords", () => {
     ],
     ["bytes", oversizedPage, "RollbackPageByteLimitError"],
   ])("rejects an invalid %s page", async (_label, source, expectedTag) => {
-    const error = await reject(targetWith(() => Effect.succeed(source())));
+    let expectedTotal = 0;
+    if (expectedTag === "RollbackPageByteLimitError") {
+      expectedTotal = 1;
+    }
+    if (expectedTag === "RollbackPageCursorError") {
+      expectedTotal = 2;
+    }
+    const error = await reject(
+      targetWith(() => Effect.succeed(source())),
+      expectedTotal
+    );
     expect(error._tag).toBe(expectedTag);
   });
 

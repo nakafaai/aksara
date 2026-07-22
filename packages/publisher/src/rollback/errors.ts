@@ -1,4 +1,7 @@
-import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 
 const RollbackIndexSchema = Schema.Number.pipe(
@@ -12,6 +15,16 @@ export class RollbackIdentityError extends Schema.TaggedError<RollbackIdentityEr
   { releaseId: ReleaseIdSchema, rollbackOf: ReleaseIdSchema }
 ) {}
 
+/** A signed proof release cannot authenticate this rollback transition. */
+export class RollbackProofIdentityError extends Schema.TaggedError<RollbackProofIdentityError>()(
+  "RollbackProofIdentityError",
+  {
+    actualReleaseId: ReleaseIdSchema,
+    expectedReleaseId: ReleaseIdSchema,
+    rollbackOf: ReleaseIdSchema,
+  }
+) {}
+
 /** One target page failed the exact rollback wire schema. */
 export class RollbackPageDecodeError extends Schema.TaggedError<RollbackPageDecodeError>()(
   "RollbackPageDecodeError",
@@ -22,8 +35,10 @@ export class RollbackPageDecodeError extends Schema.TaggedError<RollbackPageDeco
 export class RollbackPageIdentityError extends Schema.TaggedError<RollbackPageIdentityError>()(
   "RollbackPageIdentityError",
   {
+    actualManifestHash: Sha256HashSchema,
     actualReleaseId: ReleaseIdSchema,
     afterIndex: RollbackIndexSchema,
+    expectedManifestHash: Sha256HashSchema,
     expectedReleaseId: ReleaseIdSchema,
   }
 ) {}

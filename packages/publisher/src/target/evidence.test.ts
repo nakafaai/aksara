@@ -80,8 +80,17 @@ describe("publication success evidence", () => {
     const foreignHash = `sha256:${"f".repeat(64)}`;
     const evidenceCases = [
       { ...success.value, manifestHash: foreignHash },
-      { ...success.value, baseReleaseId: "test-foreign-base" },
-      { ...success.value, deleteHeads: 0, itemCount: 1 },
+      {
+        ...success.value,
+        baseManifestHash: foreignHash,
+        baseReleaseId: "test-foreign-base",
+      },
+      {
+        ...success.value,
+        deleteHeads: 0,
+        itemCount: 1,
+        rollbackCount: 1,
+      },
       { ...success.value, itemsDigest: foreignHash },
       { ...success.value, projectionCount: 2 },
       { ...success.value, projectionDigest: foreignHash },
@@ -165,14 +174,20 @@ describe("publication success evidence", () => {
     if (request?.operation !== "rollbackPage") {
       return;
     }
-    const records = [0, 1].map((index) => ({
-      change: {
-        contentKey: `test:deleted-${index}`,
-        locale: "en",
-        operation: "delete",
-      },
-      index,
-    }));
+    const records = [0, 1].map((index) => {
+      const state = {
+        change: {
+          contentKey: `test:deleted-${index}`,
+          locale: "en" as const,
+          operation: "delete" as const,
+        },
+      };
+      return {
+        current: state,
+        index,
+        prior: state,
+      };
+    });
     const response = Schema.decodeUnknownSync(PublicationSuccessSchema)({
       ok: true,
       operation: "rollbackPage",
@@ -181,6 +196,7 @@ describe("publication success evidence", () => {
         nextIndex: 1,
         records,
         rollbackOf: request.rollbackOf,
+        rollbackOfManifestHash: request.rollbackOfManifestHash,
         total: 2,
       },
     });

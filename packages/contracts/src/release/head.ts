@@ -30,8 +30,25 @@ export const MaterialHeadSchema = Schema.Struct({
 });
 export type MaterialHead = typeof MaterialHeadSchema.Type;
 
+/** Serializes one compact head in stable catalog field order. */
+export function canonicalizeMaterialHead(head: MaterialHead) {
+  return JSON.stringify({
+    artifactHash: head.artifactHash,
+    compilerConfigHash: head.compilerConfigHash,
+    contentKey: head.contentKey,
+    delivery: head.delivery,
+    locale: head.locale,
+    projectionHash: head.projectionHash,
+    ...(head.publicPath === undefined ? {} : { publicPath: head.publicPath }),
+    rendererDomain: head.rendererDomain,
+    sourceHash: head.sourceHash,
+    sourcePath: head.sourcePath,
+  });
+}
+
 /** Requests one bounded material-head page from an exact active release. */
 export const HeadPageRequestSchema = Schema.Struct({
+  activeManifestHash: Sha256HashSchema,
   activeReleaseId: ReleaseIdSchema,
   cursor: HeadCursorSchema,
   family: Schema.Literal("material"),
@@ -68,6 +85,7 @@ function hasCanonicalHeadPage(page: {
 
 /** Bounded canonical page proving material heads for one active release. */
 export const HeadPageSchema = Schema.Struct({
+  activeManifestHash: Sha256HashSchema,
   activeReleaseId: ReleaseIdSchema,
   cursor: HeadCursorSchema,
   done: Schema.Boolean,

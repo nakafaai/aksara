@@ -18,8 +18,11 @@ const manifestHash = `sha256:${"b".repeat(64)}`;
 const statusReceipt = {
   activatedHeads: 1,
   deletedHeads: 0,
+  manifestHash,
   projectionDigest: `sha256:${"a".repeat(64)}`,
   releaseId,
+  resultCount: 1,
+  resultDigest: `sha256:${"c".repeat(64)}`,
   stagedArtifacts: 1,
   stagedItems: 1,
   stagedProjections: 1,
@@ -48,8 +51,11 @@ describe("release lifecycle", () => {
     const completedReceipt = {
       activatedHeads: release.manifest.upsertCount,
       deletedHeads: release.manifest.deleteCount,
+      manifestHash: release.manifestHash,
       projectionDigest: release.manifest.projectionDigest,
       releaseId: release.manifest.releaseId,
+      resultCount: release.manifest.resultCount,
+      resultDigest: release.manifest.resultDigest,
       stagedArtifacts: release.manifest.upsertCount,
       stagedItems: release.manifest.itemCount,
       stagedProjections: release.manifest.projectionCount,
@@ -57,16 +63,19 @@ describe("release lifecycle", () => {
     const completed = { receipt: completedReceipt, release, rendererManifest };
     expect(
       Schema.decodeUnknownSync(ContentReleaseCurrentSchema)({
+        activeManifestHash: release.manifestHash,
         activeReleaseId: release.manifest.releaseId,
         completed,
         pending: null,
       })
     ).toEqual({
+      activeManifestHash: release.manifestHash,
       activeReleaseId: release.manifest.releaseId,
       completed,
       pending: null,
     });
     const staging = {
+      activeManifestHash: null,
       activeReleaseId: null,
       completed: null,
       pending: { phase: "staging", release, rendererManifest },
@@ -80,6 +89,7 @@ describe("release lifecycle", () => {
       "Expected active and pending publication identities to be coherent."
     );
     const active = {
+      activeManifestHash: release.manifestHash,
       activeReleaseId: release.manifest.releaseId,
       completed: null,
       pending: { phase: "active", release, rendererManifest },
@@ -92,52 +102,41 @@ describe("release lifecycle", () => {
       activeReleaseId: null,
     });
     for (const invalid of [
-      {
-        ...completedReceipt,
-        releaseId: "release-other",
-      },
-      {
-        ...completedReceipt,
-        activatedHeads: 0,
-        deletedHeads: 2,
-        stagedArtifacts: 0,
-      },
-      {
-        ...completedReceipt,
-        deletedHeads: 0,
-        stagedItems: 1,
-      },
-      {
-        ...completedReceipt,
-        stagedProjections: 2,
-      },
-      {
-        ...completedReceipt,
-        projectionDigest: `sha256:${"f".repeat(64)}`,
-      },
+      { releaseId: "release-other" },
+      { activatedHeads: 0, deletedHeads: 2, stagedArtifacts: 0 },
+      { deletedHeads: 0, stagedItems: 1 },
+      { stagedProjections: 2 },
+      { manifestHash: `sha256:${"f".repeat(64)}` },
+      { projectionDigest: `sha256:${"f".repeat(64)}` },
+      { resultCount: release.manifest.resultCount + 1 },
+      { resultDigest: `sha256:${"f".repeat(64)}` },
     ]) {
       expectRejected(
         CompletedContentReleaseSchema,
-        { ...completed, receipt: invalid },
+        { ...completed, receipt: { ...completedReceipt, ...invalid } },
         "Expected the completed receipt to match its signed release manifest."
       );
     }
     expectRejected(ContentReleaseCurrentSchema, {
+      activeManifestHash: null,
       activeReleaseId: null,
       completed,
       pending: null,
     });
     expectRejected(ContentReleaseCurrentSchema, {
+      activeManifestHash: null,
       activeReleaseId: null,
       completed,
       pending: { phase: "staging", release, rendererManifest },
     });
     expectRejected(ContentReleaseCurrentSchema, {
+      activeManifestHash: release.manifestHash,
       activeReleaseId: "release-other",
       completed,
       pending: null,
     });
     const finalizing = {
+      activeManifestHash: release.manifestHash,
       activeReleaseId: release.manifest.releaseId,
       completed: null,
       pending: { phase: "finalizing", release, rendererManifest },
@@ -147,7 +146,6 @@ describe("release lifecycle", () => {
     ).toEqual(finalizing);
     expect(MAX_CLEANUP_PAGE_COUNT).toBe(100);
   });
-
   it("decodes resumable phases and requires a completed receipt", () => {
     for (const phase of [
       "missing",
@@ -187,7 +185,6 @@ describe("release lifecycle", () => {
       "Expected the completed receipt to match the release status identity."
     );
   });
-
   it("keeps abort progress server-owned, cumulative, and coherent", () => {
     expect(
       Schema.decodeUnknownSync(ReleaseAbortRequestSchema)({ releaseId })
@@ -220,7 +217,6 @@ describe("release lifecycle", () => {
       "Expected abort progress to match its durable release item total."
     );
   });
-
   it("requires both immutable identity fields for status lookup", () => {
     expectAccepted(ContentReleaseStatusRequestSchema, {
       manifestHash,
@@ -228,7 +224,6 @@ describe("release lifecycle", () => {
     });
     expectRejected(ContentReleaseStatusRequestSchema, { releaseId });
   });
-
   it("keeps cleanup cursors private and returns cumulative evidence", () => {
     expectAccepted(ReleaseCleanupRequestSchema, { releaseId });
     expect(

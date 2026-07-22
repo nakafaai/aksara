@@ -1,5 +1,6 @@
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { release, rendererManifest } from "#contracts/test/request";
 import {
   decodePublicationResponse,
@@ -13,15 +14,21 @@ const rendererManifestHash = `sha256:${"c".repeat(64)}`;
 const receipt = {
   activatedHeads: 1,
   deletedHeads: 0,
+  manifestHash,
   projectionDigest,
   releaseId,
+  resultCount: 1,
+  resultDigest: projectionDigest,
   stagedArtifacts: 1,
   stagedItems: 1,
   stagedProjections: 1,
 };
 const status = { manifestHash, phase: "staging", releaseId };
 const evidence = {
+  baseManifestHash: null,
   baseReleaseId: null,
+  baseResultCount: 0,
+  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteHeads: 0,
   itemCount: 1,
   itemsDigest: manifestHash,
@@ -31,6 +38,10 @@ const evidence = {
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash,
+  resultCount: 1,
+  resultDigest: projectionDigest,
+  rollbackCount: 1,
+  rollbackDigest: manifestHash,
   stagedArtifacts: 1,
   upsertHeads: 1,
 };
@@ -50,6 +61,7 @@ const successes = [
     ok: true,
     operation: "current",
     value: {
+      activeManifestHash: null,
       activeReleaseId: null,
       completed: null,
       pending: { phase: "staging", release, rendererManifest },
@@ -59,6 +71,7 @@ const successes = [
     ok: true,
     operation: "headPage",
     value: {
+      activeManifestHash: manifestHash,
       activeReleaseId: releaseId,
       cursor: null,
       done: true,
@@ -119,6 +132,7 @@ const successes = [
       nextIndex: -1,
       records: [],
       rollbackOf: releaseId,
+      rollbackOfManifestHash: manifestHash,
       total: 0,
     },
   },
@@ -153,7 +167,6 @@ describe("publication responses", () => {
     );
     expect(decoded.ok).toBe(true);
   });
-
   it("decodes stable typed failures through the same response contract", () => {
     for (const failure of [
       {
@@ -184,7 +197,6 @@ describe("publication responses", () => {
       expect(accepts({ failure, ok: false })).toBe(true);
     }
   });
-
   it("rejects operation-result mismatches and extra wire fields", async () => {
     expect(
       accepts({
@@ -235,7 +247,6 @@ describe("publication responses", () => {
     );
     expect(error._tag).toBe("ContractDecodeError");
   });
-
   it("requires bounded integer finalization progress", () => {
     for (const value of [
       { done: false, nextIndex: -2, processed: 1 },
@@ -254,7 +265,6 @@ describe("publication responses", () => {
       ).toBe(false);
     }
   });
-
   it("rejects verification evidence with contradictory staged counts", () => {
     const invalidHeads = Schema.decodeUnknownEither(PublicationResponseSchema)({
       ok: true,
@@ -275,7 +285,6 @@ describe("publication responses", () => {
       })
     ).toBe(false);
   });
-
   it("rejects activation receipts with contradictory staged counts", () => {
     const invalid = Schema.decodeUnknownEither(PublicationResponseSchema)({
       ok: true,

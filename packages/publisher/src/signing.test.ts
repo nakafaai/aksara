@@ -3,7 +3,7 @@
 import { Buffer } from "node:buffer";
 import { generateKeyPairSync, verify } from "node:crypto";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
@@ -24,6 +24,7 @@ import {
   canonicalizeContentReleaseSigningInput,
 } from "@nakafa/aksara-contracts/release";
 import { digestItems } from "@nakafa/aksara-contracts/release/digest";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
@@ -98,7 +99,10 @@ const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  baseManifestHash: null,
   baseReleaseId: null,
+  baseResultCount: 0,
+  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: 0,
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
@@ -108,6 +112,10 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: rendererManifest.hash,
+  resultCount: 1,
+  resultDigest: `sha256:${"e".repeat(64)}`,
+  rollbackCount: items.length,
+  rollbackDigest: `sha256:${"f".repeat(64)}`,
   upsertCount: items.length,
 });
 

@@ -91,6 +91,7 @@ describe("publication transport retry", () => {
         return attempts === 1
           ? Effect.fail(transportFailure())
           : Effect.succeed({
+              activeManifestHash: null,
               activeReleaseId: null,
               completed: null,
               pending: null,
@@ -115,6 +116,7 @@ describe("publication transport retry", () => {
     ];
 
     await expect(Effect.runPromise(retried.current())).resolves.toEqual({
+      activeManifestHash: null,
       activeReleaseId: null,
       completed: null,
       pending: null,

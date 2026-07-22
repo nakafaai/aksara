@@ -47,7 +47,10 @@ const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  baseManifestHash: `sha256:${"d".repeat(64)}`,
   baseReleaseId: "test-release-parent",
+  baseResultCount: 1,
+  baseResultDigest: `sha256:${"e".repeat(64)}`,
   deleteCount: itemSummary.deleteCount,
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
@@ -57,6 +60,10 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
+  resultCount: 1,
+  resultDigest: `sha256:${"f".repeat(64)}`,
+  rollbackCount: items.length,
+  rollbackDigest: `sha256:${"d".repeat(64)}`,
   upsertCount: itemSummary.upsertCount,
 });
 
@@ -96,6 +103,7 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
     deleteCount: summary.deleteCount,
     itemCount: candidateItems.length,
     itemsDigest: summary.digest,
+    rollbackCount: candidateItems.length,
     upsertCount: summary.upsertCount,
   });
   return { items: candidateItems, manifest: candidateManifest };
@@ -109,7 +117,6 @@ describe("release item integrity", () => {
     expect(verified).toEqual({ deleteCount: 1, upsertCount: 1 });
     expect(verified).not.toHaveProperty("items");
   });
-
   it("rejects operation totals that differ from the signed manifest", async () => {
     const mismatched = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...manifest,
@@ -125,7 +132,6 @@ describe("release item integrity", () => {
       expectedUpserts: 2,
     });
   });
-
   it("replays one stream with fresh ordering and route state", async () => {
     let reads = 0;
     const replayable = Stream.fromIterable(items).pipe(
@@ -143,7 +149,6 @@ describe("release item integrity", () => {
     );
     expect(reads).toBe(items.length * 2);
   });
-
   it.each([
     [
       "upsert content",
@@ -166,7 +171,6 @@ describe("release item integrity", () => {
       expect(error._tag).toBe("ReleaseItemsDigestMismatchError");
     }
   );
-
   it("rejects order, count, release, and index mismatches", async () => {
     const reversed = [...items].reverse().map((item, index) => ({
       ...item,
@@ -187,7 +191,6 @@ describe("release item integrity", () => {
       "ReleaseItemIndexMismatchError",
     ]);
   });
-
   it("rejects duplicate public paths within one locale", async () => {
     const candidate = await makeCandidate([
       {
@@ -220,7 +223,6 @@ describe("release item integrity", () => {
       publicPath: "subjects/test/shared",
     });
   });
-
   it("allows route deletion and locale-specific route reuse", async () => {
     const transfer = await makeCandidate([
       {
@@ -274,7 +276,6 @@ describe("release item integrity", () => {
       )
     ).resolves.toEqual({ deleteCount: 0, upsertCount: 2 });
   });
-
   it("rejects excess and stale tombstone fields without exposing values", async () => {
     const secret = "must-not-leak";
     const [excess, stale] = await Promise.all([
@@ -290,7 +291,6 @@ describe("release item integrity", () => {
     expect(stale._tag).toBe("ReleaseItemDecodeError");
     expect(JSON.stringify([excess, stale])).not.toContain(secret);
   });
-
   it("propagates upstream stream failures unchanged", async () => {
     const error = await Effect.runPromise(
       verifyContentReleaseItems({

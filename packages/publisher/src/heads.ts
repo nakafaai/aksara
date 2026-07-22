@@ -1,11 +1,11 @@
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
-import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import type {
   HeadPage,
   MaterialHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
-import { Chunk, Effect, Option, Stream } from "effect";
+import { Chunk, Effect, Option, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { PublicationTargetProtocolError } from "#publisher/target/errors";
 
@@ -53,12 +53,16 @@ function nextPageState(page: HeadPage) {
 }
 
 /** Streams every compact material head while binding all pages to one release. */
-export function streamMaterialHeads(activeReleaseId: ReleaseId) {
+export function streamMaterialHeads(
+  activeReleaseId: ReleaseId,
+  activeManifestHash: Sha256Hash
+) {
   const initial: HeadPageState = { cursor: null, last: undefined };
   return Stream.paginateChunkEffect(initial, (state) =>
     Effect.gen(function* () {
       const target = yield* PublicationTarget;
       const page = yield* target.headPage({
+        activeManifestHash,
         activeReleaseId,
         cursor: state.cursor,
         family: "material",
@@ -66,7 +70,7 @@ export function streamMaterialHeads(activeReleaseId: ReleaseId) {
       });
       yield* validatePageOrder(state.last, page.heads);
       const next = yield* nextPageState(page);
-      return [Chunk.fromIterable(page.heads), next] as const;
+      return Tuple.make(Chunk.fromIterable(page.heads), next);
     })
   );
 }

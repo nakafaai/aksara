@@ -1,18 +1,17 @@
 import { resolve } from "node:path";
 import { Path } from "@effect/platform";
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { Effect, Schema, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { testFileLayer } from "#test/files";
 import {
   checkoutRoot,
+  collectMaterialPublication,
   englishPath,
   materialManifest,
   publishedMaterialHeads,
+  rejectMaterialPublication,
   rendererManifest,
   sourceByPath,
 } from "#test/material";
@@ -101,50 +100,6 @@ function modifyHead(input: unknown) {
   });
 }
 
-/** Runs one authoritative publication plan through its real platform layers. */
-async function collectPublication(input: {
-  readonly heads: readonly MaterialHead[];
-  readonly renderer?: unknown;
-  readonly sources?: ReadonlyMap<string, string>;
-}) {
-  return Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const publication = yield* prepareMaterialPublication({
-          checkoutRoot,
-          published: Stream.fromIterable(input.heads),
-          rendererManifest: input.renderer ?? rendererManifest,
-        });
-        return yield* publication.records().pipe(
-          Stream.runCollect,
-          Effect.map((records) => [...records])
-        );
-      })
-    ).pipe(
-      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
-      Effect.provide(Path.layer)
-    )
-  );
-}
-
-/** Returns a typed planning failure without wrapping it in FiberFailure. */
-function rejectPublication(heads: readonly unknown[]) {
-  const decoded = heads.map(modifyHead);
-  return Effect.runPromise(
-    Effect.scoped(
-      prepareMaterialPublication({
-        checkoutRoot,
-        published: Stream.fromIterable(decoded),
-        rendererManifest,
-      })
-    ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer),
-      Effect.flip
-    )
-  );
-}
-
 beforeEach(() => {
   compilerState.calls = 0;
   registryState.changedOrder = false;
@@ -152,7 +107,7 @@ beforeEach(() => {
 
 describe("material publication", () => {
   it("emits no records and performs no compilation for fresh matching heads", async () => {
-    const records = await collectPublication({ heads: publishedHeads });
+    const records = await collectMaterialPublication({ heads: publishedHeads });
 
     expect(records).toEqual([]);
     expect(compilerState.calls).toBe(0);
@@ -165,13 +120,13 @@ describe("material publication", () => {
     expect(english).toBeDefined();
     sources.set(absolutePath, `${english}\n`);
 
-    const records = await collectPublication({
+    const records = await collectMaterialPublication({
       heads: publishedHeads,
       sources,
     });
 
     expect(records).toHaveLength(1);
-    expect(records[0]?.change).toMatchObject({
+    expect(records[0]?.record.change).toMatchObject({
       locale: "en",
       operation: "upsert",
     });
@@ -181,12 +136,14 @@ describe("material publication", () => {
   it("compiles only the real document whose registry projection changed", async () => {
     registryState.changedOrder = true;
 
-    const records = await collectPublication({ heads: publishedHeads });
+    const records = await collectMaterialPublication({ heads: publishedHeads });
 
     expect(records).toHaveLength(1);
     expect(records[0]).toMatchObject({
-      change: { locale: "en", operation: "upsert" },
-      projection: { order: 6 },
+      record: {
+        change: { locale: "en", operation: "upsert" },
+        projection: { order: 6 },
+      },
     });
     expect(compilerState.calls).toBe(1);
   });
@@ -195,7 +152,7 @@ describe("material publication", () => {
     "compiles only a head whose %s fingerprint changed",
     async (_field, changed) => {
       const head = modifyHead({ ...englishHead, ...changed });
-      const records = await collectPublication({
+      const records = await collectMaterialPublication({
         heads: [head, indonesianHead],
       });
 
@@ -207,7 +164,7 @@ describe("material publication", () => {
   it("recompiles both documents when their selected renderer contract changes", async () => {
     const renderer = await materialManifest({ chemistry: 1, math: 2 });
 
-    const records = await collectPublication({
+    const records = await collectMaterialPublication({
       heads: publishedHeads,
       renderer,
     });
@@ -220,49 +177,77 @@ describe("material publication", () => {
     const stale = modifyHead({
       ...englishHead,
       contentKey: "material/lesson/mathematics/removed/lesson",
+      publicPath: "subjects/mathematics/removed/lesson",
       sourcePath:
         "packages/corpus/material/lesson/mathematics/removed/lesson/en.mdx",
     });
 
-    const records = await collectPublication({
+    const records = await collectMaterialPublication({
       heads: [englishHead, indonesianHead, stale],
     });
 
     expect(records).toContainEqual({
-      change: {
-        contentKey: stale.contentKey,
-        locale: "en",
-        operation: "delete",
+      prior: { head: stale, state: "material" },
+      record: {
+        change: {
+          contentKey: stale.contentKey,
+          locale: "en",
+          operation: "delete",
+        },
       },
     });
     expect(compilerState.calls).toBe(0);
   });
 
   it("compiles every canonical source for the first release", async () => {
-    const records = await collectPublication({ heads: [] });
+    const records = await collectMaterialPublication({ heads: [] });
 
     expect(records).toHaveLength(2);
-    expect(records.every(({ change }) => change.operation === "upsert")).toBe(
-      true
-    );
+    expect(
+      records.every(({ record }) => record.change.operation === "upsert")
+    ).toBe(true);
     expect(compilerState.calls).toBe(2);
+  });
+
+  it("rejects target heads for a genesis release without a signed base", async () => {
+    const error = await Effect.runPromise(
+      Effect.scoped(
+        prepareMaterialPublication({
+          baseCatalog: null,
+          checkoutRoot,
+          published: Stream.make(englishHead),
+          rendererManifest,
+        })
+      ).pipe(
+        Effect.provide(testFileLayer(sourceByPath)),
+        Effect.provide(Path.layer),
+        Effect.flip
+      )
+    );
+
+    expect(error).toMatchObject({
+      _tag: "MaterialGenesisCatalogError",
+      actualCount: 1,
+    });
   });
 
   it("rejects duplicate and noncanonical published heads as typed failures", async () => {
     await expect(
-      rejectPublication([englishHead, englishHead])
+      rejectMaterialPublication([englishHead, englishHead])
     ).resolves.toMatchObject({
       _tag: "MaterialHeadDuplicateError",
     });
     await expect(
-      rejectPublication([indonesianHead, englishHead])
+      rejectMaterialPublication([indonesianHead, englishHead])
     ).resolves.toMatchObject({ _tag: "MaterialHeadOrderError" });
   });
 
   it.each(familyCases)(
     "rejects a cross-family %s contradiction before compilation",
     async (_field, head) => {
-      await expect(rejectPublication([head])).resolves.toMatchObject({
+      await expect(
+        rejectMaterialPublication([modifyHead(head)])
+      ).resolves.toMatchObject({
         _tag: "MaterialHeadFamilyError",
       });
       expect(compilerState.calls).toBe(0);

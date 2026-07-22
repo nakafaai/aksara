@@ -1,5 +1,5 @@
 import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -9,6 +9,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
@@ -18,6 +19,8 @@ import {
   ContentDeleteSchema,
   ContentUpsertSchema,
 } from "@nakafa/aksara-contracts/release";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
@@ -77,29 +80,62 @@ const baseRecord: PreparedContentUpsert = {
   source,
 };
 const aksaraSha = GitCommitShaSchema.make("a".repeat(40));
+const resultHead = MaterialHeadSchema.make({
+  artifactHash: baseRecord.change.artifactHash,
+  compilerConfigHash: payload.compilerConfigHash,
+  contentKey: baseRecord.change.contentKey,
+  delivery: baseRecord.change.delivery,
+  locale: baseRecord.change.locale,
+  projectionHash: hashMaterialProjection(projection),
+  publicPath: baseRecord.change.publicPath,
+  rendererDomain: baseRecord.change.rendererDomain,
+  sourceHash: payload.sourceHash,
+  sourcePath: baseRecord.change.sourcePath,
+});
+const baseTransition = {
+  prior: {
+    contentKey: baseRecord.change.contentKey,
+    locale: baseRecord.change.locale,
+    state: "absent" as const,
+  },
+  record: baseRecord,
+};
 
 /** Runs preparation with one replayable in-memory test protocol source. */
 function prepare<E, R>(records: () => Stream.Stream<unknown, E, R>) {
   return prepareContentRelease({
     aksaraSha,
+    baseManifestHash: null,
     baseReleaseId: null,
+    baseResultCount: 0,
+    baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     records,
     releaseId: ReleaseIdSchema.make("test-prepare-release"),
     rendererManifest,
+    result: () => Stream.make(resultHead),
   });
 }
 
 describe("prepareContentRelease", () => {
   it("derives replayable items and projections from one canonical record source", async () => {
     const deletion = {
-      change: ContentDeleteSchema.make({
-        contentKey: ContentKeySchema.make("test:prepare:z"),
-        locale: "en",
-        operation: "delete",
-      }),
+      prior: {
+        head: {
+          ...resultHead,
+          contentKey: ContentKeySchema.make("test:prepare:z"),
+        },
+        state: "material" as const,
+      },
+      record: {
+        change: ContentDeleteSchema.make({
+          contentKey: ContentKeySchema.make("test:prepare:z"),
+          locale: "en",
+          operation: "delete",
+        }),
+      },
     };
     const prepared = await Effect.runPromise(
-      prepare(() => Stream.make(baseRecord, deletion))
+      prepare(() => Stream.make(baseTransition, deletion))
     );
     const [items, projections] = await Effect.runPromise(
       Effect.all([
@@ -121,10 +157,37 @@ describe("prepareContentRelease", () => {
     const error = await Effect.runPromise(
       prepare(() => {
         replayCount += 1;
-        return replayCount === 1 ? Stream.make(baseRecord) : Stream.empty;
+        return replayCount === 1 ? Stream.make(baseTransition) : Stream.empty;
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("ReleaseItemCountMismatchError");
+  });
+
+  it("rejects a changed head that collides with an unchanged result route", async () => {
+    const unchanged = MaterialHeadSchema.make({
+      ...resultHead,
+      contentKey: ContentKeySchema.make("test:prepare:b"),
+    });
+    const error = await Effect.runPromise(
+      prepareContentRelease({
+        aksaraSha,
+        baseManifestHash: null,
+        baseReleaseId: null,
+        baseResultCount: 0,
+        baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+        records: () => Stream.make(baseTransition),
+        releaseId: ReleaseIdSchema.make("test-route-conflict"),
+        rendererManifest,
+        result: () => Stream.make(resultHead, unchanged),
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "ResultCatalogRouteError",
+      contentKey: unchanged.contentKey,
+      locale: unchanged.locale,
+      publicPath: unchanged.publicPath,
+    });
   });
 
   it("validates the renderer before invoking the authored source", async () => {
@@ -132,16 +195,20 @@ describe("prepareContentRelease", () => {
     const error = await Effect.runPromise(
       prepareContentRelease({
         aksaraSha,
+        baseManifestHash: null,
         baseReleaseId: null,
+        baseResultCount: 0,
+        baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
         records: () => {
           invoked = true;
-          return Stream.make(baseRecord);
+          return Stream.make(baseTransition);
         },
         releaseId: ReleaseIdSchema.make("test-invalid-renderer"),
         rendererManifest: {
           ...rendererManifest,
           hash: Sha256HashSchema.make(`sha256:${"9".repeat(64)}`),
         },
+        result: () => Stream.make(resultHead),
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("RendererManifestHashMismatchError");
@@ -154,13 +221,17 @@ describe("prepareContentRelease", () => {
     const error = await Effect.runPromise(
       prepareContentRelease({
         aksaraSha,
+        baseManifestHash: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
         baseReleaseId: selfBasedRelease,
+        baseResultCount: 1,
+        baseResultDigest: resultHead.projectionHash,
         records: () => {
           invoked = true;
-          return Stream.make(baseRecord);
+          return Stream.make(baseTransition);
         },
         releaseId: selfBasedRelease,
         rendererManifest,
+        result: () => Stream.make(resultHead),
       }).pipe(Effect.flip)
     );
 
@@ -170,5 +241,31 @@ describe("prepareContentRelease", () => {
       releaseId: selfBasedRelease,
     });
     expect(invoked).toBe(false);
+  });
+
+  it.each([
+    {
+      baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
+      baseReleaseId: null,
+    },
+    {
+      baseManifestHash: null,
+      baseReleaseId: ReleaseIdSchema.make("test-unpaired-base"),
+    },
+  ])("rejects an unpaired exact base identity", async (base) => {
+    const error = await Effect.runPromise(
+      prepareContentRelease({
+        aksaraSha,
+        ...base,
+        baseResultCount: 0,
+        baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+        records: () => Stream.make(baseTransition),
+        releaseId: ReleaseIdSchema.make("test-invalid-base-pair"),
+        rendererManifest,
+        result: () => Stream.make(resultHead),
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({ _tag: "PreparedReleaseBaseIdentityError" });
   });
 });

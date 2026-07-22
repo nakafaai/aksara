@@ -2,14 +2,9 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  ContentReleaseManifestSchema,
-  type PublicationReceipt,
-  SignedContentReleaseSchema,
-} from "@nakafa/aksara-contracts/release";
+import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
-import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { completePublicationLifecycle } from "#publisher/publication/lifecycle";
 import { PublicationTarget } from "#publisher/publication/spec";
@@ -17,60 +12,48 @@ import {
   PublicationStaleBaseError,
   PublicationTargetConflictError,
 } from "#publisher/target/errors";
-import { rendererDomains } from "#test/renderer";
+import { makeSignedBundle } from "#test/publication";
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
-    domains: rendererDomains({}),
-  })
-);
-const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
-  baseReleaseId: null,
-  deleteCount: 0,
-  itemCount: 1,
-  itemsDigest: `sha256:${"b".repeat(64)}`,
-  origin: { kind: "git", sha: "a".repeat(40) },
-  projectionCount: 1,
-  projectionDigest: `sha256:${"c".repeat(64)}`,
-  releaseId: "test-lifecycle",
-  rendererContractVersion: "1.0.0",
-  rendererManifestHash: rendererManifest.hash,
-  upsertCount: 1,
-});
-const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
-  keyId: "test-key",
-  manifest,
-  manifestHash: `sha256:${"e".repeat(64)}`,
-  signature: `${"A".repeat(85)}A`,
-});
-const summary = { deleteCount: 0, upsertCount: 1 };
-const projectionSummary = { count: 1 };
+const bundle = await makeSignedBundle("test-lifecycle");
+const { release, rendererManifest } = bundle;
+const { manifest } = release;
+const summary = {
+  deleteCount: manifest.deleteCount,
+  upsertCount: manifest.upsertCount,
+};
+const projectionSummary = { count: manifest.projectionCount };
 const receipt: PublicationReceipt = {
-  activatedHeads: 1,
-  deletedHeads: 0,
+  activatedHeads: manifest.upsertCount,
+  deletedHeads: manifest.deleteCount,
+  manifestHash: release.manifestHash,
   projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,
-  stagedArtifacts: 1,
-  stagedItems: 1,
-  stagedProjections: 1,
+  resultCount: manifest.resultCount,
+  resultDigest: manifest.resultDigest,
+  stagedArtifacts: manifest.upsertCount,
+  stagedItems: manifest.itemCount,
+  stagedProjections: manifest.projectionCount,
 };
 const evidence = {
+  baseManifestHash: manifest.baseManifestHash,
   baseReleaseId: manifest.baseReleaseId,
-  deleteHeads: 0,
-  itemCount: 1,
+  baseResultCount: manifest.baseResultCount,
+  baseResultDigest: manifest.baseResultDigest,
+  deleteHeads: manifest.deleteCount,
+  itemCount: manifest.itemCount,
   itemsDigest: manifest.itemsDigest,
   manifestHash: release.manifestHash,
-  projectionCount: 1,
+  projectionCount: manifest.projectionCount,
   projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,
   rendererContractVersion: manifest.rendererContractVersion,
   rendererManifestHash: manifest.rendererManifestHash,
-  stagedArtifacts: 1,
-  upsertHeads: 1,
+  resultCount: manifest.resultCount,
+  resultDigest: manifest.resultDigest,
+  rollbackCount: manifest.rollbackCount,
+  rollbackDigest: manifest.rollbackDigest,
+  stagedArtifacts: manifest.upsertCount,
+  upsertHeads: manifest.upsertCount,
 };
 
 /** Creates one exact durable status for the requested lifecycle phase. */

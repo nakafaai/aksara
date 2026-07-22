@@ -52,6 +52,7 @@ describe("finalization progress", () => {
           ...request.release.manifest,
           deleteCount: 0,
           itemCount: 0,
+          rollbackCount: 0,
           upsertCount: 0,
         },
       },

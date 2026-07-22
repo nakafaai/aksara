@@ -1,6 +1,7 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
+  canonicalizeMaterialHead,
   HeadPageRequestSchema,
   HeadPageSchema,
   MaterialHeadSchema,
@@ -8,6 +9,7 @@ import {
 import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
 const hash = `sha256:${"a".repeat(64)}`;
+const manifestHash = `sha256:${"b".repeat(64)}`;
 const releaseId = "test-active";
 
 /** Builds one strict material-head sample at a deterministic identity. */
@@ -34,9 +36,21 @@ function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
 }
 
 describe("material head pages", () => {
+  it("canonically serializes routed and route-free heads", () => {
+    const routed = materialHead("test:routed");
+    const routeFree = Schema.decodeUnknownSync(MaterialHeadSchema)({
+      ...routed,
+      publicPath: undefined,
+    });
+
+    expect(JSON.parse(canonicalizeMaterialHead(routed))).toEqual(routed);
+    expect(JSON.parse(canonicalizeMaterialHead(routeFree))).toEqual(routeFree);
+  });
+
   it("accepts bounded requests and canonical terminal pages", () => {
     expect(
       accepts(HeadPageRequestSchema, {
+        activeManifestHash: manifestHash,
         activeReleaseId: releaseId,
         cursor: null,
         family: "material",
@@ -45,6 +59,7 @@ describe("material head pages", () => {
     ).toBe(true);
     expect(
       accepts(HeadPageSchema, {
+        activeManifestHash: manifestHash,
         activeReleaseId: releaseId,
         cursor: "page-one",
         done: true,
@@ -58,6 +73,7 @@ describe("material head pages", () => {
   it("accepts a non-terminal page only with real cursor progress", () => {
     expect(
       accepts(HeadPageSchema, {
+        activeManifestHash: manifestHash,
         activeReleaseId: releaseId,
         cursor: null,
         done: false,
@@ -70,19 +86,39 @@ describe("material head pages", () => {
 
   it("rejects invalid request scope, cursors, and limits", () => {
     for (const request of [
-      { activeReleaseId: releaseId, cursor: null, family: "article", limit: 1 },
-      { activeReleaseId: releaseId, cursor: " ", family: "material", limit: 1 },
       {
+        activeManifestHash: manifestHash,
+        activeReleaseId: releaseId,
+        cursor: null,
+        family: "article",
+        limit: 1,
+      },
+      {
+        activeManifestHash: manifestHash,
+        activeReleaseId: releaseId,
+        cursor: " ",
+        family: "material",
+        limit: 1,
+      },
+      {
+        activeManifestHash: manifestHash,
         activeReleaseId: releaseId,
         cursor: null,
         family: "material",
         limit: 0,
       },
       {
+        activeManifestHash: manifestHash,
         activeReleaseId: releaseId,
         cursor: null,
         family: "material",
         limit: MAX_HEAD_PAGE_COUNT + 1,
+      },
+      {
+        activeReleaseId: releaseId,
+        cursor: null,
+        family: "material",
+        limit: 1,
       },
     ]) {
       expect(accepts(HeadPageRequestSchema, request)).toBe(false);
@@ -91,6 +127,7 @@ describe("material head pages", () => {
 
   it("rejects unordered, duplicate, and oversized head inventories", () => {
     const page = {
+      activeManifestHash: manifestHash,
       activeReleaseId: releaseId,
       cursor: null,
       done: true,
@@ -128,6 +165,7 @@ describe("material head pages", () => {
 
   it("rejects terminal and progressing cursor contradictions", () => {
     const page = {
+      activeManifestHash: manifestHash,
       activeReleaseId: releaseId,
       cursor: "page-one",
       family: "material",

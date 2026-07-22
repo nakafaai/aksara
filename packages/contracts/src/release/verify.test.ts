@@ -76,7 +76,10 @@ const rendererManifest = await Effect.runPromise(
   })
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  baseManifestHash: `sha256:${"d".repeat(64)}`,
   baseReleaseId: "test-release-parent",
+  baseResultCount: 1,
+  baseResultDigest: `sha256:${"e".repeat(64)}`,
   deleteCount: 1,
   itemCount: 2,
   itemsDigest: `sha256:${"b".repeat(64)}`,
@@ -86,6 +89,10 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId: "test-release",
   rendererContractVersion: "1.0.0",
   rendererManifestHash: rendererManifest.hash,
+  resultCount: 1,
+  resultDigest: `sha256:${"f".repeat(64)}`,
+  rollbackCount: 2,
+  rollbackDigest: `sha256:${"1".repeat(64)}`,
   upsertCount: 1,
 });
 
@@ -197,12 +204,18 @@ describe("server-only release verification", () => {
   });
 
   it.each([
+    ["base manifest", { baseManifestHash: `sha256:${"2".repeat(64)}` }],
     ["base release", { baseReleaseId: "test-release-other" }],
+    ["base result count", { baseResultCount: 2 }],
+    ["base result digest", { baseResultDigest: `sha256:${"2".repeat(64)}` }],
     ["origin", { origin: { kind: "git", sha: "e".repeat(40) } }],
-    ["item count", { itemCount: 3, upsertCount: 2 }],
+    ["item count", { itemCount: 3, rollbackCount: 3, upsertCount: 2 }],
     ["item digest", { itemsDigest: `sha256:${"f".repeat(64)}` }],
     ["projection count", { projectionCount: 2 }],
     ["projection digest", { projectionDigest: `sha256:${"e".repeat(64)}` }],
+    ["result count", { resultCount: 2 }],
+    ["result digest", { resultDigest: `sha256:${"2".repeat(64)}` }],
+    ["rollback digest", { rollbackDigest: `sha256:${"2".repeat(64)}` }],
     ["renderer manifest", { rendererManifestHash: `sha256:${"f".repeat(64)}` }],
   ])("rejects a mutated %s", async (_label, values) => {
     const release = signRelease();
@@ -219,6 +232,7 @@ describe("server-only release verification", () => {
     const changedManifest = ContentReleaseManifestSchema.make({
       ...release.manifest,
       itemCount: 3,
+      rollbackCount: 3,
       upsertCount: 2,
     });
     const error = await reject({

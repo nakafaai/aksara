@@ -8,6 +8,7 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
   type ContentChange,
   ContentChangeSchema,
@@ -51,7 +52,10 @@ const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  baseManifestHash: null,
   baseReleaseId: null,
+  baseResultCount: 0,
+  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: itemSummary.deleteCount,
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
@@ -61,6 +65,10 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
+  resultCount: 1,
+  resultDigest: `sha256:${"e".repeat(64)}`,
+  rollbackCount: items.length,
+  rollbackDigest: `sha256:${"f".repeat(64)}`,
   upsertCount: itemSummary.upsertCount,
 });
 
@@ -75,6 +83,8 @@ describe("release spec", () => {
     expect(canonical).toContain(`"itemCount":${items.length}`);
     expect(canonical).toContain(`"itemsDigest":"${manifest.itemsDigest}"`);
     expect(canonical).toContain('"projectionCount":1');
+    expect(canonical).toContain(`"resultDigest":"${manifest.resultDigest}"`);
+    expect(canonical).toContain('"rollbackCount":2');
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
       `nakafa.aksara.content-release.v1\n${manifestHash}\n${canonical}`
     );
@@ -109,17 +119,22 @@ describe("release spec", () => {
     );
     const first = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...manifest,
+      baseManifestHash: `sha256:${"1".repeat(64)}`,
       baseReleaseId: releaseId,
+      baseResultCount: manifest.resultCount,
+      baseResultDigest: manifest.resultDigest,
       deleteCount: 0,
       itemCount: 0,
       itemsDigest: firstSummary.digest,
       origin: { kind: "rollback", releaseId },
       projectionCount: 0,
       releaseId: firstId,
+      rollbackCount: 0,
       upsertCount: 0,
     });
     const second = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
       ...first,
+      baseManifestHash: `sha256:${"2".repeat(64)}`,
       baseReleaseId: firstId,
       origin: { kind: "rollback", releaseId: firstId },
       releaseId: "rollback-second",
@@ -127,8 +142,11 @@ describe("release spec", () => {
     expect(Either.isRight(second)).toBe(true);
     for (const invalid of [
       { ...first, baseReleaseId: null },
+      { ...first, baseManifestHash: null },
       { ...first, releaseId },
       { ...manifest, baseReleaseId: releaseId },
+      { ...manifest, baseResultCount: 1 },
+      { ...manifest, baseResultDigest: `sha256:${"1".repeat(64)}` },
     ]) {
       expect(
         Either.isLeft(
