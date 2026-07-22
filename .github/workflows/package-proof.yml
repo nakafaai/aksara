@@ -59,6 +59,11 @@ jobs:
           SOURCE_SHA: ${{ inputs.source_sha }}
           WORKFLOW_SHA: ${{ github.sha }}
         run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          if [[ "$bootstrapped" != "true" || -e .github/workflows/bootstrap.yml ]]; then
+            echo "Steady-state package proof requires completed bootstrap and no bootstrap workflow." >&2
+            exit 1
+          fi
           if [[ ! "$PACKAGE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
             echo "Package version is malformed." >&2
             exit 1
@@ -76,6 +81,8 @@ jobs:
             exit 1
           fi
           package_changes=$(git diff --name-only "$SOURCE_SHA" "$WORKFLOW_SHA" -- \
+            .changeset/bootstrap.json \
+            .github/workflows/bootstrap.yml \
             .github/workflows/package-proof.yml \
             .github/workflows/publish.yml \
             biome.jsonc \

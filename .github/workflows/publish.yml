@@ -7,6 +7,7 @@ permissions: {}
 
 env:
   NODE_VERSION: 24.18.0
+  PACKAGE_NAME: "@nakafa/aksara-contracts"
   PNPM_VERSION: 11.15.1
 
 concurrency:
@@ -53,6 +54,30 @@ jobs:
             exit 1
           fi
 
+      - name: Verify completed bootstrap
+        run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          package_version=$(jq -er '.version' packages/contracts/package.json)
+          if [[ "$bootstrapped" != "true" || -e .github/workflows/bootstrap.yml ]]; then
+            echo "Staged publishing is disabled until bootstrap is proven and its workflow is deleted." >&2
+            exit 1
+          fi
+
+          bootstrap_status=$(curl --silent --show-error --proto '=https' --tlsv1.2 \
+            --output "$RUNNER_TEMP/aksara-bootstrap.json" --write-out '%{http_code}' \
+            "https://registry.npmjs.org/@nakafa%2faksara-contracts/0.1.0" || true)
+          if [[ "$bootstrap_status" != "200" ]]; then
+            echo "The proven bootstrap package is absent from the npm registry." >&2
+            exit 1
+          fi
+          candidate_status=$(curl --silent --show-error --proto '=https' --tlsv1.2 \
+            --output "$RUNNER_TEMP/aksara-candidate.json" --write-out '%{http_code}' \
+            "https://registry.npmjs.org/@nakafa%2faksara-contracts/$package_version" || true)
+          if [[ "$candidate_status" != "404" ]]; then
+            echo "The candidate package version is not provably absent from the npm registry." >&2
+            exit 1
+          fi
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -62,6 +87,7 @@ jobs:
           pnpm names
           pnpm jsdocs
           pnpm lines
+          pnpm workflows
           pnpm boundaries
           pnpm typecheck
           pnpm test

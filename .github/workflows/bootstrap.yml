@@ -1,0 +1,316 @@
+name: Bootstrap contracts
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+env:
+  NODE_VERSION: 24.18.0
+  PACKAGE_NAME: "@nakafa/aksara-contracts"
+  PACKAGE_VERSION: 0.1.0
+  PNPM_VERSION: 11.15.1
+
+concurrency:
+  group: contracts-production
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    outputs:
+      package_integrity: ${{ steps.digest.outputs.package_integrity }}
+      tarball_sha256: ${{ steps.digest.outputs.tarball_sha256 }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Verify bootstrap state
+        run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          package_version=$(jq -er '.version' packages/contracts/package.json)
+          if [[ "$bootstrapped" != "false" ]]; then
+            echo "The one-time bootstrap workflow is disabled after package bootstrap." >&2
+            exit 1
+          fi
+          if [[ "$package_version" != "$PACKAGE_VERSION" ]]; then
+            echo "Bootstrap may publish only the reviewed initial package version." >&2
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify repository
+        run: |
+          pnpm lint
+          pnpm names
+          pnpm jsdocs
+          pnpm lines
+          pnpm workflows
+          pnpm boundaries
+          pnpm typecheck
+          pnpm test
+          pnpm build
+
+      - name: Verify contracts tarball
+        run: pnpm --dir packages/contracts verify:package --output "$RUNNER_TEMP/aksara-contracts.tgz"
+
+      - name: Record verified tarball digests
+        id: digest
+        run: |
+          tarball="$RUNNER_TEMP/aksara-contracts.tgz"
+          package_name=$(tar -xOf "$tarball" package/package.json | jq -er '.name')
+          package_version=$(tar -xOf "$tarball" package/package.json | jq -er '.version')
+          if [[ "$package_name" != "$PACKAGE_NAME" || "$package_version" != "$PACKAGE_VERSION" ]]; then
+            echo "Verified tarball identity differs from the bootstrap contract." >&2
+            exit 1
+          fi
+          tarball_sha256=$(sha256sum "$tarball" | cut -d ' ' -f 1)
+          package_integrity="sha512-$(openssl dgst -sha512 -binary "$tarball" | openssl base64 -A)"
+          echo "package_integrity=$package_integrity" >> "$GITHUB_OUTPUT"
+          echo "tarball_sha256=$tarball_sha256" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Bootstrap artifact verified"
+            echo
+            echo "- Package: \`$PACKAGE_NAME@$PACKAGE_VERSION\`"
+            echo "- Integrity: \`$package_integrity\`"
+            echo "- Source SHA: \`$GITHUB_SHA\`"
+            echo "- Tarball SHA-256: \`$tarball_sha256\`"
+            echo
+            echo "Before approving the protected publish job, create the shortest-lived granular npm token allowed for the @nakafa scope, enable bypass 2FA for this one non-interactive publish, and store it only as the content-production NPM_BOOTSTRAP_TOKEN secret."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload verified tarball
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: aksara-bootstrap-${{ github.sha }}
+          path: ${{ runner.temp }}/aksara-contracts.tgz
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+
+  publish:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
+    environment: content-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download verified tarball
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: aksara-bootstrap-${{ github.sha }}
+          path: ${{ runner.temp }}/contracts
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          package-manager-cache: false
+          registry-url: https://registry.npmjs.org/
+          scope: "@nakafa"
+          token: ""
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Install SLSA verifier
+        uses: slsa-framework/slsa-verifier/actions/installer@ea584f4502babc6f60d9bc799dbbb13c1caa9ee6 # v2.7.1
+
+      - name: Inspect registry state
+        id: state
+        env:
+          EXPECTED_INTEGRITY: ${{ needs.verify.outputs.package_integrity }}
+          EXPECTED_SHA256: ${{ needs.verify.outputs.tarball_sha256 }}
+          TARBALL: ${{ runner.temp }}/contracts/aksara-contracts.tgz
+        run: |
+          actual_sha256=$(sha256sum "$TARBALL" | cut -d ' ' -f 1)
+          actual_integrity="sha512-$(openssl dgst -sha512 -binary "$TARBALL" | openssl base64 -A)"
+          package_name=$(tar -xOf "$TARBALL" package/package.json | jq -er '.name')
+          package_version=$(tar -xOf "$TARBALL" package/package.json | jq -er '.version')
+          registry_override=$(tar -xOf "$TARBALL" package/package.json | jq -r 'if (.publishConfig | type) == "object" and (.publishConfig | has("registry")) then "present" else "absent" end')
+          if [[ "$actual_sha256" != "$EXPECTED_SHA256" || "$actual_integrity" != "$EXPECTED_INTEGRITY" ]]; then
+            echo "Transferred tarball digest does not match verification." >&2
+            exit 1
+          fi
+          if [[ "$package_name" != "$PACKAGE_NAME" || "$package_version" != "$PACKAGE_VERSION" || "$registry_override" != "absent" ]]; then
+            echo "Transferred tarball violates the bootstrap package contract." >&2
+            exit 1
+          fi
+
+          metadata="$RUNNER_TEMP/aksara-contracts.metadata.json"
+          status=$(curl --silent --show-error --proto '=https' --tlsv1.2 \
+            --output "$metadata" --write-out '%{http_code}' \
+            "https://registry.npmjs.org/@nakafa%2faksara-contracts/$PACKAGE_VERSION" || true)
+          if [[ "$status" == "200" ]]; then
+            echo "needs_publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [[ "$status" == "404" ]]; then
+            echo "needs_publish=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          {
+            echo "Could not prove that the bootstrap version is absent; refusing to publish." >&2
+            echo "Registry status: $status" >&2
+          }
+          exit 1
+
+      - name: Publish exact bootstrap once
+        if: steps.state.outputs.needs_publish == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_BOOTSTRAP_TOKEN }}
+          TARBALL: ${{ runner.temp }}/contracts/aksara-contracts.tgz
+        run: |
+          if [[ -z "$NODE_AUTH_TOKEN" ]]; then
+            echo "The protected NPM_BOOTSTRAP_TOKEN secret is required for the one-time publish." >&2
+            exit 1
+          fi
+
+          publish_status=0
+          pnpm publish "$TARBALL" \
+            --access public \
+            --provenance \
+            --ignore-scripts \
+            --no-git-checks \
+            --registry=https://registry.npmjs.org/ \
+            --@nakafa:registry=https://registry.npmjs.org/ || publish_status=$?
+          unset NODE_AUTH_TOKEN
+          echo "pnpm publish exit status: $publish_status; exact registry proof decides the workflow outcome." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify exact registry package
+        env:
+          EXPECTED_INTEGRITY: ${{ needs.verify.outputs.package_integrity }}
+          EXPECTED_SHA256: ${{ needs.verify.outputs.tarball_sha256 }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          metadata="$RUNNER_TEMP/aksara-contracts.metadata.json"
+          attestations="$RUNNER_TEMP/aksara-contracts.attestations.json"
+          registry_tarball="$RUNNER_TEMP/aksara-contracts.registry.tgz"
+          metadata_url="https://registry.npmjs.org/@nakafa%2faksara-contracts/$PACKAGE_VERSION"
+          ready="false"
+          status=""
+          for _ in {1..12}; do
+            status=$(curl --silent --show-error --proto '=https' --tlsv1.2 \
+              --output "$metadata" --write-out '%{http_code}' "$metadata_url" || true)
+            if [[ "$status" == "200" ]] && jq -e '.dist.integrity and .dist.tarball and .dist.attestations.url' "$metadata" >/dev/null; then
+              ready="true"
+              break
+            fi
+            sleep 10
+          done
+          if [[ "$ready" != "true" ]]; then
+            echo "Bootstrap package and attestations were not observable within the bounded verification window; publish was not retried." >&2
+            exit 1
+          fi
+
+          actual_integrity=$(jq -er '.dist.integrity' "$metadata")
+          repository=$(jq -er '.repository.url' "$metadata")
+          if [[ "$actual_integrity" != "$EXPECTED_INTEGRITY" ]]; then
+            echo "Published tarball integrity differs from the reviewed bootstrap." >&2
+            exit 1
+          fi
+          if [[ "$repository" != "git+https://github.com/nakafaai/aksara.git" ]]; then
+            echo "Published package repository is not Aksara." >&2
+            exit 1
+          fi
+
+          tarball_url=$(jq -er '.dist.tarball' "$metadata")
+          expected_tarball_url="https://registry.npmjs.org/@nakafa/aksara-contracts/-/aksara-contracts-$PACKAGE_VERSION.tgz"
+          if [[ "$tarball_url" != "$expected_tarball_url" ]]; then
+            echo "Registry tarball URL is unexpected." >&2
+            exit 1
+          fi
+          attestation_url=$(jq -er '.dist.attestations.url' "$metadata")
+          attestation_url=${attestation_url//%2F/%2f}
+          expected_url="https://registry.npmjs.org/-/npm/v1/attestations/@nakafa%2faksara-contracts@$PACKAGE_VERSION"
+          if [[ "$attestation_url" != "$expected_url" ]]; then
+            echo "Registry attestation URL is unexpected." >&2
+            exit 1
+          fi
+
+          curl --fail --silent --show-error --proto '=https' --tlsv1.2 --output "$registry_tarball" "$tarball_url"
+          curl --fail --silent --show-error --proto '=https' --tlsv1.2 --output "$attestations" "$attestation_url"
+          downloaded_sha256=$(sha256sum "$registry_tarball" | cut -d ' ' -f 1)
+          downloaded_integrity="sha512-$(openssl dgst -sha512 -binary "$registry_tarball" | openssl base64 -A)"
+          if [[ "$downloaded_sha256" != "$EXPECTED_SHA256" || "$downloaded_integrity" != "$EXPECTED_INTEGRITY" ]]; then
+            echo "Downloaded bootstrap tarball differs from the reviewed artifact." >&2
+            exit 1
+          fi
+
+          if ! jq -e '
+            (.attestations | type) == "array"
+            and (.attestations | length) == 2
+            and all(.attestations[];
+              (.predicateType | type) == "string"
+              and (.bundle | type) == "object")' "$attestations" >/dev/null; then
+            echo "Registry attestations do not have the exact expected shape." >&2
+            exit 1
+          fi
+          attestation_types=$(jq -cer '[.attestations[].predicateType] | sort' "$attestations")
+          expected_types='["https://github.com/npm/attestation/tree/main/specs/publish/v0.1","https://slsa.dev/provenance/v1"]'
+          if [[ "$attestation_types" != "$expected_types" ]]; then
+            echo "Bootstrap requires exactly one npm publish and one SLSA provenance attestation." >&2
+            exit 1
+          fi
+
+          SLSA_VERIFIER_EXPERIMENTAL=1 slsa-verifier verify-npm-package "$registry_tarball" \
+            --attestations-path "$attestations" \
+            --builder-id "https://github.com/actions/runner/github-hosted" \
+            --package-name "$PACKAGE_NAME" \
+            --package-version "$PACKAGE_VERSION" \
+            --source-uri "github.com/nakafaai/aksara"
+
+          provenance=$(jq -er '.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1") | .bundle.dsseEnvelope.payload' "$attestations" | base64 --decode)
+          encoded_digest=${EXPECTED_INTEGRITY#sha512-}
+          expected_digest=$(printf '%s' "$encoded_digest" | base64 --decode | xxd -p -c 256)
+          expected_subject="pkg:npm/%40nakafa/aksara-contracts@$PACKAGE_VERSION"
+          jq -e \
+            --arg digest "$expected_digest" \
+            --arg sha "$SOURCE_SHA" \
+            --arg subject "$expected_subject" \
+            '.subject == [{name: $subject, digest: {sha512: $digest}}]
+              and .predicate.buildDefinition.buildType == "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1"
+              and .predicate.buildDefinition.externalParameters.workflow == {
+                ref: "refs/heads/main",
+                repository: "https://github.com/nakafaai/aksara",
+                path: ".github/workflows/bootstrap.yml"
+              }
+              and any(.predicate.buildDefinition.resolvedDependencies[];
+                .digest.gitCommit == $sha
+                and .uri == "git+https://github.com/nakafaai/aksara@refs/heads/main")
+              and .predicate.runDetails.builder.id == "https://github.com/actions/runner/github-hosted"' \
+            <<<"$provenance"
+          {
+            echo "## Bootstrap package verified"
+            echo
+            echo "- Package: \`$PACKAGE_NAME@$PACKAGE_VERSION\`"
+            echo "- Integrity: \`$EXPECTED_INTEGRITY\`"
+            echo "- Source SHA: \`$SOURCE_SHA\`"
+            echo
+            echo "Immediately revoke the bootstrap token, delete NPM_BOOTSTRAP_TOKEN, configure publish.yml as a stage-only trusted publisher, then merge a reviewed PR that deletes this workflow and marks bootstrap complete."
+          } >> "$GITHUB_STEP_SUMMARY"

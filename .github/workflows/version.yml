@@ -29,30 +29,41 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Check package bootstrap
+        id: bootstrap
+        run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          if [[ "$bootstrapped" == "true" ]]; then
+            if [[ -e .github/workflows/bootstrap.yml ]]; then
+              echo "Completed bootstrap cannot retain its privileged one-time workflow." >&2
+              exit 1
+            fi
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            if [[ "$bootstrapped" != "false" || ! -f .github/workflows/bootstrap.yml ]]; then
+              echo "Incomplete bootstrap must retain its one-time workflow." >&2
+              exit 1
+            fi
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Initial package proof is incomplete; version automation remains inactive."
+          fi
+
       - name: Setup pnpm
+        if: steps.bootstrap.outputs.ready == 'true'
         uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
         with:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
+        if: steps.bootstrap.outputs.ready == 'true'
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Install dependencies
+        if: steps.bootstrap.outputs.ready == 'true'
         run: pnpm install --frozen-lockfile
-
-      - name: Check package bootstrap
-        id: bootstrap
-        run: |
-          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
-          if [[ "$bootstrapped" == "true" ]]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Initial package proof is incomplete; version automation remains inactive."
-          fi
 
       - name: Create version pull request
         id: changesets

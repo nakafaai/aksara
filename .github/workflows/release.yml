@@ -59,6 +59,15 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Verify package bootstrap
+        if: inputs.operation == 'release' || inputs.operation == 'rollback'
+        run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          if [[ "$bootstrapped" != "true" || -e .github/workflows/bootstrap.yml ]]; then
+            echo "Release and rollback require the proven contracts package and deleted bootstrap workflow." >&2
+            exit 1
+          fi
+
       - name: Setup pnpm
         uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
         with:
@@ -88,6 +97,7 @@ jobs:
           pnpm names
           pnpm jsdocs
           pnpm lines
+          pnpm workflows
           pnpm boundaries
           pnpm typecheck
           pnpm test

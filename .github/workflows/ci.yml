@@ -46,6 +46,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Package bootstrap state
+        run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          package_version=$(jq -er '.version' packages/contracts/package.json)
+          if [[ "$bootstrapped" == "false" ]]; then
+            if [[ ! -f .github/workflows/bootstrap.yml || "$package_version" != "0.1.0" ]]; then
+              echo "Incomplete bootstrap requires its one-time workflow and exact initial version." >&2
+              exit 1
+            fi
+            exit 0
+          fi
+          if [[ "$bootstrapped" != "true" || -e .github/workflows/bootstrap.yml ]]; then
+            echo "Completed bootstrap requires deleting its one-time workflow." >&2
+            exit 1
+          fi
+
       - name: Verify dispatched revision
         if: github.event_name == 'workflow_dispatch'
         env:
@@ -105,6 +121,9 @@ jobs:
 
       - name: Module size
         run: pnpm lines
+
+      - name: Workflow policy
+        run: pnpm workflows
 
       - name: Workspace boundaries
         run: pnpm boundaries
