@@ -1,0 +1,35 @@
+{
+  "name": "@nakafa/aksara-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#cli/*": {
+      "types": "./src/*.ts",
+      "default": "./dist/*.js"
+    },
+    "#test/*": "./test/*.ts"
+  },
+  "scripts": {
+    "clean": "git clean -xdf dist",
+    "prebuild": "pnpm run clean",
+    "build": "tsc --project tsconfig.build.json",
+    "dev": "node main.ts",
+    "test": "vitest run --config ../../vitest.config.ts",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@effect/platform": "catalog:",
+    "@effect/platform-node": "catalog:",
+    "@nakafa/aksara-compiler": "workspace:*",
+    "@nakafa/aksara-contracts": "workspace:*",
+    "@nakafa/aksara-corpus": "workspace:*",
+    "@nakafa/aksara-publisher": "workspace:*",
+    "effect": "catalog:"
+  },
+  "devDependencies": {
+    "@nakafa/typescript-config": "workspace:*",
+    "@vitest/coverage-istanbul": "catalog:",
+    "vitest": "catalog:"
+  }
+}
