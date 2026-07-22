@@ -1,5 +1,6 @@
 // @vitest-environment node
 
+import { Buffer } from "node:buffer";
 import {
   CompiledContentPayloadSchema,
   SignedContentArtifactSchema,
@@ -15,15 +16,19 @@ import {
   ContentChangeSchema,
   ContentReleaseItemSchema,
 } from "@nakafaai/aksara-contracts/release";
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
+  canonicalizeArtifactBatch,
+  canonicalizeReleaseItemBatch,
   MAX_ARTIFACT_BATCH_BYTES,
+  MAX_ARTIFACTS_PER_BATCH,
+  MAX_RELEASE_ITEM_BATCH_BYTES,
   MAX_RELEASE_ITEMS_PER_BATCH,
+  makeArtifactBatches,
   makeReleaseItemBatch,
-  partitionArtifactBatches,
-  partitionReleaseItemBatches,
-} from "#publisher/batching.js";
+  makeReleaseItemBatches,
+} from "#publisher/batching";
 
 const releaseId = ReleaseIdSchema.make("test-release-batching");
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
@@ -37,61 +42,108 @@ const items = changes.map((change, index) =>
   ContentReleaseItemSchema.make({ change, index, releaseId })
 );
 
+/** Builds one schema-valid signed artifact with configurable compiled bytes. */
+function artifact(index: number, compiledBytes = 10) {
+  const compiledCode = "x".repeat(compiledBytes);
+  const payload = CompiledContentPayloadSchema.make({
+    byteLength: compiledCode.length,
+    compiledCode,
+    compilerConfigHash: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
+    compilerVersion: "0.1.0",
+    contentKey: ContentKeySchema.make(`test:artifact-${index}`),
+    format: "mdx-function-body-v1",
+    locale: "en",
+    mdxCompilerVersion: "3.1.1",
+    plainText: "",
+    rawMdx: "",
+    rendererDomain: "material-mathematics",
+    requiredComponents: [],
+    sourceHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
+  });
+  return SignedContentArtifactSchema.make({
+    artifactHash: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
+    keyId: SigningKeyIdSchema.make("test-key"),
+    payload,
+    signature: Ed25519SignatureSchema.make("A".repeat(86)),
+  });
+}
+
+/** Materializes a bounded batch stream only at the Vitest boundary. */
+function collect<A, E>(stream: Stream.Stream<A, E>) {
+  return Effect.runPromise(
+    stream.pipe(
+      Stream.runCollect,
+      Effect.map((chunk) => [...chunk])
+    )
+  );
+}
+
 describe("publication batching", () => {
-  it("returns no batches when a release has no changed heads", async () => {
-    const batches = await Effect.runPromise(partitionReleaseItemBatches([]));
-
-    expect(batches).toEqual([]);
+  it("emits no batch for an empty release stream", async () => {
+    await expect(
+      collect(makeReleaseItemBatches(releaseId, Stream.empty))
+    ).resolves.toEqual([]);
   });
 
-  it("partitions ordered release items below the hard count ceiling", async () => {
-    const batches = await Effect.runPromise(partitionReleaseItemBatches(items));
-
-    expect(batches).toHaveLength(2);
-    expect(batches[0]).toHaveLength(MAX_RELEASE_ITEMS_PER_BATCH);
-    expect(batches[1]).toHaveLength(1);
+  it("streams item batches at the exact Convex count ceiling", async () => {
+    const batches = await collect(
+      makeReleaseItemBatches(releaseId, Stream.fromIterable(items))
+    );
+    expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1]);
+    expect(batches[0]?.items).toHaveLength(MAX_RELEASE_ITEMS_PER_BATCH);
+    expect(batches[1]?.items).toHaveLength(1);
+    expect(
+      batches.every(
+        (batch) =>
+          Buffer.byteLength(canonicalizeReleaseItemBatch(batch), "utf8") <=
+          MAX_RELEASE_ITEM_BATCH_BYTES
+      )
+    ).toBe(true);
   });
 
-  it("rejects a target batch that violates the hard count ceiling", async () => {
+  it("rejects a caller-formed item batch above the target ceiling", async () => {
     const error = await Effect.runPromise(
       makeReleaseItemBatch({ batchIndex: 0, items, releaseId }).pipe(
         Effect.flip
       )
     );
-
-    expect(error._tag).toBe("PublicationBatchLimitError");
-    expect(error.actualCount).toBe(MAX_RELEASE_ITEMS_PER_BATCH + 1);
-    expect(error.maxCount).toBe(MAX_RELEASE_ITEMS_PER_BATCH);
+    expect(error).toMatchObject({
+      _tag: "PublicationBatchLimitError",
+      actualCount: MAX_RELEASE_ITEMS_PER_BATCH + 1,
+      maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
+    });
   });
 
-  it("rejects one artifact that cannot fit inside the transport ceiling", async () => {
-    const compiledCode = "x".repeat(MAX_ARTIFACT_BATCH_BYTES);
-    const payload = CompiledContentPayloadSchema.make({
-      byteLength: compiledCode.length,
-      compiledCode,
-      compilerConfigHash: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
-      compilerVersion: "0.1.0",
-      contentKey: ContentKeySchema.make("test:oversized-artifact"),
-      format: "mdx-function-body-v1",
-      locale: "en",
-      mdxCompilerVersion: "3.1.1",
-      plainText: "",
-      rawMdx: "",
-      requiredComponents: [],
-      sourceHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
-    });
-    const artifact = SignedContentArtifactSchema.make({
-      artifactHash: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
-      keyId: SigningKeyIdSchema.make("test-key"),
-      payload,
-      signature: Ed25519SignatureSchema.make("A".repeat(86)),
-    });
-    const error = await Effect.runPromise(
-      partitionArtifactBatches([artifact]).pipe(Effect.flip)
+  it("streams artifact batches at 8 items and a complete 4 MiB envelope", async () => {
+    const values = Array.from(
+      { length: MAX_ARTIFACTS_PER_BATCH + 1 },
+      (_, index) => artifact(index)
     );
+    const batches = await collect(
+      makeArtifactBatches(releaseId, Stream.fromIterable(values))
+    );
+    expect(batches.map(({ artifacts }) => artifacts.length)).toEqual([8, 1]);
+    expect(MAX_ARTIFACT_BATCH_BYTES).toBe(4 * 1024 * 1024);
+    expect(
+      batches.every(
+        (batch) =>
+          Buffer.byteLength(canonicalizeArtifactBatch(batch), "utf8") <=
+          MAX_ARTIFACT_BATCH_BYTES
+      )
+    ).toBe(true);
+  });
 
-    expect(error._tag).toBe("PublicationBatchLimitError");
-    expect(error.actualCount).toBe(1);
+  it("rejects one artifact that cannot fit with its wire envelope", async () => {
+    const error = await Effect.runPromise(
+      makeArtifactBatches(
+        releaseId,
+        Stream.make(artifact(0, MAX_ARTIFACT_BATCH_BYTES))
+      ).pipe(Stream.runDrain, Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PublicationBatchLimitError",
+      actualCount: 1,
+    });
     expect(error.actualBytes).toBeGreaterThan(MAX_ARTIFACT_BATCH_BYTES);
   });
 });

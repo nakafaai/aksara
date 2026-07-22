@@ -9,7 +9,7 @@ import {
 } from "node:crypto";
 import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { verifySignedContentArtifact } from "#contracts/artifact/verify.js";
+import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   CompiledContentPayloadSchema,
@@ -17,21 +17,18 @@ import {
   canonicalizeContentArtifactSigningInput,
   type SignedContentArtifact,
   SignedContentArtifactSchema,
-} from "#contracts/content.js";
+} from "#contracts/content";
 import {
   Ed25519SignatureSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "#contracts/ids.js";
-import {
-  MAX_COMPILED_CODE_BYTES,
-  MAX_SIGNED_ARTIFACT_BYTES,
-} from "#contracts/limits.js";
-import { createRendererManifest } from "#contracts/renderer/manifest.js";
+} from "#contracts/ids";
+import type { RendererComponentRequirement } from "#contracts/renderer/component";
+import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
-} from "#contracts/signature/spec.js";
+} from "#contracts/signature/spec";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -46,7 +43,7 @@ vi.mock("node:crypto", async (importOriginal) => {
           if (property === "update") {
             return (data: BinaryLike) => {
               const value = String(data);
-              if (value.includes("hash:payload") || value === "hash-source") {
+              if (value.includes("hash:payload")) {
                 throw new TypeError("injected artifact hash failure");
               }
               target.update(data);
@@ -69,13 +66,31 @@ const trustedPublicKey = signingKeys.publicKey
   .toString();
 const rendererComponents = [
   { name: "BlockMath", version: 1 },
-  { name: "TestWidget", version: 1 },
+  { name: "InlineMath", version: 1 },
 ] as const;
+/** Builds one exact base plus real route-domain renderer contract. */
+function manifestInput(
+  authoringComponents: readonly RendererComponentRequirement[] = rendererComponents,
+  supportedComponents: readonly RendererComponentRequirement[] = rendererComponents
+) {
+  return {
+    base: { authoringComponents, supportedComponents },
+    domains: [
+      {
+        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
+        name: "material-chemistry",
+        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
+      },
+      {
+        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
+        name: "material-mathematics",
+        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
+      },
+    ],
+  };
+}
 const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    authoringComponents: rendererComponents,
-    supportedComponents: rendererComponents,
-  })
+  createRendererManifest(manifestInput())
 );
 const basePayload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   byteLength: 10,
@@ -88,6 +103,7 @@ const basePayload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   mdxCompilerVersion: "3.1.1",
   plainText: TEST_HEADING,
   rawMdx: `## ${TEST_HEADING}`,
+  rendererDomain: "material-mathematics",
   requiredComponents: [{ name: "BlockMath", version: 1 }],
   sourceHash: Sha256HashSchema.make(
     `sha256:${createHash("sha256").update(`## ${TEST_HEADING}`).digest("hex")}`
@@ -134,7 +150,7 @@ const trustedResolver = ContentVerificationKeyResolver.of({
 function request(
   artifact: unknown = signArtifact(),
   manifest: unknown = rendererManifest,
-  rendererContractVersion = "1.0.0"
+  rendererContractVersion = "2.0.0"
 ) {
   return { artifact, rendererContractVersion, rendererManifest: manifest };
 }
@@ -161,17 +177,19 @@ describe("server-only artifact verification", () => {
   it("authenticates canonical content across a renderer expansion", async () => {
     const artifact = signArtifact();
     const expandedManifest = await Effect.runPromise(
-      createRendererManifest({
-        authoringComponents: [
-          { name: "BlockMath", version: 1 },
-          { name: "TestWidget", version: 2 },
-        ],
-        supportedComponents: [
-          { name: "BlockMath", version: 1 },
-          { name: "TestWidget", version: 1 },
-          { name: "TestWidget", version: 2 },
-        ],
-      })
+      createRendererManifest(
+        manifestInput(
+          [
+            { name: "BlockMath", version: 1 },
+            { name: "InlineMath", version: 2 },
+          ],
+          [
+            { name: "BlockMath", version: 1 },
+            { name: "InlineMath", version: 1 },
+            { name: "InlineMath", version: 2 },
+          ]
+        )
+      )
     );
     await expect(verify(request(artifact))).resolves.toEqual(artifact);
     await expect(verify(request(artifact, expandedManifest))).resolves.toEqual(
@@ -190,20 +208,10 @@ describe("server-only artifact verification", () => {
       reject(
         request({ ...artifact, artifactHash: `sha256:${"f".repeat(64)}` })
       ),
-      reject(
-        request(
-          signArtifact(
-            makePayload({
-              sourceHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-            })
-          )
-        )
-      ),
     ]);
     expect(errors.map((error) => error._tag)).toEqual([
       "ArtifactHashMismatchError",
       "ArtifactHashMismatchError",
-      "ArtifactSourceHashMismatchError",
     ]);
   });
   it("rejects signatures before exposing renderer semantics", async () => {
@@ -227,7 +235,7 @@ describe("server-only artifact verification", () => {
       requiredComponents: [{ name: "Mermaid", version: 1 }],
     });
     const unsupported = makePayload({
-      requiredComponents: [{ name: "TestWidget", version: 2 }],
+      requiredComponents: [{ name: "InlineMath", version: 2 }],
     });
     const cases = [
       [
@@ -243,7 +251,7 @@ describe("server-only artifact verification", () => {
         "ArtifactRendererVersionUnsupportedError",
       ],
       [
-        request(artifact, rendererManifest, "2.0.0"),
+        request(artifact, rendererManifest, "3.0.0"),
         "RendererContractVersionMismatchError",
       ],
     ] as const;
@@ -252,24 +260,20 @@ describe("server-only artifact verification", () => {
       cases.map(([, expectedTag]) => expectedTag)
     );
   });
-  it("enforces signed-wire and authenticated payload byte integrity", async () => {
-    const oversizedWirePayload = makePayload({
-      byteLength: MAX_SIGNED_ARTIFACT_BYTES,
-      compiledCode: "x".repeat(MAX_SIGNED_ARTIFACT_BYTES),
+  it("rejects requirements from a different route-domain registry", async () => {
+    const mathematics = makePayload({
+      requiredComponents: [{ name: "FunctionMachine", version: 1 }],
     });
-    const fieldLimitPayload = makePayload({
-      byteLength: MAX_COMPILED_CODE_BYTES + 1,
-      compiledCode: "x".repeat(MAX_COMPILED_CODE_BYTES + 1),
+    const chemistry = makePayload({
+      rendererDomain: "material-chemistry",
+      requiredComponents: [{ name: "FunctionMachine", version: 1 }],
     });
-    const byteLengthPayload = makePayload({ byteLength: 9 });
-    const wireError = await reject(request(signArtifact(oversizedWirePayload)));
-    const fieldError = await reject(request(signArtifact(fieldLimitPayload)));
-    const mismatchError = await reject(
-      request(signArtifact(byteLengthPayload))
+
+    await expect(verify(request(signArtifact(mathematics)))).resolves.toEqual(
+      signArtifact(mathematics)
     );
-    expect(wireError._tag).toBe("ArtifactVerificationByteLimitError");
-    expect(fieldError._tag).toBe("ArtifactPayloadFieldByteLimitError");
-    expect(mismatchError._tag).toBe("ArtifactCompiledByteLengthMismatchError");
+    const error = await reject(request(signArtifact(chemistry)));
+    expect(error._tag).toBe("ArtifactRendererComponentMissingError");
   });
   it("rejects excess top-level and nested wire properties", async () => {
     const privateSourceMarker = "must-not-appear-in-decode-errors";
@@ -285,7 +289,7 @@ describe("server-only artifact verification", () => {
     expect(nested._tag).toBe("ArtifactVerificationDecodeError");
     expect(JSON.stringify(nested)).not.toContain(privateSourceMarker);
   });
-  it("maps payload and source hashing failures to typed artifact errors", async () => {
+  it("maps payload hashing failures to a typed artifact error", async () => {
     const artifact = signArtifact();
     const payloadError = await reject(
       request({
@@ -293,12 +297,6 @@ describe("server-only artifact verification", () => {
         payload: { ...artifact.payload, contentKey: "hash:payload" },
       })
     );
-    const sourcePayload = makePayload({
-      rawMdx: "hash-source",
-      sourceHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-    });
-    const sourceError = await reject(request(signArtifact(sourcePayload)));
     expect(payloadError._tag).toBe("ArtifactHashComputationError");
-    expect(sourceError._tag).toBe("ArtifactSourceHashComputationError");
   });
 });

@@ -23,8 +23,8 @@ prove arbitrary JavaScript safe and do not create a sandbox. Treat every MDX
 author and reviewer as a production code author. Arbitrary public uploads must
 never reach the artifact compiler or Nakafa's server-side MDX runtime.
 
-The implemented publication module requires an injected source interface to
-return authored MDX for the manifest's exact Git revision. It recompiles that
-source, matches the canonical artifact hash to the signed release item, and only
-then permits the package-private signing primitive to authenticate it. No Git,
-Convex, or production adapter is implemented yet.
+The implemented publication module resolves each signed corpus path from the
+manifest's exact full Git commit, recompiles that immutable blob, matches the
+canonical artifact hash to the signed release item, and only then permits the
+package-private signing primitive to authenticate it. No Convex or production
+ingress adapter is implemented yet.

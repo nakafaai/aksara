@@ -45,6 +45,7 @@ export const ExecutablePolicyViolationSchema = Schema.Struct({
   identifier: Schema.optional(Schema.NonEmptyTrimmedString),
   rule: Schema.Literal(
     "dynamic-import",
+    "import-meta",
     "require",
     "eval",
     "Function",

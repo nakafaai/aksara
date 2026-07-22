@@ -49,12 +49,13 @@ pnpm install
 
 - `packages/contracts` owns signed wire and renderer contracts.
 - `packages/compiler` validates and compiles trusted MDX.
+- `packages/corpus` owns reviewed Nakafa source and non-React registries.
 - `packages/publisher` prepares and publishes signed releases through injected
   source and target interfaces.
 - `packages/typescript-config` owns the shared TypeScript configuration.
 
-Aksara does not currently contain the Nakafa corpus. Do not add substitute
-educational content or fixtures.
+Aksara currently contains only its reviewed real-content vertical slice. Do not
+add substitute educational content or fixtures.
 
 ## Making Changes
 
@@ -80,7 +81,9 @@ pnpm verify:package
 - Keep file and folder names to at most two semantic words.
 - Keep handwritten TypeScript modules at or below 300 non-JSDoc lines.
 - Document stable callable declarations with useful JSDoc.
-- Maintain 100% per-file statement, branch, function, and line coverage.
+- Maintain 100% per-file statement, branch, function, and line coverage for
+  production modules under `packages/*/src`. Repository and package scripts are
+  typechecked, linted, and exercised by their dedicated CI commands.
 - Do not add invented content, placeholder packages, or compatibility layers.
 
 ### Submitting Changes

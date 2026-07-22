@@ -1,5 +1,5 @@
 import { Context, type Effect, Schema } from "effect";
-import { type SigningKeyId, SigningKeyIdSchema } from "#contracts/ids.js";
+import { type SigningKeyId, SigningKeyIdSchema } from "#contracts/ids";
 
 /** Authenticated object whose Ed25519 signature is being checked. */
 export const ContentSignatureSubjectSchema = Schema.Literal(

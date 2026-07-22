@@ -1,8 +1,12 @@
 import { createHash } from "node:crypto";
-import { Schema } from "effect";
+import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { type ReleaseId, Sha256HashSchema } from "#contracts/ids.js";
-import { hashContentReleaseItems } from "#contracts/release/items.js";
+import {
+  type ReleaseId,
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "#contracts/ids";
+import { hashContentReleaseItems } from "#contracts/release/digest";
 import {
   type ContentChange,
   ContentChangeSchema,
@@ -12,21 +16,9 @@ import {
   canonicalizeContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
   compareContentChanges,
-} from "#contracts/release/spec.js";
+} from "#contracts/release/spec";
 
-const counts = {
-  artifacts: 2,
-  graphRows: 1,
-  heads: 2,
-  llmsDocuments: 2,
-  routes: 2,
-  searchRows: 2,
-  sitemapEntries: 2,
-} as const;
-
-const releaseId = Schema.decodeUnknownSync(
-  ContentReleaseManifestSchema.fields.releaseId
-)("test-release");
+const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
 
 /** Builds canonically ordered release items with deterministic indexes. */
 function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
@@ -46,21 +38,24 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   {
     artifactHash: `sha256:${"b".repeat(64)}`,
     contentKey: "test:content",
+    delivery: "public",
     locale: "en",
     operation: "upsert",
-    publicPath: "/en/test",
+    publicPath: "subjects/test",
+    rendererDomain: "material-mathematics",
+    sourcePath: "packages/corpus/test/content/en.mdx",
   },
 ]);
 const items = makeItems(releaseId, changes);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
-  aksaraSha: "a".repeat(40),
   baseReleaseId: null,
-  expectedCounts: counts,
-  expectedDigest: `sha256:${"c".repeat(64)}`,
   itemCount: items.length,
   itemsDigest: hashContentReleaseItems(items),
+  origin: { kind: "git", sha: "a".repeat(40) },
+  projectionCount: 1,
+  projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId,
-  rendererContractVersion: "1.0.0",
+  rendererContractVersion: "2.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 
@@ -74,6 +69,7 @@ describe("release spec", () => {
     expect(canonical).not.toContain("test:content");
     expect(canonical).toContain(`"itemCount":${items.length}`);
     expect(canonical).toContain(`"itemsDigest":"${manifest.itemsDigest}"`);
+    expect(canonical).toContain('"projectionCount":1');
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
       `nakafa.aksara.content-release.v1\n${manifestHash}\n${canonical}`
     );
@@ -96,19 +92,48 @@ describe("release spec", () => {
       return;
     }
     expect(canonicalizeContentReleaseItem(first)).toBe(
-      `{"change":{"contentKey":"test:content","locale":"en","operation":"upsert","publicPath":"/en/test","artifactHash":"sha256:${"b".repeat(64)}"},"index":0,"releaseId":"test-release"}`
+      `{"change":{"contentKey":"test:content","delivery":"public","locale":"en","operation":"upsert","publicPath":"subjects/test","artifactHash":"sha256:${"b".repeat(64)}","rendererDomain":"material-mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
     );
   });
 
-  it("accepts an empty rollback item stream", () => {
-    const emptyItems = makeItems(releaseId, []);
-    const result = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
+  it("requires forward rollback provenance and permits rollback of rollback", () => {
+    const firstId = Schema.decodeUnknownSync(ReleaseIdSchema)("rollback-first");
+    const firstItems = makeItems(firstId, []);
+    const first = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...manifest,
+      baseReleaseId: releaseId,
       itemCount: 0,
-      itemsDigest: hashContentReleaseItems(emptyItems),
+      itemsDigest: hashContentReleaseItems(firstItems),
+      origin: { kind: "rollback", releaseId },
+      projectionCount: 0,
+      releaseId: firstId,
     });
-
-    expect(result._tag).toBe("Right");
+    const second = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
+      ...first,
+      baseReleaseId: firstId,
+      origin: { kind: "rollback", releaseId: firstId },
+      releaseId: "rollback-second",
+    });
+    expect(Either.isRight(second)).toBe(true);
+    for (const invalid of [
+      { ...first, baseReleaseId: null },
+      { ...first, releaseId },
+      { ...manifest, baseReleaseId: releaseId },
+    ]) {
+      expect(
+        Either.isLeft(
+          Schema.decodeUnknownEither(ContentReleaseManifestSchema)(invalid)
+        )
+      ).toBe(true);
+    }
+    const incoherent = Schema.decodeUnknownEither(ContentReleaseManifestSchema)(
+      { ...first, baseReleaseId: null }
+    );
+    if (Either.isLeft(incoherent)) {
+      expect(String(incoherent.left)).toContain(
+        "Expected a new release identity and a coherent source origin"
+      );
+    }
   });
 
   it("orders locales within one stable content identity", () => {

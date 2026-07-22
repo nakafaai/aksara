@@ -7,6 +7,7 @@ import {
   type Sha256Hash,
   Sha256HashSchema,
 } from "@nakafaai/aksara-contracts/ids";
+import type { VerifiedContentProjections } from "@nakafaai/aksara-contracts/projection/verify";
 import type {
   ContentReleaseItem,
   ContentReleaseManifest,
@@ -45,21 +46,6 @@ export class ReleaseRendererManifestMismatchError extends Schema.TaggedError<Rel
   }
 ) {}
 
-/** Requires one authored source for every authenticated upsert item. */
-export function validateUpsertSourceCount(
-  summary: VerifiedContentReleaseItems,
-  sourceCount: number
-) {
-  if (summary.upsertCount === sourceCount) {
-    return Effect.void;
-  }
-  return Effect.fail(
-    new ReleaseArtifactMismatchError({
-      message: `Expected ${summary.upsertCount} authored sources but received ${sourceCount}.`,
-    })
-  );
-}
-
 /** Requires one deterministic compiler result to match its release item. */
 export function validateCompiledPayloadForItem(
   item: ContentReleaseItem,
@@ -71,7 +57,8 @@ export function validateCompiledPayloadForItem(
     change.operation === "upsert" &&
     artifactHash === change.artifactHash &&
     payload.contentKey === change.contentKey &&
-    payload.locale === change.locale;
+    payload.locale === change.locale &&
+    payload.rendererDomain === change.rendererDomain;
   if (matches) {
     return Effect.void;
   }
@@ -111,26 +98,11 @@ export function validateReleaseRendererManifest(
   );
 }
 
-/** Compares every materialized projection count required by a release. */
-function projectionCountsMatch(
-  expected: ContentReleaseManifest["expectedCounts"],
-  actual: ContentReleaseManifest["expectedCounts"]
-) {
-  return (
-    actual.artifacts === expected.artifacts &&
-    actual.graphRows === expected.graphRows &&
-    actual.heads === expected.heads &&
-    actual.llmsDocuments === expected.llmsDocuments &&
-    actual.routes === expected.routes &&
-    actual.searchRows === expected.searchRows &&
-    actual.sitemapEntries === expected.sitemapEntries
-  );
-}
-
 /** Proves the target staged the complete authenticated release before activation. */
 export function validateVerificationEvidence(
   manifest: ContentReleaseManifest,
   summary: VerifiedContentReleaseItems,
+  projectionSummary: VerifiedContentProjections,
   evidence: ReleaseVerificationEvidence
 ) {
   const matches =
@@ -143,11 +115,9 @@ export function validateVerificationEvidence(
     evidence.deleteHeads === summary.deleteCount &&
     evidence.rendererContractVersion === manifest.rendererContractVersion &&
     evidence.rendererManifestHash === manifest.rendererManifestHash &&
-    evidence.projectionDigest === manifest.expectedDigest &&
-    projectionCountsMatch(
-      manifest.expectedCounts,
-      evidence.recomputedProjectionCounts
-    );
+    evidence.projectionCount === manifest.projectionCount &&
+    evidence.projectionCount === projectionSummary.count &&
+    evidence.projectionDigest === manifest.projectionDigest;
   if (matches) {
     return Effect.void;
   }
@@ -162,15 +132,18 @@ export function validateVerificationEvidence(
 export function validatePublicationReceipt(
   manifest: ContentReleaseManifest,
   summary: VerifiedContentReleaseItems,
+  projectionSummary: VerifiedContentProjections,
   receipt: PublicationReceipt
 ) {
   const matches =
     receipt.releaseId === manifest.releaseId &&
     receipt.stagedArtifacts === summary.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
+    receipt.stagedProjections === manifest.projectionCount &&
+    receipt.stagedProjections === projectionSummary.count &&
     receipt.activatedHeads === summary.upsertCount &&
     receipt.deletedHeads === summary.deleteCount &&
-    receipt.projectionDigest === manifest.expectedDigest;
+    receipt.projectionDigest === manifest.projectionDigest;
   if (matches) {
     return Effect.succeed(receipt);
   }

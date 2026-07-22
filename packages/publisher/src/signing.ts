@@ -5,14 +5,12 @@ import {
   type KeyObject,
   sign as signBytes,
 } from "node:crypto";
+import { verifyCompiledContentSourceHash } from "@nakafaai/aksara-contracts/artifact/source";
 import type {
   ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
 } from "@nakafaai/aksara-contracts/artifact/spec";
-import {
-  hashCompiledContentPayload,
-  verifyCompiledContentSourceHash,
-} from "@nakafaai/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
@@ -37,7 +35,7 @@ import { Effect, Schema } from "effect";
 import {
   ContentSigningError,
   SignedArtifactByteLimitError,
-} from "#publisher/signing-errors.js";
+} from "#publisher/signing-errors";
 
 /** Single-key signer for every authenticated object in one publication run. */
 export interface PublicationSigner {
@@ -56,6 +54,11 @@ export interface PublicationSigner {
     manifest: ContentReleaseManifest
   ) => Effect.Effect<SignedContentRelease, ContentSigningError>;
 }
+
+type PublicationSignerFactory = (input: {
+  readonly keyId: string;
+  readonly privateKeyPem: string;
+}) => Effect.Effect<PublicationSigner, ContentSigningError>;
 
 /** Computes the immutable identity of the complete canonical release manifest. */
 export function hashContentReleaseManifest(manifest: ContentReleaseManifest) {
@@ -150,7 +153,7 @@ function signRelease(
 }
 
 /** Builds one Ed25519 signer used for artifacts and their release envelope. */
-export const makeEd25519PublicationSigner = Effect.fn(
+export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
   "AksaraPublisher.makeEd25519PublicationSigner"
 )((input: { readonly keyId: string; readonly privateKeyPem: string }) =>
   Effect.gen(function* () {

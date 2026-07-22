@@ -1,11 +1,11 @@
 import { Schema } from "effect";
-import { SignedContentArtifactSchema } from "#contracts/content.js";
-import { ContentKeySchema, Sha256HashSchema } from "#contracts/ids.js";
+import { SignedContentArtifactSchema } from "#contracts/content";
+import { ContentKeySchema, Sha256HashSchema } from "#contracts/ids";
+import { RendererComponentNameSchema } from "#contracts/renderer/component";
 import {
-  RendererComponentNameSchema,
   RendererContractVersionSchema,
   RendererManifestEnvelopeSchema,
-} from "#contracts/renderer/contract.js";
+} from "#contracts/renderer/contract";
 
 /**
  * Complete server-only input needed to authenticate one compiled artifact.

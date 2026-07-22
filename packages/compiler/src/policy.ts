@@ -14,8 +14,8 @@ import { visit as visitUnist } from "unist-util-visit";
 import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,
-} from "#compiler/errors.js";
-import { collectUnsupportedMdxModules } from "#compiler/module-policy.js";
+} from "#compiler/errors";
+import { collectUnsupportedMdxModules } from "#compiler/module-policy";
 
 const NETWORK_GLOBALS = new Set(["fetch", "WebSocket", "EventSource"]);
 const PROTOTYPE_ESCAPE_PROPERTIES = new Set([
@@ -34,7 +34,6 @@ const SAFE_GLOBALS = new Set([
   "Object",
   "RegExp",
   "String",
-  "props",
   "undefined",
 ]);
 
@@ -73,6 +72,37 @@ function violationKey(violation: ExecutablePolicyViolation) {
   return `${violation.rule}:${violation.identifier ?? ""}`;
 }
 
+type PropertyExpression = MemberExpression["property"] | Property["key"];
+
+/** Resolves a compile-time string without evaluating authored JavaScript. */
+function staticStringValue(expression: PropertyExpression): string | undefined {
+  if (expression.type === "Literal" && typeof expression.value === "string") {
+    return expression.value;
+  }
+  if (expression.type === "BinaryExpression" && expression.operator === "+") {
+    const left = staticStringValue(expression.left);
+    const right = staticStringValue(expression.right);
+    return left === undefined || right === undefined ? undefined : left + right;
+  }
+  if (expression.type !== "TemplateLiteral") {
+    return;
+  }
+  let value = "";
+  for (const [index, quasi] of expression.quasis.entries()) {
+    value += quasi.value.cooked ?? quasi.value.raw;
+    const substitution = expression.expressions[index];
+    if (!substitution) {
+      continue;
+    }
+    const staticSubstitution = staticStringValue(substitution);
+    if (staticSubstitution === undefined) {
+      return;
+    }
+    value += staticSubstitution;
+  }
+  return value;
+}
+
 /** Resolves a property name only when its syntax is statically knowable. */
 function staticPropertyName(
   property: MemberExpression["property"] | Property["key"]
@@ -80,15 +110,7 @@ function staticPropertyName(
   if (property.type === "Identifier") {
     return property.name;
   }
-  if (property.type === "Literal" && typeof property.value === "string") {
-    return property.value;
-  }
-  if (
-    property.type === "TemplateLiteral" &&
-    property.expressions.length === 0
-  ) {
-    return property.quasis[0]?.value.cooked ?? property.quasis[0]?.value.raw;
-  }
+  return staticStringValue(property);
 }
 
 /** Resolves the statically knowable property selected by member access. */
@@ -111,6 +133,14 @@ function inspectSyntaxNode(
 ) {
   if (node.type === "ImportExpression") {
     add({ rule: "dynamic-import" });
+    return;
+  }
+  if (
+    node.type === "MetaProperty" &&
+    node.meta.name === "import" &&
+    node.property.name === "meta"
+  ) {
+    add({ identifier: "import.meta", rule: "import-meta" });
     return;
   }
   if (node.type === "MemberExpression") {

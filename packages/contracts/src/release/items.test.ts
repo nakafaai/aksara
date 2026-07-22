@@ -1,13 +1,10 @@
 // @vitest-environment node
 
-import type { BinaryLike } from "node:crypto";
-import { Effect, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
-import type { ReleaseId } from "#contracts/ids.js";
-import {
-  hashContentReleaseItems,
-  verifyContentReleaseItems,
-} from "#contracts/release/items.js";
+import { Effect, Schema, Stream } from "effect";
+import { describe, expect, it } from "vitest";
+import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
+import { hashContentReleaseItems } from "#contracts/release/digest";
+import { verifyContentReleaseItems } from "#contracts/release/items";
 import {
   type ContentChange,
   ContentChangeSchema,
@@ -15,38 +12,10 @@ import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
   compareContentChanges,
-} from "#contracts/release/spec.js";
+} from "#contracts/release/spec";
 
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects one deterministic release-item hashing failure. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Preserves real Hash methods while intercepting the failure marker. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (String(data).includes('"contentKey":"hash:failure"')) {
-                throw new TypeError("injected release item hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
-
-const releaseId = Schema.decodeUnknownSync(
-  ContentReleaseManifestSchema.fields.releaseId
-)("test-release-items");
+const releaseId =
+  Schema.decodeUnknownSync(ReleaseIdSchema)("test-release-items");
 
 /** Builds canonically ordered release items with deterministic indexes. */
 function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
@@ -61,8 +30,11 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   {
     artifactHash: `sha256:${"a".repeat(64)}`,
     contentKey: "test:a",
+    delivery: "public",
     locale: "en",
     operation: "upsert",
+    rendererDomain: "material-mathematics",
+    sourcePath: "packages/corpus/test/a/en.mdx",
   },
   {
     contentKey: "test:b",
@@ -72,30 +44,27 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
 ]);
 const items = makeItems(releaseId, changes);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
-  aksaraSha: "a".repeat(40),
   baseReleaseId: "test-release-parent",
-  expectedCounts: {
-    artifacts: 1,
-    graphRows: 0,
-    heads: 1,
-    llmsDocuments: 1,
-    routes: 1,
-    searchRows: 1,
-    sitemapEntries: 1,
-  },
-  expectedDigest: `sha256:${"b".repeat(64)}`,
   itemCount: items.length,
   itemsDigest: hashContentReleaseItems(items),
+  origin: { kind: "git", sha: "a".repeat(40) },
+  projectionCount: 1,
+  projectionDigest: `sha256:${"b".repeat(64)}`,
   releaseId,
-  rendererContractVersion: "1.0.0",
+  rendererContractVersion: "2.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
 });
+
+/** Creates a fresh replayable stream from one ordered item collection. */
+function itemStream(values: readonly unknown[]) {
+  return Stream.fromIterable(values);
+}
 
 /** Runs item verification and returns its expected typed failure. */
 function reject(candidate: readonly unknown[], candidateManifest = manifest) {
   return Effect.runPromise(
     verifyContentReleaseItems({
-      items: candidate,
+      items: itemStream(candidate),
       manifest: candidateManifest,
     }).pipe(Effect.flip)
   );
@@ -111,7 +80,7 @@ function replaceItem(
   );
 }
 
-/** Creates a self-consistent candidate manifest and item stream. */
+/** Creates a self-consistent candidate manifest and item collection. */
 function makeCandidate(candidateChanges: readonly unknown[]) {
   const decoded = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
     candidateChanges
@@ -128,13 +97,30 @@ function makeCandidate(candidateChanges: readonly unknown[]) {
 }
 
 describe("release item integrity", () => {
-  it("strictly decodes and authenticates ordered items separately", async () => {
+  it("authenticates items without retaining the complete collection", async () => {
     const verified = await Effect.runPromise(
-      verifyContentReleaseItems({ items, manifest })
+      verifyContentReleaseItems({ items: itemStream(items), manifest })
     );
-    expect(verified.items).toEqual(items);
-    expect(verified.upsertCount).toBe(1);
-    expect(verified.deleteCount).toBe(1);
+    expect(verified).toEqual({ deleteCount: 1, upsertCount: 1 });
+    expect(verified).not.toHaveProperty("items");
+  });
+
+  it("replays one stream with fresh ordering and route state", async () => {
+    let reads = 0;
+    const replayable = itemStream(items).pipe(
+      Stream.tap(() =>
+        Effect.sync(() => {
+          reads += 1;
+        })
+      )
+    );
+    await Effect.runPromise(
+      verifyContentReleaseItems({ items: replayable, manifest })
+    );
+    await Effect.runPromise(
+      verifyContentReleaseItems({ items: replayable, manifest })
+    );
+    expect(reads).toBe(items.length * 2);
   });
 
   it.each([
@@ -149,7 +135,7 @@ describe("release item integrity", () => {
       "delete tombstone",
       replaceItem(1, (item) => ({
         ...item,
-        change: { ...item.change, publicPath: "/id/test/changed" },
+        change: { ...item.change, locale: "en" },
       })),
     ],
   ])(
@@ -160,27 +146,25 @@ describe("release item integrity", () => {
     }
   );
 
-  it("rejects item order tampering before digest comparison", async () => {
+  it("rejects order, count, release, and index mismatches", async () => {
     const reversed = [...items].reverse().map((item, index) => ({
       ...item,
       index,
     }));
-    const error = await reject(reversed);
-    expect(error._tag).toBe("ReleaseItemOrderError");
-  });
-
-  it("rejects a count mismatch", async () => {
-    const error = await reject(items.slice(0, 1));
-
-    expect(error._tag).toBe("ReleaseItemCountMismatchError");
-  });
-
-  it("rejects an item from another release", async () => {
-    const error = await reject(
-      replaceItem(0, (item) => ({ ...item, releaseId: "other-release" }))
-    );
-
-    expect(error._tag).toBe("ReleaseItemReleaseMismatchError");
+    const errors = await Promise.all([
+      reject(reversed),
+      reject(items.slice(0, 1)),
+      reject(replaceItem(0, (item) => ({ ...item, releaseId: "other" }))),
+      reject(replaceItem(1, (item) => ({ ...item, index: 0 }))),
+      reject(replaceItem(1, (item) => ({ ...item, index: 2 }))),
+    ]);
+    expect(errors.map((error) => error._tag)).toEqual([
+      "ReleaseItemOrderError",
+      "ReleaseItemCountMismatchError",
+      "ReleaseItemReleaseMismatchError",
+      "ReleaseItemIndexMismatchError",
+      "ReleaseItemIndexMismatchError",
+    ]);
   });
 
   it("rejects duplicate public paths within one locale", async () => {
@@ -188,116 +172,111 @@ describe("release item integrity", () => {
       {
         artifactHash: `sha256:${"a".repeat(64)}`,
         contentKey: "test:a",
+        delivery: "public",
         locale: "en",
         operation: "upsert",
-        publicPath: "/test/shared",
+        publicPath: "subjects/test/shared",
+        rendererDomain: "material-mathematics",
+        sourcePath: "packages/corpus/test/a/en.mdx",
       },
       {
         artifactHash: `sha256:${"b".repeat(64)}`,
         contentKey: "test:b",
+        delivery: "authenticated",
         locale: "en",
         operation: "upsert",
-        publicPath: "/test/shared",
+        publicPath: "subjects/test/shared",
+        rendererDomain: "material-mathematics",
+        sourcePath: "packages/corpus/test/b/en.mdx",
       },
     ]);
     const error = await reject(candidate.items, candidate.manifest);
-
-    expect(error._tag).toBe("DuplicateReleasePublicPathError");
-    if (error._tag === "DuplicateReleasePublicPathError") {
-      expect(error).toMatchObject({
-        duplicateItemIndex: 1,
-        firstItemIndex: 0,
-        locale: "en",
-        publicPath: "/test/shared",
-      });
-    }
+    expect(error).toMatchObject({
+      _tag: "DuplicateReleasePublicPathError",
+      duplicateItemIndex: 1,
+      firstItemIndex: 0,
+      locale: "en",
+      publicPath: "subjects/test/shared",
+    });
   });
 
-  it("allows a route transfer from a deleted head to an upsert", async () => {
-    const candidate = makeCandidate([
+  it("allows route deletion and locale-specific route reuse", async () => {
+    const transfer = makeCandidate([
       {
         artifactHash: `sha256:${"a".repeat(64)}`,
         contentKey: "test:a",
+        delivery: "public",
         locale: "en",
         operation: "upsert",
-        publicPath: "/test/shared",
+        publicPath: "subjects/test/shared",
+        rendererDomain: "material-mathematics",
+        sourcePath: "packages/corpus/test/a/en.mdx",
       },
-      {
-        contentKey: "test:b",
-        locale: "en",
-        operation: "delete",
-        publicPath: "/test/shared",
-      },
+      { contentKey: "test:b", locale: "en", operation: "delete" },
     ]);
-
-    await expect(
-      Effect.runPromise(
-        verifyContentReleaseItems({
-          items: candidate.items,
-          manifest: candidate.manifest,
-        })
-      )
-    ).resolves.toMatchObject({ deleteCount: 1, upsertCount: 1 });
-  });
-
-  it("allows the same public path in different locales", async () => {
-    const candidate = makeCandidate([
+    const locales = makeCandidate([
       {
         artifactHash: `sha256:${"a".repeat(64)}`,
         contentKey: "test:a",
+        delivery: "public",
         locale: "en",
         operation: "upsert",
-        publicPath: "/test/shared",
+        publicPath: "subjects/test/shared",
+        rendererDomain: "material-mathematics",
+        sourcePath: "packages/corpus/test/a/en.mdx",
       },
       {
         artifactHash: `sha256:${"b".repeat(64)}`,
         contentKey: "test:b",
+        delivery: "entitled",
         locale: "id",
         operation: "upsert",
-        publicPath: "/test/shared",
+        publicPath: "subjects/test/shared",
+        rendererDomain: "material-mathematics",
+        sourcePath: "packages/corpus/test/b/id.mdx",
       },
     ]);
-
     await expect(
       Effect.runPromise(
         verifyContentReleaseItems({
-          items: candidate.items,
-          manifest: candidate.manifest,
+          items: itemStream(transfer.items),
+          manifest: transfer.manifest,
         })
       )
-    ).resolves.toMatchObject({ upsertCount: 2 });
+    ).resolves.toEqual({ deleteCount: 1, upsertCount: 1 });
+    await expect(
+      Effect.runPromise(
+        verifyContentReleaseItems({
+          items: itemStream(locales.items),
+          manifest: locales.manifest,
+        })
+      )
+    ).resolves.toEqual({ deleteCount: 0, upsertCount: 2 });
   });
 
-  it.each([
-    ["duplicate", 0],
-    ["missing", 2],
-  ])("rejects a %s item index", async (_label, index) => {
-    const error = await reject(replaceItem(1, (item) => ({ ...item, index })));
-    expect(error._tag).toBe("ReleaseItemIndexMismatchError");
-  });
-
-  it("rejects excess item fields without exposing their values", async () => {
+  it("rejects excess and stale tombstone fields without exposing values", async () => {
     const secret = "must-not-leak";
-    const error = await reject(replaceItem(0, (item) => ({ ...item, secret })));
-    expect(error._tag).toBe("ReleaseItemDecodeError");
-    expect(JSON.stringify(error)).not.toContain(secret);
-  });
-  it("maps release-item hashing failures to the release identity", async () => {
-    const failureItems = makeItems(releaseId, [
-      Schema.decodeUnknownSync(ContentChangeSchema)({
-        contentKey: "hash:failure",
-        locale: "en",
-        operation: "delete",
-      }),
+    const [excess, stale] = await Promise.all([
+      reject(replaceItem(0, (item) => ({ ...item, secret }))),
+      reject(
+        replaceItem(1, (item) => ({
+          ...item,
+          change: { ...item.change, delivery: "public", publicPath: secret },
+        }))
+      ),
     ]);
-    const failureManifest = ContentReleaseManifestSchema.make({
-      ...manifest,
-      itemCount: failureItems.length,
-    });
-    const error = await reject(failureItems, failureManifest);
-    expect(error).toMatchObject({
-      _tag: "ReleaseItemsHashComputationError",
-      releaseId,
-    });
+    expect(excess._tag).toBe("ReleaseItemDecodeError");
+    expect(stale._tag).toBe("ReleaseItemDecodeError");
+    expect(JSON.stringify([excess, stale])).not.toContain(secret);
+  });
+
+  it("propagates upstream stream failures unchanged", async () => {
+    const error = await Effect.runPromise(
+      verifyContentReleaseItems({
+        items: Stream.fail("source-failed"),
+        manifest,
+      }).pipe(Effect.flip)
+    );
+    expect(error).toBe("source-failed");
   });
 });

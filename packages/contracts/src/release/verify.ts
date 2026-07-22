@@ -1,14 +1,14 @@
 import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
-import type { ReleaseId, Sha256Hash } from "#contracts/ids.js";
-import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids.js";
+import type { ReleaseId, Sha256Hash } from "#contracts/ids";
+import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
   canonicalizeContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
-} from "#contracts/release/spec.js";
-import { verifyEd25519Signature } from "#contracts/signature/verify.js";
+} from "#contracts/release/spec";
+import { verifyEd25519Signature } from "#contracts/signature/verify";
 
 /** Unknown release input did not exactly satisfy its signed wire contract. */
 export class ReleaseVerificationDecodeError extends Schema.TaggedError<ReleaseVerificationDecodeError>()(

@@ -2,21 +2,36 @@ import { compileContent } from "@nakafaai/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
 import {
   type CompileDocumentSource,
+  type CompiledContentPayload,
   decodeCompileDocumentSource,
 } from "@nakafaai/aksara-contracts/content";
 import type { ContentReleaseItem } from "@nakafaai/aksara-contracts/release";
-import type { VerifiedContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
 import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
-import { Effect } from "effect";
+import { Effect, Stream } from "effect";
 import {
   ReleaseArtifactMismatchError,
   validateCompiledPayloadForItem,
-  validateUpsertSourceCount,
-} from "#publisher/release-validation.js";
+} from "#publisher/release-validation";
 
-/** Selects authenticated upserts while preserving canonical release order. */
-function upsertItems(items: readonly ContentReleaseItem[]) {
-  return items.filter((item) => item.change.operation === "upsert");
+type SourcePair =
+  | {
+      readonly item: ContentReleaseItem;
+      readonly kind: "missing-source";
+    }
+  | {
+      readonly kind: "extra-source";
+      readonly source: unknown;
+    }
+  | {
+      readonly item: ContentReleaseItem;
+      readonly kind: "both";
+      readonly source: unknown;
+    };
+
+/** One authenticated release item paired with its reproducible payload. */
+export interface CompiledReleaseSource {
+  readonly item: ContentReleaseItem;
+  readonly payload: CompiledContentPayload;
 }
 
 /** Requires an authored source to match its authenticated release item. */
@@ -27,7 +42,9 @@ function validateSourceIdentity(
   const matches =
     item.change.operation === "upsert" &&
     item.change.contentKey === source.contentKey &&
-    item.change.locale === source.locale;
+    item.change.locale === source.locale &&
+    item.change.rendererDomain === source.rendererDomain &&
+    item.change.sourcePath === source.sourcePath;
   if (matches) {
     return Effect.void;
   }
@@ -38,37 +55,51 @@ function validateSourceIdentity(
   );
 }
 
-/**
- * Recompiles the exact authored sources and proves their canonical artifact
- * hashes before any production signing or publication IO can begin.
- */
-export const compileReleaseSources = Effect.fn(
-  "AksaraPublisher.compileReleaseSources"
-)(function* (input: {
-  readonly rendererManifest: RendererManifestEnvelope;
-  readonly sources: readonly unknown[];
-  readonly summary: VerifiedContentReleaseItems;
-}) {
-  yield* validateUpsertSourceCount(input.summary, input.sources.length);
-  const items = upsertItems(input.summary.items);
+/** Recompiles one paired source and proves its authenticated artifact hash. */
+function compileSource(
+  rendererManifest: RendererManifestEnvelope,
+  pair: SourcePair
+) {
+  if (pair.kind === "missing-source") {
+    return Effect.fail(
+      new ReleaseArtifactMismatchError({
+        message: `Release item ${pair.item.index} has no authored source.`,
+      })
+    );
+  }
+  if (pair.kind === "extra-source") {
+    return Effect.fail(
+      new ReleaseArtifactMismatchError({
+        message: "An authored source has no authenticated upsert item.",
+      })
+    );
+  }
+  return Effect.gen(function* () {
+    const source = yield* decodeCompileDocumentSource(pair.source);
+    yield* validateSourceIdentity(pair.item, source);
+    const { payload } = yield* compileContent({ ...source, rendererManifest });
+    const artifactHash = hashCompiledContentPayload(payload);
+    yield* validateCompiledPayloadForItem(pair.item, artifactHash, payload);
+    return { item: pair.item, payload };
+  });
+}
 
-  return yield* Effect.forEach(input.sources, (sourceInput, sourceIndex) =>
-    Effect.gen(function* () {
-      const item = items[sourceIndex];
-      if (!item) {
-        return yield* new ReleaseArtifactMismatchError({
-          message: "An authored source has no authenticated upsert item.",
-        });
-      }
-      const source = yield* decodeCompileDocumentSource(sourceInput);
-      yield* validateSourceIdentity(item, source);
-      const payload = yield* compileContent({
-        ...source,
-        rendererManifest: input.rendererManifest,
-      });
-      const artifactHash = hashCompiledContentPayload(payload);
-      yield* validateCompiledPayloadForItem(item, artifactHash, payload);
-      return payload;
-    })
+/**
+ * Compiles exact ordered sources once for the active staging invocation so
+ * publication can sign and upload each artifact incrementally.
+ */
+export function compileReleaseSources<E, R, E2, R2>(input: {
+  readonly items: Stream.Stream<ContentReleaseItem, E, R>;
+  readonly rendererManifest: RendererManifestEnvelope;
+  readonly sources: Stream.Stream<unknown, E2, R2>;
+}) {
+  return input.items.pipe(
+    Stream.zipAllWith({
+      onBoth: (item, source): SourcePair => ({ item, kind: "both", source }),
+      onOther: (source): SourcePair => ({ kind: "extra-source", source }),
+      onSelf: (item): SourcePair => ({ item, kind: "missing-source" }),
+      other: input.sources,
+    }),
+    Stream.mapEffect((pair) => compileSource(input.rendererManifest, pair))
   );
-});
+}

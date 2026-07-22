@@ -1,159 +1,139 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  CompiledContentRequirementsSchema,
-  canonicalizeRendererAuthoringSelection,
-  RendererManifestAuthoringComponentsSchema,
+  canonicalizeRendererManifestContract,
+  RendererDomainCapabilitySchema,
   RendererManifestEnvelopeSchema,
-  sortRendererComponentRequirements,
-} from "#contracts/renderer/contract.js";
+  selectRendererDomainCapability,
+  sortRendererDomains,
+} from "#contracts/renderer/contract";
 
-describe("renderer", () => {
-  it("sorts manifest requirements by name and version", () => {
+const hash = `sha256:${"a".repeat(64)}`;
+const base = {
+  authoringComponents: [{ name: "BlockMath", version: 1 }],
+  supportedComponents: [{ name: "BlockMath", version: 1 }],
+} as const;
+const domains = [
+  {
+    authoringComponents: [{ name: "AtomShellLab", version: 1 }],
+    name: "material-chemistry",
+    supportedComponents: [{ name: "AtomShellLab", version: 1 }],
+  },
+  {
+    authoringComponents: [{ name: "FunctionMachine", version: 1 }],
+    name: "material-mathematics",
+    supportedComponents: [{ name: "FunctionMachine", version: 1 }],
+  },
+] as const;
+const manifest = {
+  base,
+  domains,
+  format: "nakafa-mdx-renderer-v2",
+  hash,
+  rendererContractVersion: "2.0.0",
+} as const;
+
+describe("renderer contract", () => {
+  it("selects exactly one route-owned registry", () => {
+    const decoded = Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)(
+      manifest
+    );
     expect(
-      sortRendererComponentRequirements([
-        { name: "TestWidget", version: 2 },
-        { name: "BlockMath", version: 1 },
-        { name: "TestWidget", version: 1 },
-      ])
-    ).toEqual([
-      { name: "BlockMath", version: 1 },
-      { name: "TestWidget", version: 1 },
-      { name: "TestWidget", version: 2 },
-    ]);
+      selectRendererDomainCapability(decoded, "material-chemistry").name
+    ).toBe("material-chemistry");
+    expect(
+      selectRendererDomainCapability(decoded, "material-mathematics").name
+    ).toBe("material-mathematics");
   });
 
-  it("accepts expanding manifest versions but rejects duplicate artifact names", () => {
-    const manifest = {
-      authoringComponents: [{ name: "TestWidget", version: 1 }],
-      format: "nakafa-mdx-renderer-v1",
-      hash: `sha256:${"a".repeat(64)}`,
-      rendererContractVersion: "1.0.0",
-      supportedComponents: [
-        { name: "TestWidget", version: 1 },
-        { name: "TestWidget", version: 2 },
-      ],
-    };
-
-    expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(RendererManifestEnvelopeSchema)(manifest)
-      )
-    ).toBe(true);
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(CompiledContentRequirementsSchema)(
-          manifest.supportedComponents
-        )
-      )
-    ).toBe(true);
-  });
-
-  it("rejects unsorted or duplicated manifest pairs", () => {
+  it("requires canonical domains and one registry owner per component", () => {
     const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
-    const hash = `sha256:${"b".repeat(64)}`;
-
+    expect(
+      Either.isLeft(decode({ ...manifest, domains: [...domains].reverse() }))
+    ).toBe(true);
     expect(
       Either.isLeft(
         decode({
-          authoringComponents: [
-            { name: "BlockMath", version: 1 },
-            { name: "NumberLine", version: 1 },
-          ],
-          format: "nakafa-mdx-renderer-v1",
-          hash,
-          rendererContractVersion: "1.0.0",
-          supportedComponents: [
-            { name: "NumberLine", version: 1 },
-            { name: "BlockMath", version: 1 },
+          ...manifest,
+          domains: [
+            {
+              ...domains[0],
+              authoringComponents: [{ name: "BlockMath", version: 1 }],
+              supportedComponents: [{ name: "BlockMath", version: 1 }],
+            },
+            domains[1],
           ],
         })
       )
     ).toBe(true);
   });
 
-  it("rejects member, hyphenated, underscored, and dollar component names", () => {
-    const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
-    const hash = `sha256:${"c".repeat(64)}`;
+  it("explains incomplete capabilities in every domain schema", () => {
+    const incompleteChemistry = {
+      ...domains[0],
+      supportedComponents: [
+        ...domains[0].supportedComponents,
+        { name: "MissingChemistry", version: 1 },
+      ],
+    };
+    const incompleteMathematics = {
+      ...domains[1],
+      supportedComponents: [
+        ...domains[1].supportedComponents,
+        { name: "MissingMathematics", version: 1 },
+      ],
+    };
+    const capability = Schema.decodeUnknownEither(
+      RendererDomainCapabilitySchema
+    )(incompleteChemistry);
+    const chemistry = Schema.decodeUnknownEither(
+      RendererManifestEnvelopeSchema
+    )({
+      ...manifest,
+      domains: [incompleteChemistry, domains[1]],
+    });
+    const mathematics = Schema.decodeUnknownEither(
+      RendererManifestEnvelopeSchema
+    )({
+      ...manifest,
+      domains: [domains[0], incompleteMathematics],
+    });
 
-    for (const name of ["Chart.Axis", "block-math", "Block_Math", "$Block"]) {
-      expect(
-        Either.isLeft(
-          decode({
-            authoringComponents: [{ name, version: 1 }],
-            format: "nakafa-mdx-renderer-v1",
-            hash,
-            rendererContractVersion: "1.0.0",
-            supportedComponents: [{ name, version: 1 }],
-          })
-        )
-      ).toBe(true);
+    expect(Either.isLeft(capability)).toBe(true);
+    if (Either.isLeft(capability)) {
+      expect(String(capability.left)).toContain(
+        "Expected one supported authoring selection"
+      );
+    }
+    expect(Either.isLeft(chemistry)).toBe(true);
+    if (Either.isLeft(chemistry)) {
+      expect(String(chemistry.left)).toContain(
+        "Expected one supported authoring selection"
+      );
+    }
+    expect(Either.isLeft(mathematics)).toBe(true);
+    if (Either.isLeft(mathematics)) {
+      expect(String(mathematics.left)).toContain(
+        "Expected one supported authoring selection"
+      );
     }
   });
 
-  it("requires at least one renderer component in v1", () => {
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(RendererManifestEnvelopeSchema)({
-          authoringComponents: [],
-          format: "nakafa-mdx-renderer-v1",
-          hash: `sha256:${"a".repeat(64)}`,
-          rendererContractVersion: "1.0.0",
-          supportedComponents: [],
-        })
-      )
-    ).toBe(true);
-    expect(
-      Either.isRight(
-        Schema.decodeUnknownEither(CompiledContentRequirementsSchema)([])
-      )
-    ).toBe(true);
-  });
-
-  it("reports exact component and selection contract failures", () => {
-    expect(() =>
-      Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)({
-        authoringComponents: [{ name: "Block-Math", version: 1 }],
-        format: "nakafa-mdx-renderer-v1",
-        hash: `sha256:${"a".repeat(64)}`,
-        rendererContractVersion: "1.0.0",
-        supportedComponents: [{ name: "Block-Math", version: 1 }],
-      })
-    ).toThrow("Expected a component name matching");
-    expect(() =>
-      Schema.decodeUnknownSync(RendererManifestAuthoringComponentsSchema)([
-        { name: "BlockMath", version: 1 },
-        { name: "BlockMath", version: 2 },
-      ])
-    ).toThrow("Expected exactly one authoring version");
-    expect(() =>
-      Schema.decodeUnknownSync(CompiledContentRequirementsSchema)([
-        { name: "BlockMath", version: 1 },
-        { name: "BlockMath", version: 2 },
-      ])
-    ).toThrow("Expected at most one version");
-    expect(() =>
-      Schema.decodeUnknownSync(RendererManifestEnvelopeSchema)({
-        authoringComponents: [{ name: "BlockMath", version: 1 }],
-        format: "nakafa-mdx-renderer-v1",
-        hash: `sha256:${"a".repeat(64)}`,
-        rendererContractVersion: "1.0.0",
-        supportedComponents: [
-          { name: "BlockMath", version: 1 },
-          { name: "TestWidget", version: 1 },
-        ],
-      })
-    ).toThrow("Expected one supported authoring selection");
-  });
-
-  it("canonicalizes the compiler's selected component versions", () => {
-    expect(
-      canonicalizeRendererAuthoringSelection([
-        { name: "BlockMath", version: 1 },
-        { name: "TestWidget", version: 2 },
-      ])
-    ).toBe(
-      '[{"name":"BlockMath","version":1},{"name":"TestWidget","version":2}]'
+  it("canonicalizes domain order independently from caller order", () => {
+    const expected =
+      '["nakafa-mdx-renderer-v2","2.0.0",{"authoringComponents":[{"name":"BlockMath","version":1}],"supportedComponents":[{"name":"BlockMath","version":1}]},[{"name":"material-chemistry","authoringComponents":[{"name":"AtomShellLab","version":1}],"supportedComponents":[{"name":"AtomShellLab","version":1}]},{"name":"material-mathematics","authoringComponents":[{"name":"FunctionMachine","version":1}],"supportedComponents":[{"name":"FunctionMachine","version":1}]}]]';
+    expect(canonicalizeRendererManifestContract({ base, domains })).toBe(
+      expected
     );
+    expect(
+      canonicalizeRendererManifestContract({
+        base,
+        domains: [...domains].reverse(),
+      })
+    ).toBe(expected);
+    expect(sortRendererDomains([domains[0], domains[0]])).toEqual([
+      domains[0],
+      domains[0],
+    ]);
   });
 });

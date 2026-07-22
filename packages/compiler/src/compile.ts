@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { compile } from "@mdx-js/mdx";
 import {
   AKSARA_COMPILER_VERSION,
+  type CompiledContentPayload,
   CompiledContentPayloadSchema,
   canonicalizeCompiledContentPayload,
   decodeCompileDocumentRequest,
@@ -16,14 +17,11 @@ import {
   MAX_PLAIN_TEXT_BYTES,
   MAX_RAW_MDX_BYTES,
 } from "@nakafaai/aksara-contracts/limits";
-import type {
-  RendererComponentRequirement,
-  RendererManifestEnvelope,
-} from "@nakafaai/aksara-contracts/renderer/contract";
-import {
-  canonicalizeRendererAuthoringSelection,
-  sortRendererComponentRequirements,
-} from "@nakafaai/aksara-contracts/renderer/contract";
+import type { RendererComponentRequirement } from "@nakafaai/aksara-contracts/renderer/component";
+import { sortRendererComponentRequirements } from "@nakafaai/aksara-contracts/renderer/component";
+import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
+import { selectRendererDomainCapability } from "@nakafaai/aksara-contracts/renderer/contract";
+import type { RendererDomain } from "@nakafaai/aksara-contracts/renderer/domain";
 import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import type { Program } from "estree-jsx";
@@ -34,6 +32,13 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import type { Plugin } from "unified";
 import {
+  createCompilerConfigHash,
+  MDX_PROVIDER_SOURCE,
+} from "#compiler/config";
+import {
+  type AuthoredMetadataDuplicateError,
+  type AuthoredMetadataMissingError,
+  type AuthoredMetadataSyntaxError,
   ContentByteLimitExceededError,
   ExecutablePolicyError,
   type ExecutablePolicyViolation,
@@ -41,52 +46,38 @@ import {
   RendererComponentMissingError,
   type UnsupportedMdxModuleOccurrence,
   UnsupportedMdxModuleSyntaxError,
-} from "#compiler/errors.js";
+} from "#compiler/errors";
 import {
+  type AuthoredMetadata,
   extractMetadata,
   type MetadataCollector,
   validateMetadata,
-} from "#compiler/metadata.js";
-import { enforceExecutablePolicy } from "#compiler/policy.js";
+} from "#compiler/metadata";
+import { enforceExecutablePolicy } from "#compiler/policy";
 
-const PROVIDER_IMPORT_SOURCE = "nakafa-static-renderer-registry";
-const COMPILER_CONFIG = JSON.stringify({
-  compilerVersion: AKSARA_COMPILER_VERSION,
-  componentDependencyExtraction: "missing-mdx-reference-v1",
-  componentResolution: "global-authoring-selection-v1",
-  development: false,
-  executablePolicy: "trusted-mdx-policy-v2",
-  format: "mdx",
-  mdxCompilerVersion: MDX_COMPILER_VERSION,
-  metadataExtraction: "metadata-estree-static-v2",
-  modulePolicy: "imports-and-reexports-forbidden-v1",
-  outputFormat: "function-body",
-  plainTextProjection: "mdast-to-string@4.0.0",
-  providerImportSource: PROVIDER_IMPORT_SOURCE,
-  remarkPlugins: [
-    "remark-gfm@4.0.1",
-    "remark-math@6.0.0:singleDollarTextMath=false",
-  ],
-  syntaxAnalysis: [
-    "eslint-scope@9.1.2",
-    "estree-util-visit@2.0.0",
-    "unist-util-visit@5.1.0",
-  ],
-});
+/** One generic compile result with its single AST-decoded metadata object. */
+export interface CompiledContentResult {
+  readonly metadata: AuthoredMetadata;
+  readonly payload: CompiledContentPayload;
+}
+
+/** Every expected failure surfaced by trusted MDX compilation. */
+export type CompileContentError =
+  | Effect.Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
+  | Effect.Effect.Error<ReturnType<typeof validateRendererManifestHash>>
+  | AuthoredMetadataDuplicateError
+  | AuthoredMetadataMissingError
+  | AuthoredMetadataSyntaxError
+  | ContentByteLimitExceededError
+  | ExecutablePolicyError
+  | MdxCompilationError
+  | RendererComponentMissingError
+  | UnsupportedMdxModuleSyntaxError;
 
 /** Produces the canonical SHA-256 identifier for one UTF-8 value. */
 function sha256(value: string) {
   return Sha256HashSchema.make(
     `sha256:${createHash("sha256").update(value).digest("hex")}`
-  );
-}
-
-/** Binds compiler behavior to the manifest's selected authoring versions. */
-function compilerConfigHash(manifest: RendererManifestEnvelope) {
-  return sha256(
-    `${COMPILER_CONFIG}\n${canonicalizeRendererAuthoringSelection(
-      manifest.authoringComponents
-    )}`
   );
 }
 
@@ -149,10 +140,16 @@ function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
 function selectRendererRequirements(
   contentKey: ContentKey,
   names: ReadonlySet<string>,
-  manifest: RendererManifestEnvelope
+  manifest: RendererManifestEnvelope,
+  rendererDomain: RendererDomain
 ) {
+  const domain = selectRendererDomainCapability(manifest, rendererDomain);
+  const authoringComponents = [
+    ...manifest.base.authoringComponents,
+    ...domain.authoringComponents,
+  ];
   return Effect.forEach([...names].sort(), (componentName) => {
-    const selected = manifest.authoringComponents.find(
+    const selected = authoringComponents.find(
       (requirement) => requirement.name === componentName
     );
     if (!selected) {
@@ -165,110 +162,119 @@ function selectRendererRequirements(
 }
 
 /** Compiles trusted authored MDX without executing the emitted function body. */
-export const compileContent = Effect.fn("AksaraCompiler.compileContent")(
-  (input: unknown) =>
-    decodeCompileDocumentRequest(input).pipe(
-      Effect.flatMap((request) => {
-        const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
-        const policyViolations: ExecutablePolicyViolation[] = [];
-        const requiredComponentNames = new Set<string>();
-        const metadataCollector: MetadataCollector = {
-          candidates: [],
-          syntaxReasons: [],
-        };
-        let plainText = "";
+export const compileContent: (
+  input: unknown
+) => Effect.Effect<CompiledContentResult, CompileContentError> = Effect.fn(
+  "AksaraCompiler.compileContent"
+)((input: unknown) =>
+  decodeCompileDocumentRequest(input).pipe(
+    Effect.flatMap((request) => {
+      const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
+      const policyViolations: ExecutablePolicyViolation[] = [];
+      const requiredComponentNames = new Set<string>();
+      const metadataCollector: MetadataCollector = {
+        candidates: [],
+        syntaxReasons: [],
+      };
+      let plainText = "";
 
-        return Effect.gen(function* () {
-          yield* enforceByteLimit(
-            request.contentKey,
-            "rawMdx",
-            request.rawMdx,
-            MAX_RAW_MDX_BYTES
-          );
-          yield* validateRendererManifestHash(request.rendererManifest);
-          const file = yield* Effect.tryPromise({
-            catch: (cause) =>
-              new MdxCompilationError({
-                cause,
-                contentKey: request.contentKey,
-                message: String(cause),
-              }),
-            try: () =>
-              compile(request.rawMdx, {
-                development: false,
-                format: "mdx",
-                outputFormat: "function-body",
-                providerImportSource: PROVIDER_IMPORT_SOURCE,
-                recmaPlugins: [
-                  captureRequiredComponents(requiredComponentNames),
-                ],
-                remarkPlugins: [
-                  extractMetadata(metadataCollector),
-                  enforceExecutablePolicy(unsupportedModules, policyViolations),
-                  capturePlainText((value) => {
-                    plainText = value;
-                  }),
-                  remarkGfm,
-                  [remarkMath, { singleDollarTextMath: false }],
-                ],
-              }),
-          });
-
-          yield* validateMetadata(request.contentKey, metadataCollector);
-
-          if (unsupportedModules.length > 0) {
-            return yield* new UnsupportedMdxModuleSyntaxError({
+      return Effect.gen(function* () {
+        yield* enforceByteLimit(
+          request.contentKey,
+          "rawMdx",
+          request.rawMdx,
+          MAX_RAW_MDX_BYTES
+        );
+        yield* validateRendererManifestHash(request.rendererManifest);
+        const file = yield* Effect.tryPromise({
+          catch: (cause) =>
+            new MdxCompilationError({
+              cause,
               contentKey: request.contentKey,
-              occurrences: unsupportedModules,
-            });
-          }
-          if (policyViolations.length > 0) {
-            return yield* new ExecutablePolicyError({
-              contentKey: request.contentKey,
-              violations: policyViolations,
-            });
-          }
-
-          const compiledCode = String(file);
-          const byteLength = yield* enforceByteLimit(
-            request.contentKey,
-            "compiledCode",
-            compiledCode,
-            MAX_COMPILED_CODE_BYTES
-          );
-          yield* enforceByteLimit(
-            request.contentKey,
-            "plainText",
-            plainText,
-            MAX_PLAIN_TEXT_BYTES
-          );
-          const requiredComponents = yield* selectRendererRequirements(
-            request.contentKey,
-            requiredComponentNames,
-            request.rendererManifest
-          );
-          const payload = CompiledContentPayloadSchema.make({
-            byteLength,
-            compiledCode,
-            compilerConfigHash: compilerConfigHash(request.rendererManifest),
-            compilerVersion: AKSARA_COMPILER_VERSION,
-            contentKey: request.contentKey,
-            format: "mdx-function-body-v1",
-            locale: request.locale,
-            mdxCompilerVersion: MDX_COMPILER_VERSION,
-            plainText,
-            rawMdx: request.rawMdx,
-            requiredComponents,
-            sourceHash: sha256(request.rawMdx),
-          });
-          yield* enforceByteLimit(
-            request.contentKey,
-            "canonicalPayload",
-            canonicalizeCompiledContentPayload(payload),
-            MAX_CANONICAL_PAYLOAD_BYTES
-          );
-          return payload;
+              message: String(cause),
+            }),
+          try: () =>
+            compile(request.rawMdx, {
+              development: false,
+              format: "mdx",
+              outputFormat: "function-body",
+              providerImportSource: MDX_PROVIDER_SOURCE,
+              recmaPlugins: [captureRequiredComponents(requiredComponentNames)],
+              remarkPlugins: [
+                extractMetadata(metadataCollector),
+                enforceExecutablePolicy(unsupportedModules, policyViolations),
+                capturePlainText((value) => {
+                  plainText = value;
+                }),
+                remarkGfm,
+                [remarkMath, { singleDollarTextMath: false }],
+              ],
+            }),
         });
-      })
-    )
+
+        const metadata = yield* validateMetadata(
+          request.contentKey,
+          metadataCollector
+        );
+
+        if (unsupportedModules.length > 0) {
+          return yield* new UnsupportedMdxModuleSyntaxError({
+            contentKey: request.contentKey,
+            occurrences: unsupportedModules,
+          });
+        }
+        if (policyViolations.length > 0) {
+          return yield* new ExecutablePolicyError({
+            contentKey: request.contentKey,
+            violations: policyViolations,
+          });
+        }
+
+        const compiledCode = String(file);
+        const byteLength = yield* enforceByteLimit(
+          request.contentKey,
+          "compiledCode",
+          compiledCode,
+          MAX_COMPILED_CODE_BYTES
+        );
+        yield* enforceByteLimit(
+          request.contentKey,
+          "plainText",
+          plainText,
+          MAX_PLAIN_TEXT_BYTES
+        );
+        const requiredComponents = yield* selectRendererRequirements(
+          request.contentKey,
+          requiredComponentNames,
+          request.rendererManifest,
+          request.rendererDomain
+        );
+        const payload = CompiledContentPayloadSchema.make({
+          byteLength,
+          compiledCode,
+          compilerConfigHash: createCompilerConfigHash(
+            request.rendererManifest,
+            request.rendererDomain
+          ),
+          compilerVersion: AKSARA_COMPILER_VERSION,
+          contentKey: request.contentKey,
+          format: "mdx-function-body-v1",
+          locale: request.locale,
+          mdxCompilerVersion: MDX_COMPILER_VERSION,
+          plainText,
+          rawMdx: request.rawMdx,
+          rendererDomain: request.rendererDomain,
+          requiredComponents,
+          sourceHash: sha256(request.rawMdx),
+        });
+        yield* enforceByteLimit(
+          request.contentKey,
+          "canonicalPayload",
+          canonicalizeCompiledContentPayload(payload),
+          MAX_CANONICAL_PAYLOAD_BYTES
+        );
+        return { metadata, payload } satisfies CompiledContentResult;
+      });
+    })
+  )
 );

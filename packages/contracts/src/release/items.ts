@@ -1,19 +1,21 @@
-import { createHash } from "node:crypto";
-import { Effect, Schema } from "effect";
-import { ContentLocaleSchema } from "#contracts/content.js";
+import { Effect, Schema, Stream } from "effect";
+import { ContentLocaleSchema } from "#contracts/content";
 import {
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "#contracts/ids.js";
+} from "#contracts/ids";
 import {
-  CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN,
+  createReleaseItemsDigest,
+  finalizeReleaseItemsDigest,
+  updateReleaseItemsDigest,
+} from "#contracts/release/digest";
+import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
   type ContentReleaseManifest,
-  canonicalizeContentReleaseItem,
   compareContentChanges,
-} from "#contracts/release/spec.js";
+} from "#contracts/release/spec";
 
 const ItemCountSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
 
@@ -38,10 +40,7 @@ export class ReleaseItemReleaseMismatchError extends Schema.TaggedError<ReleaseI
 /** An item is missing, duplicated, or out of its signed sequence. */
 export class ReleaseItemIndexMismatchError extends Schema.TaggedError<ReleaseItemIndexMismatchError>()(
   "ReleaseItemIndexMismatchError",
-  {
-    actualIndex: ItemCountSchema,
-    expectedIndex: ItemCountSchema,
-  }
+  { actualIndex: ItemCountSchema, expectedIndex: ItemCountSchema }
 ) {}
 
 /** Item heads are duplicated or not in canonical content-head order. */
@@ -61,12 +60,6 @@ export class DuplicateReleasePublicPathError extends Schema.TaggedError<Duplicat
   }
 ) {}
 
-/** SHA-256 computation failed before item integrity was established. */
-export class ReleaseItemsHashComputationError extends Schema.TaggedError<ReleaseItemsHashComputationError>()(
-  "ReleaseItemsHashComputationError",
-  { releaseId: ReleaseIdSchema }
-) {}
-
 /** The separate ordered items do not match the signed digest. */
 export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseItemsDigestMismatchError>()(
   "ReleaseItemsDigestMismatchError",
@@ -77,26 +70,18 @@ export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseI
   }
 ) {}
 
-/** Counts derived while validating one canonical release-item stream. */
+/** Counts derived without retaining a complete release-item collection. */
 export interface VerifiedContentReleaseItems {
   readonly deleteCount: number;
-  readonly items: readonly ContentReleaseItem[];
   readonly upsertCount: number;
 }
 
-/** Computes the streaming-friendly domain-separated digest for ordered items. */
-export function hashContentReleaseItems(items: Iterable<ContentReleaseItem>) {
-  const hash = createHash("sha256");
-  hash.update(CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN);
-  hash.update("\n");
-  for (const item of items) {
-    hash.update(canonicalizeContentReleaseItem(item));
-    hash.update("\n");
-  }
-  return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
+interface ItemValidationState {
+  readonly firstIndexByRoute: Map<string, number>;
+  previous: ContentReleaseItem | undefined;
 }
 
-/** Verifies that one item belongs at its signed release-stream position. */
+/** Verifies one item's signed release identity and sequence position. */
 function validateItemIdentity(
   manifest: ContentReleaseManifest,
   item: ContentReleaseItem,
@@ -121,90 +106,113 @@ function validateItemIdentity(
   return Effect.void;
 }
 
-/** Rejects release items that are not in canonical content-head order. */
-function validateCanonicalOrder(items: readonly ContentReleaseItem[]) {
-  for (let index = 1; index < items.length; index += 1) {
-    const previous = items[index - 1];
-    const current = items[index];
-    if (
-      !(previous && current) ||
-      compareContentChanges(previous.change, current.change) >= 0
-    ) {
-      return Effect.fail(new ReleaseItemOrderError({ itemOffset: index }));
-    }
+/** Rejects a head that is duplicated or outside canonical head order. */
+function validateItemOrder(
+  state: ItemValidationState,
+  item: ContentReleaseItem
+) {
+  if (
+    state.previous &&
+    compareContentChanges(state.previous.change, item.change) >= 0
+  ) {
+    return Effect.fail(new ReleaseItemOrderError({ itemOffset: item.index }));
   }
+  state.previous = item;
   return Effect.void;
 }
 
-/** Rejects live heads that collide on a locale-specific public route. */
-function validateUniquePublicPaths(items: readonly ContentReleaseItem[]) {
-  const firstIndexByRoute = new Map<string, number>();
-  for (const item of items) {
-    const { locale, publicPath } = item.change;
-    if (item.change.operation === "delete" || publicPath === undefined) {
-      continue;
-    }
-    const routeIdentity = `${locale}\0${publicPath}`;
-    const firstItemIndex = firstIndexByRoute.get(routeIdentity);
-    if (firstItemIndex !== undefined) {
-      return Effect.fail(
-        new DuplicateReleasePublicPathError({
-          duplicateItemIndex: item.index,
-          firstItemIndex,
-          locale,
-          publicPath,
-        })
-      );
-    }
-    firstIndexByRoute.set(routeIdentity, item.index);
+/** Rejects an upsert that collides with an earlier locale-specific route. */
+function validatePublicPath(
+  state: ItemValidationState,
+  item: ContentReleaseItem
+) {
+  if (item.change.operation === "delete") {
+    return Effect.void;
   }
+  const { locale, publicPath } = item.change;
+  if (publicPath === undefined) {
+    return Effect.void;
+  }
+  const routeIdentity = `${locale}\0${publicPath}`;
+  const firstItemIndex = state.firstIndexByRoute.get(routeIdentity);
+  if (firstItemIndex !== undefined) {
+    return Effect.fail(
+      new DuplicateReleasePublicPathError({
+        duplicateItemIndex: item.index,
+        firstItemIndex,
+        locale,
+        publicPath,
+      })
+    );
+  }
+  state.firstIndexByRoute.set(routeIdentity, item.index);
   return Effect.void;
 }
 
-/** Counts upserts and tombstones in a verified item stream. */
-function countOperations(items: readonly ContentReleaseItem[]) {
-  let upsertCount = 0;
-  for (const item of items) {
-    if (item.change.operation === "upsert") {
-      upsertCount += 1;
-    }
-  }
-  return { deleteCount: items.length - upsertCount, upsertCount };
+/** Decodes one item and applies stateful canonical stream invariants. */
+function decodeItem(
+  manifest: ContentReleaseManifest,
+  state: ItemValidationState,
+  source: unknown,
+  itemOffset: number
+) {
+  return Schema.decodeUnknown(ContentReleaseItemSchema)(source, {
+    onExcessProperty: "error",
+  }).pipe(
+    Effect.mapError(() => new ReleaseItemDecodeError({ itemOffset })),
+    Effect.tap((item) => validateItemIdentity(manifest, item, itemOffset)),
+    Effect.tap((item) => validateItemOrder(state, item)),
+    Effect.tap((item) => validatePublicPath(state, item))
+  );
 }
 
-/** Strictly decodes and authenticates items against one O(1) manifest. */
-export const verifyContentReleaseItems = Effect.fn(
-  "AksaraContracts.verifyContentReleaseItems"
-)(function* (input: {
-  readonly items: readonly unknown[];
+/**
+ * Strictly decodes a replayable item stream without retaining its bodies.
+ * Every evaluation owns fresh ordering and route-collision state.
+ */
+export function decodeContentReleaseItems<E, R>(input: {
+  readonly items: Stream.Stream<unknown, E, R>;
   readonly manifest: ContentReleaseManifest;
 }) {
-  if (input.items.length !== input.manifest.itemCount) {
+  return Stream.unwrap(
+    Effect.sync(() => {
+      const state: ItemValidationState = {
+        firstIndexByRoute: new Map(),
+        previous: undefined,
+      };
+      return input.items.pipe(
+        Stream.zipWithIndex,
+        Stream.mapEffect(([source, itemOffset]) =>
+          decodeItem(input.manifest, state, source, itemOffset)
+        )
+      );
+    })
+  );
+}
+
+/** Authenticates a replayable ordered stream against its signed manifest. */
+export const verifyContentReleaseItems = Effect.fn(
+  "AksaraContracts.verifyContentReleaseItems"
+)(function* <E, R>(input: {
+  readonly items: Stream.Stream<unknown, E, R>;
+  readonly manifest: ContentReleaseManifest;
+}) {
+  const initial = yield* createReleaseItemsDigest(input.manifest.releaseId);
+  const state = yield* decodeContentReleaseItems(input).pipe(
+    Stream.runFoldEffect(initial, (current, item) =>
+      updateReleaseItemsDigest(input.manifest.releaseId, current, item)
+    )
+  );
+  if (state.count !== input.manifest.itemCount) {
     return yield* new ReleaseItemCountMismatchError({
-      actualCount: input.items.length,
+      actualCount: state.count,
       expectedCount: input.manifest.itemCount,
     });
   }
-
-  const items = yield* Effect.forEach(input.items, (source, itemOffset) =>
-    Schema.decodeUnknown(ContentReleaseItemSchema)(source, {
-      onExcessProperty: "error",
-    }).pipe(
-      Effect.mapError(() => new ReleaseItemDecodeError({ itemOffset })),
-      Effect.tap((item) =>
-        validateItemIdentity(input.manifest, item, itemOffset)
-      )
-    )
+  const actualDigest = yield* finalizeReleaseItemsDigest(
+    input.manifest.releaseId,
+    state
   );
-  yield* validateCanonicalOrder(items);
-  yield* validateUniquePublicPaths(items);
-  const actualDigest = yield* Effect.try({
-    catch: () =>
-      new ReleaseItemsHashComputationError({
-        releaseId: input.manifest.releaseId,
-      }),
-    try: () => hashContentReleaseItems(items),
-  });
   if (actualDigest !== input.manifest.itemsDigest) {
     return yield* new ReleaseItemsDigestMismatchError({
       actualDigest,
@@ -212,6 +220,5 @@ export const verifyContentReleaseItems = Effect.fn(
       releaseId: input.manifest.releaseId,
     });
   }
-
-  return { items, ...countOperations(items) };
+  return { deleteCount: state.deleteCount, upsertCount: state.upsertCount };
 });

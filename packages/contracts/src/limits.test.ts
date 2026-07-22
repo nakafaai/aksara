@@ -5,7 +5,7 @@ import {
   MAX_PLAIN_TEXT_BYTES,
   MAX_RAW_MDX_BYTES,
   MAX_SIGNED_ARTIFACT_BYTES,
-} from "#contracts/limits.js";
+} from "#contracts/limits";
 
 describe("content byte limits", () => {
   it("keeps every bounded layer below its next storage boundary", () => {

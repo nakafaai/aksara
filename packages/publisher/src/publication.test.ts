@@ -1,303 +1,108 @@
-import { generateKeyPairSync } from "node:crypto";
-import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
-import { CompileDocumentSourceSchema } from "@nakafaai/aksara-contracts/content";
+import { hashContentProjections } from "@nakafaai/aksara-contracts/projection/digest";
+import { Effect, Stream } from "effect";
+import { describe, expect, it } from "vitest";
 import {
-  ContentKeySchema,
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
+  makePreparedGitRelease,
+  makePreparedRollbackRelease,
+} from "#publisher/preparation/spec";
 import {
-  type ContentChange,
-  ContentReleaseItemSchema,
-  ContentReleaseManifestSchema,
-  compareContentChanges,
-} from "@nakafaai/aksara-contracts/release";
-import { hashContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
-import {
-  ContentVerificationKeyResolver,
-  SigningKeyNotFoundError,
-} from "@nakafaai/aksara-contracts/signature/spec";
-import { Effect, Redacted, Schema } from "effect";
-import { describe, expect, it, vi } from "vitest";
-import type { ArtifactBatch, ReleaseItemBatch } from "#publisher/batching.js";
-import {
-  PublicationSigningKey,
-  PublicationSource,
-  PublicationTarget,
-  publishContentRelease,
-} from "#publisher/publication.js";
-import { compileReleaseSources } from "#publisher/source-compilation.js";
-import {
-  PublicationStaleBaseError,
-  PublicationTargetConflictError,
-} from "#publisher/target-errors.js";
+  makeRelease,
+  makeRollbackRelease,
+  makeTarget,
+  projection,
+  publish,
+  publishPrepared,
+  record,
+  rendererManifest,
+} from "#test/publication";
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    authoringComponents: [{ name: "BlockMath", version: 1 }],
-    supportedComponents: [{ name: "BlockMath", version: 1 }],
-  })
-);
-const source = CompileDocumentSourceSchema.make({
-  contentKey: ContentKeySchema.make("test:publication"),
-  locale: "en",
-  rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
-});
-const payload = await Effect.runPromise(
-  compileContent({ ...source, rendererManifest })
-);
-const keys = generateKeyPairSync("ed25519");
-const signingKey = PublicationSigningKey.of({
-  keyId: "test-signing-key",
-  privateKeyPem: Redacted.make(
-    keys.privateKey.export({ format: "pem", type: "pkcs8" }).toString()
-  ),
-});
-const resolver = ContentVerificationKeyResolver.of({
-  resolve: (requestedKeyId) => {
-    if (requestedKeyId === "test-signing-key") {
-      return Effect.succeed(
-        keys.publicKey.export({ format: "pem", type: "spki" }).toString()
-      );
-    }
-    return Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId }));
-  },
-});
-/** Builds canonically ordered release items for publication tests. */
-function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
-  return [...changes]
-    .sort(compareContentChanges)
-    .map((change, index) =>
-      ContentReleaseItemSchema.make({ change, index, releaseId })
-    );
-}
-/** Builds a release manifest and item stream for publication tests. */
-function makeRelease(releaseSource: string, changes: readonly ContentChange[]) {
-  const releaseId = ReleaseIdSchema.make(releaseSource);
-  const items = makeItems(releaseId, changes);
-  const upserts = items.filter((item) => item.change.operation === "upsert");
-  const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
-    aksaraSha: "a".repeat(40),
-    baseReleaseId: null,
-    expectedCounts: {
-      artifacts: upserts.length,
-      graphRows: 0,
-      heads: upserts.length,
-      llmsDocuments: upserts.length,
-      routes: upserts.length,
-      searchRows: upserts.length,
-      sitemapEntries: upserts.length,
-    },
-    expectedDigest: `sha256:${"c".repeat(64)}`,
-    itemCount: items.length,
-    itemsDigest: hashContentReleaseItems(items),
-    releaseId,
-    rendererContractVersion: "1.0.0",
-    rendererManifestHash: rendererManifest.hash,
-  });
-  return { items, manifest };
-}
-/** Stores an idempotent test batch and rejects conflicting retries. */
-function storeExact<T>(
-  batches: Map<number, T>,
-  batchIndex: number,
-  value: T,
-  stage: "items" | "artifacts"
-) {
-  const existing = batches.get(batchIndex);
-  if (existing && JSON.stringify(existing) !== JSON.stringify(value)) {
-    return Effect.fail(
-      new PublicationTargetConflictError({
-        message: "A batch identity was reused with different content.",
-        stage,
-      })
-    );
-  }
-  return Effect.sync(() => {
-    batches.set(batchIndex, value);
-  });
-}
-/** Builds an in-memory publication target with observable activation state. */
-function makeTarget(
-  release: ReturnType<typeof makeRelease>,
-  activeReleaseId: typeof ReleaseIdSchema.Type | null = null,
-  corruptEvidence = false
-) {
-  const itemBatches = new Map<number, ReleaseItemBatch>();
-  const artifactBatches = new Map<number, ArtifactBatch>();
-  let stagedRelease = "";
-  let active = activeReleaseId;
-  let activationTransitions = 0;
-  /** Returns staged items in canonical batch order. */
-  const stagedItems = () =>
-    [...itemBatches.entries()]
-      .sort(([left], [right]) => left - right)
-      .flatMap(([, batch]) => batch.items);
-  /** Returns every staged artifact across publication batches. */
-  const stagedArtifacts = () =>
-    [...artifactBatches.values()].flatMap((batch) => batch.artifacts);
-  const target = PublicationTarget.of({
-    activate: () => {
-      if (active === release.manifest.releaseId) {
-        return Effect.succeed(receipt());
-      }
-      if (active !== release.manifest.baseReleaseId) {
-        return Effect.fail(
-          new PublicationStaleBaseError({
-            activeReleaseId: active,
-            expectedBaseReleaseId: release.manifest.baseReleaseId,
-            releaseId: release.manifest.releaseId,
-          })
-        );
-      }
-      return Effect.sync(() => {
-        active = release.manifest.releaseId;
-        activationTransitions += 1;
-        return receipt();
-      });
-    },
-    stageArtifactBatch: (batch) =>
-      storeExact(artifactBatches, batch.batchIndex, batch, "artifacts"),
-    stageItemBatch: (batch) =>
-      storeExact(itemBatches, batch.batchIndex, batch, "items"),
-    stageRelease: (value) => {
-      const encoded = JSON.stringify(value);
-      if (stagedRelease && stagedRelease !== encoded) {
-        return Effect.fail(
-          new PublicationTargetConflictError({
-            message: "Release identity conflict.",
-            stage: "release",
-          })
-        );
-      }
-      return Effect.sync(() => {
-        stagedRelease = encoded;
-      });
-    },
-    verify: () => {
-      const items = stagedItems();
-      const upsertHeads = items.filter(
-        (item) => item.change.operation === "upsert"
-      ).length;
-      return Effect.succeed({
-        baseReleaseId: release.manifest.baseReleaseId,
-        deleteHeads: items.length - upsertHeads,
-        itemCount: items.length,
-        itemsDigest: corruptEvidence
-          ? Sha256HashSchema.make(`sha256:${"f".repeat(64)}`)
-          : hashContentReleaseItems(items),
-        projectionDigest: release.manifest.expectedDigest,
-        recomputedProjectionCounts: release.manifest.expectedCounts,
-        releaseId: release.manifest.releaseId,
-        rendererContractVersion: release.manifest.rendererContractVersion,
-        rendererManifestHash: release.manifest.rendererManifestHash,
-        stagedArtifacts: stagedArtifacts().length,
-        upsertHeads,
-      });
-    },
-  });
-  /** Builds the receipt returned by the in-memory activation seam. */
-  function receipt() {
-    const items = stagedItems();
-    const activatedHeads = items.filter(
-      (item) => item.change.operation === "upsert"
-    ).length;
-    return {
-      activatedHeads,
-      deletedHeads: items.length - activatedHeads,
-      projectionDigest: release.manifest.expectedDigest,
-      releaseId: release.manifest.releaseId,
-      stagedArtifacts: stagedArtifacts().length,
-      stagedItems: items.length,
-    };
-  }
-  return {
-    /** Exposes how many real activation transitions occurred. */
-    get activationTransitions() {
-      return activationTransitions;
-    },
-    artifactBatches,
-    itemBatches,
-    target,
-  };
-}
-/** Runs a test publication with exact source and infrastructure services. */
-function publish(
-  release: ReturnType<typeof makeRelease>,
-  target: typeof PublicationTarget.Service,
-  sources = [source]
-) {
-  /** Loads sources only for the exact reviewed revision and ordered upserts. */
-  const loadExactRevision = vi.fn(({ aksaraSha, items }) => {
-    expect(aksaraSha).toBe(release.manifest.aksaraSha);
-    expect(items).toEqual(
-      release.items.filter((item) => item.change.operation === "upsert")
-    );
-    return Effect.succeed(sources);
-  });
-  const publicationSource = PublicationSource.of({ loadExactRevision });
-  return publishContentRelease({
-    items: release.items,
-    manifest: release.manifest,
-    rendererManifest,
-  }).pipe(
-    Effect.provideService(PublicationSigningKey, signingKey),
-    Effect.provideService(PublicationSource, publicationSource),
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.provideService(PublicationTarget, target)
-  );
-}
-const upsert = {
-  artifactHash: hashCompiledContentPayload(payload),
-  contentKey: payload.contentKey,
-  locale: payload.locale,
-  operation: "upsert",
-} satisfies ContentChange;
-vi.mock("#publisher/source-compilation.js", { spy: true });
 describe("publishContentRelease", () => {
-  it("stages and activates exact retries idempotently", async () => {
-    const release = makeRelease("test-release-idempotent", [upsert]);
+  it("stages once, activates once, and returns a completed retry", async () => {
+    const release = await makeRelease("test-release-idempotent");
     const state = makeTarget(release);
     const first = await Effect.runPromise(publish(release, state.target));
     const second = await Effect.runPromise(publish(release, state.target));
     expect(second).toEqual(first);
-    expect(state.itemBatches.size).toBe(1);
-    expect(state.artifactBatches.size).toBe(1);
+    expect(state.stageItemBatch).toHaveBeenCalledTimes(1);
+    expect(state.stageRelease).toHaveBeenCalledTimes(2);
     expect(state.activationTransitions).toBe(1);
   });
-  it("never activates mismatched pre-activation evidence", async () => {
-    const release = makeRelease("test-release-evidence", [upsert]);
-    const state = makeTarget(release, null, true);
+
+  it("blocks activation when a staged replay changes after preparation", async () => {
+    let replayCount = 0;
+    const changedProjection = {
+      ...projection,
+      metadata: { ...projection.metadata, title: "Changed test protocol" },
+    };
+    const release = await makeRelease("test-release-replay", () => {
+      replayCount += 1;
+      return Stream.make(
+        replayCount < 7 ? record : { ...record, projection: changedProjection }
+      );
+    });
+    const state = makeTarget(release);
+    state.verify.mockReturnValueOnce(
+      Effect.succeed({
+        ...state.evidence(),
+        projectionDigest: hashContentProjections([changedProjection]),
+      })
+    );
     const error = await Effect.runPromise(
       publish(release, state.target).pipe(Effect.flip)
     );
-    expect(error._tag).toBe("ReleaseVerificationMismatchError");
-    expect(state.activationTransitions).toBe(0);
-  });
-  it("preserves stale-base rejection at atomic activation", async () => {
-    const release = makeRelease("test-release-stale", [upsert]);
-    const state = makeTarget(release, ReleaseIdSchema.make("test-other"));
-    const error = await Effect.runPromise(
-      publish(release, state.target).pipe(Effect.flip)
-    );
-    expect(error._tag).toBe("PublicationStaleBaseError");
-    expect(error).toHaveProperty("activeReleaseId", "test-other");
-    expect(state.activationTransitions).toBe(0);
+    expect(error).toMatchObject({ _tag: "ReleaseVerificationMismatchError" });
+    expect(replayCount).toBeGreaterThanOrEqual(7);
+    expect(state.stageProjectionBatch).toHaveBeenCalledOnce();
+    expect(state.activate).not.toHaveBeenCalled();
   });
 
-  it("rejects a compiled payload without an authenticated upsert item", async () => {
-    vi.mocked(compileReleaseSources).mockReturnValueOnce(
-      Effect.succeed([payload, payload])
-    );
-    const release = makeRelease("test-release-extra-payload", [upsert]);
+  it("proves exact Git sources before any target write", async () => {
+    const release = await makeRelease("test-release-source-preflight");
     const state = makeTarget(release);
     const error = await Effect.runPromise(
-      publish(release, state.target).pipe(Effect.flip)
+      publishPrepared(
+        release.prepared,
+        state.target,
+        'export const metadata = {}\n\n<BlockMath math="y" />'
+      ).pipe(Effect.flip)
     );
-    expect(error._tag).toBe("ReleaseArtifactMismatchError");
-    expect(state.activationTransitions).toBe(0);
+    expect(error).toMatchObject({ _tag: "ReleaseArtifactMismatchError" });
+    expect(state.stageRelease).not.toHaveBeenCalled();
+    expect(state.stageItemBatch).not.toHaveBeenCalled();
+    expect(state.stageProjectionBatch).not.toHaveBeenCalled();
+    expect(state.stageArtifactBatch).not.toHaveBeenCalled();
+  });
+
+  it("stages rollback artifacts and rejects a mismatched prepared mode", async () => {
+    const release = await makeRollbackRelease("test-release-rollback");
+    const state = makeTarget(release);
+    await Effect.runPromise(publishPrepared(release.prepared, state.target));
+    expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
+    const mismatch = makePreparedGitRelease({
+      items: release.prepared.items,
+      manifest: release.manifest,
+      projections: release.prepared.projections,
+      rendererManifest,
+    });
+    const error = await Effect.runPromise(
+      publishPrepared(mismatch, state.target).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({ _tag: "PublicationModeMismatchError" });
+
+    const gitRelease = await makeRelease("test-release-git-mode");
+    const gitState = makeTarget(gitRelease);
+    const rollbackMismatch = makePreparedRollbackRelease({
+      artifacts: release.prepared.artifacts,
+      items: gitRelease.prepared.items,
+      manifest: gitRelease.manifest,
+      projections: gitRelease.prepared.projections,
+      rendererManifest,
+    });
+    const rollbackError = await Effect.runPromise(
+      publishPrepared(rollbackMismatch, gitState.target).pipe(Effect.flip)
+    );
+    expect(rollbackError).toMatchObject({
+      _tag: "PublicationModeMismatchError",
+    });
   });
 });

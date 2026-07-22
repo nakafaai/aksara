@@ -1,8 +1,8 @@
 import { compile } from "@mdx-js/mdx";
 import type { Root } from "mdast";
 import { describe, expect, it } from "vitest";
-import type { UnsupportedMdxModuleOccurrence } from "#compiler/errors.js";
-import { collectUnsupportedMdxModules } from "#compiler/module-policy.js";
+import type { UnsupportedMdxModuleOccurrence } from "#compiler/errors";
+import { collectUnsupportedMdxModules } from "#compiler/module-policy";
 
 /** Parses MDX and returns the redacted unsupported-module occurrences. */
 async function inspectModules(rawMdx: string) {

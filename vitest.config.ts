@@ -8,7 +8,7 @@ const config = defineConfig({
   resolve: {
     alias: [
       {
-        find: new RegExp(`^#${workspaceName}/(.+)\\.js$`),
+        find: new RegExp(`^#${workspaceName}/(.+)$`),
         replacement: `${sourceRoot}/$1.ts`,
       },
     ],

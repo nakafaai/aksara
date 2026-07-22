@@ -1,8 +1,8 @@
 # Aksara
 
-Aksara is the foundation for Nakafa's trusted content compilation and
-publication system. It is a small public Turborepo. The current repository does
-not own the Nakafa corpus and is not connected to the production application.
+Aksara is Nakafa's trusted content compilation and publication system. It is a
+small public Turborepo. The repository currently owns only the real bilingual
+Function Concept vertical slice; it is not connected to Nakafa production yet.
 
 ## Current modules
 
@@ -11,14 +11,17 @@ not own the Nakafa corpus and is not connected to the production application.
 - `@nakafaai/aksara-compiler` validates trusted MDX syntax and compiles it into
   standard `function-body` output without executing it.
 - `@nakafaai/aksara-publisher` verifies, signs, batches, stages, and activates a
-  release through injected source and target interfaces. No Convex adapter is
-  implemented yet.
+  release through injected source and target interfaces. It prepares the real
+  material slice from AST-decoded MDX metadata. No Convex adapter is implemented
+  yet.
+- `@nakafaai/aksara-corpus` owns the reviewed Function Concept `en` and `id`
+  sources plus their non-React source registry. No substitute lessons or React
+  implementations live in this package.
 - `@nakafaai/typescript-config` owns the single Node ESM compiler contract used
-  by all three domain packages.
+  by the domain packages.
 
-The corpus and CLI modules will be added only when they operate on real Nakafa
-sources. This repository contains no authored educational content or substitute
-fixtures.
+The CLI will be added only with the actual Nakafa preview caller. Further corpus
+families remain gated by provenance and renderer-fidelity checks.
 
 ## Commands
 
@@ -48,6 +51,12 @@ Turbo owns that dependency build order.
 `package.json` is the single toolchain source for Node, pnpm, and their CI
 setup. Aksara does not duplicate that contract in `.npmrc`,
 `.node-version`, or `.nvmrc` files.
+
+All hand-written executable source and repository tooling is TypeScript. The
+file-name gate rejects tracked JavaScript source. `dist/*.js` is ignored,
+generated output because Node does not execute TypeScript source from an
+installed `node_modules` package, as documented by Node's
+[TypeScript support](https://nodejs.org/api/typescript.html#type-stripping-in-dependencies).
 
 Package-internal TypeScript imports use private Node aliases such as
 `#contracts/*`; cross-package imports use exact `@nakafaai/*` exports. Tests

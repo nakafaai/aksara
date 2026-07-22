@@ -1,23 +1,32 @@
 import { Schema } from "effect";
-import { ContentLocaleSchema } from "#contracts/content.js";
+import { ContentLocaleSchema } from "#contracts/content";
+import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,
+  CorpusSourcePathSchema,
   Ed25519SignatureSchema,
-  GitCommitShaSchema,
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "#contracts/ids.js";
-import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract.js";
+} from "#contracts/ids";
+import {
+  canonicalizeReleaseOrigin,
+  ReleaseOriginSchema,
+} from "#contracts/release/origin";
+import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
+import { RendererDomainSchema } from "#contracts/renderer/domain";
 
 /** One immutable artifact selected for a locale-specific content head. */
 export const ContentUpsertSchema = Schema.Struct({
   artifactHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
+  delivery: ContentDeliveryClassSchema,
   locale: ContentLocaleSchema,
   operation: Schema.Literal("upsert"),
   publicPath: Schema.optional(PublicPathSchema),
+  rendererDomain: RendererDomainSchema,
+  sourcePath: CorpusSourcePathSchema,
 });
 
 /** One locale-specific content head removed by an explicit tombstone. */
@@ -25,7 +34,6 @@ export const ContentDeleteSchema = Schema.Struct({
   contentKey: ContentKeySchema,
   locale: ContentLocaleSchema,
   operation: Schema.Literal("delete"),
-  publicPath: Schema.optional(PublicPathSchema),
 });
 
 /** Complete tagged change vocabulary accepted by a v1 content release. */
@@ -55,7 +63,7 @@ export function compareContentChanges(
   return 0;
 }
 
-const ReleaseItemIndexSchema = Schema.Number.pipe(
+export const ReleaseItemIndexSchema = Schema.Number.pipe(
   Schema.int(),
   Schema.nonNegative()
 );
@@ -73,30 +81,46 @@ const ProjectionCountSchema = Schema.Number.pipe(
   Schema.nonNegative()
 );
 
-/** Expected total read-model counts after atomic release activation. */
-export const ContentProjectionCountsSchema = Schema.Struct({
-  artifacts: ProjectionCountSchema,
-  graphRows: ProjectionCountSchema,
-  heads: ProjectionCountSchema,
-  llmsDocuments: ProjectionCountSchema,
-  routes: ProjectionCountSchema,
-  searchRows: ProjectionCountSchema,
-  sitemapEntries: ProjectionCountSchema,
-});
-export type ContentProjectionCounts = typeof ContentProjectionCountsSchema.Type;
-
 /** Deterministic desired-state transition for one content release. */
-export const ContentReleaseManifestSchema = Schema.Struct({
-  aksaraSha: GitCommitShaSchema,
+const ContentReleaseManifestFields = {
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
-  expectedCounts: ContentProjectionCountsSchema,
-  expectedDigest: Sha256HashSchema,
   itemCount: ProjectionCountSchema,
   itemsDigest: Sha256HashSchema,
+  origin: ReleaseOriginSchema,
+  projectionCount: ProjectionCountSchema,
+  projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
-});
+};
+
+/** Checks rollback provenance against the forward release identities. */
+function hasCoherentReleaseOrigin(input: {
+  readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
+  readonly origin: typeof ReleaseOriginSchema.Type;
+  readonly releaseId: typeof ReleaseIdSchema.Type;
+}) {
+  if (input.baseReleaseId === input.releaseId) {
+    return false;
+  }
+  if (input.origin.kind === "git") {
+    return true;
+  }
+  return (
+    input.baseReleaseId === input.origin.releaseId &&
+    input.releaseId !== input.origin.releaseId
+  );
+}
+
+/** Deterministic desired-state transition with signed source provenance. */
+export const ContentReleaseManifestSchema = Schema.Struct(
+  ContentReleaseManifestFields
+).pipe(
+  Schema.filter(hasCoherentReleaseOrigin, {
+    message: () =>
+      "Expected a new release identity and a coherent source origin.",
+  })
+);
 export type ContentReleaseManifest = typeof ContentReleaseManifestSchema.Type;
 
 /** Immutable release manifest plus its asymmetric authenticity proof. */
@@ -120,8 +144,8 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   deleteHeads: ProjectionCountSchema,
   itemCount: ProjectionCountSchema,
   itemsDigest: Sha256HashSchema,
+  projectionCount: ProjectionCountSchema,
   projectionDigest: Sha256HashSchema,
-  recomputedProjectionCounts: ContentProjectionCountsSchema,
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
@@ -139,6 +163,7 @@ export const PublicationReceiptSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
   stagedArtifacts: ProjectionCountSchema,
   stagedItems: ProjectionCountSchema,
+  stagedProjections: ProjectionCountSchema,
 });
 export type PublicationReceipt = typeof PublicationReceiptSchema.Type;
 
@@ -147,12 +172,15 @@ export function canonicalizeContentChange(change: ContentChange) {
   if (change.operation === "upsert") {
     return {
       contentKey: change.contentKey,
+      delivery: change.delivery,
       locale: change.locale,
       operation: change.operation,
       ...(change.publicPath === undefined
         ? {}
         : { publicPath: change.publicPath }),
       artifactHash: change.artifactHash,
+      rendererDomain: change.rendererDomain,
+      sourcePath: change.sourcePath,
     };
   }
 
@@ -160,9 +188,6 @@ export function canonicalizeContentChange(change: ContentChange) {
     contentKey: change.contentKey,
     locale: change.locale,
     operation: change.operation,
-    ...(change.publicPath === undefined
-      ? {}
-      : { publicPath: change.publicPath }),
   };
 }
 
@@ -180,20 +205,12 @@ export function canonicalizeContentReleaseManifest(
   manifest: ContentReleaseManifest
 ) {
   return JSON.stringify({
-    aksaraSha: manifest.aksaraSha,
     baseReleaseId: manifest.baseReleaseId,
-    expectedCounts: {
-      artifacts: manifest.expectedCounts.artifacts,
-      graphRows: manifest.expectedCounts.graphRows,
-      heads: manifest.expectedCounts.heads,
-      llmsDocuments: manifest.expectedCounts.llmsDocuments,
-      routes: manifest.expectedCounts.routes,
-      searchRows: manifest.expectedCounts.searchRows,
-      sitemapEntries: manifest.expectedCounts.sitemapEntries,
-    },
-    expectedDigest: manifest.expectedDigest,
     itemCount: manifest.itemCount,
     itemsDigest: manifest.itemsDigest,
+    origin: canonicalizeReleaseOrigin(manifest.origin),
+    projectionCount: manifest.projectionCount,
+    projectionDigest: manifest.projectionDigest,
     releaseId: manifest.releaseId,
     rendererContractVersion: manifest.rendererContractVersion,
     rendererManifestHash: manifest.rendererManifestHash,

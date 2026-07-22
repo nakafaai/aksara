@@ -2,14 +2,14 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import ts from "typescript";
 
-const SOURCE_PATTERN = /\.(?:[cm]?[jt]sx?)$/u;
+const SOURCE_PATTERN = /\.(?:[cm]?ts|tsx)$/u;
 const GENERATED_PATH_PATTERN =
   /(?:^|\/)(?:dist|node_modules|_generated)(?:\/|$)/u;
 const WHITESPACE_PATTERN = /\s+/u;
 const MINIMUM_DOCUMENTATION_WORDS = 3;
 
-/** Lists authored JavaScript and TypeScript files that require documentation. */
-function sourceFiles() {
+/** Lists authored TypeScript files that require documentation. */
+function sourceFiles(): string[] {
   return execFileSync(
     "git",
     ["ls-files", "--cached", "--others", "--exclude-standard"],
@@ -26,7 +26,7 @@ function sourceFiles() {
 }
 
 /** Detects bindings created by Effect's named function factory. */
-function isEffectFunctionFactory(node) {
+function isEffectFunctionFactory(node: ts.Node): boolean {
   if (!ts.isCallExpression(node)) {
     return false;
   }
@@ -43,7 +43,7 @@ function isEffectFunctionFactory(node) {
 }
 
 /** Reports whether an initializer creates a named callable binding. */
-function isCallableInitializer(node) {
+function isCallableInitializer(node: ts.Expression): boolean {
   return (
     ts.isArrowFunction(node) ||
     ts.isFunctionExpression(node) ||
@@ -52,7 +52,7 @@ function isCallableInitializer(node) {
 }
 
 /** Finds the syntax node that owns leading JSDoc for a declaration. */
-function documentationOwner(node) {
+function documentationOwner(node: ts.Node): ts.Node {
   if (ts.isVariableDeclaration(node)) {
     return node.parent.parent;
   }
@@ -60,7 +60,7 @@ function documentationOwner(node) {
 }
 
 /** Extracts prose from leading JSDoc while ignoring tags and delimiters. */
-function documentationText(node, sourceFile) {
+function documentationText(node: ts.Node, sourceFile: ts.SourceFile): string {
   return ts
     .getJSDocCommentsAndTags(documentationOwner(node))
     .filter(ts.isJSDoc)
@@ -76,7 +76,10 @@ function documentationText(node, sourceFile) {
 }
 
 /** Reports whether a declaration has a short but meaningful JSDoc summary. */
-function hasUsefulDocumentation(node, sourceFile) {
+function hasUsefulDocumentation(
+  node: ts.Node,
+  sourceFile: ts.SourceFile
+): boolean {
   const words = documentationText(node, sourceFile)
     .split(WHITESPACE_PATTERN)
     .filter((word) => word.length > 0);
@@ -84,7 +87,10 @@ function hasUsefulDocumentation(node, sourceFile) {
 }
 
 /** Returns the stable name for one callable declaration when it has one. */
-function callableName(node, sourceFile) {
+function callableName(
+  node: ts.Node,
+  sourceFile: ts.SourceFile
+): string | undefined {
   if (ts.isFunctionDeclaration(node) && node.name) {
     return node.name.text;
   }
@@ -130,7 +136,7 @@ function callableName(node, sourceFile) {
 }
 
 /** Collects stable callable declarations that lack useful JSDoc. */
-function missingDocumentation(file) {
+function missingDocumentation(file: string): string[] {
   const sourceText = readFileSync(file, "utf8");
   const sourceFile = ts.createSourceFile(
     file,
@@ -138,8 +144,8 @@ function missingDocumentation(file) {
     ts.ScriptTarget.Latest,
     true
   );
-  const missing = [];
-  const nodes = [sourceFile];
+  const missing: string[] = [];
+  const nodes: ts.Node[] = [sourceFile];
 
   while (nodes.length > 0) {
     const node = nodes.pop();
