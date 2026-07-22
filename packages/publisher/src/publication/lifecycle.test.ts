@@ -182,6 +182,23 @@ describe("completePublicationLifecycle", () => {
     expect(stage).not.toHaveBeenCalled();
   });
 
+  it("fails an aborting release before staging or activation work", async () => {
+    const state = makeTarget("aborting");
+    const stage = vi.fn();
+    const error = await Effect.runPromise(
+      runLifecycle(state.target, Effect.sync(stage)).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PublicationResumePhaseError",
+      phase: "aborting",
+      releaseId: release.manifest.releaseId,
+    });
+    expect(stage).not.toHaveBeenCalled();
+    expect(state.verify).not.toHaveBeenCalled();
+    expect(state.activate).not.toHaveBeenCalled();
+    expect(state.finalize).not.toHaveBeenCalled();
+  });
+
   it.each([
     {
       manifestHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),

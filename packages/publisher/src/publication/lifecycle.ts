@@ -9,6 +9,7 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import { Effect } from "effect";
 import {
   PublicationReleaseAbortedError,
+  PublicationResumePhaseError,
   PublicationStatusMismatchError,
   type PublicationTarget,
 } from "#publisher/publication/spec";
@@ -35,6 +36,7 @@ type PublicationLifecycleError<E> =
   | E
   | PublicationReceiptMismatchError
   | PublicationReleaseAbortedError
+  | PublicationResumePhaseError
   | PublicationStatusMismatchError
   | PublicationTargetFailure
   | ReleaseVerificationMismatchError;
@@ -86,6 +88,12 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
     });
     yield* validatePublicationStatus(release, status);
 
+    if (status.phase === "aborting") {
+      return yield* new PublicationResumePhaseError({
+        phase: status.phase,
+        releaseId: manifest.releaseId,
+      });
+    }
     if (status.phase === "aborted") {
       return yield* new PublicationReleaseAbortedError({
         manifestHash: release.manifestHash,
