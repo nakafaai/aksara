@@ -1,12 +1,12 @@
 import {
   canonicalizeSignedContentArtifact,
   type SignedContentArtifact,
-} from "@nakafaai/aksara-contracts/content";
-import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/content";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   type ContentReleaseItem,
   canonicalizeContentReleaseItem,
-} from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/release";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 

@@ -1,4 +1,4 @@
-# @nakafaai/aksara-contracts
+# @nakafa/aksara-contracts
 
 Exact runtime contracts used by the Aksara compiler and publisher. Nakafa does
 not consume this package yet.

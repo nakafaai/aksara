@@ -1,4 +1,4 @@
-import { ReleaseIdSchema } from "@nakafaai/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { streamBatches } from "#publisher/batch/core";

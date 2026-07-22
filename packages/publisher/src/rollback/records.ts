@@ -1,16 +1,16 @@
-import { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact/verify";
-import type { SignedContentArtifact } from "@nakafaai/aksara-contracts/content";
-import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
-import type { MaterialLessonProjection } from "@nakafaai/aksara-contracts/projection/material";
+import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
-} from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/release";
 import {
   isRollbackUpsert,
   type RollbackRecord,
-} from "@nakafaai/aksara-contracts/release/rollback";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
+} from "@nakafa/aksara-contracts/release/rollback";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {
   type ReleaseArtifactMismatchError,

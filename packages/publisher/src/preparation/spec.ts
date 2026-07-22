@@ -1,24 +1,24 @@
-import type { verifyCompiledContentSourceHash } from "@nakafaai/aksara-contracts/artifact/source";
+import type { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
   type SignedContentArtifact,
-} from "@nakafaai/aksara-contracts/content";
-import type { GitCommitSha, ReleaseId } from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/content";
+import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   type MaterialLessonProjection,
   MaterialLessonProjectionSchema,
-} from "@nakafaai/aksara-contracts/projection/material";
-import type { verifyContentProjections } from "@nakafaai/aksara-contracts/projection/verify";
+} from "@nakafa/aksara-contracts/projection/material";
+import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
   ContentDeleteSchema,
   type ContentReleaseItem,
   type ContentReleaseManifest,
   ContentUpsertSchema,
-} from "@nakafaai/aksara-contracts/release";
-import type { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
-import type { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/release";
+import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { type Effect, Schema, type Stream } from "effect";
 import type {
   PreparedContentCoherenceError,

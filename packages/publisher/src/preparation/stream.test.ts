@@ -1,20 +1,20 @@
-import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
-import { CompileDocumentSourceSchema } from "@nakafaai/aksara-contracts/content";
+import { compileContent } from "@nakafa/aksara-compiler/compile";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
   MaterialSectionSchema,
-} from "@nakafaai/aksara-contracts/projection/material";
-import { ContentUpsertSchema } from "@nakafaai/aksara-contracts/release";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/projection/material";
+import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";

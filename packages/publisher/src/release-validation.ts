@@ -1,21 +1,21 @@
 import type {
   CompiledContentPayload,
   SignedContentArtifact,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   ReleaseIdSchema,
   type Sha256Hash,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import type { VerifiedContentProjections } from "@nakafaai/aksara-contracts/projection/verify";
+} from "@nakafa/aksara-contracts/ids";
+import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseItem,
   ContentReleaseManifest,
   PublicationReceipt,
   ReleaseVerificationEvidence,
-} from "@nakafaai/aksara-contracts/release";
-import type { VerifiedContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
+} from "@nakafa/aksara-contracts/release";
+import type { VerifiedContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema } from "effect";
 
 /** Signed payloads do not exactly satisfy their authenticated item stream. */

@@ -1,8 +1,8 @@
 import type {
   CompiledContentPayload,
   decodeCompileDocumentRequest,
-} from "@nakafaai/aksara-contracts/content";
-import type { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/content";
+import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import {
   compileValidatedContent,

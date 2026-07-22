@@ -20,10 +20,10 @@ const registryState = vi.hoisted(() => ({
   withoutEnglish: false,
 }));
 
-vi.mock("@nakafaai/aksara-corpus/material/registry", async (importOriginal) => {
+vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const original =
     await importOriginal<
-      typeof import("@nakafaai/aksara-corpus/material/registry")
+      typeof import("@nakafa/aksara-corpus/material/registry")
     >();
   return {
     ...original,

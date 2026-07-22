@@ -2,7 +2,7 @@ import {
   type ReleaseCleanupReceipt,
   ReleaseCleanupReceiptSchema,
   ReleaseCleanupRequestSchema,
-} from "@nakafaai/aksara-contracts/release/lifecycle";
+} from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect, Schema } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 

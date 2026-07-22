@@ -1,15 +1,15 @@
-import { verifyCompiledContentSourceHash } from "@nakafaai/aksara-contracts/artifact/source";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
+import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import {
   compareContentHeads,
   routeIdentity,
-} from "@nakafaai/aksara-contracts/content";
-import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
-import type { MaterialLessonProjection } from "@nakafaai/aksara-contracts/projection/material";
+} from "@nakafa/aksara-contracts/content";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
-} from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/release";
 import { Effect, Schema, Stream } from "effect";
 import {
   type CoherenceFieldSchema,

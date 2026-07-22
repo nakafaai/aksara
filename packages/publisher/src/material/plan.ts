@@ -1,15 +1,15 @@
-import type { LocalCache } from "@nakafaai/aksara-compiler/incremental";
+import type { LocalCache } from "@nakafa/aksara-compiler/incremental";
 import {
   type ContentLocale,
   compareContentHeads,
   headIdentity,
-} from "@nakafaai/aksara-contracts/content";
-import type { ContentKey } from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/content";
+import type { ContentKey } from "@nakafa/aksara-contracts/ids";
 import {
   type ContentChange,
   ContentDeleteSchema,
-} from "@nakafaai/aksara-contracts/release";
-import type { MaterialEntry } from "@nakafaai/aksara-corpus/material/registry";
+} from "@nakafa/aksara-contracts/release";
+import type { MaterialEntry } from "@nakafa/aksara-corpus/material/registry";
 
 /** Ephemeral prior-head view derived from compiler-owned cache identity. */
 interface MaterialHeadState {

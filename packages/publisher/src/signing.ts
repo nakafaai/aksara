@@ -4,36 +4,36 @@ import {
   type KeyObject,
   sign as signBytes,
 } from "node:crypto";
-import { validateArtifactByteIntegrity } from "@nakafaai/aksara-contracts/artifact/limits";
-import { verifyCompiledContentSourceHash } from "@nakafaai/aksara-contracts/artifact/source";
+import { validateArtifactByteIntegrity } from "@nakafa/aksara-contracts/artifact/limits";
+import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import type {
   ArtifactCompiledByteLengthMismatchError,
   ArtifactPayloadFieldByteLimitError,
   ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
   ArtifactVerificationByteLimitError,
-} from "@nakafaai/aksara-contracts/artifact/spec";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
+} from "@nakafa/aksara-contracts/artifact/spec";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   type SignedContentArtifact,
   SignedContentArtifactSchema,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   Ed25519SignatureSchema,
   SigningKeyIdSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import {
   type ContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
-} from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/release";
 import {
   hashContentReleaseManifest,
   type ReleaseHashComputationError,
-} from "@nakafaai/aksara-contracts/release/hash";
+} from "@nakafa/aksara-contracts/release/hash";
 import { Effect, Schema } from "effect";
 import { ContentSigningError } from "#publisher/signing-errors";
 

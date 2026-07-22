@@ -1,4 +1,4 @@
-import { ContentKeySchema } from "@nakafaai/aksara-contracts/ids";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 
 /** The trusted MDX compiler rejected syntax or failed to emit JavaScript. */

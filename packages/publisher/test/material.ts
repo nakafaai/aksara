@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import {
   type MaterialCheckout,

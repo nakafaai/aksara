@@ -1,21 +1,21 @@
 import { Buffer } from "node:buffer";
 import { createHash, generateKeyPairSync } from "node:crypto";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
-import { CompiledContentPayloadSchema } from "@nakafaai/aksara-contracts/content";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import { MaterialLessonProjectionSchema } from "@nakafaai/aksara-contracts/projection/material";
+} from "@nakafa/aksara-contracts/ids";
+import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
   RollbackDeleteSchema,
   RollbackPageSchema,
   RollbackUpsertSchema,
-} from "@nakafaai/aksara-contracts/release/rollback";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
-import { ContentVerificationKeyResolver } from "@nakafaai/aksara-contracts/signature/spec";
+} from "@nakafa/aksara-contracts/release/rollback";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";

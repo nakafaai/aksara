@@ -1,15 +1,15 @@
-import type { GitCommitSha } from "@nakafaai/aksara-contracts/ids";
+import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import {
   decodeContentProjections,
   verifyContentProjections,
-} from "@nakafaai/aksara-contracts/projection/verify";
-import type { ContentReleaseItem } from "@nakafaai/aksara-contracts/release";
+} from "@nakafa/aksara-contracts/projection/verify";
+import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import {
   decodeContentReleaseItems,
   verifyContentReleaseItems,
-} from "@nakafaai/aksara-contracts/release/items";
-import { verifySignedContentRelease } from "@nakafaai/aksara-contracts/release/verify";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/release/items";
+import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted, Stream } from "effect";
 import {
   makeArtifactBatches,

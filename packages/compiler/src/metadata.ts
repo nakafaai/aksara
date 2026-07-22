@@ -1,4 +1,4 @@
-import type { ContentKey } from "@nakafaai/aksara-contracts/ids";
+import type { ContentKey } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import type {
   ArrayExpression,

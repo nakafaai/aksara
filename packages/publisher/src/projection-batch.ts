@@ -1,8 +1,8 @@
-import type { ReleaseId } from "@nakafaai/aksara-contracts/ids";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeMaterialProjection,
   type MaterialLessonProjection,
-} from "@nakafaai/aksara-contracts/projection/material";
+} from "@nakafa/aksara-contracts/projection/material";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 

@@ -1,10 +1,10 @@
-import { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact/verify";
-import type { SignedContentArtifact } from "@nakafaai/aksara-contracts/content";
+import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import type {
   ContentReleaseItem,
   ContentReleaseManifest,
-} from "@nakafaai/aksara-contracts/release";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
+} from "@nakafa/aksara-contracts/release";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {
   ReleaseArtifactMismatchError,

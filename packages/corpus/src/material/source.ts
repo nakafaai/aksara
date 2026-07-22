@@ -1,8 +1,8 @@
 import { FileSystem, Path } from "@effect/platform";
-import type { ContentDeliveryClass } from "@nakafaai/aksara-contracts/delivery";
-import type { CorpusSourcePath } from "@nakafaai/aksara-contracts/ids";
-import type { MaterialLessonRoute } from "@nakafaai/aksara-contracts/projection/material";
-import type { RendererDomain } from "@nakafaai/aksara-contracts/renderer/domain";
+import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
+import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
+import type { MaterialLessonRoute } from "@nakafa/aksara-contracts/projection/material";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 import type { MaterialEntry } from "#corpus/material/registry";
 

@@ -20,15 +20,15 @@ const allowedWorkspaceDependencies: ReadonlyMap<
   string,
   ReadonlySet<string>
 > = new Map([
-  ["compiler", new Set(["@nakafaai/aksara-contracts"])],
+  ["compiler", new Set(["@nakafa/aksara-contracts"])],
   ["contracts", new Set()],
-  ["corpus", new Set(["@nakafaai/aksara-contracts"])],
+  ["corpus", new Set(["@nakafa/aksara-contracts"])],
   [
     "publisher",
     new Set([
-      "@nakafaai/aksara-compiler",
-      "@nakafaai/aksara-contracts",
-      "@nakafaai/aksara-corpus",
+      "@nakafa/aksara-compiler",
+      "@nakafa/aksara-contracts",
+      "@nakafa/aksara-corpus",
     ]),
   ],
 ]);
@@ -169,7 +169,7 @@ function importViolation(file: string, specifier: string): string | undefined {
   ) {
     return "self-import through public package export";
   }
-  if (!specifier.startsWith("@nakafaai/")) {
+  if (!specifier.startsWith("@nakafa/")) {
     return;
   }
   const packageName = specifier.split("/").slice(0, 2).join("/");

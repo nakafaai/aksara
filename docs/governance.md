@@ -11,11 +11,12 @@ artifact signatures, application authorization, or content entitlement checks.
   `1e5214e474dcbd32eb3a72dff944d657127fa0aa`.
 - Ruleset `19330486` targets `refs/heads/main` and requires pull requests,
   resolved review conversations, and the strict `verify` check, and blocks
-  deletion and non-fast-forward updates. It has no bypass actor. Merge commits
-  and squash merges are allowed; rebase merges remain disabled.
-- The bounded corpus-history migration must use a merge commit so its filtered
-  Nakafa ancestry remains reachable. Ordinary cohesive pull requests may still
-  use squash merge.
+  deletion and non-fast-forward updates. It has no bypass actor. Only squash
+  merges are currently allowed, and merged branches are deleted automatically.
+- The bounded corpus-history migration needs one reviewed merge-commit window
+  so its filtered Nakafa ancestry remains reachable. That exception must enable
+  merge commits only for the exact migration pull request, preserve every
+  required check, and restore squash-only settings immediately afterward.
 - Required approval count is currently zero because only one real repository
   owner is available. `CODEOWNERS` assigns all paths to `@nabilfatih`; separate
   corpus and compiler/publisher ownership cannot be claimed until a real second
@@ -62,8 +63,8 @@ The repository owner explicitly authorized the bootstrap commit and push on
 5. Completed: re-read the ruleset, Actions permissions, repository merge and
    security settings, and production environment through the GitHub API after
    the ruleset update. No other setting drift was found.
-6. Completed: permit merge commits without weakening required checks or review
-   controls so filtered corpus ancestry can survive its migration pull request.
+6. Completed: restore squash-only merges and automatic merged-branch deletion
+   after the foundation pull requests.
 
 The owner selected the existing Nakafa license set for Aksara. Software uses
 the Nakafa Source Available License 1.0, educational corpus uses the Nakafa

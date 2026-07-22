@@ -1,13 +1,13 @@
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import {
   ContentReleaseManifestSchema,
   type PublicationReceipt,
   SignedContentReleaseSchema,
-} from "@nakafaai/aksara-contracts/release";
-import type { ContentReleaseStatus } from "@nakafaai/aksara-contracts/release/lifecycle";
+} from "@nakafa/aksara-contracts/release";
+import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { completePublicationLifecycle } from "#publisher/publication/lifecycle";

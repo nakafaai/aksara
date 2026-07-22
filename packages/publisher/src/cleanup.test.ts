@@ -1,8 +1,8 @@
-import { ReleaseIdSchema } from "@nakafaai/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type {
   ReleaseCleanupReceipt,
   ReleaseCleanupRequest,
-} from "@nakafaai/aksara-contracts/release/lifecycle";
+} from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import {

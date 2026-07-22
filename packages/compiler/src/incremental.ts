@@ -3,13 +3,13 @@ import {
   CompiledContentPayloadSchema,
   ContentLocaleSchema,
   canonicalizeCompiledContentPayload,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import { RendererDomainSchema } from "@nakafaai/aksara-contracts/renderer/domain";
+} from "@nakafa/aksara-contracts/ids";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Either, Schema } from "effect";
 import type {
   CompileContentError,

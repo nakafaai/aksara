@@ -35,7 +35,7 @@ for clarity, measurable scale, and safe releases.
 - Put dependencies in the workspace that uses them and use `workspace:*` for
   internal dependencies.
 - Same-package TypeScript imports use the private `#contracts/*`, `#compiler/*`,
-  or `#publisher/*` alias. Cross-package imports use exact `@nakafaai/*` package
+  or `#publisher/*` alias. Cross-package imports use exact `@nakafa/*` package
   exports. Relative module imports are forbidden; relative config inheritance
   and CLI filesystem paths are not module imports.
 - Root task scripts delegate to Turbo, except repository-wide tooling such as

@@ -1,6 +1,6 @@
-import { CompileDocumentSourceSchema } from "@nakafaai/aksara-contracts/content";
-import type { GitCommitSha } from "@nakafaai/aksara-contracts/ids";
-import type { ContentReleaseItem } from "@nakafaai/aksara-contracts/release";
+import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
+import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
+import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import { Effect, Layer, Stream } from "effect";
 import { GitBlob, GitBlobLive } from "#publisher/git/blob";
 import {

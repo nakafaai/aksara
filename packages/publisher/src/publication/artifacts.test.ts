@@ -1,19 +1,19 @@
 // @vitest-environment node
 
 import { createHash, generateKeyPairSync } from "node:crypto";
-import { CompiledContentPayloadSchema } from "@nakafaai/aksara-contracts/content";
+import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
-} from "@nakafaai/aksara-contracts/release";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
-import { ContentVerificationKeyResolver } from "@nakafaai/aksara-contracts/signature/spec";
+} from "@nakafa/aksara-contracts/release";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeRollbackArtifacts } from "#publisher/publication/artifacts";

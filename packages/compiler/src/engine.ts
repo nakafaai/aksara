@@ -7,19 +7,19 @@ import {
   canonicalizeCompiledContentPayload,
   decodeCompileDocumentRequest,
   MDX_COMPILER_VERSION,
-} from "@nakafaai/aksara-contracts/content";
-import type { ContentKey } from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/content";
+import type { ContentKey } from "@nakafa/aksara-contracts/ids";
 import {
   MAX_CANONICAL_PAYLOAD_BYTES,
   MAX_COMPILED_CODE_BYTES,
   MAX_PLAIN_TEXT_BYTES,
   MAX_RAW_MDX_BYTES,
-} from "@nakafaai/aksara-contracts/limits";
-import type { RendererComponentRequirement } from "@nakafaai/aksara-contracts/renderer/component";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
-import { selectRendererDomainCapability } from "@nakafaai/aksara-contracts/renderer/contract";
-import type { RendererDomain } from "@nakafaai/aksara-contracts/renderer/domain";
-import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/limits";
+import type { RendererComponentRequirement } from "@nakafa/aksara-contracts/renderer/component";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";

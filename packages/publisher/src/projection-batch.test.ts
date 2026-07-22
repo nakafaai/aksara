@@ -1,8 +1,8 @@
 // @vitest-environment node
 
 import { Buffer } from "node:buffer";
-import { ReleaseIdSchema } from "@nakafaai/aksara-contracts/ids";
-import { MaterialLessonProjectionSchema } from "@nakafaai/aksara-contracts/projection/material";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {

@@ -1,16 +1,16 @@
 import {
   AKSARA_COMPILER_VERSION,
   MDX_COMPILER_VERSION,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   canonicalizeRendererAuthoringSelection,
   sortRendererComponentRequirements,
-} from "@nakafaai/aksara-contracts/renderer/component";
+} from "@nakafa/aksara-contracts/renderer/component";
 import {
   type RendererManifestEnvelope,
   selectRendererDomainCapability,
-} from "@nakafaai/aksara-contracts/renderer/contract";
-import type { RendererDomain } from "@nakafaai/aksara-contracts/renderer/domain";
+} from "@nakafa/aksara-contracts/renderer/contract";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { hashUtf8 } from "#compiler/hash";
 
 /** Stable provider identifier used by the server-owned MDX registry. */

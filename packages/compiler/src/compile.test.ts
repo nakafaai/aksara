@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
-import { Sha256HashSchema } from "@nakafaai/aksara-contracts/ids";
-import { MAX_RAW_MDX_BYTES } from "@nakafaai/aksara-contracts/limits";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";

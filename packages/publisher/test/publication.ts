@@ -1,28 +1,28 @@
 import { generateKeyPairSync } from "node:crypto";
-import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
-import { CompileDocumentSourceSchema } from "@nakafaai/aksara-contracts/content";
+import { compileContent } from "@nakafa/aksara-compiler/compile";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   GitCommitShaSchema,
   PublicPathSchema,
   ReleaseIdSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
   MaterialSectionSchema,
-} from "@nakafaai/aksara-contracts/projection/material";
+} from "@nakafa/aksara-contracts/projection/material";
 import {
   type ContentReleaseManifest,
   ContentReleaseManifestSchema,
   ContentUpsertSchema,
   type SignedContentRelease,
-} from "@nakafaai/aksara-contracts/release";
-import type { ContentReleaseStatus } from "@nakafaai/aksara-contracts/release/lifecycle";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
-import { ContentVerificationKeyResolver } from "@nakafaai/aksara-contracts/signature/spec";
+} from "@nakafa/aksara-contracts/release";
+import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Redacted, Stream } from "effect";
 import { vi } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";

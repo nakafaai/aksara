@@ -2,29 +2,29 @@
 
 import { Buffer } from "node:buffer";
 import { generateKeyPairSync, verify } from "node:crypto";
-import { compileContent } from "@nakafaai/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
+import { compileContent } from "@nakafa/aksara-compiler/compile";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
   compareContentHeads,
-} from "@nakafaai/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/content";
 import {
   type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
-} from "@nakafaai/aksara-contracts/ids";
-import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafaai/aksara-contracts/limits";
+} from "@nakafa/aksara-contracts/ids";
+import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import {
   type ContentChange,
   ContentChangeSchema,
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
   canonicalizeContentReleaseSigningInput,
-} from "@nakafaai/aksara-contracts/release";
-import { digestItems } from "@nakafaai/aksara-contracts/release/digest";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
+} from "@nakafa/aksara-contracts/release";
+import { digestItems } from "@nakafa/aksara-contracts/release/digest";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing";

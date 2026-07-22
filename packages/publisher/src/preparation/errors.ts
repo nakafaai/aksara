@@ -1,7 +1,7 @@
 import {
   PublicPathSchema,
   ReleaseIdSchema,
-} from "@nakafaai/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 
 const RecordIndexSchema = Schema.Number.pipe(
