@@ -107,8 +107,16 @@ on package existence.
 
 After the initial `0.1.0` package exists, every contracts change carries a
 Changeset. `version.yml` uses the official Changesets action only to create or
-update a ready version pull request through GitHub's API. It never publishes,
-never receives an npm token, and remains inactive before bootstrap.
+update a ready version pull request through GitHub's API. GitHub suppresses
+ordinary recursive workflow runs for `GITHUB_TOKEN` changes, so the version job
+validates the exact bot-owned pull request and branch head, then dispatches CI
+for that SHA through `workflow_dispatch`. The CI workflow independently binds
+the dispatch back to the same ready pull request before running. GitHub exempts
+`workflow_dispatch` from recursion suppression, so this needs no PAT, extra
+GitHub App, or unattended approval; the resulting `verify` check belongs to the
+exact latest pull-request head required by the main ruleset. The version
+workflow never publishes, never receives an npm token, and remains inactive
+before bootstrap.
 
 References:
 
@@ -116,6 +124,9 @@ References:
 - [npm staged publishing](https://docs.npmjs.com/staged-publishing/)
 - [GitHub OIDC permissions](https://docs.github.com/en/actions/reference/security/oidc#workflow-permissions-for-the-requesting-the-oidc-token)
 - [GitHub workflow artifacts](https://docs.github.com/en/actions/tutorials/store-and-share-data)
+- [GitHub token workflow triggers](https://docs.github.com/en/actions/concepts/security/github_token#when-github_token-triggers-workflow-runs)
+- [GitHub workflow dispatch API](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event)
+- [GitHub required status checks](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks)
 - [pnpm staged publishing](https://pnpm.io/cli/stage)
 - [pnpm native publishing](https://pnpm.io/cli/publish)
 - [publishing scoped public packages](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages/)

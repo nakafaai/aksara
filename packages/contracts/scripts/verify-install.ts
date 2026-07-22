@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseInstalledManifest, textField } from "#scripts/manifest";
 
 const NODE_IMPORT_CONDITIONS = new Set(["node", "import", "default"]);
+const REQUIRED_NODE_ONLY_EXPORTS = new Set(["./runtime/spec"]);
 
 const packageName = textField(
   process.argv[2],
@@ -29,6 +30,12 @@ const manifest = parseInstalledManifest(
 );
 
 assert.equal(manifest.name, packageName, "The packed package name changed");
+for (const subpath of REQUIRED_NODE_ONLY_EXPORTS) {
+  assert.ok(
+    manifest.exports[subpath],
+    `Required Node-only export ${subpath} is missing`
+  );
+}
 
 let importedConditionCount = 0;
 const moduleImports: Promise<unknown>[] = [];
@@ -51,6 +58,17 @@ for (const [subpath, descriptor] of Object.entries(manifest.exports)) {
     importTargets.length > 0,
     `Export ${subpath} must declare a Node-importable condition`
   );
+  if (REQUIRED_NODE_ONLY_EXPORTS.has(subpath)) {
+    assert.deepEqual(
+      Object.keys(descriptor),
+      ["types", "node"],
+      `Export ${subpath} must expose only types and Node runtime conditions`
+    );
+    assert.ok(
+      descriptor.node,
+      `Export ${subpath} must declare its explicit Node runtime condition`
+    );
+  }
 
   for (const [condition, target] of conditionEntries) {
     assert.equal(

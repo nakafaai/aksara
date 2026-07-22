@@ -4,9 +4,20 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Exact Changesets pull-request head to verify
+        required: true
+        type: string
+      pull_request_number:
+        description: Exact Changesets pull request to verify
+        required: true
+        type: string
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
@@ -35,11 +46,42 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Contract version intent
-        if: github.event_name == 'pull_request'
+      - name: Verify dispatched revision
+        if: github.event_name == 'workflow_dispatch'
         env:
-          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
-          PR_HEAD: ${{ github.head_ref }}
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ inputs.pull_request_number }}
+        run: |
+          if [[ ! "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ || "$EXPECTED_SHA" != "$GITHUB_SHA" ]]; then
+            echo "Dispatched CI must run at its exact expected revision." >&2
+            exit 1
+          fi
+          if [[ ! "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]]; then
+            echo "Dispatched CI pull request number is malformed." >&2
+            exit 1
+          fi
+
+          pull=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+          if ! jq -e --arg repository "$GITHUB_REPOSITORY" --arg sha "$EXPECTED_SHA" '
+            .state == "open"
+            and .draft == false
+            and .base.ref == "main"
+            and .base.repo.full_name == $repository
+            and .head.ref == "changeset-release/main"
+            and .head.repo.full_name == $repository
+            and .head.sha == $sha
+            and .user.login == "github-actions[bot]"
+            and .user.type == "Bot"' <<<"$pull" >/dev/null; then
+            echo "Dispatched CI is not bound to the exact ready Changesets pull request." >&2
+            exit 1
+          fi
+
+      - name: Contract version intent
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login || 'github-actions[bot]' }}
+          PR_HEAD: ${{ github.head_ref || github.ref_name }}
         run: |
           bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
           if [[ "$bootstrapped" != "true" ]]; then

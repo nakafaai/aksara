@@ -17,6 +17,7 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
+import { hashMaterialProjection } from "#contracts/projection/hash";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
   ContentRuntimeRequestSchema,
@@ -111,7 +112,7 @@ const found = {
   delivery: "public",
   kind: "found",
   projection,
-  projectionHash: hash,
+  projectionHash: hashMaterialProjection(projection),
   rendererContractVersion: "1.0.0",
 };
 
@@ -262,7 +263,7 @@ describe("content runtime contract", () => {
       ...artifact,
       signature: tamperSignature(artifact.signature),
     };
-    const [signatureError, rendererError] = await Promise.all([
+    const [signatureError, rendererError, projectionError] = await Promise.all([
       rejectExchange({
         response: { ...found, artifact: tamperedArtifact },
       }),
@@ -270,10 +271,22 @@ describe("content runtime contract", () => {
         rendererManifest: incompatibleManifest,
         response: found,
       }),
+      rejectExchange({
+        response: {
+          ...found,
+          projection: {
+            ...projection,
+            metadata: { ...projection.metadata, title: "Changed title" },
+          },
+        },
+      }),
     ]);
     expect(signatureError).toMatchObject({ _tag: "SignatureInvalidError" });
     expect(rendererError).toMatchObject({
       _tag: "ArtifactRendererComponentMissingError",
+    });
+    expect(projectionError).toMatchObject({
+      _tag: "ContentRuntimeProjectionHashError",
     });
   });
 

@@ -103,19 +103,24 @@ jobs:
             exit 1
           fi
 
-          provenance_count=$(jq '[.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1")] | length' "$attestations")
-          if [[ "$provenance_count" != "1" ]]; then
-            echo "Expected exactly one SLSA provenance attestation." >&2
+          if ! jq -e '
+            (.attestations | type) == "array"
+            and (.attestations | length) == 2
+            and all(.attestations[];
+              (.predicateType | type) == "string"
+              and (.bundle | type) == "object")' "$attestations" >/dev/null; then
+            echo "Registry attestations do not have the exact expected shape." >&2
             exit 1
           fi
-          publish_count=$(jq '[.attestations[] | select(.predicateType | startswith("https://github.com/npm/attestation/tree/main/specs/publish/v0.1"))] | length' "$attestations")
-          if [[ "$publish_count" != "1" ]]; then
-            echo "Expected exactly one npm publish attestation." >&2
+          attestation_types=$(jq -cer '[.attestations[].predicateType] | sort' "$attestations")
+          expected_types='["https://github.com/npm/attestation/tree/main/specs/publish/v0.1","https://slsa.dev/provenance/v1"]'
+          if [[ "$attestation_types" != "$expected_types" ]]; then
+            echo "Expected exactly one npm publish v0.1 and one SLSA provenance v1 attestation." >&2
             exit 1
           fi
 
           # v2.7.1 rejects npm branch/print flags; inspect the unique verified
-          # bundle below only after its supported cryptographic checks succeed.
+          # v1 bundle below only after its supported cryptographic checks succeed.
           SLSA_VERIFIER_EXPERIMENTAL=1 slsa-verifier verify-npm-package "$tarball" \
             --attestations-path "$attestations" \
             --builder-id "https://github.com/actions/runner/github-hosted" \

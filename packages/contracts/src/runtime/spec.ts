@@ -12,6 +12,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
+import { hashMaterialProjection } from "#contracts/projection/hash";
 import {
   type MaterialLessonProjection,
   MaterialLessonProjectionSchema,
@@ -97,6 +98,15 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
   }
 ) {}
 
+/** A runtime projection hash does not identify its canonical projection body. */
+export class ContentRuntimeProjectionHashError extends Schema.TaggedError<ContentRuntimeProjectionHashError>()(
+  "ContentRuntimeProjectionHashError",
+  {
+    actualHash: Sha256HashSchema,
+    expectedHash: Sha256HashSchema,
+  }
+) {}
+
 /** Strictly decodes one unknown server-runtime request. */
 export const decodeContentRuntimeRequest = Effect.fn(
   "AksaraContracts.decodeContentRuntimeRequest"
@@ -132,6 +142,13 @@ export const verifyContentRuntimeExchange = Effect.fn(
   }
   if (response.projection.publicPath !== request.publicPath) {
     return yield* new ContentRuntimeMismatchError({ reason: "publicPath" });
+  }
+  const projectionHash = hashMaterialProjection(response.projection);
+  if (projectionHash !== response.projectionHash) {
+    return yield* new ContentRuntimeProjectionHashError({
+      actualHash: projectionHash,
+      expectedHash: response.projectionHash,
+    });
   }
   yield* verifySignedContentArtifact({
     artifact: response.artifact,
