@@ -112,28 +112,6 @@ export function makeMaterialLessonProjection(
   });
 }
 
-/** Orders route seeds by the same stable identity used by content heads. */
-export function compareMaterialRoutes(
-  left: MaterialLessonRoute,
-  right: MaterialLessonRoute
-) {
-  if (left.contentKey < right.contentKey) {
-    return -1;
-  }
-  if (left.contentKey > right.contentKey) {
-    return 1;
-  }
-  return left.locale.localeCompare(right.locale);
-}
-
-/** Orders projections by the same stable identity used by content heads. */
-export function compareMaterialProjections(
-  left: MaterialLessonProjection,
-  right: MaterialLessonProjection
-) {
-  return compareMaterialRoutes(left, right);
-}
-
 /** Serializes one material projection with stable signed field order. */
 export function canonicalizeMaterialProjection(
   projection: MaterialLessonProjection

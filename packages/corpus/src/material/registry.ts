@@ -1,12 +1,13 @@
+import {
+  compareContentHeads,
+  headIdentity,
+} from "@nakafaai/aksara-contracts/content";
 import { ContentDeliveryClassSchema } from "@nakafaai/aksara-contracts/delivery";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafaai/aksara-contracts/ids";
-import {
-  compareMaterialRoutes,
-  MaterialLessonRouteSchema,
-} from "@nakafaai/aksara-contracts/projection/material";
+import { MaterialLessonRouteSchema } from "@nakafaai/aksara-contracts/projection/material";
 import { RendererDomainSchema } from "@nakafaai/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 
@@ -88,7 +89,7 @@ const validateMaterialEntries = Effect.fn(
         sourcePath: entry.sourcePath,
       });
     }
-    const identity = `${entry.route.contentKey}\0${entry.route.locale}`;
+    const identity = headIdentity(entry.route);
     if (identities.has(identity)) {
       return yield* new MaterialIdentityError({
         contentKey: entry.route.contentKey,
@@ -98,7 +99,7 @@ const validateMaterialEntries = Effect.fn(
     identities.add(identity);
   }
   return [...entries].sort((left, right) =>
-    compareMaterialRoutes(left.route, right.route)
+    compareContentHeads(left.route, right.route)
   );
 });
 

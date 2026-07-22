@@ -2,9 +2,10 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
-import { Effect, Stream } from "effect";
+import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import { streamMaterialDocuments } from "#corpus/material/source";
+import { decodeMaterialRegistry } from "#corpus/material/registry";
+import { readMaterialDocument } from "#corpus/material/source";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..", "..");
 const sourcePaths = [
@@ -17,6 +18,7 @@ const sourceByPath = new Map(
     return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
   })
 );
+const entries = await Effect.runPromise(decodeMaterialRegistry());
 
 /** Provides deterministic file reads for the checked-in real corpus slice. */
 function fileLayer(sources: ReadonlyMap<string, string>) {
@@ -38,20 +40,17 @@ function fileLayer(sources: ReadonlyMap<string, string>) {
   });
 }
 
-/** Materializes the source stream only at the Vitest runner boundary. */
+/** Reads the bounded real registry only at the Vitest runner boundary. */
 function readSources(sources: ReadonlyMap<string, string>) {
   return Effect.runPromise(
-    streamMaterialDocuments(corpusRoot).pipe(
-      Stream.runCollect,
-      Effect.map((chunk) => [...chunk]),
-      Effect.provide(fileLayer(sources)),
-      Effect.provide(Path.layer)
-    )
+    Effect.forEach(entries, (entry) =>
+      readMaterialDocument(corpusRoot, entry)
+    ).pipe(Effect.provide(fileLayer(sources)), Effect.provide(Path.layer))
   );
 }
 
 describe("material source", () => {
-  it("streams byte-exact real MDX with signed Git source paths", async () => {
+  it("reads byte-exact real MDX with signed Git source paths", async () => {
     const documents = await readSources(sourceByPath);
     expect(documents.map(({ route }) => route.locale)).toEqual(["en", "id"]);
     expect(documents.map(({ route }) => route.publicPath)).toEqual([
@@ -73,8 +72,9 @@ describe("material source", () => {
 
   it("maps missing reviewed source files to one typed failure", async () => {
     const error = await Effect.runPromise(
-      streamMaterialDocuments(corpusRoot).pipe(
-        Stream.runDrain,
+      Effect.forEach(entries, (entry) =>
+        readMaterialDocument(corpusRoot, entry)
+      ).pipe(
         Effect.provide(fileLayer(new Map())),
         Effect.provide(Path.layer),
         Effect.flip

@@ -3,21 +3,15 @@
 import { Buffer } from "node:buffer";
 import {
   type BinaryLike,
-  createHash,
   generateKeyPairSync,
   sign as signBytes,
 } from "node:crypto";
 import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
+import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";
+import { hashContentReleaseManifest } from "#contracts/release/hash";
 import {
-  Ed25519SignatureSchema,
-  Sha256HashSchema,
-  SigningKeyIdSchema,
-} from "#contracts/ids";
-import {
-  type ContentReleaseManifest,
   ContentReleaseManifestSchema,
-  canonicalizeContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
@@ -75,18 +69,9 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 
-/** Computes the canonical hash used by signed release test fixtures. */
-function hashManifest(value: ContentReleaseManifest) {
-  return Sha256HashSchema.make(
-    `sha256:${createHash("sha256")
-      .update(canonicalizeContentReleaseManifest(value))
-      .digest("hex")}`
-  );
-}
-
 /** Produces a valid signed release for verification scenarios. */
 function signRelease(value = manifest): SignedContentRelease {
-  const manifestHash = hashManifest(value);
+  const manifestHash = Effect.runSync(hashContentReleaseManifest(value));
   return SignedContentReleaseSchema.make({
     keyId,
     manifest: value,
@@ -164,7 +149,7 @@ describe("server-only release verification", () => {
     const error = await reject({
       ...release,
       manifest: changedManifest,
-      manifestHash: hashManifest(changedManifest),
+      manifestHash: Effect.runSync(hashContentReleaseManifest(changedManifest)),
     });
 
     expect(error._tag).toBe("SignatureInvalidError");

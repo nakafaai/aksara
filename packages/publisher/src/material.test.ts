@@ -1,115 +1,198 @@
-import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
-import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
-import { describe, expect, it } from "vitest";
+import { Path } from "@effect/platform";
+import { Effect } from "effect";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { prepareMaterialCheckout } from "#publisher/material";
+import {
+  checkoutRoot,
+  collectMaterialRecords,
+  englishPath,
+  indonesianPath,
+  materialFileLayer,
+  materialManifest,
+  prepareMaterial,
+  rendererManifest,
+  sourceByPath,
+} from "#test/material";
 
-const checkoutRoot = resolve(process.cwd(), "..", "..");
-const englishPath =
-  "packages/corpus/material/mathematics/function/concept/en.mdx";
-const indonesianPath =
-  "packages/corpus/material/mathematics/function/concept/id.mdx";
-const sourceByPath = new Map(
-  [englishPath, indonesianPath].map((sourcePath) => {
-    const absolutePath = resolve(checkoutRoot, sourcePath);
-    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-  })
-);
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "InlineMath", version: 1 }],
-      supportedComponents: [{ name: "InlineMath", version: 1 }],
-    },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
-  })
-);
+const registryState = vi.hoisted(() => ({
+  changedOrder: false,
+  withoutEnglish: false,
+}));
 
-/** Provides deterministic reads for the two checked-in real MDX sources. */
-function fileLayer(sources: ReadonlyMap<string, string>) {
-  return FileSystem.layerNoop({
-    readFileString: (path) => {
-      const source = sources.get(path);
-      if (source !== undefined) {
-        return Effect.succeed(source);
-      }
-      return Effect.fail(
-        new PlatformError.SystemError({
-          method: "readFileString",
-          module: "FileSystem",
-          pathOrDescriptor: path,
-          reason: "NotFound",
+vi.mock("@nakafaai/aksara-corpus/material/registry", async (importOriginal) => {
+  const original =
+    await importOriginal<
+      typeof import("@nakafaai/aksara-corpus/material/registry")
+    >();
+  return {
+    ...original,
+    decodeMaterialRegistry: (input?: unknown) =>
+      original.decodeMaterialRegistry(input).pipe(
+        Effect.map((entries) => {
+          const selected = registryState.withoutEnglish
+            ? entries.slice(1)
+            : entries;
+          if (!registryState.changedOrder) {
+            return selected;
+          }
+          return selected.map((entry) =>
+            entry.route.locale === "en"
+              ? {
+                  ...entry,
+                  route: { ...entry.route, order: entry.route.order + 1 },
+                }
+              : entry
+          );
         })
-      );
-    },
-  });
-}
+      ),
+  };
+});
 
-/** Runs exact-checkout preparation only at the Vitest boundary. */
-function prepare(sources: ReadonlyMap<string, string>) {
-  return Effect.runPromise(
-    prepareMaterialCheckout(checkoutRoot, rendererManifest).pipe(
-      Stream.runCollect,
-      Effect.map((chunk) => [...chunk]),
-      Effect.provide(fileLayer(sources)),
-      Effect.provide(Path.layer)
-    )
-  );
-}
+afterEach(() => {
+  registryState.changedOrder = false;
+  registryState.withoutEnglish = false;
+});
 
-describe("material preparation", () => {
-  it("derives signed changes and projections from real MDX metadata", async () => {
-    const prepared = await prepare(sourceByPath);
-    expect(prepared.map(({ change }) => change.sourcePath)).toEqual([
-      englishPath,
-      indonesianPath,
-    ]);
-    expect(prepared.map(({ change }) => change.publicPath)).toEqual([
-      "subjects/mathematics/function-composition-inverse-function/function-concept",
-      "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
-    ]);
-    expect(prepared.map(({ projection }) => projection.metadata)).toEqual([
-      {
-        authors: [{ name: "Nabil Akbarazzima Fatih" }],
-        date: "2025-04-27",
-        description:
-          "Understand functions as magic machines with interactive examples. Learn f(x) notation, input-output relationships, and the one-to-one rule.",
-        subject: "Function Composition and Inverse Function",
-        title: "Function Concept",
-      },
-      {
-        authors: [{ name: "Nabil Akbarazzima Fatih" }],
-        date: "2025-04-27",
-        description:
-          "Pahami fungsi sebagai mesin ajaib dengan contoh interaktif. Pelajari notasi f(x), hubungan input-output, dan aturan tepat satu.",
-        subject: "Fungsi Komposisi dan Fungsi Invers",
-        title: "Konsep Fungsi",
-      },
+describe("material checkout", () => {
+  it("compiles the two real sources once and reuses their exact local state", async () => {
+    const first = await prepareMaterial({});
+    const repeated = await prepareMaterial({ previous: first.snapshot });
+    const records = await collectMaterialRecords(first);
+    const repeatedRecords = await collectMaterialRecords(repeated);
+
+    expect(first.outcomes.map(({ kind }) => kind)).toEqual([
+      "compiled",
+      "compiled",
     ]);
     expect(
-      prepared.every(
-        ({ change, payload }) =>
-          change.rendererDomain === payload.rendererDomain &&
-          change.artifactHash.startsWith("sha256:") &&
-          !payload.compiledCode.includes("metadata")
+      first.outcomes.map((outcome) =>
+        outcome.kind === "compiled" ? outcome.reason : undefined
+      )
+    ).toEqual(["missing", "missing"]);
+    expect(repeated.outcomes.map(({ kind }) => kind)).toEqual([
+      "unchanged",
+      "unchanged",
+    ]);
+    expect(repeatedRecords).toEqual([]);
+    expect(
+      records.map((record) =>
+        record.change.operation === "upsert"
+          ? record.change.sourcePath
+          : undefined
+      )
+    ).toEqual([englishPath, indonesianPath]);
+    expect(
+      records.map((record) =>
+        "projection" in record ? record.projection.metadata.title : undefined
+      )
+    ).toEqual(["Function Concept", "Konsep Fungsi"]);
+    expect(
+      records.every(
+        (record) =>
+          "payload" in record &&
+          record.change.artifactHash.startsWith("sha256:") &&
+          !record.payload.compiledCode.includes("metadata")
       )
     ).toBe(true);
   });
 
-  it("fails closed when real authored metadata violates the material schema", async () => {
+  it("recompiles only the locale whose real source bytes changed", async () => {
+    const first = await prepareMaterial({});
+    const edited = new Map(sourceByPath);
+    const english = edited.get(resolve(checkoutRoot, englishPath));
+    expect(english).toBeDefined();
+    if (english === undefined) {
+      return;
+    }
+    edited.set(resolve(checkoutRoot, englishPath), `${english}\n`);
+
+    const changed = await prepareMaterial({
+      previous: first.snapshot,
+      sources: edited,
+    });
+    const records = await collectMaterialRecords(changed);
+
+    expect(
+      changed.outcomes.map((outcome) =>
+        outcome.kind === "compiled"
+          ? `${outcome.kind}:${outcome.reason}`
+          : outcome.kind
+      )
+    ).toEqual(["compiled:changed", "unchanged"]);
+    expect(records).toHaveLength(1);
+    expect(records[0]?.change).toMatchObject({
+      locale: "en",
+      operation: "upsert",
+      sourcePath: englishPath,
+    });
+  });
+
+  it("invalidates only documents owned by the changed renderer domain", async () => {
+    const first = await prepareMaterial({});
+    const chemistry = await materialManifest({ chemistry: 2, math: 1 });
+    const mathematics = await materialManifest({ chemistry: 1, math: 2 });
+    const unrelated = await prepareMaterial({
+      previous: first.snapshot,
+      renderer: chemistry,
+    });
+    const related = await prepareMaterial({
+      previous: first.snapshot,
+      renderer: mathematics,
+    });
+
+    expect(unrelated.outcomes.map(({ kind }) => kind)).toEqual([
+      "unchanged",
+      "unchanged",
+    ]);
+    expect(
+      related.outcomes.map((outcome) =>
+        outcome.kind === "compiled" ? outcome.reason : outcome.kind
+      )
+    ).toEqual(["changed", "changed"]);
+  });
+
+  it("emits one tombstone when a prior real locale leaves the registry", async () => {
+    const first = await prepareMaterial({});
+    registryState.withoutEnglish = true;
+    const deleted = await prepareMaterial({ previous: first.snapshot });
+    const records = await collectMaterialRecords(deleted);
+
+    expect(deleted.outcomes.map(({ kind }) => kind)).toEqual([
+      "deleted",
+      "unchanged",
+    ]);
+    expect(records).toEqual([
+      {
+        change: {
+          contentKey:
+            "material/lesson/mathematics/function-composition-inverse-function/function-concept",
+          locale: "en",
+          operation: "delete",
+        },
+      },
+    ]);
+  });
+
+  it("emits an upsert without recompiling when registry projection changes", async () => {
+    const first = await prepareMaterial({});
+    registryState.changedOrder = true;
+    const updated = await prepareMaterial({ previous: first.snapshot });
+    const records = await collectMaterialRecords(updated);
+
+    expect(updated.outcomes.map(({ kind }) => kind)).toEqual([
+      "updated",
+      "unchanged",
+    ]);
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({
+      change: { locale: "en", operation: "upsert" },
+      projection: { locale: "en", order: 6 },
+    });
+  });
+
+  it("fails changed content instead of returning its prior compiled body", async () => {
+    const first = await prepareMaterial({});
     const invalid = new Map(sourceByPath);
     const english = invalid.get(resolve(checkoutRoot, englishPath));
     expect(english).toBeDefined();
@@ -121,13 +204,17 @@ describe("material preparation", () => {
       english.replace('  title: "Function Concept",\n', "")
     );
     const error = await Effect.runPromise(
-      prepareMaterialCheckout(checkoutRoot, rendererManifest).pipe(
-        Stream.runDrain,
-        Effect.provide(fileLayer(invalid)),
+      prepareMaterialCheckout({
+        checkoutRoot,
+        previous: first.snapshot,
+        rendererManifest,
+      }).pipe(
+        Effect.provide(materialFileLayer(invalid)),
         Effect.provide(Path.layer),
         Effect.flip
       )
     );
+
     expect(error).toMatchObject({
       _tag: "MaterialMetadataError",
       sourcePath: englishPath,
@@ -136,9 +223,8 @@ describe("material preparation", () => {
 
   it("maps checkout read failures to the publisher source error", async () => {
     const error = await Effect.runPromise(
-      prepareMaterialCheckout(checkoutRoot, rendererManifest).pipe(
-        Stream.runDrain,
-        Effect.provide(fileLayer(new Map())),
+      prepareMaterialCheckout({ checkoutRoot, rendererManifest }).pipe(
+        Effect.provide(materialFileLayer(new Map())),
         Effect.provide(Path.layer),
         Effect.flip
       )

@@ -14,22 +14,12 @@ import {
   MaterialSectionSchema,
 } from "@nakafaai/aksara-contracts/projection/material";
 import { ContentUpsertSchema } from "@nakafaai/aksara-contracts/release";
-import type { RendererDomain } from "@nakafaai/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
-
-/** Builds one domain capability from one explicit test component. */
-function rendererDomain(name: RendererDomain, componentName: string) {
-  const components = [{ name: componentName, version: 1 }];
-  return {
-    authoringComponents: components,
-    name,
-    supportedComponents: components,
-  };
-}
+import { rendererDomain } from "#test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({

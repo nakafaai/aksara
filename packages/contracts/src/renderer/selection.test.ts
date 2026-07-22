@@ -1,9 +1,6 @@
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import {
-  normalizeRendererCapability,
-  normalizeRendererSelection,
-} from "#contracts/renderer/selection";
+import { normalizeRendererSelection } from "#contracts/renderer/selection";
 
 const supported = [
   { name: "BlockMath", version: 1 },
@@ -62,9 +59,12 @@ describe("renderer selection", () => {
     ["RendererAuthoringSelectionNonCanonicalError", [...authoring].reverse()],
   ])("rejects %s", async (tag, pins) => {
     const error = await Effect.runPromise(
-      normalizeRendererCapability({
-        authoringComponents: pins,
-        supportedComponents: supported,
+      normalizeRendererSelection({
+        base: {
+          authoringComponents: pins,
+          supportedComponents: supported,
+        },
+        domains,
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe(tag);

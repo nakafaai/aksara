@@ -1,6 +1,9 @@
 import { compileContent } from "@nakafaai/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
-import { CompileDocumentSourceSchema } from "@nakafaai/aksara-contracts/content";
+import {
+  CompileDocumentSourceSchema,
+  compareContentHeads,
+} from "@nakafaai/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -11,7 +14,6 @@ import {
   type ContentChange,
   type ContentReleaseItem,
   ContentReleaseItemSchema,
-  compareContentChanges,
 } from "@nakafaai/aksara-contracts/release";
 import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
@@ -52,7 +54,7 @@ const { payload: expectedPayload } = await Effect.runPromise(
 /** Builds canonically ordered items for source-compilation tests. */
 function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
   return [...changes]
-    .sort(compareContentChanges)
+    .sort(compareContentHeads)
     .map((change, index) =>
       ContentReleaseItemSchema.make({ change, index, releaseId })
     );

@@ -1,12 +1,13 @@
 import { createHash } from "node:crypto";
-import { Either, Schema } from "effect";
+import { Effect, Either, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
+import { compareContentHeads } from "#contracts/content";
 import {
   type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import { hashContentReleaseItems } from "#contracts/release/digest";
+import { digestItems } from "#contracts/release/digest";
 import {
   type ContentChange,
   ContentChangeSchema,
@@ -15,7 +16,6 @@ import {
   canonicalizeContentReleaseItem,
   canonicalizeContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
-  compareContentChanges,
 } from "#contracts/release/spec";
 
 const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
@@ -23,7 +23,7 @@ const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
 /** Builds canonically ordered release items with deterministic indexes. */
 function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
   return [...input]
-    .sort(compareContentChanges)
+    .sort(compareContentHeads)
     .map((change, index) =>
       ContentReleaseItemSchema.make({ change, index, releaseId: release })
     );
@@ -47,10 +47,13 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   },
 ]);
 const items = makeItems(releaseId, changes);
+const itemSummary = await Effect.runPromise(
+  digestItems(releaseId, Stream.fromIterable(items))
+);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
   itemCount: items.length,
-  itemsDigest: hashContentReleaseItems(items),
+  itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "a".repeat(40) },
   projectionCount: 1,
   projectionDigest: `sha256:${"c".repeat(64)}`,
@@ -96,14 +99,17 @@ describe("release spec", () => {
     );
   });
 
-  it("requires forward rollback provenance and permits rollback of rollback", () => {
+  it("requires forward rollback provenance and permits rollback of rollback", async () => {
     const firstId = Schema.decodeUnknownSync(ReleaseIdSchema)("rollback-first");
     const firstItems = makeItems(firstId, []);
+    const firstSummary = await Effect.runPromise(
+      digestItems(firstId, Stream.fromIterable(firstItems))
+    );
     const first = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...manifest,
       baseReleaseId: releaseId,
       itemCount: 0,
-      itemsDigest: hashContentReleaseItems(firstItems),
+      itemsDigest: firstSummary.digest,
       origin: { kind: "rollback", releaseId },
       projectionCount: 0,
       releaseId: firstId,
@@ -134,23 +140,5 @@ describe("release spec", () => {
         "Expected a new release identity and a coherent source origin"
       );
     }
-  });
-
-  it("orders locales within one stable content identity", () => {
-    const decodeChange = Schema.decodeUnknownSync(ContentChangeSchema);
-    const english = decodeChange({
-      contentKey: "test:content",
-      locale: "en",
-      operation: "delete",
-    });
-    const indonesian = decodeChange({
-      contentKey: "test:content",
-      locale: "id",
-      operation: "delete",
-    });
-
-    expect(compareContentChanges(english, indonesian)).toBe(-1);
-    expect(compareContentChanges(indonesian, english)).toBe(1);
-    expect(compareContentChanges(english, english)).toBe(0);
   });
 });

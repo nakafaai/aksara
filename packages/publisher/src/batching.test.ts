@@ -26,7 +26,6 @@ import {
   MAX_RELEASE_ITEM_BATCH_BYTES,
   MAX_RELEASE_ITEMS_PER_BATCH,
   makeArtifactBatches,
-  makeReleaseItemBatch,
   makeReleaseItemBatches,
 } from "#publisher/batching";
 
@@ -99,19 +98,6 @@ describe("publication batching", () => {
           MAX_RELEASE_ITEM_BATCH_BYTES
       )
     ).toBe(true);
-  });
-
-  it("rejects a caller-formed item batch above the target ceiling", async () => {
-    const error = await Effect.runPromise(
-      makeReleaseItemBatch({ batchIndex: 0, items, releaseId }).pipe(
-        Effect.flip
-      )
-    );
-    expect(error).toMatchObject({
-      _tag: "PublicationBatchLimitError",
-      actualCount: MAX_RELEASE_ITEMS_PER_BATCH + 1,
-      maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
-    });
   });
 
   it("streams artifact batches at 8 items and a complete 4 MiB envelope", async () => {

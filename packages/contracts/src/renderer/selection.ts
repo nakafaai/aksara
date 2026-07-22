@@ -1,5 +1,5 @@
-import { Effect, Schema } from "effect";
-import { ContractDecodeError } from "#contracts/errors";
+import { Effect } from "effect";
+import { decodeContract } from "#contracts/decode";
 import {
   RendererAuthoringComponentDuplicateError,
   RendererAuthoringComponentExtraError,
@@ -29,22 +29,6 @@ export interface RendererCapabilityInput {
 /** Unnormalized route-domain contract accepted at the manifest boundary. */
 export interface RendererDomainInput extends RendererCapabilityInput {
   readonly name: RendererDomain;
-}
-
-/** Maps one internal selection schema failure into the shared boundary error. */
-function decodeSelection<A, I>(
-  schema: Schema.Schema<A, I>,
-  contract: string,
-  input: unknown
-) {
-  return Schema.decodeUnknown(schema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(
-      (cause) =>
-        new ContractDecodeError({ cause, contract, message: String(cause) })
-    )
-  );
 }
 
 /** Rejects duplicate component names in one authoring selection. */
@@ -143,10 +127,10 @@ const validateCompleteAuthoringNames = Effect.fn(
 );
 
 /** Normalizes one complete physical registry component contract. */
-export const normalizeRendererCapability = Effect.fn(
+const normalizeRendererCapability = Effect.fn(
   "AksaraContracts.normalizeRendererCapability"
 )(function* (input: RendererCapabilityInput) {
-  const supportedComponents = yield* decodeSelection(
+  const supportedComponents = yield* decodeContract(
     RendererManifestSupportedComponentsSchema,
     "RendererManifestSupportedComponents",
     sortRendererComponentRequirements(input.supportedComponents)
@@ -160,19 +144,15 @@ export const normalizeRendererCapability = Effect.fn(
     input.authoringComponents
   );
   yield* validateCompleteAuthoringNames(supportedComponents, selectedNames);
-  const authoringComponents = yield* decodeSelection(
+  const authoringComponents = yield* decodeContract(
     RendererManifestAuthoringComponentsSchema,
     "RendererManifestAuthoringComponents",
     input.authoringComponents
   );
-  return yield* decodeSelection(
-    RendererCapabilitySchema,
-    "RendererCapability",
-    {
-      authoringComponents,
-      supportedComponents,
-    }
-  );
+  return yield* decodeContract(RendererCapabilitySchema, "RendererCapability", {
+    authoringComponents,
+    supportedComponents,
+  });
 });
 
 /** Normalizes the exact base plus two real route-domain registries. */
@@ -186,7 +166,7 @@ export const normalizeRendererSelection = Effect.fn(
   const domains = yield* Effect.forEach(input.domains, (domain) =>
     normalizeRendererCapability(domain).pipe(
       Effect.flatMap((capability) =>
-        decodeSelection(
+        decodeContract(
           RendererDomainCapabilitySchema,
           "RendererDomainCapability",
           { name: domain.name, ...capability }
@@ -194,7 +174,7 @@ export const normalizeRendererSelection = Effect.fn(
       )
     )
   );
-  const canonicalDomains = yield* decodeSelection(
+  const canonicalDomains = yield* decodeContract(
     RendererManifestDomainsSchema,
     "RendererManifestDomains",
     sortRendererDomains(domains)

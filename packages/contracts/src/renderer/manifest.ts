@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
-import { ContractDecodeError } from "#contracts/errors";
+import { decodeContract } from "#contracts/decode";
 import { Sha256HashSchema } from "#contracts/ids";
 import { RendererComponentRequirementSchema } from "#contracts/renderer/component";
 import {
@@ -32,22 +32,6 @@ const RendererManifestWireSchema = Schema.Struct({
   hash: Sha256HashSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
 });
-
-/** Strictly decodes one renderer contract and maps failures to its boundary. */
-function decodeContract<A, I>(
-  schema: Schema.Schema<A, I>,
-  contract: string,
-  input: unknown
-) {
-  return Schema.decodeUnknown(schema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(
-      (cause) =>
-        new ContractDecodeError({ cause, contract, message: String(cause) })
-    )
-  );
-}
 
 /** Hashes the canonical base and domain-scoped renderer contract. */
 const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(

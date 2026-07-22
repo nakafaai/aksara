@@ -7,8 +7,8 @@ import {
   type ContentReleaseItem,
   canonicalizeContentReleaseItem,
 } from "@nakafaai/aksara-contracts/release";
-import { Effect, Stream } from "effect";
-import { partitionBatch, validateBatch } from "#publisher/batch/core";
+import type { Stream } from "effect";
+import { streamBatches } from "#publisher/batch/core";
 
 /** Maximum ordered release items held for one partition decision. */
 export const MAX_RELEASE_ITEMS_PER_BATCH = 100;
@@ -52,64 +52,25 @@ export function canonicalizeArtifactBatch(batch: ArtifactBatch) {
     )}],"batchIndex":${batch.batchIndex},"releaseId":${JSON.stringify(batch.releaseId)}}`;
 }
 
-/** Constructs one non-empty item batch after enforcing both hard ceilings. */
-export const makeReleaseItemBatch = Effect.fn(
-  "AksaraPublisher.makeReleaseItemBatch"
-)(function* (input: ReleaseItemBatch) {
-  yield* validateBatch({
-    batch: input,
-    count: input.items.length,
-    kind: "release-item",
-    maxBytes: MAX_RELEASE_ITEM_BATCH_BYTES,
-    maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
-    serialize: canonicalizeReleaseItemBatch,
-  });
-  return input;
-});
-
-/** Constructs one non-empty artifact batch after enforcing both hard ceilings. */
-export const makeArtifactBatch = Effect.fn("AksaraPublisher.makeArtifactBatch")(
-  function* (input: ArtifactBatch) {
-    yield* validateBatch({
-      batch: input,
-      count: input.artifacts.length,
-      kind: "artifact",
-      maxBytes: MAX_ARTIFACT_BATCH_BYTES,
-      maxCount: MAX_ARTIFACTS_PER_BATCH,
-      serialize: canonicalizeArtifactBatch,
-    });
-    return input;
-  }
-);
-
 /** Streams bounded release-item envelopes with contiguous batch identities. */
 export function makeReleaseItemBatches<E, R>(
   releaseId: ReleaseId,
   items: Stream.Stream<ContentReleaseItem, E, R>
 ) {
-  return items.pipe(
-    Stream.grouped(MAX_RELEASE_ITEMS_PER_BATCH),
-    Stream.mapEffect((chunk) =>
-      partitionBatch({
-        kind: "release-item",
-        maxBytes: MAX_RELEASE_ITEM_BATCH_BYTES,
-        maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
-        releaseId,
-        serializeBatch: (values, batchIndex, batchReleaseId) =>
-          canonicalizeReleaseItemBatch({
-            batchIndex,
-            items: values,
-            releaseId: batchReleaseId,
-          }),
-        values: [...chunk],
-      })
-    ),
-    Stream.flatMap(Stream.fromIterable),
-    Stream.zipWithIndex,
-    Stream.mapEffect(([values, batchIndex]) =>
-      makeReleaseItemBatch({ batchIndex, items: values, releaseId })
-    )
-  );
+  return streamBatches({
+    build: (values, batchIndex, batchReleaseId) => ({
+      batchIndex,
+      items: values,
+      releaseId: batchReleaseId,
+    }),
+    count: (batch) => batch.items.length,
+    kind: "release-item",
+    maxBytes: MAX_RELEASE_ITEM_BATCH_BYTES,
+    maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
+    releaseId,
+    serialize: canonicalizeReleaseItemBatch,
+    values: items,
+  });
 }
 
 /** Streams bounded artifact envelopes with contiguous batch identities. */
@@ -117,27 +78,18 @@ export function makeArtifactBatches<E, R>(
   releaseId: ReleaseId,
   artifacts: Stream.Stream<SignedContentArtifact, E, R>
 ) {
-  return artifacts.pipe(
-    Stream.grouped(MAX_ARTIFACTS_PER_BATCH),
-    Stream.mapEffect((chunk) =>
-      partitionBatch({
-        kind: "artifact",
-        maxBytes: MAX_ARTIFACT_BATCH_BYTES,
-        maxCount: MAX_ARTIFACTS_PER_BATCH,
-        releaseId,
-        serializeBatch: (values, batchIndex, batchReleaseId) =>
-          canonicalizeArtifactBatch({
-            artifacts: values,
-            batchIndex,
-            releaseId: batchReleaseId,
-          }),
-        values: [...chunk],
-      })
-    ),
-    Stream.flatMap(Stream.fromIterable),
-    Stream.zipWithIndex,
-    Stream.mapEffect(([values, batchIndex]) =>
-      makeArtifactBatch({ artifacts: values, batchIndex, releaseId })
-    )
-  );
+  return streamBatches({
+    build: (values, batchIndex, batchReleaseId) => ({
+      artifacts: values,
+      batchIndex,
+      releaseId: batchReleaseId,
+    }),
+    count: (batch) => batch.artifacts.length,
+    kind: "artifact",
+    maxBytes: MAX_ARTIFACT_BATCH_BYTES,
+    maxCount: MAX_ARTIFACTS_PER_BATCH,
+    releaseId,
+    serialize: canonicalizeArtifactBatch,
+    values: artifacts,
+  });
 }

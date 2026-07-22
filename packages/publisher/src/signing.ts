@@ -1,41 +1,41 @@
 import { Buffer } from "node:buffer";
 import {
-  createHash,
   createPrivateKey,
   type KeyObject,
   sign as signBytes,
 } from "node:crypto";
+import { validateArtifactByteIntegrity } from "@nakafaai/aksara-contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "@nakafaai/aksara-contracts/artifact/source";
 import type {
+  ArtifactCompiledByteLengthMismatchError,
+  ArtifactPayloadFieldByteLimitError,
   ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
+  ArtifactVerificationByteLimitError,
 } from "@nakafaai/aksara-contracts/artifact/spec";
 import { hashCompiledContentPayload } from "@nakafaai/aksara-contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
-  canonicalizeSignedContentArtifact,
   type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "@nakafaai/aksara-contracts/content";
 import {
   Ed25519SignatureSchema,
-  Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafaai/aksara-contracts/ids";
-import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafaai/aksara-contracts/limits";
 import {
   type ContentReleaseManifest,
-  canonicalizeContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "@nakafaai/aksara-contracts/release";
-import { Effect, Schema } from "effect";
 import {
-  ContentSigningError,
-  SignedArtifactByteLimitError,
-} from "#publisher/signing-errors";
+  hashContentReleaseManifest,
+  type ReleaseHashComputationError,
+} from "@nakafaai/aksara-contracts/release/hash";
+import { Effect, Schema } from "effect";
+import { ContentSigningError } from "#publisher/signing-errors";
 
 /** Single-key signer for every authenticated object in one publication run. */
 export interface PublicationSigner {
@@ -46,28 +46,24 @@ export interface PublicationSigner {
     SignedContentArtifact,
     | ArtifactSourceHashComputationError
     | ArtifactSourceHashMismatchError
+    | ArtifactCompiledByteLengthMismatchError
+    | ArtifactPayloadFieldByteLimitError
+    | ArtifactVerificationByteLimitError
     | ContentSigningError
-    | SignedArtifactByteLimitError
   >;
   /** Signs one canonical release manifest. */
   readonly signRelease: (
     manifest: ContentReleaseManifest
-  ) => Effect.Effect<SignedContentRelease, ContentSigningError>;
+  ) => Effect.Effect<
+    SignedContentRelease,
+    ContentSigningError | ReleaseHashComputationError
+  >;
 }
 
 type PublicationSignerFactory = (input: {
   readonly keyId: string;
   readonly privateKeyPem: string;
 }) => Effect.Effect<PublicationSigner, ContentSigningError>;
-
-/** Computes the immutable identity of the complete canonical release manifest. */
-export function hashContentReleaseManifest(manifest: ContentReleaseManifest) {
-  return Sha256HashSchema.make(
-    `sha256:${createHash("sha256")
-      .update(canonicalizeContentReleaseManifest(manifest))
-      .digest("hex")}`
-  );
-}
 
 /** Signs one domain-separated canonical message with an Ed25519 key. */
 function signCanonicalInput(
@@ -112,19 +108,7 @@ function signArtifact(
         payload,
         signature,
       });
-      const actualBytes = Buffer.byteLength(
-        canonicalizeSignedContentArtifact(artifact),
-        "utf8"
-      );
-      if (actualBytes <= MAX_SIGNED_ARTIFACT_BYTES) {
-        return Effect.succeed(artifact);
-      }
-      return Effect.fail(
-        new SignedArtifactByteLimitError({
-          actualBytes,
-          maxBytes: MAX_SIGNED_ARTIFACT_BYTES,
-        })
-      );
+      return validateArtifactByteIntegrity(artifact).pipe(Effect.as(artifact));
     })
   );
 }
@@ -135,19 +119,22 @@ function signRelease(
   privateKey: KeyObject,
   manifest: ContentReleaseManifest
 ) {
-  const manifestHash = hashContentReleaseManifest(manifest);
-  return signCanonicalInput(
-    privateKey,
-    canonicalizeContentReleaseSigningInput(manifestHash, manifest),
-    "release"
-  ).pipe(
-    Effect.map((signature) =>
-      SignedContentReleaseSchema.make({
-        keyId,
-        manifest,
-        manifestHash,
-        signature,
-      })
+  return hashContentReleaseManifest(manifest).pipe(
+    Effect.flatMap((manifestHash) =>
+      signCanonicalInput(
+        privateKey,
+        canonicalizeContentReleaseSigningInput(manifestHash, manifest),
+        "release"
+      ).pipe(
+        Effect.map((signature) =>
+          SignedContentReleaseSchema.make({
+            keyId,
+            manifest,
+            manifestHash,
+            signature,
+          })
+        )
+      )
     )
   );
 }

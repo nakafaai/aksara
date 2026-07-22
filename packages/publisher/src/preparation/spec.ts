@@ -130,7 +130,7 @@ type RendererManifestError = Effect.Effect.Error<
 >;
 
 /** Every expected failure surfaced before a release can be signed. */
-export type PrepareContentReleaseError<E, R> =
+type PrepareContentReleaseError<E, R> =
   | ItemVerificationError<PreparedContentStreamError<E>, R>
   | PreparedContentStreamError<E>
   | PreparedReleaseIdentityError

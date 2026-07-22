@@ -6,10 +6,14 @@ import {
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   canonicalizeSignedContentArtifact,
+  compareContentHeads,
   decodeCompileDocumentRequest,
   decodeCompileDocumentSource,
+  headIdentity,
+  routeIdentity,
   SignedContentArtifactSchema,
 } from "#contracts/content";
+import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 
@@ -45,6 +49,40 @@ const validRequest = {
 } as const;
 
 describe("content", () => {
+  it("orders stable content identity before locale", () => {
+    const english = {
+      contentKey: ContentKeySchema.make("test:a"),
+      locale: "en",
+    } as const;
+    const indonesian = { ...english, locale: "id" } as const;
+    const next = {
+      ...english,
+      contentKey: ContentKeySchema.make("test:b"),
+    } as const;
+
+    expect(compareContentHeads(english, next)).toBe(-1);
+    expect(compareContentHeads(next, english)).toBe(1);
+    expect(compareContentHeads(english, indonesian)).toBe(-1);
+    expect(compareContentHeads(indonesian, english)).toBe(1);
+    expect(compareContentHeads(english, english)).toBe(0);
+  });
+
+  it("owns unambiguous content-head and public-route identities", () => {
+    const content = Schema.decodeUnknownSync(
+      CompiledContentPayloadSchema.fields.contentKey
+    )("test:content");
+    const publicPath = Schema.decodeUnknownSync(PublicPathSchema)(
+      "subjects/mathematics"
+    );
+
+    expect(headIdentity({ contentKey: content, locale: "en" })).toBe(
+      "test:content\0en"
+    );
+    expect(routeIdentity({ locale: "en", publicPath })).toBe(
+      "en\0subjects/mathematics"
+    );
+  });
+
   it("decodes a strict compile request", async () => {
     const request = await Effect.runPromise(
       decodeCompileDocumentRequest(validRequest)

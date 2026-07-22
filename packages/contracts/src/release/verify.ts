@@ -1,11 +1,9 @@
-import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
 import type { ReleaseId, Sha256Hash } from "#contracts/ids";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
+import { hashContentReleaseManifest } from "#contracts/release/hash";
 import {
-  canonicalizeContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
-  type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
@@ -20,12 +18,6 @@ export class ReleaseVerificationDecodeError extends Schema.TaggedError<ReleaseVe
   }
 ) {}
 
-/** SHA-256 computation failed before release authenticity was established. */
-export class ReleaseHashComputationError extends Schema.TaggedError<ReleaseHashComputationError>()(
-  "ReleaseHashComputationError",
-  { releaseId: ReleaseIdSchema }
-) {}
-
 /** The envelope hash does not identify its complete canonical manifest. */
 export class ReleaseManifestHashMismatchError extends Schema.TaggedError<ReleaseManifestHashMismatchError>()(
   "ReleaseManifestHashMismatchError",
@@ -35,22 +27,6 @@ export class ReleaseManifestHashMismatchError extends Schema.TaggedError<Release
     releaseId: ReleaseIdSchema,
   }
 ) {}
-
-/** Computes a release manifest hash while preserving typed failures. */
-function hashManifest(
-  manifest: SignedContentRelease["manifest"]
-): Effect.Effect<Sha256Hash, ReleaseHashComputationError> {
-  return Effect.try({
-    catch: () =>
-      new ReleaseHashComputationError({ releaseId: manifest.releaseId }),
-    try: () =>
-      Sha256HashSchema.make(
-        `sha256:${createHash("sha256")
-          .update(canonicalizeContentReleaseManifest(manifest))
-          .digest("hex")}`
-      ),
-  });
-}
 
 /** Confirms that a release envelope identifies its canonical manifest. */
 function validateManifestHash(
@@ -86,7 +62,7 @@ export const verifySignedContentRelease = Effect.fn(
     ),
     Effect.flatMap((release) =>
       Effect.gen(function* () {
-        const actualHash = yield* hashManifest(release.manifest);
+        const actualHash = yield* hashContentReleaseManifest(release.manifest);
         yield* validateManifestHash(
           release.manifest.releaseId,
           release.manifestHash,

@@ -1,9 +1,11 @@
 import { Effect, Schema } from "effect";
-import { ContractDecodeError } from "#contracts/errors";
+import { decodeContract } from "#contracts/decode";
 import {
+  type ContentKey,
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
+  type PublicPath,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
@@ -14,6 +16,45 @@ import { RendererDomainSchema } from "#contracts/renderer/domain";
 /** Locale baseline pinned to Nakafa 25506da until its contract is migrated. */
 export const ContentLocaleSchema = Schema.Literal("en", "id");
 export type ContentLocale = typeof ContentLocaleSchema.Type;
+
+/** Stable locale-specific identity shared by content heads and projections. */
+export interface ContentHeadIdentity {
+  readonly contentKey: ContentKey;
+  readonly locale: ContentLocale;
+}
+
+/** Builds the unambiguous key used for one locale-specific content head. */
+export function headIdentity(input: ContentHeadIdentity) {
+  return `${input.contentKey}\0${input.locale}`;
+}
+
+/** Builds the unambiguous key used for one locale-specific public route. */
+export function routeIdentity(input: {
+  readonly locale: ContentLocale;
+  readonly publicPath: PublicPath;
+}) {
+  return `${input.locale}\0${input.publicPath}`;
+}
+
+/** Compares content heads using deterministic Unicode code-unit order. */
+export function compareContentHeads(
+  left: ContentHeadIdentity,
+  right: ContentHeadIdentity
+) {
+  if (left.contentKey < right.contentKey) {
+    return -1;
+  }
+  if (left.contentKey > right.contentKey) {
+    return 1;
+  }
+  if (left.locale < right.locale) {
+    return -1;
+  }
+  if (left.locale > right.locale) {
+    return 1;
+  }
+  return 0;
+}
 
 /** Compiler protocol implemented by this Aksara compiler release. */
 export const AKSARA_COMPILER_VERSION = "0.1.0";
@@ -65,8 +106,7 @@ export const SignedContentArtifactSchema = Schema.Struct({
 });
 export type SignedContentArtifact = typeof SignedContentArtifactSchema.Type;
 
-export const CONTENT_ARTIFACT_SIGNATURE_DOMAIN =
-  "nakafa.aksara.content-artifact.v1";
+const CONTENT_ARTIFACT_SIGNATURE_DOMAIN = "nakafa.aksara.content-artifact.v1";
 
 /** Serializes a compiled payload with stable field and component order. */
 export function canonicalizeCompiledContentPayload(
@@ -111,34 +151,12 @@ export function canonicalizeSignedContentArtifact(
 export const decodeCompileDocumentRequest = Effect.fn(
   "AksaraContracts.decodeCompileDocumentRequest"
 )((input: unknown) =>
-  Schema.decodeUnknown(CompileDocumentRequestSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(
-      (cause) =>
-        new ContractDecodeError({
-          cause,
-          contract: "CompileDocumentRequest",
-          message: String(cause),
-        })
-    )
-  )
+  decodeContract(CompileDocumentRequestSchema, "CompileDocumentRequest", input)
 );
 
 /** Strictly decodes one authored source before a publication recompile. */
 export const decodeCompileDocumentSource = Effect.fn(
   "AksaraContracts.decodeCompileDocumentSource"
 )((input: unknown) =>
-  Schema.decodeUnknown(CompileDocumentSourceSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(
-      (cause) =>
-        new ContractDecodeError({
-          cause,
-          contract: "CompileDocumentSource",
-          message: String(cause),
-        })
-    )
-  )
+  decodeContract(CompileDocumentSourceSchema, "CompileDocumentSource", input)
 );

@@ -1,29 +1,10 @@
-import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import ts from "typescript";
 
-const SOURCE_PATTERN = /\.(?:[cm]?ts|tsx)$/u;
-const GENERATED_PATH_PATTERN =
-  /(?:^|\/)(?:dist|node_modules|_generated)(?:\/|$)/u;
+import { typescriptFiles } from "#scripts/files";
+
 const WHITESPACE_PATTERN = /\s+/u;
 const MINIMUM_DOCUMENTATION_WORDS = 3;
-
-/** Lists authored TypeScript files that require documentation. */
-function sourceFiles(): string[] {
-  return execFileSync(
-    "git",
-    ["ls-files", "--cached", "--others", "--exclude-standard"],
-    { encoding: "utf8" }
-  )
-    .split("\n")
-    .filter(
-      (file) =>
-        file.length > 0 &&
-        existsSync(file) &&
-        SOURCE_PATTERN.test(file) &&
-        !GENERATED_PATH_PATTERN.test(file)
-    );
-}
 
 /** Detects bindings created by Effect's named function factory. */
 function isEffectFunctionFactory(node: ts.Node): boolean {
@@ -166,7 +147,7 @@ function missingDocumentation(file: string): string[] {
   return missing;
 }
 
-const violations = sourceFiles().flatMap(missingDocumentation);
+const violations = typescriptFiles().flatMap(missingDocumentation);
 
 if (violations.length > 0) {
   process.stderr.write(

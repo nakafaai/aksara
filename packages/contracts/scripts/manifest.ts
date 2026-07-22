@@ -22,8 +22,14 @@ export interface PackageManifest {
 }
 
 /** Root toolchain field inherited by an isolated package consumer. */
-export interface WorkspaceManifest {
+interface WorkspaceManifest {
   readonly packageManager: string;
+}
+
+/** Installed package fields exercised by the isolated consumer verifier. */
+interface InstalledManifest {
+  readonly exports: Readonly<Record<string, Readonly<Record<string, string>>>>;
+  readonly name: string;
 }
 
 /** Narrows parsed JSON objects without introducing an unsafe cast. */
@@ -32,11 +38,27 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 /** Requires one unknown manifest field to be text. */
-function textField(value: unknown, message: string): string {
+export function textField(value: unknown, message: string): string {
   if (typeof value !== "string") {
     assert.fail(message);
   }
   return value;
+}
+
+/** Decodes string-valued export conditions from an installed manifest. */
+function exportConditions(
+  value: unknown,
+  subpath: string
+): Readonly<Record<string, string>> {
+  assert.ok(isRecord(value), `Export ${subpath} must be an object`);
+  const conditions: Record<string, string> = {};
+  for (const [condition, target] of Object.entries(value)) {
+    conditions[condition] = textField(
+      target,
+      `Export ${subpath} condition ${condition} must be text`
+    );
+  }
+  return conditions;
 }
 
 /** Decodes one optional dependency map from a package manifest. */
@@ -77,6 +99,20 @@ export function parsePackageManifest(source: string): PackageManifest {
     optionalDependencies: dependencyMap(parsed, "optionalDependencies"),
     peerDependencies: dependencyMap(parsed, "peerDependencies"),
   };
+}
+
+/** Decodes the installed package fields exercised by module resolution. */
+export function parseInstalledManifest(source: string): InstalledManifest {
+  const parsed: unknown = JSON.parse(source);
+  assert.ok(isRecord(parsed), "The installed manifest must be an object");
+  const name = textField(parsed.name, "The package name must be text");
+  const rawExports = parsed.exports;
+  assert.ok(isRecord(rawExports), "The package must declare exports");
+  const exports: Record<string, Readonly<Record<string, string>>> = {};
+  for (const [subpath, descriptor] of Object.entries(rawExports)) {
+    exports[subpath] = exportConditions(descriptor, subpath);
+  }
+  return { exports, name };
 }
 
 /** Decodes the root package-manager contract used by the consumer. */

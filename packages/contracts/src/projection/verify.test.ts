@@ -1,6 +1,7 @@
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-import { hashContentProjections } from "#contracts/projection/digest";
+import { ReleaseIdSchema } from "#contracts/ids";
+import { digestProjections } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { verifyContentProjections } from "#contracts/projection/verify";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
@@ -33,14 +34,20 @@ function projection(
 const firstProjection = projection("test:a", "en", "subjects/test/material/a");
 const secondProjection = projection("test:b", "id", "materi/test/material/b");
 const projections = [firstProjection, secondProjection];
+const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)(
+  "test-release-projections"
+);
+const projectionSummary = await Effect.runPromise(
+  digestProjections(releaseId, Stream.fromIterable(projections))
+);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
   itemCount: 0,
   itemsDigest: `sha256:${"b".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
   projectionCount: projections.length,
-  projectionDigest: hashContentProjections(projections),
-  releaseId: "test-release-projections",
+  projectionDigest: projectionSummary.digest,
+  releaseId,
   rendererContractVersion: "2.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
 });
