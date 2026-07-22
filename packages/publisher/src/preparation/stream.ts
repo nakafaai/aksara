@@ -1,5 +1,5 @@
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import {
   compareContentHeads,
   routeIdentity,
@@ -10,6 +10,10 @@ import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
+import {
+  type RollbackSnapshotEntry,
+  RollbackSnapshotEntrySchema,
+} from "@nakafa/aksara-contracts/release/rollback";
 import { Effect, Schema, Stream } from "effect";
 import {
   type CoherenceFieldSchema,
@@ -21,9 +25,10 @@ import {
 } from "#publisher/preparation/errors";
 import {
   type PreparedContentRecord,
-  PreparedContentRecordSchema,
-  type PreparedContentRecordSource,
   type PreparedContentStreamError,
+  type PreparedContentTransition,
+  PreparedContentTransitionSchema,
+  type PreparedContentTransitionSource,
   type PreparedContentUpsert,
 } from "#publisher/preparation/spec";
 
@@ -34,11 +39,16 @@ interface RecordState {
 
 /** One item and its optional material projection derived in the same replay. */
 export type DerivedContentRecord =
-  | { readonly item: ContentReleaseItem; readonly kind: "delete" }
+  | {
+      readonly item: ContentReleaseItem;
+      readonly kind: "delete";
+      readonly rollback: RollbackSnapshotEntry;
+    }
   | {
       readonly item: ContentReleaseItem;
       readonly kind: "upsert";
       readonly projection: MaterialLessonProjection;
+      readonly rollback: RollbackSnapshotEntry;
     };
 
 /** Narrows the nested operation to its complete authored upsert record. */
@@ -117,6 +127,34 @@ function validateRecordCoherence(
   return validateUpsert(record, recordIndex);
 }
 
+/** Requires the prior snapshot to describe the same changed content head. */
+function validatePriorState(
+  transition: PreparedContentTransition,
+  recordIndex: number
+) {
+  const { change } = transition.record;
+  const identity =
+    transition.prior.state === "absent"
+      ? transition.prior
+      : transition.prior.head;
+  const matchesIdentity =
+    identity.contentKey === change.contentKey &&
+    identity.locale === change.locale;
+  const validAbsence =
+    transition.prior.state !== "absent" || change.operation === "upsert";
+  if (matchesIdentity && validAbsence) {
+    return validateRecordCoherence(transition.record, recordIndex).pipe(
+      Effect.as(transition)
+    );
+  }
+  return Effect.fail(
+    new PreparedContentCoherenceError({
+      field: "priorState",
+      recordIndex,
+    })
+  );
+}
+
 /** Applies canonical ordering and locale-specific route uniqueness. */
 function validateOrder(
   state: RecordState,
@@ -151,24 +189,30 @@ function validateOrder(
 
 /** Converts one proven record to its indexed release representation. */
 function deriveRecord(
-  record: PreparedContentRecord,
+  transition: PreparedContentTransition,
   index: number,
   releaseId: ReleaseId
 ): DerivedContentRecord {
+  const { record } = transition;
   const item = ContentReleaseItemSchema.make({
     change: record.change,
     index,
     releaseId,
   });
+  const rollback = RollbackSnapshotEntrySchema.make({
+    index,
+    releaseId,
+    snapshot: transition.prior,
+  });
   if (!isPreparedContentUpsert(record)) {
-    return { item, kind: "delete" };
+    return { item, kind: "delete", rollback };
   }
-  return { item, kind: "upsert", projection: record.projection };
+  return { item, kind: "upsert", projection: record.projection, rollback };
 }
 
 /** Replays and derives one canonical stream without collecting the corpus. */
 export function derivePreparedRecords<E, R>(input: {
-  readonly records: PreparedContentRecordSource<E, R>;
+  readonly records: PreparedContentTransitionSource<E, R>;
   readonly releaseId: ReleaseId;
 }): Stream.Stream<DerivedContentRecord, PreparedContentStreamError<E>, R> {
   return Stream.unwrap(
@@ -184,20 +228,22 @@ export function derivePreparedRecords<E, R>(input: {
         return records.pipe(
           Stream.zipWithIndex,
           Stream.mapEffect(([source, recordIndex]) =>
-            Schema.decodeUnknown(PreparedContentRecordSchema)(source, {
+            Schema.decodeUnknown(PreparedContentTransitionSchema)(source, {
               onExcessProperty: "error",
             }).pipe(
               Effect.mapError(
                 () => new PreparedContentDecodeError({ recordIndex })
               ),
-              Effect.flatMap((record) =>
-                validateRecordCoherence(record, recordIndex)
+              Effect.flatMap((transition) =>
+                validatePriorState(transition, recordIndex)
               ),
-              Effect.flatMap((record) =>
-                validateOrder(state, record, recordIndex)
+              Effect.flatMap((transition) =>
+                validateOrder(state, transition.record, recordIndex).pipe(
+                  Effect.as(transition)
+                )
               ),
-              Effect.map((record) =>
-                deriveRecord(record, recordIndex, input.releaseId)
+              Effect.map((transition) =>
+                deriveRecord(transition, recordIndex, input.releaseId)
               )
             )
           )

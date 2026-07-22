@@ -1,5 +1,7 @@
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { release, rendererManifest } from "#contracts/test/request";
 import {
   decodePublicationResponse,
   PublicationResponseSchema,
@@ -12,15 +14,21 @@ const rendererManifestHash = `sha256:${"c".repeat(64)}`;
 const receipt = {
   activatedHeads: 1,
   deletedHeads: 0,
+  manifestHash,
   projectionDigest,
   releaseId,
+  resultCount: 1,
+  resultDigest: projectionDigest,
   stagedArtifacts: 1,
   stagedItems: 1,
   stagedProjections: 1,
 };
 const status = { manifestHash, phase: "staging", releaseId };
 const evidence = {
+  baseManifestHash: null,
   baseReleaseId: null,
+  baseResultCount: 0,
+  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteHeads: 0,
   itemCount: 1,
   itemsDigest: manifestHash,
@@ -30,11 +38,61 @@ const evidence = {
   releaseId,
   rendererContractVersion: "1.0.0",
   rendererManifestHash,
+  resultCount: 1,
+  resultDigest: projectionDigest,
+  rollbackCount: 1,
+  rollbackDigest: manifestHash,
   stagedArtifacts: 1,
   upsertHeads: 1,
 };
 
 const successes = [
+  {
+    ok: true,
+    operation: "abort",
+    value: {
+      complete: true,
+      processedItems: 2,
+      releaseId,
+      totalItems: 2,
+    },
+  },
+  {
+    ok: true,
+    operation: "current",
+    value: {
+      activeManifestHash: null,
+      activeReleaseId: null,
+      completed: null,
+      pending: { phase: "staging", release, rendererManifest },
+    },
+  },
+  {
+    ok: true,
+    operation: "headPage",
+    value: {
+      activeManifestHash: manifestHash,
+      activeReleaseId: releaseId,
+      cursor: null,
+      done: true,
+      family: "material",
+      heads: [
+        {
+          artifactHash: manifestHash,
+          compilerConfigHash: manifestHash,
+          contentKey: "test:transport",
+          delivery: "public",
+          locale: "en",
+          projectionHash: projectionDigest,
+          publicPath: "subjects/test/transport",
+          rendererDomain: "mathematics",
+          sourceHash: manifestHash,
+          sourcePath: "packages/corpus/test/transport/en.mdx",
+        },
+      ],
+      nextCursor: null,
+    },
+  },
   { ok: true, operation: "stageRelease", value: status },
   {
     ok: true,
@@ -74,6 +132,7 @@ const successes = [
       nextIndex: -1,
       records: [],
       rollbackOf: releaseId,
+      rollbackOfManifestHash: manifestHash,
       total: 0,
     },
   },
@@ -82,11 +141,8 @@ const successes = [
     operation: "cleanup",
     value: {
       complete: true,
-      cursor: null,
       deletedArtifacts: 1,
       deletedItems: 2,
-      limit: 100,
-      nextCursor: null,
       releaseId,
     },
   },
@@ -107,11 +163,10 @@ describe("publication responses", () => {
       expect(accepts(response)).toBe(true);
     }
     const decoded = await Effect.runPromise(
-      decodePublicationResponse(successes[5])
+      decodePublicationResponse(successes[7])
     );
     expect(decoded.ok).toBe(true);
   });
-
   it("decodes stable typed failures through the same response contract", () => {
     for (const failure of [
       {
@@ -142,7 +197,6 @@ describe("publication responses", () => {
       expect(accepts({ failure, ok: false })).toBe(true);
     }
   });
-
   it("rejects operation-result mismatches and extra wire fields", async () => {
     expect(
       accepts({
@@ -193,7 +247,6 @@ describe("publication responses", () => {
     );
     expect(error._tag).toBe("ContractDecodeError");
   });
-
   it("requires bounded integer finalization progress", () => {
     for (const value of [
       { done: false, nextIndex: -2, processed: 1 },
@@ -212,7 +265,6 @@ describe("publication responses", () => {
       ).toBe(false);
     }
   });
-
   it("rejects verification evidence with contradictory staged counts", () => {
     const invalidHeads = Schema.decodeUnknownEither(PublicationResponseSchema)({
       ok: true,
@@ -233,7 +285,6 @@ describe("publication responses", () => {
       })
     ).toBe(false);
   });
-
   it("rejects activation receipts with contradictory staged counts", () => {
     const invalid = Schema.decodeUnknownEither(PublicationResponseSchema)({
       ok: true,

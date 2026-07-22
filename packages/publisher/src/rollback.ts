@@ -1,95 +1,118 @@
+import type { FileSystem, Path } from "@effect/platform";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import {
-  createProjectionDigest,
-  finalizeProjectionDigest,
-  updateProjectionDigest,
-} from "@nakafa/aksara-contracts/projection/digest";
-import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
-import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
-import {
-  createReleaseItemsDigest,
-  finalizeReleaseItemsDigest,
-  updateReleaseItemsDigest,
-} from "@nakafa/aksara-contracts/release/digest";
-import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
+import { Effect, type Scope, type Stream } from "effect";
+import { streamMaterialHeads } from "#publisher/heads";
+import type { PreparedRollbackRelease } from "#publisher/preparation/spec";
+import { validateReleaseRendererManifest } from "#publisher/release-validation";
+import type { ReplaySpoolError } from "#publisher/replay/error";
+import { createReplaySpool } from "#publisher/replay/spool";
+import { mergeRollbackResult } from "#publisher/rollback/catalog";
 import {
-  makePreparedRollbackRelease,
-  type PreparedRollbackRelease,
-} from "#publisher/preparation/spec";
-import { RollbackIdentityError } from "#publisher/rollback/errors";
+  RollbackIdentityError,
+  type RollbackProofIdentityError,
+} from "#publisher/rollback/errors";
 import {
+  type RollbackProofMode,
+  type RollbackProofSelection,
+  selectRollbackProof,
+  verifyRollbackProof,
+} from "#publisher/rollback/proof";
+import {
+  DerivedRollbackRecordSchema,
   deriveRollbackRecords,
-  isDerivedRollbackUpsert,
+  type RollbackArtifactPolicy,
 } from "#publisher/rollback/records";
+import {
+  buildRollbackRelease,
+  type RollbackBaseCatalog,
+} from "#publisher/rollback/release";
 import { streamRollbackRecords } from "#publisher/rollback/stream";
 
-type RollbackSourceStream = ReturnType<typeof streamRollbackRecords>;
-
-type RollbackRecordStream = ReturnType<
+type RollbackPageStream = ReturnType<typeof streamRollbackRecords>;
+type DerivedTransitionStream = ReturnType<
   typeof deriveRollbackRecords<
-    Stream.Stream.Error<RollbackSourceStream>,
-    Stream.Stream.Context<RollbackSourceStream>
+    Stream.Stream.Error<RollbackPageStream>,
+    Stream.Stream.Context<RollbackPageStream>
   >
 >;
-
-type RollbackStreamError = Stream.Stream.Error<RollbackRecordStream>;
-type RollbackStreamContext = Stream.Stream.Context<RollbackRecordStream>;
-
-type RendererManifestError = Effect.Effect.Error<
-  ReturnType<typeof validateRendererManifestHash>
+type ActiveHeadStream = ReturnType<typeof streamMaterialHeads>;
+type ResultCatalogStream = ReturnType<
+  typeof mergeRollbackResult<ReplaySpoolError, never, ReplaySpoolError, never>
 >;
 
-type ItemDigestError =
-  | Effect.Effect.Error<ReturnType<typeof createReleaseItemsDigest>>
-  | Effect.Effect.Error<ReturnType<typeof finalizeReleaseItemsDigest>>
-  | Effect.Effect.Error<ReturnType<typeof updateReleaseItemsDigest>>;
-
-type ProjectionDigestError =
-  | Effect.Effect.Error<ReturnType<typeof createProjectionDigest>>
-  | Effect.Effect.Error<ReturnType<typeof finalizeProjectionDigest>>
-  | Effect.Effect.Error<ReturnType<typeof updateProjectionDigest>>;
-
-type ItemVerificationError = Effect.Effect.Error<
-  ReturnType<
-    typeof verifyContentReleaseItems<RollbackStreamError, RollbackStreamContext>
-  >
->;
-
-type ProjectionVerificationError = Effect.Effect.Error<
-  ReturnType<
-    typeof verifyContentProjections<RollbackStreamError, RollbackStreamContext>
-  >
->;
-
-/** Exact active release and new identity for one forward rollback. */
+/** Exact signed proof and identities for one forward rollback. */
 export interface PrepareRollbackInput {
+  readonly proofBundle: unknown;
   readonly releaseId: ReleaseId;
   readonly rendererManifest: unknown;
   readonly rollbackOf: ReleaseId;
 }
 
-/** Every typed failure surfaced while preparing one forward rollback. */
+/** Every typed failure surfaced while authenticating and deriving a rollback. */
 export type PrepareRollbackError =
-  | ItemDigestError
-  | ItemVerificationError
-  | ProjectionDigestError
-  | ProjectionVerificationError
-  | RendererManifestError
+  | Effect.Effect.Error<ReturnType<typeof validateRendererManifestHash>>
+  | Effect.Effect.Error<ReturnType<typeof validateReleaseRendererManifest>>
+  | Effect.Effect.Error<ReturnType<typeof verifyContentReleaseBundle>>
+  | Effect.Effect.Error<ReturnType<typeof verifyRollbackProof>>
+  | Effect.Effect.Error<
+      ReturnType<typeof verifyResultCatalog<ReplaySpoolError, never>>
+    >
+  | Effect.Effect.Error<
+      ReturnType<typeof buildRollbackRelease<ReplaySpoolError, never>>
+    >
+  | ReplaySpoolError
   | RollbackIdentityError
-  | RollbackStreamError;
+  | RollbackProofIdentityError
+  | Stream.Stream.Error<ActiveHeadStream>
+  | Stream.Stream.Error<DerivedTransitionStream>
+  | Stream.Stream.Error<ResultCatalogStream>;
 
-/** Complete Effect interface for one bounded forward rollback preparation. */
+/** Services required by secure rollback preparation. */
+export type PrepareRollbackContext =
+  | Effect.Effect.Context<ReturnType<typeof verifyContentReleaseBundle>>
+  | FileSystem.FileSystem
+  | Path.Path
+  | Scope.Scope
+  | Stream.Stream.Context<ActiveHeadStream>
+  | Stream.Stream.Context<DerivedTransitionStream>;
+
+/** Complete Effect interface for secure rollback preparation. */
 export type PrepareRollback = (
   input: PrepareRollbackInput
 ) => Effect.Effect<
-  PreparedRollbackRelease<RollbackStreamError, RollbackStreamContext>,
+  PreparedRollbackRelease<ReplaySpoolError, never>,
   PrepareRollbackError,
-  RollbackStreamContext
+  PrepareRollbackContext
 >;
 
-/** Prepares one self-verified forward rollback from bounded target pages. */
+/** Extracts the exact active catalog identity from source or recovery proof. */
+function baseCatalogFromProof(
+  proof: ContentReleaseBundle,
+  selection: RollbackProofSelection
+): RollbackBaseCatalog {
+  const { manifest } = proof.release;
+  if (selection.kind === "source") {
+    return {
+      manifestHash: proof.release.manifestHash,
+      releaseId: manifest.releaseId,
+      resultCount: manifest.resultCount,
+      resultDigest: manifest.resultDigest,
+    };
+  }
+  return {
+    manifestHash: selection.baseManifestHash,
+    releaseId: selection.baseReleaseId,
+    resultCount: manifest.baseResultCount,
+    resultDigest: manifest.baseResultDigest,
+  };
+}
+
+/** Prepares one self-verified rollback from signed source or recovery proof. */
 export const prepareRollback: PrepareRollback = Effect.fn(
   "AksaraPublisher.prepareRollback"
 )(function* (input: PrepareRollbackInput) {
@@ -102,70 +125,71 @@ export const prepareRollback: PrepareRollback = Effect.fn(
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
-  /** Replays strict pages and authenticates every old artifact envelope. */
-  const records = () =>
-    deriveRollbackRecords({
-      records: streamRollbackRecords(input.rollbackOf),
-      releaseId: input.releaseId,
-      rendererManifest,
-    });
-  /** Replays canonical forward-release items from the same prior records. */
-  const items = () => records().pipe(Stream.map((record) => record.item));
-  /** Replays only projections restored by authenticated prior upserts. */
-  const projections = () =>
-    records().pipe(
-      Stream.filter(isDerivedRollbackUpsert),
-      Stream.map((record) => record.projection)
-    );
-  /** Replays exact unchanged signed envelopes from those same upserts. */
-  const artifacts = () =>
-    records().pipe(
-      Stream.filter(isDerivedRollbackUpsert),
-      Stream.map((record) => record.artifact)
-    );
-  const itemState = yield* createReleaseItemsDigest(input.releaseId);
-  const projectionState = yield* createProjectionDigest(input.releaseId);
-  yield* records().pipe(
-    Stream.runForEach((record) =>
-      updateReleaseItemsDigest(input.releaseId, itemState, record.item).pipe(
-        Effect.zipRight(
-          isDerivedRollbackUpsert(record)
-            ? updateProjectionDigest(
-                input.releaseId,
-                projectionState,
-                record.projection
-              )
-            : Effect.void
-        )
-      )
-    )
-  );
-  const itemsDigest = yield* finalizeReleaseItemsDigest(
+  const proof = yield* verifyContentReleaseBundle(input.proofBundle);
+  const proofSelection = yield* selectRollbackProof(
+    proof.release,
     input.releaseId,
-    itemState
+    input.rollbackOf
   );
-  const projectionDigest = yield* finalizeProjectionDigest(
-    input.releaseId,
-    projectionState
-  );
-  const manifest = ContentReleaseManifestSchema.make({
-    baseReleaseId: input.rollbackOf,
-    itemCount: itemState.count,
-    itemsDigest,
-    origin: { kind: "rollback", releaseId: input.rollbackOf },
-    projectionCount: projectionState.count,
-    projectionDigest,
-    releaseId: input.releaseId,
-    rendererContractVersion: rendererManifest.rendererContractVersion,
-    rendererManifestHash: rendererManifest.hash,
+  const proofMode: RollbackProofMode = proofSelection.kind;
+  if (proofMode === "recovery") {
+    yield* validateReleaseRendererManifest(
+      proof.release.manifest,
+      rendererManifest
+    );
+  }
+  const base = baseCatalogFromProof(proof, proofSelection);
+  const currentPolicy: RollbackArtifactPolicy =
+    proofMode === "source"
+      ? {
+          kind: "compatible",
+          rendererManifest: proof.rendererManifest,
+        }
+      : { kind: "integrity" };
+  const transitionSpool = yield* createReplaySpool({
+    prefix: "aksara-rollback-",
+    schema: DerivedRollbackRecordSchema,
+    stream: deriveRollbackRecords({
+      currentPolicy,
+      currentReleaseId: base.releaseId,
+      priorPolicy: { kind: "compatible", rendererManifest },
+      priorReleaseId: input.releaseId,
+      records: streamRollbackRecords(
+        base.releaseId,
+        base.manifestHash,
+        proof.release.manifest.rollbackCount
+      ),
+    }),
   });
-  yield* verifyContentReleaseItems({ items: items(), manifest });
-  yield* verifyContentProjections({ manifest, projections: projections() });
-  return makePreparedRollbackRelease({
-    artifacts,
-    items,
-    manifest,
-    projections,
+  yield* verifyRollbackProof({
+    manifest: proof.release.manifest,
+    mode: proofMode,
+    records: transitionSpool.replay,
+  });
+  const activeSpool = yield* createReplaySpool({
+    prefix: "aksara-rollback-active-",
+    schema: MaterialHeadSchema,
+    stream: streamMaterialHeads(base.releaseId, base.manifestHash),
+  });
+  yield* verifyResultCatalog({
+    expectedCount: base.resultCount,
+    expectedDigest: base.resultDigest,
+    heads: activeSpool.replay(),
+    releaseId: base.releaseId,
+  });
+  const resultSpool = yield* createReplaySpool({
+    prefix: "aksara-rollback-result-",
+    schema: MaterialHeadSchema,
+    stream: mergeRollbackResult({
+      active: activeSpool.replay(),
+      transitions: transitionSpool.replay(),
+    }),
+  });
+  return yield* buildRollbackRelease({
+    base,
+    records: transitionSpool.replay,
+    releaseId: input.releaseId,
     rendererManifest,
+    result: resultSpool.replay,
   });
 });

@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import { analyze } from "eslint-scope";
 import type {
   Node as EstreeNode,
@@ -38,11 +39,13 @@ const SAFE_GLOBALS = new Set([
   "undefined",
 ]);
 
+/** Revision bound into artifact fingerprints whenever executable policy changes. */
+export const EXECUTABLE_POLICY_REVISION = "trusted-mdx-policy-v4";
+
 /** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
   return (
-    typeof value === "object" &&
-    value !== null &&
+    Predicate.isRecord(value) &&
     "type" in value &&
     typeof value.type === "string"
   );
@@ -107,6 +110,26 @@ function jsxAttributeName(node: JSXAttribute) {
   return node.name.type === "JSXIdentifier" ? node.name.name : undefined;
 }
 
+/** Records forbidden statically knowable object property names. */
+function inspectPropertyNode(
+  node: Property,
+  add: (violation: ExecutablePolicyViolation) => void
+) {
+  const propertyName = staticPropertyName(node.key);
+  if (
+    propertyName !== undefined &&
+    PROTOTYPE_ESCAPE_PROPERTIES.has(propertyName)
+  ) {
+    add({ identifier: propertyName, rule: "prototype-chain-access" });
+  }
+  if (propertyName === "dangerouslySetInnerHTML") {
+    add({
+      identifier: "dangerouslySetInnerHTML",
+      rule: "dangerous-jsx-attribute",
+    });
+  }
+}
+
 /** Records executable capabilities visible directly in one ESTree node. */
 function inspectSyntaxNode(
   node: EstreeNode,
@@ -144,14 +167,8 @@ function inspectSyntaxNode(
     });
     return;
   }
-  if (
-    node.type === "Property" &&
-    staticPropertyName(node.key) === "dangerouslySetInnerHTML"
-  ) {
-    add({
-      identifier: "dangerouslySetInnerHTML",
-      rule: "dangerous-jsx-attribute",
-    });
+  if (node.type === "Property") {
+    inspectPropertyNode(node, add);
     return;
   }
   if (

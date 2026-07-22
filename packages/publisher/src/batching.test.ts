@@ -102,7 +102,7 @@ describe("publication batching", () => {
     ).toBe(true);
   });
 
-  it("streams artifact batches at 8 items and a complete 4 MiB envelope", async () => {
+  it("streams transaction-safe artifact batches within 4 MiB", async () => {
     const values = Array.from(
       { length: MAX_ARTIFACT_BATCH_COUNT + 1 },
       (_, index) => artifact(index)
@@ -110,7 +110,10 @@ describe("publication batching", () => {
     const batches = await collect(
       makeArtifactBatches(releaseId, Stream.fromIterable(values))
     );
-    expect(batches.map(({ artifacts }) => artifacts.length)).toEqual([8, 1]);
+    expect(batches.map(({ artifacts }) => artifacts.length)).toEqual([
+      MAX_ARTIFACT_BATCH_COUNT,
+      1,
+    ]);
     expect(MAX_ARTIFACT_BATCH_BYTES).toBe(4 * 1024 * 1024);
     expect(
       batches.every(

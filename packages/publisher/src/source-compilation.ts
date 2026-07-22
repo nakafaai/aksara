@@ -1,13 +1,16 @@
 import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   type CompileDocumentSource,
-  type CompiledContentPayload,
+  CompiledContentPayloadSchema,
   decodeCompileDocumentSource,
 } from "@nakafa/aksara-contracts/content";
-import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
+import {
+  type ContentReleaseItem,
+  ContentReleaseItemSchema,
+} from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import {
   ReleaseArtifactMismatchError,
   validateCompiledPayloadForItem,
@@ -28,11 +31,13 @@ type SourcePair =
       readonly source: unknown;
     };
 
+/** Strict disk-replay contract for one exact-Git compilation result. */
+export const CompiledReleaseSourceSchema = Schema.Struct({
+  item: ContentReleaseItemSchema,
+  payload: CompiledContentPayloadSchema,
+});
 /** One authenticated release item paired with its reproducible payload. */
-export interface CompiledReleaseSource {
-  readonly item: ContentReleaseItem;
-  readonly payload: CompiledContentPayload;
-}
+export type CompiledReleaseSource = typeof CompiledReleaseSourceSchema.Type;
 
 /** Requires an authored source to match its authenticated release item. */
 function validateSourceIdentity(

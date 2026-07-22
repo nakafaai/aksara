@@ -1,29 +1,27 @@
-import { Buffer } from "node:buffer";
-import { HttpClient, HttpClientRequest } from "@effect/platform";
+import { HttpClient } from "@effect/platform";
 import type {
   PublicationReceipt,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import {
-  MAX_ARTIFACT_BATCH_BYTES,
-  MAX_ITEM_BATCH_BYTES,
-  MAX_PROJECTION_BATCH_BYTES,
-  MAX_PUBLICATION_REQUEST_BYTES,
-} from "@nakafa/aksara-contracts/transport/limits";
-import {
-  type ActivateReleaseRequest,
-  type FinalizeReleaseRequest,
-  type PublicationCleanupRequest,
-  type PublicationRequest,
-  PublicationRequestSchema,
-  type PublicationRollbackRequest,
-  type PublicationStatusRequest,
-  type VerifyReleaseRequest,
+import type {
+  ActivateReleaseRequest,
+  FinalizeReleaseRequest,
+  PublicationAbortRequest,
+  PublicationCleanupRequest,
+  PublicationCurrentRequest,
+  PublicationHeadPageRequest,
+  PublicationRequest,
+  PublicationRollbackRequest,
+  PublicationStatusRequest,
+  VerifyReleaseRequest,
 } from "@nakafa/aksara-contracts/transport/request";
 import {
   ActivateReleaseSuccessSchema,
   FinalizeReleaseSuccessSchema,
+  PublicationAbortSuccessSchema,
   PublicationCleanupSuccessSchema,
+  PublicationCurrentSuccessSchema,
+  PublicationHeadPageSuccessSchema,
   PublicationRollbackSuccessSchema,
   PublicationStatusSuccessSchema,
   VerifyReleaseSuccessSchema,
@@ -32,121 +30,10 @@ import { Effect, Layer, Schema } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   type HttpPublicationTargetConfig,
-  type ValidatedHttpConfig,
   validateHttpConfig,
 } from "#publisher/target/config";
-import {
-  type PublicationTargetFailure,
-  PublicationTargetProtocolError,
-  PublicationTargetRejectedError,
-  PublicationTargetTransportError,
-} from "#publisher/target/errors";
-import {
-  interpretPublicationResponse,
-  isTransientPublicationStatus,
-  publicationReleaseId,
-  targetStage,
-  transientPublicationError,
-} from "#publisher/target/protocol";
-import { readPublicationResponse } from "#publisher/target/response";
-
-const REQUEST_BYTE_LIMITS: Readonly<{
-  [Operation in PublicationRequest["operation"]]: number;
-}> = {
-  activate: MAX_PUBLICATION_REQUEST_BYTES,
-  cleanup: MAX_PUBLICATION_REQUEST_BYTES,
-  finalize: MAX_PUBLICATION_REQUEST_BYTES,
-  rollbackPage: MAX_PUBLICATION_REQUEST_BYTES,
-  stageArtifactBatch: MAX_ARTIFACT_BATCH_BYTES,
-  stageItemBatch: MAX_ITEM_BATCH_BYTES,
-  stageProjectionBatch: MAX_PROJECTION_BATCH_BYTES,
-  stageRelease: MAX_PUBLICATION_REQUEST_BYTES,
-  status: MAX_PUBLICATION_REQUEST_BYTES,
-  verify: MAX_PUBLICATION_REQUEST_BYTES,
-};
-
-/** Creates a retryable sanitized network failure for one exact operation. */
-function networkError(request: PublicationRequest) {
-  return new PublicationTargetTransportError({
-    detail: { reason: "network" },
-    stage: targetStage(request.operation),
-  });
-}
-
-/** Creates a permanent sanitized protocol failure for one exact operation. */
-function protocolError(
-  request: PublicationRequest,
-  reason: PublicationTargetProtocolError["reason"]
-) {
-  return new PublicationTargetProtocolError({
-    reason,
-    stage: targetStage(request.operation),
-  });
-}
-
-/** Fails if encoded JSON exceeds its operation-specific ingress ceiling. */
-function validateRequestBytes(request: PublicationRequest, bytes: number) {
-  if (bytes <= REQUEST_BYTE_LIMITS[request.operation]) {
-    return Effect.void;
-  }
-  return Effect.fail(
-    new PublicationTargetRejectedError({
-      rejection: {
-        code: "CONTENT_RELEASE_SIZE",
-        kind: "rejected",
-        operation: request.operation,
-        releaseId: publicationReleaseId(request),
-      },
-    })
-  );
-}
-
-/** Sends one strict JSON request and authenticates its complete response. */
-function sendPublicationRequest(
-  client: HttpClient.HttpClient,
-  config: ValidatedHttpConfig,
-  request: PublicationRequest
-) {
-  return Effect.gen(function* () {
-    const body = yield* Schema.encode(
-      Schema.parseJson(PublicationRequestSchema),
-      { onExcessProperty: "error" }
-    )(request).pipe(
-      Effect.mapError(() => protocolError(request, "request-encoding"))
-    );
-    yield* validateRequestBytes(request, Buffer.byteLength(body, "utf8"));
-    const outgoing = HttpClientRequest.post(config.endpoint).pipe(
-      HttpClientRequest.acceptJson,
-      HttpClientRequest.bearerToken(config.token),
-      HttpClientRequest.bodyText(body, "application/json")
-    );
-    const scopedClient = client.pipe(HttpClient.withScope);
-    const exchange = Effect.gen(function* () {
-      const response = yield* scopedClient
-        .execute(outgoing)
-        .pipe(Effect.mapError(() => networkError(request)));
-      if (isTransientPublicationStatus(response.status)) {
-        return yield* transientPublicationError(request, response.status);
-      }
-      const responseBody = yield* readPublicationResponse(request, response);
-      return yield* interpretPublicationResponse(request, {
-        body: responseBody,
-        status: response.status,
-      });
-    });
-    return yield* exchange.pipe(
-      Effect.timeoutFail({
-        duration: config.timeout,
-        onTimeout: () =>
-          new PublicationTargetTransportError({
-            detail: { reason: "timeout" },
-            stage: targetStage(request.operation),
-          }),
-      }),
-      Effect.scoped
-    );
-  });
-}
+import type { PublicationTargetFailure } from "#publisher/target/errors";
+import { sendPublicationRequest } from "#publisher/target/exchange";
 
 /** Narrows validated success evidence without defecting target failures. */
 function decodeSuccess<A, I>(schema: Schema.Schema<A, I>, input: unknown) {
@@ -186,6 +73,18 @@ export const makeHttpPublicationTarget = Effect.fn(
   };
 
   return PublicationTarget.of({
+    abort: (input) => {
+      const request: PublicationAbortRequest = {
+        ...input,
+        operation: "abort",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(PublicationAbortSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      );
+    },
     activate: (release) => {
       const request: ActivateReleaseRequest = {
         operation: "activate",
@@ -210,7 +109,28 @@ export const makeHttpPublicationTarget = Effect.fn(
         Effect.map((response) => response.value)
       );
     },
+    current: () => {
+      const request: PublicationCurrentRequest = { operation: "current" };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(PublicationCurrentSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      );
+    },
     finalize: (release) => finalizeRelease(release),
+    headPage: (input) => {
+      const request: PublicationHeadPageRequest = {
+        ...input,
+        operation: "headPage",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(PublicationHeadPageSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      );
+    },
     rollbackPage: (input) => {
       const request: PublicationRollbackRequest = {
         ...input,
@@ -229,8 +149,8 @@ export const makeHttpPublicationTarget = Effect.fn(
       send({ ...input, operation: "stageItemBatch" }).pipe(Effect.asVoid),
     stageProjectionBatch: (input) =>
       send({ ...input, operation: "stageProjectionBatch" }).pipe(Effect.asVoid),
-    stageRelease: (release) =>
-      send({ operation: "stageRelease", release }).pipe(Effect.asVoid),
+    stageRelease: (input) =>
+      send({ ...input, operation: "stageRelease" }).pipe(Effect.asVoid),
     status: (input) => {
       const request: PublicationStatusRequest = {
         ...input,

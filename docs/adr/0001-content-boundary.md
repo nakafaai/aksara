@@ -36,6 +36,19 @@ then signs a constant-size canonical release manifest with a distinct signature
 domain. One configured Ed25519 key signs both object types without making their
 signatures interchangeable.
 
+The contracts package owns the reviewed public-key registry and a distinct
+active signing-key identity. The production CLI derives an SPKI public key from
+its validated PKCS8 private key, then requires the configured key ID to be the
+active identity and the derived SPKI to exactly match its registry entry before
+creating any publication target or making a network request. The same resolver
+retains older verification keys without authorizing them to sign new releases.
+
+Rotation follows expand-retain-contract order: add and deploy the new public
+key, change the active signing identity and Environment signer together, retain
+every old key while a live or rollback-eligible artifact references it, and
+remove an old key only after that retention proof passes. Unknown, duplicate,
+inactive, and mismatched keys fail closed.
+
 The release envelope authenticates its base release, source origin, ordered item
 count and domain-separated SHA-256 digest, expected projection count and digest,
 release ID, and renderer contract version. A Git release origin carries the

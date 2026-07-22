@@ -159,7 +159,7 @@ describe("preview document compiler", () => {
     unlinkSync(repository.documentPath);
     const indonesianPath = resolve(
       repository.aksaraRoot,
-      "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx"
+      "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/id.mdx"
     );
     symlinkSync(indonesianPath, repository.documentPath);
     const error = await runNode(compiler.compile().pipe(Effect.flip));

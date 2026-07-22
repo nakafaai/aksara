@@ -110,17 +110,27 @@ export function validateVerificationEvidence(
   const matches =
     evidence.releaseId === manifest.releaseId &&
     evidence.manifestHash === release.manifestHash &&
+    evidence.baseManifestHash === manifest.baseManifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
+    evidence.baseResultCount === manifest.baseResultCount &&
+    evidence.baseResultDigest === manifest.baseResultDigest &&
     evidence.itemCount === manifest.itemCount &&
     evidence.itemsDigest === manifest.itemsDigest &&
+    evidence.stagedArtifacts === manifest.upsertCount &&
     evidence.stagedArtifacts === summary.upsertCount &&
+    evidence.upsertHeads === manifest.upsertCount &&
     evidence.upsertHeads === summary.upsertCount &&
+    evidence.deleteHeads === manifest.deleteCount &&
     evidence.deleteHeads === summary.deleteCount &&
     evidence.rendererContractVersion === manifest.rendererContractVersion &&
     evidence.rendererManifestHash === manifest.rendererManifestHash &&
     evidence.projectionCount === manifest.projectionCount &&
     evidence.projectionCount === projectionSummary.count &&
-    evidence.projectionDigest === manifest.projectionDigest;
+    evidence.projectionDigest === manifest.projectionDigest &&
+    evidence.resultCount === manifest.resultCount &&
+    evidence.resultDigest === manifest.resultDigest &&
+    evidence.rollbackCount === manifest.rollbackCount &&
+    evidence.rollbackDigest === manifest.rollbackDigest;
   if (matches) {
     return Effect.void;
   }
@@ -131,22 +141,23 @@ export function validateVerificationEvidence(
   );
 }
 
-/** Requires atomic activation to report the exact authenticated delta. */
-export function validatePublicationReceipt(
-  manifest: ContentReleaseManifest,
-  summary: VerifiedContentReleaseItems,
-  projectionSummary: VerifiedContentProjections,
+/** Requires target evidence to report the exact signed manifest delta. */
+export function validateManifestReceipt(
+  release: SignedContentRelease,
   receipt: PublicationReceipt
 ) {
+  const { manifest } = release;
   const matches =
     receipt.releaseId === manifest.releaseId &&
-    receipt.stagedArtifacts === summary.upsertCount &&
+    receipt.manifestHash === release.manifestHash &&
+    receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&
-    receipt.stagedProjections === projectionSummary.count &&
-    receipt.activatedHeads === summary.upsertCount &&
-    receipt.deletedHeads === summary.deleteCount &&
-    receipt.projectionDigest === manifest.projectionDigest;
+    receipt.activatedHeads === manifest.upsertCount &&
+    receipt.deletedHeads === manifest.deleteCount &&
+    receipt.projectionDigest === manifest.projectionDigest &&
+    receipt.resultCount === manifest.resultCount &&
+    receipt.resultDigest === manifest.resultDigest;
   if (matches) {
     return Effect.succeed(receipt);
   }
@@ -155,4 +166,27 @@ export function validatePublicationReceipt(
       message: "Publication receipt does not match the signed release delta.",
     })
   );
+}
+
+/** Binds target evidence to both the signed manifest and replayed streams. */
+export function validatePublicationReceipt(
+  release: SignedContentRelease,
+  summary: VerifiedContentReleaseItems,
+  projectionSummary: VerifiedContentProjections,
+  receipt: PublicationReceipt
+) {
+  const streamsMatch =
+    receipt.stagedArtifacts === summary.upsertCount &&
+    receipt.stagedProjections === projectionSummary.count &&
+    receipt.activatedHeads === summary.upsertCount &&
+    receipt.deletedHeads === summary.deleteCount;
+  if (!streamsMatch) {
+    return Effect.fail(
+      new PublicationReceiptMismatchError({
+        message:
+          "Publication receipt does not match the replayed release streams.",
+      })
+    );
+  }
+  return validateManifestReceipt(release, receipt);
 }

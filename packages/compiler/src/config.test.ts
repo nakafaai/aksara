@@ -4,6 +4,7 @@ import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manife
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { createCompilerConfigHash } from "#compiler/config";
+import { EXECUTABLE_POLICY_REVISION } from "#compiler/policy";
 import { rendererDomains } from "#compiler/test/renderer";
 
 /** Reads an installed package version for compiler-identity assertions. */
@@ -37,6 +38,10 @@ function manifestInput(inlineVersion: 1 | 2, expanded: boolean) {
 }
 
 describe("compiler config", () => {
+  it("binds the current executable policy revision", () => {
+    expect(EXECUTABLE_POLICY_REVISION).toBe("trusted-mdx-policy-v4");
+  });
+
   it("pins every output-affecting installed tool", () => {
     expect(
       Object.fromEntries(

@@ -25,9 +25,12 @@ export interface PublicationHttpResult {
 }
 
 const TARGET_STAGES = {
+  abort: "abort",
   activate: "activate",
   cleanup: "cleanup",
+  current: "current",
   finalize: "finalize",
+  headPage: "heads",
   rollbackPage: "rollback",
   stageArtifactBatch: "artifacts",
   stageItemBatch: "items",
@@ -44,13 +47,27 @@ export function targetStage(
   return TARGET_STAGES[operation];
 }
 
-/** Returns the release identity bound to every publication operation. */
-export function publicationReleaseId(request: PublicationRequest): ReleaseId {
+/** Returns the release identity for one release-owned publication operation. */
+export function publicationReleaseId(
+  request: Exclude<PublicationRequest, { readonly operation: "current" }>
+): ReleaseId;
+/** Returns null only for the singleton current-state operation. */
+export function publicationReleaseId(
+  request: PublicationRequest
+): ReleaseId | null;
+/** Returns the release identity when one publication operation owns one. */
+export function publicationReleaseId(request: PublicationRequest) {
+  if (request.operation === "current") {
+    return null;
+  }
   if ("release" in request) {
     return request.release.manifest.releaseId;
   }
   if ("rollbackOf" in request) {
     return request.rollbackOf;
+  }
+  if ("activeReleaseId" in request) {
+    return request.activeReleaseId;
   }
   return request.releaseId;
 }
@@ -71,12 +88,22 @@ function hasBoundFailure(
   if (failure.kind === "unauthorized") {
     return true;
   }
+  if (
+    failure.kind === "rejected" &&
+    failure.operation === null &&
+    failure.releaseId === null
+  ) {
+    return (
+      failure.code === "CONTENT_RELEASE_INVALID_REQUEST" ||
+      failure.code === "CONTENT_RELEASE_SIZE" ||
+      failure.code === "CONTENT_RELEASE_UNSUPPORTED"
+    );
+  }
   if (failure.operation !== null && failure.operation !== request.operation) {
     return false;
   }
   if (
     "releaseId" in failure &&
-    failure.releaseId !== null &&
     failure.releaseId !== publicationReleaseId(request)
   ) {
     return false;
@@ -94,8 +121,8 @@ function hasBoundFailure(
       failure.activeReleaseId !== request.release.manifest.releaseId
     );
   }
-  if (failure.operation === "stageRelease") {
-    return request.operation === "stageRelease";
+  if (!("batchIndex" in failure)) {
+    return request.operation === failure.operation;
   }
   return (
     (request.operation === "stageItemBatch" ||

@@ -1,5 +1,5 @@
 import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   CompileDocumentSourceSchema,
   compareContentHeads,

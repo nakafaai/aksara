@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeRollbackPage,
   MAX_ROLLBACK_PAGE_RECORDS,
@@ -23,7 +23,7 @@ export const MAX_ROLLBACK_PAGE_BYTES = 4 * 1024 * 1024;
 
 interface RollbackCursor {
   readonly afterIndex: number;
-  readonly total: number | undefined;
+  readonly total: number;
 }
 
 /** Strictly decodes one unknown target response with no excess properties. */
@@ -52,15 +52,21 @@ function validatePageBytes(page: RollbackPage, afterIndex: number) {
 function validatePageIdentity(
   page: RollbackPage,
   rollbackOf: ReleaseId,
+  rollbackOfManifestHash: Sha256Hash,
   afterIndex: number
 ) {
-  if (page.rollbackOf === rollbackOf) {
+  if (
+    page.rollbackOf === rollbackOf &&
+    page.rollbackOfManifestHash === rollbackOfManifestHash
+  ) {
     return Effect.void;
   }
   return Effect.fail(
     new RollbackPageIdentityError({
+      actualManifestHash: page.rollbackOfManifestHash,
       actualReleaseId: page.rollbackOf,
       afterIndex,
+      expectedManifestHash: rollbackOfManifestHash,
       expectedReleaseId: rollbackOf,
     })
   );
@@ -68,7 +74,7 @@ function validatePageIdentity(
 
 /** Requires one stable source total across every page in one replay. */
 function validatePageTotal(page: RollbackPage, cursor: RollbackCursor) {
-  if (cursor.total === undefined || cursor.total === page.total) {
+  if (cursor.total === page.total) {
     return Effect.void;
   }
   return Effect.fail(
@@ -99,13 +105,14 @@ function nextCursor(page: RollbackPage, cursor: RollbackCursor) {
   }
   return Option.some<RollbackCursor>({
     afterIndex: page.nextIndex,
-    total: cursor.total ?? page.total,
+    total: cursor.total,
   });
 }
 
 /** Loads and validates one bounded page before exposing any of its records. */
 function loadPage(
   rollbackOf: ReleaseId,
+  rollbackOfManifestHash: Sha256Hash,
   cursor: RollbackCursor
 ): Effect.Effect<
   readonly [Chunk.Chunk<RollbackRecord>, Option.Option<RollbackCursor>],
@@ -123,12 +130,18 @@ function loadPage(
         afterIndex: cursor.afterIndex,
         limit: MAX_ROLLBACK_PAGE_RECORDS,
         rollbackOf,
+        rollbackOfManifestHash,
       })
     ),
     Effect.flatMap((source) => decodePage(source, cursor.afterIndex)),
     Effect.tap((page) => validatePageBytes(page, cursor.afterIndex)),
     Effect.tap((page) =>
-      validatePageIdentity(page, rollbackOf, cursor.afterIndex)
+      validatePageIdentity(
+        page,
+        rollbackOf,
+        rollbackOfManifestHash,
+        cursor.afterIndex
+      )
     ),
     Effect.tap((page) => validatePageTotal(page, cursor)),
     Effect.tap((page) => validatePageCursor(page, cursor.afterIndex)),
@@ -139,9 +152,13 @@ function loadPage(
 }
 
 /** Replays exact prior-state records through bounded index-cursor pages. */
-export function streamRollbackRecords(rollbackOf: ReleaseId) {
-  const initial: RollbackCursor = { afterIndex: -1, total: undefined };
+export function streamRollbackRecords(
+  rollbackOf: ReleaseId,
+  rollbackOfManifestHash: Sha256Hash,
+  expectedTotal: number
+) {
+  const initial: RollbackCursor = { afterIndex: -1, total: expectedTotal };
   return Stream.paginateChunkEffect(initial, (cursor) =>
-    loadPage(rollbackOf, cursor)
+    loadPage(rollbackOf, rollbackOfManifestHash, cursor)
   );
 }

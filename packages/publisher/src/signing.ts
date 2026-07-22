@@ -4,6 +4,7 @@ import {
   type KeyObject,
   sign as signBytes,
 } from "node:crypto";
+import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { validateArtifactByteIntegrity } from "@nakafa/aksara-contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import type {
@@ -13,7 +14,6 @@ import type {
   ArtifactSourceHashMismatchError,
   ArtifactVerificationByteLimitError,
 } from "@nakafa/aksara-contracts/artifact/spec";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/verify";
 import {
   type CompiledContentPayload,
   canonicalizeContentArtifactSigningInput,

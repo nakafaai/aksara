@@ -47,6 +47,7 @@ pnpm install
 
 ## Project Structure
 
+- `apps/cli` runs the actual Nakafa local-preview boundary.
 - `packages/contracts` owns signed wire and renderer contracts.
 - `packages/compiler` validates and compiles trusted MDX.
 - `packages/corpus` owns reviewed Nakafa source and non-React registries.

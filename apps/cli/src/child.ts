@@ -10,6 +10,7 @@ import {
 import type { CommandExecutor } from "@effect/platform/CommandExecutor";
 import { Effect, Redacted, Schema } from "effect";
 import type * as Scope from "effect/Scope";
+import { isAddressInfo } from "#cli/address";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import type { PreviewCredentials } from "#cli/credentials";
 import type { PreviewProvider } from "#cli/provider";
@@ -60,9 +61,7 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
     server.listen({ host: LOOPBACK_HOST, port: 0 }, () => {
       const address = server.address();
       if (
-        typeof address !== "object" ||
-        address === null ||
-        !LOOPBACK_ADDRESSES.has(address.address)
+        !(isAddressInfo(address) && LOOPBACK_ADDRESSES.has(address.address))
       ) {
         server.close(() =>
           resume(Effect.fail(makeNakafaAppError("start", false)))

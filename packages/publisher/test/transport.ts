@@ -1,9 +1,6 @@
-import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
-import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
-import {
-  ContentReleaseItemSchema,
-  SignedContentReleaseSchema,
-} from "@nakafa/aksara-contracts/release";
+import { SignedContentReleaseSchema } from "@nakafa/aksara-contracts/release";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   type PublicationRequest,
   PublicationRequestSchema,
@@ -13,115 +10,86 @@ import {
   type PublicationSuccess,
   PublicationSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/response";
-import { Match, Schema } from "effect";
+import { Effect, Match, Schema } from "effect";
+import {
+  transportArtifactHash,
+  transportContent,
+  transportReleaseId,
+  transportSignature,
+} from "#test/content";
+import { headRequest, headSuccess } from "#test/head";
+import { rendererDomains } from "#test/renderer";
 
-const releaseId = "test-http-release";
-const artifactHash = `sha256:${"a".repeat(64)}`;
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const projectionDigest = `sha256:${"c".repeat(64)}`;
-const rendererManifestHash = `sha256:${"d".repeat(64)}`;
-const signature = `${"A".repeat(85)}A`;
+export const transportRenderer = await Effect.runPromise(
+  createRendererManifest({
+    base: {
+      authoringComponents: [{ name: "BlockMath", version: 1 }],
+      supportedComponents: [{ name: "BlockMath", version: 1 }],
+    },
+    domains: rendererDomains({}),
+  })
+);
 
 export const transportRelease = Schema.decodeUnknownSync(
   SignedContentReleaseSchema
 )({
   keyId: "test-http-key",
   manifest: {
+    baseManifestHash: null,
     baseReleaseId: null,
+    baseResultCount: 0,
+    baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+    deleteCount: 1,
     itemCount: 2,
-    itemsDigest: artifactHash,
+    itemsDigest: transportArtifactHash,
     origin: { kind: "git", sha: "a".repeat(40) },
     projectionCount: 1,
     projectionDigest,
-    releaseId,
+    releaseId: transportReleaseId,
     rendererContractVersion: "1.0.0",
-    rendererManifestHash,
+    rendererManifestHash: transportRenderer.hash,
+    resultCount: 1,
+    resultDigest: transportArtifactHash,
+    rollbackCount: 2,
+    rollbackDigest: manifestHash,
+    upsertCount: 1,
   },
   manifestHash,
-  signature,
-});
-
-const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
-  change: {
-    artifactHash,
-    contentKey: "test:http",
-    delivery: "public",
-    locale: "en",
-    operation: "upsert",
-    publicPath: "subjects/test/http",
-    rendererDomain: "mathematics",
-    sourcePath: "packages/corpus/test/http/en.mdx",
-  },
-  index: 0,
-  releaseId,
-});
-const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
-  change: {
-    contentKey: "test:deleted",
-    locale: "id",
-    operation: "delete",
-  },
-  index: 1,
-  releaseId,
-});
-
-const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
-  contentKey: "test:http",
-  kind: "subject-lesson",
-  locale: "en",
-  materialKey: "test.http",
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
-  order: 1,
-  parentPath: "subjects/test",
-  publicPath: "subjects/test/http",
-  sectionKey: "test-http",
-  sitemap: true,
-});
-
-const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
-  artifactHash,
-  keyId: "test-http-key",
-  payload: {
-    byteLength: 1,
-    compiledCode: "x",
-    compilerConfigHash: artifactHash,
-    compilerVersion: "0.1.0",
-    contentKey: "test:http",
-    format: "mdx-function-body-v1",
-    locale: "en",
-    mdxCompilerVersion: "3.1.1",
-    plainText: "Test protocol",
-    rawMdx: "x",
-    rendererDomain: "mathematics",
-    requiredComponents: [],
-    sourceHash: artifactHash,
-  },
-  signature,
+  signature: transportSignature,
 });
 
 export const transportRequests = Schema.decodeUnknownSync(
   Schema.Array(PublicationRequestSchema)
 )([
-  { operation: "stageRelease", release: transportRelease },
+  { operation: "current" },
+  { operation: "abort", releaseId: transportReleaseId },
+  headRequest,
+  {
+    operation: "stageRelease",
+    release: transportRelease,
+    rendererManifest: transportRenderer,
+  },
   {
     batchIndex: 0,
-    items: [item, deletedItem],
+    items: transportContent.items,
     operation: "stageItemBatch",
-    releaseId,
+    releaseId: transportReleaseId,
   },
   {
     batchIndex: 0,
     operation: "stageProjectionBatch",
-    projections: [projection],
-    releaseId,
+    projections: [transportContent.projection],
+    releaseId: transportReleaseId,
   },
   {
-    artifacts: [artifact],
+    artifacts: [transportContent.artifact],
     batchIndex: 0,
     operation: "stageArtifactBatch",
-    releaseId,
+    releaseId: transportReleaseId,
   },
-  { manifestHash, operation: "status", releaseId },
+  { manifestHash, operation: "status", releaseId: transportReleaseId },
   { operation: "verify", release: transportRelease },
   { operation: "activate", release: transportRelease },
   { afterIndex: -1, operation: "finalize", release: transportRelease },
@@ -129,16 +97,20 @@ export const transportRequests = Schema.decodeUnknownSync(
     afterIndex: -1,
     limit: 8,
     operation: "rollbackPage",
-    rollbackOf: releaseId,
+    rollbackOf: transportReleaseId,
+    rollbackOfManifestHash: manifestHash,
   },
-  { cursor: null, limit: 100, operation: "cleanup", releaseId },
+  { operation: "cleanup", releaseId: transportReleaseId },
 ]);
 
 const publicationReceipt = {
   activatedHeads: 1,
   deletedHeads: 1,
+  manifestHash,
   projectionDigest,
   releaseId: transportRelease.manifest.releaseId,
+  resultCount: transportRelease.manifest.resultCount,
+  resultDigest: transportRelease.manifest.resultDigest,
   stagedArtifacts: 1,
   stagedItems: 2,
   stagedProjections: 1,
@@ -156,6 +128,16 @@ export function transportSuccess(
 ): PublicationSuccess {
   const success = Match.value(request).pipe(
     Match.discriminatorsExhaustive("operation")({
+      abort: (value) => ({
+        ok: true,
+        operation: value.operation,
+        value: {
+          complete: true,
+          processedItems: transportRelease.manifest.itemCount,
+          releaseId: value.releaseId,
+          totalItems: transportRelease.manifest.itemCount,
+        },
+      }),
       activate: (value) => ({
         ok: true,
         operation: value.operation,
@@ -166,12 +148,23 @@ export function transportSuccess(
         operation: value.operation,
         value: {
           complete: true,
-          cursor: value.cursor,
           deletedArtifacts: 0,
           deletedItems: 0,
-          limit: value.limit,
-          nextCursor: null,
           releaseId: value.releaseId,
+        },
+      }),
+      current: (value) => ({
+        ok: true,
+        operation: value.operation,
+        value: {
+          activeManifestHash: null,
+          activeReleaseId: null,
+          completed: null,
+          pending: {
+            phase: "staging",
+            release: transportRelease,
+            rendererManifest: transportRenderer,
+          },
         },
       }),
       finalize: (value) => {
@@ -196,6 +189,7 @@ export function transportSuccess(
           },
         };
       },
+      headPage: headSuccess,
       rollbackPage: (value) => ({
         ok: true,
         operation: value.operation,
@@ -204,6 +198,7 @@ export function transportSuccess(
           nextIndex: -1,
           records: [],
           rollbackOf: value.rollbackOf,
+          rollbackOfManifestHash: value.rollbackOfManifestHash,
           total: 0,
         },
       }),
@@ -259,7 +254,10 @@ export function transportSuccess(
         ok: true,
         operation: value.operation,
         value: {
+          baseManifestHash: value.release.manifest.baseManifestHash,
           baseReleaseId: value.release.manifest.baseReleaseId,
+          baseResultCount: value.release.manifest.baseResultCount,
+          baseResultDigest: value.release.manifest.baseResultDigest,
           deleteHeads: 1,
           itemCount: value.release.manifest.itemCount,
           itemsDigest: value.release.manifest.itemsDigest,
@@ -268,7 +266,11 @@ export function transportSuccess(
           projectionDigest,
           releaseId: value.release.manifest.releaseId,
           rendererContractVersion: "1.0.0",
-          rendererManifestHash,
+          rendererManifestHash: transportRenderer.hash,
+          resultCount: value.release.manifest.resultCount,
+          resultDigest: value.release.manifest.resultDigest,
+          rollbackCount: value.release.manifest.rollbackCount,
+          rollbackDigest: value.release.manifest.rollbackDigest,
           stagedArtifacts: 1,
           upsertHeads: 1,
         },

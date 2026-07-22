@@ -7,6 +7,7 @@ import {
   ReleaseVerificationEvidenceSchema,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
@@ -19,7 +20,11 @@ import {
 import { rendererDomains } from "#test/renderer";
 
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  baseManifestHash: null,
   baseReleaseId: null,
+  baseResultCount: 0,
+  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+  deleteCount: 0,
   itemCount: 0,
   itemsDigest: `sha256:${"c".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -28,6 +33,11 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   releaseId: "test-release-counts",
   rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
+  resultCount: 0,
+  resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+  rollbackCount: 0,
+  rollbackDigest: `sha256:${"a".repeat(64)}`,
+  upsertCount: 0,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   keyId: "test-release-key",
@@ -36,7 +46,10 @@ const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   signature: `${"A".repeat(85)}A`,
 });
 const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
+  baseManifestHash: manifest.baseManifestHash,
   baseReleaseId: manifest.baseReleaseId,
+  baseResultCount: manifest.baseResultCount,
+  baseResultDigest: manifest.baseResultDigest,
   deleteHeads: 0,
   itemCount: 0,
   itemsDigest: manifest.itemsDigest,
@@ -46,6 +59,10 @@ const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
   releaseId: manifest.releaseId,
   rendererContractVersion: manifest.rendererContractVersion,
   rendererManifestHash: manifest.rendererManifestHash,
+  resultCount: manifest.resultCount,
+  resultDigest: manifest.resultDigest,
+  rollbackCount: manifest.rollbackCount,
+  rollbackDigest: manifest.rollbackDigest,
   stagedArtifacts: 0,
   upsertHeads: 0,
 });
@@ -148,15 +165,18 @@ describe("release validation", () => {
     const receipt = PublicationReceiptSchema.make({
       activatedHeads: 0,
       deletedHeads: 0,
+      manifestHash: release.manifestHash,
       projectionDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
       releaseId: manifest.releaseId,
+      resultCount: manifest.resultCount,
+      resultDigest: manifest.resultDigest,
       stagedArtifacts: 0,
       stagedItems: 0,
       stagedProjections: manifest.projectionCount,
     });
     const error = await Effect.runPromise(
       validatePublicationReceipt(
-        manifest,
+        release,
         summary,
         projectionSummary,
         receipt
@@ -164,5 +184,34 @@ describe("release validation", () => {
     );
 
     expect(error._tag).toBe("PublicationReceiptMismatchError");
+  });
+
+  it("rejects receipt counts from another replayed stream", async () => {
+    const receipt = PublicationReceiptSchema.make({
+      activatedHeads: 0,
+      deletedHeads: 0,
+      manifestHash: release.manifestHash,
+      projectionDigest: manifest.projectionDigest,
+      releaseId: manifest.releaseId,
+      resultCount: manifest.resultCount,
+      resultDigest: manifest.resultDigest,
+      stagedArtifacts: 0,
+      stagedItems: 0,
+      stagedProjections: manifest.projectionCount - 1,
+    });
+    const error = await Effect.runPromise(
+      validatePublicationReceipt(
+        release,
+        summary,
+        projectionSummary,
+        receipt
+      ).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "PublicationReceiptMismatchError",
+      message:
+        "Publication receipt does not match the replayed release streams.",
+    });
   });
 });

@@ -14,6 +14,7 @@ import {
   canonicalizeReleaseOrigin,
   ReleaseOriginSchema,
 } from "#contracts/release/origin";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 
@@ -63,7 +64,11 @@ const ProjectionCountSchema = Schema.Number.pipe(
 
 /** Deterministic desired-state transition for one content release. */
 const ContentReleaseManifestFields = {
+  baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
+  baseResultCount: ProjectionCountSchema,
+  baseResultDigest: Sha256HashSchema,
+  deleteCount: ProjectionCountSchema,
   itemCount: ProjectionCountSchema,
   itemsDigest: Sha256HashSchema,
   origin: ReleaseOriginSchema,
@@ -72,15 +77,39 @@ const ContentReleaseManifestFields = {
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
+  resultCount: ProjectionCountSchema,
+  resultDigest: Sha256HashSchema,
+  rollbackCount: ProjectionCountSchema,
+  rollbackDigest: Sha256HashSchema,
+  upsertCount: ProjectionCountSchema,
 };
 
 /** Checks rollback provenance against the forward release identities. */
 function hasCoherentReleaseOrigin(input: {
+  readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
   readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
+  readonly baseResultCount: number;
+  readonly baseResultDigest: typeof Sha256HashSchema.Type;
+  readonly deleteCount: number;
+  readonly itemCount: number;
   readonly origin: typeof ReleaseOriginSchema.Type;
   readonly releaseId: typeof ReleaseIdSchema.Type;
+  readonly rollbackCount: number;
+  readonly upsertCount: number;
 }) {
-  if (input.baseReleaseId === input.releaseId) {
+  if (
+    (input.baseReleaseId === null) !== (input.baseManifestHash === null) ||
+    input.baseReleaseId === input.releaseId ||
+    input.deleteCount + input.upsertCount !== input.itemCount ||
+    input.rollbackCount !== input.itemCount
+  ) {
+    return false;
+  }
+  if (
+    input.baseReleaseId === null &&
+    (input.baseResultCount !== 0 ||
+      input.baseResultDigest !== EMPTY_RESULT_CATALOG_DIGEST)
+  ) {
     return false;
   }
   if (input.origin.kind === "git") {
@@ -116,20 +145,33 @@ const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";
 
 /** Checks that every staged head has exactly one matching item and artifact. */
 function hasCoherentVerificationCounts(input: {
+  readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
+  readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
+  readonly baseResultCount: number;
+  readonly baseResultDigest: typeof Sha256HashSchema.Type;
   readonly deleteHeads: number;
   readonly itemCount: number;
+  readonly rollbackCount: number;
   readonly stagedArtifacts: number;
   readonly upsertHeads: number;
 }) {
   return (
+    (input.baseReleaseId === null) === (input.baseManifestHash === null) &&
+    (input.baseReleaseId !== null ||
+      (input.baseResultCount === 0 &&
+        input.baseResultDigest === EMPTY_RESULT_CATALOG_DIGEST)) &&
     input.deleteHeads + input.upsertHeads === input.itemCount &&
+    input.rollbackCount === input.itemCount &&
     input.stagedArtifacts === input.upsertHeads
   );
 }
 
 /** Pre-activation evidence proving the fully staged release is coherent. */
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
+  baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
+  baseResultCount: ProjectionCountSchema,
+  baseResultDigest: Sha256HashSchema,
   deleteHeads: ProjectionCountSchema,
   itemCount: ProjectionCountSchema,
   itemsDigest: Sha256HashSchema,
@@ -139,6 +181,10 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
+  resultCount: ProjectionCountSchema,
+  resultDigest: Sha256HashSchema,
+  rollbackCount: ProjectionCountSchema,
+  rollbackDigest: Sha256HashSchema,
   stagedArtifacts: ProjectionCountSchema,
   upsertHeads: ProjectionCountSchema,
 }).pipe(
@@ -154,8 +200,11 @@ export type ReleaseVerificationEvidence =
 export const PublicationReceiptSchema = Schema.Struct({
   activatedHeads: ProjectionCountSchema,
   deletedHeads: ProjectionCountSchema,
+  manifestHash: Sha256HashSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
+  resultCount: ProjectionCountSchema,
+  resultDigest: Sha256HashSchema,
   stagedArtifacts: ProjectionCountSchema,
   stagedItems: ProjectionCountSchema,
   stagedProjections: ProjectionCountSchema,
@@ -210,7 +259,11 @@ export function canonicalizeContentReleaseManifest(
   manifest: ContentReleaseManifest
 ) {
   return JSON.stringify({
+    baseManifestHash: manifest.baseManifestHash,
     baseReleaseId: manifest.baseReleaseId,
+    baseResultCount: manifest.baseResultCount,
+    baseResultDigest: manifest.baseResultDigest,
+    deleteCount: manifest.deleteCount,
     itemCount: manifest.itemCount,
     itemsDigest: manifest.itemsDigest,
     origin: canonicalizeReleaseOrigin(manifest.origin),
@@ -219,6 +272,11 @@ export function canonicalizeContentReleaseManifest(
     releaseId: manifest.releaseId,
     rendererContractVersion: manifest.rendererContractVersion,
     rendererManifestHash: manifest.rendererManifestHash,
+    resultCount: manifest.resultCount,
+    resultDigest: manifest.resultDigest,
+    rollbackCount: manifest.rollbackCount,
+    rollbackDigest: manifest.rollbackDigest,
+    upsertCount: manifest.upsertCount,
   });
 }
 

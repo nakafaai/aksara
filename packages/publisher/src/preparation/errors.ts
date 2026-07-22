@@ -1,6 +1,7 @@
 import {
   PublicPathSchema,
   ReleaseIdSchema,
+  Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 
@@ -16,13 +17,23 @@ export const CoherenceFieldSchema = Schema.Literal(
   "rendererDomain",
   "sourcePath",
   "rawMdx",
-  "publicPath"
+  "publicPath",
+  "priorState"
 );
 
 /** A release attempted to reuse its immutable base release identity. */
 export class PreparedReleaseIdentityError extends Schema.TaggedError<PreparedReleaseIdentityError>()(
   "PreparedReleaseIdentityError",
   { baseReleaseId: ReleaseIdSchema, releaseId: ReleaseIdSchema }
+) {}
+
+/** A base release identity omitted exactly one half of its immutable pair. */
+export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<PreparedReleaseBaseIdentityError>()(
+  "PreparedReleaseBaseIdentityError",
+  {
+    baseManifestHash: Schema.NullOr(Sha256HashSchema),
+    baseReleaseId: Schema.NullOr(ReleaseIdSchema),
+  }
 ) {}
 
 /** A replay factory threw before it could describe its authored stream. */

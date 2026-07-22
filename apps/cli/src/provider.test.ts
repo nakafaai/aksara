@@ -246,4 +246,32 @@ describe("local preview provider", () => {
     expect(listenError).toMatchObject({ stage: "listen" });
     expect(addressError).toMatchObject({ stage: "listen" });
   });
+
+  it("closes an unfinished listener when provider acquisition is cancelled", async () => {
+    const repository = makeRepositories();
+    const ready = await makePreviewReady(repository);
+    vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
+      this: Server
+    ) {
+      return this;
+    });
+    const close = vi
+      .spyOn(Server.prototype, "close")
+      .mockImplementationOnce(function (this: Server) {
+        return this;
+      });
+
+    const cancelled = await Effect.runPromise(
+      Effect.scoped(
+        openPreviewProvider({
+          document: ready.document,
+          repositories: PREVIEW_REPOSITORIES,
+          token: ready.credentials.token,
+        })
+      ).pipe(Effect.timeout("1 millis"), Effect.flip)
+    );
+
+    expect(cancelled._tag).toBe("TimeoutException");
+    expect(close).toHaveBeenCalledOnce();
+  });
 });

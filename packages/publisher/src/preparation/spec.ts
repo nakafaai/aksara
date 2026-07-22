@@ -4,7 +4,11 @@ import {
   CompiledContentPayloadSchema,
   type SignedContentArtifact,
 } from "@nakafa/aksara-contracts/content";
-import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type {
+  GitCommitSha,
+  ReleaseId,
+  Sha256Hash,
+} from "@nakafa/aksara-contracts/ids";
 import {
   type MaterialLessonProjection,
   MaterialLessonProjectionSchema,
@@ -15,8 +19,18 @@ import {
   type ContentReleaseItem,
   type ContentReleaseManifest,
   ContentUpsertSchema,
+  type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import type {
+  createResultCatalogDigest,
+  finalizeResultCatalogDigest,
+  updateResultCatalogDigest,
+  verifyResultCatalog,
+} from "@nakafa/aksara-contracts/release/result-digest";
+import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback";
+import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback-digest";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { type Effect, Schema, type Stream } from "effect";
@@ -26,6 +40,7 @@ import type {
   PreparedContentOrderError,
   PreparedContentReplayError,
   PreparedContentRouteError,
+  PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
 } from "#publisher/preparation/errors";
 
@@ -53,9 +68,24 @@ export const PreparedContentRecordSchema = Schema.Union(
 );
 export type PreparedContentRecord = typeof PreparedContentRecordSchema.Type;
 
-/** Replay factory for one canonical authored record source. */
-export type PreparedContentRecordSource<E, R> = () => Stream.Stream<
+/** One forward record paired with the exact state it replaces. */
+export const PreparedContentTransitionSchema = Schema.Struct({
+  prior: RollbackSnapshotStateSchema,
+  record: PreparedContentRecordSchema,
+});
+export type PreparedContentTransition =
+  typeof PreparedContentTransitionSchema.Type;
+
+/** Replay factory for one canonical authored transition source. */
+export type PreparedContentTransitionSource<E, R> = () => Stream.Stream<
   unknown,
+  E,
+  R
+>;
+
+/** Replay factory for one complete canonically ordered result catalog. */
+export type PreparedResultCatalogSource<E, R> = () => Stream.Stream<
+  MaterialHead,
   E,
   R
 >;
@@ -63,10 +93,14 @@ export type PreparedContentRecordSource<E, R> = () => Stream.Stream<
 /** Exact immutable release identity plus its one authored record source. */
 export interface PrepareContentReleaseInput<E, R> {
   readonly aksaraSha: GitCommitSha;
+  readonly baseManifestHash: Sha256Hash | null;
   readonly baseReleaseId: ReleaseId | null;
-  readonly records: PreparedContentRecordSource<E, R>;
+  readonly baseResultCount: number;
+  readonly baseResultDigest: Sha256Hash;
+  readonly records: PreparedContentTransitionSource<E, R>;
   readonly releaseId: ReleaseId;
   readonly rendererManifest: unknown;
+  readonly result: PreparedResultCatalogSource<E, R>;
 }
 
 type SourceHashError = Effect.Effect.Error<
@@ -95,6 +129,8 @@ interface PreparedContentReleaseBase<E, R> {
   /** Replays canonical projections authenticated by the same manifest. */
   readonly projections: () => Stream.Stream<MaterialLessonProjection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
+  /** Reuses one exact authenticated pending envelope during deterministic rebuild. */
+  readonly storedRelease: SignedContentRelease | null;
   readonly [PreparedContentReleaseTypeId]: true;
 }
 
@@ -129,13 +165,30 @@ type RendererManifestError = Effect.Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
 
+type RollbackVerificationError<E, R> = Effect.Effect.Error<
+  ReturnType<typeof verifyRollbackSnapshot<E, R>>
+>;
+
+type ResultVerificationError<E, R> = Effect.Effect.Error<
+  ReturnType<typeof verifyResultCatalog<E, R>>
+>;
+
+type ResultDigestError =
+  | Effect.Effect.Error<ReturnType<typeof createResultCatalogDigest>>
+  | Effect.Effect.Error<ReturnType<typeof finalizeResultCatalogDigest>>
+  | Effect.Effect.Error<ReturnType<typeof updateResultCatalogDigest>>;
+
 /** Every expected failure surfaced before a release can be signed. */
 type PrepareContentReleaseError<E, R> =
   | ItemVerificationError<PreparedContentStreamError<E>, R>
   | PreparedContentStreamError<E>
+  | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
-  | RendererManifestError;
+  | RendererManifestError
+  | ResultDigestError
+  | ResultVerificationError<E, R>
+  | RollbackVerificationError<PreparedContentStreamError<E>, R>;
 
 /** Complete Effect interface for one self-verified release preparation. */
 export type PrepareContentRelease = <E, R>(
@@ -158,6 +211,7 @@ export function makePreparedGitRelease<E, R>(input: {
   return {
     [PreparedContentReleaseTypeId]: true,
     kind: "git",
+    storedRelease: null,
     ...input,
   };
 }
@@ -176,6 +230,7 @@ export function makePreparedRollbackRelease<E, R>(input: {
   return {
     [PreparedContentReleaseTypeId]: true,
     kind: "rollback",
+    storedRelease: null,
     ...input,
   };
 }

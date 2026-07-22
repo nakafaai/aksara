@@ -1,3 +1,4 @@
+import { Buffer } from "node:buffer";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
@@ -40,28 +41,44 @@ describe("streamBatches", () => {
     expect(batches).toEqual([]);
   });
 
-  it("keeps global indexes contiguous after byte-based inner splits", async () => {
-    const maxBytes = serializeBatch(
-      buildBatch(["alpha"], Number.MAX_SAFE_INTEGER, releaseId)
-    ).length;
+  it("keeps global indexes contiguous across byte partitions", async () => {
+    const values = Array.from({ length: 10 }, (_, index) =>
+      index.toString().padStart(2, "0")
+    );
+    const maxBytes = Buffer.byteLength(
+      serializeBatch(
+        buildBatch(values.slice(0, 3), Number.MAX_SAFE_INTEGER, releaseId)
+      ),
+      "utf8"
+    );
     const batches = await Effect.runPromise(
       streamBatches({
         build: buildBatch,
         count: (batch) => batch.values.length,
         kind: "release-item",
         maxBytes,
-        maxCount: 2,
+        maxCount: 16,
         releaseId,
         serialize: serializeBatch,
-        values: Stream.fromIterable(["alpha", "bravo"]),
+        values: Stream.fromIterable(values),
       }).pipe(
         Stream.runCollect,
         Effect.map((chunk) => [...chunk])
       )
     );
 
-    expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1]);
-    expect(batches.map(({ values }) => values)).toEqual([["alpha"], ["bravo"]]);
+    expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1, 2, 3]);
+    expect(
+      batches.map(({ values: batchValues }) => batchValues.length)
+    ).toEqual([3, 3, 3, 1]);
+    expect(batches.flatMap(({ values: batchValues }) => batchValues)).toEqual(
+      values
+    );
+    expect(
+      batches.every(
+        (batch) => Buffer.byteLength(serializeBatch(batch), "utf8") <= maxBytes
+      )
+    ).toBe(true);
   });
 
   it("rejects a builder that drops a partition value", async () => {

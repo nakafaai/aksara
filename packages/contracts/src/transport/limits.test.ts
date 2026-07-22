@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ARTIFACT_BATCH_COUNT,
+  MAX_HEAD_PAGE_COUNT,
   MAX_ITEM_BATCH_BYTES,
   MAX_ITEM_BATCH_COUNT,
   MAX_PROJECTION_BATCH_BYTES,
@@ -17,8 +18,9 @@ describe("publication transport limits", () => {
     expect(MAX_ARTIFACT_BATCH_BYTES).toBe(4 * 1024 * 1024);
     expect(MAX_ARTIFACT_BATCH_COUNT).toBe(8);
     expect(MAX_ITEM_BATCH_BYTES).toBe(512 * 1024);
-    expect(MAX_ITEM_BATCH_COUNT).toBe(100);
+    expect(MAX_ITEM_BATCH_COUNT).toBe(16);
+    expect(MAX_HEAD_PAGE_COUNT).toBe(500);
     expect(MAX_PROJECTION_BATCH_BYTES).toBe(4 * 1024 * 1024);
-    expect(MAX_PROJECTION_BATCH_COUNT).toBe(100);
+    expect(MAX_PROJECTION_BATCH_COUNT).toBe(16);
   });
 });

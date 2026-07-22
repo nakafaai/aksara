@@ -8,7 +8,11 @@ import {
 } from "node:crypto";
 import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";
+import {
+  Ed25519SignatureSchema,
+  Sha256HashSchema,
+  SigningKeyIdSchema,
+} from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import {
   ContentReleaseManifestSchema,
@@ -16,11 +20,16 @@ import {
   type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
-import { verifySignedContentRelease } from "#contracts/release/verify";
+import {
+  verifyContentReleaseBundle,
+  verifySignedContentRelease,
+} from "#contracts/release/verify";
+import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { rendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -57,8 +66,21 @@ const keyId = SigningKeyIdSchema.make("test-signing-key");
 const publicKeyPem = keys.publicKey
   .export({ format: "pem", type: "spki" })
   .toString();
+const rendererManifest = await Effect.runPromise(
+  createRendererManifest({
+    base: {
+      authoringComponents: [{ name: "BlockMath", version: 1 }],
+      supportedComponents: [{ name: "BlockMath", version: 1 }],
+    },
+    domains: rendererDomains({}),
+  })
+);
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  baseManifestHash: `sha256:${"d".repeat(64)}`,
   baseReleaseId: "test-release-parent",
+  baseResultCount: 1,
+  baseResultDigest: `sha256:${"e".repeat(64)}`,
+  deleteCount: 1,
   itemCount: 2,
   itemsDigest: `sha256:${"b".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -66,7 +88,12 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId: "test-release",
   rendererContractVersion: "1.0.0",
-  rendererManifestHash: `sha256:${"d".repeat(64)}`,
+  rendererManifestHash: rendererManifest.hash,
+  resultCount: 1,
+  resultDigest: `sha256:${"f".repeat(64)}`,
+  rollbackCount: 2,
+  rollbackDigest: `sha256:${"1".repeat(64)}`,
+  upsertCount: 1,
 });
 
 /** Produces a valid signed release for verification scenarios. */
@@ -109,6 +136,15 @@ function reject(input: unknown, resolver = trustedResolver) {
   );
 }
 
+/** Runs bundle verification with the trusted test resolver. */
+function verifyBundle(input: unknown) {
+  return Effect.runPromise(
+    verifyContentReleaseBundle(input).pipe(
+      Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
+    )
+  );
+}
+
 describe("server-only release verification", () => {
   it("authenticates the complete constant-size manifest", async () => {
     const release = signRelease();
@@ -122,13 +158,64 @@ describe("server-only release verification", () => {
     ).resolves.toEqual(release);
   });
 
+  it("authenticates the signed release and frozen renderer as one bundle", async () => {
+    const release = signRelease();
+    await expect(verifyBundle({ release, rendererManifest })).resolves.toEqual({
+      release,
+      rendererManifest,
+    });
+  });
+
+  it("rejects mismatched or corrupted frozen renderer evidence", async () => {
+    const release = signRelease();
+    const mismatched = await Effect.runPromise(
+      verifyContentReleaseBundle({
+        release,
+        rendererManifest: {
+          ...rendererManifest,
+          hash: `sha256:${"e".repeat(64)}`,
+        },
+      }).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
+        Effect.flip
+      )
+    );
+    expect(mismatched).toMatchObject({
+      _tag: "ReleaseBundleVerificationDecodeError",
+    });
+
+    const corruptHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
+    const corruptManifest = ContentReleaseManifestSchema.make({
+      ...manifest,
+      rendererManifestHash: corruptHash,
+    });
+    const corrupted = await Effect.runPromise(
+      verifyContentReleaseBundle({
+        release: signRelease(corruptManifest),
+        rendererManifest: { ...rendererManifest, hash: corruptHash },
+      }).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
+        Effect.flip
+      )
+    );
+    expect(corrupted).toMatchObject({
+      _tag: "RendererManifestHashMismatchError",
+    });
+  });
+
   it.each([
+    ["base manifest", { baseManifestHash: `sha256:${"2".repeat(64)}` }],
     ["base release", { baseReleaseId: "test-release-other" }],
+    ["base result count", { baseResultCount: 2 }],
+    ["base result digest", { baseResultDigest: `sha256:${"2".repeat(64)}` }],
     ["origin", { origin: { kind: "git", sha: "e".repeat(40) } }],
-    ["item count", { itemCount: 3 }],
+    ["item count", { itemCount: 3, rollbackCount: 3, upsertCount: 2 }],
     ["item digest", { itemsDigest: `sha256:${"f".repeat(64)}` }],
     ["projection count", { projectionCount: 2 }],
     ["projection digest", { projectionDigest: `sha256:${"e".repeat(64)}` }],
+    ["result count", { resultCount: 2 }],
+    ["result digest", { resultDigest: `sha256:${"2".repeat(64)}` }],
+    ["rollback digest", { rollbackDigest: `sha256:${"2".repeat(64)}` }],
     ["renderer manifest", { rendererManifestHash: `sha256:${"f".repeat(64)}` }],
   ])("rejects a mutated %s", async (_label, values) => {
     const release = signRelease();
@@ -145,6 +232,8 @@ describe("server-only release verification", () => {
     const changedManifest = ContentReleaseManifestSchema.make({
       ...release.manifest,
       itemCount: 3,
+      rollbackCount: 3,
+      upsertCount: 2,
     });
     const error = await reject({
       ...release,

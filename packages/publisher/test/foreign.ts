@@ -13,7 +13,7 @@ const foreignHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
 /** Replaces one nested success identity without changing its wire shape. */
 function replaceIdentity(
   input: { readonly value: object },
-  key: "manifestHash" | "releaseId" | "rollbackOf",
+  key: "activeReleaseId" | "manifestHash" | "releaseId" | "rollbackOf",
   identity: unknown
 ) {
   return { ...input, value: { ...input.value, [key]: identity } };
@@ -24,9 +24,11 @@ export function foreignTransportSuccess(request: PublicationRequest) {
   const success = transportSuccess(request);
   const foreign = Match.value(success).pipe(
     Match.discriminatorsExhaustive("operation")({
+      abort: (value) => replaceIdentity(value, "releaseId", foreignReleaseId),
       activate: (value) =>
         replaceIdentity(value, "releaseId", foreignReleaseId),
       cleanup: (value) => replaceIdentity(value, "releaseId", foreignReleaseId),
+      current: (value) => value,
       finalize: (value) => {
         if (!value.value.done) {
           return { ...value, releaseId: foreignReleaseId };
@@ -43,6 +45,8 @@ export function foreignTransportSuccess(request: PublicationRequest) {
           },
         };
       },
+      headPage: (value) =>
+        replaceIdentity(value, "activeReleaseId", foreignReleaseId),
       rollbackPage: (value) =>
         replaceIdentity(value, "rollbackOf", foreignReleaseId),
       stageArtifactBatch: (value) =>

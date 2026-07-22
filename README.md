@@ -13,16 +13,20 @@ Function Concept vertical slice; it is not connected to Nakafa production yet.
 - `@nakafa/aksara-publisher` verifies, signs, batches, stages, and activates a
   release through injected source and target interfaces. Its strict
   authenticated HTTP target owns the client half of the publication protocol.
-  It prepares the real material slice from AST-decoded MDX metadata. The Convex
-  ingress and storage implementation are not implemented yet.
+  It prepares the real material slice from AST-decoded MDX metadata. The
+  Nakafa-owned Convex ingress, storage, and runtime adapter remain outside this
+  repository and have not been cut over to production.
 - `@nakafa/aksara-corpus` owns the reviewed Function Concept `en` and `id`
   sources plus their non-React source registry. No substitute lessons or React
   implementations live in this package.
+- `@nakafa/aksara-cli` compiles one selected real document, serves its signed
+  local artifact over loopback, and starts the actual Nakafa application with
+  ephemeral credentials for hot preview.
 - `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
 
-The CLI will be added only with the actual Nakafa preview caller. Further corpus
-families remain gated by provenance and renderer-fidelity checks.
+Further corpus families remain gated by provenance and renderer-fidelity
+checks.
 
 ## Commands
 
@@ -38,6 +42,7 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm verify:package
+pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx
 ```
 
 Run a focused workspace test through Turbo so dependency builds stay current:
@@ -73,8 +78,9 @@ Nakafa contracts are migrated.
 Signed artifacts are a proposed trusted-source seam, not a sandbox. Nakafa does
 not execute Aksara artifacts in production yet. The accepted design keeps the
 official server-only `@mdx-js/mdx/run` runtime and finite static route-domain
-registries in Nakafa; production integration still requires a real vertical
-slice, Convex adapter, fidelity proof, and release/rollback gates.
+registries in Nakafa; production integration still requires the hosted
+vertical-slice fidelity proof, Nakafa-side activation, and release/rollback
+gates.
 
 The executable-content decision is recorded in
 [`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md).

@@ -1,15 +1,41 @@
 import {
+  ContentLocaleSchema,
   compareContentHeads,
   headIdentity,
+  routeIdentity,
 } from "@nakafa/aksara-contracts/content";
 import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
+  PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { MaterialLessonRouteSchema } from "@nakafa/aksara-contracts/projection/material";
+import {
+  MaterialLessonRouteSchema,
+  MaterialSectionSchema,
+} from "@nakafa/aksara-contracts/projection/material";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
+
+const CorpusSegmentSchema = Schema.String.pipe(
+  Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)?$/u)
+);
+const LocalePathsSchema = Schema.Record({
+  key: ContentLocaleSchema,
+  value: MaterialLessonRouteSchema.fields.publicPath,
+});
+const MaterialFamilySchema = Schema.Struct({
+  delivery: ContentDeliveryClassSchema,
+  identity: Schema.Struct({
+    materialPath: Schema.NonEmptyArray(CorpusSegmentSchema),
+    sectionKey: MaterialSectionSchema,
+    subject: CorpusSegmentSchema,
+  }),
+  order: MaterialLessonRouteSchema.fields.order,
+  publicPaths: LocalePathsSchema,
+  rendererDomain: RendererDomainSchema,
+});
+type MaterialFamily = typeof MaterialFamilySchema.Type;
 
 const MaterialEntrySchema = Schema.Struct({
   delivery: ContentDeliveryClassSchema,
@@ -19,13 +45,13 @@ const MaterialEntrySchema = Schema.Struct({
 });
 export type MaterialEntry = typeof MaterialEntrySchema.Type;
 
-/** A source-controlled material registry row failed strict decoding. */
+/** A source-controlled material registry failed strict decoding. */
 export class MaterialRegistryError extends Schema.TaggedError<MaterialRegistryError>()(
   "MaterialRegistryError",
   { cause: Schema.Unknown, message: Schema.NonEmptyTrimmedString }
 ) {}
 
-/** Two registry rows claim the same stable locale-specific content head. */
+/** Two material families claim the same stable locale-specific content head. */
 export class MaterialIdentityError extends Schema.TaggedError<MaterialIdentityError>()(
   "MaterialIdentityError",
   {
@@ -34,91 +60,115 @@ export class MaterialIdentityError extends Schema.TaggedError<MaterialIdentityEr
   }
 ) {}
 
-/** A signed source path does not end in its declared locale-specific MDX file. */
-export class MaterialPathError extends Schema.TaggedError<MaterialPathError>()(
-  "MaterialPathError",
+/** Two material families claim the same locale-specific public route. */
+export class MaterialRouteError extends Schema.TaggedError<MaterialRouteError>()(
+  "MaterialRouteError",
   {
     locale: MaterialLessonRouteSchema.fields.locale,
-    sourcePath: CorpusSourcePathSchema,
+    publicPath: PublicPathSchema,
   }
 ) {}
 
-const functionConceptKey =
-  "material/lesson/mathematics/function-composition-inverse-function/function-concept";
-
-const materialEntries: readonly unknown[] = [
+const materialFamilies: readonly unknown[] = [
   {
     delivery: "public",
-    rendererDomain: "mathematics",
-    route: {
-      contentKey: functionConceptKey,
-      locale: "en",
-      materialKey: "lesson.mathematics.function-composition-inverse-function",
-      order: 5,
-      publicPath:
-        "subjects/mathematics/function-composition-inverse-function/function-concept",
+    identity: {
+      materialPath: ["function-composition", "inverse-function"],
       sectionKey: "function-concept",
+      subject: "mathematics",
     },
-    sourcePath:
-      "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
-  },
-  {
-    delivery: "public",
+    order: 5,
+    publicPaths: {
+      en: "subjects/mathematics/function-composition-inverse-function/function-concept",
+      id: "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
+    },
     rendererDomain: "mathematics",
-    route: {
-      contentKey: functionConceptKey,
-      locale: "id",
-      materialKey: "lesson.mathematics.function-composition-inverse-function",
-      order: 5,
-      publicPath:
-        "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
-      sectionKey: "function-concept",
-    },
-    sourcePath:
-      "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx",
   },
 ];
 
-/** Enforces unique content heads and locale-matched source paths. */
-const validateMaterialEntries = Effect.fn(
-  "AksaraCorpus.validateMaterialEntries"
-)(function* (entries: readonly MaterialEntry[]) {
-  const identities = new Set<string>();
-  for (const entry of entries) {
-    if (!entry.sourcePath.endsWith(`/${entry.route.locale}.mdx`)) {
-      return yield* new MaterialPathError({
-        locale: entry.route.locale,
-        sourcePath: entry.sourcePath,
-      });
-    }
-    const identity = headIdentity(entry.route);
-    if (identities.has(identity)) {
-      return yield* new MaterialIdentityError({
-        contentKey: entry.route.contentKey,
-        locale: entry.route.locale,
-      });
-    }
-    identities.add(identity);
-  }
-  return [...entries].sort((left, right) =>
-    compareContentHeads(left.route, right.route)
-  );
-});
+/** Expands one shared family identity into canonical locale-owned entries. */
+function expandFamily(family: MaterialFamily) {
+  const { materialPath, sectionKey, subject } = family.identity;
+  const materialSlug = materialPath.join("-");
+  const materialKey = `lesson.${subject}.${materialSlug}`;
+  const contentKey = `material/lesson/${subject}/${materialSlug}/${sectionKey}`;
+  const sourceRoot = [
+    "packages/corpus/material/lesson",
+    subject,
+    ...materialPath,
+    sectionKey,
+  ].join("/");
 
-/** Decodes and canonically orders one material source registry. */
+  return ContentLocaleSchema.literals.map((locale) => ({
+    delivery: family.delivery,
+    rendererDomain: family.rendererDomain,
+    route: {
+      contentKey,
+      locale,
+      materialKey,
+      order: family.order,
+      publicPath: family.publicPaths[locale],
+      sectionKey,
+    },
+    sourcePath: `${sourceRoot}/${locale}.mdx`,
+  }));
+}
+
+/** Enforces unique content heads and public routes after family expansion. */
+const validateEntries = Effect.fn("AksaraCorpus.validateMaterialEntries")(
+  function* (entries: readonly MaterialEntry[]) {
+    const heads = new Set<string>();
+    const routes = new Set<string>();
+    for (const entry of entries) {
+      const head = headIdentity(entry.route);
+      if (heads.has(head)) {
+        return yield* new MaterialIdentityError({
+          contentKey: entry.route.contentKey,
+          locale: entry.route.locale,
+        });
+      }
+      heads.add(head);
+
+      const route = routeIdentity(entry.route);
+      if (routes.has(route)) {
+        return yield* new MaterialRouteError({
+          locale: entry.route.locale,
+          publicPath: entry.route.publicPath,
+        });
+      }
+      routes.add(route);
+    }
+    return [...entries].sort((left, right) =>
+      compareContentHeads(left.route, right.route)
+    );
+  }
+);
+
+/** Decodes family-owned sources and returns canonical locale-specific entries. */
 export const decodeMaterialRegistry = Effect.fn(
   "AksaraCorpus.decodeMaterialRegistry"
-)((input: unknown = materialEntries) =>
-  Schema.decodeUnknown(Schema.Array(MaterialEntrySchema))(input, {
-    onExcessProperty: "error",
-  }).pipe(
+)(function* (input: unknown = materialFamilies) {
+  const families = yield* Schema.decodeUnknown(
+    Schema.Array(MaterialFamilySchema)
+  )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError(
       (cause) =>
         new MaterialRegistryError({
           cause,
-          message: "Material registry decoding failed.",
+          message: "Material family registry decoding failed.",
         })
-    ),
-    Effect.flatMap(validateMaterialEntries)
-  )
-);
+    )
+  );
+  const entries = yield* Schema.decodeUnknown(
+    Schema.Array(MaterialEntrySchema)
+  )(families.flatMap(expandFamily), { onExcessProperty: "error" }).pipe(
+    Effect.mapError(
+      (cause) =>
+        new MaterialRegistryError({
+          cause,
+          message: "Expanded material registry decoding failed.",
+        })
+    )
+  );
+  return yield* validateEntries(entries);
+});

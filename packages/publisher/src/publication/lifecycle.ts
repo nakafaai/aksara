@@ -5,9 +5,11 @@ import type {
 } from "@nakafa/aksara-contracts/release";
 import type { VerifiedContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect } from "effect";
 import {
   PublicationReleaseAbortedError,
+  PublicationResumePhaseError,
   PublicationStatusMismatchError,
   type PublicationTarget,
 } from "#publisher/publication/spec";
@@ -23,6 +25,7 @@ import type { PublicationTargetFailure } from "#publisher/target/errors";
 interface PublicationLifecycleInput<E, R> {
   readonly projectionSummary: VerifiedContentProjections;
   readonly release: SignedContentRelease;
+  readonly rendererManifest: RendererManifestEnvelope;
   readonly stage: Effect.Effect<void, E, R>;
   readonly summary: VerifiedContentReleaseItems;
   readonly target: typeof PublicationTarget.Service;
@@ -33,6 +36,7 @@ type PublicationLifecycleError<E> =
   | E
   | PublicationReceiptMismatchError
   | PublicationReleaseAbortedError
+  | PublicationResumePhaseError
   | PublicationStatusMismatchError
   | PublicationTargetFailure
   | ReleaseVerificationMismatchError;
@@ -43,7 +47,7 @@ type CompletePublicationLifecycle = <E, R>(
 ) => Effect.Effect<PublicationReceipt, PublicationLifecycleError<E>, R>;
 
 /** Rejects a durable status that does not name the exact signed manifest. */
-function validateStatus(
+export function validatePublicationStatus(
   release: SignedContentRelease,
   status: ContentReleaseStatus
 ) {
@@ -68,15 +72,28 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
   Effect.fn("AksaraPublisher.completePublicationLifecycle")(function* <E, R>(
     input: PublicationLifecycleInput<E, R>
   ) {
-    const { projectionSummary, release, stage, summary, target } = input;
+    const {
+      projectionSummary,
+      release,
+      rendererManifest,
+      stage,
+      summary,
+      target,
+    } = input;
     const { manifest } = release;
-    yield* target.stageRelease(release);
+    yield* target.stageRelease({ release, rendererManifest });
     const status = yield* target.status({
       manifestHash: release.manifestHash,
       releaseId: manifest.releaseId,
     });
-    yield* validateStatus(release, status);
+    yield* validatePublicationStatus(release, status);
 
+    if (status.phase === "aborting") {
+      return yield* new PublicationResumePhaseError({
+        phase: status.phase,
+        releaseId: manifest.releaseId,
+      });
+    }
     if (status.phase === "aborted") {
       return yield* new PublicationReleaseAbortedError({
         manifestHash: release.manifestHash,
@@ -85,7 +102,7 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
     }
     if (status.phase === "completed") {
       return yield* validatePublicationReceipt(
-        manifest,
+        release,
         summary,
         projectionSummary,
         status.receipt
@@ -94,7 +111,7 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
     if (status.phase === "active" || status.phase === "finalizing") {
       const receipt = yield* target.finalize(release);
       return yield* validatePublicationReceipt(
-        manifest,
+        release,
         summary,
         projectionSummary,
         receipt
@@ -115,14 +132,14 @@ export const completePublicationLifecycle: CompletePublicationLifecycle =
     }
     const activated = yield* target.activate(release);
     yield* validatePublicationReceipt(
-      manifest,
+      release,
       summary,
       projectionSummary,
       activated
     );
     const finalized = yield* target.finalize(release);
     return yield* validatePublicationReceipt(
-      manifest,
+      release,
       summary,
       projectionSummary,
       finalized

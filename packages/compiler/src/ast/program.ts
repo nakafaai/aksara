@@ -1,9 +1,10 @@
+import { Predicate } from "effect";
 import type { Program } from "estree-jsx";
 import type { Node as UnistNode } from "unist";
 
 /** Narrows unknown unified data to the ESTree program shape we inspect. */
 function isProgram(value: unknown): value is Program {
-  if (!(typeof value === "object" && value !== null)) {
+  if (!Predicate.isRecord(value)) {
     return false;
   }
   if (!("type" in value && value.type === "Program")) {
