@@ -11,8 +11,8 @@ merged into Aksara.
 - Reachable source commits: 2
 - Aksara history merge: `c9c59216248160a3d8a0e5ac91cd4c54f9628b9b`
 - Final authored paths:
-  - `packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx`
-  - `packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/id.mdx`
+  - `packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx`
+  - `packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx`
 
 The disposable filtered clone contained only the two real locale documents and
 their original local React implementation. Its largest blob was under 4.7 KiB,

@@ -5,7 +5,7 @@ import { decodeMaterialRegistry } from "#corpus/material/registry";
 const realFamily = {
   delivery: "public",
   identity: {
-    materialPath: ["function-composition", "inverse-function"],
+    materialSlug: "function-composition-inverse-function",
     sectionKey: "function-concept",
     subject: "mathematics",
   },
@@ -41,7 +41,7 @@ describe("material registry", () => {
           sectionKey: "function-concept",
         },
         sourcePath:
-          "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx",
+          "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
       },
       {
         delivery: "public",
@@ -58,7 +58,7 @@ describe("material registry", () => {
           sectionKey: "function-concept",
         },
         sourcePath:
-          "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/id.mdx",
+          "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx",
       },
     ]);
   });
@@ -73,7 +73,7 @@ describe("material registry", () => {
         ...realFamily,
         identity: {
           ...realFamily.identity,
-          materialPath: ["a".repeat(600)],
+          materialSlug: "a".repeat(600),
         },
       },
     ]);
@@ -96,7 +96,7 @@ describe("material registry", () => {
       {
         ...realFamily,
         identity: {
-          materialPath: ["test-material"],
+          materialSlug: "test-material",
           sectionKey: "test-section",
           subject: "test-subject",
         },

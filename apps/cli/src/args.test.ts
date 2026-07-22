@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { parseCliArguments, parsePreviewArguments } from "#cli/args";
 
 const ENGLISH_DOCUMENT =
-  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx";
 
 /** Runs argument decoding at the test runner boundary. */
 function parse(args: readonly string[]) {

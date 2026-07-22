@@ -16,6 +16,7 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
+import { encodeCorpusPath, LogicalCorpusSegmentSchema } from "#corpus/path";
 
 const CorpusSegmentSchema = Schema.String.pipe(
   Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)?$/u)
@@ -27,7 +28,7 @@ const LocalePathsSchema = Schema.Record({
 const MaterialFamilySchema = Schema.Struct({
   delivery: ContentDeliveryClassSchema,
   identity: Schema.Struct({
-    materialPath: Schema.NonEmptyArray(CorpusSegmentSchema),
+    materialSlug: LogicalCorpusSegmentSchema,
     sectionKey: MaterialSectionSchema,
     subject: CorpusSegmentSchema,
   }),
@@ -73,7 +74,7 @@ const materialFamilies: readonly unknown[] = [
   {
     delivery: "public",
     identity: {
-      materialPath: ["function-composition", "inverse-function"],
+      materialSlug: "function-composition-inverse-function",
       sectionKey: "function-concept",
       subject: "mathematics",
     },
@@ -88,14 +89,13 @@ const materialFamilies: readonly unknown[] = [
 
 /** Expands one shared family identity into canonical locale-owned entries. */
 function expandFamily(family: MaterialFamily) {
-  const { materialPath, sectionKey, subject } = family.identity;
-  const materialSlug = materialPath.join("-");
+  const { materialSlug, sectionKey, subject } = family.identity;
   const materialKey = `lesson.${subject}.${materialSlug}`;
   const contentKey = `material/lesson/${subject}/${materialSlug}/${sectionKey}`;
   const sourceRoot = [
     "packages/corpus/material/lesson",
     subject,
-    ...materialPath,
+    ...encodeCorpusPath(materialSlug),
     sectionKey,
   ].join("/");
 

@@ -16,9 +16,9 @@ import { rendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
 export const englishPath =
-  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx";
 export const indonesianPath =
-  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/id.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx";
 export const sourceByPath = new Map(
   [englishPath, indonesianPath].map((sourcePath) => {
     const absolutePath = resolve(checkoutRoot, sourcePath);

@@ -12,7 +12,7 @@ const calls = vi.hoisted(() => ({
     | { readonly command: string; readonly releaseId: string }
     | undefined,
   document:
-    "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx",
+    "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
   open: undefined as
     | {
         readonly cwd: string;
