@@ -4,6 +4,7 @@ import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manife
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { createCompilerConfigHash } from "#compiler/config";
+import { rendererDomains } from "#compiler/test/renderer";
 
 /** Reads an installed package version for compiler-identity assertions. */
 function installedVersion(packageName: string) {
@@ -28,18 +29,10 @@ function manifestInput(inlineVersion: 1 | 2, expanded: boolean) {
           ]
         : [{ name: "InlineMath", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   };
 }
 
@@ -78,15 +71,11 @@ describe("compiler config", () => {
     const migrated = await Effect.runPromise(
       createRendererManifest(manifestInput(2, true))
     );
-    const beforeHash = createCompilerConfigHash(before, "material-mathematics");
-    expect(createCompilerConfigHash(expanded, "material-mathematics")).toBe(
+    const beforeHash = createCompilerConfigHash(before, "mathematics");
+    expect(createCompilerConfigHash(expanded, "mathematics")).toBe(beforeHash);
+    expect(createCompilerConfigHash(migrated, "mathematics")).not.toBe(
       beforeHash
     );
-    expect(createCompilerConfigHash(migrated, "material-mathematics")).not.toBe(
-      beforeHash
-    );
-    expect(createCompilerConfigHash(before, "material-chemistry")).not.toBe(
-      beforeHash
-    );
+    expect(createCompilerConfigHash(before, "chemistry")).not.toBe(beforeHash);
   });
 });

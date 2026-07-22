@@ -9,12 +9,13 @@ import {
   type MaterialCheckoutSnapshot,
   prepareMaterialCheckout,
 } from "#publisher/material";
+import { rendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
 export const englishPath =
-  "packages/corpus/material/mathematics/function/concept/en.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx";
 export const indonesianPath =
-  "packages/corpus/material/mathematics/function/concept/id.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx";
 export const sourceByPath = new Map(
   [englishPath, indonesianPath].map((sourcePath) => {
     const absolutePath = resolve(checkoutRoot, sourcePath);
@@ -33,26 +34,10 @@ export function materialManifest(input: {
         authoringComponents: [{ name: "InlineMath", version: 1 }],
         supportedComponents: [{ name: "InlineMath", version: 1 }],
       },
-      domains: [
-        {
-          authoringComponents: [
-            { name: "AtomShellLab", version: input.chemistry },
-          ],
-          name: "material-chemistry",
-          supportedComponents: [
-            { name: "AtomShellLab", version: input.chemistry },
-          ],
-        },
-        {
-          authoringComponents: [
-            { name: "FunctionMachine", version: input.math },
-          ],
-          name: "material-mathematics",
-          supportedComponents: [
-            { name: "FunctionMachine", version: input.math },
-          ],
-        },
-      ],
+      domains: rendererDomains({
+        chemistry: { name: "AtomShellLab", version: input.chemistry },
+        mathematics: { name: "FunctionMachine", version: input.math },
+      }),
     })
   );
 }

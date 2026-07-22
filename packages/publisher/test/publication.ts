@@ -37,7 +37,7 @@ import {
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
-import { rendererDomain } from "#test/renderer";
+import { rendererDomains } from "#test/renderer";
 
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -45,17 +45,17 @@ export const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: [
-      rendererDomain("material-chemistry", "AtomShellLab"),
-      rendererDomain("material-mathematics", "FunctionMachine"),
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   })
 );
 const source = CompileDocumentSourceSchema.make({
   contentKey: ContentKeySchema.make("test:publication"),
   locale: "en",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   sourcePath: CorpusSourcePathSchema.make(
     "packages/corpus/test/publication/en.mdx"
   ),

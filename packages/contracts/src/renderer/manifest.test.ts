@@ -5,10 +5,12 @@ import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
+import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import {
   createRendererManifest,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest";
+import { rendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -39,12 +41,12 @@ vi.mock("node:crypto", async (importOriginal) => {
 
 const CHEMISTRY = {
   authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-  name: "material-chemistry",
+  name: "chemistry",
   supportedComponents: [{ name: "AtomShellLab", version: 1 }],
 } as const;
 const MATHEMATICS = {
   authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-  name: "material-mathematics",
+  name: "mathematics",
   supportedComponents: [{ name: "FunctionMachine", version: 1 }],
 } as const;
 const BASE_SUPPORTED = [
@@ -56,7 +58,10 @@ const BASE_AUTHORING = [
   { name: "BlockMath", version: 1 },
   { name: "InlineMath", version: 1 },
 ] as const;
-
+const DOMAINS = rendererDomains({
+  chemistry: CHEMISTRY.authoringComponents[0],
+  mathematics: MATHEMATICS.authoringComponents[0],
+});
 /** Builds one complete manifest creation input with optional base pins. */
 function creation(
   authoringComponents: readonly RendererComponentRequirement[] = BASE_AUTHORING,
@@ -64,7 +69,7 @@ function creation(
 ) {
   return {
     base: { authoringComponents, supportedComponents },
-    domains: [CHEMISTRY, MATHEMATICS],
+    domains: DOMAINS,
   };
 }
 
@@ -102,15 +107,15 @@ describe("renderer manifest", () => {
       )
     );
     const bytes = canonicalizeRendererManifestContract(manifest);
-    expect(bytes).toContain('"nakafa-mdx-renderer-v2"');
+    expect(bytes).toContain('"nakafa-mdx-renderer-v1"');
     expect(manifest).toMatchObject({
       base: {
         authoringComponents: BASE_AUTHORING,
         supportedComponents: BASE_SUPPORTED,
       },
-      domains: [CHEMISTRY, MATHEMATICS],
-      format: "nakafa-mdx-renderer-v2",
-      rendererContractVersion: "2.0.0",
+      domains: DOMAINS,
+      format: "nakafa-mdx-renderer-v1",
+      rendererContractVersion: "1.0.0",
     });
     expect(manifest.hash).toBe(
       `sha256:${createHash("sha256").update(bytes).digest("hex")}`
@@ -162,7 +167,7 @@ describe("renderer manifest", () => {
     );
 
     expect(production.hash).toBe(
-      "sha256:585df757a0ed97ff36792e2d369eeb3a98ebecc649033dfadfaa54c77d808009"
+      "sha256:34ea7de14176a37239db20f0bd2ef28515413054b9af3f869c596c796a427b3a"
     );
   });
 
@@ -211,13 +216,12 @@ describe("renderer manifest", () => {
     const normalizedDomains = await Effect.runPromise(
       createRendererManifest({
         ...creation(),
-        domains: [MATHEMATICS, CHEMISTRY],
+        domains: [...DOMAINS].reverse(),
       })
     );
-    expect(normalizedDomains.domains.map(({ name }) => name)).toEqual([
-      "material-chemistry",
-      "material-mathematics",
-    ]);
+    expect(normalizedDomains.domains.map(({ name }) => name)).toEqual(
+      RENDERER_DOMAINS
+    );
 
     const duplicate = await Effect.runPromise(
       createRendererManifest(
@@ -248,14 +252,15 @@ describe("renderer manifest", () => {
     const error = await Effect.runPromise(
       createRendererManifest({
         ...creation(),
-        domains: [
-          {
-            ...CHEMISTRY,
-            authoringComponents: [{ name: "BlockMath", version: 1 }],
-            supportedComponents: [{ name: "BlockMath", version: 1 }],
-          },
-          MATHEMATICS,
-        ],
+        domains: DOMAINS.map((domain) =>
+          domain.name === CHEMISTRY.name
+            ? {
+                ...domain,
+                authoringComponents: [{ name: "BlockMath", version: 1 }],
+                supportedComponents: [{ name: "BlockMath", version: 1 }],
+              }
+            : domain
+        ),
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("ContractDecodeError");
@@ -265,14 +270,15 @@ describe("renderer manifest", () => {
     );
     const overlap = {
       base: manifest.base,
-      domains: [
-        {
-          ...manifest.domains[0],
-          authoringComponents: [{ name: "BlockMath", version: 1 }],
-          supportedComponents: [{ name: "BlockMath", version: 1 }],
-        },
-        manifest.domains[1],
-      ],
+      domains: manifest.domains.map((domain) =>
+        domain.name === CHEMISTRY.name
+          ? {
+              ...domain,
+              authoringComponents: [{ name: "BlockMath", version: 1 }],
+              supportedComponents: [{ name: "BlockMath", version: 1 }],
+            }
+          : domain
+      ),
     };
     const hash = `sha256:${createHash("sha256")
       .update(canonicalizeRendererManifestContract(overlap))

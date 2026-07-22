@@ -22,7 +22,7 @@ const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   mdxCompilerVersion: "3.1.1",
   plainText: "Limits",
   rawMdx: "## Limits",
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   requiredComponents: [],
   sourceHash: `sha256:${"c".repeat(64)}`,
 });

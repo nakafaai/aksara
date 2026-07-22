@@ -28,6 +28,7 @@ import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manife
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { rendererDomains } from "#test/renderer";
 
 const cryptoFailure = vi.hoisted(() => ({ failNextSign: false }));
 
@@ -51,25 +52,17 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   })
 );
 const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({
   contentKey: "test:signing",
   locale: "en",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   sourcePath: "packages/corpus/test/signing/en.mdx",
 });
 const { payload } = await Effect.runPromise(
@@ -112,7 +105,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionCount: 1,
   projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId,
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
   rendererManifestHash: rendererManifest.hash,
 });
 

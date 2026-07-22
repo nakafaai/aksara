@@ -49,7 +49,7 @@ const functionConceptKey =
 const materialEntries: readonly unknown[] = [
   {
     delivery: "public",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     route: {
       contentKey: functionConceptKey,
       locale: "en",
@@ -59,11 +59,12 @@ const materialEntries: readonly unknown[] = [
         "subjects/mathematics/function-composition-inverse-function/function-concept",
       sectionKey: "function-concept",
     },
-    sourcePath: "packages/corpus/material/mathematics/function/concept/en.mdx",
+    sourcePath:
+      "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
   },
   {
     delivery: "public",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     route: {
       contentKey: functionConceptKey,
       locale: "id",
@@ -73,7 +74,8 @@ const materialEntries: readonly unknown[] = [
         "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
       sectionKey: "function-concept",
     },
-    sourcePath: "packages/corpus/material/mathematics/function/concept/id.mdx",
+    sourcePath:
+      "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx",
   },
 ];
 

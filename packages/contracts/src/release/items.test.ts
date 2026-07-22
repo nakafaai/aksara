@@ -33,7 +33,7 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
     delivery: "public",
     locale: "en",
     operation: "upsert",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     sourcePath: "packages/corpus/test/a/en.mdx",
   },
   {
@@ -54,7 +54,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionCount: 1,
   projectionDigest: `sha256:${"b".repeat(64)}`,
   releaseId,
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
 });
 
@@ -182,7 +182,7 @@ describe("release item integrity", () => {
         locale: "en",
         operation: "upsert",
         publicPath: "subjects/test/shared",
-        rendererDomain: "material-mathematics",
+        rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/a/en.mdx",
       },
       {
@@ -192,7 +192,7 @@ describe("release item integrity", () => {
         locale: "en",
         operation: "upsert",
         publicPath: "subjects/test/shared",
-        rendererDomain: "material-mathematics",
+        rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/b/en.mdx",
       },
     ]);
@@ -215,7 +215,7 @@ describe("release item integrity", () => {
         locale: "en",
         operation: "upsert",
         publicPath: "subjects/test/shared",
-        rendererDomain: "material-mathematics",
+        rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/a/en.mdx",
       },
       { contentKey: "test:b", locale: "en", operation: "delete" },
@@ -228,7 +228,7 @@ describe("release item integrity", () => {
         locale: "en",
         operation: "upsert",
         publicPath: "subjects/test/shared",
-        rendererDomain: "material-mathematics",
+        rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/a/en.mdx",
       },
       {
@@ -238,7 +238,7 @@ describe("release item integrity", () => {
         locale: "id",
         operation: "upsert",
         publicPath: "subjects/test/shared",
-        rendererDomain: "material-mathematics",
+        rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/b/id.mdx",
       },
     ]);

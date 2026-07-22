@@ -42,7 +42,7 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
     locale: "en",
     operation: "upsert",
     publicPath: "subjects/test",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     sourcePath: "packages/corpus/test/content/en.mdx",
   },
 ]);
@@ -58,7 +58,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionCount: 1,
   projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId,
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 
@@ -95,7 +95,7 @@ describe("release spec", () => {
       return;
     }
     expect(canonicalizeContentReleaseItem(first)).toBe(
-      `{"change":{"contentKey":"test:content","delivery":"public","locale":"en","operation":"upsert","publicPath":"subjects/test","artifactHash":"sha256:${"b".repeat(64)}","rendererDomain":"material-mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
+      `{"change":{"contentKey":"test:content","delivery":"public","locale":"en","operation":"upsert","publicPath":"subjects/test","artifactHash":"sha256:${"b".repeat(64)}","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
     );
   });
 

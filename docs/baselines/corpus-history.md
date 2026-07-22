@@ -11,8 +11,8 @@ merged into Aksara.
 - Reachable source commits: 2
 - Aksara history merge: `c9c59216248160a3d8a0e5ac91cd4c54f9628b9b`
 - Final authored paths:
-  - `packages/corpus/material/mathematics/function/concept/en.mdx`
-  - `packages/corpus/material/mathematics/function/concept/id.mdx`
+  - `packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx`
+  - `packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx`
 
 The disposable filtered clone contained only the two real locale documents and
 their original local React implementation. Its largest blob was under 4.7 KiB,
@@ -60,6 +60,29 @@ source revisions: one current `packages/contents/quran/source.ts` blob at
 24,492,362 bytes. They are text rather than binary, but attribution, license,
 compilation cost, and long-term storage representation remain explicit Quran
 migration gates.
+
+## Physical path mapping
+
+The canonical mapper was re-audited against Nakafa
+`7bbf91eb2898c610c5280e114641d5444c48c65b`. The bounded authored families
+(`articles`, `curriculum`, `material`, `quran`, `question-bank`, `team`, and
+`tryout`) contain 5,104 tracked files. Exactly 636 paths require grouping to
+satisfy the two-semantic-word path rule.
+
+Every non-final chunk created from one legacy segment ends with `_`. Legacy
+input accepts only lowercase kebab segments, so `_` is impossible in accepted
+source paths. It adds no semantic word and preserves the original segment
+boundary, making the transform reversible without a corpus-specific alias map.
+For example, `function-composition-inverse-function` becomes
+`function-composition_/inverse-function` while `python-step-1` remains intact
+because numeric tokens do not consume the semantic-word budget.
+
+The complete mapping passed file, directory-owner, and case-fold collision
+validation. Its SHA-256 is
+`7e341cae0f005914bc5813a1cb331843e9dc0eef970e1b2cf183f487437f98ee`, computed
+from Git-ordered UTF-8 lines of `<legacy-path>\t<corpus-path>` without a trailing
+newline. This digest authenticates path identity only; it does not authorize a
+family migration or replace its provenance review.
 
 ## Reproduction
 

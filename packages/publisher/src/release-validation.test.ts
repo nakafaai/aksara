@@ -16,6 +16,7 @@ import {
   validateReleaseRendererManifest,
   validateVerificationEvidence,
 } from "#publisher/release-validation";
+import { rendererDomains } from "#test/renderer";
 
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseReleaseId: null,
@@ -25,7 +26,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionCount: 2,
   projectionDigest: `sha256:${"b".repeat(64)}`,
   releaseId: "test-release-counts",
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
@@ -58,7 +59,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
     delivery: "public",
     locale: "en",
     operation: "upsert",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     sourcePath: "packages/corpus/test/content/en.mdx",
   },
   index: 0,
@@ -75,7 +76,7 @@ const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   mdxCompilerVersion: "3.1.1",
   plainText: "x",
   rawMdx: "x",
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   requiredComponents: [],
   sourceHash: `sha256:${"f".repeat(64)}`,
 });
@@ -85,18 +86,10 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   })
 );
 
@@ -110,7 +103,7 @@ describe("release validation", () => {
     const error = await Effect.runPromise(
       validateCompiledPayloadForItem(item, artifactHash, {
         ...payload,
-        rendererDomain: "material-chemistry",
+        rendererDomain: "chemistry",
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("ReleaseArtifactMismatchError");

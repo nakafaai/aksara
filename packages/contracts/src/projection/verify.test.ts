@@ -48,7 +48,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   projectionCount: projections.length,
   projectionDigest: projectionSummary.digest,
   releaseId,
-  rendererContractVersion: "2.0.0",
+  rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"c".repeat(64)}`,
 });
 

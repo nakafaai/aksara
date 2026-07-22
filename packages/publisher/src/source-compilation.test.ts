@@ -19,6 +19,7 @@ import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manife
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileReleaseSources } from "#publisher/source-compilation";
+import { rendererDomains } from "#test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -26,25 +27,17 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   })
 );
 const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({
   contentKey: "test:publication",
   locale: "en",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   sourcePath: "packages/corpus/test/publication/en.mdx",
 });
 const { payload: expectedPayload } = await Effect.runPromise(
@@ -114,7 +107,7 @@ const identityMismatches = [
   }),
   CompileDocumentSourceSchema.make({
     ...source,
-    rendererDomain: "material-chemistry",
+    rendererDomain: "chemistry",
   }),
 ];
 

@@ -14,6 +14,7 @@ import {
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
+import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 
@@ -23,27 +24,20 @@ const validRequest = {
   contentKey: "test:content",
   locale: "en",
   rawMdx: `## ${TEST_HEADING}`,
-  rendererDomain: "material-mathematics",
+  rendererDomain: "mathematics",
   rendererManifest: {
     base: {
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
-    format: "nakafa-mdx-renderer-v2",
+    domains: RENDERER_DOMAINS.map((name) => ({
+      authoringComponents: [],
+      name,
+      supportedComponents: [],
+    })),
+    format: "nakafa-mdx-renderer-v1",
     hash: `sha256:${"a".repeat(64)}`,
-    rendererContractVersion: "2.0.0",
+    rendererContractVersion: "1.0.0",
   },
   sourcePath: "packages/corpus/test/content/en.mdx",
 } as const;
@@ -123,7 +117,7 @@ describe("content", () => {
       mdxCompilerVersion: "3.1.1",
       plainText: TEST_HEADING,
       rawMdx: `## ${TEST_HEADING}`,
-      rendererDomain: "material-mathematics",
+      rendererDomain: "mathematics",
       requiredComponents: [
         { name: "BlockMath", version: 1 },
         { name: "FunctionMachine", version: 2 },
@@ -132,7 +126,7 @@ describe("content", () => {
         "sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb",
     });
     const canonicalPayload =
-      '{"byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body-v1","locale":"en","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"material-mathematics","requiredComponents":[{"name":"BlockMath","version":1},{"name":"FunctionMachine","version":2}],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
+      '{"byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body-v1","locale":"en","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":[{"name":"BlockMath","version":1},{"name":"FunctionMachine","version":2}],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
     const artifactHash = `sha256:${createHash("sha256")
       .update(canonicalPayload)
       .digest("hex")}`;

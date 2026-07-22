@@ -30,7 +30,7 @@ const TEST_SOURCES = [
     contentKey: ContentKeySchema.make("test:git-source-first"),
     locale: "en",
     rawMdx: "export const testProtocolFirst = true;\n",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     sourcePath: CorpusSourcePathSchema.make(
       "packages/corpus/test-protocol/first/en.mdx"
     ),
@@ -39,7 +39,7 @@ const TEST_SOURCES = [
     contentKey: ContentKeySchema.make("test:git-source-second"),
     locale: "id",
     rawMdx: "export const testProtocolSecond = true;\n",
-    rendererDomain: "material-chemistry",
+    rendererDomain: "chemistry",
     sourcePath: CorpusSourcePathSchema.make(
       "packages/corpus/test-protocol/second/id.mdx"
     ),

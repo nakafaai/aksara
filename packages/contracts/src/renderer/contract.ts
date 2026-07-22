@@ -2,9 +2,10 @@ import { Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   hasCompleteRendererSelection,
+  RendererAuthoringComponentsSchema,
   type RendererCapability,
-  RendererCapabilityFields,
   RendererCapabilitySchema,
+  RendererSupportedComponentsSchema,
 } from "#contracts/renderer/component";
 import {
   RENDERER_DOMAINS,
@@ -16,10 +17,10 @@ const RENDERER_CONTRACT_VERSION_PATTERN =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 
 /** Domain-scoped renderer wire version shared with Nakafa. */
-export const RENDERER_CONTRACT_VERSION = "2.0.0";
+export const RENDERER_CONTRACT_VERSION = "1.0.0";
 
 /** Stable wire format for a domain-scoped Nakafa renderer manifest. */
-export const RENDERER_MANIFEST_FORMAT = "nakafa-mdx-renderer-v2";
+export const RENDERER_MANIFEST_FORMAT = "nakafa-mdx-renderer-v1";
 
 /** Canonical semantic version carried by a renderer runtime boundary. */
 export const RendererContractVersionSchema = Schema.String.pipe(
@@ -29,8 +30,9 @@ export type RendererContractVersion = typeof RendererContractVersionSchema.Type;
 
 /** One route-domain component contract with an exact real domain name. */
 export const RendererDomainCapabilitySchema = Schema.Struct({
+  authoringComponents: RendererAuthoringComponentsSchema,
   name: RendererDomainSchema,
-  ...RendererCapabilityFields,
+  supportedComponents: RendererSupportedComponentsSchema,
 }).pipe(
   Schema.filter(hasCompleteRendererSelection, {
     message: () =>
@@ -56,42 +58,30 @@ export function sortRendererDomains<T extends RendererDomainCapability>(
 }
 
 /** Exact canonical route-domain registry collection. */
-export const RendererManifestDomainsSchema = Schema.Tuple(
-  Schema.Struct({
-    name: Schema.Literal(RENDERER_DOMAINS[0]),
-    ...RendererCapabilityFields,
-  }).pipe(
-    Schema.filter(hasCompleteRendererSelection, {
-      message: () =>
-        "Expected one supported authoring selection for every domain component.",
-    })
-  ),
-  Schema.Struct({
-    name: Schema.Literal(RENDERER_DOMAINS[1]),
-    ...RendererCapabilityFields,
-  }).pipe(
-    Schema.filter(hasCompleteRendererSelection, {
-      message: () =>
-        "Expected one supported authoring selection for every domain component.",
-    })
+export const RendererManifestDomainsSchema = Schema.Array(
+  RendererDomainCapabilitySchema
+).pipe(
+  Schema.filter(
+    (domains) =>
+      domains.length === RENDERER_DOMAINS.length &&
+      domains.every(({ name }, index) => name === RENDERER_DOMAINS[index]),
+    { message: () => "Expected every renderer domain in canonical order." }
   )
 );
 
-/** Requires every component name to belong to exactly one registry scope. */
-function hasDistinctComponentScopes(manifest: {
+/** Keeps base component names out of every route-owned registry. */
+function hasDistinctBaseComponents(manifest: {
   readonly base: RendererCapability;
   readonly domains: readonly RendererDomainCapability[];
 }) {
-  const owners = new Set<string>();
-  for (const capability of [manifest.base, ...manifest.domains]) {
-    const localNames = new Set(
-      capability.supportedComponents.map(({ name }) => name)
-    );
-    for (const name of localNames) {
-      if (owners.has(name)) {
+  const baseNames = new Set(
+    manifest.base.supportedComponents.map(({ name }) => name)
+  );
+  for (const domain of manifest.domains) {
+    for (const { name } of domain.supportedComponents) {
+      if (baseNames.has(name)) {
         return false;
       }
-      owners.add(name);
     }
   }
   return true;
@@ -105,9 +95,9 @@ export const RendererManifestEnvelopeSchema = Schema.Struct({
   hash: Sha256HashSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
 }).pipe(
-  Schema.filter(hasDistinctComponentScopes, {
+  Schema.filter(hasDistinctBaseComponents, {
     message: () =>
-      "Expected every renderer component name to have one registry owner.",
+      "Expected base and route-domain component names to be disjoint.",
   })
 );
 export type RendererManifestEnvelope =
@@ -118,9 +108,9 @@ export function selectRendererDomainCapability(
   manifest: RendererManifestEnvelope,
   rendererDomain: RendererDomain
 ) {
-  return rendererDomain === RENDERER_DOMAINS[0]
-    ? manifest.domains[0]
-    : manifest.domains[1];
+  return Schema.decodeUnknownSync(RendererDomainCapabilitySchema)(
+    manifest.domains.find(({ name }) => name === rendererDomain)
+  );
 }
 
 /** SHA-256 could not be calculated for the renderer contract bytes. */

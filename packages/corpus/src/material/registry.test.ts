@@ -24,9 +24,9 @@ describe("material registry", () => {
         order: 5,
         publicPath:
           "subjects/mathematics/function-composition-inverse-function/function-concept",
-        rendererDomain: "material-mathematics",
+        rendererDomain: "mathematics",
         sourcePath:
-          "packages/corpus/material/mathematics/function/concept/en.mdx",
+          "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
       },
       {
         contentKey:
@@ -36,9 +36,9 @@ describe("material registry", () => {
         order: 5,
         publicPath:
           "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
-        rendererDomain: "material-mathematics",
+        rendererDomain: "mathematics",
         sourcePath:
-          "packages/corpus/material/mathematics/function/concept/id.mdx",
+          "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx",
       },
     ]);
   });
@@ -58,7 +58,7 @@ describe("material registry", () => {
         {
           ...entries[0],
           sourcePath:
-            "packages/corpus/material/mathematics/function/concept/id.mdx",
+            "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx",
         },
       ]).pipe(Effect.flip)
     );

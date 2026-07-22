@@ -5,6 +5,7 @@ import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manife
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";
+import { rendererDomains } from "#compiler/test/renderer";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 
@@ -21,18 +22,10 @@ function manifestInput(
 ) {
   return {
     base: { authoringComponents, supportedComponents },
-    domains: [
-      {
-        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
-        name: "material-chemistry",
-        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
-      },
-      {
-        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
-        name: "material-mathematics",
-        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
-      },
-    ],
+    domains: rendererDomains({
+      chemistry: { name: "AtomShellLab", version: 1 },
+      mathematics: { name: "FunctionMachine", version: 1 },
+    }),
   };
 }
 
@@ -63,9 +56,7 @@ function withMetadata(body: string, metadata = VALID_METADATA) {
 function compileRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest,
-  rendererDomain:
-    | "material-chemistry"
-    | "material-mathematics" = "material-mathematics"
+  rendererDomain: "chemistry" | "mathematics" = "mathematics"
 ) {
   return Effect.runPromise(
     compileContent({
@@ -83,9 +74,7 @@ function compileRawMdx(
 function rejectRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest,
-  rendererDomain:
-    | "material-chemistry"
-    | "material-mathematics" = "material-mathematics"
+  rendererDomain: "chemistry" | "mathematics" = "mathematics"
 ) {
   return Effect.runPromise(
     compileContent({
@@ -143,10 +132,10 @@ describe("compileContent", () => {
     const chemistryError = await rejectRawMdx(
       withMetadata("<FunctionMachine />"),
       rendererManifest,
-      "material-chemistry"
+      "chemistry"
     );
 
-    expect(mathematics.payload.rendererDomain).toBe("material-mathematics");
+    expect(mathematics.payload.rendererDomain).toBe("mathematics");
     expect(mathematics.payload.requiredComponents).toEqual([
       { name: "FunctionMachine", version: 1 },
     ]);

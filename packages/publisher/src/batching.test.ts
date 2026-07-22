@@ -57,7 +57,7 @@ function artifact(index: number, compiledBytes = 10) {
     mdxCompilerVersion: "3.1.1",
     plainText: "",
     rawMdx: "",
-    rendererDomain: "material-mathematics",
+    rendererDomain: "mathematics",
     requiredComponents: [],
     sourceHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   });
