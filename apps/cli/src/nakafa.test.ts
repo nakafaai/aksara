@@ -17,7 +17,7 @@ describe("Nakafa app service", () => {
       headers: { "cache-control": "no-store" },
     });
     Object.defineProperty(response, "url", {
-      value: "http://127.0.0.1:31234/api/internal/content/renderer",
+      value: "http://localhost:31234/api/internal/content/renderer",
     });
     vi.stubGlobal(
       "fetch",
@@ -38,7 +38,7 @@ describe("Nakafa app service", () => {
         Effect.flatMap((app) =>
           Effect.all([
             app.fetchRenderer(
-              new URL("http://127.0.0.1:31234"),
+              new URL("http://localhost:31234"),
               credentials.token
             ),
             app

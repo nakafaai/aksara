@@ -200,7 +200,7 @@ describe("local preview session", () => {
     const repository = makeRepositories();
     const child: RunningNakafa = {
       awaitExit: Effect.fail(makeNakafaAppError("exit", false, 1)),
-      origin: new URL("http://127.0.0.1:31234"),
+      origin: new URL("http://localhost:31234"),
     };
     const error = await runLocal(
       repository,

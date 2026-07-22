@@ -65,10 +65,13 @@ describe("Nakafa child process", () => {
       "next",
       "dev",
       "--hostname",
-      "127.0.0.1",
+      "localhost",
     ]);
     expect(inspected.args.at(-2)).toBe("--port");
     expect(inspected.args.at(-1)).toBe(result.child.origin.port);
+    expect(result.child.origin.toString()).toBe(
+      `http://localhost:${result.child.origin.port}/`
+    );
     expect(inspected.cwd).toBe(input.root);
     expect(Object.keys(inspected.environment).sort()).toEqual([
       "AKSARA_PREVIEW_EVENTS_PATH",
@@ -140,9 +143,19 @@ describe("Nakafa child process", () => {
     const address = await Effect.runPromise(
       Effect.scoped(startNakafa(executor, input)).pipe(Effect.flip)
     );
+    vi.restoreAllMocks();
+    vi.spyOn(Server.prototype, "address").mockReturnValueOnce({
+      address: "192.0.2.1",
+      family: "IPv4",
+      port: 31_234,
+    });
+    const external = await Effect.runPromise(
+      Effect.scoped(startNakafa(executor, input)).pipe(Effect.flip)
+    );
 
     expect(bind).toMatchObject({ reason: "start" });
     expect(address).toMatchObject({ reason: "start" });
+    expect(external).toMatchObject({ reason: "start" });
   });
 
   it("fails a port close error and cancels an unfinished reservation", async () => {

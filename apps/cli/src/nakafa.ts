@@ -19,7 +19,7 @@ export class NakafaApp extends Context.Tag("AksaraCliNakafaApp")<
       origin: URL,
       token: Redacted.Redacted<string>
     ) => Effect.Effect<RendererManifestEnvelope, NakafaAppError>;
-    /** Starts the actual Nakafa Next development app on IPv4 loopback. */
+    /** Starts the actual Nakafa Next development app on localhost. */
     readonly start: (
       input: NakafaStartInput
     ) => Effect.Effect<RunningNakafa, NakafaAppError, Scope.Scope>;

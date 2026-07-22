@@ -68,7 +68,7 @@ export function makeApp(
   capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] },
   child: RunningNakafa = {
     awaitExit: Effect.never,
-    origin: new URL("http://127.0.0.1:31234"),
+    origin: new URL("http://localhost:31234"),
   },
   fetchRenderer = Effect.succeed(RENDERER_MANIFEST)
 ) {

@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { fetchRendererManifest, waitForRenderer } from "#cli/renderer";
 import { RENDERER_MANIFEST } from "#test/real";
 
-const ORIGIN = new URL("http://127.0.0.1:31234");
+const ORIGIN = new URL("http://localhost:31234");
 const TOKEN = Redacted.make("renderer-test-token");
 
 afterEach(() => {
@@ -70,13 +70,13 @@ describe("Nakafa renderer discovery", () => {
   });
 
   it.each([
-    new URL("https://127.0.0.1:31234"),
-    new URL("http://localhost:31234"),
-    new URL("http://127.0.0.1"),
-    new URL("http://user@127.0.0.1:31234"),
-    new URL("http://127.0.0.1:31234/other"),
-    new URL("http://127.0.0.1:31234/?query=true"),
-    new URL("http://127.0.0.1:31234/#fragment"),
+    new URL("https://localhost:31234"),
+    new URL("http://127.0.0.1:31234"),
+    new URL("http://localhost"),
+    new URL("http://user@localhost:31234"),
+    new URL("http://localhost:31234/other"),
+    new URL("http://localhost:31234/?query=true"),
+    new URL("http://localhost:31234/#fragment"),
   ])("rejects renderer origin %s", async (origin) => {
     const error = await rejectRenderer(origin);
     expect(error).toMatchObject({ reason: "origin", retryable: false });
@@ -183,7 +183,7 @@ describe("Nakafa renderer discovery", () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async () =>
-        rendererResponse(null, {}, "http://127.0.0.1:31234/other")
+        rendererResponse(null, {}, "http://localhost:31234/other")
       )
     );
     await expect(rejectRenderer()).resolves.toMatchObject({

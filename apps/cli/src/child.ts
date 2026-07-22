@@ -14,7 +14,8 @@ import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import type { PreviewCredentials } from "#cli/credentials";
 import type { PreviewProvider } from "#cli/provider";
 
-const LOOPBACK_HOST = "127.0.0.1";
+const LOOPBACK_HOST = "localhost";
+const LOOPBACK_ADDRESSES = new Set(["127.0.0.1", "::1"]);
 
 const ChildEnvironmentSchema = Schema.Struct({
   AKSARA_PREVIEW_EVENTS_PATH: Schema.String.pipe(Schema.startsWith("/")),
@@ -49,7 +50,7 @@ export type StartNakafa = (
   input: NakafaStartInput
 ) => Effect.Effect<RunningNakafa, NakafaAppError, Scope.Scope>;
 
-/** Allocates one currently free IPv4 loopback port for the actual app child. */
+/** Allocates one currently free localhost port for the actual app child. */
 const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
   Effect.async<number, NakafaAppError>((resume) => {
     const server = createServer();
@@ -60,8 +61,8 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
       const address = server.address();
       if (
         typeof address !== "object" ||
-        address?.address !== LOOPBACK_HOST ||
-        address.family !== "IPv4"
+        address === null ||
+        !LOOPBACK_ADDRESSES.has(address.address)
       ) {
         server.close(() =>
           resume(Effect.fail(makeNakafaAppError("start", false)))
