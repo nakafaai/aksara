@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import {
   canonicalizeSignedContentArtifact,
   type SignedContentArtifact,
@@ -8,32 +7,20 @@ import {
   type ContentReleaseItem,
   canonicalizeContentReleaseItem,
 } from "@nakafaai/aksara-contracts/release";
-import { Effect, Schema } from "effect";
+import { Effect, Stream } from "effect";
+import { partitionBatch, validateBatch } from "#publisher/batch/core";
 
-/** Maximum ordered release items sent to a publication target per call. */
-export const MAX_RELEASE_ITEMS_PER_BATCH = 500;
+/** Maximum ordered release items held for one partition decision. */
+export const MAX_RELEASE_ITEMS_PER_BATCH = 100;
 
-/** Maximum canonical item bytes sent to a publication target per call. */
+/** Maximum complete release-item envelope bytes sent per target call. */
 export const MAX_RELEASE_ITEM_BATCH_BYTES = 512 * 1024;
 
-/** Maximum signed artifacts sent to a publication target per call. */
-export const MAX_ARTIFACTS_PER_BATCH = 100;
+/** Maximum signed artifacts held and sent in one target call. */
+export const MAX_ARTIFACTS_PER_BATCH = 8;
 
-/** Maximum canonical artifact bytes sent to a publication target per call. */
-export const MAX_ARTIFACT_BATCH_BYTES = 8 * 1024 * 1024;
-
-/** One value cannot fit inside its mandatory publication batch ceiling. */
-export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBatchLimitError>()(
-  "PublicationBatchLimitError",
-  {
-    actualBytes: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    actualCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    itemOffset: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    kind: Schema.Literal("artifact", "release-item"),
-    maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
-    maxCount: Schema.Number.pipe(Schema.int(), Schema.positive()),
-  }
-) {}
+/** Maximum complete signed artifact envelope bytes sent per target call. */
+export const MAX_ARTIFACT_BATCH_BYTES = 4 * 1024 * 1024;
 
 /** Ordered item batch accepted by the publication infrastructure seam. */
 export interface ReleaseItemBatch {
@@ -49,126 +36,20 @@ export interface ArtifactBatch {
   readonly releaseId: ReleaseId;
 }
 
-/** Measures one canonical string using its transmitted UTF-8 representation. */
-function utf8Bytes(value: string) {
-  return Buffer.byteLength(value, "utf8");
+/** Serializes one complete release-item batch in deterministic wire order. */
+export function canonicalizeReleaseItemBatch(batch: ReleaseItemBatch) {
+  return `{"batchIndex":${batch.batchIndex},"items":[${batch.items
+    .map(canonicalizeContentReleaseItem)
+    .join(",")}],"releaseId":${JSON.stringify(batch.releaseId)}}`;
 }
 
-/** Measures a JSON array from exact serialized member representations. */
-function encodedArrayBytes<T>(
-  values: readonly T[],
-  serialize: (value: T) => string
-) {
-  return (
-    2 +
-    values.reduce(
-      (total, value, index) =>
-        total + (index === 0 ? 0 : 1) + utf8Bytes(serialize(value)),
-      0
-    )
-  );
-}
-
-/** Verifies one already-formed batch against its count and byte ceilings. */
-function validateBatch<T>(input: {
-  readonly kind: "artifact" | "release-item";
-  readonly maxBytes: number;
-  readonly maxCount: number;
-  /** Produces the canonical wire representation for one batch value. */
-  readonly serialize: (value: T) => string;
-  readonly values: readonly T[];
-}) {
-  const actualBytes = encodedArrayBytes(input.values, input.serialize);
-  if (
-    input.values.length > 0 &&
-    input.values.length <= input.maxCount &&
-    actualBytes <= input.maxBytes
-  ) {
-    return Effect.void;
-  }
-  return Effect.fail(
-    new PublicationBatchLimitError({
-      actualBytes,
-      actualCount: input.values.length,
-      itemOffset: 0,
-      kind: input.kind,
-      maxBytes: input.maxBytes,
-      maxCount: input.maxCount,
-    })
-  );
-}
-
-/** Partitions ordered values without exceeding either publication ceiling. */
-function partitionBounded<T>(input: {
-  readonly kind: "artifact" | "release-item";
-  readonly maxBytes: number;
-  readonly maxCount: number;
-  /** Produces the canonical wire representation for one batch value. */
-  readonly serialize: (value: T) => string;
-  readonly values: readonly T[];
-}) {
-  const batches: T[][] = [];
-  let batch: T[] = [];
-  let batchBytes = 2;
-
-  for (const [itemOffset, value] of input.values.entries()) {
-    const valueBytes = utf8Bytes(input.serialize(value));
-    const standaloneBytes = valueBytes + 2;
-    if (standaloneBytes > input.maxBytes) {
-      return Effect.fail(
-        new PublicationBatchLimitError({
-          actualBytes: standaloneBytes,
-          actualCount: 1,
-          itemOffset,
-          kind: input.kind,
-          maxBytes: input.maxBytes,
-          maxCount: input.maxCount,
-        })
-      );
-    }
-
-    const separatorBytes = batch.length === 0 ? 0 : 1;
-    const nextBytes = batchBytes + separatorBytes + valueBytes;
-    if (batch.length === input.maxCount || nextBytes > input.maxBytes) {
-      batches.push(batch);
-      batch = [];
-      batchBytes = 2;
-    }
-
-    batch.push(value);
-    batchBytes += (batch.length === 1 ? 0 : 1) + valueBytes;
-  }
-
-  if (batch.length > 0) {
-    batches.push(batch);
-  }
-  return Effect.succeed(batches);
-}
-
-/** Partitions canonical release items below both count and byte ceilings. */
-export function partitionReleaseItemBatches(
-  items: readonly ContentReleaseItem[]
-) {
-  return partitionBounded({
-    kind: "release-item",
-    maxBytes: MAX_RELEASE_ITEM_BATCH_BYTES,
-    maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
-    serialize: canonicalizeContentReleaseItem,
-    values: items,
-  });
-}
-
-/** Partitions signed artifacts below both count and byte ceilings. */
-export function partitionArtifactBatches(
-  artifacts: readonly SignedContentArtifact[]
-) {
-  return partitionBounded({
-    kind: "artifact",
-    maxBytes: MAX_ARTIFACT_BATCH_BYTES,
-    maxCount: MAX_ARTIFACTS_PER_BATCH,
-    serialize: canonicalizeSignedContentArtifact,
-    values: artifacts,
-  });
+/** Serializes one complete artifact batch in deterministic wire order. */
+export function canonicalizeArtifactBatch(batch: ArtifactBatch) {
+  return `{"artifacts":[${batch.artifacts
+    .map(canonicalizeSignedContentArtifact)
+    .join(
+      ","
+    )}],"batchIndex":${batch.batchIndex},"releaseId":${JSON.stringify(batch.releaseId)}}`;
 }
 
 /** Constructs one non-empty item batch after enforcing both hard ceilings. */
@@ -176,11 +57,12 @@ export const makeReleaseItemBatch = Effect.fn(
   "AksaraPublisher.makeReleaseItemBatch"
 )(function* (input: ReleaseItemBatch) {
   yield* validateBatch({
+    batch: input,
+    count: input.items.length,
     kind: "release-item",
     maxBytes: MAX_RELEASE_ITEM_BATCH_BYTES,
     maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
-    serialize: canonicalizeContentReleaseItem,
-    values: input.items,
+    serialize: canonicalizeReleaseItemBatch,
   });
   return input;
 });
@@ -189,12 +71,73 @@ export const makeReleaseItemBatch = Effect.fn(
 export const makeArtifactBatch = Effect.fn("AksaraPublisher.makeArtifactBatch")(
   function* (input: ArtifactBatch) {
     yield* validateBatch({
+      batch: input,
+      count: input.artifacts.length,
       kind: "artifact",
       maxBytes: MAX_ARTIFACT_BATCH_BYTES,
       maxCount: MAX_ARTIFACTS_PER_BATCH,
-      serialize: canonicalizeSignedContentArtifact,
-      values: input.artifacts,
+      serialize: canonicalizeArtifactBatch,
     });
     return input;
   }
 );
+
+/** Streams bounded release-item envelopes with contiguous batch identities. */
+export function makeReleaseItemBatches<E, R>(
+  releaseId: ReleaseId,
+  items: Stream.Stream<ContentReleaseItem, E, R>
+) {
+  return items.pipe(
+    Stream.grouped(MAX_RELEASE_ITEMS_PER_BATCH),
+    Stream.mapEffect((chunk) =>
+      partitionBatch({
+        kind: "release-item",
+        maxBytes: MAX_RELEASE_ITEM_BATCH_BYTES,
+        maxCount: MAX_RELEASE_ITEMS_PER_BATCH,
+        releaseId,
+        serializeBatch: (values, batchIndex, batchReleaseId) =>
+          canonicalizeReleaseItemBatch({
+            batchIndex,
+            items: values,
+            releaseId: batchReleaseId,
+          }),
+        values: [...chunk],
+      })
+    ),
+    Stream.flatMap(Stream.fromIterable),
+    Stream.zipWithIndex,
+    Stream.mapEffect(([values, batchIndex]) =>
+      makeReleaseItemBatch({ batchIndex, items: values, releaseId })
+    )
+  );
+}
+
+/** Streams bounded artifact envelopes with contiguous batch identities. */
+export function makeArtifactBatches<E, R>(
+  releaseId: ReleaseId,
+  artifacts: Stream.Stream<SignedContentArtifact, E, R>
+) {
+  return artifacts.pipe(
+    Stream.grouped(MAX_ARTIFACTS_PER_BATCH),
+    Stream.mapEffect((chunk) =>
+      partitionBatch({
+        kind: "artifact",
+        maxBytes: MAX_ARTIFACT_BATCH_BYTES,
+        maxCount: MAX_ARTIFACTS_PER_BATCH,
+        releaseId,
+        serializeBatch: (values, batchIndex, batchReleaseId) =>
+          canonicalizeArtifactBatch({
+            artifacts: values,
+            batchIndex,
+            releaseId: batchReleaseId,
+          }),
+        values: [...chunk],
+      })
+    ),
+    Stream.flatMap(Stream.fromIterable),
+    Stream.zipWithIndex,
+    Stream.mapEffect(([values, batchIndex]) =>
+      makeArtifactBatch({ artifacts: values, batchIndex, releaseId })
+    )
+  );
+}

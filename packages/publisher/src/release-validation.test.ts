@@ -1,5 +1,7 @@
+import { CompiledContentPayloadSchema } from "@nakafaai/aksara-contracts/content";
 import { Sha256HashSchema } from "@nakafaai/aksara-contracts/ids";
 import {
+  ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
   PublicationReceiptSchema,
   ReleaseVerificationEvidenceSchema,
@@ -8,30 +10,21 @@ import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/mani
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
+  validateCompiledPayloadForItem,
   validatePublicationReceipt,
   validateReleaseRendererManifest,
-  validateUpsertSourceCount,
   validateVerificationEvidence,
-} from "#publisher/release-validation.js";
+} from "#publisher/release-validation";
 
-const expectedCounts = {
-  artifacts: 2,
-  graphRows: 3,
-  heads: 2,
-  llmsDocuments: 2,
-  routes: 2,
-  searchRows: 2,
-  sitemapEntries: 2,
-};
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
-  aksaraSha: "a".repeat(40),
   baseReleaseId: null,
-  expectedCounts,
-  expectedDigest: `sha256:${"b".repeat(64)}`,
   itemCount: 0,
   itemsDigest: `sha256:${"c".repeat(64)}`,
+  origin: { kind: "git", sha: "a".repeat(40) },
+  projectionCount: 2,
+  projectionDigest: `sha256:${"b".repeat(64)}`,
   releaseId: "test-release-counts",
-  rendererContractVersion: "1.0.0",
+  rendererContractVersion: "2.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
@@ -39,53 +32,104 @@ const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
   deleteHeads: 0,
   itemCount: 0,
   itemsDigest: manifest.itemsDigest,
-  projectionDigest: manifest.expectedDigest,
-  recomputedProjectionCounts: expectedCounts,
+  projectionCount: manifest.projectionCount,
+  projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,
   rendererContractVersion: manifest.rendererContractVersion,
   rendererManifestHash: manifest.rendererManifestHash,
   stagedArtifacts: 0,
   upsertHeads: 0,
 });
-const summary = { deleteCount: 0, items: [], upsertCount: 0 };
+const summary = { deleteCount: 0, upsertCount: 0 };
+const projectionSummary = { count: manifest.projectionCount };
+const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
+  change: {
+    artifactHash,
+    contentKey: "test:content",
+    delivery: "public",
+    locale: "en",
+    operation: "upsert",
+    rendererDomain: "material-mathematics",
+    sourcePath: "packages/corpus/test/content/en.mdx",
+  },
+  index: 0,
+  releaseId: manifest.releaseId,
+});
+const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  byteLength: 1,
+  compiledCode: "x",
+  compilerConfigHash: `sha256:${"e".repeat(64)}`,
+  compilerVersion: "0.1.0",
+  contentKey: "test:content",
+  format: "mdx-function-body-v1",
+  locale: "en",
+  mdxCompilerVersion: "3.1.1",
+  plainText: "x",
+  rawMdx: "x",
+  rendererDomain: "material-mathematics",
+  requiredComponents: [],
+  sourceHash: `sha256:${"f".repeat(64)}`,
+});
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
-    authoringComponents: [{ name: "BlockMath", version: 1 }],
-    supportedComponents: [{ name: "BlockMath", version: 1 }],
+    base: {
+      authoringComponents: [{ name: "BlockMath", version: 1 }],
+      supportedComponents: [{ name: "BlockMath", version: 1 }],
+    },
+    domains: [
+      {
+        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
+        name: "material-chemistry",
+        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
+      },
+      {
+        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
+        name: "material-mathematics",
+        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
+      },
+    ],
   })
 );
 
 describe("release validation", () => {
-  it("accepts projection counts recomputed by the target", async () => {
+  it("requires the compiled payload to use the signed renderer domain", async () => {
     await expect(
       Effect.runPromise(
-        validateVerificationEvidence(manifest, summary, evidence)
+        validateCompiledPayloadForItem(item, artifactHash, payload)
+      )
+    ).resolves.toBeUndefined();
+    const error = await Effect.runPromise(
+      validateCompiledPayloadForItem(item, artifactHash, {
+        ...payload,
+        rendererDomain: "material-chemistry",
+      }).pipe(Effect.flip)
+    );
+    expect(error._tag).toBe("ReleaseArtifactMismatchError");
+  });
+
+  it("accepts the exact projection count recomputed by the target", async () => {
+    await expect(
+      Effect.runPromise(
+        validateVerificationEvidence(
+          manifest,
+          summary,
+          projectionSummary,
+          evidence
+        )
       )
     ).resolves.toBeUndefined();
   });
 
-  it("rejects a recomputed count that differs from the signed manifest", async () => {
+  it("rejects a projection count that differs from the signed manifest", async () => {
     const error = await Effect.runPromise(
-      validateVerificationEvidence(manifest, summary, {
+      validateVerificationEvidence(manifest, summary, projectionSummary, {
         ...evidence,
-        recomputedProjectionCounts: {
-          ...evidence.recomputedProjectionCounts,
-          routes: evidence.recomputedProjectionCounts.routes + 1,
-        },
+        projectionCount: evidence.projectionCount + 1,
       }).pipe(Effect.flip)
     );
 
     expect(error._tag).toBe("ReleaseVerificationMismatchError");
-  });
-
-  it("rejects a missing authored source before compilation", async () => {
-    const error = await Effect.runPromise(
-      validateUpsertSourceCount({ ...summary, upsertCount: 1 }, 0).pipe(
-        Effect.flip
-      )
-    );
-
-    expect(error._tag).toBe("ReleaseArtifactMismatchError");
   });
 
   it("rejects a release prepared for another renderer manifest", async () => {
@@ -107,9 +151,15 @@ describe("release validation", () => {
       releaseId: manifest.releaseId,
       stagedArtifacts: 0,
       stagedItems: 0,
+      stagedProjections: manifest.projectionCount,
     });
     const error = await Effect.runPromise(
-      validatePublicationReceipt(manifest, summary, receipt).pipe(Effect.flip)
+      validatePublicationReceipt(
+        manifest,
+        summary,
+        projectionSummary,
+        receipt
+      ).pipe(Effect.flip)
     );
 
     expect(error._tag).toBe("PublicationReceiptMismatchError");

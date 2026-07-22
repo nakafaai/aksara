@@ -7,7 +7,9 @@ const SIGNING_KEY_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,63}$/;
 const CONTENT_KEY_PATTERN = /^[a-z0-9][a-z0-9._:/-]{0,511}$/;
 const RELEASE_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,127}$/;
 const PUBLIC_PATH_PATTERN =
-  /^\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
+  /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
+const CORPUS_SOURCE_PATH_PATTERN =
+  /^packages\/corpus\/[a-z0-9][a-z0-9._-]*(?:\/[a-z0-9][a-z0-9._-]*)+$/;
 
 /** Checks whether a value is a complete lowercase Git commit SHA. */
 function isGitCommitSha(value: string): value is `${string}` {
@@ -31,9 +33,12 @@ function isSigningKeyId(value: string) {
 
 /** Checks whether a value is a bounded canonical public route. */
 function isPublicPath(value: string) {
-  return (
-    value.length <= 2048 && (value === "/" || PUBLIC_PATH_PATTERN.test(value))
-  );
+  return value.length <= 2048 && PUBLIC_PATH_PATTERN.test(value);
+}
+
+/** Checks whether a Git path stays inside the authored corpus workspace. */
+function isCorpusSourcePath(value: string) {
+  return value.length <= 2048 && CORPUS_SOURCE_PATH_PATTERN.test(value);
 }
 
 /** Stable content identity shared across locales and immutable releases. */
@@ -50,14 +55,24 @@ export const ReleaseIdSchema = Schema.String.pipe(
 );
 export type ReleaseId = typeof ReleaseIdSchema.Type;
 
-/** Canonical absolute public route without queries, fragments, or traversal. */
+/** Canonical stored public route without a locale or leading slash. */
 export const PublicPathSchema = Schema.String.pipe(
   Schema.filter(isPublicPath, {
-    message: () => "Expected a canonical absolute public path.",
+    message: () => "Expected a canonical slashless public path.",
   }),
   Schema.brand("@NakafaAI/AksaraPublicPath")
 );
 export type PublicPath = typeof PublicPathSchema.Type;
+
+/** Reviewed Git path used to reproduce one exact authored source revision. */
+export const CorpusSourcePathSchema = Schema.String.pipe(
+  Schema.filter(isCorpusSourcePath, {
+    message: () =>
+      "Expected a safe relative source path below packages/corpus.",
+  }),
+  Schema.brand("@NakafaAI/AksaraCorpusSourcePath")
+);
+export type CorpusSourcePath = typeof CorpusSourcePathSchema.Type;
 
 /** Full lowercase Git commit SHA recorded in a release manifest. */
 export const GitCommitShaSchema = Schema.String.pipe(

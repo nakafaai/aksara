@@ -4,9 +4,14 @@ import { Schema } from "effect";
 const PublicationTargetStageSchema = Schema.Literal(
   "release",
   "items",
+  "projections",
   "artifacts",
   "verify",
-  "activate"
+  "activate",
+  "status",
+  "finalize",
+  "cleanup",
+  "rollback"
 );
 
 /** A target transport failed transiently and may be retried idempotently. */
@@ -24,7 +29,7 @@ export class PublicationTargetConflictError extends Schema.TaggedError<Publicati
   "PublicationTargetConflictError",
   {
     message: Schema.NonEmptyTrimmedString,
-    stage: Schema.Literal("release", "items", "artifacts"),
+    stage: Schema.Literal("release", "items", "projections", "artifacts"),
   }
 ) {}
 

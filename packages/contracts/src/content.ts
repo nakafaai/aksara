@@ -1,15 +1,15 @@
 import { Effect, Schema } from "effect";
-import { ContractDecodeError } from "#contracts/errors.js";
+import { ContractDecodeError } from "#contracts/errors";
 import {
   ContentKeySchema,
+  CorpusSourcePathSchema,
   Ed25519SignatureSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "#contracts/ids.js";
-import {
-  CompiledContentRequirementsSchema,
-  RendererManifestEnvelopeSchema,
-} from "#contracts/renderer/contract.js";
+} from "#contracts/ids";
+import { CompiledContentRequirementsSchema } from "#contracts/renderer/component";
+import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
+import { RendererDomainSchema } from "#contracts/renderer/domain";
 
 /** Locale baseline pinned to Nakafa 25506da until its contract is migrated. */
 export const ContentLocaleSchema = Schema.Literal("en", "id");
@@ -26,6 +26,8 @@ export const CompileDocumentSourceSchema = Schema.Struct({
   contentKey: ContentKeySchema,
   locale: ContentLocaleSchema,
   rawMdx: Schema.String,
+  rendererDomain: RendererDomainSchema,
+  sourcePath: CorpusSourcePathSchema,
 });
 export type CompileDocumentSource = typeof CompileDocumentSourceSchema.Type;
 
@@ -48,6 +50,7 @@ export const CompiledContentPayloadSchema = Schema.Struct({
   mdxCompilerVersion: Schema.Literal(MDX_COMPILER_VERSION),
   plainText: Schema.String,
   rawMdx: Schema.String,
+  rendererDomain: RendererDomainSchema,
   requiredComponents: CompiledContentRequirementsSchema,
   sourceHash: Sha256HashSchema,
 });
@@ -80,6 +83,7 @@ export function canonicalizeCompiledContentPayload(
     mdxCompilerVersion: payload.mdxCompilerVersion,
     plainText: payload.plainText,
     rawMdx: payload.rawMdx,
+    rendererDomain: payload.rendererDomain,
     requiredComponents: payload.requiredComponents.map(({ name, version }) => ({
       name,
       version,

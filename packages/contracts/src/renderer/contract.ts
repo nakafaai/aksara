@@ -1,12 +1,25 @@
 import { Schema } from "effect";
-import { Sha256HashSchema } from "#contracts/ids.js";
+import { Sha256HashSchema } from "#contracts/ids";
+import {
+  hasCompleteRendererSelection,
+  type RendererCapability,
+  RendererCapabilityFields,
+  RendererCapabilitySchema,
+} from "#contracts/renderer/component";
+import {
+  RENDERER_DOMAINS,
+  type RendererDomain,
+  RendererDomainSchema,
+} from "#contracts/renderer/domain";
 
-const COMPONENT_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9]*$/;
 const RENDERER_CONTRACT_VERSION_PATTERN =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 
-/** Initial Aksara renderer wire version; Nakafa integration is not live yet. */
-export const RENDERER_CONTRACT_VERSION = "1.0.0";
+/** Domain-scoped renderer wire version shared with Nakafa. */
+export const RENDERER_CONTRACT_VERSION = "2.0.0";
+
+/** Stable wire format for a domain-scoped Nakafa renderer manifest. */
+export const RENDERER_MANIFEST_FORMAT = "nakafa-mdx-renderer-v2";
 
 /** Canonical semantic version carried by a renderer runtime boundary. */
 export const RendererContractVersionSchema = Schema.String.pipe(
@@ -14,181 +27,101 @@ export const RendererContractVersionSchema = Schema.String.pipe(
 );
 export type RendererContractVersion = typeof RendererContractVersionSchema.Type;
 
-/** V1 renderer names are simple identifiers, never dotted member paths. */
-export const RendererComponentNameSchema = Schema.String.pipe(
-  Schema.filter((name) => COMPONENT_NAME_PATTERN.test(name), {
+/** One route-domain component contract with an exact real domain name. */
+export const RendererDomainCapabilitySchema = Schema.Struct({
+  name: RendererDomainSchema,
+  ...RendererCapabilityFields,
+}).pipe(
+  Schema.filter(hasCompleteRendererSelection, {
     message: () =>
-      "Expected a component name matching /^[A-Za-z][A-Za-z0-9]*$/.",
+      "Expected one supported authoring selection for every domain component.",
   })
 );
+export type RendererDomainCapability =
+  typeof RendererDomainCapabilitySchema.Type;
 
-/** One named renderer capability and its positive contract version. */
-export const RendererComponentRequirementSchema = Schema.Struct({
-  name: RendererComponentNameSchema,
-  version: Schema.Number.pipe(Schema.int(), Schema.positive()),
-});
-export type RendererComponentRequirement =
-  typeof RendererComponentRequirementSchema.Type;
-
-/** Orders renderer requirements canonically by name and then version. */
-function compareRequirements(
-  left: RendererComponentRequirement,
-  right: RendererComponentRequirement
+/** Sorts route-domain registries with cross-machine code-unit ordering. */
+export function sortRendererDomains<T extends RendererDomainCapability>(
+  domains: readonly T[]
 ) {
-  if (left.name < right.name) {
-    return -1;
-  }
-  if (left.name > right.name) {
-    return 1;
-  }
-  return left.version - right.version;
-}
-
-/** Checks that requirement pairs are unique and canonically ordered. */
-function hasCanonicalRequirementPairs(
-  requirements: readonly RendererComponentRequirement[]
-) {
-  for (let index = 1; index < requirements.length; index += 1) {
-    const previous = requirements[index - 1];
-    const current = requirements[index];
-    if (!(previous && current) || compareRequirements(previous, current) >= 0) {
-      return false;
+  return [...domains].sort((left, right) => {
+    if (left.name < right.name) {
+      return -1;
     }
-  }
-  return true;
-}
-
-/** Checks that each component name selects at most one version. */
-function hasOneVersionPerComponent(
-  requirements: readonly RendererComponentRequirement[]
-) {
-  for (let index = 1; index < requirements.length; index += 1) {
-    const previous = requirements[index - 1];
-    const current = requirements[index];
-    if (previous?.name === current?.name) {
-      return false;
+    if (left.name > right.name) {
+      return 1;
     }
-  }
-  return true;
+    return 0;
+  });
 }
 
-/** Checks that authoring pins select every supported component exactly once. */
-function hasCompleteAuthoringSelection(components: {
-  readonly authoringComponents: readonly RendererComponentRequirement[];
-  readonly supportedComponents: readonly RendererComponentRequirement[];
+/** Exact canonical route-domain registry collection. */
+export const RendererManifestDomainsSchema = Schema.Tuple(
+  Schema.Struct({
+    name: Schema.Literal(RENDERER_DOMAINS[0]),
+    ...RendererCapabilityFields,
+  }).pipe(
+    Schema.filter(hasCompleteRendererSelection, {
+      message: () =>
+        "Expected one supported authoring selection for every domain component.",
+    })
+  ),
+  Schema.Struct({
+    name: Schema.Literal(RENDERER_DOMAINS[1]),
+    ...RendererCapabilityFields,
+  }).pipe(
+    Schema.filter(hasCompleteRendererSelection, {
+      message: () =>
+        "Expected one supported authoring selection for every domain component.",
+    })
+  )
+);
+
+/** Requires every component name to belong to exactly one registry scope. */
+function hasDistinctComponentScopes(manifest: {
+  readonly base: RendererCapability;
+  readonly domains: readonly RendererDomainCapability[];
 }) {
-  const authoringNames = new Set(
-    components.authoringComponents.map(({ name }) => name)
-  );
-  const supportedNames = new Set(
-    components.supportedComponents.map(({ name }) => name)
-  );
-  if (authoringNames.size !== supportedNames.size) {
-    return false;
+  const owners = new Set<string>();
+  for (const capability of [manifest.base, ...manifest.domains]) {
+    const localNames = new Set(
+      capability.supportedComponents.map(({ name }) => name)
+    );
+    for (const name of localNames) {
+      if (owners.has(name)) {
+        return false;
+      }
+      owners.add(name);
+    }
   }
-  return components.authoringComponents.every((selection) =>
-    components.supportedComponents.some(
-      (supported) =>
-        supported.name === selection.name &&
-        supported.version === selection.version
-    )
-  );
+  return true;
 }
-
-/** Canonically sorts component requirements by name and then version. */
-export function sortRendererComponentRequirements(
-  requirements: readonly RendererComponentRequirement[]
-) {
-  return [...requirements].sort(compareRequirements);
-}
-
-const CanonicalRendererRequirementsSchema = Schema.Array(
-  RendererComponentRequirementSchema
-).pipe(
-  Schema.filter(hasCanonicalRequirementPairs, {
-    message: () =>
-      "Expected unique renderer requirement pairs sorted by name and version.",
-  })
-);
-
-/** Canonical runtime capabilities; multiple versions per name are allowed. */
-export const RendererManifestSupportedComponentsSchema =
-  CanonicalRendererRequirementsSchema.pipe(Schema.minItems(1));
-
-/** Canonical compiler choices; exactly one version exists for every name. */
-export const RendererManifestAuthoringComponentsSchema =
-  CanonicalRendererRequirementsSchema.pipe(
-    Schema.minItems(1),
-    Schema.filter(hasOneVersionPerComponent, {
-      message: () =>
-        "Expected exactly one authoring version for each component name.",
-    })
-  );
-
-/** Canonical artifact requirements; an artifact chooses one version per name. */
-export const CompiledContentRequirementsSchema =
-  CanonicalRendererRequirementsSchema.pipe(
-    Schema.filter(hasOneVersionPerComponent, {
-      message: () =>
-        "Expected at most one version for each required component.",
-    })
-  );
-
-const RendererManifestComponentFields = {
-  authoringComponents: RendererManifestAuthoringComponentsSchema,
-  supportedComponents: RendererManifestSupportedComponentsSchema,
-};
 
 /** Renderer manifest envelope intended for exact Nakafa integration. */
 export const RendererManifestEnvelopeSchema = Schema.Struct({
-  format: Schema.Literal("nakafa-mdx-renderer-v1"),
+  base: RendererCapabilitySchema,
+  domains: RendererManifestDomainsSchema,
+  format: Schema.Literal(RENDERER_MANIFEST_FORMAT),
   hash: Sha256HashSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
-  ...RendererManifestComponentFields,
 }).pipe(
-  Schema.filter(hasCompleteAuthoringSelection, {
+  Schema.filter(hasDistinctComponentScopes, {
     message: () =>
-      "Expected one supported authoring selection for every component name.",
+      "Expected every renderer component name to have one registry owner.",
   })
 );
 export type RendererManifestEnvelope =
   typeof RendererManifestEnvelopeSchema.Type;
 
-/** More than one authoring version was selected for one component name. */
-export class RendererAuthoringComponentDuplicateError extends Schema.TaggedError<RendererAuthoringComponentDuplicateError>()(
-  "RendererAuthoringComponentDuplicateError",
-  { componentName: RendererComponentNameSchema }
-) {}
-
-/** A runtime-supported component has no pinned authoring version. */
-export class RendererAuthoringComponentMissingError extends Schema.TaggedError<RendererAuthoringComponentMissingError>()(
-  "RendererAuthoringComponentMissingError",
-  { componentName: RendererComponentNameSchema }
-) {}
-
-/** Authoring selected a component name absent from runtime support. */
-export class RendererAuthoringComponentExtraError extends Schema.TaggedError<RendererAuthoringComponentExtraError>()(
-  "RendererAuthoringComponentExtraError",
-  { componentName: RendererComponentNameSchema }
-) {}
-
-/** Authoring selected a version absent from runtime support. */
-export class RendererAuthoringComponentUnsupportedError extends Schema.TaggedError<RendererAuthoringComponentUnsupportedError>()(
-  "RendererAuthoringComponentUnsupportedError",
-  {
-    componentName: RendererComponentNameSchema,
-    version: Schema.Number.pipe(Schema.int(), Schema.positive()),
-  }
-) {}
-
-/** Authoring selections were not sorted by canonical component order. */
-export class RendererAuthoringSelectionNonCanonicalError extends Schema.TaggedError<RendererAuthoringSelectionNonCanonicalError>()(
-  "RendererAuthoringSelectionNonCanonicalError",
-  {
-    componentName: RendererComponentNameSchema,
-    index: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-  }
-) {}
+/** Selects the one physical route registry authorized for a document. */
+export function selectRendererDomainCapability(
+  manifest: RendererManifestEnvelope,
+  rendererDomain: RendererDomain
+) {
+  return rendererDomain === RENDERER_DOMAINS[0]
+    ? manifest.domains[0]
+    : manifest.domains[1];
+}
 
 /** SHA-256 could not be calculated for the renderer contract bytes. */
 export class RendererManifestHashComputeError extends Schema.TaggedError<RendererManifestHashComputeError>()(
@@ -205,30 +138,29 @@ export class RendererManifestHashMismatchError extends Schema.TaggedError<Render
   }
 ) {}
 
-/** Serializes the pinned compiler component selection in canonical order. */
-export function canonicalizeRendererAuthoringSelection(
-  authoringComponents: readonly RendererComponentRequirement[]
-) {
-  return JSON.stringify(
-    authoringComponents.map(({ name, version }) => ({ name, version }))
-  );
-}
-
-/** Serializes the exact renderer tuple covered by its SHA-256 hash. */
-export function canonicalizeRendererManifestContract(
-  supportedComponents: readonly RendererComponentRequirement[],
-  authoringComponents: readonly RendererComponentRequirement[]
-) {
-  return JSON.stringify({
-    authoringComponents: authoringComponents.map(({ name, version }) => ({
+/** Serializes the exact domain-scoped renderer tuple covered by SHA-256. */
+export function canonicalizeRendererManifestContract(input: {
+  readonly base: RendererCapability;
+  readonly domains: readonly RendererDomainCapability[];
+}) {
+  /** Copies one registry capability into exact canonical wire fields. */
+  const capability = (value: RendererCapability) => ({
+    authoringComponents: value.authoringComponents.map(({ name, version }) => ({
       name,
       version,
     })),
-    format: "nakafa-mdx-renderer-v1",
-    rendererContractVersion: RENDERER_CONTRACT_VERSION,
-    supportedComponents: supportedComponents.map(({ name, version }) => ({
+    supportedComponents: value.supportedComponents.map(({ name, version }) => ({
       name,
       version,
     })),
   });
+  return JSON.stringify([
+    RENDERER_MANIFEST_FORMAT,
+    RENDERER_CONTRACT_VERSION,
+    capability(input.base),
+    sortRendererDomains(input.domains).map(({ name, ...domain }) => ({
+      name,
+      ...capability(domain),
+    })),
+  ]);
 }

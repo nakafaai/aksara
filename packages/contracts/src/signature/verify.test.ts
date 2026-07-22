@@ -4,12 +4,12 @@ import { Buffer } from "node:buffer";
 import { generateKeyPairSync, type KeyLike, sign } from "node:crypto";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids.js";
+import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
-} from "#contracts/signature/spec.js";
-import { verifyEd25519Signature } from "#contracts/signature/verify.js";
+} from "#contracts/signature/spec";
+import { verifyEd25519Signature } from "#contracts/signature/verify";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();

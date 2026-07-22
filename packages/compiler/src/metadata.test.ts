@@ -8,7 +8,7 @@ import {
   extractMetadata,
   type MetadataCollector,
   validateMetadata,
-} from "#compiler/metadata.js";
+} from "#compiler/metadata";
 
 const VALID_METADATA = "export const metadata = {}";
 const contentKey = ContentKeySchema.make("test:metadata");
@@ -58,7 +58,13 @@ describe("authored metadata", () => {
 
     await expect(
       Effect.runPromise(validateMetadata(contentKey, collector))
-    ).resolves.toBeUndefined();
+    ).resolves.toEqual({
+      count: 1,
+      nested: [{ enabled: false }, ["value"]],
+      optional: null,
+      published: true,
+      title: "Test",
+    });
     expect(output).not.toContain("metadata");
   });
 

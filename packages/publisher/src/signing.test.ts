@@ -10,8 +10,8 @@ import {
   canonicalizeContentArtifactSigningInput,
 } from "@nakafaai/aksara-contracts/content";
 import {
-  ContentKeySchema,
   type ReleaseId,
+  ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafaai/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafaai/aksara-contracts/limits";
@@ -23,11 +23,11 @@ import {
   canonicalizeContentReleaseSigningInput,
   compareContentChanges,
 } from "@nakafaai/aksara-contracts/release";
-import { hashContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+import { hashContentReleaseItems } from "@nakafaai/aksara-contracts/release/digest";
 import { createRendererManifest } from "@nakafaai/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { makeEd25519PublicationSigner } from "#publisher/signing.js";
+import { makeEd25519PublicationSigner } from "#publisher/signing";
 
 const cryptoFailure = vi.hoisted(() => ({ failNextSign: false }));
 
@@ -47,22 +47,36 @@ vi.mock("node:crypto", async (importOriginal) => {
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
-    authoringComponents: [{ name: "BlockMath", version: 1 }],
-    supportedComponents: [{ name: "BlockMath", version: 1 }],
+    base: {
+      authoringComponents: [{ name: "BlockMath", version: 1 }],
+      supportedComponents: [{ name: "BlockMath", version: 1 }],
+    },
+    domains: [
+      {
+        authoringComponents: [{ name: "AtomShellLab", version: 1 }],
+        name: "material-chemistry",
+        supportedComponents: [{ name: "AtomShellLab", version: 1 }],
+      },
+      {
+        authoringComponents: [{ name: "FunctionMachine", version: 1 }],
+        name: "material-mathematics",
+        supportedComponents: [{ name: "FunctionMachine", version: 1 }],
+      },
+    ],
   })
 );
-const source = CompileDocumentSourceSchema.make({
-  contentKey: ContentKeySchema.make("test:signing"),
+const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({
+  contentKey: "test:signing",
   locale: "en",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
+  rendererDomain: "material-mathematics",
+  sourcePath: "packages/corpus/test/signing/en.mdx",
 });
-const payload = await Effect.runPromise(
+const { payload } = await Effect.runPromise(
   compileContent({ ...source, rendererManifest })
 );
 
-const releaseId = Schema.decodeUnknownSync(
-  ContentReleaseManifestSchema.fields.releaseId
-)("test-release");
+const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
 /** Builds canonically ordered release items for signing tests. */
 function makeItems(release: ReleaseId, changes: readonly ContentChange[]) {
   return [...changes]
@@ -78,29 +92,24 @@ const items = makeItems(
     {
       artifactHash: hashCompiledContentPayload(payload),
       contentKey: payload.contentKey,
+      delivery: "public",
       locale: payload.locale,
       operation: "upsert",
-      publicPath: "/en/test",
+      publicPath: "subjects/test",
+      rendererDomain: source.rendererDomain,
+      sourcePath: source.sourcePath,
     },
   ])
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
-  aksaraSha: "d".repeat(40),
   baseReleaseId: null,
-  expectedCounts: {
-    artifacts: 1,
-    graphRows: 0,
-    heads: 1,
-    llmsDocuments: 1,
-    routes: 1,
-    searchRows: 1,
-    sitemapEntries: 1,
-  },
-  expectedDigest: `sha256:${"c".repeat(64)}`,
   itemCount: items.length,
   itemsDigest: hashContentReleaseItems(items),
+  origin: { kind: "git", sha: "d".repeat(40) },
+  projectionCount: 1,
+  projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId,
-  rendererContractVersion: "1.0.0",
+  rendererContractVersion: "2.0.0",
   rendererManifestHash: rendererManifest.hash,
 });
 

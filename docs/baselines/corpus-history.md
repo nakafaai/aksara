@@ -1,9 +1,29 @@
 # Corpus history migration evidence
 
-This evidence prepares, but does not perform, the history migration. No commit
-from the filtered branch has been merged into Aksara.
+This evidence records the bounded Function Concept history import. The complete
+corpus history remains a later family-by-family migration and has not been
+merged into Aksara.
 
-## Source and result
+## Imported vertical slice
+
+- Source Nakafa SHA: `25506da68a5dd97bc55f99b6f7304384c4744206`
+- Filtered slice head: `894704cedfd6e882f63eea9bd7a8b882254cc620`
+- Reachable source commits: 2
+- Aksara history merge: `c9c59216248160a3d8a0e5ac91cd4c54f9628b9b`
+- Final authored paths:
+  - `packages/corpus/material/mathematics/function/concept/en.mdx`
+  - `packages/corpus/material/mathematics/function/concept/id.mdx`
+
+The disposable filtered clone contained only the two real locale documents and
+their original local React implementation. Its largest blob was under 4.7 KiB,
+and the only source author identity was the existing Nakafa contributor. The
+common credential-pattern scan found no matches. After the history merge, the
+two MDX imports were removed and the React implementation moved to Nakafa's
+mathematics design-system domain. The remaining MDX bytes are identical to the
+current Nakafa sources after removing those import lines; no educational text
+or metadata was added or rewritten.
+
+## Complete-corpus preparation
 
 - Nakafa baseline: `25506da68a5dd97bc55f99b6f7304384c4744206`
 - Source path: `packages/contents`
@@ -17,8 +37,9 @@ from the filtered branch has been merged into Aksara.
 - Bundle SHA-256:
   `7692f3e80b626ba3a8cdbcb75a90faaf607972f9d653baa584cfeb20b1bef107`
 
-The equal source and filtered tree hashes prove that the current tracked corpus
-was preserved byte-for-byte by `git subtree split` in the temporary clone.
+The equal source and filtered tree hashes prove that the prepared complete
+corpus branch preserved the current tracked tree byte-for-byte. That full branch
+was not merged or pushed.
 
 ## Bounded safety scan
 
@@ -42,7 +63,8 @@ migration gates.
 
 ## Reproduction
 
-Run these operations only in a disposable clone of the exact Nakafa baseline:
+Prepare the complete corpus only in a disposable clone of the exact Nakafa
+baseline:
 
 ```sh
 git subtree split --prefix=packages/contents -b aksara-corpus
@@ -53,5 +75,6 @@ git bundle create aksara-corpus.bundle aksara-corpus
 git bundle verify aksara-corpus.bundle
 ```
 
-Do not merge or push the filtered branch until commit authorization, dedicated
-secret scanning, and source provenance review have all passed.
+Each later family must repeat the bounded secret and provenance review before
+its history is merged or pushed. Do not merge the prepared complete-corpus
+branch as one unreviewed migration.

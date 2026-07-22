@@ -7,8 +7,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,
-} from "#compiler/errors.js";
-import { enforceExecutablePolicy } from "#compiler/policy.js";
+} from "#compiler/errors";
+import { enforceExecutablePolicy } from "#compiler/policy";
 
 const scopeState = vi.hoisted(() => ({ withoutGlobalScope: false }));
 
@@ -53,7 +53,8 @@ afterEach(() => {
 
 describe("enforceExecutablePolicy", () => {
   it.each([
-    ["dynamic-import", undefined, '{import("./remote.js")}'],
+    ["dynamic-import", undefined, '{import("./remote.ts")}'],
+    ["import-meta", "import.meta", "{import.meta.url}"],
     ["require", "require", '{require("node:fs")}'],
     ["eval", "eval", '{eval("1 + 1")}'],
     ["Function", "Function", '{Function("return 1")()}'],
@@ -72,6 +73,7 @@ describe("enforceExecutablePolicy", () => {
       "unregisteredRuntimeValue",
       "{unregisteredRuntimeValue}",
     ],
+    ["unknown-free-global", "props", "{props.components.FunctionMachine({})}"],
   ] as const)("rejects %s", async (rule, identifier, rawMdx) => {
     const result = await inspectPolicy(rawMdx);
 
@@ -87,6 +89,8 @@ describe("enforceExecutablePolicy", () => {
     ["prototype", "{Object.prototype}"],
     ["__proto__", "{({}).__proto__}"],
     ["constructor", '{({})["constructor"]}'],
+    ["constructor", '{({})["con" + "structor"]}'],
+    ["constructor", ["{({})[`con$", '{"str"}uctor`]}'].join("")],
   ] as const)(
     "rejects prototype-chain property %s",
     async (identifier, rawMdx) => {
@@ -113,7 +117,10 @@ describe("enforceExecutablePolicy", () => {
 
   it.each([
     "{({})[1]}",
-    ["{({})[`con$", '{"str"}uctor`]}'].join(""),
+    "{({})[1 * 2]}",
+    '{((value) => ({})[value + "safe"])("key")}',
+    '{((value) => ({})["safe" + value])("key")}',
+    ["{((value) => ({})[`safe$", '{value}`])("key")}'].join(""),
     '{<div title="safe" />}',
     '{<div xml:lang="en" />}',
   ])("keeps safe static-property and JSX forms", async (rawMdx) => {

@@ -3,13 +3,14 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   ContentKeySchema,
+  CorpusSourcePathSchema,
   Ed25519SignatureSchema,
   GitCommitShaSchema,
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "#contracts/ids.js";
+} from "#contracts/ids";
 
 describe("ids", () => {
   it("decodes canonical hashes and rejects malformed values", () => {
@@ -82,21 +83,21 @@ describe("ids", () => {
   it("accepts canonical public paths and rejects unsafe variants", () => {
     expect(
       Either.isRight(
-        Schema.decodeUnknownEither(PublicPathSchema)("/en/test/route")
+        Schema.decodeUnknownEither(PublicPathSchema)("subjects/test/route")
       )
     ).toBe(true);
     for (const value of [
-      "relative/path",
-      "/en//article",
-      "/en/../secret",
-      "/en/article?draft=1",
-      "/en/article#answer",
-      "/en\\article",
-      "/en/line\nbreak",
-      "/en/%2E%2E/secret",
-      "/en/%2Fsecret",
-      "/en/Uppercase",
-      "/en/dotted.path",
+      "/subjects/test/route",
+      "subjects//article",
+      "subjects/../secret",
+      "subjects/article?draft=1",
+      "subjects/article#answer",
+      "subjects\\article",
+      "subjects/line\nbreak",
+      "subjects/%2E%2E/secret",
+      "subjects/%2Fsecret",
+      "subjects/Uppercase",
+      "subjects/dotted.path",
     ]) {
       expect(
         Either.isLeft(Schema.decodeUnknownEither(PublicPathSchema)(value))
@@ -104,10 +105,32 @@ describe("ids", () => {
     }
   });
 
+  it("accepts only safe reviewed paths below the corpus workspace", () => {
+    expect(
+      Either.isRight(
+        Schema.decodeUnknownEither(CorpusSourcePathSchema)(
+          "packages/corpus/material/mathematics/function/concept/en.mdx"
+        )
+      )
+    ).toBe(true);
+    for (const value of [
+      "/packages/corpus/test.mdx",
+      "packages/contents/test.mdx",
+      "packages/corpus/../secret.mdx",
+      "packages/corpus/test\\secret.mdx",
+      "packages/corpus/Test.mdx",
+      "packages/corpus/test\0secret.mdx",
+    ]) {
+      expect(
+        Either.isLeft(Schema.decodeUnknownEither(CorpusSourcePathSchema)(value))
+      ).toBe(true);
+    }
+  });
+
   it("reports actionable diagnostics for each refined identifier", () => {
     expect(() =>
-      Schema.decodeUnknownSync(PublicPathSchema)("relative")
-    ).toThrow("Expected a canonical absolute public path.");
+      Schema.decodeUnknownSync(PublicPathSchema)("/subjects/test")
+    ).toThrow("Expected a canonical slashless public path.");
     expect(() => Schema.decodeUnknownSync(GitCommitShaSchema)("short")).toThrow(
       "Expected a 40-character lowercase Git commit SHA."
     );
@@ -122,5 +145,8 @@ describe("ids", () => {
     ).toThrow(
       "Expected a canonical unpadded base64url 64-byte Ed25519 signature."
     );
+    expect(() =>
+      Schema.decodeUnknownSync(CorpusSourcePathSchema)("../secret.mdx")
+    ).toThrow("Expected a safe relative source path below packages/corpus.");
   });
 });

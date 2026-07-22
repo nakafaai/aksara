@@ -4,12 +4,56 @@
   "private": true,
   "type": "module",
   "imports": {
-    "#publisher/*.js": "./dist/*.js"
+    "#publisher/*": {
+      "types": "./src/*.ts",
+      "default": "./dist/*.js"
+    },
+    "#test/*": "./test/*.ts"
   },
   "exports": {
+    "./cleanup": {
+      "types": "./dist/cleanup.d.ts",
+      "import": "./dist/cleanup.js"
+    },
+    "./git/blob": {
+      "types": "./dist/git/blob.d.ts",
+      "import": "./dist/git/blob.js"
+    },
+    "./git/source": {
+      "types": "./dist/git/source.d.ts",
+      "import": "./dist/git/source.js"
+    },
+    "./material": {
+      "types": "./dist/material.d.ts",
+      "import": "./dist/material.js"
+    },
+    "./preparation": {
+      "types": "./dist/preparation.d.ts",
+      "import": "./dist/preparation.js"
+    },
+    "./preparation/errors": {
+      "types": "./dist/preparation/errors.d.ts",
+      "import": "./dist/preparation/errors.js"
+    },
     "./publication": {
       "types": "./dist/publication.d.ts",
       "import": "./dist/publication.js"
+    },
+    "./publication/spec": {
+      "types": "./dist/publication/spec.d.ts",
+      "import": "./dist/publication/spec.js"
+    },
+    "./rollback": {
+      "types": "./dist/rollback.d.ts",
+      "import": "./dist/rollback.js"
+    },
+    "./rollback/errors": {
+      "types": "./dist/rollback/errors.d.ts",
+      "import": "./dist/rollback/errors.js"
+    },
+    "./projection-batch": {
+      "types": "./dist/projection-batch.d.ts",
+      "import": "./dist/projection-batch.js"
     },
     "./signing-errors": {
       "types": "./dist/signing-errors.d.ts",
@@ -28,8 +72,10 @@
     "typecheck": "tsc --project tsconfig.json"
   },
   "dependencies": {
+    "@effect/platform": "catalog:",
     "@nakafaai/aksara-compiler": "workspace:*",
     "@nakafaai/aksara-contracts": "workspace:*",
+    "@nakafaai/aksara-corpus": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

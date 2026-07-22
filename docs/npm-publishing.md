@@ -34,13 +34,19 @@ Direct publication may use `pnpm publish <exact-tarball>` only after the
 release policy explicitly permits it. A content or application release must
 never select a contracts version that has not completed this package gate.
 
-The current foundation remains pinned to the verified pnpm 10 release declared
-in `package.json` so its lockfile stays reproducible. Publishing is blocked
-until Aksara upgrades to a pnpm 11 release with native publishing and
-`pnpm stage` support. The attempted pnpm 11.12.0 upgrade correctly rejected
-seven tooling dependencies that were
-less than its default 24-hour minimum release age; that supply-chain gate was
-not bypassed. No repository command may invoke the npm CLI as a workaround.
+The repository is pinned to pnpm 11.15.1 for native publishing and `pnpm stage`
+support. Its first frozen install correctly rejected dependencies younger than
+pnpm's default 24-hour minimum release age. That supply-chain gate was not
+bypassed. The lockfile was rebuilt through pnpm after the manifests stabilized,
+so resolution selected the newest eligible releases rather than the quarantined
+versions. A second frozen install passed the policy. No repository command may
+invoke the npm CLI as a workaround.
+
+Effect Platform brings the optional `msgpackr-extract` install script. Aksara
+explicitly denies that script through pnpm's `allowBuilds` policy; the signed
+platform prebuild remains available and its native-acceleration probe passes.
+This keeps installs deterministic without granting an unnecessary dependency
+script execution capability.
 
 ## Bootstrap blocker
 

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import type { ExecFileSyncOptions } from "node:child_process";
 import { execFileSync } from "node:child_process";
 import {
   copyFileSync,
@@ -12,24 +13,24 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  DEPENDENCY_SECTIONS,
+  type PackageManifest,
+  parsePackageManifest,
+  parseWorkspaceManifest,
+} from "#scripts/manifest";
 
 const NPM_CONFIG_ENVIRONMENT_PATTERN = /^(?:NPM|PNPM)_CONFIG_/i;
 const NPM_CREDENTIAL_ENVIRONMENT_PATTERN = /^(?:NODE_AUTH_TOKEN|NPM_TOKEN)$/i;
 const WORKSPACE_PROTOCOL_PATTERN = /^(?:catalog:|workspace:)/;
-const DEPENDENCY_SECTIONS = [
-  "dependencies",
-  "devDependencies",
-  "optionalDependencies",
-  "peerDependencies",
-];
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const packageRoot = resolve(scriptDirectory, "..");
 const workspaceRoot = resolve(packageRoot, "../..");
-const sourceManifest = JSON.parse(
+const sourceManifest = parsePackageManifest(
   readFileSync(join(packageRoot, "package.json"), "utf8")
 );
 const sourceLicense = readFileSync(join(packageRoot, "LICENSE"), "utf8");
-const workspaceManifest = JSON.parse(
+const rootManifest = parseWorkspaceManifest(
   readFileSync(join(workspaceRoot, "package.json"), "utf8")
 );
 const temporaryRoot = mkdtempSync(join(tmpdir(), "aksara-contracts-package-"));
@@ -50,7 +51,7 @@ process.on("exit", () => {
 });
 
 /** Removes registry authentication sources before invoking package tooling. */
-function createCredentialFreeEnvironment() {
+function createCredentialFreeEnvironment(): NodeJS.ProcessEnv {
   const environment = Object.fromEntries(
     Object.entries(process.env).filter(([name]) => {
       if (NPM_CREDENTIAL_ENVIRONMENT_PATTERN.test(name)) {
@@ -68,8 +69,12 @@ function createCredentialFreeEnvironment() {
 }
 
 /** Runs an executable without a shell so package paths cannot become commands. */
-function run(executable, args, options) {
-  return execFileSync(
+function run(
+  executable: string,
+  args: string[],
+  options: ExecFileSyncOptions
+): void {
+  execFileSync(
     process.platform === "win32" ? `${executable}.cmd` : executable,
     args,
     options
@@ -77,7 +82,7 @@ function run(executable, args, options) {
 }
 
 /** Rejects workspace-only dependency protocols in the publishable manifest. */
-function assertPortableDependencies(manifest) {
+function assertPortableDependencies(manifest: PackageManifest): void {
   for (const section of DEPENDENCY_SECTIONS) {
     for (const version of Object.values(manifest[section] ?? {})) {
       assert.equal(
@@ -106,6 +111,7 @@ const packedArchives = readdirSync(packDirectory).filter((path) =>
 assert.equal(packedArchives.length, 1, "pnpm must produce exactly one tarball");
 
 const [packedArchive] = packedArchives;
+assert.ok(packedArchive, "The packed archive must be present");
 const tarballPath = join(packDirectory, packedArchive);
 
 run(
@@ -126,7 +132,7 @@ run(
 );
 
 const packedPackageRoot = join(inspectionDirectory, "package");
-const packedManifest = JSON.parse(
+const packedManifest = parsePackageManifest(
   readFileSync(join(packedPackageRoot, "package.json"), "utf8")
 );
 const packedReadme = readFileSync(join(packedPackageRoot, "README.md"), "utf8");
@@ -148,7 +154,7 @@ assert.equal(
   "The tarball must preserve the exact approved software license"
 );
 assert.equal(
-  packedManifest.engines?.node,
+  packedManifest.engines.node,
   sourceManifest.engines.node,
   "The tarball must preserve its Node runtime contract"
 );
@@ -157,10 +163,6 @@ assert.ok(
   "The tarball README.md must not be empty"
 );
 assertPortableDependencies(packedManifest);
-assert.ok(
-  packedManifest.exports && typeof packedManifest.exports === "object",
-  "The tarball must preserve exact package exports"
-);
 
 writeFileSync(
   join(consumerDirectory, "package.json"),
@@ -170,7 +172,7 @@ writeFileSync(
         [sourceManifest.name]: `file:${tarballPath}`,
       },
       name: "aksara-contracts-external-consumer",
-      packageManager: workspaceManifest.packageManager,
+      packageManager: rootManifest.packageManager,
       private: true,
       type: "module",
     },
@@ -231,14 +233,14 @@ run(resolve(packageRoot, "../../node_modules/.bin/tsc"), ["--project", "."], {
   stdio: "inherit",
 });
 
-const installedVerifier = join(consumerDirectory, "verify-install.mjs");
-copyFileSync(join(scriptDirectory, "verify-install.mjs"), installedVerifier);
+const installedVerifier = join(consumerDirectory, "verify-install.ts");
+copyFileSync(join(scriptDirectory, "verify-install.ts"), installedVerifier);
 run(process.execPath, [installedVerifier, sourceManifest.name], {
   cwd: consumerDirectory,
   env: childEnvironment,
   stdio: "inherit",
 });
 
-console.log(
-  `Verified ${sourceManifest.name} as an isolated pnpm tarball consumer.`
+process.stdout.write(
+  `Verified ${sourceManifest.name} as an isolated pnpm tarball consumer.\n`
 );

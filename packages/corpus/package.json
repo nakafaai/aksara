@@ -1,0 +1,35 @@
+{
+  "name": "@nakafaai/aksara-corpus",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#corpus/*": {
+      "types": "./src/*.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "exports": {
+    "./material/source": {
+      "types": "./dist/material/source.d.ts",
+      "import": "./dist/material/source.js"
+    }
+  },
+  "scripts": {
+    "clean": "git clean -xdf dist",
+    "prebuild": "pnpm run clean",
+    "build": "tsc --project tsconfig.build.json",
+    "test": "vitest run --config ../../vitest.config.ts",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@effect/platform": "catalog:",
+    "@nakafaai/aksara-contracts": "workspace:*",
+    "effect": "catalog:"
+  },
+  "devDependencies": {
+    "@nakafaai/typescript-config": "workspace:*",
+    "@vitest/coverage-istanbul": "catalog:",
+    "vitest": "catalog:"
+  }
+}

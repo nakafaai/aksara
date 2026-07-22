@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer";
 import { createPublicKey, verify as verifySignature } from "node:crypto";
 import { Effect } from "effect";
-import type { Ed25519Signature, SigningKeyId } from "#contracts/ids.js";
+import type { Ed25519Signature, SigningKeyId } from "#contracts/ids";
 import {
   type ContentSignatureSubject,
   ContentVerificationKeyResolver,
@@ -9,7 +9,7 @@ import {
   PublicKeyTypeError,
   SignatureCheckError,
   SignatureInvalidError,
-} from "#contracts/signature/spec.js";
+} from "#contracts/signature/spec";
 
 /** Parses and type-checks a reviewed PEM as an Ed25519 public key. */
 function parseEd25519PublicKey(

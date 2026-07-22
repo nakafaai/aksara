@@ -1,119 +1,31 @@
-import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
+import { validateArtifactByteIntegrity } from "#contracts/artifact/limits";
+import { verifyCompiledContentSourceHash } from "#contracts/artifact/source";
 import {
-  ArtifactCompiledByteLengthMismatchError,
   ArtifactHashComputationError,
   ArtifactHashMismatchError,
-  ArtifactPayloadFieldByteLimitError,
   ArtifactRendererComponentMissingError,
   ArtifactRendererVersionUnsupportedError,
-  ArtifactSourceHashComputationError,
-  ArtifactSourceHashMismatchError,
-  ArtifactVerificationByteLimitError,
   ArtifactVerificationDecodeError,
   type ArtifactVerificationRequest,
   ArtifactVerificationRequestSchema,
   RendererContractVersionMismatchError,
-} from "#contracts/artifact/spec.js";
+} from "#contracts/artifact/spec";
 import {
   type CompiledContentPayload,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
-  canonicalizeSignedContentArtifact,
   type SignedContentArtifact,
-} from "#contracts/content.js";
-import type { ContentKey, Sha256Hash } from "#contracts/ids.js";
-import { Sha256HashSchema } from "#contracts/ids.js";
+} from "#contracts/content";
+import type { Sha256Hash } from "#contracts/ids";
+import { Sha256HashSchema } from "#contracts/ids";
 import {
-  MAX_CANONICAL_PAYLOAD_BYTES,
-  MAX_COMPILED_CODE_BYTES,
-  MAX_PLAIN_TEXT_BYTES,
-  MAX_RAW_MDX_BYTES,
-  MAX_SIGNED_ARTIFACT_BYTES,
-} from "#contracts/limits.js";
-import type {
-  RendererComponentRequirement,
-  RendererManifestEnvelope,
-} from "#contracts/renderer/contract.js";
-import { validateRendererManifestHash } from "#contracts/renderer/manifest.js";
-import { verifyEd25519Signature } from "#contracts/signature/verify.js";
-
-/** Rejects signed artifact envelopes that exceed the wire-size ceiling. */
-function enforceSignedWireLimit(artifact: SignedContentArtifact) {
-  const actualBytes = Buffer.byteLength(
-    canonicalizeSignedContentArtifact(artifact),
-    "utf8"
-  );
-  if (actualBytes <= MAX_SIGNED_ARTIFACT_BYTES) {
-    return Effect.void;
-  }
-  return Effect.fail(
-    new ArtifactVerificationByteLimitError({
-      actualBytes,
-      maxBytes: MAX_SIGNED_ARTIFACT_BYTES,
-    })
-  );
-}
-
-/** Rejects an individual payload field that exceeds its byte ceiling. */
-function enforcePayloadFieldLimit(
-  payload: CompiledContentPayload,
-  field: "rawMdx" | "compiledCode" | "plainText" | "canonicalPayload",
-  value: string,
-  maxBytes: number
-) {
-  const actualBytes = Buffer.byteLength(value, "utf8");
-  if (actualBytes <= maxBytes) {
-    return Effect.void;
-  }
-  return Effect.fail(
-    new ArtifactPayloadFieldByteLimitError({
-      actualBytes,
-      contentKey: payload.contentKey,
-      field,
-      maxBytes,
-    })
-  );
-}
-
-/** Verifies declared compiled bytes and every bounded payload field. */
-function validatePayloadByteIntegrity(payload: CompiledContentPayload) {
-  return Effect.gen(function* () {
-    const compiledBytes = Buffer.byteLength(payload.compiledCode, "utf8");
-    if (payload.byteLength !== compiledBytes) {
-      return yield* new ArtifactCompiledByteLengthMismatchError({
-        actualBytes: compiledBytes,
-        contentKey: payload.contentKey,
-        declaredBytes: payload.byteLength,
-      });
-    }
-    yield* enforcePayloadFieldLimit(
-      payload,
-      "rawMdx",
-      payload.rawMdx,
-      MAX_RAW_MDX_BYTES
-    );
-    yield* enforcePayloadFieldLimit(
-      payload,
-      "compiledCode",
-      payload.compiledCode,
-      MAX_COMPILED_CODE_BYTES
-    );
-    yield* enforcePayloadFieldLimit(
-      payload,
-      "plainText",
-      payload.plainText,
-      MAX_PLAIN_TEXT_BYTES
-    );
-    yield* enforcePayloadFieldLimit(
-      payload,
-      "canonicalPayload",
-      canonicalizeCompiledContentPayload(payload),
-      MAX_CANONICAL_PAYLOAD_BYTES
-    );
-  });
-}
+  type RendererManifestEnvelope,
+  selectRendererDomainCapability,
+} from "#contracts/renderer/contract";
+import { validateRendererManifestHash } from "#contracts/renderer/manifest";
+import { verifyEd25519Signature } from "#contracts/signature/verify";
 
 /** Computes the immutable identity of one canonical compiled payload. */
 export function hashCompiledContentPayload(payload: CompiledContentPayload) {
@@ -133,40 +45,6 @@ function hashPayload(payload: CompiledContentPayload) {
   });
 }
 
-/** Computes the authenticated hash of the complete authored MDX source. */
-function hashAuthoredSource(payload: CompiledContentPayload) {
-  return Effect.try({
-    catch: () =>
-      new ArtifactSourceHashComputationError({
-        contentKey: payload.contentKey,
-      }),
-    try: () =>
-      Sha256HashSchema.make(
-        `sha256:${createHash("sha256").update(payload.rawMdx).digest("hex")}`
-      ),
-  });
-}
-
-/** Verifies that `sourceHash` identifies the complete authenticated raw MDX. */
-export const verifyCompiledContentSourceHash = Effect.fn(
-  "AksaraContracts.verifyCompiledContentSourceHash"
-)((payload: CompiledContentPayload) =>
-  hashAuthoredSource(payload).pipe(
-    Effect.flatMap((actualHash) => {
-      if (actualHash === payload.sourceHash) {
-        return Effect.void;
-      }
-      return Effect.fail(
-        new ArtifactSourceHashMismatchError({
-          actualHash,
-          contentKey: payload.contentKey,
-          expectedHash: payload.sourceHash,
-        })
-      );
-    })
-  )
-);
-
 /** Confirms that an artifact envelope identifies its canonical payload. */
 function validateArtifactHash(
   artifact: SignedContentArtifact,
@@ -184,27 +62,34 @@ function validateArtifactHash(
   );
 }
 
-/** Confirms that the renderer implements every component an artifact needs. */
+/** Confirms that base plus the selected domain implement every requirement. */
 function validateRendererRequirements(
-  contentKey: ContentKey,
-  required: readonly RendererComponentRequirement[],
+  payload: CompiledContentPayload,
   manifest: RendererManifestEnvelope
 ) {
+  const domain = selectRendererDomainCapability(
+    manifest,
+    payload.rendererDomain
+  );
+  const supportedComponents = [
+    ...manifest.base.supportedComponents,
+    ...domain.supportedComponents,
+  ];
   return Effect.gen(function* () {
-    for (const requirement of required) {
-      const versions = manifest.supportedComponents.filter(
+    for (const requirement of payload.requiredComponents) {
+      const versions = supportedComponents.filter(
         ({ name }) => name === requirement.name
       );
       if (versions.length === 0) {
         return yield* new ArtifactRendererComponentMissingError({
           componentName: requirement.name,
-          contentKey,
+          contentKey: payload.contentKey,
         });
       }
       if (!versions.some(({ version }) => version === requirement.version)) {
         return yield* new ArtifactRendererVersionUnsupportedError({
           componentName: requirement.name,
-          contentKey,
+          contentKey: payload.contentKey,
           requiredVersion: requirement.version,
         });
       }
@@ -225,11 +110,7 @@ function validateRendererContract(
       })
     );
   }
-  return validateRendererRequirements(
-    request.artifact.payload.contentKey,
-    request.artifact.payload.requiredComponents,
-    manifest
-  );
+  return validateRendererRequirements(request.artifact.payload, manifest);
 }
 
 /** Strictly decodes and authenticates one trusted server-side MDX artifact. */
@@ -248,7 +129,6 @@ export const verifySignedContentArtifact = Effect.fn(
     ),
     Effect.flatMap((request) =>
       Effect.gen(function* () {
-        yield* enforceSignedWireLimit(request.artifact);
         const actualHash = yield* hashPayload(request.artifact.payload);
         yield* validateArtifactHash(request.artifact, actualHash);
         yield* verifyEd25519Signature({
@@ -260,7 +140,7 @@ export const verifySignedContentArtifact = Effect.fn(
           signature: request.artifact.signature,
           subject: "artifact",
         });
-        yield* validatePayloadByteIntegrity(request.artifact.payload);
+        yield* validateArtifactByteIntegrity(request.artifact);
         yield* verifyCompiledContentSourceHash(request.artifact.payload);
         const manifest = yield* validateRendererManifestHash(
           request.rendererManifest

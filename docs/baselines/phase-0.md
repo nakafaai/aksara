@@ -7,16 +7,24 @@ are not repeated-run latency percentiles.
 
 ## Measurement context
 
-- Recorded: `2026-07-21T02:55:06Z`
+- Refreshed: `2026-07-22T01:29:11Z`
 - Nakafa SHA: `25506da68a5dd97bc55f99b6f7304384c4744206`
 - Machine: Apple M3 Pro, arm64, 19,327,352,832 bytes memory
 - OS: macOS 26.5 (`25F71`)
+- Node: `24.18.0`
+- pnpm: `10.34.1`
+- Turbo: `2.10.4`
+- Next.js: `16.2.10`
+- Native TypeScript compiler: `7.0.2`
 
 ## Repository and corpus
 
 - Nakafa `.git`: 1,044,888 KiB, including 956.32 MiB packed objects.
-- `packages/contents`: 121,712 KiB.
-- Content tree: 5,486 files, including 4,140 MDX files.
+- Tracked `packages/contents` source: 5,245 files and 36,813,077 bytes,
+  including 4,140 MDX files.
+- The post-build `packages/contents` working tree was 121,712 KiB and 5,486
+  files because it also contained ignored generated output. That value is a
+  build-output observation, not the authored corpus size.
 
 These measurements are trigger context, not proof that one Git repository will
 remain healthy at 100,000 or 1,000,000 rich documents.
@@ -26,33 +34,38 @@ The durable shell log retained these inventory commands:
 ```sh
 du -sk .git packages/contents
 git count-objects -vH
-find packages/contents -type f | wc -l
-find packages/contents -type f -name '*.mdx' | wc -l
+git ls-files packages/contents | wc -l
+git ls-files packages/contents | xargs stat -f '%z' | awk '{ total += $1 } END { print total }'
+git ls-files 'packages/contents/**/*.mdx' | wc -l
 ```
 
 ## Build and development
 
-- Cold `www` build: 154.81 seconds.
-- Cold build maximum RSS: 3,920,216,064 bytes.
-- `.next` after cold build: 933,736 KiB.
+The refreshed baseline used a detached worktree, byte- and permission-equal
+environment files, no remote cache, and a forced root build:
+
+```sh
+/usr/bin/time -l -o <metrics> env TURBO_FORCE=true pnpm build
+```
+
+- All 5 build tasks passed with 0 cached tasks.
+- Turbo task time: 157.893 seconds.
+- Total wall time: 174.41 seconds.
+- Maximum RSS: 6,220,005,376 bytes, or 5.793 GiB.
+- WWW emitted 1,304 static pages.
+- Production output contained no `.next/dev` directory.
+- `apps/www/.next`: 933,736 KiB, or 911.85 MiB.
+- All application production output: 1,016,096 KiB, or 992.28 MiB.
+
+These values are one observation of the complete root build. The earlier
+154.81-second and 3,920,216,064-byte measurements covered only `www`, so they
+are retained as historical context but are not the acceptance comparison for
+the complete Aksara cutover.
+
 - Current development save-to-visible: right-censored above 120 seconds because
   the compiled marker never became visible during the observation window.
 - `.next` after development: 4,514,504 KiB.
 - `.next/dev` subset: 3,580,768 KiB.
-
-The retained build and size commands were:
-
-```sh
-/usr/bin/time -l pnpm --filter www build
-du -sk apps/www/.next
-du -sk apps/www/.next/dev
-```
-
-The generated `apps/www/.next` directory was moved out of the measurement path
-before the cold build. The exact move command was not captured in the durable
-command log, so it is intentionally not reconstructed here. Matching `.env*`
-files are required to reproduce the build, but their contents must never be
-printed or committed.
 
 The save-to-visible probe inserted a unique source marker and waited for that
 marker in the served page. Its exact marker command was not captured in the
@@ -80,12 +93,14 @@ printing secret values.
 
 ## Production response
 
-- Warm production article TTFB observations: approximately 0.313 to 0.332
-  seconds.
+The refreshed local production server reported ready in 88 milliseconds. The
+first valid Function Concept request returned 200 with 0.690603-second TTFB and
+1.782177-second total time. Its immediate second request had 0.335404-second
+TTFB and 1.510853-second total time. Both transferred 312,787 bytes.
 
-The probe used a `curl` loop with `time_starttransfer`. The exact article URL
-and literal loop were not captured in the durable command log, so neither is
-reconstructed here.
+These are single local observations, not p50 or p95. The earlier warm
+production article observations of approximately 0.313 to 0.332 seconds remain
+historical context, not a directly comparable route benchmark.
 
 ## Function-body feasibility
 

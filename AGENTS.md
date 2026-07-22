@@ -4,10 +4,10 @@ Aksara is Nakafa's trusted content-authoring and publication system. Build it
 for clarity, measurable scale, and safe releases.
 
 - Keep only workspaces with a real implemented capability. The domain modules
-  are `packages/contracts`, `packages/compiler`, and `packages/publisher`.
-  `packages/typescript-config` owns their one shared compiler contract. Add
-  corpus or CLI ownership only with authoritative Nakafa sources and an
-  end-to-end caller; never fill a workspace with substitute content.
+  are `packages/contracts`, `packages/compiler`, `packages/corpus`, and
+  `packages/publisher`. `packages/typescript-config` owns their one shared
+  compiler contract. Add CLI ownership only with the actual Nakafa preview
+  caller; never fill a workspace with substitute content.
 - File and folder names may contain at most two words. Group longer concepts
   under a domain folder, such as `artifact/verify.ts`, without repeating the
   domain in the filename.

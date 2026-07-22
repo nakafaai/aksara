@@ -36,10 +36,12 @@ then signs a constant-size canonical release manifest with a distinct signature
 domain. One configured Ed25519 key signs both object types without making their
 signatures interchangeable.
 
-The release envelope authenticates its base release, Aksara commit SHA, ordered
-item count and domain-separated SHA-256 digest, expected projection counts and
-digest, release ID, and renderer contract version. Upserts and deletes are
-stored as separately strict-decoded items carrying release identity and index;
+The release envelope authenticates its base release, source origin, ordered item
+count and domain-separated SHA-256 digest, expected projection count and digest,
+release ID, and renderer contract version. A Git release origin carries the
+exact Aksara commit SHA; a forward rollback origin carries the exact active
+release being reversed. Upserts and deletes are stored as separately
+strict-decoded items carrying release identity and index;
 their canonical stream digest covers operation, path, artifact selection,
 content head, and order without embedding the full delta in the signed envelope. A
 server-only verifier resolves the public key through the shared trusted-key
@@ -49,24 +51,31 @@ a bare manifest or an unbounded release array. Verification must attest the
 staged item count and digest plus independently recomputed projection counts
 and digest before atomic activation.
 
-The publisher asks a trusted source-control service to load ordered authored
-sources from the exact `aksaraSha` authenticated by the release. It recompiles
-those sources with the exact compiler and renderer manifest, and requires every
-resulting canonical artifact hash to match its authenticated release item before
-it signs anything or performs publication IO. Caller-provided source beside an
-unrelated SHA and caller-provided compiled code are not publication inputs.
+For a Git release, the publisher asks a trusted source-control service to load
+ordered authored sources from the exact commit SHA authenticated by the
+manifest origin. It recompiles those sources with the exact compiler and
+renderer manifest, and requires every resulting canonical artifact hash to
+match its authenticated release item before it signs anything or performs
+publication IO. For a forward rollback, it instead re-verifies the exact prior
+signed artifact envelopes returned by the active release. Caller-provided
+source beside an unrelated SHA and caller-provided compiled code are not
+publication inputs.
 
 Publication targets expose distinct typed failures: transient transport errors
 may be retried idempotently, while immutable-identity conflicts and stale-base
 activation failures are non-retryable until the release is reconciled.
 
-The foundation source-control seam still models the complete authored source
-set as an in-memory array, and the publisher receives the complete release item
-array before it creates bounded target batches. The real Git adapter is not yet
-implemented. This is an explicit bounded-v1 design for the current corpus, not
-evidence that a 100,000- or 1,000,000-item release fits in publisher memory. A
-paginated or streaming source seam is required before either synthetic scale
-gate may pass.
+The release-item and exact-source seams are replayable Effect Streams. Release
+digests, compilation, signing, and bounded target batches do not require a
+complete in-memory item or source collection. The exact-Git adapter resolves a
+reviewed full commit SHA and reads each signed corpus path with `git cat-file`;
+it neither reads the mutable working tree nor reconstructs source metadata.
+This streaming contract alone is not evidence that a 100,000- or
+1,000,000-item release meets the operational or cost gates.
+Every Git command disables replacement refs, `cat-file -s` rejects an oversized
+blob before its body is read, retained output is bounded, and UTF-8 decoding is
+fatal. The adapter also requires the body byte count to equal Git's preflight
+size, so truncated or substituted source cannot silently enter compilation.
 
 Nakafa may execute an artifact only in a server-only Node runtime through the
 official `@mdx-js/mdx/run` API and only after all of these checks pass:
@@ -83,7 +92,7 @@ No client or browser receives an executable artifact. Raw authored MDX is never
 compiled in a production request.
 
 The compiler parses executable syntax through MDX's ESTree output. It rejects
-dynamic imports, `require`, `eval`, direct `Function`, `process`, `globalThis`,
+dynamic imports, `import.meta`, `require`, `eval`, direct `Function`, `process`, `globalThis`,
 network globals, unknown free globals, direct prototype-chain escape properties,
 and `dangerouslySetInnerHTML`. The artifact compiler rejects every body import
 and export. Legacy component imports must be removed by the separately audited
@@ -152,9 +161,11 @@ The relevant framework constraints are documented in the Next.js
 
 V1 enforces UTF-8 ceilings at compilation and signing: 128 KiB raw MDX, 256 KiB
 compiled code, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
-artifact wire value. The future Convex adapter must add a complete stored-row
-ceiling below Convex's documented 1 MiB document limit and enforce it with the
-official Convex size calculation before insertion.
+artifact wire value. The additive Convex staging candidate also enforces a
+512 KiB complete stored-row ceiling with Convex's official size calculation
+and a 4 MiB complete mutation-envelope ceiling. It remains internal-only until
+the published contracts package replaces its temporary validators and the
+authenticated signature-verifying ingress is implemented.
 
 Reference: [Convex production limits](https://docs.convex.dev/production/state/limits).
 

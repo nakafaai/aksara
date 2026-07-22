@@ -74,5 +74,22 @@ still delivered a Three.js chunk to a plain biology route. The result must be
 reproduced with the published-artifact runtime before it becomes a production
 gate.
 
-The full application must still prove its exact route topology, hosted browser
-behavior, caching, and production performance before corpus migration.
+## Full Nakafa native-loader candidate
+
+On 2026-07-22, the exact Nakafa baseline plus the chemistry and mathematics
+physical routes completed a forced root production build: all 5 tasks passed,
+1,307 static pages were emitted, and the combined material partitions retained
+one 512-page prerender budget. The three additional route entries were route
+shells, not a multiplied material candidate set.
+
+A local production-browser smoke then verified the real source-owned bodies:
+
+- Function Concept returned 200, hydrated at input 5, incremented to 6, and
+  rendered `f(x)=13` without console or page errors.
+- Atom Shell returned 200, selected Neon with `aria-pressed=true`, and created
+  one WebGL canvas without console or page errors.
+
+This proves the native-loader route topology and real client implementations.
+It does not prove published-artifact execution, cache invalidation, hosted
+preview behavior, or body-graph removal. Those remain mandatory before either
+route switches from the legacy source mode.

@@ -15,19 +15,31 @@ import {
   AuthoredMetadataMissingError,
   AuthoredMetadataSyntaxError,
   type AuthoredMetadataSyntaxReason,
-} from "#compiler/errors.js";
+} from "#compiler/errors";
 
-type StaticValue =
+export type AuthoredMetadataValue =
   | boolean
   | null
   | number
   | string
-  | readonly StaticValue[]
-  | { readonly [key: string]: StaticValue };
+  | readonly AuthoredMetadataValue[]
+  | { readonly [key: string]: AuthoredMetadataValue };
+
+/** Plain static object extracted from one reviewed MDX metadata export. */
+export interface AuthoredMetadata {
+  readonly [key: string]: AuthoredMetadataValue;
+}
+
+/** Distinguishes a plain metadata object from recursive metadata arrays. */
+function isAuthoredMetadata(
+  value: AuthoredMetadataValue
+): value is AuthoredMetadata {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
 
 type DecodeResult =
   | { readonly reason: AuthoredMetadataSyntaxReason; readonly success: false }
-  | { readonly success: true; readonly value: StaticValue };
+  | { readonly success: true; readonly value: AuthoredMetadataValue };
 
 type StatementResult =
   | { readonly matched: false }
@@ -35,7 +47,7 @@ type StatementResult =
 
 /** Mutable metadata state scoped to one official MDX compilation. */
 export interface MetadataCollector {
-  readonly candidates: StaticValue[];
+  readonly candidates: AuthoredMetadataValue[];
   readonly syntaxReasons: AuthoredMetadataSyntaxReason[];
 }
 
@@ -56,7 +68,7 @@ function propertyName(expression: Expression) {
 
 /** Decodes a metadata array containing only supported static values. */
 function decodeArray(node: ArrayExpression): DecodeResult {
-  const values: StaticValue[] = [];
+  const values: AuthoredMetadataValue[] = [];
   for (const element of node.elements) {
     if (element === null) {
       return failed("array-hole");
@@ -75,7 +87,7 @@ function decodeArray(node: ArrayExpression): DecodeResult {
 
 /** Decodes a metadata object while rejecting ambiguous property forms. */
 function decodeObject(node: ObjectExpression): DecodeResult {
-  const entries: [string, StaticValue][] = [];
+  const entries: [string, AuthoredMetadataValue][] = [];
   const names = new Set<string>();
   for (const property of node.properties) {
     if (property.type === "SpreadElement") {
@@ -210,7 +222,8 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
         })
       );
     }
-    if (collector.candidates.length === 0) {
+    const [metadata] = collector.candidates;
+    if (metadata === undefined) {
       return Effect.fail(new AuthoredMetadataMissingError({ contentKey }));
     }
     if (collector.candidates.length > 1) {
@@ -221,12 +234,7 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
         })
       );
     }
-    const [metadata] = collector.candidates;
-    if (
-      typeof metadata !== "object" ||
-      metadata === null ||
-      Array.isArray(metadata)
-    ) {
+    if (!isAuthoredMetadata(metadata)) {
       return Effect.fail(
         new AuthoredMetadataSyntaxError({
           contentKey,
@@ -234,6 +242,6 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
         })
       );
     }
-    return Effect.void;
+    return Effect.succeed(metadata);
   }
 );

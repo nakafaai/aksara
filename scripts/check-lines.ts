@@ -9,7 +9,7 @@ const LINE_BREAK_PATTERN = /\r?\n/u;
 const MAXIMUM_LINES = 300;
 
 /** Lists authored TypeScript modules governed by the module-size limit. */
-function sourceFiles() {
+function sourceFiles(): string[] {
   return execFileSync(
     "git",
     ["ls-files", "--cached", "--others", "--exclude-standard"],
@@ -26,17 +26,17 @@ function sourceFiles() {
 }
 
 /** Masks only parsed JSDoc ranges while preserving offsets and line breaks. */
-function maskDocumentation(file, sourceText) {
+function maskDocumentation(file: string, sourceText: string) {
   const masked = sourceText.split("");
-  const documentedLines = new Set();
+  const documentedLines = new Set<number>();
   const sourceFile = ts.createSourceFile(
     file,
     sourceText,
     ts.ScriptTarget.Latest,
     true
   );
-  const ranges = new Map();
-  const nodes = [sourceFile];
+  const ranges = new Map<number, number>();
+  const nodes: ts.Node[] = [sourceFile];
 
   while (nodes.length > 0) {
     const node = nodes.pop();
@@ -69,7 +69,7 @@ function maskDocumentation(file, sourceText) {
 }
 
 /** Counts physical module lines while excluding lines occupied only by JSDoc. */
-function countModuleLines(file, sourceText) {
+function countModuleLines(file: string, sourceText: string): number {
   const sourceLines = sourceText.split(LINE_BREAK_PATTERN);
   const { documentedLines, maskedText } = maskDocumentation(file, sourceText);
   const maskedLines = maskedText.split(LINE_BREAK_PATTERN);

@@ -1,247 +1,188 @@
-import { verifySignedContentArtifact } from "@nakafaai/aksara-contracts/artifact/verify";
-import type {
-  CompileDocumentSource,
-  CompiledContentPayload,
-} from "@nakafaai/aksara-contracts/content";
+import type { GitCommitSha } from "@nakafaai/aksara-contracts/ids";
 import {
-  GitCommitShaSchema,
-  type ReleaseId,
-} from "@nakafaai/aksara-contracts/ids";
-import type {
-  ContentReleaseItem,
-  ContentReleaseManifest,
-  PublicationReceipt,
-  ReleaseVerificationEvidence,
-  SignedContentRelease,
-} from "@nakafaai/aksara-contracts/release";
-import { verifyContentReleaseItems } from "@nakafaai/aksara-contracts/release/items";
+  decodeContentProjections,
+  verifyContentProjections,
+} from "@nakafaai/aksara-contracts/projection/verify";
+import type { ContentReleaseItem } from "@nakafaai/aksara-contracts/release";
+import {
+  decodeContentReleaseItems,
+  verifyContentReleaseItems,
+} from "@nakafaai/aksara-contracts/release/items";
 import { verifySignedContentRelease } from "@nakafaai/aksara-contracts/release/verify";
-import type { RendererManifestEnvelope } from "@nakafaai/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafaai/aksara-contracts/renderer/manifest";
-import { Context, Effect, Redacted, Schema } from "effect";
+import { Effect, Redacted, Stream } from "effect";
 import {
-  type ArtifactBatch,
-  MAX_ARTIFACTS_PER_BATCH,
-  makeArtifactBatch,
-  makeReleaseItemBatch,
-  partitionArtifactBatches,
-  partitionReleaseItemBatches,
-  type ReleaseItemBatch,
-} from "#publisher/batching.js";
+  makeArtifactBatches,
+  makeReleaseItemBatches,
+} from "#publisher/batching";
+import type {
+  PreparedContentRelease,
+  PreparedGitRelease,
+  PreparedRollbackRelease,
+} from "#publisher/preparation/spec";
+import { makeProjectionBatches } from "#publisher/projection-batch";
 import {
-  ReleaseArtifactMismatchError,
-  validateArtifactForItem,
-  validatePublicationReceipt,
-  validateReleaseRendererManifest,
-  validateVerificationEvidence,
-} from "#publisher/release-validation.js";
+  makeGitArtifacts,
+  makeRollbackArtifacts,
+} from "#publisher/publication/artifacts";
+import { completePublicationLifecycle } from "#publisher/publication/lifecycle";
 import {
-  makeEd25519PublicationSigner,
-  type PublicationSigner,
-} from "#publisher/signing.js";
-import { compileReleaseSources } from "#publisher/source-compilation.js";
-import type { PublicationTargetFailure } from "#publisher/target-errors.js";
-
-/** The exact reviewed Aksara revision could not provide release sources. */
-export class PublicationSourceError extends Schema.TaggedError<PublicationSourceError>()(
-  "PublicationSourceError",
-  {
-    aksaraSha: GitCommitShaSchema,
-    cause: Schema.Unknown,
-    message: Schema.NonEmptyTrimmedString,
-  }
-) {}
-
-/** Complete release input authenticated before source loading and activation. */
-export interface PublishContentReleaseInput {
-  readonly items: readonly unknown[];
-  readonly manifest: ContentReleaseManifest;
-  readonly rendererManifest: RendererManifestEnvelope;
-}
-
-/** Signing configuration injected only into the safe publication operation. */
-export class PublicationSigningKey extends Context.Tag(
-  "AksaraPublicationSigningKey"
-)<
+  PublicationModeMismatchError,
   PublicationSigningKey,
-  {
-    readonly keyId: string;
-    readonly privateKeyPem: Redacted.Redacted<string>;
-  }
->() {}
-
-/**
- * Trusted source-control seam that loads ordered upserts from one exact,
- * reviewed Aksara commit rather than accepting source beside a claimed SHA.
- */
-export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
   PublicationSource,
-  {
-    /** Loads authored sources from the manifest's exact reviewed Git revision. */
-    readonly loadExactRevision: (input: {
-      readonly aksaraSha: typeof GitCommitShaSchema.Type;
-      readonly items: readonly ContentReleaseItem[];
-    }) => Effect.Effect<
-      readonly CompileDocumentSource[],
-      PublicationSourceError
-    >;
-  }
->() {}
-
-/**
- * Infrastructure seam for invisible staging followed by atomic activation.
- * Every stage method must accept exact retries idempotently and reject a
- * conflicting value at the same release or batch identity.
- */
-export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
   PublicationTarget,
-  {
-    /** Atomically activates a fully verified release. */
-    readonly activate: (
-      release: SignedContentRelease
-    ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
-    /** Stages one immutable artifact batch idempotently. */
-    readonly stageArtifactBatch: (
-      batch: ArtifactBatch
-    ) => Effect.Effect<void, PublicationTargetFailure>;
-    /** Stages one ordered release-item batch idempotently. */
-    readonly stageItemBatch: (
-      batch: ReleaseItemBatch
-    ) => Effect.Effect<void, PublicationTargetFailure>;
-    /** Stages the signed release envelope idempotently. */
-    readonly stageRelease: (
-      release: SignedContentRelease
-    ) => Effect.Effect<void, PublicationTargetFailure>;
-    /** Recomputes staged evidence before activation is allowed. */
-    readonly verify: (
-      release: SignedContentRelease
-    ) => Effect.Effect<ReleaseVerificationEvidence, PublicationTargetFailure>;
-  }
->() {}
+  type PublishContentRelease,
+} from "#publisher/publication/spec";
+import { validateReleaseRendererManifest } from "#publisher/release-validation";
+import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { compileReleaseSources } from "#publisher/source-compilation";
 
-/** Selects authenticated upserts while preserving canonical release order. */
-function upsertItems(items: readonly ContentReleaseItem[]) {
-  return items.filter((item) => item.change.operation === "upsert");
+/** Selects authenticated upserts while preserving canonical stream order. */
+function upsertItems<E, R>(items: Stream.Stream<ContentReleaseItem, E, R>) {
+  return items.pipe(
+    Stream.filter((item) => item.change.operation === "upsert")
+  );
 }
 
-/** Stages every ordered release-item batch through the target seam. */
-const stageItemBatches = Effect.fn("AksaraPublisher.stageItemBatches")(
-  function* (
-    target: typeof PublicationTarget.Service,
-    releaseId: ReleaseId,
-    items: readonly ContentReleaseItem[]
-  ) {
-    const batches = yield* partitionReleaseItemBatches(items);
-    for (const [batchIndex, values] of batches.entries()) {
-      const batch = yield* makeReleaseItemBatch({
-        batchIndex,
-        items: values,
-        releaseId,
-      });
-      yield* target.stageItemBatch(batch);
-    }
-  }
-);
+/** Creates the typed failure for a prepared and signed mode mismatch. */
+function modeMismatch<E, R>(input: PreparedContentRelease<E, R>) {
+  return new PublicationModeMismatchError({
+    manifestMode: input.manifest.origin.kind,
+    preparedMode: input.kind,
+    releaseId: input.manifest.releaseId,
+  });
+}
 
-/** Signs, verifies, and stages compiled artifacts in bounded batches. */
-const stageArtifactBatches = Effect.fn("AksaraPublisher.stageArtifactBatches")(
-  function* (input: {
-    readonly items: readonly ContentReleaseItem[];
-    readonly manifest: ContentReleaseManifest;
-    readonly payloads: readonly CompiledContentPayload[];
-    readonly rendererManifest: RendererManifestEnvelope;
-    readonly signer: PublicationSigner;
-    readonly target: typeof PublicationTarget.Service;
-  }) {
-    const items = upsertItems(input.items);
-    let targetBatchIndex = 0;
-    for (
-      let offset = 0;
-      offset < input.payloads.length;
-      offset += MAX_ARTIFACTS_PER_BATCH
-    ) {
-      const payloads = input.payloads.slice(
-        offset,
-        offset + MAX_ARTIFACTS_PER_BATCH
-      );
-      const artifacts = yield* Effect.forEach(
-        payloads,
-        (payload, batchOffset) =>
-          Effect.gen(function* () {
-            const item = items[offset + batchOffset];
-            if (!item) {
-              return yield* new ReleaseArtifactMismatchError({
-                message: "A content payload has no authenticated upsert item.",
-              });
-            }
-            const signed = yield* input.signer.signArtifact(payload);
-            const verified = yield* verifySignedContentArtifact({
-              artifact: signed,
-              rendererContractVersion: input.manifest.rendererContractVersion,
-              rendererManifest: input.rendererManifest,
-            });
-            yield* validateArtifactForItem(item, verified);
-            return verified;
-          })
-      );
-      const batches = yield* partitionArtifactBatches(artifacts);
-      for (const values of batches) {
-        const batch = yield* makeArtifactBatch({
-          artifacts: values,
-          batchIndex: targetBatchIndex,
-          releaseId: input.manifest.releaseId,
-        });
-        yield* input.target.stageArtifactBatch(batch);
-        targetBatchIndex += 1;
-      }
+type ValidatedPublication<E, R> =
+  | {
+      readonly aksaraSha: GitCommitSha;
+      readonly input: PreparedGitRelease<E, R>;
+      readonly kind: "git";
     }
-  }
-);
+  | {
+      readonly input: PreparedRollbackRelease<E, R>;
+      readonly kind: "rollback";
+    };
 
-/** Authenticates and stages bounded batches before one atomic activation. */
-export const publishContentRelease = Effect.fn(
+/** Binds the prepared discriminant to its signed manifest provenance. */
+function validatePublicationMode<E, R>(
+  input: PreparedContentRelease<E, R>
+): Effect.Effect<ValidatedPublication<E, R>, PublicationModeMismatchError> {
+  if (input.kind === "git") {
+    if (input.manifest.origin.kind !== "git") {
+      return Effect.fail(modeMismatch(input));
+    }
+    return Effect.succeed<ValidatedPublication<E, R>>({
+      aksaraSha: input.manifest.origin.sha,
+      input,
+      kind: "git",
+    });
+  }
+  if (input.manifest.origin.kind !== "rollback") {
+    return Effect.fail(modeMismatch(input));
+  }
+  return Effect.succeed<ValidatedPublication<E, R>>({
+    input,
+    kind: "rollback",
+  });
+}
+
+/** Authenticates, stages, verifies, activates, and finalizes one release. */
+export const publishContentRelease: PublishContentRelease = Effect.fn(
   "AksaraPublisher.publishContentRelease"
-)(function* (input: PublishContentReleaseInput) {
-  const signingKey = yield* PublicationSigningKey;
-  const source = yield* PublicationSource;
-  const target = yield* PublicationTarget;
+)(function* <E, R>(input: PreparedContentRelease<E, R>) {
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
+  /** Replays strict item decoding with fresh ordering and route state. */
+  const decodedItems = () =>
+    decodeContentReleaseItems({
+      items: input.items(),
+      manifest: input.manifest,
+    });
+  /** Replays strict projection decoding with fresh ordering and route state. */
+  const decodedProjections = () =>
+    decodeContentProjections(input.projections());
   const summary = yield* verifyContentReleaseItems({
-    items: input.items,
+    items: input.items(),
     manifest: input.manifest,
   });
+  const projectionSummary = yield* verifyContentProjections({
+    manifest: input.manifest,
+    projections: input.projections(),
+  });
   yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
-  const sources = yield* source.loadExactRevision({
-    aksaraSha: input.manifest.aksaraSha,
-    items: upsertItems(summary.items),
-  });
-  const payloads = yield* compileReleaseSources({
-    rendererManifest,
-    sources,
-    summary,
-  });
+  const publication = yield* validatePublicationMode(input);
+  if (publication.kind === "rollback") {
+    yield* makeRollbackArtifacts({
+      artifacts: publication.input.artifacts(),
+      items: upsertItems(decodedItems()),
+      manifest: input.manifest,
+      rendererManifest,
+    }).pipe(Stream.runDrain);
+  } else {
+    const source = yield* PublicationSource;
+    const items = upsertItems(decodedItems());
+    yield* compileReleaseSources({
+      items,
+      rendererManifest,
+      sources: source.loadExactRevision({
+        aksaraSha: publication.aksaraSha,
+        items,
+      }),
+    }).pipe(Stream.runDrain);
+  }
+
+  const signingKey = yield* PublicationSigningKey;
+  const target = yield* PublicationTarget;
   const signer = yield* makeEd25519PublicationSigner({
     keyId: signingKey.keyId,
     privateKeyPem: Redacted.value(signingKey.privateKeyPem),
   });
-
   const signedRelease = yield* signer.signRelease(input.manifest);
   const release = yield* verifySignedContentRelease(signedRelease);
-  yield* target.stageRelease(release);
-  yield* stageItemBatches(target, input.manifest.releaseId, summary.items);
-  yield* stageArtifactBatches({
-    items: summary.items,
-    manifest: input.manifest,
-    payloads,
-    rendererManifest,
-    signer,
+  const stage = Effect.gen(function* () {
+    yield* makeReleaseItemBatches(
+      input.manifest.releaseId,
+      decodedItems()
+    ).pipe(Stream.runForEach(target.stageItemBatch));
+    yield* makeProjectionBatches(
+      input.manifest.releaseId,
+      decodedProjections()
+    ).pipe(Stream.runForEach(target.stageProjectionBatch));
+    if (publication.kind === "rollback") {
+      const artifacts = makeRollbackArtifacts({
+        artifacts: publication.input.artifacts(),
+        items: upsertItems(decodedItems()),
+        manifest: input.manifest,
+        rendererManifest,
+      });
+      yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
+        Stream.runForEach(target.stageArtifactBatch)
+      );
+      return;
+    }
+    const source = yield* PublicationSource;
+    const items = upsertItems(decodedItems());
+    const artifacts = makeGitArtifacts({
+      items,
+      manifest: input.manifest,
+      rendererManifest,
+      signer,
+      sources: source.loadExactRevision({
+        aksaraSha: publication.aksaraSha,
+        items,
+      }),
+    });
+    yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
+      Stream.runForEach(target.stageArtifactBatch)
+    );
+  });
+  return yield* completePublicationLifecycle({
+    projectionSummary,
+    release,
+    stage,
+    summary,
     target,
   });
-
-  const verification = yield* target.verify(release);
-  yield* validateVerificationEvidence(input.manifest, summary, verification);
-  const receipt = yield* target.activate(release);
-  return yield* validatePublicationReceipt(input.manifest, summary, receipt);
 });

@@ -5,7 +5,13 @@
   "globalDependencies": ["packages/typescript-config/*.json"],
   "tasks": {
     "//#typecheck:root": {
-      "inputs": ["tsconfig.json", "vitest.config.ts"],
+      "inputs": [
+        "tsconfig.json",
+        "vitest.config.ts",
+        "scripts/**/*.ts",
+        "packages/*/scripts/**/*.ts",
+        "packages/*/package.json"
+      ],
       "outputs": []
     },
     "build": {

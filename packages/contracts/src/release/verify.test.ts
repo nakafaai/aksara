@@ -13,7 +13,7 @@ import {
   Ed25519SignatureSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
-} from "#contracts/ids.js";
+} from "#contracts/ids";
 import {
   type ContentReleaseManifest,
   ContentReleaseManifestSchema,
@@ -21,12 +21,12 @@ import {
   canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
-} from "#contracts/release/spec.js";
-import { verifySignedContentRelease } from "#contracts/release/verify.js";
+} from "#contracts/release/spec";
+import { verifySignedContentRelease } from "#contracts/release/verify";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
-} from "#contracts/signature/spec.js";
+} from "#contracts/signature/spec";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -64,22 +64,14 @@ const publicKeyPem = keys.publicKey
   .export({ format: "pem", type: "spki" })
   .toString();
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
-  aksaraSha: "a".repeat(40),
   baseReleaseId: "test-release-parent",
-  expectedCounts: {
-    artifacts: 1,
-    graphRows: 0,
-    heads: 1,
-    llmsDocuments: 1,
-    routes: 1,
-    searchRows: 1,
-    sitemapEntries: 1,
-  },
-  expectedDigest: `sha256:${"c".repeat(64)}`,
   itemCount: 2,
   itemsDigest: `sha256:${"b".repeat(64)}`,
+  origin: { kind: "git", sha: "a".repeat(40) },
+  projectionCount: 1,
+  projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId: "test-release",
-  rendererContractVersion: "1.0.0",
+  rendererContractVersion: "2.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
 });
 
@@ -147,10 +139,11 @@ describe("server-only release verification", () => {
 
   it.each([
     ["base release", { baseReleaseId: "test-release-other" }],
-    ["Aksara SHA", { aksaraSha: "e".repeat(40) }],
+    ["origin", { origin: { kind: "git", sha: "e".repeat(40) } }],
     ["item count", { itemCount: 3 }],
     ["item digest", { itemsDigest: `sha256:${"f".repeat(64)}` }],
-    ["projection digest", { expectedDigest: `sha256:${"e".repeat(64)}` }],
+    ["projection count", { projectionCount: 2 }],
+    ["projection digest", { projectionDigest: `sha256:${"e".repeat(64)}` }],
     ["renderer manifest", { rendererManifestHash: `sha256:${"f".repeat(64)}` }],
   ])("rejects a mutated %s", async (_label, values) => {
     const release = signRelease();
