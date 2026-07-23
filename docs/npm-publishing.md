@@ -94,8 +94,11 @@ once with pnpm, `--provenance`, `--ignore-scripts`, and a GitHub-hosted OIDC
 identity, then proves the registry tarball, repository, attestation signatures,
 workflow path, main ref, and exact source SHA. If npm commits the publish but
 the command response is lost, a rerun verifies the already-present exact
-version and never publishes again. A mismatched existing version fails closed;
-a publish result that never becomes observable also fails closed.
+version and never publishes again. If protected `main` has advanced, the rerun
+accepts only the same exact tarball with valid bootstrap provenance from an
+ancestor commit. A mismatched existing version, unrelated provenance, or
+diverged source fails closed; a publish result that never becomes observable
+also fails closed.
 
 Immediately after proof succeeds, revoke the granular token and delete
 `NPM_BOOTSTRAP_TOKEN`. Then configure a package-scoped GitHub Actions trusted
@@ -137,8 +140,9 @@ current `main` history. A Changesets version that is not yet approved and proven
 is therefore absent from the registry and fails closed; an unversioned contract
 change produces different package bytes and also fails closed. Unrelated
 repository policy or application changes do not invalidate an unchanged exact
-package. Emergency abort and cleanup deliberately skip registry proof so
-recovery remains available during an npm outage.
+package. Emergency abort and cleanup deliberately bypass registry proof and do
+not receive the signing key; their required dependency install remains a
+separate availability boundary.
 
 After the initial `0.1.0` package exists, every contracts change carries a
 Changeset. `version.yml` uses the official Changesets action only to create or

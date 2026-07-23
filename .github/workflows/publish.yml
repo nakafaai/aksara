@@ -143,6 +143,7 @@ jobs:
           run_install: false
 
       - name: Verify transferred tarball
+        id: tarball
         env:
           EXPECTED_SHA256: ${{ needs.verify.outputs.tarball_sha256 }}
           TARBALL: ${{ runner.temp }}/contracts/aksara-contracts.tgz
@@ -157,6 +158,9 @@ jobs:
             exit 1
           fi
           package_name=$(tar -xOf "$TARBALL" package/package.json | jq -r '.name // ""')
+          package_version=$(tar -xOf "$TARBALL" package/package.json | jq -er \
+            '.version | select(test("^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$"))')
+          package_integrity="sha512-$(openssl dgst -sha512 -binary "$TARBALL" | openssl base64 -A)"
           if [[ "$package_name" != "@nakafa/aksara-contracts" ]]; then
             echo "Transferred tarball has an unexpected package identity." >&2
             exit 1
@@ -166,14 +170,23 @@ jobs:
             echo "Transferred tarball must not override the trusted registry." >&2
             exit 1
           fi
+          echo "package_integrity=$package_integrity" >> "$GITHUB_OUTPUT"
+          echo "package_version=$package_version" >> "$GITHUB_OUTPUT"
 
       - name: Stage contracts
         id: stage
+        env:
+          EXPECTED_INTEGRITY: ${{ steps.tarball.outputs.package_integrity }}
+          EXPECTED_VERSION: ${{ steps.tarball.outputs.package_version }}
         run: |
           stage_json=$(pnpm stage publish "$RUNNER_TEMP/contracts/aksara-contracts.tgz" --access public --provenance --json --registry=https://registry.npmjs.org/ --@nakafa:registry=https://registry.npmjs.org/)
           stage_id=$(jq -er '."@nakafa/aksara-contracts".stageId | select(test("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"; "i"))' <<<"$stage_json")
           package_version=$(jq -er '."@nakafa/aksara-contracts".version' <<<"$stage_json")
           package_integrity=$(jq -er '."@nakafa/aksara-contracts".integrity | select(test("^sha512-[A-Za-z0-9+/]+={0,2}$"))' <<<"$stage_json")
+          if [[ "$package_version" != "$EXPECTED_VERSION" || "$package_integrity" != "$EXPECTED_INTEGRITY" ]]; then
+            echo "Staged package identity differs from the verified tarball." >&2
+            exit 1
+          fi
           echo "package_integrity=$package_integrity" >> "$GITHUB_OUTPUT"
           echo "package_version=$package_version" >> "$GITHUB_OUTPUT"
           echo "stage_id=$stage_id" >> "$GITHUB_OUTPUT"

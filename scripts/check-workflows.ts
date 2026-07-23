@@ -26,6 +26,11 @@ assert.match(
 );
 assert.match(
   publish,
+  /id: tarball[\s\S]*package_integrity=.*openssl dgst -sha512[\s\S]*EXPECTED_INTEGRITY: \$\{\{ steps\.tarball\.outputs\.package_integrity \}\}[\s\S]*package_integrity" != "\$EXPECTED_INTEGRITY"/u,
+  "Staged package output must match the exact transferred tarball"
+);
+assert.match(
+  publish,
   /aksara-contracts\/\$package_version[\s\S]*candidate_status" != "404"/u,
   "Steady-state publishing must require a new candidate version"
 );
@@ -78,6 +83,11 @@ if (state.contracts) {
     "Incomplete bootstrap must retain its privileged workflow"
   );
   const bootstrap = readFileSync(bootstrapPath, "utf8");
+  assert.match(
+    bootstrap,
+    /slsa-verifier verify-npm-package[\s\S]*provenance_source_sha=[\s\S]*gh api[\s\S]*compare\/\$provenance_source_sha\.\.\.\$CURRENT_SHA[\s\S]*comparison_status" != "ahead"/u,
+    "Bootstrap recovery must verify proven source ancestry after signature proof"
+  );
   const privileged = bootstrap.slice(bootstrap.indexOf("\n  publish:\n"));
   const publishCalls = bootstrap.match(/pnpm publish "\$TARBALL"/gu) ?? [];
   const tokenBindings =

@@ -204,9 +204,10 @@ jobs:
 
       - name: Verify exact registry package
         env:
+          CURRENT_SHA: ${{ github.sha }}
           EXPECTED_INTEGRITY: ${{ needs.verify.outputs.package_integrity }}
           EXPECTED_SHA256: ${{ needs.verify.outputs.tarball_sha256 }}
-          SOURCE_SHA: ${{ github.sha }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           metadata="$RUNNER_TEMP/aksara-contracts.metadata.json"
           attestations="$RUNNER_TEMP/aksara-contracts.attestations.json"
@@ -286,12 +287,19 @@ jobs:
             --source-uri "github.com/nakafaai/aksara"
 
           provenance=$(jq -er '.attestations[] | select(.predicateType == "https://slsa.dev/provenance/v1") | .bundle.dsseEnvelope.payload' "$attestations" | base64 --decode)
+          provenance_source_sha=$(jq -er '
+            [.predicate.buildDefinition.resolvedDependencies[]
+              | select(
+                .uri == "git+https://github.com/nakafaai/aksara@refs/heads/main"
+                and (.digest.gitCommit | test("^[0-9a-f]{40}$")))
+              | .digest.gitCommit]
+            | if length == 1 then .[0] else empty end' <<<"$provenance")
           encoded_digest=${EXPECTED_INTEGRITY#sha512-}
           expected_digest=$(printf '%s' "$encoded_digest" | base64 --decode | xxd -p -c 256)
           expected_subject="pkg:npm/%40nakafa/aksara-contracts@$PACKAGE_VERSION"
           jq -e \
             --arg digest "$expected_digest" \
-            --arg sha "$SOURCE_SHA" \
+            --arg sha "$provenance_source_sha" \
             --arg subject "$expected_subject" \
             '.subject == [{name: $subject, digest: {sha512: $digest}}]
               and .predicate.buildDefinition.buildType == "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1"
@@ -305,12 +313,23 @@ jobs:
                 and .uri == "git+https://github.com/nakafaai/aksara@refs/heads/main")
               and .predicate.runDetails.builder.id == "https://github.com/actions/runner/github-hosted"' \
             <<<"$provenance"
+
+          if [[ "$provenance_source_sha" != "$CURRENT_SHA" ]]; then
+            comparison=$(gh api \
+              "repos/$GITHUB_REPOSITORY/compare/$provenance_source_sha...$CURRENT_SHA")
+            comparison_status=$(jq -er '.status' <<<"$comparison")
+            if [[ "$comparison_status" != "ahead" ]]; then
+              echo "Published bootstrap source is not an ancestor of current main." >&2
+              exit 1
+            fi
+          fi
           {
             echo "## Bootstrap package verified"
             echo
             echo "- Package: \`$PACKAGE_NAME@$PACKAGE_VERSION\`"
             echo "- Integrity: \`$EXPECTED_INTEGRITY\`"
-            echo "- Source SHA: \`$SOURCE_SHA\`"
+            echo "- Published source SHA: \`$provenance_source_sha\`"
+            echo "- Current main SHA: \`$CURRENT_SHA\`"
             echo
             echo "Immediately revoke the bootstrap token, delete NPM_BOOTSTRAP_TOKEN, configure publish.yml as a stage-only trusted publisher, then merge a reviewed PR that deletes this workflow and marks bootstrap complete."
           } >> "$GITHUB_STEP_SUMMARY"
