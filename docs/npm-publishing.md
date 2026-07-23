@@ -1,8 +1,11 @@
 # Contracts package publishing
 
-`@nakafa/aksara-contracts` is intended to be Aksara's only public npm package.
-It is not published today. It contains schemas and verification code, not
-corpus bodies or renderer implementations.
+`@nakafa/aksara-contracts` is reserved as Aksara's only public npm package. It
+contains schemas and verification code, not corpus bodies or renderer
+implementations. While `.changeset/bootstrap.json` records `contracts: false`,
+the package is intentionally unavailable. A successful registry proof and the
+reviewed marker transition establish availability; this document never infers
+mutable registry state.
 
 ## Exact package artifact
 
