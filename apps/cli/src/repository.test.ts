@@ -166,8 +166,7 @@ describe("preview repository resolution", () => {
         "material",
         "lesson",
         "mathematics",
-        "function-composition",
-        "inverse-function",
+        "function-composition-inverse-function",
         "function-concept",
         "id.mdx"
       ),

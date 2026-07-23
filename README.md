@@ -46,7 +46,7 @@ pnpm test
 pnpm build
 pnpm verify:package
 pnpm status
-pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx
+pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
 ```
 
 `pnpm status` reads the authoritative publication slots using publication

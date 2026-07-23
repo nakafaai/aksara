@@ -16,7 +16,10 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
-import { encodeCorpusPath, LogicalCorpusSegmentSchema } from "#corpus/path";
+
+const LogicalCorpusSegmentSchema = Schema.String.pipe(
+  Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u)
+);
 
 const CorpusSegmentSchema = Schema.String.pipe(
   Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)?$/u)
@@ -109,7 +112,7 @@ function expandFamily(family: MaterialFamily) {
   const sourceRoot = [
     "packages/corpus/material/lesson",
     subject,
-    ...encodeCorpusPath(materialSlug),
+    materialSlug,
     sectionKey,
   ].join("/");
 

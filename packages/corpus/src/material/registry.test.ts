@@ -69,7 +69,7 @@ describe("material registry", () => {
           sectionKey: "function-concept",
         },
         sourcePath:
-          "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx",
+          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
       },
       {
         delivery: "public",
@@ -86,7 +86,7 @@ describe("material registry", () => {
           sectionKey: "function-concept",
         },
         sourcePath:
-          "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/id.mdx",
+          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
       },
     ]);
   });
