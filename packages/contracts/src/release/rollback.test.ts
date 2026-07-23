@@ -2,7 +2,10 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import { MaterialHeadSchema } from "#contracts/release/head";
+import {
+  MaterialHeadSchema,
+  QuestionHeadSchema,
+} from "#contracts/release/head";
 import {
   canonicalizeRollbackPage,
   canonicalizeRollbackRecord,
@@ -16,6 +19,7 @@ import {
   RollbackSnapshotEntrySchema,
   RollbackUpsertStateSchema,
 } from "#contracts/release/rollback";
+import { ContentUpsertSchema } from "#contracts/release/spec";
 
 const manifestHash = `sha256:${"f".repeat(64)}`;
 const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
@@ -38,16 +42,16 @@ const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
   },
   signature: `${"A".repeat(85)}A`,
 });
-const change = {
+const change = Schema.decodeUnknownSync(ContentUpsertSchema)({
   artifactHash: artifact.artifactHash,
   contentKey: artifact.payload.contentKey,
   delivery: "public",
+  family: "material",
   locale: artifact.payload.locale,
   operation: "upsert",
-  publicPath: "subjects/test/material/lesson",
   rendererDomain: artifact.payload.rendererDomain,
   sourcePath: "packages/corpus/test/rollback/en.mdx",
-};
+});
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: artifact.payload.contentKey,
   kind: "subject-lesson",
@@ -56,7 +60,7 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: "subjects/test/material",
-  publicPath: change.publicPath,
+  publicPath: "subjects/test/material/lesson",
   sectionKey: "test-lesson",
   sitemap: true,
 });
@@ -65,31 +69,29 @@ const head = Schema.decodeUnknownSync(MaterialHeadSchema)({
   compilerConfigHash: artifact.payload.compilerConfigHash,
   contentKey: change.contentKey,
   delivery: change.delivery,
+  family: "material",
   locale: change.locale,
   projectionHash: `sha256:${"d".repeat(64)}`,
-  publicPath: change.publicPath,
+  publicPath: projection.publicPath,
   rendererDomain: change.rendererDomain,
   sourceHash: artifact.payload.sourceHash,
   sourcePath: change.sourcePath,
 });
-const upsert = Schema.decodeUnknownSync(RollbackUpsertStateSchema)({
-  artifact,
-  change,
-  projection,
-});
+const upsert = RollbackUpsertStateSchema.make({ artifact, change, projection });
 const deletion = Schema.decodeUnknownSync(RollbackDeleteStateSchema)({
   change: {
     contentKey: change.contentKey,
+    family: "material",
     locale: change.locale,
     operation: "delete",
   },
 });
-const record = Schema.decodeUnknownSync(RollbackRecordSchema)({
+const record = RollbackRecordSchema.make({
   current: upsert,
   index: 0,
   prior: deletion,
 });
-const reverseRecord = Schema.decodeUnknownSync(RollbackRecordSchema)({
+const reverseRecord = RollbackRecordSchema.make({
   current: deletion,
   index: 1,
   prior: upsert,
@@ -114,16 +116,9 @@ describe("rollback contracts", () => {
       onExcessProperty: "error",
     });
     for (const limit of [1, MAX_ROLLBACK_PAGE_RECORDS]) {
-      expect(
-        Either.isRight(
-          decode({
-            afterIndex: -1,
-            limit,
-            rollbackOf: "release-active",
-            rollbackOfManifestHash: manifestHash,
-          })
-        )
-      ).toBe(true);
+      expect(Either.isRight(decode(page({ afterIndex: -1, limit })))).toBe(
+        true
+      );
     }
     for (const input of [
       { afterIndex: -2, limit: 1 },
@@ -139,13 +134,21 @@ describe("rollback contracts", () => {
       )
     ).toBe(true);
   });
-  it("canonically serializes absent and material snapshot states", () => {
+  it("canonically serializes absent and implemented snapshot states", () => {
+    const questionHead = Schema.decodeUnknownSync(QuestionHeadSchema)({
+      ...head,
+      delivery: "authenticated",
+      family: "question",
+      publicPath: undefined,
+      rendererDomain: "snbt-general",
+    });
     const entries = [
       Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
         index: 0,
         releaseId: "release-active",
         snapshot: {
           contentKey: change.contentKey,
+          family: "material",
           locale: change.locale,
           state: "absent",
         },
@@ -154,6 +157,11 @@ describe("rollback contracts", () => {
         index: 1,
         releaseId: "release-active",
         snapshot: { head, state: "material" },
+      }),
+      Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
+        index: 2,
+        releaseId: "release-active",
+        snapshot: { head: questionHead, state: "question" },
       }),
     ];
     expect(
@@ -173,10 +181,9 @@ describe("rollback contracts", () => {
     );
     expect(isRollbackUpsert(upsert)).toBe(true);
     expect(isRollbackUpsert(deletion)).toBe(false);
-    expect(JSON.parse(canonicalizeRollbackRecord(record))).toEqual(record);
-    expect(JSON.parse(canonicalizeRollbackRecord(reverseRecord))).toEqual(
-      reverseRecord
-    );
+    for (const entry of [record, reverseRecord]) {
+      expect(JSON.parse(canonicalizeRollbackRecord(entry))).toEqual(entry);
+    }
     expect(JSON.parse(canonicalizeRollbackPage(value))).toEqual(value);
   });
   it("accepts only one canonical empty final page", () => {
@@ -206,7 +213,6 @@ describe("rollback contracts", () => {
       )
     ).toBe(true);
     for (const input of [
-      { done: true, nextIndex: 1, records: [record], total: 2 },
       { done: true, nextIndex: 0, records: [record], total: 2 },
       {
         done: true,
@@ -281,16 +287,12 @@ describe("rollback contracts", () => {
     );
   });
   it("does not allow artifact or projection bodies on a delete", () => {
+    const invalidPrior = { ...deletion, artifact, projection };
     const result = decodePage(
       page({
         done: true,
         nextIndex: 0,
-        records: [
-          {
-            ...record,
-            prior: { ...deletion, artifact, projection },
-          },
-        ],
+        records: [{ ...record, prior: invalidPrior }],
         total: 1,
       })
     );

@@ -6,15 +6,6 @@ export const metadata = {
   subject: "Busur dan Juring Lingkaran",
 };
 
-import {
-  createCircleArcLine,
-  createCircleChordPoints,
-  createCircleOutlinePoints,
-  createCircleRadiusPoints,
-  createCircleSegmentBoundaryLines,
-} from "@repo/design-system/components/contents/mathematics/circle";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
-import { getColor } from "@repo/design-system/lib/color";
 
 ## Konsep Dasar Tembereng
 
@@ -35,19 +26,17 @@ Sebelum membahas lebih lanjut, penting untuk memahami perbedaan mendasar antara 
   showZAxis={false}
   data={[
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("INDIGO"),
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
       showPoints: false,
       smooth: true,
       lineWidth: 1,
     },
     {
-      points: createCircleChordPoints({
-        radius: 4,
+      kind: "circle-chord", radius: 4,
         startDegrees: 30,
         sweepDegrees: 120,
-      }),
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -59,8 +48,7 @@ Sebelum membahas lebih lanjut, penting untuk memahami perbedaan mendasar antara 
         },
       ],
     },
-    createCircleArcLine({
-      color: getColor("ORANGE"),
+    { kind: "circle-arc", color: "#ea580c",
       lineWidth: 4,
       label: {
         text: "Busur (garis lengkung)",
@@ -68,8 +56,7 @@ Sebelum membahas lebih lanjut, penting untuk memahami perbedaan mendasar antara 
       },
       radius: 4,
       startDegrees: 30,
-      sweepDegrees: 120,
-    }),
+      sweepDegrees: 120 },
   ]}
 />
 
@@ -80,19 +67,17 @@ Sebelum membahas lebih lanjut, penting untuk memahami perbedaan mendasar antara 
   showZAxis={false}
   data={[
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("INDIGO"),
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
       showPoints: false,
       smooth: true,
       lineWidth: 1,
     },
     {
-      points: createCircleChordPoints({
-        radius: 4,
+      kind: "circle-chord", radius: 4,
         startDegrees: 30,
         sweepDegrees: 120,
-      }),
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -104,23 +89,19 @@ Sebelum membahas lebih lanjut, penting untuk memahami perbedaan mendasar antara 
         },
       ],
     },
-    createCircleArcLine({
-      color: getColor("ORANGE"),
+    { kind: "circle-arc", color: "#ea580c",
       lineWidth: 2,
       radius: 4,
       startDegrees: 30,
-      sweepDegrees: 120,
-    }),
-    ...createCircleSegmentBoundaryLines({
-      color: getColor("LIME"),
+      sweepDegrees: 120 },
+    { kind: "circle-segment", color: "#65a30d",
       radius: 4,
       startDegrees: 30,
       sweepDegrees: 120,
       label: {
         text: "Tembereng (area/daerah)",
         offset: [0, 0.8, 0],
-      },
-    }),
+      } },
   ]}
 />
 
@@ -144,8 +125,8 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
   data={[
     // Lingkaran utama
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("INDIGO"),
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
       showPoints: false,
       smooth: true,
       lineWidth: 1,
@@ -153,7 +134,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
     // Titik pusat O
     {
       points: [{ x: 0, y: 0, z: 0 }],
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: true,
       smooth: false,
       lineWidth: 3,
@@ -167,8 +148,8 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
     },
     // Jari-jari OA
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 30 }),
-      color: getColor("CYAN"),
+      kind: "circle-radius", radius: 4, degrees: 30,
+      color: "#0891b2",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -182,8 +163,8 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
     },
     // Jari-jari OB
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 150 }),
-      color: getColor("CYAN"),
+      kind: "circle-radius", radius: 4, degrees: 150,
+      color: "#0891b2",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -196,8 +177,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
       ],
     },
     // Arc sudut pusat untuk menunjukkan 120°
-    createCircleArcLine({
-      color: getColor("AMBER"),
+    { kind: "circle-arc", color: "#d97706",
       lineWidth: 3,
       label: {
         text: "120°",
@@ -205,31 +185,26 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
       },
       radius: 1.5,
       startDegrees: 30,
-      sweepDegrees: 120,
-    }),
+      sweepDegrees: 120 },
     // Tali busur AB
     {
-      points: createCircleChordPoints({
-        radius: 4,
+      kind: "circle-chord", radius: 4,
         startDegrees: 30,
         sweepDegrees: 120,
-      }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
       smooth: false,
       lineWidth: 3,
     },
     // Tembereng (area yang diarsir)
-    ...createCircleSegmentBoundaryLines({
-      color: getColor("ORANGE"),
+    { kind: "circle-segment", color: "#ea580c",
       radius: 4,
       startDegrees: 30,
       sweepDegrees: 120,
       label: {
         text: "Tembereng Minor",
         offset: [0, 0.8, 0],
-      },
-    }),
+      } },
   ]}
 />
 
@@ -241,8 +216,8 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
   data={[
     // Lingkaran utama
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("INDIGO"),
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
       showPoints: false,
       smooth: true,
       lineWidth: 1,
@@ -250,7 +225,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
     // Titik pusat O
     {
       points: [{ x: 0, y: 0, z: 0 }],
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: true,
       smooth: false,
       lineWidth: 3,
@@ -264,8 +239,8 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
     },
     // Jari-jari OA (menggunakan sudut yang berbeda untuk mayor)
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 45 }),
-      color: getColor("CYAN"),
+      kind: "circle-radius", radius: 4, degrees: 45,
+      color: "#0891b2",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -279,8 +254,8 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
     },
     // Jari-jari OB
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 285 }),
-      color: getColor("CYAN"),
+      kind: "circle-radius", radius: 4, degrees: 285,
+      color: "#0891b2",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -293,8 +268,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
       ],
     },
     // Arc sudut pusat untuk menunjukkan 240° (menggunakan arc yang lebih besar)
-    createCircleArcLine({
-      color: getColor("AMBER"),
+    { kind: "circle-arc", color: "#d97706",
       lineWidth: 3,
       label: {
         progress: 7 / 8,
@@ -303,23 +277,19 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
       },
       radius: 1.2,
       startDegrees: 45,
-      sweepDegrees: 240,
-    }),
+      sweepDegrees: 240 },
     // Tali busur AB
     {
-      points: createCircleChordPoints({
-        radius: 4,
+      kind: "circle-chord", radius: 4,
         startDegrees: 45,
         sweepDegrees: 240,
-      }),
-      color: getColor("CYAN"),
+      color: "#0891b2",
       showPoints: false,
       smooth: false,
       lineWidth: 3,
     },
     // Tembereng mayor (area yang diarsir)
-    ...createCircleSegmentBoundaryLines({
-      color: getColor("LIME"),
+    { kind: "circle-segment", color: "#65a30d",
       radius: 4,
       startDegrees: 45,
       sweepDegrees: 240,
@@ -327,8 +297,7 @@ Berdasarkan ukurannya, tembereng dapat dibedakan menjadi dua jenis yang memiliki
         progress: 2 / 3,
         text: "Tembereng Mayor",
         offset: [0, -1.5, 0],
-      },
-    }),
+      } },
   ]}
 />
 
@@ -382,15 +351,15 @@ Mari kita lihat bagaimana tembereng terbentuk dari komponen-komponennya:
   showZAxis={false}
   data={[
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("INDIGO"),
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
       showPoints: false,
       smooth: true,
       lineWidth: 1,
     },
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 0 }),
-      color: getColor("VIOLET"),
+      kind: "circle-radius", radius: 4, degrees: 0,
+      color: "#7c3aed",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -408,8 +377,8 @@ Mari kita lihat bagaimana tembereng terbentuk dari komponen-komponennya:
       ],
     },
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 90 }),
-      color: getColor("VIOLET"),
+      kind: "circle-radius", radius: 4, degrees: 90,
+      color: "#7c3aed",
       showPoints: false,
       smooth: false,
       lineWidth: 2,
@@ -422,12 +391,10 @@ Mari kita lihat bagaimana tembereng terbentuk dari komponen-komponennya:
       ],
     },
     {
-      points: createCircleChordPoints({
-        radius: 4,
+      kind: "circle-chord", radius: 4,
         startDegrees: 0,
         sweepDegrees: 90,
-      }),
-      color: getColor("LIME"),
+      color: "#65a30d",
       showPoints: false,
       smooth: false,
       lineWidth: 3,
@@ -439,8 +406,7 @@ Mari kita lihat bagaimana tembereng terbentuk dari komponen-komponennya:
         },
       ],
     },
-    createCircleArcLine({
-      color: getColor("FUCHSIA"),
+    { kind: "circle-arc", color: "#c026d3",
       lineWidth: 4,
       label: {
         text: "Busur AB (90°)",
@@ -448,8 +414,7 @@ Mari kita lihat bagaimana tembereng terbentuk dari komponen-komponennya:
       },
       radius: 4,
       startDegrees: 0,
-      sweepDegrees: 90,
-    }),
+      sweepDegrees: 90 },
   ]}
 />
 

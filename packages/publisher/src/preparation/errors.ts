@@ -12,6 +12,7 @@ const RecordIndexSchema = Schema.Number.pipe(
 export const CoherenceFieldSchema = Schema.Literal(
   "artifactHash",
   "contentKey",
+  "family",
   "locale",
   "rendererDomain",
   "sourcePath",

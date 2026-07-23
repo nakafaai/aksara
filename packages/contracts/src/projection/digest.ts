@@ -6,9 +6,9 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
-  canonicalizeMaterialProjection,
-  type MaterialLessonProjection,
-} from "#contracts/projection/material";
+  type ContentProjection,
+  canonicalizeContentProjection,
+} from "#contracts/projection/spec";
 
 const CONTENT_PROJECTION_DIGEST_DOMAIN = "nakafa.aksara.content-projections.v1";
 
@@ -30,8 +30,8 @@ class ProjectionDigestState {
   }
 
   /** Adds one canonical projection to this invocation-owned digest. */
-  update(projection: MaterialLessonProjection): void {
-    this.#hash.update(canonicalizeMaterialProjection(projection));
+  update(projection: ContentProjection): void {
+    this.#hash.update(canonicalizeContentProjection(projection));
     this.#hash.update("\n");
     this.count += 1;
   }
@@ -50,11 +50,11 @@ export function createProjectionDigest(releaseId: typeof ReleaseIdSchema.Type) {
   });
 }
 
-/** Adds one canonical material projection to an incremental digest. */
+/** Adds one canonical content projection to an incremental digest. */
 export function updateProjectionDigest(
   releaseId: typeof ReleaseIdSchema.Type,
   state: ProjectionDigestState,
-  projection: MaterialLessonProjection
+  projection: ContentProjection
 ) {
   return Effect.try({
     catch: () => new ProjectionHashError({ releaseId }),
@@ -80,7 +80,7 @@ export function finalizeProjectionDigest(
 export const digestProjections = Effect.fn("AksaraContracts.digestProjections")(
   function* <E, R>(
     releaseId: ReleaseId,
-    projections: Stream.Stream<MaterialLessonProjection, E, R>
+    projections: Stream.Stream<ContentProjection, E, R>
   ) {
     const initial = yield* createProjectionDigest(releaseId);
     const state = yield* projections.pipe(

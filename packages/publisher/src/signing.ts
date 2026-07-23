@@ -26,7 +26,6 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import {
   type ContentReleaseManifest,
-  canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
@@ -34,6 +33,7 @@ import {
   hashContentReleaseManifest,
   type ReleaseHashComputationError,
 } from "@nakafa/aksara-contracts/release/hash";
+import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { Effect, Schema } from "effect";
 import { ContentSigningError } from "#publisher/signing-errors";
 

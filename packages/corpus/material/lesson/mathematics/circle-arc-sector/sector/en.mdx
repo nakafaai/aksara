@@ -6,13 +6,6 @@ export const metadata = {
   subject: "Circle Arcs and Sectors",
 };
 
-import {
-  createCircleArcLine,
-  createCircleOutlinePoints,
-  createCircleRadiusPoints,
-} from "@repo/design-system/components/contents/mathematics/circle";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
-import { getColor } from "@repo/design-system/lib/color";
 
 ## Understanding Sectors
 
@@ -25,14 +18,14 @@ Every sector has three main components that are interconnected. First are the tw
   description="The sector is shown as a colored area bounded by two radii and one arc."
   data={[
     {
-      points: createCircleOutlinePoints(3),
-      color: getColor("CYAN"),
+      kind: "circle-outline", radius: 3,
+      color: "#0891b2",
       showPoints: false,
       smooth: true
     },
     {
-      points: createCircleRadiusPoints({ radius: 3, degrees: 45 }),
-      color: getColor("PURPLE"),
+      kind: "circle-radius", radius: 3, degrees: 45,
+      color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
       labels: [
@@ -41,23 +34,21 @@ Every sector has three main components that are interconnected. First are the tw
       ]
     },
     {
-      points: createCircleRadiusPoints({ radius: 3, degrees: 135 }),
-      color: getColor("PURPLE"),
+      kind: "circle-radius", radius: 3, degrees: 135,
+      color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
       labels: [
         { text: "B", at: 1, offset: [-0.3, 0.3, 0] }
       ]
     },
-    createCircleArcLine({
-      radius: 3,
+    { kind: "circle-arc", radius: 3,
       startDegrees: 45,
       sweepDegrees: 90,
       segments: 25,
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       lineWidth: 4,
-      label: { text: "Sector", offset: [0.5, 0.5, 0] }
-    })
+      label: { text: "Sector", offset: [0.5, 0.5, 0] } }
   ]}
   cameraPosition={[0, 0, 10]}
   showZAxis={false}
@@ -82,8 +73,8 @@ When the central angle increases, the sector will become wider. For example, a s
   description={<>Sectors with central angles of <InlineMath math="60^\circ" />, <InlineMath math="90^\circ" />, and <InlineMath math="120^\circ" /> on the same circle.</>}
   data={[
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("TEAL"),
+      kind: "circle-outline", radius: 4,
+      color: "#0d9488",
       showPoints: false,
       smooth: true
     },
@@ -92,7 +83,7 @@ When the central angle increases, the sector will become wider. For example, a s
         { x: 0, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 }
       ],
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       showPoints: false,
       lineWidth: 2,
       labels: [
@@ -100,26 +91,24 @@ When the central angle increases, the sector will become wider. For example, a s
       ]
     },
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 60 }),
-      color: getColor("VIOLET"),
+      kind: "circle-radius", radius: 4, degrees: 60,
+      color: "#7c3aed",
       showPoints: false,
       lineWidth: 2
     },
-    createCircleArcLine({
-      radius: 4,
+    { kind: "circle-arc", radius: 4,
       startDegrees: 0,
       sweepDegrees: 60,
       segments: 20,
-      color: getColor("AMBER"),
+      color: "#d97706",
       lineWidth: 3,
-      label: { text: "60°", offset: [0.5, 0.3, 0] }
-    }),
+      label: { text: "60°", offset: [0.5, 0.3, 0] } },
     {
       points: [
         { x: 0, y: 0, z: 2 },
         { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 2 }
       ],
-      color: getColor("INDIGO"),
+      color: "#4f46e5",
       showPoints: false,
       lineWidth: 2
     },
@@ -132,7 +121,7 @@ When the central angle increases, the sector will become wider. For example, a s
           z: 2
         };
       }),
-      color: getColor("LIME"),
+      color: "#65a30d",
       showPoints: false,
       smooth: true,
       lineWidth: 3,
@@ -145,7 +134,7 @@ When the central angle increases, the sector will become wider. For example, a s
         { x: 0, y: 0, z: 4 },
         { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3), z: 4 }
       ],
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       lineWidth: 2
     },
@@ -158,7 +147,7 @@ When the central angle increases, the sector will become wider. For example, a s
           z: 4
         };
       }),
-      color: getColor("FUCHSIA"),
+      color: "#c026d3",
       showPoints: false,
       smooth: true,
       lineWidth: 3,

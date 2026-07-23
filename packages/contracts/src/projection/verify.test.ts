@@ -3,7 +3,11 @@ import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { digestProjections } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import { verifyContentProjections } from "#contracts/projection/verify";
+import { QuestionBodyProjectionSchema } from "#contracts/projection/question";
+import {
+  decodeContentProjections,
+  verifyContentProjections,
+} from "#contracts/projection/verify";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 
@@ -35,6 +39,26 @@ function projection(
 const firstProjection = projection("test:a", "en", "subjects/test/material/a");
 const secondProjection = projection("test:b", "id", "materi/test/material/b");
 const projections = [firstProjection, secondProjection];
+const questionProjection = Schema.decodeUnknownSync(
+  QuestionBodyProjectionSchema
+)({
+  bodyKind: "answer",
+  contentKey:
+    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer",
+  kind: "question-body",
+  locale: "en",
+  metadata: {
+    authors: [{ name: "Test Author" }],
+    date: "2026-01-01",
+    title: "Question 1 answer",
+  },
+  peerContentKey:
+    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
+  questionKey:
+    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1",
+  questionNumber: 1,
+  setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+});
 const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)(
   "test-release-projections"
 );
@@ -120,5 +144,15 @@ describe("projection integrity", () => {
       duplicateIndex: 1,
       firstIndex: 0,
     });
+  });
+
+  it("accepts non-route question projections without claiming routes", async () => {
+    const decoded = await Effect.runPromise(
+      decodeContentProjections(Stream.fromIterable([questionProjection])).pipe(
+        Stream.runCollect
+      )
+    );
+
+    expect([...decoded]).toEqual([questionProjection]);
   });
 });

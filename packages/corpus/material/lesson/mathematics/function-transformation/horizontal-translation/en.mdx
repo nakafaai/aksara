@@ -6,8 +6,7 @@ export const metadata = {
   subject: "Function Transformation",
 };
 
-import { getColor } from "@repo/design-system/lib/color";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
+
 
 ## Basic Concepts of Horizontal Translation
 
@@ -41,7 +40,7 @@ Let's see how horizontal translation works on the quadratic function <InlineMath
         const x = (i - 20) * 0.25;
         return { x, y: x * x, z: 0 };
       }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       labels: [{ text: "f(x) = x²", offset: [0.5, 1, 0] }],
       showPoints: false,
     },
@@ -50,7 +49,7 @@ Let's see how horizontal translation works on the quadratic function <InlineMath
         const x = (i - 20) * 0.25;
         return { x, y: (x - 3) * (x - 3), z: 0 };
       }),
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       labels: [{ text: "g(x) = (x - 3)²", offset: [0.5, 1, 0] }],
       showPoints: false,
     },
@@ -59,7 +58,7 @@ Let's see how horizontal translation works on the quadratic function <InlineMath
         const x = (i - 20) * 0.25;
         return { x, y: (x + 2) * (x + 2), z: 0 };
       }),
-      color: getColor("TEAL"),
+      color: "#0d9488",
       labels: [{ text: "h(x) = (x + 2)²", offset: [0.5, 1, 0] }],
       showPoints: false,
     },
@@ -86,7 +85,7 @@ Now let's apply the same concept to the linear function <InlineMath math="f(x) =
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 1, z: 0 };
       }),
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       labels: [{ text: "f(x) = 2x + 1", offset: [1, 0.5, 0] }],
       showPoints: false,
     },
@@ -95,7 +94,7 @@ Now let's apply the same concept to the linear function <InlineMath math="f(x) =
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x - 4) + 1, z: 0 };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       labels: [{ text: "g(x) = 2(x - 4) + 1", offset: [1, 0.5, 0] }],
       showPoints: false,
     },
@@ -104,7 +103,7 @@ Now let's apply the same concept to the linear function <InlineMath math="f(x) =
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x + 3) + 1, z: 0 };
       }),
-      color: getColor("CYAN"),
+      color: "#0891b2",
       labels: [{ text: "h(x) = 2(x + 3) + 1", offset: [1, 0.5, 0] }],
       showPoints: false,
     },
@@ -150,7 +149,7 @@ Let's look at horizontal translation on the exponential function <InlineMath mat
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
-      color: getColor("INDIGO"),
+      color: "#4f46e5",
       labels: [{ text: "f(x) = 2^x", offset: [0.5, 1, 0] }],
       showPoints: false,
     },
@@ -159,7 +158,7 @@ Let's look at horizontal translation on the exponential function <InlineMath mat
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x - 2), z: 0 };
       }),
-      color: getColor("EMERALD"),
+      color: "#059669",
       labels: [{ text: "g(x) = 2^(x-2)", offset: [0.5, 1, 0] }],
       showPoints: false,
     },
@@ -168,7 +167,7 @@ Let's look at horizontal translation on the exponential function <InlineMath mat
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x + 1), z: 0 };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       labels: [{ text: "h(x) = 2^(x+1)", offset: [0.5, 1, 0] }],
       showPoints: false,
     },
@@ -227,7 +226,7 @@ It's important to understand the difference between horizontal and vertical tran
            const x = (i - 20) * 0.25;
            return { x, y: x * x + 2 * x + 1, z: 0 };
          }),
-         color: getColor("PURPLE"),
+         color: "#9333ea",
          labels: [{ text: "f(x) = x² + 2x + 1", offset: [1, 1, 0] }],
          showPoints: false,
        },
@@ -236,7 +235,7 @@ It's important to understand the difference between horizontal and vertical tran
            const x = (i - 20) * 0.25;
            return { x, y: x * x - 4 * x + 4, z: 0 };
          }),
-         color: getColor("ORANGE"),
+         color: "#ea580c",
          labels: [{ text: "f'(x) = x² - 4x + 4", offset: [1, 1, 0] }],
          showPoints: false,
        },
@@ -266,7 +265,7 @@ It's important to understand the difference between horizontal and vertical tran
            const x = i * 0.25;
            return { x, y: Math.sqrt(x), z: 0 };
          }),
-         color: getColor("VIOLET"),
+         color: "#7c3aed",
          labels: [{ text: "g(x) = √x", offset: [1, 0.5, 0] }],
          showPoints: false,
        },
@@ -278,7 +277,7 @@ It's important to understand the difference between horizontal and vertical tran
            }
            return null;
          }).filter(Boolean),
-         color: getColor("TEAL"),
+         color: "#0d9488",
          labels: [{ text: "g'(x) = √(x + 4)", offset: [1, 0.5, 0] }],
          showPoints: false,
        },
@@ -304,7 +303,7 @@ It's important to understand the difference between horizontal and vertical tran
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, x), z: 0 };
          }),
-         color: getColor("INDIGO"),
+         color: "#4f46e5",
          labels: [{ text: "h(x) = 3^x", offset: [0.5, 1, 0] }],
          showPoints: false,
        },
@@ -313,7 +312,7 @@ It's important to understand the difference between horizontal and vertical tran
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, x - 2), z: 0 };
          }),
-         color: getColor("EMERALD"),
+         color: "#059669",
          labels: [{ text: "h'(x) = 3^(x-2)", offset: [0.5, 1, 0] }],
          showPoints: false,
        },

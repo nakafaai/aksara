@@ -39,8 +39,8 @@ describe("production command", () => {
       })
     ).resolves.toMatchObject({ releaseId: "release-active" });
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       publishCalls: 0,
       rendererCalls: 0,
       resumeBundle: active,
@@ -66,8 +66,8 @@ describe("production command", () => {
       })
     ).resolves.toEqual(receiptFor(completed.release.manifest));
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       publishCalls: 0,
       rendererCalls: 0,
       resumeBundle: completed,
@@ -113,8 +113,8 @@ describe("production command", () => {
       stage: "state",
     });
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       publishCalls: 0,
       rendererCalls: 0,
       resumeCalls: 0,

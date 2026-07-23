@@ -2,7 +2,10 @@ import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/in
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
+import {
+  type ContentProjection,
+  familyForProjection,
+} from "@nakafa/aksara-contracts/projection/spec";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
@@ -32,7 +35,7 @@ interface RecordState {
   previous: PreparedContentRecord | undefined;
 }
 
-/** One item and its optional material projection derived in the same replay. */
+/** One item and its optional content projection derived in the same replay. */
 export type DerivedContentRecord =
   | {
       readonly item: ContentReleaseItem;
@@ -42,7 +45,7 @@ export type DerivedContentRecord =
   | {
       readonly item: ContentReleaseItem;
       readonly kind: "upsert";
-      readonly projection: MaterialLessonProjection;
+      readonly projection: ContentProjection;
       readonly rollback: RollbackSnapshotEntry;
     };
 
@@ -68,6 +71,9 @@ function findCoherenceMismatch(
     projection.contentKey !== change.contentKey
   ) {
     return "contentKey";
+  }
+  if (familyForProjection(projection) !== change.family) {
+    return "family";
   }
   if (
     payload.locale !== change.locale ||
@@ -131,6 +137,7 @@ function validatePriorState(
       : transition.prior.head;
   const matchesIdentity =
     identity.contentKey === change.contentKey &&
+    identity.family === change.family &&
     identity.locale === change.locale;
   const validAbsence =
     transition.prior.state !== "absent" || change.operation === "upsert";

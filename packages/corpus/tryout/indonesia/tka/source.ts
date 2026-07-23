@@ -2,7 +2,7 @@ import { defineTryoutExamSource } from "#corpus/tryout/schema";
 
 const TKA_SECONDS_PER_QUESTION = 90;
 
-/** Source-controlled TKA try-out catalog and question placements. */
+/** Lazily validates the source-controlled TKA catalog and placements. */
 export const tkaTryoutSource = defineTryoutExamSource({
   countryCode: "ID",
   countryKey: "indonesia",

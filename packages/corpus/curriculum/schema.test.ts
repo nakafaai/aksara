@@ -1,8 +1,9 @@
-import { Effect, Either } from "effect";
+import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
+import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
+import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
 import {
-  CurriculumSourceDefinitionError,
   classNode,
   courseNode,
   defineCurriculum,
@@ -11,6 +12,8 @@ import {
   subjectNode,
   unitNode,
 } from "#corpus/curriculum/schema";
+import { singaporeMoeCurriculum } from "#corpus/curriculum/singapore-moe/source";
+import { unitedStatesCurriculum } from "#corpus/curriculum/united-states/source";
 import { importCorpusModules } from "#corpus/test/imports";
 
 /** Builds complete localized translations for one real curriculum node shape. */
@@ -22,7 +25,7 @@ function translations(prefix: string) {
 }
 
 describe("curriculum schema", () => {
-  it("defines every structure level and a nested material leaf", () => {
+  it("defines every structure level and a nested material leaf", async () => {
     const leaf = materialNode({
       key: "function-concept",
       level: "lesson",
@@ -57,10 +60,9 @@ describe("curriculum schema", () => {
         translations: translations("unit"),
       }),
     ];
-    const curriculum = defineCurriculum({
-      programKey: "merdeka",
-      tree: nodes,
-    });
+    const curriculum = await Effect.runPromise(
+      defineCurriculum({ programKey: "merdeka", tree: nodes })
+    );
 
     expect(nodes.map(({ level }) => level)).toEqual([
       "class",
@@ -75,35 +77,39 @@ describe("curriculum schema", () => {
     });
   });
 
-  it("rejects malformed keys and empty material references", () => {
-    const invalidKey = Either.try({
-      catch: (error) => error,
-      try: () =>
-        unitNode({
-          key: "Invalid Node",
-          order: 1,
-          translations: translations("invalid"),
-        }),
-    });
-    const emptyMaterial = Either.try({
-      catch: (error) => error,
-      try: () =>
-        materialNode({
-          key: "empty-material",
-          level: "lesson",
-          materialKeys: [],
-          order: 1,
-        }),
-    });
+  it("rejects malformed keys and empty material references", async () => {
+    const invalidKey = await Effect.runPromise(
+      defineCurriculum({
+        programKey: "merdeka",
+        tree: [
+          unitNode({
+            key: "Invalid Node",
+            order: 1,
+            translations: translations("invalid"),
+          }),
+        ],
+      }).pipe(Effect.flip)
+    );
+    const emptyMaterial = await Effect.runPromise(
+      defineCurriculum({
+        programKey: "merdeka",
+        tree: [
+          materialNode({
+            key: "empty-material",
+            level: "lesson",
+            materialKeys: [],
+            order: 1,
+          }),
+        ],
+      }).pipe(Effect.flip)
+    );
 
-    expect(Either.isLeft(invalidKey)).toBe(true);
-    expect(Either.isLeft(emptyMaterial)).toBe(true);
-    if (Either.isLeft(invalidKey)) {
-      expect(String(invalidKey.left)).toContain("Invalid curriculum node key.");
-    }
+    expect(invalidKey).toMatchObject({ _tag: "CurriculumDecodeError" });
+    expect(String(invalidKey.cause)).toContain("Invalid curriculum node key.");
+    expect(emptyMaterial).toMatchObject({ _tag: "CurriculumDecodeError" });
   });
 
-  it("reports duplicate identities anywhere in a recursive tree", () => {
+  it("reports duplicate identities anywhere in a recursive tree", async () => {
     const child = unitNode({
       key: "duplicate-node",
       order: 1,
@@ -115,14 +121,35 @@ describe("curriculum schema", () => {
       order: 1,
       translations: translations("parent"),
     });
-    /** Attempts to decode the deliberately duplicated real tree shape. */
-    const duplicate = () =>
-      defineCurriculum({ programKey: "merdeka", tree: [parent] });
-
-    expect(duplicate).toThrow(CurriculumSourceDefinitionError);
-    expect(duplicate).toThrow(
-      "Duplicate curriculum node duplicate-node in merdeka."
+    const error = await Effect.runPromise(
+      defineCurriculum({ programKey: "merdeka", tree: [parent] }).pipe(
+        Effect.flip
+      )
     );
+
+    expect(error).toMatchObject({
+      _tag: "CurriculumDuplicateError",
+      nodeKey: "duplicate-node",
+      programKey: "merdeka",
+    });
+  });
+
+  it("validates every authored curriculum source", async () => {
+    const curricula = await Effect.runPromise(
+      Effect.all([
+        cambridgeInternationalCurriculum,
+        merdekaCurriculum,
+        singaporeMoeCurriculum,
+        unitedStatesCurriculum,
+      ])
+    );
+
+    expect(curricula.map(({ programKey }) => programKey)).toEqual([
+      "cambridge-international",
+      "merdeka",
+      "singapore-moe",
+      "united-states",
+    ]);
   });
 
   it("loads every authored curriculum registry module", async () => {

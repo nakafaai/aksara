@@ -1,5 +1,3 @@
-import { getColor } from "@repo/design-system/lib/color";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
 
 export const metadata = {
   title: "Grafik Fungsi Logaritma",
@@ -30,7 +28,7 @@ Grafik fungsi logaritma memiliki bentuk yang khas dan berbeda dengan fungsi-fung
         const x = (i / 99) * 10 + 0.1;
         return { x, y: Math.log2(x), z: 0 };
       }),
-      color: getColor("SKY"),
+      color: "#0284c7",
       labels: [{ text: "y = log₂ x", at: 70, offset: [0.5, -0.4, 0] }],
       showPoints: false,
     },
@@ -39,7 +37,7 @@ Grafik fungsi logaritma memiliki bentuk yang khas dan berbeda dengan fungsi-fung
         const x = (i / 99) * 10 + 0.1;
         return { x, y: Math.log10(x), z: 0 };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       labels: [{ text: "y = log₁₀ x", at: 70, offset: [0.5, -0.5, 0] }],
       showPoints: false,
     },
@@ -48,7 +46,7 @@ Grafik fungsi logaritma memiliki bentuk yang khas dan berbeda dengan fungsi-fung
         const x = (i / 99) * 10 + 0.1;
         return { x, y: Math.log(x), z: 0 };
       }),
-      color: getColor("EMERALD"),
+      color: "#059669",
       labels: [{ text: "y = ln x", at: 70, offset: [0.5, -0.5, 0] }],
       showPoints: false,
     },
@@ -94,7 +92,7 @@ Mari kita pelajari langkah-langkah menggambar grafik fungsi logaritma dengan con
            const x = (i / 99) * 10 + 0.01;
            return { x, y: Math.log2(x), z: 0 };
          }),
-         color: getColor("SKY"),
+         color: "#0284c7",
          labels: [{ text: "y = log₂ x", at: 50, offset: [0.5, 1, 0] }],
          showPoints: false,
        },
@@ -108,7 +106,7 @@ Mari kita pelajari langkah-langkah menggambar grafik fungsi logaritma dengan con
            { x: 4, y: 2, z: 0 },
            { x: 8, y: 3, z: 0 },
          ],
-         color: getColor("ROSE"),
+         color: "#e11d48",
          showPoints: true,
          labels: [{ text: "(1, 0)", at: 3, offset: [0.5, 0.5, 0] }],
        },
@@ -138,7 +136,7 @@ Mari kita pelajari langkah-langkah menggambar grafik fungsi logaritma dengan con
            const x = (i / 99) * 10 + 0.01;
            return { x, y: Math.log(x) / Math.log(1 / 3), z: 0 };
          }),
-         color: getColor("ROSE"),
+         color: "#e11d48",
          labels: [{ text: "y = log₁/₃ x", at: 30, offset: [0.5, -1, 0] }],
          showPoints: false,
        },
@@ -151,7 +149,7 @@ Mari kita pelajari langkah-langkah menggambar grafik fungsi logaritma dengan con
            { x: 3, y: -1, z: 0 },
            { x: 9, y: -2, z: 0 },
          ],
-         color: getColor("PURPLE"),
+         color: "#9333ea",
          showPoints: true,
          labels: [{ text: "(1, 0)", at: 3, offset: [0.5, 0.5, 0] }],
        },
@@ -178,7 +176,7 @@ Mari kita bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
         const x = (i / 99) * 8 + 0.01;
         return { x, y: Math.log2(x), z: 0 };
       }),
-      color: getColor("SKY"),
+      color: "#0284c7",
       labels: [{ text: "y = log₂ x (naik)", at: 40, offset: [0.5, 0.5, 0] }],
       showPoints: false,
     },
@@ -187,7 +185,7 @@ Mari kita bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
         const x = (i / 99) * 8 + 0.01;
         return { x, y: Math.log(x) / Math.log(0.5), z: 0 };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       labels: [
         { text: "y = log₀.₅ x (turun)", at: 40, offset: [0.5, -0.5, 0] },
       ],
@@ -198,7 +196,7 @@ Mari kita bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
         { x: 0, y: -4, z: 0 },
         { x: 0, y: 4, z: 0 },
       ],
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       labels: [{ text: "x = 0 (asimtot)", at: 1, offset: [0.5, 0, 0] }],
       showPoints: false,
     },
@@ -241,7 +239,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x), z: 0 };
         }),
-        color: getColor("PURPLE"),
+        color: "#9333ea",
         labels: [{ text: "y = log₂ x", at: 40, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
@@ -250,7 +248,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x) + 2, z: 0 };
         }),
-        color: getColor("SKY"),
+        color: "#0284c7",
         labels: [{ text: "y = log₂ x + 2", at: 40, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
@@ -259,7 +257,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x) - 2, z: 0 };
         }),
-        color: getColor("ROSE"),
+        color: "#e11d48",
         labels: [{ text: "y = log₂ x - 2", at: 40, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
@@ -291,7 +289,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x), z: 0 };
         }),
-        color: getColor("PURPLE"),
+        color: "#9333ea",
         labels: [{ text: "y = log₂ x", at: 40, offset: [0.5, 1, 0] }],
         showPoints: false,
       },
@@ -300,7 +298,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
           const x = (i / 99) * 8 + 2.1;
           return { x, y: Math.log2(x - 2), z: 0 };
         }),
-        color: getColor("EMERALD"),
+        color: "#059669",
         labels: [{ text: "y = log₂(x - 2)", at: 40, offset: [1, -1, 0] }],
         showPoints: false,
       },
@@ -370,7 +368,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
              const x = (i / 99) * 10 + 0.01;
              return { x, y: Math.log(x) / Math.log(3), z: 0 };
            }),
-           color: getColor("PURPLE"),
+           color: "#9333ea",
            labels: [{ text: "y = log₃ x", at: 40, offset: [0.5, -0.5, 0] }],
            showPoints: false,
          },
@@ -379,7 +377,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
              const x = (i / 99) * 10 + 0.01;
              return { x, y: Math.log(x) / Math.log(3) + 2, z: 0 };
            }),
-           color: getColor("EMERALD"),
+           color: "#059669",
            labels: [{ text: "y = log₃ x + 2", at: 50, offset: [0.5, 1, 0] }],
            showPoints: false,
          },
@@ -391,7 +389,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
              { x: 3, y: 3, z: 0 },
              { x: 9, y: 4, z: 0 },
            ],
-           color: getColor("ROSE"),
+           color: "#e11d48",
            showPoints: true,
            labels: [
              { text: "(1, 2)", at: 2, offset: [0, 1, 0] },
@@ -403,7 +401,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
              { x: -0.5, y: 2, z: 0 },
              { x: 10, y: 2, z: 0 },
            ],
-           color: getColor("PURPLE"),
+           color: "#9333ea",
            labels: [{ text: "y = 2", at: 0, offset: [-0.5, 0.3, 0] }],
            showPoints: false,
          },
@@ -412,7 +410,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
              { x: 0, y: -2, z: 0 },
              { x: 0, y: 5, z: 0 },
            ],
-           color: getColor("PURPLE"),
+           color: "#9333ea",
            labels: [{ text: "x = 0 (asimtot)", at: 1, offset: [0.5, 0, 0] }],
            showPoints: false,
          },

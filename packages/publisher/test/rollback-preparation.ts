@@ -11,7 +11,7 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
@@ -109,6 +109,7 @@ const change = {
   artifactHash,
   contentKey: payload.contentKey,
   delivery: "public" as const,
+  family: "material" as const,
   locale: payload.locale,
   operation: "upsert" as const,
   rendererDomain: payload.rendererDomain,
@@ -119,8 +120,9 @@ const head = MaterialHeadSchema.make({
   compilerConfigHash: payload.compilerConfigHash,
   contentKey: payload.contentKey,
   delivery: change.delivery,
+  family: "material",
   locale: payload.locale,
-  projectionHash: hashMaterialProjection(projection),
+  projectionHash: hashContentProjection(projection),
   publicPath: projection.publicPath,
   rendererDomain: payload.rendererDomain,
   sourceHash: payload.sourceHash,
@@ -146,6 +148,7 @@ const sourcePrepared = await Effect.runPromise(
       Stream.make({
         prior: {
           contentKey: payload.contentKey,
+          family: "material",
           locale: payload.locale,
           state: "absent" as const,
         },
@@ -170,6 +173,7 @@ const transition = RollbackRecordSchema.make({
   prior: RollbackDeleteStateSchema.make({
     change: {
       contentKey: payload.contentKey,
+      family: "material",
       locale: payload.locale,
       operation: "delete",
     },
@@ -195,16 +199,34 @@ export function rollbackTarget(
   loadPage: (typeof PublicationTarget.Service)["rollbackPage"]
 ) {
   return makePublicationTarget({
-    headPage: (request) =>
-      Effect.succeed({
+    headPage: (request) => {
+      const common = {
         activeManifestHash: request.activeManifestHash,
         activeReleaseId: request.activeReleaseId,
         cursor: request.cursor,
-        done: true,
-        family: "material",
-        heads: [head],
+        done: true as const,
         nextCursor: null,
-      }),
+      };
+      if (request.family === "article") {
+        return Effect.succeed({
+          ...common,
+          family: "article" as const,
+          heads: [],
+        });
+      }
+      if (request.family === "question") {
+        return Effect.succeed({
+          ...common,
+          family: "question" as const,
+          heads: [],
+        });
+      }
+      return Effect.succeed({
+        ...common,
+        family: "material" as const,
+        heads: [head],
+      });
+    },
     rollbackPage: loadPage,
     routePage: (request) =>
       Effect.succeed({

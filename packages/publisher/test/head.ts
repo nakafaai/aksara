@@ -38,6 +38,7 @@ export function headSuccess(request: PublicationHeadPageRequest) {
           compilerConfigHash: artifactHash,
           contentKey: "test:http",
           delivery: "public",
+          family: "material",
           locale: "en",
           projectionHash,
           publicPath: "subjects/test/http",

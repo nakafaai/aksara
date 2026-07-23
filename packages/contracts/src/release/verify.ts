@@ -8,10 +8,8 @@ import {
   type RollbackContentReleaseBundle,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
-import {
-  canonicalizeContentReleaseSigningInput,
-  SignedContentReleaseSchema,
-} from "#contracts/release/spec";
+import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
+import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
 

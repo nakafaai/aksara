@@ -14,9 +14,9 @@ import {
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
+import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import {
   ContentReleaseManifestSchema,
-  canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";

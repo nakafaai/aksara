@@ -10,9 +10,9 @@ import type {
   Sha256Hash,
 } from "@nakafa/aksara-contracts/ids";
 import {
-  type MaterialLessonProjection,
-  MaterialLessonProjectionSchema,
-} from "@nakafa/aksara-contracts/projection/material";
+  type ContentProjection,
+  ContentProjectionSchema,
+} from "@nakafa/aksara-contracts/projection/spec";
 import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
   ContentDeleteSchema,
@@ -21,7 +21,7 @@ import {
   ContentUpsertSchema,
   type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type {
   createResultCatalogDigest,
@@ -53,7 +53,7 @@ import type {
 const PreparedContentUpsertSchema = Schema.Struct({
   change: ContentUpsertSchema,
   payload: CompiledContentPayloadSchema,
-  projection: MaterialLessonProjectionSchema,
+  projection: ContentProjectionSchema,
   source: CompileDocumentSourceSchema,
 });
 
@@ -91,7 +91,7 @@ export type PreparedContentTransitionSource<E, R> = () => Stream.Stream<
 
 /** Replay factory for one complete canonically ordered result catalog. */
 export type PreparedResultCatalogSource<E, R> = () => Stream.Stream<
-  MaterialHead,
+  ContentHead,
   E,
   R
 >;
@@ -141,7 +141,7 @@ interface PreparedContentReleaseBase<E, R> {
   readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
   readonly manifest: ContentReleaseManifest;
   /** Replays canonical projections authenticated by the same manifest. */
-  readonly projections: () => Stream.Stream<MaterialLessonProjection, E, R>;
+  readonly projections: () => Stream.Stream<ContentProjection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
   /** Replays canonical route changes authenticated by the same manifest. */
   readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
@@ -231,7 +231,7 @@ export function makePreparedGitRelease<E, R>(input: {
   readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
   readonly manifest: ContentReleaseManifest;
   /** Replays canonical projections authenticated by the same manifest. */
-  readonly projections: () => Stream.Stream<MaterialLessonProjection, E, R>;
+  readonly projections: () => Stream.Stream<ContentProjection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
   /** Replays canonical route changes authenticated by the same manifest. */
   readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
@@ -252,7 +252,7 @@ export function makePreparedRollbackRelease<E, R>(input: {
   readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
   readonly manifest: ContentReleaseManifest;
   /** Replays canonical projections authenticated by the same manifest. */
-  readonly projections: () => Stream.Stream<MaterialLessonProjection, E, R>;
+  readonly projections: () => Stream.Stream<ContentProjection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
   /** Replays canonical route changes authenticated by the same manifest. */
   readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;

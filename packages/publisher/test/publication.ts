@@ -11,7 +11,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
@@ -89,6 +89,7 @@ export const contentRecord = {
     artifactHash: hashCompiledContentPayload(payload),
     contentKey: payload.contentKey,
     delivery: "public",
+    family: "material",
     locale: payload.locale,
     operation: "upsert",
     rendererDomain: payload.rendererDomain,
@@ -103,8 +104,9 @@ export const head = MaterialHeadSchema.make({
   compilerConfigHash: payload.compilerConfigHash,
   contentKey: contentRecord.change.contentKey,
   delivery: contentRecord.change.delivery,
+  family: "material",
   locale: contentRecord.change.locale,
-  projectionHash: hashMaterialProjection(projection),
+  projectionHash: hashContentProjection(projection),
   publicPath: projection.publicPath,
   rendererDomain: contentRecord.change.rendererDomain,
   sourceHash: payload.sourceHash,
@@ -113,6 +115,7 @@ export const head = MaterialHeadSchema.make({
 export const record = {
   prior: {
     contentKey: contentRecord.change.contentKey,
+    family: "material",
     locale: contentRecord.change.locale,
     state: "absent" as const,
   },

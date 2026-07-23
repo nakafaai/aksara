@@ -83,6 +83,7 @@ export const items = Schema.decodeUnknownSync(
       artifactHash: hash,
       contentKey: "test:transport",
       delivery: "public",
+      family: "material",
       locale: "en",
       operation: "upsert",
       rendererDomain: "mathematics",
@@ -94,6 +95,7 @@ export const items = Schema.decodeUnknownSync(
   {
     change: {
       contentKey: "test:transport",
+      family: "material",
       locale: "id",
       operation: "delete",
     },

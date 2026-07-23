@@ -1,12 +1,7 @@
-import { createHash } from "node:crypto";
 import { Effect, Either, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { compareContentHeads } from "#contracts/content";
-import {
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
@@ -15,8 +10,6 @@ import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
   canonicalizeContentReleaseItem,
-  canonicalizeContentReleaseManifest,
-  canonicalizeContentReleaseSigningInput,
   RollbackSignedContentReleaseSchema,
 } from "#contracts/release/spec";
 import { release as gitRelease } from "#contracts/test/request";
@@ -35,6 +28,7 @@ function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   {
     contentKey: "test:content",
+    family: "material",
     locale: "id",
     operation: "delete",
   },
@@ -42,6 +36,7 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
     artifactHash: `sha256:${"b".repeat(64)}`,
     contentKey: "test:content",
     delivery: "public",
+    family: "material",
     locale: "en",
     operation: "upsert",
     rendererDomain: "mathematics",
@@ -84,24 +79,6 @@ describe("release spec", () => {
       "Expected a signed rollback release."
     );
   });
-  it("keeps the signed manifest constant-size while authenticating item count and digest", () => {
-    const canonical = canonicalizeContentReleaseManifest(manifest);
-    const manifestHash = Sha256HashSchema.make(
-      `sha256:${createHash("sha256").update(canonical).digest("hex")}`
-    );
-
-    expect(canonical).not.toContain("test:content");
-    expect(canonical).toContain(`"itemCount":${items.length}`);
-    expect(canonical).toContain(`"itemsDigest":"${manifest.itemsDigest}"`);
-    expect(canonical).toContain('"projectionCount":1');
-    expect(canonical).toContain(`"resultDigest":"${manifest.resultDigest}"`);
-    expect(canonical).toContain('"rollbackCount":2');
-    expect(canonical).toContain('"routeCount":0');
-    expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
-      `nakafa.aksara.content-release.v1\n${manifestHash}\n${canonical}`
-    );
-  });
-
   it("assigns deterministic indexes after canonical content-head sorting", () => {
     expect(
       items.map(({ change, index }) => [
@@ -119,7 +96,7 @@ describe("release spec", () => {
       return;
     }
     expect(canonicalizeContentReleaseItem(first)).toBe(
-      `{"change":{"artifactHash":"sha256:${"b".repeat(64)}","contentKey":"test:content","delivery":"public","locale":"en","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
+      `{"change":{"artifactHash":"sha256:${"b".repeat(64)}","contentKey":"test:content","delivery":"public","family":"material","locale":"en","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
     );
   });
 

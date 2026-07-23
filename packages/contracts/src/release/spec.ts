@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { ContentLocaleSchema } from "#contracts/content";
+import { ContentFamilySchema, ContentLocaleSchema } from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,
@@ -10,10 +10,7 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import {
-  canonicalizeReleaseOrigin,
-  ReleaseOriginSchema,
-} from "#contracts/release/origin";
+import { ReleaseOriginSchema } from "#contracts/release/origin";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
@@ -23,6 +20,7 @@ export const ContentUpsertSchema = Schema.Struct({
   artifactHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
   delivery: ContentDeliveryClassSchema,
+  family: ContentFamilySchema,
   locale: ContentLocaleSchema,
   operation: Schema.Literal("upsert"),
   rendererDomain: RendererDomainSchema,
@@ -32,6 +30,7 @@ export const ContentUpsertSchema = Schema.Struct({
 /** One locale-specific content head removed by an explicit tombstone. */
 export const ContentDeleteSchema = Schema.Struct({
   contentKey: ContentKeySchema,
+  family: ContentFamilySchema,
   locale: ContentLocaleSchema,
   operation: Schema.Literal("delete"),
 });
@@ -162,8 +161,6 @@ export const RollbackSignedContentReleaseSchema =
     )
   );
 
-const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";
-
 /** Checks that every staged head has exactly one matching item and artifact. */
 function hasCoherentVerificationCounts(input: {
   readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
@@ -254,6 +251,7 @@ export function canonicalizeContentChange(change: ContentChange) {
       artifactHash: change.artifactHash,
       contentKey: change.contentKey,
       delivery: change.delivery,
+      family: change.family,
       locale: change.locale,
       operation: change.operation,
       rendererDomain: change.rendererDomain,
@@ -263,6 +261,7 @@ export function canonicalizeContentChange(change: ContentChange) {
 
   return {
     contentKey: change.contentKey,
+    family: change.family,
     locale: change.locale,
     operation: change.operation,
   };
@@ -275,40 +274,4 @@ export function canonicalizeContentReleaseItem(item: ContentReleaseItem) {
     index: item.index,
     releaseId: item.releaseId,
   });
-}
-
-/** Produces the stable JSON bytes used for release digest verification. */
-export function canonicalizeContentReleaseManifest(
-  manifest: ContentReleaseManifest
-) {
-  return JSON.stringify({
-    baseManifestHash: manifest.baseManifestHash,
-    baseReleaseId: manifest.baseReleaseId,
-    baseResultCount: manifest.baseResultCount,
-    baseResultDigest: manifest.baseResultDigest,
-    deleteCount: manifest.deleteCount,
-    itemCount: manifest.itemCount,
-    itemsDigest: manifest.itemsDigest,
-    origin: canonicalizeReleaseOrigin(manifest.origin),
-    projectionCount: manifest.projectionCount,
-    projectionDigest: manifest.projectionDigest,
-    releaseId: manifest.releaseId,
-    rendererContractVersion: manifest.rendererContractVersion,
-    rendererManifestHash: manifest.rendererManifestHash,
-    resultCount: manifest.resultCount,
-    resultDigest: manifest.resultDigest,
-    rollbackCount: manifest.rollbackCount,
-    rollbackDigest: manifest.rollbackDigest,
-    routeCount: manifest.routeCount,
-    routeDigest: manifest.routeDigest,
-    upsertCount: manifest.upsertCount,
-  });
-}
-
-/** Returns the domain-separated canonical bytes covered by release Ed25519. */
-export function canonicalizeContentReleaseSigningInput(
-  manifestHash: typeof Sha256HashSchema.Type,
-  manifest: ContentReleaseManifest
-) {
-  return `${CONTENT_RELEASE_SIGNATURE_DOMAIN}\n${manifestHash}\n${canonicalizeContentReleaseManifest(manifest)}`;
 }

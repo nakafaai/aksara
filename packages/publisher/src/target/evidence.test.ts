@@ -175,6 +175,7 @@ describe("publication success evidence", () => {
       const state = {
         change: {
           contentKey: `test:deleted-${index}`,
+          family: "material" as const,
           locale: "en" as const,
           operation: "delete" as const,
         },

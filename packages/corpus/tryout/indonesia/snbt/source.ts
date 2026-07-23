@@ -84,7 +84,7 @@ const snbtSections = [
   },
 ] as const;
 
-/** Source-controlled SNBT try-out catalog and question placements. */
+/** Lazily validates the source-controlled SNBT catalog and placements. */
 export const snbtTryoutSource = defineTryoutExamSource({
   countryCode: "ID",
   countryKey: "indonesia",

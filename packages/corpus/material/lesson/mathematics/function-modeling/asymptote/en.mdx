@@ -1,5 +1,4 @@
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
-import { getColor } from "@repo/design-system/lib/color";
+
 
 export const metadata = {
   title: "Asymptote",
@@ -100,7 +99,7 @@ Let's look at the function behavior around the vertical asymptote:
         { x: 1.8, y: 29, z: 0 },
         { x: 1.9, y: 49, z: 0 },
       ],
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
       labels: [{ text: "x → 2^{-}", at: 1, offset: [-1, 0.5, 0] }],
     },
@@ -114,7 +113,7 @@ Let's look at the function behavior around the vertical asymptote:
         { x: 5, y: 2.67, z: 0 },
         { x: 6, y: 2.25, z: 0 },
       ],
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
       labels: [{ text: "x → 2^{+}", at: 6, offset: [0.5, -0.5, 0] }],
     },
@@ -124,7 +123,7 @@ Let's look at the function behavior around the vertical asymptote:
         { x: 2, y: 0, z: 0 },
         { x: 2, y: 50, z: 0 },
       ],
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: false,
       labels: [{ text: "x = 2", at: 1, offset: [1, -0.5, 0] }],
     },
@@ -185,7 +184,7 @@ Let's see how the function approaches the horizontal asymptote:
         const y = (3 * x * x - 1) / (2 * x * x + 5);
         return { x, y, z: 0 };
       }),
-      color: getColor("TEAL"),
+      color: "#0d9488",
       showPoints: false,
     },
     {
@@ -194,7 +193,7 @@ Let's see how the function approaches the horizontal asymptote:
         { x: 0, y: 1.5, z: 0 },
         { x: 10, y: 1.5, z: 0 },
       ],
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       labels: [{ text: "y = 1.5", at: 1, offset: [2, 0.5, 0] }],
     },
@@ -243,7 +242,7 @@ Therefore, oblique asymptote: <InlineMath math="y = x + 3" />
         const y = (x * x + 2 * x - 1) / (x - 1);
         return { x, y, z: 0 };
       }).filter((p) => p !== null),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
     },
     {
@@ -252,7 +251,7 @@ Therefore, oblique asymptote: <InlineMath math="y = x + 3" />
         const y = (x * x + 2 * x - 1) / (x - 1);
         return { x, y, z: 0 };
       }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
     },
     {
@@ -261,7 +260,7 @@ Therefore, oblique asymptote: <InlineMath math="y = x + 3" />
         { x: 0, y: 3, z: 0 },
         { x: 10, y: 13, z: 0 },
       ],
-      color: getColor("PINK"),
+      color: "#db2777",
       showPoints: false,
       labels: [{ text: "y = x + 3", at: 1, offset: [3, 1.5, 0] }],
     },
@@ -271,7 +270,7 @@ Therefore, oblique asymptote: <InlineMath math="y = x + 3" />
         { x: 1, y: 0, z: 0 },
         { x: 1, y: 15, z: 0 },
       ],
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: false,
       labels: [{ text: "x = 1", at: 1, offset: [1, -0.5, 0] }],
     },
@@ -340,7 +339,7 @@ Asymptotes are very helpful in drawing function graphs. Here are the steps:
         if (Math.abs(y) > 20) return null;
         return { x, y, z: 0 };
       }).filter((p) => p !== null),
-      color: getColor("SKY"),
+      color: "#0284c7",
       showPoints: false,
     },
     {
@@ -350,7 +349,7 @@ Asymptotes are very helpful in drawing function graphs. Here are the steps:
         if (Math.abs(y) > 20) return null;
         return { x, y, z: 0 };
       }).filter((p) => p !== null),
-      color: getColor("SKY"),
+      color: "#0284c7",
       showPoints: false,
     },
     {
@@ -359,7 +358,7 @@ Asymptotes are very helpful in drawing function graphs. Here are the steps:
         { x: 2, y: 0, z: 0 },
         { x: 2, y: 20, z: 0 },
       ],
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: false,
       labels: [{ text: "x = 2", at: 1, offset: [2, -0.5, 0] }],
     },
@@ -369,19 +368,19 @@ Asymptotes are very helpful in drawing function graphs. Here are the steps:
         { x: 0, y: 1, z: 0 },
         { x: 9, y: 1, z: 0 },
       ],
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       labels: [{ text: "y = 1", at: 1, offset: [1, 0.5, 0] }],
     },
     {
       points: [{ x: -1, y: 0, z: 0 }],
-      color: getColor("TEAL"),
+      color: "#0d9488",
       showPoints: true,
       labels: [{ text: "(-1, 0)", at: 0, offset: [-1, -0.5, 0] }],
     },
     {
       points: [{ x: 0, y: -0.5, z: 0 }],
-      color: getColor("TEAL"),
+      color: "#0d9488",
       showPoints: true,
       labels: [{ text: "(0, -0.5)", at: 0, offset: [-1.5, -1, 0] }],
     },
@@ -461,7 +460,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
         if (Math.abs(y) > 10) return null;
         return { x, y, z: 0 };
       }).filter((p) => p !== null),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
     },
     {
@@ -471,7 +470,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
         if (Math.abs(y) > 10) return null;
         return { x, y, z: 0 };
       }).filter((p) => p !== null),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
     },
     {
@@ -481,7 +480,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
         if (Math.abs(y) > 10) return null;
         return { x, y, z: 0 };
       }).filter((p) => p !== null),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
     },
     {
@@ -490,7 +489,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
         { x: -1, y: 0, z: 0 },
         { x: -1, y: 10, z: 0 },
       ],
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: false,
       labels: [{ text: "x = -1", at: 1, offset: [-2, 1, 0] }],
     },
@@ -500,7 +499,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
         { x: 1, y: 0, z: 0 },
         { x: 1, y: 10, z: 0 },
       ],
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: false,
       labels: [{ text: "x = 1", at: 1, offset: [2, -0.5, 0] }],
     },
@@ -510,7 +509,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
         { x: 0, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       labels: [{ text: "y = 0", at: 1, offset: [1, 0.5, 0] }],
     },

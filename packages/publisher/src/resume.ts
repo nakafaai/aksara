@@ -3,6 +3,7 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
+import { allContentCacheChanges } from "#publisher/cache";
 import { validatePublicationStatus } from "#publisher/publication/lifecycle";
 import {
   PublicationActivation,
@@ -54,7 +55,10 @@ export const resumeContentRelease: ResumeContentRelease = Effect.fn(
   if (status.phase === "completed") {
     const receipt = yield* validateManifestReceipt(release, status.receipt);
     const activation = yield* PublicationActivation;
-    yield* activation.invalidate(release);
+    yield* activation.invalidate({
+      cacheChanges: allContentCacheChanges,
+      release,
+    });
     return receipt;
   }
   if (status.phase === "aborted") {

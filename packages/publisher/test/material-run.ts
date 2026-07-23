@@ -21,7 +21,6 @@ export async function publishMaterialRelease() {
     Effect.scoped(
       Effect.gen(function* () {
         const material = yield* prepareMaterialPublication({
-          baseCatalog: null,
           checkoutRoot,
           published: Stream.empty,
           rendererManifest,

@@ -1,4 +1,4 @@
-import type { QuestionChoices } from "#corpus/question-bank/choices";
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 // Date: 2025-11-22
 const choices: QuestionChoices = {

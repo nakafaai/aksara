@@ -107,6 +107,7 @@ export const rollbackUpsert = RollbackUpsertStateSchema.make({
     artifactHash: rollbackArtifact.artifactHash,
     contentKey: payload.contentKey,
     delivery: "public",
+    family: "material",
     locale: payload.locale,
     operation: "upsert",
     rendererDomain: payload.rendererDomain,
@@ -133,6 +134,7 @@ export const incompatibleRollbackUpsert = RollbackUpsertStateSchema.make({
 export const rollbackDeletion = RollbackDeleteStateSchema.make({
   change: {
     contentKey: ContentKeySchema.make("test:rollback-delete"),
+    family: "material",
     locale: "en",
     operation: "delete",
   },
@@ -140,6 +142,7 @@ export const rollbackDeletion = RollbackDeleteStateSchema.make({
 export const matchingRollbackDeletion = RollbackDeleteStateSchema.make({
   change: {
     contentKey: payload.contentKey,
+    family: "material",
     locale: payload.locale,
     operation: "delete",
   },

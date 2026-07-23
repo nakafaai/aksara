@@ -2,6 +2,7 @@ import { igcseCourseNodes } from "#corpus/curriculum/cambridge-international/igc
 import { defineCurriculum, stageNode } from "#corpus/curriculum/schema";
 import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
 
+/** Lazily validates the complete authored Cambridge curriculum tree. */
 export const cambridgeInternationalCurriculum = defineCurriculum({
   programKey: LEARNING_PROGRAM_KEYS.cambridgeInternational,
   tree: [

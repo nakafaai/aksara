@@ -6,8 +6,7 @@ export const metadata = {
   subject: "Geometri Analitik",
 };
 
-import { getColor } from "@repo/design-system/lib/color";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
+
 
 ## Mengenal Parabola
 
@@ -27,19 +26,19 @@ Yang menarik dari parabola adalah sifat **refleksinya** yang sempurna. Semua sin
         const y = 0.2 * x * x; // parabola y = 0.2x²
         return { x, y, z: 0 };
       }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
       labels: [{ text: "Lintasan Parabola", at: 80, offset: [1, 1, 0] }],
     },
     {
       points: [{ x: 0, y: 1.25, z: 0 }], // fokus di (0, 1/(4*0.2)) = (0, 1.25)
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: true,
       labels: [{ text: "Fokus", at: 0, offset: [0.5, 0.5, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // puncak parabola
-      color: getColor("CYAN"),
+      color: "#0891b2",
       showPoints: true,
       labels: [{ text: "Puncak", at: 0, offset: [-0.8, -0.5, 0] }],
     },
@@ -49,7 +48,7 @@ Yang menarik dari parabola adalah sifat **refleksinya** yang sempurna. Semua sin
         const y = -1.25; // direktriks di y = -1/(4*0.2) = -1.25
         return { x, y, z: 0 };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
       labels: [{ text: "Direktriks", at: 1, offset: [0, -0.5, 0] }],
@@ -65,7 +64,7 @@ Yang menarik dari parabola adalah sifat **refleksinya** yang sempurna. Semua sin
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -80,7 +79,7 @@ Yang menarik dari parabola adalah sifat **refleksinya** yang sempurna. Semua sin
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -113,7 +112,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
         const y = 0.25 * x * x; // parabola x² = 4py dengan p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
       labels: [{ text: "x² = 4py (ke atas)", at: 11, offset: [-3, 2, 0] }],
     },
@@ -123,7 +122,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
         const y = -0.25 * x * x; // parabola x² = -4py dengan p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: false,
       labels: [{ text: "x² = -4py (ke bawah)", at: 50, offset: [3, -2.5, 0] }],
     },
@@ -133,7 +132,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
         const x = 0.25 * y * y; // parabola y² = 4px dengan p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("CYAN"),
+      color: "#0891b2",
       showPoints: false,
       labels: [{ text: "y² = 4px (ke kanan)", at: 50, offset: [3, 1.5, 0] }],
     },
@@ -143,13 +142,13 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
         const x = -0.25 * y * y; // parabola y² = -4px dengan p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("TEAL"),
+      color: "#0d9488",
       showPoints: false,
       labels: [{ text: "y² = -4px (ke kiri)", at: 11, offset: [-3, -1.5, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // puncak semua parabola di O(0,0)
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: true,
       labels: [{ text: "O(0,0)", at: 0, offset: [-0.8, -0.5, 0] }],
     },
@@ -164,7 +163,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
           z: 0,
         };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
     },
@@ -179,7 +178,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
           z: 0,
         };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
     },
@@ -225,19 +224,19 @@ Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bis
         const y = k + (1/(4*p)) * Math.pow(x - h, 2); // parabola dengan puncak (h,k)
         return { x, y, z: 0 };
       }),
-      color: getColor("INDIGO"),
+      color: "#4f46e5",
       showPoints: false,
       labels: [{ text: "Parabola", at: 60, offset: [3, 1, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // puncak
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: true,
       labels: [{ text: "Puncak (2,1)", at: 0, offset: [-1, -0.2, 0] }],
     },
     {
       points: [{ x: 2, y: 1.5, z: 0 }], // fokus di (h, k+p) = (2, 1+0.5)
-      color: getColor("LIME"),
+      color: "#65a30d",
       showPoints: true,
       labels: [{ text: "Fokus (2,1.5)", at: 0, offset: [0.5, 1, 0] }],
     },
@@ -247,7 +246,7 @@ Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bis
         const y = 0.5; // direktriks di y = k-p = 1-0.5 = 0.5
         return { x, y, z: 0 };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
       labels: [{ text: "Direktriks y = 0.5", at: 1, offset: [0, 0.5, 0] }],
@@ -259,7 +258,7 @@ Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bis
         const x = 2; // sumbu simetri
         return { x, y: yMin + i * (yMax - yMin), z: 0 };
       }),
-      color: getColor("PINK"),
+      color: "#db2777",
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
@@ -276,7 +275,7 @@ Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bis
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -291,7 +290,7 @@ Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bis
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -366,19 +365,19 @@ Maka unsur-unsur parabola adalah:
         const y = k + (1/(4*p)) * Math.pow(x - h, 2); // (x-h)² = 4p(y-k)
         return { x, y, z: 0 };
       }),
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       showPoints: false,
       labels: [{ text: "(x-2)² = 8(y-1)", at: 60, offset: [2, 1.5, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // puncak (h,k)
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: true,
       labels: [{ text: "Puncak (2,1)", at: 0, offset: [-1, -0.5, 0] }],
     },
     {
       points: [{ x: 2, y: 3, z: 0 }], // fokus (h, k+p) = (2, 1+2)
-      color: getColor("LIME"),
+      color: "#65a30d",
       showPoints: true,
       labels: [{ text: "Fokus (2,3)", at: 0, offset: [0.8, 0.5, 0] }],
     },
@@ -388,7 +387,7 @@ Maka unsur-unsur parabola adalah:
         const y = -1; // direktriks y = k-p = 1-2 = -1
         return { x, y, z: 0 };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
       labels: [{ text: "Direktriks y = -1", at: 1, offset: [0, -0.5, 0] }],
@@ -400,7 +399,7 @@ Maka unsur-unsur parabola adalah:
         const x = 2; // sumbu simetri x = h = 2
         return { x, y: yMin + i * (yMax - yMin), z: 0 };
       }),
-      color: getColor("PINK"),
+      color: "#db2777",
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
@@ -417,7 +416,7 @@ Maka unsur-unsur parabola adalah:
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -432,7 +431,7 @@ Maka unsur-unsur parabola adalah:
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },

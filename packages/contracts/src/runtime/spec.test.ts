@@ -9,7 +9,13 @@ import {
   MAX_RUNTIME_REQUEST_BYTES,
   MAX_RUNTIME_RESPONSE_BYTES,
 } from "#contracts/runtime/spec";
-import { accepts, artifact, found, request } from "#contracts/test/runtime";
+import {
+  accepts,
+  articleFound,
+  artifact,
+  found,
+  request,
+} from "#contracts/test/runtime";
 
 describe("content runtime contract", () => {
   it("decodes the exact bounded route request", async () => {
@@ -36,6 +42,7 @@ describe("content runtime contract", () => {
     );
     for (const response of [
       found,
+      articleFound,
       { kind: "missing" },
       { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
       { code: "CONTENT_RUNTIME_FORBIDDEN", kind: "failure" },
@@ -47,6 +54,9 @@ describe("content runtime contract", () => {
     await expect(
       Effect.runPromise(decodeContentRuntimeResponse(found))
     ).resolves.toEqual(found);
+    await expect(
+      Effect.runPromise(decodeContentRuntimeResponse(articleFound))
+    ).resolves.toEqual(articleFound);
   });
 
   it("rejects mismatched identities and uncontracted response fields", () => {

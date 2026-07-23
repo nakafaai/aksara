@@ -60,7 +60,12 @@ function entry(contentKey = "test:rollback") {
   return Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
     index: 0,
     releaseId,
-    snapshot: { contentKey, locale: "en", state: "absent" },
+    snapshot: {
+      contentKey,
+      family: "material",
+      locale: "en",
+      state: "absent",
+    },
   });
 }
 

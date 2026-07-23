@@ -96,6 +96,7 @@ export const successes = [
           compilerConfigHash: manifestHash,
           contentKey: "test:transport",
           delivery: "public",
+          family: "material",
           locale: "en",
           projectionHash: projectionDigest,
           publicPath: "subjects/test/transport",

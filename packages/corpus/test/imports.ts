@@ -11,7 +11,7 @@ export class CorpusImportError extends Schema.TaggedError<CorpusImportError>()(
   { cause: Schema.Unknown, file: Schema.String }
 ) {}
 
-/** Imports every production module matched by one domain-owned test pattern. */
+/** Imports every production module and preserves its unknown export boundary. */
 export const importCorpusModules = Effect.fn("AksaraTest.importCorpusModules")(
   function* (pattern: string, exclude: readonly string[] = []) {
     const files = yield* Effect.try({
@@ -22,15 +22,19 @@ export const importCorpusModules = Effect.fn("AksaraTest.importCorpusModules")(
           exclude: ["**/*.test.ts", "test/**/*.ts", ...exclude],
         }).sort(),
     });
-    yield* Effect.forEach(
+    return yield* Effect.forEach(
       files,
       (file) =>
         Effect.tryPromise({
           catch: (cause) => new CorpusImportError({ cause, file }),
           try: () => import(pathToFileURL(resolve(corpusRoot, file)).href),
-        }),
-      { concurrency: 16, discard: true }
+        }).pipe(
+          Effect.map((exports: unknown) => ({
+            exports,
+            file,
+          }))
+        ),
+      { concurrency: 16 }
     );
-    return files;
   }
 );

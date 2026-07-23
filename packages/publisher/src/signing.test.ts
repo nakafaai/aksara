@@ -21,10 +21,10 @@ import {
   ContentChangeSchema,
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
-  canonicalizeContentReleaseSigningInput,
 } from "@nakafa/aksara-contracts/release";
 import { digestItems } from "@nakafa/aksara-contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
@@ -87,9 +87,9 @@ const items = makeItems(
       artifactHash: hashCompiledContentPayload(payload),
       contentKey: payload.contentKey,
       delivery: "public",
+      family: "material",
       locale: payload.locale,
       operation: "upsert",
-      publicPath: "subjects/test",
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,
     },

@@ -6,7 +6,7 @@ import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { streamMaterialHeads } from "#publisher/heads";
+import { streamContentHeads } from "#publisher/heads";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { makePublicationTarget } from "#test/target";
 
@@ -21,6 +21,7 @@ function makeHead(contentKey: string, hashCharacter: string) {
     compilerConfigHash: hash,
     contentKey,
     delivery: "public",
+    family: "material",
     locale: "en",
     projectionHash: hash,
     publicPath: `subjects/test/${contentKey}`,
@@ -41,7 +42,7 @@ function makeTarget(headPage: typeof PublicationTarget.Service.headPage) {
 /** Collects a material head stream through one supplied target service. */
 function collectHeads(target: typeof PublicationTarget.Service) {
   return Effect.runPromise(
-    streamMaterialHeads(activeReleaseId, activeManifestHash).pipe(
+    streamContentHeads(activeReleaseId, activeManifestHash, "material").pipe(
       Stream.runCollect,
       Effect.map(Array.from),
       Effect.provideService(PublicationTarget, target)
@@ -52,7 +53,7 @@ function collectHeads(target: typeof PublicationTarget.Service) {
 /** Returns the typed head-stream failure without a FiberFailure wrapper. */
 function rejectHeads(target: typeof PublicationTarget.Service) {
   return Effect.runPromise(
-    streamMaterialHeads(activeReleaseId, activeManifestHash).pipe(
+    streamContentHeads(activeReleaseId, activeManifestHash, "material").pipe(
       Stream.runDrain,
       Effect.provideService(PublicationTarget, target),
       Effect.flip
@@ -121,6 +122,25 @@ describe("material head stream", () => {
     );
 
     await expect(collectHeads(target)).resolves.toEqual([]);
+  });
+
+  it("rejects a page from a different content family", async () => {
+    const target = makeTarget(() =>
+      Effect.succeed({
+        activeManifestHash,
+        activeReleaseId,
+        cursor: null,
+        done: true,
+        family: "article",
+        heads: [],
+        nextCursor: null,
+      })
+    );
+
+    await expect(rejectHeads(target)).resolves.toMatchObject({
+      _tag: "PublicationTargetProtocolError",
+      stage: "heads",
+    });
   });
 
   it("advances across filtered empty pages without losing order evidence", async () => {

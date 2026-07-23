@@ -1,3 +1,5 @@
+import { Stream } from "effect";
+
 import { quranSurah1 } from "#corpus/quran/surah/1";
 import { quranSurah2 } from "#corpus/quran/surah/2";
 import { quranSurah3 } from "#corpus/quran/surah/3";
@@ -113,7 +115,7 @@ import { quranSurah112 } from "#corpus/quran/surah/112";
 import { quranSurah113 } from "#corpus/quran/surah/113";
 import { quranSurah114 } from "#corpus/quran/surah/114";
 
-export const quran = [
+const quranSurahSources: readonly unknown[] = [
   quranSurah1,
   quranSurah2,
   quranSurah3,
@@ -229,3 +231,6 @@ export const quran = [
   quranSurah113,
   quranSurah114,
 ];
+
+/** Exposes reviewed Quran data as independently consumable surah sources. */
+export const quranSurahSourceStream = Stream.fromIterable(quranSurahSources);

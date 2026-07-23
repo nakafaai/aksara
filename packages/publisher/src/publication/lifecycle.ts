@@ -7,13 +7,13 @@ import { RollbackContentReleaseBundleSchema } from "@nakafa/aksara-contracts/rel
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema } from "effect";
 import type { PublicationPlan } from "#publisher/publication/plan";
+import type { PublishContentReleaseError } from "#publisher/publication/program";
 import {
   PublicationActivation,
   PublicationModeMismatchError,
   PublicationReleaseAbortedError,
   PublicationResumePhaseError,
   PublicationStatusMismatchError,
-  type PublishContentReleaseError,
 } from "#publisher/publication/spec";
 import {
   validatePublicationReceipt,
@@ -199,6 +199,9 @@ export const activateCandidateRelease: ActivateCandidateRelease = Effect.fn(
     receipt
   );
   const activation = yield* PublicationActivation;
-  yield* activation.invalidate(plan.bundle.release);
+  yield* activation.invalidate({
+    cacheChanges: plan.cacheChanges,
+    release: plan.bundle.release,
+  });
   return verified;
 });

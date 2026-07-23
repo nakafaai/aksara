@@ -3,6 +3,7 @@ import { usHighSchoolMathematicsCourseNode } from "#corpus/curriculum/united-sta
 import { usHighSchoolScienceCourseNode } from "#corpus/curriculum/united-states/science";
 import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
 
+/** Lazily validates the complete authored United States curriculum tree. */
 export const unitedStatesCurriculum = defineCurriculum({
   programKey: LEARNING_PROGRAM_KEYS.unitedStates,
   tree: [

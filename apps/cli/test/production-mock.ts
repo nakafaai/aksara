@@ -9,6 +9,7 @@ import { makeProductionTarget } from "#test/target";
 
 /** Observable fields required by small production mock implementations. */
 export interface TargetCalls {
+  catalogCalls: number;
   checkoutRoot: string | undefined;
   cleanReads: number;
   current: unknown;
@@ -16,7 +17,6 @@ export interface TargetCalls {
   environmentKeyId: string;
   headManifestHash: string | undefined;
   headReleaseId: string | undefined;
-  materialCalls: number;
   publicationConfig:
     | {
         readonly allowInsecureLoopback: boolean;
@@ -81,7 +81,7 @@ export function repositoryMock(calls: TargetCalls) {
 /** Exposes an empty authoritative head stream for orchestration tests. */
 export function headsMock(calls: TargetCalls) {
   return {
-    streamMaterialHeads: (
+    streamContentHeads: (
       activeReleaseId: string,
       activeManifestHash: string
     ) => {
@@ -92,15 +92,16 @@ export function headsMock(calls: TargetCalls) {
   };
 }
 
-/** Exposes one replayable empty material delta after recording preparation. */
-export function materialMock(calls: TargetCalls) {
+/** Exposes one replayable empty catalog after recording preparation. */
+export function catalogMock(calls: TargetCalls) {
   return {
-    prepareMaterialPublication: (input: { readonly checkoutRoot: string }) => {
+    prepareContentCatalog: (input: { readonly checkoutRoot: string }) => {
+      calls.catalogCalls += 1;
       calls.checkoutRoot = input.checkoutRoot;
-      calls.materialCalls += 1;
       return Effect.succeed({
         records: () => Stream.empty,
         result: () => Stream.empty,
+        routes: () => Stream.empty,
       });
     },
   };

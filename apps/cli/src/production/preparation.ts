@@ -4,8 +4,8 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { streamMaterialHeads } from "@nakafa/aksara-publisher/heads";
-import { prepareMaterialPublication } from "@nakafa/aksara-publisher/material/publication";
+import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
+import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import {
   reuseStoredGitRelease,
@@ -79,12 +79,20 @@ type PrepareProductionRollback = (
   input: RollbackPreparationInput
 ) => Effect.Effect<PreparedRollback, ProductionError, PreparationServices>;
 
-/** Streams no prior heads for genesis and exact target-owned heads later. */
-function publishedMaterialHeads(base: BaseCatalogIdentity | null) {
+/** Streams no prior heads for genesis and both exact target-owned families later. */
+function publishedContentHeads(base: BaseCatalogIdentity | null) {
   if (base === null) {
-    return Stream.empty;
+    return {
+      article: Stream.empty,
+      material: Stream.empty,
+      question: Stream.empty,
+    };
   }
-  return streamMaterialHeads(base.releaseId, base.manifestHash);
+  return {
+    article: streamContentHeads(base.releaseId, base.manifestHash, "article"),
+    material: streamContentHeads(base.releaseId, base.manifestHash, "material"),
+    question: streamContentHeads(base.releaseId, base.manifestHash, "question"),
+  };
 }
 
 /** Selects the authenticated base catalog represented by one source bundle. */
@@ -138,8 +146,8 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       input.kind === "new"
         ? input.rendererManifest
         : input.bundle.rendererManifest;
-    const material = yield* prepareMaterialPublication({
-      baseCatalog:
+    const catalog = yield* prepareContentCatalog({
+      base:
         base === null
           ? null
           : {
@@ -148,7 +156,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
               releaseId: base.releaseId,
             },
       checkoutRoot,
-      published: publishedMaterialHeads(base),
+      published: publishedContentHeads(base),
       rendererManifest,
     });
     const prepared = yield* prepareContentRelease({
@@ -158,11 +166,11 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       baseResultCount: base === null ? 0 : base.resultCount,
       baseResultDigest:
         base === null ? EMPTY_RESULT_CATALOG_DIGEST : base.resultDigest,
-      records: material.records,
+      records: catalog.records,
       releaseId: input.releaseId,
       rendererManifest,
-      result: material.result,
-      routes: material.routes,
+      result: catalog.result,
+      routes: catalog.routes,
     });
     if (input.kind === "new") {
       return prepared;

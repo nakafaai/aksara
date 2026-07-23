@@ -1,5 +1,9 @@
 import { Schema } from "effect";
-import { ContentLocaleSchema, compareContentHeads } from "#contracts/content";
+import {
+  ContentFamilySchema,
+  ContentLocaleSchema,
+  compareContentHeads,
+} from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,
@@ -15,8 +19,7 @@ const HeadCursorSchema = Schema.NullOr(
   Schema.NonEmptyTrimmedString.pipe(Schema.maxLength(4096))
 );
 
-/** Compact authoritative identity used to diff one published material head. */
-export const MaterialHeadSchema = Schema.Struct({
+const ContentHeadFields = {
   artifactHash: Sha256HashSchema,
   compilerConfigHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
@@ -27,16 +30,49 @@ export const MaterialHeadSchema = Schema.Struct({
   rendererDomain: RendererDomainSchema,
   sourceHash: Sha256HashSchema,
   sourcePath: CorpusSourcePathSchema,
+};
+
+/** Compact authoritative identity used to diff one published article head. */
+export const ArticleHeadSchema = Schema.Struct({
+  ...ContentHeadFields,
+  family: Schema.Literal("article"),
+});
+export type ArticleHead = typeof ArticleHeadSchema.Type;
+
+/** Compact authoritative identity used to diff one published material head. */
+export const MaterialHeadSchema = Schema.Struct({
+  ...ContentHeadFields,
+  family: Schema.Literal("material"),
 });
 export type MaterialHead = typeof MaterialHeadSchema.Type;
 
+/** Compact authoritative identity used to diff one published question body. */
+export const QuestionHeadSchema = Schema.Struct({
+  ...ContentHeadFields,
+  family: Schema.Literal("question"),
+}).pipe(
+  Schema.filter(({ publicPath }) => publicPath === undefined, {
+    message: () => "Expected question heads to remain route-free.",
+  })
+);
+export type QuestionHead = typeof QuestionHeadSchema.Type;
+
+/** Complete compact-head vocabulary backed by implemented content families. */
+export const ContentHeadSchema = Schema.Union(
+  ArticleHeadSchema,
+  MaterialHeadSchema,
+  QuestionHeadSchema
+);
+export type ContentHead = typeof ContentHeadSchema.Type;
+
 /** Serializes one compact head in stable catalog field order. */
-export function canonicalizeMaterialHead(head: MaterialHead) {
+export function canonicalizeContentHead(head: ContentHead) {
   return JSON.stringify({
     artifactHash: head.artifactHash,
     compilerConfigHash: head.compilerConfigHash,
     contentKey: head.contentKey,
     delivery: head.delivery,
+    family: head.family,
     locale: head.locale,
     projectionHash: head.projectionHash,
     ...(head.publicPath === undefined ? {} : { publicPath: head.publicPath }),
@@ -46,12 +82,12 @@ export function canonicalizeMaterialHead(head: MaterialHead) {
   });
 }
 
-/** Requests one bounded material-head page from an exact active release. */
+/** Requests one bounded family-owned head page from an exact active release. */
 export const HeadPageRequestSchema = Schema.Struct({
   activeManifestHash: Sha256HashSchema,
   activeReleaseId: ReleaseIdSchema,
   cursor: HeadCursorSchema,
-  family: Schema.Literal("material"),
+  family: ContentFamilySchema,
   limit: Schema.Number.pipe(
     Schema.int(),
     Schema.between(1, MAX_HEAD_PAGE_COUNT)
@@ -63,7 +99,7 @@ export type HeadPageRequest = typeof HeadPageRequestSchema.Type;
 function hasCanonicalHeadPage(page: {
   readonly cursor: string | null;
   readonly done: boolean;
-  readonly heads: readonly MaterialHead[];
+  readonly heads: readonly ContentHead[];
   readonly nextCursor: string | null;
 }) {
   const hasCanonicalOrder = page.heads.every((head, index) => {
@@ -79,21 +115,57 @@ function hasCanonicalHeadPage(page: {
   return page.nextCursor !== null && page.nextCursor !== page.cursor;
 }
 
-/** Bounded canonical page proving material heads for one active release. */
-export const HeadPageSchema = Schema.Struct({
+const HeadPageFields = {
   activeManifestHash: Sha256HashSchema,
   activeReleaseId: ReleaseIdSchema,
   cursor: HeadCursorSchema,
   done: Schema.Boolean,
+  nextCursor: HeadCursorSchema,
+};
+
+const ArticleHeadPageSchema = Schema.Struct({
+  ...HeadPageFields,
+  family: Schema.Literal("article"),
+  heads: Schema.Array(ArticleHeadSchema).pipe(
+    Schema.maxItems(MAX_HEAD_PAGE_COUNT)
+  ),
+}).pipe(
+  Schema.filter(hasCanonicalHeadPage, {
+    message: () =>
+      "Expected canonical article heads with coherent cursor progress.",
+  })
+);
+
+const MaterialHeadPageSchema = Schema.Struct({
+  ...HeadPageFields,
   family: Schema.Literal("material"),
   heads: Schema.Array(MaterialHeadSchema).pipe(
     Schema.maxItems(MAX_HEAD_PAGE_COUNT)
   ),
-  nextCursor: HeadCursorSchema,
 }).pipe(
   Schema.filter(hasCanonicalHeadPage, {
     message: () =>
       "Expected canonical material heads with coherent cursor progress.",
   })
+);
+
+const QuestionHeadPageSchema = Schema.Struct({
+  ...HeadPageFields,
+  family: Schema.Literal("question"),
+  heads: Schema.Array(QuestionHeadSchema).pipe(
+    Schema.maxItems(MAX_HEAD_PAGE_COUNT)
+  ),
+}).pipe(
+  Schema.filter(hasCanonicalHeadPage, {
+    message: () =>
+      "Expected canonical question heads with coherent cursor progress.",
+  })
+);
+
+/** Bounded canonical page proving one exact family-owned head inventory. */
+export const HeadPageSchema = Schema.Union(
+  ArticleHeadPageSchema,
+  MaterialHeadPageSchema,
+  QuestionHeadPageSchema
 );
 export type HeadPage = typeof HeadPageSchema.Type;

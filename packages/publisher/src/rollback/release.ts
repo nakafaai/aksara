@@ -11,7 +11,7 @@ import {
   finalizeReleaseItemsDigest,
   updateReleaseItemsDigest,
 } from "@nakafa/aksara-contracts/release/digest";
-import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import {
   createResultCatalogDigest,
@@ -66,7 +66,7 @@ export interface BuildRollbackReleaseInput<E, R> {
   readonly releaseId: ReleaseId;
   readonly rendererManifest: RendererManifestEnvelope;
   /** Replays the complete catalog produced by applying this rollback. */
-  readonly result: () => Stream.Stream<MaterialHead, E, R>;
+  readonly result: () => Stream.Stream<ContentHead, E, R>;
   /** Replays independent inverse route ownership changes. */
   readonly routes: () => Stream.Stream<ContentRouteItem, ReplaySpoolError>;
 }
@@ -116,7 +116,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
 )(function* <E, R>(input: BuildRollbackReleaseInput<E, R>) {
   /** Replays canonical prior-state release items. */
   const items = () => rollbackItemStream(input.records, "prior");
-  /** Replays canonical prior-state material projections. */
+  /** Replays canonical prior-state content projections. */
   const projections = () => rollbackProjectionStream(input.records, "prior");
   /** Replays current states as the next rollback snapshot. */
   const rollback = () =>

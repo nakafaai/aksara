@@ -12,6 +12,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
     artifactHash: transportArtifactHash,
     contentKey: "test:http",
     delivery: "public",
+    family: "material",
     locale: "en",
     operation: "upsert",
     publicPath: "subjects/test/http",
@@ -25,6 +26,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
 const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   change: {
     contentKey: "test:deleted",
+    family: "material",
     locale: "id",
     operation: "delete",
   },

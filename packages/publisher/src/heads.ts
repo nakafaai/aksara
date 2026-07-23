@@ -1,17 +1,26 @@
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
+import {
+  type ContentFamily,
+  compareContentHeads,
+} from "@nakafa/aksara-contracts/content";
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import type {
+  ArticleHead,
+  ContentHead,
   HeadPage,
   MaterialHead,
+  QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
 import { Chunk, Effect, Option, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
-import { PublicationTargetProtocolError } from "#publisher/target/errors";
+import {
+  type PublicationTargetFailure,
+  PublicationTargetProtocolError,
+} from "#publisher/target/errors";
 
 interface HeadPageState {
   readonly cursor: string | null;
-  readonly last: MaterialHead | undefined;
+  readonly last: ContentHead | undefined;
 }
 
 /** Creates one permanent contradiction for a non-canonical target page stream. */
@@ -24,8 +33,8 @@ function headPageError() {
 
 /** Proves the next page begins strictly after the prior page's final head. */
 function validatePageOrder(
-  previous: MaterialHead | undefined,
-  heads: readonly MaterialHead[]
+  previous: ContentHead | undefined,
+  heads: readonly ContentHead[]
 ) {
   const [first] = heads;
   if (
@@ -54,11 +63,33 @@ function nextPageState(previous: HeadPageState, page: HeadPage) {
   );
 }
 
-/** Streams every compact material head while binding all pages to one release. */
-export function streamMaterialHeads(
+/** Streams every compact article head while binding all pages to one release. */
+export function streamContentHeads(
   activeReleaseId: ReleaseId,
-  activeManifestHash: Sha256Hash
-) {
+  activeManifestHash: Sha256Hash,
+  family: "article"
+): Stream.Stream<ArticleHead, PublicationTargetFailure, PublicationTarget>;
+
+/** Streams every compact material head while binding all pages to one release. */
+export function streamContentHeads(
+  activeReleaseId: ReleaseId,
+  activeManifestHash: Sha256Hash,
+  family: "material"
+): Stream.Stream<MaterialHead, PublicationTargetFailure, PublicationTarget>;
+
+/** Streams every compact question head while binding all pages to one release. */
+export function streamContentHeads(
+  activeReleaseId: ReleaseId,
+  activeManifestHash: Sha256Hash,
+  family: "question"
+): Stream.Stream<QuestionHead, PublicationTargetFailure, PublicationTarget>;
+
+/** Streams every compact family head while binding all pages to one release. */
+export function streamContentHeads(
+  activeReleaseId: ReleaseId,
+  activeManifestHash: Sha256Hash,
+  family: ContentFamily
+): Stream.Stream<ContentHead, PublicationTargetFailure, PublicationTarget> {
   const initial: HeadPageState = { cursor: null, last: undefined };
   return Stream.paginateChunkEffect(initial, (state) =>
     Effect.gen(function* () {
@@ -67,12 +98,15 @@ export function streamMaterialHeads(
         activeManifestHash,
         activeReleaseId,
         cursor: state.cursor,
-        family: "material",
+        family,
         limit: MAX_HEAD_PAGE_COUNT,
       });
+      if (page.family !== family) {
+        return yield* Effect.fail(headPageError());
+      }
       yield* validatePageOrder(state.last, page.heads);
       const next = yield* nextPageState(state, page);
-      return Tuple.make(Chunk.fromIterable(page.heads), next);
+      return Tuple.make(Chunk.fromIterable<ContentHead>(page.heads), next);
     })
   );
 }

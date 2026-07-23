@@ -90,16 +90,58 @@ function withSections(sections: readonly TryoutSectionInput[]) {
 }
 
 describe("tryout schema", () => {
-  it("decodes visible and single direct-entry try-out sources", () => {
-    const visible = defineTryoutExamSource(tryoutSource);
-    const directEntry = defineTryoutExamSource(
-      withSections([directEntrySection()])
+  it("decodes visible and single direct-entry try-out sources", async () => {
+    const [visible, directEntry] = await Effect.runPromise(
+      Effect.all([
+        defineTryoutExamSource(tryoutSource),
+        defineTryoutExamSource(withSections([directEntrySection()])),
+      ])
     );
 
     expect(visible.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe("visible");
     expect(directEntry.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe(
       "internal-entry"
     );
+  });
+
+  it("reports duplicate keys at their exact authored scope", async () => {
+    const duplicate = await Effect.runPromise(
+      defineTryoutExamSource(
+        withSections([visibleSection(), visibleSection()])
+      ).pipe(Effect.flip)
+    );
+
+    expect(duplicate).toMatchObject({
+      _tag: "TryoutDuplicateError",
+      key: "general-reasoning",
+      scope: "snbt:2027:set-1:sections",
+    });
+  });
+
+  it("maps strict decoding failures into the typed domain error", async () => {
+    const failure = await Effect.runPromise(
+      defineTryoutExamSource({
+        ...tryoutSource,
+        examKey: "SNBT",
+      }).pipe(Effect.flip)
+    );
+
+    expect(failure).toMatchObject({ _tag: "TryoutDecodeError" });
+    expect(String(failure.cause)).toContain("Invalid try-out key.");
+  });
+
+  it("validates both complete authored exam catalogs", async () => {
+    const { snbtTryoutSource } = await import(
+      "#corpus/tryout/indonesia/snbt/source"
+    );
+    const { tkaTryoutSource } = await import(
+      "#corpus/tryout/indonesia/tka/source"
+    );
+    const sources = await Effect.runPromise(
+      Effect.all([snbtTryoutSource, tkaTryoutSource])
+    );
+
+    expect(sources.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
   });
 
   it.each([

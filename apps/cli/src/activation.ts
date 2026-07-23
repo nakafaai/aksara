@@ -1,19 +1,20 @@
 import { HttpClient } from "@effect/platform";
 import {
-  MATERIAL_CACHE_TAGS,
-  type MaterialCacheRequest,
-} from "@nakafa/aksara-contracts/cache/material";
+  type ContentCacheChange,
+  type ContentCacheRequest,
+  MAX_CONTENT_CACHE_ARTIFACTS,
+  makeContentCacheRequest,
+} from "@nakafa/aksara-contracts/cache/content";
+import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import {
   PublicationActivation,
   PublicationActivationError,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { validateReleaseRendererManifest } from "@nakafa/aksara-publisher/release-validation";
-import { Effect, type Redacted, Schedule } from "effect";
-import {
-  invalidateMaterialCache,
-  MaterialCacheError,
-} from "#cli/cache/exchange";
+import { Chunk, Effect, type Redacted, Schedule, Stream } from "effect";
+import { ContentCacheError } from "#cli/cache/error";
+import { invalidateContentCache } from "#cli/cache/exchange";
 import {
   fetchProductionRenderer,
   isRendererEndpoint,
@@ -32,17 +33,53 @@ function makeCacheEndpoint(rendererEndpoint: URL) {
   return new URL(CACHE_PATH, rendererEndpoint);
 }
 
+/** Selects unique body hashes from one already-bounded family change batch. */
+function uniqueArtifactHashes(changes: readonly ContentCacheChange[]) {
+  return [
+    ...new Set(
+      changes.flatMap(({ artifactHash }) =>
+        artifactHash === undefined ? [] : [artifactHash]
+      )
+    ),
+  ];
+}
+
+/** Streams bounded invalidation requests for each family touched by a release. */
+function makeCacheRequests<E, R>(input: {
+  /** Replays the exact family-aware changes authenticated by the release. */
+  readonly cacheChanges: () => Stream.Stream<ContentCacheChange, E, R>;
+  readonly release: SignedContentRelease;
+}) {
+  return Stream.fromIterable(ContentFamilySchema.literals).pipe(
+    Stream.flatMap((family) =>
+      input.cacheChanges().pipe(
+        Stream.filter((change) => change.family === family),
+        Stream.grouped(MAX_CONTENT_CACHE_ARTIFACTS),
+        Stream.map((changes) =>
+          makeContentCacheRequest({
+            artifactHashes: uniqueArtifactHashes(
+              Chunk.toReadonlyArray(changes)
+            ),
+            family,
+            releaseId: input.release.manifest.releaseId,
+          })
+        )
+      )
+    )
+  );
+}
+
 /** Captures HTTP for the pre-commit renderer and post-commit cache gates. */
 export const makeProductionActivation = Effect.fn(
   "AksaraCli.makeProductionActivation"
-)(function* (input: {
+)(function* (settings: {
   readonly endpoint: URL;
   readonly token: Redacted.Redacted<string>;
 }) {
   const client = yield* HttpClient.HttpClient;
   /** Re-fetches and verifies the deployed renderer immediately before commit. */
   const verify = (release: SignedContentRelease) =>
-    fetchProductionRenderer(input.endpoint, input.token).pipe(
+    fetchProductionRenderer(settings.endpoint, settings.token).pipe(
       Effect.flatMap((renderer) =>
         validateReleaseRendererManifest(release.manifest, renderer)
       ),
@@ -55,44 +92,47 @@ export const makeProductionActivation = Effect.fn(
           })
       )
     );
-  /** Invalidates the active content cache and remains safe to retry. */
-  const invalidate = (release: SignedContentRelease) => {
-    const cacheEndpoint = makeCacheEndpoint(input.endpoint);
+  /** Invalidates exact changed artifacts plus global and family cache tags. */
+  const invalidate = <E, R>(input: {
+    /** Replays the exact family-aware changes authenticated by the release. */
+    readonly cacheChanges: () => Stream.Stream<ContentCacheChange, E, R>;
+    readonly release: SignedContentRelease;
+  }) => {
+    const cacheEndpoint = makeCacheEndpoint(settings.endpoint);
     if (cacheEndpoint === null) {
       return Effect.fail(
         new PublicationActivationError({
           phase: "cache",
-          releaseId: release.manifest.releaseId,
+          releaseId: input.release.manifest.releaseId,
         })
       );
     }
-    const request = {
-      releaseId: release.manifest.releaseId,
-      tags: MATERIAL_CACHE_TAGS,
-    } satisfies MaterialCacheRequest;
-    return invalidateMaterialCache(
-      client,
-      cacheEndpoint,
-      input.token,
-      request
-    ).pipe(
-      Effect.retry({
-        schedule: Schedule.exponential(RETRY_DELAY),
-        times: RETRY_COUNT,
-        while: (error) => error.retryable,
-      }),
-      Effect.timeoutFail({
-        duration: REQUEST_TIMEOUT,
-        onTimeout: () => new MaterialCacheError({ retryable: false }),
-      }),
-      Effect.mapError(
-        () =>
-          new PublicationActivationError({
-            phase: "cache",
-            releaseId: release.manifest.releaseId,
-          })
-      )
-    );
+    /** Sends one bounded, exact invalidation request with its retry policy. */
+    const invalidateRequest = (request: ContentCacheRequest) =>
+      invalidateContentCache(
+        client,
+        cacheEndpoint,
+        settings.token,
+        request
+      ).pipe(
+        Effect.retry({
+          schedule: Schedule.exponential(RETRY_DELAY),
+          times: RETRY_COUNT,
+          while: (error) => error.retryable,
+        }),
+        Effect.timeoutFail({
+          duration: REQUEST_TIMEOUT,
+          onTimeout: () => new ContentCacheError({ retryable: false }),
+        }),
+        Effect.mapError(
+          () =>
+            new PublicationActivationError({
+              phase: "cache",
+              releaseId: input.release.manifest.releaseId,
+            })
+        )
+      );
+    return makeCacheRequests(input).pipe(Stream.runForEach(invalidateRequest));
   };
   return PublicationActivation.of({ invalidate, verify });
 });

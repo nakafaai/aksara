@@ -6,8 +6,7 @@ export const metadata = {
   subject: "Analytic Geometry",
 };
 
-import { getColor } from "@repo/design-system/lib/color";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
+
 
 ## Understanding Parabola
 
@@ -27,19 +26,19 @@ What's interesting about parabolas is their perfect **reflection** property. All
         const y = 0.2 * x * x; // parabola y = 0.2x²
         return { x, y, z: 0 };
       }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
       labels: [{ text: "Parabolic Path", at: 80, offset: [1, 1, 0] }],
     },
     {
       points: [{ x: 0, y: 1.25, z: 0 }], // focus at (0, 1/(4*0.2)) = (0, 1.25)
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: true,
       labels: [{ text: "Focus", at: 0, offset: [0.5, 0.5, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // vertex of parabola
-      color: getColor("CYAN"),
+      color: "#0891b2",
       showPoints: true,
       labels: [{ text: "Vertex", at: 0, offset: [-0.8, -0.5, 0] }],
     },
@@ -49,7 +48,7 @@ What's interesting about parabolas is their perfect **reflection** property. All
         const y = -1.25; // directrix at y = -1/(4*0.2) = -1.25
         return { x, y, z: 0 };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
       labels: [{ text: "Directrix", at: 1, offset: [0, -0.5, 0] }],
@@ -65,7 +64,7 @@ What's interesting about parabolas is their perfect **reflection** property. All
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -80,7 +79,7 @@ What's interesting about parabolas is their perfect **reflection** property. All
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -113,7 +112,7 @@ Let's start with the simplest parabola: **a parabola with vertex at the origin**
         const y = 0.25 * x * x; // parabola x² = 4py with p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       showPoints: false,
       labels: [{ text: "x² = 4py (upward)", at: 11, offset: [-3, 2, 0] }],
     },
@@ -123,7 +122,7 @@ Let's start with the simplest parabola: **a parabola with vertex at the origin**
         const y = -0.25 * x * x; // parabola x² = -4py with p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: false,
       labels: [{ text: "x² = -4py (downward)", at: 50, offset: [3, -2.5, 0] }],
     },
@@ -133,7 +132,7 @@ Let's start with the simplest parabola: **a parabola with vertex at the origin**
         const x = 0.25 * y * y; // parabola y² = 4px with p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("CYAN"),
+      color: "#0891b2",
       showPoints: false,
       labels: [{ text: "y² = 4px (rightward)", at: 50, offset: [3, 1.5, 0] }],
     },
@@ -143,13 +142,13 @@ Let's start with the simplest parabola: **a parabola with vertex at the origin**
         const x = -0.25 * y * y; // parabola y² = -4px with p=0.25
         return { x, y, z: 0 };
       }),
-      color: getColor("TEAL"),
+      color: "#0d9488",
       showPoints: false,
       labels: [{ text: "y² = -4px (leftward)", at: 11, offset: [-3, -1.5, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // vertex of all parabolas at O(0,0)
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: true,
       labels: [{ text: "O(0,0)", at: 0, offset: [-0.8, -0.5, 0] }],
     },
@@ -164,7 +163,7 @@ Let's start with the simplest parabola: **a parabola with vertex at the origin**
           z: 0,
         };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
     },
@@ -179,7 +178,7 @@ Let's start with the simplest parabola: **a parabola with vertex at the origin**
           z: 0,
         };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
     },
@@ -225,19 +224,19 @@ In real applications, parabolas don't always center at the origin. A parabola ca
         const y = k + (1/(4*p)) * Math.pow(x - h, 2); // parabola with vertex (h,k)
         return { x, y, z: 0 };
       }),
-      color: getColor("INDIGO"),
+      color: "#4f46e5",
       showPoints: false,
       labels: [{ text: "Parabola", at: 60, offset: [3, 1, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // vertex
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: true,
       labels: [{ text: "Vertex (2,1)", at: 0, offset: [-1, -0.2, 0] }],
     },
     {
       points: [{ x: 2, y: 1.5, z: 0 }], // focus at (h, k+p) = (2, 1+0.5)
-      color: getColor("LIME"),
+      color: "#65a30d",
       showPoints: true,
       labels: [{ text: "Focus (2,1.5)", at: 0, offset: [0.5, 1, 0] }],
     },
@@ -247,7 +246,7 @@ In real applications, parabolas don't always center at the origin. A parabola ca
         const y = 0.5; // directrix at y = k-p = 1-0.5 = 0.5
         return { x, y, z: 0 };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
       labels: [{ text: "Directrix y = 0.5", at: 1, offset: [0, 0.5, 0] }],
@@ -259,7 +258,7 @@ In real applications, parabolas don't always center at the origin. A parabola ca
         const x = 2; // axis of symmetry
         return { x, y: yMin + i * (yMax - yMin), z: 0 };
       }),
-      color: getColor("PINK"),
+      color: "#db2777",
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
@@ -276,7 +275,7 @@ In real applications, parabolas don't always center at the origin. A parabola ca
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -291,7 +290,7 @@ In real applications, parabolas don't always center at the origin. A parabola ca
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -366,19 +365,19 @@ Therefore, the parabola elements are:
         const y = k + (1/(4*p)) * Math.pow(x - h, 2); // (x-h)² = 4p(y-k)
         return { x, y, z: 0 };
       }),
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       showPoints: false,
       labels: [{ text: "(x-2)² = 8(y-1)", at: 60, offset: [2, 1.5, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // vertex (h,k)
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       showPoints: true,
       labels: [{ text: "Vertex (2,1)", at: 0, offset: [-1, -0.5, 0] }],
     },
     {
       points: [{ x: 2, y: 3, z: 0 }], // focus (h, k+p) = (2, 1+2)
-      color: getColor("LIME"),
+      color: "#65a30d",
       showPoints: true,
       labels: [{ text: "Focus (2,3)", at: 0, offset: [0.8, 0.5, 0] }],
     },
@@ -388,7 +387,7 @@ Therefore, the parabola elements are:
         const y = -1; // directrix y = k-p = 1-2 = -1
         return { x, y, z: 0 };
       }),
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: false,
       smooth: false,
       labels: [{ text: "Directrix y = -1", at: 1, offset: [0, -0.5, 0] }],
@@ -400,7 +399,7 @@ Therefore, the parabola elements are:
         const x = 2; // axis of symmetry x = h = 2
         return { x, y: yMin + i * (yMax - yMin), z: 0 };
       }),
-      color: getColor("PINK"),
+      color: "#db2777",
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
@@ -417,7 +416,7 @@ Therefore, the parabola elements are:
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },
@@ -432,7 +431,7 @@ Therefore, the parabola elements are:
           z: 0,
         };
       }),
-      color: getColor("ROSE"),
+      color: "#e11d48",
       showPoints: false,
       smooth: false,
     },

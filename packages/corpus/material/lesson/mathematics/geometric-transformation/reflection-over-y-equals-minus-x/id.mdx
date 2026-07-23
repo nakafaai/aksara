@@ -1,5 +1,3 @@
-import { getColor } from "@repo/design-system/lib/color";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
 
 export const metadata = {
   title: "Pencerminan terhadap Garis Diagonal Negatif",
@@ -57,32 +55,32 @@ Mari kita visualisasikan pencerminan beberapa titik terhadap garis <InlineMath m
         { x: -6, y: 6, z: 0 },
         { x: 6, y: -6, z: 0 },
       ],
-      color: getColor("INDIGO"),
+      color: "#4f46e5",
       labels: [{ text: "y=-x", at: 1, offset: [0.5, 0.5, 0] }],
       }, // Garis refleksi
     // Titik A dan A'
     {
       points: [{ x: -2, y: 4, z: 0 }],
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: true,
       labels: [{ text: "A(-2,4)", at: 0, offset: [0.3, 0.3, 0] }],
     },
     {
       points: [{ x: -4, y: 2, z: 0 }],
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: true,
       labels: [{ text: "A'(-4,2)", at: 0, offset: [0.3, 0.3, 0] }],
     },
     // Titik D dan D'
     {
       points: [{ x: 2, y: 1, z: 0 }],
-      color: getColor("SKY"),
+      color: "#0284c7",
       showPoints: true,
       labels: [{ text: "D(2,1)", at: 0, offset: [0.3, 0.3, 0] }],
     },
     {
       points: [{ x: -1, y: -2, z: 0 }],
-      color: getColor("SKY"),
+      color: "#0284c7",
       showPoints: true,
       labels: [{ text: "D'(-1,-2)", at: 0, offset: [0.3, 0.3, 0] }],
     },
@@ -122,7 +120,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
         { x: -7, y: 7, z: 0 },
         { x: 7, y: -7, z: 0 },
       ],
-      color: getColor("INDIGO"),
+      color: "#4f46e5",
       labels: [{ text: "y=-x", at: 1, offset: [0.5, 0.5, 0] }],
       }, // Garis refleksi
     // Segitiga ABC (Asli)
@@ -141,7 +139,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
-      color: getColor("AMBER"),
+      color: "#d97706",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
     })),
@@ -161,7 +159,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
-      color: getColor("TEAL"),
+      color: "#0d9488",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
     })),
@@ -214,7 +212,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
         { x: -7, y: 7, z: 0 },
         { x: 7, y: -7, z: 0 },
       ],
-      color: getColor("INDIGO"),
+      color: "#4f46e5",
       labels: [{ text: "y=-x", at: 1, offset: [0.5, 0.5, 0] }],
       }, // Garis refleksi
     {
@@ -223,7 +221,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
         const xVal = (i - 5) * 0.5; // Range x agar tidak terlalu curam
         return { x: xVal, y: -4 * xVal - 2, z: 0 };
       }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       smooth: true,
       labels: [{ text: "y=-4x-2", at: 6, offset: [1, 0.5, 0] }],
     },
@@ -233,7 +231,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
         const xVal = (i - 5) * 2; // Range x agar tidak terlalu landai
         return { x: xVal, y: (-1 / 4) * xVal + 1 / 2, z: 0 };
       }),
-      color: getColor("PINK"),
+      color: "#db2777",
       smooth: true,
       labels: [{ text: "y=(-1/4)x+1/2", at: 8, offset: [0.5, -1, 0] }],
     },

@@ -6,12 +6,6 @@ export const metadata = {
   subject: "Circle Arcs and Sectors",
 };
 
-import {
-  createCircleChordPoints,
-  createCircleOutlinePoints,
-} from "@repo/design-system/components/contents/mathematics/circle";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
-import { getColor } from "@repo/design-system/lib/color";
 
 ## Understanding Chord
 
@@ -26,19 +20,17 @@ Chords have special characteristics in a circle. The farther the chord is from t
   showZAxis={false}
   data={[
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("CYAN"),
+      kind: "circle-outline", radius: 4,
+      color: "#0891b2",
       smooth: true,
       showPoints: false,
       labels: [{ text: "Circle", at: 25, offset: [1, 0.5, 0] }]
     },
     {
-      points: createCircleChordPoints({
-        radius: 4,
+      kind: "circle-chord", radius: 4,
         startDegrees: 30,
         sweepDegrees: 120,
-      }),
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       smooth: false,
       showPoints: true,
       labels: [
@@ -47,12 +39,10 @@ Chords have special characteristics in a circle. The farther the chord is from t
       ]
     },
     {
-      points: createCircleChordPoints({
-        radius: 4,
+      kind: "circle-chord", radius: 4,
         startDegrees: 60,
         sweepDegrees: 180,
-      }),
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       smooth: false,
       showPoints: true,
       labels: [
@@ -65,7 +55,7 @@ Chords have special characteristics in a circle. The farther the chord is from t
         { x: -4, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 }
       ],
-      color: getColor("AMBER"),
+      color: "#d97706",
       smooth: false,
       showPoints: true,
       labels: [
@@ -75,7 +65,7 @@ Chords have special characteristics in a circle. The farther the chord is from t
     },
     {
       points: [{ x: 0, y: 0, z: 0 }],
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       smooth: false,
       showPoints: true,
       labels: [{ text: "O", at: 0, offset: [0.3, 0.3, 0] }]
@@ -110,8 +100,8 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
   showZAxis={false}
   data={[
     {
-      points: createCircleOutlinePoints(3),
-      color: getColor("CYAN"),
+      kind: "circle-outline", radius: 3,
+      color: "#0891b2",
       smooth: true,
       showPoints: false
     },
@@ -120,7 +110,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
         { x: -3, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 }
       ],
-      color: getColor("ORANGE"),
+      color: "#ea580c",
       smooth: false,
       showPoints: true,
       labels: [{ text: "d = 0", at: 0, offset: [0, -0.5, 0] }]
@@ -130,7 +120,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
         { x: -Math.sqrt(9 - 1), y: 1, z: 0 },
         { x: Math.sqrt(9 - 1), y: 1, z: 0 }
       ],
-      color: getColor("PURPLE"),
+      color: "#9333ea",
       smooth: false,
       showPoints: true,
       labels: [{ text: "d = 1", at: 0, offset: [0, 0.5, 0] }]
@@ -140,7 +130,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
         { x: -Math.sqrt(9 - 4), y: 2, z: 0 },
         { x: Math.sqrt(9 - 4), y: 2, z: 0 }
       ],
-      color: getColor("AMBER"),
+      color: "#d97706",
       smooth: false,
       showPoints: true,
       labels: [{ text: "d = 2", at: 0, offset: [0, 0.5, 0] }]
@@ -150,7 +140,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
         { x: 0, y: 0, z: 0 },
         { x: 0, y: 1, z: 0 }
       ],
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       smooth: false,
       showPoints: false
     },
@@ -159,7 +149,7 @@ This formula shows that when <InlineMath math="d = 0" /> (chord passes through t
         { x: 0, y: 0, z: 0 },
         { x: 0, y: 2, z: 0 }
       ],
-      color: getColor("VIOLET"),
+      color: "#7c3aed",
       smooth: false,
       showPoints: false
     }

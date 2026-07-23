@@ -42,6 +42,7 @@ const calls = vi.hoisted(() => {
     baseResultCount: undefined,
     baseResultDigest: undefined,
     bundleVerifyCalls: 0,
+    catalogCalls: 0,
     checkoutRoot: undefined,
     cleanReads: 0,
     current: {
@@ -56,7 +57,6 @@ const calls = vi.hoisted(() => {
     headReleaseId: undefined,
     keyId: undefined,
     manifestMismatch: false,
-    materialCalls: 0,
     privateKeyMatches: false,
     publicationConfig: undefined,
     publishCalls: 0,
@@ -103,8 +103,8 @@ vi.mock("#cli/repository", async () =>
 vi.mock("@nakafa/aksara-publisher/heads", async () =>
   (await import("#test/production-mock")).headsMock(calls)
 );
-vi.mock("@nakafa/aksara-publisher/material/publication", async () =>
-  (await import("#test/production-mock")).materialMock(calls)
+vi.mock("@nakafa/aksara-publisher/catalog/publication", async () =>
+  (await import("#test/production-mock")).catalogMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/target/http", async () =>
   (await import("#test/production-mock")).httpTargetMock(calls)

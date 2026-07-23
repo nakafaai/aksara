@@ -9,7 +9,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
@@ -69,6 +69,7 @@ const baseRecord: PreparedContentUpsert = {
     artifactHash: hashCompiledContentPayload(payload),
     contentKey: source.contentKey,
     delivery: "public",
+    family: "material",
     locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
@@ -84,8 +85,9 @@ const resultHead = MaterialHeadSchema.make({
   compilerConfigHash: payload.compilerConfigHash,
   contentKey: baseRecord.change.contentKey,
   delivery: baseRecord.change.delivery,
+  family: "material",
   locale: baseRecord.change.locale,
-  projectionHash: hashMaterialProjection(projection),
+  projectionHash: hashContentProjection(projection),
   publicPath: projection.publicPath,
   rendererDomain: baseRecord.change.rendererDomain,
   sourceHash: payload.sourceHash,
@@ -94,6 +96,7 @@ const resultHead = MaterialHeadSchema.make({
 const baseTransition = {
   prior: {
     contentKey: baseRecord.change.contentKey,
+    family: "material",
     locale: baseRecord.change.locale,
     state: "absent" as const,
   },
@@ -129,6 +132,7 @@ describe("prepareContentRelease", () => {
       record: {
         change: ContentDeleteSchema.make({
           contentKey: ContentKeySchema.make("test:prepare:z"),
+          family: "material",
           locale: "en",
           operation: "delete",
         }),

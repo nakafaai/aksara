@@ -2,7 +2,7 @@ import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import { ReleaseIdSchema } from "#contracts/ids";
-import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { ContentProjectionSchema } from "#contracts/projection/spec";
 import { HeadPageRequestSchema } from "#contracts/release/head";
 import {
   ContentReleaseBundleSchema,
@@ -199,7 +199,7 @@ export type StageRouteBatchRequest = typeof StageRouteBatchRequestSchema.Type;
 
 const StageProjectionBatchFields = {
   batchIndex: BatchIndexSchema,
-  projections: Schema.NonEmptyArray(MaterialLessonProjectionSchema).pipe(
+  projections: Schema.NonEmptyArray(ContentProjectionSchema).pipe(
     Schema.maxItems(MAX_PROJECTION_BATCH_COUNT)
   ),
   releaseId: ReleaseIdSchema,
@@ -212,7 +212,7 @@ export const StageProjectionBatchInputSchema = Schema.Struct(
 export type StageProjectionBatchInput =
   typeof StageProjectionBatchInputSchema.Type;
 
-/** Stages one non-empty bounded batch of canonical material projections. */
+/** Stages one non-empty bounded batch of canonical content projections. */
 export const StageProjectionBatchRequestSchema = Schema.Struct({
   ...StageProjectionBatchFields,
   operation: Schema.Literal("stageProjectionBatch"),

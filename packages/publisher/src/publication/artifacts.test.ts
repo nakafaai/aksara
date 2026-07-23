@@ -68,6 +68,7 @@ const item = ContentReleaseItemSchema.make({
     artifactHash: artifact.artifactHash,
     contentKey: payload.contentKey,
     delivery: "public",
+    family: "material",
     locale: payload.locale,
     operation: "upsert",
     rendererDomain: payload.rendererDomain,

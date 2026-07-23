@@ -1,5 +1,5 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { MaterialDomainSchema } from "#corpus/material/domain";
@@ -73,10 +73,32 @@ export const LessonMaterialSourceSchema = Schema.Struct({
   slug: MaterialSlugSchema,
   translations: LocaleDescriptionMapSchema,
 });
+export type LessonMaterialSource = typeof LessonMaterialSourceSchema.Type;
 export type LessonMaterialSourceInput =
   typeof LessonMaterialSourceSchema.Encoded;
 
-/** Decodes one authored lesson material at its module boundary. */
-export function defineLessonMaterial(input: LessonMaterialSourceInput) {
-  return Schema.decodeUnknownSync(LessonMaterialSourceSchema)(input);
-}
+/** One authored lesson material failed strict source decoding. */
+export class LessonMaterialError extends Schema.TaggedError<LessonMaterialError>()(
+  "LessonMaterialError",
+  {
+    cause: Schema.Unknown,
+    materialKey: Schema.String,
+  }
+) {}
+
+/** Lazily decodes one authored lesson material at its source-module seam. */
+export const defineLessonMaterial = Effect.fn(
+  "AksaraCorpus.defineLessonMaterial"
+)(function* (input: LessonMaterialSourceInput) {
+  return yield* Schema.decodeUnknown(LessonMaterialSourceSchema)(input, {
+    onExcessProperty: "error",
+  }).pipe(
+    Effect.mapError(
+      (cause) =>
+        new LessonMaterialError({
+          cause,
+          materialKey: input.key,
+        })
+    )
+  );
+});

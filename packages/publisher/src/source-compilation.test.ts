@@ -61,6 +61,7 @@ function upsertWithArtifactHash(
     artifactHash,
     contentKey: source.contentKey,
     delivery: "public",
+    family: "material",
     locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,

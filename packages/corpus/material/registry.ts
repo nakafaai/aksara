@@ -10,33 +10,29 @@ import {
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  MaterialLessonRouteSchema,
-  MaterialSectionSchema,
-} from "@nakafa/aksara-contracts/projection/material";
+import { MaterialLessonRouteSchema } from "@nakafa/aksara-contracts/projection/material";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
-import { LogicalCorpusSegmentSchema } from "#corpus/path";
 
-const CorpusSegmentSchema = Schema.String.pipe(
-  Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)?$/u)
-);
-const LocalePathsSchema = Schema.Record({
-  key: ContentLocaleSchema,
-  value: MaterialLessonRouteSchema.fields.publicPath,
-});
-const MaterialFamilySchema = Schema.Struct({
-  delivery: ContentDeliveryClassSchema,
-  identity: Schema.Struct({
-    materialSlug: LogicalCorpusSegmentSchema,
-    sectionKey: MaterialSectionSchema,
-    subject: CorpusSegmentSchema,
-  }),
-  order: MaterialLessonRouteSchema.fields.order,
-  publicPaths: LocalePathsSchema,
-  rendererDomain: RendererDomainSchema,
-});
-type MaterialFamily = typeof MaterialFamilySchema.Type;
+import type { LessonMaterialSource } from "#corpus/material/schema";
+import {
+  LessonMaterialSourceSchema,
+  MaterialKeySchema,
+} from "#corpus/material/schema";
+import { decodeMaterialSources } from "#corpus/material/source";
+
+const routeNamespaces = {
+  en: "subjects",
+  id: "materi",
+};
+
+const domainRouteSlugs = {
+  "ai-ds": { en: "ai-ds", id: "ai-ds" },
+  biology: { en: "biology", id: "biologi" },
+  chemistry: { en: "chemistry", id: "kimia" },
+  mathematics: { en: "mathematics", id: "matematika" },
+  physics: { en: "physics", id: "fisika" },
+};
 
 const MaterialEntrySchema = Schema.Struct({
   delivery: ContentDeliveryClassSchema,
@@ -46,13 +42,25 @@ const MaterialEntrySchema = Schema.Struct({
 });
 export type MaterialEntry = typeof MaterialEntrySchema.Type;
 
-/** A source-controlled material registry failed strict decoding. */
-export class MaterialRegistryError extends Schema.TaggedError<MaterialRegistryError>()(
-  "MaterialRegistryError",
-  { cause: Schema.Unknown, message: Schema.NonEmptyTrimmedString }
+/** A decoded material source catalog repeats one stable material key. */
+export class MaterialKeyError extends Schema.TaggedError<MaterialKeyError>()(
+  "MaterialKeyError",
+  { materialKey: MaterialKeySchema }
 ) {}
 
-/** Two material families claim the same stable locale-specific content head. */
+/** A decoded material source catalog repeats one authored asset root. */
+export class MaterialRootError extends Schema.TaggedError<MaterialRootError>()(
+  "MaterialRootError",
+  { assetRoot: LessonMaterialSourceSchema.fields.assetRoot }
+) {}
+
+/** A projected material registry failed strict entry decoding. */
+export class MaterialRegistryError extends Schema.TaggedError<MaterialRegistryError>()(
+  "MaterialRegistryError",
+  { cause: Schema.Unknown }
+) {}
+
+/** Two lesson bodies claim the same stable locale-specific content head. */
 export class MaterialIdentityError extends Schema.TaggedError<MaterialIdentityError>()(
   "MaterialIdentityError",
   {
@@ -61,7 +69,7 @@ export class MaterialIdentityError extends Schema.TaggedError<MaterialIdentityEr
   }
 ) {}
 
-/** Two material families claim the same locale-specific public route. */
+/** Two lesson bodies claim the same locale-specific public route. */
 export class MaterialRouteError extends Schema.TaggedError<MaterialRouteError>()(
   "MaterialRouteError",
   {
@@ -70,69 +78,63 @@ export class MaterialRouteError extends Schema.TaggedError<MaterialRouteError>()
   }
 ) {}
 
-const materialFamilies: readonly unknown[] = [
-  {
-    delivery: "public",
-    identity: {
-      materialSlug: "structure-matter",
-      sectionKey: "atom-shell",
-      subject: "chemistry",
-    },
-    order: 2,
-    publicPaths: {
-      en: "subjects/chemistry/structure-matter/atom-shell",
-      id: "materi/kimia/struktur-atom/kulit-atom",
-    },
-    rendererDomain: "chemistry",
-  },
-  {
-    delivery: "public",
-    identity: {
-      materialSlug: "function-composition-inverse-function",
-      sectionKey: "function-concept",
-      subject: "mathematics",
-    },
-    order: 5,
-    publicPaths: {
-      en: "subjects/mathematics/function-composition-inverse-function/function-concept",
-      id: "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
-    },
-    rendererDomain: "mathematics",
-  },
-];
+/** Expands one decoded material source into its locale-specific lesson bodies. */
+function expandMaterial(source: LessonMaterialSource) {
+  return source.sections.flatMap((section, sectionIndex) =>
+    ContentLocaleSchema.literals.map((locale) => {
+      const contentKey = `${source.assetRoot}/${section.slug}`;
+      const publicPath = [
+        routeNamespaces[locale],
+        domainRouteSlugs[source.domain][locale],
+        source.routeSlugs[locale],
+        section.routeSlugs[locale],
+      ].join("/");
 
-/** Expands one shared family identity into canonical locale-owned entries. */
-function expandFamily(family: MaterialFamily) {
-  const { materialSlug, sectionKey, subject } = family.identity;
-  const materialKey = `lesson.${subject}.${materialSlug}`;
-  const contentKey = `material/lesson/${subject}/${materialSlug}/${sectionKey}`;
-  const sourceRoot = [
-    "packages/corpus/material/lesson",
-    subject,
-    materialSlug,
-    sectionKey,
-  ].join("/");
-
-  return ContentLocaleSchema.literals.map((locale) => ({
-    delivery: family.delivery,
-    rendererDomain: family.rendererDomain,
-    route: {
-      contentKey,
-      locale,
-      materialKey,
-      order: family.order,
-      publicPath: family.publicPaths[locale],
-      sectionKey,
-    },
-    sourcePath: `${sourceRoot}/${locale}.mdx`,
-  }));
+      return {
+        delivery: "public",
+        rendererDomain: source.domain,
+        route: {
+          contentKey,
+          locale,
+          materialKey: source.key,
+          order: sectionIndex + 1,
+          publicPath,
+          sectionKey: section.slug,
+        },
+        sourcePath: `packages/corpus/${contentKey}/${locale}.mdx`,
+      };
+    })
+  );
 }
 
-/** Enforces unique content heads and public routes after family expansion. */
+/** Rejects repeated source identities before projecting lesson bodies. */
+const validateSources = Effect.fn("AksaraCorpus.validateMaterialSources")(
+  function* (sources: readonly LessonMaterialSource[]) {
+    const keys = new Set<string>();
+    const roots = new Set<string>();
+
+    for (const source of sources) {
+      if (keys.has(source.key)) {
+        return yield* new MaterialKeyError({ materialKey: source.key });
+      }
+      keys.add(source.key);
+
+      if (roots.has(source.assetRoot)) {
+        return yield* new MaterialRootError({ assetRoot: source.assetRoot });
+      }
+      roots.add(source.assetRoot);
+    }
+
+    return sources;
+  }
+);
+
+/** Rejects duplicate content heads and public routes after source expansion. */
 const validateEntries = Effect.fn("AksaraCorpus.validateMaterialEntries")(
   function* (entries: readonly MaterialEntry[]) {
     const heads = new Set<string>();
     const routes = new Set<string>();
+
     for (const entry of entries) {
       const head = headIdentity(entry.route);
       if (heads.has(head)) {
@@ -152,37 +154,30 @@ const validateEntries = Effect.fn("AksaraCorpus.validateMaterialEntries")(
       }
       routes.add(route);
     }
+
     return [...entries].sort((left, right) =>
       compareContentHeads(left.route, right.route)
     );
   }
 );
 
-/** Decodes family-owned sources and returns canonical locale-specific entries. */
+/** Returns every canonical locale-specific body from the real source catalog. */
 export const decodeMaterialRegistry = Effect.fn(
   "AksaraCorpus.decodeMaterialRegistry"
-)(function* (input: unknown = materialFamilies) {
-  const families = yield* Schema.decodeUnknown(
-    Schema.Array(MaterialFamilySchema)
-  )(input, { onExcessProperty: "error" }).pipe(
-    Effect.mapError(
-      (cause) =>
-        new MaterialRegistryError({
-          cause,
-          message: "Material family registry decoding failed.",
-        })
-    )
-  );
+)(function* (input?: unknown) {
+  const sources = yield* decodeMaterialSources(input);
+  yield* validateSources(sources);
+
   const entries = yield* Schema.decodeUnknown(
     Schema.Array(MaterialEntrySchema)
-  )(families.flatMap(expandFamily), { onExcessProperty: "error" }).pipe(
+  )(sources.flatMap(expandMaterial), { onExcessProperty: "error" }).pipe(
     Effect.mapError(
       (cause) =>
         new MaterialRegistryError({
           cause,
-          message: "Expanded material registry decoding failed.",
         })
     )
   );
+
   return yield* validateEntries(entries);
 });

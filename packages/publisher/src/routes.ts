@@ -10,12 +10,14 @@ import {
   PublicPathSchema,
   type ReleaseId,
 } from "@nakafa/aksara-contracts/ids";
+import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type ContentRouteChange,
   type ContentRouteItem,
   ContentRouteItemSchema,
 } from "@nakafa/aksara-contracts/release/route";
 import { Effect, Schema, Stream } from "effect";
+import type { PreparedContentTransition } from "#publisher/preparation/spec";
 
 /** One route-bearing state on either side of a content transition. */
 export interface RouteVersion {
@@ -54,6 +56,26 @@ interface RoutePlanState {
 interface IndexedRouteChange {
   readonly change: ContentRouteChange;
   readonly identity: string;
+}
+
+/** Derives the exact route transition represented by one body transition. */
+export function routeTransitionForContent(
+  transition: PreparedContentTransition
+): RouteTransition {
+  const current: RouteVersion =
+    transition.prior.state === "absent"
+      ? transition.prior
+      : transition.prior.head;
+  const { change } = transition.record;
+  const next: RouteVersion =
+    "projection" in transition.record
+      ? {
+          contentKey: change.contentKey,
+          locale: change.locale,
+          publicPath: projectionPublicPath(transition.record.projection),
+        }
+      : { contentKey: change.contentKey, locale: change.locale };
+  return { current, next };
 }
 
 /** Adds one compact route owner to its exact side of the bounded plan. */

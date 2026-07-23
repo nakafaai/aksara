@@ -1,35 +1,31 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Path } from "@effect/platform";
-import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type MaterialHead,
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
 import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { testFileLayer } from "#test/files";
+import { materialSlicePaths } from "#test/material-slice";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
-export const atomEnglishPath =
-  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx";
-export const atomIndonesianPath =
-  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/id.mdx";
-export const englishPath =
-  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx";
-export const indonesianPath =
-  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx";
+export const [
+  atomEnglishPath,
+  atomIndonesianPath,
+  englishPath,
+  indonesianPath,
+] = materialSlicePaths;
 export const sourceByPath = new Map(
-  [atomEnglishPath, atomIndonesianPath, englishPath, indonesianPath].map(
-    (sourcePath) => {
-      const absolutePath = resolve(checkoutRoot, sourcePath);
-      return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-    }
-  )
+  materialSlicePaths.map((sourcePath) => {
+    const absolutePath = resolve(checkoutRoot, sourcePath);
+    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
+  })
 );
 
 /** Creates a valid manifest while varying only real domain component versions. */
@@ -62,18 +58,6 @@ export const rendererManifest = await materialManifest({
   math: 1,
 });
 
-const baseReleaseId = ReleaseIdSchema.make("test-material-base");
-
-/** Derives exact signed-root evidence for one material test catalog. */
-function materialBaseCatalog(heads: readonly MaterialHead[]) {
-  if (heads.length === 0) {
-    return Effect.succeed(null);
-  }
-  return digestResultCatalog(baseReleaseId, Stream.fromIterable(heads)).pipe(
-    Effect.map((summary) => ({ ...summary, releaseId: baseReleaseId }))
-  );
-}
-
 /** Collects one authoritative material publication through real platform layers. */
 export function collectMaterialPublication(input: {
   readonly heads: readonly MaterialHead[];
@@ -83,9 +67,7 @@ export function collectMaterialPublication(input: {
   return Effect.runPromise(
     Effect.scoped(
       Effect.gen(function* () {
-        const baseCatalog = yield* materialBaseCatalog(input.heads);
         const publication = yield* prepareMaterialPublication({
-          baseCatalog,
           checkoutRoot,
           published: Stream.fromIterable(input.heads),
           rendererManifest: input.renderer ?? rendererManifest,
@@ -111,9 +93,7 @@ export function collectMaterialRoutes(input: {
   return Effect.runPromise(
     Effect.scoped(
       Effect.gen(function* () {
-        const baseCatalog = yield* materialBaseCatalog(input.heads);
         const publication = yield* prepareMaterialPublication({
-          baseCatalog,
           checkoutRoot,
           published: Stream.fromIterable(input.heads),
           rendererManifest: input.renderer ?? rendererManifest,
@@ -135,11 +115,6 @@ export function rejectMaterialPublication(heads: readonly MaterialHead[]) {
   return Effect.runPromise(
     Effect.scoped(
       prepareMaterialPublication({
-        baseCatalog: {
-          count: heads.length,
-          digest: heads[0]?.artifactHash ?? rendererManifest.hash,
-          releaseId: baseReleaseId,
-        },
         checkoutRoot,
         published: Stream.fromIterable(heads),
         rendererManifest,
@@ -158,7 +133,6 @@ function collectMaterialRecords() {
     Effect.scoped(
       Effect.gen(function* () {
         const material = yield* prepareMaterialPublication({
-          baseCatalog: null,
           checkoutRoot,
           published: Stream.empty,
           rendererManifest,
@@ -189,9 +163,10 @@ export async function publishedMaterialHeads() {
         compilerConfigHash: record.payload.compilerConfigHash,
         contentKey: record.change.contentKey,
         delivery: record.change.delivery,
+        family: "material",
         locale: record.change.locale,
-        projectionHash: hashMaterialProjection(record.projection),
-        publicPath: record.projection.publicPath,
+        projectionHash: hashContentProjection(record.projection),
+        publicPath: projectionPublicPath(record.projection),
         rendererDomain: record.change.rendererDomain,
         sourceHash: record.payload.sourceHash,
         sourcePath: record.change.sourcePath,

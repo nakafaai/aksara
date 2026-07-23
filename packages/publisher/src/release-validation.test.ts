@@ -80,6 +80,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
     artifactHash,
     contentKey: "test:content",
     delivery: "public",
+    family: "material",
     locale: "en",
     operation: "upsert",
     rendererDomain: "mathematics",

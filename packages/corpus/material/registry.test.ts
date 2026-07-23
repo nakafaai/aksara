@@ -1,21 +1,47 @@
+import { globSync } from "node:fs";
+import { resolve } from "node:path";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
+
 import { decodeMaterialRegistry } from "#corpus/material/registry";
 
-const realFamily = {
-  delivery: "public",
-  identity: {
-    materialSlug: "function-composition-inverse-function",
-    sectionKey: "function-concept",
-    subject: "mathematics",
-  },
-  order: 5,
-  publicPaths: {
-    en: "subjects/mathematics/function-composition-inverse-function/function-concept",
-    id: "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
-  },
-  rendererDomain: "mathematics",
-} as const;
+const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
+
+/** Builds one exact lesson source so failure tests change one identity at a time. */
+function lessonSource() {
+  return {
+    assetRoot:
+      "material/lesson/mathematics/function-composition-inverse-function",
+    domain: "mathematics",
+    key: "lesson.mathematics.function-composition-inverse-function",
+    kind: "lesson",
+    routeSlugs: {
+      en: "function-composition-inverse-function",
+      id: "fungsi-komposisi-dan-fungsi-invers",
+    },
+    sections: [
+      {
+        routeSlugs: { en: "function-concept", id: "konsep-fungsi" },
+        slug: "function-concept",
+        translations: {
+          en: { title: "Function Concept" },
+          id: { title: "Konsep Fungsi" },
+        },
+      },
+    ],
+    slug: "function-composition-inverse-function",
+    translations: {
+      en: {
+        description: "Operate on functions while tracking shared domains.",
+        title: "Function Composition and Inverse Function",
+      },
+      id: {
+        description: "Operasikan fungsi sambil menjaga domain bersama.",
+        title: "Fungsi Komposisi dan Fungsi Invers",
+      },
+    },
+  };
+}
 
 /** Returns one typed registry failure at the Vitest runner boundary. */
 function rejectRegistry(input: unknown) {
@@ -23,37 +49,57 @@ function rejectRegistry(input: unknown) {
 }
 
 describe("material registry", () => {
-  it("derives exact locale entries from one real family identity", async () => {
+  it("projects every authored locale body onto its checked-in source path", async () => {
     const entries = await Effect.runPromise(decodeMaterialRegistry());
+    const authoredPaths = globSync("packages/corpus/material/lesson/**/*.mdx", {
+      cwd: corpusRoot,
+    }).sort();
+    const projectedPaths = entries.map(({ sourcePath }) => sourcePath).sort();
+
+    expect(entries).toHaveLength(766);
+    expect(new Set(entries.map(({ route }) => route.materialKey)).size).toBe(
+      36
+    );
+    expect(entries.filter(({ route }) => route.locale === "en")).toHaveLength(
+      383
+    );
+    expect(entries.filter(({ route }) => route.locale === "id")).toHaveLength(
+      383
+    );
+    expect(new Set(projectedPaths).size).toBe(766);
+    expect(projectedPaths).toEqual(authoredPaths);
+
+    const representativeKeys = new Set([
+      "material/lesson/ai-ds/ai-programming/arithmetic-operator",
+      "material/lesson/biology/biodiversity/bacteria",
+      "material/lesson/chemistry/structure-matter/atom-shell",
+      "material/lesson/mathematics/function-composition-inverse-function/function-concept",
+      "material/lesson/physics/kinematics/acceleration",
+    ]);
+    expect(
+      entries
+        .filter(({ route }) => representativeKeys.has(route.contentKey))
+        .map(({ route }) => route.publicPath)
+    ).toEqual([
+      "subjects/ai-ds/ai-programming/arithmetic-operator",
+      "materi/ai-ds/pemrograman-ai/operator-aritmatika",
+      "subjects/biology/biodiversity/bacteria",
+      "materi/biologi/keanekaragaman-makhluk-hidup/bakteri",
+      "subjects/chemistry/structure-matter/atom-shell",
+      "materi/kimia/struktur-atom/kulit-atom",
+      "subjects/mathematics/function-composition-inverse-function/function-concept",
+      "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
+      "subjects/physics/kinematics/acceleration",
+      "materi/fisika/kinematika/percepatan",
+    ]);
+  });
+
+  it("derives exact localized routes from one material source", async () => {
+    const entries = await Effect.runPromise(
+      decodeMaterialRegistry([lessonSource()])
+    );
+
     expect(entries).toEqual([
-      {
-        delivery: "public",
-        rendererDomain: "chemistry",
-        route: {
-          contentKey: "material/lesson/chemistry/structure-matter/atom-shell",
-          locale: "en",
-          materialKey: "lesson.chemistry.structure-matter",
-          order: 2,
-          publicPath: "subjects/chemistry/structure-matter/atom-shell",
-          sectionKey: "atom-shell",
-        },
-        sourcePath:
-          "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx",
-      },
-      {
-        delivery: "public",
-        rendererDomain: "chemistry",
-        route: {
-          contentKey: "material/lesson/chemistry/structure-matter/atom-shell",
-          locale: "id",
-          materialKey: "lesson.chemistry.structure-matter",
-          order: 2,
-          publicPath: "materi/kimia/struktur-atom/kulit-atom",
-          sectionKey: "atom-shell",
-        },
-        sourcePath:
-          "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/id.mdx",
-      },
       {
         delivery: "public",
         rendererDomain: "mathematics",
@@ -63,7 +109,7 @@ describe("material registry", () => {
           locale: "en",
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",
-          order: 5,
+          order: 1,
           publicPath:
             "subjects/mathematics/function-composition-inverse-function/function-concept",
           sectionKey: "function-concept",
@@ -80,7 +126,7 @@ describe("material registry", () => {
           locale: "id",
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",
-          order: 5,
+          order: 1,
           publicPath:
             "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
           sectionKey: "function-concept",
@@ -91,47 +137,62 @@ describe("material registry", () => {
     ]);
   });
 
-  it("rejects malformed, incomplete, and overlong family sources", async () => {
+  it("maps malformed catalogs and invalid projections to typed failures", async () => {
     const malformed = await rejectRegistry(null);
-    const incomplete = await rejectRegistry([
-      { ...realFamily, publicPaths: { en: realFamily.publicPaths.en } },
-    ]);
     const overlong = await rejectRegistry([
       {
-        ...realFamily,
-        identity: {
-          ...realFamily.identity,
-          materialSlug: "a".repeat(600),
-        },
+        ...lessonSource(),
+        assetRoot: `material/lesson/mathematics/${"a".repeat(490)}`,
       },
     ]);
 
-    expect(malformed).toMatchObject({
-      _tag: "MaterialRegistryError",
-      message: "Material family registry decoding failed.",
+    expect(malformed._tag).toBe("MaterialCatalogError");
+    expect(overlong._tag).toBe("MaterialRegistryError");
+  });
+
+  it("rejects duplicate material keys and asset roots", async () => {
+    const duplicateKey = await rejectRegistry([
+      lessonSource(),
+      {
+        ...lessonSource(),
+        assetRoot: "material/lesson/mathematics/alternate-functions",
+        slug: "alternate-functions",
+      },
+    ]);
+    const duplicateRoot = await rejectRegistry([
+      lessonSource(),
+      {
+        ...lessonSource(),
+        key: "lesson.mathematics.alternate-functions",
+        slug: "alternate-functions",
+      },
+    ]);
+
+    expect(duplicateKey).toMatchObject({
+      _tag: "MaterialKeyError",
+      materialKey: "lesson.mathematics.function-composition-inverse-function",
     });
-    expect(incomplete._tag).toBe("MaterialRegistryError");
-    expect(overlong).toMatchObject({
-      _tag: "MaterialRegistryError",
-      message: "Expanded material registry decoding failed.",
+    expect(duplicateRoot).toMatchObject({
+      _tag: "MaterialRootError",
+      assetRoot:
+        "material/lesson/mathematics/function-composition-inverse-function",
     });
   });
 
-  it("rejects duplicate heads and locale-specific public routes", async () => {
-    const duplicateHead = await rejectRegistry([realFamily, realFamily]);
+  it("rejects duplicate locale heads and public routes", async () => {
+    const source = lessonSource();
+    const [section] = source.sections;
+    const duplicateHead = await rejectRegistry([
+      { ...source, sections: [section, section] },
+    ]);
     const duplicateRoute = await rejectRegistry([
-      realFamily,
+      source,
       {
-        ...realFamily,
-        identity: {
-          materialSlug: "test-material",
-          sectionKey: "test-section",
-          subject: "test-subject",
-        },
-        publicPaths: {
-          en: realFamily.publicPaths.en,
-          id: "test/material/id",
-        },
+        ...source,
+        assetRoot: "material/lesson/mathematics/alternate-functions",
+        key: "lesson.mathematics.alternate-functions",
+        sections: [{ ...section, slug: "alternate-section" }],
+        slug: "alternate-functions",
       },
     ]);
 
@@ -142,11 +203,12 @@ describe("material registry", () => {
     expect(duplicateRoute).toMatchObject({
       _tag: "MaterialRouteError",
       locale: "en",
-      publicPath: realFamily.publicPaths.en,
+      publicPath:
+        "subjects/mathematics/function-composition-inverse-function/function-concept",
     });
   });
 
-  it("allows an empty family registry without inventing entries", async () => {
+  it("allows an empty source catalog without inventing entries", async () => {
     await expect(
       Effect.runPromise(decodeMaterialRegistry([]))
     ).resolves.toEqual([]);

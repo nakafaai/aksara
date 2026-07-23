@@ -35,6 +35,7 @@ const releaseId = ReleaseIdSchema.make("test-release-batching");
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
   Array.from({ length: MAX_ITEM_BATCH_COUNT + 1 }, (_, index) => ({
     contentKey: `test:${index.toString().padStart(4, "0")}`,
+    family: "material" as const,
     locale: "en",
     operation: "delete",
   }))

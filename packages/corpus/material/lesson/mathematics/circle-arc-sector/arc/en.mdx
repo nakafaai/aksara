@@ -6,13 +6,6 @@ export const metadata = {
   subject: "Circle Arcs and Sectors",
 };
 
-import {
-  createCircleArcLine,
-  createCircleOutlinePoints,
-  createCircleRadiusPoints,
-} from "@repo/design-system/components/contents/mathematics/circle";
-import { LineEquation } from "@repo/design-system/components/contents/mathematics/line-equation";
-import { getColor } from "@repo/design-system/lib/color";
 
 ## Understanding Circle Arcs
 
@@ -27,30 +20,28 @@ Each arc has two endpoints located on the circle, and the length of the arc depe
   showZAxis={false}
   data={[
     {
-      points: createCircleOutlinePoints(4),
-      color: getColor("CYAN"),
+      kind: "circle-outline", radius: 4,
+      color: "#0891b2",
       smooth: true,
       showPoints: false,
       labels: [{ text: "Circle", at: 56, offset: [1.5, 0.5, 0] }]
     },
-    createCircleArcLine({
-      radius: 4,
+    { kind: "circle-arc", radius: 4,
       startDegrees: 30,
       sweepDegrees: 120,
       segments: 12,
-      color: getColor("ORANGE"),
-      label: { text: "Arc AB", offset: [1.5, 0.5, 0] }
-    }),
+      color: "#ea580c",
+      label: { text: "Arc AB", offset: [1.5, 0.5, 0] } },
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 30 }),
-      color: getColor("PURPLE"),
+      kind: "circle-radius", radius: 4, degrees: 30,
+      color: "#9333ea",
       smooth: false,
       showPoints: true,
       labels: [{ text: "A", at: 1, offset: [0.3, 0.3, 0] }]
     },
     {
-      points: createCircleRadiusPoints({ radius: 4, degrees: 150 }),
-      color: getColor("PURPLE"),
+      kind: "circle-radius", radius: 4, degrees: 150,
+      color: "#9333ea",
       smooth: false,
       showPoints: true,
       labels: [{ text: "B", at: 1, offset: [-0.3, 0.3, 0] }]
@@ -91,27 +82,23 @@ where <InlineMath math="\alpha" /> is the central angle in radians.
   showZAxis={false}
   data={[
     {
-      points: createCircleOutlinePoints(3),
-      color: getColor("CYAN"),
+      kind: "circle-outline", radius: 3,
+      color: "#0891b2",
       smooth: true,
       showPoints: false
     },
-    createCircleArcLine({
-      radius: 3,
+    { kind: "circle-arc", radius: 3,
       startDegrees: 0,
       sweepDegrees: 60,
       segments: 6,
-      color: getColor("ORANGE"),
-      label: { text: "60°", offset: [0.8, 0.3, 0] }
-    }),
-    createCircleArcLine({
-      radius: 3,
+      color: "#ea580c",
+      label: { text: "60°", offset: [0.8, 0.3, 0] } },
+    { kind: "circle-arc", radius: 3,
       startDegrees: 180,
       sweepDegrees: 120,
       segments: 12,
-      color: getColor("PURPLE"),
-      label: { text: "120°", offset: [-1.5, 0.3, 0] }
-    })
+      color: "#9333ea",
+      label: { text: "120°", offset: [-1.5, 0.3, 0] } }
   ]}
 />
 

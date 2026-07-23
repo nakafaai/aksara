@@ -2,6 +2,7 @@ import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import { verifyRollbackContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
+import { allContentCacheChanges } from "#publisher/cache";
 import {
   PublicationActivation,
   PublicationTarget,
@@ -51,7 +52,10 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
       bundle.release,
       completed.receipt
     );
-    yield* activation.invalidate(bundle.release);
+    yield* activation.invalidate({
+      cacheChanges: allContentCacheChanges,
+      release: bundle.release,
+    });
     return receipt;
   }
   const current = yield* target.current();
@@ -63,6 +67,9 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
   yield* activation.verify(bundle.release);
   const receipt = yield* target.activateRecovery(bundle.release);
   const verified = yield* validateManifestReceipt(bundle.release, receipt);
-  yield* activation.invalidate(bundle.release);
+  yield* activation.invalidate({
+    cacheChanges: allContentCacheChanges,
+    release: bundle.release,
+  });
   return verified;
 });

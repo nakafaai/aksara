@@ -34,11 +34,29 @@ function lessonSource() {
 }
 
 describe("material schema", () => {
-  it("decodes one complete authored lesson source", () => {
-    expect(defineLessonMaterial(lessonSource())).toMatchObject({
+  it("decodes one complete authored lesson source", async () => {
+    const material = await Effect.runPromise(
+      defineLessonMaterial(lessonSource())
+    );
+
+    expect(material).toMatchObject({
       domain: "mathematics",
       key: "lesson.mathematics.function-concept",
       sections: [{ slug: "definition" }],
+    });
+  });
+
+  it("maps invalid authored input to one typed source failure", async () => {
+    const error = await Effect.runPromise(
+      defineLessonMaterial({
+        ...lessonSource(),
+        slug: "Invalid Slug",
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "LessonMaterialError",
+      materialKey: "lesson.mathematics.function-concept",
     });
   });
 

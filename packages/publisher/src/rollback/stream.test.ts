@@ -40,6 +40,7 @@ function deletion(index: number) {
   const state = RollbackDeleteStateSchema.make({
     change: {
       contentKey: ContentKeySchema.make(`test:rollback-delete-${index}`),
+      family: "material",
       locale: "en",
       operation: "delete",
     },
@@ -107,6 +108,7 @@ function oversizedPage() {
       artifactHash,
       contentKey: payload.contentKey,
       delivery: "public",
+      family: "material",
       locale: payload.locale,
       operation: "upsert",
       rendererDomain: payload.rendererDomain,

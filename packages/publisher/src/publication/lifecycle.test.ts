@@ -7,7 +7,7 @@ import type {
   ContentReleaseStatus,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect } from "effect";
+import { Effect, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import {
   activateCandidateRelease,
@@ -77,6 +77,7 @@ function makePlan(
   });
   const plan: PublicationPlan<never, never> = {
     bundle: selectedBundle,
+    cacheChanges: () => Stream.empty,
     projectionSummary: { count: selectedManifest.projectionCount },
     routeSummary: { count: selectedManifest.routeCount },
     stage: Effect.sync(stage),
@@ -255,7 +256,9 @@ describe("publication lifecycle", () => {
       )
     ).resolves.toEqual(receipt);
     expect(state.activate).toHaveBeenCalledWith(release);
-    expect(invalidate).toHaveBeenCalledWith(release);
+    expect(invalidate).toHaveBeenCalledWith(
+      expect.objectContaining({ release })
+    );
   });
 
   it("surfaces a stale base from atomic activation", async () => {

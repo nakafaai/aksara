@@ -5,6 +5,7 @@ import {
   ReleaseAbortRequestSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect, Schema } from "effect";
+import { decodeContract } from "#publisher/contract/decode";
 import { PublicationTarget } from "#publisher/publication/spec";
 
 const ABORT_CALL_LIMIT = 100;
@@ -26,17 +27,6 @@ export class ReleaseAbortIncompleteError extends Schema.TaggedError<ReleaseAbort
     totalItems: AbortCountSchema,
   }
 ) {}
-
-/** Strictly decodes one abort contract without retaining parser details. */
-function decodeContract<A, I>(
-  schema: Schema.Schema<A, I>,
-  contract: "request" | "receipt",
-  input: unknown
-) {
-  return Schema.decodeUnknown(schema)(input, {
-    onExcessProperty: "error",
-  }).pipe(Effect.mapError(() => new ReleaseAbortContractError({ contract })));
-}
 
 /** Requires one cumulative receipt to preserve identity, total, and progress. */
 function validateReceipt(
@@ -61,8 +51,8 @@ export const abortContentRelease = Effect.fn(
 )(function* (input: unknown) {
   const request = yield* decodeContract(
     ReleaseAbortRequestSchema,
-    "request",
-    input
+    input,
+    new ReleaseAbortContractError({ contract: "request" })
   );
   const target = yield* PublicationTarget;
   let progress = { processedItems: 0, totalItems: 0 };
@@ -71,8 +61,8 @@ export const abortContentRelease = Effect.fn(
     const response = yield* target.abort(request);
     const receipt = yield* decodeContract(
       ReleaseAbortReceiptSchema,
-      "receipt",
-      response
+      response,
+      new ReleaseAbortContractError({ contract: "receipt" })
     );
     yield* validateReceipt(request.releaseId, previous, receipt);
     if (receipt.complete) {

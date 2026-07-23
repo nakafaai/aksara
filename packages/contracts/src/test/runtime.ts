@@ -15,16 +15,19 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
+  PublicPathSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import { hashMaterialProjection } from "#contracts/projection/hash";
+import {
+  ArticleProjectionSchema,
+  ArticleSlugSchema,
+} from "#contracts/projection/article";
+import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
-import {
-  canonicalizeContentReleaseSigningInput,
-  SignedContentReleaseSchema,
-} from "#contracts/release/spec";
+import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
+import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { verifyContentRuntimeExchange } from "#contracts/runtime/verify";
@@ -59,11 +62,11 @@ const publicKeyPem = signingKeys.publicKey
   .export({ format: "pem", type: "spki" })
   .toString();
 
-/** Produces one canonical, signed runtime artifact from the protocol fixture. */
-function createSignedArtifact() {
+/** Produces one canonical, signed runtime artifact for one exact content key. */
+function createSignedArtifact(contentKey: typeof runtimeContentKey) {
   const payload = CompiledContentPayloadSchema.make({
     ...unsignedArtifact.payload,
-    contentKey: runtimeContentKey,
+    contentKey,
     requiredComponents: [{ name: "BlockMath", version: 1 }],
     sourceHash: Sha256HashSchema.make(
       `sha256:${createHash("sha256")
@@ -94,7 +97,7 @@ function createSignedArtifact() {
   });
 }
 
-export const artifact = createSignedArtifact();
+export const artifact = createSignedArtifact(runtimeContentKey);
 const manifestHash = await Effect.runPromise(
   hashContentReleaseManifest(unsignedRelease.manifest)
 );
@@ -142,11 +145,49 @@ export const found = {
   delivery: "public",
   kind: "found",
   projection: runtimeProjection,
-  projectionHash: hashMaterialProjection(runtimeProjection),
+  projectionHash: hashContentProjection(runtimeProjection),
   release,
   rendererManifest,
   sourcePath: CorpusSourcePathSchema.make(
     `packages/corpus/${runtimeContentKey}/en.mdx`
+  ),
+} as const;
+
+const articleContentKey = ContentKeySchema.make(
+  "articles/politics/dynastic-politics-asian-values"
+);
+const articleProjection = ArticleProjectionSchema.make({
+  articleSlug: ArticleSlugSchema.make("dynastic-politics-asian-values"),
+  category: "politics",
+  contentKey: articleContentKey,
+  kind: "article",
+  locale: "en",
+  metadata: {
+    authors: [{ name: "Nabil Fatih" }],
+    date: "2024-02-14",
+    title: "Dynastic Politics and Asian Values",
+  },
+  official: true,
+  parentPath: PublicPathSchema.make("articles/politics"),
+  publicPath: PublicPathSchema.make(
+    "articles/politics/dynastic-politics-asian-values"
+  ),
+  references: [],
+  sitemap: true,
+});
+export const articleArtifact = createSignedArtifact(articleContentKey);
+export const articleRequest = {
+  delivery: "public",
+  locale: "en",
+  publicPath: articleProjection.publicPath,
+} as const;
+export const articleFound = {
+  ...found,
+  artifact: articleArtifact,
+  projection: articleProjection,
+  projectionHash: hashContentProjection(articleProjection),
+  sourcePath: CorpusSourcePathSchema.make(
+    "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx"
   ),
 } as const;
 

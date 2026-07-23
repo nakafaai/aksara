@@ -62,6 +62,7 @@ const baseRecord: PreparedContentUpsert = {
     artifactHash: hashCompiledContentPayload(payload),
     contentKey: source.contentKey,
     delivery: "public",
+    family: "material",
     locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
@@ -81,6 +82,7 @@ function transition(
   return {
     prior: {
       contentKey: identity.contentKey,
+      family: identity.family,
       locale: identity.locale,
       state: "absent",
     },
@@ -143,6 +145,13 @@ const mismatchCases = [
     }),
   ],
   [
+    "family",
+    (value: PreparedContentUpsert) => ({
+      ...value,
+      change: { ...value.change, family: "article" },
+    }),
+  ],
+  [
     "locale",
     (value: PreparedContentUpsert) => ({
       ...value,
@@ -177,13 +186,13 @@ const mismatchCases = [
   ],
 ] satisfies readonly (readonly [
   string,
-  (record: PreparedContentUpsert) => unknown,
+  (record: PreparedContentUpsert) => PreparedContentUpsert,
 ])[];
-
 describe("derivePreparedRecords", () => {
   it.each(mismatchCases)("rejects %s incoherence", async (field, mutate) => {
+    const candidate = mutate(baseRecord);
     const error = await Effect.runPromise(
-      derive(() => Stream.make(transition(mutate(baseRecord)))).pipe(
+      derive(() => Stream.make(transition(candidate, candidate.change))).pipe(
         Effect.flip
       )
     );
@@ -237,6 +246,7 @@ describe("derivePreparedRecords", () => {
     {
       prior: {
         contentKey: ContentKeySchema.make("test:another-head"),
+        family: "material",
         locale: baseRecord.change.locale,
         state: "absent",
       },
@@ -245,12 +255,23 @@ describe("derivePreparedRecords", () => {
     {
       prior: {
         contentKey: baseRecord.change.contentKey,
+        family: "article",
+        locale: baseRecord.change.locale,
+        state: "absent",
+      },
+      record: baseRecord,
+    },
+    {
+      prior: {
+        contentKey: baseRecord.change.contentKey,
+        family: "material",
         locale: baseRecord.change.locale,
         state: "absent",
       },
       record: {
         change: {
           contentKey: baseRecord.change.contentKey,
+          family: "material",
           locale: baseRecord.change.locale,
           operation: "delete",
         },

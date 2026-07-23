@@ -1,5 +1,5 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { MaterialDomainSchema } from "#corpus/material/domain";
@@ -79,8 +79,8 @@ export type CurriculumTreeNode =
   | CurriculumMaterialNode
   | CurriculumStructureNode;
 
-interface CurriculumStructureEncoded {
-  readonly children?: readonly CurriculumTreeEncoded[] | undefined;
+export interface CurriculumStructureInput {
+  readonly children?: readonly CurriculumTreeInput[] | undefined;
   readonly displayGroup?:
     | typeof CurriculumDisplayGroupMapSchema.Encoded
     | undefined;
@@ -98,7 +98,7 @@ interface CurriculumStructureEncoded {
   readonly translations: EncodedTranslationMap;
 }
 
-interface CurriculumMaterialEncoded {
+export interface CurriculumMaterialInput {
   readonly displayOverride?: EncodedTranslationMap | undefined;
   readonly key: string;
   readonly level: ProgramNavigationLevel;
@@ -106,15 +106,15 @@ interface CurriculumMaterialEncoded {
   readonly order: number;
 }
 
-type CurriculumTreeEncoded =
-  | CurriculumMaterialEncoded
-  | CurriculumStructureEncoded;
+export type CurriculumTreeInput =
+  | CurriculumMaterialInput
+  | CurriculumStructureInput;
 
 const CurriculumStructureNodeSchema = Schema.Struct({
   children: Schema.optional(
     Schema.Array(
       Schema.suspend(
-        (): Schema.Schema<CurriculumTreeNode, CurriculumTreeEncoded> =>
+        (): Schema.Schema<CurriculumTreeNode, CurriculumTreeInput> =>
           CurriculumTreeNodeSchema
       )
     )
@@ -140,7 +140,7 @@ const CurriculumMaterialNodeSchema = Schema.Struct({
 
 const CurriculumTreeNodeSchema: Schema.Schema<
   CurriculumTreeNode,
-  CurriculumTreeEncoded
+  CurriculumTreeInput
 > = Schema.Union(CurriculumMaterialNodeSchema, CurriculumStructureNodeSchema);
 
 const CurriculumSourceSchema = Schema.Struct({
@@ -149,17 +149,12 @@ const CurriculumSourceSchema = Schema.Struct({
 });
 export type CurriculumSource = typeof CurriculumSourceSchema.Type;
 
-type CurriculumSourceInput = Omit<
-  typeof CurriculumSourceSchema.Encoded,
-  "tree"
-> & {
-  readonly tree: readonly CurriculumTreeNode[];
-};
+export type CurriculumSourceInput = typeof CurriculumSourceSchema.Encoded;
 type StructureNodeInput = Omit<
   typeof CurriculumStructureNodeSchema.Encoded,
   "children" | "level"
 > & {
-  readonly children?: readonly CurriculumTreeNode[];
+  readonly children?: readonly CurriculumTreeInput[];
 };
 type MaterialNodeInput = Omit<
   typeof CurriculumMaterialNodeSchema.Encoded,
@@ -168,53 +163,63 @@ type MaterialNodeInput = Omit<
   readonly level: ProgramNavigationLevel;
 };
 
-/** A curriculum source contains the same node key more than once. */
-export class CurriculumSourceDefinitionError extends Schema.TaggedError<CurriculumSourceDefinitionError>()(
-  "CurriculumSourceDefinitionError",
-  { message: Schema.String }
+/** A curriculum source failed strict schema decoding at its definition seam. */
+export class CurriculumDecodeError extends Schema.TaggedError<CurriculumDecodeError>()(
+  "CurriculumDecodeError",
+  { cause: Schema.Unknown, message: Schema.NonEmptyTrimmedString }
 ) {}
 
-/** Decodes one structure node with its helper-owned navigation level. */
+/** A decoded curriculum contains the same stable node identity twice. */
+export class CurriculumDuplicateError extends Schema.TaggedError<CurriculumDuplicateError>()(
+  "CurriculumDuplicateError",
+  {
+    nodeKey: CurriculumNodeKeySchema,
+    programKey: LearningProgramKeySchema,
+  }
+) {}
+
+/** Adds the helper-owned navigation level to one encoded structure node. */
 function structureNode(
   level: ProgramNavigationLevel,
   input: StructureNodeInput
-): CurriculumStructureNode {
-  return Schema.decodeUnknownSync(CurriculumStructureNodeSchema)({
-    ...input,
-    level,
-  });
+): CurriculumStructureInput {
+  return { ...input, level };
 }
 
 /** Defines one class-level curriculum structure node. */
-export function classNode(input: StructureNodeInput): CurriculumStructureNode {
+export function classNode(input: StructureNodeInput): CurriculumStructureInput {
   return structureNode("class", input);
 }
 
 /** Defines one subject-level curriculum structure node. */
 export function subjectNode(
   input: StructureNodeInput
-): CurriculumStructureNode {
+): CurriculumStructureInput {
   return structureNode("subject", input);
 }
 
 /** Defines one course-level curriculum structure node. */
-export function courseNode(input: StructureNodeInput): CurriculumStructureNode {
+export function courseNode(
+  input: StructureNodeInput
+): CurriculumStructureInput {
   return structureNode("course", input);
 }
 
 /** Defines one official stage-level curriculum structure node. */
-export function stageNode(input: StructureNodeInput): CurriculumStructureNode {
+export function stageNode(input: StructureNodeInput): CurriculumStructureInput {
   return structureNode("stage", input);
 }
 
 /** Defines one unit-level curriculum structure node. */
-export function unitNode(input: StructureNodeInput): CurriculumStructureNode {
+export function unitNode(input: StructureNodeInput): CurriculumStructureInput {
   return structureNode("unit", input);
 }
 
 /** Defines one material-reference curriculum leaf. */
-export function materialNode(input: MaterialNodeInput): CurriculumMaterialNode {
-  return Schema.decodeUnknownSync(CurriculumMaterialNodeSchema)(input);
+export function materialNode(
+  input: MaterialNodeInput
+): CurriculumMaterialInput {
+  return input;
 }
 
 /** Flattens one authored tree in pre-order for identity validation. */
@@ -231,19 +236,31 @@ function flattenCurriculumTree(
   return flattened;
 }
 
-/** Decodes one curriculum and rejects duplicate node keys. */
-export function defineCurriculum(
-  input: CurriculumSourceInput
-): CurriculumSource {
-  const curriculum = Schema.decodeUnknownSync(CurriculumSourceSchema)(input);
-  const nodeKeys = new Set<string>();
-  for (const node of flattenCurriculumTree(curriculum.tree)) {
-    if (nodeKeys.has(node.key)) {
-      throw new CurriculumSourceDefinitionError({
-        message: `Duplicate curriculum node ${node.key} in ${curriculum.programKey}.`,
-      });
+/** Strictly decodes one authored curriculum and rejects duplicate node keys. */
+export const defineCurriculum = Effect.fn("AksaraCorpus.defineCurriculum")(
+  function* (input: CurriculumSourceInput) {
+    const curriculum = yield* Schema.decodeUnknown(CurriculumSourceSchema)(
+      input,
+      { onExcessProperty: "error" }
+    ).pipe(
+      Effect.mapError(
+        (cause) =>
+          new CurriculumDecodeError({
+            cause,
+            message: "Curriculum source decoding failed.",
+          })
+      )
+    );
+    const nodeKeys = new Set<string>();
+    for (const node of flattenCurriculumTree(curriculum.tree)) {
+      if (nodeKeys.has(node.key)) {
+        return yield* new CurriculumDuplicateError({
+          nodeKey: node.key,
+          programKey: curriculum.programKey,
+        });
+      }
+      nodeKeys.add(node.key);
     }
-    nodeKeys.add(node.key);
+    return curriculum;
   }
-  return curriculum;
-}
+);

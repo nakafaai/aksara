@@ -44,12 +44,12 @@ describe("production preparation", () => {
       baseReleaseId: "release-active",
       baseResultCount: active.release.manifest.resultCount,
       baseResultDigest: active.release.manifest.resultDigest,
+      catalogCalls: 1,
       checkoutRoot: "/code/aksara",
       cleanReads: 1,
       headManifestHash: active.release.manifestHash,
       headReleaseId: "release-active",
       keyId: "content-2026-07-23",
-      materialCalls: 1,
       privateKeyMatches: true,
       publishCalls: 1,
       publishKind: "git",
@@ -102,8 +102,8 @@ describe("production preparation", () => {
       rollbackOf: "release-active",
     });
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       privateKeyMatches: true,
       publishKind: "rollback",
       rendererCalls: 1,
@@ -134,9 +134,9 @@ describe("production preparation", () => {
     expect(calls).toMatchObject({
       baseReleaseId: "release-active",
       bundleVerifyCalls: 1,
+      catalogCalls: 1,
       cleanReads: 1,
       keyId: "content-2026-07-23",
-      materialCalls: 1,
       rendererCalls: 0,
       sourceLayers: 1,
       verifiedBundle: candidate,
@@ -167,8 +167,8 @@ describe("production preparation", () => {
     ).resolves.toMatchObject({ releaseId: "rollback-candidate" });
     expect(calls).toMatchObject({
       bundleVerifyCalls: 1,
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       publishKind: "rollback",
       rendererCalls: 0,
       rootReads: 0,
@@ -198,8 +198,8 @@ describe("production preparation", () => {
       stage: "prepare",
     });
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 1,
-      materialCalls: 0,
       publishCalls: 0,
       rendererCalls: 0,
     });
@@ -224,7 +224,7 @@ describe("production preparation", () => {
       stage: "prepare",
     });
     expect(calls).toMatchObject({
-      materialCalls: 1,
+      catalogCalls: 1,
       publishCalls: 0,
       rendererCalls: 0,
       sourceLayers: 0,

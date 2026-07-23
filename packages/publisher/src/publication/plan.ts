@@ -1,4 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
+import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import {
   type SignedContentArtifact,
   SignedContentArtifactSchema,
@@ -42,12 +43,12 @@ import {
   makeGitArtifacts,
   makeRollbackArtifacts,
 } from "#publisher/publication/artifacts";
+import type { PublishContentReleaseError } from "#publisher/publication/program";
 import {
   PublicationModeMismatchError,
   PublicationSigningKey,
   type PublicationSource,
   PublicationTarget,
-  type PublishContentReleaseError,
 } from "#publisher/publication/spec";
 import { validateReleaseRendererManifest } from "#publisher/release-validation";
 import { createReplaySpool, type ReplaySpool } from "#publisher/replay/spool";
@@ -86,6 +87,12 @@ export interface PublicationPlan<E, R> {
     readonly release: SignedContentRelease;
     readonly rendererManifest: RendererManifestEnvelope;
   };
+  /** Replays family-aware cache changes from the decoded release item stream. */
+  readonly cacheChanges: () => Stream.Stream<
+    ContentCacheChange,
+    PublishContentReleaseError<E>,
+    R
+  >;
   readonly projectionSummary: VerifiedContentProjections;
   readonly routeSummary: VerifiedContentRoutes;
   readonly stage: Effect.Effect<
@@ -143,6 +150,23 @@ function upsertItems<E, R>(items: Stream.Stream<ContentReleaseItem, E, R>) {
   );
 }
 
+/** Selects cache family and optional immutable hash from every changed item. */
+function contentCacheChanges<E, R>(
+  items: Stream.Stream<ContentReleaseItem, E, R>
+) {
+  return items.pipe(
+    Stream.map(
+      (item): ContentCacheChange =>
+        item.change.operation === "upsert"
+          ? {
+              artifactHash: item.change.artifactHash,
+              family: item.change.family,
+            }
+          : { family: item.change.family }
+    )
+  );
+}
+
 /** Builds one signed replayable plan without changing target visibility. */
 export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   "AksaraPublisher.preparePublicationPlan"
@@ -163,6 +187,8 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   /** Replays strictly decoded routes for bounded target staging. */
   const decodedRoutes = () =>
     decodeContentRoutes({ manifest: input.manifest, routes: input.routes() });
+  /** Replays cache changes selected by the same validated release item source. */
+  const cacheChanges = () => contentCacheChanges(decodedItems());
   const summary = yield* verifyContentReleaseItems({
     items: input.items(),
     manifest: input.manifest,
@@ -247,6 +273,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   });
   return {
     bundle: { release, rendererManifest },
+    cacheChanges,
     projectionSummary,
     routeSummary,
     stage,

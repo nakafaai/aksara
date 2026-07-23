@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { hashMaterialProjection } from "#contracts/projection/hash";
+import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
@@ -22,9 +22,9 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   sitemap: true,
 });
 
-describe("hashMaterialProjection", () => {
+describe("content projection hash", () => {
   it("hashes canonical projection bytes with one stable identity", () => {
-    expect(hashMaterialProjection(projection)).toBe(
+    expect(hashContentProjection(projection)).toBe(
       "sha256:c1b77297f7acfbbd156f9bc31bde77a397932dbcd260dc140c4205a3e1c6ccbb"
     );
   });

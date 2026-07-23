@@ -1,28 +1,25 @@
-import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
+
 import { decodeMaterialRegistry } from "#corpus/material/registry";
-import { readMaterialDocument } from "#corpus/material/source";
+import {
+  decodeMaterialSources,
+  readMaterialDocument,
+} from "#corpus/material/source";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const sourcePaths = [
-  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx",
-  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/id.mdx",
-  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
-  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
-] as const;
-const sourceByPath = new Map(
-  sourcePaths.map((sourcePath) => {
-    const absolutePath = resolve(corpusRoot, sourcePath);
-    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-  })
-);
 const entries = await Effect.runPromise(decodeMaterialRegistry());
+const sourceByPath = new Map<string, string>();
 
-/** Provides deterministic file reads for the checked-in real corpus slice. */
+for (const entry of entries) {
+  const absolutePath = resolve(corpusRoot, entry.sourcePath);
+  sourceByPath.set(absolutePath, readFileSync(absolutePath, "utf8"));
+}
+
+/** Provides deterministic file reads for every checked-in material body. */
 function fileLayer(sources: ReadonlyMap<string, string>) {
   return FileSystem.layerNoop({
     readFileString: (path) => {
@@ -42,7 +39,7 @@ function fileLayer(sources: ReadonlyMap<string, string>) {
   });
 }
 
-/** Reads the bounded real registry only at the Vitest runner boundary. */
+/** Reads the complete material registry only at the Vitest runner boundary. */
 function readSources(sources: ReadonlyMap<string, string>) {
   return Effect.runPromise(
     Effect.forEach(entries, (entry) =>
@@ -52,49 +49,58 @@ function readSources(sources: ReadonlyMap<string, string>) {
 }
 
 describe("material source", () => {
-  it("reads byte-exact real MDX with signed Git source paths", async () => {
-    const documents = await readSources(sourceByPath);
-    expect(documents.map(({ route }) => route.locale)).toEqual([
-      "en",
-      "id",
-      "en",
-      "id",
-    ]);
-    expect(documents.map(({ route }) => route.publicPath)).toEqual([
-      "subjects/chemistry/structure-matter/atom-shell",
-      "materi/kimia/struktur-atom/kulit-atom",
-      "subjects/mathematics/function-composition-inverse-function/function-concept",
-      "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
-    ]);
+  it("composes every real lesson source without hiding section bodies", async () => {
+    const sources = await Effect.runPromise(decodeMaterialSources());
+
+    expect(sources).toHaveLength(36);
     expect(
-      documents.map(({ rawMdx }) =>
-        createHash("sha256").update(rawMdx).digest("hex")
-      )
-    ).toEqual([
-      "d102b06e1ab932ed9dbd867e9403df43f3ded52d476364273c11959bd76d5f7a",
-      "7e00d7922e9c36eb455c50840f0b291d5b178ba9b8c24d7bbf45d3a5195c58bf",
-      "c1340893d18fbddf9e4b1437d593d6dae3476073bcf0c0228eabbe4a63b60086",
-      "603f5c129cf43207f9305d945b67e54c103c6c5a907df6d104dca7b53e8fdece",
-    ]);
-    expect(documents.every(({ rawMdx }) => !rawMdx.includes("import "))).toBe(
-      true
-    );
+      sources.reduce((count, source) => count + source.sections.length, 0)
+    ).toBe(383);
+    expect(new Set(sources.map(({ key }) => key)).size).toBe(36);
+    expect(new Set(sources.map(({ assetRoot }) => assetRoot)).size).toBe(36);
   });
 
-  it("maps missing reviewed source files to one typed failure", async () => {
+  it("maps an invalid injected catalog to one typed failure", async () => {
     const error = await Effect.runPromise(
-      Effect.forEach(entries, (entry) =>
-        readMaterialDocument(corpusRoot, entry)
-      ).pipe(
+      decodeMaterialSources(null).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("MaterialCatalogError");
+  });
+
+  it("reads every locale body byte-exactly from its signed source path", async () => {
+    const documents = await readSources(sourceByPath);
+
+    expect(documents).toHaveLength(766);
+    expect(documents.map(({ sourcePath }) => sourcePath)).toEqual(
+      entries.map(({ sourcePath }) => sourcePath)
+    );
+    expect(
+      documents.every(
+        ({ rawMdx, sourcePath }) =>
+          rawMdx === sourceByPath.get(resolve(corpusRoot, sourcePath))
+      )
+    ).toBe(true);
+    expect(documents.every(({ rawMdx }) => rawMdx.length > 0)).toBe(true);
+  });
+
+  it("maps one missing reviewed source file to a typed failure", async () => {
+    const [entry] = entries;
+    if (entry === undefined) {
+      throw new Error("Expected the real material registry to be non-empty.");
+    }
+
+    const error = await Effect.runPromise(
+      readMaterialDocument(corpusRoot, entry).pipe(
         Effect.provide(fileLayer(new Map())),
         Effect.provide(Path.layer),
         Effect.flip
       )
     );
+
     expect(error).toMatchObject({
       _tag: "MaterialReadError",
-      sourcePath:
-        "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx",
+      sourcePath: entry.sourcePath,
     });
   });
 });

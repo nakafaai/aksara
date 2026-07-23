@@ -1,5 +1,5 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 
 import {
   PublicRouteSegmentSchema,
@@ -115,7 +115,73 @@ export const TryoutExamSourceSchema = Schema.Struct({
 });
 type TryoutExamSourceInput = typeof TryoutExamSourceSchema.Encoded;
 
-/** Decodes one authored try-out exam at its module boundary. */
-export function defineTryoutExamSource(input: TryoutExamSourceInput) {
-  return Schema.decodeUnknownSync(TryoutExamSourceSchema)(input);
+/** One authored try-out catalog failed strict schema decoding. */
+export class TryoutDecodeError extends Schema.TaggedError<TryoutDecodeError>()(
+  "TryoutDecodeError",
+  { cause: Schema.Unknown, message: Schema.NonEmptyTrimmedString }
+) {}
+
+/** One authored try-out scope contains the same stable key twice. */
+export class TryoutDuplicateError extends Schema.TaggedError<TryoutDuplicateError>()(
+  "TryoutDuplicateError",
+  {
+    key: TryoutKeySchema,
+    scope: Schema.NonEmptyTrimmedString,
+  }
+) {}
+
+/** Returns the first duplicated key in one ordered authored scope. */
+function findDuplicateKey(
+  entries: readonly { readonly key: string }[]
+): string | undefined {
+  const keys = new Set<string>();
+  for (const entry of entries) {
+    if (keys.has(entry.key)) {
+      return entry.key;
+    }
+    keys.add(entry.key);
+  }
 }
+
+/** Rejects duplicate stable keys within one authored try-out scope. */
+function validateUniqueKeys(
+  entries: readonly { readonly key: string }[],
+  scope: string
+) {
+  const duplicate = findDuplicateKey(entries);
+  if (duplicate === undefined) {
+    return Effect.void;
+  }
+  return new TryoutDuplicateError({ key: duplicate, scope });
+}
+
+/** Strictly decodes one authored try-out exam and validates stable identities. */
+export const defineTryoutExamSource = Effect.fn(
+  "AksaraCorpus.defineTryoutExamSource"
+)(function* (input: TryoutExamSourceInput) {
+  const source = yield* Schema.decodeUnknown(TryoutExamSourceSchema)(input, {
+    onExcessProperty: "error",
+  }).pipe(
+    Effect.mapError(
+      (cause) =>
+        new TryoutDecodeError({
+          cause,
+          message: "Try-out source decoding failed.",
+        })
+    )
+  );
+  yield* validateUniqueKeys(source.tracks, `${source.examKey}:tracks`);
+  for (const track of source.tracks) {
+    yield* validateUniqueKeys(
+      track.sets,
+      `${source.examKey}:${track.key}:sets`
+    );
+    for (const set of track.sets) {
+      yield* validateUniqueKeys(
+        set.sections,
+        `${source.examKey}:${track.key}:${set.key}:sections`
+      );
+    }
+  }
+  return source;
+});

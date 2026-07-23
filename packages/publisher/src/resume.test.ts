@@ -87,7 +87,9 @@ describe("resumeContentRelease", () => {
       Effect.runPromise(runResume(state.target, bundle, invalidate))
     ).resolves.toEqual(receipt);
     expect(state.activate).not.toHaveBeenCalled();
-    expect(invalidate).toHaveBeenCalledWith(bundle.release);
+    expect(invalidate).toHaveBeenCalledWith(
+      expect.objectContaining({ release: bundle.release })
+    );
   });
 
   it("repairs a failed terminal cache invalidation on exact retry", async () => {

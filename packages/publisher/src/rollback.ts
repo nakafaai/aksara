@@ -1,13 +1,13 @@
 import type { FileSystem, Path } from "@effect/platform";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { ContentHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
 import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route-page";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, type Scope, type Stream } from "effect";
-import { streamMaterialHeads } from "#publisher/heads";
+import { Effect, type Scope, Stream } from "effect";
+import { streamContentHeads } from "#publisher/heads";
 import type { PreparedRollbackRelease } from "#publisher/preparation/spec";
 import { validateReleaseRendererManifest } from "#publisher/release-validation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
@@ -47,7 +47,7 @@ type DerivedTransitionStream = ReturnType<
     Stream.Stream.Context<RollbackPageStream>
   >
 >;
-type ActiveHeadStream = ReturnType<typeof streamMaterialHeads>;
+type ActiveHeadStream = ReturnType<typeof streamContentHeads>;
 type ResultCatalogStream = ReturnType<
   typeof mergeRollbackResult<ReplaySpoolError, never, ReplaySpoolError, never>
 >;
@@ -191,8 +191,15 @@ export const prepareRollback: PrepareRollback = Effect.fn(
   });
   const activeSpool = yield* createReplaySpool({
     prefix: "aksara-rollback-active-",
-    schema: MaterialHeadSchema,
-    stream: streamMaterialHeads(base.releaseId, base.manifestHash),
+    schema: ContentHeadSchema,
+    stream: Stream.concat(
+      streamContentHeads(base.releaseId, base.manifestHash, "article"),
+      streamContentHeads(base.releaseId, base.manifestHash, "material")
+    ).pipe(
+      Stream.concat(
+        streamContentHeads(base.releaseId, base.manifestHash, "question")
+      )
+    ),
   });
   yield* verifyResultCatalog({
     expectedCount: base.resultCount,
@@ -202,7 +209,7 @@ export const prepareRollback: PrepareRollback = Effect.fn(
   });
   const resultSpool = yield* createReplaySpool({
     prefix: "aksara-rollback-result-",
-    schema: MaterialHeadSchema,
+    schema: ContentHeadSchema,
     stream: mergeRollbackResult({
       active: activeSpool.replay(),
       transitions: transitionSpool.replay(),

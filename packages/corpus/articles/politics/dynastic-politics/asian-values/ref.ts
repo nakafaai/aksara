@@ -1,6 +1,6 @@
-import type { Reference } from "#corpus/articles/reference";
+import type { ArticleReference } from "@nakafa/aksara-contracts/projection/article";
 
-export const references: Reference[] = [
+export const references: ArticleReference[] = [
   {
     authors: "Agus Dedi",
     details: "8(1), 92–101",
