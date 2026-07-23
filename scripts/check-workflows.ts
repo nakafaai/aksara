@@ -61,13 +61,13 @@ assert.match(
 );
 assert.match(
   release,
-  /package:[\s\S]*inputs\.operation == 'release' \|\| inputs\.operation == 'rollback'[\s\S]*uses: \.\/\.github\/workflows\/package-proof\.yml[\s\S]*proof_mode: current/u,
-  "Content release and rollback must call current cryptographic package proof"
+  /package:[\s\S]*inputs\.operation == 'accept'[\s\S]*inputs\.operation == 'release'[\s\S]*inputs\.operation == 'rollback'[\s\S]*uses: \.\/\.github\/workflows\/package-proof\.yml[\s\S]*proof_mode: current/u,
+  "Content acceptance, release, and rollback must call current cryptographic package proof"
 );
 assert.match(
   release,
-  /needs: package[\s\S]*always\(\)[\s\S]*needs\.package\.result == 'success'[\s\S]*inputs\.operation == 'abort' \|\| inputs\.operation == 'cleanup'[\s\S]*needs\.package\.result == 'skipped'/u,
-  "Recovery must remain available only when package proof is intentionally skipped"
+  /needs: package[\s\S]*always\(\)[\s\S]*needs\.package\.result == 'success'[\s\S]*inputs\.operation == 'abort'[\s\S]*inputs\.operation == 'cleanup'[\s\S]*inputs\.operation == 'recover'[\s\S]*needs\.package\.result == 'skipped'/u,
+  "Terminal recovery operations must remain available only when package proof is intentionally skipped"
 );
 
 if (state.contracts) {

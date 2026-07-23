@@ -40,8 +40,14 @@ export function materialManifest(input: {
   return Effect.runPromise(
     createRendererManifest({
       base: {
-        authoringComponents: [{ name: "InlineMath", version: 1 }],
-        supportedComponents: [{ name: "InlineMath", version: 1 }],
+        authoringComponents: [
+          { name: "BlockMath", version: 1 },
+          { name: "InlineMath", version: 1 },
+        ],
+        supportedComponents: [
+          { name: "BlockMath", version: 1 },
+          { name: "InlineMath", version: 1 },
+        ],
       },
       domains: rendererDomains({
         chemistry: [{ name: "AtomShellLab", version: input.chemistry }],

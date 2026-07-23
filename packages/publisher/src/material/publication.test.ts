@@ -43,7 +43,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       original.decodeMaterialRegistry(input).pipe(
         Effect.map((entries) =>
           entries.map((entry) =>
-            registryState.changedOrder && entry.route.locale === "en"
+            registryState.changedOrder &&
+            entry.rendererDomain === "mathematics" &&
+            entry.route.locale === "en"
               ? {
                   ...entry,
                   route: { ...entry.route, order: entry.route.order + 1 },
@@ -227,7 +229,7 @@ describe("material publication", () => {
         "packages/corpus/material/lesson/mathematics/removed/route/en.mdx",
     });
     const routes = await collectMaterialRoutes({
-      heads: [englishHead, indonesianHead, stale],
+      heads: [...publishedHeads, stale],
     });
 
     expect(routes).toHaveLength(1);
