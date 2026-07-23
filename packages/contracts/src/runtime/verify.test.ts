@@ -1,7 +1,7 @@
 import { Either } from "effect";
 import { describe, expect, it } from "vitest";
 import { SigningKeyIdSchema } from "#contracts/ids";
-import { hash, projection, rendererManifest } from "#contracts/test/request";
+import { hash, rendererManifest } from "#contracts/test/request";
 import {
   artifact,
   found,
@@ -24,11 +24,22 @@ describe("content runtime verification", () => {
           ...artifact,
           payload: { ...artifact.payload, locale: "id" },
         },
-        projection: { ...projection, locale: "id" },
+        projection: { ...found.projection, locale: "id" },
       },
       {
         ...found,
-        projection: { ...projection, publicPath: "subjects/test/other" },
+        projection: {
+          ...found.projection,
+          publicPath: "subjects/test/other",
+        },
+      },
+      {
+        ...found,
+        sourcePath: "packages/corpus/article/test/other/en.mdx",
+      },
+      {
+        ...found,
+        sourcePath: "packages/corpus/material/lesson/test/transport/id.mdx",
       },
       { ...found, activeReleaseId: "test-other-release" },
       { ...found, activeManifestHash: hash },
@@ -48,6 +59,8 @@ describe("content runtime verification", () => {
       "delivery",
       "locale",
       "publicPath",
+      "sourcePath",
+      "sourcePath",
       "activeReleaseId",
       "activeManifestHash",
       "projectionHash",

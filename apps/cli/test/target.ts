@@ -33,7 +33,7 @@ const OTHER_HASH = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 /** Signs a structurally valid test manifest with its exact canonical hash. */
 function bundleFromManifest(
   manifest: ContentReleaseManifest,
-  keyId = SigningKeyIdSchema.make("content-2026-07")
+  keyId = SigningKeyIdSchema.make("content-2026-07-23")
 ): ContentReleaseBundle {
   const release = SignedContentReleaseSchema.make({
     keyId,

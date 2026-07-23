@@ -26,4 +26,32 @@ describe("production failure boundary", () => {
       stage: "prepare",
     });
   });
+
+  it.each(["cache", "preflight"] as const)(
+    "preserves safe activation phase %s",
+    (phase) => {
+      expect(
+        mapProductionError("publish")({
+          _tag: "PublicationActivationError",
+          phase,
+          secret: "must-not-escape",
+        })
+      ).toEqual(
+        expect.objectContaining({
+          failure: "PublicationActivationError",
+          phase,
+          stage: "publish",
+        })
+      );
+    }
+  );
+
+  it("drops an invalid activation phase", () => {
+    expect(
+      mapProductionError("publish")({
+        _tag: "PublicationActivationError",
+        phase: "secret=value",
+      })
+    ).not.toHaveProperty("phase");
+  });
 });

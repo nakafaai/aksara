@@ -228,7 +228,10 @@ describe("publication lifecycle", () => {
       verifyCandidateActivation(state.plan).pipe(
         Effect.provideService(
           PublicationActivation,
-          PublicationActivation.of({ verify })
+          PublicationActivation.of({
+            invalidate: () => Effect.void,
+            verify,
+          })
         )
       )
     );
@@ -236,11 +239,23 @@ describe("publication lifecycle", () => {
   });
 
   it("validates the atomic activation receipt", async () => {
+    const invalidate = vi.fn(() => Effect.void);
     const state = makePlan("verified");
     await expect(
-      runLifecycle(activateCandidateRelease(state.plan))
+      runLifecycle(
+        activateCandidateRelease(state.plan).pipe(
+          Effect.provideService(
+            PublicationActivation,
+            PublicationActivation.of({
+              invalidate,
+              verify: () => Effect.void,
+            })
+          )
+        )
+      )
     ).resolves.toEqual(receipt);
     expect(state.activate).toHaveBeenCalledWith(release);
+    expect(invalidate).toHaveBeenCalledWith(release);
   });
 
   it("surfaces a stale base from atomic activation", async () => {
@@ -258,7 +273,18 @@ describe("publication lifecycle", () => {
       activate: () => Effect.fail(failure),
     });
     await expect(
-      runLifecycle(activateCandidateRelease(state.plan).pipe(Effect.flip))
+      runLifecycle(
+        activateCandidateRelease(state.plan).pipe(
+          Effect.provideService(
+            PublicationActivation,
+            PublicationActivation.of({
+              invalidate: () => Effect.void,
+              verify: () => Effect.void,
+            })
+          ),
+          Effect.flip
+        )
+      )
     ).resolves.toEqual(failure);
   });
 });

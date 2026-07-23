@@ -7,13 +7,15 @@ import { fetchRendererEndpoint } from "#cli/renderer";
 const RETRY_COUNT = 3;
 const RETRY_DELAY = "100 millis";
 const RENDERER_TIMEOUT = "30 seconds";
+const RENDERER_PATH = "/api/internal/content/renderer";
 
-/** Proves a production renderer endpoint cannot downgrade or carry URL data. */
-function isProductionEndpoint(endpoint: URL) {
+/** Proves one exact production renderer endpoint cannot leak credentials. */
+export function isRendererEndpoint(endpoint: URL) {
   return (
     endpoint.protocol === "https:" &&
     endpoint.username === "" &&
     endpoint.password === "" &&
+    endpoint.pathname === RENDERER_PATH &&
     endpoint.search === "" &&
     endpoint.hash === ""
   );
@@ -28,7 +30,7 @@ export const fetchProductionRenderer: (
   NakafaAppError,
   HttpClient.HttpClient
 > = Effect.fn("AksaraCli.fetchProductionRenderer")((endpoint, token) => {
-  if (!isProductionEndpoint(endpoint)) {
+  if (!isRendererEndpoint(endpoint)) {
     return Effect.fail(makeNakafaAppError("origin", false));
   }
   return fetchRendererEndpoint(endpoint, token).pipe(

@@ -6,7 +6,11 @@ import type {
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { PublicationTarget } from "#publisher/publication/spec";
+import {
+  PublicationActivation,
+  PublicationActivationError,
+  PublicationTarget,
+} from "#publisher/publication/spec";
 import { resumeContentRelease } from "#publisher/resume";
 import { makeSignedBundle, testVerificationResolver } from "#test/publication";
 import { makePublicationTarget } from "#test/target";
@@ -58,12 +62,18 @@ function makeTarget(
 /** Runs one stored release through its real signature resolver. */
 function runResume(
   target: typeof PublicationTarget.Service,
-  input: ContentReleaseBundle = bundle
+  input: ContentReleaseBundle = bundle,
+  invalidate: typeof PublicationActivation.Service.invalidate = () =>
+    Effect.void
 ) {
   return resumeContentRelease(input).pipe(
     Effect.provideService(
       ContentVerificationKeyResolver,
       testVerificationResolver
+    ),
+    Effect.provideService(
+      PublicationActivation,
+      PublicationActivation.of({ invalidate, verify: () => Effect.void })
     ),
     Effect.provideService(PublicationTarget, target)
   );
@@ -72,10 +82,35 @@ function runResume(
 describe("resumeContentRelease", () => {
   it("returns a bound terminal receipt without activating again", async () => {
     const state = makeTarget("completed");
-    await expect(Effect.runPromise(runResume(state.target))).resolves.toEqual(
-      receipt
-    );
+    const invalidate = vi.fn(() => Effect.void);
+    await expect(
+      Effect.runPromise(runResume(state.target, bundle, invalidate))
+    ).resolves.toEqual(receipt);
     expect(state.activate).not.toHaveBeenCalled();
+    expect(invalidate).toHaveBeenCalledWith(bundle.release);
+  });
+
+  it("repairs a failed terminal cache invalidation on exact retry", async () => {
+    const state = makeTarget("completed");
+    const failure = new PublicationActivationError({
+      phase: "cache",
+      releaseId: manifest.releaseId,
+    });
+    const invalidate = vi
+      .fn<() => Effect.Effect<void, PublicationActivationError>>()
+      .mockReturnValueOnce(Effect.fail(failure))
+      .mockReturnValue(Effect.void);
+
+    await expect(
+      Effect.runPromise(
+        runResume(state.target, bundle, invalidate).pipe(Effect.flip)
+      )
+    ).resolves.toEqual(failure);
+    await expect(
+      Effect.runPromise(runResume(state.target, bundle, invalidate))
+    ).resolves.toEqual(receipt);
+    expect(state.activate).not.toHaveBeenCalled();
+    expect(invalidate).toHaveBeenCalledTimes(2);
   });
 
   it("rejects an aborted release with its immutable identity", async () => {
@@ -106,12 +141,16 @@ describe("resumeContentRelease", () => {
   );
 
   it("rejects a final receipt that differs from the signed manifest", async () => {
+    const invalidate = vi.fn(() => Effect.void);
     const state = makeTarget("completed", {
       ...receipt,
       projectionDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
     });
     await expect(
-      Effect.runPromise(runResume(state.target).pipe(Effect.flip))
+      Effect.runPromise(
+        runResume(state.target, bundle, invalidate).pipe(Effect.flip)
+      )
     ).resolves.toMatchObject({ _tag: "PublicationReceiptMismatchError" });
+    expect(invalidate).not.toHaveBeenCalled();
   });
 });

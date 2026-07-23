@@ -9,7 +9,6 @@ import {
   MAX_RUNTIME_REQUEST_BYTES,
   MAX_RUNTIME_RESPONSE_BYTES,
 } from "#contracts/runtime/spec";
-import { projection } from "#contracts/test/request";
 import { accepts, artifact, found, request } from "#contracts/test/runtime";
 
 describe("content runtime contract", () => {
@@ -53,7 +52,7 @@ describe("content runtime contract", () => {
   it("rejects mismatched identities and uncontracted response fields", () => {
     const mismatch = Schema.decodeUnknownEither(ContentRuntimeResponseSchema)({
       ...found,
-      projection: { ...projection, contentKey: "test:other" },
+      projection: { ...found.projection, contentKey: "test:other" },
     });
     expect(Either.isLeft(mismatch)).toBe(true);
     if (Either.isLeft(mismatch)) {

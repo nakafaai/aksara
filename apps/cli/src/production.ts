@@ -135,6 +135,7 @@ export const runProductionCommand: (
 
     if (action.kind === "resume") {
       const receipt = yield* resumeContentRelease(action.bundle).pipe(
+        Effect.provideService(PublicationActivation, activation),
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationTarget, target),
         Effect.mapError(mapProductionError("publish"))

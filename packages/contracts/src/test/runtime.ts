@@ -12,11 +12,14 @@ import {
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
   Ed25519SignatureSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import { hashMaterialProjection } from "#contracts/projection/hash";
+import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import {
   canonicalizeContentReleaseSigningInput,
@@ -42,6 +45,14 @@ export const request = {
   publicPath: "subjects/test/transport",
 } as const;
 
+const runtimeContentKey = ContentKeySchema.make(
+  "material/lesson/test/transport"
+);
+const runtimeProjection = MaterialLessonProjectionSchema.make({
+  ...projection,
+  contentKey: runtimeContentKey,
+});
+
 const keyId = SigningKeyIdSchema.make("test-runtime-key");
 const signingKeys = generateKeyPairSync("ed25519");
 const publicKeyPem = signingKeys.publicKey
@@ -52,6 +63,7 @@ const publicKeyPem = signingKeys.publicKey
 function createSignedArtifact() {
   const payload = CompiledContentPayloadSchema.make({
     ...unsignedArtifact.payload,
+    contentKey: runtimeContentKey,
     requiredComponents: [{ name: "BlockMath", version: 1 }],
     sourceHash: Sha256HashSchema.make(
       `sha256:${createHash("sha256")
@@ -129,10 +141,13 @@ export const found = {
   artifact,
   delivery: "public",
   kind: "found",
-  projection,
-  projectionHash: hashMaterialProjection(projection),
+  projection: runtimeProjection,
+  projectionHash: hashMaterialProjection(runtimeProjection),
   release,
   rendererManifest,
+  sourcePath: CorpusSourcePathSchema.make(
+    `packages/corpus/${runtimeContentKey}/en.mdx`
+  ),
 } as const;
 
 /** Builds one runtime exchange with the fixture's trusted verification key. */

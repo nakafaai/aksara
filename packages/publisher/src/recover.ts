@@ -23,6 +23,9 @@ type RecoverContentRelease = (
       ReturnType<(typeof PublicationActivation.Service)["verify"]>
     >
   | Effect.Effect.Error<
+      ReturnType<(typeof PublicationActivation.Service)["invalidate"]>
+    >
+  | Effect.Effect.Error<
       ReturnType<(typeof PublicationTarget.Service)["current"]>
     >
   | Effect.Effect.Error<
@@ -36,6 +39,7 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
   "AksaraPublisher.recoverContentRelease"
 )(function* (input) {
   const target = yield* PublicationTarget;
+  const activation = yield* PublicationActivation;
   const lookup = yield* target.recovery(input);
   if (lookup.kind === "completed") {
     const completed = lookup.value;
@@ -43,7 +47,12 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
       release: completed.release,
       rendererManifest: completed.rendererManifest,
     });
-    return yield* validateManifestReceipt(bundle.release, completed.receipt);
+    const receipt = yield* validateManifestReceipt(
+      bundle.release,
+      completed.receipt
+    );
+    yield* activation.invalidate(bundle.release);
+    return receipt;
   }
   const current = yield* target.current();
   const retained = yield* selectRetainedRecovery(current, input, false);
@@ -51,8 +60,9 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
     release: retained.release,
     rendererManifest: retained.rendererManifest,
   });
-  const activation = yield* PublicationActivation;
   yield* activation.verify(bundle.release);
   const receipt = yield* target.activateRecovery(bundle.release);
-  return yield* validateManifestReceipt(bundle.release, receipt);
+  const verified = yield* validateManifestReceipt(bundle.release, receipt);
+  yield* activation.invalidate(bundle.release);
+  return verified;
 });

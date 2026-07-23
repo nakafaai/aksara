@@ -1,7 +1,10 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
-import { Cause, Effect } from "effect";
-import { abortContentRelease } from "#publisher/abort";
+import { Effect } from "effect";
+import {
+  discardFailedCandidate,
+  discardOnFailure,
+} from "#publisher/publication/discard";
 import {
   activateCandidateRelease,
   stageCandidateRelease,
@@ -13,10 +16,10 @@ import {
   preparePublicationPlan,
 } from "#publisher/publication/plan";
 import {
+  PublicationActivation,
   PublicationRecoveryId,
   PublicationRecoveryIdentityError,
   PublicationSource,
-  PublicationTarget,
   type PublishGitRelease,
   type PublishRollbackRelease,
 } from "#publisher/publication/spec";
@@ -48,52 +51,6 @@ function validateRecoveryIdentity(
   return Effect.void;
 }
 
-/** Clears a failed invisible candidate without orphaning its retained inverse. */
-const discardFailedCandidate = Effect.fn(
-  "AksaraPublisher.discardFailedCandidate"
-)(function* (
-  target: typeof PublicationTarget.Service,
-  candidateId: ReleaseId,
-  recoveryId: ReleaseId
-) {
-  const current = yield* target.current();
-  const retainedId = current.recovery?.release.manifest.releaseId ?? null;
-  if (retainedId !== null && retainedId !== recoveryId) {
-    return yield* new PublicationRecoveryIdentityError({
-      conflictingReleaseId: retainedId,
-      recoveryId,
-      releaseId: candidateId,
-    });
-  }
-  if (retainedId === recoveryId) {
-    yield* abortContentRelease({ releaseId: recoveryId }).pipe(
-      Effect.provideService(PublicationTarget, target)
-    );
-  }
-  if (current.candidate?.release.manifest.releaseId === candidateId) {
-    yield* abortContentRelease({ releaseId: candidateId }).pipe(
-      Effect.provideService(PublicationTarget, target)
-    );
-  }
-});
-
-/** Preserves the publication cause while appending any cleanup failure cause. */
-function discardOnFailure<A, E, R, E2, R2>(
-  effect: Effect.Effect<A, E, R>,
-  discard: () => Effect.Effect<unknown, E2, R2>
-) {
-  return effect.pipe(
-    Effect.catchAllCause((publicationCause) =>
-      discard().pipe(
-        Effect.catchAllCause((cleanupCause) =>
-          Effect.failCause(Cause.sequential(publicationCause, cleanupCause))
-        ),
-        Effect.flatMap(() => Effect.failCause(publicationCause))
-      )
-    )
-  );
-}
-
 /** Stages a candidate and its signed inverse before one atomic activation. */
 const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
   function* <E, R>(invocation: PublicationInvocation<E, R>) {
@@ -112,6 +69,8 @@ const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
       discard
     );
     if (candidateStage.kind === "completed") {
+      const activation = yield* PublicationActivation;
+      yield* activation.invalidate(candidate.bundle.release);
       return candidateStage.receipt;
     }
 

@@ -141,10 +141,13 @@ export class PublicationRecoveryIdentityError extends Schema.TaggedError<Publica
   }
 ) {}
 
-/** The deployed renderer no longer satisfies the signed activation contract. */
+/** Renderer preflight or post-commit cache convergence failed closed. */
 export class PublicationActivationError extends Schema.TaggedError<PublicationActivationError>()(
   "PublicationActivationError",
-  { releaseId: ReleaseIdSchema }
+  {
+    phase: Schema.Literal("cache", "preflight"),
+    releaseId: ReleaseIdSchema,
+  }
 ) {}
 
 /** Signing configuration injected only into the safe publication operation. */
@@ -163,12 +166,16 @@ export class PublicationRecoveryId extends Context.Tag(
   "AksaraPublicationRecoveryId"
 )<PublicationRecoveryId, typeof ReleaseIdSchema.Type>() {}
 
-/** Revalidates the live Nakafa renderer immediately before atomic activation. */
+/** Owns renderer preflight and post-commit Nakafa cache convergence. */
 export class PublicationActivation extends Context.Tag(
   "AksaraPublicationActivation"
 )<
   PublicationActivation,
   {
+    /** Invalidates Nakafa content caches after the pointer commit succeeds. */
+    readonly invalidate: (
+      release: SignedContentRelease
+    ) => Effect.Effect<void, PublicationActivationError>;
     /** Fails closed when the live renderer differs from the signed release. */
     readonly verify: (
       release: SignedContentRelease

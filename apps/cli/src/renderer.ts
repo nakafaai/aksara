@@ -1,4 +1,5 @@
 import {
+  FetchHttpClient,
   HttpClient,
   HttpClientRequest,
   type HttpClientResponse,
@@ -107,7 +108,12 @@ export const fetchRendererEndpoint = Effect.fn(
     const response = yield* client
       .pipe(HttpClient.withScope)
       .execute(request)
-      .pipe(Effect.mapError(() => makeNakafaAppError("network", true)));
+      .pipe(
+        Effect.provideService(FetchHttpClient.RequestInit, {
+          redirect: "manual",
+        }),
+        Effect.mapError(() => makeNakafaAppError("network", true))
+      );
     if (
       response.request.url !== url.toString() ||
       (response.status >= 300 && response.status < 400)

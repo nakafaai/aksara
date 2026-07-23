@@ -46,7 +46,7 @@ type ActivateCandidateRelease = <E, R>(
 ) => Effect.Effect<
   PublicationReceipt,
   PublishContentReleaseError<E>,
-  ContentVerificationKeyResolver | R
+  ContentVerificationKeyResolver | PublicationActivation | R
 >;
 
 type VerifyCandidateActivation = <E, R>(
@@ -191,11 +191,14 @@ export const activateCandidateRelease: ActivateCandidateRelease = Effect.fn(
   "AksaraPublisher.activateCandidateRelease"
 )(function* <E, R>(plan: PublicationPlan<E, R>) {
   const receipt = yield* plan.target.activate(plan.bundle.release);
-  return yield* validatePublicationReceipt(
+  const verified = yield* validatePublicationReceipt(
     plan.bundle.release,
     plan.summary,
     plan.projectionSummary,
     plan.routeSummary,
     receipt
   );
+  const activation = yield* PublicationActivation;
+  yield* activation.invalidate(plan.bundle.release);
+  return verified;
 });

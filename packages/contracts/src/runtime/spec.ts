@@ -7,6 +7,7 @@ import {
 import { decodeContract } from "#contracts/decode";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
+  CorpusSourcePathSchema,
   PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -61,6 +62,7 @@ export const ContentRuntimeFoundSchema = Schema.Struct({
   projectionHash: Sha256HashSchema,
   release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
+  sourcePath: CorpusSourcePathSchema,
 }).pipe(
   Schema.filter(hasCoherentContent, {
     message: () =>

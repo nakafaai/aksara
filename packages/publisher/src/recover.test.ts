@@ -43,7 +43,9 @@ async function makePublished(name: string) {
 function runRecovery(
   input: Parameters<typeof recoverContentRelease>[0],
   target: typeof PublicationTarget.Service,
-  verify: typeof PublicationActivation.Service.verify
+  verify: typeof PublicationActivation.Service.verify,
+  invalidate: typeof PublicationActivation.Service.invalidate = () =>
+    Effect.void
 ) {
   return recoverContentRelease(input).pipe(
     Effect.provideService(
@@ -52,7 +54,7 @@ function runRecovery(
     ),
     Effect.provideService(
       PublicationActivation,
-      PublicationActivation.of({ verify })
+      PublicationActivation.of({ invalidate, verify })
     ),
     Effect.provideService(PublicationTarget, target)
   );
@@ -62,13 +64,15 @@ describe("recoverContentRelease", () => {
   it("revalidates and forward-activates the exact retained inverse", async () => {
     const published = await makePublished("test-recover-active");
     const verify = vi.fn(() => Effect.void);
+    const invalidate = vi.fn(() => Effect.void);
     const priorActivations = published.state.activate.mock.calls.length;
     const receipt = await Effect.runPromise(
-      runRecovery(published.input, published.state.target, verify)
+      runRecovery(published.input, published.state.target, verify, invalidate)
     );
 
     expect(receipt.releaseId).toBe(published.input.recoveryId);
     expect(verify).toHaveBeenCalledWith(published.recovery.release);
+    expect(invalidate).toHaveBeenCalledWith(published.recovery.release);
     expect(published.state.activate.mock.calls).toHaveLength(
       priorActivations + 1
     );
@@ -83,19 +87,40 @@ describe("recoverContentRelease", () => {
     });
   });
 
-  it("returns historical completion after an activation response is lost", async () => {
+  it("repairs failed cache convergence through historical completion", async () => {
     const published = await makePublished("test-recover-replay");
-    await Effect.runPromise(
-      runRecovery(published.input, published.state.target, () => Effect.void)
-    );
+    const failure = new PublicationActivationError({
+      phase: "cache",
+      releaseId: published.input.recoveryId,
+    });
+    const invalidate = vi
+      .fn<() => Effect.Effect<void, PublicationActivationError>>()
+      .mockReturnValueOnce(Effect.fail(failure))
+      .mockReturnValue(Effect.void);
+    await expect(
+      Effect.runPromise(
+        runRecovery(
+          published.input,
+          published.state.target,
+          () => Effect.void,
+          invalidate
+        ).pipe(Effect.flip)
+      )
+    ).resolves.toEqual(failure);
     const activations = published.state.activate.mock.calls.length;
     const receipt = await Effect.runPromise(
-      runRecovery(published.input, published.state.target, () =>
-        Effect.die("Historical recovery must not rerun renderer preflight.")
+      runRecovery(
+        published.input,
+        published.state.target,
+        () =>
+          Effect.die("Historical recovery must not rerun renderer preflight."),
+        invalidate
       )
     );
 
     expect(receipt.releaseId).toBe(published.input.recoveryId);
+    expect(invalidate).toHaveBeenCalledWith(published.recovery.release);
+    expect(invalidate).toHaveBeenCalledTimes(2);
     expect(published.state.activate.mock.calls).toHaveLength(activations);
   });
 
@@ -103,6 +128,7 @@ describe("recoverContentRelease", () => {
     const published = await makePublished("test-recover-renderer");
     const activations = published.state.activate.mock.calls.length;
     const failure = new PublicationActivationError({
+      phase: "preflight",
       releaseId: published.input.recoveryId,
     });
     await expect(
@@ -137,12 +163,17 @@ describe("recoverContentRelease", () => {
           },
         }),
     });
+    const invalidate = vi.fn(() => Effect.void);
     await expect(
       Effect.runPromise(
-        runRecovery(published.input, target, () => Effect.void).pipe(
-          Effect.flip
-        )
+        runRecovery(
+          published.input,
+          target,
+          () => Effect.void,
+          invalidate
+        ).pipe(Effect.flip)
       )
     ).resolves.toMatchObject({ _tag: "PublicationReceiptMismatchError" });
+    expect(invalidate).not.toHaveBeenCalled();
   });
 });

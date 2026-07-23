@@ -19,10 +19,22 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
       "locale",
       "projectionHash",
       "publicPath",
-      "rendererManifest"
+      "rendererManifest",
+      "sourcePath"
     ),
   }
 ) {}
+
+/** Checks one target-owned path stays inside its projected material locale. */
+function hasMaterialSourcePath(input: {
+  readonly locale: string;
+  readonly sourcePath: string;
+}) {
+  return (
+    input.sourcePath.startsWith("packages/corpus/material/lesson/") &&
+    input.sourcePath.endsWith(`/${input.locale}.mdx`)
+  );
+}
 
 /**
  * Verifies independently signed runtime values selected for one exact request.
@@ -50,6 +62,14 @@ export const verifyContentRuntimeExchange = Effect.fn(
   }
   if (response.projection.publicPath !== request.publicPath) {
     return yield* new ContentRuntimeMismatchError({ reason: "publicPath" });
+  }
+  if (
+    !hasMaterialSourcePath({
+      locale: response.projection.locale,
+      sourcePath: response.sourcePath,
+    })
+  ) {
+    return yield* new ContentRuntimeMismatchError({ reason: "sourcePath" });
   }
   const bundle = yield* verifyContentReleaseBundle({
     release: response.release,

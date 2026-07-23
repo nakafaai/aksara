@@ -40,7 +40,9 @@ export function environmentMock(calls: TargetCalls) {
         privateKeyPem: Redacted.make("test-private-key"),
         publicationEndpoint: new URL("https://content.example.test/publish"),
         publicationToken: Redacted.make("publication-token"),
-        rendererEndpoint: new URL("https://www.example.test/renderer"),
+        rendererEndpoint: new URL(
+          "https://www.example.test/api/internal/content/renderer"
+        ),
         rendererToken: Redacted.make("renderer-token"),
       }),
   };

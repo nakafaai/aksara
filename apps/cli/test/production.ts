@@ -50,8 +50,8 @@ const calls = vi.hoisted(() => {
       recovery: null,
     },
     derivedPublicKeyPem:
-      "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAfCo8fdr8VK1t3LoimeUpsXAYnjgRZwYQV761+jRPidQ=\n-----END PUBLIC KEY-----\n",
-    environmentKeyId: "content-2026-07",
+      "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n",
+    environmentKeyId: "content-2026-07-23",
     headManifestHash: undefined,
     headReleaseId: undefined,
     keyId: undefined,
@@ -218,9 +218,8 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
   const { ContentVerificationKeyResolver } = await import(
     "@nakafa/aksara-contracts/signature/spec"
   );
-  const { PublicationSigningKey, PublicationTarget } = await import(
-    "@nakafa/aksara-publisher/publication/spec"
-  );
+  const { PublicationActivation, PublicationSigningKey, PublicationTarget } =
+    await import("@nakafa/aksara-publisher/publication/spec");
   const { receiptFor } = await import("#test/target");
   /** Publishes one prepared mode through injected signer and target services. */
   const publish = (prepared: {
@@ -232,9 +231,10 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
     return TestEffect.gen(function* () {
       const signingKey = yield* PublicationSigningKey;
       const resolver = yield* ContentVerificationKeyResolver;
+      yield* PublicationActivation;
       yield* PublicationTarget;
       calls.targetServiceReads += 1;
-      yield* resolver.resolve(SigningKeyIdSchema.make("content-2026-07"));
+      yield* resolver.resolve(SigningKeyIdSchema.make("content-2026-07-23"));
       calls.keyId = signingKey.keyId;
       calls.privateKeyMatches =
         TestRedacted.value(signingKey.privateKeyPem) === "test-private-key";
@@ -252,7 +252,7 @@ vi.mock("@nakafa/aksara-publisher/resume", async () => {
   const { ContentVerificationKeyResolver } = await import(
     "@nakafa/aksara-contracts/signature/spec"
   );
-  const { PublicationTarget } = await import(
+  const { PublicationActivation, PublicationTarget } = await import(
     "@nakafa/aksara-publisher/publication/spec"
   );
   const { receiptFor } = await import("#test/target");
@@ -262,9 +262,10 @@ vi.mock("@nakafa/aksara-publisher/resume", async () => {
       calls.resumeCalls += 1;
       return TestEffect.gen(function* () {
         const resolver = yield* ContentVerificationKeyResolver;
+        yield* PublicationActivation;
         yield* PublicationTarget;
         calls.targetServiceReads += 1;
-        yield* resolver.resolve(SigningKeyIdSchema.make("content-2026-07"));
+        yield* resolver.resolve(SigningKeyIdSchema.make("content-2026-07-23"));
         return receiptFor(bundle.release.manifest);
       });
     },

@@ -1,4 +1,5 @@
 import {
+  FetchHttpClient,
   HttpClient,
   HttpClientError,
   HttpClientRequest,
@@ -73,6 +74,31 @@ describe("Nakafa renderer discovery", () => {
       authorization: "Bearer renderer-test-token",
       "cache-control": "no-store",
     });
+  });
+
+  it("disables native redirect following at the fetch adapter", async () => {
+    let redirect: NonNullable<
+      Parameters<typeof globalThis.fetch>[1]
+    >["redirect"];
+    /** Captures the Fetch redirect policy before returning a valid manifest. */
+    const fetch: typeof globalThis.fetch = (_input, init) => {
+      redirect = init?.redirect;
+      return Promise.resolve(
+        new Response(JSON.stringify(RENDERER_MANIFEST), {
+          headers: { "cache-control": "private, no-store" },
+        })
+      );
+    };
+
+    await expect(
+      Effect.runPromise(
+        fetchRendererManifest(ORIGIN, TOKEN).pipe(
+          Effect.provide(FetchHttpClient.layer),
+          Effect.provideService(FetchHttpClient.Fetch, fetch)
+        )
+      )
+    ).resolves.toEqual(RENDERER_MANIFEST);
+    expect(redirect).toBe("manual");
   });
 
   it.each([

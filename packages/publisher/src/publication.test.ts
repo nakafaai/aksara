@@ -1,6 +1,6 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
-import { Cause, Effect, Exit, Stream } from "effect";
+import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   makePreparedGitRelease,
@@ -10,7 +10,6 @@ import {
   PublicationActivation,
   PublicationActivationError,
 } from "#publisher/publication/spec";
-import { PublicationTargetTransportError } from "#publisher/target/errors";
 import { makeTarget } from "#test/lifecycle";
 import { publishMaterialRelease } from "#test/material-run";
 import {
@@ -56,6 +55,42 @@ describe("content publication", () => {
     expect(state.activationTransitions).toBe(1);
   });
 
+  it("repairs a failed post-commit cache invalidation on exact retry", async () => {
+    const release = await makeRelease("test-release-cache-retry");
+    const state = makeTarget(release);
+    const failure = new PublicationActivationError({
+      phase: "cache",
+      releaseId: release.manifest.releaseId,
+    });
+    const invalidate = vi
+      .fn<() => Effect.Effect<void, PublicationActivationError>>()
+      .mockReturnValueOnce(Effect.fail(failure))
+      .mockReturnValue(Effect.void);
+    const activation = PublicationActivation.of({
+      invalidate,
+      verify: () => Effect.void,
+    });
+    const recoveryId = ReleaseIdSchema.make(
+      `${release.manifest.releaseId}-recovery`
+    );
+
+    await expect(
+      Effect.runPromise(
+        publish(release, state.target, recoveryId, activation).pipe(Effect.flip)
+      )
+    ).resolves.toEqual(failure);
+    expect(state.snapshot().active?.release.manifest.releaseId).toBe(
+      release.manifest.releaseId
+    );
+    expect(state.abortOrder).toEqual([]);
+
+    await expect(
+      Effect.runPromise(publish(release, state.target, recoveryId, activation))
+    ).resolves.toMatchObject({ releaseId: release.manifest.releaseId });
+    expect(state.activationTransitions).toBe(1);
+    expect(invalidate).toHaveBeenCalledTimes(2);
+  });
+
   it("rejects a recovery identity that aliases the candidate", async () => {
     const release = await makeRelease("test-release-alias-candidate");
     const state = makeTarget(release);
@@ -89,81 +124,6 @@ describe("content publication", () => {
       _tag: "PublicationRecoveryIdentityError",
       conflictingReleaseId: baseReleaseId,
     });
-  });
-
-  it("aborts the retained inverse before its failed candidate", async () => {
-    const release = await makeRelease("test-release-cleanup-order");
-    const state = makeTarget(release);
-    const failure = new PublicationActivationError({
-      releaseId: release.manifest.releaseId,
-    });
-    await expect(
-      Effect.runPromise(
-        publish(
-          release,
-          state.target,
-          ReleaseIdSchema.make("test-release-cleanup-order-recovery"),
-          PublicationActivation.of({ verify: () => Effect.fail(failure) })
-        ).pipe(Effect.flip)
-      )
-    ).resolves.toEqual(failure);
-    expect(state.abortOrder).toEqual([
-      "test-release-cleanup-order-recovery",
-      release.manifest.releaseId,
-    ]);
-  });
-
-  it("preserves publication and conflicting cleanup causes", async () => {
-    const release = await makeRelease("test-release-cleanup-conflict");
-    const state = makeTarget(release);
-    const foreignRelease = await makeRollbackRelease("test-foreign-recovery");
-    const foreign = {
-      release: foreignRelease.release,
-      rendererManifest,
-    };
-    const failure = new PublicationActivationError({
-      releaseId: release.manifest.releaseId,
-    });
-    state.current.mockImplementation(() =>
-      Effect.succeed({
-        ...state.snapshot(),
-        recovery: { ...foreign, phase: "verified" as const },
-      })
-    );
-    const exit = await Effect.runPromiseExit(
-      publish(
-        release,
-        state.target,
-        ReleaseIdSchema.make("test-release-cleanup-conflict-recovery"),
-        PublicationActivation.of({ verify: () => Effect.fail(failure) })
-      )
-    );
-    expect(Exit.isFailure(exit)).toBe(true);
-    if (Exit.isFailure(exit)) {
-      expect(
-        Array.from(Cause.failures(exit.cause)).map(({ _tag }) => _tag)
-      ).toEqual([
-        "PublicationActivationError",
-        "PublicationRecoveryIdentityError",
-      ]);
-    }
-  });
-
-  it("preserves the failure when no staged slot remains to discard", async () => {
-    const release = await makeRelease("test-release-discard-empty");
-    const state = makeTarget(release);
-    const failure = new PublicationTargetTransportError({
-      detail: { reason: "network" },
-      stage: "verify",
-    });
-    state.verify.mockImplementationOnce(() => Effect.fail(failure));
-    state.current.mockImplementation(() =>
-      Effect.succeed({ ...state.snapshot(), candidate: null, recovery: null })
-    );
-    await expect(
-      Effect.runPromise(publish(release, state.target).pipe(Effect.flip))
-    ).resolves.toEqual(failure);
-    expect(state.abortOrder).toEqual([]);
   });
 
   it("blocks activation when a staged replay changes after preparation", async () => {

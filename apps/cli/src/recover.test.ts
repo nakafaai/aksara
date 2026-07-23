@@ -23,7 +23,9 @@ vi.mock("#cli/env", async () => {
       TestEffect.succeed({
         publicationEndpoint: new URL("https://content.example.test/publish"),
         publicationToken: TestRedacted.make("publication-token"),
-        rendererEndpoint: new URL("https://www.example.test/renderer"),
+        rendererEndpoint: new URL(
+          "https://www.example.test/api/internal/content/renderer"
+        ),
         rendererToken: TestRedacted.make("renderer-token"),
       }),
   };
@@ -63,7 +65,10 @@ vi.mock("#cli/activation", async () => {
       calls.activationEndpoint = input.endpoint.href;
       calls.activationToken = TestRedacted.value(input.token);
       return TestEffect.succeed(
-        PublicationActivation.of({ verify: () => TestEffect.void })
+        PublicationActivation.of({
+          invalidate: () => TestEffect.void,
+          verify: () => TestEffect.void,
+        })
       );
     },
   };
@@ -97,6 +102,7 @@ vi.mock("@nakafa/aksara-publisher/recover", async () => {
         yield* PublicationTarget;
         if (calls.fail) {
           return yield* new PublicationActivationError({
+            phase: "preflight",
             releaseId: ReleaseIdSchema.make(input.recoveryId),
           });
         }
@@ -136,7 +142,8 @@ describe("recover command", () => {
       releaseId: recoveryId,
     });
     expect(calls).toMatchObject({
-      activationEndpoint: "https://www.example.test/renderer",
+      activationEndpoint:
+        "https://www.example.test/api/internal/content/renderer",
       activationToken: "renderer-token",
       input: { recoveryId, releaseId },
       targetEndpoint: "https://content.example.test/publish",

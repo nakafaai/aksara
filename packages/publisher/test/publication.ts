@@ -131,7 +131,10 @@ const resolver = ContentVerificationKeyResolver.of({
       publicKey.export({ format: "pem", type: "spki" }).toString()
     ),
 });
-const activation = PublicationActivation.of({ verify: () => Effect.void });
+const activation = PublicationActivation.of({
+  invalidate: () => Effect.void,
+  verify: () => Effect.void,
+});
 
 /** Public-key resolver paired with the private test publication signer. */
 export const testVerificationResolver = resolver;
