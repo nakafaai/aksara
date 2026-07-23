@@ -55,10 +55,18 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 });
 
 const publishedHeads = await publishedMaterialHeads();
+const functionContentKey =
+  "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 const [englishHead, indonesianHead] = await Effect.runPromise(
   Effect.gen(function* () {
-    const english = publishedHeads.find(({ locale }) => locale === "en");
-    const indonesian = publishedHeads.find(({ locale }) => locale === "id");
+    const english = publishedHeads.find(
+      ({ contentKey, locale }) =>
+        contentKey === functionContentKey && locale === "en"
+    );
+    const indonesian = publishedHeads.find(
+      ({ contentKey, locale }) =>
+        contentKey === functionContentKey && locale === "id"
+    );
     if (!(english && indonesian)) {
       return yield* Effect.dieMessage("Expected both real material locales.");
     }
@@ -98,6 +106,16 @@ function modifyHead(input: unknown) {
   return Schema.decodeUnknownSync(MaterialHeadSchema)(input, {
     onExcessProperty: "error",
   });
+}
+
+/** Replaces one canonical head while preserving the complete sorted catalog. */
+function replaceHead(replacement: typeof englishHead) {
+  return publishedHeads.map((head) =>
+    head.contentKey === replacement.contentKey &&
+    head.locale === replacement.locale
+      ? replacement
+      : head
+  );
 }
 
 beforeEach(() => {
@@ -153,7 +171,7 @@ describe("material publication", () => {
     async (_field, changed) => {
       const head = modifyHead({ ...englishHead, ...changed });
       const records = await collectMaterialPublication({
-        heads: [head, indonesianHead],
+        heads: replaceHead(head),
       });
 
       expect(records).toHaveLength(1);
@@ -183,7 +201,7 @@ describe("material publication", () => {
     });
 
     const records = await collectMaterialPublication({
-      heads: [englishHead, indonesianHead, stale],
+      heads: [...publishedHeads, stale],
     });
 
     expect(records).toContainEqual({
@@ -202,11 +220,11 @@ describe("material publication", () => {
   it("compiles every canonical source for the first release", async () => {
     const records = await collectMaterialPublication({ heads: [] });
 
-    expect(records).toHaveLength(2);
+    expect(records).toHaveLength(4);
     expect(
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
-    expect(compilerState.calls).toBe(2);
+    expect(compilerState.calls).toBe(4);
   });
 
   it("rejects target heads for a genesis release without a signed base", async () => {

@@ -189,12 +189,12 @@ describe("content publication", () => {
       )
     );
 
-    expect(compilerState.calls).toBe(4);
+    expect(compilerState.calls).toBe(8);
     expect(result.receipt).toMatchObject({
-      activatedHeads: 2,
-      stagedArtifacts: 2,
-      stagedItems: 2,
-      stagedProjections: 2,
+      activatedHeads: 4,
+      stagedArtifacts: 4,
+      stagedItems: 4,
+      stagedProjections: 4,
     });
     expect(result.stageArtifacts).toHaveBeenCalledTimes(1);
   });

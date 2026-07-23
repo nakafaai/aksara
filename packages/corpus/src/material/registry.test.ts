@@ -28,6 +28,34 @@ describe("material registry", () => {
     expect(entries).toEqual([
       {
         delivery: "public",
+        rendererDomain: "chemistry",
+        route: {
+          contentKey: "material/lesson/chemistry/structure-matter/atom-shell",
+          locale: "en",
+          materialKey: "lesson.chemistry.structure-matter",
+          order: 2,
+          publicPath: "subjects/chemistry/structure-matter/atom-shell",
+          sectionKey: "atom-shell",
+        },
+        sourcePath:
+          "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx",
+      },
+      {
+        delivery: "public",
+        rendererDomain: "chemistry",
+        route: {
+          contentKey: "material/lesson/chemistry/structure-matter/atom-shell",
+          locale: "id",
+          materialKey: "lesson.chemistry.structure-matter",
+          order: 2,
+          publicPath: "materi/kimia/struktur-atom/kulit-atom",
+          sectionKey: "atom-shell",
+        },
+        sourcePath:
+          "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/id.mdx",
+      },
+      {
+        delivery: "public",
         rendererDomain: "mathematics",
         route: {
           contentKey:

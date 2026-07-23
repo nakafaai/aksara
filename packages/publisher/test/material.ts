@@ -15,15 +15,21 @@ import { testFileLayer } from "#test/files";
 import { rendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
+export const atomEnglishPath =
+  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx";
+export const atomIndonesianPath =
+  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/id.mdx";
 export const englishPath =
   "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx";
 export const indonesianPath =
   "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx";
 export const sourceByPath = new Map(
-  [englishPath, indonesianPath].map((sourcePath) => {
-    const absolutePath = resolve(checkoutRoot, sourcePath);
-    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-  })
+  [atomEnglishPath, atomIndonesianPath, englishPath, indonesianPath].map(
+    (sourcePath) => {
+      const absolutePath = resolve(checkoutRoot, sourcePath);
+      return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
+    }
+  )
 );
 
 /** Creates a valid manifest while varying only real domain component versions. */
@@ -135,7 +141,7 @@ function collectMaterialRecords() {
   );
 }
 
-/** Derives authoritative compact heads from the two real prepared materials. */
+/** Derives authoritative compact heads from every registered real document. */
 export async function publishedMaterialHeads() {
   const records = await collectMaterialRecords();
   return records.flatMap((transition) => {

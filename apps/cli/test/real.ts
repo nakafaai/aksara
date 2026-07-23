@@ -17,8 +17,11 @@ export const REPOSITORY_ROOT = resolve(import.meta.dirname, "..", "..", "..");
 export const MATERIAL_ENTRIES = await Effect.runPromise(
   decodeMaterialRegistry()
 );
+const functionContentKey =
+  "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 const englishEntry = MATERIAL_ENTRIES.find(
-  ({ route }) => route.locale === "en"
+  ({ route }) =>
+    route.contentKey === functionContentKey && route.locale === "en"
 );
 if (!englishEntry) {
   throw new Error(
@@ -37,15 +40,23 @@ export const RENDERER_MANIFEST = await Effect.runPromise(
       supportedComponents: [{ name: "InlineMath", version: 1 }],
     },
     domains: RENDERER_DOMAINS.map((name) => {
-      if (name !== "mathematics") {
-        return { authoringComponents: [], name, supportedComponents: [] };
+      if (name === "chemistry") {
+        const component = { name: "AtomShellLab", version: 1 };
+        return {
+          authoringComponents: [component],
+          name,
+          supportedComponents: [component],
+        };
       }
-      const component = { name: "FunctionMachine", version: 1 };
-      return {
-        authoringComponents: [component],
-        name,
-        supportedComponents: [component],
-      };
+      if (name === "mathematics") {
+        const component = { name: "FunctionMachine", version: 1 };
+        return {
+          authoringComponents: [component],
+          name,
+          supportedComponents: [component],
+        };
+      }
+      return { authoringComponents: [], name, supportedComponents: [] };
     }),
   })
 );

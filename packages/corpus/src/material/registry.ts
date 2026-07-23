@@ -74,6 +74,20 @@ const materialFamilies: readonly unknown[] = [
   {
     delivery: "public",
     identity: {
+      materialSlug: "structure-matter",
+      sectionKey: "atom-shell",
+      subject: "chemistry",
+    },
+    order: 2,
+    publicPaths: {
+      en: "subjects/chemistry/structure-matter/atom-shell",
+      id: "materi/kimia/struktur-atom/kulit-atom",
+    },
+    rendererDomain: "chemistry",
+  },
+  {
+    delivery: "public",
+    identity: {
       materialSlug: "function-composition-inverse-function",
       sectionKey: "function-concept",
       subject: "mathematics",
