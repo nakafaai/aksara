@@ -8,6 +8,7 @@ import { NakafaAppLive } from "#cli/nakafa";
 import { runProductionCommand } from "#cli/production";
 import { runRecoverCommand } from "#cli/recover";
 import { openLocalPreview } from "#cli/session";
+import { runStatusCommand } from "#cli/status";
 
 /** Opens the actual-app preview for one already decoded document request. */
 function runPreview(input: {
@@ -46,6 +47,9 @@ export function makeCliProgram(input: {
     }
     if (args.command === "recover") {
       return yield* runRecoverCommand(args);
+    }
+    if (args.command === "status") {
+      return yield* runStatusCommand();
     }
     return yield* runProductionCommand({ args, cwd: input.cwd });
   });

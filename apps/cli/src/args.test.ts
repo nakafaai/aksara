@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { parseCliArguments, parsePreviewArguments } from "#cli/args";
 
 const ENGLISH_DOCUMENT =
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx";
 
 /** Runs argument decoding at the test runner boundary. */
 function parse(args: readonly string[]) {
@@ -65,6 +65,9 @@ describe("production arguments", () => {
     ).resolves.toEqual({
       command: "cleanup",
       releaseId: "release-2026-06-22",
+    });
+    await expect(parseCli(["status"])).resolves.toEqual({
+      command: "status",
     });
     await expect(
       parseCli([
@@ -128,6 +131,12 @@ describe("production arguments", () => {
     [["abort", "--rollback-of", "prior"], "abort", "--rollback-of", "unknown"],
     [["abort", "--release-id", "INVALID"], "abort", "--release-id", "value"],
     [["cleanup"], "cleanup", "--release-id", "missing"],
+    [
+      ["status", "--release-id", "release"],
+      "status",
+      "--release-id",
+      "unknown",
+    ],
     [
       ["cleanup", "--rollback-of", "prior"],
       "cleanup",

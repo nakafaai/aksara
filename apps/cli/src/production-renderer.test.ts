@@ -18,7 +18,10 @@ function rendererResponse(
   status = 200
 ) {
   return webResponse(request, JSON.stringify(RENDERER_MANIFEST), {
-    headers: { "cache-control": "private, no-store" },
+    headers: {
+      "cache-control": "private, no-store",
+      "content-type": "application/json",
+    },
     status,
   });
 }

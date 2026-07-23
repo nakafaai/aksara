@@ -88,15 +88,15 @@ describe("publication responses", () => {
     expect(error._tag).toBe("ContractDecodeError");
   });
   it("rejects the removed finalization response", async () => {
-    const legacy = {
+    const obsoleteResponse = {
       ok: true,
       operation: "finalize",
       releaseId,
       value: { done: true, nextIndex: 0, processed: 1, receipt },
     };
-    expect(accepts(legacy)).toBe(false);
+    expect(accepts(obsoleteResponse)).toBe(false);
     const error = await Effect.runPromise(
-      decodePublicationResponse(legacy).pipe(Effect.flip)
+      decodePublicationResponse(obsoleteResponse).pipe(Effect.flip)
     );
     expect(error._tag).toBe("ContractDecodeError");
   });

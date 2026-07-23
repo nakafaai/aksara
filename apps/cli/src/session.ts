@@ -213,7 +213,13 @@ export const openLocalPreview = Effect.fn("AksaraCli.openLocalPreview")(
       Effect.raceFirst(Fiber.join(watcher))
     );
     yield* Effect.logInfo("Local preview provider is ready.").pipe(
-      Effect.annotateLogs({ origin: provider.origin.toString() })
+      Effect.annotateLogs({
+        origin: provider.origin.toString(),
+        url: new URL(
+          `/${selected.document.route.locale}/${selected.document.route.publicPath}`,
+          child.origin
+        ).toString(),
+      })
     );
     return {
       origin: provider.origin,

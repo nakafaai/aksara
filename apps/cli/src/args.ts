@@ -25,6 +25,11 @@ export interface CleanupArguments {
   readonly releaseId: ReleaseId;
 }
 
+/** Current publication state requested without selecting a release. */
+export interface StatusArguments {
+  readonly command: "status";
+}
+
 /** New release identity and exact historical release selected for rollback. */
 export interface RollbackArguments {
   readonly command: "rollback";
@@ -55,7 +60,8 @@ export type CliArguments =
   | CleanupArguments
   | RecoverArguments
   | ReleaseArguments
-  | RollbackArguments;
+  | RollbackArguments
+  | StatusArguments;
 
 /** Command-line arguments do not describe one unambiguous document. */
 export class PreviewArgumentsError extends Schema.TaggedError<PreviewArgumentsError>()(
@@ -75,7 +81,8 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "cleanup",
       "recover",
       "release",
-      "rollback"
+      "rollback",
+      "status"
     ),
     option: Schema.Literal(
       "--recovery-id",
@@ -105,7 +112,8 @@ type ProductionCommand =
   | CleanupArguments["command"]
   | RecoverArguments["command"]
   | ReleaseArguments["command"]
-  | RollbackArguments["command"];
+  | RollbackArguments["command"]
+  | StatusArguments["command"];
 type ProductionOption = "--recovery-id" | "--release-id" | "--rollback-of";
 
 const OPTION_KEYS = {
@@ -127,6 +135,9 @@ function isProductionOption(
 
 /** Checks whether one command owns the selected production option. */
 function acceptsOption(command: ProductionCommand, option: ProductionOption) {
+  if (command === "status") {
+    return false;
+  }
   if (option === "--rollback-of") {
     return command === "rollback";
   }
@@ -221,13 +232,17 @@ export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
       command !== "abort" &&
       command !== "recover" &&
       command !== "release" &&
-      command !== "rollback"
+      command !== "rollback" &&
+      command !== "status"
     ) {
       const preview = yield* parsePreviewArguments(args);
       return { command: "preview", ...preview } satisfies CliArguments;
     }
 
     const options = yield* parseProductionOptions(command, args.slice(1));
+    if (command === "status") {
+      return { command } satisfies StatusArguments;
+    }
     if (options.releaseId === undefined) {
       return yield* argumentError(command, "--release-id", "missing");
     }

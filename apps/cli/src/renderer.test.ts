@@ -28,6 +28,9 @@ function rendererResponse(
   if (!headers.has("cache-control")) {
     headers.set("cache-control", "private, no-store");
   }
+  if (!headers.has("content-type")) {
+    headers.set("content-type", "application/json");
+  }
   return webResponse(request, body, { ...init, headers });
 }
 
@@ -85,7 +88,10 @@ describe("Nakafa renderer discovery", () => {
       redirect = init?.redirect;
       return Promise.resolve(
         new Response(JSON.stringify(RENDERER_MANIFEST), {
-          headers: { "cache-control": "private, no-store" },
+          headers: {
+            "cache-control": "private, no-store",
+            "content-type": "application/json",
+          },
         })
       );
     };
@@ -195,6 +201,7 @@ describe("Nakafa renderer discovery", () => {
       [Uint8Array.from([0xc3, 0x28]), {}],
       ["{", {}],
       ["{}", {}],
+      ["{}", { headers: { "content-type": "text/plain" } }],
       [null, {}],
     ];
     const responses = [...bodies];
@@ -220,6 +227,7 @@ describe("Nakafa renderer discovery", () => {
       "json",
       "json",
       "contract",
+      "json",
       "json",
     ]);
     expect(errors[3]).toMatchObject({ retryable: false });

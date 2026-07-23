@@ -1,22 +1,18 @@
 {
-  "name": "@nakafa/aksara-corpus",
+  "name": "@nakafa/aksara-utilities",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "imports": {
-    "#corpus/*": {
+    "#utilities/*": {
       "types": "./src/*.ts",
       "default": "./dist/*.js"
     }
   },
   "exports": {
-    "./material/registry": {
-      "types": "./dist/material/registry.d.ts",
-      "import": "./dist/material/registry.js"
-    },
-    "./material/source": {
-      "types": "./dist/material/source.d.ts",
-      "import": "./dist/material/source.js"
+    "./http/response": {
+      "types": "./dist/http/response.d.ts",
+      "import": "./dist/http/response.js"
     }
   },
   "scripts": {
@@ -28,7 +24,6 @@
   },
   "dependencies": {
     "@effect/platform": "catalog:",
-    "@nakafa/aksara-contracts": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

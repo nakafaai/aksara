@@ -23,6 +23,8 @@ Nakafa production yet.
 - `@nakafa/aksara-cli` compiles one selected real document, serves its signed
   local artifact over loopback, and starts the actual Nakafa application with
   ephemeral credentials for hot preview.
+- `@nakafa/aksara-utilities` owns generic bounded HTTP response primitives
+  shared by the CLI and publisher. It contains no content-domain contracts.
 - `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
 
@@ -43,8 +45,12 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm verify:package
-pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx
+pnpm status
+pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx
 ```
+
+`pnpm status` reads the authoritative publication slots using publication
+credentials only; it does not sign, stage, activate, or mutate a release.
 
 Run a focused workspace test through Turbo so dependency builds stay current:
 

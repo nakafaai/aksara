@@ -34,6 +34,10 @@
       "types": "./dist/content.d.ts",
       "import": "./dist/content.js"
     },
+    "./cache/material": {
+      "types": "./dist/cache/material.d.ts",
+      "import": "./dist/cache/material.js"
+    },
     "./delivery": {
       "types": "./dist/delivery.d.ts",
       "import": "./dist/delivery.js"
@@ -204,8 +208,8 @@
     }
   },
   "scripts": {
-    "clean": "git clean -xdf dist",
-    "prebuild": "pnpm run clean",
+    "clean": "git clean -xdf dist coverage",
+    "prebuild": "git clean -xdf dist",
     "build": "tsc --project tsconfig.build.json",
     "prepack": "pnpm run build",
     "test": "vitest run --config ../../vitest.config.ts",

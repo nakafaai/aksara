@@ -1,15 +1,19 @@
+import { HttpClient } from "@effect/platform";
 import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "@effect/platform";
+  MATERIAL_CACHE_TAGS,
+  type MaterialCacheRequest,
+} from "@nakafa/aksara-contracts/cache/material";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import {
   PublicationActivation,
   PublicationActivationError,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { validateReleaseRendererManifest } from "@nakafa/aksara-publisher/release-validation";
-import { Effect, type Redacted, Schedule, Schema } from "effect";
+import { Effect, type Redacted, Schedule } from "effect";
+import {
+  invalidateMaterialCache,
+  MaterialCacheError,
+} from "#cli/cache/exchange";
 import {
   fetchProductionRenderer,
   isRendererEndpoint,
@@ -20,22 +24,6 @@ const RETRY_COUNT = 3;
 const RETRY_DELAY = "100 millis";
 const REQUEST_TIMEOUT = "30 seconds";
 
-/** One sanitized post-commit cache request failure. */
-class ContentCacheError extends Schema.TaggedError<ContentCacheError>()(
-  "ContentCacheError",
-  { retryable: Schema.Boolean }
-) {}
-
-/** Requires an exact no-store directive without relying on header casing. */
-function hasNoStoreDirective(value: string | undefined) {
-  return (
-    value
-      ?.split(",")
-      .some((directive) => directive.trim().toLowerCase() === "no-store") ??
-    false
-  );
-}
-
 /** Derives the only cache endpoint from the exact renderer endpoint contract. */
 function makeCacheEndpoint(rendererEndpoint: URL) {
   if (!isRendererEndpoint(rendererEndpoint)) {
@@ -43,48 +31,6 @@ function makeCacheEndpoint(rendererEndpoint: URL) {
   }
   return new URL(CACHE_PATH, rendererEndpoint);
 }
-
-/** Sends one idempotent authenticated cache invalidation to Nakafa. */
-const invalidateContentCache = Effect.fn("AksaraCli.invalidateContentCache")(
-  function* (
-    client: HttpClient.HttpClient,
-    endpoint: URL,
-    token: Redacted.Redacted<string>
-  ) {
-    const request = HttpClientRequest.post(endpoint).pipe(
-      HttpClientRequest.acceptJson,
-      HttpClientRequest.bearerToken(token),
-      HttpClientRequest.setHeader("cache-control", "no-store")
-    );
-    const response = yield* client
-      .pipe(HttpClient.withScope)
-      .execute(request)
-      .pipe(
-        Effect.provideService(FetchHttpClient.RequestInit, {
-          redirect: "manual",
-        }),
-        Effect.mapError(() => new ContentCacheError({ retryable: true }))
-      );
-    if (
-      response.request.url !== endpoint.toString() ||
-      (response.status >= 300 && response.status < 400)
-    ) {
-      return yield* new ContentCacheError({ retryable: false });
-    }
-    if (response.status !== 200) {
-      return yield* new ContentCacheError({
-        retryable:
-          response.status === 404 ||
-          response.status === 408 ||
-          response.status === 429 ||
-          response.status >= 500,
-      });
-    }
-    if (!hasNoStoreDirective(response.headers["cache-control"])) {
-      return yield* new ContentCacheError({ retryable: false });
-    }
-  }
-);
 
 /** Captures HTTP for the pre-commit renderer and post-commit cache gates. */
 export const makeProductionActivation = Effect.fn(
@@ -120,7 +66,16 @@ export const makeProductionActivation = Effect.fn(
         })
       );
     }
-    return invalidateContentCache(client, cacheEndpoint, input.token).pipe(
+    const request = {
+      releaseId: release.manifest.releaseId,
+      tags: MATERIAL_CACHE_TAGS,
+    } satisfies MaterialCacheRequest;
+    return invalidateMaterialCache(
+      client,
+      cacheEndpoint,
+      input.token,
+      request
+    ).pipe(
       Effect.retry({
         schedule: Schedule.exponential(RETRY_DELAY),
         times: RETRY_COUNT,
@@ -128,7 +83,7 @@ export const makeProductionActivation = Effect.fn(
       }),
       Effect.timeoutFail({
         duration: REQUEST_TIMEOUT,
-        onTimeout: () => new ContentCacheError({ retryable: false }),
+        onTimeout: () => new MaterialCacheError({ retryable: false }),
       }),
       Effect.mapError(
         () =>
@@ -136,8 +91,7 @@ export const makeProductionActivation = Effect.fn(
             phase: "cache",
             releaseId: release.manifest.releaseId,
           })
-      ),
-      Effect.scoped
+      )
     );
   };
   return PublicationActivation.of({ invalidate, verify });

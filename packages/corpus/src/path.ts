@@ -11,15 +11,13 @@ export type LogicalCorpusSegment = typeof LogicalCorpusSegmentSchema.Type;
 
 /**
  * Encodes one logical segment into reversible physical chunks of at most two
- * semantic words. A trailing underscore marks every non-final chunk.
+ * semantic words.
  */
 export function encodeCorpusPath(segment: LogicalCorpusSegment) {
   const words = segment.split("-");
   const chunks: string[] = [];
   for (let index = 0; index < words.length; index += 2) {
-    const chunk = words.slice(index, index + 2).join("-");
-    const isFinal = index + 2 >= words.length;
-    chunks.push(isFinal ? chunk : `${chunk}_`);
+    chunks.push(words.slice(index, index + 2).join("-"));
   }
   return chunks;
 }

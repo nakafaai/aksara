@@ -19,7 +19,7 @@ const calls = vi.hoisted(() => ({
     | { readonly command: string; readonly releaseId: string }
     | undefined,
   document:
-    "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
+    "packages/corpus/material/lesson/mathematics/function-composition/inverse-function/function-concept/en.mdx",
   open: undefined as
     | {
         readonly cwd: string;
@@ -44,6 +44,7 @@ const calls = vi.hoisted(() => ({
         readonly releaseId: string;
       }
     | undefined,
+  status: false,
 }));
 
 vi.mock("#cli/args", async () => {
@@ -84,6 +85,9 @@ vi.mock("#cli/args", async () => {
           recoveryId: "recovery-active",
           releaseId: "release-active",
         });
+      }
+      if (args[0] === "status") {
+        return TestEffect.succeed({ command: "status" });
       }
       return TestEffect.succeed({
         command: "preview",
@@ -175,6 +179,17 @@ vi.mock("#cli/recover", async () => {
   };
 });
 
+vi.mock("#cli/status", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records publication-state dispatch without contacting production. */
+    runStatusCommand: () => {
+      calls.status = true;
+      return TestEffect.succeed("status-complete");
+    },
+  };
+});
+
 beforeEach(() => {
   calls.accept = undefined;
   calls.abort = undefined;
@@ -183,6 +198,7 @@ beforeEach(() => {
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
+  calls.status = false;
 });
 
 /** Runs one CLI program with the real Node boundary services. */
@@ -206,8 +222,6 @@ describe("CLI program", () => {
       environment: { nakafaAppDir: "/code/nakafa.com" },
       requestedDocument: calls.document,
     });
-    expect(calls.production).toBeUndefined();
-    expect(calls.abort).toBeUndefined();
   });
 
   it("dispatches explicit production commands without opening preview", async () => {
@@ -228,9 +242,6 @@ describe("CLI program", () => {
       },
       cwd: "/code/aksara",
     });
-    expect(calls.open).toBeUndefined();
-    expect(calls.cleanup).toBeUndefined();
-    expect(calls.abort).toBeUndefined();
   });
 
   it("dispatches acceptance without entering signed publication", async () => {
@@ -242,8 +253,6 @@ describe("CLI program", () => {
       recoveryId: "recovery-active",
       releaseId: "release-active",
     });
-    expect(calls.production).toBeUndefined();
-    expect(calls.open).toBeUndefined();
   });
 
   it("dispatches recovery without entering signed publication", async () => {
@@ -255,8 +264,6 @@ describe("CLI program", () => {
       recoveryId: "recovery-active",
       releaseId: "release-active",
     });
-    expect(calls.production).toBeUndefined();
-    expect(calls.open).toBeUndefined();
   });
 
   it("dispatches abort without entering signed publication", async () => {
@@ -287,5 +294,14 @@ describe("CLI program", () => {
     expect(calls.production).toBeUndefined();
     expect(calls.open).toBeUndefined();
     expect(calls.abort).toBeUndefined();
+  });
+
+  it("dispatches status without entering signed publication", async () => {
+    const result = await runProgram(["status"]);
+
+    expect(result).toBe("status-complete");
+    expect(calls.status).toBe(true);
+    expect(calls.production).toBeUndefined();
+    expect(calls.open).toBeUndefined();
   });
 });

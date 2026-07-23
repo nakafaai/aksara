@@ -2,23 +2,20 @@ import {
   FetchHttpClient,
   HttpClient,
   HttpClientRequest,
-  type HttpClientResponse,
 } from "@effect/platform";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, type Redacted, Schedule, Stream } from "effect";
+import {
+  hasDirectives,
+  isJsonType,
+  readText,
+} from "@nakafa/aksara-utilities/http/response";
+import { Effect, type Redacted, Schedule } from "effect";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 
 const LOOPBACK_HOST = "localhost";
 const RENDERER_PATH = "/api/internal/content/renderer";
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;
-
-interface RendererBodyState {
-  readonly chunks: readonly Uint8Array[];
-  readonly size: number;
-}
-
-const EMPTY_RENDERER_BODY: RendererBodyState = { chunks: [], size: 0 };
 
 /** Actual authenticated renderer capability consumed by the Nakafa service. */
 export type FetchRenderer = (
@@ -29,16 +26,6 @@ export type FetchRenderer = (
   NakafaAppError,
   HttpClient.HttpClient
 >;
-
-/** Requires an exact no-store response directive, ignoring case and spacing. */
-function hasNoStoreDirective(value: string | undefined) {
-  return (
-    value
-      ?.split(",")
-      .some((directive) => directive.trim().toLowerCase() === "no-store") ??
-    false
-  );
-}
 
 /** Proves renderer discovery cannot leave the spawned localhost origin. */
 function isNakafaOrigin(origin: URL) {
@@ -53,46 +40,6 @@ function isNakafaOrigin(origin: URL) {
     origin.password === ""
   );
 }
-
-/** Reads renderer bytes incrementally and aborts before exceeding the limit. */
-const readRendererBody = Effect.fn("AksaraCli.readRendererBody")(
-  (response: HttpClientResponse.HttpClientResponse) => {
-    const contentLength = response.headers["content-length"];
-    if (contentLength !== undefined) {
-      const declaredBytes = Number(contentLength);
-      if (
-        !Number.isSafeInteger(declaredBytes) ||
-        declaredBytes < 0 ||
-        declaredBytes > MAXIMUM_RENDERER_BYTES
-      ) {
-        return Effect.fail(makeNakafaAppError("body", false));
-      }
-    }
-    return response.stream.pipe(
-      Stream.catchAll((error) =>
-        error.reason === "EmptyBody"
-          ? Stream.empty
-          : Stream.fail(makeNakafaAppError("body", true))
-      ),
-      Stream.runFoldEffect(EMPTY_RENDERER_BODY, (state, chunk) => {
-        const size = state.size + chunk.byteLength;
-        if (size > MAXIMUM_RENDERER_BYTES) {
-          return Effect.fail(makeNakafaAppError("body", false));
-        }
-        return Effect.succeed({ chunks: [...state.chunks, chunk], size });
-      }),
-      Effect.map(({ chunks, size }) => {
-        const bytes = new Uint8Array(size);
-        let offset = 0;
-        for (const chunk of chunks) {
-          bytes.set(chunk, offset);
-          offset += chunk.byteLength;
-        }
-        return bytes;
-      })
-    );
-  }
-);
 
 /** Fetches and validates one exact authenticated renderer endpoint response. */
 export const fetchRendererEndpoint = Effect.fn(
@@ -128,14 +75,23 @@ export const fetchRendererEndpoint = Effect.fn(
         response.status >= 500;
       return yield* makeNakafaAppError("status", retryable, response.status);
     }
-    if (!hasNoStoreDirective(response.headers["cache-control"])) {
+    if (!hasDirectives(response.headers["cache-control"], ["no-store"])) {
       return yield* makeNakafaAppError("cache", false);
     }
-    const bytes = yield* readRendererBody(response);
+    if (!isJsonType(response.headers["content-type"])) {
+      return yield* makeNakafaAppError("json", false);
+    }
+    const source = yield* readText(response, MAXIMUM_RENDERER_BYTES).pipe(
+      Effect.mapError((error) => {
+        if (error.reason === "empty" || error.reason === "encoding") {
+          return makeNakafaAppError("json", false);
+        }
+        return makeNakafaAppError("body", error.reason === "stream");
+      })
+    );
     const body = yield* Effect.try({
       catch: () => makeNakafaAppError("json", false),
-      try: () =>
-        JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes)),
+      try: () => JSON.parse(source),
     });
     return yield* validateRendererManifestHash(body).pipe(
       Effect.mapError(() => makeNakafaAppError("contract", false))

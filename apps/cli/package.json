@@ -14,14 +14,15 @@
   "scripts": {
     "accept": "node main.ts accept",
     "abort": "node main.ts abort",
-    "clean": "git clean -xdf dist",
-    "prebuild": "pnpm run clean",
+    "clean": "git clean -xdf dist coverage",
+    "prebuild": "git clean -xdf dist",
     "build": "tsc --project tsconfig.build.json",
     "cleanup": "node main.ts cleanup",
     "dev": "node main.ts",
     "release": "node main.ts release",
     "recover": "node main.ts recover",
     "rollback": "node main.ts rollback",
+    "status": "node main.ts status",
     "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json"
   },
@@ -32,6 +33,7 @@
     "@nakafa/aksara-contracts": "workspace:*",
     "@nakafa/aksara-corpus": "workspace:*",
     "@nakafa/aksara-publisher": "workspace:*",
+    "@nakafa/aksara-utilities": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

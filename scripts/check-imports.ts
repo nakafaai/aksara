@@ -28,6 +28,7 @@ const allowedWorkspaceDependencies: ReadonlyMap<
       "@nakafa/aksara-contracts",
       "@nakafa/aksara-corpus",
       "@nakafa/aksara-publisher",
+      "@nakafa/aksara-utilities",
     ]),
   ],
   ["compiler", new Set(["@nakafa/aksara-contracts"])],
@@ -39,8 +40,10 @@ const allowedWorkspaceDependencies: ReadonlyMap<
       "@nakafa/aksara-compiler",
       "@nakafa/aksara-contracts",
       "@nakafa/aksara-corpus",
+      "@nakafa/aksara-utilities",
     ]),
   ],
+  ["utilities", new Set()],
 ]);
 
 /** Returns the statically knowable module specifier owned by one syntax node. */

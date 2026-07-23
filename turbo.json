@@ -18,6 +18,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "clean": {
+      "cache": false
+    },
     "abort": {
       "dependsOn": ["build"],
       "cache": false,
@@ -72,6 +75,11 @@
         "AKSARA_SIGNING_KEY_ID",
         "AKSARA_SIGNING_PRIVATE_KEY"
       ]
+    },
+    "status": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
     "typecheck": {
       "dependsOn": ["//#typecheck:root", "^build"],
