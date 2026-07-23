@@ -20,8 +20,8 @@ import {
   RollbackUpsertStateSchema,
 } from "#contracts/release/rollback";
 import { ContentUpsertSchema } from "#contracts/release/spec";
+import { materialGraph } from "#contracts/test/graph";
 
-const manifestHash = `sha256:${"f".repeat(64)}`;
 const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
   artifactHash: `sha256:${"a".repeat(64)}`,
   keyId: "test-old-key",
@@ -54,9 +54,10 @@ const change = Schema.decodeUnknownSync(ContentUpsertSchema)({
 });
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: artifact.payload.contentKey,
+  graph: materialGraph("en", "test", "material", "test-lesson"),
   kind: "subject-lesson",
   locale: artifact.payload.locale,
-  materialKey: "test.material",
+  materialKey: "lesson.test.material",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: "subjects/test/material",
@@ -107,7 +108,7 @@ function page(input: object) {
   return {
     ...input,
     rollbackOf: "release-active",
-    rollbackOfManifestHash: manifestHash,
+    rollbackOfManifestHash: `sha256:${"f".repeat(64)}`,
   };
 }
 describe("rollback contracts", () => {

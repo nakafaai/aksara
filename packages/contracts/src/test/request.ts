@@ -10,6 +10,7 @@ import {
 } from "#contracts/release/spec";
 import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
+import { materialGraph } from "#contracts/test/graph";
 
 export const releaseId = "test-transport";
 export const hash = `sha256:${"a".repeat(64)}`;
@@ -129,9 +130,10 @@ export const projection = Schema.decodeUnknownSync(
   MaterialLessonProjectionSchema
 )({
   contentKey: "test:transport",
+  graph: materialGraph("en", "test", "transport", "test-transport"),
   kind: "subject-lesson",
   locale: "en",
-  materialKey: "test.transport",
+  materialKey: "lesson.test.transport",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: "subjects/test",

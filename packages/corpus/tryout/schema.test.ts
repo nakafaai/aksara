@@ -203,7 +203,7 @@ describe("tryout schema", () => {
 
   it("loads every authored try-out catalog module", async () => {
     const files = await Effect.runPromise(
-      importCorpusModules("tryout/**/*.ts", ["tryout/schema.ts"])
+      importCorpusModules("tryout/**/source.ts")
     );
 
     expect(files).toHaveLength(2);

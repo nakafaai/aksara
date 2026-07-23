@@ -3,6 +3,7 @@ import {
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
 import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
+import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ArticleReferenceSchema,
@@ -37,24 +38,35 @@ export class ArticleRegistryError extends Schema.TaggedError<ArticleRegistryErro
 ) {}
 
 /** Expands one reviewed source into its two locale-specific article bodies. */
-function expandArticle(source: ArticleSource) {
-  return ContentLocaleSchema.literals.map((locale) => {
-    const contentKey = `articles/${source.category}/${source.slug}`;
-    return {
-      delivery: "public",
-      references: source.references,
-      rendererDomain: "politics",
-      route: {
-        articleSlug: source.slug,
-        category: source.category,
-        contentKey,
+const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
+  source: ArticleSource
+) {
+  return yield* Effect.forEach(ContentLocaleSchema.literals, (locale) =>
+    Effect.gen(function* () {
+      const contentKey = `articles/${source.category}/${source.slug}`;
+      const graph = yield* makeLearningGraphIdentity({
+        concept: ["article", source.category],
+        learningObject: ["article", source.category, source.slug],
+        lens: ["article", source.category],
         locale,
-        publicPath: contentKey,
-      },
-      sourcePath: `packages/corpus/${source.sourceRoot}/${locale}.mdx`,
-    };
-  });
-}
+      });
+      return {
+        delivery: "public",
+        references: source.references,
+        rendererDomain: "politics",
+        route: {
+          articleSlug: source.slug,
+          category: source.category,
+          contentKey,
+          graph,
+          locale,
+          publicPath: contentKey,
+        },
+        sourcePath: `packages/corpus/${source.sourceRoot}/${locale}.mdx`,
+      };
+    })
+  );
+});
 
 /** Rejects repeated canonical slugs and physical roots before expansion. */
 const validateSources = Effect.fn("AksaraCorpus.validateArticleSources")(
@@ -79,8 +91,9 @@ export const decodeArticleRegistry = Effect.fn(
 )(function* (input?: unknown) {
   const sources = yield* decodeArticleSources(input);
   yield* validateSources(sources);
+  const expanded = yield* Effect.forEach(sources, expandArticle);
   const entries = yield* Schema.decodeUnknown(Schema.Array(ArticleEntrySchema))(
-    sources.flatMap(expandArticle),
+    expanded.flat(),
     { onExcessProperty: "error" }
   ).pipe(
     Effect.mapError(

@@ -7,6 +7,7 @@ import {
   PreviewEventSchema,
   PreviewRepositorySchema,
 } from "#contracts/preview/spec";
+import { materialGraph } from "#contracts/test/graph";
 
 const repositories = {
   aksara: Schema.decodeUnknownSync(PreviewRepositorySchema)({
@@ -24,6 +25,12 @@ const document = Schema.decodeUnknownSync(PreviewDocumentSchema)({
   route: {
     contentKey:
       "material/lesson/mathematics/function-composition-inverse-function/function-concept",
+    graph: materialGraph(
+      "en",
+      "mathematics",
+      "function-composition-inverse-function",
+      "function-concept"
+    ),
     locale: "en",
     materialKey: "lesson.mathematics.function-composition-inverse-function",
     order: 5,

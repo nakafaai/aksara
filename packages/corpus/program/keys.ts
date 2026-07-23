@@ -1,23 +1,13 @@
-import { Schema } from "effect";
+import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 
-const LEARNING_PROGRAM_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-
-/** Stable language-neutral key for an authored learning program. */
-export const LearningProgramKeySchema = Schema.String.pipe(
-  Schema.pattern(LEARNING_PROGRAM_KEY_PATTERN, {
-    description: "Lowercase kebab-case canonical learning program key.",
-    identifier: "LearningProgramKey",
-    message: () => "Invalid learning program key.",
-  }),
-  Schema.brand("@NakafaAI/AksaraLearningProgramKey")
-);
-
-/** Program identities referenced by the imported curriculum sources. */
+/** Exact program identities referenced by curriculum and assessment sources. */
 export const LEARNING_PROGRAM_KEYS = {
   cambridgeInternational: LearningProgramKeySchema.make(
     "cambridge-international"
   ),
   merdeka: LearningProgramKeySchema.make("merdeka"),
   singaporeMoe: LearningProgramKeySchema.make("singapore-moe"),
+  snbt: LearningProgramKeySchema.make("snbt"),
+  tka: LearningProgramKeySchema.make("tka"),
   unitedStates: LearningProgramKeySchema.make("united-states"),
 } as const;

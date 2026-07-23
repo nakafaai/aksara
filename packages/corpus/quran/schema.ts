@@ -1,3 +1,4 @@
+import { QuranSurahNumberSchema } from "@nakafa/aksara-contracts/quran/spec";
 import { Schema } from "effect";
 
 const MeaningfulTextSchema = Schema.String.pipe(
@@ -18,23 +19,6 @@ const AudioUrlSchema = Schema.String.pipe(
 );
 
 const PositiveIntegerSchema = Schema.Int.pipe(Schema.positive());
-
-/** Locales with complete Quran name and translation fields. */
-export const QURAN_LOCALES = ["en", "id"] as const;
-
-/** Locales whose complete Quran Tafsir corpus is safe to expose. */
-export const QURAN_TAFSIR_LOCALES = ["id"] as const;
-
-/** Number of reviewed surah sources in the complete Quran corpus. */
-export const QURAN_SURAH_COUNT = 114;
-
-/** Number of reviewed verses in the complete Quran corpus. */
-export const QURAN_VERSE_COUNT = 6236;
-
-/** Valid Quran surah number in canonical Quran order. */
-export const QuranSurahNumberSchema = Schema.Int.pipe(
-  Schema.between(1, QURAN_SURAH_COUNT)
-);
 
 const LocalizedTextSchema = Schema.Struct({
   en: MeaningfulTextSchema,

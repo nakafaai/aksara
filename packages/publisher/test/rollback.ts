@@ -20,6 +20,7 @@ import {
   type DerivedRollbackState,
   snapshotRollbackState,
 } from "#publisher/rollback/records";
+import { materialGraph } from "#test/graph";
 import { projection as baseProjection, contentRecord } from "#test/publication";
 
 export const rollbackFixtureReleaseId = ReleaseIdSchema.make(
@@ -47,6 +48,7 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
   const projection = MaterialLessonProjectionSchema.make({
     ...baseProjection,
     contentKey,
+    graph: materialGraph("en", "material", `test-${input.hashCharacter}`),
     parentPath: PublicPathSchema.make(
       input.publicPath.slice(0, input.publicPath.lastIndexOf("/"))
     ),

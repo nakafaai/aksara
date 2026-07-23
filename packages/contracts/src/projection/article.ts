@@ -1,6 +1,11 @@
 import { Schema } from "effect";
 import { ContentAuthorSchema, ContentLocaleSchema } from "#contracts/content";
 import { DateOnlySchema } from "#contracts/date";
+import {
+  canonicalizeLearningGraphIdentity,
+  type LearningGraphIdentity,
+  LearningGraphIdentitySchema,
+} from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 
 const ARTICLE_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
@@ -41,9 +46,28 @@ const ArticleRouteFields = {
   articleSlug: ArticleSlugSchema,
   category: ArticleCategorySchema,
   contentKey: ContentKeySchema,
+  graph: LearningGraphIdentitySchema,
   locale: ContentLocaleSchema,
   publicPath: PublicPathSchema,
 };
+
+/** Checks graph identities against the source-owned article category and slug. */
+function hasCoherentArticleGraph(input: {
+  readonly articleSlug: string;
+  readonly category: string;
+  readonly graph: LearningGraphIdentity;
+  readonly locale: typeof ContentLocaleSchema.Type;
+}) {
+  const lens = `article:${input.category}`;
+  const object = `article:${input.category}:${input.articleSlug}`;
+  return (
+    input.graph.alignmentId === `alignment:${lens}:${object}` &&
+    input.graph.assetId === `asset:${input.locale}:${lens}:${object}` &&
+    input.graph.conceptId === `concept:${lens}` &&
+    input.graph.learningObjectId === `lo:${object}` &&
+    input.graph.lensId === `lens:${lens}`
+  );
+}
 
 /** Source-owned identity and public route for one localized article body. */
 export const ArticleRouteSchema = Schema.Struct(ArticleRouteFields).pipe(
@@ -56,7 +80,11 @@ export const ArticleRouteSchema = Schema.Struct(ArticleRouteFields).pipe(
       message: () =>
         "Expected article identity and public path to match its category and slug.",
     }
-  )
+  ),
+  Schema.filter(hasCoherentArticleGraph, {
+    message: () =>
+      "Expected article graph identities to match its stable source keys.",
+  })
 );
 export type ArticleRoute = typeof ArticleRouteSchema.Type;
 
@@ -76,7 +104,11 @@ export const ArticleProjectionSchema = Schema.Struct({
       message: () =>
         "Expected the article parent path to match its category route.",
     }
-  )
+  ),
+  Schema.filter(hasCoherentArticleGraph, {
+    message: () =>
+      "Expected article graph identities to match its stable source keys.",
+  })
 );
 export type ArticleProjection = typeof ArticleProjectionSchema.Type;
 
@@ -104,6 +136,7 @@ export function canonicalizeArticleProjection(projection: ArticleProjection) {
     articleSlug: projection.articleSlug,
     category: projection.category,
     contentKey: projection.contentKey,
+    graph: canonicalizeLearningGraphIdentity(projection.graph),
     kind: projection.kind,
     locale: projection.locale,
     metadata: {

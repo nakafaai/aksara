@@ -7,11 +7,13 @@ import {
   canonicalizeArticleProjection,
   makeArticleProjection,
 } from "#contracts/projection/article";
+import { articleGraph } from "#contracts/test/graph";
 
 const route = Schema.decodeUnknownSync(ArticleRouteSchema)({
   articleSlug: "reviewed-article",
   category: "politics",
   contentKey: "articles/politics/reviewed-article",
+  graph: articleGraph("en", "politics", "reviewed-article"),
   locale: "en",
   publicPath: "articles/politics/reviewed-article",
 });
@@ -71,6 +73,20 @@ describe("article projection", () => {
     if (Either.isLeft(result)) {
       expect(String(result.left)).toContain(
         "Expected article identity and public path"
+      );
+    }
+  });
+
+  it("rejects graph identities that contradict the signed source route", () => {
+    const result = Schema.decodeUnknownEither(ArticleRouteSchema)({
+      ...route,
+      graph: articleGraph("en", "politics", "another-article"),
+    });
+
+    expect(Either.isLeft(result)).toBe(true);
+    if (Either.isLeft(result)) {
+      expect(String(result.left)).toContain(
+        "Expected article graph identities"
       );
     }
   });

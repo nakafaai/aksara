@@ -13,11 +13,13 @@ import {
   projectionPublicPath,
   RoutedContentProjectionSchema,
 } from "#contracts/projection/spec";
+import { articleGraph, materialGraph } from "#contracts/test/graph";
 
 const article = Schema.decodeUnknownSync(ArticleProjectionSchema)({
   articleSlug: "test-article",
   category: "politics",
   contentKey: "articles/politics/test-article",
+  graph: articleGraph("en", "politics", "test-article"),
   kind: "article",
   locale: "en",
   metadata: {
@@ -33,9 +35,10 @@ const article = Schema.decodeUnknownSync(ArticleProjectionSchema)({
 });
 const material = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: "test:material",
+  graph: materialGraph("en", "test", "material", "test-lesson"),
   kind: "subject-lesson",
   locale: "en",
-  materialKey: "test.material",
+  materialKey: "lesson.test.material",
   metadata: {
     authors: [{ name: "Test Author" }],
     date: "2026-01-01",

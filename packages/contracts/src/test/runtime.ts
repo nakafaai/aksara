@@ -35,6 +35,7 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { articleGraph } from "#contracts/test/graph";
 import {
   projection,
   rendererManifest,
@@ -160,6 +161,7 @@ const articleProjection = ArticleProjectionSchema.make({
   articleSlug: ArticleSlugSchema.make("dynastic-politics-asian-values"),
   category: "politics",
   contentKey: articleContentKey,
+  graph: articleGraph("en", "politics", "dynastic-politics-asian-values"),
   kind: "article",
   locale: "en",
   metadata: {

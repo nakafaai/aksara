@@ -47,7 +47,7 @@ import {
 } from "#publisher/publication/spec";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 import { testFileLayer } from "#test/files";
-
+import { materialGraph } from "#test/graph";
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
     base: {
@@ -74,9 +74,10 @@ const { payload } = await Effect.runPromise(
 );
 export const projection = MaterialLessonProjectionSchema.make({
   contentKey: source.contentKey,
+  graph: materialGraph(source.locale, "material", "test-lesson"),
   kind: "subject-lesson",
   locale: source.locale,
-  materialKey: MaterialKeySchema.make("test.material"),
+  materialKey: MaterialKeySchema.make("lesson.test.material"),
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: PublicPathSchema.make("subjects/test/material"),
@@ -138,7 +139,6 @@ const activation = PublicationActivation.of({
   invalidate: () => Effect.void,
   verify: () => Effect.void,
 });
-
 /** Public-key resolver paired with the private test publication signer. */
 export const testVerificationResolver = resolver;
 

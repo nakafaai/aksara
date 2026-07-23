@@ -1,6 +1,7 @@
 import { Either } from "effect";
 import { describe, expect, it } from "vitest";
 import { SigningKeyIdSchema } from "#contracts/ids";
+import { materialGraph } from "#contracts/test/graph";
 import { hash, rendererManifest } from "#contracts/test/request";
 import {
   articleFound,
@@ -26,7 +27,11 @@ describe("content runtime verification", () => {
           ...artifact,
           payload: { ...artifact.payload, locale: "id" },
         },
-        projection: { ...found.projection, locale: "id" },
+        projection: {
+          ...found.projection,
+          graph: materialGraph("id", "test", "transport", "test-transport"),
+          locale: "id",
+        },
       },
       {
         ...found,

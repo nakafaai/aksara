@@ -1,12 +1,10 @@
-import { Effect, Option, Schema, Stream } from "effect";
-
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
-  type QuranSurah,
   QuranSurahNumberSchema,
-  QuranSurahSchema,
-} from "#corpus/quran/schema";
+} from "@nakafa/aksara-contracts/quran/spec";
+import { Effect, Option, Schema, Stream } from "effect";
+import { type QuranSurah, QuranSurahSchema } from "#corpus/quran/schema";
 import { quranSurahSourceStream } from "#corpus/quran/source";
 
 interface QuranRegistryState {

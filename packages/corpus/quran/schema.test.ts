@@ -1,13 +1,12 @@
-import { Chunk, Effect, Schema, Stream } from "effect";
-import { describe, expect, it } from "vitest";
-
 import {
   QURAN_LOCALES,
   QURAN_SURAH_COUNT,
   QURAN_TAFSIR_LOCALES,
   QURAN_VERSE_COUNT,
-  QuranSurahSchema,
-} from "#corpus/quran/schema";
+} from "@nakafa/aksara-contracts/quran/spec";
+import { Chunk, Effect, Schema, Stream } from "effect";
+import { describe, expect, it } from "vitest";
+import { QuranSurahSchema } from "#corpus/quran/schema";
 import { quranSurahSourceStream } from "#corpus/quran/source";
 
 const decodeSurah = Schema.decodeUnknown(QuranSurahSchema);

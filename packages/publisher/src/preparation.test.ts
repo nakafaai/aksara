@@ -27,6 +27,7 @@ import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
+import { materialGraph } from "#test/graph";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -54,9 +55,10 @@ const { payload } = await Effect.runPromise(
 );
 const projection = MaterialLessonProjectionSchema.make({
   contentKey: source.contentKey,
+  graph: materialGraph(source.locale, "material", "test-a"),
   kind: "subject-lesson",
   locale: source.locale,
-  materialKey: MaterialKeySchema.make("test.material"),
+  materialKey: MaterialKeySchema.make("lesson.test.material"),
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: PublicPathSchema.make("subjects/test/material"),

@@ -1,17 +1,16 @@
+import {
+  QURAN_SURAH_COUNT,
+  QURAN_VERSE_COUNT,
+} from "@nakafa/aksara-contracts/quran/spec";
 import { Chunk, Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-
 import {
   QuranCountError,
   QuranRevelationError,
   QuranSourceError,
   streamQuranRegistry,
 } from "#corpus/quran/registry";
-import {
-  QURAN_SURAH_COUNT,
-  QURAN_VERSE_COUNT,
-  type QuranSurah,
-} from "#corpus/quran/schema";
+import type { QuranSurah } from "#corpus/quran/schema";
 
 /** Collects one registry stream only at the Vitest runner boundary. */
 function collect(source = streamQuranRegistry()) {

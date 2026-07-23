@@ -5,6 +5,7 @@ import {
   routeIdentity,
 } from "@nakafa/aksara-contracts/content";
 import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
+import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -79,33 +80,52 @@ export class MaterialRouteError extends Schema.TaggedError<MaterialRouteError>()
 ) {}
 
 /** Expands one decoded material source into its locale-specific lesson bodies. */
-function expandMaterial(source: LessonMaterialSource) {
-  return source.sections.flatMap((section, sectionIndex) =>
-    ContentLocaleSchema.literals.map((locale) => {
-      const contentKey = `${source.assetRoot}/${section.slug}`;
-      const publicPath = [
-        routeNamespaces[locale],
-        domainRouteSlugs[source.domain][locale],
-        source.routeSlugs[locale],
-        section.routeSlugs[locale],
-      ].join("/");
+const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
+  source: LessonMaterialSource
+) {
+  const sections = yield* Effect.forEach(
+    source.sections,
+    (section, sectionIndex) =>
+      Effect.forEach(ContentLocaleSchema.literals, (locale) =>
+        Effect.gen(function* () {
+          const contentKey = `${source.assetRoot}/${section.slug}`;
+          const publicPath = [
+            routeNamespaces[locale],
+            domainRouteSlugs[source.domain][locale],
+            source.routeSlugs[locale],
+            section.routeSlugs[locale],
+          ].join("/");
+          const graph = yield* makeLearningGraphIdentity({
+            concept: ["material", "lesson", source.domain, source.slug],
+            learningObject: [
+              "material-section",
+              source.domain,
+              source.slug,
+              section.slug,
+            ],
+            lens: ["material", "lesson", source.domain],
+            locale,
+          });
 
-      return {
-        delivery: "public",
-        rendererDomain: source.domain,
-        route: {
-          contentKey,
-          locale,
-          materialKey: source.key,
-          order: sectionIndex + 1,
-          publicPath,
-          sectionKey: section.slug,
-        },
-        sourcePath: `packages/corpus/${contentKey}/${locale}.mdx`,
-      };
-    })
+          return {
+            delivery: "public",
+            rendererDomain: source.domain,
+            route: {
+              contentKey,
+              graph,
+              locale,
+              materialKey: source.key,
+              order: sectionIndex + 1,
+              publicPath,
+              sectionKey: section.slug,
+            },
+            sourcePath: `packages/corpus/${contentKey}/${locale}.mdx`,
+          };
+        })
+      )
   );
-}
+  return sections.flat();
+});
 
 /** Rejects repeated source identities before projecting lesson bodies. */
 const validateSources = Effect.fn("AksaraCorpus.validateMaterialSources")(
@@ -167,10 +187,11 @@ export const decodeMaterialRegistry = Effect.fn(
 )(function* (input?: unknown) {
   const sources = yield* decodeMaterialSources(input);
   yield* validateSources(sources);
+  const expanded = yield* Effect.forEach(sources, expandMaterial);
 
   const entries = yield* Schema.decodeUnknown(
     Schema.Array(MaterialEntrySchema)
-  )(sources.flatMap(expandMaterial), { onExcessProperty: "error" }).pipe(
+  )(expanded.flat(), { onExcessProperty: "error" }).pipe(
     Effect.mapError(
       (cause) =>
         new MaterialRegistryError({

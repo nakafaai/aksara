@@ -28,6 +28,7 @@ import {
   streamRollbackRecords,
 } from "#publisher/rollback/stream";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
+import { materialGraph } from "#test/graph";
 import { makePublicationTarget } from "#test/target";
 
 const rollbackOf = ReleaseIdSchema.make("test-rollback-source");
@@ -92,9 +93,10 @@ function oversizedPage() {
   });
   const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
     contentKey: payload.contentKey,
+    graph: materialGraph(payload.locale, "rollback", "test-large"),
     kind: "subject-lesson",
     locale: payload.locale,
-    materialKey: "test.rollback",
+    materialKey: "lesson.test.rollback",
     metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
     order: 1,
     parentPath: "subjects/test/rollback",

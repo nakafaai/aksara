@@ -1,15 +1,15 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import {
+  LearningProgramKeySchema,
+  ProgramNavigationIconKeySchema,
+  type ProgramNavigationLevel,
+  ProgramNavigationLevelSchema,
+} from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
 
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { MaterialDomainSchema } from "#corpus/material/domain";
 import { type MaterialKey, MaterialKeySchema } from "#corpus/material/schema";
-import { LearningProgramKeySchema } from "#corpus/program/keys";
-import {
-  ProgramNavigationIconKeySchema,
-  type ProgramNavigationLevel,
-  ProgramNavigationLevelSchema,
-} from "#corpus/program/navigation";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 
 const CURRICULUM_NODE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;

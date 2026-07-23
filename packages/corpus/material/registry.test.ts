@@ -48,6 +48,20 @@ function rejectRegistry(input: unknown) {
   return Effect.runPromise(decodeMaterialRegistry(input).pipe(Effect.flip));
 }
 
+/** Builds the expected signed graph identity for the representative lesson. */
+function lessonGraph(locale: "en" | "id") {
+  return {
+    alignmentId:
+      "alignment:material:lesson:mathematics:material-section:mathematics:function-composition-inverse-function:function-concept",
+    assetId: `asset:${locale}:material:lesson:mathematics:material-section:mathematics:function-composition-inverse-function:function-concept`,
+    conceptId:
+      "concept:material:lesson:mathematics:function-composition-inverse-function",
+    learningObjectId:
+      "lo:material-section:mathematics:function-composition-inverse-function:function-concept",
+    lensId: "lens:material:lesson:mathematics",
+  };
+}
+
 describe("material registry", () => {
   it("projects every authored locale body onto its checked-in source path", async () => {
     const entries = await Effect.runPromise(decodeMaterialRegistry());
@@ -106,6 +120,7 @@ describe("material registry", () => {
         route: {
           contentKey:
             "material/lesson/mathematics/function-composition-inverse-function/function-concept",
+          graph: lessonGraph("en"),
           locale: "en",
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",
@@ -123,6 +138,7 @@ describe("material registry", () => {
         route: {
           contentKey:
             "material/lesson/mathematics/function-composition-inverse-function/function-concept",
+          graph: lessonGraph("id"),
           locale: "id",
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",

@@ -30,6 +30,7 @@ import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 import { testFileLayer } from "#test/files";
+import { materialGraph } from "#test/graph";
 import { makePublicationTarget } from "#test/target";
 
 export const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
@@ -94,9 +95,10 @@ const source = CompileDocumentSourceSchema.make({
 });
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: payload.contentKey,
+  graph: materialGraph(payload.locale, "rollback", "test-forward"),
   kind: "subject-lesson",
   locale: payload.locale,
-  materialKey: "test.rollback",
+  materialKey: "lesson.test.rollback",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: "subjects/test/rollback",

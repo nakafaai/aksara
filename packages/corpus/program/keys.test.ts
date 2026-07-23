@@ -1,17 +1,17 @@
+import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
-import {
-  LEARNING_PROGRAM_KEYS,
-  LearningProgramKeySchema,
-} from "#corpus/program/keys";
+import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
 
 describe("learning program keys", () => {
-  it("contains exactly the programs referenced by imported curricula", () => {
+  it("contains exactly the real curriculum and assessment programs", () => {
     expect(LEARNING_PROGRAM_KEYS).toEqual({
       cambridgeInternational: "cambridge-international",
       merdeka: "merdeka",
       singaporeMoe: "singapore-moe",
+      snbt: "snbt",
+      tka: "tka",
       unitedStates: "united-states",
     });
   });

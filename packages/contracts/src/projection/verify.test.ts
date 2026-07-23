@@ -10,6 +10,7 @@ import {
 } from "#contracts/projection/verify";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
+import { materialGraph } from "#contracts/test/graph";
 
 /** Builds one unmistakably test-only canonical material projection. */
 function projection(
@@ -20,9 +21,10 @@ function projection(
   const parentPath = publicPath.slice(0, publicPath.lastIndexOf("/"));
   return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
     contentKey,
+    graph: materialGraph(locale, "test", "material", "test-lesson"),
     kind: "subject-lesson",
     locale,
-    materialKey: "test.material",
+    materialKey: "lesson.test.material",
     metadata: {
       authors: [{ name: "Test Author" }],
       date: "2026-01-01",

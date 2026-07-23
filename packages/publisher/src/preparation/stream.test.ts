@@ -20,6 +20,7 @@ import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
+import { materialGraph } from "#test/graph";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -47,9 +48,10 @@ const { payload } = await Effect.runPromise(
 );
 const projection = MaterialLessonProjectionSchema.make({
   contentKey: source.contentKey,
+  graph: materialGraph(source.locale, "material", "test-a"),
   kind: "subject-lesson",
   locale: source.locale,
-  materialKey: MaterialKeySchema.make("test.material"),
+  materialKey: MaterialKeySchema.make("lesson.test.material"),
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: PublicPathSchema.make("subjects/test/material"),
@@ -73,7 +75,6 @@ const baseRecord: PreparedContentUpsert = {
   source,
 };
 const releaseId = ReleaseIdSchema.make("test-stream-release");
-
 /** Pairs one candidate record with an explicit prior absence proof. */
 function transition(
   record: unknown,
@@ -101,7 +102,6 @@ function relocateRecord(
   publicPath: string
 ): PreparedContentUpsert {
   const nextKey = ContentKeySchema.make(contentKey);
-  const nextPath = PublicPathSchema.make(publicPath);
   const parentPath = PublicPathSchema.make(
     publicPath.slice(0, publicPath.lastIndexOf("/"))
   );
@@ -117,7 +117,7 @@ function relocateRecord(
       ...projection,
       contentKey: nextKey,
       parentPath,
-      publicPath: nextPath,
+      publicPath: PublicPathSchema.make(publicPath),
     },
     source: { ...source, contentKey: nextKey },
   };

@@ -1,9 +1,15 @@
 import { Schema } from "effect";
 import { ContentAuthorSchema, ContentLocaleSchema } from "#contracts/content";
 import { DateOnlySchema } from "#contracts/date";
+import {
+  canonicalizeLearningGraphIdentity,
+  type LearningGraphIdentity,
+  LearningGraphIdentitySchema,
+} from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 
-const MATERIAL_KEY_PATTERN = /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/;
+const MATERIAL_KEY_PATTERN =
+  /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const SECTION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 const MaterialPublicPathSchema = PublicPathSchema.pipe(
@@ -39,6 +45,7 @@ export type MaterialMetadata = typeof MaterialMetadataSchema.Type;
 /** Non-authored material route fields preserved from Nakafa's registry. */
 export const MaterialLessonRouteSchema = Schema.Struct({
   contentKey: ContentKeySchema,
+  graph: LearningGraphIdentitySchema,
   locale: ContentLocaleSchema,
   materialKey: MaterialKeySchema,
   order: Schema.Number.pipe(Schema.int(), Schema.positive()),
@@ -69,6 +76,28 @@ function hasCoherentParentPath(input: {
   return input.parentPath === materialParentPath(input.publicPath);
 }
 
+/** Checks signed graph identities against stable material source keys. */
+function hasCoherentMaterialGraph(input: {
+  readonly graph: LearningGraphIdentity;
+  readonly locale: typeof ContentLocaleSchema.Type;
+  readonly materialKey: string;
+  readonly sectionKey: string;
+}) {
+  const identity = input.materialKey.slice("lesson.".length);
+  const separator = identity.indexOf(".");
+  const domain = identity.slice(0, separator);
+  const topic = identity.slice(separator + 1);
+  const lens = `material:lesson:${domain}`;
+  const object = `material-section:${domain}:${topic}:${input.sectionKey}`;
+  return (
+    input.graph.alignmentId === `alignment:${lens}:${object}` &&
+    input.graph.assetId === `asset:${input.locale}:${lens}:${object}` &&
+    input.graph.conceptId === `concept:${lens}:${topic}` &&
+    input.graph.learningObjectId === `lo:${object}` &&
+    input.graph.lensId === `lens:${lens}`
+  );
+}
+
 /** Canonical route read model for one published material lesson body. */
 export const MaterialLessonProjectionSchema = Schema.Struct(
   MaterialLessonProjectionFields
@@ -76,6 +105,10 @@ export const MaterialLessonProjectionSchema = Schema.Struct(
   Schema.filter(hasCoherentParentPath, {
     message: () =>
       "Expected the material parent path to match the lesson public path.",
+  }),
+  Schema.filter(hasCoherentMaterialGraph, {
+    message: () =>
+      "Expected material graph identities to match its stable source keys.",
   })
 );
 export type MaterialLessonProjection =
@@ -102,6 +135,7 @@ export function canonicalizeMaterialProjection(
 ) {
   return JSON.stringify({
     contentKey: projection.contentKey,
+    graph: canonicalizeLearningGraphIdentity(projection.graph),
     kind: projection.kind,
     locale: projection.locale,
     materialKey: projection.materialKey,

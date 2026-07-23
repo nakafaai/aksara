@@ -7,12 +7,14 @@ import {
   MaterialMetadataSchema,
   makeMaterialLessonProjection,
 } from "#contracts/projection/material";
+import { materialGraph } from "#contracts/test/graph";
 
 const projection = makeMaterialLessonProjection(
   Schema.decodeUnknownSync(MaterialLessonRouteSchema)({
     contentKey: "test:material-a",
+    graph: materialGraph("en", "test", "material", "test-lesson"),
     locale: "en",
-    materialKey: "test.material",
+    materialKey: "lesson.test.material",
     order: 1,
     publicPath: "subjects/test/material/lesson",
     sectionKey: "test-lesson",
@@ -28,8 +30,8 @@ const projection = makeMaterialLessonProjection(
 
 describe("material projection", () => {
   it("derives route fields while keeping one authored title source", () => {
-    expect(canonicalizeMaterialProjection(projection)).toBe(
-      '{"contentKey":"test:material-a","kind":"subject-lesson","locale":"en","materialKey":"test.material","metadata":{"authors":[{"name":"Test Author"}],"date":"2026-01-31","description":"Test body metadata.","subject":"Test Subject","title":"Body Metadata Title"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true}'
+    expect(JSON.parse(canonicalizeMaterialProjection(projection))).toEqual(
+      projection
     );
     expect(projection.metadata.title).toBe("Body Metadata Title");
   });
@@ -84,6 +86,19 @@ describe("material projection", () => {
     if (Either.isLeft(result)) {
       expect(String(result.left)).toContain(
         "Expected the material parent path to match the lesson public path."
+      );
+    }
+  });
+
+  it("rejects graph identities unrelated to its stable material key", () => {
+    const result = Schema.decodeUnknownEither(MaterialLessonProjectionSchema)({
+      ...projection,
+      graph: materialGraph("en", "test", "other", "test-lesson"),
+    });
+    expect(Either.isLeft(result)).toBe(true);
+    if (Either.isLeft(result)) {
+      expect(String(result.left)).toContain(
+        "Expected material graph identities"
       );
     }
   });
