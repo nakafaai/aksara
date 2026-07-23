@@ -9,6 +9,7 @@ import {
   currentState,
   gitBundle,
   receiptFor,
+  recoveryBundle,
   releaseId,
 } from "#test/target";
 
@@ -17,60 +18,50 @@ beforeEach(() => {
   calls.reset();
   const active = gitBundle("release-active");
   calls.current = currentState({
-    activeManifestHash: active.release.manifestHash,
-    activeReleaseId: active.release.manifest.releaseId,
-    completed: completedBundle(active),
-    pending: null,
+    active: completedBundle(active),
+    candidate: null,
+    recovery: null,
   });
 });
 describe("production command", () => {
-  it.each(["verified", "active", "finalizing"] as const)(
-    "resumes pending %s state without renderer or source reads",
-    async (phase) => {
-      const pending = gitBundle("release-pending", {
-        baseReleaseId: releaseId("release-active"),
-      });
-      calls.current = currentState({
-        activeManifestHash:
-          phase === "verified"
-            ? pending.release.manifest.baseManifestHash
-            : pending.release.manifestHash,
-        activeReleaseId:
-          phase === "verified" ? "release-active" : "release-pending",
-        completed: null,
-        pending: { ...pending, phase },
-      });
-      await expect(
-        runProduction({
-          command: "release",
-          releaseId: releaseId("release-pending"),
-        })
-      ).resolves.toMatchObject({ releaseId: "release-pending" });
-      expect(calls).toMatchObject({
-        cleanReads: 0,
-        materialCalls: 0,
-        publishCalls: 0,
-        rendererCalls: 0,
-        resumeBundle: pending,
-        resumeCalls: 1,
-        rootReads: 0,
-        sourceLayers: 0,
-        targetServiceReads: 1,
-      });
-    }
-  );
-
-  it("resumes a completed release after a lost response", async () => {
-    const completed = gitBundle("release-completed");
+  it("resumes an active release with its exact retained inverse", async () => {
+    const active = gitBundle("release-active");
     calls.current = currentState({
-      activeManifestHash: completed.release.manifestHash,
-      activeReleaseId: "release-completed",
-      completed: completedBundle(completed),
-      pending: null,
+      active: completedBundle(active),
+      candidate: null,
+      recovery: recoveryBundle("recovery-active", active),
     });
     await expect(
       runProduction({
         command: "release",
+        recoveryId: releaseId("recovery-active"),
+        releaseId: releaseId("release-active"),
+      })
+    ).resolves.toMatchObject({ releaseId: "release-active" });
+    expect(calls).toMatchObject({
+      cleanReads: 0,
+      materialCalls: 0,
+      publishCalls: 0,
+      rendererCalls: 0,
+      resumeBundle: active,
+      resumeCalls: 1,
+      rootReads: 0,
+      sourceLayers: 0,
+      targetServiceReads: 1,
+    });
+  });
+
+  it("resumes a completed release after a lost response", async () => {
+    const completed = gitBundle("release-completed");
+    calls.current = currentState({
+      active: completedBundle(completed),
+      candidate: null,
+      recovery: null,
+    });
+    await expect(
+      runProduction({
+        command: "release",
+        recoveryId: releaseId("recovery-completed"),
         releaseId: releaseId("release-completed"),
       })
     ).resolves.toEqual(receiptFor(completed.release.manifest));
@@ -90,6 +81,7 @@ describe("production command", () => {
     await expect(
       rejectProduction({
         command: "release",
+        recoveryId: releaseId("recovery-rejected"),
         releaseId: releaseId("release-rejected"),
       })
     ).resolves.toMatchObject({
@@ -103,17 +95,17 @@ describe("production command", () => {
     });
   });
 
-  it("rejects a conflicting pending release before any content read", async () => {
-    const pending = gitBundle("release-pending");
+  it("rejects a conflicting candidate release before any content read", async () => {
+    const candidate = gitBundle("release-candidate");
     calls.current = currentState({
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed: null,
-      pending: { ...pending, phase: "staging" },
+      active: null,
+      candidate: { ...candidate, phase: "staging" },
+      recovery: null,
     });
     await expect(
       rejectProduction({
         command: "release",
+        recoveryId: releaseId("recovery-other"),
         releaseId: releaseId("release-other"),
       })
     ).resolves.toMatchObject({

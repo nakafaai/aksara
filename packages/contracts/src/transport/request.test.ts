@@ -1,30 +1,28 @@
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { ContentReleaseBundleSchema } from "#contracts/release/lifecycle";
+import { batchCeilingCases, emptyBatchCases } from "#contracts/test/batch";
 import {
   artifact,
   hash,
   items,
   projection,
+  recoveryRelease,
   release,
   releaseId,
   rendererManifest,
   requests,
+  route,
 } from "#contracts/test/request";
-import {
-  MAX_ARTIFACT_BATCH_COUNT,
-  MAX_ITEM_BATCH_COUNT,
-  MAX_PROJECTION_BATCH_COUNT,
-} from "#contracts/transport/limits";
 import {
   decodePublicationRequest,
   PublicationRequestSchema,
   StageArtifactBatchInputSchema,
-  StageArtifactBatchRequestSchema,
   StageItemBatchInputSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchInputSchema,
-  StageProjectionBatchRequestSchema,
+  StageRouteBatchInputSchema,
+  StageRouteBatchRequestSchema,
 } from "#contracts/transport/request";
 
 const itemError =
@@ -42,8 +40,11 @@ describe("publication requests", () => {
     for (const request of requests) {
       expect(accepts(PublicationRequestSchema, request)).toBe(true);
     }
+    const stageRelease = requests.find(
+      (request) => request.operation === "stageRelease"
+    );
     const decoded = await Effect.runPromise(
-      decodePublicationRequest(requests[3])
+      decodePublicationRequest(stageRelease)
     );
     expect(decoded.operation).toBe("stageRelease");
   });
@@ -55,6 +56,46 @@ describe("publication requests", () => {
       )
     );
     expect(error._tag).toBe("ContractDecodeError");
+  });
+
+  it("rejects the removed finalization operation", async () => {
+    const error = await Effect.runPromise(
+      decodePublicationRequest({
+        afterIndex: -1,
+        operation: "finalize",
+        release,
+      }).pipe(Effect.flip)
+    );
+    expect(error._tag).toBe("ContractDecodeError");
+  });
+
+  it("requires distinct active and recovery identities for acceptance", () => {
+    expect(
+      accepts(PublicationRequestSchema, {
+        operation: "accept",
+        recoveryId: releaseId,
+        releaseId,
+      })
+    ).toBe(false);
+  });
+
+  it("accepts rollback provenance only at recovery publication seams", () => {
+    for (const input of [
+      { operation: "stageRecovery", release, rendererManifest },
+      { operation: "activateRecovery", release },
+    ]) {
+      expect(accepts(PublicationRequestSchema, input)).toBe(false);
+    }
+    for (const input of [
+      {
+        operation: "stageRecovery",
+        release: recoveryRelease,
+        rendererManifest,
+      },
+      { operation: "activateRecovery", release: recoveryRelease },
+    ]) {
+      expect(accepts(PublicationRequestSchema, input)).toBe(true);
+    }
   });
 
   it("binds the frozen renderer envelope to the signed manifest", async () => {
@@ -139,6 +180,10 @@ describe("publication requests", () => {
         input: { artifacts: [artifact], batchIndex: 0, releaseId },
         schema: StageArtifactBatchInputSchema,
       },
+      {
+        input: { batchIndex: 0, releaseId, routes: [route] },
+        schema: StageRouteBatchInputSchema,
+      },
     ]) {
       expect(accepts(schema, input)).toBe(true);
       expect(accepts(schema, { ...input, operation: "stageItemBatch" })).toBe(
@@ -148,109 +193,51 @@ describe("publication requests", () => {
   });
 
   it("requires non-empty batches and enforces canonical count ceilings", () => {
-    const emptyBatches = [
-      {
-        input: {
-          batchIndex: 0,
-          items: [],
-          operation: "stageItemBatch",
-          releaseId,
-        },
-        schema: StageItemBatchRequestSchema,
-      },
-      {
-        input: {
-          batchIndex: 0,
-          operation: "stageProjectionBatch",
-          projections: [],
-          releaseId,
-        },
-        schema: StageProjectionBatchRequestSchema,
-      },
-      {
-        input: {
-          artifacts: [],
-          batchIndex: 0,
-          operation: "stageArtifactBatch",
-          releaseId,
-        },
-        schema: StageArtifactBatchRequestSchema,
-      },
-    ];
-    for (const { input, schema } of emptyBatches) {
+    for (const { input, schema } of emptyBatchCases()) {
       expect(accepts(schema, input)).toBe(false);
     }
+    for (const { invalid, schema, valid } of batchCeilingCases()) {
+      expect(accepts(schema, valid)).toBe(true);
+      expect(accepts(schema, invalid)).toBe(false);
+    }
+  });
 
-    const artifactBatch = Array.from(
-      { length: MAX_ARTIFACT_BATCH_COUNT },
-      () => artifact
-    );
-    expect(
-      accepts(StageArtifactBatchRequestSchema, {
-        artifacts: artifactBatch,
+  it("requires contiguous routes owned by the exact release", () => {
+    const skipped = [route, { ...route, index: 2 }];
+    const foreign = [{ ...route, releaseId: "test-other" }];
+    for (const routes of [skipped, foreign]) {
+      expect(
+        accepts(StageRouteBatchInputSchema, {
+          batchIndex: 0,
+          releaseId,
+          routes,
+        })
+      ).toBe(false);
+      expect(
+        accepts(StageRouteBatchRequestSchema, {
+          batchIndex: 0,
+          operation: "stageRouteBatch",
+          releaseId,
+          routes,
+        })
+      ).toBe(false);
+    }
+    for (const result of [
+      Schema.decodeUnknownEither(StageRouteBatchInputSchema)({
         batchIndex: 0,
-        operation: "stageArtifactBatch",
         releaseId,
-      })
-    ).toBe(true);
-    expect(
-      accepts(StageArtifactBatchRequestSchema, {
-        artifacts: [...artifactBatch, artifact],
+        routes: skipped,
+      }),
+      Schema.decodeUnknownEither(StageRouteBatchRequestSchema)({
         batchIndex: 0,
-        operation: "stageArtifactBatch",
+        operation: "stageRouteBatch",
         releaseId,
-      })
-    ).toBe(false);
-
-    const projectionBatch = Array.from(
-      { length: MAX_PROJECTION_BATCH_COUNT },
-      () => projection
-    );
-    expect(
-      accepts(StageProjectionBatchRequestSchema, {
-        batchIndex: 0,
-        operation: "stageProjectionBatch",
-        projections: projectionBatch,
-        releaseId,
-      })
-    ).toBe(true);
-    expect(
-      accepts(StageProjectionBatchRequestSchema, {
-        batchIndex: 0,
-        operation: "stageProjectionBatch",
-        projections: [...projectionBatch, projection],
-        releaseId,
-      })
-    ).toBe(false);
-
-    const itemBatch = Array.from(
-      { length: MAX_ITEM_BATCH_COUNT },
-      (_, index) => ({
-        ...items[0],
-        index,
-      })
-    );
-    expect(
-      accepts(StageItemBatchRequestSchema, {
-        batchIndex: 0,
-        items: itemBatch,
-        operation: "stageItemBatch",
-        releaseId,
-      })
-    ).toBe(true);
-    expect(
-      accepts(StageItemBatchRequestSchema, {
-        batchIndex: 0,
-        items: [
-          ...itemBatch,
-          {
-            ...items[0],
-            index: MAX_ITEM_BATCH_COUNT,
-          },
-        ],
-        operation: "stageItemBatch",
-        releaseId,
-      })
-    ).toBe(false);
+        routes: skipped,
+      }),
+    ]) {
+      expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+        "Expected contiguous route items bound to the batch release identity."
+      );
+    }
   });
 });

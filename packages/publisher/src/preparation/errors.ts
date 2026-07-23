@@ -1,5 +1,4 @@
 import {
-  PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
@@ -17,7 +16,6 @@ export const CoherenceFieldSchema = Schema.Literal(
   "rendererDomain",
   "sourcePath",
   "rawMdx",
-  "publicPath",
   "priorState"
 );
 
@@ -58,10 +56,4 @@ export class PreparedContentCoherenceError extends Schema.TaggedError<PreparedCo
 export class PreparedContentOrderError extends Schema.TaggedError<PreparedContentOrderError>()(
   "PreparedContentOrderError",
   { recordIndex: RecordIndexSchema }
-) {}
-
-/** Two authored upserts claim the same locale-specific route. */
-export class PreparedContentRouteError extends Schema.TaggedError<PreparedContentRouteError>()(
-  "PreparedContentRouteError",
-  { publicPath: PublicPathSchema, recordIndex: RecordIndexSchema }
 ) {}

@@ -1,10 +1,10 @@
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";
 import { inspectContentSource } from "#compiler/inspect";
-import { rendererDomains } from "#compiler/test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -13,7 +13,7 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "InlineMath", version: 1 }],
     },
     domains: rendererDomains({
-      mathematics: { name: "FunctionMachine", version: 1 },
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   })
 );

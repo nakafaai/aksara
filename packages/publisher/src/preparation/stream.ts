@@ -1,9 +1,6 @@
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
-import {
-  compareContentHeads,
-  routeIdentity,
-} from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
 import {
@@ -21,7 +18,6 @@ import {
   PreparedContentDecodeError,
   PreparedContentOrderError,
   PreparedContentReplayError,
-  PreparedContentRouteError,
 } from "#publisher/preparation/errors";
 import {
   type PreparedContentRecord,
@@ -33,7 +29,6 @@ import {
 } from "#publisher/preparation/spec";
 
 interface RecordState {
-  readonly firstIndexByRoute: Map<string, number>;
   previous: PreparedContentRecord | undefined;
 }
 
@@ -92,9 +87,6 @@ function findCoherenceMismatch(
   }
   if (source.rawMdx !== payload.rawMdx) {
     return "rawMdx";
-  }
-  if (change.publicPath !== projection.publicPath) {
-    return "publicPath";
   }
 }
 
@@ -155,15 +147,12 @@ function validatePriorState(
   );
 }
 
-/** Applies canonical ordering and locale-specific route uniqueness. */
+/** Applies canonical content-head ordering. */
 function validateOrder(
   state: RecordState,
   record: PreparedContentRecord,
   recordIndex: number
-): Effect.Effect<
-  PreparedContentRecord,
-  PreparedContentOrderError | PreparedContentRouteError
-> {
+): Effect.Effect<PreparedContentRecord, PreparedContentOrderError> {
   if (
     state.previous &&
     compareContentHeads(state.previous.change, record.change) >= 0
@@ -171,19 +160,6 @@ function validateOrder(
     return Effect.fail(new PreparedContentOrderError({ recordIndex }));
   }
   state.previous = record;
-  if (!isPreparedContentUpsert(record)) {
-    return Effect.succeed(record);
-  }
-  const identity = routeIdentity(record.projection);
-  if (state.firstIndexByRoute.has(identity)) {
-    return Effect.fail(
-      new PreparedContentRouteError({
-        publicPath: record.projection.publicPath,
-        recordIndex,
-      })
-    );
-  }
-  state.firstIndexByRoute.set(identity, recordIndex);
   return Effect.succeed(record);
 }
 
@@ -221,10 +197,7 @@ export function derivePreparedRecords<E, R>(input: {
       try: input.records,
     }).pipe(
       Effect.map((records) => {
-        const state: RecordState = {
-          firstIndexByRoute: new Map(),
-          previous: undefined,
-        };
+        const state: RecordState = { previous: undefined };
         return records.pipe(
           Stream.zipWithIndex,
           Stream.mapEffect(([source, recordIndex]) =>

@@ -31,6 +31,9 @@ import type {
 } from "@nakafa/aksara-contracts/release/result-digest";
 import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback";
 import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback-digest";
+import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
+import type { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
+import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { type Effect, Schema, type Stream } from "effect";
@@ -39,10 +42,13 @@ import type {
   PreparedContentDecodeError,
   PreparedContentOrderError,
   PreparedContentReplayError,
-  PreparedContentRouteError,
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
 } from "#publisher/preparation/errors";
+import type {
+  RoutePlanConflictError,
+  RouteTransition,
+} from "#publisher/routes";
 
 const PreparedContentUpsertSchema = Schema.Struct({
   change: ContentUpsertSchema,
@@ -90,6 +96,13 @@ export type PreparedResultCatalogSource<E, R> = () => Stream.Stream<
   R
 >;
 
+/** Replay factory for independent public-route transitions. */
+export type PreparedRouteSource<E, R> = () => Stream.Stream<
+  RouteTransition,
+  E,
+  R
+>;
+
 /** Exact immutable release identity plus its one authored record source. */
 export interface PrepareContentReleaseInput<E, R> {
   readonly aksaraSha: GitCommitSha;
@@ -101,6 +114,7 @@ export interface PrepareContentReleaseInput<E, R> {
   readonly releaseId: ReleaseId;
   readonly rendererManifest: unknown;
   readonly result: PreparedResultCatalogSource<E, R>;
+  readonly routes: PreparedRouteSource<E, R>;
 }
 
 type SourceHashError = Effect.Effect.Error<
@@ -114,7 +128,7 @@ export type PreparedContentStreamError<E> =
   | PreparedContentDecodeError
   | PreparedContentOrderError
   | PreparedContentReplayError
-  | PreparedContentRouteError
+  | RoutePlanConflictError
   | SourceHashError;
 
 const PreparedContentReleaseTypeId: unique symbol = Symbol(
@@ -129,7 +143,9 @@ interface PreparedContentReleaseBase<E, R> {
   /** Replays canonical projections authenticated by the same manifest. */
   readonly projections: () => Stream.Stream<MaterialLessonProjection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
-  /** Reuses one exact authenticated pending envelope during deterministic rebuild. */
+  /** Replays canonical route changes authenticated by the same manifest. */
+  readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
+  /** Reuses one exact authenticated candidate envelope during deterministic rebuild. */
   readonly storedRelease: SignedContentRelease | null;
   readonly [PreparedContentReleaseTypeId]: true;
 }
@@ -165,6 +181,14 @@ type RendererManifestError = Effect.Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
 
+type RouteVerificationError<E, R> = Effect.Effect.Error<
+  ReturnType<typeof verifyContentRoutes<E, R>>
+>;
+
+type RouteDigestError<E, R> = Effect.Effect.Error<
+  ReturnType<typeof digestRoutes<E, R>>
+>;
+
 type RollbackVerificationError<E, R> = Effect.Effect.Error<
   ReturnType<typeof verifyRollbackSnapshot<E, R>>
 >;
@@ -188,7 +212,9 @@ type PrepareContentReleaseError<E, R> =
   | RendererManifestError
   | ResultDigestError
   | ResultVerificationError<E, R>
-  | RollbackVerificationError<PreparedContentStreamError<E>, R>;
+  | RollbackVerificationError<PreparedContentStreamError<E>, R>
+  | RouteDigestError<PreparedContentStreamError<E>, R>
+  | RouteVerificationError<PreparedContentStreamError<E>, R>;
 
 /** Complete Effect interface for one self-verified release preparation. */
 export type PrepareContentRelease = <E, R>(
@@ -207,6 +233,8 @@ export function makePreparedGitRelease<E, R>(input: {
   /** Replays canonical projections authenticated by the same manifest. */
   readonly projections: () => Stream.Stream<MaterialLessonProjection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
+  /** Replays canonical route changes authenticated by the same manifest. */
+  readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
 }): PreparedGitRelease<E, R> {
   return {
     [PreparedContentReleaseTypeId]: true,
@@ -226,6 +254,8 @@ export function makePreparedRollbackRelease<E, R>(input: {
   /** Replays canonical projections authenticated by the same manifest. */
   readonly projections: () => Stream.Stream<MaterialLessonProjection, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
+  /** Replays canonical route changes authenticated by the same manifest. */
+  readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
 }): PreparedRollbackRelease<E, R> {
   return {
     [PreparedContentReleaseTypeId]: true,

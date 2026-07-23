@@ -67,12 +67,12 @@ describe("prepareRollback", () => {
     expect(loadPage).not.toHaveBeenCalled();
   });
 
-  it("rebuilds the same candidate from its exact pending rollback proof", async () => {
+  it("rebuilds the same candidate from its exact candidate rollback proof", async () => {
     const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
     const first = await Effect.runPromise(
       Effect.scoped(prepareRollbackFixture(rollbackTarget(loadPage)))
     );
-    const pending = {
+    const candidate = {
       release: await Effect.runPromise(signer.signRelease(first.manifest)),
       rendererManifest,
     };
@@ -82,7 +82,7 @@ describe("prepareRollback", () => {
           rollbackTarget(loadPage),
           rendererManifest,
           releaseId,
-          pending
+          candidate
         )
       )
     );

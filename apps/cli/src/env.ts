@@ -7,13 +7,13 @@ const PreviewEnvironmentSchema = Schema.Struct({
 });
 export type PreviewEnvironment = typeof PreviewEnvironmentSchema.Type;
 
-const CleanupVariableSchema = Schema.Literal(
+const PublicationVariableSchema = Schema.Literal(
   "AKSARA_PUBLICATION_ENDPOINT",
   "AKSARA_PUBLICATION_TOKEN"
 );
 
 const ProductionVariableSchema = Schema.Literal(
-  ...CleanupVariableSchema.literals,
+  ...PublicationVariableSchema.literals,
   "AKSARA_RENDERER_ENDPOINT",
   "AKSARA_RENDERER_TOKEN",
   "AKSARA_SIGNING_KEY_ID",
@@ -22,19 +22,23 @@ const ProductionVariableSchema = Schema.Literal(
 type ProductionVariable = typeof ProductionVariableSchema.Type;
 const TOKEN_WHITESPACE = /\s/u;
 
-/** Narrow target configuration required by retention-aware cleanup only. */
-export interface CleanupEnvironment {
+/** Narrow target configuration shared by publication lifecycle commands. */
+interface PublicationEnvironment {
   readonly publicationEndpoint: URL;
   readonly publicationToken: Redacted.Redacted<string>;
 }
 
 /** Validated secrets and endpoints required by a production content command. */
-export interface ProductionEnvironment extends CleanupEnvironment {
+interface RecoveryEnvironment extends PublicationEnvironment {
+  readonly rendererEndpoint: URL;
+  readonly rendererToken: Redacted.Redacted<string>;
+}
+
+/** Validated signer values added only for candidate publication commands. */
+interface ProductionEnvironment extends RecoveryEnvironment {
   readonly derivedPublicKeyPem: string;
   readonly keyId: typeof SigningKeyIdSchema.Type;
   readonly privateKeyPem: Redacted.Redacted<string>;
-  readonly rendererEndpoint: URL;
-  readonly rendererToken: Redacted.Redacted<string>;
 }
 
 /** The process environment does not satisfy the narrow preview contract. */
@@ -148,9 +152,9 @@ export const readPreviewEnvironment = Effect.fn("AksaraCli.readEnvironment")(
     )
 );
 
-/** Loads only the authenticated publication target needed by cleanup. */
-export const readCleanupEnvironment = Effect.fn(
-  "AksaraCli.readCleanupEnvironment"
+/** Loads only the authenticated target shared by publication commands. */
+export const readPublicationEnvironment = Effect.fn(
+  "AksaraCli.readPublicationEnvironment"
 )(function* () {
   const publicationEndpoint = yield* readConfig(
     Config.url("AKSARA_PUBLICATION_ENDPOINT"),
@@ -164,14 +168,17 @@ export const readCleanupEnvironment = Effect.fn(
     tokenConfig("AKSARA_PUBLICATION_TOKEN"),
     "AKSARA_PUBLICATION_TOKEN"
   );
-  return { publicationEndpoint, publicationToken } satisfies CleanupEnvironment;
+  return {
+    publicationEndpoint,
+    publicationToken,
+  } satisfies PublicationEnvironment;
 });
 
-/** Loads and validates every required production value through Effect Config. */
-export const readProductionEnvironment = Effect.fn(
-  "AksaraCli.readProductionEnvironment"
+/** Loads the publication and live-renderer values required for recovery. */
+export const readRecoveryEnvironment = Effect.fn(
+  "AksaraCli.readRecoveryEnvironment"
 )(function* () {
-  const cleanup = yield* readCleanupEnvironment();
+  const publication = yield* readPublicationEnvironment();
   const rendererEndpoint = yield* readConfig(
     Config.url("AKSARA_RENDERER_ENDPOINT"),
     "AKSARA_RENDERER_ENDPOINT"
@@ -184,6 +191,18 @@ export const readProductionEnvironment = Effect.fn(
     tokenConfig("AKSARA_RENDERER_TOKEN"),
     "AKSARA_RENDERER_TOKEN"
   );
+  return {
+    ...publication,
+    rendererEndpoint,
+    rendererToken,
+  } satisfies RecoveryEnvironment;
+});
+
+/** Loads and validates every required production value through Effect Config. */
+export const readProductionEnvironment = Effect.fn(
+  "AksaraCli.readProductionEnvironment"
+)(function* () {
+  const recovery = yield* readRecoveryEnvironment();
   const keyIdInput = yield* readConfig(
     Config.string("AKSARA_SIGNING_KEY_ID"),
     "AKSARA_SIGNING_KEY_ID"
@@ -198,11 +217,9 @@ export const readProductionEnvironment = Effect.fn(
   const signingKey = yield* validatePrivateKey(privateKeyInput);
 
   return {
-    ...cleanup,
+    ...recovery,
     derivedPublicKeyPem: signingKey.derivedPublicKeyPem,
     keyId,
     privateKeyPem: signingKey.privateKeyPem,
-    rendererEndpoint,
-    rendererToken,
   } satisfies ProductionEnvironment;
 });

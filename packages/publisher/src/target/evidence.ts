@@ -3,13 +3,13 @@ import type {
   StageArtifactBatchRequest,
   StageItemBatchRequest,
   StageProjectionBatchRequest,
+  StageRouteBatchRequest,
 } from "@nakafa/aksara-contracts/transport/request";
 import type {
   PublicationSuccess,
   StageBatchReceipt,
 } from "@nakafa/aksara-contracts/transport/response";
 import { Match } from "effect";
-import { hasBoundFinalizeProgress } from "#publisher/target/progress";
 
 /** Returns the exact number of rows carried by one staging request. */
 function publicationBatchCount(
@@ -17,12 +17,16 @@ function publicationBatchCount(
     | StageArtifactBatchRequest
     | StageItemBatchRequest
     | StageProjectionBatchRequest
+    | StageRouteBatchRequest
 ) {
   if ("artifacts" in request) {
     return request.artifacts.length;
   }
   if ("items" in request) {
     return request.items.length;
+  }
+  if ("routes" in request) {
+    return request.routes.length;
   }
   return request.projections.length;
 }
@@ -32,7 +36,8 @@ function hasBoundBatchReceipt(
   request:
     | StageArtifactBatchRequest
     | StageItemBatchRequest
-    | StageProjectionBatchRequest,
+    | StageProjectionBatchRequest
+    | StageRouteBatchRequest,
   receipt: StageBatchReceipt
 ) {
   const count = publicationBatchCount(request);
@@ -47,6 +52,14 @@ type VerifyRequest = Extract<PublicationRequest, { operation: "verify" }>;
 type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;
 type ActivateRequest = Extract<PublicationRequest, { operation: "activate" }>;
 type ActivateSuccess = Extract<PublicationSuccess, { operation: "activate" }>;
+type RecoveryRequest = Extract<
+  PublicationRequest,
+  { operation: "activateRecovery" }
+>;
+type RecoverySuccess = Extract<
+  PublicationSuccess,
+  { operation: "activateRecovery" }
+>;
 
 /** Binds one head page to its active release, scope, cursor, and row ceiling. */
 function hasBoundHeadPage(
@@ -62,10 +75,26 @@ function hasBoundHeadPage(
   );
 }
 
+/** Binds historical recovery evidence to the exact requested release pair. */
+function hasBoundRecovery(
+  request: Extract<PublicationRequest, { operation: "recovery" }>,
+  response: Extract<PublicationSuccess, { operation: "recovery" }>
+) {
+  if (response.value.kind === "missing") {
+    return true;
+  }
+  const { manifest } = response.value.value.release;
+  return (
+    manifest.releaseId === request.recoveryId &&
+    manifest.origin.kind === "rollback" &&
+    manifest.origin.releaseId === request.releaseId
+  );
+}
+
 /** Binds one publication receipt to every signed manifest field it reports. */
 function hasBoundManifestReceipt(
-  request: ActivateRequest["release"],
-  receipt: ActivateSuccess["value"]
+  request: ActivateRequest["release"] | RecoveryRequest["release"],
+  receipt: ActivateSuccess["value"] | RecoverySuccess["value"]
 ) {
   const { manifest } = request;
   return (
@@ -76,9 +105,11 @@ function hasBoundManifestReceipt(
     receipt.projectionDigest === manifest.projectionDigest &&
     receipt.resultCount === manifest.resultCount &&
     receipt.resultDigest === manifest.resultDigest &&
+    receipt.routeDigest === manifest.routeDigest &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
-    receipt.stagedProjections === manifest.projectionCount
+    receipt.stagedProjections === manifest.projectionCount &&
+    receipt.stagedRoutes === manifest.routeCount
   );
 }
 
@@ -98,10 +129,32 @@ function hasBoundAbort(
   return response.value.releaseId === request.releaseId;
 }
 
+/** Binds acceptance evidence to the exact retained inverse identity. */
+function hasBoundAccept(
+  request: Extract<PublicationRequest, { operation: "accept" }>,
+  response: Extract<PublicationSuccess, { operation: "accept" }>
+) {
+  return response.value.releaseId === request.recoveryId;
+}
+
 /** Binds one rollback page to the exact requested cursor and row ceiling. */
 function hasBoundRollbackPage(
   request: Extract<PublicationRequest, { operation: "rollbackPage" }>,
   response: Extract<PublicationSuccess, { operation: "rollbackPage" }>
+) {
+  const page = response.value;
+  return (
+    page.rollbackOf === request.rollbackOf &&
+    page.rollbackOfManifestHash === request.rollbackOfManifestHash &&
+    page.records.length <= request.limit &&
+    page.nextIndex === request.afterIndex + page.records.length
+  );
+}
+
+/** Binds one route page to the exact requested cursor and row ceiling. */
+function hasBoundRoutePage(
+  request: Extract<PublicationRequest, { operation: "routePage" }>,
+  response: Extract<PublicationSuccess, { operation: "routePage" }>
 ) {
   const page = response.value;
   return (
@@ -131,6 +184,9 @@ function hasBoundVerification(request: VerifyRequest, response: VerifySuccess) {
     evidence.resultDigest === manifest.resultDigest &&
     evidence.rollbackCount === manifest.rollbackCount &&
     evidence.rollbackDigest === manifest.rollbackDigest &&
+    evidence.routeCount === manifest.routeCount &&
+    evidence.routeDigest === manifest.routeDigest &&
+    evidence.stagedRoutes === manifest.routeCount &&
     evidence.rendererManifestHash === manifest.rendererManifestHash
   );
 }
@@ -147,23 +203,27 @@ export function hasBoundPublicationSuccess(
     Match.discriminatorsExhaustive("operation")({
       abort: (value) =>
         response.operation === "abort" && hasBoundAbort(value, response),
+      accept: (value) =>
+        response.operation === "accept" && hasBoundAccept(value, response),
       activate: (value) =>
         response.operation === "activate" &&
+        hasBoundManifestReceipt(value.release, response.value),
+      activateRecovery: (value) =>
+        response.operation === "activateRecovery" &&
         hasBoundManifestReceipt(value.release, response.value),
       cleanup: (value) =>
         response.operation === "cleanup" && hasBoundCleanup(value, response),
       current: () => response.operation === "current",
-      finalize: (value) =>
-        response.operation === "finalize" &&
-        response.releaseId === value.release.manifest.releaseId &&
-        hasBoundFinalizeProgress(value, response) &&
-        (!response.value.done ||
-          hasBoundManifestReceipt(value.release, response.value.receipt)),
       headPage: (value) =>
         response.operation === "headPage" && hasBoundHeadPage(value, response),
+      recovery: (value) =>
+        response.operation === "recovery" && hasBoundRecovery(value, response),
       rollbackPage: (value) =>
         response.operation === "rollbackPage" &&
         hasBoundRollbackPage(value, response),
+      routePage: (value) =>
+        response.operation === "routePage" &&
+        hasBoundRoutePage(value, response),
       stageArtifactBatch: (value) =>
         response.operation === "stageArtifactBatch" &&
         hasBoundBatchReceipt(value, response.value),
@@ -173,10 +233,17 @@ export function hasBoundPublicationSuccess(
       stageProjectionBatch: (value) =>
         response.operation === "stageProjectionBatch" &&
         hasBoundBatchReceipt(value, response.value),
+      stageRecovery: (value) =>
+        response.operation === "stageRecovery" &&
+        response.value.releaseId === value.release.manifest.releaseId &&
+        response.value.manifestHash === value.release.manifestHash,
       stageRelease: (value) =>
         response.operation === "stageRelease" &&
         response.value.releaseId === value.release.manifest.releaseId &&
         response.value.manifestHash === value.release.manifestHash,
+      stageRouteBatch: (value) =>
+        response.operation === "stageRouteBatch" &&
+        hasBoundBatchReceipt(value, response.value),
       status: (value) =>
         response.operation === "status" &&
         response.value.releaseId === value.releaseId &&

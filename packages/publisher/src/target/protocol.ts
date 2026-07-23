@@ -4,7 +4,10 @@ import {
   publicationFailureStatus,
 } from "@nakafa/aksara-contracts/transport/failure";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
+import type {
+  PublicationResponse,
+  PublicationSuccess,
+} from "@nakafa/aksara-contracts/transport/response";
 import { Effect, Match } from "effect";
 import {
   PublicationStaleBaseError,
@@ -24,18 +27,28 @@ export interface PublicationHttpResult {
   readonly status: number;
 }
 
+type InterpretPublicationResponse = (
+  request: PublicationRequest,
+  result: PublicationHttpResult
+) => Effect.Effect<PublicationSuccess, PublicationTargetFailure>;
+
 const TARGET_STAGES = {
   abort: "abort",
+  accept: "accept",
   activate: "activate",
+  activateRecovery: "recovery",
   cleanup: "cleanup",
   current: "current",
-  finalize: "finalize",
   headPage: "heads",
+  recovery: "recovery",
   rollbackPage: "rollback",
+  routePage: "rollback",
   stageArtifactBatch: "artifacts",
   stageItemBatch: "items",
   stageProjectionBatch: "projections",
+  stageRecovery: "recovery",
   stageRelease: "release",
+  stageRouteBatch: "routes",
   status: "status",
   verify: "verify",
 } satisfies Record<PublicationRequest["operation"], PublicationTargetStage>;
@@ -59,6 +72,9 @@ export function publicationReleaseId(
 export function publicationReleaseId(request: PublicationRequest) {
   if (request.operation === "current") {
     return null;
+  }
+  if (request.operation === "accept" || request.operation === "recovery") {
+    return request.recoveryId;
   }
   if ("release" in request) {
     return request.release.manifest.releaseId;
@@ -126,6 +142,7 @@ function hasBoundFailure(
   }
   return (
     (request.operation === "stageItemBatch" ||
+      request.operation === "stageRouteBatch" ||
       request.operation === "stageProjectionBatch" ||
       request.operation === "stageArtifactBatch") &&
     failure.batchIndex === request.batchIndex
@@ -169,29 +186,30 @@ export function isTransientPublicationStatus(status: number) {
 }
 
 /** Validates HTTP status, operation, identity, and evidence as one protocol. */
-export const interpretPublicationResponse = Effect.fn(
-  "AksaraPublisher.interpretPublicationResponse"
-)((request: PublicationRequest, result: PublicationHttpResult) => {
-  if (isTransientPublicationStatus(result.status)) {
-    return Effect.fail(transientPublicationError(request, result.status));
-  }
-  if (result.body.ok) {
-    if (
-      result.status !== 200 ||
-      !hasBoundPublicationSuccess(request, result.body)
-    ) {
-      return Effect.fail(protocolError(request));
+export const interpretPublicationResponse: InterpretPublicationResponse =
+  Effect.fn("AksaraPublisher.interpretPublicationResponse")(
+    (request: PublicationRequest, result: PublicationHttpResult) => {
+      if (isTransientPublicationStatus(result.status)) {
+        return Effect.fail(transientPublicationError(request, result.status));
+      }
+      if (result.body.ok) {
+        if (
+          result.status !== 200 ||
+          !hasBoundPublicationSuccess(request, result.body)
+        ) {
+          return Effect.fail(protocolError(request));
+        }
+        return Effect.succeed(result.body);
+      }
+      const { failure } = result.body;
+      if (
+        !(
+          hasFailureStatus(failure, result.status) &&
+          hasBoundFailure(request, failure)
+        )
+      ) {
+        return Effect.fail(protocolError(request));
+      }
+      return Effect.fail(mapFailure(failure));
     }
-    return Effect.succeed(result.body);
-  }
-  const { failure } = result.body;
-  if (
-    !(
-      hasFailureStatus(failure, result.status) &&
-      hasBoundFailure(request, failure)
-    )
-  ) {
-    return Effect.fail(protocolError(request));
-  }
-  return Effect.fail(mapFailure(failure));
-});
+  );

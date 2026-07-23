@@ -5,7 +5,9 @@ import { fetchProductionRenderer } from "#cli/production-renderer";
 import { captureClient, runClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 
-const ENDPOINT = new URL("https://www.example.test/internal/renderer");
+const ENDPOINT = new URL(
+  "https://www.example.test/api/internal/content/renderer"
+);
 const TOKEN = Redacted.make("renderer-test-token");
 
 afterEach(() => vi.useRealTimers());
@@ -16,7 +18,10 @@ function rendererResponse(
   status = 200
 ) {
   return webResponse(request, JSON.stringify(RENDERER_MANIFEST), {
-    headers: { "cache-control": "private, no-store" },
+    headers: {
+      "cache-control": "private, no-store",
+      "content-type": "application/json",
+    },
     status,
   });
 }
@@ -35,6 +40,7 @@ describe("production renderer", () => {
 
   it.each([
     new URL("http://www.example.test/renderer"),
+    new URL("https://www.example.test/renderer"),
     new URL("https://user@www.example.test/renderer"),
     new URL("https://user:secret@www.example.test/renderer"),
     new URL("https://www.example.test/renderer?query=true"),

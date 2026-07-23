@@ -22,6 +22,7 @@ import {
   createConsumerTsconfig,
 } from "#scripts/consumer";
 import {
+  assertContractPackageMetadata,
   DEPENDENCY_SECTIONS,
   type PackageManifest,
   parsePackageManifest,
@@ -161,10 +162,17 @@ const packedManifest = parsePackageManifest(
 const packedReadme = readFileSync(join(packedPackageRoot, "README.md"), "utf8");
 const packedLicense = readFileSync(join(packedPackageRoot, "LICENSE"), "utf8");
 
+assertContractPackageMetadata(sourceManifest);
+assertContractPackageMetadata(packedManifest);
 assert.equal(
   packedManifest.name,
   sourceManifest.name,
   "The tarball package name changed"
+);
+assert.equal(
+  packedManifest.description,
+  sourceManifest.description,
+  "The tarball package description changed"
 );
 assert.equal(
   packedManifest.license,

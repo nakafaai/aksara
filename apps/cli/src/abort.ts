@@ -8,7 +8,7 @@ import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
 import type { AbortArguments } from "#cli/args";
-import { readCleanupEnvironment } from "#cli/env";
+import { readPublicationEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { retryPublicationTarget } from "#cli/retry";
 
@@ -39,11 +39,11 @@ function logAbortReceipt(receipt: ReleaseAbortReceipt) {
   );
 }
 
-/** Explicitly abandons one invisible pending release through bounded pages. */
+/** Explicitly abandons one invisible staged release through bounded pages. */
 export const runAbortCommand: (args: AbortArguments) => AbortCommand =
   Effect.fn("AksaraCli.runAbortCommand")((args) =>
     Effect.gen(function* () {
-      const environment = yield* readCleanupEnvironment().pipe(
+      const environment = yield* readPublicationEnvironment().pipe(
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({

@@ -12,49 +12,28 @@ import {
   type PublicationReceipt,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
-import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import {
-  type CompletedContentRelease,
-  type ContentReleaseBundle,
-  ContentReleaseBundleSchema,
+  type ActiveContentRelease,
   type ContentReleaseCurrent,
   ContentReleaseCurrentSchema,
+} from "@nakafa/aksara-contracts/release/current";
+import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
+import {
+  type ContentReleaseBundle,
+  ContentReleaseBundleSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, Layer, Redacted, Schema, Stream } from "effect";
+import { Effect, Schema } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
 
 const HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const OTHER_HASH = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 
-/** Observable fields required by small production mock implementations. */
-export interface TargetCalls {
-  checkoutRoot: string | undefined;
-  cleanReads: number;
-  current: unknown;
-  derivedPublicKeyPem: string;
-  environmentKeyId: string;
-  headManifestHash: string | undefined;
-  headReleaseId: string | undefined;
-  materialCalls: number;
-  publicationConfig:
-    | {
-        readonly allowInsecureLoopback: boolean;
-        readonly endpoint: string;
-        readonly timeout: unknown;
-      }
-    | undefined;
-  rendererCalls: number;
-  rootReads: number;
-  sourceLayers: number;
-  targetCalls: number;
-}
-
 /** Signs a structurally valid test manifest with its exact canonical hash. */
 function bundleFromManifest(
   manifest: ContentReleaseManifest,
-  keyId = SigningKeyIdSchema.make("content-2026-07")
+  keyId = SigningKeyIdSchema.make("content-2026-07-23")
 ): ContentReleaseBundle {
   const release = SignedContentReleaseSchema.make({
     keyId,
@@ -108,6 +87,8 @@ export function gitBundle(
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       rollbackCount: 0,
       rollbackDigest: HASH,
+      routeCount: 0,
+      routeDigest: HASH,
       upsertCount: 0,
     }),
     input.keyId
@@ -115,10 +96,14 @@ export function gitBundle(
 }
 
 /** Creates one exact forward-rollback bundle for recovery tests. */
-export function rollbackBundle(id: string, rollbackOf: ReleaseId) {
+export function rollbackBundle(
+  id: string,
+  rollbackOf: ReleaseId,
+  baseManifestHash = HASH
+) {
   return bundleFromManifest(
     ContentReleaseManifestSchema.make({
-      baseManifestHash: HASH,
+      baseManifestHash,
       baseReleaseId: rollbackOf,
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
@@ -135,15 +120,50 @@ export function rollbackBundle(id: string, rollbackOf: ReleaseId) {
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       rollbackCount: 0,
       rollbackDigest: HASH,
+      routeCount: 0,
+      routeDigest: HASH,
       upsertCount: 0,
     })
   );
 }
 
+/** Creates the exact verified inverse retained for one candidate or active bundle. */
+export function recoveryBundle(id: string, target: ContentReleaseBundle) {
+  const targetManifest = target.release.manifest;
+  return {
+    ...bundleFromManifest(
+      ContentReleaseManifestSchema.make({
+        baseManifestHash: target.release.manifestHash,
+        baseReleaseId: targetManifest.releaseId,
+        baseResultCount: targetManifest.resultCount,
+        baseResultDigest: targetManifest.resultDigest,
+        deleteCount: 0,
+        itemCount: 0,
+        itemsDigest: HASH,
+        origin: { kind: "rollback", releaseId: targetManifest.releaseId },
+        projectionCount: 0,
+        projectionDigest: OTHER_HASH,
+        releaseId: releaseId(id),
+        rendererContractVersion:
+          target.rendererManifest.rendererContractVersion,
+        rendererManifestHash: target.rendererManifest.hash,
+        resultCount: targetManifest.baseResultCount,
+        resultDigest: targetManifest.baseResultDigest,
+        rollbackCount: 0,
+        rollbackDigest: HASH,
+        routeCount: 0,
+        routeDigest: HASH,
+        upsertCount: 0,
+      })
+    ),
+    phase: "verified" as const,
+  };
+}
+
 /** Adds terminal receipt evidence to one immutable release bundle. */
 export function completedBundle(
   bundle: ContentReleaseBundle
-): CompletedContentRelease {
+): ActiveContentRelease {
   return { ...bundle, receipt: receiptFor(bundle.release.manifest) };
 }
 
@@ -159,9 +179,11 @@ export function receiptFor(
     releaseId: manifest.releaseId,
     resultCount: manifest.resultCount,
     resultDigest: manifest.resultDigest,
+    routeDigest: manifest.routeDigest,
     stagedArtifacts: manifest.upsertCount,
     stagedItems: manifest.itemCount,
     stagedProjections: manifest.projectionCount,
+    stagedRoutes: manifest.routeCount,
   };
 }
 
@@ -178,131 +200,25 @@ export function makeProductionTarget(
   const unused = () => Effect.die("Unused target operation.");
   return PublicationTarget.of({
     abort: unused,
+    accept: unused,
     activate: unused,
+    activateRecovery: unused,
     cleanup: unused,
     current: () =>
       Schema.decodeUnknown(ContentReleaseCurrentSchema)(current()).pipe(
         Effect.orDie
       ),
-    finalize: unused,
     headPage: unused,
+    recovery: unused,
     rollbackPage: unused,
+    routePage: unused,
     stageArtifactBatch: unused,
     stageItemBatch: unused,
     stageProjectionBatch: unused,
+    stageRecovery: unused,
     stageRelease: unused,
+    stageRouteBatch: unused,
     status: unused,
     verify: unused,
   });
-}
-
-/** Supplies isolated production configuration without process variables. */
-export function environmentMock(calls: TargetCalls) {
-  return {
-    readProductionEnvironment: () =>
-      Effect.succeed({
-        derivedPublicKeyPem: calls.derivedPublicKeyPem,
-        keyId: SigningKeyIdSchema.make(calls.environmentKeyId),
-        privateKeyPem: Redacted.make("test-private-key"),
-        publicationEndpoint: new URL("https://content.example.test/publish"),
-        publicationToken: Redacted.make("publication-token"),
-        rendererEndpoint: new URL("https://www.example.test/renderer"),
-        rendererToken: Redacted.make("renderer-token"),
-      }),
-  };
-}
-
-/** Records exact Git evidence reads and returns the reviewed test revision. */
-export function evidenceMock(calls: TargetCalls) {
-  return {
-    readCleanAksaraRevision: () => {
-      calls.cleanReads += 1;
-      return Effect.succeed(GitCommitShaSchema.make("a".repeat(40)));
-    },
-  };
-}
-
-/** Returns the frozen renderer while recording production fetches. */
-export function rendererMock(calls: TargetCalls) {
-  return {
-    fetchProductionRenderer: () => {
-      calls.rendererCalls += 1;
-      return Effect.succeed(RENDERER_MANIFEST);
-    },
-  };
-}
-
-/** Returns the isolated test checkout root while recording discovery. */
-export function repositoryMock(calls: TargetCalls) {
-  return {
-    findAksaraRoot: () => {
-      calls.rootReads += 1;
-      return Effect.succeed("/code/aksara");
-    },
-  };
-}
-
-/** Exposes an empty authoritative head stream for orchestration tests. */
-export function headsMock(calls: TargetCalls) {
-  return {
-    streamMaterialHeads: (
-      activeReleaseId: string,
-      activeManifestHash: string
-    ) => {
-      calls.headManifestHash = activeManifestHash;
-      calls.headReleaseId = activeReleaseId;
-      return Stream.empty;
-    },
-  };
-}
-
-/** Exposes one replayable empty material delta after recording preparation. */
-export function materialMock(calls: TargetCalls) {
-  return {
-    prepareMaterialPublication: (input: { readonly checkoutRoot: string }) => {
-      calls.checkoutRoot = input.checkoutRoot;
-      calls.materialCalls += 1;
-      return Effect.succeed({
-        records: () => Stream.empty,
-        result: () => Stream.empty,
-      });
-    },
-  };
-}
-
-/** Records construction of the exact Git publication source layer. */
-export function sourceMock(calls: TargetCalls) {
-  return {
-    GitPublicationSourceLive: Layer.effectDiscard(
-      Effect.sync(() => {
-        calls.sourceLayers += 1;
-      })
-    ),
-  };
-}
-
-/** Creates a secure HTTP target mock over authoritative mutable test state. */
-export function httpTargetMock(calls: TargetCalls): {
-  /** Builds one secure target over the mutable authoritative test state. */
-  readonly makeHttpPublicationTarget: (input: {
-    readonly allowInsecureLoopback: boolean;
-    readonly endpoint: URL;
-    readonly timeout: unknown;
-  }) => Effect.Effect<typeof PublicationTarget.Service>;
-} {
-  return {
-    makeHttpPublicationTarget: (input: {
-      readonly allowInsecureLoopback: boolean;
-      readonly endpoint: URL;
-      readonly timeout: unknown;
-    }) => {
-      calls.publicationConfig = {
-        allowInsecureLoopback: input.allowInsecureLoopback,
-        endpoint: input.endpoint.href,
-        timeout: input.timeout,
-      };
-      calls.targetCalls += 1;
-      return Effect.succeed(makeProductionTarget(() => calls.current));
-    },
-  };
 }

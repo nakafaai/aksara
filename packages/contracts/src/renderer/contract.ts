@@ -5,6 +5,7 @@ import {
   RendererAuthoringComponentsSchema,
   type RendererCapability,
   RendererCapabilitySchema,
+  type RendererComponentRequirement,
   RendererSupportedComponentsSchema,
 } from "#contracts/renderer/component";
 import {
@@ -54,6 +55,22 @@ export function sortRendererDomains<T extends RendererDomainCapability>(
       return 1;
     }
     return 0;
+  });
+}
+
+/** Builds every canonical domain from explicit same-version component sets. */
+export function rendererDomains(
+  components: Readonly<
+    Partial<Record<RendererDomain, readonly RendererComponentRequirement[]>>
+  >
+) {
+  return RENDERER_DOMAINS.map((name) => {
+    const selected = components[name] ?? [];
+    return {
+      authoringComponents: selected,
+      name,
+      supportedComponents: selected,
+    };
   });
 }
 

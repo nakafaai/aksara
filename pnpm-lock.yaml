@@ -119,6 +119,9 @@ importers:
       '@nakafa/aksara-publisher':
         specifier: workspace:*
         version: link:../../packages/publisher
+      '@nakafa/aksara-utilities':
+        specifier: workspace:*
+        version: link:../../packages/utilities
       effect:
         specifier: 'catalog:'
         version: 3.22.0
@@ -239,6 +242,9 @@ importers:
       '@nakafa/aksara-corpus':
         specifier: workspace:*
         version: link:../corpus
+      '@nakafa/aksara-utilities':
+        specifier: workspace:*
+        version: link:../utilities
       effect:
         specifier: 'catalog:'
         version: 3.22.0
@@ -257,6 +263,25 @@ importers:
         version: 4.1.10(@types/node@24.13.3)(@vitest/coverage-istanbul@4.1.10)(vite@8.1.5(@types/node@24.13.3)(yaml@2.9.0))
 
   packages/typescript-config: {}
+
+  packages/utilities:
+    dependencies:
+      '@effect/platform':
+        specifier: 'catalog:'
+        version: 0.97.0(effect@3.22.0)
+      effect:
+        specifier: 'catalog:'
+        version: 3.22.0
+    devDependencies:
+      '@nakafa/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@vitest/coverage-istanbul':
+        specifier: 'catalog:'
+        version: 4.1.10(supports-color@7.2.0)(vitest@4.1.10)
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.10(@types/node@24.13.3)(@vitest/coverage-istanbul@4.1.10)(vite@8.1.5(@types/node@24.13.3)(yaml@2.9.0))
 
 packages:
 

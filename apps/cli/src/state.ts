@@ -1,9 +1,9 @@
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type {
-  ContentReleaseBundle,
   ContentReleaseCurrent,
-  PendingContentRelease,
-} from "@nakafa/aksara-contracts/release/lifecycle";
+  StagedContentRelease,
+} from "@nakafa/aksara-contracts/release/current";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 
@@ -15,7 +15,9 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
       "aborting",
       "missing-active",
       "mode-mismatch",
-      "pending-conflict",
+      "candidate-conflict",
+      "recovery-conflict",
+      "recovery-retained",
       "rollback-mismatch"
     ),
   }
@@ -37,13 +39,13 @@ export type ProductionStateAction =
   | {
       readonly kind: "rebuild";
       readonly mode: "git";
-      readonly pending: PendingContentRelease;
+      readonly candidate: StagedContentRelease;
       readonly sha: GitCommitSha;
     }
   | {
       readonly kind: "rebuild";
       readonly mode: "rollback";
-      readonly pending: PendingContentRelease;
+      readonly candidate: StagedContentRelease;
       readonly rollbackOf: ReleaseId;
     }
   | { readonly bundle: ContentReleaseBundle; readonly kind: "resume" };
@@ -62,13 +64,11 @@ type SelectProductionAction = (
   current: ContentReleaseCurrent
 ) => Effect.Effect<ProductionStateAction, ProductionStateError>;
 
-/** Returns the immutable bundle from one completed active release. */
-function completedBundle(
-  completed: NonNullable<ContentReleaseCurrent["completed"]>
-) {
+/** Returns the immutable bundle from one active release snapshot. */
+function activeBundle(active: NonNullable<ContentReleaseCurrent["active"]>) {
   return {
-    release: completed.release,
-    rendererManifest: completed.rendererManifest,
+    release: active.release,
+    rendererManifest: active.rendererManifest,
   } satisfies ContentReleaseBundle;
 }
 
@@ -100,72 +100,74 @@ const validateStoredCommand: ValidateStoredCommand = Effect.fn(
   });
 });
 
-/** Selects new preparation, exact rebuild, or finalization-only recovery. */
+/** Selects new preparation, exact rebuild, or a lost terminal receipt read. */
 export const selectProductionAction: SelectProductionAction = Effect.fn(
   "AksaraCli.selectProductionAction"
 )(function* (args: ProductionArguments, current: ContentReleaseCurrent) {
-  const { completed, pending } = current;
-  if (pending !== null) {
-    if (pending.release.manifest.releaseId !== args.releaseId) {
+  const { active, candidate, recovery } = current;
+  if (candidate !== null) {
+    if (candidate.release.manifest.releaseId !== args.releaseId) {
       return yield* new ProductionStateError({
-        reason: "pending-conflict",
+        reason: "candidate-conflict",
       });
     }
-    const stored: StoredCommand = yield* validateStoredCommand(args, pending);
-    if (pending.phase === "aborting") {
+    const stored: StoredCommand = yield* validateStoredCommand(args, candidate);
+    if (candidate.phase === "aborting") {
       return yield* new ProductionStateError({ reason: "aborting" });
     }
     if (
-      pending.phase === "verified" ||
-      pending.phase === "active" ||
-      pending.phase === "finalizing"
+      recovery !== null &&
+      recovery.release.manifest.releaseId !== args.recoveryId
     ) {
-      return {
-        bundle: {
-          release: pending.release,
-          rendererManifest: pending.rendererManifest,
-        },
-        kind: "resume",
-      };
+      return yield* new ProductionStateError({ reason: "recovery-conflict" });
     }
     if (stored.mode === "git") {
       return {
+        candidate,
         kind: "rebuild",
         mode: stored.mode,
-        pending,
         sha: stored.sha,
       };
     }
     return {
+      candidate,
       kind: "rebuild",
       mode: stored.mode,
-      pending,
       rollbackOf: stored.rollbackOf,
     };
   }
 
-  if (completed?.release.manifest.releaseId === args.releaseId) {
-    const bundle = completedBundle(completed);
+  if (active?.release.manifest.releaseId === args.releaseId) {
+    const bundle = activeBundle(active);
     yield* validateStoredCommand(args, bundle);
+    if (
+      recovery !== null &&
+      recovery.release.manifest.releaseId !== args.recoveryId
+    ) {
+      return yield* new ProductionStateError({ reason: "recovery-conflict" });
+    }
     return { bundle, kind: "resume" };
+  }
+  if (recovery !== null) {
+    return yield* new ProductionStateError({ reason: "recovery-retained" });
   }
   if (args.command === "release") {
     return {
-      baseBundle: completed === null ? null : completedBundle(completed),
+      baseBundle: active === null ? null : activeBundle(active),
       kind: "new",
       mode: "git",
     };
   }
-  if (completed === null) {
+  if (active === null) {
     return yield* new ProductionStateError({ reason: "missing-active" });
   }
-  if (args.rollbackOf !== completed.release.manifest.releaseId) {
+  if (args.rollbackOf !== active.release.manifest.releaseId) {
     return yield* new ProductionStateError({ reason: "rollback-mismatch" });
   }
   return {
     kind: "new",
     mode: "rollback",
     rollbackOf: args.rollbackOf,
-    sourceBundle: completedBundle(completed),
+    sourceBundle: activeBundle(active),
   };
 });

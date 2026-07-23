@@ -5,6 +5,8 @@ import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/si
 import { Effect } from "effect";
 import { validatePublicationStatus } from "#publisher/publication/lifecycle";
 import {
+  PublicationActivation,
+  type PublicationActivationError,
   PublicationReleaseAbortedError,
   PublicationResumePhaseError,
   type PublicationStatusMismatchError,
@@ -22,6 +24,7 @@ type BundleVerificationError = Effect.Effect.Error<
 
 type ResumeContentReleaseError =
   | BundleVerificationError
+  | PublicationActivationError
   | PublicationReceiptMismatchError
   | PublicationReleaseAbortedError
   | PublicationResumePhaseError
@@ -33,10 +36,10 @@ type ResumeContentRelease = (
 ) => Effect.Effect<
   PublicationReceipt,
   ResumeContentReleaseError,
-  ContentVerificationKeyResolver | PublicationTarget
+  ContentVerificationKeyResolver | PublicationActivation | PublicationTarget
 >;
 
-/** Finishes one authenticated release without recompiling changed source. */
+/** Recovers a terminal receipt and repairs its post-commit cache convergence. */
 export const resumeContentRelease: ResumeContentRelease = Effect.fn(
   "AksaraPublisher.resumeContentRelease"
 )(function* (bundle: ContentReleaseBundle) {
@@ -49,17 +52,10 @@ export const resumeContentRelease: ResumeContentRelease = Effect.fn(
   yield* validatePublicationStatus(release, status);
 
   if (status.phase === "completed") {
-    return yield* validateManifestReceipt(release, status.receipt);
-  }
-  if (status.phase === "active" || status.phase === "finalizing") {
-    const receipt = yield* target.finalize(release);
-    return yield* validateManifestReceipt(release, receipt);
-  }
-  if (status.phase === "verified") {
-    const activated = yield* target.activate(release);
-    yield* validateManifestReceipt(release, activated);
-    const finalized = yield* target.finalize(release);
-    return yield* validateManifestReceipt(release, finalized);
+    const receipt = yield* validateManifestReceipt(release, status.receipt);
+    const activation = yield* PublicationActivation;
+    yield* activation.invalidate(release);
+    return receipt;
   }
   if (status.phase === "aborted") {
     return yield* new PublicationReleaseAbortedError({

@@ -86,8 +86,7 @@ function hasBoundRollbackUpsert(input: {
     payload.locale === change.locale &&
     payload.rendererDomain === change.rendererDomain &&
     projection.contentKey === change.contentKey &&
-    projection.locale === change.locale &&
-    projection.publicPath === change.publicPath
+    projection.locale === change.locale
   );
 }
 

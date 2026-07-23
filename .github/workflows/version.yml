@@ -1,0 +1,123 @@
+name: Version contracts
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+env:
+  NODE_VERSION: 24.18.0
+  PNPM_VERSION: 11.15.1
+
+concurrency:
+  group: version-contracts
+  cancel-in-progress: false
+
+jobs:
+  version:
+    if: github.repository == 'nakafaai/aksara'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check package bootstrap
+        id: bootstrap
+        run: |
+          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
+          if [[ "$bootstrapped" == "true" ]]; then
+            if [[ -e .github/workflows/bootstrap.yml ]]; then
+              echo "Completed bootstrap cannot retain its privileged one-time workflow." >&2
+              exit 1
+            fi
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            if [[ "$bootstrapped" != "false" || ! -f .github/workflows/bootstrap.yml ]]; then
+              echo "Incomplete bootstrap must retain its one-time workflow." >&2
+              exit 1
+            fi
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Initial package proof is incomplete; version automation remains inactive."
+          fi
+
+      - name: Setup pnpm
+        if: steps.bootstrap.outputs.ready == 'true'
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        if: steps.bootstrap.outputs.ready == 'true'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        if: steps.bootstrap.outputs.ready == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Create version pull request
+        id: changesets
+        if: steps.bootstrap.outputs.ready == 'true'
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          commit: "chore: version contracts"
+          commitMode: github-api
+          createGithubReleases: false
+          title: "chore: version contracts"
+          version: pnpm version-packages
+
+      - name: Dispatch exact version CI
+        if: steps.bootstrap.outputs.ready == 'true' && steps.changesets.outputs.pullRequestNumber != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.changesets.outputs.pullRequestNumber }}
+        run: |
+          if [[ ! "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]]; then
+            echo "Changesets returned a malformed pull request number." >&2
+            exit 1
+          fi
+
+          pull=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+          if ! jq -e --arg repository "$GITHUB_REPOSITORY" '
+            .state == "open"
+            and .draft == false
+            and .base.ref == "main"
+            and .base.repo.full_name == $repository
+            and .head.ref == "changeset-release/main"
+            and .head.repo.full_name == $repository
+            and .user.login == "github-actions[bot]"
+            and .user.type == "Bot"' <<<"$pull" >/dev/null; then
+            echo "Changesets did not return the exact ready version pull request." >&2
+            exit 1
+          fi
+
+          head_sha=$(jq -er '.head.sha | select(test("^[0-9a-f]{40}$"))' <<<"$pull")
+          ref_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/changeset-release/main" --jq '.object.sha')
+          if [[ "$head_sha" != "$ref_sha" ]]; then
+            echo "Changesets pull request head differs from its branch ref." >&2
+            exit 1
+          fi
+
+          jq -n \
+            --arg ref "changeset-release/main" \
+            --arg sha "$head_sha" \
+            --arg pr "$PR_NUMBER" \
+            '{ref: $ref, inputs: {expected_sha: $sha, pull_request_number: $pr}}' \
+            | gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" --input -
+
+          {
+            echo "## Version pull request CI dispatched"
+            echo
+            echo "- Pull request: \`#$PR_NUMBER\`"
+            echo "- Head SHA: \`$head_sha\`"
+          } >> "$GITHUB_STEP_SUMMARY"

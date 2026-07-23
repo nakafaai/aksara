@@ -8,6 +8,7 @@ import { testFileLayer } from "#test/files";
 import {
   checkoutRoot,
   collectMaterialPublication,
+  collectMaterialRoutes,
   englishPath,
   materialManifest,
   publishedMaterialHeads,
@@ -42,7 +43,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       original.decodeMaterialRegistry(input).pipe(
         Effect.map((entries) =>
           entries.map((entry) =>
-            registryState.changedOrder && entry.route.locale === "en"
+            registryState.changedOrder &&
+            entry.rendererDomain === "mathematics" &&
+            entry.route.locale === "en"
               ? {
                   ...entry,
                   route: { ...entry.route, order: entry.route.order + 1 },
@@ -55,10 +58,18 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 });
 
 const publishedHeads = await publishedMaterialHeads();
+const functionContentKey =
+  "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 const [englishHead, indonesianHead] = await Effect.runPromise(
   Effect.gen(function* () {
-    const english = publishedHeads.find(({ locale }) => locale === "en");
-    const indonesian = publishedHeads.find(({ locale }) => locale === "id");
+    const english = publishedHeads.find(
+      ({ contentKey, locale }) =>
+        contentKey === functionContentKey && locale === "en"
+    );
+    const indonesian = publishedHeads.find(
+      ({ contentKey, locale }) =>
+        contentKey === functionContentKey && locale === "id"
+    );
     if (!(english && indonesian)) {
       return yield* Effect.dieMessage("Expected both real material locales.");
     }
@@ -98,6 +109,16 @@ function modifyHead(input: unknown) {
   return Schema.decodeUnknownSync(MaterialHeadSchema)(input, {
     onExcessProperty: "error",
   });
+}
+
+/** Replaces one canonical head while preserving the complete sorted catalog. */
+function replaceHead(replacement: typeof englishHead) {
+  return publishedHeads.map((head) =>
+    head.contentKey === replacement.contentKey &&
+    head.locale === replacement.locale
+      ? replacement
+      : head
+  );
 }
 
 beforeEach(() => {
@@ -153,7 +174,7 @@ describe("material publication", () => {
     async (_field, changed) => {
       const head = modifyHead({ ...englishHead, ...changed });
       const records = await collectMaterialPublication({
-        heads: [head, indonesianHead],
+        heads: replaceHead(head),
       });
 
       expect(records).toHaveLength(1);
@@ -183,7 +204,7 @@ describe("material publication", () => {
     });
 
     const records = await collectMaterialPublication({
-      heads: [englishHead, indonesianHead, stale],
+      heads: [...publishedHeads, stale],
     });
 
     expect(records).toContainEqual({
@@ -199,14 +220,36 @@ describe("material publication", () => {
     expect(compilerState.calls).toBe(0);
   });
 
+  it("removes the route owned by one deleted published material", async () => {
+    const stale = modifyHead({
+      ...englishHead,
+      contentKey: "material/lesson/mathematics/removed/route",
+      publicPath: "subjects/mathematics/removed/route",
+      sourcePath:
+        "packages/corpus/material/lesson/mathematics/removed/route/en.mdx",
+    });
+    const routes = await collectMaterialRoutes({
+      heads: [...publishedHeads, stale],
+    });
+
+    expect(routes).toHaveLength(1);
+    expect(routes[0]).toEqual({
+      current: stale,
+      next: {
+        contentKey: stale.contentKey,
+        locale: stale.locale,
+      },
+    });
+  });
+
   it("compiles every canonical source for the first release", async () => {
     const records = await collectMaterialPublication({ heads: [] });
 
-    expect(records).toHaveLength(2);
+    expect(records).toHaveLength(4);
     expect(
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
-    expect(compilerState.calls).toBe(2);
+    expect(compilerState.calls).toBe(4);
   });
 
   it("rejects target heads for a genesis release without a signed base", async () => {

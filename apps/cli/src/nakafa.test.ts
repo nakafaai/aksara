@@ -14,7 +14,10 @@ describe("Nakafa app service", () => {
     const captured = captureClient((request) =>
       Effect.succeed(
         webResponse(request, JSON.stringify(RENDERER_MANIFEST), {
-          headers: { "cache-control": "no-store" },
+          headers: {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+          },
         })
       )
     );

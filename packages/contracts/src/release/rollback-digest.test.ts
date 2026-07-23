@@ -84,6 +84,8 @@ function manifest(rollbackCount: number, rollbackDigest: `sha256:${string}`) {
     resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     rollbackCount,
     rollbackDigest,
+    routeCount: 0,
+    routeDigest: `sha256:${"f".repeat(64)}`,
     upsertCount: 0,
   });
 }

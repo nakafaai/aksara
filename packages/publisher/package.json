@@ -11,6 +11,10 @@
     "#test/*": "./test/*.ts"
   },
   "exports": {
+    "./accept": {
+      "types": "./dist/accept.d.ts",
+      "import": "./dist/accept.js"
+    },
     "./abort": {
       "types": "./dist/abort.d.ts",
       "import": "./dist/abort.js"
@@ -51,6 +55,14 @@
       "types": "./dist/publication/spec.d.ts",
       "import": "./dist/publication/spec.js"
     },
+    "./release-validation": {
+      "types": "./dist/release-validation.d.ts",
+      "import": "./dist/release-validation.js"
+    },
+    "./recover": {
+      "types": "./dist/recover.d.ts",
+      "import": "./dist/recover.js"
+    },
     "./rollback": {
       "types": "./dist/rollback.d.ts",
       "import": "./dist/rollback.js"
@@ -85,8 +97,8 @@
     }
   },
   "scripts": {
-    "clean": "git clean -xdf dist",
-    "prebuild": "pnpm run clean",
+    "clean": "git clean -xdf dist coverage",
+    "prebuild": "git clean -xdf dist",
     "build": "tsc --project tsconfig.build.json",
     "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json"
@@ -96,6 +108,7 @@
     "@nakafa/aksara-compiler": "workspace:*",
     "@nakafa/aksara-contracts": "workspace:*",
     "@nakafa/aksara-corpus": "workspace:*",
+    "@nakafa/aksara-utilities": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

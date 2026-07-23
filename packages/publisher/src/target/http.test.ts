@@ -22,11 +22,18 @@ import {
   transportRelease,
   transportRenderer,
   transportRequests,
-  transportSuccess,
 } from "#test/transport";
+import { transportSuccess } from "#test/transport-success";
 
 const endpoint = new URL("https://publish.test.invalid/content");
 const token = Redacted.make("test-secret-token");
+
+/** Builds the one authenticated target configuration used by HTTP tests. */
+function targetConfig(
+  timeout: HttpPublicationTargetConfig["timeout"] = "1 second"
+) {
+  return { allowInsecureLoopback: false, endpoint, timeout, token };
+}
 
 /** Decodes the schema-encoded JSON body captured by a fake HTTP client. */
 function decodeRequest(request: HttpClientRequest.HttpClientRequest) {
@@ -59,9 +66,7 @@ function capturedClient() {
     Effect.gen(function* () {
       requests.push(request);
       const decoded = yield* decodeRequest(request).pipe(Effect.orDie);
-      const pending =
-        decoded.operation === "finalize" && decoded.afterIndex === -1;
-      return webResponse(request, transportSuccess(decoded, pending));
+      return webResponse(request, transportSuccess(decoded));
     })
   );
   return { client, requests };
@@ -73,12 +78,9 @@ function makeTarget(
   timeout: HttpPublicationTargetConfig["timeout"] = "1 second"
 ) {
   return Effect.runPromise(
-    makeHttpPublicationTarget({
-      allowInsecureLoopback: false,
-      endpoint,
-      timeout,
-      token,
-    }).pipe(Effect.provideService(HttpClient.HttpClient, client))
+    makeHttpPublicationTarget(targetConfig(timeout)).pipe(
+      Effect.provideService(HttpClient.HttpClient, client)
+    )
   );
 }
 
@@ -90,20 +92,29 @@ function invokeTarget(
   return Match.value(request).pipe(
     Match.discriminatorsExhaustive("operation")({
       abort: (value) => target.abort(value),
+      accept: (value) => target.accept(value),
       activate: (value) => target.activate(value.release),
+      activateRecovery: (value) => target.activateRecovery(value.release),
       cleanup: (value) => target.cleanup(value),
       current: () => target.current(),
-      finalize: (value) => target.finalize(value.release),
       headPage: (value) => target.headPage(value),
+      recovery: (value) => target.recovery(value),
       rollbackPage: (value) => target.rollbackPage(value),
+      routePage: (value) => target.routePage(value),
       stageArtifactBatch: (value) => target.stageArtifactBatch(value),
       stageItemBatch: (value) => target.stageItemBatch(value),
       stageProjectionBatch: (value) => target.stageProjectionBatch(value),
+      stageRecovery: (value) =>
+        target.stageRecovery({
+          release: value.release,
+          rendererManifest: value.rendererManifest,
+        }),
       stageRelease: (value) =>
         target.stageRelease({
           release: value.release,
           rendererManifest: value.rendererManifest,
         }),
+      stageRouteBatch: (value) => target.stageRouteBatch(value),
       status: (value) => target.status(value),
       verify: (value) => target.verify(value.release),
     })
@@ -123,7 +134,7 @@ describe("HTTP publication target", () => {
         }
       )
     );
-    expect(captured.requests).toHaveLength(14);
+    expect(captured.requests).toHaveLength(18);
     for (const request of captured.requests) {
       expect(request.method).toBe("POST");
       expect(request.url).toBe(endpoint.toString());
@@ -131,16 +142,9 @@ describe("HTTP publication target", () => {
       expect(request.headers.accept).toBe("application/json");
       expect(request.body.contentType).toBe("application/json");
     }
-    expect(
-      Layer.isLayer(
-        httpPublicationTargetLayer({
-          allowInsecureLoopback: false,
-          endpoint,
-          timeout: "1 second",
-          token,
-        })
-      )
-    ).toBe(true);
+    expect(Layer.isLayer(httpPublicationTargetLayer(targetConfig()))).toBe(
+      true
+    );
   });
 
   it("rejects oversized batches before network IO", async () => {
@@ -183,7 +187,7 @@ describe("HTTP publication target", () => {
     vi.spyOn(JSON, "stringify").mockImplementationOnce(() =>
       "x".repeat(MAX_PUBLICATION_REQUEST_BYTES + 1)
     );
-    const error = await Effect.runPromise(target.current().pipe(Effect.flip));
+    const error = await Effect.runPromise(Effect.flip(target.current()));
     vi.restoreAllMocks();
     expect(error).toMatchObject({
       _tag: "PublicationTargetRejectedError",
@@ -290,7 +294,7 @@ describe("HTTP publication target", () => {
     const stalled = HttpClient.make(() => Effect.never);
     const target = await makeTarget(stalled, "1 millis");
     const error = await Effect.runPromise(
-      target.verify(transportRelease).pipe(Effect.flip)
+      Effect.flip(target.verify(transportRelease))
     );
     expect(error).toMatchObject({
       _tag: "PublicationTargetTransportError",

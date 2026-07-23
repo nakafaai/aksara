@@ -20,12 +20,14 @@ import {
 import {
   ContentReleaseManifestSchema,
   ContentUpsertSchema,
+  RollbackSignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Redacted, Stream } from "effect";
+import { Effect, Redacted, Schema, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import {
   makePreparedRollbackRelease,
@@ -37,13 +39,14 @@ import {
   publishRollbackRelease,
 } from "#publisher/publication";
 import {
+  PublicationActivation,
+  PublicationRecoveryId,
   PublicationSigningKey,
   PublicationSource,
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 import { testFileLayer } from "#test/files";
-import { rendererDomains } from "#test/renderer";
 
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -52,8 +55,8 @@ export const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   })
 );
@@ -88,7 +91,6 @@ export const contentRecord = {
     delivery: "public",
     locale: payload.locale,
     operation: "upsert",
-    publicPath: projection.publicPath,
     rendererDomain: payload.rendererDomain,
     sourcePath: source.sourcePath,
   }),
@@ -103,7 +105,7 @@ export const head = MaterialHeadSchema.make({
   delivery: contentRecord.change.delivery,
   locale: contentRecord.change.locale,
   projectionHash: hashMaterialProjection(projection),
-  publicPath: contentRecord.change.publicPath,
+  publicPath: projection.publicPath,
   rendererDomain: contentRecord.change.rendererDomain,
   sourceHash: payload.sourceHash,
   sourcePath: contentRecord.change.sourcePath,
@@ -128,6 +130,10 @@ const resolver = ContentVerificationKeyResolver.of({
     Effect.succeed(
       publicKey.export({ format: "pem", type: "spki" }).toString()
     ),
+});
+const activation = PublicationActivation.of({
+  invalidate: () => Effect.void,
+  verify: () => Effect.void,
 });
 
 /** Public-key resolver paired with the private test publication signer. */
@@ -162,6 +168,18 @@ export async function makeRelease(
       releaseId: ReleaseIdSchema.make(releaseId),
       rendererManifest,
       result: () => Stream.make(head),
+      routes: () =>
+        Stream.make({
+          current: {
+            contentKey: contentRecord.change.contentKey,
+            locale: contentRecord.change.locale,
+          },
+          next: {
+            contentKey: contentRecord.change.contentKey,
+            locale: contentRecord.change.locale,
+            publicPath: projection.publicPath,
+          },
+        }),
     })
   );
   return { manifest: prepared.manifest, prepared };
@@ -187,8 +205,13 @@ export async function makeRollbackRelease(releaseId: string) {
     manifest,
     projections: git.prepared.projections,
     rendererManifest,
+    routes: git.prepared.routes,
   });
-  const release = await Effect.runPromise(signer.signRelease(manifest));
+  const release = await Effect.runPromise(
+    signer
+      .signRelease(manifest)
+      .pipe(Effect.flatMap(Schema.decode(RollbackSignedContentReleaseSchema)))
+  );
   return { manifest, prepared, release };
 }
 
@@ -207,7 +230,9 @@ export function publishFromSource<E, R>(
   prepared: PreparedGitRelease<E, R>,
   target: typeof PublicationTarget.Service,
   publicationSource: typeof PublicationSource.Service,
-  currentKeyId = signingKey.keyId
+  currentKeyId = signingKey.keyId,
+  recoveryId = ReleaseIdSchema.make(`${prepared.manifest.releaseId}-recovery`),
+  activationService = activation
 ) {
   return publishGitRelease(prepared).pipe(
     Effect.provide(testFileLayer(new Map())),
@@ -216,8 +241,10 @@ export function publishFromSource<E, R>(
       PublicationSigningKey,
       PublicationSigningKey.of({ ...signingKey, keyId: currentKeyId })
     ),
+    Effect.provideService(PublicationRecoveryId, recoveryId),
     Effect.provideService(PublicationSource, publicationSource),
     Effect.provideService(ContentVerificationKeyResolver, resolver),
+    Effect.provideService(PublicationActivation, activationService),
     Effect.provideService(PublicationTarget, target)
   );
 }
@@ -227,7 +254,9 @@ export function publishPrepared<E, R>(
   prepared: PreparedGitRelease<E, R>,
   target: typeof PublicationTarget.Service,
   rawMdx = source.rawMdx,
-  currentKeyId = signingKey.keyId
+  currentKeyId = signingKey.keyId,
+  recoveryId = ReleaseIdSchema.make(`${prepared.manifest.releaseId}-recovery`),
+  activationService = activation
 ) {
   return publishFromSource(
     prepared,
@@ -235,20 +264,26 @@ export function publishPrepared<E, R>(
     PublicationSource.of({
       loadExactRevision: () => Stream.make({ ...source, rawMdx }),
     }),
-    currentKeyId
+    currentKeyId,
+    recoveryId,
+    activationService
   );
 }
 
 /** Runs one rollback release without constructing an unrelated Git source. */
 export function publishRollbackPrepared<E, R>(
   prepared: PreparedRollbackRelease<E, R>,
-  target: typeof PublicationTarget.Service
+  target: typeof PublicationTarget.Service,
+  recoveryId = ReleaseIdSchema.make(`${prepared.manifest.releaseId}-recovery`),
+  activationService = activation
 ) {
   return publishRollbackRelease(prepared).pipe(
     Effect.provide(testFileLayer(new Map())),
     Effect.provide(Path.layer),
+    Effect.provideService(PublicationRecoveryId, recoveryId),
     Effect.provideService(PublicationSigningKey, signingKey),
     Effect.provideService(ContentVerificationKeyResolver, resolver),
+    Effect.provideService(PublicationActivation, activationService),
     Effect.provideService(PublicationTarget, target)
   );
 }
@@ -256,7 +291,16 @@ export function publishRollbackPrepared<E, R>(
 /** Publishes one test release through its exact prepared domain value. */
 export function publish(
   release: Awaited<ReturnType<typeof makeRelease>>,
-  target: typeof PublicationTarget.Service
+  target: typeof PublicationTarget.Service,
+  recoveryId = ReleaseIdSchema.make(`${release.manifest.releaseId}-recovery`),
+  activationService = activation
 ) {
-  return publishPrepared(release.prepared, target);
+  return publishPrepared(
+    release.prepared,
+    target,
+    source.rawMdx,
+    signingKey.keyId,
+    recoveryId,
+    activationService
+  );
 }

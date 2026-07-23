@@ -5,7 +5,7 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
-  PublicPathSchema,
+  type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
@@ -25,7 +25,6 @@ export const ContentUpsertSchema = Schema.Struct({
   delivery: ContentDeliveryClassSchema,
   locale: ContentLocaleSchema,
   operation: Schema.Literal("upsert"),
-  publicPath: Schema.optional(PublicPathSchema),
   rendererDomain: RendererDomainSchema,
   sourcePath: CorpusSourcePathSchema,
 });
@@ -81,6 +80,8 @@ const ContentReleaseManifestFields = {
   resultDigest: Sha256HashSchema,
   rollbackCount: ProjectionCountSchema,
   rollbackDigest: Sha256HashSchema,
+  routeCount: ProjectionCountSchema,
+  routeDigest: Sha256HashSchema,
   upsertCount: ProjectionCountSchema,
 };
 
@@ -141,6 +142,26 @@ export const SignedContentReleaseSchema = Schema.Struct({
 });
 export type SignedContentRelease = typeof SignedContentReleaseSchema.Type;
 
+/** Signed release whose provenance identifies one exact rollback target. */
+export type RollbackSignedContentRelease = SignedContentRelease & {
+  readonly manifest: SignedContentRelease["manifest"] & {
+    readonly origin: {
+      readonly kind: "rollback";
+      readonly releaseId: ReleaseId;
+    };
+  };
+};
+
+/** Signed release contract accepted only for rollback-owned operations. */
+export const RollbackSignedContentReleaseSchema =
+  SignedContentReleaseSchema.pipe(
+    Schema.filter(
+      (release): release is RollbackSignedContentRelease =>
+        release.manifest.origin.kind === "rollback",
+      { message: () => "Expected a signed rollback release." }
+    )
+  );
+
 const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";
 
 /** Checks that every staged head has exactly one matching item and artifact. */
@@ -185,7 +206,10 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   resultDigest: Sha256HashSchema,
   rollbackCount: ProjectionCountSchema,
   rollbackDigest: Sha256HashSchema,
+  routeCount: ProjectionCountSchema,
+  routeDigest: Sha256HashSchema,
   stagedArtifacts: ProjectionCountSchema,
+  stagedRoutes: ProjectionCountSchema,
   upsertHeads: ProjectionCountSchema,
 }).pipe(
   Schema.filter(hasCoherentVerificationCounts, {
@@ -205,9 +229,11 @@ export const PublicationReceiptSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
   resultCount: ProjectionCountSchema,
   resultDigest: Sha256HashSchema,
+  routeDigest: Sha256HashSchema,
   stagedArtifacts: ProjectionCountSchema,
   stagedItems: ProjectionCountSchema,
   stagedProjections: ProjectionCountSchema,
+  stagedRoutes: ProjectionCountSchema,
 }).pipe(
   Schema.filter(
     (receipt) =>
@@ -225,14 +251,11 @@ export type PublicationReceipt = typeof PublicationReceiptSchema.Type;
 export function canonicalizeContentChange(change: ContentChange) {
   if (change.operation === "upsert") {
     return {
+      artifactHash: change.artifactHash,
       contentKey: change.contentKey,
       delivery: change.delivery,
       locale: change.locale,
       operation: change.operation,
-      ...(change.publicPath === undefined
-        ? {}
-        : { publicPath: change.publicPath }),
-      artifactHash: change.artifactHash,
       rendererDomain: change.rendererDomain,
       sourcePath: change.sourcePath,
     };
@@ -276,6 +299,8 @@ export function canonicalizeContentReleaseManifest(
     resultDigest: manifest.resultDigest,
     rollbackCount: manifest.rollbackCount,
     rollbackDigest: manifest.rollbackDigest,
+    routeCount: manifest.routeCount,
+    routeDigest: manifest.routeDigest,
     upsertCount: manifest.upsertCount,
   });
 }

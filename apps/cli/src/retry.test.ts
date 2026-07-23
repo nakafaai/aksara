@@ -20,16 +20,21 @@ function makeTarget(
   const unused = () => Effect.die("Unused publication target operation.");
   return PublicationTarget.of({
     abort: unused,
+    accept: unused,
     activate: unused,
+    activateRecovery: unused,
     cleanup: unused,
     current,
-    finalize: unused,
     headPage: unused,
+    recovery: unused,
     rollbackPage: unused,
+    routePage: unused,
     stageArtifactBatch: unused,
     stageItemBatch: unused,
     stageProjectionBatch: unused,
+    stageRecovery: unused,
     stageRelease: unused,
+    stageRouteBatch: unused,
     status: unused,
     verify: unused,
   });
@@ -91,35 +96,38 @@ describe("publication transport retry", () => {
         return attempts === 1
           ? Effect.fail(transportFailure())
           : Effect.succeed({
-              activeManifestHash: null,
-              activeReleaseId: null,
-              completed: null,
-              pending: null,
+              active: null,
+              candidate: null,
+              recovery: null,
             });
       })
     );
     const retried = retryPublicationTarget(target);
     const operationPairs = [
       [retried.abort, target.abort],
+      [retried.accept, target.accept],
       [retried.activate, target.activate],
+      [retried.activateRecovery, target.activateRecovery],
       [retried.cleanup, target.cleanup],
       [retried.current, target.current],
-      [retried.finalize, target.finalize],
       [retried.headPage, target.headPage],
+      [retried.recovery, target.recovery],
       [retried.rollbackPage, target.rollbackPage],
+      [retried.routePage, target.routePage],
       [retried.stageArtifactBatch, target.stageArtifactBatch],
       [retried.stageItemBatch, target.stageItemBatch],
       [retried.stageProjectionBatch, target.stageProjectionBatch],
+      [retried.stageRecovery, target.stageRecovery],
       [retried.stageRelease, target.stageRelease],
+      [retried.stageRouteBatch, target.stageRouteBatch],
       [retried.status, target.status],
       [retried.verify, target.verify],
     ];
 
     await expect(Effect.runPromise(retried.current())).resolves.toEqual({
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed: null,
-      pending: null,
+      active: null,
+      candidate: null,
+      recovery: null,
     });
     expect(attempts).toBe(2);
     expect(

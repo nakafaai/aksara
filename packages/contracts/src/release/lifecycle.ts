@@ -2,6 +2,7 @@ import { Schema } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
   PublicationReceiptSchema,
+  type RollbackSignedContentRelease,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
@@ -47,108 +48,20 @@ export const ContentReleaseBundleSchema = Schema.Struct({
 );
 export type ContentReleaseBundle = typeof ContentReleaseBundleSchema.Type;
 
-/** Checks terminal receipt counts against its signed immutable manifest. */
-function hasBoundCompletedReceipt(input: {
-  readonly receipt: typeof PublicationReceiptSchema.Type;
-  readonly release: typeof SignedContentReleaseSchema.Type;
-}) {
-  const { manifest } = input.release;
-  const { receipt } = input;
-  return (
-    receipt.releaseId === manifest.releaseId &&
-    receipt.manifestHash === input.release.manifestHash &&
-    receipt.stagedArtifacts === manifest.upsertCount &&
-    receipt.stagedItems === manifest.itemCount &&
-    receipt.stagedProjections === manifest.projectionCount &&
-    receipt.projectionDigest === manifest.projectionDigest &&
-    receipt.resultCount === manifest.resultCount &&
-    receipt.resultDigest === manifest.resultDigest
+/** Frozen renderer plus one signed rollback release at recovery boundaries. */
+export type RollbackContentReleaseBundle = ContentReleaseBundle & {
+  readonly release: RollbackSignedContentRelease;
+};
+
+/** Exact renderer-bound bundle accepted only for recovery publication. */
+export const RollbackContentReleaseBundleSchema =
+  ContentReleaseBundleSchema.pipe(
+    Schema.filter(
+      (bundle): bundle is RollbackContentReleaseBundle =>
+        bundle.release.manifest.origin.kind === "rollback",
+      { message: () => "Expected a renderer-bound rollback release." }
+    )
   );
-}
-
-/** Exact completed active release retained for lost-response recovery. */
-export const CompletedContentReleaseSchema = Schema.extend(
-  ContentReleaseBundleSchema,
-  Schema.Struct({ receipt: PublicationReceiptSchema })
-).pipe(
-  Schema.filter(hasBoundCompletedReceipt, {
-    message: () =>
-      "Expected the completed receipt to match its signed release manifest.",
-  })
-);
-export type CompletedContentRelease = typeof CompletedContentReleaseSchema.Type;
-
-const PendingReleasePhaseSchema = Schema.Literal(
-  "staging",
-  "verifying",
-  "verified",
-  "active",
-  "finalizing",
-  "aborting"
-);
-
-/** Exact durable release bundle currently owning the singleton pending slot. */
-export const PendingContentReleaseSchema = Schema.extend(
-  ContentReleaseBundleSchema,
-  Schema.Struct({ phase: PendingReleasePhaseSchema })
-);
-export type PendingContentRelease = typeof PendingContentReleaseSchema.Type;
-
-/** Checks active identity against the pending release's durable phase. */
-function hasCoherentCurrentState(input: {
-  readonly activeManifestHash: typeof Sha256HashSchema.Type | null;
-  readonly activeReleaseId: typeof ReleaseIdSchema.Type | null;
-  readonly completed: CompletedContentRelease | null;
-  readonly pending: PendingContentRelease | null;
-}) {
-  if (
-    (input.activeReleaseId === null) !==
-    (input.activeManifestHash === null)
-  ) {
-    return false;
-  }
-  if (input.pending === null) {
-    if (input.activeReleaseId === null) {
-      return input.completed === null;
-    }
-    return (
-      input.completed !== null &&
-      input.completed.release.manifest.releaseId === input.activeReleaseId &&
-      input.completed.release.manifestHash === input.activeManifestHash
-    );
-  }
-  if (input.completed !== null) {
-    return false;
-  }
-  const { manifest } = input.pending.release;
-  if (
-    input.pending.phase === "active" ||
-    input.pending.phase === "finalizing"
-  ) {
-    return (
-      input.activeReleaseId === manifest.releaseId &&
-      input.activeManifestHash === input.pending.release.manifestHash
-    );
-  }
-  return (
-    input.activeReleaseId === manifest.baseReleaseId &&
-    input.activeManifestHash === manifest.baseManifestHash
-  );
-}
-
-/** Authoritative singleton publication state used before release preparation. */
-export const ContentReleaseCurrentSchema = Schema.Struct({
-  activeManifestHash: Schema.NullOr(Sha256HashSchema),
-  activeReleaseId: Schema.NullOr(ReleaseIdSchema),
-  completed: Schema.NullOr(CompletedContentReleaseSchema),
-  pending: Schema.NullOr(PendingContentReleaseSchema),
-}).pipe(
-  Schema.filter(hasCoherentCurrentState, {
-    message: () =>
-      "Expected active and pending publication identities to be coherent.",
-  })
-);
-export type ContentReleaseCurrent = typeof ContentReleaseCurrentSchema.Type;
 
 const ContentReleaseStatusIdentity = {
   manifestHash: Sha256HashSchema,
@@ -157,10 +70,14 @@ const ContentReleaseStatusIdentity = {
 
 /** Checks completed evidence against the durable status identity. */
 function hasBoundReceipt(status: {
+  readonly manifestHash: typeof Sha256HashSchema.Type;
   readonly receipt: typeof PublicationReceiptSchema.Type;
   readonly releaseId: typeof ReleaseIdSchema.Type;
 }) {
-  return status.receipt.releaseId === status.releaseId;
+  return (
+    status.receipt.releaseId === status.releaseId &&
+    status.receipt.manifestHash === status.manifestHash
+  );
 }
 
 const CompletedReleaseStatusSchema = Schema.Struct({
@@ -185,9 +102,7 @@ export const ContentReleaseStatusSchema = Schema.Union(
       "staging",
       "verifying",
       "verified",
-      "active",
       "aborting",
-      "finalizing",
       "aborted"
     ),
     ...ContentReleaseStatusIdentity,
@@ -196,11 +111,22 @@ export const ContentReleaseStatusSchema = Schema.Union(
 );
 export type ContentReleaseStatus = typeof ContentReleaseStatusSchema.Type;
 
-/** One invisible release whose pending candidate state should be abandoned. */
+/** One invisible staged release whose rows should be abandoned. */
 export const ReleaseAbortRequestSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
 });
 export type ReleaseAbortRequest = typeof ReleaseAbortRequestSchema.Type;
+
+/** Identifies the active release and retained inverse accepted by an operator. */
+export const ReleaseAcceptRequestSchema = Schema.Struct({
+  recoveryId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+}).pipe(
+  Schema.filter((request) => request.recoveryId !== request.releaseId, {
+    message: () => "Expected distinct active and recovery release identities.",
+  })
+);
+export type ReleaseAcceptRequest = typeof ReleaseAcceptRequestSchema.Type;
 
 /** Checks cumulative abort evidence against its durable total. */
 function hasCoherentAbortReceipt(receipt: {
@@ -238,7 +164,6 @@ export type ReleaseCleanupRequest = typeof ReleaseCleanupRequestSchema.Type;
 export const ReleaseCleanupReceiptSchema = Schema.Struct({
   complete: Schema.Boolean,
   deletedArtifacts: CleanupCountSchema,
-  deletedItems: CleanupCountSchema,
   releaseId: ReleaseIdSchema,
   retryAt: Schema.optional(CleanupRetrySchema),
 }).pipe(

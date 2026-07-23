@@ -38,10 +38,8 @@ const SAFE_GLOBALS = new Set([
   "String",
   "undefined",
 ]);
-
 /** Revision bound into artifact fingerprints whenever executable policy changes. */
-export const EXECUTABLE_POLICY_REVISION = "trusted-mdx-policy-v4";
-
+export const EXECUTABLE_POLICY_REVISION = "trusted-mdx-policy-v5";
 /** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
   return (
@@ -50,14 +48,11 @@ function isUnistNode(value: unknown): value is UnistNode {
     typeof value.type === "string"
   );
 }
-
 /** Builds the stable deduplication key for one policy violation. */
 function violationKey(violation: ExecutablePolicyViolation) {
   return `${violation.rule}:${violation.identifier ?? ""}`;
 }
-
 type PropertyExpression = MemberExpression["property"] | Property["key"];
-
 /** Resolves a compile-time string without evaluating authored JavaScript. */
 function staticStringValue(expression: PropertyExpression): string | undefined {
   if (expression.type === "Literal" && typeof expression.value === "string") {
@@ -191,7 +186,10 @@ function inspectSyntaxNode(
 }
 
 /** Finds forbidden syntax and unresolved runtime globals in one program. */
-function inspectProgram(program: Program) {
+function inspectProgram(
+  program: Program,
+  allowedComponents: ReadonlySet<string>
+) {
   const found = new Map<string, ExecutablePolicyViolation>();
   /** Adds one violation using its stable identity to remove duplicates. */
   const add = (violation: ExecutablePolicyViolation) => {
@@ -238,6 +236,9 @@ function inspectProgram(program: Program) {
       add({ identifier, rule: "network-global" });
       continue;
     }
+    if (allowedComponents.has(identifier)) {
+      continue;
+    }
     add({ identifier, rule: "unknown-free-global" });
   }
 
@@ -247,17 +248,19 @@ function inspectProgram(program: Program) {
 /** Appends violations from an ESTree program attached to a unified node. */
 function appendProgramViolations(
   node: UnistNode,
+  allowedComponents: ReadonlySet<string>,
   violations: ExecutablePolicyViolation[]
 ) {
   const program = readNodeProgram(node);
   if (program) {
-    violations.push(...inspectProgram(program));
+    violations.push(...inspectProgram(program, allowedComponents));
   }
 }
 
 /** Inspects MDX JSX attributes and their embedded expression programs. */
 function inspectMdxJsxAttributes(
   node: UnistNode,
+  allowedComponents: ReadonlySet<string>,
   violations: ExecutablePolicyViolation[]
 ) {
   if (
@@ -282,15 +285,16 @@ function inspectMdxJsxAttributes(
         rule: "dangerous-jsx-attribute",
       });
     }
-    appendProgramViolations(attribute, violations);
+    appendProgramViolations(attribute, allowedComponents, violations);
     if ("value" in attribute && isUnistNode(attribute.value)) {
-      appendProgramViolations(attribute.value, violations);
+      appendProgramViolations(attribute.value, allowedComponents, violations);
     }
   }
 }
 
 /** Rejects MDX module syntax and records unsupported executable capabilities. */
 export function enforceExecutablePolicy(
+  allowedComponents: ReadonlySet<string>,
   unsupportedModules: UnsupportedMdxModuleOccurrence[],
   violations: ExecutablePolicyViolation[]
 ): Plugin<[], Root> {
@@ -299,8 +303,8 @@ export function enforceExecutablePolicy(
       if (node.type === "mdxjsEsm") {
         return;
       }
-      appendProgramViolations(node, violations);
-      inspectMdxJsxAttributes(node, violations);
+      appendProgramViolations(node, allowedComponents, violations);
+      inspectMdxJsxAttributes(node, allowedComponents, violations);
     });
 
     collectUnsupportedMdxModules(tree, unsupportedModules);

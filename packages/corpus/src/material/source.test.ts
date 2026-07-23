@@ -9,8 +9,10 @@ import { readMaterialDocument } from "#corpus/material/source";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..", "..");
 const sourcePaths = [
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/id.mdx",
+  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx",
+  "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/id.mdx",
+  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
+  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
 ] as const;
 const sourceByPath = new Map(
   sourcePaths.map((sourcePath) => {
@@ -52,8 +54,15 @@ function readSources(sources: ReadonlyMap<string, string>) {
 describe("material source", () => {
   it("reads byte-exact real MDX with signed Git source paths", async () => {
     const documents = await readSources(sourceByPath);
-    expect(documents.map(({ route }) => route.locale)).toEqual(["en", "id"]);
+    expect(documents.map(({ route }) => route.locale)).toEqual([
+      "en",
+      "id",
+      "en",
+      "id",
+    ]);
     expect(documents.map(({ route }) => route.publicPath)).toEqual([
+      "subjects/chemistry/structure-matter/atom-shell",
+      "materi/kimia/struktur-atom/kulit-atom",
       "subjects/mathematics/function-composition-inverse-function/function-concept",
       "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
     ]);
@@ -62,6 +71,8 @@ describe("material source", () => {
         createHash("sha256").update(rawMdx).digest("hex")
       )
     ).toEqual([
+      "d102b06e1ab932ed9dbd867e9403df43f3ded52d476364273c11959bd76d5f7a",
+      "7e00d7922e9c36eb455c50840f0b291d5b178ba9b8c24d7bbf45d3a5195c58bf",
       "c1340893d18fbddf9e4b1437d593d6dae3476073bcf0c0228eabbe4a63b60086",
       "603f5c129cf43207f9305d945b67e54c103c6c5a907df6d104dca7b53e8fdece",
     ]);
@@ -83,7 +94,7 @@ describe("material source", () => {
     expect(error).toMatchObject({
       _tag: "MaterialReadError",
       sourcePath:
-        "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
+        "packages/corpus/material/lesson/chemistry/structure-matter/atom-shell/en.mdx",
     });
   });
 });

@@ -3,7 +3,11 @@ import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { Effect, Array as EffectArray, Schema, Stream } from "effect";
 import type { NonEmptyReadonlyArray } from "effect/Array";
 
-type PublicationBatchKind = "artifact" | "material-projection" | "release-item";
+type PublicationBatchKind =
+  | "artifact"
+  | "content-route"
+  | "material-projection"
+  | "release-item";
 
 /** One value cannot fit inside its mandatory publication batch ceiling. */
 export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBatchLimitError>()(
@@ -13,7 +17,12 @@ export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBa
     actualCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
     expectedCount: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
     itemOffset: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-    kind: Schema.Literal("artifact", "material-projection", "release-item"),
+    kind: Schema.Literal(
+      "artifact",
+      "content-route",
+      "material-projection",
+      "release-item"
+    ),
     maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
     maxCount: Schema.Number.pipe(Schema.int(), Schema.positive()),
   }

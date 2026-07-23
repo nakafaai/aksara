@@ -1,6 +1,8 @@
 {
   "name": "@nakafa/aksara-contracts",
   "version": "0.1.0",
+  "description": "Public schemas and verification contracts for Nakafa content releases.",
+  "homepage": "https://github.com/nakafaai/aksara#readme",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
   "imports": {
@@ -31,6 +33,10 @@
     "./content": {
       "types": "./dist/content.d.ts",
       "import": "./dist/content.js"
+    },
+    "./cache/material": {
+      "types": "./dist/cache/material.d.ts",
+      "import": "./dist/cache/material.js"
     },
     "./delivery": {
       "types": "./dist/delivery.d.ts",
@@ -108,6 +114,10 @@
       "types": "./dist/release/head.d.ts",
       "import": "./dist/release/head.js"
     },
+    "./release/current": {
+      "types": "./dist/release/current.d.ts",
+      "import": "./dist/release/current.js"
+    },
     "./release/lifecycle": {
       "types": "./dist/release/lifecycle.d.ts",
       "import": "./dist/release/lifecycle.js"
@@ -115,6 +125,22 @@
     "./release/rollback": {
       "types": "./dist/release/rollback.d.ts",
       "import": "./dist/release/rollback.js"
+    },
+    "./release/route": {
+      "types": "./dist/release/route.d.ts",
+      "import": "./dist/release/route.js"
+    },
+    "./release/route-digest": {
+      "types": "./dist/release/route-digest.d.ts",
+      "node": "./dist/release/route-digest.js"
+    },
+    "./release/routes": {
+      "types": "./dist/release/routes.d.ts",
+      "node": "./dist/release/routes.js"
+    },
+    "./release/route-page": {
+      "types": "./dist/release/route-page.d.ts",
+      "import": "./dist/release/route-page.js"
     },
     "./release/rollback-digest": {
       "types": "./dist/release/rollback-digest.d.ts",
@@ -148,6 +174,14 @@
       "types": "./dist/renderer/manifest.d.ts",
       "node": "./dist/renderer/manifest.js"
     },
+    "./runtime/spec": {
+      "types": "./dist/runtime/spec.d.ts",
+      "import": "./dist/runtime/spec.js"
+    },
+    "./runtime/verify": {
+      "types": "./dist/runtime/verify.d.ts",
+      "node": "./dist/runtime/verify.js"
+    },
     "./signature/spec": {
       "types": "./dist/signature/spec.d.ts",
       "import": "./dist/signature/spec.js"
@@ -174,13 +208,13 @@
     }
   },
   "scripts": {
-    "clean": "git clean -xdf dist",
-    "prebuild": "pnpm run clean",
+    "clean": "git clean -xdf dist coverage",
+    "prebuild": "git clean -xdf dist",
     "build": "tsc --project tsconfig.build.json",
     "prepack": "pnpm run build",
     "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json",
-    "verify:package": "node scripts/verify-package.ts"
+    "verify:package": "pnpm run build && node scripts/verify-package.ts"
   },
   "devDependencies": {
     "@nakafa/typescript-config": "workspace:*",

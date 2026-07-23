@@ -9,7 +9,7 @@ import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
 import type { CleanupArguments } from "#cli/args";
-import { readCleanupEnvironment } from "#cli/env";
+import { readPublicationEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { retryPublicationTarget } from "#cli/retry";
 
@@ -37,7 +37,6 @@ function logCleanupReceipt(receipt: ReleaseCleanupReceipt) {
   return Effect.logInfo("Content cleanup completed.").pipe(
     Effect.annotateLogs({
       deletedArtifacts: receipt.deletedArtifacts,
-      deletedItems: receipt.deletedItems,
       releaseId: receipt.releaseId,
     }),
     Effect.as(receipt)
@@ -48,7 +47,7 @@ function logCleanupReceipt(receipt: ReleaseCleanupReceipt) {
 export const runCleanupCommand: (args: CleanupArguments) => CleanupCommand =
   Effect.fn("AksaraCli.runCleanupCommand")((args) =>
     Effect.gen(function* () {
-      const environment = yield* readCleanupEnvironment().pipe(
+      const environment = yield* readPublicationEnvironment().pipe(
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({

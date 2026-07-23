@@ -100,7 +100,7 @@ function selectSourceBase(bundle: ContentReleaseBundle | null) {
   } satisfies BaseCatalogIdentity;
 }
 
-/** Selects the authenticated base catalog frozen inside a pending release. */
+/** Selects the authenticated base catalog frozen inside a candidate release. */
 function selectRecoveryBase(bundle: ContentReleaseBundle) {
   const { manifest } = bundle.release;
   if (manifest.baseReleaseId === null || manifest.baseManifestHash === null) {
@@ -162,6 +162,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       releaseId: input.releaseId,
       rendererManifest,
       result: material.result,
+      routes: material.routes,
     });
     if (input.kind === "new") {
       return prepared;

@@ -1,8 +1,9 @@
 # Aksara
 
 Aksara is Nakafa's trusted content compilation and publication system. It is a
-small public Turborepo. The repository currently owns only the real bilingual
-Function Concept vertical slice; it is not connected to Nakafa production yet.
+small public Turborepo. The repository currently owns the real bilingual
+Function Concept and Atom Shell rich vertical slice; it is not connected to
+Nakafa production yet.
 
 ## Current modules
 
@@ -16,12 +17,14 @@ Function Concept vertical slice; it is not connected to Nakafa production yet.
   It prepares the real material slice from AST-decoded MDX metadata. The
   Nakafa-owned Convex ingress, storage, and runtime adapter remain outside this
   repository and have not been cut over to production.
-- `@nakafa/aksara-corpus` owns the reviewed Function Concept `en` and `id`
-  sources plus their non-React source registry. No substitute lessons or React
-  implementations live in this package.
+- `@nakafa/aksara-corpus` owns the reviewed Function Concept and Atom Shell
+  `en` and `id` sources plus their non-React source registry. No substitute
+  lessons or React implementations live in this package.
 - `@nakafa/aksara-cli` compiles one selected real document, serves its signed
   local artifact over loopback, and starts the actual Nakafa application with
   ephemeral credentials for hot preview.
+- `@nakafa/aksara-utilities` owns generic bounded HTTP response primitives
+  shared by the CLI and publisher. It contains no content-domain contracts.
 - `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
 
@@ -42,8 +45,12 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm verify:package
-pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx
+pnpm status
+pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
 ```
+
+`pnpm status` reads the authoritative publication slots using publication
+credentials only; it does not sign, stage, activate, or mutate a release.
 
 Run a focused workspace test through Turbo so dependency builds stay current:
 

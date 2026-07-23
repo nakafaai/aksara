@@ -108,7 +108,7 @@ The compiler parses executable syntax through MDX's ESTree output. It rejects
 dynamic imports, `import.meta`, `require`, `eval`, direct `Function`, `process`, `globalThis`,
 network globals, unknown free globals, direct prototype-chain escape properties,
 and `dangerouslySetInnerHTML`. The artifact compiler rejects every body import
-and export. Legacy component imports must be removed by the separately audited
+and export. Existing component imports must be removed by the separately audited
 migration normalizer before compilation; alias shape is never treated as proof
 that an import source is safe. These checks are defense in depth against common
 mistakes and obvious escape syntax. JavaScript has equivalent expressions that
@@ -160,7 +160,7 @@ implementation.
 
 This is a measured deviation from the originally selected single static global
 implementation registry, explicitly approved by the repository owner on
-2026-07-21. The current Nakafa candidate still downloads a legacy Three.js
+2026-07-21. The current Nakafa candidate still downloads an unnecessary Three.js
 chunk on a plain material route through the old filesystem MDX graph, so the
 later published-artifact runtime must still prove final body isolation.
 

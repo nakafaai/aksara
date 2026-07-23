@@ -32,7 +32,7 @@ const document = Schema.decodeUnknownSync(PreviewDocumentSchema)({
     sectionKey: "function-concept",
   },
   sourcePath:
-    "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx",
+    "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
 });
 const base = {
   document,

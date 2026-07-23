@@ -16,7 +16,10 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
-import { encodeCorpusPath, LogicalCorpusSegmentSchema } from "#corpus/path";
+
+const LogicalCorpusSegmentSchema = Schema.String.pipe(
+  Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u)
+);
 
 const CorpusSegmentSchema = Schema.String.pipe(
   Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)?$/u)
@@ -74,6 +77,20 @@ const materialFamilies: readonly unknown[] = [
   {
     delivery: "public",
     identity: {
+      materialSlug: "structure-matter",
+      sectionKey: "atom-shell",
+      subject: "chemistry",
+    },
+    order: 2,
+    publicPaths: {
+      en: "subjects/chemistry/structure-matter/atom-shell",
+      id: "materi/kimia/struktur-atom/kulit-atom",
+    },
+    rendererDomain: "chemistry",
+  },
+  {
+    delivery: "public",
+    identity: {
       materialSlug: "function-composition-inverse-function",
       sectionKey: "function-concept",
       subject: "mathematics",
@@ -95,7 +112,7 @@ function expandFamily(family: MaterialFamily) {
   const sourceRoot = [
     "packages/corpus/material/lesson",
     subject,
-    ...encodeCorpusPath(materialSlug),
+    materialSlug,
     sectionKey,
   ].join("/");
 

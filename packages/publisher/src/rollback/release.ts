@@ -26,6 +26,9 @@ import {
   updateRollbackSnapshotDigest,
   verifyRollbackSnapshot,
 } from "@nakafa/aksara-contracts/release/rollback-digest";
+import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
+import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
+import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {
@@ -64,6 +67,8 @@ export interface BuildRollbackReleaseInput<E, R> {
   readonly rendererManifest: RendererManifestEnvelope;
   /** Replays the complete catalog produced by applying this rollback. */
   readonly result: () => Stream.Stream<MaterialHead, E, R>;
+  /** Replays independent inverse route ownership changes. */
+  readonly routes: () => Stream.Stream<ContentRouteItem, ReplaySpoolError>;
 }
 
 type BuildRollbackReleaseError<E, R> =
@@ -81,6 +86,9 @@ type BuildRollbackReleaseError<E, R> =
   | Effect.Effect.Error<ReturnType<typeof finalizeRollbackSnapshotDigest>>
   | Effect.Effect.Error<ReturnType<typeof updateRollbackSnapshotDigest>>
   | Effect.Effect.Error<
+      ReturnType<typeof digestRoutes<ReplaySpoolError, never>>
+    >
+  | Effect.Effect.Error<
       ReturnType<typeof verifyContentReleaseItems<ReplaySpoolError, never>>
     >
   | Effect.Effect.Error<
@@ -89,6 +97,9 @@ type BuildRollbackReleaseError<E, R> =
   | Effect.Effect.Error<ReturnType<typeof verifyResultCatalog<E, R>>>
   | Effect.Effect.Error<
       ReturnType<typeof verifyRollbackSnapshot<ReplaySpoolError, never>>
+    >
+  | Effect.Effect.Error<
+      ReturnType<typeof verifyContentRoutes<ReplaySpoolError, never>>
     >;
 
 type BuildRollbackRelease = <E, R>(
@@ -110,6 +121,8 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
   /** Replays current states as the next rollback snapshot. */
   const rollback = () =>
     rollbackSnapshotStream(input.records, input.releaseId, "current");
+  /** Replays canonical route changes that restore each prior state. */
+  const { routes } = input;
   /** Replays authenticated prior-state content artifacts. */
   const artifacts = () =>
     input.records().pipe(
@@ -175,6 +188,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     input.releaseId,
     rollbackState
   );
+  const routeSummary = yield* digestRoutes(input.releaseId, routes());
   const manifest = ContentReleaseManifestSchema.make({
     baseManifestHash: input.base.manifestHash,
     baseReleaseId: input.base.releaseId,
@@ -193,10 +207,13 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     resultDigest,
     rollbackCount: rollbackState.count,
     rollbackDigest,
+    routeCount: routeSummary.count,
+    routeDigest: routeSummary.digest,
     upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });
   yield* verifyContentProjections({ manifest, projections: projections() });
+  yield* verifyContentRoutes({ manifest, routes: routes() });
   yield* verifyResultCatalog({
     expectedCount: manifest.resultCount,
     expectedDigest: manifest.resultDigest,
@@ -210,5 +227,6 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     manifest,
     projections,
     rendererManifest: input.rendererManifest,
+    routes,
   });
 });

@@ -64,6 +64,8 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   resultDigest: `sha256:${"f".repeat(64)}`,
   rollbackCount: items.length,
   rollbackDigest: `sha256:${"d".repeat(64)}`,
+  routeCount: 0,
+  routeDigest: `sha256:${"d".repeat(64)}`,
   upsertCount: itemSummary.upsertCount,
 });
 
@@ -191,39 +193,7 @@ describe("release item integrity", () => {
       "ReleaseItemIndexMismatchError",
     ]);
   });
-  it("rejects duplicate public paths within one locale", async () => {
-    const candidate = await makeCandidate([
-      {
-        artifactHash: `sha256:${"a".repeat(64)}`,
-        contentKey: "test:a",
-        delivery: "public",
-        locale: "en",
-        operation: "upsert",
-        publicPath: "subjects/test/shared",
-        rendererDomain: "mathematics",
-        sourcePath: "packages/corpus/test/a/en.mdx",
-      },
-      {
-        artifactHash: `sha256:${"b".repeat(64)}`,
-        contentKey: "test:b",
-        delivery: "authenticated",
-        locale: "en",
-        operation: "upsert",
-        publicPath: "subjects/test/shared",
-        rendererDomain: "mathematics",
-        sourcePath: "packages/corpus/test/b/en.mdx",
-      },
-    ]);
-    const error = await reject(candidate.items, candidate.manifest);
-    expect(error).toMatchObject({
-      _tag: "DuplicateReleasePublicPathError",
-      duplicateItemIndex: 1,
-      firstItemIndex: 0,
-      locale: "en",
-      publicPath: "subjects/test/shared",
-    });
-  });
-  it("allows route deletion and locale-specific route reuse", async () => {
+  it("keeps body items independent from route ownership", async () => {
     const transfer = await makeCandidate([
       {
         artifactHash: `sha256:${"a".repeat(64)}`,
@@ -231,7 +201,6 @@ describe("release item integrity", () => {
         delivery: "public",
         locale: "en",
         operation: "upsert",
-        publicPath: "subjects/test/shared",
         rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/a/en.mdx",
       },
@@ -244,7 +213,6 @@ describe("release item integrity", () => {
         delivery: "public",
         locale: "en",
         operation: "upsert",
-        publicPath: "subjects/test/shared",
         rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/a/en.mdx",
       },
@@ -254,7 +222,6 @@ describe("release item integrity", () => {
         delivery: "entitled",
         locale: "id",
         operation: "upsert",
-        publicPath: "subjects/test/shared",
         rendererDomain: "mathematics",
         sourcePath: "packages/corpus/test/b/id.mdx",
       },

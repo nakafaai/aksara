@@ -14,12 +14,12 @@ import {
   MaterialSectionSchema,
 } from "@nakafa/aksara-contracts/projection/material";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
-import { rendererDomains } from "#test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -28,8 +28,8 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   })
 );
@@ -64,7 +64,6 @@ const baseRecord: PreparedContentUpsert = {
     delivery: "public",
     locale: source.locale,
     operation: "upsert",
-    publicPath: projection.publicPath,
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
   }),
@@ -110,7 +109,6 @@ function relocateRecord(
       ...baseRecord.change,
       artifactHash: hashCompiledContentPayload(nextPayload),
       contentKey: nextKey,
-      publicPath: nextPath,
     }),
     payload: nextPayload,
     projection: {
@@ -177,16 +175,6 @@ const mismatchCases = [
       source: { ...value.source, rawMdx: "test mismatch" },
     }),
   ],
-  [
-    "publicPath",
-    (value: PreparedContentUpsert) => ({
-      ...value,
-      projection: {
-        ...value.projection,
-        publicPath: PublicPathSchema.make("subjects/test/material/wrong"),
-      },
-    }),
-  ],
 ] satisfies readonly (readonly [
   string,
   (record: PreparedContentUpsert) => unknown,
@@ -227,7 +215,7 @@ describe("derivePreparedRecords", () => {
     expect(error).toMatchObject({ _tag: "ArtifactSourceHashMismatchError" });
   });
 
-  it("rejects malformed, out-of-order, and route-colliding records", async () => {
+  it("rejects malformed and out-of-order records", async () => {
     const first = relocateRecord("test:stream:a", "subjects/test/shared");
     const second = relocateRecord("test:stream:b", "subjects/test/shared");
     const malformed = await Effect.runPromise(
@@ -241,17 +229,8 @@ describe("derivePreparedRecords", () => {
         )
       ).pipe(Effect.flip)
     );
-    const route = await Effect.runPromise(
-      derive(() =>
-        Stream.make(
-          transition(first, first.change),
-          transition(second, second.change)
-        )
-      ).pipe(Effect.flip)
-    );
     expect(malformed).toMatchObject({ _tag: "PreparedContentDecodeError" });
     expect(order).toMatchObject({ _tag: "PreparedContentOrderError" });
-    expect(route).toMatchObject({ _tag: "PreparedContentRouteError" });
   });
 
   it.each([

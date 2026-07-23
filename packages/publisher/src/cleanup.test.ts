@@ -12,18 +12,17 @@ import {
   ReleaseCleanupIncompleteError,
 } from "#publisher/cleanup";
 import { PublicationTarget } from "#publisher/publication/spec";
+import { makePublicationTarget } from "#test/target";
 
 const releaseId = ReleaseIdSchema.make("release-cleanup");
 const progress: ReleaseCleanupReceipt = {
   complete: false,
   deletedArtifacts: 0,
-  deletedItems: 2,
   releaseId,
 };
 const complete: ReleaseCleanupReceipt = {
   complete: true,
   deletedArtifacts: 1,
-  deletedItems: 3,
   releaseId,
 };
 
@@ -33,23 +32,7 @@ function makeTarget(
     request: ReleaseCleanupRequest
   ) => Effect.Effect<ReleaseCleanupReceipt>
 ) {
-  /** Makes every target operation outside cleanup fail immediately. */
-  const unused = () => Effect.die("Unused publication target operation.");
-  return PublicationTarget.of({
-    abort: unused,
-    activate: unused,
-    cleanup,
-    current: unused,
-    finalize: unused,
-    headPage: unused,
-    rollbackPage: unused,
-    stageArtifactBatch: unused,
-    stageItemBatch: unused,
-    stageProjectionBatch: unused,
-    stageRelease: unused,
-    status: unused,
-    verify: unused,
-  });
+  return makePublicationTarget({ cleanup });
 }
 
 /** Returns cumulative receipts in order and defects if the caller overreads. */
@@ -76,13 +59,10 @@ function runCleanup(
 
 describe("cleanupContentRelease", () => {
   it("loops over cumulative progress until cleanup completes", async () => {
-    const cleanup = receiptSequence([
-      progress,
-      { ...complete, deletedItems: 2 },
-    ]);
+    const cleanup = receiptSequence([progress, complete]);
     const result = await Effect.runPromise(runCleanup({ releaseId }, cleanup));
 
-    expect(result).toEqual({ ...complete, deletedItems: 2 });
+    expect(result).toEqual(complete);
     expect(cleanup).toHaveBeenCalledTimes(2);
     expect(cleanup).toHaveBeenCalledWith({ releaseId });
   });
@@ -99,7 +79,6 @@ describe("cleanupContentRelease", () => {
       new ReleaseCleanupIncompleteError({
         attempts: 100,
         deletedArtifacts: 0,
-        deletedItems: 2,
         releaseId,
       })
     );
@@ -137,8 +116,8 @@ describe("cleanupContentRelease", () => {
         { ...complete, releaseId: ReleaseIdSchema.make("release-other") },
       ]),
       receiptSequence([
-        { ...progress, deletedItems: 2 },
-        { ...complete, deletedItems: 1 },
+        { ...progress, deletedArtifacts: 2 },
+        { ...complete, deletedArtifacts: 1 },
       ]),
     ];
     const errors = await Effect.runPromise(

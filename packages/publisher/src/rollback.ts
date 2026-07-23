@@ -3,6 +3,7 @@ import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route-page";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, type Scope, type Stream } from "effect";
@@ -31,9 +32,15 @@ import {
   buildRollbackRelease,
   type RollbackBaseCatalog,
 } from "#publisher/rollback/release";
+import { streamRouteRecords } from "#publisher/rollback/route-page";
+import {
+  inverseRouteStream,
+  verifyRouteProof,
+} from "#publisher/rollback/route-proof";
 import { streamRollbackRecords } from "#publisher/rollback/stream";
 
 type RollbackPageStream = ReturnType<typeof streamRollbackRecords>;
+type RoutePageStream = ReturnType<typeof streamRouteRecords>;
 type DerivedTransitionStream = ReturnType<
   typeof deriveRollbackRecords<
     Stream.Stream.Error<RollbackPageStream>,
@@ -70,7 +77,8 @@ export type PrepareRollbackError =
   | RollbackProofIdentityError
   | Stream.Stream.Error<ActiveHeadStream>
   | Stream.Stream.Error<DerivedTransitionStream>
-  | Stream.Stream.Error<ResultCatalogStream>;
+  | Stream.Stream.Error<ResultCatalogStream>
+  | Stream.Stream.Error<RoutePageStream>;
 
 /** Services required by secure rollback preparation. */
 export type PrepareRollbackContext =
@@ -79,7 +87,8 @@ export type PrepareRollbackContext =
   | Path.Path
   | Scope.Scope
   | Stream.Stream.Context<ActiveHeadStream>
-  | Stream.Stream.Context<DerivedTransitionStream>;
+  | Stream.Stream.Context<DerivedTransitionStream>
+  | Stream.Stream.Context<RoutePageStream>;
 
 /** Complete Effect interface for secure rollback preparation. */
 export type PrepareRollback = (
@@ -166,6 +175,20 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     mode: proofMode,
     records: transitionSpool.replay,
   });
+  const routeSpool = yield* createReplaySpool({
+    prefix: "aksara-route-rollback-",
+    schema: RouteRollbackRecordSchema,
+    stream: streamRouteRecords(
+      base.releaseId,
+      base.manifestHash,
+      proof.release.manifest.routeCount
+    ),
+  });
+  yield* verifyRouteProof({
+    manifest: proof.release.manifest,
+    mode: proofMode,
+    records: routeSpool.replay,
+  });
   const activeSpool = yield* createReplaySpool({
     prefix: "aksara-rollback-active-",
     schema: MaterialHeadSchema,
@@ -191,5 +214,6 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     releaseId: input.releaseId,
     rendererManifest,
     result: resultSpool.replay,
+    routes: () => inverseRouteStream(routeSpool.replay, input.releaseId),
   });
 });

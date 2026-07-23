@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { parseCliArguments, parsePreviewArguments } from "#cli/args";
 
 const ENGLISH_DOCUMENT =
-  "packages/corpus/material/lesson/mathematics/function-composition_/inverse-function/function-concept/en.mdx";
+  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx";
 
 /** Runs argument decoding at the test runner boundary. */
 function parse(args: readonly string[]) {
@@ -66,10 +66,46 @@ describe("production arguments", () => {
       command: "cleanup",
       releaseId: "release-2026-06-22",
     });
+    await expect(parseCli(["status"])).resolves.toEqual({
+      command: "status",
+    });
     await expect(
-      parseCli(["release", "--release-id", "release-2026-07-22"])
+      parseCli([
+        "release",
+        "--release-id",
+        "release-2026-07-22",
+        "--recovery-id",
+        "recovery-2026-07-22",
+      ])
     ).resolves.toEqual({
       command: "release",
+      recoveryId: "recovery-2026-07-22",
+      releaseId: "release-2026-07-22",
+    });
+    await expect(
+      parseCli([
+        "accept",
+        "--release-id",
+        "release-2026-07-22",
+        "--recovery-id",
+        "recovery-2026-07-22",
+      ])
+    ).resolves.toEqual({
+      command: "accept",
+      recoveryId: "recovery-2026-07-22",
+      releaseId: "release-2026-07-22",
+    });
+    await expect(
+      parseCli([
+        "recover",
+        "--release-id",
+        "release-2026-07-22",
+        "--recovery-id",
+        "recovery-2026-07-22",
+      ])
+    ).resolves.toEqual({
+      command: "recover",
+      recoveryId: "recovery-2026-07-22",
       releaseId: "release-2026-07-22",
     });
     await expect(
@@ -77,11 +113,14 @@ describe("production arguments", () => {
         "rollback",
         "--rollback-of",
         "release-2026-07-21",
+        "--recovery-id",
+        "recovery-2026-07-22",
         "--release-id",
         "rollback-2026-07-22",
       ])
     ).resolves.toEqual({
       command: "rollback",
+      recoveryId: "recovery-2026-07-22",
       releaseId: "rollback-2026-07-22",
       rollbackOf: "release-2026-07-21",
     });
@@ -93,6 +132,12 @@ describe("production arguments", () => {
     [["abort", "--release-id", "INVALID"], "abort", "--release-id", "value"],
     [["cleanup"], "cleanup", "--release-id", "missing"],
     [
+      ["status", "--release-id", "release"],
+      "status",
+      "--release-id",
+      "unknown",
+    ],
+    [
       ["cleanup", "--rollback-of", "prior"],
       "cleanup",
       "--rollback-of",
@@ -103,6 +148,12 @@ describe("production arguments", () => {
       "cleanup",
       "--release-id",
       "value",
+    ],
+    [
+      ["abort", "--recovery-id", "recovery-next"],
+      "abort",
+      "--recovery-id",
+      "unknown",
     ],
     [["release"], "release", "--release-id", "missing"],
     [
@@ -132,7 +183,7 @@ describe("production arguments", () => {
       "value",
     ],
     [
-      ["rollback", "--release-id", "next"],
+      ["rollback", "--release-id", "next", "--recovery-id", "recovery-next"],
       "rollback",
       "--rollback-of",
       "missing",
@@ -142,6 +193,8 @@ describe("production arguments", () => {
         "rollback",
         "--release-id",
         "next",
+        "--recovery-id",
+        "recovery-next",
         "--rollback-of",
         "first",
         "--rollback-of",
@@ -152,10 +205,64 @@ describe("production arguments", () => {
       "duplicate",
     ],
     [
-      ["rollback", "--release-id", "next", "--rollback-of", "INVALID"],
+      [
+        "rollback",
+        "--release-id",
+        "next",
+        "--recovery-id",
+        "recovery-next",
+        "--rollback-of",
+        "INVALID",
+      ],
       "rollback",
       "--rollback-of",
       "value",
+    ],
+    [
+      ["release", "--release-id", "release-next"],
+      "release",
+      "--recovery-id",
+      "missing",
+    ],
+    [
+      [
+        "release",
+        "--release-id",
+        "release-next",
+        "--recovery-id",
+        "release-next",
+      ],
+      "release",
+      "--recovery-id",
+      "identity",
+    ],
+    [
+      [
+        "rollback",
+        "--release-id",
+        "rollback-next",
+        "--recovery-id",
+        "recovery-next",
+        "--rollback-of",
+        "rollback-next",
+      ],
+      "rollback",
+      "--rollback-of",
+      "identity",
+    ],
+    [
+      [
+        "rollback",
+        "--release-id",
+        "rollback-next",
+        "--recovery-id",
+        "release-active",
+        "--rollback-of",
+        "release-active",
+      ],
+      "rollback",
+      "--recovery-id",
+      "identity",
     ],
   ] as const)(
     "rejects production invocation %#",

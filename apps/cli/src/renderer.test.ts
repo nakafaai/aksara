@@ -1,4 +1,5 @@
 import {
+  FetchHttpClient,
   HttpClient,
   HttpClientError,
   HttpClientRequest,
@@ -26,6 +27,9 @@ function rendererResponse(
   const headers = new Headers(init.headers);
   if (!headers.has("cache-control")) {
     headers.set("cache-control", "private, no-store");
+  }
+  if (!headers.has("content-type")) {
+    headers.set("content-type", "application/json");
   }
   return webResponse(request, body, { ...init, headers });
 }
@@ -73,6 +77,34 @@ describe("Nakafa renderer discovery", () => {
       authorization: "Bearer renderer-test-token",
       "cache-control": "no-store",
     });
+  });
+
+  it("disables native redirect following at the fetch adapter", async () => {
+    let redirect: NonNullable<
+      Parameters<typeof globalThis.fetch>[1]
+    >["redirect"];
+    /** Captures the Fetch redirect policy before returning a valid manifest. */
+    const fetch: typeof globalThis.fetch = (_input, init) => {
+      redirect = init?.redirect;
+      return Promise.resolve(
+        new Response(JSON.stringify(RENDERER_MANIFEST), {
+          headers: {
+            "cache-control": "private, no-store",
+            "content-type": "application/json",
+          },
+        })
+      );
+    };
+
+    await expect(
+      Effect.runPromise(
+        fetchRendererManifest(ORIGIN, TOKEN).pipe(
+          Effect.provide(FetchHttpClient.layer),
+          Effect.provideService(FetchHttpClient.Fetch, fetch)
+        )
+      )
+    ).resolves.toEqual(RENDERER_MANIFEST);
+    expect(redirect).toBe("manual");
   });
 
   it.each([
@@ -169,6 +201,7 @@ describe("Nakafa renderer discovery", () => {
       [Uint8Array.from([0xc3, 0x28]), {}],
       ["{", {}],
       ["{}", {}],
+      ["{}", { headers: { "content-type": "text/plain" } }],
       [null, {}],
     ];
     const responses = [...bodies];
@@ -194,6 +227,7 @@ describe("Nakafa renderer discovery", () => {
       "json",
       "json",
       "contract",
+      "json",
       "json",
     ]);
     expect(errors[3]).toMatchObject({ retryable: false });

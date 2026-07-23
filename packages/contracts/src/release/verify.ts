@@ -5,6 +5,8 @@ import { hashContentReleaseManifest } from "#contracts/release/hash";
 import {
   type ContentReleaseBundle,
   ContentReleaseBundleSchema,
+  type RollbackContentReleaseBundle,
+  RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
 import {
   canonicalizeContentReleaseSigningInput,
@@ -98,11 +100,12 @@ export const verifySignedContentRelease = Effect.fn(
   )
 );
 
-/** Authenticates one signed release and its frozen renderer contract together. */
-export const verifyContentReleaseBundle = Effect.fn(
-  "AksaraContracts.verifyContentReleaseBundle"
-)((input: unknown) =>
-  Schema.decodeUnknown(ContentReleaseBundleSchema)(input, {
+/** Strictly decodes and authenticates one renderer-bound release bundle. */
+function verifyBundle<A extends ContentReleaseBundle, I>(
+  schema: Schema.Schema<A, I>,
+  input: unknown
+) {
+  return Schema.decodeUnknown(schema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(
@@ -112,18 +115,36 @@ export const verifyContentReleaseBundle = Effect.fn(
             "Release bundle verification input does not satisfy its exact wire contract.",
         })
     ),
-    Effect.flatMap((bundle) =>
-      Effect.all({
-        release: verifySignedContentRelease(bundle.release),
-        rendererManifest: validateRendererManifestHash(bundle.rendererManifest),
-      })
-    ),
-    Effect.map(
-      (bundle) =>
-        ({
-          release: bundle.release,
-          rendererManifest: bundle.rendererManifest,
-        }) satisfies ContentReleaseBundle
+    Effect.tap((bundle) =>
+      Effect.all(
+        [
+          verifySignedContentRelease(bundle.release),
+          validateRendererManifestHash(bundle.rendererManifest),
+        ],
+        { discard: true }
+      )
     )
-  )
+  );
+}
+
+/** Authenticates one signed release and its frozen renderer contract together. */
+export const verifyContentReleaseBundle: (
+  input: unknown
+) => Effect.Effect<
+  ContentReleaseBundle,
+  Effect.Effect.Error<ReturnType<typeof verifyBundle>>,
+  Effect.Effect.Context<ReturnType<typeof verifyBundle>>
+> = Effect.fn("AksaraContracts.verifyContentReleaseBundle")((input: unknown) =>
+  verifyBundle(ContentReleaseBundleSchema, input)
+);
+
+/** Authenticates a renderer-bound release only when rollback owns its origin. */
+export const verifyRollbackContentReleaseBundle: (
+  input: unknown
+) => Effect.Effect<
+  RollbackContentReleaseBundle,
+  Effect.Effect.Error<ReturnType<typeof verifyBundle>>,
+  Effect.Effect.Context<ReturnType<typeof verifyBundle>>
+> = Effect.fn("AksaraContracts.verifyRollbackContentReleaseBundle")(
+  (input: unknown) => verifyBundle(RollbackContentReleaseBundleSchema, input)
 );

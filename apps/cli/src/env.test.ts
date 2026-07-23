@@ -3,9 +3,9 @@ import { Cause, ConfigError, ConfigProvider, Effect, Redacted } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   decodePreviewEnvironment,
-  readCleanupEnvironment,
   readPreviewEnvironment,
   readProductionEnvironment,
+  readPublicationEnvironment,
 } from "#cli/env";
 
 const privateKeyPem = generateKeyPairSync("ed25519")
@@ -25,7 +25,7 @@ const productionValues = new Map([
   ["AKSARA_SIGNING_KEY_ID", "production-2026"],
   ["AKSARA_SIGNING_PRIVATE_KEY", privateKeyPem],
 ]);
-const cleanupValues = new Map(
+const publicationValues = new Map(
   [...productionValues].filter(([variable]) =>
     variable.startsWith("AKSARA_PUBLICATION_")
   )
@@ -48,9 +48,9 @@ function rejectProduction(values: ReadonlyMap<string, string>) {
   return provideConfig(readProductionEnvironment().pipe(Effect.flip), values);
 }
 
-/** Returns one sanitized cleanup configuration failure. */
-function rejectCleanup(values: ReadonlyMap<string, string>) {
-  return provideConfig(readCleanupEnvironment().pipe(Effect.flip), values);
+/** Returns one sanitized publication configuration failure. */
+function rejectPublication(values: ReadonlyMap<string, string>) {
+  return provideConfig(readPublicationEnvironment().pipe(Effect.flip), values);
 }
 
 describe("preview environment", () => {
@@ -115,10 +115,10 @@ describe("preview environment", () => {
 });
 
 describe("production environment", () => {
-  it("loads only the publication endpoint and redacted token for cleanup", async () => {
+  it("loads only the endpoint and token shared by lifecycle commands", async () => {
     const environment = await provideConfig(
-      readCleanupEnvironment(),
-      cleanupValues
+      readPublicationEnvironment(),
+      publicationValues
     );
 
     expect(environment.publicationEndpoint.href).toBe(
@@ -137,15 +137,15 @@ describe("production environment", () => {
     ["AKSARA_PUBLICATION_ENDPOINT", "http://content.example.test/publish"],
     ["AKSARA_PUBLICATION_TOKEN", "contains whitespace"],
   ] as const)(
-    "rejects unsafe cleanup %s configuration",
+    "rejects unsafe publication %s configuration",
     async (variable, value) => {
-      const values = new Map(cleanupValues);
+      const values = new Map(publicationValues);
       if (value === undefined) {
         values.delete(variable);
       } else {
         values.set(variable, value);
       }
-      await expect(rejectCleanup(values)).resolves.toMatchObject({
+      await expect(rejectPublication(values)).resolves.toMatchObject({
         _tag: "ProductionEnvironmentError",
         variable,
       });

@@ -18,12 +18,15 @@ import {
   publishRollbackRelease,
 } from "@nakafa/aksara-publisher/publication";
 import {
+  PublicationActivation,
+  PublicationRecoveryId,
   PublicationSigningKey,
   PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
+import { makeProductionActivation } from "#cli/activation";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import { readProductionEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
@@ -87,8 +90,8 @@ function verifyPendingBundle(
   resolver: typeof ContentVerificationKeyResolver.Service
 ) {
   return verifyContentReleaseBundle({
-    release: action.pending.release,
-    rendererManifest: action.pending.rendererManifest,
+    release: action.candidate.release,
+    rendererManifest: action.candidate.rendererManifest,
   }).pipe(
     Effect.provideService(ContentVerificationKeyResolver, resolver),
     Effect.mapError(mapProductionError("state"))
@@ -119,6 +122,10 @@ export const runProductionCommand: (
       token: environment.publicationToken,
     }).pipe(Effect.mapError(mapProductionError("target")));
     const target = retryPublicationTarget(rawTarget);
+    const activation = yield* makeProductionActivation({
+      endpoint: environment.rendererEndpoint,
+      token: environment.rendererToken,
+    });
     const current = yield* target
       .current()
       .pipe(Effect.mapError(mapProductionError("target")));
@@ -128,6 +135,7 @@ export const runProductionCommand: (
 
     if (action.kind === "resume") {
       const receipt = yield* resumeContentRelease(action.bundle).pipe(
+        Effect.provideService(PublicationActivation, activation),
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationTarget, target),
         Effect.mapError(mapProductionError("publish"))
@@ -171,6 +179,8 @@ export const runProductionCommand: (
         );
       }
       const receipt = yield* publishGitRelease(publishable).pipe(
+        Effect.provideService(PublicationActivation, activation),
+        Effect.provideService(PublicationRecoveryId, input.args.recoveryId),
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationSigningKey, signingKey),
         Effect.provideService(PublicationTarget, target),
@@ -209,6 +219,8 @@ export const runProductionCommand: (
       );
     }
     const receipt = yield* publishRollbackRelease(publishable).pipe(
+      Effect.provideService(PublicationActivation, activation),
+      Effect.provideService(PublicationRecoveryId, input.args.recoveryId),
       Effect.provideService(ContentVerificationKeyResolver, keyResolver),
       Effect.provideService(PublicationSigningKey, signingKey),
       Effect.provideService(PublicationTarget, target),

@@ -69,7 +69,7 @@ registry but may not import every rich client implementation.
 
 The repository owner approved finite static route-domain registries on
 2026-07-21. This accepts the topology class, not every measured route partition.
-The actual Nakafa candidate also showed that the legacy filesystem MDX graph
+The actual Nakafa candidate also showed that the filesystem MDX graph
 still delivered a Three.js chunk to a plain biology route. The result must be
 reproduced with the published-artifact runtime before it becomes a production
 gate.
@@ -92,4 +92,4 @@ A local production-browser smoke then verified the real source-owned bodies:
 This proves the native-loader route topology and real client implementations.
 It does not prove published-artifact execution, cache invalidation, hosted
 preview behavior, or body-graph removal. Those remain mandatory before either
-route switches from the legacy source mode.
+route switches to the published source.

@@ -1,28 +1,31 @@
 import { HttpClient } from "@effect/platform";
 import type {
-  PublicationReceipt,
-  SignedContentRelease,
-} from "@nakafa/aksara-contracts/release";
-import type {
+  ActivateRecoveryRequest,
   ActivateReleaseRequest,
-  FinalizeReleaseRequest,
   PublicationAbortRequest,
+  PublicationAcceptRequest,
   PublicationCleanupRequest,
   PublicationCurrentRequest,
   PublicationHeadPageRequest,
+  PublicationRecoveryLookupRequest,
   PublicationRequest,
   PublicationRollbackRequest,
+  PublicationRoutePageRequest,
   PublicationStatusRequest,
+  StageRecoveryRequest,
   VerifyReleaseRequest,
 } from "@nakafa/aksara-contracts/transport/request";
 import {
+  ActivateRecoverySuccessSchema,
   ActivateReleaseSuccessSchema,
-  FinalizeReleaseSuccessSchema,
   PublicationAbortSuccessSchema,
+  PublicationAcceptSuccessSchema,
   PublicationCleanupSuccessSchema,
   PublicationCurrentSuccessSchema,
   PublicationHeadPageSuccessSchema,
+  PublicationRecoverySuccessSchema,
   PublicationRollbackSuccessSchema,
+  PublicationRoutePageSuccessSchema,
   PublicationStatusSuccessSchema,
   VerifyReleaseSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/response";
@@ -32,7 +35,6 @@ import {
   type HttpPublicationTargetConfig,
   validateHttpConfig,
 } from "#publisher/target/config";
-import type { PublicationTargetFailure } from "#publisher/target/errors";
 import { sendPublicationRequest } from "#publisher/target/exchange";
 
 /** Narrows validated success evidence without defecting target failures. */
@@ -49,29 +51,6 @@ export const makeHttpPublicationTarget = Effect.fn(
   /** Sends a request through the client captured by this service instance. */
   const send = (request: PublicationRequest) =>
     sendPublicationRequest(client, config, request);
-  /** Finalizes bounded pages until the target returns its durable receipt. */
-  const finalizeRelease = (
-    release: SignedContentRelease,
-    afterIndex = -1
-  ): Effect.Effect<PublicationReceipt, PublicationTargetFailure> => {
-    const request: FinalizeReleaseRequest = {
-      afterIndex,
-      operation: "finalize",
-      release,
-    };
-    return send(request).pipe(
-      Effect.flatMap((response) =>
-        decodeSuccess(FinalizeReleaseSuccessSchema, response)
-      ),
-      Effect.flatMap((response) => {
-        if (response.value.done) {
-          return Effect.succeed(response.value.receipt);
-        }
-        return finalizeRelease(release, response.value.nextIndex);
-      })
-    );
-  };
-
   return PublicationTarget.of({
     abort: (input) => {
       const request: PublicationAbortRequest = {
@@ -85,6 +64,18 @@ export const makeHttpPublicationTarget = Effect.fn(
         Effect.map((response) => response.value)
       );
     },
+    accept: (input) => {
+      const request: PublicationAcceptRequest = {
+        ...input,
+        operation: "accept",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(PublicationAcceptSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      );
+    },
     activate: (release) => {
       const request: ActivateReleaseRequest = {
         operation: "activate",
@@ -93,6 +84,18 @@ export const makeHttpPublicationTarget = Effect.fn(
       return send(request).pipe(
         Effect.flatMap((response) =>
           decodeSuccess(ActivateReleaseSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      );
+    },
+    activateRecovery: (release) => {
+      const request: ActivateRecoveryRequest = {
+        operation: "activateRecovery",
+        release,
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(ActivateRecoverySuccessSchema, response)
         ),
         Effect.map((response) => response.value)
       );
@@ -118,7 +121,6 @@ export const makeHttpPublicationTarget = Effect.fn(
         Effect.map((response) => response.value)
       );
     },
-    finalize: (release) => finalizeRelease(release),
     headPage: (input) => {
       const request: PublicationHeadPageRequest = {
         ...input,
@@ -127,6 +129,18 @@ export const makeHttpPublicationTarget = Effect.fn(
       return send(request).pipe(
         Effect.flatMap((response) =>
           decodeSuccess(PublicationHeadPageSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      );
+    },
+    recovery: (input) => {
+      const request: PublicationRecoveryLookupRequest = {
+        ...input,
+        operation: "recovery",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(PublicationRecoverySuccessSchema, response)
         ),
         Effect.map((response) => response.value)
       );
@@ -143,14 +157,35 @@ export const makeHttpPublicationTarget = Effect.fn(
         Effect.map((response) => response.value)
       );
     },
+    routePage: (input) => {
+      const request: PublicationRoutePageRequest = {
+        ...input,
+        operation: "routePage",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(PublicationRoutePageSuccessSchema, response)
+        ),
+        Effect.map((response) => response.value)
+      );
+    },
     stageArtifactBatch: (input) =>
       send({ ...input, operation: "stageArtifactBatch" }).pipe(Effect.asVoid),
     stageItemBatch: (input) =>
       send({ ...input, operation: "stageItemBatch" }).pipe(Effect.asVoid),
     stageProjectionBatch: (input) =>
       send({ ...input, operation: "stageProjectionBatch" }).pipe(Effect.asVoid),
+    stageRecovery: (input) => {
+      const request: StageRecoveryRequest = {
+        ...input,
+        operation: "stageRecovery",
+      };
+      return send(request).pipe(Effect.asVoid);
+    },
     stageRelease: (input) =>
       send({ ...input, operation: "stageRelease" }).pipe(Effect.asVoid),
+    stageRouteBatch: (input) =>
+      send({ ...input, operation: "stageRouteBatch" }).pipe(Effect.asVoid),
     status: (input) => {
       const request: PublicationStatusRequest = {
         ...input,

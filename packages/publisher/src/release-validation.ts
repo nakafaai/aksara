@@ -16,6 +16,7 @@ import type {
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type { VerifiedContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import type { VerifiedContentRoutes } from "@nakafa/aksara-contracts/release/routes";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema } from "effect";
 
@@ -104,6 +105,7 @@ export function validateVerificationEvidence(
   release: SignedContentRelease,
   summary: VerifiedContentReleaseItems,
   projectionSummary: VerifiedContentProjections,
+  routeSummary: VerifiedContentRoutes,
   evidence: ReleaseVerificationEvidence
 ) {
   const { manifest } = release;
@@ -130,7 +132,11 @@ export function validateVerificationEvidence(
     evidence.resultCount === manifest.resultCount &&
     evidence.resultDigest === manifest.resultDigest &&
     evidence.rollbackCount === manifest.rollbackCount &&
-    evidence.rollbackDigest === manifest.rollbackDigest;
+    evidence.rollbackDigest === manifest.rollbackDigest &&
+    evidence.routeCount === manifest.routeCount &&
+    evidence.routeCount === routeSummary.count &&
+    evidence.routeDigest === manifest.routeDigest &&
+    evidence.stagedRoutes === manifest.routeCount;
   if (matches) {
     return Effect.void;
   }
@@ -153,11 +159,13 @@ export function validateManifestReceipt(
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&
+    receipt.stagedRoutes === manifest.routeCount &&
     receipt.activatedHeads === manifest.upsertCount &&
     receipt.deletedHeads === manifest.deleteCount &&
     receipt.projectionDigest === manifest.projectionDigest &&
     receipt.resultCount === manifest.resultCount &&
-    receipt.resultDigest === manifest.resultDigest;
+    receipt.resultDigest === manifest.resultDigest &&
+    receipt.routeDigest === manifest.routeDigest;
   if (matches) {
     return Effect.succeed(receipt);
   }
@@ -173,11 +181,13 @@ export function validatePublicationReceipt(
   release: SignedContentRelease,
   summary: VerifiedContentReleaseItems,
   projectionSummary: VerifiedContentProjections,
+  routeSummary: VerifiedContentRoutes,
   receipt: PublicationReceipt
 ) {
   const streamsMatch =
     receipt.stagedArtifacts === summary.upsertCount &&
     receipt.stagedProjections === projectionSummary.count &&
+    receipt.stagedRoutes === routeSummary.count &&
     receipt.activatedHeads === summary.upsertCount &&
     receipt.deletedHeads === summary.deleteCount;
   if (!streamsMatch) {

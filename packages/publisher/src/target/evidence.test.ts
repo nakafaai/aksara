@@ -1,10 +1,13 @@
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { hasBoundPublicationSuccess } from "#publisher/target/evidence";
 import { foreignTransportSuccess } from "#test/foreign";
-import { transportRequests, transportSuccess } from "#test/transport";
+import { completedRecovery } from "#test/recovery";
+import { transportRequests } from "#test/transport";
+import { transportSuccess } from "#test/transport-success";
 
 describe("publication success evidence", () => {
   it("binds every successful operation to its exact request", () => {
@@ -23,6 +26,24 @@ describe("publication success evidence", () => {
     ).toEqual(
       transportRequests.map(({ operation }) => operation === "current")
     );
+  });
+
+  it("binds completed recovery evidence to the protected active relation", () => {
+    const request = transportRequests.find(
+      (candidate) => candidate.operation === "recovery"
+    );
+    if (request?.operation !== "recovery") {
+      return;
+    }
+    expect(
+      hasBoundPublicationSuccess(request, completedRecovery(request))
+    ).toBe(true);
+    expect(
+      hasBoundPublicationSuccess(
+        request,
+        completedRecovery(request, ReleaseIdSchema.make("test-other-active"))
+      )
+    ).toBe(false);
   });
 
   it("binds head pages to the requested cursor and row ceiling", () => {
@@ -143,30 +164,6 @@ describe("publication success evidence", () => {
     ).toEqual(receiptCases.map(() => false));
   });
 
-  it("rejects completed finalization receipts from another manifest", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "finalize"
-    );
-    if (request?.operation !== "finalize") {
-      return;
-    }
-    const success = transportSuccess(request);
-    if (success.operation !== "finalize" || !success.value.done) {
-      return;
-    }
-    const response = Schema.decodeUnknownSync(PublicationSuccessSchema)({
-      ...success,
-      value: {
-        ...success.value,
-        receipt: {
-          ...success.value.receipt,
-          projectionDigest: `sha256:${"f".repeat(64)}`,
-        },
-      },
-    });
-    expect(hasBoundPublicationSuccess(request, response)).toBe(false);
-  });
-
   it("binds rollback pages to their requested cursor and limit", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "rollbackPage"
@@ -228,7 +225,7 @@ describe("publication success evidence", () => {
     }
     const progressed = Schema.decodeUnknownSync(PublicationSuccessSchema)({
       ...success,
-      value: { ...success.value, complete: false, deletedItems: 2 },
+      value: { ...success.value, complete: false, retryAt: 1_800_000_000_000 },
     });
     expect(hasBoundPublicationSuccess(request, success)).toBe(true);
     expect(hasBoundPublicationSuccess(request, progressed)).toBe(true);

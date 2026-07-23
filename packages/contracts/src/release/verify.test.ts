@@ -1,5 +1,4 @@
 // @vitest-environment node
-
 import { Buffer } from "node:buffer";
 import {
   type BinaryLike,
@@ -10,6 +9,7 @@ import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import {
   Ed25519SignatureSchema,
+  ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
@@ -22,14 +22,15 @@ import {
 } from "#contracts/release/spec";
 import {
   verifyContentReleaseBundle,
+  verifyRollbackContentReleaseBundle,
   verifySignedContentRelease,
 } from "#contracts/release/verify";
+import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
-import { rendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -60,9 +61,9 @@ vi.mock("node:crypto", async (importOriginal) => {
     },
   };
 });
-
 const keys = generateKeyPairSync("ed25519");
 const keyId = SigningKeyIdSchema.make("test-signing-key");
+const baseReleaseId = ReleaseIdSchema.make("test-release-parent");
 const publicKeyPem = keys.publicKey
   .export({ format: "pem", type: "spki" })
   .toString();
@@ -77,7 +78,7 @@ const rendererManifest = await Effect.runPromise(
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseManifestHash: `sha256:${"d".repeat(64)}`,
-  baseReleaseId: "test-release-parent",
+  baseReleaseId,
   baseResultCount: 1,
   baseResultDigest: `sha256:${"e".repeat(64)}`,
   deleteCount: 1,
@@ -93,9 +94,10 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   resultDigest: `sha256:${"f".repeat(64)}`,
   rollbackCount: 2,
   rollbackDigest: `sha256:${"1".repeat(64)}`,
+  routeCount: 0,
+  routeDigest: `sha256:${"1".repeat(64)}`,
   upsertCount: 1,
 });
-
 /** Produces a valid signed release for verification scenarios. */
 function signRelease(value = manifest): SignedContentRelease {
   const manifestHash = Effect.runSync(hashContentReleaseManifest(value));
@@ -115,7 +117,6 @@ function signRelease(value = manifest): SignedContentRelease {
     ),
   });
 }
-
 const trustedResolver = ContentVerificationKeyResolver.of({
   /** Resolves the trusted test key or fails with the production error shape. */
   resolve: (requestedKeyId) => {
@@ -125,7 +126,6 @@ const trustedResolver = ContentVerificationKeyResolver.of({
     return Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId }));
   },
 });
-
 /** Runs release verification and returns its expected typed failure. */
 function reject(input: unknown, resolver = trustedResolver) {
   return Effect.runPromise(
@@ -135,7 +135,6 @@ function reject(input: unknown, resolver = trustedResolver) {
     )
   );
 }
-
 /** Runs bundle verification with the trusted test resolver. */
 function verifyBundle(input: unknown) {
   return Effect.runPromise(
@@ -144,11 +143,17 @@ function verifyBundle(input: unknown) {
     )
   );
 }
-
+/** Runs rollback-only bundle verification with the trusted test resolver. */
+function verifyRollbackBundle(input: unknown) {
+  return Effect.runPromise(
+    verifyRollbackContentReleaseBundle(input).pipe(
+      Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
+    )
+  );
+}
 describe("server-only release verification", () => {
   it("authenticates the complete constant-size manifest", async () => {
     const release = signRelease();
-
     await expect(
       Effect.runPromise(
         verifySignedContentRelease(release).pipe(
@@ -164,6 +169,27 @@ describe("server-only release verification", () => {
       release,
       rendererManifest,
     });
+  });
+
+  it("accepts only rollback-owned bundles at recovery boundaries", async () => {
+    const rollbackManifest = ContentReleaseManifestSchema.make({
+      ...manifest,
+      origin: { kind: "rollback", releaseId: baseReleaseId },
+    });
+    const rollback = signRelease(rollbackManifest);
+    await expect(
+      verifyRollbackBundle({ release: rollback, rendererManifest })
+    ).resolves.toEqual({ release: rollback, rendererManifest });
+    const error = await Effect.runPromise(
+      verifyRollbackContentReleaseBundle({
+        release: signRelease(),
+        rendererManifest,
+      }).pipe(
+        Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
+        Effect.flip
+      )
+    );
+    expect(error._tag).toBe("ReleaseBundleVerificationDecodeError");
   });
 
   it("rejects mismatched or corrupted frozen renderer evidence", async () => {
@@ -183,7 +209,6 @@ describe("server-only release verification", () => {
     expect(mismatched).toMatchObject({
       _tag: "ReleaseBundleVerificationDecodeError",
     });
-
     const corruptHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
     const corruptManifest = ContentReleaseManifestSchema.make({
       ...manifest,

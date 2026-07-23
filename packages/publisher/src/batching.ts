@@ -8,14 +8,21 @@ import {
   canonicalizeContentReleaseItem,
 } from "@nakafa/aksara-contracts/release";
 import {
+  type ContentRouteItem,
+  canonicalizeContentRouteItem,
+} from "@nakafa/aksara-contracts/release/route";
+import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ARTIFACT_BATCH_COUNT,
   MAX_ITEM_BATCH_BYTES,
   MAX_ITEM_BATCH_COUNT,
+  MAX_ROUTE_BATCH_BYTES,
+  MAX_ROUTE_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import type {
   StageArtifactBatchInput,
   StageItemBatchInput,
+  StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/request";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
@@ -27,6 +34,11 @@ export function canonicalizeReleaseItemBatch(batch: StageItemBatchInput) {
     .join(
       ","
     )}],"operation":"stageItemBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
+}
+
+/** Serializes one complete route batch in deterministic wire order. */
+export function canonicalizeRouteBatch(batch: StageRouteBatchInput) {
+  return `{"batchIndex":${batch.batchIndex},"operation":"stageRouteBatch","releaseId":${JSON.stringify(batch.releaseId)},"routes":[${batch.routes.map(canonicalizeContentRouteItem).join(",")}]}`;
 }
 
 /** Serializes one complete artifact batch in deterministic wire order. */
@@ -56,6 +68,27 @@ export function makeReleaseItemBatches<E, R>(
     releaseId,
     serialize: canonicalizeReleaseItemBatch,
     values: items,
+  });
+}
+
+/** Streams bounded route envelopes with contiguous batch identities. */
+export function makeRouteBatches<E, R>(
+  releaseId: ReleaseId,
+  routes: Stream.Stream<ContentRouteItem, E, R>
+) {
+  return streamBatches({
+    build: (values, batchIndex, batchReleaseId) => ({
+      batchIndex,
+      releaseId: batchReleaseId,
+      routes: values,
+    }),
+    count: (batch) => batch.routes.length,
+    kind: "content-route",
+    maxBytes: MAX_ROUTE_BATCH_BYTES,
+    maxCount: MAX_ROUTE_BATCH_COUNT,
+    releaseId,
+    serialize: canonicalizeRouteBatch,
+    values: routes,
   });
 }
 

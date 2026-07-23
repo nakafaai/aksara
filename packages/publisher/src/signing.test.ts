@@ -25,11 +25,11 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { digestItems } from "@nakafa/aksara-contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
-import { rendererDomains } from "#test/renderer";
 
 const cryptoFailure = vi.hoisted(() => ({ failNextSign: false }));
 
@@ -54,8 +54,8 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   })
 );
@@ -116,6 +116,8 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   resultDigest: `sha256:${"e".repeat(64)}`,
   rollbackCount: items.length,
   rollbackDigest: `sha256:${"f".repeat(64)}`,
+  routeCount: 0,
+  routeDigest: `sha256:${"0".repeat(64)}`,
   upsertCount: items.length,
 });
 

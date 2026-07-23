@@ -28,6 +28,7 @@ import {
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
+import type { RouteTransition, RouteVersion } from "#publisher/routes";
 
 const MaterialFamilyFieldSchema = Schema.Literal(
   "contentKey",
@@ -82,6 +83,8 @@ export interface MaterialPublication {
   >;
   /** Replays the complete desired compact-head catalog in canonical order. */
   readonly result: () => Stream.Stream<MaterialHead, ReplaySpoolError>;
+  /** Replays route ownership independently from body publication items. */
+  readonly routes: () => Stream.Stream<RouteTransition, ReplaySpoolError>;
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and active-head stream. */
@@ -206,6 +209,32 @@ function verifyBaseCatalog(
   return Effect.fail(new MaterialGenesisCatalogError({ actualCount: count }));
 }
 
+/** Selects the route state represented by one compact prior snapshot. */
+function priorRoute(transition: PreparedContentTransition): RouteVersion {
+  if (transition.prior.state === "absent") {
+    return transition.prior;
+  }
+  return transition.prior.head;
+}
+
+/** Selects the desired route state represented by one authored record. */
+function nextRoute(transition: PreparedContentTransition): RouteVersion {
+  const { change } = transition.record;
+  if (!("projection" in transition.record)) {
+    return { contentKey: change.contentKey, locale: change.locale };
+  }
+  return {
+    contentKey: change.contentKey,
+    locale: change.locale,
+    publicPath: transition.record.projection.publicPath,
+  };
+}
+
+/** Converts one material body transition into an independent route transition. */
+function materialRoute(transition: PreparedContentTransition): RouteTransition {
+  return { current: priorRoute(transition), next: nextRoute(transition) };
+}
+
 /**
  * Plans a fresh-CI material delta from exact Git sources and authoritative heads.
  * Unchanged sources are inspected but never passed to MDX code generation.
@@ -254,5 +283,7 @@ export const prepareMaterialPublication: <E, R>(
     spool
       .replay()
       .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.result)));
-  return { records, result };
+  /** Replays canonical public-route changes derived from material records. */
+  const routes = () => records().pipe(Stream.map(materialRoute));
+  return { records, result, routes };
 });

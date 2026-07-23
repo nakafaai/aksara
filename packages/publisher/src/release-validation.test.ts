@@ -8,6 +8,7 @@ import {
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
@@ -17,7 +18,6 @@ import {
   validateReleaseRendererManifest,
   validateVerificationEvidence,
 } from "#publisher/release-validation";
-import { rendererDomains } from "#test/renderer";
 
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseManifestHash: null,
@@ -37,6 +37,8 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   rollbackCount: 0,
   rollbackDigest: `sha256:${"a".repeat(64)}`,
+  routeCount: 0,
+  routeDigest: `sha256:${"b".repeat(64)}`,
   upsertCount: 0,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
@@ -63,11 +65,15 @@ const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
   resultDigest: manifest.resultDigest,
   rollbackCount: manifest.rollbackCount,
   rollbackDigest: manifest.rollbackDigest,
+  routeCount: manifest.routeCount,
+  routeDigest: manifest.routeDigest,
   stagedArtifacts: 0,
+  stagedRoutes: manifest.routeCount,
   upsertHeads: 0,
 });
 const summary = { deleteCount: 0, upsertCount: 0 };
 const projectionSummary = { count: manifest.projectionCount };
+const routeSummary = { count: manifest.routeCount };
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   change: {
@@ -104,8 +110,8 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   })
 );
@@ -133,6 +139,7 @@ describe("release validation", () => {
           release,
           summary,
           projectionSummary,
+          routeSummary,
           evidence
         )
       )
@@ -141,10 +148,16 @@ describe("release validation", () => {
 
   it("rejects a projection count that differs from the signed manifest", async () => {
     const error = await Effect.runPromise(
-      validateVerificationEvidence(release, summary, projectionSummary, {
-        ...evidence,
-        projectionCount: evidence.projectionCount + 1,
-      }).pipe(Effect.flip)
+      validateVerificationEvidence(
+        release,
+        summary,
+        projectionSummary,
+        routeSummary,
+        {
+          ...evidence,
+          projectionCount: evidence.projectionCount + 1,
+        }
+      ).pipe(Effect.flip)
     );
 
     expect(error._tag).toBe("ReleaseVerificationMismatchError");
@@ -170,15 +183,18 @@ describe("release validation", () => {
       releaseId: manifest.releaseId,
       resultCount: manifest.resultCount,
       resultDigest: manifest.resultDigest,
+      routeDigest: manifest.routeDigest,
       stagedArtifacts: 0,
       stagedItems: 0,
       stagedProjections: manifest.projectionCount,
+      stagedRoutes: manifest.routeCount,
     });
     const error = await Effect.runPromise(
       validatePublicationReceipt(
         release,
         summary,
         projectionSummary,
+        routeSummary,
         receipt
       ).pipe(Effect.flip)
     );
@@ -195,15 +211,18 @@ describe("release validation", () => {
       releaseId: manifest.releaseId,
       resultCount: manifest.resultCount,
       resultDigest: manifest.resultDigest,
+      routeDigest: manifest.routeDigest,
       stagedArtifacts: 0,
       stagedItems: 0,
       stagedProjections: manifest.projectionCount - 1,
+      stagedRoutes: manifest.routeCount,
     });
     const error = await Effect.runPromise(
       validatePublicationReceipt(
         release,
         summary,
         projectionSummary,
+        routeSummary,
         receipt
       ).pipe(Effect.flip)
     );

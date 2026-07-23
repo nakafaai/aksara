@@ -2,251 +2,289 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
-import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
+import type {
+  ContentReleaseBundle,
+  ContentReleaseStatus,
+} from "@nakafa/aksara-contracts/release/lifecycle";
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { completePublicationLifecycle } from "#publisher/publication/lifecycle";
-import { PublicationTarget } from "#publisher/publication/spec";
+import {
+  activateCandidateRelease,
+  stageCandidateRelease,
+  stageRecoveryRelease,
+  verifyCandidateActivation,
+} from "#publisher/publication/lifecycle";
+import type { PublicationPlan } from "#publisher/publication/plan";
+import { PublicationActivation } from "#publisher/publication/spec";
 import {
   PublicationStaleBaseError,
   PublicationTargetConflictError,
 } from "#publisher/target/errors";
-import { makeSignedBundle } from "#test/publication";
+import { releaseEvidence, releaseReceipt } from "#test/lifecycle-state";
+import {
+  makeRollbackRelease,
+  makeSignedBundle,
+  rendererManifest,
+  testVerificationResolver,
+} from "#test/publication";
+import { makePublicationTarget } from "#test/target";
 
 const bundle = await makeSignedBundle("test-lifecycle");
-const { release, rendererManifest } = bundle;
+const { release } = bundle;
 const { manifest } = release;
-const summary = {
-  deleteCount: manifest.deleteCount,
-  upsertCount: manifest.upsertCount,
-};
-const projectionSummary = { count: manifest.projectionCount };
-const receipt: PublicationReceipt = {
-  activatedHeads: manifest.upsertCount,
-  deletedHeads: manifest.deleteCount,
-  manifestHash: release.manifestHash,
-  projectionDigest: manifest.projectionDigest,
-  releaseId: manifest.releaseId,
-  resultCount: manifest.resultCount,
-  resultDigest: manifest.resultDigest,
-  stagedArtifacts: manifest.upsertCount,
-  stagedItems: manifest.itemCount,
-  stagedProjections: manifest.projectionCount,
-};
-const evidence = {
-  baseManifestHash: manifest.baseManifestHash,
-  baseReleaseId: manifest.baseReleaseId,
-  baseResultCount: manifest.baseResultCount,
-  baseResultDigest: manifest.baseResultDigest,
-  deleteHeads: manifest.deleteCount,
-  itemCount: manifest.itemCount,
-  itemsDigest: manifest.itemsDigest,
-  manifestHash: release.manifestHash,
-  projectionCount: manifest.projectionCount,
-  projectionDigest: manifest.projectionDigest,
-  releaseId: manifest.releaseId,
-  rendererContractVersion: manifest.rendererContractVersion,
-  rendererManifestHash: manifest.rendererManifestHash,
-  resultCount: manifest.resultCount,
-  resultDigest: manifest.resultDigest,
-  rollbackCount: manifest.rollbackCount,
-  rollbackDigest: manifest.rollbackDigest,
-  stagedArtifacts: manifest.upsertCount,
-  upsertHeads: manifest.upsertCount,
-};
+const rollback = await makeRollbackRelease("test-lifecycle-recovery");
+const rollbackBundle = { release: rollback.release, rendererManifest };
+const receipt = releaseReceipt(release);
 
 /** Creates one exact durable status for the requested lifecycle phase. */
-function statusFor(phase: ContentReleaseStatus["phase"]): ContentReleaseStatus {
+function statusFor(
+  phase: ContentReleaseStatus["phase"],
+  selected: ContentReleaseBundle["release"]
+): ContentReleaseStatus {
   const identity = {
-    manifestHash: release.manifestHash,
-    releaseId: release.manifest.releaseId,
+    manifestHash: selected.manifestHash,
+    releaseId: selected.manifest.releaseId,
   };
-  if (phase === "completed") {
-    return { ...identity, phase, receipt };
-  }
-  return { ...identity, phase };
+  return phase === "completed"
+    ? { ...identity, phase, receipt: releaseReceipt(selected) }
+    : { ...identity, phase };
 }
 
-/** Builds an observable target for one persisted lifecycle phase. */
-function makeTarget(
+/** Builds a replayable lifecycle plan around focused target capabilities. */
+function makePlan(
   phase: ContentReleaseStatus["phase"],
-  overrides: {
-    readonly activate?: typeof PublicationTarget.Service.activate;
-    readonly stageRelease?: typeof PublicationTarget.Service.stageRelease;
-    readonly status?: typeof PublicationTarget.Service.status;
-  } = {}
+  overrides: Partial<
+    typeof import("#publisher/publication/spec").PublicationTarget.Service
+  > = {},
+  selectedBundle: ContentReleaseBundle = bundle
 ) {
-  const stageRelease = vi.fn(overrides.stageRelease ?? (() => Effect.void));
-  const status = vi.fn(
-    overrides.status ?? (() => Effect.succeed(statusFor(phase)))
-  );
-  const verify = vi.fn(() => Effect.succeed(evidence));
-  const activate = vi.fn(overrides.activate ?? (() => Effect.succeed(receipt)));
-  const finalize = vi.fn(() => Effect.succeed(receipt));
-  const target = PublicationTarget.of({
-    abort: () => Effect.die("Abort is outside lifecycle tests."),
+  const selected = selectedBundle.release;
+  const selectedManifest = selected.manifest;
+  const stage = vi.fn();
+  const stageRelease = vi.fn(() => Effect.void);
+  const stageRecovery = vi.fn(() => Effect.void);
+  const status = vi.fn(() => Effect.succeed(statusFor(phase, selected)));
+  const verify = vi.fn(() => Effect.succeed(releaseEvidence(selected)));
+  const activate = vi.fn(() => Effect.succeed(releaseReceipt(selected)));
+  const target = makePublicationTarget({
     activate,
-    cleanup: () => Effect.die("Cleanup is outside lifecycle tests."),
-    current: () => Effect.die("Current state is outside lifecycle tests."),
-    finalize,
-    headPage: () => Effect.die("Head pages are outside lifecycle tests."),
-    rollbackPage: () => Effect.die("Rollback is outside lifecycle tests."),
-    stageArtifactBatch: () => Effect.void,
-    stageItemBatch: () => Effect.void,
-    stageProjectionBatch: () => Effect.void,
+    stageRecovery,
     stageRelease,
     status,
     verify,
+    ...overrides,
   });
-  return { activate, finalize, stageRelease, status, target, verify };
-}
-
-/** Runs the lifecycle with a separately observable staging Effect. */
-function runLifecycle(
-  target: typeof PublicationTarget.Service,
-  stage = Effect.void
-) {
-  return completePublicationLifecycle({
-    projectionSummary,
-    release,
-    rendererManifest,
-    stage,
-    summary,
+  const plan: PublicationPlan<never, never> = {
+    bundle: selectedBundle,
+    projectionSummary: { count: selectedManifest.projectionCount },
+    routeSummary: { count: selectedManifest.routeCount },
+    stage: Effect.sync(stage),
+    summary: {
+      deleteCount: selectedManifest.deleteCount,
+      upsertCount: selectedManifest.upsertCount,
+    },
     target,
-  });
+  };
+  return { activate, plan, stage, stageRecovery, stageRelease, status, verify };
 }
 
-describe("completePublicationLifecycle", () => {
+/** Runs one lifecycle program with the release fixture's verification key. */
+function runLifecycle<A, E>(
+  program: Effect.Effect<A, E, ContentVerificationKeyResolver>
+) {
+  return Effect.runPromise(
+    program.pipe(
+      Effect.provideService(
+        ContentVerificationKeyResolver,
+        testVerificationResolver
+      )
+    )
+  );
+}
+
+describe("publication lifecycle", () => {
   it.each([
-    ["missing", 1, 1, 1, 1],
-    ["staging", 1, 1, 1, 1],
-    ["verifying", 0, 1, 1, 1],
-    ["verified", 0, 0, 1, 1],
-    ["active", 0, 0, 0, 1],
-    ["finalizing", 0, 0, 0, 1],
-    ["completed", 0, 0, 0, 0],
+    ["missing", 1, 1],
+    ["staging", 1, 1],
+    ["verifying", 0, 1],
+    ["verified", 0, 0],
   ] as const)(
-    "resumes %s only after staging its exact signed envelope",
-    async (phase, stageCalls, verifyCalls, activateCalls, finalizeCalls) => {
-      const state = makeTarget(phase);
-      const stage = vi.fn();
-      await Effect.runPromise(runLifecycle(state.target, Effect.sync(stage)));
-      expect(state.stageRelease).toHaveBeenCalledOnce();
-      expect(state.stageRelease).toHaveBeenCalledWith({
-        release,
-        rendererManifest,
+    "resumes candidate phase %s",
+    async (phase, stageCalls, verifyCalls) => {
+      const state = makePlan(phase);
+      await expect(
+        runLifecycle(stageCandidateRelease(state.plan))
+      ).resolves.toEqual({
+        kind: "verified",
       });
-      expect(state.status).toHaveBeenCalledWith({
-        manifestHash: release.manifestHash,
-        releaseId: release.manifest.releaseId,
-      });
-      expect(state.stageRelease.mock.invocationCallOrder[0]).toBeLessThan(
-        state.status.mock.invocationCallOrder[0] ?? 0
-      );
-      expect(stage).toHaveBeenCalledTimes(stageCalls);
+      expect(state.stageRelease).toHaveBeenCalledWith(bundle);
+      expect(state.stage).toHaveBeenCalledTimes(stageCalls);
       expect(state.verify).toHaveBeenCalledTimes(verifyCalls);
-      expect(state.activate).toHaveBeenCalledTimes(activateCalls);
-      expect(state.finalize).toHaveBeenCalledTimes(finalizeCalls);
     }
   );
 
-  it("fails an immutable aborted release before staging its rows", async () => {
-    const state = makeTarget("aborted");
-    const stage = vi.fn();
-    const error = await Effect.runPromise(
-      runLifecycle(state.target, Effect.sync(stage)).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({
-      _tag: "PublicationReleaseAbortedError",
-      manifestHash: release.manifestHash,
-      releaseId: release.manifest.releaseId,
+  it("returns an authenticated completed candidate receipt", async () => {
+    const state = makePlan("completed");
+    await expect(
+      runLifecycle(stageCandidateRelease(state.plan))
+    ).resolves.toEqual({
+      kind: "completed",
+      receipt,
     });
-    expect(stage).not.toHaveBeenCalled();
+    expect(state.stage).not.toHaveBeenCalled();
+    expect(state.verify).not.toHaveBeenCalled();
   });
 
-  it("fails an aborting release before staging or activation work", async () => {
-    const state = makeTarget("aborting");
-    const stage = vi.fn();
-    const error = await Effect.runPromise(
-      runLifecycle(state.target, Effect.sync(stage)).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({
-      _tag: "PublicationResumePhaseError",
-      phase: "aborting",
-      releaseId: release.manifest.releaseId,
-    });
-    expect(stage).not.toHaveBeenCalled();
-    expect(state.verify).not.toHaveBeenCalled();
-    expect(state.activate).not.toHaveBeenCalled();
-    expect(state.finalize).not.toHaveBeenCalled();
-  });
+  it.each(["aborting", "aborted"] as const)(
+    "rejects terminal phase %s",
+    async (phase) => {
+      const state = makePlan(phase);
+      const error = await runLifecycle(
+        stageCandidateRelease(state.plan).pipe(Effect.flip)
+      );
+      expect(error._tag).toBe(
+        phase === "aborted"
+          ? "PublicationReleaseAbortedError"
+          : "PublicationResumePhaseError"
+      );
+      expect(state.stage).not.toHaveBeenCalled();
+    }
+  );
 
   it.each([
     {
       manifestHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-      releaseId: release.manifest.releaseId,
+      releaseId: manifest.releaseId,
     },
     {
       manifestHash: release.manifestHash,
       releaseId: ReleaseIdSchema.make("another-release"),
     },
   ])("rejects status for another exact manifest", async (identity) => {
-    const state = makeTarget("staging", {
+    const state = makePlan("staging", {
       status: () => Effect.succeed({ ...identity, phase: "staging" }),
     });
-    const error = await Effect.runPromise(
-      runLifecycle(state.target).pipe(Effect.flip)
+    const error = await runLifecycle(
+      stageCandidateRelease(state.plan).pipe(Effect.flip)
     );
-    expect(error).toMatchObject({ _tag: "PublicationStatusMismatchError" });
-    expect(state.verify).not.toHaveBeenCalled();
+    expect(error._tag).toBe("PublicationStatusMismatchError");
   });
 
-  it.each(["verified", "completed"] as const)(
-    "does not resume a %s release when exact manifest staging conflicts",
-    async (phase) => {
-      const state = makeTarget(phase, {
-        stageRelease: () =>
-          Effect.fail(
-            new PublicationTargetConflictError({
-              conflict: {
-                code: "CONTENT_RELEASE_CONFLICT",
-                kind: "conflict",
-                operation: "stageRelease",
-                releaseId: release.manifest.releaseId,
-              },
+  it("does not resume after immutable envelope staging conflicts", async () => {
+    const conflict = new PublicationTargetConflictError({
+      conflict: {
+        code: "CONTENT_RELEASE_CONFLICT",
+        kind: "conflict",
+        operation: "stageRelease",
+        releaseId: manifest.releaseId,
+      },
+    });
+    const state = makePlan("verified", {
+      stageRelease: () => Effect.fail(conflict),
+    });
+    await expect(
+      runLifecycle(stageCandidateRelease(state.plan).pipe(Effect.flip))
+    ).resolves.toEqual(conflict);
+    expect(state.status).not.toHaveBeenCalled();
+  });
+
+  it("stages and verifies the signed recovery envelope", async () => {
+    const state = makePlan("missing", {}, rollbackBundle);
+    await expect(
+      runLifecycle(stageRecoveryRelease(state.plan))
+    ).resolves.toBeUndefined();
+    expect(state.stageRecovery).toHaveBeenCalledWith(rollbackBundle);
+  });
+
+  it("rejects a recovery identity that is already completed", async () => {
+    const state = makePlan("completed", {}, rollbackBundle);
+    const error = await runLifecycle(
+      stageRecoveryRelease(state.plan).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PublicationResumePhaseError",
+      phase: "completed",
+    });
+  });
+
+  it("rejects a Git-owned bundle at the recovery-only target boundary", async () => {
+    const state = makePlan("verified");
+    const error = await runLifecycle(
+      stageRecoveryRelease(state.plan).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PublicationModeMismatchError",
+      manifestMode: "git",
+      preparedMode: "rollback",
+    });
+    expect(state.stageRecovery).not.toHaveBeenCalled();
+  });
+
+  it("revalidates the live renderer immediately before activation", async () => {
+    const verify = vi.fn(() => Effect.void);
+    const state = makePlan("verified");
+    await runLifecycle(
+      verifyCandidateActivation(state.plan).pipe(
+        Effect.provideService(
+          PublicationActivation,
+          PublicationActivation.of({
+            invalidate: () => Effect.void,
+            verify,
+          })
+        )
+      )
+    );
+    expect(verify).toHaveBeenCalledWith(release);
+  });
+
+  it("validates the atomic activation receipt", async () => {
+    const invalidate = vi.fn(() => Effect.void);
+    const state = makePlan("verified");
+    await expect(
+      runLifecycle(
+        activateCandidateRelease(state.plan).pipe(
+          Effect.provideService(
+            PublicationActivation,
+            PublicationActivation.of({
+              invalidate,
+              verify: () => Effect.void,
+            })
+          )
+        )
+      )
+    ).resolves.toEqual(receipt);
+    expect(state.activate).toHaveBeenCalledWith(release);
+    expect(invalidate).toHaveBeenCalledWith(release);
+  });
+
+  it("surfaces a stale base from atomic activation", async () => {
+    const failure = new PublicationStaleBaseError({
+      failure: {
+        activeReleaseId: ReleaseIdSchema.make("another-release"),
+        code: "CONTENT_RELEASE_STALE_BASE",
+        expectedBaseReleaseId: null,
+        kind: "stale-base",
+        operation: "activate",
+        releaseId: manifest.releaseId,
+      },
+    });
+    const state = makePlan("verified", {
+      activate: () => Effect.fail(failure),
+    });
+    await expect(
+      runLifecycle(
+        activateCandidateRelease(state.plan).pipe(
+          Effect.provideService(
+            PublicationActivation,
+            PublicationActivation.of({
+              invalidate: () => Effect.void,
+              verify: () => Effect.void,
             })
           ),
-      });
-      const error = await Effect.runPromise(
-        runLifecycle(state.target).pipe(Effect.flip)
-      );
-      expect(error).toMatchObject({ _tag: "PublicationTargetConflictError" });
-      expect(state.status).not.toHaveBeenCalled();
-      expect(state.activate).not.toHaveBeenCalled();
-    }
-  );
-
-  it("surfaces a stale base before finalization", async () => {
-    const state = makeTarget("verified", {
-      activate: () =>
-        Effect.fail(
-          new PublicationStaleBaseError({
-            failure: {
-              activeReleaseId: ReleaseIdSchema.make("another-release"),
-              code: "CONTENT_RELEASE_STALE_BASE",
-              expectedBaseReleaseId: null,
-              kind: "stale-base",
-              operation: "activate",
-              releaseId: release.manifest.releaseId,
-            },
-          })
-        ),
-    });
-    const error = await Effect.runPromise(
-      runLifecycle(state.target).pipe(Effect.flip)
-    );
-    expect(error).toMatchObject({ _tag: "PublicationStaleBaseError" });
-    expect(state.finalize).not.toHaveBeenCalled();
+          Effect.flip
+        )
+      )
+    ).resolves.toEqual(failure);
   });
 });

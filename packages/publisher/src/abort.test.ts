@@ -11,6 +11,7 @@ import {
   ReleaseAbortIncompleteError,
 } from "#publisher/abort";
 import { PublicationTarget } from "#publisher/publication/spec";
+import { makePublicationTarget } from "#test/target";
 
 const releaseId = ReleaseIdSchema.make("release-abort");
 const progress: ReleaseAbortReceipt = {
@@ -30,23 +31,7 @@ const complete: ReleaseAbortReceipt = {
 function makeTarget(
   abort: (request: ReleaseAbortRequest) => Effect.Effect<ReleaseAbortReceipt>
 ) {
-  /** Makes every target operation outside abort fail immediately. */
-  const unused = () => Effect.die("Unused publication target operation.");
-  return PublicationTarget.of({
-    abort,
-    activate: unused,
-    cleanup: unused,
-    current: unused,
-    finalize: unused,
-    headPage: unused,
-    rollbackPage: unused,
-    stageArtifactBatch: unused,
-    stageItemBatch: unused,
-    stageProjectionBatch: unused,
-    stageRelease: unused,
-    status: unused,
-    verify: unused,
-  });
+  return makePublicationTarget({ abort });
 }
 
 /** Returns cumulative abort receipts and defects on an unexpected overread. */
@@ -79,16 +64,22 @@ describe("abortContentRelease", () => {
   });
 
   it("returns resumable evidence after one bounded call budget", async () => {
-    const abort = receiptSequence(Array.from({ length: 100 }, () => progress));
+    const abort = receiptSequence(
+      Array.from({ length: 100 }, (_, index) => ({
+        ...progress,
+        processedItems: index + 1,
+        totalItems: 101,
+      }))
+    );
     const error = await Effect.runPromise(
       runAbort({ releaseId }, abort).pipe(Effect.flip)
     );
     expect(error).toEqual(
       new ReleaseAbortIncompleteError({
         attempts: 100,
-        processedItems: 2,
+        processedItems: 100,
         releaseId,
-        totalItems: 3,
+        totalItems: 101,
       })
     );
   });
@@ -104,11 +95,12 @@ describe("abortContentRelease", () => {
     expect(abort).not.toHaveBeenCalled();
   });
 
-  it("rejects foreign identity, changed totals, and decreasing progress", async () => {
+  it("rejects foreign, stalled, decreasing, and changed-total evidence", async () => {
     const cases = [
       receiptSequence([
         { ...complete, releaseId: ReleaseIdSchema.make("release-other") },
       ]),
+      receiptSequence([progress, progress]),
       receiptSequence([progress, { ...progress, totalItems: 4 }]),
       receiptSequence([progress, { ...progress, processedItems: 1 }]),
     ];

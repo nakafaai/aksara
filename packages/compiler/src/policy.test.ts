@@ -11,7 +11,6 @@ import type {
 import { enforceExecutablePolicy } from "#compiler/policy";
 
 const scopeState = vi.hoisted(() => ({ withoutGlobalScope: false }));
-
 vi.mock("eslint-scope", async (importOriginal) => {
   const original = await importOriginal<typeof import("eslint-scope")>();
   return {
@@ -26,27 +25,35 @@ vi.mock("eslint-scope", async (importOriginal) => {
     },
   };
 });
-
 /** Runs the executable-policy plugin against one MDX fixture. */
-async function inspectPolicy(rawMdx: string) {
+async function inspectPolicy(
+  rawMdx: string,
+  allowedComponents: readonly string[] = []
+) {
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
   const violations: ExecutablePolicyViolation[] = [];
   await compile(rawMdx, {
-    remarkPlugins: [enforceExecutablePolicy(unsupportedModules, violations)],
+    remarkPlugins: [
+      enforceExecutablePolicy(
+        new Set(allowedComponents),
+        unsupportedModules,
+        violations
+      ),
+    ],
   });
   return { unsupportedModules, violations };
 }
-
 /** Runs executable-policy inspection against an already constructed MDX tree. */
 async function inspectTree(tree: Root) {
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
   const violations: ExecutablePolicyViolation[] = [];
   await unified()
-    .use(enforceExecutablePolicy(unsupportedModules, violations))
+    .use(
+      enforceExecutablePolicy(new Set<string>(), unsupportedModules, violations)
+    )
     .run(tree);
   return { unsupportedModules, violations };
 }
-
 afterEach(() => {
   scopeState.withoutGlobalScope = false;
 });
@@ -76,7 +83,6 @@ describe("enforceExecutablePolicy", () => {
     ["unknown-free-global", "props", "{props.components.FunctionMachine({})}"],
   ] as const)("rejects %s", async (rule, identifier, rawMdx) => {
     const result = await inspectPolicy(rawMdx);
-
     expect(result.violations).toContainEqual(
       identifier === undefined ? { rule } : { identifier, rule }
     );
@@ -97,7 +103,6 @@ describe("enforceExecutablePolicy", () => {
     "rejects prototype-chain property %s",
     async (identifier, rawMdx) => {
       const result = await inspectPolicy(rawMdx);
-
       expect(result.violations).toContainEqual({
         identifier,
         rule: "prototype-chain-access",
@@ -110,7 +115,6 @@ describe("enforceExecutablePolicy", () => {
     '<div {...{ dangerouslySetInnerHTML: { __html: "unsafe" } }} />',
   ])("rejects raw HTML injection through JSX", async (rawMdx) => {
     const result = await inspectPolicy(rawMdx);
-
     expect(result.violations).toContainEqual({
       identifier: "dangerouslySetInnerHTML",
       rule: "dangerous-jsx-attribute",
@@ -127,7 +131,6 @@ describe("enforceExecutablePolicy", () => {
     '{<div xml:lang="en" />}',
   ])("keeps safe static-property and JSX forms", async (rawMdx) => {
     const result = await inspectPolicy(rawMdx);
-
     expect(result.violations).toEqual([]);
   });
 
@@ -252,5 +255,46 @@ describe("enforceExecutablePolicy", () => {
     );
 
     expect(result).toEqual({ unsupportedModules: [], violations: [] });
+  });
+
+  it("allows selected renderer components inside rich JSX attributes", async () => {
+    const result = await inspectPolicy(
+      `<AtomShellLab
+        description={
+          <>
+            Capacity <InlineMath math="2n^2" />.
+          </>
+        }
+        labels={{
+          note: <>Shell <InlineMath math="K" /> is full.</>,
+        }}
+      />`,
+      ["AtomShellLab", "InlineMath"]
+    );
+
+    expect(result.violations).toEqual([]);
+  });
+
+  it("keeps unselected JSX attribute globals forbidden", async () => {
+    const result = await inspectPolicy(
+      '<AtomShellLab description={<><UnknownMath math="2n^2" /></>} />',
+      ["AtomShellLab", "InlineMath"]
+    );
+
+    expect(result.violations).toContainEqual({
+      identifier: "UnknownMath",
+      rule: "unknown-free-global",
+    });
+  });
+
+  it("never lets a renderer name override privileged-global rules", async () => {
+    const result = await inspectPolicy('{Function("return 1")()}', [
+      "Function",
+    ]);
+
+    expect(result.violations).toContainEqual({
+      identifier: "Function",
+      rule: "Function",
+    });
   });
 });

@@ -1,27 +1,34 @@
-import { SignedContentReleaseSchema } from "@nakafa/aksara-contracts/release";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  type RollbackSignedContentRelease,
+  RollbackSignedContentReleaseSchema,
+  type SignedContentRelease,
+  SignedContentReleaseSchema,
+} from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   type PublicationRequest,
   PublicationRequestSchema,
 } from "@nakafa/aksara-contracts/transport/request";
 import {
+  type PublicationResponse,
   PublicationResponseSchema,
-  type PublicationSuccess,
-  PublicationSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/response";
-import { Effect, Match, Schema } from "effect";
+import { Effect, Schema } from "effect";
 import {
   transportArtifactHash,
   transportContent,
   transportReleaseId,
   transportSignature,
 } from "#test/content";
-import { headRequest, headSuccess } from "#test/head";
-import { rendererDomains } from "#test/renderer";
+import { headRequest } from "#test/head";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const projectionDigest = `sha256:${"c".repeat(64)}`;
+const recoveryId = ReleaseIdSchema.make("test-http-recovery");
 export const transportRenderer = await Effect.runPromise(
   createRendererManifest({
     base: {
@@ -32,7 +39,7 @@ export const transportRenderer = await Effect.runPromise(
   })
 );
 
-export const transportRelease = Schema.decodeUnknownSync(
+export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
   SignedContentReleaseSchema
 )({
   keyId: "test-http-key",
@@ -54,56 +61,108 @@ export const transportRelease = Schema.decodeUnknownSync(
     resultDigest: transportArtifactHash,
     rollbackCount: 2,
     rollbackDigest: manifestHash,
+    routeCount: 0,
+    routeDigest: manifestHash,
     upsertCount: 1,
   },
   manifestHash,
   signature: transportSignature,
 });
 
-export const transportRequests = Schema.decodeUnknownSync(
-  Schema.Array(PublicationRequestSchema)
-)([
-  { operation: "current" },
-  { operation: "abort", releaseId: transportReleaseId },
-  headRequest,
-  {
-    operation: "stageRelease",
-    release: transportRelease,
-    rendererManifest: transportRenderer,
+/** Exact signed inverse accepted by recovery-only transport operations. */
+export const transportRecovery: RollbackSignedContentRelease =
+  Schema.decodeUnknownSync(RollbackSignedContentReleaseSchema)({
+    ...transportRelease,
+    manifest: {
+      ...transportRelease.manifest,
+      baseManifestHash: transportRelease.manifestHash,
+      baseReleaseId: transportRelease.manifest.releaseId,
+      baseResultCount: transportRelease.manifest.resultCount,
+      baseResultDigest: transportRelease.manifest.resultDigest,
+      origin: {
+        kind: "rollback",
+        releaseId: transportRelease.manifest.releaseId,
+      },
+      releaseId: recoveryId,
+      resultCount: transportRelease.manifest.baseResultCount,
+      resultDigest: transportRelease.manifest.baseResultDigest,
+    },
+    manifestHash: `sha256:${"d".repeat(64)}`,
+  });
+const transportRoute = ContentRouteItemSchema.make({
+  change: {
+    contentKey: transportContent.projection.contentKey,
+    locale: transportContent.projection.locale,
+    operation: "bind",
+    publicPath: transportContent.projection.publicPath,
   },
-  {
-    batchIndex: 0,
-    items: transportContent.items,
-    operation: "stageItemBatch",
-    releaseId: transportReleaseId,
-  },
-  {
-    batchIndex: 0,
-    operation: "stageProjectionBatch",
-    projections: [transportContent.projection],
-    releaseId: transportReleaseId,
-  },
-  {
-    artifacts: [transportContent.artifact],
-    batchIndex: 0,
-    operation: "stageArtifactBatch",
-    releaseId: transportReleaseId,
-  },
-  { manifestHash, operation: "status", releaseId: transportReleaseId },
-  { operation: "verify", release: transportRelease },
-  { operation: "activate", release: transportRelease },
-  { afterIndex: -1, operation: "finalize", release: transportRelease },
-  {
-    afterIndex: -1,
-    limit: 8,
-    operation: "rollbackPage",
-    rollbackOf: transportReleaseId,
-    rollbackOfManifestHash: manifestHash,
-  },
-  { operation: "cleanup", releaseId: transportReleaseId },
-]);
+  index: 0,
+  releaseId: transportRelease.manifest.releaseId,
+});
 
-const publicationReceipt = {
+export const transportRequests: readonly PublicationRequest[] =
+  Schema.decodeUnknownSync(Schema.Array(PublicationRequestSchema))([
+    { operation: "current" },
+    { operation: "accept", recoveryId, releaseId: transportReleaseId },
+    { operation: "abort", releaseId: transportReleaseId },
+    { operation: "recovery", recoveryId, releaseId: transportReleaseId },
+    headRequest,
+    {
+      operation: "stageRelease",
+      release: transportRelease,
+      rendererManifest: transportRenderer,
+    },
+    {
+      operation: "stageRecovery",
+      release: transportRecovery,
+      rendererManifest: transportRenderer,
+    },
+    {
+      batchIndex: 0,
+      operation: "stageRouteBatch",
+      releaseId: transportReleaseId,
+      routes: [transportRoute],
+    },
+    {
+      batchIndex: 0,
+      items: transportContent.items,
+      operation: "stageItemBatch",
+      releaseId: transportReleaseId,
+    },
+    {
+      batchIndex: 0,
+      operation: "stageProjectionBatch",
+      projections: [transportContent.projection],
+      releaseId: transportReleaseId,
+    },
+    {
+      artifacts: [transportContent.artifact],
+      batchIndex: 0,
+      operation: "stageArtifactBatch",
+      releaseId: transportReleaseId,
+    },
+    { manifestHash, operation: "status", releaseId: transportReleaseId },
+    { operation: "verify", release: transportRelease },
+    { operation: "activate", release: transportRelease },
+    { operation: "activateRecovery", release: transportRecovery },
+    {
+      afterIndex: -1,
+      limit: 8,
+      operation: "rollbackPage",
+      rollbackOf: transportReleaseId,
+      rollbackOfManifestHash: manifestHash,
+    },
+    {
+      afterIndex: -1,
+      limit: 8,
+      operation: "routePage",
+      rollbackOf: transportReleaseId,
+      rollbackOfManifestHash: manifestHash,
+    },
+    { operation: "cleanup", releaseId: transportReleaseId },
+  ]);
+
+export const transportReceipt = {
   activatedHeads: 1,
   deletedHeads: 1,
   manifestHash,
@@ -111,171 +170,14 @@ const publicationReceipt = {
   releaseId: transportRelease.manifest.releaseId,
   resultCount: transportRelease.manifest.resultCount,
   resultDigest: transportRelease.manifest.resultDigest,
+  routeDigest: transportRelease.manifest.routeDigest,
   stagedArtifacts: 1,
   stagedItems: 2,
   stagedProjections: 1,
+  stagedRoutes: 0,
 };
 
 /** Decodes a deliberately modified response into the public wire contract. */
-export function transportResponse(input: unknown) {
+export function transportResponse(input: unknown): PublicationResponse {
   return Schema.decodeUnknownSync(PublicationResponseSchema)(input);
-}
-
-/** Builds exact success evidence for one transport protocol request. */
-export function transportSuccess(
-  request: PublicationRequest,
-  pendingFinalize = false
-): PublicationSuccess {
-  const success = Match.value(request).pipe(
-    Match.discriminatorsExhaustive("operation")({
-      abort: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          complete: true,
-          processedItems: transportRelease.manifest.itemCount,
-          releaseId: value.releaseId,
-          totalItems: transportRelease.manifest.itemCount,
-        },
-      }),
-      activate: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: publicationReceipt,
-      }),
-      cleanup: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          complete: true,
-          deletedArtifacts: 0,
-          deletedItems: 0,
-          releaseId: value.releaseId,
-        },
-      }),
-      current: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          activeManifestHash: null,
-          activeReleaseId: null,
-          completed: null,
-          pending: {
-            phase: "staging",
-            release: transportRelease,
-            rendererManifest: transportRenderer,
-          },
-        },
-      }),
-      finalize: (value) => {
-        const nextIndex = value.release.manifest.itemCount - 1;
-        if (pendingFinalize) {
-          return {
-            ok: true,
-            operation: value.operation,
-            releaseId: value.release.manifest.releaseId,
-            value: { done: false, nextIndex: 0, processed: 1 },
-          };
-        }
-        return {
-          ok: true,
-          operation: value.operation,
-          releaseId: value.release.manifest.releaseId,
-          value: {
-            done: true,
-            nextIndex,
-            processed: nextIndex - value.afterIndex,
-            receipt: publicationReceipt,
-          },
-        };
-      },
-      headPage: headSuccess,
-      rollbackPage: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          done: true,
-          nextIndex: -1,
-          records: [],
-          rollbackOf: value.rollbackOf,
-          rollbackOfManifestHash: value.rollbackOfManifestHash,
-          total: 0,
-        },
-      }),
-      stageArtifactBatch: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          batchIndex: value.batchIndex,
-          created: value.artifacts.length,
-          releaseId: value.releaseId,
-          unchanged: 0,
-        },
-      }),
-      stageItemBatch: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          batchIndex: value.batchIndex,
-          created: value.items.length,
-          releaseId: value.releaseId,
-          unchanged: 0,
-        },
-      }),
-      stageProjectionBatch: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          batchIndex: value.batchIndex,
-          created: value.projections.length,
-          releaseId: value.releaseId,
-          unchanged: 0,
-        },
-      }),
-      stageRelease: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          manifestHash: value.release.manifestHash,
-          phase: "staging",
-          releaseId: value.release.manifest.releaseId,
-        },
-      }),
-      status: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          manifestHash: value.manifestHash,
-          phase: "staging",
-          releaseId: value.releaseId,
-        },
-      }),
-      verify: (value) => ({
-        ok: true,
-        operation: value.operation,
-        value: {
-          baseManifestHash: value.release.manifest.baseManifestHash,
-          baseReleaseId: value.release.manifest.baseReleaseId,
-          baseResultCount: value.release.manifest.baseResultCount,
-          baseResultDigest: value.release.manifest.baseResultDigest,
-          deleteHeads: 1,
-          itemCount: value.release.manifest.itemCount,
-          itemsDigest: value.release.manifest.itemsDigest,
-          manifestHash: value.release.manifestHash,
-          projectionCount: 1,
-          projectionDigest,
-          releaseId: value.release.manifest.releaseId,
-          rendererContractVersion: "1.0.0",
-          rendererManifestHash: transportRenderer.hash,
-          resultCount: value.release.manifest.resultCount,
-          resultDigest: value.release.manifest.resultDigest,
-          rollbackCount: value.release.manifest.rollbackCount,
-          rollbackDigest: value.release.manifest.rollbackDigest,
-          stagedArtifacts: 1,
-          upsertHeads: 1,
-        },
-      }),
-    })
-  );
-  return Schema.decodeUnknownSync(PublicationSuccessSchema)(success);
 }

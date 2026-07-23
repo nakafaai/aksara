@@ -33,6 +33,7 @@ const EXTENSION_SUFFIXES = new Set([
   "yaml",
   "yml",
 ]);
+const LESSON_PATH_PREFIX = ["packages", "corpus", "material", "lesson"];
 
 /** Returns the semantic words in one file or folder name. */
 function words(segment: string): string[] {
@@ -54,6 +55,16 @@ function words(segment: string): string[] {
   return tokens.filter((word) => !NUMBER_PATTERN.test(word));
 }
 
+/** Allows authored lesson folders to retain their exact source-owned slugs. */
+function isLessonFolder(segments: readonly string[], index: number) {
+  if (index < LESSON_PATH_PREFIX.length || index === segments.length - 1) {
+    return false;
+  }
+  return LESSON_PATH_PREFIX.every(
+    (segment, prefixIndex) => segments[prefixIndex] === segment
+  );
+}
+
 const violations = trackedFiles().flatMap((file) => {
   const basename = file.split("/").at(-1);
   const toolchainViolation =
@@ -63,10 +74,13 @@ const violations = trackedFiles().flatMap((file) => {
   const sourceViolation = JAVASCRIPT_PATTERN.test(file)
     ? [`${file}: hand-written JavaScript source is not allowed`]
     : [];
-  const nameViolations = file
-    .split("/")
-    .filter((segment) => words(segment).length > 2)
-    .map((segment) => `${file}: ${segment}`);
+  const segments = file.split("/");
+  const nameViolations = segments.flatMap((segment, index) => {
+    if (isLessonFolder(segments, index) || words(segment).length <= 2) {
+      return [];
+    }
+    return [`${file}: ${segment}`];
+  });
 
   return [...toolchainViolation, ...sourceViolation, ...nameViolations];
 });
