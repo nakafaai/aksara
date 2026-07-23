@@ -1,7 +1,7 @@
 # Repository governance
 
 This file records the external repository controls that were verified on
-2026-07-22. These settings are part of the release boundary but do not replace
+2026-07-23. These settings are part of the release boundary but do not replace
 artifact signatures, application authorization, or content entitlement checks.
 
 ## Current GitHub state
@@ -13,10 +13,10 @@ artifact signatures, application authorization, or content entitlement checks.
   resolved review conversations, and the strict `verify` check, and blocks
   deletion and non-fast-forward updates. It has no bypass actor. Only squash
   merges are currently allowed, and merged branches are deleted automatically.
-- The bounded corpus-history migration needs one reviewed merge-commit window
-  so its filtered Nakafa ancestry remains reachable. That exception must enable
-  merge commits only for the exact migration pull request, preserve every
-  required check, and restore squash-only settings immediately afterward.
+- Ruleset `19595471` targets `refs/tags/history/*`, blocks deletion and
+  non-fast-forward updates, and has no bypass actor. Those tags retain reviewed
+  filtered Nakafa ancestry without weakening the repository's squash-only
+  branch policy.
 - Required approval count is currently zero because only one real repository
   owner is available. `CODEOWNERS` assigns all paths to `@nabilfatih`; separate
   corpus and compiler/publisher ownership cannot be claimed until a real second
