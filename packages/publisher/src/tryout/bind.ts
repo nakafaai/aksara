@@ -9,7 +9,7 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
-import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/row-hash";
+import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
 import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,

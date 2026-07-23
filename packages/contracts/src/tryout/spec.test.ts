@@ -4,13 +4,15 @@ import { Sha256HashSchema } from "#contracts/ids";
 import { ContentProjectionSchema } from "#contracts/projection/spec";
 import {
   compareTryoutCatalog,
+  tryoutCatalogIdentity,
+} from "#contracts/tryout/identity";
+import {
   TryoutCatalogRowSchema,
   TryoutChoiceSchema,
   TryoutCountryCodeSchema,
   TryoutKeySchema,
   TryoutPlacementSchema,
   TryoutPlacementSourceSchema,
-  tryoutCatalogIdentity,
 } from "#contracts/tryout/spec";
 
 const common = {

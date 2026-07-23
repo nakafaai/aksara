@@ -298,27 +298,3 @@ export const TryoutSnapshotSchema = Schema.Struct({
   snapshotId: Sha256HashSchema,
 });
 export type TryoutSnapshot = typeof TryoutSnapshotSchema.Type;
-
-/** Builds the deterministic hierarchy identity used for sorting and dedupe. */
-export function tryoutCatalogIdentity(row: TryoutCatalogRow) {
-  const keys = [
-    row.locale,
-    row.kind,
-    row.countryKey,
-    "examKey" in row ? row.examKey : "",
-    "trackKey" in row ? row.trackKey : "",
-    "setKey" in row ? row.setKey : "",
-    "sectionKey" in row ? row.sectionKey : "",
-  ];
-  return keys.join("\0");
-}
-
-/** Compares immutable hierarchy rows by their stable locale identity. */
-export function compareTryoutCatalog(
-  left: TryoutCatalogRow,
-  right: TryoutCatalogRow
-) {
-  return tryoutCatalogIdentity(left).localeCompare(
-    tryoutCatalogIdentity(right)
-  );
-}

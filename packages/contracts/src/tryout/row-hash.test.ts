@@ -2,17 +2,19 @@ import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
+  compareTryoutCatalog,
+  compareTryoutPlacements,
+  tryoutPlacementIdentity,
+} from "#contracts/tryout/identity";
+import {
   canonicalizeTryoutCatalog,
   canonicalizeTryoutPlacement,
-  compareTryoutPlacements,
   digestTryoutCatalog,
   digestTryoutPlacements,
   makeTryoutCatalogRecord,
   makeTryoutPlacementRecord,
-  tryoutPlacementIdentity,
 } from "#contracts/tryout/row-hash";
 import {
-  compareTryoutCatalog,
   TryoutCatalogRowSchema,
   TryoutPlacementSchema,
 } from "#contracts/tryout/spec";

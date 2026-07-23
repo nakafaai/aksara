@@ -20,7 +20,10 @@ import type {
 } from "#contracts/release/snapshot-data";
 import { makeQuranTestData } from "#contracts/test/quran";
 import {
+  compareTryoutCatalog,
   compareTryoutPlacements,
+} from "#contracts/tryout/identity";
+import {
   digestTryoutCatalog,
   digestTryoutPlacements,
   makeTryoutCatalogRecord,
@@ -28,7 +31,6 @@ import {
 } from "#contracts/tryout/row-hash";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot-hash";
 import {
-  compareTryoutCatalog,
   TryoutCatalogRowSchema,
   TryoutPlacementSchema,
 } from "#contracts/tryout/spec";

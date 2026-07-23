@@ -1,10 +1,10 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import {
-  compareTryoutPlacements,
-  makeTryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/row-hash";
-import {
   compareTryoutCatalog,
+  compareTryoutPlacements,
+} from "@nakafa/aksara-contracts/tryout/identity";
+import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/row-hash";
+import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
 } from "@nakafa/aksara-contracts/tryout/spec";

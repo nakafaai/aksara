@@ -4,42 +4,20 @@ import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { Sha256HashSchema } from "#contracts/ids";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import {
+  tryoutCatalogIdentity,
+  tryoutPlacementIdentity,
+} from "#contracts/tryout/identity";
+import {
   type TryoutCatalogRecord,
   TryoutCatalogRecordSchema,
   type TryoutCatalogRow,
   type TryoutPlacement,
   type TryoutPlacementRecord,
   TryoutPlacementRecordSchema,
-  type TryoutPlacementSource,
-  tryoutCatalogIdentity,
 } from "#contracts/tryout/spec";
 
 const CATALOG_DOMAIN = "nakafa.aksara.tryout-catalog.v1";
 const PLACEMENT_DOMAIN = "nakafa.aksara.tryout-placements.v1";
-
-/** Builds the deterministic active-placement identity across locales. */
-export function tryoutPlacementIdentity(row: TryoutPlacementSource) {
-  return [
-    row.countryKey,
-    row.examKey,
-    row.trackKey,
-    row.setKey,
-    row.sectionKey,
-    row.questionOrder,
-    row.questionContentKey,
-    row.locale,
-  ].join("\0");
-}
-
-/** Compares active placements in the order used by question-head binding. */
-export function compareTryoutPlacements(
-  left: TryoutPlacementSource,
-  right: TryoutPlacementSource
-) {
-  return tryoutPlacementIdentity(left).localeCompare(
-    tryoutPlacementIdentity(right)
-  );
-}
 
 /** An immutable snapshot stream is duplicated, unsorted, or tampered. */
 export class TryoutDigestError extends Schema.TaggedError<TryoutDigestError>()(
