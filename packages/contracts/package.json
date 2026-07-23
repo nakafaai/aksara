@@ -148,10 +148,6 @@
       "types": "./dist/renderer/manifest.d.ts",
       "node": "./dist/renderer/manifest.js"
     },
-    "./runtime/spec": {
-      "types": "./dist/runtime/spec.d.ts",
-      "node": "./dist/runtime/spec.js"
-    },
     "./signature/spec": {
       "types": "./dist/signature/spec.d.ts",
       "import": "./dist/signature/spec.js"
@@ -184,7 +180,7 @@
     "prepack": "pnpm run build",
     "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json",
-    "verify:package": "node scripts/verify-package.ts"
+    "verify:package": "pnpm run build && node scripts/verify-package.ts"
   },
   "devDependencies": {
     "@nakafa/typescript-config": "workspace:*",

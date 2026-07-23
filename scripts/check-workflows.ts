@@ -3,6 +3,10 @@ import { existsSync, readFileSync } from "node:fs";
 import { isRecord } from "effect/Predicate";
 
 const bootstrapPath = ".github/workflows/bootstrap.yml";
+const packageProof = readFileSync(
+  ".github/workflows/package-proof.yml",
+  "utf8"
+);
 const publish = readFileSync(".github/workflows/publish.yml", "utf8");
 const release = readFileSync(".github/workflows/release.yml", "utf8");
 const version = readFileSync(".github/workflows/version.yml", "utf8");
@@ -36,16 +40,29 @@ assert.match(
   "Version toolchain setup must run only after bootstrap"
 );
 assert.match(
-  release,
-  /- name: Verify package bootstrap\n\s+if: inputs\.operation == 'release' \|\| inputs\.operation == 'rollback'[\s\S]*"\$bootstrapped" != "true" \|\| -e \.github\/workflows\/bootstrap\.yml/u,
-  "Content release and rollback must require completed package bootstrap"
+  packageProof,
+  /workflow_call:[\s\S]*proof_mode:[\s\S]*uses: slsa-framework\/slsa-verifier\/actions\/installer@ea584f4502babc6f60d9bc799dbbb13c1caa9ee6/u,
+  "Reusable package proof must install the pinned SLSA verifier"
 );
-assert.ok(
-  release.indexOf("- name: Checkout") <
-    release.indexOf("- name: Verify package bootstrap") &&
-    release.indexOf("- name: Verify package bootstrap") <
-      release.indexOf("- name: Setup pnpm"),
-  "Content publication must stop after checkout and before toolchain setup"
+assert.match(
+  packageProof,
+  /Build current package[\s\S]*pnpm install --frozen-lockfile[\s\S]*verify:package[\s\S]*aksara-contracts\.local\.tgz/u,
+  "Current package proof must build an isolated tarball from the exact checkout"
+);
+assert.match(
+  packageProof,
+  /EXPECTED_INTEGRITY="sha512-\$\(openssl dgst -sha512 -binary "\$local_tarball"[\s\S]*actual_integrity[\s\S]*downloaded_integrity[\s\S]*provenance_source_sha=[\s\S]*git merge-base --is-ancestor/u,
+  "Current package proof must bind exact tarball bytes and signed provenance"
+);
+assert.match(
+  release,
+  /package:[\s\S]*inputs\.operation == 'release' \|\| inputs\.operation == 'rollback'[\s\S]*uses: \.\/\.github\/workflows\/package-proof\.yml[\s\S]*proof_mode: current/u,
+  "Content release and rollback must call current cryptographic package proof"
+);
+assert.match(
+  release,
+  /needs: package[\s\S]*always\(\)[\s\S]*needs\.package\.result == 'success'[\s\S]*inputs\.operation == 'abort' \|\| inputs\.operation == 'cleanup'[\s\S]*needs\.package\.result == 'skipped'/u,
+  "Recovery must remain available only when package proof is intentionally skipped"
 );
 
 if (state.contracts) {

@@ -114,26 +114,31 @@ secret or permanent registry token may automate it.
 
 After approval, dispatch `package-proof.yml` from current protected `main` with
 the package version, integrity, and source SHA printed by the staging workflow.
-The source SHA must remain an ancestor of current `main`, and every contract,
-toolchain, package-verification, and publication input must be unchanged since
-that source. Unrelated main changes may advance while an operator completes npm
-approval. The proof downloads the exact registry tarball and attestations,
-verifies their Sigstore signatures and SLSA identity with the pinned upstream
-verifier, then checks the verified provenance subject, repository, workflow,
-main ref, hosted runner, and exact resolved Git commit. A package is not
-available to Nakafa until this proof succeeds.
+The source SHA must remain an ancestor of current `main`. The proof downloads
+the exact registry tarball and attestations, requires the supplied integrity to
+match those bytes, verifies their Sigstore signatures and SLSA identity with
+the pinned upstream verifier, then checks the verified provenance subject,
+repository, workflow, main ref, hosted runner, and exact resolved Git commit. A
+package is not available to Nakafa until this proof succeeds.
 
 The bootstrap job owns the initial package proof. `package-proof.yml` owns every
 later staged release and runs only after bootstrap. The source-controlled marker
 remains the only switch for version automation; transient registry results can
 therefore never enable Changesets.
 
-The marker proves only that the initial package bootstrap completed. Before
-production content release and rollback are enabled, their MVCC preflight must
-also bind the release to the exact contracts version and prove that version's
-registry integrity, signed provenance, workflow path, and source commit. A
-`true` marker alone is insufficient because a Changesets version pull request
-may advance `package.json` before the new stage is approved and proven.
+The marker proves only that the initial package bootstrap completed. Every
+production content release and rollback first calls `package-proof.yml` in
+`current` mode. That reusable job derives the exact version from the protected
+caller checkout, performs a frozen pnpm install, builds and verifies its exact
+contracts tarball, and requires that tarball's sha512 integrity to equal both
+the registry metadata and downloaded package bytes. It then cryptographically
+verifies the SLSA provenance and requires its unique source commit to remain in
+current `main` history. A Changesets version that is not yet approved and proven
+is therefore absent from the registry and fails closed; an unversioned contract
+change produces different package bytes and also fails closed. Unrelated
+repository policy or application changes do not invalidate an unchanged exact
+package. Emergency abort and cleanup deliberately skip registry proof so
+recovery remains available during an npm outage.
 
 After the initial `0.1.0` package exists, every contracts change carries a
 Changeset. `version.yml` uses the official Changesets action only to create or

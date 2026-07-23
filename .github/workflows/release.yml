@@ -32,8 +32,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  package:
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+      && (inputs.operation == 'release' || inputs.operation == 'rollback')
+    permissions:
+      contents: read
+    uses: ./.github/workflows/package-proof.yml
+    with:
+      proof_mode: current
+
   publish:
-    if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
+    needs: package
+    if: >-
+      always()
+      && github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+      && (
+        ((inputs.operation == 'release' || inputs.operation == 'rollback')
+          && needs.package.result == 'success')
+        || ((inputs.operation == 'abort' || inputs.operation == 'cleanup')
+          && needs.package.result == 'skipped')
+      )
     environment: content-production
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -58,15 +79,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-
-      - name: Verify package bootstrap
-        if: inputs.operation == 'release' || inputs.operation == 'rollback'
-        run: |
-          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
-          if [[ "$bootstrapped" != "true" || -e .github/workflows/bootstrap.yml ]]; then
-            echo "Release and rollback require the proven contracts package and deleted bootstrap workflow." >&2
-            exit 1
-          fi
 
       - name: Setup pnpm
         uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
