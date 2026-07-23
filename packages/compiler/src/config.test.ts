@@ -39,7 +39,7 @@ function manifestInput(inlineVersion: 1 | 2, expanded: boolean) {
 
 describe("compiler config", () => {
   it("binds the current executable policy revision", () => {
-    expect(EXECUTABLE_POLICY_REVISION).toBe("trusted-mdx-policy-v5");
+    expect(EXECUTABLE_POLICY_REVISION).toBe("trusted-mdx-policy-v6");
   });
 
   it("pins every output-affecting installed tool", () => {

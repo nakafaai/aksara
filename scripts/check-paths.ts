@@ -1,4 +1,4 @@
-import { trackedFiles } from "#scripts/files";
+import { enforceViolations, trackedFiles } from "#scripts/files";
 
 const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
 const CAMEL_WORD_PATTERN = /([\p{Ll}\d])(\p{Lu})/gu;
@@ -65,29 +65,30 @@ function isLessonFolder(segments: readonly string[], index: number) {
   );
 }
 
-const violations = trackedFiles().flatMap((file) => {
-  const basename = file.split("/").at(-1);
-  const toolchainViolation =
-    basename && FORBIDDEN_FILE_NAMES.has(basename)
-      ? [`${file}: pnpm and package.json own the toolchain contract`]
+/** Collects forbidden toolchains, JavaScript, and overlong semantic path names. */
+export function pathViolations(files: readonly string[]): readonly string[] {
+  return files.flatMap((file) => {
+    const basename = file.split("/").at(-1);
+    const toolchainViolation =
+      basename && FORBIDDEN_FILE_NAMES.has(basename)
+        ? [`${file}: pnpm and package.json own the toolchain contract`]
+        : [];
+    const sourceViolation = JAVASCRIPT_PATTERN.test(file)
+      ? [`${file}: hand-written JavaScript source is not allowed`]
       : [];
-  const sourceViolation = JAVASCRIPT_PATTERN.test(file)
-    ? [`${file}: hand-written JavaScript source is not allowed`]
-    : [];
-  const segments = file.split("/");
-  const nameViolations = segments.flatMap((segment, index) => {
-    if (isLessonFolder(segments, index) || words(segment).length <= 2) {
-      return [];
-    }
-    return [`${file}: ${segment}`];
+    const segments = file.split("/");
+    const nameViolations = segments.flatMap((segment, index) => {
+      if (isLessonFolder(segments, index) || words(segment).length <= 2) {
+        return [];
+      }
+      return [`${file}: ${segment}`];
+    });
+
+    return [...toolchainViolation, ...sourceViolation, ...nameViolations];
   });
-
-  return [...toolchainViolation, ...sourceViolation, ...nameViolations];
-});
-
-if (violations.length > 0) {
-  process.stderr.write(
-    `Repository path policy violations:\n${violations.join("\n")}\n`
-  );
-  process.exitCode = 1;
 }
+
+enforceViolations(
+  "Repository path policy violations",
+  pathViolations(trackedFiles())
+);

@@ -1,5 +1,4 @@
 import { compile } from "@mdx-js/mdx";
-import type { Program } from "estree-jsx";
 import type { Paragraph, Root } from "mdast";
 import type { MdxJsxFlowElement } from "mdast-util-mdx";
 import { unified } from "unified";
@@ -89,62 +88,12 @@ describe("enforceExecutablePolicy", () => {
   });
 
   it.each([
-    ["constructor", '{[].filter.constructor("return process")()}'],
-    ["constructor", '{({}).constructor.constructor("return process")()}'],
-    ["constructor", '{Math.constructor("return process")()}'],
-    ["prototype", "{Object.prototype}"],
-    ["__proto__", "{({}).__proto__}"],
-    ["constructor", '{({})["constructor"]}'],
-    ["constructor", '{({})["con" + "structor"]}'],
-    ["constructor", ["{({})[`con$", '{"str"}uctor`]}'].join("")],
-    ["constructor", "{(({ constructor }) => constructor)({})}"],
-    ["constructor", '{(({ ["con" + "structor"]: value }) => value)({})}'],
-  ] as const)(
-    "rejects prototype-chain property %s",
-    async (identifier, rawMdx) => {
-      const result = await inspectPolicy(rawMdx);
-      expect(result.violations).toContainEqual({
-        identifier,
-        rule: "prototype-chain-access",
-      });
-    }
-  );
-
-  it.each([
     '<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />',
     '<div {...{ dangerouslySetInnerHTML: { __html: "unsafe" } }} />',
+    '{<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />}',
   ])("rejects raw HTML injection through JSX", async (rawMdx) => {
     const result = await inspectPolicy(rawMdx);
     expect(result.violations).toContainEqual({
-      identifier: "dangerouslySetInnerHTML",
-      rule: "dangerous-jsx-attribute",
-    });
-  });
-
-  it.each([
-    "{({})[1]}",
-    "{({})[1 * 2]}",
-    '{((value) => ({})[value + "safe"])("key")}',
-    '{((value) => ({})["safe" + value])("key")}',
-    ["{((value) => ({})[`safe$", '{value}`])("key")}'].join(""),
-    '{<div title="safe" />}',
-    '{<div xml:lang="en" />}',
-  ])("keeps safe static-property and JSX forms", async (rawMdx) => {
-    const result = await inspectPolicy(rawMdx);
-    expect(result.violations).toEqual([]);
-  });
-
-  it("rejects static template and expression-level JSX escape paths", async () => {
-    const template = await inspectPolicy("{({})[`constructor`]}");
-    const jsx = await inspectPolicy(
-      '{<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />}'
-    );
-
-    expect(template.violations).toContainEqual({
-      identifier: "constructor",
-      rule: "prototype-chain-access",
-    });
-    expect(jsx.violations).toContainEqual({
       identifier: "dangerouslySetInnerHTML",
       rule: "dangerous-jsx-attribute",
     });
@@ -190,57 +139,6 @@ describe("enforceExecutablePolicy", () => {
     });
   });
 
-  it("handles raw template keys and non-identifier member properties", async () => {
-    const program: Program = {
-      body: [
-        {
-          expression: {
-            computed: true,
-            object: { properties: [], type: "ObjectExpression" },
-            optional: false,
-            property: {
-              expressions: [],
-              quasis: [
-                {
-                  tail: true,
-                  type: "TemplateElement",
-                  value: { cooked: null, raw: "constructor" },
-                },
-              ],
-              type: "TemplateLiteral",
-            },
-            type: "MemberExpression",
-          },
-          type: "ExpressionStatement",
-        },
-        {
-          expression: {
-            computed: false,
-            object: { type: "ThisExpression" },
-            optional: false,
-            property: { name: "private", type: "PrivateIdentifier" },
-            type: "MemberExpression",
-          },
-          type: "ExpressionStatement",
-        },
-      ],
-      sourceType: "module",
-      type: "Program",
-    };
-    const programNode: Paragraph = { children: [], type: "paragraph" };
-    Reflect.set(programNode, "data", { estree: program });
-    const tree: Root = {
-      children: [programNode],
-      type: "root",
-    };
-
-    const result = await inspectTree(tree);
-
-    expect(result.violations).toEqual([
-      { identifier: "constructor", rule: "prototype-chain-access" },
-    ]);
-  });
-
   it("keeps syntax findings when analyzer global scope is unavailable", async () => {
     scopeState.withoutGlobalScope = true;
 
@@ -251,7 +149,7 @@ describe("enforceExecutablePolicy", () => {
 
   it("keeps ordinary member access and JSX attributes", async () => {
     const result = await inspectPolicy(
-      '<span title="safe">{[1, 2].map((value) => value * 2).join(",")}</span>'
+      '<span title="safe">{Math.max(...[1, 2].map((value) => value * 2))}{<span xml:lang="en" />}</span>'
     );
 
     expect(result).toEqual({ unsupportedModules: [], violations: [] });

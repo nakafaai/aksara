@@ -235,6 +235,21 @@ describe("compileContent", () => {
     }
   );
 
+  it("rejects runtime construction of a prototype escape property", async () => {
+    const error = await rejectRawMdx(
+      withMetadata(
+        '{((key) => ({})[key][key]("return process")())("constructor")}'
+      )
+    );
+
+    expect(error._tag).toBe("ExecutablePolicyError");
+    if (error._tag === "ExecutablePolicyError") {
+      expect(error.violations).toContainEqual({
+        rule: "dynamic-property-access",
+      });
+    }
+  });
+
   it("keeps ordinary expressions, fragments, and scoped IIFEs", async () => {
     const { payload } = await compileRawMdx(
       withMetadata(

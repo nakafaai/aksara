@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import ts from "typescript";
 
-import { typescriptFiles } from "#scripts/files";
+import { enforceViolations, typescriptFiles } from "#scripts/files";
 
 const WHITESPACE_PATTERN = /\s+/u;
 const MINIMUM_DOCUMENTATION_WORDS = 3;
@@ -117,8 +117,10 @@ function callableName(
 }
 
 /** Collects stable callable declarations that lack useful JSDoc. */
-function missingDocumentation(file: string): string[] {
-  const sourceText = readFileSync(file, "utf8");
+export function missingDocumentation(
+  file: string,
+  sourceText: string
+): readonly string[] {
   const sourceFile = ts.createSourceFile(
     file,
     sourceText,
@@ -128,11 +130,7 @@ function missingDocumentation(file: string): string[] {
   const missing: string[] = [];
   const nodes: ts.Node[] = [sourceFile];
 
-  while (nodes.length > 0) {
-    const node = nodes.pop();
-    if (!node) {
-      continue;
-    }
+  for (const node of nodes) {
     const name = callableName(node, sourceFile);
     if (name && !hasUsefulDocumentation(node, sourceFile)) {
       const line =
@@ -147,11 +145,17 @@ function missingDocumentation(file: string): string[] {
   return missing;
 }
 
-const violations = typescriptFiles().flatMap(missingDocumentation);
-
-if (violations.length > 0) {
-  process.stderr.write(
-    `Named callables require useful JSDoc:\n${violations.join("\n")}\n`
-  );
-  process.exitCode = 1;
+/** Collects missing JSDoc diagnostics from authored TypeScript source files. */
+export function documentationViolations(
+  files: readonly string[],
+  readSource: (file: string) => string
+): readonly string[] {
+  return files.flatMap((file) => missingDocumentation(file, readSource(file)));
 }
+
+enforceViolations(
+  "Named callables require useful JSDoc",
+  documentationViolations(typescriptFiles(), (file) =>
+    readFileSync(file, "utf8")
+  )
+);

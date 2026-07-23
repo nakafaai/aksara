@@ -1,12 +1,6 @@
 import { Predicate } from "effect";
 import { analyze } from "eslint-scope";
-import type {
-  Node as EstreeNode,
-  JSXAttribute,
-  MemberExpression,
-  Program,
-  Property,
-} from "estree-jsx";
+import type { Node as EstreeNode, JSXAttribute, Program } from "estree-jsx";
 import { visit as visitEstree } from "estree-util-visit";
 import type { Root } from "mdast";
 import type { Plugin } from "unified";
@@ -18,13 +12,9 @@ import type {
   UnsupportedMdxModuleOccurrence,
 } from "#compiler/errors";
 import { collectUnsupportedMdxModules } from "#compiler/module-policy";
+import { inspectPropertyProgram } from "#compiler/property-policy";
 
 const NETWORK_GLOBALS = new Set(["fetch", "WebSocket", "EventSource"]);
-const PROTOTYPE_ESCAPE_PROPERTIES = new Set([
-  "__proto__",
-  "constructor",
-  "prototype",
-]);
 const SAFE_GLOBALS = new Set([
   "Array",
   "Boolean",
@@ -39,7 +29,7 @@ const SAFE_GLOBALS = new Set([
   "undefined",
 ]);
 /** Revision bound into artifact fingerprints whenever executable policy changes. */
-export const EXECUTABLE_POLICY_REVISION = "trusted-mdx-policy-v5";
+export const EXECUTABLE_POLICY_REVISION = "trusted-mdx-policy-v6";
 /** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
   return (
@@ -52,77 +42,9 @@ function isUnistNode(value: unknown): value is UnistNode {
 function violationKey(violation: ExecutablePolicyViolation) {
   return `${violation.rule}:${violation.identifier ?? ""}`;
 }
-type PropertyExpression = MemberExpression["property"] | Property["key"];
-/** Resolves a compile-time string without evaluating authored JavaScript. */
-function staticStringValue(expression: PropertyExpression): string | undefined {
-  if (expression.type === "Literal" && typeof expression.value === "string") {
-    return expression.value;
-  }
-  if (expression.type === "BinaryExpression" && expression.operator === "+") {
-    const left = staticStringValue(expression.left);
-    const right = staticStringValue(expression.right);
-    return left === undefined || right === undefined ? undefined : left + right;
-  }
-  if (expression.type !== "TemplateLiteral") {
-    return;
-  }
-  let value = "";
-  for (const [index, quasi] of expression.quasis.entries()) {
-    value += quasi.value.cooked ?? quasi.value.raw;
-    const substitution = expression.expressions[index];
-    if (!substitution) {
-      continue;
-    }
-    const staticSubstitution = staticStringValue(substitution);
-    if (staticSubstitution === undefined) {
-      return;
-    }
-    value += staticSubstitution;
-  }
-  return value;
-}
-
-/** Resolves a property name only when its syntax is statically knowable. */
-function staticPropertyName(
-  property: MemberExpression["property"] | Property["key"]
-) {
-  if (property.type === "Identifier") {
-    return property.name;
-  }
-  return staticStringValue(property);
-}
-
-/** Resolves the statically knowable property selected by member access. */
-function memberPropertyName(node: MemberExpression) {
-  if (node.computed) {
-    return staticPropertyName(node.property);
-  }
-  return node.property.type === "Identifier" ? node.property.name : undefined;
-}
-
 /** Resolves simple JSX attribute names while excluding namespaced forms. */
 function jsxAttributeName(node: JSXAttribute) {
   return node.name.type === "JSXIdentifier" ? node.name.name : undefined;
-}
-
-/** Records forbidden statically knowable object property names. */
-function inspectPropertyNode(
-  node: Property,
-  add: (violation: ExecutablePolicyViolation) => void
-) {
-  const propertyName = staticPropertyName(node.key);
-  if (
-    propertyName !== undefined &&
-    PROTOTYPE_ESCAPE_PROPERTIES.has(propertyName)
-  ) {
-    add({ identifier: propertyName, rule: "prototype-chain-access" });
-  }
-  if (propertyName === "dangerouslySetInnerHTML") {
-    add({
-      identifier: "dangerouslySetInnerHTML",
-      rule: "dangerous-jsx-attribute",
-    });
-  }
 }
 
 /** Records executable capabilities visible directly in one ESTree node. */
@@ -142,16 +64,6 @@ function inspectSyntaxNode(
     add({ identifier: "import.meta", rule: "import-meta" });
     return;
   }
-  if (node.type === "MemberExpression") {
-    const propertyName = memberPropertyName(node);
-    if (
-      propertyName !== undefined &&
-      PROTOTYPE_ESCAPE_PROPERTIES.has(propertyName)
-    ) {
-      add({ identifier: propertyName, rule: "prototype-chain-access" });
-    }
-    return;
-  }
   if (
     node.type === "JSXAttribute" &&
     jsxAttributeName(node) === "dangerouslySetInnerHTML"
@@ -160,10 +72,6 @@ function inspectSyntaxNode(
       identifier: "dangerouslySetInnerHTML",
       rule: "dangerous-jsx-attribute",
     });
-    return;
-  }
-  if (node.type === "Property") {
-    inspectPropertyNode(node, add);
     return;
   }
   if (
@@ -196,6 +104,9 @@ function inspectProgram(
     found.set(violationKey(violation), violation);
   };
 
+  for (const violation of inspectPropertyProgram(program)) {
+    add(violation);
+  }
   visitEstree(program, (node) => inspectSyntaxNode(node, add));
 
   const scopeManager = analyze(program, {
