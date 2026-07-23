@@ -1,7 +1,8 @@
 # @nakafa/aksara-contracts
 
-Exact runtime contracts shared by the Aksara compiler, publisher, and compatible
-Nakafa runtimes.
+This package defines exact runtime contracts for the Aksara compiler, publisher,
+and compatible Nakafa runtimes. Registry availability is established only by
+Aksara's [package proof](https://github.com/nakafaai/aksara/blob/main/docs/npm-publishing.md).
 
 This package contains schemas, branded identifiers, canonical wire encodings,
 and server-only signature verification. It contains no corpus, renderer
