@@ -1,23 +1,22 @@
 import { FileSystem, Path } from "@effect/platform";
 import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
-import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type QuestionChoices,
   QuestionChoicesSchema,
-  QuestionKeySchema,
   QuestionSetKeySchema,
 } from "@nakafa/aksara-contracts/projection/question";
-import {
-  type RendererDomain,
-  RendererDomainSchema,
-} from "@nakafa/aksara-contracts/renderer/domain";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 
 import { decodeQuestionChoiceSource } from "#corpus/question-bank/choice-source";
+import {
+  decodeQuestionPath,
+  QUESTION_BANK_ROOT,
+  QuestionLocationSchema,
+  QuestionPathError,
+} from "#corpus/question-bank/path";
 import type { QuestionEntry } from "#corpus/question-bank/registry";
 
-const QUESTION_BANK_ROOT = "packages/corpus/question-bank/tryout/indonesia";
-const CONTENT_ROOT = "question-bank/tryout/indonesia";
 const EXPECTED_FILES = [
   "answer.en.mdx",
   "answer.id.mdx",
@@ -25,24 +24,8 @@ const EXPECTED_FILES = [
   "question.en.mdx",
   "question.id.mdx",
 ];
-const QUESTION_PATH_PATTERN =
-  /^(?<exam>snbt|tka)\/(?<group>[a-z0-9]+(?:-[a-z0-9]+)*)(?:\/(?<groupTail>[a-z0-9]+(?:-[a-z0-9]+)*))?\/set-(?<setNumber>[1-9]\d*)\/question-(?<questionNumber>[1-9]\d*)$/;
 const QUESTION_ANCESTOR_PATTERN =
   /^(?:snbt|tka)(?:\/[a-z0-9]+(?:-[a-z0-9]+)*){0,2}(?:\/set-[1-9]\d*)?$/;
-const QuestionPathGroupsSchema = Schema.Struct({
-  exam: Schema.Literal("snbt", "tka"),
-  group: Schema.String,
-  groupTail: Schema.optional(Schema.String),
-  questionNumber: Schema.NumberFromString.pipe(Schema.int(), Schema.positive()),
-  setNumber: Schema.String,
-});
-const QuestionLocationSchema = Schema.Struct({
-  questionKey: QuestionKeySchema,
-  questionNumber: Schema.Number.pipe(Schema.int(), Schema.positive()),
-  rendererDomain: RendererDomainSchema,
-  setKey: QuestionSetKeySchema,
-  sourceRoot: CorpusSourcePathSchema,
-});
 
 /** One complete authored question directory discovered from the checkout. */
 export const QuestionSourceSchema = Schema.Struct({
@@ -54,11 +37,6 @@ export type QuestionSource = typeof QuestionSourceSchema.Type;
 export class QuestionReadError extends Schema.TaggedError<QuestionReadError>()(
   "QuestionReadError",
   { cause: Schema.Unknown, path: Schema.String }
-) {}
-/** A discovered question directory does not follow the canonical path grammar. */
-export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
-  "QuestionPathError",
-  { sourcePath: Schema.String }
 ) {}
 /** A question directory does not contain exactly its five required files. */
 export class QuestionFileSetError extends Schema.TaggedError<QuestionFileSetError>()(
@@ -132,61 +110,6 @@ function groupQuestionFiles(entries: readonly string[], separator: string) {
   );
 }
 
-/** Maps one validated exam and logical group onto its renderer contract. */
-const decodeRendererDomain = Effect.fn(
-  "AksaraCorpus.decodeQuestionRendererDomain"
-)(function* (exam: "snbt" | "tka", group: string, sourcePath: string) {
-  if (exam === "tka" && group === "mathematics") {
-    return "tka-math";
-  }
-  if (exam === "snbt" && group === "general-reasoning") {
-    return "snbt-general";
-  }
-  if (exam === "snbt" && group === "mathematical-reasoning") {
-    return "snbt-math";
-  }
-  if (exam === "snbt" && group === "quantitative-knowledge") {
-    return "snbt-quant";
-  }
-  if (exam === "snbt") {
-    return "snbt-plain";
-  }
-  return yield* new QuestionPathError({ sourcePath });
-});
-
-/** Decodes one physical directory into canonical logical question identity. */
-const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
-  function* (physicalRoot: string) {
-    const sourcePath = `${QUESTION_BANK_ROOT}/${physicalRoot}`;
-    const match = QUESTION_PATH_PATTERN.exec(physicalRoot);
-    const groups = yield* Schema.decodeUnknown(QuestionPathGroupsSchema)(
-      match?.groups,
-      { onExcessProperty: "error" }
-    ).pipe(Effect.mapError(() => new QuestionPathError({ sourcePath })));
-    const group =
-      groups.groupTail === undefined
-        ? groups.group
-        : `${groups.group}-${groups.groupTail}`;
-    const rendererDomain = yield* decodeRendererDomain(
-      groups.exam,
-      group,
-      sourcePath
-    );
-    const setKey = `${CONTENT_ROOT}/${groups.exam}/${group}/set-${groups.setNumber}`;
-
-    return yield* Schema.decodeUnknown(QuestionLocationSchema)(
-      {
-        questionKey: `${setKey}/question-${groups.questionNumber}`,
-        questionNumber: groups.questionNumber,
-        rendererDomain,
-        setKey,
-        sourceRoot: sourcePath,
-      },
-      { onExcessProperty: "error" }
-    ).pipe(Effect.mapError(() => new QuestionPathError({ sourcePath })));
-  }
-);
-
 /** Reads and validates the localized choices for one question directory. */
 const readChoices = Effect.fn("AksaraCorpus.readQuestionChoices")(function* (
   corpusRoot: string,
@@ -251,6 +174,7 @@ export const discoverQuestionSources = Effect.fn(
   });
   if (invalidEntry !== undefined) {
     return yield* new QuestionPathError({
+      reason: "grammar",
       sourcePath: `${QUESTION_BANK_ROOT}/${invalidEntry
         .split(path.sep)
         .join("/")}`,

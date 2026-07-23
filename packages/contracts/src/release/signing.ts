@@ -1,5 +1,6 @@
 import type { Sha256HashSchema } from "#contracts/ids";
 import { canonicalizeReleaseOrigin } from "#contracts/release/origin";
+import { canonicalizeContentSnapshotSet } from "#contracts/release/snapshot";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";
@@ -28,6 +29,7 @@ export function canonicalizeContentReleaseManifest(
     rollbackDigest: manifest.rollbackDigest,
     routeCount: manifest.routeCount,
     routeDigest: manifest.routeDigest,
+    snapshots: canonicalizeContentSnapshotSet(manifest.snapshots),
     upsertCount: manifest.upsertCount,
   });
 }

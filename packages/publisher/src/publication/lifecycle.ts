@@ -130,6 +130,7 @@ const stageAndVerify = Effect.fn("AksaraPublisher.stageAndVerify")(function* <
       plan.summary,
       plan.projectionSummary,
       plan.routeSummary,
+      plan.snapshotSummary,
       verification
     );
   }
@@ -154,6 +155,7 @@ export const stageCandidateRelease: StageCandidateRelease = Effect.fn(
     plan.summary,
     plan.projectionSummary,
     plan.routeSummary,
+    plan.snapshotSummary,
     result.receipt
   );
   return { kind: "completed", receipt } as const;
@@ -196,6 +198,7 @@ export const activateCandidateRelease: ActivateCandidateRelease = Effect.fn(
     plan.summary,
     plan.projectionSummary,
     plan.routeSummary,
+    plan.snapshotSummary,
     receipt
   );
   const activation = yield* PublicationActivation;

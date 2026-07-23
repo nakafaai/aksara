@@ -9,21 +9,14 @@ import { isJsonType, readText } from "@nakafa/aksara-utilities/http/response";
 import { Effect, Schema } from "effect";
 import {
   PublicationTargetProtocolError,
-  PublicationTargetTransportError,
+  type PublicationTargetTransportError,
+  publicationNetworkError,
 } from "#publisher/target/errors";
 import { targetStage } from "#publisher/target/protocol";
 
 const PublicationResponseJsonSchema = Schema.parseJson(
   PublicationResponseSchema
 );
-
-/** Creates a retryable sanitized network failure for one exact operation. */
-function networkError(request: PublicationRequest) {
-  return new PublicationTargetTransportError({
-    detail: { reason: "network" },
-    stage: targetStage(request.operation),
-  });
-}
 
 /** Creates a permanent sanitized response failure for one exact operation. */
 function responseError(request: PublicationRequest) {
@@ -53,7 +46,9 @@ export function readPublicationResponse(
   }
   return readText(response, MAX_PUBLICATION_RESPONSE_BYTES).pipe(
     Effect.mapError((error) =>
-      error.reason === "stream" ? networkError(request) : responseError(request)
+      error.reason === "stream"
+        ? publicationNetworkError(targetStage(request.operation))
+        : responseError(request)
     ),
     Effect.flatMap((body) => decodeResponse(request, body))
   );

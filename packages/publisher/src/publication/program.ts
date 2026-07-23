@@ -23,6 +23,7 @@ import type {
   RendererManifestValidationError,
   RouteVerificationError,
   SignedReleaseVerificationError,
+  SnapshotVerificationError,
 } from "#publisher/publication/failure";
 import type {
   PublicationActivation,
@@ -46,6 +47,7 @@ import type {
 } from "#publisher/release-validation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import type { ContentSigningError } from "#publisher/signing-errors";
+import type { SnapshotBatchBindingError } from "#publisher/snapshot/batch";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
 /** Every expected failure surfaced by one idempotent publication attempt. */
@@ -54,6 +56,7 @@ export type PublishContentReleaseError<E> =
   | ReleaseItemVerificationError<E, never>
   | ProjectionVerificationError<E, never>
   | RouteVerificationError<E, never>
+  | SnapshotVerificationError<E, never>
   | RendererManifestValidationError
   | ArtifactVerificationError
   | SignedReleaseVerificationError
@@ -64,6 +67,7 @@ export type PublishContentReleaseError<E> =
   | ReleaseAbortContractError
   | ReleaseAbortIncompleteError
   | PublicationBatchLimitError
+  | SnapshotBatchBindingError
   | PublicationActivationError
   | PublicationReceiptMismatchError
   | PublicationRecoveryIdentityError

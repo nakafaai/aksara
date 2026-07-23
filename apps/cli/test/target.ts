@@ -23,6 +23,11 @@ import {
   ContentReleaseBundleSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import {
+  emptyContentSnapshots,
+  invertContentSnapshots,
+  snapshotRowCount,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -89,6 +94,7 @@ export function gitBundle(
       rollbackDigest: HASH,
       routeCount: 0,
       routeDigest: HASH,
+      snapshots: emptyContentSnapshots(),
       upsertCount: 0,
     }),
     input.keyId
@@ -122,6 +128,7 @@ export function rollbackBundle(
       rollbackDigest: HASH,
       routeCount: 0,
       routeDigest: HASH,
+      snapshots: emptyContentSnapshots(),
       upsertCount: 0,
     })
   );
@@ -153,6 +160,7 @@ export function recoveryBundle(id: string, target: ContentReleaseBundle) {
         rollbackDigest: HASH,
         routeCount: 0,
         routeDigest: HASH,
+        snapshots: invertContentSnapshots(targetManifest.snapshots),
         upsertCount: 0,
       })
     ),
@@ -180,10 +188,12 @@ export function receiptFor(
     resultCount: manifest.resultCount,
     resultDigest: manifest.resultDigest,
     routeDigest: manifest.routeDigest,
+    snapshots: manifest.snapshots,
     stagedArtifacts: manifest.upsertCount,
     stagedItems: manifest.itemCount,
     stagedProjections: manifest.projectionCount,
     stagedRoutes: manifest.routeCount,
+    stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
   };
 }
 
@@ -218,6 +228,8 @@ export function makeProductionTarget(
     stageRecovery: unused,
     stageRelease: unused,
     stageRouteBatch: unused,
+    stageSnapshot: unused,
+    stageSnapshotBatch: unused,
     status: unused,
     verify: unused,
   });

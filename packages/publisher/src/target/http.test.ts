@@ -115,6 +115,8 @@ function invokeTarget(
           rendererManifest: value.rendererManifest,
         }),
       stageRouteBatch: (value) => target.stageRouteBatch(value),
+      stageSnapshot: (value) => target.stageSnapshot(value),
+      stageSnapshotBatch: (value) => target.stageSnapshotBatch(value),
       status: (value) => target.status(value),
       verify: (value) => target.verify(value.release),
     })
@@ -134,7 +136,7 @@ describe("HTTP publication target", () => {
         }
       )
     );
-    expect(captured.requests).toHaveLength(18);
+    expect(captured.requests).toHaveLength(20);
     for (const request of captured.requests) {
       expect(request.method).toBe("POST");
       expect(request.url).toBe(endpoint.toString());
@@ -142,9 +144,8 @@ describe("HTTP publication target", () => {
       expect(request.headers.accept).toBe("application/json");
       expect(request.body.contentType).toBe("application/json");
     }
-    expect(Layer.isLayer(httpPublicationTargetLayer(targetConfig()))).toBe(
-      true
-    );
+    const layer = httpPublicationTargetLayer(targetConfig());
+    expect(Layer.isLayer(layer)).toBe(true);
   });
 
   it("rejects oversized batches before network IO", async () => {

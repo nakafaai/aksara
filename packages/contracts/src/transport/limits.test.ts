@@ -11,6 +11,8 @@ import {
   MAX_PUBLICATION_RESPONSE_BYTES,
   MAX_ROUTE_BATCH_BYTES,
   MAX_ROUTE_BATCH_COUNT,
+  MAX_SNAPSHOT_BATCH_BYTES,
+  MAX_SNAPSHOT_BATCH_COUNT,
 } from "#contracts/transport/limits";
 
 describe("publication transport limits", () => {
@@ -26,5 +28,7 @@ describe("publication transport limits", () => {
     expect(MAX_HEAD_PAGE_COUNT).toBe(500);
     expect(MAX_PROJECTION_BATCH_BYTES).toBe(4 * 1024 * 1024);
     expect(MAX_PROJECTION_BATCH_COUNT).toBe(16);
+    expect(MAX_SNAPSHOT_BATCH_BYTES).toBe(4 * 1024 * 1024);
+    expect(MAX_SNAPSHOT_BATCH_COUNT).toBe(16);
   });
 });

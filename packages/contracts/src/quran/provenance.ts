@@ -29,19 +29,70 @@ export const QuranProvenanceRecordSchema = Schema.Struct({
 });
 export type QuranProvenanceRecord = typeof QuranProvenanceRecordSchema.Type;
 
+/** Checks exact complete provenance coverage in canonical scope order. */
+function hasCanonicalScopeCoverage(records: readonly QuranProvenanceRecord[]) {
+  return (
+    records.length === QuranProvenanceScopeSchema.literals.length &&
+    records.every(
+      (record, index) =>
+        record.scope === QuranProvenanceScopeSchema.literals[index]
+    )
+  );
+}
+
+const QuranProvenanceRecordsSchema = Schema.NonEmptyArray(
+  QuranProvenanceRecordSchema
+).pipe(
+  Schema.filter(hasCanonicalScopeCoverage, {
+    message: () =>
+      "Expected every Quran provenance scope exactly once in canonical order.",
+  })
+);
+
+/** Checks that the declared gate status matches every reviewed record. */
+function hasCoherentProvenanceStatus(input: {
+  readonly records: readonly QuranProvenanceRecord[];
+  readonly status: "approved" | "blocked";
+}) {
+  const expected = input.records.some((record) => record.status === "blocked")
+    ? "blocked"
+    : "approved";
+  return input.status === expected;
+}
+
 /** Complete ordered evidence set that gates Quran production publication. */
 export const QuranProvenanceManifestSchema = Schema.Struct({
   digest: Sha256HashSchema,
-  records: Schema.NonEmptyArray(QuranProvenanceRecordSchema),
+  records: QuranProvenanceRecordsSchema,
   status: QuranProvenanceStatusSchema,
-});
+}).pipe(
+  Schema.filter(hasCoherentProvenanceStatus, {
+    message: () =>
+      "Expected Quran provenance status to match its complete evidence.",
+  })
+);
 export type QuranProvenanceManifest = typeof QuranProvenanceManifestSchema.Type;
+
+/** Provenance records omitted, duplicated, or misidentified one source scope. */
+export class QuranProvenanceCoverageError extends Schema.TaggedError<QuranProvenanceCoverageError>()(
+  "QuranProvenanceCoverageError",
+  {
+    actualScopes: Schema.Array(QuranProvenanceScopeSchema),
+  }
+) {}
 
 const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance.v1";
 
 /** Produces stable JSON for one reviewed Quran provenance record. */
 export function canonicalizeQuranProvenance(record: QuranProvenanceRecord) {
-  return JSON.stringify(record);
+  return JSON.stringify({
+    evidence: record.evidence,
+    provider: record.provider,
+    retrievedOn: record.retrievedOn,
+    scope: record.scope,
+    sourceUrl: record.sourceUrl,
+    status: record.status,
+  });
 }
 
 /** Digests the exact ordered provenance records encoded into a snapshot. */
@@ -68,12 +119,34 @@ export class QuranProvenanceHashError extends Schema.TaggedError<QuranProvenance
 /** Builds a signed-snapshot provenance gate from exact reviewed records. */
 export const makeQuranProvenanceManifest = Effect.fn(
   "AksaraContracts.makeQuranProvenanceManifest"
-)(function* (
-  records: readonly [QuranProvenanceRecord, ...QuranProvenanceRecord[]]
-) {
-  const digest = yield* hashQuranProvenance(records);
-  const status = records.some((record) => record.status === "blocked")
+)(function* (records: readonly QuranProvenanceRecord[]) {
+  const byScope = new Map(records.map((record) => [record.scope, record]));
+  const ordered = QuranProvenanceScopeSchema.literals.flatMap((scope) => {
+    const record = byScope.get(scope);
+    return record === undefined ? [] : [record];
+  });
+  const canonical = yield* Schema.decodeUnknown(QuranProvenanceRecordsSchema)(
+    ordered
+  ).pipe(
+    Effect.mapError(
+      () =>
+        new QuranProvenanceCoverageError({
+          actualScopes: records.map(({ scope }) => scope),
+        })
+    )
+  );
+  if (byScope.size !== records.length) {
+    return yield* new QuranProvenanceCoverageError({
+      actualScopes: records.map(({ scope }) => scope),
+    });
+  }
+  const digest = yield* hashQuranProvenance(canonical);
+  const status = canonical.some((record) => record.status === "blocked")
     ? "blocked"
     : "approved";
-  return QuranProvenanceManifestSchema.make({ digest, records, status });
+  return QuranProvenanceManifestSchema.make({
+    digest,
+    records: canonical,
+    status,
+  });
 });

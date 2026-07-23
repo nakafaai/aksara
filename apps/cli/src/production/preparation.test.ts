@@ -46,7 +46,7 @@ describe("production preparation", () => {
       baseResultDigest: active.release.manifest.resultDigest,
       catalogCalls: 1,
       checkoutRoot: "/code/aksara",
-      cleanReads: 1,
+      cleanReads: 2,
       headManifestHash: active.release.manifestHash,
       headReleaseId: "release-active",
       keyId: "content-2026-07-23",
@@ -55,6 +55,8 @@ describe("production preparation", () => {
       publishKind: "git",
       rendererCalls: 1,
       rootReads: 1,
+      signingSecretReads: 1,
+      snapshotCalls: 1,
       sourceLayers: 1,
       targetCalls: 1,
       targetServiceReads: 1,
@@ -84,6 +86,7 @@ describe("production preparation", () => {
     expect(calls.baseResultCount).toBe(0);
     expect(calls.baseResultDigest).toBe(EMPTY_RESULT_CATALOG_DIGEST);
     expect(calls.headReleaseId).toBeUndefined();
+    expect(calls.snapshotCalls).toBe(1);
   });
 
   it("prepares a new rollback from its exact signed source bundle", async () => {
@@ -107,6 +110,8 @@ describe("production preparation", () => {
       privateKeyMatches: true,
       publishKind: "rollback",
       rendererCalls: 1,
+      signingSecretReads: 1,
+      snapshotCalls: 0,
       sourceLayers: 0,
       targetServiceReads: 1,
     });
@@ -135,9 +140,10 @@ describe("production preparation", () => {
       baseReleaseId: "release-active",
       bundleVerifyCalls: 1,
       catalogCalls: 1,
-      cleanReads: 1,
+      cleanReads: 2,
       keyId: "content-2026-07-23",
       rendererCalls: 0,
+      snapshotCalls: 1,
       sourceLayers: 1,
       verifiedBundle: candidate,
     });
@@ -172,6 +178,7 @@ describe("production preparation", () => {
       publishKind: "rollback",
       rendererCalls: 0,
       rootReads: 0,
+      snapshotCalls: 0,
       sourceLayers: 0,
       verifiedBundle: candidate,
     });
@@ -202,6 +209,28 @@ describe("production preparation", () => {
       cleanReads: 1,
       publishCalls: 0,
       rendererCalls: 0,
+      snapshotCalls: 0,
+    });
+  });
+
+  it("rejects source changes observed after complete preparation", async () => {
+    calls.finalSha = "b".repeat(40);
+
+    await expect(
+      rejectProduction({
+        command: "release",
+        recoveryId: releaseId("recovery-next"),
+        releaseId: releaseId("release-next"),
+      })
+    ).resolves.toMatchObject({
+      failure: "ReleaseRevisionChangedError",
+      stage: "prepare",
+    });
+    expect(calls).toMatchObject({
+      catalogCalls: 1,
+      cleanReads: 2,
+      publishCalls: 0,
+      snapshotCalls: 1,
     });
   });
 
@@ -227,6 +256,7 @@ describe("production preparation", () => {
       catalogCalls: 1,
       publishCalls: 0,
       rendererCalls: 0,
+      snapshotCalls: 1,
       sourceLayers: 0,
     });
   });

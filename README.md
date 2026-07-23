@@ -1,9 +1,9 @@
 # Aksara
 
 Aksara is Nakafa's trusted content compilation and publication system. It is a
-small public Turborepo. The repository currently owns the real bilingual
-Function Concept and Atom Shell rich vertical slice; it is not connected to
-Nakafa production yet.
+small public Turborepo. The repository owns Nakafa's real `en` and `id` source
+corpus: articles, materials, question banks, learning programs, try-out
+catalogs, and Quran data. Nakafa production has not cut over to this source yet.
 
 ## Current modules
 
@@ -14,12 +14,14 @@ Nakafa production yet.
 - `@nakafa/aksara-publisher` verifies, signs, batches, stages, and activates a
   release through injected source and target interfaces. Its strict
   authenticated HTTP target owns the client half of the publication protocol.
-  It prepares the real material slice from AST-decoded MDX metadata. The
-  Nakafa-owned Convex ingress, storage, and runtime adapter remain outside this
-  repository and have not been cut over to production.
-- `@nakafa/aksara-corpus` owns the reviewed Function Concept and Atom Shell
-  `en` and `id` sources plus their non-React source registry. No substitute
-  lessons or React implementations live in this package.
+  It prepares real article, material, question, program, and try-out release
+  data from exact Git source. Quran snapshot preparation exists in the corpus
+  package, remains provenance-blocked, and is not wired into production release
+  preparation. The Nakafa-owned Convex ingress, storage, and runtime adapter
+  remain outside this repository and have not been cut over to production.
+- `@nakafa/aksara-corpus` owns all reviewed `en` and `id` sources plus their
+  non-React registries and projections. No substitute lessons or React
+  implementations live in this package.
 - `@nakafa/aksara-cli` compiles one selected real document, serves its signed
   local artifact over loopback, and starts the actual Nakafa application with
   ephemeral credentials for hot preview.
@@ -28,8 +30,9 @@ Nakafa production yet.
 - `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
 
-Further corpus families remain gated by provenance and renderer-fidelity
-checks.
+Production activation remains gated by renderer fidelity, migration, release,
+rollback, and provenance checks. Quran publication is explicitly blocked until
+every source scope has approved provenance and required attribution.
 
 ## Commands
 
@@ -78,16 +81,16 @@ the same alias through `package.json` to `dist`, so stale build output cannot
 silently satisfy source tests.
 
 The compiler requires one static `export const metadata = { ... }` object so it
-can remove that module declaration before body compilation. It deliberately
-does not define family metadata or content taxonomy before the authoritative
-Nakafa contracts are migrated.
+can remove that module declaration before body compilation. Corpus registries
+and publisher capabilities then validate each real family through its
+authoritative schema rather than one speculative universal metadata contract.
 
-Signed artifacts are a proposed trusted-source seam, not a sandbox. Nakafa does
-not execute Aksara artifacts in production yet. The accepted design keeps the
+Signed artifacts are a trusted-source seam, not a sandbox. Nakafa does not
+execute Aksara artifacts in production yet. The accepted design keeps the
 official server-only `@mdx-js/mdx/run` runtime and finite static route-domain
 registries in Nakafa; production integration still requires the hosted
-vertical-slice fidelity proof, Nakafa-side activation, and release/rollback
-gates.
+fidelity proof, Nakafa-side activation, stable user-state migration, and
+release/rollback gates.
 
 The executable-content decision is recorded in
 [`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md).
@@ -97,6 +100,7 @@ controls are recorded in [`docs/governance.md`](docs/governance.md).
 ## License
 
 Software is governed by the [Nakafa Source Available License 1.0](LICENSE).
-Future educational corpus imports remain governed by the
-[Nakafa Content License 1.0](CONTENT_LICENSE.md). Nakafa brand usage is governed
-by the [Nakafa Trademark and Brand Policy](TRADEMARKS.md).
+The educational corpus is governed by the
+[Nakafa Content License 1.0](CONTENT_LICENSE.md), subject to each third-party
+source's own rights and attribution requirements. Nakafa brand usage is
+governed by the [Nakafa Trademark and Brand Policy](TRADEMARKS.md).

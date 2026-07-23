@@ -6,11 +6,14 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import { emptyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Redacted, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
+import type { PreparedGitRelease } from "#publisher/preparation/spec";
 import { preparePublicationPlan } from "#publisher/publication/plan";
 import {
   PublicationSigningKey,
@@ -19,6 +22,10 @@ import {
 } from "#publisher/publication/spec";
 import { testFileLayer } from "#test/files";
 import { contentRecord, head, rendererManifest } from "#test/publication";
+import {
+  emptySnapshotSources,
+  makeProgramSnapshotFixture,
+} from "#test/snapshot";
 import { makePublicationTarget } from "#test/target";
 
 const keys = generateKeyPairSync("ed25519");
@@ -49,6 +56,7 @@ async function prepareDeletion() {
       baseReleaseId,
       baseResultCount: base.count,
       baseResultDigest: base.digest,
+      previousSnapshots: emptyContentSnapshots(),
       records: () =>
         Stream.make({
           prior: { head, state: "material" as const },
@@ -73,34 +81,69 @@ async function prepareDeletion() {
           },
           next: { contentKey: head.contentKey, locale: head.locale },
         }),
+      ...emptySnapshotSources,
     })
+  );
+}
+
+/** Prepares a real Program replacement without changing any MDX body head. */
+async function prepareProgramOnly() {
+  const snapshot = await makeProgramSnapshotFixture();
+  return Effect.runPromise(
+    prepareContentRelease({
+      aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
+      baseManifestHash: null,
+      baseReleaseId: null,
+      baseResultCount: 0,
+      baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+      previousSnapshots: null,
+      records: () => Stream.empty,
+      releaseId: ReleaseIdSchema.make("test-plan-program-only"),
+      rendererManifest,
+      result: () => Stream.empty,
+      routes: () => Stream.empty,
+      snapshotManifests: snapshot.snapshotManifests,
+      snapshotRows: snapshot.snapshotRows,
+    })
+  );
+}
+
+/** Collects cache changes from one fully verified publication plan. */
+function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
+  const source = PublicationSource.of({
+    loadExactRevision: () => Stream.empty,
+  });
+  return Effect.runPromise(
+    Effect.scoped(
+      Effect.gen(function* () {
+        const plan = yield* preparePublicationPlan({
+          input,
+          kind: "git",
+          source,
+        });
+        return yield* plan.cacheChanges().pipe(Stream.runCollect);
+      })
+    ).pipe(
+      Effect.provide(testFileLayer(new Map())),
+      Effect.provide(Path.layer),
+      Effect.provideService(PublicationSigningKey, signingKey),
+      Effect.provideService(PublicationTarget, makePublicationTarget({})),
+      Effect.provideService(ContentVerificationKeyResolver, resolver)
+    )
   );
 }
 
 describe("preparePublicationPlan", () => {
   it("keeps family-wide invalidation for a body-free deletion", async () => {
     const prepared = await prepareDeletion();
-    const source = PublicationSource.of({
-      loadExactRevision: () => Stream.empty,
-    });
-    const changes = await Effect.runPromise(
-      Effect.scoped(
-        Effect.gen(function* () {
-          const plan = yield* preparePublicationPlan({
-            input: prepared,
-            kind: "git",
-            source,
-          });
-          return yield* plan.cacheChanges().pipe(Stream.runCollect);
-        })
-      ).pipe(
-        Effect.provide(testFileLayer(new Map())),
-        Effect.provide(Path.layer),
-        Effect.provideService(PublicationSigningKey, signingKey),
-        Effect.provideService(PublicationTarget, makePublicationTarget({})),
-        Effect.provideService(ContentVerificationKeyResolver, resolver)
-      )
-    );
+    const changes = await collectCacheChanges(prepared);
+
+    expect([...changes]).toEqual([{ family: "material" }]);
+  });
+
+  it("invalidates structured navigation for a snapshot-only release", async () => {
+    const prepared = await prepareProgramOnly();
+    const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([{ family: "material" }]);
   });

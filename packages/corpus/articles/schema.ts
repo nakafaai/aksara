@@ -16,7 +16,6 @@ export const ArticleRootSchema = Schema.String.pipe(
     message: () => "Invalid article source root.",
   })
 );
-export type ArticleRoot = typeof ArticleRootSchema.Type;
 
 /** Checks one pair-grouped physical root flattens to its canonical route slug. */
 function hasCoherentArticleIdentity(input: {

@@ -10,6 +10,7 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
   MAX_ROUTE_BATCH_BYTES,
+  MAX_SNAPSHOT_BATCH_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
 import {
   type PublicationRequest,
@@ -23,6 +24,7 @@ import {
   PublicationTargetProtocolError,
   PublicationTargetRejectedError,
   PublicationTargetTransportError,
+  publicationNetworkError,
 } from "#publisher/target/errors";
 import {
   interpretPublicationResponse,
@@ -52,17 +54,11 @@ const REQUEST_BYTE_LIMITS: Readonly<{
   stageRecovery: MAX_PUBLICATION_REQUEST_BYTES,
   stageRelease: MAX_PUBLICATION_REQUEST_BYTES,
   stageRouteBatch: MAX_ROUTE_BATCH_BYTES,
+  stageSnapshot: MAX_PUBLICATION_REQUEST_BYTES,
+  stageSnapshotBatch: MAX_SNAPSHOT_BATCH_BYTES,
   status: MAX_PUBLICATION_REQUEST_BYTES,
   verify: MAX_PUBLICATION_REQUEST_BYTES,
 };
-
-/** Creates a retryable sanitized network failure for one exact operation. */
-function networkError(request: PublicationRequest) {
-  return new PublicationTargetTransportError({
-    detail: { reason: "network" },
-    stage: targetStage(request.operation),
-  });
-}
 
 /** Creates a permanent sanitized protocol failure for one exact operation. */
 function protocolError(
@@ -129,7 +125,9 @@ export function sendPublicationRequest(
         Effect.provideService(FetchHttpClient.RequestInit, {
           redirect: "manual",
         }),
-        Effect.mapError(() => networkError(request))
+        Effect.mapError(() =>
+          publicationNetworkError(targetStage(request.operation))
+        )
       );
       if (
         response.request.url !== config.endpoint.toString() ||

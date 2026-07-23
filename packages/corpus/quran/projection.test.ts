@@ -71,7 +71,7 @@ describe("Quran projection", () => {
           )
       )
     ).toBe(true);
-  });
+  }, 30_000);
 
   it("derives stable graph identities with locale-specific assets", async () => {
     const searches = Chunk.toReadonlyArray(

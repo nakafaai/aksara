@@ -9,6 +9,10 @@ import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
+import {
+  decodeQuestionPath,
+  QUESTION_BANK_ROOT,
+} from "@nakafa/aksara-corpus/question-bank/path";
 import { decodeQuestionRegistry } from "@nakafa/aksara-corpus/question-bank/registry";
 import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
@@ -104,37 +108,10 @@ export type PrepareQuestionPublicationError<E> =
   | ReplaySpoolError
   | RendererManifestError;
 
-/** Maps one logical question identity onto its physical renderer domain. */
-function rendererForQuestion(relativeQuestion: string) {
-  if (relativeQuestion.startsWith("tka/mathematics/")) {
-    return "tka-math";
-  }
-  if (relativeQuestion.startsWith("snbt/general-reasoning/")) {
-    return "snbt-general";
-  }
-  if (relativeQuestion.startsWith("snbt/mathematical-reasoning/")) {
-    return "snbt-math";
-  }
-  if (relativeQuestion.startsWith("snbt/quantitative-knowledge/")) {
-    return "snbt-quant";
-  }
-  if (relativeQuestion.startsWith("snbt/")) {
-    return "snbt-plain";
-  }
-}
-
-/** Reconstructs one question's logical root from a reviewed physical path. */
-function logicalSourceRoot(sourceRoot: string) {
-  return sourceRoot.replace(
-    "snbt/reading-and/writing-skills/",
-    "snbt/reading-and-writing-skills/"
-  );
-}
-
 /** Finds the first field proving a head does not own its question source. */
-function mismatchedFamilyField(
-  head: QuestionHead
-): typeof QuestionFamilyFieldSchema.Type | undefined {
+const mismatchedFamilyField = Effect.fn(
+  "AksaraPublisher.mismatchedQuestionField"
+)(function* (head: QuestionHead) {
   const keyPrefix = "question-bank/tryout/indonesia/";
   const questionSuffix = "/question";
   const answerSuffix = "/answer";
@@ -158,10 +135,7 @@ function mismatchedFamilyField(
     keyPrefix.length,
     -bodySuffix.length
   );
-  if (head.rendererDomain !== rendererForQuestion(relativeQuestion)) {
-    return "rendererDomain";
-  }
-  const sourcePrefix = "packages/corpus/question-bank/tryout/indonesia/";
+  const sourcePrefix = `${QUESTION_BANK_ROOT}/`;
   const sourceSuffix = `/${bodyKind}.${head.locale}.mdx`;
   if (!head.sourcePath.startsWith(sourcePrefix)) {
     return "sourcePath";
@@ -173,10 +147,23 @@ function mismatchedFamilyField(
     sourcePrefix.length,
     -sourceSuffix.length
   );
-  if (logicalSourceRoot(sourceRoot) !== relativeQuestion) {
+  const location = yield* decodeQuestionPath(sourceRoot).pipe(
+    Effect.mapError(
+      (error) =>
+        new QuestionHeadFamilyError({
+          contentKey: head.contentKey,
+          field: error.reason === "renderer" ? "rendererDomain" : "sourcePath",
+          locale: head.locale,
+        })
+    )
+  );
+  if (location.questionKey !== `${keyPrefix}${relativeQuestion}`) {
     return "sourcePath";
   }
-}
+  if (head.rendererDomain !== location.rendererDomain) {
+    return "rendererDomain";
+  }
+});
 
 /** Validates family ownership and strict ordering before diffing one head. */
 function validatePublishedHead(
@@ -186,37 +173,33 @@ function validatePublishedHead(
   readonly [HeadOrderState, QuestionHead],
   QuestionHeadDuplicateError | QuestionHeadFamilyError | QuestionHeadOrderError
 > {
-  const field = mismatchedFamilyField(head);
-  if (field !== undefined) {
-    return Effect.fail(
-      new QuestionHeadFamilyError({
+  return Effect.gen(function* () {
+    const field = yield* mismatchedFamilyField(head);
+    if (field !== undefined) {
+      return yield* new QuestionHeadFamilyError({
         contentKey: head.contentKey,
         field,
         locale: head.locale,
-      })
-    );
-  }
-  const { previous } = state;
-  if (previous !== undefined) {
-    const comparison = compareContentHeads(previous, head);
-    if (comparison === 0) {
-      return Effect.fail(
-        new QuestionHeadDuplicateError({
+      });
+    }
+    const { previous } = state;
+    if (previous !== undefined) {
+      const comparison = compareContentHeads(previous, head);
+      if (comparison === 0) {
+        return yield* new QuestionHeadDuplicateError({
           contentKey: head.contentKey,
           locale: head.locale,
-        })
-      );
-    }
-    if (comparison > 0) {
-      return Effect.fail(
-        new QuestionHeadOrderError({
+        });
+      }
+      if (comparison > 0) {
+        return yield* new QuestionHeadOrderError({
           contentKey: head.contentKey,
           locale: head.locale,
-        })
-      );
+        });
+      }
     }
-  }
-  return Effect.succeed(Tuple.make({ previous: head }, head));
+    return Tuple.make({ previous: head }, head);
+  });
 }
 
 /** Proves every published question head before the constant-space merge. */

@@ -25,16 +25,23 @@ import {
 } from "@nakafa/aksara-contracts/release/rollback-digest";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import {
+  decodeContentSnapshotManifests,
+  decodeContentSnapshotRows,
+  verifyContentSnapshots,
+} from "@nakafa/aksara-contracts/release/snapshot-verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import {
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
 } from "#publisher/preparation/errors";
+import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 import {
   makePreparedGitRelease,
   type PrepareContentRelease,
   type PrepareContentReleaseInput,
+  type PreparedReleaseStreamError,
 } from "#publisher/preparation/spec";
 import {
   type DerivedContentRecord,
@@ -53,10 +60,15 @@ function isDerivedUpsert(
 export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   "AksaraPublisher.prepareContentRelease"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
-  if ((input.baseReleaseId === null) !== (input.baseManifestHash === null)) {
+  const hasBaseRelease = input.baseReleaseId !== null;
+  if (
+    hasBaseRelease !== (input.baseManifestHash !== null) ||
+    hasBaseRelease !== (input.previousSnapshots !== null)
+  ) {
     return yield* new PreparedReleaseBaseIdentityError({
       baseManifestHash: input.baseManifestHash,
       baseReleaseId: input.baseReleaseId,
+      hasSnapshotBase: input.previousSnapshots !== null,
     });
   }
   if (input.baseReleaseId === input.releaseId) {
@@ -68,6 +80,17 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
+  /** Replays strict replacement-manifest decoding and canonical order checks. */
+  const snapshotManifests = () =>
+    decodeContentSnapshotManifests(input.snapshotManifests());
+  /** Replays strict immutable-row decoding without retaining row bodies. */
+  const snapshotRows = () => decodeContentSnapshotRows(input.snapshotRows());
+  yield* snapshotManifests().pipe(Stream.runForEach(requireSnapshotProvenance));
+  const snapshotSummary = yield* verifyContentSnapshots({
+    manifests: input.snapshotManifests,
+    previousSnapshots: input.previousSnapshots,
+    rows: input.snapshotRows,
+  });
   /** Replays strict decoding, coherence, ordering, and route validation. */
   const records = () =>
     derivePreparedRecords({
@@ -157,6 +180,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     rollbackDigest,
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
+    snapshots: snapshotSummary.snapshots,
     upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });
@@ -169,11 +193,13 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     releaseId: manifest.releaseId,
   });
   yield* verifyRollbackSnapshot({ entries: rollback(), manifest });
-  return makePreparedGitRelease({
+  return makePreparedGitRelease<PreparedReleaseStreamError<E>, R>({
     items,
     manifest,
     projections,
     rendererManifest,
     routes,
+    snapshotManifests,
+    snapshotRows,
   });
 });

@@ -2,7 +2,7 @@ import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import {
   compareTryoutPlacements,
   makeTryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/hash";
+} from "@nakafa/aksara-contracts/tryout/row-hash";
 import {
   compareTryoutCatalog,
   type TryoutPlacementSource,

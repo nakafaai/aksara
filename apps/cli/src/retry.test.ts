@@ -35,6 +35,8 @@ function makeTarget(
     stageRecovery: unused,
     stageRelease: unused,
     stageRouteBatch: unused,
+    stageSnapshot: unused,
+    stageSnapshotBatch: unused,
     status: unused,
     verify: unused,
   });
@@ -120,6 +122,8 @@ describe("publication transport retry", () => {
       [retried.stageRecovery, target.stageRecovery],
       [retried.stageRelease, target.stageRelease],
       [retried.stageRouteBatch, target.stageRouteBatch],
+      [retried.stageSnapshot, target.stageSnapshot],
+      [retried.stageSnapshotBatch, target.stageSnapshotBatch],
       [retried.status, target.status],
       [retried.verify, target.verify],
     ];

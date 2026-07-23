@@ -1,8 +1,18 @@
 import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
+import { Sha256HashSchema } from "#contracts/ids";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { ContentRouteItemSchema } from "#contracts/release/route";
+import {
+  emptyContentSnapshots,
+  invertContentSnapshots,
+  replaceContentSnapshot,
+} from "#contracts/release/snapshot";
+import {
+  ContentSnapshotManifestSchema,
+  ContentSnapshotRowSchema,
+} from "#contracts/release/snapshot-data";
 import {
   ContentReleaseItemSchema,
   RollbackSignedContentReleaseSchema,
@@ -13,9 +23,20 @@ import { createRendererManifest } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
 
 export const releaseId = "test-transport";
-export const hash = `sha256:${"a".repeat(64)}`;
+export const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const signature = `${"A".repeat(85)}A`;
+
+/** One coherent structured-state replacement used for signature tampering. */
+export const replacementSnapshots = {
+  ...emptyContentSnapshots(),
+  program: replaceContentSnapshot({
+    baseSnapshotId: null,
+    resultSnapshotId: hash,
+    rowCount: 1,
+    rowDigest: hash,
+  }),
+};
 
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -49,6 +70,7 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
     rollbackDigest: hash,
     routeCount: 0,
     routeDigest: hash,
+    snapshots: emptyContentSnapshots(),
     upsertCount: 1,
   },
   manifestHash,
@@ -72,6 +94,7 @@ export const recoveryRelease = Schema.decodeUnknownSync(
     releaseId: recoveryId,
     resultCount: release.manifest.baseResultCount,
     resultDigest: release.manifest.baseResultDigest,
+    snapshots: invertContentSnapshots(release.manifest.snapshots),
   },
   manifestHash: `sha256:${"c".repeat(64)}`,
 });
@@ -153,6 +176,42 @@ export const route = Schema.decodeUnknownSync(ContentRouteItemSchema)({
   releaseId,
 });
 
+/** One test-owned try-out manifest used only by transport protocol tests. */
+export const snapshotManifest = Schema.decodeUnknownSync(
+  ContentSnapshotManifestSchema
+)({
+  family: "tryout",
+  manifest: {
+    catalogDigest: hash,
+    counts: { country: 1, exam: 0, section: 0, set: 0, track: 0 },
+    format: "tryout-v1",
+    locales: ["en", "id"],
+    placementCount: 0,
+    placementDigest: hash,
+    routeCount: 1,
+    snapshotId: hash,
+  },
+});
+
+/** One test-owned hierarchy row used only by transport protocol tests. */
+export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
+  family: "tryout",
+  record: {
+    row: {
+      countryCode: "TS",
+      countryKey: "test-country",
+      graph: materialGraph("en", "test", "transport", "snapshot"),
+      kind: "country",
+      locale: "en",
+      publicPath: "try-out/test-country",
+      sourceRevision: "test-transport-v1",
+      title: "Test Country",
+    },
+    rowHash: hash,
+  },
+  rowKind: "catalog",
+});
+
 /** Exact publication request fixtures shared by one transport contract test. */
 export const requests = [
   { operation: "accept", recoveryId, releaseId },
@@ -169,6 +228,15 @@ export const requests = [
   { operation: "recovery", recoveryId, releaseId },
   { operation: "stageRelease", release, rendererManifest },
   { operation: "stageRecovery", release: recoveryRelease, rendererManifest },
+  { operation: "stageSnapshot", releaseId, snapshot: snapshotManifest },
+  {
+    batchIndex: 0,
+    family: "tryout",
+    operation: "stageSnapshotBatch",
+    releaseId,
+    rows: [snapshotRow],
+    snapshotId: hash,
+  },
   { batchIndex: 0, items, operation: "stageItemBatch", releaseId },
   {
     batchIndex: 0,

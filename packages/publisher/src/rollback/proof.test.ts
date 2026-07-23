@@ -5,7 +5,7 @@ import {
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { selectRollbackProof } from "#publisher/rollback/proof";
-import { makeRollbackRelease, makeSignedBundle } from "#test/publication";
+import { makeRollbackRelease, makeSignedBundle } from "#test/publication/run";
 
 describe("rollback proof selection", () => {
   it("selects source and recovery orientation from exact signed identities", async () => {

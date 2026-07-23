@@ -1,6 +1,5 @@
 import {
   copyFileSync,
-  existsSync,
   realpathSync,
   renameSync,
   symlinkSync,
@@ -18,29 +17,17 @@ import { makePreviewCredentials } from "#cli/credentials";
 import { makePreviewDocumentCompiler } from "#cli/document";
 import { selectPreviewDocument } from "#cli/repository";
 import {
-  makeTestRepositories,
+  makeRepositoryTracker,
   REAL_SOURCE,
   RENDERER_MANIFEST,
-  removeTestRepositories,
   type TestRepositories,
 } from "#test/real";
 
-const repositories: TestRepositories[] = [];
+const repositories = makeRepositoryTracker();
 
 afterEach(() => {
-  for (const repository of repositories.splice(0)) {
-    if (existsSync(repository.root)) {
-      removeTestRepositories(repository);
-    }
-  }
+  repositories.clear();
 });
-
-/** Creates and tracks one isolated final-corpus repository pair. */
-function makeRepositories() {
-  const repository = makeTestRepositories();
-  repositories.push(repository);
-  return repository;
-}
 
 /** Runs a platform-dependent compiler operation at the Vitest boundary. */
 function runNode<A, E>(
@@ -73,7 +60,7 @@ async function makeCompiler(
 
 describe("preview document compiler", () => {
   it("compiles the real source once and reuses its exact incremental cache", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const { compiler } = await makeCompiler(repository);
     const first = await runNode(compiler.compile());
     const second = await runNode(compiler.compile());
@@ -88,7 +75,7 @@ describe("preview document compiler", () => {
   });
 
   it("rejects invalid real metadata and executable source changes", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     writeFileSync(
       repository.documentPath,
       REAL_SOURCE.replace('date: "2025-04-27"', 'date: "invalid"')
@@ -111,7 +98,7 @@ describe("preview document compiler", () => {
   });
 
   it("surfaces signing failures without caching an unsigned result", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const credentials = await Effect.runPromise(makePreviewCredentials());
     const signer: PublicationSigner = {
       signArtifact: () =>
@@ -133,7 +120,7 @@ describe("preview document compiler", () => {
   });
 
   it("fails closed across rename and delete before accepting a restored file", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const { compiler } = await makeCompiler(repository);
     const renamedPath = `${repository.documentPath}.moved`;
     renameSync(repository.documentPath, renamedPath);
@@ -154,7 +141,7 @@ describe("preview document compiler", () => {
   });
 
   it("rejects a source replaced by a symlink after initial selection", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const { compiler } = await makeCompiler(repository);
     unlinkSync(repository.documentPath);
     const indonesianPath = resolve(

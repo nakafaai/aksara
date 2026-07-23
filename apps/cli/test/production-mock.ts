@@ -1,11 +1,33 @@
 import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
   GitCommitShaSchema,
+  Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
 import { makeProductionTarget } from "#test/target";
+
+const HEAD_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const QUESTION_HEAD = QuestionHeadSchema.make({
+  artifactHash: HEAD_HASH,
+  compilerConfigHash: HEAD_HASH,
+  contentKey: ContentKeySchema.make(
+    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question"
+  ),
+  delivery: "authenticated",
+  family: "question",
+  locale: "en",
+  projectionHash: HEAD_HASH,
+  rendererDomain: "snbt-general",
+  sourceHash: HEAD_HASH,
+  sourcePath: CorpusSourcePathSchema.make(
+    "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.en.mdx"
+  ),
+});
 
 /** Observable fields required by small production mock implementations. */
 export interface TargetCalls {
@@ -15,6 +37,7 @@ export interface TargetCalls {
   current: unknown;
   derivedPublicKeyPem: string;
   environmentKeyId: string;
+  finalSha: string | undefined;
   headManifestHash: string | undefined;
   headReleaseId: string | undefined;
   publicationConfig:
@@ -26,25 +49,33 @@ export interface TargetCalls {
     | undefined;
   rendererCalls: number;
   rootReads: number;
+  signingSecretReads: number;
+  snapshotCalls: number;
   sourceLayers: number;
   targetCalls: number;
 }
 
 /** Supplies isolated production configuration without process variables. */
 export function environmentMock(calls: TargetCalls) {
+  const recoveryEnvironment = {
+    publicationEndpoint: new URL("https://content.example.test/publish"),
+    publicationToken: Redacted.make("publication-token"),
+    rendererEndpoint: new URL(
+      "https://www.example.test/api/internal/content/renderer"
+    ),
+    rendererToken: Redacted.make("renderer-token"),
+  };
   return {
-    readProductionEnvironment: () =>
-      Effect.succeed({
+    readProductionEnvironment: (recovery: typeof recoveryEnvironment) => {
+      calls.signingSecretReads += 1;
+      return Effect.succeed({
+        ...recovery,
         derivedPublicKeyPem: calls.derivedPublicKeyPem,
         keyId: SigningKeyIdSchema.make(calls.environmentKeyId),
         privateKeyPem: Redacted.make("test-private-key"),
-        publicationEndpoint: new URL("https://content.example.test/publish"),
-        publicationToken: Redacted.make("publication-token"),
-        rendererEndpoint: new URL(
-          "https://www.example.test/api/internal/content/renderer"
-        ),
-        rendererToken: Redacted.make("renderer-token"),
-      }),
+      });
+    },
+    readRecoveryEnvironment: () => Effect.succeed(recoveryEnvironment),
   };
 }
 
@@ -53,7 +84,25 @@ export function evidenceMock(calls: TargetCalls) {
   return {
     readCleanAksaraRevision: () => {
       calls.cleanReads += 1;
-      return Effect.succeed(GitCommitShaSchema.make("a".repeat(40)));
+      const revision =
+        calls.cleanReads > 1 && calls.finalSha !== undefined
+          ? calls.finalSha
+          : "a".repeat(40);
+      return Effect.succeed(GitCommitShaSchema.make(revision));
+    },
+    /** Rejects a release whose post-preparation revision changed. */
+    validateStableAksaraRevision: (
+      expected: typeof GitCommitShaSchema.Type,
+      actual: typeof GitCommitShaSchema.Type
+    ) => {
+      if (actual === expected) {
+        return Effect.void;
+      }
+      return Effect.fail({
+        _tag: "ReleaseRevisionChangedError",
+        actual,
+        expected,
+      });
     },
   };
 }
@@ -100,9 +149,28 @@ export function catalogMock(calls: TargetCalls) {
       calls.checkoutRoot = input.checkoutRoot;
       return Effect.succeed({
         records: () => Stream.empty,
-        result: () => Stream.empty,
+        result: () => Stream.make(QUESTION_HEAD),
         routes: () => Stream.empty,
       });
+    },
+  };
+}
+
+/** Exposes unchanged structured state for CLI orchestration tests. */
+export function snapshotMock(calls: TargetCalls) {
+  return {
+    prepareReleaseSnapshots: (input: {
+      /** Replays the catalog narrowed by production preparation. */
+      readonly questionHeads: () => Stream.Stream<unknown>;
+    }) => {
+      calls.snapshotCalls += 1;
+      return input.questionHeads().pipe(
+        Stream.runDrain,
+        Effect.as({
+          manifests: () => Stream.empty,
+          rows: () => Stream.empty,
+        })
+      );
     },
   };
 }

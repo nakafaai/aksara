@@ -7,6 +7,7 @@ import {
   ProgramNavigationIconKeySchema,
   ProgramNavigationLevelSchema,
 } from "#contracts/program/spec";
+import { reverseObjectKeys } from "#contracts/test/order";
 
 const source = {
   defaultCoverageStatus: "partial",
@@ -91,6 +92,19 @@ describe("learning program contract", () => {
         label: "2026",
         startsAt: "2026-01-01",
       }
+    );
+  });
+
+  it("keeps localized program identity independent of object insertion order", () => {
+    const canonical = Schema.decodeUnknownSync(LearningProgramSchema)(source);
+    const reordered = {
+      ...canonical,
+      translations: reverseObjectKeys(canonical.translations),
+    };
+
+    expect(Object.keys(reordered.translations)).toEqual(["id", "en"]);
+    expect(canonicalizeLearningProgram(reordered)).toBe(
+      canonicalizeLearningProgram(canonical)
     );
   });
 

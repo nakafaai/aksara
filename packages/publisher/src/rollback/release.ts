@@ -29,6 +29,7 @@ import {
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {
@@ -53,6 +54,7 @@ export interface RollbackBaseCatalog {
   readonly releaseId: ReleaseId;
   readonly resultCount: number;
   readonly resultDigest: Sha256Hash;
+  readonly snapshots: ContentSnapshotSet;
 }
 
 /** Complete inputs for signing one already-authenticated rollback transition. */
@@ -209,6 +211,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     rollbackDigest,
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
+    snapshots: input.base.snapshots,
     upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });
@@ -228,5 +231,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     projections,
     rendererManifest: input.rendererManifest,
     routes,
+    snapshotManifests: () => Stream.empty,
+    snapshotRows: () => Stream.empty,
   });
 });

@@ -12,6 +12,14 @@ import {
 } from "#contracts/ids";
 import { ReleaseOriginSchema } from "#contracts/release/origin";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import {
+  type ContentSnapshotSet,
+  ContentSnapshotSetSchema,
+  hasEmptySnapshotBases,
+  hasGitSnapshotModes,
+  hasRollbackSnapshotModes,
+  snapshotRowCount,
+} from "#contracts/release/snapshot";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 
@@ -81,6 +89,7 @@ const ContentReleaseManifestFields = {
   rollbackDigest: Sha256HashSchema,
   routeCount: ProjectionCountSchema,
   routeDigest: Sha256HashSchema,
+  snapshots: ContentSnapshotSetSchema,
   upsertCount: ProjectionCountSchema,
 };
 
@@ -95,6 +104,7 @@ function hasCoherentReleaseOrigin(input: {
   readonly origin: typeof ReleaseOriginSchema.Type;
   readonly releaseId: typeof ReleaseIdSchema.Type;
   readonly rollbackCount: number;
+  readonly snapshots: ContentSnapshotSet;
   readonly upsertCount: number;
 }) {
   if (
@@ -112,12 +122,16 @@ function hasCoherentReleaseOrigin(input: {
   ) {
     return false;
   }
+  if (input.baseReleaseId === null && !hasEmptySnapshotBases(input.snapshots)) {
+    return false;
+  }
   if (input.origin.kind === "git") {
-    return true;
+    return hasGitSnapshotModes(input.snapshots);
   }
   return (
     input.baseReleaseId === input.origin.releaseId &&
-    input.releaseId !== input.origin.releaseId
+    input.releaseId !== input.origin.releaseId &&
+    hasRollbackSnapshotModes(input.snapshots)
   );
 }
 
@@ -170,6 +184,8 @@ function hasCoherentVerificationCounts(input: {
   readonly deleteHeads: number;
   readonly itemCount: number;
   readonly rollbackCount: number;
+  readonly snapshots: ContentSnapshotSet;
+  readonly stagedSnapshotRows: number;
   readonly stagedArtifacts: number;
   readonly upsertHeads: number;
 }) {
@@ -180,7 +196,8 @@ function hasCoherentVerificationCounts(input: {
         input.baseResultDigest === EMPTY_RESULT_CATALOG_DIGEST)) &&
     input.deleteHeads + input.upsertHeads === input.itemCount &&
     input.rollbackCount === input.itemCount &&
-    input.stagedArtifacts === input.upsertHeads
+    input.stagedArtifacts === input.upsertHeads &&
+    input.stagedSnapshotRows === snapshotRowCount(input.snapshots)
   );
 }
 
@@ -205,8 +222,10 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   rollbackDigest: Sha256HashSchema,
   routeCount: ProjectionCountSchema,
   routeDigest: Sha256HashSchema,
+  snapshots: ContentSnapshotSetSchema,
   stagedArtifacts: ProjectionCountSchema,
   stagedRoutes: ProjectionCountSchema,
+  stagedSnapshotRows: ProjectionCountSchema,
   upsertHeads: ProjectionCountSchema,
 }).pipe(
   Schema.filter(hasCoherentVerificationCounts, {
@@ -227,15 +246,18 @@ export const PublicationReceiptSchema = Schema.Struct({
   resultCount: ProjectionCountSchema,
   resultDigest: Sha256HashSchema,
   routeDigest: Sha256HashSchema,
+  snapshots: ContentSnapshotSetSchema,
   stagedArtifacts: ProjectionCountSchema,
   stagedItems: ProjectionCountSchema,
   stagedProjections: ProjectionCountSchema,
   stagedRoutes: ProjectionCountSchema,
+  stagedSnapshotRows: ProjectionCountSchema,
 }).pipe(
   Schema.filter(
     (receipt) =>
       receipt.activatedHeads + receipt.deletedHeads === receipt.stagedItems &&
-      receipt.stagedArtifacts === receipt.activatedHeads,
+      receipt.stagedArtifacts === receipt.activatedHeads &&
+      receipt.stagedSnapshotRows === snapshotRowCount(receipt.snapshots),
     {
       message: () =>
         "Expected activated head and artifact counts to match staged items.",

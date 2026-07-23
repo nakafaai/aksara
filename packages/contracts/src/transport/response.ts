@@ -18,6 +18,10 @@ import {
   ReleaseVerificationEvidenceSchema,
 } from "#contracts/release/spec";
 import { PublicationFailureSchema } from "#contracts/transport/failure";
+import {
+  StageSnapshotBatchReceiptSchema,
+  StageSnapshotReceiptSchema,
+} from "#contracts/transport/snapshot";
 
 const CountSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
 
@@ -85,6 +89,20 @@ export const StageRecoverySuccessSchema = Schema.Struct({
   ok: Schema.Literal(true),
   operation: Schema.Literal("stageRecovery"),
   value: StagedReleaseStatusSchema,
+});
+
+/** Confirms the idempotent outcome of one structured-family manifest. */
+export const StageSnapshotSuccessSchema = Schema.Struct({
+  ok: Schema.Literal(true),
+  operation: Schema.Literal("stageSnapshot"),
+  value: StageSnapshotReceiptSchema,
+});
+
+/** Confirms the idempotent outcome of one structured-snapshot row batch. */
+export const StageSnapshotBatchSuccessSchema = Schema.Struct({
+  ok: Schema.Literal(true),
+  operation: Schema.Literal("stageSnapshotBatch"),
+  value: StageSnapshotBatchReceiptSchema,
 });
 
 /** Confirms the idempotent outcome of one ordered item batch. */
@@ -173,6 +191,8 @@ export const PublicationSuccessSchema = Schema.Union(
   PublicationRecoverySuccessSchema,
   StageReleaseSuccessSchema,
   StageRecoverySuccessSchema,
+  StageSnapshotSuccessSchema,
+  StageSnapshotBatchSuccessSchema,
   StageItemBatchSuccessSchema,
   StageRouteBatchSuccessSchema,
   StageProjectionBatchSuccessSchema,

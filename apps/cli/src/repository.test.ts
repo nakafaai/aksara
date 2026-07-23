@@ -1,5 +1,4 @@
 import {
-  existsSync,
   mkdirSync,
   realpathSync,
   symlinkSync,
@@ -16,12 +15,7 @@ import {
   resolveNakafaRoot,
   selectPreviewDocument,
 } from "#cli/repository";
-import {
-  ENGLISH_ENTRY,
-  makeTestRepositories,
-  removeTestRepositories,
-  type TestRepositories,
-} from "#test/real";
+import { ENGLISH_ENTRY, makeRepositoryTracker } from "#test/real";
 
 const registryControl = vi.hoisted(() => ({ fail: false }));
 
@@ -40,23 +34,12 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   };
 });
 
-const repositories: TestRepositories[] = [];
+const repositories = makeRepositoryTracker();
 
 afterEach(() => {
   registryControl.fail = false;
-  for (const repository of repositories.splice(0)) {
-    if (existsSync(repository.root)) {
-      removeTestRepositories(repository);
-    }
-  }
+  repositories.clear();
 });
-
-/** Creates and tracks one isolated repository pair for automatic cleanup. */
-function makeRepositories() {
-  const repository = makeTestRepositories();
-  repositories.push(repository);
-  return repository;
-}
 
 /** Runs a filesystem program through the production Node platform layer. */
 function runNode<A, E>(
@@ -67,7 +50,7 @@ function runNode<A, E>(
 
 describe("preview repository resolution", () => {
   it("finds exact roots and selects absolute or relative registry paths", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const nested = dirname(repository.documentPath);
     const realAksaraRoot = realpathSync(repository.aksaraRoot);
     const realDocumentPath = realpathSync(repository.documentPath);
@@ -94,7 +77,7 @@ describe("preview repository resolution", () => {
   });
 
   it("rejects missing roots and malformed checkout identities", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const missing = resolve(repository.root, "missing");
     const missingAksara = await runNode(
       findAksaraRoot(missing).pipe(Effect.flip)
@@ -139,7 +122,7 @@ describe("preview repository resolution", () => {
   });
 
   it("rejects unknown, traversal, missing, symlinked, and invalid registry sources", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const requested = relative(repository.aksaraRoot, repository.documentPath);
     const traversal = requested.replace(
       "function-concept/en.mdx",
@@ -214,7 +197,7 @@ describe("preview repository resolution", () => {
   });
 
   it("skips malformed ancestor manifests before reporting a missing root", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const malformed = resolve(repository.root, "malformed");
     mkdirSync(malformed);
     writeFileSync(resolve(malformed, "package.json"), "{");

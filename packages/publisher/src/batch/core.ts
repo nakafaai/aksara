@@ -7,7 +7,8 @@ type PublicationBatchKind =
   | "artifact"
   | "content-route"
   | "content-projection"
-  | "release-item";
+  | "release-item"
+  | "snapshot";
 
 /** One value cannot fit inside its mandatory publication batch ceiling. */
 export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBatchLimitError>()(
@@ -21,7 +22,8 @@ export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBa
       "artifact",
       "content-route",
       "content-projection",
-      "release-item"
+      "release-item",
+      "snapshot"
     ),
     maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
     maxCount: Schema.Number.pipe(Schema.int(), Schema.positive()),

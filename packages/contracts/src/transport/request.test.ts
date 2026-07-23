@@ -13,6 +13,7 @@ import {
   rendererManifest,
   requests,
   route,
+  snapshotRow,
 } from "#contracts/test/request";
 import {
   decodePublicationRequest,
@@ -24,6 +25,7 @@ import {
   StageRouteBatchInputSchema,
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/request";
+import { StageSnapshotBatchInputSchema } from "#contracts/transport/snapshot";
 
 const itemError =
   "Expected contiguous release items bound to the batch release identity.";
@@ -183,6 +185,16 @@ describe("publication requests", () => {
       {
         input: { batchIndex: 0, releaseId, routes: [route] },
         schema: StageRouteBatchInputSchema,
+      },
+      {
+        input: {
+          batchIndex: 0,
+          family: "tryout",
+          releaseId,
+          rows: [snapshotRow],
+          snapshotId: hash,
+        },
+        schema: StageSnapshotBatchInputSchema,
       },
     ]) {
       expect(accepts(schema, input)).toBe(true);

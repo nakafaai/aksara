@@ -9,12 +9,10 @@ import {
   QuranSnapshotManifestSchema,
 } from "#contracts/quran/snapshot";
 import {
-  canonicalizeQuranSigningInput,
   canonicalizeQuranSnapshotIdentity,
-  canonicalizeQuranSnapshotManifest,
   hashQuranSnapshot,
-  hashQuranSnapshotManifest,
 } from "#contracts/quran/snapshot-hash";
+import { reverseObjectKeys } from "#contracts/test/order";
 
 const failures = vi.hoisted((): { domain: string | null } => ({
   domain: null,
@@ -73,42 +71,31 @@ function manifest() {
 }
 
 describe("Quran snapshot hashing", () => {
-  it("hashes canonical snapshot identities, manifests, and signatures", async () => {
+  it("hashes the canonical snapshot identity", async () => {
     const value = manifest();
     const { snapshotId: _snapshotId, ...identity } = value;
-    const snapshotId = await Effect.runPromise(hashQuranSnapshot(identity));
-    const manifestHash = await Effect.runPromise(
-      hashQuranSnapshotManifest(value)
+    const reordered = reverseObjectKeys(identity);
+    const [snapshotId, reorderedSnapshotId] = await Effect.runPromise(
+      Effect.all([hashQuranSnapshot(identity), hashQuranSnapshot(reordered)])
     );
 
+    expect(Object.keys(reordered)[0]).toBe("verseCount");
     expect(canonicalizeQuranSnapshotIdentity(identity)).toBe(
-      JSON.stringify(identity)
+      canonicalizeQuranSnapshotIdentity(reordered)
     );
-    expect(canonicalizeQuranSnapshotManifest(value)).toBe(
-      JSON.stringify(value)
-    );
-    expect(canonicalizeQuranSigningInput(manifestHash, value)).toContain(
-      manifestHash
-    );
-    expect(snapshotId).not.toBe(manifestHash);
+    expect(snapshotId).toBe(reorderedSnapshotId);
+    expect(snapshotId).not.toBe(value.snapshotId);
   });
 
-  it("maps snapshot and manifest hashing failures", async () => {
+  it("maps snapshot hashing failures", async () => {
     const value = manifest();
     const { snapshotId: _snapshotId, ...identity } = value;
     failures.domain = "nakafa.aksara.quran-snapshot.v1";
     const snapshotError = await Effect.runPromise(
       hashQuranSnapshot(identity).pipe(Effect.flip)
     );
-    failures.domain = "nakafa.aksara.quran-manifest.v1";
-    const manifestError = await Effect.runPromise(
-      hashQuranSnapshotManifest(value).pipe(Effect.flip)
-    );
     failures.domain = null;
 
-    expect([snapshotError.scope, manifestError.scope]).toEqual([
-      "snapshot",
-      "manifest",
-    ]);
+    expect(snapshotError.scope).toBe("snapshot");
   });
 });

@@ -26,27 +26,11 @@ import {
   MAX_PROJECTION_BATCH_COUNT,
   MAX_ROUTE_BATCH_COUNT,
 } from "#contracts/transport/limits";
-/** Stable operation names accepted by the single publication ingress. */
-export const PublicationOperationSchema = Schema.Literal(
-  "accept",
-  "abort",
-  "current",
-  "headPage",
-  "recovery",
-  "stageRelease",
-  "stageRecovery",
-  "stageItemBatch",
-  "stageRouteBatch",
-  "stageProjectionBatch",
-  "stageArtifactBatch",
-  "status",
-  "verify",
-  "activate",
-  "activateRecovery",
-  "rollbackPage",
-  "routePage",
-  "cleanup"
-);
+import {
+  StageSnapshotBatchRequestSchema,
+  StageSnapshotRequestSchema,
+} from "#contracts/transport/snapshot";
+
 const BatchIndexSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
 /** Reads the authoritative active, candidate, and recovery identities. */
 export const PublicationCurrentRequestSchema = Schema.Struct({
@@ -304,6 +288,8 @@ export const PublicationRequestSchema = Schema.Union(
   PublicationRecoveryLookupRequestSchema,
   StageReleaseRequestSchema,
   StageRecoveryRequestSchema,
+  StageSnapshotRequestSchema,
+  StageSnapshotBatchRequestSchema,
   StageItemBatchRequestSchema,
   StageRouteBatchRequestSchema,
   StageProjectionBatchRequestSchema,

@@ -13,7 +13,8 @@ import { PublicationSource } from "#publisher/publication/spec";
 import { testFileLayer } from "#test/files";
 import { makeTarget } from "#test/lifecycle";
 import { checkoutRoot, rendererManifest, sourceByPath } from "#test/material";
-import { publishFromSource } from "#test/publication";
+import { publishFromSource } from "#test/publication/run";
+import { emptySnapshotSources } from "#test/snapshot";
 
 /** Publishes the real material fixture through exact Git source resolution. */
 export async function publishMaterialRelease() {
@@ -31,11 +32,13 @@ export async function publishMaterialRelease() {
           baseReleaseId: null,
           baseResultCount: 0,
           baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+          previousSnapshots: null,
           records: material.records,
           releaseId: ReleaseIdSchema.make("test-material-replay"),
           rendererManifest,
           result: material.result,
           routes: material.routes,
+          ...emptySnapshotSources,
         });
         const state = makeTarget(prepared);
         const source = PublicationSource.of({

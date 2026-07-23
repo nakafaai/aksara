@@ -41,16 +41,48 @@ not by a later copy loop.
 Candidate release ID, recovery release ID, and the candidate base release ID
 must be distinct. The release manifest binds its immutable base identity,
 result catalog, item stream, projection stream, route stream, renderer
-manifest, and provenance. Routes are a separate ordered signed stream; they
-are not reconstructed from projection metadata during publication or
-rollback.
+manifest, structured snapshot states, and provenance. Routes are a separate
+ordered signed stream; they are not reconstructed from projection metadata
+during publication or rollback.
+
+### Structured snapshots
+
+The same global release pointer selects three fixed structured families:
+`program`, `quran`, and `tryout`. There is no per-family active pointer and no
+second release protocol.
+
+Every signed release declares one transition for each family:
+
+| Mode | Meaning | Rows staged |
+|---|---|---|
+| `inherit` | Preserve the base snapshot identity | Zero |
+| `replace` | Select one new complete immutable snapshot | All rows |
+| `restore` | Forward rollback to an existing or absent snapshot | Zero |
+
+The transition signs the base and result snapshot IDs, row count, and row
+digest. A replacement separately stages the domain manifest and bounded rows.
+Verification recomputes the domain manifest identity, every row hash, canonical
+order, counts, and digests before activation. `stageSnapshot` owns one domain
+manifest; `stageSnapshotBatch` owns bounded rows. Body projections are not
+overloaded for structured data.
+
+Program snapshots authenticate the six real program rows and all 12 `en`/`id`
+slug identities. Try-out snapshots authenticate the active hierarchy and
+artifact-bound attempt placements. Quran snapshots authenticate all 114
+surahs, 6,236 verses, localized search rows, and reviewed provenance status.
+Quran production activation remains fail-closed while provenance is blocked.
+
+The global release Ed25519 signature is the only publication trust root.
+Family manifests are authenticated transitively by their content-addressed
+snapshot ID in the signed release. Quran does not have an independent
+signature or release state.
 
 ### Candidate activation
 
 1. Read authoritative current state and reject a conflicting candidate or
    retained recovery.
-2. Stage the signed candidate and its bounded item, route, projection, and
-   artifact batches.
+2. Stage the signed candidate and its bounded item, route, projection,
+   structured-snapshot, and artifact batches.
 3. Recompute and verify every signed candidate count and digest.
 4. Derive, sign, stage, and verify the candidate's exact inverse under the
    operator-selected recovery ID.
@@ -131,5 +163,8 @@ source repository is public.
 - Rewinding a global pointer as rollback.
 - Sharing one release ID between candidate and recovery.
 - Reconstructing route ownership from a different projection stream.
+- Separate program, Quran, or try-out active pointers.
+- A detached Quran-only signature or family-specific release protocol.
+- Copying immutable structured rows during forward rollback.
 - Treating a result digest as a row inclusion proof.
 - Claiming signed artifacts protect against arbitrary trusted-database writes.

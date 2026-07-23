@@ -3,6 +3,7 @@ import type {
   ContentReleaseBundle,
   ContentReleaseStatus,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
@@ -12,7 +13,10 @@ import {
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { resumeContentRelease } from "#publisher/resume";
-import { makeSignedBundle, testVerificationResolver } from "#test/publication";
+import {
+  makeSignedBundle,
+  testVerificationResolver,
+} from "#test/publication/run";
 import { makePublicationTarget } from "#test/target";
 
 const bundle = await makeSignedBundle("test-resume");
@@ -26,10 +30,12 @@ const receipt = {
   resultCount: manifest.resultCount,
   resultDigest: manifest.resultDigest,
   routeDigest: manifest.routeDigest,
+  snapshots: manifest.snapshots,
   stagedArtifacts: manifest.upsertCount,
   stagedItems: manifest.itemCount,
   stagedProjections: manifest.projectionCount,
   stagedRoutes: manifest.routeCount,
+  stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
 };
 
 /** Creates an exact durable status for one recovery test phase. */

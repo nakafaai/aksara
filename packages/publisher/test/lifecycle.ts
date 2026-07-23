@@ -78,6 +78,16 @@ export function makeTarget(release: {
       rows.forRelease(batch.releaseId).projections.push(...batch.projections)
     )
   );
+  const stageSnapshot = vi.fn((input) =>
+    Effect.sync(() =>
+      rows.forRelease(input.releaseId).snapshots.push(input.snapshot)
+    )
+  );
+  const stageSnapshotBatch = vi.fn((batch) =>
+    Effect.sync(() =>
+      rows.forRelease(batch.releaseId).snapshotRows.push(...batch.rows)
+    )
+  );
   const stageRouteBatch = vi.fn((batch) =>
     Effect.sync(() =>
       rows.forRelease(batch.releaseId).routes.push(...batch.routes)
@@ -188,6 +198,8 @@ export function makeTarget(release: {
     stageRecovery,
     stageRelease,
     stageRouteBatch,
+    stageSnapshot,
+    stageSnapshotBatch,
     status: ({ manifestHash, releaseId }) => {
       const phase = phases.get(releaseId) ?? "missing";
       if (phase === "completed") {
@@ -226,6 +238,8 @@ export function makeTarget(release: {
     stageRecovery,
     stageRelease,
     stageRouteBatch,
+    stageSnapshot,
+    stageSnapshotBatch,
     target,
     verify,
   };

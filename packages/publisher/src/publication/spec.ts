@@ -38,6 +38,10 @@ import type {
   StageProjectionBatchInput,
   StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/request";
+import type {
+  StageSnapshotBatchInput,
+  StageSnapshotInput,
+} from "@nakafa/aksara-contracts/transport/snapshot";
 import {
   Context,
   type Effect,
@@ -224,6 +228,14 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     /** Stages one canonical material projection batch idempotently. */
     readonly stageProjectionBatch: (
       batch: StageProjectionBatchInput
+    ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages one structured-family manifest idempotently. */
+    readonly stageSnapshot: (
+      input: StageSnapshotInput
+    ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages one bounded structured-snapshot row batch idempotently. */
+    readonly stageSnapshotBatch: (
+      batch: StageSnapshotBatchInput
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages one ordered route batch idempotently. */
     readonly stageRouteBatch: (

@@ -4,20 +4,17 @@ import { Sha256HashSchema } from "#contracts/ids";
 import {
   canonicalizeTryoutCatalog,
   canonicalizeTryoutPlacement,
-  canonicalizeTryoutSnapshot,
   compareTryoutPlacements,
   digestTryoutCatalog,
   digestTryoutPlacements,
   makeTryoutCatalogRecord,
   makeTryoutPlacementRecord,
-  makeTryoutSnapshot,
   tryoutPlacementIdentity,
-} from "#contracts/tryout/hash";
+} from "#contracts/tryout/row-hash";
 import {
   compareTryoutCatalog,
   TryoutCatalogRowSchema,
   TryoutPlacementSchema,
-  type TryoutSnapshotInput,
 } from "#contracts/tryout/spec";
 
 const hashes = {
@@ -25,8 +22,6 @@ const hashes = {
   question: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   tampered: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
 };
-const SHA256_HASH_PATTERN = /^sha256:[a-f\d]{64}$/u;
-
 /** Derives current SNBT graph facts for one canonical hierarchy sample. */
 function graph(kind: "country" | "exam" | "track" | "set" | "section") {
   const suffixByKind = {
@@ -162,17 +157,7 @@ function placement(locale: "en" | "id", order: number) {
   });
 }
 
-const snapshotInput: TryoutSnapshotInput = {
-  catalogDigest: hashes.answer,
-  counts: { country: 2, exam: 4, section: 34, set: 10, track: 4 },
-  format: "tryout-v1",
-  locales: ["en", "id"],
-  placementCount: 840,
-  placementDigest: hashes.question,
-  routeCount: 48,
-};
-
-describe("try-out hashing", () => {
+describe("try-out row hashing", () => {
   it("canonically serializes every hierarchy kind and optional field", () => {
     const parsed = catalogRows().map((row) =>
       JSON.parse(canonicalizeTryoutCatalog(row))
@@ -192,18 +177,13 @@ describe("try-out hashing", () => {
     expect(parsed[4]).not.toHaveProperty("publicPath");
   });
 
-  it("binds placement choices and snapshot facts deterministically", () => {
+  it("binds placement choices deterministically", () => {
     const row = placement("en", 1);
     const first = makeTryoutPlacementRecord(row);
     const second = makeTryoutPlacementRecord(row);
-    const snapshot = makeTryoutSnapshot(snapshotInput);
 
     expect(first).toEqual(second);
     expect(JSON.parse(canonicalizeTryoutPlacement(row))).toEqual(row);
-    expect(JSON.parse(canonicalizeTryoutSnapshot(snapshotInput))).toEqual(
-      snapshotInput
-    );
-    expect(snapshot.snapshotId).toMatch(SHA256_HASH_PATTERN);
   });
 
   it("binds graph identity into each immutable catalog row", () => {

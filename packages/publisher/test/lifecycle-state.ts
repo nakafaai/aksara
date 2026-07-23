@@ -20,12 +20,19 @@ import type {
   RoutePage,
   RoutePageRequest,
 } from "@nakafa/aksara-contracts/release/route-page";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
+import type {
+  ContentSnapshotManifest,
+  ContentSnapshotRow,
+} from "@nakafa/aksara-contracts/release/snapshot-data";
 
 interface StagedRows {
   readonly artifacts: SignedContentArtifact[];
   readonly items: ContentReleaseItem[];
   readonly projections: MaterialLessonProjection[];
   readonly routes: ContentRouteItem[];
+  readonly snapshotRows: ContentSnapshotRow[];
+  readonly snapshots: ContentSnapshotManifest[];
 }
 
 /** Builds terminal publication evidence from one exact signed release. */
@@ -42,10 +49,12 @@ export function releaseReceipt(
     resultCount: manifest.resultCount,
     resultDigest: manifest.resultDigest,
     routeDigest: manifest.routeDigest,
+    snapshots: manifest.snapshots,
     stagedArtifacts: manifest.upsertCount,
     stagedItems: manifest.itemCount,
     stagedProjections: manifest.projectionCount,
     stagedRoutes: manifest.routeCount,
+    stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
   };
 }
 
@@ -74,8 +83,10 @@ export function releaseEvidence(
     rollbackDigest: manifest.rollbackDigest,
     routeCount: manifest.routeCount,
     routeDigest: manifest.routeDigest,
+    snapshots: manifest.snapshots,
     stagedArtifacts: manifest.upsertCount,
     stagedRoutes: manifest.routeCount,
+    stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
     upsertHeads: manifest.upsertCount,
   };
 }
@@ -95,6 +106,8 @@ export function createLifecycleRows() {
       items: [],
       projections: [],
       routes: [],
+      snapshotRows: [],
+      snapshots: [],
     };
     rows.set(releaseId, created);
     return created;

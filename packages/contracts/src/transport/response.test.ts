@@ -22,9 +22,11 @@ describe("publication responses", () => {
       expect(accepts(response)).toBe(true);
     }
     const decoded = await Effect.runPromise(
-      decodePublicationResponse(successes[7])
+      decodePublicationResponse(
+        successes.find(({ operation }) => operation === "stageSnapshot")
+      )
     );
-    expect(decoded.ok).toBe(true);
+    expect(decoded).toMatchObject({ ok: true, operation: "stageSnapshot" });
   });
   it("decodes stable typed failures through the same response contract", () => {
     for (const failure of [

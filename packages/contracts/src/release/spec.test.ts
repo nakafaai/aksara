@@ -1,29 +1,23 @@
 import { Effect, Either, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-import { compareContentHeads } from "#contracts/content";
-import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
+import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
-  type ContentChange,
+  emptyContentSnapshots,
+  invertContentSnapshots,
+  restoreContentSnapshot,
+} from "#contracts/release/snapshot";
+import {
   ContentChangeSchema,
-  ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
   canonicalizeContentReleaseItem,
   RollbackSignedContentReleaseSchema,
 } from "#contracts/release/spec";
+import { makeReleaseItems } from "#contracts/test/items";
 import { release as gitRelease } from "#contracts/test/request";
 
 const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
-
-/** Builds canonically ordered release items with deterministic indexes. */
-function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
-  return [...input]
-    .sort(compareContentHeads)
-    .map((change, index) =>
-      ContentReleaseItemSchema.make({ change, index, releaseId: release })
-    );
-}
 
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   {
@@ -43,7 +37,7 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
     sourcePath: "packages/corpus/test/content/en.mdx",
   },
 ]);
-const items = makeItems(releaseId, changes);
+const items = makeReleaseItems(releaseId, changes);
 const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
@@ -67,6 +61,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"f".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"f".repeat(64)}`,
+  snapshots: emptyContentSnapshots(),
   upsertCount: itemSummary.upsertCount,
 });
 
@@ -102,7 +97,7 @@ describe("release spec", () => {
 
   it("requires forward rollback provenance and permits rollback of rollback", async () => {
     const firstId = Schema.decodeUnknownSync(ReleaseIdSchema)("rollback-first");
-    const firstItems = makeItems(firstId, []);
+    const firstItems = makeReleaseItems(firstId, []);
     const firstSummary = await Effect.runPromise(
       digestItems(firstId, Stream.fromIterable(firstItems))
     );
@@ -119,6 +114,7 @@ describe("release spec", () => {
       projectionCount: 0,
       releaseId: firstId,
       rollbackCount: 0,
+      snapshots: invertContentSnapshots(manifest.snapshots),
       upsertCount: 0,
     });
     const second = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
@@ -127,8 +123,23 @@ describe("release spec", () => {
       baseReleaseId: firstId,
       origin: { kind: "rollback", releaseId: firstId },
       releaseId: "rollback-second",
+      snapshots: invertContentSnapshots(first.snapshots),
     });
     expect(Either.isRight(second)).toBe(true);
+    const gitRestore = Schema.decodeUnknownEither(ContentReleaseManifestSchema)(
+      {
+        ...first,
+        origin: { kind: "git", sha: "b".repeat(40) },
+        snapshots: {
+          ...first.snapshots,
+          program: restoreContentSnapshot(
+            manifest.resultDigest,
+            manifest.baseResultDigest
+          ),
+        },
+      }
+    );
+    expect(Either.isLeft(gitRestore)).toBe(true);
     for (const invalid of [
       { ...first, baseReleaseId: null },
       { ...first, baseManifestHash: null },
@@ -136,6 +147,13 @@ describe("release spec", () => {
       { ...manifest, baseReleaseId: releaseId },
       { ...manifest, baseResultCount: 1 },
       { ...manifest, baseResultDigest: `sha256:${"1".repeat(64)}` },
+      {
+        ...manifest,
+        snapshots: {
+          ...manifest.snapshots,
+          program: restoreContentSnapshot(manifest.resultDigest, null),
+        },
+      },
     ]) {
       expect(
         Either.isLeft(

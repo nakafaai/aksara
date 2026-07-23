@@ -26,12 +26,13 @@ export class PreparedReleaseIdentityError extends Schema.TaggedError<PreparedRel
   { baseReleaseId: ReleaseIdSchema, releaseId: ReleaseIdSchema }
 ) {}
 
-/** A base release identity omitted exactly one half of its immutable pair. */
+/** A base release omitted part of its immutable release and snapshot identity. */
 export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<PreparedReleaseBaseIdentityError>()(
   "PreparedReleaseBaseIdentityError",
   {
     baseManifestHash: Schema.NullOr(Sha256HashSchema),
     baseReleaseId: Schema.NullOr(ReleaseIdSchema),
+    hasSnapshotBase: Schema.Boolean,
   }
 ) {}
 

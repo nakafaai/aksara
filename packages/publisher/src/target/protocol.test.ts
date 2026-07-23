@@ -69,6 +69,8 @@ describe("publication target protocol", () => {
       "heads",
       "release",
       "recovery",
+      "snapshots",
+      "snapshots",
       "routes",
       "items",
       "projections",

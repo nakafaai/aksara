@@ -28,6 +28,12 @@ export class ReleaseEvidenceError extends Schema.TaggedError<ReleaseEvidenceErro
   { reason: Schema.Literal("dirty") }
 ) {}
 
+/** Authored source changed while one production release was being prepared. */
+export class ReleaseRevisionChangedError extends Schema.TaggedError<ReleaseRevisionChangedError>()(
+  "ReleaseRevisionChangedError",
+  { actual: GitCommitShaSchema, expected: GitCommitShaSchema }
+) {}
+
 /** Collects bounded command bytes before strict UTF-8 decoding. */
 const collectGitOutput = Effect.fn("AksaraCli.collectGitOutput")(
   (stream: Stream.Stream<Uint8Array, unknown>) =>
@@ -126,3 +132,14 @@ export const readCleanAksaraRevision = Effect.fn(
   }
   return evidence.sha;
 });
+
+/** Requires post-preparation Git evidence to match the initial clean revision. */
+export function validateStableAksaraRevision(
+  expected: typeof GitCommitShaSchema.Type,
+  actual: typeof GitCommitShaSchema.Type
+) {
+  if (actual === expected) {
+    return Effect.void;
+  }
+  return Effect.fail(new ReleaseRevisionChangedError({ actual, expected }));
+}

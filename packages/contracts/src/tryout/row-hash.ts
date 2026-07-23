@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { Sha256HashSchema } from "#contracts/ids";
+import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import {
   type TryoutCatalogRecord,
   TryoutCatalogRecordSchema,
@@ -10,14 +11,12 @@ import {
   type TryoutPlacementRecord,
   TryoutPlacementRecordSchema,
   type TryoutPlacementSource,
-  type TryoutSnapshotInput,
-  TryoutSnapshotSchema,
   tryoutCatalogIdentity,
 } from "#contracts/tryout/spec";
 
 const CATALOG_DOMAIN = "nakafa.aksara.tryout-catalog.v1";
 const PLACEMENT_DOMAIN = "nakafa.aksara.tryout-placements.v1";
-const SNAPSHOT_DOMAIN = "nakafa.aksara.tryout-snapshot.v1";
+
 /** Builds the deterministic active-placement identity across locales. */
 export function tryoutPlacementIdentity(row: TryoutPlacementSource) {
   return [
@@ -41,6 +40,7 @@ export function compareTryoutPlacements(
     tryoutPlacementIdentity(right)
   );
 }
+
 /** An immutable snapshot stream is duplicated, unsorted, or tampered. */
 export class TryoutDigestError extends Schema.TaggedError<TryoutDigestError>()(
   "TryoutDigestError",
@@ -49,10 +49,12 @@ export class TryoutDigestError extends Schema.TaggedError<TryoutDigestError>()(
     identity: Schema.String,
   }
 ) {}
+
 /** Includes an optional field without serializing absent values as null. */
 function optionalField(key: string, value: string | undefined) {
   return value === undefined ? {} : { [key]: value };
 }
+
 /** Serializes one hierarchy row with stable domain-owned field order. */
 export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
   const localized = {
@@ -159,42 +161,16 @@ export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
   });
 }
 
-/** Serializes snapshot facts without their content-addressed identity. */
-export function canonicalizeTryoutSnapshot(input: TryoutSnapshotInput) {
-  return JSON.stringify({
-    catalogDigest: input.catalogDigest,
-    counts: {
-      country: input.counts.country,
-      exam: input.counts.exam,
-      section: input.counts.section,
-      set: input.counts.set,
-      track: input.counts.track,
-    },
-    format: input.format,
-    locales: input.locales,
-    placementCount: input.placementCount,
-    placementDigest: input.placementDigest,
-    routeCount: input.routeCount,
-  });
-}
-
-/** Computes one domain-separated canonical SHA-256 identity. */
-function hashCanonical(domain: string, canonical: string) {
-  const digest = createHash("sha256")
-    .update(domain)
-    .update("\n")
-    .update(canonical)
-    .digest("hex");
-  return Sha256HashSchema.make(`sha256:${digest}`);
-}
-
 /** Creates one immutable hierarchy record from a canonical row. */
 export function makeTryoutCatalogRecord(
   row: TryoutCatalogRow
 ): TryoutCatalogRecord {
   return TryoutCatalogRecordSchema.make({
     row,
-    rowHash: hashCanonical(CATALOG_DOMAIN, canonicalizeTryoutCatalog(row)),
+    rowHash: hashTryoutCanonical(
+      CATALOG_DOMAIN,
+      canonicalizeTryoutCatalog(row)
+    ),
   });
 }
 
@@ -204,17 +180,9 @@ export function makeTryoutPlacementRecord(
 ): TryoutPlacementRecord {
   return TryoutPlacementRecordSchema.make({
     row,
-    rowHash: hashCanonical(PLACEMENT_DOMAIN, canonicalizeTryoutPlacement(row)),
-  });
-}
-
-/** Creates the content-addressed identity selected by a global release. */
-export function makeTryoutSnapshot(input: TryoutSnapshotInput) {
-  return TryoutSnapshotSchema.make({
-    ...input,
-    snapshotId: hashCanonical(
-      SNAPSHOT_DOMAIN,
-      canonicalizeTryoutSnapshot(input)
+    rowHash: hashTryoutCanonical(
+      PLACEMENT_DOMAIN,
+      canonicalizeTryoutPlacement(row)
     ),
   });
 }

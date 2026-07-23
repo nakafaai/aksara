@@ -5,6 +5,11 @@ import {
   type RollbackContentReleaseBundle,
 } from "#contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import {
+  hasSameContentSnapshots,
+  invertContentSnapshots,
+  snapshotRowCount,
+} from "#contracts/release/snapshot";
 import { PublicationReceiptSchema } from "#contracts/release/spec";
 
 /** Checks terminal receipt counts against its signed immutable manifest. */
@@ -24,7 +29,9 @@ function hasBoundCompletedReceipt(input: {
     receipt.resultCount === manifest.resultCount &&
     receipt.resultDigest === manifest.resultDigest &&
     receipt.routeDigest === manifest.routeDigest &&
-    receipt.stagedRoutes === manifest.routeCount
+    receipt.stagedRoutes === manifest.routeCount &&
+    hasSameContentSnapshots(receipt.snapshots, manifest.snapshots) &&
+    receipt.stagedSnapshotRows === snapshotRowCount(manifest.snapshots)
   );
 }
 
@@ -137,6 +144,10 @@ function hasCoherentCurrentState(input: {
     manifest.resultCount === targetManifest.baseResultCount &&
     manifest.resultDigest === targetManifest.baseResultDigest &&
     manifest.releaseId !== activeReleaseId &&
+    hasSameContentSnapshots(
+      manifest.snapshots,
+      invertContentSnapshots(targetManifest.snapshots)
+    ) &&
     input.recovery.rendererManifest.hash === target.rendererManifest.hash
   );
 }

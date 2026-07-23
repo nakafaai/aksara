@@ -147,8 +147,6 @@ const CurriculumSourceSchema = Schema.Struct({
   programKey: LearningProgramKeySchema,
   tree: Schema.Array(CurriculumTreeNodeSchema),
 });
-export type CurriculumSource = typeof CurriculumSourceSchema.Type;
-
 export type CurriculumSourceInput = typeof CurriculumSourceSchema.Encoded;
 type StructureNodeInput = Omit<
   typeof CurriculumStructureNodeSchema.Encoded,

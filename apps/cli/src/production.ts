@@ -28,7 +28,7 @@ import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http"
 import { Effect } from "effect";
 import { makeProductionActivation } from "#cli/activation";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
-import { readProductionEnvironment } from "#cli/env";
+import { readProductionEnvironment, readRecoveryEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
 import {
@@ -103,28 +103,20 @@ export const runProductionCommand: (
   input: ProductionInput
 ) => ProductionCommand = Effect.fn("AksaraCli.runProductionCommand")((input) =>
   Effect.gen(function* () {
-    const environment = yield* readProductionEnvironment().pipe(
+    const recoveryEnvironment = yield* readRecoveryEnvironment().pipe(
       Effect.mapError(mapProductionError("environment"))
     );
     const keyResolver = makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS);
-    yield* verifySigningKey({
-      activeKeyId: ACTIVE_SIGNING_KEY_ID,
-      derivedPublicKeyPem: environment.derivedPublicKeyPem,
-      keyId: environment.keyId,
-    }).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, keyResolver),
-      Effect.mapError(mapProductionError("keys"))
-    );
     const rawTarget = yield* makeHttpPublicationTarget({
       allowInsecureLoopback: false,
-      endpoint: environment.publicationEndpoint,
+      endpoint: recoveryEnvironment.publicationEndpoint,
       timeout: PUBLICATION_TIMEOUT,
-      token: environment.publicationToken,
+      token: recoveryEnvironment.publicationToken,
     }).pipe(Effect.mapError(mapProductionError("target")));
     const target = retryPublicationTarget(rawTarget);
     const activation = yield* makeProductionActivation({
-      endpoint: environment.rendererEndpoint,
-      token: environment.rendererToken,
+      endpoint: recoveryEnvironment.rendererEndpoint,
+      token: recoveryEnvironment.rendererToken,
     });
     const current = yield* target
       .current()
@@ -143,6 +135,17 @@ export const runProductionCommand: (
       return yield* logPublicationReceipt(receipt);
     }
 
+    const environment = yield* readProductionEnvironment(
+      recoveryEnvironment
+    ).pipe(Effect.mapError(mapProductionError("environment")));
+    yield* verifySigningKey({
+      activeKeyId: ACTIVE_SIGNING_KEY_ID,
+      derivedPublicKeyPem: environment.derivedPublicKeyPem,
+      keyId: environment.keyId,
+    }).pipe(
+      Effect.provideService(ContentVerificationKeyResolver, keyResolver),
+      Effect.mapError(mapProductionError("keys"))
+    );
     const signingKey = PublicationSigningKey.of({
       keyId: environment.keyId,
       privateKeyPem: environment.privateKeyPem,

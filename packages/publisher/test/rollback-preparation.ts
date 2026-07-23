@@ -31,6 +31,7 @@ import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 import { testFileLayer } from "#test/files";
 import { materialGraph } from "#test/graph";
+import { emptySnapshotSources } from "#test/snapshot";
 import { makePublicationTarget } from "#test/target";
 
 export const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
@@ -146,6 +147,7 @@ const sourcePrepared = await Effect.runPromise(
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+    previousSnapshots: null,
     records: () =>
       Stream.make({
         prior: {
@@ -160,6 +162,7 @@ const sourcePrepared = await Effect.runPromise(
     rendererManifest: sourceRendererManifest,
     result: () => Stream.make(head),
     routes: () => Stream.empty,
+    ...emptySnapshotSources,
   })
 );
 export const sourceRelease = await Effect.runPromise(

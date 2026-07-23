@@ -28,5 +28,11 @@ export const MAX_PROJECTION_BATCH_BYTES = 4 * 1024 * 1024;
 /** Maximum canonical projections accepted by one staging transaction. */
 export const MAX_PROJECTION_BATCH_COUNT = 16;
 
+/** Maximum complete structured-snapshot batch accepted by publication ingress. */
+export const MAX_SNAPSHOT_BATCH_BYTES = 4 * 1024 * 1024;
+
+/** Maximum structured snapshot rows accepted by one staging transaction. */
+export const MAX_SNAPSHOT_BATCH_COUNT = 16;
+
 /** Maximum compact material heads returned by one authoritative page. */
 export const MAX_HEAD_PAGE_COUNT = 500;

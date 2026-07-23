@@ -3,6 +3,10 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import {
+  emptyContentSnapshots,
+  invertContentSnapshots,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { buildRollbackRelease } from "#publisher/rollback/release";
@@ -38,6 +42,7 @@ describe("buildRollbackRelease", () => {
           releaseId: ReleaseIdSchema.make("test-build-base"),
           resultCount: 0,
           resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+          snapshots: invertContentSnapshots(emptyContentSnapshots()),
         },
         records: () => Stream.make(record),
         releaseId,

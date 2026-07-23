@@ -20,6 +20,12 @@ export function publicationFailures() {
   const artifact = transportRequests.find(
     (request) => request.operation === "stageArtifactBatch"
   );
+  const snapshot = transportRequests.find(
+    (request) => request.operation === "stageSnapshot"
+  );
+  const snapshotBatch = transportRequests.find(
+    (request) => request.operation === "stageSnapshotBatch"
+  );
   const activate = transportRequests.find(
     (request) => request.operation === "activate"
   );
@@ -42,6 +48,8 @@ export function publicationFailures() {
     item?.operation !== "stageItemBatch" ||
     projection?.operation !== "stageProjectionBatch" ||
     artifact?.operation !== "stageArtifactBatch" ||
+    snapshot?.operation !== "stageSnapshot" ||
+    snapshotBatch?.operation !== "stageSnapshotBatch" ||
     activate?.operation !== "activate" ||
     statusRequest?.operation !== "status" ||
     verify?.operation !== "verify" ||
@@ -135,6 +143,19 @@ export function publicationFailures() {
         releaseId: conflictReleaseId,
       },
     })),
+    {
+      request: snapshot,
+      statuses: [409],
+      tag: "PublicationTargetConflictError",
+      wire: {
+        code: "CONTENT_RELEASE_CONFLICT",
+        family: snapshot.snapshot.family,
+        kind: "conflict",
+        operation: snapshot.operation,
+        releaseId: snapshot.releaseId,
+        snapshotId: snapshot.snapshot.manifest.snapshotId,
+      },
+    },
     ...[item, projection, artifact].map((request) => ({
       request,
       statuses: [409],
@@ -147,6 +168,20 @@ export function publicationFailures() {
         releaseId: request.releaseId,
       },
     })),
+    {
+      request: snapshotBatch,
+      statuses: [409],
+      tag: "PublicationTargetConflictError",
+      wire: {
+        batchIndex: snapshotBatch.batchIndex,
+        code: "CONTENT_RELEASE_CONFLICT",
+        family: snapshotBatch.family,
+        kind: "conflict",
+        operation: snapshotBatch.operation,
+        releaseId: snapshotBatch.releaseId,
+        snapshotId: snapshotBatch.snapshotId,
+      },
+    },
     {
       request: activate,
       statuses: [409],

@@ -27,6 +27,8 @@ export function makePublicationTarget(overrides: TargetOverrides) {
     stageRecovery: unsupported,
     stageRelease: unsupported,
     stageRouteBatch: unsupported,
+    stageSnapshot: unsupported,
+    stageSnapshotBatch: unsupported,
     status: unsupported,
     verify: unsupported,
     ...overrides,

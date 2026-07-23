@@ -58,6 +58,14 @@ const familyCases = [
     },
   ],
   [
+    "sourcePath",
+    {
+      ...englishHead,
+      sourcePath:
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-x/question-1/question.en.mdx",
+    },
+  ],
+  [
     "rendererDomain",
     {
       ...englishHead,

@@ -1,3 +1,4 @@
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import {
   type PublicationSuccess,
@@ -154,6 +155,29 @@ export function transportSuccess(
           unchanged: 0,
         },
       }),
+      stageSnapshot: (value) => ({
+        ok: true,
+        operation: value.operation,
+        value: {
+          created: 1,
+          family: value.snapshot.family,
+          releaseId: value.releaseId,
+          snapshotId: value.snapshot.manifest.snapshotId,
+          unchanged: 0,
+        },
+      }),
+      stageSnapshotBatch: (value) => ({
+        ok: true,
+        operation: value.operation,
+        value: {
+          batchIndex: value.batchIndex,
+          created: value.rows.length,
+          family: value.family,
+          releaseId: value.releaseId,
+          snapshotId: value.snapshotId,
+          unchanged: 0,
+        },
+      }),
       status: (value) => ({
         ok: true,
         operation: value.operation,
@@ -186,8 +210,12 @@ export function transportSuccess(
           rollbackDigest: value.release.manifest.rollbackDigest,
           routeCount: value.release.manifest.routeCount,
           routeDigest: value.release.manifest.routeDigest,
+          snapshots: value.release.manifest.snapshots,
           stagedArtifacts: 1,
           stagedRoutes: value.release.manifest.routeCount,
+          stagedSnapshotRows: snapshotRowCount(
+            value.release.manifest.snapshots
+          ),
           upsertHeads: 1,
         },
       }),

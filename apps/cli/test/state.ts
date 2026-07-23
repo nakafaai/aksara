@@ -12,6 +12,10 @@ import {
   ContentReleaseCurrentSchema,
 } from "@nakafa/aksara-contracts/release/current";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import {
+  emptyContentSnapshots,
+  snapshotRowCount,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import { selectProductionAction } from "#cli/state";
@@ -56,6 +60,7 @@ export function stateBundle(
       rollbackDigest: STATE_HASH,
       routeCount: 0,
       routeDigest: STATE_HASH,
+      snapshots: emptyContentSnapshots(),
       upsertCount: 0,
     },
     manifestHash: STATE_HASH,
@@ -86,10 +91,14 @@ export function stateCompleted(
       resultCount: 0,
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       routeDigest: STATE_HASH,
+      snapshots: releaseBundle.release.manifest.snapshots,
       stagedArtifacts: 0,
       stagedItems: 0,
       stagedProjections: 0,
       stagedRoutes: 0,
+      stagedSnapshotRows: snapshotRowCount(
+        releaseBundle.release.manifest.snapshots
+      ),
     },
   };
 }

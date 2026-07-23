@@ -8,4 +8,3 @@ export const MaterialDomainSchema = Schema.Literal(
   "mathematics",
   "physics"
 );
-export type MaterialDomain = typeof MaterialDomainSchema.Type;

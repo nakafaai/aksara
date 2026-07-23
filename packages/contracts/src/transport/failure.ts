@@ -1,5 +1,6 @@
 import { Schema } from "effect";
-import { ReleaseIdSchema } from "#contracts/ids";
+import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot";
 
 /** Stable rejection codes that require no message parsing by clients. */
 export const PublicationDomainRejectionCodeSchema = Schema.Literal(
@@ -100,6 +101,8 @@ const PublicationReleaseRejectedSchema = Schema.Struct({
     "abort",
     "stageRelease",
     "stageRecovery",
+    "stageSnapshot",
+    "stageSnapshotBatch",
     "headPage",
     "recovery",
     "stageItemBatch",
@@ -165,10 +168,31 @@ const BatchConflictSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
 });
 
+const SnapshotManifestConflictSchema = Schema.Struct({
+  code: Schema.Literal("CONTENT_RELEASE_CONFLICT"),
+  family: ContentSnapshotKindSchema,
+  kind: Schema.Literal("conflict"),
+  operation: Schema.Literal("stageSnapshot"),
+  releaseId: ReleaseIdSchema,
+  snapshotId: Sha256HashSchema,
+});
+
+const SnapshotBatchConflictSchema = Schema.Struct({
+  batchIndex: Schema.Int.pipe(Schema.nonNegative()),
+  code: Schema.Literal("CONTENT_RELEASE_CONFLICT"),
+  family: ContentSnapshotKindSchema,
+  kind: Schema.Literal("conflict"),
+  operation: Schema.Literal("stageSnapshotBatch"),
+  releaseId: ReleaseIdSchema,
+  snapshotId: Sha256HashSchema,
+});
+
 /** Immutable request identity was reused with different persisted bytes. */
 export const PublicationConflictSchema = Schema.Union(
   ReleaseConflictSchema,
-  BatchConflictSchema
+  BatchConflictSchema,
+  SnapshotManifestConflictSchema,
+  SnapshotBatchConflictSchema
 );
 export type PublicationConflict = typeof PublicationConflictSchema.Type;
 

@@ -23,6 +23,7 @@ import {
   type VerifiedContentRoutes,
   verifyContentRoutes,
 } from "@nakafa/aksara-contracts/release/routes";
+import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
 import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -33,6 +34,7 @@ import {
   makeReleaseItemBatches,
   makeRouteBatches,
 } from "#publisher/batching";
+import { contentSnapshotCacheChanges } from "#publisher/cache";
 import type {
   PreparedContentRelease,
   PreparedGitRelease,
@@ -44,6 +46,10 @@ import {
   makeRollbackArtifacts,
 } from "#publisher/publication/artifacts";
 import type { PublishContentReleaseError } from "#publisher/publication/program";
+import {
+  stagePublicationSnapshots,
+  verifyPublicationSnapshots,
+} from "#publisher/publication/snapshots";
 import {
   PublicationModeMismatchError,
   PublicationSigningKey,
@@ -95,6 +101,7 @@ export interface PublicationPlan<E, R> {
   >;
   readonly projectionSummary: VerifiedContentProjections;
   readonly routeSummary: VerifiedContentRoutes;
+  readonly snapshotSummary: VerifiedContentSnapshots;
   readonly stage: Effect.Effect<
     void,
     PublishContentReleaseError<E>,
@@ -187,8 +194,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   /** Replays strictly decoded routes for bounded target staging. */
   const decodedRoutes = () =>
     decodeContentRoutes({ manifest: input.manifest, routes: input.routes() });
-  /** Replays cache changes selected by the same validated release item source. */
-  const cacheChanges = () => contentCacheChanges(decodedItems());
   const summary = yield* verifyContentReleaseItems({
     items: input.items(),
     manifest: input.manifest,
@@ -201,6 +206,15 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     manifest: input.manifest,
     routes: input.routes(),
   });
+  const snapshotSummary = yield* verifyPublicationSnapshots(input);
+  /**
+   * Replays exact item changes, or structured-family changes for a snapshot-only
+   * release. Any body change already invalidates Nakafa's shared global tag.
+   */
+  const cacheChanges = () =>
+    input.manifest.itemCount === 0
+      ? contentSnapshotCacheChanges(snapshotSummary.snapshots)
+      : contentCacheChanges(decodedItems());
   yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
 
   let artifactPlan: PublicationArtifactPlan;
@@ -259,23 +273,25 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
         input.manifest.releaseId,
         artifactPlan.artifacts.replay()
       ).pipe(Stream.runForEach(target.stageArtifactBatch));
-      return;
+    } else {
+      const artifacts = makeGitArtifacts({
+        compiled: artifactPlan.compiled.replay(),
+        manifest: input.manifest,
+        rendererManifest,
+        signer,
+      });
+      yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
+        Stream.runForEach(target.stageArtifactBatch)
+      );
     }
-    const artifacts = makeGitArtifacts({
-      compiled: artifactPlan.compiled.replay(),
-      manifest: input.manifest,
-      rendererManifest,
-      signer,
-    });
-    yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
-      Stream.runForEach(target.stageArtifactBatch)
-    );
+    yield* stagePublicationSnapshots(input, target);
   });
   return {
     bundle: { release, rendererManifest },
     cacheChanges,
     projectionSummary,
     routeSummary,
+    snapshotSummary,
     stage,
     summary,
     target,

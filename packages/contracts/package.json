@@ -60,7 +60,7 @@
     },
     "./artifact/limits": {
       "types": "./dist/artifact/limits.d.ts",
-      "import": "./dist/artifact/limits.js"
+      "node": "./dist/artifact/limits.js"
     },
     "./artifact/source": {
       "types": "./dist/artifact/source.d.ts",
@@ -118,6 +118,10 @@
       "types": "./dist/quran/row-hash.d.ts",
       "node": "./dist/quran/row-hash.js"
     },
+    "./quran/row-digest": {
+      "types": "./dist/quran/row-digest.d.ts",
+      "node": "./dist/quran/row-digest.js"
+    },
     "./quran/snapshot-hash": {
       "types": "./dist/quran/snapshot-hash.d.ts",
       "node": "./dist/quran/snapshot-hash.js"
@@ -141,6 +145,18 @@
     "./program/spec": {
       "types": "./dist/program/spec.d.ts",
       "import": "./dist/program/spec.js"
+    },
+    "./program/row-hash": {
+      "types": "./dist/program/row-hash.d.ts",
+      "node": "./dist/program/row-hash.js"
+    },
+    "./program/snapshot": {
+      "types": "./dist/program/snapshot.d.ts",
+      "import": "./dist/program/snapshot.js"
+    },
+    "./program/snapshot-hash": {
+      "types": "./dist/program/snapshot-hash.d.ts",
+      "node": "./dist/program/snapshot-hash.js"
     },
     "./release": {
       "types": "./dist/release/spec.d.ts",
@@ -206,6 +222,18 @@
       "types": "./dist/release/signing.d.ts",
       "import": "./dist/release/signing.js"
     },
+    "./release/snapshot": {
+      "types": "./dist/release/snapshot.d.ts",
+      "import": "./dist/release/snapshot.js"
+    },
+    "./release/snapshot-data": {
+      "types": "./dist/release/snapshot-data.d.ts",
+      "import": "./dist/release/snapshot-data.js"
+    },
+    "./release/snapshot-verify": {
+      "types": "./dist/release/snapshot-verify.d.ts",
+      "node": "./dist/release/snapshot-verify.js"
+    },
     "./release/verify": {
       "types": "./dist/release/verify.d.ts",
       "node": "./dist/release/verify.js"
@@ -258,9 +286,17 @@
       "types": "./dist/transport/response.d.ts",
       "import": "./dist/transport/response.js"
     },
-    "./tryout/hash": {
-      "types": "./dist/tryout/hash.d.ts",
-      "node": "./dist/tryout/hash.js"
+    "./transport/snapshot": {
+      "types": "./dist/transport/snapshot.d.ts",
+      "import": "./dist/transport/snapshot.js"
+    },
+    "./tryout/row-hash": {
+      "types": "./dist/tryout/row-hash.d.ts",
+      "node": "./dist/tryout/row-hash.js"
+    },
+    "./tryout/snapshot-hash": {
+      "types": "./dist/tryout/snapshot-hash.d.ts",
+      "node": "./dist/tryout/snapshot-hash.js"
     },
     "./tryout/spec": {
       "types": "./dist/tryout/spec.d.ts",
@@ -274,12 +310,13 @@
     "prepack": "pnpm run build",
     "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json",
-    "verify:package": "pnpm run build && node scripts/verify-package.ts"
+    "verify:package": "pnpm run build && node scripts/verify-edge.ts && node scripts/verify-package.ts"
   },
   "devDependencies": {
     "@nakafa/typescript-config": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "effect": "catalog:",
+    "typescript": "catalog:",
     "vitest": "catalog:"
   },
   "peerDependencies": {

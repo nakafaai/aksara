@@ -15,14 +15,17 @@ import { publishMaterialRelease } from "#test/material-run";
 import {
   contentRecord,
   makeRelease,
-  makeRollbackRelease,
   projection,
-  publish,
-  publishPrepared,
-  publishRollbackPrepared,
   record,
   rendererManifest,
 } from "#test/publication";
+import {
+  makeRollbackRelease,
+  publish,
+  publishPrepared,
+  publishRollbackPrepared,
+} from "#test/publication/run";
+import { emptySnapshotSources } from "#test/snapshot";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 
@@ -93,11 +96,9 @@ describe("content publication", () => {
         ),
       verify: () => Effect.void,
     });
-
     await Effect.runPromise(
       publish(release, state.target, undefined, activation)
     );
-
     expect(cacheChanges).toEqual([
       {
         artifactHash: contentRecord.change.artifactHash,
@@ -125,7 +126,6 @@ describe("content publication", () => {
     const recoveryId = ReleaseIdSchema.make(
       `${release.manifest.releaseId}-recovery`
     );
-
     await expect(
       Effect.runPromise(
         publish(release, state.target, recoveryId, activation).pipe(Effect.flip)
@@ -135,7 +135,6 @@ describe("content publication", () => {
       release.manifest.releaseId
     );
     expect(state.abortOrder).toEqual([]);
-
     await expect(
       Effect.runPromise(publish(release, state.target, recoveryId, activation))
     ).resolves.toMatchObject({ releaseId: release.manifest.releaseId });
@@ -236,7 +235,6 @@ describe("content publication", () => {
 
   it("compiles each source once per required reproducibility boundary", async () => {
     const result = await publishMaterialRelease();
-
     expect(compilerState.calls).toBe(8);
     expect(result.receipt).toMatchObject({
       activatedHeads: 4,
@@ -261,6 +259,7 @@ describe("content publication", () => {
       projections: release.prepared.projections,
       rendererManifest: release.prepared.rendererManifest,
       routes: release.prepared.routes,
+      ...emptySnapshotSources,
     });
     await Effect.runPromise(publishRollbackPrepared(prepared, state.target));
     expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
@@ -271,6 +270,7 @@ describe("content publication", () => {
       projections: release.prepared.projections,
       rendererManifest,
       routes: release.prepared.routes,
+      ...emptySnapshotSources,
     });
     const error = await Effect.runPromise(
       publishPrepared(mismatch, state.target).pipe(Effect.flip)
@@ -286,6 +286,7 @@ describe("content publication", () => {
       projections: gitRelease.prepared.projections,
       rendererManifest,
       routes: gitRelease.prepared.routes,
+      ...emptySnapshotSources,
     });
     const rollbackError = await Effect.runPromise(
       publishRollbackPrepared(rollbackMismatch, gitState.target).pipe(

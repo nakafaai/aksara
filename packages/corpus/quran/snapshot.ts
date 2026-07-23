@@ -1,14 +1,11 @@
-import {
-  type Sha256Hash,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
+import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   makeQuranProvenanceManifest,
   type QuranProvenanceManifest,
 } from "@nakafa/aksara-contracts/quran/provenance";
+import { digestQuranRows } from "@nakafa/aksara-contracts/quran/row-digest";
 import {
   bindQuranRow,
-  digestQuranRows,
   hashQuranRow,
   type QuranHashError,
 } from "@nakafa/aksara-contracts/quran/row-hash";
@@ -27,7 +24,7 @@ import {
   type QuranRowPayload,
   type QuranSnapshotRow,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 
 import {
   type QuranProjectionError,
@@ -47,12 +44,6 @@ export interface PreparedQuranSnapshot {
   /** Replays every content-addressed row bound to the snapshot identity. */
   readonly rows: () => Stream.Stream<QuranSnapshotRow, PreparedQuranRowError>;
 }
-
-/** Quran production publication remains blocked by unapproved provenance. */
-export class QuranProvenanceBlockedError extends Schema.TaggedError<QuranProvenanceBlockedError>()(
-  "QuranProvenanceBlockedError",
-  { digest: Sha256HashSchema }
-) {}
 
 /** Computes row hashes while keeping the replayable corpus stream bounded. */
 function rowHashStream<E, R>(rows: Stream.Stream<QuranRowPayload, E, R>) {
@@ -114,17 +105,3 @@ export const prepareQuranSnapshot = Effect.fn(
     rows: () => bindRows(snapshotId, streamQuranRows(source)),
   } satisfies PreparedQuranSnapshot;
 });
-
-/** Rejects production activation while any signed provenance record is blocked. */
-export function requireQuranProductionApproval(
-  snapshot: PreparedQuranSnapshot
-) {
-  if (snapshot.provenance.status === "approved") {
-    return Effect.void;
-  }
-  return Effect.fail(
-    new QuranProvenanceBlockedError({
-      digest: snapshot.provenance.digest,
-    })
-  );
-}

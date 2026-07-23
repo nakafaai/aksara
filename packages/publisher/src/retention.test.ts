@@ -3,7 +3,8 @@ import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { selectRetainedRecovery } from "#publisher/retention";
 import { makeTarget } from "#test/lifecycle";
-import { makeRelease, publish } from "#test/publication";
+import { makeRelease } from "#test/publication";
+import { publish } from "#test/publication/run";
 
 const prepared = await makeRelease("test-retention");
 const state = makeTarget(prepared);

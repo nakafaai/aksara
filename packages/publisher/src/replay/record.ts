@@ -22,13 +22,6 @@ export interface ReplaySpoolUsage {
   readonly totalBytes: number;
 }
 
-/** Exact encoded value and integrity evidence persisted for one record. */
-export interface EncodedReplayRecord {
-  readonly bytes: number;
-  readonly data: string;
-  readonly hash: typeof Sha256HashSchema.Type;
-}
-
 /** Computes the exact digest persisted beside one encoded record. */
 function hashRecord(value: string) {
   const digest = createHash("sha256").update(value).digest("hex");

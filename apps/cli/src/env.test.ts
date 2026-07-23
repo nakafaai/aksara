@@ -6,6 +6,7 @@ import {
   readPreviewEnvironment,
   readProductionEnvironment,
   readPublicationEnvironment,
+  readRecoveryEnvironment,
 } from "#cli/env";
 
 const privateKeyPem = generateKeyPairSync("ed25519")
@@ -45,7 +46,13 @@ function provideConfig<A, E>(
 
 /** Returns one sanitized production configuration failure. */
 function rejectProduction(values: ReadonlyMap<string, string>) {
-  return provideConfig(readProductionEnvironment().pipe(Effect.flip), values);
+  return provideConfig(
+    Effect.gen(function* () {
+      const recovery = yield* readRecoveryEnvironment();
+      return yield* readProductionEnvironment(recovery);
+    }).pipe(Effect.flip),
+    values
+  );
 }
 
 /** Returns one sanitized publication configuration failure. */
@@ -154,7 +161,10 @@ describe("production environment", () => {
 
   it("loads HTTPS endpoints and keeps every credential redacted", async () => {
     const environment = await provideConfig(
-      readProductionEnvironment(),
+      Effect.gen(function* () {
+        const recovery = yield* readRecoveryEnvironment();
+        return yield* readProductionEnvironment(recovery);
+      }),
       productionValues
     );
 

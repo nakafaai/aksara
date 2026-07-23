@@ -10,6 +10,7 @@ import {
 } from "#contracts/transport/failure";
 
 const releaseId = "test-transport";
+const snapshotId = `sha256:${"a".repeat(64)}`;
 
 /** Strictly checks one transport failure without allowing extra properties. */
 function accepts(input: unknown) {
@@ -48,16 +49,28 @@ describe("publication failures", () => {
       accepts({
         batchIndex: 2,
         code: "CONTENT_RELEASE_CONFLICT",
+        family: "tryout",
         kind: "conflict",
-        operation: "stageItemBatch",
+        operation: "stageSnapshotBatch",
         releaseId,
+        snapshotId,
       })
     ).toBe(true);
     expect(
       accepts({
         code: "CONTENT_RELEASE_CONFLICT",
+        family: "tryout",
         kind: "conflict",
-        operation: "verify",
+        operation: "stageSnapshot",
+        releaseId,
+        snapshotId,
+      })
+    ).toBe(true);
+    expect(
+      accepts({
+        code: "CONTENT_RELEASE_INTEGRITY",
+        kind: "rejected",
+        operation: "stageSnapshot",
         releaseId,
       })
     ).toBe(true);
@@ -153,13 +166,13 @@ describe("publication failures", () => {
         batchIndex: 0,
         code: "CONTENT_RELEASE_CONFLICT",
         kind: "conflict",
-        operation: "stageRelease",
+        operation: "stageSnapshot",
         releaseId,
       },
       {
         code: "CONTENT_RELEASE_CONFLICT",
         kind: "conflict",
-        operation: "stageItemBatch",
+        operation: "stageSnapshotBatch",
         releaseId,
       },
       {

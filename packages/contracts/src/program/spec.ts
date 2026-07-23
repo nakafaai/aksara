@@ -207,7 +207,16 @@ export function canonicalizeLearningProgram(program: LearningProgram) {
       type: source.type,
       url: source.url,
     })),
-    translations: program.translations,
+    translations: {
+      en: {
+        publicSlug: program.translations.en.publicSlug,
+        title: program.translations.en.title,
+      },
+      id: {
+        publicSlug: program.translations.id.publicSlug,
+        title: program.translations.id.title,
+      },
+    },
     version: {
       ...(program.version.endsAt === undefined
         ? {}

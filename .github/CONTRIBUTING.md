@@ -53,10 +53,12 @@ pnpm install
 - `packages/corpus` owns reviewed Nakafa source and non-React registries.
 - `packages/publisher` prepares and publishes signed releases through injected
   source and target interfaces.
+- `packages/utilities` owns only generic cross-package primitives with real
+  callers.
 - `packages/typescript-config` owns the shared TypeScript configuration.
 
-Aksara currently contains only its reviewed real-content vertical slice. Do not
-add substitute educational content or fixtures.
+Aksara contains Nakafa's reviewed real corpus. Do not add substitute
+educational content or fixtures.
 
 ## Making Changes
 
@@ -79,7 +81,8 @@ pnpm verify:package
 
 - Keep TypeScript strict and Effect-native.
 - Use package aliases instead of relative TypeScript imports.
-- Keep file and folder names to at most two semantic words.
+- Keep file and folder names to at most two semantic words. Exact authored
+  lesson-folder slugs under `packages/corpus/material/lesson` are exempt.
 - Keep handwritten TypeScript modules at or below 300 non-JSDoc lines.
 - Document stable callable declarations with useful JSDoc.
 - Maintain 100% per-file statement, branch, function, and line coverage for

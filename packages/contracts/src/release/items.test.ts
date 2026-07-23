@@ -2,29 +2,19 @@
 
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-import { compareContentHeads } from "#contracts/content";
-import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
+import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import { verifyContentReleaseItems } from "#contracts/release/items";
+import { emptyContentSnapshots } from "#contracts/release/snapshot";
 import {
-  type ContentChange,
   ContentChangeSchema,
   type ContentReleaseItem,
-  ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
 } from "#contracts/release/spec";
+import { makeReleaseItems } from "#contracts/test/items";
 
 const releaseId =
   Schema.decodeUnknownSync(ReleaseIdSchema)("test-release-items");
-
-/** Builds canonically ordered release items with deterministic indexes. */
-function makeItems(release: ReleaseId, input: readonly ContentChange[]) {
-  return [...input]
-    .sort(compareContentHeads)
-    .map((change, index) =>
-      ContentReleaseItemSchema.make({ change, index, releaseId: release })
-    );
-}
 
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   {
@@ -44,7 +34,7 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
     operation: "delete",
   },
 ]);
-const items = makeItems(releaseId, changes);
+const items = makeReleaseItems(releaseId, changes);
 const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
@@ -68,6 +58,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"d".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"d".repeat(64)}`,
+  snapshots: emptyContentSnapshots(),
   upsertCount: itemSummary.upsertCount,
 });
 
@@ -96,7 +87,7 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
   const decoded = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
     candidateChanges
   );
-  const candidateItems = makeItems(manifest.releaseId, decoded);
+  const candidateItems = makeReleaseItems(manifest.releaseId, decoded);
   const summary = await Effect.runPromise(
     digestItems(manifest.releaseId, Stream.fromIterable(candidateItems))
   );

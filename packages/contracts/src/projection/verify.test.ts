@@ -9,6 +9,7 @@ import {
   verifyContentProjections,
 } from "#contracts/projection/verify";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { emptyContentSnapshots } from "#contracts/release/snapshot";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { materialGraph } from "#contracts/test/graph";
 
@@ -87,6 +88,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"d".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"d".repeat(64)}`,
+  snapshots: emptyContentSnapshots(),
   upsertCount: 0,
 });
 

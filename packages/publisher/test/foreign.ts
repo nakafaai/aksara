@@ -18,7 +18,12 @@ const foreignHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
 /** Replaces one nested success identity without changing its wire shape. */
 function replaceIdentity(
   input: { readonly value: object },
-  key: "activeReleaseId" | "manifestHash" | "releaseId" | "rollbackOf",
+  key:
+    | "activeReleaseId"
+    | "manifestHash"
+    | "releaseId"
+    | "rollbackOf"
+    | "snapshotId",
   identity: unknown
 ) {
   return { ...input, value: { ...input.value, [key]: identity } };
@@ -77,6 +82,10 @@ export function foreignTransportSuccess(
       stageRelease: (value) =>
         replaceIdentity(value, "manifestHash", foreignHash),
       stageRouteBatch: (value) =>
+        replaceIdentity(value, "releaseId", foreignReleaseId),
+      stageSnapshot: (value) =>
+        replaceIdentity(value, "snapshotId", foreignHash),
+      stageSnapshotBatch: (value) =>
         replaceIdentity(value, "releaseId", foreignReleaseId),
       status: (value) => replaceIdentity(value, "manifestHash", foreignHash),
       verify: (value) => replaceIdentity(value, "releaseId", foreignReleaseId),

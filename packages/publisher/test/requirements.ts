@@ -4,7 +4,8 @@ import {
   publishRollbackRelease,
 } from "#publisher/publication";
 import type { PublicationSource } from "#publisher/publication/spec";
-import { makeRelease, makeRollbackRelease } from "#test/publication";
+import { makeRelease } from "#test/publication";
+import { makeRollbackRelease } from "#test/publication/run";
 
 /** Proves exact-Git source context is required only by Git publication. */
 export async function publicationRequirements() {

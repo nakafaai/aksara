@@ -4,6 +4,7 @@ import { ContentHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
 import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route-page";
+import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, type Scope, Stream } from "effect";
@@ -111,6 +112,7 @@ function baseCatalogFromProof(
       releaseId: manifest.releaseId,
       resultCount: manifest.resultCount,
       resultDigest: manifest.resultDigest,
+      snapshots: invertContentSnapshots(manifest.snapshots),
     };
   }
   return {
@@ -118,6 +120,7 @@ function baseCatalogFromProof(
     releaseId: selection.baseReleaseId,
     resultCount: manifest.baseResultCount,
     resultDigest: manifest.baseResultDigest,
+    snapshots: manifest.snapshots,
   };
 }
 
