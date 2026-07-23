@@ -8,6 +8,7 @@ merged into Aksara.
 
 - Source Nakafa SHA: `25506da68a5dd97bc55f99b6f7304384c4744206`
 - Filtered slice head: `894704cedfd6e882f63eea9bd7a8b882254cc620`
+- Durable source ref: `refs/tags/history/function-concept`
 - Reachable source commits: 2
 - Aksara history merge: `c9c59216248160a3d8a0e5ac91cd4c54f9628b9b`
 - Final authored paths:
@@ -27,6 +28,7 @@ no educational text or metadata was added or rewritten.
 
 - Source Nakafa SHA: `7bbf91eb2898c610c5280e114641d5444c48c65b`
 - Filtered slice head: `98c0fcf1af71d2648a926c8fc49adca1821ec4d2`
+- Durable source ref: `refs/tags/history/atom-shell`
 - Reachable source commits: 1
 - Aksara history merge: `50417f547f3d8145cd3a20f9b2312181010afc70`
 - Final authored paths:
@@ -43,6 +45,11 @@ for English and
 `7e00d7922e9c36eb455c50840f0b291d5b178ba9b8c24d7bbf45d3a5195c58bf`
 for Indonesian. Both are byte-identical to the exact Nakafa source after that
 same import removal; no educational text or metadata was added or rewritten.
+
+The repository accepts only squash merges. The two immutable `history/*` tags
+therefore pin the exact filtered source ancestry independently of temporary PR
+branches, so branch cleanup cannot make the reviewed provenance objects
+unreachable.
 
 ## Complete-corpus preparation
 
