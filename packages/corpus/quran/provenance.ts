@@ -5,7 +5,7 @@ const tanzilArabic = QuranProvenanceRecordSchema.make({
   evidence:
     "Tanzil publishes its Quran text under CC BY 3.0, permits verbatim use in applications, and requires source attribution plus its notice.",
   provider: "Tanzil Project",
-  retrievedOn: "2026-07-24",
+  retrievedOn: "2026-07-23",
   scope: "arabic-text",
   sourceUrl: "https://tanzil.net/docs/Text_License",
   status: "approved",
@@ -16,7 +16,7 @@ const tanzilMetadata = QuranProvenanceRecordSchema.make({
   evidence:
     "Tanzil documents Quran structural metadata, but the reviewed metadata page does not state that its reuse is covered by the Quran text license.",
   provider: "Tanzil Project",
-  retrievedOn: "2026-07-24",
+  retrievedOn: "2026-07-23",
   scope: "metadata",
   sourceUrl: "https://tanzil.net/docs/Quran_Metadata",
   status: "blocked",
@@ -27,7 +27,7 @@ const englishTranslation = QuranProvenanceRecordSchema.make({
   evidence:
     "Al Quran Cloud requires republished translations to retain the edition identifier and attribute the translator; the repository has not yet recorded that product attribution.",
   provider: "Al Quran Cloud",
-  retrievedOn: "2026-07-24",
+  retrievedOn: "2026-07-23",
   scope: "english-translation",
   sourceUrl: "https://alquran.cloud/terms-and-conditions",
   status: "blocked",
@@ -38,7 +38,7 @@ const transliteration = QuranProvenanceRecordSchema.make({
   evidence:
     "The source values match an Al Quran Cloud transliteration edition, but the repository does not yet record its exact edition owner and required attribution.",
   provider: "Al Quran Cloud",
-  retrievedOn: "2026-07-24",
+  retrievedOn: "2026-07-23",
   scope: "transliteration",
   sourceUrl: "https://alquran.cloud/terms-and-conditions",
   status: "blocked",
@@ -49,7 +49,7 @@ const audio = QuranProvenanceRecordSchema.make({
   evidence:
     "Al Quran Cloud permits personal and educational streaming or embedding while reciters retain copyright; the exact Nakafa production use and attribution have not yet been approved.",
   provider: "Al Quran Cloud",
-  retrievedOn: "2026-07-24",
+  retrievedOn: "2026-07-23",
   scope: "audio",
   sourceUrl: "https://alquran.cloud/terms-and-conditions",
   status: "blocked",
@@ -60,7 +60,7 @@ const indonesianTranslation = QuranProvenanceRecordSchema.make({
   evidence:
     "The official LPMQ API registration requires a completed form and formal application letter; no repository evidence proves Nakafa approval or a production token.",
   provider: "LPMQ Kementerian Agama RI",
-  retrievedOn: "2026-07-24",
+  retrievedOn: "2026-07-23",
   scope: "indonesian-translation",
   sourceUrl: "https://quran-api.lpmqkemenag.id/",
   status: "blocked",
@@ -71,7 +71,7 @@ const indonesianTafsir = QuranProvenanceRecordSchema.make({
   evidence:
     "The official LPMQ API includes Tafsir Ringkas and Tahlili only after registration, formal application, activation, and token issuance; that permission is not evidenced in the repository.",
   provider: "LPMQ Kementerian Agama RI",
-  retrievedOn: "2026-07-24",
+  retrievedOn: "2026-07-23",
   scope: "indonesian-tafsir",
   sourceUrl: "https://quran-api.lpmqkemenag.id/",
   status: "blocked",

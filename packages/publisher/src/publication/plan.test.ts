@@ -13,7 +13,10 @@ import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signatu
 import { Effect, Redacted, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
-import type { PreparedGitRelease } from "#publisher/preparation/spec";
+import type {
+  PrepareContentReleaseInput,
+  PreparedGitRelease,
+} from "#publisher/preparation/spec";
 import { preparePublicationPlan } from "#publisher/publication/plan";
 import {
   PublicationSigningKey,
@@ -42,8 +45,13 @@ const resolver = ContentVerificationKeyResolver.of({
     ),
 });
 
+type SnapshotSources<E> = Pick<
+  PrepareContentReleaseInput<E, never>,
+  "snapshotManifests" | "snapshotRows"
+>;
+
 /** Prepares one real deletion against an authenticated compact base catalog. */
-async function prepareDeletion() {
+async function prepareDeletion<E>(snapshotSources: SnapshotSources<E>) {
   const baseReleaseId = ReleaseIdSchema.make("test-plan-base");
   const base = await Effect.runPromise(
     digestResultCatalog(baseReleaseId, Stream.make(head))
@@ -81,7 +89,7 @@ async function prepareDeletion() {
           },
           next: { contentKey: head.contentKey, locale: head.locale },
         }),
-      ...emptySnapshotSources,
+      ...snapshotSources,
     })
   );
 }
@@ -135,7 +143,7 @@ function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
 
 describe("preparePublicationPlan", () => {
   it("keeps family-wide invalidation for a body-free deletion", async () => {
-    const prepared = await prepareDeletion();
+    const prepared = await prepareDeletion(emptySnapshotSources);
     const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([{ family: "material" }]);
@@ -146,5 +154,16 @@ describe("preparePublicationPlan", () => {
     const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([{ family: "material" }]);
+  });
+
+  it("retains item and structured invalidation in a mixed release", async () => {
+    const snapshot = await makeProgramSnapshotFixture();
+    const prepared = await prepareDeletion(snapshot);
+    const changes = await collectCacheChanges(prepared);
+
+    expect([...changes]).toEqual([
+      { family: "material" },
+      { family: "material" },
+    ]);
   });
 });

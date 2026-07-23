@@ -1,8 +1,13 @@
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
-import { runtimeImports, verifyEdgeEntry } from "#scripts/verify-edge";
+import {
+  runEdgeVerification,
+  runtimeImports,
+  verifyEdgeEntry,
+} from "#scripts/verify-edge";
 
 /** Writes one emitted module into a verifier-owned temporary dist tree. */
 function writeModule(root: string, path: string, source: string) {
@@ -12,6 +17,37 @@ function writeModule(root: string, path: string, source: string) {
 }
 
 describe("Edge contract verification", () => {
+  it("runs only for the selected CLI entrypoint", () => {
+    const packageRoot = mkdtempSync(join(tmpdir(), "aksara-edge-cli-"));
+    for (const entry of [
+      "release/snapshot-data",
+      "transport/request",
+      "transport/response",
+      "transport/snapshot",
+    ]) {
+      writeModule(join(packageRoot, "dist"), entry, "export {};");
+    }
+    const entry = join(packageRoot, "verify-edge.ts");
+    const moduleUrl = pathToFileURL(entry).href;
+
+    expect(
+      runEdgeVerification({
+        entry: undefined,
+        moduleUrl,
+        packageRoot,
+      })
+    ).toBe(false);
+    expect(
+      runEdgeVerification({
+        entry: join(packageRoot, "other.ts"),
+        moduleUrl,
+        packageRoot,
+      })
+    ).toBe(false);
+    expect(runEdgeVerification({ entry, moduleUrl, packageRoot })).toBe(true);
+    rmSync(packageRoot, { recursive: true });
+  });
+
   it("traces private, relative, re-exported, and dynamic imports", () => {
     const root = mkdtempSync(join(tmpdir(), "aksara-edge-pass-"));
     writeModule(
@@ -24,7 +60,7 @@ describe("Edge contract verification", () => {
         'const loaded = import("#contracts/dynamic");',
       ].join("\n")
     );
-    writeModule(root, "private", 'import "effect";');
+    writeModule(root, "private", 'import "./entry.js"; import "effect";');
     writeModule(root, "relative", 'export const value = "safe";');
     writeModule(root, "extensionless", 'export const value = "safe";');
     writeModule(root, "dynamic", 'export const value = "safe";');

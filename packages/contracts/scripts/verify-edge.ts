@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, extname, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import ts from "typescript";
 
 const EDGE_EXPORTS = [
@@ -103,4 +104,24 @@ export function verifyEdgeContracts(packageRoot: string): void {
   }
 }
 
-verifyEdgeContracts(resolve(import.meta.dirname, ".."));
+/** Runs the verifier only when this module is the selected CLI entrypoint. */
+export function runEdgeVerification(input: {
+  readonly entry: string | undefined;
+  readonly moduleUrl: string;
+  readonly packageRoot: string;
+}): boolean {
+  if (
+    input.entry === undefined ||
+    pathToFileURL(resolve(input.entry)).href !== input.moduleUrl
+  ) {
+    return false;
+  }
+  verifyEdgeContracts(input.packageRoot);
+  return true;
+}
+
+runEdgeVerification({
+  entry: process.argv.at(1),
+  moduleUrl: import.meta.url,
+  packageRoot: resolve(import.meta.dirname, ".."),
+});

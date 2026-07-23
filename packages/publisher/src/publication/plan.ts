@@ -207,14 +207,11 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     routes: input.routes(),
   });
   const snapshotSummary = yield* verifyPublicationSnapshots(input);
-  /**
-   * Replays exact item changes, or structured-family changes for a snapshot-only
-   * release. Any body change already invalidates Nakafa's shared global tag.
-   */
+  /** Replays every structured snapshot and body-item cache change. */
   const cacheChanges = () =>
-    input.manifest.itemCount === 0
-      ? contentSnapshotCacheChanges(snapshotSummary.snapshots)
-      : contentCacheChanges(decodedItems());
+    contentSnapshotCacheChanges(snapshotSummary.snapshots).pipe(
+      Stream.concat(contentCacheChanges(decodedItems()))
+    );
   yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
 
   let artifactPlan: PublicationArtifactPlan;

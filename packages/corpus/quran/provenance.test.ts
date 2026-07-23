@@ -19,7 +19,7 @@ describe("Quran provenance records", () => {
     ).toHaveLength(6);
     expect(
       quranProvenanceRecords.every(
-        ({ retrievedOn }) => retrievedOn === "2026-07-24"
+        ({ retrievedOn }) => retrievedOn === "2026-07-23"
       )
     ).toBe(true);
   });
