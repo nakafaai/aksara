@@ -5,14 +5,17 @@ import {
   MAX_ITEM_BATCH_BYTES,
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
+  MAX_ROUTE_BATCH_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
 import {
   type PublicationRequest,
   PublicationRequestSchema,
 } from "@nakafa/aksara-contracts/transport/request";
+import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 import { Effect, Schema } from "effect";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import {
+  type PublicationTargetFailure,
   PublicationTargetProtocolError,
   PublicationTargetRejectedError,
   PublicationTargetTransportError,
@@ -30,16 +33,21 @@ const REQUEST_BYTE_LIMITS: Readonly<{
   [Operation in PublicationRequest["operation"]]: number;
 }> = {
   abort: MAX_PUBLICATION_REQUEST_BYTES,
+  accept: MAX_PUBLICATION_REQUEST_BYTES,
   activate: MAX_PUBLICATION_REQUEST_BYTES,
+  activateRecovery: MAX_PUBLICATION_REQUEST_BYTES,
   cleanup: MAX_PUBLICATION_REQUEST_BYTES,
   current: MAX_PUBLICATION_REQUEST_BYTES,
-  finalize: MAX_PUBLICATION_REQUEST_BYTES,
   headPage: MAX_PUBLICATION_REQUEST_BYTES,
+  recovery: MAX_PUBLICATION_REQUEST_BYTES,
   rollbackPage: MAX_PUBLICATION_REQUEST_BYTES,
+  routePage: MAX_PUBLICATION_REQUEST_BYTES,
   stageArtifactBatch: MAX_ARTIFACT_BATCH_BYTES,
   stageItemBatch: MAX_ITEM_BATCH_BYTES,
   stageProjectionBatch: MAX_PROJECTION_BATCH_BYTES,
+  stageRecovery: MAX_PUBLICATION_REQUEST_BYTES,
   stageRelease: MAX_PUBLICATION_REQUEST_BYTES,
+  stageRouteBatch: MAX_ROUTE_BATCH_BYTES,
   status: MAX_PUBLICATION_REQUEST_BYTES,
   verify: MAX_PUBLICATION_REQUEST_BYTES,
 };
@@ -97,7 +105,7 @@ export function sendPublicationRequest(
   client: HttpClient.HttpClient,
   config: ValidatedHttpConfig,
   request: PublicationRequest
-) {
+): Effect.Effect<PublicationSuccess, PublicationTargetFailure> {
   return Effect.gen(function* () {
     const body = yield* Schema.encode(
       Schema.parseJson(PublicationRequestSchema),

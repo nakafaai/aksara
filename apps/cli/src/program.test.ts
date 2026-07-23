@@ -7,6 +7,13 @@ const calls = vi.hoisted(() => ({
   abort: undefined as
     | { readonly command: string; readonly releaseId: string }
     | undefined,
+  accept: undefined as
+    | {
+        readonly command: string;
+        readonly recoveryId: string;
+        readonly releaseId: string;
+      }
+    | undefined,
   args: [] as readonly string[],
   cleanup: undefined as
     | { readonly command: string; readonly releaseId: string }
@@ -22,8 +29,19 @@ const calls = vi.hoisted(() => ({
     | undefined,
   production: undefined as
     | {
-        readonly args: { readonly command: string; readonly releaseId: string };
+        readonly args: {
+          readonly command: string;
+          readonly recoveryId: string;
+          readonly releaseId: string;
+        };
         readonly cwd: string;
+      }
+    | undefined,
+  recover: undefined as
+    | {
+        readonly command: string;
+        readonly recoveryId: string;
+        readonly releaseId: string;
       }
     | undefined,
 }));
@@ -40,6 +58,13 @@ vi.mock("#cli/args", async () => {
           releaseId: "release-abort",
         });
       }
+      if (args[0] === "accept") {
+        return TestEffect.succeed({
+          command: "accept",
+          recoveryId: "recovery-active",
+          releaseId: "release-active",
+        });
+      }
       if (args[0] === "cleanup") {
         return TestEffect.succeed({
           command: "cleanup",
@@ -49,13 +74,32 @@ vi.mock("#cli/args", async () => {
       if (args[0] === "release") {
         return TestEffect.succeed({
           command: "release",
+          recoveryId: "recovery-next",
           releaseId: "release-next",
+        });
+      }
+      if (args[0] === "recover") {
+        return TestEffect.succeed({
+          command: "recover",
+          recoveryId: "recovery-active",
+          releaseId: "release-active",
         });
       }
       return TestEffect.succeed({
         command: "preview",
         document: calls.document,
       });
+    },
+  };
+});
+
+vi.mock("#cli/accept", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records acceptance dispatch without requiring production signing. */
+    runAcceptCommand: (args: NonNullable<typeof calls.accept>) => {
+      calls.accept = args;
+      return TestEffect.succeed("accept-complete");
     },
   };
 });
@@ -120,25 +164,40 @@ vi.mock("#cli/production", async () => {
   };
 });
 
+vi.mock("#cli/recover", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records recovery dispatch without contacting production. */
+    runRecoverCommand: (args: NonNullable<typeof calls.recover>) => {
+      calls.recover = args;
+      return TestEffect.succeed("recover-complete");
+    },
+  };
+});
+
 beforeEach(() => {
+  calls.accept = undefined;
   calls.abort = undefined;
   calls.args = [];
   calls.cleanup = undefined;
   calls.open = undefined;
   calls.production = undefined;
+  calls.recover = undefined;
 });
+
+/** Runs one CLI program with the real Node boundary services. */
+function runProgram(args: readonly string[]) {
+  return Effect.runPromise(
+    makeCliProgram({ args, cwd: "/code/aksara" }).pipe(
+      Effect.provide(NodeHttpClient.layer),
+      Effect.provide(NodeContext.layer)
+    )
+  );
+}
 
 describe("CLI program", () => {
   it("composes implicit preview with the actual-app session", async () => {
-    const result = await Effect.runPromise(
-      makeCliProgram({
-        args: ["--document", calls.document],
-        cwd: "/code/aksara",
-      }).pipe(
-        Effect.provide(NodeHttpClient.layer),
-        Effect.provide(NodeContext.layer)
-      )
-    );
+    const result = await runProgram(["--document", calls.document]);
 
     expect(result).toBe("preview-complete");
     expect(calls.args).toEqual(["--document", calls.document]);
@@ -152,19 +211,21 @@ describe("CLI program", () => {
   });
 
   it("dispatches explicit production commands without opening preview", async () => {
-    const result = await Effect.runPromise(
-      makeCliProgram({
-        args: ["release", "--release-id", "release-next"],
-        cwd: "/code/aksara",
-      }).pipe(
-        Effect.provide(NodeHttpClient.layer),
-        Effect.provide(NodeContext.layer)
-      )
-    );
+    const result = await runProgram([
+      "release",
+      "--release-id",
+      "release-next",
+      "--recovery-id",
+      "recovery-next",
+    ]);
 
     expect(result).toBe("publication-complete");
     expect(calls.production).toEqual({
-      args: { command: "release", releaseId: "release-next" },
+      args: {
+        command: "release",
+        recoveryId: "recovery-next",
+        releaseId: "release-next",
+      },
       cwd: "/code/aksara",
     });
     expect(calls.open).toBeUndefined();
@@ -172,16 +233,34 @@ describe("CLI program", () => {
     expect(calls.abort).toBeUndefined();
   });
 
+  it("dispatches acceptance without entering signed publication", async () => {
+    const result = await runProgram(["accept"]);
+
+    expect(result).toBe("accept-complete");
+    expect(calls.accept).toEqual({
+      command: "accept",
+      recoveryId: "recovery-active",
+      releaseId: "release-active",
+    });
+    expect(calls.production).toBeUndefined();
+    expect(calls.open).toBeUndefined();
+  });
+
+  it("dispatches recovery without entering signed publication", async () => {
+    const result = await runProgram(["recover"]);
+
+    expect(result).toBe("recover-complete");
+    expect(calls.recover).toEqual({
+      command: "recover",
+      recoveryId: "recovery-active",
+      releaseId: "release-active",
+    });
+    expect(calls.production).toBeUndefined();
+    expect(calls.open).toBeUndefined();
+  });
+
   it("dispatches abort without entering signed publication", async () => {
-    const result = await Effect.runPromise(
-      makeCliProgram({
-        args: ["abort", "--release-id", "release-abort"],
-        cwd: "/code/aksara",
-      }).pipe(
-        Effect.provide(NodeHttpClient.layer),
-        Effect.provide(NodeContext.layer)
-      )
-    );
+    const result = await runProgram(["abort", "--release-id", "release-abort"]);
 
     expect(result).toBe("abort-complete");
     expect(calls.abort).toEqual({
@@ -194,15 +273,11 @@ describe("CLI program", () => {
   });
 
   it("dispatches cleanup without entering signed publication", async () => {
-    const result = await Effect.runPromise(
-      makeCliProgram({
-        args: ["cleanup", "--release-id", "release-cleanup"],
-        cwd: "/code/aksara",
-      }).pipe(
-        Effect.provide(NodeHttpClient.layer),
-        Effect.provide(NodeContext.layer)
-      )
-    );
+    const result = await runProgram([
+      "cleanup",
+      "--release-id",
+      "release-cleanup",
+    ]);
 
     expect(result).toBe("cleanup-complete");
     expect(calls.cleanup).toEqual({

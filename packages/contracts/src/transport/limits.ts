@@ -16,6 +16,12 @@ export const MAX_ITEM_BATCH_BYTES = 512 * 1024;
 /** Maximum ordered release items accepted by one staging transaction. */
 export const MAX_ITEM_BATCH_COUNT = 16;
 
+/** Maximum complete ordered-route batch accepted by publication ingress. */
+export const MAX_ROUTE_BATCH_BYTES = MAX_ITEM_BATCH_BYTES;
+
+/** Maximum ordered route items accepted by one staging transaction. */
+export const MAX_ROUTE_BATCH_COUNT = MAX_ITEM_BATCH_COUNT;
+
 /** Maximum complete projection batch accepted by publication ingress. */
 export const MAX_PROJECTION_BATCH_BYTES = 4 * 1024 * 1024;
 

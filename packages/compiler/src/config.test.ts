@@ -1,11 +1,11 @@
 import { readFileSync } from "node:fs";
 import { findPackageJSON } from "node:module";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { createCompilerConfigHash } from "#compiler/config";
 import { EXECUTABLE_POLICY_REVISION } from "#compiler/policy";
-import { rendererDomains } from "#compiler/test/renderer";
 
 /** Reads an installed package version for compiler-identity assertions. */
 function installedVersion(packageName: string) {
@@ -31,15 +31,15 @@ function manifestInput(inlineVersion: 1 | 2, expanded: boolean) {
         : [{ name: "InlineMath", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   };
 }
 
 describe("compiler config", () => {
   it("binds the current executable policy revision", () => {
-    expect(EXECUTABLE_POLICY_REVISION).toBe("trusted-mdx-policy-v4");
+    expect(EXECUTABLE_POLICY_REVISION).toBe("trusted-mdx-policy-v5");
   });
 
   it("pins every output-affecting installed tool", () => {

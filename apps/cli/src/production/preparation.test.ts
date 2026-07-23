@@ -23,10 +23,9 @@ beforeEach(() => {
   calls.reset();
   const active = gitBundle("release-active");
   calls.current = currentState({
-    activeManifestHash: active.release.manifestHash,
-    activeReleaseId: active.release.manifest.releaseId,
-    completed: completedBundle(active),
-    pending: null,
+    active: completedBundle(active),
+    candidate: null,
+    recovery: null,
   });
 });
 
@@ -36,6 +35,7 @@ describe("production preparation", () => {
     await expect(
       runProduction({
         command: "release",
+        recoveryId: releaseId("recovery-next"),
         releaseId: releaseId("release-next"),
       })
     ).resolves.toMatchObject({ releaseId: "release-next" });
@@ -68,14 +68,14 @@ describe("production preparation", () => {
 
   it("prepares genesis without requesting nonexistent heads", async () => {
     calls.current = currentState({
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed: null,
-      pending: null,
+      active: null,
+      candidate: null,
+      recovery: null,
     });
     await expect(
       runProduction({
         command: "release",
+        recoveryId: releaseId("recovery-first"),
         releaseId: releaseId("release-first"),
       })
     ).resolves.toMatchObject({ releaseId: "release-first" });
@@ -91,6 +91,7 @@ describe("production preparation", () => {
     await expect(
       runProduction({
         command: "rollback",
+        recoveryId: releaseId("recovery-rollback"),
         releaseId: releaseId("rollback-next"),
         rollbackOf: releaseId("release-active"),
       })
@@ -111,23 +112,25 @@ describe("production preparation", () => {
     });
   });
 
-  it("reuses the exact pending Git envelope after key rotation", async () => {
-    const pending = gitBundle("release-pending", {
+  it("reuses the exact candidate Git envelope after key rotation", async () => {
+    const active = gitBundle("release-active");
+    const candidate = gitBundle("release-candidate", {
+      baseManifestHash: active.release.manifestHash,
       baseReleaseId: releaseId("release-active"),
       keyId: SigningKeyIdSchema.make("content-2026-01"),
     });
     calls.current = currentState({
-      activeManifestHash: pending.release.manifest.baseManifestHash,
-      activeReleaseId: "release-active",
-      completed: null,
-      pending: { ...pending, phase: "staging" },
+      active: completedBundle(active),
+      candidate: { ...candidate, phase: "staging" },
+      recovery: null,
     });
     await expect(
       runProduction({
         command: "release",
-        releaseId: releaseId("release-pending"),
+        recoveryId: releaseId("recovery-candidate"),
+        releaseId: releaseId("release-candidate"),
       })
-    ).resolves.toMatchObject({ releaseId: "release-pending" });
+    ).resolves.toMatchObject({ releaseId: "release-candidate" });
     expect(calls).toMatchObject({
       baseReleaseId: "release-active",
       bundleVerifyCalls: 1,
@@ -136,30 +139,32 @@ describe("production preparation", () => {
       materialCalls: 1,
       rendererCalls: 0,
       sourceLayers: 1,
-      verifiedBundle: pending,
+      verifiedBundle: candidate,
     });
-    expect(calls.storedRelease).toEqual(pending.release);
+    expect(calls.storedRelease).toEqual(candidate.release);
     expect(calls.storedRelease?.keyId).toBe("content-2026-01");
   });
 
-  it("rebuilds pending rollback without acquiring Git source", async () => {
-    const pending = rollbackBundle(
-      "rollback-pending",
-      releaseId("release-active")
+  it("rebuilds candidate rollback without acquiring Git source", async () => {
+    const active = gitBundle("release-active");
+    const candidate = rollbackBundle(
+      "rollback-candidate",
+      releaseId("release-active"),
+      active.release.manifestHash
     );
     calls.current = currentState({
-      activeManifestHash: pending.release.manifest.baseManifestHash,
-      activeReleaseId: "release-active",
-      completed: null,
-      pending: { ...pending, phase: "staging" },
+      active: completedBundle(active),
+      candidate: { ...candidate, phase: "staging" },
+      recovery: null,
     });
     await expect(
       runProduction({
         command: "rollback",
-        releaseId: releaseId("rollback-pending"),
+        recoveryId: releaseId("recovery-candidate"),
+        releaseId: releaseId("rollback-candidate"),
         rollbackOf: releaseId("release-active"),
       })
-    ).resolves.toMatchObject({ releaseId: "rollback-pending" });
+    ).resolves.toMatchObject({ releaseId: "rollback-candidate" });
     expect(calls).toMatchObject({
       bundleVerifyCalls: 1,
       cleanReads: 0,
@@ -168,25 +173,25 @@ describe("production preparation", () => {
       rendererCalls: 0,
       rootReads: 0,
       sourceLayers: 0,
-      verifiedBundle: pending,
+      verifiedBundle: candidate,
     });
-    expect(calls.storedRelease).toEqual(pending.release);
+    expect(calls.storedRelease).toEqual(candidate.release);
   });
 
   it("rejects recovery from a different checkout revision", async () => {
-    const pending = gitBundle("release-pending", {
+    const candidate = gitBundle("release-candidate", {
       sha: GitCommitShaSchema.make("b".repeat(40)),
     });
     calls.current = currentState({
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed: null,
-      pending: { ...pending, phase: "staging" },
+      active: null,
+      candidate: { ...candidate, phase: "staging" },
+      recovery: null,
     });
     await expect(
       rejectProduction({
         command: "release",
-        releaseId: releaseId("release-pending"),
+        recoveryId: releaseId("recovery-candidate"),
+        releaseId: releaseId("release-candidate"),
       })
     ).resolves.toMatchObject({
       failure: "RecoveryRevisionMismatchError",
@@ -200,19 +205,19 @@ describe("production preparation", () => {
     });
   });
 
-  it("rejects a rebuild that differs from signed pending state", async () => {
-    const pending = gitBundle("release-pending");
+  it("rejects a rebuild that differs from signed candidate state", async () => {
+    const candidate = gitBundle("release-candidate");
     calls.current = currentState({
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed: null,
-      pending: { ...pending, phase: "verifying" },
+      active: null,
+      candidate: { ...candidate, phase: "verifying" },
+      recovery: null,
     });
     calls.manifestMismatch = true;
     await expect(
       rejectProduction({
         command: "release",
-        releaseId: releaseId("release-pending"),
+        recoveryId: releaseId("recovery-candidate"),
+        releaseId: releaseId("release-candidate"),
       })
     ).resolves.toMatchObject({
       failure: "PreparedStoredReleaseMismatchError",

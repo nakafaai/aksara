@@ -39,7 +39,7 @@ function logAbortReceipt(receipt: ReleaseAbortReceipt) {
   );
 }
 
-/** Explicitly abandons one invisible pending release through bounded pages. */
+/** Explicitly abandons one invisible staged release through bounded pages. */
 export const runAbortCommand: (args: AbortArguments) => AbortCommand =
   Effect.fn("AksaraCli.runAbortCommand")((args) =>
     Effect.gen(function* () {

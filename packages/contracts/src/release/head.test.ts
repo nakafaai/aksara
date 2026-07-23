@@ -70,7 +70,7 @@ describe("material head pages", () => {
     ).toBe(true);
   });
 
-  it("accepts a non-terminal page only with real cursor progress", () => {
+  it("accepts non-terminal pages only with real cursor progress", () => {
     expect(
       accepts(HeadPageSchema, {
         activeManifestHash: manifestHash,
@@ -79,6 +79,17 @@ describe("material head pages", () => {
         done: false,
         family: "material",
         heads: [materialHead("test:a")],
+        nextCursor: "page-two",
+      })
+    ).toBe(true);
+    expect(
+      accepts(HeadPageSchema, {
+        activeManifestHash: manifestHash,
+        activeReleaseId: releaseId,
+        cursor: "page-one",
+        done: false,
+        family: "material",
+        heads: [],
         nextCursor: "page-two",
       })
     ).toBe(true);
@@ -173,7 +184,6 @@ describe("material head pages", () => {
     };
     for (const contradiction of [
       { ...page, done: true, nextCursor: "page-two" },
-      { ...page, done: false, heads: [], nextCursor: "page-two" },
       { ...page, done: false, nextCursor: null },
       { ...page, done: false, nextCursor: "page-one" },
     ]) {

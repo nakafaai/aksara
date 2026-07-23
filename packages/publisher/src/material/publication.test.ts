@@ -8,6 +8,7 @@ import { testFileLayer } from "#test/files";
 import {
   checkoutRoot,
   collectMaterialPublication,
+  collectMaterialRoutes,
   englishPath,
   materialManifest,
   publishedMaterialHeads,
@@ -215,6 +216,28 @@ describe("material publication", () => {
       },
     });
     expect(compilerState.calls).toBe(0);
+  });
+
+  it("removes the route owned by one deleted published material", async () => {
+    const stale = modifyHead({
+      ...englishHead,
+      contentKey: "material/lesson/mathematics/removed/route",
+      publicPath: "subjects/mathematics/removed/route",
+      sourcePath:
+        "packages/corpus/material/lesson/mathematics/removed/route/en.mdx",
+    });
+    const routes = await collectMaterialRoutes({
+      heads: [englishHead, indonesianHead, stale],
+    });
+
+    expect(routes).toHaveLength(1);
+    expect(routes[0]).toEqual({
+      current: stale,
+      next: {
+        contentKey: stale.contentKey,
+        locale: stale.locale,
+      },
+    });
   });
 
   it("compiles every canonical source for the first release", async () => {

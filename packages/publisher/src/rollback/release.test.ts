@@ -43,6 +43,7 @@ describe("buildRollbackRelease", () => {
         releaseId,
         rendererManifest,
         result: () => Stream.make(prior.head),
+        routes: () => Stream.empty,
       })
     );
     const [artifacts, items, projections] = await Effect.runPromise(

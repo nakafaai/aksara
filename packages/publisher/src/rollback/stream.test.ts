@@ -28,6 +28,7 @@ import {
   streamRollbackRecords,
 } from "#publisher/rollback/stream";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
+import { makePublicationTarget } from "#test/target";
 
 const rollbackOf = ReleaseIdSchema.make("test-rollback-source");
 const rollbackOfManifestHash = Sha256HashSchema.make(
@@ -108,7 +109,6 @@ function oversizedPage() {
       delivery: "public",
       locale: payload.locale,
       operation: "upsert",
-      publicPath: projection.publicPath,
       rendererDomain: payload.rendererDomain,
       sourcePath: CorpusSourcePathSchema.make(
         "packages/corpus/test/rollback/large.mdx"
@@ -130,21 +130,7 @@ function targetWith(
     request: RollbackPageRequest
   ) => ReturnType<(typeof PublicationTarget.Service)["rollbackPage"]>
 ) {
-  return PublicationTarget.of({
-    abort: () => Effect.die("Unused target abort."),
-    activate: () => Effect.die("Unused target activation."),
-    cleanup: () => Effect.die("Unused target cleanup."),
-    current: () => Effect.die("Unused target current state."),
-    finalize: () => Effect.die("Unused target finalization."),
-    headPage: () => Effect.die("Unused target head page."),
-    rollbackPage,
-    stageArtifactBatch: () => Effect.die("Unused artifact staging."),
-    stageItemBatch: () => Effect.die("Unused item staging."),
-    stageProjectionBatch: () => Effect.die("Unused projection staging."),
-    stageRelease: () => Effect.die("Unused release staging."),
-    status: () => Effect.die("Unused target status."),
-    verify: () => Effect.die("Unused target verification."),
-  });
+  return makePublicationTarget({ rollbackPage });
 }
 
 /** Collects one complete rollback replay with the supplied target. */

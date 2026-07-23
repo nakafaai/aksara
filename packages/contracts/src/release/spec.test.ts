@@ -17,7 +17,9 @@ import {
   canonicalizeContentReleaseItem,
   canonicalizeContentReleaseManifest,
   canonicalizeContentReleaseSigningInput,
+  RollbackSignedContentReleaseSchema,
 } from "#contracts/release/spec";
+import { release as gitRelease } from "#contracts/test/request";
 
 const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
 
@@ -42,7 +44,6 @@ const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
     delivery: "public",
     locale: "en",
     operation: "upsert",
-    publicPath: "subjects/test",
     rendererDomain: "mathematics",
     sourcePath: "packages/corpus/test/content/en.mdx",
   },
@@ -69,10 +70,20 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   resultDigest: `sha256:${"e".repeat(64)}`,
   rollbackCount: items.length,
   rollbackDigest: `sha256:${"f".repeat(64)}`,
+  routeCount: 0,
+  routeDigest: `sha256:${"f".repeat(64)}`,
   upsertCount: itemSummary.upsertCount,
 });
 
 describe("release spec", () => {
+  it("rejects non-rollback envelopes at recovery boundaries", () => {
+    const result = Schema.decodeUnknownEither(
+      RollbackSignedContentReleaseSchema
+    )(gitRelease);
+    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+      "Expected a signed rollback release."
+    );
+  });
   it("keeps the signed manifest constant-size while authenticating item count and digest", () => {
     const canonical = canonicalizeContentReleaseManifest(manifest);
     const manifestHash = Sha256HashSchema.make(
@@ -85,6 +96,7 @@ describe("release spec", () => {
     expect(canonical).toContain('"projectionCount":1');
     expect(canonical).toContain(`"resultDigest":"${manifest.resultDigest}"`);
     expect(canonical).toContain('"rollbackCount":2');
+    expect(canonical).toContain('"routeCount":0');
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
       `nakafa.aksara.content-release.v1\n${manifestHash}\n${canonical}`
     );
@@ -107,7 +119,7 @@ describe("release spec", () => {
       return;
     }
     expect(canonicalizeContentReleaseItem(first)).toBe(
-      `{"change":{"contentKey":"test:content","delivery":"public","locale":"en","operation":"upsert","publicPath":"subjects/test","artifactHash":"sha256:${"b".repeat(64)}","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
+      `{"change":{"artifactHash":"sha256:${"b".repeat(64)}","contentKey":"test:content","delivery":"public","locale":"en","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
     );
   });
 

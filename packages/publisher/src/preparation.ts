@@ -23,6 +23,8 @@ import {
   updateRollbackSnapshotDigest,
   verifyRollbackSnapshot,
 } from "@nakafa/aksara-contracts/release/rollback-digest";
+import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
+import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import {
@@ -38,6 +40,7 @@ import {
   type DerivedContentRecord,
   derivePreparedRecords,
 } from "#publisher/preparation/stream";
+import { makeRouteItems } from "#publisher/routes";
 
 /** Narrows one derived record to the material projection it owns. */
 function isDerivedUpsert(
@@ -79,6 +82,8 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
       Stream.filter(isDerivedUpsert),
       Stream.map((record) => record.projection)
     );
+  /** Replays canonical route versions derived from the same transitions. */
+  const routes = () => makeRouteItems(input.releaseId, input.routes());
   /** Replays exact prior states from the same proven transition records. */
   const rollback = () =>
     records().pipe(Stream.map((record) => record.rollback));
@@ -131,6 +136,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     input.releaseId,
     resultState
   );
+  const routeSummary = yield* digestRoutes(input.releaseId, routes());
   const manifest = ContentReleaseManifestSchema.make({
     baseManifestHash: input.baseManifestHash,
     baseReleaseId: input.baseReleaseId,
@@ -149,10 +155,13 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     resultDigest,
     rollbackCount: rollbackState.count,
     rollbackDigest,
+    routeCount: routeSummary.count,
+    routeDigest: routeSummary.digest,
     upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });
   yield* verifyContentProjections({ manifest, projections: projections() });
+  yield* verifyContentRoutes({ manifest, routes: routes() });
   yield* verifyResultCatalog({
     expectedCount: manifest.resultCount,
     expectedDigest: manifest.resultDigest,
@@ -165,5 +174,6 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     manifest,
     projections,
     rendererManifest,
+    routes,
   });
 });

@@ -7,7 +7,10 @@ import {
   type ContentReleaseManifest,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
-import { ContentReleaseCurrentSchema } from "@nakafa/aksara-contracts/release/lifecycle";
+import {
+  type ContentReleaseCurrent,
+  ContentReleaseCurrentSchema,
+} from "@nakafa/aksara-contracts/release/current";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
@@ -51,6 +54,8 @@ export function stateBundle(
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       rollbackCount: 0,
       rollbackDigest: STATE_HASH,
+      routeCount: 0,
+      routeDigest: STATE_HASH,
       upsertCount: 0,
     },
     manifestHash: STATE_HASH,
@@ -60,7 +65,7 @@ export function stateBundle(
 }
 
 /** Creates exact durable current state through the public wire contract. */
-export function stateCurrent(input: unknown) {
+export function stateCurrent(input: unknown): ContentReleaseCurrent {
   return Schema.decodeUnknownSync(ContentReleaseCurrentSchema)(input);
 }
 
@@ -80,21 +85,39 @@ export function stateCompleted(
       releaseId: id,
       resultCount: 0,
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+      routeDigest: STATE_HASH,
       stagedArtifacts: 0,
       stagedItems: 0,
       stagedProjections: 0,
+      stagedRoutes: 0,
     },
   };
 }
 
 /** Creates durable state whose completed release is the active identity. */
-export function activeState(value: ReturnType<typeof stateCompleted>) {
+export function activeState(
+  value: ReturnType<typeof stateCompleted>
+): ContentReleaseCurrent {
   return stateCurrent({
-    activeManifestHash: value.release.manifestHash,
-    activeReleaseId: value.release.manifest.releaseId,
-    completed: value,
-    pending: null,
+    active: value,
+    candidate: null,
+    recovery: null,
   });
+}
+
+/** Creates the verified inverse that protects one candidate or active release. */
+export function stateRecovery(
+  target: ReturnType<typeof stateBundle>,
+  id = "recovery-next"
+) {
+  return {
+    ...stateBundle(
+      id,
+      { kind: "rollback", releaseId: target.release.manifest.releaseId },
+      target.release.manifest.releaseId
+    ),
+    phase: "verified" as const,
+  };
 }
 
 /** Returns the typed state failure for one unsafe command. */

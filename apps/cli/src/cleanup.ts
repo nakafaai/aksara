@@ -37,7 +37,6 @@ function logCleanupReceipt(receipt: ReleaseCleanupReceipt) {
   return Effect.logInfo("Content cleanup completed.").pipe(
     Effect.annotateLogs({
       deletedArtifacts: receipt.deletedArtifacts,
-      deletedItems: receipt.deletedItems,
       releaseId: receipt.releaseId,
     }),
     Effect.as(receipt)

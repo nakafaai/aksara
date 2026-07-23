@@ -44,11 +44,11 @@ function validateReceipt(
   previous: ReleaseAbortReceipt | undefined,
   receipt: ReleaseAbortReceipt
 ) {
+  const processedBefore = previous?.processedItems ?? 0;
   if (
     receipt.releaseId === releaseId &&
-    (previous === undefined ||
-      (receipt.processedItems >= previous.processedItems &&
-        receipt.totalItems === previous.totalItems))
+    (previous === undefined || receipt.totalItems === previous.totalItems) &&
+    (receipt.complete || receipt.processedItems > processedBefore)
   ) {
     return Effect.void;
   }

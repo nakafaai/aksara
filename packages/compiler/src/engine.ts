@@ -16,9 +16,7 @@ import {
   MAX_RAW_MDX_BYTES,
 } from "@nakafa/aksara-contracts/limits";
 import type { RendererComponentRequirement } from "@nakafa/aksara-contracts/renderer/component";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
-import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import type { Program } from "estree-jsx";
@@ -108,14 +106,8 @@ function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
 function selectRendererRequirements(
   contentKey: ContentKey,
   names: ReadonlySet<string>,
-  manifest: RendererManifestEnvelope,
-  rendererDomain: RendererDomain
+  authoringComponents: readonly RendererComponentRequirement[]
 ) {
-  const domain = selectRendererDomainCapability(manifest, rendererDomain);
-  const authoringComponents = [
-    ...manifest.base.authoringComponents,
-    ...domain.authoringComponents,
-  ];
   return Effect.forEach([...names].sort(), (componentName) => {
     const selected = authoringComponents.find(
       (requirement) => requirement.name === componentName
@@ -146,6 +138,17 @@ export const validateCompileRequest: (
 export const compileValidatedContent = Effect.fn(
   "AksaraCompiler.compileValidatedContent"
 )(function* (request: CompileDocumentRequest) {
+  const domain = selectRendererDomainCapability(
+    request.rendererManifest,
+    request.rendererDomain
+  );
+  const authoringComponents = [
+    ...request.rendererManifest.base.authoringComponents,
+    ...domain.authoringComponents,
+  ];
+  const allowedComponents = new Set(
+    authoringComponents.map(({ name }) => name)
+  );
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
   const policyViolations: ExecutablePolicyViolation[] = [];
   const requiredComponentNames = new Set<string>();
@@ -177,7 +180,11 @@ export const compileValidatedContent = Effect.fn(
         recmaPlugins: [captureRequiredComponents(requiredComponentNames)],
         remarkPlugins: [
           extractMetadata(metadataCollector),
-          enforceExecutablePolicy(unsupportedModules, policyViolations),
+          enforceExecutablePolicy(
+            allowedComponents,
+            unsupportedModules,
+            policyViolations
+          ),
           capturePlainText((value) => {
             plainText = value;
           }),
@@ -220,8 +227,7 @@ export const compileValidatedContent = Effect.fn(
   const requiredComponents = yield* selectRendererRequirements(
     request.contentKey,
     requiredComponentNames,
-    request.rendererManifest,
-    request.rendererDomain
+    authoringComponents
   );
   const payload = CompiledContentPayloadSchema.make({
     byteLength,

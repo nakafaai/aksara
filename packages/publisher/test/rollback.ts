@@ -71,7 +71,6 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
     delivery: "public" as const,
     locale: "en" as const,
     operation: "upsert" as const,
-    publicPath,
     rendererDomain: "mathematics" as const,
     sourcePath,
   };

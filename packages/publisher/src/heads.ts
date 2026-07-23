@@ -39,16 +39,18 @@ function validatePageOrder(
 }
 
 /** Derives the next exact cursor state without accepting stalled pagination. */
-function nextPageState(page: HeadPage) {
+function nextPageState(previous: HeadPageState, page: HeadPage) {
   if (page.done) {
     return Effect.succeed(Option.none<HeadPageState>());
   }
-  const last = page.heads.at(-1);
-  if (page.nextCursor === null || last === undefined) {
+  if (page.nextCursor === null || page.nextCursor === previous.cursor) {
     return Effect.fail(headPageError());
   }
   return Effect.succeed(
-    Option.some<HeadPageState>({ cursor: page.nextCursor, last })
+    Option.some<HeadPageState>({
+      cursor: page.nextCursor,
+      last: page.heads.at(-1) ?? previous.last,
+    })
   );
 }
 
@@ -69,7 +71,7 @@ export function streamMaterialHeads(
         limit: MAX_HEAD_PAGE_COUNT,
       });
       yield* validatePageOrder(state.last, page.heads);
-      const next = yield* nextPageState(page);
+      const next = yield* nextPageState(state, page);
       return Tuple.make(Chunk.fromIterable(page.heads), next);
     })
   );

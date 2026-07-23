@@ -1,16 +1,17 @@
 // @vitest-environment node
-
 import { type BinaryLike, createHash } from "node:crypto";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
-import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
+import {
+  canonicalizeRendererManifestContract,
+  rendererDomains,
+} from "#contracts/renderer/contract";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import {
   createRendererManifest,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest";
-import { rendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -38,7 +39,6 @@ vi.mock("node:crypto", async (importOriginal) => {
     },
   };
 });
-
 const CHEMISTRY = {
   authoringComponents: [{ name: "AtomShellLab", version: 1 }],
   name: "chemistry",
@@ -59,8 +59,8 @@ const BASE_AUTHORING = [
   { name: "InlineMath", version: 1 },
 ] as const;
 const DOMAINS = rendererDomains({
-  chemistry: CHEMISTRY.authoringComponents[0],
-  mathematics: MATHEMATICS.authoringComponents[0],
+  chemistry: CHEMISTRY.authoringComponents,
+  mathematics: MATHEMATICS.authoringComponents,
 });
 /** Builds one complete manifest creation input with optional base pins. */
 function creation(

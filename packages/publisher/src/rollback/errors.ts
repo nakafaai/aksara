@@ -72,3 +72,41 @@ export class RollbackPageByteLimitError extends Schema.TaggedError<RollbackPageB
     maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
   }
 ) {}
+
+/** One target route page failed its exact rollback wire schema. */
+export class RoutePageDecodeError extends Schema.TaggedError<RoutePageDecodeError>()(
+  "RoutePageDecodeError",
+  { afterIndex: RollbackIndexSchema }
+) {}
+
+/** A route page belongs to another release than its requested source. */
+export class RoutePageIdentityError extends Schema.TaggedError<RoutePageIdentityError>()(
+  "RoutePageIdentityError",
+  {
+    actualManifestHash: Sha256HashSchema,
+    actualReleaseId: ReleaseIdSchema,
+    afterIndex: RollbackIndexSchema,
+    expectedManifestHash: Sha256HashSchema,
+    expectedReleaseId: ReleaseIdSchema,
+  }
+) {}
+
+/** A route replay changed its signed source total between pages. */
+export class RoutePageTotalError extends Schema.TaggedError<RoutePageTotalError>()(
+  "RoutePageTotalError",
+  {
+    actualTotal: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+    afterIndex: RollbackIndexSchema,
+    expectedTotal: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
+  }
+) {}
+
+/** A route page skipped, repeated, or moved its index cursor backward. */
+export class RoutePageCursorError extends Schema.TaggedError<RoutePageCursorError>()(
+  "RoutePageCursorError",
+  {
+    actualIndex: RollbackIndexSchema,
+    afterIndex: RollbackIndexSchema,
+    expectedIndex: RollbackIndexSchema,
+  }
+) {}

@@ -8,11 +8,11 @@ import {
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { testFileLayer } from "#test/files";
-import { rendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
 export const atomEnglishPath =
@@ -44,8 +44,8 @@ export function materialManifest(input: {
         supportedComponents: [{ name: "InlineMath", version: 1 }],
       },
       domains: rendererDomains({
-        chemistry: { name: "AtomShellLab", version: input.chemistry },
-        mathematics: { name: "FunctionMachine", version: input.math },
+        chemistry: [{ name: "AtomShellLab", version: input.chemistry }],
+        mathematics: [{ name: "FunctionMachine", version: input.math }],
       }),
     })
   );
@@ -87,6 +87,34 @@ export function collectMaterialPublication(input: {
         return yield* publication.records().pipe(
           Stream.runCollect,
           Effect.map((records) => [...records])
+        );
+      })
+    ).pipe(
+      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
+      Effect.provide(Path.layer)
+    )
+  );
+}
+
+/** Collects canonical route transitions from one real material plan. */
+export function collectMaterialRoutes(input: {
+  readonly heads: readonly MaterialHead[];
+  readonly renderer?: unknown;
+  readonly sources?: ReadonlyMap<string, string>;
+}) {
+  return Effect.runPromise(
+    Effect.scoped(
+      Effect.gen(function* () {
+        const baseCatalog = yield* materialBaseCatalog(input.heads);
+        const publication = yield* prepareMaterialPublication({
+          baseCatalog,
+          checkoutRoot,
+          published: Stream.fromIterable(input.heads),
+          rendererManifest: input.renderer ?? rendererManifest,
+        });
+        return yield* publication.routes().pipe(
+          Stream.runCollect,
+          Effect.map((routes) => [...routes])
         );
       })
     ).pipe(
@@ -157,7 +185,7 @@ export async function publishedMaterialHeads() {
         delivery: record.change.delivery,
         locale: record.change.locale,
         projectionHash: hashMaterialProjection(record.projection),
-        publicPath: record.change.publicPath,
+        publicPath: record.projection.publicPath,
         rendererDomain: record.change.rendererDomain,
         sourceHash: record.payload.sourceHash,
         sourcePath: record.change.sourcePath,

@@ -76,11 +76,7 @@ function hasCanonicalHeadPage(page: {
   if (page.done) {
     return page.nextCursor === null;
   }
-  return (
-    page.heads.length > 0 &&
-    page.nextCursor !== null &&
-    page.nextCursor !== page.cursor
-  );
+  return page.nextCursor !== null && page.nextCursor !== page.cursor;
 }
 
 /** Bounded canonical page proving material heads for one active release. */

@@ -2,7 +2,10 @@ import { Buffer } from "node:buffer";
 import type { HttpClientResponse } from "@effect/platform";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import { PublicationResponseSchema } from "@nakafa/aksara-contracts/transport/response";
+import {
+  type PublicationResponse,
+  PublicationResponseSchema,
+} from "@nakafa/aksara-contracts/transport/response";
 import { Chunk, Effect, Schema, Stream } from "effect";
 import {
   PublicationTargetProtocolError,
@@ -55,7 +58,10 @@ function decodeResponse(request: PublicationRequest, body: ResponseBytes) {
 export function readPublicationResponse(
   request: PublicationRequest,
   response: HttpClientResponse.HttpClientResponse
-) {
+): Effect.Effect<
+  PublicationResponse,
+  PublicationTargetProtocolError | PublicationTargetTransportError
+> {
   const contentType = response.headers["content-type"]?.toLowerCase();
   const mediaType = contentType?.split(";", 1)[0]?.trim();
   if (mediaType !== "application/json") {

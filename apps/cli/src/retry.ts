@@ -34,16 +34,21 @@ export function retryPublicationTarget(
 ): typeof PublicationTarget.Service {
   return PublicationTarget.of({
     abort: retryOperation(target.abort),
+    accept: retryOperation(target.accept),
     activate: retryOperation(target.activate),
+    activateRecovery: retryOperation(target.activateRecovery),
     cleanup: retryOperation(target.cleanup),
     current: retryOperation(target.current),
-    finalize: retryOperation(target.finalize),
     headPage: retryOperation(target.headPage),
+    recovery: retryOperation(target.recovery),
     rollbackPage: retryOperation(target.rollbackPage),
+    routePage: retryOperation(target.routePage),
     stageArtifactBatch: retryOperation(target.stageArtifactBatch),
     stageItemBatch: retryOperation(target.stageItemBatch),
     stageProjectionBatch: retryOperation(target.stageProjectionBatch),
+    stageRecovery: retryOperation(target.stageRecovery),
     stageRelease: retryOperation(target.stageRelease),
+    stageRouteBatch: retryOperation(target.stageRouteBatch),
     status: retryOperation(target.status),
     verify: retryOperation(target.verify),
   });

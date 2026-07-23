@@ -13,14 +13,43 @@ type DependencySection = (typeof DEPENDENCY_SECTIONS)[number];
 /** Package fields required by isolated tarball verification. */
 export interface PackageManifest {
   readonly dependencies: Readonly<Record<string, string>> | undefined;
+  readonly description: string;
   readonly devDependencies: Readonly<Record<string, string>> | undefined;
   readonly engines: { readonly node: string };
   readonly exports: Readonly<Record<string, unknown>>;
+  readonly homepage: string;
   readonly imports: Readonly<Record<string, unknown>>;
   readonly license: string;
   readonly name: string;
   readonly optionalDependencies: Readonly<Record<string, string>> | undefined;
   readonly peerDependencies: Readonly<Record<string, string>> | undefined;
+  readonly repository: {
+    readonly directory: string;
+    readonly type: string;
+    readonly url: string;
+  };
+}
+
+/** Verifies the public identity and provenance metadata of the contracts package. */
+export function assertContractPackageMetadata(manifest: PackageManifest): void {
+  assert.ok(
+    manifest.description.trim().length > 0,
+    "The contract package description must not be empty"
+  );
+  assert.equal(
+    manifest.homepage,
+    "https://github.com/nakafaai/aksara#readme",
+    "The contract package must link to the reviewed Aksara homepage"
+  );
+  assert.deepEqual(
+    manifest.repository,
+    {
+      directory: "packages/contracts",
+      type: "git",
+      url: "git+https://github.com/nakafaai/aksara.git",
+    },
+    "The contract package must identify its exact source repository directory"
+  );
 }
 
 /** Root toolchain field inherited by an isolated package consumer. */
@@ -80,23 +109,53 @@ export function parsePackageManifest(source: string): PackageManifest {
   const parsed: unknown = JSON.parse(source);
   assert.ok(isRecord(parsed), "The package manifest must be an object");
   const name = textField(parsed.name, "Package name must be text");
+  const description = textField(
+    parsed.description,
+    "Package description must be text"
+  );
+  const homepage = textField(parsed.homepage, "Package homepage must be text");
   const license = textField(parsed.license, "Package license must be text");
-  const { engines, exports: packageExports, imports: packageImports } = parsed;
+  const {
+    engines,
+    exports: packageExports,
+    imports: packageImports,
+    repository,
+  } = parsed;
   assert.ok(isRecord(engines), "Package engines must be an object");
   const node = textField(engines.node, "Package Node engine must be text");
   assert.ok(isRecord(packageExports), "Package exports must be an object");
   assert.ok(isRecord(packageImports), "Package imports must be an object");
+  assert.ok(isRecord(repository), "Package repository must be an object");
+  const repositoryType = textField(
+    repository.type,
+    "Package repository type must be text"
+  );
+  const repositoryUrl = textField(
+    repository.url,
+    "Package repository URL must be text"
+  );
+  const repositoryDirectory = textField(
+    repository.directory,
+    "Package repository directory must be text"
+  );
 
   return {
     dependencies: dependencyMap(parsed, "dependencies"),
+    description,
     devDependencies: dependencyMap(parsed, "devDependencies"),
     engines: { node },
     exports: packageExports,
+    homepage,
     imports: packageImports,
     license,
     name,
     optionalDependencies: dependencyMap(parsed, "optionalDependencies"),
     peerDependencies: dependencyMap(parsed, "peerDependencies"),
+    repository: {
+      directory: repositoryDirectory,
+      type: repositoryType,
+      url: repositoryUrl,
+    },
   };
 }
 

@@ -1,43 +1,29 @@
-import { resolve } from "node:path";
-import { Path } from "@effect/platform";
-import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
-import {
-  GitCommitShaSchema,
-  ReleaseIdSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
-import { Effect, Stream } from "effect";
+import { Cause, Effect, Exit, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { prepareMaterialPublication } from "#publisher/material/publication";
-import { prepareContentRelease } from "#publisher/preparation";
 import {
   makePreparedGitRelease,
   makePreparedRollbackRelease,
 } from "#publisher/preparation/spec";
 import {
-  publishGitRelease,
-  publishRollbackRelease,
-} from "#publisher/publication";
-import { PublicationSource } from "#publisher/publication/spec";
-import { testFileLayer } from "#test/files";
+  PublicationActivation,
+  PublicationActivationError,
+} from "#publisher/publication/spec";
+import { PublicationTargetTransportError } from "#publisher/target/errors";
 import { makeTarget } from "#test/lifecycle";
-import {
-  checkoutRoot,
-  rendererManifest as materialRendererManifest,
-  sourceByPath,
-} from "#test/material";
+import { publishMaterialRelease } from "#test/material-run";
 import {
   makeRelease,
   makeRollbackRelease,
   projection,
   publish,
-  publishFromSource,
   publishPrepared,
   publishRollbackPrepared,
   record,
   rendererManifest,
 } from "#test/publication";
+import { publicationRequirements } from "#test/requirements";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 
@@ -64,9 +50,120 @@ describe("content publication", () => {
     const first = await Effect.runPromise(publish(release, state.target));
     const second = await Effect.runPromise(publish(release, state.target));
     expect(second).toEqual(first);
-    expect(state.stageItemBatch).toHaveBeenCalledTimes(1);
+    expect(state.stageItemBatch).toHaveBeenCalledTimes(2);
     expect(state.stageRelease).toHaveBeenCalledTimes(2);
+    expect(state.stageRecovery).toHaveBeenCalledOnce();
     expect(state.activationTransitions).toBe(1);
+  });
+
+  it("rejects a recovery identity that aliases the candidate", async () => {
+    const release = await makeRelease("test-release-alias-candidate");
+    const state = makeTarget(release);
+    const error = await Effect.runPromise(
+      publish(release, state.target, release.manifest.releaseId).pipe(
+        Effect.flip
+      )
+    );
+    expect(error).toMatchObject({
+      _tag: "PublicationRecoveryIdentityError",
+      conflictingReleaseId: release.manifest.releaseId,
+    });
+    expect(state.stageRelease).not.toHaveBeenCalled();
+  });
+
+  it("rejects a recovery identity that aliases the active base", async () => {
+    const rollback = await makeRollbackRelease("test-release-alias-base");
+    const state = makeTarget(rollback);
+    const { baseReleaseId } = rollback.manifest;
+    if (baseReleaseId === null) {
+      return await Effect.runPromise(Effect.die("Expected a rollback base."));
+    }
+    const error = await Effect.runPromise(
+      publishRollbackPrepared(
+        rollback.prepared,
+        state.target,
+        baseReleaseId
+      ).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PublicationRecoveryIdentityError",
+      conflictingReleaseId: baseReleaseId,
+    });
+  });
+
+  it("aborts the retained inverse before its failed candidate", async () => {
+    const release = await makeRelease("test-release-cleanup-order");
+    const state = makeTarget(release);
+    const failure = new PublicationActivationError({
+      releaseId: release.manifest.releaseId,
+    });
+    await expect(
+      Effect.runPromise(
+        publish(
+          release,
+          state.target,
+          ReleaseIdSchema.make("test-release-cleanup-order-recovery"),
+          PublicationActivation.of({ verify: () => Effect.fail(failure) })
+        ).pipe(Effect.flip)
+      )
+    ).resolves.toEqual(failure);
+    expect(state.abortOrder).toEqual([
+      "test-release-cleanup-order-recovery",
+      release.manifest.releaseId,
+    ]);
+  });
+
+  it("preserves publication and conflicting cleanup causes", async () => {
+    const release = await makeRelease("test-release-cleanup-conflict");
+    const state = makeTarget(release);
+    const foreignRelease = await makeRollbackRelease("test-foreign-recovery");
+    const foreign = {
+      release: foreignRelease.release,
+      rendererManifest,
+    };
+    const failure = new PublicationActivationError({
+      releaseId: release.manifest.releaseId,
+    });
+    state.current.mockImplementation(() =>
+      Effect.succeed({
+        ...state.snapshot(),
+        recovery: { ...foreign, phase: "verified" as const },
+      })
+    );
+    const exit = await Effect.runPromiseExit(
+      publish(
+        release,
+        state.target,
+        ReleaseIdSchema.make("test-release-cleanup-conflict-recovery"),
+        PublicationActivation.of({ verify: () => Effect.fail(failure) })
+      )
+    );
+    expect(Exit.isFailure(exit)).toBe(true);
+    if (Exit.isFailure(exit)) {
+      expect(
+        Array.from(Cause.failures(exit.cause)).map(({ _tag }) => _tag)
+      ).toEqual([
+        "PublicationActivationError",
+        "PublicationRecoveryIdentityError",
+      ]);
+    }
+  });
+
+  it("preserves the failure when no staged slot remains to discard", async () => {
+    const release = await makeRelease("test-release-discard-empty");
+    const state = makeTarget(release);
+    const failure = new PublicationTargetTransportError({
+      detail: { reason: "network" },
+      stage: "verify",
+    });
+    state.verify.mockImplementationOnce(() => Effect.fail(failure));
+    state.current.mockImplementation(() =>
+      Effect.succeed({ ...state.snapshot(), candidate: null, recovery: null })
+    );
+    await expect(
+      Effect.runPromise(publish(release, state.target).pipe(Effect.flip))
+    ).resolves.toEqual(failure);
+    expect(state.abortOrder).toEqual([]);
   });
 
   it("blocks activation when a staged replay changes after preparation", async () => {
@@ -126,68 +223,7 @@ describe("content publication", () => {
   });
 
   it("compiles each source once per required reproducibility boundary", async () => {
-    const result = await Effect.runPromise(
-      Effect.scoped(
-        Effect.gen(function* () {
-          const material = yield* prepareMaterialPublication({
-            baseCatalog: null,
-            checkoutRoot,
-            published: Stream.empty,
-            rendererManifest: materialRendererManifest,
-          });
-          const prepared = yield* prepareContentRelease({
-            aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
-            baseManifestHash: null,
-            baseReleaseId: null,
-            baseResultCount: 0,
-            baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-            records: material.records,
-            releaseId: ReleaseIdSchema.make("test-material-replay"),
-            rendererManifest: materialRendererManifest,
-            result: material.result,
-          });
-          const state = makeTarget(prepared);
-          const source = PublicationSource.of({
-            loadExactRevision: ({ items }) =>
-              items.pipe(
-                Stream.mapEffect((item) => {
-                  if (item.change.operation === "delete") {
-                    return Effect.dieMessage(
-                      "Exact-Git source requested for a test tombstone."
-                    );
-                  }
-                  const rawMdx = sourceByPath.get(
-                    resolve(checkoutRoot, item.change.sourcePath)
-                  );
-                  if (rawMdx === undefined) {
-                    return Effect.dieMessage(
-                      `Missing exact test source ${item.change.sourcePath}.`
-                    );
-                  }
-                  return Effect.succeed(
-                    CompileDocumentSourceSchema.make({
-                      contentKey: item.change.contentKey,
-                      locale: item.change.locale,
-                      rawMdx,
-                      rendererDomain: item.change.rendererDomain,
-                      sourcePath: item.change.sourcePath,
-                    })
-                  );
-                })
-              ),
-          });
-          const receipt = yield* publishFromSource(
-            prepared,
-            state.target,
-            source
-          );
-          return { receipt, stageArtifacts: state.stageArtifactBatch };
-        })
-      ).pipe(
-        Effect.provide(testFileLayer(sourceByPath)),
-        Effect.provide(Path.layer)
-      )
-    );
+    const result = await publishMaterialRelease();
 
     expect(compilerState.calls).toBe(8);
     expect(result.receipt).toMatchObject({
@@ -212,6 +248,7 @@ describe("content publication", () => {
       manifest: release.prepared.manifest,
       projections: release.prepared.projections,
       rendererManifest: release.prepared.rendererManifest,
+      routes: release.prepared.routes,
     });
     await Effect.runPromise(publishRollbackPrepared(prepared, state.target));
     expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
@@ -221,6 +258,7 @@ describe("content publication", () => {
       manifest: release.manifest,
       projections: release.prepared.projections,
       rendererManifest,
+      routes: release.prepared.routes,
     });
     const error = await Effect.runPromise(
       publishPrepared(mismatch, state.target).pipe(Effect.flip)
@@ -235,6 +273,7 @@ describe("content publication", () => {
       manifest: gitRelease.manifest,
       projections: gitRelease.prepared.projections,
       rendererManifest,
+      routes: gitRelease.prepared.routes,
     });
     const rollbackError = await Effect.runPromise(
       publishRollbackPrepared(rollbackMismatch, gitState.target).pipe(
@@ -247,21 +286,7 @@ describe("content publication", () => {
   });
 
   it("requires exact Git source context only for Git publication", async () => {
-    const git = await makeRelease("test-release-git-requirements");
-    const rollback = await makeRollbackRelease(
-      "test-release-rollback-requirements"
-    );
-    const gitEffect = publishGitRelease(git.prepared);
-    const rollbackEffect = publishRollbackRelease(rollback.prepared);
-    type GitRequirements = Effect.Effect.Context<typeof gitEffect>;
-    type RollbackRequirements = Effect.Effect.Context<typeof rollbackEffect>;
-    const requirements: {
-      readonly git: PublicationSource extends GitRequirements ? true : false;
-      readonly rollback: PublicationSource extends RollbackRequirements
-        ? true
-        : false;
-    } = { git: true, rollback: false };
-
+    const requirements = await publicationRequirements();
     expect(requirements).toEqual({ git: true, rollback: false });
   });
 });

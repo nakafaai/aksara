@@ -11,7 +11,7 @@ import type {
   PreparedRollbackRelease,
 } from "#publisher/preparation/spec";
 
-/** A rebuilt prepared manifest differs from its exact stored pending envelope. */
+/** A rebuilt prepared manifest differs from its exact stored candidate envelope. */
 export class PreparedStoredReleaseMismatchError extends Schema.TaggedError<PreparedStoredReleaseMismatchError>()(
   "PreparedStoredReleaseMismatchError",
   {
@@ -46,7 +46,7 @@ const verifyStoredRelease = Effect.fn("AksaraPublisher.verifyStoredRelease")(
   }
 );
 
-/** Reuses one exact pending envelope for a deterministic Git rebuild. */
+/** Reuses one exact candidate envelope for a deterministic Git rebuild. */
 export const reuseStoredGitRelease: <E, R>(input: {
   readonly prepared: PreparedGitRelease<E, R>;
   readonly storedRelease: unknown;
@@ -65,7 +65,7 @@ export const reuseStoredGitRelease: <E, R>(input: {
   return { ...input.prepared, storedRelease };
 });
 
-/** Reuses one exact pending envelope for a deterministic rollback rebuild. */
+/** Reuses one exact candidate envelope for a deterministic rollback rebuild. */
 export const reuseStoredRollbackRelease: <E, R>(input: {
   readonly prepared: PreparedRollbackRelease<E, R>;
   readonly storedRelease: unknown;

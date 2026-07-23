@@ -8,6 +8,7 @@ import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { streamMaterialHeads } from "#publisher/heads";
 import { PublicationTarget } from "#publisher/publication/spec";
+import { makePublicationTarget } from "#test/target";
 
 const activeReleaseId = ReleaseIdSchema.make("release-active");
 const activeManifestHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
@@ -34,21 +35,7 @@ const secondHead = makeHead("material-b", "b");
 
 /** Creates a complete target whose only live capability is head pagination. */
 function makeTarget(headPage: typeof PublicationTarget.Service.headPage) {
-  return PublicationTarget.of({
-    abort: () => Effect.die("unused abort"),
-    activate: () => Effect.die("unused activate"),
-    cleanup: () => Effect.die("unused cleanup"),
-    current: () => Effect.die("unused current"),
-    finalize: () => Effect.die("unused finalize"),
-    headPage,
-    rollbackPage: () => Effect.die("unused rollback"),
-    stageArtifactBatch: () => Effect.die("unused artifacts"),
-    stageItemBatch: () => Effect.die("unused items"),
-    stageProjectionBatch: () => Effect.die("unused projections"),
-    stageRelease: () => Effect.die("unused release"),
-    status: () => Effect.die("unused status"),
-    verify: () => Effect.die("unused verify"),
-  });
+  return makePublicationTarget({ headPage });
 }
 
 /** Collects a material head stream through one supplied target service. */
@@ -136,6 +123,49 @@ describe("material head stream", () => {
     await expect(collectHeads(target)).resolves.toEqual([]);
   });
 
+  it("advances across filtered empty pages without losing order evidence", async () => {
+    const headPage = vi
+      .fn()
+      .mockReturnValueOnce(
+        Effect.succeed({
+          activeManifestHash,
+          activeReleaseId,
+          cursor: null,
+          done: false,
+          family: "material",
+          heads: [firstHead],
+          nextCursor: "cursor-one",
+        })
+      )
+      .mockReturnValueOnce(
+        Effect.succeed({
+          activeManifestHash,
+          activeReleaseId,
+          cursor: "cursor-one",
+          done: false,
+          family: "material",
+          heads: [],
+          nextCursor: "cursor-two",
+        })
+      )
+      .mockReturnValueOnce(
+        Effect.succeed({
+          activeManifestHash,
+          activeReleaseId,
+          cursor: "cursor-two",
+          done: true,
+          family: "material",
+          heads: [secondHead],
+          nextCursor: null,
+        })
+      );
+
+    await expect(collectHeads(makeTarget(headPage))).resolves.toEqual([
+      firstHead,
+      secondHead,
+    ]);
+  });
+
   it("rejects duplicate identities across otherwise valid pages", async () => {
     const headPage = vi
       .fn()
@@ -168,39 +198,35 @@ describe("material head stream", () => {
     });
   });
 
-  it("rejects non-terminal pages without a progressing cursor or final head", async () => {
-    const pages = [
-      {
-        activeManifestHash,
-        activeReleaseId,
-        cursor: null,
-        done: false,
-        family: "material" as const,
-        heads: [firstHead],
-        nextCursor: null,
-      },
-      {
-        activeManifestHash,
-        activeReleaseId,
-        cursor: null,
-        done: false,
-        family: "material" as const,
-        heads: [],
-        nextCursor: "cursor-one",
-      },
-    ];
-    const errors = await Promise.all(
-      pages.map((page) => rejectHeads(makeTarget(() => Effect.succeed(page))))
-    );
-    expect(errors).toEqual([
-      expect.objectContaining({
-        _tag: "PublicationTargetProtocolError",
-        stage: "heads",
-      }),
-      expect.objectContaining({
-        _tag: "PublicationTargetProtocolError",
-        stage: "heads",
-      }),
-    ]);
+  it("rejects non-terminal pages without a progressing cursor", async () => {
+    const headPage = vi
+      .fn()
+      .mockReturnValueOnce(
+        Effect.succeed({
+          activeManifestHash,
+          activeReleaseId,
+          cursor: null,
+          done: false,
+          family: "material",
+          heads: [firstHead],
+          nextCursor: "cursor-one",
+        })
+      )
+      .mockReturnValueOnce(
+        Effect.succeed({
+          activeManifestHash,
+          activeReleaseId,
+          cursor: "cursor-one",
+          done: false,
+          family: "material",
+          heads: [],
+          nextCursor: "cursor-one",
+        })
+      );
+
+    await expect(rejectHeads(makeTarget(headPage))).resolves.toMatchObject({
+      _tag: "PublicationTargetProtocolError",
+      stage: "heads",
+    });
   });
 });

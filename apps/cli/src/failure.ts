@@ -2,12 +2,14 @@ import { Predicate, Schema } from "effect";
 
 const ProductionStageSchema = Schema.Literal(
   "abort",
+  "accept",
   "cleanup",
   "environment",
   "keys",
   "prepare",
   "publish",
   "renderer",
+  "recover",
   "state",
   "target"
 );

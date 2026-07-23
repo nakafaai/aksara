@@ -1,15 +1,15 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  CompletedContentReleaseSchema,
-  ContentReleaseCurrentSchema,
   ContentReleaseStatusRequestSchema,
   ContentReleaseStatusSchema,
   MAX_CLEANUP_PAGE_COUNT,
   ReleaseAbortReceiptSchema,
   ReleaseAbortRequestSchema,
+  ReleaseAcceptRequestSchema,
   ReleaseCleanupReceiptSchema,
   ReleaseCleanupRequestSchema,
+  RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
 import { release, rendererManifest } from "#contracts/test/request";
 
@@ -23,9 +23,11 @@ const statusReceipt = {
   releaseId,
   resultCount: 1,
   resultDigest: `sha256:${"c".repeat(64)}`,
+  routeDigest: `sha256:${"d".repeat(64)}`,
   stagedArtifacts: 1,
   stagedItems: 1,
   stagedProjections: 1,
+  stagedRoutes: 0,
 };
 
 /** Asserts one accepted value against a context-free wire schema. */
@@ -47,103 +49,14 @@ function expectRejected(
 }
 
 describe("release lifecycle", () => {
-  it("decodes authoritative active and pending release state", () => {
-    const completedReceipt = {
-      activatedHeads: release.manifest.upsertCount,
-      deletedHeads: release.manifest.deleteCount,
-      manifestHash: release.manifestHash,
-      projectionDigest: release.manifest.projectionDigest,
-      releaseId: release.manifest.releaseId,
-      resultCount: release.manifest.resultCount,
-      resultDigest: release.manifest.resultDigest,
-      stagedArtifacts: release.manifest.upsertCount,
-      stagedItems: release.manifest.itemCount,
-      stagedProjections: release.manifest.projectionCount,
-    };
-    const completed = { receipt: completedReceipt, release, rendererManifest };
-    expect(
-      Schema.decodeUnknownSync(ContentReleaseCurrentSchema)({
-        activeManifestHash: release.manifestHash,
-        activeReleaseId: release.manifest.releaseId,
-        completed,
-        pending: null,
-      })
-    ).toEqual({
-      activeManifestHash: release.manifestHash,
-      activeReleaseId: release.manifest.releaseId,
-      completed,
-      pending: null,
-    });
-    const staging = {
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed: null,
-      pending: { phase: "staging", release, rendererManifest },
-    };
-    expect(
-      Schema.decodeUnknownSync(ContentReleaseCurrentSchema)(staging)
-    ).toEqual(staging);
+  it("rejects non-rollback renderer bundles at recovery boundaries", () => {
     expectRejected(
-      ContentReleaseCurrentSchema,
-      { ...staging, activeReleaseId: release.manifest.releaseId },
-      "Expected active and pending publication identities to be coherent."
+      RollbackContentReleaseBundleSchema,
+      { release, rendererManifest },
+      "Expected a renderer-bound rollback release."
     );
-    const active = {
-      activeManifestHash: release.manifestHash,
-      activeReleaseId: release.manifest.releaseId,
-      completed: null,
-      pending: { phase: "active", release, rendererManifest },
-    };
-    expect(
-      Schema.decodeUnknownSync(ContentReleaseCurrentSchema)(active)
-    ).toEqual(active);
-    expectRejected(ContentReleaseCurrentSchema, {
-      ...active,
-      activeReleaseId: null,
-    });
-    for (const invalid of [
-      { releaseId: "release-other" },
-      { activatedHeads: 0, deletedHeads: 2, stagedArtifacts: 0 },
-      { deletedHeads: 0, stagedItems: 1 },
-      { stagedProjections: 2 },
-      { manifestHash: `sha256:${"f".repeat(64)}` },
-      { projectionDigest: `sha256:${"f".repeat(64)}` },
-      { resultCount: release.manifest.resultCount + 1 },
-      { resultDigest: `sha256:${"f".repeat(64)}` },
-    ]) {
-      expectRejected(
-        CompletedContentReleaseSchema,
-        { ...completed, receipt: { ...completedReceipt, ...invalid } },
-        "Expected the completed receipt to match its signed release manifest."
-      );
-    }
-    expectRejected(ContentReleaseCurrentSchema, {
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed,
-      pending: null,
-    });
-    expectRejected(ContentReleaseCurrentSchema, {
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed,
-      pending: { phase: "staging", release, rendererManifest },
-    });
-    expectRejected(ContentReleaseCurrentSchema, {
-      activeManifestHash: release.manifestHash,
-      activeReleaseId: "release-other",
-      completed,
-      pending: null,
-    });
-    const finalizing = {
-      activeManifestHash: release.manifestHash,
-      activeReleaseId: release.manifest.releaseId,
-      completed: null,
-      pending: { phase: "finalizing", release, rendererManifest },
-    };
-    expect(
-      Schema.decodeUnknownSync(ContentReleaseCurrentSchema)(finalizing)
-    ).toEqual(finalizing);
+  });
+  it("exposes the bounded server-owned cleanup page size", () => {
     expect(MAX_CLEANUP_PAGE_COUNT).toBe(100);
   });
   it("decodes resumable phases and requires a completed receipt", () => {
@@ -152,12 +65,17 @@ describe("release lifecycle", () => {
       "staging",
       "verifying",
       "verified",
-      "active",
       "aborting",
-      "finalizing",
       "aborted",
     ]) {
       expectAccepted(ContentReleaseStatusSchema, {
+        manifestHash,
+        phase,
+        releaseId,
+      });
+    }
+    for (const phase of ["active", "finalizing"]) {
+      expectRejected(ContentReleaseStatusSchema, {
         manifestHash,
         phase,
         releaseId,
@@ -184,8 +102,30 @@ describe("release lifecycle", () => {
       },
       "Expected the completed receipt to match the release status identity."
     );
+    expectRejected(
+      ContentReleaseStatusSchema,
+      {
+        manifestHash,
+        phase: "completed",
+        receipt: {
+          ...statusReceipt,
+          manifestHash: `sha256:${"f".repeat(64)}`,
+        },
+        releaseId,
+      },
+      "Expected the completed receipt to match the release status identity."
+    );
   });
   it("keeps abort progress server-owned, cumulative, and coherent", () => {
+    expectAccepted(ReleaseAcceptRequestSchema, {
+      recoveryId: "release-recovery",
+      releaseId,
+    });
+    expectRejected(
+      ReleaseAcceptRequestSchema,
+      { recoveryId: releaseId, releaseId },
+      "Expected distinct active and recovery release identities."
+    );
     expect(
       Schema.decodeUnknownSync(ReleaseAbortRequestSchema)({ releaseId })
     ).toEqual({ releaseId });
@@ -240,20 +180,17 @@ describe("release lifecycle", () => {
     expectAccepted(ReleaseCleanupReceiptSchema, {
       complete: false,
       deletedArtifacts: 4,
-      deletedItems: 8,
       releaseId,
     });
     expectAccepted(ReleaseCleanupReceiptSchema, {
       complete: false,
       deletedArtifacts: 4,
-      deletedItems: 8,
       releaseId,
       retryAt: 1_800_000_000_000,
     });
     expectAccepted(ReleaseCleanupReceiptSchema, {
       complete: true,
       deletedArtifacts: 1,
-      deletedItems: 2,
       releaseId,
     });
     expectRejected(
@@ -261,7 +198,6 @@ describe("release lifecycle", () => {
       {
         complete: true,
         deletedArtifacts: 1,
-        deletedItems: 2,
         releaseId,
         retryAt: 1_800_000_000_000,
       },
@@ -271,19 +207,16 @@ describe("release lifecycle", () => {
       {
         complete: false,
         deletedArtifacts: -1,
-        deletedItems: 2,
+        releaseId,
+      },
+      {
+        complete: false,
+        deletedArtifacts: 1.5,
         releaseId,
       },
       {
         complete: false,
         deletedArtifacts: 1,
-        deletedItems: 2.5,
-        releaseId,
-      },
-      {
-        complete: false,
-        deletedArtifacts: 1,
-        deletedItems: 2,
         releaseId,
         retryAt: -1,
       },

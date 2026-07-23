@@ -21,12 +21,12 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
-import { rendererDomains } from "#test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -35,8 +35,8 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   })
 );
@@ -71,7 +71,6 @@ const baseRecord: PreparedContentUpsert = {
     delivery: "public",
     locale: source.locale,
     operation: "upsert",
-    publicPath: projection.publicPath,
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
   }),
@@ -87,7 +86,7 @@ const resultHead = MaterialHeadSchema.make({
   delivery: baseRecord.change.delivery,
   locale: baseRecord.change.locale,
   projectionHash: hashMaterialProjection(projection),
-  publicPath: baseRecord.change.publicPath,
+  publicPath: projection.publicPath,
   rendererDomain: baseRecord.change.rendererDomain,
   sourceHash: payload.sourceHash,
   sourcePath: baseRecord.change.sourcePath,
@@ -113,6 +112,7 @@ function prepare<E, R>(records: () => Stream.Stream<unknown, E, R>) {
     releaseId: ReleaseIdSchema.make("test-prepare-release"),
     rendererManifest,
     result: () => Stream.make(resultHead),
+    routes: () => Stream.empty,
   });
 }
 
@@ -163,33 +163,6 @@ describe("prepareContentRelease", () => {
     expect(error._tag).toBe("ReleaseItemCountMismatchError");
   });
 
-  it("rejects a changed head that collides with an unchanged result route", async () => {
-    const unchanged = MaterialHeadSchema.make({
-      ...resultHead,
-      contentKey: ContentKeySchema.make("test:prepare:b"),
-    });
-    const error = await Effect.runPromise(
-      prepareContentRelease({
-        aksaraSha,
-        baseManifestHash: null,
-        baseReleaseId: null,
-        baseResultCount: 0,
-        baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-        records: () => Stream.make(baseTransition),
-        releaseId: ReleaseIdSchema.make("test-route-conflict"),
-        rendererManifest,
-        result: () => Stream.make(resultHead, unchanged),
-      }).pipe(Effect.flip)
-    );
-
-    expect(error).toMatchObject({
-      _tag: "ResultCatalogRouteError",
-      contentKey: unchanged.contentKey,
-      locale: unchanged.locale,
-      publicPath: unchanged.publicPath,
-    });
-  });
-
   it("validates the renderer before invoking the authored source", async () => {
     let invoked = false;
     const error = await Effect.runPromise(
@@ -209,6 +182,7 @@ describe("prepareContentRelease", () => {
           hash: Sha256HashSchema.make(`sha256:${"9".repeat(64)}`),
         },
         result: () => Stream.make(resultHead),
+        routes: () => Stream.empty,
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("RendererManifestHashMismatchError");
@@ -232,6 +206,7 @@ describe("prepareContentRelease", () => {
         releaseId: selfBasedRelease,
         rendererManifest,
         result: () => Stream.make(resultHead),
+        routes: () => Stream.empty,
       }).pipe(Effect.flip)
     );
 
@@ -263,6 +238,7 @@ describe("prepareContentRelease", () => {
         releaseId: ReleaseIdSchema.make("test-invalid-base-pair"),
         rendererManifest,
         result: () => Stream.make(resultHead),
+        routes: () => Stream.empty,
       }).pipe(Effect.flip)
     );
 

@@ -36,7 +36,7 @@ type ResumeContentRelease = (
   ContentVerificationKeyResolver | PublicationTarget
 >;
 
-/** Finishes one authenticated release without recompiling changed source. */
+/** Recovers a lost terminal receipt without performing another activation. */
 export const resumeContentRelease: ResumeContentRelease = Effect.fn(
   "AksaraPublisher.resumeContentRelease"
 )(function* (bundle: ContentReleaseBundle) {
@@ -50,16 +50,6 @@ export const resumeContentRelease: ResumeContentRelease = Effect.fn(
 
   if (status.phase === "completed") {
     return yield* validateManifestReceipt(release, status.receipt);
-  }
-  if (status.phase === "active" || status.phase === "finalizing") {
-    const receipt = yield* target.finalize(release);
-    return yield* validateManifestReceipt(release, receipt);
-  }
-  if (status.phase === "verified") {
-    const activated = yield* target.activate(release);
-    yield* validateManifestReceipt(release, activated);
-    const finalized = yield* target.finalize(release);
-    return yield* validateManifestReceipt(release, finalized);
   }
   if (status.phase === "aborted") {
     return yield* new PublicationReleaseAbortedError({

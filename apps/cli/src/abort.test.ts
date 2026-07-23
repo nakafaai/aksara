@@ -82,23 +82,25 @@ describe("abort command", () => {
   });
 
   it("keeps bounded incomplete evidence actionable", async () => {
+    let processedItems = 0;
     const captured = captureClient((request) =>
-      Effect.succeed(
-        abortResponse(request, {
+      Effect.sync(() => {
+        processedItems += 1;
+        return abortResponse(request, {
           complete: false,
-          processedItems: 2,
+          processedItems,
           releaseId,
-          totalItems: 3,
-        })
-      )
+          totalItems: 101,
+        });
+      })
     );
 
     await expect(rejectAbort(captured.client)).resolves.toMatchObject({
       _tag: "ReleaseAbortIncompleteError",
       attempts: 100,
-      processedItems: 2,
+      processedItems: 100,
       releaseId,
-      totalItems: 3,
+      totalItems: 101,
     });
   });
 

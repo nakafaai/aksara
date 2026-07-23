@@ -2,12 +2,14 @@ import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { ContentRouteItemSchema } from "#contracts/release/route";
 import {
   ContentReleaseItemSchema,
+  RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
+import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
-import { rendererDomains } from "#contracts/test/renderer";
 
 export const releaseId = "test-transport";
 export const hash = `sha256:${"a".repeat(64)}`;
@@ -44,10 +46,33 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
     resultDigest: hash,
     rollbackCount: 2,
     rollbackDigest: hash,
+    routeCount: 0,
+    routeDigest: hash,
     upsertCount: 1,
   },
   manifestHash,
   signature,
+});
+
+export const recoveryId = "test-recovery";
+
+/** Signed inverse fixture that restores the forward release's exact base. */
+export const recoveryRelease = Schema.decodeUnknownSync(
+  RollbackSignedContentReleaseSchema
+)({
+  ...release,
+  manifest: {
+    ...release.manifest,
+    baseManifestHash: release.manifestHash,
+    baseReleaseId: release.manifest.releaseId,
+    baseResultCount: release.manifest.resultCount,
+    baseResultDigest: release.manifest.resultDigest,
+    origin: { kind: "rollback", releaseId: release.manifest.releaseId },
+    releaseId: recoveryId,
+    resultCount: release.manifest.baseResultCount,
+    resultDigest: release.manifest.baseResultDigest,
+  },
+  manifestHash: `sha256:${"c".repeat(64)}`,
 });
 
 export const items = Schema.decodeUnknownSync(
@@ -60,7 +85,6 @@ export const items = Schema.decodeUnknownSync(
       delivery: "public",
       locale: "en",
       operation: "upsert",
-      publicPath: "subjects/test/transport",
       rendererDomain: "mathematics",
       sourcePath: "packages/corpus/test/transport/en.mdx",
     },
@@ -114,8 +138,20 @@ export const projection = Schema.decodeUnknownSync(
   sitemap: true,
 });
 
+export const route = Schema.decodeUnknownSync(ContentRouteItemSchema)({
+  change: {
+    contentKey: "test:transport",
+    locale: "en",
+    operation: "bind",
+    publicPath: projection.publicPath,
+  },
+  index: 0,
+  releaseId,
+});
+
 /** Exact publication request fixtures shared by one transport contract test. */
 export const requests = [
+  { operation: "accept", recoveryId, releaseId },
   { operation: "abort", releaseId },
   { operation: "current" },
   {
@@ -126,8 +162,16 @@ export const requests = [
     limit: 500,
     operation: "headPage",
   },
+  { operation: "recovery", recoveryId, releaseId },
   { operation: "stageRelease", release, rendererManifest },
+  { operation: "stageRecovery", release: recoveryRelease, rendererManifest },
   { batchIndex: 0, items, operation: "stageItemBatch", releaseId },
+  {
+    batchIndex: 0,
+    operation: "stageRouteBatch",
+    releaseId,
+    routes: [route],
+  },
   {
     batchIndex: 0,
     operation: "stageProjectionBatch",
@@ -143,11 +187,18 @@ export const requests = [
   { manifestHash, operation: "status", releaseId },
   { operation: "verify", release },
   { operation: "activate", release },
-  { afterIndex: -1, operation: "finalize", release },
+  { operation: "activateRecovery", release: recoveryRelease },
   {
     afterIndex: -1,
     limit: 8,
     operation: "rollbackPage",
+    rollbackOf: releaseId,
+    rollbackOfManifestHash: manifestHash,
+  },
+  {
+    afterIndex: -1,
+    limit: 8,
+    operation: "routePage",
     rollbackOf: releaseId,
     rollbackOfManifestHash: manifestHash,
   },

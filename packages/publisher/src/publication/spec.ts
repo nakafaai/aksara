@@ -7,35 +7,40 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseItem,
   PublicationReceipt,
   ReleaseVerificationEvidence,
+  RollbackSignedContentRelease,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import type {
+  ContentReleaseCurrent,
+  RecoveryLookup,
+} from "@nakafa/aksara-contracts/release/current";
 import type {
   HeadPage,
   HeadPageRequest,
 } from "@nakafa/aksara-contracts/release/head";
-import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type {
   ContentReleaseBundle,
-  ContentReleaseCurrent,
   ContentReleaseStatus,
   ContentReleaseStatusRequest,
   ReleaseAbortReceipt,
   ReleaseAbortRequest,
+  ReleaseAcceptRequest,
   ReleaseCleanupReceipt,
   ReleaseCleanupRequest,
+  RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback";
+import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route-page";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
-import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type {
   StageArtifactBatchInput,
   StageItemBatchInput,
   StageProjectionBatchInput,
+  StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/request";
 import {
   Context,
@@ -44,11 +49,25 @@ import {
   Schema,
   type Stream,
 } from "effect";
+import type {
+  ReleaseAbortContractError,
+  ReleaseAbortIncompleteError,
+} from "#publisher/abort";
 import type { PublicationBatchLimitError } from "#publisher/batch/core";
 import type {
   PreparedGitRelease,
   PreparedRollbackRelease,
 } from "#publisher/preparation/spec";
+import type {
+  ArtifactSigningError,
+  ArtifactVerificationError,
+  ProjectionVerificationError,
+  RecoveryPreparationError,
+  ReleaseItemVerificationError,
+  RendererManifestValidationError,
+  RouteVerificationError,
+  SignedReleaseVerificationError,
+} from "#publisher/publication/failure";
 import type {
   PublicationReceiptMismatchError,
   ReleaseArtifactMismatchError,
@@ -56,7 +75,6 @@ import type {
   ReleaseVerificationMismatchError,
 } from "#publisher/release-validation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
-import type { PublicationSigner } from "#publisher/signing";
 import type { ContentSigningError } from "#publisher/signing-errors";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
@@ -96,7 +114,8 @@ export class PublicationResumePhaseError extends Schema.TaggedError<PublicationR
       "staging",
       "verifying",
       "verified",
-      "aborting"
+      "aborting",
+      "completed"
     ),
     releaseId: ReleaseIdSchema,
   }
@@ -112,6 +131,22 @@ export class PublicationModeMismatchError extends Schema.TaggedError<Publication
   }
 ) {}
 
+/** A recovery identity aliases the candidate or the active base it protects. */
+export class PublicationRecoveryIdentityError extends Schema.TaggedError<PublicationRecoveryIdentityError>()(
+  "PublicationRecoveryIdentityError",
+  {
+    conflictingReleaseId: ReleaseIdSchema,
+    recoveryId: ReleaseIdSchema,
+    releaseId: ReleaseIdSchema,
+  }
+) {}
+
+/** The deployed renderer no longer satisfies the signed activation contract. */
+export class PublicationActivationError extends Schema.TaggedError<PublicationActivationError>()(
+  "PublicationActivationError",
+  { releaseId: ReleaseIdSchema }
+) {}
+
 /** Signing configuration injected only into the safe publication operation. */
 export class PublicationSigningKey extends Context.Tag(
   "AksaraPublicationSigningKey"
@@ -120,6 +155,24 @@ export class PublicationSigningKey extends Context.Tag(
   {
     readonly keyId: string;
     readonly privateKeyPem: Redacted.Redacted<string>;
+  }
+>() {}
+
+/** Operator-selected immutable identity for the pre-activation inverse release. */
+export class PublicationRecoveryId extends Context.Tag(
+  "AksaraPublicationRecoveryId"
+)<PublicationRecoveryId, typeof ReleaseIdSchema.Type>() {}
+
+/** Revalidates the live Nakafa renderer immediately before atomic activation. */
+export class PublicationActivation extends Context.Tag(
+  "AksaraPublicationActivation"
+)<
+  PublicationActivation,
+  {
+    /** Fails closed when the live renderer differs from the signed release. */
+    readonly verify: (
+      release: SignedContentRelease
+    ) => Effect.Effect<void, PublicationActivationError>;
   }
 >() {}
 
@@ -139,11 +192,15 @@ export class PublicationSource extends Context.Tag("AksaraPublicationSource")<
 export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
   PublicationTarget,
   {
+    /** Accepts one active release and discards its exact retained inverse. */
+    readonly accept: (
+      request: ReleaseAcceptRequest
+    ) => Effect.Effect<ReleaseAbortReceipt, PublicationTargetFailure>;
     /** Advances one bounded server-owned abort page idempotently. */
     readonly abort: (
       request: ReleaseAbortRequest
     ) => Effect.Effect<ReleaseAbortReceipt, PublicationTargetFailure>;
-    /** Reads authoritative active and pending publication identities. */
+    /** Reads authoritative active and candidate publication identities. */
     readonly current: () => Effect.Effect<
       ContentReleaseCurrent,
       PublicationTargetFailure
@@ -152,21 +209,29 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     readonly headPage: (
       request: HeadPageRequest
     ) => Effect.Effect<HeadPage, PublicationTargetFailure>;
+    /** Reads historical completion evidence for one exact recovery pair. */
+    readonly recovery: (
+      request: ReleaseAcceptRequest
+    ) => Effect.Effect<RecoveryLookup, PublicationTargetFailure>;
     /** Atomically activates a fully verified release. */
     readonly activate: (
       release: SignedContentRelease
+    ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
+    /** Atomically activates one verified inverse retained for the active release. */
+    readonly activateRecovery: (
+      release: RollbackSignedContentRelease
     ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
     /** Deletes one bounded page of unreachable staged rows. */
     readonly cleanup: (
       request: ReleaseCleanupRequest
     ) => Effect.Effect<ReleaseCleanupReceipt, PublicationTargetFailure>;
-    /** Finalizes live head slots and returns the durable release receipt. */
-    readonly finalize: (
-      release: SignedContentRelease
-    ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
     /** Reads one bounded exact prior-state page for forward rollback. */
     readonly rollbackPage: (
       request: RollbackPageRequest
+    ) => Effect.Effect<unknown, PublicationTargetFailure>;
+    /** Reads one bounded prior-owner page for route rollback. */
+    readonly routePage: (
+      request: RoutePageRequest
     ) => Effect.Effect<unknown, PublicationTargetFailure>;
     /** Stages one immutable artifact batch idempotently. */
     readonly stageArtifactBatch: (
@@ -179,6 +244,14 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     /** Stages one canonical material projection batch idempotently. */
     readonly stageProjectionBatch: (
       batch: StageProjectionBatchInput
+    ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages one ordered route batch idempotently. */
+    readonly stageRouteBatch: (
+      batch: StageRouteBatchInput
+    ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages the signed pre-activation inverse envelope idempotently. */
+    readonly stageRecovery: (
+      input: RollbackContentReleaseBundle
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages the signed release envelope idempotently. */
     readonly stageRelease: (
@@ -195,35 +268,12 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
   }
 >() {}
 
-type ReleaseItemVerificationError<E, R> = Effect.Effect.Error<
-  ReturnType<typeof verifyContentReleaseItems<E, R>>
->;
-
-type ProjectionVerificationError<E, R> = Effect.Effect.Error<
-  ReturnType<typeof verifyContentProjections<E, R>>
->;
-
-type RendererManifestValidationError = Effect.Effect.Error<
-  ReturnType<typeof validateRendererManifestHash>
->;
-
-type ArtifactVerificationError = Effect.Effect.Error<
-  ReturnType<typeof verifySignedContentArtifact>
->;
-
-type SignedReleaseVerificationError = Effect.Effect.Error<
-  ReturnType<typeof verifySignedContentRelease>
->;
-
-type ArtifactSigningError = Effect.Effect.Error<
-  ReturnType<PublicationSigner["signArtifact"]>
->;
-
-/** Every expected failure surfaced by one resumable publication attempt. */
+/** Every expected failure surfaced by one idempotent publication attempt. */
 export type PublishContentReleaseError<E> =
   | E
   | ReleaseItemVerificationError<E, never>
   | ProjectionVerificationError<E, never>
+  | RouteVerificationError<E, never>
   | RendererManifestValidationError
   | ArtifactVerificationError
   | SignedReleaseVerificationError
@@ -231,14 +281,19 @@ export type PublishContentReleaseError<E> =
   | CompileContentError
   | ContractDecodeError
   | ContentSigningError
+  | ReleaseAbortContractError
+  | ReleaseAbortIncompleteError
   | PublicationBatchLimitError
+  | PublicationActivationError
   | PublicationReceiptMismatchError
+  | PublicationRecoveryIdentityError
   | PublicationModeMismatchError
   | PublicationReleaseAbortedError
   | PublicationResumePhaseError
   | PublicationSourceError
   | PublicationStatusMismatchError
   | PublicationTargetFailure
+  | RecoveryPreparationError
   | ReplaySpoolError
   | ReleaseArtifactMismatchError
   | ReleaseRendererManifestMismatchError
@@ -248,6 +303,8 @@ type PublishReleaseRequirements<R> =
   | FileSystem.FileSystem
   | Path.Path
   | PublicationSigningKey
+  | PublicationRecoveryId
+  | PublicationActivation
   | PublicationTarget
   | Effect.Effect.Context<ReturnType<typeof verifySignedContentArtifact>>
   | Effect.Effect.Context<ReturnType<typeof verifySignedContentRelease>>

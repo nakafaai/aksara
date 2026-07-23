@@ -21,6 +21,7 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
@@ -29,7 +30,7 @@ import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 import { testFileLayer } from "#test/files";
-import { rendererDomains } from "#test/renderer";
+import { makePublicationTarget } from "#test/target";
 
 export const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
 export const releaseId = ReleaseIdSchema.make("test-rollback-forward");
@@ -43,8 +44,8 @@ export const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "TestBase", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "TestChemistry", version: 1 },
-      mathematics: { name: "TestMathematics", version: 1 },
+      chemistry: [{ name: "TestChemistry", version: 1 }],
+      mathematics: [{ name: "TestMathematics", version: 1 }],
     }),
   })
 );
@@ -61,8 +62,8 @@ const sourceRendererManifest = await Effect.runPromise(
       ],
     },
     domains: rendererDomains({
-      chemistry: { name: "TestChemistry", version: 1 },
-      mathematics: { name: "TestMathematics", version: 1 },
+      chemistry: [{ name: "TestChemistry", version: 1 }],
+      mathematics: [{ name: "TestMathematics", version: 1 }],
     }),
   })
 );
@@ -110,7 +111,6 @@ const change = {
   delivery: "public" as const,
   locale: payload.locale,
   operation: "upsert" as const,
-  publicPath: projection.publicPath,
   rendererDomain: payload.rendererDomain,
   sourcePath,
 };
@@ -154,6 +154,7 @@ const sourcePrepared = await Effect.runPromise(
     releaseId: rollbackOf,
     rendererManifest: sourceRendererManifest,
     result: () => Stream.make(head),
+    routes: () => Stream.empty,
   })
 );
 export const sourceRelease = await Effect.runPromise(
@@ -193,12 +194,7 @@ const resolver = ContentVerificationKeyResolver.of({
 export function rollbackTarget(
   loadPage: (typeof PublicationTarget.Service)["rollbackPage"]
 ) {
-  return PublicationTarget.of({
-    abort: () => Effect.die("Unused target abort."),
-    activate: () => Effect.die("Unused target activation."),
-    cleanup: () => Effect.die("Unused target cleanup."),
-    current: () => Effect.die("Unused target current state."),
-    finalize: () => Effect.die("Unused target finalization."),
+  return makePublicationTarget({
     headPage: (request) =>
       Effect.succeed({
         activeManifestHash: request.activeManifestHash,
@@ -210,12 +206,15 @@ export function rollbackTarget(
         nextCursor: null,
       }),
     rollbackPage: loadPage,
-    stageArtifactBatch: () => Effect.die("Unused artifact staging."),
-    stageItemBatch: () => Effect.die("Unused item staging."),
-    stageProjectionBatch: () => Effect.die("Unused projection staging."),
-    stageRelease: () => Effect.die("Unused release staging."),
-    status: () => Effect.die("Unused target status."),
-    verify: () => Effect.die("Unused target verification."),
+    routePage: (request) =>
+      Effect.succeed({
+        done: true,
+        nextIndex: -1,
+        records: [],
+        rollbackOf: request.rollbackOf,
+        rollbackOfManifestHash: request.rollbackOfManifestHash,
+        total: 0,
+      }),
   });
 }
 

@@ -1,37 +1,56 @@
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
-import type { PendingContentRelease } from "@nakafa/aksara-contracts/release/lifecycle";
+import type { StagedContentRelease } from "@nakafa/aksara-contracts/release/current";
 import { describe, expect, it } from "vitest";
+import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import {
   activeState,
   rejectState,
-  STATE_HASH,
   selectState,
   stateBundle,
   stateCompleted,
   stateCurrent,
+  stateRecovery,
   stateReleaseId,
 } from "#test/state";
+
+/** Creates one exact release command with a distinct inverse identity. */
+function releaseArgs(
+  releaseId: string,
+  recoveryId = `recovery-${releaseId}`
+): ReleaseArguments {
+  return {
+    command: "release",
+    recoveryId: stateReleaseId(recoveryId),
+    releaseId: stateReleaseId(releaseId),
+  };
+}
+
+/** Creates one exact forward-rollback command with a distinct inverse identity. */
+function rollbackArgs(
+  releaseId: string,
+  rollbackOf: string,
+  recoveryId = `recovery-${releaseId}`
+): RollbackArguments {
+  return {
+    command: "rollback",
+    recoveryId: stateReleaseId(recoveryId),
+    releaseId: stateReleaseId(releaseId),
+    rollbackOf: stateReleaseId(rollbackOf),
+  };
+}
 
 describe("production state", () => {
   it("selects new releases against absent or completed active state", async () => {
     await expect(
       selectState(
-        { command: "release", releaseId: stateReleaseId("release-first") },
-        stateCurrent({
-          activeManifestHash: null,
-          activeReleaseId: null,
-          completed: null,
-          pending: null,
-        })
+        releaseArgs("release-first"),
+        stateCurrent({ active: null, candidate: null, recovery: null })
       )
     ).resolves.toEqual({ baseBundle: null, kind: "new", mode: "git" });
 
     const active = stateCompleted("release-active");
     await expect(
-      selectState(
-        { command: "release", releaseId: stateReleaseId("release-next") },
-        activeState(active)
-      )
+      selectState(releaseArgs("release-next"), activeState(active))
     ).resolves.toEqual({
       baseBundle: {
         release: active.release,
@@ -42,15 +61,11 @@ describe("production state", () => {
     });
   });
 
-  it("selects a new rollback only for the exact completed active release", async () => {
+  it("selects a new rollback only for the exact active release", async () => {
     const active = stateCompleted("release-active");
     await expect(
       selectState(
-        {
-          command: "rollback",
-          releaseId: stateReleaseId("rollback-next"),
-          rollbackOf: active.release.manifest.releaseId,
-        },
+        rollbackArgs("rollback-next", "release-active"),
         activeState(active)
       )
     ).resolves.toEqual({
@@ -64,62 +79,51 @@ describe("production state", () => {
     });
   });
 
-  it.each(["staging", "verifying"] as const)(
-    "rebuilds exact pending %s source state",
+  it.each(["staging", "verifying", "verified"] as const)(
+    "rebuilds exact candidate %s source state",
     async (phase) => {
-      const pending: PendingContentRelease = {
-        ...stateBundle("release-pending"),
+      const candidate: StagedContentRelease = {
+        ...stateBundle("release-candidate"),
         phase,
       };
       await expect(
         selectState(
-          { command: "release", releaseId: stateReleaseId("release-pending") },
-          stateCurrent({
-            activeManifestHash: null,
-            activeReleaseId: null,
-            completed: null,
-            pending,
-          })
+          releaseArgs("release-candidate"),
+          stateCurrent({ active: null, candidate, recovery: null })
         )
       ).resolves.toEqual({
+        candidate,
         kind: "rebuild",
         mode: "git",
-        pending,
         sha: GitCommitShaSchema.make("a".repeat(40)),
       });
     }
   );
 
-  it.each(["verified", "active", "finalizing"] as const)(
-    "resumes exact pending %s state without rebuilding",
-    async (phase) => {
-      const pending: PendingContentRelease = {
-        ...stateBundle("release-pending"),
-        phase,
-      };
-      const action = await selectState(
-        { command: "release", releaseId: stateReleaseId("release-pending") },
-        stateCurrent({
-          activeManifestHash:
-            phase === "verified" ? null : pending.release.manifestHash,
-          activeReleaseId:
-            phase === "verified" ? null : pending.release.manifest.releaseId,
-          completed: null,
-          pending,
-        })
-      );
-      expect(action).toEqual({
-        bundle: {
-          release: pending.release,
-          rendererManifest: pending.rendererManifest,
-        },
-        kind: "resume",
-      });
-    }
-  );
+  it("rebuilds a verified candidate protected by its matching inverse", async () => {
+    const candidate: StagedContentRelease = {
+      ...stateBundle("release-candidate"),
+      phase: "verified",
+    };
+    const recovery = stateRecovery(candidate, "recovery-candidate");
+    await expect(
+      selectState(
+        releaseArgs("release-candidate", "recovery-candidate"),
+        stateCurrent({ active: null, candidate, recovery })
+      )
+    ).resolves.toMatchObject({ kind: "rebuild", mode: "git" });
+  });
 
-  it("resumes a completed release or rollback with the same identity", async () => {
+  it("replays an active release or rollback with exact retained recovery", async () => {
     const git = stateCompleted("release-completed");
+    const recovery = stateRecovery(git, "recovery-completed");
+    await expect(
+      selectState(
+        releaseArgs("release-completed", "recovery-completed"),
+        stateCurrent({ active: git, candidate: null, recovery })
+      )
+    ).resolves.toMatchObject({ kind: "resume" });
+
     const rollbackBase = stateReleaseId("release-previous");
     const rollback = stateCompleted("rollback-completed", {
       kind: "rollback",
@@ -127,114 +131,125 @@ describe("production state", () => {
     });
     await expect(
       selectState(
-        { command: "release", releaseId: git.release.manifest.releaseId },
-        activeState(git)
-      )
-    ).resolves.toMatchObject({ kind: "resume" });
-    await expect(
-      selectState(
-        {
-          command: "rollback",
-          releaseId: rollback.release.manifest.releaseId,
-          rollbackOf: rollbackBase,
-        },
-        activeState(rollback)
+        rollbackArgs(
+          "rollback-completed",
+          "release-previous",
+          "recovery-rollback"
+        ),
+        stateCurrent({
+          active: rollback,
+          candidate: null,
+          recovery: stateRecovery(rollback, "recovery-rollback"),
+        })
       )
     ).resolves.toMatchObject({ kind: "resume" });
     await expect(
       rejectState(
-        { command: "release", releaseId: rollback.release.manifest.releaseId },
-        activeState(rollback)
+        releaseArgs("rollback-completed", "recovery-rollback"),
+        stateCurrent({
+          active: rollback,
+          candidate: null,
+          recovery: stateRecovery(rollback, "recovery-rollback"),
+        })
       )
     ).resolves.toMatchObject({ reason: "mode-mismatch" });
   });
 
   it.each([
     {
-      args: { command: "release", releaseId: stateReleaseId("release-other") },
-      reason: "pending-conflict",
+      args: releaseArgs("release-other"),
+      reason: "candidate-conflict",
       state: stateCurrent({
-        activeManifestHash: null,
-        activeReleaseId: null,
-        completed: null,
-        pending: { ...stateBundle("release-pending"), phase: "staging" },
+        active: null,
+        candidate: { ...stateBundle("release-candidate"), phase: "staging" },
+        recovery: null,
       }),
     },
     {
-      args: {
-        command: "release",
-        releaseId: stateReleaseId("release-pending"),
-      },
+      args: releaseArgs("release-candidate"),
       reason: "aborting",
       state: stateCurrent({
-        activeManifestHash: null,
-        activeReleaseId: null,
-        completed: null,
-        pending: { ...stateBundle("release-pending"), phase: "aborting" },
+        active: null,
+        candidate: { ...stateBundle("release-candidate"), phase: "aborting" },
+        recovery: null,
       }),
     },
     {
-      args: {
-        command: "rollback",
-        releaseId: stateReleaseId("release-pending"),
-        rollbackOf: stateReleaseId("release-active"),
-      },
+      args: rollbackArgs("release-candidate", "release-active"),
       reason: "mode-mismatch",
       state: stateCurrent({
-        activeManifestHash: null,
-        activeReleaseId: null,
-        completed: null,
-        pending: { ...stateBundle("release-pending"), phase: "staging" },
+        active: null,
+        candidate: { ...stateBundle("release-candidate"), phase: "staging" },
+        recovery: null,
       }),
     },
     {
-      args: {
-        command: "rollback",
-        releaseId: stateReleaseId("rollback-pending"),
-        rollbackOf: stateReleaseId("release-other"),
-      },
+      args: rollbackArgs("rollback-candidate", "release-other"),
       reason: "rollback-mismatch",
       state: stateCurrent({
-        activeManifestHash: STATE_HASH,
-        activeReleaseId: stateReleaseId("release-active"),
-        completed: null,
-        pending: {
-          ...stateBundle("rollback-pending", {
-            kind: "rollback",
-            releaseId: stateReleaseId("release-active"),
-          }),
+        active: stateCompleted("release-active"),
+        candidate: {
+          ...stateBundle(
+            "rollback-candidate",
+            {
+              kind: "rollback",
+              releaseId: stateReleaseId("release-active"),
+            },
+            stateReleaseId("release-active")
+          ),
           phase: "staging",
         },
+        recovery: null,
       }),
     },
     {
-      args: {
-        command: "rollback",
-        releaseId: stateReleaseId("rollback-first"),
-        rollbackOf: stateReleaseId("release-missing"),
-      },
+      args: rollbackArgs("rollback-first", "release-missing"),
       reason: "missing-active",
+      state: stateCurrent({ active: null, candidate: null, recovery: null }),
+    },
+    {
+      args: rollbackArgs("rollback-next", "release-other"),
+      reason: "rollback-mismatch",
+      state: activeState(stateCompleted("release-active")),
+    },
+    {
+      args: releaseArgs("release-next"),
+      reason: "recovery-retained",
       state: stateCurrent({
-        activeManifestHash: null,
-        activeReleaseId: null,
-        completed: null,
-        pending: null,
+        active: stateCompleted("release-active"),
+        candidate: null,
+        recovery: stateRecovery(
+          stateCompleted("release-active"),
+          "recovery-active"
+        ),
       }),
     },
     {
-      args: {
-        command: "rollback",
-        releaseId: stateReleaseId("rollback-next"),
-        rollbackOf: stateReleaseId("release-other"),
-      },
-      reason: "rollback-mismatch",
+      args: releaseArgs("release-active", "recovery-other"),
+      reason: "recovery-conflict",
       state: stateCurrent({
-        activeManifestHash:
-          stateCompleted("release-active").release.manifestHash,
-        activeReleaseId: stateReleaseId("release-active"),
-        completed: stateCompleted("release-active"),
-        pending: null,
+        active: stateCompleted("release-active"),
+        candidate: null,
+        recovery: stateRecovery(
+          stateCompleted("release-active"),
+          "recovery-active"
+        ),
       }),
+    },
+    {
+      args: releaseArgs("release-candidate", "recovery-other"),
+      reason: "recovery-conflict",
+      state: (() => {
+        const candidate = {
+          ...stateBundle("release-candidate"),
+          phase: "verified" as const,
+        };
+        return stateCurrent({
+          active: null,
+          candidate,
+          recovery: stateRecovery(candidate, "recovery-candidate"),
+        });
+      })(),
     },
   ] as const)("rejects unsafe state %#", async ({ args, reason, state }) => {
     await expect(rejectState(args, state)).resolves.toMatchObject({

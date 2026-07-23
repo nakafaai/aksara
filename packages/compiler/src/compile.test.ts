@@ -1,11 +1,11 @@
 import { createHash } from "node:crypto";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";
-import { rendererDomains } from "#compiler/test/renderer";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 
@@ -23,8 +23,8 @@ function manifestInput(
   return {
     base: { authoringComponents, supportedComponents },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   };
 }
@@ -140,6 +140,30 @@ describe("compileContent", () => {
       { name: "FunctionMachine", version: 1 },
     ]);
     expect(chemistryError._tag).toBe("RendererComponentMissingError");
+  });
+
+  it("compiles selected renderer components inside rich JSX attributes", async () => {
+    const { payload } = await compileRawMdx(
+      withMetadata(`<AtomShellLab
+        title={<>Atomic Shell Model</>}
+        description={
+          <>
+            Separate shell content from the maximum
+            <InlineMath math="2n^2" /> capacity.
+          </>
+        }
+        labels={{
+          note: <>Shell <InlineMath math="K" /> is full.</>,
+        }}
+      />`),
+      rendererManifest,
+      "chemistry"
+    );
+
+    expect(payload.requiredComponents).toEqual([
+      { name: "AtomShellLab", version: 1 },
+      { name: "InlineMath", version: 1 },
+    ]);
   });
 
   it("rejects every import before renderer component selection", async () => {

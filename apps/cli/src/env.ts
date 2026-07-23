@@ -29,12 +29,16 @@ export interface CleanupEnvironment {
 }
 
 /** Validated secrets and endpoints required by a production content command. */
-export interface ProductionEnvironment extends CleanupEnvironment {
+export interface RecoveryEnvironment extends CleanupEnvironment {
+  readonly rendererEndpoint: URL;
+  readonly rendererToken: Redacted.Redacted<string>;
+}
+
+/** Validated signer values added only for candidate publication commands. */
+export interface ProductionEnvironment extends RecoveryEnvironment {
   readonly derivedPublicKeyPem: string;
   readonly keyId: typeof SigningKeyIdSchema.Type;
   readonly privateKeyPem: Redacted.Redacted<string>;
-  readonly rendererEndpoint: URL;
-  readonly rendererToken: Redacted.Redacted<string>;
 }
 
 /** The process environment does not satisfy the narrow preview contract. */
@@ -167,9 +171,9 @@ export const readCleanupEnvironment = Effect.fn(
   return { publicationEndpoint, publicationToken } satisfies CleanupEnvironment;
 });
 
-/** Loads and validates every required production value through Effect Config. */
-export const readProductionEnvironment = Effect.fn(
-  "AksaraCli.readProductionEnvironment"
+/** Loads the publication and live-renderer values required for recovery. */
+export const readRecoveryEnvironment = Effect.fn(
+  "AksaraCli.readRecoveryEnvironment"
 )(function* () {
   const cleanup = yield* readCleanupEnvironment();
   const rendererEndpoint = yield* readConfig(
@@ -184,6 +188,18 @@ export const readProductionEnvironment = Effect.fn(
     tokenConfig("AKSARA_RENDERER_TOKEN"),
     "AKSARA_RENDERER_TOKEN"
   );
+  return {
+    ...cleanup,
+    rendererEndpoint,
+    rendererToken,
+  } satisfies RecoveryEnvironment;
+});
+
+/** Loads and validates every required production value through Effect Config. */
+export const readProductionEnvironment = Effect.fn(
+  "AksaraCli.readProductionEnvironment"
+)(function* () {
+  const recovery = yield* readRecoveryEnvironment();
   const keyIdInput = yield* readConfig(
     Config.string("AKSARA_SIGNING_KEY_ID"),
     "AKSARA_SIGNING_KEY_ID"
@@ -198,11 +214,9 @@ export const readProductionEnvironment = Effect.fn(
   const signingKey = yield* validatePrivateKey(privateKeyInput);
 
   return {
-    ...cleanup,
+    ...recovery,
     derivedPublicKeyPem: signingKey.derivedPublicKeyPem,
     keyId,
     privateKeyPem: signingKey.privateKeyPem,
-    rendererEndpoint,
-    rendererToken,
   } satisfies ProductionEnvironment;
 });

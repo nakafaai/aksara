@@ -9,11 +9,12 @@ import {
 } from "#publisher/target/protocol";
 import { publicationFailures } from "#test/failure";
 import {
+  transportRecovery,
   transportRelease,
   transportRequests,
   transportResponse,
-  transportSuccess,
 } from "#test/transport";
+import { transportSuccess } from "#test/transport-success";
 
 /** Interprets one status and body pair through the typed wire protocol. */
 function interpret(
@@ -39,24 +40,44 @@ function failureTag(
 describe("publication target protocol", () => {
   it("maps every operation to its target stage and release identity", () => {
     expect(transportRequests.map(publicationReleaseId)).toEqual(
-      transportRequests.map(({ operation }) =>
-        operation === "current" ? null : transportRelease.manifest.releaseId
-      )
+      transportRequests.map((request) => {
+        if (request.operation === "current") {
+          return null;
+        }
+        if (
+          request.operation === "accept" ||
+          request.operation === "recovery"
+        ) {
+          return request.recoveryId;
+        }
+        if (
+          request.operation === "stageRecovery" ||
+          request.operation === "activateRecovery"
+        ) {
+          return transportRecovery.manifest.releaseId;
+        }
+        return transportRelease.manifest.releaseId;
+      })
     );
     expect(
       transportRequests.map(({ operation }) => targetStage(operation))
     ).toEqual([
       "current",
+      "accept",
       "abort",
+      "recovery",
       "heads",
       "release",
+      "recovery",
+      "routes",
       "items",
       "projections",
       "artifacts",
       "status",
       "verify",
       "activate",
-      "finalize",
+      "recovery",
+      "rollback",
       "rollback",
       "cleanup",
     ]);

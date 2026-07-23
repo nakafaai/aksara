@@ -1,14 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
-import {
-  ContentLocaleSchema,
-  compareContentHeads,
-  routeIdentity,
-} from "#contracts/content";
-import {
-  PublicPathSchema,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { compareContentHeads } from "#contracts/content";
+import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import {
   type ContentReleaseItem,
@@ -59,17 +51,6 @@ export class ReleaseItemOrderError extends Schema.TaggedError<ReleaseItemOrderEr
   { itemOffset: ItemCountSchema }
 ) {}
 
-/** Two heads in one release claim the same locale-specific public route. */
-export class DuplicateReleasePublicPathError extends Schema.TaggedError<DuplicateReleasePublicPathError>()(
-  "DuplicateReleasePublicPathError",
-  {
-    duplicateItemIndex: ItemCountSchema,
-    firstItemIndex: ItemCountSchema,
-    locale: ContentLocaleSchema,
-    publicPath: PublicPathSchema,
-  }
-) {}
-
 /** The separate ordered items do not match the signed digest. */
 export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseItemsDigestMismatchError>()(
   "ReleaseItemsDigestMismatchError",
@@ -87,7 +68,6 @@ export interface VerifiedContentReleaseItems {
 }
 
 interface ItemValidationState {
-  readonly firstIndexByRoute: Map<string, number>;
   previous: ContentReleaseItem | undefined;
 }
 
@@ -131,34 +111,6 @@ function validateItemOrder(
   return Effect.void;
 }
 
-/** Rejects an upsert that collides with an earlier locale-specific route. */
-function validatePublicPath(
-  state: ItemValidationState,
-  item: ContentReleaseItem
-) {
-  if (item.change.operation === "delete") {
-    return Effect.void;
-  }
-  const { locale, publicPath } = item.change;
-  if (publicPath === undefined) {
-    return Effect.void;
-  }
-  const identity = routeIdentity({ locale, publicPath });
-  const firstItemIndex = state.firstIndexByRoute.get(identity);
-  if (firstItemIndex !== undefined) {
-    return Effect.fail(
-      new DuplicateReleasePublicPathError({
-        duplicateItemIndex: item.index,
-        firstItemIndex,
-        locale,
-        publicPath,
-      })
-    );
-  }
-  state.firstIndexByRoute.set(identity, item.index);
-  return Effect.void;
-}
-
 /** Decodes one item and applies stateful canonical stream invariants. */
 function decodeItem(
   manifest: ContentReleaseManifest,
@@ -171,8 +123,7 @@ function decodeItem(
   }).pipe(
     Effect.mapError(() => new ReleaseItemDecodeError({ itemOffset })),
     Effect.tap((item) => validateItemIdentity(manifest, item, itemOffset)),
-    Effect.tap((item) => validateItemOrder(state, item)),
-    Effect.tap((item) => validatePublicPath(state, item))
+    Effect.tap((item) => validateItemOrder(state, item))
   );
 }
 
@@ -186,10 +137,7 @@ export function decodeContentReleaseItems<E, R>(input: {
 }) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state: ItemValidationState = {
-        firstIndexByRoute: new Map(),
-        previous: undefined,
-      };
+      const state: ItemValidationState = { previous: undefined };
       return input.items.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, itemOffset]) =>

@@ -59,6 +59,8 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   rollbackCount: 0,
   rollbackDigest: `sha256:${"d".repeat(64)}`,
+  routeCount: 0,
+  routeDigest: `sha256:${"d".repeat(64)}`,
   upsertCount: 0,
 });
 

@@ -9,6 +9,7 @@ export interface PreviewArguments {
 /** Exact immutable identity requested by one production release command. */
 export interface ReleaseArguments {
   readonly command: "release";
+  readonly recoveryId: ReleaseId;
   readonly releaseId: ReleaseId;
 }
 
@@ -27,15 +28,32 @@ export interface CleanupArguments {
 /** New release identity and exact historical release selected for rollback. */
 export interface RollbackArguments {
   readonly command: "rollback";
+  readonly recoveryId: ReleaseId;
   readonly releaseId: ReleaseId;
   readonly rollbackOf: ReleaseId;
+}
+
+/** Exact active and retained inverse selected for healthy acceptance. */
+export interface AcceptArguments {
+  readonly command: "accept";
+  readonly recoveryId: ReleaseId;
+  readonly releaseId: ReleaseId;
+}
+
+/** Exact active and retained inverse selected for emergency recovery. */
+export interface RecoverArguments {
+  readonly command: "recover";
+  readonly recoveryId: ReleaseId;
+  readonly releaseId: ReleaseId;
 }
 
 /** Complete strict command vocabulary accepted by the Aksara CLI. */
 export type CliArguments =
   | ({ readonly command: "preview" } & PreviewArguments)
+  | AcceptArguments
   | AbortArguments
   | CleanupArguments
+  | RecoverArguments
   | ReleaseArguments
   | RollbackArguments;
 
@@ -51,24 +69,76 @@ export class PreviewArgumentsError extends Schema.TaggedError<PreviewArgumentsEr
 export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgumentsError>()(
   "ProductionArgumentsError",
   {
-    command: Schema.Literal("abort", "cleanup", "release", "rollback"),
-    option: Schema.Literal("--release-id", "--rollback-of", "command"),
-    reason: Schema.Literal("duplicate", "missing", "unknown", "value"),
+    command: Schema.Literal(
+      "abort",
+      "accept",
+      "cleanup",
+      "recover",
+      "release",
+      "rollback"
+    ),
+    option: Schema.Literal(
+      "--recovery-id",
+      "--release-id",
+      "--rollback-of",
+      "command"
+    ),
+    reason: Schema.Literal(
+      "duplicate",
+      "identity",
+      "missing",
+      "unknown",
+      "value"
+    ),
   }
 ) {}
 
 interface RawProductionOptions {
-  readonly releaseId?: string;
-  readonly rollbackOf?: string;
+  recoveryId?: string;
+  releaseId?: string;
+  rollbackOf?: string;
+}
+
+type ProductionCommand =
+  | AbortArguments["command"]
+  | AcceptArguments["command"]
+  | CleanupArguments["command"]
+  | RecoverArguments["command"]
+  | ReleaseArguments["command"]
+  | RollbackArguments["command"];
+type ProductionOption = "--recovery-id" | "--release-id" | "--rollback-of";
+
+const OPTION_KEYS = {
+  "--recovery-id": "recoveryId",
+  "--release-id": "releaseId",
+  "--rollback-of": "rollbackOf",
+} as const satisfies Record<ProductionOption, keyof RawProductionOptions>;
+
+/** Narrows unknown command input to one supported named option. */
+function isProductionOption(
+  value: string | undefined
+): value is ProductionOption {
+  return (
+    value === "--recovery-id" ||
+    value === "--release-id" ||
+    value === "--rollback-of"
+  );
+}
+
+/** Checks whether one command owns the selected production option. */
+function acceptsOption(command: ProductionCommand, option: ProductionOption) {
+  if (option === "--rollback-of") {
+    return command === "rollback";
+  }
+  if (option === "--recovery-id") {
+    return command !== "abort" && command !== "cleanup";
+  }
+  return true;
 }
 
 /** Creates one typed argument failure without retaining unknown input values. */
 function argumentError(
-  command:
-    | CleanupArguments["command"]
-    | AbortArguments["command"]
-    | ReleaseArguments["command"]
-    | RollbackArguments["command"],
+  command: ProductionCommand,
   option: ProductionArgumentsError["option"],
   reason: ProductionArgumentsError["reason"]
 ) {
@@ -77,12 +147,8 @@ function argumentError(
 
 /** Decodes one release identifier while preserving its owning option. */
 function decodeReleaseId(
-  command:
-    | AbortArguments["command"]
-    | CleanupArguments["command"]
-    | ReleaseArguments["command"]
-    | RollbackArguments["command"],
-  option: "--release-id" | "--rollback-of",
+  command: ProductionCommand,
+  option: ProductionOption,
   value: string
 ) {
   return Schema.decodeUnknown(ReleaseIdSchema)(value).pipe(
@@ -92,45 +158,30 @@ function decodeReleaseId(
 
 /** Reads strict production options without accepting aliases or positional IDs. */
 const parseProductionOptions = Effect.fn("AksaraCli.parseProductionOptions")(
-  function* (
-    command:
-      | AbortArguments["command"]
-      | CleanupArguments["command"]
-      | ReleaseArguments["command"]
-      | RollbackArguments["command"],
-    args: readonly string[]
-  ) {
-    let releaseId: string | undefined;
-    let rollbackOf: string | undefined;
+  function* (command: ProductionCommand, args: readonly string[]) {
+    const options: RawProductionOptions = {};
 
     for (let index = 0; index < args.length; index += 1) {
       const option = args[index];
-      if (option !== "--release-id" && option !== "--rollback-of") {
+      if (!isProductionOption(option)) {
         return yield* argumentError(command, "command", "unknown");
       }
-      if (command !== "rollback" && option === "--rollback-of") {
+      if (!acceptsOption(command, option)) {
         return yield* argumentError(command, option, "unknown");
       }
-      const existing = option === "--release-id" ? releaseId : rollbackOf;
-      if (existing !== undefined) {
+      const key = OPTION_KEYS[option];
+      if (options[key] !== undefined) {
         return yield* argumentError(command, option, "duplicate");
       }
       const value = args[index + 1];
       if (!(value && value.trim().length > 0 && !value.startsWith("--"))) {
         return yield* argumentError(command, option, "value");
       }
-      if (option === "--release-id") {
-        releaseId = value;
-      } else {
-        rollbackOf = value;
-      }
+      options[key] = value;
       index += 1;
     }
 
-    return {
-      ...(releaseId === undefined ? {} : { releaseId }),
-      ...(rollbackOf === undefined ? {} : { rollbackOf }),
-    } satisfies RawProductionOptions;
+    return options;
   }
 );
 
@@ -166,7 +217,9 @@ export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
     const [command] = args;
     if (
       command !== "cleanup" &&
+      command !== "accept" &&
       command !== "abort" &&
+      command !== "recover" &&
       command !== "release" &&
       command !== "rollback"
     ) {
@@ -189,8 +242,25 @@ export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
     if (command === "cleanup") {
       return { command, releaseId } satisfies CleanupArguments;
     }
+    if (options.recoveryId === undefined) {
+      return yield* argumentError(command, "--recovery-id", "missing");
+    }
+    const recoveryId = yield* decodeReleaseId(
+      command,
+      "--recovery-id",
+      options.recoveryId
+    );
+    if (recoveryId === releaseId) {
+      return yield* argumentError(command, "--recovery-id", "identity");
+    }
+    if (command === "accept") {
+      return { command, recoveryId, releaseId } satisfies AcceptArguments;
+    }
+    if (command === "recover") {
+      return { command, recoveryId, releaseId } satisfies RecoverArguments;
+    }
     if (command === "release") {
-      return { command, releaseId } satisfies ReleaseArguments;
+      return { command, recoveryId, releaseId } satisfies ReleaseArguments;
     }
     if (options.rollbackOf === undefined) {
       return yield* argumentError(command, "--rollback-of", "missing");
@@ -200,6 +270,17 @@ export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
       "--rollback-of",
       options.rollbackOf
     );
-    return { command, releaseId, rollbackOf } satisfies RollbackArguments;
+    if (releaseId === rollbackOf) {
+      return yield* argumentError(command, "--rollback-of", "identity");
+    }
+    if (recoveryId === rollbackOf) {
+      return yield* argumentError(command, "--recovery-id", "identity");
+    }
+    return {
+      command,
+      recoveryId,
+      releaseId,
+      rollbackOf,
+    } satisfies RollbackArguments;
   }
 );

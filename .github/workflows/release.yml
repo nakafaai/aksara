@@ -8,13 +8,19 @@ on:
         required: true
         type: choice
         options:
+          - accept
           - abort
           - cleanup
+          - recover
           - release
           - rollback
       release_id:
         description: Exact release ID for the requested operation
         required: true
+        type: string
+      recovery_id:
+        description: Exact retained inverse ID for release, rollback, accept, or recover
+        required: false
         type: string
       rollback_of:
         description: Exact active release to reverse
@@ -36,7 +42,9 @@ jobs:
     if: >-
       github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
-      && (inputs.operation == 'release' || inputs.operation == 'rollback')
+      && (inputs.operation == 'accept'
+        || inputs.operation == 'release'
+        || inputs.operation == 'rollback')
     permissions:
       contents: read
     uses: ./.github/workflows/package-proof.yml
@@ -50,9 +58,13 @@ jobs:
       && github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
       && (
-        ((inputs.operation == 'release' || inputs.operation == 'rollback')
+        ((inputs.operation == 'accept'
+          || inputs.operation == 'release'
+          || inputs.operation == 'rollback')
           && needs.package.result == 'success')
-        || ((inputs.operation == 'abort' || inputs.operation == 'cleanup')
+        || ((inputs.operation == 'abort'
+          || inputs.operation == 'cleanup'
+          || inputs.operation == 'recover')
           && needs.package.result == 'skipped')
       )
     environment: content-production
@@ -64,6 +76,8 @@ jobs:
       - name: Validate operation
         env:
           OPERATION: ${{ inputs.operation }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
           ROLLBACK_OF: ${{ inputs.rollback_of }}
         run: |
           if [[ "$OPERATION" != "rollback" && -n "$ROLLBACK_OF" ]]; then
@@ -72,6 +86,23 @@ jobs:
           fi
           if [[ "$OPERATION" == "rollback" && -z "$ROLLBACK_OF" ]]; then
             echo "A rollback must name the exact active release." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "release" || "$OPERATION" == "rollback" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
+            if [[ -z "$RECOVERY_ID" ]]; then
+              echo "The operation must name its exact retained inverse." >&2
+              exit 1
+            fi
+            if [[ "$RECOVERY_ID" == "$RELEASE_ID" ]]; then
+              echo "Active and recovery release identities must differ." >&2
+              exit 1
+            fi
+          elif [[ -n "$RECOVERY_ID" ]]; then
+            echo "Abort and cleanup do not accept a recovery identity." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "rollback" && ( "$ROLLBACK_OF" == "$RELEASE_ID" || "$ROLLBACK_OF" == "$RECOVERY_ID" ) ]]; then
+            echo "Rollback, candidate, and recovery identities must differ." >&2
             exit 1
           fi
 
@@ -102,8 +133,7 @@ jobs:
           fi
           git rev-parse --verify HEAD
 
-      - name: Verify exact production revision
-        if: inputs.operation == 'release' || inputs.operation == 'rollback'
+      - name: Verify repository controls
         run: |
           pnpm lint
           pnpm names
@@ -111,10 +141,22 @@ jobs:
           pnpm lines
           pnpm workflows
           pnpm boundaries
+
+      - name: Verify full publication revision
+        if: inputs.operation == 'accept' || inputs.operation == 'release' || inputs.operation == 'rollback'
+        run: |
           pnpm typecheck
           pnpm test
           pnpm build
           pnpm verify:package
+
+      - name: Verify terminal operation revision
+        if: inputs.operation == 'abort' || inputs.operation == 'cleanup' || inputs.operation == 'recover'
+        run: >-
+          pnpm exec turbo run typecheck test build
+          --filter=@nakafa/aksara-contracts
+          --filter=@nakafa/aksara-publisher
+          --filter=@nakafa/aksara-cli
 
       - name: Publish release
         if: inputs.operation == 'release'
@@ -125,8 +167,11 @@ jobs:
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
           AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
-        run: pnpm release -- --release-id "$RELEASE_ID"
+        run: >-
+          pnpm release -- --release-id "$RELEASE_ID"
+          --recovery-id "$RECOVERY_ID"
 
       - name: Publish rollback
         if: inputs.operation == 'rollback'
@@ -137,11 +182,37 @@ jobs:
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
           AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           ROLLBACK_OF: ${{ inputs.rollback_of }}
         run: >-
           pnpm rollback -- --release-id "$RELEASE_ID"
+          --recovery-id "$RECOVERY_ID"
           --rollback-of "$ROLLBACK_OF"
+
+      - name: Accept active release
+        if: inputs.operation == 'accept'
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: >-
+          pnpm accept -- --release-id "$RELEASE_ID"
+          --recovery-id "$RECOVERY_ID"
+
+      - name: Recover active release
+        if: inputs.operation == 'recover'
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
+          AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: >-
+          pnpm recover -- --release-id "$RELEASE_ID"
+          --recovery-id "$RECOVERY_ID"
 
       - name: Clean unreachable release
         if: inputs.operation == 'cleanup'

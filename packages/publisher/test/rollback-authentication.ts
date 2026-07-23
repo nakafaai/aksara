@@ -24,6 +24,7 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
@@ -31,7 +32,6 @@ import {
   deriveRollbackRecords,
   type RollbackArtifactPolicy,
 } from "#publisher/rollback/records";
-import { rendererDomains } from "#test/renderer";
 
 const rawMdx = "## Test protocol";
 const compiledCode = "return {};";
@@ -44,8 +44,8 @@ export const rollbackRendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "TestBase", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "TestChemistry", version: 1 },
-      mathematics: { name: "TestMathematics", version: 1 },
+      chemistry: [{ name: "TestChemistry", version: 1 }],
+      mathematics: [{ name: "TestMathematics", version: 1 }],
     }),
   })
 );
@@ -109,7 +109,6 @@ export const rollbackUpsert = RollbackUpsertStateSchema.make({
     delivery: "public",
     locale: payload.locale,
     operation: "upsert",
-    publicPath: rollbackProjection.publicPath,
     rendererDomain: payload.rendererDomain,
     sourcePath: CorpusSourcePathSchema.make(
       "packages/corpus/test/rollback/record.mdx"

@@ -8,57 +8,67 @@ import {
   ContentReleaseBundleSchema,
   ContentReleaseStatusRequestSchema,
   ReleaseAbortRequestSchema,
+  ReleaseAcceptRequestSchema,
   ReleaseCleanupRequestSchema,
+  RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
 import { RollbackPageRequestSchema } from "#contracts/release/rollback";
+import { ContentRouteItemSchema } from "#contracts/release/route";
+import { RoutePageRequestSchema } from "#contracts/release/route-page";
 import {
   ContentReleaseItemSchema,
+  RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
 import {
   MAX_ARTIFACT_BATCH_COUNT,
   MAX_ITEM_BATCH_COUNT,
   MAX_PROJECTION_BATCH_COUNT,
+  MAX_ROUTE_BATCH_COUNT,
 } from "#contracts/transport/limits";
-
 /** Stable operation names accepted by the single publication ingress. */
 export const PublicationOperationSchema = Schema.Literal(
+  "accept",
   "abort",
   "current",
   "headPage",
+  "recovery",
   "stageRelease",
+  "stageRecovery",
   "stageItemBatch",
+  "stageRouteBatch",
   "stageProjectionBatch",
   "stageArtifactBatch",
   "status",
   "verify",
   "activate",
-  "finalize",
+  "activateRecovery",
   "rollbackPage",
+  "routePage",
   "cleanup"
 );
-export type PublicationOperation = typeof PublicationOperationSchema.Type;
-
 const BatchIndexSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
-
-const PageIndexSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.greaterThanOrEqualTo(-1)
-);
-
-/** Reads the authoritative active and pending publication identities. */
+/** Reads the authoritative active, candidate, and recovery identities. */
 export const PublicationCurrentRequestSchema = Schema.Struct({
   operation: Schema.Literal("current"),
 });
 export type PublicationCurrentRequest =
   typeof PublicationCurrentRequestSchema.Type;
 
-/** Abandons one invisible pending release through server-owned progress. */
+/** Abandons one invisible staged release through server-owned progress. */
 export const PublicationAbortRequestSchema = Schema.Struct({
   ...ReleaseAbortRequestSchema.fields,
   operation: Schema.Literal("abort"),
 });
 export type PublicationAbortRequest = typeof PublicationAbortRequestSchema.Type;
+
+/** Accepts one healthy release and discards its exact retained inverse. */
+export const PublicationAcceptRequestSchema = Schema.extend(
+  ReleaseAcceptRequestSchema,
+  Schema.Struct({ operation: Schema.Literal("accept") })
+);
+export type PublicationAcceptRequest =
+  typeof PublicationAcceptRequestSchema.Type;
 
 /** Reads one bounded authoritative material-head page for an active release. */
 export const PublicationHeadPageRequestSchema = Schema.Struct({
@@ -68,12 +78,27 @@ export const PublicationHeadPageRequestSchema = Schema.Struct({
 export type PublicationHeadPageRequest =
   typeof PublicationHeadPageRequestSchema.Type;
 
+/** Looks up exact historical completion evidence for one signed recovery. */
+export const PublicationRecoveryLookupRequestSchema = Schema.extend(
+  ReleaseAcceptRequestSchema,
+  Schema.Struct({ operation: Schema.Literal("recovery") })
+);
+export type PublicationRecoveryLookupRequest =
+  typeof PublicationRecoveryLookupRequestSchema.Type;
+
 /** Starts or idempotently resumes one exact signed release. */
 export const StageReleaseRequestSchema = Schema.extend(
   ContentReleaseBundleSchema,
   Schema.Struct({ operation: Schema.Literal("stageRelease") })
 );
 export type StageReleaseRequest = typeof StageReleaseRequestSchema.Type;
+
+/** Starts or idempotently resumes one exact pre-staged inverse release. */
+export const StageRecoveryRequestSchema = Schema.extend(
+  RollbackContentReleaseBundleSchema,
+  Schema.Struct({ operation: Schema.Literal("stageRecovery") })
+);
+export type StageRecoveryRequest = typeof StageRecoveryRequestSchema.Type;
 
 const ReleaseItemBatchSchema = Schema.NonEmptyArray(
   ContentReleaseItemSchema
@@ -122,6 +147,55 @@ export const StageItemBatchRequestSchema = Schema.Struct({
   })
 );
 export type StageItemBatchRequest = typeof StageItemBatchRequestSchema.Type;
+
+const RouteItemBatchSchema = Schema.NonEmptyArray(ContentRouteItemSchema).pipe(
+  Schema.maxItems(MAX_ROUTE_BATCH_COUNT)
+);
+
+const StageRouteBatchFields = {
+  batchIndex: BatchIndexSchema,
+  releaseId: ReleaseIdSchema,
+  routes: RouteItemBatchSchema,
+};
+
+/** Checks batch ownership and contiguous signed route indexes. */
+function hasBoundRouteItems(input: {
+  readonly releaseId: typeof ReleaseIdSchema.Type;
+  readonly routes: readonly [
+    typeof ContentRouteItemSchema.Type,
+    ...(typeof ContentRouteItemSchema.Type)[],
+  ];
+}) {
+  const [first] = input.routes;
+  return input.routes.every(
+    (route, offset) =>
+      route.releaseId === input.releaseId &&
+      route.index === first.index + offset
+  );
+}
+
+/** Canonical input for one bounded ordered-route staging operation. */
+export const StageRouteBatchInputSchema = Schema.Struct(
+  StageRouteBatchFields
+).pipe(
+  Schema.filter(hasBoundRouteItems, {
+    message: () =>
+      "Expected contiguous route items bound to the batch release identity.",
+  })
+);
+export type StageRouteBatchInput = typeof StageRouteBatchInputSchema.Type;
+
+/** Stages one non-empty bounded batch of ordered signed route items. */
+export const StageRouteBatchRequestSchema = Schema.Struct({
+  ...StageRouteBatchFields,
+  operation: Schema.Literal("stageRouteBatch"),
+}).pipe(
+  Schema.filter(hasBoundRouteItems, {
+    message: () =>
+      "Expected contiguous route items bound to the batch release identity.",
+  })
+);
+export type StageRouteBatchRequest = typeof StageRouteBatchRequestSchema.Type;
 
 const StageProjectionBatchFields = {
   batchIndex: BatchIndexSchema,
@@ -190,13 +264,12 @@ export const ActivateReleaseRequestSchema = Schema.Struct({
 });
 export type ActivateReleaseRequest = typeof ActivateReleaseRequestSchema.Type;
 
-/** Finalizes one bounded release page from an exact continuation index. */
-export const FinalizeReleaseRequestSchema = Schema.Struct({
-  afterIndex: PageIndexSchema,
-  operation: Schema.Literal("finalize"),
-  release: SignedContentReleaseSchema,
+/** Atomically activates the retained inverse for the exact active release. */
+export const ActivateRecoveryRequestSchema = Schema.Struct({
+  operation: Schema.Literal("activateRecovery"),
+  release: RollbackSignedContentReleaseSchema,
 });
-export type FinalizeReleaseRequest = typeof FinalizeReleaseRequestSchema.Type;
+export type ActivateRecoveryRequest = typeof ActivateRecoveryRequestSchema.Type;
 
 /** Reads one bounded prior-state page for a forward rollback release. */
 export const PublicationRollbackRequestSchema = Schema.Struct({
@@ -205,6 +278,14 @@ export const PublicationRollbackRequestSchema = Schema.Struct({
 });
 export type PublicationRollbackRequest =
   typeof PublicationRollbackRequestSchema.Type;
+
+/** Reads one bounded prior-owner page for a forward route rollback. */
+export const PublicationRoutePageRequestSchema = Schema.Struct({
+  ...RoutePageRequestSchema.fields,
+  operation: Schema.Literal("routePage"),
+});
+export type PublicationRoutePageRequest =
+  typeof PublicationRoutePageRequestSchema.Type;
 
 /** Deletes one bounded page of unreachable release-owned rows. */
 export const PublicationCleanupRequestSchema = Schema.Struct({
@@ -216,18 +297,23 @@ export type PublicationCleanupRequest =
 
 /** Complete request vocabulary accepted by publication ingress v1. */
 export const PublicationRequestSchema = Schema.Union(
+  PublicationAcceptRequestSchema,
   PublicationAbortRequestSchema,
   PublicationCurrentRequestSchema,
   PublicationHeadPageRequestSchema,
+  PublicationRecoveryLookupRequestSchema,
   StageReleaseRequestSchema,
+  StageRecoveryRequestSchema,
   StageItemBatchRequestSchema,
+  StageRouteBatchRequestSchema,
   StageProjectionBatchRequestSchema,
   StageArtifactBatchRequestSchema,
   PublicationStatusRequestSchema,
   VerifyReleaseRequestSchema,
   ActivateReleaseRequestSchema,
-  FinalizeReleaseRequestSchema,
+  ActivateRecoveryRequestSchema,
   PublicationRollbackRequestSchema,
+  PublicationRoutePageRequestSchema,
   PublicationCleanupRequestSchema
 );
 export type PublicationRequest = typeof PublicationRequestSchema.Type;

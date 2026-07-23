@@ -1,9 +1,9 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";
-import { rendererDomains } from "#compiler/test/renderer";
 
 const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const RAW_MDX = `export const metadata = {
@@ -23,8 +23,8 @@ function manifestInput(blockMathVersion: 1 | 2) {
       supportedComponents: [{ name: "BlockMath", version: blockMathVersion }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   };
 }

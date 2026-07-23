@@ -38,7 +38,6 @@ export class ReleaseCleanupIncompleteError extends Schema.TaggedError<ReleaseCle
   {
     attempts: Schema.Number.pipe(Schema.int(), Schema.positive()),
     deletedArtifacts: CleanupCountSchema,
-    deletedItems: CleanupCountSchema,
     releaseId: ReleaseIdSchema,
   }
 ) {}
@@ -63,8 +62,7 @@ function validateReceipt(
   if (
     receipt.releaseId === request.releaseId &&
     (previous === undefined ||
-      (receipt.deletedArtifacts >= previous.deletedArtifacts &&
-        receipt.deletedItems >= previous.deletedItems))
+      receipt.deletedArtifacts >= previous.deletedArtifacts)
   ) {
     return Effect.succeed(receipt);
   }
@@ -81,7 +79,7 @@ export const cleanupContentRelease = Effect.fn(
     input
   );
   const target = yield* PublicationTarget;
-  let progress = { deletedArtifacts: 0, deletedItems: 0 };
+  let progress = { deletedArtifacts: 0 };
   let previous: ReleaseCleanupReceipt | undefined;
   for (let attempts = 1; attempts <= CLEANUP_CALL_LIMIT; attempts += 1) {
     const response = yield* target.cleanup(request);
@@ -103,11 +101,10 @@ export const cleanupContentRelease = Effect.fn(
     previous = receipt;
     progress = receipt;
   }
-  const { deletedArtifacts, deletedItems } = progress;
+  const { deletedArtifacts } = progress;
   return yield* new ReleaseCleanupIncompleteError({
     attempts: CLEANUP_CALL_LIMIT,
     deletedArtifacts,
-    deletedItems,
     releaseId: request.releaseId,
   });
 });

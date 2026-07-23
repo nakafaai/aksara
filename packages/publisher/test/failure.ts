@@ -29,9 +29,6 @@ export function publicationFailures() {
   const verify = transportRequests.find(
     (request) => request.operation === "verify"
   );
-  const finalize = transportRequests.find(
-    (request) => request.operation === "finalize"
-  );
   const rollback = transportRequests.find(
     (request) => request.operation === "rollbackPage"
   );
@@ -48,7 +45,6 @@ export function publicationFailures() {
     activate?.operation !== "activate" ||
     statusRequest?.operation !== "status" ||
     verify?.operation !== "verify" ||
-    finalize?.operation !== "finalize" ||
     rollback?.operation !== "rollbackPage" ||
     cleanup?.operation !== "cleanup"
   ) {
@@ -126,7 +122,6 @@ export function publicationFailures() {
       { releaseId: statusRequest.releaseId, request: statusRequest },
       { releaseId: verify.release.manifest.releaseId, request: verify },
       { releaseId: activate.release.manifest.releaseId, request: activate },
-      { releaseId: finalize.release.manifest.releaseId, request: finalize },
       { releaseId: rollback.rollbackOf, request: rollback },
       { releaseId: cleanup.releaseId, request: cleanup },
     ].map(({ releaseId: conflictReleaseId, request }) => ({

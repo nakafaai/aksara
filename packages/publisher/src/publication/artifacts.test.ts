@@ -12,13 +12,13 @@ import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
 } from "@nakafa/aksara-contracts/release";
+import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeRollbackArtifacts } from "#publisher/publication/artifacts";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
-import { rendererDomains } from "#test/renderer";
 
 const rawMdx = "Protocol body";
 const sourceHash = Sha256HashSchema.make(
@@ -46,8 +46,8 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: rendererDomains({
-      chemistry: { name: "AtomShellLab", version: 1 },
-      mathematics: { name: "FunctionMachine", version: 1 },
+      chemistry: [{ name: "AtomShellLab", version: 1 }],
+      mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
   })
 );
@@ -96,6 +96,8 @@ const manifest = ContentReleaseManifestSchema.make({
   resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
   rollbackCount: 1,
   rollbackDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
+  routeCount: 0,
+  routeDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
   upsertCount: 1,
 });
 const resolver = ContentVerificationKeyResolver.of({

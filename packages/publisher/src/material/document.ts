@@ -136,7 +136,6 @@ export function makeMaterialRecord(
     delivery: source.delivery,
     locale: source.route.locale,
     operation: "upsert",
-    publicPath: source.route.publicPath,
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
   });

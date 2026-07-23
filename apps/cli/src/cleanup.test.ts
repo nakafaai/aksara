@@ -18,7 +18,6 @@ function cleanupResponse(
   value: {
     readonly complete: boolean;
     readonly deletedArtifacts: number;
-    readonly deletedItems: number;
     readonly releaseId: string;
     readonly retryAt?: number;
   }
@@ -61,7 +60,6 @@ describe("cleanup command", () => {
         cleanupResponse(incoming, {
           complete: true,
           deletedArtifacts: 3,
-          deletedItems: 8,
           releaseId,
         })
       )
@@ -70,7 +68,6 @@ describe("cleanup command", () => {
     await expect(runCleanup(captured.client)).resolves.toEqual({
       complete: true,
       deletedArtifacts: 3,
-      deletedItems: 8,
       releaseId,
     });
     expect(captured.requests).toHaveLength(1);
@@ -92,7 +89,6 @@ describe("cleanup command", () => {
         cleanupResponse(request, {
           complete: false,
           deletedArtifacts: 0,
-          deletedItems: 0,
           releaseId,
           retryAt,
         })

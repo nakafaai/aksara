@@ -5,7 +5,7 @@ import { Effect } from "effect";
 import { vi } from "vitest";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import { runProductionCommand } from "#cli/production";
-import type { TargetCalls } from "#test/target";
+import type { TargetCalls } from "#test/production-mock";
 
 interface ProductionCalls extends TargetCalls {
   baseManifestHash: string | null | undefined;
@@ -45,10 +45,9 @@ const calls = vi.hoisted(() => {
     checkoutRoot: undefined,
     cleanReads: 0,
     current: {
-      activeManifestHash: null,
-      activeReleaseId: null,
-      completed: null,
-      pending: null,
+      active: null,
+      candidate: null,
+      recovery: null,
     },
     derivedPublicKeyPem:
       "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAfCo8fdr8VK1t3LoimeUpsXAYnjgRZwYQV761+jRPidQ=\n-----END PUBLIC KEY-----\n",
@@ -90,28 +89,28 @@ export function productionCalls() {
 }
 
 vi.mock("#cli/env", async () =>
-  (await import("#test/target")).environmentMock(calls)
+  (await import("#test/production-mock")).environmentMock(calls)
 );
 vi.mock("#cli/evidence", async () =>
-  (await import("#test/target")).evidenceMock(calls)
+  (await import("#test/production-mock")).evidenceMock(calls)
 );
 vi.mock("#cli/production-renderer", async () =>
-  (await import("#test/target")).rendererMock(calls)
+  (await import("#test/production-mock")).rendererMock(calls)
 );
 vi.mock("#cli/repository", async () =>
-  (await import("#test/target")).repositoryMock(calls)
+  (await import("#test/production-mock")).repositoryMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/heads", async () =>
-  (await import("#test/target")).headsMock(calls)
+  (await import("#test/production-mock")).headsMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/material/publication", async () =>
-  (await import("#test/target")).materialMock(calls)
+  (await import("#test/production-mock")).materialMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/target/http", async () =>
-  (await import("#test/target")).httpTargetMock(calls)
+  (await import("#test/production-mock")).httpTargetMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/git/source", async () =>
-  (await import("#test/target")).sourceMock(calls)
+  (await import("#test/production-mock")).sourceMock(calls)
 );
 
 vi.mock("@nakafa/aksara-publisher/preparation", async () => {
@@ -171,10 +170,10 @@ vi.mock("@nakafa/aksara-publisher/rollback", async () => {
         releaseId: input.releaseId,
         rollbackOf: input.rollbackOf,
       };
-      const bundle = rollbackBundle(
-        input.releaseId,
-        releaseId(input.rollbackOf)
-      );
+      const bundle =
+        input.proofBundle.release.manifest.releaseId === input.releaseId
+          ? input.proofBundle
+          : rollbackBundle(input.releaseId, releaseId(input.rollbackOf));
       return TestEffect.succeed({
         kind: "rollback",
         manifest: bundle.release.manifest,

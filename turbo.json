@@ -23,6 +23,11 @@
       "cache": false,
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
+    "accept": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
+    },
     "cleanup": {
       "dependsOn": ["build"],
       "cache": false,
@@ -44,6 +49,16 @@
         "AKSARA_RENDERER_TOKEN",
         "AKSARA_SIGNING_KEY_ID",
         "AKSARA_SIGNING_PRIVATE_KEY"
+      ]
+    },
+    "recover": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "env": [
+        "AKSARA_PUBLICATION_ENDPOINT",
+        "AKSARA_PUBLICATION_TOKEN",
+        "AKSARA_RENDERER_ENDPOINT",
+        "AKSARA_RENDERER_TOKEN"
       ]
     },
     "rollback": {
