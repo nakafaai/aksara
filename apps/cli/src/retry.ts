@@ -49,6 +49,8 @@ export function retryPublicationTarget(
     stageRecovery: retryOperation(target.stageRecovery),
     stageRelease: retryOperation(target.stageRelease),
     stageRouteBatch: retryOperation(target.stageRouteBatch),
+    stageSnapshot: retryOperation(target.stageSnapshot),
+    stageSnapshotBatch: retryOperation(target.stageSnapshotBatch),
     status: retryOperation(target.status),
     verify: retryOperation(target.verify),
   });

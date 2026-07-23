@@ -1,8 +1,8 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
-  canonicalizeMaterialProjection,
-  type MaterialLessonProjection,
-} from "@nakafa/aksara-contracts/projection/material";
+  type ContentProjection,
+  canonicalizeContentProjection,
+} from "@nakafa/aksara-contracts/projection/spec";
 import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
@@ -14,7 +14,7 @@ import { streamBatches } from "#publisher/batch/core";
 /** Serializes one projection batch in deterministic wire field order. */
 export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {
   return `{"batchIndex":${batch.batchIndex},"projections":[${batch.projections
-    .map(canonicalizeMaterialProjection)
+    .map(canonicalizeContentProjection)
     .join(
       ","
     )}],"operation":"stageProjectionBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
@@ -23,7 +23,7 @@ export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {
 /** Streams bounded projection envelopes with contiguous batch identities. */
 export function makeProjectionBatches<E, R>(
   releaseId: ReleaseId,
-  projections: Stream.Stream<MaterialLessonProjection, E, R>
+  projections: Stream.Stream<ContentProjection, E, R>
 ) {
   return streamBatches({
     build: (values, batchIndex, batchReleaseId) => ({
@@ -32,7 +32,7 @@ export function makeProjectionBatches<E, R>(
       releaseId: batchReleaseId,
     }),
     count: (batch) => batch.projections.length,
-    kind: "material-projection",
+    kind: "content-projection",
     maxBytes: MAX_PROJECTION_BATCH_BYTES,
     maxCount: MAX_PROJECTION_BATCH_COUNT,
     releaseId,

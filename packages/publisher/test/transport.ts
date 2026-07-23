@@ -7,6 +7,11 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route";
+import { emptyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import {
+  ContentSnapshotManifestSchema,
+  ContentSnapshotRowSchema,
+} from "@nakafa/aksara-contracts/release/snapshot-data";
 import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
@@ -28,6 +33,9 @@ import { headRequest } from "#test/head";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const projectionDigest = `sha256:${"c".repeat(64)}`;
+const snapshotId = `sha256:${"e".repeat(64)}`;
+const snapshotRowDigest = `sha256:${"1".repeat(64)}`;
+const snapshotRowHash = `sha256:${"2".repeat(64)}`;
 const recoveryId = ReleaseIdSchema.make("test-http-recovery");
 export const transportRenderer = await Effect.runPromise(
   createRendererManifest({
@@ -38,6 +46,56 @@ export const transportRenderer = await Effect.runPromise(
     domains: rendererDomains({}),
   })
 );
+
+/** Test-only structured manifest used to prove exact HTTP staging. */
+export const transportSnapshot = Schema.decodeUnknownSync(
+  ContentSnapshotManifestSchema
+)({
+  family: "program",
+  manifest: {
+    format: "program-v1",
+    locales: ["en", "id"],
+    rowCount: 6,
+    rowDigest: snapshotRowDigest,
+    slugCount: 12,
+    snapshotId,
+  },
+});
+
+/** Test-only structured row carried by one bounded HTTP batch. */
+export const transportSnapshotRow = Schema.decodeUnknownSync(
+  ContentSnapshotRowSchema
+)({
+  family: "program",
+  record: {
+    row: {
+      defaultCoverageStatus: "planned",
+      displayOrder: 1,
+      iconKey: "school",
+      key: "test-http-program",
+      kind: "school-curriculum",
+      navigation: {
+        levels: ["stage", "subject"],
+        model: "curriculum-tree",
+      },
+      provider: { kind: "nakafa", name: "Nakafa test suite" },
+      sources: [
+        {
+          label: "Test-only publisher transport source",
+          retrievedAt: "2026-01-01",
+          type: "nakafa-editorial",
+          url: "https://example.test/publisher-transport",
+        },
+      ],
+      translations: {
+        en: { publicSlug: "test-http-program", title: "Test HTTP Program" },
+        id: { publicSlug: "program-http-uji", title: "Program HTTP Uji" },
+      },
+      version: { label: "Test-only version" },
+    },
+    rowHash: snapshotRowHash,
+  },
+});
 
 export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
   SignedContentReleaseSchema
@@ -63,6 +121,7 @@ export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
     rollbackDigest: manifestHash,
     routeCount: 0,
     routeDigest: manifestHash,
+    snapshots: emptyContentSnapshots(),
     upsertCount: 1,
   },
   manifestHash,
@@ -118,6 +177,19 @@ export const transportRequests: readonly PublicationRequest[] =
       rendererManifest: transportRenderer,
     },
     {
+      operation: "stageSnapshot",
+      releaseId: transportReleaseId,
+      snapshot: transportSnapshot,
+    },
+    {
+      batchIndex: 0,
+      family: transportSnapshot.family,
+      operation: "stageSnapshotBatch",
+      releaseId: transportReleaseId,
+      rows: [transportSnapshotRow],
+      snapshotId: transportSnapshot.manifest.snapshotId,
+    },
+    {
       batchIndex: 0,
       operation: "stageRouteBatch",
       releaseId: transportReleaseId,
@@ -161,21 +233,6 @@ export const transportRequests: readonly PublicationRequest[] =
     },
     { operation: "cleanup", releaseId: transportReleaseId },
   ]);
-
-export const transportReceipt = {
-  activatedHeads: 1,
-  deletedHeads: 1,
-  manifestHash,
-  projectionDigest,
-  releaseId: transportRelease.manifest.releaseId,
-  resultCount: transportRelease.manifest.resultCount,
-  resultDigest: transportRelease.manifest.resultDigest,
-  routeDigest: transportRelease.manifest.routeDigest,
-  stagedArtifacts: 1,
-  stagedItems: 2,
-  stagedProjections: 1,
-  stagedRoutes: 0,
-};
 
 /** Decodes a deliberately modified response into the public wire contract. */
 export function transportResponse(input: unknown): PublicationResponse {

@@ -1,0 +1,50 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  en: [
+    {
+      label: "$$0° < x < 120°, 180° < x < 240°$$",
+      value: true,
+    },
+    {
+      label: "$$0° < x < 150°, 180° < x < 270°$$",
+      value: false,
+    },
+    {
+      label: "$$120° < x < 180°, 240° < x < 360°$$",
+      value: false,
+    },
+    {
+      label: "$$150° < x < 180°, 270° < x < 360°$$",
+      value: false,
+    },
+    {
+      label: "$$0° < x < 135°, 180° < x < 270°$$",
+      value: false,
+    },
+  ],
+  id: [
+    {
+      label: "$$0° < x < 120°, 180° < x < 240°$$",
+      value: true,
+    },
+    {
+      label: "$$0° < x < 150°, 180° < x < 270°$$",
+      value: false,
+    },
+    {
+      label: "$$120° < x < 180°, 240° < x < 360°$$",
+      value: false,
+    },
+    {
+      label: "$$150° < x < 180°, 270° < x < 360°$$",
+      value: false,
+    },
+    {
+      label: "$$0° < x < 135°, 180° < x < 270°$$",
+      value: false,
+    },
+  ],
+};
+
+export default choices;

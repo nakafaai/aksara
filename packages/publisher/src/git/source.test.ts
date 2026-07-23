@@ -51,6 +51,7 @@ const TEST_ITEMS = TEST_SOURCES.map((source, index) =>
       artifactHash: TEST_ARTIFACT_HASH,
       contentKey: source.contentKey,
       delivery: "public",
+      family: "material",
       locale: source.locale,
       operation: "upsert",
       rendererDomain: source.rendererDomain,
@@ -119,6 +120,7 @@ describe("GitPublicationSourceLive", () => {
     const deleteItem = ContentReleaseItemSchema.make({
       change: {
         contentKey: ContentKeySchema.make("test:git-source-delete"),
+        family: "material",
         locale: "en",
         operation: "delete",
       },

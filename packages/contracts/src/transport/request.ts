@@ -2,7 +2,7 @@ import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import { ReleaseIdSchema } from "#contracts/ids";
-import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { ContentProjectionSchema } from "#contracts/projection/spec";
 import { HeadPageRequestSchema } from "#contracts/release/head";
 import {
   ContentReleaseBundleSchema,
@@ -26,27 +26,11 @@ import {
   MAX_PROJECTION_BATCH_COUNT,
   MAX_ROUTE_BATCH_COUNT,
 } from "#contracts/transport/limits";
-/** Stable operation names accepted by the single publication ingress. */
-export const PublicationOperationSchema = Schema.Literal(
-  "accept",
-  "abort",
-  "current",
-  "headPage",
-  "recovery",
-  "stageRelease",
-  "stageRecovery",
-  "stageItemBatch",
-  "stageRouteBatch",
-  "stageProjectionBatch",
-  "stageArtifactBatch",
-  "status",
-  "verify",
-  "activate",
-  "activateRecovery",
-  "rollbackPage",
-  "routePage",
-  "cleanup"
-);
+import {
+  StageSnapshotBatchRequestSchema,
+  StageSnapshotRequestSchema,
+} from "#contracts/transport/snapshot";
+
 const BatchIndexSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
 /** Reads the authoritative active, candidate, and recovery identities. */
 export const PublicationCurrentRequestSchema = Schema.Struct({
@@ -199,7 +183,7 @@ export type StageRouteBatchRequest = typeof StageRouteBatchRequestSchema.Type;
 
 const StageProjectionBatchFields = {
   batchIndex: BatchIndexSchema,
-  projections: Schema.NonEmptyArray(MaterialLessonProjectionSchema).pipe(
+  projections: Schema.NonEmptyArray(ContentProjectionSchema).pipe(
     Schema.maxItems(MAX_PROJECTION_BATCH_COUNT)
   ),
   releaseId: ReleaseIdSchema,
@@ -212,7 +196,7 @@ export const StageProjectionBatchInputSchema = Schema.Struct(
 export type StageProjectionBatchInput =
   typeof StageProjectionBatchInputSchema.Type;
 
-/** Stages one non-empty bounded batch of canonical material projections. */
+/** Stages one non-empty bounded batch of canonical content projections. */
 export const StageProjectionBatchRequestSchema = Schema.Struct({
   ...StageProjectionBatchFields,
   operation: Schema.Literal("stageProjectionBatch"),
@@ -304,6 +288,8 @@ export const PublicationRequestSchema = Schema.Union(
   PublicationRecoveryLookupRequestSchema,
   StageReleaseRequestSchema,
   StageRecoveryRequestSchema,
+  StageSnapshotRequestSchema,
+  StageSnapshotBatchRequestSchema,
   StageItemBatchRequestSchema,
   StageRouteBatchRequestSchema,
   StageProjectionBatchRequestSchema,

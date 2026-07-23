@@ -5,11 +5,19 @@
   "type": "module",
   "imports": {
     "#corpus/*": {
-      "types": "./src/*.ts",
+      "types": "./*.ts",
       "default": "./dist/*.js"
     }
   },
   "exports": {
+    "./articles/registry": {
+      "types": "./dist/articles/registry.d.ts",
+      "import": "./dist/articles/registry.js"
+    },
+    "./articles/source": {
+      "types": "./dist/articles/source.d.ts",
+      "import": "./dist/articles/source.js"
+    },
     "./material/registry": {
       "types": "./dist/material/registry.d.ts",
       "import": "./dist/material/registry.js"
@@ -17,6 +25,38 @@
     "./material/source": {
       "types": "./dist/material/source.d.ts",
       "import": "./dist/material/source.js"
+    },
+    "./program/snapshot": {
+      "types": "./dist/program/snapshot.d.ts",
+      "import": "./dist/program/snapshot.js"
+    },
+    "./question-bank/registry": {
+      "types": "./dist/question-bank/registry.d.ts",
+      "import": "./dist/question-bank/registry.js"
+    },
+    "./question-bank/path": {
+      "types": "./dist/question-bank/path.d.ts",
+      "import": "./dist/question-bank/path.js"
+    },
+    "./question-bank/source": {
+      "types": "./dist/question-bank/source.d.ts",
+      "import": "./dist/question-bank/source.js"
+    },
+    "./team/source": {
+      "types": "./dist/team/source.d.ts",
+      "import": "./dist/team/source.js"
+    },
+    "./tryout/catalog": {
+      "types": "./dist/tryout/catalog.d.ts",
+      "import": "./dist/tryout/catalog.js"
+    },
+    "./tryout/projection": {
+      "types": "./dist/tryout/projection.d.ts",
+      "import": "./dist/tryout/projection.js"
+    },
+    "./tryout/registry": {
+      "types": "./dist/tryout/registry.d.ts",
+      "import": "./dist/tryout/registry.js"
     }
   },
   "scripts": {
@@ -29,7 +69,8 @@
   "dependencies": {
     "@effect/platform": "catalog:",
     "@nakafa/aksara-contracts": "workspace:*",
-    "effect": "catalog:"
+    "effect": "catalog:",
+    "typescript": "catalog:"
   },
   "devDependencies": {
     "@nakafa/typescript-config": "workspace:*",

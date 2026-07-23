@@ -7,9 +7,10 @@ import {
 } from "#contracts/ids";
 import { digestProjections } from "#contracts/projection/digest";
 import {
-  type MaterialLessonProjection,
-  MaterialLessonProjectionSchema,
-} from "#contracts/projection/material";
+  type ContentProjection,
+  ContentProjectionSchema,
+  projectionPublicPath,
+} from "#contracts/projection/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const ProjectionIndexSchema = Schema.Number.pipe(
@@ -29,7 +30,7 @@ export class ProjectionOrderError extends Schema.TaggedError<ProjectionOrderErro
   { projectionIndex: ProjectionIndexSchema }
 ) {}
 
-/** Two material projections claim the same locale-specific public route. */
+/** Two content projections claim the same locale-specific public route. */
 export class ProjectionRouteError extends Schema.TaggedError<ProjectionRouteError>()(
   "ProjectionRouteError",
   {
@@ -61,7 +62,7 @@ export class ProjectionDigestError extends Schema.TaggedError<ProjectionDigestEr
 
 interface ProjectionState {
   readonly firstIndexByRoute: Map<string, number>;
-  previous: MaterialLessonProjection | undefined;
+  previous: ContentProjection | undefined;
 }
 
 /** Count authenticated without retaining complete projection bodies. */
@@ -75,7 +76,7 @@ function decodeProjection(
   source: unknown,
   projectionIndex: number
 ) {
-  return Schema.decodeUnknown(MaterialLessonProjectionSchema)(source, {
+  return Schema.decodeUnknown(ContentProjectionSchema)(source, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(() => new ProjectionDecodeError({ projectionIndex })),
@@ -87,14 +88,18 @@ function decodeProjection(
         return Effect.fail(new ProjectionOrderError({ projectionIndex }));
       }
       state.previous = projection;
-      const identity = routeIdentity(projection);
+      const publicPath = projectionPublicPath(projection);
+      if (publicPath === undefined) {
+        return Effect.void;
+      }
+      const identity = routeIdentity({ locale: projection.locale, publicPath });
       const firstIndex = state.firstIndexByRoute.get(identity);
       if (firstIndex !== undefined) {
         return Effect.fail(
           new ProjectionRouteError({
             duplicateIndex: projectionIndex,
             firstIndex,
-            publicPath: projection.publicPath,
+            publicPath,
           })
         );
       }
@@ -104,7 +109,7 @@ function decodeProjection(
   );
 }
 
-/** Strictly decodes a replayable canonical material projection stream. */
+/** Strictly decodes a replayable canonical content projection stream. */
 export function decodeContentProjections<E, R>(
   projections: Stream.Stream<unknown, E, R>
 ) {

@@ -12,6 +12,10 @@ import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
 } from "@nakafa/aksara-contracts/release";
+import {
+  emptyContentSnapshots,
+  invertContentSnapshots,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
@@ -68,6 +72,7 @@ const item = ContentReleaseItemSchema.make({
     artifactHash: artifact.artifactHash,
     contentKey: payload.contentKey,
     delivery: "public",
+    family: "material",
     locale: payload.locale,
     operation: "upsert",
     rendererDomain: payload.rendererDomain,
@@ -98,6 +103,7 @@ const manifest = ContentReleaseManifestSchema.make({
   rollbackDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
   routeCount: 0,
   routeDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
+  snapshots: invertContentSnapshots(emptyContentSnapshots()),
   upsertCount: 1,
 });
 const resolver = ContentVerificationKeyResolver.of({

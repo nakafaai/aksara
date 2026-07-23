@@ -9,7 +9,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
@@ -21,12 +21,14 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { emptyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
+import { materialGraph } from "#test/graph";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -54,9 +56,10 @@ const { payload } = await Effect.runPromise(
 );
 const projection = MaterialLessonProjectionSchema.make({
   contentKey: source.contentKey,
+  graph: materialGraph(source.locale, "material", "test-a"),
   kind: "subject-lesson",
   locale: source.locale,
-  materialKey: MaterialKeySchema.make("test.material"),
+  materialKey: MaterialKeySchema.make("lesson.test.material"),
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: PublicPathSchema.make("subjects/test/material"),
@@ -69,6 +72,7 @@ const baseRecord: PreparedContentUpsert = {
     artifactHash: hashCompiledContentPayload(payload),
     contentKey: source.contentKey,
     delivery: "public",
+    family: "material",
     locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
@@ -84,8 +88,9 @@ const resultHead = MaterialHeadSchema.make({
   compilerConfigHash: payload.compilerConfigHash,
   contentKey: baseRecord.change.contentKey,
   delivery: baseRecord.change.delivery,
+  family: "material",
   locale: baseRecord.change.locale,
-  projectionHash: hashMaterialProjection(projection),
+  projectionHash: hashContentProjection(projection),
   publicPath: projection.publicPath,
   rendererDomain: baseRecord.change.rendererDomain,
   sourceHash: payload.sourceHash,
@@ -94,11 +99,17 @@ const resultHead = MaterialHeadSchema.make({
 const baseTransition = {
   prior: {
     contentKey: baseRecord.change.contentKey,
+    family: "material",
     locale: baseRecord.change.locale,
     state: "absent" as const,
   },
   record: baseRecord,
 };
+const emptySnapshots = {
+  previousSnapshots: null,
+  snapshotManifests: () => Stream.empty,
+  snapshotRows: () => Stream.empty,
+} as const;
 
 /** Runs preparation with one replayable in-memory test protocol source. */
 function prepare<E, R>(records: () => Stream.Stream<unknown, E, R>) {
@@ -108,6 +119,7 @@ function prepare<E, R>(records: () => Stream.Stream<unknown, E, R>) {
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+    ...emptySnapshots,
     records,
     releaseId: ReleaseIdSchema.make("test-prepare-release"),
     rendererManifest,
@@ -129,6 +141,7 @@ describe("prepareContentRelease", () => {
       record: {
         change: ContentDeleteSchema.make({
           contentKey: ContentKeySchema.make("test:prepare:z"),
+          family: "material",
           locale: "en",
           operation: "delete",
         }),
@@ -137,18 +150,24 @@ describe("prepareContentRelease", () => {
     const prepared = await Effect.runPromise(
       prepare(() => Stream.make(baseTransition, deletion))
     );
-    const [items, projections] = await Effect.runPromise(
-      Effect.all([
-        prepared.items().pipe(Stream.runCollect),
-        prepared.projections().pipe(Stream.runCollect),
-      ])
-    );
+    const [items, projections, snapshotManifests, snapshotRows] =
+      await Effect.runPromise(
+        Effect.all([
+          prepared.items().pipe(Stream.runCollect),
+          prepared.projections().pipe(Stream.runCollect),
+          prepared.snapshotManifests().pipe(Stream.runCollect),
+          prepared.snapshotRows().pipe(Stream.runCollect),
+        ])
+      );
     expect(prepared.manifest).toMatchObject({
       itemCount: 2,
       projectionCount: 1,
+      snapshots: emptyContentSnapshots(),
     });
     expect([...items].map(({ index }) => index)).toEqual([0, 1]);
     expect([...projections]).toEqual([projection]);
+    expect([...snapshotManifests]).toEqual([]);
+    expect([...snapshotRows]).toEqual([]);
     expect(prepared.rendererManifest).toEqual(rendererManifest);
   });
 
@@ -172,6 +191,7 @@ describe("prepareContentRelease", () => {
         baseReleaseId: null,
         baseResultCount: 0,
         baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+        ...emptySnapshots,
         records: () => {
           invoked = true;
           return Stream.make(baseTransition);
@@ -199,6 +219,7 @@ describe("prepareContentRelease", () => {
         baseReleaseId: selfBasedRelease,
         baseResultCount: 1,
         baseResultDigest: resultHead.projectionHash,
+        previousSnapshots: emptyContentSnapshots(),
         records: () => {
           invoked = true;
           return Stream.make(baseTransition);
@@ -207,6 +228,8 @@ describe("prepareContentRelease", () => {
         rendererManifest,
         result: () => Stream.make(resultHead),
         routes: () => Stream.empty,
+        snapshotManifests: () => Stream.empty,
+        snapshotRows: () => Stream.empty,
       }).pipe(Effect.flip)
     );
 
@@ -227,6 +250,10 @@ describe("prepareContentRelease", () => {
       baseManifestHash: null,
       baseReleaseId: ReleaseIdSchema.make("test-unpaired-base"),
     },
+    {
+      baseManifestHash: Sha256HashSchema.make(`sha256:${"6".repeat(64)}`),
+      baseReleaseId: ReleaseIdSchema.make("test-missing-snapshot-base"),
+    },
   ])("rejects an unpaired exact base identity", async (base) => {
     const error = await Effect.runPromise(
       prepareContentRelease({
@@ -234,6 +261,7 @@ describe("prepareContentRelease", () => {
         ...base,
         baseResultCount: 0,
         baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+        ...emptySnapshots,
         records: () => Stream.make(baseTransition),
         releaseId: ReleaseIdSchema.make("test-invalid-base-pair"),
         rendererManifest,

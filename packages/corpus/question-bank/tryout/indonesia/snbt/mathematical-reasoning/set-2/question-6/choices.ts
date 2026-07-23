@@ -1,0 +1,20 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  en: [
+    { label: "$$3\\sqrt{2}$$", value: true },
+    { label: "$$2\\sqrt{2}$$", value: false },
+    { label: "$$\\sqrt{2}$$", value: false },
+    { label: "$$\\frac{1}{2}\\sqrt{2}$$", value: false },
+    { label: "$$\\frac{1}{3}\\sqrt{2}$$", value: false },
+  ],
+  id: [
+    { label: "$$3\\sqrt{2}$$", value: true },
+    { label: "$$2\\sqrt{2}$$", value: false },
+    { label: "$$\\sqrt{2}$$", value: false },
+    { label: "$$\\frac{1}{2}\\sqrt{2}$$", value: false },
+    { label: "$$\\frac{1}{3}\\sqrt{2}$$", value: false },
+  ],
+};
+
+export default choices;

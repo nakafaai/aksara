@@ -1,11 +1,19 @@
 import type { CommandExecutor, FileSystem, Path } from "@effect/platform";
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
+import type {
+  ContentHead,
+  QuestionHead,
+} from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import {
+  baseContentSnapshots,
+  type ContentSnapshotSet,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { streamMaterialHeads } from "@nakafa/aksara-publisher/heads";
-import { prepareMaterialPublication } from "@nakafa/aksara-publisher/material/publication";
+import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
+import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import {
   reuseStoredGitRelease,
@@ -13,8 +21,12 @@ import {
 } from "@nakafa/aksara-publisher/preparation/recovery";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
+import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import { Effect, type Scope, Stream } from "effect";
-import { readCleanAksaraRevision } from "#cli/evidence";
+import {
+  readCleanAksaraRevision,
+  validateStableAksaraRevision,
+} from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { validateRecoveryRevision } from "#cli/recovery";
 import { findAksaraRoot } from "#cli/repository";
@@ -24,6 +36,7 @@ interface BaseCatalogIdentity {
   readonly releaseId: ReleaseId;
   readonly resultCount: number;
   readonly resultDigest: ContentReleaseBundle["release"]["manifest"]["resultDigest"];
+  readonly snapshots: ContentSnapshotSet;
 }
 
 interface GitPreparationBase {
@@ -79,12 +92,25 @@ type PrepareProductionRollback = (
   input: RollbackPreparationInput
 ) => Effect.Effect<PreparedRollback, ProductionError, PreparationServices>;
 
-/** Streams no prior heads for genesis and exact target-owned heads later. */
-function publishedMaterialHeads(base: BaseCatalogIdentity | null) {
+/** Streams no prior heads for genesis and both exact target-owned families later. */
+function publishedContentHeads(base: BaseCatalogIdentity | null) {
   if (base === null) {
-    return Stream.empty;
+    return {
+      article: Stream.empty,
+      material: Stream.empty,
+      question: Stream.empty,
+    };
   }
-  return streamMaterialHeads(base.releaseId, base.manifestHash);
+  return {
+    article: streamContentHeads(base.releaseId, base.manifestHash, "article"),
+    material: streamContentHeads(base.releaseId, base.manifestHash, "material"),
+    question: streamContentHeads(base.releaseId, base.manifestHash, "question"),
+  };
+}
+
+/** Narrows the complete desired catalog to try-out-owned question heads. */
+function isQuestionHead(head: ContentHead): head is QuestionHead {
+  return head.family === "question";
 }
 
 /** Selects the authenticated base catalog represented by one source bundle. */
@@ -97,6 +123,7 @@ function selectSourceBase(bundle: ContentReleaseBundle | null) {
     releaseId: bundle.release.manifest.releaseId,
     resultCount: bundle.release.manifest.resultCount,
     resultDigest: bundle.release.manifest.resultDigest,
+    snapshots: bundle.release.manifest.snapshots,
   } satisfies BaseCatalogIdentity;
 }
 
@@ -111,6 +138,7 @@ function selectRecoveryBase(bundle: ContentReleaseBundle) {
     releaseId: manifest.baseReleaseId,
     resultCount: manifest.baseResultCount,
     resultDigest: manifest.baseResultDigest,
+    snapshots: baseContentSnapshots(manifest.snapshots),
   } satisfies BaseCatalogIdentity;
 }
 
@@ -138,8 +166,8 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       input.kind === "new"
         ? input.rendererManifest
         : input.bundle.rendererManifest;
-    const material = yield* prepareMaterialPublication({
-      baseCatalog:
+    const catalog = yield* prepareContentCatalog({
+      base:
         base === null
           ? null
           : {
@@ -148,7 +176,13 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
               releaseId: base.releaseId,
             },
       checkoutRoot,
-      published: publishedMaterialHeads(base),
+      published: publishedContentHeads(base),
+      rendererManifest,
+    });
+    const snapshots = yield* prepareReleaseSnapshots({
+      checkoutRoot,
+      previousSnapshots: base?.snapshots ?? null,
+      questionHeads: () => catalog.result().pipe(Stream.filter(isQuestionHead)),
       rendererManifest,
     });
     const prepared = yield* prepareContentRelease({
@@ -158,12 +192,17 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       baseResultCount: base === null ? 0 : base.resultCount,
       baseResultDigest:
         base === null ? EMPTY_RESULT_CATALOG_DIGEST : base.resultDigest,
-      records: material.records,
+      previousSnapshots: base?.snapshots ?? null,
+      records: catalog.records,
       releaseId: input.releaseId,
       rendererManifest,
-      result: material.result,
-      routes: material.routes,
+      result: catalog.result,
+      routes: catalog.routes,
+      snapshotManifests: snapshots.manifests,
+      snapshotRows: snapshots.rows,
     });
+    const preparedSha = yield* readCleanAksaraRevision(checkoutRoot);
+    yield* validateStableAksaraRevision(aksaraSha, preparedSha);
     if (input.kind === "new") {
       return prepared;
     }

@@ -9,7 +9,7 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialLessonProjectionSchema,
   MaterialSectionSchema,
@@ -20,6 +20,7 @@ import {
   type DerivedRollbackState,
   snapshotRollbackState,
 } from "#publisher/rollback/records";
+import { materialGraph } from "#test/graph";
 import { projection as baseProjection, contentRecord } from "#test/publication";
 
 export const rollbackFixtureReleaseId = ReleaseIdSchema.make(
@@ -47,6 +48,7 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
   const projection = MaterialLessonProjectionSchema.make({
     ...baseProjection,
     contentKey,
+    graph: materialGraph("en", "material", `test-${input.hashCharacter}`),
     parentPath: PublicPathSchema.make(
       input.publicPath.slice(0, input.publicPath.lastIndexOf("/"))
     ),
@@ -69,6 +71,7 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
     artifactHash: hash,
     contentKey,
     delivery: "public" as const,
+    family: "material" as const,
     locale: "en" as const,
     operation: "upsert" as const,
     rendererDomain: "mathematics" as const,
@@ -90,8 +93,9 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
     compilerConfigHash: payload.compilerConfigHash,
     contentKey: change.contentKey,
     delivery: change.delivery,
+    family: "material",
     locale: change.locale,
-    projectionHash: hashMaterialProjection(projection),
+    projectionHash: hashContentProjection(projection),
     publicPath: projection.publicPath,
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
@@ -114,6 +118,7 @@ export function makeDerivedDelete(input: {
     item: {
       change: {
         contentKey: ContentKeySchema.make(input.contentKey),
+        family: "material" as const,
         locale: "en" as const,
         operation: "delete" as const,
       },

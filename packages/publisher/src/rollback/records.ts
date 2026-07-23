@@ -2,8 +2,11 @@ import { verifySignedContentArtifactIntegrity } from "@nakafa/aksara-contracts/a
 import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
+import {
+  ContentProjectionSchema,
+  projectionPublicPath,
+} from "@nakafa/aksara-contracts/projection/spec";
 import {
   ContentDeleteSchema,
   ContentReleaseItemSchema,
@@ -61,7 +64,7 @@ export const DerivedRollbackStateSchema = Schema.Union(
     artifact: SignedContentArtifactSchema,
     item: DerivedRollbackUpsertItemSchema,
     kind: Schema.Literal("upsert"),
-    projection: MaterialLessonProjectionSchema,
+    projection: ContentProjectionSchema,
   })
 );
 export type DerivedRollbackState = typeof DerivedRollbackStateSchema.Type;
@@ -174,25 +177,30 @@ export function snapshotRollbackState(
     const { change } = state.item;
     return {
       contentKey: change.contentKey,
+      family: change.family,
       locale: change.locale,
       state: "absent",
     };
   }
   const { change } = state.item;
   const { payload } = state.artifact;
-  return {
-    head: {
-      artifactHash: change.artifactHash,
-      compilerConfigHash: payload.compilerConfigHash,
-      contentKey: change.contentKey,
-      delivery: change.delivery,
-      locale: change.locale,
-      projectionHash: hashMaterialProjection(state.projection),
-      publicPath: state.projection.publicPath,
-      rendererDomain: change.rendererDomain,
-      sourceHash: payload.sourceHash,
-      sourcePath: change.sourcePath,
-    },
-    state: "material",
+  const head = {
+    artifactHash: change.artifactHash,
+    compilerConfigHash: payload.compilerConfigHash,
+    contentKey: change.contentKey,
+    delivery: change.delivery,
+    locale: change.locale,
+    projectionHash: hashContentProjection(state.projection),
+    publicPath: projectionPublicPath(state.projection),
+    rendererDomain: change.rendererDomain,
+    sourceHash: payload.sourceHash,
+    sourcePath: change.sourcePath,
   };
+  if (change.family === "article") {
+    return { head: { ...head, family: "article" }, state: "article" };
+  }
+  if (change.family === "material") {
+    return { head: { ...head, family: "material" }, state: "material" };
+  }
+  return { head: { ...head, family: "question" }, state: "question" };
 }

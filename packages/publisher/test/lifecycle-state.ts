@@ -1,19 +1,38 @@
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
 import type {
   ContentReleaseItem,
   PublicationReceipt,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import type {
+  HeadPage,
+  HeadPageRequest,
+  MaterialHead,
+} from "@nakafa/aksara-contracts/release/head";
+import type {
+  RollbackPage,
+  RollbackPageRequest,
+} from "@nakafa/aksara-contracts/release/rollback";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
+import type {
+  RoutePage,
+  RoutePageRequest,
+} from "@nakafa/aksara-contracts/release/route-page";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
+import type {
+  ContentSnapshotManifest,
+  ContentSnapshotRow,
+} from "@nakafa/aksara-contracts/release/snapshot-data";
 
 interface StagedRows {
   readonly artifacts: SignedContentArtifact[];
   readonly items: ContentReleaseItem[];
   readonly projections: MaterialLessonProjection[];
   readonly routes: ContentRouteItem[];
+  readonly snapshotRows: ContentSnapshotRow[];
+  readonly snapshots: ContentSnapshotManifest[];
 }
 
 /** Builds terminal publication evidence from one exact signed release. */
@@ -30,10 +49,12 @@ export function releaseReceipt(
     resultCount: manifest.resultCount,
     resultDigest: manifest.resultDigest,
     routeDigest: manifest.routeDigest,
+    snapshots: manifest.snapshots,
     stagedArtifacts: manifest.upsertCount,
     stagedItems: manifest.itemCount,
     stagedProjections: manifest.projectionCount,
     stagedRoutes: manifest.routeCount,
+    stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
   };
 }
 
@@ -62,8 +83,10 @@ export function releaseEvidence(
     rollbackDigest: manifest.rollbackDigest,
     routeCount: manifest.routeCount,
     routeDigest: manifest.routeDigest,
+    snapshots: manifest.snapshots,
     stagedArtifacts: manifest.upsertCount,
     stagedRoutes: manifest.routeCount,
+    stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
     upsertHeads: manifest.upsertCount,
   };
 }
@@ -83,6 +106,8 @@ export function createLifecycleRows() {
       items: [],
       projections: [],
       routes: [],
+      snapshotRows: [],
+      snapshots: [],
     };
     rows.set(releaseId, created);
     return created;
@@ -110,8 +135,9 @@ export function createLifecycleRows() {
       compilerConfigHash: artifact.payload.compilerConfigHash,
       contentKey: change.contentKey,
       delivery: change.delivery,
+      family: "material",
       locale: change.locale,
-      projectionHash: hashMaterialProjection(projection),
+      projectionHash: hashContentProjection(projection),
       publicPath: projection.publicPath,
       rendererDomain: change.rendererDomain,
       sourceHash: artifact.payload.sourceHash,
@@ -119,5 +145,96 @@ export function createLifecycleRows() {
     };
   };
 
-  return { forRelease, materialHead };
+  /** Derives one complete family-owned head page from staged target rows. */
+  const headPage = (request: HeadPageRequest): HeadPage => {
+    if (request.family === "article") {
+      return {
+        ...request,
+        done: true,
+        family: "article",
+        heads: [],
+        nextCursor: null,
+      };
+    }
+    if (request.family === "question") {
+      return {
+        ...request,
+        done: true,
+        family: "question",
+        heads: [],
+        nextCursor: null,
+      };
+    }
+    const heads = forRelease(request.activeReleaseId)
+      .items.map(materialHead)
+      .filter((head) => head !== null);
+    return {
+      ...request,
+      done: true,
+      family: "material",
+      heads,
+      nextCursor: null,
+    };
+  };
+
+  /** Reconstructs exact current and prior states from one staged release. */
+  const rollbackPage = (request: RollbackPageRequest): RollbackPage => {
+    const staged = forRelease(request.rollbackOf);
+    const records = staged.items.map((item) => {
+      const { change } = item;
+      const head = materialHead(item);
+      if (!(head && change.operation === "upsert")) {
+        throw new TypeError("Expected one staged upsert rollback record.");
+      }
+      const artifact = staged.artifacts.find(
+        (value) => value.artifactHash === change.artifactHash
+      );
+      const projection = staged.projections.find(
+        (value) =>
+          value.contentKey === change.contentKey &&
+          value.locale === change.locale
+      );
+      if (!(artifact && projection)) {
+        throw new TypeError("Expected complete staged rollback state.");
+      }
+      return {
+        current: { artifact, change, projection },
+        index: item.index,
+        prior: {
+          change: {
+            contentKey: change.contentKey,
+            family: change.family,
+            locale: change.locale,
+            operation: "delete" as const,
+          },
+        },
+      };
+    });
+    return {
+      done: true,
+      nextIndex: records.length - 1,
+      records,
+      rollbackOf: request.rollbackOf,
+      rollbackOfManifestHash: request.rollbackOfManifestHash,
+      total: records.length,
+    };
+  };
+
+  /** Pairs staged routes with the empty prior owner used by this target. */
+  const routePage = (request: RoutePageRequest): RoutePage => {
+    const records = forRelease(request.rollbackOf).routes.map((route) => ({
+      current: route,
+      priorContentKey: null,
+    }));
+    return {
+      done: true,
+      nextIndex: records.length - 1,
+      records,
+      rollbackOf: request.rollbackOf,
+      rollbackOfManifestHash: request.rollbackOfManifestHash,
+      total: records.length,
+    };
+  };
+
+  return { forRelease, headPage, rollbackPage, routePage };
 }

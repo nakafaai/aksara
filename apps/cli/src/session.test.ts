@@ -1,4 +1,4 @@
-import { existsSync, realpathSync, writeFileSync } from "node:fs";
+import { realpathSync, writeFileSync } from "node:fs";
 import { basename, relative } from "node:path";
 import { FileSystem, Error as PlatformError } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
@@ -25,34 +25,21 @@ import { selectPreviewDocument } from "#cli/repository";
 import { refreshDocument } from "#cli/session";
 import { makePreviewReady } from "#test/preview";
 import {
-  makeTestRepositories,
+  makeRepositoryTracker,
   REAL_SOURCE,
   RENDERER_MANIFEST,
-  removeTestRepositories,
-  type TestRepositories,
 } from "#test/real";
 import { makeApp, makeProvider, runLocal, runWatch } from "#test/session";
 
-const repositories: TestRepositories[] = [];
+const repositories = makeRepositoryTracker();
 
 afterEach(() => {
-  for (const repository of repositories.splice(0)) {
-    if (existsSync(repository.root)) {
-      removeTestRepositories(repository);
-    }
-  }
+  repositories.clear();
 });
-
-/** Creates and tracks one isolated real-corpus checkout pair. */
-function makeRepositories() {
-  const repository = makeTestRepositories();
-  repositories.push(repository);
-  return repository;
-}
 
 describe("preview document refresh", () => {
   it("publishes success and sanitizes typed compilation failures", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const ready = await makePreviewReady(repository);
     const control = { failed: 0, pending: 0, ready: 0 };
     const provider = makeProvider(control);
@@ -80,7 +67,7 @@ describe("preview document refresh", () => {
   });
 
   it("propagates provider failures instead of relabeling them", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const ready = await makePreviewReady(repository);
     const control = { failed: 0, failPending: true, pending: 0, ready: 0 };
     const error = await Effect.runPromise(
@@ -96,7 +83,7 @@ describe("preview document refresh", () => {
 
 describe("selected document watch", () => {
   it("filters siblings, refreshes the selected file, and stays active", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const aksaraRoot = realpathSync(repository.aksaraRoot);
     const selected = await Effect.runPromise(
       selectPreviewDocument(
@@ -132,7 +119,7 @@ describe("selected document watch", () => {
   });
 
   it("distinguishes provider, filesystem, and ended watch failures", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const aksaraRoot = realpathSync(repository.aksaraRoot);
     const selected = await Effect.runPromise(
       selectPreviewDocument(
@@ -170,7 +157,7 @@ describe("selected document watch", () => {
 
 describe("local preview session", () => {
   it("opens the real selected corpus and recompiles without a child restart", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] } = {};
     await runLocal(repository, makeApp(capture), (session) =>
       session.refresh().pipe(
@@ -184,7 +171,7 @@ describe("local preview session", () => {
   });
 
   it("keeps a changed route failed when initial compilation fails", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     writeFileSync(repository.documentPath, `${REAL_SOURCE}\n\n{process.env}\n`);
     const capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] } = {};
     await runLocal(repository, makeApp(capture), () =>
@@ -207,7 +194,7 @@ describe("local preview session", () => {
   });
 
   it("stops if the actual Nakafa child exits before renderer discovery", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const child: RunningNakafa = {
       awaitExit: Effect.fail(makeNakafaAppError("exit", false, 1)),
       origin: new URL("http://localhost:31234"),

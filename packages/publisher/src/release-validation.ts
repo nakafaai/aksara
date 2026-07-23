@@ -17,6 +17,11 @@ import type {
 } from "@nakafa/aksara-contracts/release";
 import type { VerifiedContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type { VerifiedContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import {
+  hasSameContentSnapshots,
+  snapshotRowCount,
+} from "@nakafa/aksara-contracts/release/snapshot";
+import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema } from "effect";
 
@@ -100,12 +105,31 @@ export function validateReleaseRendererManifest(
   );
 }
 
+/** Requires derived structured snapshots to equal the signed release state. */
+export function validateReleaseSnapshots(
+  manifest: ContentReleaseManifest,
+  summary: VerifiedContentSnapshots
+) {
+  if (
+    hasSameContentSnapshots(summary.snapshots, manifest.snapshots) &&
+    summary.stagedRows === snapshotRowCount(manifest.snapshots)
+  ) {
+    return Effect.void;
+  }
+  return Effect.fail(
+    new ReleaseVerificationMismatchError({
+      message: "Structured snapshot sources do not match the signed release.",
+    })
+  );
+}
+
 /** Proves the target staged the complete authenticated release before activation. */
 export function validateVerificationEvidence(
   release: SignedContentRelease,
   summary: VerifiedContentReleaseItems,
   projectionSummary: VerifiedContentProjections,
   routeSummary: VerifiedContentRoutes,
+  snapshotSummary: VerifiedContentSnapshots,
   evidence: ReleaseVerificationEvidence
 ) {
   const { manifest } = release;
@@ -136,7 +160,10 @@ export function validateVerificationEvidence(
     evidence.routeCount === manifest.routeCount &&
     evidence.routeCount === routeSummary.count &&
     evidence.routeDigest === manifest.routeDigest &&
-    evidence.stagedRoutes === manifest.routeCount;
+    evidence.stagedRoutes === manifest.routeCount &&
+    hasSameContentSnapshots(evidence.snapshots, snapshotSummary.snapshots) &&
+    hasSameContentSnapshots(evidence.snapshots, manifest.snapshots) &&
+    evidence.stagedSnapshotRows === snapshotSummary.stagedRows;
   if (matches) {
     return Effect.void;
   }
@@ -165,7 +192,9 @@ export function validateManifestReceipt(
     receipt.projectionDigest === manifest.projectionDigest &&
     receipt.resultCount === manifest.resultCount &&
     receipt.resultDigest === manifest.resultDigest &&
-    receipt.routeDigest === manifest.routeDigest;
+    receipt.routeDigest === manifest.routeDigest &&
+    hasSameContentSnapshots(receipt.snapshots, manifest.snapshots) &&
+    receipt.stagedSnapshotRows === snapshotRowCount(manifest.snapshots);
   if (matches) {
     return Effect.succeed(receipt);
   }
@@ -182,12 +211,15 @@ export function validatePublicationReceipt(
   summary: VerifiedContentReleaseItems,
   projectionSummary: VerifiedContentProjections,
   routeSummary: VerifiedContentRoutes,
+  snapshotSummary: VerifiedContentSnapshots,
   receipt: PublicationReceipt
 ) {
   const streamsMatch =
     receipt.stagedArtifacts === summary.upsertCount &&
     receipt.stagedProjections === projectionSummary.count &&
     receipt.stagedRoutes === routeSummary.count &&
+    receipt.stagedSnapshotRows === snapshotSummary.stagedRows &&
+    hasSameContentSnapshots(receipt.snapshots, snapshotSummary.snapshots) &&
     receipt.activatedHeads === summary.upsertCount &&
     receipt.deletedHeads === summary.deleteCount;
   if (!streamsMatch) {

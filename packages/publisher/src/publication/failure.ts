@@ -2,6 +2,7 @@ import type { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artif
 import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { Effect } from "effect";
@@ -21,6 +22,11 @@ export type ProjectionVerificationError<E, R> = Effect.Effect.Error<
 /** Failure inferred from canonical route verification. */
 export type RouteVerificationError<E, R> = Effect.Effect.Error<
   ReturnType<typeof verifyContentRoutes<E, R>>
+>;
+
+/** Failure inferred from structured snapshot verification. */
+export type SnapshotVerificationError<E, R> = Effect.Effect.Error<
+  ReturnType<typeof verifyContentSnapshots<E, R, E, R>>
 >;
 
 /** Failure inferred from renderer-manifest hash validation. */

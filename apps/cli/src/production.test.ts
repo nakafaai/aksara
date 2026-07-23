@@ -24,8 +24,9 @@ beforeEach(() => {
   });
 });
 describe("production command", () => {
-  it("resumes an active release with its exact retained inverse", async () => {
+  it("resumes an active release without reading the signer secret", async () => {
     const active = gitBundle("release-active");
+    calls.derivedPublicKeyPem = "unavailable-production-signing-key";
     calls.current = currentState({
       active: completedBundle(active),
       candidate: null,
@@ -39,13 +40,14 @@ describe("production command", () => {
       })
     ).resolves.toMatchObject({ releaseId: "release-active" });
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       publishCalls: 0,
       rendererCalls: 0,
       resumeBundle: active,
       resumeCalls: 1,
       rootReads: 0,
+      signingSecretReads: 0,
       sourceLayers: 0,
       targetServiceReads: 1,
     });
@@ -66,17 +68,18 @@ describe("production command", () => {
       })
     ).resolves.toEqual(receiptFor(completed.release.manifest));
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       publishCalls: 0,
       rendererCalls: 0,
       resumeBundle: completed,
       resumeCalls: 1,
+      signingSecretReads: 0,
       sourceLayers: 0,
     });
   });
 
-  it("rejects signing-key mismatch before creating a target", async () => {
+  it("rejects signing-key mismatch after selecting a signing action", async () => {
     calls.derivedPublicKeyPem = "different-derived-public-key";
     await expect(
       rejectProduction({
@@ -91,7 +94,8 @@ describe("production command", () => {
     expect(calls).toMatchObject({
       publishCalls: 0,
       rendererCalls: 0,
-      targetCalls: 0,
+      signingSecretReads: 1,
+      targetCalls: 1,
     });
   });
 
@@ -113,11 +117,12 @@ describe("production command", () => {
       stage: "state",
     });
     expect(calls).toMatchObject({
+      catalogCalls: 0,
       cleanReads: 0,
-      materialCalls: 0,
       publishCalls: 0,
       rendererCalls: 0,
       resumeCalls: 0,
+      signingSecretReads: 0,
     });
   });
 });

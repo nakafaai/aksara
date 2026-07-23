@@ -1,4 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
+import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import {
   type SignedContentArtifact,
   SignedContentArtifactSchema,
@@ -22,6 +23,7 @@ import {
   type VerifiedContentRoutes,
   verifyContentRoutes,
 } from "@nakafa/aksara-contracts/release/routes";
+import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
 import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -32,6 +34,7 @@ import {
   makeReleaseItemBatches,
   makeRouteBatches,
 } from "#publisher/batching";
+import { contentSnapshotCacheChanges } from "#publisher/cache";
 import type {
   PreparedContentRelease,
   PreparedGitRelease,
@@ -42,12 +45,16 @@ import {
   makeGitArtifacts,
   makeRollbackArtifacts,
 } from "#publisher/publication/artifacts";
+import type { PublishContentReleaseError } from "#publisher/publication/program";
+import {
+  stagePublicationSnapshots,
+  verifyPublicationSnapshots,
+} from "#publisher/publication/snapshots";
 import {
   PublicationModeMismatchError,
   PublicationSigningKey,
   type PublicationSource,
   PublicationTarget,
-  type PublishContentReleaseError,
 } from "#publisher/publication/spec";
 import { validateReleaseRendererManifest } from "#publisher/release-validation";
 import { createReplaySpool, type ReplaySpool } from "#publisher/replay/spool";
@@ -86,8 +93,15 @@ export interface PublicationPlan<E, R> {
     readonly release: SignedContentRelease;
     readonly rendererManifest: RendererManifestEnvelope;
   };
+  /** Replays family-aware cache changes from the decoded release item stream. */
+  readonly cacheChanges: () => Stream.Stream<
+    ContentCacheChange,
+    PublishContentReleaseError<E>,
+    R
+  >;
   readonly projectionSummary: VerifiedContentProjections;
   readonly routeSummary: VerifiedContentRoutes;
+  readonly snapshotSummary: VerifiedContentSnapshots;
   readonly stage: Effect.Effect<
     void,
     PublishContentReleaseError<E>,
@@ -143,6 +157,23 @@ function upsertItems<E, R>(items: Stream.Stream<ContentReleaseItem, E, R>) {
   );
 }
 
+/** Selects cache family and optional immutable hash from every changed item. */
+function contentCacheChanges<E, R>(
+  items: Stream.Stream<ContentReleaseItem, E, R>
+) {
+  return items.pipe(
+    Stream.map(
+      (item): ContentCacheChange =>
+        item.change.operation === "upsert"
+          ? {
+              artifactHash: item.change.artifactHash,
+              family: item.change.family,
+            }
+          : { family: item.change.family }
+    )
+  );
+}
+
 /** Builds one signed replayable plan without changing target visibility. */
 export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   "AksaraPublisher.preparePublicationPlan"
@@ -175,6 +206,12 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     manifest: input.manifest,
     routes: input.routes(),
   });
+  const snapshotSummary = yield* verifyPublicationSnapshots(input);
+  /** Replays every structured snapshot and body-item cache change. */
+  const cacheChanges = () =>
+    contentSnapshotCacheChanges(snapshotSummary.snapshots).pipe(
+      Stream.concat(contentCacheChanges(decodedItems()))
+    );
   yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
 
   let artifactPlan: PublicationArtifactPlan;
@@ -233,22 +270,25 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
         input.manifest.releaseId,
         artifactPlan.artifacts.replay()
       ).pipe(Stream.runForEach(target.stageArtifactBatch));
-      return;
+    } else {
+      const artifacts = makeGitArtifacts({
+        compiled: artifactPlan.compiled.replay(),
+        manifest: input.manifest,
+        rendererManifest,
+        signer,
+      });
+      yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
+        Stream.runForEach(target.stageArtifactBatch)
+      );
     }
-    const artifacts = makeGitArtifacts({
-      compiled: artifactPlan.compiled.replay(),
-      manifest: input.manifest,
-      rendererManifest,
-      signer,
-    });
-    yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
-      Stream.runForEach(target.stageArtifactBatch)
-    );
+    yield* stagePublicationSnapshots(input, target);
   });
   return {
     bundle: { release, rendererManifest },
+    cacheChanges,
     projectionSummary,
     routeSummary,
+    snapshotSummary,
     stage,
     summary,
     target,

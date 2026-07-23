@@ -37,7 +37,6 @@ export function makeTarget(release: {
   let recovery: StagedRollbackContentRelease | null = null;
   let activationTransitions = 0;
   const abortOrder: string[] = [];
-
   /** Records the durable identity shared by candidate and recovery staging. */
   function recordBundle(bundle: ContentReleaseBundle) {
     const { release: signed } = bundle;
@@ -77,6 +76,16 @@ export function makeTarget(release: {
   const stageProjectionBatch = vi.fn((batch) =>
     Effect.sync(() =>
       rows.forRelease(batch.releaseId).projections.push(...batch.projections)
+    )
+  );
+  const stageSnapshot = vi.fn((input) =>
+    Effect.sync(() =>
+      rows.forRelease(input.releaseId).snapshots.push(input.snapshot)
+    )
+  );
+  const stageSnapshotBatch = vi.fn((batch) =>
+    Effect.sync(() =>
+      rows.forRelease(batch.releaseId).snapshotRows.push(...batch.rows)
     )
   );
   const stageRouteBatch = vi.fn((batch) =>
@@ -148,7 +157,6 @@ export function makeTarget(release: {
     })
   );
   const current = vi.fn(() => Effect.succeed({ active, candidate, recovery }));
-
   const target = PublicationTarget.of({
     abort,
     accept: ({ recoveryId }) =>
@@ -169,89 +177,29 @@ export function makeTarget(release: {
     cleanup: ({ releaseId }) =>
       Effect.succeed({ complete: true, deletedArtifacts: 0, releaseId }),
     current,
-    headPage: (request) => {
-      const heads = rows
-        .forRelease(request.activeReleaseId)
-        .items.map(rows.materialHead)
-        .filter((head) => head !== null);
-      return Effect.succeed({
-        ...request,
-        done: true,
-        heads,
-        nextCursor: null,
-      });
-    },
+    headPage: (request) => Effect.succeed(rows.headPage(request)),
     recovery: ({ recoveryId }) => {
       const value = completed.get(recoveryId);
       if (!value) {
         return Effect.succeed({ kind: "missing" as const });
       }
-      return Effect.sync(() => ({
+      return Effect.succeed({
         kind: "completed" as const,
         value: Schema.decodeUnknownSync(ActiveRollbackContentReleaseSchema)(
           value
         ),
-      }));
-    },
-    rollbackPage: (request) => {
-      const staged = rows.forRelease(request.rollbackOf);
-      const records = staged.items.map((item) => {
-        const { change } = item;
-        const head = rows.materialHead(item);
-        if (!(head && change.operation === "upsert")) {
-          throw new TypeError("Expected one staged upsert rollback record.");
-        }
-        const artifact = staged.artifacts.find(
-          (value) => value.artifactHash === change.artifactHash
-        );
-        const projection = staged.projections.find(
-          (value) =>
-            value.contentKey === change.contentKey &&
-            value.locale === change.locale
-        );
-        if (!(artifact && projection)) {
-          throw new TypeError("Expected complete staged rollback state.");
-        }
-        return {
-          current: { artifact, change, projection },
-          index: item.index,
-          prior: {
-            change: {
-              contentKey: change.contentKey,
-              locale: change.locale,
-              operation: "delete" as const,
-            },
-          },
-        };
-      });
-      return Effect.succeed({
-        done: true,
-        nextIndex: records.length - 1,
-        records,
-        rollbackOf: request.rollbackOf,
-        rollbackOfManifestHash: request.rollbackOfManifestHash,
-        total: records.length,
       });
     },
-    routePage: (request) => {
-      const records = rows
-        .forRelease(request.rollbackOf)
-        .routes.map((route) => ({ current: route, priorContentKey: null }));
-      return Effect.succeed({
-        done: true,
-        nextIndex: records.length - 1,
-        records,
-        rollbackOf: request.rollbackOf,
-        rollbackOfManifestHash: request.rollbackOfManifestHash,
-        total: records.length,
-      });
-    },
+    rollbackPage: (request) => Effect.succeed(rows.rollbackPage(request)),
+    routePage: (request) => Effect.succeed(rows.routePage(request)),
     stageArtifactBatch,
     stageItemBatch,
     stageProjectionBatch,
     stageRecovery,
     stageRelease,
     stageRouteBatch,
+    stageSnapshot,
+    stageSnapshotBatch,
     status: ({ manifestHash, releaseId }) => {
       const phase = phases.get(releaseId) ?? "missing";
       if (phase === "completed") {
@@ -290,6 +238,8 @@ export function makeTarget(release: {
     stageRecovery,
     stageRelease,
     stageRouteBatch,
+    stageSnapshot,
+    stageSnapshotBatch,
     target,
     verify,
   };

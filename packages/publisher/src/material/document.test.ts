@@ -7,12 +7,14 @@ import {
   makeMaterialProjection,
 } from "#publisher/material/document";
 import { testFileLayer } from "#test/files";
-import { checkoutRoot, sourceByPath } from "#test/material";
+import { checkoutRoot, englishPath, sourceByPath } from "#test/material";
 
 const englishEntry = await Effect.runPromise(
   decodeMaterialRegistry().pipe(
     Effect.flatMap((entries) => {
-      const entry = entries.find(({ route }) => route.locale === "en");
+      const entry = entries.find(
+        ({ sourcePath }) => sourcePath === englishPath
+      );
       return entry === undefined
         ? Effect.dieMessage("Expected the real English material entry.")
         : Effect.succeed(entry);

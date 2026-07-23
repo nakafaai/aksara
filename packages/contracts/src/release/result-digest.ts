@@ -15,8 +15,8 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
-  canonicalizeMaterialHead,
-  type MaterialHead,
+  type ContentHead,
+  canonicalizeContentHead,
 } from "#contracts/release/head";
 import { RESULT_CATALOG_DIGEST_DOMAIN } from "#contracts/release/result";
 
@@ -72,7 +72,7 @@ class ResultCatalogDigestState {
   readonly #hash = createHash("sha256");
   readonly #routes = new Set<string>();
   count = 0;
-  previous: MaterialHead | undefined;
+  previous: ContentHead | undefined;
 
   /** Initializes one domain-separated result-catalog hash. */
   constructor() {
@@ -94,8 +94,8 @@ class ResultCatalogDigestState {
   }
 
   /** Adds one canonical compact head and advances ordering evidence. */
-  update(head: MaterialHead): void {
-    this.#hash.update(canonicalizeMaterialHead(head));
+  update(head: ContentHead): void {
+    this.#hash.update(canonicalizeContentHead(head));
     this.#hash.update("\n");
     this.count += 1;
     this.previous = head;
@@ -119,7 +119,7 @@ export function createResultCatalogDigest(releaseId: ReleaseId) {
 export function updateResultCatalogDigest(
   releaseId: ReleaseId,
   state: ResultCatalogDigestState,
-  head: MaterialHead
+  head: ContentHead
 ): Effect.Effect<
   ResultCatalogDigestState,
   ResultCatalogHashError | ResultCatalogOrderError | ResultCatalogRouteError
@@ -171,7 +171,7 @@ export const digestResultCatalog = Effect.fn(
   "AksaraContracts.digestResultCatalog"
 )(function* <E, R>(
   releaseId: ReleaseId,
-  heads: Stream.Stream<MaterialHead, E, R>
+  heads: Stream.Stream<ContentHead, E, R>
 ) {
   const initial = yield* createResultCatalogDigest(releaseId);
   const state = yield* heads.pipe(
@@ -189,7 +189,7 @@ export const verifyResultCatalog = Effect.fn(
 )(function* <E, R>(input: {
   readonly expectedCount: number;
   readonly expectedDigest: typeof Sha256HashSchema.Type;
-  readonly heads: Stream.Stream<MaterialHead, E, R>;
+  readonly heads: Stream.Stream<ContentHead, E, R>;
   readonly releaseId: ReleaseId;
 }) {
   const summary = yield* digestResultCatalog(input.releaseId, input.heads);

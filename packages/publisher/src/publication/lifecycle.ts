@@ -7,13 +7,13 @@ import { RollbackContentReleaseBundleSchema } from "@nakafa/aksara-contracts/rel
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema } from "effect";
 import type { PublicationPlan } from "#publisher/publication/plan";
+import type { PublishContentReleaseError } from "#publisher/publication/program";
 import {
   PublicationActivation,
   PublicationModeMismatchError,
   PublicationReleaseAbortedError,
   PublicationResumePhaseError,
   PublicationStatusMismatchError,
-  type PublishContentReleaseError,
 } from "#publisher/publication/spec";
 import {
   validatePublicationReceipt,
@@ -130,6 +130,7 @@ const stageAndVerify = Effect.fn("AksaraPublisher.stageAndVerify")(function* <
       plan.summary,
       plan.projectionSummary,
       plan.routeSummary,
+      plan.snapshotSummary,
       verification
     );
   }
@@ -154,6 +155,7 @@ export const stageCandidateRelease: StageCandidateRelease = Effect.fn(
     plan.summary,
     plan.projectionSummary,
     plan.routeSummary,
+    plan.snapshotSummary,
     result.receipt
   );
   return { kind: "completed", receipt } as const;
@@ -196,9 +198,13 @@ export const activateCandidateRelease: ActivateCandidateRelease = Effect.fn(
     plan.summary,
     plan.projectionSummary,
     plan.routeSummary,
+    plan.snapshotSummary,
     receipt
   );
   const activation = yield* PublicationActivation;
-  yield* activation.invalidate(plan.bundle.release);
+  yield* activation.invalidate({
+    cacheChanges: plan.cacheChanges,
+    release: plan.bundle.release,
+  });
   return verified;
 });

@@ -6,13 +6,13 @@ import {
   reuseStoredRollbackRelease,
 } from "#publisher/preparation/recovery";
 import { makeTarget } from "#test/lifecycle";
+import { makeRelease } from "#test/publication";
 import {
-  makeRelease,
   makeRollbackRelease,
   makeSignedBundle,
   publishPrepared,
   testVerificationResolver,
-} from "#test/publication";
+} from "#test/publication/run";
 
 /** Runs one stored-envelope recovery through the original verification key. */
 function recover<A, E>(

@@ -17,6 +17,18 @@ import { RendererDomainSchema } from "#contracts/renderer/domain";
 export const ContentLocaleSchema = Schema.Literal("en", "id");
 export type ContentLocale = typeof ContentLocaleSchema.Type;
 
+/** Published content families backed by real Aksara source registries. */
+export const ContentFamilySchema = Schema.Literal(
+  "article",
+  "material",
+  "question"
+);
+export type ContentFamily = typeof ContentFamilySchema.Type;
+
+/** Exact authored person identity exposed by Nakafa content metadata. */
+export const ContentAuthorSchema = Schema.Struct({ name: Schema.String });
+export type ContentAuthor = typeof ContentAuthorSchema.Type;
+
 /** Stable locale-specific identity shared by content heads and projections. */
 export interface ContentHeadIdentity {
   readonly contentKey: ContentKey;

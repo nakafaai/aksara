@@ -22,6 +22,22 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "@nakafa/aksara-corpus#build": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "@nakafa/aksara-corpus#test": {
+      "cache": false,
+      "dependsOn": ["//#test:root", "^build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/vitest.config.ts"],
+      "outputs": ["coverage/**"]
+    },
+    "@nakafa/aksara-contracts#test": {
+      "dependsOn": ["//#test:root", "build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/vitest.config.ts"],
+      "outputs": ["coverage/**"]
+    },
     "clean": {
       "cache": false
     },

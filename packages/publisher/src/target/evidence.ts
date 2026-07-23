@@ -1,24 +1,26 @@
-import type {
-  PublicationRequest,
-  StageArtifactBatchRequest,
-  StageItemBatchRequest,
-  StageProjectionBatchRequest,
-  StageRouteBatchRequest,
-} from "@nakafa/aksara-contracts/transport/request";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
+import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type {
   PublicationSuccess,
   StageBatchReceipt,
 } from "@nakafa/aksara-contracts/transport/response";
+import type { StageSnapshotBatchReceipt } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Match } from "effect";
 
+type StageBatchRequest = Extract<
+  PublicationRequest,
+  {
+    readonly operation:
+      | "stageArtifactBatch"
+      | "stageItemBatch"
+      | "stageProjectionBatch"
+      | "stageRouteBatch"
+      | "stageSnapshotBatch";
+  }
+>;
+
 /** Returns the exact number of rows carried by one staging request. */
-function publicationBatchCount(
-  request:
-    | StageArtifactBatchRequest
-    | StageItemBatchRequest
-    | StageProjectionBatchRequest
-    | StageRouteBatchRequest
-) {
+function publicationBatchCount(request: StageBatchRequest) {
   if ("artifacts" in request) {
     return request.artifacts.length;
   }
@@ -28,16 +30,15 @@ function publicationBatchCount(
   if ("routes" in request) {
     return request.routes.length;
   }
+  if ("rows" in request) {
+    return request.rows.length;
+  }
   return request.projections.length;
 }
 
 /** Checks one staging receipt against its exact request identity and count. */
 function hasBoundBatchReceipt(
-  request:
-    | StageArtifactBatchRequest
-    | StageItemBatchRequest
-    | StageProjectionBatchRequest
-    | StageRouteBatchRequest,
+  request: StageBatchRequest,
   receipt: StageBatchReceipt
 ) {
   const count = publicationBatchCount(request);
@@ -46,6 +47,36 @@ function hasBoundBatchReceipt(
     receipt.releaseId === request.releaseId &&
     receipt.created + receipt.unchanged === count
   );
+}
+
+/** Checks one snapshot receipt against its family and immutable snapshot. */
+function hasBoundSnapshotBatchReceipt(
+  request: Extract<StageBatchRequest, { operation: "stageSnapshotBatch" }>,
+  receipt: StageSnapshotBatchReceipt
+) {
+  return (
+    hasBoundBatchReceipt(request, receipt) &&
+    receipt.family === request.family &&
+    receipt.snapshotId === request.snapshotId
+  );
+}
+
+/** Checks every fixed structured-family transition field for exact equality. */
+function hasBoundSnapshots(
+  expected: VerifyRequest["release"]["manifest"]["snapshots"],
+  actual: VerifySuccess["value"]["snapshots"]
+) {
+  return (["program", "quran", "tryout"] as const).every((family) => {
+    const expectedState = expected[family];
+    const actualState = actual[family];
+    return (
+      actualState.baseSnapshotId === expectedState.baseSnapshotId &&
+      actualState.mode === expectedState.mode &&
+      actualState.resultSnapshotId === expectedState.resultSnapshotId &&
+      actualState.rowCount === expectedState.rowCount &&
+      actualState.rowDigest === expectedState.rowDigest
+    );
+  });
 }
 
 type VerifyRequest = Extract<PublicationRequest, { operation: "verify" }>;
@@ -109,7 +140,9 @@ function hasBoundManifestReceipt(
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&
-    receipt.stagedRoutes === manifest.routeCount
+    receipt.stagedRoutes === manifest.routeCount &&
+    receipt.stagedSnapshotRows === snapshotRowCount(manifest.snapshots) &&
+    hasBoundSnapshots(manifest.snapshots, receipt.snapshots)
   );
 }
 
@@ -187,6 +220,8 @@ function hasBoundVerification(request: VerifyRequest, response: VerifySuccess) {
     evidence.routeCount === manifest.routeCount &&
     evidence.routeDigest === manifest.routeDigest &&
     evidence.stagedRoutes === manifest.routeCount &&
+    evidence.stagedSnapshotRows === snapshotRowCount(manifest.snapshots) &&
+    hasBoundSnapshots(manifest.snapshots, evidence.snapshots) &&
     evidence.rendererManifestHash === manifest.rendererManifestHash
   );
 }
@@ -244,6 +279,14 @@ export function hasBoundPublicationSuccess(
       stageRouteBatch: (value) =>
         response.operation === "stageRouteBatch" &&
         hasBoundBatchReceipt(value, response.value),
+      stageSnapshot: (value) =>
+        response.operation === "stageSnapshot" &&
+        response.value.family === value.snapshot.family &&
+        response.value.releaseId === value.releaseId &&
+        response.value.snapshotId === value.snapshot.manifest.snapshotId,
+      stageSnapshotBatch: (value) =>
+        response.operation === "stageSnapshotBatch" &&
+        hasBoundSnapshotBatchReceipt(value, response.value),
       status: (value) =>
         response.operation === "status" &&
         response.value.releaseId === value.releaseId &&

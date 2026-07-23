@@ -60,6 +60,7 @@ function head(contentKey: string) {
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
     contentKey,
     delivery: "public",
+    family: "material",
     locale: "en",
     projectionHash: `sha256:${"c".repeat(64)}`,
     publicPath: `subjects/test/${slug}`,

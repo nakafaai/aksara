@@ -20,6 +20,7 @@ import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
+import { materialGraph } from "#test/graph";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -47,9 +48,10 @@ const { payload } = await Effect.runPromise(
 );
 const projection = MaterialLessonProjectionSchema.make({
   contentKey: source.contentKey,
+  graph: materialGraph(source.locale, "material", "test-a"),
   kind: "subject-lesson",
   locale: source.locale,
-  materialKey: MaterialKeySchema.make("test.material"),
+  materialKey: MaterialKeySchema.make("lesson.test.material"),
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: PublicPathSchema.make("subjects/test/material"),
@@ -62,6 +64,7 @@ const baseRecord: PreparedContentUpsert = {
     artifactHash: hashCompiledContentPayload(payload),
     contentKey: source.contentKey,
     delivery: "public",
+    family: "material",
     locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
@@ -72,7 +75,6 @@ const baseRecord: PreparedContentUpsert = {
   source,
 };
 const releaseId = ReleaseIdSchema.make("test-stream-release");
-
 /** Pairs one candidate record with an explicit prior absence proof. */
 function transition(
   record: unknown,
@@ -81,6 +83,7 @@ function transition(
   return {
     prior: {
       contentKey: identity.contentKey,
+      family: identity.family,
       locale: identity.locale,
       state: "absent",
     },
@@ -99,7 +102,6 @@ function relocateRecord(
   publicPath: string
 ): PreparedContentUpsert {
   const nextKey = ContentKeySchema.make(contentKey);
-  const nextPath = PublicPathSchema.make(publicPath);
   const parentPath = PublicPathSchema.make(
     publicPath.slice(0, publicPath.lastIndexOf("/"))
   );
@@ -115,7 +117,7 @@ function relocateRecord(
       ...projection,
       contentKey: nextKey,
       parentPath,
-      publicPath: nextPath,
+      publicPath: PublicPathSchema.make(publicPath),
     },
     source: { ...source, contentKey: nextKey },
   };
@@ -140,6 +142,13 @@ const mismatchCases = [
         ...value.source,
         contentKey: ContentKeySchema.make("test:wrong"),
       },
+    }),
+  ],
+  [
+    "family",
+    (value: PreparedContentUpsert) => ({
+      ...value,
+      change: { ...value.change, family: "article" },
     }),
   ],
   [
@@ -177,13 +186,13 @@ const mismatchCases = [
   ],
 ] satisfies readonly (readonly [
   string,
-  (record: PreparedContentUpsert) => unknown,
+  (record: PreparedContentUpsert) => PreparedContentUpsert,
 ])[];
-
 describe("derivePreparedRecords", () => {
   it.each(mismatchCases)("rejects %s incoherence", async (field, mutate) => {
+    const candidate = mutate(baseRecord);
     const error = await Effect.runPromise(
-      derive(() => Stream.make(transition(mutate(baseRecord)))).pipe(
+      derive(() => Stream.make(transition(candidate, candidate.change))).pipe(
         Effect.flip
       )
     );
@@ -237,6 +246,7 @@ describe("derivePreparedRecords", () => {
     {
       prior: {
         contentKey: ContentKeySchema.make("test:another-head"),
+        family: "material",
         locale: baseRecord.change.locale,
         state: "absent",
       },
@@ -245,12 +255,23 @@ describe("derivePreparedRecords", () => {
     {
       prior: {
         contentKey: baseRecord.change.contentKey,
+        family: "article",
+        locale: baseRecord.change.locale,
+        state: "absent",
+      },
+      record: baseRecord,
+    },
+    {
+      prior: {
+        contentKey: baseRecord.change.contentKey,
+        family: "material",
         locale: baseRecord.change.locale,
         state: "absent",
       },
       record: {
         change: {
           contentKey: baseRecord.change.contentKey,
+          family: "material",
           locale: baseRecord.change.locale,
           operation: "delete",
         },

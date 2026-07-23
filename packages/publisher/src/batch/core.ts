@@ -6,8 +6,9 @@ import type { NonEmptyReadonlyArray } from "effect/Array";
 type PublicationBatchKind =
   | "artifact"
   | "content-route"
-  | "material-projection"
-  | "release-item";
+  | "content-projection"
+  | "release-item"
+  | "snapshot";
 
 /** One value cannot fit inside its mandatory publication batch ceiling. */
 export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBatchLimitError>()(
@@ -20,8 +21,9 @@ export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBa
     kind: Schema.Literal(
       "artifact",
       "content-route",
-      "material-projection",
-      "release-item"
+      "content-projection",
+      "release-item",
+      "snapshot"
     ),
     maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
     maxCount: Schema.Number.pipe(Schema.int(), Schema.positive()),

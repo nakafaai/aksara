@@ -5,12 +5,15 @@ for clarity, measurable scale, and safe releases.
 
 - Keep only workspaces with a real implemented capability. The domain modules
   are `packages/contracts`, `packages/compiler`, `packages/corpus`, and
-  `packages/publisher`. `packages/typescript-config` owns their one shared
-  compiler contract. Add CLI ownership only with the actual Nakafa preview
-  caller; never fill a workspace with substitute content.
-- File and folder names may contain at most two words. Group longer concepts
-  under a domain folder, such as `artifact/verify.ts`, without repeating the
-  domain in the filename.
+  `packages/publisher`. `packages/utilities` owns only generic cross-workspace
+  primitives, while `packages/typescript-config` owns the shared compiler
+  contract. Add CLI ownership only with the actual Nakafa preview caller;
+  never fill a workspace with substitute content.
+- File and folder names may contain at most two words. Exact source-owned
+  lesson directory segments below `packages/corpus/material/lesson` are the
+  sole exception; lesson filenames and every other directory still obey the
+  two-word limit. Group longer code concepts under a domain folder, such as
+  `artifact/verify.ts`, without repeating the domain in the filename.
 - Never invent educational content, author metadata, corpus facts, renderer
   manifests, or production-state claims. Test-only protocol values must be
   unmistakably named as tests; content evidence must cite an exact Nakafa
@@ -34,10 +37,11 @@ for clarity, measurable scale, and safe releases.
   do not count toward the 300-line module limit.
 - Put dependencies in the workspace that uses them and use `workspace:*` for
   internal dependencies.
-- Same-package TypeScript imports use the private `#contracts/*`, `#compiler/*`,
-  or `#publisher/*` alias. Cross-package imports use exact `@nakafa/*` package
-  exports. Relative module imports are forbidden; relative config inheritance
-  and CLI filesystem paths are not module imports.
+- Same-package TypeScript imports use their private workspace alias such as
+  `#contracts/*`, `#compiler/*`, `#corpus/*`, `#publisher/*`, `#utilities/*`,
+  or `#cli/*`. Cross-package imports use exact `@nakafa/*` package exports.
+  Relative module imports are forbidden; relative config inheritance and CLI
+  filesystem paths are not module imports.
 - Root task scripts delegate to Turbo, except repository-wide tooling such as
   Ultracite and Changesets.
 - Run focused workspace tests through `pnpm exec turbo run test --filter=...`.

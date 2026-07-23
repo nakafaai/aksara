@@ -10,11 +10,8 @@ import {
 } from "#publisher/publication/spec";
 import { recoverContentRelease } from "#publisher/recover";
 import { makeTarget } from "#test/lifecycle";
-import {
-  makeRelease,
-  publish,
-  testVerificationResolver,
-} from "#test/publication";
+import { makeRelease } from "#test/publication";
+import { publish, testVerificationResolver } from "#test/publication/run";
 import { makePublicationTarget } from "#test/target";
 
 /** Publishes one candidate with its verified inverse retained. */
@@ -72,7 +69,9 @@ describe("recoverContentRelease", () => {
 
     expect(receipt.releaseId).toBe(published.input.recoveryId);
     expect(verify).toHaveBeenCalledWith(published.recovery.release);
-    expect(invalidate).toHaveBeenCalledWith(published.recovery.release);
+    expect(invalidate).toHaveBeenCalledWith(
+      expect.objectContaining({ release: published.recovery.release })
+    );
     expect(published.state.activate.mock.calls).toHaveLength(
       priorActivations + 1
     );
@@ -119,7 +118,9 @@ describe("recoverContentRelease", () => {
     );
 
     expect(receipt.releaseId).toBe(published.input.recoveryId);
-    expect(invalidate).toHaveBeenCalledWith(published.recovery.release);
+    expect(invalidate).toHaveBeenCalledWith(
+      expect.objectContaining({ release: published.recovery.release })
+    );
     expect(invalidate).toHaveBeenCalledTimes(2);
     expect(published.state.activate.mock.calls).toHaveLength(activations);
   });

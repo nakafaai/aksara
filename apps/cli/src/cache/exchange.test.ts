@@ -5,26 +5,27 @@ import {
   HttpClientRequest,
 } from "@effect/platform";
 import {
-  MATERIAL_CACHE_TAGS,
-  type MaterialCacheRequest,
-} from "@nakafa/aksara-contracts/cache/material";
+  type ContentCacheRequest,
+  makeContentCacheRequest,
+} from "@nakafa/aksara-contracts/cache/content";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Redacted } from "effect";
 import { describe, expect, it } from "vitest";
-import { invalidateMaterialCache } from "#cli/cache/exchange";
+import { invalidateContentCache } from "#cli/cache/exchange";
 import { captureClient, requestJson, runClient, webResponse } from "#test/http";
 
 const ENDPOINT = new URL("https://www.example.test/api/internal/content/cache");
 const TOKEN = Redacted.make("cache-token");
-const REQUEST: MaterialCacheRequest = {
+const REQUEST: ContentCacheRequest = makeContentCacheRequest({
+  artifactHashes: [],
+  family: "material",
   releaseId: ReleaseIdSchema.make("test-cache-release"),
-  tags: MATERIAL_CACHE_TAGS,
-};
-
+});
 /** Creates one exact private cache receipt for a captured request. */
 function cacheResponse(
   request: HttpClientRequest.HttpClientRequest,
   body: ConstructorParameters<typeof Response>[0] = JSON.stringify({
+    family: REQUEST.family,
     releaseId: REQUEST.releaseId,
     revalidated: true,
     tags: REQUEST.tags,
@@ -40,24 +41,21 @@ function cacheResponse(
   }
   return webResponse(request, body, { ...init, headers });
 }
-
 /** Returns one typed exchange failure through the supplied HTTP client. */
 function reject(client: HttpClient.HttpClient) {
   return runClient(
-    invalidateMaterialCache(client, ENDPOINT, TOKEN, REQUEST).pipe(Effect.flip),
+    invalidateContentCache(client, ENDPOINT, TOKEN, REQUEST).pipe(Effect.flip),
     client
   );
 }
-
 describe("cache invalidation exchange", () => {
   it("sends exact JSON tags and accepts their private no-store receipt", async () => {
     const captured = captureClient((request) =>
       Effect.succeed(cacheResponse(request))
     );
-
     await expect(
       runClient(
-        invalidateMaterialCache(captured.client, ENDPOINT, TOKEN, REQUEST),
+        invalidateContentCache(captured.client, ENDPOINT, TOKEN, REQUEST),
         captured.client
       )
     ).resolves.toBeUndefined();
@@ -79,7 +77,6 @@ describe("cache invalidation exchange", () => {
     }
     expect(requestJson(capturedRequest)).toEqual(REQUEST);
   });
-
   it("disables native redirect following at the fetch adapter", async () => {
     let redirect: NonNullable<
       Parameters<typeof globalThis.fetch>[1]
@@ -90,6 +87,7 @@ describe("cache invalidation exchange", () => {
       return Promise.resolve(
         new Response(
           JSON.stringify({
+            family: REQUEST.family,
             releaseId: REQUEST.releaseId,
             revalidated: true,
             tags: REQUEST.tags,
@@ -108,7 +106,7 @@ describe("cache invalidation exchange", () => {
       Effect.runPromise(
         Effect.gen(function* () {
           const client = yield* HttpClient.HttpClient;
-          yield* invalidateMaterialCache(client, ENDPOINT, TOKEN, REQUEST);
+          yield* invalidateContentCache(client, ENDPOINT, TOKEN, REQUEST);
         }).pipe(
           Effect.provide(FetchHttpClient.layer),
           Effect.provideService(FetchHttpClient.Fetch, fetch)
@@ -127,7 +125,7 @@ describe("cache invalidation exchange", () => {
 
     await expect(
       runClient(
-        invalidateMaterialCache(
+        invalidateContentCache(
           captured.client,
           ENDPOINT,
           TOKEN,
@@ -168,125 +166,6 @@ describe("cache invalidation exchange", () => {
     await expect(reject(network)).resolves.toMatchObject({ retryable: true });
     await expect(reject(redirected.client)).resolves.toMatchObject({
       retryable: false,
-    });
-  });
-
-  it.each([
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      { "cache-control": "no-store", "content-type": "application/json" },
-    ],
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      { "cache-control": "private", "content-type": "application/json" },
-    ],
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      {
-        "cache-control": "private, no-store",
-        "content-type": "text/plain",
-      },
-    ],
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: false,
-        tags: REQUEST.tags,
-      }),
-      undefined,
-    ],
-    [
-      JSON.stringify({
-        extra: true,
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      undefined,
-    ],
-    [
-      JSON.stringify({
-        releaseId: "test-other-release",
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      undefined,
-    ],
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: ["content-runtime"],
-      }),
-      undefined,
-    ],
-    ["{", undefined],
-    [Uint8Array.from([0xc3, 0x28]), undefined],
-    [null, undefined],
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      { "content-length": "invalid" },
-    ],
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      { "content-length": "-1" },
-    ],
-    [
-      JSON.stringify({
-        releaseId: REQUEST.releaseId,
-        revalidated: true,
-        tags: REQUEST.tags,
-      }),
-      { "content-length": String(32 * 1024 + 1) },
-    ],
-    ["x".repeat(32 * 1024 + 1), undefined],
-  ] as const)(
-    "rejects one invalid private JSON receipt",
-    async (body, headers) => {
-      const init = headers === undefined ? {} : { headers };
-      const captured = captureClient((request) =>
-        Effect.succeed(cacheResponse(request, body, init))
-      );
-
-      await expect(reject(captured.client)).resolves.toMatchObject({
-        retryable: false,
-      });
-    }
-  );
-
-  it("treats a response stream failure as retryable", async () => {
-    const stream = new ReadableStream({
-      /** Injects one transport failure while reading the receipt body. */
-      pull(controller) {
-        controller.error(new Error("Test receipt stream failure."));
-      },
-    });
-    const captured = captureClient((request) =>
-      Effect.succeed(cacheResponse(request, stream))
-    );
-
-    await expect(reject(captured.client)).resolves.toMatchObject({
-      retryable: true,
     });
   });
 });

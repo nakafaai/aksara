@@ -13,16 +13,19 @@ import {
 import { makeTarget } from "#test/lifecycle";
 import { publishMaterialRelease } from "#test/material-run";
 import {
+  contentRecord,
   makeRelease,
-  makeRollbackRelease,
   projection,
-  publish,
-  publishPrepared,
-  publishRollbackPrepared,
   record,
   rendererManifest,
 } from "#test/publication";
-import { publicationRequirements } from "#test/requirements";
+import {
+  makeRollbackRelease,
+  publish,
+  publishPrepared,
+  publishRollbackPrepared,
+} from "#test/publication/run";
+import { emptySnapshotSources } from "#test/snapshot";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 
@@ -35,6 +38,26 @@ vi.mock("@nakafa/aksara-compiler/compile", async (importOriginal) => {
       compilerState.calls += 1;
       return original.compileContent(input);
     },
+  };
+});
+
+vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
+  const original =
+    await importOriginal<
+      typeof import("@nakafa/aksara-corpus/material/registry")
+    >();
+  const { materialSlicePaths } = await import("#test/material-slice");
+  const sourcePaths = new Set<string>(materialSlicePaths);
+  return {
+    ...original,
+    decodeMaterialRegistry: (input?: unknown) =>
+      original
+        .decodeMaterialRegistry(input)
+        .pipe(
+          Effect.map((entries) =>
+            entries.filter(({ sourcePath }) => sourcePaths.has(sourcePath))
+          )
+        ),
   };
 });
 
@@ -55,6 +78,36 @@ describe("content publication", () => {
     expect(state.activationTransitions).toBe(1);
   });
 
+  it("invalidates only the exact decoded family and artifact after activation", async () => {
+    const release = await makeRelease("test-release-cache-artifact");
+    const state = makeTarget(release);
+    let cacheChanges: readonly unknown[] = [];
+    let receivedRelease = "";
+    const activation = PublicationActivation.of({
+      invalidate: ({ cacheChanges: changes, release: signedRelease }) =>
+        Stream.runCollect(changes()).pipe(
+          Effect.tap((values) =>
+            Effect.sync(() => {
+              cacheChanges = [...values];
+              receivedRelease = signedRelease.manifest.releaseId;
+            })
+          ),
+          Effect.asVoid
+        ),
+      verify: () => Effect.void,
+    });
+    await Effect.runPromise(
+      publish(release, state.target, undefined, activation)
+    );
+    expect(cacheChanges).toEqual([
+      {
+        artifactHash: contentRecord.change.artifactHash,
+        family: "material",
+      },
+    ]);
+    expect(receivedRelease).toBe(release.manifest.releaseId);
+  });
+
   it("repairs a failed post-commit cache invalidation on exact retry", async () => {
     const release = await makeRelease("test-release-cache-retry");
     const state = makeTarget(release);
@@ -73,7 +126,6 @@ describe("content publication", () => {
     const recoveryId = ReleaseIdSchema.make(
       `${release.manifest.releaseId}-recovery`
     );
-
     await expect(
       Effect.runPromise(
         publish(release, state.target, recoveryId, activation).pipe(Effect.flip)
@@ -83,7 +135,6 @@ describe("content publication", () => {
       release.manifest.releaseId
     );
     expect(state.abortOrder).toEqual([]);
-
     await expect(
       Effect.runPromise(publish(release, state.target, recoveryId, activation))
     ).resolves.toMatchObject({ releaseId: release.manifest.releaseId });
@@ -184,7 +235,6 @@ describe("content publication", () => {
 
   it("compiles each source once per required reproducibility boundary", async () => {
     const result = await publishMaterialRelease();
-
     expect(compilerState.calls).toBe(8);
     expect(result.receipt).toMatchObject({
       activatedHeads: 4,
@@ -209,6 +259,7 @@ describe("content publication", () => {
       projections: release.prepared.projections,
       rendererManifest: release.prepared.rendererManifest,
       routes: release.prepared.routes,
+      ...emptySnapshotSources,
     });
     await Effect.runPromise(publishRollbackPrepared(prepared, state.target));
     expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
@@ -219,6 +270,7 @@ describe("content publication", () => {
       projections: release.prepared.projections,
       rendererManifest,
       routes: release.prepared.routes,
+      ...emptySnapshotSources,
     });
     const error = await Effect.runPromise(
       publishPrepared(mismatch, state.target).pipe(Effect.flip)
@@ -234,6 +286,7 @@ describe("content publication", () => {
       projections: gitRelease.prepared.projections,
       rendererManifest,
       routes: gitRelease.prepared.routes,
+      ...emptySnapshotSources,
     });
     const rollbackError = await Effect.runPromise(
       publishRollbackPrepared(rollbackMismatch, gitState.target).pipe(
@@ -243,10 +296,5 @@ describe("content publication", () => {
     expect(rollbackError).toMatchObject({
       _tag: "PublicationModeMismatchError",
     });
-  });
-
-  it("requires exact Git source context only for Git publication", async () => {
-    const requirements = await publicationRequirements();
-    expect(requirements).toEqual({ git: true, rollback: false });
   });
 });

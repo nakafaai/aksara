@@ -1,9 +1,14 @@
 import type { Command } from "@effect/platform/Command";
 import { CommandExecutor } from "@effect/platform/CommandExecutor";
 import { SystemError } from "@effect/platform/Error";
+import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import { readCleanAksaraRevision, readRepositoryEvidence } from "#cli/evidence";
+import {
+  readCleanAksaraRevision,
+  readRepositoryEvidence,
+  validateStableAksaraRevision,
+} from "#cli/evidence";
 import {
   inspectTestCommand,
   makeTestExecutor,
@@ -85,6 +90,23 @@ describe("repository evidence", () => {
     expect(dirty).toMatchObject({
       _tag: "ReleaseEvidenceError",
       reason: "dirty",
+    });
+  });
+
+  it("rejects a checkout revision that changes during preparation", async () => {
+    const initial = GitCommitShaSchema.make(COMMIT_SHA);
+    const changed = GitCommitShaSchema.make("b".repeat(40));
+    await expect(
+      Effect.runPromise(validateStableAksaraRevision(initial, initial))
+    ).resolves.toBeUndefined();
+    await expect(
+      Effect.runPromise(
+        validateStableAksaraRevision(initial, changed).pipe(Effect.flip)
+      )
+    ).resolves.toMatchObject({
+      _tag: "ReleaseRevisionChangedError",
+      actual: changed,
+      expected: initial,
     });
   });
 

@@ -177,11 +177,11 @@ The relevant framework constraints are documented in the Next.js
 
 V1 enforces UTF-8 ceilings at compilation and signing: 128 KiB raw MDX, 256 KiB
 compiled code, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
-artifact wire value. The additive Convex staging candidate also enforces a
-512 KiB complete stored-row ceiling with Convex's official size calculation
-and a 4 MiB complete mutation-envelope ceiling. It remains internal-only until
-the published contracts package replaces its temporary validators and the
-authenticated signature-verifying ingress is implemented.
+artifact wire value. The Nakafa Convex adapter must also enforce a 512 KiB
+complete stored-row ceiling with Convex's official size calculation and a
+4 MiB complete mutation-envelope ceiling. Production publication requires
+Nakafa to consume this exact published contract and deploy the authenticated
+signature-verifying ingress first.
 
 Reference: [Convex production limits](https://docs.convex.dev/production/state/limits).
 

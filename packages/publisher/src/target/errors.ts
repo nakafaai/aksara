@@ -15,6 +15,7 @@ export const PublicationTargetStageSchema = Schema.Literal(
   "items",
   "routes",
   "projections",
+  "snapshots",
   "artifacts",
   "verify",
   "activate",
@@ -45,6 +46,14 @@ export class PublicationTargetTransportError extends Schema.TaggedError<Publicat
     stage: PublicationTargetStageSchema,
   }
 ) {}
+
+/** Creates one sanitized retryable network failure for a target capability. */
+export function publicationNetworkError(stage: PublicationTargetStage) {
+  return new PublicationTargetTransportError({
+    detail: { reason: "network" },
+    stage,
+  });
+}
 
 /** A permanent local or remote protocol contradiction must not be retried. */
 export class PublicationTargetProtocolError extends Schema.TaggedError<PublicationTargetProtocolError>()(

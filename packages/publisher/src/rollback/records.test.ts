@@ -14,7 +14,11 @@ import {
   encodeReplayRecord,
   MAX_REPLAY_RECORD_BYTES,
 } from "#publisher/replay/record";
-import { isDerivedRollbackUpsert } from "#publisher/rollback/records";
+import {
+  isDerivedRollbackUpsert,
+  snapshotRollbackState,
+} from "#publisher/rollback/records";
+import { collectQuestionPublication } from "#test/question";
 import {
   collectRollbackRecords,
   currentRollbackReleaseId,
@@ -40,7 +44,6 @@ describe("deriveRollbackRecords", () => {
       Stream.make(rollbackUpsertRecord, rollbackDeletionRecord)
     );
     const [derivedUpsert, derivedDelete] = records;
-
     expect(derivedUpsert).toMatchObject({
       current: {
         artifact: rollbackArtifact,
@@ -89,6 +92,49 @@ describe("deriveRollbackRecords", () => {
     ).toBe(false);
   });
 
+  it("reconstructs an article head from an authenticated article state", async () => {
+    const [derived] = await collectRollbackRecords(
+      Stream.make(rollbackUpsertRecord)
+    );
+    expect(derived).toBeDefined();
+    expect(derived && isDerivedRollbackUpsert(derived.current)).toBeTruthy();
+    if (!(derived && isDerivedRollbackUpsert(derived.current))) {
+      return;
+    }
+    const state = {
+      ...derived.current,
+      item: {
+        ...derived.current.item,
+        change: { ...derived.current.item.change, family: "article" as const },
+      },
+    };
+    expect(snapshotRollbackState(state)).toMatchObject({
+      head: { family: "article" },
+      state: "article",
+    });
+  });
+
+  it("reconstructs a route-free question head from a real question state", async () => {
+    const [transition] = await collectQuestionPublication({ heads: [] });
+    if (!(transition && "payload" in transition.record)) {
+      return;
+    }
+    const state = {
+      artifact: signRollbackPayload(transition.record.payload),
+      item: {
+        change: transition.record.change,
+        index: 0,
+        releaseId: currentRollbackReleaseId,
+      },
+      kind: "upsert" as const,
+      projection: transition.record.projection,
+    };
+    expect(snapshotRollbackState(state)).toMatchObject({
+      head: { family: "question", publicPath: undefined },
+      state: "question",
+    });
+  });
+
   it("spools a valid rollback transition containing two near-limit bodies", async () => {
     const compiledCode = `/*${"x".repeat(240 * 1024)}*/\nreturn {};`;
     const rawMdx = `{/*${"m".repeat(90 * 1024)}*/}`;
@@ -125,7 +171,6 @@ describe("deriveRollbackRecords", () => {
     );
     expect(derived).toBeDefined();
     const encoded = await Effect.runPromise(encodeReplayRecord(derived, 0));
-
     expect(encoded.bytes).toBeGreaterThan(1024 * 1024);
     expect(encoded.bytes).toBeLessThanOrEqual(MAX_REPLAY_RECORD_BYTES);
   });

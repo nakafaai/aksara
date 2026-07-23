@@ -9,7 +9,7 @@ import {
 } from "@nakafa/aksara-compiler/inspect";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   type MaterialLessonProjection,
   MaterialMetadataSchema,
@@ -41,7 +41,7 @@ export class MaterialSourceError extends Schema.TaggedError<MaterialSourceError>
 export interface InspectedMaterialDocument {
   readonly inspection: ContentSourceInspection;
   readonly projection: MaterialLessonProjection;
-  readonly projectionHash: ReturnType<typeof hashMaterialProjection>;
+  readonly projectionHash: ReturnType<typeof hashContentProjection>;
   readonly source: MaterialDocumentSource;
 }
 
@@ -119,7 +119,7 @@ export const inspectMaterialDocument = Effect.fn(
   return {
     inspection,
     projection,
-    projectionHash: hashMaterialProjection(projection),
+    projectionHash: hashContentProjection(projection),
     source,
   } satisfies InspectedMaterialDocument;
 });
@@ -134,6 +134,7 @@ export function makeMaterialRecord(
     artifactHash: hashCompiledContentPayload(result.payload),
     contentKey: source.route.contentKey,
     delivery: source.delivery,
+    family: "material",
     locale: source.route.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,

@@ -27,8 +27,14 @@ import {
   PublicationRollbackSuccessSchema,
   PublicationRoutePageSuccessSchema,
   PublicationStatusSuccessSchema,
+  StageSnapshotBatchSuccessSchema,
+  StageSnapshotSuccessSchema,
   VerifyReleaseSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/response";
+import type {
+  StageSnapshotBatchRequest,
+  StageSnapshotRequest,
+} from "@nakafa/aksara-contracts/transport/snapshot";
 import { Effect, Layer, Schema } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
@@ -186,6 +192,30 @@ export const makeHttpPublicationTarget = Effect.fn(
       send({ ...input, operation: "stageRelease" }).pipe(Effect.asVoid),
     stageRouteBatch: (input) =>
       send({ ...input, operation: "stageRouteBatch" }).pipe(Effect.asVoid),
+    stageSnapshot: (input) => {
+      const request: StageSnapshotRequest = {
+        ...input,
+        operation: "stageSnapshot",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(StageSnapshotSuccessSchema, response)
+        ),
+        Effect.asVoid
+      );
+    },
+    stageSnapshotBatch: (input) => {
+      const request: StageSnapshotBatchRequest = {
+        ...input,
+        operation: "stageSnapshotBatch",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(StageSnapshotBatchSuccessSchema, response)
+        ),
+        Effect.asVoid
+      );
+    },
     status: (input) => {
       const request: PublicationStatusRequest = {
         ...input,

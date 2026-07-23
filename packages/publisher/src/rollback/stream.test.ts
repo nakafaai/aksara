@@ -28,6 +28,7 @@ import {
   streamRollbackRecords,
 } from "#publisher/rollback/stream";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
+import { materialGraph } from "#test/graph";
 import { makePublicationTarget } from "#test/target";
 
 const rollbackOf = ReleaseIdSchema.make("test-rollback-source");
@@ -40,6 +41,7 @@ function deletion(index: number) {
   const state = RollbackDeleteStateSchema.make({
     change: {
       contentKey: ContentKeySchema.make(`test:rollback-delete-${index}`),
+      family: "material",
       locale: "en",
       operation: "delete",
     },
@@ -91,9 +93,10 @@ function oversizedPage() {
   });
   const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
     contentKey: payload.contentKey,
+    graph: materialGraph(payload.locale, "rollback", "test-large"),
     kind: "subject-lesson",
     locale: payload.locale,
-    materialKey: "test.rollback",
+    materialKey: "lesson.test.rollback",
     metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
     order: 1,
     parentPath: "subjects/test/rollback",
@@ -107,6 +110,7 @@ function oversizedPage() {
       artifactHash,
       contentKey: payload.contentKey,
       delivery: "public",
+      family: "material",
       locale: payload.locale,
       operation: "upsert",
       rendererDomain: payload.rendererDomain,

@@ -12,6 +12,12 @@ export function testFileLayer(seed: ReadonlyMap<string, string>) {
         temporaryDirectory += 1;
         return `/test/aksara-spool-${temporaryDirectory}`;
       }),
+    readDirectory: (root) =>
+      Effect.succeed(
+        [...files.keys()]
+          .filter((path) => path.startsWith(`${root}/`))
+          .map((path) => path.slice(root.length + 1))
+      ),
     readFileString: (path) => {
       const source = files.get(path);
       if (source !== undefined) {

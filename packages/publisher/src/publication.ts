@@ -15,13 +15,15 @@ import {
   type PublicationInvocation,
   preparePublicationPlan,
 } from "#publisher/publication/plan";
+import type {
+  PublishGitRelease,
+  PublishRollbackRelease,
+} from "#publisher/publication/program";
 import {
   PublicationActivation,
   PublicationRecoveryId,
   PublicationRecoveryIdentityError,
   PublicationSource,
-  type PublishGitRelease,
-  type PublishRollbackRelease,
 } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 
@@ -70,7 +72,10 @@ const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
     );
     if (candidateStage.kind === "completed") {
       const activation = yield* PublicationActivation;
-      yield* activation.invalidate(candidate.bundle.release);
+      yield* activation.invalidate({
+        cacheChanges: candidate.cacheChanges,
+        release: candidate.bundle.release,
+      });
       return candidateStage.receipt;
     }
 

@@ -1,8 +1,11 @@
 import { Either } from "effect";
 import { describe, expect, it } from "vitest";
 import { SigningKeyIdSchema } from "#contracts/ids";
+import { materialGraph } from "#contracts/test/graph";
 import { hash, rendererManifest } from "#contracts/test/request";
 import {
+  articleFound,
+  articleRequest,
   artifact,
   found,
   incompatibleManifest,
@@ -24,7 +27,11 @@ describe("content runtime verification", () => {
           ...artifact,
           payload: { ...artifact.payload, locale: "id" },
         },
-        projection: { ...found.projection, locale: "id" },
+        projection: {
+          ...found.projection,
+          graph: materialGraph("id", "test", "transport", "test-transport"),
+          locale: "id",
+        },
       },
       {
         ...found,
@@ -65,6 +72,36 @@ describe("content runtime verification", () => {
       "activeManifestHash",
       "projectionHash",
     ]);
+  });
+
+  it("binds an article response to its pair-grouped physical source", async () => {
+    await expect(
+      verifyExchange({ request: articleRequest, response: articleFound })
+    ).resolves.toEqual(articleFound);
+
+    const invalidSources = [
+      "packages/corpus/articles/politics/dynastic-politics-asian-values/en.mdx",
+      "packages/corpus/articles/politics/dynastic-politics/asian-values/id.mdx",
+      "packages/corpus/articles/politics/flawed-legal/geopolitics/en.mdx",
+      "packages/corpus/material/lesson/politics/dynastic-politics-asian-values/en.mdx",
+    ];
+    const outcomes = await Promise.all(
+      invalidSources.map((sourcePath) =>
+        rejectExchange({
+          request: articleRequest,
+          response: { ...articleFound, sourcePath },
+        })
+      )
+    );
+
+    expect(outcomes).toEqual(
+      invalidSources.map(() =>
+        expect.objectContaining({
+          _tag: "ContentRuntimeMismatchError",
+          reason: "sourcePath",
+        })
+      )
+    );
   });
 
   it("rejects a tampered runtime artifact", async () => {

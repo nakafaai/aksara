@@ -1,0 +1,50 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  en: [
+    {
+      label: "$$1$$ hour $$15$$ minutes",
+      value: false,
+    },
+    {
+      label: "$$1$$ hour $$20$$ minutes",
+      value: true,
+    },
+    {
+      label: "$$1$$ hour $$30$$ minutes",
+      value: false,
+    },
+    {
+      label: "$$1$$ hour $$40$$ minutes",
+      value: false,
+    },
+    {
+      label: "$$1$$ hour $$45$$ minutes",
+      value: false,
+    },
+  ],
+  id: [
+    {
+      label: "$$1$$ jam $$15$$ menit",
+      value: false,
+    },
+    {
+      label: "$$1$$ jam $$20$$ menit",
+      value: true,
+    },
+    {
+      label: "$$1$$ jam $$30$$ menit",
+      value: false,
+    },
+    {
+      label: "$$1$$ jam $$40$$ menit",
+      value: false,
+    },
+    {
+      label: "$$1$$ jam $$45$$ menit",
+      value: false,
+    },
+  ],
+};
+
+export default choices;

@@ -1,0 +1,66 @@
+import { linearMethodsEigen } from "#corpus/material/lesson/ai-ds/linear-methods/eigen";
+import { linearMethodsGeometry } from "#corpus/material/lesson/ai-ds/linear-methods/geometry";
+import { linearMethodsMatrix } from "#corpus/material/lesson/ai-ds/linear-methods/matrix";
+import { linearMethodsModels } from "#corpus/material/lesson/ai-ds/linear-methods/models";
+import { defineLessonMaterial } from "#corpus/material/schema";
+
+export const lessonAiDsLinearMethodsMaterial = defineLessonMaterial({
+  assetRoot: "material/lesson/ai-ds/linear-methods",
+  domain: "ai-ds",
+  key: "lesson.ai-ds.linear-methods",
+  kind: "lesson",
+  routeSlugs: { en: "linear-methods", id: "metode-linear-ai" },
+  sections: [
+    linearMethodsEigen.allEigenvaluesCalculation,
+    linearMethodsModels.approximationFunctionPolynomial,
+    linearMethodsEigen.characteristicPolynomial,
+    linearMethodsMatrix.choleskyDecomposition,
+    linearMethodsMatrix.complexMatrix,
+    linearMethodsMatrix.complexVectorSpace,
+    linearMethodsMatrix.cramerRule,
+    linearMethodsMatrix.determinant,
+    linearMethodsMatrix.determinantCalculation,
+    linearMethodsEigen.diagonalizationMatrix,
+    linearMethodsEigen.diagonalizationProcedure,
+    linearMethodsEigen.eigenvalueDiagonalMatrix,
+    linearMethodsEigen.eigenvalueEigenvectorEigenspace,
+    linearMethodsModels.identifiabilityRanking,
+    linearMethodsEigen.individualEigenvalueCalculation,
+    linearMethodsEigen.jordanNormalForm,
+    linearMethodsMatrix.laplaceExpansion,
+    linearMethodsModels.linearEquilibriumProblem,
+    linearMethodsModels.linearModel,
+    linearMethodsMatrix.luDecomposition,
+    linearMethodsMatrix.matrixCondition,
+    linearMethodsMatrix.matrixSimilarity,
+    linearMethodsModels.normalEquation,
+    linearMethodsModels.normalEquationSolution,
+    linearMethodsEigen.numericalEigenvalueCalculation,
+    linearMethodsGeometry.orthogonalPolynomials,
+    linearMethodsGeometry.orthogonalProjection,
+    linearMethodsMatrix.orthogonalUnitaryMatrix,
+    linearMethodsMatrix.positiveDefiniteMatrix,
+    linearMethodsModels.principalComponentAnalysis,
+    linearMethodsMatrix.qrDecomposition,
+    linearMethodsMatrix.realAxisTransformation,
+    linearMethodsModels.regularization,
+    linearMethodsGeometry.scalarProduct,
+    linearMethodsEigen.spectralComplexMatrix,
+    linearMethodsEigen.spectralRealMatrix,
+    linearMethodsEigen.spectralTheorem,
+    linearMethodsModels.statisticalAnalysis,
+    linearMethodsMatrix.symmetricHermitianMatrix,
+    linearMethodsMatrix.systemLinearEquation,
+  ],
+  slug: "linear-methods",
+  translations: {
+    en: {
+      description: "Estimate eigenvalues through QR iteration.",
+      title: "Linear Methods of AI",
+    },
+    id: {
+      description: "Perkirakan nilai eigen lewat iterasi QR.",
+      title: "Metode Linear AI",
+    },
+  },
+});

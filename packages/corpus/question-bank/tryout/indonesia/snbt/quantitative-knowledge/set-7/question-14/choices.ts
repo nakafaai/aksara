@@ -1,0 +1,23 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  en: [
+    {
+      label: "$$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
+      value: false,
+    },
+    { label: "$$(1)$$ and $$(3)$$ are correct.", value: false },
+    { label: "$$(2)$$ and $$(4)$$ are correct.", value: true },
+    { label: "Only $$(4)$$ is correct.", value: false },
+    { label: "$$\\text{All are correct}.$$", value: false },
+  ],
+  id: [
+    { label: "$$(1)$$, $$(2)$$, dan $$(3)$$ benar.", value: false },
+    { label: "$$(1)$$ dan $$(3)$$ benar.", value: false },
+    { label: "$$(2)$$ dan $$(4)$$ benar.", value: true },
+    { label: "$$(4)$$ saja benar.", value: false },
+    { label: "$$\\text{Semua benar}.$$", value: false },
+  ],
+};
+
+export default choices;

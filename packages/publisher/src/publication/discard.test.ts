@@ -10,11 +10,8 @@ import {
   PublicationRecoveryIdentityError,
 } from "#publisher/publication/spec";
 import { makeTarget } from "#test/lifecycle";
-import {
-  makeRollbackRelease,
-  makeSignedBundle,
-  rendererManifest,
-} from "#test/publication";
+import { rendererManifest } from "#test/publication";
+import { makeRollbackRelease, makeSignedBundle } from "#test/publication/run";
 
 /** Stages one candidate and retained inverse in an observable target. */
 async function makeStaged(name: string) {

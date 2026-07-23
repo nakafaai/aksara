@@ -2,6 +2,7 @@ import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { Schema } from "effect";
+import { materialGraph } from "#test/graph";
 
 export const transportReleaseId = "test-http-release";
 export const transportArtifactHash = `sha256:${"a".repeat(64)}`;
@@ -12,6 +13,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
     artifactHash: transportArtifactHash,
     contentKey: "test:http",
     delivery: "public",
+    family: "material",
     locale: "en",
     operation: "upsert",
     publicPath: "subjects/test/http",
@@ -25,6 +27,7 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
 const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   change: {
     contentKey: "test:deleted",
+    family: "material",
     locale: "id",
     operation: "delete",
   },
@@ -34,9 +37,10 @@ const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
 
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: "test:http",
+  graph: materialGraph("en", "http", "test-http"),
   kind: "subject-lesson",
   locale: "en",
-  materialKey: "test.http",
+  materialKey: "lesson.test.http",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: "subjects/test",

@@ -5,13 +5,8 @@ import {
   ContentLocaleSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
-import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
-import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
@@ -28,7 +23,10 @@ import {
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
-import type { RouteTransition, RouteVersion } from "#publisher/routes";
+import {
+  type RouteTransition,
+  routeTransitionForContent,
+} from "#publisher/routes";
 
 const MaterialFamilyFieldSchema = Schema.Literal(
   "contentKey",
@@ -89,37 +87,20 @@ export interface MaterialPublication {
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and active-head stream. */
 export interface MaterialPublicationInput<E, R> {
-  readonly baseCatalog: {
-    readonly count: number;
-    readonly digest: Sha256Hash;
-    readonly releaseId: ReleaseId;
-  } | null;
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<MaterialHead, E, R>;
   readonly rendererManifest: unknown;
 }
 
-/** A genesis publication received target heads despite having no signed base. */
-export class MaterialGenesisCatalogError extends Schema.TaggedError<MaterialGenesisCatalogError>()(
-  "MaterialGenesisCatalogError",
-  { actualCount: Schema.Number.pipe(Schema.int(), Schema.positive()) }
-) {}
-
 type RendererManifestError = Effect.Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
->;
-
-type ResultCatalogError = Effect.Effect.Error<
-  ReturnType<typeof verifyResultCatalog<ReplaySpoolError, never>>
 >;
 
 /** Every failure possible before the replayable material plan is constructed. */
 export type PrepareMaterialPublicationError<E> =
   | E
-  | MaterialGenesisCatalogError
   | MaterialPublicationStreamError<never>
   | ReplaySpoolError
-  | ResultCatalogError
   | RendererManifestError;
 
 /** Finds the first field proving a head does not belong to material lessons. */
@@ -189,54 +170,9 @@ function validatePublishedHeads<E, R>(
   return published.pipe(Stream.mapAccumEffect(initial, validatePublishedHead));
 }
 
-/** Verifies the complete signed base catalog or an exact empty genesis. */
-function verifyBaseCatalog(
-  baseCatalog: MaterialPublicationInput<never, never>["baseCatalog"],
-  count: number,
-  heads: () => Stream.Stream<MaterialHead, ReplaySpoolError>
-) {
-  if (baseCatalog !== null) {
-    return verifyResultCatalog({
-      expectedCount: baseCatalog.count,
-      expectedDigest: baseCatalog.digest,
-      heads: heads(),
-      releaseId: baseCatalog.releaseId,
-    });
-  }
-  if (count === 0) {
-    return Effect.void;
-  }
-  return Effect.fail(new MaterialGenesisCatalogError({ actualCount: count }));
-}
-
-/** Selects the route state represented by one compact prior snapshot. */
-function priorRoute(transition: PreparedContentTransition): RouteVersion {
-  if (transition.prior.state === "absent") {
-    return transition.prior;
-  }
-  return transition.prior.head;
-}
-
-/** Selects the desired route state represented by one authored record. */
-function nextRoute(transition: PreparedContentTransition): RouteVersion {
-  const { change } = transition.record;
-  if (!("projection" in transition.record)) {
-    return { contentKey: change.contentKey, locale: change.locale };
-  }
-  return {
-    contentKey: change.contentKey,
-    locale: change.locale,
-    publicPath: transition.record.projection.publicPath,
-  };
-}
-
-/** Converts one material body transition into an independent route transition. */
-function materialRoute(transition: PreparedContentTransition): RouteTransition {
-  return { current: priorRoute(transition), next: nextRoute(transition) };
-}
-
 /**
  * Plans a fresh-CI material delta from exact Git sources and authoritative heads.
+ * Global signed-base verification belongs to whole-catalog composition.
  * Unchanged sources are inspected but never passed to MDX code generation.
  */
 export const prepareMaterialPublication: <E, R>(
@@ -252,20 +188,10 @@ export const prepareMaterialPublication: <E, R>(
   const entries = yield* decodeMaterialRegistry().pipe(
     Effect.mapError(mapMaterialSourceError(input.checkoutRoot))
   );
-  const published = yield* createReplaySpool({
-    prefix: "aksara-published-heads-",
-    schema: MaterialHeadSchema,
-    stream: validatePublishedHeads(input.published),
-  });
-  yield* verifyBaseCatalog(
-    input.baseCatalog,
-    published.count,
-    published.replay
-  );
   const plans = planMaterialPublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: published.replay(),
+    published: validatePublishedHeads(input.published),
     rendererManifest,
   });
   const spool = yield* createReplaySpool({
@@ -284,6 +210,6 @@ export const prepareMaterialPublication: <E, R>(
       .replay()
       .pipe(Stream.filterMap((plan) => Option.fromNullable(plan.result)));
   /** Replays canonical public-route changes derived from material records. */
-  const routes = () => records().pipe(Stream.map(materialRoute));
+  const routes = () => records().pipe(Stream.map(routeTransitionForContent));
   return { records, result, routes };
 });

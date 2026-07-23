@@ -8,8 +8,8 @@ import {
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
-  canonicalizeMaterialHead,
-  type MaterialHead,
+  type ContentHead,
+  canonicalizeContentHead,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
 import { Effect, Option, Order, Schema, Stream, Tuple } from "effect";
@@ -19,9 +19,9 @@ import {
 } from "#publisher/rollback/records";
 
 type CatalogMerge =
-  | { readonly active: MaterialHead; readonly kind: "active" }
+  | { readonly active: ContentHead; readonly kind: "active" }
   | {
-      readonly active: MaterialHead;
+      readonly active: ContentHead;
       readonly kind: "both";
       readonly transition: DerivedRollbackRecord;
     }
@@ -52,7 +52,7 @@ function resolveMerge(merge: CatalogMerge) {
   const prior = snapshotRollbackState(merge.transition.prior);
   const identity = merge.transition.current.item.change;
   if (merge.kind === "transition") {
-    if (current.state === "material") {
+    if (current.state !== "absent") {
       return Effect.fail(
         new RollbackCatalogStateMismatchError({
           contentKey: identity.contentKey,
@@ -73,8 +73,8 @@ function resolveMerge(merge: CatalogMerge) {
     );
   }
   if (
-    canonicalizeMaterialHead(current.head) !==
-    canonicalizeMaterialHead(merge.active)
+    canonicalizeContentHead(current.head) !==
+    canonicalizeContentHead(merge.active)
   ) {
     return Effect.fail(
       new RollbackCatalogStateMismatchError({
@@ -89,13 +89,13 @@ function resolveMerge(merge: CatalogMerge) {
 
 /** Returns a restored head or an explicit absence after rollback. */
 function headFromSnapshot(snapshot: RollbackSnapshotState) {
-  return snapshot.state === "material"
-    ? Option.some(snapshot.head)
-    : Option.none<MaterialHead>();
+  return snapshot.state === "absent"
+    ? Option.none<ContentHead>()
+    : Option.some(snapshot.head);
 }
 
 /** Rejects duplicate locale-specific routes across the complete result. */
-function validateResultRoute(routes: Set<string>, head: MaterialHead) {
+function validateResultRoute(routes: Set<string>, head: ContentHead) {
   if (head.publicPath === undefined) {
     return Effect.succeed(Tuple.make(routes, head));
   }
@@ -117,7 +117,7 @@ function validateResultRoute(routes: Set<string>, head: MaterialHead) {
 
 /** Merges authenticated active heads with rollback transitions in one pass. */
 export function mergeRollbackResult<E1, R1, E2, R2>(input: {
-  readonly active: Stream.Stream<MaterialHead, E1, R1>;
+  readonly active: Stream.Stream<ContentHead, E1, R1>;
   readonly transitions: Stream.Stream<DerivedRollbackRecord, E2, R2>;
 }) {
   const active = input.active.pipe(

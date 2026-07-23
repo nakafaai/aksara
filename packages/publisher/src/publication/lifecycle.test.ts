@@ -6,8 +6,9 @@ import type {
   ContentReleaseBundle,
   ContentReleaseStatus,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect } from "effect";
+import { Effect, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import {
   activateCandidateRelease,
@@ -22,12 +23,12 @@ import {
   PublicationTargetConflictError,
 } from "#publisher/target/errors";
 import { releaseEvidence, releaseReceipt } from "#test/lifecycle-state";
+import { rendererManifest } from "#test/publication";
 import {
   makeRollbackRelease,
   makeSignedBundle,
-  rendererManifest,
   testVerificationResolver,
-} from "#test/publication";
+} from "#test/publication/run";
 import { makePublicationTarget } from "#test/target";
 
 const bundle = await makeSignedBundle("test-lifecycle");
@@ -77,8 +78,13 @@ function makePlan(
   });
   const plan: PublicationPlan<never, never> = {
     bundle: selectedBundle,
+    cacheChanges: () => Stream.empty,
     projectionSummary: { count: selectedManifest.projectionCount },
     routeSummary: { count: selectedManifest.routeCount },
+    snapshotSummary: {
+      snapshots: selectedManifest.snapshots,
+      stagedRows: snapshotRowCount(selectedManifest.snapshots),
+    },
     stage: Effect.sync(stage),
     summary: {
       deleteCount: selectedManifest.deleteCount,
@@ -255,7 +261,9 @@ describe("publication lifecycle", () => {
       )
     ).resolves.toEqual(receipt);
     expect(state.activate).toHaveBeenCalledWith(release);
-    expect(invalidate).toHaveBeenCalledWith(release);
+    expect(invalidate).toHaveBeenCalledWith(
+      expect.objectContaining({ release })
+    );
   });
 
   it("surfaces a stale base from atomic activation", async () => {

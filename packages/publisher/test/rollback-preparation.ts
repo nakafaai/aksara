@@ -11,7 +11,7 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hashMaterialProjection } from "@nakafa/aksara-contracts/projection/hash";
+import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
@@ -30,6 +30,8 @@ import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 import { testFileLayer } from "#test/files";
+import { materialGraph } from "#test/graph";
+import { emptySnapshotSources } from "#test/snapshot";
 import { makePublicationTarget } from "#test/target";
 
 export const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
@@ -94,9 +96,10 @@ const source = CompileDocumentSourceSchema.make({
 });
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: payload.contentKey,
+  graph: materialGraph(payload.locale, "rollback", "test-forward"),
   kind: "subject-lesson",
   locale: payload.locale,
-  materialKey: "test.rollback",
+  materialKey: "lesson.test.rollback",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: "subjects/test/rollback",
@@ -109,6 +112,7 @@ const change = {
   artifactHash,
   contentKey: payload.contentKey,
   delivery: "public" as const,
+  family: "material" as const,
   locale: payload.locale,
   operation: "upsert" as const,
   rendererDomain: payload.rendererDomain,
@@ -119,8 +123,9 @@ const head = MaterialHeadSchema.make({
   compilerConfigHash: payload.compilerConfigHash,
   contentKey: payload.contentKey,
   delivery: change.delivery,
+  family: "material",
   locale: payload.locale,
-  projectionHash: hashMaterialProjection(projection),
+  projectionHash: hashContentProjection(projection),
   publicPath: projection.publicPath,
   rendererDomain: payload.rendererDomain,
   sourceHash: payload.sourceHash,
@@ -142,10 +147,12 @@ const sourcePrepared = await Effect.runPromise(
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+    previousSnapshots: null,
     records: () =>
       Stream.make({
         prior: {
           contentKey: payload.contentKey,
+          family: "material",
           locale: payload.locale,
           state: "absent" as const,
         },
@@ -155,6 +162,7 @@ const sourcePrepared = await Effect.runPromise(
     rendererManifest: sourceRendererManifest,
     result: () => Stream.make(head),
     routes: () => Stream.empty,
+    ...emptySnapshotSources,
   })
 );
 export const sourceRelease = await Effect.runPromise(
@@ -170,6 +178,7 @@ const transition = RollbackRecordSchema.make({
   prior: RollbackDeleteStateSchema.make({
     change: {
       contentKey: payload.contentKey,
+      family: "material",
       locale: payload.locale,
       operation: "delete",
     },
@@ -195,16 +204,34 @@ export function rollbackTarget(
   loadPage: (typeof PublicationTarget.Service)["rollbackPage"]
 ) {
   return makePublicationTarget({
-    headPage: (request) =>
-      Effect.succeed({
+    headPage: (request) => {
+      const common = {
         activeManifestHash: request.activeManifestHash,
         activeReleaseId: request.activeReleaseId,
         cursor: request.cursor,
-        done: true,
-        family: "material",
-        heads: [head],
+        done: true as const,
         nextCursor: null,
-      }),
+      };
+      if (request.family === "article") {
+        return Effect.succeed({
+          ...common,
+          family: "article" as const,
+          heads: [],
+        });
+      }
+      if (request.family === "question") {
+        return Effect.succeed({
+          ...common,
+          family: "question" as const,
+          heads: [],
+        });
+      }
+      return Effect.succeed({
+        ...common,
+        family: "material" as const,
+        heads: [head],
+      });
+    },
     rollbackPage: loadPage,
     routePage: (request) =>
       Effect.succeed({

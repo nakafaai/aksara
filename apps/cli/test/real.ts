@@ -1,5 +1,6 @@
 import {
   copyFileSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -94,6 +95,29 @@ export function makeTestRepositories(): TestRepositories {
     nakafaRoot,
     root,
   };
+}
+
+/** Tracks isolated repository pairs and removes every surviving pair on demand. */
+export function makeRepositoryTracker() {
+  const repositories: TestRepositories[] = [];
+
+  /** Creates and retains one isolated repository pair for later cleanup. */
+  function create() {
+    const repository = makeTestRepositories();
+    repositories.push(repository);
+    return repository;
+  }
+
+  /** Removes every tracked repository pair that still exists. */
+  function clear() {
+    for (const repository of repositories.splice(0)) {
+      if (existsSync(repository.root)) {
+        removeTestRepositories(repository);
+      }
+    }
+  }
+
+  return { clear, create };
 }
 
 /** Removes only a helper-owned temporary root carrying its exact guard file. */

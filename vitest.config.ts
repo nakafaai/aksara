@@ -3,11 +3,25 @@ import { basename, resolve } from "node:path";
 import { defineConfig } from "vitest/config";
 
 const workspaceName = basename(process.cwd());
-const sourceRoot = resolve(process.cwd(), "src");
+const isCorpus = workspaceName === "corpus";
+const sourceRoot = resolve(process.cwd(), isCorpus ? "." : "src");
 const isRoot = existsSync(resolve(process.cwd(), "turbo.json"));
 const isContracts = workspaceName === "contracts";
 const entrySources = workspaceName === "cli" ? ["main.ts"] : [];
 const toolingSources = isRoot || isContracts ? ["scripts/**/*.ts"] : [];
+const packageSources = isCorpus
+  ? [
+      "articles/**/*.ts",
+      "curriculum/**/*.ts",
+      "material/**/*.ts",
+      "program/**/*.ts",
+      "quran/**/*.ts",
+      "question-bank/*.ts",
+      "route/**/*.ts",
+      "team/**/*.ts",
+      "tryout/**/*.ts",
+    ]
+  : ["src/**/*.ts", "src/**/*.tsx", "src/**/*.mts", "src/**/*.cts"];
 
 const config = defineConfig({
   resolve: {
@@ -30,14 +44,8 @@ const config = defineConfig({
     ...(isRoot ? { include: ["scripts/**/*.test.ts"] } : {}),
     coverage: {
       enabled: true,
-      include: [
-        ...entrySources,
-        ...toolingSources,
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.mts",
-        "src/**/*.cts",
-      ],
+      exclude: ["**/*.test.ts", "test/**/*.ts"],
+      include: [...entrySources, ...toolingSources, ...packageSources],
       provider: "istanbul",
       thresholds: {
         100: true,

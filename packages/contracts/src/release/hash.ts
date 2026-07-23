@@ -1,10 +1,8 @@
 import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import {
-  type ContentReleaseManifest,
-  canonicalizeContentReleaseManifest,
-} from "#contracts/release/spec";
+import { canonicalizeContentReleaseManifest } from "#contracts/release/signing";
+import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 /** SHA-256 computation failed before release authenticity was established. */
 export class ReleaseHashComputationError extends Schema.TaggedError<ReleaseHashComputationError>()(

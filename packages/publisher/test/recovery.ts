@@ -1,3 +1,4 @@
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
 import {
   type PublicationSuccess,
   PublicationSuccessSchema,
@@ -50,10 +51,12 @@ export function completedRecovery(
           resultCount: manifest.resultCount,
           resultDigest: manifest.resultDigest,
           routeDigest: manifest.routeDigest,
+          snapshots: manifest.snapshots,
           stagedArtifacts: manifest.upsertCount,
           stagedItems: manifest.itemCount,
           stagedProjections: manifest.projectionCount,
           stagedRoutes: manifest.routeCount,
+          stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
         },
         release,
         rendererManifest: transportRenderer,

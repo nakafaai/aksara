@@ -1,0 +1,58 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  en: [
+    {
+      label: "Data yang menjelaskan jumlah sampah yang dihasilkan Indonesia",
+      value: false,
+    },
+    {
+      label:
+        "Pembuktian lebih lanjut produk-produk Indonesia yang ditemukan di salah satu kepulauan di Afrika",
+      value: false,
+    },
+    {
+      label:
+        "Penjelasan lebih logis kenapa sampah Indonesia bisa sampai ke Afrika",
+      value: false,
+    },
+    {
+      label:
+        "Penjelasan lebih lanjut terkait Indonesia sumber utama polusi di Seychelles",
+      value: true,
+    },
+    {
+      label:
+        "Bukti pengelolaan sampah di Indonesia belum baik beserta pembanding dengan regulasi pemerintah",
+      value: false,
+    },
+  ],
+  id: [
+    {
+      label: "Data yang menjelaskan jumlah sampah yang dihasilkan Indonesia",
+      value: false,
+    },
+    {
+      label:
+        "Pembuktian lebih lanjut produk-produk Indonesia yang ditemukan di salah satu kepulauan di Afrika",
+      value: false,
+    },
+    {
+      label:
+        "Penjelasan lebih logis kenapa sampah Indonesia bisa sampai ke Afrika",
+      value: false,
+    },
+    {
+      label:
+        "Penjelasan lebih lanjut terkait Indonesia sumber utama polusi di Seychelles",
+      value: true,
+    },
+    {
+      label:
+        "Bukti pengelolaan sampah di Indonesia belum baik beserta pembanding dengan regulasi pemerintah",
+      value: false,
+    },
+  ],
+};
+
+export default choices;

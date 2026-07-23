@@ -42,6 +42,7 @@ const calls = vi.hoisted(() => {
     baseResultCount: undefined,
     baseResultDigest: undefined,
     bundleVerifyCalls: 0,
+    catalogCalls: 0,
     checkoutRoot: undefined,
     cleanReads: 0,
     current: {
@@ -52,11 +53,11 @@ const calls = vi.hoisted(() => {
     derivedPublicKeyPem:
       "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n",
     environmentKeyId: "content-2026-07-23",
+    finalSha: undefined,
     headManifestHash: undefined,
     headReleaseId: undefined,
     keyId: undefined,
     manifestMismatch: false,
-    materialCalls: 0,
     privateKeyMatches: false,
     publicationConfig: undefined,
     publishCalls: 0,
@@ -68,6 +69,8 @@ const calls = vi.hoisted(() => {
     rollbackInput: undefined,
     rootReads: 0,
     sha: undefined,
+    signingSecretReads: 0,
+    snapshotCalls: 0,
     sourceLayers: 0,
     storedRelease: undefined,
     targetCalls: 0,
@@ -103,8 +106,11 @@ vi.mock("#cli/repository", async () =>
 vi.mock("@nakafa/aksara-publisher/heads", async () =>
   (await import("#test/production-mock")).headsMock(calls)
 );
-vi.mock("@nakafa/aksara-publisher/material/publication", async () =>
-  (await import("#test/production-mock")).materialMock(calls)
+vi.mock("@nakafa/aksara-publisher/catalog/publication", async () =>
+  (await import("#test/production-mock")).catalogMock(calls)
+);
+vi.mock("@nakafa/aksara-publisher/snapshot/release", async () =>
+  (await import("#test/production-mock")).snapshotMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/target/http", async () =>
   (await import("#test/production-mock")).httpTargetMock(calls)

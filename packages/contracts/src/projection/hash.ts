@@ -1,14 +1,14 @@
 import { createHash } from "node:crypto";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
-  canonicalizeMaterialProjection,
-  type MaterialLessonProjection,
-} from "#contracts/projection/material";
+  type ContentProjection,
+  canonicalizeContentProjection,
+} from "#contracts/projection/spec";
 
-/** Hashes one canonical material projection for authoritative head diffing. */
-export function hashMaterialProjection(projection: MaterialLessonProjection) {
+/** Hashes one canonical projection for authoritative content-head diffing. */
+export function hashContentProjection(projection: ContentProjection) {
   const digest = createHash("sha256")
-    .update(canonicalizeMaterialProjection(projection))
+    .update(canonicalizeContentProjection(projection))
     .digest("hex");
   return Sha256HashSchema.make(`sha256:${digest}`);
 }

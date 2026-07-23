@@ -8,6 +8,10 @@ import {
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import {
+  emptyContentSnapshots,
+  inheritContentSnapshot,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
@@ -16,6 +20,7 @@ import {
   validateCompiledPayloadForItem,
   validatePublicationReceipt,
   validateReleaseRendererManifest,
+  validateReleaseSnapshots,
   validateVerificationEvidence,
 } from "#publisher/release-validation";
 
@@ -39,6 +44,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"a".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"b".repeat(64)}`,
+  snapshots: emptyContentSnapshots(),
   upsertCount: 0,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
@@ -67,19 +73,23 @@ const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
   rollbackDigest: manifest.rollbackDigest,
   routeCount: manifest.routeCount,
   routeDigest: manifest.routeDigest,
+  snapshots: manifest.snapshots,
   stagedArtifacts: 0,
   stagedRoutes: manifest.routeCount,
+  stagedSnapshotRows: 0,
   upsertHeads: 0,
 });
 const summary = { deleteCount: 0, upsertCount: 0 };
 const projectionSummary = { count: manifest.projectionCount };
 const routeSummary = { count: manifest.routeCount };
+const snapshotSummary = { snapshots: manifest.snapshots, stagedRows: 0 };
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   change: {
     artifactHash,
     contentKey: "test:content",
     delivery: "public",
+    family: "material",
     locale: "en",
     operation: "upsert",
     rendererDomain: "mathematics",
@@ -134,32 +144,50 @@ describe("release validation", () => {
 
   it("accepts the exact projection count recomputed by the target", async () => {
     await expect(
+      Effect.runPromise(validateReleaseSnapshots(manifest, snapshotSummary))
+    ).resolves.toBeUndefined();
+    await expect(
       Effect.runPromise(
         validateVerificationEvidence(
           release,
           summary,
           projectionSummary,
           routeSummary,
+          snapshotSummary,
           evidence
         )
       )
     ).resolves.toBeUndefined();
   });
 
-  it("rejects a projection count that differs from the signed manifest", async () => {
+  it("rejects tampered structured snapshot evidence", async () => {
+    const snapshots = {
+      ...evidence.snapshots,
+      program: inheritContentSnapshot(
+        Sha256HashSchema.make(`sha256:${"9".repeat(64)}`)
+      ),
+    };
+    const snapshotError = await Effect.runPromise(
+      validateReleaseSnapshots(manifest, {
+        snapshots,
+        stagedRows: 0,
+      }).pipe(Effect.flip)
+    );
     const error = await Effect.runPromise(
       validateVerificationEvidence(
         release,
         summary,
         projectionSummary,
         routeSummary,
+        snapshotSummary,
         {
           ...evidence,
-          projectionCount: evidence.projectionCount + 1,
+          snapshots,
         }
       ).pipe(Effect.flip)
     );
 
+    expect(snapshotError._tag).toBe("ReleaseVerificationMismatchError");
     expect(error._tag).toBe("ReleaseVerificationMismatchError");
   });
 
@@ -174,20 +202,28 @@ describe("release validation", () => {
     expect(error).toHaveProperty("actualHash", rendererManifest.hash);
   });
 
-  it("rejects an activation receipt with a different projection digest", async () => {
+  it("rejects an activation receipt with tampered snapshots", async () => {
+    const snapshots = {
+      ...manifest.snapshots,
+      program: inheritContentSnapshot(
+        Sha256HashSchema.make(`sha256:${"8".repeat(64)}`)
+      ),
+    };
     const receipt = PublicationReceiptSchema.make({
       activatedHeads: 0,
       deletedHeads: 0,
       manifestHash: release.manifestHash,
-      projectionDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
+      projectionDigest: manifest.projectionDigest,
       releaseId: manifest.releaseId,
       resultCount: manifest.resultCount,
       resultDigest: manifest.resultDigest,
       routeDigest: manifest.routeDigest,
+      snapshots,
       stagedArtifacts: 0,
       stagedItems: 0,
       stagedProjections: manifest.projectionCount,
       stagedRoutes: manifest.routeCount,
+      stagedSnapshotRows: 0,
     });
     const error = await Effect.runPromise(
       validatePublicationReceipt(
@@ -195,6 +231,7 @@ describe("release validation", () => {
         summary,
         projectionSummary,
         routeSummary,
+        snapshotSummary,
         receipt
       ).pipe(Effect.flip)
     );
@@ -212,10 +249,12 @@ describe("release validation", () => {
       resultCount: manifest.resultCount,
       resultDigest: manifest.resultDigest,
       routeDigest: manifest.routeDigest,
+      snapshots: manifest.snapshots,
       stagedArtifacts: 0,
       stagedItems: 0,
       stagedProjections: manifest.projectionCount - 1,
       stagedRoutes: manifest.routeCount,
+      stagedSnapshotRows: 0,
     });
     const error = await Effect.runPromise(
       validatePublicationReceipt(
@@ -223,6 +262,7 @@ describe("release validation", () => {
         summary,
         projectionSummary,
         routeSummary,
+        snapshotSummary,
         receipt
       ).pipe(Effect.flip)
     );

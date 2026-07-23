@@ -32,7 +32,9 @@ type InterpretPublicationResponse = (
   result: PublicationHttpResult
 ) => Effect.Effect<PublicationSuccess, PublicationTargetFailure>;
 
-const TARGET_STAGES = {
+const TARGET_STAGES: Readonly<{
+  [Operation in PublicationRequest["operation"]]: PublicationTargetStage;
+}> = {
   abort: "abort",
   accept: "accept",
   activate: "activate",
@@ -49,9 +51,11 @@ const TARGET_STAGES = {
   stageRecovery: "recovery",
   stageRelease: "release",
   stageRouteBatch: "routes",
+  stageSnapshot: "snapshots",
+  stageSnapshotBatch: "snapshots",
   status: "status",
   verify: "verify",
-} satisfies Record<PublicationRequest["operation"], PublicationTargetStage>;
+};
 
 /** Maps one exact wire operation to the publisher lifecycle vocabulary. */
 export function targetStage(
@@ -135,6 +139,21 @@ function hasBoundFailure(
         request.release.manifest.baseReleaseId &&
       failure.activeReleaseId !== failure.expectedBaseReleaseId &&
       failure.activeReleaseId !== request.release.manifest.releaseId
+    );
+  }
+  if (failure.operation === "stageSnapshot") {
+    return (
+      request.operation === "stageSnapshot" &&
+      failure.family === request.snapshot.family &&
+      failure.snapshotId === request.snapshot.manifest.snapshotId
+    );
+  }
+  if (failure.operation === "stageSnapshotBatch") {
+    return (
+      request.operation === "stageSnapshotBatch" &&
+      failure.batchIndex === request.batchIndex &&
+      failure.family === request.family &&
+      failure.snapshotId === request.snapshotId
     );
   }
   if (!("batchIndex" in failure)) {

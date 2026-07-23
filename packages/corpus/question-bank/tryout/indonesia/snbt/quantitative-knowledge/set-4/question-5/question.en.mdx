@@ -1,0 +1,56 @@
+
+export const metadata = {
+  title: "Question 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-26",
+};
+
+<LineEquation
+  title="Parabolic Curve"
+  description={<>Visualization of the parabolic curve on the cartesian plane.</>}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const y = -2 + (i / 60) * 6; // y from -2 to 4
+        const x = -Math.pow(y - 1, 2) + 4;
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        { text: "-1", at: 10, offset: [-0.5, 0, 0], color: "#4f46e5" }, // Approx at y=-1
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 1, z: 0 },
+        { x: 4, y: 1, z: 0 },
+      ],
+      color: "#0d9488", // Helper line
+      showPoints: false,
+      labels: [
+        { text: "1", at: 0, offset: [-0.5, 0, 0], color: "#4f46e5" },
+      ],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4, y: 1, z: 0 },
+      ],
+      color: "#0d9488", // Helper line
+      showPoints: false,
+      labels: [
+        { text: "4", at: 0, offset: [0, -0.5, 0], color: "#4f46e5" },
+      ],
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+The correct statement regarding the curve is:
+
+1.  one of the intersection points with the <InlineMath math="y" />-axis is <InlineMath math="(0, 2)" />
+2.  <InlineMath math="f(y) = -(y - 1)^2 + 4" />
+3.  the intersection point of the curve with the <InlineMath math="x" />-axis is <InlineMath math="(1, 0)" />
+4.  the abscissa of the vertex is <InlineMath math="x = 4" />

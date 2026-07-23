@@ -13,6 +13,7 @@ import {
   canonicalizeProjectionBatch,
   makeProjectionBatches,
 } from "#publisher/projection-batch";
+import { materialGraph } from "#test/graph";
 
 const releaseId = ReleaseIdSchema.make("test-release-projections");
 
@@ -20,9 +21,10 @@ const releaseId = ReleaseIdSchema.make("test-release-projections");
 function projection(index: number, title = "Test Projection") {
   return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
     contentKey: `test:projection-${index.toString().padStart(4, "0")}`,
+    graph: materialGraph("en", "material", `test-lesson-${index}`),
     kind: "subject-lesson",
     locale: "en",
-    materialKey: "test.material",
+    materialKey: "lesson.test.material",
     metadata: {
       authors: [{ name: "Test Author" }],
       date: "2026-01-01",

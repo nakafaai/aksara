@@ -9,6 +9,7 @@ import {
   updateProjectionDigest,
 } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { materialGraph } from "#contracts/test/graph";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
 const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)(
@@ -54,9 +55,10 @@ vi.mock("node:crypto", async (importOriginal) => {
 function projection(contentKey = "test:projection") {
   return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
     contentKey,
+    graph: materialGraph("en", "test", "material", "test-lesson"),
     kind: "subject-lesson",
     locale: "en",
-    materialKey: "test.material",
+    materialKey: "lesson.test.material",
     metadata: {
       authors: [{ name: "Test Author" }],
       date: "2026-01-01",

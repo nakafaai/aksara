@@ -53,7 +53,12 @@ vi.mock("node:crypto", async (importOriginal) => {
 /** Builds one ordered tombstone for digest tests. */
 function item(contentKey = "test:digest") {
   return Schema.decodeUnknownSync(ContentReleaseItemSchema)({
-    change: { contentKey, locale: "en", operation: "delete" },
+    change: {
+      contentKey,
+      family: "material",
+      locale: "en",
+      operation: "delete",
+    },
     index: 0,
     releaseId,
   });

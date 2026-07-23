@@ -1,16 +1,18 @@
 import {
-  FetchHttpClient,
   HttpClient,
   HttpClientError,
   HttpClientRequest,
 } from "@effect/platform";
 import {
-  MATERIAL_CACHE_TAGS,
-  MaterialCacheRequestSchema,
-} from "@nakafa/aksara-contracts/cache/material";
+  CONTENT_CACHE_GLOBAL_TAG,
+  type ContentCacheChange,
+  ContentCacheRequestSchema,
+  MAX_CONTENT_CACHE_ARTIFACTS,
+  makeContentFamilyCacheTag,
+} from "@nakafa/aksara-contracts/cache/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Redacted, Schema } from "effect";
+import { Effect, Redacted, Schema, Stream } from "effect";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient, requestJson, webResponse } from "#test/http";
@@ -43,14 +45,13 @@ vi.mock("#cli/production-renderer", async (importOriginal) => {
     },
   };
 });
-
 /** Creates one successful private cache response for the captured request. */
 function cacheResponse(
   request: HttpClientRequest.HttpClientRequest,
   init: ResponseInit = {},
   responseRequest = request
 ) {
-  const body = Schema.decodeUnknownSync(MaterialCacheRequestSchema)(
+  const body = Schema.decodeUnknownSync(ContentCacheRequestSchema)(
     requestJson(request)
   );
   const headers = new Headers(init.headers);
@@ -59,6 +60,7 @@ function cacheResponse(
   return webResponse(
     responseRequest,
     JSON.stringify({
+      family: body.family,
       releaseId: body.releaseId,
       revalidated: true,
       tags: body.tags,
@@ -66,7 +68,6 @@ function cacheResponse(
     { ...init, headers }
   );
 }
-
 /** Creates one activation service through its captured HTTP boundary. */
 async function makeActivation(
   respond: Parameters<typeof captureClient>[0] = (request) =>
@@ -82,21 +83,22 @@ async function makeActivation(
   );
   return { activation, requests: captured.requests };
 }
-
 /** Runs one closed activation path and returns its typed failure. */
 function runFailure<E>(program: Effect.Effect<void, E>) {
   return Effect.runPromise(program.pipe(Effect.flip));
 }
-
+/** Builds one production cache input from exact family-aware changes. */
+const cacheInput = (
+  release = gitBundle("release-next").release,
+  changes: readonly ContentCacheChange[] = [{ family: "material" }]
+) => ({ cacheChanges: () => Stream.fromIterable(changes), release });
 afterEach(() => vi.useRealTimers());
-
 beforeEach(() => {
   calls.endpoint = "";
   calls.fetches = 0;
   calls.renderer = RENDERER_MANIFEST;
   calls.token = "";
 });
-
 describe("production activation", () => {
   it("fetches and validates the live renderer immediately before commit", async () => {
     const { activation } = await makeActivation();
@@ -109,7 +111,6 @@ describe("production activation", () => {
       token: "renderer-token",
     });
   });
-
   it("fails closed without exposing renderer mismatch details", async () => {
     const { activation } = await makeActivation();
     calls.renderer = {
@@ -125,13 +126,10 @@ describe("production activation", () => {
     });
     expect(calls.fetches).toBe(1);
   });
-
   it("invalidates the exact authenticated cache endpoint after commit", async () => {
     const { activation, requests } = await makeActivation();
     await expect(
-      Effect.runPromise(
-        activation.invalidate(gitBundle("release-next").release)
-      )
+      Effect.runPromise(activation.invalidate(cacheInput()))
     ).resolves.toBeUndefined();
     expect(requests).toHaveLength(1);
     expect(requests[0]).toMatchObject({
@@ -149,64 +147,65 @@ describe("production activation", () => {
       return;
     }
     expect(requestJson(request)).toEqual({
+      family: "material",
       releaseId: "release-next",
-      tags: MATERIAL_CACHE_TAGS,
+      tags: [CONTENT_CACHE_GLOBAL_TAG, makeContentFamilyCacheTag("material")],
     });
   });
-
-  it("disables native redirect following at the fetch adapter", async () => {
-    let redirect: RequestInit["redirect"];
-    /** Captures the Fetch redirect policy before returning a valid response. */
-    const fetch: typeof globalThis.fetch = (_input, init) => {
-      redirect = init?.redirect;
-      return Promise.resolve(
-        new Response(
-          JSON.stringify({
-            releaseId: "release-next",
-            revalidated: true,
-            tags: MATERIAL_CACHE_TAGS,
-          }),
-          {
-            headers: {
-              "cache-control": "private, no-store",
-              "content-type": "application/json",
-            },
-          }
-        )
-      );
-    };
-    const activation = await Effect.runPromise(
-      makeProductionActivation({
-        endpoint: new URL(
-          "https://www.example.test/api/internal/content/renderer"
-        ),
-        token: Redacted.make("renderer-token"),
-      }).pipe(Effect.provide(FetchHttpClient.layer))
+  it("partitions more than 98 exact family artifacts", async () => {
+    const { activation, requests } = await makeActivation();
+    const hashes = Array.from(
+      { length: MAX_CONTENT_CACHE_ARTIFACTS + 1 },
+      (_, index) =>
+        Sha256HashSchema.make(`sha256:${index.toString(16).padStart(64, "0")}`)
     );
-    await expect(
-      Effect.runPromise(
-        activation
-          .invalidate(gitBundle("release-next").release)
-          .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch))
+    await Effect.runPromise(
+      activation.invalidate(
+        cacheInput(
+          undefined,
+          hashes.map((artifactHash) => ({
+            artifactHash,
+            family: "material",
+          }))
+        )
       )
-    ).resolves.toBeUndefined();
-    expect(redirect).toBe("manual");
+    );
+    expect(requests).toHaveLength(2);
+    const payloads = requests.map((request) =>
+      Schema.decodeUnknownSync(ContentCacheRequestSchema)(requestJson(request))
+    );
+    const [firstBatch, secondBatch] = payloads;
+    const finalHash = Sha256HashSchema.make(
+      `sha256:${MAX_CONTENT_CACHE_ARTIFACTS.toString(16).padStart(64, "0")}`
+    );
+    if (!(firstBatch && secondBatch)) {
+      return;
+    }
+    expect(firstBatch.tags.slice(0, 3)).toEqual([
+      CONTENT_CACHE_GLOBAL_TAG,
+      makeContentFamilyCacheTag("material"),
+      `content-artifact:${hashes[0]}`,
+    ]);
+    expect(secondBatch.tags).toEqual([
+      CONTENT_CACHE_GLOBAL_TAG,
+      makeContentFamilyCacheTag("material"),
+      `content-artifact:${finalHash}`,
+    ]);
+    expect(firstBatch.tags).toHaveLength(MAX_CONTENT_CACHE_ARTIFACTS + 2);
   });
-
   it.each([
     new URL("https://www.example.test/renderer"),
     new URL("http://www.example.test/api/internal/content/renderer"),
   ])("rejects unsafe cache derivation from %s", async (endpoint) => {
     const { activation, requests } = await makeActivation(undefined, endpoint);
     await expect(
-      runFailure(activation.invalidate(gitBundle("release-next").release))
+      runFailure(activation.invalidate(cacheInput()))
     ).resolves.toMatchObject({
       phase: "cache",
       releaseId: "release-next",
     });
     expect(requests).toHaveLength(0);
   });
-
   it.each([400, 401, 302])(
     "fails one permanent cache response %d without retrying",
     async (status) => {
@@ -214,12 +213,11 @@ describe("production activation", () => {
         Effect.succeed(cacheResponse(request, { status }))
       );
       await expect(
-        runFailure(activation.invalidate(gitBundle("release-next").release))
+        runFailure(activation.invalidate(cacheInput()))
       ).resolves.toMatchObject({ phase: "cache" });
       expect(requests).toHaveLength(1);
     }
   );
-
   it.each([404, 408, 429, 503])(
     "retries transient cache response %d within the bounded policy",
     async (status) => {
@@ -227,15 +225,12 @@ describe("production activation", () => {
       const { activation, requests } = await makeActivation((request) =>
         Effect.succeed(cacheResponse(request, { status }))
       );
-      const failure = runFailure(
-        activation.invalidate(gitBundle("release-next").release)
-      );
+      const failure = runFailure(activation.invalidate(cacheInput()));
       await vi.advanceTimersByTimeAsync(1000);
       await expect(failure).resolves.toMatchObject({ phase: "cache" });
       expect(requests).toHaveLength(4);
     }
   );
-
   it("rejects network, redirected, uncached, and timed-out responses", async () => {
     const { release } = gitBundle("release-next");
     vi.useFakeTimers();
@@ -245,7 +240,7 @@ describe("production activation", () => {
       )
     );
     const networkFailure = Effect.runPromise(
-      network.activation.invalidate(release).pipe(Effect.flip)
+      network.activation.invalidate(cacheInput(release)).pipe(Effect.flip)
     );
     await vi.advanceTimersByTimeAsync(1000);
     await expect(networkFailure).resolves.toMatchObject({ phase: "cache" });
@@ -263,17 +258,17 @@ describe("production activation", () => {
     );
     await expect(
       Effect.runPromise(
-        mismatch.activation.invalidate(release).pipe(Effect.flip)
+        mismatch.activation.invalidate(cacheInput(release)).pipe(Effect.flip)
       )
     ).resolves.toMatchObject({ phase: "cache" });
     await expect(
       Effect.runPromise(
-        uncached.activation.invalidate(release).pipe(Effect.flip)
+        uncached.activation.invalidate(cacheInput(release)).pipe(Effect.flip)
       )
     ).resolves.toMatchObject({ phase: "cache" });
     const stalled = await makeActivation(() => Effect.never);
     const timeout = Effect.runPromise(
-      stalled.activation.invalidate(release).pipe(Effect.flip)
+      stalled.activation.invalidate(cacheInput(release)).pipe(Effect.flip)
     );
     await vi.advanceTimersByTimeAsync(30_100);
     await expect(timeout).resolves.toMatchObject({ phase: "cache" });

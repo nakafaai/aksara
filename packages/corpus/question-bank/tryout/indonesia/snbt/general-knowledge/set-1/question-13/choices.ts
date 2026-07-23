@@ -1,0 +1,50 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  en: [
+    {
+      label: "They were fascinated.",
+      value: true,
+    },
+    {
+      label: "The expanse was covered in ice crystals.",
+      value: false,
+    },
+    {
+      label: "They were covered in ice crystals.",
+      value: false,
+    },
+    {
+      label: "Fascinated by the beauty of the expanse of ice crystals",
+      value: false,
+    },
+    {
+      label: "Covered in clear ice crystals.",
+      value: false,
+    },
+  ],
+  id: [
+    {
+      label: "Mereka terpesona.",
+      value: true,
+    },
+    {
+      label: "Hamparan diselimuti kristal es.",
+      value: false,
+    },
+    {
+      label: "Mereka diselimuti kristal es.",
+      value: false,
+    },
+    {
+      label: "Terpesona kecantikan hamparan kristal es",
+      value: false,
+    },
+    {
+      label: "Diselimuti kristal es bening.",
+      value: false,
+    },
+  ],
+};
+
+export default choices;

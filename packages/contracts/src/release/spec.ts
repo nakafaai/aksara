@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { ContentLocaleSchema } from "#contracts/content";
+import { ContentFamilySchema, ContentLocaleSchema } from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,
@@ -10,11 +10,16 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import {
-  canonicalizeReleaseOrigin,
-  ReleaseOriginSchema,
-} from "#contracts/release/origin";
+import { ReleaseOriginSchema } from "#contracts/release/origin";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import {
+  type ContentSnapshotSet,
+  ContentSnapshotSetSchema,
+  hasEmptySnapshotBases,
+  hasGitSnapshotModes,
+  hasRollbackSnapshotModes,
+  snapshotRowCount,
+} from "#contracts/release/snapshot";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 
@@ -23,6 +28,7 @@ export const ContentUpsertSchema = Schema.Struct({
   artifactHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
   delivery: ContentDeliveryClassSchema,
+  family: ContentFamilySchema,
   locale: ContentLocaleSchema,
   operation: Schema.Literal("upsert"),
   rendererDomain: RendererDomainSchema,
@@ -32,6 +38,7 @@ export const ContentUpsertSchema = Schema.Struct({
 /** One locale-specific content head removed by an explicit tombstone. */
 export const ContentDeleteSchema = Schema.Struct({
   contentKey: ContentKeySchema,
+  family: ContentFamilySchema,
   locale: ContentLocaleSchema,
   operation: Schema.Literal("delete"),
 });
@@ -82,6 +89,7 @@ const ContentReleaseManifestFields = {
   rollbackDigest: Sha256HashSchema,
   routeCount: ProjectionCountSchema,
   routeDigest: Sha256HashSchema,
+  snapshots: ContentSnapshotSetSchema,
   upsertCount: ProjectionCountSchema,
 };
 
@@ -96,6 +104,7 @@ function hasCoherentReleaseOrigin(input: {
   readonly origin: typeof ReleaseOriginSchema.Type;
   readonly releaseId: typeof ReleaseIdSchema.Type;
   readonly rollbackCount: number;
+  readonly snapshots: ContentSnapshotSet;
   readonly upsertCount: number;
 }) {
   if (
@@ -113,12 +122,16 @@ function hasCoherentReleaseOrigin(input: {
   ) {
     return false;
   }
+  if (input.baseReleaseId === null && !hasEmptySnapshotBases(input.snapshots)) {
+    return false;
+  }
   if (input.origin.kind === "git") {
-    return true;
+    return hasGitSnapshotModes(input.snapshots);
   }
   return (
     input.baseReleaseId === input.origin.releaseId &&
-    input.releaseId !== input.origin.releaseId
+    input.releaseId !== input.origin.releaseId &&
+    hasRollbackSnapshotModes(input.snapshots)
   );
 }
 
@@ -162,8 +175,6 @@ export const RollbackSignedContentReleaseSchema =
     )
   );
 
-const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";
-
 /** Checks that every staged head has exactly one matching item and artifact. */
 function hasCoherentVerificationCounts(input: {
   readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
@@ -173,6 +184,8 @@ function hasCoherentVerificationCounts(input: {
   readonly deleteHeads: number;
   readonly itemCount: number;
   readonly rollbackCount: number;
+  readonly snapshots: ContentSnapshotSet;
+  readonly stagedSnapshotRows: number;
   readonly stagedArtifacts: number;
   readonly upsertHeads: number;
 }) {
@@ -183,7 +196,8 @@ function hasCoherentVerificationCounts(input: {
         input.baseResultDigest === EMPTY_RESULT_CATALOG_DIGEST)) &&
     input.deleteHeads + input.upsertHeads === input.itemCount &&
     input.rollbackCount === input.itemCount &&
-    input.stagedArtifacts === input.upsertHeads
+    input.stagedArtifacts === input.upsertHeads &&
+    input.stagedSnapshotRows === snapshotRowCount(input.snapshots)
   );
 }
 
@@ -208,8 +222,10 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   rollbackDigest: Sha256HashSchema,
   routeCount: ProjectionCountSchema,
   routeDigest: Sha256HashSchema,
+  snapshots: ContentSnapshotSetSchema,
   stagedArtifacts: ProjectionCountSchema,
   stagedRoutes: ProjectionCountSchema,
+  stagedSnapshotRows: ProjectionCountSchema,
   upsertHeads: ProjectionCountSchema,
 }).pipe(
   Schema.filter(hasCoherentVerificationCounts, {
@@ -230,15 +246,18 @@ export const PublicationReceiptSchema = Schema.Struct({
   resultCount: ProjectionCountSchema,
   resultDigest: Sha256HashSchema,
   routeDigest: Sha256HashSchema,
+  snapshots: ContentSnapshotSetSchema,
   stagedArtifacts: ProjectionCountSchema,
   stagedItems: ProjectionCountSchema,
   stagedProjections: ProjectionCountSchema,
   stagedRoutes: ProjectionCountSchema,
+  stagedSnapshotRows: ProjectionCountSchema,
 }).pipe(
   Schema.filter(
     (receipt) =>
       receipt.activatedHeads + receipt.deletedHeads === receipt.stagedItems &&
-      receipt.stagedArtifacts === receipt.activatedHeads,
+      receipt.stagedArtifacts === receipt.activatedHeads &&
+      receipt.stagedSnapshotRows === snapshotRowCount(receipt.snapshots),
     {
       message: () =>
         "Expected activated head and artifact counts to match staged items.",
@@ -254,6 +273,7 @@ export function canonicalizeContentChange(change: ContentChange) {
       artifactHash: change.artifactHash,
       contentKey: change.contentKey,
       delivery: change.delivery,
+      family: change.family,
       locale: change.locale,
       operation: change.operation,
       rendererDomain: change.rendererDomain,
@@ -263,6 +283,7 @@ export function canonicalizeContentChange(change: ContentChange) {
 
   return {
     contentKey: change.contentKey,
+    family: change.family,
     locale: change.locale,
     operation: change.operation,
   };
@@ -275,40 +296,4 @@ export function canonicalizeContentReleaseItem(item: ContentReleaseItem) {
     index: item.index,
     releaseId: item.releaseId,
   });
-}
-
-/** Produces the stable JSON bytes used for release digest verification. */
-export function canonicalizeContentReleaseManifest(
-  manifest: ContentReleaseManifest
-) {
-  return JSON.stringify({
-    baseManifestHash: manifest.baseManifestHash,
-    baseReleaseId: manifest.baseReleaseId,
-    baseResultCount: manifest.baseResultCount,
-    baseResultDigest: manifest.baseResultDigest,
-    deleteCount: manifest.deleteCount,
-    itemCount: manifest.itemCount,
-    itemsDigest: manifest.itemsDigest,
-    origin: canonicalizeReleaseOrigin(manifest.origin),
-    projectionCount: manifest.projectionCount,
-    projectionDigest: manifest.projectionDigest,
-    releaseId: manifest.releaseId,
-    rendererContractVersion: manifest.rendererContractVersion,
-    rendererManifestHash: manifest.rendererManifestHash,
-    resultCount: manifest.resultCount,
-    resultDigest: manifest.resultDigest,
-    rollbackCount: manifest.rollbackCount,
-    rollbackDigest: manifest.rollbackDigest,
-    routeCount: manifest.routeCount,
-    routeDigest: manifest.routeDigest,
-    upsertCount: manifest.upsertCount,
-  });
-}
-
-/** Returns the domain-separated canonical bytes covered by release Ed25519. */
-export function canonicalizeContentReleaseSigningInput(
-  manifestHash: typeof Sha256HashSchema.Type,
-  manifest: ContentReleaseManifest
-) {
-  return `${CONTENT_RELEASE_SIGNATURE_DOMAIN}\n${manifestHash}\n${canonicalizeContentReleaseManifest(manifest)}`;
 }

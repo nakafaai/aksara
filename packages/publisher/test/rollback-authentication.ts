@@ -32,6 +32,7 @@ import {
   deriveRollbackRecords,
   type RollbackArtifactPolicy,
 } from "#publisher/rollback/records";
+import { materialGraph } from "#test/graph";
 
 const rawMdx = "## Test protocol";
 const compiledCode = "return {};";
@@ -91,9 +92,10 @@ export const rollbackProjection = Schema.decodeUnknownSync(
   MaterialLessonProjectionSchema
 )({
   contentKey: payload.contentKey,
+  graph: materialGraph(payload.locale, "rollback", "test-record"),
   kind: "subject-lesson",
   locale: payload.locale,
-  materialKey: "test.rollback",
+  materialKey: "lesson.test.rollback",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
   parentPath: "subjects/test/rollback",
@@ -107,6 +109,7 @@ export const rollbackUpsert = RollbackUpsertStateSchema.make({
     artifactHash: rollbackArtifact.artifactHash,
     contentKey: payload.contentKey,
     delivery: "public",
+    family: "material",
     locale: payload.locale,
     operation: "upsert",
     rendererDomain: payload.rendererDomain,
@@ -133,6 +136,7 @@ export const incompatibleRollbackUpsert = RollbackUpsertStateSchema.make({
 export const rollbackDeletion = RollbackDeleteStateSchema.make({
   change: {
     contentKey: ContentKeySchema.make("test:rollback-delete"),
+    family: "material",
     locale: "en",
     operation: "delete",
   },
@@ -140,6 +144,7 @@ export const rollbackDeletion = RollbackDeleteStateSchema.make({
 export const matchingRollbackDeletion = RollbackDeleteStateSchema.make({
   change: {
     contentKey: payload.contentKey,
+    family: "material",
     locale: payload.locale,
     operation: "delete",
   },

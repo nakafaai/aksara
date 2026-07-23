@@ -14,9 +14,13 @@ import {
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
+import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
+import {
+  emptyContentSnapshots,
+  invertContentSnapshots,
+} from "#contracts/release/snapshot";
 import {
   ContentReleaseManifestSchema,
-  canonicalizeContentReleaseSigningInput,
   type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
@@ -31,6 +35,7 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { replacementSnapshots } from "#contracts/test/request";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -96,6 +101,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"1".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"1".repeat(64)}`,
+  snapshots: emptyContentSnapshots(),
   upsertCount: 1,
 });
 /** Produces a valid signed release for verification scenarios. */
@@ -162,7 +168,6 @@ describe("server-only release verification", () => {
       )
     ).resolves.toEqual(release);
   });
-
   it("authenticates the signed release and frozen renderer as one bundle", async () => {
     const release = signRelease();
     await expect(verifyBundle({ release, rendererManifest })).resolves.toEqual({
@@ -170,11 +175,11 @@ describe("server-only release verification", () => {
       rendererManifest,
     });
   });
-
   it("accepts only rollback-owned bundles at recovery boundaries", async () => {
     const rollbackManifest = ContentReleaseManifestSchema.make({
       ...manifest,
       origin: { kind: "rollback", releaseId: baseReleaseId },
+      snapshots: invertContentSnapshots(manifest.snapshots),
     });
     const rollback = signRelease(rollbackManifest);
     await expect(
@@ -191,7 +196,6 @@ describe("server-only release verification", () => {
     );
     expect(error._tag).toBe("ReleaseBundleVerificationDecodeError");
   });
-
   it("rejects mismatched or corrupted frozen renderer evidence", async () => {
     const release = signRelease();
     const mismatched = await Effect.runPromise(
@@ -227,7 +231,6 @@ describe("server-only release verification", () => {
       _tag: "RendererManifestHashMismatchError",
     });
   });
-
   it.each([
     ["base manifest", { baseManifestHash: `sha256:${"2".repeat(64)}` }],
     ["base release", { baseReleaseId: "test-release-other" }],
@@ -242,6 +245,7 @@ describe("server-only release verification", () => {
     ["result digest", { resultDigest: `sha256:${"2".repeat(64)}` }],
     ["rollback digest", { rollbackDigest: `sha256:${"2".repeat(64)}` }],
     ["renderer manifest", { rendererManifestHash: `sha256:${"f".repeat(64)}` }],
+    ["structured snapshots", { snapshots: replacementSnapshots }],
   ])("rejects a mutated %s", async (_label, values) => {
     const release = signRelease();
     const error = await reject({
@@ -251,7 +255,6 @@ describe("server-only release verification", () => {
 
     expect(error._tag).toBe("ReleaseManifestHashMismatchError");
   });
-
   it("rejects a recomputed hash without a new release signature", async () => {
     const release = signRelease();
     const changedManifest = ContentReleaseManifestSchema.make({
@@ -268,7 +271,6 @@ describe("server-only release verification", () => {
 
     expect(error._tag).toBe("SignatureInvalidError");
   });
-
   it("does not expose resolved key contents in failures", async () => {
     const sensitiveKey = "must-not-appear-in-verification-errors";
     const resolver = ContentVerificationKeyResolver.of({
@@ -279,7 +281,6 @@ describe("server-only release verification", () => {
     expect(error._tag).toBe("PublicKeyParseError");
     expect(JSON.stringify(error)).not.toContain(sensitiveKey);
   });
-
   it("rejects excess fields without exposing source values", async () => {
     const sensitiveSource = "must-not-appear-in-decode-errors";
     const release = signRelease();
@@ -291,7 +292,6 @@ describe("server-only release verification", () => {
     expect(error._tag).toBe("ReleaseVerificationDecodeError");
     expect(JSON.stringify(error)).not.toContain(sensitiveSource);
   });
-
   it("maps manifest hashing failures to the release identity", async () => {
     const release = signRelease();
     const error = await reject({

@@ -198,11 +198,10 @@ export const readRecoveryEnvironment = Effect.fn(
   } satisfies RecoveryEnvironment;
 });
 
-/** Loads and validates every required production value through Effect Config. */
+/** Adds validated signer values to an already decoded recovery environment. */
 export const readProductionEnvironment = Effect.fn(
   "AksaraCli.readProductionEnvironment"
-)(function* () {
-  const recovery = yield* readRecoveryEnvironment();
+)(function* (recovery: RecoveryEnvironment) {
   const keyIdInput = yield* readConfig(
     Config.string("AKSARA_SIGNING_KEY_ID"),
     "AKSARA_SIGNING_KEY_ID"

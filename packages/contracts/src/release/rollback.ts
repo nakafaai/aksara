@@ -1,5 +1,6 @@
 import { Schema } from "effect";
 import {
+  ContentFamilySchema,
   canonicalizeSignedContentArtifact,
   SignedContentArtifactSchema,
 } from "#contracts/content";
@@ -9,12 +10,15 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
-  canonicalizeMaterialProjection,
-  MaterialLessonProjectionSchema,
-} from "#contracts/projection/material";
+  ContentProjectionSchema,
+  canonicalizeContentProjection,
+  familyForProjection,
+} from "#contracts/projection/spec";
 import {
-  canonicalizeMaterialHead,
+  ArticleHeadSchema,
+  canonicalizeContentHead,
   MaterialHeadSchema,
+  QuestionHeadSchema,
 } from "#contracts/release/head";
 import {
   ContentDeleteSchema,
@@ -34,10 +38,18 @@ const RollbackCursorSchema = Schema.Number.pipe(
 /** Explicit proof that a changed content head did not previously exist. */
 export const RollbackAbsentStateSchema = Schema.Struct({
   contentKey: ContentKeySchema,
+  family: ContentFamilySchema,
   locale: ContentUpsertSchema.fields.locale,
   state: Schema.Literal("absent"),
 });
 export type RollbackAbsentState = typeof RollbackAbsentStateSchema.Type;
+
+/** Compact authoritative prior article head protected by one rollback digest. */
+export const RollbackArticleStateSchema = Schema.Struct({
+  head: ArticleHeadSchema,
+  state: Schema.Literal("article"),
+});
+export type RollbackArticleState = typeof RollbackArticleStateSchema.Type;
 
 /** Compact authoritative prior head protected by one rollback snapshot digest. */
 export const RollbackMaterialStateSchema = Schema.Struct({
@@ -46,10 +58,19 @@ export const RollbackMaterialStateSchema = Schema.Struct({
 });
 export type RollbackMaterialState = typeof RollbackMaterialStateSchema.Type;
 
+/** Compact authoritative prior question head protected by one rollback digest. */
+export const RollbackQuestionStateSchema = Schema.Struct({
+  head: QuestionHeadSchema,
+  state: Schema.Literal("question"),
+});
+export type RollbackQuestionState = typeof RollbackQuestionStateSchema.Type;
+
 /** Complete compact state vocabulary authenticated for one future rollback. */
 export const RollbackSnapshotStateSchema = Schema.Union(
   RollbackAbsentStateSchema,
-  RollbackMaterialStateSchema
+  RollbackArticleStateSchema,
+  RollbackMaterialStateSchema,
+  RollbackQuestionStateSchema
 );
 export type RollbackSnapshotState = typeof RollbackSnapshotStateSchema.Type;
 
@@ -67,8 +88,8 @@ export function canonicalizeRollbackSnapshotEntry(
 ) {
   const snapshot =
     entry.snapshot.state === "absent"
-      ? `{"contentKey":${JSON.stringify(entry.snapshot.contentKey)},"locale":${JSON.stringify(entry.snapshot.locale)},"state":"absent"}`
-      : `{"head":${canonicalizeMaterialHead(entry.snapshot.head)},"state":"material"}`;
+      ? `{"contentKey":${JSON.stringify(entry.snapshot.contentKey)},"family":${JSON.stringify(entry.snapshot.family)},"locale":${JSON.stringify(entry.snapshot.locale)},"state":"absent"}`
+      : `{"head":${canonicalizeContentHead(entry.snapshot.head)},"state":${JSON.stringify(entry.snapshot.state)}}`;
   return `{"index":${entry.index},"releaseId":${JSON.stringify(entry.releaseId)},"snapshot":${snapshot}}`;
 }
 
@@ -76,7 +97,7 @@ export function canonicalizeRollbackSnapshotEntry(
 function hasBoundRollbackUpsert(input: {
   readonly artifact: typeof SignedContentArtifactSchema.Type;
   readonly change: typeof ContentUpsertSchema.Type;
-  readonly projection: typeof MaterialLessonProjectionSchema.Type;
+  readonly projection: typeof ContentProjectionSchema.Type;
 }) {
   const { artifact, change, projection } = input;
   const { payload } = artifact;
@@ -86,7 +107,8 @@ function hasBoundRollbackUpsert(input: {
     payload.locale === change.locale &&
     payload.rendererDomain === change.rendererDomain &&
     projection.contentKey === change.contentKey &&
-    projection.locale === change.locale
+    projection.locale === change.locale &&
+    familyForProjection(projection) === change.family
   );
 }
 
@@ -94,7 +116,7 @@ function hasBoundRollbackUpsert(input: {
 export const RollbackUpsertStateSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
   change: ContentUpsertSchema,
-  projection: MaterialLessonProjectionSchema,
+  projection: ContentProjectionSchema,
 }).pipe(
   Schema.filter(hasBoundRollbackUpsert, {
     message: () =>
@@ -123,6 +145,7 @@ function hasBoundRollbackTransition(input: {
 }) {
   return (
     input.current.change.contentKey === input.prior.change.contentKey &&
+    input.current.change.family === input.prior.change.family &&
     input.current.change.locale === input.prior.change.locale
   );
 }
@@ -206,7 +229,7 @@ function canonicalizeRollbackState(state: RollbackState) {
   if (!isRollbackUpsert(state)) {
     return `{"change":${change}}`;
   }
-  return `{"artifact":${canonicalizeSignedContentArtifact(state.artifact)},"change":${change},"projection":${canonicalizeMaterialProjection(state.projection)}}`;
+  return `{"artifact":${canonicalizeSignedContentArtifact(state.artifact)},"change":${change},"projection":${canonicalizeContentProjection(state.projection)}}`;
 }
 
 /** Serializes one rollback transition in stable wire field order. */

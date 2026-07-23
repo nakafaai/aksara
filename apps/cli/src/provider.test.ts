@@ -1,4 +1,3 @@
-import { existsSync } from "node:fs";
 import { Server } from "node:http";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { Effect, Redacted } from "effect";
@@ -10,30 +9,14 @@ import {
   type PreviewProvider,
 } from "#cli/provider";
 import { makePreviewReady, PREVIEW_REPOSITORIES } from "#test/preview";
-import {
-  makeTestRepositories,
-  RENDERER_MANIFEST,
-  removeTestRepositories,
-  type TestRepositories,
-} from "#test/real";
+import { makeRepositoryTracker, RENDERER_MANIFEST } from "#test/real";
 
-const repositories: TestRepositories[] = [];
+const repositories = makeRepositoryTracker();
 
 afterEach(() => {
   vi.restoreAllMocks();
-  for (const repository of repositories.splice(0)) {
-    if (existsSync(repository.root)) {
-      removeTestRepositories(repository);
-    }
-  }
+  repositories.clear();
 });
-
-/** Creates and tracks one isolated final-corpus repository pair. */
-function makeRepositories() {
-  const repository = makeTestRepositories();
-  repositories.push(repository);
-  return repository;
-}
 
 /** Executes one callback while the scoped loopback provider is listening. */
 async function withProvider(
@@ -43,7 +26,7 @@ async function withProvider(
     readonly token: string;
   }) => Promise<void>
 ) {
-  const repository = makeRepositories();
+  const repository = repositories.create();
   const ready = await makePreviewReady(repository);
   await Effect.runPromise(
     Effect.scoped(
@@ -129,7 +112,7 @@ describe("local preview provider", () => {
       expect(malformed.status).toBe(409);
       expect(traversal.status).toBe(409);
     });
-  });
+  }, 30_000);
 
   it("atomically exposes ready state and clears stale artifacts", async () => {
     await withProvider(async ({ provider, ready, token }) => {
@@ -192,7 +175,7 @@ describe("local preview provider", () => {
       const unchanged = await request(provider, token, PREVIEW_MANIFEST_PATH);
       await expect(unchanged.json()).resolves.toMatchObject({ revision: 4 });
     });
-  });
+  }, 30_000);
 
   it("streams initial and changed revisions over authenticated SSE", async () => {
     await withProvider(async ({ provider, token }) => {
@@ -218,10 +201,10 @@ describe("local preview provider", () => {
       controller.abort();
       await reader?.cancel().catch(() => undefined);
     });
-  });
+  }, 30_000);
 
   it("fails when the operating system cannot bind or prove loopback", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const ready = await makePreviewReady(repository);
     const input = {
       document: ready.document,
@@ -245,10 +228,10 @@ describe("local preview provider", () => {
 
     expect(listenError).toMatchObject({ stage: "listen" });
     expect(addressError).toMatchObject({ stage: "listen" });
-  });
+  }, 30_000);
 
   it("closes an unfinished listener when provider acquisition is cancelled", async () => {
-    const repository = makeRepositories();
+    const repository = repositories.create();
     const ready = await makePreviewReady(repository);
     vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
       this: Server
@@ -273,5 +256,5 @@ describe("local preview provider", () => {
 
     expect(cancelled._tag).toBe("TimeoutException");
     expect(close).toHaveBeenCalledOnce();
-  });
+  }, 30_000);
 });

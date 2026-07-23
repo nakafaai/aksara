@@ -1,6 +1,7 @@
 import { Effect, Schema } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
-import { hashMaterialProjection } from "#contracts/projection/hash";
+import { hashContentProjection } from "#contracts/projection/hash";
+import type { RoutedContentProjection } from "#contracts/projection/spec";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import {
@@ -25,14 +26,33 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
   }
 ) {}
 
-/** Checks one target-owned path stays inside its projected material locale. */
-function hasMaterialSourcePath(input: {
-  readonly locale: string;
-  readonly sourcePath: string;
-}) {
+/** Checks one article path preserves its pair-grouped physical source identity. */
+function hasArticleSourcePath(
+  projection: Extract<RoutedContentProjection, { readonly kind: "article" }>,
+  sourcePath: string
+) {
+  const prefix = `packages/corpus/articles/${projection.category}/`;
+  const suffix = `/${projection.locale}.mdx`;
+  if (!(sourcePath.startsWith(prefix) && sourcePath.endsWith(suffix))) {
+    return false;
+  }
+  const sourceRoot = sourcePath.slice(prefix.length, -suffix.length);
+  const segments = sourceRoot.split("/");
+  return segments.length === 2 && segments.join("-") === projection.articleSlug;
+}
+
+/** Checks one target-owned path exactly matches its projected content family. */
+function hasProjectionSourcePath(
+  projection: RoutedContentProjection,
+  sourcePath: string
+) {
+  if (projection.kind === "article") {
+    return hasArticleSourcePath(projection, sourcePath);
+  }
+
   return (
-    input.sourcePath.startsWith("packages/corpus/material/lesson/") &&
-    input.sourcePath.endsWith(`/${input.locale}.mdx`)
+    sourcePath ===
+    `packages/corpus/${projection.contentKey}/${projection.locale}.mdx`
   );
 }
 
@@ -63,12 +83,7 @@ export const verifyContentRuntimeExchange = Effect.fn(
   if (response.projection.publicPath !== request.publicPath) {
     return yield* new ContentRuntimeMismatchError({ reason: "publicPath" });
   }
-  if (
-    !hasMaterialSourcePath({
-      locale: response.projection.locale,
-      sourcePath: response.sourcePath,
-    })
-  ) {
+  if (!hasProjectionSourcePath(response.projection, response.sourcePath)) {
     return yield* new ContentRuntimeMismatchError({ reason: "sourcePath" });
   }
   const bundle = yield* verifyContentReleaseBundle({
@@ -93,7 +108,7 @@ export const verifyContentRuntimeExchange = Effect.fn(
       reason: "activeManifestHash",
     });
   }
-  if (response.projectionHash !== hashMaterialProjection(response.projection)) {
+  if (response.projectionHash !== hashContentProjection(response.projection)) {
     return yield* new ContentRuntimeMismatchError({ reason: "projectionHash" });
   }
   yield* verifySignedContentArtifact({

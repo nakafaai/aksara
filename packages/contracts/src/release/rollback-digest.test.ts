@@ -11,6 +11,7 @@ import {
   updateRollbackSnapshotDigest,
   verifyRollbackSnapshot,
 } from "#contracts/release/rollback-digest";
+import { emptyContentSnapshots } from "#contracts/release/snapshot";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
@@ -60,7 +61,12 @@ function entry(contentKey = "test:rollback") {
   return Schema.decodeUnknownSync(RollbackSnapshotEntrySchema)({
     index: 0,
     releaseId,
-    snapshot: { contentKey, locale: "en", state: "absent" },
+    snapshot: {
+      contentKey,
+      family: "material",
+      locale: "en",
+      state: "absent",
+    },
   });
 }
 
@@ -86,6 +92,7 @@ function manifest(rollbackCount: number, rollbackDigest: `sha256:${string}`) {
     rollbackDigest,
     routeCount: 0,
     routeDigest: `sha256:${"f".repeat(64)}`,
+    snapshots: emptyContentSnapshots(),
     upsertCount: 0,
   });
 }

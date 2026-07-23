@@ -5,6 +5,7 @@ import {
   ReleaseAcceptRequestSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect, Schema } from "effect";
+import { decodeContract } from "#publisher/contract/decode";
 import { PublicationTarget } from "#publisher/publication/spec";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
@@ -41,17 +42,6 @@ type AcceptContentRelease = (
   PublicationTarget
 >;
 
-/** Strictly decodes one acceptance contract without retaining parser details. */
-function decodeContract<A, I>(
-  schema: Schema.Schema<A, I>,
-  contract: "request" | "receipt",
-  input: unknown
-) {
-  return Schema.decodeUnknown(schema)(input, {
-    onExcessProperty: "error",
-  }).pipe(Effect.mapError(() => new ReleaseAcceptContractError({ contract })));
-}
-
 /** Requires stable recovery identity, total size, and forward page progress. */
 function validateReceipt(
   recoveryId: typeof ReleaseIdSchema.Type,
@@ -75,8 +65,8 @@ export const acceptContentRelease: AcceptContentRelease = Effect.fn(
 )(function* (input: unknown) {
   const request = yield* decodeContract(
     ReleaseAcceptRequestSchema,
-    "request",
-    input
+    input,
+    new ReleaseAcceptContractError({ contract: "request" })
   );
   const target = yield* PublicationTarget;
   let progress = { processedItems: 0, totalItems: 0 };
@@ -85,8 +75,8 @@ export const acceptContentRelease: AcceptContentRelease = Effect.fn(
     const response = yield* target.accept(request);
     const receipt = yield* decodeContract(
       ReleaseAbortReceiptSchema,
-      "receipt",
-      response
+      response,
+      new ReleaseAcceptContractError({ contract: "receipt" })
     );
     yield* validateReceipt(request.recoveryId, previous, receipt);
     if (receipt.complete) {
