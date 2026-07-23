@@ -7,6 +7,7 @@ export const DEPENDENCY_SECTIONS = [
   "optionalDependencies",
   "peerDependencies",
 ] as const;
+const WORKSPACE_PROTOCOL_PATTERN = /^(?:catalog:|workspace:)/u;
 
 type DependencySection = (typeof DEPENDENCY_SECTIONS)[number];
 
@@ -50,6 +51,19 @@ export function assertContractPackageMetadata(manifest: PackageManifest): void {
     },
     "The contract package must identify its exact source repository directory"
   );
+}
+
+/** Rejects workspace-only dependency protocols in a publishable manifest. */
+export function assertPortableDependencies(manifest: PackageManifest): void {
+  for (const section of DEPENDENCY_SECTIONS) {
+    for (const version of Object.values(manifest[section] ?? {})) {
+      assert.doesNotMatch(
+        version,
+        WORKSPACE_PROTOCOL_PATTERN,
+        `Packed ${section} must use registry-installable versions`
+      );
+    }
+  }
 }
 
 /** Root toolchain field inherited by an isolated package consumer. */

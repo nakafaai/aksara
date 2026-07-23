@@ -106,14 +106,17 @@ compiled in a production request.
 
 The compiler parses executable syntax through MDX's ESTree output. It rejects
 dynamic imports, `import.meta`, `require`, `eval`, direct `Function`, `process`, `globalThis`,
-network globals, unknown free globals, direct prototype-chain escape properties,
-and `dangerouslySetInnerHTML`. The artifact compiler rejects every body import
-and export. Existing component imports must be removed by the separately audited
-migration normalizer before compilation; alias shape is never treated as proof
-that an import source is safe. These checks are defense in depth against common
-mistakes and obvious escape syntax. JavaScript has equivalent expressions that
-static checks cannot prove safe, so this policy never changes the requirement
-that every MDX author and reviewer is a trusted production code author.
+network globals, unknown free globals, dynamic computed properties, direct
+prototype-chain escape properties, prototype-reflection entry points, and
+`dangerouslySetInnerHTML`. Other static string and finite literal numeric
+property access remains available. The artifact compiler rejects every body
+import and export. Existing
+component imports must be removed by the separately audited migration normalizer
+before compilation; alias shape is never treated as proof that an import source
+is safe. These checks are defense in depth against common mistakes and obvious
+escape syntax. JavaScript has equivalent expressions that static checks cannot
+prove safe, so this policy never changes the requirement that every MDX author
+and reviewer is a trusted production code author.
 
 Every authored document must contain exactly one standalone
 `export const metadata` declaration. The compiler decodes its literal arrays

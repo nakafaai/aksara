@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import ts from "typescript";
 
-import { typescriptFiles } from "#scripts/files";
+import { enforceViolations, typescriptFiles } from "#scripts/files";
 
 const LINE_BREAK_PATTERN = /\r?\n/u;
 const MAXIMUM_LINES = 300;
@@ -19,11 +19,7 @@ function maskDocumentation(file: string, sourceText: string) {
   const ranges = new Map<number, number>();
   const nodes: ts.Node[] = [sourceFile];
 
-  while (nodes.length > 0) {
-    const node = nodes.pop();
-    if (!node) {
-      continue;
-    }
+  for (const node of nodes) {
     for (const doc of ts.getJSDocCommentsAndTags(node).filter(ts.isJSDoc)) {
       const start = doc.getStart(sourceFile);
       ranges.set(start, doc.getEnd());
@@ -50,7 +46,10 @@ function maskDocumentation(file: string, sourceText: string) {
 }
 
 /** Counts physical module lines while excluding lines occupied only by JSDoc. */
-function countModuleLines(file: string, sourceText: string): number {
+export function countModuleLines(file: string, sourceText: string): number {
+  if (sourceText.length === 0) {
+    return 0;
+  }
   const sourceLines = sourceText.split(LINE_BREAK_PATTERN);
   const { documentedLines, maskedText } = maskDocumentation(file, sourceText);
   const maskedLines = maskedText.split(LINE_BREAK_PATTERN);
@@ -69,14 +68,18 @@ function countModuleLines(file: string, sourceText: string): number {
   return count;
 }
 
-const violations = typescriptFiles().flatMap((file) => {
-  const lines = countModuleLines(file, readFileSync(file, "utf8"));
-  return lines > MAXIMUM_LINES ? [`${file}: ${lines} lines`] : [];
-});
-
-if (violations.length > 0) {
-  process.stderr.write(
-    `TypeScript modules may contain at most ${MAXIMUM_LINES} non-JSDoc lines:\n${violations.join("\n")}\n`
-  );
-  process.exitCode = 1;
+/** Collects authored TypeScript modules that exceed the repository line limit. */
+export function lineViolations(
+  files: readonly string[],
+  readSource: (file: string) => string
+): readonly string[] {
+  return files.flatMap((file) => {
+    const lines = countModuleLines(file, readSource(file));
+    return lines > MAXIMUM_LINES ? [`${file}: ${lines} lines`] : [];
+  });
 }
+
+enforceViolations(
+  `TypeScript modules may contain at most ${MAXIMUM_LINES} non-JSDoc lines`,
+  lineViolations(typescriptFiles(), (file) => readFileSync(file, "utf8"))
+);

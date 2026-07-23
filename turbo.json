@@ -14,6 +14,10 @@
       ],
       "outputs": []
     },
+    "//#test:root": {
+      "inputs": ["package.json", "vitest.config.ts", "scripts/**/*.ts"],
+      "outputs": ["coverage/**"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
@@ -86,7 +90,7 @@
       "outputs": []
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["//#test:root", "^build"],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/vitest.config.ts"],
       "outputs": ["coverage/**"]
     },

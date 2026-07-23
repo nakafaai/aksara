@@ -1,5 +1,9 @@
 import { Buffer } from "node:buffer";
-import { HttpClient, HttpClientRequest } from "@effect/platform";
+import {
+  FetchHttpClient,
+  HttpClient,
+  HttpClientRequest,
+} from "@effect/platform";
 import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ITEM_BATCH_BYTES,
@@ -121,9 +125,18 @@ export function sendPublicationRequest(
     );
     const scopedClient = client.pipe(HttpClient.withScope);
     const exchange = Effect.gen(function* () {
-      const response = yield* scopedClient
-        .execute(outgoing)
-        .pipe(Effect.mapError(() => networkError(request)));
+      const response = yield* scopedClient.execute(outgoing).pipe(
+        Effect.provideService(FetchHttpClient.RequestInit, {
+          redirect: "manual",
+        }),
+        Effect.mapError(() => networkError(request))
+      );
+      if (
+        response.request.url !== config.endpoint.toString() ||
+        (response.status >= 300 && response.status < 400)
+      ) {
+        return yield* protocolError(request, "response-evidence");
+      }
       if (isTransientPublicationStatus(response.status)) {
         return yield* transientPublicationError(request, response.status);
       }

@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { isRecord } from "effect/Predicate";
 import ts from "typescript";
 
-import { typescriptFiles } from "#scripts/files";
+import { enforceViolations, typescriptFiles } from "#scripts/files";
 
 const WORKSPACE_SOURCE_PATTERN = /^(apps|packages)\/([^/]+)\//u;
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
@@ -16,7 +16,10 @@ interface WorkspaceIdentity {
   readonly runtimeDependencies: ReadonlySet<string>;
 }
 
-const workspaceIdentities = new Map<string, WorkspaceIdentity>();
+type WorkspaceIdentityResolver = (
+  file: string
+) => WorkspaceIdentity | undefined;
+
 const allowedWorkspaceDependencies: ReadonlyMap<
   string,
   ReadonlySet<string>
@@ -75,16 +78,15 @@ function staticModuleSpecifier(
   if (!ts.isCallExpression(node)) {
     return;
   }
-  const [argument] = node.arguments;
   const isModuleCall =
     node.expression.kind === ts.SyntaxKind.ImportKeyword ||
     (ts.isIdentifier(node.expression) && node.expression.text === "require");
-  return isModuleCall &&
-    node.arguments.length === 1 &&
-    argument &&
-    ts.isStringLiteralLike(argument)
-    ? argument
-    : undefined;
+  if (!isModuleCall || node.arguments.length !== 1) {
+    return;
+  }
+  for (const argument of node.arguments) {
+    return ts.isStringLiteralLike(argument) ? argument : undefined;
+  }
 }
 
 /** Returns every static or dynamic module specifier in one source module. */
@@ -94,11 +96,7 @@ function moduleSpecifiers(
   const specifiers: ts.StringLiteralLike[] = [];
   const nodes: ts.Node[] = [sourceFile];
 
-  while (nodes.length > 0) {
-    const node = nodes.pop();
-    if (!node) {
-      continue;
-    }
+  for (const node of nodes) {
     const specifier = staticModuleSpecifier(node);
     if (specifier) {
       specifiers.push(specifier);
@@ -116,49 +114,58 @@ function dependencyNames(input: unknown): readonly string[] {
   return isRecord(input) ? Object.keys(input) : [];
 }
 
-/** Reads one workspace's declared public name and private import aliases. */
-function workspaceIdentity(file: string): WorkspaceIdentity | undefined {
-  const match = WORKSPACE_SOURCE_PATTERN.exec(file);
-  const workspaceRoot = match?.[1];
-  const workspace = match?.[2];
-  if (!workspace || workspace === "typescript-config") {
-    return;
-  }
-  const cached = workspaceIdentities.get(workspace);
-  if (cached) {
-    return cached;
-  }
-  const manifest: unknown = JSON.parse(
-    readFileSync(`${workspaceRoot}/${workspace}/package.json`, "utf8")
-  );
-  if (!isRecord(manifest) || typeof manifest.name !== "string") {
-    throw new Error(
-      `${workspaceRoot}/${workspace}/package.json has no package name`
+/** Creates one cached workspace identity resolver from package manifests. */
+export function createWorkspaceIdentityResolver(
+  readManifest: (path: string) => string
+): WorkspaceIdentityResolver {
+  const identities = new Map<string, WorkspaceIdentity>();
+  return (file) => {
+    const match = WORKSPACE_SOURCE_PATTERN.exec(file);
+    const workspaceRoot = match?.[1];
+    const workspace = match?.[2];
+    if (!workspace || workspace === "typescript-config") {
+      return;
+    }
+    const cached = identities.get(workspace);
+    if (cached) {
+      return cached;
+    }
+    const manifest: unknown = JSON.parse(
+      readManifest(`${workspaceRoot}/${workspace}/package.json`)
     );
-  }
-  const allowedDependencies = allowedWorkspaceDependencies.get(workspace);
-  if (!allowedDependencies) {
-    throw new Error(
-      `${workspaceRoot}/${workspace} has no import-boundary policy`
-    );
-  }
-  const imports = isRecord(manifest.imports)
-    ? Object.keys(manifest.imports)
-    : [];
-  const identity = {
-    allowedDependencies,
-    privatePrefixes: imports
-      .filter((specifier) => specifier.startsWith("#"))
-      .map((specifier) => specifier.replace(IMPORT_WILDCARD_PATTERN, "")),
-    publicName: manifest.name,
-    runtimeDependencies: new Set(dependencyNames(manifest.dependencies)),
-  } satisfies WorkspaceIdentity;
-  workspaceIdentities.set(workspace, identity);
-  return identity;
+    if (!isRecord(manifest) || typeof manifest.name !== "string") {
+      throw new Error(
+        `${workspaceRoot}/${workspace}/package.json has no package name`
+      );
+    }
+    const allowedDependencies = allowedWorkspaceDependencies.get(workspace);
+    if (!allowedDependencies) {
+      throw new Error(
+        `${workspaceRoot}/${workspace} has no import-boundary policy`
+      );
+    }
+    const imports = isRecord(manifest.imports)
+      ? Object.keys(manifest.imports)
+      : [];
+    const identity = {
+      allowedDependencies,
+      privatePrefixes: imports
+        .filter((specifier) => specifier.startsWith("#"))
+        .map((specifier) => specifier.replace(IMPORT_WILDCARD_PATTERN, "")),
+      publicName: manifest.name,
+      runtimeDependencies: new Set(dependencyNames(manifest.dependencies)),
+    } satisfies WorkspaceIdentity;
+    identities.set(workspace, identity);
+    return identity;
+  };
 }
 
 /** Reports one module specifier that crosses an Aksara import boundary. */
-function importViolation(file: string, specifier: string): string | undefined {
+function importViolation(
+  file: string,
+  specifier: string,
+  resolveIdentity: WorkspaceIdentityResolver
+): string | undefined {
   if (
     RELATIVE_IMPORT_PATTERN.test(specifier) ||
     FILESYSTEM_IMPORT_PATTERN.test(specifier)
@@ -166,7 +173,7 @@ function importViolation(file: string, specifier: string): string | undefined {
     return "relative or filesystem module import";
   }
 
-  const identity = workspaceIdentity(file);
+  const identity = resolveIdentity(file);
   if (!identity) {
     return;
   }
@@ -195,8 +202,11 @@ function importViolation(file: string, specifier: string): string | undefined {
 }
 
 /** Collects stable file and line diagnostics for invalid module imports. */
-function importViolations(file: string): string[] {
-  const sourceText = readFileSync(file, "utf8");
+export function importViolations(
+  file: string,
+  sourceText: string,
+  resolveIdentity: WorkspaceIdentityResolver
+): readonly string[] {
   const sourceFile = ts.createSourceFile(
     file,
     sourceText,
@@ -205,7 +215,7 @@ function importViolations(file: string): string[] {
   );
 
   return moduleSpecifiers(sourceFile).flatMap((specifier) => {
-    const violation = importViolation(file, specifier.text);
+    const violation = importViolation(file, specifier.text, resolveIdentity);
     if (!violation) {
       return [];
     }
@@ -215,11 +225,12 @@ function importViolations(file: string): string[] {
   });
 }
 
-const violations = typescriptFiles().flatMap(importViolations);
-
-if (violations.length > 0) {
-  process.stderr.write(
-    `TypeScript imports must respect workspace aliases:\n${violations.join("\n")}\n`
-  );
-  process.exitCode = 1;
-}
+const repositoryIdentity = createWorkspaceIdentityResolver((path) =>
+  readFileSync(path, "utf8")
+);
+enforceViolations(
+  "TypeScript imports must respect workspace aliases",
+  typescriptFiles().flatMap((file) =>
+    importViolations(file, readFileSync(file, "utf8"), repositoryIdentity)
+  )
+);

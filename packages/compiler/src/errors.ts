@@ -53,6 +53,7 @@ export const ExecutablePolicyViolationSchema = Schema.Struct({
     "globalThis",
     "network-global",
     "prototype-chain-access",
+    "dynamic-property-access",
     "dangerous-jsx-attribute",
     "unknown-free-global"
   ),
