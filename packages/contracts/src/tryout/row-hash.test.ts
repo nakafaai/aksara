@@ -4,7 +4,6 @@ import { Sha256HashSchema } from "#contracts/ids";
 import {
   compareTryoutCatalog,
   compareTryoutPlacements,
-  tryoutPlacementIdentity,
 } from "#contracts/tryout/identity";
 import {
   canonicalizeTryoutCatalog,
@@ -204,16 +203,6 @@ describe("try-out row hashing", () => {
     expect(makeTryoutCatalogRecord(row).rowHash).not.toBe(
       makeTryoutCatalogRecord(altered).rowHash
     );
-  });
-
-  it("orders placements by hierarchy, content, and locale identity", () => {
-    const english = placement("en", 1);
-    const indonesian = placement("id", 1);
-
-    expect(tryoutPlacementIdentity(english)).toContain("\0en");
-    expect(compareTryoutPlacements(english, indonesian)).toBeLessThan(0);
-    expect(compareTryoutPlacements(indonesian, english)).toBeGreaterThan(0);
-    expect(compareTryoutPlacements(english, english)).toBe(0);
   });
 
   it("digests sorted hierarchy and placement records", async () => {

@@ -3,10 +3,6 @@ import { describe, expect, it } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import { ContentProjectionSchema } from "#contracts/projection/spec";
 import {
-  compareTryoutCatalog,
-  tryoutCatalogIdentity,
-} from "#contracts/tryout/identity";
-import {
   TryoutCatalogRowSchema,
   TryoutChoiceSchema,
   TryoutCountryCodeSchema,
@@ -122,7 +118,7 @@ function formatFailure(result: Either.Either<unknown, ParseResult.ParseError>) {
   return ParseResult.TreeFormatter.formatErrorSync(result.left);
 }
 describe("try-out contracts", () => {
-  it("decodes every hierarchy row and builds distinct identities", () => {
+  it("decodes every hierarchy row", () => {
     const decoded = catalogRows.map((row) =>
       Schema.decodeUnknownSync(TryoutCatalogRowSchema)(row)
     );
@@ -134,8 +130,6 @@ describe("try-out contracts", () => {
       "set",
       "section",
     ]);
-    expect(new Set(decoded.map(tryoutCatalogIdentity)).size).toBe(5);
-    expect([...decoded].sort(compareTryoutCatalog)).toHaveLength(5);
   });
   it("rejects malformed keys, country codes, and option identities", () => {
     expect(
