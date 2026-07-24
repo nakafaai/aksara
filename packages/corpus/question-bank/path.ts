@@ -12,12 +12,11 @@ export const QUESTION_BANK_ROOT =
 
 const CONTENT_ROOT = "question-bank/tryout/indonesia";
 const QUESTION_PATH_PATTERN =
-  /^(?<exam>[a-z0-9]+(?:-[a-z0-9]+)*)\/(?<group>[a-z0-9]+(?:-[a-z0-9]+)*)(?:\/(?<groupTail>[a-z0-9]+(?:-[a-z0-9]+)*))?\/set-(?<setNumber>[1-9]\d*)\/question-(?<questionNumber>[1-9]\d*)$/;
+  /^(?<exam>[a-z0-9]+(?:-[a-z0-9]+)*)\/(?<group>[a-z0-9]+(?:-[a-z0-9]+)*)\/set-(?<setNumber>[1-9]\d*)\/question-(?<questionNumber>[1-9]\d*)$/;
 
 const QuestionPathGroupsSchema = Schema.Struct({
   exam: Schema.String,
   group: Schema.String,
-  groupTail: Schema.optional(Schema.String),
   questionNumber: Schema.NumberFromString.pipe(Schema.int(), Schema.positive()),
   setNumber: Schema.String,
 });
@@ -75,16 +74,12 @@ export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
         () => new QuestionPathError({ reason: "grammar", sourcePath })
       )
     );
-    const group =
-      groups.groupTail === undefined
-        ? groups.group
-        : `${groups.group}-${groups.groupTail}`;
     const rendererDomain = yield* decodeRendererDomain(
       groups.exam,
-      group,
+      groups.group,
       sourcePath
     );
-    const setKey = `${CONTENT_ROOT}/${groups.exam}/${group}/set-${groups.setNumber}`;
+    const setKey = `${CONTENT_ROOT}/${groups.exam}/${groups.group}/set-${groups.setNumber}`;
 
     return yield* Schema.decodeUnknown(QuestionLocationSchema)(
       {

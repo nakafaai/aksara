@@ -44,6 +44,44 @@ describe("workflow policy", () => {
     ).not.toThrow();
   });
 
+  it("rejects an unfiltered deprecation build before operation scoping", () => {
+    const sources = currentSources();
+    const release = sources.release.replace(
+      "          pnpm lint\n",
+      "          pnpm lint\n          pnpm deprecations\n"
+    );
+
+    expect(() =>
+      verifyWorkflows({
+        ...sources,
+        bootstrap: undefined,
+        release,
+        state: { contracts: true },
+      })
+    ).toThrow(
+      "Shared release controls must not trigger an unfiltered declaration build"
+    );
+  });
+
+  it("requires a deprecation audit after the terminal scoped build", () => {
+    const sources = currentSources();
+    const release = sources.release.replace(
+      "          pnpm deprecations:audit\n",
+      ""
+    );
+
+    expect(() =>
+      verifyWorkflows({
+        ...sources,
+        bootstrap: undefined,
+        release,
+        state: { contracts: true },
+      })
+    ).toThrow(
+      "Terminal recovery must audit deprecations after its scoped build"
+    );
+  });
+
   it("rejects a bootstrap workflow without lost-visibility handling", () => {
     const bootstrap = readFileSync(
       ".github/workflows/bootstrap.yml",

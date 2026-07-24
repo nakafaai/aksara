@@ -24,6 +24,8 @@
     "boundaries": "node scripts/check-imports.ts",
     "build": "turbo run build",
     "clean": "turbo run clean",
+    "deprecations": "turbo run build && pnpm deprecations:audit",
+    "deprecations:audit": "node scripts/check-deprecations.ts",
     "format": "ultracite fix",
     "jsdocs": "node scripts/check-docs.ts",
     "lint": "ultracite check",

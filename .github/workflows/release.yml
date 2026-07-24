@@ -145,6 +145,7 @@ jobs:
       - name: Verify full publication revision
         if: inputs.operation == 'accept' || inputs.operation == 'release' || inputs.operation == 'rollback'
         run: |
+          pnpm deprecations
           pnpm typecheck
           pnpm test
           pnpm build
@@ -152,11 +153,12 @@ jobs:
 
       - name: Verify terminal operation revision
         if: inputs.operation == 'abort' || inputs.operation == 'cleanup' || inputs.operation == 'recover'
-        run: >-
-          pnpm exec turbo run typecheck test build
-          --filter=@nakafa/aksara-contracts
-          --filter=@nakafa/aksara-publisher
-          --filter=@nakafa/aksara-cli
+        run: |
+          pnpm exec turbo run typecheck test build \
+            --filter=@nakafa/aksara-contracts \
+            --filter=@nakafa/aksara-publisher \
+            --filter=@nakafa/aksara-cli
+          pnpm deprecations:audit
 
       - name: Publish release
         if: inputs.operation == 'release'

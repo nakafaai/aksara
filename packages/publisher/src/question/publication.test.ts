@@ -118,7 +118,7 @@ describe("question publication", () => {
     expect([...items]).toEqual([]);
   });
 
-  it("accepts every real question renderer grammar and pair-group source", async () => {
+  it("accepts every real question renderer grammar", async () => {
     const stale = [
       staleHead("snbt/english-language/set-9/question-1", "snbt-plain"),
       staleHead("snbt/general-reasoning/set-9/question-1", "snbt-general"),
@@ -126,8 +126,7 @@ describe("question publication", () => {
       staleHead("snbt/quantitative-knowledge/set-99/question-1", "snbt-quant"),
       staleHead(
         "snbt/reading-and-writing-skills/set-9/question-1",
-        "snbt-plain",
-        "snbt/reading-and/writing-skills/set-9/question-1"
+        "snbt-plain"
       ),
       staleHead("tka/mathematics/set-9/question-1", "tka-math"),
     ].sort((left, right) => {

@@ -1,7 +1,6 @@
 import {
   ContentLocaleSchema,
   compareContentHeads,
-  headIdentity,
 } from "@nakafa/aksara-contracts/content";
 import {
   type ContentDeliveryClass,
@@ -48,15 +47,6 @@ export class QuestionRegistryError extends Schema.TaggedError<QuestionRegistryEr
   { cause: Schema.Unknown }
 ) {}
 
-/** Two question-bank bodies claim the same stable locale-specific head. */
-export class QuestionIdentityError extends Schema.TaggedError<QuestionIdentityError>()(
-  "QuestionIdentityError",
-  {
-    contentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
-  }
-) {}
-
 /** Maps a body role to its server-enforced delivery boundary. */
 function deliveryFor(
   kind: QuestionBodyKind
@@ -88,25 +78,6 @@ function expandQuestion(source: QuestionSource) {
   );
 }
 
-/** Rejects duplicate locale heads and returns deterministic registry order. */
-const validateQuestionEntries = Effect.fn(
-  "AksaraCorpus.validateQuestionEntries"
-)(function* (entries: readonly QuestionEntry[]) {
-  const identities = new Set<string>();
-  for (const entry of entries) {
-    const identity = headIdentity(entry);
-    if (identities.has(identity)) {
-      return yield* new QuestionIdentityError({
-        contentKey: entry.contentKey,
-        locale: entry.locale,
-      });
-    }
-    identities.add(identity);
-  }
-
-  return [...entries].sort(compareContentHeads);
-});
-
 /** Discovers and projects every checked-in question and answer body. */
 export const decodeQuestionRegistry = Effect.fn(
   "AksaraCorpus.decodeQuestionRegistry"
@@ -123,5 +94,5 @@ export const decodeQuestionRegistry = Effect.fn(
     )
   );
 
-  return yield* validateQuestionEntries(entries);
+  return [...entries].sort(compareContentHeads);
 });

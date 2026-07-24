@@ -149,7 +149,7 @@ describe("question registry", () => {
     ).toBe(true);
   });
 
-  it("keeps pair-group source paths while flattening logical identity", async () => {
+  it("preserves one exact source-owned section directory", async () => {
     const entries = await runRegistry(realEntries, realChoices);
     const question = entries.find(
       ({ contentKey, locale }) =>
@@ -180,7 +180,7 @@ describe("question registry", () => {
       setKey:
         "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1",
       sourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and/writing-skills/set-1/question-1/question.en.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question.en.mdx",
     });
     expect(answer).toMatchObject({
       bodyKind: "answer",
@@ -188,26 +188,18 @@ describe("question registry", () => {
       peerContentKey:
         "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question",
       sourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and/writing-skills/set-1/question-1/answer.id.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/answer.id.mdx",
     });
   });
 
-  it("rejects physical aliases that collide on canonical identity", async () => {
-    const pair = "snbt/reading-and/writing-skills/set-1/question-1";
-    const flat = "snbt/reading-and-writing-skills/set-1/question-1";
-    const error = await rejectRegistry(
-      questionEntries(pair, flat),
-      choicesFor(pair, flat)
-    );
+  it("rejects a fake split section hierarchy", async () => {
+    const root = "snbt/reading-and/writing-skills/set-1/question-1";
+    const error = await rejectRegistry(questionEntries(root), choicesFor(root));
 
-    expect(error._tag).toBe("QuestionIdentityError");
-    if (error._tag !== "QuestionIdentityError") {
-      throw new Error("Expected canonical question identities to collide.");
-    }
-    expect(error.contentKey).toBe(
-      "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question"
-    );
-    expect(error.locale).toBe("en");
+    expect(error).toMatchObject({
+      _tag: "QuestionPathError",
+      reason: "grammar",
+    });
   });
 
   it("maps invalid projected body identities to a registry failure", async () => {

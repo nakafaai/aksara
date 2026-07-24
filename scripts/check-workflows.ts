@@ -21,6 +21,12 @@ const RELEASE_PROOF_PATTERN =
   /package:[\s\S]*inputs\.operation == 'accept'[\s\S]*inputs\.operation == 'release'[\s\S]*inputs\.operation == 'rollback'[\s\S]*uses: \.\/\.github\/workflows\/package-proof\.yml[\s\S]*proof_mode: current/u;
 const RECOVERY_OPERATION_PATTERN =
   /needs: package[\s\S]*always\(\)[\s\S]*needs\.package\.result == 'success'[\s\S]*inputs\.operation == 'abort'[\s\S]*inputs\.operation == 'cleanup'[\s\S]*inputs\.operation == 'recover'[\s\S]*needs\.package\.result == 'skipped'/u;
+const SHARED_DEPRECATION_PATTERN =
+  /Verify repository controls[\s\S]*pnpm deprecations\s*\n[\s\S]*Verify full publication revision/u;
+const FULL_DEPRECATION_PATTERN =
+  /Verify full publication revision[\s\S]*pnpm deprecations\s*\n[\s\S]*pnpm typecheck/u;
+const TERMINAL_DEPRECATION_PATTERN =
+  /Verify terminal operation revision[\s\S]*pnpm exec turbo run typecheck test build[\s\S]*--filter=@nakafa\/aksara-contracts[\s\S]*--filter=@nakafa\/aksara-publisher[\s\S]*--filter=@nakafa\/aksara-cli[\s\S]*pnpm deprecations:audit/u;
 const SOURCE_ANCESTRY_PATTERN =
   /slsa-verifier verify-npm-package[\s\S]*provenance_source_sha=[\s\S]*gh api[\s\S]*compare\/\$provenance_source_sha\.\.\.\$CURRENT_SHA[\s\S]*comparison_status" != "ahead"/u;
 const PUBLISH_CALL_PATTERN = /pnpm publish "\$TARBALL"/gu;
@@ -118,6 +124,21 @@ export function verifyWorkflows({
     release,
     RECOVERY_OPERATION_PATTERN,
     "Terminal recovery operations must remain available only when package proof is intentionally skipped"
+  );
+  assert.doesNotMatch(
+    release,
+    SHARED_DEPRECATION_PATTERN,
+    "Shared release controls must not trigger an unfiltered declaration build"
+  );
+  assert.match(
+    release,
+    FULL_DEPRECATION_PATTERN,
+    "Full publication must build every declaration before auditing deprecations"
+  );
+  assert.match(
+    release,
+    TERMINAL_DEPRECATION_PATTERN,
+    "Terminal recovery must audit deprecations after its scoped build"
   );
 
   if (state.contracts) {
