@@ -1,37 +1,31 @@
-import { realpathSync, writeFileSync } from "node:fs";
-import { basename, relative } from "node:path";
-import { FileSystem, Error as PlatformError } from "@effect/platform";
-import { NodeContext } from "@effect/platform-node";
-import {
-  Effect,
-  Fiber,
-  Option,
-  Redacted,
-  Ref,
-  Stream,
-  TestClock,
-  TestContext,
-} from "effect";
+import { writeFileSync } from "node:fs";
+import { Effect, Logger, Redacted } from "effect";
 import { afterEach, describe, expect, it } from "vitest";
 import { makeNakafaAppError } from "#cli/app-error";
 import type { RunningNakafa } from "#cli/child";
-import {
-  type PreviewDocumentCompiler,
-  PreviewMetadataError,
-} from "#cli/document";
+import type { PreviewDocumentCompiler } from "#cli/document";
+import { PreviewEvidenceError } from "#cli/evidence";
+import { PreviewRepositoryError, PreviewRestartError } from "#cli/integrity";
 import type { NakafaApp } from "#cli/nakafa";
-import { PreviewProviderError } from "#cli/provider";
-import { selectPreviewDocument } from "#cli/repository";
 import { refreshDocument } from "#cli/session";
-import { makePreviewReady } from "#test/preview";
+import { runNode } from "#test/effect";
+import { makePreviewReady, PREVIEW_REPOSITORIES } from "#test/preview";
 import {
   makeRepositoryTracker,
   REAL_SOURCE,
   RENDERER_MANIFEST,
 } from "#test/real";
-import { makeApp, makeProvider, runLocal, runWatch } from "#test/session";
+import { makeApp, makeProvider, runLocal } from "#test/session";
 
 const repositories = makeRepositoryTracker();
+const POLICY_DIAGNOSTIC_PATTERN =
+  /^ExecutablePolicyError at material\/.+ \(rejected executable syntax: process \(process\)\)\.$/;
+type ProviderControl = Parameters<typeof makeProvider>[0];
+
+/** Creates pristine provider transition counts for one behavior test. */
+function makeControl(): ProviderControl {
+  return { failed: 0, pending: 0, ready: 0 };
+}
 
 afterEach(() => {
   repositories.clear();
@@ -41,117 +35,208 @@ describe("preview document refresh", () => {
   it("publishes success and sanitizes typed compilation failures", async () => {
     const repository = repositories.create();
     const ready = await makePreviewReady(repository);
-    const control = { failed: 0, pending: 0, ready: 0 };
+    const control = makeControl();
     const provider = makeProvider(control);
-    const success: PreviewDocumentCompiler = {
-      compile: () => Effect.succeed(ready.result),
-    };
-    await Effect.runPromise(
-      refreshDocument(success, provider, RENDERER_MANIFEST.hash).pipe(
-        Effect.provide(NodeContext.layer)
+    await runNode(
+      refreshDocument(
+        ready.compiler,
+        provider,
+        RENDERER_MANIFEST.hash,
+        0,
+        Effect.succeed(PREVIEW_REPOSITORIES)
       )
     );
     const failure: PreviewDocumentCompiler = {
       compile: () =>
         Effect.fail(
-          new PreviewMetadataError({ sourcePath: ready.document.sourcePath })
+          new PreviewRepositoryError({
+            kind: "document",
+            path: ready.document.sourcePath,
+            reason: "missing",
+          })
         ),
+      verify: () => Effect.void,
     };
-    await Effect.runPromise(
-      refreshDocument(failure, provider, RENDERER_MANIFEST.hash).pipe(
-        Effect.provide(NodeContext.layer)
+    await runNode(
+      refreshDocument(
+        failure,
+        provider,
+        RENDERER_MANIFEST.hash,
+        1,
+        Effect.succeed(PREVIEW_REPOSITORIES)
       )
     );
 
-    expect(control).toEqual({ failed: 1, pending: 2, ready: 1 });
+    expect(control).toMatchObject({ failed: 1, pending: 0, ready: 1 });
+    expect(control.failure).toEqual({
+      code: "PreviewRepositoryError",
+      message: `PreviewRepositoryError at ${ready.document.sourcePath} (missing).`,
+    });
+  });
+
+  it("logs actionable diagnostics from a real compiler failure", async () => {
+    const repository = repositories.create();
+    const ready = await makePreviewReady(repository);
+    const control = makeControl();
+    const logs: string[] = [];
+    const logger = Logger.make(({ message }) => {
+      logs.push(String(message));
+    });
+    writeFileSync(repository.documentPath, `${REAL_SOURCE}\n\n{process.env}\n`);
+
+    await runNode(
+      refreshDocument(
+        ready.compiler,
+        makeProvider(control),
+        RENDERER_MANIFEST.hash,
+        0,
+        Effect.succeed(PREVIEW_REPOSITORIES)
+      ).pipe(Effect.provide(Logger.replace(Logger.defaultLogger, logger)))
+    );
+    writeFileSync(repository.documentPath, REAL_SOURCE);
+
+    expect(control.failure).toEqual({
+      code: "ExecutablePolicyError",
+      message: expect.stringContaining("ExecutablePolicyError at material/"),
+    });
+    expect(logs).toEqual([expect.stringMatching(POLICY_DIAGNOSTIC_PATTERN)]);
+  });
+
+  it("publishes current repository evidence and fails closed without it", async () => {
+    const repository = repositories.create();
+    const ready = await makePreviewReady(repository);
+    const currentRepositories = {
+      aksara: { ...PREVIEW_REPOSITORIES.aksara, dirty: true },
+      nakafa: PREVIEW_REPOSITORIES.nakafa,
+    };
+    const control = makeControl();
+    await runNode(
+      refreshDocument(
+        ready.compiler,
+        makeProvider(control),
+        RENDERER_MANIFEST.hash,
+        1,
+        Effect.succeed(currentRepositories)
+      )
+    );
+    const missingEvidence = new PreviewEvidenceError({
+      repository: "aksara",
+      stage: "status",
+    });
+    const blocked = makeControl();
+    const error = await runNode(
+      refreshDocument(
+        ready.compiler,
+        makeProvider(blocked),
+        RENDERER_MANIFEST.hash,
+        0,
+        Effect.fail(missingEvidence)
+      ).pipe(Effect.flip)
+    );
+
+    expect(control.readyRepositories).toEqual(currentRepositories);
+    expect(blocked).toMatchObject({
+      failed: 0,
+      pending: 0,
+      ready: 0,
+    });
+    expect(error).toBe(missingEvidence);
+  });
+
+  it("rejects source drift after repository evidence is captured", async () => {
+    const repository = repositories.create();
+    const ready = await makePreviewReady(repository);
+    const control = makeControl();
+    const evidence = Effect.sync(() => {
+      writeFileSync(repository.documentPath, `${REAL_SOURCE}\n`);
+      return PREVIEW_REPOSITORIES;
+    });
+    const result = await runNode(
+      refreshDocument(
+        ready.compiler,
+        makeProvider(control),
+        RENDERER_MANIFEST.hash,
+        0,
+        evidence
+      )
+    );
+    writeFileSync(repository.documentPath, REAL_SOURCE);
+
+    expect(result).toEqual(PREVIEW_REPOSITORIES);
+    expect(control).toMatchObject({
+      failed: 1,
+      failure: {
+        code: "PreviewRepositoryError",
+        message: `PreviewRepositoryError at ${ready.document.sourcePath} (changed).`,
+      },
+      pending: 0,
+      ready: 0,
+    });
   });
 
   it("propagates provider failures instead of relabeling them", async () => {
     const repository = repositories.create();
     const ready = await makePreviewReady(repository);
-    const control = { failed: 0, failPending: true, pending: 0, ready: 0 };
-    const error = await Effect.runPromise(
+    const control = { failed: 0, failReady: true, pending: 0, ready: 0 };
+    const error = await runNode(
       refreshDocument(
-        { compile: () => Effect.succeed(ready.result) },
+        ready.compiler,
         makeProvider(control),
-        RENDERER_MANIFEST.hash
-      ).pipe(Effect.provide(NodeContext.layer), Effect.flip)
+        RENDERER_MANIFEST.hash,
+        0,
+        Effect.succeed(PREVIEW_REPOSITORIES)
+      ).pipe(Effect.flip)
     );
     expect(error).toMatchObject({ _tag: "PreviewProviderError" });
   });
-});
 
-describe("selected document watch", () => {
-  it("filters siblings, refreshes the selected file, and stays active", async () => {
+  it("propagates restart requirements before and after compilation", async () => {
     const repository = repositories.create();
-    const aksaraRoot = realpathSync(repository.aksaraRoot);
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(
-        aksaraRoot,
-        relative(aksaraRoot, realpathSync(repository.documentPath))
-      ).pipe(Effect.provide(NodeContext.layer))
-    );
-    const events = Stream.concat(
-      Stream.make(
-        FileSystem.WatchEventUpdate({ path: "id.mdx" }),
-        FileSystem.WatchEventUpdate({ path: basename(selected.absolutePath) })
-      ),
-      Stream.never
-    );
-    const result = await Effect.runPromise(
-      Effect.gen(function* () {
-        const count = yield* Ref.make(0);
-        const watcher = yield* runWatch(
-          selected,
-          events,
-          Ref.update(count, (value) => value + 1)
-        ).pipe(Effect.fork);
-        yield* TestClock.adjust("75 millis");
-        const refreshes = yield* Ref.get(count);
-        const watcherExit = yield* Fiber.poll(watcher);
-        yield* Fiber.interrupt(watcher);
-        return { refreshes, watcherExit };
-      }).pipe(Effect.provide(TestContext.TestContext))
-    );
-
-    expect(result.refreshes).toBe(1);
-    expect(Option.isNone(result.watcherExit)).toBe(true);
-  });
-
-  it("distinguishes provider, filesystem, and ended watch failures", async () => {
-    const repository = repositories.create();
-    const aksaraRoot = realpathSync(repository.aksaraRoot);
-    const selected = await Effect.runPromise(
-      selectPreviewDocument(
-        aksaraRoot,
-        relative(aksaraRoot, realpathSync(repository.documentPath))
-      ).pipe(Effect.provide(NodeContext.layer))
-    );
-    const selectedEvent = FileSystem.WatchEventUpdate({
-      path: basename(selected.absolutePath),
+    const ready = await makePreviewReady(repository);
+    const restart = new PreviewRestartError({
+      sourcePath: ready.document.sourcePath,
     });
-    const provider = await Effect.runPromise(
-      runWatch(
-        selected,
-        Stream.make(selectedEvent),
-        Effect.fail(new PreviewProviderError({ stage: "encode" }))
+    const compileControl = makeControl();
+    const compileRestart: PreviewDocumentCompiler = {
+      compile: () => Effect.fail(restart),
+      verify: () => Effect.void,
+    };
+    const compileError = await runNode(
+      refreshDocument(
+        compileRestart,
+        makeProvider(compileControl),
+        RENDERER_MANIFEST.hash,
+        0,
+        Effect.die("Repository evidence must not run after restart.")
       ).pipe(Effect.flip)
     );
-    const fileError = new PlatformError.SystemError({
-      method: "watch",
-      module: "FileSystem",
-      reason: "Unknown",
-    });
-    const filesystem = await Effect.runPromise(
-      runWatch(selected, Stream.fail(fileError), Effect.void).pipe(Effect.flip)
-    );
-    const ended = await Effect.runPromise(
-      runWatch(selected, Stream.empty, Effect.void).pipe(Effect.flip)
+    const verifyControl = makeControl();
+    const verifyRestart: PreviewDocumentCompiler = {
+      compile: () => Effect.succeed(ready.result),
+      verify: () => Effect.fail(restart),
+    };
+    const verifyError = await runNode(
+      refreshDocument(
+        verifyRestart,
+        makeProvider(verifyControl),
+        RENDERER_MANIFEST.hash,
+        0,
+        Effect.succeed(PREVIEW_REPOSITORIES)
+      ).pipe(Effect.flip)
     );
 
-    expect(provider).toMatchObject({ _tag: "PreviewProviderError" });
-    expect(filesystem).toMatchObject({ reason: "filesystem" });
-    expect(ended).toMatchObject({ reason: "ended" });
+    expect(compileError).toBe(restart);
+    expect(verifyError).toBe(restart);
+    expect(compileControl).toMatchObject({
+      failed: 0,
+      pending: 0,
+      ready: 0,
+    });
+    expect(verifyControl).toMatchObject({
+      failed: 0,
+      pending: 0,
+      ready: 0,
+    });
   });
 });
 
@@ -159,15 +244,10 @@ describe("local preview session", () => {
   it("opens the real selected corpus and recompiles without a child restart", async () => {
     const repository = repositories.create();
     const capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] } = {};
-    await runLocal(repository, makeApp(capture), (session) =>
-      session.refresh().pipe(
-        Effect.flatMap(() => {
-          expect(session.origin.hostname).toBe("127.0.0.1");
-          expect(capture.input?.provider.origin).toEqual(session.origin);
-          return Effect.void;
-        })
-      )
-    );
+    await runLocal(repository, makeApp(capture), () => {
+      expect(capture.input?.provider.origin.hostname).toBe("127.0.0.1");
+      return Effect.void;
+    });
   });
 
   it("keeps a changed route failed when initial compilation fails", async () => {
@@ -184,7 +264,7 @@ describe("local preview session", () => {
           new URL(input.provider.manifestPath, input.provider.origin),
           {
             headers: {
-              authorization: `Bearer ${Redacted.value(input.credentials.token)}`,
+              authorization: `Bearer ${Redacted.value(input.credentials.providerToken)}`,
             },
           }
         );
@@ -197,7 +277,7 @@ describe("local preview session", () => {
     const repository = repositories.create();
     const child: RunningNakafa = {
       awaitExit: Effect.fail(makeNakafaAppError("exit", false, 1)),
-      origin: new URL("http://localhost:31234"),
+      origin: new URL("http://127.0.0.1:31234"),
     };
     const error = await runLocal(
       repository,

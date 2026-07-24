@@ -29,23 +29,62 @@ export const QuranProvenanceRecordSchema = Schema.Struct({
 });
 export type QuranProvenanceRecord = typeof QuranProvenanceRecordSchema.Type;
 
-/** Checks exact complete provenance coverage in canonical scope order. */
-function hasCanonicalScopeCoverage(records: readonly QuranProvenanceRecord[]) {
-  return (
-    records.length === QuranProvenanceScopeSchema.literals.length &&
-    records.every(
-      (record, index) =>
-        record.scope === QuranProvenanceScopeSchema.literals[index]
-    )
+/** Compares two provenance records in stable scope and source order. */
+function compareProvenance(
+  left: QuranProvenanceRecord,
+  right: QuranProvenanceRecord
+) {
+  const leftScope = QuranProvenanceScopeSchema.literals.indexOf(left.scope);
+  const rightScope = QuranProvenanceScopeSchema.literals.indexOf(right.scope);
+  if (leftScope !== rightScope) {
+    return leftScope - rightScope;
+  }
+  if (left.provider !== right.provider) {
+    return left.provider < right.provider ? -1 : 1;
+  }
+  if (left.sourceUrl === right.sourceUrl) {
+    return 0;
+  }
+  return left.sourceUrl < right.sourceUrl ? -1 : 1;
+}
+
+/** Checks complete scope coverage, unique sources, and canonical order. */
+function hasCanonicalSourceCoverage(records: readonly QuranProvenanceRecord[]) {
+  const coveredScopes = new Set<QuranProvenanceScope>();
+  const sourceIdentities = new Set<string>();
+  const canonicalRecords = [...records].sort(compareProvenance);
+  const sourceOrder = records.map(({ provider, scope, sourceUrl }) => [
+    scope,
+    provider,
+    sourceUrl,
+  ]);
+  const canonicalOrder = canonicalRecords.map(
+    ({ provider, scope, sourceUrl }) => [scope, provider, sourceUrl]
+  );
+  if (JSON.stringify(sourceOrder) !== JSON.stringify(canonicalOrder)) {
+    return false;
+  }
+
+  for (const record of records) {
+    const identity = `${record.scope}\n${record.provider}\n${record.sourceUrl}`;
+    if (sourceIdentities.has(identity)) {
+      return false;
+    }
+    sourceIdentities.add(identity);
+    coveredScopes.add(record.scope);
+  }
+
+  return QuranProvenanceScopeSchema.literals.every((scope) =>
+    coveredScopes.has(scope)
   );
 }
 
 const QuranProvenanceRecordsSchema = Schema.NonEmptyArray(
   QuranProvenanceRecordSchema
 ).pipe(
-  Schema.filter(hasCanonicalScopeCoverage, {
+  Schema.filter(hasCanonicalSourceCoverage, {
     message: () =>
-      "Expected every Quran provenance scope exactly once in canonical order.",
+      "Expected complete Quran provenance scopes with unique sources in canonical order.",
   })
 );
 
@@ -73,7 +112,7 @@ export const QuranProvenanceManifestSchema = Schema.Struct({
 );
 export type QuranProvenanceManifest = typeof QuranProvenanceManifestSchema.Type;
 
-/** Provenance records omitted, duplicated, or misidentified one source scope. */
+/** Provenance omitted a scope, duplicated a source, or broke canonical order. */
 export class QuranProvenanceCoverageError extends Schema.TaggedError<QuranProvenanceCoverageError>()(
   "QuranProvenanceCoverageError",
   {
@@ -120,11 +159,7 @@ export class QuranProvenanceHashError extends Schema.TaggedError<QuranProvenance
 export const makeQuranProvenanceManifest = Effect.fn(
   "AksaraContracts.makeQuranProvenanceManifest"
 )(function* (records: readonly QuranProvenanceRecord[]) {
-  const byScope = new Map(records.map((record) => [record.scope, record]));
-  const ordered = QuranProvenanceScopeSchema.literals.flatMap((scope) => {
-    const record = byScope.get(scope);
-    return record === undefined ? [] : [record];
-  });
+  const ordered = [...records].sort(compareProvenance);
   const canonical = yield* Schema.decodeUnknown(QuranProvenanceRecordsSchema)(
     ordered
   ).pipe(
@@ -135,11 +170,6 @@ export const makeQuranProvenanceManifest = Effect.fn(
         })
     )
   );
-  if (byScope.size !== records.length) {
-    return yield* new QuranProvenanceCoverageError({
-      actualScopes: records.map(({ scope }) => scope),
-    });
-  }
   const digest = yield* hashQuranProvenance(canonical);
   const status = canonical.some((record) => record.status === "blocked")
     ? "blocked"

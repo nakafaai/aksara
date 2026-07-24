@@ -7,12 +7,11 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route";
-import { emptyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/release/snapshot-data";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   type PublicationRequest,
@@ -30,6 +29,7 @@ import {
   transportSignature,
 } from "#test/content";
 import { headRequest } from "#test/head";
+import { testRendererDomains } from "#test/renderer";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const projectionDigest = `sha256:${"c".repeat(64)}`;
@@ -43,7 +43,7 @@ export const transportRenderer = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({}),
+    domains: testRendererDomains({}),
   })
 );
 
@@ -53,10 +53,13 @@ export const transportSnapshot = Schema.decodeUnknownSync(
 )({
   family: "program",
   manifest: {
-    format: "program-v1",
+    curriculumRowCount: 390,
+    format: "program-v2",
     locales: ["en", "id"],
-    rowCount: 6,
+    programRowCount: 6,
+    rowCount: 396,
     rowDigest: snapshotRowDigest,
+    sitemapCount: 52,
     slugCount: 12,
     snapshotId,
   },
@@ -68,6 +71,7 @@ export const transportSnapshotRow = Schema.decodeUnknownSync(
 )({
   family: "program",
   record: {
+    kind: "program",
     row: {
       defaultCoverageStatus: "planned",
       displayOrder: 1,
@@ -121,7 +125,7 @@ export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
     rollbackDigest: manifestHash,
     routeCount: 0,
     routeDigest: manifestHash,
-    snapshots: emptyContentSnapshots(),
+    snapshots: inheritContentSnapshots(null),
     upsertCount: 1,
   },
   manifestHash,

@@ -1,17 +1,14 @@
 import { Schema } from "effect";
 import {
-  type ArticleProjection,
   ArticleProjectionSchema,
   canonicalizeArticleProjection,
 } from "#contracts/projection/article";
 import {
   canonicalizeMaterialProjection,
-  type MaterialLessonProjection,
   MaterialLessonProjectionSchema,
 } from "#contracts/projection/material";
 import {
   canonicalizeQuestionProjection,
-  type QuestionBodyProjection,
   QuestionBodyProjectionSchema,
 } from "#contracts/projection/question";
 
@@ -60,25 +57,4 @@ export function canonicalizeContentProjection(projection: ContentProjection) {
   }
 
   return canonicalizeMaterialProjection(projection);
-}
-
-/** Narrows one generic projection to the article family contract. */
-export function isArticleProjection(
-  projection: ContentProjection
-): projection is ArticleProjection {
-  return projection.kind === "article";
-}
-
-/** Narrows one generic projection to the material family contract. */
-export function isMaterialProjection(
-  projection: ContentProjection
-): projection is MaterialLessonProjection {
-  return projection.kind === "subject-lesson";
-}
-
-/** Narrows one generic projection to the question-body family contract. */
-export function isQuestionProjection(
-  projection: ContentProjection
-): projection is QuestionBodyProjection {
-  return projection.kind === "question-body";
 }

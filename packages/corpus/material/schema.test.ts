@@ -100,6 +100,6 @@ describe("material schema", () => {
       importCorpusModules("material/lesson/**/*.ts")
     );
 
-    expect(files).toHaveLength(45);
+    expect(files).toHaveLength(44);
   });
 });

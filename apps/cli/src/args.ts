@@ -6,6 +6,11 @@ export interface PreviewArguments {
   readonly document: string;
 }
 
+/** Read-only whole-catalog validation requested without production inputs. */
+export interface CheckArguments {
+  readonly command: "check";
+}
+
 /** Exact immutable identity requested by one production release command. */
 export interface ReleaseArguments {
   readonly command: "release";
@@ -57,6 +62,7 @@ export type CliArguments =
   | ({ readonly command: "preview" } & PreviewArguments)
   | AcceptArguments
   | AbortArguments
+  | CheckArguments
   | CleanupArguments
   | RecoverArguments
   | ReleaseArguments
@@ -69,6 +75,12 @@ export class PreviewArgumentsError extends Schema.TaggedError<PreviewArgumentsEr
   {
     reason: Schema.Literal("duplicate", "missing", "unknown", "value"),
   }
+) {}
+
+/** Check arguments contain unsupported positional or named values. */
+export class CheckArgumentsError extends Schema.TaggedError<CheckArgumentsError>()(
+  "CheckArgumentsError",
+  { reason: Schema.Literal("unknown") }
 ) {}
 
 /** Production arguments do not describe one unambiguous release operation. */
@@ -226,6 +238,12 @@ export const parsePreviewArguments = Effect.fn("AksaraCli.parseArguments")(
 export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
   function* (args: readonly string[]) {
     const [command] = args;
+    if (command === "check") {
+      if (args.length !== 1) {
+        return yield* new CheckArgumentsError({ reason: "unknown" });
+      }
+      return { command } satisfies CheckArguments;
+    }
     if (
       command !== "cleanup" &&
       command !== "accept" &&

@@ -115,6 +115,8 @@ describe("material registry", () => {
 
     expect(entries).toEqual([
       {
+        assetRoot:
+          "material/lesson/mathematics/function-composition-inverse-function",
         delivery: "public",
         rendererDomain: "mathematics",
         route: {
@@ -133,6 +135,8 @@ describe("material registry", () => {
           "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
       },
       {
+        assetRoot:
+          "material/lesson/mathematics/function-composition-inverse-function",
         delivery: "public",
         rendererDomain: "mathematics",
         route: {

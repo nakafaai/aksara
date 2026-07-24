@@ -1,7 +1,9 @@
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type QuestionChoices,
   QuestionChoicesSchema,
 } from "@nakafa/aksara-contracts/projection/question";
+import { hasTypeScriptSyntaxError } from "@nakafa/aksara-utilities/typescript/syntax";
 import { Effect, Schema } from "effect";
 import ts from "typescript";
 
@@ -9,7 +11,7 @@ import ts from "typescript";
 export class QuestionChoiceError extends Schema.TaggedError<QuestionChoiceError>()(
   "QuestionChoiceError",
   {
-    sourcePath: Schema.String,
+    sourcePath: CorpusSourcePathSchema,
   }
 ) {}
 
@@ -119,6 +121,9 @@ function isChoiceTypeImport(statement: ts.Statement) {
   if (!ts.isImportDeclaration(statement)) {
     return false;
   }
+  if (statement.attributes !== undefined) {
+    return false;
+  }
 
   const clause = statement.importClause;
   if (
@@ -191,7 +196,13 @@ function isChoiceExport(statement: ts.Statement) {
 /**
  * Parses one choices module through the TypeScript AST without evaluating code.
  */
-export function decodeQuestionChoiceSource(source: string, sourcePath: string) {
+export function decodeQuestionChoiceSource(
+  source: string,
+  sourcePath: typeof CorpusSourcePathSchema.Type
+) {
+  if (hasTypeScriptSyntaxError(source, sourcePath)) {
+    return Effect.fail(new QuestionChoiceError({ sourcePath }));
+  }
   const file = ts.createSourceFile(
     sourcePath,
     source,

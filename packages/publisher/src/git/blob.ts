@@ -1,30 +1,17 @@
-import {
-  type Command,
-  make as makeCommand,
-  workingDirectory,
-} from "@effect/platform/Command";
-import {
-  CommandExecutor,
-  type CommandExecutor as CommandExecutorService,
-} from "@effect/platform/CommandExecutor";
 import type {
   CorpusSourcePath,
   GitCommitSha,
 } from "@nakafa/aksara-contracts/ids";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Context, Effect, Layer, Schema } from "effect";
-import {
-  collectBoundedBytes,
-  collectErrorBytes,
-  decodeUtf8,
-} from "#publisher/git/output";
 
 const MAX_GIT_TEXT_BYTES = 4096;
 const MAX_GIT_ERROR_BYTES = 16 * 1024;
 
 const GitBlobOperationSchema = Schema.Literal(
-  "find-root",
   "resolve-commit",
   "size-blob",
   "decode-blob",
@@ -62,61 +49,40 @@ export class GitBlob extends Context.Tag("AksaraGitBlob")<
   }
 >() {}
 
-/** Builds a Git command that cannot observe repository replacement refs. */
-function makeGitCommand(...args: readonly string[]) {
-  return makeCommand("git", "--no-replace-objects", ...args);
-}
-
 /** Decodes trusted command bytes without accepting replacement characters. */
 function decodeGitText(
   bytes: Uint8Array,
   operation: GitBlobOperation,
   message: string
 ) {
-  return decodeUtf8(
-    bytes,
-    (cause) => new GitBlobError({ cause, message, operation })
-  );
+  return Effect.try({
+    catch: (cause) => new GitBlobError({ cause, message, operation }),
+    try: () => new TextDecoder("utf-8", { fatal: true }).decode(bytes),
+  });
 }
 
-/** Executes one Git command with strictly bounded stdout retention. */
+/** Executes one exact Git command with independently bounded output pipes. */
 function runGitBytes(
-  executor: CommandExecutorService,
-  command: Command,
+  exactProcess: typeof ExactProcess.Service,
+  repositoryRoot: string,
+  args: readonly string[],
   operation: GitBlobOperation,
   message: string,
   maxBytes: number
 ) {
-  const execution = Effect.gen(function* () {
-    const process = yield* executor.start(command);
-    const [exitCode, stdout, stderr] = yield* Effect.all(
-      [
-        process.exitCode,
-        collectBoundedBytes(
-          process.stdout,
-          maxBytes,
-          (actualBytes) =>
-            new GitBlobError({
-              cause: { actualBytes, maxBytes },
-              message,
-              operation,
-            })
-        ),
-        collectErrorBytes(process.stderr, MAX_GIT_ERROR_BYTES),
-      ],
-      { concurrency: "unbounded" }
-    );
-    return { exitCode, stderr, stdout };
-  }).pipe(
-    Effect.mapError((cause) =>
-      cause instanceof GitBlobError
-        ? cause
-        : new GitBlobError({ cause, message, operation })
+  return exactProcess
+    .run(
+      makeExactGitInput({
+        args,
+        root: repositoryRoot,
+        stderrLimit: MAX_GIT_ERROR_BYTES,
+        stdoutLimit: maxBytes,
+      })
     )
-  );
-
-  return Effect.scoped(
-    execution.pipe(
+    .pipe(
+      Effect.mapError(
+        (cause) => new GitBlobError({ cause, message, operation })
+      ),
       Effect.flatMap(({ exitCode, stderr, stdout }) => {
         if (exitCode === 0) {
           return Effect.succeed(stdout);
@@ -137,140 +103,130 @@ function runGitBytes(
           )
         );
       })
-    )
-  );
+    );
 }
 
 /** Executes one small Git metadata command and fatally decodes its output. */
 function runGitText(
-  executor: CommandExecutorService,
-  command: Command,
+  exactProcess: typeof ExactProcess.Service,
+  repositoryRoot: string,
+  args: readonly string[],
   operation: GitBlobOperation,
   message: string
 ) {
   return runGitBytes(
-    executor,
-    command,
+    exactProcess,
+    repositoryRoot,
+    args,
     operation,
     message,
     MAX_GIT_TEXT_BYTES
   ).pipe(Effect.flatMap((bytes) => decodeGitText(bytes, operation, message)));
 }
 
-/** Platform-neutral Git implementation supplied with a command executor. */
-export const GitBlobLive = Layer.effect(
-  GitBlob,
-  Effect.gen(function* () {
-    const executor = yield* CommandExecutor;
-
-    /** Reads one corpus blob only after resolving an exact commit SHA. */
-    const read = Effect.fn("AksaraPublisher.GitBlob.read")(function* (
-      input: GitBlobInput
-    ) {
-      const rootOutput = yield* runGitText(
-        executor,
-        makeGitCommand("rev-parse", "--show-toplevel"),
-        "find-root",
-        "Git could not locate the Aksara repository root."
-      );
-      const repositoryRoot = yield* Schema.decodeUnknown(
-        Schema.NonEmptyTrimmedString
-      )(rootOutput.trim()).pipe(
-        Effect.mapError(
-          (cause) =>
-            new GitBlobError({
-              cause,
-              message: "Git returned an empty Aksara repository root.",
-              operation: "find-root",
-            })
-        )
-      );
-      const revisionOutput = yield* runGitText(
-        executor,
-        makeGitCommand(
-          "rev-parse",
-          "--verify",
-          "--end-of-options",
-          `${input.revision}^{commit}`
-        ).pipe(workingDirectory(repositoryRoot)),
-        "resolve-commit",
-        "Git could not resolve the reviewed Aksara revision."
-      );
-      const commitSha = yield* Schema.decodeUnknown(GitCommitShaSchema)(
-        revisionOutput.trim()
-      ).pipe(
-        Effect.mapError(
-          (cause) =>
-            new GitBlobError({
-              cause,
-              message: "Git did not return a full lowercase commit SHA.",
+/** Builds an exact-checkout Git implementation for immutable corpus blobs. */
+export function makeGitBlobLive(repositoryRoot: string) {
+  return Layer.effect(
+    GitBlob,
+    ExactProcess.pipe(
+      Effect.map((exactProcess) => {
+        /** Reads one corpus blob only after resolving an exact commit SHA. */
+        const read = Effect.fn("AksaraPublisher.GitBlob.read")(function* (
+          input: GitBlobInput
+        ) {
+          const revisionOutput = yield* runGitText(
+            exactProcess,
+            repositoryRoot,
+            [
+              "rev-parse",
+              "--verify",
+              "--end-of-options",
+              `${input.revision}^{commit}`,
+            ],
+            "resolve-commit",
+            "Git could not resolve the reviewed Aksara revision."
+          );
+          const commitSha = yield* Schema.decodeUnknown(GitCommitShaSchema)(
+            revisionOutput.trim()
+          ).pipe(
+            Effect.mapError(
+              (cause) =>
+                new GitBlobError({
+                  cause,
+                  message: "Git did not return a full lowercase commit SHA.",
+                  operation: "resolve-commit",
+                })
+            )
+          );
+          if (commitSha !== input.revision) {
+            return yield* new GitBlobError({
+              cause: {
+                actualCommitSha: commitSha,
+                expectedCommitSha: input.revision,
+              },
+              message:
+                "The reviewed revision is not an exact commit object SHA.",
               operation: "resolve-commit",
-            })
-        )
-      );
-      if (commitSha !== input.revision) {
-        return yield* new GitBlobError({
-          cause: {
-            actualCommitSha: commitSha,
-            expectedCommitSha: input.revision,
-          },
-          message: "The reviewed revision is not an exact commit object SHA.",
-          operation: "resolve-commit",
-        });
-      }
+            });
+          }
 
-      const blobCoordinate = `${commitSha}:${input.sourcePath}`;
-      const sizeOutput = yield* runGitText(
-        executor,
-        makeGitCommand("cat-file", "-s", blobCoordinate).pipe(
-          workingDirectory(repositoryRoot)
-        ),
-        "size-blob",
-        "Git could not measure the reviewed corpus blob."
-      );
-      const blobSize = yield* Schema.decodeUnknown(GitBlobSizeSchema)(
-        sizeOutput.trim()
-      ).pipe(
-        Effect.mapError(
-          (cause) =>
-            new GitBlobError({
-              cause,
-              message: "Git did not return a valid corpus blob byte size.",
+          const blobCoordinate = `${commitSha}:${input.sourcePath}`;
+          const sizeOutput = yield* runGitText(
+            exactProcess,
+            repositoryRoot,
+            ["cat-file", "-s", blobCoordinate],
+            "size-blob",
+            "Git could not measure the reviewed corpus blob."
+          );
+          const blobSize = yield* Schema.decodeUnknown(GitBlobSizeSchema)(
+            sizeOutput.trim()
+          ).pipe(
+            Effect.mapError(
+              (cause) =>
+                new GitBlobError({
+                  cause,
+                  message: "Git did not return a valid corpus blob byte size.",
+                  operation: "size-blob",
+                })
+            )
+          );
+          if (blobSize > MAX_RAW_MDX_BYTES) {
+            return yield* new GitBlobError({
+              cause: { actualBytes: blobSize, maxBytes: MAX_RAW_MDX_BYTES },
+              message:
+                "The reviewed corpus blob exceeds the raw MDX byte limit.",
               operation: "size-blob",
-            })
-        )
-      );
-      if (blobSize > MAX_RAW_MDX_BYTES) {
-        return yield* new GitBlobError({
-          cause: { actualBytes: blobSize, maxBytes: MAX_RAW_MDX_BYTES },
-          message: "The reviewed corpus blob exceeds the raw MDX byte limit.",
-          operation: "size-blob",
-        });
-      }
+            });
+          }
 
-      const blobBytes = yield* runGitBytes(
-        executor,
-        makeGitCommand("cat-file", "blob", blobCoordinate).pipe(
-          workingDirectory(repositoryRoot)
-        ),
-        "read-blob",
-        "Git could not read the reviewed corpus blob.",
-        blobSize
-      );
-      if (blobBytes.byteLength !== blobSize) {
-        return yield* new GitBlobError({
-          cause: { actualBytes: blobBytes.byteLength, expectedBytes: blobSize },
-          message: "Git returned a corpus blob with an unexpected byte size.",
-          operation: "read-blob",
+          const blobBytes = yield* runGitBytes(
+            exactProcess,
+            repositoryRoot,
+            ["cat-file", "blob", blobCoordinate],
+            "read-blob",
+            "Git could not read the reviewed corpus blob.",
+            blobSize
+          );
+          if (blobBytes.byteLength !== blobSize) {
+            return yield* new GitBlobError({
+              cause: {
+                actualBytes: blobBytes.byteLength,
+                expectedBytes: blobSize,
+              },
+              message:
+                "Git returned a corpus blob with an unexpected byte size.",
+              operation: "read-blob",
+            });
+          }
+          return yield* decodeGitText(
+            blobBytes,
+            "decode-blob",
+            "The reviewed corpus blob is not valid UTF-8."
+          );
         });
-      }
-      return yield* decodeGitText(
-        blobBytes,
-        "decode-blob",
-        "The reviewed corpus blob is not valid UTF-8."
-      );
-    });
 
-    return GitBlob.of({ read });
-  })
-);
+        return GitBlob.of({ read });
+      })
+    )
+  );
+}

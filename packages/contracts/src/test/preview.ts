@@ -43,20 +43,6 @@ export const testPreviewTarget = Schema.decodeUnknownSync(
   },
   placement: {
     answerContentKey: `${questionKey}/answer`,
-    choices: [
-      {
-        isCorrect: true,
-        label: "Test correct choice",
-        optionKey: "option-1",
-        order: 1,
-      },
-      {
-        isCorrect: false,
-        label: "Test incorrect choice",
-        optionKey: "option-2",
-        order: 2,
-      },
-    ],
     countryKey: "indonesia",
     examKey: "snbt",
     locale: "en",

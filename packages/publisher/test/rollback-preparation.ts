@@ -21,7 +21,6 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
@@ -31,6 +30,7 @@ import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
 import { testFileLayer } from "#test/files";
 import { materialGraph } from "#test/graph";
+import { testRendererDomains } from "#test/renderer";
 import { emptySnapshotSources } from "#test/snapshot";
 import { makePublicationTarget } from "#test/target";
 
@@ -45,7 +45,7 @@ export const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "TestBase", version: 1 }],
       supportedComponents: [{ name: "TestBase", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "TestChemistry", version: 1 }],
       mathematics: [{ name: "TestMathematics", version: 1 }],
     }),
@@ -63,7 +63,7 @@ const sourceRendererManifest = await Effect.runPromise(
         { name: "TestBase", version: 1 },
       ],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "TestChemistry", version: 1 }],
       mathematics: [{ name: "TestMathematics", version: 1 }],
     }),

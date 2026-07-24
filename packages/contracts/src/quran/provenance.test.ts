@@ -45,14 +45,15 @@ vi.mock("node:crypto", async (importOriginal) => {
 /** Builds one exact technical provenance record. */
 function record(
   scope: typeof QuranProvenanceScopeSchema.Type,
-  status: "approved" | "blocked"
+  status: "approved" | "blocked",
+  source = "primary"
 ) {
   return Schema.decodeUnknownSync(QuranProvenanceRecordSchema)({
     evidence: "Reviewed source statement.",
-    provider: "Reviewed provider",
+    provider: `Reviewed provider ${source}`,
     retrievedOn: "2026-07-24",
     scope,
-    sourceUrl: "https://example.com/source",
+    sourceUrl: `https://example.com/${source}`,
     status,
   });
 }
@@ -104,7 +105,7 @@ describe("Quran provenance", () => {
     expect(reorderedHash).toBe(canonicalHash);
   });
 
-  it("normalizes record order and rejects missing or duplicate scopes", async () => {
+  it("supports composite scopes and rejects missing or duplicate sources", async () => {
     const canonical = records("approved");
     const reversed = [...canonical].reverse();
     const [first] = canonical;
@@ -112,11 +113,46 @@ describe("Quran provenance", () => {
       throw new Error("Expected complete Quran provenance records.");
     }
     const duplicate = [first, ...canonical];
+    const composite = [
+      ...canonical,
+      record("metadata", "blocked", "secondary"),
+    ];
+    const sameProvider = [
+      ...canonical,
+      {
+        ...record("metadata", "approved", "secondary"),
+        provider: "Reviewed provider primary",
+      },
+      {
+        ...record("metadata", "approved", "alpha"),
+        provider: "Reviewed provider primary",
+      },
+    ];
+    const mixedProviders = [
+      ...canonical,
+      {
+        ...record("metadata", "approved", "zulu"),
+        provider: "Zulu provider",
+      },
+      {
+        ...record("metadata", "approved", "alpha"),
+        provider: "Alpha provider",
+      },
+    ];
     const canonicalManifest = await Effect.runPromise(
       makeQuranProvenanceManifest(canonical)
     );
     const reversedManifest = await Effect.runPromise(
       makeQuranProvenanceManifest(reversed)
+    );
+    const compositeManifest = await Effect.runPromise(
+      makeQuranProvenanceManifest(composite)
+    );
+    const sameProviderManifest = await Effect.runPromise(
+      makeQuranProvenanceManifest(sameProvider)
+    );
+    const mixedProviderManifest = await Effect.runPromise(
+      makeQuranProvenanceManifest(mixedProviders)
     );
     const errors = await Promise.all([
       Effect.runPromise(
@@ -138,20 +174,52 @@ describe("Quran provenance", () => {
       ...canonicalManifest,
       status: "blocked",
     });
-    if (Either.isRight(missingCoverage) || Either.isRight(incoherentStatus)) {
+    const outOfOrder = Schema.decodeUnknownEither(
+      QuranProvenanceManifestSchema
+    )({
+      ...canonicalManifest,
+      records: [...canonicalManifest.records].reverse(),
+    });
+    if (
+      Either.isRight(missingCoverage) ||
+      Either.isRight(incoherentStatus) ||
+      Either.isRight(outOfOrder)
+    ) {
       throw new Error("Expected exact Quran provenance schema failures.");
     }
 
     expect(reversedManifest).toEqual(canonicalManifest);
+    expect(compositeManifest.records).toHaveLength(8);
+    expect(compositeManifest.status).toBe("blocked");
+    expect(
+      sameProviderManifest.records
+        .filter(
+          ({ provider, scope }) =>
+            provider === "Reviewed provider primary" && scope === "metadata"
+        )
+        .map(({ sourceUrl }) => sourceUrl)
+    ).toEqual([
+      "https://example.com/alpha",
+      "https://example.com/primary",
+      "https://example.com/secondary",
+    ]);
+    expect(
+      mixedProviderManifest.records
+        .filter(({ scope }) => scope === "metadata")
+        .map(({ provider }) => provider)
+    ).toEqual(["Alpha provider", "Reviewed provider primary", "Zulu provider"]);
     expect(errors.map(({ _tag }) => _tag)).toEqual([
       "QuranProvenanceCoverageError",
       "QuranProvenanceCoverageError",
     ]);
     expect(String(missingCoverage.left)).toContain(
-      "Expected every Quran provenance scope exactly once"
+      "Expected complete Quran provenance scopes"
     );
     expect(String(incoherentStatus.left)).toContain(
       "Expected Quran provenance status to match"
+    );
+    expect(String(outOfOrder.left)).toContain(
+      "Expected complete Quran provenance scopes"
     );
   });
 

@@ -1,6 +1,5 @@
 import {
   type LearningProgram,
-  type LearningProgramKeySchema,
   LearningProgramSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
@@ -76,13 +75,4 @@ export const decodeProgramCatalog = Effect.fn(
     Effect.mapError((cause) => new ProgramCatalogError({ cause }))
   );
   return yield* validateProgramCatalog(programs);
-});
-
-/** Resolves one known program without inventing a default curriculum. */
-export const findProgram = Effect.fn("AksaraCorpus.findProgram")(function* (
-  key: typeof LearningProgramKeySchema.Type,
-  input: unknown = programSources
-) {
-  const programs = yield* decodeProgramCatalog(input);
-  return programs.find((program) => program.key === key) ?? null;
 });

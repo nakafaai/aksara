@@ -4,10 +4,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import {
-  ContentRouteItemSchema,
-  canonicalizeContentRouteItem,
-} from "#contracts/release/route";
+import { ContentRouteItemSchema } from "#contracts/release/route";
 
 /** Maximum route rollback records returned by one target page. */
 export const MAX_ROUTE_PAGE_RECORDS = 100;
@@ -87,13 +84,3 @@ export const RoutePageSchema = Schema.Struct({
   })
 );
 export type RoutePage = typeof RoutePageSchema.Type;
-
-/** Serializes one authenticated route rollback record. */
-export function canonicalizeRouteRollbackRecord(record: RouteRollbackRecord) {
-  return `{"current":${canonicalizeContentRouteItem(record.current)},"priorContentKey":${JSON.stringify(record.priorContentKey)}}`;
-}
-
-/** Serializes one complete route page for its transport byte ceiling. */
-export function canonicalizeRoutePage(page: RoutePage) {
-  return `{"done":${page.done},"nextIndex":${page.nextIndex},"records":[${page.records.map(canonicalizeRouteRollbackRecord).join(",")}],"rollbackOfManifestHash":${JSON.stringify(page.rollbackOfManifestHash)},"rollbackOf":${JSON.stringify(page.rollbackOf)},"total":${page.total}}`;
-}

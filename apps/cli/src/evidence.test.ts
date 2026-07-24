@@ -1,7 +1,10 @@
-import type { Command } from "@effect/platform/Command";
-import { CommandExecutor } from "@effect/platform/CommandExecutor";
-import { SystemError } from "@effect/platform/Error";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
+import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
+import {
+  ExactProcess,
+  ExactProcessError,
+  type ExactProcessInput,
+} from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -9,51 +12,78 @@ import {
   readRepositoryEvidence,
   validateStableAksaraRevision,
 } from "#cli/evidence";
-import {
-  inspectTestCommand,
-  makeTestExecutor,
-  type TestCommandResult,
-} from "#test/command";
 
 const COMMIT_SHA = "a".repeat(40);
-const COMMAND_ERROR = new SystemError({
-  method: "spawn",
-  module: "Command",
-  reason: "Unknown",
-});
+
+interface EvidenceResult {
+  readonly exitCode?: number;
+  readonly stdout?: string | Uint8Array;
+}
 
 interface EvidenceOverrides {
-  readonly sha?: TestCommandResult;
-  readonly status?: TestCommandResult;
+  readonly failure?: ExactProcessError;
+  readonly sha?: EvidenceResult;
+  readonly shas?: readonly EvidenceResult[];
+  readonly status?: EvidenceResult;
+}
+
+/** Converts one optional evidence value into exact process output bytes. */
+function outputBytes(value: string | Uint8Array | undefined) {
+  if (typeof value === "string") {
+    return new TextEncoder().encode(value);
+  }
+  return value ?? new Uint8Array();
 }
 
 /** Responds independently to exact SHA and dirty-state Git commands. */
-function makeEvidenceExecutor(overrides: EvidenceOverrides = {}) {
-  return makeTestExecutor((command: Command) => {
-    const { args } = inspectTestCommand(command);
-    const isSha = args.includes("rev-parse");
-    return Effect.succeed(
-      isSha
-        ? (overrides.sha ?? { stdout: `${COMMIT_SHA}\n` })
-        : (overrides.status ?? { stdout: "" })
-    );
+function makeEvidenceProcess(
+  overrides: EvidenceOverrides = {},
+  commands?: ExactProcessInput[]
+) {
+  let shaRead = 0;
+  return ExactProcess.of({
+    /** Runs one deterministic Git evidence response. */
+    run: (input) => {
+      commands?.push(input);
+      if (overrides.failure) {
+        return Effect.fail(overrides.failure);
+      }
+      const isSha = input.args.includes("rev-parse");
+      const sha = overrides.shas?.[shaRead] ??
+        overrides.sha ?? { stdout: `${COMMIT_SHA}\n` };
+      if (isSha) {
+        shaRead += 1;
+      }
+      const result = isSha ? sha : (overrides.status ?? { stdout: "" });
+      return Effect.succeed({
+        exitCode: result.exitCode ?? 0,
+        stderr: new Uint8Array(),
+        stdout: outputBytes(result.stdout),
+      });
+    },
   });
 }
 
-/** Reads repository evidence through one explicit command service. */
-function readEvidence(overrides?: EvidenceOverrides) {
+/** Reads repository evidence through one explicit exact process service. */
+function readEvidence(
+  overrides?: EvidenceOverrides,
+  commands?: ExactProcessInput[]
+) {
   return Effect.runPromise(
     readRepositoryEvidence("aksara", "/code/aksara").pipe(
-      Effect.provideService(CommandExecutor, makeEvidenceExecutor(overrides))
+      Effect.provideService(
+        ExactProcess,
+        makeEvidenceProcess(overrides, commands)
+      )
     )
   );
 }
 
-/** Returns the typed evidence error produced by one command scenario. */
+/** Returns the typed evidence error produced by one process scenario. */
 function rejectEvidence(overrides: EvidenceOverrides) {
   return Effect.runPromise(
     readRepositoryEvidence("nakafa", "/code/nakafa.com").pipe(
-      Effect.provideService(CommandExecutor, makeEvidenceExecutor(overrides)),
+      Effect.provideService(ExactProcess, makeEvidenceProcess(overrides)),
       Effect.flip
     )
   );
@@ -70,17 +100,45 @@ describe("repository evidence", () => {
     expect(dirty).toEqual({ dirty: true, sha: COMMIT_SHA });
   });
 
+  it("uses explicit repository coordinates and the canonical Git policy", async () => {
+    const commands: ExactProcessInput[] = [];
+    await readEvidence(undefined, commands);
+
+    expect(commands).toEqual([
+      makeExactGitInput({
+        args: ["rev-parse", "--verify", "HEAD"],
+        root: "/code/aksara",
+        stderrLimit: 16 * 1024,
+        stdoutLimit: 4 * 1024 * 1024,
+      }),
+      makeExactGitInput({
+        args: ["status", "--porcelain=v1", "--untracked-files=normal"],
+        root: "/code/aksara",
+        stderrLimit: 16 * 1024,
+        stdoutLimit: 4 * 1024 * 1024,
+      }),
+      makeExactGitInput({
+        args: ["rev-parse", "--verify", "HEAD"],
+        root: "/code/aksara",
+        stderrLimit: 16 * 1024,
+        stdoutLimit: 4 * 1024 * 1024,
+      }),
+    ]);
+  });
+
   it("accepts only a clean exact Aksara release revision", async () => {
     const clean = await Effect.runPromise(
       readCleanAksaraRevision("/code/aksara").pipe(
-        Effect.provideService(CommandExecutor, makeEvidenceExecutor())
+        Effect.provideService(ExactProcess, makeEvidenceProcess())
       )
     );
     const dirty = await Effect.runPromise(
       readCleanAksaraRevision("/code/aksara").pipe(
         Effect.provideService(
-          CommandExecutor,
-          makeEvidenceExecutor({ status: { stdout: " M real-source.mdx\n" } })
+          ExactProcess,
+          makeEvidenceProcess({
+            status: { stdout: " M real-source.mdx\n" },
+          })
         ),
         Effect.flip
       )
@@ -110,11 +168,23 @@ describe("repository evidence", () => {
     });
   });
 
+  it("rejects repository evidence when HEAD moves during status capture", async () => {
+    const error = await rejectEvidence({
+      shas: [{ stdout: `${COMMIT_SHA}\n` }, { stdout: `${"b".repeat(40)}\n` }],
+    });
+
+    expect(error).toMatchObject({
+      _tag: "PreviewEvidenceError",
+      repository: "nakafa",
+      stage: "sha",
+    });
+  });
+
   it.each([
     [{ sha: { exitCode: 1, stdout: "" } }, "sha"],
     [{ status: { exitCode: 1, stdout: "" } }, "status"],
     [{ sha: { stdout: "not-a-commit\n" } }, "sha"],
-    [{ sha: { stdout: new Uint8Array(4 * 1024 * 1024 + 1) } }, "sha"],
+    [{ sha: { stdout: Uint8Array.from([0xc3, 0x28]) } }, "sha"],
     [{ status: { stdout: Uint8Array.from([0xc3, 0x28]) } }, "status"],
   ] as const)(
     "fails closed for invalid Git evidence %#",
@@ -129,10 +199,14 @@ describe("repository evidence", () => {
   );
 
   it("maps process startup failures without exposing command details", async () => {
-    const executor = makeTestExecutor(() => Effect.fail(COMMAND_ERROR));
     const error = await Effect.runPromise(
       readRepositoryEvidence("aksara", "/secret/path").pipe(
-        Effect.provideService(CommandExecutor, executor),
+        Effect.provideService(
+          ExactProcess,
+          makeEvidenceProcess({
+            failure: new ExactProcessError({ reason: "spawn" }),
+          })
+        ),
         Effect.flip
       )
     );

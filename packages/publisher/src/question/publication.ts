@@ -9,11 +9,12 @@ import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
+import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import {
   decodeQuestionPath,
   QUESTION_BANK_ROOT,
 } from "@nakafa/aksara-corpus/question-bank/path";
-import { decodeQuestionRegistry } from "@nakafa/aksara-corpus/question-bank/registry";
+import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import {
@@ -23,6 +24,7 @@ import {
 } from "#publisher/question/document";
 import {
   planQuestionPublication,
+  type QuestionChoiceJoinError,
   QuestionPublicationPlanSchema,
 } from "#publisher/question/plan";
 import type { ReplaySpoolError } from "#publisher/replay/error";
@@ -66,6 +68,11 @@ interface HeadOrderState {
   readonly previous: QuestionHead | undefined;
 }
 
+type TryoutSources = Effect.Effect.Success<
+  ReturnType<typeof decodeTryoutRegistry>
+>;
+type TryoutExamSource = TryoutSources[number];
+
 /** Every failure possible while replaying authoritative question records. */
 export type QuestionPublicationStreamError<E> =
   | E
@@ -100,18 +107,23 @@ export interface QuestionPublicationInput<E, R> {
 type RendererManifestError = Effect.Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
+type TryoutRegistryError = Effect.Effect.Error<
+  ReturnType<typeof decodeTryoutRegistry>
+>;
 
 /** Every failure possible before the replayable question plan is constructed. */
 export type PrepareQuestionPublicationError<E> =
   | E
+  | QuestionChoiceJoinError
   | QuestionPublicationStreamError<never>
   | ReplaySpoolError
-  | RendererManifestError;
+  | RendererManifestError
+  | TryoutRegistryError;
 
 /** Finds the first field proving a head does not own its question source. */
 const mismatchedFamilyField = Effect.fn(
   "AksaraPublisher.mismatchedQuestionField"
-)(function* (head: QuestionHead) {
+)(function* (tryoutSources: readonly TryoutExamSource[], head: QuestionHead) {
   const keyPrefix = "question-bank/tryout/indonesia/";
   const questionSuffix = "/question";
   const answerSuffix = "/answer";
@@ -147,7 +159,7 @@ const mismatchedFamilyField = Effect.fn(
     sourcePrefix.length,
     -sourceSuffix.length
   );
-  const location = yield* decodeQuestionPath(sourceRoot).pipe(
+  const location = yield* decodeQuestionPath(tryoutSources, sourceRoot).pipe(
     Effect.mapError(
       (error) =>
         new QuestionHeadFamilyError({
@@ -167,6 +179,7 @@ const mismatchedFamilyField = Effect.fn(
 
 /** Validates family ownership and strict ordering before diffing one head. */
 function validatePublishedHead(
+  tryoutSources: readonly TryoutExamSource[],
   state: HeadOrderState,
   head: QuestionHead
 ): Effect.Effect<
@@ -174,7 +187,7 @@ function validatePublishedHead(
   QuestionHeadDuplicateError | QuestionHeadFamilyError | QuestionHeadOrderError
 > {
   return Effect.gen(function* () {
-    const field = yield* mismatchedFamilyField(head);
+    const field = yield* mismatchedFamilyField(tryoutSources, head);
     if (field !== undefined) {
       return yield* new QuestionHeadFamilyError({
         contentKey: head.contentKey,
@@ -204,10 +217,15 @@ function validatePublishedHead(
 
 /** Proves every published question head before the constant-space merge. */
 function validatePublishedHeads<E, R>(
-  published: Stream.Stream<QuestionHead, E, R>
+  published: Stream.Stream<QuestionHead, E, R>,
+  tryoutSources: readonly TryoutExamSource[]
 ) {
   const initial: HeadOrderState = { previous: undefined };
-  return published.pipe(Stream.mapAccumEffect(initial, validatePublishedHead));
+  return published.pipe(
+    Stream.mapAccumEffect(initial, (state, head) =>
+      validatePublishedHead(tryoutSources, state, head)
+    )
+  );
 }
 
 /**
@@ -224,14 +242,17 @@ export const prepareQuestionPublication: <E, R>(
   input: QuestionPublicationInput<E, R>
 ) {
   const rendererManifest = yield* validateRenderer(input.rendererManifest);
-  const entries = yield* decodeQuestionRegistry(input.checkoutRoot).pipe(
-    Effect.mapError(mapQuestionSourceError(input.checkoutRoot))
-  );
+  const tryoutSources = yield* decodeTryoutRegistry();
+  const { entries, sources } = yield* loadQuestionContent(
+    input.checkoutRoot,
+    tryoutSources
+  ).pipe(Effect.mapError(mapQuestionSourceError(input.checkoutRoot)));
   const plans = planQuestionPublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(input.published),
+    published: validatePublishedHeads(input.published, tryoutSources),
     rendererManifest,
+    sources,
   });
   const spool = yield* createReplaySpool({
     prefix: "aksara-question-",

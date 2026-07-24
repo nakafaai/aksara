@@ -64,6 +64,7 @@ describe("article registry", () => {
       },
       sourcePath:
         "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx",
+      sourceRoot: "articles/politics/dynastic-politics/asian-values",
     });
   });
 

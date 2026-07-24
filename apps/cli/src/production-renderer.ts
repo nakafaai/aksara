@@ -2,7 +2,7 @@ import type { HttpClient } from "@effect/platform";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, type Redacted, Schedule } from "effect";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
-import { fetchRendererEndpoint } from "#cli/renderer";
+import { fetchRendererEndpoint } from "#cli/renderer/http";
 
 const RETRY_COUNT = 3;
 const RETRY_DELAY = "100 millis";

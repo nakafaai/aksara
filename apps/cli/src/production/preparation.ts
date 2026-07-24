@@ -1,4 +1,4 @@
-import type { CommandExecutor, FileSystem, Path } from "@effect/platform";
+import type { FileSystem, Path } from "@effect/platform";
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentHead,
@@ -22,6 +22,7 @@ import {
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { prepareRollback } from "@nakafa/aksara-publisher/rollback";
 import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
+import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect, type Scope, Stream } from "effect";
 import {
   readCleanAksaraRevision,
@@ -29,7 +30,6 @@ import {
 } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { validateRecoveryRevision } from "#cli/recovery";
-import { findAksaraRoot } from "#cli/repository";
 
 interface BaseCatalogIdentity {
   readonly manifestHash: ContentReleaseBundle["release"]["manifestHash"];
@@ -40,7 +40,7 @@ interface BaseCatalogIdentity {
 }
 
 interface GitPreparationBase {
-  readonly cwd: string;
+  readonly checkoutRoot: string;
   readonly releaseId: ReleaseId;
 }
 
@@ -79,8 +79,8 @@ type PreparedRollback = Effect.Effect.Success<
   ReturnType<typeof prepareRollback>
 >;
 type PreparationServices =
-  | CommandExecutor.CommandExecutor
   | ContentVerificationKeyResolver
+  | ExactProcess
   | FileSystem.FileSystem
   | Path.Path
   | PublicationTarget
@@ -157,8 +157,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
     } else {
       base = selectRecoveryBase(input.bundle);
     }
-    const checkoutRoot = yield* findAksaraRoot(input.cwd);
-    const aksaraSha = yield* readCleanAksaraRevision(checkoutRoot);
+    const aksaraSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     if (input.kind === "rebuild") {
       yield* validateRecoveryRevision(input.sha, aksaraSha);
     }
@@ -175,12 +174,12 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
               digest: base.resultDigest,
               releaseId: base.releaseId,
             },
-      checkoutRoot,
+      checkoutRoot: input.checkoutRoot,
       published: publishedContentHeads(base),
       rendererManifest,
     });
     const snapshots = yield* prepareReleaseSnapshots({
-      checkoutRoot,
+      checkoutRoot: input.checkoutRoot,
       previousSnapshots: base?.snapshots ?? null,
       questionHeads: () => catalog.result().pipe(Stream.filter(isQuestionHead)),
       rendererManifest,
@@ -201,7 +200,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       snapshotManifests: snapshots.manifests,
       snapshotRows: snapshots.rows,
     });
-    const preparedSha = yield* readCleanAksaraRevision(checkoutRoot);
+    const preparedSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     yield* validateStableAksaraRevision(aksaraSha, preparedSha);
     if (input.kind === "new") {
       return prepared;

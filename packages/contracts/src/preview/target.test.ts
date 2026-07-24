@@ -212,4 +212,29 @@ describe("try-out preview target", () => {
       })
     ).toBe(true);
   });
+
+  it("rejects canonical question choices duplicated into the preview target", () => {
+    expect(
+      rejectsTarget({
+        ...testPreviewTarget,
+        placement: {
+          ...testPreviewTarget.placement,
+          choices: [
+            {
+              isCorrect: true,
+              label: "Test correct choice",
+              optionKey: "option-1",
+              order: 1,
+            },
+            {
+              isCorrect: false,
+              label: "Test incorrect choice",
+              optionKey: "option-2",
+              order: 2,
+            },
+          ],
+        },
+      })
+    ).toBe(true);
+  });
 });

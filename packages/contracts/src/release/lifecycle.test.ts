@@ -11,7 +11,7 @@ import {
   ReleaseCleanupRequestSchema,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
-import { emptyContentSnapshots } from "#contracts/release/snapshot";
+import { inheritContentSnapshots } from "#contracts/release/snapshot";
 import { release, rendererManifest } from "#contracts/test/request";
 
 const releaseId = "release-lifecycle";
@@ -25,7 +25,7 @@ const statusReceipt = {
   resultCount: 1,
   resultDigest: `sha256:${"c".repeat(64)}`,
   routeDigest: `sha256:${"d".repeat(64)}`,
-  snapshots: emptyContentSnapshots(),
+  snapshots: inheritContentSnapshots(null),
   stagedArtifacts: 1,
   stagedItems: 1,
   stagedProjections: 1,

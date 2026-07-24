@@ -1,7 +1,6 @@
 import { HttpClient } from "@effect/platform";
-import { CommandExecutor } from "@effect/platform/CommandExecutor";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Context, Effect, Layer, type Redacted } from "effect";
+import { Context, Effect, Layer } from "effect";
 import type * as Scope from "effect/Scope";
 import type { NakafaAppError } from "#cli/app-error";
 import {
@@ -9,6 +8,8 @@ import {
   type RunningNakafa,
   startNakafa,
 } from "#cli/child";
+import { NakafaProcess, NakafaProcessLive } from "#cli/child-process";
+import type { RendererCredentials } from "#cli/credentials";
 import { waitForRenderer } from "#cli/renderer";
 
 /** Injectable actual-app boundary used by the preview orchestration. */
@@ -18,7 +19,7 @@ export class NakafaApp extends Context.Tag("AksaraCliNakafaApp")<
     /** Fetches the exact live renderer envelope through its internal route. */
     readonly fetchRenderer: (
       origin: URL,
-      token: Redacted.Redacted<string>
+      credentials: RendererCredentials
     ) => Effect.Effect<RendererManifestEnvelope, NakafaAppError>;
     /** Starts the actual Nakafa Next development app on localhost. */
     readonly start: (
@@ -30,15 +31,18 @@ export class NakafaApp extends Context.Tag("AksaraCliNakafaApp")<
 /** Actual Nakafa process and renderer endpoint implementation. */
 export const NakafaAppLive = Layer.effect(
   NakafaApp,
-  Effect.all([CommandExecutor, HttpClient.HttpClient]).pipe(
-    Effect.map(([executor, client]) =>
+  Effect.all([NakafaProcess, HttpClient.HttpClient]).pipe(
+    Effect.map(([processes, client]) =>
       NakafaApp.of({
         fetchRenderer: (origin, token) =>
           waitForRenderer(origin, token).pipe(
             Effect.provideService(HttpClient.HttpClient, client)
           ),
-        start: (input) => startNakafa(executor, input),
+        start: (input) =>
+          startNakafa(input).pipe(
+            Effect.provideService(NakafaProcess, processes)
+          ),
       })
     )
   )
-);
+).pipe(Layer.provide(NakafaProcessLive));

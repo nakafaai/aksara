@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import { verifyContentReleaseItems } from "#contracts/release/items";
-import { emptyContentSnapshots } from "#contracts/release/snapshot";
+import { inheritContentSnapshots } from "#contracts/release/snapshot";
 import {
   ContentChangeSchema,
   type ContentReleaseItem,
@@ -58,7 +58,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"d".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"d".repeat(64)}`,
-  snapshots: emptyContentSnapshots(),
+  snapshots: inheritContentSnapshots(null),
   upsertCount: itemSummary.upsertCount,
 });
 

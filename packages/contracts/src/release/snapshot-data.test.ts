@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
+  LearningProgramRecordSchema,
   PROGRAM_SNAPSHOT_FORMAT,
-  ProgramSnapshotRowSchema,
   ProgramSnapshotSchema,
 } from "#contracts/program/snapshot";
 import { LearningProgramSchema } from "#contracts/program/spec";
@@ -15,7 +15,6 @@ import {
 import {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
-  canonicalizeContentSnapshotManifest,
   canonicalizeContentSnapshotRow,
   contentSnapshotId,
 } from "#contracts/release/snapshot-data";
@@ -30,10 +29,13 @@ const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 const third = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
 
 const program = ProgramSnapshotSchema.make({
+  curriculumRowCount: 390,
   format: PROGRAM_SNAPSHOT_FORMAT,
   locales: ["en", "id"],
-  rowCount: 6,
+  programRowCount: 6,
+  rowCount: 396,
   rowDigest: first,
+  sitemapCount: 52,
   slugCount: 12,
   snapshotId: second,
 });
@@ -69,7 +71,8 @@ const tryout = TryoutSnapshotSchema.make({
   snapshotId: third,
 });
 
-const programRow = ProgramSnapshotRowSchema.make({
+const programRow = LearningProgramRecordSchema.make({
+  kind: "program",
   row: Schema.decodeUnknownSync(LearningProgramSchema)({
     defaultCoverageStatus: "partial",
     displayOrder: 1,
@@ -123,14 +126,12 @@ describe("structured snapshot data", () => {
     expect(values.map(contentSnapshotId)).toEqual([second, third, third]);
   });
 
-  it("canonically serializes and strictly decodes one family envelope", () => {
+  it("strictly decodes one family envelope", () => {
     const value = { family: "program", manifest: program } as const;
-    const canonical = canonicalizeContentSnapshotManifest(value);
     const decode = Schema.decodeUnknownEither(ContentSnapshotManifestSchema, {
       onExcessProperty: "error",
     });
 
-    expect(JSON.parse(canonical)).toEqual(value);
     expect(Either.isRight(decode(value))).toBe(true);
     expect(Either.isLeft(decode({ ...value, extra: true }))).toBe(true);
   });

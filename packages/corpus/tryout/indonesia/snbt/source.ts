@@ -6,6 +6,7 @@ const snbtSections = [
   {
     key: "quantitative-knowledge",
     questionCount: 20,
+    rendererDomain: "snbt-quant",
     routeSlugs: {
       en: "quantitative-knowledge",
       id: "pengetahuan-kuantitatif",
@@ -19,6 +20,7 @@ const snbtSections = [
   {
     key: "mathematical-reasoning",
     questionCount: 20,
+    rendererDomain: "snbt-math",
     routeSlugs: {
       en: "mathematical-reasoning",
       id: "penalaran-matematika",
@@ -32,6 +34,7 @@ const snbtSections = [
   {
     key: "general-reasoning",
     questionCount: 20,
+    rendererDomain: "snbt-general",
     routeSlugs: { en: "general-reasoning", id: "penalaran-umum" },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -42,6 +45,7 @@ const snbtSections = [
   {
     key: "indonesian-language",
     questionCount: 30,
+    rendererDomain: "snbt-plain",
     routeSlugs: { en: "indonesian-language", id: "bahasa-indonesia" },
     timeLimitSeconds: 30 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -52,6 +56,7 @@ const snbtSections = [
   {
     key: "english-language",
     questionCount: 20,
+    rendererDomain: "snbt-plain",
     routeSlugs: { en: "english-language", id: "bahasa-inggris" },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -62,6 +67,7 @@ const snbtSections = [
   {
     key: "general-knowledge",
     questionCount: 20,
+    rendererDomain: "snbt-plain",
     routeSlugs: { en: "general-knowledge", id: "pengetahuan-umum" },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -72,6 +78,7 @@ const snbtSections = [
   {
     key: "reading-and-writing-skills",
     questionCount: 20,
+    rendererDomain: "snbt-plain",
     routeSlugs: {
       en: "reading-and-writing-skills",
       id: "literasi-membaca-menulis",

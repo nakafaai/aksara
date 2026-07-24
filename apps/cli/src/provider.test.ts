@@ -1,129 +1,38 @@
 import { Server } from "node:http";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
-import { Effect, Redacted } from "effect";
+import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
+import { Effect } from "effect";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { openPreviewProvider } from "#cli/provider";
+import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
+import { PREVIEW_REPOSITORIES } from "#test/preview";
 import {
-  openPreviewProvider,
-  PREVIEW_EVENTS_PATH,
-  PREVIEW_MANIFEST_PATH,
-  type PreviewProvider,
-} from "#cli/provider";
-import { makePreviewReady, PREVIEW_REPOSITORIES } from "#test/preview";
-import { makeRepositoryTracker, RENDERER_MANIFEST } from "#test/real";
-
-const repositories = makeRepositoryTracker();
+  makeIncoherentResults,
+  makeProviderInput,
+  providerRepositories,
+  requestProvider,
+  withProvider,
+} from "#test/provider";
+import { RENDERER_MANIFEST } from "#test/real";
 
 afterEach(() => {
   vi.restoreAllMocks();
-  repositories.clear();
+  providerRepositories.clear();
 });
 
-/** Executes one callback while the scoped loopback provider is listening. */
-async function withProvider(
-  use: (input: {
-    readonly provider: PreviewProvider;
-    readonly ready: Awaited<ReturnType<typeof makePreviewReady>>;
-    readonly token: string;
-  }) => Promise<void>
-) {
-  const repository = repositories.create();
-  const ready = await makePreviewReady(repository);
-  await Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const provider = yield* openPreviewProvider({
-          document: ready.document,
-          repositories: PREVIEW_REPOSITORIES,
-          token: ready.credentials.token,
-        });
-        yield* Effect.tryPromise(() =>
-          use({
-            provider,
-            ready,
-            token: Redacted.value(ready.credentials.token),
-          })
-        );
-      })
-    )
-  );
-}
-
-/** Sends one authenticated request to the current provider origin. */
-function request(
-  provider: PreviewProvider,
-  token: string,
-  path: string,
-  init: RequestInit = {}
-) {
-  const headers = new Headers(init.headers);
-  headers.set("authorization", `Bearer ${token}`);
-  return fetch(new URL(path, provider.origin), { ...init, headers });
-}
-
 describe("local preview provider", () => {
-  it("authenticates before routing and rejects malformed request targets", async () => {
-    await withProvider(async ({ provider, token }) => {
-      const missing = await fetch(
-        new URL(PREVIEW_MANIFEST_PATH, provider.origin)
-      );
-      const wrongLength = await request(
-        provider,
-        "wrong",
-        PREVIEW_MANIFEST_PATH
-      );
-      const wrongToken = await request(
-        provider,
-        "x".repeat(token.length),
-        PREVIEW_MANIFEST_PATH
-      );
-      const method = await request(provider, token, PREVIEW_MANIFEST_PATH, {
-        method: "POST",
-      });
-      const manifest = await request(
-        provider,
-        token,
-        `${PREVIEW_MANIFEST_PATH}?revision=1`
-      );
-      const unknown = await request(provider, token, "/v1/unknown");
-      const malformed = await request(
-        provider,
-        token,
-        "/v1/artifacts/not-a-hash"
-      );
-      const traversal = await request(
-        provider,
-        token,
-        "/v1/artifacts/%2e%2e%2fmanifest"
-      );
-
-      expect([missing.status, wrongLength.status, wrongToken.status]).toEqual([
-        401, 401, 401,
-      ]);
-      expect(method.status).toBe(405);
-      expect(method.headers.get("allow")).toBe("GET");
-      expect(manifest.status).toBe(200);
-      expect(manifest.headers.get("cache-control")).toBe("no-store");
-      expect(manifest.headers.get("x-content-type-options")).toBe("nosniff");
-      await expect(manifest.json()).resolves.toMatchObject({
-        revision: 1,
-        status: "pending",
-      });
-      expect(unknown.status).toBe(404);
-      expect(malformed.status).toBe(409);
-      expect(traversal.status).toBe(409);
-    });
-  }, 30_000);
-
   it("atomically exposes ready state and clears stale artifacts", async () => {
     await withProvider(async ({ provider, ready, token }) => {
+      const [compiled] = ready.result.results;
       await Effect.runPromise(
         provider.ready({
-          artifact: ready.result.artifact,
-          projection: ready.result.projection,
+          generation: 0,
           rendererManifestHash: RENDERER_MANIFEST.hash,
+          repositories: PREVIEW_REPOSITORIES,
+          results: ready.result.results,
         })
       );
-      const readyManifestResponse = await request(
+      const readyManifestResponse = await requestProvider(
         provider,
         token,
         PREVIEW_MANIFEST_PATH
@@ -133,31 +42,50 @@ describe("local preview provider", () => {
       if (
         !readyManifest ||
         typeof readyManifest !== "object" ||
-        !("artifactPath" in readyManifest) ||
-        typeof readyManifest.artifactPath !== "string"
+        !("artifacts" in readyManifest) ||
+        !Array.isArray(readyManifest.artifacts) ||
+        typeof readyManifest.artifacts[0]?.artifactPath !== "string"
       ) {
-        throw new Error("Ready provider manifest omitted its artifact path.");
+        throw new Error("Ready provider manifest omitted its artifact paths.");
       }
-      const artifact = await request(
+      const [readyArtifact] = readyManifest.artifacts;
+      const artifact = await requestProvider(
         provider,
         token,
-        readyManifest.artifactPath
+        readyArtifact.artifactPath
       );
       await expect(artifact.text()).resolves.toBe(
-        canonicalizeSignedContentArtifact(ready.result.artifact)
+        canonicalizeSignedContentArtifact(compiled.artifact)
       );
+      const unknownArtifact = await requestProvider(
+        provider,
+        token,
+        `/v1/artifacts/${encodeURIComponent(`sha256:${"f".repeat(64)}`)}`
+      );
+      expect(unknownArtifact.status).toBe(409);
 
-      await Effect.runPromise(provider.pending());
+      const generation = await Effect.runPromise(
+        provider.pending(PREVIEW_REPOSITORIES)
+      );
       expect(
-        (await request(provider, token, readyManifest.artifactPath)).status
+        (await requestProvider(provider, token, readyArtifact.artifactPath))
+          .status
       ).toBe(409);
       await Effect.runPromise(
         provider.failed({
-          code: "MaterialReadError",
-          message: "The selected real document is unavailable.",
+          failure: {
+            code: "MaterialReadError",
+            message: "The selected real document is unavailable.",
+          },
+          generation,
+          repositories: PREVIEW_REPOSITORIES,
         })
       );
-      const failed = await request(provider, token, PREVIEW_MANIFEST_PATH);
+      const failed = await requestProvider(
+        provider,
+        token,
+        PREVIEW_MANIFEST_PATH
+      );
       await expect(failed.json()).resolves.toMatchObject({
         failure: { code: "MaterialReadError" },
         revision: 4,
@@ -165,24 +93,86 @@ describe("local preview provider", () => {
       });
       const encodeError = await Effect.runPromise(
         provider
-          .failed({ code: "x".repeat(129), message: "Invalid bounded code." })
+          .failed({
+            failure: {
+              code: "x".repeat(129),
+              message: "Invalid bounded code.",
+            },
+            generation,
+            repositories: PREVIEW_REPOSITORIES,
+          })
           .pipe(Effect.flip)
       );
       expect(encodeError).toMatchObject({
         _tag: "PreviewProviderError",
         stage: "encode",
       });
-      const unchanged = await request(provider, token, PREVIEW_MANIFEST_PATH);
+      const unchanged = await requestProvider(
+        provider,
+        token,
+        PREVIEW_MANIFEST_PATH
+      );
       await expect(unchanged.json()).resolves.toMatchObject({ revision: 4 });
     });
   }, 30_000);
 
-  it("streams initial and changed revisions over authenticated SSE", async () => {
-    await withProvider(async ({ provider, token }) => {
-      const controller = new AbortController();
-      const response = await request(provider, token, PREVIEW_EVENTS_PATH, {
-        signal: controller.signal,
+  it("rejects incoherent payload identity without changing served state", async () => {
+    await withProvider(async ({ provider, ready, token }) => {
+      const [compiled] = ready.result.results;
+      const input = {
+        generation: 0,
+        rendererManifestHash: RENDERER_MANIFEST.hash,
+        repositories: PREVIEW_REPOSITORIES,
+        results: ready.result.results,
+      };
+      await Effect.runPromise(provider.ready(input));
+      const mismatches = makeIncoherentResults(ready);
+
+      const errors = await Promise.all(
+        mismatches.map((result) =>
+          Effect.runPromise(
+            provider.ready({ ...input, results: [result] }).pipe(Effect.flip)
+          )
+        )
+      );
+      expect(errors).toMatchObject(
+        mismatches.map(() => ({
+          _tag: "PreviewProviderError",
+          stage: "coherence",
+        }))
+      );
+
+      const manifest = await requestProvider(
+        provider,
+        token,
+        PREVIEW_MANIFEST_PATH
+      );
+      await expect(manifest.json()).resolves.toMatchObject({
+        revision: 2,
+        status: "ready",
       });
+      const servedArtifact = await requestProvider(
+        provider,
+        token,
+        `/v1/artifacts/${encodeURIComponent(compiled.artifact.artifactHash)}`
+      );
+      await expect(servedArtifact.text()).resolves.toBe(
+        canonicalizeSignedContentArtifact(compiled.artifact)
+      );
+    });
+  }, 30_000);
+
+  it("streams initial and changed revisions over authenticated SSE", async () => {
+    await withProvider(async ({ provider, ready, token }) => {
+      const controller = new AbortController();
+      const response = await requestProvider(
+        provider,
+        token,
+        PREVIEW_EVENTS_PATH,
+        {
+          signal: controller.signal,
+        }
+      );
       expect(response.status).toBe(200);
       expect(response.headers.get("content-type")).toContain(
         "text/event-stream"
@@ -190,10 +180,13 @@ describe("local preview provider", () => {
       const reader = response.body?.getReader();
       expect(reader).toBeDefined();
       const initial = await reader?.read();
-      expect(new TextDecoder().decode(initial?.value)).toContain(
-        '"revision":1'
+      const initialEvent = new TextDecoder().decode(initial?.value);
+      const route = previewDocumentRoute(ready.document);
+      expect(initialEvent).toContain('"revision":1');
+      expect(initialEvent).toContain(
+        `"route":{"locale":"${route.locale}","publicPath":"${route.publicPath}"}`
       );
-      await Effect.runPromise(provider.pending());
+      await Effect.runPromise(provider.pending(PREVIEW_REPOSITORIES));
       const changed = await reader?.read();
       expect(new TextDecoder().decode(changed?.value)).toContain(
         '"revision":2'
@@ -203,14 +196,60 @@ describe("local preview provider", () => {
     });
   }, 30_000);
 
+  it("rejects stale compilation generations after a newer save", async () => {
+    await withProvider(async ({ provider, ready, token }) => {
+      const staleGeneration = await Effect.runPromise(
+        provider.pending(PREVIEW_REPOSITORIES)
+      );
+      const currentGeneration = await Effect.runPromise(
+        provider.pending(PREVIEW_REPOSITORIES)
+      );
+      const staleReady = await Effect.runPromise(
+        provider.ready({
+          generation: staleGeneration,
+          rendererManifestHash: RENDERER_MANIFEST.hash,
+          repositories: PREVIEW_REPOSITORIES,
+          results: ready.result.results,
+        })
+      );
+      const staleFailure = await Effect.runPromise(
+        provider.failed({
+          failure: {
+            code: "MaterialReadError",
+            message: "A stale compile failure.",
+          },
+          generation: staleGeneration,
+          repositories: PREVIEW_REPOSITORIES,
+        })
+      );
+      const currentReady = await Effect.runPromise(
+        provider.ready({
+          generation: currentGeneration,
+          rendererManifestHash: RENDERER_MANIFEST.hash,
+          repositories: PREVIEW_REPOSITORIES,
+          results: ready.result.results,
+        })
+      );
+
+      expect({ currentReady, staleFailure, staleReady }).toEqual({
+        currentReady: true,
+        staleFailure: false,
+        staleReady: false,
+      });
+      const manifest = await requestProvider(
+        provider,
+        token,
+        PREVIEW_MANIFEST_PATH
+      );
+      await expect(manifest.json()).resolves.toMatchObject({
+        revision: 4,
+        status: "ready",
+      });
+    });
+  }, 30_000);
+
   it("fails when the operating system cannot bind or prove loopback", async () => {
-    const repository = repositories.create();
-    const ready = await makePreviewReady(repository);
-    const input = {
-      document: ready.document,
-      repositories: PREVIEW_REPOSITORIES,
-      token: ready.credentials.token,
-    };
+    const input = await makeProviderInput();
     vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
       this: Server
     ) {
@@ -231,8 +270,7 @@ describe("local preview provider", () => {
   }, 30_000);
 
   it("closes an unfinished listener when provider acquisition is cancelled", async () => {
-    const repository = repositories.create();
-    const ready = await makePreviewReady(repository);
+    const input = await makeProviderInput();
     vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
       this: Server
     ) {
@@ -245,13 +283,10 @@ describe("local preview provider", () => {
       });
 
     const cancelled = await Effect.runPromise(
-      Effect.scoped(
-        openPreviewProvider({
-          document: ready.document,
-          repositories: PREVIEW_REPOSITORIES,
-          token: ready.credentials.token,
-        })
-      ).pipe(Effect.timeout("1 millis"), Effect.flip)
+      Effect.scoped(openPreviewProvider(input)).pipe(
+        Effect.timeout("1 millis"),
+        Effect.flip
+      )
     );
 
     expect(cancelled._tag).toBe("TimeoutException");

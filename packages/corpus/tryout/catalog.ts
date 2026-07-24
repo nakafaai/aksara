@@ -5,6 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/graph/identity";
 import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/spec";
 import { Effect, Schema } from "effect";
+import { validateTryoutRoutes } from "#corpus/tryout/route";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const TRYOUT_PATH = "try-out";
@@ -38,15 +39,11 @@ function publicPath(...segments: readonly string[]) {
   return segments.join("/");
 }
 /** Counts every question across one source-owned section list. */
-function questionCount(
-  sections: readonly { readonly questionCount: number }[]
-) {
+function questionCount(sections: readonly TryoutSectionSource[]) {
   return sections.reduce((total, section) => total + section.questionCount, 0);
 }
 /** Counts only sections that own a physical public route. */
-function visibleCount(
-  sections: readonly { readonly visibility: "internal-entry" | "visible" }[]
-) {
+function visibleCount(sections: readonly TryoutSectionSource[]) {
   return sections.filter(({ visibility }) => visibility === "visible").length;
 }
 /** Derives a signed graph identity from stable source keys, never route slugs. */
@@ -297,12 +294,11 @@ export const projectTryoutCatalog = Effect.fn(
       projectExam(source, locale)
     )
   );
-  return yield* Schema.decodeUnknown(Schema.Array(TryoutCatalogRowSchema))(
-    [...countries.flat(), ...exams.flat(2)],
-    {
-      onExcessProperty: "error",
-    }
-  ).pipe(
+  const rows = yield* Schema.decodeUnknown(
+    Schema.Array(TryoutCatalogRowSchema)
+  )([...countries.flat(), ...exams.flat(2)], {
+    onExcessProperty: "error",
+  }).pipe(
     Effect.mapError(
       (cause) =>
         new TryoutCatalogDecodeError({
@@ -310,4 +306,6 @@ export const projectTryoutCatalog = Effect.fn(
         })
     )
   );
+  yield* validateTryoutRoutes(rows);
+  return rows;
 });

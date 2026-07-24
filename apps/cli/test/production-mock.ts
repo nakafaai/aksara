@@ -118,7 +118,7 @@ export function rendererMock(calls: TargetCalls) {
 }
 
 /** Returns the isolated test checkout root while recording discovery. */
-export function repositoryMock(calls: TargetCalls) {
+export function checkoutMock(calls: TargetCalls) {
   return {
     findAksaraRoot: () => {
       calls.rootReads += 1;
@@ -178,11 +178,12 @@ export function snapshotMock(calls: TargetCalls) {
 /** Records construction of the exact Git publication source layer. */
 export function sourceMock(calls: TargetCalls) {
   return {
-    GitPublicationSourceLive: Layer.effectDiscard(
-      Effect.sync(() => {
-        calls.sourceLayers += 1;
-      })
-    ),
+    makeGitPublicationSourceLive: () =>
+      Layer.effectDiscard(
+        Effect.sync(() => {
+          calls.sourceLayers += 1;
+        })
+      ),
   };
 }
 

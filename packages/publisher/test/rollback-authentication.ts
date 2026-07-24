@@ -24,7 +24,6 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
@@ -33,6 +32,7 @@ import {
   type RollbackArtifactPolicy,
 } from "#publisher/rollback/records";
 import { materialGraph } from "#test/graph";
+import { testRendererDomains } from "#test/renderer";
 
 const rawMdx = "## Test protocol";
 const compiledCode = "return {};";
@@ -44,7 +44,7 @@ export const rollbackRendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "TestBase", version: 1 }],
       supportedComponents: [{ name: "TestBase", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "TestChemistry", version: 1 }],
       mathematics: [{ name: "TestMathematics", version: 1 }],
     }),

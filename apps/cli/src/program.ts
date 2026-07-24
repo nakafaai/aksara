@@ -1,30 +1,13 @@
 import { Effect } from "effect";
 import { runAbortCommand } from "#cli/abort";
 import { runAcceptCommand } from "#cli/accept";
-import { type PreviewArguments, parseCliArguments } from "#cli/args";
+import { parseCliArguments } from "#cli/args";
+import { runCheckCommand } from "#cli/check";
 import { runCleanupCommand } from "#cli/cleanup";
-import { readPreviewEnvironment } from "#cli/env";
-import { NakafaAppLive } from "#cli/nakafa";
+import { runPreviewCommand } from "#cli/preview";
 import { runProductionCommand } from "#cli/production";
 import { runRecoverCommand } from "#cli/recover";
-import { openLocalPreview } from "#cli/session";
 import { runStatusCommand } from "#cli/status";
-
-/** Opens the actual-app preview for one already decoded document request. */
-function runPreview(input: {
-  readonly cwd: string;
-  readonly preview: PreviewArguments;
-}) {
-  return Effect.gen(function* () {
-    const environment = yield* readPreviewEnvironment();
-    const session = yield* openLocalPreview({
-      cwd: input.cwd,
-      environment,
-      requestedDocument: input.preview.document,
-    });
-    return yield* session.run;
-  }).pipe(Effect.provide(NakafaAppLive), Effect.scoped);
-}
 
 /** Creates the single CLI boundary program for preview and production commands. */
 export function makeCliProgram(input: {
@@ -34,7 +17,10 @@ export function makeCliProgram(input: {
   return Effect.gen(function* () {
     const args = yield* parseCliArguments(input.args);
     if (args.command === "preview") {
-      return yield* runPreview({ cwd: input.cwd, preview: args });
+      return yield* runPreviewCommand({ cwd: input.cwd, preview: args });
+    }
+    if (args.command === "check") {
+      return yield* runCheckCommand(input.cwd);
     }
     if (args.command === "abort") {
       return yield* runAbortCommand(args);

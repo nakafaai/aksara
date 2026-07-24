@@ -16,16 +16,19 @@ const snapshotId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 /** Returns complete technical snapshot facts for contract tests. */
 function snapshotInput() {
   return {
+    curriculumRowCount: 390,
     format: PROGRAM_SNAPSHOT_FORMAT,
     locales: ["en", "id"],
-    rowCount: PROGRAM_ROW_COUNT,
+    programRowCount: PROGRAM_ROW_COUNT,
+    rowCount: 396,
     rowDigest: digest,
+    sitemapCount: 52,
     slugCount: PROGRAM_SLUG_COUNT,
   };
 }
 
 describe("program snapshot contract", () => {
-  it("accepts the complete six-row en/id snapshot", () => {
+  it("accepts complete program and curriculum evidence", () => {
     const input = Schema.decodeUnknownSync(ProgramSnapshotInputSchema)(
       snapshotInput()
     );
@@ -35,20 +38,30 @@ describe("program snapshot contract", () => {
     });
 
     expect(snapshot).toMatchObject({
+      curriculumRowCount: 390,
       locales: ["en", "id"],
-      rowCount: 6,
+      programRowCount: 6,
+      rowCount: 396,
+      sitemapCount: 52,
       slugCount: 12,
     });
   });
 
   it("rejects incomplete snapshot inputs and manifests", () => {
-    const inputResults = [{ rowCount: 5 }, { slugCount: 11 }].map((change) =>
+    const changes = [
+      { curriculumRowCount: 0 },
+      { programRowCount: 5 },
+      { rowCount: 395 },
+      { sitemapCount: 391 },
+      { slugCount: 11 },
+    ];
+    const inputResults = changes.map((change) =>
       Schema.decodeUnknownEither(ProgramSnapshotInputSchema)({
         ...snapshotInput(),
         ...change,
       })
     );
-    const manifestResults = [{ rowCount: 7 }, { slugCount: 13 }].map((change) =>
+    const manifestResults = changes.map((change) =>
       Schema.decodeUnknownEither(ProgramSnapshotSchema)({
         ...snapshotInput(),
         ...change,
@@ -59,7 +72,7 @@ describe("program snapshot contract", () => {
     for (const result of [...inputResults, ...manifestResults]) {
       expect(Either.isLeft(result)).toBe(true);
       expect(String(result)).toContain(
-        "Expected six program rows with complete en/id public slugs."
+        "Expected six program rows and a complete aggregate curriculum route set."
       );
     }
   });

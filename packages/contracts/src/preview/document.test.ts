@@ -2,6 +2,7 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   PreviewDocumentSchema,
+  previewDocumentRoute,
   QuestionAnswerPreviewDocumentSchema,
   QuestionPromptPreviewDocumentSchema,
 } from "#contracts/preview/document";
@@ -42,6 +43,34 @@ describe("preview document", () => {
       { delivery: "public", family: "material" },
       { delivery: "authenticated", family: "question" },
       { delivery: "entitled", family: "question" },
+    ]);
+  });
+
+  it("derives the actual article, material, and try-out routes", () => {
+    expect(
+      [
+        testArticleDocument,
+        testMaterialDocument,
+        testPromptDocument,
+        testAnswerDocument,
+      ].map(previewDocumentRoute)
+    ).toEqual([
+      {
+        locale: testArticleDocument.route.locale,
+        publicPath: testArticleDocument.route.publicPath,
+      },
+      {
+        locale: testMaterialDocument.route.locale,
+        publicPath: testMaterialDocument.route.publicPath,
+      },
+      {
+        locale: testPromptDocument.target.section.locale,
+        publicPath: testPromptDocument.target.section.publicPath,
+      },
+      {
+        locale: testAnswerDocument.target.section.locale,
+        publicPath: testAnswerDocument.target.section.publicPath,
+      },
     ]);
   });
 

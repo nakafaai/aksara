@@ -44,6 +44,7 @@ export const tkaTryoutSource = defineTryoutExamSource({
             order: 1,
             questionCount: 40,
             questionSourcePath: `question-bank/tryout/indonesia/tka/mathematics/set-${setNumber}`,
+            rendererDomain: "tka-math",
             routeSlugs: { en: "mathematics", id: "matematika" },
             timeLimitSeconds: 40 * TKA_SECONDS_PER_QUESTION,
             translations: {

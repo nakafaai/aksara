@@ -1,8 +1,6 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  canonicalizeRoutePage,
-  canonicalizeRouteRollbackRecord,
   MAX_ROUTE_PAGE_RECORDS,
   RoutePageRequestSchema,
   RoutePageSchema,
@@ -37,7 +35,7 @@ function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
 }
 
 describe("route rollback pages", () => {
-  it("accepts bounded requests and canonical pages", () => {
+  it("accepts bounded requests and coherent pages", () => {
     const request = {
       afterIndex: -1,
       limit: MAX_ROUTE_PAGE_RECORDS,
@@ -46,17 +44,16 @@ describe("route rollback pages", () => {
     };
     expect(accepts(RoutePageRequestSchema, request)).toBe(true);
 
-    const first = record(0);
-    const page = Schema.decodeUnknownSync(RoutePageSchema)({
-      done: true,
-      nextIndex: 1,
-      records: [first, record(1)],
-      rollbackOf: releaseId,
-      rollbackOfManifestHash: hash,
-      total: 2,
-    });
-    expect(JSON.parse(canonicalizeRouteRollbackRecord(first))).toEqual(first);
-    expect(JSON.parse(canonicalizeRoutePage(page))).toEqual(page);
+    expect(
+      accepts(RoutePageSchema, {
+        done: true,
+        nextIndex: 1,
+        records: [record(0), record(1)],
+        rollbackOf: releaseId,
+        rollbackOfManifestHash: hash,
+        total: 2,
+      })
+    ).toBe(true);
   });
 
   it("accepts only coherent empty and non-terminal pages", () => {

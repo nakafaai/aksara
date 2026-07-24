@@ -1,23 +1,17 @@
 import { Effect, Schema, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import {
-  digestProgramRows,
-  makeProgramSnapshotRow,
-} from "#contracts/program/row-hash";
+import { digestProgramRows } from "#contracts/program/row-digest";
 import {
   PROGRAM_SNAPSHOT_FORMAT,
   ProgramSnapshotSchema,
 } from "#contracts/program/snapshot";
 import { hashProgramSnapshot } from "#contracts/program/snapshot-hash";
-import {
-  LearningProgramKeySchema,
-  LearningProgramSchema,
-} from "#contracts/program/spec";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "#contracts/release/snapshot-data";
+import { makeTestProgramRecords } from "#contracts/test/program";
 import { makeQuranTestData } from "#contracts/test/quran";
 import {
   compareTryoutCatalog,
@@ -36,38 +30,6 @@ import {
 } from "#contracts/tryout/spec";
 
 const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-
-/** Builds one explicit test-only learning-program source row. */
-function program(index: number) {
-  return LearningProgramSchema.make({
-    defaultCoverageStatus: "planned",
-    displayOrder: index * 10,
-    iconKey: "school",
-    key: LearningProgramKeySchema.make(`test-program-${index}`),
-    kind: "school-curriculum",
-    navigation: { levels: ["stage", "subject"], model: "curriculum-tree" },
-    provider: { kind: "nakafa", name: "Nakafa test suite" },
-    sources: [
-      {
-        label: `Test-only source ${index}`,
-        retrievedAt: "2026-01-01",
-        type: "nakafa-editorial",
-        url: `https://example.test/program-${index}`,
-      },
-    ],
-    translations: {
-      en: {
-        publicSlug: `test-program-${index}`,
-        title: `Test Program ${index}`,
-      },
-      id: {
-        publicSlug: `program-uji-${index}`,
-        title: `Program Uji ${index}`,
-      },
-    },
-    version: { label: "Test-only version" },
-  });
-}
 
 /** Builds a test-owned graph identity for one try-out hierarchy row. */
 function tryoutGraph(locale: "en" | "id", kind: string) {
@@ -196,11 +158,10 @@ function tryoutPlacement(locale: "en" | "id") {
 export const makeSnapshotTestData = Effect.fn(
   "AksaraContracts.makeSnapshotTestData"
 )(function* () {
-  const programRecords = yield* Effect.forEach([1, 2, 3, 4, 5, 6], (index) =>
-    makeProgramSnapshotRow(program(index))
-  );
+  const { curriculumRecords, programRecords } = yield* makeTestProgramRecords();
+  const aggregateRecords = [...programRecords, ...curriculumRecords];
   const programSummary = yield* digestProgramRows(
-    Stream.fromIterable(programRecords)
+    Stream.fromIterable(aggregateRecords)
   );
   const programInput = {
     format: PROGRAM_SNAPSHOT_FORMAT,
@@ -242,7 +203,13 @@ export const makeSnapshotTestData = Effect.fn(
     { family: "tryout", manifest: tryoutManifest },
   ];
   const rows: readonly ContentSnapshotRow[] = [
-    ...programRecords.map((record) => ({ family: "program", record }) as const),
+    ...aggregateRecords.map(
+      (record) =>
+        ({
+          family: "program",
+          record,
+        }) as const
+    ),
     ...quran.records.map((record) => ({ family: "quran", record }) as const),
     ...catalogRecords.map(
       (record) => ({ family: "tryout", record, rowKind: "catalog" }) as const

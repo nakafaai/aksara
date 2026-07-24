@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   assertContractPackageMetadata,
   assertPortableDependencies,
+  createPublishedManifest,
   type PackageManifest,
   parseInstalledManifest,
   parsePackageManifest,
@@ -36,6 +37,53 @@ describe("manifest tooling", () => {
     expect(parseWorkspaceManifest('{"packageManager":"pnpm@11.15.1"}')).toEqual(
       { packageManager: "pnpm@11.15.1" }
     );
+  });
+
+  it("removes repository-only source conditions from published manifests", () => {
+    const published = JSON.parse(
+      createPublishedManifest(
+        JSON.stringify({
+          ...packageManifest,
+          exports: {
+            "./content": {
+              "aksara-source": "./src/content.ts",
+              import: "./dist/content.js",
+              types: "./dist/content.d.ts",
+            },
+          },
+          imports: {
+            "#contracts/*": {
+              "aksara-source": "./src/*.ts",
+              default: "./dist/*.js",
+              types: ["./src/*.ts", "./dist/*.d.ts"],
+            },
+            "#scripts/*": "./scripts/*.ts",
+          },
+          scripts: { prepack: "pnpm build" },
+        }),
+        "3.22.0"
+      )
+    );
+
+    expect(published).toMatchObject({
+      exports: {
+        "./content": {
+          import: "./dist/content.js",
+          types: "./dist/content.d.ts",
+        },
+      },
+      imports: {
+        "#contracts/*": {
+          default: "./dist/*.js",
+          types: "./dist/*.d.ts",
+        },
+      },
+      peerDependencies: { effect: "3.22.0" },
+    });
+    expect(published).not.toHaveProperty("devDependencies");
+    expect(published).not.toHaveProperty("scripts");
+    expect(JSON.stringify(published)).not.toContain("aksara-source");
+    expect(JSON.stringify(published)).not.toContain("./src/");
   });
 
   it("decodes absent optional dependency maps", () => {
@@ -128,6 +176,21 @@ describe("manifest tooling", () => {
         JSON.stringify({ ...packageManifest, repository: [] })
       )
     ).toThrow("Package repository must be an object");
+    expect(() => createPublishedManifest("[]", "3.22.0")).toThrow(
+      "The package manifest must be an object"
+    );
+    expect(() =>
+      createPublishedManifest(
+        JSON.stringify({ ...packageManifest, peerDependencies: [] }),
+        "3.22.0"
+      )
+    ).toThrow("peerDependencies must exist");
+    expect(() =>
+      createPublishedManifest(
+        JSON.stringify({ ...packageManifest, exports: { ".": "invalid" } }),
+        "3.22.0"
+      )
+    ).toThrow("Export . must be an object");
   });
 
   it("rejects malformed installed and workspace manifests", () => {

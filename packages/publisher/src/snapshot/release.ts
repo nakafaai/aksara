@@ -10,6 +10,10 @@ import {
   type ProgramSnapshotError,
   prepareProgramSnapshot,
 } from "@nakafa/aksara-corpus/program/snapshot";
+import {
+  type PreparedQuranSnapshot,
+  prepareQuranSnapshot,
+} from "@nakafa/aksara-corpus/quran/snapshot";
 import { Effect, type Scope, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import {
@@ -28,18 +32,26 @@ export interface ReleaseSnapshotInput<E, R> {
 
 /** Replayable changed snapshots selected by one global release. */
 export interface PreparedReleaseSnapshots {
-  /** Replays changed manifests in canonical program, then try-out order. */
+  /** Replays changed manifests in canonical program, Quran, try-out order. */
   readonly manifests: () => Stream.Stream<ContentSnapshotManifest>;
   /** Replays only rows owned by changed structured snapshots. */
   readonly rows: () => Stream.Stream<
     ContentSnapshotRow,
-    ProgramRowError | ReplaySpoolError
+    ProgramRowError | PreparedQuranRowError | ReplaySpoolError
   >;
 }
+
+type PrepareQuranSnapshotError = Effect.Effect.Error<
+  ReturnType<typeof prepareQuranSnapshot>
+>;
+type PreparedQuranRowError = Stream.Stream.Error<
+  ReturnType<PreparedQuranSnapshot["rows"]>
+>;
 
 /** Every expected failure before structured release sources are replayable. */
 export type PrepareReleaseSnapshotError<E> =
   | E
+  | PrepareQuranSnapshotError
   | PrepareTryoutSnapshotError<never>
   | ProgramSnapshotError;
 
@@ -54,7 +66,7 @@ function replacesActiveSnapshot(
   );
 }
 
-/** Prepares changed Program and Try-out snapshots; Quran remains inherited. */
+/** Prepares changed Program, Quran, and Try-out snapshots for one release. */
 export const prepareReleaseSnapshots: <E, R>(
   input: ReleaseSnapshotInput<E, R>
 ) => Effect.Effect<
@@ -64,8 +76,9 @@ export const prepareReleaseSnapshots: <E, R>(
 > = Effect.fn("AksaraPublisher.prepareReleaseSnapshots")(function* <E, R>(
   input: ReleaseSnapshotInput<E, R>
 ) {
-  const [program, tryout] = yield* Effect.all([
+  const [program, quran, tryout] = yield* Effect.all([
     prepareProgramSnapshot(),
+    prepareQuranSnapshot(),
     prepareTryoutSnapshot({
       checkoutRoot: input.checkoutRoot,
       questionHeads: input.questionHeads,
@@ -76,9 +89,17 @@ export const prepareReleaseSnapshots: <E, R>(
     family: "program",
     manifest: program.manifest,
   } satisfies ContentSnapshotManifest;
+  const quranManifest = {
+    family: "quran",
+    manifest: quran.manifest,
+  } satisfies ContentSnapshotManifest;
   const programChanged = replacesActiveSnapshot(
     input.previousSnapshots,
     programManifest
+  );
+  const quranChanged = replacesActiveSnapshot(
+    input.previousSnapshots,
+    quranManifest
   );
   const tryoutChanged = replacesActiveSnapshot(
     input.previousSnapshots,
@@ -88,6 +109,7 @@ export const prepareReleaseSnapshots: <E, R>(
   const manifests = () =>
     Stream.fromIterable([
       ...(programChanged ? [programManifest] : []),
+      ...(quranChanged ? [quranManifest] : []),
       ...(tryoutChanged ? [tryout.manifest] : []),
     ]);
   /** Replays rows only for replacement manifests owned by this release. */
@@ -102,8 +124,21 @@ export const prepareReleaseSnapshots: <E, R>(
             )
           )
       : Stream.empty;
+    const quranRows = quranChanged
+      ? quran
+          .rows()
+          .pipe(
+            Stream.map(
+              (record) =>
+                ({ family: "quran", record }) satisfies ContentSnapshotRow
+            )
+          )
+      : Stream.empty;
     const tryoutRows = tryoutChanged ? tryout.rows() : Stream.empty;
-    return programRows.pipe(Stream.concat(tryoutRows));
+    return programRows.pipe(
+      Stream.concat(quranRows),
+      Stream.concat(tryoutRows)
+    );
   };
   return { manifests, rows };
 });

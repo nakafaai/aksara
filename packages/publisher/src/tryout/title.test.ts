@@ -12,6 +12,7 @@ import { testFileLayer } from "#test/files";
 import {
   checkoutRoot,
   questionEntries,
+  questionSources,
   rendererManifest,
   sourceByPath,
 } from "#test/question";
@@ -38,6 +39,7 @@ const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 /** Collects exact title records through the real question inspection seam. */
 function collect(input: {
   readonly entries?: typeof questionEntries;
+  readonly sources?: typeof questionSources;
   readonly values?: readonly BoundTryoutPlacement[];
 }) {
   return Effect.runPromise(
@@ -46,6 +48,7 @@ function collect(input: {
       checkoutRoot,
       entries: input.entries ?? questionEntries,
       rendererManifest,
+      sources: input.sources ?? questionSources,
     }).pipe(
       Stream.runCollect,
       Effect.map((records) => [...records]),
@@ -58,6 +61,7 @@ function collect(input: {
 /** Returns one inspected title-binding failure without a FiberFailure wrapper. */
 function reject(input: {
   readonly entries?: typeof questionEntries;
+  readonly sources?: typeof questionSources;
   readonly values?: readonly BoundTryoutPlacement[];
 }) {
   return Effect.runPromise(
@@ -66,6 +70,7 @@ function reject(input: {
       checkoutRoot,
       entries: input.entries ?? questionEntries,
       rendererManifest,
+      sources: input.sources ?? questionSources,
     }).pipe(
       Stream.runDrain,
       Effect.flip,
@@ -120,14 +125,16 @@ describe("try-out title binding", () => {
     ).toBe(true);
   });
 
-  it("rejects a missing answer or question registry entry", async () => {
-    const [answer, question] = await Promise.all([
+  it("rejects a missing body entry or canonical choice source", async () => {
+    const [answer, question, choices] = await Promise.all([
       reject({ entries: entriesWithout("answer"), values: [binding] }),
       reject({ entries: entriesWithout("question"), values: [binding] }),
+      reject({ sources: [], values: [binding] }),
     ]);
 
     expect(answer).toMatchObject({ _tag: "TryoutTitleMissingError" });
     expect(question).toMatchObject({ _tag: "TryoutTitleMissingError" });
+    expect(choices).toMatchObject({ _tag: "TryoutTitleMissingError" });
   });
 
   it.each([

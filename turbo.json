@@ -22,6 +22,11 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "check": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "env": ["NAKAFA_APP_DIR"]
+    },
     "@nakafa/aksara-corpus#build": {
       "cache": false,
       "dependsOn": ["^build"],
@@ -57,7 +62,6 @@
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
     "dev": {
-      "dependsOn": ["build"],
       "cache": false,
       "env": ["NAKAFA_APP_DIR"],
       "persistent": true
@@ -102,7 +106,7 @@
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
     "typecheck": {
-      "dependsOn": ["//#typecheck:root", "^build"],
+      "dependsOn": ["//#typecheck:root"],
       "outputs": []
     },
     "test": {

@@ -4,39 +4,26 @@ import {
   headIdentity,
   routeIdentity,
 } from "@nakafa/aksara-contracts/content";
-import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { MaterialLessonRouteSchema } from "@nakafa/aksara-contracts/projection/material";
+import {
+  MaterialKeySchema,
+  MaterialLessonRouteSchema,
+} from "@nakafa/aksara-contracts/projection/material";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
-
+import { materialLessonPath } from "#corpus/material/route";
 import type { LessonMaterialSource } from "#corpus/material/schema";
-import {
-  LessonMaterialSourceSchema,
-  MaterialKeySchema,
-} from "#corpus/material/schema";
+import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 import { decodeMaterialSources } from "#corpus/material/source";
 
-const routeNamespaces = {
-  en: "subjects",
-  id: "materi",
-};
-
-const domainRouteSlugs = {
-  "ai-ds": { en: "ai-ds", id: "ai-ds" },
-  biology: { en: "biology", id: "biologi" },
-  chemistry: { en: "chemistry", id: "kimia" },
-  mathematics: { en: "mathematics", id: "matematika" },
-  physics: { en: "physics", id: "fisika" },
-};
-
 const MaterialEntrySchema = Schema.Struct({
-  delivery: ContentDeliveryClassSchema,
+  assetRoot: LessonMaterialSourceSchema.fields.assetRoot,
+  delivery: Schema.Literal("public"),
   rendererDomain: RendererDomainSchema,
   route: MaterialLessonRouteSchema,
   sourcePath: CorpusSourcePathSchema,
@@ -89,12 +76,7 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
       Effect.forEach(ContentLocaleSchema.literals, (locale) =>
         Effect.gen(function* () {
           const contentKey = `${source.assetRoot}/${section.slug}`;
-          const publicPath = [
-            routeNamespaces[locale],
-            domainRouteSlugs[source.domain][locale],
-            source.routeSlugs[locale],
-            section.routeSlugs[locale],
-          ].join("/");
+          const publicPath = materialLessonPath(source, section, locale);
           const graph = yield* makeLearningGraphIdentity({
             concept: ["material", "lesson", source.domain, source.slug],
             learningObject: [
@@ -108,6 +90,7 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
           });
 
           return {
+            assetRoot: source.assetRoot,
             delivery: "public",
             rendererDomain: source.domain,
             route: {

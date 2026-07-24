@@ -3,15 +3,13 @@ import { type BinaryLike, createHash } from "node:crypto";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
-import {
-  canonicalizeRendererManifestContract,
-  rendererDomains,
-} from "#contracts/renderer/contract";
+import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import {
   createRendererManifest,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest";
+import { testRendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -58,7 +56,7 @@ const BASE_AUTHORING = [
   { name: "BlockMath", version: 1 },
   { name: "InlineMath", version: 1 },
 ] as const;
-const DOMAINS = rendererDomains({
+const DOMAINS = testRendererDomains({
   chemistry: CHEMISTRY.authoringComponents,
   mathematics: MATHEMATICS.authoringComponents,
 });

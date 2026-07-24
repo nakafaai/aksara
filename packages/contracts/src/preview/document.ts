@@ -1,6 +1,8 @@
 import { Schema } from "effect";
 import { CorpusSourcePathSchema } from "#contracts/ids";
 import {
+  PreviewRouteSchema,
+  previewTryoutRoute,
   type TryoutPreviewTarget,
   TryoutPreviewTargetSchema,
 } from "#contracts/preview/target";
@@ -101,3 +103,15 @@ export const PreviewDocumentSchema = Schema.Union(
   QuestionAnswerPreviewDocumentSchema
 );
 export type PreviewDocument = typeof PreviewDocumentSchema.Type;
+
+/** Derives the one existing Nakafa route that renders a preview document. */
+export function previewDocumentRoute(document: PreviewDocument) {
+  if (document.family === "question") {
+    return previewTryoutRoute(document.target);
+  }
+
+  return PreviewRouteSchema.make({
+    locale: document.route.locale,
+    publicPath: document.route.publicPath,
+  });
+}

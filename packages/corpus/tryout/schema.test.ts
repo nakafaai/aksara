@@ -16,6 +16,7 @@ const section = {
   questionCount: 20,
   questionSourcePath:
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+  rendererDomain: "snbt-general",
   routeSlugs: { en: "general-reasoning", id: "penalaran-umum" },
   timeLimitSeconds: 1800,
   translations: {

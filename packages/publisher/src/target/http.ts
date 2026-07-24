@@ -35,7 +35,7 @@ import type {
   StageSnapshotBatchRequest,
   StageSnapshotRequest,
 } from "@nakafa/aksara-contracts/transport/snapshot";
-import { Effect, Layer, Schema } from "effect";
+import { Effect, Schema } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   type HttpPublicationTargetConfig,
@@ -239,10 +239,3 @@ export const makeHttpPublicationTarget = Effect.fn(
     },
   });
 });
-
-/** Provides the publication target while capturing its HTTP dependency. */
-export function httpPublicationTargetLayer(
-  config: HttpPublicationTargetConfig
-) {
-  return Layer.effect(PublicationTarget, makeHttpPublicationTarget(config));
-}

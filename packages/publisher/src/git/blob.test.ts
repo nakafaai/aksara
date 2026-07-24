@@ -1,18 +1,17 @@
-import type { Command } from "@effect/platform/Command";
-import {
-  CommandExecutor,
-  type CommandExecutor as CommandExecutorService,
-} from "@effect/platform/CommandExecutor";
-import { SystemError } from "@effect/platform/Error";
 import {
   CorpusSourcePathSchema,
   GitCommitShaSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
+import {
+  ExactProcess,
+  ExactProcessError,
+  type ExactProcessInput,
+} from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import { GitBlob, GitBlobLive } from "#publisher/git/blob";
-import { inspectTestCommand, makeTestExecutor } from "#test/command";
+import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 
 const TEST_COMMIT_SHA = GitCommitShaSchema.make("b".repeat(40));
 const TEST_SOURCE_PATH = CorpusSourcePathSchema.make(
@@ -21,46 +20,55 @@ const TEST_SOURCE_PATH = CorpusSourcePathSchema.make(
 const TEST_RAW_MDX = 'export const testProtocol = "byte-identical-✓";\r\n';
 const TEST_RAW_BYTES = new TextEncoder().encode(TEST_RAW_MDX);
 const TEST_REPOSITORY_ROOT = "/test-only/aksara";
-const TEST_COMMAND_ERROR = new SystemError({
-  description: "Test-only Git command failure.",
-  method: "spawn",
-  module: "Command",
-  reason: "Unknown",
-});
 
 interface TestGitOverrides {
   readonly blob?: string | Uint8Array;
+  readonly exitCode?: number;
+  readonly failure?: ExactProcessError;
   readonly revision?: string;
-  readonly root?: string;
   readonly size?: string;
+  readonly stderr?: string | Uint8Array;
+}
+
+/** Converts one test output value into exact process bytes. */
+function outputBytes(value: string | Uint8Array | undefined) {
+  if (typeof value === "string") {
+    return new TextEncoder().encode(value);
+  }
+  return value ?? new Uint8Array();
 }
 
 /** Responds to every exact-Git command with independently overridable data. */
-function makeGitExecutor(
+function makeGitProcess(
   overrides: TestGitOverrides,
-  commands?: Command[]
-): CommandExecutorService {
-  return makeTestExecutor((command) =>
-    Effect.sync(() => {
-      commands?.push(command);
-      const { args } = inspectTestCommand(command);
-      const [, operation, detail] = args;
-      if (operation === "rev-parse" && detail === "--show-toplevel") {
-        return { stdout: overrides.root ?? `${TEST_REPOSITORY_ROOT}\n` };
-      }
-      if (operation === "rev-parse") {
-        return { stdout: overrides.revision ?? `${TEST_COMMIT_SHA}\n` };
-      }
-      if (operation === "cat-file" && detail === "-s") {
-        return { stdout: overrides.size ?? `${TEST_RAW_BYTES.byteLength}\n` };
-      }
-      return { stdout: overrides.blob ?? TEST_RAW_BYTES };
-    })
-  );
+  commands?: ExactProcessInput[]
+) {
+  return ExactProcess.of({
+    /** Runs one deterministic exact-Git process response. */
+    run: (input) =>
+      Effect.gen(function* () {
+        commands?.push(input);
+        if (overrides.failure) {
+          return yield* overrides.failure;
+        }
+        const [, , , operation, detail] = input.args;
+        let stdout = overrides.blob ?? TEST_RAW_BYTES;
+        if (operation === "rev-parse") {
+          stdout = overrides.revision ?? `${TEST_COMMIT_SHA}\n`;
+        } else if (operation === "cat-file" && detail === "-s") {
+          stdout = overrides.size ?? `${TEST_RAW_BYTES.byteLength}\n`;
+        }
+        return {
+          exitCode: overrides.exitCode ?? 0,
+          stderr: outputBytes(overrides.stderr),
+          stdout: outputBytes(stdout),
+        };
+      }),
+  });
 }
 
-/** Reads the fixed branded test coordinate through one command executor. */
-function readTestBlob(executor: CommandExecutorService) {
+/** Reads the fixed branded test coordinate through one exact process service. */
+function readTestBlob(exactProcess: typeof ExactProcess.Service) {
   return GitBlob.pipe(
     Effect.flatMap((gitBlob) =>
       gitBlob.read({
@@ -68,68 +76,50 @@ function readTestBlob(executor: CommandExecutorService) {
         sourcePath: TEST_SOURCE_PATH,
       })
     ),
-    Effect.provide(GitBlobLive),
-    Effect.provideService(CommandExecutor, executor)
+    Effect.provide(makeGitBlobLive(TEST_REPOSITORY_ROOT)),
+    Effect.provideService(ExactProcess, exactProcess)
   );
 }
 
 describe("GitBlob", () => {
-  it("reads byte-identical content while disabling replacement refs", async () => {
-    const commands: Command[] = [];
-    const executor = makeGitExecutor({}, commands);
+  it("reads byte-identical content through explicit immutable Git coordinates", async () => {
+    const commands: ExactProcessInput[] = [];
 
-    await expect(Effect.runPromise(readTestBlob(executor))).resolves.toBe(
-      TEST_RAW_MDX
-    );
-    expect(commands.map(inspectTestCommand)).toEqual([
-      {
-        args: ["--no-replace-objects", "rev-parse", "--show-toplevel"],
-        command: "git",
-        cwd: null,
-        shell: false,
-      },
-      {
+    await expect(
+      Effect.runPromise(readTestBlob(makeGitProcess({}, commands)))
+    ).resolves.toBe(TEST_RAW_MDX);
+    expect(commands).toEqual([
+      makeExactGitInput({
         args: [
-          "--no-replace-objects",
           "rev-parse",
           "--verify",
           "--end-of-options",
           `${TEST_COMMIT_SHA}^{commit}`,
         ],
-        command: "git",
-        cwd: TEST_REPOSITORY_ROOT,
-        shell: false,
-      },
-      {
-        args: [
-          "--no-replace-objects",
-          "cat-file",
-          "-s",
-          `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}`,
-        ],
-        command: "git",
-        cwd: TEST_REPOSITORY_ROOT,
-        shell: false,
-      },
-      {
-        args: [
-          "--no-replace-objects",
-          "cat-file",
-          "blob",
-          `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}`,
-        ],
-        command: "git",
-        cwd: TEST_REPOSITORY_ROOT,
-        shell: false,
-      },
+        root: TEST_REPOSITORY_ROOT,
+        stderrLimit: 16 * 1024,
+        stdoutLimit: 4096,
+      }),
+      makeExactGitInput({
+        args: ["cat-file", "-s", `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}`],
+        root: TEST_REPOSITORY_ROOT,
+        stderrLimit: 16 * 1024,
+        stdoutLimit: 4096,
+      }),
+      makeExactGitInput({
+        args: ["cat-file", "blob", `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}`],
+        root: TEST_REPOSITORY_ROOT,
+        stderrLimit: 16 * 1024,
+        stdoutLimit: TEST_RAW_BYTES.byteLength,
+      }),
     ]);
   });
 
   it("rejects an oversized blob before starting a body read", async () => {
-    const commands: Command[] = [];
+    const commands: ExactProcessInput[] = [];
     const error = await Effect.runPromise(
       readTestBlob(
-        makeGitExecutor({ size: `${MAX_RAW_MDX_BYTES + 1}\n` }, commands)
+        makeGitProcess({ size: `${MAX_RAW_MDX_BYTES + 1}\n` }, commands)
       ).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
@@ -140,14 +130,14 @@ describe("GitBlob", () => {
       },
       operation: "size-blob",
     });
-    expect(commands).toHaveLength(3);
+    expect(commands).toHaveLength(2);
   });
 
   it("rejects invalid UTF-8 instead of inserting replacement text", async () => {
     const invalidUtf8 = Uint8Array.from([0xc3, 0x28]);
     const error = await Effect.runPromise(
       readTestBlob(
-        makeGitExecutor({
+        makeGitProcess({
           blob: invalidUtf8,
           size: `${invalidUtf8.byteLength}`,
         })
@@ -160,32 +150,26 @@ describe("GitBlob", () => {
     expect(error.message).toContain("valid UTF-8");
   });
 
-  it("maps command execution failures into the typed Git error", async () => {
+  it("maps exact process failures into the typed Git error", async () => {
+    const processError = new ExactProcessError({ reason: "spawn" });
     const error = await Effect.runPromise(
-      readTestBlob(
-        makeTestExecutor(() => Effect.fail(TEST_COMMAND_ERROR))
-      ).pipe(Effect.flip)
+      readTestBlob(makeGitProcess({ failure: processError })).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "GitBlobError",
-      cause: TEST_COMMAND_ERROR,
-      operation: "find-root",
+      cause: processError,
+      operation: "resolve-commit",
     });
   });
 
   it("rejects invalid Git metadata before reading a blob body", async () => {
-    const emptyRoot = await Effect.runPromise(
-      readTestBlob(makeGitExecutor({ root: " \n" })).pipe(Effect.flip)
-    );
-    expect(emptyRoot).toMatchObject({ operation: "find-root" });
-
     const invalidRevision = await Effect.runPromise(
-      readTestBlob(makeGitExecutor({ revision: "main\n" })).pipe(Effect.flip)
+      readTestBlob(makeGitProcess({ revision: "main\n" })).pipe(Effect.flip)
     );
     expect(invalidRevision).toMatchObject({ operation: "resolve-commit" });
 
     const peeledRevision = await Effect.runPromise(
-      readTestBlob(makeGitExecutor({ revision: `${"c".repeat(40)}\n` })).pipe(
+      readTestBlob(makeGitProcess({ revision: `${"c".repeat(40)}\n` })).pipe(
         Effect.flip
       )
     );
@@ -198,7 +182,7 @@ describe("GitBlob", () => {
     });
 
     const invalidSize = await Effect.runPromise(
-      readTestBlob(makeGitExecutor({ size: "not-a-byte-size" })).pipe(
+      readTestBlob(makeGitProcess({ size: "not-a-byte-size" })).pipe(
         Effect.flip
       )
     );
@@ -208,17 +192,17 @@ describe("GitBlob", () => {
   it("rejects body output that disagrees with its preflight size", async () => {
     const oversized = await Effect.runPromise(
       readTestBlob(
-        makeGitExecutor({ blob: Uint8Array.from([0x61, 0x62]), size: "1" })
+        makeGitProcess({ blob: Uint8Array.from([0x61, 0x62]), size: "1" })
       ).pipe(Effect.flip)
     );
     expect(oversized).toMatchObject({
-      cause: { actualBytes: 2, maxBytes: 1 },
+      cause: { actualBytes: 2, expectedBytes: 1 },
       operation: "read-blob",
     });
 
     const undersized = await Effect.runPromise(
       readTestBlob(
-        makeGitExecutor({ blob: Uint8Array.from([0x61]), size: "2" })
+        makeGitProcess({ blob: Uint8Array.from([0x61]), size: "2" })
       ).pipe(Effect.flip)
     );
     expect(undersized).toMatchObject({
@@ -227,34 +211,31 @@ describe("GitBlob", () => {
     });
   });
 
-  it("types a nonzero Git exit and bounds its diagnostic bytes", async () => {
+  it("types nonzero and non-UTF-8 Git diagnostics", async () => {
     const ordinaryError = await Effect.runPromise(
       readTestBlob(
-        makeTestExecutor(() =>
-          Effect.succeed({
-            exitCode: 128,
-            stderr: "Test-only Git fatal error.",
-            stdout: "",
-          })
-        )
+        makeGitProcess({
+          exitCode: 128,
+          stderr: "Test-only Git fatal error.",
+        })
       ).pipe(Effect.flip)
     );
     expect(ordinaryError).toMatchObject({
       cause: { exitCode: 128, stderr: "Test-only Git fatal error." },
-      operation: "find-root",
+      operation: "resolve-commit",
     });
 
-    const boundedError = await Effect.runPromise(
+    const invalidDiagnostic = await Effect.runPromise(
       readTestBlob(
-        makeTestExecutor(() =>
-          Effect.succeed({
-            exitCode: 128,
-            stderrChunks: [new Uint8Array(16 * 1024), Uint8Array.from([0x61])],
-            stdout: "",
-          })
-        )
+        makeGitProcess({
+          exitCode: 128,
+          stderr: Uint8Array.from([0xc3, 0x28]),
+        })
       ).pipe(Effect.flip)
     );
-    expect(boundedError).toMatchObject({ operation: "find-root" });
+    expect(invalidDiagnostic).toMatchObject({
+      operation: "resolve-commit",
+    });
+    expect(invalidDiagnostic.message).toContain("non-UTF-8");
   });
 });

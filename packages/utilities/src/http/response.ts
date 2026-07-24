@@ -1,5 +1,6 @@
 import type { HttpClientResponse } from "@effect/platform";
 import { Chunk, Effect, Schema, Stream } from "effect";
+import { joinBytes } from "#utilities/bytes/join";
 
 interface BodyState {
   readonly chunks: Chunk.Chunk<Uint8Array>;
@@ -44,17 +45,6 @@ function validLength(value: string | undefined, maximumBytes: number) {
   return Number.isSafeInteger(bytes) && bytes >= 0 && bytes <= maximumBytes;
 }
 
-/** Joins already-bounded response chunks without an intermediate string. */
-function joinChunks(body: BodyState) {
-  const bytes = new Uint8Array(body.size);
-  let offset = 0;
-  for (const chunk of body.chunks) {
-    bytes.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-  return bytes;
-}
-
 /** Reads strict UTF-8 response text without crossing the byte ceiling. */
 export const readText = Effect.fn("AksaraUtilities.readText")(
   (response: HttpClientResponse.HttpClientResponse, maximumBytes: number) => {
@@ -78,7 +68,7 @@ export const readText = Effect.fn("AksaraUtilities.readText")(
           size,
         });
       }),
-      Effect.map(joinChunks),
+      Effect.map((body) => joinBytes(body.chunks, body.size)),
       Effect.flatMap((bytes) =>
         Effect.try({
           catch: () => new BodyError({ reason: "encoding" }),

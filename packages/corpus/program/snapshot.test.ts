@@ -7,20 +7,25 @@ import {
 } from "#corpus/program/snapshot";
 
 describe("program snapshot preparation", () => {
-  it("prepares the exact six real rows with complete en/id slug evidence", async () => {
+  it("prepares exact programs and localized curriculum routes", async () => {
     const prepared = await Effect.runPromise(prepareProgramSnapshot());
     const rows = Chunk.toReadonlyArray(
       await Effect.runPromise(Stream.runCollect(prepared.rows()))
     );
 
     expect(prepared.manifest).toMatchObject({
-      format: "program-v1",
+      curriculumRowCount: 390,
+      format: "program-v2",
       locales: ["en", "id"],
-      rowCount: 6,
+      programRowCount: 6,
+      rowCount: 396,
+      sitemapCount: 52,
       slugCount: 12,
     });
+    const programRows = rows.filter((row) => row.kind === "program");
+    const curriculumRows = rows.filter((row) => row.kind === "curriculum");
     expect(
-      rows.map(({ row }) => ({
+      programRows.map(({ row }) => ({
         en: row.translations.en.publicSlug,
         id: row.translations.id.publicSlug,
         key: row.key,
@@ -45,6 +50,12 @@ describe("program snapshot preparation", () => {
       { en: "tka", id: "tka", key: "tka" },
       { en: "snbt", id: "snbt", key: "snbt" },
     ]);
+    expect(curriculumRows).toHaveLength(390);
+    expect(curriculumRows.at(0)?.row).toMatchObject({
+      locale: "en",
+      programKey: "cambridge-international",
+      publicPath: "curriculum/cambridge-international",
+    });
   });
 
   it("replays reproducible rows and rejects malformed source input", async () => {

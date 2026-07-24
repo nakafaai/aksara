@@ -1,14 +1,18 @@
+import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
+  QuestionBodyKindSchema,
   QuestionKeySchema,
   QuestionSetKeySchema,
 } from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
+import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 /** Repository-relative root containing every authored Nakafa question. */
-export const QUESTION_BANK_ROOT =
-  "packages/corpus/question-bank/tryout/indonesia";
+export const QUESTION_BANK_ROOT = CorpusSourcePathSchema.make(
+  "packages/corpus/question-bank/tryout/indonesia"
+);
 
 const CONTENT_ROOT = "question-bank/tryout/indonesia";
 const QUESTION_PATH_PATTERN =
@@ -21,6 +25,16 @@ const QuestionPathGroupsSchema = Schema.Struct({
   setNumber: Schema.String,
 });
 
+/** Exact direct files required in every authored question directory. */
+export const QUESTION_SOURCE_FILES = Object.freeze(
+  [
+    "choices.ts",
+    ...QuestionBodyKindSchema.literals.flatMap((bodyKind) =>
+      ContentLocaleSchema.literals.map((locale) => `${bodyKind}.${locale}.mdx`)
+    ),
+  ].sort()
+);
+
 /** Canonical logical identity derived from one physical question directory. */
 export const QuestionLocationSchema = Schema.Struct({
   questionKey: QuestionKeySchema,
@@ -29,6 +43,7 @@ export const QuestionLocationSchema = Schema.Struct({
   setKey: QuestionSetKeySchema,
   sourceRoot: CorpusSourcePathSchema,
 });
+export type QuestionLocation = typeof QuestionLocationSchema.Type;
 
 /** A physical question directory does not follow the canonical path grammar. */
 export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
@@ -42,28 +57,36 @@ export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
 /** Maps one validated exam and logical group onto its renderer contract. */
 const decodeRendererDomain = Effect.fn(
   "AksaraCorpus.decodeQuestionRendererDomain"
-)(function* (exam: string, group: string, sourcePath: string) {
-  if (exam === "tka" && group === "mathematics") {
-    return "tka-math";
+)(function* (
+  sources: readonly TryoutExamSource[],
+  exam: string,
+  group: string,
+  sourcePath: string
+) {
+  const groupRoot = `${CONTENT_ROOT}/${exam}/${group}/`;
+  const domains = new Set(
+    sources.flatMap((source) =>
+      source.tracks.flatMap((track) =>
+        track.sets.flatMap((set) =>
+          set.sections.flatMap((section) =>
+            section.questionSourcePath.startsWith(groupRoot)
+              ? [section.rendererDomain]
+              : []
+          )
+        )
+      )
+    )
+  );
+  const [rendererDomain] = domains;
+  if (domains.size !== 1 || rendererDomain === undefined) {
+    return yield* new QuestionPathError({ reason: "renderer", sourcePath });
   }
-  if (exam === "snbt" && group === "general-reasoning") {
-    return "snbt-general";
-  }
-  if (exam === "snbt" && group === "mathematical-reasoning") {
-    return "snbt-math";
-  }
-  if (exam === "snbt" && group === "quantitative-knowledge") {
-    return "snbt-quant";
-  }
-  if (exam === "snbt") {
-    return "snbt-plain";
-  }
-  return yield* new QuestionPathError({ reason: "renderer", sourcePath });
+  return rendererDomain;
 });
 
 /** Decodes one physical directory into its canonical logical identity. */
 export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
-  function* (physicalRoot: string) {
+  function* (sources: readonly TryoutExamSource[], physicalRoot: string) {
     const sourcePath = `${QUESTION_BANK_ROOT}/${physicalRoot}`;
     const match = QUESTION_PATH_PATTERN.exec(physicalRoot);
     const groups = yield* Schema.decodeUnknown(QuestionPathGroupsSchema)(
@@ -75,6 +98,7 @@ export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
       )
     );
     const rendererDomain = yield* decodeRendererDomain(
+      sources,
       groups.exam,
       groups.group,
       sourcePath
@@ -97,3 +121,39 @@ export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
     );
   }
 );
+
+/** Decodes one exact localized question or answer body source path. */
+export const decodeQuestionDocumentPath = Effect.fn(
+  "AksaraCorpus.decodeQuestionDocumentPath"
+)(function* (
+  sources: readonly TryoutExamSource[],
+  sourcePath: typeof CorpusSourcePathSchema.Type
+) {
+  const prefix = `${QUESTION_BANK_ROOT}/`;
+  const body = QuestionBodyKindSchema.literals
+    .flatMap((bodyKind) =>
+      ContentLocaleSchema.literals.map((locale) => ({
+        bodyKind,
+        locale,
+        suffix: `/${bodyKind}.${locale}.mdx`,
+      }))
+    )
+    .find(({ suffix }) => sourcePath.endsWith(suffix));
+  if (body === undefined || !sourcePath.startsWith(prefix)) {
+    return yield* new QuestionPathError({
+      reason: "grammar",
+      sourcePath,
+    });
+  }
+  const physicalRoot = sourcePath.slice(
+    prefix.length,
+    sourcePath.length - body.suffix.length
+  );
+  const location = yield* decodeQuestionPath(sources, physicalRoot);
+  return {
+    ...location,
+    bodyKind: body.bodyKind,
+    locale: body.locale,
+    sourcePath,
+  };
+});

@@ -29,7 +29,7 @@ vi.mock("node:crypto", async (importOriginal) => {
             return (data: BinaryLike) => {
               if (
                 failures.enabled &&
-                String(data).startsWith("nakafa.aksara.program-snapshot.v1\n")
+                String(data).startsWith("nakafa.aksara.program-snapshot.v2\n")
               ) {
                 throw new TypeError("injected program snapshot hash failure");
               }
@@ -46,10 +46,13 @@ vi.mock("node:crypto", async (importOriginal) => {
 });
 
 const input = ProgramSnapshotInputSchema.make({
+  curriculumRowCount: 390,
   format: PROGRAM_SNAPSHOT_FORMAT,
   locales: ["en", "id"],
-  rowCount: 6,
+  programRowCount: 6,
+  rowCount: 396,
   rowDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
+  sitemapCount: 52,
   slugCount: 12,
 });
 

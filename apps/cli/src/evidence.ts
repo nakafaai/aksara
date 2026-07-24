@@ -1,17 +1,11 @@
-import { make as makeCommand } from "@effect/platform/Command";
-import { CommandExecutor } from "@effect/platform/CommandExecutor";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { PreviewRepositorySchema } from "@nakafa/aksara-contracts/preview/spec";
-import { Effect, Schema, Stream } from "effect";
+import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import { Effect, Schema } from "effect";
 
 const MAXIMUM_GIT_OUTPUT_BYTES = 4 * 1024 * 1024;
-
-interface GitOutputState {
-  readonly chunks: readonly Uint8Array[];
-  readonly size: number;
-}
-
-const EMPTY_GIT_OUTPUT: GitOutputState = { chunks: [], size: 0 };
+const MAXIMUM_GIT_ERROR_BYTES = 16 * 1024;
 
 /** Git could not prove the exact revision or dirty state of one checkout. */
 export class PreviewEvidenceError extends Schema.TaggedError<PreviewEvidenceError>()(
@@ -34,92 +28,75 @@ export class ReleaseRevisionChangedError extends Schema.TaggedError<ReleaseRevis
   { actual: GitCommitShaSchema, expected: GitCommitShaSchema }
 ) {}
 
-/** Collects bounded command bytes before strict UTF-8 decoding. */
-const collectGitOutput = Effect.fn("AksaraCli.collectGitOutput")(
-  (stream: Stream.Stream<Uint8Array, unknown>) =>
-    Stream.runFoldEffect(stream, EMPTY_GIT_OUTPUT, (state, chunk) => {
-      const size = state.size + chunk.byteLength;
-      if (size > MAXIMUM_GIT_OUTPUT_BYTES) {
-        return Effect.fail(undefined);
-      }
-      return Effect.succeed({ chunks: [...state.chunks, chunk], size });
-    }).pipe(
-      Effect.flatMap(({ chunks, size }) =>
-        Effect.try({
-          catch: () => undefined,
-          try: () => {
-            const bytes = new Uint8Array(size);
-            let offset = 0;
-            for (const chunk of chunks) {
-              bytes.set(chunk, offset);
-              offset += chunk.byteLength;
-            }
-            return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
-          },
-        })
-      )
-    )
-);
+/** Fatally decodes bounded Git output without retaining process diagnostics. */
+function decodeGitOutput(bytes: Uint8Array, error: PreviewEvidenceError) {
+  return Effect.try({
+    catch: () => error,
+    try: () => new TextDecoder("utf-8", { fatal: true }).decode(bytes),
+  });
+}
 
-/** Runs one bounded Git evidence process and requires a zero exit code. */
-const readGit = Effect.fn("AksaraCli.readGitEvidence")(
-  (input: {
-    readonly repository: "aksara" | "nakafa";
-    readonly root: string;
-    readonly stage: "sha" | "status";
-  }) => {
-    const args =
-      input.stage === "sha"
-        ? ["-C", input.root, "rev-parse", "--verify", "HEAD"]
-        : [
-            "-C",
-            input.root,
-            "status",
-            "--porcelain=v1",
-            "--untracked-files=normal",
-          ];
-    const error = new PreviewEvidenceError({
-      repository: input.repository,
-      stage: input.stage,
-    });
-    return Effect.scoped(
-      CommandExecutor.pipe(
-        Effect.flatMap((executor) =>
-          executor.start(makeCommand("git", ...args))
-        ),
-        Effect.flatMap((process) =>
-          Effect.all([process.exitCode, collectGitOutput(process.stdout)], {
-            concurrency: 2,
-          })
-        ),
-        Effect.flatMap(([exitCode, output]) =>
-          exitCode === 0 ? Effect.succeed(output) : Effect.fail(undefined)
-        ),
-        Effect.mapError(() => error)
-      )
-    );
+/** Runs one exact Git evidence process and requires a zero exit code. */
+const readGit = Effect.fn("AksaraCli.readGitEvidence")(function* (input: {
+  readonly repository: "aksara" | "nakafa";
+  readonly root: string;
+  readonly stage: "sha" | "status";
+}) {
+  const exactProcess = yield* ExactProcess;
+  const args =
+    input.stage === "sha"
+      ? ["rev-parse", "--verify", "HEAD"]
+      : ["status", "--porcelain=v1", "--untracked-files=normal"];
+  const error = new PreviewEvidenceError({
+    repository: input.repository,
+    stage: input.stage,
+  });
+  const output = yield* exactProcess
+    .run(
+      makeExactGitInput({
+        args,
+        root: input.root,
+        stderrLimit: MAXIMUM_GIT_ERROR_BYTES,
+        stdoutLimit: MAXIMUM_GIT_OUTPUT_BYTES,
+      })
+    )
+    .pipe(Effect.mapError(() => error));
+  if (output.exitCode !== 0) {
+    return yield* error;
   }
-);
+  return yield* decodeGitOutput(output.stdout, error);
+});
+
+/** Decodes one full Git revision without accepting abbreviated output. */
+const decodeGitSha = Effect.fn("AksaraCli.decodeGitSha")(function* (
+  repository: "aksara" | "nakafa",
+  rawSha: string
+) {
+  return yield* Schema.decodeUnknown(GitCommitShaSchema)(rawSha.trim()).pipe(
+    Effect.mapError(
+      () => new PreviewEvidenceError({ repository, stage: "sha" })
+    )
+  );
+});
 
 /** Captures one full commit SHA and a non-destructive dirty-state signal. */
 export const readRepositoryEvidence = Effect.fn(
   "AksaraCli.readRepositoryEvidence"
 )(function* (repository: "aksara" | "nakafa", root: string) {
-  const [rawSha, status] = yield* Effect.all(
-    [
-      readGit({ repository, root, stage: "sha" }),
-      readGit({ repository, root, stage: "status" }),
-    ],
-    { concurrency: 2 }
+  const initialSha = yield* readGit({ repository, root, stage: "sha" }).pipe(
+    Effect.flatMap((rawSha) => decodeGitSha(repository, rawSha))
   );
-  const sha = yield* Schema.decodeUnknown(GitCommitShaSchema)(
-    rawSha.trim()
-  ).pipe(
-    Effect.mapError(
-      () => new PreviewEvidenceError({ repository, stage: "sha" })
-    )
+  const status = yield* readGit({ repository, root, stage: "status" });
+  const finalSha = yield* readGit({ repository, root, stage: "sha" }).pipe(
+    Effect.flatMap((rawSha) => decodeGitSha(repository, rawSha))
   );
-  return PreviewRepositorySchema.make({ dirty: status.length > 0, sha });
+  if (finalSha !== initialSha) {
+    return yield* new PreviewEvidenceError({ repository, stage: "sha" });
+  }
+  return PreviewRepositorySchema.make({
+    dirty: status.length > 0,
+    sha: finalSha,
+  });
 });
 
 /** Returns the exact clean Aksara revision accepted for release provenance. */

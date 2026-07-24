@@ -9,7 +9,6 @@ import type {
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -18,6 +17,7 @@ import { sourceByPath as articleSources, checkoutRoot } from "#test/article";
 import { testFileLayer } from "#test/files";
 import { sourceByPath as materialSources } from "#test/material";
 import { sourceByPath as questionSources } from "#test/question";
+import { testRendererDomains } from "#test/renderer";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 
@@ -67,7 +67,7 @@ const rendererManifest = await Effect.runPromise(
         { name: "InlineMath", version: 1 },
       ],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
       politics: [
@@ -165,6 +165,13 @@ beforeEach(() => {
 });
 
 describe("content catalog publication", () => {
+  it("compiles each authored body once before replaying all catalog views", async () => {
+    const publication = await collectCatalog({});
+
+    expect(compilerState.calls).toBe(publication.result.length);
+    expect(publication.result).toHaveLength(initialHeads.length);
+  });
+
   it("merges all three family streams in canonical order", () => {
     expect(initial.records).toHaveLength(22);
     expect(initial.routes).toHaveLength(22);

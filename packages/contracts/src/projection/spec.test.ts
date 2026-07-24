@@ -7,9 +7,6 @@ import {
   ContentProjectionSchema,
   canonicalizeContentProjection,
   familyForProjection,
-  isArticleProjection,
-  isMaterialProjection,
-  isQuestionProjection,
   projectionPublicPath,
   RoutedContentProjectionSchema,
 } from "#contracts/projection/spec";
@@ -85,7 +82,7 @@ describe("content projection", () => {
     ).toBe("Left");
   });
 
-  it("dispatches canonicalization and family narrowing exhaustively", () => {
+  it("dispatches canonicalization and family selection exhaustively", () => {
     expect(JSON.parse(canonicalizeContentProjection(article))).toEqual(article);
     expect(JSON.parse(canonicalizeContentProjection(material))).toEqual(
       material
@@ -93,14 +90,6 @@ describe("content projection", () => {
     expect(JSON.parse(canonicalizeContentProjection(question))).toEqual(
       question
     );
-    expect(isArticleProjection(article)).toBe(true);
-    expect(isArticleProjection(material)).toBe(false);
-    expect(isArticleProjection(question)).toBe(false);
-    expect(isMaterialProjection(material)).toBe(true);
-    expect(isMaterialProjection(article)).toBe(false);
-    expect(isMaterialProjection(question)).toBe(false);
-    expect(isQuestionProjection(question)).toBe(true);
-    expect(isQuestionProjection(article)).toBe(false);
     expect(familyForProjection(article)).toBe("article");
     expect(familyForProjection(material)).toBe("material");
     expect(familyForProjection(question)).toBe("question");

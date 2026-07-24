@@ -6,23 +6,25 @@
   "imports": {
     "#cli/main": "./main.ts",
     "#cli/*": {
+      "aksara-source": "./src/*.ts",
       "types": "./src/*.ts",
       "default": "./dist/*.js"
     },
     "#test/*": "./test/*.ts"
   },
   "scripts": {
-    "accept": "node main.ts accept",
-    "abort": "node main.ts abort",
+    "accept": "node --conditions=aksara-source main.ts accept",
+    "abort": "node --conditions=aksara-source main.ts abort",
     "clean": "git clean -xdf dist coverage",
     "prebuild": "git clean -xdf dist",
     "build": "tsc --project tsconfig.build.json",
-    "cleanup": "node main.ts cleanup",
-    "dev": "node main.ts",
-    "release": "node main.ts release",
-    "recover": "node main.ts recover",
-    "rollback": "node main.ts rollback",
-    "status": "node main.ts status",
+    "check": "node --conditions=aksara-source main.ts check",
+    "cleanup": "node --conditions=aksara-source main.ts cleanup",
+    "dev": "node --conditions=aksara-source main.ts",
+    "release": "node --conditions=aksara-source main.ts release",
+    "recover": "node --conditions=aksara-source main.ts recover",
+    "rollback": "node --conditions=aksara-source main.ts rollback",
+    "status": "node --conditions=aksara-source main.ts status",
     "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json"
   },

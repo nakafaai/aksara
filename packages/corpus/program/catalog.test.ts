@@ -1,10 +1,8 @@
-import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
   decodeProgramCatalog,
-  findProgram,
   ProgramCatalogError,
   ProgramIdentityError,
 } from "#corpus/program/catalog";
@@ -39,20 +37,6 @@ describe("learning program catalog", () => {
       10, 20, 30, 40, 50, 60,
     ]);
     expect(programs.every(({ sources: refs }) => refs.length > 0)).toBe(true);
-  });
-
-  it("resolves a reviewed program and returns null for an unknown valid key", async () => {
-    await expect(
-      Effect.runPromise(findProgram(LearningProgramKeySchema.make("snbt")))
-    ).resolves.toMatchObject({
-      kind: "admission-exam",
-      navigation: { model: "exam-domain-set" },
-    });
-    await expect(
-      Effect.runPromise(
-        findProgram(LearningProgramKeySchema.make("unknown-program"))
-      )
-    ).resolves.toBeNull();
   });
 
   it("maps invalid or excess source fields to a typed catalog error", async () => {

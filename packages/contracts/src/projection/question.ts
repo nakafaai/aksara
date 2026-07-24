@@ -93,7 +93,6 @@ export function makeQuestionBodyProjection(input: {
   const common = {
     bodyKind: input.bodyKind,
     contentKey: input.contentKey,
-    kind: "question-body" as const,
     locale: input.locale,
     metadata: input.metadata,
     peerContentKey: input.peerContentKey,
@@ -106,11 +105,13 @@ export function makeQuestionBodyProjection(input: {
       ...common,
       bodyKind: "question",
       choices: input.choices[input.locale],
+      kind: "question-body",
     } satisfies QuestionPromptProjection;
   }
   return {
     ...common,
     bodyKind: "answer",
+    kind: "question-body",
   } satisfies QuestionAnswerProjection;
 }
 

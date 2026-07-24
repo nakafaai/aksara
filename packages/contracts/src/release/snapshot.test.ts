@@ -8,7 +8,6 @@ import {
   ContentSnapshotStateSchema,
   canonicalizeContentSnapshotSet,
   EMPTY_SNAPSHOT_ROW_DIGEST,
-  emptyContentSnapshots,
   hasEmptySnapshotBases,
   hasGitSnapshotModes,
   hasRollbackSnapshotModes,
@@ -119,7 +118,7 @@ describe("content snapshot state", () => {
   });
 
   it("allows an initially absent inherited family and a first replacement", () => {
-    const empty = emptyContentSnapshots();
+    const empty = inheritContentSnapshots(null);
 
     expect(empty.program).toMatchObject({
       baseSnapshotId: null,
@@ -157,9 +156,9 @@ describe("content snapshot state", () => {
     expect(snapshotRowCount(snapshots)).toBe(2321);
     expect(canonicalizeContentSnapshotSet(snapshots)).toEqual(snapshots);
     expect(hasSameContentSnapshots(snapshots, snapshots)).toBe(true);
-    expect(hasSameContentSnapshots(snapshots, emptyContentSnapshots())).toBe(
-      false
-    );
+    expect(
+      hasSameContentSnapshots(snapshots, inheritContentSnapshots(null))
+    ).toBe(false);
   });
 
   it("inverts changed families and inherits unchanged families", () => {

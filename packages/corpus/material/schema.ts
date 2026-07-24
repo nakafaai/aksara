@@ -1,24 +1,14 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
+import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Schema } from "effect";
 
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
-import { MaterialDomainSchema } from "#corpus/material/domain";
 import { PublicRouteSlugMapSchema } from "#corpus/route/schema";
 
-const MATERIAL_KEY_PATTERN = /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/u;
 const MATERIAL_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const MATERIAL_ROUTE_PATTERN =
   /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/u;
-
-/** Stable lesson material key shared by curriculum references. */
-export const MaterialKeySchema = Schema.String.pipe(
-  Schema.pattern(MATERIAL_KEY_PATTERN, {
-    description: "Stable lowercase material key with dot or kebab separators.",
-    identifier: "MaterialKey",
-    message: () => "Invalid material key.",
-  })
-);
-export type MaterialKey = typeof MaterialKeySchema.Type;
 
 const MaterialSlugSchema = Schema.String.pipe(
   Schema.pattern(MATERIAL_SLUG_PATTERN, {
@@ -61,6 +51,7 @@ export const LessonMaterialSectionSchema = Schema.Struct({
   slug: MaterialSlugSchema,
   translations: LocaleTitleMapSchema,
 });
+export type LessonMaterialSection = typeof LessonMaterialSectionSchema.Type;
 
 /** Complete authoring contract for one imported lesson material. */
 export const LessonMaterialSourceSchema = Schema.Struct({

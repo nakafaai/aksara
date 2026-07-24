@@ -1,6 +1,6 @@
 import {
   type ContentSnapshotSet,
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   replaceContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import type {
@@ -10,6 +10,10 @@ import type {
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
 import { Effect, Stream } from "effect";
 
+const preparedProgramSnapshot = await Effect.runPromise(
+  prepareProgramSnapshot()
+);
+
 /** Replayable empty structured sources for body-only publisher fixtures. */
 export const emptySnapshotSources = {
   snapshotManifests: () => Stream.empty,
@@ -17,10 +21,10 @@ export const emptySnapshotSources = {
 } as const;
 
 /** Builds one replacement from the exact source-owned program catalog. */
-export async function makeProgramSnapshotFixture(
-  previous: ContentSnapshotSet = emptyContentSnapshots()
+export function makeProgramSnapshotFixture(
+  previous: ContentSnapshotSet = inheritContentSnapshots(null)
 ) {
-  const prepared = await Effect.runPromise(prepareProgramSnapshot());
+  const prepared = preparedProgramSnapshot;
   const snapshot: ContentSnapshotManifest = {
     family: "program",
     manifest: prepared.manifest,

@@ -82,7 +82,8 @@ pnpm verify:package
 - Keep TypeScript strict and Effect-native.
 - Use package aliases instead of relative TypeScript imports.
 - Keep file and folder names to at most two semantic words. Exact authored
-  lesson-folder slugs under `packages/corpus/material/lesson` are exempt.
+  directory slugs under `packages/corpus/material/lesson` and
+  `packages/corpus/question-bank/tryout` are exempt.
 - Keep handwritten TypeScript modules at or below 300 non-JSDoc lines.
 - Document stable callable declarations with useful JSDoc.
 - Maintain 100% per-file statement, branch, function, and line coverage for

@@ -1,7 +1,10 @@
 import {
   digestProgramRows,
-  makeProgramSnapshotRow,
   type ProgramDigestError,
+} from "@nakafa/aksara-contracts/program/row-digest";
+import {
+  makeCurriculumSnapshotRow,
+  makeProgramSnapshotRow,
   type ProgramHashError,
 } from "@nakafa/aksara-contracts/program/row-hash";
 import {
@@ -17,39 +20,64 @@ import {
 } from "@nakafa/aksara-contracts/program/snapshot-hash";
 import { Effect, Stream } from "effect";
 
-import {
-  decodeProgramCatalog,
-  type ProgramCatalogError,
-  type ProgramIdentityError,
-} from "#corpus/program/catalog";
+import { projectCurriculumRoutes } from "#corpus/curriculum/route";
+import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
+import { decodeMaterialSources } from "#corpus/material/source";
+import { decodeProgramCatalog } from "#corpus/program/catalog";
 
-/** Errors emitted while replaying source-decoded program records. */
+/** Resolves exact source catalogs before replaying aggregate program rows. */
+const prepareProgramSources = Effect.fn("AksaraCorpus.prepareProgramSources")(
+  function* (programInput?: unknown) {
+    const [curricula, materials, programs] = yield* Effect.all([
+      decodeCurriculumCatalog(),
+      decodeMaterialSources(),
+      decodeProgramCatalog(programInput),
+    ]);
+    const routes = yield* projectCurriculumRoutes({
+      curricula,
+      materials,
+      programs,
+    });
+    return { programs, routes };
+  }
+);
+
+/** Errors emitted while replaying source-decoded aggregate program records. */
 export type ProgramRowError =
-  | ProgramCatalogError
-  | ProgramHashError
-  | ProgramIdentityError;
+  | Effect.Effect.Error<ReturnType<typeof prepareProgramSources>>
+  | ProgramHashError;
 
-/** Failures emitted while deriving the program manifest and row stream. */
+/** Failures emitted while deriving the aggregate manifest and row stream. */
 export type ProgramSnapshotError =
   | ProgramDigestError
   | ProgramRowError
   | ProgramSnapshotHashError;
 
-/** Replayable program snapshot prepared from the exact reviewed catalog. */
+/** Replayable aggregate snapshot prepared from reviewed programs and curricula. */
 export interface PreparedProgramSnapshot {
   readonly manifest: ProgramSnapshot;
-  /** Replays all six content-addressed program rows in display order. */
+  /** Replays all catalog rows followed by canonical localized route rows. */
   readonly rows: () => Stream.Stream<ProgramSnapshotRow, ProgramRowError>;
 }
 
-/** Streams decoded program records without exposing mutable catalog storage. */
-export function streamProgramRows(input?: unknown) {
-  return Stream.fromIterableEffect(decodeProgramCatalog(input)).pipe(
-    Stream.mapEffect(makeProgramSnapshotRow)
+/** Streams catalog rows followed by canonical localized curriculum rows. */
+export function streamProgramRows(programInput?: unknown) {
+  return Stream.fromEffect(prepareProgramSources(programInput)).pipe(
+    Stream.flatMap(({ programs, routes }) =>
+      Stream.fromIterable(programs)
+        .pipe(Stream.mapEffect(makeProgramSnapshotRow))
+        .pipe(
+          Stream.concat(
+            Stream.fromIterable(routes).pipe(
+              Stream.mapEffect(makeCurriculumSnapshotRow)
+            )
+          )
+        )
+    )
   );
 }
 
-/** Prepares the complete program snapshot selected by a global release. */
+/** Prepares the complete aggregate program snapshot selected by a release. */
 export const prepareProgramSnapshot: (
   input?: unknown
 ) => Effect.Effect<PreparedProgramSnapshot, ProgramSnapshotError> = Effect.fn(

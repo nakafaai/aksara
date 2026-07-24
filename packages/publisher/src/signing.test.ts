@@ -25,12 +25,12 @@ import {
 import { digestItems } from "@nakafa/aksara-contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
-import { emptyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { testRendererDomains } from "#test/renderer";
 
 const cryptoFailure = vi.hoisted(() => ({ failNextSign: false }));
 
@@ -54,7 +54,7 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
@@ -119,7 +119,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"f".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"0".repeat(64)}`,
-  snapshots: emptyContentSnapshots(),
+  snapshots: inheritContentSnapshots(null),
   upsertCount: items.length,
 });
 

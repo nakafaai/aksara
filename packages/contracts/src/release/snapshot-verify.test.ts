@@ -2,8 +2,8 @@ import { Effect, Stream } from "effect";
 import { beforeAll, describe, expect, it } from "vitest";
 import {
   ContentSnapshotSetSchema,
-  emptyContentSnapshots,
   inheritContentSnapshot,
+  inheritContentSnapshots,
 } from "#contracts/release/snapshot";
 import type {
   ContentSnapshotManifest,
@@ -87,7 +87,7 @@ describe("structured snapshot verification", () => {
       })
     );
 
-    expect(result.stagedRows).toBe(1445);
+    expect(result.stagedRows).toBe(1835);
     expect(Object.values(result.snapshots).map(({ mode }) => mode)).toEqual([
       "replace",
       "replace",
@@ -182,7 +182,7 @@ describe("structured snapshot verification", () => {
       throw new Error("Expected the program test manifest.");
     }
     const previousSnapshots = ContentSnapshotSetSchema.make({
-      ...emptyContentSnapshots(),
+      ...inheritContentSnapshots(null),
       program: inheritContentSnapshot(program.manifest.snapshotId),
     });
     const error = await reject(
@@ -220,7 +220,7 @@ describe("structured snapshot verification", () => {
   });
 
   it("inherits all fixed families when a release stages no snapshots", async () => {
-    const previous = emptyContentSnapshots();
+    const previous = inheritContentSnapshots(null);
     const result = await Effect.runPromise(
       verify({
         manifests: [] satisfies readonly ContentSnapshotManifest[],

@@ -1,4 +1,5 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import {
   TryoutCountryCodeSchema,
   TryoutKeySchema,
@@ -40,6 +41,7 @@ const TryoutSectionSourceSchema = Schema.Struct({
   order: Schema.Int.pipe(Schema.positive()),
   questionCount: Schema.Int.pipe(Schema.positive()),
   questionSourcePath: TryoutSourcePathSchema,
+  rendererDomain: RendererDomainSchema,
   routeSlugs: PublicRouteSlugMapSchema,
   timeLimitSeconds: Schema.Int.pipe(Schema.positive()),
   translations: TryoutTranslationMapSchema,

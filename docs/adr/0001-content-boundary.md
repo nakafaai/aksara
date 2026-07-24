@@ -123,10 +123,11 @@ Every authored document must contain exactly one standalone
 and plain objects directly from MDX's ESTree, never by regex, evaluation, or
 module execution. Dynamic values, computed properties, spreads, mixed exports,
 and duplicate declarations fail with typed errors. The
-metadata declaration is removed before body compilation. Until authoritative
-family schemas migrate from Nakafa, the foundation validates only that static
-object boundary and does not duplicate or publish generic metadata. `rawMdx`
-and `sourceHash` remain covered by the artifact hash and signature.
+metadata declaration is removed before body compilation. Each real content
+family decodes that static object through its authoritative family schema and
+projects only its real domain fields; Aksara does not introduce one speculative
+universal metadata contract. `rawMdx` and `sourceHash` remain covered by the
+artifact hash and signature.
 
 Per-artifact `requiredComponents` is complete for capitalized custom component
 dependencies discovered through MDX's missing-reference AST. Intrinsic Markdown

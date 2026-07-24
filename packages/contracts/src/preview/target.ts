@@ -4,7 +4,6 @@ import { PublicPathSchema } from "#contracts/ids";
 import {
   type TryoutExam,
   TryoutExamSchema,
-  type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
   type TryoutSection,
   TryoutSectionSchema,
@@ -19,11 +18,19 @@ export const PreviewRouteSchema = Schema.Struct({
   locale: ContentLocaleSchema,
   publicPath: PublicPathSchema,
 });
-export type PreviewRoute = typeof PreviewRouteSchema.Type;
+
+/**
+ * Placement identity needed to select one preview body.
+ * Choices remain owned by the canonical question registry and projections.
+ */
+export const TryoutPreviewPlacementSchema = TryoutPlacementSourceSchema.pipe(
+  Schema.omit("choices")
+);
+type TryoutPreviewPlacement = typeof TryoutPreviewPlacementSchema.Type;
 
 interface TryoutPreviewTargetInput {
   readonly exam: TryoutExam;
-  readonly placement: TryoutPlacementSource;
+  readonly placement: TryoutPreviewPlacement;
   readonly section: TryoutSection;
   readonly set: TryoutSet;
   readonly track: TryoutTrack;
@@ -77,7 +84,7 @@ function hasCoherentTryoutPlacement(input: TryoutPreviewTargetInput) {
 /** Exact current try-out rows needed to preview one authored question body. */
 export const TryoutPreviewTargetSchema = Schema.Struct({
   exam: TryoutExamSchema,
-  placement: TryoutPlacementSourceSchema,
+  placement: TryoutPreviewPlacementSchema,
   section: TryoutSectionSchema,
   set: TryoutSetSchema,
   track: TryoutTrackSchema,

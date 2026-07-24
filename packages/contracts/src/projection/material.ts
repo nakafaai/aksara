@@ -20,7 +20,11 @@ const MaterialPublicPathSchema = PublicPathSchema.pipe(
 
 /** Stable reusable material identity preserved from Nakafa's source registry. */
 export const MaterialKeySchema = Schema.String.pipe(
-  Schema.pattern(MATERIAL_KEY_PATTERN),
+  Schema.pattern(MATERIAL_KEY_PATTERN, {
+    description: "Stable lesson key with domain and material segments.",
+    identifier: "MaterialKey",
+    message: () => "Invalid material key.",
+  }),
   Schema.brand("@NakafaAI/AksaraMaterialKey")
 );
 export type MaterialKey = typeof MaterialKeySchema.Type;

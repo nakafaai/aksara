@@ -7,17 +7,24 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot-data";
 import type {
+  TryoutCatalogCounts,
   TryoutCatalogRecord,
   TryoutPlacementSource,
 } from "@nakafa/aksara-contracts/tryout/spec";
+import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
+import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { prepareQuestionPublication } from "#publisher/question/publication";
 import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";
 import { testFileLayer } from "#test/files";
-import { checkoutRoot, rendererManifest, sourceByPath } from "#test/question";
-import { questionRendererManifest } from "#test/question-renderer";
-import { tryoutCatalog, tryoutHeads, tryoutPlacements } from "#test/tryout";
+import {
+  checkoutRoot,
+  publishedQuestionHeads,
+  questionEntries,
+  questionSources,
+  rendererManifest,
+  sourceByPath,
+} from "#test/question";
 
 interface TestProjection {
   readonly catalog: readonly TryoutCatalogRecord[];
@@ -25,24 +32,67 @@ interface TestProjection {
   readonly routeCount: number;
 }
 
-const projectionState = vi.hoisted(
-  (): { current: TestProjection | undefined } => ({ current: undefined })
-);
+interface TestContent {
+  readonly entries: readonly QuestionEntry[];
+  readonly projection: TestProjection;
+  readonly sources: readonly QuestionSource[];
+}
 
-vi.mock("@nakafa/aksara-corpus/tryout/projection", async () => {
+const contentState = vi.hoisted((): { current: TestContent | undefined } => ({
+  current: undefined,
+}));
+
+vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
   const { Effect: RuntimeEffect } = await import("effect");
   return {
-    loadTryoutProjection: () =>
-      projectionState.current === undefined
-        ? RuntimeEffect.dieMessage("Expected a configured test projection.")
-        : RuntimeEffect.succeed(projectionState.current),
+    loadTryoutContent: () =>
+      contentState.current === undefined
+        ? RuntimeEffect.dieMessage("Expected configured test content.")
+        : RuntimeEffect.succeed(contentState.current),
   };
 });
 
-const { loadTryoutProjection: loadRealTryoutProjection } =
-  await vi.importActual<
-    typeof import("@nakafa/aksara-corpus/tryout/projection")
-  >("@nakafa/aksara-corpus/tryout/projection");
+const { loadTryoutContent: loadRealTryoutContent } = await vi.importActual<
+  typeof import("@nakafa/aksara-corpus/tryout/content")
+>("@nakafa/aksara-corpus/tryout/content");
+const completeTryoutContent = await Effect.runPromise(
+  loadRealTryoutContent(checkoutRoot).pipe(Effect.provide(NodeContext.layer))
+);
+const tryoutHeads = await publishedQuestionHeads();
+const promptKeys = new Set(
+  questionEntries
+    .filter(({ bodyKind }) => bodyKind === "question")
+    .map(({ contentKey, locale }) => `${contentKey}\0${locale}`)
+);
+const tryoutPlacements = completeTryoutContent.projection.placements.filter(
+  ({ locale, questionContentKey }) =>
+    promptKeys.has(`${questionContentKey}\0${locale}`)
+);
+const tryoutCatalog = completeTryoutContent.projection.catalog.filter(
+  ({ row }) => row.kind === "country"
+);
+
+/** Counts exact hierarchy kinds from the configured snapshot fixture. */
+function countCatalogKinds(records: readonly TryoutCatalogRecord[]) {
+  const counts = {
+    country: 0,
+    exam: 0,
+    section: 0,
+    set: 0,
+    track: 0,
+  };
+  for (const { row } of records) {
+    counts[row.kind] += 1;
+  }
+  return counts satisfies TryoutCatalogCounts;
+}
+
+/** Counts public hierarchy routes represented by the configured fixture. */
+function countCatalogRoutes(records: readonly TryoutCatalogRecord[]) {
+  return records.filter(
+    ({ row }) => "publicPath" in row && row.publicPath !== undefined
+  ).length;
+}
 
 /** Runs preparation and replays its sealed rows twice inside one scope. */
 function prepare(inputHeads: readonly QuestionHead[] = tryoutHeads) {
@@ -71,44 +121,6 @@ function prepare(inputHeads: readonly QuestionHead[] = tryoutHeads) {
   );
 }
 
-/** Prepares the entire real try-out inventory without collecting its rows. */
-function prepareFull(inputHeads: readonly QuestionHead[]) {
-  return Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const prepared = yield* prepareTryoutSnapshot({
-          checkoutRoot,
-          questionHeads: () => Stream.fromIterable(inputHeads),
-          rendererManifest: questionRendererManifest,
-        });
-        const rowCount = yield* prepared
-          .rows()
-          .pipe(Stream.runFold(0, (count) => count + 1));
-        return { manifest: prepared.manifest, rowCount };
-      })
-    ).pipe(Effect.provide(NodeContext.layer))
-  );
-}
-
-/** Compiles every real question body into its authoritative desired head. */
-function compileFullHeads() {
-  return Effect.runPromise(
-    Effect.scoped(
-      Effect.gen(function* () {
-        const publication = yield* prepareQuestionPublication({
-          checkoutRoot,
-          published: Stream.empty,
-          rendererManifest: questionRendererManifest,
-        });
-        return yield* publication.result().pipe(
-          Stream.runCollect,
-          Effect.map((heads) => [...heads])
-        );
-      })
-    ).pipe(Effect.provide(NodeContext.layer))
-  );
-}
-
 /** Returns one typed preparation failure without a FiberFailure wrapper. */
 function reject(input: {
   /** Supplies a replayable desired-head source when testing source failures. */
@@ -132,10 +144,15 @@ function reject(input: {
 }
 
 beforeEach(() => {
-  projectionState.current = {
-    catalog: tryoutCatalog,
-    placements: tryoutPlacements,
-    routeCount: 2,
+  const routeCount = countCatalogRoutes(tryoutCatalog);
+  contentState.current = {
+    entries: questionEntries,
+    projection: {
+      catalog: tryoutCatalog,
+      placements: tryoutPlacements,
+      routeCount,
+    },
+    sources: questionSources,
   };
 });
 
@@ -159,10 +176,10 @@ describe("try-out snapshot preparation", () => {
 
     expect(prepared.second).toEqual(prepared.first);
     expect(prepared.manifest.manifest).toMatchObject({
-      counts: { country: 2, exam: 0, section: 0, set: 0, track: 0 },
+      counts: countCatalogKinds(tryoutCatalog),
       format: "tryout-v1",
-      placementCount: 2,
-      routeCount: 2,
+      placementCount: tryoutPlacements.length,
+      routeCount: countCatalogRoutes(tryoutCatalog),
     });
     expect(placements.map(({ record }) => record.row.title)).toEqual([
       "Problem 1",
@@ -183,22 +200,6 @@ describe("try-out snapshot preparation", () => {
       })
     ).toBe(true);
   });
-
-  it("binds the complete real try-out inventory", async () => {
-    const projection = await Effect.runPromise(
-      loadRealTryoutProjection(checkoutRoot).pipe(
-        Effect.provide(NodeContext.layer)
-      )
-    );
-    projectionState.current = projection;
-    const fullHeads = await compileFullHeads();
-    const prepared = await prepareFull(fullHeads);
-
-    expect(prepared.manifest.manifest.placementCount).toBe(840);
-    expect(prepared.rowCount).toBe(
-      projection.catalog.length + projection.placements.length
-    );
-  }, 120_000);
 
   it("preserves renderer and desired-head source failures", async () => {
     const rendererError = await reject({ renderer: {} });

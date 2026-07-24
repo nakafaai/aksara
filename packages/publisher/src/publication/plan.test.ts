@@ -8,7 +8,7 @@ import {
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
-import { emptyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Redacted, Stream } from "effect";
 import { describe, expect, it } from "vitest";
@@ -64,7 +64,7 @@ async function prepareDeletion<E>(snapshotSources: SnapshotSources<E>) {
       baseReleaseId,
       baseResultCount: base.count,
       baseResultDigest: base.digest,
-      previousSnapshots: emptyContentSnapshots(),
+      previousSnapshots: inheritContentSnapshots(null),
       records: () =>
         Stream.make({
           prior: { head, state: "material" as const },

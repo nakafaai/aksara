@@ -24,7 +24,7 @@ import {
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import {
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   invertContentSnapshots,
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot";
@@ -94,7 +94,7 @@ export function gitBundle(
       rollbackDigest: HASH,
       routeCount: 0,
       routeDigest: HASH,
-      snapshots: emptyContentSnapshots(),
+      snapshots: inheritContentSnapshots(null),
       upsertCount: 0,
     }),
     input.keyId
@@ -128,7 +128,7 @@ export function rollbackBundle(
       rollbackDigest: HASH,
       routeCount: 0,
       routeDigest: HASH,
-      snapshots: emptyContentSnapshots(),
+      snapshots: inheritContentSnapshots(null),
       upsertCount: 0,
     })
   );

@@ -7,12 +7,12 @@ import {
   type MaterialHead,
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { testFileLayer } from "#test/files";
 import { materialSlicePaths } from "#test/material-slice";
+import { testRendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
 export const [
@@ -45,7 +45,7 @@ export function materialManifest(input: {
           { name: "InlineMath", version: 1 },
         ],
       },
-      domains: rendererDomains({
+      domains: testRendererDomains({
         chemistry: [{ name: "AtomShellLab", version: input.chemistry }],
         mathematics: [{ name: "FunctionMachine", version: input.math }],
       }),

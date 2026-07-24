@@ -1,6 +1,10 @@
-import { Effect } from "effect";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
+import { FileSystem } from "@effect/platform";
+import { Effect, Fiber, Option, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
-import { makeMainProgram } from "#cli/main";
+import { cliNodeLayer, makeMainProgram } from "#cli/main";
 
 const runtime = vi.hoisted(() => ({ calls: 0 }));
 
@@ -30,5 +34,42 @@ describe("CLI main boundary", () => {
       _tag: "PreviewArgumentsError",
       reason: "missing",
     });
+  });
+
+  it("observes a real save through the production watcher backend", async () => {
+    const event = await Effect.runPromise(
+      Effect.scoped(
+        Effect.acquireRelease(
+          Effect.sync(() => mkdtempSync(resolve(tmpdir(), "aksara-watch-"))),
+          (directory) =>
+            Effect.sync(() =>
+              rmSync(directory, { force: true, recursive: true })
+            )
+        ).pipe(
+          Effect.flatMap((directory) =>
+            Effect.gen(function* () {
+              const fileSystem = yield* FileSystem.FileSystem;
+              const watcher = yield* fileSystem.watch(directory).pipe(
+                Stream.filter(({ path }) => path.endsWith("selected.mdx")),
+                Stream.runHead,
+                Effect.forkScoped
+              );
+              yield* Effect.sleep("100 millis");
+              yield* Effect.sync(() =>
+                writeFileSync(
+                  resolve(directory, "selected.mdx"),
+                  "# Real save\n"
+                )
+              );
+              return yield* Fiber.join(watcher).pipe(
+                Effect.timeout("5 seconds")
+              );
+            })
+          )
+        )
+      ).pipe(Effect.provide(cliNodeLayer))
+    );
+
+    expect(Option.isSome(event)).toBe(true);
   });
 });

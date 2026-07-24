@@ -1,3 +1,4 @@
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   type QuestionHead,
@@ -5,8 +6,12 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/registry";
-import { type Effect, Schema, type Stream } from "effect";
+import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
+import {
+  indexQuestionChoices,
+  type QuestionSource,
+} from "@nakafa/aksara-corpus/question-bank/source";
+import { Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
 import {
   PreparedContentTransitionSchema,
@@ -35,6 +40,12 @@ type PlanQuestionPublicationError =
 type PlanQuestionPublicationContext =
   | Effect.Effect.Context<ReturnType<typeof compileQuestionDocument>>
   | Effect.Effect.Context<ReturnType<typeof inspectQuestionDocument>>;
+
+/** A question body cannot join its canonical source-owned choices. */
+export class QuestionChoiceJoinError extends Schema.TaggedError<QuestionChoiceJoinError>()(
+  "QuestionChoiceJoinError",
+  { sourceRoot: CorpusSourcePathSchema }
+) {}
 
 /** Derives one complete question head from a newly compiled upsert. */
 function makeQuestionHead(record: PreparedContentUpsert): QuestionHead {
@@ -68,24 +79,55 @@ function absentQuestion(entry: QuestionEntry): RollbackSnapshotState {
   };
 }
 
+/** Joins one body entry with the choices owned by its physical source. */
+const inspectQuestionEntry = Effect.fn("AksaraPublisher.inspectQuestionEntry")(
+  function* (
+    checkoutRoot: string,
+    rendererManifest: RendererManifestEnvelope,
+    entry: QuestionEntry,
+    choicesByRoot: ReturnType<typeof indexQuestionChoices>
+  ) {
+    const choices = choicesByRoot.get(entry.sourceRoot);
+    if (choices === undefined) {
+      return yield* new QuestionChoiceJoinError({
+        sourceRoot: entry.sourceRoot,
+      });
+    }
+    return yield* inspectQuestionDocument(
+      checkoutRoot,
+      rendererManifest,
+      entry,
+      choices
+    );
+  }
+);
+
 /** Streams complete result heads and only question delta transitions. */
 export function planQuestionPublication<E, R>(input: {
   readonly checkoutRoot: string;
   readonly entries: readonly QuestionEntry[];
   readonly published: Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
+  readonly sources: readonly QuestionSource[];
 }): Stream.Stream<
   QuestionPublicationPlan,
-  E | PlanQuestionPublicationError,
+  E | PlanQuestionPublicationError | QuestionChoiceJoinError,
   R | PlanQuestionPublicationContext
 > {
+  const choicesByRoot = indexQuestionChoices(input.sources);
   return planFamilyPublication({
     adapter: {
       absent: absentQuestion,
       compile: compileQuestionDocument,
       head: makeQuestionHead,
       identity: (entry) => entry,
-      inspect: inspectQuestionDocument,
+      inspect: (checkoutRoot, rendererManifest, entry) =>
+        inspectQuestionEntry(
+          checkoutRoot,
+          rendererManifest,
+          entry,
+          choicesByRoot
+        ),
       prior: priorQuestion,
       publicPath: () => undefined,
     },

@@ -9,10 +9,9 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import {
-  emptyContentSnapshots,
   inheritContentSnapshot,
+  inheritContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
@@ -23,6 +22,7 @@ import {
   validateReleaseSnapshots,
   validateVerificationEvidence,
 } from "#publisher/release-validation";
+import { testRendererDomains } from "#test/renderer";
 
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   baseManifestHash: null,
@@ -44,7 +44,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"a".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"b".repeat(64)}`,
-  snapshots: emptyContentSnapshots(),
+  snapshots: inheritContentSnapshots(null),
   upsertCount: 0,
 });
 const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
@@ -119,7 +119,7 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),

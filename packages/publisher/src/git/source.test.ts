@@ -1,8 +1,3 @@
-import type { Command } from "@effect/platform/Command";
-import {
-  CommandExecutor,
-  type CommandExecutor as CommandExecutorService,
-} from "@effect/platform/CommandExecutor";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -12,14 +7,14 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-import { GitPublicationSourceLive } from "#publisher/git/source";
+import { makeGitPublicationSourceLive } from "#publisher/git/source";
 import {
   PublicationSource,
   type PublicationSourceError,
 } from "#publisher/publication/spec";
-import { inspectTestCommand, makeTestExecutor } from "#test/command";
 
 const TEST_AKSARA_SHA = GitCommitShaSchema.make("a".repeat(40));
 const TEST_RELEASE_ID = ReleaseIdSchema.make("test-git-publication-source");
@@ -63,7 +58,10 @@ const TEST_ITEMS = TEST_SOURCES.map((source, index) =>
 );
 
 /** Loads publication sources through the live exact-Git source layer. */
-function loadTestSources(executor: CommandExecutorService, items = TEST_ITEMS) {
+function loadTestSources(
+  exactProcess: typeof ExactProcess.Service,
+  items = TEST_ITEMS
+) {
   return PublicationSource.pipe(
     Effect.flatMap((publicationSource) =>
       publicationSource
@@ -76,43 +74,52 @@ function loadTestSources(executor: CommandExecutorService, items = TEST_ITEMS) {
           Effect.map((sources) => [...sources])
         )
     ),
-    Effect.provide(GitPublicationSourceLive),
-    Effect.provideService(CommandExecutor, executor)
+    Effect.provide(makeGitPublicationSourceLive(TEST_REPOSITORY_ROOT)),
+    Effect.provideService(ExactProcess, exactProcess)
   );
 }
 
-/** Responds to the three allowed Git command shapes for source-layer tests. */
-function gitResponder(command: Command) {
-  const { args } = inspectTestCommand(command);
-  const [replacePolicy, operation, detail, blob] = args;
-  if (replacePolicy !== "--no-replace-objects") {
-    return Effect.die("Test-only Git command allowed replacement refs.");
-  }
-  if (operation === "rev-parse" && detail === "--show-toplevel") {
-    return Effect.succeed({ stdout: `${TEST_REPOSITORY_ROOT}\n` });
-  }
-  if (operation === "rev-parse") {
-    return Effect.succeed({ stdout: `${TEST_AKSARA_SHA}\n` });
-  }
-  const source = TEST_SOURCES.find(
-    (candidate) => `${TEST_AKSARA_SHA}:${candidate.sourcePath}` === blob
-  );
-  if (!source) {
-    return Effect.die("Test-only unexpected Git blob request.");
-  }
-  if (detail === "-s") {
-    return Effect.succeed({
-      stdout: `${new TextEncoder().encode(source.rawMdx).byteLength}\n`,
-    });
-  }
-  return Effect.succeed({ stdout: source.rawMdx });
+/** Responds to the exact revision and blob command shapes used by the layer. */
+function gitResponder() {
+  return ExactProcess.of({
+    /** Returns one deterministic exact Git response for source tests. */
+    run: (input) =>
+      Effect.gen(function* () {
+        const [, , replacePolicy, operation, detail, blob] = input.args;
+        if (replacePolicy !== "--no-replace-objects") {
+          return yield* Effect.die(
+            "Test-only Git command allowed replacement refs."
+          );
+        }
+        if (operation === "rev-parse") {
+          return {
+            exitCode: 0,
+            stderr: new Uint8Array(),
+            stdout: new TextEncoder().encode(`${TEST_AKSARA_SHA}\n`),
+          };
+        }
+        const source = TEST_SOURCES.find(
+          (candidate) => `${TEST_AKSARA_SHA}:${candidate.sourcePath}` === blob
+        );
+        if (!source) {
+          return yield* Effect.die("Test-only unexpected Git blob request.");
+        }
+        const stdout =
+          detail === "-s"
+            ? `${new TextEncoder().encode(source.rawMdx).byteLength}\n`
+            : source.rawMdx;
+        return {
+          exitCode: 0,
+          stderr: new Uint8Array(),
+          stdout: new TextEncoder().encode(stdout),
+        };
+      }),
+  });
 }
 
 describe("GitPublicationSourceLive", () => {
   it("pairs ordered authenticated identities with their exact Git blobs", async () => {
-    const sources = await Effect.runPromise(
-      loadTestSources(makeTestExecutor(gitResponder))
-    );
+    const sources = await Effect.runPromise(loadTestSources(gitResponder()));
     expect(sources).toEqual(TEST_SOURCES);
   });
 
@@ -128,9 +135,7 @@ describe("GitPublicationSourceLive", () => {
       releaseId: TEST_RELEASE_ID,
     });
     const error = await Effect.runPromise(
-      loadTestSources(makeTestExecutor(gitResponder), [deleteItem]).pipe(
-        Effect.flip
-      )
+      loadTestSources(gitResponder(), [deleteItem]).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "PublicationSourceError",
@@ -140,17 +145,17 @@ describe("GitPublicationSourceLive", () => {
   });
 
   it("maps exact-Git failures to the publication source error contract", async () => {
-    let commandIndex = 0;
-    const executor = makeTestExecutor(() =>
-      Effect.sync(() => {
-        commandIndex += 1;
-        return {
-          stdout: commandIndex === 1 ? TEST_REPOSITORY_ROOT : "test-branch\n",
-        };
-      })
-    );
+    const exactProcess = ExactProcess.of({
+      /** Returns one invalid reviewed revision for source error mapping. */
+      run: () =>
+        Effect.succeed({
+          exitCode: 0,
+          stderr: new Uint8Array(),
+          stdout: new TextEncoder().encode("test-branch\n"),
+        }),
+    });
     const error: PublicationSourceError = await Effect.runPromise(
-      loadTestSources(executor, TEST_ITEMS.slice(0, 1)).pipe(Effect.flip)
+      loadTestSources(exactProcess, TEST_ITEMS.slice(0, 1)).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "PublicationSourceError",

@@ -1,9 +1,10 @@
-import { Effect } from "effect";
+import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
 import {
+  CurriculumSourceSchema,
   classNode,
   courseNode,
   defineCurriculum,
@@ -90,23 +91,21 @@ describe("curriculum schema", () => {
         ],
       }).pipe(Effect.flip)
     );
-    const emptyMaterial = await Effect.runPromise(
-      defineCurriculum({
-        programKey: "merdeka",
-        tree: [
-          materialNode({
-            key: "empty-material",
-            level: "lesson",
-            materialKeys: [],
-            order: 1,
-          }),
-        ],
-      }).pipe(Effect.flip)
-    );
+    const emptyMaterial = Schema.decodeUnknownEither(CurriculumSourceSchema)({
+      programKey: "merdeka",
+      tree: [
+        {
+          key: "empty-material",
+          level: "lesson",
+          materialKeys: [],
+          order: 1,
+        },
+      ],
+    });
 
     expect(invalidKey).toMatchObject({ _tag: "CurriculumDecodeError" });
     expect(String(invalidKey.cause)).toContain("Invalid curriculum node key.");
-    expect(emptyMaterial).toMatchObject({ _tag: "CurriculumDecodeError" });
+    expect(Either.isLeft(emptyMaterial)).toBe(true);
   });
 
   it("reports duplicate identities anywhere in a recursive tree", async () => {
@@ -154,7 +153,13 @@ describe("curriculum schema", () => {
 
   it("loads every authored curriculum registry module", async () => {
     const files = await Effect.runPromise(
-      importCorpusModules("curriculum/**/*.ts", ["curriculum/schema.ts"])
+      importCorpusModules("curriculum/**/*.ts", [
+        "curriculum/context.ts",
+        "curriculum/projection.ts",
+        "curriculum/route.ts",
+        "curriculum/schema.ts",
+        "curriculum/source.ts",
+      ])
     );
 
     expect(files).toHaveLength(20);

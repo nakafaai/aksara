@@ -103,7 +103,7 @@ describe("publication snapshots", () => {
 
     expect(gitSummary).toEqual({
       snapshots: snapshot.snapshots,
-      stagedRows: 6,
+      stagedRows: snapshot.snapshot.manifest.rowCount,
     });
     expect(rollbackSummary).toEqual({
       snapshots: rollback.manifest.snapshots,
@@ -145,7 +145,7 @@ describe("publication snapshots", () => {
       ) =>
         Effect.sync(() => {
           calls.push("batch");
-          stagedRows = batch.rows.length;
+          stagedRows += batch.rows.length;
         })
     );
     const target = makePublicationTarget({
@@ -155,7 +155,9 @@ describe("publication snapshots", () => {
 
     await Effect.runPromise(stagePublicationSnapshots(prepared, target));
 
-    expect(calls).toEqual(["manifest", "batch"]);
+    expect(calls[0]).toBe("manifest");
+    expect(calls.slice(1)).not.toHaveLength(0);
+    expect(calls.slice(1).every((call) => call === "batch")).toBe(true);
     expect(stageSnapshot).toHaveBeenCalledWith({
       releaseId: prepared.manifest.releaseId,
       snapshot: snapshot.snapshot,
@@ -171,6 +173,6 @@ describe("publication snapshots", () => {
         snapshotId: snapshot.snapshot.manifest.snapshotId,
       })
     );
-    expect(stagedRows).toBe(6);
+    expect(stagedRows).toBe(snapshot.snapshot.manifest.rowCount);
   });
 });

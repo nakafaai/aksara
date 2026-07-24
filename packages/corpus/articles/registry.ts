@@ -2,7 +2,6 @@ import {
   ContentLocaleSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
-import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
@@ -13,15 +12,16 @@ import {
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 
-import type { ArticleSource } from "#corpus/articles/schema";
+import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 
 const ArticleEntrySchema = Schema.Struct({
-  delivery: ContentDeliveryClassSchema,
+  delivery: Schema.Literal("public"),
   references: Schema.Array(ArticleReferenceSchema),
   rendererDomain: RendererDomainSchema,
   route: ArticleRouteSchema,
   sourcePath: CorpusSourcePathSchema,
+  sourceRoot: ArticleRootSchema,
 });
 export type ArticleEntry = typeof ArticleEntrySchema.Type;
 
@@ -63,6 +63,7 @@ const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
           publicPath: contentKey,
         },
         sourcePath: `packages/corpus/${source.sourceRoot}/${locale}.mdx`,
+        sourceRoot: source.sourceRoot,
       };
     })
   );

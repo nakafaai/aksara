@@ -1,11 +1,4 @@
-import { Buffer } from "node:buffer";
-import { timingSafeEqual } from "node:crypto";
-import {
-  createServer,
-  type IncomingMessage,
-  type Server,
-  type ServerResponse,
-} from "node:http";
+import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
 import {
   canonicalizeSignedContentArtifact,
@@ -17,84 +10,71 @@ import {
   LOCAL_PREVIEW_FORMAT,
   type LocalPreviewManifest,
   LocalPreviewManifestSchema,
-  PreviewEventSchema,
-  type PreviewRepository,
+  type PreviewArtifact,
 } from "@nakafa/aksara-contracts/preview/spec";
-import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
-import { Effect, Redacted, Schema } from "effect";
+import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import { Effect, HashMap, Redacted, Schema } from "effect";
 import { isAddressInfo } from "#cli/address";
-
-export const PREVIEW_MANIFEST_PATH = "/v1/manifest";
-export const PREVIEW_EVENTS_PATH = "/v1/events";
-const ARTIFACT_PREFIX = "/v1/artifacts/";
+import {
+  makePreviewHttp,
+  PREVIEW_EVENTS_PATH,
+  PREVIEW_MANIFEST_PATH,
+  type PreviewHttp,
+  type PreviewHttpState,
+  previewArtifactPath,
+} from "#cli/provider/http";
 
 /** Loopback provider startup or state encoding failed safely. */
 export class PreviewProviderError extends Schema.TaggedError<PreviewProviderError>()(
   "PreviewProviderError",
-  { stage: Schema.Literal("encode", "listen") }
+  { stage: Schema.Literal("coherence", "encode", "listen") }
 ) {}
 
-/** Sanitized failure shown instead of an older changed-route body. */
-export interface PreviewFailure {
-  readonly code: string;
-  readonly message: string;
+type PreviewRepositories = LocalPreviewManifest["repositories"];
+type PreviewFailure = Extract<
+  LocalPreviewManifest,
+  { readonly status: "failed" }
+>["failure"];
+
+/** One signed body and its matching renderer projection. */
+interface PreviewReadyResult {
+  readonly artifact: SignedContentArtifact;
+  readonly projection: ContentProjection;
 }
 
-/** Exact values served only after compilation and signing succeed together. */
+/** Ordered values exposed only after every required body succeeds together. */
 export interface PreviewReadyInput {
-  readonly artifact: SignedContentArtifact;
-  readonly projection: MaterialLessonProjection;
+  readonly generation: number;
   readonly rendererManifestHash: Sha256Hash;
+  readonly repositories: PreviewRepositories;
+  readonly results: readonly [PreviewReadyResult, ...PreviewReadyResult[]];
 }
 
 /** Scoped provider controls used by the authoring workflow. */
 export interface PreviewProvider {
   readonly eventsPath: typeof PREVIEW_EVENTS_PATH;
   /** Publishes a sanitized changed-route error without retaining an artifact. */
-  readonly failed: (
-    failure: PreviewFailure
-  ) => Effect.Effect<void, PreviewProviderError>;
+  readonly failed: (input: {
+    readonly failure: PreviewFailure;
+    readonly generation: number;
+    readonly repositories: PreviewRepositories;
+  }) => Effect.Effect<boolean, PreviewProviderError>;
   readonly manifestPath: typeof PREVIEW_MANIFEST_PATH;
   readonly origin: URL;
-  /** Clears the old artifact before a changed document starts compiling. */
-  readonly pending: () => Effect.Effect<void, PreviewProviderError>;
-  /** Atomically exposes one signed artifact and its matching route projection. */
+  /** Clears every old artifact before a changed document starts compiling. */
+  readonly pending: (
+    repositories: PreviewRepositories
+  ) => Effect.Effect<number, PreviewProviderError>;
+  /** Atomically exposes all ordered signed artifacts and their projections. */
   readonly ready: (
     input: PreviewReadyInput
-  ) => Effect.Effect<void, PreviewProviderError>;
+  ) => Effect.Effect<boolean, PreviewProviderError>;
 }
 
 interface PreviewProviderInput {
   readonly document: PreviewDocument;
-  readonly repositories: {
-    readonly aksara: PreviewRepository;
-    readonly nakafa: PreviewRepository;
-  };
+  readonly repositories: PreviewRepositories;
   readonly token: Redacted.Redacted<string>;
-}
-
-interface ProviderState {
-  readonly artifactJson?: string;
-  readonly artifactPath?: string;
-  readonly manifest: LocalPreviewManifest;
-  readonly manifestJson: string;
-}
-
-/** Writes one bounded JSON response with cache and sniffing disabled. */
-function writeJson(response: ServerResponse, status: number, body: string) {
-  response.writeHead(status, {
-    "cache-control": "no-store",
-    "content-type": "application/json; charset=utf-8",
-    "x-content-type-options": "nosniff",
-  });
-  response.end(body);
-}
-
-/** Compares one bearer header without data-dependent token comparison. */
-function hasValidToken(header: string | undefined, token: string) {
-  const expected = Buffer.from(`Bearer ${token}`, "utf8");
-  const actual = Buffer.from(header ?? "", "utf8");
-  return actual.length === expected.length && timingSafeEqual(actual, expected);
 }
 
 /** Encodes one exact manifest before it can become visible to HTTP callbacks. */
@@ -110,75 +90,6 @@ const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
       }))
     )
 );
-
-/** Returns the exact request path without normalizing traversal segments. */
-function requestPath(request: IncomingMessage) {
-  const url = String(request.url);
-  const queryIndex = url.indexOf("?");
-  return queryIndex === -1 ? url : url.slice(0, queryIndex);
-}
-
-/** Creates the authenticated request handler around mutable scoped state. */
-function makeRequestHandler(input: {
-  readonly clients: Set<ServerResponse>;
-  /** Returns the current atomically replaced provider state. */
-  readonly readState: () => ProviderState;
-  readonly token: string;
-}) {
-  return (request: IncomingMessage, response: ServerResponse) => {
-    if (!hasValidToken(request.headers.authorization, input.token)) {
-      writeJson(response, 401, '{"error":"unauthorized"}');
-      return;
-    }
-    if (request.method !== "GET") {
-      response.setHeader("allow", "GET");
-      writeJson(response, 405, '{"error":"method"}');
-      return;
-    }
-    const path = requestPath(request);
-    const state = input.readState();
-    if (path === PREVIEW_MANIFEST_PATH) {
-      writeJson(response, 200, state.manifestJson);
-      return;
-    }
-    if (path === PREVIEW_EVENTS_PATH) {
-      response.writeHead(200, {
-        "cache-control": "no-store",
-        connection: "keep-alive",
-        "content-type": "text/event-stream; charset=utf-8",
-      });
-      input.clients.add(response);
-      response.write(`event: update\ndata: ${eventJson(state.manifest)}\n\n`);
-      request.once("close", () => input.clients.delete(response));
-      return;
-    }
-    if (path === state.artifactPath && state.artifactJson) {
-      writeJson(response, 200, state.artifactJson);
-      return;
-    }
-    const status = path.startsWith(ARTIFACT_PREFIX) ? 409 : 404;
-    writeJson(response, status, `{"error":"${status}"}`);
-  };
-}
-
-/** Serializes one minimal event derived from already validated state. */
-function eventJson(manifest: LocalPreviewManifest) {
-  return JSON.stringify(
-    PreviewEventSchema.make({
-      format: LOCAL_PREVIEW_FORMAT,
-      revision: manifest.revision,
-      status: manifest.status,
-    })
-  );
-}
-
-/** Notifies every live client after the manifest and artifact change together. */
-function broadcast(clients: Set<ServerResponse>, state: ProviderState) {
-  const event = `event: update\ndata: ${eventJson(state.manifest)}\n\n`;
-  for (const client of clients) {
-    client.write(event);
-  }
-}
 
 /** Starts one HTTP server and proves it bound only to IPv4 loopback. */
 function listenLoopback(server: Server) {
@@ -207,14 +118,56 @@ function listenLoopback(server: Server) {
 }
 
 /** Closes event streams before stopping the scoped loopback server. */
-function closeServer(server: Server, clients: Set<ServerResponse>) {
+function closeServer(server: Server, http: PreviewHttp) {
   return Effect.async<void>((resume) => {
-    for (const client of clients) {
-      client.end();
-    }
-    clients.clear();
+    http.close();
     server.close(() => resume(Effect.void));
   });
+}
+
+/** Converts one ordered result into its content-addressed manifest entry. */
+function artifactReference(result: PreviewReadyResult): PreviewArtifact {
+  return {
+    artifactHash: result.artifact.artifactHash,
+    artifactPath: previewArtifactPath(result.artifact.artifactHash),
+    projection: result.projection,
+  };
+}
+
+/** Preserves the compiler's non-empty artifact order in the ready manifest. */
+function artifactReferences(
+  results: PreviewReadyInput["results"]
+): readonly [PreviewArtifact, ...PreviewArtifact[]] {
+  const [first, ...rest] = results;
+  return [artifactReference(first), ...rest.map(artifactReference)];
+}
+
+/** Converts one signed result into an immutable hash-keyed wire entry. */
+function artifactEntry(
+  result: PreviewReadyResult
+): readonly [Sha256Hash, string] {
+  return [
+    result.artifact.artifactHash,
+    canonicalizeSignedContentArtifact(result.artifact),
+  ];
+}
+
+/** Checks signed payload identity before its projection can become visible. */
+function hasCoherentReadyResult(
+  document: PreviewDocument,
+  result: PreviewReadyResult
+) {
+  const {
+    artifact: { payload },
+    projection,
+  } = result;
+  if (payload.contentKey !== projection.contentKey) {
+    return false;
+  }
+  if (payload.locale !== projection.locale) {
+    return false;
+  }
+  return payload.rendererDomain === document.rendererDomain;
 }
 
 /** Opens one bearer-protected provider whose artifact state fails closed. */
@@ -223,84 +176,102 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
     const base = {
       document: input.document,
       format: LOCAL_PREVIEW_FORMAT,
-      repositories: input.repositories,
-    } satisfies Pick<
-      LocalPreviewManifest,
-      "document" | "format" | "repositories"
-    >;
-    let state: ProviderState = yield* encodeManifest({
+    } satisfies Pick<LocalPreviewManifest, "document" | "format">;
+    const initial = yield* encodeManifest({
       ...base,
+      repositories: input.repositories,
       revision: 1,
       status: "pending",
     });
-    const clients = new Set<ServerResponse>();
+    let state: PreviewHttpState = {
+      ...initial,
+      artifacts: HashMap.empty(),
+    };
+    let generation = 0;
     const token = Redacted.value(input.token);
-    const server = createServer(
-      makeRequestHandler({
-        clients,
-        readState: () => state,
-        token,
-      })
-    );
+    const http = makePreviewHttp({ readState: () => state, token });
+    const server = createServer(http.handle);
     const address = yield* Effect.uninterruptibleMask((restore) =>
       restore(listenLoopback(server)).pipe(
-        Effect.tap(() =>
-          Effect.addFinalizer(() => closeServer(server, clients))
-        )
+        Effect.tap(() => Effect.addFinalizer(() => closeServer(server, http)))
       )
     );
     /** Replaces the complete served state before notifying connected clients. */
     const update = Effect.fn("AksaraCli.updatePreviewProvider")(
-      (next: LocalPreviewManifest, artifact?: SignedContentArtifact) =>
+      (
+        next: LocalPreviewManifest,
+        results: readonly PreviewReadyResult[] = []
+      ) =>
         encodeManifest(next).pipe(
           Effect.map((encoded) => {
-            state = artifact
-              ? {
-                  ...encoded,
-                  artifactJson: canonicalizeSignedContentArtifact(artifact),
-                  artifactPath: `${ARTIFACT_PREFIX}${encodeURIComponent(
-                    artifact.artifactHash
-                  )}`,
-                }
-              : encoded;
-            return broadcast(clients, state);
+            state = {
+              ...encoded,
+              artifacts: HashMap.fromIterable(results.map(artifactEntry)),
+            };
+            return http.publish(state);
           })
         )
     );
+    /** Commits one compile result only while it owns the latest generation. */
+    const commit = (
+      expectedGeneration: number,
+      next: LocalPreviewManifest,
+      results: readonly PreviewReadyResult[] = []
+    ) =>
+      Effect.suspend(() =>
+        expectedGeneration === generation
+          ? update(next, results).pipe(Effect.as(true))
+          : Effect.succeed(false)
+      );
     return {
       eventsPath: PREVIEW_EVENTS_PATH,
-      failed: (failure) =>
-        update({
+      failed: ({ failure, generation: expectedGeneration, repositories }) =>
+        commit(expectedGeneration, {
           ...base,
           failure,
+          repositories,
           revision: state.manifest.revision + 1,
           status: "failed",
         }),
       manifestPath: PREVIEW_MANIFEST_PATH,
       origin: new URL(`http://127.0.0.1:${address.port}`),
-      pending: () =>
-        update({
-          ...base,
-          revision: state.manifest.revision + 1,
-          status: "pending",
-        }),
-      ready: (ready) => {
-        const artifactPath = `${ARTIFACT_PREFIX}${encodeURIComponent(
-          ready.artifact.artifactHash
-        )}`;
-        return update(
-          {
+      pending: (repositories) =>
+        Effect.suspend(() => {
+          generation += 1;
+          return update({
             ...base,
-            artifactHash: ready.artifact.artifactHash,
-            artifactPath,
-            projection: ready.projection,
-            rendererManifestHash: ready.rendererManifestHash,
+            repositories,
             revision: state.manifest.revision + 1,
-            status: "ready",
-          },
-          ready.artifact
-        );
-      },
+            status: "pending",
+          }).pipe(Effect.as(generation));
+        }),
+      ready: (ready) =>
+        Effect.suspend(() => {
+          if (ready.generation !== generation) {
+            return Effect.succeed(false);
+          }
+          if (
+            !ready.results.every((result) =>
+              hasCoherentReadyResult(input.document, result)
+            )
+          ) {
+            return Effect.fail(
+              new PreviewProviderError({ stage: "coherence" })
+            );
+          }
+          return commit(
+            ready.generation,
+            {
+              ...base,
+              artifacts: artifactReferences(ready.results),
+              rendererManifestHash: ready.rendererManifestHash,
+              repositories: ready.repositories,
+              revision: state.manifest.revision + 1,
+              status: "ready",
+            },
+            ready.results
+          );
+        }),
     } satisfies PreviewProvider;
   }
 );

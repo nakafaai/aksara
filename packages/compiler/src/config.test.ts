@@ -1,11 +1,11 @@
 import { readFileSync } from "node:fs";
 import { findPackageJSON } from "node:module";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { createCompilerConfigHash } from "#compiler/config";
 import { EXECUTABLE_POLICY_REVISION } from "#compiler/policy";
+import { testRendererDomains } from "#compiler/test/renderer";
 
 /** Reads an installed package version for compiler-identity assertions. */
 function installedVersion(packageName: string) {
@@ -30,7 +30,7 @@ function manifestInput(inlineVersion: 1 | 2, expanded: boolean) {
           ]
         : [{ name: "InlineMath", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),

@@ -1,12 +1,16 @@
 import { resolve } from "node:path";
+import { Path } from "@effect/platform";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { Schema } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { planQuestionPublication } from "#publisher/question/plan";
+import { testFileLayer } from "#test/files";
 import {
   checkoutRoot,
   collectQuestionPublication,
   publishedQuestionHeads,
   questionEntries,
+  rendererManifest,
   sourceByPath,
 } from "#test/question";
 
@@ -143,5 +147,27 @@ describe("question plan", () => {
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
     expect(compilerState.calls).toBe(4);
+  });
+
+  it("fails when a body cannot join its canonical choice source", async () => {
+    const error = await Effect.runPromise(
+      planQuestionPublication({
+        checkoutRoot,
+        entries: [englishEntry],
+        published: Stream.empty,
+        rendererManifest,
+        sources: [],
+      }).pipe(
+        Stream.runDrain,
+        Effect.provide(testFileLayer(sourceByPath)),
+        Effect.provide(Path.layer),
+        Effect.flip
+      )
+    );
+
+    expect(error).toMatchObject({
+      _tag: "QuestionChoiceJoinError",
+      sourceRoot: englishEntry.sourceRoot,
+    });
   });
 });

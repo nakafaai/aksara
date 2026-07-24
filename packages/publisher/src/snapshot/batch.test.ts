@@ -36,6 +36,7 @@ function programRow(index: number, title = "Test Program"): ProgramRow {
   return {
     family: "program",
     record: Schema.decodeUnknownSync(ProgramSnapshotRowSchema)({
+      kind: "program",
       row: {
         defaultCoverageStatus: "planned",
         displayOrder: index + 1,

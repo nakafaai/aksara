@@ -78,16 +78,6 @@ export function contentSnapshotId(snapshot: ContentSnapshotManifest) {
   return snapshot.manifest.snapshotId;
 }
 
-/** Serializes one family manifest with stable envelope field order. */
-export function canonicalizeContentSnapshotManifest(
-  snapshot: ContentSnapshotManifest
-) {
-  return JSON.stringify({
-    family: snapshot.family,
-    manifest: snapshot.manifest,
-  });
-}
-
 /** Serializes one structured row with stable envelope field order. */
 export function canonicalizeContentSnapshotRow(row: ContentSnapshotRow) {
   if (row.family !== "tryout") {
