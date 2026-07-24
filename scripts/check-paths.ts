@@ -35,6 +35,12 @@ const EXTENSION_SUFFIXES = new Set([
 ]);
 const MATERIAL_LESSON_PREFIX = ["packages", "corpus", "material", "lesson"];
 const QUESTION_BANK_PREFIX = ["packages", "corpus", "question-bank", "tryout"];
+const TRYOUT_EXAMS = new Set(["snbt", "tka"]);
+const TRYOUT_GROUP_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+const TRYOUT_SET_PATTERN = /^set-[1-9]\d*$/u;
+const TRYOUT_QUESTION_PATTERN = /^question-[1-9]\d*$/u;
+const TRYOUT_SOURCE_PATTERN =
+  /^(?:choices\.ts|(?:answer|question)\.[a-z]{2}\.mdx)$/u;
 
 /** Returns the semantic words in one file or folder name. */
 function words(segment: string): string[] {
@@ -63,6 +69,38 @@ function hasPrefix(segments: readonly string[], prefix: readonly string[]) {
   );
 }
 
+/** Recognizes one complete canonical question-bank source file path. */
+function isQuestionSource(segments: readonly string[]) {
+  if (
+    !hasPrefix(segments, QUESTION_BANK_PREFIX) ||
+    segments.length !== QUESTION_BANK_PREFIX.length + 6
+  ) {
+    return false;
+  }
+
+  const [country, exam, group, set, question, source] = segments.slice(
+    QUESTION_BANK_PREFIX.length
+  );
+  if (
+    country !== "indonesia" ||
+    exam === undefined ||
+    !TRYOUT_EXAMS.has(exam) ||
+    group === undefined ||
+    !TRYOUT_GROUP_PATTERN.test(group)
+  ) {
+    return false;
+  }
+
+  return (
+    set !== undefined &&
+    TRYOUT_SET_PATTERN.test(set) &&
+    question !== undefined &&
+    TRYOUT_QUESTION_PATTERN.test(question) &&
+    source !== undefined &&
+    TRYOUT_SOURCE_PATTERN.test(source)
+  );
+}
+
 /** Allows only source-owned lesson and question-group folder identities. */
 function isEducationalFolder(segments: readonly string[], index: number) {
   if (
@@ -74,9 +112,7 @@ function isEducationalFolder(segments: readonly string[], index: number) {
   }
 
   return (
-    hasPrefix(segments, QUESTION_BANK_PREFIX) &&
-    index === QUESTION_BANK_PREFIX.length + 2 &&
-    index < segments.length - 1
+    index === QUESTION_BANK_PREFIX.length + 2 && isQuestionSource(segments)
   );
 }
 
