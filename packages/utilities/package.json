@@ -5,14 +5,36 @@
   "type": "module",
   "imports": {
     "#utilities/*": {
+      "aksara-source": "./src/*.ts",
       "types": "./src/*.ts",
       "default": "./dist/*.js"
     }
   },
   "exports": {
+    "./git/exact": {
+      "aksara-source": "./src/git/exact.ts",
+      "types": "./dist/git/exact.d.ts",
+      "import": "./dist/git/exact.js"
+    },
     "./http/response": {
+      "aksara-source": "./src/http/response.ts",
       "types": "./dist/http/response.d.ts",
       "import": "./dist/http/response.js"
+    },
+    "./process/exact": {
+      "aksara-source": "./src/process/exact.ts",
+      "types": "./dist/process/exact.d.ts",
+      "import": "./dist/process/exact.js"
+    },
+    "./process/group": {
+      "aksara-source": "./src/process/group.ts",
+      "types": "./dist/process/group.d.ts",
+      "import": "./dist/process/group.js"
+    },
+    "./typescript/syntax": {
+      "aksara-source": "./src/typescript/syntax.ts",
+      "types": "./dist/typescript/syntax.d.ts",
+      "import": "./dist/typescript/syntax.js"
     }
   },
   "scripts": {
@@ -24,7 +46,9 @@
   },
   "dependencies": {
     "@effect/platform": "catalog:",
-    "effect": "catalog:"
+    "@effect/platform-node": "catalog:",
+    "effect": "catalog:",
+    "typescript": "catalog:"
   },
   "devDependencies": {
     "@nakafa/typescript-config": "workspace:*",

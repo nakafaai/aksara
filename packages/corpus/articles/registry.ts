@@ -2,33 +2,47 @@ import {
   ContentLocaleSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
-import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
+  ArticleCategorySchema,
   ArticleReferenceSchema,
   ArticleRouteSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
-import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
+import {
+  type RendererDomain,
+  RendererDomainSchema,
+} from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 
-import type { ArticleSource } from "#corpus/articles/schema";
+import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 
 const ArticleEntrySchema = Schema.Struct({
-  delivery: ContentDeliveryClassSchema,
+  delivery: Schema.Literal("public"),
   references: Schema.Array(ArticleReferenceSchema),
   rendererDomain: RendererDomainSchema,
   route: ArticleRouteSchema,
   sourcePath: CorpusSourcePathSchema,
+  sourceRoot: ArticleRootSchema,
 });
 export type ArticleEntry = typeof ArticleEntrySchema.Type;
 
-/** A decoded article catalog repeats one canonical category slug. */
+/** A decoded article catalog repeats one category-local article slug. */
 export class ArticleSlugError extends Schema.TaggedError<ArticleSlugError>()(
   "ArticleSlugError",
   { slug: ArticleSlugSchema }
+) {}
+
+/** One article category maps to conflicting deployed renderer domains. */
+export class ArticleRendererError extends Schema.TaggedError<ArticleRendererError>()(
+  "ArticleRendererError",
+  {
+    actual: RendererDomainSchema,
+    category: ArticleCategorySchema,
+    expected: RendererDomainSchema,
+  }
 ) {}
 
 /** A projected article registry failed strict entry decoding. */
@@ -53,7 +67,7 @@ const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
       return {
         delivery: "public",
         references: source.references,
-        rendererDomain: "politics",
+        rendererDomain: source.rendererDomain,
         route: {
           articleSlug: source.slug,
           category: source.category,
@@ -63,17 +77,32 @@ const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
           publicPath: contentKey,
         },
         sourcePath: `packages/corpus/${source.sourceRoot}/${locale}.mdx`,
+        sourceRoot: source.sourceRoot,
       };
     })
   );
 });
 
-/** Rejects repeated canonical slugs and physical roots before expansion. */
+/** Rejects category-local slug duplicates and renderer contradictions. */
 const validateSources = Effect.fn("AksaraCorpus.validateArticleSources")(
   function* (sources: readonly ArticleSource[]) {
+    const rendererByCategory = new Map<string, RendererDomain>();
     const slugs = new Set<string>();
 
     for (const source of sources) {
+      const rendererDomain = rendererByCategory.get(source.category);
+      if (
+        rendererDomain !== undefined &&
+        rendererDomain !== source.rendererDomain
+      ) {
+        return yield* new ArticleRendererError({
+          actual: source.rendererDomain,
+          category: source.category,
+          expected: rendererDomain,
+        });
+      }
+      rendererByCategory.set(source.category, source.rendererDomain);
+
       const slug = `${source.category}\0${source.slug}`;
       if (slugs.has(slug)) {
         return yield* new ArticleSlugError({ slug: source.slug });

@@ -3,8 +3,6 @@ import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
-  PROGRAM_ROW_COUNT,
-  PROGRAM_SLUG_COUNT,
   PROGRAM_SNAPSHOT_FORMAT,
   ProgramSnapshotInputSchema,
   ProgramSnapshotSchema,
@@ -16,16 +14,19 @@ const snapshotId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 /** Returns complete technical snapshot facts for contract tests. */
 function snapshotInput() {
   return {
+    curriculumRowCount: 5,
     format: PROGRAM_SNAPSHOT_FORMAT,
     locales: ["en", "id"],
-    rowCount: PROGRAM_ROW_COUNT,
+    programRowCount: 3,
+    rowCount: 8,
     rowDigest: digest,
-    slugCount: PROGRAM_SLUG_COUNT,
+    sitemapCount: 4,
+    slugCount: 6,
   };
 }
 
 describe("program snapshot contract", () => {
-  it("accepts the complete six-row en/id snapshot", () => {
+  it("accepts source-derived program and curriculum evidence", () => {
     const input = Schema.decodeUnknownSync(ProgramSnapshotInputSchema)(
       snapshotInput()
     );
@@ -35,20 +36,29 @@ describe("program snapshot contract", () => {
     });
 
     expect(snapshot).toMatchObject({
+      curriculumRowCount: 5,
       locales: ["en", "id"],
-      rowCount: 6,
-      slugCount: 12,
+      programRowCount: 3,
+      rowCount: 8,
+      sitemapCount: 4,
+      slugCount: 6,
     });
   });
 
-  it("rejects incomplete snapshot inputs and manifests", () => {
-    const inputResults = [{ rowCount: 5 }, { slugCount: 11 }].map((change) =>
+  it("rejects internally inconsistent snapshot inputs and manifests", () => {
+    const changes = [
+      { programRowCount: 0 },
+      { rowCount: 7 },
+      { sitemapCount: 6 },
+      { slugCount: 5 },
+    ];
+    const inputResults = changes.map((change) =>
       Schema.decodeUnknownEither(ProgramSnapshotInputSchema)({
         ...snapshotInput(),
         ...change,
       })
     );
-    const manifestResults = [{ rowCount: 7 }, { slugCount: 13 }].map((change) =>
+    const manifestResults = changes.map((change) =>
       Schema.decodeUnknownEither(ProgramSnapshotSchema)({
         ...snapshotInput(),
         ...change,
@@ -59,7 +69,7 @@ describe("program snapshot contract", () => {
     for (const result of [...inputResults, ...manifestResults]) {
       expect(Either.isLeft(result)).toBe(true);
       expect(String(result)).toContain(
-        "Expected six program rows with complete en/id public slugs."
+        "Expected self-consistent program and curriculum snapshot counts."
       );
     }
   });

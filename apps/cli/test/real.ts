@@ -9,10 +9,12 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
+import { NodeContext } from "@effect/platform-node";
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { Effect } from "effect";
+import { selectPreviewDocument } from "#cli/repository";
 
 export const REPOSITORY_ROOT = resolve(import.meta.dirname, "..", "..", "..");
 export const MATERIAL_ENTRIES = await Effect.runPromise(
@@ -30,10 +32,28 @@ if (!englishEntry) {
   );
 }
 export const ENGLISH_ENTRY = englishEntry;
+const indonesianEntry = MATERIAL_ENTRIES.find(
+  ({ route }) =>
+    route.contentKey === functionContentKey && route.locale === "id"
+);
+if (!indonesianEntry) {
+  throw new Error(
+    "The real Indonesian material registry row is required by tests."
+  );
+}
 export const REAL_SOURCE = readFileSync(
   resolve(REPOSITORY_ROOT, ENGLISH_ENTRY.sourcePath),
   "utf8"
 );
+const selectedDocument = await Effect.runPromise(
+  selectPreviewDocument(REPOSITORY_ROOT, ENGLISH_ENTRY.sourcePath).pipe(
+    Effect.provide(NodeContext.layer)
+  )
+);
+const selectedPaths = new Set([
+  ...selectedDocument.files.map(({ sourcePath }) => sourcePath),
+  indonesianEntry.sourcePath,
+]);
 export const RENDERER_MANIFEST = await Effect.runPromise(
   createRendererManifest({
     base: {
@@ -84,10 +104,10 @@ export function makeTestRepositories(): TestRepositories {
     resolve(nakafaRoot, "apps", "www", "package.json"),
     '{"name":"www"}\n'
   );
-  for (const entry of MATERIAL_ENTRIES) {
-    const target = resolve(aksaraRoot, entry.sourcePath);
+  for (const sourcePath of selectedPaths) {
+    const target = resolve(aksaraRoot, sourcePath);
     mkdirSync(dirname(target), { recursive: true });
-    copyFileSync(resolve(REPOSITORY_ROOT, entry.sourcePath), target);
+    copyFileSync(resolve(REPOSITORY_ROOT, sourcePath), target);
   }
   return {
     aksaraRoot,

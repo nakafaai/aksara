@@ -1,7 +1,12 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { CountryCodeSchema } from "@nakafa/aksara-contracts/country";
 import {
-  TryoutCountryCodeSchema,
-  TryoutKeySchema,
+  QuestionSetKeySchema,
+  questionSetKeyParts,
+} from "@nakafa/aksara-contracts/question/identity";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
+import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+import {
   TryoutScoringSchema,
   TryoutTrackKindSchema,
   TryoutVisibilitySchema,
@@ -13,17 +18,7 @@ import {
   PublicRouteSlugMapSchema,
 } from "#corpus/route/schema";
 
-const TRYOUT_SOURCE_PATH_PATTERN =
-  /^question-bank\/tryout\/[a-z0-9]+(?:-[a-z0-9]+)*\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/u;
 const DEFAULT_SECTION_VISIBILITY = "visible";
-
-const TryoutSourcePathSchema = Schema.String.pipe(
-  Schema.pattern(TRYOUT_SOURCE_PATH_PATTERN, {
-    description: "Question source path rooted at question-bank/tryout.",
-    identifier: "TryoutSourcePath",
-    message: () => "Invalid try-out question source path.",
-  })
-);
 
 const TryoutTranslationMapSchema = Schema.Record({
   key: ContentLocaleSchema,
@@ -39,7 +34,8 @@ const TryoutSectionSourceSchema = Schema.Struct({
   key: TryoutKeySchema,
   order: Schema.Int.pipe(Schema.positive()),
   questionCount: Schema.Int.pipe(Schema.positive()),
-  questionSourcePath: TryoutSourcePathSchema,
+  questionSourcePath: QuestionSetKeySchema,
+  rendererDomain: RendererDomainSchema,
   routeSlugs: PublicRouteSlugMapSchema,
   timeLimitSeconds: Schema.Int.pipe(Schema.positive()),
   translations: TryoutTranslationMapSchema,
@@ -47,6 +43,7 @@ const TryoutSectionSourceSchema = Schema.Struct({
     default: () => DEFAULT_SECTION_VISIBILITY,
   }),
 });
+export type TryoutSectionSourceInput = typeof TryoutSectionSourceSchema.Encoded;
 
 /** Requires visible sections or one direct-entry section in a try-out set. */
 function hasReachableTryoutSections(source: {
@@ -85,19 +82,53 @@ const TryoutTrackSourceSchema = Schema.Struct({
   translations: TryoutTranslationMapSchema,
 });
 
-/** Complete authoring contract for one imported try-out exam source. */
-export const TryoutExamSourceSchema = Schema.Struct({
-  countryCode: TryoutCountryCodeSchema,
+const TryoutCountrySourceSchema = Schema.Struct({
+  countryCode: CountryCodeSchema,
   countryKey: TryoutKeySchema,
+  countryOrder: Schema.Int.pipe(Schema.positive()),
+  countryRevision: PublicRouteSegmentSchema,
   countryRouteSlugs: PublicRouteSlugMapSchema,
   countryTranslations: TryoutTranslationMapSchema,
+});
+export type TryoutCountrySourceInput = typeof TryoutCountrySourceSchema.Encoded;
+
+const TryoutExamSourceFieldsSchema = Schema.Struct({
+  ...TryoutCountrySourceSchema.fields,
   examKey: TryoutKeySchema,
+  examOrder: Schema.Int.pipe(Schema.positive()),
   examRouteSlugs: PublicRouteSlugMapSchema,
   examTranslations: TryoutTranslationMapSchema,
   scoringStrategy: TryoutScoringSchema,
   sourceRevision: PublicRouteSegmentSchema,
   tracks: Schema.Array(TryoutTrackSourceSchema),
 });
+
+type TryoutExamSourceFields = typeof TryoutExamSourceFieldsSchema.Type;
+
+/** Checks every section path against its exact country, exam, section, and set. */
+function hasOwnedQuestionSources(source: TryoutExamSourceFields) {
+  return source.tracks.every((track) =>
+    track.sets.every((set) =>
+      set.sections.every((section) => {
+        const parts = questionSetKeyParts(section.questionSourcePath);
+        return (
+          parts.countryKey === source.countryKey &&
+          parts.examKey === source.examKey &&
+          parts.sectionKey === section.key &&
+          parts.setKey === set.key
+        );
+      })
+    )
+  );
+}
+
+/** Complete authoring contract for one imported try-out exam source. */
+export const TryoutExamSourceSchema = TryoutExamSourceFieldsSchema.pipe(
+  Schema.filter(hasOwnedQuestionSources, {
+    message: () =>
+      "Question sources must match their country, exam, section, and set.",
+  })
+);
 type TryoutExamSourceInput = typeof TryoutExamSourceSchema.Encoded;
 export type TryoutExamSource = typeof TryoutExamSourceSchema.Type;
 

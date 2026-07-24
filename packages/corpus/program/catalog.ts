@@ -1,6 +1,6 @@
+import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import {
   type LearningProgram,
-  type LearningProgramKeySchema,
   LearningProgramSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
@@ -51,7 +51,7 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
     for (const program of programs) {
       yield* addIdentity(keys, "key", program.key);
       yield* addIdentity(orders, "order", program.displayOrder.toString());
-      for (const locale of ["en", "id"] as const) {
+      for (const locale of ContentLocaleSchema.literals) {
         yield* addIdentity(
           slugs,
           "slug",
@@ -66,7 +66,7 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
   }
 );
 
-/** Strictly decodes all six real learning programs from source control. */
+/** Strictly decodes every reviewed learning program from source control. */
 export const decodeProgramCatalog = Effect.fn(
   "AksaraCorpus.decodeProgramCatalog"
 )(function* (input: unknown = programSources) {
@@ -76,13 +76,4 @@ export const decodeProgramCatalog = Effect.fn(
     Effect.mapError((cause) => new ProgramCatalogError({ cause }))
   );
   return yield* validateProgramCatalog(programs);
-});
-
-/** Resolves one known program without inventing a default curriculum. */
-export const findProgram = Effect.fn("AksaraCorpus.findProgram")(function* (
-  key: typeof LearningProgramKeySchema.Type,
-  input: unknown = programSources
-) {
-  const programs = yield* decodeProgramCatalog(input);
-  return programs.find((program) => program.key === key) ?? null;
 });

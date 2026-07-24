@@ -4,9 +4,10 @@ import {
   type LearningGraphIdentity,
   LearningGraphIdentitySchema,
 } from "#contracts/graph/spec";
+import { isLowerKebab } from "#contracts/text/syntax";
 
 const LearningGraphSegmentSchema = Schema.String.pipe(
-  Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u)
+  Schema.filter(isLowerKebab)
 );
 
 /** Validated hierarchy segments required to derive one graph identity. */

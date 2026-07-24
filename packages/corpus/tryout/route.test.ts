@@ -1,0 +1,44 @@
+import { Effect } from "effect";
+import { describe, expect, it } from "vitest";
+import { projectTryoutCatalog } from "#corpus/tryout/catalog";
+import { decodeTryoutRegistry } from "#corpus/tryout/registry";
+import { validateTryoutRoutes } from "#corpus/tryout/route";
+
+/** Returns one routed row or fails the test setup explicitly. */
+function requireRoute<Value>(value: Value | undefined, label: string): Value {
+  if (value === undefined) {
+    throw new Error(`Expected ${label}.`);
+  }
+  return value;
+}
+
+describe("tryout routes", () => {
+  it("accepts canonical routes and rejects one exact locale collision", async () => {
+    const rows = await Effect.runPromise(
+      Effect.flatMap(decodeTryoutRegistry(), projectTryoutCatalog)
+    );
+    await Effect.runPromise(validateTryoutRoutes(rows));
+    const countries = rows.filter((row) => row.kind === "country");
+    const first = requireRoute(
+      countries.find((row) => row.locale === "en"),
+      "English country row"
+    );
+    const second = requireRoute(
+      countries.find((row) => row.locale === "id"),
+      "Indonesian country row"
+    );
+    const duplicate = {
+      ...second,
+      locale: first.locale,
+      publicPath: first.publicPath,
+    };
+    const error = await Effect.runPromise(
+      validateTryoutRoutes([first, duplicate]).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      locale: first.locale,
+      publicPath: first.publicPath,
+    });
+  });
+});

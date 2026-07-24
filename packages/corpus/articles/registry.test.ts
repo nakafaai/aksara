@@ -18,6 +18,7 @@ function articleSource() {
         year: 2024,
       },
     ],
+    rendererDomain: "politics",
     slug: "dynastic-politics-asian-values",
     sourceRoot: "articles/politics/dynastic-politics/asian-values",
   };
@@ -64,6 +65,7 @@ describe("article registry", () => {
       },
       sourcePath:
         "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx",
+      sourceRoot: "articles/politics/dynastic-politics/asian-values",
     });
   });
 
@@ -77,6 +79,29 @@ describe("article registry", () => {
     expect(entries.every(({ references }) => references.length === 1)).toBe(
       true
     );
+  });
+
+  it("expands a second test category with its source-owned renderer", async () => {
+    const entries = await Effect.runPromise(
+      decodeArticleRegistry([
+        articleSource(),
+        {
+          ...articleSource(),
+          category: "test-category",
+          rendererDomain: "physics",
+          slug: "test-group-test-article",
+          sourceRoot: "articles/test-category/test-group/test-article",
+        },
+      ])
+    );
+    const testEntries = entries.filter(
+      ({ route }) => route.category === "test-category"
+    );
+
+    expect(testEntries).toHaveLength(2);
+    expect(
+      testEntries.every(({ rendererDomain }) => rendererDomain === "physics")
+    ).toBe(true);
   });
 
   it("maps malformed catalogs and invalid projected paths to typed failures", async () => {
@@ -107,6 +132,25 @@ describe("article registry", () => {
     expect(duplicateSlug).toMatchObject({
       _tag: "ArticleSlugError",
       slug: "dynastic-politics-asian-values",
+    });
+  });
+
+  it("rejects conflicting renderers within one category", async () => {
+    const error = await rejectRegistry([
+      articleSource(),
+      {
+        ...articleSource(),
+        rendererDomain: "physics",
+        slug: "second-test-article",
+        sourceRoot: "articles/politics/second-test/article",
+      },
+    ]);
+
+    expect(error).toMatchObject({
+      _tag: "ArticleRendererError",
+      actual: "physics",
+      category: "politics",
+      expected: "politics",
     });
   });
 

@@ -5,7 +5,7 @@ import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import { ContentRouteItemSchema } from "#contracts/release/route";
 import {
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   invertContentSnapshots,
   replaceContentSnapshot,
 } from "#contracts/release/snapshot";
@@ -18,9 +18,9 @@ import {
   RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
-import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
+import { testRendererDomains } from "#contracts/test/renderer";
 
 export const releaseId = "test-transport";
 export const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -29,7 +29,7 @@ const signature = `${"A".repeat(85)}A`;
 
 /** One coherent structured-state replacement used for signature tampering. */
 export const replacementSnapshots = {
-  ...emptyContentSnapshots(),
+  ...inheritContentSnapshots(null),
   program: replaceContentSnapshot({
     baseSnapshotId: null,
     resultSnapshotId: hash,
@@ -44,7 +44,7 @@ export const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({}),
+    domains: testRendererDomains({}),
   })
 );
 
@@ -70,7 +70,7 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
     rollbackDigest: hash,
     routeCount: 0,
     routeDigest: hash,
-    snapshots: emptyContentSnapshots(),
+    snapshots: inheritContentSnapshots(null),
     upsertCount: 1,
   },
   manifestHash,
@@ -203,6 +203,7 @@ export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
       graph: materialGraph("en", "test", "transport", "snapshot"),
       kind: "country",
       locale: "en",
+      order: 1,
       publicPath: "try-out/test-country",
       sourceRevision: "test-transport-v1",
       title: "Test Country",

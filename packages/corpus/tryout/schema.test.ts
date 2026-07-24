@@ -16,6 +16,7 @@ const section = {
   questionCount: 20,
   questionSourcePath:
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+  rendererDomain: "snbt-general",
   routeSlugs: { en: "general-reasoning", id: "penalaran-umum" },
   timeLimitSeconds: 1800,
   translations: {
@@ -27,12 +28,15 @@ const section = {
 const tryoutSource = {
   countryCode: "ID",
   countryKey: "indonesia",
+  countryOrder: 1,
+  countryRevision: "2026-07-05",
   countryRouteSlugs: { en: "indonesia", id: "indonesia" },
   countryTranslations: {
     en: { title: "Indonesia" },
     id: { title: "Indonesia" },
   },
   examKey: "snbt",
+  examOrder: 1,
   examRouteSlugs: { en: "snbt", id: "snbt" },
   examTranslations: {
     en: { title: "SNBT" },
@@ -160,7 +164,7 @@ describe("tryout schema", () => {
       input: withSections([
         { ...section, questionSourcePath: "tryout/indonesia/snbt/set-1" },
       ]),
-      message: "Invalid try-out question source path.",
+      message: "Invalid try-out question-set key.",
     },
   ])("rejects an invalid $field", ({ input, message }) => {
     const result = Schema.decodeUnknownEither(TryoutExamSourceSchema)(input);
@@ -172,6 +176,38 @@ describe("tryout schema", () => {
       );
     }
   });
+
+  it.each([
+    {
+      name: "country and exam",
+      questionSourcePath:
+        "question-bank/tryout/germany/abitur/general-reasoning/set-1",
+    },
+    {
+      name: "section",
+      questionSourcePath:
+        "question-bank/tryout/indonesia/snbt/other-section/set-1",
+    },
+    {
+      name: "set",
+      questionSourcePath:
+        "question-bank/tryout/indonesia/snbt/general-reasoning/other-set",
+    },
+  ])(
+    "rejects contradictory question-source $name ownership",
+    async ({ questionSourcePath }) => {
+      const failure = await Effect.runPromise(
+        defineTryoutExamSource(
+          withSections([{ ...section, questionSourcePath }])
+        ).pipe(Effect.flip)
+      );
+
+      expect(failure).toMatchObject({ _tag: "TryoutDecodeError" });
+      expect(String(failure.cause)).toContain(
+        "Question sources must match their country, exam, section, and set."
+      );
+    }
+  );
 
   it.each([
     {

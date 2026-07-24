@@ -24,12 +24,12 @@ import {
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
-import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { testRendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -77,7 +77,7 @@ function manifestInput(
 ) {
   return {
     base: { authoringComponents, supportedComponents },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),

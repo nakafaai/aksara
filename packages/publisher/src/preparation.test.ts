@@ -21,14 +21,14 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
-import { emptyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { materialGraph } from "#test/graph";
+import { testRendererDomains } from "#test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -36,7 +36,7 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
@@ -162,7 +162,7 @@ describe("prepareContentRelease", () => {
     expect(prepared.manifest).toMatchObject({
       itemCount: 2,
       projectionCount: 1,
-      snapshots: emptyContentSnapshots(),
+      snapshots: inheritContentSnapshots(null),
     });
     expect([...items].map(({ index }) => index)).toEqual([0, 1]);
     expect([...projections]).toEqual([projection]);
@@ -219,7 +219,7 @@ describe("prepareContentRelease", () => {
         baseReleaseId: selfBasedRelease,
         baseResultCount: 1,
         baseResultDigest: resultHead.projectionHash,
-        previousSnapshots: emptyContentSnapshots(),
+        previousSnapshots: inheritContentSnapshots(null),
         records: () => {
           invoked = true;
           return Stream.make(baseTransition);

@@ -1,9 +1,4 @@
-import type {
-  CommandExecutor,
-  FileSystem,
-  HttpClient,
-  Path,
-} from "@effect/platform";
+import type { FileSystem, HttpClient, Path } from "@effect/platform";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
@@ -12,7 +7,7 @@ import {
   makeTrustedKeyResolver,
   TRUSTED_CONTENT_KEYS,
 } from "@nakafa/aksara-contracts/signature/trusted";
-import { GitPublicationSourceLive } from "@nakafa/aksara-publisher/git/source";
+import { makeGitPublicationSourceLive } from "@nakafa/aksara-publisher/git/source";
 import {
   publishGitRelease,
   publishRollbackRelease,
@@ -25,9 +20,11 @@ import {
 } from "@nakafa/aksara-publisher/publication/spec";
 import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
+import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { makeProductionActivation } from "#cli/activation";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
+import { findAksaraRoot } from "#cli/checkout";
 import { readProductionEnvironment, readRecoveryEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
@@ -48,10 +45,10 @@ export interface ProductionInput {
 }
 
 type ProductionServices =
-  | CommandExecutor.CommandExecutor
   | FileSystem.FileSystem
   | HttpClient.HttpClient
-  | Path.Path;
+  | Path.Path
+  | ExactProcess;
 
 type ProductionCommand = Effect.Effect<
   PublicationReceipt,
@@ -152,6 +149,9 @@ export const runProductionCommand: (
     });
 
     if (action.mode === "git") {
+      const checkoutRoot = yield* findAksaraRoot(input.cwd).pipe(
+        Effect.mapError(mapProductionError("prepare"))
+      );
       let publishable: PreparedGit;
       if (action.kind === "new") {
         const rendererManifest = yield* fetchProductionRenderer(
@@ -160,7 +160,7 @@ export const runProductionCommand: (
         ).pipe(Effect.mapError(mapProductionError("renderer")));
         publishable = yield* prepareProductionGit({
           baseBundle: action.baseBundle,
-          cwd: input.cwd,
+          checkoutRoot,
           kind: "new",
           releaseId: input.args.releaseId,
           rendererManifest,
@@ -172,7 +172,7 @@ export const runProductionCommand: (
         const bundle = yield* verifyPendingBundle(action, keyResolver);
         publishable = yield* prepareProductionGit({
           bundle,
-          cwd: input.cwd,
+          checkoutRoot,
           kind: "rebuild",
           releaseId: input.args.releaseId,
           sha: action.sha,
@@ -187,7 +187,7 @@ export const runProductionCommand: (
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
         Effect.provideService(PublicationSigningKey, signingKey),
         Effect.provideService(PublicationTarget, target),
-        Effect.provide(GitPublicationSourceLive),
+        Effect.provide(makeGitPublicationSourceLive(checkoutRoot)),
         Effect.mapError(mapProductionError("publish"))
       );
       return yield* logPublicationReceipt(receipt);

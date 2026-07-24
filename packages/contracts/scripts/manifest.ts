@@ -8,6 +8,7 @@ export const DEPENDENCY_SECTIONS = [
   "peerDependencies",
 ] as const;
 const WORKSPACE_PROTOCOL_PATTERN = /^(?:catalog:|workspace:)/u;
+const SOURCE_CONDITION = "aksara-source";
 
 type DependencySection = (typeof DEPENDENCY_SECTIONS)[number];
 
@@ -64,6 +65,56 @@ export function assertPortableDependencies(manifest: PackageManifest): void {
       );
     }
   }
+}
+
+/** Removes repository-only source resolution from one public export map. */
+function publishedExports(value: unknown): Readonly<Record<string, unknown>> {
+  assert.ok(isRecord(value), "Package exports must be an object");
+  return Object.fromEntries(
+    Object.entries(value).map(([subpath, descriptor]) => {
+      assert.ok(isRecord(descriptor), `Export ${subpath} must be an object`);
+      return [
+        subpath,
+        Object.fromEntries(
+          Object.entries(descriptor).filter(
+            ([condition]) => condition !== SOURCE_CONDITION
+          )
+        ),
+      ];
+    })
+  );
+}
+
+/** Serializes a registry-safe manifest without unpublished source targets. */
+export function createPublishedManifest(
+  source: string,
+  effectVersion: string
+): string {
+  const parsed: unknown = JSON.parse(source);
+  assert.ok(isRecord(parsed), "The package manifest must be an object");
+  assert.ok(isRecord(parsed.peerDependencies), "peerDependencies must exist");
+  const {
+    devDependencies: _devDependencies,
+    exports: packageExports,
+    imports: _packageImports,
+    scripts: _scripts,
+    ...published
+  } = parsed;
+  const manifest = {
+    ...published,
+    exports: publishedExports(packageExports),
+    imports: {
+      "#contracts/*": {
+        default: "./dist/*.js",
+        types: "./dist/*.d.ts",
+      },
+    },
+    peerDependencies: {
+      ...parsed.peerDependencies,
+      effect: effectVersion,
+    },
+  };
+  return `${JSON.stringify(manifest, null, 2)}\n`;
 }
 
 /** Root toolchain field inherited by an isolated package consumer. */

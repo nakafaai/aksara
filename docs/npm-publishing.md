@@ -10,9 +10,11 @@ mutable registry state.
 ## Exact package artifact
 
 The workspace uses pnpm catalogs, while published packages require ordinary
-semver dependency values. The publish artifact is therefore the exact tarball
-produced by `pnpm pack`, which rewrites catalog protocols. Publication must
-never run against the workspace directory.
+semver dependency values. Aksara's package verifier first serializes a
+registry-safe manifest with exact dependency versions and without private
+source conditions, then `pnpm pack` creates the exact publish tarball from that
+isolated staging directory. Publication must never run against the workspace
+directory.
 
 Run:
 
@@ -62,10 +64,9 @@ versions. A second frozen install passed the policy. No repository command may
 invoke the npm CLI as a workaround.
 
 Effect Platform brings the optional `msgpackr-extract` install script. Aksara
-explicitly denies that script through pnpm's `allowBuilds` policy; the signed
-platform prebuild remains available and its native-acceleration probe passes.
-This keeps installs deterministic without granting an unnecessary dependency
-script execution capability.
+explicitly denies that script through pnpm's `allowBuilds` policy. This keeps
+installs deterministic without granting an unnecessary dependency script
+execution capability.
 
 ## Bootstrap state
 
@@ -133,19 +134,20 @@ remains the only switch for version automation; transient registry results can
 therefore never enable Changesets.
 
 The marker proves only that the initial package bootstrap completed. Every
-production content release and rollback first calls `package-proof.yml` in
-`current` mode. That reusable job derives the exact version from the protected
-caller checkout, performs a frozen pnpm install, builds and verifies its exact
-contracts tarball, and requires that tarball's sha512 integrity to equal both
-the registry metadata and downloaded package bytes. It then cryptographically
-verifies the SLSA provenance and requires its unique source commit to remain in
-current `main` history. A Changesets version that is not yet approved and proven
-is therefore absent from the registry and fails closed; an unversioned contract
-change produces different package bytes and also fails closed. Unrelated
-repository policy or application changes do not invalidate an unchanged exact
-package. Emergency abort and cleanup deliberately bypass registry proof and do
-not receive the signing key; their required dependency install remains a
-separate availability boundary.
+production content release, rollback, and healthy-release acceptance first
+calls `package-proof.yml` in `current` mode. That reusable job derives the exact
+version from the protected caller checkout, performs a frozen pnpm install,
+builds and verifies its exact contracts tarball, and requires that tarball's
+sha512 integrity to equal both the registry metadata and downloaded package
+bytes. It then cryptographically verifies the SLSA provenance and requires its
+unique source commit to remain in current `main` history. A Changesets version
+that is not yet approved and proven is therefore absent from the registry and
+fails closed; an unversioned contract change produces different package bytes
+and also fails closed. Unrelated repository policy or application changes do
+not invalidate an unchanged exact package. Emergency abort, cleanup, and
+recovery deliberately bypass registry proof and do not receive the signing
+key; their required dependency install remains a separate availability
+boundary.
 
 After the initial `0.1.0` package exists, every contracts change carries a
 Changeset. `version.yml` uses the official Changesets action only to create or

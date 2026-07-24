@@ -17,11 +17,13 @@ The Node verification exports accept only reviewed, signed Aksara artifacts and
 releases. They do not make MDX safe for arbitrary uploads; MDX remains trusted
 executable source.
 
-Runtime verification authenticates the release, renderer, and artifact as
-independent signed values. Production v1 trusts authenticated Convex state for
-route/head membership, delivery class, and the active pointer; a release result
-digest is not a per-row inclusion proof. This boundary is recorded explicitly
-in [ADR 0002](https://github.com/nakafaai/aksara/blob/b0103ca40f6abab437860bd87a21450d5a62432e/docs/adr/0002-release-state.md).
+Runtime verification authenticates the independently signed release and
+artifact values. The renderer manifest hash is authenticated transitively by
+the signed release and is matched against the deployed Nakafa manifest; the
+renderer is not a third signed value. Production v1 trusts authenticated Convex
+state for route/head membership, delivery class, and the active pointer; a
+release result digest is not a per-row inclusion proof. This boundary is
+recorded explicitly in [ADR 0002](https://github.com/nakafaai/aksara/blob/main/docs/adr/0002-release-state.md).
 
 The package source is publicly readable for supply-chain review. All use and
 redistribution remain subject to the included Nakafa Source Available License

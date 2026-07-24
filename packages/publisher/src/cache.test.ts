@@ -1,6 +1,6 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   restoreContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Stream } from "effect";
@@ -24,7 +24,7 @@ describe("allContentCacheChanges", () => {
   });
 
   it("maps changed structured snapshots to their runtime content families", async () => {
-    const empty = emptyContentSnapshots();
+    const empty = inheritContentSnapshots(null);
     const oldId = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
     const newId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
     const changes = await Effect.runPromise(

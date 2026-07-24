@@ -5,6 +5,7 @@ export class NakafaAppError extends Schema.TaggedError<NakafaAppError>()(
   "NakafaAppError",
   {
     reason: Schema.Literal(
+      "auth",
       "body",
       "cache",
       "child-env",

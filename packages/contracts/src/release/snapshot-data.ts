@@ -6,10 +6,10 @@ import {
 } from "#contracts/program/snapshot";
 import { QuranSnapshotManifestSchema } from "#contracts/quran/snapshot";
 import { QuranSnapshotRowSchema } from "#contracts/quran/spec";
+import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot";
 import {
   TryoutCatalogRecordSchema,
   TryoutPlacementRecordSchema,
-  TryoutSnapshotSchema,
 } from "#contracts/tryout/spec";
 
 /** Program manifest selected by one globally signed content release. */
@@ -76,16 +76,6 @@ export type ContentSnapshotRow = typeof ContentSnapshotRowSchema.Type;
 /** Returns the immutable content-addressed identity of one family manifest. */
 export function contentSnapshotId(snapshot: ContentSnapshotManifest) {
   return snapshot.manifest.snapshotId;
-}
-
-/** Serializes one family manifest with stable envelope field order. */
-export function canonicalizeContentSnapshotManifest(
-  snapshot: ContentSnapshotManifest
-) {
-  return JSON.stringify({
-    family: snapshot.family,
-    manifest: snapshot.manifest,
-  });
 }
 
 /** Serializes one structured row with stable envelope field order. */

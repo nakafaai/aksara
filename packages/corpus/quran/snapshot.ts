@@ -11,12 +11,12 @@ import {
 } from "@nakafa/aksara-contracts/quran/row-hash";
 import {
   QURAN_SNAPSHOT_FORMAT,
+  QuranSnapshotInputSchema,
   type QuranSnapshotManifest,
   QuranSnapshotManifestSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot";
 import { hashQuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot-hash";
 import {
-  QURAN_CHUNK_COUNT,
   QURAN_LOCALES,
   QURAN_SURAH_COUNT,
   QURAN_TAFSIR_LOCALES,
@@ -75,8 +75,8 @@ export const prepareQuranSnapshot = Effect.fn(
   const rowSummary = yield* digestQuranRows(
     rowHashStream(streamQuranRows(source))
   );
-  const identity = {
-    chunkCount: QURAN_CHUNK_COUNT,
+  const identity = QuranSnapshotInputSchema.make({
+    chunkCount: rowSummary.chunkCount,
     format: QURAN_SNAPSHOT_FORMAT,
     locales: QURAN_LOCALES,
     projectionCount: rowSummary.projectionCount,
@@ -92,7 +92,7 @@ export const prepareQuranSnapshot = Effect.fn(
     surahCount: QURAN_SURAH_COUNT,
     tafsirLocales: QURAN_TAFSIR_LOCALES,
     verseCount: QURAN_VERSE_COUNT,
-  };
+  });
   const snapshotId = yield* hashQuranSnapshot(identity);
   const manifest = QuranSnapshotManifestSchema.make({
     ...identity,

@@ -1,4 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
+import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
@@ -11,13 +12,10 @@ import {
   digestTryoutCatalog,
   digestTryoutPlacements,
 } from "@nakafa/aksara-contracts/tryout/row-hash";
+import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot-hash";
-import type {
-  TryoutCatalogCounts,
-  TryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/spec";
-import { decodeQuestionRegistry } from "@nakafa/aksara-corpus/question-bank/registry";
-import { loadTryoutProjection } from "@nakafa/aksara-corpus/tryout/projection";
+import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/spec";
+import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Effect, Option, type Scope, Stream } from "effect";
 import type { inspectQuestionDocument } from "#publisher/question/document";
 import type { ReplaySpoolError } from "#publisher/replay/error";
@@ -52,11 +50,8 @@ export interface PreparedTryoutSnapshot {
 type RendererManifestError = Effect.Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
-type TryoutProjectionError = Effect.Effect.Error<
-  ReturnType<typeof loadTryoutProjection>
->;
-type QuestionRegistryError = Effect.Effect.Error<
-  ReturnType<typeof decodeQuestionRegistry>
+type TryoutContentError = Effect.Effect.Error<
+  ReturnType<typeof loadTryoutContent>
 >;
 type QuestionInspectionError = Effect.Effect.Error<
   ReturnType<typeof inspectQuestionDocument>
@@ -71,12 +66,11 @@ type SnapshotVerificationError = Effect.Effect.Error<
 export type PrepareTryoutSnapshotError<E> =
   | E
   | QuestionInspectionError
-  | QuestionRegistryError
   | RendererManifestError
   | ReplaySpoolError
   | SnapshotVerificationError
   | TryoutHeadBindingError<never>
-  | TryoutProjectionError
+  | TryoutContentError
   | TryoutTitleMissingError;
 
 /** Selects immutable hierarchy records from a complete snapshot replay. */
@@ -133,8 +127,9 @@ export const prepareTryoutSnapshot: <E, R>(
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
-  const projection = yield* loadTryoutProjection(input.checkoutRoot);
-  const entries = yield* decodeQuestionRegistry(input.checkoutRoot);
+  const { entries, projection, sources } = yield* loadTryoutContent(
+    input.checkoutRoot
+  );
   const bindings = bindTryoutHeads(
     projection.placements,
     input.questionHeads()
@@ -144,6 +139,7 @@ export const prepareTryoutSnapshot: <E, R>(
     checkoutRoot: input.checkoutRoot,
     entries,
     rendererManifest,
+    sources,
   });
   const sourceRows = Stream.fromIterable(projection.catalog)
     .pipe(
@@ -187,7 +183,7 @@ export const prepareTryoutSnapshot: <E, R>(
       catalogDigest: catalog.digest,
       counts: countCatalogKinds(projection.catalog),
       format: "tryout-v1",
-      locales: ["en", "id"],
+      locales: ContentLocaleSchema.literals,
       placementCount: placement.count,
       placementDigest: placement.digest,
       routeCount: projection.routeCount,

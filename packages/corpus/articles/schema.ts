@@ -1,17 +1,27 @@
 import {
+  type ArticleCategory,
   ArticleCategorySchema,
   ArticleReferenceSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
+import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { Effect, Schema } from "effect";
 
-const ARTICLE_ROOT_PATTERN =
-  /^articles\/politics\/[a-z0-9]+(?:-[a-z0-9]+)*\/[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+/** Checks the stable four-segment grammar of one article source root. */
+function isArticleRoot(sourceRoot: string) {
+  const segments = sourceRoot.split("/");
+  return (
+    segments.length === 4 &&
+    segments[0] === "articles" &&
+    segments.slice(1).every(isLowerKebab)
+  );
+}
 
 /** Pair-grouped authored path containing one localized article pair. */
 export const ArticleRootSchema = Schema.String.pipe(
-  Schema.pattern(ARTICLE_ROOT_PATTERN, {
-    description: "Pair-grouped politics article source path.",
+  Schema.filter(isArticleRoot, {
+    description: "Pair-grouped article source path.",
     identifier: "ArticleRoot",
     message: () => "Invalid article source root.",
   })
@@ -19,7 +29,7 @@ export const ArticleRootSchema = Schema.String.pipe(
 
 /** Checks one pair-grouped physical root flattens to its canonical route slug. */
 function hasCoherentArticleIdentity(input: {
-  readonly category: "politics";
+  readonly category: ArticleCategory;
   readonly slug: string;
   readonly sourceRoot: string;
 }) {
@@ -36,6 +46,7 @@ function hasCoherentArticleIdentity(input: {
 export const ArticleSourceSchema = Schema.Struct({
   category: ArticleCategorySchema,
   references: Schema.Array(ArticleReferenceSchema),
+  rendererDomain: RendererDomainSchema,
   slug: ArticleSlugSchema,
   sourceRoot: ArticleRootSchema,
 }).pipe(

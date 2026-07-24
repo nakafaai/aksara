@@ -1,18 +1,16 @@
 import { Schema } from "effect";
 
+import { ContentLocaleListSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
-  QURAN_CHUNK_COUNT,
-  QURAN_LOCALES,
-  QURAN_ROW_COUNT,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
-  QURAN_TAFSIR_LOCALES,
   QURAN_VERSE_COUNT,
+  QuranTafsirLocaleListSchema,
 } from "#contracts/quran/spec";
 
 /** Wire format for the first immutable structured Quran snapshot. */
-export const QURAN_SNAPSHOT_FORMAT = "quran-snapshot-v1" as const;
+export const QURAN_SNAPSHOT_FORMAT = "quran-snapshot-v1";
 
 const CountSchema = Schema.Int.pipe(Schema.nonNegative());
 const SourceBytesSchema = Schema.Int.pipe(Schema.positive());
@@ -24,10 +22,8 @@ export const QuranProvenanceStatusSchema = Schema.Literal(
 );
 export type QuranProvenanceStatus = typeof QuranProvenanceStatusSchema.Type;
 
-/** Checks fixed corpus counts and the aggregate projection count. */
+/** Checks source-owned corpus counts that do not depend on chunk policy. */
 function hasCompleteSnapshotCounts(input: {
-  readonly chunkCount: number;
-  readonly projectionCount: number;
   readonly searchCount: number;
   readonly surahCount: number;
   readonly verseCount: number;
@@ -35,20 +31,28 @@ function hasCompleteSnapshotCounts(input: {
   return (
     input.surahCount === QURAN_SURAH_COUNT &&
     input.verseCount === QURAN_VERSE_COUNT &&
-    input.chunkCount === QURAN_CHUNK_COUNT &&
-    input.searchCount === QURAN_SEARCH_COUNT &&
-    input.projectionCount === QURAN_ROW_COUNT
+    input.searchCount === QURAN_SEARCH_COUNT
   );
 }
 
-/** Immutable identity and completeness proof for one Quran snapshot. */
-export const QuranSnapshotManifestSchema = Schema.Struct({
+/** Checks runtime and search arithmetic for one complete projection inventory. */
+function hasCoherentProjectionCounts(input: {
+  readonly chunkCount: number;
+  readonly projectionCount: number;
+  readonly runtimeCount: number;
+  readonly searchCount: number;
+  readonly surahCount: number;
+}) {
+  return (
+    input.runtimeCount === input.surahCount + input.chunkCount &&
+    input.projectionCount === input.runtimeCount + input.searchCount
+  );
+}
+
+const SnapshotFields = {
   chunkCount: CountSchema,
   format: Schema.Literal(QURAN_SNAPSHOT_FORMAT),
-  locales: Schema.Tuple(
-    Schema.Literal(QURAN_LOCALES[0]),
-    Schema.Literal(QURAN_LOCALES[1])
-  ),
+  locales: ContentLocaleListSchema,
   projectionCount: CountSchema,
   projectionDigest: Sha256HashSchema,
   provenanceDigest: Sha256HashSchema,
@@ -57,24 +61,36 @@ export const QuranSnapshotManifestSchema = Schema.Struct({
   runtimeDigest: Sha256HashSchema,
   searchCount: CountSchema,
   searchDigest: Sha256HashSchema,
-  snapshotId: Sha256HashSchema,
   sourceBytes: SourceBytesSchema,
   sourceDigest: Sha256HashSchema,
   surahCount: CountSchema,
-  tafsirLocales: Schema.Tuple(Schema.Literal(QURAN_TAFSIR_LOCALES[0])),
+  tafsirLocales: QuranTafsirLocaleListSchema,
   verseCount: CountSchema,
+};
+
+/** Immutable Quran snapshot identity before its content hash is attached. */
+export const QuranSnapshotInputSchema = Schema.Struct(SnapshotFields).pipe(
+  Schema.filter(hasCompleteSnapshotCounts, {
+    message: () => "Expected the complete reviewed Quran snapshot counts.",
+  }),
+  Schema.filter(hasCoherentProjectionCounts, {
+    message: () =>
+      "Expected Quran runtime and search counts to cover every projection.",
+  })
+);
+export type QuranSnapshotInput = typeof QuranSnapshotInputSchema.Type;
+
+/** Immutable identity and completeness proof for one Quran snapshot. */
+export const QuranSnapshotManifestSchema = Schema.Struct({
+  ...SnapshotFields,
+  snapshotId: Sha256HashSchema,
 }).pipe(
   Schema.filter(hasCompleteSnapshotCounts, {
     message: () => "Expected the complete reviewed Quran snapshot counts.",
   }),
-  Schema.filter(
-    (manifest) =>
-      manifest.runtimeCount === manifest.surahCount + manifest.chunkCount &&
-      manifest.projectionCount === manifest.runtimeCount + manifest.searchCount,
-    {
-      message: () =>
-        "Expected Quran runtime and search counts to cover every projection.",
-    }
-  )
+  Schema.filter(hasCoherentProjectionCounts, {
+    message: () =>
+      "Expected Quran runtime and search counts to cover every projection.",
+  })
 );
 export type QuranSnapshotManifest = typeof QuranSnapshotManifestSchema.Type;

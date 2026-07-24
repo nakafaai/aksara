@@ -2,6 +2,7 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   canonicalizeMaterialProjection,
+  MaterialKeySchema,
   MaterialLessonProjectionSchema,
   MaterialLessonRouteSchema,
   MaterialMetadataSchema,
@@ -74,6 +75,16 @@ describe("material projection", () => {
       expect(String(result.left)).toContain(
         "Expected a material lesson path with a parent route."
       );
+    }
+  });
+
+  it("rejects malformed material keys with its domain message", () => {
+    const result = Schema.decodeUnknownEither(MaterialKeySchema)(
+      "lesson.Test.material"
+    );
+    expect(Either.isLeft(result)).toBe(true);
+    if (Either.isLeft(result)) {
+      expect(String(result.left)).toContain("Invalid material key.");
     }
   });
 

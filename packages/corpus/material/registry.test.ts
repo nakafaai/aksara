@@ -1,8 +1,13 @@
 import { globSync } from "node:fs";
 import { resolve } from "node:path";
+import type { ContentLocale } from "@nakafa/aksara-contracts/content";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
+import {
+  decodeMaterialDomains,
+  MaterialDomainMissingError,
+} from "#corpus/material/domain";
 import { decodeMaterialRegistry } from "#corpus/material/registry";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
@@ -49,7 +54,7 @@ function rejectRegistry(input: unknown) {
 }
 
 /** Builds the expected signed graph identity for the representative lesson. */
-function lessonGraph(locale: "en" | "id") {
+function lessonGraph(locale: ContentLocale) {
   return {
     alignmentId:
       "alignment:material:lesson:mathematics:material-section:mathematics:function-composition-inverse-function:function-concept",
@@ -115,6 +120,8 @@ describe("material registry", () => {
 
     expect(entries).toEqual([
       {
+        assetRoot:
+          "material/lesson/mathematics/function-composition-inverse-function",
         delivery: "public",
         rendererDomain: "mathematics",
         route: {
@@ -133,6 +140,8 @@ describe("material registry", () => {
           "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
       },
       {
+        assetRoot:
+          "material/lesson/mathematics/function-composition-inverse-function",
         delivery: "public",
         rendererDomain: "mathematics",
         route: {
@@ -151,6 +160,62 @@ describe("material registry", () => {
           "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",
       },
     ]);
+  });
+
+  it("expands a generic domain through one corpus descriptor", async () => {
+    const source = {
+      ...lessonSource(),
+      assetRoot: "material/lesson/earth-science/geology",
+      domain: "earth-science",
+      key: "lesson.earth-science.geology",
+      routeSlugs: { en: "geology", id: "geologi" },
+      sections: [
+        {
+          ...lessonSource().sections[0],
+          routeSlugs: { en: "rocks", id: "batuan" },
+          slug: "rocks",
+        },
+      ],
+      slug: "geology",
+    };
+    const domains = await Effect.runPromise(
+      decodeMaterialDomains([
+        {
+          key: "earth-science",
+          rendererDomain: "physics",
+          routeSlugs: { en: "earth-science", id: "ilmu-bumi" },
+        },
+      ])
+    );
+    const entries = await Effect.runPromise(
+      decodeMaterialRegistry([source], domains)
+    );
+
+    expect(entries).toHaveLength(2);
+    expect(entries[0]).toMatchObject({
+      rendererDomain: "physics",
+      route: {
+        publicPath: "subjects/earth-science/geology/rocks",
+      },
+    });
+    expect(entries[1]).toMatchObject({
+      rendererDomain: "physics",
+      route: {
+        publicPath: "materi/ilmu-bumi/geologi/batuan",
+      },
+    });
+  });
+
+  it("rejects a source whose domain has no reviewed descriptor", async () => {
+    const error = await Effect.runPromise(
+      decodeMaterialRegistry([lessonSource()], []).pipe(Effect.flip)
+    );
+
+    expect(error).toBeInstanceOf(MaterialDomainMissingError);
+    expect(error).toMatchObject({
+      key: "mathematics",
+      owner: "lesson.mathematics.function-composition-inverse-function",
+    });
   });
 
   it("maps malformed catalogs and invalid projections to typed failures", async () => {

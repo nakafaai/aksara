@@ -78,11 +78,6 @@ export function inheritContentSnapshot(
   });
 }
 
-/** Builds the fixed snapshot set before any structured family is published. */
-export function emptyContentSnapshots() {
-  return inheritContentSnapshots(null);
-}
-
 /** Builds fixed inherited states from the prior release's result identities. */
 export function inheritContentSnapshots(previous: ContentSnapshotSet | null) {
   return ContentSnapshotSetSchema.make({

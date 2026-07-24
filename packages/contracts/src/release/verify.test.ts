@@ -16,7 +16,7 @@ import {
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import {
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   invertContentSnapshots,
 } from "#contracts/release/snapshot";
 import {
@@ -29,12 +29,12 @@ import {
   verifyRollbackContentReleaseBundle,
   verifySignedContentRelease,
 } from "#contracts/release/verify";
-import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { testRendererDomains } from "#contracts/test/renderer";
 import { replacementSnapshots } from "#contracts/test/request";
 
 vi.mock("node:crypto", async (importOriginal) => {
@@ -78,7 +78,7 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({}),
+    domains: testRendererDomains({}),
   })
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
@@ -101,7 +101,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"1".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"1".repeat(64)}`,
-  snapshots: emptyContentSnapshots(),
+  snapshots: inheritContentSnapshots(null),
   upsertCount: 1,
 });
 /** Produces a valid signed release for verification scenarios. */

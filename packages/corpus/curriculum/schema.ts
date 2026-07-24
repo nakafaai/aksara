@@ -1,43 +1,42 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
+import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import {
   LearningProgramKeySchema,
   ProgramNavigationIconKeySchema,
   type ProgramNavigationLevel,
   ProgramNavigationLevelSchema,
 } from "@nakafa/aksara-contracts/program/spec";
+import {
+  type MaterialKey,
+  MaterialKeySchema,
+} from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Schema } from "effect";
+import type { NonEmptyReadonlyArray } from "effect/Array";
 
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
-import { MaterialDomainSchema } from "#corpus/material/domain";
-import { type MaterialKey, MaterialKeySchema } from "#corpus/material/schema";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 
-const CURRICULUM_NODE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-
-const CurriculumNodeKeySchema = Schema.String.pipe(
-  Schema.pattern(CURRICULUM_NODE_KEY_PATTERN, {
-    description: "Lowercase kebab-case curriculum node key.",
-    identifier: "CurriculumNodeKey",
-    message: () => "Invalid curriculum node key.",
-  })
-);
-
-const CurriculumNodeTranslationSchema = Schema.Struct({
+/** Localized title and route segment owned by one curriculum node. */
+export const CurriculumNodeTranslationSchema = Schema.Struct({
   routeSlug: PublicRouteSegmentSchema,
   title: Schema.String,
 });
 
-const CurriculumNodeTranslationMapSchema = Schema.Record({
+/** Complete localized route copy for one curriculum node. */
+export const CurriculumNodeTranslationMapSchema = Schema.Record({
   key: ContentLocaleSchema,
   value: CurriculumNodeTranslationSchema,
 });
 
-const CurriculumDisplayGroupMapSchema = Schema.Record({
+/** Complete localized group labels attached to one navigation row. */
+export const CurriculumDisplayGroupMapSchema = Schema.Record({
   key: ContentLocaleSchema,
   value: Schema.Struct({ title: Schema.String }),
 });
 
-const CurriculumMaterialCardMapSchema = Schema.Record({
+/** Complete localized material-card copy attached to one navigation row. */
+export const CurriculumMaterialCardMapSchema = Schema.Record({
   key: ContentLocaleSchema,
   value: Schema.Struct({
     description: MaterialCardDescriptionSchema,
@@ -57,7 +56,7 @@ export interface CurriculumStructureNode {
     | typeof ProgramNavigationIconKeySchema.Type
     | undefined;
   readonly iconKey?: typeof ProgramNavigationIconKeySchema.Type | undefined;
-  readonly key: string;
+  readonly key: typeof CurriculumNodeKeySchema.Type;
   readonly level: ProgramNavigationLevel;
   readonly materialCard?:
     | typeof CurriculumMaterialCardMapSchema.Type
@@ -69,9 +68,9 @@ export interface CurriculumStructureNode {
 
 export interface CurriculumMaterialNode {
   readonly displayOverride?: TranslationMap | undefined;
-  readonly key: string;
+  readonly key: typeof CurriculumNodeKeySchema.Type;
   readonly level: ProgramNavigationLevel;
-  readonly materialKeys: readonly MaterialKey[];
+  readonly materialKeys: NonEmptyReadonlyArray<MaterialKey>;
   readonly order: number;
 }
 
@@ -102,7 +101,7 @@ export interface CurriculumMaterialInput {
   readonly displayOverride?: EncodedTranslationMap | undefined;
   readonly key: string;
   readonly level: ProgramNavigationLevel;
-  readonly materialKeys: readonly string[];
+  readonly materialKeys: NonEmptyReadonlyArray<string>;
   readonly order: number;
 }
 
@@ -134,7 +133,7 @@ const CurriculumMaterialNodeSchema = Schema.Struct({
   displayOverride: Schema.optional(CurriculumNodeTranslationMapSchema),
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,
-  materialKeys: Schema.Array(MaterialKeySchema).pipe(Schema.minItems(1)),
+  materialKeys: Schema.NonEmptyArray(MaterialKeySchema),
   order: Schema.Int.pipe(Schema.nonNegative()),
 });
 
@@ -143,10 +142,12 @@ const CurriculumTreeNodeSchema: Schema.Schema<
   CurriculumTreeInput
 > = Schema.Union(CurriculumMaterialNodeSchema, CurriculumStructureNodeSchema);
 
-const CurriculumSourceSchema = Schema.Struct({
+/** One complete source-controlled curriculum tree. */
+export const CurriculumSourceSchema = Schema.Struct({
   programKey: LearningProgramKeySchema,
   tree: Schema.Array(CurriculumTreeNodeSchema),
 });
+export type CurriculumSource = typeof CurriculumSourceSchema.Type;
 export type CurriculumSourceInput = typeof CurriculumSourceSchema.Encoded;
 type StructureNodeInput = Omit<
   typeof CurriculumStructureNodeSchema.Encoded,

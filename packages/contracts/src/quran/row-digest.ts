@@ -5,10 +5,12 @@ import { Effect, Schema, Stream } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import { hashQuranRow, QuranHashError } from "#contracts/quran/row-hash";
 import {
-  QURAN_ROW_COUNT,
+  QURAN_CHUNK_SIZE,
+  QURAN_LOCALES,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
+  type QuranLocaleSchema,
   type QuranRowPayload,
   type QuranSnapshotRow,
 } from "#contracts/quran/spec";
@@ -68,11 +70,12 @@ class QuranDigestState {
   readonly #search = createHash("sha256").update(`${SEARCH_DOMAIN}\n`);
   readonly #projection = createHash("sha256").update(`${PROJECTION_DOMAIN}\n`);
   #nextQuranNumber = 1;
-  #nextSearchLocale: "en" | "id" = "en";
+  #nextSearchLocale: typeof QuranLocaleSchema.Type = QURAN_LOCALES[0];
   #nextSearchSurah = 1;
   #nextSurah = 1;
   #nextSurahVerse = 0;
   #surahVerseCount = 0;
+  chunkCount = 0;
   projectionCount = 0;
   runtimeCount = 0;
   searchCount = 0;
@@ -84,7 +87,7 @@ class QuranDigestState {
         return `quran-surah:${this.#nextSurah}`;
       }
       const lastVerse = Math.min(
-        this.#nextSurahVerse + 5,
+        this.#nextSurahVerse + QURAN_CHUNK_SIZE - 1,
         this.#surahVerseCount
       );
       return [
@@ -128,11 +131,13 @@ class QuranDigestState {
       this.#nextSurahVerse = payload.lastVerse + 1;
       return;
     }
-    if (this.#nextSearchLocale === "en") {
-      this.#nextSearchLocale = "id";
+    const localeIndex = QURAN_LOCALES.indexOf(this.#nextSearchLocale);
+    const nextLocale = QURAN_LOCALES[localeIndex + 1];
+    if (nextLocale !== undefined) {
+      this.#nextSearchLocale = nextLocale;
       return;
     }
-    this.#nextSearchLocale = "en";
+    this.#nextSearchLocale = QURAN_LOCALES[0];
     this.#nextSearchSurah += 1;
   }
 
@@ -157,6 +162,9 @@ class QuranDigestState {
         }
         this.#runtime.update(canonical);
         this.runtimeCount += 1;
+        if (row.payload.kind === "quran-chunk") {
+          this.chunkCount += 1;
+        }
       },
     });
   }
@@ -166,16 +174,26 @@ class QuranDigestState {
     const actual = [
       this.expectedIdentity(),
       this.#nextQuranNumber,
-      this.projectionCount,
+      this.chunkCount,
+      this.runtimeCount,
       this.searchCount,
+      this.projectionCount,
     ].join(":");
     const expected = [
       "end",
       QURAN_VERSE_COUNT + 1,
-      QURAN_ROW_COUNT,
+      this.chunkCount,
+      QURAN_SURAH_COUNT + this.chunkCount,
       QURAN_SEARCH_COUNT,
+      this.runtimeCount + this.searchCount,
     ].join(":");
-    if (actual === expected) {
+    if (
+      this.expectedIdentity() === "end" &&
+      this.#nextQuranNumber === QURAN_VERSE_COUNT + 1 &&
+      this.runtimeCount === QURAN_SURAH_COUNT + this.chunkCount &&
+      this.searchCount === QURAN_SEARCH_COUNT &&
+      this.projectionCount === this.runtimeCount + this.searchCount
+    ) {
       return Effect.void;
     }
     return Effect.fail(new QuranRowOrderError({ actual, expected }));
@@ -184,6 +202,7 @@ class QuranDigestState {
   /** Finalizes all ordered Quran row digest domains. */
   digest() {
     return {
+      chunkCount: this.chunkCount,
       projectionCount: this.projectionCount,
       projectionDigest: Sha256HashSchema.make(
         `sha256:${this.#projection.digest("hex")}`

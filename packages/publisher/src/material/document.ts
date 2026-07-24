@@ -50,17 +50,13 @@ export function mapMaterialSourceError(checkoutRoot: string) {
   return (cause: unknown) => new MaterialSourceError({ cause, checkoutRoot });
 }
 
-/** Creates the exact compiler input shared by inspection and code generation. */
-export function makeMaterialCompileInput(
-  source: MaterialDocumentSource,
-  rendererManifest: RendererManifestEnvelope
-) {
+/** Creates the exact authored body shared by every material compiler mode. */
+export function makeMaterialCompileSource(source: MaterialDocumentSource) {
   return {
     contentKey: source.route.contentKey,
     locale: source.route.locale,
     rawMdx: source.rawMdx,
     rendererDomain: source.rendererDomain,
-    rendererManifest,
     sourcePath: source.sourcePath,
   };
 }
@@ -112,9 +108,10 @@ export const inspectMaterialDocument = Effect.fn(
   entry: MaterialEntry
 ) {
   const source = yield* loadMaterialDocument(checkoutRoot, entry);
-  const inspection = yield* inspectContentSource(
-    makeMaterialCompileInput(source, rendererManifest)
-  );
+  const inspection = yield* inspectContentSource({
+    ...makeMaterialCompileSource(source),
+    rendererManifest,
+  });
   const projection = yield* makeMaterialProjection(source, inspection.metadata);
   return {
     inspection,
@@ -125,7 +122,7 @@ export const inspectMaterialDocument = Effect.fn(
 });
 
 /** Binds compiled output to its registry-owned change and projection. */
-export function makeMaterialRecord(
+function makeMaterialRecord(
   source: MaterialDocumentSource,
   result: CompiledContentResult,
   projection: MaterialLessonProjection
@@ -161,8 +158,9 @@ export const compileMaterialDocument = Effect.fn(
   document: InspectedMaterialDocument,
   rendererManifest: RendererManifestEnvelope
 ) {
-  const result = yield* compileContent(
-    makeMaterialCompileInput(document.source, rendererManifest)
-  );
+  const result = yield* compileContent({
+    ...makeMaterialCompileSource(document.source),
+    rendererManifest,
+  });
   return makeMaterialRecord(document.source, result, document.projection);
 });

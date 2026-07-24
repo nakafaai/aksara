@@ -3,6 +3,7 @@ import type { ExecFileSyncOptions } from "node:child_process";
 import { execFileSync } from "node:child_process";
 import {
   copyFileSync,
+  cpSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
@@ -28,6 +29,7 @@ import {
 import {
   assertContractPackageMetadata,
   assertPortableDependencies,
+  createPublishedManifest,
   parsePackageManifest,
   parseWorkspaceManifest,
   textField,
@@ -93,6 +95,7 @@ export function verifyPackage(args: readonly string[]): void {
     join(tmpdir(), "aksara-contracts-package-")
   );
   const packDirectory = join(temporaryRoot, "pack");
+  const stageDirectory = join(temporaryRoot, "stage");
   const consumerDirectory = join(temporaryRoot, "consumer");
   const inspectionDirectory = join(temporaryRoot, "inspection");
   const verifierDirectory = join(consumerDirectory, "verify");
@@ -100,6 +103,7 @@ export function verifyPackage(args: readonly string[]): void {
   const emptyUserConfig = join(temporaryRoot, "empty-user.npmrc");
 
   mkdirSync(packDirectory);
+  mkdirSync(stageDirectory);
   mkdirSync(consumerDirectory);
   mkdirSync(inspectionDirectory);
   mkdirSync(verifierDirectory);
@@ -112,6 +116,33 @@ export function verifyPackage(args: readonly string[]): void {
     emptyGlobalConfig,
     emptyUserConfig
   );
+  const require = createRequire(import.meta.url);
+  const installedEffectManifest: unknown = JSON.parse(
+    readFileSync(require.resolve("effect/package.json"), "utf8")
+  );
+  assert.ok(
+    isRecord(installedEffectManifest),
+    "Effect package must be an object"
+  );
+  const effectVersion = textField(
+    installedEffectManifest.version,
+    "Installed Effect version must be text"
+  );
+  copyFileSync(join(packageRoot, "LICENSE"), join(stageDirectory, "LICENSE"));
+  copyFileSync(
+    join(packageRoot, "README.md"),
+    join(stageDirectory, "README.md")
+  );
+  cpSync(join(packageRoot, "dist"), join(stageDirectory, "dist"), {
+    recursive: true,
+  });
+  writeFileSync(
+    join(stageDirectory, "package.json"),
+    createPublishedManifest(
+      readFileSync(join(packageRoot, "package.json"), "utf8"),
+      effectVersion
+    )
+  );
   run(
     "pnpm",
     [
@@ -120,7 +151,7 @@ export function verifyPackage(args: readonly string[]): void {
       "--pack-destination",
       packDirectory,
     ],
-    { cwd: packageRoot, env: childEnvironment, stdio: "inherit" }
+    { cwd: stageDirectory, env: childEnvironment, stdio: "inherit" }
   );
   const packedArchive = selectPackedArchive(readdirSync(packDirectory));
   const tarballPath = join(packDirectory, packedArchive);
@@ -187,16 +218,16 @@ export function verifyPackage(args: readonly string[]): void {
     packedManifest.imports["#contracts/*"],
     {
       default: "./dist/*.js",
-      types: ["./src/*.ts", "./dist/*.d.ts"],
+      types: "./dist/*.d.ts",
     },
-    "The packed contract imports must preserve source and declaration resolution"
+    "The packed contract imports must resolve only published files"
   );
-  const effectVersion = textField(
+  const packedEffectVersion = textField(
     packedManifest.peerDependencies?.effect,
     "The packed contract must declare its exact Effect peer runtime"
   );
   assert.match(
-    effectVersion,
+    packedEffectVersion,
     EXACT_VERSION_PATTERN,
     "The packed Effect peer must be an exact semantic version"
   );
@@ -205,16 +236,8 @@ export function verifyPackage(args: readonly string[]): void {
     undefined,
     "Effect must not be a nested runtime dependency"
   );
-  const require = createRequire(import.meta.url);
-  const installedEffectManifest: unknown = JSON.parse(
-    readFileSync(require.resolve("effect/package.json"), "utf8")
-  );
-  assert.ok(
-    isRecord(installedEffectManifest),
-    "Effect package must be an object"
-  );
   assert.equal(
-    effectVersion,
+    packedEffectVersion,
     installedEffectManifest.version,
     "Packed and development Effect versions must match"
   );
@@ -222,7 +245,7 @@ export function verifyPackage(args: readonly string[]): void {
   writeFileSync(
     join(consumerDirectory, "package.json"),
     createConsumerManifest({
-      effectVersion,
+      effectVersion: packedEffectVersion,
       packageManager: rootManifest.packageManager,
       packageName: sourceManifest.name,
       tarballPath,

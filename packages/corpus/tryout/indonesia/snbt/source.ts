@@ -1,11 +1,24 @@
-import { defineTryoutExamSource } from "#corpus/tryout/schema";
+import { QUESTION_BANK_KEY_ROOT } from "@nakafa/aksara-contracts/question/identity";
+import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
+import {
+  defineTryoutExamSource,
+  type TryoutSectionSourceInput,
+} from "#corpus/tryout/schema";
 
 const SNBT_SECONDS_PER_QUESTION = 90;
+const EXAM_KEY = "snbt";
+const QUESTION_ROOT = `${QUESTION_BANK_KEY_ROOT}/${indonesiaTryoutCountry.countryKey}/${EXAM_KEY}`;
 
-const snbtSections = [
+type SnbtSection = Omit<
+  TryoutSectionSourceInput,
+  "order" | "questionSourcePath"
+>;
+
+const snbtSections: readonly SnbtSection[] = [
   {
     key: "quantitative-knowledge",
     questionCount: 20,
+    rendererDomain: "snbt-quant",
     routeSlugs: {
       en: "quantitative-knowledge",
       id: "pengetahuan-kuantitatif",
@@ -19,6 +32,7 @@ const snbtSections = [
   {
     key: "mathematical-reasoning",
     questionCount: 20,
+    rendererDomain: "snbt-math",
     routeSlugs: {
       en: "mathematical-reasoning",
       id: "penalaran-matematika",
@@ -32,6 +46,7 @@ const snbtSections = [
   {
     key: "general-reasoning",
     questionCount: 20,
+    rendererDomain: "snbt-general",
     routeSlugs: { en: "general-reasoning", id: "penalaran-umum" },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -42,6 +57,7 @@ const snbtSections = [
   {
     key: "indonesian-language",
     questionCount: 30,
+    rendererDomain: "snbt-plain",
     routeSlugs: { en: "indonesian-language", id: "bahasa-indonesia" },
     timeLimitSeconds: 30 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -52,6 +68,7 @@ const snbtSections = [
   {
     key: "english-language",
     questionCount: 20,
+    rendererDomain: "snbt-plain",
     routeSlugs: { en: "english-language", id: "bahasa-inggris" },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -62,6 +79,7 @@ const snbtSections = [
   {
     key: "general-knowledge",
     questionCount: 20,
+    rendererDomain: "snbt-plain",
     routeSlugs: { en: "general-knowledge", id: "pengetahuan-umum" },
     timeLimitSeconds: 20 * SNBT_SECONDS_PER_QUESTION,
     translations: {
@@ -72,6 +90,7 @@ const snbtSections = [
   {
     key: "reading-and-writing-skills",
     questionCount: 20,
+    rendererDomain: "snbt-plain",
     routeSlugs: {
       en: "reading-and-writing-skills",
       id: "literasi-membaca-menulis",
@@ -82,18 +101,13 @@ const snbtSections = [
       id: { title: "Literasi Membaca dan Menulis" },
     },
   },
-] as const;
+];
 
 /** Lazily validates the source-controlled SNBT catalog and placements. */
 export const snbtTryoutSource = defineTryoutExamSource({
-  countryCode: "ID",
-  countryKey: "indonesia",
-  countryRouteSlugs: { en: "indonesia", id: "indonesia" },
-  countryTranslations: {
-    en: { title: "Indonesia" },
-    id: { title: "Indonesia" },
-  },
-  examKey: "snbt",
+  ...indonesiaTryoutCountry,
+  examKey: EXAM_KEY,
+  examOrder: 1,
   examRouteSlugs: { en: "snbt", id: "snbt" },
   examTranslations: {
     en: {
@@ -113,23 +127,23 @@ export const snbtTryoutSource = defineTryoutExamSource({
       kind: "year",
       order: 1,
       routeSlugs: { en: "2027", id: "2027" },
-      sets: [1, 2].map((setNumber) => ({
-        key: `set-${setNumber}`,
-        order: setNumber,
-        routeSlugs: {
-          en: `set-${setNumber}`,
-          id: `set-${setNumber}`,
-        },
-        sections: snbtSections.map((section, sectionIndex) => ({
-          ...section,
-          order: sectionIndex + 1,
-          questionSourcePath: `question-bank/tryout/indonesia/snbt/${section.key}/set-${setNumber}`,
-        })),
-        translations: {
-          en: { title: `Set ${setNumber}` },
-          id: { title: `Set ${setNumber}` },
-        },
-      })),
+      sets: [1, 2].map((setNumber) => {
+        const setKey = `set-${setNumber}`;
+        return {
+          key: setKey,
+          order: setNumber,
+          routeSlugs: { en: setKey, id: setKey },
+          sections: snbtSections.map((section, sectionIndex) => ({
+            ...section,
+            order: sectionIndex + 1,
+            questionSourcePath: `${QUESTION_ROOT}/${section.key}/${setKey}`,
+          })),
+          translations: {
+            en: { title: `Set ${setNumber}` },
+            id: { title: `Set ${setNumber}` },
+          },
+        };
+      }),
       translations: {
         en: { title: "Year 2027" },
         id: { title: "Tahun 2027" },

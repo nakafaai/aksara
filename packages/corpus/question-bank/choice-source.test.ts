@@ -1,9 +1,12 @@
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { decodeQuestionChoiceSource } from "#corpus/question-bank/choice-source";
 
-const sourcePath = "packages/corpus/question-bank/example/choices.ts";
+const sourcePath = CorpusSourcePathSchema.make(
+  "packages/corpus/question-bank/example/choices.ts"
+);
 const choiceObject = `{
   "en": [
     { "label": \`A\`, "value": true },
@@ -77,6 +80,7 @@ describe("question choice source", () => {
       'import type { Other } from "@nakafa/aksara-contracts/projection/question";',
       'import type { QuestionChoice as QuestionChoices } from "@nakafa/aksara-contracts/projection/question";',
       'import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/material";',
+      'import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question" with { type: "json" };',
       "import type { QuestionChoices } from source;",
       "const first = 1;",
     ];
@@ -109,6 +113,7 @@ describe("question choice source", () => {
       "{ ...other }",
       "{ en: [], en: [], id: [] }",
       "{ en: [] }",
+      "{ en: [], id: [], de: [] }",
       "{ en: call(), id: [] }",
       '{ en: ["A"], id: [] }',
       "{ en: [{ ...other }], id: [] }",
@@ -137,6 +142,7 @@ describe("question choice source", () => {
       typeImport,
       `${typeImport}\n${declaration}`,
       `${typeImport}\n${declaration}\n${exportAssignment}\nrun();`,
+      `${choiceModule()}\n/*`,
       choiceModule(typeImport, declaration, "const other = 1;"),
       choiceModule(typeImport, declaration, "export = choices;"),
       choiceModule(typeImport, declaration, "export default {};"),

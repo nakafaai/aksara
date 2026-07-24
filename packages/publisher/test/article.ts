@@ -7,12 +7,12 @@ import {
   type ArticleHead,
   ArticleHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { Effect, Stream } from "effect";
 import { prepareArticlePublication } from "#publisher/article/publication";
 import { testFileLayer } from "#test/files";
+import { testRendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
 export const articleEntries = await Effect.runPromise(decodeArticleRegistry());
@@ -47,7 +47,7 @@ export function articleManifest(politicsVersion = 1) {
         authoringComponents: baseComponents,
         supportedComponents: baseComponents,
       },
-      domains: rendererDomains({
+      domains: testRendererDomains({
         politics: politicsComponents.map(({ name }) => ({
           name,
           version: politicsVersion,

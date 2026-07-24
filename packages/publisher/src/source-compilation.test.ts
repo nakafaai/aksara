@@ -15,11 +15,11 @@ import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileReleaseSources } from "#publisher/source-compilation";
+import { testRendererDomains } from "#test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -27,7 +27,7 @@ const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),

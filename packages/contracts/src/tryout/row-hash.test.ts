@@ -1,5 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
+import type { ContentLocale } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   compareTryoutCatalog,
@@ -14,6 +15,7 @@ import {
   makeTryoutPlacementRecord,
 } from "#contracts/tryout/row-hash";
 import {
+  type TryoutCatalogRow,
   TryoutCatalogRowSchema,
   TryoutPlacementSchema,
 } from "#contracts/tryout/spec";
@@ -24,7 +26,7 @@ const hashes = {
   tampered: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
 };
 /** Derives current SNBT graph facts for one canonical hierarchy sample. */
-function graph(kind: "country" | "exam" | "track" | "set" | "section") {
+function graph(kind: TryoutCatalogRow["kind"]) {
   const suffixByKind = {
     country: ["indonesia"],
     exam: ["indonesia", "snbt"],
@@ -67,6 +69,7 @@ function catalogRows() {
       description: "Test-only country",
       graph: graph("country"),
       kind: "country",
+      order: 1,
       publicPath: "try-out/indonesia",
     },
     {
@@ -75,6 +78,7 @@ function catalogRows() {
       examKey: "snbt",
       graph: graph("exam"),
       kind: "exam",
+      order: 1,
       publicPath: "try-out/indonesia/snbt",
       scoringStrategy: "irt",
     },
@@ -129,7 +133,7 @@ function catalogRows() {
 }
 
 /** Builds one artifact-bound placement using test-only hash identities. */
-function placement(locale: "en" | "id", order: number) {
+function placement(locale: ContentLocale, order: number) {
   return Schema.decodeUnknownSync(TryoutPlacementSchema)({
     answerArtifactHash: hashes.answer,
     answerContentKey: `question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-${order}/answer`,

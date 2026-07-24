@@ -1,5 +1,5 @@
 import { Path } from "@effect/platform";
-import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/registry";
+import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -7,7 +7,12 @@ import {
   makeQuestionProjectionFromSource,
 } from "#publisher/question/document";
 import { testFileLayer } from "#test/files";
-import { checkoutRoot, questionEntries, sourceByPath } from "#test/question";
+import {
+  checkoutRoot,
+  questionChoices,
+  questionEntries,
+  sourceByPath,
+} from "#test/question";
 
 const promptEntry = questionEntries.find(
   ({ bodyKind, locale }) => bodyKind === "question" && locale === "en"
@@ -21,7 +26,7 @@ if (!(promptEntry && answerEntry)) {
 
 /** Loads one selected question body through the deterministic test filesystem. */
 function load(entry: QuestionEntry) {
-  return loadQuestionDocument(checkoutRoot, entry).pipe(
+  return loadQuestionDocument(checkoutRoot, entry, questionChoices).pipe(
     Effect.provide(testFileLayer(sourceByPath)),
     Effect.provide(Path.layer)
   );
@@ -30,7 +35,7 @@ function load(entry: QuestionEntry) {
 describe("question document", () => {
   it("maps a missing registry-owned source to its typed checkout error", async () => {
     const error = await Effect.runPromise(
-      loadQuestionDocument(checkoutRoot, promptEntry).pipe(
+      loadQuestionDocument(checkoutRoot, promptEntry, questionChoices).pipe(
         Effect.provide(testFileLayer(new Map())),
         Effect.provide(Path.layer),
         Effect.flip
@@ -84,7 +89,7 @@ describe("question document", () => {
 
     expect(prompt).toMatchObject({
       bodyKind: "question",
-      choices: promptEntry.choices.en,
+      choices: questionChoices.en,
       peerContentKey: answerEntry.contentKey,
     });
     expect(answer).toMatchObject({

@@ -160,8 +160,24 @@ jobs:
             --filter=@nakafa/aksara-cli
           pnpm deprecations:audit
 
+      - name: Prepare isolated operation checkout
+        env:
+          OPERATION_ROOT: ${{ runner.temp }}/aksara-operation
+        run: |
+          git worktree add --detach "$OPERATION_ROOT" "$GITHUB_SHA"
+          pnpm --dir "$OPERATION_ROOT" install --frozen-lockfile
+          if [[ "$(git -C "$OPERATION_ROOT" rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
+            echo "The isolated operation checkout does not match the reviewed workflow revision." >&2
+            exit 1
+          fi
+          if [[ -n "$(git -C "$OPERATION_ROOT" status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The isolated operation checkout is dirty." >&2
+            exit 1
+          fi
+
       - name: Publish release
         if: inputs.operation == 'release'
+        working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
@@ -177,6 +193,7 @@ jobs:
 
       - name: Publish rollback
         if: inputs.operation == 'rollback'
+        working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
@@ -194,6 +211,7 @@ jobs:
 
       - name: Accept active release
         if: inputs.operation == 'accept'
+        working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
@@ -205,6 +223,7 @@ jobs:
 
       - name: Recover active release
         if: inputs.operation == 'recover'
+        working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
@@ -218,6 +237,7 @@ jobs:
 
       - name: Clean unreachable release
         if: inputs.operation == 'cleanup'
+        working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
@@ -226,6 +246,7 @@ jobs:
 
       - name: Abort pending release
         if: inputs.operation == 'abort'
+        working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}

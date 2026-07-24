@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+import { compareCodeUnits } from "#contracts/text/order";
 
 const COMPONENT_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9]*$/;
 
@@ -23,13 +24,9 @@ function compareRequirements(
   left: RendererComponentRequirement,
   right: RendererComponentRequirement
 ) {
-  if (left.name < right.name) {
-    return -1;
-  }
-  if (left.name > right.name) {
-    return 1;
-  }
-  return left.version - right.version;
+  return (
+    compareCodeUnits(left.name, right.name) || left.version - right.version
+  );
 }
 
 /** Checks that requirement pairs are unique and canonically ordered. */

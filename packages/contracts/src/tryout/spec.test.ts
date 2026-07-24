@@ -2,91 +2,34 @@ import { Either, ParseResult, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import { ContentProjectionSchema } from "#contracts/projection/spec";
+import { testPreviewTarget } from "#contracts/test/preview";
+import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
   TryoutCatalogRowSchema,
   TryoutChoiceSchema,
-  TryoutCountryCodeSchema,
-  TryoutKeySchema,
   TryoutPlacementSchema,
   TryoutPlacementSourceSchema,
 } from "#contracts/tryout/spec";
 
-const common = {
-  graph: {
-    alignmentId: "alignment:tryout:indonesia:catalog:tryout-country:indonesia",
-    assetId: "asset:en:tryout:indonesia:catalog:tryout-country:indonesia",
-    conceptId: "concept:tryout:indonesia",
-    learningObjectId: "lo:tryout-country:indonesia",
-    lensId: "lens:tryout:indonesia:catalog",
-  },
-  locale: "en",
-  sourceRevision: "2026-07-05",
-  title: "SNBT",
-} as const;
 const catalogRows = [
   {
-    ...common,
     countryCode: "ID",
-    countryKey: "indonesia",
+    countryKey: testPreviewTarget.exam.countryKey,
+    graph: testPreviewTarget.exam.graph,
     kind: "country",
+    locale: testPreviewTarget.exam.locale,
+    order: 1,
     publicPath: "try-out/indonesia",
+    sourceRevision: testPreviewTarget.exam.sourceRevision,
+    title: "Indonesia",
   },
-  {
-    ...common,
-    countryKey: "indonesia",
-    examKey: "snbt",
-    kind: "exam",
-    publicPath: "try-out/indonesia/snbt",
-    scoringStrategy: "irt",
-  },
-  {
-    ...common,
-    countryKey: "indonesia",
-    examKey: "snbt",
-    kind: "track",
-    order: 1,
-    publicPath: "try-out/indonesia/snbt/2027",
-    questionCount: 300,
-    sectionCount: 14,
-    setCount: 2,
-    trackKey: "2027",
-    trackKind: "year",
-    visibleSectionCount: 14,
-  },
-  {
-    ...common,
-    countryKey: "indonesia",
-    examKey: "snbt",
-    kind: "set",
-    order: 1,
-    publicPath: "try-out/indonesia/snbt/2027/set-1",
-    questionCount: 150,
-    scoringStrategy: "irt",
-    sectionCount: 7,
-    setKey: "set-1",
-    trackKey: "2027",
-    visibleSectionCount: 7,
-  },
-  {
-    ...common,
-    countryKey: "indonesia",
-    examKey: "snbt",
-    kind: "section",
-    order: 1,
-    publicPath: "try-out/indonesia/snbt/2027/set-1/quantitative-knowledge",
-    questionCount: 20,
-    questionSourcePath:
-      "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1",
-    sectionKey: "quantitative-knowledge",
-    setKey: "set-1",
-    timeLimitSeconds: 1800,
-    trackKey: "2027",
-    visibility: "visible",
-  },
+  testPreviewTarget.exam,
+  testPreviewTarget.track,
+  testPreviewTarget.set,
+  testPreviewTarget.section,
 ] as const;
 const placement = Schema.decodeUnknownSync(TryoutPlacementSourceSchema)({
-  answerContentKey:
-    "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer",
+  ...testPreviewTarget.placement,
   choices: [
     {
       isCorrect: true,
@@ -95,20 +38,6 @@ const placement = Schema.decodeUnknownSync(TryoutPlacementSourceSchema)({
       order: 1,
     },
   ],
-  countryKey: "indonesia",
-  examKey: "snbt",
-  locale: "en",
-  questionContentKey:
-    "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question",
-  questionOrder: 1,
-  questionSourcePath:
-    "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1",
-  rendererDomain: "snbt-quant",
-  scope: "server",
-  sectionKey: "quantitative-knowledge",
-  setKey: "set-1",
-  sourceRevision: "2026-07-05",
-  trackKey: "2027",
 });
 /** Formats one expected strict schema failure for message assertions. */
 function formatFailure(result: Either.Either<unknown, ParseResult.ParseError>) {
@@ -135,9 +64,6 @@ describe("try-out contracts", () => {
     expect(
       formatFailure(Schema.decodeUnknownEither(TryoutKeySchema)("Not-Kebab"))
     ).toContain("Invalid try-out key.");
-    expect(
-      formatFailure(Schema.decodeUnknownEither(TryoutCountryCodeSchema)("id"))
-    ).toContain("Invalid country code.");
     expect(
       Either.isLeft(
         Schema.decodeUnknownEither(TryoutChoiceSchema)({
@@ -265,6 +191,28 @@ describe("try-out contracts", () => {
         })
       )
     ).toBe(true);
+    for (const contradiction of [
+      { ...placement, countryKey: "germany" },
+      { ...placement, examKey: "abitur" },
+      { ...placement, sectionKey: "other-section" },
+      { ...placement, setKey: "other-set" },
+      {
+        ...placement,
+        questionSourcePath:
+          "packages/corpus/question-bank/tryout/germany/abitur/quantitative-knowledge/set-1/question-1",
+      },
+      {
+        ...placement,
+        questionContentKey:
+          "question-bank/tryout/indonesia/snbt/set-1/question-1/question",
+      },
+    ]) {
+      expect(
+        Either.isLeft(
+          Schema.decodeUnknownEither(TryoutPlacementSourceSchema)(contradiction)
+        )
+      ).toBe(true);
+    }
     const incoherent = {
       ...placement,
       questionContentKey:

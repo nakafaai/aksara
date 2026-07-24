@@ -1,21 +1,12 @@
 import { createServer } from "node:net";
-import {
-  env,
-  make,
-  stderr,
-  stdin,
-  stdout,
-  workingDirectory,
-} from "@effect/platform/Command";
-import type { CommandExecutor } from "@effect/platform/CommandExecutor";
 import { Effect, Redacted, Schema } from "effect";
-import type * as Scope from "effect/Scope";
 import { isAddressInfo } from "#cli/address";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
+import { NakafaProcess } from "#cli/child-process";
 import type { PreviewCredentials } from "#cli/credentials";
 import type { PreviewProvider } from "#cli/provider";
 
-const LOOPBACK_HOST = "localhost";
+const LOOPBACK_HOST = "127.0.0.1";
 const LOOPBACK_ADDRESSES = new Set(["127.0.0.1", "::1"]);
 
 const ChildEnvironmentSchema = Schema.Struct({
@@ -25,11 +16,15 @@ const ChildEnvironmentSchema = Schema.Struct({
   AKSARA_PREVIEW_ORIGIN: Schema.String.pipe(
     Schema.pattern(/^http:\/\/127\.0\.0\.1:\d+\/$/u)
   ),
+  AKSARA_PREVIEW_PROVIDER_TOKEN: Schema.NonEmptyTrimmedString,
   AKSARA_PREVIEW_PUBLIC_KEY: Schema.String.pipe(
     Schema.minLength(1),
     Schema.maxLength(4096)
   ),
-  AKSARA_PREVIEW_TOKEN: Schema.NonEmptyTrimmedString,
+  AKSARA_PREVIEW_RENDERER_SECRET: Schema.NonEmptyTrimmedString,
+  AKSARA_PREVIEW_RENDERER_TOKEN: Schema.NonEmptyTrimmedString,
+  HOME: Schema.NonEmptyTrimmedString,
+  PATH: Schema.NonEmptyTrimmedString,
 });
 
 /** Running child whose exit always terminates the local preview session. */
@@ -44,12 +39,6 @@ export interface NakafaStartInput {
   readonly provider: PreviewProvider;
   readonly root: string;
 }
-
-/** Actual child-process capability consumed by the Nakafa service layer. */
-export type StartNakafa = (
-  executor: CommandExecutor,
-  input: NakafaStartInput
-) => Effect.Effect<RunningNakafa, NakafaAppError, Scope.Scope>;
 
 /** Allocates one currently free localhost port for the actual app child. */
 const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
@@ -88,45 +77,53 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       AKSARA_PREVIEW_KEY_ID: input.credentials.keyId,
       AKSARA_PREVIEW_MANIFEST_PATH: input.provider.manifestPath,
       AKSARA_PREVIEW_ORIGIN: input.provider.origin.toString(),
+      AKSARA_PREVIEW_PROVIDER_TOKEN: Redacted.value(
+        input.credentials.providerToken
+      ),
       AKSARA_PREVIEW_PUBLIC_KEY: input.credentials.publicKeyPem,
-      AKSARA_PREVIEW_TOKEN: Redacted.value(input.credentials.token),
+      AKSARA_PREVIEW_RENDERER_SECRET: Redacted.value(
+        input.credentials.renderer.secret
+      ),
+      AKSARA_PREVIEW_RENDERER_TOKEN: Redacted.value(
+        input.credentials.renderer.token
+      ),
+      HOME: process.env.HOME,
+      PATH: process.env.PATH,
     }).pipe(Effect.mapError(() => makeNakafaAppError("child-env", false)))
 );
 
 /** Starts the Next app with inherited stdio and explicit preview environment. */
-export const startNakafa: StartNakafa = Effect.fn("AksaraCli.startNakafa")(
-  function* (executor, input) {
-    const environment = yield* makeChildEnvironment(input);
-    const port = yield* reserveNakafaPort();
-    const command = make(
-      "pnpm",
-      "--filter",
-      "www",
-      "exec",
-      "next",
-      "dev",
-      "--hostname",
-      LOOPBACK_HOST,
-      "--port",
-      String(port)
-    ).pipe(
-      env(environment),
-      stdin("inherit"),
-      stdout("inherit"),
-      stderr("inherit"),
-      workingDirectory(input.root)
-    );
-    const process = yield* executor
-      .start(command)
-      .pipe(Effect.mapError(() => makeNakafaAppError("start", false)));
-    return {
-      awaitExit: process.exitCode.pipe(
-        Effect.mapError(() => makeNakafaAppError("exit", false)),
-        Effect.flatMap((status) =>
-          Effect.fail(makeNakafaAppError("exit", false, Number(status)))
-        )
-      ),
-      origin: new URL(`http://${LOOPBACK_HOST}:${port}`),
-    } satisfies RunningNakafa;
-  }
-);
+export const startNakafa = Effect.fn("AksaraCli.startNakafa")(function* (
+  input: NakafaStartInput
+) {
+  const processes = yield* NakafaProcess;
+  const environment = yield* makeChildEnvironment(input);
+  const port = yield* reserveNakafaPort();
+  const process = yield* processes
+    .start({
+      args: [
+        "--filter",
+        "www",
+        "exec",
+        "next",
+        "dev",
+        "--hostname",
+        LOOPBACK_HOST,
+        "--port",
+        String(port),
+      ],
+      command: "pnpm",
+      environment,
+      root: input.root,
+    })
+    .pipe(Effect.mapError(() => makeNakafaAppError("start", false)));
+  return {
+    awaitExit: process.exitCode.pipe(
+      Effect.mapError(() => makeNakafaAppError("exit", false)),
+      Effect.flatMap((status) =>
+        Effect.fail(makeNakafaAppError("exit", false, Number(status)))
+      )
+    ),
+    origin: new URL(`http://${LOOPBACK_HOST}:${port}`),
+  } satisfies RunningNakafa;
+});

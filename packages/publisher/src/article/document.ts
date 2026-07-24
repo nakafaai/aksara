@@ -46,22 +46,18 @@ export interface InspectedArticleDocument {
   readonly source: ArticleDocumentSource;
 }
 
-/** Wraps every registry and filesystem failure at the checkout source seam. */
+/** Binds one checkout root to the shared article-source error adapter. */
 export function mapArticleSourceError(checkoutRoot: string) {
   return (cause: unknown) => new ArticleSourceError({ cause, checkoutRoot });
 }
 
-/** Creates the exact compiler input shared by inspection and code generation. */
-export function makeArticleCompileInput(
-  source: ArticleDocumentSource,
-  rendererManifest: RendererManifestEnvelope
-) {
+/** Creates the exact authored body shared by every article compiler mode. */
+export function makeArticleCompileSource(source: ArticleDocumentSource) {
   return {
     contentKey: source.route.contentKey,
     locale: source.route.locale,
     rawMdx: source.rawMdx,
     rendererDomain: source.rendererDomain,
-    rendererManifest,
     sourcePath: source.sourcePath,
   };
 }
@@ -115,9 +111,10 @@ export const inspectArticleDocument = Effect.fn(
   entry: ArticleEntry
 ) {
   const source = yield* loadArticleDocument(checkoutRoot, entry);
-  const inspection = yield* inspectContentSource(
-    makeArticleCompileInput(source, rendererManifest)
-  );
+  const inspection = yield* inspectContentSource({
+    ...makeArticleCompileSource(source),
+    rendererManifest,
+  });
   const projection = yield* makeArticleProjectionFromSource(
     source,
     inspection.metadata
@@ -131,7 +128,7 @@ export const inspectArticleDocument = Effect.fn(
 });
 
 /** Binds compiled output to its registry-owned article change and projection. */
-export function makeArticleRecord(
+function makeArticleRecord(
   source: ArticleDocumentSource,
   result: CompiledContentResult,
   projection: ArticleProjection
@@ -167,8 +164,9 @@ export const compileArticleDocument = Effect.fn(
   document: InspectedArticleDocument,
   rendererManifest: RendererManifestEnvelope
 ) {
-  const result = yield* compileContent(
-    makeArticleCompileInput(document.source, rendererManifest)
-  );
+  const result = yield* compileContent({
+    ...makeArticleCompileSource(document.source),
+    rendererManifest,
+  });
   return makeArticleRecord(document.source, result, document.projection);
 });

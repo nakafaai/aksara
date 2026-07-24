@@ -1,9 +1,13 @@
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
+import {
+  type ContentLocale,
+  compareContentHeads,
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
 import {
   type QuestionHead,
   QuestionHeadSchema,
@@ -23,7 +27,7 @@ const sourceRoot =
 const hash = Sha256HashSchema.make(`sha256:${"1".repeat(64)}`);
 
 /** Returns one strict test-owned active placement without authored body text. */
-function placement(locale: "en" | "id") {
+function placement(locale: ContentLocale) {
   return Schema.decodeUnknownSync(TryoutPlacementSourceSchema)({
     answerContentKey: `${questionRoot}/answer`,
     choices: [
@@ -46,10 +50,10 @@ function placement(locale: "en" | "id") {
 }
 
 interface HeadInput {
-  readonly bodyKind: "answer" | "question";
+  readonly bodyKind: QuestionBodyKind;
   readonly contentRoot?: string;
   readonly delivery?: QuestionHead["delivery"];
-  readonly locale: "en" | "id";
+  readonly locale: ContentLocale;
   readonly rendererDomain?: QuestionHead["rendererDomain"];
   readonly sourcePath?: string;
 }

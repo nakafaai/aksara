@@ -13,11 +13,12 @@ import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash"
 import {
   makeQuestionBodyProjection,
   type QuestionBodyProjection,
+  type QuestionChoices,
   QuestionMetadataSchema,
 } from "@nakafa/aksara-contracts/projection/question";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/registry";
+import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import {
   type QuestionDocumentSource,
   readQuestionDocument,
@@ -50,17 +51,13 @@ export function mapQuestionSourceError(checkoutRoot: string) {
   return (cause: unknown) => new QuestionSourceError({ cause, checkoutRoot });
 }
 
-/** Creates the exact compiler input shared by inspection and code generation. */
-export function makeQuestionCompileInput(
-  source: QuestionDocumentSource,
-  rendererManifest: RendererManifestEnvelope
-) {
+/** Creates the exact authored body shared by every question compiler mode. */
+export function makeQuestionCompileSource(source: QuestionDocumentSource) {
   return {
     contentKey: source.contentKey,
     locale: source.locale,
     rawMdx: source.rawMdx,
     rendererDomain: source.rendererDomain,
-    rendererManifest,
     sourcePath: source.sourcePath,
   };
 }
@@ -89,16 +86,18 @@ export const makeQuestionProjectionFromSource: (
 /** Reads one registry-owned question document from the supplied checkout. */
 export const loadQuestionDocument: (
   checkoutRoot: string,
-  entry: QuestionEntry
+  entry: QuestionEntry,
+  choices: QuestionChoices
 ) => Effect.Effect<
   QuestionDocumentSource,
   QuestionSourceError,
   FileSystem.FileSystem | Path.Path
 > = Effect.fn("AksaraPublisher.loadQuestionDocument")(function* (
   checkoutRoot: string,
-  entry: QuestionEntry
+  entry: QuestionEntry,
+  choices: QuestionChoices
 ) {
-  return yield* readQuestionDocument(checkoutRoot, entry).pipe(
+  return yield* readQuestionDocument(checkoutRoot, entry, choices).pipe(
     Effect.mapError(mapQuestionSourceError(checkoutRoot))
   );
 });
@@ -109,12 +108,14 @@ export const inspectQuestionDocument = Effect.fn(
 )(function* (
   checkoutRoot: string,
   rendererManifest: RendererManifestEnvelope,
-  entry: QuestionEntry
+  entry: QuestionEntry,
+  choices: QuestionChoices
 ) {
-  const source = yield* loadQuestionDocument(checkoutRoot, entry);
-  const inspection = yield* inspectContentSource(
-    makeQuestionCompileInput(source, rendererManifest)
-  );
+  const source = yield* loadQuestionDocument(checkoutRoot, entry, choices);
+  const inspection = yield* inspectContentSource({
+    ...makeQuestionCompileSource(source),
+    rendererManifest,
+  });
   const projection = yield* makeQuestionProjectionFromSource(
     source,
     inspection.metadata
@@ -128,7 +129,7 @@ export const inspectQuestionDocument = Effect.fn(
 });
 
 /** Binds compiled output to its registry-owned question change and projection. */
-export function makeQuestionRecord(
+function makeQuestionRecord(
   source: QuestionDocumentSource,
   result: CompiledContentResult,
   projection: QuestionBodyProjection
@@ -164,8 +165,9 @@ export const compileQuestionDocument = Effect.fn(
   document: InspectedQuestionDocument,
   rendererManifest: RendererManifestEnvelope
 ) {
-  const result = yield* compileContent(
-    makeQuestionCompileInput(document.source, rendererManifest)
-  );
+  const result = yield* compileContent({
+    ...makeQuestionCompileSource(document.source),
+    rendererManifest,
+  });
   return makeQuestionRecord(document.source, result, document.projection);
 });

@@ -13,7 +13,7 @@ import {
 } from "@nakafa/aksara-contracts/release/current";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import {
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Schema } from "effect";
@@ -60,7 +60,7 @@ export function stateBundle(
       rollbackDigest: STATE_HASH,
       routeCount: 0,
       routeDigest: STATE_HASH,
-      snapshots: emptyContentSnapshots(),
+      snapshots: inheritContentSnapshots(null),
       upsertCount: 0,
     },
     manifestHash: STATE_HASH,

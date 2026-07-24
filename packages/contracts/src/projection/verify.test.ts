@@ -1,5 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
+import type { ContentLocale } from "#contracts/content";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { digestProjections } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
@@ -9,14 +10,14 @@ import {
   verifyContentProjections,
 } from "#contracts/projection/verify";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
-import { emptyContentSnapshots } from "#contracts/release/snapshot";
+import { inheritContentSnapshots } from "#contracts/release/snapshot";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { materialGraph } from "#contracts/test/graph";
 
 /** Builds one unmistakably test-only canonical material projection. */
 function projection(
   contentKey: string,
-  locale: "en" | "id",
+  locale: ContentLocale,
   publicPath: string
 ) {
   const parentPath = publicPath.slice(0, publicPath.lastIndexOf("/"));
@@ -88,7 +89,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"d".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"d".repeat(64)}`,
-  snapshots: emptyContentSnapshots(),
+  snapshots: inheritContentSnapshots(null),
   upsertCount: 0,
 });
 

@@ -1,10 +1,12 @@
 import { NodeContext, NodeHttpClient } from "@effect/platform-node";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { vi } from "vitest";
 import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import { runProductionCommand } from "#cli/production";
+import { unusedExactProcess } from "#test/process";
 import type { TargetCalls } from "#test/production-mock";
 
 interface ProductionCalls extends TargetCalls {
@@ -100,8 +102,8 @@ vi.mock("#cli/evidence", async () =>
 vi.mock("#cli/production-renderer", async () =>
   (await import("#test/production-mock")).rendererMock(calls)
 );
-vi.mock("#cli/repository", async () =>
-  (await import("#test/production-mock")).repositoryMock(calls)
+vi.mock("#cli/checkout", async () =>
+  (await import("#test/production-mock")).checkoutMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/heads", async () =>
   (await import("#test/production-mock")).headsMock(calls)
@@ -282,6 +284,7 @@ vi.mock("@nakafa/aksara-publisher/resume", async () => {
 function productionProgram(args: ReleaseArguments | RollbackArguments) {
   return runProductionCommand({ args, cwd: "/code/aksara" }).pipe(
     Effect.provide(NodeHttpClient.layer),
+    Effect.provideService(ExactProcess, unusedExactProcess),
     Effect.provide(NodeContext.layer)
   );
 }

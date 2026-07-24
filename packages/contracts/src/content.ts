@@ -12,10 +12,29 @@ import {
 import { CompiledContentRequirementsSchema } from "#contracts/renderer/component";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
+import { compareCodeUnits } from "#contracts/text/order";
 
-/** Locale baseline pinned to Nakafa 25506da until its contract is migrated. */
+/** Locales currently supported end to end by Aksara and Nakafa. */
 export const ContentLocaleSchema = Schema.Literal("en", "id");
 export type ContentLocale = typeof ContentLocaleSchema.Type;
+
+/** Checks the exact locale capability order owned by this contract version. */
+function hasExactContentLocales(locales: readonly ContentLocale[]) {
+  return (
+    locales.length === ContentLocaleSchema.literals.length &&
+    locales.every(
+      (locale, index) => locale === ContentLocaleSchema.literals[index]
+    )
+  );
+}
+
+/** Complete ordered locale capability carried by aggregate snapshots. */
+export const ContentLocaleListSchema = Schema.Array(ContentLocaleSchema).pipe(
+  Schema.filter(hasExactContentLocales, {
+    message: () => "Locales must match the content contract.",
+  })
+);
+export type ContentLocaleList = typeof ContentLocaleListSchema.Type;
 
 /** Published content families backed by real Aksara source registries. */
 export const ContentFamilySchema = Schema.Literal(
@@ -53,19 +72,8 @@ export function compareContentHeads(
   left: ContentHeadIdentity,
   right: ContentHeadIdentity
 ) {
-  if (left.contentKey < right.contentKey) {
-    return -1;
-  }
-  if (left.contentKey > right.contentKey) {
-    return 1;
-  }
-  if (left.locale < right.locale) {
-    return -1;
-  }
-  if (left.locale > right.locale) {
-    return 1;
-  }
-  return 0;
+  const contentKeyOrder = compareCodeUnits(left.contentKey, right.contentKey);
+  return contentKeyOrder || compareCodeUnits(left.locale, right.locale);
 }
 
 /** Compiler protocol implemented by this Aksara compiler release. */

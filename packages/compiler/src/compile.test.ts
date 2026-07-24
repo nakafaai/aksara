@@ -1,11 +1,12 @@
 import { createHash } from "node:crypto";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";
+import { testRendererDomains } from "#compiler/test/renderer";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 
@@ -22,7 +23,7 @@ function manifestInput(
 ) {
   return {
     base: { authoringComponents, supportedComponents },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
@@ -56,7 +57,7 @@ function withMetadata(body: string, metadata = VALID_METADATA) {
 function compileRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest,
-  rendererDomain: "chemistry" | "mathematics" = "mathematics"
+  rendererDomain: RendererDomain = "mathematics"
 ) {
   return Effect.runPromise(
     compileContent({
@@ -74,7 +75,7 @@ function compileRawMdx(
 function rejectRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest,
-  rendererDomain: "chemistry" | "mathematics" = "mathematics"
+  rendererDomain: RendererDomain = "mathematics"
 ) {
   return Effect.runPromise(
     compileContent({

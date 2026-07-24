@@ -1,26 +1,25 @@
+import { randomBytes } from "node:crypto";
+import type { HttpClient } from "@effect/platform";
 import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "@effect/platform";
+  PreviewRendererNonceSchema,
+  PreviewRendererResponseSchema,
+  verifyPreviewRendererProof,
+} from "@nakafa/aksara-contracts/preview/auth";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import {
-  hasDirectives,
-  isJsonType,
-  readText,
-} from "@nakafa/aksara-utilities/http/response";
-import { Effect, type Redacted, Schedule } from "effect";
+import { Effect, Redacted, Schedule, Schema } from "effect";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
+import type { RendererCredentials } from "#cli/credentials";
+import { fetchRendererBody } from "#cli/renderer/http";
 
-const LOOPBACK_HOST = "localhost";
+const LOOPBACK_HOST = "127.0.0.1";
 const RENDERER_PATH = "/api/internal/content/renderer";
-const MAXIMUM_RENDERER_BYTES = 256 * 1024;
+const RENDERER_RETRY_DELAY = "1 second";
 
 /** Actual authenticated renderer capability consumed by the Nakafa service. */
 export type FetchRenderer = (
   origin: URL,
-  token: Redacted.Redacted<string>
+  credentials: RendererCredentials
 ) => Effect.Effect<
   RendererManifestEnvelope,
   NakafaAppError,
@@ -41,81 +40,60 @@ function isNakafaOrigin(origin: URL) {
   );
 }
 
-/** Fetches and validates one exact authenticated renderer endpoint response. */
-export const fetchRendererEndpoint = Effect.fn(
-  "AksaraCli.fetchRendererEndpoint"
-)((url: URL, token: Redacted.Redacted<string>) =>
-  Effect.gen(function* () {
-    const client = yield* HttpClient.HttpClient;
-    const request = HttpClientRequest.get(url).pipe(
-      HttpClientRequest.acceptJson,
-      HttpClientRequest.bearerToken(token),
-      HttpClientRequest.setHeader("cache-control", "no-store")
-    );
-    const response = yield* client
-      .pipe(HttpClient.withScope)
-      .execute(request)
-      .pipe(
-        Effect.provideService(FetchHttpClient.RequestInit, {
-          redirect: "manual",
-        }),
-        Effect.mapError(() => makeNakafaAppError("network", true))
+/** Creates one unpredictable renderer challenge without exposing crypto errors. */
+const makeRendererNonce = Effect.fn("AksaraCli.makeRendererNonce")(() =>
+  Effect.try({
+    catch: () => makeNakafaAppError("auth", false),
+    try: () =>
+      PreviewRendererNonceSchema.make(randomBytes(32).toString("base64url")),
+  })
+);
+
+/** Fetches and authenticates one local renderer manifest response. */
+const fetchPreviewRenderer = Effect.fn("AksaraCli.fetchPreviewRenderer")(
+  (url: URL, credentials: RendererCredentials) =>
+    Effect.gen(function* () {
+      const nonce = yield* makeRendererNonce();
+      const body = yield* fetchRendererBody(url, {
+        nonce,
+        token: credentials.token,
+      });
+      const authenticated = yield* Schema.decodeUnknown(
+        PreviewRendererResponseSchema,
+        { onExcessProperty: "error" }
+      )(body).pipe(
+        Effect.mapError(() => makeNakafaAppError("contract", false))
       );
-    if (
-      response.request.url !== url.toString() ||
-      (response.status >= 300 && response.status < 400)
-    ) {
-      return yield* makeNakafaAppError("redirect", false);
-    }
-    if (response.status !== 200) {
-      const retryable =
-        response.status === 404 ||
-        response.status === 408 ||
-        response.status === 429 ||
-        response.status >= 500;
-      return yield* makeNakafaAppError("status", retryable, response.status);
-    }
-    if (!hasDirectives(response.headers["cache-control"], ["no-store"])) {
-      return yield* makeNakafaAppError("cache", false);
-    }
-    if (!isJsonType(response.headers["content-type"])) {
-      return yield* makeNakafaAppError("json", false);
-    }
-    const source = yield* readText(response, MAXIMUM_RENDERER_BYTES).pipe(
-      Effect.mapError((error) => {
-        if (error.reason === "empty" || error.reason === "encoding") {
-          return makeNakafaAppError("json", false);
-        }
-        return makeNakafaAppError("body", error.reason === "stream");
-      })
-    );
-    const body = yield* Effect.try({
-      catch: () => makeNakafaAppError("json", false),
-      try: () => JSON.parse(source),
-    });
-    return yield* validateRendererManifestHash(body).pipe(
-      Effect.mapError(() => makeNakafaAppError("contract", false))
-    );
-  }).pipe(Effect.scoped)
+      const manifest = yield* validateRendererManifestHash(
+        authenticated.manifest
+      ).pipe(Effect.mapError(() => makeNakafaAppError("contract", false)));
+      yield* verifyPreviewRendererProof({
+        manifestHash: manifest.hash,
+        nonce,
+        proof: authenticated.proof,
+        secret: Redacted.value(credentials.secret),
+      }).pipe(Effect.mapError(() => makeNakafaAppError("auth", false)));
+      return manifest;
+    })
 );
 
 /** Reads one renderer manifest only from the spawned localhost Nakafa app. */
 export const fetchRendererManifest: FetchRenderer = Effect.fn(
   "AksaraCli.fetchRendererManifest"
-)((origin, token) => {
+)((origin, credentials) => {
   if (!isNakafaOrigin(origin)) {
     return Effect.fail(makeNakafaAppError("origin", false));
   }
-  return fetchRendererEndpoint(new URL(RENDERER_PATH, origin), token);
+  return fetchPreviewRenderer(new URL(RENDERER_PATH, origin), credentials);
 });
 
 /** Retries only startup-transient renderer failures within one bounded minute. */
 export const waitForRenderer: FetchRenderer = Effect.fn(
   "AksaraCli.waitForRenderer"
-)((origin, token) =>
-  fetchRendererManifest(origin, token).pipe(
+)((origin, credentials) =>
+  fetchRendererManifest(origin, credentials).pipe(
     Effect.retry({
-      schedule: Schedule.spaced("100 millis"),
+      schedule: Schedule.spaced(RENDERER_RETRY_DELAY),
       while: (error) => error.retryable,
     }),
     Effect.timeoutFail({

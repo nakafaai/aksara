@@ -1,7 +1,9 @@
 import { NodeContext, NodeHttpClient } from "@effect/platform-node";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { makeCliProgram } from "#cli/program";
+import { unusedExactProcess } from "#test/process";
 
 const calls = vi.hoisted(() => ({
   abort: undefined as
@@ -15,6 +17,7 @@ const calls = vi.hoisted(() => ({
       }
     | undefined,
   args: [] as readonly string[],
+  check: undefined as string | undefined,
   cleanup: undefined as
     | { readonly command: string; readonly releaseId: string }
     | undefined,
@@ -71,6 +74,9 @@ vi.mock("#cli/args", async () => {
           command: "cleanup",
           releaseId: "release-cleanup",
         });
+      }
+      if (args[0] === "check") {
+        return TestEffect.succeed({ command: "check" });
       }
       if (args[0] === "release") {
         return TestEffect.succeed({
@@ -144,6 +150,17 @@ vi.mock("#cli/cleanup", async () => {
   };
 });
 
+vi.mock("#cli/check", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Records read-only catalog validation without opening a real app. */
+    runCheckCommand: (cwd: string) => {
+      calls.check = cwd;
+      return TestEffect.succeed("check-complete");
+    },
+  };
+});
+
 vi.mock("#cli/session", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
@@ -195,6 +212,7 @@ beforeEach(() => {
   calls.abort = undefined;
   calls.args = [];
   calls.cleanup = undefined;
+  calls.check = undefined;
   calls.open = undefined;
   calls.production = undefined;
   calls.recover = undefined;
@@ -206,6 +224,7 @@ function runProgram(args: readonly string[]) {
   return Effect.runPromise(
     makeCliProgram({ args, cwd: "/code/aksara" }).pipe(
       Effect.provide(NodeHttpClient.layer),
+      Effect.provideService(ExactProcess, unusedExactProcess),
       Effect.provide(NodeContext.layer)
     )
   );
@@ -244,64 +263,42 @@ describe("CLI program", () => {
     });
   });
 
-  it("dispatches acceptance without entering signed publication", async () => {
-    const result = await runProgram(["accept"]);
+  it.each(["accept", "recover"] satisfies readonly ("accept" | "recover")[])(
+    "dispatches %s without entering signed publication",
+    async (command) => {
+      const result = await runProgram([command]);
 
-    expect(result).toBe("accept-complete");
-    expect(calls.accept).toEqual({
-      command: "accept",
-      recoveryId: "recovery-active",
-      releaseId: "release-active",
-    });
-  });
+      expect(result).toBe(`${command}-complete`);
+      expect(calls[command]).toEqual({
+        command,
+        recoveryId: "recovery-active",
+        releaseId: "release-active",
+      });
+    }
+  );
 
-  it("dispatches recovery without entering signed publication", async () => {
-    const result = await runProgram(["recover"]);
+  it.each(["abort", "cleanup"] satisfies readonly ("abort" | "cleanup")[])(
+    "dispatches %s without entering signed publication",
+    async (command) => {
+      const releaseId = `release-${command}`;
+      const result = await runProgram([command, "--release-id", releaseId]);
 
-    expect(result).toBe("recover-complete");
-    expect(calls.recover).toEqual({
-      command: "recover",
-      recoveryId: "recovery-active",
-      releaseId: "release-active",
-    });
-  });
-
-  it("dispatches abort without entering signed publication", async () => {
-    const result = await runProgram(["abort", "--release-id", "release-abort"]);
-
-    expect(result).toBe("abort-complete");
-    expect(calls.abort).toEqual({
-      command: "abort",
-      releaseId: "release-abort",
-    });
-    expect(calls.cleanup).toBeUndefined();
-    expect(calls.production).toBeUndefined();
-    expect(calls.open).toBeUndefined();
-  });
-
-  it("dispatches cleanup without entering signed publication", async () => {
-    const result = await runProgram([
-      "cleanup",
-      "--release-id",
-      "release-cleanup",
-    ]);
-
-    expect(result).toBe("cleanup-complete");
-    expect(calls.cleanup).toEqual({
-      command: "cleanup",
-      releaseId: "release-cleanup",
-    });
-    expect(calls.production).toBeUndefined();
-    expect(calls.open).toBeUndefined();
-    expect(calls.abort).toBeUndefined();
-  });
+      expect(result).toBe(`${command}-complete`);
+      expect(calls[command]).toEqual({ command, releaseId });
+    }
+  );
 
   it("dispatches status without entering signed publication", async () => {
     const result = await runProgram(["status"]);
 
     expect(result).toBe("status-complete");
     expect(calls.status).toBe(true);
-    expect(calls.production).toBeUndefined();
-    expect(calls.open).toBeUndefined();
+  });
+
+  it("dispatches read-only catalog validation without publication", async () => {
+    const result = await runProgram(["check"]);
+
+    expect(result).toBe("check-complete");
+    expect(calls.check).toBe("/code/aksara");
   });
 });

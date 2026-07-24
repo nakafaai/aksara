@@ -6,7 +6,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import { digestQuranRows } from "#contracts/quran/row-digest";
 import { hashQuranRow } from "#contracts/quran/row-hash";
-import type { QuranRowPayload } from "#contracts/quran/spec";
+import { QURAN_SURAH_COUNT, type QuranRowPayload } from "#contracts/quran/spec";
 import { quranTestPayloads } from "#contracts/test/quran";
 
 const failures = vi.hoisted(
@@ -91,6 +91,7 @@ describe("Quran row digest", () => {
       runtimeCount: 1199,
       searchCount: 228,
     });
+    expect(summary.chunkCount).toBe(summary.runtimeCount - QURAN_SURAH_COUNT);
   }, 30_000);
 
   it("rejects tampered, duplicated, displaced, and incomplete rows", async () => {

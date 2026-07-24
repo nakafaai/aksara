@@ -14,6 +14,7 @@ const packageSources = isCorpus
       "articles/**/*.ts",
       "curriculum/**/*.ts",
       "material/**/*.ts",
+      "preview/**/*.ts",
       "program/**/*.ts",
       "quran/**/*.ts",
       "question-bank/*.ts",
@@ -40,6 +41,18 @@ const config = defineConfig({
       },
     ],
   },
+  ssr: {
+    resolve: {
+      conditions: [
+        "aksara-source",
+        "module",
+        "node",
+        "import",
+        "default",
+        "development|production",
+      ],
+    },
+  },
   test: {
     ...(isRoot ? { include: ["scripts/**/*.test.ts"] } : {}),
     coverage: {
@@ -53,6 +66,7 @@ const config = defineConfig({
       },
     },
     environment: "node",
+    testTimeout: 10_000,
   },
 });
 

@@ -4,7 +4,7 @@ import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   invertContentSnapshots,
   restoreContentSnapshot,
 } from "#contracts/release/snapshot";
@@ -61,7 +61,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"f".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"f".repeat(64)}`,
-  snapshots: emptyContentSnapshots(),
+  snapshots: inheritContentSnapshots(null),
   upsertCount: itemSummary.upsertCount,
 });
 

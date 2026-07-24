@@ -2,7 +2,11 @@ import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/row-hash";
 import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/spec";
-import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/registry";
+import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
+import {
+  indexQuestionChoices,
+  type QuestionSource,
+} from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Option, Stream } from "effect";
 import {
   type InspectedQuestionDocument,
@@ -44,6 +48,22 @@ function requiredEntry(
         })
       )
     : Effect.succeed(entry);
+}
+
+/** Joins one body entry to the choices owned by its physical question source. */
+function requiredChoices(
+  choicesByRoot: ReturnType<typeof indexQuestionChoices>,
+  entry: QuestionEntry
+) {
+  const choices = choicesByRoot.get(entry.sourceRoot);
+  return choices === undefined
+    ? Effect.fail(
+        new TryoutTitleMissingError({
+          contentKey: entry.contentKey,
+          locale: entry.locale,
+        })
+      )
+    : Effect.succeed(choices);
 }
 
 type FingerprintField = "compilerConfigHash" | "projectionHash" | "sourceHash";
@@ -89,15 +109,30 @@ const inspectPlacement = Effect.fn("AksaraPublisher.inspectTryoutPlacement")(
     checkoutRoot: string,
     rendererManifest: RendererManifestEnvelope,
     entries: ReadonlyMap<string, QuestionEntry>,
+    choicesByRoot: ReturnType<typeof indexQuestionChoices>,
     binding: BoundTryoutPlacement
   ) {
     const [answerEntry, questionEntry] = yield* Effect.all([
       requiredEntry(entries, binding, "answer"),
       requiredEntry(entries, binding, "question"),
     ]);
+    const [answerChoices, questionChoices] = yield* Effect.all([
+      requiredChoices(choicesByRoot, answerEntry),
+      requiredChoices(choicesByRoot, questionEntry),
+    ]);
     const [answerDocument, questionDocument] = yield* Effect.all([
-      inspectQuestionDocument(checkoutRoot, rendererManifest, answerEntry),
-      inspectQuestionDocument(checkoutRoot, rendererManifest, questionEntry),
+      inspectQuestionDocument(
+        checkoutRoot,
+        rendererManifest,
+        answerEntry,
+        answerChoices
+      ),
+      inspectQuestionDocument(
+        checkoutRoot,
+        rendererManifest,
+        questionEntry,
+        questionChoices
+      ),
     ]);
     yield* Effect.all([
       verifyFingerprint(binding.answerHead, answerDocument),
@@ -120,16 +155,19 @@ export function bindTryoutTitles<E, R>(input: {
   readonly checkoutRoot: string;
   readonly entries: readonly QuestionEntry[];
   readonly rendererManifest: RendererManifestEnvelope;
+  readonly sources: readonly QuestionSource[];
 }) {
   const entries = new Map(
     input.entries.map((entry) => [entryIdentity(entry), entry])
   );
+  const choicesByRoot = indexQuestionChoices(input.sources);
   return input.bindings.pipe(
     Stream.mapEffect((binding) =>
       inspectPlacement(
         input.checkoutRoot,
         input.rendererManifest,
         entries,
+        choicesByRoot,
         binding
       )
     )

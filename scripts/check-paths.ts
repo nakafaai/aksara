@@ -35,12 +35,10 @@ const EXTENSION_SUFFIXES = new Set([
 ]);
 const MATERIAL_LESSON_PREFIX = ["packages", "corpus", "material", "lesson"];
 const QUESTION_BANK_PREFIX = ["packages", "corpus", "question-bank", "tryout"];
-const TRYOUT_EXAMS = new Set(["snbt", "tka"]);
-const TRYOUT_GROUP_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const TRYOUT_SET_PATTERN = /^set-[1-9]\d*$/u;
-const TRYOUT_QUESTION_PATTERN = /^question-[1-9]\d*$/u;
-const TRYOUT_SOURCE_PATTERN =
-  /^(?:choices\.ts|(?:answer|question)\.[a-z]{2}\.mdx)$/u;
+const QUESTION_SEGMENT_PATTERN = /^question-[1-9]\d*$/u;
+const QUESTION_SOURCE_PATTERN =
+  /^(?:choices\.ts|(?:answer|question)\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx)$/u;
+const SOURCE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
 /** Returns the semantic words in one file or folder name. */
 function words(segment: string): string[] {
@@ -69,35 +67,24 @@ function hasPrefix(segments: readonly string[], prefix: readonly string[]) {
   );
 }
 
-/** Recognizes one complete canonical question-bank source file path. */
+/** Recognizes a complete generic question source without owning exam inventory. */
 function isQuestionSource(segments: readonly string[]) {
-  if (
-    !hasPrefix(segments, QUESTION_BANK_PREFIX) ||
-    segments.length !== QUESTION_BANK_PREFIX.length + 6
-  ) {
+  if (!hasPrefix(segments, QUESTION_BANK_PREFIX)) {
     return false;
   }
 
-  const [country, exam, group, set, question, source] = segments.slice(
-    QUESTION_BANK_PREFIX.length
-  );
-  if (
-    country !== "indonesia" ||
-    exam === undefined ||
-    !TRYOUT_EXAMS.has(exam) ||
-    group === undefined ||
-    !TRYOUT_GROUP_PATTERN.test(group)
-  ) {
-    return false;
-  }
+  const questionIndex = segments.length - 2;
+  const hierarchy = segments.slice(QUESTION_BANK_PREFIX.length, questionIndex);
+  const question = segments.at(questionIndex);
+  const source = segments.at(-1);
 
   return (
-    set !== undefined &&
-    TRYOUT_SET_PATTERN.test(set) &&
+    hierarchy.length >= 4 &&
+    hierarchy.every((segment) => SOURCE_KEY_PATTERN.test(segment)) &&
     question !== undefined &&
-    TRYOUT_QUESTION_PATTERN.test(question) &&
+    QUESTION_SEGMENT_PATTERN.test(question) &&
     source !== undefined &&
-    TRYOUT_SOURCE_PATTERN.test(source)
+    QUESTION_SOURCE_PATTERN.test(source)
   );
 }
 
@@ -112,7 +99,9 @@ function isEducationalFolder(segments: readonly string[], index: number) {
   }
 
   return (
-    index === QUESTION_BANK_PREFIX.length + 2 && isQuestionSource(segments)
+    isQuestionSource(segments) &&
+    index >= QUESTION_BANK_PREFIX.length &&
+    index < segments.length - 2
   );
 }
 

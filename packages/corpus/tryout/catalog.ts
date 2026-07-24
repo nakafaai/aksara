@@ -5,6 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/graph/identity";
 import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/spec";
 import { Effect, Schema } from "effect";
+import { validateTryoutRoutes } from "#corpus/tryout/route";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const TRYOUT_PATH = "try-out";
@@ -38,15 +39,11 @@ function publicPath(...segments: readonly string[]) {
   return segments.join("/");
 }
 /** Counts every question across one source-owned section list. */
-function questionCount(
-  sections: readonly { readonly questionCount: number }[]
-) {
+function questionCount(sections: readonly TryoutSectionSource[]) {
   return sections.reduce((total, section) => total + section.questionCount, 0);
 }
 /** Counts only sections that own a physical public route. */
-function visibleCount(
-  sections: readonly { readonly visibility: "internal-entry" | "visible" }[]
-) {
+function visibleCount(sections: readonly TryoutSectionSource[]) {
   return sections.filter(({ visibility }) => visibility === "visible").length;
 }
 /** Derives a signed graph identity from stable source keys, never route slugs. */
@@ -243,6 +240,7 @@ const projectExam = Effect.fn("AksaraCorpus.projectTryoutCatalogExam")(
         examKey: source.examKey,
         graph,
         kind: "exam",
+        order: source.examOrder,
         publicPath: examPath,
         scoringStrategy: source.scoringStrategy,
       },
@@ -251,7 +249,7 @@ const projectExam = Effect.fn("AksaraCorpus.projectTryoutCatalogExam")(
   }
 );
 
-/** Projects one shared country once per locale from its first stable owner. */
+/** Projects one shared country once per locale from country-owned facts. */
 const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
   function* (source: TryoutExamSource, locale: TryoutLocale) {
     const graph = yield* graphIdentity(
@@ -264,19 +262,20 @@ const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
       ...localizedFields({
         description: source.countryTranslations[locale].description,
         locale,
-        sourceRevision: source.sourceRevision,
+        sourceRevision: source.countryRevision,
         title: source.countryTranslations[locale].title,
       }),
       countryCode: source.countryCode,
       countryKey: source.countryKey,
       graph,
       kind: "country",
+      order: source.countryOrder,
       publicPath: publicPath(TRYOUT_PATH, source.countryRouteSlugs[locale]),
     };
   }
 );
 
-/** Selects the first validated owner of each shared country identity. */
+/** Selects one registry-validated owner of each shared country identity. */
 function uniqueCountries(sources: readonly TryoutExamSource[]) {
   return [
     ...new Map(sources.map((source) => [source.countryKey, source])).values(),
@@ -297,12 +296,11 @@ export const projectTryoutCatalog = Effect.fn(
       projectExam(source, locale)
     )
   );
-  return yield* Schema.decodeUnknown(Schema.Array(TryoutCatalogRowSchema))(
-    [...countries.flat(), ...exams.flat(2)],
-    {
-      onExcessProperty: "error",
-    }
-  ).pipe(
+  const rows = yield* Schema.decodeUnknown(
+    Schema.Array(TryoutCatalogRowSchema)
+  )([...countries.flat(), ...exams.flat(2)], {
+    onExcessProperty: "error",
+  }).pipe(
     Effect.mapError(
       (cause) =>
         new TryoutCatalogDecodeError({
@@ -310,4 +308,6 @@ export const projectTryoutCatalog = Effect.fn(
         })
     )
   );
+  yield* validateTryoutRoutes(rows);
+  return rows;
 });

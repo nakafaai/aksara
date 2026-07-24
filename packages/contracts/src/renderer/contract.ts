@@ -5,7 +5,6 @@ import {
   RendererAuthoringComponentsSchema,
   type RendererCapability,
   RendererCapabilitySchema,
-  type RendererComponentRequirement,
   RendererSupportedComponentsSchema,
 } from "#contracts/renderer/component";
 import {
@@ -13,6 +12,7 @@ import {
   type RendererDomain,
   RendererDomainSchema,
 } from "#contracts/renderer/domain";
+import { compareCodeUnits } from "#contracts/text/order";
 
 const RENDERER_CONTRACT_VERSION_PATTERN =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
@@ -47,31 +47,9 @@ export type RendererDomainCapability =
 export function sortRendererDomains<T extends RendererDomainCapability>(
   domains: readonly T[]
 ) {
-  return [...domains].sort((left, right) => {
-    if (left.name < right.name) {
-      return -1;
-    }
-    if (left.name > right.name) {
-      return 1;
-    }
-    return 0;
-  });
-}
-
-/** Builds every canonical domain from explicit same-version component sets. */
-export function rendererDomains(
-  components: Readonly<
-    Partial<Record<RendererDomain, readonly RendererComponentRequirement[]>>
-  >
-) {
-  return RENDERER_DOMAINS.map((name) => {
-    const selected = components[name] ?? [];
-    return {
-      authoringComponents: selected,
-      name,
-      supportedComponents: selected,
-    };
-  });
+  return [...domains].sort((left, right) =>
+    compareCodeUnits(left.name, right.name)
+  );
 }
 
 /** Exact canonical route-domain registry collection. */

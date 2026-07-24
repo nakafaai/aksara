@@ -2,7 +2,7 @@ import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import { Effect, Layer, Stream } from "effect";
-import { GitBlob, GitBlobLive } from "#publisher/git/blob";
+import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 import {
   PublicationSource,
   PublicationSourceError,
@@ -67,7 +67,9 @@ const GitPublicationSourceFromBlob = Layer.effect(
   )
 );
 
-/** Publication source backed only by exact Git blobs and a command executor. */
-export const GitPublicationSourceLive = GitPublicationSourceFromBlob.pipe(
-  Layer.provide(GitBlobLive)
-);
+/** Builds a publication source bound to one already verified checkout root. */
+export function makeGitPublicationSourceLive(repositoryRoot: string) {
+  return GitPublicationSourceFromBlob.pipe(
+    Layer.provide(makeGitBlobLive(repositoryRoot))
+  );
+}

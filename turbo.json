@@ -18,9 +18,17 @@
       "inputs": ["package.json", "vitest.config.ts", "scripts/**/*.ts"],
       "outputs": ["coverage/**"]
     },
+    "//#clean:root": {
+      "cache": false
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
+    },
+    "check": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "env": ["NAKAFA_APP_DIR"]
     },
     "@nakafa/aksara-corpus#build": {
       "cache": false,
@@ -39,6 +47,7 @@
       "outputs": ["coverage/**"]
     },
     "clean": {
+      "dependsOn": ["//#clean:root"],
       "cache": false
     },
     "abort": {
@@ -57,7 +66,6 @@
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
     "dev": {
-      "dependsOn": ["build"],
       "cache": false,
       "env": ["NAKAFA_APP_DIR"],
       "persistent": true
@@ -101,8 +109,11 @@
       "cache": false,
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "typecheck": {
-      "dependsOn": ["//#typecheck:root", "^build"],
+      "dependsOn": ["//#typecheck:root", "transit"],
       "outputs": []
     },
     "test": {

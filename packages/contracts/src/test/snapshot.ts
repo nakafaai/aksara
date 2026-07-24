@@ -1,23 +1,18 @@
 import { Effect, Schema, Stream } from "effect";
 
+import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
-import {
-  digestProgramRows,
-  makeProgramSnapshotRow,
-} from "#contracts/program/row-hash";
+import { digestProgramRows } from "#contracts/program/row-digest";
 import {
   PROGRAM_SNAPSHOT_FORMAT,
   ProgramSnapshotSchema,
 } from "#contracts/program/snapshot";
 import { hashProgramSnapshot } from "#contracts/program/snapshot-hash";
-import {
-  LearningProgramKeySchema,
-  LearningProgramSchema,
-} from "#contracts/program/spec";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "#contracts/release/snapshot-data";
+import { makeTestProgramRecords } from "#contracts/test/program";
 import { makeQuranTestData } from "#contracts/test/quran";
 import {
   compareTryoutCatalog,
@@ -37,40 +32,8 @@ import {
 
 const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
-/** Builds one explicit test-only learning-program source row. */
-function program(index: number) {
-  return LearningProgramSchema.make({
-    defaultCoverageStatus: "planned",
-    displayOrder: index * 10,
-    iconKey: "school",
-    key: LearningProgramKeySchema.make(`test-program-${index}`),
-    kind: "school-curriculum",
-    navigation: { levels: ["stage", "subject"], model: "curriculum-tree" },
-    provider: { kind: "nakafa", name: "Nakafa test suite" },
-    sources: [
-      {
-        label: `Test-only source ${index}`,
-        retrievedAt: "2026-01-01",
-        type: "nakafa-editorial",
-        url: `https://example.test/program-${index}`,
-      },
-    ],
-    translations: {
-      en: {
-        publicSlug: `test-program-${index}`,
-        title: `Test Program ${index}`,
-      },
-      id: {
-        publicSlug: `program-uji-${index}`,
-        title: `Program Uji ${index}`,
-      },
-    },
-    version: { label: "Test-only version" },
-  });
-}
-
 /** Builds a test-owned graph identity for one try-out hierarchy row. */
-function tryoutGraph(locale: "en" | "id", kind: string) {
+function tryoutGraph(locale: ContentLocale, kind: string) {
   return {
     alignmentId: `alignment:tryout:test:${kind}`,
     assetId: `asset:${locale}:tryout:test:${kind}`,
@@ -82,7 +45,7 @@ function tryoutGraph(locale: "en" | "id", kind: string) {
 
 /** Builds both locale variants for every try-out hierarchy kind. */
 function tryoutCatalog() {
-  const rows = (["en", "id"] as const).flatMap((locale) => {
+  const rows = ContentLocaleSchema.literals.flatMap((locale) => {
     const root = locale === "en" ? "try-out" : "uji-coba";
     const common = {
       locale,
@@ -96,6 +59,7 @@ function tryoutCatalog() {
         countryKey: "indonesia",
         graph: tryoutGraph(locale, "country"),
         kind: "country",
+        order: 1,
         publicPath: `${root}/indonesia`,
       },
       {
@@ -104,6 +68,7 @@ function tryoutCatalog() {
         examKey: "snbt",
         graph: tryoutGraph(locale, "exam"),
         kind: "exam",
+        order: 1,
         publicPath: `${root}/indonesia/snbt`,
         scoringStrategy: "irt",
       },
@@ -160,7 +125,7 @@ function tryoutCatalog() {
 }
 
 /** Builds one localized, artifact-bound test placement. */
-function tryoutPlacement(locale: "en" | "id") {
+function tryoutPlacement(locale: ContentLocale) {
   return Schema.decodeUnknownSync(TryoutPlacementSchema)({
     answerArtifactHash: sourceHash,
     answerContentKey:
@@ -196,15 +161,14 @@ function tryoutPlacement(locale: "en" | "id") {
 export const makeSnapshotTestData = Effect.fn(
   "AksaraContracts.makeSnapshotTestData"
 )(function* () {
-  const programRecords = yield* Effect.forEach([1, 2, 3, 4, 5, 6], (index) =>
-    makeProgramSnapshotRow(program(index))
-  );
+  const { curriculumRecords, programRecords } = yield* makeTestProgramRecords();
+  const aggregateRecords = [...programRecords, ...curriculumRecords];
   const programSummary = yield* digestProgramRows(
-    Stream.fromIterable(programRecords)
+    Stream.fromIterable(aggregateRecords)
   );
   const programInput = {
     format: PROGRAM_SNAPSHOT_FORMAT,
-    locales: ["en", "id"],
+    locales: ContentLocaleSchema.literals,
     ...programSummary,
   } as const;
   const programId = yield* hashProgramSnapshot(programInput);
@@ -218,7 +182,7 @@ export const makeSnapshotTestData = Effect.fn(
   const catalogRecords = tryoutCatalog()
     .map(makeTryoutCatalogRecord)
     .sort((left, right) => compareTryoutCatalog(left.row, right.row));
-  const placementRecords = (["en", "id"] as const)
+  const placementRecords = ContentLocaleSchema.literals
     .map(tryoutPlacement)
     .map(makeTryoutPlacementRecord)
     .sort((left, right) => compareTryoutPlacements(left.row, right.row));
@@ -230,7 +194,7 @@ export const makeSnapshotTestData = Effect.fn(
     catalogDigest: catalogSummary.digest,
     counts: { country: 2, exam: 2, section: 2, set: 2, track: 2 },
     format: "tryout-v1",
-    locales: ["en", "id"],
+    locales: ContentLocaleSchema.literals,
     placementCount: placementSummary.count,
     placementDigest: placementSummary.digest,
     routeCount: 8,
@@ -242,7 +206,13 @@ export const makeSnapshotTestData = Effect.fn(
     { family: "tryout", manifest: tryoutManifest },
   ];
   const rows: readonly ContentSnapshotRow[] = [
-    ...programRecords.map((record) => ({ family: "program", record }) as const),
+    ...aggregateRecords.map(
+      (record) =>
+        ({
+          family: "program",
+          record,
+        }) as const
+    ),
     ...quran.records.map((record) => ({ family: "quran", record }) as const),
     ...catalogRecords.map(
       (record) => ({ family: "tryout", record, rowKind: "catalog" }) as const

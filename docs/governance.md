@@ -1,7 +1,7 @@
 # Repository governance
 
 This file records the external repository controls that were verified on
-2026-07-23. These settings are part of the release boundary but do not replace
+2026-07-24. These settings are part of the release boundary but do not replace
 artifact signatures, application authorization, or content entitlement checks.
 
 ## Current GitHub state
@@ -29,8 +29,10 @@ artifact signatures, application authorization, or content entitlement checks.
   the initial main ref and cleanup pull request.
 - GitHub Actions default token permissions are read-only and workflows cannot
   approve pull requests.
-- Actions are limited to GitHub-owned actions plus `pnpm/action-setup@*`, and
-  every action must be pinned to a full commit SHA.
+- Actions are limited to GitHub-owned actions, `pnpm/action-setup`,
+  `slsa-framework/slsa-verifier`, and `changesets/action`; every action is
+  pinned to a full commit SHA. The latter two own the package-provenance proof
+  and ready version-PR creation respectively.
 - Vulnerability alerts, Dependabot security updates, secret scanning, push
   protection, automated security fixes, and private vulnerability reporting are
   enabled.

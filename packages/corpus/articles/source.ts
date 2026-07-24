@@ -1,11 +1,5 @@
 import { FileSystem, Path } from "@effect/platform";
-import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
-import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
-import type {
-  ArticleReference,
-  ArticleRoute,
-} from "@nakafa/aksara-contracts/projection/article";
-import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Schema } from "effect";
 
 import { dynasticPoliticsAsianValuesArticle } from "#corpus/articles/politics/dynastic-politics/asian-values/source";
@@ -58,18 +52,13 @@ export const decodeArticleSources = Effect.fn(
 /** Reading one reviewed article body failed through Effect Platform. */
 export class ArticleReadError extends Schema.TaggedError<ArticleReadError>()(
   "ArticleReadError",
-  { cause: Schema.Unknown, sourcePath: Schema.String }
+  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
 ) {}
 
 /** Complete authored article document passed to release preparation. */
-export interface ArticleDocumentSource {
-  readonly delivery: ContentDeliveryClass;
+export type ArticleDocumentSource = Omit<ArticleEntry, "sourceRoot"> & {
   readonly rawMdx: string;
-  readonly references: readonly ArticleReference[];
-  readonly rendererDomain: RendererDomain;
-  readonly route: ArticleRoute;
-  readonly sourcePath: CorpusSourcePath;
-}
+};
 
 /** Reads one registry-owned article without escaping the checkout root. */
 export const readArticleDocument = Effect.fn(
@@ -85,12 +74,9 @@ export const readArticleDocument = Effect.fn(
         (cause) => new ArticleReadError({ cause, sourcePath: entry.sourcePath })
       )
     );
+  const { sourceRoot: _sourceRoot, ...document } = entry;
   return {
-    delivery: entry.delivery,
+    ...document,
     rawMdx,
-    references: entry.references,
-    rendererDomain: entry.rendererDomain,
-    route: entry.route,
-    sourcePath: entry.sourcePath,
   } satisfies ArticleDocumentSource;
 });

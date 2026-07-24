@@ -1,6 +1,8 @@
+import type { ContentLocale } from "@nakafa/aksara-contracts/content";
+
 /** Builds exact graph identity for one test-owned material projection. */
 export function materialGraph(
-  locale: "en" | "id",
+  locale: ContentLocale,
   topic: string,
   section: string
 ) {

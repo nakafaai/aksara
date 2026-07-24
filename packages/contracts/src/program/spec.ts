@@ -1,16 +1,13 @@
 import { Schema } from "effect";
 
 import { ContentLocaleSchema } from "#contracts/content";
+import { CountryCodeSchema } from "#contracts/country";
 import { DateOnlySchema } from "#contracts/date";
-
-const PROGRAM_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const PROGRAM_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const COUNTRY_CODE_PATTERN = /^[A-Z]{2}$/u;
-const HTTPS_URL_PATTERN = /^https:\/\/\S+$/u;
+import { isHttpsUrl, isLowerKebab } from "#contracts/text/syntax";
 
 /** Canonical language-neutral identity for one learning program. */
 export const LearningProgramKeySchema = Schema.String.pipe(
-  Schema.pattern(PROGRAM_KEY_PATTERN, {
+  Schema.filter(isLowerKebab, {
     description: "Lowercase kebab-case canonical learning program key.",
     identifier: "LearningProgramKey",
     message: () =>
@@ -113,12 +110,7 @@ export const ProgramSourceKindSchema = Schema.Literal(
   "official-portal"
 );
 
-const ProgramCountrySchema = Schema.String.pipe(
-  Schema.pattern(COUNTRY_CODE_PATTERN)
-);
-const ProgramSlugSchema = Schema.String.pipe(
-  Schema.pattern(PROGRAM_SLUG_PATTERN)
-);
+const ProgramSlugSchema = Schema.String.pipe(Schema.filter(isLowerKebab));
 const ProgramTranslationSchema = Schema.Struct({
   publicSlug: ProgramSlugSchema,
   title: Schema.NonEmptyTrimmedString,
@@ -130,7 +122,7 @@ const ProgramTranslationsSchema = Schema.Record({
 
 /** Reviewed provider identity attached to one learning program. */
 export const ProgramProviderSchema = Schema.Struct({
-  homeCountry: Schema.optional(ProgramCountrySchema),
+  homeCountry: Schema.optional(CountryCodeSchema),
   kind: ProgramProviderKindSchema,
   name: Schema.NonEmptyTrimmedString,
 });
@@ -141,7 +133,7 @@ export const ProgramSourceSchema = Schema.Struct({
   retrievedAt: DateOnlySchema,
   reviewAfter: Schema.optional(DateOnlySchema),
   type: ProgramSourceKindSchema,
-  url: Schema.String.pipe(Schema.pattern(HTTPS_URL_PATTERN)),
+  url: Schema.String.pipe(Schema.filter(isHttpsUrl)),
 });
 
 /** Version label and optional inclusive availability window. */
@@ -169,7 +161,7 @@ export const LearningProgramSchema = Schema.Struct({
     model: ProgramNavigationModelSchema,
   }),
   provider: ProgramProviderSchema,
-  recommendedCountry: Schema.optional(ProgramCountrySchema),
+  recommendedCountry: Schema.optional(CountryCodeSchema),
   sources: Schema.NonEmptyArray(ProgramSourceSchema),
   translations: ProgramTranslationsSchema,
   version: ProgramVersionSchema,
@@ -207,16 +199,15 @@ export function canonicalizeLearningProgram(program: LearningProgram) {
       type: source.type,
       url: source.url,
     })),
-    translations: {
-      en: {
-        publicSlug: program.translations.en.publicSlug,
-        title: program.translations.en.title,
-      },
-      id: {
-        publicSlug: program.translations.id.publicSlug,
-        title: program.translations.id.title,
-      },
-    },
+    translations: Object.fromEntries(
+      ContentLocaleSchema.literals.map((locale) => [
+        locale,
+        {
+          publicSlug: program.translations[locale].publicSlug,
+          title: program.translations[locale].title,
+        },
+      ])
+    ),
     version: {
       ...(program.version.endsAt === undefined
         ? {}

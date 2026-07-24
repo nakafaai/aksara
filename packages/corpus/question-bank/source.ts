@@ -1,31 +1,31 @@
 import { FileSystem, Path } from "@effect/platform";
-import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type QuestionChoices,
   QuestionChoicesSchema,
-  QuestionSetKeySchema,
 } from "@nakafa/aksara-contracts/projection/question";
-import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import {
+  QUESTION_BANK_KEY_ROOT,
+  QuestionSetKeySchema,
+} from "@nakafa/aksara-contracts/question/identity";
+import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
+import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect, Schema } from "effect";
 
 import { decodeQuestionChoiceSource } from "#corpus/question-bank/choice-source";
+import type { QuestionEntry } from "#corpus/question-bank/content";
 import {
   decodeQuestionPath,
+  locateQuestionEntry,
   QUESTION_BANK_ROOT,
+  QUESTION_SOURCE_FILES,
+  type QuestionBankIndex,
+  type QuestionLocation,
   QuestionLocationSchema,
   QuestionPathError,
 } from "#corpus/question-bank/path";
-import type { QuestionEntry } from "#corpus/question-bank/registry";
 
-const EXPECTED_FILES = [
-  "answer.en.mdx",
-  "answer.id.mdx",
-  "choices.ts",
-  "question.en.mdx",
-  "question.id.mdx",
-];
-const QUESTION_ANCESTOR_PATTERN =
-  /^(?:snbt|tka)(?:\/[a-z0-9]+(?:-[a-z0-9]+)*){0,1}(?:\/set-[1-9]\d*)?$/;
+const isTryoutKey = Schema.is(TryoutKeySchema);
 
 /** One complete authored question directory discovered from the checkout. */
 export const QuestionSourceSchema = Schema.Struct({
@@ -33,17 +33,25 @@ export const QuestionSourceSchema = Schema.Struct({
   choices: QuestionChoicesSchema,
 });
 export type QuestionSource = typeof QuestionSourceSchema.Type;
+
+/** Indexes canonical choices once by their physical question directory. */
+export function indexQuestionChoices(sources: readonly QuestionSource[]) {
+  return new Map(
+    sources.map(({ choices, sourceRoot }) => [sourceRoot, choices])
+  );
+}
+
 /** Reading a question-bank directory or source file failed. */
 export class QuestionReadError extends Schema.TaggedError<QuestionReadError>()(
   "QuestionReadError",
-  { cause: Schema.Unknown, path: Schema.String }
+  { cause: Schema.Unknown, path: CorpusSourcePathSchema }
 ) {}
 /** A question directory does not contain exactly its five required files. */
 export class QuestionFileSetError extends Schema.TaggedError<QuestionFileSetError>()(
   "QuestionFileSetError",
   {
     files: Schema.Array(Schema.String),
-    sourcePath: Schema.String,
+    sourcePath: CorpusSourcePathSchema,
   }
 ) {}
 
@@ -56,37 +64,11 @@ export class QuestionSequenceError extends Schema.TaggedError<QuestionSequenceEr
   }
 ) {}
 
-/** Complete authored question or answer body passed to release preparation. */
-export interface QuestionDocumentSource {
-  readonly bodyKind: QuestionEntry["bodyKind"];
+/** Complete authored question or answer body joined with canonical choices. */
+export type QuestionDocumentSource = Omit<QuestionEntry, "sourceRoot"> & {
   readonly choices: QuestionChoices;
-  readonly contentKey: QuestionEntry["contentKey"];
-  readonly delivery: ContentDeliveryClass;
-  readonly locale: QuestionEntry["locale"];
-  readonly peerContentKey: QuestionEntry["peerContentKey"];
-  readonly questionKey: QuestionEntry["questionKey"];
-  readonly questionNumber: QuestionEntry["questionNumber"];
   readonly rawMdx: string;
-  readonly rendererDomain: RendererDomain;
-  readonly setKey: QuestionEntry["setKey"];
-  readonly sourcePath: QuestionEntry["sourcePath"];
-}
-
-/** Finds the owning question directory and its direct relative file path. */
-function locateQuestionEntry(entry: string, separator: string) {
-  const segments = entry.split(separator);
-  const questionIndex = segments.findIndex((segment) =>
-    segment.startsWith("question-")
-  );
-  if (questionIndex === -1) {
-    return;
-  }
-
-  return {
-    file: segments.slice(questionIndex + 1).join("/"),
-    root: segments.slice(0, questionIndex + 1).join("/"),
-  };
-}
+};
 
 /** Groups every recursive directory entry beneath its question directory. */
 function groupQuestionFiles(entries: readonly string[], separator: string) {
@@ -106,18 +88,49 @@ function groupQuestionFiles(entries: readonly string[], separator: string) {
   }
 
   return [...filesByRoot.entries()].sort(([left], [right]) =>
-    left.localeCompare(right)
+    compareCodeUnits(left, right)
+  );
+}
+
+/** Derives every reviewed physical ancestor from the renderer bank index. */
+function questionAncestors(questionBanks: QuestionBankIndex) {
+  const ancestors = new Set<string>();
+  const prefix = `${QUESTION_BANK_KEY_ROOT}/`;
+  for (const bankKey of questionBanks.keys()) {
+    const segments = bankKey.slice(prefix.length).split("/");
+    for (let length = 1; length <= segments.length; length += 1) {
+      ancestors.add(segments.slice(0, length).join("/"));
+    }
+  }
+  return ancestors;
+}
+
+/** Accepts a reviewed bank ancestor or one generic set beneath that bank. */
+function isQuestionAncestor(
+  sourcePath: string,
+  questionBanks: QuestionBankIndex,
+  ancestors: ReadonlySet<string>
+) {
+  if (ancestors.has(sourcePath)) {
+    return true;
+  }
+  const separator = sourcePath.lastIndexOf("/");
+  if (separator === -1) {
+    return false;
+  }
+  const bankKey = `${QUESTION_BANK_KEY_ROOT}/${sourcePath.slice(0, separator)}`;
+  return (
+    questionBanks.has(bankKey) && isTryoutKey(sourcePath.slice(separator + 1))
   );
 }
 
 /** Reads and validates the localized choices for one question directory. */
-const readChoices = Effect.fn("AksaraCorpus.readQuestionChoices")(function* (
-  corpusRoot: string,
-  sourceRoot: string
-) {
+export const readQuestionChoices = Effect.fn(
+  "AksaraCorpus.readQuestionChoices"
+)(function* (corpusRoot: string, sourceRoot: QuestionSource["sourceRoot"]) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
-  const sourcePath = `${sourceRoot}/choices.ts`;
+  const sourcePath = CorpusSourcePathSchema.make(`${sourceRoot}/choices.ts`);
   const source = yield* fileSystem
     .readFileString(path.join(corpusRoot, sourcePath), "utf8")
     .pipe(
@@ -127,6 +140,52 @@ const readChoices = Effect.fn("AksaraCorpus.readQuestionChoices")(function* (
     );
   return yield* decodeQuestionChoiceSource(source, sourcePath);
 });
+
+/** Requires one authored question directory to contain its exact file set. */
+const validateQuestionFiles = Effect.fn("AksaraCorpus.validateQuestionFiles")(
+  function* (
+    sourcePath: typeof CorpusSourcePathSchema.Type,
+    discoveredFiles: readonly string[]
+  ) {
+    const files = [...discoveredFiles].sort();
+    if (
+      files.length !== QUESTION_SOURCE_FILES.length ||
+      files.some((file, index) => file !== QUESTION_SOURCE_FILES[index])
+    ) {
+      return yield* new QuestionFileSetError({ files, sourcePath });
+    }
+  }
+);
+
+/** Reads and validates exactly one selected authored question directory. */
+export const readQuestionSource = Effect.fn("AksaraCorpus.readQuestionSource")(
+  function* (corpusRoot: string, location: QuestionLocation) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const absoluteRoot = path.join(corpusRoot, location.sourceRoot);
+    const files = yield* fileSystem
+      .readDirectory(absoluteRoot)
+      .pipe(
+        Effect.mapError(
+          (cause) => new QuestionReadError({ cause, path: location.sourceRoot })
+        )
+      );
+    return yield* loadQuestionSource(corpusRoot, location, files);
+  }
+);
+
+/** Builds one complete question source from already-discovered direct files. */
+const loadQuestionSource = Effect.fn("AksaraCorpus.loadQuestionSource")(
+  function* (
+    corpusRoot: string,
+    location: QuestionLocation,
+    discoveredFiles: readonly string[]
+  ) {
+    yield* validateQuestionFiles(location.sourceRoot, discoveredFiles);
+    const choices = yield* readQuestionChoices(corpusRoot, location.sourceRoot);
+    return { ...location, choices } satisfies QuestionSource;
+  }
+);
 
 /** Validates contiguous numbering within each exact source-owned set. */
 const validateSequences = Effect.fn("AksaraCorpus.validateQuestionSequences")(
@@ -154,9 +213,10 @@ const validateSequences = Effect.fn("AksaraCorpus.validateQuestionSequences")(
 /** Discovers every complete question directory without a document import map. */
 export const discoverQuestionSources = Effect.fn(
   "AksaraCorpus.discoverQuestionSources"
-)(function* (corpusRoot: string) {
+)(function* (corpusRoot: string, questionBanks: QuestionBankIndex) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
+  const ancestors = questionAncestors(questionBanks);
   const absoluteRoot = path.join(corpusRoot, QUESTION_BANK_ROOT);
   const entries = yield* fileSystem
     .readDirectory(absoluteRoot, { recursive: true })
@@ -169,7 +229,7 @@ export const discoverQuestionSources = Effect.fn(
     const normalized = entry.split(path.sep).join("/");
     return (
       locateQuestionEntry(entry, path.sep) === undefined &&
-      !QUESTION_ANCESTOR_PATTERN.test(normalized)
+      !isQuestionAncestor(normalized, questionBanks, ancestors)
     );
   });
   if (invalidEntry !== undefined) {
@@ -186,20 +246,10 @@ export const discoverQuestionSources = Effect.fn(
     directories,
     ([physicalRoot, discoveredFiles]) =>
       Effect.gen(function* () {
-        const files = [...discoveredFiles].sort();
-        if (
-          files.length !== EXPECTED_FILES.length ||
-          files.some((file, index) => file !== EXPECTED_FILES[index])
-        ) {
-          return yield* new QuestionFileSetError({
-            files,
-            sourcePath: `${QUESTION_BANK_ROOT}/${physicalRoot}`,
-          });
-        }
-
-        const source = yield* decodeQuestionPath(physicalRoot);
-        const choices = yield* readChoices(corpusRoot, source.sourceRoot);
-        return { ...source, choices } satisfies QuestionSource;
+        const location = yield* decodeQuestionPath(questionBanks, physicalRoot);
+        return yield* loadQuestionSource(corpusRoot, location, [
+          ...discoveredFiles,
+        ]);
       }),
     { concurrency: 32 }
   );
@@ -210,7 +260,11 @@ export const discoverQuestionSources = Effect.fn(
 /** Reads one registry-owned question body from its exact reviewed source path. */
 export const readQuestionDocument = Effect.fn(
   "AksaraCorpus.readQuestionDocument"
-)(function* (corpusRoot: string, entry: QuestionEntry) {
+)(function* (
+  corpusRoot: string,
+  entry: QuestionEntry,
+  choices: QuestionChoices
+) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const rawMdx = yield* fileSystem
@@ -221,18 +275,10 @@ export const readQuestionDocument = Effect.fn(
       )
     );
 
+  const { sourceRoot: _sourceRoot, ...document } = entry;
   return {
-    bodyKind: entry.bodyKind,
-    choices: entry.choices,
-    contentKey: entry.contentKey,
-    delivery: entry.delivery,
-    locale: entry.locale,
-    peerContentKey: entry.peerContentKey,
-    questionKey: entry.questionKey,
-    questionNumber: entry.questionNumber,
+    ...document,
+    choices,
     rawMdx,
-    rendererDomain: entry.rendererDomain,
-    setKey: entry.setKey,
-    sourcePath: entry.sourcePath,
   } satisfies QuestionDocumentSource;
 });

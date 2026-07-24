@@ -69,6 +69,9 @@ describe("production arguments", () => {
     await expect(parseCli(["status"])).resolves.toEqual({
       command: "status",
     });
+    await expect(parseCli(["check"])).resolves.toEqual({
+      command: "check",
+    });
     await expect(
       parseCli([
         "release",
@@ -275,4 +278,11 @@ describe("production arguments", () => {
       });
     }
   );
+
+  it("rejects values attached to the read-only catalog check", async () => {
+    await expect(rejectCli(["check", "--unknown"])).resolves.toMatchObject({
+      _tag: "CheckArgumentsError",
+      reason: "unknown",
+    });
+  });
 });

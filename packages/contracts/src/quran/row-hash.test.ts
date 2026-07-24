@@ -72,6 +72,9 @@ describe("Quran row hashing", () => {
     const bound = await Effect.runPromise(bindQuranRow(snapshotId, surah));
 
     expect(canonicalizeQuranRow(surah)).toBe(JSON.stringify(surah));
+    expect(bound.rowHash).toBe(
+      "sha256:8f6ddb9b632faa23855de66398dad1acd8a366c9abbea395d7caf1360d3f9f03"
+    );
     expect(bound).toMatchObject({ payload: surah, snapshotId });
   });
 

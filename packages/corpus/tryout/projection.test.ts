@@ -3,15 +3,14 @@ import { resolve } from "node:path";
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
+import { indexQuestionBanks } from "#corpus/question-bank/path";
 import { discoverQuestionSources } from "#corpus/question-bank/source";
-import {
-  loadTryoutProjection,
-  projectTryoutSources,
-} from "#corpus/tryout/projection";
+import { loadTryoutContent } from "#corpus/tryout/content";
+import { projectTryoutSources } from "#corpus/tryout/projection";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const sourceRoot = "packages/corpus/question-bank/tryout/indonesia";
+const sourceRoot = "packages/corpus/question-bank/tryout";
 const absoluteSourceRoot = resolve(corpusRoot, sourceRoot);
 const realEntries = globSync("**/*", { cwd: absoluteSourceRoot });
 const realChoices = new Map(
@@ -44,7 +43,8 @@ const realFileLayer = FileSystem.layerNoop({
 /** Loads the exact active projection from the checked-in corpus. */
 function loadProjection() {
   return Effect.runPromise(
-    loadTryoutProjection(corpusRoot).pipe(
+    loadTryoutContent(corpusRoot).pipe(
+      Effect.map(({ projection }) => projection),
       Effect.provide(realFileLayer),
       Effect.provide(Path.layer)
     )
@@ -54,13 +54,18 @@ function loadProjection() {
 /** Loads reviewed hierarchy and question sources for typed failure tests. */
 function loadSources() {
   return Effect.runPromise(
-    Effect.all([
-      decodeTryoutRegistry(),
-      discoverQuestionSources(corpusRoot).pipe(
-        Effect.provide(realFileLayer),
-        Effect.provide(Path.layer)
-      ),
-    ])
+    Effect.gen(function* () {
+      const sources = yield* decodeTryoutRegistry();
+      const questionBanks = yield* indexQuestionBanks(sources);
+      const questions = yield* discoverQuestionSources(
+        corpusRoot,
+        questionBanks
+      ).pipe(Effect.provide(realFileLayer), Effect.provide(Path.layer));
+      return [sources, questions] satisfies readonly [
+        typeof sources,
+        typeof questions,
+      ];
+    })
   );
 }
 
@@ -248,14 +253,6 @@ describe("tryout projection", () => {
       ),
       "active question"
     );
-    const tka = requireSource(
-      sources.find(({ examKey }) => examKey === "tka"),
-      "TKA source"
-    );
-    const snbt = requireSource(
-      sources.find(({ examKey }) => examKey === "snbt"),
-      "SNBT source"
-    );
     const invalidChoices = questions.map((question) =>
       question.questionKey === active.questionKey
         ? {
@@ -280,25 +277,13 @@ describe("tryout projection", () => {
         ).pipe(Effect.flip),
         projectTryoutSources(sources, [...questions, active]).pipe(Effect.flip),
         projectTryoutSources(sources, invalidChoices).pipe(Effect.flip),
-        projectTryoutSources(
-          sources.map((source) =>
-            source.examKey === "tka"
-              ? {
-                  ...tka,
-                  examRouteSlugs: snbt.examRouteSlugs,
-                }
-              : source
-          ),
-          questions
-        ).pipe(Effect.flip),
       ])
     );
 
     expect(failures.map(({ _tag }) => _tag)).toEqual([
       "TryoutQuestionMissingError",
       "TryoutQuestionDuplicateError",
-      "TryoutProjectionDecodeError",
-      "TryoutRouteDuplicateError",
+      "TryoutPlacementError",
     ]);
   });
 });

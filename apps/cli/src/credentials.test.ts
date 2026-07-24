@@ -33,7 +33,7 @@ afterEach(() => {
 });
 
 describe("preview credentials", () => {
-  it("creates unique ephemeral Ed25519 identities and bearer tokens", async () => {
+  it("creates unique identities and independent preview credentials", async () => {
     const [first, second] = await Promise.all([
       Effect.runPromise(makePreviewCredentials()),
       Effect.runPromise(makePreviewCredentials()),
@@ -41,8 +41,21 @@ describe("preview credentials", () => {
 
     expect(first.keyId).toMatch(LOCAL_KEY_ID_PATTERN);
     expect(first.keyId).not.toBe(second.keyId);
-    expect(Redacted.value(first.token)).toHaveLength(43);
-    expect(Redacted.value(first.token)).not.toBe(Redacted.value(second.token));
+    const firstSecrets = [
+      Redacted.value(first.providerToken),
+      Redacted.value(first.renderer.secret),
+      Redacted.value(first.renderer.token),
+    ];
+    const secondSecrets = [
+      Redacted.value(second.providerToken),
+      Redacted.value(second.renderer.secret),
+      Redacted.value(second.renderer.token),
+    ];
+    expect(firstSecrets).toHaveLength(new Set(firstSecrets).size);
+    expect([...firstSecrets, ...secondSecrets]).toHaveLength(
+      new Set([...firstSecrets, ...secondSecrets]).size
+    );
+    expect(firstSecrets.every((value) => value.length === 43)).toBe(true);
     expect(createPublicKey(first.publicKeyPem).asymmetricKeyType).toBe(
       "ed25519"
     );

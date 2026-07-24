@@ -50,11 +50,14 @@ describe("snapshot provenance", () => {
     const program = {
       family: "program",
       manifest: {
-        format: "program-v1",
+        curriculumRowCount: 390,
+        format: "program-v2",
         locales: ["en", "id"],
-        rowCount: 0,
+        programRowCount: 6,
+        rowCount: 396,
         rowDigest: blockedQuran.projectionDigest,
-        slugCount: 0,
+        sitemapCount: 52,
+        slugCount: 12,
         snapshotId: blockedQuran.snapshotId,
       },
     } as const;

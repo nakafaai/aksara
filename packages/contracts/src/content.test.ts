@@ -1,8 +1,9 @@
 import { createHash } from "node:crypto";
-import { Effect, Schema } from "effect";
+import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   CompiledContentPayloadSchema,
+  ContentLocaleListSchema,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   canonicalizeSignedContentArtifact,
@@ -59,6 +60,19 @@ describe("content", () => {
     expect(compareContentHeads(english, indonesian)).toBe(-1);
     expect(compareContentHeads(indonesian, english)).toBe(1);
     expect(compareContentHeads(english, english)).toBe(0);
+  });
+
+  it("owns the complete ordered locale capability", () => {
+    expect(
+      Schema.decodeUnknownSync(ContentLocaleListSchema)(["en", "id"])
+    ).toEqual(["en", "id"]);
+    for (const locales of [["en"], ["id", "en"]] as const) {
+      expect(
+        Either.isLeft(
+          Schema.decodeUnknownEither(ContentLocaleListSchema)(locales)
+        )
+      ).toBe(true);
+    }
   });
 
   it("owns unambiguous content-head and public-route identities", () => {

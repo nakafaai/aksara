@@ -1,3 +1,4 @@
+import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { Effect, Schema } from "effect";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
@@ -28,6 +29,8 @@ function countrySignature(source: TryoutExamSource) {
   return JSON.stringify({
     countryCode: source.countryCode,
     countryKey: source.countryKey,
+    countryOrder: source.countryOrder,
+    countryRevision: source.countryRevision,
     countryRouteSlugs: source.countryRouteSlugs,
     countryTranslations: source.countryTranslations,
   });
@@ -37,6 +40,7 @@ function countrySignature(source: TryoutExamSource) {
 const validateTryoutRegistry = Effect.fn("AksaraCorpus.validateTryoutRegistry")(
   function* (sources: readonly TryoutExamSource[]) {
     const countries = new Map<string, string>();
+    const countryCodes = new Map<string, string>();
     const exams = new Set<string>();
 
     for (const source of sources) {
@@ -50,6 +54,18 @@ const validateTryoutRegistry = Effect.fn("AksaraCorpus.validateTryoutRegistry")(
       }
       countries.set(source.countryKey, country);
 
+      const priorCountryCode = countryCodes.get(source.countryCode);
+      if (
+        priorCountryCode !== undefined &&
+        priorCountryCode !== source.countryKey
+      ) {
+        return yield* new TryoutRegistryConflictError({
+          key: source.countryCode,
+          kind: "country",
+        });
+      }
+      countryCodes.set(source.countryCode, source.countryKey);
+
       const exam = `${source.countryKey}\0${source.examKey}`;
       if (exams.has(exam)) {
         return yield* new TryoutRegistryConflictError({
@@ -61,13 +77,20 @@ const validateTryoutRegistry = Effect.fn("AksaraCorpus.validateTryoutRegistry")(
     }
 
     return [...sources].sort((left, right) => {
-      const country = left.countryKey.localeCompare(right.countryKey);
-      return country || left.examKey.localeCompare(right.examKey);
+      const countryOrder = left.countryOrder - right.countryOrder;
+      const countryKey = compareCodeUnits(left.countryKey, right.countryKey);
+      const examOrder = left.examOrder - right.examOrder;
+      return (
+        countryOrder ||
+        countryKey ||
+        examOrder ||
+        compareCodeUnits(left.examKey, right.examKey)
+      );
     });
   }
 );
 
-/** Decodes the reviewed SNBT/TKA registry or an explicit test-owned input. */
+/** Decodes the reviewed try-out registry or an explicit test-owned input. */
 export const decodeTryoutRegistry = Effect.fn(
   "AksaraCorpus.decodeTryoutRegistry"
 )(function* (input?: unknown) {

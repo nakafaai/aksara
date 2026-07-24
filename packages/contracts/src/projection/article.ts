@@ -7,16 +7,18 @@ import {
   LearningGraphIdentitySchema,
 } from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
+import { isLowerKebab } from "#contracts/text/syntax";
 
-const ARTICLE_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-
-/** Published article categories currently backed by a real Nakafa route. */
-export const ArticleCategorySchema = Schema.Literal("politics");
+/** Stable source-owned category segment used below the article route family. */
+export const ArticleCategorySchema = Schema.String.pipe(
+  Schema.filter(isLowerKebab),
+  Schema.brand("@NakafaAI/AksaraArticleCategory")
+);
 export type ArticleCategory = typeof ArticleCategorySchema.Type;
 
 /** Stable source-owned article segment used below its category route. */
 export const ArticleSlugSchema = Schema.String.pipe(
-  Schema.pattern(ARTICLE_SLUG_PATTERN),
+  Schema.filter(isLowerKebab),
   Schema.brand("@NakafaAI/AksaraArticleSlug")
 );
 export type ArticleSlug = typeof ArticleSlugSchema.Type;

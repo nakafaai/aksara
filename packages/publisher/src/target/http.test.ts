@@ -10,14 +10,11 @@ import {
 } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
-import { Effect, Layer, Match, Redacted, Schema } from "effect";
+import { Effect, Match, Redacted, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { HttpPublicationTargetConfig } from "#publisher/target/config";
-import {
-  httpPublicationTargetLayer,
-  makeHttpPublicationTarget,
-} from "#publisher/target/http";
+import { makeHttpPublicationTarget } from "#publisher/target/http";
 import {
   transportRelease,
   transportRenderer,
@@ -144,8 +141,6 @@ describe("HTTP publication target", () => {
       expect(request.headers.accept).toBe("application/json");
       expect(request.body.contentType).toBe("application/json");
     }
-    const layer = httpPublicationTargetLayer(targetConfig());
-    expect(Layer.isLayer(layer)).toBe(true);
   });
 
   it("rejects oversized batches before network IO", async () => {

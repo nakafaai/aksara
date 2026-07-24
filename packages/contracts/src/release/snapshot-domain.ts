@@ -1,7 +1,7 @@
 import { Effect, Option, Schema, Stream } from "effect";
 
 import type { Sha256Hash } from "#contracts/ids";
-import { digestProgramRows } from "#contracts/program/row-hash";
+import { digestProgramRows } from "#contracts/program/row-digest";
 import { hashProgramSnapshot } from "#contracts/program/snapshot-hash";
 import { digestQuranRows } from "#contracts/quran/row-digest";
 import { hashQuranSnapshot } from "#contracts/quran/snapshot-hash";
@@ -13,11 +13,9 @@ import {
   digestTryoutCatalog,
   digestTryoutPlacements,
 } from "#contracts/tryout/row-hash";
+import type { TryoutCatalogCounts } from "#contracts/tryout/snapshot";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot-hash";
-import type {
-  TryoutCatalogCounts,
-  TryoutCatalogRecord,
-} from "#contracts/tryout/spec";
+import type { TryoutCatalogRecord } from "#contracts/tryout/spec";
 
 /** Signed snapshot evidence differs from its authenticated row stream. */
 export class SnapshotEvidenceError extends Schema.TaggedError<SnapshotEvidenceError>()(
@@ -134,24 +132,21 @@ const verifyProgramRows = Effect.fn("AksaraContracts.verifyProgramRows")(
     rows: SnapshotRowFactory<E, R>
   ) {
     const summary = yield* digestProgramRows(programRows(rows()));
-    yield* requireEvidence({
-      actual: summary.rowCount,
-      expected: snapshot.manifest.rowCount,
-      family: "program",
-      field: "rowCount",
-    });
-    yield* requireEvidence({
-      actual: summary.rowDigest,
-      expected: snapshot.manifest.rowDigest,
-      family: "program",
-      field: "rowDigest",
-    });
-    yield* requireEvidence({
-      actual: summary.slugCount,
-      expected: snapshot.manifest.slugCount,
-      family: "program",
-      field: "slugCount",
-    });
+    for (const field of [
+      "curriculumRowCount",
+      "programRowCount",
+      "rowCount",
+      "rowDigest",
+      "sitemapCount",
+      "slugCount",
+    ] as const) {
+      yield* requireEvidence({
+        actual: summary[field],
+        expected: snapshot.manifest[field],
+        family: "program",
+        field,
+      });
+    }
     const { snapshotId, ...identity } = snapshot.manifest;
     const actualId = yield* hashProgramSnapshot(identity);
     yield* requireEvidence({

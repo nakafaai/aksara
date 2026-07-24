@@ -17,11 +17,11 @@ import {
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import { materialGraph } from "#test/graph";
+import { testRendererDomains } from "#test/renderer";
 import { emptySnapshotSources } from "#test/snapshot";
 
 export const rendererManifest = await Effect.runPromise(
@@ -30,7 +30,7 @@ export const rendererManifest = await Effect.runPromise(
       authoringComponents: [{ name: "BlockMath", version: 1 }],
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),

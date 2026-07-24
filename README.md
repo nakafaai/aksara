@@ -1,9 +1,12 @@
 # Aksara
 
 Aksara is Nakafa's trusted content compilation and publication system. It is a
-small public Turborepo. The repository owns Nakafa's real `en` and `id` source
-corpus: articles, materials, question banks, learning programs, try-out
-catalogs, and Quran data. Nakafa production has not cut over to this source yet.
+small public Turborepo. The repository contains Nakafa's real `en` and `id`
+source corpus: articles, materials, question banks, learning programs, try-out
+catalogs, and the Quran data carried forward from the public Nakafa repository.
+The unresolved Quran redistribution rights are recorded explicitly below; Git
+visibility is not evidence of permission. Nakafa production has not cut over to
+this source yet.
 
 ## Current modules
 
@@ -14,19 +17,21 @@ catalogs, and Quran data. Nakafa production has not cut over to this source yet.
 - `@nakafa/aksara-publisher` verifies, signs, batches, stages, and activates a
   release through injected source and target interfaces. Its strict
   authenticated HTTP target owns the client half of the publication protocol.
-  It prepares real article, material, question, program, and try-out release
-  data from exact Git source. Quran snapshot preparation exists in the corpus
-  package, remains provenance-blocked, and is not wired into production release
-  preparation. The Nakafa-owned Convex ingress, storage, and runtime adapter
+  It prepares real article, material, question, program, Quran, and try-out
+  release data from exact Git source. A blocked Quran replacement fails the
+  global candidate before signing or publication IO; a release can proceed only
+  when it inherits unchanged Quran state or every required provenance approval
+  is present. The Nakafa-owned Convex ingress, storage, and runtime adapter
   remain outside this repository and have not been cut over to production.
-- `@nakafa/aksara-corpus` owns all reviewed `en` and `id` sources plus their
-  non-React registries and projections. No substitute lessons or React
+- `@nakafa/aksara-corpus` contains all reviewed `en` and `id` sources plus
+  their non-React registries and projections. No substitute lessons or React
   implementations live in this package.
-- `@nakafa/aksara-cli` compiles one selected real document, serves its signed
-  local artifact over loopback, and starts the actual Nakafa application with
-  ephemeral credentials for hot preview.
-- `@nakafa/aksara-utilities` owns generic bounded HTTP response primitives
-  shared by the CLI and publisher. It contains no content-domain contracts.
+- `@nakafa/aksara-cli` compiles the dependency closure of one selected real
+  document, serves its signed local artifacts over loopback, and starts a
+  preview-enabled sibling Nakafa checkout with ephemeral credentials.
+- `@nakafa/aksara-utilities` owns generic bounded byte, Git, HTTP, process, and
+  TypeScript-syntax primitives shared across packages. It contains no
+  content-domain contracts.
 - `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
 
@@ -64,21 +69,28 @@ pnpm exec turbo run test --filter=@nakafa/aksara-publisher
 Do not invoke a package test script directly when it consumes another workspace;
 Turbo owns that dependency build order.
 
-`package.json` is the single toolchain source for Node, pnpm, and their CI
-setup. Aksara does not duplicate that contract in `.npmrc`,
+`package.json` is the local-development and ordinary-CI toolchain source for
+Node and pnpm. Privileged publishing workflows intentionally pin concrete
+reviewed versions so repository dependency changes cannot select their
+executables. Aksara does not duplicate the local contract in `.npmrc`,
 `.node-version`, or `.nvmrc` files.
 
-All hand-written executable source and repository tooling is TypeScript. The
-file-name gate rejects tracked JavaScript source. `dist/*.js` is ignored,
-generated output because Node does not execute TypeScript source from an
-installed `node_modules` package, as documented by Node's
+All non-MDX hand-written executable source and repository tooling is
+TypeScript. The file-name gate rejects tracked JavaScript source. `dist/*.js`
+is ignored, generated output because Node does not execute TypeScript source
+from an installed `node_modules` package, as documented by Node's
 [TypeScript support](https://nodejs.org/api/typescript.html#type-stripping-in-dependencies).
+The native `tsc` command is TypeScript 7. The separately named `typescript`
+dependency remains the TypeScript 6 JavaScript compiler API required by
+programmatic consumers; it is not Aksara's CLI compiler.
 
 Package-internal TypeScript imports use private Node aliases such as
 `#contracts/*`; cross-package imports use exact `@nakafa/*` exports. Tests
 resolve the current package alias to `src`, while emitted JavaScript resolves
 the same alias through `package.json` to `dist`, so stale build output cannot
-silently satisfy source tests.
+silently satisfy source tests. The `aksara-source` condition is confined to
+workspace execution and typechecking; the published contracts manifest strips
+that private condition.
 
 The compiler requires one static `export const metadata = { ... }` object so it
 can remove that module declaration before body compilation. Corpus registries

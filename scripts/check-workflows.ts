@@ -19,6 +19,8 @@ const PACKAGE_INTEGRITY_PATTERN =
   /EXPECTED_INTEGRITY="sha512-\$\(openssl dgst -sha512 -binary "\$local_tarball"[\s\S]*actual_integrity[\s\S]*downloaded_integrity[\s\S]*provenance_source_sha=[\s\S]*git merge-base --is-ancestor/u;
 const RELEASE_PROOF_PATTERN =
   /package:[\s\S]*inputs\.operation == 'accept'[\s\S]*inputs\.operation == 'release'[\s\S]*inputs\.operation == 'rollback'[\s\S]*uses: \.\/\.github\/workflows\/package-proof\.yml[\s\S]*proof_mode: current/u;
+const ISOLATED_OPERATION_PATTERN =
+  /Prepare isolated operation checkout[\s\S]*git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
 const RECOVERY_OPERATION_PATTERN =
   /needs: package[\s\S]*always\(\)[\s\S]*needs\.package\.result == 'success'[\s\S]*inputs\.operation == 'abort'[\s\S]*inputs\.operation == 'cleanup'[\s\S]*inputs\.operation == 'recover'[\s\S]*needs\.package\.result == 'skipped'/u;
 const SHARED_DEPRECATION_PATTERN =
@@ -119,6 +121,11 @@ export function verifyWorkflows({
     release,
     RELEASE_PROOF_PATTERN,
     "Content acceptance, release, and rollback must call current cryptographic package proof"
+  );
+  assert.match(
+    release,
+    ISOLATED_OPERATION_PATTERN,
+    "Production operations must run from one clean exact-revision checkout"
   );
   assert.match(
     release,

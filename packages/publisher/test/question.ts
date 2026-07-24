@@ -7,30 +7,36 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { decodeQuestionRegistry } from "@nakafa/aksara-corpus/question-bank/registry";
+import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
+import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import { Effect, Stream } from "effect";
 import { prepareQuestionPublication } from "#publisher/question/publication";
 import { testFileLayer } from "#test/files";
+import { testRendererDomains } from "#test/renderer";
 
 export const checkoutRoot = resolve(process.cwd(), "..", "..");
 const questionKey =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
-const completeRegistry = await Effect.runPromise(
-  decodeQuestionRegistry(checkoutRoot).pipe(Effect.provide(NodeContext.layer))
+const tryoutSources = await Effect.runPromise(decodeTryoutRegistry());
+const completeContent = await Effect.runPromise(
+  loadQuestionContent(checkoutRoot, tryoutSources).pipe(
+    Effect.provide(NodeContext.layer)
+  )
 );
-export const questionEntries = completeRegistry.filter(
+export const questionEntries = completeContent.entries.filter(
   (entry) => entry.questionKey === questionKey
 );
+export const questionSources = completeContent.sources.filter(
+  (source) => source.questionKey === questionKey
+);
 const [firstEntry] = questionEntries;
-if (firstEntry === undefined) {
-  throw new Error("Expected the real question-bank slice.");
+const [firstSource] = questionSources;
+if (!(firstEntry && firstSource)) {
+  throw new Error("Expected the real question-bank source and body slice.");
 }
-const choicePath = `${firstEntry.sourcePath.slice(
-  0,
-  firstEntry.sourcePath.lastIndexOf("/")
-)}/choices.ts`;
+export const questionChoices = firstSource.choices;
+const choicePath = `${firstEntry.sourceRoot}/choices.ts`;
 export const questionPaths = [
   ...questionEntries.map(({ sourcePath }) => sourcePath),
   choicePath,
@@ -49,7 +55,7 @@ export const rendererManifest = await Effect.runPromise(
       authoringComponents: baseComponents,
       supportedComponents: baseComponents,
     },
-    domains: rendererDomains({}),
+    domains: testRendererDomains({}),
   })
 );
 

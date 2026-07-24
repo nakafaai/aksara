@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
+import type { TryoutSnapshotInput } from "#contracts/tryout/snapshot";
 import {
   canonicalizeTryoutSnapshot,
   makeTryoutSnapshot,
   tryoutSnapshotRowEvidence,
 } from "#contracts/tryout/snapshot-hash";
-import type { TryoutSnapshotInput } from "#contracts/tryout/spec";
 
 const SHA256_HASH_PATTERN = /^sha256:[a-f\d]{64}$/u;
 const input: TryoutSnapshotInput = {

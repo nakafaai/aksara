@@ -20,6 +20,7 @@ import {
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import {
+  ArticleCategorySchema,
   ArticleProjectionSchema,
   ArticleSlugSchema,
 } from "#contracts/projection/article";
@@ -28,7 +29,6 @@ import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
-import { rendererDomains } from "#contracts/renderer/contract";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { verifyContentRuntimeExchange } from "#contracts/runtime/verify";
 import {
@@ -36,6 +36,7 @@ import {
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
 import { articleGraph } from "#contracts/test/graph";
+import { testRendererDomains } from "#contracts/test/renderer";
 import {
   projection,
   rendererManifest,
@@ -135,7 +136,7 @@ export const incompatibleManifest = await Effect.runPromise(
       authoringComponents: [{ name: "InlineMath", version: 1 }],
       supportedComponents: [{ name: "InlineMath", version: 1 }],
     },
-    domains: rendererDomains({}),
+    domains: testRendererDomains({}),
   })
 );
 
@@ -159,7 +160,7 @@ const articleContentKey = ContentKeySchema.make(
 );
 const articleProjection = ArticleProjectionSchema.make({
   articleSlug: ArticleSlugSchema.make("dynastic-politics-asian-values"),
-  category: "politics",
+  category: ArticleCategorySchema.make("politics"),
   contentKey: articleContentKey,
   graph: articleGraph("en", "politics", "dynastic-politics-asian-values"),
   kind: "article",

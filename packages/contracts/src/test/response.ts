@@ -1,6 +1,6 @@
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
-  emptyContentSnapshots,
+  inheritContentSnapshots,
   snapshotRowCount,
 } from "#contracts/release/snapshot";
 import type { SignedContentRelease } from "#contracts/release/spec";
@@ -14,7 +14,7 @@ import {
 
 const projectionDigest = `sha256:${"b".repeat(64)}`;
 const rendererManifestHash = `sha256:${"c".repeat(64)}`;
-const snapshots = emptyContentSnapshots();
+const snapshots = inheritContentSnapshots(null);
 
 /** Builds terminal evidence bound exactly to one signed test release. */
 export function receiptFor(signedRelease: SignedContentRelease) {

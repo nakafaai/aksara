@@ -40,5 +40,5 @@ export async function makePreviewReady(repositories: TestRepositories) {
   const result = await Effect.runPromise(
     compiler.compile().pipe(Effect.provide(NodeContext.layer))
   );
-  return { credentials, document: selected.document, result };
+  return { compiler, credentials, document: selected.document, result };
 }

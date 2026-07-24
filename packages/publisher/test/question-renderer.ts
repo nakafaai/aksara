@@ -1,6 +1,6 @@
-import { rendererDomains } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
+import { testRendererDomains } from "#test/renderer";
 
 /** Converts exact reviewed component names into version-one requirements. */
 function requirements(names: readonly string[]) {
@@ -79,7 +79,7 @@ export const questionRendererManifest = await Effect.runPromise(
       authoringComponents: base,
       supportedComponents: base,
     },
-    domains: rendererDomains({
+    domains: testRendererDomains({
       "snbt-general": snbtGeneral,
       "snbt-math": snbtMath,
       "snbt-quant": snbtQuant,

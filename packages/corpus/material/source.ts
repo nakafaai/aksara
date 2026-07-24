@@ -1,8 +1,5 @@
 import { FileSystem, Path } from "@effect/platform";
-import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
-import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
-import type { MaterialLessonRoute } from "@nakafa/aksara-contracts/projection/material";
-import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Schema } from "effect";
 
 import { lessonAiDsAiProgrammingMaterial } from "#corpus/material/lesson/ai-ds/ai-programming/source";
@@ -112,17 +109,13 @@ export const decodeMaterialSources = Effect.fn(
 /** Reading one reviewed corpus source failed through Effect Platform. */
 export class MaterialReadError extends Schema.TaggedError<MaterialReadError>()(
   "MaterialReadError",
-  { cause: Schema.Unknown, sourcePath: Schema.String }
+  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
 ) {}
 
 /** Complete authored material document passed to release preparation. */
-export interface MaterialDocumentSource {
-  readonly delivery: ContentDeliveryClass;
+export type MaterialDocumentSource = Omit<MaterialEntry, "assetRoot"> & {
   readonly rawMdx: string;
-  readonly rendererDomain: RendererDomain;
-  readonly route: MaterialLessonRoute;
-  readonly sourcePath: CorpusSourcePath;
-}
+};
 
 /** Reads one registry-owned source without escaping the supplied checkout root. */
 export const readMaterialDocument = Effect.fn(
@@ -139,11 +132,9 @@ export const readMaterialDocument = Effect.fn(
           new MaterialReadError({ cause, sourcePath: entry.sourcePath })
       )
     );
+  const { assetRoot: _assetRoot, ...document } = entry;
   return {
-    delivery: entry.delivery,
+    ...document,
     rawMdx,
-    rendererDomain: entry.rendererDomain,
-    route: entry.route,
-    sourcePath: entry.sourcePath,
   } satisfies MaterialDocumentSource;
 });

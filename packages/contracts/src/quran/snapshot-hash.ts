@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import type { QuranSnapshotManifest } from "#contracts/quran/snapshot";
+import type { QuranSnapshotInput } from "#contracts/quran/snapshot";
 
 const SNAPSHOT_DOMAIN = "nakafa.aksara.quran-snapshot.v1";
 
@@ -15,7 +15,7 @@ export class QuranSnapshotHashError extends Schema.TaggedError<QuranSnapshotHash
 
 /** Produces stable identity bytes without the self-referential snapshot ID. */
 export function canonicalizeQuranSnapshotIdentity(
-  manifest: Omit<QuranSnapshotManifest, "snapshotId">
+  manifest: QuranSnapshotInput
 ) {
   return JSON.stringify({
     chunkCount: manifest.chunkCount,
@@ -38,9 +38,7 @@ export function canonicalizeQuranSnapshotIdentity(
 }
 
 /** Computes the content identity of one complete Quran snapshot. */
-export function hashQuranSnapshot(
-  manifest: Omit<QuranSnapshotManifest, "snapshotId">
-) {
+export function hashQuranSnapshot(manifest: QuranSnapshotInput) {
   return Effect.try({
     catch: () => new QuranSnapshotHashError({ scope: "snapshot" }),
     try: () =>

@@ -4,61 +4,95 @@ import {
   Path,
   type Error as PlatformError,
 } from "@effect/platform";
-import { CommandExecutor } from "@effect/platform/CommandExecutor";
 import { NodeContext } from "@effect/platform-node";
+import {
+  ExactProcess,
+  type ExactProcessInput,
+} from "@nakafa/aksara-utilities/process/exact";
 import { Effect, type Stream } from "effect";
 import type { RunningNakafa } from "#cli/child";
+import type { SelectedDocument } from "#cli/integrity";
 import { NakafaApp } from "#cli/nakafa";
 import { type PreviewProvider, PreviewProviderError } from "#cli/provider";
-import type { SelectedDocument } from "#cli/repository";
-import {
-  type LocalPreviewSession,
-  openLocalPreview,
-  watchSelectedDocument,
-} from "#cli/session";
-import { inspectTestCommand, makeTestExecutor } from "#test/command";
+import { type LocalPreviewSession, openLocalPreview } from "#cli/session";
+import { openSelectedWatcher } from "#cli/watch";
 import { RENDERER_MANIFEST, type TestRepositories } from "#test/real";
 
 /** Builds a preview provider that records state transitions. */
 export function makeProvider(control: {
+  failure?: Parameters<PreviewProvider["failed"]>[0]["failure"];
   failed: number;
-  pending: number;
-  ready: number;
   failPending?: boolean;
-}) {
+  failedRepositories?: Parameters<PreviewProvider["failed"]>[0]["repositories"];
+  pending: number;
+  pendingRepositories?: Parameters<PreviewProvider["pending"]>[0];
+  ready: number;
+  failReady?: boolean;
+  readyRepositories?: Parameters<PreviewProvider["ready"]>[0]["repositories"];
+}): PreviewProvider {
+  let generation = 0;
   return {
     eventsPath: "/v1/events",
-    failed: () => {
+    failed: (input) => {
       control.failed += 1;
-      return Effect.void;
+      control.failure = input.failure;
+      control.failedRepositories = input.repositories;
+      return Effect.succeed(input.generation === generation);
     },
     manifestPath: "/v1/manifest",
     origin: new URL("http://127.0.0.1:32123"),
-    pending: () => {
+    pending: (repositories) => {
       control.pending += 1;
+      control.pendingRepositories = repositories;
+      generation += 1;
       return control.failPending
         ? Effect.fail(new PreviewProviderError({ stage: "encode" }))
-        : Effect.void;
+        : Effect.succeed(generation);
     },
-    ready: () => {
+    ready: (input) => {
       control.ready += 1;
-      return Effect.void;
+      control.readyRepositories = input.repositories;
+      return control.failReady
+        ? Effect.fail(new PreviewProviderError({ stage: "encode" }))
+        : Effect.succeed(input.generation === generation);
     },
-  } satisfies PreviewProvider;
+  };
 }
 
 /** Runs a selected-document watcher through an explicit filesystem stream. */
 export function runWatch(
   selected: SelectedDocument,
   stream: Stream.Stream<FileSystem.WatchEvent, PlatformError.PlatformError>,
-  refresh: Effect.Effect<
+  refresh: (
+    generation: number
+  ) => Effect.Effect<
     void,
     PreviewProviderError,
     FileSystem.FileSystem | Path.Path
-  >
+  >,
+  directoryFiles: ReadonlyMap<string, readonly string[]> = new Map(),
+  invalidate: Effect.Effect<number, PreviewProviderError> = Effect.succeed(1)
 ) {
-  return watchSelectedDocument(selected, refresh).pipe(
-    Effect.provide(FileSystem.layerNoop({ watch: () => stream })),
+  const selectedFiles = new Map(
+    selected.directories.map((directory) => [
+      directory.absolutePath,
+      directory.files,
+    ])
+  );
+  return openSelectedWatcher(selected, invalidate, refresh).pipe(
+    Effect.flatMap((watcher) => watcher.run),
+    Effect.provide(
+      FileSystem.layerNoop({
+        readDirectory: (directory) =>
+          Effect.succeed([
+            ...(directoryFiles.get(directory) ??
+              selectedFiles.get(directory) ??
+              []),
+          ]),
+        realPath: (path) => Effect.succeed(path),
+        watch: () => stream,
+      })
+    ),
     Effect.provide(Path.layer)
   );
 }
@@ -68,7 +102,7 @@ export function makeApp(
   capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] },
   child: RunningNakafa = {
     awaitExit: Effect.never,
-    origin: new URL("http://localhost:31234"),
+    origin: new URL("http://127.0.0.1:31234"),
   },
   fetchRenderer = Effect.succeed(RENDERER_MANIFEST)
 ) {
@@ -89,13 +123,17 @@ export function runLocal<A, E>(
     session: LocalPreviewSession
   ) => Effect.Effect<A, E, FileSystem.FileSystem | Path.Path>
 ) {
-  const executor = makeTestExecutor((command) =>
-    Effect.succeed({
-      stdout: inspectTestCommand(command).args.includes("rev-parse")
-        ? `${"a".repeat(40)}\n`
-        : "",
-    })
-  );
+  const exactProcess = ExactProcess.of({
+    /** Returns deterministic clean Git evidence for both test repositories. */
+    run: (input: ExactProcessInput) =>
+      Effect.succeed({
+        exitCode: 0,
+        stderr: new Uint8Array(),
+        stdout: new TextEncoder().encode(
+          input.args.includes("rev-parse") ? `${"a".repeat(40)}\n` : ""
+        ),
+      }),
+  });
   return Effect.runPromise(
     Effect.scoped(
       openLocalPreview({
@@ -108,7 +146,7 @@ export function runLocal<A, E>(
       }).pipe(Effect.flatMap(use))
     ).pipe(
       Effect.provideService(NakafaApp, app),
-      Effect.provideService(CommandExecutor, executor),
+      Effect.provideService(ExactProcess, exactProcess),
       Effect.provide(NodeContext.layer)
     )
   );
