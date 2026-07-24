@@ -140,7 +140,7 @@ describe("question source", () => {
       setKey:
         "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1",
       sourceRoot:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and/writing-skills/set-1/question-1",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1",
     });
   });
 

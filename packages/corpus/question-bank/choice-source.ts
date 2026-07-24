@@ -119,15 +119,34 @@ function isChoiceTypeImport(statement: ts.Statement) {
   if (!ts.isImportDeclaration(statement)) {
     return false;
   }
+
   const clause = statement.importClause;
-  const bindings = clause?.namedBindings;
+  if (
+    clause === undefined ||
+    !ts.isTypeOnlyImportDeclaration(clause) ||
+    clause.name !== undefined
+  ) {
+    return false;
+  }
+
+  const bindings = clause.namedBindings;
+  if (
+    bindings === undefined ||
+    !ts.isNamedImports(bindings) ||
+    bindings.elements.length !== 1
+  ) {
+    return false;
+  }
+
+  const [binding] = bindings.elements;
+  if (
+    binding?.propertyName !== undefined ||
+    binding?.name.text !== "QuestionChoices"
+  ) {
+    return false;
+  }
+
   return (
-    clause?.isTypeOnly === true &&
-    clause.name === undefined &&
-    bindings !== undefined &&
-    ts.isNamedImports(bindings) &&
-    bindings.elements.length === 1 &&
-    bindings.elements[0]?.name.text === "QuestionChoices" &&
     ts.isStringLiteral(statement.moduleSpecifier) &&
     statement.moduleSpecifier.text ===
       "@nakafa/aksara-contracts/projection/question"

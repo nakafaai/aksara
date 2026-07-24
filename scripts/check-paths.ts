@@ -33,7 +33,10 @@ const EXTENSION_SUFFIXES = new Set([
   "yaml",
   "yml",
 ]);
-const LESSON_PATH_PREFIX = ["packages", "corpus", "material", "lesson"];
+const EDUCATIONAL_PATH_PREFIXES = [
+  ["packages", "corpus", "material", "lesson"],
+  ["packages", "corpus", "question-bank", "tryout"],
+];
 
 /** Returns the semantic words in one file or folder name. */
 function words(segment: string): string[] {
@@ -55,13 +58,13 @@ function words(segment: string): string[] {
   return tokens.filter((word) => !NUMBER_PATTERN.test(word));
 }
 
-/** Allows authored lesson folders to retain their exact source-owned slugs. */
-function isLessonFolder(segments: readonly string[], index: number) {
-  if (index < LESSON_PATH_PREFIX.length || index === segments.length - 1) {
-    return false;
-  }
-  return LESSON_PATH_PREFIX.every(
-    (segment, prefixIndex) => segments[prefixIndex] === segment
+/** Allows authored educational folders to retain exact source-owned slugs. */
+function isEducationalFolder(segments: readonly string[], index: number) {
+  return EDUCATIONAL_PATH_PREFIXES.some(
+    (prefix) =>
+      index >= prefix.length &&
+      index < segments.length - 1 &&
+      prefix.every((segment, prefixIndex) => segments[prefixIndex] === segment)
   );
 }
 
@@ -78,7 +81,7 @@ export function pathViolations(files: readonly string[]): readonly string[] {
       : [];
     const segments = file.split("/");
     const nameViolations = segments.flatMap((segment, index) => {
-      if (isLessonFolder(segments, index) || words(segment).length <= 2) {
+      if (isEducationalFolder(segments, index) || words(segment).length <= 2) {
         return [];
       }
       return [`${file}: ${segment}`];

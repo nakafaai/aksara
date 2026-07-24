@@ -25,7 +25,7 @@ const EXPECTED_FILES = [
   "question.id.mdx",
 ];
 const QUESTION_ANCESTOR_PATTERN =
-  /^(?:snbt|tka)(?:\/[a-z0-9]+(?:-[a-z0-9]+)*){0,2}(?:\/set-[1-9]\d*)?$/;
+  /^(?:snbt|tka)(?:\/[a-z0-9]+(?:-[a-z0-9]+)*){0,1}(?:\/set-[1-9]\d*)?$/;
 
 /** One complete authored question directory discovered from the checkout. */
 export const QuestionSourceSchema = Schema.Struct({
@@ -128,7 +128,7 @@ const readChoices = Effect.fn("AksaraCorpus.readQuestionChoices")(function* (
   return yield* decodeQuestionChoiceSource(source, sourcePath);
 });
 
-/** Validates contiguous numbering while leaving aliases to registry identity. */
+/** Validates contiguous numbering within each exact source-owned set. */
 const validateSequences = Effect.fn("AksaraCorpus.validateQuestionSequences")(
   function* (sources: readonly QuestionSource[]) {
     const numbersBySet = new Map<QuestionSource["setKey"], Set<number>>();

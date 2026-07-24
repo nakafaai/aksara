@@ -18,24 +18,29 @@ describe("path policy", () => {
     ]);
   });
 
-  it("allows semantic suffixes, numbers, and source-owned lesson folders", () => {
+  it("allows semantic suffixes, numbers, and educational folders", () => {
     expect(
       pathViolations([
         "",
         "packages/compiler/policy.config.test.ts",
         "packages/compiler/release-2026-state.ts",
         "packages/corpus/material/lesson/very-long-source-slug/en.mdx",
+        "packages/corpus/question-bank/tryout/snbt/reading-and-writing-skills/choices.ts",
       ])
     ).toEqual([]);
   });
 
-  it("still validates filenames inside source-owned lesson folders", () => {
+  it("still validates filenames inside educational folders", () => {
     expect(
       pathViolations([
         "packages/corpus/material/lesson/very-long-source-slug/three-word-file.mdx",
+        "packages/corpus/question-bank/tryout/reading-and-writing-skills/three-word-file.ts",
+        "packages/corpus/question-bank/three-word-folder/choices.ts",
       ])
     ).toEqual([
       "packages/corpus/material/lesson/very-long-source-slug/three-word-file.mdx: three-word-file.mdx",
+      "packages/corpus/question-bank/tryout/reading-and-writing-skills/three-word-file.ts: three-word-file.ts",
+      "packages/corpus/question-bank/three-word-folder/choices.ts: three-word-folder",
     ]);
   });
 });

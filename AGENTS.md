@@ -10,9 +10,11 @@ for clarity, measurable scale, and safe releases.
   contract. Add CLI ownership only with the actual Nakafa preview caller;
   never fill a workspace with substitute content.
 - File and folder names may contain at most two words. Exact source-owned
-  lesson directory segments below `packages/corpus/material/lesson` are the
-  sole exception; lesson filenames and every other directory still obey the
-  two-word limit. Group longer code concepts under a domain folder, such as
+  educational directory segments below `packages/corpus/material/lesson` and
+  `packages/corpus/question-bank/tryout` are the only exceptions; never split
+  one source identity into a fake hierarchy to satisfy code naming. Source
+  filenames and every code or configuration directory still obey the two-word
+  limit. Group longer code concepts under a domain folder, such as
   `artifact/verify.ts`, without repeating the domain in the filename.
 - Never invent educational content, author metadata, corpus facts, renderer
   manifests, or production-state claims. Test-only protocol values must be
@@ -30,6 +32,10 @@ for clarity, measurable scale, and safe releases.
   duplicate preview renderer, or manual per-document import registry.
 - Keep React and TSX component implementations in Nakafa. Corpus MDX references
   versioned contract names; Aksara never owns a duplicate preview component.
+- Keep authored executable source in TypeScript. Do not add JavaScript source
+  files or generated JavaScript to Git.
+- Do not use APIs marked deprecated by the installed TypeScript declarations.
+  `pnpm deprecations` must cover every tracked authored TypeScript file.
 - Keep handwritten TypeScript modules at or below 300 lines.
 - Give every stable callable declaration—functions, methods, and callable
   bindings—useful JSDoc. Keep framework callbacks anonymous instead of

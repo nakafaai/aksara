@@ -70,10 +70,12 @@ describe("question choice source", () => {
     const invalidImports = [
       'import "@nakafa/aksara-contracts/projection/question";',
       'import { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";',
+      'import { type QuestionChoices } from "@nakafa/aksara-contracts/projection/question";',
       'import type QuestionChoices from "@nakafa/aksara-contracts/projection/question";',
       'import type * as QuestionChoices from "@nakafa/aksara-contracts/projection/question";',
       'import type { QuestionChoices, Other } from "@nakafa/aksara-contracts/projection/question";',
       'import type { Other } from "@nakafa/aksara-contracts/projection/question";',
+      'import type { QuestionChoice as QuestionChoices } from "@nakafa/aksara-contracts/projection/question";',
       'import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/material";',
       "import type { QuestionChoices } from source;",
       "const first = 1;",
