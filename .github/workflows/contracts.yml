@@ -190,10 +190,19 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
         run: |
-          release=$(gh release view "$RELEASE_TAG" \
+          release=""
+          if ! release=$(gh release view "$RELEASE_TAG" \
             --json isDraft,isImmutable,isPrerelease,targetCommitish \
-            --repo "$GITHUB_REPOSITORY" 2>/dev/null || true)
-          tag=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" 2>/dev/null || true)
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null); then
+            release=""
+          fi
+
+          tag=""
+          if ! tag=$(gh api \
+            "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" \
+            2>/dev/null); then
+            tag=""
+          fi
 
           if [[ -z "$release" ]]; then
             if [[ -n "$tag" ]]; then
@@ -313,17 +322,25 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
         run: |
-          release=$(gh release view "$RELEASE_TAG" \
+          release=""
+          if ! release=$(gh release view "$RELEASE_TAG" \
             --json isImmutable,targetCommitish \
-            --repo "$GITHUB_REPOSITORY" 2>/dev/null || true)
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null); then
+            release=""
+          fi
           if [[ -z "$release" ]] || ! jq -e \
             --arg sha "$GITHUB_SHA" \
             '.isImmutable == false and .targetCommitish == $sha' \
             <<< "$release" >/dev/null; then
             exit 0
           fi
-          tag=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" \
-            2>/dev/null || true)
+
+          tag=""
+          if ! tag=$(gh api \
+            "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" \
+            2>/dev/null); then
+            tag=""
+          fi
           if [[ -n "$tag" ]] && ! jq -e \
             --arg sha "$GITHUB_SHA" \
             '.object.type == "commit" and .object.sha == $sha' \
