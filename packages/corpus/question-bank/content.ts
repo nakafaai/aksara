@@ -9,7 +9,10 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
 import { Effect, Schema } from "effect";
-import { decodeQuestionDocumentPath } from "#corpus/question-bank/path";
+import {
+  decodeQuestionDocumentPath,
+  indexQuestionBanks,
+} from "#corpus/question-bank/path";
 import {
   discoverQuestionSources,
   type QuestionSource,
@@ -53,62 +56,62 @@ const QuestionEntrySchema = Schema.Union(
 );
 export type QuestionEntry = typeof QuestionEntrySchema.Type;
 
-/** A projected question-bank entry failed strict contract decoding. */
-export class QuestionRegistryError extends Schema.TaggedError<QuestionRegistryError>()(
-  "QuestionRegistryError",
-  { cause: Schema.Unknown }
-) {}
-
 /** Projects one exact body and locale from its decoded question source. */
-const projectQuestionEntry = Effect.fn("AksaraCorpus.projectQuestionEntry")(
-  function* (
-    source: QuestionSource,
-    bodyKind: typeof QuestionBodyKindSchema.Type,
-    locale: typeof ContentLocaleSchema.Type
-  ) {
-    return yield* Schema.decodeUnknown(QuestionEntrySchema)(
-      {
-        bodyKind,
-        contentKey: `${source.questionKey}/${bodyKind}`,
-        delivery: bodyKind === "question" ? "authenticated" : "entitled",
-        locale,
-        peerContentKey: `${source.questionKey}/${
-          bodyKind === "question" ? "answer" : "question"
-        }`,
-        questionKey: source.questionKey,
-        questionNumber: source.questionNumber,
-        rendererDomain: source.rendererDomain,
-        setKey: source.setKey,
-        sourcePath: `${source.sourceRoot}/${bodyKind}.${locale}.mdx`,
-        sourceRoot: source.sourceRoot,
-      },
-      { onExcessProperty: "error" }
-    ).pipe(Effect.mapError((cause) => new QuestionRegistryError({ cause })));
+function projectQuestionEntry(
+  source: QuestionSource,
+  bodyKind: typeof QuestionBodyKindSchema.Type,
+  locale: typeof ContentLocaleSchema.Type
+) {
+  const entry = {
+    contentKey: ContentKeySchema.make(`${source.questionKey}/${bodyKind}`),
+    locale,
+    peerContentKey: ContentKeySchema.make(
+      `${source.questionKey}/${bodyKind === "question" ? "answer" : "question"}`
+    ),
+    questionKey: source.questionKey,
+    questionNumber: source.questionNumber,
+    rendererDomain: source.rendererDomain,
+    setKey: source.setKey,
+    sourcePath: CorpusSourcePathSchema.make(
+      `${source.sourceRoot}/${bodyKind}.${locale}.mdx`
+    ),
+    sourceRoot: source.sourceRoot,
+  };
+  if (bodyKind === "question") {
+    return {
+      ...entry,
+      bodyKind,
+      delivery: "authenticated",
+    } satisfies QuestionEntry;
   }
-);
+  return {
+    ...entry,
+    bodyKind,
+    delivery: "entitled",
+  } satisfies QuestionEntry;
+}
 
 /** Projects discovered question sources into the canonical body registry. */
-const projectQuestionEntries = Effect.fn("AksaraCorpus.projectQuestionEntries")(
-  function* (sources: readonly QuestionSource[]) {
-    const entries = yield* Effect.forEach(sources, (source) =>
-      Effect.forEach(QuestionBodyKindSchema.literals, (bodyKind) =>
-        Effect.forEach(ContentLocaleSchema.literals, (locale) =>
+function projectQuestionEntries(sources: readonly QuestionSource[]) {
+  return sources
+    .flatMap((source) =>
+      QuestionBodyKindSchema.literals.flatMap((bodyKind) =>
+        ContentLocaleSchema.literals.map((locale) =>
           projectQuestionEntry(source, bodyKind, locale)
         )
       )
-    );
-
-    return entries.flat(2).sort(compareContentHeads);
-  }
-);
+    )
+    .sort(compareContentHeads);
+}
 
 /** Discovers every question once and returns its canonical body registry. */
 export const loadQuestionContent = Effect.fn(
   "AksaraCorpus.loadQuestionContent"
 )(function* (corpusRoot: string, tryoutSources: readonly TryoutExamSource[]) {
-  const sources = yield* discoverQuestionSources(corpusRoot, tryoutSources);
-  const entries = yield* projectQuestionEntries(sources);
-  return { entries, sources };
+  const questionBanks = yield* indexQuestionBanks(tryoutSources);
+  const sources = yield* discoverQuestionSources(corpusRoot, questionBanks);
+  const entries = projectQuestionEntries(sources);
+  return { entries, questionBanks, sources };
 });
 
 /** Loads only the selected question and its required compilation bodies. */
@@ -119,9 +122,10 @@ export const selectQuestionContent = Effect.fn(
   tryoutSources: readonly TryoutExamSource[],
   sourcePath: CorpusSourcePath
 ) {
-  const location = yield* decodeQuestionDocumentPath(tryoutSources, sourcePath);
+  const questionBanks = yield* indexQuestionBanks(tryoutSources);
+  const location = yield* decodeQuestionDocumentPath(questionBanks, sourcePath);
   const source = yield* readQuestionSource(corpusRoot, location);
-  const selected = yield* projectQuestionEntry(
+  const selected = projectQuestionEntry(
     source,
     location.bodyKind,
     location.locale
@@ -137,11 +141,7 @@ export const selectQuestionContent = Effect.fn(
       readonly source: typeof source;
     };
   }
-  const prompt = yield* projectQuestionEntry(
-    source,
-    "question",
-    location.locale
-  );
+  const prompt = projectQuestionEntry(source, "question", location.locale);
   return {
     entries: [prompt, selected],
     selected,

@@ -15,9 +15,9 @@ describe("Quran provenance records", () => {
       new Set([
         "arabic-text",
         "audio",
-        "english-translation",
-        "indonesian-tafsir",
-        "indonesian-translation",
+        "en-translation",
+        "id-tafsir",
+        "id-translation",
         "metadata",
         "transliteration",
       ])

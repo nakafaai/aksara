@@ -1,5 +1,6 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
+import type { ContentLocale } from "#contracts/content";
 import { ContentKeySchema } from "#contracts/ids";
 import {
   canonicalizeQuestionProjection,
@@ -37,7 +38,7 @@ const choices = Schema.decodeUnknownSync(QuestionChoicesSchema)({
 });
 
 /** Builds one strict prompt projection for the selected locale. */
-function promptProjection(locale: "en" | "id") {
+function promptProjection(locale: ContentLocale) {
   return Schema.decodeUnknownSync(QuestionPromptProjectionSchema)(
     makeQuestionBodyProjection({
       bodyKind: "question",
@@ -54,7 +55,7 @@ function promptProjection(locale: "en" | "id") {
 }
 
 /** Builds one strict answer projection for the selected locale. */
-function answerProjection(locale: "en" | "id") {
+function answerProjection(locale: ContentLocale) {
   return Schema.decodeUnknownSync(QuestionAnswerProjectionSchema)(
     makeQuestionBodyProjection({
       bodyKind: "answer",

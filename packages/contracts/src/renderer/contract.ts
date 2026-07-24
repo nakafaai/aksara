@@ -12,6 +12,7 @@ import {
   type RendererDomain,
   RendererDomainSchema,
 } from "#contracts/renderer/domain";
+import { compareCodeUnits } from "#contracts/text/order";
 
 const RENDERER_CONTRACT_VERSION_PATTERN =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
@@ -46,15 +47,9 @@ export type RendererDomainCapability =
 export function sortRendererDomains<T extends RendererDomainCapability>(
   domains: readonly T[]
 ) {
-  return [...domains].sort((left, right) => {
-    if (left.name < right.name) {
-      return -1;
-    }
-    if (left.name > right.name) {
-      return 1;
-    }
-    return 0;
-  });
+  return [...domains].sort((left, right) =>
+    compareCodeUnits(left.name, right.name)
+  );
 }
 
 /** Exact canonical route-domain registry collection. */

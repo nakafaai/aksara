@@ -1,6 +1,8 @@
+import type { ContentLocale } from "#contracts/content";
+
 /** Builds exact graph identity for one test-owned article source. */
 export function articleGraph(
-  locale: "en" | "id",
+  locale: ContentLocale,
   category: string,
   slug: string
 ) {
@@ -17,7 +19,7 @@ export function articleGraph(
 
 /** Builds exact graph identity for one test-owned material lesson source. */
 export function materialGraph(
-  locale: "en" | "id",
+  locale: ContentLocale,
   domain: string,
   topic: string,
   section: string

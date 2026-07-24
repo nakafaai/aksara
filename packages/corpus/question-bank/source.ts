@@ -4,23 +4,28 @@ import {
   type QuestionChoices,
   QuestionChoicesSchema,
 } from "@nakafa/aksara-contracts/projection/question";
-import { QuestionSetKeySchema } from "@nakafa/aksara-contracts/question/identity";
+import {
+  QUESTION_BANK_KEY_ROOT,
+  QuestionSetKeySchema,
+} from "@nakafa/aksara-contracts/question/identity";
+import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
+import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect, Schema } from "effect";
 
 import { decodeQuestionChoiceSource } from "#corpus/question-bank/choice-source";
 import type { QuestionEntry } from "#corpus/question-bank/content";
 import {
   decodeQuestionPath,
+  locateQuestionEntry,
   QUESTION_BANK_ROOT,
   QUESTION_SOURCE_FILES,
+  type QuestionBankIndex,
   type QuestionLocation,
   QuestionLocationSchema,
   QuestionPathError,
 } from "#corpus/question-bank/path";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
 
-const QUESTION_ANCESTOR_PATTERN =
-  /^(?:snbt|tka)(?:\/[a-z0-9]+(?:-[a-z0-9]+)*){0,1}(?:\/set-[1-9]\d*)?$/;
+const isTryoutKey = Schema.is(TryoutKeySchema);
 
 /** One complete authored question directory discovered from the checkout. */
 export const QuestionSourceSchema = Schema.Struct({
@@ -65,22 +70,6 @@ export type QuestionDocumentSource = Omit<QuestionEntry, "sourceRoot"> & {
   readonly rawMdx: string;
 };
 
-/** Finds the owning question directory and its direct relative file path. */
-function locateQuestionEntry(entry: string, separator: string) {
-  const segments = entry.split(separator);
-  const questionIndex = segments.findIndex((segment) =>
-    segment.startsWith("question-")
-  );
-  if (questionIndex === -1) {
-    return;
-  }
-
-  return {
-    file: segments.slice(questionIndex + 1).join("/"),
-    root: segments.slice(0, questionIndex + 1).join("/"),
-  };
-}
-
 /** Groups every recursive directory entry beneath its question directory. */
 function groupQuestionFiles(entries: readonly string[], separator: string) {
   const filesByRoot = new Map<string, Set<string>>();
@@ -99,7 +88,39 @@ function groupQuestionFiles(entries: readonly string[], separator: string) {
   }
 
   return [...filesByRoot.entries()].sort(([left], [right]) =>
-    left.localeCompare(right)
+    compareCodeUnits(left, right)
+  );
+}
+
+/** Derives every reviewed physical ancestor from the renderer bank index. */
+function questionAncestors(questionBanks: QuestionBankIndex) {
+  const ancestors = new Set<string>();
+  const prefix = `${QUESTION_BANK_KEY_ROOT}/`;
+  for (const bankKey of questionBanks.keys()) {
+    const segments = bankKey.slice(prefix.length).split("/");
+    for (let length = 1; length <= segments.length; length += 1) {
+      ancestors.add(segments.slice(0, length).join("/"));
+    }
+  }
+  return ancestors;
+}
+
+/** Accepts a reviewed bank ancestor or one generic set beneath that bank. */
+function isQuestionAncestor(
+  sourcePath: string,
+  questionBanks: QuestionBankIndex,
+  ancestors: ReadonlySet<string>
+) {
+  if (ancestors.has(sourcePath)) {
+    return true;
+  }
+  const separator = sourcePath.lastIndexOf("/");
+  if (separator === -1) {
+    return false;
+  }
+  const bankKey = `${QUESTION_BANK_KEY_ROOT}/${sourcePath.slice(0, separator)}`;
+  return (
+    questionBanks.has(bankKey) && isTryoutKey(sourcePath.slice(separator + 1))
   );
 }
 
@@ -192,9 +213,10 @@ const validateSequences = Effect.fn("AksaraCorpus.validateQuestionSequences")(
 /** Discovers every complete question directory without a document import map. */
 export const discoverQuestionSources = Effect.fn(
   "AksaraCorpus.discoverQuestionSources"
-)(function* (corpusRoot: string, tryoutSources: readonly TryoutExamSource[]) {
+)(function* (corpusRoot: string, questionBanks: QuestionBankIndex) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
+  const ancestors = questionAncestors(questionBanks);
   const absoluteRoot = path.join(corpusRoot, QUESTION_BANK_ROOT);
   const entries = yield* fileSystem
     .readDirectory(absoluteRoot, { recursive: true })
@@ -207,7 +229,7 @@ export const discoverQuestionSources = Effect.fn(
     const normalized = entry.split(path.sep).join("/");
     return (
       locateQuestionEntry(entry, path.sep) === undefined &&
-      !QUESTION_ANCESTOR_PATTERN.test(normalized)
+      !isQuestionAncestor(normalized, questionBanks, ancestors)
     );
   });
   if (invalidEntry !== undefined) {
@@ -224,7 +246,7 @@ export const discoverQuestionSources = Effect.fn(
     directories,
     ([physicalRoot, discoveredFiles]) =>
       Effect.gen(function* () {
-        const location = yield* decodeQuestionPath(tryoutSources, physicalRoot);
+        const location = yield* decodeQuestionPath(questionBanks, physicalRoot);
         return yield* loadQuestionSource(corpusRoot, location, [
           ...discoveredFiles,
         ]);

@@ -1,6 +1,7 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
+  ArticleCategorySchema,
   ArticleMetadataSchema,
   ArticleProjectionSchema,
   ArticleRouteSchema,
@@ -45,6 +46,27 @@ describe("article projection", () => {
     expect(JSON.parse(canonicalizeArticleProjection(projection))).toEqual(
       projection
     );
+  });
+
+  it("accepts a second test category through the generic route contract", () => {
+    const genericRoute = Schema.decodeUnknownSync(ArticleRouteSchema)({
+      articleSlug: "test-group-test-article",
+      category: "test-category",
+      contentKey: "articles/test-category/test-group-test-article",
+      graph: articleGraph("en", "test-category", "test-group-test-article"),
+      locale: "en",
+      publicPath: "articles/test-category/test-group-test-article",
+    });
+
+    expect(genericRoute.category).toBe("test-category");
+  });
+
+  it("rejects article categories outside the stable kebab grammar", () => {
+    expect(
+      Either.isLeft(
+        Schema.decodeUnknownEither(ArticleCategorySchema)("Test_Category")
+      )
+    ).toBe(true);
   });
 
   it("omits absent optional metadata and reference fields", () => {

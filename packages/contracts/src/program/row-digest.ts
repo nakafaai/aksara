@@ -4,19 +4,22 @@ import { Effect, Schema, Stream } from "effect";
 
 import { ContentLocaleSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
-import type { CurriculumRoute } from "#contracts/program/curriculum";
+import {
+  CURRICULUM_NAMESPACES,
+  type CurriculumRoute,
+} from "#contracts/program/curriculum";
 import {
   canonicalizeProgramSnapshotRow,
   hashCurriculumRow,
   hashProgramRow,
   ProgramHashError,
 } from "#contracts/program/row-hash";
-import {
-  PROGRAM_ROW_COUNT,
-  PROGRAM_SLUG_COUNT,
-  type ProgramSnapshotRow,
+import type {
+  ProgramCounts,
+  ProgramSnapshotRow,
 } from "#contracts/program/snapshot";
 import type { LearningProgram } from "#contracts/program/spec";
+import { compareCodeUnits } from "#contracts/text/order";
 
 const DIGEST_DOMAIN = "nakafa.aksara.program-rows.v2";
 
@@ -39,21 +42,21 @@ export class ProgramDigestError extends Schema.TaggedError<ProgramDigestError>()
   }
 ) {}
 
-/** Builds deterministic code-unit order without locale-sensitive collation. */
-function compareText(left: string, right: string) {
-  if (left < right) {
-    return -1;
-  }
-  if (left > right) {
-    return 1;
-  }
-  return 0;
+/** Serializes source-derived counts for exact replay comparison. */
+function countIdentity(counts: ProgramCounts) {
+  return [
+    counts.curriculumRowCount,
+    counts.programRowCount,
+    counts.rowCount,
+    counts.sitemapCount,
+    counts.slugCount,
+  ].join(":");
 }
 
 /** Checks that one root is the exact localized route owned by its program. */
 function isExactProgramRoot(row: CurriculumRoute, program: LearningProgram) {
   const translation = program.translations[row.locale];
-  const namespace = row.locale === "en" ? "curriculum" : "kurikulum";
+  const namespace = CURRICULUM_NAMESPACES[row.locale];
   return (
     row.iconKey === program.iconKey &&
     row.order === program.displayOrder &&
@@ -76,6 +79,17 @@ class ProgramDigestState {
   programRowCount = 0;
   sitemapCount = 0;
 
+  /** Returns source-independent count evidence collected from accepted rows. */
+  counts(): ProgramCounts {
+    return {
+      curriculumRowCount: this.curriculumRowCount,
+      programRowCount: this.programRowCount,
+      rowCount: this.curriculumRowCount + this.programRowCount,
+      sitemapCount: this.sitemapCount,
+      slugCount: this.#slugs.size,
+    };
+  }
+
   /** Adds one verified row after checking canonical stream ownership and order. */
   add(record: ProgramSnapshotRow) {
     return record.kind === "program"
@@ -84,7 +98,7 @@ class ProgramDigestState {
   }
 
   /** Finalizes complete catalog, root, and count evidence. */
-  validateComplete() {
+  validateComplete(expected?: ProgramCounts) {
     const expectedRoots = new Set<string>();
     for (const program of this.#programs.values()) {
       if (program.navigation.model !== "curriculum-tree") {
@@ -94,19 +108,26 @@ class ProgramDigestState {
         expectedRoots.add(`${program.key}\0${locale}`);
       }
     }
+    const counts = this.counts();
+    const expectedCounts = expected ?? counts;
     if (
-      this.programRowCount === PROGRAM_ROW_COUNT &&
-      this.#slugs.size === PROGRAM_SLUG_COUNT &&
-      this.curriculumRowCount > 0 &&
+      this.programRowCount > 0 &&
+      this.#slugs.size ===
+        this.programRowCount * ContentLocaleSchema.literals.length &&
       expectedRoots.size === this.#roots.size &&
-      [...expectedRoots].every((root) => this.#roots.has(root))
+      [...expectedRoots].every((root) => this.#roots.has(root)) &&
+      countIdentity(counts) === countIdentity(expectedCounts)
     ) {
       return Effect.void;
     }
     return Effect.fail(
       new ProgramDigestError({
         code: "count",
-        identity: `${this.programRowCount}:${this.curriculumRowCount}:${this.#slugs.size}:${this.#roots.size}`,
+        identity: JSON.stringify({
+          actual: counts,
+          expected,
+          rootCount: this.#roots.size,
+        }),
       })
     );
   }
@@ -165,7 +186,7 @@ class ProgramDigestState {
     const orderKey = `${row.programKey}\0${row.locale}\0${row.publicPath}`;
     if (
       this.#lastCurriculumKey !== undefined &&
-      compareText(this.#lastCurriculumKey, orderKey) >= 0
+      compareCodeUnits(this.#lastCurriculumKey, orderKey) >= 0
     ) {
       return Effect.fail(
         new ProgramDigestError({ code: "order", identity: orderKey })
@@ -243,7 +264,10 @@ const updateProgramDigest = Effect.fn("AksaraContracts.updateProgramDigest")(
 
 /** Digests all catalog and localized curriculum rows in constant row space. */
 export const digestProgramRows = Effect.fn("AksaraContracts.digestProgramRows")(
-  function* <E, R>(rows: Stream.Stream<ProgramSnapshotRow, E, R>) {
+  function* <E, R>(
+    rows: Stream.Stream<ProgramSnapshotRow, E, R>,
+    expected?: ProgramCounts
+  ) {
     const state = yield* Effect.try({
       catch: () => new ProgramHashError({ scope: "digest" }),
       try: () => new ProgramDigestState(),
@@ -251,15 +275,11 @@ export const digestProgramRows = Effect.fn("AksaraContracts.digestProgramRows")(
     yield* rows.pipe(
       Stream.runForEach((record) => updateProgramDigest(state, record))
     );
-    yield* state.validateComplete();
+    yield* state.validateComplete(expected);
     const rowDigest = yield* state.digest();
     return {
-      curriculumRowCount: state.curriculumRowCount,
-      programRowCount: state.programRowCount,
-      rowCount: state.curriculumRowCount + state.programRowCount,
+      ...state.counts(),
       rowDigest,
-      sitemapCount: state.sitemapCount,
-      slugCount: PROGRAM_SLUG_COUNT,
     };
   }
 );

@@ -1,4 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
+import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
@@ -11,11 +12,9 @@ import {
   digestTryoutCatalog,
   digestTryoutPlacements,
 } from "@nakafa/aksara-contracts/tryout/row-hash";
+import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot-hash";
-import type {
-  TryoutCatalogCounts,
-  TryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/spec";
+import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/spec";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Effect, Option, type Scope, Stream } from "effect";
 import type { inspectQuestionDocument } from "#publisher/question/document";
@@ -184,7 +183,7 @@ export const prepareTryoutSnapshot: <E, R>(
       catalogDigest: catalog.digest,
       counts: countCatalogKinds(projection.catalog),
       format: "tryout-v1",
-      locales: ["en", "id"],
+      locales: ContentLocaleSchema.literals,
       placementCount: placement.count,
       placementDigest: placement.digest,
       routeCount: projection.routeCount,

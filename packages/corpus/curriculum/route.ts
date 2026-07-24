@@ -1,14 +1,17 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 import {
+  CURRICULUM_NAMESPACES,
   type CurriculumRoute,
   type CurriculumRouteDraft,
   CurriculumRouteDraftSchema,
+  isRenderableCurriculumLevel,
 } from "@nakafa/aksara-contracts/program/curriculum";
 import {
   type LearningProgram,
   LearningProgramKeySchema,
 } from "@nakafa/aksara-contracts/program/spec";
+import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { Effect, Schema } from "effect";
 
 import { addMaterialContext } from "#corpus/curriculum/context";
@@ -17,17 +20,13 @@ import {
   projectCurriculumNodes,
 } from "#corpus/curriculum/projection";
 import type { CurriculumSource } from "#corpus/curriculum/schema";
+import {
+  decodeMaterialDomains,
+  type MaterialDomainDescriptor,
+  requireMaterialDomain,
+} from "#corpus/material/domain";
 import { materialTopicPath } from "#corpus/material/route";
 import type { LessonMaterialSource } from "#corpus/material/schema";
-
-const curriculumNamespaces = { en: "curriculum", id: "kurikulum" };
-const renderableLevels = new Set([
-  "class",
-  "course",
-  "stage",
-  "subject",
-  "track",
-]);
 
 /** Curriculum routes cannot be derived from the supplied source ownership. */
 export class CurriculumRouteError extends Schema.TaggedError<CurriculumRouteError>()(
@@ -96,21 +95,12 @@ function materialAncestorIdentities(nodes: readonly ProjectedCurriculumNode[]) {
 }
 
 /** Selects the exact icon fallback used by Nakafa curriculum navigation. */
-function routeIcon(node: ProjectedCurriculumNode, program: LearningProgram) {
-  if (node.iconKey) {
-    return node.iconKey;
-  }
-  if (node.materialDomain === "mathematics") {
-    return "mathematics";
-  }
-  if (
-    node.materialDomain === "biology" ||
-    node.materialDomain === "chemistry" ||
-    node.materialDomain === "physics"
-  ) {
-    return "science";
-  }
-  return program.iconKey;
+function routeIcon(
+  node: ProjectedCurriculumNode,
+  program: LearningProgram,
+  descriptor: MaterialDomainDescriptor | undefined
+) {
+  return node.iconKey ?? descriptor?.navigationIconKey ?? program.iconKey;
 }
 
 /** Resolves a node's localized segments through its complete ancestry. */
@@ -126,9 +116,11 @@ export const projectCurriculumRoutes = Effect.fn(
   "AksaraCorpus.projectCurriculumRoutes"
 )(function* (input: {
   readonly curricula: readonly CurriculumSource[];
+  readonly domains?: readonly MaterialDomainDescriptor[];
   readonly materials: readonly LessonMaterialSource[];
   readonly programs: readonly LearningProgram[];
 }) {
+  const domains = input.domains ?? (yield* decodeMaterialDomains());
   yield* validateProgramOwnership(input.curricula, input.programs);
   const programByKey = new Map(
     input.programs.map((program) => [program.key, program])
@@ -136,13 +128,17 @@ export const projectCurriculumRoutes = Effect.fn(
   const materialByKey = new Map(
     input.materials.map((material) => [material.key, material])
   );
-  const nodes = yield* projectCurriculumNodes(input.curricula, input.materials);
+  const nodes = yield* projectCurriculumNodes(
+    input.curricula,
+    input.materials,
+    domains
+  );
   const materialAncestors = materialAncestorIdentities(nodes);
   const routes: CurriculumRouteDraft[] = [];
   for (const curriculum of input.curricula) {
     const program = yield* requireProgram(programByKey, curriculum.programKey);
     for (const locale of ContentLocaleSchema.literals) {
-      const root = `${curriculumNamespaces[locale]}/${program.translations[locale].publicSlug}`;
+      const root = `${CURRICULUM_NAMESPACES[locale]}/${program.translations[locale].publicSlug}`;
       const hasMaterials = nodes.some(
         (node) =>
           node.curriculumKey === curriculum.programKey &&
@@ -166,21 +162,32 @@ export const projectCurriculumRoutes = Effect.fn(
   }
   for (const node of nodes) {
     const program = yield* requireProgram(programByKey, node.curriculumKey);
+    const material = node.materialKeys[0]
+      ? materialByKey.get(node.materialKeys[0])
+      : undefined;
+    const materialDescriptor = material
+      ? yield* requireMaterialDomain(domains, material.domain, material.key)
+      : undefined;
+    const nodeDescriptor = node.materialDomain
+      ? yield* requireMaterialDomain(
+          domains,
+          node.materialDomain,
+          `${node.curriculumKey}:${node.key}`
+        )
+      : undefined;
     for (const locale of ContentLocaleSchema.literals) {
       const segments = nodeSegments(node, locale);
-      const root = `${curriculumNamespaces[locale]}/${program.translations[locale].publicSlug}`;
+      const root = `${CURRICULUM_NAMESPACES[locale]}/${program.translations[locale].publicSlug}`;
       const publicPath = `${root}/${segments.join("/")}`;
-      const material = node.materialKeys[0]
-        ? materialByKey.get(node.materialKeys[0])
-        : undefined;
       routes.push(
         CurriculumRouteDraftSchema.make({
-          canonicalPath: material
-            ? materialTopicPath(material, locale)
-            : undefined,
+          canonicalPath:
+            material && materialDescriptor
+              ? materialTopicPath(material, materialDescriptor, locale)
+              : undefined,
           displayGroupIconKey: node.displayGroupIconKey,
           displayGroupTitle: node.displayGroup?.[locale].title,
-          iconKey: routeIcon(node, program),
+          iconKey: routeIcon(node, program, nodeDescriptor),
           kind: "curriculum-context",
           level: node.level,
           locale,
@@ -196,7 +203,7 @@ export const projectCurriculumRoutes = Effect.fn(
           programKey: node.curriculumKey,
           publicPath: PublicPathSchema.make(publicPath),
           sitemap:
-            renderableLevels.has(node.level) &&
+            isRenderableCurriculumLevel(node.level) &&
             materialAncestors.has(`${node.curriculumKey}\0${node.key}`),
           title: node.translations[locale].title,
         })
@@ -207,6 +214,6 @@ export const projectCurriculumRoutes = Effect.fn(
   return contextual.sort((left: CurriculumRoute, right: CurriculumRoute) => {
     const leftKey = `${left.programKey}\0${left.locale}\0${left.publicPath}`;
     const rightKey = `${right.programKey}\0${right.locale}\0${right.publicPath}`;
-    return leftKey < rightKey ? -1 : 1;
+    return compareCodeUnits(leftKey, rightKey);
   });
 });

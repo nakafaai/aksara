@@ -1,3 +1,4 @@
+import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import {
   type LearningProgram,
   LearningProgramSchema,
@@ -50,7 +51,7 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
     for (const program of programs) {
       yield* addIdentity(keys, "key", program.key);
       yield* addIdentity(orders, "order", program.displayOrder.toString());
-      for (const locale of ["en", "id"] as const) {
+      for (const locale of ContentLocaleSchema.literals) {
         yield* addIdentity(
           slugs,
           "slug",
@@ -65,7 +66,7 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
   }
 );
 
-/** Strictly decodes all six real learning programs from source control. */
+/** Strictly decodes every reviewed learning program from source control. */
 export const decodeProgramCatalog = Effect.fn(
   "AksaraCorpus.decodeProgramCatalog"
 )(function* (input: unknown = programSources) {

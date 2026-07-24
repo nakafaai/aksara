@@ -155,6 +155,7 @@ describe("curriculum schema", () => {
     const files = await Effect.runPromise(
       importCorpusModules("curriculum/**/*.ts", [
         "curriculum/context.ts",
+        "curriculum/material.ts",
         "curriculum/projection.ts",
         "curriculum/route.ts",
         "curriculum/schema.ts",

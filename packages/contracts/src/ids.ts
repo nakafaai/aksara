@@ -4,7 +4,10 @@ const HEX_40_PATTERN = /^[a-f\d]{40}$/;
 const SHA256_PATTERN = /^sha256:[a-f\d]{64}$/;
 const ED25519_SIGNATURE_PATTERN = /^[A-Za-z0-9_-]{85}[AQgw]$/;
 const SIGNING_KEY_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,63}$/;
-const CONTENT_KEY_PATTERN = /^[a-z0-9][a-z0-9._:/-]{0,511}$/;
+/** Maximum wire length shared by every published content identity. */
+export const CONTENT_KEY_MAX_LENGTH = 512;
+
+const CONTENT_KEY_PATTERN = /^[a-z0-9][a-z0-9._:/-]*$/;
 const RELEASE_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,127}$/;
 const PUBLIC_PATH_PATTERN =
   /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
@@ -44,6 +47,7 @@ function isCorpusSourcePath(value: string) {
 /** Stable content identity shared across locales and immutable releases. */
 export const ContentKeySchema = Schema.String.pipe(
   Schema.pattern(CONTENT_KEY_PATTERN),
+  Schema.maxLength(CONTENT_KEY_MAX_LENGTH),
   Schema.brand("@NakafaAI/AksaraContentKey")
 );
 export type ContentKey = typeof ContentKeySchema.Type;

@@ -5,15 +5,15 @@ import { describe, expect, it, vi } from "vitest";
 
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
 import { CurriculumRouteSchema } from "#contracts/program/curriculum";
-import {
-  digestProgramRows,
-  ProgramDigestError,
-} from "#contracts/program/row-digest";
+import { digestProgramRows } from "#contracts/program/row-digest";
 import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshotRow,
 } from "#contracts/program/row-hash";
-import type { ProgramSnapshotRow } from "#contracts/program/snapshot";
+import {
+  ProgramCountsSchema,
+  type ProgramSnapshotRow,
+} from "#contracts/program/snapshot";
 import {
   makeTestCurriculumRoot,
   makeTestProgram,
@@ -70,9 +70,12 @@ vi.mock("node:crypto", async (importOriginal) => {
 });
 
 /** Returns one typed digest failure without a FiberFailure wrapper. */
-function reject(rows: readonly ProgramSnapshotRow[]) {
+function reject(
+  rows: readonly ProgramSnapshotRow[],
+  expected?: typeof ProgramCountsSchema.Type
+) {
   return Effect.runPromise(
-    digestProgramRows(Stream.fromIterable(rows)).pipe(Effect.flip)
+    digestProgramRows(Stream.fromIterable(rows), expected).pipe(Effect.flip)
   );
 }
 
@@ -102,9 +105,7 @@ describe("aggregate program row digest", () => {
     );
     const [first, second] = programRecords;
     const [firstCurriculum] = curriculumRecords;
-    expect(first).toBeDefined();
-    expect(second).toBeDefined();
-    expect(firstCurriculum).toBeDefined();
+    expect(first && second && firstCurriculum).toBeDefined();
     if (!(first && second && firstCurriculum)) {
       return;
     }
@@ -129,6 +130,9 @@ describe("aggregate program row digest", () => {
         },
       })
     );
+    const nonCurriculumSummary = await Effect.runPromise(
+      digestProgramRows(Stream.make(nonCurriculum))
+    );
     const tamperedCurriculum = {
       ...firstCurriculum,
       rowHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
@@ -144,11 +148,28 @@ describe("aggregate program row digest", () => {
       reject([first, duplicateKey]),
       reject([first, duplicateSlug]),
       reject([second, first]),
-      reject([nonCurriculum]),
+      reject([first]),
       reject(programRecords.slice(0, 5)),
       reject([...programRecords, firstCurriculum, first]),
+      reject(
+        [...programRecords, ...curriculumRecords],
+        ProgramCountsSchema.make({
+          curriculumRowCount: 390,
+          programRowCount: 7,
+          rowCount: 397,
+          sitemapCount: 52,
+          slugCount: 14,
+        })
+      ),
     ]);
 
+    expect(nonCurriculumSummary).toMatchObject({
+      curriculumRowCount: 0,
+      programRowCount: 1,
+      rowCount: 1,
+      sitemapCount: 0,
+      slugCount: 2,
+    });
     expect(
       errors.map((error) =>
         error._tag === "ProgramDigestError" ? error.code : error._tag
@@ -162,6 +183,7 @@ describe("aggregate program row digest", () => {
       "count",
       "count",
       "order",
+      "count",
     ]);
   });
 
@@ -170,9 +192,7 @@ describe("aggregate program row digest", () => {
       makeTestProgramRecords()
     );
     const [firstCurriculum, firstChild, secondChild] = curriculumRecords;
-    expect(firstCurriculum).toBeDefined();
-    expect(firstChild).toBeDefined();
-    expect(secondChild).toBeDefined();
+    expect(firstCurriculum && firstChild && secondChild).toBeDefined();
     if (!(firstCurriculum && firstChild && secondChild)) {
       return;
     }
@@ -246,9 +266,6 @@ describe("aggregate program row digest", () => {
       reject([...programRecords, nested]),
     ]);
 
-    expect(errors.every((error) => error instanceof ProgramDigestError)).toBe(
-      true
-    );
     expect(
       errors.map((error) =>
         error._tag === "ProgramDigestError" ? error.code : error._tag

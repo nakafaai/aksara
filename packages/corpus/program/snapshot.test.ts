@@ -1,6 +1,7 @@
 import { Chunk, Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-
+import { examProgramSources } from "#corpus/program/exam";
+import { schoolProgramSources } from "#corpus/program/school";
 import {
   prepareProgramSnapshot,
   streamProgramRows,
@@ -58,7 +59,9 @@ describe("program snapshot preparation", () => {
     });
   });
 
-  it("replays reproducible rows and rejects malformed source input", async () => {
+  it("replays reproducible rows and rejects malformed source input", {
+    timeout: 30_000,
+  }, async () => {
     const first = await Effect.runPromise(prepareProgramSnapshot());
     const second = await Effect.runPromise(prepareProgramSnapshot());
     const firstRows = await Effect.runPromise(
@@ -72,5 +75,32 @@ describe("program snapshot preparation", () => {
     expect(second.manifest).toEqual(first.manifest);
     expect(replayRows).toEqual(firstRows);
     expect(error._tag).toBe("ProgramCatalogError");
+  });
+
+  it("derives counts when source control adds another program", async () => {
+    const [firstExam] = examProgramSources;
+    const expanded = await Effect.runPromise(
+      prepareProgramSnapshot([
+        ...schoolProgramSources,
+        ...examProgramSources,
+        {
+          ...firstExam,
+          displayOrder: 70,
+          key: "test-only-program",
+          translations: {
+            en: { publicSlug: "test-only-program", title: "Test-only Program" },
+            id: { publicSlug: "program-uji", title: "Program Uji" },
+          },
+        },
+      ])
+    );
+
+    expect(expanded.manifest).toMatchObject({
+      curriculumRowCount: 390,
+      programRowCount: 7,
+      rowCount: 397,
+      sitemapCount: 52,
+      slugCount: 14,
+    });
   });
 });

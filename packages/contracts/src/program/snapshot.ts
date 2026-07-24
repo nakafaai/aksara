@@ -1,25 +1,28 @@
 import { Schema } from "effect";
 
+import {
+  type ContentLocaleList,
+  ContentLocaleListSchema,
+} from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import { CurriculumRouteSchema } from "#contracts/program/curriculum";
 import { LearningProgramSchema } from "#contracts/program/spec";
 
 /** Wire format for programs and exact localized curriculum routes. */
-export const PROGRAM_SNAPSHOT_FORMAT = "program-v2" as const;
-
-/** Exact number of source-controlled learning programs in this format. */
-export const PROGRAM_ROW_COUNT = 6;
-
-/** Exact number of localized curriculum routes in the reviewed corpus. */
-export const CURRICULUM_ROW_COUNT = 390;
-
-/** Exact en/id public-slug identities authenticated by every snapshot. */
-export const PROGRAM_SLUG_COUNT = PROGRAM_ROW_COUNT * 2;
-
-/** Exact number of learner-renderable curriculum routes in the reviewed corpus. */
-export const PROGRAM_SITEMAP_COUNT = 52;
+export const PROGRAM_SNAPSHOT_FORMAT = "program-v2";
 
 const CountSchema = Schema.Int.pipe(Schema.nonNegative());
+const ProgramCountFields = {
+  curriculumRowCount: CountSchema,
+  programRowCount: CountSchema,
+  rowCount: CountSchema,
+  sitemapCount: CountSchema,
+  slugCount: CountSchema,
+};
+
+/** Source-derived row counts checked against each complete program replay. */
+export const ProgramCountsSchema = Schema.Struct(ProgramCountFields);
+export type ProgramCounts = typeof ProgramCountsSchema.Type;
 
 /** Hashed immutable learning-program catalog record. */
 export const LearningProgramRecordSchema = Schema.Struct({
@@ -43,30 +46,26 @@ export const ProgramSnapshotRowSchema = Schema.Union(
 export type ProgramSnapshotRow = typeof ProgramSnapshotRowSchema.Type;
 
 const SnapshotFields = {
-  curriculumRowCount: CountSchema,
+  ...ProgramCountFields,
   format: Schema.Literal(PROGRAM_SNAPSHOT_FORMAT),
-  locales: Schema.Tuple(Schema.Literal("en"), Schema.Literal("id")),
-  programRowCount: CountSchema,
-  rowCount: CountSchema,
+  locales: ContentLocaleListSchema,
   rowDigest: Sha256HashSchema,
-  sitemapCount: CountSchema,
-  slugCount: CountSchema,
 };
 
-/** Checks fixed program coverage and aggregate count arithmetic. */
+/** Checks aggregate arithmetic without coupling the wire format to one corpus. */
 function hasCompleteProgramSnapshot(input: {
   readonly curriculumRowCount: number;
+  readonly locales: ContentLocaleList;
   readonly programRowCount: number;
   readonly rowCount: number;
   readonly sitemapCount: number;
   readonly slugCount: number;
 }) {
   return (
-    input.programRowCount === PROGRAM_ROW_COUNT &&
-    input.curriculumRowCount === CURRICULUM_ROW_COUNT &&
-    input.slugCount === PROGRAM_SLUG_COUNT &&
+    input.programRowCount > 0 &&
+    input.slugCount === input.programRowCount * input.locales.length &&
     input.rowCount === input.programRowCount + input.curriculumRowCount &&
-    input.sitemapCount === PROGRAM_SITEMAP_COUNT
+    input.sitemapCount <= input.curriculumRowCount
   );
 }
 
@@ -74,7 +73,7 @@ function hasCompleteProgramSnapshot(input: {
 export const ProgramSnapshotInputSchema = Schema.Struct(SnapshotFields).pipe(
   Schema.filter(hasCompleteProgramSnapshot, {
     message: () =>
-      "Expected six program rows and a complete aggregate curriculum route set.",
+      "Expected self-consistent program and curriculum snapshot counts.",
   })
 );
 export type ProgramSnapshotInput = typeof ProgramSnapshotInputSchema.Type;
@@ -86,7 +85,7 @@ export const ProgramSnapshotSchema = Schema.Struct({
 }).pipe(
   Schema.filter(hasCompleteProgramSnapshot, {
     message: () =>
-      "Expected six program rows and a complete aggregate curriculum route set.",
+      "Expected self-consistent program and curriculum snapshot counts.",
   })
 );
 export type ProgramSnapshot = typeof ProgramSnapshotSchema.Type;

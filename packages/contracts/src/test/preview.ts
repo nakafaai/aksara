@@ -36,6 +36,7 @@ export const testPreviewTarget = Schema.decodeUnknownSync(
     graph,
     kind: "exam",
     locale: "en",
+    order: 1,
     publicPath: "try-out/indonesia/snbt",
     scoringStrategy: "irt",
     sourceRevision: "test-preview-v1",

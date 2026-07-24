@@ -19,10 +19,8 @@ import {
   contentSnapshotId,
 } from "#contracts/release/snapshot-data";
 import { materialGraph } from "#contracts/test/graph";
-import {
-  TryoutCatalogRecordSchema,
-  TryoutSnapshotSchema,
-} from "#contracts/tryout/spec";
+import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot";
+import { TryoutCatalogRecordSchema } from "#contracts/tryout/spec";
 
 const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
@@ -108,6 +106,7 @@ const tryoutRow = Schema.decodeUnknownSync(TryoutCatalogRecordSchema)({
     graph: materialGraph("en", "test", "tryout", "country"),
     kind: "country",
     locale: "en",
+    order: 1,
     publicPath: "try-out/indonesia",
     sourceRevision: "2026-07-23",
     title: "Indonesia",

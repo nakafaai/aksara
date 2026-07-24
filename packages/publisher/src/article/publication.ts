@@ -6,7 +6,12 @@ import {
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ArticleCategorySchema,
+  ArticleSlugSchema,
+} from "@nakafa/aksara-contracts/projection/article";
 import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
@@ -106,34 +111,56 @@ export type PrepareArticlePublicationError<E> =
 
 /** Finds the first field proving a head does not own its article source. */
 function mismatchedFamilyField(
-  head: ArticleHead
+  head: ArticleHead,
+  rendererByCategory: ReadonlyMap<string, RendererDomain>
 ): typeof ArticleFamilyFieldSchema.Type | undefined {
-  const keyPrefix = "articles/politics/";
-  if (!head.contentKey.startsWith(keyPrefix)) {
+  const [family, category, slug, contentRemainder] = head.contentKey.split("/");
+  if (
+    family !== "articles" ||
+    category === undefined ||
+    !Schema.is(ArticleCategorySchema)(category) ||
+    slug === undefined ||
+    !Schema.is(ArticleSlugSchema)(slug) ||
+    contentRemainder !== undefined
+  ) {
     return "contentKey";
   }
   if (String(head.publicPath) !== String(head.contentKey)) {
     return "publicPath";
   }
-  if (head.rendererDomain !== "politics") {
+  const rendererDomain = rendererByCategory.get(category);
+  if (rendererDomain !== undefined && head.rendererDomain !== rendererDomain) {
     return "rendererDomain";
   }
 
-  const sourcePrefix = "packages/corpus/articles/politics/";
-  const sourceSuffix = `/${head.locale}.mdx`;
-  if (!head.sourcePath.startsWith(sourcePrefix)) {
+  const [
+    packageRoot,
+    corpus,
+    articleFamily,
+    sourceCategory,
+    group,
+    name,
+    fileName,
+    sourceRemainder,
+  ] = head.sourcePath.split("/");
+  if (
+    packageRoot !== "packages" ||
+    corpus !== "corpus" ||
+    articleFamily !== "articles" ||
+    sourceCategory !== category ||
+    group === undefined ||
+    !Schema.is(ArticleSlugSchema)(group) ||
+    name === undefined ||
+    !Schema.is(ArticleSlugSchema)(name) ||
+    fileName === undefined ||
+    sourceRemainder !== undefined
+  ) {
     return "sourcePath";
   }
-  if (!head.sourcePath.endsWith(sourceSuffix)) {
+  if (fileName !== `${head.locale}.mdx`) {
     return "locale";
   }
-  const slug = head.contentKey.slice(keyPrefix.length);
-  const sourceRoot = head.sourcePath.slice(
-    sourcePrefix.length,
-    -sourceSuffix.length
-  );
-  const segments = sourceRoot.split("/");
-  if (segments.length !== 2 || segments.join("-") !== slug) {
+  if (`${group}-${name}` !== slug) {
     return "sourcePath";
   }
 }
@@ -141,12 +168,13 @@ function mismatchedFamilyField(
 /** Validates family ownership and strict ordering before diffing one head. */
 function validatePublishedHead(
   state: HeadOrderState,
-  head: ArticleHead
+  head: ArticleHead,
+  rendererByCategory: ReadonlyMap<string, RendererDomain>
 ): Effect.Effect<
   readonly [HeadOrderState, ArticleHead],
   ArticleHeadDuplicateError | ArticleHeadFamilyError | ArticleHeadOrderError
 > {
-  const field = mismatchedFamilyField(head);
+  const field = mismatchedFamilyField(head, rendererByCategory);
   if (field !== undefined) {
     return Effect.fail(
       new ArticleHeadFamilyError({
@@ -182,10 +210,15 @@ function validatePublishedHead(
 
 /** Proves every published article head before the constant-space merge. */
 function validatePublishedHeads<E, R>(
-  published: Stream.Stream<ArticleHead, E, R>
+  published: Stream.Stream<ArticleHead, E, R>,
+  rendererByCategory: ReadonlyMap<string, RendererDomain>
 ) {
   const initial: HeadOrderState = { previous: undefined };
-  return published.pipe(Stream.mapAccumEffect(initial, validatePublishedHead));
+  return published.pipe(
+    Stream.mapAccumEffect(initial, (state, head) =>
+      validatePublishedHead(state, head, rendererByCategory)
+    )
+  );
 }
 
 /**
@@ -205,10 +238,14 @@ export const prepareArticlePublication: <E, R>(
   const entries = yield* decodeArticleRegistry().pipe(
     Effect.mapError(mapArticleSourceError(input.checkoutRoot))
   );
+  const rendererByCategory = new Map<string, RendererDomain>();
+  for (const entry of entries) {
+    rendererByCategory.set(entry.route.category, entry.rendererDomain);
+  }
   const plans = planArticlePublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(input.published),
+    published: validatePublishedHeads(input.published, rendererByCategory),
     rendererManifest,
   });
   const spool = yield* createReplaySpool({

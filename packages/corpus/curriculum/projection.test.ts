@@ -1,12 +1,15 @@
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
-import {
-  CurriculumProjectionError,
-  projectCurriculumNodes,
-} from "#corpus/curriculum/projection";
+import { CurriculumProjectionError } from "#corpus/curriculum/material";
+import { projectCurriculumNodes } from "#corpus/curriculum/projection";
 import { CurriculumSourceSchema } from "#corpus/curriculum/schema";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
+import {
+  decodeMaterialDomains,
+  MaterialDomainMissingError,
+} from "#corpus/material/domain";
+import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 import { decodeMaterialSources } from "#corpus/material/source";
 
 /** Decodes one real-identity curriculum leaf for failure-path verification. */
@@ -27,6 +30,32 @@ function merdekaLeaf(input: {
         order: 10,
       },
     ],
+  });
+}
+
+/** Decodes one generic material source without adding it to corpus inventory. */
+function earthScienceMaterial() {
+  return Schema.decodeUnknownSync(LessonMaterialSourceSchema)({
+    assetRoot: "material/lesson/earth-science/geology",
+    domain: "earth-science",
+    key: "lesson.earth-science.geology",
+    kind: "lesson",
+    routeSlugs: { en: "geology", id: "geologi" },
+    sections: [
+      {
+        routeSlugs: { en: "rocks", id: "batuan" },
+        slug: "rocks",
+        translations: {
+          en: { title: "Rocks" },
+          id: { title: "Batuan" },
+        },
+      },
+    ],
+    slug: "geology",
+    translations: {
+      en: { description: "Test geology.", title: "Geology" },
+      id: { description: "Geologi pengujian.", title: "Geologi" },
+    },
   });
 }
 
@@ -152,5 +181,113 @@ describe("curriculum node projection", () => {
     );
 
     expect(node?.translations).toEqual(displayOverride);
+  });
+
+  it("projects a generic material domain from one reviewed descriptor", async () => {
+    const material = earthScienceMaterial();
+    const curriculum = merdekaLeaf({ materialKeys: [material.key] });
+    const domains = await Effect.runPromise(
+      decodeMaterialDomains([
+        {
+          key: "earth-science",
+          rendererDomain: "physics",
+          routeSlugs: { en: "earth-science", id: "ilmu-bumi" },
+        },
+      ])
+    );
+    const [node] = await Effect.runPromise(
+      projectCurriculumNodes([curriculum], [material], domains)
+    );
+
+    expect(node?.materialDomain).toBe("earth-science");
+  });
+
+  it("rejects a curriculum material with no domain descriptor", async () => {
+    const material = earthScienceMaterial();
+    const curriculum = merdekaLeaf({ materialKeys: [material.key] });
+    const error = await Effect.runPromise(
+      projectCurriculumNodes([curriculum], [material], []).pipe(Effect.flip)
+    );
+
+    expect(error).toBeInstanceOf(MaterialDomainMissingError);
+    expect(error).toMatchObject({
+      key: "earth-science",
+      owner: "lesson.earth-science.geology",
+    });
+  });
+
+  it("rejects material ownership that conflicts with its curriculum domain", async () => {
+    const material = earthScienceMaterial();
+    const materials = await Effect.runPromise(decodeMaterialSources());
+    const mathematics = materials.find(
+      ({ key }) => key === "lesson.mathematics.matrix"
+    );
+    expect(mathematics).toBeDefined();
+    if (!mathematics) {
+      return;
+    }
+    const mixedCurriculum = merdekaLeaf({
+      materialKeys: [material.key, mathematics.key],
+    });
+    const curriculum = Schema.decodeUnknownSync(CurriculumSourceSchema)({
+      programKey: "merdeka",
+      tree: [
+        {
+          children: [
+            {
+              key: "class-10-earth-science-geology",
+              level: "lesson",
+              materialKeys: [material.key],
+              order: 1,
+            },
+          ],
+          key: "class-10-mathematics",
+          level: "subject",
+          materialDomain: "mathematics",
+          order: 1,
+          translations: {
+            en: { routeSlug: "mathematics", title: "Mathematics" },
+            id: { routeSlug: "matematika", title: "Matematika" },
+          },
+        },
+      ],
+    });
+    const domains = await Effect.runPromise(
+      decodeMaterialDomains([
+        {
+          key: "earth-science",
+          rendererDomain: "physics",
+          routeSlugs: { en: "earth-science", id: "ilmu-bumi" },
+        },
+        {
+          key: "mathematics",
+          rendererDomain: "mathematics",
+          routeSlugs: { en: "mathematics", id: "matematika" },
+        },
+      ])
+    );
+    const [mixedError, inheritedError] = await Effect.runPromise(
+      Effect.all([
+        projectCurriculumNodes(
+          [mixedCurriculum],
+          [material, mathematics],
+          domains
+        ).pipe(Effect.flip),
+        projectCurriculumNodes([curriculum], [material], domains).pipe(
+          Effect.flip
+        ),
+      ])
+    );
+
+    expect(mixedError).toMatchObject({
+      _tag: "CurriculumProjectionError",
+      code: "domain",
+      value: "earth-science:mathematics",
+    });
+    expect(inheritedError).toMatchObject({
+      _tag: "CurriculumProjectionError",
+      code: "domain",
+      value: "mathematics:earth-science",
+    });
   });
 });

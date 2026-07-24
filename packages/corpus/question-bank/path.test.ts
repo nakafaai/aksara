@@ -6,10 +6,78 @@ import { describe, expect, it } from "vitest";
 import {
   decodeQuestionDocumentPath,
   decodeQuestionPath,
+  indexQuestionBanks,
+  locateQuestionEntry,
 } from "#corpus/question-bank/path";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
+import { defineTryoutExamSource } from "#corpus/tryout/schema";
 
 const tryoutSources = await Effect.runPromise(decodeTryoutRegistry());
+const questionBanks = await Effect.runPromise(
+  indexQuestionBanks(tryoutSources)
+);
+const futureSource = await Effect.runPromise(
+  defineTryoutExamSource({
+    countryCode: "DE",
+    countryKey: "germany",
+    countryOrder: 2,
+    countryRevision: "test",
+    countryRouteSlugs: { en: "germany", id: "jerman" },
+    countryTranslations: {
+      en: { title: "Germany" },
+      id: { title: "Jerman" },
+    },
+    examKey: "abitur",
+    examOrder: 1,
+    examRouteSlugs: { en: "abitur", id: "abitur" },
+    examTranslations: {
+      en: { title: "Abitur" },
+      id: { title: "Abitur" },
+    },
+    scoringStrategy: "raw",
+    sourceRevision: "test",
+    tracks: [
+      {
+        key: "mathematics",
+        kind: "subject",
+        order: 1,
+        routeSlugs: { en: "mathematics", id: "matematika" },
+        sets: [
+          {
+            key: "foundation-set",
+            order: 1,
+            routeSlugs: { en: "foundation", id: "dasar" },
+            sections: [
+              {
+                key: "mathematics",
+                order: 1,
+                questionCount: 1,
+                questionSourcePath:
+                  "question-bank/tryout/germany/abitur/mathematics/foundation-set",
+                rendererDomain: "mathematics",
+                routeSlugs: { en: "mathematics", id: "matematika" },
+                timeLimitSeconds: 60,
+                translations: {
+                  en: { title: "Mathematics" },
+                  id: { title: "Matematika" },
+                },
+              },
+            ],
+            translations: {
+              en: { title: "Foundation" },
+              id: { title: "Dasar" },
+            },
+          },
+        ],
+        translations: {
+          en: { title: "Mathematics" },
+          id: { title: "Matematika" },
+        },
+      },
+    ],
+  })
+);
+const futureBanks = await Effect.runPromise(indexQuestionBanks([futureSource]));
 
 /** Returns one required test node without bypassing its inferred type. */
 function requireNode<Value>(value: Value | undefined, label: string): Value {
@@ -22,19 +90,37 @@ function requireNode<Value>(value: Value | undefined, label: string): Value {
 /** Returns one typed path rejection at the Vitest boundary. */
 function rejectPath(path: string) {
   return Effect.runPromise(
-    decodeQuestionPath(tryoutSources, path).pipe(Effect.flip)
+    decodeQuestionPath(questionBanks, path).pipe(Effect.flip)
   );
 }
 
 describe("question path", () => {
+  it("locates the terminal question below a question-prefixed bank", () => {
+    expect(
+      locateQuestionEntry(
+        "germany/abitur/question-writing/foundation-set/question-1/choices.ts",
+        "/"
+      )
+    ).toEqual({
+      file: "choices.ts",
+      root: "germany/abitur/question-writing/foundation-set/question-1",
+    });
+    expect(locateQuestionEntry("germany/abitur/question-writing", "/")).toBe(
+      undefined
+    );
+  });
+
   it("derives renderer ownership from the canonical try-out sections", async () => {
     const [plain, mathematics] = await Effect.runPromise(
       Effect.all([
         decodeQuestionPath(
-          tryoutSources,
-          "snbt/reading-and-writing-skills/set-1/question-1"
+          questionBanks,
+          "indonesia/snbt/reading-and-writing-skills/set-1/question-1"
         ),
-        decodeQuestionPath(tryoutSources, "tka/mathematics/set-3/question-40"),
+        decodeQuestionPath(
+          questionBanks,
+          "indonesia/tka/mathematics/set-3/question-40"
+        ),
       ])
     );
 
@@ -46,6 +132,22 @@ describe("question path", () => {
     expect(mathematics).toMatchObject({
       questionNumber: 40,
       rendererDomain: "tka-math",
+    });
+  });
+
+  it("accepts a registered future country, exam, and generic set key", async () => {
+    const location = await Effect.runPromise(
+      decodeQuestionPath(
+        futureBanks,
+        "germany/abitur/mathematics/foundation-set/question-1"
+      )
+    );
+
+    expect(location).toMatchObject({
+      questionKey:
+        "question-bank/tryout/germany/abitur/mathematics/foundation-set/question-1",
+      rendererDomain: "mathematics",
+      setKey: "question-bank/tryout/germany/abitur/mathematics/foundation-set",
     });
   });
 
@@ -86,12 +188,12 @@ describe("question path", () => {
       ],
     };
     const [unknown, conflicting] = await Promise.all([
-      rejectPath("snbt/unsupported/set-1/question-1"),
+      rejectPath("indonesia/snbt/unsupported/set-1/question-1"),
       Effect.runPromise(
-        decodeQuestionPath(
-          [conflict, ...tryoutSources.filter((source) => source !== snbt)],
-          "snbt/general-reasoning/set-1/question-1"
-        ).pipe(Effect.flip)
+        indexQuestionBanks([
+          conflict,
+          ...tryoutSources.filter((source) => source !== snbt),
+        ]).pipe(Effect.flip)
       ),
     ]);
 
@@ -110,24 +212,45 @@ describe("question path", () => {
   it("rejects malformed physical and localized document paths", async () => {
     const malformed = await Promise.all(
       [
-        "snbt/general-reasoning/set-1/question-x",
-        "snbt/reading-and/writing-skills/set-1/question-1",
-        `snbt/general-reasoning/set-${"9".repeat(600)}/question-1`,
+        "indonesia/snbt/general-reasoning/set-1/question-x",
+        "indonesia/snbt/reading-and/Writing-skills/set-1/question-1",
+        `indonesia/snbt/general-reasoning/set-${"9".repeat(600)}/question-1`,
       ].map(rejectPath)
     );
-    const invalidDocument = await Effect.runPromise(
-      decodeQuestionDocumentPath(
-        tryoutSources,
-        CorpusSourcePathSchema.make(
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/notes.mdx"
-        )
-      ).pipe(Effect.flip)
+    const bodyPath = CorpusSourcePathSchema.make(
+      "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.en.mdx"
     );
+    const [body, invalidDocument, choicesDocument] = await Promise.all([
+      Effect.runPromise(decodeQuestionDocumentPath(questionBanks, bodyPath)),
+      Effect.runPromise(
+        decodeQuestionDocumentPath(
+          questionBanks,
+          CorpusSourcePathSchema.make(
+            "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/notes.mdx"
+          )
+        ).pipe(Effect.flip)
+      ),
+      Effect.runPromise(
+        decodeQuestionDocumentPath(
+          questionBanks,
+          CorpusSourcePathSchema.make(
+            "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/choices.ts"
+          )
+        ).pipe(Effect.flip)
+      ),
+    ]);
 
-    expect(
-      [...malformed, invalidDocument].every(
-        ({ reason }) => reason === "grammar"
-      )
-    ).toBe(true);
+    expect(body).toMatchObject({
+      bodyKind: "question",
+      locale: "en",
+      rendererDomain: "snbt-general",
+      sourcePath: bodyPath,
+    });
+    expect([invalidDocument, choicesDocument]).toEqual([
+      expect.objectContaining({ reason: "grammar" }),
+      expect.objectContaining({ reason: "grammar" }),
+    ]);
+
+    expect(malformed.every(({ reason }) => reason === "grammar")).toBe(true);
   });
 });

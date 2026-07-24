@@ -61,7 +61,18 @@ describe("program snapshot hashing", () => {
     const first = await Effect.runPromise(hashProgramSnapshot(input));
     const second = await Effect.runPromise(hashProgramSnapshot(input));
 
-    expect(canonicalizeProgramSnapshot(input)).toBe(JSON.stringify(input));
+    expect(canonicalizeProgramSnapshot(input)).toBe(
+      JSON.stringify({
+        curriculumRowCount: input.curriculumRowCount,
+        format: input.format,
+        locales: input.locales,
+        programRowCount: input.programRowCount,
+        rowCount: input.rowCount,
+        rowDigest: input.rowDigest,
+        sitemapCount: input.sitemapCount,
+        slugCount: input.slugCount,
+      })
+    );
     expect(first).toBe(second);
   });
 

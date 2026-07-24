@@ -3,13 +3,14 @@ import { resolve } from "node:path";
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
+import { indexQuestionBanks } from "#corpus/question-bank/path";
 import { discoverQuestionSources } from "#corpus/question-bank/source";
 import { loadTryoutContent } from "#corpus/tryout/content";
 import { projectTryoutSources } from "#corpus/tryout/projection";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const sourceRoot = "packages/corpus/question-bank/tryout/indonesia";
+const sourceRoot = "packages/corpus/question-bank/tryout";
 const absoluteSourceRoot = resolve(corpusRoot, sourceRoot);
 const realEntries = globSync("**/*", { cwd: absoluteSourceRoot });
 const realChoices = new Map(
@@ -55,9 +56,10 @@ function loadSources() {
   return Effect.runPromise(
     Effect.gen(function* () {
       const sources = yield* decodeTryoutRegistry();
+      const questionBanks = yield* indexQuestionBanks(sources);
       const questions = yield* discoverQuestionSources(
         corpusRoot,
-        sources
+        questionBanks
       ).pipe(Effect.provide(realFileLayer), Effect.provide(Path.layer));
       return [sources, questions] satisfies readonly [
         typeof sources,

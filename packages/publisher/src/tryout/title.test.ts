@@ -1,6 +1,10 @@
 import { Path } from "@effect/platform";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
+import {
+  type QuestionHead,
+  QuestionHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -82,8 +86,11 @@ function reject(input: {
 
 /** Alters one retained body fingerprint without changing its source identity. */
 function alterFingerprint(
-  bodyKind: "answer" | "question",
-  field: "compilerConfigHash" | "projectionHash" | "sourceHash"
+  bodyKind: QuestionBodyKind,
+  field: keyof Pick<
+    QuestionHead,
+    "compilerConfigHash" | "projectionHash" | "sourceHash"
+  >
 ) {
   const head =
     bodyKind === "answer" ? binding.answerHead : binding.questionHead;
@@ -94,7 +101,7 @@ function alterFingerprint(
 }
 
 /** Omits one exact body entry while preserving every other real source. */
-function entriesWithout(bodyKind: "answer" | "question") {
+function entriesWithout(bodyKind: QuestionBodyKind) {
   return questionEntries.filter(
     (entry) =>
       entry.locale !== binding.placement.locale ||

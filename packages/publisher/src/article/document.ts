@@ -46,7 +46,7 @@ export interface InspectedArticleDocument {
   readonly source: ArticleDocumentSource;
 }
 
-/** Wraps every registry and filesystem failure at the checkout source seam. */
+/** Binds one checkout root to the shared article-source error adapter. */
 export function mapArticleSourceError(checkoutRoot: string) {
   return (cause: unknown) => new ArticleSourceError({ cause, checkoutRoot });
 }

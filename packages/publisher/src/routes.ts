@@ -16,6 +16,7 @@ import {
   type ContentRouteItem,
   ContentRouteItemSchema,
 } from "@nakafa/aksara-contracts/release/route";
+import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { Effect, Schema, Stream } from "effect";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 
@@ -162,7 +163,7 @@ function routeChanges(state: RoutePlanState) {
           ]
   );
   return [...changed, ...created]
-    .sort((left, right) => left.identity.localeCompare(right.identity))
+    .sort((left, right) => compareCodeUnits(left.identity, right.identity))
     .map(({ change }) => change);
 }
 

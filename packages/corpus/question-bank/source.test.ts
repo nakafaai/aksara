@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 import { loadQuestionContent } from "#corpus/question-bank/content";
 import {
   decodeQuestionPath,
+  indexQuestionBanks,
   QUESTION_SOURCE_FILES,
 } from "#corpus/question-bank/path";
 import {
@@ -18,9 +19,12 @@ import {
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const sourceRoot = "packages/corpus/question-bank/tryout/indonesia";
+const sourceRoot = "packages/corpus/question-bank/tryout";
 const absoluteSourceRoot = resolve(corpusRoot, sourceRoot);
 const tryoutSources = await Effect.runPromise(decodeTryoutRegistry());
+const questionBanks = await Effect.runPromise(
+  indexQuestionBanks(tryoutSources)
+);
 const realEntries = globSync("**/*", { cwd: absoluteSourceRoot });
 const realChoices = new Map(
   globSync("**/choices.ts", { cwd: absoluteSourceRoot }).map((sourcePath) => {
@@ -81,7 +85,7 @@ function runSources(
   sources: ReadonlyMap<string, string>
 ) {
   return Effect.runPromise(
-    discoverQuestionSources(corpusRoot, tryoutSources).pipe(
+    discoverQuestionSources(corpusRoot, questionBanks).pipe(
       Effect.provide(fileLayer(entries, sources)),
       Effect.provide(Path.layer)
     )
@@ -95,7 +99,7 @@ function rejectSources(
   failDirectory = false
 ) {
   return Effect.runPromise(
-    discoverQuestionSources(corpusRoot, tryoutSources).pipe(
+    discoverQuestionSources(corpusRoot, questionBanks).pipe(
       Effect.provide(fileLayer(entries, sources, failDirectory)),
       Effect.provide(Path.layer),
       Effect.flip
@@ -118,24 +122,21 @@ describe("question source", () => {
     if (firstSource === undefined) {
       throw new Error("Expected the canonical question sources.");
     }
-
     expect(sources).toHaveLength(840);
     expect(choicesByRoot.size).toBe(840);
     expect(choicesByRoot.get(firstSource.sourceRoot)).toBe(firstSource.choices);
     expect(new Set(sources.map(({ setKey }) => setKey)).size).toBe(38);
-    /** Counts canonical sources owned by one renderer contract. */
-    const countDomain = (
-      rendererDomain: (typeof sources)[number]["rendererDomain"]
-    ) =>
-      sources.filter((source) => source.rendererDomain === rendererDomain)
-        .length;
-    expect([
-      countDomain("snbt-general"),
-      countDomain("snbt-math"),
-      countDomain("snbt-plain"),
-      countDomain("snbt-quant"),
-      countDomain("tka-math"),
-    ]).toEqual([200, 140, 180, 200, 120]);
+    for (const [rendererDomain, count] of [
+      ["snbt-general", 200],
+      ["snbt-math", 140],
+      ["snbt-plain", 180],
+      ["snbt-quant", 200],
+      ["tka-math", 120],
+    ] as const) {
+      expect(
+        sources.filter((source) => source.rendererDomain === rendererDomain)
+      ).toHaveLength(count);
+    }
     expect(
       sources.find(({ questionKey }) =>
         questionKey.endsWith("snbt/reading-and-writing-skills/set-1/question-1")
@@ -164,10 +165,10 @@ describe("question source", () => {
   });
 
   it("maps directory and choice reads to typed failures", async () => {
-    const root = "snbt/general-reasoning/set-1/question-1";
+    const root = "indonesia/snbt/general-reasoning/set-1/question-1";
     const directoryError = await rejectSources([], new Map(), true);
     const location = await Effect.runPromise(
-      decodeQuestionPath(tryoutSources, root)
+      decodeQuestionPath(questionBanks, root)
     );
     const selectedDirectoryError = await Effect.runPromise(
       readQuestionSource(corpusRoot, location).pipe(
@@ -193,7 +194,7 @@ describe("question source", () => {
   });
 
   it("rejects missing, replaced, and nested companion files", async () => {
-    const root = "snbt/general-reasoning/set-1/question-1";
+    const root = "indonesia/snbt/general-reasoning/set-1/question-1";
     const missing = await rejectSources(
       questionEntries(root, QUESTION_SOURCE_FILES.slice(1)),
       new Map()
@@ -209,7 +210,6 @@ describe("question source", () => {
       questionEntries(root, [...QUESTION_SOURCE_FILES, "nested/extra.mdx"]),
       new Map()
     );
-
     expect(missing._tag).toBe("QuestionFileSetError");
     expect(replaced._tag).toBe("QuestionFileSetError");
     expect(nested).toMatchObject({
@@ -220,9 +220,9 @@ describe("question source", () => {
 
   it("rejects unevaluable and invalid localized choice catalogs", async () => {
     const roots = [
-      "snbt/general-reasoning/set-1/question-1",
-      "snbt/general-reasoning/set-1/question-2",
-      "snbt/general-reasoning/set-1/question-3",
+      "indonesia/snbt/general-reasoning/set-1/question-1",
+      "indonesia/snbt/general-reasoning/set-1/question-2",
+      "indonesia/snbt/general-reasoning/set-1/question-3",
     ];
     const invalidSources = [
       "export default choices;",
@@ -240,15 +240,14 @@ describe("question source", () => {
         )
       )
     );
-
     expect(errors.every(({ _tag }) => _tag === "QuestionChoiceError")).toBe(
       true
     );
   });
 
   it("rejects non-contiguous numbering within each logical set", async () => {
-    const first = "snbt/general-reasoning/set-1/question-1";
-    const third = "snbt/general-reasoning/set-1/question-3";
+    const first = "indonesia/snbt/general-reasoning/set-1/question-1";
+    const third = "indonesia/snbt/general-reasoning/set-1/question-3";
     const entries = [...questionEntries(first), ...questionEntries(third)];
     const choices = new Map([...choicesFor(first), ...choicesFor(third)]);
     const error = await rejectSources(entries, choices);
@@ -263,7 +262,7 @@ describe("question source", () => {
   it("reads a registry-owned body byte-exactly and types missing reads", {
     timeout: 30_000,
   }, async () => {
-    const physicalRoot = "snbt/general-reasoning/set-1/question-1";
+    const physicalRoot = "indonesia/snbt/general-reasoning/set-1/question-1";
     const sourcePath = `${sourceRoot}/${physicalRoot}/question.en.mdx`;
     const content = await Effect.runPromise(
       loadQuestionContent(corpusRoot, tryoutSources).pipe(

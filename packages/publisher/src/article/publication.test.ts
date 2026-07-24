@@ -69,12 +69,14 @@ function modifyHead(input: unknown) {
 }
 
 describe("article publication", () => {
-  it("removes the route owned by one deleted published article", async () => {
+  it("removes a deleted category without requiring its former registry entry", async () => {
     const stale = modifyHead({
       ...englishHead,
-      contentKey: "articles/politics/zz-removed-article",
-      publicPath: "articles/politics/zz-removed-article",
-      sourcePath: "packages/corpus/articles/politics/zz-removed/article/en.mdx",
+      contentKey: "articles/retired-test/removed-article",
+      publicPath: "articles/retired-test/removed-article",
+      rendererDomain: "physics",
+      sourcePath:
+        "packages/corpus/articles/retired-test/removed/article/en.mdx",
     });
     const routes = await collectArticleRoutes({
       heads: [...publishedHeads, stale],

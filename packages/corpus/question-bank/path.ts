@@ -1,9 +1,15 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
+  QUESTION_BANK_KEY_ROOT,
   QuestionBodyKindSchema,
   QuestionKeySchema,
+  QuestionSegmentSchema,
   QuestionSetKeySchema,
+  QuestionSourcePathSchema,
+  questionBankKey,
+  questionKeyParts,
+  questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
@@ -11,19 +17,10 @@ import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 /** Repository-relative root containing every authored Nakafa question. */
 export const QUESTION_BANK_ROOT = CorpusSourcePathSchema.make(
-  "packages/corpus/question-bank/tryout/indonesia"
+  `packages/corpus/${QUESTION_BANK_KEY_ROOT}`
 );
 
-const CONTENT_ROOT = "question-bank/tryout/indonesia";
-const QUESTION_PATH_PATTERN =
-  /^(?<exam>[a-z0-9]+(?:-[a-z0-9]+)*)\/(?<group>[a-z0-9]+(?:-[a-z0-9]+)*)\/set-(?<setNumber>[1-9]\d*)\/question-(?<questionNumber>[1-9]\d*)$/;
-
-const QuestionPathGroupsSchema = Schema.Struct({
-  exam: Schema.String,
-  group: Schema.String,
-  questionNumber: Schema.NumberFromString.pipe(Schema.int(), Schema.positive()),
-  setNumber: Schema.String,
-});
+const isQuestionSegment = Schema.is(QuestionSegmentSchema);
 
 /** Exact direct files required in every authored question directory. */
 export const QUESTION_SOURCE_FILES = Object.freeze(
@@ -44,6 +41,28 @@ export const QuestionLocationSchema = Schema.Struct({
   sourceRoot: CorpusSourcePathSchema,
 });
 export type QuestionLocation = typeof QuestionLocationSchema.Type;
+export type QuestionBankIndex = ReadonlyMap<
+  string,
+  typeof RendererDomainSchema.Type
+>;
+
+/** Finds the terminal question directory and its direct relative file path. */
+export function locateQuestionEntry(entry: string, separator: string) {
+  const segments = entry.split(separator);
+  let questionIndex = -1;
+  for (const [index, segment] of segments.entries()) {
+    if (isQuestionSegment(segment)) {
+      questionIndex = index;
+    }
+  }
+  if (questionIndex === -1) {
+    return;
+  }
+  return {
+    file: segments.slice(questionIndex + 1).join("/"),
+    root: segments.slice(0, questionIndex + 1).join("/"),
+  };
+}
 
 /** A physical question directory does not follow the canonical path grammar. */
 export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
@@ -54,71 +73,58 @@ export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
   }
 ) {}
 
-/** Maps one validated exam and logical group onto its renderer contract. */
-const decodeRendererDomain = Effect.fn(
-  "AksaraCorpus.decodeQuestionRendererDomain"
-)(function* (
-  sources: readonly TryoutExamSource[],
-  exam: string,
-  group: string,
-  sourcePath: string
-) {
-  const groupRoot = `${CONTENT_ROOT}/${exam}/${group}/`;
-  const domains = new Set(
-    sources.flatMap((source) =>
-      source.tracks.flatMap((track) =>
-        track.sets.flatMap((set) =>
-          set.sections.flatMap((section) =>
-            section.questionSourcePath.startsWith(groupRoot)
-              ? [section.rendererDomain]
-              : []
-          )
-        )
-      )
-    )
-  );
-  const [rendererDomain] = domains;
-  if (domains.size !== 1 || rendererDomain === undefined) {
-    return yield* new QuestionPathError({ reason: "renderer", sourcePath });
+/** Indexes reviewed question banks once and rejects renderer conflicts. */
+export const indexQuestionBanks = Effect.fn("AksaraCorpus.indexQuestionBanks")(
+  function* (sources: readonly TryoutExamSource[]) {
+    const banks = new Map<string, typeof RendererDomainSchema.Type>();
+    for (const source of sources) {
+      for (const track of source.tracks) {
+        for (const set of track.sets) {
+          for (const section of set.sections) {
+            const bankKey = questionBankKey(section.questionSourcePath);
+            const rendererDomain = banks.get(bankKey);
+            if (
+              rendererDomain !== undefined &&
+              rendererDomain !== section.rendererDomain
+            ) {
+              return yield* new QuestionPathError({
+                reason: "renderer",
+                sourcePath: `packages/corpus/${bankKey}`,
+              });
+            }
+            banks.set(bankKey, section.rendererDomain);
+          }
+        }
+      }
+    }
+    return banks;
   }
-  return rendererDomain;
-});
+);
 
 /** Decodes one physical directory into its canonical logical identity. */
 export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
-  function* (sources: readonly TryoutExamSource[], physicalRoot: string) {
+  function* (questionBanks: QuestionBankIndex, physicalRoot: string) {
     const sourcePath = `${QUESTION_BANK_ROOT}/${physicalRoot}`;
-    const match = QUESTION_PATH_PATTERN.exec(physicalRoot);
-    const groups = yield* Schema.decodeUnknown(QuestionPathGroupsSchema)(
-      match?.groups,
-      { onExcessProperty: "error" }
+    const questionKey = yield* Schema.decodeUnknown(QuestionKeySchema)(
+      `${QUESTION_BANK_KEY_ROOT}/${physicalRoot}`
     ).pipe(
       Effect.mapError(
         () => new QuestionPathError({ reason: "grammar", sourcePath })
       )
     );
-    const rendererDomain = yield* decodeRendererDomain(
-      sources,
-      groups.exam,
-      groups.group,
-      sourcePath
-    );
-    const setKey = `${CONTENT_ROOT}/${groups.exam}/${groups.group}/set-${groups.setNumber}`;
+    const { questionNumber, questionSetKey } = questionKeyParts(questionKey);
+    const rendererDomain = questionBanks.get(questionBankKey(questionSetKey));
+    if (rendererDomain === undefined) {
+      return yield* new QuestionPathError({ reason: "renderer", sourcePath });
+    }
 
-    return yield* Schema.decodeUnknown(QuestionLocationSchema)(
-      {
-        questionKey: `${setKey}/question-${groups.questionNumber}`,
-        questionNumber: groups.questionNumber,
-        rendererDomain,
-        setKey,
-        sourceRoot: sourcePath,
-      },
-      { onExcessProperty: "error" }
-    ).pipe(
-      Effect.mapError(
-        () => new QuestionPathError({ reason: "grammar", sourcePath })
-      )
-    );
+    return {
+      questionKey,
+      questionNumber,
+      rendererDomain,
+      setKey: questionSetKey,
+      sourceRoot: CorpusSourcePathSchema.make(sourcePath),
+    };
   }
 );
 
@@ -126,34 +132,28 @@ export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
 export const decodeQuestionDocumentPath = Effect.fn(
   "AksaraCorpus.decodeQuestionDocumentPath"
 )(function* (
-  sources: readonly TryoutExamSource[],
+  questionBanks: QuestionBankIndex,
   sourcePath: typeof CorpusSourcePathSchema.Type
 ) {
-  const prefix = `${QUESTION_BANK_ROOT}/`;
-  const body = QuestionBodyKindSchema.literals
-    .flatMap((bodyKind) =>
-      ContentLocaleSchema.literals.map((locale) => ({
-        bodyKind,
-        locale,
-        suffix: `/${bodyKind}.${locale}.mdx`,
-      }))
+  const decodedPath = yield* Schema.decodeUnknown(QuestionSourcePathSchema)(
+    sourcePath
+  ).pipe(
+    Effect.mapError(
+      () => new QuestionPathError({ reason: "grammar", sourcePath })
     )
-    .find(({ suffix }) => sourcePath.endsWith(suffix));
-  if (body === undefined || !sourcePath.startsWith(prefix)) {
-    return yield* new QuestionPathError({
-      reason: "grammar",
-      sourcePath,
-    });
-  }
-  const physicalRoot = sourcePath.slice(
-    prefix.length,
-    sourcePath.length - body.suffix.length
   );
-  const location = yield* decodeQuestionPath(sources, physicalRoot);
+  const parts = questionSourcePathParts(decodedPath);
+  if (parts.kind !== "body") {
+    return yield* new QuestionPathError({ reason: "grammar", sourcePath });
+  }
+  const physicalRoot = parts.questionKey.slice(
+    QUESTION_BANK_KEY_ROOT.length + 1
+  );
+  const location = yield* decodeQuestionPath(questionBanks, physicalRoot);
   return {
     ...location,
-    bodyKind: body.bodyKind,
-    locale: body.locale,
+    bodyKind: parts.bodyKind,
+    locale: parts.locale,
     sourcePath,
   };
 });

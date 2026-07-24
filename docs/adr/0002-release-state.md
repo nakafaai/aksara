@@ -66,13 +66,15 @@ order, counts, and digests before activation. `stageSnapshot` owns one domain
 manifest; `stageSnapshotBatch` owns bounded rows. Body projections are not
 overloaded for structured data.
 
-Program snapshots authenticate 396 rows: six real program rows and 390
-localized curriculum routes, plus 12 `en`/`id` slug identities and 52 sitemap
-rows in the manifest. Try-out snapshots authenticate the active hierarchy and
-artifact-bound attempt placements. Quran snapshots authenticate 1,427
-projection rows: 114 surahs, 1,085 verse chunks covering 6,236 verses, and 228
-localized search rows, together with reviewed provenance status. Quran
-production activation remains fail-closed while provenance is blocked.
+Snapshot contracts authenticate source-derived counts rather than fixed
+inventory constants. At the time of this decision, the reviewed program source
+produces 396 rows: six program rows and 390 localized curriculum routes, plus
+12 `en`/`id` slug identities and 52 sitemap rows in the manifest. Try-out
+snapshots authenticate the active hierarchy and artifact-bound attempt
+placements. The reviewed Quran source currently produces 1,427 projection
+rows: 114 surahs, 1,085 verse chunks covering 6,236 verses, and 228 localized
+search rows, together with reviewed provenance status. Quran production
+activation remains fail-closed while provenance is blocked.
 
 The global release Ed25519 signature is the only publication trust root.
 Family manifests are authenticated transitively by their content-addressed

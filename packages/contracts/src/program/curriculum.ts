@@ -9,21 +9,42 @@ import {
   ProgramNavigationLevelSchema,
 } from "#contracts/program/spec";
 import { MaterialKeySchema } from "#contracts/projection/material";
+import { isLowerKebab } from "#contracts/text/syntax";
 
-const CURRICULUM_NODE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const CURRICULUM_ROUTE_NODE_KEY_PATTERN =
-  /^[a-z0-9]+(?:-[a-z0-9]+)*(?::root)?$/u;
-const RENDERABLE_LEVELS = new Set([
+const CurriculumNamespaceMapSchema = Schema.Record({
+  key: ContentLocaleSchema,
+  value: Schema.NonEmptyTrimmedString,
+});
+const RenderableCurriculumLevelSchema = Schema.Literal(
   "class",
   "course",
   "stage",
   "subject",
-  "track",
-]);
+  "track"
+);
+
+/** Checks one curriculum route key with its optional canonical root suffix. */
+function isCurriculumRouteNodeKey(value: string) {
+  const rootSuffix = ":root";
+  return isLowerKebab(
+    value.endsWith(rootSuffix) ? value.slice(0, -rootSuffix.length) : value
+  );
+}
+
+/** Localized public route namespaces shared by projection and verification. */
+export const CURRICULUM_NAMESPACES = CurriculumNamespaceMapSchema.make({
+  en: "curriculum",
+  id: "kurikulum",
+});
+
+/** Checks whether one curriculum level owns a learner-renderable route. */
+export const isRenderableCurriculumLevel = Schema.is(
+  RenderableCurriculumLevelSchema
+);
 
 /** Stable source-owned identity for one curriculum tree node. */
 export const CurriculumNodeKeySchema = Schema.String.pipe(
-  Schema.pattern(CURRICULUM_NODE_KEY_PATTERN, {
+  Schema.filter(isLowerKebab, {
     description: "Lowercase kebab-case curriculum node key.",
     identifier: "CurriculumNodeKey",
     message: () => "Invalid curriculum node key.",
@@ -33,7 +54,7 @@ export const CurriculumNodeKeySchema = Schema.String.pipe(
 export type CurriculumNodeKey = typeof CurriculumNodeKeySchema.Type;
 
 const CurriculumRouteNodeKeySchema = Schema.String.pipe(
-  Schema.pattern(CURRICULUM_ROUTE_NODE_KEY_PATTERN)
+  Schema.filter(isCurriculumRouteNodeKey)
 );
 
 const CurriculumRouteFields = {
@@ -68,13 +89,13 @@ function parentPath(publicPath: string) {
 /** Checks namespace, root, and direct-parent route ownership. */
 function hasCoherentRoute(input: {
   readonly level: string;
-  readonly locale: "en" | "id";
+  readonly locale: typeof ContentLocaleSchema.Type;
   readonly nodeKey: string;
   readonly parentPath?: string | undefined;
   readonly programKey: string;
   readonly publicPath: string;
 }) {
-  const namespace = input.locale === "en" ? "curriculum/" : "kurikulum/";
+  const namespace = `${CURRICULUM_NAMESPACES[input.locale]}/`;
   if (!input.publicPath.startsWith(namespace)) {
     return false;
   }
@@ -134,7 +155,7 @@ function hasCoherentSitemap(input: {
   readonly level: string;
   readonly sitemap: boolean;
 }) {
-  return !input.sitemap || RENDERABLE_LEVELS.has(input.level);
+  return !input.sitemap || isRenderableCurriculumLevel(input.level);
 }
 
 /** Localized curriculum route before material presentation context is added. */

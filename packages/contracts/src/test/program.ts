@@ -1,5 +1,5 @@
 import { Effect } from "effect";
-import type { ContentLocale } from "#contracts/content";
+import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
 import { PublicPathSchema } from "#contracts/ids";
 import { CurriculumRouteSchema } from "#contracts/program/curriculum";
 import {
@@ -115,7 +115,7 @@ export const makeTestProgramRecords = Effect.fn(
   );
   const curriculumRecords = yield* Effect.forEach(
     programs.flatMap((program) =>
-      (["en", "id"] as const).flatMap((locale) => [
+      ContentLocaleSchema.literals.flatMap((locale) => [
         makeTestCurriculumRoot(program, locale),
         ...makeTestCurriculumChildren(program, locale),
       ])

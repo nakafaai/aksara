@@ -20,6 +20,7 @@ import {
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import {
+  ArticleCategorySchema,
   ArticleProjectionSchema,
   ArticleSlugSchema,
 } from "#contracts/projection/article";
@@ -159,7 +160,7 @@ const articleContentKey = ContentKeySchema.make(
 );
 const articleProjection = ArticleProjectionSchema.make({
   articleSlug: ArticleSlugSchema.make("dynastic-politics-asian-values"),
-  category: "politics",
+  category: ArticleCategorySchema.make("politics"),
   contentKey: articleContentKey,
   graph: articleGraph("en", "politics", "dynastic-politics-asian-values"),
   kind: "article",

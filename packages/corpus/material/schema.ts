@@ -1,17 +1,17 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
+import {
+  isLowerKebab,
+  isLowerKebabPath,
+} from "@nakafa/aksara-contracts/text/syntax";
 import { Effect, Schema } from "effect";
 
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSlugMapSchema } from "#corpus/route/schema";
 
-const MATERIAL_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const MATERIAL_ROUTE_PATTERN =
-  /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/u;
-
 const MaterialSlugSchema = Schema.String.pipe(
-  Schema.pattern(MATERIAL_SLUG_PATTERN, {
+  Schema.filter(isLowerKebab, {
     description: "Lowercase kebab-case material segment.",
     identifier: "MaterialSlug",
     message: () => "Invalid material slug.",
@@ -19,7 +19,7 @@ const MaterialSlugSchema = Schema.String.pipe(
 );
 
 const MaterialRouteSchema = Schema.String.pipe(
-  Schema.pattern(MATERIAL_ROUTE_PATTERN, {
+  Schema.filter(isLowerKebabPath, {
     description: "Slash-separated material source path.",
     identifier: "MaterialRoute",
     message: () => "Invalid material source path.",

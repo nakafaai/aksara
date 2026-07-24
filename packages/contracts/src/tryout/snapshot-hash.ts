@@ -2,7 +2,7 @@ import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import {
   type TryoutSnapshotInput,
   TryoutSnapshotSchema,
-} from "#contracts/tryout/spec";
+} from "#contracts/tryout/snapshot";
 
 const SNAPSHOT_DOMAIN = "nakafa.aksara.tryout-snapshot.v1";
 const ROWS_DOMAIN = "nakafa.aksara.tryout-rows.v1";

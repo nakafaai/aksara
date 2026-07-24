@@ -1,3 +1,4 @@
+import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type QuestionChoices,
@@ -6,6 +7,8 @@ import {
 import { hasTypeScriptSyntaxError } from "@nakafa/aksara-utilities/typescript/syntax";
 import { Effect, Schema } from "effect";
 import ts from "typescript";
+
+const isContentLocale = Schema.is(ContentLocaleSchema);
 
 /** A choices module contains executable or structurally invalid TypeScript. */
 export class QuestionChoiceError extends Schema.TaggedError<QuestionChoiceError>()(
@@ -75,7 +78,7 @@ function readChoiceList(expression: ts.Expression) {
     return;
   }
 
-  const choices: QuestionChoices["en"] = [];
+  const choices: QuestionChoices[typeof ContentLocaleSchema.Type] = [];
   for (const element of expression.elements) {
     const choice = readChoiceItem(element);
     if (choice === undefined) {
@@ -86,34 +89,38 @@ function readChoiceList(expression: ts.Expression) {
   return choices;
 }
 
-/** Reads the exact English and Indonesian choice properties. */
+/** Reads every exact locale property owned by the content contract. */
 function readChoicesObject(expression: ts.Expression) {
   if (!ts.isObjectLiteralExpression(expression)) {
     return;
   }
 
-  let en: ReturnType<typeof readChoiceList>;
-  let id: ReturnType<typeof readChoiceList>;
+  const choices = new Map<
+    typeof ContentLocaleSchema.Type,
+    NonNullable<ReturnType<typeof readChoiceList>>
+  >();
   for (const property of expression.properties) {
     if (!ts.isPropertyAssignment(property)) {
       return;
     }
     const name = readPropertyName(property.name);
-    if (name === "en" && en === undefined) {
-      en = readChoiceList(property.initializer);
-      continue;
+    if (name === undefined || !isContentLocale(name) || choices.has(name)) {
+      return;
     }
-    if (name === "id" && id === undefined) {
-      id = readChoiceList(property.initializer);
-      continue;
+    const items = readChoiceList(property.initializer);
+    if (items === undefined) {
+      return;
     }
-    return;
+    choices.set(name, items);
   }
 
-  if (en === undefined || id === undefined) {
+  if (
+    ContentLocaleSchema.literals.some((locale) => !choices.has(locale)) ||
+    choices.size !== ContentLocaleSchema.literals.length
+  ) {
     return;
   }
-  return { en, id };
+  return Object.fromEntries(choices);
 }
 
 /** Confirms the module's sole import is the authoring-only choice type. */
@@ -128,7 +135,7 @@ function isChoiceTypeImport(statement: ts.Statement) {
   const clause = statement.importClause;
   if (
     clause === undefined ||
-    !ts.isTypeOnlyImportDeclaration(clause) ||
+    clause.phaseModifier !== ts.SyntaxKind.TypeKeyword ||
     clause.name !== undefined
   ) {
     return false;

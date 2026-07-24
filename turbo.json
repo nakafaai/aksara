@@ -18,6 +18,9 @@
       "inputs": ["package.json", "vitest.config.ts", "scripts/**/*.ts"],
       "outputs": ["coverage/**"]
     },
+    "//#clean:root": {
+      "cache": false
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
@@ -44,6 +47,7 @@
       "outputs": ["coverage/**"]
     },
     "clean": {
+      "dependsOn": ["//#clean:root"],
       "cache": false
     },
     "abort": {
@@ -105,8 +109,11 @@
       "cache": false,
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "typecheck": {
-      "dependsOn": ["//#typecheck:root"],
+      "dependsOn": ["//#typecheck:root", "transit"],
       "outputs": []
     },
     "test": {

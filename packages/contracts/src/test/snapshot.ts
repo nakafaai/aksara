@@ -1,5 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
 
+import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import { digestProgramRows } from "#contracts/program/row-digest";
 import {
@@ -32,7 +33,7 @@ import {
 const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
 /** Builds a test-owned graph identity for one try-out hierarchy row. */
-function tryoutGraph(locale: "en" | "id", kind: string) {
+function tryoutGraph(locale: ContentLocale, kind: string) {
   return {
     alignmentId: `alignment:tryout:test:${kind}`,
     assetId: `asset:${locale}:tryout:test:${kind}`,
@@ -44,7 +45,7 @@ function tryoutGraph(locale: "en" | "id", kind: string) {
 
 /** Builds both locale variants for every try-out hierarchy kind. */
 function tryoutCatalog() {
-  const rows = (["en", "id"] as const).flatMap((locale) => {
+  const rows = ContentLocaleSchema.literals.flatMap((locale) => {
     const root = locale === "en" ? "try-out" : "uji-coba";
     const common = {
       locale,
@@ -58,6 +59,7 @@ function tryoutCatalog() {
         countryKey: "indonesia",
         graph: tryoutGraph(locale, "country"),
         kind: "country",
+        order: 1,
         publicPath: `${root}/indonesia`,
       },
       {
@@ -66,6 +68,7 @@ function tryoutCatalog() {
         examKey: "snbt",
         graph: tryoutGraph(locale, "exam"),
         kind: "exam",
+        order: 1,
         publicPath: `${root}/indonesia/snbt`,
         scoringStrategy: "irt",
       },
@@ -122,7 +125,7 @@ function tryoutCatalog() {
 }
 
 /** Builds one localized, artifact-bound test placement. */
-function tryoutPlacement(locale: "en" | "id") {
+function tryoutPlacement(locale: ContentLocale) {
   return Schema.decodeUnknownSync(TryoutPlacementSchema)({
     answerArtifactHash: sourceHash,
     answerContentKey:
@@ -165,7 +168,7 @@ export const makeSnapshotTestData = Effect.fn(
   );
   const programInput = {
     format: PROGRAM_SNAPSHOT_FORMAT,
-    locales: ["en", "id"],
+    locales: ContentLocaleSchema.literals,
     ...programSummary,
   } as const;
   const programId = yield* hashProgramSnapshot(programInput);
@@ -179,7 +182,7 @@ export const makeSnapshotTestData = Effect.fn(
   const catalogRecords = tryoutCatalog()
     .map(makeTryoutCatalogRecord)
     .sort((left, right) => compareTryoutCatalog(left.row, right.row));
-  const placementRecords = (["en", "id"] as const)
+  const placementRecords = ContentLocaleSchema.literals
     .map(tryoutPlacement)
     .map(makeTryoutPlacementRecord)
     .sort((left, right) => compareTryoutPlacements(left.row, right.row));
@@ -191,7 +194,7 @@ export const makeSnapshotTestData = Effect.fn(
     catalogDigest: catalogSummary.digest,
     counts: { country: 2, exam: 2, section: 2, set: 2, track: 2 },
     format: "tryout-v1",
-    locales: ["en", "id"],
+    locales: ContentLocaleSchema.literals,
     placementCount: placementSummary.count,
     placementDigest: placementSummary.digest,
     routeCount: 8,

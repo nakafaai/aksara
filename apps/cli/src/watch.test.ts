@@ -65,7 +65,9 @@ describe("selected document watch", () => {
     expect(Option.isNone(result.watcherExit)).toBe(true);
   });
 
-  it("invalidates a newer save while the previous compile is still running", async () => {
+  it("invalidates every burst save while retaining only the latest queued compile", {
+    timeout: 10_000,
+  }, async () => {
     const repository = repositories.create();
     const aksaraRoot = realpathSync(repository.aksaraRoot);
     const selected = await Effect.runPromise(
@@ -87,14 +89,19 @@ describe("selected document watch", () => {
       Effect.gen(function* () {
         const firstStarted = yield* Deferred.make<void>();
         const releaseFirst = yield* Deferred.make<void>();
-        const secondInvalidated = yield* Deferred.make<void>();
-        const secondRefreshed = yield* Deferred.make<void>();
+        const latestInvalidated = yield* Deferred.make<void>();
+        const latestRefreshed = yield* Deferred.make<void>();
         const generations = yield* Ref.make(0);
         const refreshed = yield* Ref.make<number[]>([]);
+        const burst = Stream.fromIterable([event, event, event, event]).pipe(
+          Stream.mapEffect((next) =>
+            Effect.sleep("150 millis").pipe(Effect.as(next))
+          )
+        );
         const events = Stream.concat(
           Stream.make(event),
           Stream.fromEffect(Deferred.await(firstStarted)).pipe(
-            Stream.flatMap(() => Stream.make(event))
+            Stream.flatMap(() => burst)
           )
         );
         const invalidate = Ref.updateAndGet(
@@ -102,12 +109,12 @@ describe("selected document watch", () => {
           (generation) => generation + 1
         ).pipe(
           Effect.tap((generation) =>
-            generation === 2
-              ? Deferred.succeed(secondInvalidated, undefined)
+            generation === 5
+              ? Deferred.succeed(latestInvalidated, undefined)
               : Effect.void
           )
         );
-        /** Holds the first compile open while recording the next generation. */
+        /** Holds the active compile while later generations replace each other. */
         const refresh = (generation: number) =>
           Ref.update(refreshed, (all) => [...all, generation]).pipe(
             Effect.zipRight(
@@ -115,7 +122,10 @@ describe("selected document watch", () => {
                 ? Deferred.succeed(firstStarted, undefined).pipe(
                     Effect.zipRight(Deferred.await(releaseFirst))
                   )
-                : Deferred.succeed(secondRefreshed, undefined)
+                : Effect.when(
+                    Deferred.succeed(latestRefreshed, undefined),
+                    () => generation === 5
+                  )
             )
           );
         const watcher = yield* runWatch(
@@ -125,22 +135,21 @@ describe("selected document watch", () => {
           new Map(),
           invalidate
         ).pipe(Effect.fork);
-        yield* TestClock.adjust("75 millis");
         yield* Deferred.await(firstStarted);
-        yield* Deferred.await(secondInvalidated);
+        yield* Deferred.await(latestInvalidated);
+        yield* Effect.sleep("150 millis");
         yield* Deferred.succeed(releaseFirst, undefined);
-        yield* TestClock.adjust("75 millis");
-        yield* Deferred.await(secondRefreshed);
+        yield* Deferred.await(latestRefreshed);
         const result = {
           generations: yield* Ref.get(generations),
           refreshed: yield* Ref.get(refreshed),
         };
         yield* Fiber.interrupt(watcher);
         return result;
-      }).pipe(Effect.provide(TestContext.TestContext))
+      })
     );
 
-    expect(observed).toEqual({ generations: 2, refreshed: [1, 2] });
+    expect(observed).toEqual({ generations: 5, refreshed: [1, 5] });
   });
 
   it("watches one question body closure and its choices dependency", {
@@ -173,6 +182,7 @@ describe("selected document watch", () => {
       "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/choices.ts",
       "packages/corpus/tryout/registry.ts",
       "packages/corpus/tryout/indonesia/snbt/source.ts",
+      "packages/corpus/tryout/indonesia/country.ts",
       "packages/corpus/tryout/schema.ts",
       "packages/corpus/route/schema.ts",
       answerPath,

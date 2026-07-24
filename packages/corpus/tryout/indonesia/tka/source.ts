@@ -1,17 +1,16 @@
+import { QUESTION_BANK_KEY_ROOT } from "@nakafa/aksara-contracts/question/identity";
+import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";
 
 const TKA_SECONDS_PER_QUESTION = 90;
+const EXAM_KEY = "tka";
+const QUESTION_ROOT = `${QUESTION_BANK_KEY_ROOT}/${indonesiaTryoutCountry.countryKey}/${EXAM_KEY}`;
 
 /** Lazily validates the source-controlled TKA catalog and placements. */
 export const tkaTryoutSource = defineTryoutExamSource({
-  countryCode: "ID",
-  countryKey: "indonesia",
-  countryRouteSlugs: { en: "indonesia", id: "indonesia" },
-  countryTranslations: {
-    en: { title: "Indonesia" },
-    id: { title: "Indonesia" },
-  },
-  examKey: "tka",
+  ...indonesiaTryoutCountry,
+  examKey: EXAM_KEY,
+  examOrder: 2,
   examRouteSlugs: { en: "tka", id: "tka" },
   examTranslations: {
     en: {
@@ -31,34 +30,34 @@ export const tkaTryoutSource = defineTryoutExamSource({
       kind: "subject",
       order: 1,
       routeSlugs: { en: "mathematics", id: "matematika" },
-      sets: [1, 2, 3].map((setNumber) => ({
-        key: `set-${setNumber}`,
-        order: setNumber,
-        routeSlugs: {
-          en: `set-${setNumber}`,
-          id: `set-${setNumber}`,
-        },
-        sections: [
-          {
-            key: "mathematics",
-            order: 1,
-            questionCount: 40,
-            questionSourcePath: `question-bank/tryout/indonesia/tka/mathematics/set-${setNumber}`,
-            rendererDomain: "tka-math",
-            routeSlugs: { en: "mathematics", id: "matematika" },
-            timeLimitSeconds: 40 * TKA_SECONDS_PER_QUESTION,
-            translations: {
-              en: { title: "Mathematics" },
-              id: { title: "Matematika" },
+      sets: [1, 2, 3].map((setNumber) => {
+        const setKey = `set-${setNumber}`;
+        return {
+          key: setKey,
+          order: setNumber,
+          routeSlugs: { en: setKey, id: setKey },
+          sections: [
+            {
+              key: "mathematics",
+              order: 1,
+              questionCount: 40,
+              questionSourcePath: `${QUESTION_ROOT}/mathematics/${setKey}`,
+              rendererDomain: "tka-math",
+              routeSlugs: { en: "mathematics", id: "matematika" },
+              timeLimitSeconds: 40 * TKA_SECONDS_PER_QUESTION,
+              translations: {
+                en: { title: "Mathematics" },
+                id: { title: "Matematika" },
+              },
+              visibility: "internal-entry",
             },
-            visibility: "internal-entry",
+          ],
+          translations: {
+            en: { title: `Set ${setNumber}` },
+            id: { title: `Set ${setNumber}` },
           },
-        ],
-        translations: {
-          en: { title: `Set ${setNumber}` },
-          id: { title: `Set ${setNumber}` },
-        },
-      })),
+        };
+      }),
       translations: {
         en: { title: "Mathematics" },
         id: { title: "Matematika" },

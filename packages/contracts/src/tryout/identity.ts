@@ -1,3 +1,4 @@
+import { compareCodeUnits } from "#contracts/text/order";
 import type {
   TryoutCountry,
   TryoutExam,
@@ -45,7 +46,8 @@ export function compareTryoutCatalog(
   left: TryoutCatalogIdentityInput,
   right: TryoutCatalogIdentityInput
 ) {
-  return tryoutCatalogIdentity(left).localeCompare(
+  return compareCodeUnits(
+    tryoutCatalogIdentity(left),
     tryoutCatalogIdentity(right)
   );
 }
@@ -69,7 +71,8 @@ export function compareTryoutPlacements(
   left: TryoutPlacementSource,
   right: TryoutPlacementSource
 ) {
-  return tryoutPlacementIdentity(left).localeCompare(
+  return compareCodeUnits(
+    tryoutPlacementIdentity(left),
     tryoutPlacementIdentity(right)
   );
 }

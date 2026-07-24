@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
@@ -56,7 +57,7 @@ function withMetadata(body: string, metadata = VALID_METADATA) {
 function compileRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest,
-  rendererDomain: "chemistry" | "mathematics" = "mathematics"
+  rendererDomain: RendererDomain = "mathematics"
 ) {
   return Effect.runPromise(
     compileContent({
@@ -74,7 +75,7 @@ function compileRawMdx(
 function rejectRawMdx(
   rawMdx: string,
   manifest: typeof rendererManifest = rendererManifest,
-  rendererDomain: "chemistry" | "mathematics" = "mathematics"
+  rendererDomain: RendererDomain = "mathematics"
 ) {
   return Effect.runPromise(
     compileContent({

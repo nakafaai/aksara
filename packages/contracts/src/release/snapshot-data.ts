@@ -6,10 +6,10 @@ import {
 } from "#contracts/program/snapshot";
 import { QuranSnapshotManifestSchema } from "#contracts/quran/snapshot";
 import { QuranSnapshotRowSchema } from "#contracts/quran/spec";
+import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot";
 import {
   TryoutCatalogRecordSchema,
   TryoutPlacementRecordSchema,
-  TryoutSnapshotSchema,
 } from "#contracts/tryout/spec";
 
 /** Program manifest selected by one globally signed content release. */

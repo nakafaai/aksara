@@ -13,11 +13,9 @@ import {
   digestTryoutCatalog,
   digestTryoutPlacements,
 } from "#contracts/tryout/row-hash";
+import type { TryoutCatalogCounts } from "#contracts/tryout/snapshot";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot-hash";
-import type {
-  TryoutCatalogCounts,
-  TryoutCatalogRecord,
-} from "#contracts/tryout/spec";
+import type { TryoutCatalogRecord } from "#contracts/tryout/spec";
 
 /** Signed snapshot evidence differs from its authenticated row stream. */
 export class SnapshotEvidenceError extends Schema.TaggedError<SnapshotEvidenceError>()(

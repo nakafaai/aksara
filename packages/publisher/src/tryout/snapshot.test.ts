@@ -6,8 +6,8 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot-data";
+import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot";
 import type {
-  TryoutCatalogCounts,
   TryoutCatalogRecord,
   TryoutPlacementSource,
 } from "@nakafa/aksara-contracts/tryout/spec";

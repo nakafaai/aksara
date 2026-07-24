@@ -60,6 +60,10 @@ describe("preview selection", () => {
             },
             {
               mode: "restart",
+              sourcePath: "packages/corpus/articles/politics/category.ts",
+            },
+            {
+              mode: "restart",
               sourcePath:
                 "packages/corpus/articles/politics/dynastic-politics/asian-values/ref.ts",
             },
@@ -128,6 +132,10 @@ describe("preview selection", () => {
             {
               mode: "restart",
               sourcePath: "packages/corpus/tryout/indonesia/snbt/source.ts",
+            },
+            {
+              mode: "restart",
+              sourcePath: "packages/corpus/tryout/indonesia/country.ts",
             },
             {
               mode: "restart",

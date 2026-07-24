@@ -9,7 +9,7 @@ import { QUESTION_SOURCE_FILES } from "#corpus/question-bank/path";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const sourceRoot = "packages/corpus/question-bank/tryout/indonesia";
+const sourceRoot = "packages/corpus/question-bank/tryout";
 const absoluteSourceRoot = resolve(corpusRoot, sourceRoot);
 const tryoutSources = await Effect.runPromise(decodeTryoutRegistry());
 const realEntries = globSync("**/*", { cwd: absoluteSourceRoot });
@@ -193,11 +193,16 @@ describe("question registry", () => {
     });
   });
 
-  it("maps invalid projected body identities to a registry failure", async () => {
-    const root = `snbt/general-reasoning/set-${"9".repeat(440)}/question-1`;
+  it("rejects an oversized physical question identity before projection", async () => {
+    const root = `indonesia/snbt/general-reasoning/set-${"9".repeat(
+      440
+    )}/question-1`;
     const error = await rejectRegistry(questionEntries(root), choicesFor(root));
 
-    expect(error._tag).toBe("QuestionRegistryError");
+    expect(error).toMatchObject({
+      _tag: "QuestionPathError",
+      reason: "grammar",
+    });
   });
 
   it("allows an empty checkout without inventing entries", async () => {

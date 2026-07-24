@@ -1,5 +1,6 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
+import type { ContentLocale } from "#contracts/content";
 import {
   ArticleHeadSchema,
   canonicalizeContentHead,
@@ -15,7 +16,7 @@ const manifestHash = `sha256:${"b".repeat(64)}`;
 const releaseId = "test-active";
 
 /** Builds one strict material-head sample at a deterministic identity. */
-function materialHead(contentKey: string, locale: "en" | "id" = "en") {
+function materialHead(contentKey: string, locale: ContentLocale = "en") {
   return Schema.decodeUnknownSync(MaterialHeadSchema)({
     artifactHash: hash,
     compilerConfigHash: hash,
@@ -32,7 +33,7 @@ function materialHead(contentKey: string, locale: "en" | "id" = "en") {
 }
 
 /** Builds one strict article-head sample at a deterministic identity. */
-function articleHead(contentKey: string, locale: "en" | "id" = "en") {
+function articleHead(contentKey: string, locale: ContentLocale = "en") {
   return Schema.decodeUnknownSync(ArticleHeadSchema)({
     artifactHash: hash,
     compilerConfigHash: hash,
@@ -49,7 +50,7 @@ function articleHead(contentKey: string, locale: "en" | "id" = "en") {
 }
 
 /** Builds one strict route-free question-head sample. */
-function questionHead(contentKey: string, locale: "en" | "id" = "en") {
+function questionHead(contentKey: string, locale: ContentLocale = "en") {
   return Schema.decodeUnknownSync(QuestionHeadSchema)({
     artifactHash: hash,
     compilerConfigHash: hash,

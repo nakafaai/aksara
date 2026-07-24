@@ -1,20 +1,12 @@
 import { NodeContext } from "@effect/platform-node";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  CURRICULUM_ROW_COUNT,
-  PROGRAM_ROW_COUNT,
-  PROGRAM_SITEMAP_COUNT,
-  PROGRAM_SLUG_COUNT,
-  ProgramSnapshotSchema,
-} from "@nakafa/aksara-contracts/program/snapshot";
+import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot";
 import {
   QURAN_SNAPSHOT_FORMAT,
   QuranSnapshotManifestSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot";
 import {
-  QURAN_CHUNK_COUNT,
   QURAN_LOCALES,
-  QURAN_ROW_COUNT,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
   QURAN_TAFSIR_LOCALES,
@@ -27,26 +19,29 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const quranChunkCount = 1;
+const quranRuntimeCount = QURAN_SURAH_COUNT + quranChunkCount;
+const quranProjectionCount = quranRuntimeCount + QURAN_SEARCH_COUNT;
 const programManifest = ProgramSnapshotSchema.make({
-  curriculumRowCount: CURRICULUM_ROW_COUNT,
+  curriculumRowCount: 390,
   format: "program-v2",
   locales: ["en", "id"],
-  programRowCount: PROGRAM_ROW_COUNT,
-  rowCount: PROGRAM_ROW_COUNT + CURRICULUM_ROW_COUNT,
+  programRowCount: 6,
+  rowCount: 396,
   rowDigest: hash,
-  sitemapCount: PROGRAM_SITEMAP_COUNT,
-  slugCount: PROGRAM_SLUG_COUNT,
+  sitemapCount: 52,
+  slugCount: 12,
   snapshotId: hash,
 });
 const quranManifest = QuranSnapshotManifestSchema.make({
-  chunkCount: QURAN_CHUNK_COUNT,
+  chunkCount: quranChunkCount,
   format: QURAN_SNAPSHOT_FORMAT,
   locales: QURAN_LOCALES,
-  projectionCount: QURAN_ROW_COUNT,
+  projectionCount: quranProjectionCount,
   projectionDigest: hash,
   provenanceDigest: hash,
   provenanceStatus: "blocked",
-  runtimeCount: QURAN_SURAH_COUNT + QURAN_CHUNK_COUNT,
+  runtimeCount: quranRuntimeCount,
   runtimeDigest: hash,
   searchCount: QURAN_SEARCH_COUNT,
   searchDigest: hash,
@@ -146,17 +141,17 @@ describe("catalog snapshots", () => {
   it("reports current Program, Quran, and Try-out source evidence", async () => {
     await expect(validate()).resolves.toEqual({
       program: {
-        rowCount: PROGRAM_ROW_COUNT + CURRICULUM_ROW_COUNT,
+        rowCount: programManifest.rowCount,
         rowDigest: hash,
-        sitemapCount: PROGRAM_SITEMAP_COUNT,
+        sitemapCount: programManifest.sitemapCount,
         snapshotId: hash,
       },
       quran: {
-        projectionCount: QURAN_ROW_COUNT,
+        projectionCount: quranManifest.projectionCount,
         projectionDigest: hash,
         provenanceDigest: hash,
         provenanceStatus: "blocked",
-        runtimeCount: QURAN_SURAH_COUNT + QURAN_CHUNK_COUNT,
+        runtimeCount: quranManifest.runtimeCount,
         searchCount: QURAN_SEARCH_COUNT,
         snapshotId: hash,
         sourceDigest: hash,

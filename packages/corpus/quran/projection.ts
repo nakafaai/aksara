@@ -4,6 +4,7 @@ import {
 } from "@nakafa/aksara-contracts/graph/identity";
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 import {
+  QURAN_CHUNK_SIZE,
   QURAN_LOCALES,
   QuranChunkRowSchema,
   type QuranLocaleSchema,
@@ -53,11 +54,11 @@ function projectSurah(surah: QuranSurah) {
 function projectChunks(surah: QuranSurah) {
   const chunks: QuranRowPayload[] = [];
   for (const [index, firstSource] of surah.verses.entries()) {
-    if (index % 6 !== 0) {
+    if (index % QURAN_CHUNK_SIZE !== 0) {
       continue;
     }
     const remaining = surah.verses
-      .slice(index + 1, index + 6)
+      .slice(index + 1, index + QURAN_CHUNK_SIZE)
       .map(projectVerse);
     const verses: [QuranRuntimeVerse, ...QuranRuntimeVerse[]] = [
       projectVerse(firstSource),

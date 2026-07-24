@@ -7,9 +7,10 @@ import {
   canonicalizeQuranProvenance,
   hashQuranProvenance,
   makeQuranProvenanceManifest,
+  QURAN_PROVENANCE_SCOPES,
   QuranProvenanceManifestSchema,
   QuranProvenanceRecordSchema,
-  QuranProvenanceScopeSchema,
+  type QuranProvenanceScopeSchema,
 } from "#contracts/quran/provenance";
 import { reverseObjectKeys } from "#contracts/test/order";
 
@@ -60,9 +61,7 @@ function record(
 
 /** Builds complete exact-scope provenance with one selected source status. */
 function records(status: "approved" | "blocked") {
-  return QuranProvenanceScopeSchema.literals.map((scope) =>
-    record(scope, status)
-  );
+  return QURAN_PROVENANCE_SCOPES.map((scope) => record(scope, status));
 }
 
 describe("Quran provenance", () => {

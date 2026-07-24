@@ -28,34 +28,37 @@ describe("path policy", () => {
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/answer.id.mdx",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/choices.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question.en.mdx",
+        "packages/corpus/question-bank/tryout/germany/abitur/reading-and-writing-skills/foundation-set/question-1/choices.ts",
+        "packages/corpus/question-bank/tryout/germany/abitur/reading-and-writing-skills/foundation-set/question-1/question.en.mdx",
+        "packages/corpus/question-bank/tryout/united-arab-emirates/national-school-leaving-exam/reading-and-writing-skills/foundation-set/question-1/choices.ts",
+        "packages/corpus/question-bank/tryout/malaysia/snbt/reading-and-writing-skills/set-1/question-1/choices.ts",
       ])
     ).toEqual([]);
   });
 
-  it("still validates non-source paths inside educational folders", () => {
+  it("still validates source names and folders outside educational roots", () => {
     expect(
       pathViolations([
         "packages/corpus/material/lesson/very-long-source-slug/three-word-file.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/three-word-source.mdx",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/three-word-file.ts",
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-x/question-1/choices.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-x/choices.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/notes.ts",
-        "packages/corpus/question-bank/tryout/malaysia/snbt/reading-and-writing-skills/set-1/question-1/choices.ts",
-        "packages/corpus/question-bank/three-word-folder/choices.ts",
         "packages/corpus/question-bank/tryout/helpers/three-word-folder/file.ts",
         "packages/corpus/question-bank/tryout/helpers/foo/three-word-folder/file.ts",
+        "packages/corpus/question-bank/three-word-folder/choices.ts",
       ])
     ).toEqual([
       "packages/corpus/material/lesson/very-long-source-slug/three-word-file.mdx: three-word-file.mdx",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/three-word-source.mdx: reading-and-writing-skills",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/three-word-source.mdx: three-word-source.mdx",
       "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/three-word-file.ts: reading-and-writing-skills",
       "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/three-word-file.ts: three-word-file.ts",
-      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-x/question-1/choices.ts: reading-and-writing-skills",
       "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-x/choices.ts: reading-and-writing-skills",
       "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/notes.ts: reading-and-writing-skills",
-      "packages/corpus/question-bank/tryout/malaysia/snbt/reading-and-writing-skills/set-1/question-1/choices.ts: reading-and-writing-skills",
-      "packages/corpus/question-bank/three-word-folder/choices.ts: three-word-folder",
       "packages/corpus/question-bank/tryout/helpers/three-word-folder/file.ts: three-word-folder",
       "packages/corpus/question-bank/tryout/helpers/foo/three-word-folder/file.ts: three-word-folder",
+      "packages/corpus/question-bank/three-word-folder/choices.ts: three-word-folder",
     ]);
   });
 });

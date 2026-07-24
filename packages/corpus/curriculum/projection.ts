@@ -14,6 +14,7 @@ import {
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
 import { Effect, Array as EffectArray, Schema } from "effect";
 
+import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import {
   CurriculumDisplayGroupMapSchema,
   CurriculumMaterialCardMapSchema,
@@ -21,15 +22,19 @@ import {
   type CurriculumSource,
   type CurriculumTreeNode,
 } from "#corpus/curriculum/schema";
+import {
+  decodeMaterialDomains,
+  type MaterialDomainDescriptor,
+  requireMaterialDomain,
+} from "#corpus/material/domain";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 
-const ProjectedCurriculumPathNodeSchema = Schema.Struct({
+const CurriculumPathNodeSchema = Schema.Struct({
   key: CurriculumNodeKeySchema,
   materialKeys: Schema.Array(MaterialKeySchema),
   translations: CurriculumNodeTranslationMapSchema,
 });
-type ProjectedCurriculumPathNode =
-  typeof ProjectedCurriculumPathNodeSchema.Type;
+type CurriculumPathNode = typeof CurriculumPathNodeSchema.Type;
 
 /** Flat validated curriculum node used to derive localized route rows. */
 export const ProjectedCurriculumNodeSchema = Schema.Struct({
@@ -44,116 +49,17 @@ export const ProjectedCurriculumNodeSchema = Schema.Struct({
   materialKeys: Schema.Array(MaterialKeySchema),
   order: Schema.Int.pipe(Schema.nonNegative()),
   parentKey: Schema.optional(CurriculumNodeKeySchema),
-  path: Schema.NonEmptyArray(ProjectedCurriculumPathNodeSchema),
+  path: Schema.NonEmptyArray(CurriculumPathNodeSchema),
   translations: CurriculumNodeTranslationMapSchema,
 });
 export type ProjectedCurriculumNode = typeof ProjectedCurriculumNodeSchema.Type;
 
 interface PendingCurriculumNode {
-  readonly ancestors: readonly ProjectedCurriculumPathNode[];
+  readonly ancestors: readonly CurriculumPathNode[];
   readonly inheritedDomain: MaterialDomain | undefined;
   readonly node: CurriculumTreeNode;
   readonly parentKey?: CurriculumNodeKey;
 }
-
-/** One curriculum mapping cannot be projected from reviewed material sources. */
-export class CurriculumProjectionError extends Schema.TaggedError<CurriculumProjectionError>()(
-  "CurriculumProjectionError",
-  {
-    code: Schema.Literal("display", "material", "multi-material"),
-    nodeKey: CurriculumNodeKeySchema,
-    programKey: LearningProgramKeySchema,
-    value: Schema.String,
-  }
-) {}
-
-/** Reads source-owned translations for one validated material reference. */
-function materialTranslations(material: LessonMaterialSource) {
-  return {
-    en: {
-      routeSlug: material.routeSlugs.en,
-      title: material.translations.en.title,
-    },
-    id: {
-      routeSlug: material.routeSlugs.id,
-      title: material.translations.id.title,
-    },
-  };
-}
-
-/** Checks whether an override redundantly copies material-owned display data. */
-function duplicatesMaterialDisplay(
-  override: NonNullable<
-    Extract<
-      CurriculumTreeNode,
-      { materialKeys: readonly unknown[] }
-    >["displayOverride"]
-  >,
-  material: LessonMaterialSource
-) {
-  const translations = materialTranslations(material);
-  return (["en", "id"] as const).every(
-    (locale) =>
-      override[locale].routeSlug === translations[locale].routeSlug &&
-      override[locale].title === translations[locale].title
-  );
-}
-
-/** Resolves one material leaf through exact catalog membership and copy rules. */
-const resolveMaterialLeaf = Effect.fn("AksaraCorpus.resolveMaterialLeaf")(
-  function* (
-    curriculum: CurriculumSource,
-    node: Extract<CurriculumTreeNode, { materialKeys: readonly unknown[] }>,
-    materialByKey: ReadonlyMap<string, LessonMaterialSource>
-  ) {
-    const [firstMaterialKey] = node.materialKeys;
-    const firstMaterial = materialByKey.get(firstMaterialKey);
-    if (!firstMaterial) {
-      return yield* new CurriculumProjectionError({
-        code: "material",
-        nodeKey: node.key,
-        programKey: curriculum.programKey,
-        value: firstMaterialKey,
-      });
-    }
-    const materials = [firstMaterial];
-    for (const materialKey of node.materialKeys.slice(1)) {
-      const material = materialByKey.get(materialKey);
-      if (!material) {
-        return yield* new CurriculumProjectionError({
-          code: "material",
-          nodeKey: node.key,
-          programKey: curriculum.programKey,
-          value: materialKey,
-        });
-      }
-      materials.push(material);
-    }
-    if (materials.length > 1) {
-      if (!node.displayOverride) {
-        return yield* new CurriculumProjectionError({
-          code: "multi-material",
-          nodeKey: node.key,
-          programKey: curriculum.programKey,
-          value: node.materialKeys.join(","),
-        });
-      }
-      return node.displayOverride;
-    }
-    if (
-      node.displayOverride &&
-      duplicatesMaterialDisplay(node.displayOverride, firstMaterial)
-    ) {
-      return yield* new CurriculumProjectionError({
-        code: "display",
-        nodeKey: node.key,
-        programKey: curriculum.programKey,
-        value: firstMaterial.key,
-      });
-    }
-    return node.displayOverride ?? materialTranslations(firstMaterial);
-  }
-);
 
 /** Maps one resolved tree node and its ancestry onto the flat route model. */
 function makeProjectedNode(
@@ -194,7 +100,8 @@ function makeProjectedNode(
 const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
   function* (
     curriculum: CurriculumSource,
-    materialByKey: ReadonlyMap<string, LessonMaterialSource>
+    materialByKey: ReadonlyMap<string, LessonMaterialSource>,
+    descriptors: readonly MaterialDomainDescriptor[]
   ) {
     const nodes: ProjectedCurriculumNode[] = [];
     const pending: PendingCurriculumNode[] = [...curriculum.tree]
@@ -205,12 +112,32 @@ const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
       pending.pop();
       const { inheritedDomain, node } = current;
       const ownsMaterial = "materialKeys" in node;
-      const materialDomain = ownsMaterial
-        ? inheritedDomain
-        : (node.materialDomain ?? inheritedDomain);
-      const translations = ownsMaterial
-        ? yield* resolveMaterialLeaf(curriculum, node, materialByKey)
-        : node.translations;
+      let materialDomain = inheritedDomain;
+      let translations: typeof CurriculumNodeTranslationMapSchema.Type;
+      if (ownsMaterial) {
+        const resolved = yield* resolveCurriculumMaterial(
+          curriculum,
+          node,
+          materialByKey,
+          descriptors,
+          inheritedDomain
+        );
+        ({ materialDomain, translations } = resolved);
+      } else {
+        const {
+          materialDomain: sourceDomain,
+          translations: sourceTranslations,
+        } = node;
+        translations = sourceTranslations;
+        if (sourceDomain) {
+          yield* requireMaterialDomain(
+            descriptors,
+            sourceDomain,
+            `${curriculum.programKey}:${node.key}`
+          );
+          materialDomain = sourceDomain;
+        }
+      }
       const projected = makeProjectedNode(
         curriculum,
         current,
@@ -238,13 +165,15 @@ export const projectCurriculumNodes = Effect.fn(
   "AksaraCorpus.projectCurriculumNodes"
 )(function* (
   curricula: readonly CurriculumSource[],
-  materials: readonly LessonMaterialSource[]
+  materials: readonly LessonMaterialSource[],
+  domainDescriptors?: readonly MaterialDomainDescriptor[]
 ) {
+  const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const materialByKey = new Map(
     materials.map((material) => [material.key, material])
   );
   const projected = yield* Effect.forEach(curricula, (curriculum) =>
-    projectCurriculum(curriculum, materialByKey)
+    projectCurriculum(curriculum, materialByKey, descriptors)
   );
   return projected.flat();
 });

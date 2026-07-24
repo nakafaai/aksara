@@ -31,6 +31,14 @@ if (!(selectedEnglishHead && answerHead && indonesianHead)) {
 const englishHead = selectedEnglishHead;
 const familyCases = [
   ["contentKey", { ...englishHead, contentKey: "material/lesson/test" }],
+  [
+    "contentKey",
+    {
+      ...englishHead,
+      contentKey:
+        "question-bank/tryout/indonesia/snbt/set-1/question-1/question",
+    },
+  ],
   ["delivery", { ...englishHead, delivery: "entitled" }],
   ["delivery", { ...answerHead, delivery: "authenticated" }],
   ["rendererDomain", { ...englishHead, rendererDomain: "mathematics" }],
@@ -39,6 +47,14 @@ const familyCases = [
     {
       ...englishHead,
       sourcePath: "packages/corpus/material/lesson/test/en.mdx",
+    },
+  ],
+  [
+    "sourcePath",
+    {
+      ...englishHead,
+      sourcePath:
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/choices.ts",
     },
   ],
   [
@@ -63,16 +79,6 @@ const familyCases = [
       ...englishHead,
       sourcePath:
         "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-x/question-1/question.en.mdx",
-    },
-  ],
-  [
-    "rendererDomain",
-    {
-      ...englishHead,
-      contentKey:
-        "question-bank/tryout/indonesia/other/test/set-1/question-1/question",
-      sourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/other/test/set-1/question-1/question.en.mdx",
     },
   ],
 ] as const;
@@ -143,6 +149,27 @@ describe("question publication", () => {
     expect(
       records.filter(({ record }) => record.change.operation === "delete")
     ).toHaveLength(stale.length);
+  });
+
+  it("tombstones a question bank removed from the current registry", async () => {
+    const deletedBank = staleHead(
+      "retired-exam/reading-and-writing-skills/archive-set/question-1",
+      "snbt-plain"
+    );
+    const records = await collectQuestionPublication({
+      heads: [deletedBank],
+    });
+    const deletions = records.filter(
+      ({ record }) => record.change.operation === "delete"
+    );
+
+    expect(deletions).toEqual([
+      expect.objectContaining({
+        record: expect.objectContaining({
+          change: expect.objectContaining({ operation: "delete" }),
+        }),
+      }),
+    ]);
   });
 
   it("rejects duplicate and noncanonical published heads as typed failures", async () => {

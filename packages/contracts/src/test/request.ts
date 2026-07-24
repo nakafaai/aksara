@@ -203,6 +203,7 @@ export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
       graph: materialGraph("en", "test", "transport", "snapshot"),
       kind: "country",
       locale: "en",
+      order: 1,
       publicPath: "try-out/test-country",
       sourceRevision: "test-transport-v1",
       title: "Test Country",

@@ -113,6 +113,7 @@ describe("question choice source", () => {
       "{ ...other }",
       "{ en: [], en: [], id: [] }",
       "{ en: [] }",
+      "{ en: [], id: [], de: [] }",
       "{ en: call(), id: [] }",
       '{ en: ["A"], id: [] }',
       "{ en: [{ ...other }], id: [] }",

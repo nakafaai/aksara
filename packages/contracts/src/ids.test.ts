@@ -2,6 +2,7 @@ import { Buffer } from "node:buffer";
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
+  CONTENT_KEY_MAX_LENGTH,
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
@@ -68,7 +69,12 @@ describe("ids", () => {
   });
 
   it("rejects unsafe or non-canonical wire identifiers", () => {
-    for (const value of ["line\nbreak", "nul\0byte", "Uppercase"]) {
+    for (const value of [
+      "line\nbreak",
+      "nul\0byte",
+      "Uppercase",
+      "a".repeat(CONTENT_KEY_MAX_LENGTH + 1),
+    ]) {
       expect(
         Either.isLeft(Schema.decodeUnknownEither(ContentKeySchema)(value))
       ).toBe(true);

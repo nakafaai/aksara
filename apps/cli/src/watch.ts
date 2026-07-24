@@ -146,7 +146,7 @@ export const openSelectedWatcher = Effect.fn("AksaraCli.openSelectedWatcher")(
     );
     const run = Stream.mergeAll(streams, { concurrency: "unbounded" }).pipe(
       Stream.filterMap((generation) => generation),
-      Stream.buffer({ capacity: "unbounded" }),
+      Stream.buffer({ capacity: 1, strategy: "sliding" }),
       Stream.runForEach((generation) =>
         refresh(generation).pipe(
           Effect.provideService(FileSystem.FileSystem, fileSystem),

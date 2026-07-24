@@ -5,6 +5,9 @@ import { Effect, Schema } from "effect";
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
 import {
+  QURAN_LOCALES,
+  QURAN_TAFSIR_LOCALES,
+  type QuranLocalizedTextSchema,
   type QuranRowPayload,
   type QuranRuntimeVerse,
   QuranSnapshotRowSchema,
@@ -19,11 +22,10 @@ export class QuranHashError extends Schema.TaggedError<QuranHashError>()(
 ) {}
 
 /** Serializes locale-indexed Quran text in fixed application order. */
-function canonicalizeLocalizedText(text: {
-  readonly en: string;
-  readonly id: string;
-}) {
-  return { en: text.en, id: text.id };
+function canonicalizeLocalizedText(text: typeof QuranLocalizedTextSchema.Type) {
+  return Object.fromEntries(
+    QURAN_LOCALES.map((locale) => [locale, text[locale]])
+  );
 }
 
 /** Serializes one reviewed Quran audio source in fixed field order. */
@@ -40,6 +42,16 @@ function canonicalizeText(text: QuranRuntimeVerse["text"]) {
     arab: text.arab,
     transliteration: { en: text.transliteration.en },
   };
+}
+
+/** Serializes only complete reviewed Tafsir locales in contract order. */
+function canonicalizeTafsir(tafsir: QuranRuntimeVerse["tafsir"]) {
+  return Object.fromEntries(
+    QURAN_TAFSIR_LOCALES.map((locale) => [
+      locale,
+      { short: tafsir[locale].short },
+    ])
+  );
 }
 
 /** Serializes one complete runtime verse without trusting object insertion. */
@@ -61,7 +73,7 @@ function canonicalizeVerse(verse: QuranRuntimeVerse) {
       inQuran: verse.number.inQuran,
       inSurah: verse.number.inSurah,
     },
-    tafsir: { id: { short: verse.tafsir.id.short } },
+    tafsir: canonicalizeTafsir(verse.tafsir),
     text: canonicalizeText(verse.text),
     translation: canonicalizeLocalizedText(verse.translation),
   };
@@ -94,8 +106,7 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
             },
       revelation: {
         arab: payload.revelation.arab,
-        en: payload.revelation.en,
-        id: payload.revelation.id,
+        ...canonicalizeLocalizedText(payload.revelation),
       },
       sequence: payload.sequence,
     });

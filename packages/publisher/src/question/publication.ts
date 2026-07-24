@@ -6,14 +6,18 @@ import {
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import {
+  QuestionKeySchema,
+  QuestionSourcePathSchema,
+  questionBankKey,
+  questionKeyParts,
+  questionSourcePathParts,
+} from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
-import {
-  decodeQuestionPath,
-  QUESTION_BANK_ROOT,
-} from "@nakafa/aksara-corpus/question-bank/path";
+import type { QuestionBankIndex } from "@nakafa/aksara-corpus/question-bank/path";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
@@ -68,11 +72,6 @@ interface HeadOrderState {
   readonly previous: QuestionHead | undefined;
 }
 
-type TryoutSources = Effect.Effect.Success<
-  ReturnType<typeof decodeTryoutRegistry>
->;
-type TryoutExamSource = TryoutSources[number];
-
 /** Every failure possible while replaying authoritative question records. */
 export type QuestionPublicationStreamError<E> =
   | E
@@ -110,7 +109,6 @@ type RendererManifestError = Effect.Effect.Error<
 type TryoutRegistryError = Effect.Effect.Error<
   ReturnType<typeof decodeTryoutRegistry>
 >;
-
 /** Every failure possible before the replayable question plan is constructed. */
 export type PrepareQuestionPublicationError<E> =
   | E
@@ -121,10 +119,10 @@ export type PrepareQuestionPublicationError<E> =
   | TryoutRegistryError;
 
 /** Finds the first field proving a head does not own its question source. */
-const mismatchedFamilyField = Effect.fn(
-  "AksaraPublisher.mismatchedQuestionField"
-)(function* (tryoutSources: readonly TryoutExamSource[], head: QuestionHead) {
-  const keyPrefix = "question-bank/tryout/indonesia/";
+function mismatchedFamilyField(
+  questionBanks: QuestionBankIndex,
+  head: QuestionHead
+): typeof QuestionFamilyFieldSchema.Type | undefined {
   const questionSuffix = "/question";
   const answerSuffix = "/answer";
   let bodyKind: "question" | "answer" | undefined;
@@ -133,7 +131,12 @@ const mismatchedFamilyField = Effect.fn(
   } else if (head.contentKey.endsWith(answerSuffix)) {
     bodyKind = "answer";
   }
-  if (!head.contentKey.startsWith(keyPrefix) || bodyKind === undefined) {
+  if (bodyKind === undefined) {
+    return "contentKey";
+  }
+  const bodySuffix = `/${bodyKind}`;
+  const questionKey = head.contentKey.slice(0, -bodySuffix.length);
+  if (!Schema.is(QuestionKeySchema)(questionKey)) {
     return "contentKey";
   }
   if (
@@ -142,88 +145,77 @@ const mismatchedFamilyField = Effect.fn(
   ) {
     return "delivery";
   }
-  const bodySuffix = `/${bodyKind}`;
-  const relativeQuestion = head.contentKey.slice(
-    keyPrefix.length,
-    -bodySuffix.length
-  );
-  const sourcePrefix = `${QUESTION_BANK_ROOT}/`;
-  const sourceSuffix = `/${bodyKind}.${head.locale}.mdx`;
-  if (!head.sourcePath.startsWith(sourcePrefix)) {
+  if (!Schema.is(QuestionSourcePathSchema)(head.sourcePath)) {
     return "sourcePath";
   }
-  if (!head.sourcePath.endsWith(sourceSuffix)) {
+  const document = questionSourcePathParts(head.sourcePath);
+  if (document.kind !== "body") {
+    return "sourcePath";
+  }
+  if (document.locale !== head.locale) {
     return "locale";
   }
-  const sourceRoot = head.sourcePath.slice(
-    sourcePrefix.length,
-    -sourceSuffix.length
-  );
-  const location = yield* decodeQuestionPath(tryoutSources, sourceRoot).pipe(
-    Effect.mapError(
-      (error) =>
-        new QuestionHeadFamilyError({
-          contentKey: head.contentKey,
-          field: error.reason === "renderer" ? "rendererDomain" : "sourcePath",
-          locale: head.locale,
-        })
-    )
-  );
-  if (location.questionKey !== `${keyPrefix}${relativeQuestion}`) {
+  if (document.bodyKind !== bodyKind || document.questionKey !== questionKey) {
     return "sourcePath";
   }
-  if (head.rendererDomain !== location.rendererDomain) {
+  const { questionSetKey } = questionKeyParts(document.questionKey);
+  const rendererDomain = questionBanks.get(questionBankKey(questionSetKey));
+  if (rendererDomain !== undefined && head.rendererDomain !== rendererDomain) {
     return "rendererDomain";
   }
-});
+}
 
 /** Validates family ownership and strict ordering before diffing one head. */
 function validatePublishedHead(
-  tryoutSources: readonly TryoutExamSource[],
+  questionBanks: QuestionBankIndex,
   state: HeadOrderState,
   head: QuestionHead
 ): Effect.Effect<
   readonly [HeadOrderState, QuestionHead],
   QuestionHeadDuplicateError | QuestionHeadFamilyError | QuestionHeadOrderError
 > {
-  return Effect.gen(function* () {
-    const field = yield* mismatchedFamilyField(tryoutSources, head);
-    if (field !== undefined) {
-      return yield* new QuestionHeadFamilyError({
+  const field = mismatchedFamilyField(questionBanks, head);
+  if (field !== undefined) {
+    return Effect.fail(
+      new QuestionHeadFamilyError({
         contentKey: head.contentKey,
         field,
         locale: head.locale,
-      });
-    }
-    const { previous } = state;
-    if (previous !== undefined) {
-      const comparison = compareContentHeads(previous, head);
-      if (comparison === 0) {
-        return yield* new QuestionHeadDuplicateError({
+      })
+    );
+  }
+  const { previous } = state;
+  if (previous !== undefined) {
+    const comparison = compareContentHeads(previous, head);
+    if (comparison === 0) {
+      return Effect.fail(
+        new QuestionHeadDuplicateError({
           contentKey: head.contentKey,
           locale: head.locale,
-        });
-      }
-      if (comparison > 0) {
-        return yield* new QuestionHeadOrderError({
+        })
+      );
+    }
+    if (comparison > 0) {
+      return Effect.fail(
+        new QuestionHeadOrderError({
           contentKey: head.contentKey,
           locale: head.locale,
-        });
-      }
+        })
+      );
     }
-    return Tuple.make({ previous: head }, head);
-  });
+  }
+  return Effect.succeed(Tuple.make({ previous: head }, head));
 }
 
 /** Proves every published question head before the constant-space merge. */
 function validatePublishedHeads<E, R>(
   published: Stream.Stream<QuestionHead, E, R>,
-  tryoutSources: readonly TryoutExamSource[]
+  questionBanks: QuestionBankIndex
 ) {
   const initial: HeadOrderState = { previous: undefined };
   return published.pipe(
     Stream.mapAccumEffect(initial, (state, head) =>
-      validatePublishedHead(tryoutSources, state, head)
+      validatePublishedHead(questionBanks, state, head)
     )
   );
 }
@@ -243,14 +235,14 @@ export const prepareQuestionPublication: <E, R>(
 ) {
   const rendererManifest = yield* validateRenderer(input.rendererManifest);
   const tryoutSources = yield* decodeTryoutRegistry();
-  const { entries, sources } = yield* loadQuestionContent(
+  const { entries, questionBanks, sources } = yield* loadQuestionContent(
     input.checkoutRoot,
     tryoutSources
   ).pipe(Effect.mapError(mapQuestionSourceError(input.checkoutRoot)));
   const plans = planQuestionPublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(input.published, tryoutSources),
+    published: validatePublishedHeads(input.published, questionBanks),
     rendererManifest,
     sources,
   });

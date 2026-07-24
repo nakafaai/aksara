@@ -10,9 +10,7 @@ import {
   QuranSnapshotManifestSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot";
 import {
-  QURAN_CHUNK_COUNT,
   QURAN_LOCALES,
-  QURAN_ROW_COUNT,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
   QURAN_TAFSIR_LOCALES,
@@ -90,12 +88,13 @@ vi.mock("#publisher/tryout/snapshot", async () => {
 
 /** Builds one valid technical Quran dependency fixture without corpus replay. */
 function makeQuranFixture(): QuranFixture {
-  const runtimeCount = QURAN_SURAH_COUNT + QURAN_CHUNK_COUNT;
+  const chunkCount = 1;
+  const runtimeCount = QURAN_SURAH_COUNT + chunkCount;
   const manifest = QuranSnapshotManifestSchema.make({
-    chunkCount: QURAN_CHUNK_COUNT,
+    chunkCount,
     format: QURAN_SNAPSHOT_FORMAT,
     locales: QURAN_LOCALES,
-    projectionCount: QURAN_ROW_COUNT,
+    projectionCount: runtimeCount + QURAN_SEARCH_COUNT,
     projectionDigest: testHash,
     provenanceDigest: testHash,
     provenanceStatus: "blocked",
@@ -141,6 +140,7 @@ async function makeTryoutFixture(): Promise<TryoutFixture> {
       graph: materialGraph("en", "tryout", "release"),
       kind: "country",
       locale: "en",
+      order: 1,
       publicPath: PublicPathSchema.make("try-out/indonesia"),
       sourceRevision: "test-release-v1",
       title: "Test Indonesia",

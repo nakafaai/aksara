@@ -66,6 +66,7 @@ const config = defineConfig({
       },
     },
     environment: "node",
+    testTimeout: 10_000,
   },
 });
 

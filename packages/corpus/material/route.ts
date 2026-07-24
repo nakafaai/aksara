@@ -1,6 +1,10 @@
 import type { ContentLocale } from "@nakafa/aksara-contracts/content";
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 
+import {
+  type MaterialDomainDescriptor,
+  materialDomainRoute,
+} from "#corpus/material/domain";
 import type {
   LessonMaterialSection,
   LessonMaterialSource,
@@ -11,23 +15,16 @@ const routeNamespaces = {
   id: "materi",
 };
 
-const domainRouteSlugs = {
-  "ai-ds": { en: "ai-ds", id: "ai-ds" },
-  biology: { en: "biology", id: "biologi" },
-  chemistry: { en: "chemistry", id: "kimia" },
-  mathematics: { en: "mathematics", id: "matematika" },
-  physics: { en: "physics", id: "fisika" },
-};
-
 /** Derives one canonical localized material-topic route. */
 export function materialTopicPath(
   source: LessonMaterialSource,
+  descriptor: MaterialDomainDescriptor,
   locale: ContentLocale
 ) {
   return PublicPathSchema.make(
     [
       routeNamespaces[locale],
-      domainRouteSlugs[source.domain][locale],
+      materialDomainRoute(descriptor, locale),
       source.routeSlugs[locale],
     ].join("/")
   );
@@ -37,9 +34,10 @@ export function materialTopicPath(
 export function materialLessonPath(
   source: LessonMaterialSource,
   section: LessonMaterialSection,
+  descriptor: MaterialDomainDescriptor,
   locale: ContentLocale
 ) {
   return PublicPathSchema.make(
-    `${materialTopicPath(source, locale)}/${section.routeSlugs[locale]}`
+    `${materialTopicPath(source, descriptor, locale)}/${section.routeSlugs[locale]}`
   );
 }

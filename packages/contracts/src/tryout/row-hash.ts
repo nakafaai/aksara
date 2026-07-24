@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { Sha256HashSchema } from "#contracts/ids";
+import { compareCodeUnits } from "#contracts/text/order";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import {
   tryoutCatalogIdentity,
@@ -48,6 +49,7 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
       countryCode: row.countryCode,
       countryKey: row.countryKey,
       kind: row.kind,
+      order: row.order,
       publicPath: row.publicPath,
     });
   }
@@ -57,6 +59,7 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
       countryKey: row.countryKey,
       examKey: row.examKey,
       kind: row.kind,
+      order: row.order,
       publicPath: row.publicPath,
       scoringStrategy: row.scoringStrategy,
     });
@@ -212,7 +215,7 @@ function updateDigest<Row>(
   }
   if (
     state.previous !== undefined &&
-    state.previous.localeCompare(record.identity) >= 0
+    compareCodeUnits(state.previous, record.identity) >= 0
   ) {
     return Effect.fail(
       new TryoutDigestError({ code: "order", identity: record.identity })

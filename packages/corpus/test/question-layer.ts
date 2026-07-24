@@ -6,7 +6,7 @@ import { QUESTION_SOURCE_FILES } from "#corpus/question-bank/path";
 
 export const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
 
-const sourceRoot = "packages/corpus/question-bank/tryout/indonesia";
+const sourceRoot = "packages/corpus/question-bank/tryout";
 const absoluteSourceRoot = resolve(corpusRoot, sourceRoot);
 const QUESTION_DIRECTORY_PATTERN = /\/question-[1-9]\d*$/u;
 const entries = globSync("**/*", { cwd: absoluteSourceRoot });

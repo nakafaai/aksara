@@ -1,4 +1,5 @@
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
+import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { Effect, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
@@ -34,7 +35,7 @@ export const validateCurriculumCatalog = Effect.fn(
     programKeys.add(curriculum.programKey);
   }
   return [...curricula].sort((left, right) =>
-    left.programKey < right.programKey ? -1 : 1
+    compareCodeUnits(left.programKey, right.programKey)
   );
 });
 

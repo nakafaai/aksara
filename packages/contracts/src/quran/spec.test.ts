@@ -2,15 +2,14 @@ import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
-  QURAN_CHUNK_COUNT,
   QURAN_CHUNK_SIZE,
   QURAN_LOCALES,
-  QURAN_ROW_COUNT,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
   QURAN_TAFSIR_LOCALES,
   QURAN_VERSE_COUNT,
   QuranChunkRowSchema,
+  QuranMeaningfulTextSchema,
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
   QuranSnapshotRowSchema,
@@ -102,18 +101,14 @@ describe("Quran contracts", () => {
     expect(row.payload.kind).toBe("quran-search");
     expect({
       chunkSize: QURAN_CHUNK_SIZE,
-      chunks: QURAN_CHUNK_COUNT,
       locales: QURAN_LOCALES,
-      rows: QURAN_ROW_COUNT,
       searches: QURAN_SEARCH_COUNT,
       surahs: QURAN_SURAH_COUNT,
       tafsirLocales: QURAN_TAFSIR_LOCALES,
       verses: QURAN_VERSE_COUNT,
     }).toEqual({
       chunkSize: 6,
-      chunks: 1085,
       locales: ["en", "id"],
-      rows: 1427,
       searches: 228,
       surahs: 114,
       tafsirLocales: ["id"],
@@ -146,5 +141,24 @@ describe("Quran contracts", () => {
     );
     expect(driftedVerse._tag).toBe("Left");
     expect(oversized._tag).toBe("Left");
+  });
+
+  it("reports authored text and audio contract failures", () => {
+    const emptyText = Schema.decodeUnknownEither(QuranMeaningfulTextSchema)("");
+    const unsafeAudio = Schema.decodeUnknownEither(QuranRuntimeVerseSchema)({
+      ...verse(),
+      audio: {
+        ...verse().audio,
+        primary: "http://example.com/primary.mp3",
+      },
+    });
+    if (emptyText._tag === "Right" || unsafeAudio._tag === "Right") {
+      throw new Error("Expected invalid Quran source values to fail.");
+    }
+
+    expect(String(emptyText.left)).toContain("Quran text cannot be empty.");
+    expect(String(unsafeAudio.left)).toContain(
+      "Quran audio must use a non-empty HTTPS URL."
+    );
   });
 });

@@ -1,6 +1,5 @@
 import {
-  QURAN_CHUNK_COUNT,
-  QURAN_ROW_COUNT,
+  QURAN_CHUNK_SIZE,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
@@ -37,9 +36,8 @@ describe("Quran projection", () => {
     const firstChunks = chunks.slice(0, 2);
     const firstSearches = searches.slice(0, 2);
 
-    expect(rows).toHaveLength(QURAN_ROW_COUNT);
+    expect(rows).toHaveLength(surahs.length + chunks.length + searches.length);
     expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
-    expect(chunks).toHaveLength(QURAN_CHUNK_COUNT);
     expect(searches).toHaveLength(QURAN_SEARCH_COUNT);
     expect(verseCount).toBe(QURAN_VERSE_COUNT);
     expect(firstChunks).toMatchObject([
@@ -63,7 +61,7 @@ describe("Quran projection", () => {
     expect(
       chunks.every(
         ({ verses }) =>
-          verses.length <= 6 &&
+          verses.length <= QURAN_CHUNK_SIZE &&
           verses.every(
             ({ tafsir }) =>
               Object.keys(tafsir.id).length === 1 &&

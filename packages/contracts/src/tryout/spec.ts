@@ -1,5 +1,6 @@
 import { Schema } from "effect";
 import { ContentLocaleSchema } from "#contracts/content";
+import { CountryCodeSchema } from "#contracts/country";
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import {
   ContentKeySchema,
@@ -7,29 +8,14 @@ import {
   PublicPathSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
+import {
+  QuestionKeySchema,
+  questionKeyParts,
+} from "#contracts/question/identity";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
+import { TryoutKeySchema } from "#contracts/tryout/key";
 
-const TRYOUT_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const COUNTRY_CODE_PATTERN = /^[A-Z]{2}$/u;
 const OPTION_KEY_PATTERN = /^option-[1-9]\d*$/u;
-/** Stable lowercase identity for one try-out hierarchy node. */
-export const TryoutKeySchema = Schema.String.pipe(
-  Schema.pattern(TRYOUT_KEY_PATTERN, {
-    description: "Lowercase kebab-case try-out source key.",
-    identifier: "TryoutKey",
-    message: () => "Invalid try-out key.",
-  }),
-  Schema.maxLength(128)
-);
-export type TryoutKey = typeof TryoutKeySchema.Type;
-/** ISO 3166-1 alpha-2 code owned by one try-out country. */
-export const TryoutCountryCodeSchema = Schema.String.pipe(
-  Schema.pattern(COUNTRY_CODE_PATTERN, {
-    description: "Uppercase ISO 3166-1 alpha-2 country code.",
-    identifier: "TryoutCountryCode",
-    message: () => "Invalid country code.",
-  })
-);
 /** Scoring model selected by one authored exam. */
 export const TryoutScoringSchema = Schema.Literal("irt", "raw");
 export type TryoutScoring = typeof TryoutScoringSchema.Type;
@@ -64,9 +50,10 @@ const ParentFields = {
 /** One localized country row in an immutable try-out catalog. */
 export const TryoutCountrySchema = Schema.Struct({
   ...LocalizedFields,
-  countryCode: TryoutCountryCodeSchema,
+  countryCode: CountryCodeSchema,
   countryKey: TryoutKeySchema,
   kind: Schema.Literal("country"),
+  order: PositiveCountSchema,
   publicPath: PublicPathSchema,
 });
 export type TryoutCountry = typeof TryoutCountrySchema.Type;
@@ -76,6 +63,7 @@ export const TryoutExamSchema = Schema.Struct({
   countryKey: TryoutKeySchema,
   examKey: TryoutKeySchema,
   kind: Schema.Literal("exam"),
+  order: PositiveCountSchema,
   publicPath: PublicPathSchema,
   scoringStrategy: TryoutScoringSchema,
 });
@@ -211,9 +199,13 @@ const PlacementFields = {
 /** Checks that question, answer, source, and authored order share one root. */
 function hasCoherentPlacementKeys(input: {
   readonly answerContentKey: string;
+  readonly countryKey: string;
+  readonly examKey: string;
   readonly questionContentKey: string;
   readonly questionOrder: number;
   readonly questionSourcePath: string;
+  readonly sectionKey: string;
+  readonly setKey: string;
 }) {
   const questionSuffix = "/question";
   if (!input.questionContentKey.endsWith(questionSuffix)) {
@@ -223,11 +215,19 @@ function hasCoherentPlacementKeys(input: {
     0,
     -questionSuffix.length
   );
-  const physicalTail = questionRoot.split("/").slice(-2).join("/");
+  if (!Schema.is(QuestionKeySchema)(questionRoot)) {
+    return false;
+  }
+  const parts = questionKeyParts(questionRoot);
   return (
     input.answerContentKey === `${questionRoot}/answer` &&
-    questionRoot.endsWith(`/question-${input.questionOrder}`) &&
-    input.questionSourcePath.endsWith(`/${physicalTail}`)
+    parts.countryKey === input.countryKey &&
+    parts.examKey === input.examKey &&
+    parts.sectionKey === input.sectionKey &&
+    parts.setKey === input.setKey &&
+    parts.questionNumber === input.questionOrder &&
+    input.questionSourcePath === `packages/corpus/${questionRoot}` &&
+    input.questionContentKey === `${questionRoot}/question`
   );
 }
 
@@ -267,34 +267,3 @@ export const TryoutPlacementRecordSchema = Schema.Struct({
   rowHash: Sha256HashSchema,
 });
 export type TryoutPlacementRecord = typeof TryoutPlacementRecordSchema.Type;
-
-/** Signed per-kind hierarchy counts for one immutable try-out snapshot. */
-export const TryoutCatalogCountsSchema = Schema.Struct({
-  country: NonNegativeCountSchema,
-  exam: NonNegativeCountSchema,
-  section: NonNegativeCountSchema,
-  set: NonNegativeCountSchema,
-  track: NonNegativeCountSchema,
-});
-export type TryoutCatalogCounts = typeof TryoutCatalogCountsSchema.Type;
-
-const SnapshotFields = {
-  catalogDigest: Sha256HashSchema,
-  counts: TryoutCatalogCountsSchema,
-  format: Schema.Literal("tryout-v1"),
-  locales: Schema.Tuple(Schema.Literal("en"), Schema.Literal("id")),
-  placementCount: NonNegativeCountSchema,
-  placementDigest: Sha256HashSchema,
-  routeCount: NonNegativeCountSchema,
-};
-
-/** Canonical snapshot facts authenticated by the global content release. */
-export const TryoutSnapshotInputSchema = Schema.Struct(SnapshotFields);
-export type TryoutSnapshotInput = typeof TryoutSnapshotInputSchema.Type;
-
-/** Content-addressed try-out snapshot selected by one global release. */
-export const TryoutSnapshotSchema = Schema.Struct({
-  ...SnapshotFields,
-  snapshotId: Sha256HashSchema,
-});
-export type TryoutSnapshot = typeof TryoutSnapshotSchema.Type;

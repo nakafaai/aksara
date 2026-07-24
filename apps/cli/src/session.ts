@@ -160,7 +160,7 @@ export const openLocalPreview = Effect.fn("AksaraCli.openLocalPreview")(
       signer: renderer.credentials.signer,
     });
     const mutex = yield* Effect.makeSemaphore(1);
-    /** Recompiles one already-invalidated generation in serialized order. */
+    /** Serializes the active compile while the watcher retains its latest save. */
     const refresh = (generation: number) =>
       mutex.withPermits(1)(
         Effect.gen(function* () {

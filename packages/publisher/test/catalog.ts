@@ -1,3 +1,8 @@
+import type {
+  ContentFamily,
+  ContentLocale,
+} from "@nakafa/aksara-contracts/content";
+
 /** Compact family counts used by catalog orchestration tests. */
 export interface TestCatalogCounts {
   readonly article: number;
@@ -8,8 +13,8 @@ export interface TestCatalogCounts {
 /** Stable source identity used without inventing educational fixture bodies. */
 export interface TestCatalogIdentity {
   readonly contentKey: string;
-  readonly family: "article" | "material" | "question";
-  readonly locale: "en" | "id";
+  readonly family: ContentFamily;
+  readonly locale: ContentLocale;
   readonly publicPath?: string;
 }
 
