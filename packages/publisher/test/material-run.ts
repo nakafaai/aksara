@@ -12,7 +12,12 @@ import { prepareContentRelease } from "#publisher/preparation";
 import { PublicationSource } from "#publisher/publication/spec";
 import { testFileLayer } from "#test/files";
 import { makeTarget } from "#test/lifecycle";
-import { checkoutRoot, rendererManifest, sourceByPath } from "#test/material";
+import {
+  checkoutRoot,
+  functionMaterialScope,
+  rendererManifest,
+  sourceByPath,
+} from "#test/material";
 import { publishFromSource } from "#test/publication/run";
 import { emptySnapshotSources } from "#test/snapshot";
 
@@ -25,6 +30,7 @@ export async function publishMaterialRelease() {
           checkoutRoot,
           published: Stream.empty,
           rendererManifest,
+          scope: functionMaterialScope,
         });
         const prepared = yield* prepareContentRelease({
           aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
@@ -38,6 +44,7 @@ export async function publishMaterialRelease() {
           rendererManifest,
           result: material.result,
           routes: material.routes,
+          scope: functionMaterialScope,
           ...emptySnapshotSources,
         });
         const state = makeTarget(prepared);

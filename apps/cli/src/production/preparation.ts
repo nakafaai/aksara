@@ -9,6 +9,7 @@ import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/re
 import {
   baseContentSnapshots,
   type ContentSnapshotSet,
+  type PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
@@ -42,6 +43,7 @@ interface BaseCatalogIdentity {
 interface GitPreparationBase {
   readonly checkoutRoot: string;
   readonly releaseId: ReleaseId;
+  readonly scope: PublicationScope;
 }
 
 type GitPreparationInput =
@@ -177,13 +179,22 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       checkoutRoot: input.checkoutRoot,
       published: publishedContentHeads(base),
       rendererManifest,
+      scope: input.scope,
     });
-    const snapshots = yield* prepareReleaseSnapshots({
-      checkoutRoot: input.checkoutRoot,
-      previousSnapshots: base?.snapshots ?? null,
-      questionHeads: () => catalog.result().pipe(Stream.filter(isQuestionHead)),
-      rendererManifest,
-    });
+    const snapshots =
+      input.scope.snapshots.length === 0
+        ? {
+            manifests: () => Stream.empty,
+            rows: () => Stream.empty,
+          }
+        : yield* prepareReleaseSnapshots({
+            checkoutRoot: input.checkoutRoot,
+            families: input.scope.snapshots,
+            previousSnapshots: base?.snapshots ?? null,
+            questionHeads: () =>
+              catalog.result().pipe(Stream.filter(isQuestionHead)),
+            rendererManifest,
+          });
     const prepared = yield* prepareContentRelease({
       aksaraSha,
       baseManifestHash: base === null ? null : base.manifestHash,
@@ -197,6 +208,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       rendererManifest,
       result: catalog.result,
       routes: catalog.routes,
+      scope: input.scope,
       snapshotManifests: snapshots.manifests,
       snapshotRows: snapshots.rows,
     });

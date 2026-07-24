@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah76Verses25To30 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5616",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5616.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5616.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 579,
       ruku: 515,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5616,
@@ -24,40 +25,33 @@ export const quranSurah76Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah memerintahkan Nabi Muhammad supaya menyebut nama Tuhan pada waktu pagi dan petang. Maksudnya hendaklah umat Islam selalu ingat kepada Allah dalam keadaan bagaimanapun, di mana dan kapan pun, baik dengan hati maupun dengan lidah. Ada yang mengatakan bahwa maksud mengingat Allah pada waktu pagi dan petang ialah mengerjakan salat pada saat-saat itu.",
-        short:
-          "25-26. Dan untuk lebih menguatkan hatimu menghadapi kesulitan dakwah, maka ingatlah selalu serta sebutlah nama Tuhanmu di antaranya dengan melaksanakan salat pada waktu pagi yaitu Subuh dan petang yaitu Zuhur dan Asar. Dan pada sebagian dari malam yaitu Maghrib dan Isya’, maka bersujudlah kepada-Nya dan bertasbihlah kepada-Nya yaitu dengan melaksanakan salat tahajud pada bagian yang panjang di malam hari.25-26. Dan untuk lebih menguatkan hatimu menghadapi kesulitan dakwah, maka ingatlah selalu serta sebutlah nama Tuhanmu di antaranya dengan melaksanakan salat pada waktu pagi yaitu Subuh dan petang yaitu Zuhur dan Asar. Dan pada sebagian dari malam yaitu Maghrib dan Isya’, maka bersujudlah kepada-Nya dan bertasbihlah kepada-Nya yaitu dengan melaksanakan salat tahajud pada bagian yang panjang di malam hari.",
+        footnotes: null,
+        text: "Sebutlah nama Tuhanmu dengan mendirikan salat Subuh di awal siang dan salat Zuhur serta Asar di akhir siang.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0630\u0652\u0643\u064f\u0631\u0650 \u0627\u0633\u0652\u0645\u064e \u0631\u064e\u0628\u0651\u0650\u0643\u064e \u0628\u064f\u0643\u0652\u0631\u064e\u0629\u064b \u0648\u064e\u0623\u064e\u0635\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Wazkuris ma Rabbika bukratanw wa aseelaa",
-      },
+      arabic: "وَٱذْكُرِ ٱسْمَ رَبِّكَ بُكْرَةً وَأَصِيلًا",
     },
     translation: {
-      en: "And mention the name of your Lord [in prayer] morning and evening",
-      id: "Dan sebutlah nama Tuhanmu pada (waktu) pagi dan petang.",
+      en: {
+        footnotes:
+          "[6] This and the next verse refer to the five daily prayers: here it refers to the dawn prayer, then the noon and afternoon prayers.",
+        text: "And remember the Name of your Lord morning and evening[6],",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sebutlah nama Tuhanmu pada (waktu) pagi dan petang.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5617",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5617.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5617.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 515,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5617,
@@ -65,40 +59,32 @@ export const quranSurah76Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah memerintahkan Nabi supaya bersujud, salat malam, dan bertasbih kepada-Nya pada bagian yang panjang pada malam hari. Perintah mengerjakan salat pada sebagian waktu malam, yakni salat Magrib dan Isya, kemudian salat Tahajud pada malam hari disebutkan juga dalam ayat lain:\n\nDan pada sebagian malam, lakukanlah salat Tahajud (sebagai suatu ibadah) tambahan bagimu: mudah-mudahan Tuhanmu mengangkatmu ke tempat yang terpuji. (al-Isra'/17: 79)",
-        short:
-          "25-26. Dan untuk lebih menguatkan hatimu menghadapi kesulitan dakwah, maka ingatlah selalu serta sebutlah nama Tuhanmu di antaranya dengan melaksanakan salat pada waktu pagi yaitu Subuh dan petang yaitu Zuhur dan Asar. Dan pada sebagian dari malam yaitu Maghrib dan Isya’, maka bersujudlah kepada-Nya dan bertasbihlah kepada-Nya yaitu dengan melaksanakan salat tahajud pada bagian yang panjang di malam hari.27. Di antara alasan utama mengapa manusia menolak dakwah karena sesungguhnya mereka, orang kafir, itu mencintai kehidupan dunia yang memang kasat mata dan cepat diraih, meskipun juga cepat musnahnya, dan meninggalkan hari yang berat yaitu hari akhirat di belakangnya.",
+        footnotes: null,
+        text: "Ingatlah Allah pada dua salat malam, yaitu salat Magrib dan salat Isya, lalu salatlah tahajud setelah keduanya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u064a\u0652\u0644\u0650 \u0641\u064e\u0627\u0633\u0652\u062c\u064f\u062f\u0652 \u0644\u064e\u0647\u064f \u0648\u064e\u0633\u064e\u0628\u0651\u0650\u062d\u0652\u0647\u064f \u0644\u064e\u064a\u0652\u0644\u064b\u0627 \u0637\u064e\u0648\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Wa minal laili fasjud lahoo wa sabbihhu lailan taweelaa",
-      },
+      arabic: "وَمِنَ ٱلَّيْلِ فَٱسْجُدْ لَهُۥ وَسَبِّحْهُ لَيْلًا طَوِيلًا",
     },
     translation: {
-      en: "And during the night prostrate to Him and exalt Him a long [part of the] night.",
-      id: "Dan pada sebagian dari malam, maka bersujudlah kepada-Nya dan bertasbihlah kepada-Nya pada bagian yang panjang di malam hari.",
+      en: {
+        footnotes: "[7] It refers to the sunset and night prayers.",
+        text: "and prostrate to Him at night, and glorify Him at length by night[7].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan pada sebagian dari malam, maka bersujudlah kepada-Nya dan bertasbihlah kepada-Nya pada bagian yang panjang di malam hari.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5618",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5618.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5618.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 515,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5618,
@@ -106,40 +92,32 @@ export const quranSurah76Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah mencela sikap orang kafir yang mabuk kesenangan duniawi dengan melupakan hari akhirat disebabkan mereka itu menyukai kehidupan dunia dan mereka tidak mempedulikan hari berat, hari akhirat.\n\nMemang watak orang kafir itu sebenarnya cinta dunia dan takut mati, melupakan hari akhirat dan tidak mempercayai sama sekali. Dikatakan bahwa hari akhirat itu sebagai "hari yang berat" karena begitu beratnya pertanggungjawaban manusia di hadapan Allah.',
-        short:
-          "Di antara alasan utama mengapa manusia menolak dakwah karena sesungguhnya mereka, orang kafir, itu mencintai kehidupan dunia yang memang kasat mata dan cepat diraih, meskipun juga cepat musnahnya, dan meninggalkan hari yang berat yaitu hari akhirat di belakangnya.28. Ayat ini mengingatkan manusia akan kuasa Allah dalam menciptakan makhluk dari ketiadaan. Kami telah menciptakan mereka bukan ciptaan yang sembarangan dan juga menguatkan persendian tubuh mereka padahal tadinya hanyalah air mani yang begitu lemah dan hina. Tetapi, jika Kami menghendaki untuk membinasakan mereka itupun mudah, dan kemudian Kami dapat mengganti dengan yang serupa mereka.",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang musyrik itu menyukai kehidupan dunia dan berupaya keras untuk mendapatkannya serta meninggalkan di belakang mereka urusan hari Kiamat, yaitu hari yang berat, karena pada hari itu terdapat berbagai kesusahan dan cobaan.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0647\u064e\u0670\u0624\u064f\u0644\u064e\u0627\u0621\u0650 \u064a\u064f\u062d\u0650\u0628\u0651\u064f\u0648\u0646\u064e \u0627\u0644\u0652\u0639\u064e\u0627\u062c\u0650\u0644\u064e\u0629\u064e \u0648\u064e\u064a\u064e\u0630\u064e\u0631\u064f\u0648\u0646\u064e \u0648\u064e\u0631\u064e\u0627\u0621\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u0648\u0652\u0645\u064b\u0627 \u062b\u064e\u0642\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Inna haaa'ulaa'i yuhibboona 'aajilata wa yazaroona waraaa'ahum yawman saqeelaa",
-      },
+      arabic: "إِنَّ هَٰٓؤُلَآءِ يُحِبُّونَ ٱلْعَاجِلَةَ وَيَذَرُونَ وَرَآءَهُمْ يَوْمًا ثَقِيلًا",
     },
     translation: {
-      en: "Indeed, these [disbelievers] love the immediate and leave behind them a grave Day.",
-      id: "Sesungguhnya mereka (orang kafir) itu mencintai kehidupan (dunia) dan meninggalkan hari yang berat (hari akhirat) di belakangnya.",
+      en: {
+        footnotes: "",
+        text: "Indeed, these [pagans] love this fleeting life and pay no heed to a heavy Day ahead of them.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sesungguhnya mereka (orang kafir) itu mencintai kehidupan (dunia) dan meningggalkan hari yang berat (hari akhirat) di belakangnya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5619",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5619.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5619.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 515,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5619,
@@ -147,40 +125,32 @@ export const quranSurah76Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, seolah-olah Allah menegur manusia yang lalai itu kenapa mereka melupakan Allah, padahal Dialah yang menciptakan mereka, menyusun dan mengatur demikian rapi tubuh mereka sehingga tidak ada celanya. Apakah setelah menciptakan mereka dengan sebaik-baiknya itu, lalu Allah membiarkan saja mereka berbuat sekehendaknya?\n\nOleh karena itu, Allah memperlihatkan kekuasaan-Nya yang Mahamutlak untuk sewaktu-waktu melenyapkan dan mengganti mereka dengan generasi manusia yang lain. Dalam ayat lain disebutkan:\n\nDan milik Allah-lah apa yang ada di langit dan apa yang ada di bumi. Cukuplah Allah sebagai pemeliharanya. (an-Nisa'/4: 132)\n\nDemikianlah sunatullah telah berlaku di alam semesta ini sejak dahulu. Allah menghancurkan manusia-manusia yang ingkar kepada-Nya kemudian segera menggantinya dengan generasi baru. Sunatullah ini pasti akan berlaku karena manusia yang ingkar kepadanya tetap akan bermunculan sepanjang masa.",
-        short:
-          "Ayat ini mengingatkan manusia akan kuasa Allah dalam menciptakan makhluk dari ketiadaan. Kami telah menciptakan mereka bukan ciptaan yang sembarangan dan juga menguatkan persendian tubuh mereka padahal tadinya hanyalah air mani yang begitu lemah dan hina. Tetapi, jika Kami menghendaki untuk membinasakan mereka itupun mudah, dan kemudian Kami dapat mengganti dengan yang serupa mereka.29. Sebagai bagian akhir dari surah ini maka Allah mengingatkan tentang salah satu fungsi utama Al-Qur’an. Sungguh, ayat-ayat ini adalah peringatan tentang Kuasa Allah, maka barangsiapa menghendaki kebaikan bagi dirinya tentu dia akan bersungguh-sungguh mengambil jalan menuju kepada Tuhannya.",
+        footnotes: null,
+        text: "Kami telah menciptakan mereka dan memperkuat penciptaan mereka dengan menguatkan persendian mereka, anggota tubuh mereka, dan lainnya. Seandainya Kami berkehendak membinasakan dan menggantikan mereka dengan orang-orang yang semisal dengan mereka, niscaya Kami mampu membinasakan dan menggantikan mereka dengan orang-orang tersebut.",
       },
     },
     text: {
-      arab: "\u0646\u0651\u064e\u062d\u0652\u0646\u064f \u062e\u064e\u0644\u064e\u0642\u0652\u0646\u064e\u0627\u0647\u064f\u0645\u0652 \u0648\u064e\u0634\u064e\u062f\u064e\u062f\u0652\u0646\u064e\u0627 \u0623\u064e\u0633\u0652\u0631\u064e\u0647\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0634\u0650\u0626\u0652\u0646\u064e\u0627 \u0628\u064e\u062f\u0651\u064e\u0644\u0652\u0646\u064e\u0627 \u0623\u064e\u0645\u0652\u062b\u064e\u0627\u0644\u064e\u0647\u064f\u0645\u0652 \u062a\u064e\u0628\u0652\u062f\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Nahnu khalaqnaahum wa shadadnaaa asrahum wa izaa shi'naa baddalnaaa amsaala hum tabdeelaa",
-      },
+      arabic: "نَّحْنُ خَلَقْنَٰهُمْ وَشَدَدْنَآ أَسْرَهُمْ وَإِذَا شِئْنَا بَدَّلْنَآ أَمْثَٰلَهُمْ تَبْدِيلًا",
     },
     translation: {
-      en: "We have created them and strengthened their forms, and when We will, We can change their likenesses with [complete] alteration.",
-      id: "Kami telah menciptakan mereka dan menguatkan persendian tubuh mereka. Tetapi, jika Kami menghendaki, Kami dapat mengganti dengan yang serupa mereka.",
+      en: {
+        footnotes: "",
+        text: "It is We Who created them and strengthened their build. If We will, We can replace them with others like them.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kami telah menciptakan mereka dan menguatkan persendian tubuh mereka. Tetapi, jika Kami menghendaki, Kami dapat mengganti dengan yang serupa mereka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5620",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5620.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5620.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 515,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5620,
@@ -188,40 +158,32 @@ export const quranSurah76Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah kembali mengingatkan bahwa semua yang disebutkan di atas merupakan peringatan (tadhkirah) dan pengajaran (mau'idhah) bagi siapa yang ingin mendengarnya. Segala peringatan yang terkandung dalam Surah al-Insan ini merupakan bahan renungan bagi siapa yang suka belajar kepada kenyataan yang pernah terjadi. Barang siapa yang ingin kebaikan bagi pribadinya untuk kehidupan dunia dan akhirat, hendaklah ia menjadikan ayat-ayat ini sebagai peringatan. Hendaklah ia mendekatkan diri kepada Allah dengan perbuatan taat, mengikuti segala perintah, dan menjauhi segala larangan-Nya, agar dia memperoleh rida Allah, agar ia selamat dari segala kesulitan hidup di kampung akhirat kelak.",
-        short:
-          "Sebagai bagian akhir dari surah ini maka Allah mengingatkan tentang salah satu fungsi utama Al-Qur’an. Sungguh, ayat-ayat ini adalah peringatan tentang Kuasa Allah, maka barangsiapa menghendaki kebaikan bagi dirinya tentu dia akan bersungguh-sungguh mengambil jalan menuju kepada Tuhannya.30. Terkadang ada yang merasa memiliki kemampuan untuk mewujudkan kehendaknya, Allah menampik anggapan tersebut. Tetapi kamu tidak mampu menempuh jalan itu, kecuali apabila dikehendaki Allah. Sungguh, Allah Maha Mengetahui segala sesuatu, Mahabijaksana dalam seluruh kehendak dan ketetapan-Nya.",
+        footnotes: null,
+        text: "Sesungguhnya surah ini adalah nasihat dan peringatan, sebab itu barang siapa menghendaki untuk mengambil jalan yang mengantarkannya kepada keridaan Tuhannya maka ia mengambil jalan ini.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0647\u064e\u0670\u0630\u0650\u0647\u0650 \u062a\u064e\u0630\u0652\u0643\u0650\u0631\u064e\u0629\u064c \u06d6 \u0641\u064e\u0645\u064e\u0646 \u0634\u064e\u0627\u0621\u064e \u0627\u062a\u0651\u064e\u062e\u064e\u0630\u064e \u0625\u0650\u0644\u064e\u0649\u0670 \u0631\u064e\u0628\u0651\u0650\u0647\u0650 \u0633\u064e\u0628\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Inna haazihee tazkiratun fa man shaaa'at takhaza ilaa rabbihee sabeela",
-      },
+      arabic: "إِنَّ هَٰذِهِۦ تَذْكِرَةٌ فَمَن شَآءَ ٱتَّخَذَ إِلَىٰ رَبِّهِۦ سَبِيلًا",
     },
     translation: {
-      en: "Indeed, this is a reminder, so he who wills may take to his Lord a way.",
-      id: "Sungguh, (ayat-ayat) ini adalah peringatan, maka barangsiapa menghendaki (kebaikan bagi dirinya) tentu dia mengambil jalan menuju kepada Tuhannya.",
+      en: {
+        footnotes: "",
+        text: "Indeed, this is a reminder; so let anyone who wills may take a way to his Lord.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, (ayat-ayat) ini adalah peringatan, maka barang siapa menghendaki (kebaikan bagi dirinya) tentu dia mengambil jalan menuju kepada Tuhannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5621",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5621.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5621.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 515,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5621,
@@ -229,20 +191,22 @@ export const quranSurah76Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menerangkan bahwa manusia tidak akan mencapai keselamatan itu kecuali dengan kehendak-Nya, dan bila Ia memberikan taufik kepadanya. Usaha seseorang saja tanpa ada bimbingan Allah tidak akan mencapai kebaikan dan tidak dapat menolak kejahatan.\n\nAyat ini ditutup dengan suatu kepastian bahwa Allah Maha Mengetahui lagi Mahabijaksana. Allah Mahatahu siapa di antara hamba-Nya yang berhak menerima hidayat itu sehingga dimudahkan jalan baginya dan didatangkan sebab-sebab untuk mendapatkan hidayat itu. Sebaliknya yang sering terlibat dalam perbuatan memperturutkan hawa nafsu, hidayah itu dihilangkan Allah darinya. Allah Mahabijaksana dan Mahaadil.",
-        short:
-          "Terkadang ada yang merasa memiliki kemampuan untuk mewujudkan kehendaknya, Allah menampik anggapan tersebut. Tetapi kamu tidak mampu menempuh jalan itu, kecuali apabila dikehendaki Allah. Sungguh, Allah Maha Mengetahui segala sesuatu, Mahabijaksana dalam seluruh kehendak dan ketetapan-Nya. 31. Dan Dia akan memasukkan siapa pun yang Dia kehendaki yang dinilai-Nya wajar menerimanya, ke dalam rahmat-Nya yaitu surga. Adapun bagi orang-orang zalim yang begitu mantap kezalimannya maka disediakan-Nya azab yang pedih.",
+        footnotes: null,
+        text: "Tidaklah kalian menginginkan jalan yang mengantarkan kalian kepada rida Allah kecuali Allah menghendaki hal itu dari kalian karena semua perkara dikembalikan kepada-Nya. Sesungguhnya Allah Maha Mengetahui apa yang baik dan apa yang tidak baik bagi hamba-Nya, lagi Mahabijaksana di dalam penciptaan, takdir, dan syariat-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u062a\u064e\u0634\u064e\u0627\u0621\u064f\u0648\u0646\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0623\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u06da \u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0643\u064e\u0627\u0646\u064e \u0639\u064e\u0644\u0650\u064a\u0645\u064b\u0627 \u062d\u064e\u0643\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Wa maa tashaaa'oona illaa anyyashaaa'al laah; innal laahaa kaana'Aleeman Hakeema",
-      },
+      arabic: "وَمَا تَشَآءُونَ إِلَّآ أَن يَشَآءَ ٱللَّهُ إِنَّ ٱللَّهَ كَانَ عَلِيمًا حَكِيمًا",
     },
     translation: {
-      en: "And you do not will except that Allah wills. Indeed, Allah is ever Knowing and Wise.",
-      id: "Tetapi kamu tidak mampu (menempuh jalan itu), kecuali apabila Allah kehendaki Allah. Sungguh, Allah Maha Mengetahui, Mahabijaksana.",
+      en: {
+        footnotes: "",
+        text: "But you cannot will unless Allah wills. Indeed, Allah is All-Knowing, All-Wise.",
+      },
+      id: {
+        footnotes: "",
+        text: "Tetapi kamu tidak mampu (menempuh jalan itu) kecuali apabila dikehendaki Allah. Sungguh, Allah Maha Mengetahui, Mahabijaksana.",
+      },
     },
   },
 ];

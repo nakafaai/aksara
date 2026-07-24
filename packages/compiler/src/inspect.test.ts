@@ -15,6 +15,7 @@ const rendererManifest = await Effect.runPromise(
     domains: testRendererDomains({
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 const SHA256_PREFIX = /^sha256:/u;

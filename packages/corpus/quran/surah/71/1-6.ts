@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah71Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5420",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5420.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5420.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 504,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5420,
@@ -24,40 +25,33 @@ export const quranSurah71Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah telah mengutus Nabi Nuh kepada kaumnya untuk menyampaikan agama-Nya, supaya mereka takut kepada azab-Nya yang dahsyat sebelum saatnya tiba, serta beriman dan mengikuti ajarannya.\n\nNabi Nuh adalah nabi dan rasul Allah yang ketiga setelah Adam dan Idris. Beliau diutus kepada kaumnya yang menyembah berhala. Allah memerintahkan Nuh agar berdakwah kepada kaumnya itu supaya mereka beriman kepada-Nya dan menghentikan penyembahan berhala. Allah mengancam bahwa jika mereka tidak mengindahkan peringatan itu, mereka akan ditimpa azab yang dahsyat sebagai akibat keingkaran mereka.",
-        short:
-          "Pada penutup surah sebelumnya diuraikan tentang ancaman siksa yang akan diterima kaum yang durhaka. Di awal surah ini diuraikan kisah Nabi Nuh dan kaumnya sebagai peringatan bagi siapa saja termasuk kaum musyrik Mekah, apabila durhaka maka bagi Allah mudah untuk mengazabnya. Sesungguhnya Kami telah mengutus Nuh kepada kaumnya dengan perintah, “Berilah kaummu peringatan sebelum datang kepadanya azab yang pedih.",
+        footnotes: null,
+        text: "Sesungguhnya Kami telah mengutus Nuh kepada kaumnya untuk menyeru dan menakuti mereka sebelum mereka kedatangan siksa pedih akibat kesyirikan yang mereka lakukan kepada Allah.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0627 \u0623\u064e\u0631\u0652\u0633\u064e\u0644\u0652\u0646\u064e\u0627 \u0646\u064f\u0648\u062d\u064b\u0627 \u0625\u0650\u0644\u064e\u0649\u0670 \u0642\u064e\u0648\u0652\u0645\u0650\u0647\u0650 \u0623\u064e\u0646\u0652 \u0623\u064e\u0646\u0630\u0650\u0631\u0652 \u0642\u064e\u0648\u0652\u0645\u064e\u0643\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650 \u0623\u064e\u0646 \u064a\u064e\u0623\u0652\u062a\u0650\u064a\u064e\u0647\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064c \u0623\u064e\u0644\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Innaaa arsalnaa Noohan ilaa qawmihee an anzir qawmaka min qabli any yaatiyahum 'azaabun aleem",
-      },
+      arabic:
+        "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ إِنَّآ أَرْسَلْنَا نُوحًا إِلَىٰ قَوْمِهِۦٓ أَنْ أَنذِرْ قَوْمَكَ مِن قَبْلِ أَن يَأْتِيَهُمْ عَذَابٌ أَلِيمٌ",
     },
     translation: {
-      en: 'Indeed, We sent Noah to his people, [saying], "Warn your people before there comes to them a painful punishment."',
-      id: "Sesungguhnya Kami telah mengutus Nuh kepada kaumnya (dengan perintah), “Berilah kaummu peringatan sebelum datang kepadanya azab yang pedih.”",
+      en: {
+        footnotes: "",
+        text: "Indeed, We sent Noah to his people, “Warn your people before there comes to them a painful punishment.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Sesungguhnya Kami telah mengutus Nuh kepada kaumnya (dengan perintah), "Berilah kaummu peringatan sebelum datang kepadanya azab yang pedih."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5421",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5421.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5421.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 504,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5421,
@@ -65,40 +59,32 @@ export const quranSurah71Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Nuh segera berdakwah untuk melaksanakan tugas kerasulannya. Ia mengatakan bahwa ia benar-benar rasul Allah untuk mengajak mereka beriman dan meninggalkan penyembahan berhala.",
-        short:
-          "Nabi Nuh melaksanakan perintah Allah tersebut. Dia Nuh berkata, “Wahai kaumku! Sesungguhnya aku ini seorang pemberi peringatan akan azab Allah yang menjelaskan peringatan itu kepada kamu",
+        footnotes: null,
+        text: "Nuh berkata kepada kaumnya, “Wahai kaumku! Aku adalah pemberi peringatan kepada kalian dengan peringatan yang jelas tentang datangnya azab yang menunggu kalian jika kalian tidak bertobat kepada Allah.",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u064a\u064e\u0627 \u0642\u064e\u0648\u0652\u0645\u0650 \u0625\u0650\u0646\u0651\u0650\u064a \u0644\u064e\u0643\u064f\u0645\u0652 \u0646\u064e\u0630\u0650\u064a\u0631\u064c \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064c",
-      transliteration: {
-        en: "Qaala yaa qawmi innee lakum nazeerum mubeen",
-      },
+      arabic: "قَالَ يَٰقَوْمِ إِنِّى لَكُمْ نَذِيرٌ مُّبِينٌ",
     },
     translation: {
-      en: 'He said, "O my people, indeed I am to you a clear warner,',
-      id: "Dia (Nuh) berkata, “Wahai kaumku! Sesungguhnya aku ini seorang pemberi peringatan yang menjelaskan kepada kamu,",
+      en: {
+        footnotes: "",
+        text: "He said: “O my people, indeed I am a clear warner to you,",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Nuh) berkata, "Wahai kaumku! Sesungguhnya aku ini seorang pemberi peringatan yang menjelaskan kepada kamu,',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5422",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5422.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5422.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 504,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5422,
@@ -106,40 +92,32 @@ export const quranSurah71Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, diterangkan isi seruan Nabi Nuh, yaitu:\n\n1.Hendaklah mereka menyembah Allah saja, Tuhan Yang Maha Esa, tidak ada Tuhan selain Dia. Dalam perintah menyembah Allah yang disampaikan Nuh itu, terkandung isyarat agar mereka mengerjakan segala yang wajib, dan menghentikan segala yang diharamkan. Dari perintah Allah untuk hanya menyembah-Nya, dapat dipahami bahwa agama yang dianut kaum Nuh itu adalah agama syirik.\n\n2.Hendaklah mereka bertakwa kepada Allah, yaitu melaksanakan semua yang diperintahkan dan menjauhi segala yang dilarang-Nya.\n\n3.Menaati segala yang diperintahkan dan dilarangnya, karena apa yang ia perintahkan dan larang itu berasal dari Allah. Menaati Nuh berarti menaati Allah. Untuk dapat beribadah dengan baik kepada Allah dan bertakwa kepada-Nya, kaum Nuh perlu mengikuti penjelasan dan contoh yang diberikan Nabi Nuh.",
-        short:
-          "yaitu sembahlah Allah Yang Esa dan tidak menyekutukan-Nya dengan sesuatu yang lain, bertakwalah kepada-Nya dengan menjalankan perintah dan menjauhi larangan-Nya dan taatlah kepadaku.",
+        footnotes: null,
+        text: "Inti dari peringatanku kepada kalian adalah ucapanku kepada kalian; sembahlah Allah semata, jangan menyekutukan-Nya dengan sesuatu pun, bertakwalah kepada-Nya dengan mengerjakan segala perintah-Nya dan menjauhi segala larangan-Nya, serta taatilah aku pada apa yang aku perintahkan kepada kalian.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0646\u0650 \u0627\u0639\u0652\u0628\u064f\u062f\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0627\u062a\u0651\u064e\u0642\u064f\u0648\u0647\u064f \u0648\u064e\u0623\u064e\u0637\u0650\u064a\u0639\u064f\u0648\u0646\u0650",
-      transliteration: {
-        en: "Ani'udul laaha watta qoohu wa atee'oon",
-      },
+      arabic: "أَنِ ٱعْبُدُوا۟ ٱللَّهَ وَٱتَّقُوهُ وَأَطِيعُونِ",
     },
     translation: {
-      en: "[Saying], 'Worship Allah, fear Him and obey me.",
-      id: "(yaitu) sembahlah Allah, bertakwalah kepada-Nya dan taatlah kepadaku,",
+      en: {
+        footnotes: "",
+        text: "that you worship Allah and fear Him, and obey me;",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) sembahlah Allah, bertakwalah kepada-Nya dan taatlah kepadaku,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5423",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5423.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5423.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 504,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5423,
@@ -147,40 +125,33 @@ export const quranSurah71Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, diterangkan janji Allah kepada kaum Nuh bila mereka mematuhi seruannya, yaitu:\n\n1.Allah akan mengampuni dosa-dosa mereka. Dosa-dosa mereka karena menyembah berhala-berhala itu akan terhapus oleh keimanan mereka. \n\n1.Allah akan memanjangkan umur mereka. Sekalipun umur mereka telah ditentukan, namun jika mereka beriman, Allah akan memanjangkan umur mereka dan menghentikan azab yang akan dijatuhkan kepada mereka. Melakukan yang demikian itu merupakan perkara yang mudah bagi Allah, karena Dia Mahakuasa dan Maha Menentukan segala sesuatu yang dikehendaki-Nya.\n\nSehubungan dengan masalah menangguhkan kedatangan ajal, yakni memanjang umur yang disebut dalam ayat ini, sebagian ahli tafsir menyatakan bahwa Allah akan mengubah takdir yang telah ditentukan-Nya, jika Dia menghendakinya. Oleh karena itu, taat kepada Allah, melakukan perbuatan-perbuatan takwa, dan menghubungkan silaturrahim dapat memanjangkan umur manusia. Nabi Muhammad bersabda:\n\nDari Anas bin Malik, Rasulullah saw bersabda: Barang siapa menghendaki diluaskan rezekinya dan dipanjangkan umurnya maka hendaknya ia menjalin silaturrahim. (Riwayat al-Bukhari)\n\nHal ini akan lebih jelas maksudnya jika dihubungkan dengan ilmu jiwa. Menurut ilmu jiwa, ada hubungan timbal-balik antara jasmani seseorang dengan rohaninya. Kesehatan rohani besar pengaruhnya terhadap kesehatan jasmani, begitu pula sebaliknya. Oleh karena itu, orang dikatakan sehat jika jasmani dan rohaninya sehat. Pada umumnya orang yang tekun mengerjakan amal saleh dan menghubungkan silaturrahim adalah orang yang sehat rohaninya. Dengan perkataan lain, takwa kepada Allah dapat menghilangkan penyakit-penyakit rohani. Jika rohani sehat, tentulah jasmani sehat pula dan umur pun akan panjang.\n\nPada akhir ayat ini, Allah menegaskan bahwa apabila Ia telah menetapkan ajal seseorang atau semua manusia, setelah ikhtiarnya, maka kedatangannya itu tidak dapat ditangguhkan atau tidak pula dapat dipercepat sesaat pun.",
-        short:
-          "Kalau kamu lakukan itu semua niscaya Dia akan mengampuni sebagian dosa-dosamu dan menangguhkan kamu yaitu dengan memanjangkan umurmu untuk kemaslahatanmu sampai pada batas waktu yang ditentukan. Sungguh, ketetapan Allah itu apabila telah datang tidak dapat ditunda sedikit pun, seandainya kamu mengetahui hal itu maka tentu kamu akan menjadi orang yang beriman.”",
+        footnotes: null,
+        text: "Sesungguhnya jika kalian melaksanakan hal itu, niscaya Allah mengampuni dosa-dosa kalian yang tidak berhubungan dengan hak-hak manusia dan memanjangkan umur umat kalian di kehidupan dunia hingga waktu tertentu yang hanya diketahui oleh Allah, sehingga kalian bisa memakmurkan bumi ini jika kalian istikamah dalam hal ini. Sesungguhnya kematian itu jika telah datang tidak akan bisa ditunda. Jika kalian mengetahui tentulah kalian akan bersegera beriman kepada Allah dan bertobat dari kesyirikan dan kesesatan yang telah kalian lakukan.”",
       },
     },
     text: {
-      arab: "\u064a\u064e\u063a\u0652\u0641\u0650\u0631\u0652 \u0644\u064e\u0643\u064f\u0645 \u0645\u0651\u0650\u0646 \u0630\u064f\u0646\u064f\u0648\u0628\u0650\u0643\u064f\u0645\u0652 \u0648\u064e\u064a\u064f\u0624\u064e\u062e\u0651\u0650\u0631\u0652\u0643\u064f\u0645\u0652 \u0625\u0650\u0644\u064e\u0649\u0670 \u0623\u064e\u062c\u064e\u0644\u064d \u0645\u0651\u064f\u0633\u064e\u0645\u0651\u064b\u0649 \u06da \u0625\u0650\u0646\u0651\u064e \u0623\u064e\u062c\u064e\u0644\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0625\u0650\u0630\u064e\u0627 \u062c\u064e\u0627\u0621\u064e \u0644\u064e\u0627 \u064a\u064f\u0624\u064e\u062e\u0651\u064e\u0631\u064f \u06d6 \u0644\u064e\u0648\u0652 \u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Yaghfir lakum min zunoobikum wa yu'akhkhirkum ilaaa ajalim musammaa; innaa ajalal laahi izaa jaaa'a laa yu'akhkhar; law kuntum ta'lamoon",
-      },
+      arabic:
+        "يَغْفِرْ لَكُم مِّن ذُنُوبِكُمْ وَيُؤَخِّرْكُمْ إِلَىٰٓ أَجَلٍ مُّسَمًّى إِنَّ أَجَلَ ٱللَّهِ إِذَا جَآءَ لَا يُؤَخَّرُ لَوْ كُنتُمْ تَعْلَمُونَ",
     },
     translation: {
-      en: "Allah will forgive you of your sins and delay you for a specified term. Indeed, the time [set by] Allah, when it comes, will not be delayed, if you only knew.' \"",
-      id: "niscaya Dia mengampuni sebagian dosa-dosamu dan menangguhkan kamu (memanjangkan umurmu) sampai pada batas waktu yang ditentukan. Sungguh, ketetapan Allah itu apabila telah datang tidak dapat ditunda, seandainya kamu mengetahui.”",
+      en: {
+        footnotes: "[1] i.e., until the time your life comes to an end.",
+        text: "He will forgive you some of your sins and grant you respite until an appointed term[1]. Indeed, when Allah’s appointed term comes, it cannot be delayed, if you only knew!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'niscaya Dia mengampuni sebagian dosa-dosamu dan menangguhkan kamu (memanjangkan umurmu) sampai pada batas waktu yang ditentukan. Sungguh, ketetapan Allah itu apabila telah datang tidak dapat ditunda, seandainya kamu mengetahui."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5424",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5424.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5424.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 504,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5424,
@@ -188,40 +159,32 @@ export const quranSurah71Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Nabi Nuh mengeluhkan sikap kaumnya kepada Allah bahwa sekalipun ia sudah menyeru umatnya siang dan malam, tetapi mereka tetap tidak menghiraukannya. Bahkan, mereka semakin diseru, semakin menjauh dan lari dari seruan itu.",
-        short:
-          "Ajakan Nabi Nuh tidak disambut dengan baik oleh kaumnya, maka dia Nabi Nuh mengadu kepada Allah, “Ya Tuhanku, sesungguhnya aku telah menyeru kaumku untuk beriman kepada-Mu dengan berbagai cara, dan itu kulakukan siang dan malam terus menerus,",
+        footnotes: null,
+        text: "Nuh berkata, “Wahai Tuhanku! Sesungguhnya aku telah mengajak kaumku untuk menyembah-Mu dan menauhidkan-Mu siang dan malam dengan terus menerus.",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0631\u064e\u0628\u0651\u0650 \u0625\u0650\u0646\u0651\u0650\u064a \u062f\u064e\u0639\u064e\u0648\u0652\u062a\u064f \u0642\u064e\u0648\u0652\u0645\u0650\u064a \u0644\u064e\u064a\u0652\u0644\u064b\u0627 \u0648\u064e\u0646\u064e\u0647\u064e\u0627\u0631\u064b\u0627",
-      transliteration: {
-        en: "Qaala rabbi innee da'awtu qawmee lailanw wa naharaa",
-      },
+      arabic: "قَالَ رَبِّ إِنِّى دَعَوْتُ قَوْمِى لَيْلًا وَنَهَارًا",
     },
     translation: {
-      en: 'He said, "My Lord, indeed I invited my people [to truth] night and day.',
-      id: "Dia (Nuh) berkata, “Ya Tuhanku, sesungguhnya aku telah menyeru kaumku siang dan malam,",
+      en: {
+        footnotes: "",
+        text: "He said, “My Lord, I have surely called my people night and day,",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Nuh) berkata, "Ya Tuhanku, sesungguhnya aku telah menyeru kaumku siang dan malam,',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5425",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5425.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5425.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 504,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5425,
@@ -229,20 +192,22 @@ export const quranSurah71Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Nabi Nuh mengeluhkan sikap kaumnya kepada Allah bahwa sekalipun ia sudah menyeru umatnya siang dan malam, tetapi mereka tetap tidak menghiraukannya. Bahkan, mereka semakin diseru, semakin menjauh dan lari dari seruan itu.",
-        short:
-          "tetapi seruanku itu tidak menambah iman dan kebaikan mereka, justru mereka lari menjauh dari kebenaran.",
+        footnotes: null,
+        text: "Seruanku kepada mereka itu tidak menambah mereka melainkan semakin menambah mereka lari dan menjauh dari apa yang aku serukan kepada mereka.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u0632\u0650\u062f\u0652\u0647\u064f\u0645\u0652 \u062f\u064f\u0639\u064e\u0627\u0626\u0650\u064a \u0625\u0650\u0644\u0651\u064e\u0627 \u0641\u0650\u0631\u064e\u0627\u0631\u064b\u0627",
-      transliteration: {
-        en: "Falam yazid hum du'aaa 'eee illaa firaaraa",
-      },
+      arabic: "فَلَمْ يَزِدْهُمْ دُعَآءِىٓ إِلَّا فِرَارًا",
     },
     translation: {
-      en: "But my invitation increased them not except in flight.",
-      id: "tetapi seruanku itu tidak menambah (iman) mereka, justru mereka lari (dari kebenaran).",
+      en: {
+        footnotes: "",
+        text: "but my call only drove them further away.",
+      },
+      id: {
+        footnotes: "",
+        text: "tetapi seruanku itu tidak menambah (iman) mereka, justru mereka lari (dari kebenaran).",
+      },
     },
   },
 ];

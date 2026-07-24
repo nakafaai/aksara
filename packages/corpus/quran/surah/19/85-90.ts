@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah19Verses85To90 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2335",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2335.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2335.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 311,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2335,
@@ -24,40 +25,32 @@ export const quranSurah19Verses85To90 = [
     },
     tafsir: {
       id: {
-        long: "Pada hari itu Allah mengumpulkan orang-orang yang bertakwa untuk menghadap kehadirat-Nya sebagai rombongan yang dimuliakan karena iman dan amal mereka di dunia. Mereka dibawa dengan kendaraan yang bagus dan indah sebagai tamu yang dihormati. Ali bin Abi thalib mengatakan bahwa rombongan itu bukanlah rombongan biasa yang berjalan kaki atau digiring tetapi dibawa dengan kendaraan yang belum pernah dilihat keindahannya oleh manusia, di atasnya ada tempat duduk dari emas dan tali lesnya bertahtakan permata zamrud sehingga sampailah mereka di muka pintu surga.",
-        short:
-          "Balasan Allah pasti akan terjadi. Wahai manusia, ingatlah pada hari ketika Kami bersama para malaikat mengumpulkan orang-orang yang bertakwa kepada Allah Yang Maha Pengasih dan membawa mereka ke tempat yang dijanjikan sebagai balasan atas ketaatan mereka. Kemudian Kami sambut mereka bagaikan kafilah yang terhormat.",
+        footnotes: null,
+        text: "Ingatlah -wahai Rasul- tentang hari Kiamat, yaitu hari ketika Kami mengumpulkan orang-orang yang bertakwa kepada Tuhan mereka -dengan mengerjakan perintah dan menjauhi larangan-Nya- di hadapan Tuhan mereka dalam kafilah-kafilah yang dimuliakan lagi terhormat,",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0648\u0652\u0645\u064e \u0646\u064e\u062d\u0652\u0634\u064f\u0631\u064f \u0627\u0644\u0652\u0645\u064f\u062a\u0651\u064e\u0642\u0650\u064a\u0646\u064e \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0648\u064e\u0641\u0652\u062f\u064b\u0627",
-      transliteration: {
-        en: "Yawma nahshurul muttaqeena ilar Rahmaani wafdaa",
-      },
+      arabic: "يَوْمَ نَحْشُرُ ٱلْمُتَّقِينَ إِلَى ٱلرَّحْمَٰنِ وَفْدًا",
     },
     translation: {
-      en: "On the Day We will gather the righteous to the Most Merciful as a delegation",
-      id: "(Ingatlah) pada hari (ketika) Kami mengumpulkan orang-orang yang bertakwa kepada (Allah) Yang Maha Pengasih, bagaikan kafilah yang terhormat,",
+      en: {
+        footnotes: "",
+        text: "The Day when We will gather the righteous before the Most Compassionate as honored guests,",
+      },
+      id: {
+        footnotes: "",
+        text: "(Ingatlah) pada hari (ketika) Kami mengumpulkan orang-orang yang bertakwa kepada (Allah) Yang Maha Pengasih, bagaikan kafilah yang terhormat,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2336",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2336.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2336.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 311,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2336,
@@ -65,40 +58,32 @@ export const quranSurah19Verses85To90 = [
     },
     tafsir: {
       id: {
-        long: "Sebaliknya orang durhaka yang tetap ingkar dan kafir digiring ke neraka. Dalam perjalanan ke neraka itu mereka menderita berbagai macam penderitaan yang tidak terperikan seperti haus dan lapar karena panasnya udara padang mahsyar. Mereka digiring seperti hewan-hewan yang hina dina yang tidak berdaya bukan ke tempat yang teduh atau ke mata air yang jernih untuk melepaskan haus dan dahaga tetapi ke neraka yang amat panas.",
-        short:
-          "Sebaliknya, orang yang ingkar akan Kami kumpulkan bersama sejawat mereka, dan Kami akan menggiring orang yang durhaka dan enggan bertobat ke neraka Jahanam untuk menerima hukuman atas keingkarannya tanpa diberi minum sehingga kondisi yang panas menyebabkan mereka dalam keadaan dahaga.",
+        footnotes: null,
+        text: "dan Kami menggiring orang-orang kafir ke neraka Jahanam dalam keadaan merasakan dahaga.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0646\u064e\u0633\u064f\u0648\u0642\u064f \u0627\u0644\u0652\u0645\u064f\u062c\u0652\u0631\u0650\u0645\u0650\u064a\u0646\u064e \u0625\u0650\u0644\u064e\u0649\u0670 \u062c\u064e\u0647\u064e\u0646\u0651\u064e\u0645\u064e \u0648\u0650\u0631\u0652\u062f\u064b\u0627",
-      transliteration: {
-        en: "Wa nasooqul mujrimeena ilaa Jahannama wirdaa",
-      },
+      arabic: "وَنَسُوقُ ٱلْمُجْرِمِينَ إِلَىٰ جَهَنَّمَ وِرْدًا",
     },
     translation: {
-      en: "And will drive the criminals to Hell in thirst",
-      id: "dan Kami akan menggiring orang yang durhaka ke neraka Jahanam dalam keadaan dahaga.",
+      en: {
+        footnotes: "",
+        text: "and We will drive the wicked to Hell like a thirsty herd.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan Kami akan menggiring orang yang durhaka ke neraka Jahanam dalam keadaan dahaga.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2337",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2337.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2337.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 311,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2337,
@@ -106,40 +91,34 @@ export const quranSurah19Verses85To90 = [
     },
     tafsir: {
       id: {
-        long: 'Orang kafir tidak akan memperoleh syafaat dari siapa pun untuk menolong mereka atau meringankan penderitaan yang mereka alami. Karena yang berhak menerima syafaat pada hari itu hanyalah orang-orang yang telah dijanjikan Allah akan mendapat syafaat yaitu orang-orang mukmin yang di masa hidupnya di dunia telah mempersiapkan diri untuk mendapat syafaat dengan amal ibadahnya dan perjuangannya menegakkan kalimah Allah. Syafaat pada hari itu hanya dimiliki oleh para nabi, ulama dan para syuhada sesuai dengan amal dan bakti mereka masing-masing. Di antara amal ibadat yang menjadikan seseorang berhak memperoleh syafaat itu ialah memelihara salat lima waktu dengan sebaik-baiknya. \n\nRasulullah bersabda, "Barangsiapa yang datang pada hari kiamat membawa salatnya yang lima waktu dengan sempurna yaitu disempurnakan wudunya dipeliharanya waktunya, ruku\' dan sujudnya, tidak pernah ditinggalkannya barang sekalipun maka Allah berjanji tidak akan menyiksanya. Tetapi orang yang pernah meninggalkan salatnya, tidak akan memperoleh janji Allah itu. Terserahlah kepada Tuhan apakah Dia akan memberinya rahmat atau menimpakan azab kepadanya."(Diriwayatkan oleh ath-thabrani dalam kitab "al-Ausath" dari Abu Hurairah)',
-        short:
-          "Di akhirat mereka tidak berhak mendapat syafaat atau pertolongan dari siapa pun untuk selamat dari azab Allah, kecuali orang yang dengan sungguh-sungguh telah mengadakan perjanjian di sisi Allah Yang Maha Pengasih dengan cara bertobat dan menaati ajaran-Nya.",
+        footnotes: null,
+        text: "Orang-orang kafir itu sama sekali tidak berhak mendapatkan dan memberikan syafaat satu sama lain, kecuali bagi mereka yang telah membuat perjanjian di sisi Tuhannya di dunia ini dengan beriman kepada-Nya dan kepada rasul-rasul-Nya.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0627 \u064a\u064e\u0645\u0652\u0644\u0650\u0643\u064f\u0648\u0646\u064e \u0627\u0644\u0634\u0651\u064e\u0641\u064e\u0627\u0639\u064e\u0629\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0646\u0650 \u0627\u062a\u0651\u064e\u062e\u064e\u0630\u064e \u0639\u0650\u0646\u062f\u064e \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0639\u064e\u0647\u0652\u062f\u064b\u0627",
-      transliteration: {
-        en: "Laa yamlikoonash shafaa'ta illaa manittakhaza 'indar Rahmaani 'ahdaa",
-      },
+      arabic: "لَّا يَمْلِكُونَ ٱلشَّفَٰعَةَ إِلَّا مَنِ ٱتَّخَذَ عِندَ ٱلرَّحْمَٰنِ عَهْدًا",
     },
     translation: {
-      en: "None will have [power of] intercession except he who had taken from the Most Merciful a covenant.",
-      id: "Mereka tidak berhak mendapat syafaat, (pertolongan) kecuali orang yang telah mengadakan perjanjian di sisi (Allah) Yang Maha Pengasih.",
+      en: {
+        footnotes:
+          "[25] Through firmly believing in Him and worshiping Him alone.",
+        text: "None will have the power to intercede except those who have taken permission from the Most Compassionate[25].",
+      },
+      id: {
+        footnotes:
+          "[508] “Mengadakan perjanjian dengan Allah” ialah menjalankan segala perintah Allah dengan beriman dan bertakwa kepada-Nya.",
+        text: "Mereka tidak berhak mendapat syafaat (pertolongan), kecuali orang yang telah mengadakan perjanjian di sisi (Allah) Yang Maha Pengasih.[508]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2338",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2338.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2338.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 311,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2338,
@@ -147,40 +126,32 @@ export const quranSurah19Verses85To90 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menegaskan bahwa orang-orang yang mengatakan bahwa Allah mempunyai anak baik mereka itu dari kaum musyrik Mekah, orang Yahudi, orang Nasrani maupun penganut agama lain, adalah orang-orang yang sesat karena telah mengucapkan ucapan yang sangat tidak menyenangkan dan telah mengada-adakan kebohongan yang besar terhadap Allah. Perkataan itu sangat mungkar, tidak dapat diterima oleh akal dan sangat bertentangan dengan sifat-sifat Allah Yang Maha Esa, Maha Pencipta, Mahakuasa dan Mahaperkasa. Allah sangat murka terhadap mereka karena kelancangan mulut mereka merendahkan martabat Yang Mahatinggi seakan-akan Allah disamakan dengan manusia dan makhluk-makhluk-Nya yang lain yang membutuhkan keturunan yang akan melanjutkan kelangsungan eksistensinya di kemudian hari dan yang akan menolong membantunya di kala ia telah menjadi lemah tak berdaya. Padahal Dia-lah Yang Hidup Kekal, senantiasa berdiri sendiri tidak memerlukan pertolongan atau bantuan dari selain-Nya, sebagaimana tersebut dalam firman-Nya:\n\nAllah, tidak ada tuhan selain Dia. Yang Mahahidup, Yang terus menerus-mengurus (makhluk-Nya). (Ali 'Imran/3: 2)\n\nAllah mencela mereka dengan keras dan mengatakan bahwa mereka dengan ucapan seperti itu telah mengatakan sesuatu yang sangat mungkar sekali, ucapan yang tidak sepatutnya keluar dari mulut makhluk-Nya yang diciptakan-Nya sendiri, makhluknya yang telah dianugerahi-Nya akal dan pikiran agar dia dapat membedakan mana yang hak dan mana yang batil.",
-        short:
-          "Selain menampik kepercayaan kaum musyrik bahwa berhala dapat memberi syafaat, Allah juga menegasikan keyakinan mereka bahwa Allah memiliki anak. Dan mereka, kaum Yahudi, Nasrani, dan sebagian masyarakat Arab, berkata, “Tuhan Yang Maha Pengasih mempunyai anak,” yaitu ‘Uzair dalam kepercayaan Yahudi, Isa dalam anggapan umat Nasrani, dan malaikat dalam keyakinan sebagian masyarakat Arab.",
+        footnotes: null,
+        text: 'Orang-orang Yahudi, Nasrani, dan sebagian kaum musyrikin berkata, "Allah Yang Maha Pengasih memiliki seorang anak laki-laki."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0627\u062a\u0651\u064e\u062e\u064e\u0630\u064e \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u064f \u0648\u064e\u0644\u064e\u062f\u064b\u0627",
-      transliteration: {
-        en: "Wa qaalut takhazar Rahmaanu waladaa",
-      },
+      arabic: "وَقَالُوا۟ ٱتَّخَذَ ٱلرَّحْمَٰنُ وَلَدًا",
     },
     translation: {
-      en: 'And they say, "The Most Merciful has taken [for Himself] a son."',
-      id: "Dan mereka berkata, “(Allah) Yang Maha Pengasih mempunyai anak.”",
+      en: {
+        footnotes: "",
+        text: "They say, “The Most Compassionate has begotten a son.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan mereka berkata, "(Allah) Yang Maha Pengasih mempunyai anak."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2339",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2339.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2339.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 311,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2339,
@@ -188,40 +159,32 @@ export const quranSurah19Verses85To90 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menegaskan bahwa orang-orang yang mengatakan bahwa Allah mempunyai anak baik mereka itu dari kaum musyrik Mekah, orang Yahudi, orang Nasrani maupun penganut agama lain, adalah orang-orang yang sesat karena telah mengucapkan ucapan yang sangat tidak menyenangkan dan telah mengada-adakan kebohongan yang besar terhadap Allah. Perkataan itu sangat mungkar, tidak dapat diterima oleh akal dan sangat bertentangan dengan sifat-sifat Allah Yang Maha Esa, Maha Pencipta, Mahakuasa dan Mahaperkasa. Allah sangat murka terhadap mereka karena kelancangan mulut mereka merendahkan martabat Yang Mahatinggi seakan-akan Allah disamakan dengan manusia dan makhluk-makhluk-Nya yang lain yang membutuhkan keturunan yang akan melanjutkan kelangsungan eksistensinya di kemudian hari dan yang akan menolong membantunya di kala ia telah menjadi lemah tak berdaya. Padahal Dia-lah Yang Hidup Kekal, senantiasa berdiri sendiri tidak memerlukan pertolongan atau bantuan dari selain-Nya, sebagaimana tersebut dalam firman-Nya:\n\nAllah, tidak ada tuhan selain Dia. Yang Mahahidup, Yang terus menerus-mengurus (makhluk-Nya). (Ali 'Imran/3: 2)\n\nAllah mencela mereka dengan keras dan mengatakan bahwa mereka dengan ucapan seperti itu telah mengatakan sesuatu yang sangat mungkar sekali, ucapan yang tidak sepatutnya keluar dari mulut makhluk-Nya yang diciptakan-Nya sendiri, makhluknya yang telah dianugerahi-Nya akal dan pikiran agar dia dapat membedakan mana yang hak dan mana yang batil.",
-        short:
-          "Wahai orang kafir yang berkeyakinan demikian, sadarlah bahwa sesungguhnya kamu telah membawa sesuatu yang sangat mungkar dan bertentangan dengan akal sehat dan hati nurani.",
+        footnotes: null,
+        text: "Sungguh kalian -wahai orang-orang yang mengklaim hal itu- telah mendatangkan perkara yang sangat mungkar.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0642\u064e\u062f\u0652 \u062c\u0650\u0626\u0652\u062a\u064f\u0645\u0652 \u0634\u064e\u064a\u0652\u0626\u064b\u0627 \u0625\u0650\u062f\u0651\u064b\u0627",
-      transliteration: {
-        en: "Laqad ji'tum shai'an iddaa",
-      },
+      arabic: "لَّقَدْ جِئْتُمْ شَيْـًٔا إِدًّا",
     },
     translation: {
-      en: "You have done an atrocious thing.",
-      id: "Sungguh, kamu telah membawa sesuatu yang sangat mungkar,",
+      en: {
+        footnotes: "",
+        text: "You have made a monstrous statement,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, kamu telah membawa sesuatu yang sangat mungkar,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2340",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2340.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2340.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 311,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2340,
@@ -229,20 +192,22 @@ export const quranSurah19Verses85To90 = [
     },
     tafsir: {
       id: {
-        long: "Bila bumi, langit dan gunung-gunung dapat mendengar dan memahami ucapan orang-orang kafir itu, meskipun ia tidak diberi akal dan pikiran oleh Allah, maka langit, bumi dan gunung-gunung yang besar itu akan terguncang dengan dahsyatnya karena terkejut dan mungkin akan menjadi hancur lebur, karena tidak dapat menerima ucapan yang sangat berat tanggung jawabnya, dan sangat menghina serta merendahkan martabat Penciptanya. Untunglah bumi langit dan gunung-gunung itu tidak dapat mendengar apalagi memahami ucapan orang-orang kafir yang sangat keliru itu.",
-        short:
-          "Akibat ucapan kamu yang mungkar itu hampir saja terjadi bencana hebat di alam ini; langit yang demikian kukuh pecah, dan bumi tempat kamu berpijak terbelah, dan gunung-gunung yang tegak berdiri runtuh dan hancur berkeping-keping.",
+        footnotes: null,
+        text: "Hampir-hampir saja langit pecah dan terbelah, bumi terbelah, dan gunung-gunung runtuh berantakan lantaran perkataan kalian yang mungkar ini.",
       },
     },
     text: {
-      arab: "\u062a\u064e\u0643\u064e\u0627\u062f\u064f \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u064f \u064a\u064e\u062a\u064e\u0641\u064e\u0637\u0651\u064e\u0631\u0652\u0646\u064e \u0645\u0650\u0646\u0652\u0647\u064f \u0648\u064e\u062a\u064e\u0646\u0634\u064e\u0642\u0651\u064f \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064f \u0648\u064e\u062a\u064e\u062e\u0650\u0631\u0651\u064f \u0627\u0644\u0652\u062c\u0650\u0628\u064e\u0627\u0644\u064f \u0647\u064e\u062f\u0651\u064b\u0627",
-      transliteration: {
-        en: "Takaadus samaawaatu yatafattarna minhu wa tanshaq qul ardu wa takhirrul jibaalu haddaa",
-      },
+      arabic: "تَكَادُ ٱلسَّمَٰوَٰتُ يَتَفَطَّرْنَ مِنْهُ وَتَنشَقُّ ٱلْأَرْضُ وَتَخِرُّ ٱلْجِبَالُ هَدًّا",
     },
     translation: {
-      en: "The heavens almost rupture therefrom and the earth splits open and the mountains collapse in devastation",
-      id: "hampir saja langit pecah, dan bumi terbelah, dan gunung-gunung runtuh, (karena ucapan itu),",
+      en: {
+        footnotes: "",
+        text: "at which the heavens are about to be torn apart, the earth split asunder, and the mountains tumble down.",
+      },
+      id: {
+        footnotes: "",
+        text: "hampir saja langit pecah, dan bumi terbelah, dan gunung-gunung runtuh, (karena ucapan itu),’",
+      },
     },
   },
 ];

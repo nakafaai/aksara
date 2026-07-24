@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah77Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5623",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5623.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5623.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 516,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5623,
@@ -24,40 +25,33 @@ export const quranSurah77Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah bersumpah dengan malaikat-malaikat yang menyebarkan kebaikan. Al-Mursalat (malaikat-malaikat yang diutus) adalah para malaikat yang bertugas untuk menyampaikan nikmat atau karunia Ilahi kepada suatu kaum atau mendatangkan siksaan kepada kelompok lain yang pantas menerimanya. Sebagian ulama mengartikan al-mursalat itu dengan angin yang bertiup terus-menerus ke segala arah atas perintah Tuhan untuk menyebarkan rahmat dan nikmat ke dunia ini.",
-        short:
-          "1-2. Orang-orang kafir mendustakan janji dan ancaman Allah. Surah ini dimulai dengan sumpah Allah, demi malaikat-malaikat yang diutus untuk membawa kebaikan, dan demi malaikat-malaikat yang terbang dengan kencangnya,1-2. Orang-orang kafir mendustakan janji dan ancaman Allah. Surah ini dimulai dengan sumpah Allah, demi malaikat-malaikat yang diutus untuk membawa kebaikan, dan demi malaikat-malaikat yang terbang dengan kencangnya,",
+        footnotes: null,
+        text: "Allah bersumpah dengan angin yang beriringan seperti barisan kuda.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0631\u0652\u0633\u064e\u0644\u064e\u0627\u062a\u0650 \u0639\u064f\u0631\u0652\u0641\u064b\u0627",
-      transliteration: {
-        en: "Wal mursalaati'urfaa",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ وَٱلْمُرْسَلَٰتِ عُرْفًا",
     },
     translation: {
-      en: "By those [winds] sent forth in gusts",
-      id: "Demi (malaikat-malaikat) yang diutus untuk membawa kebaikan,",
+      en: {
+        footnotes: "",
+        text: "By those [winds] sent forth in succession,",
+      },
+      id: {
+        footnotes:
+          "[885] Sebagian mufasir mengartikan “Demi angin yang dikirim.”",
+        text: "Demi (malaikat-malaikat)[885] yang diutus untuk membawa kebaikan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5624",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5624.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5624.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 516,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5624,
@@ -65,40 +59,32 @@ export const quranSurah77Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah juga bersumpah dengan angin yang bertiup dengan kencang. Ada pula yang mengartikan al-'asifat dengan malaikat-malaikat yang menjauhkan diri dari kebatilan sebagaimana halnya angin kencang yang berhembus meniup onggokan tanah atau debu di atas batu. Yang lain menafsirkannya dengan angin yang menyebarkan air hujan.",
-        short:
-          "1-2. Orang-orang kafir mendustakan janji dan ancaman Allah. Surah ini dimulai dengan sumpah Allah, demi malaikat-malaikat yang diutus untuk membawa kebaikan, dan demi malaikat-malaikat yang terbang dengan kencangnya,3-4. Dan juga demi malaikat-malaikat yang menyebarkan rahmat Allah dengan seluas-luasnya, dan demi malaikat-malaikat yang membedakan antara yang baik dan yang buruk dengan pembedaan yang sejelas-jelasnya,",
+        footnotes: null,
+        text: "Dia bersumpah dengan angin yang berhembus dengan kencang.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0652\u0639\u064e\u0627\u0635\u0650\u0641\u064e\u0627\u062a\u0650 \u0639\u064e\u0635\u0652\u0641\u064b\u0627",
-      transliteration: {
-        en: "Fal'aasifaati 'asfaa",
-      },
+      arabic: "فَٱلْعَٰصِفَٰتِ عَصْفًا",
     },
     translation: {
-      en: "And the winds that blow violently",
-      id: "dan (malaikat-malaikat) yang terbang dengan kencangnya,",
+      en: {
+        footnotes: "",
+        text: "those that blow violently,",
+      },
+      id: {
+        footnotes: "[886] Terbang untuk melaksanakan perintah Allah.",
+        text: "dan (malaikat-malaikat) yang terbang dengan kencangnya,[886]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5625",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5625.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5625.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 516,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5625,
@@ -106,40 +92,33 @@ export const quranSurah77Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Selanjutnya Allah bersumpah dengan malaikat-malaikat yang menyebarkan rahmat-Nya seluas-luasnya. Terdapat berbagai macam penafsiran tentang kata an-nasyirat di sini. Ada yang mengartikannya dengan malaikat yang menebarkan maut kepada orang yang ditetapkan kematiannya tanpa diketahui sedikit pun. Ada pula yang menafsirkannya dengan malaikat yang menebarkan dan meratakan syariat-syariat Allah kepada sekalian nabi dan rasul-Nya.",
-        short:
-          "3-4. Dan juga demi malaikat-malaikat yang menyebarkan rahmat Allah dengan seluas-luasnya, dan demi malaikat-malaikat yang membedakan antara yang baik dan yang buruk dengan pembedaan yang sejelas-jelasnya,3-4. Dan juga demi malaikat-malaikat yang menyebarkan rahmat Allah dengan seluas-luasnya, dan demi malaikat-malaikat yang membedakan antara yang baik dan yang buruk dengan pembedaan yang sejelas-jelasnya,",
+        footnotes: null,
+        text: "Dia bersumpah dengan angin yang menyebarkan hujan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0646\u0651\u064e\u0627\u0634\u0650\u0631\u064e\u0627\u062a\u0650 \u0646\u064e\u0634\u0652\u0631\u064b\u0627",
-      transliteration: {
-        en: "Wannaashiraati nashraa",
-      },
+      arabic: "وَٱلنَّٰشِرَٰتِ نَشْرًا",
     },
     translation: {
-      en: "And [by] the winds that spread [clouds]",
-      id: "dan (malaikat-malaikat) yang menyebarkan (rahmat Allah) dengan seluas-luasnya,",
+      en: {
+        footnotes: "",
+        text: "and scatter [rainclouds] far and wide,",
+      },
+      id: {
+        footnotes:
+          "[887] Pada waktu malaikat turun untuk membawa wahyu, sebagian mufasir berpendapat bahwa yang dimaksud dengan an-nāsyirāt ialah angin yang bertiup disertai hujan.",
+        text: "dan (malaikat-malaikat) yang menyebarkan (rahmat Allah) dengan seluas-luasnya,[887]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5626",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5626.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5626.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 516,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5626,
@@ -147,40 +126,33 @@ export const quranSurah77Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah bersumpah pula dengan para malaikat yang membedakan antara yang hak dengan yang batil dengan sejelas-jelasnya, membedakan antara petunjuk dan kesesatan.\n\nSebagian mufasir mengartikan al-fariqat dengan angin yang dapat membedakan mana yang membawa rahmat dan mana yang bertugas merusak manusia banyak. Dengan kata lain, angin pembawa rahmat dan angin pembawa bencana.",
-        short:
-          "3-4. Dan juga demi malaikat-malaikat yang menyebarkan rahmat Allah dengan seluas-luasnya, dan demi malaikat-malaikat yang membedakan antara yang baik dan yang buruk dengan pembedaan yang sejelas-jelasnya,5-6. Dan demi malaikat-malaikat yang bertugas menyampaikan wahyu kepada yang dipilih Allah untuk menerimanya, wahyu tersebut diturunkan untuk menolak alasan-alasan atau memberi peringatan bagi yang durhaka.",
+        footnotes: null,
+        text: "Dia bersumpah dengan para malaikat yang turun membawa apa yang membedakan antara yang hak dengan yang batil.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0652\u0641\u064e\u0627\u0631\u0650\u0642\u064e\u0627\u062a\u0650 \u0641\u064e\u0631\u0652\u0642\u064b\u0627",
-      transliteration: {
-        en: "Falfaariqaati farqaa",
-      },
+      arabic: "فَٱلْفَٰرِقَٰتِ فَرْقًا",
     },
     translation: {
-      en: "And those [angels] who bring criterion",
-      id: "dan (malaikat-malaikat) yang membedakan (antara yang baik dan yang buruk) dengan sejelas-jelasnya,",
+      en: {
+        footnotes:
+          "[1] To Allah's messengers to distinguish between truth and falsehood.",
+        text: "And by those [angels] who bring criterion[1];",
+      },
+      id: {
+        footnotes: "",
+        text: "dan (malaikat-malaikat) yang membedakan (antara yang baik dan yang buruk) dengan sejelas-jelasnya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5627",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5627.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5627.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 516,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5627,
@@ -188,40 +160,32 @@ export const quranSurah77Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah bersumpah dengan malaikat yang bertugas membawa wahyu kepada para nabi dan rasul. Akan tetapi, seperti pada ayat-ayat sebelumnya, ada yang mengartikan al-mulqiyat ini dengan angin yang menurunkan peringatan akan bencana Allah kepada manusia.",
-        short:
-          "5-6. Dan demi malaikat-malaikat yang bertugas menyampaikan wahyu kepada yang dipilih Allah untuk menerimanya, wahyu tersebut diturunkan untuk menolak alasan-alasan atau memberi peringatan bagi yang durhaka.5-6. Dan demi malaikat-malaikat yang bertugas menyampaikan wahyu kepada yang dipilih Allah untuk menerimanya, wahyu tersebut diturunkan untuk menolak alasan-alasan atau memberi peringatan bagi yang durhaka.",
+        footnotes: null,
+        text: "Dia bersumpah dengan para malaikat yang turun membawa wahyu.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0652\u0645\u064f\u0644\u0652\u0642\u0650\u064a\u064e\u0627\u062a\u0650 \u0630\u0650\u0643\u0652\u0631\u064b\u0627",
-      transliteration: {
-        en: "Falmulqiyaati zikra",
-      },
+      arabic: "فَٱلْمُلْقِيَٰتِ ذِكْرًا",
     },
     translation: {
-      en: "And those [angels] who deliver a message",
-      id: "dan (malaikat-malaikat) yang menyampaikan wahyu,",
+      en: {
+        footnotes: "",
+        text: "and those who deliver revelation,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan (malaikat-malaikat) yang menyampaikan wahyu,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5628",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5628.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5628.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 232,
       juz: 29,
       manzil: 7,
       page: 580,
       ruku: 516,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5628,
@@ -229,20 +193,22 @@ export const quranSurah77Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini ditegaskan bahwa kedatangan wahyu kepada para nabi yang dibawa oleh malaikat adalah untuk menyampaikan alasan guna membantah ketidakpercayaan orang musyrik kepada adanya hari kebangkitan, dan untuk mengancam mereka dengan azab yang pedih bila mereka membangkang perintah Tuhan.",
-        short:
-          "5-6. Dan demi malaikat-malaikat yang bertugas menyampaikan wahyu kepada yang dipilih Allah untuk menerimanya, wahyu tersebut diturunkan untuk menolak alasan-alasan atau memberi peringatan bagi yang durhaka.7-9. Demi semua yang telah disebut itu, sungguh, apa yang dijanjikan kepadamu, yaitu hari kebangkitan, juga surga dan neraka pasti terjadi. Kehidupan akhirat itu dimulai setelah Kiamat dunia ini. Dan inilah gambaran Kiamat itu. Maka apabila bintang-bintang dihapuskan cahayanya dengan mudah oleh Allah, dan apabila langit terbelah, sehingga langit dengan segala yang ada hancur.",
+        footnotes: null,
+        text: "Para malaikat itu turun membawa wahyu sebagai hujah dari Allah untuk manusia dan peringatan bagi mereka dari siksa Allah.",
       },
     },
     text: {
-      arab: "\u0639\u064f\u0630\u0652\u0631\u064b\u0627 \u0623\u064e\u0648\u0652 \u0646\u064f\u0630\u0652\u0631\u064b\u0627",
-      transliteration: {
-        en: "'Uzran aw nuzraa",
-      },
+      arabic: "عُذْرًا أَوْ نُذْرًا",
     },
     translation: {
-      en: "As justification or warning,",
-      id: "untuk menolak alasan-alasan atau memberi peringatan.",
+      en: {
+        footnotes: "",
+        text: "leaving no excuse or giving warning –",
+      },
+      id: {
+        footnotes: "",
+        text: "untuk menolak alasan-alasan atau memberi peringatan.",
+      },
     },
   },
 ];

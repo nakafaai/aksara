@@ -54,21 +54,21 @@ export function assertContractPackageMetadata(manifest: PackageManifest): void {
   );
 }
 
-/** Rejects workspace-only dependency protocols in a publishable manifest. */
+/** Rejects workspace-only dependency protocols in a portable release archive. */
 export function assertPortableDependencies(manifest: PackageManifest): void {
   for (const section of DEPENDENCY_SECTIONS) {
     for (const version of Object.values(manifest[section] ?? {})) {
       assert.doesNotMatch(
         version,
         WORKSPACE_PROTOCOL_PATTERN,
-        `Packed ${section} must use registry-installable versions`
+        `Released ${section} must use portable versions`
       );
     }
   }
 }
 
-/** Removes repository-only source resolution from one public export map. */
-function publishedExports(value: unknown): Readonly<Record<string, unknown>> {
+/** Removes repository-only source resolution from one released export map. */
+function releasedExports(value: unknown): Readonly<Record<string, unknown>> {
   assert.ok(isRecord(value), "Package exports must be an object");
   return Object.fromEntries(
     Object.entries(value).map(([subpath, descriptor]) => {
@@ -85,8 +85,8 @@ function publishedExports(value: unknown): Readonly<Record<string, unknown>> {
   );
 }
 
-/** Serializes a registry-safe manifest without unpublished source targets. */
-export function createPublishedManifest(
+/** Serializes the remote archive manifest without workspace source targets. */
+export function createReleaseManifest(
   source: string,
   effectVersion: string
 ): string {
@@ -98,11 +98,11 @@ export function createPublishedManifest(
     exports: packageExports,
     imports: _packageImports,
     scripts: _scripts,
-    ...published
+    ...released
   } = parsed;
   const manifest = {
-    ...published,
-    exports: publishedExports(packageExports),
+    ...released,
+    exports: releasedExports(packageExports),
     imports: {
       "#contracts/*": {
         default: "./dist/*.js",

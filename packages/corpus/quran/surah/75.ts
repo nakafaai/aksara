@@ -6,48 +6,28 @@ import { quranSurah75Verses25To30 } from "#corpus/quran/surah/75/25-30";
 import { quranSurah75Verses31To36 } from "#corpus/quran/surah/75/31-36";
 import { quranSurah75Verses37To40 } from "#corpus/quran/surah/75/37-40";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah75 = {
   name: {
-    long: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0642\u064a\u0627\u0645\u0629",
-    short: "القيامة",
-    translation: {
-      en: "The Resurrection",
-      id: "Hari Kiamat",
-    },
-    transliteration: {
-      en: "Al-Qiyaama",
-      id: "Al-Qiyamah",
-    },
+    arabic: "القيامة",
+    translation: "The Resurrection",
+    transliteration: "Al-Qiyaama",
   },
   number: 75,
   numberOfVerses: 40,
-  preBismillah: {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1.mp3",
-      ],
-    },
-    text: {
-      arab: "\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Bismillaahir Rahmaanir Raheem",
-      },
-    },
-    translation: {
-      en: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
-      id: "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
-    },
-  },
   revelation: {
-    arab: "\u0645\u0643\u0629",
-    en: "Meccan",
-    id: "Makkiyyah",
-  },
-  sequence: 31,
-  tafsir: {
-    id: "Surat Al Qiyaamah terdiri atas 40 ayat, termasuk golongan surat-surat Makkiyah, diturunkan sesudah surat Al Qaari'ah. Dinamai Al Qiyaamah (hari kiamat) diambil dari perkataan Al Qiyaamah yang terdapat pada ayat pertama surat ini.",
+    order: 31,
+    place: "Meccan",
   },
   verses: [
     ...quranSurah75Verses1To6,

@@ -33,7 +33,7 @@ import {
 } from "#corpus/quran/projection";
 import { quranProvenanceRecords } from "#corpus/quran/provenance";
 import { streamQuranRegistry } from "#corpus/quran/registry";
-import { digestQuranSource } from "#corpus/quran/source-hash";
+import { quranSourceSummary } from "#corpus/quran/source-hash";
 
 type PreparedQuranRowError = QuranHashError | QuranProjectionError;
 
@@ -71,11 +71,11 @@ export const prepareQuranSnapshot = Effect.fn(
   "AksaraCorpus.prepareQuranSnapshot"
 )(function* (source: QuranRegistrySource = () => streamQuranRegistry()) {
   const provenance = yield* makeQuranProvenanceManifest(quranProvenanceRecords);
-  const sourceSummary = yield* digestQuranSource(source());
   const rowSummary = yield* digestQuranRows(
     rowHashStream(streamQuranRows(source))
   );
   const identity = QuranSnapshotInputSchema.make({
+    attributionCount: rowSummary.attributionCount,
     chunkCount: rowSummary.chunkCount,
     format: QURAN_SNAPSHOT_FORMAT,
     locales: QURAN_LOCALES,
@@ -87,8 +87,9 @@ export const prepareQuranSnapshot = Effect.fn(
     runtimeDigest: rowSummary.runtimeDigest,
     searchCount: rowSummary.searchCount,
     searchDigest: rowSummary.searchDigest,
-    sourceBytes: sourceSummary.bytes,
-    sourceDigest: sourceSummary.digest,
+    sourceBytes: quranSourceSummary.bytes,
+    sourceDigest: quranSourceSummary.digest,
+    sourceFileCount: quranSourceSummary.fileCount,
     surahCount: QURAN_SURAH_COUNT,
     tafsirLocales: QURAN_TAFSIR_LOCALES,
     verseCount: QURAN_VERSE_COUNT,

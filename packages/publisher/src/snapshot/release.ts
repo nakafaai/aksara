@@ -1,6 +1,9 @@
 import type { FileSystem, Path } from "@effect/platform";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
-import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot";
+import type {
+  ContentSnapshotSet,
+  PublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -24,6 +27,7 @@ import {
 /** Exact sources required to prepare structured state for one Git release. */
 export interface ReleaseSnapshotInput<E, R> {
   readonly checkoutRoot: string;
+  readonly families: PublicationScope["snapshots"];
   readonly previousSnapshots: ContentSnapshotSet | null;
   /** Replays the complete desired question catalog used by try-out placement. */
   readonly questionHeads: () => Stream.Stream<QuestionHead, E, R>;
@@ -66,7 +70,7 @@ function replacesActiveSnapshot(
   );
 }
 
-/** Prepares changed Program, Quran, and Try-out snapshots for one release. */
+/** Prepares only explicitly selected changed structured snapshot families. */
 export const prepareReleaseSnapshots: <E, R>(
   input: ReleaseSnapshotInput<E, R>
 ) => Effect.Effect<
@@ -76,65 +80,74 @@ export const prepareReleaseSnapshots: <E, R>(
 > = Effect.fn("AksaraPublisher.prepareReleaseSnapshots")(function* <E, R>(
   input: ReleaseSnapshotInput<E, R>
 ) {
-  const [program, quran, tryout] = yield* Effect.all([
-    prepareProgramSnapshot(),
-    prepareQuranSnapshot(),
-    prepareTryoutSnapshot({
-      checkoutRoot: input.checkoutRoot,
-      questionHeads: input.questionHeads,
-      rendererManifest: input.rendererManifest,
-    }),
-  ]);
-  const programManifest = {
-    family: "program",
-    manifest: program.manifest,
-  } satisfies ContentSnapshotManifest;
-  const quranManifest = {
-    family: "quran",
-    manifest: quran.manifest,
-  } satisfies ContentSnapshotManifest;
-  const programChanged = replacesActiveSnapshot(
-    input.previousSnapshots,
-    programManifest
-  );
-  const quranChanged = replacesActiveSnapshot(
-    input.previousSnapshots,
-    quranManifest
-  );
-  const tryoutChanged = replacesActiveSnapshot(
-    input.previousSnapshots,
-    tryout.manifest
-  );
+  const program = input.families.includes("program")
+    ? yield* prepareProgramSnapshot()
+    : undefined;
+  const quran = input.families.includes("quran")
+    ? yield* prepareQuranSnapshot()
+    : undefined;
+  const tryout = input.families.includes("tryout")
+    ? yield* prepareTryoutSnapshot({
+        checkoutRoot: input.checkoutRoot,
+        questionHeads: input.questionHeads,
+        rendererManifest: input.rendererManifest,
+      })
+    : undefined;
+  const programManifest =
+    program === undefined
+      ? undefined
+      : ({
+          family: "program",
+          manifest: program.manifest,
+        } satisfies ContentSnapshotManifest);
+  const quranManifest =
+    quran === undefined
+      ? undefined
+      : ({
+          family: "quran",
+          manifest: quran.manifest,
+        } satisfies ContentSnapshotManifest);
+  const programChanged =
+    programManifest !== undefined &&
+    replacesActiveSnapshot(input.previousSnapshots, programManifest);
+  const quranChanged =
+    quranManifest !== undefined &&
+    replacesActiveSnapshot(input.previousSnapshots, quranManifest);
+  const tryoutChanged =
+    tryout !== undefined &&
+    replacesActiveSnapshot(input.previousSnapshots, tryout.manifest);
   /** Replays only changed family manifests in signed canonical order. */
   const manifests = () =>
     Stream.fromIterable([
-      ...(programChanged ? [programManifest] : []),
-      ...(quranChanged ? [quranManifest] : []),
-      ...(tryoutChanged ? [tryout.manifest] : []),
+      ...(programChanged && programManifest ? [programManifest] : []),
+      ...(quranChanged && quranManifest ? [quranManifest] : []),
+      ...(tryoutChanged && tryout ? [tryout.manifest] : []),
     ]);
   /** Replays rows only for replacement manifests owned by this release. */
   const rows = () => {
-    const programRows = programChanged
-      ? program
-          .rows()
-          .pipe(
-            Stream.map(
-              (record) =>
-                ({ family: "program", record }) satisfies ContentSnapshotRow
+    const programRows =
+      programChanged && program
+        ? program
+            .rows()
+            .pipe(
+              Stream.map(
+                (record) =>
+                  ({ family: "program", record }) satisfies ContentSnapshotRow
+              )
             )
-          )
-      : Stream.empty;
-    const quranRows = quranChanged
-      ? quran
-          .rows()
-          .pipe(
-            Stream.map(
-              (record) =>
-                ({ family: "quran", record }) satisfies ContentSnapshotRow
+        : Stream.empty;
+    const quranRows =
+      quranChanged && quran
+        ? quran
+            .rows()
+            .pipe(
+              Stream.map(
+                (record) =>
+                  ({ family: "quran", record }) satisfies ContentSnapshotRow
+              )
             )
-          )
-      : Stream.empty;
-    const tryoutRows = tryoutChanged ? tryout.rows() : Stream.empty;
+        : Stream.empty;
+    const tryoutRows = tryoutChanged && tryout ? tryout.rows() : Stream.empty;
     return programRows.pipe(
       Stream.concat(quranRows),
       Stream.concat(tryoutRows)

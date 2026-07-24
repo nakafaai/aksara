@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah33Verses73To73 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3606",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3606.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3606.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 171,
       juz: 22,
       manzil: 5,
       page: 427,
       ruku: 369,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3606,
@@ -24,20 +25,24 @@ export const quranSurah33Verses73To73 = [
     },
     tafsir: {
       id: {
-        long: "Allah lalu menerangkan bahwa akibat dari penerimaan amanat ini ialah Dia mengazab orang-orang munafik dan orang-orang musyrik, baik laki-laki maupun perempuan, bila mereka mengabaikan pelaksanaan amanat yang telah dipikulnya. Allah akan menerima tobat orang-orang mukmin laki-laki dan perempuan yang taat melaksanakan amanat itu. Sesungguhnya Allah Maha Pengampun lagi Maha Penyayang.",
-        short:
-          "Demikianlah kezaliman dan kebodohan manusia, sehingga Allah akan mengazab orang-orang munafik laki-laki dan perempuan, orang-orang musyrik laki-laki dan perempuan, karena mereka tidak menjalankan amanat; dan bagi mereka yang bertobat, Allah akan menerima tobat orang-orang mukmin laki-laki dan perempuan. Dan Allah Maha Pengampun, Maha Penyayang kepada semua hamba yang bertobat.",
+        footnotes: null,
+        text: "Manusia memikul beban amanah ini dengan takdir dari Allah, agar Allah menyiksa orang-orang munafik laki-laki dan perempuan dan orang-orang musyrik laki-laki dan perempuan karena kemunafikan dan kesyirikan mereka kepada Allah dan agar Allah mengampuni orang-orang yang beriman laki-laki dan perempuan yang telah berhasil mengemban beban amanah syariat ini. Sungguh Allah Maha Pengampun terhadap dosa-dosa orang yang bertobat kepada-Nya dari para hamba-Nya, lagi Maha Penyayang kepada mereka.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u0650\u064a\u064f\u0639\u064e\u0630\u0651\u0650\u0628\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0652\u0645\u064f\u0646\u064e\u0627\u0641\u0650\u0642\u0650\u064a\u0646\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0646\u064e\u0627\u0641\u0650\u0642\u064e\u0627\u062a\u0650 \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0634\u0652\u0631\u0650\u0643\u0650\u064a\u0646\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0634\u0652\u0631\u0650\u0643\u064e\u0627\u062a\u0650 \u0648\u064e\u064a\u064e\u062a\u064f\u0648\u0628\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064e\u0627\u062a\u0650 \u06d7 \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u063a\u064e\u0641\u064f\u0648\u0631\u064b\u0627 \u0631\u0651\u064e\u062d\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Liyu 'azzibal laahul munaafiqeena wal munaafiqaati walmushrikeena wal mushrikaati wa yatoobal laahu 'alal mu'mineena walmu'minaat; wa kaanal laahu Ghafoorar Raheema",
-      },
+      arabic:
+        "لِّيُعَذِّبَ ٱللَّهُ ٱلْمُنَٰفِقِينَ وَٱلْمُنَٰفِقَٰتِ وَٱلْمُشْرِكِينَ وَٱلْمُشْرِكَٰتِ وَيَتُوبَ ٱللَّهُ عَلَى ٱلْمُؤْمِنِينَ وَٱلْمُؤْمِنَٰتِ وَكَانَ ٱللَّهُ غَفُورًا رَّحِيمًۢا",
     },
     translation: {
-      en: "[It was] so that Allah may punish the hypocrite men and hypocrite women and the men and women who associate others with Him and that Allah may accept repentance from the believing men and believing women. And ever is Allah Forgiving and Merciful.",
-      id: "sehingga Allah akan mengazab orang-orang munafik laki-laki dan perempuan, orang-orang musyrik, laki-laki dan perempuan; dan Allah akan menerima tobat orang-orang mukmin laki-laki dan perempuan. Dan Allah Maha Pengampun, Maha Penyayang.",
+      en: {
+        footnotes:
+          "[58] Allah is always willing to forgive whoever repents, regardless of the severity of the sin or the disobedience of His slaves.",
+        text: "[As a result of that] Allah will punish the hypocrite men and women, and the polytheist men and women, and Allah will accept the repentance of the believing men and women, for Allah is All-Forgiving, Most Merciful[58].",
+      },
+      id: {
+        footnotes: "",
+        text: "sehingga Allah akan mengazab orang-orang munafik laki-laki dan perempuan, orang-orang musyrik laki-laki dan perempuan; dan Allah akan menerima tobat orang-orang mukmin laki-laki dan perempuan. Dan Allah Maha Pengampun, Maha Penyayang.",
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah3Verses169To174 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/462",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/462.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/462.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 28,
       juz: 4,
       manzil: 1,
       page: 72,
       ruku: 58,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 462,
@@ -24,40 +25,35 @@ export const quranSurah3Verses169To174 = [
     },
     tafsir: {
       id: {
-        long: 'Orang-orang yang telah terbunuh sebagai syuhada dalam perang fi sabilillah, janganlah dikira mereka mati, sebagaimana anggapan orang- orang munafik, tetapi mereka masih hidup di sisi Allah, mendapat rezeki dan nikmat yang berlimpah.\n\nBagaimana keadaan hidup mereka seterusnya, hanyalah Allah yang mengetahui. Dalam hadis yang diriwayatkan Ibnu Abbas, Nabi saw bersabda \n\nPara syuhada berada di tepi sungai dekat pintu surga, mereka berada dalam sebuah kubah yang hijau. Hidangan mereka keluar dari surga itu setiap pagi dan sore. (Riwayat al-hakim, Ahmad dan at-thabrani dari Ibnu \'Abbas).\n\nPara syuhada itu menikmati pemberian-pemberian Allah, mereka ingin mati syahid berulang kali. Hal ini dijelaskan dalam sabda Rasulullah saw:\n\n"Tidak ada seorang yang telah mati dan memperoleh kenikmatan di sisi Allah, kemudian ingin kembali ke dunia kecuali orang yang mati syahid. Ia ingin dikembalikan ke dunia, kemudian mati syahid lagi. Hal itu karena besarnya keutamaan mati syahid.." (Riwayat Muslim)',
-        short:
-          "Dan jangan sekali-kali kamu sekalian mengira bahwa orang-orang yang gugur sebagai syuhada di jalan Allah itu mati dalam arti tidak dapat bergerak kesana kemari dan tidak tahu keadaan orang yang ditinggalkan. Tetapi sebenarnya mereka itu hidup dengan kehidupan lain di sisi Tuhannya di alam barzakh, bahkan dapat bergerak dan mengetahui keadaan orang yang ditinggalkan. Mereka mendapat rezeki berupa kehidupan istimewa yang penuh dengan kenikmatan di dalamnya dan kedudukan mulia dari sisi Allah.",
+        footnotes: null,
+        text: "Janganlah kamu -wahai Nabi- mengira bahwa orang-orang yang terbunuh dalam berjihad di jalan Allah itu mati. Sesungguhnya mereka itu hidup secara khusus di sisi Tuhan mereka di tempat kehormatan-Nya. Mereka diberi rezeki dari beragam kenikmatan yang hanya diketahui oleh Allah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u062d\u0652\u0633\u064e\u0628\u064e\u0646\u0651\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0642\u064f\u062a\u0650\u0644\u064f\u0648\u0627 \u0641\u0650\u064a \u0633\u064e\u0628\u0650\u064a\u0644\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0623\u064e\u0645\u0652\u0648\u064e\u0627\u062a\u064b\u0627 \u06da \u0628\u064e\u0644\u0652 \u0623\u064e\u062d\u0652\u064a\u064e\u0627\u0621\u064c \u0639\u0650\u0646\u062f\u064e \u0631\u064e\u0628\u0651\u0650\u0647\u0650\u0645\u0652 \u064a\u064f\u0631\u0652\u0632\u064e\u0642\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa laa tahsabannal lazeena qutiloo fee sabeelillaahi amwaata; bal ahyaaa'un 'inda Rabbihim yurzaqoon",
-      },
+      arabic:
+        "وَلَا تَحْسَبَنَّ ٱلَّذِينَ قُتِلُوا۟ فِى سَبِيلِ ٱللَّهِ أَمْوَٰتًۢا بَلْ أَحْيَآءٌ عِندَ رَبِّهِمْ يُرْزَقُونَ",
     },
     translation: {
-      en: "And never think of those who have been killed in the cause of Allah as dead. Rather, they are alive with their Lord, receiving provision,",
-      id: "Dan jangan sekali-kali kamu mengira bahwa orang-orang yang gugur di jalan Allah itu mati; sebenarnya mereka itu hidup di sisi Tuhannya mendapat rezeki,",
+      en: {
+        footnotes:
+          "[80] The Prophet (ﷺ) said: “When your brothers were killed in the Battle of Badr, Allah placed their souls in the (abdominal) cavities of green fowls, drinking from the rivers of Paradise, eating from its fruits and coming back at the end of the day to repose in chandeliers hung in the Shadow of the Majestic Throne. For all of this, they said: “Who would tell our brothers about us; that we are in Paradise being provided for so that they may not give up fighting in the way of Allah or cower in war?” Allah Almighty said: “I will tell them on your behalf”. Then He revealed: “Do not think that those who were killed in the way of Allah are dead. Nay but they are alive with their Lord being provided for”. [Abū Dāwūd: 2520, Ahmad: 2388; another version is found in Muslim: 1887]",
+        text: "Never think of those who are killed in Allah’s way as dead; rather, they are alive with their Lord, receiving provision[80],",
+      },
+      id: {
+        footnotes:
+          "[162] Hidup dalam alam lain yang bukan alam kita ini. Mereka mendapatkan berbagai kenikmatan di sisi Allah. Dan hanya Allah sajalah yang mengetahui bagaimana keadaan hidup di alam lain itu.",
+        text: "Dan jangan sekali-kali kamu mengira bahwa orang-orang yang gugur di jalan Allah itu mati; sebenarnya mereka itu hidup, di sisi Tuhannya mendapat rezeki,[162]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/463",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/463.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/463.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 28,
       juz: 4,
       manzil: 1,
       page: 72,
       ruku: 58,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 463,
@@ -65,40 +61,34 @@ export const quranSurah3Verses169To174 = [
     },
     tafsir: {
       id: {
-        long: 'Para syuhada Perang Uhud setelah menikmati karunia Tuhan, mereka berkata, "Mudah-mudahan teman-teman kami mengetahui kenikmatan ini." Kemudian dijawab oleh Allah, "Akulah yang menyampaikan hal ini kepada mereka." Para syuhada itu bergembira atas nikmat dan kemurahan yang telah diberikan Allah kepada mereka. Dan mereka berharap terhadap kawan-kawan mereka seperjuangan yang tidak gugur dalam perang fi sabilillah sekiranya mereka dapat pula memperoleh kemurahan dan nikmat Allah yang serupa dengan apa yang mereka peroleh. Bagi mereka ini tidak ada kekhawatiran dan kesusahan.',
-        short:
-          "Mereka yang gugur sebagai syuhada bergembira dengan karunia yang diberikan Allah kepadanya berupa kenikmatan surga, dan mereka bergirang hati terhadap orang yang masih tinggal di belakang melanjutkan perjuangan, yang belum menyusul mereka sebagai syuhada. Mereka pun berharap agar kaum muslim yang masih hidup juga memperoleh kedudukan mulia di sisi Allah. Diberitakan bahwa tidak ada kekhawatiran pada mereka sedikit pun tentang huru-hara hari kiamat akibat dosa-dosa yang dahulu pernah mereka khawatirkan, sebab Allah telah mengampuni kesalahan mereka.",
+        footnotes: null,
+        text: "Sungguh kebahagiaan telah menyelimuti jiwa mereka dan kegembiraan telah melingkupi hati mereka berkat anugerah yang Allah limpahkan kepada mereka. Mereka terus berharap dan menunggu saudara-saudara mereka yang masih ada di dunia akan menyusul mereka karena jika mereka terbunuh di medan jihad, mereka akan mendapatkan anugerah seperti mereka. Tidak ada kecemasan terhadap mereka dalam menghadapi urusan akhirat yang akan mereka hadapi dan mereka tidak bersedih hati atas kekayaan duniawi yang luput dari mereka.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0631\u0650\u062d\u0650\u064a\u0646\u064e \u0628\u0650\u0645\u064e\u0627 \u0622\u062a\u064e\u0627\u0647\u064f\u0645\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0645\u0650\u0646 \u0641\u064e\u0636\u0652\u0644\u0650\u0647\u0650 \u0648\u064e\u064a\u064e\u0633\u0652\u062a\u064e\u0628\u0652\u0634\u0650\u0631\u064f\u0648\u0646\u064e \u0628\u0650\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0644\u064e\u0645\u0652 \u064a\u064e\u0644\u0652\u062d\u064e\u0642\u064f\u0648\u0627 \u0628\u0650\u0647\u0650\u0645 \u0645\u0651\u0650\u0646\u0652 \u062e\u064e\u0644\u0652\u0641\u0650\u0647\u0650\u0645\u0652 \u0623\u064e\u0644\u0651\u064e\u0627 \u062e\u064e\u0648\u0652\u0641\u064c \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0648\u064e\u0644\u064e\u0627 \u0647\u064f\u0645\u0652 \u064a\u064e\u062d\u0652\u0632\u064e\u0646\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fariheena bimaaa aataa humul laahu min fadlihee wa yastabshiroona billazeena lam yalhaqoo bihim min fadlihee wa yastabshiroona billazeena lam yalhaqoo bihim min khalfihim allaa khawfun 'alaihim wa laa hum yahzanoon",
-      },
+      arabic:
+        "فَرِحِينَ بِمَآ ءَاتَىٰهُمُ ٱللَّهُ مِن فَضْلِهِۦ وَيَسْتَبْشِرُونَ بِٱلَّذِينَ لَمْ يَلْحَقُوا۟ بِهِم مِّنْ خَلْفِهِمْ أَلَّا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
     },
     translation: {
-      en: "Rejoicing in what Allah has bestowed upon them of His bounty, and they receive good tidings about those [to be martyred] after them who have not yet joined them - that there will be no fear concerning them, nor will they grieve.",
-      id: "Mereka bergembira dengan karunia yang diberikan Allah kepadanya, dan bergirang hati terhadap orang yang masih tinggal di belakang yang belum menyusul mereka, bahwa tidak ada rasa takut pada mereka dan mereka tidak bersedih hati.",
+      en: {
+        footnotes: "",
+        text: "rejoicing in what Allah has given them of His bounty, and delighted for those who have yet to join them, of those whom they left behind, that they will have no fear, nor will they grieve.",
+      },
+      id: {
+        footnotes:
+          "[163] Teman-temannya yang masih hidup dan tetap berjihad di jalan Allah.",
+        text: "Mereka bergembira dengan karunia yang diberikan Allah kepadanya, dan senang hati terhadap orang yang masih tinggal di belakang yang belum menyusul mereka,[163] bahwa tidak ada rasa takut pada mereka dan mereka tidak bersedih hati.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/464",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/464.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/464.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 29,
       juz: 4,
       manzil: 1,
       page: 72,
       ruku: 58,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 464,
@@ -106,40 +96,32 @@ export const quranSurah3Verses169To174 = [
     },
     tafsir: {
       id: {
-        long: "Orang mukmin dan mujahidin bergembira atas nikmat dari Allah sebagai pahala amal mereka dan atas tambahan karunia yang lain. Sungguh Allah tidak akan mengurangi pahala yang telah ditentukan bagi para mukmin dan mujahidin.",
-        short:
-          "Bahkan mereka, para syuhada, bergirang hati dengan nikmat dan karunia dari Allah berupa kebahagiaan hakiki, ketenangan jiwa, kehidupan yang menyenangkan dan abadi. Dan sungguh, Allah tidak menyia-nyiakan pahala orang-orang yang beriman, karena Allah tidak menggugurkan atau mengurangi amal perbuatan seseorang, selama dia benar-benar beriman dan ikhlas dalam beramal.",
+        footnotes: null,
+        text: "Di samping itu mereka akan bersuka cita dengan pahala besar yang menanti mereka dari Allah dan tambahan yang sangat besar atas pahala tersebut dan Allah -Ta'ālā- tidak akan membatalkan ganjaran orang-orang mukmin, melainkan akan memberikan ganjaran mereka secara penuh dan ditambah dengan ganjaran-ganjaran tambahan.",
       },
     },
     text: {
-      arab: "\u06de \u064a\u064e\u0633\u0652\u062a\u064e\u0628\u0652\u0634\u0650\u0631\u064f\u0648\u0646\u064e \u0628\u0650\u0646\u0650\u0639\u0652\u0645\u064e\u0629\u064d \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0641\u064e\u0636\u0652\u0644\u064d \u0648\u064e\u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0644\u064e\u0627 \u064a\u064f\u0636\u0650\u064a\u0639\u064f \u0623\u064e\u062c\u0652\u0631\u064e \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Yastabshiroona bini'matim minal laahi wa fad linw wa annal laaha laa yudee'u ajral mu'mineen",
-      },
+      arabic: "يَسْتَبْشِرُونَ بِنِعْمَةٍ مِّنَ ٱللَّهِ وَفَضْلٍ وَأَنَّ ٱللَّهَ لَا يُضِيعُ أَجْرَ ٱلْمُؤْمِنِينَ",
     },
     translation: {
-      en: "They receive good tidings of favor from Allah and bounty and [of the fact] that Allah does not allow the reward of believers to be lost -",
-      id: "Mereka bergirang hati dengan nikmat dan karunia dari Allah. Dan sungguh, Allah tidak menyia-nyiakan pahala orang-orang yang beriman,",
+      en: {
+        footnotes: "",
+        text: "They rejoice at the favors and bounties of Allah, and that Allah does not cause the reward of the believers to be lost,",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka bergembira ria dengan nikmat dan karunia dari Allah. Dan sungguh, Allah tidak menyia-nyiakan pahala orang-orang yang beriman,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/465",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/465.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/465.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 29,
       juz: 4,
       manzil: 1,
       page: 72,
       ruku: 59,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 465,
@@ -147,40 +129,34 @@ export const quranSurah3Verses169To174 = [
     },
     tafsir: {
       id: {
-        long: "Orang mukmin memenuhi seruan Allah dan rasul-Nya untuk tetap berada di jalan Allah meskipun mereka telah mendapat luka. Mereka yang berbuat baik dan takwa akan memperoleh pahala yang besar.",
-        short:
-          "Orang-orang yang betul-betul disebut pejuang yaitu orang-orang yang menaati perintah Allah dan Rasul dengan sepenuh hati, bahkan setelah mereka mendapat luka dalam Perang Uhud berupa bencana dan musibah kekalahan, mereka tetap teguh pendirian dan tidak surut dalam melaksanakan perintah Allah. Orang-orang yang berbuat kebajikan dengan selalu memenuhi perintah Allah dan Rasul-Nya dan bertakwa di antara mereka mendapat pahala yang besar berupa kenikmatan dan kebahagiaan abadi, dan diangkat derajatnya di sisi Allah.",
+        footnotes: null,
+        text: "Orang-orang yang menjawab perintah Allah dan Rasul-Nya ketika mereka diajak untuk pergi ke medan perang di jalan Allah dan berperang melawan orang-orang musyrik dalam perang Ḥamrā` al-Asad yang terjadi pasca perang Uhud, setelah mereka mengalami luka-luka dalam perang Uhud, tetapi hal itu tidak menghalangi mereka untuk menjawab seruan jihad dari Allah dan Rasul-Nya; maka bagi orang-orang yang berbuat baik dari kalangan mereka dalam amal perbuatan mereka dan bertakwa kepada Allah dengan menjalankan perintah-perintah-Nya dan menjauhi larangan-larangan-Nya itu ada ganjaran yang sangat besar dari Allah, yaitu surga.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0627\u0633\u0652\u062a\u064e\u062c\u064e\u0627\u0628\u064f\u0648\u0627 \u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0627\u0644\u0631\u0651\u064e\u0633\u064f\u0648\u0644\u0650 \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0645\u064e\u0627 \u0623\u064e\u0635\u064e\u0627\u0628\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0642\u064e\u0631\u0652\u062d\u064f \u06da \u0644\u0650\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064e\u062d\u0652\u0633\u064e\u0646\u064f\u0648\u0627 \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0648\u064e\u0627\u062a\u0651\u064e\u0642\u064e\u0648\u0652\u0627 \u0623\u064e\u062c\u0652\u0631\u064c \u0639\u064e\u0638\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Allazeenas tajaaboo lil laahi war Rasooli mim ba'di maaa asaabahumulqarh; lillazeena ahsanoo minhum wattaqaw ajrun 'azeem",
-      },
+      arabic:
+        "ٱلَّذِينَ ٱسْتَجَابُوا۟ لِلَّهِ وَٱلرَّسُولِ مِنۢ بَعْدِ مَآ أَصَابَهُمُ ٱلْقَرْحُ لِلَّذِينَ أَحْسَنُوا۟ مِنْهُمْ وَٱتَّقَوْا۟ أَجْرٌ عَظِيمٌ",
     },
     translation: {
-      en: "Those [believers] who responded to Allah and the Messenger after injury had struck them. For those who did good among them and feared Allah is a great reward -",
-      id: "(yaitu) orang-orang yang menaati (perintah) Allah dan Rasul setelah mereka mendapat luka (dalam Perang Uhud). Orang-orang yang berbuat kebajikan dan bertakwa di antara mereka mendapat pahala yang besar.",
+      en: {
+        footnotes:
+          "[81] Those Believers who chased the retreating Makkan army until they reached the outpost of Hamrā’ al-Asad, on the outskirts of Madinah. They were deeply wounded and bruised in the Battle of ’Uhud.",
+        text: "those who responded to Allah and the Messenger after they were struck with injury[81]. For those who did good among them and feared Allah is a great reward,",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) orang-orang yang menaati (perintah) Allah dan Rasul setelah mereka mendapat luka (dalam Perang Uhud). Orang-orang yang berbuat kebajikan dan bertakwa di antara mereka mendapat pahala yang besar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/466",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/466.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/466.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 29,
       juz: 4,
       manzil: 1,
       page: 72,
       ruku: 59,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 466,
@@ -188,40 +164,34 @@ export const quranSurah3Verses169To174 = [
     },
     tafsir: {
       id: {
-        long: 'Turunnya ayat ini berhubungan dengan Abu Sufyan panglima perang kaum musyrikin Mekah dan tentaranya, yang sudah kembali dari Perang Uhud. Mereka setelah sampai di suatu tempat bernama Ruha, mereka menyesal dan bermaksud akan kembali lagi untuk melanjutkan perang. Berita ini sampai kepada Rasulullah, maka beliau memanggil kembali pasukan Muslimin untuk menghadapi Abu Sufyan dan tentaranya. Kata Rasulullah saw, "Jangan ada yang ikut perang hari ini kecuali mereka yang telah ikut kemarin, sedang tentara Islam pada waktu itu telah banyak yang luka-luka. Tapi akhirnya Allah swt menurunkan rasa takut pada hati kaum musyrikin dan selanjutnya mereka pulang kembali.\n\nPara mujahidin ditakut-takuti oleh sebagian musuh (munafik), dengan menyatakan bahwa musuh telah menghimpun kekuatan baru guna menghadapi mereka. Tetapi para mujahidin tidak merasa gentar karena berita itu, bahkan bertambah imannya dan bertambah tinggi semangatnya untuk menghadapi musuh Allah itu dengan ucapan, "Allah tetap akan melindungi kami dan kepada Allah kami bertawakal."',
-        short:
-          'Orang-orang yang mendapat pahala besar adalah orang-orang yang menaati Allah dan Rasul. Mereka memenuhi perintah Allah untuk berjuang yang ketika ada sekelompok orang-orang munafik yang loyal kepada kaum musyrikin mengatakan kepadanya dengan nada mengejek dan meniupkan rasa ketakutan terhadap orang-orang mukmin,"Orang-orang Quraisy telah mengumpulkan pasukan untuk menyerang kamu dengan jumlah pasukan yang lebih besar dan persiapan lebih matang, karena itu takutlah kepada mereka." Ternyata ucapan mereka itu tidak membuat orang-orang mukmin gentar dan takut, justru menambah kuat iman mereka dan mereka menjawab dengan teguh dan mantap, "Cukuplah Allah menjadi penolong bagi kami dalam melawan setiap musuh dan Dia sebaik-baik pelindung yang selalu melindungi dari setiap penyerang, dan membela dari setiap penyerbu, karena kami adalah tentara Allah."',
+        footnotes: null,
+        text: 'Yaitu orang-orang yang diberitahu oleh sebagian orang musyrik, "Sesungguhnya orang-orang Quraisy di bawah komando Abu Sufyan telah menghimpun pasukan yang sangat besar untuk menyerang dan menghabisi kalian, maka berhati-hatilah dan takutlah kalian dalam menghadapi mereka.” Namun, ucapan dan peringatan itu justru menambah kepercayaan mereka kepada Allah dan keyakinan mereka akan kebenaran janji-Nya. Lalu mereka pun berangkat untuk menghadapi orang-orang musyrik tersebut seraya berkata, “Allah -Ta\'ālā- yang akan melindungi kami dan Dia adalah sebaik-baik Tuhan yang kami serahkan urusan kami kepada-Nya."',
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0642\u064e\u0627\u0644\u064e \u0644\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064f \u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064e \u0642\u064e\u062f\u0652 \u062c\u064e\u0645\u064e\u0639\u064f\u0648\u0627 \u0644\u064e\u0643\u064f\u0645\u0652 \u0641\u064e\u0627\u062e\u0652\u0634\u064e\u0648\u0652\u0647\u064f\u0645\u0652 \u0641\u064e\u0632\u064e\u0627\u062f\u064e\u0647\u064f\u0645\u0652 \u0625\u0650\u064a\u0645\u064e\u0627\u0646\u064b\u0627 \u0648\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u062d\u064e\u0633\u0652\u0628\u064f\u0646\u064e\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0648\u064e\u0646\u0650\u0639\u0652\u0645\u064e \u0627\u0644\u0652\u0648\u064e\u0643\u0650\u064a\u0644\u064f",
-      transliteration: {
-        en: "Allazeena qaala lahumun naasu innan naasa qad jama'oo lakum fakhshawhuin fazaadahum eemaannanwa wa qaaloo hasbunal laahu wa ni'malwakeel",
-      },
+      arabic:
+        "ٱلَّذِينَ قَالَ لَهُمُ ٱلنَّاسُ إِنَّ ٱلنَّاسَ قَدْ جَمَعُوا۟ لَكُمْ فَٱخْشَوْهُمْ فَزَادَهُمْ إِيمَٰنًا وَقَالُوا۟ حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ",
     },
     translation: {
-      en: 'Those to whom hypocrites said, "Indeed, the people have gathered against you, so fear them." But it [merely] increased them in faith, and they said, "Sufficient for us is Allah, and [He is] the best Disposer of affairs."',
-      id: "(Yaitu) orang-orang (yang menaati Allah dan Rasul) yang ketika ada orang-orang mengatakan kepadanya, “Orang-orang (Quraisy) telah mengumpulkan pasukan untuk menyerang kamu, karena itu takutlah kepada mereka,” ternyata (ucapan) itu menambah (kuat) iman mereka dan mereka menjawab, “Cukuplah Allah (menjadi penolong) bagi kami dan Dia sebaik-baik pelindung.”",
+      en: {
+        footnotes:
+          "[82] The believers.\n [83] The hypocrites. [84] This is one of the greatest Dhikr (remembrance) during times of hardship. Ibn ‘Abbās (رضي الله عنهما) reported: “Hasbunā Allāh wa ni‘ma al-Wakīl (Allah suffices us, He is the best of Protectors), was said by Abraham (عليه السلام) when he was thrown in the fire and was said by Muhammad (ﷺ) when it was said: “People have regrouped for you, so fear them”, their belief grew firmer and they said: “Allah suffices us, He is the best of Protectors”.” [Al-Bukhārī: 4563]",
+        text: "those[82] to whom people[83] said, “Indeed, the people have gathered against you, so fear them.” But it only increased them in faith, and they said, “Allah is Sufficient for us, and He is the best Protector[84].”",
+      },
+      id: {
+        footnotes: "",
+        text: '(Yaitu) orang-orang (yang menaati Allah dan Rasul) yang ketika ada orang-orang mengatakan kepadanya, "Orang-orang (Quraisy) telah mengumpulkan pasukan untuk menyerang kamu, karena itu takutlah kepada mereka," ternyata (ucapan) itu menambah (kuat) iman mereka dan mereka menjawab, "Cukuplah Allah (menjadi penolong) bagi kami dan Dia sebaik-baik pelindung."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/467",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/467.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/467.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 29,
       juz: 4,
       manzil: 1,
       page: 73,
       ruku: 59,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 467,
@@ -229,20 +199,23 @@ export const quranSurah3Verses169To174 = [
     },
     tafsir: {
       id: {
-        long: "Dengan keimanan dan tekad yang kuat itu akhirnya mereka dapat ke Medinah. Abu Sufyan dan tentaranya tidak jadi melakukan serangan terhadap mereka. Mereka sama sekali tidak mengalami panderitaan dan mereka tetap dalam keridaan Allah.",
-        short:
-          "Maka dengan bekal keimanan dan tekad yang kuat itu akhirnya mereka kembali pulang dengan nikmat dan karunia yang besar dari Allah berupa pahala kebaikan, kesejahteraan, dan kemuliaan, mereka tidak ditimpa suatu bencana atau suatu hal yang tidak mereka sukai, dan tidak berjumpa dengan seorang musuh dan mereka mengikuti keridaan Allah dengan mengikuti perintah-Nya. Allah mempunyai karunia yang besar yang diperuntukkan bagi orang-orang yang berjuang di jalan Allah, baik di dunia berupa kemenangan, maupun di akhirat kelak berupa kebahagiaan abadi.",
+        footnotes: null,
+        text: "Kemudian setelah mereka kembali dari pertempuran Ḥamrā` al-Asad, mereka mendapatkan pahala yang sangat besar dari Allah, tambahan derajat kemuliaan, dan keselamatan dari musuh, yaitu tidak ada di antara kalian yang terbunuh dan tidak ada yang terluka. Mereka telah melakukan apa yang mengundang rida Allah kepada mereka, yakni senantiasa patuh dan tidak durhaka kepada-Nya dan Allah memiliki anugerah yang sangat besar bagi hamba-hamba-Nya yang beriman.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0646\u0642\u064e\u0644\u064e\u0628\u064f\u0648\u0627 \u0628\u0650\u0646\u0650\u0639\u0652\u0645\u064e\u0629\u064d \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0641\u064e\u0636\u0652\u0644\u064d \u0644\u0651\u064e\u0645\u0652 \u064a\u064e\u0645\u0652\u0633\u064e\u0633\u0652\u0647\u064f\u0645\u0652 \u0633\u064f\u0648\u0621\u064c \u0648\u064e\u0627\u062a\u0651\u064e\u0628\u064e\u0639\u064f\u0648\u0627 \u0631\u0650\u0636\u0652\u0648\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0630\u064f\u0648 \u0641\u064e\u0636\u0652\u0644\u064d \u0639\u064e\u0638\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Fanqalaboo bini'matim minal laahi wa fadlil lam yamsashum sooo'unw wattaba'oo ridwaanal laah; wallaahu zoo fadlin 'azeem",
-      },
+      arabic:
+        "فَٱنقَلَبُوا۟ بِنِعْمَةٍ مِّنَ ٱللَّهِ وَفَضْلٍ لَّمْ يَمْسَسْهُمْ سُوٓءٌ وَٱتَّبَعُوا۟ رِضْوَٰنَ ٱللَّهِ وَٱللَّهُ ذُو فَضْلٍ عَظِيمٍ",
     },
     translation: {
-      en: "So they returned with favor from Allah and bounty, no harm having touched them. And they pursued the pleasure of Allah, and Allah is the possessor of great bounty.",
-      id: "Maka mereka kembali dengan nikmat dan karunia (yang besar) dari Allah, mereka tidak ditimpa suatu bencana dan mereka mengikuti keridaan Allah. Allah mempunyai karunia yang besar.",
+      en: {
+        footnotes: "",
+        text: "They then returned with grace and bounty from Allah, having suffered no harm. They pursued Allah’s pleasure, and Allah is the Possessor of great bounty.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka mereka kembali dengan nikmat dan karunia (yang besar) dari Allah, mereka tidak ditimpa suatu bencana dan mereka mengikuti keridaan Allah. Allah mempunyai karunia yang besar.",
+      },
     },
   },
 ];

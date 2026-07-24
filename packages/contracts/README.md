@@ -2,15 +2,15 @@
 
 This package defines exact runtime contracts for the Aksara compiler and
 publisher. Nakafa runtime adoption is a separate cutover gated by a proven
-registry version and compatible renderer support.
+immutable release archive and compatible renderer support.
 
 This package contains schemas, branded identifiers, canonical wire encodings,
 and server-only signature verification. It contains no corpus, renderer
 implementation, signing key, deployment credential, or browser-side MDX
 runtime.
 
-When a registry version is available, consumers must install that exact proven
-version. Content requiring a newer contract may be activated only after a
+Consumers install the exact attested GitHub Release archive recorded in their
+pnpm lockfile. Content requiring a newer contract may be activated only after a
 compatible Nakafa renderer is live.
 
 The Node verification exports accept only reviewed, signed Aksara artifacts and

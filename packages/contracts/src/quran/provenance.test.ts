@@ -12,9 +12,17 @@ import {
   QuranProvenanceRecordSchema,
   type QuranProvenanceScopeSchema,
 } from "#contracts/quran/provenance";
+import type { QuranSourceId } from "#contracts/quran/source";
 import { reverseObjectKeys } from "#contracts/test/order";
 
 const failures = vi.hoisted(() => ({ hash: false }));
+const TEST_SOURCE_IDS: readonly QuranSourceId[] = [
+  "tanzil-text",
+  "quranenc-english",
+  "quranenc-tafsir",
+  "quranenc-indonesian",
+  "tanzil-metadata",
+];
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -47,21 +55,47 @@ vi.mock("node:crypto", async (importOriginal) => {
 function record(
   scope: typeof QuranProvenanceScopeSchema.Type,
   status: "approved" | "blocked",
-  source = "primary"
+  source: QuranSourceId = "tanzil-text"
 ) {
   return Schema.decodeUnknownSync(QuranProvenanceRecordSchema)({
+    attribution: {
+      artifact: {
+        byteCount: 1,
+        digest: `sha256:${"a".repeat(64)}`,
+        fileCount: 1,
+      },
+      id: source,
+      notice: `Reviewed notice ${source}.`,
+      publisher: `Reviewed publisher ${source}.`,
+      retrievedAt: "2026-07-24T17:57:50Z",
+      sourceUrl: `https://example.com/source/${source}`,
+      terms: {
+        artifact: {
+          byteCount: 1,
+          digest: `sha256:${"b".repeat(64)}`,
+          fileCount: 1,
+        },
+        url: `https://example.com/terms/${source}`,
+      },
+      title: `Reviewed title ${source}.`,
+      updateUrl: `https://example.com/update/${source}`,
+      version: "test-v1",
+    },
     evidence: "Reviewed source statement.",
-    provider: `Reviewed provider ${source}`,
-    retrievedOn: "2026-07-24",
     scope,
-    sourceUrl: `https://example.com/${source}`,
     status,
   });
 }
 
 /** Builds complete exact-scope provenance with one selected source status. */
 function records(status: "approved" | "blocked") {
-  return QURAN_PROVENANCE_SCOPES.map((scope) => record(scope, status));
+  return QURAN_PROVENANCE_SCOPES.map((scope, index) => {
+    const source = TEST_SOURCE_IDS[index];
+    if (!source) {
+      throw new Error("Expected one technical source per provenance scope.");
+    }
+    return record(scope, status, source);
+  });
 }
 
 describe("Quran provenance", () => {
@@ -114,29 +148,8 @@ describe("Quran provenance", () => {
     const duplicate = [first, ...canonical];
     const composite = [
       ...canonical,
-      record("metadata", "blocked", "secondary"),
-    ];
-    const sameProvider = [
-      ...canonical,
-      {
-        ...record("metadata", "approved", "secondary"),
-        provider: "Reviewed provider primary",
-      },
-      {
-        ...record("metadata", "approved", "alpha"),
-        provider: "Reviewed provider primary",
-      },
-    ];
-    const mixedProviders = [
-      ...canonical,
-      {
-        ...record("metadata", "approved", "zulu"),
-        provider: "Zulu provider",
-      },
-      {
-        ...record("metadata", "approved", "alpha"),
-        provider: "Alpha provider",
-      },
+      record("metadata", "blocked", "quranenc-tafsir"),
+      record("metadata", "approved", "quranenc-english"),
     ];
     const canonicalManifest = await Effect.runPromise(
       makeQuranProvenanceManifest(canonical)
@@ -146,12 +159,6 @@ describe("Quran provenance", () => {
     );
     const compositeManifest = await Effect.runPromise(
       makeQuranProvenanceManifest(composite)
-    );
-    const sameProviderManifest = await Effect.runPromise(
-      makeQuranProvenanceManifest(sameProvider)
-    );
-    const mixedProviderManifest = await Effect.runPromise(
-      makeQuranProvenanceManifest(mixedProviders)
     );
     const errors = await Promise.all([
       Effect.runPromise(
@@ -188,25 +195,13 @@ describe("Quran provenance", () => {
     }
 
     expect(reversedManifest).toEqual(canonicalManifest);
-    expect(compositeManifest.records).toHaveLength(8);
+    expect(compositeManifest.records).toHaveLength(7);
     expect(compositeManifest.status).toBe("blocked");
     expect(
-      sameProviderManifest.records
-        .filter(
-          ({ provider, scope }) =>
-            provider === "Reviewed provider primary" && scope === "metadata"
-        )
-        .map(({ sourceUrl }) => sourceUrl)
-    ).toEqual([
-      "https://example.com/alpha",
-      "https://example.com/primary",
-      "https://example.com/secondary",
-    ]);
-    expect(
-      mixedProviderManifest.records
+      compositeManifest.records
         .filter(({ scope }) => scope === "metadata")
-        .map(({ provider }) => provider)
-    ).toEqual(["Alpha provider", "Reviewed provider primary", "Zulu provider"]);
+        .map(({ attribution }) => attribution.id)
+    ).toEqual(["quranenc-english", "quranenc-tafsir", "tanzil-metadata"]);
     expect(errors.map(({ _tag }) => _tag)).toEqual([
       "QuranProvenanceCoverageError",
       "QuranProvenanceCoverageError",

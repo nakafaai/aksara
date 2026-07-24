@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah89Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6006",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6006.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6006.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6006,
@@ -24,40 +25,32 @@ export const quranSurah89Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Akhirnya Allah "menumpahkan kepada mereka cemeti azab", yang berarti bahwa azab itu dicurahkan seluruhnya kepada mereka sehebat-hebatnya, sehingga mereka hancur lebur tak bersisa dan yang tertinggal hanyalah nama untuk diingat orang. Yang menimpakan azab itu adalah "Tuhanmu" (ya, Muhammad!), yang berarti bahwa peristiwa-peristiwa itu hendaknya menjadi pelajaran bagi kaum kafir Mekah agar mereka tidak terus-menerus membangkang.\n\nBagaimana azab yang ditimpakan kepada bangsa-bangsa itu dinyatakan dalam ayat-ayat lain:\n\nMaka adapun kaum Samud, mereka telah dibinasakan dengan suara yang sangat keras, sedangkan kaum \'Ad, mereka telah dibinasakan dengan angin topan yang sangat dingin, Allah menimpakan angin itu kepada mereka selama tujuh malam delapan hari terus-menerus; maka kamu melihat kaum \'Ad pada waktu itu mati bergelimpangan seperti batang-batang pohon kurma yang telah kosong (lapuk). Maka adakah kamu melihat seorang pun yang masih tersisa di antara mereka? Kemudian datang Fir\'aun dan orang-orang yang sebelumnya dan (penduduk) negeri-negeri yang dijungkirbalikkan karena kesalahan yang besar. Maka mereka mendurhakai utusan Tuhannya, Allah menyiksa mereka dengan siksaan yang sangat keras. (al-haqqah/69: 5-10)',
-        short:
-          "Karena kesewenangan dan kezaliman mereka itu Tuhanmu menimpakan cemeti azab kepada mereka. Allah membinasakan kaum ‘Ad dengan topan yang sangat dingin selama tujuh malam berturut-turut; kaum Šamud dengan suara menggelegar dan petir yang menyambar (Lihat:Fussilat/41:16; al-Hàqqah:/69:6–7); dan Fir‘aun beserta tentaranya ditenggelamkan di Laut Merah.",
+        footnotes: null,
+        text: "Sebab itu, Allah menimpakan kepada mereka siksa-Nya yang pedih dan memusnahkan mereka dari bumi.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0635\u064e\u0628\u0651\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0631\u064e\u0628\u0651\u064f\u0643\u064e \u0633\u064e\u0648\u0652\u0637\u064e \u0639\u064e\u0630\u064e\u0627\u0628\u064d",
-      transliteration: {
-        en: "Fasabba 'alaihim Rabbuka sawta 'azaab",
-      },
+      arabic: "فَصَبَّ عَلَيْهِمْ رَبُّكَ سَوْطَ عَذَابٍ",
     },
     translation: {
-      en: "So your Lord poured upon them a scourge of punishment.",
-      id: "karena itu Tuhanmu menimpakan cemeti azab kepada mereka,",
+      en: {
+        footnotes: "",
+        text: "so your Lord poured upon them a scourge of punishment.",
+      },
+      id: {
+        footnotes: "",
+        text: "karena itu Tuhanmu menimpakan cemeti azab kepada mereka,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6007",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6007.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6007.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6007,
@@ -65,40 +58,32 @@ export const quranSurah89Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa Ia sungguh amat kuat pengawasan-Nya terhadap makhluk-Nya. Tidak ada perbuatan sekecil apa pun yang tidak diketahui-Nya. Oleh karena itu, yang membangkang dan bergelimang dosa seharusnya sadar dan kemudian beriman dan tobat dari dosa-dosanya.",
-        short:
-          "Allah timpakan azab kepada mereka karena sungguh, Tuhanmu benar-benar mengawasi gerak gerik dan perilaku mereka. Tidak seorang pun lepas dari pengawasan Allah. Kebinasaan tiga kaum itu hendaknya menjadi pelajaran bagi umat setelahnya, terutama kaum musyrik Mekah.",
+        footnotes: null,
+        text: "Sesungguhnya Tuhanmu -wahai Rasul- benar-benar memantau dan mengawasi amal perbuatan manusia untuk memberi balasan bagi yang berbuat baik dengan surga dan yang berbuat buruk dengan neraka.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0631\u064e\u0628\u0651\u064e\u0643\u064e \u0644\u064e\u0628\u0650\u0627\u0644\u0652\u0645\u0650\u0631\u0652\u0635\u064e\u0627\u062f\u0650",
-      transliteration: {
-        en: "Inna Rabbaka labil mirsaad",
-      },
+      arabic: "إِنَّ رَبَّكَ لَبِٱلْمِرْصَادِ",
     },
     translation: {
-      en: "Indeed, your Lord is in observation.",
-      id: "sungguh, Tuhanmu benar-benar mengawasi.",
+      en: {
+        footnotes: "",
+        text: "Indeed, your Lord is ever vigilant.",
+      },
+      id: {
+        footnotes: "",
+        text: "sungguh, Tuhanmu benar-benar mengawasi.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6008",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6008.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6008.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6008,
@@ -106,40 +91,33 @@ export const quranSurah89Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menyatakan bahwa Allah menguji manusia dengan kemuliaan dan berbagai nikmat-Nya, seperti kekuasaan dan kekayaan. Orang yang kafir dan durhaka akan memandang hal itu sebagai tanda bahwa Allah menyayangi mereka.",
-        short:
-          "Ayat ini menjelaskan sifat dasar manusia kafir ketika mendapat kebahagiaan dan kesusahan, yakni bergembira berlebihan saat mendapat kenikmatan dan putus asa ketika tertimpa kesulitan. Maka adapun manusia, apabila Tuhan mengujinya lalu dia memuliakannya dan memberinya kesenangan serta kenikmatan, baik lahir maupun batin, maka dia berkata, “Tuhanku telah memuliakanku.” Mereka menilai kenikmatan yang diterimanya adalah berkat kemuliaan nya di sisi Allah. Mereka lupa bahwa nikmat itu pada dasarnya salah satu bentuk ujian Allah kepada manusia.",
+        footnotes: null,
+        text: 'Adapun manusia, maka di antara tabiatnya ialah bahwa jika Tuhannya mengujinya, memuliakannya, dan memberikan kenikmatan kepadanya berupa harta, anak-anak, dan kedudukan, ia mengira bahwa hal itu karena kemuliaannya di sisi Allah, sehingga ia berkata, "Tuhanku telah memuliakanku karena aku berhak mendapatkan kemuliaan dari-Nya.”',
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0645\u0651\u064e\u0627 \u0627\u0644\u0652\u0625\u0650\u0646\u0633\u064e\u0627\u0646\u064f \u0625\u0650\u0630\u064e\u0627 \u0645\u064e\u0627 \u0627\u0628\u0652\u062a\u064e\u0644\u064e\u0627\u0647\u064f \u0631\u064e\u0628\u0651\u064f\u0647\u064f \u0641\u064e\u0623\u064e\u0643\u0652\u0631\u064e\u0645\u064e\u0647\u064f \u0648\u064e\u0646\u064e\u0639\u0651\u064e\u0645\u064e\u0647\u064f \u0641\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f \u0631\u064e\u0628\u0651\u0650\u064a \u0623\u064e\u0643\u0652\u0631\u064e\u0645\u064e\u0646\u0650",
-      transliteration: {
-        en: "Fa ammal insaanu izaa mab talaahu Rabbuhoo fa akramahoo wa na' 'amahoo fa yaqoolu Rabbeee akraman",
-      },
+      arabic: "فَأَمَّا ٱلْإِنسَٰنُ إِذَا مَا ٱبْتَلَىٰهُ رَبُّهُۥ فَأَكْرَمَهُۥ وَنَعَّمَهُۥ فَيَقُولُ رَبِّىٓ أَكْرَمَنِ",
     },
     translation: {
-      en: 'And as for man, when his Lord tries him and [thus] is generous to him and favors him, he says, "My Lord has honored me."',
-      id: "Maka adapun manusia, apabila Tuhan mengujinya lalu memuliakannya dan memberinya kesenangan, maka dia berkata, “Tuhanku telah memuliakanku.”",
+      en: {
+        footnotes:
+          "[5] Instead of being grateful, he is proud, attributing the favor to his own merit.",
+        text: "As for man, when he is tested by his Lord by honoring him and bestowing blessings upon him, he says, “My Lord has [deservedly] honored me[5]!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Adapun manusia, apabila Tuhan mengujinya lalu memuliakannya dan memberinya kesenangan, maka dia berkata, "Tuhanku telah memuliakanku."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6009",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6009.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6009.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6009,
@@ -147,40 +125,33 @@ export const quranSurah89Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Sebaliknya, bila Allah menguji mereka dengan cara membatasi rezeki, mereka menyangka bahwa Allah telah membenci mereka. Pandangan itu tidak benar, karena Allah memberi siapa yang disukai-Nya atau tidak memberi siapa yang tidak disukai-Nya. Allah ingin menguji manusia, dan karena itu Ia menghendaki agar manusia itu selalu patuh kepada-Nya, baik dalam keadaan berkecukupan maupun kekurangan. Bila Allah memberi, maka manusia yang diberi harus bersyukur, dan bila Ia tidak memberi, manusia harus bersabar.",
-        short:
-          "Namun apabila Tuhan mengujinya lalu membatasi rezekinya, maka dia berkata, “Tuhanku telah menghinakanku.” Mereka tidak dapat memahami bahwa kefakiran dan kesusahan bukanla htolok ukur mutlak bagi kehinaan seseorang di mata Allah karena keduanya tidak lain hanyalah cobaan dari Allah.",
+        footnotes: null,
+        text: "Sebaliknya, bila Allah mengujinya dan menyempitkan rezekinya maka ia mengira bahwa hal itu karena kehinaannya di hadapan Tuhannya, sehingga ia berkata, “Tuhanku telah menghinakanku.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0645\u0651\u064e\u0627 \u0625\u0650\u0630\u064e\u0627 \u0645\u064e\u0627 \u0627\u0628\u0652\u062a\u064e\u0644\u064e\u0627\u0647\u064f \u0641\u064e\u0642\u064e\u062f\u064e\u0631\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650 \u0631\u0650\u0632\u0652\u0642\u064e\u0647\u064f \u0641\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f \u0631\u064e\u0628\u0651\u0650\u064a \u0623\u064e\u0647\u064e\u0627\u0646\u064e\u0646\u0650",
-      transliteration: {
-        en: "Wa ammaaa izaa mabtalaahu faqadara 'alaihi rizqahoo fa yaqoolu Rabbeee ahaanan",
-      },
+      arabic: "وَأَمَّآ إِذَا مَا ٱبْتَلَىٰهُ فَقَدَرَ عَلَيْهِ رِزْقَهُۥ فَيَقُولُ رَبِّىٓ أَهَٰنَنِ",
     },
     translation: {
-      en: 'But when He tries him and restricts his provision, he says, "My Lord has humiliated me."',
-      id: "Namun apabila Tuhan mengujinya lalu membatasi rezekinya, maka dia berkata, “Tuhanku telah menghinaku.”",
+      en: {
+        footnotes: "",
+        text: "But when he is tested by restricting his provision, he says, “My Lord has [undeservedly] humiliated me!”",
+      },
+      id: {
+        footnotes:
+          "[908] Allah menyalahkan orang yang mengatakan bahwa kekayaan itu adalah suatu kemuliaan, dan kemiskinan adalah suatu kehinaan seperti yang tersebut pada ayat 15 dan 16. Tetapi sebenarnya kekayaan dan kemiskinan adalah ujian Allah bagi hamba-hamba-Nya.",
+        text: 'Namun apabila Tuhan mengujinya lalu membatasi rezekinya, maka dia berkata, "Tuhanku telah menghinaku."[908]',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6010",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6010.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6010.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6010,
@@ -188,40 +159,34 @@ export const quranSurah89Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Akan tetapi banyak manusia yang ingkar, mereka tidak mensyukuri nikmat yang diberikan kepadanya. Bersyukur adalah mengucapkan kata-kata syukur dan menggunakan nikmat itu sesuai dengan ketentuan Yang Memberinya. Salah satu ketentuan-Nya adalah bahwa orang yang diberi kelebihan rezeki harus memperhatikan mereka yang berkekurangan. Di antara mereka adalah anak-anak yatim. Anak yatim perlu diasuh sampai mereka dewasa. Manusia yang ingkar dan tak mau bersyukur tidak mau memperhatikan pengasuhan anak-anak yatim itu.",
-        short:
-          "Sekali-kali tidak demikian. Ketahuilah, kemuliaan seseorang tidak diukur dari kekaya annya dan kehinaan tidak dipandang dari kemiskinannya. Kemulian diukur dari ketaatan dan kehinaan adalah akibat kemaksiatan seseorang kepada Allah. Bahkan kamu tidak memuliakan, menyantuni, mengasihi, dan menolong anak yatim. Kamu biarkan mereka susah, padahal menyantuni mereka adalah amal saleh yang menjanjikan derajat tinggi di sisi Allah.",
+        footnotes: null,
+        text: "Sekali-kali tidak demikian, kenyataannya tidak sebagaimana yang dibayangkan oleh orang ini bahwa kenikmatan merupakan bukti keridaan Allah atas hamba-Nya dan kesengsaraan adalah bukti kehinaan seorang hamba di hadapan Tuhannya. Justru kenyataannya kalian tidak memuliakan anak yatim dari rezeki yang telah Allah berikan kepada kalian.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u06d6 \u0628\u064e\u0644 \u0644\u0651\u064e\u0627 \u062a\u064f\u0643\u0652\u0631\u0650\u0645\u064f\u0648\u0646\u064e \u0627\u0644\u0652\u064a\u064e\u062a\u0650\u064a\u0645\u064e",
-      transliteration: {
-        en: "Kalla bal laa tukrimooo nal yateem",
-      },
+      arabic: "كَلَّا بَل لَّا تُكْرِمُونَ ٱلْيَتِيمَ",
     },
     translation: {
-      en: "No! But you do not honor the orphan",
-      id: "Sekali-kali tidak! Bahkan kamu tidak memuliakan anak yatim,",
+      en: {
+        footnotes:
+          "[6] It is not as you think. Allah puts people to test through prosperity and hardship and rewards their gratitude and patience in the Hereafter.",
+        text: "No indeed[6]! You are not kind to the orphan,",
+      },
+      id: {
+        footnotes:
+          "[909] Tidak memberikan hak-hak anak yatim dan tidak berbuat baik kepadanya.",
+        text: "Sekali-kali tidak! Bahkan kamu tidak memuliakan anak yatim,[909]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6011",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6011.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6011.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6011,
@@ -229,20 +194,22 @@ export const quranSurah89Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Di samping itu, mereka tidak menaruh kasihan pada penderitaan orang miskin. Jangankan untuk melepaskan mereka dari kemiskinan, membantu mencukupkan kebutuhan pokok mereka saja mereka tidak ada perhatian.",
-        short:
-          "Dan kamu tidak saling mengajak satu sama lain untuk memberi makan orang miskin. Tidak mengajak orang lain untuk berbuat baik juga merupakan tindakan tidak terpuji. Mengajak orang lain berbuat baik adalah tindakan terpuji, apa lagi jika dibarengi dengan melakukannya. Makanan adalah kebutuhan pokok manusia. Memberi makanan fakir miskin, baik muslim atau bukan, adalah suatu bentuk kesalehan sosial yang sangat terpuji (Lihat pula: al-Insàn/76: 8).",
+        footnotes: null,
+        text: "Sebagian dari kalian tidak menganjurkan kepada sebagian yang lain untuk memberi makan kepada orang fakir yang tidak mendapatkan makanan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u062d\u064e\u0627\u0636\u0651\u064f\u0648\u0646\u064e \u0639\u064e\u0644\u064e\u0649\u0670 \u0637\u064e\u0639\u064e\u0627\u0645\u0650 \u0627\u0644\u0652\u0645\u0650\u0633\u0652\u0643\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Wa laa tahaaaddoona 'alaata'aamil miskeen",
-      },
+      arabic: "وَلَا تَحَٰٓضُّونَ عَلَىٰ طَعَامِ ٱلْمِسْكِينِ",
     },
     translation: {
-      en: "And you do not encourage one another to feed the poor.",
-      id: "dan kamu tidak saling mengajak memberi makan orang miskin,",
+      en: {
+        footnotes: "",
+        text: "nor do you urge one another to feed the needy,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan kamu tidak saling mengajak memberi makan orang miskin,",
+      },
     },
   },
 ];

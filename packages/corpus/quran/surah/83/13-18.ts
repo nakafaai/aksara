@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah83Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5861",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5861.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5861.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 235,
       juz: 30,
       manzil: 7,
       page: 588,
       ruku: 525,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5861,
@@ -24,40 +25,32 @@ export const quranSurah83Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menjelaskan bahwa ketika dibacakan ayat-ayat Al-Qur\'an kepada orang-orang yang melampaui batas, selalu berdosa, tidak mempercayai hari akhirat dan Al-Qur\'an sebagai kitab suci yang berisi petunjuk-petunjuk Allah untuk mengantarkan manusia ke jalan yang lurus menuju kebahagiaan dunia dan akhirat, mereka tidak mau mendengarkannya dengan khusyuk atau menyimak isinya. Mereka bahkan mengatakan bahwa Al-Qur\'an itu adalah dongeng-dongeng orang-orang dahulu yang didiktekan kepada Nabi Muhammad. Firman Allah:\n\nDan orang-orang kafir berkata, "(Al-Qur\'an) ini tidak lain hanyalah kebohongan yang diada-adakan oleh dia (Muhammad), dibantu oleh orang-orang lain," Sungguh, mereka telah berbuat zalim dan dusta yang besar. Dan mereka berkata, "(Itu hanya) dongeng-dongeng orang-orang terdahulu, yang diminta agar dituliskan, lalu dibacakanlah dongeng itu kepadanya setiap pagi dan petang." Katakanlah (Muhammad), "(Al-Qur\'an) itu diturunkan oleh (Allah) yang mengetahui rahasia di langit dan di bumi. Sungguh, Dia Maha Pengampun, Maha Penyayang." (al-Furqan/25: 4-6)',
-        short:
-          "Itulah orang yang apabila dibacakan kepadanya ayat-ayat Kami, yaitu Al-Qur’an yang berisi ajaran Islam yang mulia, dia berkata sembari menertawakannya, “Itu adalah dongeng dan bualan orang-orang dahulu.”",
+        footnotes: null,
+        text: "Jika dibacakan kepadanya ayat-ayat Kami yang diturunkan kepada Rasul Kami, ia berkata, “Ini adalah cerita-cerita umat-umat yang terdahulu, bukan dari sisi Allah.”",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0630\u064e\u0627 \u062a\u064f\u062a\u0652\u0644\u064e\u0649\u0670 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650 \u0622\u064a\u064e\u0627\u062a\u064f\u0646\u064e\u0627 \u0642\u064e\u0627\u0644\u064e \u0623\u064e\u0633\u064e\u0627\u0637\u0650\u064a\u0631\u064f \u0627\u0644\u0652\u0623\u064e\u0648\u0651\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Izaa tutlaa'alaihi aayaatunaa qaala asaateerul awwaleen",
-      },
+      arabic: "إِذَا تُتْلَىٰ عَلَيْهِ ءَايَٰتُنَا قَالَ أَسَٰطِيرُ ٱلْأَوَّلِينَ",
     },
     translation: {
-      en: 'When Our verses are recited to him, he says, "Legends of the former peoples."',
-      id: "yang apabila dibacakan kepadanya ayat-ayat Kami, dia berkata, “Itu adalah dongeng orang-orang dahulu.”",
+      en: {
+        footnotes: "[2] i.e., tales of old times, legends of former peoples.",
+        text: "When Our verses are recited to him, he says, “Ancient fables[2]!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'yang apabila dibacakan kepadanya ayat-ayat Kami, dia berkata, "Itu adalah dongeng orang-orang dahulu."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5862",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5862.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5862.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 235,
       juz: 30,
       manzil: 7,
       page: 588,
       ruku: 525,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5862,
@@ -65,40 +58,32 @@ export const quranSurah83Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah membantah tuduhan orang-orang kafir Mekah yang mengatakan bahwa Al-Qur'an itu dongengan orang dahulu. Sama sekali bukan demikian. Sebenarnya apa yang selalu mereka usahakan itu menutup hati mereka. Kebiasaan mereka berbuat dosa telah menyebabkan hati mereka jadi keras, gelap, dan tertutup laksana logam yang berkarat. Oleh karena itu, mereka tidak dapat membedakan antara dusta yang berat dengan kebenaran yang terang benderang. Hati yang demikian hanya bisa dibersihkan dengan tobat yang sempurna.",
-        short:
-          "Sekali-kali tidak demikian! Al-Qur’an adalah kalam dan wahyu Allah kepada Nabi Muhammad. Bahkan apa yang mereka kerjakan itu, yaitu kekufuran dan maksiat, telah menutupi hati mereka sehingga tidak mampu membedakan antara yang hak dan batil.",
+        footnotes: null,
+        text: "Kenyataannya bukan seperti yang dibayangkan oleh orang-orang yang mendustakan ayat-ayat itu. Justru perbuatan maksiat yang pernah mereka lakukan telah mengalahkan dan menutup fungsi akal mereka itu, sehingga mereka tidak bisa melihat kebenaran dengan hati mereka.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u06d6 \u0628\u064e\u0644\u0652 \u06dc \u0631\u064e\u0627\u0646\u064e \u0639\u064e\u0644\u064e\u0649\u0670 \u0642\u064f\u0644\u064f\u0648\u0628\u0650\u0647\u0650\u0645 \u0645\u0651\u064e\u0627 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u064a\u064e\u0643\u0652\u0633\u0650\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Kallaa bal raana 'alaa quloobihim maa kaanoo yaksiboon",
-      },
+      arabic: "كَلَّا بَلْ رَانَ عَلَىٰ قُلُوبِهِم مَّا كَانُوا۟ يَكْسِبُونَ",
     },
     translation: {
-      en: "No! Rather, the stain has covered their hearts of that which they were earning.",
-      id: "Sekali-kali tidak! Bahkan apa yang mereka kerjakan itu telah menutupi hati mereka.",
+      en: {
+        footnotes: "[3] i.e., their sins and evil deeds.",
+        text: "No indeed! Their hearts have been stained by what they used to commit[3]!",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekali-kali tidak! Bahkan apa yang mereka kerjakan itu telah menutupi hati mereka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5863",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5863.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5863.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 235,
       juz: 30,
       manzil: 7,
       page: 588,
       ruku: 525,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5863,
@@ -106,40 +91,33 @@ export const quranSurah83Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menjelaskan bahwa orang-orang kafir yang tidak mau mengakui Al-Qur'an sebagai wahyu Allah terhalang dari rahmat-Nya di dunia dan akhirat. Mereka terhalang dari nikmat terbesar bagi seorang hamba, yaitu memandang dan melihat Allah di akhirat. Imam Syafi'i mengatakan ayat ini bisa dijadikan dalil bahwa orang-orang Mukmin tidak akan terhalangi dari memandang Allah di akhirat, sebagaimana firman-Nya:\n\nWajah-wajah (orang mukmin) pada hari itu berseri-seri, memandang Tuhannya. (al-Qiyamah/75: 22-23)",
-        short:
-          "Sekali-kali tidak! Sesungguhnya mereka yang kafir dan berbuat maksiat pada hari pembalasan itu benar-benar terhalang dari rahmat Tuhannya. Mereka tidak mendapatkan rahmat Allah dan tidak pula mampu melihat-Nya di akhirat nanti.",
+        footnotes: null,
+        text: " Sungguh, mereka akan terhalangi untuk melihat kepada Tuhan mereka pada hari Kiamat.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0639\u064e\u0646 \u0631\u0651\u064e\u0628\u0651\u0650\u0647\u0650\u0645\u0652 \u064a\u064e\u0648\u0652\u0645\u064e\u0626\u0650\u0630\u064d \u0644\u0651\u064e\u0645\u064e\u062d\u0652\u062c\u064f\u0648\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Kallaaa innahum 'ar Rabbihim yawma'izil lamah jooboon",
-      },
+      arabic: "كَلَّآ إِنَّهُمْ عَن رَّبِّهِمْ يَوْمَئِذٍ لَّمَحْجُوبُونَ",
     },
     translation: {
-      en: "No! Indeed, from their Lord, that Day, they will be partitioned.",
-      id: "Sekali-kali tidak! Sesungguhnya mereka pada hari itu benar-benar terhalang dari (melihat) Tuhannya.",
+      en: {
+        footnotes: "[4] As a punishment, since the believers will see Him.",
+        text: "No indeed! On that Day they will be barred from seeing their Lord[4].",
+      },
+      id: {
+        footnotes:
+          "[901] Sekali-kali tidak seperti apa yang mereka katakan bahwa mereka dekat pada sisi Tuhan.",
+        text: "Sekali-kali tidak![901] Sesungguhnya mereka pada hari itu benar-benar terhalang dari (melihat) Tuhannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5864",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5864.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5864.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 235,
       juz: 30,
       manzil: 7,
       page: 588,
       ruku: 525,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5864,
@@ -147,40 +125,32 @@ export const quranSurah83Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Setelah dijauhkan dari rahmat Allah dan tidak dapat mencapai cita-cita yang diangan-angankannya pada hari pembalasan, orang-orang kafir itu benar-benar masuk neraka Jahim yang sangat panas.",
-        short:
-          "Setelah terhalang dari rahmat Allah, kemudian sesungguhnya mereka yang ingkar dan berbuat maksiat itu benar-benar masuk neraka yang penuh siksa mengerikan.",
+        footnotes: null,
+        text: "Kemudian sungguh mereka akan masuk ke dalam neraka, mereka akan menderita karena panasnya.",
       },
     },
     text: {
-      arab: "\u062b\u064f\u0645\u0651\u064e \u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0635\u064e\u0627\u0644\u064f\u0648 \u0627\u0644\u0652\u062c\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Summa innahum lasaa lul jaheem",
-      },
+      arabic: "ثُمَّ إِنَّهُمْ لَصَالُوا۟ ٱلْجَحِيمِ",
     },
     translation: {
-      en: "Then indeed, they will [enter and] burn in Hellfire.",
-      id: "Kemudian, sesungguhnya mereka benar-benar masuk neraka.",
+      en: {
+        footnotes: "",
+        text: "They will then surely enter the Blazing Fire,",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian, sesungguhnya mereka benar-benar masuk neraka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5865",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5865.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5865.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 235,
       juz: 30,
       manzil: 7,
       page: 588,
       ruku: 525,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5865,
@@ -188,40 +158,32 @@ export const quranSurah83Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian dikatakan kepada mereka ucapan yang mengandung cercaan sehingga penderitaan mereka itu berlipat ganda. Di samping penderitaan fisik, mereka juga menderita secara psikis (kejiwaan). Inilah azab yang selalu mereka dustakan ketika di dunia. Inilah balasan terhadap sikap mereka mendustakan berita-berita rasul yang benar, seperti anggapan mereka bahwa manusia tidak akan dibangkitkan kembali, Al-Qur'an itu dongengan orang-orang dahulu, Muhammad saw itu hanya seorang tukang sihir atau pendusta, dan berbagai macam tuduhan lainnya.\n\nDi akhirat nanti, akan menjadi jelas bagaimana fakta kebenaran yang sesungguhnya yang dapat disaksikan oleh pancaindra mereka. Alangkah sedihnya dirasakan oleh seorang yang sedang menderita azab bila diberi kecaman yang sangat menusuk hatinya, padahal ia sempat menempuh jalan keselamatannya jika ia benar-benar beriman dan bertakwa.",
-        short:
-          "Kemudian dikatakan kepada mereka dengan nada geram, “Inilah azab yang dahulu kamu dustakan.” Pada saat itulah mereka yang dahulu mendustakan hari akhirat merasakan sakitnya siksa, kerugian, dan penyesalan yang mendalam.",
+        footnotes: null,
+        text: "Kemudian dikatakan kepada mereka pada Hari Kiamat sebagai bentuk hinaan terhadap mereka, “Siksa yang sedang kalian rasakan ini adalah balasan dari pendustaan kalian terhadapnya di dunia ketika Rasul kalian mengabarkannya kepada kalian.”",
       },
     },
     text: {
-      arab: "\u062b\u064f\u0645\u0651\u064e \u064a\u064f\u0642\u064e\u0627\u0644\u064f \u0647\u064e\u0670\u0630\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0643\u064f\u0646\u062a\u064f\u0645 \u0628\u0650\u0647\u0650 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Summa yuqaalu haazal lazee kuntum bihee tukazziboon",
-      },
+      arabic: "ثُمَّ يُقَالُ هَٰذَا ٱلَّذِى كُنتُم بِهِۦ تُكَذِّبُونَ",
     },
     translation: {
-      en: 'Then it will be said [to them], "This is what you used to deny."',
-      id: "Kemudian, dikatakan (kepada mereka), “Inilah (azab) yang dahulu kamu dustakan.”",
+      en: {
+        footnotes: "",
+        text: "then they will be told, “This is what you used to deny.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Kemudian, dikatakan (kepada mereka), "Inilah (azab) yang dahulu kamu dustakan."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5866",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5866.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5866.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 235,
       juz: 30,
       manzil: 7,
       page: 588,
       ruku: 525,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5866,
@@ -229,20 +191,23 @@ export const quranSurah83Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah membantah tuduhan orang-orang durhaka yang mengingkari hari kebangkitan dan kebenaran Al-Qur'an. Sekali-kali tidak demikian. Sesungguhnya kitab orang-orang yang berbakti disimpan dalam suatu tempat yang tinggi yang diberi nama 'Illiyyun, yang disaksikan oleh malaikat-malaikat muqarrabin (yang dekat dengan Allah).",
-        short:
-          "Sekali-kali tidak! Tidaklah sama keadaan orang kafir dan orang mukmin di akhirat nanti. Sesungguhnya catatan perbuatan orang-orang yang berbakti, beriman, dan beramal saleh benar-benar tersimpan dalam ‘Illiyyin.",
+        footnotes: null,
+        text: "Sekali-kali tidak, kenyataannya tidak seperti yang kalian bayangkan bahwa tidak ada hari perhitungan dan pembalasan amalan. Sesungguhnya kitab orang-orang yang melakukan ketaatan benar-benar berada di 'illiyyūn.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u0625\u0650\u0646\u0651\u064e \u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0627\u0644\u0652\u0623\u064e\u0628\u0652\u0631\u064e\u0627\u0631\u0650 \u0644\u064e\u0641\u0650\u064a \u0639\u0650\u0644\u0651\u0650\u064a\u0651\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Kallaaa inna kitaabal abraari lafee'Illiyyeen",
-      },
+      arabic: "كَلَّآ إِنَّ كِتَٰبَ ٱلْأَبْرَارِ لَفِى عِلِّيِّينَ",
     },
     translation: {
-      en: "No! Indeed, the record of the righteous is in 'illiyyun.",
-      id: "Sekali-kali tidak! Sesungguhnya catatan orang-orang yang berbakti benar-benar tersimpan dalam ’Illiyyin.",
+      en: {
+        footnotes: "",
+        text: "No indeed! The record of the righteous is certainly in ‘illiyyīn –",
+      },
+      id: {
+        footnotes:
+          "[902] Nama kitab yang mencatat segala perbuatan orang-orang yang berbakti.",
+        text: "Sekali-kali tidak! Sesungguhnya catatan orang-orang yang berbakti benar-benar tersimpan dalam 'Illiyyīn.[902]",
+      },
     },
   },
 ];

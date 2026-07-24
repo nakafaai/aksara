@@ -1,118 +1,54 @@
-import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
-import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
-  CorpusSourcePathSchema,
   GitCommitShaSchema,
-  PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import {
-  MaterialKeySchema,
-  MaterialLessonProjectionSchema,
-  MaterialSectionSchema,
-} from "@nakafa/aksara-contracts/projection/material";
-import {
-  ContentDeleteSchema,
-  ContentUpsertSchema,
-} from "@nakafa/aksara-contracts/release";
-import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
-import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
-import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import {
+  inheritContentSnapshots,
+  PublicationScopeSchema,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
-import type { PreparedContentUpsert } from "#publisher/preparation/spec";
-import { materialGraph } from "#test/graph";
-import { testRendererDomains } from "#test/renderer";
+import {
+  record as baseTransition,
+  contentRecord,
+  rendererManifest,
+  head as resultHead,
+} from "#test/publication";
+import { makeProgramSnapshotFixture } from "#test/snapshot";
 
-const rendererManifest = await Effect.runPromise(
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
-    domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
-    }),
-  })
-);
-const source = CompileDocumentSourceSchema.make({
-  contentKey: ContentKeySchema.make("test:prepare:a"),
-  locale: "en",
-  rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
-  rendererDomain: "mathematics",
-  sourcePath: CorpusSourcePathSchema.make(
-    "packages/corpus/test/prepare/a/en.mdx"
-  ),
-});
-const { payload } = await Effect.runPromise(
-  compileContent({ ...source, rendererManifest })
-);
-const projection = MaterialLessonProjectionSchema.make({
-  contentKey: source.contentKey,
-  graph: materialGraph(source.locale, "material", "test-a"),
-  kind: "subject-lesson",
-  locale: source.locale,
-  materialKey: MaterialKeySchema.make("lesson.test.material"),
-  metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
-  order: 1,
-  parentPath: PublicPathSchema.make("subjects/test/material"),
-  publicPath: PublicPathSchema.make("subjects/test/material/a"),
-  sectionKey: MaterialSectionSchema.make("test-a"),
-  sitemap: true,
-});
-const baseRecord: PreparedContentUpsert = {
-  change: ContentUpsertSchema.make({
-    artifactHash: hashCompiledContentPayload(payload),
-    contentKey: source.contentKey,
-    delivery: "public",
-    family: "material",
-    locale: source.locale,
-    operation: "upsert",
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  }),
-  payload,
-  projection,
-  source,
-};
 const aksaraSha = GitCommitShaSchema.make("a".repeat(40));
-const resultHead = MaterialHeadSchema.make({
-  artifactHash: baseRecord.change.artifactHash,
-  compilerConfigHash: payload.compilerConfigHash,
-  contentKey: baseRecord.change.contentKey,
-  delivery: baseRecord.change.delivery,
-  family: "material",
-  locale: baseRecord.change.locale,
-  projectionHash: hashContentProjection(projection),
-  publicPath: projection.publicPath,
-  rendererDomain: baseRecord.change.rendererDomain,
-  sourceHash: payload.sourceHash,
-  sourcePath: baseRecord.change.sourcePath,
-});
-const baseTransition = {
-  prior: {
-    contentKey: baseRecord.change.contentKey,
-    family: "material",
-    locale: baseRecord.change.locale,
-    state: "absent" as const,
-  },
-  record: baseRecord,
-};
 const emptySnapshots = {
   previousSnapshots: null,
   snapshotManifests: () => Stream.empty,
   snapshotRows: () => Stream.empty,
 } as const;
+const scope = PublicationScopeSchema.make({
+  content: [
+    {
+      contentKey: contentRecord.change.contentKey,
+      family: "material",
+      locale: contentRecord.change.locale,
+    },
+    {
+      contentKey: ContentKeySchema.make("test:publication:z"),
+      family: "material",
+      locale: "en",
+    },
+  ],
+  families: [],
+  snapshots: [],
+});
 
 /** Runs preparation with one replayable in-memory test protocol source. */
-function prepare<E, R>(records: () => Stream.Stream<unknown, E, R>) {
+function prepare<E, R>(
+  records: () => Stream.Stream<unknown, E, R>,
+  snapshotManifests: () => Stream.Stream<unknown, E, R> = () => Stream.empty
+) {
   return prepareContentRelease({
     aksaraSha,
     baseManifestHash: null,
@@ -125,6 +61,8 @@ function prepare<E, R>(records: () => Stream.Stream<unknown, E, R>) {
     rendererManifest,
     result: () => Stream.make(resultHead),
     routes: () => Stream.empty,
+    scope,
+    snapshotManifests,
   });
 }
 
@@ -134,13 +72,13 @@ describe("prepareContentRelease", () => {
       prior: {
         head: {
           ...resultHead,
-          contentKey: ContentKeySchema.make("test:prepare:z"),
+          contentKey: ContentKeySchema.make("test:publication:z"),
         },
         state: "material" as const,
       },
       record: {
         change: ContentDeleteSchema.make({
-          contentKey: ContentKeySchema.make("test:prepare:z"),
+          contentKey: ContentKeySchema.make("test:publication:z"),
           family: "material",
           locale: "en",
           operation: "delete",
@@ -165,7 +103,7 @@ describe("prepareContentRelease", () => {
       snapshots: inheritContentSnapshots(null),
     });
     expect([...items].map(({ index }) => index)).toEqual([0, 1]);
-    expect([...projections]).toEqual([projection]);
+    expect([...projections]).toEqual([contentRecord.projection]);
     expect([...snapshotManifests]).toEqual([]);
     expect([...snapshotRows]).toEqual([]);
     expect(prepared.rendererManifest).toEqual(rendererManifest);
@@ -203,10 +141,25 @@ describe("prepareContentRelease", () => {
         },
         result: () => Stream.make(resultHead),
         routes: () => Stream.empty,
+        scope,
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("RendererManifestHashMismatchError");
     expect(invoked).toBe(false);
+  });
+
+  it("rejects a replacement manifest outside the signed scope", async () => {
+    const snapshot = makeProgramSnapshotFixture();
+    const error = await Effect.runPromise(
+      prepare(
+        () => Stream.make(baseTransition),
+        snapshot.snapshotManifests
+      ).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "PreparedSnapshotScopeError",
+      family: "program",
+    });
   });
 
   it("rejects reuse of the base release identity before reading records", async () => {
@@ -228,6 +181,7 @@ describe("prepareContentRelease", () => {
         rendererManifest,
         result: () => Stream.make(resultHead),
         routes: () => Stream.empty,
+        scope,
         snapshotManifests: () => Stream.empty,
         snapshotRows: () => Stream.empty,
       }).pipe(Effect.flip)
@@ -267,6 +221,7 @@ describe("prepareContentRelease", () => {
         rendererManifest,
         result: () => Stream.make(resultHead),
         routes: () => Stream.empty,
+        scope,
       }).pipe(Effect.flip)
     );
 

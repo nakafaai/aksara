@@ -14,12 +14,14 @@ import {
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionBankIndex } from "@nakafa/aksara-corpus/question-bank/path";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
+import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import {
   mapQuestionSourceError,
@@ -81,7 +83,8 @@ export type QuestionPublicationStreamError<E> =
   | QuestionHeadFamilyError
   | QuestionHeadOrderError
   | QuestionMetadataError
-  | QuestionSourceError;
+  | QuestionSourceError
+  | PublicationScopeIdentityError;
 
 /** Authoritative question plan consumed by whole-catalog release composition. */
 export interface QuestionPublication {
@@ -101,6 +104,7 @@ export interface QuestionPublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
+  readonly scope?: PublicationScope | undefined;
 }
 
 type RendererManifestError = Effect.Effect.Error<
@@ -244,6 +248,7 @@ export const prepareQuestionPublication: <E, R>(
     entries,
     published: validatePublishedHeads(input.published, questionBanks),
     rendererManifest,
+    scope: input.scope,
     sources,
   });
   const spool = yield* createReplaySpool({

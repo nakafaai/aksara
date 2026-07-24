@@ -12,9 +12,14 @@ import {
   RendererManifestEnvelopeSchema,
   RendererManifestHashComputeError,
   RendererManifestHashMismatchError,
+  RendererPublishedDomainsSchema,
 } from "#contracts/renderer/contract";
-import { RendererDomainSchema } from "#contracts/renderer/domain";
+import {
+  type RendererDomain,
+  RendererDomainSchema,
+} from "#contracts/renderer/domain";
 import { normalizeRendererSelection } from "#contracts/renderer/selection";
+import { compareCodeUnits } from "#contracts/text/order";
 
 const CapabilityCreationFields = {
   authoringComponents: Schema.Array(RendererComponentRequirementSchema),
@@ -25,6 +30,7 @@ const RendererManifestCreationSchema = Schema.Struct({
   domains: Schema.Array(
     Schema.Struct({ name: RendererDomainSchema, ...CapabilityCreationFields })
   ),
+  publishedDomains: Schema.Array(RendererDomainSchema),
 });
 const RendererManifestWireSchema = Schema.Struct({
   ...RendererManifestCreationSchema.fields,
@@ -33,11 +39,23 @@ const RendererManifestWireSchema = Schema.Struct({
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
 });
 
+/** Sorts and decodes the exact route domains exposed by the deployed app. */
+const normalizePublishedDomains = Effect.fn(
+  "AksaraContracts.normalizePublishedDomains"
+)((domains: readonly RendererDomain[]) =>
+  decodeContract(
+    RendererPublishedDomainsSchema,
+    "RendererPublishedDomains",
+    [...domains].sort(compareCodeUnits)
+  )
+);
+
 /** Hashes the canonical base and domain-scoped renderer contract. */
 const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(
   (input: {
     readonly base: RendererManifestEnvelope["base"];
     readonly domains: readonly RendererDomainCapability[];
+    readonly publishedDomains: RendererManifestEnvelope["publishedDomains"];
   }) =>
     Effect.try({
       catch: (cause) => new RendererManifestHashComputeError({ cause }),
@@ -59,9 +77,14 @@ export const createRendererManifest = Effect.fn(
     "RendererManifestCreation",
     input
   ).pipe(
-    Effect.flatMap(normalizeRendererSelection),
-    Effect.flatMap((contract) =>
-      hashRendererContract(contract).pipe(
+    Effect.flatMap((wire) =>
+      Effect.all({
+        contract: normalizeRendererSelection(wire),
+        publishedDomains: normalizePublishedDomains(wire.publishedDomains),
+      })
+    ),
+    Effect.flatMap(({ contract, publishedDomains }) =>
+      hashRendererContract({ ...contract, publishedDomains }).pipe(
         Effect.flatMap((hash) =>
           decodeContract(
             RendererManifestEnvelopeSchema,
@@ -70,6 +93,7 @@ export const createRendererManifest = Effect.fn(
               ...contract,
               format: RENDERER_MANIFEST_FORMAT,
               hash,
+              publishedDomains,
               rendererContractVersion: RENDERER_CONTRACT_VERSION,
             }
           )
@@ -89,9 +113,12 @@ export const validateRendererManifestHash = Effect.fn(
     input
   ).pipe(
     Effect.flatMap((wire) =>
-      normalizeRendererSelection(wire).pipe(
-        Effect.flatMap((contract) =>
-          hashRendererContract(contract).pipe(
+      Effect.all({
+        contract: normalizeRendererSelection(wire),
+        publishedDomains: normalizePublishedDomains(wire.publishedDomains),
+      }).pipe(
+        Effect.flatMap(({ contract, publishedDomains }) =>
+          hashRendererContract({ ...contract, publishedDomains }).pipe(
             Effect.filterOrFail(
               (actualHash) => actualHash === wire.hash,
               (actualHash) =>
@@ -104,7 +131,7 @@ export const validateRendererManifestHash = Effect.fn(
               decodeContract(
                 RendererManifestEnvelopeSchema,
                 "RendererManifestEnvelope",
-                { ...wire, ...contract }
+                { ...wire, ...contract, publishedDomains }
               )
             )
           )

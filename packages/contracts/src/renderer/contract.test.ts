@@ -40,11 +40,13 @@ function domainCapability(name: RendererDomain) {
 }
 
 const domains = RENDERER_DOMAINS.map(domainCapability);
+const publishedDomains = ["mathematics"] as const;
 const manifest = {
   base,
   domains,
   format: "nakafa-mdx-renderer-v1",
   hash,
+  publishedDomains,
   rendererContractVersion: "1.0.0",
 } as const;
 
@@ -90,6 +92,36 @@ describe("renderer contract", () => {
         "Expected every renderer domain in canonical order."
       );
     }
+  });
+
+  it("requires unique published domains in canonical order", () => {
+    const decode = Schema.decodeUnknownEither(RendererManifestEnvelopeSchema);
+    const outOfOrder = decode({
+      ...manifest,
+      publishedDomains: ["mathematics", "chemistry"],
+    });
+    expect(
+      Either.isRight(
+        decode({
+          ...manifest,
+          publishedDomains: ["chemistry", "mathematics"],
+        })
+      )
+    ).toBe(true);
+    expect(Either.isLeft(outOfOrder)).toBe(true);
+    if (Either.isLeft(outOfOrder)) {
+      expect(String(outOfOrder.left)).toContain(
+        "Expected unique published renderer domains in canonical order."
+      );
+    }
+    expect(
+      Either.isLeft(
+        decode({
+          ...manifest,
+          publishedDomains: ["mathematics", "mathematics"],
+        })
+      )
+    ).toBe(true);
   });
 
   it("keeps base names disjoint while allowing cross-domain names", () => {
@@ -147,14 +179,19 @@ describe("renderer contract", () => {
 
   it("canonicalizes domain order independently from caller order", () => {
     const expected =
-      '["nakafa-mdx-renderer-v1","1.0.0",{"authoringComponents":[{"name":"BlockMath","version":1}],"supportedComponents":[{"name":"BlockMath","version":1}]},[{"name":"ai-ds","authoringComponents":[],"supportedComponents":[]},{"name":"biology","authoringComponents":[],"supportedComponents":[]},{"name":"chemistry","authoringComponents":[{"name":"AtomShellLab","version":1}],"supportedComponents":[{"name":"AtomShellLab","version":1}]},{"name":"mathematics","authoringComponents":[{"name":"FunctionMachine","version":1}],"supportedComponents":[{"name":"FunctionMachine","version":1}]},{"name":"physics","authoringComponents":[],"supportedComponents":[]},{"name":"politics","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-general","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-math","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-plain","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-quant","authoringComponents":[],"supportedComponents":[]},{"name":"tka-math","authoringComponents":[],"supportedComponents":[]}]]';
-    expect(canonicalizeRendererManifestContract({ base, domains })).toBe(
-      expected
-    );
+      '["nakafa-mdx-renderer-v1","1.0.0",{"authoringComponents":[{"name":"BlockMath","version":1}],"supportedComponents":[{"name":"BlockMath","version":1}]},[{"name":"ai-ds","authoringComponents":[],"supportedComponents":[]},{"name":"biology","authoringComponents":[],"supportedComponents":[]},{"name":"chemistry","authoringComponents":[{"name":"AtomShellLab","version":1}],"supportedComponents":[{"name":"AtomShellLab","version":1}]},{"name":"mathematics","authoringComponents":[{"name":"FunctionMachine","version":1}],"supportedComponents":[{"name":"FunctionMachine","version":1}]},{"name":"physics","authoringComponents":[],"supportedComponents":[]},{"name":"politics","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-general","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-math","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-plain","authoringComponents":[],"supportedComponents":[]},{"name":"snbt-quant","authoringComponents":[],"supportedComponents":[]},{"name":"tka-math","authoringComponents":[],"supportedComponents":[]}],["mathematics"]]';
+    expect(
+      canonicalizeRendererManifestContract({
+        base,
+        domains,
+        publishedDomains,
+      })
+    ).toBe(expected);
     expect(
       canonicalizeRendererManifestContract({
         base,
         domains: [...domains].reverse(),
+        publishedDomains,
       })
     ).toBe(expected);
     const chemistry = findDomain("chemistry");

@@ -24,6 +24,7 @@ describe("release signing", () => {
     expect(canonical).toContain(`"resultDigest":"${manifest.resultDigest}"`);
     expect(canonical).toContain(`"rollbackCount":${manifest.rollbackCount}`);
     expect(canonical).toContain(`"routeCount":${manifest.routeCount}`);
+    expect(canonical).toContain(`"scope":${JSON.stringify(manifest.scope)}`);
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
       `nakafa.aksara.content-release.v1\n${manifestHash}\n${canonical}`
     );

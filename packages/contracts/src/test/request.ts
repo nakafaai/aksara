@@ -45,6 +45,7 @@ export const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: testRendererDomains({}),
+    publishedDomains: ["mathematics"],
   })
 );
 
@@ -70,6 +71,14 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
     rollbackDigest: hash,
     routeCount: 0,
     routeDigest: hash,
+    scope: {
+      content: [
+        { contentKey: "test:transport", family: "material", locale: "en" },
+        { contentKey: "test:transport", family: "material", locale: "id" },
+      ],
+      families: [],
+      snapshots: ["program"],
+    },
     snapshots: inheritContentSnapshots(null),
     upsertCount: 1,
   },

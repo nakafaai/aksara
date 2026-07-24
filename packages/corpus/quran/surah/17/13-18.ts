@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah17Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2042",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2042.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2042.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 113,
       juz: 15,
       manzil: 4,
       page: 283,
       ruku: 241,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2042,
@@ -24,40 +25,34 @@ export const quranSurah17Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Allah swt menjelaskan bahwa masing-masing manusia dicatat amal perbuatannya dalam suatu buku catatan dan tetap tercatat di dalamnya seperti kalung yang tetap berada di leher mereka. Amal perbuatan tersebut mencakup amal baik dan amal buruk, besar maupun kecil, yang diperbuat manusia atas dasar pilihannya sendiri.\n\nPerumpamaan tetapnya catatan-catatan mereka dalam kitab itu dengan tetapnya kalung pada leher manusia, sebagai kiasan bahwa catatan itu akan tetap terpelihara, tidak akan hilang atau terhapus, dan selalu dinisbahkan pada seseorang.\n\nSelanjutnya Allah swt menegaskan bahwa kitab yang mengandung catatan amal perbuatan manusia itu akan dikeluarkan dari simpanannya pada hari kiamat, dan akan diperlihatkan kepada mereka, sehingga mereka dapat mengetahui isinya secara terbuka.\n\nDalam ayat yang lain dijelaskan bahwa tugas pencatatan amal perbuatan manusia itu diurus oleh malaikat. Allah swt berfirman:\n\nDan sesungguhnya bagi kamu ada (malaikat-malaikat) yang mengawasi (pekerjaanmu), yang mulia (di sisi Allah) dan yang mencatat (amal perbuatanmu), mereka mengetahui apa yang kamu kerjakan. (al-Infithar/82: 10-12)\n\nHadis Nabi Muhammad berikut menerangkan lebih jelas hal yang sama: \n\nDiriwayatkan dari Al-hasan bahwa Rasulullah saw bersabda, "Allah berfirman kepada Bani Adam, "Hai Bani Adam! Kami telah membuka lembaran-lembaran Kitab, dan telah ditunjuk dua malaikat yang mulia sebagai wakil: satu di sebelah kanan, dan satu lagi di sebelah kiri. Adapun yang di sebelah kanan, pekerjaannya mencatat amal baikmu, sedang yang di sebelah kiri mencatat amal perbuatan burukmu. Maka berbuatlah menurut kesukaanmu amal perbuatan yang banyak atau yang sedikit sehingga ajal datang merenggutmu. Dan apabila engkau telah mati, Aku lipat lembaran-lembaran kitab itu dan Aku kalungkan ke lehermu dan tetap bersamamu dalam kubur hingga hari kiamat. Pada hari itu, kitab itu akan dikeluarkan dan engkau menemuinya dalam keadaan terbuka. Bacalah kitab catatan itu niscaya pada hari itu engkau akan mengetahui bahwa kitab itu cukup sebagai penghisab amal perbuatanmu. (Riwayat Ibnu Jarir ath-thabari)',
-        short:
-          'Ayat yang lalu ditutup dengan pernyataan bahwa segala sesuatu telah kami rinci dan jelaskan. Salah satu yang dirinci dan dijelaskannya berupa amal-amal perbuatannya. Ayat ini menyatakan, "Dan setiap manusia itu telah Kami tetapkan amal perbuatannya sebagaimana tetapnya kalung pada lehernya, tidak dapat terpisah satu dengan lainnya. Dan Kami keluarkan baginya pada hari kiamat sebuah kitab yang mencatat semua amalnya di dunia yang dijumpainya kitab itu terbuka, tidak ada sesuatu yang ditutupi atau tersembunyi."',
+        footnotes: null,
+        text: "Setiap manusia telah Kami jadikan amal perbuatan yang ia kerjakan senantiasa melekat pada dirinya laksana melekatnya kalung pada leher, ia tidak akan terpisah darinya hingga amal perbuatannya tersebut dihisab. Lalu pada hari Kiamat kelak Kami keluarkan baginya satu kitab yang tercatat di dalamnya semua amal perbuatannya yang baik dan buruk, lalu ia akan menyaksikan kitab ini terbuka dan terbentang di hadapannya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0643\u064f\u0644\u0651\u064e \u0625\u0650\u0646\u0633\u064e\u0627\u0646\u064d \u0623\u064e\u0644\u0652\u0632\u064e\u0645\u0652\u0646\u064e\u0627\u0647\u064f \u0637\u064e\u0627\u0626\u0650\u0631\u064e\u0647\u064f \u0641\u0650\u064a \u0639\u064f\u0646\u064f\u0642\u0650\u0647\u0650 \u06d6 \u0648\u064e\u0646\u064f\u062e\u0652\u0631\u0650\u062c\u064f \u0644\u064e\u0647\u064f \u064a\u064e\u0648\u0652\u0645\u064e \u0627\u0644\u0652\u0642\u0650\u064a\u064e\u0627\u0645\u064e\u0629\u0650 \u0643\u0650\u062a\u064e\u0627\u0628\u064b\u0627 \u064a\u064e\u0644\u0652\u0642\u064e\u0627\u0647\u064f \u0645\u064e\u0646\u0634\u064f\u0648\u0631\u064b\u0627",
-      transliteration: {
-        en: "Wa kulla insaanin alzamnaahu taaa'irahoo fe 'unuqihee wa nukhriji lahoo Yawmal Qiyaamati kitaabany yalqaahu manshooraa",
-      },
+      arabic:
+        "وَكُلَّ إِنسَٰنٍ أَلْزَمْنَٰهُ طَٰٓئِرَهُۥ فِى عُنُقِهِۦ وَنُخْرِجُ لَهُۥ يَوْمَ ٱلْقِيَٰمَةِ كِتَٰبًا يَلْقَىٰهُ مَنشُورًا",
     },
     translation: {
-      en: "And [for] every person We have imposed his fate upon his neck, and We will produce for him on the Day of Resurrection a record which he will encounter spread open.",
-      id: "Dan setiap manusia telah Kami kalungkan (catatan) amal perbuatannya di lehernya. Dan pada hari Kiamat Kami keluarkan baginya sebuah kitab dalam keadaan terbuka.",
+      en: {
+        footnotes:
+          "[11] i.e., after showing guidance for him, he is responsible for his own destiny.",
+        text: "We have bound every man’s deeds to his neck[11]. On the Day of Resurrection, We will bring forth for him a record which he will find spread open.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan setiap manusia telah Kami kalungkan (catatan) amal perbuatannya di lehernya. Dan pada hari Kiamat Kami keluarkan baginya sebuah kitab dalam keadaan terbuka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2043",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2043.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2043.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 113,
       juz: 15,
       manzil: 4,
       page: 283,
       ruku: 241,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2043,
@@ -65,40 +60,32 @@ export const quranSurah17Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menjelaskan bahwa pada hari kiamat, manusia tidak dapat memungkiri catatan-catatan itu, karena pencatatnya adalah para malaikat yang memang ditunjuk oleh Allah, yang pekerjaannya khusus mencatat amal perbuatan manusia. Itulah sebabnya maka Allah swt menegaskan di akhir ayat bahwa cukuplah pada hari itu diri mereka sendiri sebagai penghisab amal perbuatan mereka. Maksudnya semua catatan yang termuat dalam kitab itu cukup akurat sebagai bukti karena apa yang tercatat dalam kitab itu merupakan rekaman dari amal perbuatan mereka. Seolah-olah mereka sendirilah yang membuat catatan-catatan itu. Firman Allah:\n\nDan diletakkanlah kitab (catatan amal), lalu engkau akan melihat orang yang berdosa merasa ketakutan terhadap apa yang (tertulis) di dalamnya, dan mereka berkata, "Betapa celaka kami, kitab apakah ini, tidak ada yang tertinggal, yang kecil dan yang besar melainkan tercatat semuanya," dan mereka dapati (semua) apa yang telah mereka kerjakan (tertulis). Dan Tuhanmu tidak menzalimi seorang jua pun. (al-Kahf/18: 49)\n\nDengan demikian, tidak perlu adanya bukti-bukti lain sebagai penguat karena semua catatan yang tergores dalam kitab itu menjadi bukti yang sangat meyakinkan, sehingga tidak bisa ditambah atau dikurangi lagi.',
-        short:
-          'Pada saat itu akan dinyatakan kepadanya, "Bacalah kitabmu yang terbuka di hadapanmu dan cukuplah dirimu sendiri pada hari ini sebagai penghitung atas dirimu yang menghitung dan menilai perbuatanmu di dunia. Kamu tidak dapat mengingkari perbuatanmu karena semuanya telah ditampakkan dengan nyata di dalam kitabmu."',
+        footnotes: null,
+        text: 'Pada hari itu Kami akan katakan padanya, "Wahai manusia! Bacalah kitab catatan amalmu dan silakan menghisab sendiri amal perbuatanmu. Pada hari Kiamat ini cukuplah dirimu sebagai penghitung atas amalanmu sendiri."',
       },
     },
     text: {
-      arab: "\u0627\u0642\u0652\u0631\u064e\u0623\u0652 \u0643\u0650\u062a\u064e\u0627\u0628\u064e\u0643\u064e \u0643\u064e\u0641\u064e\u0649\u0670 \u0628\u0650\u0646\u064e\u0641\u0652\u0633\u0650\u0643\u064e \u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064e \u062d\u064e\u0633\u0650\u064a\u0628\u064b\u0627",
-      transliteration: {
-        en: "Iqra kitaabak kafaa binafsikal Yawma 'alaika haseebaa",
-      },
+      arabic: "ٱقْرَأْ كِتَٰبَكَ كَفَىٰ بِنَفْسِكَ ٱلْيَوْمَ عَلَيْكَ حَسِيبًا",
     },
     translation: {
-      en: '[It will be said], "Read your record. Sufficient is yourself against you this Day as accountant."',
-      id: "“Bacalah kitabmu, cukuplah dirimu sendiri pada hari ini sebagai penghitung atas dirimu.”",
+      en: {
+        footnotes: "[12] Everyone will be dealt with justly.",
+        text: "[It will be said,] “Read your record; this Day you are sufficient to take account of yourself[12].”",
+      },
+      id: {
+        footnotes: "",
+        text: '"Bacalah kitabmu, cukuplah dirimu sendiri pada hari ini sebagai penghitung atas amalmu."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2044",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2044.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2044.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 113,
       juz: 15,
       manzil: 4,
       page: 283,
       ruku: 241,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2044,
@@ -106,40 +93,33 @@ export const quranSurah17Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam sebuah riwayat yang berasal dari Ibnu \'Abbas dinyatakan bahwa ayat ini turun berkenaan dengan Walid bin Mugirah ketika ia berkata kepada penduduk Mekah, "Ingkarilah Muhammad dan sayalah yang menanggung dosamu."\n\nDalam ayat ini, Allah swt menegaskan bahwa barang siapa yang berbuat sesuai dengan hidayah Allah dan tuntunan Rasulullah, yaitu melaksanakan perintah-perintah-Nya dan menjauhi larangan-larangan-Nya, berarti dia telah berbuat untuk menyelamatkan dirinya sendiri. Ia akan memperoleh catatan tentang amal perbuatan baiknya di dalam kitabnya. Ia akan merasa bahagia karena akan mendapatkan keridaan Allah, dan menerima imbalan yang berlimpah, yaitu surga dengan berbagai kenikmatan yang serba menyenang-kan. Akan tetapi, barang siapa yang sesat, yaitu orang yang menyimpang dari bimbingan Al-Qur\'an, akan mengalami kerugian. Ia akan mendapatkan catatan tentang amal perbuatan buruknya di dalam kitab itu. Ia akan merasakan penyesalan yang tidak ada gunanya dan akan dimasukkan ke dalam neraka, sebagai balasan yang pantas baginya.\n\nSelanjutnya, Allah swt menegaskan bahwa pada hari itu orang yang berdosa tidak dapat memikul dosa orang lain. Tiap-tiap orang bertanggung jawab terhadap perbuatan buruknya sendiri, sehingga tidak mungkin sese-orang dibebani dosa selain dosanya sendiri. Mereka akan menerima balasan amal sesuai dengan berat ringan kejahatan yang mereka lakukan.\n\nApabila ada orang yang disiksa karena menyesatkan orang lain, sehingga dijatuhi hukuman sesuai dengan dosa orang yang disesatkan, bukan berarti orang yang menyesatkan itu menanggung dosa orang yang disesatkan. Akan tetapi, orang yang menyesatkan itu dianggap berdosa karena menyesatkan orang lain. Oleh sebab itu, ia dihukum sesuai dengan dosanya sendiri, dan ditambah dengan dosa menyesatkan orang.\n\nAllah swt berfirman:\n\n(Ucapan mereka) menyebabkan mereka pada hari Kiamat memikul dosa-dosanya sendiri secara sempurna, dan sebagian dosa-dosa orang yang mereka sesatkan yang tidak mengetahui sedikit pun (bahwa mereka disesatkan). (an-Nahl/16: 25)\n\nDan firman Allah:\n\nDan mereka benar-benar akan memikul dosa-dosa mereka sendiri, dan dosa-dosa yang lain bersama dosa mereka. (al-\'Ankabut/29: 13)\n\nDi akhir ayat ini, disebutkan bahwa Allah tidak akan mengazab seseorang atau suatu kaum sebelum mengutus seorang rasul. Maksudnya Allah tidak akan membebankan hukuman kepada orang-orang yang melakukan suatu perbuatan kecuali setelah mengutus seorang rasul untuk membacakan dan menerangkan ketentuan hukumannya. Dengan demikian, ayat ini dipandang sebagai asas legalitas dalam pidana Islam. Artinya, semua perbuatan yang diancam dengan hukuman haruslah terlebih dahulu diundangkan melalui sarana perundang-perundangan yang dapat menjamin bahwa peraturan ini dapat diketahui oleh seluruh rakyat. Hal itu juga berarti bahwa sosialisasi perundang-undangan merupakan hal yang penting.\n\nAyat ini juga mengandung maksud bahwa Allah tidak akan membinasa-kan umat karena dosanya, sebelum mengutus seorang utusan yang memberi peringatan dan menyampaikan syariat Allah kepada mereka, dan memberi ancaman jika mereka membangkang dan tetap dalam pembangkangannya.\n\nAllah swt berfirman:\n\nSetiap kali ada sekumpulan (orang-orang kafir) dilemparkan ke dalamnya, penjaga-penjaga (neraka itu) bertanya kepada mereka, "Apakah belum pernah ada orang yang datang memberi peringatan kepadamu (di dunia)?" Mereka menjawab, "Benar, sungguh, seorang pemberi peringatan telah datang kepada kami, tetapi kami mendustakan(nya) dan kami katakan, "Allah tidak menurunkan sesuatu apa pun, kamu sebenarnya dalam kesesatan yang besar." (al-Mulk/67: 8-9)\n\nDan firman-Nya:\n\nBukankah Kami telah memanjangkan umurmu untuk dapat berpikir bagi orang yang mau berpikir, padahal telah datang kepadamu seorang pemberi peringatan? Maka rasakanlah (azab Kami), dan bagi orang-orang zalim tidak ada seorang penolong pun. (Fathir/35: 37)',
-        short:
-          "Barang siapa mendapat hidayah sehingga ia berbuat sesuai dengan petunjuk Allah, maka sesungguhnya dia berbuat itu untuk keselamatan dan kebahagiaan dirinya sendiri; dan barang siapa yang sesat tidak mendapat petunjuk Allah maka sesungguhnya ia tersesat dari jalan yang benar dan yang demikian itu mendatangkan kerugian bagi dirinya sendiri. Dan seorang yang berdosa tidak dapat memikul dosa orang lain, yakni setiap orang memikul dosanya sendiri yang harus dipertanggungjawabkan di hadapan Allah. Perbuatan yang baik mendapat ganjaran dan perbuatan yang buruk mendapat siksaan yang pedih. Dan Kami tidak akan berbuat aniaya dengan menyiksa manusia sebelum Kami mengutus seorang rasul yang menunjukkan kepada mereka jalan yang benar dan mencegah dari kesesatan.",
+        footnotes: null,
+        text: "Barang siapa yang mengikuti hidayah dan petunjuk keimanan, niscaya ganjaran pahalanya akan kembali pada dirinya. Sebaliknya, barang siapa yang tersesat maka balasan kesesatannya juga akan kembali pada dirinya sendiri sebab seseorang tidak akan menanggung beban dosa orang lain, dan Kami tidak akan menyiksa suatu kaum hingga ditegakkan hujah atas mereka dengan mengirimkan pada mereka para rasul.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064e\u0646\u0650 \u0627\u0647\u0652\u062a\u064e\u062f\u064e\u0649\u0670 \u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u064a\u064e\u0647\u0652\u062a\u064e\u062f\u0650\u064a \u0644\u0650\u0646\u064e\u0641\u0652\u0633\u0650\u0647\u0650 \u06d6 \u0648\u064e\u0645\u064e\u0646 \u0636\u064e\u0644\u0651\u064e \u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u064a\u064e\u0636\u0650\u0644\u0651\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u06da \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0632\u0650\u0631\u064f \u0648\u064e\u0627\u0632\u0650\u0631\u064e\u0629\u064c \u0648\u0650\u0632\u0652\u0631\u064e \u0623\u064f\u062e\u0652\u0631\u064e\u0649\u0670 \u06d7 \u0648\u064e\u0645\u064e\u0627 \u0643\u064f\u0646\u0651\u064e\u0627 \u0645\u064f\u0639\u064e\u0630\u0651\u0650\u0628\u0650\u064a\u0646\u064e \u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u0646\u064e\u0628\u0652\u0639\u064e\u062b\u064e \u0631\u064e\u0633\u064f\u0648\u0644\u064b\u0627",
-      transliteration: {
-        en: "Manihtadaa fa innamaa yahtadee linafsihee wa man dalla fa innamaa yadillu 'alaihaa; wa laa taziru waaziratunw wizra ukhraa; wa maa kunnaa mu'azzibeena hatta nab'asa Rasoola",
-      },
+      arabic:
+        "مَّنِ ٱهْتَدَىٰ فَإِنَّمَا يَهْتَدِى لِنَفْسِهِۦ وَمَن ضَلَّ فَإِنَّمَا يَضِلُّ عَلَيْهَا وَلَا تَزِرُ وَازِرَةٌ وِزْرَ أُخْرَىٰ وَمَا كُنَّا مُعَذِّبِينَ حَتَّىٰ نَبْعَثَ رَسُولًا",
     },
     translation: {
-      en: "Whoever is guided is only guided for [the benefit of] his soul. And whoever errs only errs against it. And no bearer of burdens will bear the burden of another. And never would We punish until We sent a messenger.",
-      id: "Barangsiapa berbuat sesuai dengan petunjuk (Allah), maka sesungguhnya itu untuk (keselamatan) dirinya sendiri; dan barang siapa tersesat maka sesungguhnya (kerugian) itu bagi dirinya sendiri. Dan seorang yang berdosa tidak dapat memikul dosa orang lain, tetapi Kami tidak akan menyiksa sebelum Kami mengutus seorang rasul.",
+      en: {
+        footnotes: "[13] The disbelievers will have no excuse whatsoever.",
+        text: "Whoever accepts guidance, it is only for his own good; and whoever goes astray, it is only for his own loss. No bearer of burden will bear the burden of another, nor do We punish until We have sent a messenger[13].",
+      },
+      id: {
+        footnotes: "",
+        text: "Barang siapa berbuat sesuai dengan petunjuk (Allah), maka sesungguhnya itu untuk (keselamatan) dirinya sendiri; dan barang siapa tersesat maka sesungguhnya (kerugian) itu bagi dirinya sendiri. Dan seorang yang berdosa tidak dapat memikul dosa orang lain, tetapi Kami tidak akan menyiksa sebelum Kami mengutus seorang rasul.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2045",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2045.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2045.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 113,
       juz: 15,
       manzil: 4,
       page: 283,
       ruku: 241,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2045,
@@ -147,40 +127,33 @@ export const quranSurah17Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah swt menjelaskan bahwa apabila Dia berkehendak untuk membinasakan suatu negeri, maka Allah swt memerintahkan kepada orang-orang yang hidup bermewah-mewah di negeri itu supaya menaati Allah. Maksudnya apabila suatu kaum telah melakukan kemaksiatan dan kejahatan secara merata, dan pantas dijatuhi siksaan, maka Allah swt karena keadilan-Nya, tidaklah segera menjatuhkan siksaan sebelum memberikan peringatan kepada para pemimpin mereka untuk menghentikan kemaksiatan dan kejahatan kaumnya dan segera kembali taat kepada ajaran Allah.\n\nAkan tetapi, dari sejarah kita mengetahui bahwa orang-orang yang jauh dari hidayah Allah tidak mau mendengarkan peringatan itu, bahkan mereka menjadi pembangkang dan penentangnya. Allah lalu memusnahkan mereka dari muka bumi dengan berbagai azab, baik berupa bencana alam, maupun bencana-bencana lainnya. Itulah ketentuan Allah yang tak dapat dielakkan. Allah menghancurkan negeri itu sehancur-hancurnya, sehingga tidak ada sedikit pun yang tersisa, baik rumah-rumah maupun harta kekayaan mereka.",
-        short:
-          "Dan jika Kami hendak membinasakan suatu negeri, yang durhaka sesuai ketetapan kami, maka Kami perintahkan kepada orang-orang yang hidup mewah di negeri itu agar menaati Allah, tetapi mereka tidak mau menaati-Nya, bahkan mereka melakukan kedurhakaan dalam negeri itu dengan melakukan penganiayaan dan pengrusakan, maka sudah sepantasnya berlaku terhadapnya perkataan, yakni ketentuan Kami, kemudian Kami hancurkan negeri itu sehancur-hancurnya, sehingga mereka tidak dapat bangkit lagi.",
+        footnotes: null,
+        text: "Jika Kami hendak membinasakan suatu negeri lantaran kezaliman penduduknya maka Kami perintahkan kepada orang-orang yang hidup mewah dan bergelimang harta di negeri itu agar menaati Allah, tetapi mereka tidak mengindahkannya, bahkan mereka melakukan kedurhakaan dan pembangkangan. Sebab itu, mereka pantas mendapatkan hukuman berupa azab yang menyeluruh, sehingga Kami pun membinasakan mereka dengan azab tersebut.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0623\u064e\u0631\u064e\u062f\u0652\u0646\u064e\u0627 \u0623\u064e\u0646 \u0646\u0651\u064f\u0647\u0652\u0644\u0650\u0643\u064e \u0642\u064e\u0631\u0652\u064a\u064e\u0629\u064b \u0623\u064e\u0645\u064e\u0631\u0652\u0646\u064e\u0627 \u0645\u064f\u062a\u0652\u0631\u064e\u0641\u0650\u064a\u0647\u064e\u0627 \u0641\u064e\u0641\u064e\u0633\u064e\u0642\u064f\u0648\u0627 \u0641\u0650\u064a\u0647\u064e\u0627 \u0641\u064e\u062d\u064e\u0642\u0651\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u0627\u0644\u0652\u0642\u064e\u0648\u0652\u0644\u064f \u0641\u064e\u062f\u064e\u0645\u0651\u064e\u0631\u0652\u0646\u064e\u0627\u0647\u064e\u0627 \u062a\u064e\u062f\u0652\u0645\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Wa izaaa aradnaaa an nuhlika qaryatan amarnaa mutrafeehaa fafasaqoo feehaa fahaqqa 'alaihal qawlu fadammarnaahaa tadmeeraa",
-      },
+      arabic:
+        "وَإِذَآ أَرَدْنَآ أَن نُّهْلِكَ قَرْيَةً أَمَرْنَا مُتْرَفِيهَا فَفَسَقُوا۟ فِيهَا فَحَقَّ عَلَيْهَا ٱلْقَوْلُ فَدَمَّرْنَٰهَا تَدْمِيرًا",
     },
     translation: {
-      en: "And when We intend to destroy a city, We command its affluent but they defiantly disobey therein; so the word comes into effect upon it, and We destroy it with [complete] destruction.",
-      id: "Dan jika Kami hendak membinasakan suatu negeri, maka Kami perintahkan kepada orang yang hidup mewah di negeri itu (agar menaati Allah), tetapi bila mereka melakukan kedurhakaan di dalam (negeri) itu, maka sepantasnya berlakulah terhadapnya perkataan (hukuman Kami), kemudian Kami binasakan sama sekali (negeri itu).",
+      en: {
+        footnotes: "",
+        text: "Whenever We decide to destroy a town, We command its affluent ones [to obey Allah] but they defiantly disobey, so the punishment becomes inevitable, and We destroy it completely.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan jika Kami hendak membinasakan suatu negeri, maka Kami perintahkan kepada orang yang hidup mewah di negeri itu (agar menaati Allah), tetapi bila mereka melakukan kedurhakaan di dalam (negeri) itu, maka sepantasnya berlakulah terhadapnya perkataan (hukuman Kami), kemudian Kami meluluh lantakkannya (negeri itu).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2046",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2046.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2046.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 113,
       juz: 15,
       manzil: 4,
       page: 283,
       ruku: 241,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2046,
@@ -188,40 +161,34 @@ export const quranSurah17Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah lalu mengisahkan kaum-kaum yang mengalami nasib yang sama setelah Nuh. Mereka dibinasakan karena pembangkangan mereka terhadap utusan-utusan Allah yang ditugasi untuk menghentikan mereka dan mengajak untuk kembali menaati Allah. Ayat ini sebagai penegasan terhadap ayat yang lalu, bahwa tiap kaum yang tetap membangkang setelah datangnya rasul yang memberi peringatan kepada mereka, pasti akan mengalami nasib buruk yang sama dengan umat-umat terdahulu.\n\nDi akhir ayat ini, Allah swt menyebutkan bahwa balasan yang serupa itu adalah balasan yang bijaksana dan adil, karena Allah telah memberi peringatan dan mengetahui tindak-tanduk mereka. Allah Maha Melihat dosa hamba-hamba-Nya.",
-        short:
-          'Dan sesuai dengan ketetapan itu dinyatakan, "Berapa banyaknya kaum setelah kebinasaan kaum Nuh, telah Kami binasakan disebabkan oleh kedurhakaan mereka. Dan cukuplah Tuhanmu Yang Maha Mengetahui, Maha Melihat dosa hamba-hamba-Nya. Tidak ada yang tersembunyi dan terluput dari pembalasan-Nya.',
+        footnotes: null,
+        text: "Sungguh betapa banyak umat yang mendustakan Kami yang Kami binasakan setelah masa Nuh, seperti kaum 'Ād dan Ṡamūd. Namun, cukuplah Tuhanmu -wahai Rasul- Yang Maha Mengetahui dan Melihat dosa hamba-hamba-Nya, sama sekali tidak ada yang tersembunyi dari-Nya, dan Dia pasti memberikan mereka balasan atas dosa-dosa tersebut.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0643\u064e\u0645\u0652 \u0623\u064e\u0647\u0652\u0644\u064e\u0643\u0652\u0646\u064e\u0627 \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0642\u064f\u0631\u064f\u0648\u0646\u0650 \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0646\u064f\u0648\u062d\u064d \u06d7 \u0648\u064e\u0643\u064e\u0641\u064e\u0649\u0670 \u0628\u0650\u0631\u064e\u0628\u0651\u0650\u0643\u064e \u0628\u0650\u0630\u064f\u0646\u064f\u0648\u0628\u0650 \u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0647\u0650 \u062e\u064e\u0628\u0650\u064a\u0631\u064b\u0627 \u0628\u064e\u0635\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Wa kam ahlaknaa minal qurooni mim ba'di Nooh; wa kafaa bi Rabbika bizunoobi 'ibaadihee Khabeeram Baseeraa",
-      },
+      arabic:
+        "وَكَمْ أَهْلَكْنَا مِنَ ٱلْقُرُونِ مِنۢ بَعْدِ نُوحٍ وَكَفَىٰ بِرَبِّكَ بِذُنُوبِ عِبَادِهِۦ خَبِيرًۢا بَصِيرًا",
     },
     translation: {
-      en: "And how many have We destroyed from the generations after Noah. And sufficient is your Lord, concerning the sins of His servants, as Acquainted and Seeing.",
-      id: "Dan berapa banyak kaum setelah Nuh, yang telah Kami binasakan. Dan cukuplah Tuhanmu Yang Maha Mengetahui, Maha Melihat dosa hamba-hamba-Nya.",
+      en: {
+        footnotes:
+          "[14] Warning them of the consequences of the previously destroyed nations.\n [15] The address here shifts to Muhammad (ﷺ) to assure him that Allah will bring them to account.",
+        text: "How many generations We have destroyed since the time of Noah[14]! Your Lord is sufficient as All-Aware and All-Seeing of the sins of His slaves[15].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan berapa banyak kaum setelah Nuh, yang telah Kami binasakan. Dan cukuplah Tuhanmu Yang Maha Mengetahui, Maha Melihat dosa hamba-hamba-Nya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2047",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2047.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2047.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 113,
       juz: 15,
       manzil: 4,
       page: 284,
       ruku: 241,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2047,
@@ -229,20 +196,23 @@ export const quranSurah17Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah swt mengelompokkan manusia ke dalam dua golongan: golongan yang mencintai kehidupan dunia, dan golongan yang mencintai kehidupan akhirat.\n\nDalam ayat ini, Allah swt menyebutkan golongan yang pertama, sedangkan golongan yang kedua disebutkan dalam ayat berikutnya. Ketika menyebutkan golongan yang pertama, Allah swt menyatakan bahwa barang siapa yang menghendaki kehidupan dunia dengan kenikmatannya yang dapat mereka rasakan, maka Allah swt menyegerakan keinginan mereka itu di dunia sesuai dengan kehendaknya. Tetapi di akhirat, mereka tidak mendapat apapun kecuali azab neraka.\n\nPernyataan ini ditujukan kepada orang-orang yang tidak mempercayai adanya hari kebangkitan dan hari pembalasan, sehingga mereka yakin bahwa tidak ada lagi kehidupan sesudah kehidupan di dunia ini. Itulah sebabnya mengapa mereka terlalu rakus terhadap kekayaan dunia dan kemewahannya, padahal kehidupan dunia serta kenikmatannya bersifat sementara. Oleh karena itu, kehidupan di dunia dan kemewahannya itu digambarkan Allah sebagai suatu yang segera dapat diperoleh dan dirasakan, tetapi segera pula musnah dan berakhir. Firman Allah:\n\nDan jangan sekali-kali orang-orang kafir itu mengira bahwa tenggang waktu yang Kami berikan kepada mereka lebih baik baginya. Sesungguhnya tenggang waktu yang Kami berikan kepada mereka hanyalah agar dosa mereka semakin bertambah; dan mereka akan mendapat azab yang menghinakan. (ali 'Imran/3: 178)\n\nKemudian Allah swt mengancam mereka dengan ancaman neraka Jahanam sebagai balasan yang pantas bagi mereka. Di dunia, mereka akan mengalami kesedihan yang mendalam karena berpisah dengan kemewahan dunia yang sangat mereka cintai ketika ajal datang merenggut. Sedangkan di akhirat, mereka akan mengalami penderitaan yang seberat-beratnya dan menyesali perbuatan tercela yang mereka lakukan di dunia.",
-        short:
-          'Allah memberikan pembalasan berupa ganjaran atau siksaan kepada manusia sesuai amal perbuatannya. Ayat ini menyatakan, "Barang siapa yang hanya menghendaki kehidupan sekarang, yaitu kehidupan duniawi dan ia tidak beriman kepada kehidupan akhirat, maka Kami segerakan baginya di dunia ini apa yang Kami kehendaki dari apa yang diharapkannya, seperti kedudukan sosial yang tinggi atau harta yang banyak, bagi orang yang Kami kehendaki, yaitu mereka yang berusaha meraihnya dengan memenuhi syarat dan ketentuan, bukan untuk semua orang yang menghendakinya. Kemudian Kami sediakan baginya di akhirat neraka Jahanam; ia akan memasukinya dalam keadaan tercela dan terusir dari rahmat Allah.',
+        footnotes: null,
+        text: "Barang siapa yang mengerjakan amal kebajikan hanya demi menghendaki kehidupan dunia, sedang ia tidak beriman kepada hari akhirat, dan tidak juga memedulikannya maka Kami segerakan balasan baginya di dunia ini berupa kenikmatan yang Kami kehendaki, bukan apa yang ia kehendaki, yaitu bagi orang yang ingin Kami perlakukan demikian. Kemudian pada hari Kiamat kelak Kami sediakan baginya neraka Jahanam, dia akan memasukinya dengan merasakan kepanasan azabnya dalam keadaan terhina lantaran hanya menghendaki kehidupan dunia dan kafir terhadap hari akhirat, serta terjauhkan dari rahmat Allah.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064e\u0646 \u0643\u064e\u0627\u0646\u064e \u064a\u064f\u0631\u0650\u064a\u062f\u064f \u0627\u0644\u0652\u0639\u064e\u0627\u062c\u0650\u0644\u064e\u0629\u064e \u0639\u064e\u062c\u0651\u064e\u0644\u0652\u0646\u064e\u0627 \u0644\u064e\u0647\u064f \u0641\u0650\u064a\u0647\u064e\u0627 \u0645\u064e\u0627 \u0646\u064e\u0634\u064e\u0627\u0621\u064f \u0644\u0650\u0645\u064e\u0646 \u0646\u0651\u064f\u0631\u0650\u064a\u062f\u064f \u062b\u064f\u0645\u0651\u064e \u062c\u064e\u0639\u064e\u0644\u0652\u0646\u064e\u0627 \u0644\u064e\u0647\u064f \u062c\u064e\u0647\u064e\u0646\u0651\u064e\u0645\u064e \u064a\u064e\u0635\u0652\u0644\u064e\u0627\u0647\u064e\u0627 \u0645\u064e\u0630\u0652\u0645\u064f\u0648\u0645\u064b\u0627 \u0645\u0651\u064e\u062f\u0652\u062d\u064f\u0648\u0631\u064b\u0627",
-      transliteration: {
-        en: "Man kaana yureedul 'aajilata 'ajjalnaa lahoo feehaa maa nashaaa'u liman nureedu summa ja'alnaa lahoo Jahannama yaslaahaa mazmoomammad hooraa",
-      },
+      arabic:
+        "مَّن كَانَ يُرِيدُ ٱلْعَاجِلَةَ عَجَّلْنَا لَهُۥ فِيهَا مَا نَشَآءُ لِمَن نُّرِيدُ ثُمَّ جَعَلْنَا لَهُۥ جَهَنَّمَ يَصْلَىٰهَا مَذْمُومًا مَّدْحُورًا",
     },
     translation: {
-      en: "Whoever should desire the immediate - We hasten for him from it what We will to whom We intend. Then We have made for him Hell, which he will [enter to] burn, censured and banished.",
-      id: "Barangsiapa menghendaki kehidupan sekarang (duniawi), maka Kami segerakan baginya di (dunia) ini apa yang Kami kehendaki bagi orang yang Kami kehendaki. Kemudian Kami sediakan baginya (di akhirat) neraka Jahanam; dia akan memasukinya dalam keadaan tercela dan terusir.",
+      en: {
+        footnotes: "[16] i.e., worldly pleasures.",
+        text: "Whoever desires this fleeting life[16], We hasten therein whatever We will to whoever We please. Then We prepare for him Hell, which he will enter, despised and rejected.",
+      },
+      id: {
+        footnotes: "",
+        text: "Barangsiapa menghendaki kehidupan sekarang (duniawi), maka Kami segerakan baginya di (dunia) ini apa yang Kami kehendaki bagi orang yang Kami kehendaki. Kemudian Kami sediakan baginya (di akhirat) neraka Jahanam; dia akan memasukinya dalam keadaan tercela dan terusir.",
+      },
     },
   },
 ];

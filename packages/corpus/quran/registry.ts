@@ -10,7 +10,7 @@ import { quranSurahSourceStream } from "#corpus/quran/source";
 interface QuranRegistryState {
   readonly nextSurah: number;
   readonly nextVerse: number;
-  readonly revelationSequences: ReadonlySet<number>;
+  readonly revelationOrders: ReadonlySet<number>;
 }
 
 type QuranRegistryItem =
@@ -20,7 +20,7 @@ type QuranRegistryItem =
 const INITIAL_STATE: QuranRegistryState = {
   nextSurah: 1,
   nextVerse: 1,
-  revelationSequences: new Set(),
+  revelationOrders: new Set(),
 };
 
 /** One authored surah failed the exact Quran source contract. */
@@ -54,11 +54,11 @@ export class QuranSequenceError extends Schema.TaggedError<QuranSequenceError>()
   }
 ) {}
 
-/** Two surah sources claim the same chronological revelation sequence. */
+/** Two surah sources claim the same chronological revelation order. */
 export class QuranRevelationError extends Schema.TaggedError<QuranRevelationError>()(
   "QuranRevelationError",
   {
-    sequence: QuranSurahNumberSchema,
+    order: QuranSurahNumberSchema,
     surahNumber: QuranSurahNumberSchema,
   }
 ) {}
@@ -113,22 +113,22 @@ function validateSurah(state: QuranRegistryState, surah: QuranSurah) {
     }
   }
 
-  if (state.revelationSequences.has(surah.sequence)) {
+  if (state.revelationOrders.has(surah.revelation.order)) {
     return Effect.fail(
       new QuranRevelationError({
-        sequence: surah.sequence,
+        order: surah.revelation.order,
         surahNumber: surah.number,
       })
     );
   }
 
-  const revelationSequences = new Set(state.revelationSequences);
-  revelationSequences.add(surah.sequence);
+  const revelationOrders = new Set(state.revelationOrders);
+  revelationOrders.add(surah.revelation.order);
   return Effect.succeed([
     {
       nextSurah: state.nextSurah + 1,
       nextVerse: state.nextVerse + surah.numberOfVerses,
-      revelationSequences,
+      revelationOrders,
     },
     Option.some(surah),
   ] as const);

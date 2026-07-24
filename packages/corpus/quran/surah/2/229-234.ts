@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah2Verses229To234 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/236",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/236.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/236.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 14,
       juz: 2,
       manzil: 1,
       page: 36,
       ruku: 30,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 236,
@@ -24,40 +25,35 @@ export const quranSurah2Verses229To234 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan, bahwa talak raj'i itu hanya berlaku dua kali. Kalau talak sudah tiga kali, tidak boleh rujuk lagi dan dinamakan talak ba'in. Para ulama berpendapat bahwa seseorang yang menjatuhkan talak tiga kali sekaligus, maka talaknya dihitung jatuh tiga, tetapi ada pula ulama yang berpendapat jatuh talak satu.\n\nPada masa jahiliah, orang Arab menjatuhkan talak itu menurut kehendak hatinya dan tidak terbatas, kemudian mereka rujuk sekehendak hatinya pula. Pekerjaan seperti itu mempermainkan perempuan dan menghina mereka, padahal mereka adalah hamba Allah yang harus dihormati dan dimuliakan, seperti halnya laki-laki. Maka turunnya ayat ini adalah untuk mengubah dan memperbaiki keadaan yang buruk itu, untuk mengatur urusan pernikahan, talak, dan rujuk dengan sebaik-baiknya.\n\nSelama masih dalam talak satu atau talak dua, suami boleh rujuk dengan cara yang baik, atau tetap bercerai dengan cara yang baik pula. Yang dimaksud dengan yang baik, ialah selama dalam idah perempuan masih mendapat uang belanja, masih boleh tinggal menumpang di rumah suaminya, kemudian diadakan pembagian harta perceraian dengan cara yang baik pula, sehingga perempuan itu sudah diberikan haknya menurut semestinya. Kalau sudah benar-benar cerai, suami tidak boleh mengambil kembali apa yang sudah diberikan kepada istrinya seperti mahar dan lain-lain, bahkan sebaliknya mahar ditambah lagi dengan pemberian, agar terjamin hidupnya sesudah diceraikan.\n\nApabila suami istri dikhawatirkan tidak akan dapat menjalankan ketentuan-ketentuan Allah, jika hal ini disebabkan oleh pihak suami, maka ia tidak dibenarkan mengambil kembali apa yang telah diberikan kepada istrinya. Tetapi kalau hal itu disebabkan oleh istri karena kebencian kepada suaminya atau takut ia tidak akan berlaku adil terhadapnya maka istri boleh memberikan kembali harta yang telah diberikan suaminya kepadanya untuk melepaskan dirinya dari ikatan perkawinan, agar suaminya mau menceraikannya, dan suaminya tidaklah berdosa mengambil kembali pemberiannya itu. Perbuatan seorang istri yang seperti ini yaitu rela memberikan sebagian hartanya kepada suaminya asal dapat diceraikan, dinamakan khulu'.\n\nDiriwayatkan oleh al-Bukhari, Ibnu Majah dan an-Nasa'i' dari Ibnu 'Abbas bahwa seorang wanita bernama Jamilah, saudara 'Abdullah bin Ubay bin Salul, istri Sabit bin Qais datang menghadap Rasulullah saw dan berkata, \"Ya Rasulullah, suamiku Sabit bin Qais tidak akan kupatuhi perintahnya lagi karena aku marah melihat tingkah lakunya yang tidak baik, aku takut kalau aku jadi orang kafir kembali karena berkhianat dan durhaka kepada suamiku itu.\" Rasulullah saw bertanya, \"Apakah engkau bersedia memberikan kembali kebun yang sudah diberikan suamimu sebagai maskawin dulu dan dengan demikian engkau akan dicerainya?\" Jamilah menjawab, \"Saya bersedia mengembalikannya asal aku diceraikan, ya Rasulullah.\" Maka Rasulullah saw berkata, \"Hai Sabit, terimalah kembali kebunmu itu dan ceraikanlah dia kembali.\"\n\nMemberikan kembali dengan rela hati kebun yang sudah menjadi miliknya, asal dia diceraikan, itu namanya menebus diri dan kata kebun adalah kuniyah dari mahar. Perceraian itu dinamakan khulu', tidak boleh rujuk lagi kecuali dengan akad dan mahar yang baru, dan tebusan itu disebut 'iwadh.\n\nKetentuan tersebut adalah ketetapan Allah yang mengatur kehidupan rumah tangga yang tidak boleh dilanggar, agar terwujud rumah tangga yang bahagia. Maka siapa yang tidak mematuhinya, mereka adalah orang-orang yang zalim.",
-        short:
-          "Talak yang memungkinkan suami untuk merujuk istrinya itu dua kali. Setelah talak itu jatuh, suami dapat menahan untuk merujuk istrinya dengan baik atau melepaskan dengan menjatuhkan talak yang ketiga kalinya dengan baik tanpa boleh kembali lagi sesudahnya. Tidak halal bagi kamu mengambil kembali sesuatu yang telah kamu berikan kepada mereka seperti maskawin, hadiah, atau pemberian lainnya, kecuali keduanya khawatir tidak mampu menjalankan hukum-hukum Allah karena tidak ada kecocokan. Jika kamu, para wali, khawatir bahwa keduanya tidak mampu menjalankan hukum-hukum Allah dalam berumah tangga, maka keduanya tidak berdosa atas bayaran yang harus diberikan oleh istri berupa maskawin yang pernah ia terima dari suaminya sebagai pengganti untuk menebus dirinya. Itulah hukum-hukum Allah, maka janganlah kamu melanggar ketetapan Allah berupa perintah dan larangan-Nya. Barang siapa melanggar hukum-hukum Allah yang telah ditetapkan maka mereka itulah orang-orang zalim yang menganiaya diri sendiri.\r\nTalak yang masih memungkinkan suami untuk merujuk istrinya hanya dua kali, dan disebut talak raj'i. Suami tidak boleh meminta kembali pemberian yang sudah diberikan kepada istrinya bila telah bercerai. Suami bahkan dianjurkan menambah lagi pemberiannya sebagai mutah untuk menjamin hidup istrinya itu di masa depan.",
+        footnotes: null,
+        text: "Talak (perceraian) yang suami mempunyai hak untuk rujuk adalah sebanyak dua kali, yakni ia menalak istrinya kemudian merujuknya, kemudian menalaknya (lagi) kemudian merujuknya. Kemudian setelah talak kedua tersebut si suami hanya mempunyai dua pilihan, mempertahankan rumah tangganya bersama sang istri dengan perlakuan yang baik, atau menalaknya untuk ketiga kalinya dengan perlakuan yang baik kepadanya dan memberikan hak-haknya. Tidak halal bagi kalian -wahai para suami- mengambil kembali mahar yang telah kalian berikan kepada istri-istri kalian, kecuali apabila ada seorang istri yang membenci suaminya, baik karena kondisi fisik maupun perangainya, dan keduanya merasa bahwa kebencian itu membuat keduanya tidak dapat melaksanakan kewajibannya masing-masing. Hendaklah mereka berdua menyampaikan permasalahan mereka kepada orang dekat mereka atau orang lainnya. Apabila wali mereka merasa bahwa keduanya tidak bisa menjalankan tugas sebagai suami-istri, maka tidak ada masalah jika si istri melakukan khuluk (melepaskan diri dari ikatan pernikahan dengan suaminya) dengan memberikan sejumlah harta kepada suaminya sebagai imbalan atas perceraiannya. Hukum-hukum syariat itu adalah garis pemisah antara halal dan haram. Jadi, jangan pernah melampaui garis tersebut. Barang siapa melampaui batas-batas yang Allah tetapkan antara halal dan haram, mereka itulah orang-orang yang menganiaya diri mereka dengan menjerumuskannya ke dalam kebinasaan dan membuatnya rentan terkena hukuman dan murka Allah.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0637\u0651\u064e\u0644\u064e\u0627\u0642\u064f \u0645\u064e\u0631\u0651\u064e\u062a\u064e\u0627\u0646\u0650 \u06d6 \u0641\u064e\u0625\u0650\u0645\u0652\u0633\u064e\u0627\u0643\u064c \u0628\u0650\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u064d \u0623\u064e\u0648\u0652 \u062a\u064e\u0633\u0652\u0631\u0650\u064a\u062d\u064c \u0628\u0650\u0625\u0650\u062d\u0652\u0633\u064e\u0627\u0646\u064d \u06d7 \u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u062d\u0650\u0644\u0651\u064f \u0644\u064e\u0643\u064f\u0645\u0652 \u0623\u064e\u0646 \u062a\u064e\u0623\u0652\u062e\u064f\u0630\u064f\u0648\u0627 \u0645\u0650\u0645\u0651\u064e\u0627 \u0622\u062a\u064e\u064a\u0652\u062a\u064f\u0645\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0634\u064e\u064a\u0652\u0626\u064b\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0623\u064e\u0646 \u064a\u064e\u062e\u064e\u0627\u0641\u064e\u0627 \u0623\u064e\u0644\u0651\u064e\u0627 \u064a\u064f\u0642\u0650\u064a\u0645\u064e\u0627 \u062d\u064f\u062f\u064f\u0648\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06d6 \u0641\u064e\u0625\u0650\u0646\u0652 \u062e\u0650\u0641\u0652\u062a\u064f\u0645\u0652 \u0623\u064e\u0644\u0651\u064e\u0627 \u064a\u064f\u0642\u0650\u064a\u0645\u064e\u0627 \u062d\u064f\u062f\u064f\u0648\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0644\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u064e\u0627 \u0641\u0650\u064a\u0645\u064e\u0627 \u0627\u0641\u0652\u062a\u064e\u062f\u064e\u062a\u0652 \u0628\u0650\u0647\u0650 \u06d7 \u062a\u0650\u0644\u0652\u0643\u064e \u062d\u064f\u062f\u064f\u0648\u062f\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0644\u064e\u0627 \u062a\u064e\u0639\u0652\u062a\u064e\u062f\u064f\u0648\u0647\u064e\u0627 \u06da \u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u062a\u064e\u0639\u064e\u062f\u0651\u064e \u062d\u064f\u062f\u064f\u0648\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0647\u064f\u0645\u064f \u0627\u0644\u0638\u0651\u064e\u0627\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Attalaaqu marrataani fa imsaakum bima'roofin aw tasreehum bi ihsaan; wa laa yahillu lakum an taakhuzoo mimmaaa aataitumoohunna shai'an illaaa ai yakhaafaaa alla yuqeemaa hudoodallahi fa in khiftum allaa yuqeemaa budoodal laahi falaa junaaha 'Alaihimaa feemaf tadat bihee tilka hudoodul laahi falaa ta'tadoohaa; wa mai yata'adda hudoodal laahi fa ulaaa'ika humuzzaa limoon",
-      },
+      arabic:
+        "ٱلطَّلَٰقُ مَرَّتَانِ فَإِمْسَاكٌۢ بِمَعْرُوفٍ أَوْ تَسْرِيحٌۢ بِإِحْسَٰنٍ وَلَا يَحِلُّ لَكُمْ أَن تَأْخُذُوا۟ مِمَّآ ءَاتَيْتُمُوهُنَّ شَيْـًٔا إِلَّآ أَن يَخَافَآ أَلَّا يُقِيمَا حُدُودَ ٱللَّهِ فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ ٱللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا ٱفْتَدَتْ بِهِۦ تِلْكَ حُدُودُ ٱللَّهِ فَلَا تَعْتَدُوهَا وَمَن يَتَعَدَّ حُدُودَ ٱللَّهِ فَأُو۟لَٰٓئِكَ هُمُ ٱلظَّٰلِمُونَ",
     },
     translation: {
-      en: "Divorce is twice. Then, either keep [her] in an acceptable manner or release [her] with good treatment. And it is not lawful for you to take anything of what you have given them unless both fear that they will not be able to keep [within] the limits of Allah. But if you fear that they will not keep [within] the limits of Allah, then there is no blame upon either of them concerning that by which she ransoms herself. These are the limits of Allah, so do not transgress them. And whoever transgresses the limits of Allah - it is those who are the wrongdoers.",
-      id: "Talak (yang dapat dirujuk) itu dua kali. (Setelah itu suami dapat) menahan dengan baik, atau melepaskan dengan baik. Tidak halal bagi kamu mengambil kembali sesuatu yang telah kamu berikan kepada mereka, kecuali keduanya (suami dan istri) khawatir tidak mampu menjalankan hukum-hukum Allah. Jika kamu (wali) khawatir bahwa keduanya tidak mampu menjalankan hukum-hukum Allah, maka keduanya tidak berdosa atas bayaran yang (harus) diberikan (oleh istri) untuk menebus dirinya. Itulah hukum-hukum Allah, maka janganlah kamu melanggarnya. Barangsiapa melanggar hukum-hukum Allah, mereka itulah orang-orang zalim.",
+      en: {
+        footnotes:
+          "[121] Al-Khul‘ means the parting of a wife from her husband by returning the sum of money she received from him as dowry or gifts in exchange for conceding to her demand for divorce.",
+        text: "Divorce may be pronounced twice; then either retaining in all kindness, or separating in the best way. It is not lawful for you to take back anything that you have given them [of dowry], except when they both fear that they would not be able to maintain the limits ordained by Allah. So if you fear that they would not be able to maintain the limits set by Allah, then there is no sin upon either of them if she opts to give something for her release[121]. These are the limits ordained by Allah, so do not exceed them; whosoever exceeds the limits ordained by Allah, it is they who are the wrongdoers.",
+      },
+      id: {
+        footnotes:
+          "[83] Ayat ini menjadi dasar hukum khulu’ dan penerimaan ‘iwaḍ. Khulu’ yaitu hak istri untuk bercerai dari suaminya dengan membayar ‘iwaḍ melalui pengadilan.",
+        text: "Talak (yang dapat dirujuk) itu dua kali. (Setelah itu suami dapat) menahan dengan baik, atau melepaskan dengan baik. Tidak halal bagi kamu mengambil kembali sesuatu yang telah kamu berikan kepada mereka, kecuali keduanya (suami dan istri) khawatir tidak mampu menjalankan hukum-hukum Allah. Jika kamu (wali) khawatir bahwa keduanya tidak mampu menjalankan hukum Allah, maka keduanya tidak berdosa atas bayaran yang (harus) diberikan (oleh istri) untuk menebus dirinya.[83] Itulah hukum-hukum Allah, maka janganlah kamu melanggarnya. Barangsiapa melanggar hukum-hukum Allah, mereka itulah orang-orang yang zalim.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/237",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/237.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/237.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 14,
       juz: 2,
       manzil: 1,
       page: 36,
       ruku: 30,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 237,
@@ -65,40 +61,34 @@ export const quranSurah2Verses229To234 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan, kalau sudah jatuh talak tiga, tidak boleh lagi rujuk. Apabila kedua belah pihak ingin hidup kembali sebagai suami- istri, maka perempuan itu harus kawin lebih dahulu dengan laki-laki lain, dan telah dicampuri oleh suaminya yang baru, dan kemudian diceraikan atas kehendak sendiri, dan sudah habis masa idahnya, barulah keduanya boleh rujuk kembali.\n\nAyat ini menyuruh kita berhati-hati dalam menjatuhkan talak, jangan gegabah dan jangan terburu nafsu. Pikirkanlah masak-masak, karena terburu nafsu dalam menjatuhkan talak, akhirnya menyesal. Menjatuhkan talak itu dibolehkan dalam Islam, tapi ia adalah perbuatan yang dibenci Allah. Akibat perceraian itu besar sekali, baik bagi suami, lebih-lebih bagi istri dan anak-anak. Karenanya, apabila masih dalam talak kedua, lebih baik rujuk kembali, kalau memang masih bisa diharapkan terwujudnya rumah tangga bahagia, dan dapat menjalankan perintah Allah dengan sebaik-baiknya.",
-        short:
-          "Kemudian jika dia memilih untuk menceraikan istri-nya setelah talak yang kedua, yakni pada talak ketiga yang tidak lagi memberinya kesempatan untuk rujuk, maka perempuan itu tidak halal lagi baginya sebelum dia menikah dan melakukan hubungan suami-istri dengan suami yang lain. Kemudian jika suami yang lain itu menceraikannya, maka tidak ada dosa dan halangan bagi keduanya, yakni suami pertama dan mantan istrinya, untuk menikah kembali dengan akad yang baru, setelah ia selesai menjalani masa idahnya dari suami kedua. Hal ini dapat ditempuh jika keduanya berpen-dapat akan dapat menjalankan hukum-hukum Allah dengan menjalani hidup baru yang lebih baik sesuai dengan aturan yang ditetapkan Allah. Apabila keduanya ragu untuk kembali dengan baikbaik maka niat untuk kembali hidup bersama hendaknya dibatalkan. Itulah ketentuan-ketentuan Allah tentang hukum talak, rujuk, dan khulu' yang dite-rangkan-Nya kepada orang-orang yang berpengetahuan agar mereka memahami dan memperhatikan hukum-hukum Allah",
+        footnotes: null,
+        text: "Apabila suaminya menceraikannya untuk ketiga kalinya maka ia tidak boleh menikahinya kembali sebelum wanita itu menikah dengan laki-laki lain dengan pernikahan yang sah, atas dasar suka sama suka, bukan dengan tujuan menghalalkan pernikahannya kembali dengan mantan suaminya, dan kemudian ia menggaulinya dalam pernikahannya itu. Kemudian apabila suami yang kedua ini menceraikannya atau meninggal dunia maka wanita itu boleh menikah kembali dengan mantan suaminya yang pertama dengan akad nikah yang baru dan mahar yang baru pula, jika memang keduanya merasa bahwa mereka akan menjalankan kewajiban sesuai dengan ketentuan hukum-hukum syariat. Itulah hukum-hukum syariat yang Allah jelaskan kepada orang-orang yang mau mengetahui hukum-hukum-Nya dan batas-batas-Nya karena merekalah yang bisa mengambil manfaatnya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646 \u0637\u064e\u0644\u0651\u064e\u0642\u064e\u0647\u064e\u0627 \u0641\u064e\u0644\u064e\u0627 \u062a\u064e\u062d\u0650\u0644\u0651\u064f \u0644\u064e\u0647\u064f \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u064f \u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u062a\u064e\u0646\u0643\u0650\u062d\u064e \u0632\u064e\u0648\u0652\u062c\u064b\u0627 \u063a\u064e\u064a\u0652\u0631\u064e\u0647\u064f \u06d7 \u0641\u064e\u0625\u0650\u0646 \u0637\u064e\u0644\u0651\u064e\u0642\u064e\u0647\u064e\u0627 \u0641\u064e\u0644\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u064e\u0627 \u0623\u064e\u0646 \u064a\u064e\u062a\u064e\u0631\u064e\u0627\u062c\u064e\u0639\u064e\u0627 \u0625\u0650\u0646 \u0638\u064e\u0646\u0651\u064e\u0627 \u0623\u064e\u0646 \u064a\u064f\u0642\u0650\u064a\u0645\u064e\u0627 \u062d\u064f\u062f\u064f\u0648\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06d7 \u0648\u064e\u062a\u0650\u0644\u0652\u0643\u064e \u062d\u064f\u062f\u064f\u0648\u062f\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u064a\u064f\u0628\u064e\u064a\u0651\u0650\u0646\u064f\u0647\u064e\u0627 \u0644\u0650\u0642\u064e\u0648\u0652\u0645\u064d \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa in tallaqahaa falaa tahillu lahoo mim ba'du hattaa tankiha zawjan ghairah; fa in tallaqahaa falaa junaaha 'alaihimaaa ai yataraaja'aaa in zannaaa ai yuqeemaa hudoodal laa; wa tilka hudoodul laahi yubaiyinuhaa liqawminy ya'lamoon",
-      },
+      arabic:
+        "فَإِن طَلَّقَهَا فَلَا تَحِلُّ لَهُۥ مِنۢ بَعْدُ حَتَّىٰ تَنكِحَ زَوْجًا غَيْرَهُۥ فَإِن طَلَّقَهَا فَلَا جُنَاحَ عَلَيْهِمَآ أَن يَتَرَاجَعَآ إِن ظَنَّآ أَن يُقِيمَا حُدُودَ ٱللَّهِ وَتِلْكَ حُدُودُ ٱللَّهِ يُبَيِّنُهَا لِقَوْمٍ يَعْلَمُونَ",
     },
     translation: {
-      en: "And if he has divorced her [for the third time], then she is not lawful to him afterward until [after] she marries a husband other than him. And if the latter husband divorces her [or dies], there is no blame upon the woman and her former husband for returning to each other if they think that they can keep [within] the limits of Allah. These are the limits of Allah, which He makes clear to a people who know.",
-      id: "Kemudian jika dia menceraikannya (setelah talak yang kedua), maka perempuan itu tidak halal lagi baginya sebelum dia menikah dengan suami yang lain. Kemudian jika suami yang lain itu menceraikannya, maka tidak ada dosa bagi keduanya (suami pertama dan bekas istri) untuk menikah kembali jika keduanya berpendapat akan dapat menjalankan hukum-hukum Allah. Itulah ketentuan-ketentuan Allah yang diterangkan-Nya kepada orang-orang yang berpengetahuan.",
+      en: {
+        footnotes:
+          "[122] With the intention of permanence, not merely in order to return to the previous husband.\n [123] Going back to her earlier husband if the divorce from her subsequent husband is sealed.",
+        text: "Thereafter, if he divorces her [the third time], it is not lawful for him to remarry her until she marries another man[122]. Should he divorce her, then there is no sin on them to return to each other[123], provided that they would maintain the limits ordained by Allah. These are the limits ordained by Allah, which He makes clear to people who understand.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian jika dia menceraikannya (setelah talak yang kedua), maka perempuan itu tidak halal lagi baginya sebelum dia menikah dengan suami yang lain. Kemudian jika suami yang lain itu menceraikannya, maka tidak ada dosa bagi keduanya (suami pertama dan bekas istri) untuk menikah kembali jika keduanya berpendapat akan dapat menjalankan hukum-hukum Allah. Itulah ketentuan-ketentuan Allah yang diterangkan-Nya kepada orang-orang yang berpengetahuan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/238",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/238.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/238.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 14,
       juz: 2,
       manzil: 1,
       page: 37,
       ruku: 30,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 238,
@@ -106,40 +96,35 @@ export const quranSurah2Verses229To234 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini mengutarakan cara yang mesti dilakukan oleh suami yang telah menjatuhkan talak kepada istrinya sebagai penjelasan ayat-ayat sebelumnya. Adapun sebab turunnya ayat ini ada dua riwayat. Pertama, Ibnu Jarir meriwayatkan dari Ibnu 'Abbas bahwa pada masa Rasulullah saw ada seorang laki-laki yang menalak istrinya, kemudian sebelum masa idah istrinya itu habis, dia merujuknya kembali. Setelah itu dijatuhkannya talak lagi kemudian rujuk kembali. Hal ini dilaksanakan untuk menyakiti dan menganiaya istrinya tersebut, maka turunlah ayat di atas.\n\nRiwayat kedua diceritakan oleh as-Suddi bahwa ayat ini diturunkan berkenaan dengan tindakan seorang sahabat dari golongan Ansar yaitu sabit bin Yasar yang telah menalak istrinya. Setelah masa idah istrinya tinggal dua atau tiga hari lagi ia rujuk kepada istrinya tersebut, kemudian dijatuhkannya talak kembali dengan tujuan untuk menyusahkan istrinya, maka turunlah ayat ini, melarang perbuatan tersebut.\n\nApabila seorang suami telah menjatuhkan talak kepada istrinya, maka ketika masa idah dari istrinya itu telah hampir berakhir hendaklah ia memilih salah satu dari dua pilihan, yaitu melakukan rujuk atau tetap bercerai dengan cara yang baik. Dengan habisnya idah maka putuslah perkawinan suami istri, dan bekas istrinya itu bebas memilih jodoh yang lain.\n\nSelanjutnya ayat ini melarang seorang suami melakukan rujuk kepada istrinya dengan tujuan untuk menyakiti dan menganiaya. Larangan Allah ini selain menggambarkan tingkah laku masyarakat pada masa jahiliah di mana suami menjatuhkan talak kepada istrinya tanpa batas tertentu dan setiap akan mendekati akhir dari masa idah, suami melakukan rujuk kembali dan demikianlah seterusnya. Juga menjadi penjelasan dari tindakan sahabat Sabit bin Yasar yang telah diuraikan dalam hal sebab turunnya ayat ini. Suami yang berbuat demikian adalah menganiaya dirinya sendiri, suatu perbuatan yang dapat menimbulkan permusuhan dengan kaum kerabat keluarga istrinya dan juga dibenci oleh masyarakat, dan akhirnya nanti ia tidak luput dari kemurkaan Allah.\n\nDalam ayat ini Allah melarang manusia mempermainkan hukum-hukum-Nya termasuk hukum-hukum yang mengatur hubungan suami istri untuk membawa manusia kepada hidup bahagia di dunia dan di akhirat. Ketentuan-ketentuan itu merupakan suatu nikmat dari Allah yang wajib diingat dan diamalkan sebagai tanda bersyukur kepada-Nya.\n\nTak ada perselisihan ulama dalam lingkungan mazhab empat tentang sahnya talak yang dijatuhkan oleh suami dengan jalan main-main (tidak sungguh-sungguh). Hal ini sejalan dengan sabda Rasulullah saw:\n\nAda tiga masalah, jika dilakukan dengan sungguh-sungguh, maka hal itu akan terjadi sungguh-sungguh, dan jika dilakukan dengan cara main-main, maka hal itu akan terjadi sungguh-sungguh, yaitu: nikah, talak dan rujuk. (Riwayat al-Arba'ah kecuali an-Nasa'i dari Abu Hurairah)\n\nBersetubuh dengan istri yang masih dalam idah raj'i haram hukumnya menurut mazhab Syafi'i, karena sahnya rujuk adalah dengan ucapan (lafal). Sedang menurut mazhab Hanafi dan Hanbali, persetubuhan dianggap rujuk meskipun tanpa lafal (ucapan).",
-        short:
-          "Pada ayat sebelumnya Allah menjelaskan perintah memilih untuk rujuk atau menceraikan istri, berikutnya Allah menjelaskan batas akhir pilihan itu. Dan apabila kamu menceraikan istri-istri kamu dengan talak yang memungkinkan rujuk, setelah talak pertama atau kedua, lalu sampai akhir idahnya mendekati habis, maka tahanlah mereka dengan merujuk jika kamu yakin mampu memperbaiki hubungan itu kembali dengan cara yang baik sesuai tuntunan agama dan adat, atau ceraikanlah mereka apabila hubungan itu tidak dapat dilanjutkan dengan cara yang baik pula. Dan janganlah kamu tahan untuk merujuk mereka dengan maksud ingin berbuat jahat atau untuk menzalimi mereka selama hidup bersama. Barang siapa melakukan demikian, yaitu tindakan jahat dan zalim, maka pada hakikatnya dia telah menzalimi dirinya sendiri sehingga ia berhak mendapat murka Allah, kebencian keluarga dan orang sekelilingnya, dan semuanya itu berimbas pada dirinya. Dan janganlah kamu jadikan ayat-ayat Allah tentang petunjuk hukum talak sebagai bahan ejekan yang dapat dipermainkan. Ingatlah nikmat Allah yang telah Dia karuniakan kepada kamu, dan apa yang telah diturunkan Allah kepada kamu yaitu petunjuk tentang hukum keluarga yang terdapat dalam Kitab Al-Qur'an dan Hikmah atau Sunah. Ketentuan-ketentuan tersebut adalah untuk memberi pengajaran kepadamu. Dan bertakwalah kepada Allah dengan melaksanakan perintah-Nya dan menjauhi larangan-Nya, dan ketahuilah bahwa Allah Maha Mengetahui segala sesuatu.",
+        footnotes: null,
+        text: "Apabila kalian menceraikan istri-istri kalian, kemudian masa idah mereka mendekati habis, maka kalian boleh merujuk mereka atau meninggalkan mereka secara baik-baik tanpa rujuk sampai masa idah mereka berakhir. Janganlah kalian merujuk mereka semata-mata untuk menyengsarakan dan merugikan mereka seperti yang terjadi pada masa jahiliah. Barang siapa melakukan hal itu dengan tujuan menyengsarakan pihak wanita, maka ia telah menganiaya dirinya sendiri dengan cara menjerumuskan dirinya ke dalam dosa dan hukuman. Janganlah kalian menjadikan ayat-ayat Allah sebagai objek olok-olok dengan mempermainkan dan memperlakukannya secara tidak pantas, serta ingatlah nikmat-nikmat Allah yang kalian dapatkan, yang salah satunya ialah turunnya Al-Qur`ān dan Sunnah kepadamu. Allah mengingatkan kalian akan hal ini untuk memotivasi kalian (melakukan kebaikan) sekaligus menakut-nakuti agar tidak berbuat buruk. Takutlah kalian kepada Allah dengan cara menjalankan perintah-perintah-Nya dan menjauhi larangan-larangan-Nya, serta ketahuilah bahwa Allah Maha Mengetahui segala sesuatu, sehingga tidak ada sesuatu pun yang luput dari pengetahuan-Nya, dan Dia akan memberi kalian balasan yang setimpal dengan amal perbuatan kalian.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0637\u064e\u0644\u0651\u064e\u0642\u0652\u062a\u064f\u0645\u064f \u0627\u0644\u0646\u0651\u0650\u0633\u064e\u0627\u0621\u064e \u0641\u064e\u0628\u064e\u0644\u064e\u063a\u0652\u0646\u064e \u0623\u064e\u062c\u064e\u0644\u064e\u0647\u064f\u0646\u0651\u064e \u0641\u064e\u0623\u064e\u0645\u0652\u0633\u0650\u0643\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0628\u0650\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u064d \u0623\u064e\u0648\u0652 \u0633\u064e\u0631\u0651\u0650\u062d\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0628\u0650\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u064d \u06da \u0648\u064e\u0644\u064e\u0627 \u062a\u064f\u0645\u0652\u0633\u0650\u0643\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0636\u0650\u0631\u064e\u0627\u0631\u064b\u0627 \u0644\u0651\u0650\u062a\u064e\u0639\u0652\u062a\u064e\u062f\u064f\u0648\u0627 \u06da \u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0641\u0652\u0639\u064e\u0644\u0652 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0641\u064e\u0642\u064e\u062f\u0652 \u0638\u064e\u0644\u064e\u0645\u064e \u0646\u064e\u0641\u0652\u0633\u064e\u0647\u064f \u06da \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u062a\u0651\u064e\u062e\u0650\u0630\u064f\u0648\u0627 \u0622\u064a\u064e\u0627\u062a\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0647\u064f\u0632\u064f\u0648\u064b\u0627 \u06da \u0648\u064e\u0627\u0630\u0652\u0643\u064f\u0631\u064f\u0648\u0627 \u0646\u0650\u0639\u0652\u0645\u064e\u062a\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0648\u064e\u0645\u064e\u0627 \u0623\u064e\u0646\u0632\u064e\u0644\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u0650 \u0648\u064e\u0627\u0644\u0652\u062d\u0650\u0643\u0652\u0645\u064e\u0629\u0650 \u064a\u064e\u0639\u0650\u0638\u064f\u0643\u064f\u0645 \u0628\u0650\u0647\u0650 \u06da \u0648\u064e\u0627\u062a\u0651\u064e\u0642\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0627\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0627 \u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0628\u0650\u0643\u064f\u0644\u0651\u0650 \u0634\u064e\u064a\u0652\u0621\u064d \u0639\u064e\u0644\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wa izaa tallaqtumun nisaaa'a fabalaghna ajala hunna fa amsikoohunna bima'roofin law sarrihoo hunna bima'roof; wa laa tumsikoo hunna diraa rallita'tadoo; wa mai yaf'al zaalika faqad zalama nafsah; wa laa tattakhizooo aayaatillaahi huzuwaa; wazkuroo ni'matal laahi 'alaikum wa maaa anzala 'alaikum minal kitaabi wal ikmati ya'izukum bih; wattaqul laaha wa'lamooo annal laaha bikulli shai'i 'Aleem",
-      },
+      arabic:
+        "وَإِذَا طَلَّقْتُمُ ٱلنِّسَآءَ فَبَلَغْنَ أَجَلَهُنَّ فَأَمْسِكُوهُنَّ بِمَعْرُوفٍ أَوْ سَرِّحُوهُنَّ بِمَعْرُوفٍ وَلَا تُمْسِكُوهُنَّ ضِرَارًا لِّتَعْتَدُوا۟ وَمَن يَفْعَلْ ذَٰلِكَ فَقَدْ ظَلَمَ نَفْسَهُۥ وَلَا تَتَّخِذُوٓا۟ ءَايَٰتِ ٱللَّهِ هُزُوًا وَٱذْكُرُوا۟ نِعْمَتَ ٱللَّهِ عَلَيْكُمْ وَمَآ أَنزَلَ عَلَيْكُم مِّنَ ٱلْكِتَٰبِ وَٱلْحِكْمَةِ يَعِظُكُم بِهِۦ وَٱتَّقُوا۟ ٱللَّهَ وَٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ بِكُلِّ شَىْءٍ عَلِيمٌ",
     },
     translation: {
-      en: "And when you divorce women and they have [nearly] fulfilled their term, either retain them according to acceptable terms or release them according to acceptable terms, and do not keep them, intending harm, to transgress [against them]. And whoever does that has certainly wronged himself. And do not take the verses of Allah in jest. And remember the favor of Allah upon you and what has been revealed to you of the Book and wisdom by which He instructs you. And fear Allah and know that Allah is Knowing of all things.",
-      id: "Dan apabila kamu menceraikan istri-istri (kamu), lalu sampai (akhir) idahnya, maka tahanlah mereka dengan cara yang baik, atau ceraikanlah mereka dengan cara yang baik (pula). Dan janganlah kamu tahan mereka dengan maksud jahat untuk menzalimi mereka. Barangsiapa melakukan demikian, maka dia telah menzalimi dirinya sendiri. Dan janganlah kamu jadikan ayat-ayat Allah sebagai bahan ejekan. Ingatlah nikmat Allah kepada kamu, dan apa yang telah diturunkan Allah kepada kamu yaitu Kitab (Al-Qur'an) dan Hikmah (Sunnah), untuk memberi pengajaran kepadamu. Dan bertakwalah kepada Allah dan ketahuilah bahwa Allah Maha Mengetahui segala sesuatu.",
+      en: {
+        footnotes:
+          "[124] By prolonging an agonizing waiting period, holding them back from marrying other husbands or forcing them into seeking separation.",
+        text: "When you divorce women and they have completed their waiting period, either retain them with fairness or release them with fairness. Do not retain them in order to harm them[124], exceeding the limits. Whoever does this, he has wronged himself. Do not make mockery of Allah’s verses, and remember Allah’s grace upon you and what He has sent down to you of the Book and the Wisdom, to exhort you. And fear Allah, and know that Allah is All-Knowing of everything.",
+      },
+      id: {
+        footnotes:
+          "[84] Idah ialah masa menunggu (tidak boleh menikah) bagi perempuan karena perceraian atau kematian suaminya.",
+        text: "Dan apabila kamu menceraikan istri-istri (kamu), lalu sampai (akhir) idahnya,[84] maka tahanlah mereka dengan cara yang baik, atau ceraikanlah mereka dengan cara yang baik (pula). Dan janganlah kamu tahan mereka dengan maksud jahat untuk menzalimi mereka. Barang siapa melakukan demikian, maka dia telah menzalimi dirinya sendiri. Dan janganlah kamu jadikan ayat-ayat Allah sebagai bahan ejekan. Ingatlah nikmat Allah kepada kamu, dan apa yang telah diturunkan Allah kepada kamu yaitu kitab (Al-Qur`an) dan Hikmah (Sunah), untuk memberi pengajaran kepadamu. Dan bertakwalah kepada Allah dan ketahuilah bahwa Allah Maha Mengetahui segala sesuatu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/239",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/239.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/239.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 14,
       juz: 2,
       manzil: 1,
       page: 37,
       ruku: 31,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 239,
@@ -147,40 +132,34 @@ export const quranSurah2Verses229To234 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menjelaskan tentang wanita yang diceraikan oleh suaminya dan kemungkinan akan kawin lagi, baik dia akan kawin dengan bekas suaminya maupun dengan laki-laki lain. Dalam menanggapi ayat ini, para ulama fikih berselisih tentang siapa yang dimaksud oleh ayat tersebut, khususnya dalam kalimat \"janganlah kamu menghalang-halangi\".\n\nImam Syafi'i berpendapat bahwa larangan itu ditujukan kepada wali, berdasarkan hadis yang diriwayatkan oleh Imam al-Bukhari tentang Qasim Ma'qil bin Yasir. Ma'qil mempunyai seorang saudara perempuan yang dinikahi oleh Abibaddah. Kemudian ia dicerai oleh suaminya. Setelah selesai idahnya, Abibaddah merasa menyesal dan ingin kembali kepada bekas istrinya itu. Tetapi Ma'qil, sebagai wali, tidak menyetujuinya sehingga peristiwa ini diketahui oleh Rasulullah saw dan kemudian turunlah ayat di atas dan Ma'qil memperkenankan Abibaddah kembali kepada saudaranya.\n\nDari riwayat yang merupakan sebab turunnya ayat ini, jelas bahwa larangan itu ditujukan kepada wali. Seandainya larangan dalam ayat itu tidak ditujukan kepada wali, niscaya perempuan itu dapat menikah sendiri dan tidak perlu tertunda oleh sikap Ma'qil tersebut sebagai walinya.\n\nMaka jelas bahwa akad nikah tetap dilangsungkan oleh wali. Imam Hanafi berpendapat sebaliknya; larangan itu ditujukan bukan kepada wali tetapi kepada suami. Hal ini dapat terjadi bila bekas suami menghalangi bekas istrinya untuk kawin dengan orang lain. Dengan demikian ayat tersebut menurut Abu Hanifah tidak menunjukkan bahwa wali menjadi syarat sah akad pernikahan. Sebagaimana diketahui, Imam Abu Hanifah berpendapat bahwa wanita yang berstatus janda dapat melakukan akad nikah tanpa melalui wali.\n\nBaik wali atau pun bekas suami tidak boleh menghalang-halangi seorang perempuan yang akan kawin. Adat yang berlaku pada zaman jahiliah para wali terlalu mencampuri dengan cara sewenang-wenang soal perkawinan sehingga perempuan tidak mempunyai kebebasan dalam memilih calon suaminya, bahkan mereka dipaksa menikah dengan laki-laki yang tidak disukainya. Demikianlah ajaran Al-Qur'an mengenai hukum perkawinan, ajaran yang hanya dapat diterima oleh orang yang beriman kepada Allah dan hari kemudian, karena hanya orang yang berimanlah yang dapat menerima ajaran Allah dengan menyingkirkan keinginan hawa nafsu dalam mengekang kaum perempuan. \n\nKembali kepada ajaran Allah ini adalah suatu perbuatan yang baik dan terpuji, Allah Maha Mengetahui dan kamu tidak mengetahui.",
-        short:
-          'Setelah pada ayat sebelumnya Allah menjelaskan perihal wanitawanita yang dicerai sebelum idahnya habis, maka pada ayat ini Allah menjelaskan status mereka setelah habis masa idahnya. Dan apabila kamu, para suami, menceraikan istri-istri kamu lalu sampai idahnya habis, maka jangan kamu, mantan suami dan para wali atau siapa pun, halangi atau paksa mereka yang ditalak suaminya untuk kembali rujuk. Biarkanlah ia menetapkan sendiri masa depannya untuk menikah lagi dengan calon suaminya, baik suami yang telah menceraikannya atau pria lain yang menjadi pilihannya, apabila telah terjalin kecocokan di antara mereka dengan cara yang baik. Wanita yang dicerai suaminya dan telah habis masa idahnya mempunyai hak penuh atas dirinya sendiri, seperti dijelaskan dalam sabda Rasulullah, "Janda lebih berhak atas dirinya daripada orang lain atau walinya." Itulah yang dinasihatkan kepada orangorang di antara kamu yang beriman kepada Allah dan hari akhir. Apabila mengikuti petunjuk-petunjuk dan nasihat tentang pemenuhan hak wanita yang diceraikan untuk kembali kepada suaminya atau memilih pasangan baru, itu lebih suci bagimu dan lebih bersih terhadap jiwamu. Dan Allah mengetahui sesuatu yang dapat membawa kemaslahatan bagi hamba-Nya, sedangkan kamu tidak mengetahui di balik ketentuan hukum yang ditetapkan Allah.\r\nWali atau mantan suami tidak boleh memaksa perempuan itu baik untuk rujuk dengan mantan suaminya dengan ketentuan harus memperbarui nikahnya, maupun menikah dengan laki-laki lain.',
+        footnotes: null,
+        text: "Apabila kamu menceraikan isteri-isterimu kurang dari tiga kali dan masa iddah mereka sudah berakhir, maka janganlah kalian -wahai para wali- melarang mereka untuk kembali kepada (mantan) suami-suami mereka dengan akad nikah yang baru, jika mereka menginginkan hal itu dan ada persetujuan dengan (mantan) suami-suami mereka. Ketentuan hukum yang berisi larangan melarang mereka itu adalah peringatan bagi orang yang beriman kepada Allah dan hari Akhir. Hal itu lebih memungkinkan bagi berkembangnya kebaikan di dalam diri kalian dan lebih memungkinkan bagi kesucian harga diri dan perbuatan kalian dari segala macam kotoran. Allah Mengetahui hakikat dan akibat dari segala sesuatu, sedangkan kalian tidak mengetahuinya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0637\u064e\u0644\u0651\u064e\u0642\u0652\u062a\u064f\u0645\u064f \u0627\u0644\u0646\u0651\u0650\u0633\u064e\u0627\u0621\u064e \u0641\u064e\u0628\u064e\u0644\u064e\u063a\u0652\u0646\u064e \u0623\u064e\u062c\u064e\u0644\u064e\u0647\u064f\u0646\u0651\u064e \u0641\u064e\u0644\u064e\u0627 \u062a\u064e\u0639\u0652\u0636\u064f\u0644\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0623\u064e\u0646 \u064a\u064e\u0646\u0643\u0650\u062d\u0652\u0646\u064e \u0623\u064e\u0632\u0652\u0648\u064e\u0627\u062c\u064e\u0647\u064f\u0646\u0651\u064e \u0625\u0650\u0630\u064e\u0627 \u062a\u064e\u0631\u064e\u0627\u0636\u064e\u0648\u0652\u0627 \u0628\u064e\u064a\u0652\u0646\u064e\u0647\u064f\u0645 \u0628\u0650\u0627\u0644\u0652\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u0650 \u06d7 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u064a\u064f\u0648\u0639\u064e\u0638\u064f \u0628\u0650\u0647\u0650 \u0645\u064e\u0646 \u0643\u064e\u0627\u0646\u064e \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u064a\u064f\u0624\u0652\u0645\u0650\u0646\u064f \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u0650 \u06d7 \u0630\u064e\u0670\u0644\u0650\u0643\u064f\u0645\u0652 \u0623\u064e\u0632\u0652\u0643\u064e\u0649\u0670 \u0644\u064e\u0643\u064f\u0645\u0652 \u0648\u064e\u0623\u064e\u0637\u0652\u0647\u064e\u0631\u064f \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f \u0648\u064e\u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u0644\u064e\u0627 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa izaa tallaqtumun nisaaa'a fabalaghna ajalahunna falaa ta'duloo hunna ai yankihna azwaaja humna izaa taraadaw bainahum bilma' roof; zaalika yoo'azu bihee man kaana minkum yu'minu billaahi wal yawmil aakhir; zaalikum azkaa lakum wa athar; wallaahu ya'lamu wa antum laa ta'lamu wa antum laa ta'lamoon",
-      },
+      arabic:
+        "وَإِذَا طَلَّقْتُمُ ٱلنِّسَآءَ فَبَلَغْنَ أَجَلَهُنَّ فَلَا تَعْضُلُوهُنَّ أَن يَنكِحْنَ أَزْوَٰجَهُنَّ إِذَا تَرَٰضَوْا۟ بَيْنَهُم بِٱلْمَعْرُوفِ ذَٰلِكَ يُوعَظُ بِهِۦ مَن كَانَ مِنكُمْ يُؤْمِنُ بِٱللَّهِ وَٱلْيَوْمِ ٱلْـَٔاخِرِ ذَٰلِكُمْ أَزْكَىٰ لَكُمْ وَأَطْهَرُ وَٱللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ",
     },
     translation: {
-      en: "And when you divorce women and they have fulfilled their term, do not prevent them from remarrying their [former] husbands if they agree among themselves on an acceptable basis. That is instructed to whoever of you believes in Allah and the Last Day. That is better for you and purer, and Allah knows and you know not.",
-      id: "Dan apabila kamu menceraikan istri-istri (kamu), lalu sampai idahnya, maka jangan kamu halangi mereka menikah (lagi) dengan calon suaminya, apabila telah terjalin kecocokan di antara mereka dengan cara yang baik. Itulah yang dinasihatkan kepada orang-orang di antara kamu yang beriman kepada Allah dan hari akhir. Itu lebih suci bagimu dan lebih bersih. Dan Allah mengetahui, sedangkan kamu tidak mengetahui.",
+      en: {
+        footnotes: "[125] For the first or second time.",
+        text: "When you divorce women, and they have reached the end of their waiting period, do not prevent them from marrying their husbands[125] if they mutually agree with fairness. This advice is for all among you who believe in Allah and the Last Day. This is better and purer for you. And Allah knows, and you do not know.",
+      },
+      id: {
+        footnotes:
+          "[85] Menikah lagi dengan bekas suami atau laki-laki yang lain.",
+        text: "Dan apabila kamu menceraikan istri-istri (kamu), lalu sampai idahnya, maka jangan kamu halangi mereka menikah (lagi) dengan calon suaminya,[85] apabila telah terjalin kecocokan di antara mereka dengan cara yang baik. Itulah yang dinasihatkan kepada orang-orang di antara kamu yang beriman kepada Allah dan hari akhir. Itu lebih suci bagimu dan lebih bersih. Dan Allah mengetahui, sedangkan kamu tidak mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/240",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/240.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/240.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 37,
       ruku: 31,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 240,
@@ -188,40 +167,33 @@ export const quranSurah2Verses229To234 = [
     },
     tafsir: {
       id: {
-        long: "Setiap ibu (meskipun ia janda) berkewajiban menyusui anaknya sampai anak itu mencapai usia dua tahun. Tidak mengapa kalau masa susuan itu kurang dari masa tersebut apabila kedua ibu-bapak memandang ada maslahatnya. Demikian pula setiap bapak berkewajiban untuk memenuhi kebutuhan para ibu baik sandang maupun pangan sesuai dengan kebutuhannya. Ibu laksana wadah bagi anak sedang bapak sebagai pemilik wadah itu. Maka sudah sewajarnya bapak berkewajiban memberi nafkah kepada orang yang di bawah tanggung jawabnya dan memelihara serta merawat miliknya.\n\nAllah mewajibkan kepada ibu menyusui bayinya, karena air susu ibu mempunyai pengaruh yang besar kepada anaknya. Dari hasil penelitian para ahli medis menunjukkan bahwa air susu ibu terdiri dari saripati yang benar-benar murni. Air susu ibu juga merupakan makanan yang paling baik untuk bayi, dan tidak disangsikan lagi oleh para ahli gizi. Di samping ibu dengan fitrah kejadiannya memiliki rasa kasih sayang yang mendalam sehingga penyusuan langsung dari ibu, berhubungan erat dengan perkembangan jiwa dan mental anak. Dengan demikian kurang tepat tindakan sementara para ibu yang tidak mau menyusui anaknya hanya karena kepentingan pribadinya, umpamanya, untuk memelihara kecantikan. Padahal ini bertentangan dengan fitrahnya sendiri dan secara tidak langsung ia kehilangan kesempatan untuk membina dasar hubungan keibuan dengan anaknya sendiri dalam bidang emosi.\n\nDemikianlah pembagian kewajiban kedua orang tua terhadap bayinya yang diatur oleh Allah swt. Sementara itu diberi pula keringanan terhadap kewajiban, umpama kesehatan ibu terganggu atau seorang dokter mengatakan tidak baik bila disusukan oleh ibu karena suatu hal, maka tidak mengapa kalau anak mendapat susuan atau makanan dari orang lain.\n\nDemikian juga apabila bapak tidak mempunyai kesanggupan melaksanakan kewajibannya karena miskin maka ia boleh melaksanakan kewajibannya sesuai dengan kesanggupannya. Keringanan itu membuktikan bahwa anak tidak boleh dijadikan sebab adanya kemudaratan, baik terhadap bapak maupun terhadap ibu. Dengan pengertian, kewajiban tersebut tidak mesti berlaku secara mutlak sehingga mengakibatkan kemudaratan bagi keduanya. Salah satu pihak tidak boleh memudaratkan pihak lain dengan menjadikan anak sebagai kambing hitamnya. Umpamanya karena ibu mengetahui bahwa bapak berkewajiban memberi nafkah maka ia melakukan pemerasan dengan tidak menyusui atau merawat si bayi tanpa sejumlah biaya tertentu. Atau bapak sangat kikir dalam memberikan nafkah sehingga ibu menderita karenanya.\n\nSelanjutnya andaikata salah seorang dari ibu atau bapak tidak memiliki kesanggupan untuk melaksanakan kewajiban atau meninggal dunia, maka kewajiban-kewajiban itu berpindah kepada ahli warisnya. Lamanya masa penyusuan dua tahun, namun demikian apabila berdasarkan musyawarah antara bapak dan ibu untuk kemaslahatan anak, mereka sepakat untuk menghentikannya sebelum sampai masa dua tahun atau meneruskannya lewat dari dua tahun maka hal ini boleh saja dilakukan.\n\nDemikian juga jika mereka mengambil perempuan lain untuk menyusukan anaknya, maka hal ini tidak mengapa dengan syarat, kepada perempuan yang menyusukan itu diberikan imbalan jasa yang sesuai, sehingga terjamin kemaslahatan baik bagi anak maupun perempuan yang menyusui itu.\n\nUlama fikih berbeda pendapat tentang siapa yang berhak untuk menyusukan dan memelihara anak tersebut, jika terjadi perceraian antara suami-istri. Apakah pemeliharaan menjadi kewajiban ibu atau kewajiban bapak? Imam Malik berpendapat bahwa ibulah yang berkewajiban menyusukan anak tersebut, walaupun ia tidak memiliki air susu; kalau ia masih memiliki harta maka anak itu disusukan pada orang lain dengan mempergunakan harta ibunya. Imam Syafi'i dalam hal ini berpendapat bahwa kewajiban tersebut adalah kewajiban bapak.",
-        short:
-          "Usai menjelaskan masalah keluarga, berikutnya Allah membicarakan masalah anak yang lahir dari hubungan suami istri. Di sisi lain, dibicarakan pula ihwal wanita yang dicerai dalam kondisi menyusui anaknya. Dan ibu-ibu yang melahirkan anak, baik yang dicerai suaminya maupun tidak, hendaklah menyusui anak-anaknya selama dua tahun penuh sebagai wujud kasih sayang dan tanggung jawab ibu kepada anaknya. Air susu ibu (ASI) adalah makanan utama dan terbaik bagi bayi yang tidak bisa digantikan oleh makanan lain. Hal itu dilakukan bagi yang ingin menyusui secara sempurna yaitu dua tahun, seperti dijelaskan dalam Surah Luqma n/31: 41. Apabila kurang dari dua tahun, dianjurkan setidaknya jumlah masa menyusui jika digabung dengan masa kehamilan tidak kurang dari tiga puluh bulan sebagaimana ditegaskan dalam Surah al-Ahqa f/43:15. Bila masa kehamilan mencapai sembilan bulan maka masa menyusui adalah dua puluh satu bulan. Apabila masa menyusui dua tahun, berarti masa kehamilan paling pendek adalah enam bulan. Dan kewajiban ayah dari bayi yang dilahirkan adalah menanggung nafkah dan pakaian mereka berdua, yaitu anak dan ibu walaupun sang ibu telah dicerai, dengan cara yang patut sesuai kebutuhan ibu dan anak dan mempertimbangkan kemampuan ayah. Seseorang tidak dibebani lebih dari kesanggupannya. Demikianlah prinsip ajaran Islam. Karena itu, janganlah seorang ayah mengurangi hak anak dan ibu menyusui dalam pemberian nafkah dan pakaian, dan jangan pula seorang ayah menderita karena ibu menuntut sesuatu melebihi kemampuan sang ayah dengan dalih kebutuhan anaknya yang sedang disusui. Jaminan tersebut harus tetap diperolehnya walaupun ayahnya telah meninggal dunia. Apabila ayah telah meninggal dunia maka ahli waris pun berkewajiban seperti itu pula, yaitu memenuhi kebutuhan ibu dan anak. Apabila keduanya, yaitu ibu dan ayah, ingin menyapih anaknya sebelum usia dua tahun dengan persetujuan bersama, bukan akibat paksaan dari siapa pun, dan melalui permusyawaratan antara keduanya dalam mengambil keputusan yang terbaik, maka tidak ada dosa atas keduanya untuk mengurangi masa penyusuan dua tahun itu. Dan jika kamu ingin menyusukan anakmu kepada orang lain karena ibu tidak bersedia atau berhalangan menyusui, maka tidak ada dosa bagimu memberikan pembayaran kepada wanita lain berupa upah atau hadiah dengan cara yang patut. Bertakwalah kepada Allah dalam segala urusan dan taatilah ketentuan-ketentuan hukum Allah dan ketahuilah bahwa Allah Maha Melihat apa yang kamu kerjakan dan membalas setiap amal baik maupun buruk yang kamu kerjakan.\r\nPerceraian antara suami dan istri hendaknya tidak berdampak pada anak yang masih bayi. Ibu tetap dianjurkan merawatnya dan memberinya ASI. Demikian pula ayah wajib memberi nafkah kepada anak dan ibu selama menyusui. Agama sangat memperhatikan kelangsungan hidup anak agar tumbuh menjadi anak yang sehat dan cerdas.",
+        footnotes: null,
+        text: "Para ibu menyusui anak-anak mereka selama dua tahun penuh. Pembatasan dua tahun itu ditujukan bagi orang yang ingin menyempurnakan masa menyusui anaknya. Ayah si anak yang disusui berkewajiban memberikan nafkah dan pakaian kepada para ibu menyusui yang diceraikannya menurut kebiasaan yang berlaku di tengah masyarakat, sepanjang tidak bertentangan dengan syariat (agama). Allah tidak akan membebani seseorang melebihi kelapangan dan kemampuannya. Salah satu dari kedua orang tuanya tidak boleh menjadikan anak tersebut sebagai alat untuk merugikan kepentingan yang lain. Ahli waris anak tersebut -apabila ayahnya sudah meninggal dunia dan tidak meninggalkan warisan- juga memiliki kewajiban yang sama dengan ayahnya. Jika kedua orang tuanya menghendaki anak itu disapih sebelum genap dua tahun, maka mereka tidak berdosa apabila didahului dengan musyawarah dan kesepahaman di antara mereka demi kemaslahatan si anak. Apabila kalian ingin mencari orang lain selain ibunya untuk menyusuinya, maka kalian tidak berdosa sepanjang kalian memberikan nafkahnya bersama orang yang menyusuinya dan upahnya secara baik, tanpa dikurangi dan tidak ditunda-tunda. Maka, bertakwalah kalian kepada Allah dengan cara menjalankan perintah-perintah-Nya dan menjauhi larangan-larangan-Nya, serta ketahuilah bahwa Allah Maha Melihat apa yang kamu perbuat, sehingga tidak ada sesuatu pun yang luput dari pengawasan-Nya, dan Dia akan memberi kalian balasan yang setimpal dengan amal perbuatan yang telah kalian lakukan.",
       },
     },
     text: {
-      arab: "\u06de \u0648\u064e\u0627\u0644\u0652\u0648\u064e\u0627\u0644\u0650\u062f\u064e\u0627\u062a\u064f \u064a\u064f\u0631\u0652\u0636\u0650\u0639\u0652\u0646\u064e \u0623\u064e\u0648\u0652\u0644\u064e\u0627\u062f\u064e\u0647\u064f\u0646\u0651\u064e \u062d\u064e\u0648\u0652\u0644\u064e\u064a\u0652\u0646\u0650 \u0643\u064e\u0627\u0645\u0650\u0644\u064e\u064a\u0652\u0646\u0650 \u06d6 \u0644\u0650\u0645\u064e\u0646\u0652 \u0623\u064e\u0631\u064e\u0627\u062f\u064e \u0623\u064e\u0646 \u064a\u064f\u062a\u0650\u0645\u0651\u064e \u0627\u0644\u0631\u0651\u064e\u0636\u064e\u0627\u0639\u064e\u0629\u064e \u06da \u0648\u064e\u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0645\u064e\u0648\u0652\u0644\u064f\u0648\u062f\u0650 \u0644\u064e\u0647\u064f \u0631\u0650\u0632\u0652\u0642\u064f\u0647\u064f\u0646\u0651\u064e \u0648\u064e\u0643\u0650\u0633\u0652\u0648\u064e\u062a\u064f\u0647\u064f\u0646\u0651\u064e \u0628\u0650\u0627\u0644\u0652\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u0650 \u06da \u0644\u064e\u0627 \u062a\u064f\u0643\u064e\u0644\u0651\u064e\u0641\u064f \u0646\u064e\u0641\u0652\u0633\u064c \u0625\u0650\u0644\u0651\u064e\u0627 \u0648\u064f\u0633\u0652\u0639\u064e\u0647\u064e\u0627 \u06da \u0644\u064e\u0627 \u062a\u064f\u0636\u064e\u0627\u0631\u0651\u064e \u0648\u064e\u0627\u0644\u0650\u062f\u064e\u0629\u064c \u0628\u0650\u0648\u064e\u0644\u064e\u062f\u0650\u0647\u064e\u0627 \u0648\u064e\u0644\u064e\u0627 \u0645\u064e\u0648\u0652\u0644\u064f\u0648\u062f\u064c \u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0648\u064e\u0644\u064e\u062f\u0650\u0647\u0650 \u06da \u0648\u064e\u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0648\u064e\u0627\u0631\u0650\u062b\u0650 \u0645\u0650\u062b\u0652\u0644\u064f \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u06d7 \u0641\u064e\u0625\u0650\u0646\u0652 \u0623\u064e\u0631\u064e\u0627\u062f\u064e\u0627 \u0641\u0650\u0635\u064e\u0627\u0644\u064b\u0627 \u0639\u064e\u0646 \u062a\u064e\u0631\u064e\u0627\u0636\u064d \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645\u064e\u0627 \u0648\u064e\u062a\u064e\u0634\u064e\u0627\u0648\u064f\u0631\u064d \u0641\u064e\u0644\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u064e\u0627 \u06d7 \u0648\u064e\u0625\u0650\u0646\u0652 \u0623\u064e\u0631\u064e\u062f\u062a\u0651\u064f\u0645\u0652 \u0623\u064e\u0646 \u062a\u064e\u0633\u0652\u062a\u064e\u0631\u0652\u0636\u0650\u0639\u064f\u0648\u0627 \u0623\u064e\u0648\u0652\u0644\u064e\u0627\u062f\u064e\u0643\u064f\u0645\u0652 \u0641\u064e\u0644\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0625\u0650\u0630\u064e\u0627 \u0633\u064e\u0644\u0651\u064e\u0645\u0652\u062a\u064f\u0645 \u0645\u0651\u064e\u0627 \u0622\u062a\u064e\u064a\u0652\u062a\u064f\u0645 \u0628\u0650\u0627\u0644\u0652\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u0650 \u06d7 \u0648\u064e\u0627\u062a\u0651\u064e\u0642\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0627\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0627 \u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0628\u0650\u0645\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e \u0628\u064e\u0635\u0650\u064a\u0631\u064c",
-      transliteration: {
-        en: "Walwaa lidaatu yurdi'na awlaada hunna hawlaini kaamilaini liman araada ai yutimmar radaa'ah; wa 'alalmawloodi lahoo rizuhunna wa kiswatuhunna bilma'roof; laatukallafu nafsun illaa wus'ahaa; laa tudaaarra waalidatum biwaladihaa wa laa mawloodul lahoo biwaladih; wa 'alal waarisi mislu zaalik; fa in araadaa Fisaalan 'an taraadim minhumaa wa tashaawurin falaa junaaha 'alaimaa; wa in arattum an tastardi'ooo awlaadakum falaa junaaha 'alaikum izaa sallamtum maaa aataitum bilma'roof; wattaqul laaha wa'lamooo annal laaha bimaa ta'maloona baseer",
-      },
+      arabic:
+        "وَٱلْوَٰلِدَٰتُ يُرْضِعْنَ أَوْلَٰدَهُنَّ حَوْلَيْنِ كَامِلَيْنِ لِمَنْ أَرَادَ أَن يُتِمَّ ٱلرَّضَاعَةَ وَعَلَى ٱلْمَوْلُودِ لَهُۥ رِزْقُهُنَّ وَكِسْوَتُهُنَّ بِٱلْمَعْرُوفِ لَا تُكَلَّفُ نَفْسٌ إِلَّا وُسْعَهَا لَا تُضَآرَّ وَٰلِدَةٌۢ بِوَلَدِهَا وَلَا مَوْلُودٌ لَّهُۥ بِوَلَدِهِۦ وَعَلَى ٱلْوَارِثِ مِثْلُ ذَٰلِكَ فَإِنْ أَرَادَا فِصَالًا عَن تَرَاضٍ مِّنْهُمَا وَتَشَاوُرٍ فَلَا جُنَاحَ عَلَيْهِمَا وَإِنْ أَرَدتُّمْ أَن تَسْتَرْضِعُوٓا۟ أَوْلَٰدَكُمْ فَلَا جُنَاحَ عَلَيْكُمْ إِذَا سَلَّمْتُم مَّآ ءَاتَيْتُم بِٱلْمَعْرُوفِ وَٱتَّقُوا۟ ٱللَّهَ وَٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ بِمَا تَعْمَلُونَ بَصِيرٌ",
     },
     translation: {
-      en: "Mothers may breastfeed their children two complete years for whoever wishes to complete the nursing [period]. Upon the father is the mothers' provision and their clothing according to what is acceptable. No person is charged with more than his capacity. No mother should be harmed through her child, and no father through his child. And upon the [father's] heir is [a duty] like that [of the father]. And if they both desire weaning through mutual consent from both of them and consultation, there is no blame upon either of them. And if you wish to have your children nursed by a substitute, there is no blame upon you as long as you give payment according to what is acceptable. And fear Allah and know that Allah is Seeing of what you do.",
-      id: "Dan ibu-ibu hendaklah menyusui anak-anaknya selama dua tahun penuh, bagi yang ingin menyusui secara sempurna. Dan kewajiban ayah menanggung nafkah dan pakaian mereka dengan cara yang patut. Seseorang tidak dibebani lebih dari kesanggupannya. Janganlah seorang ibu menderita karena anaknya dan jangan pula seorang ayah (menderita) karena anaknya. Ahli waris pun (berkewajiban) seperti itu pula. Apabila keduanya ingin menyapih dengan persetujuan dan permusyawaratan antara keduanya, maka tidak ada dosa atas keduanya. Dan jika kamu ingin menyusukan anakmu kepada orang lain, maka tidak ada dosa bagimu memberikan pembayaran dengan cara yang patut. Bertakwalah kepada Allah dan ketahuilah bahwa Allah Maha Melihat apa yang kamu kerjakan.",
+      en: {
+        footnotes: "[126] ‘Mothers’ here means divorced mothers.",
+        text: "Mothers[126] may breastfeed their children for two full years, for those who wish to complete the full term of breastfeeding. It is the obligation upon the father of the child that he provides food and clothing [for the mothers] with fairness. No soul is obligated beyond what it can bear. Neither mother nor father should be made to suffer on account of their child, and the same duty is incumbent on the heir. If they both decide on weaning, by mutual consent and consultation, there is no sin on them. And If you wish to provide a wet nurse to your children, there is no sin on you, if you pay in full what you have agreed upon with fairness. But fear Allah and know that Allah is All-Seeing of what you do.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan ibu-ibu hendaklah menyusui anak-anaknya selama dua tahun penuh, bagi yang ingin menyusui secara sempurna. Dan kewajiban ayah menanggung nafkah dan pakaian mereka dengan cara yang patut. Seseorang tidak dibebani lebih dari kesanggupannya. Janganlah seorang ibu menderita karena anaknya dan jangan pula seorang ayah (menderita) karena anaknya. Ahli waris pun (berkewajiban) seperti itu pula. Apabila keduanya ingin menyapih dengan persetujuan dan permusyawaratan antara keduanya, maka tidak ada dosa atas keduanya. Dan jika kamu ingin menyusukan anakmu kepada orang lain, maka tidak ada dosa bagimu memberikan bayaran dengan cara yang patut. Bertakwalah kepada Allah dan ketahuilah bahwa Allah Maha Melihat apa yang kamu kerjakan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/241",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/241.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/241.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 38,
       ruku: 31,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 241,
@@ -229,20 +201,24 @@ export const quranSurah2Verses229To234 = [
     },
     tafsir: {
       id: {
-        long: "Idah perempuan yang ditinggal mati suaminya adalah empat bulan sepuluh hari. Walaupun ayat ini kelihatannya umum (mencakup semua wanita yang ditinggal mati oleh suaminya) namun ada pengecualian yaitu yang tidak dalam keadaan hamil. Sebab untuk wanita hamil, telah ada hukum yang lain pada ayat yang lain. Hal ini akan dijelaskan lebih lanjut dalam tafsir ayat 240. Selama masa idah ia tidak boleh berhias, mempersiapkan diri menerima pinangan atau memberi janji untuk menerima pinangan. Demikian juga ia tidak boleh keluar rumah kecuali karena hal-hal yang dibolehkan oleh agama. Karena selain masa itu untuk mengetahui kebersihan rahimnya (hamil atau tidak hamil), juga digunakan sebagai masa berkabung. Manakala ia tidak hamil maka ia wajib berkabung menghormati tali hubungan suami istri baik terhadap mendiang suami maupun terhadap keluarga suaminya. Ia harus berkabung selama ia dalam idah. Setelah habis masa empat bulan sepuluh hari tersebut dibolehkan membuat segala sesuatu tentang dirinya menurut cara yang wajar, umpamanya menerima pinangan, keluar rumah dan perbuatan lain yang tidak bertentangan dengan agama.\n\nAllah mengetahui segala apa yang dikerjakan oleh manusia. Ayat ini menegaskan bahwa mengenai masa berkabung ini Islam memberikan jalan sebaik-baiknya yang sesuai dengan kebutuhan manusia. Wanita-wanita pada masa jahiliah melakukan masa berkabung selama satu tahun penuh dan tidak boleh memakai perhiasan, tidak boleh makan makanan yang enak dan tidak boleh pula memperlihatkan diri di muka umum. Bahkan pada sebagian kelompok masyarakat kaum wanita yang menjalani masa berkabung ini harus melakukan hal-hal yang jauh lebih berat dari apa yang dilakukan oleh orang di masa jahiliyah, seperti: terus menerus menangis dan meratap. Tidak boleh menghias dirinya dan lain sebagainya. Melakukan masa berkabung ini bukan karena kematian suaminya saja, tetapi karena kematian anak pun mereka berkabung secara demikian. Maka tepat apa yang diatur oleh Islam bahwa masa berkabung untuk wanita yang kematian suami tidak boleh lebih dari empat bulan sepuluh hari dan untuk kematian famili lainnya tidak boleh lebih dari tiga hari.\n\nPenyimpangan dari ketentuan ini harus dihindari karena Allah Maha Mengetahui segala apa yang dikerjakan manusia.",
-        short:
-          "Ayat ini menjelaskan idah cerai mati agar tidak ada dugaan bahwa idah cerai mati sama dengan cerai hidup. Dan orang-orang yang mati di antara kamu, yakni para suami, serta meninggalkan istri-istri yang tidak sedang hamil, hendaklah mereka, para istri, menunggu atau beridah selama empat bulan sepuluh hari termasuk malamnya, sebagai ketentuan syarak yang bersifat qat'i (pasti). Kemudian apabila telah sampai akhir atau selesai masa idah mereka, yakni para istri yang ditinggal mati suaminya, maka tidak ada dosa bagimu, wahai para wali dan saudara-saudara mereka, yakni tidak menghalangi dan melarang mereka mengenai apa yang mereka lakukan terhadap diri mereka sendiri yang sebelumnya dilarang ketika masih dalam masa idah, menurut cara yang patut dan sesuai dengan agama dan kewajaran, seperti berhias, menerima pinangan, menikah, dan aktivitas lainnya. Dan Allah Maha Mengetahui apa yang kamu kerjakan, baik yang kamu sembunyikan maupun yang kamu tampakkan.",
+        footnotes: null,
+        text: "Orang-orang mati yang meninggalkan istri-istri yang tidak sedang hamil, maka para istri itu wajib menunggu (masa idah) selama 4 bulan 10 hari. Dalam kurun waktu itu ia tidak boleh keluar dari rumah suami, berhias maupun menikah. Apabila masa idah itu sudah habis, maka tidak ada dosa bagimu -wahai para wali- bila para istri itu melakukan apa yang semula dilarang bagi mereka selama masa idah, sepanjang dilakukan secara baik menurut ketentuan syariat dan kebiasaan yang berlaku di masyarakat. Allah Maha Mengetahui apa yang kamu perbuat, tidak ada sesuatu pun yang luput dari pengetahuan-Nya, baik sisi lahir maupun batin kalian, dan Dia akan memberi balasan yang setimpal dengan amal perbuatan kalian.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064f\u062a\u064e\u0648\u064e\u0641\u0651\u064e\u0648\u0652\u0646\u064e \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0648\u064e\u064a\u064e\u0630\u064e\u0631\u064f\u0648\u0646\u064e \u0623\u064e\u0632\u0652\u0648\u064e\u0627\u062c\u064b\u0627 \u064a\u064e\u062a\u064e\u0631\u064e\u0628\u0651\u064e\u0635\u0652\u0646\u064e \u0628\u0650\u0623\u064e\u0646\u0641\u064f\u0633\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0631\u0652\u0628\u064e\u0639\u064e\u0629\u064e \u0623\u064e\u0634\u0652\u0647\u064f\u0631\u064d \u0648\u064e\u0639\u064e\u0634\u0652\u0631\u064b\u0627 \u06d6 \u0641\u064e\u0625\u0650\u0630\u064e\u0627 \u0628\u064e\u0644\u064e\u063a\u0652\u0646\u064e \u0623\u064e\u062c\u064e\u0644\u064e\u0647\u064f\u0646\u0651\u064e \u0641\u064e\u0644\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0641\u0650\u064a\u0645\u064e\u0627 \u0641\u064e\u0639\u064e\u0644\u0652\u0646\u064e \u0641\u0650\u064a \u0623\u064e\u0646\u0641\u064f\u0633\u0650\u0647\u0650\u0646\u0651\u064e \u0628\u0650\u0627\u0644\u0652\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u0650 \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0645\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e \u062e\u064e\u0628\u0650\u064a\u0631\u064c",
-      transliteration: {
-        en: "Wallazeena yutawaffawna minkum wa yazaroona azwaajai yatarabbasna bi anfusihinna arba'ata ashhurinw wa 'ashran fa izaa balaghna ajalahunna falaa junaaha 'alaikum feemaa fa'alna feee anfusihinna bilma'roof; wallaahu bimaa ta'maloona Khabeer",
-      },
+      arabic:
+        "وَٱلَّذِينَ يُتَوَفَّوْنَ مِنكُمْ وَيَذَرُونَ أَزْوَٰجًا يَتَرَبَّصْنَ بِأَنفُسِهِنَّ أَرْبَعَةَ أَشْهُرٍ وَعَشْرًا فَإِذَا بَلَغْنَ أَجَلَهُنَّ فَلَا جُنَاحَ عَلَيْكُمْ فِيمَا فَعَلْنَ فِىٓ أَنفُسِهِنَّ بِٱلْمَعْرُوفِ وَٱللَّهُ بِمَا تَعْمَلُونَ خَبِيرٌ",
     },
     translation: {
-      en: "And those who are taken in death among you and leave wives behind - they, [the wives, shall] wait four months and ten [days]. And when they have fulfilled their term, then there is no blame upon you for what they do with themselves in an acceptable manner. And Allah is [fully] Acquainted with what you do.",
-      id: "Dan orang-orang yang mati di antara kamu serta meninggalkan istri-istri hendaklah mereka (istri-istri) menunggu empat bulan sepuluh hari. Kemudian apabila telah sampai (akhir) idah mereka, maka tidak ada dosa bagimu mengenai apa yang mereka lakukan terhadap diri mereka menurut cara yang patut. Dan Allah Maha Mengetahui apa yang kamu kerjakan.",
+      en: {
+        footnotes:
+          "[127] They may remarry if they wish.\n [128] A social norm that entails keeping within the dictates of Islam.",
+        text: "Those among you who pass away and leave behind widows should refrain from remarrying for four months and ten days. When they have completed their waiting period, there is no sin on you concerning what they do for themselves[127] in a reasonable manner[128]. And Allah is All-Aware of what you do.",
+      },
+      id: {
+        footnotes: "[86] Berhias, bepergian atau menerima pinangan.",
+        text: "Dan Orang-orang yang wafat di antara kamu serta meninggalkan istri-istri hendaklah mereka (istri-istri) menunggu empat bulan sepuluh hari. Kemudian apabila telah sampai (akhir) idah mereka, maka tidak ada dosa bagimu mengenai apa yang mereka lakukan terhadap diri mereka [86] menurut cara yang patut. Dan Allah Maha Mengetahui apa yang kamu kerjakan.",
+      },
     },
   },
 ];

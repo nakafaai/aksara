@@ -13,9 +13,9 @@ import { recoverContentRelease } from "@nakafa/aksara-publisher/recover";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
 import { makeProductionActivation } from "#cli/activation";
-import type { RecoverArguments } from "#cli/args";
 import { readRecoveryEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
+import type { RecoverArguments } from "#cli/production-arguments";
 import { retryPublicationTarget } from "#cli/retry";
 
 const RECOVERY_TIMEOUT = "30 seconds";

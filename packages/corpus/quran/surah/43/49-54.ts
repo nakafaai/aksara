@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah43Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4374",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4374.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4374.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4374,
@@ -24,40 +25,32 @@ export const quranSurah43Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Fir\'aun dan pengikut-pengikutnya merasakan bencana-bencana yang ditimpakan kepada mereka sangat dahsyat, lalu mereka memohon kepada Nabi Musa agar berdoa kepada Allah supaya melepaskan mereka dari azab itu. "Wahai tukang sihir!" kata mereka, "Berdoalah kepada Tuhanmu sesuai dengan apa yang Ia janjikan kepadamu! Kami pasti menerima apa yang kau sampaikan." Memanggil Nabi Musa tukang sihir sudah menunjukkan bahwa mereka menghina beliau dan tidak mempercayainya. Tetapi Nabi Musa tetap mengabulkan permintaan mereka, karena Allah memang telah menjanjikan kepadanya bahwa bila mereka beriman, azab itu akan dihentikan. Nabi Musa pun berdoa setelah mereka berjanji akan beriman, lalu Allah pun menghentikan azab tersebut.',
-        short:
-          "Dan setiap ada bencana yang ditimpakan kepada Fir’aun dan kaumnya, mereka berkata, “Wahai pesihir, maksudnya Nabi Musa, berdoalah kepada Tuhanmu untuk mengangkat bencana itu dan melepaskan kami dari bencana yang menimpa kami sesuai dengan apa yang telah dijanjikan-Nya kepadamu; sesungguhnya jika doamu dikabulkan, hai Musa, kami akan menjadi orang yang mendapat petunjuk.”",
+        footnotes: null,
+        text: "Mereka berkata kepada Musa -'alaihissalām- tatkala merasakan sebagian azab, “Wahai penyihir! Mohonkan untuk kami kepada Tuhanmu apa yang disebutkan Tuhanmu untuk menyingkirkan azab ini jika kami beriman. Sesungguhnya kami benar-benar akan mendapat petunjuk kepada-Nya apabila azab ini disingkirkan dari kami.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e \u0627\u0644\u0633\u0651\u064e\u0627\u062d\u0650\u0631\u064f \u0627\u062f\u0652\u0639\u064f \u0644\u064e\u0646\u064e\u0627 \u0631\u064e\u0628\u0651\u064e\u0643\u064e \u0628\u0650\u0645\u064e\u0627 \u0639\u064e\u0647\u0650\u062f\u064e \u0639\u0650\u0646\u062f\u064e\u0643\u064e \u0625\u0650\u0646\u0651\u064e\u0646\u064e\u0627 \u0644\u064e\u0645\u064f\u0647\u0652\u062a\u064e\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa qaaloo yaaa ayyuhas saahirud'u lanaa Rabbaka bimaa 'ahida 'indaka innanaa lamuhtadoon",
-      },
+      arabic: "وَقَالُوا۟ يَٰٓأَيُّهَ ٱلسَّاحِرُ ٱدْعُ لَنَا رَبَّكَ بِمَا عَهِدَ عِندَكَ إِنَّنَا لَمُهْتَدُونَ",
     },
     translation: {
-      en: 'And they said [to Moses], "O magician, invoke for us your Lord by what He has promised you. Indeed, we will be guided."',
-      id: "Dan mereka berkata, “Wahai pesihir! Berdoalah kepada Tuhanmu untuk (melepaskan) kami sesuai dengan apa yang telah dijanjikan-Nya kepadamu; sesungguhnya kami (jika doamu dikabulkan) akan menjadi orang yang mendapat petunjuk.”",
+      en: {
+        footnotes: "[18] See 7:134.",
+        text: "They said, “O magician, call upon your Lord for us, by virtue of the covenant He has made with you[18]; we will surely accept guidance.”",
+      },
+      id: {
+        footnotes: "[787] Maksud mereka ialah Nabi Musa -'alaihissalām-.",
+        text: 'Dan mereka berkata, "Wahai penyihir![787] Berdoalah kepada Tuhanmu untuk (melepaskan) kami sesuai dengan apa yang telah dijanjikan-Nya kepadamu; sesungguhnya kami (jika doamu dikabulkan) akan menjadi orang yang mendapat petunjuk."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4375",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4375.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4375.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4375,
@@ -65,40 +58,32 @@ export const quranSurah43Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah azab dihentikan, ternyata mereka memungkiri janji mereka. Mereka tetap membangkang, Di dalam ayat lain peristiwa itu diterangkan pula:\n\nDan ketika mereka ditimpa azab (yang telah diterangkan itu) mereka pun berkata, "Wahai Musa! Mohonkanlah untuk kami kepada Tuhanmu sesuai dengan janji-Nya kepadamu. Jika engkau dapat menghilangkan azab itu dari kami, niscaya kami akan beriman kepadamu dan pasti akan kami biarkan Bani Israil pergi bersamamu." Tetapi setelah Kami hilangkan azab itu dari mereka hingga batas waktu yang harus mereka penuhi ternyata mereka ingkar janji. (Surah al-A\'raf/7: 134-135)\n\nDi dalam ayat itu diterangkan bahwa mereka berjanji bahwa bila mereka dilepaskan dari bencana-bencana itu, mereka akan beriman dan akan membebaskan Bani Israil dari siksaan dan perbudakan yang mereka perlakukan terhadap mereka. Tetapi semuanya itu hanyalah janji. Mereka tidak menepati janji itu, bahkan ingin mencelakakan Nabi Musa dan kaumnya.',
-        short:
-          "Maka dengan begitu cepat ketika Kami hilangkan dan hindarkan azab itu dari mereka karena doa yang dimohonkan oleh Nabi Musa itu, seketika itu juga dari waktu ke waktu dan secara terus-menerus mereka ingkar janji.",
+        footnotes: null,
+        text: "Tatkala Kami hapuskan azab itu dari mereka, ternyata mereka mengingkari janji mereka dan tidak menepatinya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u064e\u0645\u0651\u064e\u0627 \u0643\u064e\u0634\u064e\u0641\u0652\u0646\u064e\u0627 \u0639\u064e\u0646\u0652\u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0639\u064e\u0630\u064e\u0627\u0628\u064e \u0625\u0650\u0630\u064e\u0627 \u0647\u064f\u0645\u0652 \u064a\u064e\u0646\u0643\u064f\u062b\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Falammaa kashafnaa 'anhumul 'azaaba izaa hum yankusoon",
-      },
+      arabic: "فَلَمَّا كَشَفْنَا عَنْهُمُ ٱلْعَذَابَ إِذَا هُمْ يَنكُثُونَ",
     },
     translation: {
-      en: "But when We removed from them the affliction, at once they broke their word.",
-      id: "Maka ketika Kami hilangkan azab itu dari mereka, seketika itu (juga) mereka ingkar janji.",
+      en: {
+        footnotes: "",
+        text: "But as soon We removed the punishment from them, they broke their promise.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka ketika Kami hilangkan azab itu dari mereka, seketika itu (juga) mereka ingkar janji.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4376",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4376.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4376.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4376,
@@ -106,40 +91,33 @@ export const quranSurah43Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Fir'aun semakin menunjukkan kesombongannya dan kesewenang-wenangannya. Ia bertanya kepada kaumnya, bertanya untuk menegaskan, bukankah kerajaan Mesir yang besar itu milik dia bukan milik orang lain. Bukankah sungai-sungai sebagai sumber kehidupan di negeri itu mengalir di bawah istananya dan di dalam kebun-kebunnya. Pertanyaan itu untuk menunjukan kesombongannya. Dengan ucapan itu ia hendak menyatakan bahwa dialah penguasa besar dan satu-satunya di negeri itu, yang tidak mungkin dilawan dan dikalahkan. Oleh karena itu ia tidak akan beriman dan dan tidak akan tunduk kepada Nabi Musa. Ucapannya itu sekaligus mengandung ancaman kepada siapa saja yang mengikuti Nabi Musa bahwa mereka akan memperoleh nasib yang tidak menguntungkan.",
-        short:
-          "Dan Fir‘aun dengan penuh kesombongan dan keangkuhan berseru kepada kaumnya seraya berkata, “Wahai kaumku! Bukankah kerajaan Mesir itu milikku sendiri, bukan milik orang lain, dan bukankah sungai-sungai ini yang mengalir di bawah istana-ku juga menjadi milikku dan ke kayaanku; apakah kamu tidak melihat betapa hebatnya aku dan betapa besar ke kuasaanku dan betapa lemahnya Musa?",
+        footnotes: null,
+        text: "Firaun lantas menyeru di tengah kaumnya sembari menyombongkan kerajaannya, “Wahai kaumku! Bukankah aku memiliki kerajaan Mesir dan sungai-sungai Nil ini mengalir di bawah istanaku? Tidakkah kalian melihat kerajaanku dan mengakui kebesaranku?!",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0646\u064e\u0627\u062f\u064e\u0649\u0670 \u0641\u0650\u0631\u0652\u0639\u064e\u0648\u0652\u0646\u064f \u0641\u0650\u064a \u0642\u064e\u0648\u0652\u0645\u0650\u0647\u0650 \u0642\u064e\u0627\u0644\u064e \u064a\u064e\u0627 \u0642\u064e\u0648\u0652\u0645\u0650 \u0623\u064e\u0644\u064e\u064a\u0652\u0633\u064e \u0644\u0650\u064a \u0645\u064f\u0644\u0652\u0643\u064f \u0645\u0650\u0635\u0652\u0631\u064e \u0648\u064e\u0647\u064e\u0670\u0630\u0650\u0647\u0650 \u0627\u0644\u0652\u0623\u064e\u0646\u0652\u0647\u064e\u0627\u0631\u064f \u062a\u064e\u062c\u0652\u0631\u0650\u064a \u0645\u0650\u0646 \u062a\u064e\u062d\u0652\u062a\u0650\u064a \u06d6 \u0623\u064e\u0641\u064e\u0644\u064e\u0627 \u062a\u064f\u0628\u0652\u0635\u0650\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa naadaa Fir'awnu fee qawmihee qaala yaa qawmi alaisa lee mulku Misra wa haazihil anhaaru tajree min tahtee afalaa tubsiroon",
-      },
+      arabic:
+        "وَنَادَىٰ فِرْعَوْنُ فِى قَوْمِهِۦ قَالَ يَٰقَوْمِ أَلَيْسَ لِى مُلْكُ مِصْرَ وَهَٰذِهِ ٱلْأَنْهَٰرُ تَجْرِى مِن تَحْتِىٓ أَفَلَا تُبْصِرُونَ",
     },
     translation: {
-      en: 'And Pharaoh called out among his people; he said, "O my people, does not the kingdom of Egypt belong to me, and these rivers flowing beneath me; then do you not see?',
-      id: "Dan Fir‘aun berseru kepada kaumnya (seraya) berkata, “Wahai kaumku! Bukankah kerajaan Mesir itu milikku dan (bukankah) sungai-sungai ini mengalir di bawahku; apakah kamu tidak melihat?",
+      en: {
+        footnotes: "[19] i.e., branches of the Nile River.",
+        text: "Pharaoh proclaimed to his people, saying, “O my people, does not the kingdom of Egypt belong to me, and these streams[19] flowing at my feet? Do you not see?",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan Firaun berseru kepada kaumnya (seraya) berkata, "Wahai kaumku! Bukankah kerajaan Mesir itu milikku dan (bukankah) sungai-sungai ini mengalir di bawahku; apakah kamu tidak melihat?',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4377",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4377.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4377.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4377,
@@ -147,40 +125,33 @@ export const quranSurah43Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Fir'aun semakin menunjukkan kecongkakannya. Ia menghina Nabi Musa. Ia bertanya kepada kaumnya, sekali lagi untuk menegaskan, bukankah yang terbaik adalah dia, sedangkan Nabi Musa adalah seorang yang hina karena ia tidak memiliki apa-apa, seperti kekuasaan, jabatan, dan kekayaan seperti yang ia miliki. Dan bukankah Nabi Musa itu begitu hinanya mengingat untuk menjelaskan sesuatu dengan kata-kata saja ia tidak mampu. Yang dimaksudkannya adalah ketidakmampuan Nabi Musa berbicara secara jelas karena lidahnya kelu sebagaimana diakuinya dalam doanya kepada Allah agar memperkuatnya dengan mengutus saudaranya, Nabi Harun. Allah berfirman:\n\nDan saudaraku Harun, dia lebih fasih lidahnya daripada aku, maka utuslah dia bersamaku sebagai pembantuku untuk membenarkan (perkataan)ku; sungguh, aku takut mereka akan mendustakanku. (al-Qasas/28: 34)\n\nTujuan Fir'aun bertanya kepada kaumnya dengan menyampaikan kekurangan-kekurangan Nabi Musa bukanlah untuk bertanya tetapi untuk tujuan menghina beliau. Ia berharap dengan mengemukakan kekurangan Nabi Musa, rakyatnya memiliki pandangan yang tidak baik kepadanya dan tidak mempercayainya.",
-        short:
-          "Bukankah dengan kehebatan, kekayaan, dan kekuasaanku itu aku lebih baik dan lebih tinggi kedudukannya dari orang yang hina ini, yaitu Musa, yang tidak memiliki kekuasaan apa pun dan dia juga adalah orang yang hampir tidak dapat menjelaskan perkataannya dengan kalimat-kalimat yang baik? Tentulah aku lebih baik daripada Musa.",
+        footnotes: null,
+        text: "Karena itu, aku lebih baik daripada Musa yang terusir lagi lemah yang tidak mampu berbicara dengan baik.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652 \u0623\u064e\u0646\u064e\u0627 \u062e\u064e\u064a\u0652\u0631\u064c \u0645\u0651\u0650\u0646\u0652 \u0647\u064e\u0670\u0630\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0647\u064f\u0648\u064e \u0645\u064e\u0647\u0650\u064a\u0646\u064c \u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u0643\u064e\u0627\u062f\u064f \u064a\u064f\u0628\u0650\u064a\u0646\u064f",
-      transliteration: {
-        en: "Am ana khairum min haazal lazee huwa maheenunw wa laa yuakaadu yubeen",
-      },
+      arabic: "أَمْ أَنَا۠ خَيْرٌ مِّنْ هَٰذَا ٱلَّذِى هُوَ مَهِينٌ وَلَا يَكَادُ يُبِينُ",
     },
     translation: {
-      en: "Or am I [not] better than this one who is insignificant and hardly makes himself clear?",
-      id: "Bukankah aku lebih baik dari orang (Musa) yang hina ini dan yang hampir tidak dapat menjelaskan (perkataannya)?",
+      en: {
+        footnotes:
+          "[20] Moses had a speech impediment prior to his mission. However, when he became a prophet he asked Allah to remove his impediment, and his prayer was answered. See 20:25-36.",
+        text: "Or am I not better than this contemptible one who can hardly express himself[20]?",
+      },
+      id: {
+        footnotes: "",
+        text: "Bukankah aku lebih baik dari orang (Musa) yang hina ini dan yang hampir tidak dapat menjelaskan (perkataannya)?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4378",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4378.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4378.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4378,
@@ -188,40 +159,32 @@ export const quranSurah43Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Fir\'aun memberikan alasan mengapa Nabi Musa tidak pantas memperoleh kemuliaan dan tidak layak diimani sebagai rasul, karena ia tidak memiliki gelang-gelang emas sebagai tanda ia kaya, dan tidak didampingi malaikat-malaikat sebagai tanda ia seorang rasul. Dengan demikian Fir\'aun membuat tolok ukur kemuliaan itu adalah dengan kekayaan, dan tolok ukur kebenaran pada hal-hal yang kasat mata. Allah tidak meletakkan tolok ukur kemuliaan itu pada materi tetapi pada ketakwaan, sebagaimana firman Allah:\n\nWahai manusia! Sungguh, Kami telah menciptakan kamu dari seorang laki-laki dan seorang perempuan, kemudian Kami jadikan kamu berbangsa-bangsa dan bersuku-suku agar kamu saling mengenal. Sungguh yang paling mulia di antara kamu di sisi Allah ialah orang yang paling bertakwa. Sungguh, Allah Maha Mengetahui, Mahateliti. (al-hujurat/49: 13) \n\nAllah tidak meletakkan tolok ukur kebenaran sebagai seorang rasul itu pada sesuatu yang dapat diindera, namun pada kebenaran jalan yang ditempuhnya, yaitu pada kebenaran wahyu yang diperolehnya dari Allah. Allah berfirman:\n\nKatakanlah (Muhammad), "Sesungguhnya aku ini hanya seorang manusia seperti kamu, yang telah menerima wahyu, bahwa sesungguhnya Tuhan kamu adalah Tuhan Yang Maha Esa." Maka barang siapa mengharap pertemuan dengan Tuhannya maka hendaklah dia mengerjakan kebajikan dan janganlah dia mempersekutukan dengan sesuatu pun dalam beribadah kepada Tuhannya." (al-Kahf/18: 110) \n\nPerlakuan yang tidak layak juga dialami Nabi Muhammad saw bahkan lebih hebat lagi. Kaumnya tidak mempercayainya sebagai seorang rasul karena ia tidak memiliki apa-apa. Mereka memintanya, di samping menjadi orang kaya, juga dapat menciptakan peristiwa-peristiwa yang luar biasa sampai-sampai mereka ingin melihat Allah dan malaikat secara kasat mata. Permintaan itu tentu tidak mungkin ia penuhi karena sudah di luar kuasanya dan mustahil dipenuhi. Beliau hanya menjawab, "Mahasuci Tuhanku, dan saya hanya seorang manusia yang menjadi rasul." \n\nKatakanlah (Muhammad), "Mahasuci Tuhanku, bukankah aku ini hanya seorang manusia yang menjadi rasul?" (al-Isra\'/17: 93)',
-        short:
-          "Maka kalau memang Musa merupakan utusan Tuhan yang dikirim kepada kami, mengapa dia, yakni Musa, tidak dipakaikan oleh Tuhannya gelang dari emas sebagai identitasnya atau para malaikat datang bersama-sama dia untuk mengiringinya sebagai bentuk dukungan terhadap pengutusannya?”",
+        footnotes: null,
+        text: "Kenapa Allah tidak memberikan kepada orang yang Dia utus gelang-gelang dari emas untuk menjelaskan bahwa dia adalah utusan-Nya atau datang bersamanya para malaikat yang mengiringinya?!”",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u064e\u0648\u0652\u0644\u064e\u0627 \u0623\u064f\u0644\u0652\u0642\u0650\u064a\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650 \u0623\u064e\u0633\u0652\u0648\u0650\u0631\u064e\u0629\u064c \u0645\u0651\u0650\u0646 \u0630\u064e\u0647\u064e\u0628\u064d \u0623\u064e\u0648\u0652 \u062c\u064e\u0627\u0621\u064e \u0645\u064e\u0639\u064e\u0647\u064f \u0627\u0644\u0652\u0645\u064e\u0644\u064e\u0627\u0626\u0650\u0643\u064e\u0629\u064f \u0645\u064f\u0642\u0652\u062a\u064e\u0631\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Falaw laa ulqiya 'alaihi aswiratum min zahabin awjaaa'a ma'ahul malaaa'ikatu muqtarineen",
-      },
+      arabic: "فَلَوْلَآ أُلْقِىَ عَلَيْهِ أَسْوِرَةٌ مِّن ذَهَبٍ أَوْ جَآءَ مَعَهُ ٱلْمَلَٰٓئِكَةُ مُقْتَرِنِينَ",
     },
     translation: {
-      en: 'Then why have there not been placed upon him bracelets of gold or come with him the angels in conjunction?"',
-      id: "Maka mengapa dia (Musa) tidak dipakaikan gelang dari emas atau malaikat datang bersama-sama dia untuk mengiringkannya?”",
+      en: {
+        footnotes: "",
+        text: "Then why are there not sent down upon him bracelets of gold or come with him angels to support him?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Maka mengapa dia (Musa) tidak dipakaikan gelang dari emas, atau malaikat datang bersama-sama dia untuk mengiringkannya?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4379",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4379.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4379.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4379,
@@ -229,20 +192,22 @@ export const quranSurah43Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Upaya Fir'aun mempengaruhi dan mengelabui rakyatnya berhasil. Rakyat Mesir patuh kepadanya dan tidak mau beriman kepada Nabi Musa bahkan membencinya. Mereka digolongkan oleh Allah sebagai orang-orang fasik, yaitu orang-orang yang benar-benar telah melanggar ajaran-ajaran agama dan keluar dari kebenaran.",
-        short:
-          "Maka dia, yakni Fir‘aun, dengan perkataannya itu telah mempengaruhi kaumnya, sehingga mereka patuh kepadanya dan mengakui kekuasaan dan ketuhanannya. Sungguh, mereka adalah kaum yang fasik, yang secara terus-menerus menolak kerasulan Nabi Musa dan menyimpang dari ajaran agama.",
+        footnotes: null,
+        text: "Firaun telah mempengaruhi kaumnya sehingga mereka menaatinya dalam kesesatannya, sesungguhnya mereka adalah kaum yang keluar dari ketaatan kepada Allah.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0633\u0652\u062a\u064e\u062e\u064e\u0641\u0651\u064e \u0642\u064e\u0648\u0652\u0645\u064e\u0647\u064f \u0641\u064e\u0623\u064e\u0637\u064e\u0627\u0639\u064f\u0648\u0647\u064f \u06da \u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0642\u064e\u0648\u0652\u0645\u064b\u0627 \u0641\u064e\u0627\u0633\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fastakhaffa qawmahoo fa ataa'ooh; innahum kaanoo qawman faasiqeen",
-      },
+      arabic: "فَٱسْتَخَفَّ قَوْمَهُۥ فَأَطَاعُوهُ إِنَّهُمْ كَانُوا۟ قَوْمًا فَٰسِقِينَ",
     },
     translation: {
-      en: "So he bluffed his people, and they obeyed him. Indeed, they were [themselves] a people defiantly disobedient [of Allah].",
-      id: "Maka (Fir‘aun) dengan perkataan itu telah mempengaruhi kaumnya, sehingga mereka patuh kepadanya. Sungguh, mereka adalah kaum yang fasik.",
+      en: {
+        footnotes: "",
+        text: "Thus he made a fool of his people and they obeyed him. They were indeed a wicked people.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka (Firaun) dengan perkataan itu telah mempengaruhi kaumnya, sehingga mereka patuh kepadanya. Sungguh, mereka adalah kaum yang fasik.",
+      },
     },
   },
 ];

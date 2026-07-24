@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses151To156 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3939",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3939.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3939.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3939,
@@ -24,40 +25,32 @@ export const quranSurah37Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: 'Selanjutnya Allah mengecam lebih keras lagi ucapan atau pandangan mereka bahwa Allah punya anak itu. Allah menegaskan bahwa pandangan mereka itu hanyalah suatu kebohongan besar yang direkayasa. Karena rekayasa seperti itu maka Allah mencap mereka sebagai pembohong-pembohong besar. Untuk mempertegas kecaman terhadap kebohongan mereka itu, Allah bertanya, "Apakah Ia memilih anak perempuan daripada anak laki-laki?" Maksudnya: anak perempuan rendah dalam pandangan mereka, dan anak laki-laki mulia, lalu apakah Allah akan memilih anak perempuan dan untuk mereka anak laki-laki? Bila demikian keadaannya berarti Allah bodoh dan mereka pintar. Pandangan itulah yang dikecam Allah, karena Allah tidak mungkin beranak dan tidak memerlukan anak, dan tidak boleh dilecehkan dengan pandangan seperti itu, bahwa untuk Allah cukup anak perempuan sedangkan untuk mereka anak laki-laki. Mereka harus mempertanggungjawabkan dosa besar karena pandangan yang keliru itu dan dosa orang-orang yang mengikutinya. Firman Allah:\n\nMaka apakah pantas Tuhan memilihkan anak laki-laki untukmu dan Dia mengambil anak perempuan dari malaikat? Sungguh, kamu benar-benar mengucapkan kata yang besar (dosanya). (al-Isra\'/17: 40)',
-        short:
-          "Wahai Nabi Muhammad, ingatlah sesungguhnya di antara kebohongannya yang lain adalah bahwa mereka benar-benar mengatakan,",
+        footnotes: null,
+        text: "151 - 152. Ingatlah, sesungguhnya orang-orang musyrik itu dengan kedustaan dan fitnah mereka terhadap Allah sampai menisbahkan kepemilikan anak pada-Nya. Sungguh, mereka berdusta dalam klaim mereka ini. ",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0627 \u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645 \u0645\u0651\u0650\u0646\u0652 \u0625\u0650\u0641\u0652\u0643\u0650\u0647\u0650\u0645\u0652 \u0644\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Alaaa innahum min ifkihim la yaqooloon",
-      },
+      arabic: "أَلَآ إِنَّهُم مِّنْ إِفْكِهِمْ لَيَقُولُونَ",
     },
     translation: {
-      en: "Unquestionably, it is out of their [invented] falsehood that they say,",
-      id: "Ingatlah, sesungguhnya di antara kebohongannya mereka benar-benar mengatakan,",
+      en: {
+        footnotes: "",
+        text: "No indeed, it is one of their fabrications when they say,",
+      },
+      id: {
+        footnotes: "",
+        text: "Ingatlah, sesungguhnya di antara kebohongannya mereka benar-benar mengatakan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3940",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3940.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3940.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3940,
@@ -65,40 +58,32 @@ export const quranSurah37Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: '(151-153) Selanjutnya Allah mengecam lebih keras lagi ucapan atau pandangan mereka bahwa Allah punya anak itu. Allah menegaskan bahwa pandangan mereka itu hanyalah suatu kebohongan besar yang direkayasa. Karena rekayasa seperti itu maka Allah mencap mereka sebagai pembohong-pembohong besar. Untuk mempertegas kecaman terhadap kebohongan mereka itu, Allah bertanya, “Apakah Ia memilih anak perempuan daripada anak laki-laki?” Maksudnya: anak perempuan rendah dalam pandangan mereka, dan anak laki-laki mulia, lalu apakah Allah akan memilih anak perempuan dan untuk mereka anak laki-laki? Bila demikian keadaannya berarti Allah bodoh dan mereka pintar. Pandangan itulah yang dikecam Allah, karena Allah tidak mungkin beranak dan tidak memerlukan anak, dan tidak boleh dilecehkan dengan pandangan seperti itu, bahwa untuk Allah cukup anak perempuan sedangkan untuk mereka anak laki-laki. Mereka harus mempertanggungjawabkan dosa besar karena pandangan yang keliru itu dan dosa orang-orang yang mengikutinya. Firman Allah:\n\n"Maka apakah pantas Tuhan memilihkan anak laki-laki untukmu dan Dia mengambil anak perempuan dari malaikat? Sungguh, kamu benar-benar mengucapkan kata yang besar (dosanya)". (al-Isra\'/17: 40)',
-        short:
-          "“Allah mempunyai anak.” Mahasuci Allah. Tiada sekutu bagi-Nya. Dia tidak beranak dan tidak pula diperanakkan. Dan sungguh, mereka benar-benar pendusta karena tuduhan mereka tidak berdasar sama sekali.",
+        footnotes: null,
+        text: "151 - 152. Ingatlah, sesungguhnya orang-orang musyrik itu dengan kedustaan dan fitnah mereka terhadap Allah sampai menisbahkan kepemilikan anak pada-Nya. Sungguh, mereka berdusta dalam klaim mereka ini. ",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0643\u064e\u0627\u0630\u0650\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Waladal laahu wa innhum lakaaziboon",
-      },
+      arabic: "وَلَدَ ٱللَّهُ وَإِنَّهُمْ لَكَٰذِبُونَ",
     },
     translation: {
-      en: '" Allah has begotten," and indeed, they are liars.',
-      id: "”Allah mempunyai anak.” Dan sungguh, mereka benar-benar pendusta,",
+      en: {
+        footnotes: "",
+        text: "“Allah has children,” and they are truly liars.",
+      },
+      id: {
+        footnotes: "",
+        text: '"Allah mempunyai anak." Dan sungguh, mereka benar-benar pendusta.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3941",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3941.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3941.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3941,
@@ -106,40 +91,33 @@ export const quranSurah37Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: 'Selanjutnya Allah mengecam lebih keras lagi ucapan atau pandangan mereka bahwa Allah punya anak itu. Allah menegaskan bahwa pandangan mereka itu hanyalah suatu kebohongan besar yang direkayasa. Karena rekayasa seperti itu maka Allah mencap mereka sebagai pembohong-pembohong besar. Untuk mempertegas kecaman terhadap kebohongan mereka itu, Allah bertanya, "Apakah Ia memilih anak perempuan daripada anak laki-laki?" Maksudnya: anak perempuan rendah dalam pandangan mereka, dan anak laki-laki mulia, lalu apakah Allah akan memilih anak perempuan dan untuk mereka anak laki-laki? Bila demikian keadaannya berarti Allah bodoh dan mereka pintar. Pandangan itulah yang dikecam Allah, karena Allah tidak mungkin beranak dan tidak memerlukan anak, dan tidak boleh dilecehkan dengan pandangan seperti itu, bahwa untuk Allah cukup anak perempuan sedangkan untuk mereka anak laki-laki. Mereka harus mempertanggungjawabkan dosa besar karena pandangan yang keliru itu dan dosa orang-orang yang mengikutinya. Firman Allah:\n\nMaka apakah pantas Tuhan memilihkan anak laki-laki untukmu dan Dia mengambil anak perempuan dari malaikat? Sungguh, kamu benar-benar mengucapkan kata yang besar (dosanya). (al-Isra\'/17: 40)',
-        short:
-          "Apakah untuk diri-Nya sendiri Dia lebih memilih anak-anak perempuan daripada anak-anak laki-laki? Mereka menuduh para malaikat sebagai anak-anak perempuan Allah.",
+        footnotes: null,
+        text: "Apakah Allah lebih memilih untuk diri-Nya anak perempuan yang kalian benci daripada anak laki-laki yang kalian sukai? Mana mungkin!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0635\u0652\u0637\u064e\u0641\u064e\u0649 \u0627\u0644\u0652\u0628\u064e\u0646\u064e\u0627\u062a\u0650 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0628\u064e\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Astafal banaati 'alal baneen",
-      },
+      arabic: "أَصْطَفَى ٱلْبَنَاتِ عَلَى ٱلْبَنِينَ",
     },
     translation: {
-      en: "Has He chosen daughters over sons?",
-      id: "apakah Dia (Allah) memilih anak-anak perempuan daripada anak-anak laki-laki?",
+      en: {
+        footnotes:
+          "[36] i.e., daughters that you hate over sons that you like?",
+        text: "Did He choose daughters over sons[36]?",
+      },
+      id: {
+        footnotes: "",
+        text: "Apakah Dia (Allah) memilih anak-anak perempuan daripada anak-anak laki-laki?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3942",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3942.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3942.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3942,
@@ -147,40 +125,32 @@ export const quranSurah37Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: 'Kecaman dilanjutkan lagi dengan pertanyaan, "Bagaimana kalian ini? Bagaimana kalian berpendapat demikian?" Mereka dikecam karena tidak punya pikiran yang sehat, karena bagaimana mungkin Allah yang menciptakan segala sesuatu di alam ini butuh seorang anak dan anak itu perempuan. Mereka dikecam pula karena, seandainya mereka punya pikiran, mereka keliru dalam berpikir sehingga pikiran itu tidak logis dan tidak dapat diterima akal.\n\nSelanjutnya mereka dikecam bahwa sebenarnya mereka tidak menggunakan pikirannya untuk menganalisa ayat-ayat Allah yang disampaikan, dan tidak mereka ambil menjadi pelajaran padahal hal itu berguna. Kaum kafir Mekah itu sudah mengetahui tentang umat-umat terdahulu, tetapi tidak mengambil hikmah dan pelajaran dari pengalaman umat-umat terdahulu sehingga mereka beriman.',
-        short:
-          "Wahai Nabi Muhammad, katakanlah kepada mereka, “Mengapa kamu beranggapan buruk seperti ini kepada Allah? Bagaimana kamu bisa menetapkan bahwa Allah memilih anak perempuan, padahal kamu sendiri tidak menyukainya?",
+        footnotes: null,
+        text: "Mengapa kalian -wahai kaum musyrikin- menetapkan keputusan yang zalim ini dengan memberikan anak-anak perempuan kepada Allah dan mengambil anak-anak lelaki untuk diri kalian?",
       },
     },
     text: {
-      arab: "\u0645\u064e\u0627 \u0644\u064e\u0643\u064f\u0645\u0652 \u0643\u064e\u064a\u0652\u0641\u064e \u062a\u064e\u062d\u0652\u0643\u064f\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Maa lakum kaifa tahkumoon",
-      },
+      arabic: "مَا لَكُمْ كَيْفَ تَحْكُمُونَ",
     },
     translation: {
-      en: "What is [wrong] with you? How do you make judgement?",
-      id: "Mengapa kamu ini? Bagaimana (caranya) kamu menetapkan?",
+      en: {
+        footnotes: "",
+        text: "What is the matter with you? How do you judge?",
+      },
+      id: {
+        footnotes: "",
+        text: "Mengapa kamu ini? Bagaimana (caranya) kamu menetapkan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3943",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3943.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3943.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3943,
@@ -188,40 +158,32 @@ export const quranSurah37Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: 'Kecaman dilanjutkan lagi dengan pertanyaan, "Bagaimana kalian ini? Bagaimana kalian berpendapat demikian?" Mereka dikecam karena tidak punya pikiran yang sehat, karena bagaimana mungkin Allah yang menciptakan segala sesuatu di alam ini butuh seorang anak dan anak itu perempuan. Mereka dikecam pula karena, seandainya mereka punya pikiran, mereka keliru dalam berpikir sehingga pikiran itu tidak logis dan tidak dapat diterima akal.\n\nSelanjutnya mereka dikecam bahwa sebenarnya mereka tidak menggunakan pikirannya untuk menganalisa ayat-ayat Allah yang disampaikan, dan tidak mereka ambil menjadi pelajaran padahal hal itu berguna. Kaum kafir Mekah itu sudah mengetahui tentang umat-umat terdahulu, tetapi tidak mengambil hikmah dan pelajaran dari pengalaman umat-umat terdahulu sehingga mereka beriman.',
-        short:
-          "Maka, mengapa kamu tidak memikirkan bagaimana jika Allah memiliki anak? Dia Mahakuasa dan Maha Esa dalam menciptakan dan mengaturnya alam semesta.",
+        footnotes: null,
+        text: " Mengapa kalian tidak meyakini kebatilan keyakinan rusak yang kalian pegang ini. Seandainya kalian merenungkan, niscaya kalian tidak menetapkan demikian.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0641\u064e\u0644\u064e\u0627 \u062a\u064e\u0630\u064e\u0643\u0651\u064e\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Afalaa tazakkaroon",
-      },
+      arabic: "أَفَلَا تَذَكَّرُونَ",
     },
     translation: {
-      en: "Then will you not be reminded?",
-      id: "Maka mengapa kamu tidak memikirkan?",
+      en: {
+        footnotes: "",
+        text: "Will you not then take heed?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka mengapa kamu tidak memikirkan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3944",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3944.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3944.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3944,
@@ -229,20 +191,22 @@ export const quranSurah37Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: 'Bantahan lebih lanjut yang disampaikan Allah untuk membantah pandangan kaum kafir Mekah bahwa Allah punya anak yaitu malaikat sebagai anak perempuan-Nya, Allah meminta mereka mengemukakan bukti nyata yang tidak dapat dibantah kebenarannya, baik bukti itu berbentuk fisik maupun berbentuk ungkapan yang terjamin kebenarannya. Bukti fisik, misalnya, bahwa Allah melahirkan malaikat. Bukti non-fisik adalah wahyu. Tentu saja mereka tidak akan bisa mengemukakan bukti-bukti itu, karena memang tidak ada. Dengan demikian firman-Nya berbentuk pertanyaan, "Atau apakah kalian memiliki bukti yang nyata?" merupakan sanggahan yang jitu terhadap pandangan mereka bahwa Allah punya anak perempuan tersebut.\n\nApalagi setelah itu Allah meminta mereka menyampaikan kitab suci yang berisi pernyataan bahwa malaikat itu adalah anak-Nya. Kitab suci itu tidak mungkin mereka dapatkan karena Allah tidak pernah menurunkannya. Pada ayat lain Allah berfirman yang isinya sama dengan ayat ini:\n\nAtau pernahkah Kami menurunkan kepada mereka keterangan, yang menjelaskan (membenarkan) apa yang (selalu) mereka persekutukan dengan Tuhan? (ar-Rum/30: 35)',
-        short:
-          "Ataukah kamu mem­punyai bukti yang jelas atas kebenaran prasangka burukmu itu?",
+        footnotes: null,
+        text: "Apakah kalian mempunyai hujah yang nyata atau bukti yang jelas berupa kitab atau rasul?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652 \u0644\u064e\u0643\u064f\u0645\u0652 \u0633\u064f\u0644\u0652\u0637\u064e\u0627\u0646\u064c \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064c",
-      transliteration: {
-        en: "Am lakum sultaanum mubeen",
-      },
+      arabic: "أَمْ لَكُمْ سُلْطَٰنٌ مُّبِينٌ",
     },
     translation: {
-      en: "Or do you have a clear authority?",
-      id: "Ataukah kamu mempunyai bukti yang jelas?",
+      en: {
+        footnotes: "",
+        text: "Do you have any compelling proof?",
+      },
+      id: {
+        footnotes: "",
+        text: "Ataukah kamu mempunyai bukti yang jelas?",
+      },
     },
   },
 ];

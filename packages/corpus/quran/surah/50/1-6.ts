@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah50Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4631",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4631.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4631.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 207,
       juz: 26,
       manzil: 7,
       page: 518,
       ruku: 452,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4631,
@@ -24,40 +25,32 @@ export const quranSurah50Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Telah diungkapkan sebelum ini bahwa huruf-huruf abjad yang ada pada permulaan surah biasanya memperingatkan betapa pentingnya perkara yang disebut kemudian, dan sering sekali yang disebut itu ialah sifat Al-Qur'an seperti yang disebutkan di sini.\n\nDalam ayat ini, Allah bersumpah dengan kitab-Nya, yang mengandung banyak berkah dan kebajikan (Al-Qur'an) yang sangat mulia bahwa Nabi Muhamammad benar-benar seorang utusan-Nya yang memberi peringatan kepada kaumnya tentang adanya hari kebangkitan. Senada dengan pernyataan ini, dalam permulaan Surah Yasin juga telah diterangkan bahwa Nabi Muhammad sungguh-sungguh adalah salah seorang rasul yang diutus agar memberi peringatan kepada kaum yang bapak-bapak mereka belum pernah diberi peringatan. Oleh karena itu, mereka lalai dan disebut zaman Jahiliah.",
-        short:
-          "Qàf. Allah bersumpah dengan kitab-Nya : Demi Al-Qur’an yang mulia.",
+        footnotes: null,
+        text: "Qāf. Pembahasan tentang huruf-huruf semacam ini sudah ada di awal surah Al-Baqarah. Allah bersumpah dengan Al-Qur`ān al-Karīm lantaran mengandung banyaknya makna, kebaikan, dan berkah, bahwa kalian pasti akan dibangkitkan pada hari Kiamat untuk mendapatkan perhitungan dan balasan amalan.",
       },
     },
     text: {
-      arab: "\u0642 \u06da \u0648\u064e\u0627\u0644\u0652\u0642\u064f\u0631\u0652\u0622\u0646\u0650 \u0627\u0644\u0652\u0645\u064e\u062c\u0650\u064a\u062f\u0650",
-      transliteration: {
-        en: "Qaaaf; wal Qur aanil Majeed",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ قٓ وَٱلْقُرْءَانِ ٱلْمَجِيدِ",
     },
     translation: {
-      en: "Qaf. By the honored Qur'an...",
-      id: "Qaf. Demi Al-Qur'an yang mulia.",
+      en: {
+        footnotes: "[1] See footnote 2:1.",
+        text: "Qāf[1]. By the Glorious Qur’an!",
+      },
+      id: {
+        footnotes: "",
+        text: "Qāf. Demi Al-Qur`an yang mulia.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4632",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4632.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4632.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 207,
       juz: 26,
       manzil: 7,
       page: 518,
       ruku: 452,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4632,
@@ -65,40 +58,32 @@ export const quranSurah50Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Mereka mengingkari kerasulan Nabi Muhammad, bahkan mereka itu bukan saja ragu-ragu dan mengingkari kerasulannya, malahan mereka tercengang karena telah datang kepada mereka seorang manusia yang memberi peringatan dari kalangan mereka sendiri. Mereka memandang sungguh aneh bahwa Allah mengutus seorang manusia seperti mereka sendiri, yang biasa makan-minum dan berkeluarga, yang biasa tidur dan kadang-kadang kena penyakit.\n\nMereka membayangkan bahwa seorang utusan Allah itu mesti malaikat seperti diterangkan dalam firman Allah:\n\nBagaimana kita akan mengikuti seorang manusia (biasa) di antara kita? (al-Qamar/54: 24)\n\nDan firman-Nya\n\nMereka berkata, "Kamu hanyalah manusia seperti kami juga." (Ibrahim/14: 10)',
-        short:
-          "Sesungguhnya Kami mengutus engkau wahai Nabi Muhammad sebagai rasul untuk menyampaikan wahyu-wahyu Kami, tetapi kaum musyrik Mekah mengingkarinya, bahkan mereka tercengang karena telah datang kepada mereka seorang pemberi peringatan dari kalangan mereka sendiri yang mempunyai kebiasaan makan, minum dan berkeluarga sebagaimana manusia pada umumnya. Maka berkatalah orang-orang kafir, “Ini adalah suatu yang sangat ajaib.”",
+        footnotes: null,
+        text: "Sebab mereka menolakmu bukan karena mereka menganggap kamu berdusta karena mereka tahu kejujuranmu, akan tetapi mereka heran dengan kedatangan seorang utusan yang memberi peringatan kepada mereka dari jenis mereka sendiri (manusia), bukan dari jenis malaikat, sehingga lantaran keheranan mereka berkata, “Kedatangan seorang rasul dari golongan manusia kepada kami sungguh sesuatu yang mengherankan!",
       },
     },
     text: {
-      arab: "\u0628\u064e\u0644\u0652 \u0639\u064e\u062c\u0650\u0628\u064f\u0648\u0627 \u0623\u064e\u0646 \u062c\u064e\u0627\u0621\u064e\u0647\u064f\u0645 \u0645\u0651\u064f\u0646\u0630\u0650\u0631\u064c \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0641\u064e\u0642\u064e\u0627\u0644\u064e \u0627\u0644\u0652\u0643\u064e\u0627\u0641\u0650\u0631\u064f\u0648\u0646\u064e \u0647\u064e\u0670\u0630\u064e\u0627 \u0634\u064e\u064a\u0652\u0621\u064c \u0639\u064e\u062c\u0650\u064a\u0628\u064c",
-      transliteration: {
-        en: "Bal 'ajibooo an jaa'ahum munzirum minhum faqaalal kaafiroona haazaa shai'un 'ajeeb",
-      },
+      arabic: "بَلْ عَجِبُوٓا۟ أَن جَآءَهُم مُّنذِرٌ مِّنْهُمْ فَقَالَ ٱلْكَٰفِرُونَ هَٰذَا شَىْءٌ عَجِيبٌ",
     },
     translation: {
-      en: 'But they wonder that there has come to them a warner from among themselves, and the disbelievers say, "This is an amazing thing.',
-      id: "(Mereka tidak menerimanya) bahkan mereka tercengang karena telah datang kepada mereka seorang pemberi peringatan dari (kalangan) mereka sendiri, maka berkatalah orang-orang kafir, “Ini adalah suatu yang sangat ajaib.”",
+      en: {
+        footnotes: "",
+        text: "But they wonder that a warner has come to them from among themselves, so the disbelievers say, “This is something strange!",
+      },
+      id: {
+        footnotes: "",
+        text: '(Mereka tidak menerimanya) bahkan mereka tercengang karena telah datang kepada mereka seorang pemberi peringatan dari (kalangan) mereka sendiri, maka orang-orang kafir berkata, "Ini adalah sesuatu yang sangat ajaib."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4633",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4633.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4633.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 207,
       juz: 26,
       manzil: 7,
       page: 518,
       ruku: 452,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4633,
@@ -106,40 +91,32 @@ export const quranSurah50Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah mereka memperlihatkan rasa terkejutnya tentang kerasulan Muhammad saw itu, mereka dengan penuh rasa keingkaran dan cemoohan berkata, "Apakah kami setelah mati dan setelah tulang-belulang kami menjadi tanah dan berserakan di dalam bumi, akan kembali hidup lagi?" Mereka memandang bahwa bangkit dari kubur itu suatu hal yang mustahil, yang tidak mungkin terjadi dan sama sekali tidak masuk akal, karena mereka mengukur kekuasaan Allah sama dengan kekuasaan mereka.',
-        short:
-          'Setelah menyaksikan bahwa kehadiran Rasul itu membawa peringatan tentang hari Kebangkitan, dengan penuh rasa keingkaran dan cemoohan, orang-orang kafir itu berkata, "Apakah apabila kami telah mati dan sudah menjadi tanah akan kembali lagi? Itu adalah suatu pengembalian yang tidak mungkin, dan sangat jauh dari penerimaan akal. Karena bagaimana mungkin jasmani yang sudah bercampur dengan tanah dapat kembali seperti semula."',
+        footnotes: null,
+        text: "Apakah kami akan dibangkitkan jika kami telah mati dan telah menjadi tanah?! Kebangkitan itu dan kembalinya kehidupan ke tubuh-tubuh kami setelah hancur adalah sesuatu yang jauh dari nalar, tidak mungkin terjadi.”",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0625\u0650\u0630\u064e\u0627 \u0645\u0650\u062a\u0652\u0646\u064e\u0627 \u0648\u064e\u0643\u064f\u0646\u0651\u064e\u0627 \u062a\u064f\u0631\u064e\u0627\u0628\u064b\u0627 \u06d6 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0631\u064e\u062c\u0652\u0639\u064c \u0628\u064e\u0639\u0650\u064a\u062f\u064c",
-      transliteration: {
-        en: "'A-izaa mitnaa wa kunnaa turaaban zaalika raj'um ba'eed",
-      },
+      arabic: "أَءِذَا مِتْنَا وَكُنَّا تُرَابًا ذَٰلِكَ رَجْعٌۢ بَعِيدٌ",
     },
     translation: {
-      en: 'When we have died and have become dust, [we will return to life]? That is a distant return."',
-      id: "Apakah apabila kami telah mati dan sudah menjadi tanah (akan kembali lagi)? Itu adalah suatu pengembalian yang tidak mungkin.",
+      en: {
+        footnotes: "",
+        text: "What! Is it when we die and become dust [will we return to life]? That is a far-fetched return.”",
+      },
+      id: {
+        footnotes: "",
+        text: "Apakah apabila kami telah mati dan sudah menjadi tanah (akan kembali lagi)? Itu adalah suatu pengembalian yang tidak mungkin.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4634",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4634.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4634.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 207,
       juz: 26,
       manzil: 7,
       page: 518,
       ruku: 452,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4634,
@@ -147,40 +124,32 @@ export const quranSurah50Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah mengemukakan dalil atas kebangkitan dari kubur karena Allah sungguh mengetahui apa yang telah dimakan dan dihancurkan oleh bumi dari tubuh-tubuh mereka, ke mana dari bagian-bagian tubuh manusia itu berpindah atau bergeser dan kemudian jadi apa, sebab semua kejadian itu perinciannya ada di sisi Allah. Seluruhnya tercatat dan terpelihara dalam kitab yang semuanya itu menggambarkan bahwa tidak sulit bagi Allah untuk menghidupkan mereka kembali pada hari Kiamat, hari yang pasti akan datang.",
-        short:
-          "Hal itu tidak aneh. Sungguh, Kami telah mengetahui apa yang ditelan bumi dari tubuh mereka baik sebelum maupun sesudah kematiannya, sebab pada Kami ada kitab yang berisi catatan tentang keadaan dan perbuatan mereka yang terpelihara baik. Dengan demikian tidak ada keraguan sedikit pun tentang kebangkitan dan bahwa itu pasti terjadi.",
+        footnotes: null,
+        text: "Kami telah mengetahui apa yang dimakan oleh bumi dari tubuh-tubuh mereka setelah kematian, tidak ada sesuatu pun yang tersembunyi dari hal itu, dan Kami memiliki sebuah kitab yang mencatat apa yang telah ditakdirkan oleh Allah atas mereka dalam kehidupan mereka dan setelah kematian mereka.",
       },
     },
     text: {
-      arab: "\u0642\u064e\u062f\u0652 \u0639\u064e\u0644\u0650\u0645\u0652\u0646\u064e\u0627 \u0645\u064e\u0627 \u062a\u064e\u0646\u0642\u064f\u0635\u064f \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064f \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0639\u0650\u0646\u062f\u064e\u0646\u064e\u0627 \u0643\u0650\u062a\u064e\u0627\u0628\u064c \u062d\u064e\u0641\u0650\u064a\u0638\u064c",
-      transliteration: {
-        en: "Qad 'alimnaa maa tanqu-sul-ardu minhum wa 'indanaa Kitaabun Hafeez",
-      },
+      arabic: "قَدْ عَلِمْنَا مَا تَنقُصُ ٱلْأَرْضُ مِنْهُمْ وَعِندَنَا كِتَٰبٌ حَفِيظٌۢ",
     },
     translation: {
-      en: "We know what the earth diminishes of them, and with Us is a retaining record.",
-      id: "Sungguh, Kami telah mengetahui apa yang ditelan bumi dari (tubuh) mereka, sebab pada Kami ada kitab (catatan) yang terpelihara baik.",
+      en: {
+        footnotes: "[2] Or a Record that preserves everything.",
+        text: "We certainly know what the earth consumes of them [after their death], and with Us is a Preserved Record[2].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, Kami telah mengetahui apa yang ditelan bumi dari (tubuh) mereka, sebab pada Kami ada kitab (catatan) yang terpelihara baik.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4635",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4635.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4635.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 207,
       juz: 26,
       manzil: 7,
       page: 518,
       ruku: 452,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4635,
@@ -188,40 +157,33 @@ export const quranSurah50Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Sesungguhnya mereka telah mendustakan dan mengingkari kerasulan Muhammad saw, Rasul yang diperkuat dengan mukjizat. Bila mereka mendustakan berita-berita yang dibawa oleh Rasulullah saw hal itu lebih mengakibatkan celaka karena telah memutuskan hubungan antara Allah dengan rasul-Nya yang paling terhormat dan dicintai sebagai Sayyidul-Mursalin.\n\nKarena itu mereka terus-menerus berada dalam keadaan kacau-balau. Mereka mengingkari kerasulan dari kalangan manusia dan mereka beranggapan bahwa yang patut jadi utusan Allah itu hanyalah mereka yang mempunyai kedudukan dan keturunan yang tinggi. Dan ucapan mereka itu disebut oleh Allah dalam firman-Nya:\n\nMengapa Al-Qur'an ini tidak diturunkan kepada orang besar (kaya dan berpengaruh) dari salah satu dua negeri ini (Mekah dan Taif)?\" (az-Zukhruf/43: 31)\n\nLebih celaka lagi karena mereka memandang nabi itu sebagai seorang tukang sihir, dukun atau orang gila. Ucapan dan pandangan mereka itu menunjukkan bahwa mereka tidak tetap dalam pendirian, tidak tahu apa yang mereka ucapkan dan pikiran mereka selalu kacau-balau.",
-        short:
-          "Akan tetapi mereka tetap saja mengingkari kebangkitan itu, meskipun bukti-bukti telah dijelaskan. Bahkan mereka telah mendustakan kebenaran, yakni kebenaran Al-Qur’an dan kenabian Nabi Muhammad, ketika kebenaran itu datang kepada mereka, maka mereka berada dalam keadaan kacau balau. Mereka sebenarnya mengetahui kebenaran, tetapi mengingkarinya.",
+        footnotes: null,
+        text: "Akan tetapi, orang-orang musyrik itu mendustakan Al-Qur`ān tatkala dibawa oleh Rasul kepada mereka. Mereka dalam keadaan kontradiksi, tidak mempunyai pendapat yang tetap dalam hal ini.",
       },
     },
     text: {
-      arab: "\u0628\u064e\u0644\u0652 \u0643\u064e\u0630\u0651\u064e\u0628\u064f\u0648\u0627 \u0628\u0650\u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u0644\u064e\u0645\u0651\u064e\u0627 \u062c\u064e\u0627\u0621\u064e\u0647\u064f\u0645\u0652 \u0641\u064e\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0623\u064e\u0645\u0652\u0631\u064d \u0645\u0651\u064e\u0631\u0650\u064a\u062c\u064d",
-      transliteration: {
-        en: "Bal kazzaboo bilhaqqi lammaa jaaa'ahum fahum feee amrim mareej",
-      },
+      arabic: "بَلْ كَذَّبُوا۟ بِٱلْحَقِّ لَمَّا جَآءَهُمْ فَهُمْ فِىٓ أَمْرٍ مَّرِيجٍ",
     },
     translation: {
-      en: "But they denied the truth when it came to them, so they are in a confused condition.",
-      id: "Bahkan mereka telah mendustakan kebenaran ketika (kebenaran itu) datang kepada mereka, maka mereka berada dalam keadaan kacau balau.",
+      en: {
+        footnotes:
+          "[3] They are in confusion concerning the Qur’an, claiming that it is poetry, magic, or ancient fables. They are also in confusion concerning the Prophet (ﷺ), claiming that he is a poet, a fabricator, or insane.",
+        text: "Rather they rejected the truth when it came to them, so they are in a state of confusion[3].",
+      },
+      id: {
+        footnotes: "",
+        text: "Bahkan mereka telah mendustakan kebenaran ketika (kebenaran itu) datang kepada mereka, maka mereka berada dalam keadaan kacau balau.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4636",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4636.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4636.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 207,
       juz: 26,
       manzil: 7,
       page: 518,
       ruku: 452,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4636,
@@ -229,20 +191,22 @@ export const quranSurah50Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah memerintahkan kepada orang kafir yang mengingkari hari kebangkitan supaya mereka memandang ke langit yang ada di atas mereka untuk dijadikan bahan pemikiran, bagaimana Allah telah meninggikan langit itu tanpa tiang dan menghiasnya dengan berbagai bintang yang gemerlapan, sedangkan langit itu tidak retak sedikit pun. Dari segi ilmu pengetahuan, menurut penemuan terakhir dinyatakan bahwa langit itu merupakan benda kolosal yang homogen yang tidak dilapisi dengan benda-benda yang retak dan kosong, akan tetapi padat diisi dengan sejenis benda halus yang bernama ether (al-atsir) dan benda yang halus ini diketahui karena menjadi tempat lalu lintasnya nur atau cahaya. Di antara bintang-bintang itu, ada yang jauhnya dari bumi dengan jarak kecepatan cahaya dalam masa lebih dari sejuta setengah tahun, sedangkan matahari kita sendiri jauhnya dari bumi hanya dengan jarak kecepatan cahaya selama delapan menit dan delapan belas detik. Silakan membayangkan betapa jauhnya sebagian bintang yang ada di cakrawala itu. Cahaya yang dipancarkan oleh bintang itu ke bumi melalui ether itu dan seandainya benda halus itu tidak ada, tentu cahayanya akan terputus. Oleh karena itu, dalam ayat ini dinyatakan bahwa langit itu tidak mempunyai retak-retak sedikit pun.",
-        short:
-          "Setelah Allah menyebutkan bahwa orang-orang kafir itu menganggap tidak mungkin terjadinya kebangkitan setelah mati, maka dilanjutkan pada ayat ini dengan menyebutkan dalil-dalil yang membantah perkataan mereka. Maka tidakkah mereka memperhatikan langit yang ada di atas mereka, bagaimana cara Kami membangunnya, menciptakan dan meninggikannya, dan menghiasinya dengan bintang-bintang, dan tidak terdapat pada langit itu retak-retak sedikit pun yang menjadikannya cacat?",
+        footnotes: null,
+        text: "Apakah orang-orang yang mendustakan kebangkitan itu tidak memperhatikan langit yang ada di atas mereka bagaimana Kami menciptakannya, membangunnya, dan menghiasinya dengan bintang-bintang yang Kami letakkan padanya, tanpa ada keretakan yang mengurangi kekuatannya?! Sungguh, Dia yang menciptakan langit ini tentu kuasa dalam membangkitkan orang-orang mati untuk hidup kembali.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0641\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u0646\u0638\u064f\u0631\u064f\u0648\u0627 \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0621\u0650 \u0641\u064e\u0648\u0652\u0642\u064e\u0647\u064f\u0645\u0652 \u0643\u064e\u064a\u0652\u0641\u064e \u0628\u064e\u0646\u064e\u064a\u0652\u0646\u064e\u0627\u0647\u064e\u0627 \u0648\u064e\u0632\u064e\u064a\u0651\u064e\u0646\u0651\u064e\u0627\u0647\u064e\u0627 \u0648\u064e\u0645\u064e\u0627 \u0644\u064e\u0647\u064e\u0627 \u0645\u0650\u0646 \u0641\u064f\u0631\u064f\u0648\u062c\u064d",
-      transliteration: {
-        en: "Afalam yanzurooo ilas samaaa'i fawqahum kaifa banainaahaa wa zaiyannaahaa wa maa lahaa min furooj",
-      },
+      arabic: "أَفَلَمْ يَنظُرُوٓا۟ إِلَى ٱلسَّمَآءِ فَوْقَهُمْ كَيْفَ بَنَيْنَٰهَا وَزَيَّنَّٰهَا وَمَا لَهَا مِن فُرُوجٍ",
     },
     translation: {
-      en: "Have they not looked at the heaven above them - how We structured it and adorned it and [how] it has no rifts?",
-      id: "Maka tidakkah mereka memperhatikan langit yang ada di atas mereka, bagaimana cara Kami membangunnya dan menghiasinya dan tidak terdapat retak-retak sedikit pun?",
+      en: {
+        footnotes: "",
+        text: "Have they not then looked at the sky above them – how We built it and adorned it [with stars], and it has no rifts?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka tidakkah mereka memperhatikan langit yang ada di atas mereka, bagaimana cara Kami membangunnya dan menghiasinya, dan tidak terdapat retak-retak sedikit pun?",
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah9Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1284",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1284.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1284.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 78,
       juz: 10,
       manzil: 2,
       page: 195,
       ruku: 162,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1284,
@@ -24,40 +25,34 @@ export const quranSurah9Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Sabab Nuzul: Diriwayatkan oleh al-Wahidi dalam kitabnya Asbab an-Nuzul bahwa Rasulullah berkata kepada Jad bin Qais salah seorang pembesar orang munafik, "Wahai Jad, adakah kamu mempunyai kemampuan untuk menghadapi Bani Ashfar (orang-orang Romawi)?" Jad menjawab, "Sebaiknya Rasulullah mengizinkan saya tinggal (di Medinah) dan tidak ikut berperang, karena saya sebagaimana diketahui oleh kaumku mudah tergoda oleh wanita. Saya khawatir kalau saya melihat wanita-wanita mereka, lalu tertarik dan tidak dapat menahan gejolak nafsuku, sehingga akhirnya terjerumuslah saya ke dalam fitnah." Dengan perasaan berat Rasulullah memalingkan mukanya dan berkata, "Saya izinkan kamu tinggal," maka turunlah ayat ini. \n\nAyat ini menerangkan bahwa di antara orang-orang munafik yang tidak malu membuat-buat alasan meminta kepada Rasulullah, agar mereka tidak ikut berperang dan diizinkan tinggal di Medinah. Mereka seakan-akan lupa bahwa berbagai alasan yang dibuat-buat dan mereka perlihatkan itu diketahui oleh Allah, dan Allah akan membuka rahasia yang disembunyikan di dalam hati mereka. Mereka tidak sadar bahwa alasan palsu yang dikemukakan dan tipu daya itu menjerumuskan dirinya ke lembah bencana dan dosa yang besar. Tindak-tanduk mereka menunjukkan kelemahan iman mereka dan menampakkan kemunafikannya. Mereka akan dijerumuskan ke dalam neraka, karena dosa yang telah mereka lakukan, yaitu ingkar kepada Allah, membantah ayat-ayat-Nya dan mendustakan rasul-rasul-Nya. Firman Allah:\n\nBukan demikian! Barang siapa berbuat keburukan, dan dosanya telah menenggelamkannya, maka mereka itu penghuni neraka. Mereka kekal di dalamnya. (al-Baqarah/2: 81)',
-        short:
-          'Ayat ini membeberkan sifat orang munafik yang lain, yakni berpura-pura. Dan di antara mereka ada orang yang berkata, "Berilah aku izin untuk tidak pergi berperang karena ada uzur pada diriku, dan janganlah engkau, wahai Muhammad, menjadikan aku terjerumus ke dalam kesulitan terutama terhadap anak istriku jika tetap pergi ke medan perang." Lalu Allah menegaskan kalau mereka sebenarnya berpura-pura. Ketahuilah, wahai Nabi Muhammad, bahwa sungguh dengan sikap kepurapuraannya itu, sesungguhnya mereka telah terjerumus ke dalam kemunafikan dan kekufuran. Dan sungguh tempat mereka kelak di Jahanam, dan Jahanam akan selalu meliputi orang-orang yang kafir.',
+        footnotes: null,
+        text: 'Di antara orang-orang munafik ada orang yang menyampaikan alasan-alasan yang dibuat-buat. Ia berkata, "Ya Rasulullah! Izinkanlah kami untuk tidak pergi ke medan jihad. Janganlah kamu membebaniku dengan keharusan pergi (ke medan jihad) bersamamu, agar aku tidak jatuh ke dalam perbuatan dosa karena tergoda oleh pesona wanita-wanita musuh (Romawi) apabila aku melihat mereka." Ingatlah, sesungguhnya mereka telah terjerumus ke dalam malapetaka yang jauh lebih besar dari apa yang mereka kira, yaitu malapetaka kemunafikan dan enggan pergi ke medan jihad. Sesungguhnya kelak di hari Kiamat neraka Jahanam benar-benar akan mengurung orang-orang kafir. Tidak ada satu pun dari mereka yang akan luput dari siksanya dan mereka tidak akan menemukan tempat berlindung dari azabnya.',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u0646 \u064a\u064e\u0642\u064f\u0648\u0644\u064f \u0627\u0626\u0652\u0630\u064e\u0646 \u0644\u0651\u0650\u064a \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0641\u0652\u062a\u0650\u0646\u0651\u0650\u064a \u06da \u0623\u064e\u0644\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0652\u0641\u0650\u062a\u0652\u0646\u064e\u0629\u0650 \u0633\u064e\u0642\u064e\u0637\u064f\u0648\u0627 \u06d7 \u0648\u064e\u0625\u0650\u0646\u0651\u064e \u062c\u064e\u0647\u064e\u0646\u0651\u064e\u0645\u064e \u0644\u064e\u0645\u064f\u062d\u0650\u064a\u0637\u064e\u0629\u064c \u0628\u0650\u0627\u0644\u0652\u0643\u064e\u0627\u0641\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa minhum mai yaqoolu' zal lee wa laa taftinneee; alaa fil fitnati saqatoo; wa inna Jahannama lamuheetatum bil kaafireen",
-      },
+      arabic:
+        "وَمِنْهُم مَّن يَقُولُ ٱئْذَن لِّى وَلَا تَفْتِنِّىٓ أَلَا فِى ٱلْفِتْنَةِ سَقَطُوا۟ وَإِنَّ جَهَنَّمَ لَمُحِيطَةٌۢ بِٱلْكَٰفِرِينَ",
     },
     translation: {
-      en: 'And among them is he who says, "Permit me [to remain at home] and do not put me to trial." Unquestionably, into trial they have fallen. And indeed, Hell will encompass the disbelievers.',
-      id: "Dan di antara mereka ada orang yang berkata, “Berilah aku izin (tidak pergi berperang) dan janganlah engkau (Muhammad) menjadikan aku terjerumus ke dalam fitnah.” Ketahuilah, bahwa mereka telah terjerumus ke dalam fitnah. Dan sungguh, Jahanam meliputi orang-orang yang kafir.",
+      en: {
+        footnotes:
+          "[47] By avoiding their obligations, they fell into destruction.",
+        text: "There are some among them who say, “Exempt me and do not expose me to temptation.” They have already fallen into temptation[47]. Hell will certainly encompass the disbelievers.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan di antara mereka ada orang yang berkata, "Berilah aku izin (tidak pergi berperang) dan janganlah engkau (Muhammad) menjadikan aku terjerumus ke dalam fitnah." Ketahuilah, bahwa mereka telah terjerumus ke dalam fitnah. Dan sungguh, Jahanam meliputi orang-orang yang kafir.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1285",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1285.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1285.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 78,
       juz: 10,
       manzil: 2,
       page: 195,
       ruku: 162,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1285,
@@ -65,40 +60,34 @@ export const quranSurah9Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Sabab Nuzul: Diriwayatkan, bahwa orang-orang munafik yang tetap tinggal di Medinah dan tidak pergi berperang selalu menyiarkan berita-berita bohong yang menyangkut diri Nabi Muhammad dan sahabat-sahabatnya. Mereka berkata, "Muhammad dan sahabat-sahabatnya mendapat kesulitan dalam perjalanan dan mereka dalam keadaan bahaya." Tetapi tidak lama kemudian ternyata bahwa apa yang disiarkan orang-orang munafik itu bohong belaka. Nabi Muhammad dan sahabat-sahabatnya tetap dalam keadaan baik, tidak kurang suatu apa pun. Berdasarkan kenyataan yang tidak dapat disangkal itu, timbullah kebencian orang-orang munafik itu dan turunlah ayat ini. (Fath al-Qadir 2/370).\n\nAyat ini menjelaskan bahwa salah satu kebohongan orang munafik itu apabila Rasulullah dan sahabat-sahabatnya memperoleh hal-hal yang menyenangkan seperti ganimah, kemenangan, dan lainnya, sebagaimana yang telah diperolehnya dalam Perang Badar, mereka menggerutu merasa kecewa dan gelisah, karena kebencian dan iri hati. Sebaliknya jika Nabi Muhammad dan sahabat-sahabatnya mendapat kesulitan dan kekalahan, sebagaimana yang dialami dalam Perang Uhud, mereka senang dan memuji diri sendiri karena telah mengambil keputusan untuk menghindar dari perang. Mereka berkata, "Memang setiap menghadapi sesuatu, kami sangat hati-hati dan mempertimbangkan masak-masak jauh sebelumnya."\n\nMasing-masing membanggakan pikiran dan pertimbangan yang telah dikemukakannya. Memuji-muji perbuatannya, merasa beruntung tidak ikut pergi berperang dan tidak mengalami kesulitan dan kebinasaan. Akhirnya mereka bubar dalam keadaan senang dan merasa gembira atas bencana yang telah menimpa Nabi Muhammad dan sahabat-sahabatnya.',
-        short:
-          'Sifat munafik yang lain adalah bahwa jika engkau, wahai Nabi Muhammad, mendapat kebaikan seperti kemenangan dalam peperangan, juga kebaikan-kebaikan yang lain, mereka, kaum munafikin, tidak senang; tetapi jika engkau ditimpa bencana, yakni kekalahan dalam peperangan, mereka berkata kepada engkau juga kepada kaum muslim yang lain, "Sungguh, sejak semula kami telah mengetahui kalau kamu akan mengalami kekalahan, karena itu kami mengambil sikap berhati-hati dan mempertimbangkan secara masak-masak, makanya kami putuskan untuk tidak ikut pergi berperang." Dan, dengan ucapannya itu, mereka berpaling dengan lega dan gembira karena merasa telah berhasil mengelabui Rasulullah dan orang-orang mukmin.',
+        footnotes: null,
+        text: 'Jika kamu -wahai Rasul- mendapatkan nikmat dari Allah berupa sesuatu yang menyenangkan hatimu, seperti kemenangan atau rampasan perang, mereka pasti tidak menyukainya dan merasa sedih karenanya. Sebaliknya, jika kamu ditimpa musibah, seperti mengalami kesulitan atau dikalahkan oleh lawan, orang-orang munafik itu akan berkata, "Kami telah berhati-hati untuk diri kami dan kami telah mengambil keputusan yang tegas ketika kami tidak pergi ke medan perang bersama orang-orang mukmin. Kemudian mereka mengalami apa yang mereka alami, yaitu terbunuh dan tertawan oleh musuh." Lalu orang-orang munafik itu pulang ke rumah keluarga mereka dengan suka cita karena mereka pulang dengan selamat.',
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646 \u062a\u064f\u0635\u0650\u0628\u0652\u0643\u064e \u062d\u064e\u0633\u064e\u0646\u064e\u0629\u064c \u062a\u064e\u0633\u064f\u0624\u0652\u0647\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0625\u0650\u0646 \u062a\u064f\u0635\u0650\u0628\u0652\u0643\u064e \u0645\u064f\u0635\u0650\u064a\u0628\u064e\u0629\u064c \u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0627 \u0642\u064e\u062f\u0652 \u0623\u064e\u062e\u064e\u0630\u0652\u0646\u064e\u0627 \u0623\u064e\u0645\u0652\u0631\u064e\u0646\u064e\u0627 \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u064f \u0648\u064e\u064a\u064e\u062a\u064e\u0648\u064e\u0644\u0651\u064e\u0648\u0627 \u0648\u0651\u064e\u0647\u064f\u0645\u0652 \u0641\u064e\u0631\u0650\u062d\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "in tusibka hasanatun tasu'hum; wa in tusibka museebatuny yaqooloo qad akhaznaaa amranaa min qablu wa yatawallaw wa hum farihoon",
-      },
+      arabic:
+        "إِن تُصِبْكَ حَسَنَةٌ تَسُؤْهُمْ وَإِن تُصِبْكَ مُصِيبَةٌ يَقُولُوا۟ قَدْ أَخَذْنَآ أَمْرَنَا مِن قَبْلُ وَيَتَوَلَّوا۟ وَّهُمْ فَرِحُونَ",
     },
     translation: {
-      en: 'If good befalls you, it distresses them; but if disaster strikes you, they say, "We took our matter [in hand] before," and turn away while they are rejoicing.',
-      id: "Jika engkau (Muhammad) mendapat kebaikan, mereka tidak senang; tetapi jika engkau ditimpa bencana, mereka berkata, “Sungguh, sejak semula kami telah berhati-hati (tidak pergi berperang),” dan mereka berpaling dengan (perasaan) gembira.",
+      en: {
+        footnotes:
+          "[48] The hypocrites claim to have protected themselves by not setting out on the campaign.",
+        text: "If something good happens to you, it grieves them, but if a disaster befalls you, they say, “We have taken our precautions beforehand[48],” and they turn away rejoicing.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Jika engkau (Muhammad) mendapat kebaikan, mereka tidak senang; tetapi jika engkau ditimpa bencana, mereka berkata, "Sungguh, sejak semula kami telah berhati-hati (tidak pergi berperang)," dan mereka berpaling dengan (perasaan) gembira.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1286",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1286.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1286.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 78,
       juz: 10,
       manzil: 2,
       page: 195,
       ruku: 162,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1286,
@@ -106,40 +95,33 @@ export const quranSurah9Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini memerintahkan kepada Rasulullah agar menjawab tantangan orang munafik yang merasa senang ketika Rasulullah dan para sahabatnya ditimpa kesulitan dan merasa sesak dada ketika Rasulullah dan para sahabatnya memperoleh kenikmatan dengan ucapan, "Apa yang menimpa diri kami dan apa yang kami peroleh dan kami alami adalah hal-hal yang telah diatur dan ditetapkan oleh Allah, yaitu hal-hal yang telah tercatat di Lauh Mahfudh sesuai dengan sunatullah yang berlaku pada hamba-Nya, baik kenikmatan kemenangan maupun bencana kekalahan, segala sesuatunya terjadi sesuai dengan qadza dan qadar dari Allah dan bukanlah menurut kemauan dan kehendak manusia mana pun. Allah pelindung kami satu-satunya, dan kepada Dialah kami bertawakal dan berserah diri, dengan demikian kami tidak pernah merasa putus asa di kala ditimpa sesuatu yang tidak menggembirakan dan tidak merasa sombong dan angkuh di kala memperoleh nikmat dan hal-hal yang menjadi cita-cita dan idaman."\n\nFirman Allah:\n\nDan barang siapa bertawakal kepada Allah, niscaya Allah akan mencukupkan (keperluan)nya. Sesungguhnya Allah melaksanakan urusan-Nya. Sungguh, Allah telah mengadakan ketentuan bagi setiap sesuatu (Ath-thalaq/65: 3) \n\nDan firman Allah:\n\nMaka apakah mereka tidak pernah mengadakan perjalanan di bumi sehingga dapat memperhatikan bagaimana kesudahan orang-orang yang sebelum mereka. Allah telah membinasakan mereka, dan bagi orang-orang kafir akan menerima (nasib) yang serupa itu. Yang demikian itu karena Allah pelindung bagi orang-orang yang beriman; sedang orang-orang kafir tidak ada pelindung bagi mereka. (Muhammad/47: 10 dan 11)',
-        short:
-          'Karena itu, beliau diperintah untuk menanggapi ucapan mereka. Katakanlah, wahai Nabi Muhammad, kepada orang-orang munafik itu, "Kami tidak akan mengucapkan sebagaimana apa yang kalian ucapkan, sebab menurut keyakinan kami tidak akan menimpa kami, kebaikan maupun keburukan, kekalahan maupun kemenangan, melainkan apa yang telah ditetapkan Allah di Lauh Mahfuz bagi kami. Demikian ini, agar kami tidak merasa berbangga diri ketika berhasil dan tidak merasa sesak dada kami ketika tidak berhasil. (Lihat pula Surah al-aˆadid/57: 22-23). Sebagai seorang mukmin, kami sadar bahwa Allah tidak mungkin menyengsarakan kami, sebab Dialah pelindung kami, dan hanya kepada Allahlah hendaknya orang-orang yang beriman dengan keimanan yang mantap bertawakkal setelah sebelumnya berusaha secara maksimal."',
+        footnotes: null,
+        text: 'Katakanlah -wahai Rasul- kepada orang-orang munafik itu, "Kami tidak akan mengalami sesuatu kecuali apa yang telah Allah tetapkan untuk kami karena Dialah -Subḥānahu- Tuhan kami dan tempat berlindung kami. Kami berserah diri kepada-Nya dalam semua urusan kami dan hanya kepada-Nya orang-orang mukmin menyerahkan urusan mereka. Dialah pelindung mereka yang merupakan sebaik-baik pelindung.”',
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644 \u0644\u0651\u064e\u0646 \u064a\u064f\u0635\u0650\u064a\u0628\u064e\u0646\u064e\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0627 \u0643\u064e\u062a\u064e\u0628\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0644\u064e\u0646\u064e\u0627 \u0647\u064f\u0648\u064e \u0645\u064e\u0648\u0652\u0644\u064e\u0627\u0646\u064e\u0627 \u06da \u0648\u064e\u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0644\u0652\u064a\u064e\u062a\u064e\u0648\u064e\u0643\u0651\u064e\u0644\u0650 \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qul lany-yuseebanaaa illaa maa katabal laahu lanaa Huwa mawlaanaa; wa 'alal laahi falyatawak kalimu 'minoon",
-      },
+      arabic:
+        "قُل لَّن يُصِيبَنَآ إِلَّا مَا كَتَبَ ٱللَّهُ لَنَا هُوَ مَوْلَىٰنَا وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
     },
     translation: {
-      en: 'Say, "Never will we be struck except by what Allah has decreed for us; He is our protector." And upon Allah let the believers rely.',
-      id: "Katakanlah (Muhammad), “Tidak akan menimpa kami melainkan apa yang telah ditetapkan Allah bagi kami. Dialah pelindung kami, dan hanya kepada Allah bertawakallah orang-orang yang beriman.”",
+      en: {
+        footnotes: "",
+        text: "Say, “Nothing will ever befall us except that which Allah has decreed for us; He is our Protector.” And in Allah alone let the believers put their trust.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Tidak akan menimpa kami melainkan apa yang telah ditetapkan Allah bagi kami. Dialah Pelindung kami, dan hanya kepada Allah bertawakallah orang-orang yang beriman."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1287",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1287.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1287.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 78,
       juz: 10,
       manzil: 2,
       page: 195,
       ruku: 162,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1287,
@@ -147,40 +129,34 @@ export const quranSurah9Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bagaimana orang-orang munafik itu menunggu-nunggu kehancuran dan kebinasaan Nabi Muhammad dan sahabat-sahabatnya, namun mereka tidak akan menyaksikannya, kecuali salah satu dari dua hal yang menguntungkan bagi Rasul dan kaum Muslimin, yaitu kemenangan atau mati syahid. Sedangkan Rasulullah dan sahabat-sahabatnya menunggu salah satu dari dua hal yang merugikan dan membinasakan mereka, karena mereka tetap saja terpengaruh oleh bisikan berbisa dan ajakan setan, sehingga mereka selalu ingkar dan membangkang. Dua hal yang dimaksud ialah bahwa pada suatu saat nanti Allah mengizinkan Rasul-Nya memerangi mereka sampai bertekuk lutut atau mengalami kehancuran.\n\nOrang-orang munafik yang jahil itu menunggu-nunggu apa gerangan yang akan dialami Nabi Muhammad dan sahabat-sahabatnya. Sebaliknya Nabi Muhammad menanti-nanti azab apa yang akan menimpa mereka selama mereka tetap saja ingkar dan tidak mau sadar.",
-        short:
-          'Orang-orang munafik selalu menunggu-nunggu kehancuran dan kebinasaan orang-orang muslim. Karena itu, beliau diperintah untuk menantang mereka. Katakanlah, wahai Nabi Muhammad, kepada orangorang munafik itu, "Meski kamu selalu berharap kebinasaan terhadap kami, maka sesungguhnya tidak ada yang kamu tunggu-tunggu itu bagi kami, kecuali kami akan memperoleh salah satu dari dua kebaikan yaitu menang dengan membawa kemulian atau mati syahid. Dan sebaliknya, kami justru menunggu-nunggu bagi kamu bahwa Allah akan menimpakan salah satu dari dua keburukan yaitu azab dari sisi-Nya, seperti yang pernah menimpa umat-umat terdahulu disebabkan keingkaran dan penentangan mereka terhadap kebenaran Ilahi, atau azab melalui tangan kami dengan membunuhmu atau menawanmu. Karena itu, maka tunggulah, sesungguhnya kami menunggu pula bersamamu, apa yang akan terjadi pada diri kalian jika kalian tetap ingkar."',
+        footnotes: null,
+        text: 'Katakanlah -wahai Rasul- kepada mereka, "Apakah kalian menunggu-nunggu apa yang terjadi pada kami, yang tidak lain adalah kemenangan atau gugur sebagai syahid? Adapun kami maka kami menunggu Allah yang akan menimpakan azab-Nya kepada kalian untuk membinasakan kalian, atau hukuman yang diberikan oleh-Nya melalui tangan kami yang akan mencabut nyawa kalian dan menjadikan kalian sebagai tawanan perang manakala Allah mengizinkan kami untuk memerangi kalian. Oleh sebab itu, tunggulah kesudahan kami karena sesungguhnya kami juga menunggu kesudahan kalian.”',
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u0647\u064e\u0644\u0652 \u062a\u064e\u0631\u064e\u0628\u0651\u064e\u0635\u064f\u0648\u0646\u064e \u0628\u0650\u0646\u064e\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0625\u0650\u062d\u0652\u062f\u064e\u0649 \u0627\u0644\u0652\u062d\u064f\u0633\u0652\u0646\u064e\u064a\u064e\u064a\u0652\u0646\u0650 \u06d6 \u0648\u064e\u0646\u064e\u062d\u0652\u0646\u064f \u0646\u064e\u062a\u064e\u0631\u064e\u0628\u0651\u064e\u0635\u064f \u0628\u0650\u0643\u064f\u0645\u0652 \u0623\u064e\u0646 \u064a\u064f\u0635\u0650\u064a\u0628\u064e\u0643\u064f\u0645\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0639\u064e\u0630\u064e\u0627\u0628\u064d \u0645\u0651\u0650\u0646\u0652 \u0639\u0650\u0646\u062f\u0650\u0647\u0650 \u0623\u064e\u0648\u0652 \u0628\u0650\u0623\u064e\u064a\u0652\u062f\u0650\u064a\u0646\u064e\u0627 \u06d6 \u0641\u064e\u062a\u064e\u0631\u064e\u0628\u0651\u064e\u0635\u064f\u0648\u0627 \u0625\u0650\u0646\u0651\u064e\u0627 \u0645\u064e\u0639\u064e\u0643\u064f\u0645 \u0645\u0651\u064f\u062a\u064e\u0631\u064e\u0628\u0651\u0650\u0635\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qul hal tarabbasoona binaaa illaaa ihdal husnayayni wa nahnu natrabbasu bikum ai yus eebakumul laahu bi'azaa bim min 'indiheee aw biaidee naa fatarabbasooo innaa ma'akum mutarabbisoon",
-      },
+      arabic:
+        "قُلْ هَلْ تَرَبَّصُونَ بِنَآ إِلَّآ إِحْدَى ٱلْحُسْنَيَيْنِ وَنَحْنُ نَتَرَبَّصُ بِكُمْ أَن يُصِيبَكُمُ ٱللَّهُ بِعَذَابٍ مِّنْ عِندِهِۦٓ أَوْ بِأَيْدِينَا فَتَرَبَّصُوٓا۟ إِنَّا مَعَكُم مُّتَرَبِّصُونَ",
     },
     translation: {
-      en: 'Say, "Do you await for us except one of the two best things while we await for you that Allah will afflict you with punishment from Himself or at our hands? So wait; indeed we, along with you, are waiting."',
-      id: "Katakanlah (Muhammad), “Tidak ada yang kamu tunggu-tunggu bagi kami, kecuali salah satu dari dua kebaikan (menang atau mati syahid). Dan kami menunggu-nunggu bagi kamu bahwa Allah akan menimpakan azab kepadamu dari sisi-Nya, atau (azab) melalui tangan kami. Maka tunggulah, sesungguhnya kami menunggu (pula) bersamamu.”",
+      en: {
+        footnotes:
+          "[49] The Prophet (ﷺ) said: “When your brothers were struck down in the Battle of Badr, Allah placed their souls in the abdominal cavities of green fowls, they drink from the rivers of Paradise, eat from its fruits and come back at the end of the day to repose in chandeliers hung in the Shadow of the Majestic Throne...” [Abū Dāwūd: 2520, Ahmad: 2388]",
+        text: "Say, “Are you awaiting to befall us except one of the two fine things [i.e., victory or martyrdom][49]? But we are awaiting that Allah will afflict you with punishment from Himself or at our hands. So wait; we too are waiting with you.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Tidak ada yang kamu tunggu-tunggu bagi kami, kecuali salah satu dari dua kebaikan (menang atau mati syahid). Dan kami menunggu-nunggu bagi kamu bahwa Allah akan menimpakan azab kepadamu dari sisi-Nya, atau (azab) melalui tangan kami. Maka tunggulah, sesungguhnya kami menunggu (pula) bersamamu."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1288",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1288.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1288.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 78,
       juz: 10,
       manzil: 2,
       page: 195,
       ruku: 162,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1288,
@@ -188,40 +164,32 @@ export const quranSurah9Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa bagaimana pun juga orang-orang munafik menginfakkan harta bendanya untuk membantu perjuangan orang-orang mukmin, baik karena harta benda itu diserahkan dengan sepenuh hatinya, sesuai dengan perintah Allah untuk keselamatan dirinya, maupun secara terpaksa, karena takut kepada azab yang akan menimpanya, namun Allah tidak akan menerimanya, karena mereka tetap ragu-ragu kepada agama yang dibawa oleh Nabi Besar Muhammad dan tidak percaya akan adanya pembalasan di akhirat nanti atas segala perbuatan yang mereka lakukan di dunia ini. Allah akan menerima baik amalan apa saja apabila amalan itu dikerjakan bukan karena ria tetapi karena keikhlasan dan takwa kepada Allah. Sabda Nabi Muhammad:\n\nSesungguhnya Allah swt tidak akan menerima amalan kecuali apabila dikerjakan dengan ikhlas dan dimaksudkan semata-mata karena Allah. (Riwayat an-Nasa'i dari Abu Umamah)\n\nFirman Allah:\n\nSesungguhnya Allah hanya menerima (amal) dari orang yang bertakwa. (al-Ma'idah/5: 27)",
-        short:
-          'Setelah ayat sebelumnya menjelaskan balasan orang-orang munafik baik di dunia maupun di akhirat, maka ayat ini menginformasikan betapa kebaikan yang dilakukan orang-orang munafik itu tidak akan memberi manfaat apa pun bagi mereka. Katakanlah, wahai Nabi Muhammad, kepada kaum munafik itu, "Infakkanlah hartamu baik dengan sukarela maupun dengan terpaksa, namun infakmu itu tetap sia-sia saja dan tidak akan diterima. Sesungguhnya infak yang kamu lakukan itu justru untuk melawan agama Allah, sehingga dengan begitu kamu adalah orang-orang yang fasik, yakni orang-orang yang keluar dari ketaatan kepada Allah."',
+        footnotes: null,
+        text: 'Katakanlah -wahai Rasul- kepada mereka, "Keluarkanlah sebanyak mungkin harta kalian dengan sukarela maupun terpaksa, Allah tidak akan menerima infak kalian karena kalian telah berbuat kafir kepada Allah dan tidak taat kepada-Nya."',
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u0623\u064e\u0646\u0641\u0650\u0642\u064f\u0648\u0627 \u0637\u064e\u0648\u0652\u0639\u064b\u0627 \u0623\u064e\u0648\u0652 \u0643\u064e\u0631\u0652\u0647\u064b\u0627 \u0644\u0651\u064e\u0646 \u064a\u064f\u062a\u064e\u0642\u064e\u0628\u0651\u064e\u0644\u064e \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u06d6 \u0625\u0650\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u0642\u064e\u0648\u0652\u0645\u064b\u0627 \u0641\u064e\u0627\u0633\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qul anfiqoo taw'an aw karhal lany yutaqabbala min kum innakum kuntum qawman faasiqeen",
-      },
+      arabic: "قُلْ أَنفِقُوا۟ طَوْعًا أَوْ كَرْهًا لَّن يُتَقَبَّلَ مِنكُمْ إِنَّكُمْ كُنتُمْ قَوْمًا فَٰسِقِينَ",
     },
     translation: {
-      en: 'Say, "Spend willingly or unwillingly; never will it be accepted from you. Indeed, you have been a defiantly disobedient people."',
-      id: "Katakanlah (Muhammad), “Infakkanlah hartamu baik dengan sukarela maupun dengan terpaksa, namun (infakmu) tidak akan diterima. Sesungguhnya kamu adalah orang-orang yang fasik.”",
+      en: {
+        footnotes: "",
+        text: "Say, “Whether you spend willingly or unwillingly, it will never be accepted from you, for you have been a wicked people.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Infakkanlah hartamu, baik dengan sukarela maupun dengan terpaksa, namun (infakmu) tidak akan diterima. Sesungguhnya kamu sekalian adalah orang-orang yang fasik."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1289",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1289.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1289.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 78,
       juz: 10,
       manzil: 2,
       page: 195,
       ruku: 162,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1289,
@@ -229,20 +197,24 @@ export const quranSurah9Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa yang menyebabkan infak orang-orang munafik itu tidak diterima oleh Allah ialah karena mereka tetap ingkar kepada Allah dan sifat-sifat-Nya, ingkar kepada Rasulullah dan petunjuk-petunjuk serta penjelasan-penjelasan yang dibawanya. Orang-orang munafik itu kalaupun melakukan salat, mereka lakukan dengan malas. Kalau di hadapan orang mereka salat, tetapi kalau mereka hanya sendirian, salat ditinggalkan dan tidak dikerjakan. Mereka tidak mengharapkan pahala dari salatnya itu, mereka tidak takut kepada siksaan karena meninggalkannya. Salat yang dilaksanakan bukanlah karena percaya akan kewajibannya, tetapi karena ria dan ingin dilihat dan diketahui bahwa ia juga turut melakukan salat. Apabila mereka meninfakkan harta bendanya untuk membantu perjuangan Rasulullah dan sahabat-sahabatnya, atau hal-hal lain, mereka mengeluarkannya dengan rasa terpaksa, tidak dengan rela dan ikhlas hati, karena mereka menganggap bahwa bantuannya itu akan merugikan dirinya sendiri, sebaliknya akan menguntungkan orang-orang mukmin, sedang dia bukanlah termasuk golongan orang-orang mukmin.",
-        short:
-          "Selanjutnya disebutkan alasan ditolaknya infak orang-orang munafik. Dan yang menghalang-halangi infak mereka, kaum munafik, untuk diterima adalah karena mereka kafir kepada Allah dan Rasul-Nya dan mereka tidak melaksanakan salat dengan penuh ketaatan melainkan dengan malas, tidak senang, atau kurang peduli, dan mereka tidak pula menginfakkan harta, melainkan dengan rasa enggan atau terpaksa, karena mereka tidak yakin terhadap limpahan pahala dari Allah di akhirat kelak bagi mereka yang melakukan kebaikan atas dasar keikhlasan.",
+        footnotes: null,
+        text: " Tidak ada alasan yang membuat infaq mereka itu tidak diterima oleh Allah selain tiga hal, mereka ingkar kepada Allah dan Rasul-Nya, mereka malas dan berat ketika melaksanakan salat, dan mereka tidak menginfaqkan harta mereka dengan sukarela, melainkan karena terpaksa. Hal itu karena mereka tidak mengharapkan pahala dalam menunaikan salat mereka dan dalam menginfaqkan harta mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0645\u064e\u0646\u064e\u0639\u064e\u0647\u064f\u0645\u0652 \u0623\u064e\u0646 \u062a\u064f\u0642\u0652\u0628\u064e\u0644\u064e \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0646\u064e\u0641\u064e\u0642\u064e\u0627\u062a\u064f\u0647\u064f\u0645\u0652 \u0625\u0650\u0644\u0651\u064e\u0627 \u0623\u064e\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0628\u0650\u0631\u064e\u0633\u064f\u0648\u0644\u0650\u0647\u0650 \u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u0623\u0652\u062a\u064f\u0648\u0646\u064e \u0627\u0644\u0635\u0651\u064e\u0644\u064e\u0627\u0629\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0648\u064e\u0647\u064f\u0645\u0652 \u0643\u064f\u0633\u064e\u0627\u0644\u064e\u0649\u0670 \u0648\u064e\u0644\u064e\u0627 \u064a\u064f\u0646\u0641\u0650\u0642\u064f\u0648\u0646\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0648\u064e\u0647\u064f\u0645\u0652 \u0643\u064e\u0627\u0631\u0650\u0647\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa maa mana'ahum an tuqbala minhum nafaqaatuhum illaaa annnahum kafaroo billaahi wa bi Rasoolihee wa laa yaatoonas Salaata illaa wa hum kusaalaa wa laa yunfiqoona illaa wa hum kaarihoon",
-      },
+      arabic:
+        "وَمَا مَنَعَهُمْ أَن تُقْبَلَ مِنْهُمْ نَفَقَٰتُهُمْ إِلَّآ أَنَّهُمْ كَفَرُوا۟ بِٱللَّهِ وَبِرَسُولِهِۦ وَلَا يَأْتُونَ ٱلصَّلَوٰةَ إِلَّا وَهُمْ كُسَالَىٰ وَلَا يُنفِقُونَ إِلَّا وَهُمْ كَٰرِهُونَ",
     },
     translation: {
-      en: "And what prevents their expenditures from being accepted from them but that they have disbelieved in Allah and in His Messenger and that they come not to prayer except while they are lazy and that they do not spend except while they are unwilling.",
-      id: "Dan yang menghalang-halangi infak mereka untuk diterima adalah karena mereka kafir (ingkar) kepada Allah dan Rasul-Nya dan mereka tidak melaksanakan salat, melainkan dengan malas dan tidak (pula) menginfakkan (harta) mereka, melainkan dengan rasa enggan (terpaksa).",
+      en: {
+        footnotes:
+          '[50] The Prophet (ﷺ) said: "No prayer is heavier for the hypocrites than the Fajr and the ‘Isha’ prayers; but if they knew the reward for these prayers at their respective times, they would certainly attend even if they had to crawl..." [Sahih al-Bukhāri: 626]',
+        text: "Nothing prevents the acceptance of their spending except that they disbelieve in Allah and His Messenger, they do not come to prayer but lazily[50], and they do not spend but reluctantly.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan yang menghalang-halangi infak mereka untuk diterima adalah karena mereka kafir (ingkar) kepada Allah dan Rasul-Nya dan mereka tidak melaksanakan salat, melainkan dengan malas dan tidak (pula) menginfakkan (harta) mereka, melainkan dengan rasa enggan (terpaksa).",
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah88Verses25To26 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5992",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5992.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5992.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 592,
       ruku: 530,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5992,
@@ -24,40 +25,32 @@ export const quranSurah88Verses25To26 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menerangkan bahwa mereka akan kembali kepada-Nya. Tidak ada jalan bagi mereka untuk lari daripada-Nya. Dialah yang akan menghisab mereka atas perbuatan yang telah mereka perbuat di dunia dan kemudian menjatuhkan hukuman-Nya. Ayat-ayat ini adalah penghibur hati bagi Nabi Muhammad dan sebagai obat bagi kesedihan dan kepedihan hatinya atas keingkaran orang-orang kafir itu.",
-        short:
-          "Engkau tidak bisa memaksa manusia untuk beriman. Janganlah bersedih atas keingkaran mereka. Sungguh, setelah mereka mati, hanya kepada Kamilah mereka kembali. Kamilah yang akan membalas dan menentukan nasib mereka di akhirat nanti.",
+        footnotes: null,
+        text: "Sesungguhnya hanya kepada Kami semata kembalinya mereka setelah kematian.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0625\u0650\u0644\u064e\u064a\u0652\u0646\u064e\u0627 \u0625\u0650\u064a\u064e\u0627\u0628\u064e\u0647\u064f\u0645\u0652",
-      transliteration: {
-        en: "Innaa ilainaaa iyaabahum",
-      },
+      arabic: "إِنَّ إِلَيْنَآ إِيَابَهُمْ",
     },
     translation: {
-      en: "Indeed, to Us is their return.",
-      id: "Sungguh, kepada Kamilah mereka kembali,",
+      en: {
+        footnotes: "",
+        text: "Indeed, to Us is their return,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, kepada Kami lah mereka kembali,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5993",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5993.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5993.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 592,
       ruku: 530,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5993,
@@ -65,20 +58,22 @@ export const quranSurah88Verses25To26 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menerangkan bahwa mereka akan kembali kepada-Nya. Tidak ada jalan bagi mereka untuk lari daripada-Nya. Dialah yang akan menghisab mereka atas perbuatan yang telah mereka perbuat di dunia dan kemudian menjatuhkan hukuman-Nya. Ayat-ayat ini adalah penghibur hati bagi Nabi Muhammad dan sebagai obat bagi kesedihan dan kepedihan hatinya atas keingkaran orang-orang kafir itu.",
-        short:
-          "Kemudian, sesungguhnya Kamilah pula yang akan membuat perhitungan atas mereka. Kami akan memberi mereka balasan sesuai tingkat kedurhakaan mereka supaya mereka tahu bahwa kehidupan ini bukan untuk bermain-main, melainkan harus dijalani dengan serius dan bertanggung jawab.",
+        footnotes: null,
+        text: "Kemudian hanya Kami semata yang memberi perhitungan atas amal perbuatan mereka, bukan hakmu maupun hak seseorang selainmu.",
       },
     },
     text: {
-      arab: "\u062b\u064f\u0645\u0651\u064e \u0625\u0650\u0646\u0651\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0646\u064e\u0627 \u062d\u0650\u0633\u064e\u0627\u0628\u064e\u0647\u064f\u0645",
-      transliteration: {
-        en: "Summa inna 'alainaa hisaabahum",
-      },
+      arabic: "ثُمَّ إِنَّ عَلَيْنَا حِسَابَهُم",
     },
     translation: {
-      en: "Then indeed, upon Us is their account.",
-      id: "kemudian sesungguhnya (kewajiban) Kamilah membuat perhitungan atas mereka.",
+      en: {
+        footnotes: "",
+        text: "then it is for Us to call them to account.",
+      },
+      id: {
+        footnotes: "",
+        text: "kemudian sesungguhnya (kewajiban) Kami lah membuat perhitungan atas mereka.",
+      },
     },
   },
 ];

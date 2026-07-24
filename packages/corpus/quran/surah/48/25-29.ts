@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah48Verses25To29 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4608",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4608.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4608.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 205,
       juz: 26,
       manzil: 6,
       page: 514,
       ruku: 448,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4608,
@@ -24,40 +25,34 @@ export const quranSurah48Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan bahwa orang-orang kafir menghalang-halangi kaum Muslimin mengerjakan umrah di Masjidilharam. Mereka juga menghalangi kaum Muslimin membawa dan menyembelih binatang kurban ke daerah sekitar Masjidilharam seperti di Mina dan sebagainya.\n\nSebagaimana telah diterangkan bahwa Rasulullah saw pada tahun keenam Hijrah berangkat ke Mekah bersama rombongan sahabat untuk melakukan ibadah umrah dan menyembelih kurban di daerah haram. Karena terikat dengan Perjanjian Hudaibiyyah, maka Rasulullah saw beserta sahabat tidak dapat melakukan maksudnya pada tahun itu. Rasul berusaha menepati Perjanjian Hudaibiyyah, namun ada serombongan kaum musyrik yang menyerbu perkemahan Rasulullah saw di Hudaibiyyah, tetapi serbuan itu dapat digagalkan oleh Allah. Sekalipun demikian, banyak di antara kaum Muslimin yang ingin membalas serbuan itu walaupun telah terikat dengan Perjanjian Hudaibiyyah. Allah melunakkan hati kaum Muslimin sehingga mereka menerima keputusan Rasulullah. Allah menerangkan bahwa Dia melunakkan hati kaum Muslimin sehingga tidak menyerbu Mekah dengan tujuan: pertama, untuk menyelamatkan kaum Muslimin di Mekah yang menyembunyikan keimanannya kepada orang-orang kafir. Mereka takut dibunuh atau dianiaya oleh orang-orang kafir seandainya mereka menyatakan keimanannya. Kaum Muslimin sendiri tidak dapat membedakan mereka dengan orang-orang kafir. Seandainya terjadi penyerbuan kota Mekah, niscaya orang-orang mukmin yang berada di Mekah akan terbunuh seperti terbunuhnya orang-orang kafir. Kalau terjadi demikian, tentu kaum Muslimin akan ditimpa keaiban dan kesukaran karena harus membayar kifarat. Orang-orang musyrik juga akan mengatakan, "Sesungguhnya orang-orang Muslim telah membunuh orang-orang yang seagama dengan mereka." \n\nKedua, ada kesempatan bagi kaum Muslimin menyeru orang-orang musyrik untuk beriman. Dengan terjadinya Perjanjian Hudaibiyyah, kaum Muslimin telah dapat berhubungan langsung dengan orang-orang kafir. Dengan demikian, dapat terjadi pertukaran pikiran yang wajar antara mereka, tanpa mendapat tekanan dari pihak mana pun sehingga dapat diharapkan akan masuk Islam orang-orang tertentu yang diharapkan keislamannya atau diharapkan agar sikap mereka tidak lagi sekeras sikap sebelumnya. Diharapkan hal-hal itu terjadi sebelum kaum Muslimin melakukan umrah pada tahun yang akan datang.\n\nDari ayat ini dapat dipahami bahwa Allah selalu menjaga dan melindungi orang-orang yang benar-benar beriman kepada-Nya, di mana pun orang itu berada. Bahkan Dia tidak akan menimpakan suatu bencana kepada orang-orang kafir, sekiranya ada orang yang beriman yang akan terkena bencana itu.',
-        short:
-          "Merekalah orang-orang kafir yang menghalang-halangi kamu memasuki Masjidilharam untuk melaksanakan umrah dan menghambat hewan-hewan kurban sebanyak 70 onta yang akan kamu sembelih dan dagingnya kamu bagikan kepada fakir miskin untuk sampai ke tempat penyembelihannya yang paling utama di Marwah. Dan kalau bukanlah karena ada beberapa orang beriman laki-laki dan perempuan yang kesemuanya menetap di kota Mekah yang tidak kamu ketahui sosoknya secara pasti dan mereka bertempat tinggal berbaur dengan orang-orang Mekah yang sebagian masih kafir, tentulah kamu akan membunuh mereka yang menyebabkan kamu ditimpa kesulitan seperti penyesalan dan kewajiban membayar diyat akibat membunuh mereka tanpa kamu sadari bahwa mereka adalah saudaramu seiman. Bahwa Allah mencegah tanganmu dari membinasakan mereka adalah karena Allah hendak memasukkan siapa yang Dia kehendaki ke dalam rahmat-Nya dengan memeluk Islam. Sekiranya mereka terpisah, tidak bercampur baur antara yang mukmin dan yang kafir tentu Kami akan mengazab orang-orang yang kafir di antara mereka, penduduk Mekah itu, dengan azab yang pedih, dengan membunuhnya atau menjadikan mereka sebagai tawanan dan merampas harta bendanya.",
+        footnotes: null,
+        text: "Mereka adalah orang-orang yang kafir terhadap Allah dan Rasul-Nya, menghalangi kalian dari Masjidilharam, dan menghalangi hewan sembelihan sehingga tertahan untuk sampai ke tanah haram, tempat penyembelihannya. Kalaulah bukan karena adanya orang-orang lelaki dan perempuan yang beriman kepada Allah yang tidak kalian ketahui yang akan terbunuh oleh kalian bersama orang-orang kafir, sehingga kalian mendapatkan dosa karena membunuh mereka dan harus membayar diat tanpa kalian sadari, niscaya Allah mengizinkan kalian untuk masuk Makkah agar Allah memasukkan orang-orang yang dikehendaki-Nya ke dalam rahmat-Nya seperti orang-orang beriman yang berada di Makkah. Jika tampak perbedaan yang jelas antara orang-orang kafir dengan orang-orang yang beriman di Makkah niscaya Kami menyiksa orang-orang yang kafir kepada Allah dan Rasul-Nya dengan siksa yang menyakitkan.",
       },
     },
     text: {
-      arab: "\u0647\u064f\u0645\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0648\u064e\u0635\u064e\u062f\u0651\u064f\u0648\u0643\u064f\u0645\u0652 \u0639\u064e\u0646\u0650 \u0627\u0644\u0652\u0645\u064e\u0633\u0652\u062c\u0650\u062f\u0650 \u0627\u0644\u0652\u062d\u064e\u0631\u064e\u0627\u0645\u0650 \u0648\u064e\u0627\u0644\u0652\u0647\u064e\u062f\u0652\u064a\u064e \u0645\u064e\u0639\u0652\u0643\u064f\u0648\u0641\u064b\u0627 \u0623\u064e\u0646 \u064a\u064e\u0628\u0652\u0644\u064f\u063a\u064e \u0645\u064e\u062d\u0650\u0644\u0651\u064e\u0647\u064f \u06da \u0648\u064e\u0644\u064e\u0648\u0652\u0644\u064e\u0627 \u0631\u0650\u062c\u064e\u0627\u0644\u064c \u0645\u0651\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0648\u064e\u0646\u0650\u0633\u064e\u0627\u0621\u064c \u0645\u0651\u064f\u0624\u0652\u0645\u0650\u0646\u064e\u0627\u062a\u064c \u0644\u0651\u064e\u0645\u0652 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0647\u064f\u0645\u0652 \u0623\u064e\u0646 \u062a\u064e\u0637\u064e\u0626\u064f\u0648\u0647\u064f\u0645\u0652 \u0641\u064e\u062a\u064f\u0635\u0650\u064a\u0628\u064e\u0643\u064f\u0645 \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u0639\u064e\u0631\u0651\u064e\u0629\u064c \u0628\u0650\u063a\u064e\u064a\u0652\u0631\u0650 \u0639\u0650\u0644\u0652\u0645\u064d \u06d6 \u0644\u0651\u0650\u064a\u064f\u062f\u0652\u062e\u0650\u0644\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0641\u0650\u064a \u0631\u064e\u062d\u0652\u0645\u064e\u062a\u0650\u0647\u0650 \u0645\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u06da \u0644\u064e\u0648\u0652 \u062a\u064e\u0632\u064e\u064a\u0651\u064e\u0644\u064f\u0648\u0627 \u0644\u064e\u0639\u064e\u0630\u0651\u064e\u0628\u0652\u0646\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064b\u0627 \u0623\u064e\u0644\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Humul lazeena kafaroo wa saddookum 'anil-Masjidil-Haraami walhadya ma'koofan any yablugha mahillah; wa law laa rijaalum mu'minoona wa nisaaa'um mu'minaatul lam ta'lamoohum an tata'oohum fatuseebakum minhum ma'arratum bighairi 'ilmin liyud khilal laahu fee rahmatihee many yashaaa'; law tazayyaloo la'azzabnal lazeena kafaroo minhum 'azaaban aleema",
-      },
+      arabic:
+        "هُمُ ٱلَّذِينَ كَفَرُوا۟ وَصَدُّوكُمْ عَنِ ٱلْمَسْجِدِ ٱلْحَرَامِ وَٱلْهَدْىَ مَعْكُوفًا أَن يَبْلُغَ مَحِلَّهُۥ وَلَوْلَا رِجَالٌ مُّؤْمِنُونَ وَنِسَآءٌ مُّؤْمِنَٰتٌ لَّمْ تَعْلَمُوهُمْ أَن تَطَـُٔوهُمْ فَتُصِيبَكُم مِّنْهُم مَّعَرَّةٌۢ بِغَيْرِ عِلْمٍ لِّيُدْخِلَ ٱللَّهُ فِى رَحْمَتِهِۦ مَن يَشَآءُ لَوْ تَزَيَّلُوا۟ لَعَذَّبْنَا ٱلَّذِينَ كَفَرُوا۟ مِنْهُمْ عَذَابًا أَلِيمًا",
     },
     translation: {
-      en: "They are the ones who disbelieved and obstructed you from al-Masjid al-Haram while the offering was prevented from reaching its place of sacrifice. And if not for believing men and believing women whom you did not know - that you might trample them and there would befall you because of them dishonor without [your] knowledge - [you would have been permitted to enter Makkah]. [This was so] that Allah might admit to His mercy whom He willed. If they had been apart [from them], We would have punished those who disbelieved among them with painful punishment",
-      id: "Merekalah orang-orang kafir yang menghalang-halangi kamu (masuk) Masjidilharam dan menghambat hewan-hewan kurban sampai ke tempat (penyembelihan)nya. Dan kalau bukanlah karena ada beberapa orang beriman laki-laki dan perempuan yang tidak kamu ketahui, tentulah kamu akan membunuh mereka yang menyebabkan kamu ditimpa kesulitan tanpa kamu sadari. Karena Allah hendak memasukkan siapa yang Dia kehendaki ke dalam rahmat-Nya. Sekiranya mereka terpisah, tentu Kami akan mengazab orang-orang yang kafir di antara mereka dengan azab yang pedih.",
+      en: {
+        footnotes:
+          "[14] i.e., The Prophet (ﷺ) had brought along with him seventy camels to be sacrificed after completing the rituals of ‘Umrah (the minor pilgrimage).\n [15] Thus, not only the Muslims in Makkah who were not known to their fellow believers were safe, but also those pagans who later embraced Islam were safe too.",
+        text: "It is they who disbelieved and prevented you from the Sacred Mosque and detained the sacrificial animals[14] from reaching their place of sacrifice. If it had not been for the believing men and women whom you could not identify, you might have trampled over them, thus incurring guilt unknowingly, [We would have let you march to Makkah]. [This was] so that Allah may admit to His mercy whom He wills[15]. If they had been distinct [from the disbelievers], We would surely have inflicted on those who disbelieved among them a painful punishment.",
+      },
+      id: {
+        footnotes: "",
+        text: "Merekalah orang-orang kafir yang menghalang-halangi kamu (masuk) Masjidilharam dan menghambat hewan-hewan kurban sampai ke tempat (penyembelihan)nya. Dan kalau bukanlah karena ada beberapa orang beriman laki-laki dan perempuan yang tidak kamu ketahui, tentulah kamu akan membunuh mereka yang menyebabkan kamu ditimpa kesulitan tanpa kamu sadari; karena Allah hendak memasukkan siapa yang Dia kehendaki ke dalam rahmat-Nya. Sekiranya mereka terpisah, tentu Kami akan mengazab orang-orang yang kafir di antara mereka dengan azab yang pedih.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4609",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4609.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4609.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 205,
       juz: 26,
       manzil: 6,
       page: 514,
       ruku: 448,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4609,
@@ -65,40 +60,35 @@ export const quranSurah48Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini mengingatkan kaum Muslimin akan timbulnya rasa angkuh dan sombong di hati orang-orang musyrik Mekah. Rasa itu timbul ketika mereka tidak setuju dituliskan "Bismillahir-Rahmanir-Rahimi" pada permulaan surat Perjanjian Hudaibiyyah.\n\nDiriwayatkan, tatkala Rasulullah saw bermaksud memerangi orang-orang musyrik, mereka mengutus Suhail bin \'Amr, Khuwaithib bin \'Abd al-\'Uzza, dan Mikras bin Hafadz kepada beliau. Mereka menyampaikan permintaan kepada beliau agar mengurungkan maksudnya dan mereka menyetujui jika maksud itu dilakukan pada tahun yang akan datang. Dengan demikian, ada kesempatan bagi mereka untuk mengosongkan kota Mekah pada waktu kaum muslimin mengerjakan umrah dan tidak akan mendapat gangguan dari siapa pun. Maka dibuat suatu perjanjian. Rasulullah saw memerintahkan \'Ali bin Abi thalib menulis "Bismillahir-Rahmanir-Rahimi". Mereka menjawab, "Kami tidak mengetahuinya." Rasulullah mengatakan bahwa perjanjian ini sebagai tanda perdamaian dari beliau kepada penduduk Mekah. Mereka berkata, "Kalau kami mengakui bahwa engkau rasul Allah, kami tidak menghalangi engkau dan tidak akan memerangi engkau, dan tuliskanlah perjanjian ini sebagai tanda perdamaian dari Muhammad bin Abdullah kepada penduduk Mekah." Maka Rasulullah saw berkata kepada sahabat-sahabatnya, "Tulislah sesuai dengan keinginan mereka."\n\nKarena sikap mereka, maka sebagian kaum Muslimin enggan menerima perjanjian itu, dan ingin menyerbu kota Mekah. Maka Allah menanamkan ketenangan dan sikap taat dan patuh pada diri para sahabat kepada keputusan Rasulullah saw.\n\nSemua yang terjadi itu, baik di kalangan orang yang beriman maupun di kalangan orang kafir, diketahui Allah, tidak ada sesuatu pun yang luput dari pengetahuannya. Oleh karena itu, Dia akan membalas setiap amal dan perbuatan hamba-Nya dengan seadil-adilnya.',
-        short:
-          "Ayat yang lalu menyatakan bahwa Allah akan mengazab orang-orang kafir dengan siksaan yang pedih. Ayat ini menjelaskan kapan waktunya, yaitu ketika orang-orang yang kafir menanamkan kesombongan dalam hati mereka yaitu kesombongan jahiliah yang ditandai dengan menolak keesaan Allah, tidak percaya kepada diutusnya para Nabi dan perbuatan menghalangi orang beriman mengunjungi Baitullah maka Allah menurunkan ketenangan, kesabaran, dan ketenteraman, kepada Rasul-Nya, dan kepada orang-orang mukmin sehingga terlaksana Perjanjian Hudaibiyah dengan sempurna; dan Allah mewajibkan kepada mereka tetap taat menjalankan kalimat takwa, yaitu kalimat tauhid sehingga mereka terpelihara dari kemusyrikan, dan mereka lebih berhak dengan kalimat takwa itu dan patut memilikinya sebagaimana ditunjukkan oleh ucapan dan perbuatannya. Dan Allah Maha Mengetahui segala sesuatu.",
+        footnotes: null,
+        text: 'Tatkala orang-orang yang kafir terhadap Allah dan Rasul-Nya menjadikan di dalam hati mereka pertahanan diri, yaitu pertahanan jahiliah yang tidak berhubungan dengan menegakkan kebenaran akan tetapi berhubungan dengan hawa nafsu, sehingga mereka menghalangi Rasulullah masuk ke tempat mereka pada tahun perjanjian Hudaibiah lantaran mereka khawatir akan mendapat kehinaan karena terkalahkan. Lalu Allah menurunkan ketenangan dari sisi-Nya untuk Rasul-Nya dan menurunkan ketenangan untuk orang-orang yang beriman, sehingga kemarahan mereka tidak menjadikan mereka membalas kaum musyrikin dengan balasan yang semisal dengan perbuatan mereka, dan Allah mengharuskan orang-orang yang beriman mengucapkan kalimat kebenaran, yaitu kalimat "Lā ilāha illallāh" dan untuk melaksanakan hak-hak kalimat ini maka mereka pun melaksanakannya. Orang-orang yang beriman lebih berhak atas kalimat ini dari selain mereka karena mereka adalah pemiliknya yang sebenarnya karena kebaikan yang Allah ketahui di dalam hati mereka. Sungguh, Allah Maha Mengetahui segala sesuatu, tidak ada sesuatu pun yang luput dari-Nya.',
       },
     },
     text: {
-      arab: "\u0625\u0650\u0630\u0652 \u062c\u064e\u0639\u064e\u0644\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0641\u0650\u064a \u0642\u064f\u0644\u064f\u0648\u0628\u0650\u0647\u0650\u0645\u064f \u0627\u0644\u0652\u062d\u064e\u0645\u0650\u064a\u0651\u064e\u0629\u064e \u062d\u064e\u0645\u0650\u064a\u0651\u064e\u0629\u064e \u0627\u0644\u0652\u062c\u064e\u0627\u0647\u0650\u0644\u0650\u064a\u0651\u064e\u0629\u0650 \u0641\u064e\u0623\u064e\u0646\u0632\u064e\u0644\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0633\u064e\u0643\u0650\u064a\u0646\u064e\u062a\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0631\u064e\u0633\u064f\u0648\u0644\u0650\u0647\u0650 \u0648\u064e\u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e \u0648\u064e\u0623\u064e\u0644\u0652\u0632\u064e\u0645\u064e\u0647\u064f\u0645\u0652 \u0643\u064e\u0644\u0650\u0645\u064e\u0629\u064e \u0627\u0644\u062a\u0651\u064e\u0642\u0652\u0648\u064e\u0649\u0670 \u0648\u064e\u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0623\u064e\u062d\u064e\u0642\u0651\u064e \u0628\u0650\u0647\u064e\u0627 \u0648\u064e\u0623\u064e\u0647\u0652\u0644\u064e\u0647\u064e\u0627 \u06da \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0643\u064f\u0644\u0651\u0650 \u0634\u064e\u064a\u0652\u0621\u064d \u0639\u064e\u0644\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Iz ja'alal lazeena kafaroo fee quloobihimul hamiyyata hamiyyatal jaahiliyyati fa anzalal laahu sakeenatahoo 'alaa Rasoolihee wa 'alal mu mineena wa alzamahum kalimatat taqwaa wa kaanooo ahaqqa bihaa wa ahlahaa; wa kaanal laahu bikulli shai'in Aleema",
-      },
+      arabic:
+        "إِذْ جَعَلَ ٱلَّذِينَ كَفَرُوا۟ فِى قُلُوبِهِمُ ٱلْحَمِيَّةَ حَمِيَّةَ ٱلْجَٰهِلِيَّةِ فَأَنزَلَ ٱللَّهُ سَكِينَتَهُۥ عَلَىٰ رَسُولِهِۦ وَعَلَى ٱلْمُؤْمِنِينَ وَأَلْزَمَهُمْ كَلِمَةَ ٱلتَّقْوَىٰ وَكَانُوٓا۟ أَحَقَّ بِهَا وَأَهْلَهَا وَكَانَ ٱللَّهُ بِكُلِّ شَىْءٍ عَلِيمًا",
     },
     translation: {
-      en: "When those who disbelieved had put into their hearts chauvinism - the chauvinism of the time of ignorance. But Allah sent down His tranquillity upon His Messenger and upon the believers and imposed upon them the word of righteousness, and they were more deserving of it and worthy of it. And ever is Allah, of all things, Knowing.",
-      id: "Ketika orang-orang yang kafir menanamkan kesombongan dalam hati mereka (yaitu) kesombongan jahiliah, lalu Allah menurunkan ketenangan kepada Rasul-Nya, dan kepada orang-orang mukmin; dan (Allah) mewajibkan kepada mereka tetap taat menjalankan kalimat takwa dan mereka lebih berhak dengan itu dan patut memilikinya. Dan Allah Maha Mengetahui segala sesuatu.",
+      en: {
+        footnotes:
+          "[16] This was when the pagans of Makkah prevented the Prophet (ﷺ) and the believers from entering the Sacred House to perform ‘Umrah for fear that Arabs would consider this a shame and insult to the pagans for allowing Muslims to enter Makkah.\n [17] That none has the right to be worshiped except Allan, and that Muhammad is His messenger (declaration of faith).",
+        text: "When the disbelievers harbored pride in their hearts – the pride of ignorance[16] – then Allah sent down His tranquility upon His Messenger and upon the believers, and caused them to adhere to the word of piety[17], for they were more deserving and worthy of it. And Allah is All-Knowing of everything.",
+      },
+      id: {
+        footnotes:
+          "[808] “Kalimat takwa” ialah kalimat tauhid dan memurnikan ketaatan kepada Allah.",
+        text: "Ketika orang-orang yang kafir menanamkan kesombongan dalam hati mereka (yaitu) kesombongan jahiliah, maka Allah menurunkan ketenangan kepada Rasul-Nya, dan kepada orang-orang mukmin, dan (Allah) mewajibkan kepada mereka tetap taat menjalankan kalimat takwa,[808] dan mereka lebih berhak dengan itu dan patut memilikinya. Dan Allah Maha Mengetahui segala sesuatu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4610",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4610.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4610.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 205,
       juz: 26,
       manzil: 6,
       page: 514,
       ruku: 449,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4610,
@@ -106,40 +96,35 @@ export const quranSurah48Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa mimpi Rasulullah yang melihat dirinya dan para sahabatnya memasuki kota Mekah dengan aman dan tenteram serta beliau melihat pula di antara para sahabat ada yang menggunting dan mencukur rambutnya adalah mimpi yang benar dan pasti akan terjadi dalam waktu dekat.",
-        short:
-          "Sungguh, Allah akan membuktikan kepada Rasul-Nya yaitu Nabi Muhammad tentang kebenaran mimpinya yang diwahyukan Allah bahwa kamu, wahai sahabat-sahabat Nabi yang turut serta ke Hudaibiyah, pasti akan memasuki Masjidilharam pada tahun yang akan datang, jika Allah menghendaki dalam keadaan aman, yakni pada saat memasukinya kamu tidak dihalangi orang siapa pun. Sebagian dari kamu memasuki Masjidilharam dengan menggundul rambut kepala dan sebagian dari kamu dengan memendekkannya, sedang kamu tidak merasa takut kepada siapa pun. Maka Allah mengetahui apa yang tidak kamu ketahui dan selain itu Dia telah memberikan kemenangan yang dekat, yakni kemenangan di Hudaibiyah ini atau kemenangan di Khaibar segera sesudah terjadinya Perjanjian Hudaibiyah.",
+        footnotes: null,
+        text: "Sungguh Allah akan membuktikan kepada Rasul-Nya kebenaran mimpinya dengan sebenarnya saat Allah menampakkannya di dalam tidurnya dan telah diberitahukan olehnya kepada para sahabatnya, yaitu bahwa dia dan para sahabatnya akan masuk ke Baitullah dalam kondisi aman dari gangguan musuh mereka. Di antara mereka ada yang menggunduli kepalanya dan ada yang mencukur pendek rambutnya sebagai bukti selesainya manasik mereka. Allah mengetahui maslahat kalian -wahai orang-orang yang beriman- apa yang tidak kalian ketahui, sebab itu di samping terbuktinya mimpi untuk masuk Makkah pada tahun itu Allah juga mewujudkan kemenangan kalian dalam waktu dekat, yaitu perjanjian Hudaibiah yang dirancang oleh Allah lalu diikuti dengan kemenangan perang Khaibar untuk orang-orang beriman yang menghadiri perjanjian Hudaibiah.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0642\u064e\u062f\u0652 \u0635\u064e\u062f\u064e\u0642\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0631\u064e\u0633\u064f\u0648\u0644\u064e\u0647\u064f \u0627\u0644\u0631\u0651\u064f\u0624\u0652\u064a\u064e\u0627 \u0628\u0650\u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u06d6 \u0644\u064e\u062a\u064e\u062f\u0652\u062e\u064f\u0644\u064f\u0646\u0651\u064e \u0627\u0644\u0652\u0645\u064e\u0633\u0652\u062c\u0650\u062f\u064e \u0627\u0644\u0652\u062d\u064e\u0631\u064e\u0627\u0645\u064e \u0625\u0650\u0646 \u0634\u064e\u0627\u0621\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0622\u0645\u0650\u0646\u0650\u064a\u0646\u064e \u0645\u064f\u062d\u064e\u0644\u0651\u0650\u0642\u0650\u064a\u0646\u064e \u0631\u064f\u0621\u064f\u0648\u0633\u064e\u0643\u064f\u0645\u0652 \u0648\u064e\u0645\u064f\u0642\u064e\u0635\u0651\u0650\u0631\u0650\u064a\u0646\u064e \u0644\u064e\u0627 \u062a\u064e\u062e\u064e\u0627\u0641\u064f\u0648\u0646\u064e \u06d6 \u0641\u064e\u0639\u064e\u0644\u0650\u0645\u064e \u0645\u064e\u0627 \u0644\u064e\u0645\u0652 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0627 \u0641\u064e\u062c\u064e\u0639\u064e\u0644\u064e \u0645\u0650\u0646 \u062f\u064f\u0648\u0646\u0650 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0641\u064e\u062a\u0652\u062d\u064b\u0627 \u0642\u064e\u0631\u0650\u064a\u0628\u064b\u0627",
-      transliteration: {
-        en: "Laqad sadaqal laahu Rasoolahur ru'yaa bilhaqq, latadkhulunnal Masjidal-Haraama in shaaa'al laahu aamineena muhalliqeena ru'oosakum wa muqassireena laa takhaafoona fa'alima maa lam ta'lamoo faja'ala min dooni zaalika fathan qareebaa",
-      },
+      arabic:
+        "لَّقَدْ صَدَقَ ٱللَّهُ رَسُولَهُ ٱلرُّءْيَا بِٱلْحَقِّ لَتَدْخُلُنَّ ٱلْمَسْجِدَ ٱلْحَرَامَ إِن شَآءَ ٱللَّهُ ءَامِنِينَ مُحَلِّقِينَ رُءُوسَكُمْ وَمُقَصِّرِينَ لَا تَخَافُونَ فَعَلِمَ مَا لَمْ تَعْلَمُوا۟ فَجَعَلَ مِن دُونِ ذَٰلِكَ فَتْحًا قَرِيبًا",
     },
     translation: {
-      en: "Certainly has Allah showed to His Messenger the vision in truth. You will surely enter al-Masjid al-Haram, if Allah wills, in safety, with your heads shaved and [hair] shortened, not fearing [anyone]. He knew what you did not know and has arranged before that a conquest near [at hand].",
-      id: "Sungguh, Allah akan membuktikan kepada Rasul-Nya tentang kebenaran mimpinya bahwa kamu pasti akan memasuki Masjidilharam, jika Allah menghendaki dalam keadaan aman, dengan menggundul rambut kepala dan memendekkannya, sedang kamu tidak merasa takut. Maka Allah mengetahui apa yang tidak kamu ketahui dan selain itu Dia telah memberikan kemenangan yang dekat.",
+      en: {
+        footnotes:
+          "[18] Shaving or trimming hair is from the requirements upon completing the rites of pilgrimage.\n [19] Referring to the Treaty of Hudaybiyyah and subsequently the conquest of Khaybar prior to the fulfillment of the Prophet’s dream regarding entering Makkah for pilgrimage.",
+        text: "Indeed, Allah has fulfilled His Messenger’s dream in truth: that you will surely enter the Sacred Mosque if Allah wills, in peace and safety, and you will have your heads shaved or shortened[18], without any fear. He knew what you did not know, and He granted you prior to that an imminent conquest[19].",
+      },
+      id: {
+        footnotes:
+          "[809] Beberapa lama sebelum terjadi Perjanjian Hudaibiyah, Nabi Muhammad -ṣallallāhu 'alaihi wa sallam- bermimpi bahwa beliau bersama para sahabatnya memasuki kota Mekkah dan Masjidilharam dalam keadaan sebagian mereka menggundul rambut dan sebagian lagi memendekkannya. Nabi mengatakan bahwa mimpi beliau itu nanti akan terjadi. Kemudian berita ini tersiar di kalangan kaum muslimin, orang-orang munafik, serta orang-orang Yahudi dan Nasrani. Setelah terjadi “Perjanjian Hudaibiyah” dan kaum muslimin pada waktu itu tidak sampai memasuki Mekkah, maka orang-orang munafik memperolok-olokkan Nabi dan menyatakan bahwa mimpi yang beliau katakan pasti akan terjadi itu adalah bohong belaka. Maka turunlah ayat ini yang menyatakan bahwa mimpi Nabi itu pasti akan menjadi kenyataan pada tahun yang akan datang. Sekiranya pada tahun terjadinya Perjanjian Hudaibiyah itu kaum muslimin memasuki kota Mekkah, maka keselamatan orang-orang yang menyembunyikan imannya yang berada di kota Mekkah pada waktu itu merasa terancam.",
+        text: "Sungguh, Allah akan membuktikan kepada Rasul-Nya tentang kebenaran mimpinya bahwa kamu pasti akan memasuki Masjidilharam, jika Allah menghendaki dalam keadaan aman, dengan menggundul rambut kepala dan memendekkannya, sedang kamu tidak merasa takut. Maka Allah mengetahui apa yang tidak kamu ketahui, dan selain itu Dia telah memberikan kemenangan yang dekat.[809]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4611",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4611.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4611.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 205,
       juz: 26,
       manzil: 6,
       page: 514,
       ruku: 449,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4611,
@@ -147,40 +132,33 @@ export const quranSurah48Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini ditegaskan kebenaran Muhammad saw sebagai rasul yang diutus Allah kepada manusia dengan menyatakan bahwa dia adalah rasul Allah yang diutus untuk membawa petunjuk dan agama Islam sebagai penyempurna terhadap agama-agama dan syariat yang telah dibawa oleh para rasul sebelumnya, menyatakan kesalahan dan kekeliruan akidah-akidah agama dan kepercayaan yang dianut manusia yang tidak berdasarkan agama, dan untuk menetapkan hukum-hukum yang berlaku bagi manusia sesuai dengan perkembangan zaman, perbedaan keadaan dan tempat. Hal ini juga berarti dengan datangnya agama Islam yang dibawa Muhammad saw, maka agama-agama yang lain tidak diakui lagi sebagai agama yang sah di sisi Allah.\n\nPada akhir ayat ini, dinyatakan bahwa semua yang dijanjikan Allah kepada Rasulullah saw dan kaum Muslimin itu pasti terjadi dan tidak ada sesuatu pun yang dapat menghalangi terjadinya.",
-        short:
-          "Dialah yang mengutus Rasul-Nya, Nabi Muhammad, dengan membawa petunjuk, ilmu yang bermanfaat dan amal saleh, dan agama yang benar, yaitu agama Islam agar dimenangkan-Nya terhadap semua agama. Dan cukuplah Allah sebagai saksi bahwa Nabi Muhammad adalah utusan-Nya.",
+        footnotes: null,
+        text: "Allahlah yang mengutus Rasul-Nya, Muhammad -ṣallallāhu 'alaihi wa sallam- dengan keterangan yang jelas dan agama kebenaran, yaitu Islam supaya Allah meninggikannya di atas semua agama lain yang menyelisihinya. Allah telah bersaksi atas hal itu dan cukuplah Allah sebagai saksi.",
       },
     },
     text: {
-      arab: "\u0647\u064f\u0648\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0623\u064e\u0631\u0652\u0633\u064e\u0644\u064e \u0631\u064e\u0633\u064f\u0648\u0644\u064e\u0647\u064f \u0628\u0650\u0627\u0644\u0652\u0647\u064f\u062f\u064e\u0649\u0670 \u0648\u064e\u062f\u0650\u064a\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u0644\u0650\u064a\u064f\u0638\u0652\u0647\u0650\u0631\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u062f\u0651\u0650\u064a\u0646\u0650 \u0643\u064f\u0644\u0651\u0650\u0647\u0650 \u06da \u0648\u064e\u0643\u064e\u0641\u064e\u0649\u0670 \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0634\u064e\u0647\u0650\u064a\u062f\u064b\u0627",
-      transliteration: {
-        en: "Huwal lazeee arsala Rasoolahoo bilhudaa wa deenil haqqi liyuzhirahoo 'alad deeni kullih; wa kafaa billaahi Shaheeda",
-      },
+      arabic:
+        "هُوَ ٱلَّذِىٓ أَرْسَلَ رَسُولَهُۥ بِٱلْهُدَىٰ وَدِينِ ٱلْحَقِّ لِيُظْهِرَهُۥ عَلَى ٱلدِّينِ كُلِّهِۦ وَكَفَىٰ بِٱللَّهِ شَهِيدًا",
     },
     translation: {
-      en: "It is He who sent His Messenger with guidance and the religion of truth to manifest it over all religion. And sufficient is Allah as Witness.",
-      id: "Dialah yang mengutus Rasul-Nya dengan membawa petunjuk dan agama yang benar agar dimenangkan-Nya terhadap semua agama. Dan cukuplah Allah sebagai saksi.",
+      en: {
+        footnotes: "",
+        text: "It is He Who has sent His Messenger with guidance and the religion of truth, to make it prevail over all religions, and sufficient is Allah as a Witness.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dialah yang mengutus Rasul-Nya dengan membawa petunjuk dan agama yang benar, agar dimenangkan-Nya terhadap semua agama. Dan cukuplah Allah sebagai saksi.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4612",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4612.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4612.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 205,
       juz: 26,
       manzil: 6,
       page: 515,
       ruku: 449,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4612,
@@ -188,20 +166,24 @@ export const quranSurah48Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Muhammad saw adalah rasul Allah yang diutus kepada seluruh umat. Para sahabat dan pengikut Rasul bersikap keras terhadap orang-orang kafir, tetapi lemah lembut terhadap sesama mereka. Firman Allah: \n\nWahai orang-orang yang beriman! Barang siapa di antara kamu yang murtad (keluar) dari agamanya, maka kelak Allah akan mendatangkan suatu kaum, Dia mencintai mereka dan mereka pun mencintai-Nya, dan bersikap lemah lembut terhadap orang-orang yang beriman, tetapi bersikap keras terhadap orang-orang kafir, yang berjihad di jalan Allah. (al-Ma'idah/5: 54)\n\nRasulullah bersabda:\n\nPerumpamaan orang-orang mukmin dalam kasih mengasihi dan sayang-menyayangi antara mereka seperti tubuh yang satu; bila salah satu anggota badannya sakit demam, maka badan yang lain merasa demam dan terganggu pula. (Riwayat Muslim dan Ahmad dari an-Nu'man bin Basyir)\n\nOrang-orang yang beriman selalu mengerjakan salat dengan khusyuk, tunduk, dan ikhlas, mencari pahala, karunia, dan keridaan Allah. Tampak di wajah mereka bekas sujud. Maksudnya ialah air muka yang cemerlang, tidak ada gambaran kedengkian dan niat buruk kepada orang lain, penuh ketundukan dan kepatuhan kepada Allah, bersikap dan berbudi pekerti yang halus sebagai gambaran keimanan mereka.\n\nMengenai cahaya muka orang yang beriman, 'Utsman berkata, \"Adapun rahasia yang terpendam dalam hati seseorang; niscaya Allah menyatakannya pada raut mukanya dan lidahnya.\" Sifat-sifat yang demikian itu dilukiskan dalam Taurat dan Injil.\n\nPara sahabat dan pengikut Nabi semula sedikit dan lemah, kemudian bertambah dan berkembang dalam waktu singkat seperti biji yang tumbuh, mengeluarkan batangnya, lalu batang bercabang dan beranting, kemudian menjadi besar dan berbuah sehingga menakjubkan orang yang menanamnya, karena kuat dan indahnya, sehingga menambah panas hati orang-orang kafir. \n\nKemudian kepada pengikut Rasulullah saw itu, baik yang dahulu maupun yang sekarang, Allah menjanjikan pengampunan dosa-dosa mereka, memberi mereka pahala yang banyak, dan menyediakan surga sebagai tempat yang abadi bagi mereka. Janji Allah yang demikian pasti ditepati.",
-        short:
-          "Nabi Muhammad adalah utusan Allah yang membawa rahmat bagi seluruh alam, dan orang-orang yang bersama dengan dia yakni sahabat-sahabat-Nya bersikap keras dan tegas terhadap orang-orang kafir yang menentang agama-Nya, tetapi berkasih sayang dan saling mencintai sesama mereka yang beriman. Kamu senantiasa melihat mereka rukuk dan sujud dan itu dilakukan semata-mata untuk mencari karunia Allah dan keridaan-Nya. Engkau saksikan pada wajah mereka tampak tanda-tanda bekas sujud berupa cahaya yang menunjukkan ketakwaan dan kesalehannya. Demikianlah sifat-sifat mereka yang sangat agung yang diungkapkan dalam Taurat yang diturunkan kepada Nabi Musa. Dan sifat-sifat me-reka yang diungkapkan dalam Injil, yaitu seperti benih yang mengeluarkan tunasnya, kemudian tunas itu semakin kuat lalu menjadi besar dan tegak lurus di atas batangnya. Demikian perumpamaan orang-orang mukmin pengikut Nabi Muhammad. Sesungguhnya mereka itu mula-mula sedikit saja, kemudian ia bertambah semakin banyak, bagaikan tunas yang menumbuhkan tanaman yang subur dan banyak buahnya. Tanaman itu menyenangkan hati penanam-penanamnya. Sifat-sifat yang luhur dan mulia dinyatakan karena Allah hendak menjengkelkan hati orang-orang kafir dengan menunjukkan semakin banyaknya jumlah orang-orang mukmin dan semakin besarnya kekuatan mereka dari masa ke masa. Demikianlah akhir Surah al-Fatë ini ditutup dengan janji Allah bahwa Allah menjanjikan kepada orang-orang yang beriman dan mengerjakan kebajikan di antara mereka, ampunan atas dosa dan kesalahan mereka dan pahala yang besar yaitu surga. Semoga kami termasuk orang-orang yang memperoleh anugerah yang agung itu.",
+        footnotes: null,
+        text: "Muhammad adalah utusan Allah dan para sahabatnya yang bersama beliau keras terhadap orang-orang kafir yang memerangi Islam dan saling berkasih sayang di antara mereka, mereka saling berlemah-lembut, mencintai, dan saling menyayangi. Engkau lihat -wahai orang yang memperhatikan- mereka rukuk dan sujud untuk Allah -Subḥānahu- sembari meminta kepada Allah agar menganugerahkan kepada mereka ampunan dan pahala yang baik serta meridai mereka. Tanda mereka terdapat di wajah mereka dari bekas sujud berupa munculnya rona keteduhan, kewibawaan, dan cahaya salat di wajah mereka. Demikianlah kriteria mereka sebagaimana yang disebutkan di dalam Taurat, satu kitab yang diturunkan kepada Musa -'alaihissalām-. Adapun permisalan mereka di Injil, satu kitab yang diturunkan kepada Isa -'alaihissalām-, yaitu bahwa mereka dalam hal bekerja sama dan kesempurnaan seperti tanaman yang mengeluarkan tunas kecilnya, lalu menjadi kuat dan menjadi tegak di atas batangnya. Kekuatannya dan kesempurnaannya menyenangkan bagi orang-orang yang menanamnya karena Allah ingin membuat orang-orang kafir jengkel dengan mereka tatkala melihat kekuatan, keteguhan, dan kesempurnaan yang ada pada mereka. Allah menjanjikan kepada orang-orang yang beriman kepada-Nya dan mengerjakan amal saleh dari kalangan para sahabat ampunan atas dosa-dosa mereka, sehingga mereka tidak disiksa karena dosa-dosa mereka dan Dia menjanjikan mereka pahala yang besar dari sisi-Nya, yaitu surga.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064c \u0631\u0651\u064e\u0633\u064f\u0648\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06da \u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0645\u064e\u0639\u064e\u0647\u064f \u0623\u064e\u0634\u0650\u062f\u0651\u064e\u0627\u0621\u064f \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0643\u064f\u0641\u0651\u064e\u0627\u0631\u0650 \u0631\u064f\u062d\u064e\u0645\u064e\u0627\u0621\u064f \u0628\u064e\u064a\u0652\u0646\u064e\u0647\u064f\u0645\u0652 \u06d6 \u062a\u064e\u0631\u064e\u0627\u0647\u064f\u0645\u0652 \u0631\u064f\u0643\u0651\u064e\u0639\u064b\u0627 \u0633\u064f\u062c\u0651\u064e\u062f\u064b\u0627 \u064a\u064e\u0628\u0652\u062a\u064e\u063a\u064f\u0648\u0646\u064e \u0641\u064e\u0636\u0652\u0644\u064b\u0627 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0631\u0650\u0636\u0652\u0648\u064e\u0627\u0646\u064b\u0627 \u06d6 \u0633\u0650\u064a\u0645\u064e\u0627\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0648\u064f\u062c\u064f\u0648\u0647\u0650\u0647\u0650\u0645 \u0645\u0651\u0650\u0646\u0652 \u0623\u064e\u062b\u064e\u0631\u0650 \u0627\u0644\u0633\u0651\u064f\u062c\u064f\u0648\u062f\u0650 \u06da \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0645\u064e\u062b\u064e\u0644\u064f\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0627\u0644\u062a\u0651\u064e\u0648\u0652\u0631\u064e\u0627\u0629\u0650 \u06da \u0648\u064e\u0645\u064e\u062b\u064e\u0644\u064f\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0627\u0644\u0652\u0625\u0650\u0646\u062c\u0650\u064a\u0644\u0650 \u0643\u064e\u0632\u064e\u0631\u0652\u0639\u064d \u0623\u064e\u062e\u0652\u0631\u064e\u062c\u064e \u0634\u064e\u0637\u0652\u0623\u064e\u0647\u064f \u0641\u064e\u0622\u0632\u064e\u0631\u064e\u0647\u064f \u0641\u064e\u0627\u0633\u0652\u062a\u064e\u063a\u0652\u0644\u064e\u0638\u064e \u0641\u064e\u0627\u0633\u0652\u062a\u064e\u0648\u064e\u0649\u0670 \u0639\u064e\u0644\u064e\u0649\u0670 \u0633\u064f\u0648\u0642\u0650\u0647\u0650 \u064a\u064f\u0639\u0652\u062c\u0650\u0628\u064f \u0627\u0644\u0632\u0651\u064f\u0631\u0651\u064e\u0627\u0639\u064e \u0644\u0650\u064a\u064e\u063a\u0650\u064a\u0638\u064e \u0628\u0650\u0647\u0650\u0645\u064f \u0627\u0644\u0652\u0643\u064f\u0641\u0651\u064e\u0627\u0631\u064e \u06d7 \u0648\u064e\u0639\u064e\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0648\u064e\u0639\u064e\u0645\u0650\u0644\u064f\u0648\u0627 \u0627\u0644\u0635\u0651\u064e\u0627\u0644\u0650\u062d\u064e\u0627\u062a\u0650 \u0645\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u063a\u0652\u0641\u0650\u0631\u064e\u0629\u064b \u0648\u064e\u0623\u064e\u062c\u0652\u0631\u064b\u0627 \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Muhammadur Rasoolul laah; wallazeena ma'ahooo ashiddaaa'u 'alal kuffaaari ruhamaaa'u bainahum taraahum rukka'an sujjadany yabtaghoona fadlam minal laahi wa ridwaanan seemaahum fee wujoohihim min asaris sujood; zaalika masaluhum fit tawraah; wa masaluhum fil Injeeli kazar'in akhraja shat 'ahoo fa 'aazarahoo fastaghlaza fastawaa 'alaa sooqihee yu'jibuz zurraa'a liyagheeza bihimul kuffaar; wa'adal laahul lazeena aamanoo wa 'amilus saalihaati minhum maghfiratanw wa ajran 'azeemaa",
-      },
+      arabic:
+        "مُّحَمَّدٌ رَّسُولُ ٱللَّهِ وَٱلَّذِينَ مَعَهُۥٓ أَشِدَّآءُ عَلَى ٱلْكُفَّارِ رُحَمَآءُ بَيْنَهُمْ تَرَىٰهُمْ رُكَّعًا سُجَّدًا يَبْتَغُونَ فَضْلًا مِّنَ ٱللَّهِ وَرِضْوَٰنًا سِيمَاهُمْ فِى وُجُوهِهِم مِّنْ أَثَرِ ٱلسُّجُودِ ذَٰلِكَ مَثَلُهُمْ فِى ٱلتَّوْرَىٰةِ وَمَثَلُهُمْ فِى ٱلْإِنجِيلِ كَزَرْعٍ أَخْرَجَ شَطْـَٔهُۥ فَـَٔازَرَهُۥ فَٱسْتَغْلَظَ فَٱسْتَوَىٰ عَلَىٰ سُوقِهِۦ يُعْجِبُ ٱلزُّرَّاعَ لِيَغِيظَ بِهِمُ ٱلْكُفَّارَ وَعَدَ ٱللَّهُ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ مِنْهُم مَّغْفِرَةً وَأَجْرًا عَظِيمًۢا",
     },
     translation: {
-      en: "Muhammad is the Messenger of Allah; and those with him are forceful against the disbelievers, merciful among themselves. You see them bowing and prostrating [in prayer], seeking bounty from Allah and [His] pleasure. Their mark is on their faces from the trace of prostration. That is their description in the Torah. And their description in the Gospel is as a plant which produces its offshoots and strengthens them so they grow firm and stand upon their stalks, delighting the sowers - so that Allah may enrage by them the disbelievers. Allah has promised those who believe and do righteous deeds among them forgiveness and a great reward.",
-      id: "Muhammad adalah utusan Allah dan orang-orang yang bersama dengan dia bersikap keras terhadap orang-orang kafir, tetapi berkasih sayang sesama mereka. Kamu melihat mereka rukuk dan sujud mencari karunia Allah dan keridaan-Nya. Pada wajah mereka tampak tanda-tanda bekas sujud. Demikianlah sifat-sifat mereka (yang diungkapkan) dalam Taurat dan sifat-sifat mereka (yang diungkapkan) dalam Injil, yaitu seperti benih yang mengeluarkan tunasnya, kemudian tunas itu semakin kuat lalu menjadi besar dan tegak lurus di atas batangnya; tanaman itu menyenangkan hati penanam-penanamnya karena Allah hendak menjengkelkan hati orang-orang kafir (dengan kekuatan orang-orang mukmin). Allah menjanjikan kepada orang-orang yang beriman dan mengerjakan kebajikan di antara mereka, ampunan dan pahala yang besar.",
+      en: {
+        footnotes:
+          "[20] It should be understood in its historical context. Muslims are urged here to be firm with the Arab disbelievers who were at war with Muslims. However, Muslims are encouraged to treat peaceful and non-combatant disbelievers with kindness and fairness. See 60:8-9.\n [21] The description of the Prophet (ﷺ) and his companions is mentioned in the previous scriptures. See Deuteronomy 33:1-3. [22] See Matthew 13:3-9, Mark 4:26-28.",
+        text: "Muhammad is the Messenger of Allah, and those who are with him are firm against the disbelievers[20] and compassionate among themselves. You see them bowing and prostrating [in prayer], seeking Allah’s grace and pleasure. Their distinguishing sign is on their faces from the effects of prostration. Such is their description in the Torah[21]. And their description in the Gospel is like that of a seed that sprouts its shoot, then makes it strong; then it grows thick and stands straight on its stem[22], which delights the sowers – so that He may enrage thereby the disbelievers. Allah has promised those among them who believe and do righteous deeds forgiveness and a great reward.",
+      },
+      id: {
+        footnotes: "",
+        text: "Muhammad adalah utusan Allah, dan orang-orang yang bersama dengannya bersikap keras terhadap orang-orang kafir, tetapi berkasih sayang dengan sesama mereka. Kamu melihat mereka rukuk dan sujud mencari karunia Allah dan keridaan-Nya. Pada wajah mereka tampak tanda-tanda bekas sujud. Demikianlah sifat-sifat mereka (yang diungkapkan) dalam Taurat, dan sifat-sifat mereka (yang diungkapkan) dalam Injil, yaitu seperti benih yang mengeluarkan tunasnya, kemudian tunas itu semakin kuat, lalu menjadi besar dan tegak lurus di atas batangnya; tanaman itu menyenangkan hati penanam-penanamnya karena Allah hendak menjengkelkan hati orang-orang kafir (dengan kekuatan orang-orang mukmin). Allah menjanjikan kepada orang-orang yang beriman dan mengerjakan kebajikan di antara mereka, ampunan dan pahala yang besar.",
+      },
     },
   },
 ];

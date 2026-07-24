@@ -137,6 +137,7 @@ export const incompatibleManifest = await Effect.runPromise(
       supportedComponents: [{ name: "InlineMath", version: 1 }],
     },
     domains: testRendererDomains({}),
+    publishedDomains: ["mathematics"],
   })
 );
 

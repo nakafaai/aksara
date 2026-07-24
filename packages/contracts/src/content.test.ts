@@ -4,10 +4,12 @@ import { describe, expect, it } from "vitest";
 import {
   CompiledContentPayloadSchema,
   ContentLocaleListSchema,
+  ContentPublicationIdentitySchema,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   canonicalizeSignedContentArtifact,
   compareContentHeads,
+  comparePublicationIdentities,
   decodeCompileDocumentRequest,
   decodeCompileDocumentSource,
   headIdentity,
@@ -38,6 +40,7 @@ const validRequest = {
     })),
     format: "nakafa-mdx-renderer-v1",
     hash: `sha256:${"a".repeat(64)}`,
+    publishedDomains: ["mathematics"],
     rendererContractVersion: "1.0.0",
   },
   sourcePath: "packages/corpus/test/content/en.mdx",
@@ -60,6 +63,18 @@ describe("content", () => {
     expect(compareContentHeads(english, indonesian)).toBe(-1);
     expect(compareContentHeads(indonesian, english)).toBe(1);
     expect(compareContentHeads(english, english)).toBe(0);
+    expect(
+      comparePublicationIdentities(
+        { ...english, family: "article" },
+        { ...english, family: "material" }
+      )
+    ).toBe(-1);
+    expect(
+      Schema.decodeUnknownSync(ContentPublicationIdentitySchema)({
+        ...english,
+        family: "material",
+      })
+    ).toEqual({ ...english, family: "material" });
   });
 
   it("owns the complete ordered locale capability", () => {

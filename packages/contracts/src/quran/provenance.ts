@@ -3,19 +3,19 @@ import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
 
 import { ContentLocaleSchema } from "#contracts/content";
-import { DateOnlySchema } from "#contracts/date";
 import { Sha256HashSchema } from "#contracts/ids";
 import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot";
+import {
+  type QuranSourceAttribution,
+  QuranSourceAttributionSchema,
+} from "#contracts/quran/source";
 import { QuranTafsirLocaleSchema } from "#contracts/quran/spec";
 import { compareCodeUnits } from "#contracts/text/order";
-import { isHttpsUrl } from "#contracts/text/syntax";
 
 /** Quran source fields that require independent provenance decisions. */
 const QuranStaticProvenanceScopeSchema = Schema.Literal(
   "arabic-text",
-  "audio",
-  "metadata",
-  "transliteration"
+  "metadata"
 );
 
 const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral(
@@ -54,19 +54,15 @@ const localizedProvenanceScopes = ContentLocaleSchema.literals.flatMap(
 /** Canonical scope order derived from supported locale capabilities. */
 export const QURAN_PROVENANCE_SCOPES = [
   decodeProvenanceScope("arabic-text"),
-  decodeProvenanceScope("audio"),
   ...localizedProvenanceScopes,
   decodeProvenanceScope("metadata"),
-  decodeProvenanceScope("transliteration"),
 ];
 
-/** One reviewed provider statement without inferring unavailable permission. */
+/** One reviewed official artifact and its field-level permission decision. */
 export const QuranProvenanceRecordSchema = Schema.Struct({
+  attribution: QuranSourceAttributionSchema,
   evidence: Schema.NonEmptyTrimmedString,
-  provider: Schema.NonEmptyTrimmedString,
-  retrievedOn: DateOnlySchema,
   scope: QuranProvenanceScopeSchema,
-  sourceUrl: Schema.String.pipe(Schema.filter(isHttpsUrl)),
   status: QuranProvenanceStatusSchema,
 });
 export type QuranProvenanceRecord = typeof QuranProvenanceRecordSchema.Type;
@@ -81,11 +77,7 @@ function compareProvenance(
   if (leftScope !== rightScope) {
     return leftScope - rightScope;
   }
-  const providerOrder = compareCodeUnits(left.provider, right.provider);
-  if (providerOrder !== 0) {
-    return providerOrder;
-  }
-  return compareCodeUnits(left.sourceUrl, right.sourceUrl);
+  return compareCodeUnits(left.attribution.id, right.attribution.id);
 }
 
 /** Checks complete scope coverage, unique sources, and canonical order. */
@@ -93,20 +85,20 @@ function hasCanonicalSourceCoverage(records: readonly QuranProvenanceRecord[]) {
   const coveredScopes = new Set<QuranProvenanceScope>();
   const sourceIdentities = new Set<string>();
   const canonicalRecords = [...records].sort(compareProvenance);
-  const sourceOrder = records.map(({ provider, scope, sourceUrl }) => [
+  const sourceOrder = records.map(({ attribution, scope }) => [
     scope,
-    provider,
-    sourceUrl,
+    attribution.id,
   ]);
-  const canonicalOrder = canonicalRecords.map(
-    ({ provider, scope, sourceUrl }) => [scope, provider, sourceUrl]
-  );
+  const canonicalOrder = canonicalRecords.map(({ attribution, scope }) => [
+    scope,
+    attribution.id,
+  ]);
   if (JSON.stringify(sourceOrder) !== JSON.stringify(canonicalOrder)) {
     return false;
   }
 
   for (const record of records) {
-    const identity = `${record.scope}\n${record.provider}\n${record.sourceUrl}`;
+    const identity = `${record.scope}\n${record.attribution.id}`;
     if (sourceIdentities.has(identity)) {
       return false;
     }
@@ -158,16 +150,41 @@ export class QuranProvenanceCoverageError extends Schema.TaggedError<QuranProven
   }
 ) {}
 
-const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance.v1";
+const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance.v2";
+
+/** Serializes one public attribution without trusting insertion order. */
+function canonicalizeAttribution(attribution: QuranSourceAttribution) {
+  return {
+    artifact: {
+      byteCount: attribution.artifact.byteCount,
+      digest: attribution.artifact.digest,
+      fileCount: attribution.artifact.fileCount,
+    },
+    id: attribution.id,
+    notice: attribution.notice,
+    publisher: attribution.publisher,
+    retrievedAt: attribution.retrievedAt,
+    sourceUrl: attribution.sourceUrl,
+    terms: {
+      artifact: {
+        byteCount: attribution.terms.artifact.byteCount,
+        digest: attribution.terms.artifact.digest,
+        fileCount: attribution.terms.artifact.fileCount,
+      },
+      url: attribution.terms.url,
+    },
+    title: attribution.title,
+    updateUrl: attribution.updateUrl,
+    version: attribution.version,
+  };
+}
 
 /** Produces stable JSON for one reviewed Quran provenance record. */
 export function canonicalizeQuranProvenance(record: QuranProvenanceRecord) {
   return JSON.stringify({
+    attribution: canonicalizeAttribution(record.attribution),
     evidence: record.evidence,
-    provider: record.provider,
-    retrievedOn: record.retrievedOn,
     scope: record.scope,
-    sourceUrl: record.sourceUrl,
     status: record.status,
   });
 }

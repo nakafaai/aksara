@@ -1,7 +1,11 @@
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import type { StagedContentRelease } from "@nakafa/aksara-contracts/release/current";
 import { describe, expect, it } from "vitest";
-import type { ReleaseArguments, RollbackArguments } from "#cli/args";
+import type {
+  ReleaseArguments,
+  RollbackArguments,
+} from "#cli/production-arguments";
+import { FUNCTION_SCOPE } from "#test/real";
 import {
   activeState,
   rejectState,
@@ -22,6 +26,7 @@ function releaseArgs(
     command: "release",
     recoveryId: stateReleaseId(recoveryId),
     releaseId: stateReleaseId(releaseId),
+    scope: FUNCTION_SCOPE,
   };
 }
 
@@ -46,7 +51,12 @@ describe("production state", () => {
         releaseArgs("release-first"),
         stateCurrent({ active: null, candidate: null, recovery: null })
       )
-    ).resolves.toEqual({ baseBundle: null, kind: "new", mode: "git" });
+    ).resolves.toEqual({
+      baseBundle: null,
+      kind: "new",
+      mode: "git",
+      scope: FUNCTION_SCOPE,
+    });
 
     const active = stateCompleted("release-active");
     await expect(
@@ -58,6 +68,7 @@ describe("production state", () => {
       },
       kind: "new",
       mode: "git",
+      scope: FUNCTION_SCOPE,
     });
   });
 
@@ -95,6 +106,7 @@ describe("production state", () => {
         candidate,
         kind: "rebuild",
         mode: "git",
+        scope: FUNCTION_SCOPE,
         sha: GitCommitShaSchema.make("a".repeat(40)),
       });
     }
@@ -171,6 +183,18 @@ describe("production state", () => {
       state: stateCurrent({
         active: null,
         candidate: { ...stateBundle("release-candidate"), phase: "aborting" },
+        recovery: null,
+      }),
+    },
+    {
+      args: {
+        ...releaseArgs("release-candidate"),
+        scope: { content: [], families: [], snapshots: ["program"] },
+      },
+      reason: "scope-mismatch",
+      state: stateCurrent({
+        active: null,
+        candidate: { ...stateBundle("release-candidate"), phase: "staging" },
         recovery: null,
       }),
     },

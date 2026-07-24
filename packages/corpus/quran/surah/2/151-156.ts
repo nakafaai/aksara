@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah2Verses151To156 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/158",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/158.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/158.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 9,
       juz: 2,
       manzil: 1,
       page: 23,
       ruku: 19,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 158,
@@ -24,40 +25,33 @@ export const quranSurah2Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Di antara penyempurnaan nikmat itu ialah dengan mengutus seorang rasul, yaitu Muhammad saw, yang membacakan ayat-ayat Allah, membebaskan umat dari penyakit syirik dan kejahatan-kejahatan jahiliyah, mengajarkan Al-Qur'an serta hikmah, dan mengajarkan apa yang belum mereka ketahui, sehingga umat Islam menjadi umat yang memimpin manusia ke arah kemajuan dan kebahagiaan.",
-        short:
-          "Sebagaimana pengalihan kiblat, pengutusan seorang nabi dari bangsa Arab juga merupakan suatu kenikmatan yang besar. Kenikmatan yang besar itu adalah sebagaimana Kami telah mengutus kepadamu seorang Rasul, yakni Nabi Muhammad, dari kalangan kamu. Di antara tugasnya adalah membacakan ayat-ayat Kami, yaitu Al-Qur'an yang menjelaskan perkara yang hak dan yang batil, atau tanda-tanda kebesaran Allah, kenabian Nabi Muhammad, dan adanya hari kebangkitan. Rasul itu juga kami tugasi untuk menyucikan kamu dari kemusyrikan, kemaksiatan, dan akhlak yang tercela. Dia juga mengajarkan kepadamu Kitab Al-Qur'an dan hikmah, yakni sunah, serta mengajarkan apa yang belum kamu ketahui, yaitu segala pengetahuan yang terkait dengan kebaikan di dunia dan akhirat. Al-Qur'an juga menuturkan kisah para nabi terdahulu. Hal ini tidak mungkin didapat kecuali melalui wahyu.",
+        footnotes: null,
+        text: "Kami juga memberikan nikmat yang lain kepada kalian, yaitu Kami mengirimkan kepada kalian seorang rasul dari bangsa kalian sendiri yang bertugas membacakan ayat-ayat Kami dan menyucikan kalian melalui keutamaan-keutamaan dan kebajikan yang dia perintahkan dan memperingatkan kehinaan-kehinaan dan kemungkaran yang dia larang untuk kalian. Dia juga mengajarkan Al-Qur`ān dan Sunnah kepada kalian, dan mengajarkan apa yang belum kalian ketahui terkait urusan-urusan agama dan dunia kalian.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0645\u064e\u0627 \u0623\u064e\u0631\u0652\u0633\u064e\u0644\u0652\u0646\u064e\u0627 \u0641\u0650\u064a\u0643\u064f\u0645\u0652 \u0631\u064e\u0633\u064f\u0648\u0644\u064b\u0627 \u0645\u0651\u0650\u0646\u0643\u064f\u0645\u0652 \u064a\u064e\u062a\u0652\u0644\u064f\u0648 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0622\u064a\u064e\u0627\u062a\u0650\u0646\u064e\u0627 \u0648\u064e\u064a\u064f\u0632\u064e\u0643\u0651\u0650\u064a\u0643\u064f\u0645\u0652 \u0648\u064e\u064a\u064f\u0639\u064e\u0644\u0651\u0650\u0645\u064f\u0643\u064f\u0645\u064f \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0648\u064e\u0627\u0644\u0652\u062d\u0650\u0643\u0652\u0645\u064e\u0629\u064e \u0648\u064e\u064a\u064f\u0639\u064e\u0644\u0651\u0650\u0645\u064f\u0643\u064f\u0645 \u0645\u0651\u064e\u0627 \u0644\u064e\u0645\u0652 \u062a\u064e\u0643\u064f\u0648\u0646\u064f\u0648\u0627 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "kamaaa arsalnaa feekum Rasoolam minkum yatloo 'alaikum aayaatina wa yuzakkeekum wa yu'alli mukumul kitaaba wal hikmata wa yu'allimukum maa lam takoonoo ta'lamoon",
-      },
+      arabic:
+        "كَمَآ أَرْسَلْنَا فِيكُمْ رَسُولًا مِّنكُمْ يَتْلُوا۟ عَلَيْكُمْ ءَايَٰتِنَا وَيُزَكِّيكُمْ وَيُعَلِّمُكُمُ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ وَيُعَلِّمُكُم مَّا لَمْ تَكُونُوا۟ تَعْلَمُونَ",
     },
     translation: {
-      en: "Just as We have sent among you a messenger from yourselves reciting to you Our verses and purifying you and teaching you the Book and wisdom and teaching you that which you did not know.",
-      id: "Sebagaimana Kami telah mengutus kepadamu seorang Rasul (Muhammad) dari (kalangan) kamu yang membacakan ayat-ayat Kami, menyucikan kamu, dan mengajarkan kepadamu Kitab (Al-Qur'an) dan Hikmah (Sunnah), serta mengajarkan apa yang belum kamu ketahui.",
+      en: {
+        footnotes: "[65] The wisdom taught by the Prophet (ﷺ) is his Sunnah.",
+        text: "Just as We have sent you a messenger from among you, reciting to you Our verses, purifying you, and teaching you the Book and Wisdom[65], and teaching you what you did not know.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sebagaimana Kami telah mengutus kepadamu seorang Rasul (Muhammad) dari (kalangan) kamu yang membacakan ayat-ayat Kami, menyucikan kamu dan mengajarkan kepadamu Kitab (Al-Qur`an) dan Hikmah (Sunah), serta mengajarkan apa yang belum kamu ketahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/159",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/159.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/159.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 9,
       juz: 2,
       manzil: 1,
       page: 23,
       ruku: 19,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 159,
@@ -65,40 +59,33 @@ export const quranSurah2Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Maka dengan nikmat yang telah dianugerahkan Allah kepada kaum Muslimin, hendaklah mereka selalu ingat kepada-Nya, baik di dalam hati maupun dengan lisan, dengan jalan tahmid (membaca al-hamdulillah), tasbih (membaca Subhanallah), dan membaca Al-Qur'an dengan jalan memikirkan alam ciptaan-Nya untuk mengenal, menyadari dan meresapkan tanda-tanda keagungan, kekuasaan dan keesaan-Nya.\n\nApabila mereka selalu mengingat Allah, Dia pun akan selalu mengingat mereka pula. hendaklah mereka bersyukur kepada-Nya atas segala nikmat yang telah dianugerahkan-Nya dengan jalan melaksanakan ketentuan-ketentuan yang telah ditetapkan-Nya dan dengan jalan memuji serta bertasbih dan mengakui kebaikan-Nya. Di samping itu, janganlah mereka mengkufuri nikmat-Nya dengan menyia-nyiakan dan mempergunakannya di luar garis-garis yang telah ditentukan-Nya.",
-        short:
-          "Atas semua kenikmatan itu, Allah menyuruh kaum muslim untuk selalu mengingat-Nya. Maka ingatlah kepada-Ku, baik melalui lisan dengan melafalkan pujian, melalui hati dengan mengingat kekuasaan dan kebijaksanaan Allah, maupun melalui fisik dengan menaati Allah. Jika kamu mengingatku, Aku pun pasti akan ingat kepadamu dengan melimpahkan pahala, pertolongan, dan kebahagiaan di dunia dan akhirat. Bersyukurlah pula kepada-Ku atas nikmat-Ku dengan menggunakannya di jalan-Ku, dan janganlah kamu ingkar kepada-Ku, kepada nikmatnikmatku, dan mempergunakannya untuk berbuat maksiat.",
+        footnotes: null,
+        text: "Ingatlah Aku dengan hati dan anggota badan kalian, niscaya Aku akan mengingat kalian dengan memuji dan menjaga kalian karena setiap perbuatan akan berbalas perbuatan serupa. Juga syukurilah nikmat-nikmat yang telah Aku berikan kepada kalian, serta jangan kufur kepada-Ku dengan mengingkari nikmat-nikmat-Ku dan menggunakannya untuk hal-hal yang diharamkan bagi kalian.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0630\u0652\u0643\u064f\u0631\u064f\u0648\u0646\u0650\u064a \u0623\u064e\u0630\u0652\u0643\u064f\u0631\u0652\u0643\u064f\u0645\u0652 \u0648\u064e\u0627\u0634\u0652\u0643\u064f\u0631\u064f\u0648\u0627 \u0644\u0650\u064a \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0643\u0652\u0641\u064f\u0631\u064f\u0648\u0646\u0650",
-      transliteration: {
-        en: "Fazkurooneee azkurkum washkuroo lee wa laa takfuroon",
-      },
+      arabic: "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ",
     },
     translation: {
-      en: "So remember Me; I will remember you. And be grateful to Me and do not deny Me.",
-      id: "Maka ingatlah kepada-Ku, Aku pun akan ingat kepadamu. Bersyukurlah kepada-Ku, dan janganlah kamu ingkar kepada-Ku.",
+      en: {
+        footnotes:
+          '[66] Remember Me (by praying, glorifying, etc), and I will remember you (by remembering you and bestowing countless favors on you). Allah says in a Qudsi Hadith: "...If he remembers Me in himself, I remember him in Myself; and if he remembers Me in a group, I remember him in a group better than them..." [Al-Bukhāri and Muslim]',
+        text: "Therefore remember Me; I will remember you[66]. Be grateful to Me, and do not be ungrateful.",
+      },
+      id: {
+        footnotes: "[50] Aku limpahkan rahmat dan ampunan kepadamu.",
+        text: "Maka ingatlah kepada-Ku, Aku pun akan ingat kepadamu.[50] Bersyukurlah kepada-Ku, dan janganlah kamu ingkar kepada-Ku.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/160",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/160.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/160.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 9,
       juz: 2,
       manzil: 1,
       page: 23,
       ruku: 20,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 160,
@@ -106,40 +93,32 @@ export const quranSurah2Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Perjuangan menegakkan kebenaran harus diiringi dengan kesabaran dan memperbanyak salat, sehingga menjadi ringan segala kesukaran dan cobaan, karena Allah senantiasa beserta orang-orang yang sabar. Dia akan menolong, menguatkan dan memenangkan orang-orang yang berjuang menegakkan kebenaran agamanya.",
-        short:
-          "Tidak saja melimpahkan nikmat-Nya, Allah juga menimpakan berbagai cobaan kepada orang yang beriman. Karena itu, Allah meminta mereka bersabar dan terus melaksanakan salat. Wahai orang-orang yang beriman! Mohonlah pertolongan kepada Allah, baik dalam rangka melaksanakan kewajiban, menjauhi larangan, maupun menghadapi cobaan, yaitu dengan sabar dan salat yang disertai rasa khusyuk, Sungguh, Allah beserta orang-orang yang sabar dengan memberikan pertolongan dan keteguhan hati dalam menghadapi segala cobaan.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman! Mintalah pertolongan dengan kesabaran dan salat untuk melakukan ketaatan kepada-Ku dan tunduk pada perintah-Ku. Sesungguhnya Allah bersama orang-orang yang sabar. Dia senantiasa membimbing dan menolong mereka.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0627\u0633\u0652\u062a\u064e\u0639\u0650\u064a\u0646\u064f\u0648\u0627 \u0628\u0650\u0627\u0644\u0635\u0651\u064e\u0628\u0652\u0631\u0650 \u0648\u064e\u0627\u0644\u0635\u0651\u064e\u0644\u064e\u0627\u0629\u0650 \u06da \u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0645\u064e\u0639\u064e \u0627\u0644\u0635\u0651\u064e\u0627\u0628\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Yaaa ayyuhal laazeena aamanus ta'eenoo bissabri was Salaah; innal laaha ma'as-saabireen",
-      },
+      arabic: "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
     },
     translation: {
-      en: "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient.",
-      id: "Wahai orang-orang yang beriman! Mohonlah pertolongan (kepada Allah) dengan sabar dan salat. Sungguh, Allah beserta orang-orang yang sabar.",
+      en: {
+        footnotes: "[67] Allah is with them; by guiding and supporting them.",
+        text: "O you who believe, seek help in patience and prayer, for Allah is with those who are patient[67].",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai orang-orang yang beriman! Mohonlah pertolongan (kepada Allah) dengan sabar dan salat. Sungguh, Allah beserta orang-orang yang sabar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/161",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/161.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/161.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 9,
       juz: 2,
       manzil: 1,
       page: 24,
       ruku: 20,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 161,
@@ -147,40 +126,33 @@ export const quranSurah2Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Mempertahankan agama Islam suatu perjuangan. Setiap perjuangan akan meminta pengorbanan. Akan ada yang kehilangan harta benda atau keluarga dan akan ada yang gugur di medan perang dan sebagainya.\n\nMereka yang gugur di medan perang adalah syuhada di jalan Allah. Mereka itu menduduki tempat yang amat mulia. Maka janganlah dikira bahwa mereka itu mati, tetapi mereka itu hidup di alam lain. Hanya saja manusia tidak menyadari kehidupan mereka itu dan tidak mengetahui hakikatnya. Mereka hidup dalam alam gaib di mana arwah para syuhada diistimewakan dari arwah manusia lainnya. Semangat dan cita-cita perjuangan mereka itu akan dilanjutkan oleh generasi-generasi sesudahnya sehingga akan tetap hidup selama-lamanya.",
-        short:
-          "Di antara cobaan yang dihadapi orang mukmin dalam mempertahankan keimanan mereka adalah berperang melawan kaum kafir. Dan jangan-lah kamu mengatakan bahwa orang-orang yang terbunuh di jalan Allah, mereka telah mati. Sebenarnya mereka hidup, tetapi kamu tidak menyadari-nya. Mereka hidup di alam yang lain. Mereka mendapat kenikmatan yang demikian besar dari Allah.",
+        footnotes: null,
+        text: "Janganlah kamu -wahai orang-orang mukmin- mengatakan bahwa orang-orang yang gugur di medan jihad fi sabilillah itu mati seperti yang lain. Mereka itu hidup di sisi Tuhan mereka, tetapi kamu tidak mengetahui kehidupan mereka, karena kehidupan mereka itu adalah kehidupan istimewa yang tidak ada cara lain untuk mengetahuinya kecuali melalui wahyu dari Allah -Ta'ālā-.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0627 \u0644\u0650\u0645\u064e\u0646 \u064a\u064f\u0642\u0652\u062a\u064e\u0644\u064f \u0641\u0650\u064a \u0633\u064e\u0628\u0650\u064a\u0644\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0623\u064e\u0645\u0652\u0648\u064e\u0627\u062a\u064c \u06da \u0628\u064e\u0644\u0652 \u0623\u064e\u062d\u0652\u064a\u064e\u0627\u0621\u064c \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646 \u0644\u0651\u064e\u0627 \u062a\u064e\u0634\u0652\u0639\u064f\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa laa taqooloo limai yuqtalu fee sabeelil laahi amwaat; bal ahyaaa'unw wa laakil laa tash'uroon",
-      },
+      arabic: "وَلَا تَقُولُوا۟ لِمَن يُقْتَلُ فِى سَبِيلِ ٱللَّهِ أَمْوَٰتٌۢ بَلْ أَحْيَآءٌ وَلَٰكِن لَّا تَشْعُرُونَ",
     },
     translation: {
-      en: 'And do not say about those who are killed in the way of Allah, "They are dead." Rather, they are alive, but you perceive [it] not.',
-      id: "Dan janganlah kamu mengatakan orang-orang yang terbunuh di jalan Allah (mereka) telah mati. Sebenarnya (mereka) hidup, tetapi kamu tidak menyadarinya.",
+      en: {
+        footnotes: "",
+        text: "And do not say that those martyred in Allah’s way are dead. Rather, they are alive, but you do not perceive it.",
+      },
+      id: {
+        footnotes:
+          "[51] Hidup dalam alam lain yang bukan alam kita ini, tempat mereka mendapat kenikmatan-kenikmatan di sisi Allah, dan hanya Allah sajalah yang mengetahui bagaimana keadaan kehidupan di alam itu.",
+        text: "Dan janganlah kamu mengatakan orang-orang yang terbunuh di jalan Allah (mereka) telah mati. Sebenarnya (mereka) hidup, [51] tetapi kamu tidak menyadarinya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/162",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/162.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/162.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 9,
       juz: 2,
       manzil: 1,
       page: 24,
       ruku: 20,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 162,
@@ -188,40 +160,34 @@ export const quranSurah2Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Allah akan menguji kaum Muslimin dengan berbagai ketakutan, kelaparan, kekurangan harta, jiwa dan buah-buahan (bahan makanan). Dengan ujian ini, kaum Muslimin menjadi umat yang kuat mentalnya, kukuh keyakinannya, tabah jiwanya, dan tahan menghadapi ujian dan cobaan. Mereka akan mendapat predikat sabar, dan merekalah orang-orang yang mendapat kabar gembira dari Allah.",
-        short:
-          "Kehidupan manusia memang penuh cobaan. Dan Kami pasti akan menguji kamu untuk mengetahui kualitas keimanan seseorang dengan sedikit ketakutan, kelaparan, kekurangan harta, jiwa, dan buah-buahan. Bersabarlah dalam menghadapi semua itu. Dan sampaikanlah kabar gembira, wahai Nabi Muhammad, kepada orang-orang yang sabar dan tangguh dalam menghadapi cobaan hidup, yakni orang-orang yang apabila ditimpa musibah, apa pun bentuknya, besar maupun kecil, mereka berkata, Inna  lilla hi wa inna  ilaihi ra ji'un (sesungguhnya kami milik Allah dan kepada-Nyalah kami kembali). Mereka berkata demikian untuk menunjukkan kepasrahan total kepada Allah, bahwa apa saja yang ada di dunia ini adalah milik Allah; pun menunjukkan keimanan mereka akan adanya hari akhir. Mereka itulah yang memperoleh ampunan dan rahmat dari Tuhannya, dan mereka itulah orang-orang yang mendapat petunjuk sehingga mengetahui kebenaran.",
+        footnotes: null,
+        text: "Sungguh Kami benar-benar akan menguji kalian dengan aneka musibah, yakni dengan sedikit rasa takut kepada musuh, rasa lapar karena kekurangan makanan, kekurangan harta benda karena hilang atau sulit mendapatkannya, berkurangnya jiwa akibat bencana yang menelan korban jiwa atau gugur di medan jihad fi sabilillah, dan berkurangnya buah-buahan yang tumbuh di muka bumi. Berikanlah -wahai Nabi- kabar gembira kepada orang-orang yang sabar menghadapi musibah tersebut, bahwa mereka akan mendapatkan sesuatu yang menyenangkan hati mereka di dunia dan di akhirat.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0646\u064e\u0628\u0652\u0644\u064f\u0648\u064e\u0646\u0651\u064e\u0643\u064f\u0645 \u0628\u0650\u0634\u064e\u064a\u0652\u0621\u064d \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u062e\u064e\u0648\u0652\u0641\u0650 \u0648\u064e\u0627\u0644\u0652\u062c\u064f\u0648\u0639\u0650 \u0648\u064e\u0646\u064e\u0642\u0652\u0635\u064d \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0623\u064e\u0645\u0652\u0648\u064e\u0627\u0644\u0650 \u0648\u064e\u0627\u0644\u0652\u0623\u064e\u0646\u0641\u064f\u0633\u0650 \u0648\u064e\u0627\u0644\u062b\u0651\u064e\u0645\u064e\u0631\u064e\u0627\u062a\u0650 \u06d7 \u0648\u064e\u0628\u064e\u0634\u0651\u0650\u0631\u0650 \u0627\u0644\u0635\u0651\u064e\u0627\u0628\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa lanablu wannakum bishai'im minal khawfi waljoo'i wa naqsim minal amwaali wal anfusi was samaraat; wa bashshiris saabireen",
-      },
+      arabic:
+        "وَلَنَبْلُوَنَّكُم بِشَىْءٍ مِّنَ ٱلْخَوْفِ وَٱلْجُوعِ وَنَقْصٍ مِّنَ ٱلْأَمْوَٰلِ وَٱلْأَنفُسِ وَٱلثَّمَرَٰتِ وَبَشِّرِ ٱلصَّٰبِرِينَ",
     },
     translation: {
-      en: "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits, but give good tidings to the patient,",
-      id: "Dan Kami pasti akan menguji kamu dengan sedikit ketakutan, kelaparan, kekurangan harta, jiwa, dan buah-buahan. Dan sampaikanlah kabar gembira kepada orang-orang yang sabar,",
+      en: {
+        footnotes:
+          "[68] As much as there are hardships and trials, there are rewards and favors.",
+        text: "We will surely test you with something of fear and famine, and loss of property, lives and fruits. But give glad tidings[68] to those who are patient.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan Kami pasti akan menguji kamu dengan sedikit ketakutan, kelaparan, kekurangan harta, jiwa, dan buah-buahan. Dan sampaikanlah kabar gembira kepada orang-orang yang sabar,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/163",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/163.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/163.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 9,
       juz: 2,
       manzil: 1,
       page: 24,
       ruku: 20,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 163,
@@ -229,20 +195,23 @@ export const quranSurah2Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Allah memerintahkan kepada Nabi Muhammad saw agar memberitahukan ciri-ciri orang-orang yang mendapat kabar gembira yaitu orang yang sabar, apabila mereka ditimpa sesuatu musibah mereka mengucapkan: Inna lillahi wa inna ilaihi raji'un ) (Sesungguhnya kami adalah milik Allah dan kepada-Nyalah kami kembali).",
-        short:
-          "Kehidupan manusia memang penuh cobaan. Dan Kami pasti akan menguji kamu untuk mengetahui kualitas keimanan seseorang dengan sedikit ketakutan, kelaparan, kekurangan harta, jiwa, dan buah-buahan. Bersabarlah dalam menghadapi semua itu. Dan sampaikanlah kabar gembira, wahai Nabi Muhammad, kepada orang-orang yang sabar dan tangguh dalam menghadapi cobaan hidup, yakni orang-orang yang apabila ditimpa musibah, apa pun bentuknya, besar maupun kecil, mereka berkata, Inna  lilla hi wa inna  ilaihi ra ji'un (sesungguhnya kami milik Allah dan kepada-Nyalah kami kembali). Mereka berkata demikian untuk menunjukkan kepasrahan total kepada Allah, bahwa apa saja yang ada di dunia ini adalah milik Allah; pun menunjukkan keimanan mereka akan adanya hari akhir. Mereka itulah yang memperoleh ampunan dan rahmat dari Tuhannya, dan mereka itulah orang-orang yang mendapat petunjuk sehingga mengetahui kebenaran.",
+        footnotes: null,
+        text: "Yaitu orang-orang yang apabila ditimpa salah satu musibah dari musibah-musibah tersebut mereka berkata dengan nada rida dan pasrah, “Sesungguhnya kami adalah milik Allah yang dapat memperlakukan kami menurut kehendak-Nya, dan sesungguhnya kami akan kembali kepadanya kelak pada hari Kiamat. Dialah yang telah menciptakan kami dan menganugerahkan beragam nikmat kepada kami. Dialah juga tempat kami kembali dan ujung dari urusan kami.”",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0625\u0650\u0630\u064e\u0627 \u0623\u064e\u0635\u064e\u0627\u0628\u064e\u062a\u0652\u0647\u064f\u0645 \u0645\u0651\u064f\u0635\u0650\u064a\u0628\u064e\u0629\u064c \u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0625\u0650\u0646\u0651\u064e\u0627 \u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0627 \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u0631\u064e\u0627\u062c\u0650\u0639\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Allazeena izaaa asaabathum museebatun qaalooo innaa lillaahi wa innaaa ilaihi raaji'oon",
-      },
+      arabic: "ٱلَّذِينَ إِذَآ أَصَٰبَتْهُم مُّصِيبَةٌ قَالُوٓا۟ إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَٰجِعُونَ",
     },
     translation: {
-      en: 'Who, when disaster strikes them, say, "Indeed we belong to Allah, and indeed to Him we will return."',
-      id: "(yaitu) orang-orang yang apabila ditimpa musibah, mereka berkata “Inna lillahi wa inna ilaihi raji‘un” (sesungguhnya kami milik Allah dan kepada-Nyalah kami kembali).",
+      en: {
+        footnotes: "",
+        text: "Those when afflicted with a disaster, say, “We belong to Allah, and to Him we will return.”",
+      },
+      id: {
+        footnotes:
+          "[52] Kalimat ini dinamakan kalimat istirja' (pernyataan kembali kepada Allah). Disunnahkan mengucapkannya pada waktu ditimpa musibah, baik besar atau kecil.",
+        text: '(yaitu) orang-orang yang apabila ditimpa musibah, mereka berkata "Innā lillāhi wa innā ilaihi rāji\'ūn" [52] (sesungguhnya kami milik Allah dan kepada-Nyalah kami kembali).',
+      },
     },
   },
 ];

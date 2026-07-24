@@ -44,6 +44,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"a".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"b".repeat(64)}`,
+  scope: { content: [], families: [], snapshots: ["program"] },
   snapshots: inheritContentSnapshots(null),
   upsertCount: 0,
 });
@@ -123,6 +124,7 @@ const rendererManifest = await Effect.runPromise(
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 

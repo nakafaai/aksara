@@ -1,5 +1,4 @@
 // @vitest-environment node
-
 import { Buffer } from "node:buffer";
 import {
   type BinaryLike,
@@ -58,7 +57,6 @@ vi.mock("node:crypto", async (importOriginal) => {
     },
   };
 });
-
 const TEST_HEADING = "Protocol Test Heading";
 const keyId = SigningKeyIdSchema.make("test-signing-key");
 const signingKeys = generateKeyPairSync("ed25519");
@@ -69,7 +67,6 @@ const rendererComponents = [
   { name: "BlockMath", version: 1 },
   { name: "InlineMath", version: 1 },
 ] as const;
-
 /** Builds one exact base plus real route-domain renderer contract. */
 function manifestInput(
   authoringComponents: readonly RendererComponentRequirement[] = rendererComponents,
@@ -81,6 +78,7 @@ function manifestInput(
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"] as const,
   };
 }
 const rendererManifest = await Effect.runPromise(
@@ -169,26 +167,32 @@ function tamperSignature(artifact: SignedContentArtifact) {
 }
 describe("server-only artifact verification", () => {
   it("authenticates canonical content across a renderer expansion", async () => {
-    const artifact = signArtifact();
+    const expandedComponents = [
+      ...rendererComponents,
+      { name: "Mermaid", version: 1 },
+    ] as const;
     const expandedManifest = await Effect.runPromise(
       createRendererManifest(
-        manifestInput(
-          [
-            { name: "BlockMath", version: 1 },
-            { name: "InlineMath", version: 2 },
-          ],
-          [
-            { name: "BlockMath", version: 1 },
-            { name: "InlineMath", version: 1 },
-            { name: "InlineMath", version: 2 },
-          ]
-        )
+        manifestInput(expandedComponents, expandedComponents)
       )
     );
-    await expect(verify(request(artifact))).resolves.toEqual(artifact);
-    await expect(verify(request(artifact, expandedManifest))).resolves.toEqual(
-      artifact
+    await expect(
+      verify(request(signArtifact(), expandedManifest))
+    ).resolves.toMatchObject({ payload: basePayload });
+  });
+  it("separates authoring support from deployed route support", async () => {
+    const authoringOnly = await Effect.runPromise(
+      createRendererManifest({
+        ...manifestInput(),
+        publishedDomains: ["chemistry"],
+      })
     );
+    const error = await reject(request(signArtifact(), authoringOnly));
+    expect(error).toMatchObject({
+      _tag: "ArtifactRendererDomainUnpublishedError",
+      contentKey: basePayload.contentKey,
+      rendererDomain: "mathematics",
+    });
   });
   it("rejects tampered payload, source, and artifact hash values", async () => {
     const artifact = signArtifact();
@@ -255,6 +259,12 @@ describe("server-only artifact verification", () => {
     );
   });
   it("rejects requirements from a different route-domain registry", async () => {
+    const crossDomainManifest = await Effect.runPromise(
+      createRendererManifest({
+        ...manifestInput(),
+        publishedDomains: ["chemistry", "mathematics"],
+      })
+    );
     const mathematics = makePayload({
       requiredComponents: [{ name: "FunctionMachine", version: 1 }],
     });
@@ -262,11 +272,12 @@ describe("server-only artifact verification", () => {
       rendererDomain: "chemistry",
       requiredComponents: [{ name: "FunctionMachine", version: 1 }],
     });
-
-    await expect(verify(request(signArtifact(mathematics)))).resolves.toEqual(
-      signArtifact(mathematics)
+    await expect(
+      verify(request(signArtifact(mathematics), crossDomainManifest))
+    ).resolves.toEqual(signArtifact(mathematics));
+    const error = await reject(
+      request(signArtifact(chemistry), crossDomainManifest)
     );
-    const error = await reject(request(signArtifact(chemistry)));
     expect(error._tag).toBe("ArtifactRendererComponentMissingError");
   });
   it("rejects excess top-level and nested wire properties", async () => {

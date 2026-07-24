@@ -53,9 +53,6 @@ describe("Quran schema", () => {
     ).toBe(QURAN_VERSE_COUNT);
     expect(QURAN_LOCALES).toEqual(["en", "id"]);
     expect(QURAN_TAFSIR_LOCALES).toEqual(["id"]);
-    expect(values.every(({ tafsir }) => Object.keys(tafsir).length === 1)).toBe(
-      true
-    );
     expect(
       values.every(({ verses }) =>
         verses.every(({ tafsir }) => Object.keys(tafsir).length === 1)
@@ -63,7 +60,7 @@ describe("Quran schema", () => {
     ).toBe(true);
   });
 
-  it("rejects empty text, unsafe audio, excess fields, and German data", async () => {
+  it("rejects empty text, removed fields, excess fields, and German data", async () => {
     const first = await firstSurah();
     const [firstVerse] = first.verses;
     if (firstVerse === undefined) {
@@ -72,30 +69,33 @@ describe("Quran schema", () => {
 
     const errors = await Promise.all([
       reject({ ...first, unexpectedField: true }),
-      reject({ ...first, name: { ...first.name, long: "" } }),
+      reject({ ...first, name: { ...first.name, arabic: "" } }),
       reject({
         ...first,
         verses: [
           {
             ...firstVerse,
-            audio: { ...firstVerse.audio, primary: "http://invalid.test" },
+            audio: { primary: "https://invalid.test/audio.mp3" },
           },
           ...first.verses.slice(1),
         ],
       }),
       reject({
         ...first,
-        name: {
-          ...first.name,
-          translation: {
-            ...first.name.translation,
-            de: first.name.translation.en,
+        verses: [
+          {
+            ...firstVerse,
+            translation: {
+              ...firstVerse.translation,
+              de: firstVerse.translation.en,
+            },
           },
-        },
+          ...first.verses.slice(1),
+        ],
       }),
       reject({
         ...first,
-        tafsir: { ...first.tafsir, de: first.tafsir.id },
+        tafsir: { id: "Removed surah description." },
       }),
       reject({
         ...first,
@@ -114,11 +114,8 @@ describe("Quran schema", () => {
     const messages = errors.map(String);
 
     expect(messages[1]).toContain("Quran text cannot be empty.");
-    expect(messages[2]).toContain(
-      "Quran audio must use a non-empty HTTPS URL."
-    );
     expect(
       messages.filter((message) => message.includes("is unexpected"))
-    ).toHaveLength(4);
+    ).toHaveLength(5);
   });
 });

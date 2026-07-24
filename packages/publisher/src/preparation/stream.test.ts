@@ -32,6 +32,7 @@ const rendererManifest = await Effect.runPromise(
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 const source = CompileDocumentSourceSchema.make({
@@ -39,9 +40,7 @@ const source = CompileDocumentSourceSchema.make({
   locale: "en",
   rawMdx: "export const metadata = {}\n\nTest protocol.",
   rendererDomain: "mathematics",
-  sourcePath: CorpusSourcePathSchema.make(
-    "packages/corpus/test/stream/a/en.mdx"
-  ),
+  sourcePath: CorpusSourcePathSchema.make("packages/corpus/test/a/en.mdx"),
 });
 const { payload } = await Effect.runPromise(
   compileContent({ ...source, rendererManifest })

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah56Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4986",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4986.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4986.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4986,
@@ -24,40 +25,32 @@ export const quranSurah56Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menjelaskan bahwa manusia pada waktu itu terdiri atas tiga golongan, yaitu-golongan kanan, golongan kiri, dan golongan orang-orang yang paling dahulu beriman, sebagaimana akan diterangkan pada ayat berikutnya.",
-        short:
-          "Dan pada saat kiamat itu kamu, wahai manusia, akan terbagi menjadi tiga golongan.",
+        footnotes: null,
+        text: "Pada hari itu, kalian semua terbagi menjadi tiga golongan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u0623\u064e\u0632\u0652\u0648\u064e\u0627\u062c\u064b\u0627 \u062b\u064e\u0644\u064e\u0627\u062b\u064e\u0629\u064b",
-      transliteration: {
-        en: "Wa kuntum azwaajan salaasah",
-      },
+      arabic: "وَكُنتُمْ أَزْوَٰجًا ثَلَٰثَةً",
     },
     translation: {
-      en: "And you become [of] three kinds:",
-      id: "dan kamu menjadi tiga golongan,",
+      en: {
+        footnotes: "",
+        text: "then you are sorted into three groups:",
+      },
+      id: {
+        footnotes: "",
+        text: "dan kamu menjadi tiga golongan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4987",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4987.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4987.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4987,
@@ -65,40 +58,34 @@ export const quranSurah56Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menjelaskan bahwa "golongan kanan" adalah orang-orang yang menerima buku-buku catatan amal mereka dengan tangan kanan yang menunjukkan bahwa mereka adalah penghuni surga. Tentulah keadaan mereka sangat baik dan sangat menyenangkan. "golongan kiri" ialah orang-orang yang menerima buku catatan amal mereka dengan tangan kiri yang menunjukkan bahwa mereka adalah penghuni neraka dan akan mendapat siksaan serta hukuman yang sangat menyedihkan. Berkenaan dengan ayat ini Mu\'adh bin Jabal meriwayatkan: Nabi Muhammad saw tatkala membaca ayat di atas, beliau menggenggam tangannya seraya berkata, "Ini (yang digenggam dengan tangan kanan beliau) adalah ahli surga dan tidak perlu aku memperhatikan, dan (yang digenggam dengan tangan kiri beliau) ini adalah ahli neraka dan tidak perlu aku mempedulikannya." (Riwayat Ahmad dari Mu\'adh bin Jabal)',
-        short:
-          "Yaitu golongan kanan; mereka itulah orang yang beriman kepada Allah, melaksanakan perintah-Nya, dan menjauhi larangan-Nya. Alangkah mulianya golongan kanan itu karena mereka akan mendapat karunia yang Dia janjikan.",
+        footnotes: null,
+        text: "Adapun golongan kanan yang mengambil kitab catatan perbuatan mereka dengan tangan kanan, sungguh betapa tinggi nan agung kedudukan mereka.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u064f \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u0645\u064e\u0646\u064e\u0629\u0650 \u0645\u064e\u0627 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u064f \u0627\u0644\u0652\u0645\u064e\u064a\u0652\u0645\u064e\u0646\u064e\u0629\u0650",
-      transliteration: {
-        en: "Fa as haabul maimanati maaa as haabul maimanah",
-      },
+      arabic: "فَأَصْحَٰبُ ٱلْمَيْمَنَةِ مَآ أَصْحَٰبُ ٱلْمَيْمَنَةِ",
     },
     translation: {
-      en: "Then the companions of the right - what are the companions of the right?",
-      id: "yaitu golongan kanan, alangkah mulianya golongan kanan itu,",
+      en: {
+        footnotes:
+          "[2] i.e., those who receive their record of deeds in the right hand and are destined for Paradise.",
+        text: "the people of the right – how blessed will be the people of the right[2]!",
+      },
+      id: {
+        footnotes:
+          "[825] Orang-orang yang menerima buku catatan amal mereka dengan tangan kanan.",
+        text: "yaitu golongan kanan,[825] alangkah mulianya golongan kanan itu,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4988",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4988.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4988.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4988,
@@ -106,40 +93,34 @@ export const quranSurah56Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menjelaskan bahwa "golongan kanan" adalah orang-orang yang menerima buku-buku catatan amal mereka dengan tangan kanan yang menunjukkan bahwa mereka adalah penghuni surga. Tentulah keadaan mereka sangat baik dan sangat menyenangkan. "golongan kiri" ialah orang-orang yang menerima buku catatan amal mereka dengan tangan kiri yang menunjukkan bahwa mereka adalah penghuni neraka dan akan mendapat siksaan serta hukuman yang sangat menyedihkan. Berkenaan dengan ayat ini Mu\'adh bin Jabal meriwayatkan: Nabi Muhammad saw tatkala membaca ayat di atas, beliau menggenggam tangannya seraya berkata, "Ini (yang digenggam dengan tangan kanan beliau) adalah ahli surga dan tidak perlu aku memperhatikan, dan (yang digenggam dengan tangan kiri beliau) ini adalah ahli neraka dan tidak perlu aku mempedulikannya." (Riwayat Ahmad dari Mu\'adh bin Jabal)',
-        short:
-          "Dan yang kedua adalah golongan kiri, yaitu mereka yang ingkar dan berbuat kemaksiatan. Alangkah sengsaranya golongan kiri itu karena mereka akan mendapat hukuman akibat kemungkarannya.",
+        footnotes: null,
+        text: "Adapun golongan kiri yang mengambil kitab catatan perbuatan mereka dengan tangan kiri, sungguh betapa hina dan buruk kedudukan mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u064f \u0627\u0644\u0652\u0645\u064e\u0634\u0652\u0623\u064e\u0645\u064e\u0629\u0650 \u0645\u064e\u0627 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u064f \u0627\u0644\u0652\u0645\u064e\u0634\u0652\u0623\u064e\u0645\u064e\u0629\u0650",
-      transliteration: {
-        en: "Wa as haabul mash'amati maaa as haabul mash'amah",
-      },
+      arabic: "وَأَصْحَٰبُ ٱلْمَشْـَٔمَةِ مَآ أَصْحَٰبُ ٱلْمَشْـَٔمَةِ",
     },
     translation: {
-      en: "And the companions of the left - what are the companions of the left?",
-      id: "dan golongan kiri, alangkah sengsaranya golongan kiri itu,",
+      en: {
+        footnotes:
+          "[3] i.e., those who receive their record of deeds in the left hand and are destined for Hell.",
+        text: "The people of the left – how miserable will be the people of the left[3]!",
+      },
+      id: {
+        footnotes:
+          "[826] Orang-orang yang menerima buku catatan amal mereka dengan tangan kiri.",
+        text: "dan golongan kiri,[826] alangkah sengsaranya golongan kiri itu,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4989",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4989.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4989.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4989,
@@ -147,40 +128,32 @@ export const quranSurah56Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menjelaskan bahwa orang-orang yang paling dahulu beriman kepada Allah tidak asing lagi bagi kita pribadi hal ini tampak karena kebesarannya serta perbuatan-perbuatan mereka yang mengagumkan. Dapat pula diartikan bahwa orang-orang yang paling dahulu mematuhi perintah Allah, mereka pulalah yang paling dahulu menerima rahmat Allah. Barang siapa yang lebih awal membuat kebaikan di dunia ini, maka ia adalah orang yang lebih awal pula mendapat ganjaran di akhirat nanti. Ayat ini menjelaskan bahwa yang dimaksud dengan "as-sabiqun", ialah mereka yang disebut dalam hadis \'Aisyah sebagai Nabi Muhammad saw telah bersabda, "Apakah kamu sekalian tahu siapa yang paling dahulu mendapat perlindungan dari Allah pada hari Kiamat nanti?" Mereka (para sahabat) berkata, "Allah dan Rasul-Nya yang lebih mengetahui." Rasulullah bersabda, "Mereka itu adalah orang yang apabila diberi haknya menerimanya, apabila diminta, memberikannya dan apabila menjatuhkan hukuman terhadap orang lain sama seperti mereka menjatuhkan hukuman terhadap diri mereka sendiri." (Riwayat Ahmad dari \'Aisyah) (',
-        short:
-          "Dan yang ketiga adalah orang-orang yang paling dahulu beriman pada dakwah Rasulullah. Karena itu, merekalah yang paling dulu masuk surga sebagai balasan atas keimanan dan ketaatannya.",
+        footnotes: null,
+        text: "Adapun orang-orang yang paling giat dan bersegera melakukan kebaikan di dunia maka mereka adalah orang-orang yang terdahulu memasuki surga di akhirat.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0633\u0651\u064e\u0627\u0628\u0650\u0642\u064f\u0648\u0646\u064e \u0627\u0644\u0633\u0651\u064e\u0627\u0628\u0650\u0642\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wassaabiqoonas saabiqoon",
-      },
+      arabic: "وَٱلسَّٰبِقُونَ ٱلسَّٰبِقُونَ",
     },
     translation: {
-      en: "And the forerunners, the forerunners -",
-      id: "dan orang-orang yang paling dahulu (beriman), merekalah yang paling dahulu (masuk surga).",
+      en: {
+        footnotes: "",
+        text: "And the forerunners [in faith] are the forerunners [in Paradise].",
+      },
+      id: {
+        footnotes: "",
+        text: "dan orang-orang yang paling dahulu (beriman), merekalah yang paling dahulu (masuk surga).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4990",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4990.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4990.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4990,
@@ -188,40 +161,32 @@ export const quranSurah56Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa mereka yang paling dahulu beriman itulah yang menerima ganjaran yang lebih dahulu dari Allah. Mereka adalah ahli surga yang dilimpahi nikmat-nikmat yang tidak pernah dilihat oleh mata dan didengar oleh telinga serta terpikirkan oleh siapa pun juga sebagaimana disebutkan dalam hadis Nabi saw. Di dalam surga terdapat nikmat dan kesenangan yang tidak pernah dilihat oleh mata dan didengar oleh telinga serta tidak pernah terlintas di hati manusia. (Riwayat al-Bazzar dari Abu Sa'id)",
-        short:
-          "Mereka yang pertama beriman itu adalah orang-orang yang dekat kepada Allah. Sebagai balasan, mereka akan mendapat rahmat-Nya,",
+        footnotes: null,
+        text: "Mereka itu adalah orang-orang yang didekatkan kepada Allah.",
       },
     },
     text: {
-      arab: "\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0627\u0644\u0652\u0645\u064f\u0642\u064e\u0631\u0651\u064e\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Ulaaa'ikal muqarraboon",
-      },
+      arabic: "أُو۟لَٰٓئِكَ ٱلْمُقَرَّبُونَ",
     },
     translation: {
-      en: "Those are the ones brought near [to Allah]",
-      id: "Mereka itulah orang yang dekat (kepada Allah),",
+      en: {
+        footnotes: "",
+        text: "They are the nearest ones [to Allah],",
+      },
+      id: {
+        footnotes: "",
+        text: "mereka itulah orang yang dekat (kepada Allah),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4991",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4991.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4991.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4991,
@@ -229,20 +194,22 @@ export const quranSurah56Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa mereka yang paling dahulu beriman itulah yang menerima ganjaran yang lebih dahulu dari Allah. Mereka adalah ahli surga yang dilimpahi nikmat-nikmat yang tidak pernah dilihat oleh mata dan didengar oleh telinga serta terpikirkan oleh siapa pun juga sebagaimana disebutkan dalam hadis Nabi saw. Di dalam surga terdapat nikmat dan kesenangan yang tidak pernah dilihat oleh mata dan didengar oleh telinga serta tidak pernah terlintas di hati manusia. (Riwayat al-Bazzar dari Abu Sa'id)",
-        short:
-          "yaitu berada dalam surga yang penuh kenikmatan sebagaimana yang Dia janjikan.",
+        footnotes: null,
+        text: "Di surga yang penuh kenikmatan itu, mereka bersenang-senang dengan berbagai kenikmatan.",
       },
     },
     text: {
-      arab: "\u0641\u0650\u064a \u062c\u064e\u0646\u0651\u064e\u0627\u062a\u0650 \u0627\u0644\u0646\u0651\u064e\u0639\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Fee Jannaatin Na'eem",
-      },
+      arabic: "فِى جَنَّٰتِ ٱلنَّعِيمِ",
     },
     translation: {
-      en: "In the Gardens of Pleasure,",
-      id: "Berada dalam surga kenikmatan,",
+      en: {
+        footnotes: "",
+        text: "in Gardens of Bliss,",
+      },
+      id: {
+        footnotes: "",
+        text: "Berada dalam surga kenikmatan,",
+      },
     },
   },
 ];

@@ -1,12 +1,17 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Path } from "@effect/platform";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type MaterialHead,
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
+import {
+  type PublicationScope,
+  PublicationScopeSchema,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
@@ -27,6 +32,17 @@ export const sourceByPath = new Map(
     return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
   })
 );
+export const functionContentKey = ContentKeySchema.make(
+  "material/lesson/mathematics/function-composition-inverse-function/function-concept"
+);
+export const functionMaterialScope = PublicationScopeSchema.make({
+  content: [
+    { contentKey: functionContentKey, family: "material", locale: "en" },
+    { contentKey: functionContentKey, family: "material", locale: "id" },
+  ],
+  families: [],
+  snapshots: [],
+});
 
 /** Creates a valid manifest while varying only real domain component versions. */
 export function materialManifest(input: {
@@ -49,6 +65,7 @@ export function materialManifest(input: {
         chemistry: [{ name: "AtomShellLab", version: input.chemistry }],
         mathematics: [{ name: "FunctionMachine", version: input.math }],
       }),
+      publishedDomains: ["mathematics"],
     })
   );
 }
@@ -62,6 +79,7 @@ export const rendererManifest = await materialManifest({
 export function collectMaterialPublication(input: {
   readonly heads: readonly MaterialHead[];
   readonly renderer?: unknown;
+  readonly scope?: PublicationScope | undefined;
   readonly sources?: ReadonlyMap<string, string>;
 }) {
   return Effect.runPromise(
@@ -71,6 +89,7 @@ export function collectMaterialPublication(input: {
           checkoutRoot,
           published: Stream.fromIterable(input.heads),
           rendererManifest: input.renderer ?? rendererManifest,
+          scope: input.scope,
         });
         return yield* publication.records().pipe(
           Stream.runCollect,
@@ -84,10 +103,38 @@ export function collectMaterialPublication(input: {
   );
 }
 
+/** Collects the complete result catalog produced by one material scope. */
+export function collectMaterialResult(input: {
+  readonly heads: readonly MaterialHead[];
+  readonly scope: PublicationScope;
+  readonly sources?: ReadonlyMap<string, string>;
+}) {
+  return Effect.runPromise(
+    Effect.scoped(
+      Effect.gen(function* () {
+        const publication = yield* prepareMaterialPublication({
+          checkoutRoot,
+          published: Stream.fromIterable(input.heads),
+          rendererManifest,
+          scope: input.scope,
+        });
+        return yield* publication.result().pipe(
+          Stream.runCollect,
+          Effect.map((heads) => [...heads])
+        );
+      })
+    ).pipe(
+      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
+      Effect.provide(Path.layer)
+    )
+  );
+}
+
 /** Collects canonical route transitions from one real material plan. */
 export function collectMaterialRoutes(input: {
   readonly heads: readonly MaterialHead[];
   readonly renderer?: unknown;
+  readonly scope?: PublicationScope | undefined;
   readonly sources?: ReadonlyMap<string, string>;
 }) {
   return Effect.runPromise(
@@ -97,6 +144,7 @@ export function collectMaterialRoutes(input: {
           checkoutRoot,
           published: Stream.fromIterable(input.heads),
           rendererManifest: input.renderer ?? rendererManifest,
+          scope: input.scope,
         });
         return yield* publication.routes().pipe(
           Stream.runCollect,
@@ -111,13 +159,17 @@ export function collectMaterialRoutes(input: {
 }
 
 /** Returns an authoritative material planning failure without FiberFailure. */
-export function rejectMaterialPublication(heads: readonly MaterialHead[]) {
+export function rejectMaterialPublication(
+  heads: readonly MaterialHead[],
+  scope?: PublicationScope | undefined
+) {
   return Effect.runPromise(
     Effect.scoped(
       prepareMaterialPublication({
         checkoutRoot,
         published: Stream.fromIterable(heads),
         rendererManifest,
+        scope,
       })
     ).pipe(
       Effect.provide(testFileLayer(sourceByPath)),

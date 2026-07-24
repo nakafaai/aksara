@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah6Verses61To66 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/850",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/850.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/850.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 54,
       juz: 7,
       manzil: 2,
       page: 135,
       ruku: 109,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 850,
@@ -24,40 +25,33 @@ export const quranSurah6Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menegaskan kekuasaan, pemeliharaan dan pengawasan Allah terhadap hamba-hamba-Nya. Dia tidak dapat dikuasai sedikit pun oleh makhluk-makhluk-Nya termasuk sembahan-sembahan dan patung-patung yang disembah oleh orang-orang musyrik, karena sembahan dan patung itu tidak mampu memegang kekuasaan dan tidak mampu memberi pertolongan, bahkan ia sendirilah yang diberi pertolongan.\n\nDari ayat ini dipahami bahwa hendaklah manusia menghambakan diri kepada Allah, karena segala ilmu, kekuasaan, kemerdekaan, kemampuan bergerak dan berdaya cipta merupakan anugerah Allah kepada mereka. Dia sanggup menambah atau mencabut anugerah-Nya kapan Dia kehendaki. Di saat Dia mencabut semua anugerah-Nya itu, maka manusia tidak mempunyai arti sedikit pun.\n\nAllah juga mengirimkan kepada manusia malaikat-malaikat penjaga yang menjaga mereka dan merekam tindak-tanduk mereka setiap waktu. Semuanya dicatat dan tidak ada sesuatu pun yang tertinggal. Firman Allah swt:\n\nDan apabila lembaran-lembaran (catatan amal) telah dibuka lebar-lebar. (at-Takwir/81: 10)\n\nMengenai malaikat penjaga, tersebut dalam firman Allah swt:\n\nDan sesungguhnya bagi kamu ada (malaikat-malaikat) yang mengawasi (pekerjaanmu), yang mulia (di sisi Allah) dan yang mencatat (amal perbuatanmu), mereka mengetahui apa yang kamu kerjakan. \n\n(al-Infithar/82: 10-12)\n\nBahkan bagi tiap-tiap manusia ada beberapa malaikat yang tetap menjaganya secara bergiliran dan ada pula yang mencatat amalan-amalannya, yaitu Raqib dan Atid, sebagaimana firman Allah swt:\n\nBaginya (manusia) ada malaikat-malaikat yang selalu menjaganya bergiliran, dari depan dan belakangnya. Mereka menjaganya atas perintah Allah. (ar-Ra\'d/13: 11)\n\nSabda Nabi saw:\n\nPara malaikat berganti-ganti menjagamu, yaitu malaikat malam dan malaikat siang, mereka bertemu (berganti giliran) pada waktu salat subuh dan waktu salat asar. Kemudian malaikat yang menjagamu di malam hari naik ke langit, maka Tuhan menanyakan kepada mereka (sedang Dia lebih tahu dari mereka) "Bagaimanakah kamu tinggalkan hamba-hamba-Ku." Mereka menjawab, "Kami tinggalkan mereka dalam keadaan salat dan kami datangi mereka dalam keadan salat pula." (Riwayat al-Bukhari dan Muslim dari Abu Hurairah)\n\nSebenarnya Allah tidak memerlukan malaikat pencatat untuk mencatat segala perbuatan manusia, karena Dia Maha Mengetahui segala sesuatu. Dengan adanya malaikat pencatat yang mencatat seluruh perbuatan manusia, diharapkan manusia akan berhati-hati jika hendak mengerjakan suatu pekerjaan, apakah pekerjaan itu diridai Allah atau tidak.\n\nDemikianlah para malaikat penjaga dan pencatat itu menjaga, mengawasi dan mencatat seluruh perbuatan manusia, sampai saat datangnya kematian kepadanya. Dengan datangnya malaikat maut mencabut nyawa manusia untuk melaksanakan perintah Allah sampailah ajal manusia itu, Allah swt berfirman:\n\nKatakanlah, "Malaikat maut yang diserahi untuk (mencabut nyawa) mu akan mematikan kamu, kemudian kepada Tuhanmu, kamu akan dikembalikan." (as-Sajdah/32: 11)',
-        short:
-          "Jangan menduga kekuasaan Allah hanya seperti yang disebutkan pada ayat di atas. Dan Dialah Penguasa mutlak atas semua hamba-Nya, dan diutus-Nya kepadamu, wahai manusia, malaikat-malaikat yang berfungsi sebagai penjaga, sehingga apabila kematian datang kepada salah seorang di antara kamu, dan itu berarti usai sudah tugas malaikat penjaga tersebut, maka utusan-utusan Kami, yaitu malaikat-malaikat, mencabut nyawanya, dan mereka, yakni para malaikat tersebut, tidak akan pernah melalaikan tugasnya (Lihat: Surah at-Tahrim/6: 66).",
+        footnotes: null,
+        text: "Dialah Allah yang menguasai hamba-hamba-Nya serta yang menundukkan mereka. Dia Mahatinggi dari mereka dalam segala hal dan segala sesuatu tunduk kepada-Nya. Dia berada di atas hamba-hamba-Nya dalam bentuk yang sesuai dengan keagungan-Nya. Dia juga mengirimkan kepada kalian -wahai manusia- para malaikat mulia yang bertugas mencatat amal perbuatan kalian sampai akhir hayat kalian dengan adanya malaikat maut dan pasukannya yang mencabut nyawa kalian dan mereka tidak pernah lalai dalam melaksanakan apa yang diperintahkan kepada mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0647\u064f\u0648\u064e \u0627\u0644\u0652\u0642\u064e\u0627\u0647\u0650\u0631\u064f \u0641\u064e\u0648\u0652\u0642\u064e \u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0647\u0650 \u06d6 \u0648\u064e\u064a\u064f\u0631\u0652\u0633\u0650\u0644\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u062d\u064e\u0641\u064e\u0638\u064e\u0629\u064b \u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u0625\u0650\u0630\u064e\u0627 \u062c\u064e\u0627\u0621\u064e \u0623\u064e\u062d\u064e\u062f\u064e\u0643\u064f\u0645\u064f \u0627\u0644\u0652\u0645\u064e\u0648\u0652\u062a\u064f \u062a\u064e\u0648\u064e\u0641\u0651\u064e\u062a\u0652\u0647\u064f \u0631\u064f\u0633\u064f\u0644\u064f\u0646\u064e\u0627 \u0648\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0627 \u064a\u064f\u0641\u064e\u0631\u0651\u0650\u0637\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa huwal qaahiru fawqa 'ibaadihee wa yursilu 'alaikum hafazatan hattaaa izaa jaaa'a ahadakumul mawtu tawaffathu rusulunaa wa hum laa yufarritoon",
-      },
+      arabic:
+        "وَهُوَ ٱلْقَاهِرُ فَوْقَ عِبَادِهِۦ وَيُرْسِلُ عَلَيْكُمْ حَفَظَةً حَتَّىٰٓ إِذَا جَآءَ أَحَدَكُمُ ٱلْمَوْتُ تَوَفَّتْهُ رُسُلُنَا وَهُمْ لَا يُفَرِّطُونَ",
     },
     translation: {
-      en: "And He is the subjugator over His servants, and He sends over you guardian-angels until, when death comes to one of you, Our messengers take him, and they do not fail [in their duties].",
-      id: "Dan Dialah Penguasa mutlak atas semua hamba-Nya, dan diutus-Nya kepadamu malaikat-malaikat penjaga, sehingga apabila kematian datang kepada salah seorang di antara kamu, malaikat-malaikat Kami mencabut nyawanya, dan mereka tidak melalaikan tugasnya.",
+      en: {
+        footnotes: "",
+        text: "He is the Subjugator over His servants and sends over you recording-angels until when death comes upon one of you, Our angels take his soul, and they never fall short in their duty.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan Dialah Penguasa mutlak atas semua hamba-Nya, dan di utus-Nya kepadamu malaikat-malaikat penjaga, sehingga apabila kematian datang kepada salah seorang di antara kamu, maka malaikat-malaikat Kami mencabut nyawanya dan mereka tidak melalaikan tugasnya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/851",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/851.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/851.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 54,
       juz: 7,
       manzil: 2,
       page: 135,
       ruku: 109,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 851,
@@ -65,40 +59,32 @@ export const quranSurah6Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa orang-orang yang telah dicabut nyawanya oleh malaikat maut, kembali kepada Allah untuk diadili perkaranya, dan Allah akan memberi keputusan berdasar hukum-Nya dengan seadil-adilnya. Dia mempunyai kekuasaan untuk menghukum, tidak seorang pun yang dapat mengubah keputusan-Nya. Dia amat cepat memberi keputusan.\n\nSesungguhnya semua perhitungan, pembalasan dan hukuman di akhirat nanti semata-mata berdasar amal, perbuatan dan tindakan manusia semasa hidup di dunia apakah sesuai dengan batas-batas yang telah ditentukan Allah atau tidak.",
-        short:
-          "Setelah semua menjumpai kematian dan mengalami kehidupan di alam barzakh, kemudian mereka, hamba-hamba Allah tersebut, dikembalikan kepada Allah, yakni kepada hukum dan ketetapan-Nya bahwa semua akan menerima balasan sesuai dengan amal perbuatannya ketika di dunia, karena Dia adalah penguasa mereka yang sebenarnya. Ketahuilah bahwa segala hukum dan segala aturan, khususnya pada hari itu, ada pada-Nya. Dan Dialah pembuat perhitungan yang paling cepat. Dan tidak ada yang menandingi-Nya.",
+        footnotes: null,
+        text: "Kemudian semua yang dicabut nyawanya akan dikembalikan kepada Allah, pemilik sejati mereka untuk menerima balasan yang setimpal dengan amal perbuatan masing-masing. Dialah yang berhak membuat keputusan yang sah dan vonis yang adil bagi mereka dan Dia adalah penghitung yang paling cepat atas amal perbuatan kalian.",
       },
     },
     text: {
-      arab: "\u062b\u064f\u0645\u0651\u064e \u0631\u064f\u062f\u0651\u064f\u0648\u0627 \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0645\u064e\u0648\u0652\u0644\u064e\u0627\u0647\u064f\u0645\u064f \u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u06da \u0623\u064e\u0644\u064e\u0627 \u0644\u064e\u0647\u064f \u0627\u0644\u0652\u062d\u064f\u0643\u0652\u0645\u064f \u0648\u064e\u0647\u064f\u0648\u064e \u0623\u064e\u0633\u0652\u0631\u064e\u0639\u064f \u0627\u0644\u0652\u062d\u064e\u0627\u0633\u0650\u0628\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Summa ruddooo ilallaahi mawlaahumul haqq; alaa lahul hukmu wa Huwa asra'ul haasibeen",
-      },
+      arabic: "ثُمَّ رُدُّوٓا۟ إِلَى ٱللَّهِ مَوْلَىٰهُمُ ٱلْحَقِّ أَلَا لَهُ ٱلْحُكْمُ وَهُوَ أَسْرَعُ ٱلْحَٰسِبِينَ",
     },
     translation: {
-      en: "Then they His servants are returned to Allah, their true Lord. Unquestionably, His is the judgement, and He is the swiftest of accountants.",
-      id: "Kemudian mereka (hamba-hamba Allah) dikembalikan kepada Allah, penguasa mereka yang sebenarnya. Ketahuilah bahwa segala hukum (pada hari itu) ada pada-Nya. Dan Dialah pembuat perhitungan yang paling cepat.",
+      en: {
+        footnotes: "",
+        text: "Then they will be returned to Allah, their true Lord. Indeed, judgment belongs to Him alone, and He is the Swiftest Reckoner.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian mereka (hamba-hamba Allah) dikembalikan kepada Allah, penguasa mereka yang sebenarnya. Ketahuilah bahwa segala hukum (pada hari itu) ada pada-Nya. Dan Dialah pembuat perhitungan yang paling cepat.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/852",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/852.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/852.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 54,
       juz: 7,
       manzil: 2,
       page: 135,
       ruku: 109,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 852,
@@ -106,40 +92,34 @@ export const quranSurah6Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: 'Allah memerintahkan kepada Rasul-Nya agar mengatakan kepada orang-orang musyrik bahwa siapakah yang dapat menyelamatkan dan melepaskan mereka dari kegelapan daratan bila mereka tersesat, siapa yang sanggup melepaskan mereka dari kesengsaraan dan penderitaan hidup, siapa yang sanggup melepaskan mereka dari kegelapan lautan bila mereka berlayar di tengahnya, lalu datanglah angin topan disertai ombak yang besar, sehingga mereka tidak mengetahui arah dan tujuan lagi? Yang dapat menyelamatkan manusia dari segala kegelapan dan kesengsaraan itu hanyalah Allah, tidak ada yang lain.\n\nTabiat manusia adalah bahwa jika mereka dalam keadaan kesulitan dan dalam mara bahaya, mereka ingat kepada Allah, mereka menyerahkan diri, tunduk dan patuh kepada-Nya disertai dengan doa dan memohon pertolongan kepada-Nya. Bahkan dalam keadaan demikian mereka berjanji akan tetap berserah diri kepada Allah dan mensyukuri nikmat-Nya jika kesulitan dan mara bahaya itu dihindarkan dari mereka. Tetapi setelah kesulitan dan mara bahaya itu terhindar, mereka lupa akan janji yang telah mereka ikrarkan bahkan mereka menjadi orang-orang yang zalim dan mempersekutukan Allah.\n\nKeadaan mereka itu dilukiskan dalam firman Allah swt:\n\nDialah Tuhan yang menjadikan kamu dapat berjalan di daratan, (dan berlayar) di lautan. Sehingga ketika kamu berada di dalam kapal, dan meluncurlah (kapal) itu membawa mereka (orang-orang yang ada di dalamnya) dengan tiupan angin yang baik, dan mereka bergembira karenanya; tiba-tiba datanglah badai dan gelombang menimpanya dari segenap penjuru, dan mereka mengira telah terkepung (bahaya), maka mereka berdoa dengan tulus ikhlas kepada Allah semata. (Seraya berkata), "Sekiranya Engkau menyelamatkan kami dari (bahaya) ini, pasti kami termasuk orang-orang yang bersyukur." Tetapi ketika Allah menyelamatkan mereka, malah mereka berbuat kezaliman di bumi tanpa (alasan) yang benar¦ (Yunus/10: 22-23)',
-        short:
-          "Keluasan ilmu Allah telah dijelaskan, kekuasaan Allah yang mutlak telah dipaparkan, kini dijelaskan tentang salah satu sifat negatif manusia yaitu merasa membutuhkan Allah pada saat terdesak. Katakanlah, wahai Nabi Muhammad, \"Siapakah yang dapat menyelamatkan kamu dari kegelapan-kegelapan, yaitu aneka bencana, di darat dan di laut, yang mana saat kejadian itu kamu berdoa secara tulus kepada-Nya dengan rendah hati yaitu menunjukkan dirimu sebagai orang yang amat membutuhkan pertolongan dan dengan suara yang lembut sehingga menimbulkan rasa iba bagi yang mendengarnya, dengan mengatakan secara sungguhsungguh yang dikuatkan dengan janji, 'Sekiranya Dia menyelamatkan kami dari bencana ini, tentulah kami menjadi orang-orang yang benar-benar mantap bersyukur'?\" Itulah tabiat manusia khususnya yang durhaka. Pada saat tertimpa kesulitan yang mengancam keselamatan jiwanya, janji taat kepada Allah pun diucapkan. Namun pada saat situasi kembali normal, maka kedurhakaan pun berulang.",
+        footnotes: null,
+        text: "Katakanlah -wahai Rasul- kepada orang-orang musyrik itu, “Siapakah yang dapat menyelamatkan kalian ketika kalian menghadapi berbagai bencana di tengah gelapnya daratan dan lautan? Yaitu yang kalian memanjatkan doa hanya kepada-Nya seraya merendahkan dan menundukkan diri kepada-Nya secara lahir dan batin seraya bertekad, ‘Sungguh, jika Tuhan kami menyelamatkan kami dari bencana-bencana ini, pasti kami akan mensyukuri nikmat-nikmat yang Dia berikan kepada kami dengan tidak menyembah selain Dia’.”",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u0645\u064e\u0646 \u064a\u064f\u0646\u064e\u062c\u0651\u0650\u064a\u0643\u064f\u0645 \u0645\u0651\u0650\u0646 \u0638\u064f\u0644\u064f\u0645\u064e\u0627\u062a\u0650 \u0627\u0644\u0652\u0628\u064e\u0631\u0651\u0650 \u0648\u064e\u0627\u0644\u0652\u0628\u064e\u062d\u0652\u0631\u0650 \u062a\u064e\u062f\u0652\u0639\u064f\u0648\u0646\u064e\u0647\u064f \u062a\u064e\u0636\u064e\u0631\u0651\u064f\u0639\u064b\u0627 \u0648\u064e\u062e\u064f\u0641\u0652\u064a\u064e\u0629\u064b \u0644\u0651\u064e\u0626\u0650\u0646\u0652 \u0623\u064e\u0646\u062c\u064e\u0627\u0646\u064e\u0627 \u0645\u0650\u0646\u0652 \u0647\u064e\u0670\u0630\u0650\u0647\u0650 \u0644\u064e\u0646\u064e\u0643\u064f\u0648\u0646\u064e\u0646\u0651\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0634\u0651\u064e\u0627\u0643\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qul mai yunajjeekum min zulumaatil barri walbahri tad'oonahoo tadarru'anw wa khufyatann la'in anjaanaa min haazihee lanakoonana minash shaakireen",
-      },
+      arabic:
+        "قُلْ مَن يُنَجِّيكُم مِّن ظُلُمَٰتِ ٱلْبَرِّ وَٱلْبَحْرِ تَدْعُونَهُۥ تَضَرُّعًا وَخُفْيَةً لَّئِنْ أَنجَىٰنَا مِنْ هَٰذِهِۦ لَنَكُونَنَّ مِنَ ٱلشَّٰكِرِينَ",
     },
     translation: {
-      en: "Say, \"Who rescues you from the darknesses of the land and sea [when] you call upon Him imploring [aloud] and privately, 'If He should save us from this [crisis], we will surely be among the thankful.' \"",
-      id: "Katakanlah (Muhammad), “Siapakah yang dapat menyelamatkan kamu dari bencana di darat dan di laut, ketika kamu berdoa kepada-Nya dengan rendah hati dan dengan suara yang lembut?” (Dengan mengatakan), “Sekiranya Dia menyelamatkan kami dari (bencana) ini, tentulah kami menjadi orang-orang yang bersyukur.”",
+      en: {
+        footnotes:
+          "[21] The Arabs of that time did not deny Allah’s Lordship (tawhīd al-rubūbiyyah) Whom they turned to in times of hardship, but they denied His sole Divinity (tawhīd al-ulūhiyyah), i.e., worshiping none but Allah.",
+        text: "Say, “Who rescues you from the darkness of the land and sea? You invoke Him humbly and privately[21], ‘If only He rescues us from this, we will certainly be among those who are grateful.’”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Siapakah yang dapat menyelamatkan kamu dari bencana di darat dan di laut, ketika kamu berdoa kepada-Nya dengan rendah hati dan dengan suara yang lembut?" (Dengan mengatakan), "Sekiranya Dia menyelamatkan kami dari (bencana) ini, tentulah kami menjadi orang-orang yang bersyukur."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/853",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/853.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/853.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 54,
       juz: 7,
       manzil: 2,
       page: 135,
       ruku: 109,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 853,
@@ -147,40 +127,32 @@ export const quranSurah6Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa hanya Allah-lah yang menyelamatkan dan melepaskan manusia dari segala macam kesusahan dan penderitaan, bukan sembahan-sembahan atau berhala-berhala yang mereka sembah itu, karena sembahan-sembahan dan berhala-berhala itu tidak mampu sedikit pun menjauhkan kesusahan dan penderitaan dari mereka. Tetapi orang kafir itu setelah selamat dan terlepas dari bahaya mereka kembali mempersekutukan Allah.",
-        short:
-          'Allah Maha Mengetahui realitas hidup manusia, termasuk yang diselamatkan dari keadaan yang mengancam jiwanya, di mana pada akhirnya janji-janji itu dilupakan. Katakanlah, wahai Nabi Muhammad, "Allah yang menyelamatkan kamu dari bencana itu dan dari segala macam kesusahan, namun kemudian kamu kembali mempersekutukan-Nya." Sungguh buruk perilaku manusia itu. Mereka sendiri yang berjanji untuk taat kepada Allah, dan mereka sendiri pula yang mengingkarinya.',
+        footnotes: null,
+        text: "Katakanlah -wahai Rasul- kepada mereka, “Allahlah yang dapat menyelamatkan kalian dari bencana-bencana itu dan membebaskan kalian dari segala macam kesulitan. Tetapi, setelah itu kalian menyekutukan-Nya dengan yang lain di kala jaya. Adakah kezaliman yang lebih besar dari kezaliman yang kalian lakukan?!”",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u064a\u064f\u0646\u064e\u062c\u0651\u0650\u064a\u0643\u064f\u0645 \u0645\u0651\u0650\u0646\u0652\u0647\u064e\u0627 \u0648\u064e\u0645\u0650\u0646 \u0643\u064f\u0644\u0651\u0650 \u0643\u064e\u0631\u0652\u0628\u064d \u062b\u064f\u0645\u0651\u064e \u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u062a\u064f\u0634\u0652\u0631\u0650\u0643\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qulil laahu yunajjjeekum minhaa wa min kulli karbin summa antum tushrikoon",
-      },
+      arabic: "قُلِ ٱللَّهُ يُنَجِّيكُم مِّنْهَا وَمِن كُلِّ كَرْبٍ ثُمَّ أَنتُمْ تُشْرِكُونَ",
     },
     translation: {
-      en: 'Say, "It is Allah who saves you from it and from every distress; then you [still] associate others with Him."',
-      id: "Katakanlah (Muhammad), “Allah yang menyelamatkan kamu dari bencana itu dan dari segala macam kesusahan, namun kemudian kamu (kembali) mempersekutukan-Nya.”",
+      en: {
+        footnotes: "",
+        text: "Say, “Allah rescues you from it and from every distress, yet you associate partners with Him.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Allah yang menyelamatkan kamu dari bencana itu dan dari segala macam kesusahan, namun kemudian kamu (kembali) mempersekutukan-Nya."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/854",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/854.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/854.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 54,
       juz: 7,
       manzil: 2,
       page: 135,
       ruku: 109,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 854,
@@ -188,40 +160,34 @@ export const quranSurah6Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini merupakan peringatan yang keras terhadap orang-orang yang hanya mengingat kepada Allah dalam keadaan menderita dan sengsara, kemudian setelah penderitaan dan kesengsaraan itu lenyap, mereka kembali mempersekutukan Allah.\n\nPeringatan itu ialah bahwa Allah berkuasa mendatangkan azab yang tidak diketahui oleh manusia hakikatnya, mungkin dari atas atau dari bawah, mungkin dari kanan atau dari kiri, mungkin berupa angin topan atau letusan gunung berapi yang dahsyat, atau mengacaubalaukan manusia, sehingga mereka menjadi bergolong-golongan dan berpuak-puak yang selalu bersengketa atau mereka saling membunuh sesama mereka sehingga sebagian mereka merasakan keganasan sebagian yang lain. Karena itu hendaklah orang-orang kafir itu ingat bahwa sekalipun pada suatu waktu mereka telah diselamatkan Allah dari penderitaan dan kesengsaraan, tetapi bila mereka ingkar kembali, Allah Kuasa mendatangkan malapetaka yang lebih hebat dari itu.\n\nMenurut Ibnu \'Abbas yang dimaksud dengan "azab dari atasmu" ialah pembesar-pembesar kamu, dan yang dimaksud dengan "azab dari bawah kakimu" ialah yang datang dari budak-budak dan rakyat jelata.\n\n"Azab" yang dimaksud oleh ayat ini ialah segala macam malapetaka yang menimpa manusia, seperti peperangan, penganiayaan, penindasan, banjir, letusan gunung, musim kemarau dan sebagainya.\n\nAllah memerintahkan agar Nabi dan kaum Muslimin memperhatikan bagaimana Allah menjelaskan dan mendatangkan tanda-tanda kekuasaan-Nya silih berganti, dengan berbagai rupa dan cara agar dengan cara yang demikian itu mudah dipahami dan diyakini, mudah diketahui mana yang benar dan mana yang batil.',
-        short:
-          'Sebagaimana Allah Mahakuasa menyelamatkan manusia dari bencana, Allah pun Mahakuasa menimpakan bencana kepada siapa yang dikehendaki-Nya. Katakanlah, wahai Nabi Muhammad, "Wahai para pendurhaka, jangan kalian merasa aman dari siksa Allah, karena Dialah yang berkuasa mengirimkan azab yang amat pedih kepadamu. Azab itu bisa datang dari atas seperti badai topan, kilat yang menyambar, atau dari bawah kakimu seperti gempa dan banjir bandang, atau dapat juga berupa Dia mencampurkan kamu yakni memecah belah masyarakat kamu ke dalam golongan-golongan yang saling bertentangan dan saling bermusuhan sehingga merasakan kepada sebagian kamu keganasan sebagian yang lain." Maka Perhatikanlah, bagaimana Kami menjelaskan dengan berbagai cara dan juga secara berulang-ulang tanda-tanda kekuasaan Kami agar mereka memahami-nya.',
+        footnotes: null,
+        text: "Katakanlah -wahai Rasul- kepada mereka, “Allahlah yang sanggup mengirimkan kepada kalian azab dari atas seperti batu, halilintar, dan banjir bandang, atau dari bawah seperti gempa bumi, atau tanah longsor, atau membuat kalian berselisih paham sehingga masing-masing orang mengikuti seleranya sendiri-sendiri, hingga saling membunuh satu sama lain.” Renungkanlah -wahai Rasul-, bagaimana Kami memberikan dan menjelaskan dalil-dalil serta bukti-bukti yang beraneka ragam kepada mereka agar mereka yakin bahwa agama yang kamu bawa adalah agama yang benar, dan agama yang mereka anut adalah agama yang batil.",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u0647\u064f\u0648\u064e \u0627\u0644\u0652\u0642\u064e\u0627\u062f\u0650\u0631\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0623\u064e\u0646 \u064a\u064e\u0628\u0652\u0639\u064e\u062b\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064b\u0627 \u0645\u0651\u0650\u0646 \u0641\u064e\u0648\u0652\u0642\u0650\u0643\u064f\u0645\u0652 \u0623\u064e\u0648\u0652 \u0645\u0650\u0646 \u062a\u064e\u062d\u0652\u062a\u0650 \u0623\u064e\u0631\u0652\u062c\u064f\u0644\u0650\u0643\u064f\u0645\u0652 \u0623\u064e\u0648\u0652 \u064a\u064e\u0644\u0652\u0628\u0650\u0633\u064e\u0643\u064f\u0645\u0652 \u0634\u0650\u064a\u064e\u0639\u064b\u0627 \u0648\u064e\u064a\u064f\u0630\u0650\u064a\u0642\u064e \u0628\u064e\u0639\u0652\u0636\u064e\u0643\u064f\u0645 \u0628\u064e\u0623\u0652\u0633\u064e \u0628\u064e\u0639\u0652\u0636\u064d \u06d7 \u0627\u0646\u0638\u064f\u0631\u0652 \u0643\u064e\u064a\u0652\u0641\u064e \u0646\u064f\u0635\u064e\u0631\u0651\u0650\u0641\u064f \u0627\u0644\u0652\u0622\u064a\u064e\u0627\u062a\u0650 \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u0641\u0652\u0642\u064e\u0647\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qul huwal Qaadiru 'alaaa ai yab'asa 'alaikum 'azaabam min fawqikum aw min tahti arjulikum aw yalbisakum shiya'anw wa yuzeeqa ba'dakum baasa ba'd; unzur kaifa nusarriful Aayaati la'allahum yafqahoon",
-      },
+      arabic:
+        "قُلْ هُوَ ٱلْقَادِرُ عَلَىٰٓ أَن يَبْعَثَ عَلَيْكُمْ عَذَابًا مِّن فَوْقِكُمْ أَوْ مِن تَحْتِ أَرْجُلِكُمْ أَوْ يَلْبِسَكُمْ شِيَعًا وَيُذِيقَ بَعْضَكُم بَأْسَ بَعْضٍ ٱنظُرْ كَيْفَ نُصَرِّفُ ٱلْـَٔايَٰتِ لَعَلَّهُمْ يَفْقَهُونَ",
     },
     translation: {
-      en: 'Say, "He is the [one] Able to send upon you affliction from above you or from beneath your feet or to confuse you [so you become] sects and make you taste the violence of one another." Look how We diversify the signs that they might understand.',
-      id: "Katakanlah (Muhammad), “Dialah yang berkuasa mengirimkan azab kepadamu, dari atas atau dari bawah kakimu atau Dia mencampurkan kamu dalam golongan-golongan (yang saling bertentangan) dan merasakan kepada sebagian kamu keganasan sebagian yang lain.” Perhatikanlah, bagaimana Kami menjelaskan berulang-ulang tanda-tanda (kekuasaan Kami) agar mereka memahami(nya).",
+      en: {
+        footnotes: "",
+        text: "Say, “He is Capable of sending a punishment from above you or from beneath your feet, or split you into factions, and make you suffer at the hands of one another.” See how We diversify the signs, so that they may understand.",
+      },
+      id: {
+        footnotes:
+          "[312] Azab yang datang dari atas seperti hujan batu, sambaran petir dan lain-lain. Yang datang dari bawah seperti gempa bumi, banjir dan sebagainya. \n[313] Allah -Subḥānahu wata'ālā- menjelaskan tanda-tanda kekuasaan-Nya dalam berbagai rupa dengan cara yang bervariasi. Ada pula mufasir yang mengartikan ayat di sini dengan ayat-ayat yang berupa peringatan, cerita-cerita, hukum dan lain-lain.",
+        text: 'Katakanlah (Muhammad), "Dialah yang berkuasa mengirimkan azab kepadamu, dari atas atau dari bawah kakimu[312] atau Dia mencampurkan kamu dalam golongan-golongan (yang saling bertentangan) dan merasakan kepada sebagian kamu keganasan sebagian yang lain." Perhatikanlah, bagaimana Kami menjelaskan berulang-ulang tanda-tanda (kekuasaan Kami)[313] agar mereka memahami (nya).',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/855",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/855.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/855.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 54,
       juz: 7,
       manzil: 2,
       page: 135,
       ruku: 109,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 855,
@@ -229,20 +195,23 @@ export const quranSurah6Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Kaum kafir di mana Nabi Muhammad berada telah mendustakan azab itu, padahal azab itu adalah benar, seperti telah terbukti pada sejarah umat-umat sebelum Nabi Muhammad, dan sejarah umat Islam sendiri. Sebagian mufassirin berpendapat bahwa yang dimaksud dalam ayat ini ialah mereka mendustakan Al-Qur'an, padahal Al-Qur'an itu adalah benar, tidak ada keraguan sedikitpun padanya, tidak akan terdapat kesalahan padanya sejak dahulu sampai sekarang dan pada masa yang akan datang. \n\n\"Katakanlah kepada orang kafir itu hai Rasul, bahwa kamu tidak dapat menguasai dan melindungi mereka, bukan pula kamu orang yang mengurus urusan mereka, dan kamu juga tidak kuasa menjadikan mereka orang-orang yang beriman. Tetapi, kamu hanyalah seorang manusia yang ditugaskan Allah meyampaikan agama-Nya kepada mereka.\"\n\nPernyataan ini ditegaskan lagi oleh firman Allah swt:\n\nMaka berilah peringatan, karena sesungguhnya engkau (Muhammad) hanyalah pemberi peringatan. Engkau bukanlah orang yang berkuasa atas mereka. (al-Gasyiyah/88: 21-22)\n\nFirman Allah swt:\n\nKami lebih mengetahui tentang apa yang mereka katakan, dan engkau (Muhammad) bukanlah seorang pemaksa terhadap mereka. Maka berilah peringatan dengan Al-Qur'an kepada siapa pun yang takut kepada ancaman-Ku. (Qaf/50: 45)",
-        short:
-          'Dan ternyata kaummu, wahai Nabi Muhammad, baik yang hidup pada masamu maupun sesudahnya, mendustakannya, yakni mendustakan azab, padahal azab itu benar adanya. Katakanlah, hai Nabi Muhammad, "Kalau kalian memang tetap durhaka kepada Allah, ketahuilah bahwa aku ini bukanlah penanggung jawab kamu yang dapat membela kamu ketika azab itu datang."',
+        footnotes: null,
+        text: "Kaummu telah mendustakan Al-Qur`ān ini. Padahal, ia adalah kebenaran yang datang dari sisi Allah tanpa keraguan sedikit pun. Katakanlah -wahai Rasul- kepada mereka, “Aku bukanlah pengawas atas amal perbuatan kalian. Tugasku hanyalah memberikan peringatan kepada kalian akan datangnya azab yang sangat keras.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0643\u064e\u0630\u0651\u064e\u0628\u064e \u0628\u0650\u0647\u0650 \u0642\u064e\u0648\u0652\u0645\u064f\u0643\u064e \u0648\u064e\u0647\u064f\u0648\u064e \u0627\u0644\u0652\u062d\u064e\u0642\u0651\u064f \u06da \u0642\u064f\u0644 \u0644\u0651\u064e\u0633\u0652\u062a\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645 \u0628\u0650\u0648\u064e\u0643\u0650\u064a\u0644\u064d",
-      transliteration: {
-        en: "Wa kaz zaba bihee qawmuka wa huwal haqq; qul lastu'alaikum biwakeel",
-      },
+      arabic: "وَكَذَّبَ بِهِۦ قَوْمُكَ وَهُوَ ٱلْحَقُّ قُل لَّسْتُ عَلَيْكُم بِوَكِيلٍ",
     },
     translation: {
-      en: 'But your people have denied it while it is the truth. Say, "I am not over you a manager."',
-      id: "Dan kaummu mendustakannya (azab) padahal (azab) itu benar adanya. Katakanlah (Muhammad), “Aku ini bukanlah penanggung jawab kamu.”",
+      en: {
+        footnotes: "",
+        text: "But your people [O Prophet] have rejected this [Qur’an] although it is the truth. Say, “I am not a keeper over you.",
+      },
+      id: {
+        footnotes:
+          "[314] Sebagian mufasir mengatakan bahwa yang didustakan itu ialah Al-Qur`an.",
+        text: 'Dan kaummu mendustakannya (azab)[314] padahal (azab) itu benar adanya. Katakanlah (Muhammad), "Aku ini bukanlah penanggung jawab kamu."',
+      },
     },
   },
 ];

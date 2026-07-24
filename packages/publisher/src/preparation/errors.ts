@@ -2,6 +2,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot";
 import { Schema } from "effect";
 
 const RecordIndexSchema = Schema.Number.pipe(
@@ -34,6 +35,12 @@ export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<Prepare
     baseReleaseId: Schema.NullOr(ReleaseIdSchema),
     hasSnapshotBase: Schema.Boolean,
   }
+) {}
+
+/** A release attempted to replace an unselected structured snapshot family. */
+export class PreparedSnapshotScopeError extends Schema.TaggedError<PreparedSnapshotScopeError>()(
+  "PreparedSnapshotScopeError",
+  { family: ContentSnapshotKindSchema }
 ) {}
 
 /** A replay factory threw before it could describe its authored stream. */

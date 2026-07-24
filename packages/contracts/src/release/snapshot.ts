@@ -1,5 +1,12 @@
 import { Schema } from "effect";
 
+import {
+  type ContentFamily,
+  ContentFamilySchema,
+  type ContentPublicationIdentity,
+  ContentPublicationIdentitySchema,
+  comparePublicationIdentities,
+} from "#contracts/content";
 import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
 
 /** Canonical digest for a release that stages no structured snapshot rows. */
@@ -14,6 +21,99 @@ export const ContentSnapshotKindSchema = Schema.Literal(
   "tryout"
 );
 export type ContentSnapshotKind = typeof ContentSnapshotKindSchema.Type;
+
+/** Checks strict canonical ordering for selected content and snapshot families. */
+function hasCanonicalPublicationScope(input: {
+  readonly content: readonly ContentPublicationIdentity[];
+  readonly families: readonly ContentFamily[];
+  readonly snapshots: readonly ContentSnapshotKind[];
+}) {
+  const contentIsCanonical = input.content.every((identity, index) => {
+    const previous = input.content[index - 1];
+    return (
+      previous === undefined ||
+      comparePublicationIdentities(previous, identity) < 0
+    );
+  });
+  const snapshotsAreCanonical = input.snapshots.every((family, index) => {
+    const previous = input.snapshots[index - 1];
+    if (previous === undefined) {
+      return true;
+    }
+    return (
+      ContentSnapshotKindSchema.literals.indexOf(previous) <
+      ContentSnapshotKindSchema.literals.indexOf(family)
+    );
+  });
+  const familiesAreCanonical = input.families.every((family, index) => {
+    const previous = input.families[index - 1];
+    return (
+      previous === undefined ||
+      ContentFamilySchema.literals.indexOf(previous) <
+        ContentFamilySchema.literals.indexOf(family)
+    );
+  });
+  const contentIsExact = input.content.every(
+    ({ family }) => !input.families.includes(family)
+  );
+  return (
+    contentIsCanonical &&
+    contentIsExact &&
+    familiesAreCanonical &&
+    snapshotsAreCanonical &&
+    input.content.length + input.families.length + input.snapshots.length > 0
+  );
+}
+
+/** Exact content identities and structured families authorized by a release. */
+export const PublicationScopeSchema = Schema.Struct({
+  content: Schema.Array(ContentPublicationIdentitySchema),
+  families: Schema.Array(ContentFamilySchema),
+  snapshots: Schema.Array(ContentSnapshotKindSchema),
+}).pipe(
+  Schema.filter(hasCanonicalPublicationScope, {
+    message: () =>
+      "Expected a non-empty publication scope in canonical unique order.",
+  })
+);
+export type PublicationScope = typeof PublicationScopeSchema.Type;
+
+/** Checks whether one exact content identity belongs to a publication scope. */
+export function publicationScopeContainsContent(
+  scope: PublicationScope,
+  identity: ContentPublicationIdentity
+) {
+  return (
+    scope.families.includes(identity.family) ||
+    scope.content.some(
+      (selected) =>
+        selected.contentKey === identity.contentKey &&
+        selected.family === identity.family &&
+        selected.locale === identity.locale
+    )
+  );
+}
+
+/** Checks whether one structured family may be replaced by this release. */
+export function publicationScopeSelectsSnapshot(
+  scope: PublicationScope,
+  family: ContentSnapshotKind
+) {
+  return scope.snapshots.includes(family);
+}
+
+/** Serializes one exact scope with stable signed field order. */
+export function canonicalizePublicationScope(scope: PublicationScope) {
+  return {
+    content: scope.content.map(({ contentKey, family, locale }) => ({
+      contentKey,
+      family,
+      locale,
+    })),
+    families: [...scope.families],
+    snapshots: [...scope.snapshots],
+  };
+}
 
 const RowCountSchema = Schema.Int.pipe(Schema.nonNegative());
 
@@ -38,6 +138,18 @@ export const ContentSnapshotSetSchema = Schema.Struct({
   tryout: ContentSnapshotStateSchema,
 });
 export type ContentSnapshotSet = typeof ContentSnapshotSetSchema.Type;
+
+/** Requires every unselected structured family to remain inherited. */
+export function hasScopedSnapshotTransitions(
+  scope: PublicationScope,
+  snapshots: ContentSnapshotSet
+) {
+  return ContentSnapshotKindSchema.literals.every(
+    (family) =>
+      publicationScopeSelectsSnapshot(scope, family) ||
+      snapshots[family].mode === "inherit"
+  );
+}
 
 /** Checks inheritance, replacement, and forward restore row semantics. */
 export function hasCoherentSnapshotState(state: {

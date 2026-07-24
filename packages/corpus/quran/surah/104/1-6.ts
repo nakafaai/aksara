@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah104Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6180",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6180.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6180.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 601,
       ruku: 546,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6180,
@@ -24,40 +25,32 @@ export const quranSurah104Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah mengancam bahwa kemurkaan dan azab-Nya akan ditimpakan kepada setiap orang yang mengumpat, mencela, dan menyakiti mereka baik di hadapan maupun di belakang mereka. Firman Allah:\n\nWahai orang-orang yang beriman! Jauhilah banyak dari prasangka, sesungguhnya sebagian prasangka itu dosa dan janganlah kamu mencari-cari kesalahan orang lain dan janganlah ada di antara kamu yang menggunjing sebagian yang lain. Apakah ada di antara kamu yang suka memakan daging saudaranya yang sudah mati? Tentu kamu merasa jijik. Dan bertakwalah kepada Allah, sesungguhnya Allah Maha Penerima tobat, Maha Penyayang. (al-hujurat/49: 12)",
-        short:
-          "Celakalah bagi setiap pengumpat atau pencaci, baik dengan ucapan atau isyarat, dan demikian pula pencela dengan menampilkan keburukan orang lain untuk menghinakannya. Perbuatan ini berdampak buruk dalam pergaulan karena mencoreng wibawa dan kehormatan seseorang, serta menghilangkan kepercayaan kepada orang tersebut.",
+        footnotes: null,
+        text: " Celaka dan siksa yang pedih bagi orang yang banyak menggunjing manusia dan mencela mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u064a\u0652\u0644\u064c \u0644\u0651\u0650\u0643\u064f\u0644\u0651\u0650 \u0647\u064f\u0645\u064e\u0632\u064e\u0629\u064d \u0644\u0651\u064f\u0645\u064e\u0632\u064e\u0629\u064d",
-      transliteration: {
-        en: "Wai lul-li kulli hu mazatil-lumaza",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ وَيْلٌ لِّكُلِّ هُمَزَةٍ لُّمَزَةٍ",
     },
     translation: {
-      en: "Woe to every scorner and mocker",
-      id: "Celakalah bagi setiap pengumpat dan pencela,",
+      en: {
+        footnotes: "",
+        text: "Woe to every backbiter and slanderer,",
+      },
+      id: {
+        footnotes: "",
+        text: "Celakalah bagi setiap pengumpat dan pencela,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6181",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6181.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6181.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 601,
       ruku: 546,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6181,
@@ -65,40 +58,33 @@ export const quranSurah104Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa orang yang menimbun harta juga diancam neraka karena memperkaya diri sendiri serta selalu menghitung-hitung harta kekayaannya. Hal itu ia lakukan karena sangat cinta dan senangnya kepada harta seakan-akan tidak ada kebahagiaan dan kemuliaan dalam hidup kecuali dengan harta. Bila ia menoleh kepada hartanya yang banyak itu, ia merasakan bahwa kedudukannya sudah tinggi dari orang-orang sekelilingnya.\n\nDia tidak merasa khawatir akan ditimpa musibah karena mencerca dan merobek-robek kehormatan orang lain. Karena kecongkakannya, ia lupa dan tidak sadar bahwa maut selalu mengintainya, tidak memikirkan apa yang akan terjadi sesudah mati, dan tidak pula merenungkan apa-apa yang akan terjadi atas dirinya.",
-        short:
-          "Celakalah orang yang sifatnya demikian, yang selalu menyibukkan diri dan berorientasi pada mengumpulkan harta benda dan menghitung-hitungnya. Dia merasa nyaman untuk menumpuk dan menghitung harta untuk menjamin kehidupannya di masa datang, dan enggan me-nunai­kan hak Allah dalam hartanya itu.",
+        footnotes: null,
+        text: "Yaitu orang yang tujuannya hanya mengumpulkan harta dan menghitung-hitungnya, ia tidak mempunyai tujuan lagi selain itu.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a \u062c\u064e\u0645\u064e\u0639\u064e \u0645\u064e\u0627\u0644\u064b\u0627 \u0648\u064e\u0639\u064e\u062f\u0651\u064e\u062f\u064e\u0647\u064f",
-      transliteration: {
-        en: "Al-lazi jama'a maalaw wa'addadah",
-      },
+      arabic: "ٱلَّذِى جَمَعَ مَالًا وَعَدَّدَهُۥ",
     },
     translation: {
-      en: "Who collects wealth and [continuously] counts it.",
-      id: "yang mengumpulkan harta dan menghitung-hitungnya,",
+      en: {
+        footnotes: "[1] Instead of spending in the way of Allah.",
+        text: "who amasses wealth and counts it over and again[1],",
+      },
+      id: {
+        footnotes:
+          "[924] Mengumpulkan dan menghitung-hitung harta yang menyebabkan dia menjadi kikir dan tidak mau menginfakkannya di jalan Allah.",
+        text: "yang mengumpulkan harta dan menghitung-hitungnya,[924]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6182",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6182.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6182.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 601,
       ruku: 546,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6182,
@@ -106,40 +92,32 @@ export const quranSurah104Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah menyatakan kesalahan anggapan pengumpat dan pencerca bahwa harta yang dimilikinya itu menjaminnya akan tetap hidup di dunia selamanya. Oleh karena itu, tindakannya sama dengan tindakan orang yang akan hidup selama-lamanya dan bila ia mati tidak akan hidup kembali untuk menerima balasan atas kejahatannya selama hidup di dunia.",
-        short:
-          "Dia senang dan sibuk mengumpulkan harta karena mengira bahwa hartanya itu dapat mengekalkan hidupnya di dunia. Dia terbuai oleh hartanya dan lupa bahwa harta sebanyak apa pun tidak akan dapat digunakan untuk menolak datangnya sesuatu yang tidak diinginkannya, yaitu kematian.",
+        footnotes: null,
+        text: "Ia mengira bahwa harta yang dikumpulkannya bisa menolongnya dari kematian sehingga ia bisa hidup kekal di kehidupan dunia.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u062d\u0652\u0633\u064e\u0628\u064f \u0623\u064e\u0646\u0651\u064e \u0645\u064e\u0627\u0644\u064e\u0647\u064f \u0623\u064e\u062e\u0652\u0644\u064e\u062f\u064e\u0647\u064f",
-      transliteration: {
-        en: "Yahsabu anna maalahu akhladah",
-      },
+      arabic: "يَحْسَبُ أَنَّ مَالَهُۥٓ أَخْلَدَهُۥ",
     },
     translation: {
-      en: "He thinks that his wealth will make him immortal.",
-      id: "dia (manusia) mengira bahwa hartanya itu dapat mengekalkannya.",
+      en: {
+        footnotes: "",
+        text: "thinking that his wealth will make him live forever.",
+      },
+      id: {
+        footnotes: "",
+        text: "dia (manusia) mengira bahwa hartanya itu dapat mengekalkannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6183",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6183.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6183.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 601,
       ruku: 546,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6183,
@@ -147,40 +125,33 @@ export const quranSurah104Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Sesudah mengancam orang-orang yang bersifat demikian dengan siksaan yang pedih, Allah menyebutkan pula sebab yang membuat mereka mengerjakan sifat-sifat yang terkutuk itu. Penyebabnya adalah anggapan mereka bahwa semua harta yang dimiliki dapat menolong mereka dalam menghadapi kesulitan-kesulitan yang dihadapi. Ancaman dalam bentuk pertanyaan, "Siapakah yang menyangka bahwa hartanya itu dapat menjamin dirinya dari mati?" Allah menjawab, "Tidak! Sekali-kali tidak bahkan dia akan dilemparkan ke dalam neraka Huthamah, tidak ada yang memperhatikannya dan tidak pula yang mempedulikan."\n\n\'Ali bin Abi thalib pernah memberi nasihat kepada Kumail bahwa orang-orang penimbun harta akan binasa, padahal mereka masih hidup, sedangkan para ulama akan kekal abadi meskipun jasad mereka sudah hilang, karena sifat-sifat keutamaan mereka tetap dikenang dalam hati. Maksudnya, penimbunan harta dikutuk, dicela, dan dibenci karena manusia tidak mendapat apa-apa dari harta mereka. Sedang para sarjana dan ulama terus-menerus terpuji selama terdapat di bumi orang-orang yang mengambil manfaat dari ilmu mereka.',
-        short:
-          "Sekali-kali tidak! Harta itu tidak akan menolak datangnya kematian kepadanya. Setelah mati dan dihisab atas perbuatan buruknya itu, pasti dia akan dilemparkan dan dicampakkan dengan hina ke dalam neraka Hutamah oleh para malaikat Zabaniah yang bengis, kasar, dan galak.",
+        footnotes: null,
+        text: "Urusannya tidak sebagaimana yang dibayangkan oleh orang bodoh ini. Sungguh ia akan dilemparkan ke dalam neraka Jahanam yang menghanguskan dan menghancurkan segala sesuatu yang dilemparkan ke dalamnya karena dahsyatnya kekuatannya.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u06d6 \u0644\u064e\u064a\u064f\u0646\u0628\u064e\u0630\u064e\u0646\u0651\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u062d\u064f\u0637\u064e\u0645\u064e\u0629\u0650",
-      transliteration: {
-        en: "Kalla layum ba zanna fil hutamah",
-      },
+      arabic: "كَلَّا لَيُنۢبَذَنَّ فِى ٱلْحُطَمَةِ",
     },
     translation: {
-      en: "No! He will surely be thrown into the Crusher.",
-      id: "Sekali-kali tidak! Pasti dia akan dilemparkan ke dalam (neraka) Hutamah.",
+      en: {
+        footnotes:
+          "[2] i.e., Hellfire, as it crushes and destroys all that is thrown in it.",
+        text: "No indeed! He will surely be cast into the Crushing Fire[2],",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekali-kali tidak! Pasti dia akan dilemparkan ke dalam (neraka) Ḥuṭamah.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6184",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6184.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6184.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 601,
       ruku: 546,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6184,
@@ -188,40 +159,32 @@ export const quranSurah104Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat-ayat ini, Allah menggambarkan kedahsyatan neraka Huthamah dalam bentuk pertanyaan, "Tahukah engkau apa Huthamah?" Allah menjelaskan sendiri bahwa Huthamah adalah api yang disediakan-Nya untuk menyiksa orang-orang yang durhaka dan berdosa. Tidak ada yang mampu mengetahui apa hakikatnya kecuali Allah penciptanya.',
-        short:
-          "Dan tahukah kamu apakah neraka Hutamah itu? Demikian pertanyaan Allah guna menarik perhatian serius manusia terhadap apa yang disampaikan-Nya.",
+        footnotes: null,
+        text: "Tahukah kamu -wahai Rasul- apakah neraka yang menghancurkan segala yang dilemparkan ke dalamnya ini?!",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0623\u064e\u062f\u0652\u0631\u064e\u0627\u0643\u064e \u0645\u064e\u0627 \u0627\u0644\u0652\u062d\u064f\u0637\u064e\u0645\u064e\u0629\u064f",
-      transliteration: {
-        en: "Wa maa adraaka mal-hutamah",
-      },
+      arabic: "وَمَآ أَدْرَىٰكَ مَا ٱلْحُطَمَةُ",
     },
     translation: {
-      en: "And what can make you know what is the Crusher?",
-      id: "Dan tahukah kamu apakah (neraka) Hutamah itu?",
+      en: {
+        footnotes: "",
+        text: "and how do you know what the Crushing Fire is?",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan tahukah kamu apakah (neraka) Ḥuṭamah itu?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6185",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6185.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6185.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 601,
       ruku: 546,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6185,
@@ -229,19 +192,22 @@ export const quranSurah104Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat-ayat ini, Allah menggambarkan kedahsyatan neraka Huthamah dalam bentuk pertanyaan, "Tahukah engkau apa Huthamah?" Allah menjelaskan sendiri bahwa Huthamah adalah api yang disediakan-Nya untuk menyiksa orang-orang yang durhaka dan berdosa. Tidak ada yang mampu mengetahui apa hakikatnya kecuali Allah penciptanya.',
-        short: "Hutamah ialah api azab Allah yang dinyalakan,",
+        footnotes: null,
+        text: "Itulah neraka Allah yang menyala-nyala.",
       },
     },
     text: {
-      arab: "\u0646\u064e\u0627\u0631\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0652\u0645\u064f\u0648\u0642\u064e\u062f\u064e\u0629\u064f",
-      transliteration: {
-        en: "Narul laahil-mooqada",
-      },
+      arabic: "نَارُ ٱللَّهِ ٱلْمُوقَدَةُ",
     },
     translation: {
-      en: "It is the fire of Allah, [eternally] fueled,",
-      id: "(Yaitu) api  (azab) Allah yang dinyalakan,",
+      en: {
+        footnotes: "",
+        text: "It is the kindled Fire of Allah,",
+      },
+      id: {
+        footnotes: "",
+        text: "(Yaitu) api (azab) Allah yang dinyalakan,",
+      },
     },
   },
 ];

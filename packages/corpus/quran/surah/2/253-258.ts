@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah2Verses253To258 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/260",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/260.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/260.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 17,
       juz: 3,
       manzil: 1,
       page: 42,
       ruku: 34,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 260,
@@ -24,40 +25,35 @@ export const quranSurah2Verses253To258 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan bahwa di antara para rasul ada yang mendapat kesempatan berbicara langsung dengan Allah tanpa perantaraan malaikat Jibril. Rasul yang dimaksud di sini ialah Nabi Musa a.s. Beliau berbicara langsung dengan Allah swt. Pengalaman ini tidak pernah dialami oleh rasul-rasul yang lain. Oleh sebab itu Nabi Musa a.s. disebut \"Kalimullah\", yang berarti, \"Nabi yang diajak berbicara langsung oleh Allah swt\".36)\n\nAyat selanjutnya menjelaskan bahwa Nabi Isa telah diberi bermacam-macam mukjizat yang tidak diberikan kepada yang lain, misalnya: Nabi Isa telah dapat berbicara ketika dia masih berada dalam buaian; dapat menghidupkan kembali orang yang telah mati, serta menyembuhkan orang buta dan orang yang ditimpa penyakit sopak, dengan izin Allah. Allah menyokongnya pula dengan Rohulkudus, yaitu malaikat Jibril, di samping dia sendiri mempunyai jiwa yang murni.\n\nAkhirnya Nabi Muhammad saw diberi derajat yang lebih tinggi daripada rasul-rasul sebelumnya, yaitu: beliau dinyatakan sebagai nabi dan rasul Allah yang terakhir, untuk seluruh umat manusia, sedang rasul-rasul yang lain hanya diutus untuk kaumnya saja. Agama Islam yang dibawa Nabi Muhammad berlaku untuk seluruh umat sampai akhir zaman. Al-Qur'an yang diterimanya, selain menjadi petunjuk bagi umat manusia, juga merupakan mukjizat terbesar bagi Nabi Muhammad, yang tidak tertandingi sepanjang masa.\n\nSelanjutnya dalam ayat ini diterangkan keadaan umat manusia sepeninggal rasul-rasul yang diutus kepada mereka. Pada umumnya, ketika rasul-rasul itu masih hidup, umatnya dapat bersatu padu, akan tetapi sepeninggal rasul mereka berselisih dan bertengkar, bahkan ada yang saling membunuh. Perbedaan paham dalam masalah agama mendorong mereka untuk saling mencaci, bahkan saling mengafirkan. Kefanatikan mereka terhadap suatu mazhab atau seorang imam menyebabkan mereka tidak mau menerima kebenaran yang dikemukakan oleh golongan lain.\n\nBerbagai perselisihan itu terjadi, padahal mereka sudah mendapatkan berbagai keterangan yang nyata, dan mereka masih terus berselisih, sehingga sebagiannya beriman dan yang lainnya kafir. Andaikata Allah menghendaki agar manusia tidak berselisih dan tidak bermusuhan atau berbunuhan, niscaya Allah kuasa berbuat demikian. Jika Allah berbuat semacam itu tentulah manusia akan menjadi baik semuanya, dan dunia ini akan tenteram dari perselisihan-perselisihan antara manusia.\n\nTetapi Allah berbuat menurut kehendak-Nya, berdasarkan kepada hikmah dan pengetahuan yang maha tinggi. Allah memberi manusia tabiat, pikiran, perasaan dan kemauan, agar manusia itu dapat berpikir dan berbuat lebih baik dari makhluk-makhluk yang lain di bumi ini, agar mereka berpikir tentang kekuasaan Allah. Apabila manusia menggunakan pikiran dan perasaannya dengan sebaik-baiknya, niscaya mereka akan melihat tanda-tanda kekuasaan dan kebesaran Allah dimana-mana, sebab alam yang terbentang luas ini adalah tanda-tanda kekuasaan dan kebesaran-Nya dan semuanya itu adalah ciptaan-Nya.\n\nAllah mengaruniakan agama kepada manusia melalui rasul-rasul-Nya, untuk menuntun akal manusia ke jalan yang benar. Sebab kemampuan akal manusia itu terbatas, apalagi mengenai masalah-masalah yang gaib atau abstrak, seperti sifat-sifat Allah, hal ihwal hari kemudian dan sebagainya. Sehingga apabila terjadi perselisihan pendapat antara mereka, maka mereka dapat menyelesaikannya dengan petunjuk dari agama tersebut.\n\nPerbedaan pendapat yang terjadi di antara manusia adalah wajar. Tetapi perbedaan pendapat ini tidak boleh menimbulkan permusuhan yang menyebabkan mereka saling membunuh.\n\nSejarah telah menunjukkan bahwa kaum Yahudi sepeninggal Nabi Musa telah berselisih dan berpecah-belah. Demikian pula yang terjadi pada umat Nasrani sepeninggal Nabi Isa sampai masa sekarang ini. Antara berbagai golongan Nasrani sendiri terjadi pertengkaran yang berlarut-larut, saling menyerang dan saling membunuh. Golongan yang satu tidak mau beribadah di tempat peribadatan golongan lain, walaupun mereka seagama.\n\nUmat Islam pun tak luput dari perpecahan, padahal ketika Nabi Muhammad masih hidup, mereka telah menjadi umat yang bersatu-padu, dan mempunyai potensi yang besar dalam pembentukan masyarakat yang hidup rukun dan saling menolong. Tetapi kemudian mereka jadi terkotak-kotak, karena adanya perbedaan paham, ditambah dengan fanatisme mazhab dan golongan, sehingga kekuatan mereka menjadi lemah; mereka menjadi umat yang terbelakang, dengan perekonomian yang lemah; serta menjadi bulan-bulanan umat lain. Padahal Allah telah memberikan petunjuk dalam Al-Qur'an:\n\nWahai orang-orang yang beriman! Taatilah Allah dan taatilah Rasul (Muhammad), dan Ulil Amri (pemegang kekuasaan) di antara kamu. Kemudian, jika kamu berbeda pendapat tentang sesuatu, maka kembalikanlah kepada Allah (Al-Qur'an) dan Rasul (sunnahnya), jika kamu beriman kepada Allah dan hari kemudian. Yang demikian itu, lebih utama (bagimu) dan lebih baik akibatnya. (an-Nisa'/4:59).",
-        short:
-          "Setelah pada ayat yang lalu dijelaskan bahwa Nabi Muhammad adalah salah seorang rasul yang diutus Allah, di sini dijelaskan kedudukan para rasul di sisi-Nya dan keadaan umat mereka setelah kepergian para rasul itu. Rasul-rasul yang mulia dan tinggi derajatnya yang telah Kami sebutkan itu Kami lebihkan sebagian mereka dari sebagian yang lain dengan keutamaan yang diberikan kepada mereka. Di antara mereka ada yang Allah berfirman dengannya secara langsung dan mengajaknya berbicara sesuai keagungan-Nya, seperti Nabi Musa saat berada di Tur Sina dan Nabi Muhammad saat mikraj di Sidratulmuntaha, dan sebagian lagi ada yang ditinggikan-Nya beberapa derajat seperti Nabi Muhammad yang dibekali dengan ajaran yang bersifat universal. Dan Kami beri Isa putra Maryam beberapa mukjizat yang menjadi bukti kebenaran risalah yang ia bawa, seperti menyembuhkan anak yang terlahir buta, orang yang menderita penyakit belang; menghidupkan orang yang sudah mati, dan sebagainya; semua atas izin Allah. Dan Kami perkuat dia dengan Rohulkudus, yaitu Jibril yang selalu berada mendampingi dan memberinya dukungan hingga ia diangkat oleh Allah ke langit.\r\nPara rasul itu datang dengan membawa petunjuk, agama kebenaran, dan beberapa penjelasan. Maka, sudah semestinya semua manusia beriman, tidak berselisih dan saling memerangi. Tetapi kalau Allah menghendaki, niscaya orang-orang yang datang setelah mereka tidak akan berbunuh-bunuhan, bertengkar, mengutuk dan berkelahi sebagai puncak perselisihan mereka. Yang lebih buruk lagi, perselisihan mereka justru terjadi setelah bukti-bukti nyata sampai kepada mereka. Bukti-bukti itu mereka putar-balikkan dan disalahpahami, tetapi Allah tidak menghendaki sehingga mereka berselisih dan perselisihan itu mengantar mereka ke dalam pertengkaran, saling mengutuk, berkelahi dan/atau saling membunuh. Maka, dari perselisihan itu juga mengakibatkan ada di antara mereka yang beriman dan ada pula yang kafir. Kalau Allah menghendaki, tidaklah mereka umat para rasul itu berbunuh-bunuhan setelah terjadi perselisihan sesama mereka. Demikianlah, kalau menghendaki, tidak terjadi perselisihan itu, tetapi Allah berbuat menurut kehendak-Nya sesuai hikmah dan kebijaksanaan-Nya.",
+        footnotes: null,
+        text: "Para rasul yang telah Kami ceritakan kepadamu itu Kami berikan sebagian mereka kelebihan dibandingkan sebagian yang lain dalam hal wahyu, pengikut dan derajatnya. Di antara mereka ada yang Allah ajak berbicara langsung kepadanya, seperti Musa -'alaihissalām-. Ada yang Allah angkat derajatnya ke tingkat yang tinggi, seperti Muhammad -ṣallallāhu 'alaihi wa sallam- karena dia diutus untuk seluruh umat manusia dan menjadi penutup para nabi, sedangkan umatnya diberikan kelebihan atas umat-umat lainnya. Kami berikan mukjizat-mukjizat yang nyata kepada Isa putra Maryam sebagai bukti kenabiannya, seperti menghidupkan orang mati dan menyembuhkan orang yang buta dan orang yang sakit lepra, dan Kami menguatkannya dengan Jibril -'alaihissalām- untuk menjalankan perintah Allah -Ta'ālā-. Sekiranya Allah menghendaki niscaya orang-orang yang datang sesudah para rasul itu tidak akan saling berperang setelah datang kepada mereka bukti-bukti kebenaran yang nyata, akan tetapi mereka berselisih paham kemudian terpecah belah, sehingga ada yang beriman kepada Allah dan ada yang kafir kepada-Nya. Sekiranya Allah menghendaki mereka tidak saling bunuh, niscaya mereka tidak saling berperang, tetapi Allah melakukan apa yang dikehendaki-Nya. Allah menunjukkan orang yang Dia kehendaki kepada iman dengan kasih sayang dan kemurahan-Nya dan Dia menyesatkan orang yang Dia kehendaki dengan keadilan dan kebijaksanaan-Nya.",
       },
     },
     text: {
-      arab: "\u06de \u062a\u0650\u0644\u0652\u0643\u064e \u0627\u0644\u0631\u0651\u064f\u0633\u064f\u0644\u064f \u0641\u064e\u0636\u0651\u064e\u0644\u0652\u0646\u064e\u0627 \u0628\u064e\u0639\u0652\u0636\u064e\u0647\u064f\u0645\u0652 \u0639\u064e\u0644\u064e\u0649\u0670 \u0628\u064e\u0639\u0652\u0636\u064d \u06d8 \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u0646 \u0643\u064e\u0644\u0651\u064e\u0645\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u06d6 \u0648\u064e\u0631\u064e\u0641\u064e\u0639\u064e \u0628\u064e\u0639\u0652\u0636\u064e\u0647\u064f\u0645\u0652 \u062f\u064e\u0631\u064e\u062c\u064e\u0627\u062a\u064d \u06da \u0648\u064e\u0622\u062a\u064e\u064a\u0652\u0646\u064e\u0627 \u0639\u0650\u064a\u0633\u064e\u0649 \u0627\u0628\u0652\u0646\u064e \u0645\u064e\u0631\u0652\u064a\u064e\u0645\u064e \u0627\u0644\u0652\u0628\u064e\u064a\u0651\u0650\u0646\u064e\u0627\u062a\u0650 \u0648\u064e\u0623\u064e\u064a\u0651\u064e\u062f\u0652\u0646\u064e\u0627\u0647\u064f \u0628\u0650\u0631\u064f\u0648\u062d\u0650 \u0627\u0644\u0652\u0642\u064f\u062f\u064f\u0633\u0650 \u06d7 \u0648\u064e\u0644\u064e\u0648\u0652 \u0634\u064e\u0627\u0621\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0645\u064e\u0627 \u0627\u0642\u0652\u062a\u064e\u062a\u064e\u0644\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650\u0647\u0650\u0645 \u0645\u0651\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0645\u064e\u0627 \u062c\u064e\u0627\u0621\u064e\u062a\u0652\u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0628\u064e\u064a\u0651\u0650\u0646\u064e\u0627\u062a\u064f \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646\u0650 \u0627\u062e\u0652\u062a\u064e\u0644\u064e\u0641\u064f\u0648\u0627 \u0641\u064e\u0645\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u0646\u0652 \u0622\u0645\u064e\u0646\u064e \u0648\u064e\u0645\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u0646 \u0643\u064e\u0641\u064e\u0631\u064e \u06da \u0648\u064e\u0644\u064e\u0648\u0652 \u0634\u064e\u0627\u0621\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0645\u064e\u0627 \u0627\u0642\u0652\u062a\u064e\u062a\u064e\u0644\u064f\u0648\u0627 \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064e\u0641\u0652\u0639\u064e\u0644\u064f \u0645\u064e\u0627 \u064a\u064f\u0631\u0650\u064a\u062f\u064f",
-      transliteration: {
-        en: "Tilkar Rusulu faddalnaa ba'dahum 'alaa ba'd; minhum man kallamal laahu wa rafa'a ba'dahum darajaat; wa aatainaa 'Eesab na Maryamal baiyinaati wa ayyadnaahu bi Roohil Qudus; wa law shaaa'al laahu maqtatalal lazeena mimba'dihim mim ba'di maa jaaa'athumul baiyinaatu wa laakinikh talafoo faminhum man aamana wa minhum man kafar; wa law shaaa'al laahu maq tataloo wa laakinnallaaha yaf'alu maa yureed (",
-      },
+      arabic:
+        "تِلْكَ ٱلرُّسُلُ فَضَّلْنَا بَعْضَهُمْ عَلَىٰ بَعْضٍ مِّنْهُم مَّن كَلَّمَ ٱللَّهُ وَرَفَعَ بَعْضَهُمْ دَرَجَٰتٍ وَءَاتَيْنَا عِيسَى ٱبْنَ مَرْيَمَ ٱلْبَيِّنَٰتِ وَأَيَّدْنَٰهُ بِرُوحِ ٱلْقُدُسِ وَلَوْ شَآءَ ٱللَّهُ مَا ٱقْتَتَلَ ٱلَّذِينَ مِنۢ بَعْدِهِم مِّنۢ بَعْدِ مَا جَآءَتْهُمُ ٱلْبَيِّنَٰتُ وَلَٰكِنِ ٱخْتَلَفُوا۟ فَمِنْهُم مَّنْ ءَامَنَ وَمِنْهُم مَّن كَفَرَ وَلَوْ شَآءَ ٱللَّهُ مَا ٱقْتَتَلُوا۟ وَلَٰكِنَّ ٱللَّهَ يَفْعَلُ مَا يُرِيدُ",
     },
     translation: {
-      en: "Those messengers - some of them We caused to exceed others. Among them were those to whom Allah spoke, and He raised some of them in degree. And We gave Jesus, the Son of Mary, clear proofs, and We supported him with the Pure Spirit. If Allah had willed, those [generations] succeeding them would not have fought each other after the clear proofs had come to them. But they differed, and some of them believed and some of them disbelieved. And if Allah had willed, they would not have fought each other, but Allah does what He intends.",
-      id: "Rasul-rasul itu Kami lebihkan sebagian mereka dari sebagian yang lain. Di antara mereka ada yang (langsung) Allah berfirman dengannya dan sebagian lagi ada yang ditinggikan-Nya beberapa derajat. Dan Kami beri Isa putra Maryam beberapa mukjizat dan Kami perkuat dia dengan Rohulkudus. Kalau Allah menghendaki, niscaya orang-orang setelah mereka tidak akan berbunuh-bunuhan, setelah bukti-bukti sampai kepada mereka. Tetapi mereka berselisih, maka ada di antara mereka yang beriman dan ada (pula) yang kafir. Kalau Allah menghendaki, tidaklah mereka berbunuh-bunuhan. Tetapi Allah berbuat menurut kehendak-Nya.",
+      en: {
+        footnotes:
+          "[140] Such as Moses (عليه السلام). [141] Such as Prophet Muhammad (ﷺ).\n [142] Miracles and the Evangel (Gospel).",
+        text: "Those messengers: We favored some over others. There are some to whom Allah spoke[140], and some He raised high in rank[141]. To Jesus, son of Mary, We gave clear signs and supported him with the Holy Spirit[142]. If Allah had willed, those who came after them would not have fought one another after receiving clear signs. But they differed – some believed and some disbelieved. If Allah had willed, they would not have fought one another, but Allah does what He wills.",
+      },
+      id: {
+        footnotes:
+          "[95] Menurut para mufasir, yang dimaksud Ruhulkudus ialah Malaikat Jibril.",
+        text: "Rasul-rasul itu Kami lebihkan sebagian mereka dari sebagian yang lain. Di antara mereka ada yang (langsung) Allah berfirman dengannya dan sebagian lagi ada yang ditinggikan-Nya beberapa derajat. Dan Kami beri Isa putra Maryam beberapa mukjizat dan Kami perkuat dia dengan Rohulkudus.[95] Kalau Allah menghendaki, niscaya orang-orang setelah mereka tidak akan berbunuh-bunuhan, setelah bukti-bukti sampai kepada mereka. Tetapi mereka berselisih, maka ada di antara mereka yang beriman dan ada (pula) yang kafir. Kalau Allah menghendaki, tidaklah mereka berbunuh-bunuhan. Tetapi Allah berbuat menurut kahendak-Nya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/261",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/261.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/261.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 17,
       juz: 3,
       manzil: 1,
       page: 42,
       ruku: 35,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 261,
@@ -65,40 +61,33 @@ export const quranSurah2Verses253To258 = [
     },
     tafsir: {
       id: {
-        long: 'Pada ayat ini diperintahkan kepada orang-orang yang beriman agar menafkahkan sebagian dari harta benda yang telah dilimpahkan kepada mereka untuk kepentingan diri dan keluarga, atau kepentingan masyarakat umum. Mereka harus ingat bahwa akan datang suatu hari dimana tidak akan ada lagi kesempatan bagi mereka untuk membelanjakan harta benda tersebut, sebab pada hari itu terjadi hari kiamat yang diikuti oleh hari pembalasan. Tidak ada lagi teman karib yang akan memberikan pertolongan, dan tak ada lagi orang-orang yang dapat menyelamatkan dan memberikan bantuan. Harta benda dan anak cucu pun tak dapat memberikan pertolongan apa-apa. Kecuali orang yang datang menghadap Tuhan dengan hati yang suci dan amalan yang banyak.\n\nOrang yang tidak mau membelanjakan harta bendanya di dunia untuk kepentingan umum (fi sabilillah), adalah orang yang mengingkari nikmat Allah. Dengan demikian mereka akan menjadi orang yang zalim terhadap diri sendiri dan terhadap orang lain. Zalim terhadap diri sendiri adalah karena dengan keingkaran itu dia akan mendapat azab dari Allah. Zalim terhadap orang lain, karena dia enggan memberikan hak orang lain yang ada pada harta bendanya itu, baik berupa zakat yang telah diwajibkan kepadanya, maupun sedekah dan berbagai sumbangan yang dianjurkan oleh agama.\n\nAda berbagai pendapat para ulama mengenai infak atau "pembelanjaan harta" yang dimaksudkan dalam ayat ini. Sebagian mengatakan bahwa yang dimaksud dengan "infak" dalam ayat ini ialah infak-wajib, yaitu zakat, karena di akhir ayat ini Allah menyebut orang-orang yang tidak mau berinfak itu sebagai kafir. Seandainya yang dimaksudkan dengan infak di sini hanya sunnah, yaitu "sedekah", tentu mereka yang tidak bersedekah tidak akan disebut sebagai kafir. \n\nSebagian ulama berpendapat bahwa yang dimaksudkan dengan infak dalam ayat ini ialah infak untuk kepentingan jihad fi sabilillah, yaitu untuk kepentingan perjuangan menegakkan agama Allah serta mempertahankan diri dan negara terhadap ancaman musuh. Sedang ulama yang lain berpendapat bahwa yang dimaksudkan dengan infak dalam ayat ini adalah infak wajib dan infak sunah, yaitu zakat dan sedekah. Adapun kata-kata "kafir" dalam ayat ini adalah mempunyai arti "enggan berzakat" bukan kafir dalam pengertian tidak beriman.\n\nHarta benda menurut Islam mempunyai fungsi sosial, di samping untuk kepentingan pribadi. Apabila seseorang telah berhasil memperoleh harta benda dengan cara yang halal, maka dia mempunyai kewajiban untuk membelanjakan sebagian dari harta bendanya untuk kepentingan diri dan keluarganya, dan sebagiannya lagi untuk kepentingan umum, baik berupa zakat, sedekah atau sumbangan suka rela untuk kemaslahatan umum.\n\nMenunaikan zakat mengandung dua macam faedah. Pertama, faedah bagi orang yang menunaikan zakat itu, ialah membebaskannya dari kewajiban yang telah dipikulkan Allah kepadanya. Dengan demikian dia akan memperoleh rida dan ganjaran-Nya, dan juga akan menghilangkan sifat kikir dari dirinya. Faedah kedua ialah: bahwa penunaian zakat itu berarti pula menyucikan harta bendanya yang berlebih (yang tersisa) setelah zakat itu dikeluarkan, sebab selama zakat itu belum dikeluarkan, senantiasa pada hartanya itu terkandung hak orang lain, yaitu hak kaum kerabat, fakir miskin, ibnu sabil dan orang-orang lain yang memerlukan pertolongan (at-Taubah/9: 103; ar-Rum/30: 38; al-An\'am/6: 141; adz-dzariyat/51: 19). \n\nSungguh amat tinggi hikmah yang terkandung dalam Syariat Islam yang berkenaan dengan zakat. Sebab manusia pada umumnya bersifat kikir. Apabila dia berhasil memperoleh harta benda, berat hatinya untuk membelanjakan harta bendanya untuk kepentingan orang lain. Bahkan ada pula orang yang enggan membelanjakan harta bendanya bagi kepentingan dirinya sendiri, padahal dia telah bersusah payah mengumpulkannya. Kalau dia ingat bahwa pada suatu ketika dia akan meninggalkan dunia fana ini, dan meninggalkan harta benda itu, niscaya dia tidak akan bersifat kikir.\n\nAgama Islam telah menunjukkan obat yang sangat manjur untuk membasmi penyakit bakhil dari hati manusia. Islam memberikan didikan dan latihan kepada manusia untuk bersifat dermawan, murah hati, dan suka berkorban untuk kepentingan diri sendiri dan kepentingan orang lain, ialah dengan peraturan zakat dan sedekah (al-Baqarah/2: 245, 261, 265, 274; an-Nur/24: 22). \n\nSedekah dan berbagai sumbangan yang kita berikan untuk kepentingan umum, oleh agama dinilai sebagai "amal jariah", suatu amal yang pahalanya akan tetap mengalir kepada orang yang melakukannya, walaupun dia telah meninggal dunia, selama hasil sumbangannya itu dapat dinikmati dan dimanfaatkan oleh masyarakat umum. Dalam penunaian zakat dan sedekah diperlukan niat yang ikhlas, yaitu mencari rida Allah dan terjauh dari sifat ria, ingin dipuji dan disanjung oleh manusia.\n\nMenunaikan zakat dan sedekah adalah merupakan manifestasi dari rasa iman dan syukur kepada Allah yang telah menjanjikan akan menambah rahmat-Nya kepada siapa saja yang mau bersyukur. Sebaliknya orang-orang yang tidak mau bersyukur, sehingga dia enggan berzakat dan bersedekah, telah diancam dengan azab di hari kemudian.\n\n"Sesungguhnya jika kamu bersyukur, niscaya Aku akan menambah (nikmat) kepadamu, tetapi jika kamu mengingkari (nikmat-Ku), maka pasti azab-Ku sangat berat." (Ibrahim/14:7)',
-        short:
-          "Wahai orang-orang yang beriman kepada Allah dan membenarkan rasul-Nya serta mengikuti petunjuknya! Infakkanlah dengan mengeluarkan sebagian dari rezeki yang telah Kami berikan kepadamu, baik dalam bentuk yang wajib seperti zakat maupun infak yang bersifat sunah. Bersegeralah sebelum datang hari ketika tidak ada lagi jual beli yang mendatangkan keuntungan, atau seseorang dapat membeli dirinya dengan sejumlah harta yang ia bayarkan sebagai tebusan agar dirinya tidak mendapat siksa Tuhan pada hari kiamat, ketika tidak ada lagi persahabatan yang memungkinkan seseorang membantu walau persahabatan itu sangat dekat yang dapat menyelamatkan dari azab Allah. Kalau sahabat yang sangat akrab saja tidak bisa, apalagi sahabat biasa. Dan pada hari itu tidak ada lagi syafaat pertolongan dari seseorang yang dapat meringankan azab kecuali dari orang-orang yang mendapat izin dan rida dari Allah. Orang-orang kafir itulah orang yang zalim dengan melampaui batas-batas yang telah ditetapkan oleh Allah, sebab mereka tidak menyambut baik seruan kebenaran.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman kepada Allah dan mengikuti Rasul-Nya! Infakkanlah sebagian dari rezeki yang Kami berikan kepada kalian, yang berasal dari berbagai harta yang halal sebelum hari Kiamat tiba karena pada hari itu tidak ada lagi jual-beli yang bermanfaat bagi manusia; juga tidak ada persahabatan yang berguna baginya di waktu susah; dan tidak pula ada perantara yang dapat menolak mudarat atau mendatangkan manfaat kecuali setelah mendapatkan izin dari Allah bagi orang yang Dia kehendaki dan Dia restui. Adapun orang-orang kafir itu adalah orang-orang zalim yang sebenarnya karena kekafiran mereka kepada Allah -Ta'ālā-.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0623\u064e\u0646\u0641\u0650\u0642\u064f\u0648\u0627 \u0645\u0650\u0645\u0651\u064e\u0627 \u0631\u064e\u0632\u064e\u0642\u0652\u0646\u064e\u0627\u0643\u064f\u0645 \u0645\u0651\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650 \u0623\u064e\u0646 \u064a\u064e\u0623\u0652\u062a\u0650\u064a\u064e \u064a\u064e\u0648\u0652\u0645\u064c \u0644\u0651\u064e\u0627 \u0628\u064e\u064a\u0652\u0639\u064c \u0641\u0650\u064a\u0647\u0650 \u0648\u064e\u0644\u064e\u0627 \u062e\u064f\u0644\u0651\u064e\u0629\u064c \u0648\u064e\u0644\u064e\u0627 \u0634\u064e\u0641\u064e\u0627\u0639\u064e\u0629\u064c \u06d7 \u0648\u064e\u0627\u0644\u0652\u0643\u064e\u0627\u0641\u0650\u0631\u064f\u0648\u0646\u064e \u0647\u064f\u0645\u064f \u0627\u0644\u0638\u0651\u064e\u0627\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Yaa ayyuhal lazeena aamanoo anfiqoo mimmaa razaqnaakum min qabli ai yaatiya yawmul laa bai'un fee wa la khullatunw wa laa shafaa'ah; walkaa firoona humuz zaalimoon",
-      },
+      arabic:
+        "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ أَنفِقُوا۟ مِمَّا رَزَقْنَٰكُم مِّن قَبْلِ أَن يَأْتِىَ يَوْمٌ لَّا بَيْعٌ فِيهِ وَلَا خُلَّةٌ وَلَا شَفَٰعَةٌ وَٱلْكَٰفِرُونَ هُمُ ٱلظَّٰلِمُونَ",
     },
     translation: {
-      en: "O you who have believed, spend from that which We have provided for you before there comes a Day in which there is no exchange and no friendship and no intercession. And the disbelievers - they are the wrongdoers.",
-      id: "Wahai orang-orang yang beriman! Infakkanlah sebagian dari rezeki yang telah Kami berikan kepadamu sebelum datang hari ketika tidak ada lagi jual beli, tidak ada lagi persahabatan dan tidak ada lagi syafaat. Orang-orang kafir itulah orang yang zalim.",
+      en: {
+        footnotes: "",
+        text: "O you who believe, spend from what We have provided for you before there comes a day when there will be no trading, friendship, or intercession. It is the disbelievers who are the wrongdoers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai orang-orang yang beriman! Infakkanlah sebagian dari rezeki yang telah Kami berikan kepadamu sebelum datang hari ketika tidak ada lagi jual beli, tidak ada lagi persahabatan dan tidak ada lagi syafaat. Orang-orang kafir itulah orang yang zalim.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/262",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/262.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/262.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 17,
       juz: 3,
       manzil: 1,
       page: 42,
       ruku: 35,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 262,
@@ -106,40 +95,35 @@ export const quranSurah2Verses253To258 = [
     },
     tafsir: {
       id: {
-        long: 'Allah adalah Tuhan Yang Maha Esa, tidak ada tuhan selain Dia, dan hanya Dia yang berhak untuk disembah. Adapun tuhan-tuhan yang lain yang disembah oleh sebagian manusia dengan alasan yang tidak benar, memang banyak jumlahnya. Akan tetapi Tuhan yang sebenarnya hanyalah Allah. Hanya Dialah Yang hidup abadi, yang ada dengan sendiri-Nya, dan Dia pulalah yang selalu mengatur makhluk-Nya tanpa ada kelalaian sedikit pun.\n\nKemudian ditegaskan lagi bahwa Allah tidak pernah mengantuk. Orang yang berada dalam keadaan mengantuk tentu hilang kesadarannya, sehingga dia tidak akan dapat melakukan pekerjaannya dengan baik, padahal Allah swt senantiasa mengurus dan memelihara makhluk-Nya dengan baik, tidak pernah kehilangan kesadaran atau pun lalai.\n\nKarena Allah tidak pernah mengantuk, sudah tentu Dia tidak pernah tidur, karena mengantuk adalah permulaan dari proses tidur. Orang yang tidur lebih banyak kehilangan kesadaran daripada orang yang mengantuk.\n\nSifat Allah yang lain yang disebutkan dalam ayat ini ialah bahwa Dialah yang mempunyai kekuasaan dan yang memiliki apa yang ada di langit dan di bumi. Dialah yang mempunyai kekuatan dan kekuasaan yang tak terbatas, sehingga Dia dapat berbuat apa yang dikehendaki-Nya. Semuanya ada dalam kekuasaan-Nya, sehingga tidak ada satu pun dari makhluk-Nya termasuk para nabi dan para malaikat yang dapat memberikan pertolongan kecuali dengan izin-Nya, apalagi patung-patung yang oleh orang-orang kafir dianggap sebagai penolong mereka.\n\nYang dimaksud dengan "pertolongan" atau "syafaat" dalam ayat ini ialah pertolongan yang diberikan oleh para malaikat, nabi dan orang-orang saleh kepada umat manusia pada hari kiamat untuk mendapatkan keringanan atau kebebasan dari hukuman Allah. Syafaat itu akan terjadi atas izin Allah. Dalam hadis disebutkan :\n\nNabi Saw bersabda, "¦Kemudian Allah berfirman, "Para Malaikat memberikan syafaat, para Nabi memberikan syafaat, dan orang-orang mukmin juga memberikan syafaat. (Riwayat Ahmad dan Muslim dari Abu Sa\'id al-Khudri)\n\nSifat Allah yang lain yang disebutkan dalam ayat ini ialah: bahwa Allah senantiasa mengetahui apa saja yang terjadi di hadapan dan di belakang makhluk-Nya, sedang mereka tidak mengetahui sesuatu pun dari ilmu Allah, melainkan sekadar apa yang dikehendaki-Nya untuk mereka ketahui. Kursi Allah mencakup langit dan bumi. Allah tidak merasa berat sedikit pun dalam memelihara makhluk-Nya yang berada di langit dan di bumi, dan di semua alam ciptaan-Nya. Allah Mahatinggi lagi Mahabesar.\n\nMereka tidak mengetahui ilmu Allah, kecuali apa yang telah dikehendaki-Nya untuk mereka ketahui. Dengan demikian, yang dapat diketahui oleh manusia hanyalah sekadar apa yang dapat dijangkau oleh pengetahuan yang telah dikaruniakan Allah kepada mereka, dan jumlahnya amat sedikit dibanding dengan ilmu-Nya yang luas. Hal ini ditegaskan Allah dalam firman-Nya:\n\n"¦ Sedangkan kamu diberi pengetahuan hanya sedikit." (al-Isra\'/17:85)',
-        short:
-          "Allah; tidak ada tuhan yang pantas disembah dan dipertuhan selain Dia. Yang Mahahidup, kekal, dan memiliki semua makna kehidupan yang sempurna, Yang terus menerus mengurus makhluk-Nya. Tidak seperti manusia, Dia tidak mengantuk dan tidak pula tidur, sebab keduanya adalah sifat kekurangan yang membuat-Nya tidak mampu mengurus makhluk-Nya. Milik-Nya apa yang ada di langit dan apa yang ada di bumi. Dia Yang menciptakan, memelihara, memiliki, dan bertindak terhadap semua itu. Tidak ada yang dapat memberi syafaat pertolongan di sisi-Nya tanpa izin-Nya. Dia demikian perkasa dan kuasa sehingga berbicara di hadapan-Nya pun harus setelah memperolah restu-Nya, bahkan apa yang disampaikan itu harus sesuatu yang benar. Dia mengetahui apa yang di hadapan mereka, yakni apa saja yang sedang dan akan terjadi, dan apa yang di belakang mereka, yakni sesuatu yang telah berlalu. Allah mengetahui apa yang mereka lakukan dan rencanakan, baik yang berkaitan dengan masa kini, masa lampau, atau masa depan. Dan mereka tidak mengetahui sesuatu apa pun tentang ilmu-Nya melainkan apa yang Dia kehendaki untuk mereka ketahui dengan memperlihatkan dan memberitahukannya. Kursi-Nya, yaitu kekuasaan, ilmu, atau kursi tempat kedua kaki Tuhan (yang tidak diketahui hakikatnya kecuali oleh Allah) berpijak, sangat luas, meliputi langit dan bumi. Dan jangan menduga karena kursi-Nya terlalu luas, Dia letih mengurus itu semua. Tidak! Dia tidak merasa berat maupun kesulitan memelihara keduanya, dan Dia Mahatinggi zat dan sifat-sifat-Nya jika dibanding makhluk-makhlukNya, Mahabesar dengan segala keagungan dan kekuasaan-Nya. Inilah Ayat Kursi, ayat teragung dalam Al-Qur'an karena mencakup namanama dan sifat-sifat Allah yang menunjukkan kesempurnaan zat, ilmu, kekuasaan, dan keagungan-Nya. Ayat ini dinamakan Ayat Kursi. Siapa yang membacanya akan memperoleh perlindungan Allah dan tidak akan diganggu setan.",
+        footnotes: null,
+        text: "Allahlah Tuhan yang tiada tuhan yang berhak disembah selain Dia semata, tanpa selain-Nya; Yang Mahahidup dengan kehidupan yang sempurna, tidak ada kematian, dan tidak ada kekurangan bagi-Nya; Yang Maha Mengurus segala sesuatu sendirian, tidak membutuhkan bantuan dari satu pun makhluk-Nya karena Dialah semua makhluk ini bisa berdiri, sehingga mereka semua senantiasa membutuhkan-Nya dalam kondisi apa pun juga; Dia tidak pernah dilanda rasa kantuk dan tidak pernah tidur, karena kesempurnaan sifat kehidupan dan kepengurusan-Nya. Dialah satu-satunya pemilik apa yang ada di langit dan di bumi. Tidak ada seorang pun yang dapat memberikan syafaat kepada orang lain di sisi-Nya kecuali setelah mendapatkan izin dan restu-Nya. Dia mengetahui semua urusan makhluk-Nya yang telah terjadi di masa lalu dan yang belum terjadi di masa depan. Mereka tidak mengetahui apa yang diketahui oleh Allah kecuali sebagian kecil yang Dia kehendaki untuk Dia tunjukkan kepada mereka. Kursi-Nya -yaitu tempat kedua kaki Tuhan- meliputi seluruh langit dan bumi yang luas dan besar ini. Dia tidak pernah merasa keberatan atau kesulitan untuk menjaga keduanya, dan Dia Mahatinggi di dalam zat, kekuasaan dan keperkasaan-Nya, lagi Mahaagung di dalam kerajaan dan kekuasaan-Nya.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0644\u064e\u0627 \u0625\u0650\u0644\u064e\u0670\u0647\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0647\u064f\u0648\u064e \u0627\u0644\u0652\u062d\u064e\u064a\u0651\u064f \u0627\u0644\u0652\u0642\u064e\u064a\u0651\u064f\u0648\u0645\u064f \u06da \u0644\u064e\u0627 \u062a\u064e\u0623\u0652\u062e\u064f\u0630\u064f\u0647\u064f \u0633\u0650\u0646\u064e\u0629\u064c \u0648\u064e\u0644\u064e\u0627 \u0646\u064e\u0648\u0652\u0645\u064c \u06da \u0644\u0651\u064e\u0647\u064f \u0645\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0645\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u06d7 \u0645\u064e\u0646 \u0630\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u064a\u064e\u0634\u0652\u0641\u064e\u0639\u064f \u0639\u0650\u0646\u062f\u064e\u0647\u064f \u0625\u0650\u0644\u0651\u064e\u0627 \u0628\u0650\u0625\u0650\u0630\u0652\u0646\u0650\u0647\u0650 \u06da \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f \u0645\u064e\u0627 \u0628\u064e\u064a\u0652\u0646\u064e \u0623\u064e\u064a\u0652\u062f\u0650\u064a\u0647\u0650\u0645\u0652 \u0648\u064e\u0645\u064e\u0627 \u062e\u064e\u0644\u0652\u0641\u064e\u0647\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0644\u064e\u0627 \u064a\u064f\u062d\u0650\u064a\u0637\u064f\u0648\u0646\u064e \u0628\u0650\u0634\u064e\u064a\u0652\u0621\u064d \u0645\u0651\u0650\u0646\u0652 \u0639\u0650\u0644\u0652\u0645\u0650\u0647\u0650 \u0625\u0650\u0644\u0651\u064e\u0627 \u0628\u0650\u0645\u064e\u0627 \u0634\u064e\u0627\u0621\u064e \u06da \u0648\u064e\u0633\u0650\u0639\u064e \u0643\u064f\u0631\u0652\u0633\u0650\u064a\u0651\u064f\u0647\u064f \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064e \u06d6 \u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u0626\u064f\u0648\u062f\u064f\u0647\u064f \u062d\u0650\u0641\u0652\u0638\u064f\u0647\u064f\u0645\u064e\u0627 \u06da \u0648\u064e\u0647\u064f\u0648\u064e \u0627\u0644\u0652\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0627\u0644\u0652\u0639\u064e\u0638\u0650\u064a\u0645\u064f",
-      transliteration: {
-        en: "Allahu laaa ilaaha illaa Huwal Haiyul Qaiyoom; laa taakhuzuhoo sinatunw wa laa nawm; lahoo maa fissamaawaati wa maa fil ard; man zal lazee yashfa'u indahooo illaa bi-iznih; ya'lamu maa baina aydeehim wa mww khalfahum wa laa yuheetoona bishai'im min 'ilmihee illaa bimaa shaaa'; wasi'a Kursiyyuhus samaawaati wal arda wa laa ya'ooduho hifzuhumaa; wa Huwal Aliyyul 'Azeem",
-      },
+      arabic:
+        "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ لَّهُۥ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ وَسِعَ كُرْسِيُّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ",
     },
     translation: {
-      en: "Allah - there is no deity except Him, the Ever-Living, the Sustainer of [all] existence. Neither drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursi extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.",
-      id: "Allah, tidak ada tuhan selain Dia. Yang Mahahidup, Yang terus menerus mengurus (makhluk-Nya), tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan apa yang ada di bumi. Tidak ada yang dapat memberi syafaat di sisi-Nya tanpa izin-Nya. Dia mengetahui apa yang di hadapan mereka dan apa yang di belakang mereka, dan mereka tidak mengetahui sesuatu apa pun tentang ilmu-Nya melainkan apa yang Dia kehendaki. Kursi-Nya meliputi langit dan bumi. Dan Dia tidak merasa berat memelihara keduanya, dan Dia Mahatinggi, Mahabesar.",
+      en: {
+        footnotes:
+          "[143] Whose life is perfect, complete, and eternal, without beginning or end.\n [144] Dependent on none for His existence while being the sustainer of all created beings.\n [145] Dozing off and falling asleep are but normal to all creation that are inherently frail.\n [146] Allah's knowledge encompasses every aspect of His creations in the past, present and future.\n [147] Chair or footstool. It is not to be confused with al-‘Arsh (the Throne), which is infinitely higher and greater than al-Kursī.\n [148] Above all of His creations and superior to them in essence, rank, and position.\n [149] Whose greatness is unlimited, beyond description or imagination.\n [150] This verse is known as Āyat al-Kursī, lit. The verse of the Footstool. It is the greatest verse in the Qur’an.",
+        text: "Allah: none has the right to be worshiped except Him, the Ever-Living[143], All-Sustaining[144]. Neither drowsiness overtakes Him nor sleep[145]. To Him belongs all that is in the heavens and all that is on earth. Who is there that can intercede with Him except with His permission? He knows what was before them and what will be after them[146], while they encompass nothing of His knowledge, except what He wills. His Kursī[147] [i.e., footstool] extends over the heavens and earth, and safeguarding of both does not weary Him, for He is the Most High[148], the Most Great[149].[150]",
+      },
+      id: {
+        footnotes:
+          "[96] Sebagian mufasir mengartikan dengan ilmu Allah, ada pula yang mengartikan dengan kekuasaan-Nya, ada juga yang mengartikannya dengan tempat kedua kaki-Nya, dan ada juga yang menafsirkan lain.",
+        text: "Allah, tidak ada tuhan selain Dia. Yang Mahahidup, Yang terus menerus mengurus (makhluk-Nya), tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan apa yang ada di bumi. Tidak ada yang dapat memberi syafaat di sisi-Nya tanpa izin-Nya. Dia mengetahui apa yang dihadapan mereka dan apa yang di belakang mereka, dan mereka tidak mengetahui sesuatu apa pun tentang ilmu-Nya melainkan apa yang Dia kehendaki. Kursi-Nya[96] meliputi langit dan bumi. Dan Dia tidak merasa berat memelihara keduanya, dan Dia Mahatinggi, Mahabesar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/263",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/263.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/263.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 17,
       juz: 3,
       manzil: 1,
       page: 42,
       ruku: 35,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 263,
@@ -147,40 +131,35 @@ export const quranSurah2Verses253To258 = [
     },
     tafsir: {
       id: {
-        long: 'Tidak dibenarkan adanya paksaan untuk menganut agama Islam. Kewajiban kita hanyalah menyampaikan agama Allah kepada manusia dengan cara yang baik dan penuh kebijaksanaan, serta dengan nasihat-nasihat yang wajar, sehingga mereka masuk agama Islam dengan kesadaran dan kemauan sendiri (an-Nahl/16:125). \n\nApabila kita sudah menyampaikan kepada mereka dengan cara yang demikian, tetapi mereka tidak juga mau beriman, itu bukanlah urusan kita, melainkan urusan Allah. Kita tidak boleh memaksa mereka. Dalam ayat yang lain (Yunus/10:99) Allah berfirman yang artinya: "Apakah Engkau ingin memaksa mereka hingga mereka itu menjadi orang-orang yang beriman?"\n\nDengan datangnya agama Islam, jalan yang benar sudah tampak dengan jelas dan dapat dibedakan dari jalan yang sesat. Maka tidak boleh ada pemaksaan untuk beriman, karena iman adalah keyakinan dalam hati sanubari dan tak seorang pun dapat memaksa hati seseorang untuk meyakini sesuatu, apabila dia sendiri tidak bersedia.\n\nAyat-ayat Al-Qur\'an yang menerangkan kenabian Muhammad saw sudah cukup jelas. Maka terserah kepada setiap orang, apakah akan beriman atau kafir, setelah ayat-ayat itu sampai kepada mereka. Inilah etika dakwah Islam. Adapun suara-suara yang mengatakan bahwa agama Islam dikembangkan dengan pedang hanyalah tuduhan dan fitnah belaka. Umat Islam di Mekah sebelum berhijrah ke Medinah hanya melakukan salat dengan cara sembunyi, dan mereka tidak mau melakukannya secara demonstratif di hadapan kaum kafir. \n\nAyat ini turun kira-kira pada tahun ketiga sesudah hijrah, yaitu setelah umat Islam memiliki kekuatan yang nyata dan jumlah mereka telah bertambah banyak, namun mereka tidak diperbolehkan melakukan paksaan terhadap orang-orang yang bukan Muslim, baik secara halus, apa lagi dengan kekerasan.\n\nAdapun peperangan yang telah dilakukan umat Islam, baik di Jazirah Arab, maupun di negeri-negeri lain, seperti di Mesir, Persia dan sebagainya, hanyalah semata-mata suatu tindakan beladiri terhadap serangan-serangan kaum kafir kepada mereka. Selain itu, peperangan dilakukan untuk mengamankan jalannya dakwah Islam, sehingga berbagai tindakan kezaliman dari orang-orang kafir yang memfitnah dan mengganggu umat Islam karena menganut dan melaksanakan agama mereka dapat dicegah, dan agar kaum kafir itu dapat menghargai kemerdekaan pribadi dan hak-hak asasi manusia dalam menganut keyakinan.\n\nDi berbagai daerah yang telah dikuasai kaum Muslimin, orang yang belum menganut agama Islam diberi hak dan kemerdekaan untuk memilih: apakah mereka akan memeluk agama Islam ataukah akan tetap dalam agama mereka. Jika mereka memilih untuk tetap dalam agama semula, maka mereka diharuskan membayar "jizyah" yaitu semacam pajak sebagai imbalan dari perlindungan yang diberikan Pemerintah Islam kepada mereka. Keselamatan mereka dijamin sepenuhnya, asal mereka tidak melakukan tindakan-tindakan yang memusuhi Islam dan umatnya.37) \n\nIni merupakan bukti yang jelas bahwa umat Islam tidak melakukan paksaan, bahkan tetap menghormati kemerdekaan beragama, walaupun terhadap golongan minoritas yang berada di daerah-daerah kekuasaan mereka. Sebaliknya dapat kita lihat dari bukti-bukti sejarah, baik pada masa dahulu, maupun pada zaman modern sekarang ini, betapa malangnya nasib umat Islam, apabila mereka menjadi golongan minoritas di suatu negara.\n\nAyat ini selanjutnya menerangkan bahwa barang siapa yang tidak lagi percaya kepada thagut, atau tidak lagi menyembah patung, atau benda yang lain, melainkan beriman dan menyembah Allah semata-mata, maka dia telah mendapatkan pegangan yang kokoh, laksana tali yang kuat, yang tidak akan putus. Iman yang sebenarnya adalah iman yang diyakini dalam hati, diucapkan dengan lidah dan diiringi dengan perbuatan. Itulah sebabnya maka pada akhir ayat, Allah berfirman yang artinya: "Allah Maha Mendengar lagi Maha Mengetahui". Artinya Allah senantiasa mendengar apa yang diucapkan, dan Dia selalu mengetahui apa yang diyakini dalam hati, dan apa yang diperbuat oleh anggota badan. Allah akan membalas amal seseorang sesuai dengan iman, perkataan dan perbuatan mereka masing-masing.',
-        short:
-          "Meski memiliki kekuasaan yang sangat luas, Allah tidak memaksa seseorang untuk mengikuti ajaran-Nya. Tidak ada paksaan terhadap seseorang dalam menganut agama Islam. Mengapa harus ada paksaan, padahal sesungguhnya telah jelas perbedaan antara jalan yang benar dengan jalan yang sesat. Oleh karena itu, janganlah kamu menggunakan paksaan apalagi kekerasan dalam berdakwah. Ajaklah manusia ke jalan Allah dengan cara yang terbaik. Barang siapa ingkar kepada Tagut, yaitu setan dan apa saja yang dipertuhankan selain Allah, dan beriman kepada Allah, maka sungguh, dia telah berpegang teguh pada ajaran agama yang benar sehingga tidak akan terjerumus dalam kesesatan, sama halnya dengan orang yang berpegang teguh pada tali yang sangat kuat yang tidak akan putus sehingga dia tidak akan terjatuh. Agama yang benar ibarat tali yang kuat dan terjulur menuju Allah, dan di situ terdapat sebab-sebab yang menyelamatkan manusia dari murka-Nya. Allah Maha Mendengar segala yang diucapkan oleh hamba-Nya, Maha Mengetahui segala niat dan perbuatan mereka, sehingga semua itu akan mendapat balasannya di hari kiamat.",
+        footnotes: null,
+        text: "Tidak ada seorang pun yang berhak memaksa orang lain untuk memeluk agama Islam karena Islam adalah agama yang benar dan terang, sehingga tidak perlu ada paksaan kepada siapa pun untuk memeluknya. Sudah terlihat jelas kebenaran dan kesesatan. Siapa yang kafir kepada segala sesuatu yang disembah selain Allah dan berlepas diri darinya, kemudian beriman kepada Allah semata maka dia benar-benar telah berpegang kepada agama dengan sekuat-kuatnya untuk menggapai keselamatan di hari Kiamat. Allah Maha Mendengar ucapan hamba-hamba-Nya, lagi Maha Mengetahui perbuatan mereka, dan akan memberi mereka balasan yang setimpal.",
       },
     },
     text: {
-      arab: "\u0644\u064e\u0627 \u0625\u0650\u0643\u0652\u0631\u064e\u0627\u0647\u064e \u0641\u0650\u064a \u0627\u0644\u062f\u0651\u0650\u064a\u0646\u0650 \u06d6 \u0642\u064e\u062f \u062a\u0651\u064e\u0628\u064e\u064a\u0651\u064e\u0646\u064e \u0627\u0644\u0631\u0651\u064f\u0634\u0652\u062f\u064f \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u063a\u064e\u064a\u0651\u0650 \u06da \u0641\u064e\u0645\u064e\u0646 \u064a\u064e\u0643\u0652\u0641\u064f\u0631\u0652 \u0628\u0650\u0627\u0644\u0637\u0651\u064e\u0627\u063a\u064f\u0648\u062a\u0650 \u0648\u064e\u064a\u064f\u0624\u0652\u0645\u0650\u0646 \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0642\u064e\u062f\u0650 \u0627\u0633\u0652\u062a\u064e\u0645\u0652\u0633\u064e\u0643\u064e \u0628\u0650\u0627\u0644\u0652\u0639\u064f\u0631\u0652\u0648\u064e\u0629\u0650 \u0627\u0644\u0652\u0648\u064f\u062b\u0652\u0642\u064e\u0649\u0670 \u0644\u064e\u0627 \u0627\u0646\u0641\u0650\u0635\u064e\u0627\u0645\u064e \u0644\u064e\u0647\u064e\u0627 \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0633\u064e\u0645\u0650\u064a\u0639\u064c \u0639\u064e\u0644\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Laaa ikraaha fid deeni qat tabiyanar rushdu minal ghayy; famai yakfur bit Taaghooti wa yu'mim billaahi faqadis tamsaka bil'urwatil wusqaa lan fisaama lahaa; wallaahu Samee'un 'Aleem",
-      },
+      arabic:
+        "لَآ إِكْرَاهَ فِى ٱلدِّينِ قَد تَّبَيَّنَ ٱلرُّشْدُ مِنَ ٱلْغَىِّ فَمَن يَكْفُرْ بِٱلطَّٰغُوتِ وَيُؤْمِنۢ بِٱللَّهِ فَقَدِ ٱسْتَمْسَكَ بِٱلْعُرْوَةِ ٱلْوُثْقَىٰ لَا ٱنفِصَامَ لَهَا وَٱللَّهُ سَمِيعٌ عَلِيمٌ",
     },
     translation: {
-      en: "There shall be no compulsion in [acceptance of] the religion. The right course has become clear from the wrong. So whoever disbelieves in Taghut and believes in Allah has grasped the most trustworthy handhold with no break in it. And Allah is Hearing and Knowing.",
-      id: "Tidak ada paksaan dalam (menganut) agama (Islam), sesungguhnya telah jelas (perbedaan) antara jalan yang benar dengan jalan yang sesat. Barang siapa ingkar kepada Tagut dan beriman kepada Allah, maka sungguh, dia telah berpegang (teguh) pada tali yang sangat kuat yang tidak akan putus. Allah Maha Mendengar, Maha Mengetahui.",
+      en: {
+        footnotes:
+          "[151] This is a great Islamic principle whereby no one is to be coerced to believe, but it is the duty of the believers to make sure that people know what is right and what is wrong.\n [152] False objects of worship, such as devils, idols, stones, sun, stars, angels, saints, graves, rulers, etc.\n [153] This verse immediately follows Āyat al-Kursī for good reason, as the previous verse contains clear proofs of the Oneness and Greatness of Allah, which purges Godliness from all that are worshiped besides Allah (Tāghoot).",
+        text: "There is no compulsion in religion[151]; the truth has been made distinct from falsehood. Whoever rejects Tāghoot [152][i.e., false gods] and believes in Allah, has indeed grasped the strong handhold that never breaks[153]. And Allah is All-Hearing, All-Knowing.",
+      },
+      id: {
+        footnotes:
+          "[97] Setan dan apa saja yang disembah selain Allah -Subḥānahu wata'ālā-.",
+        text: "Tidak ada paksaan dalam (menganut) agama (Islam), sesungguhnya telah jelas (perbedaan) antara jalan yang benar dengan jalan yang sesat. Barang siapa ingkar kepada Tagut[97] dan beriman kepada Allah, maka sungguh, dia telah berpegang (teguh) pada tali yang sangat kuat yang tidak akan putus. Allah Maha Mendengar, Maha Mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/264",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/264.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/264.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 17,
       juz: 3,
       manzil: 1,
       page: 43,
       ruku: 35,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 264,
@@ -188,40 +167,34 @@ export const quranSurah2Verses253To258 = [
     },
     tafsir: {
       id: {
-        long: "Allah adalah Pelindung orang-orang yang beriman. Dialah yang mengeluarkan mereka dari kekafiran kepada cahaya iman dan petunjuk. Sedang orang-orang kafir itu, pelindung-pelindungnya adalah setan yang mengeluarkan mereka dari cahaya iman kepada kegelapan kekafiran. Mereka adalah penghuni-penghuni neraka pada hari kemudian, dan mereka kekal di dalamnya selama-lamanya.\n\nApabila orang kafir itu pada suatu ketika mendapatkan sedikit cahaya petunjuk dan iman, maka setan segera berusaha untuk melenyapkannya, sehingga iman yang mulai bersemi itu menjadi sirna, dan mereka kembali kepada kegelapan.\n\nOleh sebab itu, iman yang telah tertanam dalam hati harus selalu dipelihara, dirawat dan dipupuk dengan baik sehingga ia terus berkembang dan bertambah kuat, dan setan-setan tidak akan dapat merusaknya lagi. Pupuk keimanan adalah: ibadah, amal saleh dan memperdalam ilmu pengetahuan dan ajaran-ajaran agama Islam.",
-        short:
-          "Mereka yang berpegang teguh pada tali yang kukuh tidak akan sendiri karena Allah selalu menemani dan melindungi-Nya. Allah adalah pelindung orang yang beriman. Dia memelihara, mengangkat derajat, dan menolong mereka. Salah satu bentuk pertolongan-Nya adalah Dia selalu terus menerus mengeluarkan dan menyelamatkan mereka dari kegelapan kekufuran, kemunafikan, keraguan, dorongan mengikuti setan, dan hawa nafsu, kepada cahaya keimanan dan kebenaran. Cahaya iman apabila telah meresap ke dalam kalbu seseorang akan menerangi jalannya, dan dengannya ia akan mampu menangkal kegelapan dan menjangkau sekian banyak hakikat dalam kehidupan. Dan sebaliknya, orang-orang yang kafir, pelindung-pelindungnya adalah setan, baik dari kalangan jin maupun manusia, yang mengeluarkan mereka dari cahaya hidayah kepada kegelapan kesesatan. Mereka adalah penghuni neraka. Mereka kekal di dalamnya, dan itu adalah tempat yang palik buruk.",
+        footnotes: null,
+        text: "Allah melindungi orang-orang yang beriman kepada-Nya. Dia membimbing, menolong, dan mengeluarkan mereka dari gelapnya kekafiran dan kebodohan menuju terangnya iman dan ilmu. Sebaliknya, orang-orang kafir itu, pelindung mereka ialah setan-setan dan berhala-berhala yang menyulap kekafiran agar tampak indah di mata mereka, kemudian mereka mengeluarkan orang-orang kafir itu dari terangnya iman dan ilmu menuju gelapnya kekafiran dan kebodohan. Mereka itulah penghuni neraka yang akan tinggal di dalamnya untuk selama-lamanya.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0648\u064e\u0644\u0650\u064a\u0651\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u064a\u064f\u062e\u0652\u0631\u0650\u062c\u064f\u0647\u064f\u0645 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0638\u0651\u064f\u0644\u064f\u0645\u064e\u0627\u062a\u0650 \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0646\u0651\u064f\u0648\u0631\u0650 \u06d6 \u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0623\u064e\u0648\u0652\u0644\u0650\u064a\u064e\u0627\u0624\u064f\u0647\u064f\u0645\u064f \u0627\u0644\u0637\u0651\u064e\u0627\u063a\u064f\u0648\u062a\u064f \u064a\u064f\u062e\u0652\u0631\u0650\u062c\u064f\u0648\u0646\u064e\u0647\u064f\u0645 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0646\u0651\u064f\u0648\u0631\u0650 \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0638\u0651\u064f\u0644\u064f\u0645\u064e\u0627\u062a\u0650 \u06d7 \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u064f \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u0650 \u06d6 \u0647\u064f\u0645\u0652 \u0641\u0650\u064a\u0647\u064e\u0627 \u062e\u064e\u0627\u0644\u0650\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Allaahu waliyyul lazeena aamanoo yukhrijuhum minaz zulumaati ilan noori wallazeena kafarooo awliyaaa'uhumut Taaghootu yukhrijoonahum minan noori ilaz zulumaat; ulaaa'ika Ashaabun Naari hum feehaa khaalidoon",
-      },
+      arabic:
+        "ٱللَّهُ وَلِىُّ ٱلَّذِينَ ءَامَنُوا۟ يُخْرِجُهُم مِّنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِ وَٱلَّذِينَ كَفَرُوٓا۟ أَوْلِيَآؤُهُمُ ٱلطَّٰغُوتُ يُخْرِجُونَهُم مِّنَ ٱلنُّورِ إِلَى ٱلظُّلُمَٰتِ أُو۟لَٰٓئِكَ أَصْحَٰبُ ٱلنَّارِ هُمْ فِيهَا خَٰلِدُونَ",
     },
     translation: {
-      en: "Allah is the ally of those who believe. He brings them out from darknesses into the light. And those who disbelieve - their allies are Taghut. They take them out of the light into darknesses. Those are the companions of the Fire; they will abide eternally therein.",
-      id: "Allah pelindung orang yang beriman. Dia mengeluarkan mereka dari kegelapan kepada cahaya (iman). Dan orang-orang yang kafir, pelindung-pelindungnya adalah setan, yang mengeluarkan mereka dari cahaya kepada kegelapan. Mereka adalah penghuni neraka. Mereka kekal di dalamnya.",
+      en: {
+        footnotes:
+          "[154] The light of truth is one, while the darknesses of disbelief, doubt and error are many.",
+        text: "Allah is the Protector of those who believe; He brings them out of the depths of darkness into the light[154]. As for those who disbelieve, their protectors are false gods; they bring them out from the light into the depths of darkness. They are the people of the Fire; they will abide therein forever.",
+      },
+      id: {
+        footnotes: "",
+        text: "Allah pelindung orang yang beriman. Dia mengeluarkan mereka dari kegelapan kepada cahaya (iman). Dan orang-orang yang kafir, pelindung-pelindungnya adalah setan, yang mengeluarkan mereka dari cahaya kepada kegelapan. Mereka adalah penghuni neraka. Mereka kekal di dalamnya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/265",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/265.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/265.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 17,
       juz: 3,
       manzil: 1,
       page: 43,
       ruku: 36,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 265,
@@ -229,20 +202,25 @@ export const quranSurah2Verses253To258 = [
     },
     tafsir: {
       id: {
-        long: 'Pada ayat ini dicontohkan keadaan dan sifat keangkuhan raja Namrud dari Babilonia, ketika berhadapan dengan Nabi Ibrahim sebagai rasul Allah. Raja Namrud telah dikaruniai Allah kekuasaan dan kerajaan yang besar, tetapi dia tidak bersyukur atas nikmat tersebut, bahkan menjadi seorang yang ingkar dan zalim. Rahmat Allah yang seharusnya digunakannya untuk menaati Allah, digunakannya untuk mendurhakai-Nya, dengan melakukan perbuatan yang tidak diridai-Nya. \n\nNamrud yang telah mengambil setan sebagai pemimpin dan pelindungnya itu, dengan sikap congkak berkata menentang Nabi Ibrahim, "Siapakah Tuhanmu yang kamu serukan agar kami beriman kepadanya?" Ibrahim menjawab, "Tuhanku adalah Allah yang kuasa menciptakan makhluk yang semula tidak ada, atau menghidupkan orang yang tadinya sudah mati". Maka Namrud menjawab, "Kalau begitu, aku pun dapat pula menghidupkan dan mematikan." Maksudnya, membiarkan hidup atau tidak membunuh seseorang yang seharusnya dia bunuh; dan dia sanggup mematikan seseorang, yaitu dengan membunuhnya. Sedang yang dimaksudkan oleh Ibrahim ialah bahwa Allah swt menciptakan makhluk hidup yang tadinya belum ada, yaitu dengan menciptakan tulang-tulang, daging dan darah, lalu meniupkan roh ke dalamnya, atau dari makhluk yang telah mati, kemudian Allah mengembalikannya menjadi hidup; pada Hari Kebangkitan kelak. Allah kuasa pula mematikan makhluk yang hidup, tidak dengan membunuhnya seperti yang dilakukan oleh manusia, melainkan dengan mengeluarkan roh makhluk tersebut dengan datangnya ajal atau dengan terjadinya hari kiamat kelak. Maka jawaban Namrud yang disebutkan dalam ayat ini adalah olok-olokan belaka, tidak sesuai dengan apa yang dimaksudkan oleh Ibrahim a.s.\n\nOleh karena jawaban Namrud itu tidak ada nilainya, maka Nabi Ibrahim tidak mengindahkan jawaban itu. Lalu dia berkata, "Tuhanku (Allah) kuasa menerbitkan matahari dari timur, maka terbitkanlah olehmu matahari itu dari barat." Namrud tidak dapat menjawab. Sebab itu dia bungkam, tidak berkutik.\n\nDi sini dapat dilihat perbedaan antara Nabi Ibrahim dan Namrud. Nabi Ibrahim sebagai rasul Allah yang beriman dan taat kepada-Nya, senantiasa memperoleh petunjuk-Nya, sehingga dia tidak kehilangan akal dan dalil dalam perdebatan itu, bahkan dalilnya yang terakhir tentang bukti kekuasaan Allah dapat membungkam raja Namrud. Sebaliknya Raja Namrud yang ingkar dan durhaka kepada Allah, benar-benar tidak mendapat petunjuk-Nya, sehingga dia kalah dan tidak dapat berkutik lagi untuk menjawab tantangan Nabi Ibrahim. Itulah akibat orang yang mengambil setan sebagai pemimpin dan pelindung mereka.',
-        short:
-          'Tidakkah kamu memperhatikan keadaan yang sangat menakjubkan dari peristiwa orang yang mendebat Ibrahim mengenai keesaan dan kekuasaan Tuhannya dalam memelihara makhluk-Nya, karena Allah telah memberinya kerajaan atau kekuasaan, dan ia sombong dengannya. Kekuasaan itu membuatnya merasa wajar menjadi Tuhan menyaingi Allah. Kekuasaan memang seringkali menjadikan orang lupa diri dan Tuhannya. Kekuasaan itu seharusnya disyukuri, tetapi dengan angkuh ia malah bertanya kepada Ibrahim, "Siapa Tuhanmu?" Ketika Ibrahim berkata," Tuhanku ialah Yang menghidupkan dengan meniupkan roh ke dalam tubuh dan mematikan dengan cara mencabutnya." Dia berkata dengan nada mengejek, "Aku pun dapat menghidupkan dan mematikan," yakni membiarkan hidup atau membunuh seseorang. Untuk menyudahi perdebatan, Ibrahim menunjukkan bukti kekuasaan Allah dengan berkata, "Allah menerbitkan matahari dari timur, maka terbitkanlah ia dari barat." Maka bingunglah orang yang kafir itu dan tidak mampu menjawab tantangan itu. Allah tidak memberi petunjuk kepada orang-orang zalim dan menolak mengikuti kebenaran.',
+        footnotes: null,
+        text: "Apakah engkau tahu -wahai Nabi- perilaku yang lebih aneh daripada kelancangan si durjana yang berdebat dengan Ibrahim -'alaihissalām- tentang ketuhanan dan keesaan Allah? Si durjana melakukan itu karena Allah telah memberikan kerajaan kepadanya. Lalu Ibrahim -'alaihissalām- menjelaskan kepadanya tentang sifat-sifat Tuhannya dengan mengatakan, “Tuhanku dapat menciptakan dan menghidupkan makhluk.” Si durjana menjawab dengan angkuhnya, “Aku juga bisa menghidupkan dan mematikan dengan cara membunuh siapa saja yang aku inginkan dan memaafkan siapa saja yang aku inginkan.” Kemudian Ibrahim mengemukakan argumen lain yang lebih kuat, “Sesungguhnya Tuhan yang aku sembah itu mendatangkan matahari dari arah timur. Coba engkau datangkan matahari dari arah barat!” Si durjana itu langsung kebingungan dan bungkam. Dia kalah oleh kuatnya argumen yang dikemukakan oleh Ibrahim. Allah tidak berkenan membimbing orang-orang yang zalim ke jalan-Nya karena kezaliman dan kejahatan mereka.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0645\u0652 \u062a\u064e\u0631\u064e \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u062d\u064e\u0627\u062c\u0651\u064e \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0641\u0650\u064a \u0631\u064e\u0628\u0651\u0650\u0647\u0650 \u0623\u064e\u0646\u0652 \u0622\u062a\u064e\u0627\u0647\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0652\u0645\u064f\u0644\u0652\u0643\u064e \u0625\u0650\u0630\u0652 \u0642\u064e\u0627\u0644\u064e \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064f \u0631\u064e\u0628\u0651\u0650\u064a\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u064a\u064f\u062d\u0652\u064a\u0650\u064a \u0648\u064e\u064a\u064f\u0645\u0650\u064a\u062a\u064f \u0642\u064e\u0627\u0644\u064e \u0623\u064e\u0646\u064e\u0627 \u0623\u064f\u062d\u0652\u064a\u0650\u064a \u0648\u064e\u0623\u064f\u0645\u0650\u064a\u062a\u064f \u06d6 \u0642\u064e\u0627\u0644\u064e \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064f \u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064e\u0623\u0652\u062a\u0650\u064a \u0628\u0650\u0627\u0644\u0634\u0651\u064e\u0645\u0652\u0633\u0650 \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064e\u0634\u0652\u0631\u0650\u0642\u0650 \u0641\u064e\u0623\u0652\u062a\u0650 \u0628\u0650\u0647\u064e\u0627 \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064e\u063a\u0652\u0631\u0650\u0628\u0650 \u0641\u064e\u0628\u064f\u0647\u0650\u062a\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0643\u064e\u0641\u064e\u0631\u064e \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0644\u064e\u0627 \u064a\u064e\u0647\u0652\u062f\u0650\u064a \u0627\u0644\u0652\u0642\u064e\u0648\u0652\u0645\u064e \u0627\u0644\u0638\u0651\u064e\u0627\u0644\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Alam tara ilal lazee Haaajja Ibraaheema fee Rabbiheee an aataahullaahul mulka iz qaala Ibraaheemu Rabbiyal lazee yuhyee wa yumeetu qaala ana uhyee wa yumeetu qaala ana uhyee wa umeetu qaala Ibraaheemu fa innal laaha yaatee bishshamsi minal mashriqi faati bihaa minal maghribi fabuhital lazee kafar; wallaahu laa yahdil qawmaz zaalimeen",
-      },
+      arabic:
+        "أَلَمْ تَرَ إِلَى ٱلَّذِى حَآجَّ إِبْرَٰهِـۧمَ فِى رَبِّهِۦٓ أَنْ ءَاتَىٰهُ ٱللَّهُ ٱلْمُلْكَ إِذْ قَالَ إِبْرَٰهِـۧمُ رَبِّىَ ٱلَّذِى يُحْىِۦ وَيُمِيتُ قَالَ أَنَا۠ أُحْىِۦ وَأُمِيتُ قَالَ إِبْرَٰهِـۧمُ فَإِنَّ ٱللَّهَ يَأْتِى بِٱلشَّمْسِ مِنَ ٱلْمَشْرِقِ فَأْتِ بِهَا مِنَ ٱلْمَغْرِبِ فَبُهِتَ ٱلَّذِى كَفَرَ وَٱللَّهُ لَا يَهْدِى ٱلْقَوْمَ ٱلظَّٰلِمِينَ",
     },
     translation: {
-      en: 'Have you not considered the one who argued with Abraham about his Lord [merely] because Allah had given him kingship? When Abraham said, "My Lord is the one who gives life and causes death," he said, "I give life and cause death." Abraham said, "Indeed, Allah brings up the sun from the east, so bring it up from the west." So the disbeliever was overwhelmed [by astonishment], and Allah does not guide the wrongdoing people.',
-      id: "Tidakkah kamu memperhatikan orang yang mendebat Ibrahim mengenai Tuhannya, karena Allah telah memberinya kerajaan (kekuasaan). Ketika Ibrahim berkata, “Tuhanku ialah Yang menghidupkan dan mematikan,” dia berkata, “Aku pun dapat menghidupkan dan mematikan.” Ibrahim berkata, “Allah menerbitkan matahari dari timur, maka terbitkanlah ia dari barat.” Maka bingunglah orang yang kafir itu. Allah tidak memberi petunjuk kepada orang-orang zalim.",
+      en: {
+        footnotes:
+          "[155] He is said to be the Biblical King Nimrod. [156] Were they really in search of the Truth, Allah would surely have led them to the right path.",
+        text: "Have you not considered the one[155] who argued with Abraham about his Lord, as Allah had given him kingship? When Abraham said, “My Lord is the One Who gives life and causes death.” He said, “I give life and cause death.” Abraham said, “It is Allah Who brings the sun from the east, so bring it from the west.” Thus the disbeliever was dumbfounded, and Allah does not guide the wrongdoing people[156].",
+      },
+      id: {
+        footnotes:
+          "[98] Menurut sebagian riwayat adalah Namrud raja Babilonia. \n[99] Menghidupkan ialah membiarkan hidup, dan yang dimaksudkan dengan mematikan ialah membunuh. Perkataannya itu untuk mengejek Nabi Ibrahim -'alaihissalām-.",
+        text: 'Tidakkah kamu memperhatikan orang[98] yang mendebat Ibrahim mengenai Tuhannya, karena Allah telah memberinya kerajaan (kekuasaan). Ketika Ibrahim berkata, "Tuhanku ialah Yang menghidupkan dan mematikan," dia berkata, "Aku pun dapat menghidupkan dan mematikan."[99] Ibrahim berkata, "Allah menerbitkan matahari dari timur, maka terbitkanlah ia dari barat." Maka orang yang kafir itupun bingung. Allah tidak memberi petunjuk kepada orang-orang yang zalim.',
+      },
     },
   },
 ];

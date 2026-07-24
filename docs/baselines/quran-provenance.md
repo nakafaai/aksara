@@ -1,79 +1,97 @@
 # Quran provenance evidence
 
-- Reviewed: 2026-07-23
-- Decision: production replacement remains blocked
+- Retrieved: `2026-07-24T17:57:50Z`
+- Reviewed: 2026-07-25
+- Decision: source provenance approved; production cutover not performed
 - Aksara source: `packages/corpus/quran`
 
-## Exact lineage
+## Exact official artifacts
 
-The canonical Aksara data is byte-for-byte equal to
-[`gadingnst/quran-api/data/quran.json`](https://github.com/gadingnst/quran-api/blob/0d9497128748181fed96d29005c00afcec29d96d/data/quran.json)
-except for two reviewed Nakafa corrections:
+| Scope | Official edition | Exact artifact | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| Arabic text | Tanzil Uthmani v1.1 | `sources/tanzil/text.txt` | 1,334,737 | `ac0724796cbbda0f4801470fbbd11d0f3c5802067bae0493466d0128b0c667af` |
+| Metadata | Tanzil Quran Metadata v1.0 | `sources/tanzil/data.xml` | 77,234 | `8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a` |
+| English translation | QuranEnc English Rwwad v1.0.19-xml.1 | `sources/quranenc/en.xml` | 1,690,410 | `213e1aeb515c5bac6ca446955527b8f3c0f9c21e9d1bad9c6857e9e5b282e9b6` |
+| Indonesian translation | QuranEnc Indonesian Affairs v1.0.1-xml.1 | `sources/quranenc/id.xml` | 1,820,207 | `45d0014236443e91af1338fe7b60f9e20741c6ff5b4ee82ead960d111f91071b` |
+| Indonesian tafsir | QuranEnc Al-Mukhtasar v1.0.0, 114 official API responses | `sources/quranenc/tafsir/*.json` | 6,584,353 | `b46b730418767dfacdf34ac35cec4277822a019b631910d603def280c3d56364` |
 
-- `db1ac4eb4a94afb1f3ef0e274b1c964db2a4449f` corrects one Surah 2
-  tafsir typo.
-- `f1df617c7076b1dfa56f1494cb2736ab49464122` corrects one Indonesian
-  translation typo at 19:2.
+The Tanzil files came from the official
+[download endpoint](https://tanzil.net/download/) and
+[metadata endpoint](https://tanzil.net/res/text/metadata/quran-data.xml).
+The QuranEnc XML files came from the official Rwwad and Indonesian Affairs
+download links. Al-Mukhtasar came from the documented official endpoint
+`/api/v1/translation/sura/indonesian_mokhtasar/{sura}` for surahs 1 through
+114. No intermediary repository is part of the new lineage.
 
-The first Nakafa import is
-`102e976ad863df96ebd701379ddd466e31dd5d9b`. The lossless Aksara
-decomposition is proved separately in `docs/baselines/corpus-history.md`.
+The Al-Mukhtasar digest starts SHA-256 with
+`aksara.quranenc.api-bundle.v1\n`. For each numeric file from 1 through 114 it
+adds `<name>\n<byte-count>\n`, the exact response bytes, and `\n`.
 
-The pinned upstream
-[`quran-api` crawler](https://github.com/gadingnst/quran-api/blob/96113d2b9608e2f884f555370e4e45abe46a2a60/crawler/script.js#L13-L163)
-establishes these exact field sources:
+The complete data bundle contains 118 files and 11,506,941 bytes. Its SHA-256
+is `73e50fb15aac4cd95c86151cc43f002b5c76986584846e16d171bd0be99f58d7`.
+That digest starts with `aksara.quran.source-bundle.v2\n`, then adds each
+stable acquisition name, byte count, exact bytes, and newline in manifest
+order. Provider-owned source folders are only repository organization; they do
+not rewrite the pinned acquisition names or bytes.
 
-| Aksara field | Exact upstream source |
+## Pinned legal evidence
+
+- Tanzil's exact text-license page is stored as `sources/tanzil/terms.html`:
+  7,903 bytes,
+  `795064d93b6b9a9e2df190800a32bfe77add93eb6e978215ddb36f8e0130ccaa`.
+- QuranEnc's exact source, version, publisher, and republication-terms page is
+  stored as `sources/quranenc/terms.html`: 1,051,521 bytes,
+  `858791320276bef37616be75f3d57efac5b46463246d7cf5503aab1a6de2c774`.
+- Tanzil permits verbatim distribution under CC BY 3.0, requires Tanzil
+  attribution and an update link, forbids changing the Quran text, and requires
+  its copyright notice in derived files containing substantial text.
+- QuranEnc permits downloading and republication only without modification,
+  addition, or deletion; with publisher, QuranEnc, and version attribution;
+  with transcript information retained; with notes reported and current
+  versions adopted; and without inappropriate advertisements.
+
+The raw Tanzil copyright block remains byte-for-byte intact. Generated verse
+modules, the public attribution row, and `THIRD_PARTY.md` reproduce the required
+notices. Every published Quran snapshot begins with one validated
+`quran-attribution` row containing the five publishers, exact versions,
+retrieval time, source/update/terms links, artifact byte counts, and hashes.
+
+## Source-shaped field contract
+
+| Published field | Exact official source |
 |---|---|
-| Arabic text | Al Quran Cloud `quran-simple-enhanced` |
-| Verse numbering and base metadata | Al Quran Cloud `ar.alafasy` response |
-| English translation | Al Quran Cloud `en.sahih`, Saheeh International |
-| Transliteration | Al Quran Cloud `en.transliteration` |
-| Audio | Al Quran Cloud `ar.alafasy`, Mishary Rashid Alafasy |
-| Indonesian translation | Kemenag-derived data through `quran.machine` |
-| Verse short and long tafsir | Kemenag-derived data through `quran.machine` |
-| Surah description, sequence, and short name | `bachors/Al-Quran-ID-API` |
+| `text.arabic` | Tanzil Uthmani v1.1 line at the canonical global verse |
+| surah name, count, revelation, partitions, sajda | Tanzil metadata v1.0 |
+| `translation.en.text` and `.footnotes` | QuranEnc English Rwwad XML |
+| `translation.id.text` and `.footnotes` | QuranEnc Indonesian Affairs XML |
+| `tafsir.id.text` and `.footnotes` | QuranEnc Indonesian Al-Mukhtasar API |
 
-The pinned
-[`quran.machine` generator](https://github.com/gadingnst/quran.machine/blob/0877dbcb902c028fa34601c9ca4101cc3d0d7d04/src/app/utils/generate.ts#L25-L114)
-shows its `rioastamal/quran-json` and former Kemenag API inputs.
+The generator preserves source strings exactly. It does not trim, normalize,
+translate, repair, shorten, lengthen, or invent content. Empty QuranEnc XML
+footnotes remain `""`; API `null` footnotes remain `null`.
 
-## License evidence
+The blocked legacy fields were deleted rather than adapted:
 
-- `gadingnst/quran-api`, `gadingnst/quran.machine`, and
-  `rioastamal/quran-json` carry MIT licenses. Their required notices are
-  retained in `THIRD_PARTY.md`.
-- [Al Quran Cloud terms](https://alquran.cloud/terms-and-conditions) permit
-  Arabic reproduction with acknowledgement and require translator attribution.
-  They identify reciter-owned audio rights and possible removal.
-- [LPMQ's official API procedure](https://quran-api.lpmqkemenag.id/) requires
-  registration, a formal application, activation, and a token. The reviewed
-  page does not grant public-Git or hosted commercial redistribution rights.
-- The pinned
-  [`bachors/Al-Quran-ID-API`](https://github.com/bachors/Al-Quran-ID-API/tree/2926f459401592cb91c20bd737a7a4b424d6040a)
-  repository has no license file.
+- Al Quran Cloud audio and all audio URLs
+- unlicensed verse transliteration
+- pre-Bismillah compatibility objects
+- Bachors surah descriptions and metadata
+- localized or synthetic surah names
+- Kemenag-derived short and long tafsir compatibility fields
+- German or any other unsupported locale data
 
-An intermediary MIT license does not grant rights that its upstream provider
-did not grant. Nakafa's content license also explicitly preserves third-party
-rights rather than relicensing them.
+Audio remains omitted because no exact durable attribution and takedown
+contract was proven for a specific recitation artifact.
 
-## Remaining approvals
+## Completeness and publication identity
 
-Production replacement remains fail-closed until all of these are true:
+The generated corpus contains 114 ordered surahs, 6,236 ordered verses, 1,085
+bounded verse chunks, 228 locale search rows, and one visible attribution row.
+The v2 snapshot therefore contains 1,200 runtime rows and 1,428 total
+projections. Registry validation rejects count, surah order, local verse order,
+global verse order, revelation-order duplication, source-schema drift, and
+unsupported fields as typed failures.
 
-1. Nakafa has written LPMQ permission covering public source and hosted
-   redistribution of the exact Indonesian translation and tafsir.
-2. The Bachors-derived surah fields are licensed or replaced with an approved
-   source.
-3. The `en.transliteration` rights holder and redistribution terms are known,
-   or the values are replaced.
-4. Nakafa ships exact Arabic-provider, English-translator, and reciter
-   attribution.
-5. Nakafa accepts the current audio removal risk or obtains durable written
-   clearance.
-
-The signed Quran snapshot includes this blocked decision. A release that
-replaces Quran state is rejected before signing or publication IO. Other
-families may change only when the same global release inherits unchanged Quran
-state, restores an already approved snapshot, or carries a fully approved Quran
-replacement; they do not have an independent publication protocol.
+The approved provenance decision means these exact source bytes satisfy the
+current Aksara gate. It does not claim that Nakafa production was deployed,
+migrated, or visually verified in this change.

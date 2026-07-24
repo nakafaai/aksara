@@ -1,5 +1,9 @@
 import type { FileSystem, HttpClient, Path } from "@effect/platform";
-import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
+import type {
+  ContentReleaseManifest,
+  PublicationReceipt,
+} from "@nakafa/aksara-contracts/release";
+import { canonicalizePublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
@@ -23,7 +27,6 @@ import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http"
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { makeProductionActivation } from "#cli/activation";
-import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import { findAksaraRoot } from "#cli/checkout";
 import { readProductionEnvironment, readRecoveryEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
@@ -32,6 +35,10 @@ import {
   prepareProductionGit,
   prepareProductionRollback,
 } from "#cli/production/preparation";
+import type {
+  ReleaseArguments,
+  RollbackArguments,
+} from "#cli/production-arguments";
 import { fetchProductionRenderer } from "#cli/production-renderer";
 import { retryPublicationTarget } from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
@@ -61,6 +68,21 @@ type PreparedGit = Effect.Effect.Success<
 type PreparedRollback = Effect.Effect.Success<
   ReturnType<typeof prepareProductionRollback>
 >;
+
+/** Logs the signed scope and deterministic transition counts without bodies. */
+function logPublicationScope(manifest: ContentReleaseManifest) {
+  return Effect.logInfo("Content publication scope selected.").pipe(
+    Effect.annotateLogs({
+      contentScopeCount: manifest.scope.content.length,
+      deleteCount: manifest.deleteCount,
+      familyScopeCount: manifest.scope.families.length,
+      itemCount: manifest.itemCount,
+      scope: JSON.stringify(canonicalizePublicationScope(manifest.scope)),
+      snapshotScopeCount: manifest.scope.snapshots.length,
+      upsertCount: manifest.upsertCount,
+    })
+  );
+}
 
 /** Emits only non-secret durable evidence after publication completes. */
 function logPublicationReceipt(receipt: PublicationReceipt) {
@@ -123,6 +145,7 @@ export const runProductionCommand: (
     );
 
     if (action.kind === "resume") {
+      yield* logPublicationScope(action.bundle.release.manifest);
       const receipt = yield* resumeContentRelease(action.bundle).pipe(
         Effect.provideService(PublicationActivation, activation),
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
@@ -164,6 +187,7 @@ export const runProductionCommand: (
           kind: "new",
           releaseId: input.args.releaseId,
           rendererManifest,
+          scope: action.scope,
         }).pipe(
           Effect.provideService(ContentVerificationKeyResolver, keyResolver),
           Effect.provideService(PublicationTarget, target)
@@ -175,12 +199,14 @@ export const runProductionCommand: (
           checkoutRoot,
           kind: "rebuild",
           releaseId: input.args.releaseId,
+          scope: action.scope,
           sha: action.sha,
         }).pipe(
           Effect.provideService(ContentVerificationKeyResolver, keyResolver),
           Effect.provideService(PublicationTarget, target)
         );
       }
+      yield* logPublicationScope(publishable.manifest);
       const receipt = yield* publishGitRelease(publishable).pipe(
         Effect.provideService(PublicationActivation, activation),
         Effect.provideService(PublicationRecoveryId, input.args.recoveryId),
@@ -221,6 +247,7 @@ export const runProductionCommand: (
         Effect.provideService(PublicationTarget, target)
       );
     }
+    yield* logPublicationScope(publishable.manifest);
     const receipt = yield* publishRollbackRelease(publishable).pipe(
       Effect.provideService(PublicationActivation, activation),
       Effect.provideService(PublicationRecoveryId, input.args.recoveryId),

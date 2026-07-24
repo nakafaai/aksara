@@ -58,6 +58,15 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"d".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"d".repeat(64)}`,
+  scope: {
+    content: [
+      { contentKey: "test:a", family: "material", locale: "en" },
+      { contentKey: "test:b", family: "material", locale: "en" },
+      { contentKey: "test:b", family: "material", locale: "id" },
+    ],
+    families: [],
+    snapshots: [],
+  },
   snapshots: inheritContentSnapshots(null),
   upsertCount: itemSummary.upsertCount,
 });
@@ -99,11 +108,19 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
     itemCount: candidateItems.length,
     itemsDigest: summary.digest,
     rollbackCount: candidateItems.length,
+    scope: {
+      content: candidateItems.map(({ change }) => ({
+        contentKey: change.contentKey,
+        family: change.family,
+        locale: change.locale,
+      })),
+      families: [],
+      snapshots: manifest.scope.snapshots,
+    },
     upsertCount: summary.upsertCount,
   });
   return { items: candidateItems, manifest: candidateManifest };
 }
-
 describe("release item integrity", () => {
   it("authenticates items without retaining the complete collection", async () => {
     const verified = await Effect.runPromise(
@@ -125,6 +142,21 @@ describe("release item integrity", () => {
       actualUpserts: 1,
       expectedDeletes: 0,
       expectedUpserts: 2,
+    });
+  });
+  it("rejects a signed item outside the exact publication scope", async () => {
+    const scoped = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+      ...manifest,
+      scope: {
+        content: manifest.scope.content.slice(0, 1),
+        families: manifest.scope.families,
+        snapshots: manifest.scope.snapshots,
+      },
+    });
+    const error = await reject(items, scoped);
+    expect(error).toEqual({
+      _tag: "ReleaseItemScopeError",
+      itemOffset: 1,
     });
   });
   it("replays one stream with fresh ordering and route state", async () => {

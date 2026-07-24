@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah14Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1757",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1757.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1757.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 102,
       juz: 13,
       manzil: 3,
       page: 256,
       ruku: 212,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1757,
@@ -24,40 +25,32 @@ export const quranSurah14Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah swt kembali mengingatkan hamba-Nya untuk senantiasa bersyukur atas segala nikmat yang telah dilimpahkan-Nya. Bila mereka melaksanakannya, maka nikmat itu akan ditambah lagi oleh-Nya. Sebaliknya, Allah juga mengingatkan kepada mereka yang mengingkari nikmat-Nya, dan tidak mau bersyukur bahwa Dia akan menimpakan azab-Nya yang sangat pedih kepada mereka.\n\nMensyukuri rahmat Allah bisa dilakukan dengan berbagai cara. Pertama, dengan ucapan yang setulus hati; kedua, diiringi dengan perbuatan, yaitu menggunakan rahmat tersebut untuk tujuan yang diridai-Nya.\n\nDalam kehidupan sehari-hari, dapat kita lihat bahwa orang-orang yang dermawan dan suka menginfakkan hartanya untuk kepentingan umum dan menolong orang, pada umumnya tak pernah jatuh miskin ataupun sengsara. Bahkan, rezekinya senantiasa bertambah, kekayaannya makin meningkat, dan hidupnya bahagia, dicintai serta dihormati dalam pergaulan. Sebaliknya, orang-orang kaya yang kikir, atau suka menggunakan kekayaannya untuk hal-hal yang tidak diridai Allah, seperti judi atau memungut riba, maka kekayaannya tidak bertambah, bahkan lekas menyusut. Di samping itu, ia senantiasa dibenci dan dikutuk orang banyak, dan di akhirat memperoleh hukuman yang berat.",
-        short:
-          'Dan ingatlah pula ketika Tuhanmu memaklumkan suatu maklumat yang dikukuhkan, "Sesungguhnya Aku bersumpah, jika kamu bersyukur atas nikmat-nikmat-Ku kepadamu, niscaya Aku akan menambah kepadamu nikmat lebih banyak lagi, tetapi sebaliknya, jika kamu mengingkari nikmat-Ku, maka pasti azab-Ku sangat berat."',
+        footnotes: null,
+        text: "Musa berkata kepada mereka, “Ingatlah ketika Tuhan kalian memberitahu kalian secara pasti; jika kalian bersyukur kepada Allah atas nikmat-nikmat-Nya yang telah Dia berikan kepada kalian, niscaya Dia akan menambahkan nikmat dan karunia-Nya kepada kalian. Akan tetapi, jika kalian mengingkari nikmat-nikmat-Nya atas kalian dan kalian tidak mensyukurinya maka azab Allah atas siapa yang mengingkari nikmat-nikmat-Nya dan tidak mensyukurinya benar-benar berat.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u062a\u064e\u0623\u064e\u0630\u0651\u064e\u0646\u064e \u0631\u064e\u0628\u0651\u064f\u0643\u064f\u0645\u0652 \u0644\u064e\u0626\u0650\u0646 \u0634\u064e\u0643\u064e\u0631\u0652\u062a\u064f\u0645\u0652 \u0644\u064e\u0623\u064e\u0632\u0650\u064a\u062f\u064e\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0644\u064e\u0626\u0650\u0646 \u0643\u064e\u0641\u064e\u0631\u0652\u062a\u064f\u0645\u0652 \u0625\u0650\u0646\u0651\u064e \u0639\u064e\u0630\u064e\u0627\u0628\u0650\u064a \u0644\u064e\u0634\u064e\u062f\u0650\u064a\u062f\u064c",
-      transliteration: {
-        en: "Wa iz ta azzana Rabbukum la'in shakartum la azeedannakum wa la'in kafartum inn'azaabee lashadeed",
-      },
+      arabic: "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِى لَشَدِيدٌ",
     },
     translation: {
-      en: "And [remember] when your Lord proclaimed, 'If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe.' \"",
-      id: "Dan (ingatlah) ketika Tuhanmu memaklumkan, “Sesungguhnya jika kamu bersyukur, niscaya Aku akan menambah (nikmat) kepadamu, tetapi jika kamu mengingkari (nikmat-Ku), maka pasti azab-Ku sangat berat.”",
+      en: {
+        footnotes: "",
+        text: "And [remember] when your Lord declared, ‘If you are grateful, I will surely give you more; but if you are ungrateful, My punishment is severe indeed.’”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan (ingatlah) ketika Tuhanmu memaklumkan, "Sesungguhnya jika kamu bersyukur, niscaya Aku akan menambah (nikmat) kepadamu, tetapi jika kamu mengingkari (nikmat-Ku), maka pasti azab-Ku sangat berat."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1758",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1758.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1758.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 102,
       juz: 13,
       manzil: 3,
       page: 256,
       ruku: 212,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1758,
@@ -65,40 +58,32 @@ export const quranSurah14Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Allah swt menjelaskan dalam ayat ini ucapan Nabi Musa a.s. ketika ia mengatakan kepada kaumnya, bahwa seandainya mereka dan orang-orang yang ada di bumi ini semuanya kafir kepada Allah dan mengingkari nikmat dan rahmat-Nya, hal ini tidak akan mengurangi kebesaran dan keagungan-Nya. Sebab, Allah swt Mahakaya, dan Terpuji, tidak memerlukan ucapan syukur mereka dan tidak membutuhkan amalan kebajikan mereka untuk kepentingan dirinya atau untuk menambah kebesaran dan kemuliaan-Nya. Kekafiran mereka itu akan merugikan diri sendiri, karena Allah tidak menambah nikmat dan rahmat kepada mereka. Firman Allah:\n\nBarang siapa mengerjakan kebajikan maka (pahalanya) untuk dirinya sendiri dan barang siapa berbuat jahat maka (dosanya) menjadi tanggungan dirinya sendiri. Dan Tuhanmu sama sekali tidak menzalimi hamba-hamba (Nya). (Fushshilat/41: 46)",
-        short:
-          'Dan Musa berkata untuk mengingatkan kaumnya bahwa mensyukuri nikmat Allah bukanlah untuk kepentingan Allah, "Jika kamu dan orang yang ada di bumi ini semuanya mengingkari nikmat Allah, maka sesungguhnya Allah Mahakaya sehingga keingkaran mereka tidak akan sedikit pun mengurangi kekayaan-Nya, Maha Terpuji atas segala hal yang terjadi di alam semesta."',
+        footnotes: null,
+        text: "Musa berkata kepada kaumnya, “Wahai kaumku! Jika kalian kafir dan seluruh penduduk bumi juga kafir bersama kalian maka efek negatifnya kembali kepada kalian sendiri karena sesungguhnya Allah Mahakaya dengan diri-Nya, berhak untuk disanjung dengan sendiri-Nya, iman orang-orang mukmin tidak memberi-Nya manfaat, dan kekufuran orang-orang kafir tidak merugikan-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0627\u0644\u064e \u0645\u064f\u0648\u0633\u064e\u0649\u0670 \u0625\u0650\u0646 \u062a\u064e\u0643\u0652\u0641\u064f\u0631\u064f\u0648\u0627 \u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u0648\u064e\u0645\u064e\u0646 \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627 \u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0644\u064e\u063a\u064e\u0646\u0650\u064a\u0651\u064c \u062d\u064e\u0645\u0650\u064a\u062f\u064c",
-      transliteration: {
-        en: "Wa qaala Moosaaa in takfurooo antum wa man fil ardi jamee'an fa innal laaha la Ghaniyyun Hameed",
-      },
+      arabic: "وَقَالَ مُوسَىٰٓ إِن تَكْفُرُوٓا۟ أَنتُمْ وَمَن فِى ٱلْأَرْضِ جَمِيعًا فَإِنَّ ٱللَّهَ لَغَنِىٌّ حَمِيدٌ",
     },
     translation: {
-      en: 'And Moses said, "If you should disbelieve, you and whoever is on the earth entirely - indeed, Allah is Free of need and Praiseworthy."',
-      id: "Dan Musa berkata, “Jika kamu dan orang yang ada di bumi semuanya  mengingkari (nikmat Allah), maka sesungguhnya Allah Mahakaya, Maha Terpuji.",
+      en: {
+        footnotes: "",
+        text: "And Moses said, “If you and all those who are on earth were to disbelieve, indeed Allah is Self-Sufficient, Praiseworthy.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan Musa berkata, "Jika kamu dan orang yang ada di bumi semuanya mengingkari (nikmat Allah), maka sesungguhnya Allah Mahakaya, Maha Terpuji.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1759",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1759.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1759.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 102,
       juz: 13,
       manzil: 3,
       page: 256,
       ruku: 212,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1759,
@@ -106,40 +91,33 @@ export const quranSurah14Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah swt bertanya kepada umat manusia apakah mereka pernah mendapatkan berita tentang umat-umat yang terdahulu, serta berita tentang peristiwa-peristiwa yang telah mereka alami, misalnya berita tentang kaum Nabi Nuh, kaum Â\'d dan kaum samud, serta umat yang datang sesudah mereka, yang hanya Allah sajalah yang benar-benar mengetahuinya? \n\nMereka mendustakan para rasul padahal telah membawa bukti-bukti yang nyata. Mereka menutupkan tangan ke mulut untuk menunjukkan kebencian kepada para rasul tersebut, seraya berkata, "Sesungguhnya kami menging-kari apa-apa yang diperintahkan kepadamu untuk disampaikan kepada kami." Di samping itu, umat-umat tersebut juga mengatakan kepada para rasul bahwa mereka berada dalam keragu-raguan dan tidak yakin akan kebenaran yang diserukan para rasul kepada mereka.',
-        short:
-          "Janganlah kalian, wahai Bani Israil dan umat Nabi Muhammad, mengingkari nikmat Allah. Apakah belum sampai kepadamu berita tentang kebinasaan orang-orang sebelum kamu, yaitu kaum Nabi Nuh, kaum 'a€d, kaum Å amud, dan orang-orang setelah mereka, seperti penduduk Madyan, kaum Tubba', dan lain-lain. Tidak ada yang mengetahui secara detail azab seperti apa yang mereka alami, selain Allah. Rasul-rasul telah datang kepada mereka membawa bukti-bukti yang nyata tentang kerasulan para utusan itu, berupa mukjizat dan penjelasan yang mudah dipahami oleh umat masing-masing, namun mereka menutupkan tangannya ke mulutnya dengan penuh kebencian dan penolakan, dan berkata, \"Sesungguhnya kami tidak percaya sama sekali akan bukti bahwa kamu diutus kepada kami, dan kami benar-benar berada dalam keraguan yang sangat mendalam dan menggelisahkan hati kami terhadap apa yang kamu serukan kepada kami, berupa ajakan beriman dan bertauhid kepada Allah.\"",
+        footnotes: null,
+        text: 'Apakah belum datang kepada kalian -wahai orang-orang kafir- berita tentang pembinasaan umat-umat yang mendustakan Allah sebelum kalian, yaitu kaum Nuh, \'Ād yang merupakan kaum Hud, Ṡamūd yang merupakan kaum Ṣāliḥ, dan umat-umat yang datang sesudah mereka, sedangkan jumlah mereka besar, tidak terhitung kecuali oleh Allah? Para rasul Allah datang kepada mereka dengan membawa bukti-bukti yang nyata, namun mereka meletakkan tangan di mulut sambil menggigit jari-jari telunjuk mereka karena kesal terhadap para rasul tersebut. Mereka berkata kepada rasul-rasul yang diutus kepada mereka, "Sesungguhnya kami kafir kepada apa yang kalian diutus dengannya dan sesungguhnya kami benar-benar dalam kebimbangan dan keraguan terhadap apa yang kalian dakwahkan."',
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u0623\u0652\u062a\u0650\u0643\u064f\u0645\u0652 \u0646\u064e\u0628\u064e\u0623\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650\u0643\u064f\u0645\u0652 \u0642\u064e\u0648\u0652\u0645\u0650 \u0646\u064f\u0648\u062d\u064d \u0648\u064e\u0639\u064e\u0627\u062f\u064d \u0648\u064e\u062b\u064e\u0645\u064f\u0648\u062f\u064e \u06db \u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650\u0647\u0650\u0645\u0652 \u06db \u0644\u064e\u0627 \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0647\u064f\u0645\u0652 \u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u06da \u062c\u064e\u0627\u0621\u064e\u062a\u0652\u0647\u064f\u0645\u0652 \u0631\u064f\u0633\u064f\u0644\u064f\u0647\u064f\u0645 \u0628\u0650\u0627\u0644\u0652\u0628\u064e\u064a\u0651\u0650\u0646\u064e\u0627\u062a\u0650 \u0641\u064e\u0631\u064e\u062f\u0651\u064f\u0648\u0627 \u0623\u064e\u064a\u0652\u062f\u0650\u064a\u064e\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0623\u064e\u0641\u0652\u0648\u064e\u0627\u0647\u0650\u0647\u0650\u0645\u0652 \u0648\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0625\u0650\u0646\u0651\u064e\u0627 \u0643\u064e\u0641\u064e\u0631\u0652\u0646\u064e\u0627 \u0628\u0650\u0645\u064e\u0627 \u0623\u064f\u0631\u0652\u0633\u0650\u0644\u0652\u062a\u064f\u0645 \u0628\u0650\u0647\u0650 \u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0627 \u0644\u064e\u0641\u0650\u064a \u0634\u064e\u0643\u0651\u064d \u0645\u0651\u0650\u0645\u0651\u064e\u0627 \u062a\u064e\u062f\u0652\u0639\u064f\u0648\u0646\u064e\u0646\u064e\u0627 \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u0645\u064f\u0631\u0650\u064a\u0628\u064d",
-      transliteration: {
-        en: "Alam yaatikum naba'ul lazeena min qablikum qawmi Noohinw wa 'Aadinw wa Samood, wallazeena mim ba'dihim; laa ya'lamuhum illallaah; jaaa'at hum Rusuluhum bilbaiyinaati faraddooo aydiyahum feee afwaahihim wa qaalooo innaa kafarnaa bimaaa ursiltum bihee wa innaa lafee shakkim mimmaa tad'oonanaaa ilaihi mureeb",
-      },
+      arabic:
+        "أَلَمْ يَأْتِكُمْ نَبَؤُا۟ ٱلَّذِينَ مِن قَبْلِكُمْ قَوْمِ نُوحٍ وَعَادٍ وَثَمُودَ وَٱلَّذِينَ مِنۢ بَعْدِهِمْ لَا يَعْلَمُهُمْ إِلَّا ٱللَّهُ جَآءَتْهُمْ رُسُلُهُم بِٱلْبَيِّنَٰتِ فَرَدُّوٓا۟ أَيْدِيَهُمْ فِىٓ أَفْوَٰهِهِمْ وَقَالُوٓا۟ إِنَّا كَفَرْنَا بِمَآ أُرْسِلْتُم بِهِۦ وَإِنَّا لَفِى شَكٍّ مِّمَّا تَدْعُونَنَآ إِلَيْهِ مُرِيبٍ",
     },
     translation: {
-      en: 'Has there not reached you the news of those before you - the people of Noah and \'Aad and Thamud and those after them? No one knows them but Allah. Their messengers brought them clear proofs, but they returned their hands to their mouths and said, "Indeed, we disbelieve in that with which you have been sent, and indeed we are, about that to which you invite us, in disquieting doubt."',
-      id: "Apakah belum sampai kepadamu berita orang-orang sebelum kamu (yaitu) kaum Nuh, ‘Ad, samud dan orang-orang setelah mereka. Tidak ada yang mengetahui mereka selain Allah. Rasul-rasul telah datang kepada mereka membawa bukti-bukti (yang nyata), namun mereka menutupkan tangannya ke mulutnya (karena kebencian), dan berkata, “Sesungguhnya kami tidak percaya akan (bukti bahwa) kamu diutus (kepada kami), dan kami benar-benar dalam keraguan yang menggelisahkan terhadap apa yang kamu serukan kepada kami.”",
+      en: {
+        footnotes: "[5] as a gesture of denial and rejection.",
+        text: "Have there not come to you the stories of those who came before you – the people of Noah, ‘Ād and Thamūd, and those who came after them? No one knows them except Allah. Their messengers came to them with clear proofs, but they shoved their hands into their mouths[5] and said, “We disbelieve in what you are sent with, and we surely doubt what you are calling us to.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Apakah belum sampai kepadamu berita orang-orang sebelum kamu (yaitu) kaum Nuh, \'Ād, Samud dan orang-orang setelah mereka. Tidak ada yang mengetahui mereka selain Allah. Rasul-rasul telah datang kepada mereka membawa bukti-bukti (yang nyata), namun mereka menutupkan tangannya ke mulutnya (karena kebencian), dan berkata, "Sesungguhnya kami tidak percaya akan (bukti bahwa) kamu diutus (kepada kami), dan kami benar-benar dalam keraguan yang menggelisahkan terhadap apa yang kamu serukan kepada kami."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1760",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1760.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1760.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 103,
       juz: 13,
       manzil: 3,
       page: 256,
       ruku: 212,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1760,
@@ -147,40 +125,33 @@ export const quranSurah14Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini dijelaskan bahwa karena mereka menyatakan keragu-raguan terhadap apa yang disampaikan oleh para rasul kepada mereka, terutama tentang kekuasaan Allah swt, maka para rasul tersebut mengatakan kepada umatnya, "Apakah patut adanya keragu-raguan terhadap Allah, Pencipta langit dan bumi? Dia menyeru kamu untuk memberikan ampunan atas segala dosa-dosamu, dan Dia telah menangguhkan siksaan terhadapmu sampai kepada suatu masa yang ditentukan-Nya ?\n\nSebaliknya, umat dari masing-masing rasul itu mengatakan bahwa para rasul tersebut, menurut pandangan mereka, adalah manusia biasa seperti mereka dan tidak mempunyai kelebihan apa-apa. Sebab itu, tidak ada alasan bagi mereka untuk menjadi pengikut rasul-rasul tersebut. Menurut mereka, para rasul itu sudah memalingkan mereka dari agama yang diwarisi dari nenek moyang mereka, serta menghalang-halangi mereka dari menyembah patung-patung yang menjadi sesembahan nenek moyang tersebut. Oleh karena itu, mereka meminta bukti yang nyata dari para rasul untuk menunjukkan kebenaran pengutusan mereka sebagai rasul Allah swt. Padahal, rasul-rasul itu telah mengemukakan mukjizat masing-masing, yang dikaruniakan Allah kepada mereka sebagai bukti kerasulannya.',
-        short:
-          'Menanggapi jawaban kaumnya, rasul-rasul mereka berkata, "Apakah ada keraguan dari siapa pun yang berakal terhadap wujud dan keesaan Allah, Pencipta langit dan bumi dalam keseimbangan yang begitu sempurna? Dia menyeru kamu agar bertauhid dan beribadah hanya kepadaNya untuk kepentinganmu sendiri, yakni agar Dia mengampuni sebagian dosa-dosamu yang sengaja maupun tidak, dan menangguhkan siksaan-mu sampai waktu yang ditentukan oleh-Nya." Mendengar nasihat para rasul itu, mereka berkata, "Kamu hanyalah manusia biasa seperti kami juga. Tidak ada keistimewaan apa pun dalam diri kamu yang memantaskan kamu untuk menjadi pembimbing kami. Kamu mengaku sebagai rasul hanya karena ingin menghalangi kami menyembah apa yang dari dahulu telah diyakini dan disembah oleh nenek moyang kami, lalu kamu mengajak kami menyembah tuhanmu. Karena itu, datangkanlah kepada kami bukti yang nyata bahwa kamu benar utusan Allah sehingga kami tidak lagi dapat membantahnya."',
+        footnotes: null,
+        text: 'Para rasul mereka menjawab, "Apakah dalam urusan tauhid dan pengesaan Allah dalam beribadah masih ada keraguan sementara Dialah pencipta langit dan bumi, yang mengadakan keduanya tanpa contoh sebelumnya?! Allah mengajak agar kalian beriman kepada-Nya karena Dia hendak menghapus dosa-dosa masa lalu kalian dan menangguhkan kalian hingga masa ajal kalian yang ditetapkan di dalam kehidupan dunia kalian ini sempurna." Kaum mereka berkata kepada mereka, "Kalian hanya manusia biasa seperti kami, kalian tidak mempunyai keistimewaan atas kami, serta kalian hendak membelokkan kami dari menyembah apa yang disembah oleh nenek moyang kami. Oleh karena itu, datangkanlah hujah yang jelas yang menunjukkan kebenaran kalian dalam apa yang kalian katakan kepada kami bahwa kalian adalah utusan-utusan Allah kepada kami.”',
       },
     },
     text: {
-      arab: "\u06de \u0642\u064e\u0627\u0644\u064e\u062a\u0652 \u0631\u064f\u0633\u064f\u0644\u064f\u0647\u064f\u0645\u0652 \u0623\u064e\u0641\u0650\u064a \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0634\u064e\u0643\u0651\u064c \u0641\u064e\u0627\u0637\u0650\u0631\u0650 \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u06d6 \u064a\u064e\u062f\u0652\u0639\u064f\u0648\u0643\u064f\u0645\u0652 \u0644\u0650\u064a\u064e\u063a\u0652\u0641\u0650\u0631\u064e \u0644\u064e\u0643\u064f\u0645 \u0645\u0651\u0650\u0646 \u0630\u064f\u0646\u064f\u0648\u0628\u0650\u0643\u064f\u0645\u0652 \u0648\u064e\u064a\u064f\u0624\u064e\u062e\u0651\u0650\u0631\u064e\u0643\u064f\u0645\u0652 \u0625\u0650\u0644\u064e\u0649\u0670 \u0623\u064e\u062c\u064e\u0644\u064d \u0645\u0651\u064f\u0633\u064e\u0645\u0651\u064b\u0649 \u06da \u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0625\u0650\u0646\u0652 \u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u0625\u0650\u0644\u0651\u064e\u0627 \u0628\u064e\u0634\u064e\u0631\u064c \u0645\u0651\u0650\u062b\u0652\u0644\u064f\u0646\u064e\u0627 \u062a\u064f\u0631\u0650\u064a\u062f\u064f\u0648\u0646\u064e \u0623\u064e\u0646 \u062a\u064e\u0635\u064f\u062f\u0651\u064f\u0648\u0646\u064e\u0627 \u0639\u064e\u0645\u0651\u064e\u0627 \u0643\u064e\u0627\u0646\u064e \u064a\u064e\u0639\u0652\u0628\u064f\u062f\u064f \u0622\u0628\u064e\u0627\u0624\u064f\u0646\u064e\u0627 \u0641\u064e\u0623\u0652\u062a\u064f\u0648\u0646\u064e\u0627 \u0628\u0650\u0633\u064f\u0644\u0652\u0637\u064e\u0627\u0646\u064d \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Qaalat Rusuluhum afillaahi shakkun faatiris samaawaati wal ardi yad'ookum liyaghfira lakum min zunoobikum wa yu'akhkhirakum ilaaa ajalim musam maa; qaaloo in antum illaa basharum mislunaa tureedoona an tasuddoonaa 'ammaa kaana ya'budu aabaaa'unaa faatoonaa bisul taanim mubeen",
-      },
+      arabic:
+        "قَالَتْ رُسُلُهُمْ أَفِى ٱللَّهِ شَكٌّ فَاطِرِ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ يَدْعُوكُمْ لِيَغْفِرَ لَكُم مِّن ذُنُوبِكُمْ وَيُؤَخِّرَكُمْ إِلَىٰٓ أَجَلٍ مُّسَمًّى قَالُوٓا۟ إِنْ أَنتُمْ إِلَّا بَشَرٌ مِّثْلُنَا تُرِيدُونَ أَن تَصُدُّونَا عَمَّا كَانَ يَعْبُدُ ءَابَآؤُنَا فَأْتُونَا بِسُلْطَٰنٍ مُّبِينٍ",
     },
     translation: {
-      en: 'Their messengers said, "Can there be doubt about Allah, Creator of the heavens and earth? He invites you that He may forgive you of your sins, and He delays your death for a specified term." They said, "You are not but men like us who wish to avert us from what our fathers were worshipping. So bring us a clear authority."',
-      id: "Rasul-rasul mereka berkata, “Apakah ada keraguan terhadap Allah, Pencipta langit dan bumi? Dia menyeru kamu (untuk beriman) agar Dia mengampuni sebagian dosa-dosamu dan menangguhkan (siksaan)mu sampai waktu yang ditentukan?” Mereka berkata, “Kamu hanyalah manusia seperti kami juga. Kamu ingin menghalangi kami (menyembah) apa yang dari dahulu disembah nenek moyang kami, karena itu datangkanlah kepada kami bukti yang nyata.”",
+      en: {
+        footnotes: "",
+        text: "Their messengers said, “Can there be any doubt about Allah, the Creator of the heavens and earth? He calls you so that He may forgive some of your sins, and give you respite for an appointed term.” They said, “You are but humans like us! You want to turn us away from what our forefathers used to worship; then bring us a clear proof.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Rasul-rasul mereka berkata, "Apakah ada keraguan terhadap Allah, Pencipta langit dan bumi? Dia menyeru kamu (untuk beriman) agar Dia mengampuni sebagian dosa-dosamu dan menangguhkan (siksaan)mu sampai waktu yang ditentukan?" Mereka berkata, "Kamu hanyalah manusia seperti kami juga. Kamu ingin menghalangi kami (menyembah) apa yang dari dahulu disembah nenek moyang kami, karena itu datangkanlah kepada kami bukti yang nyata."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1761",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1761.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1761.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 103,
       juz: 13,
       manzil: 3,
       page: 257,
       ruku: 212,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1761,
@@ -188,40 +159,33 @@ export const quranSurah14Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Untuk menjawab pertanyaan dan permintaan umatnya, maka dalam ayat ini disebutkan ucapan para rasul itu kepada mereka bahwa benar mereka hanyalah manusia seperti umat mereka juga, hanya saja Allah telah memberikan karunia kepada mereka, yaitu berupa kenabian dan kerasulan, yang disertai mukjizat yang hanya dapat digunakan dengan seizin Allah swt. Oleh sebab itu, bukanlah wewenang seorang rasul untuk mengemukakan mukjizat yang lain dari apa yang telah dikaruniakan Allah kepadanya.\n\nPada akhir ayat ini ditunjukkan pula, bahwa tawakal adalah merupakan suatu prinsip dan sikap hidup yang harus menjadi pegangan bagi setiap orang yang beriman, apabila mereka sudah melaksanakan kewajiban dengan sebaik-baiknya.",
-        short:
-          'Pandangan orang kafir itu sangat keliru. Mereka seolah ingin memaksakan kehendak bahwa para rasul haruslah bukan manusia biasa. Untuk mematahkan logika ini, rasul-rasul mereka berkata kepada mereka, "Wahai kaum kami, kami memang hanyalah manusia biasa seperti kamu, tetapi Allah memberi karunia kepada siapa yang Dia kehendaki di antara hamba-hamba-Nya. Kami adalah beberapa orang di antara mereka yang Allah beri karunia itu. Ketahuilah, tidak pantas bagi kami untuk mendatangkan suatu bukti kepada kamu atas kuasa kami sendiri, melainkan semuanya haruslah dengan izin Allah. Dan oleh sebab itu, hanya kepada Allah saja hendaknya orang yang beriman bertawakal dan berserah diri.',
+        footnotes: null,
+        text: "Para rasul mereka menjawab sebagai bantahan atas mereka, “Kami hanya manusia yang sama seperti kalian, kami mengakui bahwa kalian dengan kami adalah sama. Namun, hal ini tidak berarti bahwa kami dengan kalian sama persis dalam segala urusan karena Allah melimpahkan nikmat-Nya yang khusus kepada siapa yang Dia kehendaki dari hamba-hamba-Nya, lalu Dia mengangkat mereka menjadi utusan-utusan-Nya kepada manusia. Adapun kami maka tidak berhak mendatangkan apa yang kalian minta berupa bukti kebenaran kecuali dengan kehendak Allah karena mendatangkannya bukan kewenangan kami, akan tetapi hanya Allah semata yang berkuasa atas itu. Hanya kepada Allah semata orang-orang mukmin wajib bertawakal dalam segala urusan mereka.",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e\u062a\u0652 \u0644\u064e\u0647\u064f\u0645\u0652 \u0631\u064f\u0633\u064f\u0644\u064f\u0647\u064f\u0645\u0652 \u0625\u0650\u0646 \u0646\u0651\u064e\u062d\u0652\u0646\u064f \u0625\u0650\u0644\u0651\u064e\u0627 \u0628\u064e\u0634\u064e\u0631\u064c \u0645\u0651\u0650\u062b\u0652\u0644\u064f\u0643\u064f\u0645\u0652 \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064e\u0645\u064f\u0646\u0651\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0645\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u0645\u0650\u0646\u0652 \u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0647\u0650 \u06d6 \u0648\u064e\u0645\u064e\u0627 \u0643\u064e\u0627\u0646\u064e \u0644\u064e\u0646\u064e\u0627 \u0623\u064e\u0646 \u0646\u0651\u064e\u0623\u0652\u062a\u0650\u064a\u064e\u0643\u064f\u0645 \u0628\u0650\u0633\u064f\u0644\u0652\u0637\u064e\u0627\u0646\u064d \u0625\u0650\u0644\u0651\u064e\u0627 \u0628\u0650\u0625\u0650\u0630\u0652\u0646\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06da \u0648\u064e\u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0644\u0652\u064a\u064e\u062a\u064e\u0648\u064e\u0643\u0651\u064e\u0644\u0650 \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qaalat lahum Rusuluhum in nahnu illaa basharum mislukum wa laakinnal laaha yamunnu 'alaa mai yashaaa'u min 'ibaadihee wa maa kaana lanaaa an naatiyakum bisul taanin illaa bi iznil laah; wa 'alal laahi falyatawakkalil mu'minonn",
-      },
+      arabic:
+        "قَالَتْ لَهُمْ رُسُلُهُمْ إِن نَّحْنُ إِلَّا بَشَرٌ مِّثْلُكُمْ وَلَٰكِنَّ ٱللَّهَ يَمُنُّ عَلَىٰ مَن يَشَآءُ مِنْ عِبَادِهِۦ وَمَا كَانَ لَنَآ أَن نَّأْتِيَكُم بِسُلْطَٰنٍ إِلَّا بِإِذْنِ ٱللَّهِ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
     },
     translation: {
-      en: 'Their messengers said to them, "We are only men like you, but Allah confers favor upon whom He wills of His servants. It has never been for us to bring you evidence except by permission of Allah. And upon Allah let the believers rely.',
-      id: "Rasul-rasul mereka berkata kepada mereka, “Kami hanyalah manusia seperti kamu, tetapi Allah memberi karunia kepada siapa yang Dia kehendaki di antara hamba-hamba-Nya. Tidak pantas bagi kami mendatangkan suatu bukti kepada kamu melainkan dengan izin Allah. Dan hanya kepada Allah saja hendaknya orang yang beriman bertawakal.",
+      en: {
+        footnotes: "",
+        text: "Their messengers said to them, “We are no more than human beings like you, but it is Allah Who bestows His favor upon whom He wills of His slaves. It is not for us to bring you proof except with Allah’s permission, and in Allah let the believers put their trust.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Rasul-rasul mereka berkata kepada mereka, "Kami hanyalah manusia seperti kamu, tetapi Allah memberi karunia kepada siapa yang Dia kehendaki di antara hamba-hamba-Nya. Tidak pantas bagi kami mendatangkan suatu bukti kepada kamu melainkan dengan izin Allah. Dan hanya kepada Allah saja hendaknya orang yang beriman itu bertawakal.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1762",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1762.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1762.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 103,
       juz: 13,
       manzil: 3,
       page: 257,
       ruku: 212,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1762,
@@ -229,20 +193,23 @@ export const quranSurah14Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini diterangkan penegasan para rasul kepada umat mereka, bahwa bagi mereka tidak ada alasan sama sekali untuk tidak bertawakal kepada Allah swt, karena Dia telah memberikan rahmat dan nikmat yang banyak sekali kepada mereka. Di antaranya ialah bahwa Allah swt telah menunjukkan kepada mereka jalan lurus yang mengantarkan mereka kepada cahaya iman yang terang benderang sehingga mereka memperoleh rida-Nya di dunia dan di akhirat. Oleh sebab itu, mereka akan menghadapi semua ancaman umat mereka dengan penuh kesabaran dan keuletan serta tawakal kepada Yang Mahakuasa. Hanya kepada Allah semata-mata orang-orang mukmin bertawakal dan berserah diri. Mereka tidak merasa gentar ataupun takut terhadap ancaman orang-orang yang tidak beriman karena segala sesuatu di alam ini tunduk di bawah kekuasaan Allah.",
-        short:
-          'Dan kami, para rasul, selalu bertawakal kepada Allah. Mengapa kami tidak akan bertawakal kepada Allah Yang Maha Pencipta dan Mahaperkasa, sedangkan Dia telah menunjukkan jalan yang lurus kepada kami sehingga kami akan selamat dari azab-Nya, dan jika kalian menyakiti kami karenanya, baik dengan perkataan maupun perbuatan, kami sungguh akan tetap bersabar terhadap gangguan yang kamu lakukan kepada kami itu. Dan ketahuilah, hanya kepada Allah saja orang yang bertawakal berserah diri. Mereka bertawakal kepada-Nya karena yakin bahwa Dia akan mengulurkan pertolongan."',
+        footnotes: null,
+        text: "Apa halangan dan alasan yang menghalangi kami untuk bertawakal kepada Allah? Padahal Allah telah membimbing kami ke jalan paling lurus dan paling jelas. Kami sungguh akan bersabar menghadapi sikap kalian yang mendustakan dan menghina kami. Hanya kepada Allah semata orang-orang mukmin wajib bertawakal dalam segala urusan mereka.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0644\u064e\u0646\u064e\u0627 \u0623\u064e\u0644\u0651\u064e\u0627 \u0646\u064e\u062a\u064e\u0648\u064e\u0643\u0651\u064e\u0644\u064e \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0642\u064e\u062f\u0652 \u0647\u064e\u062f\u064e\u0627\u0646\u064e\u0627 \u0633\u064f\u0628\u064f\u0644\u064e\u0646\u064e\u0627 \u06da \u0648\u064e\u0644\u064e\u0646\u064e\u0635\u0652\u0628\u0650\u0631\u064e\u0646\u0651\u064e \u0639\u064e\u0644\u064e\u0649\u0670 \u0645\u064e\u0627 \u0622\u0630\u064e\u064a\u0652\u062a\u064f\u0645\u064f\u0648\u0646\u064e\u0627 \u06da \u0648\u064e\u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0644\u0652\u064a\u064e\u062a\u064e\u0648\u064e\u0643\u0651\u064e\u0644\u0650 \u0627\u0644\u0652\u0645\u064f\u062a\u064e\u0648\u064e\u0643\u0651\u0650\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa maa lanaa allaa natawakkala 'alal laahi wa qad hadaanaa subulanaa; wa lanasbiranna 'alaa maaa aazaitumoonaa; wa 'alal laahi falyatawakkalil mutawakkiloon",
-      },
+      arabic:
+        "وَمَا لَنَآ أَلَّا نَتَوَكَّلَ عَلَى ٱللَّهِ وَقَدْ هَدَىٰنَا سُبُلَنَا وَلَنَصْبِرَنَّ عَلَىٰ مَآ ءَاذَيْتُمُونَا وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُتَوَكِّلُونَ",
     },
     translation: {
-      en: 'And why should we not rely upon Allah while He has guided us to our [good] ways. And we will surely be patient against whatever harm you should cause us. And upon Allah let those who would rely [indeed] rely."',
-      id: "Dan mengapa kami tidak akan bertawakal kepada Allah, sedangkan Dia telah menunjukkan jalan kepada kami, dan kami sungguh, akan tetap bersabar terhadap gangguan yang kamu lakukan kepada kami. Dan hanya kepada Allah saja orang yang bertawakal berserah diri.”",
+      en: {
+        footnotes: "",
+        text: "Why should we not put our trust in Allah, and it is He Who has guided us to our ways? We will surely be patient against whatever harm you cause us. And in Allah let the faithful put their trust.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan mengapa kami tidak akan bertawakal kepada Allah, sedangkan Dia telah menunjukkan jalan kepada kami, dan sungguh kami akan tetap bersabar terhadap gangguan yang kamu lakukan kepada kami. Dan hanya kepada Allah saja orang yang bertawakal itu berserah diri."',
+      },
     },
   },
 ];

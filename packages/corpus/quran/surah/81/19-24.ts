@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah81Verses19To24 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5819",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5819.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5819.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5819,
@@ -24,40 +25,32 @@ export const quranSurah81Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menjelaskan objek sumpah yang disebutkan dalam ayat 15-18 di atas, yaitu sesungguhnya apa yang diberitahukan oleh Muhammad saw tentang peristiwa-peristiwa hari Kiamat bukanlah kata-kata seorang dukun atau isapan jempol. Akan tetapi, benar-benar wahyu yang dibawa oleh Malaikat Jibril dari Tuhannya. Allah telah menyifati utusan yang membawa Al-Qur'an tersebut, yaitu Malaikat Jibril, dengan lima macam sifat yang mengandung keutamaan:\n\n1.Yang mulia pada sisi Tuhannya karena Allah memberikan padanya sesuatu yang paling berharga yaitu hidayah, dan memerintahkannya untuk menyampaikan hidayah itu kepada para nabi-Nya diteruskan kepada para hamba-Nya.\n\n2.Yang mempunyai kekuatan dalam memelihara Al-Qur'an jauh dari sifat pelupa atau keliru.\n\n3.Yang mempunyai kedudukan tinggi di sisi Allah yang mempunyai 'Arasy.\n\n4.Yang ditaati di kalangan malaikat karena kewenangannya.\n\n5.Yang dipercaya untuk menyampaikan wahyu karena terpelihara dari sifat-sifat khianat dan penyelewengan.",
-        short:
-          "Demi ketiga hal itu, sesungguhnya Al-Qur’an itu benar-benar firman Allah yang dibawa turun oleh utusan yang mulia, yaitu Jibril yang diamanati untuk mengawal wahyu Allah kepada para nabi.",
+        footnotes: null,
+        text: "Dia bersumpah dengan semua itu bahwa sesungguhnya Al-Qur`ān yang diturunkan kepada Muhammad -ṣallallāhu 'alaihi wa sallam- adalah benar-benar firman Allah yang disampaikan oleh malaikat yang memegang amanat, yaitu Jibril -'alaihissalām- yang diberi amanat oleh Allah.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0644\u064e\u0642\u064e\u0648\u0652\u0644\u064f \u0631\u064e\u0633\u064f\u0648\u0644\u064d \u0643\u064e\u0631\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Innahoo laqawlu rasoolin kareem",
-      },
+      arabic: "إِنَّهُۥ لَقَوْلُ رَسُولٍ كَرِيمٍ",
     },
     translation: {
-      en: "[That] indeed, the Qur'an is a word [conveyed by] a noble messenger",
-      id: "sesungguhnya (Al-Qur'an) itu benar-benar firman (Allah yang dibawa oleh) utusan yang mulia (Jibril),",
+      en: {
+        footnotes: "",
+        text: "Indeed, this [Qur’an] is a word conveyed by a noble angel-messenger.",
+      },
+      id: {
+        footnotes: "",
+        text: "sesungguhnya (Al-Qur`an) itu benar-benar firman (Allah yang dibawa oleh) utusan yang mulia (Jibril),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5820",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5820.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5820.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5820,
@@ -65,40 +58,32 @@ export const quranSurah81Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menjelaskan objek sumpah yang disebutkan dalam ayat 15-18 di atas, yaitu sesungguhnya apa yang diberitahukan oleh Muhammad saw tentang peristiwa-peristiwa hari Kiamat bukanlah kata-kata seorang dukun atau isapan jempol. Akan tetapi, benar-benar wahyu yang dibawa oleh Malaikat Jibril dari Tuhannya. Allah telah menyifati utusan yang membawa Al-Qur'an tersebut, yaitu Malaikat Jibril, dengan lima macam sifat yang mengandung keutamaan:\n\n1.Yang mulia pada sisi Tuhannya karena Allah memberikan padanya sesuatu yang paling berharga yaitu hidayah, dan memerintahkannya untuk menyampaikan hidayah itu kepada para nabi-Nya diteruskan kepada para hamba-Nya.\n\n2.Yang mempunyai kekuatan dalam memelihara Al-Qur'an jauh dari sifat pelupa atau keliru.\n\n3.Yang mempunyai kedudukan tinggi di sisi Allah yang mempunyai 'Arasy.\n\n4.Yang ditaati di kalangan malaikat karena kewenangannya.\n\n5.Yang dipercaya untuk menyampaikan wahyu karena terpelihara dari sifat-sifat khianat dan penyelewengan.",
-        short:
-          "Kami turunkan Al-Qur’an melalui Jibril yang memiliki kekuatan yang tidak tertandingi oleh makhluk lain. Jibril mempunyai 600 sayap. Dengan sayap sebanyak itu Jibril sanggup menembus langit ketujuh dengan kecepatan luar biasa. Itulah Jibril yang memiliki kedudukan tinggi di sisi Allah yang memiliki ‘Arsy, singgasana yang agung karena ketaatannya kepada Allah dan tugasnya yang sangat mulia sebagai pembawa wahyu.",
+        footnotes: null,
+        text: "Dia pemilik kekuatan dan kedudukan agung di sisi Sang Pemilik Arasy -Subḥānahu wa Ta'ālā-.",
       },
     },
     text: {
-      arab: "\u0630\u0650\u064a \u0642\u064f\u0648\u0651\u064e\u0629\u064d \u0639\u0650\u0646\u062f\u064e \u0630\u0650\u064a \u0627\u0644\u0652\u0639\u064e\u0631\u0652\u0634\u0650 \u0645\u064e\u0643\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Zee quwwatin 'inda zil 'arshi makeen",
-      },
+      arabic: "ذِى قُوَّةٍ عِندَ ذِى ٱلْعَرْشِ مَكِينٍ",
     },
     translation: {
-      en: "[Who is] possessed of power and with the Owner of the Throne, secure [in position],",
-      id: "yang memiliki kekuatan, memiliki kedudukan tinggi di sisi (Allah) yang memiliki ‘Arsy,",
+      en: {
+        footnotes: "",
+        text: "extremely powerful, highly revered by the Lord of the Throne,",
+      },
+      id: {
+        footnotes: "",
+        text: "yang memiliki kekuatan, memiliki kedudukan tinggi di sisi (Allah) yang memiliki Arasy,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5821",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5821.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5821.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5821,
@@ -106,40 +91,32 @@ export const quranSurah81Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menjelaskan objek sumpah yang disebutkan dalam ayat 15-18 di atas, yaitu sesungguhnya apa yang diberitahukan oleh Muhammad saw tentang peristiwa-peristiwa hari Kiamat bukanlah kata-kata seorang dukun atau isapan jempol. Akan tetapi, benar-benar wahyu yang dibawa oleh Malaikat Jibril dari Tuhannya. Allah telah menyifati utusan yang membawa Al-Qur'an tersebut, yaitu Malaikat Jibril, dengan lima macam sifat yang mengandung keutamaan:\n\n1.Yang mulia pada sisi Tuhannya karena Allah memberikan padanya sesuatu yang paling berharga yaitu hidayah, dan memerintahkannya untuk menyampaikan hidayah itu kepada para nabi-Nya diteruskan kepada para hamba-Nya.\n\n2.Yang mempunyai kekuatan dalam memelihara Al-Qur'an jauh dari sifat pelupa atau keliru.\n\n3.Yang mempunyai kedudukan tinggi di sisi Allah yang mempunyai 'Arasy.\n\n4.Yang ditaati di kalangan malaikat karena kewenangannya.\n\n5.Yang dipercaya untuk menyampaikan wahyu karena terpelihara dari sifat-sifat khianat dan penyelewengan.",
-        short:
-          "Itulah Jibril yang di sana, di alam malaikat, ditaati dan dipercaya atas wahyu yang disampaikannya.",
+        footnotes: null,
+        text: "Dia ditaati oleh para penghuni langit, menunaikan amanat yang dibebankan kepadanya berupa wahyu.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064f\u0637\u064e\u0627\u0639\u064d \u062b\u064e\u0645\u0651\u064e \u0623\u064e\u0645\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Mutaa'in samma ameen",
-      },
+      arabic: "مُّطَاعٍ ثَمَّ أَمِينٍ",
     },
     translation: {
-      en: "Obeyed there [in the heavens] and trustworthy.",
-      id: "yang di sana (di alam malaikat) ditaati dan dipercaya.",
+      en: {
+        footnotes: "",
+        text: "obeyed there [by other angels] and trustworthy.",
+      },
+      id: {
+        footnotes: "",
+        text: "yang di sana (di alam malaikat) ditaati dan dipercaya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5822",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5822.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5822.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5822,
@@ -147,40 +124,32 @@ export const quranSurah81Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah menyifati Nabi Muhammad dengan mengatakan bahwa Muhammad itu bukanlah orang gila, sebagaimana yang dituduhkan oleh orang-orang kafir Mekah.\n\nKalimat "temanmu" dalam ayat ini merupakan alasan untuk menerangkan kedustaan mereka. Sebab, setiap orang akan mengenal tabiat temannya yang sehari-hari bergaul dengannya. Orang-orang Quraisy itu selalu bergaul dengan Nabi Muhammad semenjak beliau masih kecil dan mengetahui kejujuran beliau. Oleh karena itu, mereka memberikan julukan kehormatan kepadanya dengan kata-kata "al-Amin" sebelum beliau menjadi nabi.\n\nBeliau tidak pernah berdusta, menyalahi janji, atau berkhianat, sehingga apa-apa yang dituduhkan kepada Nabi Muhammad itu tentang sifat gila, tukang sihir, atau pendusta adalah bohong semata.',
-        short:
-          "Kami turunkan wahyu melalui Jibril kepada Nabi Muhammad, temanmu yang kamu kenal baik sifatnya. Dan temanmu itu bukanlah orang gila seperti tuduhanmu kepadanya. Dia adalah seorang yang santun, tepercaya, dan berakhlak mulia. Perkataan orang gila bersifat racauan, tidak beraturan, dan tidak mempunyai nilai. Berbeda dari AlQur’an, kitab yang susunan kalimat maupun kandungannya mempunyai nilai sangat tinggi.",
+        footnotes: null,
+        text: "Sungguh, teman kalian, Muhammad -ṣallallāhu 'alaihi wa sallam- yang telah kalian ketahui akalnya, amanatnya, dan kejujurannya, sekali-kali bukanlah orang gila sebagaimana yang kalian tuduhkan kepadanya secara dusta.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0635\u064e\u0627\u062d\u0650\u0628\u064f\u0643\u064f\u0645 \u0628\u0650\u0645\u064e\u062c\u0652\u0646\u064f\u0648\u0646\u064d",
-      transliteration: {
-        en: "Wa maa saahibukum bimajnoon",
-      },
+      arabic: "وَمَا صَاحِبُكُم بِمَجْنُونٍ",
     },
     translation: {
-      en: "And your companion is not [at all] mad.",
-      id: "Dan temanmu (Muhammad) itu bukanlah orang gila.",
+      en: {
+        footnotes: "",
+        text: "Your fellow [i.e., the Prophet] is not a madman.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan temanmu (Muhammad) itu bukanlah orang gila.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5823",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5823.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5823.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5823,
@@ -188,40 +157,33 @@ export const quranSurah81Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Nabi Muhammad pernah melihat Jibril dalam bentuk yang asli dua kali dalam hidupnya. Pertama, ketika beliau berada di Gua Hira sebelum turunnya Surah al-Muddatstsir, dan kedua, ketika beliau mi'raj ke langit ketujuh. Firman Allah \n\nDan sungguh, dia (Muhammad) telah melihatnya (dalam rupanya yang asli) pada waktu yang lain, (yaitu) di Sidratul Muntaha. (an-Najm/53: 13-14)",
-        short:
-          "Ayat ini menegaskan pertemuan antara Jibril dalam wujudnya yang asli dengan Nabi Muhammad sesaat setelah Nabi menerima wahyu pertama di Gua Hira. Kaum musyrik mendustakan hal tersebut. Dan sungguh, dia telah melihatnya, yakni melihat Jibril, di ufuk yang terang, sehingga tidak dapat diragukan bahwa sosok yang datang itu adalah Jibril.",
+        footnotes: null,
+        text: "Teman kalian ini telah melihat Jibril di ufuk langit yang jelas dalam bentuk asli sebagaimana ia diciptakan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0642\u064e\u062f\u0652 \u0631\u064e\u0622\u0647\u064f \u0628\u0650\u0627\u0644\u0652\u0623\u064f\u0641\u064f\u0642\u0650 \u0627\u0644\u0652\u0645\u064f\u0628\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Wa laqad ra aahu bilufuqil mubeen",
-      },
+      arabic: "وَلَقَدْ رَءَاهُ بِٱلْأُفُقِ ٱلْمُبِينِ",
     },
     translation: {
-      en: "And he has already seen Gabriel in the clear horizon.",
-      id: "Dan sungguh, dia (Muhammad) telah melihatnya (Jibril) di ufuk yang terang.",
+      en: {
+        footnotes:
+          "[7] i.e., the eastern horizon, where the sun rises. See footnote 53:6",
+        text: "He indeed saw him [i.e., Gabriel] on the clear horizon[7].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, dia (Muhammad) telah melihatnya (Jibril) di ufuk yang terang.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5824",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5824.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5824.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5824,
@@ -229,20 +191,23 @@ export const quranSurah81Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Nabi Muhammad bukanlah seorang bakhil dalam menyampaikan seluruh wahyu yang disampaikan malaikat Jibril kepadanya. Di samping itu, beliau adalah seorang yang sangat dipercaya karena tidak pernah mengubah wahyu walaupun satu huruf dengan ucapannya sendiri.",
-        short:
-          "Dan dia bukanlah orang yang kikir untuk menerangkan ihwal perkara yang gaib, seperti Allah, malaikat, dan hari kiamat. Nabi dengan senang hati memberi penjelasan demi kemaslahatan banyak orang. Hal ini berbeda dari para dukun yang hanya mau membeberkan hal yang rahasia jika diberi imbalan.",
+        footnotes: null,
+        text: "Bukanlah teman kalian ini sebagai orang bakhil yang enggan untuk menyampaikan kepada kalian apa yang diperintahkan kepadanya untuk disampaikan kepada kalian dan dia juga tidak mengambil upah sebagaimana para dukun mengambil upah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0647\u064f\u0648\u064e \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u063a\u064e\u064a\u0652\u0628\u0650 \u0628\u0650\u0636\u064e\u0646\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Wa maa huwa 'alal ghaibi bidaneen",
-      },
+      arabic: "وَمَا هُوَ عَلَى ٱلْغَيْبِ بِضَنِينٍ",
     },
     translation: {
-      en: "And Muhammad is not a withholder of [knowledge of] the unseen.",
-      id: "Dan dia (Muhammad) bukanlah seorang yang kikir (enggan) untuk menerangkan yang gaib.",
+      en: {
+        footnotes:
+          "[8] He (ﷺ) did not withhold the unseen which Allah had revealed to him in the Qur’an.",
+        text: "He does not withhold [knowledge of] the unseen[8].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan Dia (Muhammad) bukanlah seorang yang kikir (enggan) untuk menerangkan yang gaib.",
+      },
     },
   },
 ];

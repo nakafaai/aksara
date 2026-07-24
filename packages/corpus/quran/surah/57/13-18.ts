@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah57Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5088",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5088.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5088.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 215,
       juz: 27,
       manzil: 7,
       page: 539,
       ruku: 473,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5088,
@@ -24,40 +25,34 @@ export const quranSurah57Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah Allah menyatakan keadaan orang-orang Mukmin pada hari Kiamat. Pada ayat ini Allah mengungkapkan bahwa orang-orang munafik pada hari Kiamat itu berseru kepada orang-orang beriman yang mendapatkan keridaan-Nya dan menjadi penghuni surga. "Tunggulah kami sehingga kita bersama menemui Allah serta biarkanlah mengambil sedikit dari cahaya kamu agar kami dapat keluar melalui sinar kamu dari azab yang pedih." Lalu permintaan ini dijawab dengan jawaban yang memutuskan harapan mereka serta menimbulkan kesedihan dan kesesalan, yaitu, "Tetaplah kamu di mana kamu berada, carilah di sana cahaya dan jangan mengharapkannya dari kami apa yang telah kami perbuat untuk diri kami dari amal saleh, karena tidak akan memberi manfaat bagi seseorang kecuali amal saleh sendiri." Yang demikian itu adalah olokan terhadap mereka sebagaimana mereka memperolok-olokkan orang-orang Mukmin semasa di dunia ketika mereka berkata: Kami beriman, padahal mereka tidak beriman. Inilah yang dikehendaki dengan firman-Nya; Allah akan memperolok-olokkan mereka dan membiarkan mereka terombang-ambing dalam kesesatan. (al-Baqarah/2: 15) Maka untuk memberi balasan semua perbuatan mereka, ditetapkanlah bagian yang membatasi tempat orang-orang Mukmin dan orang-orang munafik. Bagian yang ditempati orang-orang Mukmin adalah surga yang penuh dengan kenikmatan, sebaliknya bagian yang ditempati oleh orang-orang munafik adalah neraka yang dipenuhi siksa.',
-        short:
-          "Balasan bagi orang yang memberi Allah pinjaman yang baik juga akan terlihat pada hari ketika orang-orang munafik laki-laki dan perempuan berkata kepada orang-orang yang beriman, “Tunggulah dan jangan tinggalkan kami! Kami ingin mengambil cahayamu untuk menerangi kami.” Dikatakan kepada mereka dengan nada mengejak, “Kembalilah kamu ke belakang dan carilah sendiri cahaya yang menyinari dirimu.” Lalu di antara mereka dipasang dinding pemisah yang berpintu. Di sebelah dalam dinding itu ada rahmat dan anugerah bagi orang yang beriman dan beramal saleh, dan di luarnya hanya ada azab dan hukuman bagi orang munafik.14. Begitu mendapati azab, orang-orang munafik memanggil orang-orang mukmin, “Bukankah kami di dunia dahulu bersama kamu?” Mereka yang beriman menjawab, “Benar, tetapi kamu selalu mencelakakan dirimu sendiri dengan melakukan perbuatan yang tidak patut dan hanya menunggu kehancuran kami dengan pengkhianatanmu, dan kamu meragukan janji Allah dan seringkali kamu ditipu oleh angan-angan kosong sampai pada akhirnya datanglah ketetapan Allah; dan setan penipu datang memperdaya kamu tentang Allah sehingga kamu terus berada dalam keraguan.",
+        footnotes: null,
+        text: "Pada hari kaum munafik laki-laki dan perempuan berkata kepada orang-orang yang beriman kepada Allah dan Rasul-Nya, “Tunggulah kami agar kami bisa mendapatkan sebagian dari cahaya kalian yang bisa membantu kami untuk melewati sirat ini.” Lalu dikatakan kepada orang-orang muanfik itu dalam bentuk hinaan terhadap mereka, “Kembalilah ke belakang dan carilah cahaya yang bisa kalian jadikan penerang.” Lalu dibuatlah pagar pembatas yang mempunyai pintu di antara mereka, di bagian dalamnya ke arah orang-orang yang beriman terdapat rahmat dan bagian luarnya ke arah orang-orang munafik terdapat siksa.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0648\u0652\u0645\u064e \u064a\u064e\u0642\u064f\u0648\u0644\u064f \u0627\u0644\u0652\u0645\u064f\u0646\u064e\u0627\u0641\u0650\u0642\u064f\u0648\u0646\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0646\u064e\u0627\u0641\u0650\u0642\u064e\u0627\u062a\u064f \u0644\u0650\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0627\u0646\u0638\u064f\u0631\u064f\u0648\u0646\u064e\u0627 \u0646\u064e\u0642\u0652\u062a\u064e\u0628\u0650\u0633\u0652 \u0645\u0650\u0646 \u0646\u0651\u064f\u0648\u0631\u0650\u0643\u064f\u0645\u0652 \u0642\u0650\u064a\u0644\u064e \u0627\u0631\u0652\u062c\u0650\u0639\u064f\u0648\u0627 \u0648\u064e\u0631\u064e\u0627\u0621\u064e\u0643\u064f\u0645\u0652 \u0641\u064e\u0627\u0644\u0652\u062a\u064e\u0645\u0650\u0633\u064f\u0648\u0627 \u0646\u064f\u0648\u0631\u064b\u0627 \u0641\u064e\u0636\u064f\u0631\u0650\u0628\u064e \u0628\u064e\u064a\u0652\u0646\u064e\u0647\u064f\u0645 \u0628\u0650\u0633\u064f\u0648\u0631\u064d \u0644\u0651\u064e\u0647\u064f \u0628\u064e\u0627\u0628\u064c \u0628\u064e\u0627\u0637\u0650\u0646\u064f\u0647\u064f \u0641\u0650\u064a\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0629\u064f \u0648\u064e\u0638\u064e\u0627\u0647\u0650\u0631\u064f\u0647\u064f \u0645\u0650\u0646 \u0642\u0650\u0628\u064e\u0644\u0650\u0647\u0650 \u0627\u0644\u0652\u0639\u064e\u0630\u064e\u0627\u0628\u064f",
-      transliteration: {
-        en: "Yawma yaqoolul munaa fiqoona walmunaafiqaatu lillazeena aamanun zuroonaa naqtabis min noorikum qeelarji'oo waraaa'akum faltamisoo nooran faduriba bainahum bisooril lahoo baab, baatinuhoo feehir rahmatu wa zaahiruhoo min qibalihi-'azaab",
-      },
+      arabic:
+        "يَوْمَ يَقُولُ ٱلْمُنَٰفِقُونَ وَٱلْمُنَٰفِقَٰتُ لِلَّذِينَ ءَامَنُوا۟ ٱنظُرُونَا نَقْتَبِسْ مِن نُّورِكُمْ قِيلَ ٱرْجِعُوا۟ وَرَآءَكُمْ فَٱلْتَمِسُوا۟ نُورًا فَضُرِبَ بَيْنَهُم بِسُورٍ لَّهُۥ بَابٌۢ بَاطِنُهُۥ فِيهِ ٱلرَّحْمَةُ وَظَٰهِرُهُۥ مِن قِبَلِهِ ٱلْعَذَابُ",
     },
     translation: {
-      en: 'On the [same] Day the hypocrite men and hypocrite women will say to those who believed, "Wait for us that we may acquire some of your light." It will be said, "Go back behind you and seek light." And a wall will be placed between them with a door, its interior containing mercy, but on the outside of it is torment.',
-      id: "Pada hari orang-orang munafik laki-laki dan perempuan berkata kepada orang-orang yang beriman, “Tunggulah kami! Kami ingin mengambil cahayamu.” (Kepada mereka) dikatakan,  ”Kembalilah kamu ke belakang dan carilah sendiri cahaya (untukmu).” Lalu di antara mereka dipasang dinding (pemisah) yang berpintu. Di sebelah dalam ada rahmat dan di luarnya hanya ada azab.",
+      en: {
+        footnotes:
+          "[11] i.e., the worldly life from where the light was acquired. [12] This wall is said to be the barrier between Paradise and Hell, which is called Al-A‘rāf (the heights). See 7:46-49.",
+        text: "On that Day the hypocrite men and women will say to those who believe, “Wait for us, so that we may have some of your light.” It will be said, “Go back and seek light elsewhere[11].” Then a wall will be placed between them, which will have a gate[12], on the inside of which there will be mercy and on the outside there will be punishment.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Pada hari orang-orang munafik laki-laki dan perempuan berkata kepada orang-orang yang beriman, "Tunggulah kami! Kami ingin mengambil cahayamu." (Kepada mereka) dikatakan, "Kembalilah kamu ke belakang dan carilah sendiri cahaya (untukmu)." Lalu di antara mereka dipasang dinding (pemisah) yang berpintu. Di bagian dalam ada rahmat dan di luarnya hanya ada azab.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5089",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5089.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5089.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 215,
       juz: 27,
       manzil: 7,
       page: 539,
       ruku: 473,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5089,
@@ -65,40 +60,33 @@ export const quranSurah57Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian pada ayat ini Allah menyatakan peristiwa yang dialami orang-orang munafik di akhirat nanti, yaitu mereka berseru kepada orang-orang Mukmin dan mengatakan, "Bukankah kami bersama-sama kamu semasa hidup di dunia?" Lalu orang-orang Mukmin menjawab, "Ya benar, kita sama-sama salat, berwukuf di Arafah, berperang dan mengerjakan kewajiban-kewajiban agama lainnya tetapi kamu berfoya-foya dengan kelezatan dan maksiat, ragu tentang hari kebangkitan, teperdaya oleh angan-angan sehingga kamu mengatakan bahwa dosa kamu akan diampuni Allah, karena bisikan setan yang mengatakan kepadamu bahwa Allah Maha Pengampun, dan Dia akan memaafkan dosa-dosamu." Maksudnya, sebenarnya kamu hai orang-orang munafik bersama kami di dunia hanya tubuhmu yang kasar saja, padahal jiwamu tidak bersama kami, tidak mempunyai ketegasan dalam pendirian maka kamu jarang sekali mengingat Allah."',
-        short:
-          "Begitu mendapati azab, orang-orang munafik memanggil orang-orang mukmin, “Bukankah kami di dunia dahulu bersama kamu?” Mereka yang beriman menjawab, “Benar, tetapi kamu selalu mencelakakan dirimu sendiri dengan melakukan perbuatan yang tidak patut dan hanya menunggu kehancuran kami dengan pengkhianatanmu, dan kamu meragukan janji Allah dan seringkali kamu ditipu oleh angan-angan kosong sampai pada akhirnya datanglah ketetapan Allah; dan setan penipu datang memperdaya kamu tentang Allah sehingga kamu terus berada dalam keraguan.15. Wahai orang munafik, karena keraguanmu kepada Allah dan janji-Nya, maka pada hari ini, yaitu di akhirat, tidak akan diterima tebusan dari kamu maupun dari orang-orang kafir. Karena sikapmu itu maka tempat kamu yang sesuai adalah di neraka. Itulah tempat berlindungmu untuk selama-lamanya, dan itulah seburuk-buruk tempat kembali bagi orang yang ingkar.”",
+        footnotes: null,
+        text: "Orang-orang munafik memanggil orang-orang yang beriman sambil berkata, “Bukankah kami pernah bersama kalian dalam keislaman dan ketaatan?!” Orang-orang yang beriman menjawab, “Betul, kalian pernah bersama kami, akan tetapi kalian telah mencelakai diri kalian sendiri dengan melakukan kemunafikan sehingga kalian membinasakan diri kalian sendiri, kalian menunggu orang-orang yang beriman dikalahkan lalu kalian mulai mengumumkan kekufuran kalian, kalian ragu-ragu terhadap pertolongan Allah kepada orang-orang yang beriman dan terhadap kebangkitan setelah kematian, dan kalian tertipu oleh angan-angan hampa sehingga datang kematian menjemput kalian sedang kalian tetap dalam kondisi itu, dan setanlah yang telah menipu kalian terhadap Allah.”",
       },
     },
     text: {
-      arab: "\u064a\u064f\u0646\u064e\u0627\u062f\u064f\u0648\u0646\u064e\u0647\u064f\u0645\u0652 \u0623\u064e\u0644\u064e\u0645\u0652 \u0646\u064e\u0643\u064f\u0646 \u0645\u0651\u064e\u0639\u064e\u0643\u064f\u0645\u0652 \u06d6 \u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0628\u064e\u0644\u064e\u0649\u0670 \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0641\u064e\u062a\u064e\u0646\u062a\u064f\u0645\u0652 \u0623\u064e\u0646\u0641\u064f\u0633\u064e\u0643\u064f\u0645\u0652 \u0648\u064e\u062a\u064e\u0631\u064e\u0628\u0651\u064e\u0635\u0652\u062a\u064f\u0645\u0652 \u0648\u064e\u0627\u0631\u0652\u062a\u064e\u0628\u0652\u062a\u064f\u0645\u0652 \u0648\u064e\u063a\u064e\u0631\u0651\u064e\u062a\u0652\u0643\u064f\u0645\u064f \u0627\u0644\u0652\u0623\u064e\u0645\u064e\u0627\u0646\u0650\u064a\u0651\u064f \u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u062c\u064e\u0627\u0621\u064e \u0623\u064e\u0645\u0652\u0631\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u063a\u064e\u0631\u0651\u064e\u0643\u064f\u0645 \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0652\u063a\u064e\u0631\u064f\u0648\u0631\u064f",
-      transliteration: {
-        en: "Yunaadoonahum alam nakum ma'akum qaaloo balaa wa laakinnakum fatantum anfusakum wa tarabbastum wartabtum wa gharratkumul amaaniyyu hatta jaaa'a amrul laahi wa gharrakum billaahil gharoor",
-      },
+      arabic:
+        "يُنَادُونَهُمْ أَلَمْ نَكُن مَّعَكُمْ قَالُوا۟ بَلَىٰ وَلَٰكِنَّكُمْ فَتَنتُمْ أَنفُسَكُمْ وَتَرَبَّصْتُمْ وَٱرْتَبْتُمْ وَغَرَّتْكُمُ ٱلْأَمَانِىُّ حَتَّىٰ جَآءَ أَمْرُ ٱللَّهِ وَغَرَّكُم بِٱللَّهِ ٱلْغَرُورُ",
     },
     translation: {
-      en: 'The hypocrites will call to the believers, "Were we not with you?" They will say, "Yes, but you afflicted yourselves and awaited [misfortune for us] and doubted, and wishful thinking deluded you until there came the command of Allah. And the Deceiver deceived you concerning Allah.',
-      id: "Orang-orang munafik memanggil orang-orang mukmin, “Bukankah kami dahulu bersama kamu?” Mereka menjawab, “Benar, tetapi kamu mencelakakan dirimu sendiri, dan hanya menunggu, meragukan (janji Allah) dan ditipu oleh angan-angan kosong sampai datang ketetapan Allah; dan penipu (setan) datang memperdaya kamu tentang Allah.",
+      en: {
+        footnotes: "[13] By hypocrisy.",
+        text: "The hypocrites will call out to the believers, “Were we not with you?” They will say, “Yes, but you allowed yourselves[13] to succumb to temptations, you awaited [some misfortune to befall us], you doubted, and you were deceived by false hopes, until Allah’s decree came to pass. Thus the deceiver [i.e., Satan] deceived you concerning Allah.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Orang-orang munafik memanggil orang-orang mukmin, "Bukankah kami dahulu bersama kamu?" Mereka menjawab, "Benar, tetapi kamu mencelakakan dirimu sendiri, dan kamu hanya menunggu, meragukan (janji Allah) dan ditipu oleh angan-angan kosong sampai datang ketetapan Allah; dan penipu (setan) datang memperdaya kamu tentang Allah.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5090",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5090.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5090.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 215,
       juz: 27,
       manzil: 7,
       page: 539,
       ruku: 473,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5090,
@@ -106,40 +94,33 @@ export const quranSurah57Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menjelaskan akibat tindakan orang-orang munafik. Mereka akan terus binasa dan tidak ada jalan untuk melepaskan diri dari neraka, yaitu jika salah seorang dari mereka ingin menebus dirinya dari azab dengan tebusan berupa emas sepenuh bumi, tidak juga akan diterima. Mereka tetap dilempar di dalam neraka sebab tidak ada tempat yang lebih layak bagi mereka selain itu. Dan itulah tempat yang paling buruk.",
-        short:
-          "Wahai orang munafik, karena keraguanmu kepada Allah dan janji-Nya, maka pada hari ini, yaitu di akhirat, tidak akan diterima tebusan dari kamu maupun dari orang-orang kafir. Karena sikapmu itu maka tempat kamu yang sesuai adalah di neraka. Itulah tempat berlindungmu untuk selama-lamanya, dan itulah seburuk-buruk tempat kembali bagi orang yang ingkar.”16. Usai menjelaskan balasan bagi orang munafik dan kafir, pada ayat ini Allah memberi teguran kepada orang mukmin yang lalai pada ibadahnya. Belum tibakah waktunya bagi orang-orang yang beriman, yaitu mereka yang tidak meragukan janji Allah, untuk secara khusyuk mengingat Allah dengan berzikir dan beribadah, dan mematuhi kebenaran Al-Qur’an yang telah diwahyukan kepada mereka? Dan janganlah mereka berperilaku seperti orang-orang yang telah menerima kitab sebelum itu, di mana sebagia dari mereka mengingkari hukumnya dan sebagian yang lain menyembunyikan atau mengubah isinya, kemudian mereka melalui masa yang panjang tanpa adanya rasul yang mengingatkan mereka se-hingga pada akhirnya hati mereka menjadi keras. Dan banyak di antara mereka menjadi orang-orang fasik karena tidak ada yang mengingatkan kekeliruannya.",
+        footnotes: null,
+        text: "Oleh karena itu, pada hari ini -wahai orang-orang munafik- tidak diterima tebusan kalian dari siksa Allah dan tidak diterima tebusan dari orang-orang yang kafir terhadap Allah dengan terang-terangan. Tempat kembali kalian dan orang-orang kafir adalah neraka, itu lebih cocok untuk kalian dan kalian lebih cocok di neraka, sungguh neraka itu adalah seburuk-buruk tempat kembali.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u064e \u0644\u064e\u0627 \u064a\u064f\u0624\u0652\u062e\u064e\u0630\u064f \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0641\u0650\u062f\u0652\u064a\u064e\u0629\u064c \u0648\u064e\u0644\u064e\u0627 \u0645\u0650\u0646\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u06da \u0645\u064e\u0623\u0652\u0648\u064e\u0627\u0643\u064f\u0645\u064f \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u064f \u06d6 \u0647\u0650\u064a\u064e \u0645\u064e\u0648\u0652\u0644\u064e\u0627\u0643\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0628\u0650\u0626\u0652\u0633\u064e \u0627\u0644\u0652\u0645\u064e\u0635\u0650\u064a\u0631\u064f",
-      transliteration: {
-        en: "Fal Yawma laa yu'khazu minkum fidyatunw wa laa minal lazeena kafaroo; maawaakumun Naaru hiya maw laakum wa bi'sal maseer",
-      },
+      arabic:
+        "فَٱلْيَوْمَ لَا يُؤْخَذُ مِنكُمْ فِدْيَةٌ وَلَا مِنَ ٱلَّذِينَ كَفَرُوا۟ مَأْوَىٰكُمُ ٱلنَّارُ هِىَ مَوْلَىٰكُمْ وَبِئْسَ ٱلْمَصِيرُ",
     },
     translation: {
-      en: "So today no ransom will be taken from you or from those who disbelieved. Your refuge is the Fire. It is most worthy of you, and wretched is the destination.",
-      id: "Maka pada hari ini tidak akan diterima tebusan dari kamu maupun dari orang-orang kafir. Tempat kamu di neraka. Itulah tempat berlindungmu, dan itulah seburuk-buruk tempat kembali.”",
+      en: {
+        footnotes: "",
+        text: "So this Day no ransom will be accepted from you or from the disbelievers. Your abode is the Fire; it is a fitting place for you – what a wretched destination!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Maka pada hari ini tidak akan diterima tebusan dari kamu maupun dari orang-orang kafir. Tempat kamu di neraka. Itulah tempat berlindungmu, dan itulah seburuk-buruk tempat kembali."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5091",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5091.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5091.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 216,
       juz: 27,
       manzil: 7,
       page: 539,
       ruku: 473,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5091,
@@ -147,40 +128,33 @@ export const quranSurah57Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menegur dan memperingatkan orangorang Mukmin tentang keadaan mereka yang berlalai-lalai. Belum datangkah waktunya bagi orang-orang Mukmin untuk mempunyai hati yang lembut, senantiasa mengingat Allah, suka mendengar dan memahami ajaran-ajaran agama mereka, taat dan patuh mengikuti petunjuk-petunjuk kebenaran yang telah diturunkan, yang terbentang di dalam Al-Qur'an Selanjutnya orang-orang Mukmin diperingatkan agar jangan sekali-kali meniru-niru orang-orang Yahudi dan Nasrani yang telah diberikan Kitab Taurat dan Injil. Sekalipun telah lama dan memakan waktu agak panjang, mereka belum juga mengikuti dan memahami ajaran mereka dan nabi-nabi mereka, sehingga hati mereka menjadi keras dan susah membantu, tidak lagi dapat menerima nasihat, tidak membekas pada diri mereka ancaman-ancaman yang ditujukan kepada mereka. Mereka mengubah Kitab yang ada di tangan mereka dan ajaran-ajaran Kitab mereka dilempar jauh-jauh. Pendeta dan pastur mereka jadikan tuhan selain Allah, membikin agama tanpa alasan. Kebanyakan mereka menjadi fasik, meninggalkan ajaranajaran mereka yang asli. Sejalan dengan ayat ini firman Allah: \n\n(Tetapi) karena mereka melanggar janjinya, maka Kami melaknat mereka, dan Kami jadikan hati mereka keras membatu. Mereka suka mengubah firman (Allah) dari tempatnya, dan mereka (sengaja) melupakan sebagian pesan yang telah diperingatkan kepada mereka. Engkau (Muhammad) senantiasa akan melihat pengkhianatan dari mereka kecuali sekelompok kecil di antara mereka (yang tidak berkhianat), maka maafkanlah mereka dan biarkan mereka. Sungguh, Allah menyukai orang-orang yang berbuat baik. (al-Ma'idah/5: 13)",
-        short:
-          "Usai menjelaskan balasan bagi orang munafik dan kafir, pada ayat ini Allah memberi teguran kepada orang mukmin yang lalai pada ibadahnya. Belum tibakah waktunya bagi orang-orang yang beriman, yaitu mereka yang tidak meragukan janji Allah, untuk secara khusyuk mengingat Allah dengan berzikir dan beribadah, dan mematuhi kebenaran Al-Qur’an yang telah diwahyukan kepada mereka? Dan janganlah mereka berperilaku seperti orang-orang yang telah menerima kitab sebelum itu, di mana sebagia dari mereka mengingkari hukumnya dan sebagian yang lain menyembunyikan atau mengubah isinya, kemudian mereka melalui masa yang panjang tanpa adanya rasul yang mengingatkan mereka se-hingga pada akhirnya hati mereka menjadi keras. Dan banyak di antara mereka menjadi orang-orang fasik karena tidak ada yang mengingatkan kekeliruannya.17. Wahai orang yang beriman, ketahuilah bahwa Allah berkuasa menghidupkan bumi setelah mati dan kering-nya dengan menurunkan hujan sehingga bumi menjadi subur dan menjadi media tumbuh tanaman. Sungguh, telah Kami jelaskan kepadamu sebagian dari tanda-tanda kebesaran Kami, baik yang ada di alam semesta atau pada dirimu sendiri, agar kamu mengerti.",
+        footnotes: null,
+        text: "Belum tibakah waktunya bagi orang-orang yang beriman kepada Allah dan Rasul-Nya untuk lembut dan tenang hati mereka karena mengingat Allah -Subḥānahu- dan karena janji serta ancaman yang diturunkan di dalam Al-Qur`ān?! Janganlah mereka menjadi seperti orang-orang Yahudi yang diberi Kitab Taurat dan orang-orang Nasrani yang diberi Kitab Injil dalam hal kekerasan hati, lalu berlalu waktu yang panjang antara mereka dengan diutusnya para nabi kepada mereka, sehingga hati mereka menjadi keras karenanya dan banyak dari mereka yang keluar dari ketaatan kepada Allah menuju kemaksiatan.",
       },
     },
     text: {
-      arab: "\u06de \u0623\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u0623\u0652\u0646\u0650 \u0644\u0650\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0623\u064e\u0646 \u062a\u064e\u062e\u0652\u0634\u064e\u0639\u064e \u0642\u064f\u0644\u064f\u0648\u0628\u064f\u0647\u064f\u0645\u0652 \u0644\u0650\u0630\u0650\u0643\u0652\u0631\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0645\u064e\u0627 \u0646\u064e\u0632\u064e\u0644\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u0643\u064f\u0648\u0646\u064f\u0648\u0627 \u0643\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064f\u0648\u062a\u064f\u0648\u0627 \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u064f \u0641\u064e\u0637\u064e\u0627\u0644\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u064f \u0627\u0644\u0652\u0623\u064e\u0645\u064e\u062f\u064f \u0641\u064e\u0642\u064e\u0633\u064e\u062a\u0652 \u0642\u064f\u0644\u064f\u0648\u0628\u064f\u0647\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0643\u064e\u062b\u0650\u064a\u0631\u064c \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0641\u064e\u0627\u0633\u0650\u0642\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Alam yaani laillzeena aamanooo an takhsha'a quloo buhum lizikril laahi wa maa nazala minal haqqi wa laa yakoonoo kallazeena ootul Kitaaba min qablu fataala 'alaihimul amadu faqasat quloobuhum wa kaseerum minhum faasiqoon",
-      },
+      arabic:
+        "أَلَمْ يَأْنِ لِلَّذِينَ ءَامَنُوٓا۟ أَن تَخْشَعَ قُلُوبُهُمْ لِذِكْرِ ٱللَّهِ وَمَا نَزَلَ مِنَ ٱلْحَقِّ وَلَا يَكُونُوا۟ كَٱلَّذِينَ أُوتُوا۟ ٱلْكِتَٰبَ مِن قَبْلُ فَطَالَ عَلَيْهِمُ ٱلْأَمَدُ فَقَسَتْ قُلُوبُهُمْ وَكَثِيرٌ مِّنْهُمْ فَٰسِقُونَ",
     },
     translation: {
-      en: "Has the time not come for those who have believed that their hearts should become humbly submissive at the remembrance of Allah and what has come down of the truth? And let them not be like those who were given the Scripture before, and a long period passed over them, so their hearts hardened; and many of them are defiantly disobedient.",
-      id: "Belum tibakah waktunya bagi orang-orang yang beriman, untuk secara khusyuk mengingat Allah dan mematuhi kebenaran yang telah diwahyukan (kepada mereka), dan janganlah mereka (berlaku) seperti orang-orang yang telah menerima kitab sebelum itu, kemudian mereka melalui masa yang panjang sehingga hati mereka menjadi keras. Dan banyak di antara mereka menjadi orang-orang fasik.",
+      en: {
+        footnotes: "",
+        text: "Has the time not yet come for those who believe that their hearts should be humbled at the remembrance of Allah and the truth that has been revealed? And that they should not be like those who were given the Scripture before, whose hearts grew hard after the passage of a long time, and many of them were evildoers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Belum tibakah waktunya bagi orang-orang yang beriman, untuk secara khusyuk mengingat Allah dan mematuhi kebenaran yang telah diwahyukan (kepada mereka), dan janganlah mereka (berlaku) seperti orang-orang yang telah menerima kitab sebelum itu, kemudian mereka melalui masa yang panjang sehingga hati mereka menjadi keras. Dan banyak di antara mereka menjadi orang-orang fasik.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5092",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5092.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5092.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 216,
       juz: 27,
       manzil: 7,
       page: 539,
       ruku: 473,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5092,
@@ -188,40 +162,34 @@ export const quranSurah57Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menerangkan bahwa Dia yang menghidupkan bumi sesudah mati. Allah melembutkan hati yang keras, memberi petunjuk manusia yang sesat, menghilangkan kesukaran yang menimpa dengan penjelasan dan petunjuk Al-Qur'an dengan nasihat dan pengajaran yang dapat melembutkan batu yang keras yakni hati yang kesat, sebagaimana menghidupkan dan menyuburkan tanah yang gersang membatu dengan hujan yang lebat. Demikianlah Allah telah menjelaskan agar manusia itu dapat memikirkan dan mempergunakan akalnya dengan sebaik-baiknya.",
-        short:
-          "Wahai orang yang beriman, ketahuilah bahwa Allah berkuasa menghidupkan bumi setelah mati dan kering-nya dengan menurunkan hujan sehingga bumi menjadi subur dan menjadi media tumbuh tanaman. Sungguh, telah Kami jelaskan kepadamu sebagian dari tanda-tanda kebesaran Kami, baik yang ada di alam semesta atau pada dirimu sendiri, agar kamu mengerti. 18. Sesungguhnya orang-orang yang bersedekah dengan menginfakkan sebagian hartanya, baik laki-laki maupun perempuan, dan mereka dengan ikhlas meminjamkan kepada Allah dengan pinjaman yang baik, niscaya akan dilipatgandakan balasan kebaikan bagi mereka; dan mereka akan mendapat pahala yang mulia dari sisi-Nya.",
+        footnotes: null,
+        text: "Ketahuilah bahwa Allah menghidupkan bumi dengan menumbuhkan tumbuh-tumbuhan setelah sebelumnya kering. Kami telah menerangkan kepada kalian -wahai manusia- dalil-dalil dan bukti-bukti tentang kekuasaan Allah dan keesaan-Nya agar kalian memikirkannya, sehingga kalian mengetahui bahwa yang menghidupkan bumi setelah kematiannya mampu untuk menghidupkan kalian setelah kematian kalian serta mampu menjadikan hati kalian lembut setelah sebelumnya keras.",
       },
     },
     text: {
-      arab: "\u0627\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0627 \u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064f\u062d\u0652\u064a\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064e \u0628\u064e\u0639\u0652\u062f\u064e \u0645\u064e\u0648\u0652\u062a\u0650\u0647\u064e\u0627 \u06da \u0642\u064e\u062f\u0652 \u0628\u064e\u064a\u0651\u064e\u0646\u0651\u064e\u0627 \u0644\u064e\u0643\u064f\u0645\u064f \u0627\u0644\u0652\u0622\u064a\u064e\u0627\u062a\u0650 \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0643\u064f\u0645\u0652 \u062a\u064e\u0639\u0652\u0642\u0650\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "I'lamooo annal laaha yuhyil arda ba'da mawtihaa; qad baiyannaa lakumul Aayaati la'allakum ta'qiloon",
-      },
+      arabic:
+        "ٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ يُحْىِ ٱلْأَرْضَ بَعْدَ مَوْتِهَا قَدْ بَيَّنَّا لَكُمُ ٱلْـَٔايَٰتِ لَعَلَّكُمْ تَعْقِلُونَ",
     },
     translation: {
-      en: "Know that Allah gives life to the earth after its lifelessness. We have made clear to you the signs; perhaps you will understand.",
-      id: "Ketahuilah bahwa Allah yang menghidupkan bumi setelah matinya (kering). Sungguh, telah Kami jelaskan kepadamu tanda-tanda (kebesaran Kami) agar kamu mengerti.",
+      en: {
+        footnotes:
+          "[14] Similarly, it is easy for Allah to soften the hearts and guide after misguidance.",
+        text: "Know that Allah revives the earth after its death[14]. We have made the signs clear to you so that you may understand.",
+      },
+      id: {
+        footnotes: "",
+        text: "Ketahuilah bahwa Allah yang menghidupkan bumi setelah matinya (kering). Sungguh, telah Kami jelaskan kepadamu tanda-tanda (kebesaran Kami) agar kamu mengerti.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5093",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5093.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5093.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 216,
       juz: 27,
       manzil: 7,
       page: 539,
       ruku: 473,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5093,
@@ -229,20 +197,23 @@ export const quranSurah57Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menerangkan bahwa orang-orang yang membenarkan dan mempercayai Allah dan Rasul-Nya baik laki-laki dan perempuan dan meminjamkan kepada Allah pinjaman yang baik dengan jalan bersedekah dan mendermakan hartanya di jalan Allah dengan ikhlas, mengharap-harapkan rida-Nya semata-mata, tidak menghendaki balasan dan terima kasih, akan dilipatgandakan pembalasannya oleh Allah swt. Satu kebaikan yang dikerjakan dibalas dengan sepuluh kebaikan dan dilipatgandakan sampai tujuh ratus kali, dan bagi mereka itu pahala yang banyak dan tempat tinggal yang baik yaitu Jannatun na'im di akhirat.",
-        short:
-          "Sesungguhnya orang-orang yang bersedekah dengan menginfakkan sebagian hartanya, baik laki-laki maupun perempuan, dan mereka dengan ikhlas meminjamkan kepada Allah dengan pinjaman yang baik, niscaya akan dilipatgandakan balasan kebaikan bagi mereka; dan mereka akan mendapat pahala yang mulia dari sisi-Nya.19. Dan orang-orang yang beriman dengan mantap kepada Allah dan rasul-rasul-Nya serta tidak meragukan janji-Nya, mereka itu orang-orang yang tulus hati dan pecinta kebenaran, dan mereka menjadi saksi-saksi di sisi Tuhan mereka. Karena keimanan dan kebaikan itu mereka berhak mendapat pahala dan cahaya dari sisi Allah. Tetapi, orang-orang yang kafir dan mendustakan ayat-ayat Kami serta mengingkari ajaran-ajaran Kami, mereka itu penghuni-penghuni neraka. Mereka kekal di dalamnya.",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang yang menafkahkan sebagian harta mereka, baik laki-laki maupun perempuan, dengan sukarela tanpa disertai dengan mengungkit-ungkit pemberiannya dan tidak menyakiti perasaan orang yang menerimanya, maka pahala amal perbuatan mereka dilipatgandakan; kebaikan dengan sepuluh kali lipatnya hingga tujuh ratus kali lipat, hingga berlipat-lipat, dan di samping itu mereka mendapatkan pahala yang baik di sisi Allah, yaitu surga.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u0645\u064f\u0635\u0651\u064e\u062f\u0651\u0650\u0642\u0650\u064a\u0646\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0635\u0651\u064e\u062f\u0651\u0650\u0642\u064e\u0627\u062a\u0650 \u0648\u064e\u0623\u064e\u0642\u0652\u0631\u064e\u0636\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0642\u064e\u0631\u0652\u0636\u064b\u0627 \u062d\u064e\u0633\u064e\u0646\u064b\u0627 \u064a\u064f\u0636\u064e\u0627\u0639\u064e\u0641\u064f \u0644\u064e\u0647\u064f\u0645\u0652 \u0648\u064e\u0644\u064e\u0647\u064f\u0645\u0652 \u0623\u064e\u062c\u0652\u0631\u064c \u0643\u064e\u0631\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Innal mussaddiqeena wal mussaddiqaati wa aqradul laaha qardan hassanany yudaa'afu lahum wa lahum ajrun kareem",
-      },
+      arabic:
+        "إِنَّ ٱلْمُصَّدِّقِينَ وَٱلْمُصَّدِّقَٰتِ وَأَقْرَضُوا۟ ٱللَّهَ قَرْضًا حَسَنًا يُضَٰعَفُ لَهُمْ وَلَهُمْ أَجْرٌ كَرِيمٌ",
     },
     translation: {
-      en: "Indeed, the men who practice charity and the women who practice charity and [they who] have loaned Allah a goodly loan - it will be multiplied for them, and they will have a noble reward.",
-      id: "Sesungguhnya orang-orang yang bersedekah baik laki-laki maupun perempuan dan meminjamkan kepada Allah dengan pinjaman yang baik, akan dilipatgandakan (balasannya) bagi mereka; dan mereka akan mendapat pahala yang mulia.",
+      en: {
+        footnotes: "[15] i.e., Paradise.",
+        text: "Indeed, those men and women who give in charity and lend to Allah a goodly loan, it will be multiplied for them, and for them there will be a generous reward[15].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sesungguhnya orang-orang yang bersedekah baik laki-laki maupun perempuan dan meminjamkan kepada Allah dengan pinjaman yang baik, akan dilipatgandakan (balasannya) bagi mereka; dan mereka akan mendapat pahala yang mulia.",
+      },
     },
   },
 ];

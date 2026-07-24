@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah91Verses13To15 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6056",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6056.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6056.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 595,
       ruku: 533,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6056,
@@ -24,40 +25,32 @@ export const quranSurah91Verses13To15 = [
     },
     tafsir: {
       id: {
-        long: "Nabi Saleh memperingatkan kaumnya agar tidak mengganggu unta itu. Ia memperingatkan bahwa unta itu adalah mukjizat dari Allah, dan haknya untuk memperoleh minum berselang hari dengan mereka, harus dihormati. Ia memperingatkan pula bahwa bila mereka mengganggunya, mereka akan mendapat bahaya.",
-        short:
-          "Melihat gelagat buruk itu lalu Rasul Allah, Nabi Saleh, berkata kepada mereka, “Biarkanlah unta betina dari Allah ini dengan minumannya.” Janganlah kamu mengusik apalagi membunuh­nya. Jangan pula kamu larang unta itu mengambil jatah air minumnya sesuai kesepakatan kita satu hari untuk unta dan hari berikutnya untuk kaum Šamud.",
+        footnotes: null,
+        text: "Rasul Allah, Saleh -'alaihissalām-, lantas berkata kepada mereka, “Biarkan unta Allah ini dan giliran minumnya pada waktunya, janganlah kalian mengganggunya.”",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0642\u064e\u0627\u0644\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u0631\u064e\u0633\u064f\u0648\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0646\u064e\u0627\u0642\u064e\u0629\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0633\u064f\u0642\u0652\u064a\u064e\u0627\u0647\u064e\u0627",
-      transliteration: {
-        en: "Faqaala lahum Rasoolul laahi naaqatal laahi wa suqiyaahaa",
-      },
+      arabic: "فَقَالَ لَهُمْ رَسُولُ ٱللَّهِ نَاقَةَ ٱللَّهِ وَسُقْيَٰهَا",
     },
     translation: {
-      en: 'And the messenger of Allah [Salih] said to them, "[Do not harm] the she-camel of Allah or [prevent her from] her drink."',
-      id: "lalu Rasul Allah (Saleh) berkata kepada mereka, “(Biarkanlah) unta betina dari Allah ini dengan minumannya.”",
+      en: {
+        footnotes: "",
+        text: "Although the messenger of Allah warned them, “Hands off the she-camel of Allah and her drink!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Lalu Rasul Allah (Saleh) berkata kepada mereka, "(Biarkanlah) unta betina dari Allah ini dengan minumannya."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6057",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6057.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6057.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 595,
       ruku: 533,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6057,
@@ -65,40 +58,32 @@ export const quranSurah91Verses13To15 = [
     },
     tafsir: {
       id: {
-        long: "Akan tetapi, kaumnya memandang Nabi Saleh bohong, begitu juga unta itu sebagai mukjizat, dan menganggap sepi peringatan Nabi Saleh tersebut. Unta itu mereka tangkap beramai-ramai, lalu Qudar bin Salif membunuhnya dengan cara memotong-motongnya. Akhirnya Allah meratakan negeri mereka dengan tanah, dengan mengirim petir yang menggelegar yang diiringi gempa yang dahsyat, sebagai balasan pembangkangan dan dosa-dosa mereka.",
-        short:
-          "Kaum Samud tidak rela dengan pembagian jatah air itu. Nabi Saleh telah menasihati mereka, namun mereka mengabaikan serta mendustakannya, dan dengan beringas pria paling celaka itu menyembelih­ unta tersebut dan membantainya atas perintah kaum Samud. Karena itu Tuhan membinasakan mereka karena dosanya, lalu diratakan-Nya mereka dengan tanah. Hanya Nabi Saleh dan orang beriman yang selamat dari azab itu. Kejadian ini memberi pesan kepada generasi setelahnya bahwa aturan agama Allah harus diindahkan. Mereka yang menentang dan melakukan dosa akan mendapatkan sanksi yang keras dari Allah di dunia sebelum sanksi yang lebih keras lagi di akhirat.",
+        footnotes: null,
+        text: "Lalu mereka mendustakan Rasul mereka dalam perkara unta ini, kemudian orang paling celaka dari mereka membunuh unta itu dengan restu dari mereka terhadap perbuatannya, sehingga mereka semua bersekutu dalam perbuatan dosa, lalu Allah pun menimpakan siksa-Nya kepada mereka dengan menghancurkan mereka dengan suara keras yang menggelegar karena dosa-dosa mereka dan Allah menyamaratakan mereka dalam hukuman yang Allah gunakan untuk menghancurkan mereka.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0643\u064e\u0630\u0651\u064e\u0628\u064f\u0648\u0647\u064f \u0641\u064e\u0639\u064e\u0642\u064e\u0631\u064f\u0648\u0647\u064e\u0627 \u0641\u064e\u062f\u064e\u0645\u0652\u062f\u064e\u0645\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0631\u064e\u0628\u0651\u064f\u0647\u064f\u0645 \u0628\u0650\u0630\u064e\u0646\u0628\u0650\u0647\u0650\u0645\u0652 \u0641\u064e\u0633\u064e\u0648\u0651\u064e\u0627\u0647\u064e\u0627",
-      transliteration: {
-        en: "Fakazzaboohu fa'aqaroohaa fadamdama 'alaihim Rabbuhum bizambihim fasaw waahaa",
-      },
+      arabic: "فَكَذَّبُوهُ فَعَقَرُوهَا فَدَمْدَمَ عَلَيْهِمْ رَبُّهُم بِذَنۢبِهِمْ فَسَوَّىٰهَا",
     },
     translation: {
-      en: "But they denied him and hamstrung her. So their Lord brought down upon them destruction for their sin and made it equal [upon all of them].",
-      id: "Namun mereka mendustakannya dan menyembelihnya, karena itu Tuhan membinasakan mereka karena dosanya, lalu diratakan-Nya (dengan tanah),",
+      en: {
+        footnotes: "[6] And then killed her.",
+        text: "Yet they rejected him and hamstrung her[6]. So their Lord destroyed them for their sin and leveled them to the ground.",
+      },
+      id: {
+        footnotes: "",
+        text: "Namun mereka mendustakannya dan menyembelihnya, karena itu Tuhan membinasakan mereka karena dosanya, lalu diratakan-Nya (dengan tanah).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6058",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6058.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6058.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 595,
       ruku: 533,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6058,
@@ -106,20 +91,23 @@ export const quranSurah91Verses13To15 = [
     },
     tafsir: {
       id: {
-        long: "Allah tidak peduli bencana yang Ia timpakan kepada mereka dengan korban yang begitu besar. Hal itu karena pembangkangan mereka yang sudah sangat keterlaluan, yaitu membunuh unta betina (mukjizat) yang diturunkan-Nya kepada nabi-Nya.",
-        short:
-          "Allah membinasakan mereka dan Dia tidak takut terhadap akibatnya. Allah tidak diminta pertanggungjawaban atas tindakan-Nya oleh siapa pun. Tindakan Allah, apa pun bentuknya, adalah keadilan sejati. Makhluk harus menaati aturan-Nya dan mempertanggungjawabkan amal perbuatannya di hadapan Allah di akhirat nanti.",
+        footnotes: null,
+        text: "Allah menimpakan siksa yang membinasakan mereka ini tanpa takut dengan akibat yang timbul.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u062e\u064e\u0627\u0641\u064f \u0639\u064f\u0642\u0652\u0628\u064e\u0627\u0647\u064e\u0627",
-      transliteration: {
-        en: "Wa laa yakhaafu'uqbaahaa",
-      },
+      arabic: "وَلَا يَخَافُ عُقْبَٰهَا",
     },
     translation: {
-      en: "And He does not fear the consequence thereof.",
-      id: "dan Dia tidak takut terhadap akibatnya.",
+      en: {
+        footnotes:
+          "[7] Allah is not asked for what He does, but His slaves will be asked. See 21:23",
+        text: "And He has no fear of the consequences thereof[7].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan Dia tidak takut terhadap akibatnya.",
+      },
     },
   },
 ];

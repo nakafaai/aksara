@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah73Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5476",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5476.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5476.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 574,
       ruku: 508,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5476,
@@ -24,40 +25,33 @@ export const quranSurah73Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah memerintahkan Nabi Muhammad yang sedang berselimut supaya mendirikan salat pada sebagian malam. Seruan Allah kepada Nabi Muhammad ini didahului dengan kata-kata "Hai orang yang berselimut',
-        short:
-          "Di akhir surah al-Jinn dijelaskan tentang keagungan al-Qur’an dan pemeliharaan Allah atas wahyu yang diturunkannya tersebut, sedangkan di awal surah ini berisi petunjuk kepada Nabi Muhammad untuk mempersiapkan diri menghadapi turunnya wahyu yang berat. Wahai orang yang berselimut, yaitu Nabi Muhammad!",
+        footnotes: null,
+        text: "Wahai orang yang menyelimuti diri dengan pakaian (maksudnya Nabi -ṣallallāhu 'alaihi wa sallam-)!",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0652\u0645\u064f\u0632\u0651\u064e\u0645\u0651\u0650\u0644\u064f",
-      transliteration: {
-        en: "Yaw ayyuhal muzzammil",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ يَٰٓأَيُّهَا ٱلْمُزَّمِّلُ",
     },
     translation: {
-      en: "O you who wraps himself [in clothing],",
-      id: "Wahai orang yang berselimut (Muhammad)!",
+      en: {
+        footnotes:
+          "[1] Allah is addressing the Messenger (ﷺ), who was wrapped in his garments.",
+        text: "O you the enwrapped one[1],",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai orang yang berselimut (Muhammad)!",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5477",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5477.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5477.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 574,
       ruku: 508,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5477,
@@ -65,40 +59,33 @@ export const quranSurah73Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah memerintahkan Nabi Muhammad yang sedang berselimut supaya mendirikan salat pada sebagian malam. Seruan Allah kepada Nabi Muhammad ini didahului dengan kata-kata "Hai orang yang berselimut',
-        short:
-          "Bangunlah untuk mengerjakan salat dan bermunajat kepada Allah pada malam hari, kecuali sebagian kecil dari waktu malammu dapat digunakan untuk istirahat tidur,",
+        footnotes: null,
+        text: "Salatlah pada malam hari kecuali sedikit saja darinya.",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u064a\u0652\u0644\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0642\u064e\u0644\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Qumil laila illaa qaleelaa",
-      },
+      arabic: "قُمِ ٱلَّيْلَ إِلَّا قَلِيلًا",
     },
     translation: {
-      en: "Arise [to pray] the night, except for a little -",
-      id: "Bangunlah (untuk salat) pada malam hari, kecuali sebagian kecil,",
+      en: {
+        footnotes: "",
+        text: "Stand up in prayer at night except a little,",
+      },
+      id: {
+        footnotes:
+          "[875] Salat malam ini mula-mulanya wajib, sebelum turun ayat ke 20 dalam surah ini. Setelah turunnya ayat ke 20 ini hukumnya menjadi sunah.",
+        text: "Bangunlah (untuk salat) pada malam hari, kecuali[875] sebagian kecil.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5478",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5478.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5478.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 574,
       ruku: 508,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5478,
@@ -106,39 +93,32 @@ export const quranSurah73Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan maksud perkataan sebagian yang terdapat dalam ayat sebelumnya, yaitu separuh atau lebih. Allah menyerahkan kepada Nabi Muhammad untuk memilih waktu melakukan salat malam. Ia dapat memilih antara sepertiga, seperdua, atau dua pertiga malam. Allah memberi kebebasan kepada Nabi Muhammad untuk memilih waktu-waktu tersebut. \n\nSepertiga malam menurut waktu Indonesia ialah kira-kira antara jam 10 dan jam 11 malam, seperdua malam ialah waktu antara jam 12 dan 1 malam dan dua pertiga malam ialah waktu antara jam 2 dan 3 sampai sebelum fajar.",
-        short: "yaitu separuhnya atau kurang sedikit dari itu,",
+        footnotes: null,
+        text: "Salatlah separuh malam jika engkau menghendaki atau salatlah kurang sedikit dari separuh malam hingga sampai sepertiganya.",
       },
     },
     text: {
-      arab: "\u0646\u0651\u0650\u0635\u0652\u0641\u064e\u0647\u064f \u0623\u064e\u0648\u0650 \u0627\u0646\u0642\u064f\u0635\u0652 \u0645\u0650\u0646\u0652\u0647\u064f \u0642\u064e\u0644\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Nisfahooo awinqus minhu qaleelaa",
-      },
+      arabic: "نِّصْفَهُۥٓ أَوِ ٱنقُصْ مِنْهُ قَلِيلًا",
     },
     translation: {
-      en: "Half of it - or subtract from it a little",
-      id: "(yaitu) separuhnya atau kurang sedikit dari itu,",
+      en: {
+        footnotes: "",
+        text: "half of it, or a little less,",
+      },
+      id: {
+        footnotes: "",
+        text: "(Yaitu) separuhnya atau kurang sedikit dari itu,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5479",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5479.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5479.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 574,
       ruku: 508,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5479,
@@ -146,40 +126,32 @@ export const quranSurah73Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah memerintahkan Nabi Muhammad supaya membaca Al-Qur'an secara seksama (tartil). Maksudnya ialah membaca Al-Qur'an dengan pelan-pelan, bacaan yang fasih, dan merasakan arti dan maksud dari ayat-ayat yang dibaca itu, sehingga berkesan di hati. Perintah ini dilaksanakan oleh Nabi saw. 'Aisyah meriwayatkan bahwa Rasulullah saw membaca Al-Qur'an dengan tartil, sehingga surah yang dibacanya menjadi lebih lama dari ia membaca biasa.\n\nDalam hubungan ayat ini, al-Bukhari dan Muslim meriwayatkan dari 'Abdullah bin Mugaffal, bahwa ia berkata:\n\nAku melihat Rasulullah saw pada hari penaklukan kota Mekah, sedang menunggang unta beliau membaca Surah al-Fath di mana dalam bacaan itu beliau melakukan tarji' (bacaan lambat dengan mengulang-ulang). (Riwayat al-Bukhari dan Muslim dari 'Abdullah bin Mugaffal)\n\nPengarang buku Fathul Bayan berkata, \"Yang dimaksud dengan tartil ialah kehadiran hati ketika membaca, bukan asal mengeluarkan bunyi dari tenggorokan dengan memoncong-moncongkan muka dan mulut dengan alunan lagu, sebagaimana kebiasaan yang dilakukan pembaca-pembaca Al-Qur'an zaman sekarang. Membaca yang seperti itu adalah suatu bacaan yang dilakukan orang-orang yang tidak mengerti agama.\"\n\nMembaca Al-Qur'an secara tartil mengandung hikmah, yaitu terbukanya kesempatan untuk memperhatikan isi ayat-ayat yang dibaca dan di waktu menyebut nama Allah, si pembaca akan merasakan kemahaagungan-Nya. Ketika tiba pada ayat yang mengandung janji, pembaca akan timbul harapan-harapan, demikian juga ketika membaca ayat ancaman, pembaca akan merasa cemas.\n\nSebaliknya membaca Al-Qur'an secara tergesa-gesa atau dengan lagu yang baik, tetapi tidak memahami artinya adalah suatu indikasi bahwa si pembaca tidak memperhatikan isi yang terkandung dalam ayat yang dibacanya.",
-        short:
-          "atau lebih dari seperdua itu, dan bacalah Al-Qur’an itu dengan perlahan-lahan dengan bacaan yang baik dan benar.",
+        footnotes: null,
+        text: "Atau tambahkan hingga sampai dua pertiga malam, dan bacalah Al-Qur`ān dengan perlahan-lahan dan memberi setiap huruf hak-haknya serta memperhatikan waqafnya.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0648\u0652 \u0632\u0650\u062f\u0652 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650 \u0648\u064e\u0631\u064e\u062a\u0651\u0650\u0644\u0650 \u0627\u0644\u0652\u0642\u064f\u0631\u0652\u0622\u0646\u064e \u062a\u064e\u0631\u0652\u062a\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Aw zid 'alaihi wa rattilil Qur'aana tarteela",
-      },
+      arabic: "أَوْ زِدْ عَلَيْهِ وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا",
     },
     translation: {
-      en: "Or add to it, and recite the Qur'an with measured recitation.",
-      id: "atau lebih dari (seperdua) itu, dan bacalah Al-Qur'an itu dengan perlahan-lahan.",
+      en: {
+        footnotes: "",
+        text: "or a little more, and recite the Qur’an at a measured pace.",
+      },
+      id: {
+        footnotes: "",
+        text: "atau lebih dari (seperdua) itu, dan bacalah Al-Qur`an itu dengan perlahan-lahan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5480",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5480.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5480.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 574,
       ruku: 508,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5480,
@@ -187,40 +159,33 @@ export const quranSurah73Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah akan menurunkan Al-Qur'an kepada Muhammad saw yang di dalamnya terdapat perintah dan larangan-Nya. Hal ini merupakan beban yang berat, baik terhadap Muhammad saw maupun pengikutnya. Tidak ada yang mau memikul beban yang berat itu kecuali orang yang mendapatkan petunjuk dari Allah.",
-        short:
-          "Mengapa Allah memerintahkan Nabi Muhammad untuk beribadah di waktu malam, alasannya disebut dalam ayat ini. Sesungguhnya Kami melalui malaikat Jibril akan menurunkan perkataan yang berat yaitu firman-firman Allah berupa al-Qur’an kepadamu wahai Nabi Muhammad.",
+        footnotes: null,
+        text: "Sesungguhnya Kami -wahai Rasul- akan menurunkan kepadamu Al-Qur`ān, yaitu perkataan yang berat karena berisi berbagai kewajiban, hudud, hukum, adab, dan lain sebagainya.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0627 \u0633\u064e\u0646\u064f\u0644\u0652\u0642\u0650\u064a \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064e \u0642\u064e\u0648\u0652\u0644\u064b\u0627 \u062b\u064e\u0642\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Innaa sanulqee 'alika qawalan saqeelaa",
-      },
+      arabic: "إِنَّا سَنُلْقِى عَلَيْكَ قَوْلًا ثَقِيلًا",
     },
     translation: {
-      en: "Indeed, We will cast upon you a heavy word.",
-      id: "Sesungguhnya Kami akan menurunkan perkataan yang berat kepadamu.",
+      en: {
+        footnotes:
+          "[2] i.e., the revelation, which the Prophet (ﷺ) would feel its great weight when descending upon him. Also, it is heavy for its ordinances, rulings, punishments, ethics, etc.",
+        text: "We will send down upon you a heavy Word[2].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sesungguhnya Kami akan menurunkan perkataan yang berat kepadamu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5481",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5481.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5481.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 574,
       ruku: 508,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5481,
@@ -228,20 +193,23 @@ export const quranSurah73Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menegaskan bahwa ibadah yang dilakukan pada malam hari terasa lebih berkesan dan mantap, baik di hati maupun di lidah, sebab bacaan ayat-ayat itu lebih jelas dibandingkan bacaan pada siang hari di saat manusia sedang disibukkan oleh urusan-urusan kehidupan duniawi.",
-        short:
-          "Diperintahkannya ibadah di waktu malam adalah mengandung hikmah yang sangat besar di antaranya seperti yang disebut pada ayat ini. Sungguh, bangun untuk beribadah di waktu malam itu lebih kuat mengisi jiwa. dan bacaan di waktu itu lebih berkesan serta lebih mudah untuk dipahami dan dihayati.",
+        footnotes: null,
+        text: "Sesungguhnya waktu-waktu malam itu lebih menyentuh hati dan membuatnya khusyuk dengan bacaan dan lebih tepat pengucapannya.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0646\u064e\u0627\u0634\u0650\u0626\u064e\u0629\u064e \u0627\u0644\u0644\u0651\u064e\u064a\u0652\u0644\u0650 \u0647\u0650\u064a\u064e \u0623\u064e\u0634\u064e\u062f\u0651\u064f \u0648\u064e\u0637\u0652\u0626\u064b\u0627 \u0648\u064e\u0623\u064e\u0642\u0652\u0648\u064e\u0645\u064f \u0642\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Inn naashi'atal laili hiya ashadddu wat anw wa aqwamu qeelaa",
-      },
+      arabic: "إِنَّ نَاشِئَةَ ٱلَّيْلِ هِىَ أَشَدُّ وَطْـًٔا وَأَقْوَمُ قِيلًا",
     },
     translation: {
-      en: "Indeed, the hours of the night are more effective for concurrence [of heart and tongue] and more suitable for words.",
-      id: "Sungguh, bangun malam itu lebih kuat (mengisi jiwa); dan (bacaan pada waktu itu) lebih berkesan.",
+      en: {
+        footnotes:
+          '[3] Or "getting up at night is more difficult...," meaning that it can only be done by sincere believers.\n [4] i.e., for reciting, hearing, and understanding of the Qur’an.',
+        text: "Indeed, worship at night is more effective[3] and more conducive to proper recitation[4].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, bangun malam itu lebih kuat (mengisi jiwa); dan (bacaan di waktu itu) lebih berkesan.",
+      },
     },
   },
 ];

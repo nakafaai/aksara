@@ -37,6 +37,11 @@ Covered materials include:
 Third-party content keeps its own license or legal status. This license does not
 grant rights to third-party materials that Nakafa does not own.
 
+The Quran text, metadata, translations, and tafsir under
+`packages/corpus/quran` are third-party content governed by the Tanzil and
+QuranEnc notices in `THIRD_PARTY.md`, not by the additional Nakafa restrictions
+in Sections 3 and 4.
+
 All rights not expressly granted by this license are reserved by PT. Nakafa Tekno
 Kreatif.
 

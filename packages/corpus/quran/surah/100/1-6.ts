@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah100Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6147",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6147.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6147.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6147,
@@ -24,40 +25,33 @@ export const quranSurah100Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah bersumpah dengan kuda perang yang memperdengarkan suaranya yang gemuruh. Kuda-kuda yang memancarkan bunga api dari kuku kakinya karena berlari kencang. Kuda-kuda yang menyerang di waktu subuh untuk menyergap musuh di waktu mereka tidak siap siaga. Karena kencangnya lari kuda itu, debu-debu jadi beterbangan. Allah menyatakan bahwa kuda yang menyerang itu tiba-tiba berada di tengah-tengah musuh sehingga menyebabkan mereka panik.\n\nAllah bersumpah dengan kuda dan sifat-sifatnya dalam suasana perang bertujuan untuk membangkitkan semangat perjuangan di kalangan orang-orang Mukmin. Sudah selayaknya mereka bersifat demikian dengan membiasakan diri menunggang kuda dengan tangkas untuk menyerbu musuh. Mereka juga diperintahkan agar selalu siap siaga untuk terjun ke medan pertempuran bila genderang perang memanggil mereka untuk menghancurkan musuh yang menyerang, sebagaimana Allah berfirman:\n\nDan persiapkanlah dengan segala kemampuan untuk menghadapi mereka dengan kekuatan yang kamu miliki dan dari pasukan berkuda yang dapat menggentarkan musuh Allah dan musuhmu. (al-Anfal/8: 60).\n\nAllah bersumpah dengan kuda perang yang dalam keadaan berlari kencang, hilir-mudik, memancarkan percikan bunga api dari kakinya karena berlari kencang, dan dengan penyergapan di waktu subuh, menunjukkan bahwa kuda-kuda yang dipelihara itu bukan untuk kebanggaan. Hendaknya kuda yang dipuji adalah yang digunakan untuk memadamkan keganasan musuh, melumpuhkan kekuatan mereka, atau menghadang serangan mereka.\n\nMaksudnya, dalam ketangkasan berkuda terkandung faedah yang tidak terkira banyaknya. Di antaranya adalah dapat dipergunakan untuk mencari nafkah, cepat bergerak untuk suatu keperluan yang mendadak, digunakan untuk menyergap musuh, dan dapat mencapai tempat yang jauh dalam waktu yang singkat.",
-        short:
-          "Demi kuda perang yang berlari kencang dan bernafas terengah-engah ke arah musuh dengan penuh keberanian dan semangat guna membawa tuannya berperang di jalan Allah.",
+        footnotes: null,
+        text: "Allah bersumpah dengan kuda-kuda yang berlari hingga terdengar suara dari napasnya karena larinya yang kencang.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0652\u0639\u064e\u0627\u062f\u0650\u064a\u064e\u0627\u062a\u0650 \u0636\u064e\u0628\u0652\u062d\u064b\u0627",
-      transliteration: {
-        en: "Wal'aadi yaati dabha",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ وَٱلْعَٰدِيَٰتِ ضَبْحًا",
     },
     translation: {
-      en: "By the racers, panting,",
-      id: "Demi kuda perang yang berlari kencang terengah-engah,",
+      en: {
+        footnotes:
+          "[1] i.e., those horses that fight for the cause of Allah as they race to attack the enemy.",
+        text: "By the galloping, panting horses[1],",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi kuda perang yang berlari kencang terengah-engah,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6148",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6148.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6148.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6148,
@@ -65,40 +59,32 @@ export const quranSurah100Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah bersumpah dengan kuda perang yang memperdengarkan suaranya yang gemuruh. Kuda-kuda yang memancarkan bunga api dari kuku kakinya karena berlari kencang. Kuda-kuda yang menyerang di waktu subuh untuk menyergap musuh di waktu mereka tidak siap siaga. Karena kencangnya lari kuda itu, debu-debu jadi beterbangan. Allah menyatakan bahwa kuda yang menyerang itu tiba-tiba berada di tengah-tengah musuh sehingga menyebabkan mereka panik.\n\nAllah bersumpah dengan kuda dan sifat-sifatnya dalam suasana perang bertujuan untuk membangkitkan semangat perjuangan di kalangan orang-orang Mukmin. Sudah selayaknya mereka bersifat demikian dengan membiasakan diri menunggang kuda dengan tangkas untuk menyerbu musuh. Mereka juga diperintahkan agar selalu siap siaga untuk terjun ke medan pertempuran bila genderang perang memanggil mereka untuk menghancurkan musuh yang menyerang, sebagaimana Allah berfirman:\n\nDan persiapkanlah dengan segala kemampuan untuk menghadapi mereka dengan kekuatan yang kamu miliki dan dari pasukan berkuda yang dapat menggentarkan musuh Allah dan musuhmu. (al-Anfal/8: 60).\n\nAllah bersumpah dengan kuda perang yang dalam keadaan berlari kencang, hilir-mudik, memancarkan percikan bunga api dari kakinya karena berlari kencang, dan dengan penyergapan di waktu subuh, menunjukkan bahwa kuda-kuda yang dipelihara itu bukan untuk kebanggaan. Hendaknya kuda yang dipuji adalah yang digunakan untuk memadamkan keganasan musuh, melumpuhkan kekuatan mereka, atau menghadang serangan mereka.\n\nMaksudnya, dalam ketangkasan berkuda terkandung faedah yang tidak terkira banyaknya. Di antaranya adalah dapat dipergunakan untuk mencari nafkah, cepat bergerak untuk suatu keperluan yang mendadak, digunakan untuk menyergap musuh, dan dapat mencapai tempat yang jauh dalam waktu yang singkat.",
-        short:
-          "Dan demi kuda yang memercikkan bunga api karena hentakan kuku kakinya beradu dengan batu batu. Hal ini menunjukkan keberaniannya menghadapi rintangan sebesar apa pun.",
+        footnotes: null,
+        text: "Dia bersumpah dengan kuda-kuda yang memercikkan bunga api dari kaki-kakinya ketika bertumbuk dengan bebatuan dikarenakan kuatnya entakan kakinya dengan batu.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0652\u0645\u064f\u0648\u0631\u0650\u064a\u064e\u0627\u062a\u0650 \u0642\u064e\u062f\u0652\u062d\u064b\u0627",
-      transliteration: {
-        en: "Fal moori yaati qadha",
-      },
+      arabic: "فَٱلْمُورِيَٰتِ قَدْحًا",
     },
     translation: {
-      en: "And the producers of sparks [when] striking",
-      id: "dan kuda yang memercikkan bunga api (dengan pukulan kuku kakinya),",
+      en: {
+        footnotes: "[2] While galloping over rocky terrain.",
+        text: "striking sparks of fire [with their hooves][2],",
+      },
+      id: {
+        footnotes: "",
+        text: "dan kuda yang memercikkan bunga api (dengan pukulan kuku kakinya),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6149",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6149.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6149.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6149,
@@ -106,40 +92,32 @@ export const quranSurah100Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah bersumpah dengan kuda perang yang memperdengarkan suaranya yang gemuruh. Kuda-kuda yang memancarkan bunga api dari kuku kakinya karena berlari kencang. Kuda-kuda yang menyerang di waktu subuh untuk menyergap musuh di waktu mereka tidak siap siaga. Karena kencangnya lari kuda itu, debu-debu jadi beterbangan. Allah menyatakan bahwa kuda yang menyerang itu tiba-tiba berada di tengah-tengah musuh sehingga menyebabkan mereka panik.\n\nAllah bersumpah dengan kuda dan sifat-sifatnya dalam suasana perang bertujuan untuk membangkitkan semangat perjuangan di kalangan orang-orang Mukmin. Sudah selayaknya mereka bersifat demikian dengan membiasakan diri menunggang kuda dengan tangkas untuk menyerbu musuh. Mereka juga diperintahkan agar selalu siap siaga untuk terjun ke medan pertempuran bila genderang perang memanggil mereka untuk menghancurkan musuh yang menyerang, sebagaimana Allah berfirman:\n\nDan persiapkanlah dengan segala kemampuan untuk menghadapi mereka dengan kekuatan yang kamu miliki dan dari pasukan berkuda yang dapat menggentarkan musuh Allah dan musuhmu. (al-Anfal/8: 60).\n\nAllah bersumpah dengan kuda perang yang dalam keadaan berlari kencang, hilir-mudik, memancarkan percikan bunga api dari kakinya karena berlari kencang, dan dengan penyergapan di waktu subuh, menunjukkan bahwa kuda-kuda yang dipelihara itu bukan untuk kebanggaan. Hendaknya kuda yang dipuji adalah yang digunakan untuk memadamkan keganasan musuh, melumpuhkan kekuatan mereka, atau menghadang serangan mereka.\n\nMaksudnya, dalam ketangkasan berkuda terkandung faedah yang tidak terkira banyaknya. Di antaranya adalah dapat dipergunakan untuk mencari nafkah, cepat bergerak untuk suatu keperluan yang mendadak, digunakan untuk menyergap musuh, dan dapat mencapai tempat yang jauh dalam waktu yang singkat.",
-        short:
-          "Dan demi kuda yang menyerang dengan tiba-tiba pada waktu pagi hal ini menunjukkan kesiagaannya untuk berjihad tanpa mengenal waktu,",
+        footnotes: null,
+        text: "Dia bersumpah dengan kuda-kuda yang menyerang musuh-musuh secara tiba-tiba di pagi hari.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0652\u0645\u064f\u063a\u0650\u064a\u0631\u064e\u0627\u062a\u0650 \u0635\u064f\u0628\u0652\u062d\u064b\u0627",
-      transliteration: {
-        en: "Fal mugheeraati subha",
-      },
+      arabic: "فَٱلْمُغِيرَٰتِ صُبْحًا",
     },
     translation: {
-      en: "And the chargers at dawn,",
-      id: "dan kuda yang menyerang (dengan tiba-tiba) pada waktu pagi,",
+      en: {
+        footnotes: "[3] While the enemy is unaware of their raid.",
+        text: "launching raids at dawn[3],",
+      },
+      id: {
+        footnotes: "",
+        text: "dan kuda yang menyerang (dengan tiba-tiba) pada waktu pagi,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6150",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6150.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6150.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6150,
@@ -147,40 +125,32 @@ export const quranSurah100Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah bersumpah dengan kuda perang yang memperdengarkan suaranya yang gemuruh. Kuda-kuda yang memancarkan bunga api dari kuku kakinya karena berlari kencang. Kuda-kuda yang menyerang di waktu subuh untuk menyergap musuh di waktu mereka tidak siap siaga. Karena kencangnya lari kuda itu, debu-debu jadi beterbangan. Allah menyatakan bahwa kuda yang menyerang itu tiba-tiba berada di tengah-tengah musuh sehingga menyebabkan mereka panik.\n\nAllah bersumpah dengan kuda dan sifat-sifatnya dalam suasana perang bertujuan untuk membangkitkan semangat perjuangan di kalangan orang-orang Mukmin. Sudah selayaknya mereka bersifat demikian dengan membiasakan diri menunggang kuda dengan tangkas untuk menyerbu musuh. Mereka juga diperintahkan agar selalu siap siaga untuk terjun ke medan pertempuran bila genderang perang memanggil mereka untuk menghancurkan musuh yang menyerang, sebagaimana Allah berfirman:\n\nDan persiapkanlah dengan segala kemampuan untuk menghadapi mereka dengan kekuatan yang kamu miliki dan dari pasukan berkuda yang dapat menggentarkan musuh Allah dan musuhmu. (al-Anfal/8: 60).\n\nAllah bersumpah dengan kuda perang yang dalam keadaan berlari kencang, hilir-mudik, memancarkan percikan bunga api dari kakinya karena berlari kencang, dan dengan penyergapan di waktu subuh, menunjukkan bahwa kuda-kuda yang dipelihara itu bukan untuk kebanggaan. Hendaknya kuda yang dipuji adalah yang digunakan untuk memadamkan keganasan musuh, melumpuhkan kekuatan mereka, atau menghadang serangan mereka.\n\nMaksudnya, dalam ketangkasan berkuda terkandung faedah yang tidak terkira banyaknya. Di antaranya adalah dapat dipergunakan untuk mencari nafkah, cepat bergerak untuk suatu keperluan yang mendadak, digunakan untuk menyergap musuh, dan dapat mencapai tempat yang jauh dalam waktu yang singkat.",
-        short:
-          "sehingga dengan serangan kuda-kuda itu menerbangkan debu yang tebal, tanda betapa dahsyat serangan mereka ke arah musuh,",
+        footnotes: null,
+        text: "Lalu kuda-kuda menerbangkan debu-debu karena (begitu kencang) larinya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u062b\u064e\u0631\u0652\u0646\u064e \u0628\u0650\u0647\u0650 \u0646\u064e\u0642\u0652\u0639\u064b\u0627",
-      transliteration: {
-        en: "Fa atharna bihee naq'a",
-      },
+      arabic: "فَأَثَرْنَ بِهِۦ نَقْعًا",
     },
     translation: {
-      en: "Stirring up thereby [clouds of] dust,",
-      id: "sehingga menerbangkan debu,",
+      en: {
+        footnotes: "",
+        text: "stirring up thereby clouds of dust,",
+      },
+      id: {
+        footnotes: "",
+        text: "sehingga menerbangkan debu,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6151",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6151.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6151.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6151,
@@ -188,40 +158,33 @@ export const quranSurah100Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah bersumpah dengan kuda perang yang memperdengarkan suaranya yang gemuruh. Kuda-kuda yang memancarkan bunga api dari kuku kakinya karena berlari kencang. Kuda-kuda yang menyerang di waktu subuh untuk menyergap musuh di waktu mereka tidak siap siaga. Karena kencangnya lari kuda itu, debu-debu jadi beterbangan. Allah menyatakan bahwa kuda yang menyerang itu tiba-tiba berada di tengah-tengah musuh sehingga menyebabkan mereka panik.\n\nAllah bersumpah dengan kuda dan sifat-sifatnya dalam suasana perang bertujuan untuk membangkitkan semangat perjuangan di kalangan orang-orang Mukmin. Sudah selayaknya mereka bersifat demikian dengan membiasakan diri menunggang kuda dengan tangkas untuk menyerbu musuh. Mereka juga diperintahkan agar selalu siap siaga untuk terjun ke medan pertempuran bila genderang perang memanggil mereka untuk menghancurkan musuh yang menyerang, sebagaimana Allah berfirman:\n\nDan persiapkanlah dengan segala kemampuan untuk menghadapi mereka dengan kekuatan yang kamu miliki dan dari pasukan berkuda yang dapat menggentarkan musuh Allah dan musuhmu. (al-Anfal/8: 60).\n\nAllah bersumpah dengan kuda perang yang dalam keadaan berlari kencang, hilir-mudik, memancarkan percikan bunga api dari kakinya karena berlari kencang, dan dengan penyergapan di waktu subuh, menunjukkan bahwa kuda-kuda yang dipelihara itu bukan untuk kebanggaan. Hendaknya kuda yang dipuji adalah yang digunakan untuk memadamkan keganasan musuh, melumpuhkan kekuatan mereka, atau menghadang serangan mereka.\n\nMaksudnya, dalam ketangkasan berkuda terkandung faedah yang tidak terkira banyaknya. Di antaranya adalah dapat dipergunakan untuk mencari nafkah, cepat bergerak untuk suatu keperluan yang mendadak, digunakan untuk menyergap musuh, dan dapat mencapai tempat yang jauh dalam waktu yang singkat.",
-        short:
-          "lalu menyerbu bersama dengan kepulan debu itu ke tengah-tengah kumpulan musuh dengan gagah berani.",
+        footnotes: null,
+        text: "Kuda-kuda itu lalu menyerbu ke tengah-tengah musuh bersama para penunggangnya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0648\u064e\u0633\u064e\u0637\u0652\u0646\u064e \u0628\u0650\u0647\u0650 \u062c\u064e\u0645\u0652\u0639\u064b\u0627",
-      transliteration: {
-        en: "Fawa satna bihee jam'a",
-      },
+      arabic: "فَوَسَطْنَ بِهِۦ جَمْعًا",
     },
     translation: {
-      en: "Arriving thereby in the center collectively,",
-      id: "lalu menyerbu ke tengah-tengah kumpulan musuh,",
+      en: {
+        footnotes:
+          "[4] i.e., penetrating into the ranks of the enemy as a surprise attack.",
+        text: "plunging thereby into the midst of the enemy[4],",
+      },
+      id: {
+        footnotes: "",
+        text: "lalu menyerbu ke tengah-tengah kumpulan musuh,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6152",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6152.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6152.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6152,
@@ -229,20 +192,23 @@ export const quranSurah100Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menerangkan isi sumpah-Nya, yaitu: watak manusia adalah mengingkari kebenaran dan tidak mengakui hal-hal yang menyebabkan mereka harus bersyukur kepada penciptanya, kecuali orang-orang yang mendapat taufik, membiasakan diri berbuat kebajikan dan menjauhkan diri dari kemungkaran.\n\nHubungan antara ayat 5 yang menggambarkan persoalan kuda dan ayat 6 yang memberi informasi tentang sifat dasar manusia adalah bahwa manusia itu mempunyai potensi menjadi liar seperti kuda yang tidak terkendali, sehingga menyebabkannya ingkar kepada Allah.\n\nSifat yang terpendam dalam jiwa manusia ini menyebabkan ia tidak mementingkan apa yang terdapat di sekelilingnya, tidak menghiraukan apa yang akan datang, dan lupa apa yang telah lalu. Bila Allah memberikan kepadanya sesuatu nikmat, dia menjadi bingung, hatinya menjadi bengis, dan sikapnya menjadi kasar terhadap hamba-hamba Allah.",
-        short:
-          "Demi kuda-kuda perang yang demikian sifatnya, sungguh manusia itu enggan bersyukur dan sangat ingkar kepada nikmat Tuhannya. Manusia, kecuali yang dirahmati Allah, malas bersyukur ketika mendapatkan nikmat dan tidak mau memenuhi kewajiban yang dibebankan kepadanya.",
+        footnotes: null,
+        text: "Sesungguhnya manusia itu sangat ingkar untuk melakukan kebaikan yang diharapkan Tuhannya darinya.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u0625\u0650\u0646\u0633\u064e\u0627\u0646\u064e \u0644\u0650\u0631\u064e\u0628\u0651\u0650\u0647\u0650 \u0644\u064e\u0643\u064e\u0646\u064f\u0648\u062f\u064c",
-      transliteration: {
-        en: "Innal-insana lirabbihee lakanood",
-      },
+      arabic: "إِنَّ ٱلْإِنسَٰنَ لِرَبِّهِۦ لَكَنُودٌ",
     },
     translation: {
-      en: "Indeed mankind, to his Lord, is ungrateful.",
-      id: "sungguh, manusia itu sangat ingkar, (tidak bersyukur) kepada Tuhannya,",
+      en: {
+        footnotes:
+          "[5] disobeying Him by not spending in the cause of Allah from what He has given him and commanded him to spend accordingly.",
+        text: "indeed, man is very ungrateful to his Lord[5] –",
+      },
+      id: {
+        footnotes: "",
+        text: "sungguh, manusia itu sangat ingkar, (tidak bersyukur) kepada Tuhannya,",
+      },
     },
   },
 ];

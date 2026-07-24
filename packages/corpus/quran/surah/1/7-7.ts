@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah1Verses7To7 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/7",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/7.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/7.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 1,
       juz: 1,
       manzil: 1,
       page: 1,
       ruku: 1,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 7,
@@ -24,20 +25,24 @@ export const quranSurah1Verses7To7 = [
     },
     tafsir: {
       id: {
-        long: "Setelah Allah swt mengajarkan kepada hamba-Nya untuk memohon agar selalu dibimbing-Nya menuju jalan yang lurus dan benar, pada ayat ini Allah menerangkan apa jalan yang lurus itu. Sebelum Al-Qur'an diturunkan, Allah telah menurunkan kitab-kitab suci-Nya yang lain, dan sebelum Nabi Muhammad diutus, Allah telah mengutus rasul-rasul, karena sebelum umat yang sekarang ini telah banyak umat terdahulu.\n\nDi antara umat-umat yang terdahulu itu terdapat nabi-nabi, siddiqin yang membenarkan rasul-rasul dengan jujur dan patuh, syuhada' yang telah mengorbankan jiwa dan harta untuk kemuliaan agama Allah, dan orang-orang saleh yang telah membuat kebajikan dan menjauhi larangan Allah.\n\nMereka itulah orang-orang yang telah diberi nikmat oleh Allah, dan kita diajari agar memohon kepada-Nya, agar diberi-Nya taufik dan bimbingan sebagaimana Dia telah memberi taufik dan membimbing mereka. Artinya sebagaimana mereka telah berbahagia dalam aqa'id, dalam menjalankan hukum-hukum dan peraturan-peraturan agama, serta telah mempunyai akhlak dan budi pekerti yang mulia, maka demikian pula kita hendaknya. Dengan perkataan lain, Allah menyuruh kita agar mengambil contoh dan teladan kepada mereka yang terdahulu.\n\nTimbul pertanyaan: mengapa Allah menyuruh kita mengikuti jalan mereka yang terdahulu itu, padahal dalam agama kita ada pelajaran-pelajaran, hukum dan petunjuk-petunjuk yang tak ada pada mereka. Jawabnya: sebetulnya agama Allah itu adalah satu. Kendatipun ada perbedaannya, tetapi perbedaan itu pada bagian-bagiannya, sedang pokok-pokoknya serupa, sebagaimana telah disebutkan.\n\nSebagaimana halnya dalam umat-umat yang terdahulu itu terdapat orang-orang yang diberi nikmat oleh Allah, juga terdapat di antara mereka orang yang dimurkai Allah dan orang yang sesat. Orang yang dimurkai Allah itu mereka yang tak mau menerima seruan Allah yang disampaikan oleh rasul-rasul, karena berlainan dengan kebiasaan mereka, atau karena tidak sesuai dengan hawa nafsu mereka, kendatipun telah jelas bahwa yang dibawa oleh rasul-rasul itu adalah benar. Termasuk juga ke dalam golongan ini, mereka yang mulanya telah menerima apa yang disampaikan oleh rasul-rasul, tetapi kemudian karena suatu sebab mereka membelok, dan membelakangi pelajaran yang dibawa oleh rasul-rasul itu.\n\nDi dalam sejarah banyak ditemukan orang yang dimurkai Allah, sejak di dunia mereka telah diazab Allah, sebagai balasan yang setimpal bagi keingkaran dan sifat angkara murka mereka. Umpamanya kaum 'ad dan samud yang telah dibinasakan oleh Allah. Sampai sekarang masih ada bekas-bekas peninggalan mereka di Jazirah (semenanjung) Arab. Begitu juga Fir'aun dan kaumnya yang telah dibinasakan Allah di Laut Merah. Mumi Fir'aun sampai sekarang masih tersimpan di museum di Mesir.\n\nOrang-orang yang sesat ialah mereka yang tidak betul kepercayaannya, atau tidak betul pekerjaan dan amal ibadahnya serta rusak budi pekertinya. Bila akidah seseorang tidak betul, atau pekerjaan dan amal ibadahnya salah, dan akhlaknya telah rusak, akan celakalah dia, dan kalau suatu bangsa berada pada situasi seperti itu akan jatuhlah bangsa itu.\n\nMaka dengan ayat ini Allah mengajari hamba-Nya untuk memohon kepada-Nya agar terjauh dari kemurkaan-Nya, dan terhindar dari kesesatan. Di dalamnya juga tersimpul perintah Allah agar manusia mengambil pelajaran dari sejarah bangsa-bangsa yang terdahulu. Alangkah banyaknya dalam sejarah kejadian-kejadian yang dapat dijadikan iktibar dan pelajaran. Di dalam Al-Qur'an banyak ayat yang berkenaan dengan kisah umat dan bangsa-bangsa yang dahulu. Memang tak ada sesuatu yang lebih besar pengaruhnya kepada jiwa manusia daripada contoh-contoh orang dan perbandingan-perbandingan yang terdapat dalam kisah-kisah dan sejarah.",
-        short:
-          "Yaitu jalan orang-orang yang telah Engkau beri nikmat kepadanya, berupa keimanan, hidayah, dan rida-Mu. Mereka itu, seperti dijelaskan dalam Surah an-Nisa' /4: 69, adalah: 1) para nabi yang telah dipilih Allah untuk memperoleh bimbingan sekaligus ditugasi untuk menuntun manusia menuju kebenaran Ilahi; 2) siddiqin, yaitu orang-orang yang selalu benar dan jujur, tidak ternodai oleh kebatilan, tidak pula mengambil sikap yang bertentangan dengan kebenaran; 3) syuhada', yaitu mereka yang bersaksi atas kebenaran dan kebajikan, melalui ucapan dan tindakan mereka, walau harus mengorbankan nyawa sekalipun, atau mereka yang disaksikan kebenaran dan kebajikannya oleh Allah, para malaikat, dan lingkungan mereka; dan 4) salihin, yaitu orang-orang saleh yang tangguh dalam kebajikan dan selalu berusaha mewujudkannya. Jalan yang kami mohon itu bukan jalan mereka yang dimurkai, yang mengetahui kebenaran tetapi tidak mengikuti dan mengamalkannya, bahkan menentangnya, seperti sebagian kelompok Yahudi dan yang mengikuti jalan mereka, dan bukan pula jalan mereka yang sesat dari jalan kebenaran dan kebaikan, seperti sebagian kelompok Nasrani dan yang sejalan dengan mereka, sebab mereka enggan beriman dan mengikuti petunjuk-Mu.",
+        footnotes: null,
+        text: "Jalan yang ditempuh oleh orang-orang yang telah Engkau beri nikmat dari hamba-hamba-Mu berupa pemberian hidayah pada mereka, seperti para nabi, para ṣiddīqīn (pecinta kebenaran), para syuhada dan orang-orang saleh; mereka adalah teman terbaik. Bukan jalan yang ditempuh oleh orang-orang yang dimurkai, yaitu orang-orang yang mengetahui kebenaran tetapi tidak mau mengikutinya seperti orang-orang Yahudi; dan bukan pula jalan yang ditempuh oleh orang-orang yang tersesat dari jalan yang benar, yaitu orang-orang yang tidak menemukan jalan yang benar karena keteledoran mereka dalam mencari kebenaran dan mencari petunjuk seperti orang-orang Nasrani.",
       },
     },
     text: {
-      arab: "\u0635\u0650\u0631\u064e\u0627\u0637\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064e\u0646\u0652\u0639\u064e\u0645\u0652\u062a\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u063a\u064e\u064a\u0652\u0631\u0650 \u0627\u0644\u0652\u0645\u064e\u063a\u0652\u0636\u064f\u0648\u0628\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0648\u064e\u0644\u064e\u0627 \u0627\u0644\u0636\u0651\u064e\u0627\u0644\u0651\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Siraatal-lazeena an'amta 'alaihim ghayril-maghdoobi 'alaihim wa lad-daaalleen",
-      },
+      arabic: "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ",
     },
     translation: {
-      en: "The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.",
-      id: "(yaitu) jalan orang-orang yang telah Engkau beri nikmat kepadanya; bukan (jalan) mereka yang dimurkai, dan bukan (pula jalan) mereka yang sesat.",
+      en: {
+        footnotes:
+          "[6] The way of the Prophets and those who follow them.\n [7] Those who know the Truth and do not follow it, like the Jews.\n [8] Those who are ignorant of the Truth and follow misguidance, like the Christians.",
+        text: "the path of those whom You have blessed[6]; not of those who incurred Your Wrath[7], or of those who went astray[8].",
+      },
+      id: {
+        footnotes:
+          "[3] Mereka yang dimurkai, adalah mereka yang sengaja menentang ajaran Islam. Mereka yang sesat adalah mereka yang sengaja mengambil jalan lain selain ajaran Islam.",
+        text: "(yaitu) jalan orang-orang yang telah Engkau beri nikmat kepadanya; bukan (jalan) mereka yang dimurkai, dan bukan (pula jalan) mereka yang sesat.[3]",
+      },
     },
   },
 ];

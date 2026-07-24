@@ -1,228 +1,239 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
-import { isRecord } from "effect/Predicate";
+import { readFileSync } from "node:fs";
 
-const BOOTSTRAP_PATH = ".github/workflows/bootstrap.yml";
-const INITIAL_PACKAGE_PATTERN =
-  /aksara-contracts\/0\.1\.0[\s\S]*bootstrap_status" != "200"/u;
-const TRANSFERRED_TARBALL_PATTERN =
-  /id: tarball[\s\S]*package_integrity=.*openssl dgst -sha512[\s\S]*EXPECTED_INTEGRITY: \$\{\{ steps\.tarball\.outputs\.package_integrity \}\}[\s\S]*package_integrity" != "\$EXPECTED_INTEGRITY"/u;
-const CANDIDATE_VERSION_PATTERN =
-  /aksara-contracts\/\$package_version[\s\S]*candidate_status" != "404"/u;
-const VERSION_SETUP_PATTERN =
-  /- name: Setup pnpm\n\s+if: steps\.bootstrap\.outputs\.ready == 'true'/u;
-const PROOF_INSTALLER_PATTERN =
-  /workflow_call:[\s\S]*proof_mode:[\s\S]*uses: slsa-framework\/slsa-verifier\/actions\/installer@ea584f4502babc6f60d9bc799dbbb13c1caa9ee6/u;
-const LOCAL_PACKAGE_PATTERN =
-  /Build current package[\s\S]*pnpm install --frozen-lockfile[\s\S]*verify:package[\s\S]*aksara-contracts\.local\.tgz/u;
-const PACKAGE_INTEGRITY_PATTERN =
-  /EXPECTED_INTEGRITY="sha512-\$\(openssl dgst -sha512 -binary "\$local_tarball"[\s\S]*actual_integrity[\s\S]*downloaded_integrity[\s\S]*provenance_source_sha=[\s\S]*git merge-base --is-ancestor/u;
-const RELEASE_PROOF_PATTERN =
-  /package:[\s\S]*inputs\.operation == 'accept'[\s\S]*inputs\.operation == 'release'[\s\S]*inputs\.operation == 'rollback'[\s\S]*uses: \.\/\.github\/workflows\/package-proof\.yml[\s\S]*proof_mode: current/u;
+const FORBIDDEN_REGISTRY_PATTERN =
+  /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|registry\.npmjs\.org|package-proof/iu;
+const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
+const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
+const ARCHIVE_BUILD_PATTERN =
+  /pnpm verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
+const PRIVILEGED_CODE_PATTERN =
+  /actions\/checkout|\bpnpm\b|\bnode\b|packages\/|scripts\//u;
+const PRODUCTION_ENV_PATTERN = /environment: content-production/u;
+const FULL_GATE_PATTERN =
+  /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build/u;
+const CONDITIONAL_GATE_PATTERN =
+  /Decide exact archive release[\s\S]*Verify repository[\s\S]*if: steps\.decision\.outputs\.mode == 'create'[\s\S]*pnpm lint/u;
+const CONTRACT_TRIGGER_PATTERN =
+  /push:[\s\S]*branches: \[main\][\s\S]*workflow_dispatch:/u;
+const CONTRACT_PATH_TRIGGER_PATTERN = /\bpaths(?:-ignore)?:/u;
+const RELEASE_IDENTITY_PATTERN =
+  /Capture immutable contract releases[\s\S]*gh api --paginate[\s\S]*\.immutable == true[\s\S]*startswith\("contracts-v"\)[\s\S]*release-command\.ts describe[\s\S]*Download latest immutable archive[\s\S]*\.isImmutable == true[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
+const SHELL_VERSION_PATTERN =
+  /IFS=|current_(?:major|minor|patch)|latest_(?:major|minor|patch)|latest_version=\$\{|release_tag="contracts-v\$|asset_name="nakafa-aksara-contracts-\$/u;
+const ARCHIVE_IDENTITY_PATTERN =
+  /release-command\.ts describe[\s\S]*pnpm verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
+const ATTESTATION_PATTERN =
+  /actions\/attest@[0-9a-f]{40}[\s\S]*gh attestation verify "\$TARBALL"[\s\S]*--signer-workflow "\$GITHUB_REPOSITORY\/\.github\/workflows\/contracts\.yml"[\s\S]*--source-digest "\$GITHUB_SHA"[\s\S]*--source-ref "refs\/heads\/main"/u;
+const RELEASE_JOB_PATTERN =
+  /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified archive[\s\S]*actions\/upload-artifact@[0-9a-f]{40}[\s\S]*publish:[\s\S]*needs: build[\s\S]*if: needs\.build\.outputs\.mode == 'create'[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*Download verified archive[\s\S]*actions\/download-artifact@[0-9a-f]{40}/u;
+const IMMUTABLE_SETTING_PATTERN =
+  /repos\/\$GITHUB_REPOSITORY\/immutable-releases/u;
+const IDEMPOTENT_RELEASE_PATTERN =
+  /Resolve release state[\s\S]*isDraft,isImmutable,isPrerelease,targetCommitish[\s\S]*tag exists without a GitHub Release[\s\S]*\.isDraft == true or \.isImmutable == false[\s\S]*target" != "\$GITHUB_SHA"[\s\S]*\.isPrerelease[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*published contract release already owns/u;
+const PUBLISHED_RELEASE_PATTERN =
+  /Publish immutable release[\s\S]*gh release edit "\$RELEASE_TAG"[\s\S]*--draft=false[\s\S]*\.immutable == true[\s\S]*\.assets\[0\]\.digest == \$digest[\s\S]*git\/ref\/tags\/\$RELEASE_TAG[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release verify "\$RELEASE_TAG"[\s\S]*gh release verify-asset "\$RELEASE_TAG" "\$TARBALL"[\s\S]*gh attestation verify "\$TARBALL"/u;
+const MUTABLE_RECOVERY_PATTERN =
+  /Remove failed mutable release[\s\S]*if: failure\(\) && steps\.state\.outputs\.mode == 'create'[\s\S]*--json isImmutable,targetCommitish[\s\S]*\.isImmutable == false and \.targetCommitish == \$sha[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*--cleanup-tag/u;
 const ISOLATED_OPERATION_PATTERN =
-  /Prepare isolated operation checkout[\s\S]*git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
-const RECOVERY_OPERATION_PATTERN =
-  /needs: package[\s\S]*always\(\)[\s\S]*needs\.package\.result == 'success'[\s\S]*inputs\.operation == 'abort'[\s\S]*inputs\.operation == 'cleanup'[\s\S]*inputs\.operation == 'recover'[\s\S]*needs\.package\.result == 'skipped'/u;
-const SHARED_DEPRECATION_PATTERN =
-  /Verify repository controls[\s\S]*pnpm deprecations\s*\n[\s\S]*Verify full publication revision/u;
-const FULL_DEPRECATION_PATTERN =
-  /Verify full publication revision[\s\S]*pnpm deprecations\s*\n[\s\S]*pnpm typecheck/u;
-const TERMINAL_DEPRECATION_PATTERN =
+  /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
+const TERMINAL_GATE_PATTERN =
   /Verify terminal operation revision[\s\S]*pnpm exec turbo run typecheck test build[\s\S]*--filter=@nakafa\/aksara-contracts[\s\S]*--filter=@nakafa\/aksara-publisher[\s\S]*--filter=@nakafa\/aksara-cli[\s\S]*pnpm deprecations:audit/u;
-const SOURCE_ANCESTRY_PATTERN =
-  /slsa-verifier verify-npm-package[\s\S]*provenance_source_sha=[\s\S]*gh api[\s\S]*compare\/\$provenance_source_sha\.\.\.\$CURRENT_SHA[\s\S]*comparison_status" != "ahead"/u;
-const PUBLISH_CALL_PATTERN = /pnpm publish "\$TARBALL"/gu;
-const TOKEN_BINDING_PATTERN = /secrets\.NPM_BOOTSTRAP_TOKEN/gu;
-const LOST_VISIBILITY_PATTERN =
-  /if \[\[ "\$ready" != "true" \]\]; then(?<body>[\s\S]*?)\n\s+fi/u;
-const PRIVILEGED_CODE_PATTERN = /actions\/checkout|pnpm install/u;
-const SAFE_PUBLISH_PATTERN =
-  /pnpm publish "\$TARBALL"[\s\S]*--provenance[\s\S]*--ignore-scripts[\s\S]*\|\| publish_status=\$\?/u;
-const EXISTING_VERSION_PATTERN =
-  /if \[\[ "\$status" == "200" \]\]; then[\s\S]*needs_publish=false[\s\S]*if: steps\.state\.outputs\.needs_publish == 'true'/u;
-const HARD_FAILURE_PATTERN = /exit 1/u;
-const INHERITED_STATUS_PATTERN = /exit "?\$\{?publish_status/u;
+const PUBLICATION_SCOPE_PATTERN =
+  /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
+const CONTENT_CONTRACT_PATTERN =
+  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer[\s\S]*--output "\$TARBALL"[\s\S]*release-command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: contracts[\s\S]*needs\.contracts\.result == 'success'/u;
+const PINNED_ACTION_PATTERN = /^[a-z0-9-]+\/[a-z0-9-]+@[0-9a-f]{40}$/u;
 
-/** Exact workflow sources whose cross-file release policy is verified together. */
+/** Workflow sources whose release controls must remain coherent. */
 export interface WorkflowSources {
-  readonly bootstrap: string | undefined;
-  readonly packageProof: string;
-  readonly publish: string;
+  readonly ci: string;
+  readonly contracts: string;
   readonly release: string;
-  readonly state: unknown;
-  readonly version: string;
 }
 
-/** Reads one workflow only while its guarded bootstrap path exists. */
-export function readOptionalWorkflow(
-  path: string,
-  pathExists: (candidate: string) => boolean,
-  readSource: (candidate: string) => string
-): string | undefined {
-  return pathExists(path) ? readSource(path) : undefined;
-}
-
-/** Verifies bootstrap, package proof, publication, and recovery as one policy. */
+/** Verifies one source-only contract archive and one content release path. */
 export function verifyWorkflows({
-  bootstrap,
-  packageProof,
-  publish,
+  ci,
+  contracts,
   release,
-  state,
-  version,
 }: WorkflowSources): void {
-  assert.ok(isRecord(state), "Bootstrap state must be an object");
-  assert.equal(
-    typeof state.contracts,
-    "boolean",
-    "Contracts bootstrap state must be boolean"
+  const combined = `${ci}\n${contracts}\n${release}`;
+  assert.doesNotMatch(
+    combined,
+    FORBIDDEN_REGISTRY_PATTERN,
+    "Workflows must not retain registry or Changesets publication machinery"
   );
   assert.match(
-    publish,
-    INITIAL_PACKAGE_PATTERN,
-    "Steady-state publishing must prove the initial package exists"
+    ci,
+    FROZEN_INSTALL_PATTERN,
+    "CI must install the exact pnpm lockfile"
   );
   assert.match(
-    publish,
-    TRANSFERRED_TARBALL_PATTERN,
-    "Staged package output must match the exact transferred tarball"
+    ci,
+    RELEASE_IDENTITY_PATTERN,
+    "CI must derive release necessity from the tested identity tool"
+  );
+  assert.doesNotMatch(
+    ci,
+    SHELL_VERSION_PATTERN,
+    "CI must not parse contract versions in shell"
+  );
+  assert.match(ci, FULL_GATE_PATTERN, "CI must run every repository gate");
+  assert.match(
+    ci,
+    VERIFY_CONSUMER_PATTERN,
+    "CI must prove the release archive in an isolated consumer"
+  );
+
+  assert.match(
+    contracts,
+    CONTRACT_TRIGGER_PATTERN,
+    "Contract release checks must run for every main source revision"
+  );
+  const contractTrigger = contracts.slice(0, contracts.indexOf("permissions:"));
+  assert.doesNotMatch(
+    contractTrigger,
+    CONTRACT_PATH_TRIGGER_PATTERN,
+    "Contract release triggers must not guess archive input paths"
   );
   assert.match(
-    publish,
-    CANDIDATE_VERSION_PATTERN,
-    "Steady-state publishing must require a new candidate version"
+    contracts,
+    FROZEN_INSTALL_PATTERN,
+    "Contract releases must install the exact pnpm lockfile"
+  );
+  assert.match(
+    contracts,
+    RELEASE_IDENTITY_PATTERN,
+    "Contract releases must derive release necessity from the tested identity tool"
+  );
+  assert.doesNotMatch(
+    contracts,
+    SHELL_VERSION_PATTERN,
+    "Contract releases must not parse contract versions in shell"
+  );
+  assert.match(
+    contracts,
+    FULL_GATE_PATTERN,
+    "Contract releases must run every repository gate"
+  );
+  assert.match(
+    contracts,
+    CONDITIONAL_GATE_PATTERN,
+    "Unchanged contract archives must skip full release gates"
+  );
+  assert.match(
+    contracts,
+    ARCHIVE_BUILD_PATTERN,
+    "Contract releases must upload the archive proven by the consumer"
+  );
+  assert.match(
+    contracts,
+    ARCHIVE_IDENTITY_PATTERN,
+    "Contract releases must compare exact verified archive bytes"
+  );
+  const attestIndex = contracts.indexOf("- name: Attest verified archive");
+  const transferIndex = contracts.indexOf("- name: Upload verified archive");
+  const draftIndex = contracts.indexOf("- name: Create draft release");
+  const uploadIndex = contracts.indexOf("- name: Attach verified archive");
+  const publishIndex = contracts.indexOf("- name: Publish immutable release");
+  assert.ok(
+    attestIndex < transferIndex,
+    "Contract archives must be attested before crossing into the publish job"
   );
   assert.ok(
-    version.indexOf("- name: Check package bootstrap") <
-      version.indexOf("- name: Setup pnpm"),
-    "Version automation must stop before toolchain setup while bootstrap is incomplete"
+    draftIndex < uploadIndex && uploadIndex < publishIndex,
+    "Contract releases must draft, attach, then publish"
   );
   assert.match(
-    version,
-    VERSION_SETUP_PATTERN,
-    "Version toolchain setup must run only after bootstrap"
+    contracts,
+    ATTESTATION_PATTERN,
+    "Contract attestation must bind workflow, source revision, and main"
   );
   assert.match(
-    packageProof,
-    PROOF_INSTALLER_PATTERN,
-    "Reusable package proof must install the pinned SLSA verifier"
+    contracts,
+    RELEASE_JOB_PATTERN,
+    "Contract builds and privileged publication must use separate jobs"
+  );
+  const publishJob = contracts.slice(contracts.indexOf("\n  publish:"));
+  assert.doesNotMatch(
+    publishJob,
+    PRIVILEGED_CODE_PATTERN,
+    "The privileged contract job must not checkout or execute repository code"
+  );
+  assert.doesNotMatch(
+    contracts,
+    IMMUTABLE_SETTING_PATTERN,
+    "Contract workflows cannot query repository settings with GITHUB_TOKEN"
   );
   assert.match(
-    packageProof,
-    LOCAL_PACKAGE_PATTERN,
-    "Current package proof must build an isolated tarball from the exact checkout"
+    contracts,
+    IDEMPOTENT_RELEASE_PATTERN,
+    "Contract reruns may recover only their same-SHA mutable release"
   );
   assert.match(
-    packageProof,
-    PACKAGE_INTEGRITY_PATTERN,
-    "Current package proof must bind exact tarball bytes and signed provenance"
+    contracts,
+    PUBLISHED_RELEASE_PATTERN,
+    "Published releases must match the verified asset and source tag"
+  );
+  assert.match(
+    contracts,
+    MUTABLE_RECOVERY_PATTERN,
+    "Failed publication must remove only its same-SHA mutable release"
+  );
+
+  const actionReferences = [...combined.matchAll(/(?<=uses: )[^ #\n]+/gu)].map(
+    (match) => match[0]
+  );
+  assert.ok(actionReferences.length > 0, "Workflows must use pinned actions");
+  for (const reference of actionReferences) {
+    assert.match(
+      reference,
+      PINNED_ACTION_PATTERN,
+      `Workflow action ${reference} must use an exact commit`
+    );
+  }
+
+  assert.match(
+    release,
+    PRODUCTION_ENV_PATTERN,
+    "Content operations must require production environment approval"
   );
   assert.match(
     release,
-    RELEASE_PROOF_PATTERN,
-    "Content acceptance, release, and rollback must call current cryptographic package proof"
+    VERIFY_CONSUMER_PATTERN,
+    "Full content operations must prove the contracts release archive"
+  );
+  assert.match(
+    release,
+    CONTENT_CONTRACT_PATTERN,
+    "Every content operation must depend on the exact immutable contract proof"
+  );
+  assert.ok(
+    release.indexOf("- name: Prove immutable contract release") <
+      release.indexOf("environment: content-production"),
+    "Contract proof must finish before production credentials are approved"
   );
   assert.match(
     release,
     ISOLATED_OPERATION_PATTERN,
-    "Production operations must run from one clean exact-revision checkout"
+    "Content operations must run from one clean exact-revision checkout"
   );
   assert.match(
     release,
-    RECOVERY_OPERATION_PATTERN,
-    "Terminal recovery operations must remain available only when package proof is intentionally skipped"
-  );
-  assert.doesNotMatch(
-    release,
-    SHARED_DEPRECATION_PATTERN,
-    "Shared release controls must not trigger an unfiltered declaration build"
+    TERMINAL_GATE_PATTERN,
+    "Terminal content operations must retain scoped recovery gates"
   );
   assert.match(
     release,
-    FULL_DEPRECATION_PATTERN,
-    "Full publication must build every declaration before auditing deprecations"
-  );
-  assert.match(
-    release,
-    TERMINAL_DEPRECATION_PATTERN,
-    "Terminal recovery must audit deprecations after its scoped build"
-  );
-
-  if (state.contracts) {
-    assert.equal(
-      bootstrap,
-      undefined,
-      "Completed bootstrap must delete its privileged workflow"
-    );
-    return;
-  }
-
-  assert.ok(
-    typeof bootstrap === "string",
-    "Incomplete bootstrap must retain its privileged workflow"
-  );
-  assert.match(
-    bootstrap,
-    SOURCE_ANCESTRY_PATTERN,
-    "Bootstrap recovery must verify proven source ancestry after signature proof"
-  );
-  const privileged = bootstrap.slice(bootstrap.indexOf("\n  publish:\n"));
-  const publishCalls = [...bootstrap.matchAll(PUBLISH_CALL_PATTERN)];
-  const tokenBindings = [...privileged.matchAll(TOKEN_BINDING_PATTERN)];
-  const lostVisibility = LOST_VISIBILITY_PATTERN.exec(bootstrap)?.groups?.body;
-
-  assert.equal(
-    publishCalls.length,
-    1,
-    "Bootstrap must attempt package publication exactly once"
-  );
-  assert.equal(
-    tokenBindings.length,
-    1,
-    "The bootstrap token must be visible only to the single publish step"
-  );
-  assert.doesNotMatch(
-    privileged,
-    PRIVILEGED_CODE_PATTERN,
-    "The privileged bootstrap job must not execute repository or package code"
-  );
-  assert.match(
-    bootstrap,
-    SAFE_PUBLISH_PATTERN,
-    "Bootstrap must publish the exact tarball once with provenance and no lifecycle scripts"
-  );
-  assert.match(
-    bootstrap,
-    EXISTING_VERSION_PATTERN,
-    "An existing bootstrap version must pass exact registry proof without republishing"
-  );
-  assert.ok(
-    lostVisibility,
-    "Bootstrap must handle a publish result that is not visible in the registry"
-  );
-  assert.match(
-    lostVisibility,
-    HARD_FAILURE_PATTERN,
-    "Lost registry visibility must fail regardless of the publish exit status"
-  );
-  assert.doesNotMatch(
-    lostVisibility,
-    INHERITED_STATUS_PATTERN,
-    "Lost registry visibility must never inherit a successful publish exit status"
+    PUBLICATION_SCOPE_PATTERN,
+    "Content releases must validate and pass one explicit scalable scope"
   );
 }
 
-const bootstrapSource = readOptionalWorkflow(
-  BOOTSTRAP_PATH,
-  existsSync,
-  (path) => readFileSync(path, "utf8")
-);
 verifyWorkflows({
-  bootstrap: bootstrapSource,
-  packageProof: readFileSync(".github/workflows/package-proof.yml", "utf8"),
-  publish: readFileSync(".github/workflows/publish.yml", "utf8"),
+  ci: readFileSync(".github/workflows/ci.yml", "utf8"),
+  contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
   release: readFileSync(".github/workflows/release.yml", "utf8"),
-  state: JSON.parse(readFileSync(".changeset/bootstrap.json", "utf8")),
-  version: readFileSync(".github/workflows/version.yml", "utf8"),
 });
-process.stdout.write("Verified package workflow recovery policy.\n");
+process.stdout.write("Verified immutable contract and content workflows.\n");

@@ -7,10 +7,12 @@ import {
 } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { Effect, Option, Schema, type Scope, Stream, Tuple } from "effect";
+import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   type MaterialMetadataError,
   type MaterialSourceError,
@@ -70,7 +72,8 @@ export type MaterialPublicationStreamError<E> =
   | MaterialHeadFamilyError
   | MaterialHeadOrderError
   | MaterialMetadataError
-  | MaterialSourceError;
+  | MaterialSourceError
+  | PublicationScopeIdentityError;
 
 /** Authoritative material plan accepted by generic release preparation. */
 export interface MaterialPublication {
@@ -90,6 +93,7 @@ export interface MaterialPublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<MaterialHead, E, R>;
   readonly rendererManifest: unknown;
+  readonly scope?: PublicationScope | undefined;
 }
 
 type RendererManifestError = Effect.Effect.Error<
@@ -193,6 +197,7 @@ export const prepareMaterialPublication: <E, R>(
     entries,
     published: validatePublishedHeads(input.published),
     rendererManifest,
+    scope: input.scope,
   });
   const spool = yield* createReplaySpool({
     prefix: "aksara-material-",

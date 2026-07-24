@@ -26,11 +26,12 @@ import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/re
 import {
   inheritContentSnapshots,
   invertContentSnapshots,
+  type PublicationScope,
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
-import { RENDERER_MANIFEST } from "#test/real";
+import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 
 const HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const OTHER_HASH = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
@@ -65,6 +66,7 @@ export function gitBundle(
     readonly baseReleaseId?: ReleaseId | null;
     readonly keyId?: typeof SigningKeyIdSchema.Type;
     readonly projectionDigest?: typeof Sha256HashSchema.Type;
+    readonly scope?: PublicationScope;
     readonly sha?: typeof GitCommitShaSchema.Type;
   } = {}
 ) {
@@ -94,6 +96,7 @@ export function gitBundle(
       rollbackDigest: HASH,
       routeCount: 0,
       routeDigest: HASH,
+      scope: input.scope ?? FUNCTION_SCOPE,
       snapshots: inheritContentSnapshots(null),
       upsertCount: 0,
     }),
@@ -128,6 +131,7 @@ export function rollbackBundle(
       rollbackDigest: HASH,
       routeCount: 0,
       routeDigest: HASH,
+      scope: FUNCTION_SCOPE,
       snapshots: inheritContentSnapshots(null),
       upsertCount: 0,
     })
@@ -160,6 +164,7 @@ export function recoveryBundle(id: string, target: ContentReleaseBundle) {
         rollbackDigest: HASH,
         routeCount: 0,
         routeDigest: HASH,
+        scope: targetManifest.scope,
         snapshots: invertContentSnapshots(targetManifest.snapshots),
         upsertCount: 0,
       })

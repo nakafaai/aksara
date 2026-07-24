@@ -3,12 +3,14 @@ import {
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot";
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   productionCalls,
   rejectProduction,
   runProduction,
 } from "#test/production";
+import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,
   currentState,
@@ -18,6 +20,11 @@ import {
 } from "#test/target";
 
 const calls = productionCalls();
+const tryoutScope = PublicationScopeSchema.make({
+  content: [],
+  families: [],
+  snapshots: ["tryout"],
+});
 
 beforeEach(() => {
   calls.reset();
@@ -37,6 +44,7 @@ describe("production preparation", () => {
         command: "release",
         recoveryId: releaseId("recovery-next"),
         releaseId: releaseId("release-next"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({ releaseId: "release-next" });
     expect(calls).toMatchObject({
@@ -56,7 +64,7 @@ describe("production preparation", () => {
       rendererCalls: 1,
       rootReads: 1,
       signingSecretReads: 1,
-      snapshotCalls: 1,
+      snapshotCalls: 0,
       sourceLayers: 1,
       targetCalls: 1,
       targetServiceReads: 1,
@@ -79,6 +87,7 @@ describe("production preparation", () => {
         command: "release",
         recoveryId: releaseId("recovery-first"),
         releaseId: releaseId("release-first"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({ releaseId: "release-first" });
     expect(calls.baseReleaseId).toBeNull();
@@ -86,7 +95,27 @@ describe("production preparation", () => {
     expect(calls.baseResultCount).toBe(0);
     expect(calls.baseResultDigest).toBe(EMPTY_RESULT_CATALOG_DIGEST);
     expect(calls.headReleaseId).toBeUndefined();
-    expect(calls.snapshotCalls).toBe(1);
+    expect(calls.snapshotCalls).toBe(0);
+  });
+
+  it("prepares selected snapshots from question heads only", async () => {
+    calls.current = currentState({
+      active: null,
+      candidate: null,
+      recovery: null,
+    });
+    await expect(
+      runProduction({
+        command: "release",
+        recoveryId: releaseId("recovery-snapshot"),
+        releaseId: releaseId("release-snapshot"),
+        scope: tryoutScope,
+      })
+    ).resolves.toMatchObject({ releaseId: "release-snapshot" });
+    expect(calls).toMatchObject({
+      catalogCalls: 1,
+      snapshotCalls: 1,
+    });
   });
 
   it("prepares a new rollback from its exact signed source bundle", async () => {
@@ -134,6 +163,7 @@ describe("production preparation", () => {
         command: "release",
         recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({ releaseId: "release-candidate" });
     expect(calls).toMatchObject({
@@ -143,7 +173,7 @@ describe("production preparation", () => {
       cleanReads: 2,
       keyId: "content-2026-07-23",
       rendererCalls: 0,
-      snapshotCalls: 1,
+      snapshotCalls: 0,
       sourceLayers: 1,
       verifiedBundle: candidate,
     });
@@ -199,6 +229,7 @@ describe("production preparation", () => {
         command: "release",
         recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({
       failure: "RecoveryRevisionMismatchError",
@@ -221,6 +252,7 @@ describe("production preparation", () => {
         command: "release",
         recoveryId: releaseId("recovery-next"),
         releaseId: releaseId("release-next"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({
       failure: "ReleaseRevisionChangedError",
@@ -230,7 +262,7 @@ describe("production preparation", () => {
       catalogCalls: 1,
       cleanReads: 2,
       publishCalls: 0,
-      snapshotCalls: 1,
+      snapshotCalls: 0,
     });
   });
 
@@ -247,6 +279,7 @@ describe("production preparation", () => {
         command: "release",
         recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({
       failure: "PreparedStoredReleaseMismatchError",
@@ -256,7 +289,7 @@ describe("production preparation", () => {
       catalogCalls: 1,
       publishCalls: 0,
       rendererCalls: 0,
-      snapshotCalls: 1,
+      snapshotCalls: 0,
       sourceLayers: 0,
     });
   });

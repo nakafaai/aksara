@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah4Verses145To150 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/638",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/638.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/638.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 40,
       juz: 5,
       manzil: 1,
       page: 101,
       ruku: 82,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 638,
@@ -24,40 +25,33 @@ export const quranSurah4Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Orang-orang munafik diperingatkan, bahwa mereka akan disiksa di neraka pada tingkatan yang paling bawah, karena perbuatan mereka dipandang perbuatan yang paling jahat, di dalam diri mereka bersemi kekafiran dan kemunafikan. Mereka menipu Rasulullah dan orang-orang mukmin. Maka siksaan yang paling pantas bagi mereka ialah neraka yang paling bawah tingkatannya. Mereka tidak akan mendapatkan penolong yang dapat menyelamatkan ataupun meringankan siksaan yang akan mereka terima.",
-        short:
-          "Ketahuilah wahai Muhammad dan orang-orang yang beriman, bahwa sungguh, orang-orang munafik itu di akhirat kelak ditempatkan pada tingkatan yang paling bawah, paling rendah, dan paling hina dari neraka. Dan kamu, wahai Muhammad dan siapa pun, sama sekali tidak akan mendapat seorang penolong pun yang dapat memberikan pertolongan bagi mereka dari azab neraka itu.",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang munafik itu akan Allah tempatkan di kerak neraka pada hari Kiamat nanti dan kamu tidak akan menemukan satu penolong pun yang dapat melindungi mereka dari azab tersebut.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u0645\u064f\u0646\u064e\u0627\u0641\u0650\u0642\u0650\u064a\u0646\u064e \u0641\u0650\u064a \u0627\u0644\u062f\u0651\u064e\u0631\u0652\u0643\u0650 \u0627\u0644\u0652\u0623\u064e\u0633\u0652\u0641\u064e\u0644\u0650 \u0645\u0650\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u0650 \u0648\u064e\u0644\u064e\u0646 \u062a\u064e\u062c\u0650\u062f\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u0646\u064e\u0635\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Innal munaafiqeena fiddarkil asfali minan Naari wa lan tajjida lahum naseeraa",
-      },
+      arabic: "إِنَّ ٱلْمُنَٰفِقِينَ فِى ٱلدَّرْكِ ٱلْأَسْفَلِ مِنَ ٱلنَّارِ وَلَن تَجِدَ لَهُمْ نَصِيرًا",
     },
     translation: {
-      en: "Indeed, the hypocrites will be in the lowest depths of the Fire - and never will you find for them a helper -",
-      id: "Sungguh, orang-orang munafik itu (ditempatkan) pada tingkatan yang paling bawah dari neraka. Dan kamu tidak akan mendapat seorang penolong pun bagi mereka.",
+      en: {
+        footnotes:
+          '[100] The Prophet (ﷺ) described four characteristics of a hypocrite: 1. Whenever he is entrusted, he betrays. 2. Whenever he speaks, he tells a lie. 3. Whenever he makes a covenant, he proves treacherous. 4. Whenever he quarrels, he behaves in an insulting manner." [Sahih al-Bukhāri: 33]. The Prophet (ﷺ) said: "The worst people before Allah on the Day of Judgment will be the double-faced people who appear to some people with one face and to other people with another face." [Sahih al-Bukhāri: 84]',
+        text: "Indeed, the hypocrites will be in the lowest depths of the Fire[100], and you will never find for them any helper,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, orang-orang munafik itu (ditempatkan) pada tingkatan yang paling bawah dari neraka. Dan kamu tidak akan mendapat seorang penolong pun bagi mereka,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/639",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/639.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/639.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 40,
       juz: 5,
       manzil: 1,
       page: 101,
       ruku: 82,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 639,
@@ -65,40 +59,34 @@ export const quranSurah4Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Orang-orang munafik masih diberi kesempatan untuk bertobat selama ajal mereka belum tiba, asal mereka betul-betul menyesali perbuatan mereka atas dasar kesadaran yang keluar dari hati nurani mereka, dan memperbaiki perbuatan mereka dengan melakukan amal saleh dan berpegang teguh pada tuntunan Ilahi.\n\nDengan kata lain, ancaman Tuhan yang sangat keras itu tidak akan menimpa mereka, apabila mereka bertobat dan menyesali perbuatannya, kemudian melakukan perbuatan-perbuatan sebagai berikut:\n\n1.Mereka betul-betul berusaha untuk melakukan amal saleh yang dapat menghilangkan noda kemunafikannya dengan selalu bersifat jujur, baik dalam berkata maupun dalam berbuat, dapat dipercaya, memenuhi janji, ikhlas terhadap Allah dan Rasul-Nya, dan tetap melakukan salat dengan khusyuk serta tekun, baik di hadapan orang maupun pada waktu sendiri-sendiri.\n\n2.Berpegang teguh kepada ajaran Allah, yaitu meniatkan tobat dan amal saleh kepada keridaan Allah serta berpegang teguh pada Al-Qur'an, berakhlak mulia serta berperangai baik sesuai dengan ajaran Al-Qur'an, menjalani semua perintah dan menjauhi segala larangan Allah.\n\n3.Mengikhlaskan diri kepada Allah yaitu memohon pertolongan hanya kepada-Nya, baik pada waktu senang atau dalam keadaan susah.\n\nApabila mereka melakukan ketentuan-ketentuan tersebut, maka Allah berjanji akan memasukkan mereka ke dalam barisan orang-orang mukmin di hari kiamat, karena mereka telah beriman, dan beramal seperti orang-orang mukmin, bahkan mereka itu akan diberi pahala seperti pahala yang diterima oleh orang-orang mukmin.",
-        short:
-          "Orang-orang munafik yang terhindar dari tempat terendah dan terhina dari neraka Jahanam itu tidak lain kecuali orang-orang munafik yang bertobat, yang menyesali perbuatan mereka, meninggalkan kemunafikan, dan memohon ampun kepada Allah atas dosa-dosa dan kesalahan mereka, dan memperbaiki diri mereka dengan meninggalkan perbuatan-perbuatan dosa yang mereka lakukan sebelumnya dan kemudian meningkatkan amal-amal saleh, termasuk salat yang selama dilakukannya dengan malas dan pamrih, berpegang teguh pada agama Allah dan dengan tulus ikhlas menjalankan agama mereka karena Allah. Maka mereka itu bersama-sama orang-orang yang beriman dengan keimanan yang mantap di dalam surga dan kelak Allah akan memberikan pahala yang besar kepada orang-orang yang beriman dan juga kepada orang-orang munafik yang telah bertobat akan memperoleh ganjaran serupa.",
+        footnotes: null,
+        text: "Kecuali orang-orang yang kembali ke jalan Allah dengan bertobat dari kemunafikan mereka, memperbaiki keyakinan mereka, memegang teguh janji Allah, dan melaksanakan amal perbuatan mereka secara ikhlas kepada Allah tanpa disertai unsur riya. Orang-orang yang memiliki ciri-ciri tersebut akan bergabung bersama orang-orang mukmin di dunia dan akhirat dan Allah akan memberikan pahala yang sangat banyak kepada orang-orang mukmin.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062a\u064e\u0627\u0628\u064f\u0648\u0627 \u0648\u064e\u0623\u064e\u0635\u0652\u0644\u064e\u062d\u064f\u0648\u0627 \u0648\u064e\u0627\u0639\u0652\u062a\u064e\u0635\u064e\u0645\u064f\u0648\u0627 \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0623\u064e\u062e\u0652\u0644\u064e\u0635\u064f\u0648\u0627 \u062f\u0650\u064a\u0646\u064e\u0647\u064f\u0645\u0652 \u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0645\u064e\u0639\u064e \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e \u06d6 \u0648\u064e\u0633\u064e\u0648\u0652\u0641\u064e \u064a\u064f\u0624\u0652\u062a\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e \u0623\u064e\u062c\u0652\u0631\u064b\u0627 \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Illal lazeena taaboo wa aslahoo wa'tasamoo billaahi wa akhlasoo deenahum lillaahi faulaaa'ika ma'al mu'mineena wa sawfa yu'til laahul mu'mineena ajran 'azeemaa",
-      },
+      arabic:
+        "إِلَّا ٱلَّذِينَ تَابُوا۟ وَأَصْلَحُوا۟ وَٱعْتَصَمُوا۟ بِٱللَّهِ وَأَخْلَصُوا۟ دِينَهُمْ لِلَّهِ فَأُو۟لَٰٓئِكَ مَعَ ٱلْمُؤْمِنِينَ وَسَوْفَ يُؤْتِ ٱللَّهُ ٱلْمُؤْمِنِينَ أَجْرًا عَظِيمًا",
     },
     translation: {
-      en: "Except for those who repent, correct themselves, hold fast to Allah, and are sincere in their religion for Allah, for those will be with the believers. And Allah is going to give the believers a great reward.",
-      id: "Kecuali orang-orang yang bertobat dan memperbaiki diri dan berpegang teguh pada (agama) Allah dan dengan tulus ikhlas (menjalankan) agama mereka karena Allah. Maka mereka itu bersama-sama orang-orang yang beriman dan kelak Allah akan memberikan pahala yang besar kepada orang-orang yang beriman.",
+      en: {
+        footnotes: "",
+        text: "except those who repent and mend their ways, and hold fast to Allah and devote their religion sincerely to Allah; it is they who will be with the believers, and Allah will give the believers a great reward.",
+      },
+      id: {
+        footnotes:
+          "[236] Mengadakan perbaikan berarti bekerja yang baik untuk menghilangkan akibat yang jelek dan kesalahan yang dilakukan.",
+        text: "kecuali orang-orang yang bertobat dan memperbaiki diri[236] dan berpegang teguh pada (agama) Allah dan dengan tulus ikhlas (menjalankan) agama mereka karena Allah. Maka mereka itu bersama-sama orang-orang yang beriman dan kelak Allah akan memberikan pahala yang besar kepada orang-orang yang beriman.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/640",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/640.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/640.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 40,
       juz: 5,
       manzil: 1,
       page: 101,
       ruku: 82,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 640,
@@ -106,40 +94,33 @@ export const quranSurah4Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: 'Allah tidak akan menyiksa seseorang secara semena-mena. Allah menyiksa orang-orang munafik, hanyalah karena perbuatan mereka sendiri. Kepada mereka telah diberi akal, panca indera dan perasaan tetapi tidak mereka pergunakan sebagaimana mestinya sehingga mereka tidak mau menerima petunjuk-petunjuk Allah, dan jiwa mereka menjadi kotor serta penyakit kemunafikan bersemi di dalam diri mereka.\n\nApabila Allah memberikan pahala kepada mereka, sesudah mereka bertobat adalah karena kesadaran dan keikhlasan yang timbul dari hati mereka sendiri, dan telah melakukan amal saleh yang didasarkan kepada iman yang benar. Kemudian Allah menegaskan bahwa Dia Maha Pembalas jasa kepada hamba-Nya yang mau bersyukur dan Maha Mengetahui setiap amal perbuatan yang dilakukannya, dengan memberikan pahala yang tidak terhingga. Allah berfirman:\n\n"Dan (ingatlah) ketika Tuhanmu memaklumkan, "Sesungguhnya jika kamu bersyukur, niscaya Aku akan menambah (nikmat) kepadamu, tetapi jika kamu mengingkari (nikmat-Ku), maka pasti azab-Ku sangat berat." (Ibrahim/14:7).',
-        short:
-          "Apa yang dilakukan, yaitu apa manfaat yang Allah dapatkan dengan memberikan hukuman dan siksaan terhadap kamu, jika kamu bersyukur dan beriman kepada-Nya? Sama sekali tidak ada. Dan Allah selamanya, dari dahulu hingga kini dan masa akan datang, Maha Mensyukuri orangorang yang beriman dan beramal saleh dan memberi ganjaran kepada mereka, Maha Mengetahui apa yang mereka lakukan dan yang tersimpan di dalam hati mereka.",
+        footnotes: null,
+        text: "Allah -Ta'ālā- tidak akan menghukum kalian jika kalian mau bersyukur dan beriman kepada-Nya karena Dia Mahabaik lagi Maha penyayang. Dia hanya menghukum kalian karena dosa-dosa kalian. Oleh karena itu, jikalau kalian memperbaiki amal perbuatan kalian, mensyukuri nikmat-nikmat-Nya, dan beriman kepada-Nya secara lahir dan batin, Dia tidak akan menghukum kalian. Allah Maha Mensyukuri orang yang mau mengakui nikmat-nikmat-Nya, sehingga akan memberi pahala berlimpah kepada mereka atas amalan tersebut, lagi Maha Mengetahui keimanan makhluk-Nya, dan Dia akan memberikan balasan yang setimpal kepada setiap orang menurut amalnya masing-masing.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064e\u0627 \u064a\u064e\u0641\u0652\u0639\u064e\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0639\u064e\u0630\u064e\u0627\u0628\u0650\u0643\u064f\u0645\u0652 \u0625\u0650\u0646 \u0634\u064e\u0643\u064e\u0631\u0652\u062a\u064f\u0645\u0652 \u0648\u064e\u0622\u0645\u064e\u0646\u062a\u064f\u0645\u0652 \u06da \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0634\u064e\u0627\u0643\u0650\u0631\u064b\u0627 \u0639\u064e\u0644\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "maa yafa'lul laahu bi 'azaabikum in shakartum wa aamantum; wa kaanal laahu Shaakiran 'Aleema",
-      },
+      arabic: "مَّا يَفْعَلُ ٱللَّهُ بِعَذَابِكُمْ إِن شَكَرْتُمْ وَءَامَنتُمْ وَكَانَ ٱللَّهُ شَاكِرًا عَلِيمًا",
     },
     translation: {
-      en: "What would Allah do with your punishment if you are grateful and believe? And ever is Allah Appreciative and Knowing.",
-      id: "Allah tidak akan menyiksamu, jika kamu bersyukur dan beriman. Dan Allah Maha Mensyukuri, Maha Mengetahui.",
+      en: {
+        footnotes: "",
+        text: "Why would Allah punish you, if you are grateful and faithful? Allah is ever Appreciative, All-Knowing.",
+      },
+      id: {
+        footnotes:
+          "[237] Memberi pahala terhadap amal hamba-Nya, memaafkan kesalahannya, menambah nikmat-Nya.",
+        text: "Allah tidak akan menyiksamu, jika kamu bersyukur dan beriman. Dan Allah Maha Mensyukuri,[237] Maha Mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/641",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/641.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/641.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 102,
       ruku: 82,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 641,
@@ -147,40 +128,35 @@ export const quranSurah4Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: 'Allah tidak menyukai hamba-Nya yang melontarkan kata-kata buruk kepada siapa pun. Kata buruk dapat menimbulkan permusuhan dan kebencian di antara anggota masyarakat dan jika berlarut-larut dapat menjurus kepada pengingkaran hak dan pertumpahan darah, dan dapat pula mempengaruhi orang yang mendengarnya untuk meniru perbuatan itu, terutama bila perbuatan itu dilakukan oleh pemimpin. Allah tidak menyukai sesuatu, berarti Allah tidak meridainya dan tidak memberinya pahala.\n\nDalam hal ini dikecualikan orang yang dianiaya. Jika seseorang dianiaya, dia diperbolehkan mengadukan orang yang menganiayanya kepada hakim atau kepada orang lain yang dapat memberi pertolongan dalam menghilangkan kezaliman. Jika seseorang dianiaya lalu ia menyampaikan pengaduan, tentu saja pengaduan itu dengan menyebutkan keburukan-keburukan orang yang menganiayanya. Maka dalam hal ini ada dua kemungkinan. Pertama, orang yang teraniaya melontarkan ucapan-ucapan buruk terhadap seseorang yang menganiayanya. Hal ini dapat menimbulkan permusuhan dan kebencian antara kedua belah pihak. Kedua, bila orang yang dianiaya itu mendiamkan saja, maka kezaliman akan tambah memuncak dan keadilan akan lenyap. Karena itu Allah mengizinkan dalam ayat ini bagi orang yang teraniaya melontarkan ucapan dan tuduhan tentang keburukan tindakan-tindakan yang dilakukan oleh orang yang menganiaya walaupun akan mengakibatkan kebencian, karena membiarkan penganiayaan adalah lebih buruk akibatnya, sesuai dengan kaidah:\n\n"Melakukan yang lebih ringan mudaratnya di antara dua kemudaratan."\n\nOrang yang dianiaya wajib menyampaikan pengaduannya kepada hakim atau lainnya. Seseorang yang zalim jika tidak diambil tindakan yang tegas terhadapnya, kezalimannya akan bertambah luas. Tetapi jika tidak ada maksud untuk menghilangkan kezaliman, seseorang dilarang keras melontarkan ucapan-ucapan yang buruk. Dalam ayat ini diperingatkan bahwa Allah Maha Mendengar dan Maha Mengetahui setiap ucapan yang dikeluarkan oleh orang yang zalim dan orang yang dianiaya, terutama jika mereka melampaui batas sampai melontarkan pengaduan yang dusta atau bersifat menghasut dan mengadu domba.',
-        short:
-          "Pada ayat sebelumnya Allah menerangkan orang-orang munafik dan keburukan sifat mereka. Uraian itu dapat menimbulkan kebencian dan mengundang caci maki dari kalangan kaum muslim. Maka ayat ini memberikan tuntunan kepada kaum muslim terkait dengan kata-kata yang buruk. Allah tidak menyukai perkataan buruk yang diucapkan secara terus terang, kecuali diucapkan secara terpaksa oleh orang yang dizalimi; dalam keadaan itu dibenarkan baginya mengucapkannya dalam batasbatas tertentu. Dan Allah Maha Mendengar, ucapan yang baik maupun yang buruk, yang diucapkan secara rahasia maupun terang-terangan, lagi Maha Mengetahui, segala sesuatu yang diperbuat hamba-Nya.",
+        footnotes: null,
+        text: "Allah tidak menyukai ucapan buruk yang disiarkan secara terbuka, bahkan Dia membencinya dan mengancam pelakunya. Akan tetapi, orang yang dizalimi boleh mengucapkan kata-kata yang buruk secara terbuka untuk mengadukan orang yang menzaliminya, atau mengutuknya, atau membalasnya dengan ucapan yang serupa. Namun, sikap sabar orang yang terzalimi lebih baik daripada mengeluarkan ucapan yang buruk secara terbuka. Allah Maha Mendengar ucapan kalian lagi Maha Mengetahui niat kalian maka hindarilah ucapan yang buruk atau niat yang buruk.",
       },
     },
     text: {
-      arab: "\u06de \u0644\u0651\u064e\u0627 \u064a\u064f\u062d\u0650\u0628\u0651\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0652\u062c\u064e\u0647\u0652\u0631\u064e \u0628\u0650\u0627\u0644\u0633\u0651\u064f\u0648\u0621\u0650 \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0642\u064e\u0648\u0652\u0644\u0650 \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0646 \u0638\u064f\u0644\u0650\u0645\u064e \u06da \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0633\u064e\u0645\u0650\u064a\u0639\u064b\u0627 \u0639\u064e\u0644\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Laa yuhibbullaahul jahra bis sooo'i minal qawli illaa man zulim; wa kaanallaahu Samee'an 'Aleeman",
-      },
+      arabic:
+        "لَّا يُحِبُّ ٱللَّهُ ٱلْجَهْرَ بِٱلسُّوٓءِ مِنَ ٱلْقَوْلِ إِلَّا مَن ظُلِمَ وَكَانَ ٱللَّهُ سَمِيعًا عَلِيمًا",
     },
     translation: {
-      en: "Allah does not like the public mention of evil except by one who has been wronged. And ever is Allah Hearing and Knowing.",
-      id: "Allah tidak menyukai perkataan buruk, (yang diucapkan) secara terus terang kecuali oleh orang yang dizalimi. Dan Allah Maha Mendengar, Maha Mengetahui.",
+      en: {
+        footnotes:
+          "[101] i.e., swearing, foul mouthing, being profane, hurling accusations, slandering, backbiting, etc.",
+        text: "Allah does not like offensive words[101] to be said in public except by one who has been wronged. Allah is All-Hearing, All-Knowing.",
+      },
+      id: {
+        footnotes:
+          "[238] Orang yang dizalimi boleh mengemukakan kepada hakim atau penguasa tentang keburukan-keburukan orang yang menzaliminya.",
+        text: "Allah tidak menyukai perkataan buruk, (yang diucapkan) secara terus terang kecuali oleh orang yang dizalimi.[238] Dan Allah Maha Mendengar, Maha Mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/642",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/642.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/642.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 102,
       ruku: 82,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 642,
@@ -188,40 +164,32 @@ export const quranSurah4Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan bahwa menyatakan suatu perbuatan baik dengan membeberkannya memang baik, seandainya orang yang melakukan perbuatan itu dapat menjaga diri dari sifat ria serta hatinya penuh dengan keikhlasan dan keimanan, sehingga menjadi teladan bagi orang lain. Sedangkan mengerjakan kebaikan secara tersembunyi akan lebih memelihara kehormatan fakir miskin. Pemberian maaf yang dilakukan seseorang kepada orang-orang yang telah berbuat salah terhadapnya termasuk perbuatan yang akan mendapat balasan dan pahala dari Allah, sebab Allah Maha Pemaaf lagi Mahakuasa.",
-        short:
-          "Jika kamu menyatakan suatu kebajikan sehingga diketahui orang lain, atau menyembunyikannya sehingga tidak ada yang mengetahuinya kecuali Allah, atau memaafkan sesuatu kesalahan orang lain padahal engkau mampu membalasnya, maka sungguh Allah akan memaafkan kesalahan kamu, sebab Dia Maha Pemaaf, Mahakuasa.",
+        footnotes: null,
+        text: "Apabila kalian memperlihatkan ucapan atau tindakan yang baik, atau menutupinya, atau memaafkan orang yang berbuat jahat kepada kalian, sesungguhnya Allah Maha Pemaaf lagi Mahakuasa. Oleh karena itu, hendaklah sifat pemaaf itu menjadi bagian dari akhlak kalian, semoga Allah memaafkan kesalahan kalian.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646 \u062a\u064f\u0628\u0652\u062f\u064f\u0648\u0627 \u062e\u064e\u064a\u0652\u0631\u064b\u0627 \u0623\u064e\u0648\u0652 \u062a\u064f\u062e\u0652\u0641\u064f\u0648\u0647\u064f \u0623\u064e\u0648\u0652 \u062a\u064e\u0639\u0652\u0641\u064f\u0648\u0627 \u0639\u064e\u0646 \u0633\u064f\u0648\u0621\u064d \u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0643\u064e\u0627\u0646\u064e \u0639\u064e\u0641\u064f\u0648\u0651\u064b\u0627 \u0642\u064e\u062f\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "in tubdoo khairann aw tukhfoohu aw ta'foo 'an sooo'in fa innal laaha kaana 'afuwwan Qadeeraa",
-      },
+      arabic: "إِن تُبْدُوا۟ خَيْرًا أَوْ تُخْفُوهُ أَوْ تَعْفُوا۟ عَن سُوٓءٍ فَإِنَّ ٱللَّهَ كَانَ عَفُوًّا قَدِيرًا",
     },
     translation: {
-      en: "If [instead] you show [some] good or conceal it or pardon an offense - indeed, Allah is ever Pardoning and Competent.",
-      id: "Jika kamu menyatakan sesuatu kebajikan, menyembunyikannya atau memaafkan suatu kesalahan (orang lain), maka sungguh, Allah Maha Pemaaf, Mahakuasa.",
+      en: {
+        footnotes: "[102] This is mainly addressed to the one who is wronged.",
+        text: "If you do something good openly or in secret, or pardon an offense[102], then Allah is indeed Ever-Pardoning, Most Capable.",
+      },
+      id: {
+        footnotes: "",
+        text: "Jika kamu menyatakan sesuatu kebajikan, menyembunyikannya atau memaafkan sesuatu kesalahan (orang lain), maka sungguh, Allah Maha Pemaaf, Mahakuasa.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/643",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/643.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/643.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 102,
       ruku: 82,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 643,
@@ -229,20 +197,24 @@ export const quranSurah4Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: 'Di antara manusia ada yang beriman kepada Allah dan sebagian rasul-Nya seperti orang-orang Yahudi dan Nasrani. Orang-orang Yahudi berkata, "Kami percaya hanya kepada Musa, tidak percaya kepada Muhammad." Dan orang Nasrani berkata, "Kami percaya kepada Musa dan Isa, tetapi tidak percaya kepada Muhammad." Kepercayaan seperti itu berarti mencampur-adukkan antara iman dan kafir, padahal sesungguhnya iman dan kafir itu adalah dua hal yang sangat bertentangan. Jika orang Yahudi itu sungguh-sungguh beriman kepada Nabi Musa, tentulah beriman pula kepada Nabi Muhammad saw, demikian pula orang Nasrani, jika mereka sungguh-sungguh beriman kepada Nabi Isa, tentulah mereka beriman kepada Nabi Muhammad saw karena perihal kedatangan Nabi Muhammad saw itu disebut-sebut pula dalam kitab Taurat dan Injil, dan Nabi Muhammad pun membenarkan kitab Taurat dan Injil yang asli yang menjadi pegangan mereka.\n\nAlasan-alasan yang menunjukkan atas kebenaran kenabian Muhammad saw adalah sempurna, karena Nabi Muhammad saw seorang yang ummi (tidak pandai membaca dan menulis), dibesarkan dalam masyarakat jahiliah, kepadanya diturunkan Al-Qur\'an yang sempurna, yang menerangkan segala yang benar. Kedua golongan yang membeda-bedakan kepercayaan terhadap sebagian rasul itu dinyatakan Allah sebagai orang kafir. Terhadap mereka Allah menyediakan siksaan yang menghinakan, azab yang mengandung penghinaan dan penderitaan.',
-        short:
-          'Sesungguhnya orang-orang yang ingkar kepada Allah dan rasulrasul-Nya, dan bermaksud membeda-bedakan antara keimanan kepada Allah dan rasul-rasul-Nya, seperti orang-orang Yahudi dan orang-orang Nasrani, dengan mengatakan, "Kami beriman kepada sebagian, yakni beriman kepada Nabi Musa atau Nabi Isa, dan kami mengingkari sebagian yang lain, tidak beriman kepada Nabi Muhammad, serta dengan ucapannya itu mereka bermaksud mengambil jalan tengah antara iman atau ingkar, merekalah, yaitu orang-orang yang beriman kepada sebagian rasul-rasul Allah dan ingkar kepada sebagian rasul-rasul yang lain, orang-orang kafir yang sebenarnya. Dan Kami sediakan untuk orang-orang kafir itu azab yang menghinakan sesuai dengan perbuatannya.',
+        footnotes: null,
+        text: "Sesungguhnya orang-orang yang kafir kepada Allah dan kafir kepada rasul-rasul-Nya, mereka ingin membeda-bedakan antara Allah dan rasul-rasul-Nya dengan beriman kepada Allah dan kafir kepada para rasul-Nya, dan mengatakan, “Kami beriman kepada sebagian rasul dan ingkar kepada sebagian lainnya”, serta hendak mencari jalan di antara kekafiran dan keimanan yang mereka anggap dapat menyelamatkan mereka.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064e\u0643\u0652\u0641\u064f\u0631\u064f\u0648\u0646\u064e \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0631\u064f\u0633\u064f\u0644\u0650\u0647\u0650 \u0648\u064e\u064a\u064f\u0631\u0650\u064a\u062f\u064f\u0648\u0646\u064e \u0623\u064e\u0646 \u064a\u064f\u0641\u064e\u0631\u0651\u0650\u0642\u064f\u0648\u0627 \u0628\u064e\u064a\u0652\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0631\u064f\u0633\u064f\u0644\u0650\u0647\u0650 \u0648\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0646\u064f\u0624\u0652\u0645\u0650\u0646\u064f \u0628\u0650\u0628\u064e\u0639\u0652\u0636\u064d \u0648\u064e\u0646\u064e\u0643\u0652\u0641\u064f\u0631\u064f \u0628\u0650\u0628\u064e\u0639\u0652\u0636\u064d \u0648\u064e\u064a\u064f\u0631\u0650\u064a\u062f\u064f\u0648\u0646\u064e \u0623\u064e\u0646 \u064a\u064e\u062a\u0651\u064e\u062e\u0650\u0630\u064f\u0648\u0627 \u0628\u064e\u064a\u0652\u0646\u064e \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0633\u064e\u0628\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Innal lazeena yakkfuroona billaahi wa Rusulihee wa yureedoona ai yufarriqoo bainal laahi wa Rusulihee wa yaqooloona nu'minu biba'dinw wa nakfuru biba' dinw wa yureedoona ai yattakhizoo baina zaalika sabeelaa",
-      },
+      arabic:
+        "إِنَّ ٱلَّذِينَ يَكْفُرُونَ بِٱللَّهِ وَرُسُلِهِۦ وَيُرِيدُونَ أَن يُفَرِّقُوا۟ بَيْنَ ٱللَّهِ وَرُسُلِهِۦ وَيَقُولُونَ نُؤْمِنُ بِبَعْضٍ وَنَكْفُرُ بِبَعْضٍ وَيُرِيدُونَ أَن يَتَّخِذُوا۟ بَيْنَ ذَٰلِكَ سَبِيلًا",
     },
     translation: {
-      en: 'Indeed, those who disbelieve in Allah and His messengers and wish to discriminate between Allah and His messengers and say, "We believe in some and disbelieve in others," and wish to adopt a way in between -',
-      id: "Sesungguhnya orang-orang yang ingkar kepada Allah dan rasul-rasul-Nya, dan bermaksud membeda-bedakan antara (keimanan kepada) Allah dan rasul-rasul-Nya, dengan mengatakan, “Kami beriman kepada sebagian dan kami mengingkari sebagian (yang lain),” serta bermaksud mengambil jalan tengah (iman atau kafir),",
+      en: {
+        footnotes: "",
+        text: "Those who disbelieve in Allah and His messengers, and wish to make a distinction between Allah and His messengers, and they say, “We believe in some and disbelieve in others,” wishing to adopt a way in between.",
+      },
+      id: {
+        footnotes:
+          "[239] Beriman kepada Allah, tidak beriman kepada Rasul-rasul-Nya.",
+        text: 'Sesungguhnya orang-orang yang ingkar kepada Allah dan Rasul-rasul-Nya, dan bermaksud membeda-bedakan[239] antara (keimanan kepada) Allah dan Rasul-rasul-Nya, dengan mengatakan, "Kami beriman kepada sebagian dan kami mengingkari sebagian (yang lain)," serta bermaksud mengambil jalan tengah (iman atau kafir),',
+      },
     },
   },
 ];

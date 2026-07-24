@@ -49,6 +49,17 @@ describe("buildRollbackRelease", () => {
         rendererManifest,
         result: () => Stream.make(prior.head),
         routes: () => Stream.empty,
+        scope: {
+          content: [
+            {
+              contentKey: prior.head.contentKey,
+              family: prior.head.family,
+              locale: prior.head.locale,
+            },
+          ],
+          families: [],
+          snapshots: [],
+        },
       })
     );
     const [artifacts, items, projections] = await Effect.runPromise(

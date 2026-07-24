@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah68Verses49To52 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5320",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5320.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5320.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 566,
       ruku: 499,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5320,
@@ -24,40 +25,33 @@ export const quranSurah68Verses49To52 = [
     },
     tafsir: {
       id: {
-        long: "Setelah beberapa hari berada dalam perut ikan, Nabi Yunus dilimpahi rahmat oleh Allah dengan mewahyukan kepada ikan itu agar melontarkan Yunus ke daratan. Maka ikan itu pun melontarkan Yunus ke daratan. Ia jatuh di daratan yang tandus, sepi tidak ada air, tumbuh-tumbuhan, dan kayu-kayuan di sekitarnya. Badannya pun dalam keadaan sangat lemah dan sakit, karena penderitaan yang dialaminya selama berada dalam perut ikan, dan karena kesedihannya akibat sikap kaumnya yang menantang dakwahnya. Untuk melindunginya dari terik panas matahari dan kedinginan malam, Allah menumbuhkan di sampingnya semacam pohon labu (yaqthin). Dengan demikian, Nabi Yunus terlindungi dan juga dapat memakan buahnya sebagai penguat tubuhnya yang lemah, sebagaimana firman Allah:\n\nKemudian Kami lemparkan dia ke daratan yang tandus, sedang dia dalam keadaan sakit. Kemudian untuk dia Kami tumbuhkan sebatang pohon dari jenis labu. (as-saffat/37: 145-146)\n\nSeandainya Allah tidak melimpahkan rahmat-Nya kepada Yunus, tentu ia akan tenggelam di lautan, atau hancur lumat di dalam perut ikan, atau mati kelaparan dan kekeringan di tengah-tengah padang yang tandus. Akan tetapi, Allah Maha Pengasih kepada hamba-hamba-Nya yang mau bertobat dengan sebenar-benarnya, seperti yang dilakukan Nabi Yunus. Oleh karena itu, Allah melimpahkan rahmat kepadanya.",
-        short:
-          "Sekiranya Nabi Yunus tidak segera mendapat nikmat dari Tuhannya, yaitu di antaranya berupa petunjuk untuk bertobat pastilah dia dicampakkan ke tanah tandus dalam keadaan tercela. Tetapi Tuhannya menerima tobatnya,",
+        footnotes: null,
+        text: "Kalaulah bukan karena rahmat Allah yang diterimanya, niscaya ikan itu mencampakkannya ke tanah yang tandus dalam keadaan tercela. Akan tetapi rahmat Allah mendapatinya, maka dia tidak dicampakkan oleh ikan dalam keadaan tercela.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0648\u0652\u0644\u064e\u0627 \u0623\u064e\u0646 \u062a\u064e\u062f\u064e\u0627\u0631\u064e\u0643\u064e\u0647\u064f \u0646\u0650\u0639\u0652\u0645\u064e\u0629\u064c \u0645\u0651\u0650\u0646 \u0631\u0651\u064e\u0628\u0651\u0650\u0647\u0650 \u0644\u064e\u0646\u064f\u0628\u0650\u0630\u064e \u0628\u0650\u0627\u0644\u0652\u0639\u064e\u0631\u064e\u0627\u0621\u0650 \u0648\u064e\u0647\u064f\u0648\u064e \u0645\u064e\u0630\u0652\u0645\u064f\u0648\u0645\u064c",
-      transliteration: {
-        en: "Law laaa an tadaara kahoo ni'matum mir rabbihee lanubiza bil'araaa'i wa huwa mazmoom",
-      },
+      arabic: "لَّوْلَآ أَن تَدَٰرَكَهُۥ نِعْمَةٌ مِّن رَّبِّهِۦ لَنُبِذَ بِٱلْعَرَآءِ وَهُوَ مَذْمُومٌ",
     },
     translation: {
-      en: "If not that a favor from his Lord overtook him, he would have been thrown onto the naked shore while he was censured.",
-      id: "Sekiranya dia tidak segera mendapat nikmat dari Tuhannya, pastilah dia dicampakkan ke tanah tandus dalam keadaan tercela.",
+      en: {
+        footnotes:
+          "[13] Instead, Allah accepted his repentance and provided for him means of recovery. See 37:139-148.",
+        text: "Had it not been for the grace that he received from his Lord, he would have surely been thrown onto the barren shore, blameworthy[13].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekiranya dia tidak segera mendapat nikmat dari Tuhannya, pastilah dia dicampakkan ke tanah tandus dalam keadaan tercela.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5321",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5321.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5321.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 566,
       ruku: 499,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5321,
@@ -65,40 +59,32 @@ export const quranSurah68Verses49To52 = [
     },
     tafsir: {
       id: {
-        long: "Setelah kesehatan Yunus pulih kembali, demikian pula kekuatan badannya, maka Allah mengutusnya kembali kepada kaumnya yang pada waktu itu berjumlah seratus ribu orang lebih, sebagaimana firman Allah:\n\nDan Kami utus dia kepada seratus ribu (orang) atau lebih, sehingga mereka beriman, karena itu Kami anugerahkan kenikmatan hidup kepada mereka hingga waktu tertentu. (as saffat/37: 147-148)\n\nKedatangan Yunus disambut kaumnya dengan gembira dan menyatakan keimanan kepadanya, sehingga mereka termasuk orang-orang yang saleh.\n\nDengan ayat-ayat di atas, Allah memperingatkan Nabi Muhammad agar jangan sekali-kali bersikap dan bertindak seperti yang dilakukan Nabi Yunus yang mudah marah dan mudah berputus asa, sehingga ia meninggalkan kaumnya dan tugas suci yang telah dibebankan kepadanya, yaitu tugas kerasulan. Nabi Muhammad diperintahkan untuk selalu tabah dan sabar dalam keadaan bagaimana pun karena Allah menyukai orang-orang yang sabar.",
-        short:
-          "lalu Tuhannya memilihnya dan menjadikannya termasuk orang yang saleh yaitu kelompok para nabi.",
+        footnotes: null,
+        text: "Lalu Allah memilihnya dan menjadikannya termasuk hamba-hamba-Nya yang saleh.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u062c\u0652\u062a\u064e\u0628\u064e\u0627\u0647\u064f \u0631\u064e\u0628\u0651\u064f\u0647\u064f \u0641\u064e\u062c\u064e\u0639\u064e\u0644\u064e\u0647\u064f \u0645\u0650\u0646\u064e \u0627\u0644\u0635\u0651\u064e\u0627\u0644\u0650\u062d\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fajtabaahu rabbuhoo faja'alahoo minas saaliheen",
-      },
+      arabic: "فَٱجْتَبَٰهُ رَبُّهُۥ فَجَعَلَهُۥ مِنَ ٱلصَّٰلِحِينَ",
     },
     translation: {
-      en: "And his Lord chose him and made him of the righteous.",
-      id: "Lalu Tuhannya memilihnya dan menjadikannya termasuk orang yang saleh.",
+      en: {
+        footnotes: "",
+        text: "But his Lord chose him and made him one of the righteous.",
+      },
+      id: {
+        footnotes: "",
+        text: "Lalu Tuhannya memilihnya dan menjadikannya termasuk orang yang saleh.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5322",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5322.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5322.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 566,
       ruku: 499,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5322,
@@ -106,40 +92,34 @@ export const quranSurah68Verses49To52 = [
     },
     tafsir: {
       id: {
-        long: "Allah menyatakan kepada Nabi Muhammad saw bahwa karena orang-orang musyrik sangat marah dan benci kepada beliau, mereka memandang Nabi dari sudut matanya dengan pandangan yang penuh kemarahan dan kebencian. Hal ini terutama setiap kali mereka mendengar bacaan ayat-ayat Al-Qur'an.\n\nMenurut sebagian ahli tafsir, yang dimaksudkan dengan \"orang-orang yang hampir-hampir menggelincirkan Nabi dengan pandangan matanya\" ialah Bani Asad, salah satu kabilah di negeri Arab waktu itu. Diriwayatkan bahwa orang-orang dari Bani Asad mempunyai semacam ilmu yang dapat mempengaruhi orang lain dengan menggunakan ketajaman sorotan matanya. Maka sebahagian mereka bermaksud mencobakan ilmunya itu kepada Nabi Muhammad, karena menurut mereka seandainya Muhammad itu benar-benar seorang rasul yang diutus Allah, tentu ia tidak akan terpengaruh oleh ilmu mereka itu. Kenyataannya bahwa ilmu itu memang tidak mempan terhadap Rasulullah saw.\n\nDari riwayat di atas ayat ini dipahami bahwa segala macam ilmu gaib apa pun tidak akan dapat mengenai atau mempengaruhi seseorang jika ia beriman kepada Allah, kecuali ilmu-ilmu yang sesuai dengan sunatullah, seperti menyakiti seseorang dengan cara mempengaruhi jiwanya sesuai dengan dalil dan ketetapan ilmu jiwa, menganiaya seseorang dengan aliran listrik, dan sebagainya. Ilmu-ilmu yang demikian itu dapat mempengaruhi seseorang.\n\nKarena orang-orang musyrik itu tidak dapat mempengaruhi Rasulullah dengan ilmu-ilmu yang ada pada mereka, seperti sorotan ketajaman mata, dan karena tidak dapat menandingi ayat-ayat Al-Qur'an, maka mereka mengatakan bahwa sesungguhnya ia (Muhammad) itu benar-benar orang yang gila.",
-        short:
-          "Setelah perintah bersabar kepada Nabi Muhammad ayat ini melanjutkan penjelasannya mengapa Nabi Muhammad harus tabah dan menguatkan kesabarannya. Dan sungguh, orang-orang kafir itu hampir-hampir menggelincirkanmu dengan pandangan mata mereka yang penuh kedengkian dan kebencian kepadamu, khususnya ketika mereka mendengar Al-Qur’an dan mereka berkata, “ Dia Nabi Muhammad itu benar-benar orang gila. ltu dilakukan agar masyarakat menolak ajaran Al-Qur’an,",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang yang kafir kepada Allah dan mendustakan Rasul-Nya hampir saja mengalahkan kamu dengan mata mereka karena tajamnya pandangan mereka kepadamu tatkala mereka mendengar Al-Qur`ān yang diturunkan kepadamu, lalu mereka berkata karena mengikuti hawa nafsu dan berpaling dari kebenaran, “Sesungguhnya Rasul yang membawanya adalah orang gila.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646 \u064a\u064e\u0643\u064e\u0627\u062f\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0644\u064e\u064a\u064f\u0632\u0652\u0644\u0650\u0642\u064f\u0648\u0646\u064e\u0643\u064e \u0628\u0650\u0623\u064e\u0628\u0652\u0635\u064e\u0627\u0631\u0650\u0647\u0650\u0645\u0652 \u0644\u064e\u0645\u0651\u064e\u0627 \u0633\u064e\u0645\u0650\u0639\u064f\u0648\u0627 \u0627\u0644\u0630\u0651\u0650\u0643\u0652\u0631\u064e \u0648\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0644\u064e\u0645\u064e\u062c\u0652\u0646\u064f\u0648\u0646\u064c",
-      transliteration: {
-        en: "Wa iny-yakaadul lazeena kafaroo la-yuzliqoonaka biabsaarihim lammaa saml'uz-Zikra wa yaqooloona innahoo lamajnoon",
-      },
+      arabic:
+        "وَإِن يَكَادُ ٱلَّذِينَ كَفَرُوا۟ لَيُزْلِقُونَكَ بِأَبْصَٰرِهِمْ لَمَّا سَمِعُوا۟ ٱلذِّكْرَ وَيَقُولُونَ إِنَّهُۥ لَمَجْنُونٌ",
     },
     translation: {
-      en: 'And indeed, those who disbelieve would almost make you slip with their eyes when they hear the message, and they say, "Indeed, he is mad."',
-      id: "Dan sungguh, orang-orang kafir itu hampir-hampir menggelincirkanmu dengan pandangan mata mereka, ketika mereka mendengar Al-Qur'an dan mereka berkata, “Dia (Muhammad) itu benar-benar orang gila.”",
+      en: {
+        footnotes: "",
+        text: "The disbelievers would almost strike you down with their malicious gazes when they hear the Reminder, and they say, “He is certainly mad.”",
+      },
+      id: {
+        footnotes:
+          "[853] Menurut kebiasaan yang terjadi di tanah Arab, seseorang dapat membinasakan hewan atau manusia dengan menujukan pandangannya yang tajam. Hal ini hendak dilakukan pula kepada Nabi Muhammad -ṣallallāhu 'alaihi wa sallam-, tetapi Allah memeliharanya, sehingga terhindar dari bahaya itu, sebagaimana dijanjikan Allah dalam Al-Mā`idah ayat 67. Kekuatan pandangan mata itu pada masa sekarang dikenal dengan hipnotis.",
+        text: 'Dan sungguh, orang-orang kafir itu hampir-hampir menggelincirkanmu dengan pandangan mata mereka, ketika mereka mendengar Al-Qur`an dan mereka berkata, "Dia (Muhammad) itu benar-benar orang gila."[853]',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5323",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5323.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5323.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 566,
       ruku: 499,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5323,
@@ -147,20 +127,22 @@ export const quranSurah68Verses49To52 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah mengatakan dengan tegas bahwa Al-Qur'an itu berisi petunjuk dan pelajaran untuk kebahagiaan hidup manusia di dunia dan akhirat. Ia diperuntukkan bagi seluruh manusia di mana pun mereka berada, baik bagi penduduk negeri-negeri yang telah maju ataupun bagi penduduk negeri yang sedang berkembang atau terbelakang, baik untuk orang yang pintar maupun untuk orang yang bodoh, baik penduduk kota maupun penduduk desa, baik bagi orang yang kaya maupun bagi orang-orang yang miskin, dan sebagainya. Oleh karena itu, setiap orang dapat belajar memahami dan mempelajari Al-Qur'an, asal ia mempunyai sikap akan menerima setiap kebenaran yang disampaikan kepadanya. Jika seseorang belum mempunyai sikap yang demikian, walaupun hati dan pikirannya telah menerima kebenaran Al-Qur'an, namun hawa nafsunya memerintahkan agar ia menentang Al-Qur'an itu dan mengatakannya sebagai buatan manusia atau tuduhan lainnya.\n\nBerapa banyak orang yang terus-menerus melawan kebenaran dan keadilan karena memperturutkan hawa nafsunya, seperti hawa nafsu ingin pangkat, kedudukan, harta yang banyak, takut dipencilkan oleh golongannya, takut meninggalkan kepercayaan nenek moyangnya, dan sebagainya. Betapa banyak orang yang bersedia membunuh teman, saudara kandung, bahkan ayah dan ibunya karena mengiuti hawa nafsunya.\n\nMuhammad saw adalah seorang nabi dan rasul Allah yang telah terbukti kejujurannya, seorang yang dihormati dan dipercayai oleh kaumnya, adil sempurna akal pikirannya, tidak seorang pun yang mengingkarinya. Setelah beliau diangkat Allah sebagai nabi dan rasul, timbullah rasa benci itu, karena mengikuti Muhammad saw berarti meninggalkan pangkat, harta, kesenangan, dan kesewenang-wenangan.",
-        short:
-          "Padahal Al-Qur’an itu tidak lain adalah peringatan, nasihat dan pengajaran bagi seluruh alam.",
+        footnotes: null,
+        text: "Sungguh, tidaklah Al-Qur`ān yang diturunkan kepadamu melainkan hanyalah nasihat dan peringatan untuk manusia dan jin.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0647\u064f\u0648\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0630\u0650\u0643\u0652\u0631\u064c \u0644\u0651\u0650\u0644\u0652\u0639\u064e\u0627\u0644\u064e\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa maa huwa illaa zikrul lil'aalameen",
-      },
+      arabic: "وَمَا هُوَ إِلَّا ذِكْرٌ لِّلْعَٰلَمِينَ",
     },
     translation: {
-      en: "But it is not except a reminder to the worlds.",
-      id: "Padahal (Al-Qur'an) itu tidak lain adalah peringatan bagi seluruh alam.",
+      en: {
+        footnotes: "",
+        text: "But it is nothing other than a reminder to the whole world.",
+      },
+      id: {
+        footnotes: "",
+        text: "Padahal Al-Qur`an itu tidak lain adalah peringatan bagi seluruh alam.",
+      },
     },
   },
 ];

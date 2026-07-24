@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah96Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6119",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6119.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6119.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 597,
       ruku: 538,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6119,
@@ -24,40 +25,33 @@ export const quranSurah96Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Selanjutnya Allah meminta Nabi Muhammad memperhatikan orang yang melarang orang beribadah itu, yaitu Abu Jahal sebagai contoh, apakah jika ia memandang Allah dan ajaran-ajaran-Nya dusta, lalu berpaling, dan tidak mau menggubrisnya. Ia tidak tahu bahwa Allah melihat perbuatannya itu. Tidak demikian halnya, Allah mengetahui setiap perbuatan dosanya itu dan akan memberikan balasannya.",
-        short:
-          "Bagaimana pendapatmu jika dia yang melarang itu mendustakan Nabi serta wahyu Allah dan berpaling dari keimanan dan berbuat kebajikan?",
+        footnotes: null,
+        text: "Bagaimana pendapatmu apabila orang yang melarang ini ternyata mendustakan apa yang dibawa oleh Rasul dan berpaling darinya, tidakkah ia takut kepada Allah?",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0631\u064e\u0623\u064e\u064a\u0652\u062a\u064e \u0625\u0650\u0646 \u0643\u064e\u0630\u0651\u064e\u0628\u064e \u0648\u064e\u062a\u064e\u0648\u064e\u0644\u0651\u064e\u0649\u0670",
-      transliteration: {
-        en: "Ara-aita in kaz zaba wa ta walla",
-      },
+      arabic: "أَرَءَيْتَ إِن كَذَّبَ وَتَوَلَّىٰٓ",
     },
     translation: {
-      en: "Have you seen if he denies and turns away -",
-      id: "Bagaimana pendapatmu jika dia (yang melarang) itu mendustakan dan berpaling?",
+      en: {
+        footnotes:
+          "[4] From what the Prophet (ﷺ) has brought and does he not fear Allah?",
+        text: "How about the one who denies and turns away[4]?",
+      },
+      id: {
+        footnotes: "",
+        text: "Bagaimana pendapatmu jika dia (yang melarang) itu mendustakan dan berpaling?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6120",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6120.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6120.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 597,
       ruku: 538,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6120,
@@ -65,40 +59,32 @@ export const quranSurah96Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Selanjutnya Allah meminta Nabi Muhammad memperhatikan orang yang melarang orang beribadah itu, yaitu Abu Jahal sebagai contoh, apakah jika ia memandang Allah dan ajaran-ajaran-Nya dusta, lalu berpaling, dan tidak mau menggubrisnya. Ia tidak tahu bahwa Allah melihat perbuatannya itu. Tidak demikian halnya, Allah mengetahui setiap perbuatan dosanya itu dan akan memberikan balasannya.",
-        short:
-          "Tidakkah dia yang berbuat demikian jahat itu mengetahui bahwa sesungguhnya Allah melihat dan akan membalas perbuatan jahatnya? Allah Maha Melihat dan pasti akan memberi balasan dengan seadil-adilnya.",
+        footnotes: null,
+        text: "Tidakkah orang yang melarang seorang hamba dari salat ini tahu bahwa Allah melihat perbuatannya karena tidak ada sedikit pun yang tersembunyi dari-Nya?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u0639\u0652\u0644\u064e\u0645 \u0628\u0650\u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064e\u0631\u064e\u0649\u0670",
-      transliteration: {
-        en: "Alam y'alam bi-an nal lahaa yaraa",
-      },
+      arabic: "أَلَمْ يَعْلَم بِأَنَّ ٱللَّهَ يَرَىٰ",
     },
     translation: {
-      en: "Does he not know that Allah sees?",
-      id: "Tidakkah dia mengetahui bahwa sesungguhnya Allah melihat (segala perbuatannya)?",
+      en: {
+        footnotes: "",
+        text: "Does he not know that Allah is watching all?",
+      },
+      id: {
+        footnotes: "",
+        text: "Tidakkah dia mengetahui bahwa sesungguhnya Allah melihat (segala perbuatannya)?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6121",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6121.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6121.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 597,
       ruku: 538,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6121,
@@ -106,40 +92,32 @@ export const quranSurah96Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah mencela orang yang melarang orang beribadah di dalam masjid, dengan contohnya Abu Lahab. Allah mengancam bahwa bila mereka tidak menghentikan perbuatannya, Allah akan mencabut ubun-ubunnya, yaitu menarik nyawanya sehingga mati seketika. Hukuman itu dijatuhkan padanya karena ubun-ubun itu adalah denyut kehidupannya, sedangkan denyut kehidupannya itu selalu penuh kebohongan dan dosa.",
-        short:
-          "Dia tidak dibenarkan untuk melarang orang lain melaksanakan salat dan mendekatkan diri kepada Allah. Sekali kali tidak! Sungguh, jika dia tidak berhenti berbuat demikian niscaya Kami tarik ubun-ubunnya dengan sangat kasar ke arah neraka;",
+        footnotes: null,
+        text: "Kenyataannya tidak seperti apa yang dibayangkan oleh orang bodoh ini, jika ia tidak berhenti menyakiti hamba-Ku dan mendustakannya, niscaya Kami seret ubun-ubun kepalanya dengan paksa menuju neraka.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u0644\u064e\u0626\u0650\u0646 \u0644\u0651\u064e\u0645\u0652 \u064a\u064e\u0646\u062a\u064e\u0647\u0650 \u0644\u064e\u0646\u064e\u0633\u0652\u0641\u064e\u0639\u064b\u0627 \u0628\u0650\u0627\u0644\u0646\u0651\u064e\u0627\u0635\u0650\u064a\u064e\u0629\u0650",
-      transliteration: {
-        en: "Kalla la illam yantahi la nasfa'am bin nasiyah",
-      },
+      arabic: "كَلَّا لَئِن لَّمْ يَنتَهِ لَنَسْفَعًۢا بِٱلنَّاصِيَةِ",
     },
     translation: {
-      en: "No! If he does not desist, We will surely drag him by the forelock -",
-      id: "Sekali-kali tidak! Sungguh, jika dia tidak berhenti (berbuat demikian) niscaya Kami tarik ubun-ubunnya, (ke dalam neraka),",
+      en: {
+        footnotes: "[5] To the Hellfire.",
+        text: "No indeed; if he does not desist, We will surely drag him by the forelock[5]",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekali-kali tidak! Sungguh, jika dia tidak berhenti (berbuat demikian) niscaya Kami tarik ubun-ubunnya (ke dalam neraka),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6122",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6122.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6122.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 597,
       ruku: 538,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6122,
@@ -147,40 +125,33 @@ export const quranSurah96Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah mencela orang yang melarang orang beribadah di dalam masjid, dengan contohnya Abu Lahab. Allah mengancam bahwa bila mereka tidak menghentikan perbuatannya, Allah akan mencabut ubun-ubunnya, yaitu menarik nyawanya sehingga mati seketika. Hukuman itu dijatuhkan padanya karena ubun-ubun itu adalah denyut kehidupannya, sedangkan denyut kehidupannya itu selalu penuh kebohongan dan dosa.",
-        short:
-          "yaitu ubun-ubun orang yang mendustakan nabi dan durhaka kepada Allah.",
+        footnotes: null,
+        text: "Pemilik ubun-ubun itu dusta dalam ucapan dan salah dalam perbuatan.",
       },
     },
     text: {
-      arab: "\u0646\u064e\u0627\u0635\u0650\u064a\u064e\u0629\u064d \u0643\u064e\u0627\u0630\u0650\u0628\u064e\u0629\u064d \u062e\u064e\u0627\u0637\u0650\u0626\u064e\u0629\u064d",
-      transliteration: {
-        en: "Nasiyatin kazi batin khaatiyah",
-      },
+      arabic: "نَاصِيَةٍ كَٰذِبَةٍ خَاطِئَةٍ",
     },
     translation: {
-      en: "A lying, sinning forelock.",
-      id: "yaitu) ubun-ubun orang yang mendustakan dan durhaka.",
+      en: {
+        footnotes:
+          "[6] It alludes to the frontal lobe of the brain, where reasoning is processed.",
+        text: "a lying, sinful forelock[6].",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) ubun-ubun orang yang mendustakan dan durhaka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6123",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6123.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6123.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 597,
       ruku: 538,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6123,
@@ -188,40 +159,32 @@ export const quranSurah96Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah mempersilakan mereka yang sewenang-wenang dan melarang orang melakukan ibadah itu untuk meminta bantuan kelompok mereka. Ayat ini khususnya ditujukan kepada Abu Jahal, yang dikenal sebagai pemimpin terbesar orang-orang yang menentang Nabi saw di Mekah. Allah mengancam bahwa bila Abu Jahal memanggil teman-teman komplotannya untuk meminta tolong, maka Allah akan memanggil malaikat-malaikat Zabaniyah, yaitu para penjaga neraka yang sangat bengis. Artinya, ia di dunia akan celaka dan di akhirat akan masuk neraka. Ancaman itu kemudian terbukti, yaitu pada tahun kedua setelah umat Islam hijrah ke Medinah, terjadi Perang Badar, di mana Abu Jahal sebagai pemimpin Quraisy mati terbunuh. Dan di akhirat nanti ia pasti masuk neraka.",
-        short:
-          "Apabila azab Kami datang kepadanya maka biarlah dia memanggil golongannya yang dia banggakan untuk menyelamatkannya dari azab itu.",
+        footnotes: null,
+        text: "Sebab itu -ketika Kami tarik ubun-ubun kepalanya menuju neraka- hendaknya ia memanggil teman-temannya dan anggota kelompoknya agar ia meminta pertolongan kepada mereka untuk menyelamatkannya dari siksa.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u0652\u064a\u064e\u062f\u0652\u0639\u064f \u0646\u064e\u0627\u062f\u0650\u064a\u064e\u0647\u064f",
-      transliteration: {
-        en: "Fal yad'u naadiyah",
-      },
+      arabic: "فَلْيَدْعُ نَادِيَهُۥ",
     },
     translation: {
-      en: "Then let him call his associates;",
-      id: "Maka biarlah dia memanggil golongannya (untuk menolongnya),",
+      en: {
+        footnotes: "",
+        text: "So let him call his associates;",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka biarlah dia memanggil golongannya (untuk menolongnya).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6124",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6124.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6124.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 597,
       ruku: 538,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6124,
@@ -229,20 +192,23 @@ export const quranSurah96Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah mempersilakan mereka yang sewenang-wenang dan melarang orang melakukan ibadah itu untuk meminta bantuan kelompok mereka. Ayat ini khususnya ditujukan kepada Abu Jahal, yang dikenal sebagai pemimpin terbesar orang-orang yang menentang Nabi saw di Mekah. Allah mengancam bahwa bila Abu Jahal memanggil teman-teman komplotannya untuk meminta tolong, maka Allah akan memanggil malaikat-malaikat Zabaniyah, yaitu para penjaga neraka yang sangat bengis. Artinya, ia di dunia akan celaka dan di akhirat akan masuk neraka. Ancaman itu kemudian terbukti, yaitu pada tahun kedua setelah umat Islam hijrah ke Medinah, terjadi Perang Badar, di mana Abu Jahal sebagai pemimpin Quraisy mati terbunuh. Dan di akhirat nanti ia pasti masuk neraka.",
-        short:
-          "Kelak Kami akan memanggil Malaikat Zabaniyah yang bengis dan kasar untuk mencampak­kannya ke dalam azab Kami dan menyelamatkan Nabi beserta para pengikutnya.",
+        footnotes: null,
+        text: "Kami akan memanggil para malaikat penjaga neraka Jahanam yang kasar, yang tidak pernah mendurhakai perintah Allah terhadap mereka dan selalu mengerjakan apa yang diperintahkan kepada mereka. Lalu hendaknya ia melihat, mana dari kedua golongan ini yang lebih kuat dan lebih kuasa.",
       },
     },
     text: {
-      arab: "\u0633\u064e\u0646\u064e\u062f\u0652\u0639\u064f \u0627\u0644\u0632\u0651\u064e\u0628\u064e\u0627\u0646\u0650\u064a\u064e\u0629\u064e",
-      transliteration: {
-        en: "Sanad 'uz zabaaniyah",
-      },
+      arabic: "سَنَدْعُ ٱلزَّبَانِيَةَ",
     },
     translation: {
-      en: "We will call the angels of Hell.",
-      id: "Kelak Kami akan memanggil Malaikat Zabaniyah, (penyiksa orang-orang yang berdosa),",
+      en: {
+        footnotes:
+          "[7] i.e., the coarse, rigorous, and harsh angels assigned for the Hellfire.",
+        text: "We will call the wardens of Hellfire[7].",
+      },
+      id: {
+        footnotes: "",
+        text: "Kelak Kami akan memanggil Malaikat Zabaniyah (penyiksa orang-orang yang berdosa).",
+      },
     },
   },
 ];

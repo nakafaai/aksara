@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah100Verses7To11 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6153",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6153.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6153.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6153,
@@ -24,40 +25,32 @@ export const quranSurah100Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menjelaskan bahwa seorang manusia meskipun ingkar, aniaya, dan tetap dalam keingkaran serta kebohongan, bila ia mawas diri, seharusnya ia akan kembali kepada yang benar. \n\nDia mengaku bahwa dia tidak mensyukuri nikmat-nikmat Allah yang dianugerahkan kepadanya. Dia juga mengakui bahwa semua tindakannya merupakan penentangan dan pengingkaran terhadap nikmat tersebut. Ini adalah kesaksian sendiri atas keingkarannya, pengakuan tersebut lebih kuat daripada pengakuan yang timbul dari diri sendiri dengan lisan.",
-        short:
-          "dan sesungguhnya dia mengakui dan menyaksikan keingkarannya itu. Hal itu bisa dilihat dari mudahnya manusia bermaksiat kepada Allah.",
+        footnotes: null,
+        text: "Sesungguhnya ia menjadi saksi atas keingkarannya terhadap kebaikan, ia tidak bisa mengingkari kenyataan ini karena sudah sangat jelas.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0644\u064e\u0634\u064e\u0647\u0650\u064a\u062f\u064c",
-      transliteration: {
-        en: "Wa innahu 'alaa zaalika la shaheed",
-      },
+      arabic: "وَإِنَّهُۥ عَلَىٰ ذَٰلِكَ لَشَهِيدٌ",
     },
     translation: {
-      en: "And indeed, he is to that a witness.",
-      id: "dan sesungguhnya dia (manusia) menyaksikan (mengakui) keingkarannya,",
+      en: {
+        footnotes: "[6] By his words and actions.",
+        text: "and he himself is a witness to that[6] –",
+      },
+      id: {
+        footnotes: "",
+        text: "dan sesungguhnya dia (manusia) menyaksikan (mengakui) keingkarannya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6154",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6154.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6154.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6154,
@@ -65,40 +58,32 @@ export const quranSurah100Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Allah menyatakan bahwa karena sangat sayang dan cinta kepada harta serta keinginan untuk mengumpulkan dan menyimpannya menyebabkan manusia menjadi sangat kikir, tamak, serta melampaui batas. Allah berfirman:\n\nDan kamu mencintai harta dengan kecintaan yang berlebihan. (al-Fajr/89: 20)",
-        short:
-          "Dan sesungguhnya cintanya kepada harta benar-benar berlebihan. Kecintaan berlebihnya pada harta membuatnya materialistis, mengumpulkan harta dengan jalan apa pun, tidak peduli halan atau haram. Cintanya itu juga membuatnya bakhil dan cenderung menggunakannya untuk sesuatu yang tidak benar.",
+        footnotes: null,
+        text: "Sesungguhnya ia sangat berlebihan dalam mencintai hartanya hingga kikir dengannya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0644\u0650\u062d\u064f\u0628\u0651\u0650 \u0627\u0644\u0652\u062e\u064e\u064a\u0652\u0631\u0650 \u0644\u064e\u0634\u064e\u062f\u0650\u064a\u062f\u064c",
-      transliteration: {
-        en: "Wa innahu lihubbil khairi la shadeed",
-      },
+      arabic: "وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ",
     },
     translation: {
-      en: "And indeed he is, in love of wealth, intense.",
-      id: "dan sesungguhnya cintanya kepada harta benar-benar berlebihan.",
+      en: {
+        footnotes: "",
+        text: "and he is truly extreme in his love of wealth.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan sesungguhnya cintanya kepada harta benar-benar berlebihan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6155",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6155.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6155.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6155,
@@ -106,40 +91,32 @@ export const quranSurah100Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat berikut ini, Allah menerangkan ancaman-Nya kepada orang-orang yang ingkar terhadap nikmat-nikmat-Nya dengan menyatakan apakah mereka tidak sadar bahwa Allah mengetahui isi hatinya. Allah juga menyatakan bahwa Dia akan membalas keingkaran mereka itu pada hari dikeluarkan apa yang ada di dalam dada dan dibangkitkan apa yang ada di dalam kubur.",
-        short:
-          "Maka tidakkah dia mengetahui apabila apa yang di dalam kubur dikeluarkan dan dibangkitkan pada hari kiamat untuk mempertanggung-jawabkan amalnya,",
+        footnotes: null,
+        text: "Tidakkah orang yang tertipu dengan kehidupan duniawi ini tahu, apabila Allah telah membangkitkan mayat-mayat yang ada di alam kubur dan mengeluarkan mereka dari perut bumi untuk mendapatkan perhitungan dan pembalasan, bahwa urusannya tidak sebagaimana yang pernah mereka sangka?!",
       },
     },
     text: {
-      arab: "\u06de \u0623\u064e\u0641\u064e\u0644\u064e\u0627 \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f \u0625\u0650\u0630\u064e\u0627 \u0628\u064f\u0639\u0652\u062b\u0650\u0631\u064e \u0645\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0652\u0642\u064f\u0628\u064f\u0648\u0631\u0650",
-      transliteration: {
-        en: "Afala ya'lamu iza b'uthira ma filquboor",
-      },
+      arabic: "أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ",
     },
     translation: {
-      en: "But does he not know that when the contents of the graves are scattered",
-      id: "Maka tidakkah dia mengetahui apabila apa yang di dalam kubur dikeluarkan,",
+      en: {
+        footnotes: "",
+        text: "Does he not know that when the contents of graves will be overturned,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka tidakkah dia mengetahui apabila apa yang di dalam kubur dikeluarkan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6156",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6156.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6156.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6156,
@@ -147,40 +124,33 @@ export const quranSurah100Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat berikut ini, Allah menerangkan ancaman-Nya kepada orang-orang yang ingkar terhadap nikmat-nikmat-Nya dengan menyatakan apakah mereka tidak sadar bahwa Allah mengetahui isi hatinya. Allah juga menyatakan bahwa Dia akan membalas keingkaran mereka itu pada hari dikeluarkan apa yang ada di dalam dada dan dibangkitkan apa yang ada di dalam kubur.",
-        short:
-          "dan tidakkah mereka mengetahui nasibnya bila apa yang tersimpan di dalam dada dilahirkan, baik itu keimanan maupun kekafiran? Kelakuan seseorang adalah cerminan isi hatinya. Buruknya perilaku seseorang merupakan pertanda buruknya hati orang tersebut, demikian sebaliknya.",
+        footnotes: null,
+        text: "Saat itu juga ditampakkan serta diperjelas segala niat, keyakinan, dan hal lainnya yang ada di dalam hati.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062d\u064f\u0635\u0651\u0650\u0644\u064e \u0645\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0635\u0651\u064f\u062f\u064f\u0648\u0631\u0650",
-      transliteration: {
-        en: "Wa hussila maa fis sudoor",
-      },
+      arabic: "وَحُصِّلَ مَا فِى ٱلصُّدُورِ",
     },
     translation: {
-      en: "And that within the breasts is obtained,",
-      id: "dan apa yang tersimpan di dalam dada dilahirkan?",
+      en: {
+        footnotes:
+          "[7] i.e., when all secrets of the hearts and faiths are made known.",
+        text: "and the secrets of the hearts will be brought to light[7]?",
+      },
+      id: {
+        footnotes: "",
+        text: "dan apa yang tersimpan di dalam dada dikeluarkan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6157",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6157.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6157.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 542,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6157,
@@ -188,20 +158,22 @@ export const quranSurah100Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat berikut ini, Allah menerangkan ancaman-Nya kepada orang-orang yang ingkar terhadap nikmat-nikmat-Nya dengan menyatakan apakah mereka tidak sadar bahwa Allah mengetahui isi hatinya. Allah juga menyatakan bahwa Dia akan membalas keingkaran mereka itu pada hari dikeluarkan apa yang ada di dalam dada dan dibangkitkan apa yang ada di dalam kubur.",
-        short:
-          "Sungguh, Tuhan mereka pada hari itu Mahateliti terhadap keadaan mereka. Allah mencatat dengan rinci dan detail apa yang dilakukan manusia. Dengan bukti itu Allah akan menghisab dan memberi balasan yang sesuai kepada mereka.",
+        footnotes: null,
+        text: "Sesungguhnya Tuhan mereka pada hari itu Maha Mengetahui keadaan mereka, tidak ada sesuatu pun dari urusan hamba-hamba-Nya yang tersembunyi dari-Nya, dan Dia akan membalas mereka karenanya.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0631\u064e\u0628\u0651\u064e\u0647\u064f\u0645 \u0628\u0650\u0647\u0650\u0645\u0652 \u064a\u064e\u0648\u0652\u0645\u064e\u0626\u0650\u0630\u064d \u0644\u0651\u064e\u062e\u064e\u0628\u0650\u064a\u0631\u064c",
-      transliteration: {
-        en: "Inna rabbahum bihim yauma 'izil la khabeer",
-      },
+      arabic: "إِنَّ رَبَّهُم بِهِمْ يَوْمَئِذٍ لَّخَبِيرٌۢ",
     },
     translation: {
-      en: "Indeed, their Lord with them, that Day, is [fully] Acquainted.",
-      id: "sungguh, Tuhan mereka pada hari itu Mahateliti terhadap keadaan mereka.",
+      en: {
+        footnotes: "[8] Nothing of their affairs will be hidden from Him.",
+        text: "Indeed, their Lord is All-Aware of them on that Day[8].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, Tuhan mereka pada hari itu Mahateliti terhadap keadaan mereka.",
+      },
     },
   },
 ];

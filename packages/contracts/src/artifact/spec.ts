@@ -6,6 +6,7 @@ import {
   RendererContractVersionSchema,
   RendererManifestEnvelopeSchema,
 } from "#contracts/renderer/contract";
+import { RendererDomainSchema } from "#contracts/renderer/domain";
 
 /**
  * Complete server-only input needed to authenticate one compiled artifact.
@@ -122,5 +123,14 @@ export class ArtifactRendererVersionUnsupportedError extends Schema.TaggedError<
     componentName: RendererComponentNameSchema,
     contentKey: ContentKeySchema,
     requiredVersion: Schema.Number.pipe(Schema.int(), Schema.positive()),
+  }
+) {}
+
+/** The deployed Nakafa app cannot route this artifact's renderer domain. */
+export class ArtifactRendererDomainUnpublishedError extends Schema.TaggedError<ArtifactRendererDomainUnpublishedError>()(
+  "ArtifactRendererDomainUnpublishedError",
+  {
+    contentKey: ContentKeySchema,
+    rendererDomain: RendererDomainSchema,
   }
 ) {}

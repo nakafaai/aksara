@@ -5,7 +5,9 @@ import {
   QURAN_SNAPSHOT_FORMAT,
   QuranSnapshotManifestSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot";
+import { QURAN_SOURCE_FILE_COUNT } from "@nakafa/aksara-contracts/quran/source";
 import {
+  QURAN_ATTRIBUTION_COUNT,
   QURAN_LOCALES,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
@@ -20,7 +22,8 @@ import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranChunkCount = 1;
-const quranRuntimeCount = QURAN_SURAH_COUNT + quranChunkCount;
+const quranRuntimeCount =
+  QURAN_ATTRIBUTION_COUNT + QURAN_SURAH_COUNT + quranChunkCount;
 const quranProjectionCount = quranRuntimeCount + QURAN_SEARCH_COUNT;
 const programManifest = ProgramSnapshotSchema.make({
   curriculumRowCount: 390,
@@ -34,6 +37,7 @@ const programManifest = ProgramSnapshotSchema.make({
   snapshotId: hash,
 });
 const quranManifest = QuranSnapshotManifestSchema.make({
+  attributionCount: QURAN_ATTRIBUTION_COUNT,
   chunkCount: quranChunkCount,
   format: QURAN_SNAPSHOT_FORMAT,
   locales: QURAN_LOCALES,
@@ -48,6 +52,7 @@ const quranManifest = QuranSnapshotManifestSchema.make({
   snapshotId: hash,
   sourceBytes: 1,
   sourceDigest: hash,
+  sourceFileCount: QURAN_SOURCE_FILE_COUNT,
   surahCount: QURAN_SURAH_COUNT,
   tafsirLocales: QURAN_TAFSIR_LOCALES,
   verseCount: QURAN_VERSE_COUNT,

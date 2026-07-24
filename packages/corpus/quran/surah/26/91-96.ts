@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah26Verses91To96 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3023",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3023.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3023.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 371,
       ruku: 320,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3023,
@@ -24,40 +25,32 @@ export const quranSurah26Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: "Sebaliknya, neraka juga diperlihatkan kepada orang-orang yang sesat. Mereka menyaksikan kedahsyatan kobaran apinya. Dalam Al-Qur'an dilukiskan bahwa kobaran api neraka itu dari jauh saja sudah terdengar gejolaknya. Itulah yang akan menjadi tempat kediaman mereka, tanpa dapat mengelak lagi. Ayat itu menggambarkan betapa cepat siksaan tersebut menimpa mereka. Sungguh hal itu tidak pernah mereka bayangkan ketika masih ada di dunia ini, karena mereka tidak peduli dengan azab Allah, seperti dijelaskan dalam ayat ini:\n\nDan kepada mereka dikatakan, \"Pada hari ini Kami melupakan kamu sebagaimana kamu telah melupakan pertemuan (dengan) harimu ini; dan tempat kembalimu ialah neraka, dan sekali-kali tidak akan ada penolong bagimu. (al-Jatsiyah/45: 34)",
-        short:
-          "Dan sebaiknya neraka Jahim yang sangat panas dan menakutkan diperlihatkan dengan jelas kepada orang-orang yang memilih jalan sesat,” yaitu jalan kehidupan yang tidak diridai oleh Allah seperti kekafiran dan kesyirikan.",
+        footnotes: null,
+        text: "Di padang mahsyar kelak diperlihatkan neraka secara jelas kepada orang-orang yang sesat, yaitu orang-orang yang tersesat dari jalan kebenaran.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0628\u064f\u0631\u0651\u0650\u0632\u064e\u062a\u0650 \u0627\u0644\u0652\u062c\u064e\u062d\u0650\u064a\u0645\u064f \u0644\u0650\u0644\u0652\u063a\u064e\u0627\u0648\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa burrizatil Jaheemu lilghaaween",
-      },
+      arabic: "وَبُرِّزَتِ ٱلْجَحِيمُ لِلْغَاوِينَ",
     },
     translation: {
-      en: "And Hellfire will be brought forth for the deviators,",
-      id: "dan neraka Jahim diperlihatkan dengan jelas kepada orang-orang yang sesat,”",
+      en: {
+        footnotes: "",
+        text: "and Hellfire will be uncovered to those who went astray,",
+      },
+      id: {
+        footnotes: "",
+        text: 'dan neraka Jahim diperlihatkan dengan jelas kepada orang-orang yang sesat,"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3024",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3024.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3024.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 371,
       ruku: 320,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3024,
@@ -65,40 +58,32 @@ export const quranSurah26Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian pada saat menghadapi neraka yang siap menerima orang-orang kafir dan musyrik, dilontarkan pertanyaan untuk mencemoohkan mereka, "Di manakah tuhan-tuhan berhala yang kamu sembah itu kini berada? Sanggupkah mereka menyelamatkan kamu dari siksaan Allah?" Jangankan untuk menyelamatkan orang lain, melepaskan diri mereka saja, tuhan-tuhan berhala itu tidak sanggup.',
-        short:
-          "Dan pada saat itu dikatakan kepada mereka, “Di mana berhala-berhala yang dahulu kamu sembah. Mestinya berhala-berhala itu berada di sini untuk menolongmu dari siksaan api neraka.",
+        footnotes: null,
+        text: 'Dikatakan kepada mereka sebagai bentuk celaan, "Di manakah sesembahan kalian berupa berhala-berhala yang dahulu kalian selalu menyembahnya?',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u0650\u064a\u0644\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u0623\u064e\u064a\u0652\u0646\u064e \u0645\u064e\u0627 \u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u062a\u064e\u0639\u0652\u0628\u064f\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa qeela lahum aina maa kuntum ta'budoon",
-      },
+      arabic: "وَقِيلَ لَهُمْ أَيْنَ مَا كُنتُمْ تَعْبُدُونَ",
     },
     translation: {
-      en: 'And it will be said to them, "Where are those you used to worship',
-      id: "dan dikatakan kepada mereka, “Di mana berhala-berhala yang dahulu kamu sembah,",
+      en: {
+        footnotes: "",
+        text: "and they will be told, “Where are those whom you used to worship",
+      },
+      id: {
+        footnotes: "",
+        text: 'dan dikatakan kepada mereka, "Di mana berhala-berhala yang dahulu kamu sembah,',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3025",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3025.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3025.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 371,
       ruku: 320,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3025,
@@ -106,40 +91,32 @@ export const quranSurah26Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian pada saat menghadapi neraka yang siap menerima orang-orang kafir dan musyrik, dilontarkan pertanyaan untuk mencemoohkan mereka, "Di manakah tuhan-tuhan berhala yang kamu sembah itu kini berada? Sanggupkah mereka menyelamatkan kamu dari siksaan Allah?" Jangankan untuk menyelamatkan orang lain, melepaskan diri mereka saja, tuhan-tuhan berhala itu tidak sanggup.',
-        short:
-          "Selain Allah? Dapatkah mereka menolong kamu atau menolong diri mereka sendiri?” Mereka sama sekali tidak bisa berbuat apa-apa. Bahkan berhala-berhala itu dan yang menyembahnya akan masuk neraka bersama-sama.",
+        footnotes: null,
+        text: 'Yaitu yang kalian sembah selain Allah? Dapatkah mereka menolong kalian dengan cara menghalangi azab Allah dari kalian atau apakah mereka hanya menolong diri mereka sendiri?"',
       },
     },
     text: {
-      arab: "\u0645\u0650\u0646 \u062f\u064f\u0648\u0646\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0647\u064e\u0644\u0652 \u064a\u064e\u0646\u0635\u064f\u0631\u064f\u0648\u0646\u064e\u0643\u064f\u0645\u0652 \u0623\u064e\u0648\u0652 \u064a\u064e\u0646\u062a\u064e\u0635\u0650\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Min doonil laahi hal yansuroonakum aw yantasiroon",
-      },
+      arabic: "مِن دُونِ ٱللَّهِ هَلْ يَنصُرُونَكُمْ أَوْ يَنتَصِرُونَ",
     },
     translation: {
-      en: 'Other than Allah? Can they help you or help themselves?"',
-      id: "selain Allah? Dapatkah mereka menolong kamu atau menolong diri mereka sendiri?”",
+      en: {
+        footnotes: "",
+        text: "other than Allah? Can they help you or even help themselves?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'selain Allah? Dapatkah mereka menolong kamu atau menolong diri mereka sendiri?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3026",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3026.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3026.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 371,
       ruku: 320,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3026,
@@ -147,40 +124,32 @@ export const quranSurah26Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian orang-orang yang sesat dan telah ditetapkan sebagai penghuni neraka dijungkirkan bersama-sama pimpinan mereka dan tentara iblis seluruhnya. Tentara iblis dalam ayat ini dimaksudkan ialah orang-orang yang suka mengikuti perbuatan maksiat. Baik mereka yang mengikuti atau pemimpin yang diikuti sama-sama dilemparkan ke dalamnya.",
-        short:
-          "Maka mereka, sesembahan itu, dijungkirkan ke dalam neraka bersama orang-orang yang sesat, berkali-kali.",
+        footnotes: null,
+        text: "Maka mereka, yaitu golongan yang disesatkan dan yang menyesatkan dilemparkan ke dalam neraka, sebagian mereka di atas sebagian yang lain,",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0643\u064f\u0628\u0652\u0643\u0650\u0628\u064f\u0648\u0627 \u0641\u0650\u064a\u0647\u064e\u0627 \u0647\u064f\u0645\u0652 \u0648\u064e\u0627\u0644\u0652\u063a\u064e\u0627\u0648\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fakubkiboo feehaa hum walghaawoon",
-      },
+      arabic: "فَكُبْكِبُوا۟ فِيهَا هُمْ وَٱلْغَاوُۥنَ",
     },
     translation: {
-      en: "So they will be overturned into Hellfire, they and the deviators",
-      id: "Maka mereka (sesembahan itu) dijungkirkan ke dalam neraka bersama orang-orang yang sesat,",
+      en: {
+        footnotes: "",
+        text: "Then they will be hurled into Hell one upon another, along with those who led them astray,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka mereka (sesembahan itu) dijungkirkan ke dalam neraka bersama orang-orang yang sesat,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3027",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3027.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3027.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 371,
       ruku: 320,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3027,
@@ -188,40 +157,32 @@ export const quranSurah26Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian orang-orang yang sesat dan telah ditetapkan sebagai penghuni neraka dijungkirkan bersama-sama pimpinan mereka dan tentara iblis seluruhnya. Tentara iblis dalam ayat ini dimaksudkan ialah orang-orang yang suka mengikuti perbuatan maksiat. Baik mereka yang mengikuti atau pemimpin yang diikuti sama-sama dilemparkan ke dalamnya.",
-        short:
-          "Dan juga bala tentara Iblis semuanya. Iblis sebagai penggoda, manusia kafir yang tergoda, dan berhala-berhala yang dijadikan sesembahan, semuanya akan masuk neraka. Semuanya adalah simbol-simbol pengingkaran terhadap Allah. Pada saat mereka di neraka, terjadilah aksi saling menghujat di antara Iblis dan pengikutnya.",
+        footnotes: null,
+        text: "Demikian juga bala tentara Iblis dari kalangan setan semuanya, tidak ada satu pun yang disisakan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062c\u064f\u0646\u064f\u0648\u062f\u064f \u0625\u0650\u0628\u0652\u0644\u0650\u064a\u0633\u064e \u0623\u064e\u062c\u0652\u0645\u064e\u0639\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa junoodu Ibleesa ajma'oon",
-      },
+      arabic: "وَجُنُودُ إِبْلِيسَ أَجْمَعُونَ",
     },
     translation: {
-      en: "And the soldiers of Iblees, all together.",
-      id: "dan bala tentara Iblis semuanya.",
+      en: {
+        footnotes: "",
+        text: "and the followers of Iblīs, all together.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan bala tentara Iblis semuanya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3028",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3028.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3028.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 371,
       ruku: 320,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3028,
@@ -229,20 +190,22 @@ export const quranSurah26Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: "Dalam neraka, para pemimpin yang menyesatkan dan para pengikutnya saling menyalahkan. Mereka saling mempertanyakan siapa yang telah membawa mereka melakukan kejahatan sehingga masuk neraka.",
-        short:
-          "Mereka para penghuni neraka itu berkata sambil bertengkar di dalamnya. Penghuni neraka mengakui atas kesesatannya.",
+        footnotes: null,
+        text: "Orang-orang musyrik yang dahulu menyembah selain Allah dan mengambil sekutu-sekutu selain-Nya berkata dalam kondisi saling bertengkar dengan sesembahan-sesembahan mereka dahulu kala,",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0648\u064e\u0647\u064f\u0645\u0652 \u0641\u0650\u064a\u0647\u064e\u0627 \u064a\u064e\u062e\u0652\u062a\u064e\u0635\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qaaloo wa hum feehaa yakkhtasimoon",
-      },
+      arabic: "قَالُوا۟ وَهُمْ فِيهَا يَخْتَصِمُونَ",
     },
     translation: {
-      en: "They will say while they dispute therein,",
-      id: "Mereka berkata sambil bertengkar di dalamnya (neraka),",
+      en: {
+        footnotes: "",
+        text: "There the deviants will say while quarreling with their false deities,",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka berkata sambil bertengkar di dalamnya (neraka),",
+      },
     },
   },
 ];

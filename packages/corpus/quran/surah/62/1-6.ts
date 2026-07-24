@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah62Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5178",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5178.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5178.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 221,
       juz: 28,
       manzil: 7,
       page: 553,
       ruku: 486,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5178,
@@ -24,40 +25,33 @@ export const quranSurah62Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menerangkan bahwa segala sesuatu yang ada di langit dan di bumi baik yang bernyawa maupun tidak, benda keras ataupun cair, pepohonan, dan sebagainya, bertasbih kepada Allah, menyucikan-Nya dari hal-hal yang tidak wajar, seperti sifat-sifat kekurangan dan sebagainya. Setiap kita melihat dan memandang kepada apa yang ada di bumi dan di langit, semuanya itu menunjukkan kepada kita atas keesaan penciptanya yaitu Allah dan kebesaran kekuasaan-Nya. Ini sejalan dengan firman Allah:\n\nDan tidak ada sesuatu pun melainkan bertasbih dengan memuji-Nya. (al-Isra'/17: 44)\n\nAyat pertama ini ditutup dengan satu ketegasan bahwa Allah itu merajai segala apa yang ada di bumi dan di langit, bertasbih kepada-Nya dengan kehendak-Nya berdasarkan kekuasaan dan kebijaksanaan-Nya, suci dari segala yang tidak layak dan tidak sesuai dengan ketinggian dan kesempurnaan-Nya. Tuhan Yang Mahaperkasa, menundukkan segala makhluk-Nya dengan kekuasaan-Nya. Mahabijaksana dalam mengatur hal ihwal mereka. Dialah yang lebih mengetahui kemaslahatan mereka, yang akan membawa mereka kepada kebahagiaan di dunia dan di akhirat.",
-        short:
-          "Apa yang ada di langit, bintang, bulan, matahari dan seluruh planet; dan apa yang ada di bumi, hewan dan tetumbuhan bertasbih kepada Allah, mengakui dan menyatakan kemahasucian Allah yang berbeda dengan seluruh makhluk ciptaan-Nya; Dia adalah Maharaja yang kekuasaan-Nya mutlak; Yang Mahasuci dari segala yang diduga manusia; dan Dialah Yang Mahaperkasa menciptakan dan menghancurkan jagat raya sekejap mata; Mahabijaksana, tidak terburu menggunakan kekuasaan-Nya yang tiada terbatas untuk menghancurkan jagat raya atau menghukum manusia yang berdosa.",
+        footnotes: null,
+        text: "Seluruh makhluk yang ada di langit dan di bumi menyucikan Allah dari segala yang tidak pantas bagi-Nya dari sifat-sifat kekurangan dan memahasucikan-Nya. Sungguh, Dia adalah Maharaja Yang Maha Esa dalam kekuasaan-Nya, tersucikan dari segala kekurangan, Mahaperkasa yang tidak ada seorang pun yang mampu mengalahkan-Nya, dan Mahabijaksana dalam penciptaan, syariat, dan takdir-Nya.",
       },
     },
     text: {
-      arab: "\u064a\u064f\u0633\u064e\u0628\u0651\u0650\u062d\u064f \u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0645\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0645\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0627\u0644\u0652\u0645\u064e\u0644\u0650\u0643\u0650 \u0627\u0644\u0652\u0642\u064f\u062f\u0651\u064f\u0648\u0633\u0650 \u0627\u0644\u0652\u0639\u064e\u0632\u0650\u064a\u0632\u0650 \u0627\u0644\u0652\u062d\u064e\u0643\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Yusabbihu lilaahi maa fis samaawaati wa maa fil ardil Malikil Quddoosil 'Azeezil Hakeem",
-      },
+      arabic:
+        "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ يُسَبِّحُ لِلَّهِ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ٱلْمَلِكِ ٱلْقُدُّوسِ ٱلْعَزِيزِ ٱلْحَكِيمِ",
     },
     translation: {
-      en: "Whatever is in the heavens and whatever is on the earth is exalting Allah, the Sovereign, the Pure, the Exalted in Might, the Wise.",
-      id: "Apa yang ada di langit dan apa yang ada di bumi senantiasa bertasbih kepada Allah. Maharaja, Yang Mahasuci, Yang Mahaperkasa, Mahabijaksana.",
+      en: {
+        footnotes: "",
+        text: "All that is in the heavens and all that is on earth glorifies Allah, the Sovereign, the Most Holy, the All-Mighty, the All-Wise.",
+      },
+      id: {
+        footnotes: "",
+        text: "Apa yang ada di langit dan apa yang ada di bumi senantiasa bertasbih kepada Allah. Maharaja, Yang Mahasuci, Yang Mahaperkasa, Mahabijaksana.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5179",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5179.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5179.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 221,
       juz: 28,
       manzil: 7,
       page: 553,
       ruku: 486,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5179,
@@ -65,40 +59,33 @@ export const quranSurah62Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa Dialah yang mengutus kepada bangsa Arab yang masih buta huruf, yang pada saat itu belum tahu membaca dan menulis, seorang rasul dari kalangan mereka sendiri, yaitu Nabi Muhammad saw dengan tugas sebagai berikut:\n\n1.Membacakan ayat suci Al-Qur'an yang di dalamnya terdapat petunjuk dan bimbingan untuk memperoleh kebaikan dunia dan akhirat.\n\n2.Membersihkan mereka dari akidah yang menyesatkan, kemusyrikan, sifat-sifat jahiliah yang biadab sehingga mereka itu berakidah tauhid mengesakan Allah, tidak tunduk kepada pemimpin-pemimpin yang menyesatkan dan tidak percaya lagi kepada sesembahan mereka seperti batu, berhala, pohon kayu, dan sebagainya.\n\n3.Mengajarkan kepada mereka al-Kitab yang berisi syariat agama beserta hukum-hukum dan hikmah-hikmah yang terkandung di dalamnya.\n\nDisebutkan secara khusus bangsa Arab yang buta huruf tidaklah berarti bahwa kerasulan Nabi Muhammad saw itu ditujukan terbatas hanya kepada bangsa Arab saja. Akan tetapi, kerasulan Nabi Muhammad saw itu diperuntukkan bagi semua makhluk terutama jin dan manusia, sebagaimana firman Allah:\n\nDan Kami tidak mengutus engkau (Muhammad) melainkan untuk (menjadi) rahmat bagi seluruh alam. (al-Anbiya'/21: 107)\n\nDan firman-Nya:\n\nKatakanlah (Muhammad), \"Wahai manusia! Sesungguhnya aku ini utusan Allah bagi kamu semua,\" (al-A'raf/7: 158) \n\nAyat kedua Surah al-Jumu'ah ini diakhiri dengan ungkapan bahwa orang Arab itu sebelumnya benar-benar dalam kesesatan yang nyata. Mereka itu pada umumnya menganut dan berpegang teguh kepada agama samawi yaitu agama Nabi Ibrahim. Mereka lalu mengubah dan menukar akidah tauhid dengan syirik, keyakinan mereka dengan keraguan, dan mengadakan sesembahan selain dari Allah.",
-        short:
-          "Dialah yang mengutus seorang Rasul, Muhammad kepada kaum yang buta huruf, yang secara khusus ditujukan kepada bangsa Arab yang kebanyakan tidak bisa baca tulis, dari kalangan mereka sendiri, yaitu dari kalangan bangsa Arab, yang membacakan kepada mereka ayat-ayat-Nya, ayat-ayat Al-Qur’an, yang isinya menyucikan jiwa mereka yang beriman kepadanya; dan mengajarkan kepada mereka yang membuka diri menerima dan membenaran kerasulan beliau, Kitab Al-Qur’an, dan Hikmah yakni Sunah Nabi, meskipun sebelumnya, yakni sebelum kelahiran Rasulullah di masa jahiliah, mereka, sebagian di antara para sahabat Rasulullah benar-benar dalam kesesatan yang nyata. Keyakinan mereka menyimpang dari prinsip tauhid dan perilaku mereka bertentangan dengan nilai kemanusiaan, salah satunya mengubur anak perempuan hidup-hidup.",
+        footnotes: null,
+        text: "Dialah yang mengutus kepada bangsa Arab yang tidak bisa membaca dan menulis seorang rasul dari kalangan mereka, dia membacakan kepada mereka ayat-ayat-Nya yang diturunkan kepadanya, membersihkan mereka dari kekufuran dan akhlak yang buruk, mengajari mereka Al-Qur`ān, dan mengajari mereka Sunah, padahal sesungguhnya mereka sebelum pengutusan rasul tersebut kepada mereka berada dalam kesesatan yang nyata dari kebenaran karena mereka dahulu menyembah berhala-berhala, menumpahkan darah, dan memutuskan silaturahim.",
       },
     },
     text: {
-      arab: "\u0647\u064f\u0648\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0628\u064e\u0639\u064e\u062b\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064f\u0645\u0651\u0650\u064a\u0651\u0650\u064a\u0646\u064e \u0631\u064e\u0633\u064f\u0648\u0644\u064b\u0627 \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u064a\u064e\u062a\u0652\u0644\u064f\u0648 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0622\u064a\u064e\u0627\u062a\u0650\u0647\u0650 \u0648\u064e\u064a\u064f\u0632\u064e\u0643\u0651\u0650\u064a\u0647\u0650\u0645\u0652 \u0648\u064e\u064a\u064f\u0639\u064e\u0644\u0651\u0650\u0645\u064f\u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0648\u064e\u0627\u0644\u0652\u062d\u0650\u0643\u0652\u0645\u064e\u0629\u064e \u0648\u064e\u0625\u0650\u0646 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u064f \u0644\u064e\u0641\u0650\u064a \u0636\u064e\u0644\u064e\u0627\u0644\u064d \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Huwal lazee ba'asa fil ummiyyeena Rasoolam min hum yatloo 'alaihim aayaatihee wa yuzakkeehim wa yu'allimuhumul Kitaaba wal Hikmata wa in kaano min qablu lafee dalaalim mubeen",
-      },
+      arabic:
+        "هُوَ ٱلَّذِى بَعَثَ فِى ٱلْأُمِّيِّـۧنَ رَسُولًا مِّنْهُمْ يَتْلُوا۟ عَلَيْهِمْ ءَايَٰتِهِۦ وَيُزَكِّيهِمْ وَيُعَلِّمُهُمُ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ وَإِن كَانُوا۟ مِن قَبْلُ لَفِى ضَلَٰلٍ مُّبِينٍ",
     },
     translation: {
-      en: "It is He who has sent among the unlettered a Messenger from themselves reciting to them His verses and purifying them and teaching them the Book and wisdom - although they were before in clear error -",
-      id: "Dialah yang mengutus seorang Rasul kepada kaum yang buta huruf dari kalangan mereka sendiri, yang membacakan kepada mereka ayat-ayat-Nya, menyucikan (jiwa) mereka dan mengajarkan kepada mereka Kitab dan Hikmah (Sunnah), meskipun sebelumnya, mereka benar-benar dalam kesesatan yang nyata.",
+      en: {
+        footnotes: "",
+        text: "It is He Who has sent among the unlettered [Arabs] a messenger from among themselves, reciting to them His verses and purifying them, and teaching them the Book and Wisdom [i.e., Sunnah], although before that they were clearly misguided.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dialah yang mengutus seorang Rasul kepada kaum yang buta huruf dari kalangan mereka sendiri, yang membacakan kepada mereka ayat-ayat-Nya, menyucikan (jiwa) mereka dan mengajarkan kepada mereka Kitab dan Hikmah (Sunah), meskipun sebelumnya, mereka benar-benar dalam kesesatan yang nyata,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5180",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5180.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5180.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 221,
       juz: 28,
       manzil: 7,
       page: 553,
       ruku: 486,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5180,
@@ -106,40 +93,32 @@ export const quranSurah62Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Allah menjelaskan bahwa kerasulan Muhammad saw tidaklah terbatas kepada bangsa Arab yang ada pada waktu itu, tetapi juga kepada orang-orang yang belum bergabung kepada mereka sampai hari Kiamat, yaitu orang-orang yang datang sesudah para sahabat Nabi saw, sampai hari Pembalasan, seperti bangsa Persia, Romawi dan lain-lain. Di dalam suatu hadis yang diriwayatkan oleh al-Bukhari dari Abu Hurairah, ia berkata:\n\nAbu Hurairah meriwayatkan bahwa ketika kami duduk bersama Nabi saw, lalu diturunkan kepadanya Surah al-Jumu\'ah "wa akharina minhum lamma yalhaqu bihim." Abu Hurairah bertanya, "Siapa mereka wahai Rasulullah? Namun Nabi saw tidak menjawab sampai ia bertanya tiga kali. Abu Hurairah berkata, "Pada saat itu ada Salman al-Farisi bersama kami. Kemudian Nabi meletakkan tangannya di pundak Salman, seraya berkata, \'Seandainya keimanan terdapat pada bintang-bintang, maka tentulah akan dicapai oleh orang-orang dari mereka (bangsa Persia)." (Riwayat al-Bukhari)\n\nAllah itu Mahaperkasa, kuasa meningkatkan kecerdasan orang yang bodoh, dan menguatkan umat yang lemah dengan mengutus seorang rasul dari kalangan mereka juga, untuk menyelamatkan mereka dari kesesatan, dan membawa kepada petunjuk kebenaran, dari kegelapan kepada cahaya terang-benderang. Allah juga Mahabijaksana dalam mengatur kepentingan makhluk-Nya yang akan membawa mereka kepada kebaikan dan keuntungan.',
-        short:
-          "Selain mengutus kepada bangsa Arab yang tidak bisa baca tulis, Allah juga mengutus Rasulullah kepada bangsa-bangsa lain di luar bangsa Arab, bahkan kepada seluruh dunia. Dan Rasulullah juga diutus kepada kaum yang lain dari mereka di luar bangsa Arab untuk masa yang tiada terbatas hingga hari kiamat, kaum yang belum berhubungan dengan mereka, karena hidup pada zaman dan tempat yang berbeda dengan mereka, sebagaimana disebutkan dalam Al-Qur’an, “Dan Kami tidak mengutus engkau Muhammad melainkan untuk menjadi rahmat bagi seluruh alam.” (Lihat: Surah al-Anbiyà’/21: 107). Dan Dialah Yang Mahaperkasa, menciptakan dan menghancurkan jagat raya sekejap mata; Mahabijaksana, tidak terburu menggunakan kekuasaan-Nya yang tiada terbatas untuk menghukum manusia yang berdosa.",
+        footnotes: null,
+        text: "Rasul ini diutus juga kepada kaum Arab yang lain dan kaum selain Arab yang belum datang dan yang akan datang. Sungguh, Dia Mahaperkasa yang tidak ada seorang pun mampu mengalahkan-Nya dan Mahabijaksana dalam penciptaan-Nya, syariat-Nya, dan takdir-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0622\u062e\u064e\u0631\u0650\u064a\u0646\u064e \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0644\u064e\u0645\u0651\u064e\u0627 \u064a\u064e\u0644\u0652\u062d\u064e\u0642\u064f\u0648\u0627 \u0628\u0650\u0647\u0650\u0645\u0652 \u06da \u0648\u064e\u0647\u064f\u0648\u064e \u0627\u0644\u0652\u0639\u064e\u0632\u0650\u064a\u0632\u064f \u0627\u0644\u0652\u062d\u064e\u0643\u0650\u064a\u0645\u064f",
-      transliteration: {
-        en: "Wa aakhareena minhum lammaa yalhaqoo bihim wa huwal 'azeezul hakeem",
-      },
+      arabic: "وَءَاخَرِينَ مِنْهُمْ لَمَّا يَلْحَقُوا۟ بِهِمْ وَهُوَ ٱلْعَزِيزُ ٱلْحَكِيمُ",
     },
     translation: {
-      en: "And [to] others of them who have not yet joined them. And He is the Exalted in Might, the Wise.",
-      id: "Dan (juga) kepada kaum yang lain dari mereka yang belum berhubungan dengan mereka. Dan Dialah Yang Mahaperkasa, Mahabijaksana.",
+      en: {
+        footnotes: "",
+        text: "And [he is also sent] to others of them who have not yet joined them, and He is the All-Mighty, the All-Wise.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan (juga) kepada kaum yang lain dari mereka yang belum bertemu dengan mereka. Dan Dialah Yang Mahaperkasa, Mahabijaksana.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5181",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5181.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5181.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 221,
       juz: 28,
       manzil: 7,
       page: 553,
       ruku: 486,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5181,
@@ -147,40 +126,32 @@ export const quranSurah62Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini, Allah menerangkan bahwa diutusnya rasul kepada manusia, untuk membersihkan mereka dari kemusyrikan dan sifat-sifat kebiadaban. Hal tersebut merupakan nikmat dan karunia Allah yang terbesar diberikan kepada siapa yang dikehendaki-Nya, dari hamba-hamba-Nya yang telah dipilih-Nya, karena kebersihan hati mereka dan kesediaan menerimanya.",
-        short:
-          "Demikianlah karunia Allah yang diberikan kepada siapa yang Dia kehendaki seperti mengangkat Rasulullah menjadi nabi dan rasul dan diutus kepada umat manusia seluruh alam; dan Allah memiliki karunia yang besar yang diberikan kepada hamba-hamba-Nya yang beriman.",
+        footnotes: null,
+        text: "Hal itu -yakni diutusnya Rasulullah kepada bangsa Arab dan selain mereka- merupakan karunia Allah yang diberikan kepada yang dikehendaki-Nya dan Allah mempunyai kebaikan yang besar. Di antara kebaikan-Nya yang besar adalah Dia mengutus Rasul umat ini kepada seluruh manusia.",
       },
     },
     text: {
-      arab: "\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0641\u064e\u0636\u0652\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u064a\u064f\u0624\u0652\u062a\u0650\u064a\u0647\u0650 \u0645\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u06da \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0630\u064f\u0648 \u0627\u0644\u0652\u0641\u064e\u0636\u0652\u0644\u0650 \u0627\u0644\u0652\u0639\u064e\u0638\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Zaalika fadlul laahi yu'teehi many-yashaaa; wallaahu zul fadil 'azeem",
-      },
+      arabic: "ذَٰلِكَ فَضْلُ ٱللَّهِ يُؤْتِيهِ مَن يَشَآءُ وَٱللَّهُ ذُو ٱلْفَضْلِ ٱلْعَظِيمِ",
     },
     translation: {
-      en: "That is the bounty of Allah, which He gives to whom He wills, and Allah is the possessor of great bounty.",
-      id: "Demikianlah karunia Allah, yang diberikan kepada siapa yang Dia kehendaki; dan Allah memiliki karunia yang besar.",
+      en: {
+        footnotes: "",
+        text: "That is the bounty of Allah that He gives to whom He wills, for Allah is the Lord of great bounty.",
+      },
+      id: {
+        footnotes: "",
+        text: "Demikianlah karunia Allah, yang diberikan kepada siapa yang Dia kehendaki; dan Allah memiliki karunia yang besar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5182",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5182.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5182.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 221,
       juz: 28,
       manzil: 7,
       page: 553,
       ruku: 486,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5182,
@@ -188,40 +159,34 @@ export const quranSurah62Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menyatakan kemurkaan-Nya kepada orang-orang Yahudi yang telah diturunkan kepada mereka kitab Taurat untuk diamalkan, tetapi mereka tidak melaksanakan isinya. Mereka itu tidak ada bedanya dengan keledai yang memikul kitab yang banyak, tetapi tidak mengetahui apa yang dipikulnya itu. Bahkan mereka lebih bodoh lagi dari keledai, karena keledai itu memang tidak mempunyai akal untuk memahaminya, sedangkan mereka itu mempunyai akal, tetapi tidak dipergunakan. Di sisi lain, ketika menggunakan akal, mereka menggunakannya untuk menyelewengkan Taurat dengan mengurangi, menambah, mengubah, atau menakwilkannya kepada arti yang mereka inginkan. Keadaan mereka itu digambarkan dalam ayat ini, sebagai berikut:\n\nMereka seperti hewan ternak, bahkan lebih sesat lagi. Mereka itulah orang-orang yang lengah. (al-A'raf/7: 179)\n\nAlangkah buruknya perumpamaan yang diberikan kepada mereka. Itu tidak lain karena mereka mendustakan ayat-ayat Allah yang dibawa oleh rasul mereka. Allah tidak akan memberikan petunjuk kepada orang-orang yang zalim terhadap dirinya sendiri, yang bergelimang dosa sehingga matanya tidak dapat melihat cahaya kebenaran. Hatinya merana tidak dapat merasakan hal-hal yang benar, bahkan dia berada dalam kegelapan yang menyebabkannya tidak dapat melihat jalan sampai kepada sasaran.",
-        short:
-          "Allah mengecam manusia yang mendapat karunia-Nya menjadi ahli agama, tetapi tidak mengamalkannya. Perumpamaan orang-orang yang diberi tugas membawa Taurat, menjadi ulama dan bertugas membimbing manusia beragama, kemudian mereka tidak membawanya, tidak mengamalkan agama dan tidak menjadikan dirinya teladan bagi umat adalah seperti keledai yang membawa kitab-kitab yang tebal, dirinya dibebani oleh pengetahuan agama, tetapi pengetahuan agama itu tidak membawa kebaikan apa pun bagi dirinya. Sangat buruk perumpamaan kaum yang mendustakan ayat-ayat Allah yang diwahyukan kepada Nabi dan Rasul-Nya. Dan Allah tidak akan pernah memberi petunjuk kepada orang-orang yang zalim, yang membiarkan dirinya gelap, padahal mereka memegang lampu.",
+        footnotes: null,
+        text: "Permisalan orang-orang Yahudi yang dibebani untuk melaksanakan apa yang ada di dalam Taurat lalu mereka meninggalkan apa yang dibebankan kepada mereka, seperti keledai yang mengangkut kitab-kitab yang besar, namun ia tidak mengerti apa yang dibebankan kepadanya, apakah itu kitab atau lainnya? Sungguh amat buruk permisalan suatu kaum yang mendustakan ayat-ayat Allah dan Allah tidak memberikan taufik kepada kaum yang zalim untuk mendapatkan kebenaran.",
       },
     },
     text: {
-      arab: "\u0645\u064e\u062b\u064e\u0644\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062d\u064f\u0645\u0651\u0650\u0644\u064f\u0648\u0627 \u0627\u0644\u062a\u0651\u064e\u0648\u0652\u0631\u064e\u0627\u0629\u064e \u062b\u064f\u0645\u0651\u064e \u0644\u064e\u0645\u0652 \u064a\u064e\u062d\u0652\u0645\u0650\u0644\u064f\u0648\u0647\u064e\u0627 \u0643\u064e\u0645\u064e\u062b\u064e\u0644\u0650 \u0627\u0644\u0652\u062d\u0650\u0645\u064e\u0627\u0631\u0650 \u064a\u064e\u062d\u0652\u0645\u0650\u0644\u064f \u0623\u064e\u0633\u0652\u0641\u064e\u0627\u0631\u064b\u0627 \u06da \u0628\u0650\u0626\u0652\u0633\u064e \u0645\u064e\u062b\u064e\u0644\u064f \u0627\u0644\u0652\u0642\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0630\u0651\u064e\u0628\u064f\u0648\u0627 \u0628\u0650\u0622\u064a\u064e\u0627\u062a\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06da \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0644\u064e\u0627 \u064a\u064e\u0647\u0652\u062f\u0650\u064a \u0627\u0644\u0652\u0642\u064e\u0648\u0652\u0645\u064e \u0627\u0644\u0638\u0651\u064e\u0627\u0644\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Masalul lazeena hum milut tawraata summa lam yahmiloonhaa kamasalil himaari yah milu asfaaraa; bi'sa masalul qawmil lazeena kaazzaboo bi aayaatil laah; wallaahu laa yahdil qawmazzaalimeen",
-      },
+      arabic:
+        "مَثَلُ ٱلَّذِينَ حُمِّلُوا۟ ٱلتَّوْرَىٰةَ ثُمَّ لَمْ يَحْمِلُوهَا كَمَثَلِ ٱلْحِمَارِ يَحْمِلُ أَسْفَارًۢا بِئْسَ مَثَلُ ٱلْقَوْمِ ٱلَّذِينَ كَذَّبُوا۟ بِـَٔايَٰتِ ٱللَّهِ وَٱللَّهُ لَا يَهْدِى ٱلْقَوْمَ ٱلظَّٰلِمِينَ",
     },
     translation: {
-      en: "The example of those who were entrusted with the Torah and then did not take it on is like that of a donkey who carries volumes [of books]. Wretched is the example of the people who deny the signs of Allah. And Allah does not guide the wrongdoing people.",
-      id: "Perumpamaan orang-orang yang diberi tugas membawa Taurat, kemudian mereka tidak membawanya (tidak mengamalkannya) adalah seperti keledai yang membawa kitab-kitab yang tebal. Sangat buruk perumpamaan kaum yang mendustakan ayat-ayat Allah. Dan Allah tidak memberi petunjuk kepada orang-orang yang zalim.",
+      en: {
+        footnotes:
+          "[1] i.e., did not put its teachings into practice.\n [2] i.e., They carry the physical burden of the books but are unaware of their contents and do not benefit from them.",
+        text: "The similitude of those who were given the Torah but failed to uphold it[1], is like that of a donkey laden with books[2]. How terrible is the similitude of those who reject the verses of Allah! And Allah does not guide the wrongdoing people.",
+      },
+      id: {
+        footnotes: "",
+        text: "Perumpamaan orang-orang yang diberi tugas membawa Taurat, kemudian mereka tidak membawanya (tidak mengamalkannya) adalah seperti keledai yang membawa kitab-kitab yang tebal. Sangat buruk perumpamaan kaum yang mendustakan ayat-ayat Allah. Dan Allah tidak memberi petunjuk kepada orang-orang yang zalim.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5183",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5183.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5183.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 221,
       juz: 28,
       manzil: 7,
       page: 553,
       ruku: 486,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5183,
@@ -229,20 +194,23 @@ export const quranSurah62Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Pada ayat ini Allah memberi peringatan kepada orang-orang Yahudi bahwa kalau memang mereka mendakwakan dan menyangkal bahwa mereka adalah kekasih dan kesayangan Allah, maka silakan memohon kepada Allah agar mereka itu cepat-cepat mati, dan segera bertemu dengan Tuhan mereka. Biasanya orang yang ingin cepat-cepat bertemu dengan kekasih dan kesayangannya, ingin cepat-cepat bebas dari kesusahan dan kesulitan dunia dan menempati surga yang penuh dengan segala macam kenikmatan. Firman Allah:\n\nKatakanlah (Muhammad), "Jika negeri akhirat di sisi Allah, khusus untukmu saja bukan untuk orang lain, maka mintalah kematian jika kamu orang yang benar." (al-Baqarah/2: 94)',
-        short:
-          "Para pemuka Yahudi tidak hanya tidak mengamalkan agamanya, tetapi juga menilai dirinya kekasih Allah, padahal mereka kufur kepada-Nya. Katakanlah, wahai Nabi Muhammad kepada para tokoh Agama Yahudi, “Wahai orang-orang Yahudi Bani Naýir, Bani Quraizah dan Bani Qainuqà‘! Jika kamu mengira dengan penuh keyakinan bahwa kamulah kekasih Allah, karena menjadi bangsa pilihan, bukan orang-orang yang lain, seperti kaum muslim, maka harapkanlah kematianmu, karena kematian membuktikan apakah kamu kekasih Allah atau bukan, jika kamu orang yang benar, dalam pengakuanmu itu.”",
+        footnotes: null,
+        text: 'Katakanlah -wahai Rasul-, “Wahai orang-orang yang tetap memeluk agama Yahudi setelah diselewengkan! Jika kalian menganggap bahwa kalian adalah kekasih Allah dan bahwa Dia mengkhususkan kalian sebagai kekasih-Nya bukan manusia lainnya, maka berharaplah kematian untuk kalian agar Allah menyegerakan karamah (kemuliaan) yang dikhususkan untuk kalian -sebagaimana yang kalian klaim- jika kalian adalah orang-orang yang jujur dalam pengakuan kalian sebagai kekasih Allah, bukan manusia lainnya."',
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0647\u064e\u0627\u062f\u064f\u0648\u0627 \u0625\u0650\u0646 \u0632\u064e\u0639\u064e\u0645\u0652\u062a\u064f\u0645\u0652 \u0623\u064e\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0623\u064e\u0648\u0652\u0644\u0650\u064a\u064e\u0627\u0621\u064f \u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0645\u0650\u0646 \u062f\u064f\u0648\u0646\u0650 \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u0641\u064e\u062a\u064e\u0645\u064e\u0646\u0651\u064e\u0648\u064f\u0627 \u0627\u0644\u0652\u0645\u064e\u0648\u0652\u062a\u064e \u0625\u0650\u0646 \u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u0635\u064e\u0627\u062f\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qul yaaa ayyuhal lazeena haadoo in za'amtum annakum awliyaaa'u lilaahi min doonin naasi fatamannawul mawta in kuntum saadiqeen",
-      },
+      arabic:
+        "قُلْ يَٰٓأَيُّهَا ٱلَّذِينَ هَادُوٓا۟ إِن زَعَمْتُمْ أَنَّكُمْ أَوْلِيَآءُ لِلَّهِ مِن دُونِ ٱلنَّاسِ فَتَمَنَّوُا۟ ٱلْمَوْتَ إِن كُنتُمْ صَٰدِقِينَ",
     },
     translation: {
-      en: 'Say, "O you who are Jews, if you claim that you are allies of Allah, excluding the [other] people, then wish for death, if you should be truthful."',
-      id: "Katakanlah (Muhammad), “Wahai orang-orang Yahudi! Jika kamu mengira bahwa kamulah kekasih Allah, bukan orang-orang yang lain, maka harapkanlah kematianmu, jika kamu orang yang benar.”",
+      en: {
+        footnotes: "",
+        text: "Say, “O you who are Jews, if you claim that you alone are Allah’s allies apart from all other people, then wish for death, if you are truthful.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Wahai orang-orang Yahudi! Jika kamu mengira bahwa kamulah kekasih Allah, bukan orang-orang yang lain, maka harapkanlah kematianmu, jika kamu orang yang benar."',
+      },
     },
   },
 ];

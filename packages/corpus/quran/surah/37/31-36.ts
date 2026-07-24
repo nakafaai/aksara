@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses31To36 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3819",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3819.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3819.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3819,
@@ -24,40 +25,32 @@ export const quranSurah37Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Pada hari Kiamat penyembah-penyembah berhala itu mengakui bahwa mereka dulunya bersikap melampaui batas karena pembawaan dan tabiat mereka sendiri yang cenderung kepada kekafiran dan kejahatan. Maka sepatutnyalah bilamana pada hari Kiamat itu mereka menerima hukuman dari Allah.\n\nBalasan baik atau buruk terhadap suatu perbuatan adalah akibat yang wajar, karena perbuatan itu dilakukan dengan penuh kesadaran. Maka masing-masing orang tidaklah perlu menyalahkan orang lain, kecuali kepada dirinya sendiri. Tidaklah wajar bila satu golongan lain saling menyalahkan. Masing-masing seharusnya menerima balasan atas perbuatannya. Mereka yang taat kepada Allah dan Rasul-Nya mendapat pahala dunia dan akhirat, dan mereka yang sesat akan masuk neraka. Demikian janji Tuhan yang disampaikan kepada manusia melalui rasul-rasul-Nya. Penyembah-penyembah berhala teman-teman setan mengetahui janji Tuhan itu namun mereka berpaling juga dari kebaikan dan ketaatan.\n\nGolongan pemimpin-pemimpin pada waktu itu menyatakan bahwa merekalah yang menyesatkan pengikut-pengikutnya itu. Mereka berbuat demikian karena keinginan mereka agar pengikut-pengikut itu mengikuti jejak mereka. Namun sesungguhnya tabiat dan usaha-usaha pengikut-pengikut itu sendirilah yang menyebabkan mereka berbuat kekafiran dan durhaka sehingga dengan demikian mereka menderita azab seperti diperingatkan sebelumnya oleh para rasul.",
-        short:
-          "Maka, sebagai balasan atas kekafiran dan kedurhakaan kita bersama, pantas bila putusan dan azab Tuhan menimpa kita; dan pasti kita semua akan merasakan azab itu.",
+        footnotes: null,
+        text: "Oleh karena itu, ancaman Allah berlaku untuk kami dan untuk kalian dalam firman-Nya, “Aku pasti akan memenuhi (neraka) Jahanam denganmu dan orang yang mengikutimu di antara mereka semuanya.” (QS. Ṣād: 85). Sebab itu, kita semua pasti merasakan -tanpa diragukan lagi- apa yang telah Tuhan kita ancamkan.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u062d\u064e\u0642\u0651\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0646\u064e\u0627 \u0642\u064e\u0648\u0652\u0644\u064f \u0631\u064e\u0628\u0651\u0650\u0646\u064e\u0627 \u06d6 \u0625\u0650\u0646\u0651\u064e\u0627 \u0644\u064e\u0630\u064e\u0627\u0626\u0650\u0642\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fahaqqa 'alainaa qawlu Rabbinaaa innaa lazaaa'iqoon",
-      },
+      arabic: "فَحَقَّ عَلَيْنَا قَوْلُ رَبِّنَآ إِنَّا لَذَآئِقُونَ",
     },
     translation: {
-      en: "So the word of our Lord has come into effect upon us; indeed, we will taste [punishment].",
-      id: "Maka pantas putusan (azab) Tuhan menimpa kita; pasti kita akan merasakan (azab itu).",
+      en: {
+        footnotes: "",
+        text: "Now the punishment of our Lord has come true against us; we will surely taste it.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka pantas putusan (azab) Tuhan menimpa kita; pasti kita akan merasakan (azab itu).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3820",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3820.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3820.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3820,
@@ -65,40 +58,32 @@ export const quranSurah37Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Pada hari Kiamat penyembah-penyembah berhala itu mengakui bahwa mereka dulunya bersikap melampaui batas karena pembawaan dan tabiat mereka sendiri yang cenderung kepada kekafiran dan kejahatan. Maka sepatutnyalah bilamana pada hari Kiamat itu mereka menerima hukuman dari Allah.\n\nBalasan baik atau buruk terhadap suatu perbuatan adalah akibat yang wajar, karena perbuatan itu dilakukan dengan penuh kesadaran. Maka masing-masing orang tidaklah perlu menyalahkan orang lain, kecuali kepada dirinya sendiri. Tidaklah wajar bila satu golongan lain saling menyalahkan. Masing-masing seharusnya menerima balasan atas perbuatannya. Mereka yang taat kepada Allah dan Rasul-Nya mendapat pahala dunia dan akhirat, dan mereka yang sesat akan masuk neraka. Demikian janji Tuhan yang disampaikan kepada manusia melalui rasul-rasul-Nya. Penyembah-penyembah berhala teman-teman setan mengetahui janji Tuhan itu namun mereka berpaling juga dari kebaikan dan ketaatan.\n\nGolongan pemimpin-pemimpin pada waktu itu menyatakan bahwa merekalah yang menyesatkan pengikut-pengikutnya itu. Mereka berbuat demikian karena keinginan mereka agar pengikut-pengikut itu mengikuti jejak mereka. Namun sesungguhnya tabiat dan usaha-usaha pengikut-pengikut itu sendirilah yang menyebabkan mereka berbuat kekafiran dan durhaka sehingga dengan demikian mereka menderita azab seperti diperingatkan sebelumnya oleh para rasul.",
-        short:
-          "Maka, kami telah menyesatkan kamu dengan mengajakmu menyekutukan Allah. Sesungguhnya kami sendiri adalah orang-orang yang sesat dan kamu pun rela mengikuti ajakan sesat kami.”",
+        footnotes: null,
+        text: 'Kami mengajak kalian kepada kekufuruan dan kesesatan dan kami sendiri adalah orang-orang yang tersesat dari jalan kebenaran."',
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u063a\u0652\u0648\u064e\u064a\u0652\u0646\u064e\u0627\u0643\u064f\u0645\u0652 \u0625\u0650\u0646\u0651\u064e\u0627 \u0643\u064f\u0646\u0651\u064e\u0627 \u063a\u064e\u0627\u0648\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fa aghwainaakum innaa kunnaa ghaaween",
-      },
+      arabic: "فَأَغْوَيْنَٰكُمْ إِنَّا كُنَّا غَٰوِينَ",
     },
     translation: {
-      en: 'And we led you to deviation; indeed, we were deviators."',
-      id: "Maka kami telah menyesatkan kamu, sesungguhnya kami sendiri, orang-orang yang sesat.”",
+      en: {
+        footnotes: "",
+        text: "We did misguide you, for we ourselves were misguided”.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Maka kami telah menyesatkan kamu, sesungguhnya kami sendiri, orang-orang yang sesat."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3821",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3821.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3821.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3821,
@@ -106,40 +91,32 @@ export const quranSurah37Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menegaskan bahwa azab ditimpakan kepada pemimpin-pemimpin dan pengikut-pengikutnya. Kedua golongan itu saling menuduh dan melempar tanggung jawab, namun mereka sama-sama dalam kesesatan. Yang menyesatkan tentulah menerima hukuman lebih berat. Mereka tidak hanya menanggung beban mereka sendiri, tetapi juga harus menanggung beban orang-orang yang mereka sesatkan.\n\nHukuman yang dijatuhkan Tuhan kepada kaum musyrikin itu sesuai dengan keadilan Tuhan terhadap hamba-hamba-Nya. Semua orang yang berdosa akan mendapat hukuman sesuai dengan kejahatannya. Demikian pula orang yang berbuat kebaikan akan diberi balasan sesuai dengan kebaikannya.",
-        short:
-          "Maka sesungguhnya mereka, baik para pemimpin maupun pengikut, pada hari itu bersama-sama merasakan azab sebagaimana mereka bersekutu dalam kesesatan.",
+        footnotes: null,
+        text: " Sesungguhnya orang-orang yang mengikuti dan orang-orang yang diikuti sama-sama berserikat dalam azab pada Hari Kiamat, sebagian dari mereka tidak bisa membantu sebagian yang lain, karena semasa di dunia mereka juga berserikat di dalam kekufuran dan kemaksiatan.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u0648\u0652\u0645\u064e\u0626\u0650\u0630\u064d \u0641\u0650\u064a \u0627\u0644\u0652\u0639\u064e\u0630\u064e\u0627\u0628\u0650 \u0645\u064f\u0634\u0652\u062a\u064e\u0631\u0650\u0643\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa innahum Yawma'izin fil'azaabi mushtarikoon",
-      },
+      arabic: "فَإِنَّهُمْ يَوْمَئِذٍ فِى ٱلْعَذَابِ مُشْتَرِكُونَ",
     },
     translation: {
-      en: "So indeed they, that Day, will be sharing in the punishment.",
-      id: "Maka sesungguhnya mereka pada hari itu bersama-sama merasakan azab.",
+      en: {
+        footnotes: "",
+        text: "On that Day they will all share in the punishment.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka sesunguhnya mereka pada hari itu bersama-sama merasakan azab.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3822",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3822.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3822.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3822,
@@ -147,40 +124,32 @@ export const quranSurah37Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menegaskan bahwa azab ditimpakan kepada pemimpin-pemimpin dan pengikut-pengikutnya. Kedua golongan itu saling menuduh dan melempar tanggung jawab, namun mereka sama-sama dalam kesesatan. Yang menyesatkan tentulah menerima hukuman lebih berat. Mereka tidak hanya menanggung beban mereka sendiri, tetapi juga harus menanggung beban orang-orang yang mereka sesatkan.\n\nHukuman yang dijatuhkan Tuhan kepada kaum musyrikin itu sesuai dengan keadilan Tuhan terhadap hamba-hamba-Nya. Semua orang yang berdosa akan mendapat hukuman sesuai dengan kejahatannya. Demikian pula orang yang berbuat kebaikan akan diberi balasan sesuai dengan kebaikannya.",
-        short:
-          "Sungguh, demikianlah ketetapan Kami dalam memperlakukan dan memutuskan hukuman terhadap orang-orang yang berbuat dosa.",
+        footnotes: null,
+        text: " Sebagaimana Kami menimpakan azab atas mereka, Kami juga menimpakannya atas para penjahat selain mereka, Kami menyatukan orang-orang yang diikuti dan orang-orang yang mengikuti dalam azab, masing-masing sesuai dengan porsi yang menjadi haknya.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0627 \u0643\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0646\u064e\u0641\u0652\u0639\u064e\u0644\u064f \u0628\u0650\u0627\u0644\u0652\u0645\u064f\u062c\u0652\u0631\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Innaa kazaalika naf'alu bil mujrimeen",
-      },
+      arabic: "إِنَّا كَذَٰلِكَ نَفْعَلُ بِٱلْمُجْرِمِينَ",
     },
     translation: {
-      en: "Indeed, that is how We deal with the criminals.",
-      id: "Sungguh, demikianlah Kami memperlakukan terhadap orang-orang yang berbuat dosa.",
+      en: {
+        footnotes: "",
+        text: "This is how We deal with the wicked,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, demikianlah Kami memperlakukan terhadap orang-orang yang berbuat dosa.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3823",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3823.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3823.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3823,
@@ -188,40 +157,32 @@ export const quranSurah37Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian Allah menguraikan sebagian penyebab hukuman yang ditimpakan kepada orang-orang yang berdosa itu. Sewaktu di dunia mereka menolak ajaran tauhid ketika disampaikan kepada mereka dan berpaling tidak mau mendengarkan bacaan kalimat tauhid "La ilaha illallah" yang artinya, "tidak ada Tuhan yang patut disembah kecuali Allah". Alasan penolakan mereka ialah kemustahilan bagi mereka meninggalkan sembahan-sembahan nenek moyangnya.\n\nMereka mewarisi tradisi penyembahan berhala dan patung secara turun-temurun. Menurut mereka hal itu suatu kebenaran yang terus-menerus harus dipegang. Keyakinan itu tidak akan ditinggalkan hanya untuk mendengarkan perkataan seseorang penyair gila yang tidak patut didengarkan pembicaraannya dan tidak perlu pula didengar ajaran-ajarannya. Perkataan Nabi menurut mereka penuh dengan khayalan.\n\nPernyataan orang kafir yang diucapkan di hadapan Nabi sewaktu hidup di dunia dengan penuh kesombongan, menunjukkan bahwa mereka mengingkari keesaan Allah, dan mengingkari kerasulan Muhammad saw. Keingkaran pertama ialah penolakan dengan sombong mendengarkan ajaran tauhid dan keingkaran kedua, pernyataan ketidakmungkinan meninggalkan sembahan-sembahan itu untuk mematuhi Rasul yang dituduhnya seorang yang gila.',
-        short:
-          "Sungguh, dahulu apabila dikatakan kepada mereka untuk membenarkan kalimat “là ilàha illallàh” dengan mengakui keesaan Allah, mereka justru menentang sambil menyombongkan diri,",
+        footnotes: null,
+        text: 'Hal itu karena dahulu di dunia apabila orang-orang musyrik itu didakwahi dengan ucapan "Lā ilāha illallāh", agar mereka mengamalkan konsekuensinya dan meninggalkan apa yang menyelisihinya, mereka menolak untuk menjawab ajakan tersebut dan menolak tunduk kepadanya karena menyombongkan diri dari kebenaran dan merasa tinggi hati.',
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0625\u0650\u0630\u064e\u0627 \u0642\u0650\u064a\u0644\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0627 \u0625\u0650\u0644\u064e\u0670\u0647\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u064a\u064e\u0633\u0652\u062a\u064e\u0643\u0652\u0628\u0650\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Innahum kaanooo izaa qeela lahum laaa ilaaha illal laahu yastakbiroon",
-      },
+      arabic: "إِنَّهُمْ كَانُوٓا۟ إِذَا قِيلَ لَهُمْ لَآ إِلَٰهَ إِلَّا ٱللَّهُ يَسْتَكْبِرُونَ",
     },
     translation: {
-      en: 'Indeed they, when it was said to them, "There is no deity but Allah," were arrogant',
-      id: "Sungguh, dahulu apabila dikatakan kepada mereka, “La ilaha illallah” (Tidak ada tuhan selain Allah), mereka menyombongkan diri,",
+      en: {
+        footnotes: "",
+        text: "for whenever it was said to them, “None has the right to be worshiped except Allah,” they became arrogant,",
+      },
+      id: {
+        footnotes: "",
+        text: 'Sungguh, dahulu apabila dikatakan kepada mereka, "Lā ilāha illallāh" (Tidak ada tuhan yang berhak disembah selain Allah), mereka menyombongkan diri,',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3824",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3824.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3824.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3824,
@@ -229,20 +190,22 @@ export const quranSurah37Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian Allah menguraikan sebagian penyebab hukuman yang ditimpakan kepada orang-orang yang berdosa itu. Sewaktu di dunia mereka menolak ajaran tauhid ketika disampaikan kepada mereka dan berpaling tidak mau mendengarkan bacaan kalimat tauhid "La ilaha illallah" yang artinya, "tidak ada Tuhan yang patut disembah kecuali Allah". Alasan penolakan mereka ialah kemustahilan bagi mereka meninggalkan sembahan-sembahan nenek moyangnya.\n\nMereka mewarisi tradisi penyembahan berhala dan patung secara turun-temurun. Menurut mereka hal itu suatu kebenaran yang terus-menerus harus dipegang. Keyakinan itu tidak akan ditinggalkan hanya untuk mendengarkan perkataan seseorang penyair gila yang tidak patut didengarkan pembicaraannya dan tidak perlu pula didengar ajaran-ajarannya. Perkataan Nabi menurut mereka penuh dengan khayalan.\n\nPernyataan orang kafir yang diucapkan di hadapan Nabi sewaktu hidup di dunia dengan penuh kesombongan, menunjukkan bahwa mereka mengingkari keesaan Allah, dan mengingkari kerasulan Muhammad saw. Keingkaran pertama ialah penolakan dengan sombong mendengarkan ajaran tauhid dan keingkaran kedua, pernyataan ketidakmungkinan meninggalkan sembahan-sembahan itu untuk mematuhi Rasul yang dituduhnya seorang yang gila.',
-        short:
-          "dan ketika diajak untuk menyembah dan mengesakan Allah, mereka berkata, “Apakah kami harus meninggalkan sesembahan kami hanya karena seorang penyair gila?”",
+        footnotes: null,
+        text: " Mereka berkata menyodorkan hujjah atas kekufuran mereka, “Apakah kami harus meninggalkan tuhan-tuhan yang kami sembah karena ucapan seorang penyair gila?” Maksud mereka adalah Rasulullah -ṣallallāhu 'alaihi wa sallam-.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0623\u064e\u0626\u0650\u0646\u0651\u064e\u0627 \u0644\u064e\u062a\u064e\u0627\u0631\u0650\u0643\u064f\u0648 \u0622\u0644\u0650\u0647\u064e\u062a\u0650\u0646\u064e\u0627 \u0644\u0650\u0634\u064e\u0627\u0639\u0650\u0631\u064d \u0645\u0651\u064e\u062c\u0652\u0646\u064f\u0648\u0646\u064d",
-      transliteration: {
-        en: "Wa yaqooloona a'innaa lataarikooo aalihatinaa lishaa'irim majnoon",
-      },
+      arabic: "وَيَقُولُونَ أَئِنَّا لَتَارِكُوٓا۟ ءَالِهَتِنَا لِشَاعِرٍ مَّجْنُونٍۭ",
     },
     translation: {
-      en: 'And were saying, "Are we to leave our gods for a mad poet?"',
-      id: "dan mereka berkata, “Apakah kami harus meninggalkan sesembahan kami karena seorang penyair gila?”",
+      en: {
+        footnotes: "[7] They mean the Prophet (ﷺ).",
+        text: "and said, “Are we going to abandon our gods for a mad poet[7]?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'dan mereka berkata, "Apakah kami harus meninggalkan sesembahan kami karena seorang penyair gila?"',
+      },
     },
   },
 ];

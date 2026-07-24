@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah92Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6071",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6071.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6071.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 595,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6071,
@@ -24,40 +25,32 @@ export const quranSurah92Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah juga pemilik alam ini, baik alam akhirat maupun alam dunia. Bila Allah pemilik segala-galanya, maka tiada jalan bagi manusia selain meminta semuanya itu kepada-Nya dengan jalan mengimani dan bertakwa kepada-Nya.",
-        short:
-          "dan sesungguhnya milik Kamilah kerajaan akhirat dan dunia. Kami yang mengatur urusan keduanya, sedangkan manusia tinggal menjalankan apa yang wajib baginya dan meninggalkan apa yang dilarang darinya.",
+        footnotes: null,
+        text: "Sesungguhnya kepunyaan Kamilah kehidupan akhirat dan kehidupan dunia, Kami berbuat pada keduanya sekehendak Kami, tidak ada seorang pun yang berhak atas hal itu selain Kami.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e \u0644\u064e\u0646\u064e\u0627 \u0644\u064e\u0644\u0652\u0622\u062e\u0650\u0631\u064e\u0629\u064e \u0648\u064e\u0627\u0644\u0652\u0623\u064f\u0648\u0644\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa inna lanaa lal Aakhirata wal oolaa",
-      },
+      arabic: "وَإِنَّ لَنَا لَلْـَٔاخِرَةَ وَٱلْأُولَىٰ",
     },
     translation: {
-      en: "And indeed, to Us belongs the Hereafter and the first [life].",
-      id: "dan sesungguhnya milik Kamilah akhirat dan dunia itu.",
+      en: {
+        footnotes: "",
+        text: "and surely to Us belong the Hereafter and the present life.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan sesungguhnya milik Kami lah akhirat dan dunia.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6072",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6072.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6072.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 595,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6072,
@@ -65,40 +58,32 @@ export const quranSurah92Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Di samping Allah telah menunjuki manusia jalan yang benar, Ia juga memperingatkan manusia tentang adanya neraka yang senantiasa menyala-nyala. Penghuni neraka itu adalah mereka yang paling durhaka, yaitu orang-orang yang senantiasa memandang dusta wahyu-wahyu yang disampaikan kepadanya, dan karena itu tidak mau mengimaninya dan menjalankannya.",
-        short:
-          "Maka, Aku memperingatkan kamu, wahai manusia, dengan neraka yang menyala-nyala dan panas tiada tara; itulah neraka Jahanam. Demikianlah cara Allah mendidik manusia, dengan memberi sanksi kepada pelanggar dan penghargaan kepada penaat.",
+        footnotes: null,
+        text: "Oleh sebab itu, Aku mengingatkan kalian -wahai manusia- dengan adanya api neraka yang menyala-nyala jika kalian bermaksiat kepada Allah.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0646\u0630\u064e\u0631\u0652\u062a\u064f\u0643\u064f\u0645\u0652 \u0646\u064e\u0627\u0631\u064b\u0627 \u062a\u064e\u0644\u064e\u0638\u0651\u064e\u0649\u0670",
-      transliteration: {
-        en: "Fa anzartukum naaran talazzaa",
-      },
+      arabic: "فَأَنذَرْتُكُمْ نَارًا تَلَظَّىٰ",
     },
     translation: {
-      en: "So I have warned you of a Fire which is blazing.",
-      id: "Maka Aku memperingatkan kamu dengan neraka yang menyala-nyala,",
+      en: {
+        footnotes: "",
+        text: "So I warn you of a raging Fire,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka aku memperingatkan kamu dengan neraka yang menyala-nyala,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6073",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6073.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6073.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6073,
@@ -106,40 +91,32 @@ export const quranSurah92Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Di samping Allah telah menunjuki manusia jalan yang benar, Ia juga memperingatkan manusia tentang adanya neraka yang senantiasa menyala-nyala. Penghuni neraka itu adalah mereka yang paling durhaka, yaitu orang-orang yang senantiasa memandang dusta wahyu-wahyu yang disampaikan kepadanya, dan karena itu tidak mau mengimaninya dan menjalankannya.",
-        short:
-          "Itulah neraka yang hanya dimasuki dan dirasakan panasnya oleh orang yang paling celaka.",
+        footnotes: null,
+        text: " Tidaklah merasakan pedihnya neraka ini kecuali orang yang sengsara, yaitu orang kafir.",
       },
     },
     text: {
-      arab: "\u0644\u064e\u0627 \u064a\u064e\u0635\u0652\u0644\u064e\u0627\u0647\u064e\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0642\u064e\u0649",
-      transliteration: {
-        en: "Laa yaslaahaaa illal ashqaa",
-      },
+      arabic: "لَا يَصْلَىٰهَآ إِلَّا ٱلْأَشْقَى",
     },
     translation: {
-      en: "None will [enter to] burn therein except the most wretched one.",
-      id: "yang hanya dimasuki oleh orang yang paling celaka,",
+      en: {
+        footnotes: "",
+        text: "none will enter it except the most wretched,",
+      },
+      id: {
+        footnotes: "",
+        text: "yang hanya dimasuki oleh orang yang paling celaka,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6074",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6074.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6074.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6074,
@@ -147,40 +124,32 @@ export const quranSurah92Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Di samping Allah telah menunjuki manusia jalan yang benar, Ia juga memperingatkan manusia tentang adanya neraka yang senantiasa menyala-nyala. Penghuni neraka itu adalah mereka yang paling durhaka, yaitu orang-orang yang senantiasa memandang dusta wahyu-wahyu yang disampaikan kepadanya, dan karena itu tidak mau mengimaninya dan menjalankannya.",
-        short:
-          "Mereka itulah orang yang mendustakan kebenaran yang datang dari Allah dan berpaling dari iman kepada-Nya.",
+        footnotes: null,
+        text: "Dialah yang mendustakan apa yang dibawa oleh Rasul -Ṣallallāhu 'alaihi wasallam- dan berpaling dari menaati perintah Allah.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0643\u064e\u0630\u0651\u064e\u0628\u064e \u0648\u064e\u062a\u064e\u0648\u064e\u0644\u0651\u064e\u0649\u0670",
-      transliteration: {
-        en: "Allazee kazzaba wa tawallaa",
-      },
+      arabic: "ٱلَّذِى كَذَّبَ وَتَوَلَّىٰ",
     },
     translation: {
-      en: "Who had denied and turned away.",
-      id: "yang mendustakan (kebenaran) dan berpaling (dari iman).",
+      en: {
+        footnotes: "",
+        text: "who denied and turned away.",
+      },
+      id: {
+        footnotes: "",
+        text: "yang mendustakan (kebenaran) dan berpaling (dari iman).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6075",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6075.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6075.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6075,
@@ -188,40 +157,32 @@ export const quranSurah92Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Sebaliknya adalah orang yang takwa, yaitu orang yang memberikan kekayaannya untuk membantu orang lain untuk menyucikan dirinya. Orang yang takwa itu akan terjauh dari neraka. Contoh orang yang paling takwa adalah Abu Bakar as-siddiq yang telah menggunakan seluruh kekayaannya untuk memerdekakan orang-orang lemah dan perempuan-perempuan yang masuk Islam dan membantu mereka.",
-        short:
-          "Dan sebaliknya, akan selamat dari neraka itu dijauhkan darinya orang yang paling bertakwa sebagai penghargaan iman dan amal salehnya.",
+        footnotes: null,
+        text: "Adapun manusia yang paling bertakwa akan dijauhkan dari neraka itu, yaitu Abu Bakar -raḍiyallāhu 'anhu-.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0633\u064e\u064a\u064f\u062c\u064e\u0646\u0651\u064e\u0628\u064f\u0647\u064e\u0627 \u0627\u0644\u0652\u0623\u064e\u062a\u0652\u0642\u064e\u0649",
-      transliteration: {
-        en: "Wa sa yujannnabuhal atqaa",
-      },
+      arabic: "وَسَيُجَنَّبُهَا ٱلْأَتْقَى",
     },
     translation: {
-      en: "But the righteous one will avoid it -",
-      id: "Dan akan dijauhkan darinya (neraka) orang yang paling bertakwa,",
+      en: {
+        footnotes: "",
+        text: "But the most righteous will be saved from it,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan akan dijauhkan darinya (neraka) orang yang paling bertakwa,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6076",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6076.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6076.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6076,
@@ -229,20 +190,22 @@ export const quranSurah92Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Sebaliknya adalah orang yang takwa, yaitu orang yang memberikan kekayaannya untuk membantu orang lain untuk menyucikan dirinya. Orang yang takwa itu akan terjauh dari neraka. Contoh orang yang paling takwa adalah Abu Bakar as-siddiq yang telah menggunakan seluruh kekayaannya untuk memerdekakan orang-orang lemah dan perempuan-perempuan yang masuk Islam dan membantu mereka.",
-        short:
-          "Dia itulah orang yang menginfakkan hartanya di jalan Allah untuk membersihkan dirinya dari kekikiran, ketamakan, dan sifat buruk lainnya.",
+        footnotes: null,
+        text: "Dialah yang telah menafkahkan hartanya di jalan-jalan kebaikan untuk membersihkan dirinya dari dosa-dosa.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a \u064a\u064f\u0624\u0652\u062a\u0650\u064a \u0645\u064e\u0627\u0644\u064e\u0647\u064f \u064a\u064e\u062a\u064e\u0632\u064e\u0643\u0651\u064e\u0649\u0670",
-      transliteration: {
-        en: "Allazee yu'tee maalahoo yatazakkaa",
-      },
+      arabic: "ٱلَّذِى يُؤْتِى مَالَهُۥ يَتَزَكَّىٰ",
     },
     translation: {
-      en: "[He] who gives [from] his wealth to purify himself",
-      id: "yang menginfakkan hartanya (di jalan Allah) untuk membersihkan (dirinya),",
+      en: {
+        footnotes: "",
+        text: "who spends his wealth to purify himself,",
+      },
+      id: {
+        footnotes: "",
+        text: "yang menginfakkan hartanya (di jalan Allah) untuk membersihkan (dirinya),",
+      },
     },
   },
 ];

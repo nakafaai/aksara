@@ -35,7 +35,7 @@ function withVerse(surah: QuranSurah, verse: QuranSurah["verses"][number]) {
 }
 
 describe("Quran registry", () => {
-  it("emits every canonical surah, verse, and revelation sequence", async () => {
+  it("emits every canonical surah, verse, and revelation order", async () => {
     const surahs = Chunk.toReadonlyArray(await collect());
     const verses = surahs.flatMap(({ verses: sourceVerses }) => sourceVerses);
 
@@ -45,7 +45,9 @@ describe("Quran registry", () => {
       Array.from({ length: QURAN_SURAH_COUNT }, (_, index) => index + 1)
     );
     expect(
-      surahs.map(({ sequence }) => sequence).sort((left, right) => left - right)
+      surahs
+        .map(({ revelation }) => revelation.order)
+        .sort((left, right) => left - right)
     ).toEqual(
       Array.from({ length: QURAN_SURAH_COUNT }, (_, index) => index + 1)
     );
@@ -145,7 +147,7 @@ describe("Quran registry", () => {
     expect(errors[0]).toBeInstanceOf(QuranCountError);
   });
 
-  it("rejects surah order and duplicate revelation sequences", async () => {
+  it("rejects surah order and duplicate revelation orders", async () => {
     const [first, second] = await firstTwoSurahs();
     if (!(first && second)) {
       throw new Error("Expected two reviewed Quran surahs.");
@@ -155,7 +157,16 @@ describe("Quran registry", () => {
       reject(streamQuranRegistry(Stream.succeed({ ...first, number: 2 }))),
       reject(
         streamQuranRegistry(
-          Stream.fromIterable([first, { ...second, sequence: first.sequence }])
+          Stream.fromIterable([
+            first,
+            {
+              ...second,
+              revelation: {
+                ...second.revelation,
+                order: first.revelation.order,
+              },
+            },
+          ])
         )
       ),
     ]);

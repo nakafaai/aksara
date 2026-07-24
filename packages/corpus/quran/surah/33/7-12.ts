@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah33Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3540",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3540.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3540.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 167,
       juz: 21,
       manzil: 5,
       page: 419,
       ruku: 361,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3540,
@@ -24,40 +25,34 @@ export const quranSurah33Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan bahwa Allah mengingatkan kepada Nabi Muhammad bahwa Dia telah menerima janji dari Nuh, Ibrahim, Musa, dan Isa bahwa mereka benar-benar akan menyampaikan agama Allah kepada manusia. Mereka juga akan saling membenarkan dalam menyampaikan risalah itu, yaitu dengan cara mengakui para nabi yang terdahulu dari mereka sebagai nabi-nabi Allah.\n\nAyat ini senada dengan firman Allah:\n\nDan (ingatlah), ketika Allah mengambil perjanjian dari para nabi, "Manakala Aku memberikan kitab dan hikmah kepadamu lalu datang kepada kamu seorang rasul yang membenarkan apa yang ada pada kamu, niscaya kamu akan sungguh-sungguh beriman kepadanya dan menolongnya." Allah berfirman, "Apakah kamu setuju dan menerima perjanjian dengan-Ku atas yang demikian itu?" Mereka menjawab, "Kami setuju." Allah berfirman, "Kalau begitu bersaksilah kamu (para nabi) dan Aku menjadi saksi bersama kamu." (ali \'Imran/3: 81) \n\nDalam ayat ini hanya disebutkan para nabi yang termasuk ulul azmi, yaitu Nuh, Ibrahim, Musa, Isa, dan Muhammad, karena merekalah yang mempunyai syariat dan kitab suci.\n\nJanji yang diberikan oleh para nabi itu adalah janji yang kuat dan berat yang harus ditepati. Di akhirat nanti, Allah akan menanyakan kepada para nabi itu dan umatnya masing-masing tentang pelaksanaan tugas yang telah mereka janjikan.\n\nDalam ayat yang lain, Allah berfirman:\n\nMaka pasti akan Kami tanyakan kepada umat yang telah mendapat seruan (dari rasul-rasul) dan Kami akan tanyai (pula) para rasul. (al-A\'raf/7: 6)',
-        short:
-          "Demikianlah kedudukan Nabi dan istri-istrinya di kalangan kaum mukmin. Nabi juga mempunyai kedudukan luhur sebagai pembawa risalah dan penyeru kepada agama yang benar, sebagaimana para rasul sebelumnya. Dan ingatlah ketika Kami mengambil perjanjian dari para nabi dan dari engkau sendiri, khususnya para rasul Ulul ‘Azmi, seperti dari Nuh, Ibrahim, Musa, dan Isa putra Maryam, dan Kami telah mengambil dari mereka perjanjian yang teguh untuk menyampaikan risalah Allah kepada kaum masing-masing",
+        footnotes: null,
+        text: "Ingatlah -wahai Rasul- tatkala Kami mengambil perjanjian yang kuat dari para nabi, yaitu agar mereka hanya menyembah Allah semata, tidak menyekutukan-Nya dengan sesuatu apa pun dan menyampaikan wahyu yang diturunkan kepada mereka. Kami mengambil perjanjian yang lebih khusus darimu dan dari Nabi Nuh, Ibrahim, Musa, dan Isa bin Maryam. Kami mengambil dari mereka perjanjian yang kuat untuk ditepati agar mereka menyampaikan risalah Allah yang telah diamanatkan kepada mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u0623\u064e\u062e\u064e\u0630\u0652\u0646\u064e\u0627 \u0645\u0650\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0628\u0650\u064a\u0651\u0650\u064a\u0646\u064e \u0645\u0650\u064a\u062b\u064e\u0627\u0642\u064e\u0647\u064f\u0645\u0652 \u0648\u064e\u0645\u0650\u0646\u0643\u064e \u0648\u064e\u0645\u0650\u0646 \u0646\u0651\u064f\u0648\u062d\u064d \u0648\u064e\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0648\u064e\u0645\u064f\u0648\u0633\u064e\u0649\u0670 \u0648\u064e\u0639\u0650\u064a\u0633\u064e\u0649 \u0627\u0628\u0652\u0646\u0650 \u0645\u064e\u0631\u0652\u064a\u064e\u0645\u064e \u06d6 \u0648\u064e\u0623\u064e\u062e\u064e\u0630\u0652\u0646\u064e\u0627 \u0645\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u0650\u064a\u062b\u064e\u0627\u0642\u064b\u0627 \u063a\u064e\u0644\u0650\u064a\u0638\u064b\u0627",
-      transliteration: {
-        en: "Wa iz akhaznaa minan Nabiyyeena meesaaqahum wa minka wa min Noohinw wa Ibraaheema wa Moosaa wa Eesab-ni-Maryama wa akhaznaa minhum meesaaqan ghaleezaa",
-      },
+      arabic:
+        "وَإِذْ أَخَذْنَا مِنَ ٱلنَّبِيِّـۧنَ مِيثَٰقَهُمْ وَمِنكَ وَمِن نُّوحٍ وَإِبْرَٰهِيمَ وَمُوسَىٰ وَعِيسَى ٱبْنِ مَرْيَمَ وَأَخَذْنَا مِنْهُم مِّيثَٰقًا غَلِيظًا",
     },
     translation: {
-      en: "And [mention, O Muhammad], when We took from the prophets their covenant and from you and from Noah and Abraham and Moses and Jesus, the son of Mary; and We took from them a solemn covenant.",
-      id: "Dan (ingatlah) ketika Kami mengambil perjanjian dari para nabi dan dari engkau (sendiri), dari Nuh, Ibrahim, Musa dan Isa putra Maryam, dan Kami telah mengambil dari mereka perjanjian yang teguh,",
+      en: {
+        footnotes: "",
+        text: "And [remember] when We took from the prophets their covenant and from you [O Prophet], and from Noah, Abraham, Moses, and Jesus, son of Mary; We took from them a solemn covenant",
+      },
+      id: {
+        footnotes:
+          "[668] Kesanggupan menyampaikan agama kepada umatnya masing-masing.",
+        text: "Dan (ingatlah) ketika Kami mengambil perjanjian dari para nabi dan dari engkau (sendiri), dari Nuh, Ibrahim, Musa dan Isa putra Maryam, dan Kami telah mengambil dari mereka perjanjian yang teguh,[668]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3541",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3541.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3541.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 167,
       juz: 21,
       manzil: 5,
       page: 419,
       ruku: 361,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3541,
@@ -65,40 +60,34 @@ export const quranSurah33Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini diterangkan penyebab Allah mengambil janji yang kuat dari para nabi untuk menyampaikan agama Allah kepada manusia, dan untuk saling menolong di antara mereka dengan saling mengatakan kepada umatnya bahwa mereka semua adalah rasul Allah. Sebabnya ialah agar Allah dapat menanyakan kepada para nabi itu di akhirat nanti tugas yang diberikan kepada mereka, apakah mereka telah menjalankan dengan baik, atau belum, dan bagaimana sambutan umat-umat mereka terhadap seruan itu. Demikian pula agar Allah dapat menanyakan kepada umat-umat itu sendiri di akhirat nanti tentang sikap mereka terhadap seruan para rasul. Dengan demikian, Allah menyediakan azab yang pedih bagi orang-orang yang mengingkari seruan para rasul, sebagaimana Dia menyediakan pahala yang besar bagi orang-orang yang memperkenankan seruan para rasul itu.",
-        short:
-          "agar Dia menanyakan kepada orang-orang yang benar dari para rasul tentang kebenaran mereka di hari kiamat—apakah mereka melaksanakan ajaran Allah itu, dan Dia menyediakan azab yang pedih bagi orang-orang kafir.",
+        footnotes: null,
+        text: "Allah mengambil perjanjian yang kuat ini dari para nabi agar Allah bertanya kepada para nabi yang benar itu tentang kebenaran mereka dalam menyampaikan risalah-Nya sebagai bentuk celaan bagi orang-orang kafir. Allah telah menyiapkan bagi orang-orang yang kafir terhadap-Nya dan terhadap para rasul-Nya pada hari Kiamat nanti siksa yang menyakitkan, yaitu neraka Jahanam.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u0650\u064a\u064e\u0633\u0652\u0623\u064e\u0644\u064e \u0627\u0644\u0635\u0651\u064e\u0627\u062f\u0650\u0642\u0650\u064a\u0646\u064e \u0639\u064e\u0646 \u0635\u0650\u062f\u0652\u0642\u0650\u0647\u0650\u0645\u0652 \u06da \u0648\u064e\u0623\u064e\u0639\u064e\u062f\u0651\u064e \u0644\u0650\u0644\u0652\u0643\u064e\u0627\u0641\u0650\u0631\u0650\u064a\u0646\u064e \u0639\u064e\u0630\u064e\u0627\u0628\u064b\u0627 \u0623\u064e\u0644\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Liyas'alas saadiqeena 'an sidqihim; wa a'adda lilkaa fireena 'azaaban aleemaa",
-      },
+      arabic: "لِّيَسْـَٔلَ ٱلصَّٰدِقِينَ عَن صِدْقِهِمْ وَأَعَدَّ لِلْكَٰفِرِينَ عَذَابًا أَلِيمًا",
     },
     translation: {
-      en: "That He may question the truthful about their truth. And He has prepared for the disbelievers a painful punishment.",
-      id: "agar Dia menanyakan kepada orang-orang yang benar tentang kebenaran mereka. Dia menyediakan azab yang pedih bagi orang-orang kafir.",
+      en: {
+        footnotes:
+          '[6] i.e., so that He may ask the "prophets" what they conveyed and what response they received. The "truthful" may also refer to those who believed in the prophets’ message and imparted it to others.',
+        text: "so that He may question the truthful[6] about their truthfulness, and He has prepared for the disbelievers a painful punishment.",
+      },
+      id: {
+        footnotes:
+          "[669] Pada hari Kiamat, Allah akan menanyakan kepada rasul-rasul sampai di mana usaha mereka menyampaikan ajaran-ajaran Allah kepada umatnya dan sampai di mana umatnya melaksanakan ajaran Allah itu.",
+        text: "agar Dia menanyakan kepada orang-orang yang benar tentang kebenaran mereka.[669] Dia menyediakan azab yang pedih bagi orang-orang kafir.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3542",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3542.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3542.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 167,
       juz: 21,
       manzil: 5,
       page: 419,
       ruku: 362,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3542,
@@ -106,40 +95,35 @@ export const quranSurah33Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Pada ayat ini, Allah mengingatkan kepada kaum Muslimin akan nikmat besar yang telah dilimpahkan-Nya kepada mereka pada Perang Ahzab ketika mereka dikepung rapat oleh tentara yang bersekutu yang terdiri dari tentara kaum Quraisy, Bani Gathafan, Bani an-Nadhir yang telah dibuang Rasulullah ke Khaibar dan tentara-tentara yang lain yang datang menyerang mereka ke Medinah. Setelah sebulan terkepung, maka Allah menghalau musuh-musuh mereka itu dengan tentara malaikat dan topan yang amat dingin dan kencang di malam yang sangat dingin pula, sehingga menerbangkan kemah-kemah tentara itu. Pada waktu itu, timbullah kegentaran dan ketakutan dalam hati musuh-musuh itu, sehingga salah seorang pemimpin mereka yang bernama thulaihah bin Khawailid al-Asadi berkata, "Muhammad telah menyihir kamu, maka selamatkan dirimu, selamatkan dirimu!" Dengan demikian, Perang Ahzab ini dimenangkan oleh kaum Muslimin tanpa terjadi pertempuran, karena musuh telah dihalau oleh tentara malaikat dan topan angin dingin yang amat kencang itu.\n\nPada akhir ayat ini, Allah menerangkan bahwa Dia melihat dan mengetahui segala yang dikerjakan kaum Muslimin dalam Perang Ahzab itu, seperti menggali parit, menyusun taktik, dan strategi peperangan untuk menegakkan agama-Nya. Allah juga mengetahui segala penderitaan yang mereka alami selama dikepung musuh, tetapi semua penderitaan itu mereka hadapi dengan tabah dan sabar. Semua yang dialami kaum Muslimin itu akan mendapat balasan yang berlipat ganda dari Allah.',
-        short:
-          "Ayat ini menginformasikan pertolongan Allah kepada kaum mukmin pada Perang Khandak. Wahai orang-orang yang beriman! Ingatlah akan nikmat Allah yang telah Dia karuniakan kepadamu ketika bala tentara dari kaum musyrik dan Yahudi Bani Quraizah datang kepadamu, lalu Kami kirimkan kepada mereka angin topan dan bala tentara yang tidak dapat terlihat olehmu, yaitu para malaikat yang memorak-porandakan barisan mereka. Allah Maha Melihat apa yang kamu kerjakan dan akan memberi balasan yang setimpal atasnya.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman kepada Allah dan menjalankan apa yang disyariatkan-Nya! Ingatlah nikmat Allah kepada kalian tatkala datang ke Madinah bala tentara kafir yang bergabung untuk memerangi kalian dengan dibantu oleh orang-orang munafik dan orang-orang Yahudi, lalu Kami kirimkan kepada mereka angin, yaitu angin topan yang dengannya Nabi -ṣallallāhu 'alaihi wa sallam- mendapat pertolongan. Kami juga mengutus bala tentara dari kalangan malaikat yang tidak bisa kalian lihat, sehingga orang-orang kafir melarikan diri dan tidak mampu berbuat apa-apa. Allah Maha Mengetahui amal perbuatan kalian, tidak ada sesuatu pun dari hal itu yang luput dari-Nya dan Dia akan membalas kalian atas amal perbuatan kalian.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0627\u0630\u0652\u0643\u064f\u0631\u064f\u0648\u0627 \u0646\u0650\u0639\u0652\u0645\u064e\u0629\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0625\u0650\u0630\u0652 \u062c\u064e\u0627\u0621\u064e\u062a\u0652\u0643\u064f\u0645\u0652 \u062c\u064f\u0646\u064f\u0648\u062f\u064c \u0641\u064e\u0623\u064e\u0631\u0652\u0633\u064e\u0644\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0631\u0650\u064a\u062d\u064b\u0627 \u0648\u064e\u062c\u064f\u0646\u064f\u0648\u062f\u064b\u0627 \u0644\u0651\u064e\u0645\u0652 \u062a\u064e\u0631\u064e\u0648\u0652\u0647\u064e\u0627 \u06da \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0645\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e \u0628\u064e\u0635\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Yaaa aiyuhal lazeena aamanuz kuroo ni'matal laahi 'alaikum iz jaaa'atkm junoodun fa arsalnaa 'alaihim reehanw wa junoodal lam tarawhaa; wa kaanal laahu bimaa ta'maloona Baseera",
-      },
+      arabic:
+        "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱذْكُرُوا۟ نِعْمَةَ ٱللَّهِ عَلَيْكُمْ إِذْ جَآءَتْكُمْ جُنُودٌ فَأَرْسَلْنَا عَلَيْهِمْ رِيحًا وَجُنُودًا لَّمْ تَرَوْهَا وَكَانَ ٱللَّهُ بِمَا تَعْمَلُونَ بَصِيرًا",
     },
     translation: {
-      en: "O you who have believed, remember the favor of Allah upon you when armies came to [attack] you and We sent upon them a wind and armies [of angels] you did not see. And ever is Allah, of what you do, Seeing.",
-      id: "Wahai orang-orang yang beriman! Ingatlah akan nikmat Allah (yang telah dikaruniakan) kepadamu ketika bala tentara datang kepadamu, lalu Kami kirimkan kepada mereka angin topan dan bala tentara yang tidak dapat terlihat olehmu. Allah Maha Melihat apa yang kamu kerjakan.",
+      en: {
+        footnotes:
+          "[7] This is referring to what is known as the Battle of the Trench or the Confederates which occurred in 5 A.H./627 C.E., where the pagans of Makkah along with some Arab and Jewish tribes (totaling around 10,000 soldiers) besieged Madinah, and the Prophet (ﷺ) positioned around 3000 soldiers to defend Madinah. The Prophet (ﷺ) had anticipated the offense and, upon advice from one of his companions, Salmān from Persia, dug a trench around the city to protect it from the invaders. After several attempts to cross the trench, the Allied forces lost morale and were forced to end the siege due to severe weather conditions. By this Allah saved Muslims from the machination of the non-Muslim allied forces to destroy the newly-born Islamic community in Madinah.\n [8] i.e., the angles.",
+        text: "O you who believe, remember Allah’s favor upon you when [enemy] forces came against you[7], but We sent against them a violent wind and forces that you could not see[8]. And Allah is All-Seeing of what you do.",
+      },
+      id: {
+        footnotes:
+          "[670] Ayat ini menerangkan kisah Ahzab yaitu golongan-golongan yang dihancurkan dalam perang Khandaq karena menentang Allah dan rasul-Nya. Yang dimaksud dengan bala tentara yang tidak dapat kamu lihat ialah para malaikat yang sengaja didatangkan Allah untuk menghancurkan musuh-musuh Allah itu.",
+        text: "Wahai orang-orang yang beriman! Ingatlah akan nikmat Allah (yang telah dikaruniakan) kepadamu ketika bala tentara datang kepadamu, lalu Kami kirimkan kepada mereka angin topan dan bala tentara yang tidak dapat terlihat olehmu.[670] Allah Maha Melihat apa yang kamu kerjakan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3543",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3543.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3543.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 167,
       juz: 21,
       manzil: 5,
       page: 419,
       ruku: 362,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3543,
@@ -147,40 +131,35 @@ export const quranSurah33Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah mengetahui ketika tentara yang bersekutu datang dari bawah lembah, yaitu dari sebelah timur yang terdiri dari golongan Gathafan, penduduk Nejed, dan ikut pula beserta mereka Bani Quraidhah dan Bani an-Nadhir. Allah mengetahui pula kedatangan golongan yang bersekutu lain yang datang dari atas lembah dari sebelah barat yang terdiri dari orang-orang Quraisy dan pengikut-pengikutnya dari bermacam-macam suku dengan Bani Kinanah dan penduduk Tihamah. Dalam keadaan musuh mulai mengepung itu, timbullah rasa takut dan gentar terutama dalam hati orang-orang munafik yang ikut bersama-sama kaum Muslimin. Mata mereka terbelalak dan kerongkongan mereka terasa tersumbat akibat ketakutan, dan timbul dalam hati mereka was-was, ragu-ragu, dan berbagai prasangka. Bahkan di antara mereka ada yang telah menduga bahwa kaum Muslimin akan dikalahkan oleh tentara sekutu, mengingat jumlah mereka yang jauh lebih banyak jika dibandingkan dengan jumlah kaum Muslimin.\n\nAdapun orang-orang yang beriman percaya benar akan janji Allah, bahwa Rasulullah saw dan kaum Muslimin akan memenangkan peperangan itu, dan pertolongan Allah pasti datang, serta mereka percaya benar akan kekuasaan dan kebesaran-Nya. Sedang orang-orang munafik berprasangka bahwa kaum Muslimin dan agama Islam akan hancur dan binasa. Kaum musyrik Mekah akan menaklukkan kota Medinah dan mengembalikannya kepada keadaan masa Jahiliah.",
-        short:
-          "Wahai kaum mukmin, Allah mengirim para malaikat untuk mendukungmu pada Perang Khandak, yaitu ketika mereka, yakni tentara musyrik, datang kepadamu dari atas, yaitu dari timur, dan tentara Yahudi Bani Quraizah datang dari bawahmu, yaitu dari barat, dan ketika penglihatan-mu terpana oleh besarnya pasukan mereka dan hal itu menimbulkan rasa takut yang hebat sehingga hatimu menyesak sampai ke tenggorokan, dan bahkan sebagian dari kamu terjangkiti sifat munafik sehingga berprasangka yang bukan-bukan terhadap Allah seakan Dia tidak mampu memenangkan pasukan mukmin atas pasukan kafir.",
+        footnotes: null,
+        text: "Hal itu terjadi ketika orang-orang kafir mendatangi kalian dari atas lembah dan dari sisi bawahnya, dari arah timur maupun barat. Saat itu, ke mana pun mata memandang yang tampak hanyalah musuh, bahkan hati kalian telah naik sampai ke tenggorokan karena besarnya rasa takut dan kalian menyangka terhadap Allah dengan berbagai prasangka yang bermacam-macam, kadang kalian menyangka akan mendapat pertolongan, dan kadang merasa putus asa dari Allah.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0630\u0652 \u062c\u064e\u0627\u0621\u064f\u0648\u0643\u064f\u0645 \u0645\u0651\u0650\u0646 \u0641\u064e\u0648\u0652\u0642\u0650\u0643\u064f\u0645\u0652 \u0648\u064e\u0645\u0650\u0646\u0652 \u0623\u064e\u0633\u0652\u0641\u064e\u0644\u064e \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0648\u064e\u0625\u0650\u0630\u0652 \u0632\u064e\u0627\u063a\u064e\u062a\u0650 \u0627\u0644\u0652\u0623\u064e\u0628\u0652\u0635\u064e\u0627\u0631\u064f \u0648\u064e\u0628\u064e\u0644\u064e\u063a\u064e\u062a\u0650 \u0627\u0644\u0652\u0642\u064f\u0644\u064f\u0648\u0628\u064f \u0627\u0644\u0652\u062d\u064e\u0646\u064e\u0627\u062c\u0650\u0631\u064e \u0648\u064e\u062a\u064e\u0638\u064f\u0646\u0651\u064f\u0648\u0646\u064e \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0638\u0651\u064f\u0646\u064f\u0648\u0646\u064e\u0627",
-      transliteration: {
-        en: "Iz jaaa'ookum min fawqikum wa min asfala minkum wa iz zaaghatil absaaru wa balaghatil quloobul hanaajira wa tazunnoona billaahiz zunoonaa",
-      },
+      arabic:
+        "إِذْ جَآءُوكُم مِّن فَوْقِكُمْ وَمِنْ أَسْفَلَ مِنكُمْ وَإِذْ زَاغَتِ ٱلْأَبْصَٰرُ وَبَلَغَتِ ٱلْقُلُوبُ ٱلْحَنَاجِرَ وَتَظُنُّونَ بِٱللَّهِ ٱلظُّنُونَا۠",
     },
     translation: {
-      en: "[Remember] when they came at you from above you and from below you, and when eyes shifted [in fear], and hearts reached the throats and you assumed about Allah [various] assumptions.",
-      id: "(Yaitu) ketika mereka datang kepadamu dari atas dan dari bawahmu, dan ketika penglihatan(mu) terpana dan hatimu menyesak sampai ke tenggorokan dan kamu berprasangka yang bukan-bukan terhadap Allah.",
+      en: {
+        footnotes:
+          "[9] i.e., those coming from Najd and Khaybar came from above and those coming from Makkah came from below you.\n [10] i.e., sometimes expecting victory and other times going desperate.",
+        text: "[Remember] when they came upon you from above you and from below you[9], and your eyes grew wild [in horror], and the hearts reached the throats, and you began to entertain various thoughts about Allah[10].",
+      },
+      id: {
+        footnotes:
+          "[671] Menggambarkan bagaimana dahsyatnya perasaan takut dan perasaan gentar pada waktu itu.",
+        text: "(Yaitu) ketika mereka datang kepadamu dari atas dan dari bawahmu, dan ketika penglihatan(mu) terpana dan hatimu menyesak sampai ke tenggorokan[671] dan kamu berprasangka yang bukan-bukan terhadap Allah.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3544",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3544.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3544.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 167,
       juz: 21,
       manzil: 5,
       page: 419,
       ruku: 362,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3544,
@@ -188,40 +167,32 @@ export const quranSurah33Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam keadaan yang demikian mencekam, Allah menguji kekuatan iman orang-orang yang beriman, sehingga nyata mana yang benar-benar beriman, yang memurnikan ketaatan hanya kepada Allah saja, percaya bahwa Muhammad saw adalah rasul Allah, dan percaya pula akan kemenangan Islam dan kaum Muslimin, serta mana yang goyah dan rapuh imannya, yang mengikuti Rasulullah hanya semata-mata hendak mencari keuntungan diri mereka saja. Seakan-akan Perang Ahzab ini merupakan suatu seleksi bagi kaum Muslimin, tentang siapa yang benar-benar kawan dan siapa yang sungguh-sungguh lawan.\n\n(12) Menurut riwayat, thu\'mah bin Ubairiq dan tujuh puluh orang yang lain mengatakan, "Bagaimana pula yang dijanjikan kepada kita penaklukan kerajaan Persia dan Romawi, padahal pada saat ini untuk buang air besar saja tidak seorang pun di antara kita yang sanggup." Ucapan ini sengaja mereka lontarkan tatkala mereka mendengar berita tentang peristiwa yang terjadi di waktu Rasulullah menggali parit dan mencangkuli batu yang memancarkan cahaya sebagaimana yang telah diterangkan. Maka Allah menurunkan ayat ini.\n\nDalam ayat ini diterangkan hasil ujian Allah kepada kaum Muslimin, yaitu dengan tercetusnya perkataan orang-orang munafik seperti Mu\'attib bin Qusyair dan orang-orang yang lain yang masih lemah imannya, "Semua yang dijanjikan Allah dan Rasul-Nya kepada kita, seperti akan mendapat kemenangan, memperoleh kebahagiaan hidup, dan sebagainya, tidak lain hanyalah tipu daya dan janji-janji kosong saja, bahkan janji itu menimbulkan kesengsaraan dan malapetaka bagi kita semuanya. Muhammad mengatakan bahwa kerajaan Persia dan Romawi akan takluk ke bawah kekuasaan kaum Muslimin, tetapi kenyataannya sekarang, kaum Muslimin yang akan menaklukkan itu sedang dikepung rapat oleh tentara yang bersekutu dan akan mengalami kehancuran dan kemusnahan."',
-        short:
-          "Orang-orang mukmin terpana melihat besarnya jumlah pasukan kafir. Di situlah orang-orang mukmin diuji dan sengaja digoncangkan hatinya dengan goncangan yang dahsyat agar terlihat jelas siapa di antara mereka yang benar-benar beriman dan siapa yang munafik.",
+        footnotes: null,
+        text: "Dalam keadaan demikian di perang Khandaq, orang-orang beriman mendapat ujian dengan apa yang mereka dapatkan dari kepungan musuh-musuh mereka dan mereka gemetar dengan amat sangat karena ketakutan. Namun, dengan ujian ini jelaslah mana orang-orang mukmin dan mana orang-orang munafik.",
       },
     },
     text: {
-      arab: "\u0647\u064f\u0646\u064e\u0627\u0644\u0650\u0643\u064e \u0627\u0628\u0652\u062a\u064f\u0644\u0650\u064a\u064e \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0648\u064e\u0632\u064f\u0644\u0652\u0632\u0650\u0644\u064f\u0648\u0627 \u0632\u0650\u0644\u0652\u0632\u064e\u0627\u0644\u064b\u0627 \u0634\u064e\u062f\u0650\u064a\u062f\u064b\u0627",
-      transliteration: {
-        en: "Hunaalikab tuliyal mu'minoona wa zulziloo zilzaalan shadeedaa",
-      },
+      arabic: "هُنَالِكَ ٱبْتُلِىَ ٱلْمُؤْمِنُونَ وَزُلْزِلُوا۟ زِلْزَالًا شَدِيدًا",
     },
     translation: {
-      en: "There the believers were tested and shaken with a severe shaking.",
-      id: "Di situlah diuji orang-orang mukmin dan digoncangkan (hatinya) dengan goncangan yang dahsyat.",
+      en: {
+        footnotes: "",
+        text: "There the believers were tested and were severely shaken.",
+      },
+      id: {
+        footnotes: "",
+        text: "Di situlah diuji orang-orang mukmin dan digoncangkan (hatinya) dengan goncangan yang dahsyat.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3545",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3545.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3545.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 167,
       juz: 21,
       manzil: 5,
       page: 419,
       ruku: 362,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3545,
@@ -229,20 +200,23 @@ export const quranSurah33Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam keadaan yang demikian mencekam, Allah menguji kekuatan iman orang-orang yang beriman, sehingga nyata mana yang benar-benar beriman, yang memurnikan ketaatan hanya kepada Allah saja, percaya bahwa Muhammad saw adalah rasul Allah, dan percaya pula akan kemenangan Islam dan kaum Muslimin, serta mana yang goyah dan rapuh imannya, yang mengikuti Rasulullah hanya semata-mata hendak mencari keuntungan diri mereka saja. Seakan-akan Perang Ahzab ini merupakan suatu seleksi bagi kaum Muslimin, tentang siapa yang benar-benar kawan dan siapa yang sungguh-sungguh lawan.",
-        short:
-          "Dan ingatlah ketika orang-orang munafik yang sengaja menyembunyikan kekafirannya dan orang-orang yang hatinya berpenyakit serta lemah imannya berkata, “Apa yang dijanjikan Allah dan Rasul-Nya kepada kami hanya tipu daya belaka. Dia pasti tidak akan mampu menolong pasukan mukmin.” Mereka berkata demikian karena mereka melihat jumlah pasukan kafir jauh lebih besar daripada pasukan mukmin.",
+        footnotes: null,
+        text: "Pada hari itu, orang-orang munafik dan orang-orang beriman lemah yang di dalam hati mereka terdapat keraguan berkata, “Apa yang dijanjikan oleh Allah dan Rasul-Nya berupa kemenangan atas musuh-musuh kita dan kekuasaan di bumi tidak lain hanyalah kebohongan yang tidak berdasar.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u064a\u064e\u0642\u064f\u0648\u0644\u064f \u0627\u0644\u0652\u0645\u064f\u0646\u064e\u0627\u0641\u0650\u0642\u064f\u0648\u0646\u064e \u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0641\u0650\u064a \u0642\u064f\u0644\u064f\u0648\u0628\u0650\u0647\u0650\u0645 \u0645\u0651\u064e\u0631\u064e\u0636\u064c \u0645\u0651\u064e\u0627 \u0648\u064e\u0639\u064e\u062f\u064e\u0646\u064e\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0648\u064e\u0631\u064e\u0633\u064f\u0648\u0644\u064f\u0647\u064f \u0625\u0650\u0644\u0651\u064e\u0627 \u063a\u064f\u0631\u064f\u0648\u0631\u064b\u0627",
-      transliteration: {
-        en: "Wa iz yaqoolul munaafiqoona wallazeena fee quloobihim maradum maa wa'adanal laahu wa Rasooluhooo illaa ghurooraa",
-      },
+      arabic:
+        "وَإِذْ يَقُولُ ٱلْمُنَٰفِقُونَ وَٱلَّذِينَ فِى قُلُوبِهِم مَّرَضٌ مَّا وَعَدَنَا ٱللَّهُ وَرَسُولُهُۥٓ إِلَّا غُرُورًا",
     },
     translation: {
-      en: 'And [remember] when the hypocrites and those in whose hearts is disease said, "Allah and His Messenger did not promise us except delusion,"',
-      id: "Dan (ingatlah) ketika orang-orang munafik dan orang-orang yang hatinya berpenyakit berkata, “Yang dijanjikan Allah dan Rasul-Nya kepada kami hanya tipu daya belaka.”",
+      en: {
+        footnotes: "",
+        text: "And [remember] when the hypocrites and those with sickness in their hearts said, “Allah and His Messenger did not promise us but delusion!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan (ingatlah) ketika orang-orang munafik dan orang-orang yang hatinya berpenyakit berkata, "Yang dijanjikan Allah dan Rasul-Nya kepada kami hanya tipu daya belaka."',
+      },
     },
   },
 ];

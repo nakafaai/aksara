@@ -7,9 +7,9 @@ import {
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
-import type { AbortArguments } from "#cli/args";
 import { readPublicationEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
+import type { AbortArguments } from "#cli/production-arguments";
 import { retryPublicationTarget } from "#cli/retry";
 
 const ABORT_TIMEOUT = "30 seconds";

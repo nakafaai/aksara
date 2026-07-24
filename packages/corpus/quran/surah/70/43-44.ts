@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah70Verses43To44 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5418",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5418.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5418.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 503,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5418,
@@ -24,40 +25,33 @@ export const quranSurah70Verses43To44 = [
     },
     tafsir: {
       id: {
-        long: "Pada hari Kiamat itu, mereka dihidupkan kembali dan dibangkitkan dari kubur. Mereka datang dengan tergesa-gesa untuk memenuhi panggilan yang memanggil mereka waktu itu dengan harapan panggilan itu berisi sesuatu yang menyenangkan. Mereka datang tergesa-gesa sebagaimana ketika mereka datang untuk menyembah berhala mereka dulu waktu di dunia.",
-        short:
-          "Hari yang diancamkan kepada mereka itu yaitu pada hari ketika mereka, orang-orang kafir yang meminta disegerakan azab, keluar dari kubur menyambut panggilan malaikat yang ditugaskan Allah dengan cepat seakan-akan mereka pergi dengan segera kepada berhala-berhala yang mereka sembah sewaktu di dunia,",
+        footnotes: null,
+        text: "Pada hari itu mereka keluar dari dalam kubur dengan cepat seakan-akan mereka berlomba-lomba menuju berhala mereka.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0648\u0652\u0645\u064e \u064a\u064e\u062e\u0652\u0631\u064f\u062c\u064f\u0648\u0646\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0623\u064e\u062c\u0652\u062f\u064e\u0627\u062b\u0650 \u0633\u0650\u0631\u064e\u0627\u0639\u064b\u0627 \u0643\u064e\u0623\u064e\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0625\u0650\u0644\u064e\u0649\u0670 \u0646\u064f\u0635\u064f\u0628\u064d \u064a\u064f\u0648\u0641\u0650\u0636\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Yawma yakhrujoona minal ajdaasi siraa'an ka anna hum ilaa nusubiny yoofidoon",
-      },
+      arabic: "يَوْمَ يَخْرُجُونَ مِنَ ٱلْأَجْدَاثِ سِرَاعًا كَأَنَّهُمْ إِلَىٰ نُصُبٍ يُوفِضُونَ",
     },
     translation: {
-      en: "The Day they will emerge from the graves rapidly as if they were, toward an erected idol, hastening.",
-      id: "(yaitu) pada hari ketika mereka keluar dari kubur dengan cepat seakan-akan mereka pergi dengan segera kepada berhala-berhala (sewaktu di dunia),",
+      en: {
+        footnotes:
+          "[16] i.e., just as they used to race towards a newly appointed idol, to be among the first of its worshipers.",
+        text: "the Day when they will rush out of their graves as if they are racing towards an idol[16],",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) pada hari ketika mereka keluar dari kubur dengan cepat seakan-akan mereka pergi dengan segera kepada berhala-berhala (sewaktu di dunia),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5419",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5419.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5419.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 228,
       juz: 29,
       manzil: 7,
       page: 570,
       ruku: 503,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5419,
@@ -65,20 +59,22 @@ export const quranSurah70Verses43To44 = [
     },
     tafsir: {
       id: {
-        long: "Pada hari yang dijanjikan itu, orang-orang musyrik berlarian dengan kepala tertunduk menuju pengadilan Allah. Itulah hari yang pernah diperingatkan Allah kepada mereka. Hari itu adalah hari yang penuh kesengsaraan dan penderitaan. Pada hari itu tidak ada suatu pun yang dapat memberi pertolongan selain Allah.",
-        short:
-          "Mereka bergegas dan pandangan mereka tertunduk ke bawah diliputi kehinaan. Itulah hari yang diancamkan kepada mereka yang dahulu ketika di dunia selalu mereka olok-olokkan bahkan mereka meminta disege-rakan.",
+        footnotes: null,
+        text: "Saat itu mereka dalam keadaan menekurkan pandangan yang diliputi oleh kehinaan. Itulah hari yang dulu pernah dijanjikan kepada mereka di dunia sedang mereka tidak memedulikannya kala itu.",
       },
     },
     text: {
-      arab: "\u062e\u064e\u0627\u0634\u0650\u0639\u064e\u0629\u064b \u0623\u064e\u0628\u0652\u0635\u064e\u0627\u0631\u064f\u0647\u064f\u0645\u0652 \u062a\u064e\u0631\u0652\u0647\u064e\u0642\u064f\u0647\u064f\u0645\u0652 \u0630\u0650\u0644\u0651\u064e\u0629\u064c \u06da \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u064a\u064f\u0648\u0639\u064e\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Khaashi'atan absaaruhum tarhaquhum zillah; zaalikal yawmul lazee kaanoo yoo'adoon",
-      },
+      arabic: "خَٰشِعَةً أَبْصَٰرُهُمْ تَرْهَقُهُمْ ذِلَّةٌ ذَٰلِكَ ٱلْيَوْمُ ٱلَّذِى كَانُوا۟ يُوعَدُونَ",
     },
     translation: {
-      en: "Their eyes humbled, humiliation will cover them. That is the Day which they had been promised.",
-      id: "pandangan mereka tertunduk ke bawah diliputi kehinaan. Itulah hari yang diancamkan kepada mereka.",
+      en: {
+        footnotes: "",
+        text: "with their eyes downcast and overwhelmed with disgrace. That is the Day that they were promised.",
+      },
+      id: {
+        footnotes: "",
+        text: "pandangan mereka tertunduk ke bawah diliputi kehinaan. Itulah hari yang diancamkan kepada mereka.",
+      },
     },
   },
 ];

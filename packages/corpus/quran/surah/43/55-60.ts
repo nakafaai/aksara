@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah43Verses55To60 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4380",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4380.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4380.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4380,
@@ -24,40 +25,32 @@ export const quranSurah43Verses55To60 = [
     },
     tafsir: {
       id: {
-        long: "Kefasikan Fir'aun dan kaumnya semakin menjadi-jadi. Mereka semakin lupa daratan bahkan memandang Fir'aun adalah tuhan. Tindakan itu sudah sampai ke puncaknya, yang tidak mungkin lagi dimaafkan oleh Allah dan sangat disesalkan. Allah pun menjatuhkan hukuman-Nya, ketika Fir'aun dan balatentaranya mengejar Nabi Musa dan kaumnya sampai ke Laut Merah, Allah menenggelamkannya di laut itu. Dengan demikian ia tewas karena kesombongannya memiliki kekayaan dan kekuasaan, dan kebenaran pun terungkap walaupun diusung hanya oleh seorang manusia biasa yang tidak punya kekuasaan apa-apa. \n\nPenundaan hukuman terhadap orang yang jahat itu disebut istidraj, yaitu pelaku perbuatan dosa dibiarkan melakukan kejahatan sehingga dosanya meningkat terus sampai ke puncaknya, bila pelakunya tidak mempan lagi dinasehati. Bila dosa-dosa itu sudah sampai di puncaknya, maka Allah tidak mungkin memaafkannya lagi, lalu Ia akan menjatuhkan hukuman-Nya. Nabi bersabda dalam sebuah riwayat Ahmad, at-Tirmidhi, ath-thabrani dan al-Baihaqi:\n\n'Uqbah bin 'Amir meriwayatkan bahwa Nabi saw bersabda, \"Apabila engkau melihat Allah memberikan kepada seorang hamba kenikmatan duniawi yang ia inginkan dari dunia sedangkan ia selalu bermaksiatm maka sesungguhnya hal tersebut merupakan istidraj.\" Kemudian Nabi saw membaca ayat, \"Maka ketika mereka melupakan peringatan yang telah diberikan kepada mereka, Kami pun membukakan semua pintu (kesenangan) untuk mereka. Sehingga ketika mereka bergembira dengan apa yang telah diberikan kepada mereka, Kami siksa mereka secara tiba-tiba, maka ketika itu mereka terdiam putus asa.\" (Riwayat Ahmad, at-Tirmidhi, ath-thabrani dan al-Baihaqi)",
-        short:
-          "Maka ketika mereka, yaitu Fir’aun dan kaumnya, membuat Kami murka karena pernyataan dan sikap mereka yang menentang Nabi Musa sebagai utusan Kami, Kami membalas sikap mereka itu dengan menghukum mereka, lalu Kami tenggelamkan mereka semuanya di Laut Merah,",
+        footnotes: null,
+        text: "Tatkala mereka menjadikan Kami murka karena mereka terus menerus dalam kekufuran, Kami membalas mereka dan Kami tenggelamkan mereka seluruhnya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u064e\u0645\u0651\u064e\u0627 \u0622\u0633\u064e\u0641\u064f\u0648\u0646\u064e\u0627 \u0627\u0646\u062a\u064e\u0642\u064e\u0645\u0652\u0646\u064e\u0627 \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0641\u064e\u0623\u064e\u063a\u0652\u0631\u064e\u0642\u0652\u0646\u064e\u0627\u0647\u064f\u0645\u0652 \u0623\u064e\u062c\u0652\u0645\u064e\u0639\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Falammaaa aasafoonan taqamnaa minhum fa aghraqnaahum ajma'een",
-      },
+      arabic: "فَلَمَّآ ءَاسَفُونَا ٱنتَقَمْنَا مِنْهُمْ فَأَغْرَقْنَٰهُمْ أَجْمَعِينَ",
     },
     translation: {
-      en: "And when they angered Us, We took retribution from them and drowned them all.",
-      id: "Maka ketika mereka membuat Kami murka, Kami hukum mereka, lalu Kami tenggelamkan mereka semuanya (di laut),",
+      en: {
+        footnotes: "",
+        text: "When they angered Us, We exacted Our retribution and drowned them all.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka ketika mereka membuat Kami murka, Kami hukum mereka, lalu Kami tenggelamkan mereka semuanya (di laut),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4381",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4381.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4381.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 197,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 428,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4381,
@@ -65,40 +58,33 @@ export const quranSurah43Verses55To60 = [
     },
     tafsir: {
       id: {
-        long: "Kasus Fir'aun itu merupakan contoh yang patut dijadikan pelajaran oleh generasi-generasi berikutnya sampai hari Kiamat. Pelajarannya adalah agar siapa pun tidak meniru tingkah laku Fir'aun yang congkak dan durhaka. Dan bahwa siapa pun yang congkak dan durhaka akan mengalami nasib yang sama seperti Fir'aun itu.",
-        short:
-          "Lalu Kami jadikan mereka yang menentang terhadap ajaran-ajaran Allah yang dibawa oleh Nabi Musa dan hukuman yang ditimpakan kepada mereka itu sebagai kaum terdahulu dan pelajaran bagi orang-orang yang datang kemudian.",
+        footnotes: null,
+        text: "Lalu Kami jadikan Firaun dan pemuka-pemuka kaumnya sebagai pendahulu bagi orang-orang kafir dari kaummu, serta sebagai pelajaran bagi orang yang mau mengambil pelajaran agar ia tidak melakukan perbuatan mereka sehingga akan ditimpa apa yang telah menimpa mereka.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u062c\u064e\u0639\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f\u0645\u0652 \u0633\u064e\u0644\u064e\u0641\u064b\u0627 \u0648\u064e\u0645\u064e\u062b\u064e\u0644\u064b\u0627 \u0644\u0651\u0650\u0644\u0652\u0622\u062e\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Faja'alnaahum salafanw wa masalal lil aakhireen",
-      },
+      arabic: "فَجَعَلْنَٰهُمْ سَلَفًا وَمَثَلًا لِّلْـَٔاخِرِينَ",
     },
     translation: {
-      en: "And We made them a precedent and an example for the later peoples.",
-      id: "maka Kami jadikan mereka sebagai (kaum) terdahulu dan pelajaran bagi orang-orang yang kemudian.",
+      en: {
+        footnotes:
+          "[21] A precedent for those who do not learn any lesson from their example, and a lesson for those who are keen to learn a lesson.",
+        text: "Thus We made them a precedent and a lesson[21] for the later generations.",
+      },
+      id: {
+        footnotes: "",
+        text: "maka Kami jadikan mereka sebagai (kaum) terdahulu, dan pelajaran bagi orang-orang yang kemudian.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4382",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4382.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4382.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 429,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4382,
@@ -106,40 +92,33 @@ export const quranSurah43Verses55To60 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan bahwa Nabi Isa putra Maryam dijadikan contoh oleh kaum musyrikin Mekah untuk menjatuhkan dan memperolok-olokkan Nabi Muhammad saw. Hal itu terjadi ketika beliau menyampaikan ayat," "Sungguh, kamu (orang kafir) dan apa yang kamu sembah selain Allah, adalah bahan bakar Jahanam.," (al-Anbiya\'/21: 98). Mereka bersorak-sorai kegirangan, karena menyangka memperoleh alasan untuk membuktikan bahwa Nabi Muhammad bertindak salah berdasarkan ayat itu. Hal itu karena Nabi Isa disembah oleh sebagian manusia. Dengan begitu beliau juga akan masuk neraka bersama mereka yang menyembahnya. Untuk membantah pandangan itu Allah menurunkan ayat, "Sungguh, sejak dahulu bagi orang-orang yang telah ada (ketetapan) yang baik dari Kami, mereka itu akan dijauhkan (dari neraka)," (al-Anbiya\'/21:101). Dengan demikian Nabi Isa, \'Uzair, dan pendeta-pendeta serta rahib-rahib yang taat dan hanya menyembah Allah, akan masuk surga, dan orang-orang sesat yang kemudian menjadikan mereka tuhan-tuhan selain Allah akan masuk neraka. Mengenai Isa sendiri yang disembah mereka yang sesat itu turun ayat ini untuk membantahnya, "Dan tatkala putra Maryam dijadikan perumpamaan, tiba-tiba kaummu, ya Muhammad, bersorak karenanya," yaitu menyoraki kamu karena firman-Nya itu. Selanjutnya Allah menjelaskan, "Dia (Isa) tidak lain hanyalah seorang hamba yang Kami anugerahi nikmat dan Kami jadikan tanda untuk Bani Israil. Dan jika Kami kehendaki, benar-benar Kami jadikan sebagian kalian malaikat-malaikat di bumi yang turun-temurun. Dan ia (Isa) sungguh merupakan bukti tentang adanya hari Kiamat¦."',
-        short:
-          "Setelah menjelaskan bahwa kaum Nabi Musa yang menentang ajaran Allah dan hukuman yang ditimpakan kepada mereka adalah pelajaran bagi orang-orang datang kemudian, Allah lalu menjelaskan pelajaran yang dapat diambil oleh Nabi Muhammad dan umatnya dari kisah Nabi Isa. Dan ketika putra Maryam, yakni Nabi Isa, dijadikan oleh orang-orang musyrik perumpamaan untuk menentang kebenaran ayat-ayat Allah, tiba-tiba kaummu, suku Quraisy wahai Nabi Muhammad bersorak gembira karenanya.",
+        footnotes: null,
+        text: "Tatkala orang-orang musyrik mengira bahwa Isa yang disembah oleh orang-orang Nasrani masuk dalam keumuman firman Allah -Ta'ālā-: “Sesungguhnya kamu (orang kafir) dan apa yang kamu sembah selain Allah adalah bahan bakar (neraka) Jahanam, kamu pasti masuk ke dalamnya” (QS. Al-Anbiyā`: 98), padahal Allah telah melarang untuk menyembahnya sebagaimana Allah melarang untuk menyembah berhala-berhala, tiba-tiba kaummu -wahai Rasul- melanjutkan dengan perdebatan sambil berkata, “Kami rela tuhan-tuhan kami seperti kedudukan Isa.” Sebab itu, Allah menurunkan firman-Nya sebagai bantahan terhadap mereka, “Sesungguhnya orang-orang yang telah ada ketetapan yang baik untuk mereka dari Kami, mereka itu akan dijauhkan dari neraka.” (QS. Al-Anbiyā`: 101).",
       },
     },
     text: {
-      arab: "\u06de \u0648\u064e\u0644\u064e\u0645\u0651\u064e\u0627 \u0636\u064f\u0631\u0650\u0628\u064e \u0627\u0628\u0652\u0646\u064f \u0645\u064e\u0631\u0652\u064a\u064e\u0645\u064e \u0645\u064e\u062b\u064e\u0644\u064b\u0627 \u0625\u0650\u0630\u064e\u0627 \u0642\u064e\u0648\u0652\u0645\u064f\u0643\u064e \u0645\u0650\u0646\u0652\u0647\u064f \u064a\u064e\u0635\u0650\u062f\u0651\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa lammaa duribab nu Maryama masalan izaa qawmu ka minhu yasidoon",
-      },
+      arabic: "وَلَمَّا ضُرِبَ ٱبْنُ مَرْيَمَ مَثَلًا إِذَا قَوْمُكَ مِنْهُ يَصِدُّونَ",
     },
     translation: {
-      en: "And when the son of Mary was presented as an example, immediately your people laughed aloud.",
-      id: "Dan ketika putra Maryam (Isa) dijadikan perumpamaan, tiba-tiba kaummu (Suku Quraisy) bersorak karenanya.",
+      en: {
+        footnotes:
+          "[22] When 21:98 was revealed, warning the pagans that all what they worship besides Allah will be in Hell, a poet who was a staunch enemy of Islam, Abdullah ibn az-Ziba‘ra, along with other pagans jeered and laughed arguing that Jesus will be in Hell as well! The Prophet (ﷺ) replied that the verse was talking exclusively about idols, adding that Jesus himself did not ask to be worshiped. Verse 21:101 was later revealed in support of the Prophet declaring that they are exempted.",
+        text: "When the example of the son of Mary was given, your people laughed and jeered[22],",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan ketika putra Maryam (Isa) dijadikan perumpamaan, tiba-tiba kaummu (Suku Quraisy) bersorak karenanya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4383",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4383.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4383.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 429,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4383,
@@ -147,40 +126,33 @@ export const quranSurah43Verses55To60 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini diterangkan bahwa kaum musyrikin Mekah itu membandingkan tuhan-tuhan mereka, yaitu berhala-berhala, dengan Nabi Isa yang telah dipertuhankan oleh orang-orang sesat sebelumnya, manakah yang lebih baik. Menurut pandangan mereka Nabi Isa tidak lebih baik dari berhala-berhala yang mereka sembah, karena Nabi Isa juga akan masuk neraka bersama mereka dan tuhan-tuhan mereka. Lalu Allah mematahkan pandangan itu dengan menerangkan bahwa mereka sebenarnya hanya berdebat dan menyanggah tak menentu, karena memang begitulah sifat yang sudah tertanam dalam diri mereka.",
-        short:
-          "Dan mereka berkata, “Manakah yang lebih baik tuhan-tuhan kami, berupa berhala-berhala yang kami sembah atau dia, yakni Isa?” Mereka tidak memberikannya, yakni perumpamaan itu, kepadamu, Muhammad, melainkan dengan maksud membantah saja, bukan untuk menunjukkan kebenaran keyakinan mereka, tetapi untuk memelesetkan apa yang disampaikan kepada mereka. Bahkan sebenarnya mereka adalah kaum yang suka bertengkar.",
+        footnotes: null,
+        text: "Mereka berkata, “Mana yang lebih baik, sesembahan kami ataukah Isa?” Tidaklah Ibnu az-Ziba'rā dan semisalnya membuat permisalan ini untukmu karena keinginan untuk sampai pada kebenaran, akan tetapi karena mereka senang berdebat sebab mereka adalah kaum yang mempunyai tabiat suka berdebat.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0623\u064e\u0622\u0644\u0650\u0647\u064e\u062a\u064f\u0646\u064e\u0627 \u062e\u064e\u064a\u0652\u0631\u064c \u0623\u064e\u0645\u0652 \u0647\u064f\u0648\u064e \u06da \u0645\u064e\u0627 \u0636\u064e\u0631\u064e\u0628\u064f\u0648\u0647\u064f \u0644\u064e\u0643\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u062c\u064e\u062f\u064e\u0644\u064b\u0627 \u06da \u0628\u064e\u0644\u0652 \u0647\u064f\u0645\u0652 \u0642\u064e\u0648\u0652\u0645\u064c \u062e\u064e\u0635\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa qaalooo 'a-aalihatunaa khairun am hoo; maa daraboohu laka illaa jadalaa; balhum qawmun khasimoon",
-      },
+      arabic: "وَقَالُوٓا۟ ءَأَٰلِهَتُنَا خَيْرٌ أَمْ هُوَ مَا ضَرَبُوهُ لَكَ إِلَّا جَدَلًۢا بَلْ هُمْ قَوْمٌ خَصِمُونَ",
     },
     translation: {
-      en: 'And they said, "Are your gods better, or is he?" They did not present the comparison except for [mere] argument. But, [in fact], they are a people prone to dispute.',
-      id: "Dan mereka berkata, “Manakah yang lebih baik tuhan-tuhan kami atau dia (Isa)?” Mereka tidak memberikan (perumpamaan itu) kepadamu melainkan dengan maksud membantah saja, sebenarnya mereka adalah kaum yang suka bertengkar.",
+      en: {
+        footnotes: "[23] i.e., Jesus.",
+        text: "and they said, “Are Our gods better or he[23]?” They only mentioned him to you for the sake of argument. They are indeed a contentious people.",
+      },
+      id: {
+        footnotes:
+          "[788] Ayat 57 dan 58 di atas menceritakan kembali kejadian sewaktu Rasulullah membacakan di hadapan orang-orang Quraisy ayat 98 Surah Al-Anbiyā` (21) yang artinya, \"Sesungguhnya kamu dan yang kamu sembah selain Allah adalah kayu bakar Jahanam.\" Maka seorang Quraisy bernama Abdullah bin Az-Zab'ari menanyakan kepada Rasulullah -ṣallallāhu 'alaihi wa sallam- tentang keadaan Isa yang disembah orang Nasrani, apakah dia juga menjadi kayu bakar neraka Jahanam seperti halnya sembahan-sembahan mereka. Rasulullah terdiam dan mereka pun menertawakannya; lalu mereka menanyakan lagi mengenai mana yang lebih baik, antara sembahan-sembahan mereka dan Nabi Isa -ṣallallāhu 'alaihi wa sallam-. Pertanyaan-pertanyaan mereka ini hanyalah mencari perbantahan saja, bukanlah mencari kebenaran. Jalan pikiran mereka adalah kesalahan yang besar. Nabi Isa -ṣallallāhu 'alaihi wa sallam- tidak mengetahui bahwa dia disembah, dan dia tidak rela dijadikan sesembahan.",
+        text: 'Dan mereka berkata, "Manakah yang lebih baik, tuhan-tuhan kami atau dia (Isa)?" Mereka tidak memberikan (perumpamaan itu) kepadamu melainkan dengan maksud membantah saja; sebenarnya mereka adalah kaum yang suka bertengkar.[788]',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4384",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4384.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4384.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 429,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4384,
@@ -188,40 +160,32 @@ export const quranSurah43Verses55To60 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa Nabi Isa sesungguhnya adalah hamba-Nya, bukan anak-Nya dan bukan Tuhan. Ia telah dikaruniai kemuliaan, yaitu menjadi nabi yang menyampaikan ajaran-ajaran Allah dalam kitab Injil. Di samping itu Nabi Isa dijadikan-Nya sebagai contoh bagi Bani Israil tentang bukti kekuasaan-Nya, bahwa Ia menciptakan sesuatu melalui proses yang tidak wajar, yaitu menciptakan manusia tanpa ayah. Dengan mengemukakan contoh itu, Bani Israil dan siapa pun sesudahnya tidak boleh memandangnya sebagai anak Tuhan dan mengangkatnya sebagai tuhan.",
-        short:
-          "Lalu Allah menunjukkan kepada mereka bahwa dia, yaitu Isa, tidak lain hanyalah seorang hamba, bukan tuhan seperti keyakinan orang-orang Nasrani, yang Kami berikan nikmat ke nabian kepadanya dan Kami jadikan dia sebagai contoh pelajaran yang sangat mengagumkan bagi Bani Israil, baik yang hidup pada masa Isa maupun yang sesudahnya.",
+        footnotes: null,
+        text: "Tidaklah Isa bin Maryam melainkan hanya seorang hamba dari hamba-hamba Allah, Kami berikan kepadanya kenabian dan kerasulan dan Kami jadikan dia sebagai permisalan bagi Bani Israil yang mereka gunakan untuk menunjukkan kekuasaan Allah tatkala Dia menciptakannya tanpa bapak, sebagaimana Dia menciptakan Adam tanpa ibu dan bapak.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0652 \u0647\u064f\u0648\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0639\u064e\u0628\u0652\u062f\u064c \u0623\u064e\u0646\u0652\u0639\u064e\u0645\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650 \u0648\u064e\u062c\u064e\u0639\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f \u0645\u064e\u062b\u064e\u0644\u064b\u0627 \u0644\u0651\u0650\u0628\u064e\u0646\u0650\u064a \u0625\u0650\u0633\u0652\u0631\u064e\u0627\u0626\u0650\u064a\u0644\u064e",
-      transliteration: {
-        en: "In huwa illaa 'abdun an'amnaa 'alaihi wa ja'alnaahu masalal li Baneee Israaa'eel",
-      },
+      arabic: "إِنْ هُوَ إِلَّا عَبْدٌ أَنْعَمْنَا عَلَيْهِ وَجَعَلْنَٰهُ مَثَلًا لِّبَنِىٓ إِسْرَٰٓءِيلَ",
     },
     translation: {
-      en: "Jesus was not but a servant upon whom We bestowed favor, and We made him an example for the Children of Israel.",
-      id: "Dia (Isa) tidak lain hanyalah seorang hamba yang Kami berikan nikmat (kenabian) kepadanya dan Kami jadikan dia sebagai contoh pelajaran bagi Bani Israil.",
+      en: {
+        footnotes: "[24] i.e., Allah Almighty.",
+        text: "He was only a slave whom We[24] favored and made him an example for the Children of Israel.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dia (Isa) tidak lain hanyalah seorang hamba yang Kami berikan nikmat (kenabian) kepadanya, dan Kami jadikan dia sebagai contoh bagi Bani Israil.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4385",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4385.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4385.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 493,
       ruku: 429,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4385,
@@ -229,20 +193,22 @@ export const quranSurah43Verses55To60 = [
     },
     tafsir: {
       id: {
-        long: "Allah membantah kepercayaan kaum musyrikin Mekah bahwa malaikat adalah anak Allah yang harus disembah. Kepercayaan itu sama dengan kepercayaan sebagian Bani Israil dan orang-orang sesudah mereka tentang Nabi Isa. Allah menegaskan bahwa bila Ia mau, Ia dapat menciptakan manusia menjadi malaikat yang menghuni bumi ini secara turun-temurun, atau menggantikan manusia di bumi yang juga hidup beranak pinak sampai hari kiamat. Lalu apakah malaikat itu adalah anak-anak Allah dan pantas disembah? Dengan penjelasan itu Allah hendak menyampaikan kepada kaum musyrikin Mekah bahwa Ia mampu menciptakan apa saja termasuk yang jauh lebih hebat dari penciptaan Nabi Isa, karena itu hanya Allahlah yang pantas disembah, bukan ciptaan-Nya itu.",
-        short:
-          "Dan sekiranya Kami menghendaki, tetapi Kami tidak menghendaki dan tidak melakukannya, niscaya Kami menjadikan sebahagian di antara kamu malaikat-malaikat yang secara turun temurun dan silih berganti menggantikan kamu di bumi.",
+        footnotes: null,
+        text: "Seandainya Kami berkehendak untuk menghancurkan kalian -wahai Bani Adam-, niscaya kami hancurkan kalian dan Kami jadikan para malaikat sebagai pengganti kalian di bumi, mereka menyembah Allah dan tidak menyekutukan-Nya dengan sesuatu apa pun.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0648\u0652 \u0646\u064e\u0634\u064e\u0627\u0621\u064f \u0644\u064e\u062c\u064e\u0639\u064e\u0644\u0652\u0646\u064e\u0627 \u0645\u0650\u0646\u0643\u064f\u0645 \u0645\u0651\u064e\u0644\u064e\u0627\u0626\u0650\u0643\u064e\u0629\u064b \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u064a\u064e\u062e\u0652\u0644\u064f\u0641\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa law nashaaa'u laja'alnaa minkum malaaa'ikatan fil ardi yakhlufoon",
-      },
+      arabic: "وَلَوْ نَشَآءُ لَجَعَلْنَا مِنكُم مَّلَٰٓئِكَةً فِى ٱلْأَرْضِ يَخْلُفُونَ",
     },
     translation: {
-      en: "And if We willed, We could have made [instead] of you angels succeeding [one another] on the earth.",
-      id: "Dan sekiranya Kami menghendaki, niscaya ada di antara kamu yang Kami jadikan malaikat-malaikat (yang turun temurun) sebagai pengganti kamu di bumi.",
+      en: {
+        footnotes: "",
+        text: "If We willed, We could [destroy you all and] replace you with angels, succeeding you on earth.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sekiranya Kami menghendaki, niscaya ada di antara kamu yang Kami jadikan malaikat-malaikat (yang turun temurun) sebagai pengganti kamu di bumi.",
+      },
     },
   },
 ];

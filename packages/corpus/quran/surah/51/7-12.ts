@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah51Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4682",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4682.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4682.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 208,
       juz: 26,
       manzil: 7,
       page: 521,
       ruku: 455,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4682,
@@ -24,40 +25,33 @@ export const quranSurah51Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah bersumpah: Demi langit yang mempunyai garis edar (orbit) tempat beredarnya bintang-bintang dan planetplanet. Menurut Quraish Shihab, kata al-hubuk dapat berarti yang indah dan baik atau yang teratur. Dapat pula dipahami sebagai bentuk jamak dari habikah atau hibak, yakni jalan, seperti jalan-jalan yang terlihat di atas air apabila ditimpa hembusan angin. Dalam teori fisika relativitas umum, dikenal mengenai mekanisme pemendekan jarak yang sangat jauh menjadi hanya beberapa meter saja. Einstein menyebutnya sebagai jembatan (bridge) dan saat ini para ilmuwan menyebutnya sebagai wormhole (lubang cacing). Wormhole ini merupakan jalan pintas yang menghubungkan dua tempat di jagad raya ini. Sebagai gambaran, kita ingin bepergian ke suatu galaksi yang letaknya 100 juta tahun cahaya dari bumi (jika 1 tahun cahaya = 9,46 x 1012 km, maka galaksi tersebut jaraknya dari bumi sekitar 9,46x1018 km, atau 9,46 juta-juta-juta km!). Tidak terbayangkan kapan kita sampai ke galaksi tersebut. Andaikata ada pesawat ulang-alik yang memiliki kecepatan mendekati kecepatan cahaya saja kita memerlukan waktu 100 juta tahun! Namun apabila kita menggunakan jalan pintas 'wormhole, kita akan sampai di galaksi hari ini. Perlu dicatat bahwa ini merupakan konsekuensi dari pemendekan jarak yang terjadi dalam wormhole. Dengan demikian bisa jadi, al-hubuk berupa sebuah jalan seperti yang digambarkan oleh para ahli fisika, wormhole, sebuah jalan 'khusus yang diberikan Allah kepada para Malaikat dan hambahambaNya yang terpilih. Perjalanan Rasulullah dalam peristiwa Isra' Mi'raj, boleh jadi melewati mekanisme pemendekan jarak sehingga jarak yang demikian jauhnya ditempuh Rasulullah hanya dalam bilangan jam.",
-        short:
-          "Melanjutkan sumpah-Nya, ”Demi langit yang mempunyai jalan-jalan yang merupakan garis edar atau orbit yang teratur sebagai arah dari pergerakan semua benda langit, seperti bumi, bintang-bintang, planet-planet, dan galaksi-galaksi.",
+        footnotes: null,
+        text: "Allah lalu bersumpah dengan langit indah yang mempunyai jalan-jalan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0621\u0650 \u0630\u064e\u0627\u062a\u0650 \u0627\u0644\u0652\u062d\u064f\u0628\u064f\u0643\u0650",
-      transliteration: {
-        en: "Wassamaaa'i zaatil hubuk",
-      },
+      arabic: "وَٱلسَّمَآءِ ذَاتِ ٱلْحُبُكِ",
     },
     translation: {
-      en: "By the heaven containing pathways,",
-      id: "Demi langit yang mempunyai jalan-jalan,",
+      en: {
+        footnotes: "[1] i.e., tracks or orbits.",
+        text: "By the heaven with its pathways[1],",
+      },
+      id: {
+        footnotes:
+          '[811] Garis edar bintang, planet, dan benda-benda angkasa lainnya. Ada pula yang mengartikan żātil Ḥubuk dengan "mempunyai ciptaan yang bagus", "mempunyai hiasan bintang-bintang", atau "mempunyai bangunan yang kokoh".',
+        text: "Demi langit yang mempunyai jalan-jalan,[811]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4683",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4683.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4683.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 208,
       juz: 26,
       manzil: 7,
       page: 521,
       ruku: 455,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4683,
@@ -65,40 +59,33 @@ export const quranSurah51Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menegaskan tentang isi sumpah tersebut, bahwa sesungguhnya orang-orang musyrik benar-benar dalam keadaan berbeda-beda pendapat tentang Muhammad saw dan Al-Qur'an. Di antara mereka ada yang menganggap Muhammad saw sebagai tukang syair, ada pula yang menuduhnya sebagai seorang tukang sihir atau gila, dan terhadap Al-Qur'an ada yang menuduh sebagai kitab dongengan purbakala, kitab sihir atau pantun. Perbedaan pendapat yang sangat mencolok itu menjadi bukti yang nyata tentang rusaknya alam pikiran mereka yang penuh dengan syirik. (",
-        short:
-          '”Sungguh,wahai orang-orang musyrik kamu benar-benar dalam keadaan berbeda-beda pendapat, tentang Nabi Muhammad dan Al-Qur’an." Di antara mereka ada yang menganggap beliau sebagai tukang sihir, ada yang mengatakan bahwa ia adalah ahli syair, dan ada pula yang meng-anggapnya gila. Sedang mengenai Al-Qur’an, ada yang menyebutnya sebagai dongeng tentang kisah masa lalu, ada yang menilainya sebagai kitab syair, dan ada pula yang menganggapnya sebagai mantra sihir.',
+        footnotes: null,
+        text: "Sesungguhnya kalian -wahai penduduk Makkah- berada dalam pendapat yang kontradiktif. Kadang kalian mengatakan bahwa Al-Qur`ān itu adalah sihir, kadang mengatakan Al-Qur`ān adalah sihir, dan kadang syair. Kadang kalian mengatakan bahwa Muhammad itu adalah seorang penyihir, kadang mengatakan bahwa dia adalah seorang penyair.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0644\u064e\u0641\u0650\u064a \u0642\u064e\u0648\u0652\u0644\u064d \u0645\u0651\u064f\u062e\u0652\u062a\u064e\u0644\u0650\u0641\u064d",
-      transliteration: {
-        en: "Innakum lafee qawlim mukhtalif",
-      },
+      arabic: "إِنَّكُمْ لَفِى قَوْلٍ مُّخْتَلِفٍ",
     },
     translation: {
-      en: "Indeed, you are in differing speech.",
-      id: "sungguh, kamu benar-benar dalam keadaan berbeda-beda pendapat,",
+      en: {
+        footnotes: "[2] Concerning the Prophet (ﷺ) and the Qur’an.",
+        text: "Indeed, you [Makkans] have conflicting views[2].",
+      },
+      id: {
+        footnotes:
+          "[812] Kaum musyrikin berbeda-beda pendapat tentang Nabi Muhammad -ṣallallāhu 'alaihi wa sallam- dan Al-Qur`an.",
+        text: "sungguh, kamu benar-benar dalam keadaan berbeda-beda pendapat.[812]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4684",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4684.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4684.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 208,
       juz: 26,
       manzil: 7,
       page: 521,
       ruku: 455,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4684,
@@ -106,40 +93,32 @@ export const quranSurah51Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menegaskan bahwa dalam keadaan berbeda pendapat, orang musyrik tersebut semakin dijauhkan dan dipalingkan dari rasul dan Al-Qur'an sehingga mereka menjadi tambah sesat.",
-        short:
-          "Dengan sifat dan sikap yang ingkar dari orang-orang musyrik tersebut, mereka semakin dipalingkan darinya, yaitu dari Al-Qur’an dan Rasul, sehingga mereka semakin jauh dan benar-benar sebagai orang yang dipalingkan dari jalan yang lurus karena keingkaran hatinya sehingga lebih mengedepankan bisikan nafsunya ketimbang tuntunan Allah dan Rasul-Nya.",
+        footnotes: null,
+        text: "Dipalingkan dari iman kepada Al-Qur`ān dan kepada Nabi -ṣallallāhu 'alaihi wa sallam- orang yang telah dipalingkan darinya dalam pengetahuan Allah, karena berdasarkan ilmu-Nya, dia tidak akan beriman, sehingga ia tidak diberi taufik kepada hidayah.",
       },
     },
     text: {
-      arab: "\u064a\u064f\u0624\u0652\u0641\u064e\u0643\u064f \u0639\u064e\u0646\u0652\u0647\u064f \u0645\u064e\u0646\u0652 \u0623\u064f\u0641\u0650\u0643\u064e",
-      transliteration: {
-        en: "Yu'faku 'anhu man ufik",
-      },
+      arabic: "يُؤْفَكُ عَنْهُ مَنْ أُفِكَ",
     },
     translation: {
-      en: "Deluded away from the Qur'an is he who is deluded.",
-      id: "dipalingkan darinya (Al-Qur'an dan Rasul) orang yang dipalingkan.",
+      en: {
+        footnotes: "",
+        text: "He who is diverted from it is destined to be diverted.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dipalingkan darinya (Al-Qur`an dan Rasul) orang yang dipalingkan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4685",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4685.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4685.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 208,
       juz: 26,
       manzil: 7,
       page: 521,
       ruku: 455,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4685,
@@ -147,40 +126,32 @@ export const quranSurah51Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menegaskan bahwa orang-orang yang banyak berdusta dikutuk oleh Allah. Mereka termasuk golongan orang-orang yang sangat jahil, yang berkecimpung dalam kegelapan dan kesesatan, juga terbenam dalam kebodohan dan kelalaian yang sangat menyedihkan.",
-        short:
-          "Binasa dan terkutuklah orang-orang yang banyak berdusta dan sering berbicara dengan tanpa dasar sehingga menyesatkan orang,",
+        footnotes: null,
+        text: "Terlaknatlah para pendusta yang berbicara tentang Al-Qur`ān dan tentang Nabi mereka sebagaimana yang telah mereka katakan.",
       },
     },
     text: {
-      arab: "\u0642\u064f\u062a\u0650\u0644\u064e \u0627\u0644\u0652\u062e\u064e\u0631\u0651\u064e\u0627\u0635\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qutilal kharraasoon",
-      },
+      arabic: "قُتِلَ ٱلْخَرَّٰصُونَ",
     },
     translation: {
-      en: "Destroyed are the falsifiers",
-      id: "Terkutuklah orang-orang yang banyak berdusta,",
+      en: {
+        footnotes: "[3] May they be destroyed.",
+        text: "Doomed[3] are those who base their beliefs on conjecture.",
+      },
+      id: {
+        footnotes: "",
+        text: "Terkutuklah orang-orang yang banyak berdusta,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4686",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4686.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4686.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 208,
       juz: 26,
       manzil: 7,
       page: 521,
       ruku: 455,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4686,
@@ -188,40 +159,32 @@ export const quranSurah51Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menegaskan bahwa orang-orang yang banyak berdusta dikutuk oleh Allah. Mereka termasuk golongan orang-orang yang sangat jahil, yang berkecimpung dalam kegelapan dan kesesatan, juga terbenam dalam kebodohan dan kelalaian yang sangat menyedihkan.",
-        short:
-          "mereka yang berperilaku demikian yaitu orang-orang yang terbenam dalam ke-sesatan, kebodohan dan sering kali berada dalam kelalaian, sehingga tidak memperhatikan bukti-bukti tentang kekuasaan Allah dan petunjuk-petunjuk-Nya.",
+        footnotes: null,
+        text: "Merekalah orang-orang yang berada dalam kebodohan, lalai dari alam akhirat, dan tidak peduli dengannya.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u063a\u064e\u0645\u0652\u0631\u064e\u0629\u064d \u0633\u064e\u0627\u0647\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Allazeena hum fee ghamratin saahoon",
-      },
+      arabic: "ٱلَّذِينَ هُمْ فِى غَمْرَةٍ سَاهُونَ",
     },
     translation: {
-      en: "Who are within a flood [of confusion] and heedless.",
-      id: "(yaitu) orang-orang yang terbenam dalam kebodohan dan kelalaian,",
+      en: {
+        footnotes: "",
+        text: "those who are steeped in ignorance heedlessly.",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) orang-orang yang terbenam dalam kebodohan dan kelalaian.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4687",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4687.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4687.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 208,
       juz: 26,
       manzil: 7,
       page: 521,
       ruku: 455,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4687,
@@ -229,20 +192,22 @@ export const quranSurah51Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini mengungkapkan ketika orang musyrik itu mencemoohkan bertanya kepada Nabi saw, "Kapankah datangnya hari pembalasan itu?"',
-        short:
-          "Para pembohong yang lalai sehingga mereka dikutuk itu memperolok-olokkan dakwah Rasulullah dan cenderung mengingkarinya. Oleh karena itu mereka bertanya yang tujuannya adalah untuk mengejek dan bukan karena tidak tahu. Mereka berkata, “Kapankah datangnya hari pembalasan yang selalu engkau ungkapkan itu?”",
+        footnotes: null,
+        text: "Mereka bertanya, “Kapankah hari pembalasan itu?” Padahal, mereka sendiri tidak mau beramal untuk hari itu.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0633\u0652\u0623\u064e\u0644\u064f\u0648\u0646\u064e \u0623\u064e\u064a\u0651\u064e\u0627\u0646\u064e \u064a\u064e\u0648\u0652\u0645\u064f \u0627\u0644\u062f\u0651\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Yas'aloona ayyaana yawmud Deen",
-      },
+      arabic: "يَسْـَٔلُونَ أَيَّانَ يَوْمُ ٱلدِّينِ",
     },
     translation: {
-      en: 'They ask, "When is the Day of Recompense?"',
-      id: "mereka bertanya, “Kapankah hari pembalasan itu?”",
+      en: {
+        footnotes: "",
+        text: "They ask [mockingly], “When is the Day of Judgment?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka bertanya, "Kapankah hari pembalasan itu?"',
+      },
     },
   },
 ];

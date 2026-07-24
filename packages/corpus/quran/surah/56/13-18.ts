@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah56Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4992",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4992.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4992.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4992,
@@ -24,40 +25,33 @@ export const quranSurah56Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat-ayat ini menerangkan bahwa prosentase umat dahulu yang termasuk "as-Sabiqun al-Muqarrabun" lebih besar dibanding dengan prosentase umat Nabi Muhammad. Namun karena jumlah umat Nabi Muhammad itu jauh lebih besar dari jumlah umat nabi-nabi sebelumnya, maka jumlah umat Nabi Muhammad yang termasuk "as-Sabiqun al-Muqarrabun" jauh lebih besar dibanding dengan jumlah umat-umat dahulu.',
-        short:
-          "Ayat-ayat ini menerangkan kenikmatan yang akan mereka terima di surga tersebut. Segolongan besar dari orang-orang yang terdahulu beriman kepada Allah",
+        footnotes: null,
+        text: "Mereka itu sekelompok orang dari umat ini dan dari umat-umat yang terdahulu.",
       },
     },
     text: {
-      arab: "\u062b\u064f\u0644\u0651\u064e\u0629\u064c \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0623\u064e\u0648\u0651\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Sullatum minal awwaleen",
-      },
+      arabic: "ثُلَّةٌ مِّنَ ٱلْأَوَّلِينَ",
     },
     translation: {
-      en: "A [large] company of the former peoples",
-      id: "segolongan besar dari orang-orang yang terdahulu,",
+      en: {
+        footnotes: "",
+        text: "many from the early generations,",
+      },
+      id: {
+        footnotes:
+          "[827] Umat nabi-nabi sebelum Nabi Muhammad -ṣallallāhu 'alaihi wa sallam- dan generasi awal dari umat Islam. Dan yang dimaksud orang yang kemudian ialah umat Nabi Muhammad -ṣallallāhu 'alaihi wa sallam- yang datang di akhir zaman.",
+        text: "segolongan besar dari orang-orang yang terdahulu,[827]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4993",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4993.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4993.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4993,
@@ -65,40 +59,32 @@ export const quranSurah56Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat-ayat ini menerangkan bahwa prosentase umat dahulu yang termasuk "as-Sabiqun al-Muqarrabun" lebih besar dibanding dengan prosentase umat Nabi Muhammad. Namun karena jumlah umat Nabi Muhammad itu jauh lebih besar dari jumlah umat nabi-nabi sebelumnya, maka jumlah umat Nabi Muhammad yang termasuk "as-Sabiqun al-Muqarrabun" jauh lebih besar dibanding dengan jumlah umat-umat dahulu.',
-        short:
-          "dan segolongan kecil dari orang-orang yang kemudian yang tetap teguh dalam ketaatan dan tauhid akan mendapat balasan yang Dia janjikan.",
+        footnotes: null,
+        text: "Namun, ada sedikit dari manusia di akhir zaman yang termasuk dalam golongan orang-orang yang terdepan dan didekatkan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0644\u0650\u064a\u0644\u064c \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa qaleelum minal aa khireen",
-      },
+      arabic: "وَقَلِيلٌ مِّنَ ٱلْـَٔاخِرِينَ",
     },
     translation: {
-      en: "And a few of the later peoples,",
-      id: "dan segolongan kecil dari orang-orang yang kemudian.",
+      en: {
+        footnotes: "",
+        text: "and a few from the later generations.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan segolongan kecil dari orang-orang yang kemudian.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4994",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4994.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4994.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4994,
@@ -106,40 +92,32 @@ export const quranSurah56Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat-ayat ini menjelaskan bahwa mereka duduk santai berhadap-hadapan di atas dipan yang bertahtakan emas dan permata. Mereka dalam keadaan rukun, damai, hidup berbahagia dan bergaul dengan baik; tidak terdapat pada hati mereka perasaan permusuhan atau kebencian yang akan memisahkan seseorang dengan yang lain.",
-        short:
-          "Mereka berada di atas dipan yang kukuh dan indah karena bertahta emas dan permata,",
+        footnotes: null,
+        text: "Mereka di atas permadani-permadani yang disulam dari emas.",
       },
     },
     text: {
-      arab: "\u0639\u064e\u0644\u064e\u0649\u0670 \u0633\u064f\u0631\u064f\u0631\u064d \u0645\u0651\u064e\u0648\u0652\u0636\u064f\u0648\u0646\u064e\u0629\u064d",
-      transliteration: {
-        en: "'Alaa sururim mawdoonah",
-      },
+      arabic: "عَلَىٰ سُرُرٍ مَّوْضُونَةٍ",
     },
     translation: {
-      en: "On thrones woven [with ornament],",
-      id: "Mereka berada di atas dipan-dipan yang bertahtakan emas dan permata,",
+      en: {
+        footnotes: "",
+        text: "[They will be seated] on jeweled couches,",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka berada di atas dipan-dipan yang bertahtakan emas dan permata,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4995",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4995.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4995.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 534,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4995,
@@ -147,40 +125,32 @@ export const quranSurah56Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat-ayat ini menjelaskan bahwa mereka duduk santai berhadap-hadapan di atas dipan yang bertahtakan emas dan permata. Mereka dalam keadaan rukun, damai, hidup berbahagia dan bergaul dengan baik; tidak terdapat pada hati mereka perasaan permusuhan atau kebencian yang akan memisahkan seseorang dengan yang lain.",
-        short:
-          "seraya bertelekan di atasnya berhadap-hadapan sambil mensyukuri nikmat yang mereka terima.",
+        footnotes: null,
+        text: "Mereka bertelekan di atas permadani-permadani ini sambil berhadap-hadapan dengan wajah-wajah mereka, salah seorang dari mereka tidak melihat kepada tengkuk orang lain.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064f\u062a\u0651\u064e\u0643\u0650\u0626\u0650\u064a\u0646\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u0645\u064f\u062a\u064e\u0642\u064e\u0627\u0628\u0650\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Muttaki'eena 'alaihaa mutaqabileen",
-      },
+      arabic: "مُّتَّكِـِٔينَ عَلَيْهَا مُتَقَٰبِلِينَ",
     },
     translation: {
-      en: "Reclining on them, facing each other.",
-      id: "mereka bersandar di atasnya berhadap-hadapan.",
+      en: {
+        footnotes: "",
+        text: "reclining on them, facing one another.",
+      },
+      id: {
+        footnotes: "",
+        text: "mereka bersandar di atasnya berhadap-hadapan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4996",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4996.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4996.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4996,
@@ -188,40 +158,32 @@ export const quranSurah56Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini mengungkapkan bahwa mereka dikelilingi oleh anakanak muda yang tetap muda serta menyenangkan bila dipandang. Mereka ini bertindak selaku pelayan yang melayani penghunipenghuni surga di waktu makan, minum, dan lain-lainnya.",
-        short:
-          "Di surga itu mereka dikelilingi oleh anak-anak muda yang tetap muda dan selalu menyenangkan bila dipandang.",
+        footnotes: null,
+        text: "Mereka dikelilingi oleh anak-anak muda yang tidap pernah menjadi tua atau binasa, untuk melayani mereka.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0637\u064f\u0648\u0641\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0648\u0650\u0644\u0652\u062f\u064e\u0627\u0646\u064c \u0645\u0651\u064f\u062e\u064e\u0644\u0651\u064e\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Yatoofu 'alaihim wildaa num mukkhalladoon",
-      },
+      arabic: "يَطُوفُ عَلَيْهِمْ وِلْدَٰنٌ مُّخَلَّدُونَ",
     },
     translation: {
-      en: "There will circulate among them young boys made eternal",
-      id: "Mereka dikelilingi oleh anak-anak muda yang tetap muda,",
+      en: {
+        footnotes: "",
+        text: "They will be served by immortal youths",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka dikelilingi oleh anak-anak muda yang tetap muda,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4997",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4997.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4997.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4997,
@@ -229,20 +191,22 @@ export const quranSurah56Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menjelaskan bahwa anak-anak muda tersebut melayani penghuni surga dengan membawa gelas, piala, cerek, dan minuman khamar yang diambil dari air yang mengalir dari mata airnya, tidak diperas, bening dan bersih yang tidak habis-habisnya. Mereka dapat mengambil dan minum semaunya dan hal itu tidak membuat mereka pening dan mabuk.",
-        short:
-          "Anak-anak muda itu melayani mereka dengan membawa gelas, cerek, dan minuman segar yang diambil dari air yang mengalir dari sumber yang tidak pernah kering.",
+        footnotes: null,
+        text: "Anak-anak muda itu mengelilingi mereka dengan membawa gelas-gelas yang tidak punya pegangan, ceret-ceret yang punya pegangan, serta cangkir yang berisi arak yang mengalir tanpa henti di surga.",
       },
     },
     text: {
-      arab: "\u0628\u0650\u0623\u064e\u0643\u0652\u0648\u064e\u0627\u0628\u064d \u0648\u064e\u0623\u064e\u0628\u064e\u0627\u0631\u0650\u064a\u0642\u064e \u0648\u064e\u0643\u064e\u0623\u0652\u0633\u064d \u0645\u0651\u0650\u0646 \u0645\u0651\u064e\u0639\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Bi akwaabinw wa abaareeq, wa kaasim mim ma'een",
-      },
+      arabic: "بِأَكْوَابٍ وَأَبَارِيقَ وَكَأْسٍ مِّن مَّعِينٍ",
     },
     translation: {
-      en: "With vessels, pitchers and a cup [of wine] from a flowing spring -",
-      id: "dengan membawa gelas, cerek dan sloki (piala) berisi minuman yang diambil dari air yang mengalir,",
+      en: {
+        footnotes: "",
+        text: "with cups, pitchers, and glasses [of wine] from a flowing spring,",
+      },
+      id: {
+        footnotes: "",
+        text: "dengan membawa gelas, cerek dan gelas besar (piala) berisi minuman yang diambil dari air yang mengalir,",
+      },
     },
   },
 ];

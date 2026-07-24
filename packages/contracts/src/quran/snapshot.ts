@@ -2,15 +2,17 @@ import { Schema } from "effect";
 
 import { ContentLocaleListSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
+import { QURAN_SOURCE_FILE_COUNT } from "#contracts/quran/source";
 import {
+  QURAN_ATTRIBUTION_COUNT,
   QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
   QuranTafsirLocaleListSchema,
 } from "#contracts/quran/spec";
 
-/** Wire format for the first immutable structured Quran snapshot. */
-export const QURAN_SNAPSHOT_FORMAT = "quran-snapshot-v1";
+/** Wire format for the official-source Quran snapshot. */
+export const QURAN_SNAPSHOT_FORMAT = "quran-snapshot-v2";
 
 const CountSchema = Schema.Int.pipe(Schema.nonNegative());
 const SourceBytesSchema = Schema.Int.pipe(Schema.positive());
@@ -24,32 +26,39 @@ export type QuranProvenanceStatus = typeof QuranProvenanceStatusSchema.Type;
 
 /** Checks source-owned corpus counts that do not depend on chunk policy. */
 function hasCompleteSnapshotCounts(input: {
+  readonly attributionCount: number;
   readonly searchCount: number;
+  readonly sourceFileCount: number;
   readonly surahCount: number;
   readonly verseCount: number;
 }) {
   return (
+    input.attributionCount === QURAN_ATTRIBUTION_COUNT &&
     input.surahCount === QURAN_SURAH_COUNT &&
     input.verseCount === QURAN_VERSE_COUNT &&
-    input.searchCount === QURAN_SEARCH_COUNT
+    input.searchCount === QURAN_SEARCH_COUNT &&
+    input.sourceFileCount === QURAN_SOURCE_FILE_COUNT
   );
 }
 
 /** Checks runtime and search arithmetic for one complete projection inventory. */
 function hasCoherentProjectionCounts(input: {
   readonly chunkCount: number;
+  readonly attributionCount: number;
   readonly projectionCount: number;
   readonly runtimeCount: number;
   readonly searchCount: number;
   readonly surahCount: number;
 }) {
   return (
-    input.runtimeCount === input.surahCount + input.chunkCount &&
+    input.runtimeCount ===
+      input.attributionCount + input.surahCount + input.chunkCount &&
     input.projectionCount === input.runtimeCount + input.searchCount
   );
 }
 
 const SnapshotFields = {
+  attributionCount: CountSchema,
   chunkCount: CountSchema,
   format: Schema.Literal(QURAN_SNAPSHOT_FORMAT),
   locales: ContentLocaleListSchema,
@@ -63,6 +72,7 @@ const SnapshotFields = {
   searchDigest: Sha256HashSchema,
   sourceBytes: SourceBytesSchema,
   sourceDigest: Sha256HashSchema,
+  sourceFileCount: CountSchema,
   surahCount: CountSchema,
   tafsirLocales: QuranTafsirLocaleListSchema,
   verseCount: CountSchema,

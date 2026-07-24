@@ -1,30 +1,28 @@
 import { quranSurah1Verses1To6 } from "#corpus/quran/surah/1/1-6";
 import { quranSurah1Verses7To7 } from "#corpus/quran/surah/1/7-7";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah1 = {
   name: {
-    long: "\u0633\u064f\u0648\u0631\u064e\u0629\u064f \u0671\u0644\u0652\u0641\u064e\u0627\u062a\u0650\u062d\u064e\u0629\u0650",
-    short: "الفاتحة",
-    translation: {
-      en: "The Opening",
-      id: "Pembukaan",
-    },
-    transliteration: {
-      en: "Al-Faatiha",
-      id: "Al-Fatihah",
-    },
+    arabic: "الفاتحة",
+    translation: "The Opening",
+    transliteration: "Al-Faatiha",
   },
   number: 1,
   numberOfVerses: 7,
-  preBismillah: null,
   revelation: {
-    arab: "\u0645\u0643\u0629",
-    en: "Meccan",
-    id: "Makkiyyah",
-  },
-  sequence: 5,
-  tafsir: {
-    id: "Surat Al Faatihah (Pembukaan) yang diturunkan di Mekah dan terdiri dari 7 ayat adalah surat yang pertama-tama diturunkan dengan lengkap  diantara surat-surat yang ada dalam Al Quran dan termasuk golongan surat Makkiyyah. Surat ini disebut Al Faatihah (Pembukaan), karena dengan surat inilah dibuka dan dimulainya Al Quran. Dinamakan Ummul Quran (induk Al Quran) atau Ummul Kitaab (induk Al Kitaab) karena dia merupakan induk dari semua isi Al Quran, dan karena itu diwajibkan membacanya pada tiap-tiap sembahyang. Dinamakan pula As Sab'ul matsaany (tujuh yang berulang-ulang) karena ayatnya tujuh dan dibaca berulang-ulang dalam sholat.",
+    order: 5,
+    place: "Meccan",
   },
   verses: [...quranSurah1Verses1To6, ...quranSurah1Verses7To7],
 };

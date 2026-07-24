@@ -3,10 +3,8 @@
 Aksara is Nakafa's trusted content compilation and publication system. It is a
 small public Turborepo. The repository contains Nakafa's real `en` and `id`
 source corpus: articles, materials, question banks, learning programs, try-out
-catalogs, and the Quran data carried forward from the public Nakafa repository.
-The unresolved Quran redistribution rights are recorded explicitly below; Git
-visibility is not evidence of permission. Nakafa production has not cut over to
-this source yet.
+catalogs, and a Quran corpus generated from pinned official Tanzil and QuranEnc
+artifacts. Nakafa production has not cut over to this source yet.
 
 ## Current modules
 
@@ -18,10 +16,9 @@ this source yet.
   release through injected source and target interfaces. Its strict
   authenticated HTTP target owns the client half of the publication protocol.
   It prepares real article, material, question, program, Quran, and try-out
-  release data from exact Git source. A blocked Quran replacement fails the
-  global candidate before signing or publication IO; a release can proceed only
-  when it inherits unchanged Quran state or every required provenance approval
-  is present. The Nakafa-owned Convex ingress, storage, and runtime adapter
+  release data from exact Git source. A Quran replacement fails the global
+  candidate before signing or publication IO unless every required source scope
+  is approved. The Nakafa-owned Convex ingress, storage, and runtime adapter
   remain outside this repository and have not been cut over to production.
 - `@nakafa/aksara-corpus` contains all reviewed `en` and `id` sources plus
   their non-React registries and projections. No substitute lessons or React
@@ -36,8 +33,9 @@ this source yet.
   by the domain packages.
 
 Production activation remains gated by renderer fidelity, migration, release,
-rollback, and provenance checks. Quran publication is explicitly blocked until
-every source scope has approved provenance and required attribution.
+rollback, and provenance checks. The current Quran source scopes are approved
+and carry one mandatory visible attribution row; production cutover remains a
+separate operation.
 
 ## Commands
 
@@ -49,10 +47,11 @@ pnpm names
 pnpm jsdocs
 pnpm lines
 pnpm boundaries
+pnpm quran:generate
 pnpm typecheck
 pnpm test
 pnpm build
-pnpm verify:package
+pnpm verify:consumer
 pnpm status
 pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
 ```
@@ -69,11 +68,9 @@ pnpm exec turbo run test --filter=@nakafa/aksara-publisher
 Do not invoke a package test script directly when it consumes another workspace;
 Turbo owns that dependency build order.
 
-`package.json` is the local-development and ordinary-CI toolchain source for
-Node and pnpm. Privileged publishing workflows intentionally pin concrete
-reviewed versions so repository dependency changes cannot select their
-executables. Aksara does not duplicate the local contract in `.npmrc`,
-`.node-version`, or `.nvmrc` files.
+`package.json` is the toolchain source for Node and pnpm in development and
+GitHub Actions. Aksara does not duplicate that contract in `.npmrc`,
+`.node-version`, or `.nvmrc`.
 
 All non-MDX hand-written executable source and repository tooling is
 TypeScript. The file-name gate rejects tracked JavaScript source. `dist/*.js`
@@ -89,8 +86,8 @@ Package-internal TypeScript imports use private Node aliases such as
 resolve the current package alias to `src`, while emitted JavaScript resolves
 the same alias through `package.json` to `dist`, so stale build output cannot
 silently satisfy source tests. The `aksara-source` condition is confined to
-workspace execution and typechecking; the published contracts manifest strips
-that private condition.
+workspace execution and typechecking; the contracts release archive strips that
+private condition.
 
 The compiler requires one static `export const metadata = { ... }` object so it
 can remove that module declaration before body compilation. Corpus registries
@@ -106,6 +103,8 @@ release/rollback gates.
 
 The executable-content decision is recorded in
 [`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md).
+The immutable contracts archive is documented in
+[`docs/contracts.md`](docs/contracts.md).
 Measured baselines are under [`docs/baselines`](docs/baselines), and repository
 controls are recorded in [`docs/governance.md`](docs/governance.md).
 

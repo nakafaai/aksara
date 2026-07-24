@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah58Verses19To22 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5123",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5123.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5123.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 218,
       juz: 28,
       manzil: 7,
       page: 544,
       ruku: 478,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5123,
@@ -24,40 +25,33 @@ export const quranSurah58Verses19To22 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan sebab-sebab orang-orang munafik di atas dimasukkan ke dalam api neraka adalah karena hati dan pikiran mereka telah dipengaruhi oleh bisikan-bisikan setan, sehingga mereka tidak dapat lagi mengingat Allah, mengikuti perintah dan menjauhi larangan-Nya. Yang baik menurut pikiran mereka ialah apa yang menurut nafsu dan keinginan mereka baik. Oleh karena itu, mereka bersumpah untuk menarik simpati orang lain, seakan-akan yang mereka ucapkan itu adalah suatu kebenaran. Firman Allah:\n\nDan demikianlah untuk setiap nabi Kami menjadikan musuh yang terdiri dari setan-setan manusia dan jin, sebagian mereka membisikkan kepada sebagian yang lain perkataan yang indah sebagai tipuan. Dan kalau Tuhanmu menghendaki, niscaya mereka tidak akan melakukannya, maka biarkanlah mereka bersama apa (kebohongan) yang mereka ada-adakan. (al-An'am/6: 112)\n\nPada akhir ayat ini ditegaskan bahwa orang-orang munafik yang diterangkan di atas adalah tentara dan pesuruh setan. Mereka berkumpul dan mengadakan perundingan rahasia untuk mengerjakan perbuatan dosa dan menimbulkan permusuhan di kalangan kaum Muslimin. Tujuan mereka melakukan usaha yang demikian adalah untuk menuruti hawa nafsu mereka. Tentara dan pesuruh setan itu adalah orang-orang yang durhaka kepada Allah. Orang-orang yang durhaka kepada Allah pasti akan binasa dan hancur, serta di akhirat akan dimasukkan ke dalam neraka.",
-        short:
-          "Orang-orang munafik itu menjadi pendusta karena diri mereka sepenuhnya dikendalikan Iblis. Setan telah menguasai diri, pikiran, perasaan, dan ruhani mereka, sehingga cahaya Allah terhalang masuk ke dalam pikiran, perasaan, dan ruhani mereka itu. Lalu setan dengan cerdik menghadang dari depan, belakang, kanan, dan kiri, serta menjadikan mereka lupa mengingat Allah; mereka itulah golongan setan, yaitu manusia yang akal dan nuraninya dikuasai setan. Ketahuilah dengan perenungan yang mendalam bahwa golongan setan itulah golongan yang rugi, karena akal sehat dan nuraninya yang jernih tidak digunakan untuk berpikir secara mendalam, masuk akal dan sistematis dalam menyikapi ajaran Allah sehingga akal dan hati mereka tertutup dari iman.",
+        footnotes: null,
+        text: "Setan telah menguasai mereka dan menjadikan mereka lupa untuk mengingat Allah dengan gangguannya, sehingga mereka tidak mengerjakan amal yang diridai oleh Allah, justru melakukan perbuatan yang menjadikan Allah murka. Orang-orang yang mempunyai sifat-sifat tersebut adalah tentara-tentara iblis dan pengikut-pengikutnya. Ketahuilah bahwa tentara-tentara iblis dan pengikut-pengikutnya adalah orang-orang yang merugi di dunia dan di akhirat karena mereka telah menukar petunjuk dengan kesesatan dan menukar surga dengan neraka.",
       },
     },
     text: {
-      arab: "\u0627\u0633\u0652\u062a\u064e\u062d\u0652\u0648\u064e\u0630\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u064f \u0627\u0644\u0634\u0651\u064e\u064a\u0652\u0637\u064e\u0627\u0646\u064f \u0641\u064e\u0623\u064e\u0646\u0633\u064e\u0627\u0647\u064f\u0645\u0652 \u0630\u0650\u0643\u0652\u0631\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06da \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u062d\u0650\u0632\u0652\u0628\u064f \u0627\u0644\u0634\u0651\u064e\u064a\u0652\u0637\u064e\u0627\u0646\u0650 \u06da \u0623\u064e\u0644\u064e\u0627 \u0625\u0650\u0646\u0651\u064e \u062d\u0650\u0632\u0652\u0628\u064e \u0627\u0644\u0634\u0651\u064e\u064a\u0652\u0637\u064e\u0627\u0646\u0650 \u0647\u064f\u0645\u064f \u0627\u0644\u0652\u062e\u064e\u0627\u0633\u0650\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Istahwaza 'alaihimush shaitaanu fa ansaahum zikral laah; ulaaa'ika hizbush shaitaaan; alaaa innaa hizbash shaitaani humul khaasiroon",
-      },
+      arabic:
+        "ٱسْتَحْوَذَ عَلَيْهِمُ ٱلشَّيْطَٰنُ فَأَنسَىٰهُمْ ذِكْرَ ٱللَّهِ أُو۟لَٰٓئِكَ حِزْبُ ٱلشَّيْطَٰنِ أَلَآ إِنَّ حِزْبَ ٱلشَّيْطَٰنِ هُمُ ٱلْخَٰسِرُونَ",
     },
     translation: {
-      en: "Satan has overcome them and made them forget the remembrance of Allah. Those are the party of Satan. Unquestionably, the party of Satan - they will be the losers.",
-      id: "Setan telah menguasai mereka, lalu menjadikan mereka lupa mengingat Allah; mereka itulah golongan setan. Ketahuilah, bahwa golongan setan itulah golongan yang rugi.",
+      en: {
+        footnotes: "",
+        text: "Satan has taken hold of them and has thus caused them to forget the remembrance of Allah. They are the party of Satan. Indeed, the party of Satan will be the losers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Setan telah menguasai mereka, lalu menjadikan mereka lupa mengingat Allah; mereka itulah golongan setan. Ketahuilah, bahwa golongan setan itulah golongan yang merugi.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5124",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5124.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5124.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 218,
       juz: 28,
       manzil: 7,
       page: 544,
       ruku: 478,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5124,
@@ -65,40 +59,32 @@ export const quranSurah58Verses19To22 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan tentang orang-orang yang menentang Allah, mereka tidak mengindahkan perintah-perintah-Nya, tidak mematuhi larangan-larangan-Nya, dan enggan mengerjakan kewajiban-kewajiban yang telah ditetapkan Allah bagi mereka. Mereka termasuk orang-orang yang hina karena kaum Muslimin akan mengalahkan mereka dengan memerangi dan menawan mereka. Bahkan ada di antara mereka yang diusir dari negeri mereka.\n\nAyat ini mengingatkan kaum Muslimin akan azab Allah yang ditimpakan kepada orang-orang musyrik Mekah berupa kekalahan pada fath Makkah. Akibat Perang Ahzab orang-orang Yahudi diusir dari kota Medinah karena melanggar perjanjian damai dengan Rasulullah saw. Orang-orang yang telah dinyatakan Allah sebagai orang yang hina, tidak dapat dimuliakan oleh siapa pun, sebagaimana tersebut dalam firman-Nya:\n\nYa Tuhan kami, sesungguhnya orang yang Engkau masukkan ke dalam neraka, maka sungguh, Engkau telah menghinakannya, dan tidak ada seorang penolong pun bagi orang yang zalim. (Â'li 'Imran/3: 192)\n\nAyat ke-20 ini merupakan kabar gembira bagi orang-orang yang beriman yang sedang menerima cobaan-cobaan yang sangat berat bahwa mereka akan dapat mengalahkan musuh-musuh mereka dan agama Islam akan berkembang di mana-mana dalam waktu dekat.",
-        short:
-          "Pada ayat sebelumnya disebutkan bahwa orang-orang munafik itu membohongi Allah dan Rasul-Nya karena dirinya dikuasai setan sehingga termasuk golongan setan. Sementara itu pada ayat ini disebutkan bahwa sesungguhnya orang-orang yang menentang Allah dan Rasul-Nya dengan tidak beriman atau bersumpah beriman padahal hatinya penuh dengan kekafiran dan menghalangi orang untuk beriman, mereka termasuk orang-orang yang sangat hina, karena karakternya busuk, hipokrit, tidak sportif, bermuka dua dan berpura-pura.",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang yang memusuhi Allah dan memusuhi Rasul-Nya, mereka termasuk bagian dari orang-orang yang dihinakan oleh Allah di dunia dan di akhirat serta direndahkan oleh-Nya dari kalangan umat-umat yang kafir.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064f\u062d\u064e\u0627\u062f\u0651\u064f\u0648\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0631\u064e\u0633\u064f\u0648\u0644\u064e\u0647\u064f \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0630\u064e\u0644\u0651\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Innal lazeena yuhaaaddoonal laaha wa Rasoolahooo ulaaa'ika fil azalleen",
-      },
+      arabic: "إِنَّ ٱلَّذِينَ يُحَآدُّونَ ٱللَّهَ وَرَسُولَهُۥٓ أُو۟لَٰٓئِكَ فِى ٱلْأَذَلِّينَ",
     },
     translation: {
-      en: "Indeed, the ones who oppose Allah and His Messenger - those will be among the most humbled.",
-      id: "Sesungguhnya orang-orang yang menentang Allah dan Rasul-Nya, mereka termasuk orang-orang yang sangat hina.",
+      en: {
+        footnotes: "",
+        text: "Indeed, those who oppose Allah and His Messenger, they are among the most debased.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sesungguhnya orang-orang yang menentang Allah dan Rasul-Nya, mereka termasuk orang-orang yang sangat hina.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5125",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5125.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5125.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 218,
       juz: 28,
       manzil: 7,
       page: 544,
       ruku: 478,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5125,
@@ -106,40 +92,32 @@ export const quranSurah58Verses19To22 = [
     },
     tafsir: {
       id: {
-        long: 'Allah mengingatkan manusia tentang sunah-Nya yang telah ditetapkan di Lauh Mahfudh dan berlaku di sepanjang masa dan di semua tempat. Sunah-Nya itu ialah mengenai ketetapan Allah dan rasul-Nya yang pasti akan mengalahkan setiap orang yang ingkar kepada-Nya. Di antaranya Allah telah menghancurkan kaum Nuh, kaum Lut, kaum Saleh, Fir\'aun serta pengikutnya dengan bermacam-macam cara. Kemenangan seperti itu akan diperoleh pula oleh Nabi Muhammad dan pengikut-pengikutnya, dan juga setiap orang yang benar-benar melaksanakan agama Islam dengan sebaik-baiknya. Ini adalah sunatullah yang berlaku bagi hamba-Nya. Allah berfirman:\n\nDan sungguh, janji Kami telah tetap bagi hamba-hamba Kami yang menjadi rasul, (yaitu) mereka itu pasti akan mendapat pertolongan. Dan sesungguhnya bala tentara Kami itulah yang pasti menang. (as-saffat/37: 171-173)\n\nPada akhir ayat ini ditegaskan lagi bahwa Allah mempunyai kekuasaan yang mutlak, kuasa menolong rasul-Nya dan orang-orang yang beriman, dan mengalahkan orang-orang kafir. Tidak seorang pun di langit maupun di bumi yang sanggup melawan kehendak-Nya. Dia sangat mudah melaksanakan kehendak-Nya. Allah berfirman:\n\nSesungguhnya urusan-Nya apabila Dia menghendaki sesuatu Dia hanya berkata kepadanya, "Jadilah!" Maka jadilah sesuatu itu. (Yasin/36: 82)',
-        short:
-          "Allah mengingatkan manusia tentang sunah-Nya bahwa Dia telah menetapkan pada kitab induk di Loh Mahfuz bahwa “Aku dan rasul-rasul-Ku pasti menang” dalam melawan kebatilan. Sungguh, Allah Mahakuat, Mahaperkasa menghadapi musuh-musuh-Nya.",
+        footnotes: null,
+        text: "Allah telah menetapkan berdasarkan ilmu-Nya yang telah lalu, “Sungguh Aku dan rasul-rasul-Ku benar-benar pasti akan menang terhadap musuh-musuh Kami dengan hujah dan kekuatan.” Sesungguhnya Allah Mahakuat dalam menolong rasul-rasul-Nya dan Mahaperkasa dalam membalas musuh-musuh mereka.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u062a\u064e\u0628\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0644\u064e\u0623\u064e\u063a\u0652\u0644\u0650\u0628\u064e\u0646\u0651\u064e \u0623\u064e\u0646\u064e\u0627 \u0648\u064e\u0631\u064f\u0633\u064f\u0644\u0650\u064a \u06da \u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0642\u064e\u0648\u0650\u064a\u0651\u064c \u0639\u064e\u0632\u0650\u064a\u0632\u064c",
-      transliteration: {
-        en: "Katabal laahu la aghlibanna ana wa Rusulee; innal laaha qawiyyun 'Azeez",
-      },
+      arabic: "كَتَبَ ٱللَّهُ لَأَغْلِبَنَّ أَنَا۠ وَرُسُلِىٓ إِنَّ ٱللَّهَ قَوِىٌّ عَزِيزٌ",
     },
     translation: {
-      en: 'Allah has written, "I will surely overcome, I and My messengers." Indeed, Allah is Powerful and Exalted in Might.',
-      id: "Allah telah menetapkan, “Aku dan rasul-rasul-Ku pasti menang.” Sungguh, Allah Mahakuat, Mahaperkasa.",
+      en: {
+        footnotes: "",
+        text: "Allah has decreed, “I and My messengers will surely prevail.” Indeed, Allah is All-Powerful, All-Mighty.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Allah telah menetapkan, "Aku dan rasul-rasul-Ku pasti menang." Sungguh, Allah Mahakuat, Mahaperkasa.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5126",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5126.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5126.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 218,
       juz: 28,
       manzil: 7,
       page: 545,
       ruku: 478,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5126,
@@ -147,20 +125,24 @@ export const quranSurah58Verses19To22 = [
     },
     tafsir: {
       id: {
-        long: "Diriwayatkan oleh Ibnu Abi hatim, ath-thabrani, Abu Nu'aim, dan al-Baihaqi dari Ibnu 'Abbas bahwa ia berkata, \"Ayat ini turun berhubungan dengan Abu Ubaidah bin 'Abdillah al-Jarrah, yang mana dalam Perang Badar, selalu ditantang berperang tanding oleh ayahnya, 'Abdullah al-Jarrah. Akan tetapi, ia selalu berusaha menghindarkan diri dari perang tanding itu. Karena terus-menerus dicari dan diburu oleh ayahnya, ia terpaksa melayaninya, sehingga Abu Ubaidah membunuh ayahnya. Maka turunlah ayat ini.\n\nAyat ini menerangkan bahwa sebenarnya orang munafik itu benar-benar kafir, bahkan lebih berbahaya dari orang yang terang-terangan menyatakan kekafirannya. Orang-orang munafik yang dimaksud dalam ayat ini ialah orang-orang yang selalu berusaha dan mengadakan tipu daya dalam mencapai tujuan mereka untuk menghancurkan agama Islam dan kaum Muslimin. Orang-orang kafir yang tidak memusuhi kaum Muslimin atau orang yang tidak berusaha menghancurkan agama Islam dan kaum Muslimin tidak termasuk dalam ayat ini.\n\nKaum Muslimin dilarang berteman dengan orang-orang kafir yang menjadi musuh Islam karena hal itu berarti ikut berusaha menghancurkan Islam dan kaum Muslimin. Sedangkan terhadap orang-orang kafir yang tidak memusuhi kaum Muslimin dan tidak berusaha menghancurkan agama Islam, kaum Muslimin dibolehkan berteman dan bergaul dengan mereka, seperti yang dilakukan oleh Rasulullah saw sendiri dan para sahabat. Sesuai dengan firman Allah:\n\nAllah tidak melarang kamu berbuat baik dan berlaku adil terhadap orang-orang yang tidak memerangimu dalam urusan agama dan tidak mengusir kamu dari kampung halamanmu. Sesungguhnya Allah mencintai orang-orang yang berlaku adil. (al-Mumtahanah/60: 8)\n\nKemudian ditegaskan, seandainya ada kaum Muslimin yang berteman erat dengan orang kafir yang memusuhi Islam maka hal itu adalah sikap yang tidak wajar. Sebab, tidak mungkin ada orang-orang mukmin yang benar-benar beriman kepada Allah berteman dengan orang kafir yang ingin menghancurkan Islam.\n\nDengan demikian, kaum Muslimin diminta agar selalu waspada setiap terjadi permusuhan dan pertempuran dengan orang-orang kafir. Sekali-kali tidak boleh berteman erat dengan mereka, karena akan membahayakan kaum Muslimin. \n\nAllah menerangkan bahwa orang-orang yang telah diterangkan kekuatan iman dan keikhlasan hati mereka, seperti Abu Ubaidah, adalah orang yang telah tertanam keimanan dalam hatinya. Sehingga mereka tidak tahan mendengar Allah dan Rasul-Nya dicaci-maki orang, atau agama Islam direndahkan.\n\nDi samping mempunyai keimanan yang kuat, Allah juga telah menguatkan hati dan jiwa mereka sehingga menimbulkan ketenangan jiwa dan ketetapan hati dalam menegakkan agama Allah. Oleh karena itu, mereka tidak dapat melakukan kerja sama dengan orang-orang yang memusuhi Islam dan kaum Muslimin.\n\nPada akhir ayat ini diterangkan balasan yang akan mereka peroleh dari Allah, yaitu:\n\n1.Di akhirat mereka akan ditempatkan di dalam surga yang penuh kenikmatan, dan di bawahnya mengalir sungai-sungai. Mereka kekal di dalamnya.\n\n2.Allah rida dan menyukai perbuatan-perbuatan yang telah mereka lakukan selama hidup di dunia dan keadaan mereka di akhirat. Mereka pun rida dan senang terhadap balasan yang dianugerahkan Allah kepada mereka cepat atau lambat.\n\n3.Mereka termasuk orang-orang yang dimuliakan Allah karena telah bersedia menjadi tentara Allah dan mengorbankan segala yang ada pada mereka untuk meninggikan kalimat-Nya.\n\n4.Mereka termasuk orang-orang yang beruntung, karena dirinya telah berhasil melaksanakan tugas hidupnya sebagai hamba Allah di dunia dan di akhirat.",
-        short:
-          "Allah lalu menyatakan, “Engkau, Muhammad, tidak akan mendapatkan suatu kaum yang beriman kepada Allah dan hari akhirat saling berkasih sayang dengan orang-orang yang menentang Allah dan Rasul-Nya, sekalipun orang-orang itu bapaknya, anaknya, saudaranya, atau keluarganya.” Mereka itulah orang-orang yang dalam hatinya telah ditanamkan Allah keimanan dan Allah telah menguatkan mereka dengan pertolongan yang datang dari Dia berupa kemauan dan kekuatan batin, kebersihan hati, kemenangan terhadap musuh dan lain-lain. Lalu dimasukkan-Nya mereka ke dalam surga yang mengalir di bawahnya sungai-sungai, mereka kekal di dalamnya. Allah rida terhadap mereka dan mereka pun merasa puas terhadap (limpahan rahmat)-Nya. Merekalah golongan Allah. Ingatlah, sesungguhnya golongan Allah itulah yang beruntung.",
+        footnotes: null,
+        text: "Kamu tidak akan dapati -wahai Rasul- suatu kaum yang beriman kepada Allah dan beriman kepada hari Kiamat yang mencintai dan loyal kepada orang-orang yang memusuhi Allah dan Rasul-Nya, meskipun musuh-musuh Allah itu adalah bapak-bapak mereka, anak-anak mereka, saudara-saudara mereka, dan keluarga tempat mereka bersandar, karena iman itu mencegah dari saling tolong-menolong dengan musuh-musuh Allah dan Rasul-Nya dan karena ikatan iman itu lebih kuat dari segala ikatan serta wajib lebih diprioritaskan apabila terjadi pertentangan. Orang-orang yang tidak menjadikan penolong dari orang-orang yang memusuhi Allah dan Rasul-Nya -meskipun masih kerabat mereka- adalah orang-orang yang telah ditetapkan keimanan di dalam hati mereka sehingga tidak berubah. Allah menguatkan mereka dengan bukti nyata dan cahaya dari-Nya dan memasukkan mereka pada hari Kiamat ke dalam surga-surga ‘Adn yang di bawah istana-istana dan pepohonannya mengalir sungai-sungai. Mereka menetap di dalamnya selamanya, kenikmatannya tidak pernah berhenti dari mereka, dan keberadaan mereka di dalam surga itu pun tidak pernah fana. Allah meridai mereka dengan keridaan yang tidak ada kemurkaan lagi setelahnya dan mereka pun meridai-Nya karena Allah telah memberikan kepada mereka kenikmatan yang tidak pernah habis. Di antara kenikmatan itu adalah bisa melihat kepada Allah -Subhānahu-. Orang-orang yang mempunyai kriteria seperti ini adalah tentara Allah yang senantiasa menaati apa yang diperintahkan oleh Allah dan menahan diri dari apa yang dilarang-Nya. Ketahuilah bahwa tentara Allah adalah orang-orang yang menang karena mendapatkan apa yang mereka inginkan dan terhindar dari apa yang mereka takuti di dunia dan di akhirat.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0627 \u062a\u064e\u062c\u0650\u062f\u064f \u0642\u064e\u0648\u0652\u0645\u064b\u0627 \u064a\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u0650 \u064a\u064f\u0648\u064e\u0627\u062f\u0651\u064f\u0648\u0646\u064e \u0645\u064e\u0646\u0652 \u062d\u064e\u0627\u062f\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0631\u064e\u0633\u064f\u0648\u0644\u064e\u0647\u064f \u0648\u064e\u0644\u064e\u0648\u0652 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0622\u0628\u064e\u0627\u0621\u064e\u0647\u064f\u0645\u0652 \u0623\u064e\u0648\u0652 \u0623\u064e\u0628\u0652\u0646\u064e\u0627\u0621\u064e\u0647\u064f\u0645\u0652 \u0623\u064e\u0648\u0652 \u0625\u0650\u062e\u0652\u0648\u064e\u0627\u0646\u064e\u0647\u064f\u0645\u0652 \u0623\u064e\u0648\u0652 \u0639\u064e\u0634\u0650\u064a\u0631\u064e\u062a\u064e\u0647\u064f\u0645\u0652 \u06da \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0643\u064e\u062a\u064e\u0628\u064e \u0641\u0650\u064a \u0642\u064f\u0644\u064f\u0648\u0628\u0650\u0647\u0650\u0645\u064f \u0627\u0644\u0652\u0625\u0650\u064a\u0645\u064e\u0627\u0646\u064e \u0648\u064e\u0623\u064e\u064a\u0651\u064e\u062f\u064e\u0647\u064f\u0645 \u0628\u0650\u0631\u064f\u0648\u062d\u064d \u0645\u0651\u0650\u0646\u0652\u0647\u064f \u06d6 \u0648\u064e\u064a\u064f\u062f\u0652\u062e\u0650\u0644\u064f\u0647\u064f\u0645\u0652 \u062c\u064e\u0646\u0651\u064e\u0627\u062a\u064d \u062a\u064e\u062c\u0652\u0631\u0650\u064a \u0645\u0650\u0646 \u062a\u064e\u062d\u0652\u062a\u0650\u0647\u064e\u0627 \u0627\u0644\u0652\u0623\u064e\u0646\u0652\u0647\u064e\u0627\u0631\u064f \u062e\u064e\u0627\u0644\u0650\u062f\u0650\u064a\u0646\u064e \u0641\u0650\u064a\u0647\u064e\u0627 \u06da \u0631\u064e\u0636\u0650\u064a\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0646\u0652\u0647\u064f\u0645\u0652 \u0648\u064e\u0631\u064e\u0636\u064f\u0648\u0627 \u0639\u064e\u0646\u0652\u0647\u064f \u06da \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u062d\u0650\u0632\u0652\u0628\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06da \u0623\u064e\u0644\u064e\u0627 \u0625\u0650\u0646\u0651\u064e \u062d\u0650\u0632\u0652\u0628\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0645\u064f\u0641\u0652\u0644\u0650\u062d\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Laa tajidu qawmany yu'minoona billaahi wal yawmil aakhiri yuwaaaddoona man haaaddal laaha wa Rasoolahoo wa law kaanooo aabaaa'ahum aw abnaaa'ahum aw ikhwaa nahum aw 'asheeratahum; ulaaa'ika kataba fee quloobihi mul eemaana wa ayyadahum biroohimminhu wa yudkhilu hum jannatin tajree min tahtihal anhaaru khaalideena feehaa; radiyal laahu 'anhum wa radoo 'anh; ulaaa 'ika hizbul laah; alaaa inna hizbal laahi humul muflihoon",
-      },
+      arabic:
+        "لَّا تَجِدُ قَوْمًا يُؤْمِنُونَ بِٱللَّهِ وَٱلْيَوْمِ ٱلْـَٔاخِرِ يُوَآدُّونَ مَنْ حَآدَّ ٱللَّهَ وَرَسُولَهُۥ وَلَوْ كَانُوٓا۟ ءَابَآءَهُمْ أَوْ أَبْنَآءَهُمْ أَوْ إِخْوَٰنَهُمْ أَوْ عَشِيرَتَهُمْ أُو۟لَٰٓئِكَ كَتَبَ فِى قُلُوبِهِمُ ٱلْإِيمَٰنَ وَأَيَّدَهُم بِرُوحٍ مِّنْهُ وَيُدْخِلُهُمْ جَنَّٰتٍ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ خَٰلِدِينَ فِيهَا رَضِىَ ٱللَّهُ عَنْهُمْ وَرَضُوا۟ عَنْهُ أُو۟لَٰٓئِكَ حِزْبُ ٱللَّهِ أَلَآ إِنَّ حِزْبَ ٱللَّهِ هُمُ ٱلْمُفْلِحُونَ",
     },
     translation: {
-      en: "You will not find a people who believe in Allah and the Last Day having affection for those who oppose Allah and His Messenger, even if they were their fathers or their sons or their brothers or their kindred. Those - He has decreed within their hearts faith and supported them with spirit from Him. And We will admit them to gardens beneath which rivers flow, wherein they abide eternally. Allah is pleased with them, and they are pleased with Him - those are the party of Allah. Unquestionably, the party of Allah - they are the successful.",
-      id: "Engkau (Muhammad) tidak akan mendapatkan suatu kaum yang beriman kepada Allah dan hari akhirat saling berkasih sayang dengan orang-orang yang menentang Allah dan Rasul-Nya, sekalipun orang-orang itu bapaknya, anaknya, saudaranya atau keluarganya. Mereka itulah orang-orang yang dalam hatinya telah ditanamkan Allah keimanan dan Allah telah menguatkan mereka dengan pertolongan yang datang dari Dia. Lalu dimasukkan-Nya mereka ke dalam surga yang mengalir di bawahnya sungai-sungai, mereka kekal di dalamnya. Allah rida terhadap mereka dan mereka pun merasa puas terhadap (limpahan rahmat)-Nya. Merekalah golongan Allah. Ingatlah, sesungguhnya golongan Allah itulah yang beruntung.",
+      en: {
+        footnotes: "[9] Spirit here means His revelation, light, or His help.",
+        text: "You will not find any people who believe in Allah and the Last Day taking as allies those who oppose Allah and His Messenger, even if they were their parents, their children, their brothers, or their kindred. It is they in whose hearts Allah has instilled faith and strengthened them with a spirit[9] from Him. He will admit them to gardens under which rivers flow, abiding therein forever. Allah is pleased with them and they are pleased with Allah. They are the party of Allah. Indeed, it is the party of Allah that will be successful.",
+      },
+      id: {
+        footnotes:
+          "[834] Kemauan dan kekuatan batin, kebersihan hati, kemenangan terhadap musuh dan lain-lain.",
+        text: "Engkau (Muhammad) tidak akan mendapatkan suatu kaum yang beriman kepada Allah dan hari akhirat, saling berkasih sayang dengan orang-orang yang menentang Allah dan Rasul-Nya, sekalipun orang-orang itu bapaknya, anaknya, saudaranya atau keluarganya. Mereka itulah orang-orang yang dalam hatinya telah ditanamkan Allah keimanan, dan Allah telah menguatkan mereka dengan pertolongan[834] yang datang dari Dia. Lalu Dia (Allah) memasukkan mereka ke dalam surga yang mengalir di bawahnya sungai-sungai, mereka kekal di dalamnya. Allah rida terhadap mereka dan mereka pun merasa puas terhadap (limpahan rahmat)-Nya. Merekalah golongan Allah. Ingatlah, sesungguhnya golongan Allah itulah yang beruntung.",
+      },
     },
   },
 ];

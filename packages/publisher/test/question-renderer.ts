@@ -85,5 +85,12 @@ export const questionRendererManifest = await Effect.runPromise(
       "snbt-quant": snbtQuant,
       "tka-math": tkaMath,
     }),
+    publishedDomains: [
+      "snbt-general",
+      "snbt-math",
+      "snbt-plain",
+      "snbt-quant",
+      "tka-math",
+    ],
   })
 );

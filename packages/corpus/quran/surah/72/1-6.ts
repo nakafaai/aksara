@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah72Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5448",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5448.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5448.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 572,
       ruku: 506,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5448,
@@ -24,40 +25,33 @@ export const quranSurah72Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah memerintahkan Rasul-Nya untuk menyampaikan kepada para sahabat tentang jin yang beriman kepada Allah. Keimanan jin itu mengandung arti:\n\n1.bahwa Nabi Muhammad adalah rasul bagi umat manusia dan juga bagi jin, sebagaimana juga diungkapkan dalam ayat yang lain.\n\n2.bahwa jin mendengar dan mengerti bahasa manusia, sebagaimana juga dinyatakan dalam ayat-ayat lain.\n\n3.bahwa jin juga akan dihisab sebagaimana halnya manusia.\n\n4.bahwa adanya jin yang juga yang berdakwah kepada kaumnya.\n\n5.agar orang-orang Quraisy mengetahui bahwa jin saja ketika mendengar Al-Qur'an mengakui kemukjizatannya dan beriman kepadanya.\n\nBerdasarkan pengertian ayat ini, dipahami bahwa Nabi Muhammad mengetahui bahwa jin mendengar bacaan beliau dengan perantaraan wahyu, bukan dengan menyaksikan dengan mata beliau sendiri.",
-        short:
-          "Di akhir surah sebelum surah ini yaitu surah Nuh disebutkan doa Nabi Nuh atas perilaku kaumnya yang menolak dakwahnya. Di awal surah ini dijelaskan tentang dakwah Nabi Muhammad dengan al-Qur’an yang merupakan kitab suci yang amat mengagumkan dari segala aspeknya. Katakanlah wahai Nabi Muhammad kepada seluruh manusia, “Telah diwahyukan kepadaku melalui Jibril, bahwa sekumpulan jin telah mendengarkan bacaan al-Qur’an, lalu mereka berkata, \\'Kami telah mendengarkan bacaan yang menakjubkan kata-kata maupun kandungan Al-Qur’an.\\'\"",
+        footnotes: null,
+        text: "Katakan -wahai Rasul- kepada umatmu, “Allah telah mewahyukan kepadaku bahwa sekumpulan jin di lembah an-Nakhlah telah mendengar bacaan Al-Qur`ānku, ketika mereka kembali kepada kaum mereka, mereka berkata, 'Sesungguhnya kami telah mendengarkan perkataan yang dibacakan, keterangan dan kefasihan lafalnya sangat menakjubkan.",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u0623\u064f\u0648\u062d\u0650\u064a\u064e \u0625\u0650\u0644\u064e\u064a\u0651\u064e \u0623\u064e\u0646\u0651\u064e\u0647\u064f \u0627\u0633\u0652\u062a\u064e\u0645\u064e\u0639\u064e \u0646\u064e\u0641\u064e\u0631\u064c \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u062c\u0650\u0646\u0651\u0650 \u0641\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0625\u0650\u0646\u0651\u064e\u0627 \u0633\u064e\u0645\u0650\u0639\u0652\u0646\u064e\u0627 \u0642\u064f\u0631\u0652\u0622\u0646\u064b\u0627 \u0639\u064e\u062c\u064e\u0628\u064b\u0627",
-      transliteration: {
-        en: "Qul oohiya ilaiya annna hustama'a nafarum minal jinnni faqaalooo innaa sami'naa quraanan 'ajabaa",
-      },
+      arabic:
+        "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ قُلْ أُوحِىَ إِلَىَّ أَنَّهُ ٱسْتَمَعَ نَفَرٌ مِّنَ ٱلْجِنِّ فَقَالُوٓا۟ إِنَّا سَمِعْنَا قُرْءَانًا عَجَبًا",
     },
     translation: {
-      en: "Say, [O Muhammad], \"It has been revealed to me that a group of the jinn listened and said, 'Indeed, we have heard an amazing Qur'an.",
-      id: "Katakanlah (Muhammad), “Telah diwahyukan kepadaku bahwa sekumpulan jin telah mendengarkan (bacaan),” lalu mereka berkata, “Kami telah mendengarkan bacaan yang menakjubkan (Al-Qur'an),",
+      en: {
+        footnotes: "",
+        text: "Say, “It has been revealed to me that a group of jinn listened [to the Qur’an,] and they said, ‘Indeed, we have heard a wondrous recitation",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Telah diwahyukan kepadaku bahwa sekumpulan jin telah mendengarkan (bacaan)," lalu mereka berkata, "Kami telah mendengarkan bacaan yang menakjubkan (Al-Qur`an),',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5449",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5449.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5449.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 572,
       ruku: 506,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5449,
@@ -65,40 +59,32 @@ export const quranSurah72Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Sebagaimana di ayat pertama, dalam ayat kedua ini Allah menyatakan bahwa jin telah mendengar Al-Qur'an yang membuat mereka takjub karena memberi petunjuk kepada jalan yang benar, lalu mereka beriman. Mereka bertekad tidak akan mempersekutukan Allah dengan apa pun. Apa yang mereka dengar dan sikap mereka setelah itu juga disampaikan kepada kaum mereka, sebagaimana disebutkan juga dalam ayat lain:\n\nMaka ketika telah selesai, mereka kembali kepada kaumnya (untuk) memberi peringatan. (al-Ahqaf/46: 29)",
-        short:
-          '"Al-Qur’an yang memberi petunjuk dengan jelas lagi lemah lembut kepada jalan yang benar untuk mengenal Allah, kami yakin itu pasti firman Allah bukan buatan manusia, lalu kami beriman kepadanya. Dan sejak saat itu kami sekali-kali tidak akan mempersekutukan sesuatu pun dengan Tuhan kami, karena hal tersebut adalah perbuatan yang sangat dibenci Allah."',
+        footnotes: null,
+        text: "Ucapan yang kami dengar ini menunjukkan kepada keyakinan, ucapan, dan perbuatan yang benar, sebab itu kami mengimaninya dan sekali-kali kami tidak akan menyekutukan Tuhan kami yang menurunkannya dengan seorang pun.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0647\u0652\u062f\u0650\u064a \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0631\u0651\u064f\u0634\u0652\u062f\u0650 \u0641\u064e\u0622\u0645\u064e\u0646\u0651\u064e\u0627 \u0628\u0650\u0647\u0650 \u06d6 \u0648\u064e\u0644\u064e\u0646 \u0646\u0651\u064f\u0634\u0652\u0631\u0650\u0643\u064e \u0628\u0650\u0631\u064e\u0628\u0651\u0650\u0646\u064e\u0627 \u0623\u064e\u062d\u064e\u062f\u064b\u0627",
-      transliteration: {
-        en: "Yahdeee ilar rushdi fa aamannaa bihee wa lan nushrika bi rabbinaaa ahadaa",
-      },
+      arabic: "يَهْدِىٓ إِلَى ٱلرُّشْدِ فَـَٔامَنَّا بِهِۦ وَلَن نُّشْرِكَ بِرَبِّنَآ أَحَدًا",
     },
     translation: {
-      en: "It guides to the right course, and we have believed in it. And we will never associate with our Lord anyone.",
-      id: "(yang) memberi petunjuk kepada jalan yang benar, lalu kami beriman kepadanya. Dan kami sekali-kali tidak akan mempersekutukan sesuatu pun dengan Tuhan kami,",
+      en: {
+        footnotes: "",
+        text: "that guides to the right way, so we have believed in it, and we will never associate anyone with our Lord.",
+      },
+      id: {
+        footnotes: "",
+        text: "(yang) memberi petunjuk kepada jalan yang benar, lalu kami beriman kepadanya. Dan kami sekali-kali tidak akan mempersekutukan sesuatu pun dengan Tuhan kami,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5450",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5450.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5450.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 572,
       ruku: 506,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5450,
@@ -106,40 +92,33 @@ export const quranSurah72Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, diterangkan bahwa sebagaimana mereka menghindarkan diri dari mempersekutukan Allah, para jin itu juga menyucikan-Nya dari mempunyai istri atau anak. Mempunyai teman istri dan anak hanyalah keperluan manusia, sebagaimana firman Allah:\n\nDan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya. (ar-Rum/30: 21)",
-        short:
-          "Setelah para jin yang mendengar al Qur’an tersebut berjanji tidak akan menyekutukan Allah, mereka kemudian memuji Allah dengan pujian yang tulus. Dan sesungguhnya Mahatinggi keagungan Tuhan kami sehingga tidak terjangkau oleh siapa pun dan apa pun, Dia tidak beristri dan tidak beranak.”",
+        footnotes: null,
+        text: "Kami beriman bahwa Dia Yang Mahatinggi keagungan dan kekuasaan-Nya tidak mempunyai istri maupun anak sebagaimana yang dikatakan oleh orang-orang musyrik.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0646\u0651\u064e\u0647\u064f \u062a\u064e\u0639\u064e\u0627\u0644\u064e\u0649\u0670 \u062c\u064e\u062f\u0651\u064f \u0631\u064e\u0628\u0651\u0650\u0646\u064e\u0627 \u0645\u064e\u0627 \u0627\u062a\u0651\u064e\u062e\u064e\u0630\u064e \u0635\u064e\u0627\u062d\u0650\u0628\u064e\u0629\u064b \u0648\u064e\u0644\u064e\u0627 \u0648\u064e\u0644\u064e\u062f\u064b\u0627",
-      transliteration: {
-        en: "Wa annahoo Ta'aalaa jaddu Rabbinaa mat takhaza saahibatanw wa la waladaa",
-      },
+      arabic: "وَأَنَّهُۥ تَعَٰلَىٰ جَدُّ رَبِّنَا مَا ٱتَّخَذَ صَٰحِبَةً وَلَا وَلَدًا",
     },
     translation: {
-      en: "And [it teaches] that exalted is the nobleness of our Lord; He has not taken a wife or a son",
-      id: "dan sesungguhnya Mahatinggi keagungan Tuhan kami, Dia tidak beristri dan tidak beranak.”",
+      en: {
+        footnotes:
+          "[1] “Jadd” of Our Lord means His Glory, Grandeur, and Command.",
+        text: "And that He – our exalted and glorified Lord[1] – has neither taken a wife nor a child;",
+      },
+      id: {
+        footnotes: "",
+        text: 'dan sesungguhnya Mahatinggi keagungan Tuhan kami, Dia tidak beristri dan tidak beranak."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5451",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5451.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5451.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 572,
       ruku: 506,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5451,
@@ -147,40 +126,34 @@ export const quranSurah72Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, diungkapkan bahwa di antara jin-jin itu ada yang mengucapkan perkataan yang jauh dari kebenaran, yaitu bahwa Allah mempunyai anak dan teman wanita.",
-        short:
-          'Jin yang mendengar bacaan al-Qur’an tersebut melanjutkan testimoninya di hadapan kaumnya dengan menyatakan, "Dan sesungguhnya orang yang bodoh kurang sehat akalnya di antara kami dahulu selalu mengucapkan perkataan yang melampaui batas terhadap Allah yang Maha Esa,',
+        footnotes: null,
+        text: "Sesungguhnya Iblis telah mengatakan perkataan yang menyimpang terhadap Allah -Subḥānahu-, yaitu dengan menisbahkan adanya istri dan anak kepada-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0646\u0651\u064e\u0647\u064f \u0643\u064e\u0627\u0646\u064e \u064a\u064e\u0642\u064f\u0648\u0644\u064f \u0633\u064e\u0641\u0650\u064a\u0647\u064f\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0634\u064e\u0637\u064e\u0637\u064b\u0627",
-      transliteration: {
-        en: "Wa annahoo kaana yaqoolu safeehunaa 'alal laahi shatataa",
-      },
+      arabic: "وَأَنَّهُۥ كَانَ يَقُولُ سَفِيهُنَا عَلَى ٱللَّهِ شَطَطًا",
     },
     translation: {
-      en: "And that our foolish one has been saying about Allah an excessive transgression.",
-      id: "Dan sesungguhnya orang yang bodoh di antara kami dahulu selalu mengucapkan (perkataan) yang melampaui batas terhadap Allah,",
+      en: {
+        footnotes:
+          "[2] i.e., Satan tempted humans to believe that Allah has a wife and children, and that the angels are Allah's daughters.",
+        text: "and that the fool among us [i.e., Satan] used to say outrageous things about Allah[2],",
+      },
+      id: {
+        footnotes:
+          "[872] Mengatakan bahwa Allah mempunyai istri dan anak. Menurut Ibnu Kasir, perkataan ini diucapkan sebelum jin itu masuk Islam.",
+        text: "Dan sesungguhnya orang yang bodoh di antara kami dahulu selalu mengucapkan (perkataan) yang melampaui batas terhadap Allah,[872]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5452",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5452.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5452.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 572,
       ruku: 506,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5452,
@@ -188,40 +161,32 @@ export const quranSurah72Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini diterangkan bahwa jin itu menyatakan tidak pantas bila ada jin maupun manusia yang berani mengatakan Allah beranak dan mempunyai istri.",
-        short:
-          'dan sesungguhnya kami mengira, bahwa manusia dan jin itu tidak akan mengatakan perkataan yang dusta terhadap Allah, dengan menasabkan sekutu, istri dan anak kepada-Nya."',
+        footnotes: null,
+        text: "Sesungguhnya Kami dahulu mengira bahwa orang-orang yang musyrik dari golongan manusia dan jin tidak berkata bohong ketika mereka mengklaim bahwa Allah mempunyai istri dan anak, sehingga kami membenarkan ucapan mereka karena taklid terhadap mereka'.\"",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0646\u0651\u064e\u0627 \u0638\u064e\u0646\u064e\u0646\u0651\u064e\u0627 \u0623\u064e\u0646 \u0644\u0651\u064e\u0646 \u062a\u064e\u0642\u064f\u0648\u0644\u064e \u0627\u0644\u0652\u0625\u0650\u0646\u0633\u064f \u0648\u064e\u0627\u0644\u0652\u062c\u0650\u0646\u0651\u064f \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0643\u064e\u0630\u0650\u0628\u064b\u0627",
-      transliteration: {
-        en: "Wa annaa zanannaaa al lan taqoolal insu wal jinnu 'alal laahi kazibaa",
-      },
+      arabic: "وَأَنَّا ظَنَنَّآ أَن لَّن تَقُولَ ٱلْإِنسُ وَٱلْجِنُّ عَلَى ٱللَّهِ كَذِبًا",
     },
     translation: {
-      en: "And we had thought that mankind and the jinn would never speak about Allah a lie.",
-      id: "dan sesungguhnya kami mengira, bahwa manusia dan jin itu tidak akan mengatakan perkataan yang dusta terhadap Allah,",
+      en: {
+        footnotes: "",
+        text: "although we thought that humans and jinn would never tell lies about Allah.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan sesungguhnya kami mengira, bahwa manusia dan jin itu tidak akan mengatakan perkataan yang dusta terhadap Allah,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5453",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5453.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5453.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 229,
       juz: 29,
       manzil: 7,
       page: 572,
       ruku: 506,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5453,
@@ -229,20 +194,23 @@ export const quranSurah72Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Jin itu juga mengatakan bahwa banyak di antara manusia yang berlindung dan memohon kepada jin. Hal itu mengakibatkan manusia dikuasai oleh jin, dan dibawa untuk berbuat kejahatan sehingga mereka durhaka dan berdosa. Firman Allah:\n\nDan (ingatlah) pada hari ketika Dia mengumpulkan mereka semua (dan Allah berfirman), "Wahai golongan jin! Kamu telah banyak (menyesatkan) manusia¦." (al-An\'am/6: 128)',
-        short:
-          'Masih melanjutkan ucapan jin tersebut, "Dan sesungguhnya ada beberapa orang laki-laki dari kalangan manusia di antaranya adalah tokoh-tokoh yang berpengaruh dalam masyarakatnya yang meminta perlindungan kepada beberapa tokoh laki-laki dari jin, tetapi mereka jin tersebut menjadikan mereka manusia bertambah sesat. Ada di antara orang-orang Arab apabila mereka melintasi tempat yang sunyi, mereka minta perlindungan kepada jin yang mereka anggap berkuasa di tempat itu.',
+        footnotes: null,
+        text: "Sesungguhnya dahulu di zaman jahiliah ada beberapa laki-laki dari golongan manusia meminta perlindungan kepada sekelompok laki-laki dari golongan jin saat mereka singgah di suatu tempat yang angker. Salah seorang di antara mereka berkata, “Aku berlindung kepada penguasa lembah ini dari kejahatan kaumnya yang bodoh.” Maka, hal ini menambah rasa takut segolongan dari manusia terhadap segolongan jin.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0646\u0651\u064e\u0647\u064f \u0643\u064e\u0627\u0646\u064e \u0631\u0650\u062c\u064e\u0627\u0644\u064c \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0625\u0650\u0646\u0633\u0650 \u064a\u064e\u0639\u064f\u0648\u0630\u064f\u0648\u0646\u064e \u0628\u0650\u0631\u0650\u062c\u064e\u0627\u0644\u064d \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u062c\u0650\u0646\u0651\u0650 \u0641\u064e\u0632\u064e\u0627\u062f\u064f\u0648\u0647\u064f\u0645\u0652 \u0631\u064e\u0647\u064e\u0642\u064b\u0627",
-      transliteration: {
-        en: "Wa annahoo kaana rijaa lum minal insi ya'oozoona birijaalim minal jinni fazaa doohum rahaqaa",
-      },
+      arabic: "وَأَنَّهُۥ كَانَ رِجَالٌ مِّنَ ٱلْإِنسِ يَعُوذُونَ بِرِجَالٍ مِّنَ ٱلْجِنِّ فَزَادُوهُمْ رَهَقًا",
     },
     translation: {
-      en: "And there were men from mankind who sought refuge in men from the jinn, so they [only] increased them in burden.",
-      id: "dan sesungguhnya ada beberapa orang laki-laki dari kalangan manusia yang meminta perlindungan kepada beberapa laki-laki dari jin, tetapi mereka (jin) menjadikan mereka (manusia) bertambah sesat.",
+      en: {
+        footnotes: "",
+        text: "And there were some men who used to seek refuge with some jinn, but they only increased them in burden.",
+      },
+      id: {
+        footnotes:
+          "[873] Ada di antara orang-orang Arab apabila mereka melintasi tempat yang sunyi, mereka minta perlindungan kepada jin yang mereka anggap berkuasa di tempat itu.",
+        text: "dan sesungguhnya ada beberapa orang laki-laki dari kalangan manusia yang meminta perlindungan[873] kepada beberapa laki-laki dari jin, tetapi mereka (jin) menjadikan mereka (manusia) bertambah sesat.",
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah5Verses31To36 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/700",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/700.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/700.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 45,
       juz: 6,
       manzil: 2,
       page: 112,
       ruku: 90,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 700,
@@ -24,40 +25,34 @@ export const quranSurah5Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: 'Pembunuhan ini adalah yang pertama terjadi di antara anak Adam, Qabil sebagai pembunuh belum mengetahui apa yang harus diperbuat terhadap saudaranya yang telah dibunuh (Habil), sedangkan ia merasa tidak senang melihat mayat saudaranya tergeletak di tanah. Maka Allah mengutus seekor burung gagak mengorek-ngorek tanah dengan cakarnya untuk memperlihatkan kepada Qabil bagaimana caranya mengubur mayat saudaranya. \n\nSetelah Qabil menyaksikan apa yang telah diperbuat oleh burung gagak, mengertilah dia apa yang harus dilakukan terhadap mayat saudaranya. Pada waktu itu, Qabil merasakan kebodohannya mengapa ia tidak dapat berbuat seperti burung gagak itu, lalu dapat menguburkan saudaranya. Karena hal yang demikian itu Qabil sangat menyesali tindakannya yang salah. Dari peristiwa itu dapat diambil pelajaran, bahwa manusia kadang-kadang memperoIeh pengetahuan dan pengalaman dari apa yang pernah terjadi di sekitarnya. Penyesalan itu dapat merupakan tobat asalkan di dorong oleh takut kepada Allah dan menyesali akibat buruk dari perbuatannya itu. Rasulullah bersabda, \n\n"Penyesalan itu adalah tobat." (Riwayat Ahmad, al-Bukhari, al-Baihaqi dan al-hakim). \n\nTidak dibunuh seseorang dengan zalim melainkan anak Adam yang pertama mendapat bagian dosanya karena dia orang yang pertama melakukan pembunuhan. (Riwayat al-Bukhari dan Muslim).\n\n(32) Pada ayat ini diterangkan suatu ketentuan bahwa membunuh seorang manusia berarti membunuh semua manusia, sebagaimana memelihara kehidupan seorang manusia berarti memelihara kehidupan semua manusia. Ayat ini menunjukkan keharusan adanya kesatuan umat dan kewajiban mereka masing-masing terhadap yang lain, yaitu harus menjaga keselamatan hidup dan kehidupan bersama dan menjauhi hal-hal yang membahayakan orang lain. Hal ini dapat dirasakan karena kebutuhan setiap manusia tidak dapat dipenuhinya sendiri, sehingga mereka sangat memerlukan tolong-menolong terutama hal-hal yang menyangkut kepentingan umum. Sesungguhnya orang-orang Bani Israil telah demikian banyak kedatangan para rasul dengan membawa keterangan yang jelas, tetapi banyak di antara mereka itu yang melampaui batas ketentuan dengan berbuat kerusakan di muka bumi. Akhirnya mereka kehilangan kehormatan, kekayaan dan kekuasaan yang kesemuanya itu pernah mereka miliki di masa lampau.',
-        short:
-          'Sesudah melakukan pembunuhan, Qabil tidak tahu apa yang harus diperbuat dengan mayat saudaranya, karena peristiwa ini merupakan yang pertama terjadi. Kemudian Allah mengutus seekor burung gagak yang menggali tanah dengan menggunakan cakarnya untuk diperlihatkan kepadanya, Qabil, bagaimana dia seharusnya menguburkan mayat saudaranya yang baru saja dibunuhnya. Melihat peristiwa itu, Qabil berkata, "Oh, celaka aku! Mengapa aku tidak berpikir dan mampu berbuat seperti yang dilakukan burung gagak ini, sehingga dengan cara itu aku dapat menguburkan mayat saudaraku ini?" Maka ia menggali tanah untuk menguburkan mayat Habil, dan jadilah dia termasuk orang yang sangat menyesal atas perbuatan yang telah dilakukannya.',
+        footnotes: null,
+        text: 'Lalu Allah mengutus seekor burung gagak yang menggali tanah untuk mengubur burung gagak lain yang mati di hadapan Kabil dengan maksud mengajarkan kepadanya tentang bagaimana cara mengubur jasad saudaranya, Habil. Pada saat itulah, Kabil yang membunuh saudaranya ini berkata, "Celakalah aku! Mengapa aku tidak sanggup berbuat seperti yang dilakukan burung gagak yang menguburkan gagak lain yang mati ini sehingga aku dapat menguburkan mayat saudaraku ini?!" Lalu Kabil menguburkan saudaranya tersebut dan ia pun termasuk orang-orang yang menyesal.',
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u064e\u0639\u064e\u062b\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u063a\u064f\u0631\u064e\u0627\u0628\u064b\u0627 \u064a\u064e\u0628\u0652\u062d\u064e\u062b\u064f \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0644\u0650\u064a\u064f\u0631\u0650\u064a\u064e\u0647\u064f \u0643\u064e\u064a\u0652\u0641\u064e \u064a\u064f\u0648\u064e\u0627\u0631\u0650\u064a \u0633\u064e\u0648\u0652\u0621\u064e\u0629\u064e \u0623\u064e\u062e\u0650\u064a\u0647\u0650 \u06da \u0642\u064e\u0627\u0644\u064e \u064a\u064e\u0627 \u0648\u064e\u064a\u0652\u0644\u064e\u062a\u064e\u0627 \u0623\u064e\u0639\u064e\u062c\u064e\u0632\u0652\u062a\u064f \u0623\u064e\u0646\u0652 \u0623\u064e\u0643\u064f\u0648\u0646\u064e \u0645\u0650\u062b\u0652\u0644\u064e \u0647\u064e\u0670\u0630\u064e\u0627 \u0627\u0644\u0652\u063a\u064f\u0631\u064e\u0627\u0628\u0650 \u0641\u064e\u0623\u064f\u0648\u064e\u0627\u0631\u0650\u064a\u064e \u0633\u064e\u0648\u0652\u0621\u064e\u0629\u064e \u0623\u064e\u062e\u0650\u064a \u06d6 \u0641\u064e\u0623\u064e\u0635\u0652\u0628\u064e\u062d\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u062f\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Faba'asal laahu ghuraabai yabhasu fil ardi liyuriyahoo kaifa yuwaaree sawata akheeh; qaala yaa wailataaa a'ajaztu an akoona misla haazal ghuraabi fa uwaariya saw ata akhee fa asbaha minan naadimeen",
-      },
+      arabic:
+        "فَبَعَثَ ٱللَّهُ غُرَابًا يَبْحَثُ فِى ٱلْأَرْضِ لِيُرِيَهُۥ كَيْفَ يُوَٰرِى سَوْءَةَ أَخِيهِ قَالَ يَٰوَيْلَتَىٰٓ أَعَجَزْتُ أَنْ أَكُونَ مِثْلَ هَٰذَا ٱلْغُرَابِ فَأُوَٰرِىَ سَوْءَةَ أَخِى فَأَصْبَحَ مِنَ ٱلنَّٰدِمِينَ",
     },
     translation: {
-      en: 'Then Allah sent a crow searching in the ground to show him how to hide the disgrace of his brother. He said, "O woe to me! Have I failed to be like this crow and hide the body of my brother?" And he became of the regretful.',
-      id: "Kemudian Allah mengutus seekor burung gagak menggali tanah untuk diperlihatkan kepadanya (Qabil). Bagaimana dia seharusnya menguburkan mayat saudaranya. Qabil berkata, “Oh, celaka aku! Mengapa aku tidak mampu berbuat seperti burung gagak ini, sehingga aku dapat menguburkan mayat saudaraku ini?” Maka jadilah dia termasuk orang yang menyesal.",
+      en: {
+        footnotes:
+          "[27] It is said that this raven was burying another of its kind.",
+        text: "Then Allah sent a crow scratching the ground[27] to show him how to bury the corpse of his brother. He said, “Woe to me! Have I failed even to be like this crow to bury the corpse of my brother?” And he became one of the remorseful.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Kemudian Allah mengutus seekor burung gagak menggali tanah untuk memperlihatkan kepadanya (Qabil) bagaimana dia seharusnya menguburkan mayat saudaranya. Qabil berkata, "Oh, celaka aku! Mengapa aku tidak mampu berbuat seperti burung gagak ini, sehingga aku dapat menguburkan mayat saudaraku ini?" Maka jadilah dia termasuk orang yang menyesal.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/701",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/701.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/701.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 45,
       juz: 6,
       manzil: 2,
       page: 113,
       ruku: 90,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 701,
@@ -65,40 +60,35 @@ export const quranSurah5Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: 'Pembunuhan ini adalah yang pertama terjadi di antara anak Adam, Qabil sebagai pembunuh belum mengetahui apa yang harus diperbuat terhadap saudaranya yang telah dibunuh (Habil), sedangkan ia merasa tidak senang melihat mayat saudaranya tergeletak di tanah. Maka Allah mengutus seekor burung gagak mengorek-ngorek tanah dengan cakarnya untuk memperlihatkan kepada Qabil bagaimana caranya mengubur mayat saudaranya. \n\nSetelah Qabil menyaksikan apa yang telah diperbuat oleh burung gagak, mengertilah dia apa yang harus dilakukan terhadap mayat saudaranya. Pada waktu itu, Qabil merasakan kebodohannya mengapa ia tidak dapat berbuat seperti burung gagak itu, lalu dapat menguburkan saudaranya. Karena hal yang demikian itu Qabil sangat menyesali tindakannya yang salah. Dari peristiwa itu dapat diambil pelajaran, bahwa manusia kadang-kadang memperoIeh pengetahuan dan pengalaman dari apa yang pernah terjadi di sekitarnya. Penyesalan itu dapat merupakan tobat asalkan di dorong oleh takut kepada Allah dan menyesali akibat buruk dari perbuatannya itu. Rasulullah bersabda, \n\n"Penyesalan itu adalah tobat." (Riwayat Ahmad, al-Bukhari, al-Baihaqi dan al-hakim). \n\nTidak dibunuh seseorang dengan zalim melainkan anak Adam yang pertama mendapat bagian dosanya karena dia orang yang pertama melakukan pembunuhan. (Riwayat al-Bukhari dan Muslim).',
-        short:
-          "Pembunuhan yang dilakukan Qabil ini ternyata berdampak panjang bagi kehidupan manusia. Oleh karena itu, kemudian Kami tetapkan suatu hukum bagi Bani Israil, dan juga bagi seluruh masyarakat manusia, bahwa barang siapa membunuh seseorang tanpa alasan yang dapat dibenarkan, dan bukan pula karena orang itu membunuh orang lain, atau bukan karena berbuat kerusakan di bumi, maka dengan perbuatannya itu seakan-akan dia telah membunuh semua manusia, karena telah mendorong manusia lain untuk saling membunuh. Sebaliknya, barang siapa yang siap untuk memelihara dan menyelamatkan kehidupan seorang manusia, maka seakan-akan, dengan perilakunya itu, dia telah memelihara kehidupan semua manusia. Sesungguhnya, untuk menjelaskan ketetapan ini, Rasul Kami telah datang kepada mereka dengan membawa keterangan-keterangan yang jelas untuk mereka dan juga semua manusia sesudahnya. Tetapi kemudian banyak di antara manusia yang tidak memperhatikan dan melaksanakannya, sehingga mereka setelah itu bersikap melampaui batas dan melakukan kerusakan di bumi dengan pembunuhan-pembunuhan yang dilakukannya.",
+        footnotes: null,
+        text: "Karena Kabil telah membunuh saudaranya, Habil maka Kami beritahukan kepada Bani Israil, bahwasanya orang yang membunuh seseorang tanpa alasan yang dibenarkan seperti karena kisas atau karena orang itu membuat kerusakan di muka bumi dengan melakukan kekafiran atau melakukan perampokan maka seolah-olah ia telah membunuh seluruh umat manusia; karena baginya tidak ada bedanya antara orang yang tidak bersalah dan pelaku kejahatan. Sebaliknya, seseorang yang tidak membunuh orang lain yang Allah -Ta'ālā- haramkan nyawanya lantaran berkeyakinan bahwa orang tersebut haram dibunuh maka seolah-olah dia telah menghidupkan seluruh umat manusia; karena sikapnya tersebut menjamin keselamatan seluruh umat manusia. Rasul-rasul Kami telah datang kepada Bani Israil dengan membawa hujah-hujah yang jelas dan bukti-bukti yang nyata, namun demikian banyak dari mereka yang melanggar aturan-aturan Allah dengan melakukan perbuatan-perbuatan maksiat dan melawan perintah rasul-rasul mereka.",
       },
     },
     text: {
-      arab: "\u0645\u0650\u0646\u0652 \u0623\u064e\u062c\u0652\u0644\u0650 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0643\u064e\u062a\u064e\u0628\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u0649\u0670 \u0628\u064e\u0646\u0650\u064a \u0625\u0650\u0633\u0652\u0631\u064e\u0627\u0626\u0650\u064a\u0644\u064e \u0623\u064e\u0646\u0651\u064e\u0647\u064f \u0645\u064e\u0646 \u0642\u064e\u062a\u064e\u0644\u064e \u0646\u064e\u0641\u0652\u0633\u064b\u0627 \u0628\u0650\u063a\u064e\u064a\u0652\u0631\u0650 \u0646\u064e\u0641\u0652\u0633\u064d \u0623\u064e\u0648\u0652 \u0641\u064e\u0633\u064e\u0627\u062f\u064d \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0641\u064e\u0643\u064e\u0623\u064e\u0646\u0651\u064e\u0645\u064e\u0627 \u0642\u064e\u062a\u064e\u0644\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064e \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627 \u0648\u064e\u0645\u064e\u0646\u0652 \u0623\u064e\u062d\u0652\u064a\u064e\u0627\u0647\u064e\u0627 \u0641\u064e\u0643\u064e\u0623\u064e\u0646\u0651\u064e\u0645\u064e\u0627 \u0623\u064e\u062d\u0652\u064a\u064e\u0627 \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064e \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627 \u06da \u0648\u064e\u0644\u064e\u0642\u064e\u062f\u0652 \u062c\u064e\u0627\u0621\u064e\u062a\u0652\u0647\u064f\u0645\u0652 \u0631\u064f\u0633\u064f\u0644\u064f\u0646\u064e\u0627 \u0628\u0650\u0627\u0644\u0652\u0628\u064e\u064a\u0651\u0650\u0646\u064e\u0627\u062a\u0650 \u062b\u064f\u0645\u0651\u064e \u0625\u0650\u0646\u0651\u064e \u0643\u064e\u062b\u0650\u064a\u0631\u064b\u0627 \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645 \u0628\u064e\u0639\u0652\u062f\u064e \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0644\u064e\u0645\u064f\u0633\u0652\u0631\u0650\u0641\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "min ajli zaalika katabnaa 'alaa Banee Israaa'eela annahoo man qatala nnafsam bighairi nafsin aw fasaadin fil ardi faka annnamaa qatalan fil ardi faka annammaa qatalan naasa jamee'anw wa man ahyaahaa faka annamaaa ahyan naasa jamee'aa; wa laqad jaaa'at hum Rusulunaa bilbaiyinaati summa inna kaseeram minhum ba'da zaalika fil ardi lamusrifoon",
-      },
+      arabic:
+        "مِنْ أَجْلِ ذَٰلِكَ كَتَبْنَا عَلَىٰ بَنِىٓ إِسْرَٰٓءِيلَ أَنَّهُۥ مَن قَتَلَ نَفْسًۢا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِى ٱلْأَرْضِ فَكَأَنَّمَا قَتَلَ ٱلنَّاسَ جَمِيعًا وَمَنْ أَحْيَاهَا فَكَأَنَّمَآ أَحْيَا ٱلنَّاسَ جَمِيعًا وَلَقَدْ جَآءَتْهُمْ رُسُلُنَا بِٱلْبَيِّنَٰتِ ثُمَّ إِنَّ كَثِيرًا مِّنْهُم بَعْدَ ذَٰلِكَ فِى ٱلْأَرْضِ لَمُسْرِفُونَ",
     },
     translation: {
-      en: "Because of that, We decreed upon the Children of Israel that whoever kills a soul unless for a soul or for corruption [done] in the land - it is as if he had slain mankind entirely. And whoever saves one - it is as if he had saved mankind entirely. And our messengers had certainly come to them with clear proofs. Then indeed many of them, [even] after that, throughout the land, were transgressors.",
-      id: "Oleh karena itu Kami tetapkan (suatu hukum) bagi Bani Israil, bahwa barangsiapa membunuh seseorang, bukan karena orang itu membunuh orang lain, atau bukan karena berbuat kerusakan di bumi, maka seakan-akan dia telah membunuh semua manusia. Barangsiapa memelihara kehidupan seorang manusia, maka seakan-akan dia telah memelihara kehidupan semua manusia. Sesungguhnya Rasul Kami telah datang kepada mereka dengan (membawa) keterangan-keterangan yang jelas. Tetapi kemudian banyak di antara mereka setelah itu melampaui batas di bumi.",
+      en: {
+        footnotes:
+          '[28] The Prophet (ﷺ) said: "The biggest of sins are: (1) To associate partners with Allah, (2) to murder a human being, (3) to be undutiful to one’s parents (4) and to give a false testimony" [Sahih al-Bukhāri: 10]\n [29] By unreservedly committing grave vile deeds.',
+        text: "For this reason, We ordained for the Children of Israel that whoever kills a person – unless in retribution for murder or corruption in the land – it is as if he killed all mankind[28]; and whoever saves a life, it is as if he saved the life of all mankind. Our messengers came to them with clear signs, yet many of them continued to exceed the limits[29] afterward in the land.",
+      },
+      id: {
+        footnotes:
+          "[273] Yakni membunuh orang bukan karena kisas. \n[274] Hukum ini bukanlah mengenai Bani Israil saja, tetapi juga mengenai manusia semuanya. Allah memandang bahwa membunuh seseorang itu adalah seperti membunuh semua manusia, begitu juga sebaliknya.",
+        text: "Oleh karena itu Kami tetapkan (suatu hukum) bagi Bani Israil, bahwa barang siapa membunuh seseorang, bukan karena orang itu membunuh orang lain,[273] atau bukan karena berbuat kerusakan di bumi, maka seakan-akan dia telah membunuh semua manusia.[274] Barang siapa memelihara kehidupan seorang manusia, maka seakan-akan dia telah memelihara kehidupan semua manusia. Sesungguhnya Rasul Kami telah datang kepada mereka dengan (membawa) keterangan-keterangan yang jelas. Tetapi kemudian banyak di antara mereka setelah itu melampaui batas di bumi.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/702",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/702.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/702.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 45,
       juz: 6,
       manzil: 2,
       page: 113,
       ruku: 90,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 702,
@@ -106,40 +96,35 @@ export const quranSurah5Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Orang-orang yang mengganggu keamanan dan mengacau ketenteraman, menghalangi berlakunya hukum, keadilan dan syariat, merusak kepentingan umum seperti membinasakan ternak, merusak pertanian dan lain-lain, mereka dapat dibunuh, disalib, dipotong tangan dan kakinya dengan bersilang atau diasingkan. Menurut jumhur, hukuman bunuh itu dilakukan terhadap pengganggu keamanan, perampokan dan semacamnya, yang disertai dengan pembunuhan, hukuman salib sampai mati dilakukan terhadap pengganggu keamanan yang disertai dengan pembunuhan dan perampasan harta, hukuman potong tangan bagi yang melakukan perampasan harta. Sedangkan hukuman terhadap pengganggu keamanan yang disertai ancaman dan menakut-nakuti adalah pembuangan. Ada pendapat yang mengatakan bahwa hukuman pembuangan itu berarti hukuman penjara atau boleh diganti dengan penjara. Hukuman pada ayat ini ditetapkan sedemikian berat, karena dari segi gangguan keamanan yang dimaksud itu selain ditujukan kepada umum juga kerapkali mengakibatkan pembunuhan, perampasan, perusakan dan lain-lain. Oleh sebab itu kejahatan-kejahatan ini oleh siapa pun tidak boleh diberi ampunan. Orang-orang yang mendapat hukuman sebagaimana dimaksud pada ayat ini selain dipandang hina di dunia, mereka di akhirat diancam dengan siksa yang amat besar.",
-        short:
-          "Pada ayat ini Allah menjelaskan hukuman bagi perampok dan pengganggu keamanan umum, yang acap kali juga disertai pembunuhan. Dalam kaitan ini ditetapkan bahwa hukuman bagi orang-orang yang memerangi Allah dan Rasul-Nya, yaitu orang-orang yang tidak berdosa dan tidak bersalah, dan membuat kerusakan di bumi, balasannya tidak ada lain hanyalah dibunuh bila membunuh atau disalib bila membunuh dan mengambil harta, atau dipotong tangan dan kaki mereka secara silang bila mengambil harta, tetapi tidak membunuh, atau diasingkan dari tempat kediamannya bila hanya menakut-nakuti. Ketetapan hukuman yang demikian itu merupakan kehinaan bagi mereka di dunia yang disebabkan perilaku mereka, dan di akhirat mereka pasti akan mendapat azab yang besar.",
+        footnotes: null,
+        text: "Tidak ada balasan yang pantas bagi orang-orang yang memerangi Allah dan rasul-Nya, dan menantang-Nya dengan menebar permusuhan serta kerusakan di muka bumi dengan cara membunuh, merampok, dan menebar teror selain dibunuh tanpa disalib, atau dibunuh dengan cara disalib di atas kayu atau sejenisnya, atau dipotong tangan kanan dan kaki kirinya, kemudian apabila ia mengulanginya maka dipotong tangan kiri dan kaki kanannya, atau diusir dari kampung halamannya. Hukuman itu merupakan kehinaan besar bagi mereka di dunia dan di akhirat kelak mereka akan mendapatkan azab yang sangat besar.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u062c\u064e\u0632\u064e\u0627\u0621\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064f\u062d\u064e\u0627\u0631\u0650\u0628\u064f\u0648\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0631\u064e\u0633\u064f\u0648\u0644\u064e\u0647\u064f \u0648\u064e\u064a\u064e\u0633\u0652\u0639\u064e\u0648\u0652\u0646\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0641\u064e\u0633\u064e\u0627\u062f\u064b\u0627 \u0623\u064e\u0646 \u064a\u064f\u0642\u064e\u062a\u0651\u064e\u0644\u064f\u0648\u0627 \u0623\u064e\u0648\u0652 \u064a\u064f\u0635\u064e\u0644\u0651\u064e\u0628\u064f\u0648\u0627 \u0623\u064e\u0648\u0652 \u062a\u064f\u0642\u064e\u0637\u0651\u064e\u0639\u064e \u0623\u064e\u064a\u0652\u062f\u0650\u064a\u0647\u0650\u0645\u0652 \u0648\u064e\u0623\u064e\u0631\u0652\u062c\u064f\u0644\u064f\u0647\u064f\u0645 \u0645\u0651\u0650\u0646\u0652 \u062e\u0650\u0644\u064e\u0627\u0641\u064d \u0623\u064e\u0648\u0652 \u064a\u064f\u0646\u0641\u064e\u0648\u0652\u0627 \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u06da \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u062e\u0650\u0632\u0652\u064a\u064c \u0641\u0650\u064a \u0627\u0644\u062f\u0651\u064f\u0646\u0652\u064a\u064e\u0627 \u06d6 \u0648\u064e\u0644\u064e\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u064e\u0629\u0650 \u0639\u064e\u0630\u064e\u0627\u0628\u064c \u0639\u064e\u0638\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Innamaa jazaaa'ul lazeena yuhaariboonal laaha wa Rasoolahoo wa yas'awna fil ardi fasaadan ai yuqattalooo aw yusallabooo aw tuqatta'a aideehim wa arjuluhum min khilaafin aw yunfaw minalard; zaalika lahum khizyun fid dunyaa wa lahum fil Aakhirati 'azaabun 'azeem",
-      },
+      arabic:
+        "إِنَّمَا جَزَٰٓؤُا۟ ٱلَّذِينَ يُحَارِبُونَ ٱللَّهَ وَرَسُولَهُۥ وَيَسْعَوْنَ فِى ٱلْأَرْضِ فَسَادًا أَن يُقَتَّلُوٓا۟ أَوْ يُصَلَّبُوٓا۟ أَوْ تُقَطَّعَ أَيْدِيهِمْ وَأَرْجُلُهُم مِّنْ خِلَٰفٍ أَوْ يُنفَوْا۟ مِنَ ٱلْأَرْضِ ذَٰلِكَ لَهُمْ خِزْىٌ فِى ٱلدُّنْيَا وَلَهُمْ فِى ٱلْـَٔاخِرَةِ عَذَابٌ عَظِيمٌ",
     },
     translation: {
-      en: "Indeed, the penalty for those who wage war against Allah and His Messenger and strive upon earth [to cause] corruption is none but that they be killed or crucified or that their hands and feet be cut off from opposite sides or that they be exiled from the land. That is for them a disgrace in this world; and for them in the Hereafter is a great punishment,",
-      id: "Hukuman bagi orang-orang yang memerangi Allah dan Rasul-Nya dan membuat kerusakan di bumi hanyalah dibunuh atau disalib, atau dipotong tangan dan kaki mereka secara silang, atau diasingkan dari tempat kediamannya. Yang demikian itu kehinaan bagi mereka di dunia, dan di akhirat mereka mendapat azab yang besar.",
+      en: {
+        footnotes:
+          "[30] Legal retribution.\n [31] i.e., commit acts of violence and terrorism against individuals or treason and aggression against the Islamic state.\n [32] This verse details the penal code for such acts as highway robbery and banditry, known as hadd al-hirābah (the penal code of waging war).",
+        text: "The penalty[30] for those who wage war against Allah and His Messenger, and spread corruption in the land[31], is that they should be executed, or crucified, or their hands and feet amputated on opposite sides, or banished from the land[32]. This is a disgrace for them in this world, and for them in the Hereafter, there will be a great punishment.",
+      },
+      id: {
+        footnotes:
+          "[275] Memotong tangan kanan dan kaki kiri, dan kalau melakukan kejahatan sekali lagi maka dipotong tangan kiri dan kaki kanan.",
+        text: "Hukuman bagi orang-orang yang memerangi Allah dan Rasul-Nya dan membuat kerusakan di bumi, hanyalah dibunuh atau disalib, atau dipotong tangan dan kaki mereka secara silang,[275] atau diasingkan dari tempat kediamannya. Yang demikian itu kehinaan bagi mereka di dunia, dan di akhirat mereka mendapat azab yang besar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/703",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/703.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/703.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 45,
       juz: 6,
       manzil: 2,
       page: 113,
       ruku: 90,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 703,
@@ -147,40 +132,33 @@ export const quranSurah5Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: 'Para pengganggu keamanan dan hukumannya telah dijelaskan pada ayat 33 di atas, jika mereka bertobat sebelum ditangkap oleh pihak penguasa, maka bagi mereka tidak berlaku lagi hukuman-hukuman yang tertera pada ayat 33, yang menurut istilah syariat disebut "hududullah", dan juga tidak dilakukan lagi terhadap mereka hukuman yang lain seperti hukuman had, hukum sariqah dan hukum jinayah (pidana). Keringanan yang diberikan kepada orang yang bertobat itu sesuai dengan sifat Allah Yang Maha Pengampun dan Maha Penyayang.',
-        short:
-          "Ketetapan hukuman ini berlaku bagi seluruh manusia, kecuali bagi orang-orang yang bertobat, menyesali perbuatannya, dan tidak lagi mengulanginya sebelum kamu dapat menguasai mereka; maka ketahuilah bahwa orang yang seperti ini layak diberi ampunan, karena sesungguhnya Allah itu Maha Pengampun, Maha Penyayang.",
+        footnotes: null,
+        text: "Kecuali mereka yang sudah bertobat sebelum kalian -wahai para pemimpin- berhasil menangkap mereka. Ketahuilah bahwa Allah Maha Pengampun lagi Maha Penyayang bagi mereka setelah pertobatan tersebut. Salah satu bentuk kasih sayang-Nya ialah membatalkan hukuman mereka.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062a\u064e\u0627\u0628\u064f\u0648\u0627 \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650 \u0623\u064e\u0646 \u062a\u064e\u0642\u0652\u062f\u0650\u0631\u064f\u0648\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u06d6 \u0641\u064e\u0627\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0627 \u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u063a\u064e\u0641\u064f\u0648\u0631\u064c \u0631\u0651\u064e\u062d\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Illal lazeena taaboo min qabli an taqdiroo 'alaihim fa'lamooo annnal laaha Ghafoorur Raheem",
-      },
+      arabic:
+        "إِلَّا ٱلَّذِينَ تَابُوا۟ مِن قَبْلِ أَن تَقْدِرُوا۟ عَلَيْهِمْ فَٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ غَفُورٌ رَّحِيمٌ",
     },
     translation: {
-      en: "Except for those who return [repenting] before you apprehend them. And know that Allah is Forgiving and Merciful.",
-      id: "Kecuali orang-orang yang bertobat sebelum kamu dapat menguasai mereka; maka ketahuilah, bahwa Allah Maha Pengampun, Maha Penyayang.",
+      en: {
+        footnotes: "",
+        text: "Except those who repent before you seize them; in that case, then know that Allah is All-Forgiving, Most Merciful.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kecuali orang-orang yang bertobat sebelum kamu dapat menguasai mereka; maka ketahuilah, bahwa Allah Maha Pengampun, Maha Penyayang.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/704",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/704.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/704.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 45,
       juz: 6,
       manzil: 2,
       page: 113,
       ruku: 91,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 704,
@@ -188,40 +166,33 @@ export const quranSurah5Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: 'Allah memerintahkan orang-orang mukmin supaya selalu berhati-hati, mawas diri jangan sampai terlibat di dalam suatu pelanggaran, melakukan larangan-larangan agama yang telah diperintahkan Allah untuk menjauhinya.\n\nMenurut sebagian mufasir, menjauhi larangan Allah lebih berat dibandingkan dengan mematuhi perintah-Nya. Tidak heran kalau di dalam Al-Qur\'an, kata ittaqu yang maksudnya supaya kita menjaga diri jangan sampai melakukan larangan agama, disebut berulang sampai 69 kali, sedang kata ati\'u yang berarti supaya kita patuh kepada perintah agama hanya disebutkan 19 kali.\n\nDi samping menjaga diri memperketat terhadap hal-hal yang mungkin menyebabkan kita berbuat pelanggaran atau ketentuan-ketentuan agama, kita harus pula selalu mencari jalan untuk mendekatkan diri kepada Allah yaitu dengan jalan melaksanakan perintah-Nya dan mengamalkan segala sesuatu yang diridai.\n\nIbnu \'Abbas, Mujahid, Abu Wali, al-hasan, Zaid, \'Ata, as-sauri dan lain-lain, mengartikan al-wasilah di dalam ayat ini dengan mendekatkan diri. Mengenai pengertian ini, Ibnu Kasir dalam tafsirnya (2/52), berkata: \n\nPengertian yang telah diberikan oleh para imam ini, tidak terdapat perbedaan antara para mufasir.\n\nKata wasilah ada kalanya berarti tempat tertinggi di surga, sebagaimana sabda Rasulullah saw: \n\n"Apabila engkau bersalawat kepadaku, maka mintakanlah untukku "wasilah". Lalu beliau ditanya: "Wahai Rasullullah, apakah wasilah itu?." Rasullulah menjawab, "Wasilah itu ialah derajat yang paling tinggi di Surga tidak ada yang akan mencapainya kecuali seorang saja dan saya berharap, sayalah orang itu." (Riwayat Ahmad dari Abu Hurairah).\n\nMenjauhi dan meninggalkan larangan Allah serta melaksanakan perintah-Nya adalah hal-hal yang tidak mudah, karena nafsu yang ada pada tiap manusia itu selalu mengajak melakukan hal-hal yang bertentangan dengan yang baik, yaitu melanggar dan meninggalkan perintah Allah sebagaimana firman-Nya:\n\n"Sesungguhnya nafsu itu selalu menyuruh kepada kejahatan." (Yusuf /12:53).\n\nOleh karena itu kita harus berjuang untuk mengekang hawa nafsu, mengatasi segala kesulitan dan mengelakkan semua rintangan yang akan menyebabkan kita bergeser dari jalan Allah agar kita berada di atas garis yang telah ditetapkan. Dengan demikian kita akan memperoleh kebahagiaan yang telah dijanjikan oleh Allah.',
-        short:
-          "Sesudah dijelaskan tentang hukuman para pengacau keamanan dan pelanggar larangan Allah dan Rasul-Nya karena dengki dan ketidaktaatan mereka, maka ayat ini memerintahkan orang mukmin untuk bertakwa dan melakukan perbuatan baik. Wahai orang-orang yang beriman! Bertakwalah kamu sekalian kepada Allah dengan ibadah dan melaksanakan semua perintah-Nya, dan carilah wasilah, jalan yang paling tepat, untuk mendekatkan diri kepada-Nya, dan berjihadlah, yakni berjuanglah, di jalan-Nya dengan melakukan kebaikan dan membantu mereka yang memerlukan. Semua perintah ini dimaksudkan agar kamu menjadi lebih beruntung, baik ketika di dunia maupun kelak di akhirat.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman! Bertakwalah kalian kepada Allah dengan menjalankan perintah-perintah-Nya dan menjauhi larangan-larangan-Nya, serta berusahalah kalian untuk mendekatkan diri kepada-Nya dengan menunaikan apa yang Dia perintahkan kepada kalian dan menjauhi apa yang Dia larang. Berjuanglah kalian melawan orang-orang kafir untuk mengharap rida-Nya, agar kalian bisa mendapatkan apa yang kalian harapkan dan menghindari apa yang kalian takuti manakala kalian melaksanakan kewajiban (berjuang) tersebut.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0627\u062a\u0651\u064e\u0642\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0627\u0628\u0652\u062a\u064e\u063a\u064f\u0648\u0627 \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u0627\u0644\u0652\u0648\u064e\u0633\u0650\u064a\u0644\u064e\u0629\u064e \u0648\u064e\u062c\u064e\u0627\u0647\u0650\u062f\u064f\u0648\u0627 \u0641\u0650\u064a \u0633\u064e\u0628\u0650\u064a\u0644\u0650\u0647\u0650 \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0643\u064f\u0645\u0652 \u062a\u064f\u0641\u0652\u0644\u0650\u062d\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "yaaa aiyuhal lazeena aamanut taqul laaha wabtaghooo ilaihil waseelata wa jaahidoo fee sabeelihee la'allakum tuflihoon",
-      },
+      arabic:
+        "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَٱبْتَغُوٓا۟ إِلَيْهِ ٱلْوَسِيلَةَ وَجَٰهِدُوا۟ فِى سَبِيلِهِۦ لَعَلَّكُمْ تُفْلِحُونَ",
     },
     translation: {
-      en: "O you who have believed, fear Allah and seek the means [of nearness] to Him and strive in His cause that you may succeed.",
-      id: "Wahai orang-orang yang beriman! Bertakwalah kepada Allah dan carilah wasilah (jalan) untuk mendekatkan diri kepada-Nya, dan berjihadlah (berjuanglah) di jalan-Nya, agar kamu beruntung.",
+      en: {
+        footnotes: "[33] By doing what pleases Allah Almighty.",
+        text: "O you who believe, fear Allah and seek the means of nearness to Him[33], and struggle in His way, so that you may succeed.",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai orang-orang yang beriman! Bertakwalah kepada Allah dan carilah wasilah (jalan) untuk mendekatkan diri kepada-Nya, dan berjihadlah (berjuanglah) di jalan-Nya, agar kamu beruntung.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/705",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/705.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/705.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 45,
       juz: 6,
       manzil: 2,
       page: 113,
       ruku: 91,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 705,
@@ -229,20 +200,23 @@ export const quranSurah5Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: 'Orang yang tidak mau bertakwa kepada Allah dan tidak mau membersihkan dirinya dari dosa-dosa yang diperbuatnya, serta tetap di dalam kekafiran mengingkari ketuhanan Allah lalu menyembah selain Allah dan sampai mati mereka tidak bertobat, maka di hari Kiamat mereka nanti akan menyesal. Sekiranya semua yang ada di bumi ini adalah miliknya bahkan ditambah lagi sebanyak itu pula, dan ingin melepaskan diri dari azab yang menimpanya, maka semuanya itu tidak akan diterima-Nya.\n\nDi dalam satu hadis Nabi Muhammad bersabda: \n\nDidatangkan seorang kafir di hari kiamat dan dikatakan kepadanya "Sekiranya engkau memiliki emas sepenuh bumi ini, apakah engkau ingin menjadikannya tebusan (atas siksa yang akan kamu terima). Ia menjawab Ya saya ingin." (Riwayat al-Bukhari dari Anas r.a.).\n\nTetapi apa boleh buat, nasi telah menjadi bubur. Bagaimanapun juga keinginan mereka, tidak akan diterima dan tetap akan menjalani hukuman berupa siksaan yang amat pedih, karena di akhirat tidak mungkin dosa itu dapat ditebus dengan harta benda. Tetapi jika bertobat di masa hidupnya dan membersihkan diri dengan amal saleh, maka Allah akan menerima tobatnya.',
-        short:
-          "Sesungguhnya orang-orang yang kafir, yaitu mereka yang tidak mau bertakwa kepada Allah dan tidak mau membersihkan diri dari dosa, serta mengingkari keesaan-Nya pasti akan mendapat balasan. Seandainya mereka memiliki segala apa yang ada di bumi dan ditambah dengan sebanyak itu lagi yang kemudian dipergunakan untuk menebus diri mereka agar terlepas dari azab pada hari Kiamat akibat keingkarannya, niscaya semua itu tidak akan diterima Allah sebagai tebusan dari mereka. Oleh karena itu, di akhirat mereka tetap akan mendapat azab yang pedih.",
+        footnotes: null,
+        text: "Sungguh, sekiranya orang-orang yang kafir kepada Allah dan para rasul-Nya, masing-masing memiliki semua yang ada di bumi ini ditambah dengan jumlah yang sama lalu mereka mempergunakannya untuk menebus diri mereka dari azab Allah di hari kiamat, niscaya tebusan itu tidak akan diterima, dan mereka tetap akan mendapatkan azab yang pedih.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0644\u064e\u0648\u0652 \u0623\u064e\u0646\u0651\u064e \u0644\u064e\u0647\u064f\u0645 \u0645\u0651\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627 \u0648\u064e\u0645\u0650\u062b\u0652\u0644\u064e\u0647\u064f \u0645\u064e\u0639\u064e\u0647\u064f \u0644\u0650\u064a\u064e\u0641\u0652\u062a\u064e\u062f\u064f\u0648\u0627 \u0628\u0650\u0647\u0650 \u0645\u0650\u0646\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u0650 \u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u0642\u0650\u064a\u064e\u0627\u0645\u064e\u0629\u0650 \u0645\u064e\u0627 \u062a\u064f\u0642\u064f\u0628\u0651\u0650\u0644\u064e \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0644\u064e\u0647\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064c \u0623\u064e\u0644\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Innal lazeena kafaroo law anna lahum maa fil ardi jamee'anw wa mislahoo ma'ahoo liyaftadoo bihee min 'azaabi Yawmil Qiyaamati maa tuqubbila minhum wa lahum azaabun aleem",
-      },
+      arabic:
+        "إِنَّ ٱلَّذِينَ كَفَرُوا۟ لَوْ أَنَّ لَهُم مَّا فِى ٱلْأَرْضِ جَمِيعًا وَمِثْلَهُۥ مَعَهُۥ لِيَفْتَدُوا۟ بِهِۦ مِنْ عَذَابِ يَوْمِ ٱلْقِيَٰمَةِ مَا تُقُبِّلَ مِنْهُمْ وَلَهُمْ عَذَابٌ أَلِيمٌ",
     },
     translation: {
-      en: "Indeed, those who disbelieve - if they should have all that is in the earth and the like of it with it by which to ransom themselves from the punishment of the Day of Resurrection, it will not be accepted from them, and for them is a painful punishment",
-      id: "Sesungguhnya orang-orang yang kafir, seandainya mereka memiliki segala apa yang ada di bumi dan ditambah dengan sebanyak itu (lagi) untuk menebus diri mereka dari azab pada hari Kiamat, niscaya semua (tebusan) itu tidak akan diterima dari mereka. Mereka (tetap) mendapat azab yang pedih.",
+      en: {
+        footnotes: "[34] See 3:91; 13:18; 39:47.",
+        text: "As for those who disbelieved, even if they were to possess everything on earth and the like of it to ransom themselves[34] from the punishment of the Day of Resurrection, it would not be accepted from them, and for them there will be a painful punishment.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sesungguhnya orang-orang yang kafir, seandainya mereka memilki segala apa yang ada di bumi dan ditambah dengan sebanyak itu (lagi) untuk menebus diri mereka dari azab pada hari Kiamat, niscaya semua (tebusan) itu tidak akan diterima dari mereka. Mereka (tetap) mendapat azab yang pedih.",
+      },
     },
   },
 ];

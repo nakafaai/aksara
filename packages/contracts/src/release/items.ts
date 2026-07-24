@@ -2,6 +2,7 @@ import { Effect, Schema, Stream } from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
+import { publicationScopeContainsContent } from "#contracts/release/snapshot";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
@@ -51,6 +52,12 @@ export class ReleaseItemOrderError extends Schema.TaggedError<ReleaseItemOrderEr
   { itemOffset: ItemCountSchema }
 ) {}
 
+/** One signed item falls outside the release's exact publication scope. */
+export class ReleaseItemScopeError extends Schema.TaggedError<ReleaseItemScopeError>()(
+  "ReleaseItemScopeError",
+  { itemOffset: ItemCountSchema }
+) {}
+
 /** The separate ordered items do not match the signed digest. */
 export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseItemsDigestMismatchError>()(
   "ReleaseItemsDigestMismatchError",
@@ -91,6 +98,17 @@ function validateItemIdentity(
         actualIndex: item.index,
         expectedIndex,
       })
+    );
+  }
+  if (
+    !publicationScopeContainsContent(manifest.scope, {
+      contentKey: item.change.contentKey,
+      family: item.change.family,
+      locale: item.change.locale,
+    })
+  ) {
+    return Effect.fail(
+      new ReleaseItemScopeError({ itemOffset: expectedIndex })
     );
   }
   return Effect.void;

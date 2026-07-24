@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah44Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4463",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4463.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4463.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 199,
       juz: 25,
       manzil: 6,
       page: 498,
       ruku: 433,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4463,
@@ -24,40 +25,33 @@ export const quranSurah44Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam suatu riwayat diterangkan sebab turunnya ayat ini Al-Amawy meriwayatkan dalam kitabnya "Al-Magazi" bahwa \'Ikrimah mengatakan, Rasulullah saw pernah menemui Abu Jahal dan mengatakan kepadanya, "Celakalah kamu". Umpatan ini diulangi beliau tiga kali.\n\nKemudian Abu Jahal menarik tangannya dari tangan Rasulullah saw dan berkata, "Apa yang engkau ancamkan kepadaku. Engkau dan Tuhanmu tidak akan mampu melakukan tindakan apapun terhadap aku. Sebenarnya, jika engkau mengetahui, akulah orang yang paling perkasa dan paling mulia di lembah (Mekah) ini. Engkau telah mengetahui bahwa akulah yang paling perkasa di antara penduduk negeri Batha\' atas kaumnya." Kemudian Abu Jahal mati dalam Perang Badar dalam keadaan hina. Maka turunlah ayat ini seakan-akan menyindir perkataan Abu Jahal yang juga merupakan perkataan orang-orang kafir Mekah di waktu itu.\n\nPada ayat ini Allah menggambarkan hardikan dan cemoohan yang diucapkan malaikat Zabaniyah kepada penghuni-penghuni neraka. Para malaikat mengatakan kepada mereka itu. "Rasakanlah hai orang yang mengaku perkasa dan mulia ini, rasakanlah olehmu pembalasan dari dosa yang telah kamu kerjakan selama hidup di dunia; seakan-akan kamulah yang menentukan segala sesuatu, tidak ada orang yang lebih berkuasa dari kamu."\n\nMereka berpendapat bahwa kesenangan duniawi itu adalah kesenangan yang sebenarnya. Karena itu mereka gunakan seluruh hidup dan kehidupan mereka untuk mendapatkan kesenangan itu. Mereka hanya mementingkan diri sendiri dan tidak mau tahu bahwa sebenarnya hidup mereka bergantung pada manusia yang lain. Bahkan mereka berpendapat bahwa semua yang mereka peroleh itu adalah semata-mata hasil jerih payah mereka sendiri, mereka lupa bahwa semuanya itu adalah berasal dari Allah Yang Maha Pengasih lagi Maha Penyayang. Tindakan mereka menunjukkan bahwa mereka merasa dirinya berkuasa lagi perkasa. Tetapi apa yang mereka alami pada hari pembalasan adalah kebalikan dari apa yang mereka duga sebelumnya. Mereka merasakan siksaan yang pedih dan derita yang maha berat. Mereka merasa tidak ada nilai harga dirinya di hadapan para malaikat yang sedang menyiksa mereka. Mereka menyesali diri mereka tiada putus-putusnya.',
-        short:
-          "Lalu dikatakan kepada mereka dengan nada mengejek dan menghina, “Rasakanlah semua siksaan yang ditimpakan kepadamu saat ini, sesungguhnya kamu benar-benar orang yang perkasa lagi mulia.”",
+        footnotes: null,
+        text: "Lalu dikatakan kepadanya sebagai hinaan, “Rasakan siksa yang pedih ini karena engkau adalah orang mulia yang kedudukanmu tidak ada yang mengalahkannya di kalangan kaummu.",
       },
     },
     text: {
-      arab: "\u0630\u064f\u0642\u0652 \u0625\u0650\u0646\u0651\u064e\u0643\u064e \u0623\u064e\u0646\u062a\u064e \u0627\u0644\u0652\u0639\u064e\u0632\u0650\u064a\u0632\u064f \u0627\u0644\u0652\u0643\u064e\u0631\u0650\u064a\u0645\u064f",
-      transliteration: {
-        en: "Zuq innaka antal 'azeezul kareem",
-      },
+      arabic: "ذُقْ إِنَّكَ أَنتَ ٱلْعَزِيزُ ٱلْكَرِيمُ",
     },
     translation: {
-      en: '[It will be said], "Taste! Indeed, you are the honored, the noble!',
-      id: "”Rasakanlah, sesungguhnya kamu benar-benar orang yang perkasa lagi mulia.”",
+      en: {
+        footnotes:
+          "[12] Abu Jahl, the chief of pagans in Makkah, replied to the warning of punishment in the Hereafter by saying, “How can I be punished when I am the mighty and honorable one!” So Allah killed him in the Battle of Badr and humiliated him, and revealed this verse. He will be taunted with these words in Hell as a reminder of his own words and additional torment.",
+        text: "“Taste this. You are surely the mighty and honorable![12]",
+      },
+      id: {
+        footnotes: "",
+        text: '"Rasakanlah, sesungguhnya engkau benar-benar orang yang perkasa lagi mulia (di tengah kaummu)."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4464",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4464.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4464.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 199,
       juz: 25,
       manzil: 6,
       page: 498,
       ruku: 433,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4464,
@@ -65,40 +59,32 @@ export const quranSurah44Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa orang-orang kafir semasa hidup di dunia tidak yakin bahwa mereka benar-benar akan diazab di akhirat nanti, mereka ragu terhadap berita itu. Keragu-raguan ini tergambar dalam perkataan dan tindakan mereka. Mereka membantah adanya hari kebangkitan dan adanya hari pembalasan. Mereka mengingkari kebenaran Al-Qur'an, bahkan mereka mengatakan Al-Qur'an itu buatan Muhammad saw dan Muhammad itu bukan utusan Allah, melainkan seorang tukang tenung dan tukang sihir. Akan tetapi setelah mereka dibangkitkan kembali dan digiring ke Padang Mahsyar untuk ditimbang perbuatan-perbuatan mereka dan dilemparkan ke dalam api yang menyala-nyala, barulah mereka sadar akan akibat kesombongan serta sikap keras kepala mereka selama hidup di dunia. Timbullah penyesalan yang tidak putus-putusnya pada diri mereka walaupun mereka mengetahui, bahwa penyesalan pada waktu itu tidak ada gunanya lagi. Allah berfirman:\n\nPada hari (ketika) itu mereka didorong ke neraka Jahanam dengan sekuat-kuatnya. (Dikatakan kepada mereka), \"Inilah neraka yang dahulu kamu mendustakannya.\" (ath-thur/52: 13-14)",
-        short:
-          "Sesungguhnya, azab inilah, yakni semua yang kamu rasakan saat ini, yang dahulu sewaktu di dunia kamu ragukan.",
+        footnotes: null,
+        text: "Sesungguhnya siksa ini adalah yang kalian ragukan keberadaannya pada hari Kiamat, kini telah hilang keraguan dari kalian dengan melihatnya langsung.”",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0647\u064e\u0670\u0630\u064e\u0627 \u0645\u064e\u0627 \u0643\u064f\u0646\u062a\u064f\u0645 \u0628\u0650\u0647\u0650 \u062a\u064e\u0645\u0652\u062a\u064e\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Inna haazaa maa kuntum bihee tamtaroon",
-      },
+      arabic: "إِنَّ هَٰذَا مَا كُنتُم بِهِۦ تَمْتَرُونَ",
     },
     translation: {
-      en: 'Indeed, this is what you used to dispute."',
-      id: "Sungguh, inilah azab yang dahulu kamu ragukan.",
+      en: {
+        footnotes: "",
+        text: "This is what you [all] used to doubt.”",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, inilah azab yang dahulu kamu ragukan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4465",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4465.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4465.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 199,
       juz: 25,
       manzil: 6,
       page: 498,
       ruku: 433,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4465,
@@ -106,40 +92,32 @@ export const quranSurah44Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Sebagai perbandingan antara pahala yang diperoleh orang-orang yang beriman dengan azab yang diterima oleh orang-orang kafir, maka dalam ayat-ayat berikut digambarkan kenikmatan dan kebahagiaan yang diperoleh oleh orang-orang yang beriman. Kenikmatan dan kebahagiaan yang mereka peroleh antara lain ialah:\n\n1. Mereka mendapat tempat kembali yang baik di sisi Tuhan mereka. Di tempat itu mereka aman dari segala macam gangguan baik berupa gangguan keamanan diri mereka maupun dari gangguan keamanan jiwa mereka. Mereka berada dalam perlindungan Allah, tidak ada sesuatu pun yang dapat menggoyahkan perlindungan Allah. Tidak ada kata-kata yang menyakitkan hati, tidak ada sikap orang lain yang dapat mengguncangkan perasaan, semuanya enak didengar, indah dilihat, menyejukkan hati dan menentramkan perasaan, tempatnya yang indah, udaranya yang nyaman, mata air yang jernih memancarkan air yang mengasyikkan orang yang tinggal di dalamnya.\n\n2. Di dalam surga itu, orang-orang yang beriman diberi pakaian yang terbuat dari sutera, baik sutera yang halus lagi lembut, memuaskan hati orang yang memakainya, maupun sutera tebal yang beraneka warna dan menghangatkan badan.\n\n3. Mereka duduk berbincang-bincang, berhadap-hadapan di tempat-tempat duduk yang menyenangkan. Dari wajah-wajah mereka, yang terpancar hanyalah rasa kebahagiaan yang tiada taranya dan rasa kepuasan terhadap pahala yang diberikan Allah kepada mereka.\n\n4. Mereka dianugerahi teman hidup yang mendampingi mereka, berupa jodoh atau pasangan yang serasi dan sesuai dengan keinginan mereka. Jodoh mereka itu tidak ada cacat celanya dan belum pernah hatinya tertambat kepada orang lain.\n\n5. Mereka disuguhi buah-buahan yang beraneka ragam macamnya dan makanan yang enak, tidak habis-habisnya dan tidak pernah membosankan.\n\nDemikian kesenangan dan kebahagiaan yang akan diperoleh ahli surga nanti. Sebenarnya kebahagiaan dan kesenangan itu tidak dapat dibayangkan manusia karena tidak ada bandingannya dalam kehidupan ini.",
-        short:
-          "Sungguh, orang-orang yang bertakwa, patuh, taat melaksanakan perintah Allah dan taat meninggalkan larangan-larangan-Nya, berada dalam tempat yang aman,",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang yang bertakwa kepada Tuhan mereka dengan menjalankan segala perintah-perintah-Nya dan menjauhi segala larangan-larangan-Nya berada di tempat terhormat, aman dari setiap hal yang tidak disukai yang menimpa mereka.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u0645\u064f\u062a\u0651\u064e\u0642\u0650\u064a\u0646\u064e \u0641\u0650\u064a \u0645\u064e\u0642\u064e\u0627\u0645\u064d \u0623\u064e\u0645\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Innal muttaqeena fee maqaamin ameen",
-      },
+      arabic: "إِنَّ ٱلْمُتَّقِينَ فِى مَقَامٍ أَمِينٍ",
     },
     translation: {
-      en: "Indeed, the righteous will be in a secure place;",
-      id: "Sungguh, orang-orang yang bertakwa berada dalam tempat yang aman,",
+      en: {
+        footnotes: "",
+        text: "Indeed, the righteous will be in a safe place,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, orang-orang yang bertakwa berada dalam tempat yang aman,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4466",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4466.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4466.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 199,
       juz: 25,
       manzil: 6,
       page: 498,
       ruku: 433,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4466,
@@ -147,40 +125,32 @@ export const quranSurah44Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Sebagai perbandingan antara pahala yang diperoleh orang-orang yang beriman dengan azab yang diterima oleh orang-orang kafir, maka dalam ayat-ayat berikut digambarkan kenikmatan dan kebahagiaan yang diperoleh oleh orang-orang yang beriman. Kenikmatan dan kebahagiaan yang mereka peroleh antara lain ialah:\n\n1. Mereka mendapat tempat kembali yang baik di sisi Tuhan mereka. Di tempat itu mereka aman dari segala macam gangguan baik berupa gangguan keamanan diri mereka maupun dari gangguan keamanan jiwa mereka. Mereka berada dalam perlindungan Allah, tidak ada sesuatu pun yang dapat menggoyahkan perlindungan Allah. Tidak ada kata-kata yang menyakitkan hati, tidak ada sikap orang lain yang dapat mengguncangkan perasaan, semuanya enak didengar, indah dilihat, menyejukkan hati dan menentramkan perasaan, tempatnya yang indah, udaranya yang nyaman, mata air yang jernih memancarkan air yang mengasyikkan orang yang tinggal di dalamnya.\n\n2. Di dalam surga itu, orang-orang yang beriman diberi pakaian yang terbuat dari sutera, baik sutera yang halus lagi lembut, memuaskan hati orang yang memakainya, maupun sutera tebal yang beraneka warna dan menghangatkan badan.\n\n3. Mereka duduk berbincang-bincang, berhadap-hadapan di tempat-tempat duduk yang menyenangkan. Dari wajah-wajah mereka, yang terpancar hanyalah rasa kebahagiaan yang tiada taranya dan rasa kepuasan terhadap pahala yang diberikan Allah kepada mereka.\n\n4. Mereka dianugerahi teman hidup yang mendampingi mereka, berupa jodoh atau pasangan yang serasi dan sesuai dengan keinginan mereka. Jodoh mereka itu tidak ada cacat celanya dan belum pernah hatinya tertambat kepada orang lain.\n\n5. Mereka disuguhi buah-buahan yang beraneka ragam macamnya dan makanan yang enak, tidak habis-habisnya dan tidak pernah membosankan.\n\nDemikian kesenangan dan kebahagiaan yang akan diperoleh ahli surga nanti. Sebenarnya kebahagiaan dan kesenangan itu tidak dapat dibayangkan manusia karena tidak ada bandingannya dalam kehidupan ini.",
-        short:
-          "damai, dam indah yang tidak dapat dilukiskan oleh manusia, yaitu di dalam taman-taman yang sangat indah dan mata air-mata air yang jernih mengalir,",
+        footnotes: null,
+        text: "Mereka berada di taman-taman dan mata air yang mengalir.",
       },
     },
     text: {
-      arab: "\u0641\u0650\u064a \u062c\u064e\u0646\u0651\u064e\u0627\u062a\u064d \u0648\u064e\u0639\u064f\u064a\u064f\u0648\u0646\u064d",
-      transliteration: {
-        en: "Fee jannaatinw wa 'uyoon",
-      },
+      arabic: "فِى جَنَّٰتٍ وَعُيُونٍ",
     },
     translation: {
-      en: "Within gardens and springs,",
-      id: "(yaitu) di dalam taman-taman dan mata air-mata air,",
+      en: {
+        footnotes: "",
+        text: "in gardens and springs,",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) di dalam taman-taman dan mata air-mata air;",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4467",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4467.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4467.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 199,
       juz: 25,
       manzil: 6,
       page: 498,
       ruku: 433,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4467,
@@ -188,40 +158,32 @@ export const quranSurah44Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Sebagai perbandingan antara pahala yang diperoleh orang-orang yang beriman dengan azab yang diterima oleh orang-orang kafir, maka dalam ayat-ayat berikut digambarkan kenikmatan dan kebahagiaan yang diperoleh oleh orang-orang yang beriman. Kenikmatan dan kebahagiaan yang mereka peroleh antara lain ialah:\n\n1. Mereka mendapat tempat kembali yang baik di sisi Tuhan mereka. Di tempat itu mereka aman dari segala macam gangguan baik berupa gangguan keamanan diri mereka maupun dari gangguan keamanan jiwa mereka. Mereka berada dalam perlindungan Allah, tidak ada sesuatu pun yang dapat menggoyahkan perlindungan Allah. Tidak ada kata-kata yang menyakitkan hati, tidak ada sikap orang lain yang dapat mengguncangkan perasaan, semuanya enak didengar, indah dilihat, menyejukkan hati dan menentramkan perasaan, tempatnya yang indah, udaranya yang nyaman, mata air yang jernih memancarkan air yang mengasyikkan orang yang tinggal di dalamnya.\n\n2. Di dalam surga itu, orang-orang yang beriman diberi pakaian yang terbuat dari sutera, baik sutera yang halus lagi lembut, memuaskan hati orang yang memakainya, maupun sutera tebal yang beraneka warna dan menghangatkan badan.\n\n3. Mereka duduk berbincang-bincang, berhadap-hadapan di tempat-tempat duduk yang menyenangkan. Dari wajah-wajah mereka, yang terpancar hanyalah rasa kebahagiaan yang tiada taranya dan rasa kepuasan terhadap pahala yang diberikan Allah kepada mereka.\n\n4. Mereka dianugerahi teman hidup yang mendampingi mereka, berupa jodoh atau pasangan yang serasi dan sesuai dengan keinginan mereka. Jodoh mereka itu tidak ada cacat celanya dan belum pernah hatinya tertambat kepada orang lain.\n\n5. Mereka disuguhi buah-buahan yang beraneka ragam macamnya dan makanan yang enak, tidak habis-habisnya dan tidak pernah membosankan.\n\nDemikian kesenangan dan kebahagiaan yang akan diperoleh ahli surga nanti. Sebenarnya kebahagiaan dan kesenangan itu tidak dapat dibayangkan manusia karena tidak ada bandingannya dalam kehidupan ini.",
-        short:
-          "mereka memakai sutra yang halus dan sutra yang tebal yang berkilauan, sambil duduk berhadap-hadapan.",
+        footnotes: null,
+        text: " Di surga mereka mengenakan sutra yang tipis dan sutra yang tebal, masing-masing saling berhadap-hadapan dan tidak seorang pun dari mereka yang melihat tengkuk orang lainnya.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0644\u0652\u0628\u064e\u0633\u064f\u0648\u0646\u064e \u0645\u0650\u0646 \u0633\u064f\u0646\u062f\u064f\u0633\u064d \u0648\u064e\u0625\u0650\u0633\u0652\u062a\u064e\u0628\u0652\u0631\u064e\u0642\u064d \u0645\u0651\u064f\u062a\u064e\u0642\u064e\u0627\u0628\u0650\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Yalbasoona min sundusinw wa istbraqim mutaqaabileen",
-      },
+      arabic: "يَلْبَسُونَ مِن سُندُسٍ وَإِسْتَبْرَقٍ مُّتَقَٰبِلِينَ",
     },
     translation: {
-      en: "Wearing [garments of] fine silk and brocade, facing each other.",
-      id: "mereka memakai sutra yang halus dan sutra yang tebal, (duduk) berhadapan,",
+      en: {
+        footnotes: "",
+        text: "wearing fine silk and heavy brocade, facing one another.",
+      },
+      id: {
+        footnotes: "",
+        text: "mereka memakai sutera yang halus dan sutera yang tebal, (duduk) berhadapan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4468",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4468.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4468.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 199,
       juz: 25,
       manzil: 6,
       page: 498,
       ruku: 433,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4468,
@@ -229,20 +191,22 @@ export const quranSurah44Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Sebagai perbandingan antara pahala yang diperoleh orang-orang yang beriman dengan azab yang diterima oleh orang-orang kafir, maka dalam ayat-ayat berikut digambarkan kenikmatan dan kebahagiaan yang diperoleh oleh orang-orang yang beriman. Kenikmatan dan kebahagiaan yang mereka peroleh antara lain ialah:\n\n1. Mereka mendapat tempat kembali yang baik di sisi Tuhan mereka. Di tempat itu mereka aman dari segala macam gangguan baik berupa gangguan keamanan diri mereka maupun dari gangguan keamanan jiwa mereka. Mereka berada dalam perlindungan Allah, tidak ada sesuatu pun yang dapat menggoyahkan perlindungan Allah. Tidak ada kata-kata yang menyakitkan hati, tidak ada sikap orang lain yang dapat mengguncangkan perasaan, semuanya enak didengar, indah dilihat, menyejukkan hati dan menentramkan perasaan, tempatnya yang indah, udaranya yang nyaman, mata air yang jernih memancarkan air yang mengasyikkan orang yang tinggal di dalamnya.\n\n2. Di dalam surga itu, orang-orang yang beriman diberi pakaian yang terbuat dari sutera, baik sutera yang halus lagi lembut, memuaskan hati orang yang memakainya, maupun sutera tebal yang beraneka warna dan menghangatkan badan.\n\n3. Mereka duduk berbincang-bincang, berhadap-hadapan di tempat-tempat duduk yang menyenangkan. Dari wajah-wajah mereka, yang terpancar hanyalah rasa kebahagiaan yang tiada taranya dan rasa kepuasan terhadap pahala yang diberikan Allah kepada mereka.\n\n4. Mereka dianugerahi teman hidup yang mendampingi mereka, berupa jodoh atau pasangan yang serasi dan sesuai dengan keinginan mereka. Jodoh mereka itu tidak ada cacat celanya dan belum pernah hatinya tertambat kepada orang lain.\n\n5. Mereka disuguhi buah-buahan yang beraneka ragam macamnya dan makanan yang enak, tidak habis-habisnya dan tidak pernah membosankan.\n\nDemikian kesenangan dan kebahagiaan yang akan diperoleh ahli surga nanti. Sebenarnya kebahagiaan dan kesenangan itu tidak dapat dibayangkan manusia karena tidak ada bandingannya dalam kehidupan ini.",
-        short:
-          "Demikianlah kenikmatan dan kedamaian yang dapat di rasakan oleh orang-orang yang bertakwa di dalam surga. Kemudian, di samping itu, Kami tambahkan lagi sesuatu yang dapat membahagiakan mereka dengan menjadikan mereka berpasangan dengan bidadari, sosok yang bermata indah.",
+        footnotes: null,
+        text: "Sebagaimana mereka telah Kami muliakan dengan hal-hal yang telah disebutkan itu, mereka juga Kami nikahkan dengan bidadari-bidadari yang rupawan, bermata lebar dengan putih bola matanya sangat putih dan hitamnya pun sangat hitam.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0648\u064e\u0632\u064e\u0648\u0651\u064e\u062c\u0652\u0646\u064e\u0627\u0647\u064f\u0645 \u0628\u0650\u062d\u064f\u0648\u0631\u064d \u0639\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Kazaalika wa zawwajnaahum bihoorin 'een",
-      },
+      arabic: "كَذَٰلِكَ وَزَوَّجْنَٰهُم بِحُورٍ عِينٍ",
     },
     translation: {
-      en: "Thus. And We will marry them to fair women with large, [beautiful] eyes.",
-      id: "demikianlah, kemudian Kami berikan kepada mereka pasangan bidadari yang bermata indah.",
+      en: {
+        footnotes: "",
+        text: "So it will be, and We will marry them to maidens with gorgeous eyes.",
+      },
+      id: {
+        footnotes: "",
+        text: "Demikianlah, kemudian Kami berikan kepada mereka pasangan bidadari yang bermata indah.",
+      },
     },
   },
 ];

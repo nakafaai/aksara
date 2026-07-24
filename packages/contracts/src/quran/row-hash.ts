@@ -4,16 +4,16 @@ import { Effect, Schema } from "effect";
 
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
+import type { QuranSourceAttribution } from "#contracts/quran/source";
 import {
   QURAN_LOCALES,
   QURAN_TAFSIR_LOCALES,
-  type QuranLocalizedTextSchema,
   type QuranRowPayload,
   type QuranRuntimeVerse,
   QuranSnapshotRowSchema,
 } from "#contracts/quran/spec";
 
-const ROW_DOMAIN = "nakafa.aksara.quran-row.v1";
+const ROW_DOMAIN = "nakafa.aksara.quran-row.v2";
 
 /** Node could not complete a deterministic Quran row hash operation. */
 export class QuranHashError extends Schema.TaggedError<QuranHashError>()(
@@ -21,26 +21,45 @@ export class QuranHashError extends Schema.TaggedError<QuranHashError>()(
   { scope: Schema.Literal("row") }
 ) {}
 
-/** Serializes locale-indexed Quran text in fixed application order. */
-function canonicalizeLocalizedText(text: typeof QuranLocalizedTextSchema.Type) {
+/** Serializes locale-indexed QuranEnc translations in fixed order. */
+function canonicalizeTranslations(
+  translations: QuranRuntimeVerse["translation"]
+) {
   return Object.fromEntries(
-    QURAN_LOCALES.map((locale) => [locale, text[locale]])
+    QURAN_LOCALES.map((locale) => [
+      locale,
+      {
+        footnotes: translations[locale].footnotes,
+        text: translations[locale].text,
+      },
+    ])
   );
 }
 
-/** Serializes one reviewed Quran audio source in fixed field order. */
-function canonicalizeAudio(audio: QuranRuntimeVerse["audio"]) {
+/** Serializes one visible official-source attribution in fixed field order. */
+function canonicalizeAttribution(source: QuranSourceAttribution) {
   return {
-    primary: audio.primary,
-    secondary: [audio.secondary[0], audio.secondary[1]],
-  };
-}
-
-/** Serializes Arabic text and its reviewed transliteration. */
-function canonicalizeText(text: QuranRuntimeVerse["text"]) {
-  return {
-    arab: text.arab,
-    transliteration: { en: text.transliteration.en },
+    artifact: {
+      byteCount: source.artifact.byteCount,
+      digest: source.artifact.digest,
+      fileCount: source.artifact.fileCount,
+    },
+    id: source.id,
+    notice: source.notice,
+    publisher: source.publisher,
+    retrievedAt: source.retrievedAt,
+    sourceUrl: source.sourceUrl,
+    terms: {
+      artifact: {
+        byteCount: source.terms.artifact.byteCount,
+        digest: source.terms.artifact.digest,
+        fileCount: source.terms.artifact.fileCount,
+      },
+      url: source.terms.url,
+    },
+    title: source.title,
+    updateUrl: source.updateUrl,
+    version: source.version,
   };
 }
 
@@ -49,7 +68,10 @@ function canonicalizeTafsir(tafsir: QuranRuntimeVerse["tafsir"]) {
   return Object.fromEntries(
     QURAN_TAFSIR_LOCALES.map((locale) => [
       locale,
-      { short: tafsir[locale].short },
+      {
+        footnotes: tafsir[locale].footnotes,
+        text: tafsir[locale].text,
+      },
     ])
   );
 }
@@ -57,58 +79,46 @@ function canonicalizeTafsir(tafsir: QuranRuntimeVerse["tafsir"]) {
 /** Serializes one complete runtime verse without trusting object insertion. */
 function canonicalizeVerse(verse: QuranRuntimeVerse) {
   return {
-    audio: canonicalizeAudio(verse.audio),
     meta: {
       hizbQuarter: verse.meta.hizbQuarter,
       juz: verse.meta.juz,
       manzil: verse.meta.manzil,
       page: verse.meta.page,
       ruku: verse.meta.ruku,
-      sajda: {
-        obligatory: verse.meta.sajda.obligatory,
-        recommended: verse.meta.sajda.recommended,
-      },
+      sajda: verse.meta.sajda,
     },
     number: {
       inQuran: verse.number.inQuran,
       inSurah: verse.number.inSurah,
     },
     tafsir: canonicalizeTafsir(verse.tafsir),
-    text: canonicalizeText(verse.text),
-    translation: canonicalizeLocalizedText(verse.translation),
+    text: { arabic: verse.text.arabic },
+    translation: canonicalizeTranslations(verse.translation),
   };
 }
 
 /** Produces stable JSON for one exhaustive structured Quran row payload. */
 export function canonicalizeQuranRow(payload: QuranRowPayload) {
+  if (payload.kind === "quran-attribution") {
+    return JSON.stringify({
+      kind: payload.kind,
+      sources: payload.sources.map(canonicalizeAttribution),
+    });
+  }
   if (payload.kind === "quran-surah") {
     return JSON.stringify({
       kind: payload.kind,
       name: {
-        long: payload.name.long,
-        short: payload.name.short,
-        translation: canonicalizeLocalizedText(payload.name.translation),
-        transliteration: canonicalizeLocalizedText(
-          payload.name.transliteration
-        ),
+        arabic: payload.name.arabic,
+        translation: payload.name.translation,
+        transliteration: payload.name.transliteration,
       },
       number: payload.number,
       numberOfVerses: payload.numberOfVerses,
-      preBismillah:
-        payload.preBismillah === null
-          ? null
-          : {
-              audio: canonicalizeAudio(payload.preBismillah.audio),
-              text: canonicalizeText(payload.preBismillah.text),
-              translation: canonicalizeLocalizedText(
-                payload.preBismillah.translation
-              ),
-            },
       revelation: {
-        arab: payload.revelation.arab,
-        ...canonicalizeLocalizedText(payload.revelation),
+        order: payload.revelation.order,
+        place: payload.revelation.place,
       },
-      sequence: payload.sequence,
     });
   }
   if (payload.kind === "quran-chunk") {
@@ -122,7 +132,6 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
     });
   }
   return JSON.stringify({
-    description: payload.description,
     graph: canonicalizeLearningGraphIdentity(payload.graph),
     kind: payload.kind,
     locale: payload.locale,

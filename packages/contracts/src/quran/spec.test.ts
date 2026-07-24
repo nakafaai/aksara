@@ -2,6 +2,7 @@ import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
+  QURAN_ATTRIBUTION_COUNT,
   QURAN_CHUNK_SIZE,
   QURAN_LOCALES,
   QURAN_SEARCH_COUNT,
@@ -21,25 +22,21 @@ const hash = `sha256:${"a".repeat(64)}`;
 /** Builds one structurally valid technical verse sample. */
 function verse(inSurah = 1, inQuran = 1) {
   return {
-    audio: {
-      primary: "https://example.com/primary.mp3",
-      secondary: [
-        "https://example.com/secondary.mp3",
-        "https://example.com/alternate.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 1,
       juz: 1,
       manzil: 1,
       page: 1,
       ruku: 1,
-      sajda: { obligatory: false, recommended: false },
+      sajda: null,
     },
     number: { inQuran, inSurah },
-    tafsir: { id: { short: "Ringkas" } },
-    text: { arab: "نص", transliteration: { en: "Text" } },
-    translation: { en: "Text", id: "Teks" },
+    tafsir: { id: { footnotes: null, text: "Tafsir" } },
+    text: { arabic: "نص" },
+    translation: {
+      en: { footnotes: "", text: "Text" },
+      id: { footnotes: "", text: "Teks" },
+    },
   };
 }
 
@@ -63,19 +60,15 @@ describe("Quran contracts", () => {
     const surah = Schema.decodeUnknownSync(QuranSurahRowSchema)({
       kind: "quran-surah",
       name: {
-        long: "الفاتحة",
-        short: "الفاتحة",
-        translation: { en: "The Opening", id: "Pembukaan" },
-        transliteration: { en: "Al-Faatiha", id: "Al-Fatihah" },
+        arabic: "الفاتحة",
+        translation: "The Opening",
+        transliteration: "Al-Faatiha",
       },
       number: 1,
       numberOfVerses: 7,
-      preBismillah: null,
-      revelation: { arab: "مكية", en: "Meccan", id: "Makkiyah" },
-      sequence: 5,
+      revelation: { order: 5, place: "Meccan" },
     });
     const search = Schema.decodeUnknownSync(QuranSearchRowSchema)({
-      description: "The Opening",
       graph: {
         alignmentId: "alignment:quran:quran-surah:1",
         assetId: "asset:en:quran:quran-surah:1",
@@ -100,6 +93,7 @@ describe("Quran contracts", () => {
     expect(surah.numberOfVerses).toBe(7);
     expect(row.payload.kind).toBe("quran-search");
     expect({
+      attributions: QURAN_ATTRIBUTION_COUNT,
       chunkSize: QURAN_CHUNK_SIZE,
       locales: QURAN_LOCALES,
       searches: QURAN_SEARCH_COUNT,
@@ -107,6 +101,7 @@ describe("Quran contracts", () => {
       tafsirLocales: QURAN_TAFSIR_LOCALES,
       verses: QURAN_VERSE_COUNT,
     }).toEqual({
+      attributions: 1,
       chunkSize: 6,
       locales: ["en", "id"],
       searches: 228,
@@ -143,22 +138,22 @@ describe("Quran contracts", () => {
     expect(oversized._tag).toBe("Left");
   });
 
-  it("reports authored text and audio contract failures", () => {
+  it("reports authored text failures and rejects removed compatibility fields", () => {
     const emptyText = Schema.decodeUnknownEither(QuranMeaningfulTextSchema)("");
-    const unsafeAudio = Schema.decodeUnknownEither(QuranRuntimeVerseSchema)({
-      ...verse(),
-      audio: {
-        ...verse().audio,
-        primary: "http://example.com/primary.mp3",
+    const compatibility = Schema.decodeUnknownEither(QuranRuntimeVerseSchema)(
+      {
+        ...verse(),
+        audio: {
+          primary: "http://example.com/primary.mp3",
+        },
       },
-    });
-    if (emptyText._tag === "Right" || unsafeAudio._tag === "Right") {
+      { onExcessProperty: "error" }
+    );
+    if (emptyText._tag === "Right" || compatibility._tag === "Right") {
       throw new Error("Expected invalid Quran source values to fail.");
     }
 
     expect(String(emptyText.left)).toContain("Quran text cannot be empty.");
-    expect(String(unsafeAudio.left)).toContain(
-      "Quran audio must use a non-empty HTTPS URL."
-    );
+    expect(String(compatibility.left)).toContain("audio");
   });
 });

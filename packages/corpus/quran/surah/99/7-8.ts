@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah99Verses7To8 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6145",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6145.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6145.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 541,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6145,
@@ -24,40 +25,32 @@ export const quranSurah99Verses7To8 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah merincikan balasan amal masing-masing. Barang siapa beramal baik, walaupun hanya seberat atom niscaya akan diterima balasannya, dan begitu pula yang beramal jahat walaupun hanya seberat atom akan merasakan balasannya. Amal kebajikan orang-orang kafir tidak dapat menolong dan melepaskannya dari siksa karena kekafirannya. Mereka akan tetap sengsara selama-lamanya di dalam neraka.",
-        short:
-          "Pada saat itu setiap manusia akan mengetahui nasib dirinya. Maka barang siapa mengerjakan kebaikan seberat zarrah, niscaya dia akan melihatnya dalam buku catatan amalnya lalu dia akan menerima pahala atasnya. Dia merasa senang dan bahagia karena perbuatannya tidak sia-sia.",
+        footnotes: null,
+        text: "Barang siapa yang berbuat kebaikan dan pengabdian seberat semut kecil maka dia akan melihat balasannya di hadapannya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0645\u064e\u0646 \u064a\u064e\u0639\u0652\u0645\u064e\u0644\u0652 \u0645\u0650\u062b\u0652\u0642\u064e\u0627\u0644\u064e \u0630\u064e\u0631\u0651\u064e\u0629\u064d \u062e\u064e\u064a\u0652\u0631\u064b\u0627 \u064a\u064e\u0631\u064e\u0647\u064f",
-      transliteration: {
-        en: "Famaiy ya'mal mithqala zarratin khai raiy-yarah",
-      },
+      arabic: "فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُۥ",
     },
     translation: {
-      en: "So whoever does an atom's weight of good will see it,",
-      id: "Maka barangsiapa mengerjakan kebaikan seberat zarrah, niscaya dia akan melihat (balasan)nya,",
+      en: {
+        footnotes: "[4] Or a small ant’s weight.",
+        text: "So whoever does an atom’s weight[4] of good will see it,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka barangsiapa mengerjakan kebaikan seberat zarah, niscaya dia akan melihat (balasan)nya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6146",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6146.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6146.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 599,
       ruku: 541,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6146,
@@ -65,20 +58,22 @@ export const quranSurah99Verses7To8 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah merincikan balasan amal masing-masing. Barang siapa beramal baik, walaupun hanya seberat atom niscaya akan diterima balasannya, dan begitu pula yang beramal jahat walaupun hanya seberat atom akan merasakan balasannya. Amal kebajikan orang-orang kafir tidak dapat menolong dan melepaskannya dari siksa karena kekafirannya. Mereka akan tetap sengsara selama-lamanya di dalam neraka.",
-        short:
-          "Dan sebaliknya, barang siapa mengerjakan kejahatan seberat zarrah dan menganggapnya remeh, niscaya dia akan melihatnya dalam buku catatan amalnya lalu dia pun akan menerima balasannya. Inilah bukti kemahaadilan Allah; Dia tidak menzalimi siapa pun.",
+        footnotes: null,
+        text: "Sebaliknya, barang siapa yang berbuat kejahatan seberat semut kecil pula maka ia pun akan melihat balasannya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0639\u0652\u0645\u064e\u0644\u0652 \u0645\u0650\u062b\u0652\u0642\u064e\u0627\u0644\u064e \u0630\u064e\u0631\u0651\u064e\u0629\u064d \u0634\u064e\u0631\u0651\u064b\u0627 \u064a\u064e\u0631\u064e\u0647\u064f",
-      transliteration: {
-        en: "Wa maiy-y'amal mithqala zarratin sharraiy-yarah",
-      },
+      arabic: "وَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُۥ",
     },
     translation: {
-      en: "And whoever does an atom's weight of evil will see it.",
-      id: "dan barangsiapa mengerjakan kejahatan seberat zarrah, niscaya dia akan melihat (balasan)nya.",
+      en: {
+        footnotes: "",
+        text: "and whoever does an atom’s weight of evil will see it.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan barangsiapa mengerjakan kejahatan seberat zarah, niscaya dia akan melihat (balasan)nya.",
+      },
     },
   },
 ];

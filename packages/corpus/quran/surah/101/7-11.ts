@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah101Verses7To11 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6164",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6164.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6164.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 543,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6164,
@@ -24,40 +25,32 @@ export const quranSurah101Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menjelaskan tentang ganjaran bagi orang-orang yang banyak melakukan amal kebajikan, yaitu ketika amal mereka ditimbang dan timbangannya berat karena banyak mengerjakan amal-amal saleh. Ganjaran bagi orang-orang ini adalah kesenangan abadi di surga. Mereka hidup di dalamnya penuh dengan kebahagiaan, kenikmatan, dan kepuasan. Kita wajib mempercayai adanya mizan (neraca/timbangan) yang tersebut pada ayat ini dan dalam firman-Nya:\n\nDan Kami akan memasang timbangan yang tepat pada hari Kiamat. (al-Anbiya'/21: 47)",
-        short:
-          "maka dia berada dalam kehidupan yang memuaskan dan membahagiakan. Itulah surga yang penuh nikmat.",
+        footnotes: null,
+        text: "maka dia berada dalam kehidupan yang memuaskan yang ia dapati di dalam surga.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0647\u064f\u0648\u064e \u0641\u0650\u064a \u0639\u0650\u064a\u0634\u064e\u0629\u064d \u0631\u0651\u064e\u0627\u0636\u0650\u064a\u064e\u0629\u064d",
-      transliteration: {
-        en: "Fahuwa fee 'ishatir raadiyah",
-      },
+      arabic: "فَهُوَ فِى عِيشَةٍ رَّاضِيَةٍ",
     },
     translation: {
-      en: "He will be in a pleasant life.",
-      id: "maka dia berada dalam kehidupan yang memuaskan (senang).",
+      en: {
+        footnotes: "[3] In Paradise.",
+        text: "will have a pleasant life[3].",
+      },
+      id: {
+        footnotes: "",
+        text: "maka dia berada dalam kehidupan yang memuaskan (senang).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6165",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6165.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6165.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 543,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6165,
@@ -65,40 +58,32 @@ export const quranSurah101Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Allah juga menjelaskan nasib orang-orang jahat yaitu bila amal orang-orang jahat itu ditimbang dan timbangannya itu ringan karena banyak mengerjakan kejahatan dan sedikit mengerjakan kebajikan di dunia maka mereka akan ditempatkan dalam neraka Hawiyah tempat penyiksaan orang-orang jahat, tempat hidup sengsara; suatu tempat yang mereka dijerumuskan ke dalamnya.",
-        short:
-          "Dan adapun orang yang ringan timbangan kebaikan-nya dan kalah berat dibanding timbangan keburukannya karena lebih banyak berbuat maksiat dan kebatilan daripada taat dan kebajikan,",
+        footnotes: null,
+        text: "Sebaliknya, orang yang amal buruknya lebih berat daripada amal salehnya,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0645\u0651\u064e\u0627 \u0645\u064e\u0646\u0652 \u062e\u064e\u0641\u0651\u064e\u062a\u0652 \u0645\u064e\u0648\u064e\u0627\u0632\u0650\u064a\u0646\u064f\u0647\u064f",
-      transliteration: {
-        en: "Wa amma man khaffat mawa zeenuh",
-      },
+      arabic: "وَأَمَّا مَنْ خَفَّتْ مَوَٰزِينُهُۥ",
     },
     translation: {
-      en: "But as for one whose scales are light,",
-      id: "Dan adapun orang yang ringan timbangan (kebaikan)nya,",
+      en: {
+        footnotes: "",
+        text: "But the one whose scales of good deeds are light,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan adapun orang yang ringan timbangan (kebaikan)nya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6166",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6166.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6166.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 543,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6166,
@@ -106,39 +91,32 @@ export const quranSurah101Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Allah juga menjelaskan nasib orang-orang jahat yaitu bila amal orang-orang jahat itu ditimbang dan timbangannya itu ringan karena banyak mengerjakan kejahatan dan sedikit mengerjakan kebajikan di dunia maka mereka akan ditempatkan dalam neraka Hawiyah tempat penyiksaan orang-orang jahat, tempat hidup sengsara; suatu tempat yang mereka dijerumuskan ke dalamnya.",
-        short: "maka tempat kembalinya adalah neraka Hawiyah.",
+        footnotes: null,
+        text: "maka rumah dan tempat tinggalnya pada hari Kiamat adalah Jahanam.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064f\u0645\u0651\u064f\u0647\u064f \u0647\u064e\u0627\u0648\u0650\u064a\u064e\u0629\u064c",
-      transliteration: {
-        en: "Fa-ummuhu haawiyah",
-      },
+      arabic: "فَأُمُّهُۥ هَاوِيَةٌ",
     },
     translation: {
-      en: "His refuge will be an abyss.",
-      id: "maka tempat kembalinya adalah neraka Hawiyah.",
+      en: {
+        footnotes: "[4] Hāwiyah: the pit of Hellfire.",
+        text: "his abode will be the abyss[4].",
+      },
+      id: {
+        footnotes: "",
+        text: "maka tempat kembalinya adalah neraka Hāwiyah.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6167",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6167.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6167.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 543,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6167,
@@ -146,40 +124,32 @@ export const quranSurah101Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menjelaskan arti kata hawiyah dalam bentuk pertanyaan, yaitu: apakah neraka Hawiyah itu dan dari apa ia dijadikan? Neraka Hawiyah adalah api yang menyala-nyala yang sangat panas di mana orang-orang yang berdosa dijerumuskan ke dalamnya untuk menerima balasan atas kejahatan dan kemungkaran yang mereka lakukan. Ayat ini menggambarkan jika semua api di seluruh dunia dikumpulkan dan dipersatukan, tidak akan dapat menyamai panasnya api neraka Hawiyah.",
-        short:
-          "Menggugah perhatian manusia tentang neraka Hawiyah itu, Allah berfirman, “Dan tahukah kamu apakah neraka Hawiyah itu?”",
+        footnotes: null,
+        text: "Tahukah kamu -wahai Rasul- apakah Hawiyah itu?",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0623\u064e\u062f\u0652\u0631\u064e\u0627\u0643\u064e \u0645\u064e\u0627 \u0647\u0650\u064a\u064e\u0647\u0652",
-      transliteration: {
-        en: "Wa maa adraaka maa hiyah",
-      },
+      arabic: "وَمَآ أَدْرَىٰكَ مَا هِيَهْ",
     },
     translation: {
-      en: "And what can make you know what that is?",
-      id: "Dan tahukah kamu apakah neraka Hawiyah itu?",
+      en: {
+        footnotes: "",
+        text: "And how do you know what it is?",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan tahukah kamu apakah neraka Hāwiyah itu?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6168",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6168.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6168.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 543,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6168,
@@ -187,20 +157,22 @@ export const quranSurah101Verses7To11 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menjelaskan arti kata hawiyah dalam bentuk pertanyaan, yaitu: apakah neraka Hawiyah itu dan dari apa ia dijadikan? Neraka Hawiyah adalah api yang menyala-nyala yang sangat panas di mana orang-orang yang berdosa dijerumuskan ke dalamnya untuk menerima balasan atas kejahatan dan kemungkaran yang mereka lakukan. Ayat ini menggambarkan jika semua api di seluruh dunia dikumpulkan dan dipersatukan, tidak akan dapat menyamai panasnya api neraka Hawiyah.",
-        short:
-          "Neraka Hawiyah itu adalah api yang sangat panas dan menjadikan apa saja yang masuk ke dalamnya hancur lebur dan leleh.",
+        footnotes: null,
+        text: "Itulah neraka yang sangat panas.",
       },
     },
     text: {
-      arab: "\u0646\u064e\u0627\u0631\u064c \u062d\u064e\u0627\u0645\u0650\u064a\u064e\u0629\u064c",
-      transliteration: {
-        en: "Naarun hamiyah",
-      },
+      arabic: "نَارٌ حَامِيَةٌۢ",
     },
     translation: {
-      en: "It is a Fire, intensely hot.",
-      id: "(Yaitu) api yang sangat panas.",
+      en: {
+        footnotes: "",
+        text: "It is a Blazing Fire.",
+      },
+      id: {
+        footnotes: "",
+        text: "(Yaitu) api yang sangat panas.",
+      },
     },
   },
 ];

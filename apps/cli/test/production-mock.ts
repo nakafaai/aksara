@@ -2,16 +2,35 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   GitCommitShaSchema,
+  PublicPathSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import {
+  MaterialHeadSchema,
+  QuestionHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
 import { makeProductionTarget } from "#test/target";
 
 const HEAD_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const MATERIAL_HEAD = MaterialHeadSchema.make({
+  artifactHash: HEAD_HASH,
+  compilerConfigHash: HEAD_HASH,
+  contentKey: ContentKeySchema.make("test:material"),
+  delivery: "public",
+  family: "material",
+  locale: "en",
+  projectionHash: HEAD_HASH,
+  publicPath: PublicPathSchema.make("test/material"),
+  rendererDomain: "mathematics",
+  sourceHash: HEAD_HASH,
+  sourcePath: CorpusSourcePathSchema.make(
+    "packages/corpus/test/material/en.mdx"
+  ),
+});
 const QUESTION_HEAD = QuestionHeadSchema.make({
   artifactHash: HEAD_HASH,
   compilerConfigHash: HEAD_HASH,
@@ -149,7 +168,7 @@ export function catalogMock(calls: TargetCalls) {
       calls.checkoutRoot = input.checkoutRoot;
       return Effect.succeed({
         records: () => Stream.empty,
-        result: () => Stream.make(QUESTION_HEAD),
+        result: () => Stream.make(MATERIAL_HEAD, QUESTION_HEAD),
         routes: () => Stream.empty,
       });
     },

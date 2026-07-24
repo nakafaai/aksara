@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah89Verses19To24 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6012",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6012.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6012.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6012,
@@ -24,40 +25,32 @@ export const quranSurah89Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Tambahan lagi manusia yang ingkar dan durhaka itu sangat tamak. Mereka tega merampas harta warisan yang menjadi hak anak yatim secara akal-akalan, misalnya mencampurkannya ke dalam kekayaan mereka lalu menyatakan bahwa yang mereka makan adalah harta mereka sendiri.",
-        short:
-          "Kamu tidak berbuat baik kepada anak yatim dan orang miskin, sedangkan kamu justru memakan harta warisan dengan cara mencampur baurkan yang halal dengan yang haram. Harta warisan adalah hak ahli waris tertentu. Merampas harta warisan yang menjadi hak orang lain adalah perbuatan zalim.",
+        footnotes: null,
+        text: "Kalian juga memakan hak-hak orang yang lemah dari kalangan wanita dan anak-anak yatim dengan semaunya tanpa mempertimbangkan kehalalannya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062a\u064e\u0623\u0652\u0643\u064f\u0644\u064f\u0648\u0646\u064e \u0627\u0644\u062a\u0651\u064f\u0631\u064e\u0627\u062b\u064e \u0623\u064e\u0643\u0652\u0644\u064b\u0627 \u0644\u0651\u064e\u0645\u0651\u064b\u0627",
-      transliteration: {
-        en: "Wa taakuloonat turaasa aklal lammaa",
-      },
+      arabic: "وَتَأْكُلُونَ ٱلتُّرَاثَ أَكْلًا لَّمًّا",
     },
     translation: {
-      en: "And you consume inheritance, devouring [it] altogether,",
-      id: "sedangkan kamu memakan harta warisan dengan cara mencampurbaurkan (yang halal dan yang haram),",
+      en: {
+        footnotes: "[7] Whether lawful or unlawful.",
+        text: "and you greedily consume the entire inheritance[7],",
+      },
+      id: {
+        footnotes: "",
+        text: "sedangkan kamu memakan harta warisan dengan cara mencampurbaurkan (yang halal dan yang haram),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6013",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6013.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6013.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6013,
@@ -65,40 +58,32 @@ export const quranSurah89Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Orang yang durhaka itu terus mencari dan mengumpulkan kekayaan tanpa mengenal rasa lelah dan tidak peduli halal atau haram. Di samping itu, mereka sangat pelit, tidak mau mengeluarkan kewajiban berkenaan harta, yaitu membayar zakat dan membantu orang yang berkekurangan.\n\nAllah tidak mungkin sayang kepada orang kaya raya yang memperoleh kekayaan itu dengan cara yang tidak benar. Juga kepada orang yang tidak mau membantu orang lain. Mereka jangan mengira bahwa mereka memperoleh kekayaan itu sebagai tanda bahwa Allah menyayangi mereka. Sebaliknya, Allah sesungguhnya membenci mereka. Tidak mustahil mereka akan dijatuhi azab seperti yang telah ditimpakan-Nya kepada umat-umat terdahulu itu. Di akhirat nanti, Allah akan memasukkan mereka ke dalam neraka. Hakikat ini hendaknya disadari oleh kaum kafir Mekah yang masih juga membangkang. Hal itu hendaknya dijadikan pelajaran oleh seluruh umat manusia.",
-        short:
-          "Dan tidak hanya itu, kamu juga mencintai harta dengan kecintaan yang berlebihan. Kecintaan berlebih seseorang terhadap harta menjadikan motivasi hidupnya semata untuk mengumpul­kan harta, tidak peduli halal atau haram. Di sisi lain, dia akan menjadi kikir dan tidak mau peduli kepada sesama. Perilaku ini akan menjerumuskannya ke neraka.",
+        footnotes: null,
+        text: "Kalian juga sangat menyukai harta, sehingga kalian kikir untuk menginfakkannya di jalan Allah karena sangat menggandrunginya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062a\u064f\u062d\u0650\u0628\u0651\u064f\u0648\u0646\u064e \u0627\u0644\u0652\u0645\u064e\u0627\u0644\u064e \u062d\u064f\u0628\u0651\u064b\u0627 \u062c\u064e\u0645\u0651\u064b\u0627",
-      transliteration: {
-        en: "Wa tuhibboonal maala hubban jammaa",
-      },
+      arabic: "وَتُحِبُّونَ ٱلْمَالَ حُبًّا جَمًّا",
     },
     translation: {
-      en: "And you love wealth with immense love.",
-      id: "dan kamu mencintai harta dengan kecintaan yang berlebihan.",
+      en: {
+        footnotes: "",
+        text: "and love wealth immensely.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan kamu mencintai harta dengan kecintaan yang berlebihan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6014",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6014.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6014.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6014,
@@ -106,40 +91,32 @@ export const quranSurah89Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah memberitahukan bahwa orang-orang kafir itu nanti di akhirat akan menyesal. Allah memberitahukan bahwa dunia ini akan hancur karena planet-planet ini akan bertubrukan satu sama lain dengan dahsyatnya dan semua makhluk akan mati. Setelah itu Allah menghidupkan semua makhluk itu kembali dan menghadapkan mereka di Padang Mahsyar. Kemudian Allah dan para malaikat yang membuat formasi-formasi khusus memeriksa setiap amal manusia. Waktu itulah neraka Jahanam dihadapkan kepada orang-orang yang durhaka ketika di dunia. Waktu itu mereka yang durhaka sadar atas kedurhakaannya. Akan tetapi, sadar pada waktu itu tidak ada gunanya, karena "nasi sudah jadi bubur", dunia tempat beramal sudah berakhir, dan yang ada hanyalah tempat melihat hasil amal di dunia.',
-        short:
-          "Sekali-kali tidak! janganlah kamu berbuat demikian. Apabila bumi diguncangkan berturut-turut, memuntahkan isinya, hancur lebur, kemudian muncul bumi yang sama sekali baru,",
+        footnotes: null,
+        text: "Tidak sepatutnya perbuatan kalian seperti ini. Ingatlah, jika bumi telah digerakkan dengan keras dan diguncang gempa.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u0625\u0650\u0630\u064e\u0627 \u062f\u064f\u0643\u0651\u064e\u062a\u0650 \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064f \u062f\u064e\u0643\u0651\u064b\u0627 \u062f\u064e\u0643\u0651\u064b\u0627",
-      transliteration: {
-        en: "Kallaaa izaaa dukkatil ardu dakkan dakka",
-      },
+      arabic: "كَلَّآ إِذَا دُكَّتِ ٱلْأَرْضُ دَكًّا دَكًّا",
     },
     translation: {
-      en: "No! When the earth has been leveled - pounded and crushed -",
-      id: "Sekali-kali tidak! Apabila bumi diguncangkan berturut-turut (berbenturan),",
+      en: {
+        footnotes: "",
+        text: "No indeed! When the earth is crushed over and over,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekali-kali tidak! Apabila bumi diguncangkan berturut-turut (berbenturan),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6015",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6015.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6015.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6015,
@@ -147,40 +124,32 @@ export const quranSurah89Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah memberitahukan bahwa orang-orang kafir itu nanti di akhirat akan menyesal. Allah memberitahukan bahwa dunia ini akan hancur karena planet-planet ini akan bertubrukan satu sama lain dengan dahsyatnya dan semua makhluk akan mati. Setelah itu Allah menghidupkan semua makhluk itu kembali dan menghadapkan mereka di Padang Mahsyar. Kemudian Allah dan para malaikat yang membuat formasi-formasi khusus memeriksa setiap amal manusia. Waktu itulah neraka Jahanam dihadapkan kepada orang-orang yang durhaka ketika di dunia. Waktu itu mereka yang durhaka sadar atas kedurhakaannya. Akan tetapi, sadar pada waktu itu tidak ada gunanya, karena "nasi sudah jadi bubur", dunia tempat beramal sudah berakhir, dan yang ada hanyalah tempat melihat hasil amal di dunia.',
-        short:
-          "dan setelah itu datanglah Tuhanmu dengan cara yang tidak diketahui hakikatnya sama sekali oleh manusia; dan malaikat menunggu perintah Tuhan sambil berbaris-baris penuh kepatuhan.",
+        footnotes: null,
+        text: "Lalu Tuhanmu -wahai Rasul- datang untuk menetapkan perkara di antara hamba-hamba-Nya dan datang pula para malaikat dengan berbaris rapi.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062c\u064e\u0627\u0621\u064e \u0631\u064e\u0628\u0651\u064f\u0643\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064e\u0644\u064e\u0643\u064f \u0635\u064e\u0641\u0651\u064b\u0627 \u0635\u064e\u0641\u0651\u064b\u0627",
-      transliteration: {
-        en: "Wa jaaa'a Rabbuka wal malaku saffan saffaa",
-      },
+      arabic: "وَجَآءَ رَبُّكَ وَٱلْمَلَكُ صَفًّا صَفًّا",
     },
     translation: {
-      en: "And your Lord has come and the angels, rank upon rank,",
-      id: "dan datanglah Tuhanmu; dan malaikat berbaris-baris,",
+      en: {
+        footnotes: "[8] To pass judgment between people.",
+        text: "and your Lord comes[8] with the angels, rank after rank,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan datanglah Tuhanmu; dan malaikat berbaris-baris,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6016",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6016.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6016.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 593,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6016,
@@ -188,40 +157,32 @@ export const quranSurah89Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah memberitahukan bahwa orang-orang kafir itu nanti di akhirat akan menyesal. Allah memberitahukan bahwa dunia ini akan hancur karena planet-planet ini akan bertubrukan satu sama lain dengan dahsyatnya dan semua makhluk akan mati. Setelah itu Allah menghidupkan semua makhluk itu kembali dan menghadapkan mereka di Padang Mahsyar. Kemudian Allah dan para malaikat yang membuat formasi-formasi khusus memeriksa setiap amal manusia. Waktu itulah neraka Jahanam dihadapkan kepada orang-orang yang durhaka ketika di dunia. Waktu itu mereka yang durhaka sadar atas kedurhakaannya. Akan tetapi, sadar pada waktu itu tidak ada gunanya, karena "nasi sudah jadi bubur", dunia tempat beramal sudah berakhir, dan yang ada hanyalah tempat melihat hasil amal di dunia.',
-        short:
-          "Dan pada hari itu diperlihatkan neraka Jahanam kepada orang kafir agar mereka melihat dengan mata kepada sendiri apa yang dahulu mereka ingkari. Ketika semua itu terjadi, maka pada hari itu sadarlah manusia yang ingkar atas kealpaannya, tetapi tidak berguna lagi baginya kesadaran itu. Kesempatan untuk bertobat sudah tiada. Kini tiba saatnya untuk menghitung dan mempertanggungjawabkan perbuatan mereka. Betapa besar penyesalan orang kafir pada hari itu.",
+        footnotes: null,
+        text: "Lalu didatangkan pada hari itu neraka Jahanam yang mempunyai tujuh puluh ribu kekang, pada setiap kekang ada tujuh puluh ribu malaikat yang mengendalikannya. Pada hari itu manusia ingat apa yang telah mereka lalaikan di sisi Allah, tapi tidak mungkin ingatan itu bisa berguna bagi mereka di hari itu, karena hari itu adalah hari Pembalasan, bukan hari beramal.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062c\u0650\u064a\u0621\u064e \u064a\u064e\u0648\u0652\u0645\u064e\u0626\u0650\u0630\u064d \u0628\u0650\u062c\u064e\u0647\u064e\u0646\u0651\u064e\u0645\u064e \u06da \u064a\u064e\u0648\u0652\u0645\u064e\u0626\u0650\u0630\u064d \u064a\u064e\u062a\u064e\u0630\u064e\u0643\u0651\u064e\u0631\u064f \u0627\u0644\u0652\u0625\u0650\u0646\u0633\u064e\u0627\u0646\u064f \u0648\u064e\u0623\u064e\u0646\u0651\u064e\u0649\u0670 \u0644\u064e\u0647\u064f \u0627\u0644\u0630\u0651\u0650\u0643\u0652\u0631\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa jeee'a yawma'izim bi jahannnam; Yawma 'iziny yatazakkarul insaanu wa annaa lahuz zikraa",
-      },
+      arabic: "وَجِا۟ىٓءَ يَوْمَئِذٍۭ بِجَهَنَّمَ يَوْمَئِذٍ يَتَذَكَّرُ ٱلْإِنسَٰنُ وَأَنَّىٰ لَهُ ٱلذِّكْرَىٰ",
     },
     translation: {
-      en: "And brought [within view], that Day, is Hell - that Day, man will remember, but what good to him will be the remembrance?",
-      id: "dan pada hari itu diperlihatkan neraka Jahanam; pada hari itu sadarlah manusia, tetapi tidak berguna lagi baginya kesadaran itu.",
+      en: {
+        footnotes: "",
+        text: "and Hell is brought near on that Day – this is when man will understand, but what is the use of that understanding?",
+      },
+      id: {
+        footnotes: "",
+        text: "dan pada hari itu diperlihatkan neraka Jahanam; pada hari itu sadarlah manusia, tetapi tidak berguna lagi baginya kesadaran itu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6017",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6017.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6017.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 237,
       juz: 30,
       manzil: 7,
       page: 594,
       ruku: 531,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6017,
@@ -229,20 +190,22 @@ export const quranSurah89Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Ketika itu orang-orang yang durhaka menyesali diri mereka mengapa dulu di dunia tidak melakukan sesuatu yang berguna untuk kehidupannya di akhirat.",
-        short:
-          "Dia berkata dengan penuh kesadaran, “Alangkah baiknya sekiranya di dunia dahulu aku beriman dan mengerjakan amal saleh untuk kenyamanan hidupku di akhirat ini.” Penyesalan itu sudah tidak berguna. Maka, berbahagialah kini orang yang membekali diri di dunia dengan iman dan amal saleh.",
+        footnotes: null,
+        text: "Dia berkata karena sangat menyesal, “Andai aku dahulu mengerjakan amal saleh demi kehidupan akhiratku yang merupakan kehidupan yang sesungguhnya.”",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0642\u064f\u0648\u0644\u064f \u064a\u064e\u0627 \u0644\u064e\u064a\u0652\u062a\u064e\u0646\u0650\u064a \u0642\u064e\u062f\u0651\u064e\u0645\u0652\u062a\u064f \u0644\u0650\u062d\u064e\u064a\u064e\u0627\u062a\u0650\u064a",
-      transliteration: {
-        en: "Yaqoolu yaa laitanee qaddamtu lihayaatee",
-      },
+      arabic: "يَقُولُ يَٰلَيْتَنِى قَدَّمْتُ لِحَيَاتِى",
     },
     translation: {
-      en: 'He will say, "Oh, I wish I had sent ahead [some good] for my life."',
-      id: "Dia berkata, “Alangkah baiknya sekiranya dahulu aku mengerjakan (kebajikan) untuk hidupku ini.”",
+      en: {
+        footnotes: "",
+        text: "He will say, “Would that I had sent forth something for my [eternal] life!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia berkata, "Alangkah baiknya sekiranya dahulu aku mengerjakan (kebajikan) untuk hidupku ini."',
+      },
     },
   },
 ];

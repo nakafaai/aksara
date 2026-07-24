@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah79Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5713",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5713.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5713.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 583,
       ruku: 520,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5713,
@@ -24,40 +25,32 @@ export const quranSurah79Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini, Allah berfirman dalam bentuk sumpah terhadap beberapa malaikat yang mencabut nyawa manusia dengan keras dan juga kepada para malaikat yang mencabut nyawa manusia dengan lemah-lembut. Hal ini dalam rangka menegaskan adanya hari kebangkitan yang diingkari orang-orang musyrik. Ayat-ayat selanjutnya yang juga dalam bentuk kalimat-kalimat sumpah kepada para malaikat yang turun dari langit dengan cepat sambil membawa perintah Allah. Bahkan Allah bersumpah kepada para malaikat yang mendahului malaikat yang lain dengan kencang, serta para malaikat yang mengatur dunia.\n\nFirman-firman dalam bentuk sumpah ini banyak terdapat pada surah-surah Makkiyyah karena banyak orang-orang musyrik menolak dan mengingkari hari kebangkitan, seperti pada Surah as-saffat/37: 1-4:\n\nDemi (rombongan malaikat) yang berbaris bersaf-saf, demi (rombongan) yang mencegah dengan sungguh-sungguh, demi (rombongan) yang membacakan peringatan, sungguh, Tuhanmu benar-benar Esa. (as-saffat/37: 1-4)\n\nAdapun jawab qasam (isi dari sumpah) pada awal Surah an-Nazi'at ini terdapat dalam ayat 6, yaitu sungguh pada saat alam berguncang ketika tiupan sangkakala pertama, semuanya rusak dan hancur.\n\nTiupan sangkakala yang pertama itu kemudian diikuti oleh tiupan kedua yang membangkitkan manusia dari kuburnya. Inilah hari Kiamat dalam arti yang sebenarnya.\n\nAyat-ayat permulaan pada Surah an-Nazi'at ini oleh jumhur mufasir dipahami sebagai sumpah-sumpah kepada para malaikat. Akan tetapi, ada mufasir lain, seperti Ahmad Musthafa al-Maragi, yang memahami sumpah ini bukan kepada para malaikat, tetapi kepada bintang-bintang yang beredar menurut aturan tertentu, seperti matahari, bulan, dan planet-planet yang lain. Dalam tafsir al-MarAgi, ayat-ayat ini dipahami sebagai bintang-bintang yang sigap dan cepat jalannya, cahaya-cahaya yang keluar dari bintang ke bintang, dan bintang-bintang yang jalannya cepat dari bintang-bintang yang lain.\n\nAdapun tentang pemahaman jawab qasam-nya sama dengan pendapat jumhur mufasir.",
-        short:
-          "Allah memulai surah ini dengan sumpah demi malaikat yang diberiNya tugas berat. Di antara tujuannya adalah agar manusia menghayati peran-peran tersebut dalam kehidupan. Demi malaikat yang mencabut nyawa kaum kafir dengan keras dan kasar sebagai tanda kegeraman para malaikat itu terhadap mereka.",
+        footnotes: null,
+        text: "Allah bersumpah dengan para malaikat yang mencabut nyawa orang-orang kafir dengan cara yang keras dan kasar.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0646\u0651\u064e\u0627\u0632\u0650\u0639\u064e\u0627\u062a\u0650 \u063a\u064e\u0631\u0652\u0642\u064b\u0627",
-      transliteration: {
-        en: "Wan naazi 'aati gharqa",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ وَٱلنَّٰزِعَٰتِ غَرْقًا",
     },
     translation: {
-      en: "By those [angels] who extract with violence",
-      id: "Demi (malaikat) yang mencabut (nyawa) dengan keras.",
+      en: {
+        footnotes: "[1] Of the disbelievers.",
+        text: "By those who pull out [evil souls][1] harshly,",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi (malaikat) yang mencabut (nyawa) dengan keras.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5714",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5714.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5714.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 583,
       ruku: 520,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5714,
@@ -65,40 +58,32 @@ export const quranSurah79Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini, Allah berfirman dalam bentuk sumpah terhadap beberapa malaikat yang mencabut nyawa manusia dengan keras dan juga kepada para malaikat yang mencabut nyawa manusia dengan lemah-lembut. Hal ini dalam rangka menegaskan adanya hari kebangkitan yang diingkari orang-orang musyrik. Ayat-ayat selanjutnya yang juga dalam bentuk kalimat-kalimat sumpah kepada para malaikat yang turun dari langit dengan cepat sambil membawa perintah Allah. Bahkan Allah bersumpah kepada para malaikat yang mendahului malaikat yang lain dengan kencang, serta para malaikat yang mengatur dunia.\n\nFirman-firman dalam bentuk sumpah ini banyak terdapat pada surah-surah Makkiyyah karena banyak orang-orang musyrik menolak dan mengingkari hari kebangkitan, seperti pada Surah as-saffat/37: 1-4:\n\nDemi (rombongan malaikat) yang berbaris bersaf-saf, demi (rombongan) yang mencegah dengan sungguh-sungguh, demi (rombongan) yang membacakan peringatan, sungguh, Tuhanmu benar-benar Esa. (as-saffat/37: 1-4)\n\nAdapun jawab qasam (isi dari sumpah) pada awal Surah an-Nazi'at ini terdapat dalam ayat 6, yaitu sungguh pada saat alam berguncang ketika tiupan sangkakala pertama, semuanya rusak dan hancur.\n\nTiupan sangkakala yang pertama itu kemudian diikuti oleh tiupan kedua yang membangkitkan manusia dari kuburnya. Inilah hari Kiamat dalam arti yang sebenarnya.\n\nAyat-ayat permulaan pada Surah an-Nazi'at ini oleh jumhur mufasir dipahami sebagai sumpah-sumpah kepada para malaikat. Akan tetapi, ada mufasir lain, seperti Ahmad Musthafa al-Maragi, yang memahami sumpah ini bukan kepada para malaikat, tetapi kepada bintang-bintang yang beredar menurut aturan tertentu, seperti matahari, bulan, dan planet-planet yang lain. Dalam tafsir al-MarAgi, ayat-ayat ini dipahami sebagai bintang-bintang yang sigap dan cepat jalannya, cahaya-cahaya yang keluar dari bintang ke bintang, dan bintang-bintang yang jalannya cepat dari bintang-bintang yang lain.\n\nAdapun tentang pemahaman jawab qasam-nya sama dengan pendapat jumhur mufasir.",
-        short:
-          "Demi malaikat yang mencabut nyawa orang mukmin dengan halus dan lemah lembut sebagai tanda simpati para malaikat itu kepada mereka. Malaikat mencabut nyawa mereka sambil berkata, “Wahai jiwa yang tenang, kembalilah ke Tuhanmu dengan hati yang rida dan diridai-Nya.”",
+        footnotes: null,
+        text: "Allah bersumpah dengan para malaikat yang mencabut nyawa orang-orang yang beriman dengan cara yang mudah dan gampang.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0646\u0651\u064e\u0627\u0634\u0650\u0637\u064e\u0627\u062a\u0650 \u0646\u064e\u0634\u0652\u0637\u064b\u0627",
-      transliteration: {
-        en: "Wan naa shi taati nashta",
-      },
+      arabic: "وَٱلنَّٰشِطَٰتِ نَشْطًا",
     },
     translation: {
-      en: "And [by] those who remove with ease",
-      id: "Demi (malaikat) yang mencabut (nyawa) dengan lemah lembut.",
+      en: {
+        footnotes: "[2] Of the believers.",
+        text: "and by those who draw out [good souls][2] gently,",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi (malaikat) yang mencabut (nyawa) dengan lemah lembut.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5715",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5715.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5715.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 583,
       ruku: 520,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5715,
@@ -106,40 +91,33 @@ export const quranSurah79Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini, Allah berfirman dalam bentuk sumpah terhadap beberapa malaikat yang mencabut nyawa manusia dengan keras dan juga kepada para malaikat yang mencabut nyawa manusia dengan lemah-lembut. Hal ini dalam rangka menegaskan adanya hari kebangkitan yang diingkari orang-orang musyrik. Ayat-ayat selanjutnya yang juga dalam bentuk kalimat-kalimat sumpah kepada para malaikat yang turun dari langit dengan cepat sambil membawa perintah Allah. Bahkan Allah bersumpah kepada para malaikat yang mendahului malaikat yang lain dengan kencang, serta para malaikat yang mengatur dunia.\n\nFirman-firman dalam bentuk sumpah ini banyak terdapat pada surah-surah Makkiyyah karena banyak orang-orang musyrik menolak dan mengingkari hari kebangkitan, seperti pada Surah as-saffat/37: 1-4:\n\nDemi (rombongan malaikat) yang berbaris bersaf-saf, demi (rombongan) yang mencegah dengan sungguh-sungguh, demi (rombongan) yang membacakan peringatan, sungguh, Tuhanmu benar-benar Esa. (as-saffat/37: 1-4)\n\nAdapun jawab qasam (isi dari sumpah) pada awal Surah an-Nazi'at ini terdapat dalam ayat 6, yaitu sungguh pada saat alam berguncang ketika tiupan sangkakala pertama, semuanya rusak dan hancur.\n\nTiupan sangkakala yang pertama itu kemudian diikuti oleh tiupan kedua yang membangkitkan manusia dari kuburnya. Inilah hari Kiamat dalam arti yang sebenarnya.\n\nAyat-ayat permulaan pada Surah an-Nazi'at ini oleh jumhur mufasir dipahami sebagai sumpah-sumpah kepada para malaikat. Akan tetapi, ada mufasir lain, seperti Ahmad Musthafa al-Maragi, yang memahami sumpah ini bukan kepada para malaikat, tetapi kepada bintang-bintang yang beredar menurut aturan tertentu, seperti matahari, bulan, dan planet-planet yang lain. Dalam tafsir al-MarAgi, ayat-ayat ini dipahami sebagai bintang-bintang yang sigap dan cepat jalannya, cahaya-cahaya yang keluar dari bintang ke bintang, dan bintang-bintang yang jalannya cepat dari bintang-bintang yang lain.\n\nAdapun tentang pemahaman jawab qasam-nya sama dengan pendapat jumhur mufasir.",
-        short:
-          "Demi malaikat yang turun dari langit dengan cepat untuk melaksanakan tugas dari Allah sembari selalu bertasbih menyucikan Allah dan mengagungkanNya sepanjang waktu,",
+        footnotes: null,
+        text: "Allah bersumpah dengan dengan para malaikat yang turun dari langit dengan cepat menuju bumi karena perintah Allah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0633\u0651\u064e\u0627\u0628\u0650\u062d\u064e\u0627\u062a\u0650 \u0633\u064e\u0628\u0652\u062d\u064b\u0627",
-      transliteration: {
-        en: "Wass saabi-haati sabha",
-      },
+      arabic: "وَٱلسَّٰبِحَٰتِ سَبْحًا",
     },
     translation: {
-      en: "And [by] those who glide [as if] swimming",
-      id: "Demi (malaikat) yang turun dari langit dengan cepat,",
+      en: {
+        footnotes:
+          "[3] i.e., angels glide swiftly through the heavens and earth with Allah’s command.",
+        text: "and by those who glide swiftly[3],",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi (malaikat) yang turun dari langit dengan cepat,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5716",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5716.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5716.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 583,
       ruku: 520,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5716,
@@ -147,40 +125,32 @@ export const quranSurah79Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini, Allah berfirman dalam bentuk sumpah terhadap beberapa malaikat yang mencabut nyawa manusia dengan keras dan juga kepada para malaikat yang mencabut nyawa manusia dengan lemah-lembut. Hal ini dalam rangka menegaskan adanya hari kebangkitan yang diingkari orang-orang musyrik. Ayat-ayat selanjutnya yang juga dalam bentuk kalimat-kalimat sumpah kepada para malaikat yang turun dari langit dengan cepat sambil membawa perintah Allah. Bahkan Allah bersumpah kepada para malaikat yang mendahului malaikat yang lain dengan kencang, serta para malaikat yang mengatur dunia.\n\nFirman-firman dalam bentuk sumpah ini banyak terdapat pada surah-surah Makkiyyah karena banyak orang-orang musyrik menolak dan mengingkari hari kebangkitan, seperti pada Surah as-saffat/37: 1-4:\n\nDemi (rombongan malaikat) yang berbaris bersaf-saf, demi (rombongan) yang mencegah dengan sungguh-sungguh, demi (rombongan) yang membacakan peringatan, sungguh, Tuhanmu benar-benar Esa. (as-saffat/37: 1-4)\n\nAdapun jawab qasam (isi dari sumpah) pada awal Surah an-Nazi'at ini terdapat dalam ayat 6, yaitu sungguh pada saat alam berguncang ketika tiupan sangkakala pertama, semuanya rusak dan hancur.\n\nTiupan sangkakala yang pertama itu kemudian diikuti oleh tiupan kedua yang membangkitkan manusia dari kuburnya. Inilah hari Kiamat dalam arti yang sebenarnya.\n\nAyat-ayat permulaan pada Surah an-Nazi'at ini oleh jumhur mufasir dipahami sebagai sumpah-sumpah kepada para malaikat. Akan tetapi, ada mufasir lain, seperti Ahmad Musthafa al-Maragi, yang memahami sumpah ini bukan kepada para malaikat, tetapi kepada bintang-bintang yang beredar menurut aturan tertentu, seperti matahari, bulan, dan planet-planet yang lain. Dalam tafsir al-MarAgi, ayat-ayat ini dipahami sebagai bintang-bintang yang sigap dan cepat jalannya, cahaya-cahaya yang keluar dari bintang ke bintang, dan bintang-bintang yang jalannya cepat dari bintang-bintang yang lain.\n\nAdapun tentang pemahaman jawab qasam-nya sama dengan pendapat jumhur mufasir.",
-        short:
-          "dan demi malaikat yang mendahului yang lain dengan kencang, cepat, dan cekatan untuk melakukan tugas-tugasnya tanpa mengulur waktu,",
+        footnotes: null,
+        text: "Allah bersumpah dengan para malaikat yang saling berlomba dalam melaksanakan perintah Allah.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0633\u0651\u064e\u0627\u0628\u0650\u0642\u064e\u0627\u062a\u0650 \u0633\u064e\u0628\u0652\u0642\u064b\u0627",
-      transliteration: {
-        en: "Fass saabi qaati sabqa",
-      },
+      arabic: "فَٱلسَّٰبِقَٰتِ سَبْقًا",
     },
     translation: {
-      en: "And those who race each other in a race",
-      id: "dan (malaikat) yang mendahului dengan kencang,",
+      en: {
+        footnotes: "[4] To execute Allah's commands.",
+        text: "and those who overtake one another as in a race[4],",
+      },
+      id: {
+        footnotes: "",
+        text: "dan (malaikat) yang mendahului dengan kencang,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5717",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5717.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5717.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 583,
       ruku: 520,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5717,
@@ -188,40 +158,33 @@ export const quranSurah79Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini, Allah berfirman dalam bentuk sumpah terhadap beberapa malaikat yang mencabut nyawa manusia dengan keras dan juga kepada para malaikat yang mencabut nyawa manusia dengan lemah-lembut. Hal ini dalam rangka menegaskan adanya hari kebangkitan yang diingkari orang-orang musyrik. Ayat-ayat selanjutnya yang juga dalam bentuk kalimat-kalimat sumpah kepada para malaikat yang turun dari langit dengan cepat sambil membawa perintah Allah. Bahkan Allah bersumpah kepada para malaikat yang mendahului malaikat yang lain dengan kencang, serta para malaikat yang mengatur dunia.\n\nFirman-firman dalam bentuk sumpah ini banyak terdapat pada surah-surah Makkiyyah karena banyak orang-orang musyrik menolak dan mengingkari hari kebangkitan, seperti pada Surah as-saffat/37: 1-4:\n\nDemi (rombongan malaikat) yang berbaris bersaf-saf, demi (rombongan) yang mencegah dengan sungguh-sungguh, demi (rombongan) yang membacakan peringatan, sungguh, Tuhanmu benar-benar Esa. (as-saffat/37: 1-4)\n\nAdapun jawab qasam (isi dari sumpah) pada awal Surah an-Nazi'at ini terdapat dalam ayat 6, yaitu sungguh pada saat alam berguncang ketika tiupan sangkakala pertama, semuanya rusak dan hancur.\n\nTiupan sangkakala yang pertama itu kemudian diikuti oleh tiupan kedua yang membangkitkan manusia dari kuburnya. Inilah hari Kiamat dalam arti yang sebenarnya.\n\nAyat-ayat permulaan pada Surah an-Nazi'at ini oleh jumhur mufasir dipahami sebagai sumpah-sumpah kepada para malaikat. Akan tetapi, ada mufasir lain, seperti Ahmad Musthafa al-Maragi, yang memahami sumpah ini bukan kepada para malaikat, tetapi kepada bintang-bintang yang beredar menurut aturan tertentu, seperti matahari, bulan, dan planet-planet yang lain. Dalam tafsir al-MarAgi, ayat-ayat ini dipahami sebagai bintang-bintang yang sigap dan cepat jalannya, cahaya-cahaya yang keluar dari bintang ke bintang, dan bintang-bintang yang jalannya cepat dari bintang-bintang yang lain.\n\nAdapun tentang pemahaman jawab qasam-nya sama dengan pendapat jumhur mufasir.",
-        short:
-          "dan demi malaikat yang mengatur urusan dunia, seperti pengisaran angin, turunnya hujan, dan sebagainya sesuai perintah Allah.",
+        footnotes: null,
+        text: "Allah bersumpah dengan para malaikat yang melaksanakan perintah Allah untuk menerapkan kada-Nya, seperti malaikat yang diberi tugas mencatat amal perbuatan manusia. Allah bersumpah dengan itu semua bahwa Dia pasti akan membangkitkan mereka untuk perhitungan dan pembalasan amalan.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0644\u0652\u0645\u064f\u062f\u064e\u0628\u0651\u0650\u0631\u064e\u0627\u062a\u0650 \u0623\u064e\u0645\u0652\u0631\u064b\u0627",
-      transliteration: {
-        en: "Fal mu dab-bi raati amra",
-      },
+      arabic: "فَٱلْمُدَبِّرَٰتِ أَمْرًا",
     },
     translation: {
-      en: "And those who arrange [each] matter,",
-      id: "dan (malaikat) yang mengatur urusan (dunia).",
+      en: {
+        footnotes: "",
+        text: "and those who carry out the command [of Allah],",
+      },
+      id: {
+        footnotes:
+          "[895] Dalam ayat 1-5 Allah bersumpah dengan malaikat-malaikat yang bermacam-macam sifat dan urusannya bahwa manusia akan dibangkitkan pada hari Kiamat. Sebagian mufasir berpendapat, bahwa dalam ayat-ayat ini, kecuali ayat 5, Allah bersumpah dengan bintang-bintang.",
+        text: "dan (malaikat) yang mengatur urusan (dunia).[895]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5718",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5718.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5718.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 583,
       ruku: 520,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5718,
@@ -229,20 +192,22 @@ export const quranSurah79Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini, Allah berfirman dalam bentuk sumpah terhadap beberapa malaikat yang mencabut nyawa manusia dengan keras dan juga kepada para malaikat yang mencabut nyawa manusia dengan lemah-lembut. Hal ini dalam rangka menegaskan adanya hari kebangkitan yang diingkari orang-orang musyrik. Ayat-ayat selanjutnya yang juga dalam bentuk kalimat-kalimat sumpah kepada para malaikat yang turun dari langit dengan cepat sambil membawa perintah Allah. Bahkan Allah bersumpah kepada para malaikat yang mendahului malaikat yang lain dengan kencang, serta para malaikat yang mengatur dunia.\n\nFirman-firman dalam bentuk sumpah ini banyak terdapat pada surah-surah Makkiyyah karena banyak orang-orang musyrik menolak dan mengingkari hari kebangkitan, seperti pada Surah as-saffat/37: 1-4:\n\nDemi (rombongan malaikat) yang berbaris bersaf-saf, demi (rombongan) yang mencegah dengan sungguh-sungguh, demi (rombongan) yang membacakan peringatan, sungguh, Tuhanmu benar-benar Esa. (as-saffat/37: 1-4)\n\nAdapun jawab qasam (isi dari sumpah) pada awal Surah an-Nazi'at ini terdapat dalam ayat 6, yaitu sungguh pada saat alam berguncang ketika tiupan sangkakala pertama, semuanya rusak dan hancur.\n\nTiupan sangkakala yang pertama itu kemudian diikuti oleh tiupan kedua yang membangkitkan manusia dari kuburnya. Inilah hari Kiamat dalam arti yang sebenarnya.\n\nAyat-ayat permulaan pada Surah an-Nazi'at ini oleh jumhur mufasir dipahami sebagai sumpah-sumpah kepada para malaikat. Akan tetapi, ada mufasir lain, seperti Ahmad Musthafa al-Maragi, yang memahami sumpah ini bukan kepada para malaikat, tetapi kepada bintang-bintang yang beredar menurut aturan tertentu, seperti matahari, bulan, dan planet-planet yang lain. Dalam tafsir al-MarAgi, ayat-ayat ini dipahami sebagai bintang-bintang yang sigap dan cepat jalannya, cahaya-cahaya yang keluar dari bintang ke bintang, dan bintang-bintang yang jalannya cepat dari bintang-bintang yang lain.\n\nAdapun tentang pemahaman jawab qasam-nya sama dengan pendapat jumhur mufasir.",
-        short:
-          "Sungguh, demi lima macam malaikat itu, kiamat pasti akan terjadi pada hari ketika tiupan pertama mengguncangkan alam, menghancurkan gunung, mengubah lautan menjadi api, dan sebagainya. Setelah tiupan pertama ini semua makhluk hidup akan mati.",
+        footnotes: null,
+        text: "Allah pasti membangkitkan kalian, yaitu pada hari ketika bumi berguncang di saat tiupan sangkakala pertama.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0648\u0652\u0645\u064e \u062a\u064e\u0631\u0652\u062c\u064f\u0641\u064f \u0627\u0644\u0631\u0651\u064e\u0627\u062c\u0650\u0641\u064e\u0629\u064f",
-      transliteration: {
-        en: "Yawma tarjufur raajifa",
-      },
+      arabic: "يَوْمَ تَرْجُفُ ٱلرَّاجِفَةُ",
     },
     translation: {
-      en: "On the Day the blast [of the Horn] will convulse [creation],",
-      id: "(Sungguh, kamu akan dibangkitkan) pada hari ketika tiupan pertama mengguncangkan alam,",
+      en: {
+        footnotes: "",
+        text: "on the Day when the earth convulses [by the first Blast],",
+      },
+      id: {
+        footnotes: "",
+        text: "(Sungguh, kamu akan dibangkitkan) pada hari ketika tiupan pertama mengguncangkan alam,",
+      },
     },
   },
 ];

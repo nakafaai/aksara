@@ -68,6 +68,7 @@ function creation(
   return {
     base: { authoringComponents, supportedComponents },
     domains: DOMAINS,
+    publishedDomains: ["mathematics"] as const,
   };
 }
 
@@ -165,7 +166,7 @@ describe("renderer manifest", () => {
     );
 
     expect(production.hash).toBe(
-      "sha256:34ea7de14176a37239db20f0bd2ef28515413054b9af3f869c596c796a427b3a"
+      "sha256:fb25869612144af7dd934bf32e3983a771debb565013f091c15793aa55d82d63"
     );
   });
 
@@ -277,6 +278,7 @@ describe("renderer manifest", () => {
             }
           : domain
       ),
+      publishedDomains: manifest.publishedDomains,
     };
     const hash = `sha256:${createHash("sha256")
       .update(canonicalizeRendererManifestContract(overlap))

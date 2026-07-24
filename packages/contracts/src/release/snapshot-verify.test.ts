@@ -87,7 +87,7 @@ describe("structured snapshot verification", () => {
       })
     );
 
-    expect(result.stagedRows).toBe(1835);
+    expect(result.stagedRows).toBe(1836);
     expect(Object.values(result.snapshots).map(({ mode }) => mode)).toEqual([
       "replace",
       "replace",

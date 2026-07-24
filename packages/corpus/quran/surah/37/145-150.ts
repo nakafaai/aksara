@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses145To150 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3933",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3933.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3933.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3933,
@@ -24,40 +25,32 @@ export const quranSurah37Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Setelah satu, atau tiga, atau beberapa hari, menurut beberapa pendapat, Nabi Yunus berada di dalam perut ikan besar itu, Allah memerintahkan ikan tersebut memuntahkannya ke suatu daerah tandus tidak ditumbuhi tanaman apapun. Karena beberapa saat berada di dalam perut ikan, kondisi Nabi Yunus lemah sekali. Untuk menyelamatkannya dari terpaan panas matahari Allah menumbuhkan pohon yaqthin (sejenis labu) di sampingnya. Daun pohon itu melindunginya dan buahnya jadi makanannya.",
-        short:
-          "Setelah Nabi Yunus beberapa lama berada di dalam perut ikan dalam kondisi gelap, sempit, dan sesak nafas, kemudian Kami keluarkan dan lemparkan dia ke daratan yang tandus tanpa pepohonan di sana, sedang dia dalam keadaan sakit dan tidak berdaya.",
+        footnotes: null,
+        text: "Kami lantas melemparkan Yunus dari perut ikan ke daratan kosong yang tidak ditumbuhi pepohonan dan tidak memiliki bangunan, sedangkan dia dalam keadaan lemah karena tinggal beberapa waktu di dalam perut ikan.",
       },
     },
     text: {
-      arab: "\u06de \u0641\u064e\u0646\u064e\u0628\u064e\u0630\u0652\u0646\u064e\u0627\u0647\u064f \u0628\u0650\u0627\u0644\u0652\u0639\u064e\u0631\u064e\u0627\u0621\u0650 \u0648\u064e\u0647\u064f\u0648\u064e \u0633\u064e\u0642\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Fanabaznaahu bil'araaa'i wa huwa saqeem",
-      },
+      arabic: "فَنَبَذْنَٰهُ بِٱلْعَرَآءِ وَهُوَ سَقِيمٌ",
     },
     translation: {
-      en: "But We threw him onto the open shore while he was ill.",
-      id: "Kemudian Kami lemparkan dia ke daratan yang tandus, sedang dia dalam keadaan sakit.",
+      en: {
+        footnotes: "",
+        text: "But We cast him ashore on a barren land while he was ill,",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian Kami lemparkan dia ke daratan yang tandus, sedang dia dalam keadaan sakit.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3934",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3934.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3934.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3934,
@@ -65,40 +58,32 @@ export const quranSurah37Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Setelah satu, atau tiga, atau beberapa hari, menurut beberapa pendapat, Nabi Yunus berada di dalam perut ikan besar itu, Allah memerintahkan ikan tersebut memuntahkannya ke suatu daerah tandus tidak ditumbuhi tanaman apapun. Karena beberapa saat berada di dalam perut ikan, kondisi Nabi Yunus lemah sekali. Untuk menyelamatkannya dari terpaan panas matahari Allah menumbuhkan pohon yaqthin (sejenis labu) di sampingnya. Daun pohon itu melindunginya dan buahnya jadi makanannya.",
-        short:
-          "Dengan kemurahan-Ku, untuk dia Kami tumbuhkan sebatang pohon dari jenis labu sebagai makanan yang segar, lezat, dan bergizi sehingga kekuatan dan kesehatannya berangsur pulih.",
+        footnotes: null,
+        text: "Kami menumbuhkan sebuah pohon labu yang memayunginya di tanah yang kosong tersebut.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0646\u0628\u064e\u062a\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650 \u0634\u064e\u062c\u064e\u0631\u064e\u0629\u064b \u0645\u0651\u0650\u0646 \u064a\u064e\u0642\u0652\u0637\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Wa ambatnaa 'alaihi shajaratam mai yaqteen",
-      },
+      arabic: "وَأَنۢبَتْنَا عَلَيْهِ شَجَرَةً مِّن يَقْطِينٍ",
     },
     translation: {
-      en: "And We caused to grow over him a gourd vine.",
-      id: "Kemudian untuk dia Kami tumbuhkan sebatang pohon dari jenis labu.",
+      en: {
+        footnotes: "[33] For its cooling shade and as food for him.",
+        text: "and caused a gourd vine[33] to grow over him.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian untuk dia Kami tumbuhkan sebatang pohon dari jenis labu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3935",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3935.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3935.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3935,
@@ -106,40 +91,32 @@ export const quranSurah37Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Setelah kesehatan Nabi Yunus pulih, Allah mengutusnya kembali kepada kaumnya yang pada waktu itu jumlahnya sudah sampai seratus ribu orang lebih. Kedatangannya mereka sambut dengan baik karena mereka sadar bahwa dahulu mereka telah mengecewakannya sehingga ia meninggalkan mereka. Mereka menyadari telah memperoleh kasih sayang Allah, karena mereka baru beriman ketika tanda-tanda azab Allah telah menghadang mereka. Pada umat-umat yang lalu, iman di saat seperti itu tidak diterima. Hanya umat Nabi Yunus yang dikecualikan dari ketentuan itu, sebagaimana dinyatakan dalam Surah Yunus/10:98 yang sudah diterangkan di atas. Mereka kemudian hidup bahagia dan sentosa sampai waktu yang ditetapkan bagi mereka.",
-        short:
-          "Dan setelah pulih, Kami utus dia kembali kepada kaumnya yang saat itu berjumlah seratus ribu orang atau lebih. Kedatangannya disambut gembira karena mereka menunggu seorang rasul yang membimbing mereka menuju keimanan.",
+        footnotes: null,
+        text: "Kemudian Kami mengutusnya kepada kaumnya yang berjumlah seratus ribu bahkan lebih.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0631\u0652\u0633\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f \u0625\u0650\u0644\u064e\u0649\u0670 \u0645\u0650\u0627\u0626\u064e\u0629\u0650 \u0623\u064e\u0644\u0652\u0641\u064d \u0623\u064e\u0648\u0652 \u064a\u064e\u0632\u0650\u064a\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa arsalnaahu ilaa mi'ati alfin aw yazeedoon",
-      },
+      arabic: "وَأَرْسَلْنَٰهُ إِلَىٰ مِا۟ئَةِ أَلْفٍ أَوْ يَزِيدُونَ",
     },
     translation: {
-      en: "And We sent him to [his people of] a hundred thousand or more.",
-      id: "Dan Kami utus dia kepada seratus ribu (orang) atau lebih,",
+      en: {
+        footnotes: "[34] i.e., We sent him thereafter to his people.",
+        text: "We sent him[34] to one hundred thousand people or more,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan Kami utus dia kepada seratus ribu (orang) atau lebih,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3936",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3936.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3936.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3936,
@@ -147,40 +124,32 @@ export const quranSurah37Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Setelah kesehatan Nabi Yunus pulih, Allah mengutusnya kembali kepada kaumnya yang pada waktu itu jumlahnya sudah sampai seratus ribu orang lebih. Kedatangannya mereka sambut dengan baik karena mereka sadar bahwa dahulu mereka telah mengecewakannya sehingga ia meninggalkan mereka. Mereka menyadari telah memperoleh kasih sayang Allah, karena mereka baru beriman ketika tanda-tanda azab Allah telah menghadang mereka. Pada umat-umat yang lalu, iman di saat seperti itu tidak diterima. Hanya umat Nabi Yunus yang dikecualikan dari ketentuan itu, sebagaimana dinyatakan dalam Surah Yunus/10:98 yang sudah diterangkan di atas. Mereka kemudian hidup bahagia dan sentosa sampai waktu yang ditetapkan bagi mereka.",
-        short:
-          "Mereka sadar bahwa Allah dengan kasih sayang-Nya telah menyelamatkan mereka dari azab yang tampak di depan mata, sehingga mereka benar-benar beriman kepada Allah dengan tulus. Karena itu Kami anugerahkan kenikmatan hidup kepada mereka hingga waktu tertentu, yaitu akhir hayat mereka. Anugerah semacam ini hanya Allah karuniakan kepada umat Nabi Yunus (Lihat pula: Surah Yùnus/10: 98).",
+        footnotes: null,
+        text: "Mereka lantas beriman dan membenarkan ajaran yang ia bawa, sehingga Allah memberi mereka kesempatan hidup di dunia sampai masa ajal mereka yang telah ditentukan.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0641\u064e\u0645\u064e\u062a\u0651\u064e\u0639\u0652\u0646\u064e\u0627\u0647\u064f\u0645\u0652 \u0625\u0650\u0644\u064e\u0649\u0670 \u062d\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Fa aamanoo famatta' naahum ilaa heen",
-      },
+      arabic: "فَـَٔامَنُوا۟ فَمَتَّعْنَٰهُمْ إِلَىٰ حِينٍ",
     },
     translation: {
-      en: "And they believed, so We gave them enjoyment [of life] for a time.",
-      id: "sehingga mereka beriman, karena itu Kami anugerahkan kenikmatan hidup kepada mereka hingga waktu tertentu.",
+      en: {
+        footnotes: "",
+        text: "and they believed, so We let them enjoy for a while.",
+      },
+      id: {
+        footnotes: "",
+        text: "sehingga mereka beriman, karena itu Kami anugerahkan kenikmatan hidup kepada mereka hingga waktu tertentu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3937",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3937.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3937.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3937,
@@ -188,40 +157,34 @@ export const quranSurah37Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Allah meminta Nabi Muhammad agar menanyakan kepada kaum kafir Mekah tentang kepercayaan mereka bahwa Allah punya anak, dan anaknya itu perempuan, padahal anak perempuan itu dalam pandangan mereka rendah, sebagaimana firman Allah:\n\nPadahal apabila seseorang dari mereka diberi kabar dengan (kelahiran) anak perempuan, wajahnya menjadi hitam (merah padam), dan dia sangat marah. (an-Nahl/16: 58)\n\nYang mulia dalam pandangan mereka adalah anak laki-laki, karena anak laki-laki itu mampu berperang dan membela mereka serta mengharumkan nama keluarga. Karena itu mereka mengambil anak laki-laki sedangkan anak perempuan mereka nisbahkan kepada Allah. Dengan demikian, mereka berdasarkan pandangan yang keliru dan mau menang sendiri. Pembagian menurut kepercayaan mereka itu menjadi tidak adil, sebagaimana dinyatakan ayat berikut:\n\nApakah (pantas) untuk kamu yang laki-laki dan untuk-Nya yang perempuan? Yang demikian itu tentulah suatu pembagian yang tidak adil. (an-Najm/53: 21-22).\n\nPemberian anak perempuan, yang mereka pandang rendah, kepada Allah dan anak laki-laki untuk mereka, berarti mereka merendahkan Allah. Pertanyaan yang diminta Allah untuk diajukan Nabi Muhammad kepada kaum kafir Mekah itu sekaligus mengandung arti bahwa pandangan mereka itu salah. Dalam pandangan Allah tidak ada perbedaan laki-laki dan perempuan. Yang membedakan manusia hanyalah takwanya.",
-        short:
-          "Kisah para nabi ini menjadi pelajaran bagi generasi sesudahnya. Mereka, seperti halnya Nabi Muhammad, diutus untuk menyampaikan risalah tauhid kepada umatnya, mengajak mereka untuk mengesakan Allah dan menyucikan Allah dari hal-hal yang tidak patut. Maka tanyakanlah, wahai Nabi Muhammad, kepada mereka yang ingkar dari umatmu, apakah mereka menisbatkan anak-anak perempuan itu untuk Tuhanmu sedangkan untuk mereka sendiri mereka memilih anak-anak laki-laki?",
+        footnotes: null,
+        text: "Tanyakanlah -wahai Muhammad- kepada orang-orang musyrikin dengan nada pengingkaran, “Apakah kalian menjadikan anak-anak perempuan bagi Allah padahal kalian sendiri membenci mereka dan kalian menjadikan anak-anak lelaki yang kalian sukai bagi kalian? Pembagian macam apa ini?!”",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0633\u0652\u062a\u064e\u0641\u0652\u062a\u0650\u0647\u0650\u0645\u0652 \u0623\u064e\u0644\u0650\u0631\u064e\u0628\u0651\u0650\u0643\u064e \u0627\u0644\u0652\u0628\u064e\u0646\u064e\u0627\u062a\u064f \u0648\u064e\u0644\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0628\u064e\u0646\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fastaftihim ali Rabbikal banaatu wa lahumul banoon",
-      },
+      arabic: "فَٱسْتَفْتِهِمْ أَلِرَبِّكَ ٱلْبَنَاتُ وَلَهُمُ ٱلْبَنُونَ",
     },
     translation: {
-      en: 'So inquire of them, [O Muhammad], "Does your Lord have daughters while they have sons?',
-      id: "Maka tanyakanlah (Muhammad) kepada mereka (orang-orang kafir Mekah), “Apakah anak-anak perempuan itu untuk Tuhanmu sedangkan untuk mereka anak-anak laki-laki?”",
+      en: {
+        footnotes:
+          "[35] The pagans of Makkah claimed that angels were Allah’s daughters, while preferring sons for themselves.",
+        text: "So ask them, “Does your Lord have daughters while they have sons?”[35]",
+      },
+      id: {
+        footnotes:
+          "[740] Orang musyrik mengatakan bahwa Allah mempunyai anak-anak perempuan (malaikat), padahal mereka sendiri menganggap hina anak perempuan.",
+        text: 'Maka tanyakanlah (Muhammad) kepada mereka (orang-orang kafir Mekkah), "Apakah anak-anak perempuan itu untuk Tuhanmu sedangkan untuk mereka anak laki-laki?[740]',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3938",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3938.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3938.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 451,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3938,
@@ -229,20 +192,22 @@ export const quranSurah37Verses145To150 = [
     },
     tafsir: {
       id: {
-        long: "Anak perempuan yang mereka maksud sebagai anak Allah adalah malaikat. Lalu Allah memperkeras bantahan-Nya dengan mempertanyakan lebih lanjut apakah mereka menyaksikan ketika Allah menciptakan atau melahirkan malaikat sebagai anak perempuan-Nya. Mereka tidak punya bukti apa-apa tentang hal itu, begitu juga bukti lain yaitu wahyu. Dengan demikian pandangan mereka itu salah, dan merupakan ucapan yang tidak dapat dipertanggungjawabkan karena dosanya amat besar, sebagaimana dinyatakan ayat berikut:\n\nDan mereka menjadikan malaikat-malaikat hamba-hamba (Allah) Yang Maha Pengasih itu sebagai jenis perempuan. Apakah mereka menyaksikan penciptaan (malaikat-malaikat itu)? Kelak akan dituliskan kesaksian mereka dan akan dimintakan pertanggungjawaban. (az-Zukhruf/43: 19)",
-        short:
-          "Atau tanyakanlah kepada mereka apakah Kami menciptakan malaikat-malaikat sebagai hamba Allah berupa makhluk berjenis kelamin perempuan, sedangkan mereka menyaksikan hal itu? Sungguh, mereka akan diminta pertanggungjawaban di akhirat atas tuduhan mereka itu (Lihat pula: Surah az-Zukhruf/43: 19).",
+        footnotes: null,
+        text: "Bagaimana mereka berani berkata bahwa malaikat adalah anak-anak perempuan Allah sementara mereka tidak menyaksikan penciptaan mereka dan tidak menghadirinya?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652 \u062e\u064e\u0644\u064e\u0642\u0652\u0646\u064e\u0627 \u0627\u0644\u0652\u0645\u064e\u0644\u064e\u0627\u0626\u0650\u0643\u064e\u0629\u064e \u0625\u0650\u0646\u064e\u0627\u062b\u064b\u0627 \u0648\u064e\u0647\u064f\u0645\u0652 \u0634\u064e\u0627\u0647\u0650\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Am khalaqnal malaaa'i kata inaasanw wa hm shaahidoon",
-      },
+      arabic: "أَمْ خَلَقْنَا ٱلْمَلَٰٓئِكَةَ إِنَٰثًا وَهُمْ شَٰهِدُونَ",
     },
     translation: {
-      en: 'Or did We create the angels as females while they were witnesses?"',
-      id: "atau apakah Kami menciptakan malaikat-malaikat berupa perempuan sedangkan mereka menyaksikan(nya)?",
+      en: {
+        footnotes: "",
+        text: "Or did We create the angels as females while they were watching?",
+      },
+      id: {
+        footnotes: "",
+        text: "Atau apakah Kami menciptakan malaikat-malaikat berupa perempuan sedangkan mereka menyaksikan(nya)?",
+      },
     },
   },
 ];

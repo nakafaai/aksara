@@ -235,12 +235,12 @@ describe("content publication", () => {
 
   it("compiles each source once per required reproducibility boundary", async () => {
     const result = await publishMaterialRelease();
-    expect(compilerState.calls).toBe(8);
+    expect(compilerState.calls).toBe(4);
     expect(result.receipt).toMatchObject({
-      activatedHeads: 4,
-      stagedArtifacts: 4,
-      stagedItems: 4,
-      stagedProjections: 4,
+      activatedHeads: 2,
+      stagedArtifacts: 2,
+      stagedItems: 2,
+      stagedProjections: 2,
     });
     expect(result.stageArtifacts).toHaveBeenCalledTimes(1);
   });

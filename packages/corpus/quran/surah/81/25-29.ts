@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah81Verses25To29 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5825",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5825.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5825.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5825,
@@ -24,40 +25,32 @@ export const quranSurah81Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menerangkan bahwa Al-Qur'an bukanlah perkataan setan yang terkutuk, dan bukanlah perkataan yang diletakkan oleh setan di atas lidah Muhammad ketika mengganggu akalnya seperti yang dituduhkan oleh orang Quraisy. Muhammad sudah terkenal sejak kecilnya dengan pikiran yang sehat dan tidak pernah berbuat khianat. Oleh karena itu, apa yang diterangkan oleh Muhammad tentang berita akhirat, surga, dan neraka bukanlah perkataan setan.",
-        short:
-          "Dan Al-Qur’an itu bukanlah perkataan setan yang terkutuk. Ada perbedaan nyata antara Al-Qur’an dan perkataan setan. Al-Qur’an mengajarkan nilai-nilai kebenaran dan keadilan, sedangkan setan mengajak kepada kebatilan, kemaksiatan, dan kemungkaran.",
+        footnotes: null,
+        text: "Bukanlah Al-Qur`ān ini berupa ucapan setan yang terjauhkan dari rahmat Allah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0647\u064f\u0648\u064e \u0628\u0650\u0642\u064e\u0648\u0652\u0644\u0650 \u0634\u064e\u064a\u0652\u0637\u064e\u0627\u0646\u064d \u0631\u0651\u064e\u062c\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Wa maa huwa biqawli shaitaanir rajeem",
-      },
+      arabic: "وَمَا هُوَ بِقَوْلِ شَيْطَٰنٍ رَّجِيمٍ",
     },
     translation: {
-      en: "And the Qur'an is not the word of a devil, expelled [from the heavens].",
-      id: "Dan (Al-Qur'an) itu bukanlah perkataan setan yang terkutuk,",
+      en: {
+        footnotes: "",
+        text: "This [Qur’an] is not the word of an accursed devil.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan (Al-Qur`an) itu bukanlah perkataan setan yang terkutuk,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5826",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5826.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5826.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5826,
@@ -65,40 +58,34 @@ export const quranSurah81Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian Allah menerangkan bahwa orang-orang Quraisy itu telah sesat, jauh dari jalan kebenaran, dan tidak mengetahui jalan kebijaksanaan, sehingga Allah bertanya kepada mereka, "Maka ke manakah kamu akan pergi?" Maksudnya ialah sesudah diterangkan bahwa Al-Qur\'an itu benar-benar datang dari Allah dan di dalamnya terdapat pelajaran dan petunjuk yang membimbing manusia ke jalan yang lurus, ditanyakan kepada orang-orang kafir itu, "Jalan manakah yang akan kamu tempuh lagi?"',
-        short:
-          "Maka, ke manakah kamu akan pergi? Jalan mana yang akan kamu pilih untuk menemukan kebenaran? Tidak ada yang lebih terang daripada jalan yang dijelaskan oleh Al-Qur’an.",
+        footnotes: null,
+        text: "Lalu alasan apalagi yang akan kalian gunakan untuk mengingkari bahwa Al-Qur`ān ini dari Allah setelah datangnya hujah-hujah ini?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u064a\u0652\u0646\u064e \u062a\u064e\u0630\u0652\u0647\u064e\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa ayna tazhaboon",
-      },
+      arabic: "فَأَيْنَ تَذْهَبُونَ",
     },
     translation: {
-      en: "So where are you going?",
-      id: "maka ke manakah kamu akan pergi?",
+      en: {
+        footnotes:
+          "[9] In your denial of the Qur’an for being the revelation from Allah.",
+        text: "So which way are you going[9]?",
+      },
+      id: {
+        footnotes:
+          '[899] Setelah diterangkan bahwa Al-Qur`an itu benar-benar datang dari Allah, dan di dalamnya ada pelajaran dan petunjuk yang memimpin manusia ke jalan yang lurus, ditanyakanlah kepada orang-orang kafir itu, "Jalan manakah yang akan kamu tempuh lagi?"',
+        text: "maka ke manakah kamu akan pergi?[899]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5827",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5827.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5827.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5827,
@@ -106,40 +93,32 @@ export const quranSurah81Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah menyatakan bahwa Al-Qur'an itu tiada lain hanya peringatan bagi semesta alam, bagi mereka yang mempunyai hati cenderung kepada kebaikan. Namun demikian, tidak semua manusia dapat mengambil manfaat dari Al-Qur'an ini. Yang mengambil manfaat ialah siapa yang mau menempuh jalan yang lurus. Adapun orang yang menyimpang dari jalan itu, maka ia tidak dapat mengambil manfaat dari peringatan Al-Qur'an.",
-        short:
-          "Al-Qur’an itu tidak lain adalah peringatan bagi seluruh alam. Al-Qur’an menjelaskan segala sesuatu untuk kebaikan manusia, baik urusan dunia maupun akhirat; mereka yang berbuat baik akan mendapat pahala dan surga, dan yang berbuat jahat akan mendapat dosa dan neraka.",
+        footnotes: null,
+        text: "Tidaklah Al-Qur`ān itu melainkan peringatan dan nasihat bagi jin dan manusia,",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0652 \u0647\u064f\u0648\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0630\u0650\u0643\u0652\u0631\u064c \u0644\u0651\u0650\u0644\u0652\u0639\u064e\u0627\u0644\u064e\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "In huwa illaa zikrul lil'aalameen",
-      },
+      arabic: "إِنْ هُوَ إِلَّا ذِكْرٌ لِّلْعَٰلَمِينَ",
     },
     translation: {
-      en: "It is not except a reminder to the worlds",
-      id: "(Al-Qur'an) itu tidak lain adalah peringatan bagi seluruh alam,",
+      en: {
+        footnotes: "",
+        text: "It is but a reminder to the worlds,",
+      },
+      id: {
+        footnotes: "",
+        text: "(Al-Qur`an) itu tidak lain adalah peringatan bagi seluruh alam,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5828",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5828.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5828.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5828,
@@ -147,40 +126,32 @@ export const quranSurah81Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah menyatakan bahwa Al-Qur'an itu tiada lain hanya peringatan bagi semesta alam, bagi mereka yang mempunyai hati cenderung kepada kebaikan. Namun demikian, tidak semua manusia dapat mengambil manfaat dari Al-Qur'an ini. Yang mengambil manfaat ialah siapa yang mau menempuh jalan yang lurus. Adapun orang yang menyimpang dari jalan itu, maka ia tidak dapat mengambil manfaat dari peringatan Al-Qur'an.",
-        short:
-          "Peringatan Al-Qur’an itu ditujukan bagi siapa di antara kamu yang menghendaki menempuh jalan yang lurus, yaitu agama Islam, dan beristikamah dalam mengamalkan ajarannya.",
+        footnotes: null,
+        text: "yaitu bagi siapa di antara kalian yang ingin istikamah di atas jalan kebenaran.",
       },
     },
     text: {
-      arab: "\u0644\u0650\u0645\u064e\u0646 \u0634\u064e\u0627\u0621\u064e \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0623\u064e\u0646 \u064a\u064e\u0633\u0652\u062a\u064e\u0642\u0650\u064a\u0645\u064e",
-      transliteration: {
-        en: "Liman shaaa'a minkum ai yastaqeem",
-      },
+      arabic: "لِمَن شَآءَ مِنكُمْ أَن يَسْتَقِيمَ",
     },
     translation: {
-      en: "For whoever wills among you to take a right course.",
-      id: "(yaitu) bagi siapa di antara kamu yang menghendaki menempuh jalan yang lurus.",
+      en: {
+        footnotes: "",
+        text: "for those among you who wish to take the straight path.",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) bagi siapa di antara kamu yang menghendaki menempuh jalan yang lurus.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5829",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5829.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5829.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5829,
@@ -188,20 +159,22 @@ export const quranSurah81Verses25To29 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah mengatakan bahwa manusia tidak mempunyai kehendak sendiri untuk berbuat sesuatu yang dikehendakinya bilamana tidak sesuai dengan kehendak Allah.",
-        short:
-          "Hanya saja, keinginan seseorang untuk berbuat sesuatu tidak akan terlaksana kecuali jika Allah menghendaki. Dan kamu tidak dapat menghendaki menempuh jalan itu kecuali apabila dikehendaki Allah, Tuhan seluruh alam.",
+        footnotes: null,
+        text: "Namun, tidaklah kalian mampu berkehendak untuk istikamah atau untuk hal lainnya kecuali bila Allah yang merupakan Tuhan segala makhluk berkehendak demikian.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u062a\u064e\u0634\u064e\u0627\u0621\u064f\u0648\u0646\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0623\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0631\u064e\u0628\u0651\u064f \u0627\u0644\u0652\u0639\u064e\u0627\u0644\u064e\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa maa tashaaa'oona illaaa ai yashaaa 'al laahu Rabbul 'Aalameen",
-      },
+      arabic: "وَمَا تَشَآءُونَ إِلَّآ أَن يَشَآءَ ٱللَّهُ رَبُّ ٱلْعَٰلَمِينَ",
     },
     translation: {
-      en: "And you do not will except that Allah wills - Lord of the worlds.",
-      id: "Dan kamu tidak dapat menghendaki (menempuh jalan itu) kecuali apabila dikehendaki Allah, Tuhan seluruh alam.",
+      en: {
+        footnotes: "",
+        text: "But you cannot wish except by the Will of Allah, the Lord of the worlds.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan kamu tidak dapat menghendaki (menempuh jalan itu) kecuali apabila dikehendaki Allah, Tuhan seluruh alam.",
+      },
     },
   },
 ];

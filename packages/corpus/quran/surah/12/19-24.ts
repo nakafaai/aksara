@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah12Verses19To24 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1615",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1615.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1615.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 95,
       juz: 12,
       manzil: 3,
       page: 237,
       ruku: 194,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1615,
@@ -24,40 +25,33 @@ export const quranSurah12Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Tidak lama sesudah Yusuf berada di dalam sumur, datanglah kafilah dari Madyan hendak berangkat ke Mesir. Kebetulan persediaan air mereka sudah habis dan pergilah mereka ke sumur itu lalu menjatuhkan timba ke dalamnya untuk mengambil air. Melihat timba diulurkan ke dalam sumur, hati Yusuf gembira dan timbul harapan di dalam hatinya bahwa dia akan dapat keluar dari bahaya yang sedang dihadapinya. Dengan cepat dia pegang tali timba itu kuat-kuat, sehingga orang yang menimba heran mengapa air sumur ini amat berat. Tetapi mereka tetap menarik tali itu bersama-sama, dan ternyata bukan air yang terangkat, tetapi seorang anak kecil yang manis dan elok rupanya. Alangkah gembiranya pemimpin kafilah itu melihat anak yang sehat dan segar bugar itu. Terbayanglah dalam pikirannya ia akan mendapat keuntungan yang besar dengan menjualnya kepada orang kaya di Mesir nanti. Dengan cepat ia memerintahkan agar Yusuf disembunyikan supaya jangan kelihatan oleh orang lain karena mungkin orang-orang di daerah itu akan mengakui bahwa anak itu adalah anak penduduk kampung itu sendiri. Tetapi Allah Maha Mengetahui niat pemimpin kafilah itu sebagaimana Dia mengetahui apa maksud dan tujuan saudara-saudara Yusuf memasukkannya ke dalam sumur.",
-        short:
-          'Setelah mereka berhasil mencelakai Nabi Yusuf dengan memasukkannya ke dalam sumur, ayat ini menceritakan lanjutan kisah Nabi Yusuf, yaitu ditemukannya dia oleh rombongan kafilah yang hendak pergi ke Mesir. Dan setelah Nabi Yusuf diceburkan ke dalam sumur oleh saudaranya, maka datanglah sekelompok musafir dari Madyan yang hendak menuju Mesir, kemudian di antara mereka menyuruh salah seorang pengambil air untuk minum para kafilah. Lalu dia menurunkan timbanya, ketika timba diturunkan di sumur, bergantunglah Nabi Yusuf pada tali timba itu. Dengan nada terkejut, dia pun berteriak sambil berkata, "Oh, senangnya, ini ada seorang anak muda yang sehat lagi elok parasnya!" Setelah Nabi Yusuf diangkat, kemudian mereka menyembunyikannya dengan maksud akan menjadikannya sebagai barang dagangan. Dan Allah Maha Mengetahui apa yang mereka kerjakan, karena tidak ada satu pun yang bisa disembunyikan dari-Nya.',
+        footnotes: null,
+        text: 'Kemudian datanglah sekelompok musafir yang melintas. Lalu mereka menyuruh seseorang mengambil air minum untuk mereka. Lalu ia mengulurkan timbanya ke dalam sumur dan tiba-tiba Yusuf bergelantungan pada tali timba tersebut. Tatkala orang yang mengulurkan timba itu melihatnya ia langsung berkata dengan suka cita, "Oh, kabar gembira! Ini ada anak lelaki (budak)!" Lalu si pencari air itu bersama beberapa temannya menyembunyikan perihal penemuan Yusuf itu dari para musafir lainnya. Mereka mengaku bahwa Yusuf adalah budak yang mereka beli, padahal Allah Maha mengetahui apa yang mereka lakukan terhadap Yusuf yang telah mereka hinakan dan mereka perdagangkan. Tidak ada satu pun perbuatan mereka yang luput dari pengetahuan-Nya.',
       },
     },
     text: {
-      arab: "\u0648\u064e\u062c\u064e\u0627\u0621\u064e\u062a\u0652 \u0633\u064e\u064a\u0651\u064e\u0627\u0631\u064e\u0629\u064c \u0641\u064e\u0623\u064e\u0631\u0652\u0633\u064e\u0644\u064f\u0648\u0627 \u0648\u064e\u0627\u0631\u0650\u062f\u064e\u0647\u064f\u0645\u0652 \u0641\u064e\u0623\u064e\u062f\u0652\u0644\u064e\u0649\u0670 \u062f\u064e\u0644\u0652\u0648\u064e\u0647\u064f \u06d6 \u0642\u064e\u0627\u0644\u064e \u064a\u064e\u0627 \u0628\u064f\u0634\u0652\u0631\u064e\u0649\u0670 \u0647\u064e\u0670\u0630\u064e\u0627 \u063a\u064f\u0644\u064e\u0627\u0645\u064c \u06da \u0648\u064e\u0623\u064e\u0633\u064e\u0631\u0651\u064f\u0648\u0647\u064f \u0628\u0650\u0636\u064e\u0627\u0639\u064e\u0629\u064b \u06da \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u0650\u064a\u0645\u064c \u0628\u0650\u0645\u064e\u0627 \u064a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa jaaa'at saiyaaratun fa-arsaloo waaridahum fa adlaa dalwah; qaala yaa bushraa haaza ghulaam; wa asarroohu bi-daa'ah; wallaahu 'aleemum bimaa ya'maloon",
-      },
+      arabic:
+        "وَجَآءَتْ سَيَّارَةٌ فَأَرْسَلُوا۟ وَارِدَهُمْ فَأَدْلَىٰ دَلْوَهُۥ قَالَ يَٰبُشْرَىٰ هَٰذَا غُلَٰمٌ وَأَسَرُّوهُ بِضَٰعَةً وَٱللَّهُ عَلِيمٌۢ بِمَا يَعْمَلُونَ",
     },
     translation: {
-      en: 'And there came a company of travelers; then they sent their water drawer, and he let down his bucket. He said, "Good news! Here is a boy." And they concealed him, [taking him] as merchandise; and Allah was knowing of what they did.',
-      id: "Dan datanglah sekelompok musafir, mereka menyuruh seorang pengambil air. Lalu dia menurunkan timbanya. Dia berkata, “Oh, senangnya, ini ada seorang anak muda!” Kemudian mereka menyembunyikannya sebagai barang dagangan. Dan Allah Maha Mengetahui apa yang mereka kerjakan.",
+      en: {
+        footnotes: "[7] To be sold as a slave.",
+        text: "Some travelers came and sent their water fetcher, who lowered his bucket into the well. He cried out, “Oh, what good news; here is a boy!” They kept him hidden as merchandise[7], but Allah is All-Knowing of what they did.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan datanglah sekelompok musafir, mereka menyuruh seorang pengambil air. Lalu dia menurunkan timbanya. Dia berkata, "Oh, senangnya, ini ada seorang anak muda!" Kemudian mereka menyembunyikannya sebagai barang dagangan. Dan Allah Maha Mengetahui apa yang mereka kerjakan.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1616",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1616.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1616.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 95,
       juz: 12,
       manzil: 3,
       page: 237,
       ruku: 194,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1616,
@@ -65,40 +59,33 @@ export const quranSurah12Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Akhirnya sampailah kafilah itu ke Mesir dan di sana mereka jual Yusuf dengan harga yang murah sekali dibanding dengan mahalnya harga budak di negeri itu, apalagi Yusuf adalah seorang anak yang tampan dan segar bugar.\n\nPara mufasir mengatakan tentang "beberapa dirham yang dihitung" bahwa yang pasti harganya kurang dari 40 dirham karena menurut adat kebiasaan di sana bila uang itu jumlahnya 40 dirham atau lebih, maka uang itu tidak dihitung lagi tetapi ditimbang. Mereka menjual Yusuf dengan harga yang begitu murah karena mereka khawatir kalau-kalau ada orang yang tahu bahwa Yusuf bukan budak, mengapa ia diperjualbelikan sedang dia adalah anak yang merdeka, anak orang baik. Karena kekhawatiran itulah mereka ingin cepat-cepat berlepas diri dari dia, asal mereka diberi uang berapa pun jumlahnya cukuplah bagi mereka. Rupanya sudah ditakdirkan Allah mereka menjual Yusuf kepada seorang penguasa yang amat berpengaruh di Mesir yaitu menteri yang kaya yang disebut al-Aziz agar dia mendapatkan kesempatan untuk menaiki kekuasaan dan kemuliaan.',
-        short:
-          "Dan setelah musafir itu tiba di Mesir, mereka pun menjualnya yakni Nabi Yusuf dengan harga rendah atau murah, yaitu beberapa dirham saja, sebab mereka tidak tertarik kepadanya untuk memiliki dan mengambilnya sebagai anak atau sebagai budak yang dipekerjakan.",
+        footnotes: null,
+        text: "Si penimba air sumur dan teman-temannya menjual Yusuf di Mesir dengan harga murah, yaitu hanya senilai beberapa dirham. Mereka menjualnya dengan harga murah agar diri mereka bisa segera terbebas darinya lantaran mereka tahu bahwa Yusuf itu sebenarnya bukanlah seorang budak belian. Mereka khawatir perbuatan mereka diketahui oleh keluarga Yusuf. Hal ini merupakan bentuk kasih sayang Allah yang sempurna kepada Yusuf agar dia tidak terlalu lama bersama mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0634\u064e\u0631\u064e\u0648\u0652\u0647\u064f \u0628\u0650\u062b\u064e\u0645\u064e\u0646\u064d \u0628\u064e\u062e\u0652\u0633\u064d \u062f\u064e\u0631\u064e\u0627\u0647\u0650\u0645\u064e \u0645\u064e\u0639\u0652\u062f\u064f\u0648\u062f\u064e\u0629\u064d \u0648\u064e\u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0641\u0650\u064a\u0647\u0650 \u0645\u0650\u0646\u064e \u0627\u0644\u0632\u0651\u064e\u0627\u0647\u0650\u062f\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa sharawhu bisamanim bakhsin daraahima ma'doo datinw wa kaanoo feehi minaz zaahideen",
-      },
+      arabic: "وَشَرَوْهُ بِثَمَنٍۭ بَخْسٍ دَرَٰهِمَ مَعْدُودَةٍ وَكَانُوا۟ فِيهِ مِنَ ٱلزَّٰهِدِينَ",
     },
     translation: {
-      en: "And they sold him for a reduced price - a few dirhams - and they were, concerning him, of those content with little.",
-      id: "Dan mereka menjualnya (Yusuf) dengan harga rendah, yaitu beberapa dirham saja, sebab mereka tidak tertarik kepadanya.",
+      en: {
+        footnotes:
+          "[8] i.e., his brothers sold him to the caravan for a pittance, or the wayfarers sold him in Egypt and were unaware of his true worth.",
+        text: "They sold him for a meager price, a few silver coins; they were quite indifferent about him[8].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan mereka menjualnya (Yusuf) dengan harga murah, yaitu beberapa dirham saja, sebab mereka tidak tertarik kepadanya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1617",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1617.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1617.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 95,
       juz: 12,
       manzil: 3,
       page: 237,
       ruku: 195,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1617,
@@ -106,40 +93,34 @@ export const quranSurah12Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Menteri yang mengambil Yusuf sangat gembira dan berbesar hati karena dapat membeli seorang anak yang elok rupanya, segar dan sehat badannya ditambah lagi karena terdapat padanya tanda-tanda yang baik yang menunjukkan bahwa dia akan mempunyai masa depan yang gemilang sama seperti firasat ayahnya Yakub terhadapnya.\n\nDiriwayatkan bahwa Abdullah bin Masud pernah berkata tentang hal ini, katanya, "Orang-orang yang paling tepat firasatnya adalah tiga orang, pertama, al-Aziz ketika ia memerintahkan kepada istrinya agar Yusuf diberikan tempat dan kedudukan yang baik di istananya; kedua, puteri syekh dari Madyan yang meminta kepada ayahnya agar Nabi Musa a.s. diserahi tugas memelihara dombanya sebagai orang gajian; dan ketiga, Abu Bakar ketika dia mengangkat Umar bin Khaththab sebagai penggantinya. \n\nOleh karena gembiranya, menteri itu memerintahkan kepada istrinya, "Berikanlah kepadanya tempat yang baik di istana ini. Perlakukanlah dia sebagai salah seorang keluarga bukan sebagai hamba atau pelayan, karena dia akan menjadi seorang yang berjasa kepada kita dan negara atau kita angkat dia sebagai anak yang kita cintai dan sayangi yang akan menjadi pewaris kita kelak kemudian hari."\n\nDemikianlah Allah mengatur dan mentakdirkan dengan membentangkan jalan bagi Yusuf dan memberi kesempatan kepadanya agar ia mengembang-kan bakat dan kepandaiannya sehingga dia mendapat kedudukan yang tinggi di Mesir. Di samping itu, Allah mengajarkan pula kepadanya ilmu menafsirkan mimpi dan dengan ilmu itu kelak ia dapat berhubungan dengan raja dengan cara menafsirkan mimpi raja sehingga ia dikeluarkan dari penjara dan mendapat kepercayaan yang besar sekali dan akhirnya diserahkan kepadanya urusan perbendaharaan dan kekayaan negara. Demikianlah Allah melaksanakan kehendak-Nya itu, tetapi kebanyakan manusia tidak mengetahui.',
-        short:
-          'Setelah diuraikan bahwa Nabi Yusuf dijual oleh para kafilah dengan harga murah, lalu ayat ini menjelaskan tentang keberadaan Nabi Yusuf di tengah keluarga al-Aziz yang membelinya. Dan orang dari Mesir yang membelinya, yaitu al-Aziz berkata kepada istrinya,"Berikanlah kepadanya tempat dan layanan yang baik, mudah-mudahan dia bermanfaat bagi kita setelah ia dewasa dan dapat membantu tugas-tugas kita, atau kita pungut dia sebagai anak karena tampak dari raut mukanya, dia anak yang cerdas, lagi rupawan, dan memiliki perawakan yang gagah." Dan demikianlah setelah Kami selamatkan dia dari marabahaya, Kami memberikan kedudukan yang baik kepada Nabi Yusuf di negeri Mesir berupa tempat tinggal dan jabatan bendaharawan di kemudian hari, dan agar Kami anugerahkan kenabian kepadanya, dan Kami ajarkan kepadanya takwil mimpi serta rahasia-rahasia segala sesuatu. Dan Allah berkuasa terhadap urusan-Nya, tetapi kebanyakan manusia yang menyekutukan Allah tidak mengerti bahwa Allah berkuasa mengangkat derajat hamba-Nya.',
+        footnotes: null,
+        text: 'Orang Mesir yang membelinya berkata kepada istrinya, "Perlakukanlah dia dengan baik dan berilah dia tempat tinggal yang baik bersama kita! Mudah-mudahan dia berguna bagi kita untuk melakukan sesuatu yang kita perlukan atau kita bisa menjadikannya sebagai anak angkat." Setelah Kami menyelamatkan Yusuf dari pembunuhan, mengeluarkannya dari dalam sumur dan membuat hati al-\'Azīz (petinggi kerajaan Mesir) menaruh belas kasihan kepadanya, Kami pun memberinya kedudukan yang baik di negeri Mesir dan Kami hendak mengajarkan ilmu takwil mimpi kepadanya. Allah Mahaperkasa untuk memaksakan perintah-Nya, sehingga perintah-Nya pasti terlaksana. Tidak ada seorang pun yang dapat memaksakan kehendaknya kepada Dia. Akan tetapi, kebanyakan manusia -yaitu orang-orang kafir- tidak mengetahui hal itu.',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0627\u0644\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0627\u0634\u0652\u062a\u064e\u0631\u064e\u0627\u0647\u064f \u0645\u0650\u0646 \u0645\u0651\u0650\u0635\u0652\u0631\u064e \u0644\u0650\u0627\u0645\u0652\u0631\u064e\u0623\u064e\u062a\u0650\u0647\u0650 \u0623\u064e\u0643\u0652\u0631\u0650\u0645\u0650\u064a \u0645\u064e\u062b\u0652\u0648\u064e\u0627\u0647\u064f \u0639\u064e\u0633\u064e\u0649\u0670 \u0623\u064e\u0646 \u064a\u064e\u0646\u0641\u064e\u0639\u064e\u0646\u064e\u0627 \u0623\u064e\u0648\u0652 \u0646\u064e\u062a\u0651\u064e\u062e\u0650\u0630\u064e\u0647\u064f \u0648\u064e\u0644\u064e\u062f\u064b\u0627 \u06da \u0648\u064e\u0643\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0645\u064e\u0643\u0651\u064e\u0646\u0651\u064e\u0627 \u0644\u0650\u064a\u064f\u0648\u0633\u064f\u0641\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0648\u064e\u0644\u0650\u0646\u064f\u0639\u064e\u0644\u0651\u0650\u0645\u064e\u0647\u064f \u0645\u0650\u0646 \u062a\u064e\u0623\u0652\u0648\u0650\u064a\u0644\u0650 \u0627\u0644\u0652\u0623\u064e\u062d\u064e\u0627\u062f\u0650\u064a\u062b\u0650 \u06da \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u063a\u064e\u0627\u0644\u0650\u0628\u064c \u0639\u064e\u0644\u064e\u0649\u0670 \u0623\u064e\u0645\u0652\u0631\u0650\u0647\u0650 \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646\u0651\u064e \u0623\u064e\u0643\u0652\u062b\u064e\u0631\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u0644\u064e\u0627 \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa qaalal lazish taraahu mim Misra limra atiheee akrimee maswaahu 'asaaa any-yanfa'anaaa aw nattakhizahoo waladaa; wa kazaalika mak-kannaa li-Yoosufa fil ardi wa linu'allimahoo min taaweelil ahaadees; wallaahu ghaalibun 'alaaa amrihee wa laakinna aksaran naasi laa ya'lamoon",
-      },
+      arabic:
+        "وَقَالَ ٱلَّذِى ٱشْتَرَىٰهُ مِن مِّصْرَ لِٱمْرَأَتِهِۦٓ أَكْرِمِى مَثْوَىٰهُ عَسَىٰٓ أَن يَنفَعَنَآ أَوْ نَتَّخِذَهُۥ وَلَدًا وَكَذَٰلِكَ مَكَّنَّا لِيُوسُفَ فِى ٱلْأَرْضِ وَلِنُعَلِّمَهُۥ مِن تَأْوِيلِ ٱلْأَحَادِيثِ وَٱللَّهُ غَالِبٌ عَلَىٰٓ أَمْرِهِۦ وَلَٰكِنَّ أَكْثَرَ ٱلنَّاسِ لَا يَعْلَمُونَ",
     },
     translation: {
-      en: 'And the one from Egypt who bought him said to his wife, "Make his residence comfortable. Perhaps he will benefit us, or we will adopt him as a son." And thus, We established Joseph in the land that We might teach him the interpretation of events. And Allah is predominant over His affair, but most of the people do not know.',
-      id: "Dan orang dari Mesir yang membelinya berkata kepada istrinya,” Berikanlah kepadanya tempat (dan layanan) yang baik, mudah-mudahan dia bermanfaat bagi kita atau kita pungut dia sebagai anak.” Dan demikianlah Kami memberikan kedudukan yang baik kepada Yusuf di negeri (Mesir), dan agar Kami ajarkan kepadanya takwil mimpi. Dan Allah berkuasa terhadap urusan-Nya, tetapi kebanyakan manusia tidak mengerti.",
+      en: {
+        footnotes: "[9] The minister whose title was al-‘Azīz.",
+        text: "The man[9] in Egypt who bought him said to his wife, “Make his stay comfortable; perhaps he will benefit us or we may adopt him as a son.” This is how We established Joseph in the land, so that We may teach him the interpretation of dreams. Allah’s decree always prevails, but most people do not know.",
+      },
+      id: {
+        footnotes:
+          "[410] Orang dari Mesir yang membeli Yusuf itu seorang pembesar Mesir Al-Aziz, biasa dikenal dengan nama Qiṭfir. Dalam sebagian kitab tafsir disebutkan nama istrinya Rail, dan ada juga yang menyebut Zulaikha atau Zalikha. Namum riwayat yang menyebutkan nama-nama tersebut tidak dapat dipertanggungjawabkan.",
+        text: 'Dan orang dari Mesir yang membelinya berkata kepada istrinya,[410] "Berikanlah kepadanya tempat (dan layanan) yang baik, mudah-mudahan dia bermanfaat bagi kita atau kita pungut dia sebagai anak." Dan demikianlah Kami memberikan kedudukan yang baik kepada Yusuf di negeri (Mesir), dan agar Kami ajarkan kepadanya takwil mimpi. Dan Allah berkuasa terhadap urusan-Nya, tetapi kebanyakan manusia tidak mengerti.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1618",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1618.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1618.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 95,
       juz: 12,
       manzil: 3,
       page: 237,
       ruku: 195,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1618,
@@ -147,40 +128,32 @@ export const quranSurah12Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Di kala Yusuf mulai dewasa, Allah memberikan pula kepadanya kecerdasan dan kebijaksanaan sehingga ia mampu memberikan pendapat dan pikirannya dalam berbagai macam masalah yang dihadapi. Allah juga memberikan kepadanya ilmu, meskipun ia tidak belajar. Ilmu yang didapat tanpa belajar ini dinamai ilmu ladunni karena ia semata-mata ilham dan karunia dari Allah.\n\nDemikianlah Allah memberi balasan kepada Yusuf yang tidak pernah mengotori dirinya dengan perbuatan keji dan jahat, selalu menjaga kebersihan hati nuraninya, selalu bersifat sabar dan tawakal atas musibah dan bahaya yang menimpanya. Demikianlah Allah membalas setiap insan yang berbuat baik.",
-        short:
-          "Dan ketika dia telah cukup dewasa, yakni memiliki kematangan dalam berpikir dan jasmani yang kuat, Kami berikan kepadanya karunia kenabian, kekuasaan dan ilmu pengetahuan agama, takwil mimpi, dan rahasia-rahasia segala sesuatu. Demikianlah Kami memberi karunia kepada hamba-Nya sebagai balasan kepada orang-orang yang berbuat baik karena ketaatannya kepada Allah.",
+        footnotes: null,
+        text: " Setelah Yusuf mencapai kesempurnaannya secara fisik dan mental, Kami memberinya pemahaman dan ilmu pengetahuan. Balasan semacam itulah yang Kami berikan kepada orang-orang yang berbuat baik dengan cara menunjukkan ketaatannya kepada Allah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0645\u0651\u064e\u0627 \u0628\u064e\u0644\u064e\u063a\u064e \u0623\u064e\u0634\u064f\u062f\u0651\u064e\u0647\u064f \u0622\u062a\u064e\u064a\u0652\u0646\u064e\u0627\u0647\u064f \u062d\u064f\u0643\u0652\u0645\u064b\u0627 \u0648\u064e\u0639\u0650\u0644\u0652\u0645\u064b\u0627 \u06da \u0648\u064e\u0643\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0646\u064e\u062c\u0652\u0632\u0650\u064a \u0627\u0644\u0652\u0645\u064f\u062d\u0652\u0633\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa lammaa balagha ashuddahooo aatainaahu bukmanw wa 'ilmaa; wa kazaa lika najzil muhsineen",
-      },
+      arabic: "وَلَمَّا بَلَغَ أَشُدَّهُۥٓ ءَاتَيْنَٰهُ حُكْمًا وَعِلْمًا وَكَذَٰلِكَ نَجْزِى ٱلْمُحْسِنِينَ",
     },
     translation: {
-      en: "And when Joseph reached maturity, We gave him judgment and knowledge. And thus We reward the doers of good.",
-      id: "Dan ketika dia telah cukup dewasa Kami berikan kepadanya kekuasaan dan ilmu. Demikianlah Kami memberi balasan kepada orang-orang yang berbuat baik.",
+      en: {
+        footnotes: "[10] i.e., sound judgment or prophethood.",
+        text: "When he reached his prime, We gave him wisdom[10] and knowledge. This is how We reward those who do good.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan ketika dia telah cukup dewasa, Kami berikan kepadanya kekuasaan dan ilmu. Demikianlah Kami memberi balasan kepada orang-orang yang berbuat baik.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1619",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1619.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1619.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 95,
       juz: 12,
       manzil: 3,
       page: 238,
       ruku: 195,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1619,
@@ -188,40 +161,33 @@ export const quranSurah12Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Istri al-Aziz adalah seorang perempuan cantik, sangat dimuliakan oleh seluruh penghuni istana, karena di samping dia istri al-Aziz, dia juga berbudi tinggi, berakhlak mulia, bersih dari sifat-sifat congkak dan sombong, menjauhi segala hal yang akan menjatuhkan derajatnya. Tetapi setelah Yusuf tinggal di istana sebagai salah seorang keluarganya, istri al-Aziz mulai tertarik kepadanya karena akhlak dan ketampanannya. Suatu ketika, setelah mengunci semua pintu rumah, istri al-Aziz merayu Yusuf untuk berselingkuh. Yusuf sebagai seorang yang jujur dan berakhlak mulia sangat terkejut mendengar rayuan dan ajakan itu, apalagi yang mengajaknya itu adalah istri majikannya sendiri yang telah memberinya tempat berteduh dan memperlakukannya seperti anaknya sendiri. Selain dari itu, bila ia mematuhi ajakan demikian, berarti ia telah melakukan maksiat yang sangat dimurkai Allah. Karena itu dengan spontan ia menjawab, "Aku berlindung kepada Allah agar aku jangan terjerumus ke dalam perbuatan keji dan mungkar. Suamimu itu adalah tuanku, majikanku yang telah berbuat baik kepadaku, apakah kebaikannya aku balas dengan kekejian? Ini adalah suatu kezaliman dan aku tidak akan melakukannya karena tidak ada orang yang zalim yang sukses dan bahagia hidupnya."',
-        short:
-          'Setelah diuraikan tentang karunia Allah kepada Nabi Yusuf berupa ilmu pengetahuan dan kenabian ketika dewasa, ayat berikut ini menjelaskan sisi lain yang dialami Nabi Yusuf, yaitu godaan istri al-Aziz. Dan perempuan (istri al-Aziz) yang dia (Nabi Yusuf ) tinggal di rumahnya menggoda dirinya. Dan serta merta dia pun masuk ke kamar Nabi Yusuf kemudian menutup pintu-pintu kamar, lalu berkata kepada Nabi Yusuf," Marilah mendekat kepadaku." Kemudian Nabi Yusuf berkata seraya memohon, "Aku berlindung kepada Allah dari tindakan keji, bagaimana mungkin aku menuruti ajakanmu, sungguh, tuanku Al-Aziz telah memperlakukan aku dengan baik, memberiku tempat, kedudukan, serta memberiku kepercayaan, maka sedikit pun aku tidak akan mengkhianati kepercayaannya." Sesungguhnya orang yang membalas kebaikan dengan kejahatan adalah termasuk golongan orang zalim, dan orang yang zalim itu tidak akan beruntung.',
+        footnotes: null,
+        text: 'Istri al-\'Azīz meminta kepada Yusuf -\'alaihissalām- secara halus disertai dengan jebakan agar dia mau berbuat mesum dengannya. Dia menutup pintu-pintu agar situasi benar-benar sepi, lalu dia berkata kepada Yusuf, "Ayo! Kemarilah padaku!" Yusuf menjawab, "Aku berlindung kepada Allah dari ajakanmu. Sesungguhnya tuanku telah berbuat baik kepadaku dengan memberikan tempat yang baik di sisinya maka aku tidak akan mengkhianatinya, karena jika aku mengkhianatinya berarti aku menjadi orang yang zalim. Padahal sesungguhnya orang-orang yang zalim itu tidak akan beruntung."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0631\u064e\u0627\u0648\u064e\u062f\u064e\u062a\u0652\u0647\u064f \u0627\u0644\u0651\u064e\u062a\u0650\u064a \u0647\u064f\u0648\u064e \u0641\u0650\u064a \u0628\u064e\u064a\u0652\u062a\u0650\u0647\u064e\u0627 \u0639\u064e\u0646 \u0646\u0651\u064e\u0641\u0652\u0633\u0650\u0647\u0650 \u0648\u064e\u063a\u064e\u0644\u0651\u064e\u0642\u064e\u062a\u0650 \u0627\u0644\u0652\u0623\u064e\u0628\u0652\u0648\u064e\u0627\u0628\u064e \u0648\u064e\u0642\u064e\u0627\u0644\u064e\u062a\u0652 \u0647\u064e\u064a\u0652\u062a\u064e \u0644\u064e\u0643\u064e \u06da \u0642\u064e\u0627\u0644\u064e \u0645\u064e\u0639\u064e\u0627\u0630\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06d6 \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0631\u064e\u0628\u0651\u0650\u064a \u0623\u064e\u062d\u0652\u0633\u064e\u0646\u064e \u0645\u064e\u062b\u0652\u0648\u064e\u0627\u064a\u064e \u06d6 \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0644\u064e\u0627 \u064a\u064f\u0641\u0652\u0644\u0650\u062d\u064f \u0627\u0644\u0638\u0651\u064e\u0627\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa raawadat hul latee huwa fee baitihaa 'an nafsihee wa ghallaqatil abwaaba wa qaalat haita lak; qaala ma'aazal laahi innahoo rabbeee ahsana maswaay; innahoo laa yuflihuz-zaalimoon",
-      },
+      arabic:
+        "وَرَٰوَدَتْهُ ٱلَّتِى هُوَ فِى بَيْتِهَا عَن نَّفْسِهِۦ وَغَلَّقَتِ ٱلْأَبْوَٰبَ وَقَالَتْ هَيْتَ لَكَ قَالَ مَعَاذَ ٱللَّهِ إِنَّهُۥ رَبِّىٓ أَحْسَنَ مَثْوَاىَ إِنَّهُۥ لَا يُفْلِحُ ٱلظَّٰلِمُونَ",
     },
     translation: {
-      en: 'And she, in whose house he was, sought to seduce him. She closed the doors and said, "Come, you." He said, "[I seek] the refuge of Allah. Indeed, he is my master, who has made good my residence. Indeed, wrongdoers will not succeed."',
-      id: "Dan perempuan yang dia (Yusuf) tinggal di rumahnya menggoda dirinya. Dan dia menutup pintu-pintu, lalu berkata, “Marilah mendekat kepadaku.” Yusuf berkata, “Aku berlindung kepada Allah, sungguh, tuanku telah memperlakukan aku dengan baik.” Sesungguhnya orang yang zalim itu tidak akan beruntung.",
+      en: {
+        footnotes: "[11] i.e., the wife of the minister.",
+        text: "But the woman[11] in whose house he was living tried to seduce him. She bolted the doors and said, “Come here to me!” He said, “I seek refuge with Allah! My master has made my stay good. Indeed, the wrongdoers will never succeed.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan perempuan yang dia (Yusuf) tinggal di rumahnya menggoda dirinya. Lalu dia menutup pintu-pintu, seraya berkata, "Marilah mendekat kepadaku." Yusuf berkata, "Aku berlindung kepada Allah, sungguh, tuanku telah memperlakukanku dengan baik." Sesungguhnya orang yang zalim itu tidak akan beruntung.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1620",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1620.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1620.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 95,
       juz: 12,
       manzil: 3,
       page: 238,
       ruku: 195,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1620,
@@ -229,20 +195,24 @@ export const quranSurah12Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Istri al-Aziz tidak mau berhenti, karena ia menganggap Yusuf sebagai budak yang harus melaksanakan keinginan dan perintahnya. Bila Yusuf menolak, istri al-Aziz akan mencelakakannya. Tetapi dari pihak Yusuf, ia telah bertekad pula untuk menolaknya karena perbuatan itu melanggar agama, mengkhianati tuannya yang telah berjasa dan berbuat baik kepadanya dan merusak kehormatannya dan kehormatan tuannya. Yusuf dan istri al-Aziz masing-masing telah mempunyai tekad yang bertolak belakang antara satu sama lainnya.",
-        short:
-          "Dan sungguh, perempuan itu telah berkehendak kepadanya, yakni Nabi Yusuf untuk melayani nafsu birahinya. Dan Nabi Yusuf pun berkehendak kepadanya, sekiranya dia tidak melihat tanda dari Tuhannya, niscaya dia akan terjatuh dalam perbuatan maksiat. Demikianlah, Kami kuatkan keimanannya sehingga Kami palingkan darinya perilaku keburukan dan kekejian. Sungguh, dia-Nabi Yusuf-termasuk hamba Kami yang terpilih untuk mengemban risalah Allah dan selalu taat kepada perintah-Nya.",
+        footnotes: null,
+        text: "Wanita itu sangat bernafsu untuk berbuat mesum dengan Yusuf dan Yusuf pun sempat tergoda untuk melakukan hal itu sekiranya dia tidak melihat tanda dari Allah yang berhasil mencegahnya dan menjauhkannya dari perbuatan itu. Kami memperlihatkan tanda itu kepadanya untuk menghindarkannya dari perbuatan yang buruk dan menjauhkannya dari perbuatan zina dan pengkhianatan. Sesungguhnya Yusuf adalah salah satu dari hamba-hamba Kami yang terpilih untuk menjadi rasul dan nabi.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0642\u064e\u062f\u0652 \u0647\u064e\u0645\u0651\u064e\u062a\u0652 \u0628\u0650\u0647\u0650 \u06d6 \u0648\u064e\u0647\u064e\u0645\u0651\u064e \u0628\u0650\u0647\u064e\u0627 \u0644\u064e\u0648\u0652\u0644\u064e\u0627 \u0623\u064e\u0646 \u0631\u0651\u064e\u0623\u064e\u0649\u0670 \u0628\u064f\u0631\u0652\u0647\u064e\u0627\u0646\u064e \u0631\u064e\u0628\u0651\u0650\u0647\u0650 \u06da \u0643\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0644\u0650\u0646\u064e\u0635\u0652\u0631\u0650\u0641\u064e \u0639\u064e\u0646\u0652\u0647\u064f \u0627\u0644\u0633\u0651\u064f\u0648\u0621\u064e \u0648\u064e\u0627\u0644\u0652\u0641\u064e\u062d\u0652\u0634\u064e\u0627\u0621\u064e \u06da \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0645\u0650\u0646\u0652 \u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0646\u064e\u0627 \u0627\u0644\u0652\u0645\u064f\u062e\u0652\u0644\u064e\u0635\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa laqad hammat bihee wa hamma bihaa law laaa ar ra-aa burhaana rabbih;; kazaalika linasrifa 'anhu sooo'a walfa hshaaa'; innahoo min 'ibaadi nal mukhlaseen",
-      },
+      arabic:
+        "وَلَقَدْ هَمَّتْ بِهِۦ وَهَمَّ بِهَا لَوْلَآ أَن رَّءَا بُرْهَٰنَ رَبِّهِۦ كَذَٰلِكَ لِنَصْرِفَ عَنْهُ ٱلسُّوٓءَ وَٱلْفَحْشَآءَ إِنَّهُۥ مِنْ عِبَادِنَا ٱلْمُخْلَصِينَ",
     },
     translation: {
-      en: "And she certainly determined [to seduce] him, and he would have inclined to her had he not seen the proof of his Lord. And thus [it was] that We should avert from him evil and immorality. Indeed, he was of Our chosen servants.",
-      id: "Dan sungguh, perempuan itu telah berkehendak kepadanya (Yusuf). Dan Yusuf pun berkehendak kepadanya, sekiranya dia tidak melihat tanda (dari) Tuhannya. Demikianlah, Kami palingkan darinya keburukan dan kekejian. Sungguh, dia (Yusuf) termasuk hamba Kami yang terpilih.",
+      en: {
+        footnotes: "",
+        text: "She advanced towards him, and he would have advanced towards her, had he not seen a sign from his Lord. This is how We kept evil and shameful acts away from him. Indeed, he was one of Our chosen slaves.",
+      },
+      id: {
+        footnotes:
+          "[411] Ayat ini tidaklah menunjukkan bahwa Nabi Yusuf -'alaihissalām- mempunyai keinginan yang buruk terhadap perempuan itu, tetapi godaan itu demikian besarnya sehingga sekiranya dia tidak dikuatkan dengan keimanan kepada Allah -Subḥānahu wata'ālā- tentu dia jatuh ke dalam kemaksiatan.",
+        text: "Dan Sungguh, perempuan itu telah berhasrat kepadanya (Yusuf). Dan Yusuf pun berkehendak kepadanya, sekiranya dia tidak melihat tanda (dari) Tuhannya.[411] Demikianlah, Kami palingkan darinya keburukan dan kekejian. Sungguh, dia (Yusuf) termasuk hamba Kami yang terpilih.",
+      },
     },
   },
 ];

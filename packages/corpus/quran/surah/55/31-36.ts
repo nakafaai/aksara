@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah55Verses31To36 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4932",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4932.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4932.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 532,
       ruku: 467,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4932,
@@ -24,40 +25,32 @@ export const quranSurah55Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa Dia akan memperhatikan dan membalas segala amal perbuatan sekalian manusia dan jin, ayat ini merupakan ancaman yang sangat menakutkan, bagi seluruh hambaNya agar ingat pada hari pembalasan.",
-        short:
-          "Kami bersama para malaikat akan memberi perhatian sepenuhnya kepadamu, wahai golongan manusia dan jin. Kami akan melakukan perhitungan secara cermat atas semua perbuatanmu.",
+        footnotes: null,
+        text: "Kami akan sepenuhnya memperhatikan perhitungan amal kalian -wahai jin dan manusia- sehingga Kami membalas masing-masing dengan balasan pahala atau siksa yang sesuai.",
       },
     },
     text: {
-      arab: "\u0633\u064e\u0646\u064e\u0641\u0652\u0631\u064f\u063a\u064f \u0644\u064e\u0643\u064f\u0645\u0652 \u0623\u064e\u064a\u0651\u064f\u0647\u064e \u0627\u0644\u062b\u0651\u064e\u0642\u064e\u0644\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Sanafrughu lakum ayyuhas saqalaan",
-      },
+      arabic: "سَنَفْرُغُ لَكُمْ أَيُّهَ ٱلثَّقَلَانِ",
     },
     translation: {
-      en: "We will attend to you, O prominent beings.",
-      id: "Kami akan memberi perhatian sepenuhnya kepadamu wahai (golongan) manusia dan jin!",
+      en: {
+        footnotes: "",
+        text: "We will attend to you, O two multitudes [of men and jinn].",
+      },
+      id: {
+        footnotes: "",
+        text: "Kami akan memberi perhatian sepenuhnya kepadamu wahai (golongan) manusia dan jin!",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4933",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4933.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4933.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 532,
       ruku: 467,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4933,
@@ -65,40 +58,32 @@ export const quranSurah55Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Allah swt menantang jin dan manusia, agar mengungkapkan nikmat yang manakah yang mereka dustakan. Adakah yang mereka dustakan itu balasan-balasan yang akan mereka terima pada hari Kiamat nanti baik berupa pahala maupun berupa siksaan pada hari itu tidak ada kedustaan.",
-        short:
-          "Maka, wahai manusia dan jin, nikmat Tuhanmu yang manakah yang kamu dustakan?",
+        footnotes: null,
+        text: "Maka, nikmat Allah yang besar manakah -wahai sekalian jin dan manusia- yang kalian dustakan?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u0650\u0623\u064e\u064a\u0651\u0650 \u0622\u0644\u064e\u0627\u0621\u0650 \u0631\u064e\u0628\u0651\u0650\u0643\u064f\u0645\u064e\u0627 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Fabi ayyi aalaaa'i Rabbikumaa tukazzibaan.",
-      },
+      arabic: "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
     },
     translation: {
-      en: "So which of the favors of your Lord would you deny?",
-      id: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      en: {
+        footnotes: "",
+        text: "Then which of the favors of your Lord will you deny?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4934",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4934.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4934.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 532,
       ruku: 467,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4934,
@@ -106,40 +91,33 @@ export const quranSurah55Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menyeru jin dan manusia jika mereka sanggup menembus, melintasi penjuru langit dan bumi karena takut akan siksaan dan hukuman Allah, mereka boleh mencoba melakukannya, mereka tidak akan dapat berbuat demikian. Mereka tidak mempunyai kekuatan sedikit pun dalam menghadapi kekuatan Allah swt. Menurut sebagian ahli tafsir, pengertian sulthan pada ayat ini adalah ilmu pengetahuan. Hal ini menunjukkan bahwa dengan ilmu manusia dapat menembus ruang angkasa.",
-        short:
-          "Allah menegaskan bahwa manusia dan jin tidak akan dapat menghindar dari pertanggung jawaban. Wahai golongan jin dan manusia! Jika kamu sanggup menembus atau melintasi penjuru langit dan bumi untuk menghindari pertanggung jawaban dan balasan yang akan menimpamu, maka keluar dan tembuslah keduanya. Ketauhilah, kamu tidak akan mampu menembusnya kecuali dengan kekuatan, sedangkan kamu sama sekali tidak mempunyai kekuatan itu.",
+        footnotes: null,
+        text: "Allah berfirman pada Hari Kiamat jika sudah mengumpulkan jin dan manusia, “Wahai jin dan manusia, jika kalau bisa mendapatkan jalan keluar bagi kalian dari berbagai arah langit dan bumi maka lakukanlah, dan kalian tidak akan mampu melakukan hal itu kecuali dengan kekuatan dan petunjuk, dari mana kalian mendapatkan itu?",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0645\u064e\u0639\u0652\u0634\u064e\u0631\u064e \u0627\u0644\u0652\u062c\u0650\u0646\u0651\u0650 \u0648\u064e\u0627\u0644\u0652\u0625\u0650\u0646\u0633\u0650 \u0625\u0650\u0646\u0650 \u0627\u0633\u0652\u062a\u064e\u0637\u064e\u0639\u0652\u062a\u064f\u0645\u0652 \u0623\u064e\u0646 \u062a\u064e\u0646\u0641\u064f\u0630\u064f\u0648\u0627 \u0645\u0650\u0646\u0652 \u0623\u064e\u0642\u0652\u0637\u064e\u0627\u0631\u0650 \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0641\u064e\u0627\u0646\u0641\u064f\u0630\u064f\u0648\u0627 \u06da \u0644\u064e\u0627 \u062a\u064e\u0646\u0641\u064f\u0630\u064f\u0648\u0646\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0628\u0650\u0633\u064f\u0644\u0652\u0637\u064e\u0627\u0646\u064d",
-      transliteration: {
-        en: "Yaa ma'sharal jinni wal insi inis tata'tum an tanfuzoo min aqtaaris samaawaati wal ardi fanfuzoo; laa tanfuzoona illaa bisultaan",
-      },
+      arabic:
+        "يَٰمَعْشَرَ ٱلْجِنِّ وَٱلْإِنسِ إِنِ ٱسْتَطَعْتُمْ أَن تَنفُذُوا۟ مِنْ أَقْطَارِ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ فَٱنفُذُوا۟ لَا تَنفُذُونَ إِلَّا بِسُلْطَٰنٍ",
     },
     translation: {
-      en: "O company of jinn and mankind, if you are able to pass beyond the regions of the heavens and the earth, then pass. You will not pass except by authority [from Allah].",
-      id: "Wahai golongan jin dan manusia! Jika kamu sanggup menembus (melintasi) penjuru langit dan bumi, maka tembuslah. Kamu tidak akan mampu menembusnya kecuali dengan kekuatan (dari Allah).",
+      en: {
+        footnotes: "",
+        text: "O assembly of jinn and mankind, if you are able to pass beyond the realms of the heavens and earth, then pass; you cannot pass without [Our] authority.",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai golongan jin dan manusia! Jika kamu sanggup menembus (melintasi) penjuru langit dan bumi, maka tembuslah. Kamu tidak akan mampu menembusnya kecuali dengan kekuatan (dari Allah).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4935",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4935.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4935.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 532,
       ruku: 467,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4935,
@@ -147,40 +125,32 @@ export const quranSurah55Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah bertanya kepada jin dan manusia yang berbuat jahat kemudian bertobat, lalu diterima oleh Allah tobatnya, bukankah itu merupakan nikmat? Sebelum itu Allah mengancam orang-orang yang berbuat jahat. Karenanya nikmat Allah yang mana lagi yang kamu dustakan.",
-        short:
-          "Maka, wahai manusia dan jin, nikmat Tuhanmu yang manakah yang kamu dustakan?",
+        footnotes: null,
+        text: "Maka, nikmat Allah yang besar manakah -wahai sekalian jin dan manusia- yang kalian dustakan?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u0650\u0623\u064e\u064a\u0651\u0650 \u0622\u0644\u064e\u0627\u0621\u0650 \u0631\u064e\u0628\u0651\u0650\u0643\u064f\u0645\u064e\u0627 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Fabi ayyi aalaaa'i Rabbikumaa tukazzibaan.",
-      },
+      arabic: "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
     },
     translation: {
-      en: "So which of the favors of your Lord would you deny?",
-      id: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      en: {
+        footnotes: "",
+        text: "Then which of the favors of your Lord will you deny?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4936",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4936.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4936.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 532,
       ruku: 467,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4936,
@@ -188,40 +158,32 @@ export const quranSurah55Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa kepada jin dan manusia akan ditimpakan bermacam-macam bentuk azab yaitu sambaran nyala api atau cairan yang bercampur dengan tembaga. Mereka tidak dapat melarikan diri daripadanya.",
-        short:
-          "Wahai jin dan manusia, bila kamu berupaya menembus langit dan bumi, maka kepada kamu akan dikirim nyala api dan cairan tembaga panas yang meleleh sehingga kamu tidak dapat menyelamatkan diri dari-nya.",
+        footnotes: null,
+        text: "Dikirimkah kepada kalian -wahai jin dan manusia- nyala api yang tidak mengandung asap dan asap yang tidak mengandung api, namun kalian tidak akan mampu menahan hal itu.",
       },
     },
     text: {
-      arab: "\u064a\u064f\u0631\u0652\u0633\u064e\u0644\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u064e\u0627 \u0634\u064f\u0648\u064e\u0627\u0638\u064c \u0645\u0651\u0650\u0646 \u0646\u0651\u064e\u0627\u0631\u064d \u0648\u064e\u0646\u064f\u062d\u064e\u0627\u0633\u064c \u0641\u064e\u0644\u064e\u0627 \u062a\u064e\u0646\u062a\u064e\u0635\u0650\u0631\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Yursalu 'alaikumaa shuwaazum min naarifiw-wa nuhaasun falaa tantasiraan",
-      },
+      arabic: "يُرْسَلُ عَلَيْكُمَا شُوَاظٌ مِّن نَّارٍ وَنُحَاسٌ فَلَا تَنتَصِرَانِ",
     },
     translation: {
-      en: "There will be sent upon you a flame of fire and smoke, and you will not defend yourselves.",
-      id: "Kepada kamu (jin dan manusia), akan dikirim nyala api dan cairan tembaga (panas) sehingga kamu tidak dapat menyelamatkan diri (darinya).",
+      en: {
+        footnotes: "[9] It could also mean liquefied brass or copper.",
+        text: "There will be sent against you a flame of fire and smoke[9], and you will not be able to defend yourselves.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kepada kamu (jin dan manusia), akan dikirim nyala api dan cairan tembaga (panas) sehingga kamu tidak dapat menyelamatkan diri (darinya).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4937",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4937.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4937.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 532,
       ruku: 467,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4937,
@@ -229,20 +191,22 @@ export const quranSurah55Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Allah swt menantang jin dan manusia, apakah mereka tetap mendustakan nikmat Tuhan. Di antara nikmat itu tentang ancaman siksa yang tercantum pada ayat 35 di atas telah diberitakan di dunia ini. Jika kamu di dunia ini berkesempatan berbuat baik dan terhindar dari siksa itu, itulah merupakan kenikmatan.",
-        short:
-          "Maka, wahai manusia dan jin, nikmat Tuhanmu yang manakah yang kamu dustakan?",
+        footnotes: null,
+        text: "Maka, nikmat Allah yang besar manakah -wahai sekalian jin dan manusia- yang kalian dustakan?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u0650\u0623\u064e\u064a\u0651\u0650 \u0622\u0644\u064e\u0627\u0621\u0650 \u0631\u064e\u0628\u0651\u0650\u0643\u064f\u0645\u064e\u0627 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Fabi ayyi aalaaa'i Rabbikumaa tukazzibaan.",
-      },
+      arabic: "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
     },
     translation: {
-      en: "So which of the favors of your Lord would you deny?",
-      id: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      en: {
+        footnotes: "",
+        text: "Then which of the favors of your Lord will you deny?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      },
     },
   },
 ];

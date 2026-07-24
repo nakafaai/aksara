@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah14Verses25To30 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1775",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1775.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1775.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 103,
       juz: 13,
       manzil: 3,
       page: 259,
       ruku: 214,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1775,
@@ -24,40 +25,34 @@ export const quranSurah14Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini digambarkan bahwa pohon yang baik itu selalu memberikan buahnya pada setiap manusia, dengan seizin Tuhannya. Adapun proses pertumbuhan tanaman diperlukan berbagai unsur hara yang cukup banyak macamnya. Menurut jumlah yang diperlukannya, unsur hara ini dibedakan menjadi unsur hara makro yang diperlukan dalam jumlah banyak, dan unsur hara mikro yang diperlukan dalam jumlah sedikit, tetapi keberadaannya mutlak diperlukan. Untuk sampai pada terjadinya buah, akar harus dapat memasok semua kebutuhan unsur hara ini dalam jumlah yang cukup dan seimbang. Ada beberapa unsur hara yang apabila dipasok melebihi kebutuhannya akan menjadi racun bagi tanaman dan dapat menyebabkan kematian bagi tanaman (misalnya besi untuk tanaman padi). Sebab itu, manusia yang mengambil manfaat dari pohon itu hendaklah bersyukur kepada Allah karena pada hakikatnya ilmu pengetahuan yang telah diperolehnya melalui seseorang adalah karunia dan rahmat dari Allah swt.\n\nDemikian pula halnya kata-kata baik yang kita ucapkan kepada orang lain, misalnya dalam memberikan ilmu pengetahuan yang berguna, manfaatnya akan didapat oleh orang banyak. Setiap orang yang memperoleh ilmu pengetahuan dari seorang guru haruslah bersyukur kepada Allah karena pada hakikatnya ilmu pengetahuan yang telah diperolehnya melalui seseorang adalah karunia dan rahmat dari Allah swt.\n\nIbu bapak dalam rumah tangga haruslah senantiasa mempergunakan kata-kata yang baik dan sopan, serta menjauhi ucapan-ucapan kotor dan kasar, karena ucapan-ucapan itu akan ditiru oleh anak-anak mereka.",
-        short:
-          "Pohon itu menghasilkan buahnya pada setiap waktu dengan seizin Tuhannya. Seperti itulah pohon keimanan; akarnya terpatri dengan kuat di dada kaum mukmin, dan cabangnya yang berupa amal saleh dipersembahkan kepada Allah setiap waktu. Dan demikianlah, Allah membuat perumpamaan itu sebagai gambaran untuk manusia renungkan agar mereka selalu ingat akan kebesaran dan kekuasaan Allah.",
+        footnotes: null,
+        text: "Pohon yang baik ini memberikan buahnya yang baik setiap waktu dengan izin Tuhannya. Allah membuat perumpamaan bagi manusia dengan harapan mereka akan mengambil pelajaran.",
       },
     },
     text: {
-      arab: "\u062a\u064f\u0624\u0652\u062a\u0650\u064a \u0623\u064f\u0643\u064f\u0644\u064e\u0647\u064e\u0627 \u0643\u064f\u0644\u0651\u064e \u062d\u0650\u064a\u0646\u064d \u0628\u0650\u0625\u0650\u0630\u0652\u0646\u0650 \u0631\u064e\u0628\u0651\u0650\u0647\u064e\u0627 \u06d7 \u0648\u064e\u064a\u064e\u0636\u0652\u0631\u0650\u0628\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0652\u0623\u064e\u0645\u0652\u062b\u064e\u0627\u0644\u064e \u0644\u0650\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u062a\u064e\u0630\u064e\u0643\u0651\u064e\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Tu'teee ukulahaa kulla heenim bi izni Rabbihaa; wa yadribul laahul amsaala linnaasi la'allahum yatazak karoon",
-      },
+      arabic:
+        "تُؤْتِىٓ أُكُلَهَا كُلَّ حِينٍۭ بِإِذْنِ رَبِّهَا وَيَضْرِبُ ٱللَّهُ ٱلْأَمْثَالَ لِلنَّاسِ لَعَلَّهُمْ يَتَذَكَّرُونَ",
     },
     translation: {
-      en: "It produces its fruit all the time, by permission of its Lord. And Allah presents examples for the people that perhaps they will be reminded.",
-      id: "(pohon) itu menghasilkan buahnya pada setiap waktu dengan seizin Tuhannya. Dan Allah membuat perumpamaan itu untuk manusia agar mereka selalu ingat.",
+      en: {
+        footnotes:
+          "[15] i.e., day and night, summer and winter; likewise is the testimony of faith, it never ceases to yield good deeds all the time.",
+        text: "yielding its fruit all the times[15], by the permission of its Lord. Allah makes such comparisons for people, so that they may take heed.",
+      },
+      id: {
+        footnotes: "",
+        text: "(pohon) itu menghasilkan buahnya pada setiap waktu dengan seizin Tuhannya. Dan Allah membuat perumpamaan itu untuk manusia agar mereka selalu ingat.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1776",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1776.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1776.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 103,
       juz: 13,
       manzil: 3,
       page: 259,
       ruku: 214,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1776,
@@ -65,40 +60,34 @@ export const quranSurah14Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini disebutkan perumpamaan kata-kata dan kalimat-kalimat yang jelek, yaitu ucapan-ucapan yang mengandung kekufuran dan kemusyrikan atau yang mengajak kepada perbuatan maksiat. Kata-kata yang jelek itu diumpamakan sebagai pohon yang buruk, yang akarnya tercabut dari bumi, sehingga pohon tersebut tidak dapat tegak dengan kokoh, tidak dapat berdaun dan berbuah. Artinya tidak dapat memberikan buah dan manfaat lainnya bagi manusia, bahkan hanya memberikan mudarat, apabila pohon itu roboh dan menimpa mereka. Kata-kata yang jelek hanya dapat menimbulkan dosa, serta membangkitkan kemarahan dan kebencian. Dalam sebuah hadis yang diriwayatkan oleh Abu Hathim sebagai hadis marfu, bahwa syajarah khabitsah (pohon yang buruk) adalah handhalah yang rasa buahnya pahit.\n\nOrang-orang yang tidak dapat mengendalikan emosinya sering meng-ucapkan kata-kata yang buruk, yang membahayakan dirinya dan mem-bahayakan orang lain. Demikian pula orang-orang yang sedang mabuk dan rusak akalnya, suka mengucapkan kata-kata yang jelek. Itulah sebabnya agama Islam mengajarkan kesabaran karena kesabaran mendorong seseorang untuk menguasai emosinya. Agama Islam juga melarang seseorang dari hal-hal yang merusak akal, seperti meminum minuman keras dan lain-lain.",
-        short:
-          "Dan perumpamaan kalimat yang buruk (kalimat kufur) seperti pohon yang buruk, yang telah dicabut akar-akarnya dengan sangat mudah dari permukaan bumi. Akar pohon itu tercerabut sehingga tidak lagi dapat menopangnya supaya dapat tetap tegak berdiri sedikit pun seperti sedia kala. Demikianlah, orang kafir tidak mempunyai keyakinan yang kuat dalam hati dan tidak ada amal darinya yang akan diterima oleh Allah.",
+        footnotes: null,
+        text: "Adapun perumpamaan kalimat syirik yang buruk adalah seperti tumbuhan yang buruk, yaitu tumbuhan Ḥanẓal (sejenis semangka pahit) yang tercerabut dari akarnya, tidak kokoh di atas tanah, dan tidak menjulang ke angkasa, sehingga ia pun mati dan dihancurkan oleh angin. Jadi, kalimat kekufuran pasti berakhir dengan kehancuran, tidak membawa naik amal baik pelakunya kepada Allah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u062b\u064e\u0644\u064f \u0643\u064e\u0644\u0650\u0645\u064e\u0629\u064d \u062e\u064e\u0628\u0650\u064a\u062b\u064e\u0629\u064d \u0643\u064e\u0634\u064e\u062c\u064e\u0631\u064e\u0629\u064d \u062e\u064e\u0628\u0650\u064a\u062b\u064e\u0629\u064d \u0627\u062c\u0652\u062a\u064f\u062b\u0651\u064e\u062a\u0652 \u0645\u0650\u0646 \u0641\u064e\u0648\u0652\u0642\u0650 \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0645\u064e\u0627 \u0644\u064e\u0647\u064e\u0627 \u0645\u0650\u0646 \u0642\u064e\u0631\u064e\u0627\u0631\u064d",
-      transliteration: {
-        en: "Wa masalu kalimatin khabeesatin kashajaratin khabee satinij tussat min fawqil ardi maa lahaa min qaraar",
-      },
+      arabic: "وَمَثَلُ كَلِمَةٍ خَبِيثَةٍ كَشَجَرَةٍ خَبِيثَةٍ ٱجْتُثَّتْ مِن فَوْقِ ٱلْأَرْضِ مَا لَهَا مِن قَرَارٍ",
     },
     translation: {
-      en: "And the example of a bad word is like a bad tree, uprooted from the surface of the earth, not having any stability.",
-      id: "Dan perumpamaan kalimat yang buruk seperti pohon yang buruk, yang telah dicabut akar-akarnya dari permukaan bumi; tidak dapat tetap (tegak) sedikit pun.",
+      en: {
+        footnotes:
+          "[16] i.e., the word of disbelief and polytheism.\n [17] i.e., the tree of colocynth; it has no stable root and its stalks are so feeble; such is disbelief which is shaky in the heart, and their deeds are not raised to benefit them in the Hereafter.",
+        text: "But an evil word[16] is like an evil tree[17], uprooted from the surface of the earth, having no stability.",
+      },
+      id: {
+        footnotes:
+          "[428] Termasuk dalam kalimat yang buruk ialah kufur, syirik, segala perkataan yang tidak benar dan perbuatan yang tidak baik.",
+        text: "Dan perumpamaan kalimat yang buruk[428] seperti pohon yang buruk, yang telah dicabut akar-akarnya dari permukaan bumi; tidak dapat tetap (tegak) sedikit pun.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1777",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1777.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1777.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 103,
       juz: 13,
       manzil: 3,
       page: 259,
       ruku: 214,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1777,
@@ -106,40 +95,35 @@ export const quranSurah14Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah swt menjelaskan bahwa Dia meneguhkan orang-orang yang mukmin dengan ucapan-ucapan yang baik dan teguh, baik dalam kehidupan di dunia ini, maupun di akhirat. Dengan demikian, ada hubungan timbal balik antara iman dengan ucapan yang baik dan teguh. Iman mendorong seseorang untuk senantiasa menggunakan ucapan yang baik dan teguh. Sebaliknya, ucapan yang baik itu dapat memelihara keteguhan iman seseorang.\n\nDalam ayat ini selanjutnya, Allah swt menegaskan bahwa Dia membiarkan sesat orang-orang yang zalim dan yang suka berbuat menurut kehendaknya sendiri, tanpa mengabaikan peraturan yang benar, antara lain ialah mengucapkan kata-kata yang buruk yang mengajak kepada kekafiran, kemusyrikan, kemaksiatan, dan sebagainya.",
-        short:
-          "Allah meneguhkan hati orang-orang yang beriman dengan ucapan yang teguh, yaitu kesaksian bahwa tiada Tuhan selain Allah dan Nabi Muhammad adalah utusan Allah, dalam kehidupan mereka di dunia dan di akhirat; dan Allah menyesatkan orang-orang yang zalim dari jalan kebenaran, dan Allah berbuat apa saja yang Dia kehendaki, seperti memberi hidayah kepada orang mukmin dan membiarkan sesat orang yang ingkar.",
+        footnotes: null,
+        text: "Allah meneguhkan orang-orang mukmin dengan kalimat tauhid yang kokoh dalam bentuk iman yang sempurna di kehidupan dunia hingga mereka mati sementara mereka tetap berpegang kepada iman, saat di alam barzakh dalam kubur, yaitu tatkala mereka ditanya, serta Allah meneguhkan mereka juga pada hari Kiamat. Sebaliknya, Allah menyesatkan orang-orang zalim dengan kesyirikan dan kekufuran kepada Allah dari jalan kebenaran dan jalan lurus. Allah melakukan apa yang Dia kehendaki; menyesatkan siapa yang Dia hendak sesatkan dengan keadilan-Nya dan memberi petunjuk kepada siapa yang hendak Dia beri petunjuk dengan karunia-Nya, tidak ada yang dapat menekan dan memaksa-Nya.",
       },
     },
     text: {
-      arab: "\u064a\u064f\u062b\u064e\u0628\u0651\u0650\u062a\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0628\u0650\u0627\u0644\u0652\u0642\u064e\u0648\u0652\u0644\u0650 \u0627\u0644\u062b\u0651\u064e\u0627\u0628\u0650\u062a\u0650 \u0641\u0650\u064a \u0627\u0644\u0652\u062d\u064e\u064a\u064e\u0627\u0629\u0650 \u0627\u0644\u062f\u0651\u064f\u0646\u0652\u064a\u064e\u0627 \u0648\u064e\u0641\u0650\u064a \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u064e\u0629\u0650 \u06d6 \u0648\u064e\u064a\u064f\u0636\u0650\u0644\u0651\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0638\u0651\u064e\u0627\u0644\u0650\u0645\u0650\u064a\u0646\u064e \u06da \u0648\u064e\u064a\u064e\u0641\u0652\u0639\u064e\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0645\u064e\u0627 \u064a\u064e\u0634\u064e\u0627\u0621\u064f",
-      transliteration: {
-        en: "Yusabbitul laahul lazeena aamanoo bilqawlis saabiti fil hayaatid dunyaa wa fil Aakhirati wa yudillul laahuz zaalimeen; wa yaf'alul laahu maa yashaaa'",
-      },
+      arabic:
+        "يُثَبِّتُ ٱللَّهُ ٱلَّذِينَ ءَامَنُوا۟ بِٱلْقَوْلِ ٱلثَّابِتِ فِى ٱلْحَيَوٰةِ ٱلدُّنْيَا وَفِى ٱلْـَٔاخِرَةِ وَيُضِلُّ ٱللَّهُ ٱلظَّٰلِمِينَ وَيَفْعَلُ ٱللَّهُ مَا يَشَآءُ",
     },
     translation: {
-      en: "Allah keeps firm those who believe, with the firm word, in worldly life and in the Hereafter. And Allah sends astray the wrongdoers. And Allah does what He wills.",
-      id: "Allah meneguhkan (iman) orang-orang yang beriman dengan ucapan yang teguh (dalam kehidupan) di dunia dan di akhirat; dan Allah menyesatkan orang-orang yang zalim dan Allah berbuat apa yang Dia kehendaki.",
+      en: {
+        footnotes:
+          "[18] When questioned in their graves by the angels.\n [19] For doing wrong to themselves and others, Allah casts doubts and blindness in their hearts and does not guide them to say what is truthful in this life or in the grave.",
+        text: "Allah keeps those who believe steadfast with the firm Word [of faith] in the life of this world[18] and in the Hereafter. But Allah causes to stray the wrongdoers[19]; Allah does whatever He wills.",
+      },
+      id: {
+        footnotes:
+          "[429] Yang dimaksud ucapan-ucapan yang teguh di sini ialah kalimat ṭayyibah yang disebut dalam ayat 24 di atas.",
+        text: "Allah meneguhkan (iman) orang-orang yang beriman dengan ucapan yang teguh[429] (dalam kehidupan) di dunia dan di akhirat; dan Allah menyesatkan orang-orang yang zalim dan Allah berbuat apa yang Dia kehendaki.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1778",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1778.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1778.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 104,
       juz: 13,
       manzil: 3,
       page: 259,
       ruku: 215,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1778,
@@ -147,40 +131,33 @@ export const quranSurah14Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini disampaikan dalam bentuk pertanyaan, tetapi bukan untuk dijawab, melainkan hanyalah sebagai peringatan bagi kaum Muslimin agar mereka jangan sekali-kali berbuat dan bertindak seperti yang dilakukan oleh orang kafir. Hendaklah mereka selalu taat, tunduk, dan patuh kepada perintah-perintah Allah dan menghentikan semua larangan-Nya. Jika mereka ingkar kepada Allah, mereka pasti akan diazab di dunia dan di akhirat seperti yang ditimpakan kepada orang kafir.\n\nMenurut Ibnu Abbas yang dimaksud dengan "orang-orang yang telah menukar nikmat Allah" dalam ayat ini ialah orang-orang kafir Mekah. Mereka telah dianugerahi bermacam-macam nikmat yang tidak diberikan Allah kepada bangsa lain. Negeri Mekah telah dijadikan sebagai tanah haram yakni tanah yang dihormati, tanah yang terjamin keamanannya, dan tempat berdirinya Kabah yang dikunjungi manusia dari segala penjuru dunia setiap tahun. Allah swt telah mendatangkan air, makanan, dan buah-buahan ke tanah yang tandus itu. Nikmat yang lebih besar lagi ialah diangkatnya Muhammad dari bangsa mereka sendiri sebagai nabi dan rasul penutup, yang membawa agama Allah, yang menjadi petunjuk dan pegangan hidup bagi seluruh manusia.\n\nSemua nikmat yang telah dilimpahkan itu mereka ingkari. Bahkan mereka menyiksa Nabi Muhammad saw dan kaum Muslimin dan menghambat tersiarnya agama Islam. Oleh karena itu, Allah swt menimpakan azab dan siksa kepada mereka berupa musim kemarau yang kering dan lama, sehingga mereka banyak yang mati kelaparan. Menurut riwayat, ada di antara mereka yang sampai memakan tulang karena tidak ada lagi makanan yang akan dimakan.\n\nAllah menerangkan bahwa mereka adalah orang-orang yang telah menukar nikmat Allah dan telah menempatkan kaum mereka yang jadi pengikut-pengikut mereka di tempat yang penuh kesengsaraan, yaitu neraka Jahanam yang menyala-nyala, yang bahan bakarnya adalah batu dan manusia.\n\nDari ayat ini dipahami bahwa Allah swt memerintahkan manusia agar selalu mensyukuri nikmat-Nya dengan mengikuti perintah-perintah-Nya dan menghentikan larangan-larangan-Nya. Seluruh manusia dan makhluk sangat tergantung kepada nikmat itu, baik nikmat dalam bentuk lahir, maupun nikmat dalam bentuk batin atau yang tidak nampak.',
-        short:
-          "Allah membiarkan sesat orang yang ingkar, namun bukan berarti Allah berbuat sewenang-wenang. Apa yang mereka alami merupakan akibat dari perbuatan buruk mereka sendiri. Wahai manusia, tidakkah kamu memperhatikan bagaimana kesudahan orang-orang kafir yang telah menukar nikmat yang telah Allah turunkan kepada mereka, seperti nikmat kesejahteraan dan pengutusan para rasul kepada mereka, dengan ingkar kepada Allah dan menjatuhkan kaumnya ke lembah kebinasaan dengan mengajak mereka memusuhi Allah dan utusan-Nya?",
+        footnotes: null,
+        text: "Sungguh kamu telah melihat kondisi orang-orang yang kafir kepada Allah dan Rasul-Nya dari kaum Quraisy ketika mereka mengganti nikmat Allah kepada mereka berupa nikmat aman di Tanah Haram dan diutusnya Muhammad -ṣallallāhu 'alaihi wa sallam- dari kalangan mereka, yaitu mereka menggantinya dengan sikap kufur kepada nikmat Allah ketika mereka mendustakan apa yang Muhammad bawa dari Tuhannya dan mereka menjerumuskan orang-orang yang mengikuti mereka dalam kekufuran dari kaum musyrikin ke dalam negeri kebinasaan.",
       },
     },
     text: {
-      arab: "\u06de \u0623\u064e\u0644\u064e\u0645\u0652 \u062a\u064e\u0631\u064e \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0628\u064e\u062f\u0651\u064e\u0644\u064f\u0648\u0627 \u0646\u0650\u0639\u0652\u0645\u064e\u062a\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0643\u064f\u0641\u0652\u0631\u064b\u0627 \u0648\u064e\u0623\u064e\u062d\u064e\u0644\u0651\u064f\u0648\u0627 \u0642\u064e\u0648\u0652\u0645\u064e\u0647\u064f\u0645\u0652 \u062f\u064e\u0627\u0631\u064e \u0627\u0644\u0652\u0628\u064e\u0648\u064e\u0627\u0631\u0650",
-      transliteration: {
-        en: "Alam tara ilal lazeena baddaloo ni'matal laahi kufranw wa ahalloo qawmahum daaral bawaar",
-      },
+      arabic: "أَلَمْ تَرَ إِلَى ٱلَّذِينَ بَدَّلُوا۟ نِعْمَتَ ٱللَّهِ كُفْرًا وَأَحَلُّوا۟ قَوْمَهُمْ دَارَ ٱلْبَوَارِ",
     },
     translation: {
-      en: "Have you not considered those who exchanged the favor of Allah for disbelief and settled their people [in] the home of ruin?",
-      id: "Tidakkah kamu memperhatikan orang-orang yang telah menukar nikmat Allah dengan ingkar kepada Allah dan menjatuhkan kaumnya ke lembah kebinasaan?",
+      en: {
+        footnotes:
+          "[20] They met Allah’s blessings with denial instead of gratitude.\n [21] i.e., the Hellfire.",
+        text: "Did you not see those who exchanged Allah’s blessings with disbelief[20], and led their people to the abode of ruin[21]?",
+      },
+      id: {
+        footnotes: "",
+        text: "Tidakkah kamu memperhatikan orang-orang yang telah menukar nikmat Allah dengan ingkar kepada Allah dan menjatuhkan kaumnya ke lembah kebinasaan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1779",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1779.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1779.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 104,
       juz: 13,
       manzil: 3,
       page: 259,
       ruku: 215,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1779,
@@ -188,40 +165,32 @@ export const quranSurah14Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini disampaikan dalam bentuk pertanyaan, tetapi bukan untuk dijawab, melainkan hanyalah sebagai peringatan bagi kaum Muslimin agar mereka jangan sekali-kali berbuat dan bertindak seperti yang dilakukan oleh orang kafir. Hendaklah mereka selalu taat, tunduk, dan patuh kepada perintah-perintah Allah dan menghentikan semua larangan-Nya. Jika mereka ingkar kepada Allah, mereka pasti akan diazab di dunia dan di akhirat seperti yang ditimpakan kepada orang kafir.\n\nMenurut Ibnu Abbas yang dimaksud dengan "orang-orang yang telah menukar nikmat Allah" dalam ayat ini ialah orang-orang kafir Mekah. Mereka telah dianugerahi bermacam-macam nikmat yang tidak diberikan Allah kepada bangsa lain. Negeri Mekah telah dijadikan sebagai tanah haram yakni tanah yang dihormati, tanah yang terjamin keamanannya, dan tempat berdirinya Kabah yang dikunjungi manusia dari segala penjuru dunia setiap tahun. Allah swt telah mendatangkan air, makanan, dan buah-buahan ke tanah yang tandus itu. Nikmat yang lebih besar lagi ialah diangkatnya Muhammad dari bangsa mereka sendiri sebagai nabi dan rasul penutup, yang membawa agama Allah, yang menjadi petunjuk dan pegangan hidup bagi seluruh manusia.\n\nSemua nikmat yang telah dilimpahkan itu mereka ingkari. Bahkan mereka menyiksa Nabi Muhammad saw dan kaum Muslimin dan menghambat tersiarnya agama Islam. Oleh karena itu, Allah swt menimpakan azab dan siksa kepada mereka berupa musim kemarau yang kering dan lama, sehingga mereka banyak yang mati kelaparan. Menurut riwayat, ada di antara mereka yang sampai memakan tulang karena tidak ada lagi makanan yang akan dimakan.\n\nAllah menerangkan bahwa mereka adalah orang-orang yang telah menukar nikmat Allah dan telah menempatkan kaum mereka yang jadi pengikut-pengikut mereka di tempat yang penuh kesengsaraan, yaitu neraka Jahanam yang menyala-nyala, yang bahan bakarnya adalah batu dan manusia.\n\nDari ayat ini dipahami bahwa Allah swt memerintahkan manusia agar selalu mensyukuri nikmat-Nya dengan mengikuti perintah-perintah-Nya dan menghentikan larangan-larangan-Nya. Seluruh manusia dan makhluk sangat tergantung kepada nikmat itu, baik nikmat dalam bentuk lahir, maupun nikmat dalam bentuk batin atau yang tidak nampak.',
-        short:
-          "Lembah kebinasaan tersebut yaitu neraka Jahanam; mereka yang mengingkari Allah dan nikmat-nikmat-Nya akan masuk ke dalamnya dan merasakan betapa pedih siksa di dalamnya; dan Jahanam itulah seburuk-buruk tempat kediaman.",
+        footnotes: null,
+        text: "Negeri kebinasaan adalah api neraka Jahanam yang mereka masuki, mereka merasakan panasnya, ia adalah seburuk-buruk tempat tinggal.",
       },
     },
     text: {
-      arab: "\u062c\u064e\u0647\u064e\u0646\u0651\u064e\u0645\u064e \u064a\u064e\u0635\u0652\u0644\u064e\u0648\u0652\u0646\u064e\u0647\u064e\u0627 \u06d6 \u0648\u064e\u0628\u0650\u0626\u0652\u0633\u064e \u0627\u0644\u0652\u0642\u064e\u0631\u064e\u0627\u0631\u064f",
-      transliteration: {
-        en: "Jahannama yaslawnahaa wa bi'sal qaraar",
-      },
+      arabic: "جَهَنَّمَ يَصْلَوْنَهَا وَبِئْسَ ٱلْقَرَارُ",
     },
     translation: {
-      en: "[It is] Hell, which they will [enter to] burn, and wretched is the settlement.",
-      id: "yaitu neraka Jahanam; mereka masuk ke dalamnya; dan itulah seburuk-buruk tempat kediaman.",
+      en: {
+        footnotes: "",
+        text: "In Hell they will burn; what an evil place to settle in!",
+      },
+      id: {
+        footnotes: "",
+        text: "yaitu neraka Jahanam; mereka masuk ke dalamnya; dan itulah seburuk-buruk tempat kediaman.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1780",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1780.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1780.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 104,
       juz: 13,
       manzil: 3,
       page: 259,
       ruku: 215,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1780,
@@ -229,20 +198,23 @@ export const quranSurah14Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan tindakan kedua dan ketiga yang menyebabkan Allah menimpakan azab yang pedih kepada mereka.\n\nSebab yang kedua ialah tindakan mempersekutukan Allah. Termasuk dalam tindakan ini ialah:\n\n1. Mengakui Tuhan itu banyak.\n\n2. Menyembah yang lain di samping menyembah Allah.\n\n3. Mengakui sesuatu selain Allah mempunyai kekuatan dan kekuasaan seperti kekuatan dan kekuasaan Allah swt.\n\nMempersekutukan Allah ini adalah kepercayaan orang-orang Arab Jahiliah. Mereka mempunyai sesembahan selain Allah. Sesembahan itu ada yang berupa patung-patung yang mereka buat, di antaranya ada yang mereka letakkan di sekeliling Kabah. Mereka percaya kepada tenung dan ramalan nasib. Jika mereka ingin melakukan sesuatu pekerjaan yang penting atau perjalanan yang jauh, mereka pergi ke Kabah dan menyuruh penjaganya mengadakan undian. Hasil undian inilah yang menentukan apakah mereka akan melakukan pekerjaan atau perjalanan jauh itu atau tidak.\n\nSebab yang ketiga ialah orang-orang kafir itu berusaha menyesatkan manusia dari jalan Allah. Mereka menghalang-halangi, bahkan membunuh orang-orang yang melakukan pekerjaan atau mengikuti agama Islam.\n\nKetiga macam perbuatan di atas adalah perbuatan dosa besar. Oleh karena itu, Allah swt memerintahkan Nabi Muhammad agar menyampaikan peringatan keras-Nya kepada manusia. Jika mereka tetap ingkar, biarkan mereka berbuat sesuka hatinya, bersenang-senang, dan berbuat kebinasaan di muka bumi dalam waktu tertentu, sampai Allah menimpakan azab yang keras kepada mereka.\n\nHal ini ditegaskan oleh firman Allah swt:\n\nKatakanlah, "Bersenang-senanglah kamu dengan kekafiranmu itu untuk sementara waktu. Sungguh, kamu termasuk penghuni neraka. (az-Zumar/39: 8)',
-        short:
-          'Dan tidak hanya mengingkari Allah dan nikmat-nikmat-Nya, mereka (orang kafir) itu telah menjadikan dan menyembah berhala-berhala sebagai tandingan bagi Allah yang seharusnya mereka imani dan esakan. Mereka melakukan hal tersebut untuk menyesatkan manusia dari jalan dan agama-Nya. Wahai Nabi Muhammad, katakanlah kepada mereka, "Bersenang-senanglah di dunia ini dengan keingkaran kamu, karena sesungguhnya dunia ini akan segera sirna dan tempat kembalimu adalah ke neraka. Di sanalah kamu akan menerima balasan setimpal atas keingkaranmu."',
+        footnotes: null,
+        text: 'Orang-orang musyrikin mengangkat sekutu-sekutu dan tandingan-tandingan bagi Allah untuk menyesatkan orang-orang yang mengikuti mereka dari jalan Allah sesudah mereka sendiri tersesat. Katakanlah kepada mereka -wahai Rasul-, "Silakan kalian menikmati nafsu syahwat dan menyebarkan syubhat kalian di kehidupan dunia ini, sesungguhnya tempat kembali kalian pada hari Kiamat adalah api neraka, hanya itu tempat kembali kalian."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u062c\u064e\u0639\u064e\u0644\u064f\u0648\u0627 \u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0623\u064e\u0646\u062f\u064e\u0627\u062f\u064b\u0627 \u0644\u0651\u0650\u064a\u064f\u0636\u0650\u0644\u0651\u064f\u0648\u0627 \u0639\u064e\u0646 \u0633\u064e\u0628\u0650\u064a\u0644\u0650\u0647\u0650 \u06d7 \u0642\u064f\u0644\u0652 \u062a\u064e\u0645\u064e\u062a\u0651\u064e\u0639\u064f\u0648\u0627 \u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0645\u064e\u0635\u0650\u064a\u0631\u064e\u0643\u064f\u0645\u0652 \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u0650",
-      transliteration: {
-        en: "Wa ja'aloo lillaahi andaadal liyudilloo 'an sabeelih; qul tamatta'oo fa innaa maseerakum ilan Naar",
-      },
+      arabic:
+        "وَجَعَلُوا۟ لِلَّهِ أَندَادًا لِّيُضِلُّوا۟ عَن سَبِيلِهِۦ قُلْ تَمَتَّعُوا۟ فَإِنَّ مَصِيرَكُمْ إِلَى ٱلنَّارِ",
     },
     translation: {
-      en: 'And they have attributed to Allah equals to mislead [people] from His way. Say, "Enjoy yourselves, for indeed, your destination is the Fire."',
-      id: "Dan mereka (orang kafir) itu telah menjadikan tandingan bagi Allah untuk menyesatkan (manusia) dari jalan-Nya. Katakanlah (Muhammad), “Bersenang-senanglah kamu, karena sesungguhnya tempat kembalimu ke neraka.”",
+      en: {
+        footnotes: "",
+        text: "They set up rivals to Allah to mislead people from His way. Say, “Enjoy yourselves for a while! Your destination will be the Fire.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan mereka (orang kafir) itu telah menjadikan tandingan bagi Allah untuk menyesatkan (manusia) dari jalan-Nya. Katakanlah (Muhammad), "Bersenang-senanglah kamu, karena sesungguhnya tempat kembalimu ke neraka."',
+      },
     },
   },
 ];

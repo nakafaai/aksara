@@ -4,16 +4,6 @@ on:
   pull_request:
   push:
     branches: [main]
-  workflow_dispatch:
-    inputs:
-      expected_sha:
-        description: Exact Changesets pull-request head to verify
-        required: true
-        type: string
-      pull_request_number:
-        description: Exact Changesets pull request to verify
-        required: true
-        type: string
 
 permissions:
   contents: read
@@ -46,69 +36,24 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Package bootstrap state
-        run: |
-          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
-          package_version=$(jq -er '.version' packages/contracts/package.json)
-          if [[ "$bootstrapped" == "false" ]]; then
-            if [[ ! -f .github/workflows/bootstrap.yml || "$package_version" != "0.1.0" ]]; then
-              echo "Incomplete bootstrap requires its one-time workflow and exact initial version." >&2
-              exit 1
-            fi
-            exit 0
-          fi
-          if [[ "$bootstrapped" != "true" || -e .github/workflows/bootstrap.yml ]]; then
-            echo "Completed bootstrap requires deleting its one-time workflow." >&2
-            exit 1
-          fi
-
-      - name: Verify dispatched revision
-        if: github.event_name == 'workflow_dispatch'
+      - name: Capture immutable contract releases
         env:
-          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
           GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pull_request_number }}
-        run: |
-          if [[ ! "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ || "$EXPECTED_SHA" != "$GITHUB_SHA" ]]; then
-            echo "Dispatched CI must run at its exact expected revision." >&2
-            exit 1
-          fi
-          if [[ ! "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]]; then
-            echo "Dispatched CI pull request number is malformed." >&2
-            exit 1
-          fi
+        run: >-
+          gh api --paginate
+          "repos/$GITHUB_REPOSITORY/releases?per_page=100"
+          --jq '.[] | select(.draft == false and .immutable == true and
+          .prerelease == false) | .tag_name |
+          select(startswith("contracts-v"))' > "$CONTRACT_TAGS"
 
-          pull=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
-          if ! jq -e --arg repository "$GITHUB_REPOSITORY" --arg sha "$EXPECTED_SHA" '
-            .state == "open"
-            and .draft == false
-            and .base.ref == "main"
-            and .base.repo.full_name == $repository
-            and .head.ref == "changeset-release/main"
-            and .head.repo.full_name == $repository
-            and .head.sha == $sha
-            and .user.login == "github-actions[bot]"
-            and .user.type == "Bot"' <<<"$pull" >/dev/null; then
-            echo "Dispatched CI is not bound to the exact ready Changesets pull request." >&2
-            exit 1
-          fi
-
-      - name: Contract version intent
-        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+      - name: Contract release identity
+        id: identity
         env:
-          PR_AUTHOR: ${{ github.event.pull_request.user.login || 'github-actions[bot]' }}
-          PR_HEAD: ${{ github.head_ref || github.ref_name }}
-        run: |
-          bootstrapped=$(jq -er 'if (.contracts | type) == "boolean" then (.contracts | tostring) else empty end' .changeset/bootstrap.json)
-          if [[ "$bootstrapped" != "true" ]]; then
-            echo "Initial package is not published; bootstrap version remains source-controlled."
-            exit 0
-          fi
-          if [[ "$PR_HEAD" == "changeset-release/main" && "$PR_AUTHOR" == "github-actions[bot]" ]]; then
-            echo "Trusted Changesets version pull request has consumed its source changesets."
-            exit 0
-          fi
-          pnpm changeset status --since=origin/main
+          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+        run: >-
+          node packages/contracts/scripts/release-command.ts describe
+          --tags "$CONTRACT_TAGS" --output "$GITHUB_OUTPUT"
 
       - name: Lint
         run: pnpm lint
@@ -140,5 +85,45 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Verify contracts package boundary
-        run: pnpm verify:package
+      - name: Verify contracts release archive
+        env:
+          CURRENT_ARCHIVE: ${{ runner.temp }}/${{ steps.identity.outputs.asset_name }}
+        run: pnpm verify:consumer -- --output "$CURRENT_ARCHIVE"
+
+      - name: Download latest immutable archive
+        if: steps.identity.outputs.has_latest == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LATEST_ASSET: ${{ steps.identity.outputs.latest_asset_name }}
+          LATEST_ROOT: ${{ runner.temp }}/latest-contract
+          LATEST_TAG: ${{ steps.identity.outputs.latest_tag }}
+        run: |
+          release=$(gh release view "$LATEST_TAG" \
+            --json isDraft,isImmutable,isPrerelease \
+            --repo "$GITHUB_REPOSITORY")
+          if ! jq -e \
+            '.isDraft == false
+              and .isImmutable == true
+              and .isPrerelease == false' \
+            <<< "$release" >/dev/null; then
+            echo "The latest contract tag must own a final immutable release." >&2
+            exit 1
+          fi
+          mkdir -p "$LATEST_ROOT"
+          gh release download "$LATEST_TAG" --clobber \
+            --dir "$LATEST_ROOT" --pattern "$LATEST_ASSET" \
+            --repo "$GITHUB_REPOSITORY"
+
+      - name: Verify exact archive release identity
+        env:
+          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CURRENT_ARCHIVE: ${{ runner.temp }}/${{ steps.identity.outputs.asset_name }}
+          HAS_LATEST: ${{ steps.identity.outputs.has_latest }}
+          LATEST_ARCHIVE: ${{ runner.temp }}/latest-contract/${{ steps.identity.outputs.latest_asset_name }}
+        run: |
+          arguments=(decide --tags "$CONTRACT_TAGS" \
+            --archive "$CURRENT_ARCHIVE" --output "$GITHUB_OUTPUT")
+          if [[ "$HAS_LATEST" == "true" ]]; then
+            arguments+=(--previous "$LATEST_ARCHIVE")
+          fi
+          node packages/contracts/scripts/release-command.ts "${arguments[@]}"

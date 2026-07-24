@@ -50,20 +50,22 @@ vi.mock("node:crypto", async (importOriginal) => {
 /** Builds one complete fixed-count snapshot manifest. */
 function manifest() {
   return QuranSnapshotManifestSchema.make({
+    attributionCount: 1,
     chunkCount: 1085,
     format: QURAN_SNAPSHOT_FORMAT,
     locales: ["en", "id"],
-    projectionCount: 1427,
+    projectionCount: 1428,
     projectionDigest: firstHash,
     provenanceDigest: firstHash,
     provenanceStatus: "blocked",
-    runtimeCount: 1199,
+    runtimeCount: 1200,
     runtimeDigest: firstHash,
     searchCount: 228,
     searchDigest: firstHash,
     snapshotId: secondHash,
-    sourceBytes: 19_376_634,
+    sourceBytes: 11_506_941,
     sourceDigest: firstHash,
+    sourceFileCount: 118,
     surahCount: 114,
     tafsirLocales: ["id"],
     verseCount: 6236,
@@ -90,7 +92,7 @@ describe("Quran snapshot hashing", () => {
   it("maps snapshot hashing failures", async () => {
     const value = manifest();
     const { snapshotId: _snapshotId, ...identity } = value;
-    failures.domain = "nakafa.aksara.quran-snapshot.v1";
+    failures.domain = "nakafa.aksara.quran-snapshot.v2";
     const snapshotError = await Effect.runPromise(
       hashQuranSnapshot(identity).pipe(Effect.flip)
     );

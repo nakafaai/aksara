@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah2Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/56",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/56.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/56.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 3,
       juz: 1,
       manzil: 1,
       page: 8,
       ruku: 7,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 56,
@@ -24,40 +25,34 @@ export const quranSurah2Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Peringatan lain kepada Bani Israil tentang nikmat Allah yang lain, yaitu mereka telah diselamatkan dari kesengsaraan yang mereka alami, akibat kekejaman Fir'aun, raja Mesir, pada waktu Bani Israil bertempat tinggal di sana. Orang pertama dari kalangan Bani Israil yang masuk ke Mesir ialah Nabi Yusuf. Kemudian saudara-saudaranya datang pula ke sana dan tinggal bersamanya. Selanjutnya, mereka berkembang biak di sana, sehingga dalam masa + 400 tahun (dari masa Nabi Yusuf sampai dengan Nabi Musa) jumlah mereka telah mencapai ratusan ribu orang. Penduduk asli semakin terdesak, karena Bani Israil itu giat bekerja dan memiliki pikiran yang lebih cerdas. Di samping itu, mereka sangat mementingkan diri sendiri, karena mereka masih tetap menganggap diri mereka sebagai sya'bullah al-mukhtar. Sebab itu, mereka tidak mau bersatu dengan penduduk asli, dan tidak mau bekerja sama dan membantu mereka dalam kehidupan sehari-hari.\n\nMelihat keadaan yang demikian, penduduk asli negeri itu semakin khawatir, sebab apabila Bani Israil itu semakin banyak jumlahnya, maka mereka akan menguasai keadaan dan penduduk asli akan semakin terdesak. Oleh sebab itu, mereka berusaha untuk melemahkan kekuatan Bani Israil. Mula-mula dengan mewajibkan kerja paksa kepada mereka. Kemudian semakin meningkat dengan pembunuhan anak-anak lelaki mereka, dan hanya anak-anak perempuan mereka yang dibiarkan hidup. Sekitar peristiwa ini bandingkan dengan Kitab Keluaran i.16 ; perintah Fir'aun kepada para bidan. Penyiksaan dan penderitaan Bani Israil tergambar dalam Keluaran i.22, dan pada beberapa bagian lagi dalam Perjanjian Lama. Fir'aun memerintahkan kepada setiap suku rakyatnya untuk membunuh setiap lelaki Bani Israil, walaupun anak-anak kecil mereka.\n\nPenderitaan yang dialami Bani Israil itu merupakan ujian bagi mereka karena mereka telah melupakan nikmat-Nya dan telah melakukan bermacam-macam dosa. Kemudian Allah swt mengampuni dan menerima tobat mereka, dan dikaruniakan-Nya pula nikmat yang besar, yaitu diselamatkan dari kesengsaraan yang mereka alami dari kekejaman Fir'aun. Tetapi rahmat ini pun merupakan ujian bagi mereka, apakah nantinya mereka akan mensyukuri nikmat itu, atau tidak.\n\nUmat Islam dapat mengambil pelajaran yang sangat berharga dari kisah Bani Israil itu. Allah swt, mula-mula telah melimpahkan bermacam-macam nikmat-Nya kepada umat Islam, sehingga umat telah bersatu di bawah panji-panji Islam dan hidup dalam persaudaraan yang kukuh, serta berhasil membangun negara Islam yang kuat. Tetapi kemudian terjadilah perpecahan di antara umat Islam, sehingga Allah swt mendatangkan malapetaka kepada mereka.\n\nKhilafah Abbasiyah di Bagdad diruntuhkan oleh bangsa Tartar. Kemudian terjadi Perang Salib dalam waktu yang panjang sekitar 200 tahun. Sementara itu bangsa-bangsa barat menyusup ke negeri-negeri Islam, menguasai sumber-sumber kekayaan mereka sehingga umat Islam di mana-mana menjadi lemah.",
-        short:
-          "Di ayat-ayat yang lalu, Allah mengingatkan Bani Israil tentang anugerah yang mereka terima yang tidak pernah diberikan kepada umatumat yang lain, ayat berikut mengingatkan mereka tentang penyelamatan dari malapetaka yang akan menimpa. Dan ingatlah peristiwa ketika Kami menyelamatkan kamu dari pengikut-pengikut Fir'aun, penguasa Mesir. Mereka menimpakan siksaan yang sangat berat kepadamu, yakni mereka menyembelih anak-anak laki-lakimu dan membiarkan hidup anak-anak perempuanmu. Dan pada peristiwa yang demikian itu merupakan cobaan dan ujian yang sangat besar dari Tuhan-Mu.",
+        footnotes: null,
+        text: "Ingatlah, wahai Bani Israil, tatkala Kami menyelamatkan kalian dari para pengikut Firaun yang telah menimpakan beragam siksaan kepada kalian. Mereka menyembelih anak-anak laki-laki kalian supaya kalian punah dan mereka membiarkan para wanita kalian hidup untuk menjadi pelayan mereka. Perbuatan mereka ini sangat merendahkan dan menistakan kalian. Di balik penyelamatan kalian dari kekejaman Firaun dan para pengikutnya terdapat ujian besar dari Tuhan kalian, yaitu agar kalian mau bersyukur kepada-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u0646\u064e\u062c\u0651\u064e\u064a\u0652\u0646\u064e\u0627\u0643\u064f\u0645 \u0645\u0651\u0650\u0646\u0652 \u0622\u0644\u0650 \u0641\u0650\u0631\u0652\u0639\u064e\u0648\u0652\u0646\u064e \u064a\u064e\u0633\u064f\u0648\u0645\u064f\u0648\u0646\u064e\u0643\u064f\u0645\u0652 \u0633\u064f\u0648\u0621\u064e \u0627\u0644\u0652\u0639\u064e\u0630\u064e\u0627\u0628\u0650 \u064a\u064f\u0630\u064e\u0628\u0651\u0650\u062d\u064f\u0648\u0646\u064e \u0623\u064e\u0628\u0652\u0646\u064e\u0627\u0621\u064e\u0643\u064f\u0645\u0652 \u0648\u064e\u064a\u064e\u0633\u0652\u062a\u064e\u062d\u0652\u064a\u064f\u0648\u0646\u064e \u0646\u0650\u0633\u064e\u0627\u0621\u064e\u0643\u064f\u0645\u0652 \u06da \u0648\u064e\u0641\u0650\u064a \u0630\u064e\u0670\u0644\u0650\u0643\u064f\u0645 \u0628\u064e\u0644\u064e\u0627\u0621\u064c \u0645\u0651\u0650\u0646 \u0631\u0651\u064e\u0628\u0651\u0650\u0643\u064f\u0645\u0652 \u0639\u064e\u0638\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wa iz najjainaakum min Aali Fir'awna yasoomoonakum sooo'al azaabi yuzabbihoona abuaaa'akum wa yastahyoona nisaaa'akum; wa fee zaalikum balaaa'um mir Rabbikum 'azeem",
-      },
+      arabic:
+        "وَإِذْ نَجَّيْنَٰكُم مِّنْ ءَالِ فِرْعَوْنَ يَسُومُونَكُمْ سُوٓءَ ٱلْعَذَابِ يُذَبِّحُونَ أَبْنَآءَكُمْ وَيَسْتَحْيُونَ نِسَآءَكُمْ وَفِى ذَٰلِكُم بَلَآءٌ مِّن رَّبِّكُمْ عَظِيمٌ",
     },
     translation: {
-      en: "And [recall] when We saved your forefathers from the people of Pharaoh, who afflicted you with the worst torment, slaughtering your [newborn] sons and keeping your females alive. And in that was a great trial from your Lord.",
-      id: "Dan (ingatlah) ketika Kami menyelamatkan kamu dari (Fir‘aun dan) pengikut-pengikut Fir‘aun. Mereka menimpakan siksaan yang sangat berat kepadamu. Mereka menyembelih anak-anak laki-lakimu dan membiarkan hidup anak-anak perempuanmu. Dan pada yang demikian itu merupakan cobaan yang besar dari Tuhanmu.",
+      en: {
+        footnotes: "",
+        text: "And [remember] when We saved you from Pharaoh’s people, who were inflicting dreadful torment upon you: slaughtering your sons and sparing your women. That was a great trial from your Lord.",
+      },
+      id: {
+        footnotes:
+          "[25] Fir'aun adalah gelar bagi Raja-raja Mesir pada masa lalu. Menurut sejarah, Fir'aun pada masa Nabi Musa -'alaihissalām- ialah Menephthan (1232-1224 SM) anak Ramses.",
+        text: "Dan (ingatlah) ketika Kami menyelamatkan kamu dari (Fir'aun dan) pengikut-pengikut Fir'aun.[25] Mereka menimpakan siksaan yang sangat berat kepadamu. Mereka menyembelih anak-anak laki-lakimu dan membiarkan hidup anak-anak perempuanmu. Dan pada yang demikian itu merupakan cobaan yang besar dari Tuhanmu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/57",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/57.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/57.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 3,
       juz: 1,
       manzil: 1,
       page: 8,
       ruku: 7,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 57,
@@ -65,40 +60,32 @@ export const quranSurah2Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini disebutkan nikmat lain yang diberikan kepada Bani Israil, yaitu Allah telah menyelamatkan mereka ketika meninggalkan Mesir di bawah pimpinan Nabi Musa a.s. dari kejaran Fir'aun bersama tentaranya.\n\nSetelah Allah mengangkat Musa menjadi Rasul, Dia memerintahkan agar menyeru Fir'aun dan kaumnya untuk beriman kepada-Nya, menuntut Fir'aun agar membebaskan Bani Israil yang berada di negeri itu, dan menghentikan kekejaman yang dilakukan terhadap mereka. Sebagai jawabannya, Fir'aun memperhebat siksaan dan kekejamannya terhadap Bani Israil dan memerintahkan rakyatnya untuk meningkatkan kerja paksa yang ditimpakan kepada mereka.\n\nKemudian Allah memberikan berbagai mukjizat kepada Musa a.s. dan saudaranya, Nabi Harun, antara lain tongkat Nabi Musa yang dapat berubah menjadi ular dan dapat menelan ular-ular yang dijelmakan oleh para pesihir yang dikerahkan Fir'aun untuk melawan mukjizat Nabi Musa a.s.\n\nMelihat kenyataan itu, para pesihir itu pun mengakui kekalahan mereka, lalu menyatakan beriman kepada Tuhan. Akhirnya Fir'aun mengusir dan mengejar-ngejar mereka. Maka berangkatlah mereka meninggalkan negeri itu di bawah pimpinan Nabi Musa a.s., sedangkan Fir'aun dan bala tentaranya mengejar mereka.\n\nKetika mereka sampai di tepi Laut Merah yang membatasi kota Suez dengan Semenanjung Sinai, Allah memerintahkan Nabi Musa agar memukulkan tongkatnya ke laut. Lalu Musa a.s. melakukannya. Maka terbelahlah air laut dan terbentanglah dua belas jalur jalan raya yang akan dilalui Nabi Musa a.s. bersama pengikut-pengikutnya yang terdiri dari dua belas rombongan, sehingga selamatlah mereka sampai ke seberang.\n\nSementara itu Fir'aun bersama rombongannya terus mengejar mereka. Tetapi ketika mereka sampai di tengah-tengah laut itu, air laut kembali bertaut, sehingga mereka semuanya tenggelam ditelan air laut. Kejadian itu disaksikan oleh Bani Israil yang telah selamat sampai ke seberang.\n\nTerbelahnya laut merupakan salah satu dari berbagai mukjizat Nabi Musa a.s. untuk membuktikan kepada manusia bahwa Allah adalah Mahakuasa. Dialah yang menciptakan alam ini dan Dia pula yang menetapkan undang-undang alam yang berlaku sepanjang masa, dan Dia berkuasa pula mengubah atau membatalkan undang-undang alam tersebut apabila dikehendaki-Nya.\n\nHukum alam yang berlaku pada air ialah bahwa air sebagai salah satu benda cair tidak dapat terpisah tanpa adanya benda lain yang memisahkannya. Undang-undang inilah yang diubah dan dibatalkan-Nya ketika terbelahnya air laut itu. Air laut tersibak dan berdiri seperti dinding-dinding yang tegak lurus tanpa ada sesuatu yang menahannya, sehingga terbentanglah jalan di antara dinding-dinding tersebut.\n\nDemikian besarnya nikmat yang telah dilimpahkan Allah kepada Bani Israil. Mereka telah dibebaskan dari kekejaman Fir'aun dan rakyatnya. Kemudian mereka diselamatkan pula ketika menyeberang laut. Sesudah itu mereka menyaksikan dengan mata kepala sendiri tenggelamnya musuh-musuh mereka di tengah laut yang tentu saja menggembirakan hati mereka. Sepatutnyalah mereka mensyukuri nikmat-nikmat tersebut.",
-        short:
-          "Penyelamatan lain adalah terbelahnya Laut Merah (dahulu Laut Qulzum. Dan ingatlah ketika Kami membelah laut Merah untukmu, wahai Bani Israil yang ketika itu bersama Nabi Musa meninggalkan Mesir menuju Sinai. Ketika rombongan kamu sampai di tepi Laut Merah, Allah memberi perintah kepada Nabi Musa untuk memukulkan tongkatnya ke Laut Merah, sehingga laut itu pun terbelah. Dengan demikian, kamu, wahai Bani Israil, bersama Nabi Musa dapat melewati laut, sehingga kamu dapat Kami selamatkan dari kejaran Firaun dan tentaratentaranya. Akan tetapi, ketika Firaun dan tentara-tentaranya masuk ke dalam laut yang terbelah itu, air laut kemudian bertemu kembali, dan Kami tenggelamkan Firaun dan  pengikut-pengikut Fir'aun, sehingga mereka semua mati tenggelam, sedang kamu, wahai Bani Israil, menyaksikan peristiwa itu dengan mata kepala kamu sendiri. Sementara itu, mayat Firaun diselamatkan agar menjadi pelajaran bagi generasi sesudahnya (Lihat: Surah Yunus/10: 92).",
+        footnotes: null,
+        text: "Ingatlah di antara nikmat Kami kepada kalian yaitu Kami membelah lautan dan menjadikannya sebagai jalan yang kering sehingga kalian bisa melintasinya, kemudian Kami menyelamatkan kalian dan menenggelamkan musuh kalian, Firaun dan para pengikutnya di depan mata kalian, dan kalian menyaksikan azab pada mereka itu secara langsung.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u0641\u064e\u0631\u064e\u0642\u0652\u0646\u064e\u0627 \u0628\u0650\u0643\u064f\u0645\u064f \u0627\u0644\u0652\u0628\u064e\u062d\u0652\u0631\u064e \u0641\u064e\u0623\u064e\u0646\u062c\u064e\u064a\u0652\u0646\u064e\u0627\u0643\u064f\u0645\u0652 \u0648\u064e\u0623\u064e\u063a\u0652\u0631\u064e\u0642\u0652\u0646\u064e\u0627 \u0622\u0644\u064e \u0641\u0650\u0631\u0652\u0639\u064e\u0648\u0652\u0646\u064e \u0648\u064e\u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u062a\u064e\u0646\u0638\u064f\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa iz faraqnaa bikumul bahra fa anjainaakum wa agh-raqnaaa Aala Fir'awna wa antum tanzuroon",
-      },
+      arabic: "وَإِذْ فَرَقْنَا بِكُمُ ٱلْبَحْرَ فَأَنجَيْنَٰكُمْ وَأَغْرَقْنَآ ءَالَ فِرْعَوْنَ وَأَنتُمْ تَنظُرُونَ",
     },
     translation: {
-      en: "And [recall] when We parted the sea for you and saved you and drowned the people of Pharaoh while you were looking on.",
-      id: "Dan (ingatlah) ketika Kami membelah laut untukmu, sehingga kamu dapat Kami selamatkan dan Kami tenggelamkan (Fir‘aun dan) pengikut-pengikut Fir‘aun, sedang kamu menyaksikan.",
+      en: {
+        footnotes: "",
+        text: "And [remember] when We parted the sea for you and saved you, while We drowned the people of Pharaoh while you were looking on.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan (ingatlah) ketika Kami membelah laut untukmu, sehingga kamu dapat Kami selamatkan dan Kami tenggelamkan (Fir'aun dan) pengikut-pengikut Fir'aun sedang kamu menyaksikan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/58",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/58.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/58.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 3,
       juz: 1,
       manzil: 1,
       page: 8,
       ruku: 7,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 58,
@@ -106,40 +93,33 @@ export const quranSurah2Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah swt mengingatkan mereka kepada nikmat yang lain sesudah nikmat-nikmat-Nya yang tersebut di atas, yaitu Allah menjanjikan kepada Musa a.s. akan memberikan Taurat kepadanya, dan Allah menentukan waktunya yaitu selama 40 malam. Mereka menganggap bahwa waktu yang ditetapkan itu terlalu lama maka mereka membuat patung anak sapi dari emas dan mereka sembah. Dengan demikian mereka telah menganiaya diri mereka sendiri karena perbuatan syirik yang mereka lakukan. \n\nSikap mereka itu sangat mengherankan, sebab janji Allah kepada Nabi Musa a.s. akan menurunkan Kitab Taurat sebenarnya merupakan nikmat dan keutamaan yang amat besar bagi Bani Israil, tetapi mereka balas dengan perbuatan yang amat keji, yaitu kekafiran dan kebodohan.",
-        short:
-          "Setelah menerima nikmat dalam bentuk penyelamatan dari dua bencana pembunuhan dan tenggelam di Laut Merah, Allah kemudian menyuruh Bani Israil agar mengingat lagi peristiwa penurunan wahyu kepada Nabi Musa. Dan ingatlah, wahai Bani Israil, ketika Kami menjanjikan kepada Musa empat puluh malam, waktu yang dijanjikan Allah untuk menerima wahyu. Sayang kamu tidak sabar menunggunya. Kemudian kamu menjadikan patung anak sapi yang dibuat oleh Samiri sebagai sesembahan setelah kepergian-nya (Musa). Dan dengan perbuatan menyembah patung anak sapi itu, kamu, wahai Bani Israil, menjadi orang yang zalim yang kezalimannya itu terhunjam di dalam jiwa.",
+        footnotes: null,
+        text: "Ingatlah salah satu dari nikmat itu ialah janji Kami dengan Musa selama 40 malam untuk menyempurnakan proses turunnya Taurat sebagai cahaya dan petunjuk. Tetapi, yang terjadi selama periode itu justru kalian menyembah patung anak sapi, dan kalian telah melakukan kezaliman dengan melakukan perbuatan itu.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u0648\u064e\u0627\u0639\u064e\u062f\u0652\u0646\u064e\u0627 \u0645\u064f\u0648\u0633\u064e\u0649\u0670 \u0623\u064e\u0631\u0652\u0628\u064e\u0639\u0650\u064a\u0646\u064e \u0644\u064e\u064a\u0652\u0644\u064e\u0629\u064b \u062b\u064f\u0645\u0651\u064e \u0627\u062a\u0651\u064e\u062e\u064e\u0630\u0652\u062a\u064f\u0645\u064f \u0627\u0644\u0652\u0639\u0650\u062c\u0652\u0644\u064e \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650\u0647\u0650 \u0648\u064e\u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u0638\u064e\u0627\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa iz waa'adnaa Moosaaa arba'eena lailatan summattakhaztumul 'ijla mim ba'dihee wa antum zaalimoon",
-      },
+      arabic: "وَإِذْ وَٰعَدْنَا مُوسَىٰٓ أَرْبَعِينَ لَيْلَةً ثُمَّ ٱتَّخَذْتُمُ ٱلْعِجْلَ مِنۢ بَعْدِهِۦ وَأَنتُمْ ظَٰلِمُونَ",
     },
     translation: {
-      en: "And [recall] when We made an appointment with Moses for forty nights. Then you took [for worship] the calf after him, while you were wrongdoers.",
-      id: "Dan (ingatlah) ketika Kami menjanjikan kepada Musa empat puluh malam. Kemudian kamu (Bani Israil) menjadikan (patung) anak sapi (sebagai sesembahan) setelah (kepergian)nya, dan kamu (menjadi) orang yang zalim.",
+      en: {
+        footnotes: "",
+        text: "And [remember] when We appointed for Moses forty nights. Then you took the calf [for worship] in his absence, while you were wrongdoers.",
+      },
+      id: {
+        footnotes:
+          "[26] Suatu tenggang waktu yang dijanjikan Allah untuk menerima petunjuk (Taurat); tetapi umat Nabi Musa -'alaihissalām- tidak sabar menunggunya, sehingga mereka menyembah patung anak sapi yang dibuat oleh Samiri.",
+        text: "Dan (ingatlah) ketika Kami menjanjikan kepada Musa empat puluh malam.[26] Kemudian kamu (Bani Israil) menjadikan (patung) anak sapi (sebagai sesembahan) setelah (kepergian)nya, dan kamu (menjadi) orang yang zalim.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/59",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/59.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/59.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 3,
       juz: 1,
       manzil: 1,
       page: 8,
       ruku: 7,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 59,
@@ -147,40 +127,32 @@ export const quranSurah2Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Allah Maha Pengasih dan Maha Pengampun kepada hamba-Nya. Walaupun Bani Israil telah melakukan kekafiran dan kemusyrikan sedemikian rupa, namun Allah masih memberikan maaf dan ampunan kepada mereka, agar mereka mensyukuri-Nya. Allah tidak segera menimpakan azab kepada mereka melainkan ditangguhkan-Nya sampai datangnya Nabi Musa a.s. dan memberitahukan kepada mereka cara menebus dosa, agar selanjutnya mereka mensyukuri nikmat-Nya.",
-        short:
-          "Walaupun kedurhakaan Bani Israil sudah berlipat-lipat, namun Allah memberikan maaf kepada mereka. Kemudian Kami memaafkan kamu atas berbagai kedurhakaan dan ketidaksyukuran yang kamu lakukan setelah itu, agar kamu kembali ke jalan lurus dan bersyukur atas nikmat yang telah dicurahkan oleh Allah. Dengan demikian, semoga kamu dapat memperbaiki diri.",
+        footnotes: null,
+        text: "Kemudian Kami mengampuni kalian setelah bertobat. Lalu Kami tidak menghukum kalian dengan harapan mudah-mudahan kalian mau bersyukur kepada Allah dengan cara menjalankan ibadah dan ketaatan kepada-Nya dengan sebaik-baiknya.",
       },
     },
     text: {
-      arab: "\u062b\u064f\u0645\u0651\u064e \u0639\u064e\u0641\u064e\u0648\u0652\u0646\u064e\u0627 \u0639\u064e\u0646\u0643\u064f\u0645 \u0645\u0651\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0643\u064f\u0645\u0652 \u062a\u064e\u0634\u0652\u0643\u064f\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Summa 'afawnaa 'ankum mim ba'di zaalika la'allakum tashkuroon",
-      },
+      arabic: "ثُمَّ عَفَوْنَا عَنكُم مِّنۢ بَعْدِ ذَٰلِكَ لَعَلَّكُمْ تَشْكُرُونَ",
     },
     translation: {
-      en: "Then We forgave you after that so perhaps you would be grateful.",
-      id: "Kemudian Kami memaafkan kamu setelah itu, agar kamu bersyukur.",
+      en: {
+        footnotes: "",
+        text: "Yet We pardoned you after that, so that you may be grateful.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian Kami memaafkan kamu setelah itu, agar kamu bersyukur.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/60",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/60.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/60.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 3,
       juz: 1,
       manzil: 1,
       page: 8,
       ruku: 7,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 60,
@@ -188,40 +160,34 @@ export const quranSurah2Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah swt mengingatkan lagi kepada mereka tentang nikmat-Nya yang lain yaitu Kitab Taurat yang diturunkan kepada mereka sebagai bukti untuk menguatkan kerasulan Nabi Musa a.s. Kitab tersebut diturunkan kepada mereka melalui Nabi Musa a.s. untuk mereka jadikan petunjuk. Dengan memahami isinya serta mengamalkan syariat dan petunjuk-petunjuk yang terkandung di dalamnya, diharapkan mereka kembali menjadi orang baik-baik, dan tidak lagi terjerumus kepada kesesatan yang lain, misalnya menyembah patung-patung, dan sebagainya.",
-        short:
-          "Nikmat berikut yang diberikan kepada Bani Israil adalah kitab Taurat dan al-Furqa n. Dan ingatlah lagi, ketika Kami memberikan kepada Musa Kitab kumpulan dari wahyu dan berfungsi sebagai Furqan, pembeda antara yang hak dengan yang batil, agar kamu memperoleh petunjuk untuk memperoleh kebahagiaan hidup dunia dan akhirat.",
+        footnotes: null,
+        text: "Ingatlah salah satu dari nikmat itu ialah Kami berikan Taurat kepada Musa -'alaihissalām- sebagai pembeda antara yang hak dan yang batil, dan sebagai pemisah antara jalan yang benar dan jalan yang sesat, supaya kamu dapat menjadikannya sebagai petunjuk untuk mencapai kebenaran.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u0622\u062a\u064e\u064a\u0652\u0646\u064e\u0627 \u0645\u064f\u0648\u0633\u064e\u0649 \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0648\u064e\u0627\u0644\u0652\u0641\u064f\u0631\u0652\u0642\u064e\u0627\u0646\u064e \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0643\u064f\u0645\u0652 \u062a\u064e\u0647\u0652\u062a\u064e\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa iz aatainaa Moosal kitaaba wal Furqaana la'allakum tahtadoon",
-      },
+      arabic: "وَإِذْ ءَاتَيْنَا مُوسَى ٱلْكِتَٰبَ وَٱلْفُرْقَانَ لَعَلَّكُمْ تَهْتَدُونَ",
     },
     translation: {
-      en: "And [recall] when We gave Moses the Scripture and criterion that perhaps you would be guided.",
-      id: "Dan (ingatlah), ketika Kami memberikan kepada Musa Kitab dan Furqan, agar kamu memperoleh petunjuk.",
+      en: {
+        footnotes:
+          '[30] Differentiating between truth and falsehood. "The Scripture and the criterion" refers to the Torah.',
+        text: "And [remember] when We gave Moses the Scripture and the criterion[30], so that you may be guided.",
+      },
+      id: {
+        footnotes:
+          "[27] Yang dimaksud dengan Kitab adalah Taurat. Dan yang dimaksud dengan Furqan adalah keterangan-keterangan lain untuk membedakan yang baik dan yang buruk.",
+        text: "Dan (ingatlah), ketika Kami memberikan kepada Musa Kitab dan Furqan, agar kamu memperoleh petunjuk.[27]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/61",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/61.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/61.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 3,
       juz: 1,
       manzil: 1,
       page: 8,
       ruku: 7,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 61,
@@ -229,20 +195,24 @@ export const quranSurah2Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini Allah swt memerintahkan kepada Rasulullah agar menyampaikan kepada Bani Israil yang hidup semasanya pada waktu itu bahwa Musa a.s. sekembali dari munajat dengan Tuhannya, mendapati kaumnya menyembah patung anak sapi, lalu dia berkata kepada kaumnya, "Hai kaumku, sesungguhnya dengan perbuatan kamu menjadikan anak sapi itu sebagai tuhanmu, kamu telah membinasakan diri kamu sendiri, dan telah melenyapkan pahala yang sedianya akan kamu terima di sisi Tuhanmu. Alangkah baiknya, seandainya kamu menepati janji yang telah diikrarkan, dan kamu mengikuti syariatku. ) Oleh sebab itu, bertobatlah kepada Tuhanmu yang telah menciptakan kamu, dan janganlah berbuat kebodohan semacam itu, dimana kamu telah meninggalkan Tuhanmu yang sesungguhnya, lalu kamu mengambil anak sapi sebagai sembahanmu."\n\nMusa a.s. juga memerintahkan kepada mereka, "Bunuhlah diri kamu." Maksudnya, agar orang-orang yang tidak berbuat kejahatan di antara mereka membunuh mereka yang telah bersalah itu, atau mereka yang telah berbuat kejahatan itu saling membunuh, atau mereka disuruh membunuh diri mereka sendiri sebagai pernyataan tobat kepada Allah. Dalam Perjanjian Lama Kitab Keluaran xxxii.27-28 disebutkan yang mati akibat pembunuhan itu 3000 orang. \n\nKemudian Musa a.s. mengatakan kepada mereka bahwa bertobat dan membunuh diri sebagai pernyataan tobat itu lebih baik bagi mereka di sisi Allah daripada terus-menerus berbuat kedurhakan yang menyebabkan mereka ditimpa azab. Apabila mereka telah bersih dari dosa itu, barulah mereka patut menerima pahala dan ganjaran. \n\nAbdullah Yusuf Ali berpendapat "bunuhlah nafsumu"; anfusakum dalam ayat ini berarti nafsu, bukan pribadi. Hampir sejalan dengan pendapat al-Qasimi, Muhammad Asad, dan lain-lain.\n\nPada akhir ayat ini Allah menerangkan bahwa setelah mereka melakukan yang diperintahkan Musa, Allah menerima tobat dan memaafkan kesalahan mereka, karena Dialah yang memberikan jalan kepada orang-orang yang berdosa itu untuk bertobat, dan Dia menerima tobat mereka. Sebab Dia Maha Pengasih kepada orang-orang yang mau bertobat kepada-Nya. Seandainya tidak demikian, tentulah segera ditimpakan kebinasaan kepada mereka karena dosa-dosa besar yang mereka lakukan itu.',
-        short:
-          'Bila peringatan pada ayat-ayat yang lalu langsung disampaikan oleh Allah kepada Bani Israil, maka sekarang peringatan itu disampaikan melalui Nabi Musa. Perubahan siapa yang menyampaikan peringatan ini memberikan sinyal bahwa kedurhakaan Bani Israil itu sudah sangat keterlaluan sehingga seolah-olah Allah tidak mau lagi memedulikan mereka dan sekarang diberikan wewenang itu kepada Nabi Musa. Dan ingatlah ketika Nabi Musa berkata kepada kaumnya, "Wahai kaumku! Kamu benar-benar telah melakukan kedurhakaan kepada Allah. Itu berarti kamu telah menzalimi dirimu sendiri. Perbuatan kamu dengan menjadikan patung anak sapi se-bagai sesembahan kamu adalah perbuatan yang telah mensyirikkan Allah yang membuat kamu layak diberi hukuman.\r\nOleh karena itu, bertobatlah dengan memohon ampun kepada Penciptamu, Allah Yang Maha Pencipta, dan bunuhlah dirimu. Sejak dulu sampai sekarang terdapat tradisi bangsa-bangsa yang rela mengorbankan nyawa dengan membunuh diri sendiri demi untuk tujuan yang lebih luhur, seperti yang terdapat dalam tradisi masyarakat Jepang. Membunuh diri dengan tujuan luhur itu adalah lebih baik bagimu, wahai Bani Israil, di sisi Allah Penciptamu dengan sangat sempurna. Dengan demikian, Dia Allah akan menerima tobatmu dan permohonan ampunmu. Sungguh, yakinilah bahwa Dialah Zat Yang Maha Penerima tobat dosa hamba-hamba-Nya, lagi Maha Penyayang.',
+        footnotes: null,
+        text: "Ingatlah salah satu dari nikmat itu ialah Allah membimbing kamu untuk bertobat dari penyembahan terhadap anak sapi. Ketika Musa -'alaihissalām- berkata kepadamu, “Sesungguhnya kalian telah menganiaya diri kalian sendiri dengan menjadikan anak sapi itu sebagai tuhan yang kalian sembah. Sebab itu, bertobatlah kalian dan kembalilah kepada pencipta kalian, yaitu dengan cara saling bunuh di antara kalian. Tobat dengan cara itu lebih baik bagi kalian daripada mempertahankan kekafiran yang akan membuat kalian kekal di neraka.” Kemudian kalian melakukan (tobat) itu dengan bimbingan dan pertolongan Allah, dan Dia pun menerima tobat kalian karena Dia amat sering menerima tobat dan Maha Penyayang terhadap hamba-hamba-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u0652 \u0642\u064e\u0627\u0644\u064e \u0645\u064f\u0648\u0633\u064e\u0649\u0670 \u0644\u0650\u0642\u064e\u0648\u0652\u0645\u0650\u0647\u0650 \u064a\u064e\u0627 \u0642\u064e\u0648\u0652\u0645\u0650 \u0625\u0650\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0638\u064e\u0644\u064e\u0645\u0652\u062a\u064f\u0645\u0652 \u0623\u064e\u0646\u0641\u064f\u0633\u064e\u0643\u064f\u0645 \u0628\u0650\u0627\u062a\u0651\u0650\u062e\u064e\u0627\u0630\u0650\u0643\u064f\u0645\u064f \u0627\u0644\u0652\u0639\u0650\u062c\u0652\u0644\u064e \u0641\u064e\u062a\u064f\u0648\u0628\u064f\u0648\u0627 \u0625\u0650\u0644\u064e\u0649\u0670 \u0628\u064e\u0627\u0631\u0650\u0626\u0650\u0643\u064f\u0645\u0652 \u0641\u064e\u0627\u0642\u0652\u062a\u064f\u0644\u064f\u0648\u0627 \u0623\u064e\u0646\u0641\u064f\u0633\u064e\u0643\u064f\u0645\u0652 \u0630\u064e\u0670\u0644\u0650\u0643\u064f\u0645\u0652 \u062e\u064e\u064a\u0652\u0631\u064c \u0644\u0651\u064e\u0643\u064f\u0645\u0652 \u0639\u0650\u0646\u062f\u064e \u0628\u064e\u0627\u0631\u0650\u0626\u0650\u0643\u064f\u0645\u0652 \u0641\u064e\u062a\u064e\u0627\u0628\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u06da \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0647\u064f\u0648\u064e \u0627\u0644\u062a\u0651\u064e\u0648\u0651\u064e\u0627\u0628\u064f \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u064f",
-      transliteration: {
-        en: "Wa iz qaala Moosaa liqawmihee yaa qawmi innakum zalamtum anfusakum bittikhaa zikumul 'ijla fatoobooo ilaa Baari'ikum faqtulooo anfusakum zaalikum khairul lakum 'inda Baari'ikum fataaba 'alaikum; innahoo Huwat Tawwaabur Raheem",
-      },
+      arabic:
+        "وَإِذْ قَالَ مُوسَىٰ لِقَوْمِهِۦ يَٰقَوْمِ إِنَّكُمْ ظَلَمْتُمْ أَنفُسَكُم بِٱتِّخَاذِكُمُ ٱلْعِجْلَ فَتُوبُوٓا۟ إِلَىٰ بَارِئِكُمْ فَٱقْتُلُوٓا۟ أَنفُسَكُمْ ذَٰلِكُمْ خَيْرٌ لَّكُمْ عِندَ بَارِئِكُمْ فَتَابَ عَلَيْكُمْ إِنَّهُۥ هُوَ ٱلتَّوَّابُ ٱلرَّحِيمُ",
     },
     translation: {
-      en: 'And [recall] when Moses said to his people, "O my people, indeed you have wronged yourselves by your taking of the calf [for worship]. So repent to your Creator and kill yourselves. That is best for [all of] you in the sight of your Creator." Then He accepted your repentance; indeed, He is the Accepting of repentance, the Merciful.',
-      id: "Dan (ingatlah) ketika Musa berkata kepada kaumnya, “Wahai kaumku! Kamu benar-benar telah menzalimi dirimu sendiri dengan menjadikan (patung) anak sapi (sebagai sesembahan), karena itu bertobatlah kepada Penciptamu dan bunuhlah dirimu. Itu lebih baik bagimu di sisi Penciptamu. Dia akan menerima tobatmu. Sungguh, Dialah Yang Maha Penerima tobat, Maha Penyayang.",
+      en: {
+        footnotes: "",
+        text: "And [remember] when Moses said to his people, “O my people, you have wronged yourselves by taking the calf [for worship]. So repent to your Creator and kill yourselves [i.e., the guilty among you]; that is best for you with your Creator.” Then He accepted your repentance, for He is the Accepter of Repentance, the Most Merciful.",
+      },
+      id: {
+        footnotes:
+          '[28] "Membunuh dirimu" ada yang mengartikan, orang-orang yang tidak menyembah patung anak sapi itu membunuh orang yang menyembahnya. Ada pula yang mengartikan, orang yang menyembah patung anak sapi itu saling membunuh, dan ada pula yang mengartikan, mereka disuruh membunuh diri mereka masing-masing untuk bertobat.',
+        text: 'Dan (ingatlah) ketika Musa berkata kepada kaumnya, "Wahai kaumku! Kamu benar-benar telah menzalimi dirimu sendiri dengan menjadikan (patung) anak sapi (sebagai sesembahan), karena itu bertobatlah kepada Penciptamu dan bunuhlah dirimu.[28] Itu lebih baik bagimu di sisi Penciptamu. Dia akan menerima tobatmu. Sungguh, Dialah Yang Maha Penerima tobat, Maha Penyayang.',
+      },
     },
   },
 ];

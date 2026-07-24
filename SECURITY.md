@@ -12,7 +12,7 @@ credentials, signing keys, unpublished content, or personal data.
 
 ## Supported code
 
-Only the latest `main` revision is supported. No contracts package or content
+Only the latest `main` revision is supported. No contracts archive or content
 runtime has been released to production yet.
 
 ## Trust boundary

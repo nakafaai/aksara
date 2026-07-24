@@ -89,6 +89,14 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"d".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"d".repeat(64)}`,
+  scope: {
+    content: [
+      { contentKey: "test:a", family: "material", locale: "en" },
+      { contentKey: "test:b", family: "material", locale: "id" },
+    ],
+    families: [],
+    snapshots: [],
+  },
   snapshots: inheritContentSnapshots(null),
   upsertCount: 0,
 });
