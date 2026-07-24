@@ -33,10 +33,8 @@ const EXTENSION_SUFFIXES = new Set([
   "yaml",
   "yml",
 ]);
-const EDUCATIONAL_PATH_PREFIXES = [
-  ["packages", "corpus", "material", "lesson"],
-  ["packages", "corpus", "question-bank", "tryout"],
-];
+const MATERIAL_LESSON_PREFIX = ["packages", "corpus", "material", "lesson"];
+const QUESTION_BANK_PREFIX = ["packages", "corpus", "question-bank", "tryout"];
 
 /** Returns the semantic words in one file or folder name. */
 function words(segment: string): string[] {
@@ -58,13 +56,27 @@ function words(segment: string): string[] {
   return tokens.filter((word) => !NUMBER_PATTERN.test(word));
 }
 
-/** Allows authored educational folders to retain exact source-owned slugs. */
+/** Checks whether a path starts with one exact repository-owned prefix. */
+function hasPrefix(segments: readonly string[], prefix: readonly string[]) {
+  return prefix.every(
+    (segment, prefixIndex) => segments[prefixIndex] === segment
+  );
+}
+
+/** Allows only source-owned lesson and question-group folder identities. */
 function isEducationalFolder(segments: readonly string[], index: number) {
-  return EDUCATIONAL_PATH_PREFIXES.some(
-    (prefix) =>
-      index >= prefix.length &&
-      index < segments.length - 1 &&
-      prefix.every((segment, prefixIndex) => segments[prefixIndex] === segment)
+  if (
+    hasPrefix(segments, MATERIAL_LESSON_PREFIX) &&
+    index >= MATERIAL_LESSON_PREFIX.length &&
+    index < segments.length - 1
+  ) {
+    return true;
+  }
+
+  return (
+    hasPrefix(segments, QUESTION_BANK_PREFIX) &&
+    index === QUESTION_BANK_PREFIX.length + 2 &&
+    index < segments.length - 1
   );
 }
 

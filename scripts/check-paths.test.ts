@@ -25,7 +25,7 @@ describe("path policy", () => {
         "packages/compiler/policy.config.test.ts",
         "packages/compiler/release-2026-state.ts",
         "packages/corpus/material/lesson/very-long-source-slug/en.mdx",
-        "packages/corpus/question-bank/tryout/snbt/reading-and-writing-skills/choices.ts",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/choices.ts",
       ])
     ).toEqual([]);
   });
@@ -34,13 +34,15 @@ describe("path policy", () => {
     expect(
       pathViolations([
         "packages/corpus/material/lesson/very-long-source-slug/three-word-file.mdx",
-        "packages/corpus/question-bank/tryout/reading-and-writing-skills/three-word-file.ts",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/three-word-file.ts",
         "packages/corpus/question-bank/three-word-folder/choices.ts",
+        "packages/corpus/question-bank/tryout/helpers/three-word-folder/file.ts",
       ])
     ).toEqual([
       "packages/corpus/material/lesson/very-long-source-slug/three-word-file.mdx: three-word-file.mdx",
-      "packages/corpus/question-bank/tryout/reading-and-writing-skills/three-word-file.ts: three-word-file.ts",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/three-word-file.ts: three-word-file.ts",
       "packages/corpus/question-bank/three-word-folder/choices.ts: three-word-folder",
+      "packages/corpus/question-bank/tryout/helpers/three-word-folder/file.ts: three-word-folder",
     ]);
   });
 });
