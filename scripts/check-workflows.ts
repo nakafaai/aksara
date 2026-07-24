@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 
 const FORBIDDEN_REGISTRY_PATTERN =
   /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|registry\.npmjs\.org|package-proof/iu;
+const SWALLOWED_CLI_OUTPUT_PATTERN = /2>\/dev\/null \|\| true\)/u;
 const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
 const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const ARCHIVE_BUILD_PATTERN =
@@ -63,6 +64,11 @@ export function verifyWorkflows({
     combined,
     FORBIDDEN_REGISTRY_PATTERN,
     "Workflows must not retain registry or Changesets publication machinery"
+  );
+  assert.doesNotMatch(
+    combined,
+    SWALLOWED_CLI_OUTPUT_PATTERN,
+    "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
   assert.match(
     ci,
