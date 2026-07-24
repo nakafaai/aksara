@@ -90,9 +90,11 @@ function prepareSnapshotRollback(source: PreparedGitRelease<unknown, never>) {
   });
 }
 
+const programRelease = await prepareProgramRelease();
+
 describe("publication snapshots", () => {
   it("verifies exact Git replacement sources and zero-copy rollback", async () => {
-    const { prepared, snapshot } = await prepareProgramRelease();
+    const { prepared, snapshot } = programRelease;
     const gitSummary = await Effect.runPromise(
       verifyPublicationSnapshots(prepared)
     );
@@ -112,7 +114,7 @@ describe("publication snapshots", () => {
   });
 
   it("rejects row-bearing rollback sources", async () => {
-    const { prepared, snapshot } = await prepareProgramRelease();
+    const { prepared, snapshot } = programRelease;
     const rollback = prepareSnapshotRollback(prepared);
     const invalid = makePreparedRollbackRelease({
       ...rollback,
@@ -129,7 +131,7 @@ describe("publication snapshots", () => {
   });
 
   it("stages one manifest before its bounded exact row batch", async () => {
-    const { prepared, snapshot } = await prepareProgramRelease();
+    const { prepared, snapshot } = programRelease;
     const calls: string[] = [];
     let stagedRows = 0;
     const stageSnapshot = vi.fn(() =>

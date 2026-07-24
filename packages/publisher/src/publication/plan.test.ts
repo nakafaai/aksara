@@ -141,6 +141,8 @@ function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
   );
 }
 
+const programOnlyRelease = await prepareProgramOnly();
+
 describe("preparePublicationPlan", () => {
   it("keeps family-wide invalidation for a body-free deletion", async () => {
     const prepared = await prepareDeletion(emptySnapshotSources);
@@ -150,8 +152,7 @@ describe("preparePublicationPlan", () => {
   });
 
   it("invalidates structured navigation for a snapshot-only release", async () => {
-    const prepared = await prepareProgramOnly();
-    const changes = await collectCacheChanges(prepared);
+    const changes = await collectCacheChanges(programOnlyRelease);
 
     expect([...changes]).toEqual([{ family: "material" }]);
   });

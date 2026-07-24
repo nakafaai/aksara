@@ -227,25 +227,50 @@ const quranFixture = makeQuranFixture();
 const tryoutFixture = await makeTryoutFixture();
 quranState.current = quranFixture;
 tryoutState.current = tryoutFixture;
+const changedSnapshots = await prepare(null);
+const completeSnapshots = requireCompleteManifests(changedSnapshots.manifests);
+const inheritedSnapshots = await prepare(
+  ContentSnapshotSetSchema.make({
+    program: inheritContentSnapshot(
+      completeSnapshots.program.manifest.snapshotId
+    ),
+    quran: inheritContentSnapshot(completeSnapshots.quran.manifest.snapshotId),
+    tryout: inheritContentSnapshot(
+      completeSnapshots.tryout.manifest.snapshotId
+    ),
+  })
+);
+const changedQuran = await prepare(
+  ContentSnapshotSetSchema.make({
+    program: inheritContentSnapshot(
+      completeSnapshots.program.manifest.snapshotId
+    ),
+    quran: inheritContentSnapshot(null),
+    tryout: inheritContentSnapshot(
+      completeSnapshots.tryout.manifest.snapshotId
+    ),
+  })
+);
 
 describe("release snapshot preparation", () => {
-  it("stages every changed snapshot and row in canonical family order", async () => {
-    const prepared = await prepare(null);
-    const { program, quran } = requireCompleteManifests(prepared.manifests);
+  it("stages every changed snapshot and row in canonical family order", () => {
+    const { program, quran } = completeSnapshots;
     const programRowCount = program.manifest.rowCount;
     const quranRowCount = quranFixture.rowCount;
 
-    expect(prepared.manifests.map(({ family }) => family)).toEqual([
+    expect(changedSnapshots.manifests.map(({ family }) => family)).toEqual([
       "program",
       "quran",
       "tryout",
     ]);
-    const programRows = prepared.rows.slice(0, programRowCount);
-    const quranRows = prepared.rows.slice(
+    const programRows = changedSnapshots.rows.slice(0, programRowCount);
+    const quranRows = changedSnapshots.rows.slice(
       programRowCount,
       programRowCount + quranRowCount
     );
-    const tryoutRows = prepared.rows.slice(programRowCount + quranRowCount);
+    const tryoutRows = changedSnapshots.rows.slice(
+      programRowCount + quranRowCount
+    );
     expect(programRows).toHaveLength(program.manifest.rowCount);
     expect(programRows.every(({ family }) => family === "program")).toBe(true);
     expect(quranRows).toHaveLength(quranRowCount);
@@ -258,35 +283,15 @@ describe("release snapshot preparation", () => {
     });
   });
 
-  it("inherits exact active snapshot identities without restaging rows", async () => {
-    const initial = await prepare(null);
-    const { program, quran, tryout } = requireCompleteManifests(
-      initial.manifests
-    );
-    const previous = ContentSnapshotSetSchema.make({
-      program: inheritContentSnapshot(program.manifest.snapshotId),
-      quran: inheritContentSnapshot(quran.manifest.snapshotId),
-      tryout: inheritContentSnapshot(tryout.manifest.snapshotId),
-    });
-    const prepared = await prepare(previous);
-
-    expect(prepared).toEqual({ manifests: [], rows: [] });
+  it("inherits exact active snapshot identities without restaging rows", () => {
+    expect(inheritedSnapshots).toEqual({ manifests: [], rows: [] });
   });
 
-  it("streams rows only for a family whose active identity changed", async () => {
-    const initial = await prepare(null);
-    const { program, quran, tryout } = requireCompleteManifests(
-      initial.manifests
+  it("streams rows only for a family whose active identity changed", () => {
+    expect(changedQuran.manifests).toEqual([completeSnapshots.quran]);
+    expect(changedQuran.rows).toHaveLength(quranFixture.rowCount);
+    expect(changedQuran.rows.every(({ family }) => family === "quran")).toBe(
+      true
     );
-    const previous = ContentSnapshotSetSchema.make({
-      program: inheritContentSnapshot(program.manifest.snapshotId),
-      quran: inheritContentSnapshot(null),
-      tryout: inheritContentSnapshot(tryout.manifest.snapshotId),
-    });
-    const prepared = await prepare(previous);
-
-    expect(prepared.manifests).toEqual([quran]);
-    expect(prepared.rows).toHaveLength(quranFixture.rowCount);
-    expect(prepared.rows.every(({ family }) => family === "quran")).toBe(true);
   });
 });

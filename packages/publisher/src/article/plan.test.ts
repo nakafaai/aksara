@@ -59,6 +59,9 @@ const fingerprintCases = [
   ["projection", { projectionHash: `sha256:${"2".repeat(64)}` }],
   ["source", { sourceHash: `sha256:${"3".repeat(64)}` }],
 ] as const;
+compilerState.calls = 0;
+const firstReleaseRecords = await collectArticlePublication({ heads: [] });
+const firstReleaseCompilerCalls = compilerState.calls;
 
 /** Decodes a modified article head without bypassing the wire contract. */
 function modifyHead(input: unknown) {
@@ -147,13 +150,13 @@ describe("article plan", () => {
     expect(compilerState.calls).toBe(0);
   });
 
-  it("compiles every canonical source for the first release", async () => {
-    const records = await collectArticlePublication({ heads: [] });
-
-    expect(records).toHaveLength(14);
+  it("compiles every canonical source for the first release", () => {
+    expect(firstReleaseRecords).toHaveLength(14);
     expect(
-      records.every(({ record }) => record.change.operation === "upsert")
+      firstReleaseRecords.every(
+        ({ record }) => record.change.operation === "upsert"
+      )
     ).toBe(true);
-    expect(compilerState.calls).toBe(14);
+    expect(firstReleaseCompilerCalls).toBe(14);
   });
 });
