@@ -1,5 +1,5 @@
 import { realpathSync } from "node:fs";
-import { relative, resolve } from "node:path";
+import { relative } from "node:path";
 import { NodeContext } from "@effect/platform-node";
 import {
   ExactProcess,
@@ -91,9 +91,10 @@ describe("renderer session", () => {
   });
 
   it("discovers the renderer from one real catalog-owned document", async () => {
+    const repository = repositories.create();
     const result = await openSession({
       aksaraRoot: REPOSITORY_ROOT,
-      nakafaRoot: resolve(REPOSITORY_ROOT, "..", "nakafa.com"),
+      nakafaRoot: repository.nakafaRoot,
       selection: { kind: "catalog" },
     });
 
