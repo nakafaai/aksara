@@ -1,32 +1,14 @@
 import { Schema } from "effect";
 import { ContentAuthorSchema, ContentLocaleSchema } from "#contracts/content";
 import { DateOnlySchema } from "#contracts/date";
-import { ContentKeySchema } from "#contracts/ids";
-
-const QUESTION_KEY_PATTERN =
-  /^question-bank\/tryout\/indonesia\/(?:snbt|tka)\/[a-z0-9]+(?:-[a-z0-9]+)*\/set-[1-9]\d*\/question-[1-9]\d*$/u;
-const QUESTION_SET_PATTERN =
-  /^question-bank\/tryout\/indonesia\/(?:snbt|tka)\/[a-z0-9]+(?:-[a-z0-9]+)*\/set-[1-9]\d*$/u;
-
-/** Stable logical identity shared by every locale and body of one question. */
-export const QuestionKeySchema = Schema.String.pipe(
-  Schema.maxLength(512),
-  Schema.pattern(QUESTION_KEY_PATTERN),
-  Schema.brand("@NakafaAI/AksaraQuestionKey")
-);
-export type QuestionKey = typeof QuestionKeySchema.Type;
-
-/** Stable logical identity shared by every question within one authored set. */
-export const QuestionSetKeySchema = Schema.String.pipe(
-  Schema.maxLength(512),
-  Schema.pattern(QUESTION_SET_PATTERN),
-  Schema.brand("@NakafaAI/AksaraQuestionSetKey")
-);
-export type QuestionSetKey = typeof QuestionSetKeySchema.Type;
-
-/** Authored MDX body roles carried by each localized question. */
-export const QuestionBodyKindSchema = Schema.Literal("question", "answer");
-export type QuestionBodyKind = typeof QuestionBodyKindSchema.Type;
+import type { ContentKeySchema } from "#contracts/ids";
+import {
+  QuestionAnswerIdentitySchema,
+  type QuestionBodyKind,
+  type QuestionKey,
+  QuestionPromptIdentitySchema,
+  type QuestionSetKey,
+} from "#contracts/question/identity";
 
 /** One literal answer choice preserved from a reviewed authoring module. */
 export const QuestionChoiceSchema = Schema.Struct({
@@ -66,57 +48,25 @@ export const QuestionMetadataSchema = Schema.Struct({
 export type QuestionMetadata = typeof QuestionMetadataSchema.Type;
 
 const QuestionProjectionFields = {
-  contentKey: ContentKeySchema,
   kind: Schema.Literal("question-body"),
-  locale: ContentLocaleSchema,
   metadata: QuestionMetadataSchema,
-  peerContentKey: ContentKeySchema,
-  questionKey: QuestionKeySchema,
-  questionNumber: Schema.Number.pipe(Schema.int(), Schema.positive()),
-  setKey: QuestionSetKeySchema,
 };
 
-/** Checks logical question, body, peer, set, and numeric identities together. */
-function hasCoherentQuestionIdentity(input: {
-  readonly bodyKind: QuestionBodyKind;
-  readonly contentKey: string;
-  readonly peerContentKey: string;
-  readonly questionKey: string;
-  readonly questionNumber: number;
-  readonly setKey: string;
-}) {
-  const expectedQuestionKey = `${input.setKey}/question-${input.questionNumber}`;
-  const peerKind = input.bodyKind === "question" ? "answer" : "question";
-  return (
-    input.questionKey === expectedQuestionKey &&
-    input.contentKey === `${input.questionKey}/${input.bodyKind}` &&
-    input.peerContentKey === `${input.questionKey}/${peerKind}`
-  );
-}
-
 /** Published body and localized choices for one authored question prompt. */
-export const QuestionPromptProjectionSchema = Schema.Struct({
-  ...QuestionProjectionFields,
-  bodyKind: Schema.Literal("question"),
-  choices: QuestionChoiceListSchema,
-}).pipe(
-  Schema.filter(hasCoherentQuestionIdentity, {
-    message: () =>
-      "Expected question body, peer, set, and number identities to agree.",
+export const QuestionPromptProjectionSchema = Schema.extend(
+  QuestionPromptIdentitySchema,
+  Schema.Struct({
+    ...QuestionProjectionFields,
+    choices: QuestionChoiceListSchema,
   })
 );
 export type QuestionPromptProjection =
   typeof QuestionPromptProjectionSchema.Type;
 
 /** Published body for one entitled answer without duplicated choices. */
-export const QuestionAnswerProjectionSchema = Schema.Struct({
-  ...QuestionProjectionFields,
-  bodyKind: Schema.Literal("answer"),
-}).pipe(
-  Schema.filter(hasCoherentQuestionIdentity, {
-    message: () =>
-      "Expected answer body, peer, set, and number identities to agree.",
-  })
+export const QuestionAnswerProjectionSchema = Schema.extend(
+  QuestionAnswerIdentitySchema,
+  Schema.Struct(QuestionProjectionFields)
 );
 export type QuestionAnswerProjection =
   typeof QuestionAnswerProjectionSchema.Type;
@@ -152,16 +102,16 @@ export function makeQuestionBodyProjection(input: {
     setKey: input.setKey,
   };
   if (input.bodyKind === "question") {
-    return QuestionPromptProjectionSchema.make({
+    return {
       ...common,
       bodyKind: "question",
       choices: input.choices[input.locale],
-    });
+    } satisfies QuestionPromptProjection;
   }
-  return QuestionAnswerProjectionSchema.make({
+  return {
     ...common,
     bodyKind: "answer",
-  });
+  } satisfies QuestionAnswerProjection;
 }
 
 /** Serializes one question projection with stable signed field order. */

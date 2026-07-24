@@ -2,7 +2,7 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   QuestionKeySchema,
   QuestionSetKeySchema,
-} from "@nakafa/aksara-contracts/projection/question";
+} from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 

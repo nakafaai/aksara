@@ -12,11 +12,11 @@ import {
   type SignedContentArtifact,
 } from "@nakafa/aksara-contracts/content";
 import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import type { PreviewDocument } from "@nakafa/aksara-contracts/preview/document";
 import {
   LOCAL_PREVIEW_FORMAT,
   type LocalPreviewManifest,
   LocalPreviewManifestSchema,
-  type PreviewDocument,
   PreviewEventSchema,
   type PreviewRepository,
 } from "@nakafa/aksara-contracts/preview/spec";

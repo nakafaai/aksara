@@ -10,13 +10,13 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { QuestionChoicesSchema } from "@nakafa/aksara-contracts/projection/question";
 import {
   type QuestionBodyKind,
   QuestionBodyKindSchema,
-  QuestionChoicesSchema,
   QuestionKeySchema,
   QuestionSetKeySchema,
-} from "@nakafa/aksara-contracts/projection/question";
+} from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 

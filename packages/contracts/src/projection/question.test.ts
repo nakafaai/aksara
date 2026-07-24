@@ -7,10 +7,12 @@ import {
   QuestionAnswerProjectionSchema,
   QuestionBodyProjectionSchema,
   QuestionChoicesSchema,
-  QuestionKeySchema,
   QuestionPromptProjectionSchema,
-  QuestionSetKeySchema,
 } from "#contracts/projection/question";
+import {
+  QuestionKeySchema,
+  QuestionSetKeySchema,
+} from "#contracts/question/identity";
 
 const questionKey = QuestionKeySchema.make(
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1"
@@ -105,54 +107,6 @@ describe("question projection", () => {
         "Expected exactly one correct choice."
       );
     }
-  });
-
-  it("rejects mismatched question, peer, set, and numeric identities", () => {
-    const prompt = promptProjection("en");
-    const answer = answerProjection("en");
-    const invalidPrompts = [
-      { ...prompt, questionKey: `${setKey}/question-2` },
-      { ...prompt, contentKey: `${questionKey}/answer` },
-      { ...prompt, peerContentKey: `${questionKey}/question` },
-      { ...prompt, questionNumber: 2 },
-    ];
-    const invalidAnswers = [
-      { ...answer, questionKey: `${setKey}/question-2` },
-      { ...answer, contentKey: `${questionKey}/question` },
-      { ...answer, peerContentKey: `${questionKey}/answer` },
-      { ...answer, questionNumber: 2 },
-    ];
-
-    for (const value of invalidPrompts) {
-      expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(QuestionPromptProjectionSchema)(value)
-        )
-      ).toBe(true);
-    }
-    for (const value of invalidAnswers) {
-      expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(QuestionAnswerProjectionSchema)(value)
-        )
-      ).toBe(true);
-    }
-    const promptError = Schema.decodeUnknownEither(
-      QuestionPromptProjectionSchema
-    )(invalidPrompts[0]);
-    const answerError = Schema.decodeUnknownEither(
-      QuestionAnswerProjectionSchema
-    )(invalidAnswers[0]);
-    expect(
-      Either.isLeft(promptError) ? String(promptError.left) : ""
-    ).toContain(
-      "Expected question body, peer, set, and number identities to agree."
-    );
-    expect(
-      Either.isLeft(answerError) ? String(answerError.left) : ""
-    ).toContain(
-      "Expected answer body, peer, set, and number identities to agree."
-    );
   });
 
   it("rejects invented metadata and answer choices", () => {

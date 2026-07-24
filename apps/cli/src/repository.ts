@@ -1,6 +1,8 @@
 import { FileSystem, Path } from "@effect/platform";
-import type { PreviewDocument } from "@nakafa/aksara-contracts/preview/spec";
-import { PreviewDocumentSchema } from "@nakafa/aksara-contracts/preview/spec";
+import {
+  type PreviewDocument,
+  PreviewDocumentSchema,
+} from "@nakafa/aksara-contracts/preview/document";
 import {
   decodeMaterialRegistry,
   type MaterialEntry,

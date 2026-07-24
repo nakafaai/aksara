@@ -3,8 +3,8 @@ import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
 import {
   type QuestionChoices,
   QuestionChoicesSchema,
-  QuestionSetKeySchema,
 } from "@nakafa/aksara-contracts/projection/question";
+import { QuestionSetKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 
