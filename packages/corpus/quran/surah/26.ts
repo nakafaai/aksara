@@ -37,48 +37,28 @@ import { quranSurah26Verses211To216 } from "#corpus/quran/surah/26/211-216";
 import { quranSurah26Verses217To222 } from "#corpus/quran/surah/26/217-222";
 import { quranSurah26Verses223To227 } from "#corpus/quran/surah/26/223-227";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah26 = {
   name: {
-    long: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0634\u0639\u0631\u0627\u0621",
-    short: "الشعراء",
-    translation: {
-      en: "The Poets",
-      id: "Para Penyair",
-    },
-    transliteration: {
-      en: "Ash-Shu'araa",
-      id: "Asy-Syu'ara'",
-    },
+    arabic: "الشعراء",
+    translation: "The Poets",
+    transliteration: "Ash-Shu'araa",
   },
   number: 26,
   numberOfVerses: 227,
-  preBismillah: {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1.mp3",
-      ],
-    },
-    text: {
-      arab: "\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Bismillaahir Rahmaanir Raheem",
-      },
-    },
-    translation: {
-      en: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
-      id: "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
-    },
-  },
   revelation: {
-    arab: "\u0645\u0643\u0629",
-    en: "Meccan",
-    id: "Makkiyyah",
-  },
-  sequence: 47,
-  tafsir: {
-    id: "Surat ini terdiri dari 227 ayat termasuk golongan surat-surat Makkiyyah. Dinamakan Asy Syu'araa' (kata jamak dari Asy Syaa'ir yang berarti penyair) diambil dari kata Asy Syuaraa' yang terdapat pada ayat 224, yaitu pada bagian terakhir surat ini, di kala Allah s.w.t. secara khusus menyebutkan kedudukan penyair- penyair. Para penyair-penyair itu mempunyai sifat-sifat yang jauh berbeda dengan para rasul-rasul; mereka diikuti oleh orang-orang yang sesat dan mereka suka memutar balikkan lidah dan mereka tidak mempunyai pendirian, perbuatan mereka tidak sesuai dengan tidak mempunyai pendirian, perbuatan mereka tidak sesuai dengan apa yang mereka ucapkan. Sifat-sifat yang demikian tidaklah sekali-kali terdapat pada rasul-rasul. Oleh karena demikian tidak patut bila Nabi Muhammad s.a.w. dituduh sebagai penyair, dan Al Quran dituduh sebagai syair, Al Quran adalah wahyu Allah, bukan buatan manusia.",
+    order: 47,
+    place: "Meccan",
   },
   verses: [
     ...quranSurah26Verses1To6,

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah2Verses235To240 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/242",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/242.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/242.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 38,
       ruku: 31,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 242,
@@ -24,40 +25,35 @@ export const quranSurah2Verses235To240 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan bahwa seorang laki-laki boleh mengucapkan kata-kata sindiran untuk meminang wanita yang masih berada dalam masa idahnya, baik idah karena kematian suami, maupun idah karena talak ba'in. Tetapi hal itu sama sekali tidak dibenarkan bila wanita itu berada dalam masa idah dari talak raj'i.\n\nUngkapan yang menggambarkan bahwa lelaki itu mempunyai maksud untuk mengawininya, bila telah selesai idahnya, umpamanya si lelaki itu berkata, \"Saya senang sekali bila mempunyai istri yang memiliki sifat-sifat seperti engkau,\" atau ungkapan lainnya yang tidak mengarah pada berterus terang. Allah melarang bila seorang laki-laki mengadakan janji akan menikah, atau membujuknya untuk menikah secara sembunyi-sembunyi atau mengadakan pertemuan rahasia. Hal ini tidak dibenarkan karena dikhawatirkan terjadi fitnah.\n\nSeorang laki-laki tidak dilarang meminang perempuan yang masih dalam masa idah talak ba'in jika pinangan itu dilakukan secara sindiran, atau masih dalam rencana, karena Allah mengetahui bahwa manusia tidak selalu dapat menyembunyikan isi hatinya. Pinangan tersebut hendaknya tidak dilakukan secara terang-terangan tetapi hendaknya dengan kata-kata kiasan yang merupakan pendahuluan, yang akan ditindaklanjuti dalam bentuk pinangan resmi, ketika perempuan tersebut telah habis idahnya. Pinangan dengan sindiran itu tidak boleh dilakukan terhadap perempuan yang masih dalam idah talak raj'i, karena masih ada kemungkinan perempuan itu akan kembali kepada suaminya semula.\n\nCara seperti ini dimaksudkan agar perasaan wanita yang sedang berkabung itu tidak tersinggung, juga untuk menghindarkan reaksi buruk dari keluarga mantan suami dan masyarakat umum. Karenanya akad nikah dengan wanita yang masih dalam idah dilarang. Suatu larangan yang dianggap haram qath'i, dan akad nikah tersebut harus dibatalkan.",
-        short:
-          'Ayat ini menjelaskan apa saja yang boleh dan tidak boleh dilakukan oleh laki-laki terhadap perempuan yang masih dalam masa idah. Dan tidak ada dosa bagimu, wahai kaum laki-laki, meminang perempuan-perempuan itu yang masih dalam masa idah, baik idah cerai mati maupun karena ditalak tiga, selain yang ditalak raj\'i (satu atau dua), dengan sindiran, seperti ucapan, "Aku suka dengan perempuan yang lembut dan memiliki sifat keibuan", atau kamu sembunyikan keinginanmu dalam hati untuk melamar dan menikahinya jika sudah habis masa idahnya. Demikian ini karena Allah mengetahui bahwa kamu tidak sabar sebagai lelaki akan menyebut-nyebut keinginanmu untuk melamar dan menikahinya kepada mereka, yakni perempuan-perempuan tersebut setelah habis idahnya. Tetapi janganlah kamu, wahai laki-laki, membuat perjanjian, baik secara langsung maupun tidak langsung namun terkesan memberi harapan untuk menikah dengan mereka, yakni perempuan-perempuan yang masih dalam masa idah, secara rahasia, yakni hanya diketahui berdua, kecuali sekadar mengucapkan kata-kata sindiran yang baik. Dan janganlah kamu, wahai para lelaki, menetapkan akad nikah kepada perempuan yang ditinggal mati suaminya atau ditalak tiga sebelum habis masa idahnya, sebab akad nikahmu akan dianggap batal. Ketahuilah bahwa Allah mengetahui apa yang ada dalam hatimu, yakni ketertarikanmu kepada perempuan itu untuk segera menikahinya, maka takutlah kepada-Nya, dari melanggar hukum-hukum-Nya. Dan ketahuilah bahwa Allah Maha Pengampun atas kesalahan akibat kelemahan dirimu, Maha Penyantun dengan memberimu kesempatan bertobat.',
+        footnotes: null,
+        text: "Kalian tidak berdosa menyatakan keinginan kalian dengan kata-kata sindiran untuk meminang wanita yang sedang menjalani masa idah karena kematian suaminya atau ditalak bain (talak tiga). Tetapi, kalian tidak boleh menyatakan keinginan kalian itu secara eksplisit (terus terang). Misalnya dengan mengatakan, “Jika masa idahmu habis beritahu aku.” Kalian tidak berdosa bila menyembunyikan keinginan kalian untuk menikahi wanita yang menjalani masa idah setelah masa idahnya berakhir. Allah mengetahui bahwa kalian akan menyebut nama wanita-wanita itu karena kuatnya keinginan kalian untuk menikahi mereka, sehingga Allah mengizinkan kalian menyatakan keinginan kalian melalui sindiran bukan secara eksplisit. Jangan sekali-kali kalian secara diam-diam berjanji akan menikah sementara wanita tersebut sedang menjalani masa idah, kecuali dengan ucapan yang baik, yaitu melalui sindiran. Juga janganlah kalian memutuskan untuk melaksanakan akad nikah pada masa idah! Serta ketahuilah bahwa Allah mengetahui apa yang kalian sembunyikan di dalam hati, baik yang dihalalkan maupun yang diharamkan bagi kalian. Oleh karena itu, berhati-hatilah, dan jangan melanggar perintah-Nya. Ketahuilah bahwa Allah Maha Pengampun bagi hamba-hamba-Nya yang bertobat, lagi Maha Penyantun, tidak lekas menjatuhkan hukuman kepada orang-orang yang berdosa.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0641\u0650\u064a\u0645\u064e\u0627 \u0639\u064e\u0631\u0651\u064e\u0636\u0652\u062a\u064f\u0645 \u0628\u0650\u0647\u0650 \u0645\u0650\u0646\u0652 \u062e\u0650\u0637\u0652\u0628\u064e\u0629\u0650 \u0627\u0644\u0646\u0651\u0650\u0633\u064e\u0627\u0621\u0650 \u0623\u064e\u0648\u0652 \u0623\u064e\u0643\u0652\u0646\u064e\u0646\u062a\u064f\u0645\u0652 \u0641\u0650\u064a \u0623\u064e\u0646\u0641\u064f\u0633\u0650\u0643\u064f\u0645\u0652 \u06da \u0639\u064e\u0644\u0650\u0645\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0623\u064e\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0633\u064e\u062a\u064e\u0630\u0652\u0643\u064f\u0631\u064f\u0648\u0646\u064e\u0647\u064f\u0646\u0651\u064e \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646 \u0644\u0651\u064e\u0627 \u062a\u064f\u0648\u064e\u0627\u0639\u0650\u062f\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0633\u0650\u0631\u0651\u064b\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0623\u064e\u0646 \u062a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0627 \u0642\u064e\u0648\u0652\u0644\u064b\u0627 \u0645\u0651\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u064b\u0627 \u06da \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0639\u0652\u0632\u0650\u0645\u064f\u0648\u0627 \u0639\u064f\u0642\u0652\u062f\u064e\u0629\u064e \u0627\u0644\u0646\u0651\u0650\u0643\u064e\u0627\u062d\u0650 \u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u064a\u064e\u0628\u0652\u0644\u064f\u063a\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064f \u0623\u064e\u062c\u064e\u0644\u064e\u0647\u064f \u06da \u0648\u064e\u0627\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0627 \u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f \u0645\u064e\u0627 \u0641\u0650\u064a \u0623\u064e\u0646\u0641\u064f\u0633\u0650\u0643\u064f\u0645\u0652 \u0641\u064e\u0627\u062d\u0652\u0630\u064e\u0631\u064f\u0648\u0647\u064f \u06da \u0648\u064e\u0627\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0627 \u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u063a\u064e\u0641\u064f\u0648\u0631\u064c \u062d\u064e\u0644\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wa laa junaaha 'alaikum feema 'arradtum bihee min khitbatin nisaaa'i aw aknantum feee anfusikum; 'alimal laahu annakum satazkuroonahunna wa laakil laa tuwaa'idoohunna sirran illaaa an taqooloo qawlamma'roofaa; wa laa ta'zimoo 'uqdatan nikaahi hattaa yablughal kitaabu ajalah; wa'lamooo annal laaha ya'lamumaa feee anfusikum fahzarooh; wa'lamooo annallaaha Ghafoorun Haleem",
-      },
+      arabic:
+        "وَلَا جُنَاحَ عَلَيْكُمْ فِيمَا عَرَّضْتُم بِهِۦ مِنْ خِطْبَةِ ٱلنِّسَآءِ أَوْ أَكْنَنتُمْ فِىٓ أَنفُسِكُمْ عَلِمَ ٱللَّهُ أَنَّكُمْ سَتَذْكُرُونَهُنَّ وَلَٰكِن لَّا تُوَاعِدُوهُنَّ سِرًّا إِلَّآ أَن تَقُولُوا۟ قَوْلًا مَّعْرُوفًا وَلَا تَعْزِمُوا۟ عُقْدَةَ ٱلنِّكَاحِ حَتَّىٰ يَبْلُغَ ٱلْكِتَٰبُ أَجَلَهُۥ وَٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ يَعْلَمُ مَا فِىٓ أَنفُسِكُمْ فَٱحْذَرُوهُ وَٱعْلَمُوٓا۟ أَنَّ ٱللَّهَ غَفُورٌ حَلِيمٌ",
     },
     translation: {
-      en: "There is no blame upon you for that to which you [indirectly] allude concerning a proposal to women or for what you conceal within yourselves. Allah knows that you will have them in mind. But do not promise them secretly except for saying a proper saying. And do not determine to undertake a marriage contract until the decreed period reaches its end. And know that Allah knows what is within yourselves, so beware of Him. And know that Allah is Forgiving and Forbearing.",
-      id: "Dan tidak ada dosa bagimu meminang perempuan-perempuan itu dengan sindiran atau kamu sembunyikan (keinginanmu) dalam hati. Allah mengetahui bahwa kamu akan menyebut-nyebut kepada mereka. Tetapi janganlah kamu membuat perjanjian (untuk menikah) dengan mereka secara rahasia, kecuali sekedar mengucapkan kata-kata yang baik. Dan janganlah kamu menetapkan akad nikah, sebelum habis masa idahnya. Ketahuilah bahwa Allah mengetahui apa yang ada dalam hatimu, maka takutlah kepada-Nya. Dan ketahuilah bahwa Allah Maha Pengampun, Maha Penyantun.",
+      en: {
+        footnotes:
+          '[129] i.e., the widowed or irrevocably divorced.\n [130] e.g. by saying to her, "If one finds a wife like you, he will be happy" or so.',
+        text: "There is no sin on you if you hint a proposal of marriage or keep it concealed in your hearts. Allah knows that you will make mention of them[129], but do not make a secret promise with them, except that you may say something appropriate[130]. Do not resolve a marriage contract until the prescribed time is reached. And know that Allah knows what is in your hearts, so be cautious of Him and know that Allah is All-Forgiving, Most Forbearing.",
+      },
+      id: {
+        footnotes:
+          "[87] Perempuan yang boleh dipinang secara sindiran adalah peremuan yang berada dalam masa idah karena suaminya wafat, atau karena talak bain. Sedang perempuan yang dalam idah talak raj'i tidak boleh dipinang walaupun dengan sindiran. \n[88] Perkataan sindiran yang baik.",
+        text: "Dan tidak ada dosa bagimu meminang perempuan-perempuan itu dengan sindiran[87] atau kamu sembunyikan (keinginanmu) dalam hati. Allah mengetahui bahwa kamu akan menyebut-nyebut kepada mereka. Tetapi janganlah kamu membuat perjanjian (untuk menikah) dengan mereka secara rahasia, kecuali sekedar mengucapkan kata-kata yang baik.[88] Dan janganlah kamu menetapkan akad nikah, sebelum habis masa idahnya. Ketahuilah bahwa Allah mengetahui apa yang ada dalam hatimu, maka takutlah kepada-Nya. Dan ketahuilah bahwa Allah Maha Pengampun, Maha Penyantun.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/243",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/243.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/243.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 38,
       ruku: 32,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 243,
@@ -65,40 +61,34 @@ export const quranSurah2Verses235To240 = [
     },
     tafsir: {
       id: {
-        long: "Seorang suami yang menjatuhkan talak pada istrinya sebelum dukhul (digauli), dan sebelum menentukan jumlah maharnya tidak dibebani kewajiban membayar mahar, hanya saja ia didorong untuk memberi mut'ah yaitu pemberian untuk menyenangkan bekas istrinya. Besar kecilnya jumlah pemberian tersebut tergantung pada suami, yang kaya sesuai dengan kekayaannya dan yang tidak mampu sesuai pula dengan kadar yang disanggupinya. Pemberian mut'ah tersebut merupakan suatu anjuran bagi laki-laki yang mau berbuat baik.",
-        short:
-          "Pada ayat berikut Allah menjelaskan hukum terkait perceraian antara suami dan istri yang belum dicampuri dan belum ditetapkan maskawinnya. Tidak ada dosa atau tidak apa-apa bagimu, wahai para suami, jika kamu menceraikan istri-istri kamu yang belum kamu sentuh, yakni belum kamu campuri, atau belum kamu tentukan maharnya, untuk tidak memberikan maharnya. Dan hendaklah kamu beri mereka mut'ah, yaitu sesuatu yang diberikan sebagai penghibur kepada istri yang diceraikan, selain nafkah. Bagi yang mampu dianjurkan memberi mut'ah menurut kemampuannya dan bagi yang tidak mampu tetap dituntut untuk memberi mut'ah menurut kesanggupannya, yaitu pemberian dengan cara yang patut dan tidak menyakiti hatinya atau menyinggung perasaannya. Yang demikian itu merupakan kewajiban bagi orang-orang yang senantiasa berbuat kebaikan yang dibuktikan dengan selalu siap berkorban.",
+        footnotes: null,
+        text: "Kalian tidak berdosa jika menceraikan istri-istri yang sudah dinikahi sebelum kalian menggauli mereka dan sebelum kalian menetapkan mahar tertentu bagi mereka. Apabila kalian menceraikan mereka dalam keadaan seperti ini, maka kalian tidak wajib membayar mahar kepada mereka. Tetapi, kalian harus memberi sesuatu untuk menyenangkan hati mereka dan mengobati kekecewaan mereka, menurut kadar kemampuan kalian, baik kaya maupun miskin. Pemberian ini adalah kewajiban yang harus ditunaikan oleh orang-orang yang berbudi baik dalam tindakan dan muamalahnya.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0625\u0650\u0646 \u0637\u064e\u0644\u0651\u064e\u0642\u0652\u062a\u064f\u0645\u064f \u0627\u0644\u0646\u0651\u0650\u0633\u064e\u0627\u0621\u064e \u0645\u064e\u0627 \u0644\u064e\u0645\u0652 \u062a\u064e\u0645\u064e\u0633\u0651\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u062a\u064e\u0641\u0652\u0631\u0650\u0636\u064f\u0648\u0627 \u0644\u064e\u0647\u064f\u0646\u0651\u064e \u0641\u064e\u0631\u0650\u064a\u0636\u064e\u0629\u064b \u06da \u0648\u064e\u0645\u064e\u062a\u0651\u0650\u0639\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0645\u064f\u0648\u0633\u0650\u0639\u0650 \u0642\u064e\u062f\u064e\u0631\u064f\u0647\u064f \u0648\u064e\u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0645\u064f\u0642\u0652\u062a\u0650\u0631\u0650 \u0642\u064e\u062f\u064e\u0631\u064f\u0647\u064f \u0645\u064e\u062a\u064e\u0627\u0639\u064b\u0627 \u0628\u0650\u0627\u0644\u0652\u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u0650 \u06d6 \u062d\u064e\u0642\u0651\u064b\u0627 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0645\u064f\u062d\u0652\u0633\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Laa junaaha 'alaikum in tallaqtumun nisaaa'a maa lam tamassoohunna aw tafridoo lahunna fareedah; wa matti'oona 'alal moosi'i qadaruhoo wa 'alal muqtiri qadaruhoo matta'am bilma'roofi haqqan 'alalmuhsineen",
-      },
+      arabic:
+        "لَّا جُنَاحَ عَلَيْكُمْ إِن طَلَّقْتُمُ ٱلنِّسَآءَ مَا لَمْ تَمَسُّوهُنَّ أَوْ تَفْرِضُوا۟ لَهُنَّ فَرِيضَةً وَمَتِّعُوهُنَّ عَلَى ٱلْمُوسِعِ قَدَرُهُۥ وَعَلَى ٱلْمُقْتِرِ قَدَرُهُۥ مَتَٰعًۢا بِٱلْمَعْرُوفِ حَقًّا عَلَى ٱلْمُحْسِنِينَ",
     },
     translation: {
-      en: "There is no blame upon you if you divorce women you have not touched nor specified for them an obligation. But give them [a gift of] compensation - the wealthy according to his capability and the poor according to his capability - a provision according to what is acceptable, a duty upon the doers of good.",
-      id: "Tidak ada dosa bagimu, jika kamu menceraikan istri-istri kamu yang belum kamu sentuh (campuri) atau belum kamu tentukan maharnya. Dan hendaklah kamu beri mereka mut‘ah, bagi yang mampu menurut kemampuannya dan bagi yang tidak mampu menurut kesanggupannya, yaitu pemberian dengan cara yang patut, yang merupakan kewajiban bagi orang-orang yang berbuat kebaikan.",
+      en: {
+        footnotes: "",
+        text: "There is no sin on you if you divorce women before you have consummated the marriage or the dowry has been fixed; but give them a [gift of] compensation – the wealthy according to his means and the poor according to his means – a reasonable compensation is an obligation upon those who do good.",
+      },
+      id: {
+        footnotes:
+          "[89] Ialah sesuatu yang diberikan oleh suami kepada istri yang diceraikannya sebagi penghibur, selain nafkah sesuai dengan kemampuannya.",
+        text: "Tidak ada dosa bagimu jika kamu menceraikan istri-istri kamu yang belum kamu sentuh (campuri) atau belum kamu tentukan maharnya. Dan hendaklah kamu beri mereka mut'ah,[89] bagi yang mampu menurut kemampuannya dan bagi yang tidak mampu menurut kesanggupannya, yaitu pemberian dengan cara yang patut, yang merupakan kewajiban bagi orang-orang yang berbuat kebaikan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/244",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/244.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/244.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 38,
       ruku: 32,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 244,
@@ -106,40 +96,34 @@ export const quranSurah2Verses235To240 = [
     },
     tafsir: {
       id: {
-        long: "Jika seorang suami menjatuhkan talak sebelum bercampur sedangkan ia telah menentukan jumlah mahar maka yang menjadi hak mantan istrinya itu adalah separo dari jumlah mahar tersebut, yang dapat dituntutnya selama ia tidak rela dicerai. Perempuan tersebut dapat menerima penuh mahar itu tanpa mengembalikan seperduanya, jika bekas suaminya merelakannya.\n\nTindakan merelakan pelunasan mahar itu suatu hal yang lebih dekat kepada takwa. Sebab wajarlah seorang suami merelakannya jika perceraian itu terjadi karena keinginannya. Demikian pula wajar seorang istri merelakan hak dari mahar yang mestinya diterimanya jika sebab-sebab perceraian datang dari pihaknya. \n\nMenurut sunah Rasulullah, apabila telah terjadi dukhul (telah bercampur) sedang pada waktu akad nikah jumlah mahar itu tidak disebutkan, maka jumlah maharnya adalah menurut mahar misil, yaitu mahar yang sepadan dengan posisi perempuan di kalangan famili dan masyarakatnya.",
-        short:
-          "Pada ayat berikut Allah menjelaskan hukum terkait perceraian antara suami dan istri yang belum dicampuri namun sudah ditetapkan maskawinnya. Dan jika kamu, wahai para suami, menceraikan mereka, yakni para istri, sebelum kamu sentuh atau campuri, padahal kamu sudah menentukan maharnya, maka bayarlah seperdua dari mahar yang telah kamu tentukan, kecuali jika mereka, yaitu para suami, membebaskan dirinya sendiri dengan membayar penuh mahar tersebut atau suami tersebut dibebaskan oleh orang yang akad nikah ada di tangannya yakni wali istri, dengan cara membebaskan suami tersebut dari kewajiban membayar setengah dari mahar yang telah ditentukan. Jika demikian maka pembebasan itu, baik dari pihak suami maupun dari pihak wali, adalah lebih dekat kepada takwa. Artinya, hal itu lebih layak dilakukan oleh mereka yang termasuk golongan orang bertakwa. Dan janganlah kamu, wahai para suami dan wali, lupa atau melupakan kebaikan di antara kamu, yakni dengan membebaskan kewajiban orang lain atas dirinya atau memberikan haknya untuk orang lain. Sungguh, Allah Maha Melihat apa yang kamu kerjakan, yakni memberi sesuatu de-ngan yang lebih baik kepada orang lain. Inilah sikap ihsan yang dicintai Allah. Ihsan inilah sikap tertinggi dari keberagamaan seseorang, yakni memberikan lebih dari yang seharusnya dan mengambil haknya lebih sedikit dari yang semestinya.",
+        footnotes: null,
+        text: "Apabila kalian menceraikan para istri kalian setelah melaksanakan akad nikah sebelum menggauli mereka sedangkan kalian telah menetapkan mahar tertentu untuk mereka, maka kalian wajib membayar setengah dari mahar yang telah ditentukan tersebut kepada mereka. Kecuali apabila mereka merelakannya untuk kalian (jika mereka sudah dewasa), atau apabila para suami itu sendiri membayar penuh mahar tersebut kepada mereka. Tindakan saling merelakan hak-hak yang ada di antara kalian itu lebih dekat kepada ketakwaan dan ketaatan pada Allah. Janganlah kalian -wahai manusia- meninggalkan kebiasaan saling memberi di antara kalian dan saling merelakan hak-hak yang ada karena sesungguhnya Allah mengetahui apa yang kalian perbuat. Oleh karena itu, bersungguh-sungguhlah dalam berbagi kebaikan agar kalian mendapatkan ganjaran dari Allah atas hal itu.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646 \u0637\u064e\u0644\u0651\u064e\u0642\u0652\u062a\u064f\u0645\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650 \u0623\u064e\u0646 \u062a\u064e\u0645\u064e\u0633\u0651\u064f\u0648\u0647\u064f\u0646\u0651\u064e \u0648\u064e\u0642\u064e\u062f\u0652 \u0641\u064e\u0631\u064e\u0636\u0652\u062a\u064f\u0645\u0652 \u0644\u064e\u0647\u064f\u0646\u0651\u064e \u0641\u064e\u0631\u0650\u064a\u0636\u064e\u0629\u064b \u0641\u064e\u0646\u0650\u0635\u0652\u0641\u064f \u0645\u064e\u0627 \u0641\u064e\u0631\u064e\u0636\u0652\u062a\u064f\u0645\u0652 \u0625\u0650\u0644\u0651\u064e\u0627 \u0623\u064e\u0646 \u064a\u064e\u0639\u0652\u0641\u064f\u0648\u0646\u064e \u0623\u064e\u0648\u0652 \u064a\u064e\u0639\u0652\u0641\u064f\u0648\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0628\u0650\u064a\u064e\u062f\u0650\u0647\u0650 \u0639\u064f\u0642\u0652\u062f\u064e\u0629\u064f \u0627\u0644\u0646\u0651\u0650\u0643\u064e\u0627\u062d\u0650 \u06da \u0648\u064e\u0623\u064e\u0646 \u062a\u064e\u0639\u0652\u0641\u064f\u0648\u0627 \u0623\u064e\u0642\u0652\u0631\u064e\u0628\u064f \u0644\u0650\u0644\u062a\u0651\u064e\u0642\u0652\u0648\u064e\u0649\u0670 \u06da \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0646\u0633\u064e\u0648\u064f\u0627 \u0627\u0644\u0652\u0641\u064e\u0636\u0652\u0644\u064e \u0628\u064e\u064a\u0652\u0646\u064e\u0643\u064f\u0645\u0652 \u06da \u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0628\u0650\u0645\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e \u0628\u064e\u0635\u0650\u064a\u0631\u064c",
-      transliteration: {
-        en: "Wa in tallaqtumoohunna min qabli an tamassoohunna wa qad farad tum lahunna fareedatan fanisfu maa faradtum illaaa ai ya'foona aw ya'fuwallazee biyadihee 'uqdatunnikaah; wa an ta'foona aw ya'fuwallazee biyadihee 'uqdatunnikaah; wa an ta'fooo aqrabu littaqwaa; wa laa tansawulfadla bainakum; innal laaha bimaa ta'maloona Baseer",
-      },
+      arabic:
+        "وَإِن طَلَّقْتُمُوهُنَّ مِن قَبْلِ أَن تَمَسُّوهُنَّ وَقَدْ فَرَضْتُمْ لَهُنَّ فَرِيضَةً فَنِصْفُ مَا فَرَضْتُمْ إِلَّآ أَن يَعْفُونَ أَوْ يَعْفُوَا۟ ٱلَّذِى بِيَدِهِۦ عُقْدَةُ ٱلنِّكَاحِ وَأَن تَعْفُوٓا۟ أَقْرَبُ لِلتَّقْوَىٰ وَلَا تَنسَوُا۟ ٱلْفَضْلَ بَيْنَكُمْ إِنَّ ٱللَّهَ بِمَا تَعْمَلُونَ بَصِيرٌ",
     },
     translation: {
-      en: "And if you divorce them before you have touched them and you have already specified for them an obligation, then [give] half of what you specified - unless they forego the right or the one in whose hand is the marriage contract foregoes it. And to forego it is nearer to righteousness. And do not forget graciousness between you. Indeed Allah, of whatever you do, is Seeing.",
-      id: "Dan jika kamu menceraikan mereka sebelum kamu sentuh (campuri), padahal kamu sudah menentukan Maharnya, maka (bayarlah) seperdua dari yang telah kamu tentukan, kecuali jika mereka (membebaskan) atau dibebaskan oleh orang yang akad nikah ada di tangannya. Pembebasan itu lebih dekat kepada takwa. Dan janganlah kamu lupa kebaikan di antara kamu. Sungguh, Allah Maha Melihat apa yang kamu kerjakan.",
+      en: {
+        footnotes: "",
+        text: "If you divorce them before you have consummated the marriage, but you have already fixed their dowry, then pay half the amount agreed upon, unless the wife graciously waives it or the husband graciously pays it in full, but graciousness is closer to piety. Do not forget to be graceful to one another, for Allah is All-Seeing of what you do.",
+      },
+      id: {
+        footnotes:
+          "[90] Ialah suami atau wali. Kalau wali yang membebaskan, maka suami dibebaskan dari membayar separuh mahar, sedang kalau suami yang membebaskan, maka dia membayar seluruh mahar.",
+        text: "Dan jika kamu menceraikan mereka sebelum kamu sentuh (campuri), padahal kamu sudah menentukan maharnya, maka (bayarlah) seperdua dari yang telah kamu tentukan, kecuali jika mereka (membebaskan) atau dibebaskan oleh orang yang akad nikah ada ditangannya.[90] Pembebasan itu lebih dekat kepada takwa. Dan janganlah kamu melupakan kebaikan di antara kamu. Sungguh, Allah Maha Melihat apa yang kamu kerjakan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/245",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/245.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/245.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 39,
       ruku: 32,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 245,
@@ -147,40 +131,34 @@ export const quranSurah2Verses235To240 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini diterangkan keutamaan melakukan salat, dan selalu memeliharanya. Keluarga merupakan bagian dari masyarakat dan dalam memenuhi segala kebutuhan dan persoalan hidupnya banyak sekali menemui kesulitan yang kadang-kadang dapat menjerumuskannya kepada hal-hal yang dilarang agama. Karena itu telah diberi suatu cara yang baik untuk dilakukan manusia agar selalu terjamin hubungan keduniaannya dengan ketakwaan kepada Allah dengan selalu memelihara salat. Mulai dari bangun tidur sebelum melakukan kontak dengan manusia lainnya ia ingat dan bermunajah lebih dahulu dengan Allah (waktu subuh). Kemudian setelah ia berhubungan dengan masyarakat, dan mungkin sekali terjadi perbuatan yang tidak diridai Allah maka untuk mengingatkan dan menyelamatkannya, ia dipanggil untuk berhubungan lagi dengan Allah pada waktu tengah hari (salat zuhur). Begitulah seterusnya selama 24 jam. Dengan demikian selalu terjalin antara kesibukan manusia (untuk memenuhi hajat hidupnya) dengan ingat kepada Allah dan melaksanakan perintah-perintah-Nya. Hal ini mempunyai pengaruh dan membekas dalam jiwa dan kehidupan manusia sebagaimana ditegaskan bahwa dengan salat manusia dapat terhindar dari perbuatan jahat dan mungkar. Selain itu, memelihara salat adalah bukti iman kepada Allah, dan menjadi syarat mutlak bagi kehidupan seorang Muslim, menguatkan tali persaudaraan, dan dapat menjamin hak-hak manusia. Menurut riwayat Ahmad, Rasulullah saw bersabda:\n\nPerjanjian antara kami dengan kaum kafir adalah salat, siapa yang meninggalkannya (dengan sengaja) maka ia telah menjadi kafir. (Riwayat Ahmad)\n\nDalam hadis lain yang diriwayatkan oleh Ahmad dan ath-thabrani, Rasulullah saw bersabda:\n\nBarang siapa selalu memelihara salat maka ia akan dapat cahaya dan petunjuk serta akan dapat keselamatan pada hari Kiamat. Sebaliknya orang yang tidak memelihara salat maka tidak ada baginya cahaya, petunjuk dan keselamatan. Di akhirat nanti ia akan bersama Fir'aun, Haman, dan Ubai bin Khalaf di dalam neraka. (Riwayat Ahmad dan ath-thabrani)\n\nAyat-ayat di atas menjelaskan bagaimana pentingnya menjaga dan memelihara salat. Manusia yang melaksanakan perintah ini benar-benar menjadi makhluk Allah yang bertakwa dan hidupnya akan selalu aman, berada di dalam magfirah dan rida Allah.\n\nAdapun sebab turun ayat ini menurut riwayat dari Zaid bin sabit, Rasulullah saw selalu melakukan salat zuhur, meskipun pada siang hari yang panas terik yang bagi para sahabat dirasakan berat, maka turunlah ayat ini. Allah memerintahkan kepada kaum Muslimin untuk selalu menjaga salat lima waktu. Jika salat itu dilaksanakan, ia dapat memelihara diri dari berbuat hal-hal yang jahat dan mungkar. Salat dapat menjadi penenang jiwa dari segala kegelisahan yang menimpa diri. Karena itu salat merupakan tiang agama.\n\nAllah menekankan salat wustha. Salat wusta menurut jumhur Ulama ialah salat Asar. Allah mengajarkan pula, agar dalam melakukan salat kita berlaku khusyuk dan tawaduk. Sebab pemusatan pikiran kepada Allah semata-mata adalah tingkat salat yang paling baik dan salat inilah yang dapat membekas pada jiwa manusia.\n\nKarena pentingnya melaksanakan dan memelihara salat ini seorang Muslim tidak boleh meninggalkannya walau dalam keadaan bagaimanapun. Salat tetap tidak boleh ditinggalkan, meskipun dalam suasana kekhawatiran terhadap jiwa, harta, atau kedudukan. Dalam keadaan uzur, salat dapat dikerjakan menurut cara yang mungkin dilakukan, baik dalam keadaan berjalan kaki, berkendaraan, ataupun sakit. Maka setelah hilang uzur itu, terutama yang berupa kekhawatiran, hendaklah bersyukur kepada Allah, karena Allah mengajarkan kepada manusia hal-hal yang tidak diketahuinya termasuk mengenai kaifiat (cara) melakukan salat dalam masa tidak aman/dalam keadaan perang.",
-        short:
-          "Usai menjelaskan hukum keluarga dalam beberapa ayat sebelumnya, pada ayat ini Allah menjelaskan hukum asasi antara manusia dengan Allah, yakni salat. Hal ini seakan mengingatkan agar persoalan keluarga tidak membuat manusia lupa akan kewajiban asasinya, yaitu salat. Karena itu, ayat ini dimulai dengan kata perintah. Peliharalah secara sungguh-sungguh, baik secara pribadi maupun saling mengingatkan antara satu dengan lainnya tentang semua salat, dan peliharalah secara khusus salat wusa­a , yakni salat asar dan subuh, karena keutamaannya. Dan laksanakanlah salat karena Allah Pemilik kemuliaan dan keagungan dengan khusyuk, yakni dengan penuh ketaatan dan keikhlasan.",
+        footnotes: null,
+        text: "Jagalah salat-salat itu dengan cara menunaikannya secara sempurna sebagaimana perintah Allah dan jagalah salat yang berada di tengah-tengah salat-salat lainnya, yaitu salat Asar, dan berdirilah untuk Allah di dalam salatmu dengan tunduk dan khusyuk.",
       },
     },
     text: {
-      arab: "\u062d\u064e\u0627\u0641\u0650\u0638\u064f\u0648\u0627 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0635\u0651\u064e\u0644\u064e\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0627\u0644\u0635\u0651\u064e\u0644\u064e\u0627\u0629\u0650 \u0627\u0644\u0652\u0648\u064f\u0633\u0652\u0637\u064e\u0649\u0670 \u0648\u064e\u0642\u064f\u0648\u0645\u064f\u0648\u0627 \u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0642\u064e\u0627\u0646\u0650\u062a\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Haafizoo 'alas salawaati was Salaatil Wustaa wa qoomoo lillaahi qaaniteen",
-      },
+      arabic: "حَٰفِظُوا۟ عَلَى ٱلصَّلَوَٰتِ وَٱلصَّلَوٰةِ ٱلْوُسْطَىٰ وَقُومُوا۟ لِلَّهِ قَٰنِتِينَ",
     },
     translation: {
-      en: "Maintain with care the [obligatory] prayers and [in particular] the middle prayer and stand before Allah, devoutly obedient.",
-      id: "Peliharalah semua salat dan salat wustha. Dan laksanakanlah (salat) karena Allah dengan khusyuk.",
+      en: {
+        footnotes:
+          "[131] The five obligatory daily Prayers.\n [132] Prayers are mentioned in the midst of marital affair rulings, because of the hurtful feelings divorce can leave. Hence, people are reminded of the Hereafter, whereby they should not ‘overlook kindness’ among themselves by this reminder of accountability.",
+        text: "Be mindful of the prayers[131], especially the middle prayer; and stand before Allah in complete devotion[132].",
+      },
+      id: {
+        footnotes:
+          "[91] Salat wusṭa menurut hadis yang sahih adalah salat Asar.",
+        text: "Peliharalah semua salat dan salat wusṭa.[91] Dan laksanakanlah (salat) karena Allah dengan khusyuk.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/246",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/246.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/246.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 39,
       ruku: 32,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 246,
@@ -188,40 +166,33 @@ export const quranSurah2Verses235To240 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini diterangkan keutamaan melakukan salat, dan selalu memeliharanya. Keluarga merupakan bagian dari masyarakat dan dalam memenuhi segala kebutuhan dan persoalan hidupnya banyak sekali menemui kesulitan yang kadang-kadang dapat menjerumuskannya kepada hal-hal yang dilarang agama. Karena itu telah diberi suatu cara yang baik untuk dilakukan manusia agar selalu terjamin hubungan keduniaannya dengan ketakwaan kepada Allah dengan selalu memelihara salat. Mulai dari bangun tidur sebelum melakukan kontak dengan manusia lainnya ia ingat dan bermunajah lebih dahulu dengan Allah (waktu subuh). Kemudian setelah ia berhubungan dengan masyarakat, dan mungkin sekali terjadi perbuatan yang tidak diridai Allah maka untuk mengingatkan dan menyelamatkannya, ia dipanggil untuk berhubungan lagi dengan Allah pada waktu tengah hari (salat zuhur). Begitulah seterusnya selama 24 jam. Dengan demikian selalu terjalin antara kesibukan manusia (untuk memenuhi hajat hidupnya) dengan ingat kepada Allah dan melaksanakan perintah-perintah-Nya. Hal ini mempunyai pengaruh dan membekas dalam jiwa dan kehidupan manusia sebagaimana ditegaskan bahwa dengan salat manusia dapat terhindar dari perbuatan jahat dan mungkar. Selain itu, memelihara salat adalah bukti iman kepada Allah, dan menjadi syarat mutlak bagi kehidupan seorang Muslim, menguatkan tali persaudaraan, dan dapat menjamin hak-hak manusia. Menurut riwayat Ahmad, Rasulullah saw bersabda:\n\nPerjanjian antara kami dengan kaum kafir adalah salat, siapa yang meninggalkannya (dengan sengaja) maka ia telah menjadi kafir. (Riwayat Ahmad)\n\nDalam hadis lain yang diriwayatkan oleh Ahmad dan ath-thabrani, Rasulullah saw bersabda:\n\nBarang siapa selalu memelihara salat maka ia akan dapat cahaya dan petunjuk serta akan dapat keselamatan pada hari Kiamat. Sebaliknya orang yang tidak memelihara salat maka tidak ada baginya cahaya, petunjuk dan keselamatan. Di akhirat nanti ia akan bersama Fir'aun, Haman, dan Ubai bin Khalaf di dalam neraka. (Riwayat Ahmad dan ath-thabrani)\n\nAyat-ayat di atas menjelaskan bagaimana pentingnya menjaga dan memelihara salat. Manusia yang melaksanakan perintah ini benar-benar menjadi makhluk Allah yang bertakwa dan hidupnya akan selalu aman, berada di dalam magfirah dan rida Allah.\n\nAdapun sebab turun ayat ini menurut riwayat dari Zaid bin sabit, Rasulullah saw selalu melakukan salat zuhur, meskipun pada siang hari yang panas terik yang bagi para sahabat dirasakan berat, maka turunlah ayat ini. Allah memerintahkan kepada kaum Muslimin untuk selalu menjaga salat lima waktu. Jika salat itu dilaksanakan, ia dapat memelihara diri dari berbuat hal-hal yang jahat dan mungkar. Salat dapat menjadi penenang jiwa dari segala kegelisahan yang menimpa diri. Karena itu salat merupakan tiang agama.\n\nAllah menekankan salat wustha. Salat wusta menurut jumhur Ulama ialah salat Asar. Allah mengajarkan pula, agar dalam melakukan salat kita berlaku khusyuk dan tawaduk. Sebab pemusatan pikiran kepada Allah semata-mata adalah tingkat salat yang paling baik dan salat inilah yang dapat membekas pada jiwa manusia.\n\nKarena pentingnya melaksanakan dan memelihara salat ini seorang Muslim tidak boleh meninggalkannya walau dalam keadaan bagaimanapun. Salat tetap tidak boleh ditinggalkan, meskipun dalam suasana kekhawatiran terhadap jiwa, harta, atau kedudukan. Dalam keadaan uzur, salat dapat dikerjakan menurut cara yang mungkin dilakukan, baik dalam keadaan berjalan kaki, berkendaraan, ataupun sakit. Maka setelah hilang uzur itu, terutama yang berupa kekhawatiran, hendaklah bersyukur kepada Allah, karena Allah mengajarkan kepada manusia hal-hal yang tidak diketahuinya termasuk mengenai kaifiat (cara) melakukan salat dalam masa tidak aman/dalam keadaan perang.",
-        short:
-          "Namun, jika kamu takut ada bahaya, baik karena musuh, binatang buas, atau lainnya, maka salatlah sambil berjalan kaki karena darurat atau ketika berada di kendaraan, baik menghadap kiblat maupun tidak. Kemudian apabila situasinya telah kembali aman, maka ingatlah Allah, yakni salatlah, sebagaimana Dia telah mengajarkan kepadamu apa yang tidak kamu ketahui, seperti cara melaksanakan salat dalam kondisi tidak aman. Ini menunjukkan pentingnya salat. Ia harus ditegakkan dimana saja dan kapan saja, serta dalam situasi apa pun.",
+        footnotes: null,
+        text: "Apabila kalian takut kepada musuh dan sebagainya, lalu kalian tidak dapat menunaikan salat secara sempurna, maka salatlah sambil berjalan kaki atau menunggang unta, kuda dan sebagainya, atau dengan cara apa pun yang bisa kalian lakukan. Apabila ketakutan itu sudah hilang, maka berzikirlah kepada Allah dengan berbagai jenis zikir, yang salah satunya ialah ibadah salat yang dikerjakan secara lengkap dan sempurna; lantaran Dia telah mengajarkan kepada kalian cahaya dan petunjuk yang kalian tidak ketahui sebelumnya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646\u0652 \u062e\u0650\u0641\u0652\u062a\u064f\u0645\u0652 \u0641\u064e\u0631\u0650\u062c\u064e\u0627\u0644\u064b\u0627 \u0623\u064e\u0648\u0652 \u0631\u064f\u0643\u0652\u0628\u064e\u0627\u0646\u064b\u0627 \u06d6 \u0641\u064e\u0625\u0650\u0630\u064e\u0627 \u0623\u064e\u0645\u0650\u0646\u062a\u064f\u0645\u0652 \u0641\u064e\u0627\u0630\u0652\u0643\u064f\u0631\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0643\u064e\u0645\u064e\u0627 \u0639\u064e\u0644\u0651\u064e\u0645\u064e\u0643\u064f\u0645 \u0645\u0651\u064e\u0627 \u0644\u064e\u0645\u0652 \u062a\u064e\u0643\u064f\u0648\u0646\u064f\u0648\u0627 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa in khiftum farijaalan aw rukbaanan fa izaaa amintum fazkurul laaha kamaa 'allamakum maa lam takoonoo ta'lamoon",
-      },
+      arabic:
+        "فَإِنْ خِفْتُمْ فَرِجَالًا أَوْ رُكْبَانًا فَإِذَآ أَمِنتُمْ فَٱذْكُرُوا۟ ٱللَّهَ كَمَا عَلَّمَكُم مَّا لَمْ تَكُونُوا۟ تَعْلَمُونَ",
     },
     translation: {
-      en: "And if you fear [an enemy, then pray] on foot or riding. But when you are secure, then remember Allah [in prayer], as He has taught you that which you did not [previously] know.",
-      id: "Jika kamu takut (ada bahaya), salatlah sambil berjalan kaki atau berkendaraan. Kemudian apabila telah aman, maka ingatlah Allah (salatlah), sebagaimana Dia telah mengajarkan kepadamu apa yang tidak kamu ketahui.",
+      en: {
+        footnotes: "[133] Of an imminent danger such as enemies and the like.",
+        text: "If you are in danger[133], then pray while walking or riding. But when you are safe, remember Allah as He taught you what you did not know.",
+      },
+      id: {
+        footnotes: "",
+        text: "Jika kamu takut (ada bahaya), salatlah sambil berjalan kaki atau berkendaraan. Kemudian apabila telah aman, maka ingatlah Allah (salatlah), sebagaimana Dia telah mengajarkan kepadamu apa yang tidak kamu ketahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/247",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/247.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/247.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 15,
       juz: 2,
       manzil: 1,
       page: 39,
       ruku: 32,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 247,
@@ -229,20 +200,24 @@ export const quranSurah2Verses235To240 = [
     },
     tafsir: {
       id: {
-        long: "Allah menganjurkan kepada para suami apabila ia merasa telah dekat ajalnya agar berwasiat untuk istrinya yaitu dengan memberikan sebagian hartanya untuk belanja selama satu tahun, dengan tetap tinggal di rumahnya. Jika istrinya meninggalkan rumah setelah setahun, maka keluarga suami tidak boleh menghalangi tindakan istri tersebut karena tidak melanggar ajaran agama. Umpamanya, untuk aktif di tengah masyarakat dan menunjukkan kesediaannya untuk bersuami lagi. Sebab, statusnya telah bebas, tidak sebagaimana adat jahilliah, perempuan merupakan harta warisan. Allah Mahabijaksana dalam menetapkan hukum-hukum untuk kemaslahatan hamba-Nya.\n\nPerlu dijelaskan di sini, pandangan para ulama tafsir mengenai ayat 240 ini, yaitu sebagaimana ahli ushul berbeda pendapat tentang nasikh dan mansukh di dalam Al-Qur'an, terdapat perbedaan pula di kalangan ahli tafsir.\n\nAda mufasir yang mengakui adanya nasikh dan mansukh di dalam Al-Qur'an dan ada pula yang tidak mengakui. Ahli tafsir yang mengakui nasikh dalam Al-Qur'an menafsirkan bahwa ayat ini memerintahkan agar suami berwasiat, yaitu menyisihkan sebagian hartanya untuk istrinya yang ditinggalkan untuk masa satu tahun dan ia tetap tinggal di kediaman suaminya. Hal ini menunjukkan bahwa idah wafat itu satu tahun lamanya. Maka antara kedua ayat ini (240 dan 234) terdapat hukum yang bertentangan. Golongan ini memandang bahwa:\n\n(a)Ayat yang menunjukkan idah wafat satu tahun itu lebih belakangan letaknya daripada ayat yang menetapkan idah wafat 4 bulan sepuluh hari, tetapi di dalam sejarah turunnya ia lebih dahulu. Atas dasar ini, ayat 234 yang menetapkan idah wafat 4 bulan 10 hari menasakh hukum ayat 240 ini.\n\n(b) Kalau tidak diakui adanya nasakh dalam Al-Qur'an, maka zahir ayat ini mewajibkan suami berwasiat untuk istrinya. Dengan demikian, istri mendapat dua macam bagian, pertama bagian sebagai istri (ahli waris) yang ditetapkan oleh ayat waris, dan kedua, bagian sebagai wasiat menurut ayat ini. Tetapi ayat ini ditakhsis dengan hadis sahih yang berbunyi: (\"Tidak ada wasiat untuk ahli waris,\" [Riwayat Ahmad dan Imam Empat kecuali an-Nasa'i]), sehingga istri tidak mendapatkan dua macam bagian.",
-        short:
-          "Usai sejenak mengingatkan manusia agar tidak melalaikan salat karena persoalan keluarga, pada ayat ini Allah kembali menjelaskan hukum keluarga. Dan orang-orang yang akan mati, baik karena sudah renta maupun sakit menahun, di antara kamu, wahai para suami, dan kamu meninggalkan istri-istri, hendaklah ia sebelum meninggal dunia membuat wasiat untuk istri-istrinya untuk tetap tinggal di rumah, juga berpesan kepada anak-anak dan saudara-saudaranya agar memberi mereka nafkah berupa sandang dan pangan, paling tidak sampai setahun sejak suami wafat tanpa seorang pun boleh mengeluarkannya atau mengusirnya dari rumah itu. Tetapi jika mereka, yakni istri yang ditinggal mati suaminya, sebelum setahun keluar sendiri dari rumah tersebut untuk pindah ke tempat lain, maka tidak ada dosa bagimu, wahai para wali atau siapa saja, mengenai apa yang mereka lakukan terhadap diri mereka sendiri dalam hal-hal yang baik yang tidak melanggar syariat. Allah Mahaperkasa sehingga harus ditaati, Mahabijaksana dalam menetapkan hukum demi kemaslahatan hamba-Nya.",
+        footnotes: null,
+        text: "Siapa saja di antara kalian meninggal dunia dan meninggalkan istri-istri, hendaknya ia membuat wasiat untuk mereka dengan mengizinkannya tinggal di rumah suaminya dan mendapatkan nafkah dari harta suaminya selama setahun penuh. Ahli waris kalian tidak boleh yang mengusirnya dari rumah tersebut. Hal itu untuk menghibur hatinya atas musibah yang menimpa mereka dan menunjukkan kesetiaan mereka kepada suami yang meninggal dunia. Namun, apabila mereka keluar dari rumah itu dengan kemauan mereka sendiri sebelum genap satu tahun, maka tidak ada dosa bagi kalian. Juga tidak ada dosa bagi mereka untuk berhias dan memakai minyak wangi. Allah Mahaperkasa, tidak ada yang bisa mengalahkan-Nya, lagi Mahabijaksana dalam mengatur makhluk-Nya, menetapkan syariat-Nya dan menentukan takdir-Nya. Mayoritas ahli tafsir menyatakan bahwa hukum yang terkandung di dalam ayat ini telah diganti (mansukh) dengan firman Allah -Ta'ālā-: \"Orang-orang yang meninggal dunia di antara kalian dengan meninggalkan istri-istri (hendaklah para istri itu) menahan dirinya (beridah) selama empat bulan sepuluh hari.” (QS. Al-Baqarah: 234).",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064f\u062a\u064e\u0648\u064e\u0641\u0651\u064e\u0648\u0652\u0646\u064e \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0648\u064e\u064a\u064e\u0630\u064e\u0631\u064f\u0648\u0646\u064e \u0623\u064e\u0632\u0652\u0648\u064e\u0627\u062c\u064b\u0627 \u0648\u064e\u0635\u0650\u064a\u0651\u064e\u0629\u064b \u0644\u0651\u0650\u0623\u064e\u0632\u0652\u0648\u064e\u0627\u062c\u0650\u0647\u0650\u0645 \u0645\u0651\u064e\u062a\u064e\u0627\u0639\u064b\u0627 \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0652\u062d\u064e\u0648\u0652\u0644\u0650 \u063a\u064e\u064a\u0652\u0631\u064e \u0625\u0650\u062e\u0652\u0631\u064e\u0627\u062c\u064d \u06da \u0641\u064e\u0625\u0650\u0646\u0652 \u062e\u064e\u0631\u064e\u062c\u0652\u0646\u064e \u0641\u064e\u0644\u064e\u0627 \u062c\u064f\u0646\u064e\u0627\u062d\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0641\u0650\u064a \u0645\u064e\u0627 \u0641\u064e\u0639\u064e\u0644\u0652\u0646\u064e \u0641\u0650\u064a \u0623\u064e\u0646\u0641\u064f\u0633\u0650\u0647\u0650\u0646\u0651\u064e \u0645\u0650\u0646 \u0645\u0651\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u064d \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0632\u0650\u064a\u0632\u064c \u062d\u064e\u0643\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wallazeena yutawaf fawna minkum wa yazaroona azwaajanw wasiyyatal li azwaajihim mataa'an ilal hawlighaira ikhraaj; fa in kharajna falaa junaaha 'alaikum fee maa fa'alna junaaha 'alaikum fee maa fa'alna feee anfusihinna mim ma'roof; wallaahu Azeezun Hakeem",
-      },
+      arabic:
+        "وَٱلَّذِينَ يُتَوَفَّوْنَ مِنكُمْ وَيَذَرُونَ أَزْوَٰجًا وَصِيَّةً لِّأَزْوَٰجِهِم مَّتَٰعًا إِلَى ٱلْحَوْلِ غَيْرَ إِخْرَاجٍ فَإِنْ خَرَجْنَ فَلَا جُنَاحَ عَلَيْكُمْ فِى مَا فَعَلْنَ فِىٓ أَنفُسِهِنَّ مِن مَّعْرُوفٍ وَٱللَّهُ عَزِيزٌ حَكِيمٌ",
     },
     translation: {
-      en: "And those who are taken in death among you and leave wives behind - for their wives is a bequest: maintenance for one year without turning [them] out. But if they leave [of their own accord], then there is no blame upon you for what they do with themselves in an acceptable way. And Allah is Exalted in Might and Wise.",
-      id: "Dan orang-orang yang akan mati di antara kamu dan meninggalkan istri-istri, hendaklah membuat wasiat untuk istri-istrinya, (yaitu) nafkah sampai setahun tanpa mengeluarkannya (dari rumah). Tetapi jika mereka keluar (sendiri), maka tidak ada dosa bagimu (mengenai apa) yang mereka lakukan terhadap diri mereka sendiri dalam hal-hal yang baik. Allah Mahaperkasa, Mahabijaksana.",
+      en: {
+        footnotes:
+          "[134] The provision of this verse has been abrogated by verse 4:12.",
+        text: "Those of you who pass away leaving widows should bequeath in their favor to be maintained for one year without forcing them out[134]. But if they leave, then there is no blame on you for what they reasonably do with themselves. And Allah is All-Mighty, All-Wise.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan orang-orang yang akan mati di antara kamu dan meninggalkan istri-istri, hendaklah membuat wasiat untuk istri-istrinya, (yaitu) nafkah sampai setahun tanpa mengeluarkannya (dari rumah). Tetapi jika mereka keluar (sendiri), maka tidak ada dosa bagimu (mengenai apa) yang mereka lakukan terhadap diri mereka sendiri dalam hal-hal yang baik. Allah Mahaperkasa, Mahabijaksana.",
+      },
     },
   },
 ];

@@ -29,7 +29,10 @@ import {
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
-import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot";
+import type {
+  ContentSnapshotSet,
+  PublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {
@@ -71,6 +74,7 @@ export interface BuildRollbackReleaseInput<E, R> {
   readonly result: () => Stream.Stream<ContentHead, E, R>;
   /** Replays independent inverse route ownership changes. */
   readonly routes: () => Stream.Stream<ContentRouteItem, ReplaySpoolError>;
+  readonly scope: PublicationScope;
 }
 
 type BuildRollbackReleaseError<E, R> =
@@ -211,6 +215,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     rollbackDigest,
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
+    scope: input.scope,
     snapshots: input.base.snapshots,
     upsertCount: itemState.upsertCount,
   });

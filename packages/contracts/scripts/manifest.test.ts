@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   assertContractPackageMetadata,
   assertPortableDependencies,
-  createPublishedManifest,
+  createReleaseManifest,
   type PackageManifest,
   parseInstalledManifest,
   parsePackageManifest,
@@ -39,9 +39,9 @@ describe("manifest tooling", () => {
     );
   });
 
-  it("removes repository-only source conditions from published manifests", () => {
-    const published = JSON.parse(
-      createPublishedManifest(
+  it("removes repository-only source conditions from release manifests", () => {
+    const released = JSON.parse(
+      createReleaseManifest(
         JSON.stringify({
           ...packageManifest,
           exports: {
@@ -65,7 +65,7 @@ describe("manifest tooling", () => {
       )
     );
 
-    expect(published).toMatchObject({
+    expect(released).toMatchObject({
       exports: {
         "./content": {
           import: "./dist/content.js",
@@ -80,10 +80,10 @@ describe("manifest tooling", () => {
       },
       peerDependencies: { effect: "3.22.0" },
     });
-    expect(published).not.toHaveProperty("devDependencies");
-    expect(published).not.toHaveProperty("scripts");
-    expect(JSON.stringify(published)).not.toContain("aksara-source");
-    expect(JSON.stringify(published)).not.toContain("./src/");
+    expect(released).not.toHaveProperty("devDependencies");
+    expect(released).not.toHaveProperty("scripts");
+    expect(JSON.stringify(released)).not.toContain("aksara-source");
+    expect(JSON.stringify(released)).not.toContain("./src/");
   });
 
   it("decodes absent optional dependency maps", () => {
@@ -111,13 +111,13 @@ describe("manifest tooling", () => {
         ...packageManifest,
         dependencies: { internal: "workspace:*" },
       })
-    ).toThrow("Packed dependencies must use registry-installable versions");
+    ).toThrow("Released dependencies must use portable versions");
     expect(() =>
       assertPortableDependencies({
         ...packageManifest,
         devDependencies: { internal: "catalog:" },
       })
-    ).toThrow("Packed devDependencies must use registry-installable versions");
+    ).toThrow("Released devDependencies must use portable versions");
   });
 
   it("decodes exact installed export conditions", () => {
@@ -176,17 +176,17 @@ describe("manifest tooling", () => {
         JSON.stringify({ ...packageManifest, repository: [] })
       )
     ).toThrow("Package repository must be an object");
-    expect(() => createPublishedManifest("[]", "3.22.0")).toThrow(
+    expect(() => createReleaseManifest("[]", "3.22.0")).toThrow(
       "The package manifest must be an object"
     );
     expect(() =>
-      createPublishedManifest(
+      createReleaseManifest(
         JSON.stringify({ ...packageManifest, peerDependencies: [] }),
         "3.22.0"
       )
     ).toThrow("peerDependencies must exist");
     expect(() =>
-      createPublishedManifest(
+      createReleaseManifest(
         JSON.stringify({ ...packageManifest, exports: { ".": "invalid" } }),
         "3.22.0"
       )

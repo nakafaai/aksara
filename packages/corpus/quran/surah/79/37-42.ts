@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah79Verses37To42 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5749",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5749.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5749.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 584,
       ruku: 521,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5749,
@@ -24,40 +25,32 @@ export const quranSurah79Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Adapun orang-orang yang sombong dan melampaui batas, lebih mengutamakan kelezatan kehidupan dunia dari pahala di akhirat. Maka sesungguhnya neraka Jahimlah tempat kediamannya.",
-        short:
-          "Di akhirat Allah akan memberi putusan kepada manusia, memisahkan mereka menjadi dua kelompok besar. Maka adapun orang yang melampaui batas dengan berlaku musyrik, kafir, dan maksiat,",
+        footnotes: null,
+        text: " Adapun orang-orang yang telah melampaui batas dalam kesesatan,",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0645\u0651\u064e\u0627 \u0645\u064e\u0646 \u0637\u064e\u063a\u064e\u0649\u0670",
-      transliteration: {
-        en: "Fa ammaa man taghaa.",
-      },
+      arabic: "فَأَمَّا مَن طَغَىٰ",
     },
     translation: {
-      en: "So as for he who transgressed",
-      id: "Maka adapun orang yang melampaui batas,",
+      en: {
+        footnotes: "",
+        text: "As for those who transgressed,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka adapun orang yang melampaui batas,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5750",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5750.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5750.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 584,
       ruku: 521,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5750,
@@ -65,39 +58,32 @@ export const quranSurah79Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Adapun orang-orang yang sombong dan melampaui batas, lebih mengutamakan kelezatan kehidupan dunia dari pahala di akhirat. Maka sesungguhnya neraka Jahimlah tempat kediamannya.",
-        short: "dan lebih mengutamakan kehidupan dunia daripada akhirat,",
+        footnotes: null,
+        text: "serta lebih mengutamakan kehidupan dunia yang fana ini atas kehidupan akhirat yang abadi,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0622\u062b\u064e\u0631\u064e \u0627\u0644\u0652\u062d\u064e\u064a\u064e\u0627\u0629\u064e \u0627\u0644\u062f\u0651\u064f\u0646\u0652\u064a\u064e\u0627",
-      transliteration: {
-        en: "Wa aasaral hayaatad dunyaa",
-      },
+      arabic: "وَءَاثَرَ ٱلْحَيَوٰةَ ٱلدُّنْيَا",
     },
     translation: {
-      en: "And preferred the life of the world,",
-      id: "dan lebih mengutamakan kehidupan dunia,",
+      en: {
+        footnotes: "",
+        text: "and preferred the life of this world,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan lebih mengutamakan kehidupan dunia,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5751",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5751.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5751.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 584,
       ruku: 521,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5751,
@@ -105,40 +91,32 @@ export const quranSurah79Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Adapun orang-orang yang sombong dan melampaui batas, lebih mengutamakan kelezatan kehidupan dunia dari pahala di akhirat. Maka sesungguhnya neraka Jahimlah tempat kediamannya.",
-        short:
-          "maka sungguh, nerakalah tempat tinggalnya untuk waktu yang sangat lama. Inilah bukti keadilan Allah.",
+        footnotes: null,
+        text: "maka sesungguhnya neraka merupakan tempat tinggal yang akan ia huni.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u062c\u064e\u062d\u0650\u064a\u0645\u064e \u0647\u0650\u064a\u064e \u0627\u0644\u0652\u0645\u064e\u0623\u0652\u0648\u064e\u0649\u0670",
-      transliteration: {
-        en: "Fa innal jaheema hiyal maawaa.",
-      },
+      arabic: "فَإِنَّ ٱلْجَحِيمَ هِىَ ٱلْمَأْوَىٰ",
     },
     translation: {
-      en: "Then indeed, Hellfire will be [his] refuge.",
-      id: "maka sungguh, nerakalah tempat tinggalnya.",
+      en: {
+        footnotes: "",
+        text: "the Blazing Fire will be their abode.",
+      },
+      id: {
+        footnotes: "",
+        text: "maka sungguh, nerakalah tempat tinggalnya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5752",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5752.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5752.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 584,
       ruku: 521,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5752,
@@ -146,40 +124,32 @@ export const quranSurah79Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Sebaliknya ditegaskan pula bahwa orang-orang yang takut dan mengadakan persiapan karena memandang kebesaran Tuhannya serta menahan diri dari ajakan hawa nafsunya, maka sesungguhnya surgalah tempat kediamannya yang kekal dan abadi. Alangkah beruntung mereka memperoleh bagian seperti itu.",
-        short:
-          "Dan adapun orang-orang yang takut kepada kebesaran Tuhannya dengan melakukan amal saleh dan menahan diri dari keinginan hawa nafsunya dengan menaati ajaran agama,",
+        footnotes: null,
+        text: "40 - 41. Adapun bagi orang yang takut apabila berdiri di hadapan Rabbnya dan menahan nafsunya dari keinginan terhadap apa yang diharamkan oleh Allah, maka Surga adalah tempat tinggal terakhir baginya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0645\u0651\u064e\u0627 \u0645\u064e\u0646\u0652 \u062e\u064e\u0627\u0641\u064e \u0645\u064e\u0642\u064e\u0627\u0645\u064e \u0631\u064e\u0628\u0651\u0650\u0647\u0650 \u0648\u064e\u0646\u064e\u0647\u064e\u0649 \u0627\u0644\u0646\u0651\u064e\u0641\u0652\u0633\u064e \u0639\u064e\u0646\u0650 \u0627\u0644\u0652\u0647\u064e\u0648\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa ammaa man khaafa maqaama Rabbihee wa nahan nafsa 'anil hawaa",
-      },
+      arabic: "وَأَمَّا مَنْ خَافَ مَقَامَ رَبِّهِۦ وَنَهَى ٱلنَّفْسَ عَنِ ٱلْهَوَىٰ",
     },
     translation: {
-      en: "But as for he who feared the position of his Lord and prevented the soul from [unlawful] inclination,",
-      id: "Dan adapun orang-orang yang takut kepada kebesaran Tuhannya dan menahan diri dari (keinginan) hawa nafsunya,",
+      en: {
+        footnotes: "",
+        text: "But those who feared standing before their Lord and restrained themselves from evil desires,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan adapun orang-orang yang takut kepada kebesaran Tuhannya dan menahan diri dari (keinginan) hawa nafsunya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5753",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5753.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5753.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 584,
       ruku: 521,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5753,
@@ -187,40 +157,32 @@ export const quranSurah79Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Sebaliknya ditegaskan pula bahwa orang-orang yang takut dan mengadakan persiapan karena memandang kebesaran Tuhannya serta menahan diri dari ajakan hawa nafsunya, maka sesungguhnya surgalah tempat kediamannya yang kekal dan abadi. Alangkah beruntung mereka memperoleh bagian seperti itu.",
-        short:
-          "maka sungguh, surgalah tempat tinggal-nya untuk selama-lamanya dengan segala kenikmatan di dalamnya. Itulah anugerah agung Tuhan Yang Maha Pemurah.",
+        footnotes: null,
+        text: "40 - 41. Adapun bagi orang yang takut apabila berdiri di hadapan Rabbnya dan menahan nafsunya dari keinginan terhadap apa yang diharamkan oleh Allah, maka Surga adalah tempat tinggal terakhir baginya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u062c\u064e\u0646\u0651\u064e\u0629\u064e \u0647\u0650\u064a\u064e \u0627\u0644\u0652\u0645\u064e\u0623\u0652\u0648\u064e\u0649\u0670",
-      transliteration: {
-        en: "Fa innal jannata hiyal maawaa",
-      },
+      arabic: "فَإِنَّ ٱلْجَنَّةَ هِىَ ٱلْمَأْوَىٰ",
     },
     translation: {
-      en: "Then indeed, Paradise will be [his] refuge.",
-      id: "maka sungguh, surgalah tempat tinggal(nya).",
+      en: {
+        footnotes: "",
+        text: "Paradise will surely be their abode.",
+      },
+      id: {
+        footnotes: "",
+        text: "maka sungguh, surgalah tempat tinggal-(nya).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5754",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5754.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5754.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 233,
       juz: 30,
       manzil: 7,
       page: 584,
       ruku: 521,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5754,
@@ -228,20 +190,22 @@ export const quranSurah79Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Orang-orang musyrik bertanya kepada Nabi tentang kapan waktunya hari Kiamat itu datang. Mereka menanyakan hal itu dengan nada mengejek dan mencemooh. Nabi sendiri ingin sekali menjawab pertanyaan mereka dengan tepat, akan tetapi Allah melarangnya karena hanya Dia sendirilah yang mengetahui kapan hari Kiamat itu akan terjadi.",
-        short:
-          "Wahai Nabi Muhammad, orang-orang kafir akan mengingkari hari kiamat. Mereka bertanya kepadamu tentang hari Kiamat dengan penuh keingkaran, “Kapankah terjadinya?”",
+        footnotes: null,
+        text: "Orang-orang yang mendustakan Hari Kebangkitan bertanya kepadamu -wahai Rasul-, “Kapan terjadinya Kiamat?”",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0633\u0652\u0623\u064e\u0644\u064f\u0648\u0646\u064e\u0643\u064e \u0639\u064e\u0646\u0650 \u0627\u0644\u0633\u0651\u064e\u0627\u0639\u064e\u0629\u0650 \u0623\u064e\u064a\u0651\u064e\u0627\u0646\u064e \u0645\u064f\u0631\u0652\u0633\u064e\u0627\u0647\u064e\u0627",
-      transliteration: {
-        en: "Yas'aloonaka 'anis saa'ati ayyaana mursaahaa",
-      },
+      arabic: "يَسْـَٔلُونَكَ عَنِ ٱلسَّاعَةِ أَيَّانَ مُرْسَىٰهَا",
     },
     translation: {
-      en: "They ask you, [O Muhammad], about the Hour: when is its arrival?",
-      id: "Mereka (orang-orang kafir) bertanya kepadamu (Muhammad) tentang hari Kiamat, “Kapankah terjadinya?”",
+      en: {
+        footnotes: '[12] Lit., "established."',
+        text: "They ask you concerning the Hour, “When will it be[12]?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka (orang-orang kafir) bertanya kepadamu (Muhammad) tentang hari Kiamat, "Kapankah terjadinya?"',
+      },
     },
   },
 ];

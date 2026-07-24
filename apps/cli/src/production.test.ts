@@ -4,6 +4,7 @@ import {
   rejectProduction,
   runProduction,
 } from "#test/production";
+import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,
   currentState,
@@ -37,6 +38,7 @@ describe("production command", () => {
         command: "release",
         recoveryId: releaseId("recovery-active"),
         releaseId: releaseId("release-active"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({ releaseId: "release-active" });
     expect(calls).toMatchObject({
@@ -65,6 +67,7 @@ describe("production command", () => {
         command: "release",
         recoveryId: releaseId("recovery-completed"),
         releaseId: releaseId("release-completed"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toEqual(receiptFor(completed.release.manifest));
     expect(calls).toMatchObject({
@@ -86,6 +89,7 @@ describe("production command", () => {
         command: "release",
         recoveryId: releaseId("recovery-rejected"),
         releaseId: releaseId("release-rejected"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({
       failure: "SigningKeyMismatchError",
@@ -111,6 +115,7 @@ describe("production command", () => {
         command: "release",
         recoveryId: releaseId("recovery-other"),
         releaseId: releaseId("release-other"),
+        scope: FUNCTION_SCOPE,
       })
     ).resolves.toMatchObject({
       failure: "ProductionStateError",

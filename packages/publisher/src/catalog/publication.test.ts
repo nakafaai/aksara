@@ -71,16 +71,17 @@ const rendererManifest = await Effect.runPromise(
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
       politics: [
-        "BudgetChart",
-        "CabinetChart",
-        "CompositionChart",
-        "FundChart",
         "KimPlusElectabilityChart",
+        "MerahPutihCabinetChart",
+        "MerahPutihCompositionChart",
+        "NepotismStage",
+        "NepotismStateTable",
+        "PorkBarrelBudgetChart",
         "PorkBarrelElectabilityChart",
-        "Stage",
-        "StateTable",
+        "PorkBarrelFundChart",
       ].map((name) => ({ name, version: 1 })),
     }),
+    publishedDomains: ["mathematics", "politics"],
   })
 );
 const sources = new Map([

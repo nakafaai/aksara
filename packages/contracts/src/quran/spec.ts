@@ -2,7 +2,7 @@ import { Schema } from "effect";
 import { ContentLocaleSchema } from "#contracts/content";
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
-import { isHttpsUrl } from "#contracts/text/syntax";
+import { QuranAttributionRowSchema } from "#contracts/quran/source";
 
 /** Complete locale order encoded into every Quran snapshot. */
 export const QURAN_LOCALES = ContentLocaleSchema.literals;
@@ -22,6 +22,9 @@ export const QURAN_VERSE_COUNT = 6236;
 /** Exact number of locale-specific Quran search rows. */
 export const QURAN_SEARCH_COUNT = QURAN_SURAH_COUNT * QURAN_LOCALES.length;
 
+/** One visible source-attribution row required before Quran runtime content. */
+export const QURAN_ATTRIBUTION_COUNT = 1;
+
 /** Maximum verses stored in one independently verifiable runtime chunk. */
 export const QURAN_CHUNK_SIZE = 6;
 
@@ -36,13 +39,6 @@ export const QuranMeaningfulTextSchema = Schema.String.pipe(
 );
 
 const PositiveIntegerSchema = Schema.Int.pipe(Schema.positive());
-const QuranAudioUrlSchema = Schema.String.pipe(
-  Schema.filter(isHttpsUrl, {
-    description: "Reviewed HTTPS Quran audio URL.",
-    identifier: "QuranAudioUrl",
-    message: () => "Quran audio must use a non-empty HTTPS URL.",
-  })
-);
 
 /** Valid Quran surah number in canonical order. */
 export const QuranSurahNumberSchema = Schema.Int.pipe(
@@ -52,22 +48,21 @@ export const QuranSurahNumberSchema = Schema.Int.pipe(
 /** Valid Quran locale with complete names and translations. */
 export const QuranLocaleSchema = ContentLocaleSchema;
 
-/** Exact locale-indexed text used by the Quran runtime. */
-export const QuranLocalizedTextSchema = Schema.Record({
-  key: QuranLocaleSchema,
-  value: QuranMeaningfulTextSchema,
-});
-
-/** Reviewed Quran text plus its complete English transliteration. */
+/** Verbatim Tanzil Arabic text without compatibility fields. */
 export const QuranTextSchema = Schema.Struct({
-  arab: QuranMeaningfulTextSchema,
-  transliteration: Schema.Struct({ en: QuranMeaningfulTextSchema }),
+  arabic: QuranMeaningfulTextSchema,
 });
 
-/** Reviewed primary and alternate Quran audio sources. */
-export const QuranAudioSchema = Schema.Struct({
-  primary: QuranAudioUrlSchema,
-  secondary: Schema.Tuple(QuranAudioUrlSchema, QuranAudioUrlSchema),
+/** One verbatim QuranEnc translation and its unmodified footnotes. */
+export const QuranTranslationSchema = Schema.Struct({
+  footnotes: Schema.String,
+  text: QuranMeaningfulTextSchema,
+});
+
+/** Exact locale-indexed QuranEnc translations used by the runtime. */
+export const QuranLocalizedTranslationSchema = Schema.Record({
+  key: QuranLocaleSchema,
+  value: QuranTranslationSchema,
 });
 
 /** Checks the complete ordered Tafsir capability enabled for publication. */
@@ -89,25 +84,24 @@ export const QuranTafsirLocaleListSchema = Schema.Array(
   })
 );
 
-/** Runtime-safe Tafsir text for every enabled locale, without long source text. */
+/** Complete verbatim Al-Mukhtasar Tafsir for every enabled locale. */
 export const QuranRuntimeTafsirSchema = Schema.Record({
   key: QuranTafsirLocaleSchema,
-  value: Schema.Struct({ short: QuranMeaningfulTextSchema }),
+  value: Schema.Struct({
+    footnotes: Schema.NullOr(Schema.String),
+    text: QuranMeaningfulTextSchema,
+  }),
 });
 
 /** One exact verse value stored inside a bounded Quran runtime chunk. */
 export const QuranRuntimeVerseSchema = Schema.Struct({
-  audio: QuranAudioSchema,
   meta: Schema.Struct({
     hizbQuarter: PositiveIntegerSchema,
     juz: PositiveIntegerSchema,
     manzil: PositiveIntegerSchema,
     page: PositiveIntegerSchema,
     ruku: PositiveIntegerSchema,
-    sajda: Schema.Struct({
-      obligatory: Schema.Boolean,
-      recommended: Schema.Boolean,
-    }),
+    sajda: Schema.NullOr(Schema.Literal("obligatory", "recommended")),
   }),
   number: Schema.Struct({
     inQuran: PositiveIntegerSchema,
@@ -115,31 +109,23 @@ export const QuranRuntimeVerseSchema = Schema.Struct({
   }),
   tafsir: QuranRuntimeTafsirSchema,
   text: QuranTextSchema,
-  translation: QuranLocalizedTextSchema,
+  translation: QuranLocalizedTranslationSchema,
 });
 export type QuranRuntimeVerse = typeof QuranRuntimeVerseSchema.Type;
-
-const QuranPreBismillahSchema = Schema.Struct({
-  audio: QuranAudioSchema,
-  text: QuranTextSchema,
-  translation: QuranLocalizedTextSchema,
-});
 
 /** Shared authored and published metadata for one reviewed Quran surah. */
 export const QuranSurahMetadataSchema = Schema.Struct({
   name: Schema.Struct({
-    long: QuranMeaningfulTextSchema,
-    short: QuranMeaningfulTextSchema,
-    translation: QuranLocalizedTextSchema,
-    transliteration: QuranLocalizedTextSchema,
+    arabic: QuranMeaningfulTextSchema,
+    translation: QuranMeaningfulTextSchema,
+    transliteration: QuranMeaningfulTextSchema,
   }),
   number: QuranSurahNumberSchema,
   numberOfVerses: PositiveIntegerSchema,
-  preBismillah: Schema.NullOr(QuranPreBismillahSchema),
-  revelation: Schema.Struct({ arab: QuranMeaningfulTextSchema }).pipe(
-    Schema.extend(QuranLocalizedTextSchema)
-  ),
-  sequence: QuranSurahNumberSchema,
+  revelation: Schema.Struct({
+    order: QuranSurahNumberSchema,
+    place: Schema.Literal("Meccan", "Medinan"),
+  }),
 });
 
 /** Immutable metadata row for one reviewed Quran surah. */
@@ -185,7 +171,6 @@ export type QuranChunkRow = typeof QuranChunkRowSchema.Type;
 
 /** One locale-specific Quran route and full-text search document. */
 export const QuranSearchRowSchema = Schema.Struct({
-  description: QuranMeaningfulTextSchema,
   graph: LearningGraphIdentitySchema,
   kind: Schema.Literal("quran-search"),
   locale: QuranLocaleSchema,
@@ -198,6 +183,7 @@ export type QuranSearchRow = typeof QuranSearchRowSchema.Type;
 
 /** Complete structured row vocabulary covered by a Quran snapshot digest. */
 export const QuranRowPayloadSchema = Schema.Union(
+  QuranAttributionRowSchema,
   QuranSurahRowSchema,
   QuranChunkRowSchema,
   QuranSearchRowSchema

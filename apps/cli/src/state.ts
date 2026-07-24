@@ -4,8 +4,15 @@ import type {
   StagedContentRelease,
 } from "@nakafa/aksara-contracts/release/current";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import {
+  canonicalizePublicationScope,
+  type PublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Schema } from "effect";
-import type { ReleaseArguments, RollbackArguments } from "#cli/args";
+import type {
+  ReleaseArguments,
+  RollbackArguments,
+} from "#cli/production-arguments";
 
 /** Durable publication state does not permit the requested production command. */
 export class ProductionStateError extends Schema.TaggedError<ProductionStateError>()(
@@ -18,7 +25,8 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
       "candidate-conflict",
       "recovery-conflict",
       "recovery-retained",
-      "rollback-mismatch"
+      "rollback-mismatch",
+      "scope-mismatch"
     ),
   }
 ) {}
@@ -29,6 +37,7 @@ export type ProductionStateAction =
       readonly baseBundle: ContentReleaseBundle | null;
       readonly kind: "new";
       readonly mode: "git";
+      readonly scope: PublicationScope;
     }
   | {
       readonly kind: "new";
@@ -40,6 +49,7 @@ export type ProductionStateAction =
       readonly kind: "rebuild";
       readonly mode: "git";
       readonly candidate: StagedContentRelease;
+      readonly scope: PublicationScope;
       readonly sha: GitCommitSha;
     }
   | {
@@ -51,7 +61,11 @@ export type ProductionStateAction =
   | { readonly bundle: ContentReleaseBundle; readonly kind: "resume" };
 
 type StoredCommand =
-  | { readonly mode: "git"; readonly sha: GitCommitSha }
+  | {
+      readonly mode: "git";
+      readonly scope: PublicationScope;
+      readonly sha: GitCommitSha;
+    }
   | { readonly mode: "rollback"; readonly rollbackOf: ReleaseId };
 type ValidateStoredCommand = (
   args: ProductionArguments,
@@ -78,9 +92,18 @@ const validateStoredCommand: ValidateStoredCommand = Effect.fn(
 )((args: ProductionArguments, bundle: ContentReleaseBundle) => {
   const { manifest } = bundle.release;
   if (args.command === "release") {
+    if (
+      JSON.stringify(canonicalizePublicationScope(args.scope)) !==
+      JSON.stringify(canonicalizePublicationScope(manifest.scope))
+    ) {
+      return Effect.fail(
+        new ProductionStateError({ reason: "scope-mismatch" })
+      );
+    }
     if (manifest.origin.kind === "git") {
       return Effect.succeed<StoredCommand>({
         mode: "git",
+        scope: args.scope,
         sha: manifest.origin.sha,
       });
     }
@@ -126,6 +149,7 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
         candidate,
         kind: "rebuild",
         mode: stored.mode,
+        scope: stored.scope,
         sha: stored.sha,
       };
     }
@@ -156,6 +180,7 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
       baseBundle: active === null ? null : activeBundle(active),
       kind: "new",
       mode: "git",
+      scope: args.scope,
     };
   }
   if (active === null) {

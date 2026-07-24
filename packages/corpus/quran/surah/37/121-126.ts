@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses121To126 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3909",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3909.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3909.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 450,
       ruku: 389,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3909,
@@ -24,40 +25,32 @@ export const quranSurah37Verses121To126 = [
     },
     tafsir: {
       id: {
-        long: "Dua ayat ini menjelaskan bahwa kenikmatan yang besar tersebut di atas seperti kemenangan atas musuh-musuh, petunjuk-petunjuk Tuhan, kemuliaan-kemuliaan, dan sebagainya adalah berkat amal kebajikan yang mereka lakukan, dan pengorbanan serta penderitaan mereka dalam memperjuangkan penegakan agama tauhid. Jadi begitulah Allah memberikan pembalasan pahala dunia-akhirat atas orang-orang yang berbuat kebaikan untuk kemaslahatan sesama umat manusia.\n\nYang mendorong keduanya mengerjakan amal-amal kebajikan dan bersedia mengalami penderitaan adalah iman yang bersemi dalam dada mereka. Dari landasan iman yang kuat lahirlah perbuatan-perbuatan yang mulia, itulah sebabnya Allah menegaskan bahwa keduanya adalah hamba-hamba Allah yang beriman.",
-        short:
-          "Demikianlah Kami memberi balasan kepada orang-orang yang berbuat baik, rela berkorban, dan sabar dalam memperjuangkan ajaran tauhid.",
+        footnotes: null,
+        text: "Sebagaimana Kami membalas Musa dan Harun dengan balasan yang baik ini, Kami juga membalas orang-orang yang berbuat baik lantaran menjalankan ketaatan kepada Tuhan mereka.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0627 \u0643\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0646\u064e\u062c\u0652\u0632\u0650\u064a \u0627\u0644\u0652\u0645\u064f\u062d\u0652\u0633\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Innaa kazaalika najzil muhsineen",
-      },
+      arabic: "إِنَّا كَذَٰلِكَ نَجْزِى ٱلْمُحْسِنِينَ",
     },
     translation: {
-      en: "Indeed, We thus reward the doers of good.",
-      id: "Demikianlah Kami memberi balasan kepada orang-orang yang berbuat baik.",
+      en: {
+        footnotes: "",
+        text: "This is how We reward those who do good.",
+      },
+      id: {
+        footnotes: "",
+        text: "Demikianlah Kami memberi balasan kepada orang-orang yang berbuat baik.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3910",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3910.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3910.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 450,
       ruku: 389,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3910,
@@ -65,40 +58,32 @@ export const quranSurah37Verses121To126 = [
     },
     tafsir: {
       id: {
-        long: "Dua ayat ini menjelaskan bahwa kenikmatan yang besar tersebut di atas seperti kemenangan atas musuh-musuh, petunjuk-petunjuk Tuhan, kemuliaan-kemuliaan, dan sebagainya adalah berkat amal kebajikan yang mereka lakukan, dan pengorbanan serta penderitaan mereka dalam memperjuangkan penegakan agama tauhid. Jadi begitulah Allah memberikan pembalasan pahala dunia-akhirat atas orang-orang yang berbuat kebaikan untuk kemaslahatan sesama umat manusia.\n\nYang mendorong keduanya mengerjakan amal-amal kebajikan dan bersedia mengalami penderitaan adalah iman yang bersemi dalam dada mereka. Dari landasan iman yang kuat lahirlah perbuatan-perbuatan yang mulia, itulah sebabnya Allah menegaskan bahwa keduanya adalah hamba-hamba Allah yang beriman.",
-        short:
-          "Karena keteguhan dan kesabaran mereka, sungguh keduanya termasuk hamba-hamba Kami yang beriman dengan tulus.",
+        footnotes: null,
+        text: "Sesungguhnya Musa dan Harun termasuk hamba-hamba Kami yang beriman kepada Allah yang mengamalkan syariat Allah bagi mereka.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u064e\u0627 \u0645\u0650\u0646\u0652 \u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0646\u064e\u0627 \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Innahumaa min 'ibaadinal mu'mineen",
-      },
+      arabic: "إِنَّهُمَا مِنْ عِبَادِنَا ٱلْمُؤْمِنِينَ",
     },
     translation: {
-      en: "Indeed, they were of Our believing servants.",
-      id: "Sungguh, keduanya termasuk hamba-hamba Kami yang beriman.",
+      en: {
+        footnotes: "",
+        text: "They were truly of Our believing slaves.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, keduanya termasuk hamba-hamba Kami yang beriman.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3911",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3911.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3911.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 450,
       ruku: 389,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3911,
@@ -106,40 +91,32 @@ export const quranSurah37Verses121To126 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini, Allah menegaskan bahwa Ilyas adalah seorang rasul yang diutus Allah. Menurut ath-thabari, Ilyas adalah putra Yasin bin Finhas bin 'Iyzar bin Nabi Harun saudara Nabi Musa. Masa kenabiannya setelah kenabian Nabi Sulaiman. Ia diutus Allah kepada Bani Israil ketika kaumnya itu tidak lagi menyembah Allah, tetapi menyembah berhala. Raja-raja mereka juga mendukung agama berhala tersebut, bahkan membangun tempat-tempat khusus penyembelihan hewan untuk dipersembahkan kepada berhala tersebut.",
-        short:
-          "Dan sebagaimana Musa dan Harun, sungguh Nabi Ilyas benar-benar termasuk salah seorang rasul dari kalangan Bani Israil yang diutus oleh Allah untuk menyampaikan risalah kepada penduduk Baalbek (sekarang wilayah Lebanon).",
+        footnotes: null,
+        text: "Sesungguhnya Ilyas termasuk rasul dari Tuhannya, Allah menganugerahkan padanya kenabian dan kerasulan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e \u0625\u0650\u0644\u0652\u064a\u064e\u0627\u0633\u064e \u0644\u064e\u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064f\u0631\u0652\u0633\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa inna Ilyaasa laminal mursaleen",
-      },
+      arabic: "وَإِنَّ إِلْيَاسَ لَمِنَ ٱلْمُرْسَلِينَ",
     },
     translation: {
-      en: "And indeed, Elias was from among the messengers,",
-      id: "Dan sungguh, Ilyas benar-benar termasuk salah seorang rasul.",
+      en: {
+        footnotes: "",
+        text: "Elijah was indeed one of the messengers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, Ilyas benar-benar termasuk salah seorang rasul.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3912",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3912.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3912.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 450,
       ruku: 389,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3912,
@@ -147,40 +124,32 @@ export const quranSurah37Verses121To126 = [
     },
     tafsir: {
       id: {
-        long: "Nabi Ilyas memperingatkan kaumnya agar bertakwa kepada Allah, yaitu mengerjakan segala perintah-Nya dan menjauhi segala larangan-Nya. Takwa adalah inti ajaran para nabi sampai Nabi Muhammad. Bila mereka takwa mereka akan bahagia di dunia dan di akhirat, tetapi bila tetap kafir maka mereka akan ditimpa azab yang dahsyat dari Allah.",
-        short:
-          "Ingatlah ketika dia berkata kepada kaumnya, “Mengapa kamu tidak bertakwa, mengesakan, dan menaati perintah Allah? Dialah Tuhan yang telah menciptakan kamu.",
+        footnotes: null,
+        text: "Ketika dia berkata kepada kaumnya yang dia diutus kepada mereka, Bani Israil, “Wahai kaumku! Mengapa kalian tidak bertakwa kepada Allah dengan melaksanakan perintah-perintah-Nya yang di antaranya adalah Tauhid dan meninggalkan larangan-larangan-Nya yang salah satunya adalah syirik?!",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0630\u0652 \u0642\u064e\u0627\u0644\u064e \u0644\u0650\u0642\u064e\u0648\u0652\u0645\u0650\u0647\u0650 \u0623\u064e\u0644\u064e\u0627 \u062a\u064e\u062a\u0651\u064e\u0642\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Iz qaala liqawmiheee alaa tattaqoon",
-      },
+      arabic: "إِذْ قَالَ لِقَوْمِهِۦٓ أَلَا تَتَّقُونَ",
     },
     translation: {
-      en: 'When he said to his people, "Will you not fear Allah?',
-      id: "(Ingatlah) ketika dia berkata kepada kaumnya, “Mengapa kamu tidak bertakwa?",
+      en: {
+        footnotes: "",
+        text: "When he said to his people: “Do you not fear Allah?",
+      },
+      id: {
+        footnotes: "",
+        text: '(Ingatlah) ketika dia berkata kepada kaumnya, "Mengapa kamu tidak bertakwa?',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3913",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3913.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3913.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 450,
       ruku: 389,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3913,
@@ -188,40 +157,33 @@ export const quranSurah37Verses121To126 = [
     },
     tafsir: {
       id: {
-        long: "Nabi Ilyas meminta mereka agar meninggalkan penyembahan patung yang mereka beri nama Ba'l. Menurut sebagian ulama Ba'l adalah nama patung orang-orang Funisia pada zaman sebelum masehi. Ada pula yang mengatakan bahwa Ba'l adalah nama patung yang disembah penduduk kota Ba'labak di barat Damaskus. Nabi Ilyas mengecam mereka, mengapa mereka menyembah patung itu, karena patung itu tidak mencipta bahkan tidak bisa berbuat apa-apa. Yang patut dijadikan Tuhan dan disembah adalah yang mencipta bukan patung Ba'l yang tidak bisa berbuat apa-apa tersebut.",
-        short:
-          "Patutkah kamu menyembah Ba’l, seonggok benda mati yang tidak bisa memberi manfaat dan menolak malapetaka, dan kamu tinggalkan sebaik-baik Pencipta yang ciptaannya tidak bisa ditandingi oleh siapa pun?",
+        footnotes: null,
+        text: "Apakah kalian menyembah berhala kalian, Ba'l, sebagai tuhan selain Allah dan meninggalkan Allah yang merupakan sebaik-baik pencipta?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u062a\u064e\u062f\u0652\u0639\u064f\u0648\u0646\u064e \u0628\u064e\u0639\u0652\u0644\u064b\u0627 \u0648\u064e\u062a\u064e\u0630\u064e\u0631\u064f\u0648\u0646\u064e \u0623\u064e\u062d\u0652\u0633\u064e\u0646\u064e \u0627\u0644\u0652\u062e\u064e\u0627\u0644\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Atad'oona Ba'lanw wa tazaroona ahsanal khaaliqeen",
-      },
+      arabic: "أَتَدْعُونَ بَعْلًا وَتَذَرُونَ أَحْسَنَ ٱلْخَٰلِقِينَ",
     },
     translation: {
-      en: "Do you call upon Ba'l and leave the best of creators -",
-      id: "Patutkah kamu menyembah Ba’l dan kamu tinggalkan (Allah) sebaik-baik pencipta.",
+      en: {
+        footnotes: "[28] A great idol worshiped by the people.",
+        text: "Do you call upon Ba‘l[28] and ignore the Best of the Creators,",
+      },
+      id: {
+        footnotes:
+          "[735] Ba'l adalah nama salah satu berhala dari orang Phunicia.",
+        text: "Patutkah kamu menyembah Ba'l [735] dan kamu tinggalkan (Allah) sebaik-baik Pencipta,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3914",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3914.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3914.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 450,
       ruku: 389,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3914,
@@ -229,20 +191,22 @@ export const quranSurah37Verses121To126 = [
     },
     tafsir: {
       id: {
-        long: 'Nabi Ilyas menegaskan bahwa Tuhan yang Maha Pencipta itu adalah Allah. Allah-lah yang menciptakan mereka dan nenek moyang mereka. Karena itu Allah-lah Tuhan mereka yang sebenarnya dan juga Tuhan nenek moyang mereka, yaitu Nabi Ibrahim, Nabi Ismail, Nabi Ishak dan Nabi Yakub. Sebelum meninggal, Nabi Yakub telah menerima janji dari anak-anaknya bahwa mereka hanya akan mempertuhankan Allah, sebagaimana diterangkan dalam Al-Qur\'an:\n\nApakah kamu menjadi saksi saat maut akan menjemput Yakub, ketika dia berkata kepada anak-anaknya, "Apa yang kamu sembah sepeninggalku?" Mereka menjawab, "Kami akan menyembah Tuhanmu dan Tuhan nenek moyangmu yaitu Ibrahim, Ismail dan Ishak, (yaitu) Tuhan Yang Maha Esa dan kami (hanya) berserah diri kepada-Nya." (al-Baqarah/2: 133)\n\nDengan penyembahan patung Ba\'l itu berarti bahwa mereka telah melanggar ikrar nenek moyang mereka tersebut.',
-        short:
-          "Pencipta itu adalah Allah, Tuhanmu dan Tuhan nenek moyangmu yang terdahulu, yaitu Nabi Ibrahim, Ismail, Ishak, Yakub, Yusuf, Musa, Harun, dan lainnya.”",
+        footnotes: null,
+        text: 'Allah adalah Tuhan kalian yang menciptakan kalian dan nenek moyang kalian sebelumnya. Dialah yang berhak untuk disembah, bukan selain Allah dari berhala-berhala yang tidak mendatangkan manfaat dan mudarat."',
       },
     },
     text: {
-      arab: "\u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0631\u064e\u0628\u0651\u064e\u0643\u064f\u0645\u0652 \u0648\u064e\u0631\u064e\u0628\u0651\u064e \u0622\u0628\u064e\u0627\u0626\u0650\u0643\u064f\u0645\u064f \u0627\u0644\u0652\u0623\u064e\u0648\u0651\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Allaaha Rabbakum wa Rabba aabaaa'ikumul awwaleen",
-      },
+      arabic: "ٱللَّهَ رَبَّكُمْ وَرَبَّ ءَابَآئِكُمُ ٱلْأَوَّلِينَ",
     },
     translation: {
-      en: 'Allah, your Lord and the Lord of your first forefathers?"',
-      id: "(Yaitu) Allah Tuhanmu dan Tuhan nenek moyangmu yang terdahulu?”",
+      en: {
+        footnotes: "",
+        text: "Allah, your Lord and the Lord of your forefathers?”",
+      },
+      id: {
+        footnotes: "",
+        text: '(yaitu) Allah Tuhanmu dan Tuhan nenek moyangmu yang terdahulu?"',
+      },
     },
   },
 ];

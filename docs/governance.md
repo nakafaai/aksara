@@ -29,19 +29,21 @@ artifact signatures, application authorization, or content entitlement checks.
   the initial main ref and cleanup pull request.
 - GitHub Actions default token permissions are read-only and workflows cannot
   approve pull requests.
-- Actions are limited to GitHub-owned actions, `pnpm/action-setup`,
-  `slsa-framework/slsa-verifier`, and `changesets/action`; every action is
-  pinned to a full commit SHA. The latter two own the package-provenance proof
-  and ready version-PR creation respectively.
+- Actions are limited to GitHub-owned actions and `pnpm/action-setup`; every
+  action is pinned to a full commit SHA.
+- Immutable releases are enabled. GitHub's ordinary workflow token cannot read
+  that Administration setting, so publication verifies the resulting release
+  itself is immutable instead of claiming an impossible preflight. A failed
+  attempt may clean only its same-SHA mutable release and tag.
 - Vulnerability alerts, Dependabot security updates, secret scanning, push
   protection, automated security fixes, and private vulnerability reporting are
   enabled.
 - The `content-production` environment accepts protected branches and requires
   an approval from `@nabilfatih`. Self-review remains enabled because there is
   currently no second maintainer; this must be tightened when a real second
-  reviewer is available. GitHub currently reports that repository admins may
-  bypass this environment, so the gate is procedural rather than a two-person
-  control while there is only one maintainer.
+  reviewer is available. Administrator bypass is disabled. The gate remains a
+  single-owner control rather than a two-person control while there is only one
+  maintainer.
 
 The GitHub controls follow the official documentation for
 [repository rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets),
@@ -51,7 +53,7 @@ The manual release gate follows GitHub's
 [deployment environment](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments)
 controls.
 
-## Bootstrap gate
+## Foundation gate
 
 The repository owner explicitly authorized the bootstrap commit and push on
 2026-07-21. Current bootstrap status:
@@ -73,3 +75,23 @@ the Nakafa Source Available License 1.0, educational corpus uses the Nakafa
 Content License 1.0, and Nakafa brand assets remain governed by the Nakafa
 Trademark and Brand Policy. Public visibility grants only the rights stated
 there.
+
+## Contracts release
+
+The contracts package has one release path: `contracts.yml` builds the exact
+source-owned archive in a source-readable job, then attests and transfers only
+that archive to a minimal `contents: write` and `attestations: read` job. The
+privileged job never checks out source or executes pnpm, Node.js, or repository
+code. Final verification requires the asset bytes, digest, size, immutable
+state, tag, workflow, branch, source SHA, release attestation, and build
+attestation to match.
+
+Every protected `main` revision builds only the small verified archive required
+for comparison. One tested TypeScript module compares its exact bytes with the
+latest immutable release, so unchanged contract artifacts stop before the full
+release gate and changed bytes require a greater package version. This
+byte-level decision replaces brittle workflow path lists. Manual dispatch
+remains available for same-SHA mutable recovery because only final immutable
+releases participate in previous-archive comparison. No npm registry token,
+package namespace, Changesets bot, or package bootstrap state participates in
+this boundary.

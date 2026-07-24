@@ -31,6 +31,7 @@ const rendererManifest = await Effect.runPromise(
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({

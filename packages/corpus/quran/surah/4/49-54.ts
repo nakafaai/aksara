@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah4Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/542",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/542.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/542.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 34,
       juz: 5,
       manzil: 1,
       page: 86,
       ruku: 68,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 542,
@@ -24,40 +25,34 @@ export const quranSurah4Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Diriwayatkan oleh Ibnu Jarir dari Hasan, bahwa ayat ini diturunkan mengenai orang-orang Yahudi dan Nasrani yang memuji-muji diri mereka dengan mengatakan bahwa mereka anak Allah dan kesayangan-Nya, tidak akan masuk surga selain orang Yahudi atau Nasrani dan mereka tidak akan masuk neraka kecuali beberapa hari saja.\n\nAllah memperingatkan Nabi Muhammad saw agar berhati-hati terhadap tindakan orang-orang Yahudi dan Nasrani yang menganggap dan mengakui diri mereka sebagai orang suci. Pengakuan itu seperti tertera pada sebab turunnya ayat di atas bahwa ucapan mereka itu tidak benar karena mereka masih tetap dalam kekafiran dan tetap melakukan perbuatan yang dilarang oleh Allah.\n\nSebenarnya mereka tidak berhak membersihkan diri hanya dengan kata-kata dan pengakuan yang tidak beralasan. Membersihkan diri haruslah dengan amal perbuatan yang dapat menjadikan seseorang bersih dan bebas dari perbuatan syirik dan maksiat. Tidak ada gunanya seseorang mengemukakan kebersihan dirinya karena kebersihan diri seseorang berada di tangan Allah Yang Mahakuasa, dan Allah sekali-kali tidak akan menganiaya hamba-Nya.",
-        short:
-          "Perilaku kaum Yahudi sungguh aneh, mereka mengaku mendapat petunjuk dan merasa sebagai umat pilihan Allah, tetapi mereka justru durhaka. Tidakkah engkau memperhatikan orang-orang yang menganggap dirinya suci, yakni orang Yahudi? Sebenarnya Allah Yang Maha Mengetahui dan Mahabijaksana yang berhak menyucikan siapa yang Dia kehendaki dan mereka yang disucikan itu tidak dizalimi sedikit pun.",
+        footnotes: null,
+        text: "Tidakkah kamu -wahai Rasul- mengetahui perihal orang-orang yang gemar memuji (menganggap suci) diri mereka sendiri dan amal perbuatan mereka? Padahal, hanya Allah yang berhak memuji hamba-hamba-Nya yang Dia kehendaki karena Dia Maha Mengetahui rahasia-rahasia hati dan Dia tidak akan mengurangi pahala amal perbuatan mereka sedikit pun, meski sebesar serat yang ada di biji kurma.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0645\u0652 \u062a\u064e\u0631\u064e \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064f\u0632\u064e\u0643\u0651\u064f\u0648\u0646\u064e \u0623\u064e\u0646\u0641\u064f\u0633\u064e\u0647\u064f\u0645 \u06da \u0628\u064e\u0644\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u064a\u064f\u0632\u064e\u0643\u0651\u0650\u064a \u0645\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u0648\u064e\u0644\u064e\u0627 \u064a\u064f\u0638\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e \u0641\u064e\u062a\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Alam tara ilal lazeena yuzakkoona anfusahum; balil laahu yuzakkee mai yashaaa'u wa laa yuzlamoona fateelaa",
-      },
+      arabic:
+        "أَلَمْ تَرَ إِلَى ٱلَّذِينَ يُزَكُّونَ أَنفُسَهُم بَلِ ٱللَّهُ يُزَكِّى مَن يَشَآءُ وَلَا يُظْلَمُونَ فَتِيلًا",
     },
     translation: {
-      en: "Have you not seen those who claim themselves to be pure? Rather, Allah purifies whom He wills, and injustice is not done to them, [even] as much as a thread [inside a date seed].",
-      id: "Tidakkah engkau memperhatikan orang-orang yang menganggap dirinya suci (orang Yahudi dan Nasrani)? Sebenarnya Allah menyucikan siapa yang Dia kehendaki dan mereka tidak dizalimi sedikit pun.",
+      en: {
+        footnotes:
+          "[35] Those are the Jews who say: “We are the children of Allah and His beloved ones!” (5:18); “The Fire will not touch us except for a limited number of days!” (2:80).",
+        text: "Have you not seen those who claim purity for themselves[35]? It is Allah Who purifies whom He wills, and they will not be wronged even as much as the thread on a date stone.",
+      },
+      id: {
+        footnotes: "",
+        text: "Tidakkah engkau memperhatikan orang-orang yang menganggap dirinya suci (orang Yahudi dan Nasrani)? Sebenarnya Allah menyucikan siapa yang Dia kehendaki dan mereka tidak dizalimi sedikit pun.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/543",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/543.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/543.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 34,
       juz: 5,
       manzil: 1,
       page: 86,
       ruku: 68,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 543,
@@ -65,40 +60,32 @@ export const quranSurah4Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menekankan tentang keanehan perbuatan orang-orang Yahudi dan Nasrani. Nabi Muhammad diperintahkan memperhatikan betapa beraninya orang-orang Yahudi dan Nasrani membuat kebohongan terhadap Allah dengan pengakuan mereka bahwa dirinya suci dan mereka disayangi oleh Allah secara khusus, tidak seperti umat-umat lain. Cukup jelas bahwa perbuatan orang-orang Yahudi dan Nasrani itu merupakan dosa yang besar.",
-        short:
-          "Setelah menjelaskan sifat buruk orang-orang Yahudi tersebut, Allah mengingatkan kaum muslim lebih cermat lagi. Perhatikanlah dengan seksama, betapa mereka orang-orang Yahudi itu mengada-adakan dusta terhadap Allah! Dan cukuplah perbuatan mengada-ada dengan dusta itu menjadi dosa yang nyata bagi mereka.",
+        footnotes: null,
+        text: "Lihatlah -wahai Rasul- bagaimana mereka membuat kebohongan atas nama Allah dengan memuji (menganggap suci) diri mereka sendiri! Cukuplah hal itu menjadi dosa yang menunjukkan kesesatan mereka.",
       },
     },
     text: {
-      arab: "\u0627\u0646\u0638\u064f\u0631\u0652 \u0643\u064e\u064a\u0652\u0641\u064e \u064a\u064e\u0641\u0652\u062a\u064e\u0631\u064f\u0648\u0646\u064e \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0652\u0643\u064e\u0630\u0650\u0628\u064e \u06d6 \u0648\u064e\u0643\u064e\u0641\u064e\u0649\u0670 \u0628\u0650\u0647\u0650 \u0625\u0650\u062b\u0652\u0645\u064b\u0627 \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064b\u0627",
-      transliteration: {
-        en: "Unzur kaifa yaftaroona 'alal laahil kazib, wakafaa biheee ismamm mubeenaa",
-      },
+      arabic: "ٱنظُرْ كَيْفَ يَفْتَرُونَ عَلَى ٱللَّهِ ٱلْكَذِبَ وَكَفَىٰ بِهِۦٓ إِثْمًا مُّبِينًا",
     },
     translation: {
-      en: "Look how they invent about Allah untruth, and sufficient is that as a manifest sin.",
-      id: "Perhatikanlah, betapa mereka mengada-adakan dusta terhadap Allah! Dan cukuplah perbuatan itu menjadi dosa yang nyata (bagi mereka).",
+      en: {
+        footnotes: "[36] By falsely praising themselves and claiming honor.",
+        text: "See how they fabricate lies about Allah[36]! This in itself is sufficient as a flagrant sin.",
+      },
+      id: {
+        footnotes: "",
+        text: "Perhatikanlah, betapa mereka mengada-adakan kebohongan terhadap Allah? Dan cukuplah perbuatan itu menjadi dosa yang nyata (bagi mereka).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/544",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/544.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/544.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 34,
       juz: 5,
       manzil: 1,
       page: 86,
       ruku: 69,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 544,
@@ -106,40 +93,35 @@ export const quranSurah4Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini mengisahkan kembali perbuatan orang-orang Yahudi yang telah diberi kitab, telah memahami dan mendalami isi kitab yang pada dasarnya menyuruh berbakti dan menyembah hanya kepada Allah saja, tetapi mereka masih juga mau bersujud dan menyembah berhala dan mempersekutukan Allah, memenuhi ajakan orang-orang Quraisy yang tidak memiliki kitab. Satu hal yang aneh dan mengherankan, mereka menyangka bahwa mereka orang-orang yang benar, yang mengikuti dan menempuh jalan yang lebih baik daripada jalan orang-orang mukmin pengikut Nabi Muhammad saw.\n\nBani Israil punya sejarah panjang dalam penyembahan berhala oleh nenek moyang mereka sampai generasi-generasi berikutnya. "Mereka meninggalkan Allah Tuhan mereka yang telah membawa mereka keluar dari tanah Mesir, lalu mengikuti tuhan lain, dari antara tuhan bangsa-bangsa di sekeliling mereka, dan sujud menyembah kepadanya, sehingga mereka menyakiti hati Tuhan" (Kitab Hakim-hakim. 2.12) dan sekian banyak lagi kisah penyembahan berhala oleh mereka.\n\nAlangkah kelirunya mereka, dan mereka sangat rugi. Seperti tersebut dalam firman Allah:\n\nKatakanlah (Muhammad), "Apakah perlu Kami beritahukan kepadamu tentang orang yang paling rugi perbuatannya?" (Yaitu) orang yang sia-sia perbuatannya \'dalam kehidupan dunia, sedangkan mereka mengira telah berbuat sebaik-baiknya. (al-Kahf/18:103-104).',
-        short:
-          "Di samping mengada-ada kedustaan, mereka juga melakukan kedurhakaan yang lain, yaitu percaya kepada Jibt dan Tagut. Tidakkah kamu memperhatikan orang-orang yang diberi bagian dari Kitab Taurat, yakni orang-orang Yahudi itu? Mereka percaya kepada Jibt yakni berhala atau penyihir, dan Tagut, yakni selain syariat Allah, dan mengatakan kepada orang-orang kafir musyrik Mekah dengan penuh kesombongan, bahwa mereka itu lebih benar jalan-nya daripada orang-orang yang beriman dari kaum muslimin.",
+        footnotes: null,
+        text: "Tidakkah kamu -wahai Rasul- mengetahui dan merasa heran terhadap ulah orang-orang Yahudi yang telah Allah beri karunia sebagian dari ilmu pengetahuan, tetapi mereka justru beriman kepada sesembahan yang mereka sembah selain Allah, dan secara basa-basi berkata kepada orang-orang musyrik, “Sesungguhnya mereka itu lebih benar jalannya daripada sahabat-sahabat Muhammad -ṣallallāhu 'alaihi wa sallam-.”",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0645\u0652 \u062a\u064e\u0631\u064e \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064f\u0648\u062a\u064f\u0648\u0627 \u0646\u064e\u0635\u0650\u064a\u0628\u064b\u0627 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u0650 \u064a\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0628\u0650\u0627\u0644\u0652\u062c\u0650\u0628\u0652\u062a\u0650 \u0648\u064e\u0627\u0644\u0637\u0651\u064e\u0627\u063a\u064f\u0648\u062a\u0650 \u0648\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0644\u0650\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0641\u064e\u0631\u064f\u0648\u0627 \u0647\u064e\u0670\u0624\u064f\u0644\u064e\u0627\u0621\u0650 \u0623\u064e\u0647\u0652\u062f\u064e\u0649\u0670 \u0645\u0650\u0646\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0633\u064e\u0628\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Alam tara ilal lazeena 'ootoo naseebam minal kitaabi yu'minoona bil Jibti wat Taaghooti wa yaqooloona lillazeena kafaroo haaa ulaaa'i ahdaa minal lazeena aamanoo sabeelaa",
-      },
+      arabic:
+        "أَلَمْ تَرَ إِلَى ٱلَّذِينَ أُوتُوا۟ نَصِيبًا مِّنَ ٱلْكِتَٰبِ يُؤْمِنُونَ بِٱلْجِبْتِ وَٱلطَّٰغُوتِ وَيَقُولُونَ لِلَّذِينَ كَفَرُوا۟ هَٰٓؤُلَآءِ أَهْدَىٰ مِنَ ٱلَّذِينَ ءَامَنُوا۟ سَبِيلًا",
     },
     translation: {
-      en: 'Have you not seen those who were given a portion of the Scripture, who believe in superstition and false objects of worship and say about the disbelievers, "These are better guided than the believers as to the way"?',
-      id: "Tidakkah kamu memperhatikan orang-orang yang diberi bagian dari Kitab (Taurat)? Mereka percaya kepada Jibt dan thaghut, dan mengatakan kepada orang-orang kafir (musyrik Mekah), bahwa mereka itu lebih benar jalannya daripada orang-orang yang beriman.",
+      en: {
+        footnotes:
+          "[37] al-Jibt: all sorts of false things and everything that is worshiped besides Allah.\n [38] al-Tāghūt: taken from ṭughyān, i.e. transgression and wrongdoing. All that transgresses against Allah. Anyone who condones being worshiped besides Allah is a ṭāghūt.\n [39] Ibn ‘Abbās (رضي الله عنهما) reported: “When (the Jewish scholar) Ka‘b ibn al-Ashraf came to Makkah, the Quraysh asked him: “You are the best of the people of Madinah and their master. Aren’t you?” He replied: “Yes!” They then said: “What do you think of this sonless outcast (meaning Prophet Muhammad (ﷺ) claiming that he is better than us when we are the custodians of pilgrims and the caretakers of the House of Allah!” He said: “You are indeed better than him!” Then the following verses were revealed: “Indeed, your hater is the one cut off”, (108: 3) and (5: 51- 52)”. [Al-Nasā’ī, Al-Sunan al-Kubrā: 11707; Ibn Ḥibbān: 6572]",
+        text: "Have you not seen those who were given a portion of the Scripture, who believe in idols[37] and Tāghoot [i.e., false gods][38], and they say to the disbelievers that they are more guided than the believers[39]?",
+      },
+      id: {
+        footnotes:
+          "[202] Jibt sama dengan Ṭāgūt, ialah setan dan apa saja yang disembah selain Allah -Subḥānahu wata'ālā-.",
+        text: "Tidakkah engkau memperhatikan orang-orang yang diberi bagian dari Kitab (Taurat)? Mereka percaya kepada Jibt dan Ṭāgūt,[202] dan mengatakan kepada orang-orang kafir (musyrik Mekkah), bahwa mereka itu lebih benar jalannya daripada orang-orang yang beriman.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/545",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/545.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/545.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 34,
       juz: 5,
       manzil: 1,
       page: 87,
       ruku: 69,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 545,
@@ -147,40 +129,32 @@ export const quranSurah4Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Orang Yahudi dan orang-orang yang sifatnya seperti mereka dikutuk Allah, dijauhkan dari rahmat-Nya. Ar-Razi berkata, "Orang-orang Yahudi dan orang-orang semacam mereka itu, memang pantas dikutuk karena mereka sombong dan takabur; mereka memandang bahwa penyembah berhala lebih mulia daripada orang mukmin pengikut Muhammad. Apakah dapat diterima akal sehat bahwa orang musyrik, orang yang menyembah apa dan siapa pun selain Allah lebih baik dan lebih benar daripada orang yang hanya menyembah Allah?"\n\nBarang siapa telah mendapat kutukan dari Allah pasti ia tidak akan menemukan penolong dan pembela yang akan membebaskannya dari siksaan dan azab di akhirat nanti, tidak ada yang akan memberi syafaat kepadanya dan tidak ada yang akan menolongnya.',
-        short:
-          "Mereka itulah orang-orang yang sangat jauh kedurhakaannya serta dilaknat oleh Allah. Dan barang siapa yang dilaknat oleh Allah, niscaya engkau tidak akan mendapatkan penolong baginya yang akan menyelamatkannya di mana pun dan kapan pun ia berada.",
+        footnotes: null,
+        text: "Orang-orang (Yahudi) yang memiliki keyakinan yang rusak itu adalah orang-orang yang dijauhkan oleh Allah dari rahmat-Nya. Barang siapa yang dijauhkan oleh Allah dari rahmat-Nya maka kamu tidak akan menemukan seorang penolong pun yang dapat melindunginya.",
       },
     },
     text: {
-      arab: "\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0644\u064e\u0639\u064e\u0646\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u06d6 \u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0644\u0652\u0639\u064e\u0646\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0641\u064e\u0644\u064e\u0646 \u062a\u064e\u062c\u0650\u062f\u064e \u0644\u064e\u0647\u064f \u0646\u064e\u0635\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Ulaaa'ikal lazeena la'ana humul laahu wa mai yal'anil laahu falan tajida lahoo naseeraa",
-      },
+      arabic: "أُو۟لَٰٓئِكَ ٱلَّذِينَ لَعَنَهُمُ ٱللَّهُ وَمَن يَلْعَنِ ٱللَّهُ فَلَن تَجِدَ لَهُۥ نَصِيرًا",
     },
     translation: {
-      en: "Those are the ones whom Allah has cursed; and he whom Allah curses - never will you find for him a helper.",
-      id: "Mereka itulah orang-orang yang dilaknat Allah. Dan barangsiapa dilaknat Allah, niscaya engkau tidak akan mendapatkan penolong baginya.",
+      en: {
+        footnotes: "",
+        text: "It is they whom Allah has cursed, and whoever Allah curses, you will never find any helper for him.",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka itulah orang-orang yang dilaknat Allah. Dan barang siapa dilaknat Allah, niscaya engkau tidak akan mendapatkan penolong baginya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/546",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/546.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/546.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 34,
       juz: 5,
       manzil: 1,
       page: 87,
       ruku: 69,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 546,
@@ -188,40 +162,32 @@ export const quranSurah4Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Orang Yahudi tidak akan memperoleh kerajaan dan kekuasaan sesuai dengan yang dicita-citakan seperti sebelum Islam datang, karena mereka telah banyak berbuat aniaya, menempuh jalan yang sesat, dan tidak lagi mengamalkan isi kitab Taurat secara umum. Andaikata pada suatu ketika mereka membina kerajaan dan memiliki kekuasaan, itu berarti hanya bayangan yang sifatnya sementara, dan di kala itu mereka tidak akan memberikan sedikit pun kebajikan kepada manusia.",
-        short:
-          "Pada ayat-ayat sebelumnya Allah menjelaskan bagaimana kaum Yahudi dengan kesombongan mereka telah berbuat durhaka, maka pada ayat ini Allah menanyakan dasar apa yang mereka punya untuk melegalkan perbuatan demikian. Sebenarnya mereka tidak mempunyai dasar apa pun. Agar terbuka kedok mereka, ayat ini mempertanyakannya. Ataukah mereka mempunyai bagian dari kerajaan dan kekuasaan. Jelas ini tidak ada. Bahkan meskipun mereka mempunyainya, mereka tidak akan memberikan sedikit pun kebajikan kepada manusia, bukan saja karena tidak memilikinya, tetapi mereka juga sangat kikir.",
+        footnotes: null,
+        text: "Mereka (Yahudi) tidak mendapatkan bagian dari kerajaan. Sekiranya mereka mendapatkan bagian dari kerajaan niscaya mereka tidak akan memberikan sebagian darinya kepada siapapun, walaupun hanya sebesar titik hitam yang ada di punggung biji kurma.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652 \u0644\u064e\u0647\u064f\u0645\u0652 \u0646\u064e\u0635\u0650\u064a\u0628\u064c \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064f\u0644\u0652\u0643\u0650 \u0641\u064e\u0625\u0650\u0630\u064b\u0627 \u0644\u0651\u064e\u0627 \u064a\u064f\u0624\u0652\u062a\u064f\u0648\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064e \u0646\u064e\u0642\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Am lahum naseebum minal mulki fa izal laa yu'toonan naasa naqeeraa",
-      },
+      arabic: "أَمْ لَهُمْ نَصِيبٌ مِّنَ ٱلْمُلْكِ فَإِذًا لَّا يُؤْتُونَ ٱلنَّاسَ نَقِيرًا",
     },
     translation: {
-      en: "Or have they a share of dominion? Then [if that were so], they would not give the people [even as much as] the speck on a date seed.",
-      id: "Ataukah mereka mempunyai bagian dari kerajaan (kekuasaan), meskipun mereka tidak akan memberikan sedikit pun  (kebajikan) kepada manusia,",
+      en: {
+        footnotes: "",
+        text: "Do they have a share in the dominion? Even if so, they would not give people even as much as the speck on a date stone.",
+      },
+      id: {
+        footnotes: "",
+        text: "Ataukah mereka mempunyai bagian dari kerajaan (kekuasaan), meskipun mereka tidak akan memberikan sedikit pun (kebajikan) kepada manusia,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/547",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/547.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/547.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 34,
       juz: 5,
       manzil: 1,
       page: 87,
       ruku: 69,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 547,
@@ -229,20 +195,24 @@ export const quranSurah4Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: 'Kalau ayat-ayat sebelumnya menerangkan sifat-sifat jelek Yahudi seperti sangkaan bahwa merekalah yang lebih baik dan menempuh jalan yang lebih benar dari orang-orang mukmin, maka pada ayat ini diterangkan sifat dengkinya kepada Muhammad saw, karena kenabian jatuh kepadanya, tidak kepada orang Yahudi, dan mereka dengki kepada pengikut-pengikut Nabi Muhammad saw, karena mereka percaya dan beriman kepadanya, terutama setelah mereka melihat kemajuan dan kemenangan yang dicapai oleh Muhammad dan sahabat-sahabatnya, dari hari ke hari bertambah kuat dan makin banyak pendukung dan pengikutnya.\n\nKedengkian orang-orang Yahudi kepada Muhammad dan pengikutnya, adalah suatu kekeliruan besar dari mereka dan sangat mengherankan, kerena apa yang telah dicapai Muhammad dan sahabat-sahabatnya bukanlah hal yang baru. Sebab Allah telah memberikan juga kitab, hikmah kerajaan kepada keluarga keturunan Nabi Ibrahim; seperti yang pernah diberikan kepada Nabi Yusuf, Nabi Daud dan Nabi Sulaiman.\n\nSifat dengki bukan hanya perasaan tidak senang melihat orang lain memperoleh nikmat Allah, malah menginginkan nikmat itu lenyap dari pemiliknya. Sifat itu tidak saja buruk tetapi juga akan menghilangkan pahala-pahala kebajikan yang telah dikerjakan. Nabi saw bersabda:\n\n"Jauhilah sifat dengki karena sesungguhnya dengki itu memakan (pahala) kebaikan, seperti api memakan kayu bakar" (Riwayat Abu Dawud dari Abu Hurairah).',
-        short:
-          "Ataukah mereka dengki kepada manusia, yakni Nabi Muhammad dan kaum muslim, karena karunia yang telah diberikan Allah kepadanya. Sungguh, Kami telah memberikan Kitab seperti Taurat, Zabur, dan Injil, dan Hikmah kepada keluarga Ibrahim, dan Kami telah memberikan kepada mereka yakni keluarga Ibrahim kerajaan atau kekuasaan yang besar.",
+        footnotes: null,
+        text: "Justru mereka (Yahudi) iri hati kepada Muhammad -ṣallallāhu 'alaihi wa sallam- dan sahabat-sahabatnya atas apa yang Allah berikan kepada mereka berupa kenabian, keimanan, dan kekuasaan di muka bumi. Mengapa kalangan Yahudi iri hati kepada mereka padahal Kami telah memberikan kepada keturunan Ibrahim kitab suci yang diturunkan, dan wahyu yang Kami turunkan kepada mereka di luar kitab suci, serta kerajaan yang luas?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652 \u064a\u064e\u062d\u0652\u0633\u064f\u062f\u064f\u0648\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064e \u0639\u064e\u0644\u064e\u0649\u0670 \u0645\u064e\u0627 \u0622\u062a\u064e\u0627\u0647\u064f\u0645\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0645\u0650\u0646 \u0641\u064e\u0636\u0652\u0644\u0650\u0647\u0650 \u06d6 \u0641\u064e\u0642\u064e\u062f\u0652 \u0622\u062a\u064e\u064a\u0652\u0646\u064e\u0627 \u0622\u0644\u064e \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0648\u064e\u0627\u0644\u0652\u062d\u0650\u0643\u0652\u0645\u064e\u0629\u064e \u0648\u064e\u0622\u062a\u064e\u064a\u0652\u0646\u064e\u0627\u0647\u064f\u0645 \u0645\u0651\u064f\u0644\u0652\u0643\u064b\u0627 \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Am yahsudoonan naasa 'alaa maaa aataahumul laahu min fadlihee faqad aatainaaa Aala Ibraaheemal Kitaaba wal Hikmata wa aatainaahum mulkan 'azeemaa",
-      },
+      arabic:
+        "أَمْ يَحْسُدُونَ ٱلنَّاسَ عَلَىٰ مَآ ءَاتَىٰهُمُ ٱللَّهُ مِن فَضْلِهِۦ فَقَدْ ءَاتَيْنَآ ءَالَ إِبْرَٰهِيمَ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ وَءَاتَيْنَٰهُم مُّلْكًا عَظِيمًا",
     },
     translation: {
-      en: "Or do they envy people for what Allah has given them of His bounty? But we had already given the family of Abraham the Scripture and wisdom and conferred upon them a great kingdom.",
-      id: "ataukah mereka dengki kepada manusia (Muhammad) karena karunia yang telah diberikan Allah kepadanya? Sungguh, Kami telah memberikan Kitab dan Hikmah kepada keluarga Ibrahim, dan Kami telah memberikan kepada mereka kerajaan (kekuasaan) yang besar.",
+      en: {
+        footnotes:
+          "[40] That prophethood came to Muhammad (ﷺ).\n [41] Prophetic teachings.\n [42] Like that of Solomon’s (عليه السلام) kingdom.",
+        text: "Or do they envy people for what Allah has given them[40] out of His bounty? We gave the descendants of Abraham the Book and wisdom[41], and We gave them great authority[42].",
+      },
+      id: {
+        footnotes: "",
+        text: "ataukah mereka dengki kepada manusia (Muhammad) karena karunia yang telah diberikan Allah kepadanya? Sungguh, Kami telah memberikan Kitab dan Hikmah kepada keluarga Ibrahim, dan Kami telah memberikan kepada mereka kerajaan (kekuasaan) yang besar.",
+      },
     },
   },
 ];

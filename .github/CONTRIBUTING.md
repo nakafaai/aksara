@@ -74,7 +74,7 @@ pnpm boundaries
 pnpm typecheck
 pnpm test
 pnpm build
-pnpm verify:package
+pnpm verify:consumer
 ```
 
 ### Code Standards
@@ -90,6 +90,8 @@ pnpm verify:package
   production modules under `packages/*/src`. Repository and package scripts are
   typechecked, linted, and exercised by their dedicated CI commands.
 - Do not add invented content, placeholder packages, or compatibility layers.
+- Bump `packages/contracts/package.json` only when the verified release archive
+  bytes change. CI compares the archive with the latest immutable release.
 
 ### Submitting Changes
 

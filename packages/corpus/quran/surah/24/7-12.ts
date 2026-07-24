@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah24Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2798",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2798.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2798.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 140,
       juz: 18,
       manzil: 4,
       page: 350,
       ruku: 301,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2798,
@@ -24,40 +25,33 @@ export const quranSurah24Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menerangkan bahwa setelah suami mengucapkan empat kali sumpah itu, pada kali kelima ia perlu menyatakan bahwa ia bersedia menerima laknat Allah, bila ia berdusta dengan tuduhannya itu. Redaksi pernyataan itu atau terjemahannya adalah:\n\n(Laknat Allah ditimpakan atasku, apabila aku berdusta dalam tuduhanku itu)\n\nDengan demikian, terhindarlah ia dari hukuman menuduh orang berzina.",
-        short:
-          "Setelah menjelaskan ketentuan hukum terhadap penuduh zina secara umum, Allah lalu menguraikan hukum apabila seorang suami menuduh istrinya berzina. Dan orang-orang yang menuduh istrinya berzina, padahal mereka tidak mempunyai saksi-saksi yang menguatkan tuduhan itu selain diri mereka sendiri, maka kesaksian masing-masing orang itu, yaitu suami, ialah empat kali bersumpah dengan nama Allah, bahwa sesungguhnya dia termasuk orang yang berkata benar. Dan sumpah yang kelima adalah bahwa laknat Allah akan menimpanya jika dia termasuk orang yang berdusta dalam tuduhan yang dialamatkan kepada istrinya.",
+        footnotes: null,
+        text: "Kemudian dalam sumpahnya yang kelima dia menambahkan lafaz doa untuk kebinasaan dirinya; agar diturunkan laknat Allah atasnya jika dia menuduh istrinya tersebut secara dusta.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0652\u062e\u064e\u0627\u0645\u0650\u0633\u064e\u0629\u064f \u0623\u064e\u0646\u0651\u064e \u0644\u064e\u0639\u0652\u0646\u064e\u062a\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650 \u0625\u0650\u0646 \u0643\u064e\u0627\u0646\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0643\u064e\u0627\u0630\u0650\u0628\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wal khaamisatu anna la'natal laahi 'alaihi in kaana minal kaazibeen",
-      },
+      arabic: "وَٱلْخَٰمِسَةُ أَنَّ لَعْنَتَ ٱللَّهِ عَلَيْهِ إِن كَانَ مِنَ ٱلْكَٰذِبِينَ",
     },
     translation: {
-      en: "And the fifth [oath will be] that the curse of Allah be upon him if he should be among the liars.",
-      id: "Dan (sumpah) yang kelima bahwa laknat Allah akan menimpanya, jika dia termasuk orang yang berdusta.",
+      en: {
+        footnotes: "",
+        text: "and the fifth [oath] is that may Allah curse him if he is telling a lie.",
+      },
+      id: {
+        footnotes:
+          "[559] Maksud ayat 6-7 ialah orang yang menuduh berbuat zina dengan tidak mengajukan empat orang saksi, haruslah bersumpah dengan nama Allah empat kali, bahwa dia adalah benar dalam tuduhannya itu. Kemudian dia bersumpah sekali lagi bahwa dia akan kena laknat Allah jika dia berdusta. Masalah ini dalam fikih dikenal dengan lian.",
+        text: "Dan (sumpah) yang kelima bahwa laknat Allah akan menimpanya, jika dia termasuk orang yang berdusta.[559]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2799",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2799.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2799.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 140,
       juz: 18,
       manzil: 4,
       page: 350,
       ruku: 301,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2799,
@@ -65,40 +59,32 @@ export const quranSurah24Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa untuk menghindarkan istri dari hukuman akibat tuduhan suaminya itu, maka ia harus mengajukan kesaksian mengangkat sumpah pula demi Allah empat kali yang menegaskan kesaksiannya bahwa suaminya itu berbohong dengan tuduhannya. Redaksi sumpah dan terjemahannya sebagai berikut:\n\n(Demi Allah Yang Maha Agung, saya bersaksi bahwa sesungguhnya si anu ini, suamiku, adalah bohong di dalam tuduhannya kepadaku bahwa saya telah berzina)\n\nSumpah ini diulang empat k",
-        short:
-          "Usai menjelaskan langkah yang harus ditempuh oleh suami jika menuduh istrinya berzina, Allah lalu memberi kesempatan bagi istri untuk menunjukkan kesuciannya dan kedustaan tuduhan sang suami. Bila istri tidak membantah tuduhan suami maka ia dianggap bersalah dan berhak dijatuhi hukuman zina. Dan istri itu terhindar dari hukuman zina apabila dia bersumpah empat kali atas nama Allah dalam sumpahnya bahwa dia, yaitu suaminya, benar-benar termasuk orang-orang yang berdusta dalam tuduhannya, dan sumpah yang kelima bahwa kemurkaan Allah akan menimpanya, yaitu istri, jika dia, yaitu suami, itu termasuk orang yang berkata benar. Dan seandainya bukan karena karunia Allah yang menurunkan Al-Qur’an dan rahmat-Nya dalam menerima tobat hamba-Nya dan menetapkan hukum yang bijaksana kepadamu, niscaya kamu akan menemui kesulitan. Dan sesungguhnya Allah Maha Penerima Tobat, Mahabijaksana.",
+        footnotes: null,
+        text: "Dengan demikian maka istrinya tersebut layak untuk diberi hukuman hudud zina. Sang istri bisa menghindari hukuman hudud dengan cara bersumpah empat kali dengan nama Allah bahwa suaminya itu benar-benar berdusta dalam menuduhkan zina kepada dirinya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u064a\u064e\u062f\u0652\u0631\u064e\u0623\u064f \u0639\u064e\u0646\u0652\u0647\u064e\u0627 \u0627\u0644\u0652\u0639\u064e\u0630\u064e\u0627\u0628\u064e \u0623\u064e\u0646 \u062a\u064e\u0634\u0652\u0647\u064e\u062f\u064e \u0623\u064e\u0631\u0652\u0628\u064e\u0639\u064e \u0634\u064e\u0647\u064e\u0627\u062f\u064e\u0627\u062a\u064d \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06d9 \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0644\u064e\u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0643\u064e\u0627\u0630\u0650\u0628\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa yadra'u anhal 'azaaba an tashhada arba'a shahaa daatim billaahi innahoo laminal kaazibeen",
-      },
+      arabic: "وَيَدْرَؤُا۟ عَنْهَا ٱلْعَذَابَ أَن تَشْهَدَ أَرْبَعَ شَهَٰدَٰتٍۭ بِٱللَّهِ إِنَّهُۥ لَمِنَ ٱلْكَٰذِبِينَ",
     },
     translation: {
-      en: "But it will prevent punishment from her if she gives four testimonies [swearing] by Allah that indeed, he is of the liars.",
-      id: "Dan istri itu terhindar dari hukuman apabila dia bersumpah empat kali atas (nama) Allah bahwa dia (suaminya) benar-benar termasuk orang-orang yang berdusta,",
+      en: {
+        footnotes: "",
+        text: "But she will be spared the punishment if she testifies four times by Allah that he is telling a lie,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan istri itu terhindar dari hukuman apabila dia bersumpah empat kali atas (nama) Allah bahwa dia (suaminya) benar-benar termasuk orang-orang yang berdusta,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2800",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2800.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2800.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 140,
       juz: 18,
       manzil: 4,
       page: 350,
       ruku: 301,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2800,
@@ -106,40 +92,33 @@ export const quranSurah24Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini diterangkan bahwa setelah mengucapkan sumpah itu empat kali, pada kali kelima ia harus menyampaikan penegasan bahwa ia bersedia menerima laknat Allah bila suaminya itu benar dengan tuduhannya kepadanya. Redaksi sumpah dan terjemahannya sebagai berikut:\n\n(Murka Allah ditimpakan atasku apabila suamiku itu benar)\n\nKalau suami istri telah mengucapkan sumpah dan sudah saling melaknat (mulaanah) seperti itu, maka terjadilah perceraian paksa dan perceraian itu selama-lamanya, artinya suami istri itu tidak dibenarkan lagi rujuk kembali sebagai suami istri untuk selama-lamanya, sebagaimana dijelaskan oleh Ali dan Ibnu Mas'ud dengan katanya:\n\n(Telah berlaku Sunnah (Nabi saw) bahwa dua (suami istri) yang telah saling melaknat, bahwa mereka tidak boleh berkumpul lagi sebagai suami istri untuk selama-lamanya)\n\nIni, didasarkan hadis:\n\nDua orang (suami istri) yang saling melaknat apabila telah bercerai keduanya tidak boleh lagi berkumpul sebagai suami istri untuk selama-lamanya. (Riwayat ad-Daruquthni dari Ibnu 'Umar)\n\nIstri diberi oleh Allah hak untuk membela diri dari tuduhan suaminya menunjukkan bahwa Allah menutup aib seseorang. Tetapi perlu diingat bahwa seandainya sang istri memang telah berzina, namun ia membantahnya maka ia memang terlepas dari hukuman di dunia, tetapi tidak akan terlepas dari azab di akhirat yang tentunya lebih keras dan pedih. Oleh karena itu, ia perlu bertobat maka Allah akan menerimanya sebagaimana dimaksud ayat berikutnya.",
-        short:
-          "Usai menjelaskan langkah yang harus ditempuh oleh suami jika menuduh istrinya berzina, Allah lalu memberi kesempatan bagi istri untuk menunjukkan kesuciannya dan kedustaan tuduhan sang suami. Bila istri tidak membantah tuduhan suami maka ia dianggap bersalah dan berhak dijatuhi hukuman zina. Dan istri itu terhindar dari hukuman zina apabila dia bersumpah empat kali atas nama Allah dalam sumpahnya bahwa dia, yaitu suaminya, benar-benar termasuk orang-orang yang berdusta dalam tuduhannya, dan sumpah yang kelima bahwa kemurkaan Allah akan menimpanya, yaitu istri, jika dia, yaitu suami, itu termasuk orang yang berkata benar. Dan seandainya bukan karena karunia Allah yang menurunkan Al-Qur’an dan rahmat-Nya dalam menerima tobat hamba-Nya dan menetapkan hukum yang bijaksana kepadamu, niscaya kamu akan menemui kesulitan. Dan sesungguhnya Allah Maha Penerima Tobat, Mahabijaksana.",
+        footnotes: null,
+        text: "lalu pada sumpah yang kelima, ia menambahkan lafaz doa untuk kebinasaan dirinya, agar dimurkai Allah jika suaminya itu benar-benar jujur dalam tuduhannya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0652\u062e\u064e\u0627\u0645\u0650\u0633\u064e\u0629\u064e \u0623\u064e\u0646\u0651\u064e \u063a\u064e\u0636\u064e\u0628\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u0625\u0650\u0646 \u0643\u064e\u0627\u0646\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0635\u0651\u064e\u0627\u062f\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wal khaamisata anna ghadabal laahi 'alaihaaa in kaana minas saadiqeen",
-      },
+      arabic: "وَٱلْخَٰمِسَةَ أَنَّ غَضَبَ ٱللَّهِ عَلَيْهَآ إِن كَانَ مِنَ ٱلصَّٰدِقِينَ",
     },
     translation: {
-      en: "And the fifth [oath will be] that the wrath of Allah be upon her if he was of the truthful.",
-      id: "dan (sumpah) yang kelima bahwa kemurkaan Allah akan menimpanya (istri), jika dia (suaminya) itu termasuk orang yang berkata benar.",
+      en: {
+        footnotes:
+          "[5] It is called li‘ān; once the husband and the wife swear each five times, the marriage is terminated forever.",
+        text: "and the fifth [oath] is that may Allah’s wrath be upon her if he is telling the truth[5].",
+      },
+      id: {
+        footnotes: "",
+        text: "dan (sumpah) yang kelima bahwa kemurkaan Allah akan menimpanya (istri), jika dia (suaminya) itu termasuk orang yang berkata benar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2801",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2801.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2801.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 140,
       juz: 18,
       manzil: 4,
       page: 350,
       ruku: 301,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2801,
@@ -147,40 +126,32 @@ export const quranSurah24Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Maksud ayat ini adalah bahwa dimudahkannya penyelesaian kemelut rumah tangga dengan membolehkan saling laknat yang mengakibatkan perceraian selamanya, ditutupnya aib dalam rumah tangga, tidak dilaksanakan segera di dunia hukuman bagi orang yang berzina, dan diberikannya kesempatan bagi yang berdosa itu untuk bertobat dari perbuatan zinanya. Itu semua merupakan karunia Allah dan rahmat-Nya. Bila ia benar-benar tobat dari perbuatan dosanya itu Allah menerima tobatnya. Allah Mahabijaksana dengan menutup aib seseorang, tidak segera menghukumnya di dunia ini, dan memberinya kesempatan untuk bertobat.\n\nSeorang suami yang memergoki istrinya berbuat mesum dengan laki-laki lain tindakan apakah yang akan ia lakukan? Kalau ia membunuh laki-laki itu, tentunya ia akan dibunuh pula (sebagai qisas baginya). Kalau ia diamkan saja kejadian itu, maka itu adalah satu tindakan yang salah. Dan kalau ia beberkan peristiwa itu dan menuduh istrinya berzina padahal ia tidak punya saksi, maka ia akan di-had, dikenakan hukuman dera dan tidak akan diterima kesaksiannya dan ucapannya selama-lamanya, apabila ia tidak dapat mendatangkan empat orang saksi yang melihat dengan matanya sendiri peristiwa itu.\n\nApakah ia akan pergi mencari empat orang saksi untuk diajak menyaksikan perbuatan mesum istrinya itu? Suatu hal yang tidak mungkin. Maka atas karunia dan rahmat Allah Yang Maha Pengampun dan Bijaksana, suami yang melihat istrinya berzina dengan laki-laki lain itu, tidak lagi dibebani mencari empat orang saksi untuk turut bersama-sama dia menyaksikan peristiwa perzinaan itu, tetapi cukuplah ia bersumpah dan mengemukakan kesaksiannya empat kali, kemudian ditambah satu kali dengan pernyataan kesediaan menerima laknat Allah bila dia berbohong, sebagaimana tersebut di atas yang dikenal dengan istilah "li\'an". Dengan demikian terhindarlah ia dari hukuman menuduh, yaitu hukuman dera delapan puluh kali. Untuk menghindarkan istrinya yang dituduh itu dari hukuman zina, maka ia hanya perlu melakukan hal yang sama, yaitu mengajukan sumpah dan kesaksiannya empat kali kemudian ditambah satu kali kesediaan menerima laknat bila suaminya benar dengan tuduhannya, sebagaimana tersebut di atas.',
-        short:
-          "Usai menjelaskan langkah yang harus ditempuh oleh suami jika menuduh istrinya berzina, Allah lalu memberi kesempatan bagi istri untuk menunjukkan kesuciannya dan kedustaan tuduhan sang suami. Bila istri tidak membantah tuduhan suami maka ia dianggap bersalah dan berhak dijatuhi hukuman zina. Dan istri itu terhindar dari hukuman zina apabila dia bersumpah empat kali atas nama Allah dalam sumpahnya bahwa dia, yaitu suaminya, benar-benar termasuk orang-orang yang berdusta dalam tuduhannya, dan sumpah yang kelima bahwa kemurkaan Allah akan menimpanya, yaitu istri, jika dia, yaitu suami, itu termasuk orang yang berkata benar. Dan seandainya bukan karena karunia Allah yang menurunkan Al-Qur’an dan rahmat-Nya dalam menerima tobat hamba-Nya dan menetapkan hukum yang bijaksana kepadamu, niscaya kamu akan menemui kesulitan. Dan sesungguhnya Allah Maha Penerima Tobat, Mahabijaksana.",
+        footnotes: null,
+        text: "Kalaulah bukan karena karunia dan rahmat Allah kepada kalian -wahai sekalian manusia- dan andaikata Allah bukan Maha Penerima tobat orang-orang yang bertobat lagi Mahabijaksana dalam pengaturan dan syariat-Nya, niscaya Dia akan menyegerakan azabnya lantaran dosa-dosa kalian dan mempermalukan kalian dengannya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0648\u0652\u0644\u064e\u0627 \u0641\u064e\u0636\u0652\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0648\u064e\u0631\u064e\u062d\u0652\u0645\u064e\u062a\u064f\u0647\u064f \u0648\u064e\u0623\u064e\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u062a\u064e\u0648\u0651\u064e\u0627\u0628\u064c \u062d\u064e\u0643\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wa law laa fadlul laahi 'alaikum wa rahmatuhoo wa annal laaha Tawwaabun Hakeem",
-      },
+      arabic: "وَلَوْلَا فَضْلُ ٱللَّهِ عَلَيْكُمْ وَرَحْمَتُهُۥ وَأَنَّ ٱللَّهَ تَوَّابٌ حَكِيمٌ",
     },
     translation: {
-      en: "And if not for the favor of Allah upon you and His mercy... and because Allah is Accepting of repentance and Wise.",
-      id: "Dan seandainya bukan karena karunia Allah dan rahmat-Nya kepadamu (niscaya kamu akan menemui kesulitan). Dan sesungguhnya Allah Maha Penerima Tobat, Mahabijaksana.",
+      en: {
+        footnotes: "[6] i.e., ...you would have been punished or scandalized.",
+        text: "Were it not for Allah’s grace and mercy upon you, and that Allah is Accepting of Repentance, All-Wise, [He would have punished you][6].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sekiranya bukan karena karunia Allah dan rahmat-Nya kepadamu (niscaya kamu akan menemui kesulitan). Dan sesungguhnya Allah Maha Penerima Tobat, Mahabijaksana.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2802",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2802.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2802.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 140,
       juz: 18,
       manzil: 4,
       page: 351,
       ruku: 302,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2802,
@@ -188,40 +159,35 @@ export const quranSurah24Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa orang-orang yang membuat-buat berita bohong atau fitnah mengenai rumah tangga Rasulullah itu adalah dari kalangan kaum Muslimin sendiri. Sumbernya dari Abdullah bin Ubay bin Salul, pemuka kaum munafik di Medinah, shafwÂ±n bin Muaththal, keponakan Nabi, dan Hassan bin sabit. \n\nAllah menghibur hati mereka, agar mereka jangan menyangka bahwa peristiwa itu buruk dan merupakan bencana bagi mereka, tetapi pada hakikatnya kejadian itu adalah suatu hal yang baik bagi mereka karena dengan kejadian itu, mereka akan memperoleh pahala besar dan kehormatan dari Allah dengan diturunkannya ayat-ayat yang menyatakan kebersihan mereka dari berita bohong itu, suatu bukti autentik yang dapat dibaca sepanjang masa. Setiap orang yang menyebarkan berita bohong itu akan mendapat balasan, sesuai dengan usaha dan kegiatannya tentang tersiar luasnya berita bohong itu. Sedang orang yang menjadi sumber pertama dan menyebarluaskan berita bohong ini, ialah Abdullah bin Ubay bin Salul, sebagai seorang tokoh munafik yang tidak jujur, di akhirat kelak akan diazab dengan azab yang pedih.",
-        short:
-          "Beralih dari penjelasan hukum li‘àn, Allah lalu mengisahkan salah satu kasus yang menimpa keluarga Nabi, yang lazim disebut Èadìš al-Ifk (berita bohong). Ayat ini mengecam mereka yang tanpa bukti menuduh ‘Aisyah berbuat zina dengan Ëafwàn bin Mu‘aííal. Sesungguhnya orang-orang yang membawa dan dengan sengaja menyebarluaskan berita bohong itu adalah dari golongan kamu juga. Janganlah kamu mengira berita bohong itu buruk bagi kamu, bahkan itu baik bagi kamu karena kamu dapat membedakan siapa yang munafik dan siapa mukmin sejati. Setiap orang dari mereka yang menyebarkan berita bohong tersebut akan mendapat balasan sesuai kadar dari dosa yang diperbuatnya. Dan barang siapa di antara mereka yang mengambil bagian terbesar dari dosa yang diperbuatnya, yakni orang yang menjadi sumber utama berita bohong itu, dia mendapat azab yang besar di akhirat nanti.",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang yang membawa berita bohong itu (yaitu menuduh Ummul Mukminin Aisyah -raḍiyallāhu 'anhā- melakukan zina) adalah kelompok yang berafiliasi pada kalian juga -wahai orang-orang mukmin-. Janganlah kalian mengira bahwa berita bohong itu buruk bagi kalian, bahkan itu adalah sesuatu yang baik bagi kalian karena di dalamnya terdapat pahala dan penyeleksian terhadap kaum mukminin (dari orang-orang munafik), juga mendatangkan penegasan kesucian Ummul Mukminin Aisyah -raḍiyallāhu 'anhā- dari perbuatan keji tersebut. Tiap-tiap orang dari mereka yang ikut serta dalam menuduh Aisyah -raḍiyallāhu 'anhā- akan mendapat dosa yang dilakukannya karena menyebarkan kedustaan. Siapa di antara mereka yang memulai dan mengambil bagian yang terbesar dalam penyiaran berita bohong itu baginya azab yang besar. Orang tersebut adalah pemimpin kaum munafik, yaitu Abdullah bin Ubay bin Salul.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062c\u064e\u0627\u0621\u064f\u0648\u0627 \u0628\u0650\u0627\u0644\u0652\u0625\u0650\u0641\u0652\u0643\u0650 \u0639\u064f\u0635\u0652\u0628\u064e\u0629\u064c \u0645\u0651\u0650\u0646\u0643\u064f\u0645\u0652 \u06da \u0644\u064e\u0627 \u062a\u064e\u062d\u0652\u0633\u064e\u0628\u064f\u0648\u0647\u064f \u0634\u064e\u0631\u0651\u064b\u0627 \u0644\u0651\u064e\u0643\u064f\u0645 \u06d6 \u0628\u064e\u0644\u0652 \u0647\u064f\u0648\u064e \u062e\u064e\u064a\u0652\u0631\u064c \u0644\u0651\u064e\u0643\u064f\u0645\u0652 \u06da \u0644\u0650\u0643\u064f\u0644\u0651\u0650 \u0627\u0645\u0652\u0631\u0650\u0626\u064d \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u0627 \u0627\u0643\u0652\u062a\u064e\u0633\u064e\u0628\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0625\u0650\u062b\u0652\u0645\u0650 \u06da \u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a \u062a\u064e\u0648\u064e\u0644\u0651\u064e\u0649\u0670 \u0643\u0650\u0628\u0652\u0631\u064e\u0647\u064f \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0644\u064e\u0647\u064f \u0639\u064e\u0630\u064e\u0627\u0628\u064c \u0639\u064e\u0638\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Innal lazeena jaaa'oo bilifki 'usbatum minkum; laa tahsaboohu sharral lakum bal huwa khairul lakum; likul limri'im minhum mak tasaba minal-ism; wallazee tawallaa kibrahoo minhum lahoo 'azaabun 'azeem",
-      },
+      arabic:
+        "إِنَّ ٱلَّذِينَ جَآءُو بِٱلْإِفْكِ عُصْبَةٌ مِّنكُمْ لَا تَحْسَبُوهُ شَرًّا لَّكُم بَلْ هُوَ خَيْرٌ لَّكُمْ لِكُلِّ ٱمْرِئٍ مِّنْهُم مَّا ٱكْتَسَبَ مِنَ ٱلْإِثْمِ وَٱلَّذِى تَوَلَّىٰ كِبْرَهُۥ مِنْهُمْ لَهُۥ عَذَابٌ عَظِيمٌ",
     },
     translation: {
-      en: "Indeed, those who came with falsehood are a group among you. Do not think it bad for you; rather it is good for you. For every person among them is what [punishment] he has earned from the sin, and he who took upon himself the greater portion thereof - for him is a great punishment.",
-      id: "Sesungguhnya orang-orang yang membawa berita bohong itu adalah dari golongan kamu (juga). Janganlah kamu mengira berita itu buruk bagi kamu bahkan itu baik bagi kamu. Setiap orang dari mereka akan mendapat balasan dari dosa yang diperbuatnya. Dan barangsiapa di antara mereka yang mengambil bagian terbesar (dari dosa yang diperbuatnya), dia mendapat azab yang besar (pula).",
+      en: {
+        footnotes:
+          "[7] It refers to the incident when the Prophet's wife ‘Ā’ishah was falsely accused by the hypocrites.\n [8] For its reward from Allah; believers being distinguished from hypocrites; and ‘Ā’ishah being absolved from false accusation, etc.\n [9] i.e., ‘Abdullah ibn ’Ubayy, leader of the hypocrites in Madinah.",
+        text: "Indeed, those who came up with the slander[7] are a group among you. Do not think that it is bad for you, rather it is good for you[8]. Each one of them is responsible for what he earned of the sin, and the one who played the major role[9], for him there will be a grave punishment.",
+      },
+      id: {
+        footnotes:
+          "[560] Berita bohong ini mengenai istri Rasulullah -ṣallallāhu 'alaihi wa sallam- Aisyah -raḍiyallāhu 'anhā- Ummul Mukminin, setelah perang dengan Bani Musṭaliq pada bulan Syaban 5 H. Peperangan itu diikuti kaum munafik dan turut pula Aisyah -raḍiyallāhu 'anhā- dengan Nabi -ṣallallāhu 'alaihi wa sallam- berdasarkan undian yang diadakan di antara istri-istri beliau. Dalam perjalanan kembali dari peperangan, mereka berhenti pada suatu tempat. Aisyah -raḍiyallāhu 'anhā- keluar dari sekedupnya untuk suatu keperluan, kemudian kembali. Tiba-tiba dia merasa kalungnya hilang, lalu dia pergi lagi mencarinya. Sementara itu, rombongan berangkat dengan anggapan bahwa Aisyah -raḍiyallāhu 'anhā- masih ada dalam sekedup. Setelah Aisyah -raḍiyallāhu 'anhā- mengetahui sekedupnya sudah berangkat, dia duduk di tempatnya dan mengharapkan sekedup itu akan kembali menjemputnya. Kebetulan, lewat di tempat itu seorang sahabat Nabi -ṣallallāhu 'alaihi wa sallam-, Safwan ibnu Mu'aṭṭal -raḍiyallāhu 'anhu-, ditemukannya seseorang sedang tidur sendirian dan dia terkejut seraya mengucapkan, “Innā lillāhi wa innā ilaihi rāji'ūn, istri Rasul!” Aisyah terbangun. Lalu dia dipersilahkan oleh Safwan mengendarai untanya. Safwan berjalan menuntun unta sampai mereka tiba di Madinah. Orang-orang yang melihat mereka membicarakannya menurut pendapat masing-masing. Mulailah timbul desas-desus. Kemudian kaum munafik membesar-besarkannya, maka fitnah atas Aisyah -raḍiyallāhu 'anhā- itu pun bertambah luas, sehingga menimbulkan keguncangan di kalangan kaum muslimin.",
+        text: "Sesungguhnya orang-orang yang membawa berita bohong itu adalah dari golongan kamu (juga). Janganlah kamu mengira berita itu buruk bagi kamu, bahkan itu baik bagi kamu. Setiap orang dari mereka mendapat balasan dari dosa yang diperbuatnya. Dan barangsiapa di antara mereka yang mengambil bagian terbesar (dari dosa yang diperbuatnya), dia mendapat azab yang besar (pula).[560]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2803",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2803.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2803.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 140,
       juz: 18,
       manzil: 4,
       page: 351,
       ruku: 302,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2803,
@@ -229,20 +195,23 @@ export const quranSurah24Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah mencela tindakan orang-orang mukmin yang mendengar berita bohong itu yang seakan-akan mempercayainya. Mengapa mereka tidak menolak fitnahan itu secara spontan? Mengapa mereka tidak mendahulukan baik sangkanya? Iman mereka, semestinya membawa mereka untuk berbaik sangka, dan mencegah mereka berburuk sangka kepada sesama orang mukmin, karena baik atau buruk sesama mukmin, pada hakikatnya adalah juga baik atau buruk juga bagi dia sendiri, sebagaimana firman Allah:\n\nWahai orang-orang yang beriman! Jauhilah banyak dari prasangka, sesungguhnya sebagian prasangka itu dosa dan janganlah kamu mencari-cari kesalahan orang lain dan janganlah ada di antara kamu yang menggunjing sebagian yang lain. Apakah ada di antara kamu yang suka memakan daging saudaranya yang sudah mati? Tentu kamu merasa jijik. Dan bertakwalah kepada Allah, sesungguhnya Allah Maha Penerima tobat, Maha Penyayang. (al-hujurat/49: 12)\n\nMaksudnya, janganlah orang mukmin mencela sesama orang mukmin, karena orang mukmin itu seperti satu badan.\n\nRasulullah sendiri mencegah para sahabat melakukan sangkaan yang tidak baik itu ketika beliau menjemput kedatangan Aisyah dengan mempergunakan unta shafwÂ±n bin Muaththal di tengah hari bolong dan disaksikan oleh orang banyak, agar mencegah adanya sangkaan-sangkaan yang tidak sehat. Kalau ada desas-desus yang sifatnya negatif, sebenarnya hal itu adalah luapan prasangka mereka yang disembunyikan dan kebencian yang ditutupi selama ini.",
-        short:
-          "Ketika isu itu merebak, sebagian kaum muslim tidak percaya berita tersebut dan meyakini kesucian ‘Aisyah. Sebagian yang lain terdiam, tidak membenarkan dan tidak pula membantah­nya. Di satu sisi ayat ini mengecam mereka yang diam seakan membenarkan isu itu, dan di sisi lain menganjurkan mereka bersikap proaktif dan mengambil langkah positif. Mengapa orang-orang mukmin dan mukminat ketika mendengar berita bohong itu tidak berbaik sangka terhadap saudara-saudara mereka yang dicemarkan namanya, padahal orang itu adalah bagian dari diri mereka sendiri, yakni sesama muslim; dan mengapa juga saat kamu mendengar berita bohong itu kamu tidak berkata, “Ini adalah berita bohong yang nyata.”",
+        footnotes: null,
+        text: 'Alangkah baiknya bila kaum mukminin dan mukminat mendengar berita bohong yang besar itu mereka berprasangka baik terhadap kesucian mukmin yang dituduh tersebut, serta berkata, "Ini adalah suatu berita bohong yang nyata."',
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0648\u0652\u0644\u064e\u0627 \u0625\u0650\u0630\u0652 \u0633\u064e\u0645\u0650\u0639\u0652\u062a\u064f\u0645\u064f\u0648\u0647\u064f \u0638\u064e\u0646\u0651\u064e \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064e\u0627\u062a\u064f \u0628\u0650\u0623\u064e\u0646\u0641\u064f\u0633\u0650\u0647\u0650\u0645\u0652 \u062e\u064e\u064a\u0652\u0631\u064b\u0627 \u0648\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0647\u064e\u0670\u0630\u064e\u0627 \u0625\u0650\u0641\u0652\u0643\u064c \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064c",
-      transliteration: {
-        en: "Law laaa iz sami'tumoohu zannal mu'minoona walmu'minaatu bi anfusihim khairanw wa qaaloo haazaaa ifkum mmubeen",
-      },
+      arabic:
+        "لَّوْلَآ إِذْ سَمِعْتُمُوهُ ظَنَّ ٱلْمُؤْمِنُونَ وَٱلْمُؤْمِنَٰتُ بِأَنفُسِهِمْ خَيْرًا وَقَالُوا۟ هَٰذَآ إِفْكٌ مُّبِينٌ",
     },
     translation: {
-      en: 'Why, when you heard it, did not the believing men and believing women think good of one another and say, "This is an obvious falsehood"?',
-      id: "Mengapa orang-orang mukmin dan mukminat tidak berbaik sangka terhadap diri mereka sendiri, ketika kamu mendengar berita bohong itu dan berkata, “Ini adalah (suatu berita) bohong yang nyata.”",
+      en: {
+        footnotes: "",
+        text: "If only the believing men and women had thought well of themselves, and said, “This is a clear slander!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mengapa orang-orang mukmin dan mukminat tidak berbaik sangka terhadap diri mereka sendiri, ketika kamu mendengar berita bohong itu dan berkata, "Ini adalah (suatu berita) bohong yang nyata."',
+      },
     },
   },
 ];

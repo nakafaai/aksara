@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah11Verses79To84 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1552",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1552.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1552.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 92,
       juz: 12,
       manzil: 3,
       page: 230,
       ruku: 189,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1552,
@@ -24,40 +25,32 @@ export const quranSurah11Verses79To84 = [
     },
     tafsir: {
       id: {
-        long: 'Mereka menjawab, "Sesungguhnya kamu sejak dahulu sudah tahu bahwa kami sama sekali tidak mempunyai hasrat untuk mengawini anak-anak perempuanmu itu dan anak-anak perempuan kaummu. Oleh karena itu, janganlah kamu mencoba untuk memalingkan perhatian kami dari pemuda-pemuda itu dengan menyodorkan anak-anak perempuanmu, karena kamu tentu telah mengetahui apa yang sebenarnya kami inginkan."',
-        short:
-          'Mendengar seruan Nabi Lut agar menjadikan perempuan sebagai istri, mereka menjawab, "Sesungguhnya engkau pasti tahu bahwa sejak dahulu hingga sekarang, kami tidak mempunyai keinginan atau ketertarikan terhadap putri-putrimu yang ada di negeri ini yang sudah kami kenal; dan engkau tentu mengetahui apa yang sebenarnya kami kehendaki untuk menyalurkan nafsu?" Kami hanya menginginkan lelaki, bukan perempuan. Karena itu, janganlah kauminta kami menikahi perempuan!',
+        footnotes: null,
+        text: 'Kaumnya menjawab, "Kamu sudah tahu -wahai Luth- bahwa kami tidak tertarik dengan wanita-wanita dari kaummu. Sesungguhnya kamu tahu apa yang kami inginkan. Kami hanya menginginkan laki-laki."',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0644\u064e\u0642\u064e\u062f\u0652 \u0639\u064e\u0644\u0650\u0645\u0652\u062a\u064e \u0645\u064e\u0627 \u0644\u064e\u0646\u064e\u0627 \u0641\u0650\u064a \u0628\u064e\u0646\u064e\u0627\u062a\u0650\u0643\u064e \u0645\u0650\u0646\u0652 \u062d\u064e\u0642\u0651\u064d \u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0643\u064e \u0644\u064e\u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f \u0645\u064e\u0627 \u0646\u064f\u0631\u0650\u064a\u062f\u064f",
-      transliteration: {
-        en: "Qaaloo laqad 'alimta maa lanaa fee banastika min haqq, wa innaka lata'lamu maa nureed",
-      },
+      arabic: "قَالُوا۟ لَقَدْ عَلِمْتَ مَا لَنَا فِى بَنَاتِكَ مِنْ حَقٍّ وَإِنَّكَ لَتَعْلَمُ مَا نُرِيدُ",
     },
     translation: {
-      en: 'They said, "You have already known that we have not concerning your daughters any claim, and indeed, you know what we want."',
-      id: "Mereka menjawab, “Sesungguhnya eng-kau pasti tahu bahwa kami tidak mempunyai keinginan (syahwat) terhadap putri-putrimu; dan engkau tentu mengetahui apa yang (sebenarnya) kami kehendaki.”",
+      en: {
+        footnotes: "",
+        text: "They said, “You already know that we have no need for your daughters, and you surely know what we want!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka menjawab, "Sesungguhnya engkau pasti tahu bahwa kami tidak mempunyai hasrat (syahwat) terhadap puteri-puterimu; dan engkau tentu mengetahui apa yang (sebenarnya) kami kehendaki."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1553",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1553.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1553.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 92,
       juz: 12,
       manzil: 3,
       page: 230,
       ruku: 189,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1553,
@@ -65,40 +58,32 @@ export const quranSurah11Verses79To84 = [
     },
     tafsir: {
       id: {
-        long: 'Nabi Lut a.s. berkata ketika kaumnya tetap ingin melaksanakan kejahatan homoseksual terhadap tamu-tamunya, sehingga ia putus harapan untuk menghentikan mereka dari perbuatan yang keji itu, "Seandainya aku mempunyai kekuatan dan daya kemampuan untuk menghalangi kamu atau seandainya aku dapat menjumpai sekumpulan orang-orang yang kuat yang dapat menolong aku dari kejahatan-kejahatan kamu tentulah akan aku lakukan."',
-        short:
-          'Kemudian dia (Nabi Lut) berkata, "Sekiranya aku mempunyai kekuatan atau kedudukan untuk menolak perbuatan jahatmu, atau aku dapat berlindung kepada keluarga yang kuat, tentu akan aku lakukan, agar aku dapat melindungi tamu-tamuku ini."',
+        footnotes: null,
+        text: 'Luth berkata, "Seandainya aku mempunyai kekuatan untuk melawan kalian, atau mempunyai keluarga yang bisa melindungiku sehingga aku bisa menghalangi kalian dari tamu-tamuku."',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0644\u064e\u0648\u0652 \u0623\u064e\u0646\u0651\u064e \u0644\u0650\u064a \u0628\u0650\u0643\u064f\u0645\u0652 \u0642\u064f\u0648\u0651\u064e\u0629\u064b \u0623\u064e\u0648\u0652 \u0622\u0648\u0650\u064a \u0625\u0650\u0644\u064e\u0649\u0670 \u0631\u064f\u0643\u0652\u0646\u064d \u0634\u064e\u062f\u0650\u064a\u062f\u064d",
-      transliteration: {
-        en: "Qaala law anna lee bikum quwwatan aw aaweee ilaa ruknin shadeed",
-      },
+      arabic: "قَالَ لَوْ أَنَّ لِى بِكُمْ قُوَّةً أَوْ ءَاوِىٓ إِلَىٰ رُكْنٍ شَدِيدٍ",
     },
     translation: {
-      en: 'He said, "If only I had against you some power or could take refuge in a strong support."',
-      id: "Dia (Lut) berkata, “Sekiranya aku mempunyai kekuatan (untuk menolakmu) atau aku dapat berlindung kepada keluarga yang kuat (tentu aku lakukan).”",
+      en: {
+        footnotes: "",
+        text: "He said, “Would that I had some strength [to stop you] or could rely on a mighty support!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Luṭ) berkata, "Sekiranya aku mempunyai kekuatan (untuk menolakmu) atau aku dapat berlindung kepada keluarga yang kuat (tentu aku lakukan)."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1554",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1554.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1554.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 92,
       juz: 12,
       manzil: 3,
       page: 230,
       ruku: 189,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1554,
@@ -106,40 +91,33 @@ export const quranSurah11Verses79To84 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah para malaikat yang menjadi tamu Nabi Lut a.s. itu menyaksikan adanya kekhawatiran pada diri Nabi Lut a.s., mereka berkata, "Hai Lut, sesungguhnya kami adalah utusan Tuhanmu yang sengaja diutus untuk membinasakan mereka dan menyelamatkan kamu dari kejahatan-kejahatan mereka. Mereka sekali-kali tidak akan dapat mengganggu kamu, maka tenangkanlah hatimu. Ternyata penglihatan kaum Nabi Lut a.s. itu dijadikan gelap oleh Allah sehingga mereka tidak dapat melihat kepada Nabi Lut a.s. dan kepada tamu-tamunya seperti diterangkan dalam firman Allah:\n\nDan sungguh, mereka telah membujuknya (agar menyerahkan) tamunya (kepada mereka), lalu Kami butakan mata mereka, maka rasakanlah azab-Ku dan peringatan-Ku! (al-Qamar/54: 37)\n\nAkhirnya mereka kembali ke rumahnya masing-masing dalam keadaan buta, tidak mengetahui jalan menuju ke rumahnya, mereka berteriak-teriak minta tolong dan mengatakan bahwa kami disihir oleh tamu-tamu yang berada di rumah Lut a.s.\n\nMalaikat itu berkata kepada Nabi Lut a.s., "Keluarlah dari kampung ini, beserta keluarga dan kaummu yang beriman di akhir malam ini dan janganlah ada seorang pun di antara kamu yang ketinggalan atau menoleh ke belakang kecuali istrimu. Sesungguhnya azab yang akan menimpa mereka itu akan menimpa istrimu pula karena ia adalah seorang perempuan yang tidak beriman bahkan telah khianat kepada suaminya." Adapun sebabnya mereka tidak menoleh ke belakang, karena akibat menyaksikan azab itu, ia akan panik sehingga kakinya tidak akan dapat melangkah lagi dan akhirnya ditimpa oleh azab yang menyusul di belakangnya. Saat datangnya azab kepada mereka adalah waktu subuh seperti diterangkan dalam firman Allah:\n\nMaka mereka dibinasakan oleh suara keras yang mengguntur, ketika matahari akan terbit. (al-Hijr/15: 73)\n\nKemudian malaikat itu menegaskan kepastian turunnya azab dengan sebuah pertanyaan, "Bukankah subuh itu sudah dekat? Maka segeralah kamu bersiap-siap untuk mencari keselamatan."',
-        short:
-          'Setelah dijelaskan tentang tingkah laku kaum Nabi Lut yang melampaui batas, kemudian ayat berikut ini memberitakan bahwa Allah akan menurunkan azab kepada mereka. Mereka para malaikat berkata, Wahai Nabi Lut, jangan takut! sesungguhnya kami adalah para utusan Tuhanmu untuk menyampaikan berita bahwa mereka akan diazab Allah, sehingga mereka tidak akan dapat mengganggu kamu karena mereka akan binasa, sebab itu pergilah beserta keluargamu pada akhir malam dan jangan ada seorang pun di antara kamu yang menoleh ke belakang, yakni teruslah berjalan jangan kembali lagi kecuali istrimu yang tidak ikut bersamamu meninggalkan kota tempt tinggalmu, karena dia berkhianat. Sesungguhnya dia istrimu juga akan ditimpa azab sebagaimana yang menimpa mereka. Sesungguhnya saat terjadinya siksaan bagi mereka itu adalah pada waktu subuh, saat orang-orang masih tidur terlelap. Bukankah waktu subuh itu sudah dekat, karena itu segeralah bergegas meninggalkan kota ini."',
+        footnotes: null,
+        text: 'Para malaikat itu berkata kepada Lūṭ -\'alaihissalām-, "Wahai Lūṭ! Sesungguhnya kami adalah utusan-utusan yang dikirim oleh Allah. Kaummu tidak akan bisa mengganggumu. Bawalah keluargamu keluar dari kota ini di tengah malam yang gelap, namun jangan sampai ada seorang pun di antara kalian yang melihat ke belakang, kecuali istrimu, dia akan melihat ke belakang. Dia tidak mematuhi larangan itu karena dia akan mendapatkan azab yang sama dengan apa yang menimpa kaummu. Sesungguhnya waktu pembinasaan mereka adalah subuh dan waktu subuh itu sudah dekat."',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u064a\u064e\u0627 \u0644\u064f\u0648\u0637\u064f \u0625\u0650\u0646\u0651\u064e\u0627 \u0631\u064f\u0633\u064f\u0644\u064f \u0631\u064e\u0628\u0651\u0650\u0643\u064e \u0644\u064e\u0646 \u064a\u064e\u0635\u0650\u0644\u064f\u0648\u0627 \u0625\u0650\u0644\u064e\u064a\u0652\u0643\u064e \u06d6 \u0641\u064e\u0623\u064e\u0633\u0652\u0631\u0650 \u0628\u0650\u0623\u064e\u0647\u0652\u0644\u0650\u0643\u064e \u0628\u0650\u0642\u0650\u0637\u0652\u0639\u064d \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u064a\u0652\u0644\u0650 \u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u0644\u0652\u062a\u064e\u0641\u0650\u062a\u0652 \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0623\u064e\u062d\u064e\u062f\u064c \u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0645\u0652\u0631\u064e\u0623\u064e\u062a\u064e\u0643\u064e \u06d6 \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0645\u064f\u0635\u0650\u064a\u0628\u064f\u0647\u064e\u0627 \u0645\u064e\u0627 \u0623\u064e\u0635\u064e\u0627\u0628\u064e\u0647\u064f\u0645\u0652 \u06da \u0625\u0650\u0646\u0651\u064e \u0645\u064e\u0648\u0652\u0639\u0650\u062f\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0635\u0651\u064f\u0628\u0652\u062d\u064f \u06da \u0623\u064e\u0644\u064e\u064a\u0652\u0633\u064e \u0627\u0644\u0635\u0651\u064f\u0628\u0652\u062d\u064f \u0628\u0650\u0642\u064e\u0631\u0650\u064a\u0628\u064d",
-      transliteration: {
-        en: "Qaaloo yaa Lootu innaa Rusulu Rabbika lai yasiloo ilaika fa asri bi ahlika biqit 'im minal laili wa laa yaltafit minkum ahadun illam ra ataka innahoo museebuhaa maaa asaabahum; inna maw'i dahumus subh; alaisas subhu biqareeb",
-      },
+      arabic:
+        "قَالُوا۟ يَٰلُوطُ إِنَّا رُسُلُ رَبِّكَ لَن يَصِلُوٓا۟ إِلَيْكَ فَأَسْرِ بِأَهْلِكَ بِقِطْعٍ مِّنَ ٱلَّيْلِ وَلَا يَلْتَفِتْ مِنكُمْ أَحَدٌ إِلَّا ٱمْرَأَتَكَ إِنَّهُۥ مُصِيبُهَا مَآ أَصَابَهُمْ إِنَّ مَوْعِدَهُمُ ٱلصُّبْحُ أَلَيْسَ ٱلصُّبْحُ بِقَرِيبٍ",
     },
     translation: {
-      en: 'The angels said, "O Lot, indeed we are messengers of your Lord; [therefore], they will never reach you. So set out with your family during a portion of the night and let not any among you look back - except your wife; indeed, she will be struck by that which strikes them. Indeed, their appointment is [for] the morning. Is not the morning near?"',
-      id: "Mereka (para malaikat) berkata, “Wahai Lut! Sesungguhnya kami adalah para utusan Tuhanmu, mereka tidak akan dapat mengganggu kamu, sebab itu pergilah beserta keluargamu pada akhir malam dan jangan ada seorang pun di antara kamu yang menoleh ke belakang, kecuali istrimu. Sesungguhnya dia (juga) akan ditimpa (siksaan) yang menimpa mereka. Sesungguhnya saat terjadinya siksaan bagi mereka itu pada waktu subuh. Bukankah subuh itu sudah dekat?”",
+      en: {
+        footnotes: "",
+        text: "[The angels said], “O Lot, we are messengers of your Lord; they can never reach you. So set out with your family in the dark part of the night, and none of you should look back, except your wife; she will suffer the same fate as the others. Their appointed time is the morning; is not the morning near?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka (para malaikat) berkata, "Wahai Luṭ! Sesungguhnya kami adalah para utusan Tuhanmu, mereka tidak akan dapat mengganggu kamu, sebab itu pergilah bersama keluargamu pada akhir malam dan jangan ada seorang pun di antara kamu yang menoleh ke belakang, kecuali istrimu. Sesungguhnya dia (juga) akan ditimpa (siksaan) yang menimpa mereka. Sesungguhnya saat terjadinya siksaan bagi mereka itu pada waktu subuh. Bukankah subuh itu sudah dekat?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1555",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1555.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1555.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 92,
       juz: 12,
       manzil: 3,
       page: 231,
       ruku: 189,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1555,
@@ -147,40 +125,33 @@ export const quranSurah11Verses79To84 = [
     },
     tafsir: {
       id: {
-        long: "Ketika putusan Allah telah datang untuk mengazab kaum Luth, Allah menjadikan negeri mereka terjungkir balik, yang di atas jatuh ke bawah dan yang di bawah naik ke atas, dan Allah menghujani mereka dengan batu-batu yang berasal dari tanah yang terbakar hangus yang jatuh kepada mereka secara bertubi-tubi. Tentang ambruknya tanah menurut ahli pengetahuan adalah disebabkan karena adanya uap atau gas-gas yang keluar dari dasarnya kemudian karena adanya kekosongan di bawah lapisan bumi itu, maka tanah-tanah yang ada di atasnya menjadi runtuh dan ambruk ke bawah.",
-        short:
-          "Maka ketika keputusan Kami datang untuk menurunkan azab kepada kaum Nabi Lut yang durhaka, Kami menjungkirbalikkannya negeri kaum Lut sehingga bagian atas bangunan berada di bawah dan bagian bawah bumi ada di atas, sebagai akibat perbuatan mereka memutarbalikkan fitrah, dan Kami hujani mereka bertubi-tubi tiada henti dari tempat tinggi dengan batu dari tanah yang terbakar (Lihat: Surah al-'Ankabut/29: 34 dan az-Zariyat/51: 32-33).",
+        footnotes: null,
+        text: "Kemudian tatkala perintah Kami untuk membinasakan kaum Lūṭ datang, Kami buat bagian atas kota-kota mereka berada di bawah dengan cara mengangkatnya ke atas dan membaliknya bersama mereka dan Kami hujani mereka dengan batu yang berasal dari tanah liat yang mengeras secara bertubi-tubi hingga tersusun rapi dalam posisi saling tindih.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u064e\u0645\u0651\u064e\u0627 \u062c\u064e\u0627\u0621\u064e \u0623\u064e\u0645\u0652\u0631\u064f\u0646\u064e\u0627 \u062c\u064e\u0639\u064e\u0644\u0652\u0646\u064e\u0627 \u0639\u064e\u0627\u0644\u0650\u064a\u064e\u0647\u064e\u0627 \u0633\u064e\u0627\u0641\u0650\u0644\u064e\u0647\u064e\u0627 \u0648\u064e\u0623\u064e\u0645\u0652\u0637\u064e\u0631\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u062d\u0650\u062c\u064e\u0627\u0631\u064e\u0629\u064b \u0645\u0651\u0650\u0646 \u0633\u0650\u062c\u0651\u0650\u064a\u0644\u064d \u0645\u0651\u064e\u0646\u0636\u064f\u0648\u062f\u064d",
-      transliteration: {
-        en: "Falammaa jaaa'a amrunaa ja'alnaa 'aaliyahaa saafilahaa wa amtamaa 'alaihaa hijaaratam min sijjeelim mandood",
-      },
+      arabic:
+        "فَلَمَّا جَآءَ أَمْرُنَا جَعَلْنَا عَٰلِيَهَا سَافِلَهَا وَأَمْطَرْنَا عَلَيْهَا حِجَارَةً مِّن سِجِّيلٍ مَّنضُودٍ",
     },
     translation: {
-      en: "So when Our command came, We made the highest part [of the city] its lowest and rained upon them stones of layered hard clay, [which were]",
-      id: "Maka ketika keputusan Kami datang, Kami menjungkirbalikkannya negeri kaum Lut, dan Kami hujani mereka bertubi-tubi dengan batu dari tanah yang terbakar,",
+      en: {
+        footnotes: "",
+        text: "When Our command came, We turned their cities upside down and rained down upon them clustered stones of baked clay,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka ketika keputusan Kami datang, Kami menjungkirbalikkan negeri kaum Luṭ, dan Kami hujani mereka bertubi-tubi dengan batu dari tanah yang terbakar,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1556",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1556.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1556.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 92,
       juz: 12,
       manzil: 3,
       page: 231,
       ruku: 189,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1556,
@@ -188,40 +159,33 @@ export const quranSurah11Verses79To84 = [
     },
     tafsir: {
       id: {
-        long: "Allah menurunkan batu-batu sijjil sebelum bumi dijungkirbalikkan. Menurut firman Allah dalam surah adz-dzariyat batu-batu itu adalah tanah liat yang terbakar sehingga menjadi batu yang diberi tanda oleh Allah Taala dengan nama orang-orang yang akan ditimpakannya. Batu-batu itu dijatuhkan di tempat yang sering dilalui orang musyrik Quraisy ketika mereka berdagang ke negeri Syam supaya menjadi peringatan bagi mereka agar jangan memusuhi Muhammad, supaya jangan ditimpa azab seperti yang menimpa kaum Nabi Lut a.s. yang ingkar kepada nabinya. Tempat itu sering dilalui oleh mereka bila mereka berdagang di musim panas di negeri Syam seperti diterangkan dalam firman Allah:\n\nDan sesungguhnya kamu (penduduk Mekah) benar-benar akan melalui (bekas-bekas) mereka pada waktu pagi, (ash-saffat/37: 137)",
-        short:
-          "Azab yang ditimpakan kepada kaum Nabi Lut yang diberi tanda oleh Tuhanmu mengandung pesan, bahwa apa yang menimpa kaum Nabi Lut bisa jadi menimpa siapa saja. Dan siksaan itu tiadalah jauh dari orang yang zalim kapan dan di mana saja berada pada setiap kurun waktu sepanjang zaman. Apabila perbuatan keji merajalela di tengah-tengah masyarakat, dan perbuatan itu mereka lakukan secara terang-terangan.",
+        footnotes: null,
+        text: "Batu itu diberi tanda khusus oleh Allah. Azab berupa batu itu tidaklah jauh dari orang-orang yang zalim dari suku Quraisy maupun lainnya. Bahkan, batu itu dekat dengan mereka ketika Allah memutuskan untuk menurunkannya kepada mereka.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064f\u0633\u064e\u0648\u0651\u064e\u0645\u064e\u0629\u064b \u0639\u0650\u0646\u062f\u064e \u0631\u064e\u0628\u0651\u0650\u0643\u064e \u06d6 \u0648\u064e\u0645\u064e\u0627 \u0647\u0650\u064a\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0638\u0651\u064e\u0627\u0644\u0650\u0645\u0650\u064a\u0646\u064e \u0628\u0650\u0628\u064e\u0639\u0650\u064a\u062f\u064d",
-      transliteration: {
-        en: "Musawwamatan 'inda Rabbik; wa maa hiya minaz zaalimena biba'eed",
-      },
+      arabic: "مُّسَوَّمَةً عِندَ رَبِّكَ وَمَا هِىَ مِنَ ٱلظَّٰلِمِينَ بِبَعِيدٍ",
     },
     translation: {
-      en: "Marked from your Lord. And Allah 's punishment is not from the wrongdoers [very] far.",
-      id: "yang diberi tanda oleh Tuhanmu. Dan siksaan itu tiadalah jauh dari orang yang zalim.",
+      en: {
+        footnotes:
+          "[48] This is a direct warning, especially for the Quraysh who tormented the believers.",
+        text: "marked by your Lord; this is not far from the evildoers[48].",
+      },
+      id: {
+        footnotes: "",
+        text: "yang diberi tanda oleh Tuhanmu. Dan siksaan itu tiadalah jauh dari orang yang zalim.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1557",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1557.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1557.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 93,
       juz: 12,
       manzil: 3,
       page: 231,
       ruku: 190,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1557,
@@ -229,20 +193,24 @@ export const quranSurah11Verses79To84 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini diterangkan bahwa Allah swt mengutus Syuaib sebagai rasul-Nya kepada penduduk Madyan. Syuaib dipilih dari kaumnya sendiri. Syuaib adalah seorang putera keturunan dari Madyan bin Ibrahim a.s. Madyan membangun suatu daerah untuk kaumnya yang terletak di Hajar dekat negeri Syam, dan dinamakan sesuai dengan namanya, sehingga daerah itu beserta penduduknya dan kabilahnya dikatakan Madyan. Syuaib a.s. sebagai rasul Allah memulai tugas dakwahnya dengan mengajak kaumnya supaya menyembah Allah dan melarang mempersekutukan-Nya dengan berhala-berhala, patung-patung, dan sebagainya, karena tiada Tuhan yang patut disembah selain Allah Yang Maha Esa yang menciptakan seluruh alam semesta. Kemudian Syuaib a.s. melarang kaumnya mengurangi takaran dan timbangan, sebagaimana yang mereka lakukan dalam segala macam perdagangan dan jual-beli, sebab perbuatan itu sama dengan mengambil hak orang dengan kecurangan yang sangat jahat dan keji. Larangan serupa ini diterangkan pula dalam firman Allah:\n\nCelakalah bagi orang-orang yang curang (dalam menakar dan menimbang)! (Yaitu) orang-orang yang apabila menerima takaran dari orang lain mereka minta dicukupkan, dan apabila mereka menakar atau menimbang (untuk orang lain), mereka mengurangi. (al-Muthaffifin/83: 1- 3)\n\nSyuaib a.s. menjelaskan kepada kaumnya, bahwa ia melihat mereka hidup berkecukupan dan kaya raya, mereka tidak perlu melakukan kecurangan dalam takaran dan timbangan. Sebab, perbuatan itu selain mengambil hak orang lain dengan cara yang licik dan keji juga berarti mengingkari nikmat Allah yang telah memberi kekayaan yang banyak kepada mereka. Semestinya mereka bersyukur kepada-Nya, bukan sebalik-nya mereka menambah harta kekayaan dengan kecurangan-kecurangan dan kelicikan-kelicikan yang sangat dimurkai Allah. Nabi Syuaib a.s. mem-peringatkan kaumnya, bahwa apabila mereka masih tetap membangkang dalam kekafiran dan terus melakukan pekerjaan tercela itu, maka ia khawatir mereka akan ditimpa azab yang membinasakan mereka.",
-        short:
-          'Setelah diuraikan kisah Kaum Nabi Lut yang diazab oleh Allah akibat kedurhakaan dan perbuatan keji yang mereka lakukan, kemudian diuraikan kembali kisah umat terdahulu, yaitu kaum Nabi Syuaib sebagai pelajaran bagi umat Nabi Muhammad. Dan kepada penduduk Madyan, Kami utus saudara satu keturunan dengan mereka, yaitu Nabi Syuaib. Dia berkata, "Wahai kaumku! Sembahlah Allah, tidak ada tuhan bagimu yang berhak disembah selain Dia. Kemudian Nabi Syuaib menasihati mereka seraya berkata, "Dan janganlah kamu kurangi takaran dan timbangan dalam berniaga, karena perbuatan itu sama saja menipu manusia. Sesungguhnya aku melihat kamu dalam keadaan yang baik ekonominya ditopang dengan keadaan wilayah yang subur, sehingga hidup makmur, bahagia dan sejahtera sehingga tidak perlu melakukan kecurangan. Dan sesungguhnya aku khawatir jika kamu menipu dan berbuat curang, kamu akan ditimpa azab pada suatu hari yang merata, yakni azab itu menimpa seluruh manusia yang ada di dalamnya karena dahsyatnya azab tersebut, sehingga tidak ada satu pun yang selamat."',
+        footnotes: null,
+        text: "Kepada penduduk Madyan Kami juga mengutus saudara mereka, Syu'aib. Dia berkata, \"Wahai kaumku! Sembahlah Allah saja. Kalian tidak punya sesembahan lain yang berhak disembah selain Dia. Janganlah kalian mengurangi takaran dan timbangan apabila kalian menakar atau menimbang untuk orang lain. Sesungguhnya aku melihat kalian memiliki rezeki dan nikmat yang melimpah. Oleh karena itu, janganlah kalian mengubah nikmat yang Allah berikan kepada kalian itu dengan berbuat maksiat. Sesungguhnya aku takut kalian akan ditimpa azab pada hari yang membinasakan kalian semua tanpa kecuali. Pada hari itu kalian tidak akan menemukan tempat berlindung dan tempat melarikan diri dari azab.",
       },
     },
     text: {
-      arab: "\u06de \u0648\u064e\u0625\u0650\u0644\u064e\u0649\u0670 \u0645\u064e\u062f\u0652\u064a\u064e\u0646\u064e \u0623\u064e\u062e\u064e\u0627\u0647\u064f\u0645\u0652 \u0634\u064f\u0639\u064e\u064a\u0652\u0628\u064b\u0627 \u06da \u0642\u064e\u0627\u0644\u064e \u064a\u064e\u0627 \u0642\u064e\u0648\u0652\u0645\u0650 \u0627\u0639\u0652\u0628\u064f\u062f\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0645\u064e\u0627 \u0644\u064e\u0643\u064f\u0645 \u0645\u0651\u0650\u0646\u0652 \u0625\u0650\u0644\u064e\u0670\u0647\u064d \u063a\u064e\u064a\u0652\u0631\u064f\u0647\u064f \u06d6 \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0646\u0642\u064f\u0635\u064f\u0648\u0627 \u0627\u0644\u0652\u0645\u0650\u0643\u0652\u064a\u064e\u0627\u0644\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u0650\u064a\u0632\u064e\u0627\u0646\u064e \u06da \u0625\u0650\u0646\u0651\u0650\u064a \u0623\u064e\u0631\u064e\u0627\u0643\u064f\u0645 \u0628\u0650\u062e\u064e\u064a\u0652\u0631\u064d \u0648\u064e\u0625\u0650\u0646\u0651\u0650\u064a \u0623\u064e\u062e\u064e\u0627\u0641\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064e \u064a\u064e\u0648\u0652\u0645\u064d \u0645\u0651\u064f\u062d\u0650\u064a\u0637\u064d",
-      transliteration: {
-        en: "Wa ilaa Madyana akhaahum Shu'aibaa; qaala yaa qawmi' budul laaha maa lakum min ilaahin ghairuhoo wa laa tanqusul mikyaala walmeezaan; inneee araakum bikhairinw wa innee akhaafu 'alaikum 'azaaba Yawmim muheet",
-      },
+      arabic:
+        "وَإِلَىٰ مَدْيَنَ أَخَاهُمْ شُعَيْبًا قَالَ يَٰقَوْمِ ٱعْبُدُوا۟ ٱللَّهَ مَا لَكُم مِّنْ إِلَٰهٍ غَيْرُهُۥ وَلَا تَنقُصُوا۟ ٱلْمِكْيَالَ وَٱلْمِيزَانَ إِنِّىٓ أَرَىٰكُم بِخَيْرٍ وَإِنِّىٓ أَخَافُ عَلَيْكُمْ عَذَابَ يَوْمٍ مُّحِيطٍ",
     },
     translation: {
-      en: "And to Madyan [We sent] their brother Shu'ayb. He said, \"O my people, worship Allah; you have no deity other than Him. And do not decrease from the measure and the scale. Indeed, I see you in prosperity, but indeed, I fear for you the punishment of an all-encompassing Day.",
-      id: "Dan kepada (penduduk) Madyan (Kami utus) saudara mereka, Syuaib. Dia berkata, “Wahai kaumku! Sembahlah Allah, tidak ada tuhan bagimu selain Dia. Dan janganlah kamu kurangi takaran dan timbangan. Sesungguhnya aku melihat kamu dalam keadaan yang baik (makmur). Dan sesungguhnya aku khawatir kamu akan ditimpa azab pada hari yang membinasakan (Kiamat).",
+      en: {
+        footnotes:
+          "[49] The cardinal sin of Lot’s people was lust, whereas the people of Shu‘ayb’s major sin was greed, for not being fair in trade.",
+        text: "And to the people of Midian We sent their brother Shu‘ayb. He said, “O my people, worship Allah; you have no god besides Him. Do not give short measure or weight[49]. I see that you are in prosperity, but I fear for you the punishment of an encompassing Day.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan kepada (penduduk) Madyan (Kami utus) saudara mereka, Syu'aib. Dia berkata, \"Wahai kaumku! Sembahlah Allah, tidak ada tuhan bagimu selain Dia. Dan janganlah kamu kurangi takaran dan timbangan. Sesungguhnya aku melihat kamu dalam keadaan yang baik (makmur). Dan sesungguhnya aku khawatir kamu akan ditimpa azab pada hari yang membinasakan (Kiamat).",
+      },
     },
   },
 ];

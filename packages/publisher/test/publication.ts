@@ -17,6 +17,7 @@ import {
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
@@ -34,6 +35,7 @@ export const rendererManifest = await Effect.runPromise(
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 
@@ -79,6 +81,17 @@ export const contentRecord = {
   projection,
   source: publicationSource,
 };
+export const publicationScope = PublicationScopeSchema.make({
+  content: [
+    {
+      contentKey: contentRecord.change.contentKey,
+      family: contentRecord.change.family,
+      locale: contentRecord.change.locale,
+    },
+  ],
+  families: [],
+  snapshots: [],
+});
 export const head = MaterialHeadSchema.make({
   artifactHash: contentRecord.change.artifactHash,
   compilerConfigHash: publicationPayload.compilerConfigHash,
@@ -132,6 +145,7 @@ export async function makeRelease(
             publicPath: projection.publicPath,
           },
         }),
+      scope: publicationScope,
       ...emptySnapshotSources,
     })
   );

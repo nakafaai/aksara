@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah19Verses25To30 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2275",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2275.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2275.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 123,
       juz: 16,
       manzil: 4,
       page: 306,
       ruku: 265,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2275,
@@ -24,40 +25,32 @@ export const quranSurah19Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Jibril kemudian menyuruh Maryam untuk menggoyang pohon kurma dan nanti pohon itu akan menjatuhkan buah kurma yang telah masak kepadanya. Dan ini adalah rahmat yang lain untuk Maryam karena pada mulanya pohon kurma itu telah kering, dengan kehendak Allah menjadi hijau dan subur kembali serta berbuah sebagai rezeki untuk Maryam.",
-        short:
-          "Pegang dan goyanglah sekuat tenagamu pangkal pohon kurma itu ke arahmu, niscaya pohon itu akan menggugurkan buahnya yang masak kepadamu agar kamu dapat memakannya.",
+        footnotes: null,
+        text: "Lalu peganglah pangkal pohon kurma itu dan goyangkanlah niscaya pohon itu akan menggugurkan buah kurma yang mengkal dan ranum kepadamu saat itu juga.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0647\u064f\u0632\u0651\u0650\u064a \u0625\u0650\u0644\u064e\u064a\u0652\u0643\u0650 \u0628\u0650\u062c\u0650\u0630\u0652\u0639\u0650 \u0627\u0644\u0646\u0651\u064e\u062e\u0652\u0644\u064e\u0629\u0650 \u062a\u064f\u0633\u064e\u0627\u0642\u0650\u0637\u0652 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u0650 \u0631\u064f\u0637\u064e\u0628\u064b\u0627 \u062c\u064e\u0646\u0650\u064a\u0651\u064b\u0627",
-      transliteration: {
-        en: "Wa huzzeee ilaiki bijiz 'in nakhlati tusaaqit 'alaiki rutaban janiyyaa",
-      },
+      arabic: "وَهُزِّىٓ إِلَيْكِ بِجِذْعِ ٱلنَّخْلَةِ تُسَٰقِطْ عَلَيْكِ رُطَبًا جَنِيًّا",
     },
     translation: {
-      en: "And shake toward you the trunk of the palm tree; it will drop upon you ripe, fresh dates.",
-      id: "Dan goyanglah pangkal pohon kurma itu ke arahmu, niscaya (pohon) itu akan menggugurkan buah kurma yang masak kepadamu.",
+      en: {
+        footnotes: "",
+        text: "Shake the trunk of the palm tree towards yourself; fresh ripe dates will drop upon you.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan goyanglah pangkal pohon kurma itu ke arahmu, niscaya (pohon) itu akan menggugurkan buah kurma yang masak kepadamu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2276",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2276.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2276.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 123,
       juz: 16,
       manzil: 4,
       page: 307,
       ruku: 265,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2276,
@@ -65,40 +58,34 @@ export const quranSurah19Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Maka Jibril menyuruh Maryam supaya makan, minum dan ber-senang hati karena mendapat rezeki itu dan menghilangkan kesedihan hatinya karena Allah berkuasa untuk membersihkannya dari segala tuduhan yang tidak pantas, sehingga Maryam tetap dianggap sebagai wanita yang suci tidak pernah ternoda. Jika kamu melihat seorang manusia yang bertanya tentang persoalannya dan persoalan anaknya, maka isyaratkanlah kepadanya, "Sesungguhnya aku telah bernazar atas diriku untuk berpuasa semata-mata untuk Tuhan Yang Maha Pemurah, dan aku tidak akan berbicara langsung dengan seorang manusia pun pada hari ini, karena ucapanku itu mungkin ditolak dan tidak dipercayai.',
-        short:
-          "Maka makan-lah buah kurma yang berjatuhan itu dan minum-lah air dari anak sungai tersebut. Nikmatilah dan bersenanghatilah engkau dengan kelahiran putramu. Jika engkau melihat seseorang dengan kondisimu sekarang, maka katakanlah kepadanya dengan isyarat, “Sesungguhnya aku telah bernazar berpuasa, yakni menahan diri untuk tidak berbicara, untuk Tuhan Yang Maha Pengasih, maka aku tidak akan berbicara dengan siapa pun pada hari ini.”",
+        footnotes: null,
+        text: "Makanlah rutab itu, minumlah dari air itu, bergembiralah dengan kelahiran anakmu, dan jangan bersedih! Jika engkau melihat seseorang lalu bertanya tentang anak itu maka katakanlah, 'Sesungguhnya aku telah mewajibkan atas diriku untuk Tuhanku agar tidak berbicara dan hari ini aku tidak akan berbicara dengan seorang manusia pun'.\"",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0643\u064f\u0644\u0650\u064a \u0648\u064e\u0627\u0634\u0652\u0631\u064e\u0628\u0650\u064a \u0648\u064e\u0642\u064e\u0631\u0651\u0650\u064a \u0639\u064e\u064a\u0652\u0646\u064b\u0627 \u06d6 \u0641\u064e\u0625\u0650\u0645\u0651\u064e\u0627 \u062a\u064e\u0631\u064e\u064a\u0650\u0646\u0651\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0628\u064e\u0634\u064e\u0631\u0650 \u0623\u064e\u062d\u064e\u062f\u064b\u0627 \u0641\u064e\u0642\u064f\u0648\u0644\u0650\u064a \u0625\u0650\u0646\u0651\u0650\u064a \u0646\u064e\u0630\u064e\u0631\u0652\u062a\u064f \u0644\u0650\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0635\u064e\u0648\u0652\u0645\u064b\u0627 \u0641\u064e\u0644\u064e\u0646\u0652 \u0623\u064f\u0643\u064e\u0644\u0651\u0650\u0645\u064e \u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u064e \u0625\u0650\u0646\u0633\u0650\u064a\u0651\u064b\u0627",
-      transliteration: {
-        en: "Fakulee washrabee wa qarree 'ainaa; fa immaa tarayinnna minal bashari ahadan faqooleee innee nazartu lir Rahmaani sawman falan ukallimal yawma insiyyaa",
-      },
+      arabic:
+        "فَكُلِى وَٱشْرَبِى وَقَرِّى عَيْنًا فَإِمَّا تَرَيِنَّ مِنَ ٱلْبَشَرِ أَحَدًا فَقُولِىٓ إِنِّى نَذَرْتُ لِلرَّحْمَٰنِ صَوْمًا فَلَنْ أُكَلِّمَ ٱلْيَوْمَ إِنسِيًّا",
     },
     translation: {
-      en: "So eat and drink and be contented. And if you see from among humanity anyone, say, 'Indeed, I have vowed to the Most Merciful abstention, so I will not speak today to [any] man.' \"",
-      id: "Maka makan, minum dan bersenanghatilah engkau. Jika engkau melihat seseorang, maka katakanlah, “Sesungguhnya aku telah bernazar berpuasa untuk Tuhan Yang Maha Pengasih, maka aku tidak akan berbicara dengan siapa pun pada hari ini.”",
+      en: {
+        footnotes:
+          "[7] Sawm: literally means to abstain or fast from food, speech, etc.",
+        text: "Eat and drink, and be glad. And if you see any human being, say, ‘I have vowed silence[7] to the Most Compassionate, so I will not talk to any human being today.’”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Maka makan, minum dan bersenanghatilah engkau. Jika engkau melihat seseorang, maka katakanlah, "Sesungguhnya aku telah bernazar berpuasa untuk Tuhan Yang Maha Pengasih, maka aku tidak akan berbicara dengan siapa pun pada hari ini."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2277",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2277.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2277.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 123,
       juz: 16,
       manzil: 4,
       page: 307,
       ruku: 265,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2277,
@@ -106,40 +93,32 @@ export const quranSurah19Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah Maryam diperintahkan untuk berpuasa pada hari melahirkan putranya dan tidak berbicara dengan seorang pun dan setelah ada jaminan dari Allah bahwa kehormatannya tetap terpelihara; maka Maryam menyerahkan seluruh nasibnya pada ketetapan Allah, Maryam menggendong anaknya dan membawanya kepada kaumnya, hal itu menyebabkan kaumnya mencela perbuatannya seraya berkata, "Hai Maryam, sesungguhnya kamu telah melakukan sesuatu perbuatan yang amat mungkar."',
-        short:
-          "Mendengar kata-kata Jibril yang meneduhkan, hati Maryam menjadi tenang dan kesedihannya hilang. Kemudian dia membawanya, yaitu bayi Isa, kepada kaumnya dengan menggendongnya secara terang-terangan tanpa malu sedikit pun. Ketika kaumnya melihat hal itu, mereka berkata, “Wahai Maryam, sungguh engkau telah membawa sesuatu yang sangat mungkar bagi diri dan keluargamu karena engkau telah melahirkan bayi tanpa suami.”",
+        footnotes: null,
+        text: 'Kemudian Maryam membawa bayinya kepada kaumnya dengan menggendongnya, lalu dengan nada mengingkari kaumnya tersebut berkata kepadanya, "Wahai Maryam, sungguh engkau telah membawa sesuatu yang besar lagi mungkar karena datang dengan anak laki-laki yang lahir tanpa memiliki ayah.',
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u062a\u064e\u062a\u0652 \u0628\u0650\u0647\u0650 \u0642\u064e\u0648\u0652\u0645\u064e\u0647\u064e\u0627 \u062a\u064e\u062d\u0652\u0645\u0650\u0644\u064f\u0647\u064f \u06d6 \u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u064a\u064e\u0627 \u0645\u064e\u0631\u0652\u064a\u064e\u0645\u064f \u0644\u064e\u0642\u064e\u062f\u0652 \u062c\u0650\u0626\u0652\u062a\u0650 \u0634\u064e\u064a\u0652\u0626\u064b\u0627 \u0641\u064e\u0631\u0650\u064a\u0651\u064b\u0627",
-      transliteration: {
-        en: "Fa atat bihee qawmahaa tahmiluhoo qaaloo yaa Maryamoo laqad ji'ti shai'an fariyyaa",
-      },
+      arabic: "فَأَتَتْ بِهِۦ قَوْمَهَا تَحْمِلُهُۥ قَالُوا۟ يَٰمَرْيَمُ لَقَدْ جِئْتِ شَيْـًٔا فَرِيًّا",
     },
     translation: {
-      en: 'Then she brought him to her people, carrying him. They said, "O Mary, you have certainly done a thing unprecedented.',
-      id: "Kemudian dia (Maryam) membawa dia (bayi itu) kepada kaumnya dengan menggendongnya. Mereka (kaumnya) berkata, “Wahai Maryam! Sungguh, engkau telah membawa sesuatu yang sangat mungkar.",
+      en: {
+        footnotes: "",
+        text: "Then she came to her people carrying him. They said, “O Mary, you have committed something monstrous!",
+      },
+      id: {
+        footnotes: "",
+        text: 'Kemudian dia (Maryam) membawa dia (bayi itu) kepada kaumnya dengan menggendongnya. Mereka (kaumnya) berkata, "Wahai Maryam! Sungguh, engkau telah membawa sesuatu yang sangat mungkar.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2278",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2278.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2278.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 123,
       juz: 16,
       manzil: 4,
       page: 307,
       ruku: 265,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2278,
@@ -147,40 +126,33 @@ export const quranSurah19Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian mereka menambah celaan dan cemoohan serta tuduhan kepada Maryam seraya berkata, "Hai saudara perempuan Harun, ayahmu sekali-kali bukanlah seorang yang jahat dan ibumu sekali-kali bukanlah seorang wanita tuna susila. Bagaimana kamu sampai mendapatkan anak ini." Maryam dipanggil dengan sebutan "Saudara perempuan Harun", oleh karena telah menjadi kebiasaan Bani Israil untuk menyebutkan nama-nama para nabi dan orang-orang saleh sebelumnya.\n\nDiriwayatkan oleh al-Mugirah bin Syu\'bah yang diutus oleh Rasulullah saw, ke Najran di negeri Yaman di mana terdapat orang-orang Nasrani dan mereka bertanya kepadanya, "Mengapa kamu membaca di dalam Al-Qur\'an, "hai saudara perempuan Harun," padahal Harun dan Musa itu hidupnya lama sekali sebelum lahirnya Isa putra Maryam?" al-Mugirah tidak sempat memberikan jawaban dan ketika beliau pulang ke Medinah dan menghadap Rasulullah beliau mengemukakan pertanyaan itu. Oleh Rasulullah saw dijawab: \n\n"Mengapa kamu tidak memberitahu mereka, bahwa kebiasaan mereka (Bani Israil) itu suka menyebut-nyebut nama para nabi dan orang-orang saleh sebelum mereka." (Riwayat Ahmad)',
-        short:
-          "Tidak puas mencemoohan Maryam, mereka pun merendahkannya dengan menyebut keluarganya. Mereka berkata, “Wahai saudara perempuan Harun! Ayahmu dalam kehidupannya bukan seorang yang buruk perangai dan ibumu bukan pula seorang perempuan pezina. Bagaimana mungkin engkau melakukan hal yang memalukan ini?”",
+        footnotes: null,
+        text: 'Wahai wanita yang menyerupai Harun (seorang yang saleh) dalam ibadahnya! Sungguh ayahmu sama sekali bukan seorang pezina dan ibumu pun bukan seorang pezina. Engkau benar-benar berasal dari keluarga yang suci lagi terkenal dengan kesalehannya, lalu bagaimana bisa engkau melahirkan seorang anak laki-laki tanpa ayah?"',
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064f\u062e\u0652\u062a\u064e \u0647\u064e\u0627\u0631\u064f\u0648\u0646\u064e \u0645\u064e\u0627 \u0643\u064e\u0627\u0646\u064e \u0623\u064e\u0628\u064f\u0648\u0643\u0650 \u0627\u0645\u0652\u0631\u064e\u0623\u064e \u0633\u064e\u0648\u0652\u0621\u064d \u0648\u064e\u0645\u064e\u0627 \u0643\u064e\u0627\u0646\u064e\u062a\u0652 \u0623\u064f\u0645\u0651\u064f\u0643\u0650 \u0628\u064e\u063a\u0650\u064a\u0651\u064b\u0627",
-      transliteration: {
-        en: "Yaaa ukkhta Haaroona maa kaana abokim ra-a saw'inw wa maa kaanat ummuki baghiyyaa",
-      },
+      arabic: "يَٰٓأُخْتَ هَٰرُونَ مَا كَانَ أَبُوكِ ٱمْرَأَ سَوْءٍ وَمَا كَانَتْ أُمُّكِ بَغِيًّا",
     },
     translation: {
-      en: 'O sister of Aaron, your father was not a man of evil, nor was your mother unchaste."',
-      id: "Wahai saudara perempuan Harun (Maryam)! Ayahmu bukan seorang yang buruk perangai dan ibumu bukan seorang perempuan pezina.”",
+      en: {
+        footnotes:
+          "[8] Aaron was a pious man at the time of Mary, or she was from the descendants of Aaron, Moses’ brother.",
+        text: "O sister of Aaron,[8] your father was not a man of evil, nor was your mother unchaste.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Wahai sauadara perempuan Harun (Maryam)! Ayahmu bukan seorang yang buruk perangai dan ibumu bukan seorang perempuan pezina."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2279",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2279.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2279.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 123,
       juz: 16,
       manzil: 4,
       page: 307,
       ruku: 265,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2279,
@@ -188,40 +160,32 @@ export const quranSurah19Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Maryam menunjuk kepada putranya supaya berbicara dan menjelaskan tentang keadaannya, karena Maryam sudah bernazar untuk tidak berbicara dengan siapa pun dan sudah merasa yakin bahwa anaknya mengerti isyarat itu. Orang-orang Yahudi bertanya dengan keheranan, "Bagaimana kami akan berbicara dengan seorang bayi yang masih di dalam gendongan?" Mereka menduga bahwa Maryam memperolok-olok mereka.',
-        short:
-          "Maryam tidak gentar menghadapi cemoohan kaumnya, maka untuk menjawabnya dia menunjuk kepada anak yang sedang digendongnya. Melihat isyaratnya untuk bertanya kepada anak tersebut, mereka berkata, “Bagaimana mungkin kami akan berbicara dengan bayi yang masih dalam ayunan itu?”",
+        footnotes: null,
+        text: 'Lantas ia pun menunjuk kepada anaknya, Isa -\'alaihissalām- yang masih dalam buaian. Kaumnya berkata kepadanya dengan penuh keheranan, "Bagaimana bisa kami berbicara dengan seorang anak yang masih dalam buaian?"',
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0634\u064e\u0627\u0631\u064e\u062a\u0652 \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u06d6 \u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0643\u064e\u064a\u0652\u0641\u064e \u0646\u064f\u0643\u064e\u0644\u0651\u0650\u0645\u064f \u0645\u064e\u0646 \u0643\u064e\u0627\u0646\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0645\u064e\u0647\u0652\u062f\u0650 \u0635\u064e\u0628\u0650\u064a\u0651\u064b\u0627",
-      transliteration: {
-        en: "Fa ashaarat ilaih; qaaloo kaifa nukallimu man kaana fil mahdi sabiyyaa",
-      },
+      arabic: "فَأَشَارَتْ إِلَيْهِ قَالُوا۟ كَيْفَ نُكَلِّمُ مَن كَانَ فِى ٱلْمَهْدِ صَبِيًّا",
     },
     translation: {
-      en: 'So she pointed to him. They said, "How can we speak to one who is in the cradle a child?"',
-      id: "Maka dia (Maryam) menunjuk kepada (anak)nya. Mereka berkata, “Bagaimana kami akan berbicara dengan anak kecil yang masih dalam ayunan?”",
+      en: {
+        footnotes: "",
+        text: "Thereupon she pointed to him. They said, “How can we talk to someone who is still a baby in the cradle?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Maka dia (Maryam) menunjuk kepada (anak)nya. Mereka berkata, "Bagaimana kami akan berbicara dengan anak kecil yang masih dalam ayunan?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2280",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2280.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2280.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 123,
       juz: 16,
       manzil: 4,
       page: 307,
       ruku: 265,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2280,
@@ -229,20 +193,22 @@ export const quranSurah19Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Isa a.s. yang masih dalam gendongan ibunya kemudian berkata, "Sesungguhnya aku ini hamba Allah, Dia yang akan memberikan aku kitab suci Injil dan Dia yang akan menjadikan aku seorang Nabi." Ucapan ini mengandung penjelasan bahwa ibunya adalah seorang wanita yang suci karena seorang Nabi harus dari keturunan orang yang saleh dan suci.',
-        short:
-          "Isa yang berada dalam gendongan ibunya mendengar pembicaraan kaumnya. Dia berkata, “Sesungguhnya aku adalah hamba Allah Yang Mahakasih. Dia akan memberiku sebuah Kitab Injil sesuai ketetapan-Nya, dan Dia juga akan menjadikan aku seorang nabi untuk menyampaikan ajaran-ajaran-Nya kepada Bani Israil.",
+        footnotes: null,
+        text: "Berkatalah Isa -'alaihissalām-, \"Sesungguhnya aku adalah hamba Allah, Dia memberiku kitab Injil, dan menjadikan aku salah seorang dari nabi-nabi-Nya.",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0625\u0650\u0646\u0651\u0650\u064a \u0639\u064e\u0628\u0652\u062f\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0622\u062a\u064e\u0627\u0646\u0650\u064a\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0648\u064e\u062c\u064e\u0639\u064e\u0644\u064e\u0646\u0650\u064a \u0646\u064e\u0628\u0650\u064a\u0651\u064b\u0627",
-      transliteration: {
-        en: "Qaala innee 'abdullaahi aataaniyal Kitaaba wa ja'alanee Nabiyyaa",
-      },
+      arabic: "قَالَ إِنِّى عَبْدُ ٱللَّهِ ءَاتَىٰنِىَ ٱلْكِتَٰبَ وَجَعَلَنِى نَبِيًّا",
     },
     translation: {
-      en: '[Jesus] said, "Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet.',
-      id: "Dia (Isa) berkata, “Sesungguhnya aku hamba Allah, Dia memberiku Kitab (Injil) dan Dia menjadikan aku seorang Nabi.",
+      en: {
+        footnotes: "",
+        text: "Jesus said, “I am a slave of Allah. He has given me the Scripture and made me a prophet.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Isa) berkata, "Sesungguhnya aku hamba Allah, Dia memberiku Kitab (Injil) dan Dia menjadikan aku seorang Nabi,',
+      },
     },
   },
 ];

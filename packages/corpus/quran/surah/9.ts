@@ -21,30 +21,28 @@ import { quranSurah9Verses115To120 } from "#corpus/quran/surah/9/115-120";
 import { quranSurah9Verses121To126 } from "#corpus/quran/surah/9/121-126";
 import { quranSurah9Verses127To129 } from "#corpus/quran/surah/9/127-129";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah9 = {
   name: {
-    long: "\u0633\u0648\u0631\u0629 \u0627\u0644\u062a\u0648\u0628\u0629",
-    short: "التوبة",
-    translation: {
-      en: "The Repentance",
-      id: "Pengampunan",
-    },
-    transliteration: {
-      en: "At-Tawba",
-      id: "At-Taubah",
-    },
+    arabic: "التوبة",
+    translation: "The Repentance",
+    transliteration: "At-Tawba",
   },
   number: 9,
   numberOfVerses: 129,
-  preBismillah: null,
   revelation: {
-    arab: "\u0645\u062F\u064A\u0646\u0629",
-    en: "Medinan",
-    id: "Madaniyyah",
-  },
-  sequence: 113,
-  tafsir: {
-    id: "Surat At Taubah terdiri atas 129 ayat termasuk golongan surat-surat Madaniyyah. Surat ini dinamakan At Taubah yang berarti pengampunan berhubung kata At Taubah berulang kali disebut dalam surat ini. Dinamakan juga dengan Baraah yang berarti berlepas diri yang di sini maksudnya pernyataan pemutusan perhubungan, disebabkan kebanyakan pokok pembicaraannya tentang pernyataan pemutusan perjanjian damai dengan kaum musyrikin.  Di samping kedua nama yang masyhur itu ada lagi beberapa nama yang lain yang merupakan sifat dari surat ini.  Berlainan dengan surat-surat yang lain, maka pada permulaan surat ini tidak terdapat basmalah, karena surat ini adalah pernyataan perang dengan arti bahwa segenap kaum muslimin dikerahkan untuk memerangi seluruh kaum musyrikin, sedangkan basmalah bernafaskan perdamaian dan cinta kasih Allah.  Surat ini diturunkan sesudah Nabi Muhammad s.a.w. kembali dari peperangan Tabuk yang terjadi pada tahun 9 H. Pengumuman ini disampaikan oleh Saidina 'Ali r.a. pada musim haji tahun itu juga.",
+    order: 113,
+    place: "Medinan",
   },
   verses: [
     ...quranSurah9Verses1To6,

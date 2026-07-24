@@ -181,8 +181,11 @@ compiled code, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
 artifact wire value. The Nakafa Convex adapter must also enforce a 512 KiB
 complete stored-row ceiling with Convex's official size calculation and a
 4 MiB complete mutation-envelope ceiling. Production publication requires
-Nakafa to consume this exact published contract and deploy the authenticated
-signature-verifying ingress first.
+Nakafa to consume the exact attested contracts release archive and deploy the
+authenticated signature-verifying ingress first. The content workflow rebuilds
+that archive without production credentials and verifies exact immutable
+GitHub release bytes, digest, source tag, ancestry, release integrity, asset
+integrity, and build attestation before any production operation can begin.
 
 Reference: [Convex production limits](https://docs.convex.dev/production/state/limits).
 

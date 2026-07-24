@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah80Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5765",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5765.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5765.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 585,
       ruku: 522,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5765,
@@ -24,40 +25,33 @@ export const quranSurah80Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat-ayat ini, Allah melanjutkan teguran-Nya, "Adapun orang-orang kafir Mekah yang merasa dirinya serba cukup dan mampu, mereka tidak tertarik untuk beriman padamu, mengapa engkau bersikap terlalu condong pada mereka dan ingin sekali supaya mereka masuk Islam."',
-        short:
-          "Wahai Nabi, mengapa engkau lebih mengutamakan pelayanan terhadap pemuka Quraisy itu, padahal tidak ada celaan atasmu kalau dia tidak menyucikan diri dengan beriman kepada Allah? Tugasmu hanyalah menyampaikan wahyu, dan setelah itu tidak ada dosa bagimu jika dia tetap berpaling dan enggan mengikuti petunjukmu. Lalu, mengapa engkau menomorduakan permintaan orang buta lagi fakir yang ingin belajar Islam darimu?",
+        footnotes: null,
+        text: "Tidaklah engkau mendapatkan mudharat jika ia tidak mau bersuci dari dosa-dosanya dengan bertaubat kepada Allah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064e \u0623\u064e\u0644\u0651\u064e\u0627 \u064a\u064e\u0632\u0651\u064e\u0643\u0651\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa ma 'alaika allaa yaz zakka.",
-      },
+      arabic: "وَمَا عَلَيْكَ أَلَّا يَزَّكَّىٰ",
     },
     translation: {
-      en: "And not upon you [is any blame] if he will not be purified.",
-      id: "padahal tidak ada (cela) atasmu kalau dia tidak menyucikan diri (beriman).",
+      en: {
+        footnotes:
+          "[4] The Prophets are only responsible to convey the message, not for people’s guidance.",
+        text: "although you are not to be blamed if he does not purify himself[4].",
+      },
+      id: {
+        footnotes: "",
+        text: "padahal tidak ada (cela) atasmu kalau dia tidak menyucikan diri (beriman).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5766",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5766.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5766.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 585,
       ruku: 522,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5766,
@@ -65,40 +59,32 @@ export const quranSurah80Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat-ayat ini, Allah mengingatkan Nabi Muhammad, "Dan adapun orang seperti \'Abdullah bin Ummi Maktum yang datang kepadamu dengan bersegera untuk mendapat petunjuk dan rahmat dari Tuhannya, sedang ia takut kepada Allah jika ia jatuh ke dalam lembah kesesatan, maka kamu bersikap acuh tak acuh dan tidak memperhatikan permintaannya."',
-        short:
-          "Dan adapun orang, yaitu ‘Abdullàh bin Ummi Maktùm, yang datang kepadamu dengan bersegera dan bersungguh-sungguh untuk mendapatkan pengajaran Islam darimu,",
+        footnotes: null,
+        text: "Adapun orang yang bersegera datang kepadamu untuk mencari kebaikan,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0645\u0651\u064e\u0627 \u0645\u064e\u0646 \u062c\u064e\u0627\u0621\u064e\u0643\u064e \u064a\u064e\u0633\u0652\u0639\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa amma man jaa-aka yas'a",
-      },
+      arabic: "وَأَمَّا مَن جَآءَكَ يَسْعَىٰ",
     },
     translation: {
-      en: "But as for he who came to you striving [for knowledge]",
-      id: "Dan adapun orang yang datang kepadamu dengan bersegera (untuk mendapatkan pengajaran),",
+      en: {
+        footnotes: "",
+        text: "But as for the one who came to you striving [for purification],",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan adapun orang yang datang kepadamu dengan bersegera (untuk mendapatkan pengajaran),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5767",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5767.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5767.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 585,
       ruku: 522,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5767,
@@ -106,39 +92,32 @@ export const quranSurah80Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat-ayat ini, Allah mengingatkan Nabi Muhammad, "Dan adapun orang seperti \'Abdullah bin Ummi Maktum yang datang kepadamu dengan bersegera untuk mendapat petunjuk dan rahmat dari Tuhannya, sedang ia takut kepada Allah jika ia jatuh ke dalam lembah kesesatan, maka kamu bersikap acuh tak acuh dan tidak memperhatikan permintaannya."',
-        short: "sedang dia takut akan siksa Allah jika tidak mematuhi-Nya,",
+        footnotes: null,
+        text: "sembari merasa takut kepada Tuhannya,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0647\u064f\u0648\u064e \u064a\u064e\u062e\u0652\u0634\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wahuwa yakhshaa,",
-      },
+      arabic: "وَهُوَ يَخْشَىٰ",
     },
     translation: {
-      en: "While he fears [Allah],",
-      id: "sedang dia takut (kepada Allah),",
+      en: {
+        footnotes: "",
+        text: "and he fears Allah,",
+      },
+      id: {
+        footnotes: "",
+        text: "sedang dia takut (kepada Allah),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5768",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5768.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5768.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 585,
       ruku: 522,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5768,
@@ -146,40 +125,32 @@ export const quranSurah80Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat-ayat ini, Allah mengingatkan Nabi Muhammad, "Dan adapun orang seperti \'Abdullah bin Ummi Maktum yang datang kepadamu dengan bersegera untuk mendapat petunjuk dan rahmat dari Tuhannya, sedang ia takut kepada Allah jika ia jatuh ke dalam lembah kesesatan, maka kamu bersikap acuh tak acuh dan tidak memperhatikan permintaannya."',
-        short:
-          "engkau malah mengabaikannya, berpaling darinya, tidak menghiraukannya, dan bermuka masam kepadanya.",
+        footnotes: null,
+        text: "justru engkau mengabaikannya karena sibuk dengan pembesar-pembesar kaum musyrikin.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0646\u062a\u064e \u0639\u064e\u0646\u0652\u0647\u064f \u062a\u064e\u0644\u064e\u0647\u0651\u064e\u0649\u0670",
-      transliteration: {
-        en: "Fa-anta 'anhu talah haa.",
-      },
+      arabic: "فَأَنتَ عَنْهُ تَلَهَّىٰ",
     },
     translation: {
-      en: "From him you are distracted.",
-      id: "engkau (Muhammad) malah mengabaikannya.",
+      en: {
+        footnotes: "",
+        text: "you let yourself be distracted from him.",
+      },
+      id: {
+        footnotes: "",
+        text: "engkau (Muhammad) malah mengabaikannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5769",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5769.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5769.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 585,
       ruku: 522,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5769,
@@ -187,40 +158,32 @@ export const quranSurah80Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menegur Nabi-Nya agar tidak lagi mengulangi tindakan-tindakan seperti itu yaitu ketika ia menghadapi Ibnu Ummi Maktum dan al-Walid bin al-Mugirah beserta kawan-kawannya.\n\nSesungguhnya pengajaran Allah itu adalah suatu peringatan dan nasihat untuk menyadarkan orang-orang yang lupa atau tidak memperhatikan tanda-tanda kebesaran dan kekuasaan Tuhannya. Barang siapa yang menghendaki peringatan yang jelas dan gamblang, tentu ia memperhatikan dan beramal sesuai dengan kehendak hidayah itu. Apalagi jika diperhatikan bahwa hidayah itu berasal dari kitab-kitab yang mulia seperti diterangkan dalam ayat-ayat berikutnya.",
-        short:
-          "Menjelaskan tujuan utama dari teguran-Nya, Allah berfirman, “Sekali-kali jangan berbuat demikian! Sungguh, ajaran-ajaran Allah itu suatu peringatan bagi semua orang agar mereka kembali ke fitrah, yaitu mentauhidkan-Nya dan mengimani-Nya.”",
+        footnotes: null,
+        text: " Seharusnya tidak demikian, sesungguhnya ajaran agama itu adalah nasehat dan peringatan bagi orang yang menerimanya.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u0625\u0650\u0646\u0651\u064e\u0647\u064e\u0627 \u062a\u064e\u0630\u0652\u0643\u0650\u0631\u064e\u0629\u064c",
-      transliteration: {
-        en: "Kalla innaha tazkirah",
-      },
+      arabic: "كَلَّآ إِنَّهَا تَذْكِرَةٌ",
     },
     translation: {
-      en: "No! Indeed, these verses are a reminder;",
-      id: "Sekali-kali jangan (begitu)! Sungguh, (ajaran-ajaran Allah) itu suatu peringatan,",
+      en: {
+        footnotes: "",
+        text: "No indeed; this is a reminder –",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekali-kali jangan (begitu)! Sungguh, (ajaran-ajaran Allah) itu suatu peringatan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5770",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5770.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5770.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 585,
       ruku: 522,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5770,
@@ -228,20 +191,22 @@ export const quranSurah80Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menegur Nabi-Nya agar tidak lagi mengulangi tindakan-tindakan seperti itu yaitu ketika ia menghadapi Ibnu Ummi Maktum dan al-Walid bin al-Mugirah beserta kawan-kawannya.\n\nSesungguhnya pengajaran Allah itu adalah suatu peringatan dan nasihat untuk menyadarkan orang-orang yang lupa atau tidak memperhatikan tanda-tanda kebesaran dan kekuasaan Tuhannya. Barang siapa yang menghendaki peringatan yang jelas dan gamblang, tentu ia memperhatikan dan beramal sesuai dengan kehendak hidayah itu. Apalagi jika diperhatikan bahwa hidayah itu berasal dari kitab-kitab yang mulia seperti diterangkan dalam ayat-ayat berikutnya.",
-        short:
-          "Perigatan-peringatan Allah sudah sangat jelas, maka barang siapa menghendaki untuk mempelajari dengan sungguh-sungguh, tentulah dia akan memperhatikannya, menghayatinya, lalu mengamalkannya. Tidak ada yang menghalangi seseorang memperoleh peringatan itu selain hati yang penuh kesombongan dan keingkaran.",
+        footnotes: null,
+        text: "Barang siapa ingin mengingat Allah maka dia mengingat Allah dan mendapat pelajaran dari apa yang ada di dalam Al-Qur`ān ini.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0645\u064e\u0646 \u0634\u064e\u0627\u0621\u064e \u0630\u064e\u0643\u064e\u0631\u064e\u0647\u064f",
-      transliteration: {
-        en: "Faman shaa a zakarah",
-      },
+      arabic: "فَمَن شَآءَ ذَكَرَهُۥ",
     },
     translation: {
-      en: "So whoever wills may remember it.",
-      id: "maka barangsiapa menghendaki, tentulah dia akan memperhatikannya,",
+      en: {
+        footnotes: "",
+        text: "so whoever wills may give heed to it –",
+      },
+      id: {
+        footnotes: "",
+        text: "maka barangsiapa menghendaki, tentulah dia akan memperhatikannya,",
+      },
     },
   },
 ];

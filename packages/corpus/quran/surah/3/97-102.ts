@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah3Verses97To102 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/390",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/390.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/390.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 25,
       juz: 4,
       manzil: 1,
       page: 62,
       ruku: 51,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 390,
@@ -24,40 +25,35 @@ export const quranSurah3Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Suatu bukti lainnya bahwa Nabi Ibrahim-lah yang mendirikan kembali Kabah, adanya maqam Ibrahim di samping Baitullah, yaitu sebuah batu yang dipergunakan sebagai tempat berdiri oleh Nabi Ibrahim a.s. ketika mendirikan Kabah bersama-sama dengan putranya Ismail a.s. Bekas telapak kakinya itu tetap ada dan dapat disaksikan sampai sekarang.\n\nBarang siapa masuk ke tanah Mekah (daerah haram) terjamin keamanan dirinya dari bahaya musuh dan keamanan itu tidak hanya bagi manusia saja, tetapi juga binatang-binatangnya, tidak boleh diganggu dan pohon-pohonnya tidak boleh ditebang.\n\nSetelah Nabi Ibrahim mendirikan kembali Kabah lalu beliau disuruh Allah menyeru seluruh umat manusia agar mereka berziarah ke Baitullah untuk menunaikan ibadah haji. Ibadah haji ini dianjurkan oleh Nabi Ibrahim dan tetap dilaksanakan umat Islam sampai sekarang sebagai rukun Islam yang kelima. Setiap Muslim yang mampu diwajibkan menunaikan ibadah haji sekali seumur hidup.\n\nBarang siapa yang mengingkari kewajiban ibadah haji, maka ia termasuk golongan orang kafir.",
-        short:
-          "Di sana, di Masjidilharam, terdapat tanda-tanda yang jelas tentang keutamaan dan kemuliaannya diantaranya maqam Ibrahim, yaitu bekas telapak kaki Nabi Ibrahim tempat beliau berdiri waktu membangun Kakbah; hajar aswad, hijir Ismail dan yang lainnya (Lihat: Surah alBaqarah/2: 125). Barang siapa memasukinya, menjadi amanlah dia dari gangguan-gangguan. Dan di antara kewajiban manusia terhadap Allah adalah melaksanakan ibadah haji ke Baitullah, yaitu bagi orang-orang Islam yang sudah akil balig yang mampu mengadakan perjalanan ke sana, mempunyai bekal yang cukup untuk dirinya dan keluarga yang ditinggalkan, kemampuan fisik, ada sarana pengangkutan dan aman dalam perjalanan. Barang siapa mengingkari kewajiban haji, maka dia adalah kafir, karena tidak percaya pada ajaran Islam. Ketahuilah bahwa Allah Mahakaya (tidak memerlukan sesuatu) apapun dari seluruh alam, baik yang taat dan menjalankan ibadah haji, yang durhaka, maupun yang kafir.",
+        footnotes: null,
+        text: "Di Baitullah ini terdapat tanda-tanda yang jelas mengenai kemuliaan dan keutamaannya, seperti manasik dan masyā'ir. Di antaranya ialah batu yang dijadikan tempat berdiri oleh Ibrahim ketika dia hendak meninggikan dinding Ka'bah. Juga di antaranya ialah siapa yang memasukinya maka ia akan merasa aman dan tidak akan mengalami gangguan apa pun, serta seluruh manusia berkewajiban untuk berkunjung ke Baitullah untuk menunaikan ibadah haji karena Allah, bagi orang yang memiliki kemampuan untuk sampai ke tempat itu. Namun, siapa yang mengingkari kewajiban haji maka sungguh Allah Mahakaya, tidak butuh terhadap orang yang kafir itu dan segenap alam semesta.",
       },
     },
     text: {
-      arab: "\u0641\u0650\u064a\u0647\u0650 \u0622\u064a\u064e\u0627\u062a\u064c \u0628\u064e\u064a\u0651\u0650\u0646\u064e\u0627\u062a\u064c \u0645\u0651\u064e\u0642\u064e\u0627\u0645\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u06d6 \u0648\u064e\u0645\u064e\u0646 \u062f\u064e\u062e\u064e\u0644\u064e\u0647\u064f \u0643\u064e\u0627\u0646\u064e \u0622\u0645\u0650\u0646\u064b\u0627 \u06d7 \u0648\u064e\u0644\u0650\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u062d\u0650\u062c\u0651\u064f \u0627\u0644\u0652\u0628\u064e\u064a\u0652\u062a\u0650 \u0645\u064e\u0646\u0650 \u0627\u0633\u0652\u062a\u064e\u0637\u064e\u0627\u0639\u064e \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u0633\u064e\u0628\u0650\u064a\u0644\u064b\u0627 \u06da \u0648\u064e\u0645\u064e\u0646 \u0643\u064e\u0641\u064e\u0631\u064e \u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u063a\u064e\u0646\u0650\u064a\u0651\u064c \u0639\u064e\u0646\u0650 \u0627\u0644\u0652\u0639\u064e\u0627\u0644\u064e\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Feehi Aayaatum baiyinaatum Maqaamu Ibraaheema wa man dakhalahoo kaana aaminaa; wa lillaahi 'alan naasi Hijjul Baiti manis tataa'a ilaihi sabeelaa; wa man kafara fa innal laaha ghaniyyun 'anil 'aalameen",
-      },
+      arabic:
+        "فِيهِ ءَايَٰتٌۢ بَيِّنَٰتٌ مَّقَامُ إِبْرَٰهِيمَ وَمَن دَخَلَهُۥ كَانَ ءَامِنًا وَلِلَّهِ عَلَى ٱلنَّاسِ حِجُّ ٱلْبَيْتِ مَنِ ٱسْتَطَاعَ إِلَيْهِ سَبِيلًا وَمَن كَفَرَ فَإِنَّ ٱللَّهَ غَنِىٌّ عَنِ ٱلْعَٰلَمِينَ",
     },
     translation: {
-      en: "In it are clear signs [such as] the standing place of Abraham. And whoever enters it shall be safe. And [due] to Allah from the people is a pilgrimage to the House - for whoever is able to find thereto a way. But whoever disbelieves - then indeed, Allah is free from need of the worlds.",
-      id: "Di sana terdapat tanda-tanda yang jelas, (di antaranya) maqam Ibrahim. Barangsiapa memasukinya (Baitullah) amanlah dia. Dan (di antara) kewajiban manusia terhadap Allah adalah melaksanakan ibadah haji ke Baitullah, yaitu bagi orang-orang yang mampu mengadakan perjalanan ke sana. Barangsiapa mengingkari (kewajiban) haji, maka ketahuilah bahwa Allah Mahakaya (tidak memerlukan sesuatu) dari seluruh alam.",
+      en: {
+        footnotes:
+          "[44] It is the stone on which Abraham (عليه السلام) stood while building the Ka‘ba. It is an everlasting sign of the relationship of Islam to Abraham’s creed. [45] He is in no need for His servants’ worship; it is they who are in need of Him.",
+        text: "In it are clear signs [such as] the standing place of Abraham[44]; whoever enters it will be safe. Pilgrimage to the House is a duty owed to Allah upon all people who are able to make their way to it; whoever disbelieves, then Allah is in no need for the worlds[45].",
+      },
+      id: {
+        footnotes:
+          "[134] Lihat Al-Baqarah (2): 125. \n[135] Orang yang sanggup mendapatkan perbekalan, alat-alat pengangkutan, sehat jasmani dan perjalanan pun aman serta keluarga yang ditinggalkan terjamin kehidupannya.",
+        text: "Di sana terdapat tanda-tanda yang jelas, (di antaranya) maqam Ibrahim.[134] Barang siapa memasukinya (Baitullah) maka dia aman. Dan (di antara) kewajiban manusia terhadap Allah adalah melaksanakan ibadah haji ke Baitullah, yaitu bagi orang-orang yang mampu[135] mengadakan perjalanan ke sana. Barang siapa mengingkari (kewajiban) haji, maka ketahuilah bahwa Allah Mahakaya (tidak memerlukan sesuatu) dari seluruh alam.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/391",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/391.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/391.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 25,
       juz: 4,
       manzil: 1,
       page: 62,
       ruku: 51,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 391,
@@ -65,40 +61,32 @@ export const quranSurah3Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Dengan ayat ini, para Ahli Kitab yang tetap tidak membenarkan kenabian Muhammad saw dicela padahal bukti-bukti atas kenabian itu sudah cukup banyak dan cukup jelas. Dengan keingkaran dan kekafiran itu mereka selalu berusaha memecah belah kaum Muslimin dan melemahkan posisi mereka.",
-        short:
-          "Setelah jelas dalil dan penjelasan yang diberikan kepada Ahli Kitab atas kebohongan mereka, tetapi mereka tetap ingkar, maka Allah memerintahkan kepada Nabi Muhammad, katakanlah \"Wahai Ahli Kitab! Mengapa kamu mengingkari ayat-ayat Allah, mendustakan Al-Qur'an dan mengingkari kerasulanku, padahal Allah Maha Menyaksikan apa yang kamu kerjakan? Tidak ada kedustaan dan perbuatan kalian yang samar bagi Allah walaupun kalian berusaha menyembunyikannya. Dia akan membalas keburukan perbuatan kalian kelak di hari kiamat.",
+        footnotes: null,
+        text: "Katakanlah -wahai Nabi-, “Wahai Ahli Kitab dari kalangan Yahudi dan Nasrani! Mengapa kalian mengingkari bukti-bukti yang menunjukkan kebenaran Nabi -ṣallallāhu 'alaihi wa sallam- yang salah satunya ialah bukti-bukti yang dikemukakan oleh Kitab Taurat dan Injil?! Sungguh, Allah senantiasa mengawasi dan menyaksikan amal perbuatan kalian, dan akan memberi kalian balasan yang setimpal.”",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u064a\u064e\u0627 \u0623\u064e\u0647\u0652\u0644\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u0650 \u0644\u0650\u0645\u064e \u062a\u064e\u0643\u0652\u0641\u064f\u0631\u064f\u0648\u0646\u064e \u0628\u0650\u0622\u064a\u064e\u0627\u062a\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0634\u064e\u0647\u0650\u064a\u062f\u064c \u0639\u064e\u0644\u064e\u0649\u0670 \u0645\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qul yaaa Ahlal Kitaabi lima takfuroona bi Aayaatillaahi wallaahu shaheedun 'alaa maa ta'maloon",
-      },
+      arabic: "قُلْ يَٰٓأَهْلَ ٱلْكِتَٰبِ لِمَ تَكْفُرُونَ بِـَٔايَٰتِ ٱللَّهِ وَٱللَّهُ شَهِيدٌ عَلَىٰ مَا تَعْمَلُونَ",
     },
     translation: {
-      en: 'Say, "O People of the Scripture, why do you disbelieve in the verses of Allah while Allah is Witness over what you do?"',
-      id: "Katakanlah (Muhammad), “Wahai Ahli Kitab! Mengapa kamu mengingkari ayat-ayat Allah, padahal Allah Maha Menyaksikan apa yang kamu kerjakan?”",
+      en: {
+        footnotes: "",
+        text: "Say, “O People of the Book, why do you reject the verses of Allah when Allah is Witness to all what you do?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Wahai Ahli Kitab! Mengapa kamu mengingkari ayat-ayat Allah, padahal Allah Maha Menyaksikan apa yang kamu kerjakan?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/392",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/392.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/392.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 25,
       juz: 4,
       manzil: 1,
       page: 62,
       ruku: 51,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 392,
@@ -106,40 +94,35 @@ export const quranSurah3Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Ahli Kitab menginginkan agar agama Allah menyimpang dari tujuan yang benar dengan mengubah sifat-sifat Muhammad dan membuat-buat dusta kepada Allah, padahal mereka menanti-nantikan kenabian Muhammad saw di dalam hati kecil mereka sendiri. Allah mengutuk sifat dengki yang tersembunyi dalam dada para pemimpin Ahli Kitab. Allah sekali-kali tidak akan lengah tentang kepalsuan mereka.",
-        short:
-          'Katakanlah, wahai Nabi Muhammad, "Wahai Ahli Kitab!" Setelah kamu kufur, mengapa kamu terus menghalang-halangi dan berusaha memalingkan orang-orang yang beriman dari jalan Allah, kamu menghendakinya (jalan Allah) yang lurus menjadi bengkok, padahal kamu menyaksikan, yaitu mengetahui bahwa apa yang disampaikan oleh Nabi Muhammad adalah benar? Dan Allah tidak lengah terhadap apa yang kamu kerjakan secara terang-terangan maupun sembunyi-sembunyi, baik di masa lampau, sekarang, maupun yang akan datang. Sesungguhnya kalian telah sesat dan menyesatkan.',
+        footnotes: null,
+        text: "Katakanlah -wahai Nabi-, “Wahai Ahli Kitab dari kalangan Yahudi dan Nasrani! Mengapa kalian menghalang-halangi orang-orang yang telah beriman kepada Allah dari agama-Nya dengan tujuan menginginkan agama Allah itu menyimpang dari kebenaran menuju kebatilan, dan para penganutnya tersesat dari jalan yang benar, sedangkan kalian menyaksikan bahwa agama (Islam) ini adalah kebenaran, yang membenarkan apa yang tertera di dalam kitab-kitab suci kalian?! Allah tidak akan lalai terhadap perbuatan kalian yang kafir kepada-Nya dan mengahalangi-halangi jalan-Nya dan Dia akan memberikan balasan yang setimpal kepada kalian.”",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u064a\u064e\u0627 \u0623\u064e\u0647\u0652\u0644\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u0650 \u0644\u0650\u0645\u064e \u062a\u064e\u0635\u064f\u062f\u0651\u064f\u0648\u0646\u064e \u0639\u064e\u0646 \u0633\u064e\u0628\u0650\u064a\u0644\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0645\u064e\u0646\u0652 \u0622\u0645\u064e\u0646\u064e \u062a\u064e\u0628\u0652\u063a\u064f\u0648\u0646\u064e\u0647\u064e\u0627 \u0639\u0650\u0648\u064e\u062c\u064b\u0627 \u0648\u064e\u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u0634\u064f\u0647\u064e\u062f\u064e\u0627\u0621\u064f \u06d7 \u0648\u064e\u0645\u064e\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u063a\u064e\u0627\u0641\u0650\u0644\u064d \u0639\u064e\u0645\u0651\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qul yaaa Ahlal Kitaabi lima tusuddoona 'an sabeelil laahi man aamana tabghoonahaa 'iwajanw wa antum shuhadaaa'; wa mallaahu bighaafilin 'ammaa ta'maloon",
-      },
+      arabic:
+        "قُلْ يَٰٓأَهْلَ ٱلْكِتَٰبِ لِمَ تَصُدُّونَ عَن سَبِيلِ ٱللَّهِ مَنْ ءَامَنَ تَبْغُونَهَا عِوَجًا وَأَنتُمْ شُهَدَآءُ وَمَا ٱللَّهُ بِغَٰفِلٍ عَمَّا تَعْمَلُونَ",
     },
     translation: {
-      en: 'Say, "O People of the Scripture, why do you avert from the way of Allah those who believe, seeking to make it [seem] deviant, while you are witnesses [to the truth]? And Allah is not unaware of what you do."',
-      id: "Katakanlah (Muhammad), “Wahai Ahli Kitab! Mengapa kamu menghalang-halangi orang-orang yang beriman dari jalan Allah, kamu menghendakinya (jalan Allah) bengkok, padahal kamu menyaksikan?” Dan Allah tidak lengah terhadap apa yang kamu kerjakan.",
+      en: {
+        footnotes:
+          "[46] They were devising schemes to deviate people while secretly bearing witness to the Truth mentioned in their Books.",
+        text: "Say, “O People of the Book, why do you hinder the believers from the way of Allah – trying to make it crooked when you are witnesses [to its truth][46]? But Allah is not unaware of what you do.”",
+      },
+      id: {
+        footnotes:
+          "[136] Menyaksikan maksudnya mengetahui bahwa agama yang diridai Allah adalah agama Islam.",
+        text: 'Katakanlah (Muhammad), "Wahai Ahli Kitab! Mengapa kamu menghalang-halangi orang-orang yang beriman dari jalan Allah, kamu menghendakinya (jalan Allah) bengkok, padahal kamu menyaksikan?"[136] Dan Allah tidak lengah terhadap apa yang kamu kerjakan.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/393",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/393.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/393.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 25,
       juz: 4,
       manzil: 1,
       page: 62,
       ruku: 51,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 393,
@@ -147,40 +130,33 @@ export const quranSurah3Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Orang beriman dilarang mengikuti segolongan Ahli Kitab karena mereka selalu mengadakan tipu muslihat terhadap kaum Muslimin. Bila kaum Muslimin mengikuti orang Yahudi, niscaya mereka akan terjerumus kembali ke dalam permusuhan dan kekafiran.",
-        short:
-          "Setelah ayat sebelumnya mengecam Ahli Kitab, maka ayat ini ditujukan kepada orang-orang yang beriman. Wahai orang-orang yang beriman! Jika kamu mengikuti sebagian dari orang yang diberi Kitab, yaitu Yahudi dan Nasrani, niscaya mereka akan mengembalikan dan memalingkan kamu dari agama kamu agar kembali menjadi orang kafir yang kukuh kekafirannya setelah kamu beriman kepada Nabi Muhammad.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman kepada Allah dan mengikuti Rasul-Nya! Jika kalian mematuhi sekelompok Ahli Kitab dari kalangan Yahudi dan Nasrani terkait apa yang mereka ucapkan, dan kalian menerima pendapat mereka tentang apa yang mereka sampaikan, niscaya mereka akan mengembalikan kalian kepada kekafiran setelah beriman. Hal itu karena mereka menyembunyikan kedengkian dan kesesatan dari jalan yang benar.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0625\u0650\u0646 \u062a\u064f\u0637\u0650\u064a\u0639\u064f\u0648\u0627 \u0641\u064e\u0631\u0650\u064a\u0642\u064b\u0627 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064f\u0648\u062a\u064f\u0648\u0627 \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u064a\u064e\u0631\u064f\u062f\u0651\u064f\u0648\u0643\u064f\u0645 \u0628\u064e\u0639\u0652\u062f\u064e \u0625\u0650\u064a\u0645\u064e\u0627\u0646\u0650\u0643\u064f\u0645\u0652 \u0643\u064e\u0627\u0641\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Yaaa ayyuhal lazeena aamanoo in tutee'oo fareeqam minal lazeena ootul Kitaaba yaruddookum ba'da eemaanikum kaafireen",
-      },
+      arabic:
+        "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن تُطِيعُوا۟ فَرِيقًا مِّنَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَٰبَ يَرُدُّوكُم بَعْدَ إِيمَٰنِكُمْ كَٰفِرِينَ",
     },
     translation: {
-      en: "O you who have believed, if you obey a party of those who were given the Scripture, they would turn you back, after your belief, [to being] unbelievers.",
-      id: "Wahai orang-orang yang beriman! Jika kamu mengikuti sebagian dari orang yang diberi Kitab, niscaya mereka akan mengembalikan kamu menjadi orang kafir setelah beriman.",
+      en: {
+        footnotes: "",
+        text: "O you who believe, if you obey a group of those who were given the Scripture, they will turn you back as disbelievers after your belief.",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai orang-orang yang beriman! Jika kamu mengikuti sebagian dari orang yang diberi Kitab, niscaya mereka akan mengembalikan kamu menjadi orang kafir setelah beriman.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/394",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/394.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/394.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 25,
       juz: 4,
       manzil: 1,
       page: 63,
       ruku: 51,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 394,
@@ -188,40 +164,34 @@ export const quranSurah3Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Mengapa kaum Muslimin mengingkari Allah dan mengikuti Ahli Kitab, padahal mereka telah mendengar ayat-ayat Allah yang dibacakan kepada mereka dan ayat-ayat itu adalah sumber petunjuk yang mengandung segala macam kebaikan dan selalu menganjurkan agar memelihara keimanan sedang Rasulullah sendiri masih berada di tengan-tengah mereka sebagai lambang kebenaran, kebajikan dan persaudaraan.\n\nMaka pantaskah orang mukmin yang telah diberi anugerah oleh Allah sedemikian besar mengikuti segolongan orang yang sudah nyata sesat sebelumnya dan menyesatkan orang banyak dari jalan yang lurus? Karena itu hendaklah seorang mukmin berpegang teguh kepada ajaran Allah dan Rasul-Nya. Dengan demikian akan terpeliharalah mereka dan selalu berada dalam lingkungan hidayah-Nya, tidak akan sesat untuk selama-lamanya dan tidak akan merasa takut.",
-        short:
-          "Dan bagaimana kamu sampai menjadi murtad dan kembalii, padahal ayat-ayat Allah dibacakan kepada kamu, dan Rasul-Nya pun berada di tengah-tengah kamu dan telah nyata kebenaran dakwah risalahnya? Maka berpegangteguhlah kepada agama Allah. Barang siapa berpegang teguh kepada agama Allah, maka sungguh, dia diberi petunjuk kepada jalan lebar dan mudah dilalui yang lurus, berupa keimanan yang kuat dan akan diberi kebahagiaan di dunia dan akhirat.\r\nAyat ini mengisyaratkan bahwa orang yang beriman akan selalu mendapatkan cobaan. Walau begitu, barang siapa menjadikan agama Allah sebagai pegangan dan Allah sebagai tempat kembali serta memperbanyak ibadah, maka dia akan selamat dari cobaan tersebut.",
+        footnotes: null,
+        text: "Bagaimana mungkin kalian kafir kepada Allah setelah beriman kepada-Nya, sedangkan kalian mempunyai alasan terbesar untuk mempertahankan iman?! Ayat-ayat Allah selalu dibacakan kepada kalian, dan Rasul-Nya Muhammad -ṣallallāhu 'alaihi wa sallam- senantiasa menjelaskannya kepada kalian. Barang siapa yang berpegang teguh pada kitab Allah dan Sunnah Rasul-Nya maka Allah telah membimbingnya ke jalan lurus, yang tidak ada penyimpangan di dalamnya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0643\u064e\u064a\u0652\u0641\u064e \u062a\u064e\u0643\u0652\u0641\u064f\u0631\u064f\u0648\u0646\u064e \u0648\u064e\u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u062a\u064f\u062a\u0652\u0644\u064e\u0649\u0670 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0622\u064a\u064e\u0627\u062a\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0641\u0650\u064a\u0643\u064f\u0645\u0652 \u0631\u064e\u0633\u064f\u0648\u0644\u064f\u0647\u064f \u06d7 \u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0639\u0652\u062a\u064e\u0635\u0650\u0645 \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0642\u064e\u062f\u0652 \u0647\u064f\u062f\u0650\u064a\u064e \u0625\u0650\u0644\u064e\u0649\u0670 \u0635\u0650\u0631\u064e\u0627\u0637\u064d \u0645\u0651\u064f\u0633\u0652\u062a\u064e\u0642\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Wa kaifa takfuroona wa antum tutlaa 'alaikum Aayaatul laahi wa feekum Rasooluh; wa mai ya'tasim baillaahi faqad hudiya ilaa Siraatim Mustaqeem",
-      },
+      arabic:
+        "وَكَيْفَ تَكْفُرُونَ وَأَنتُمْ تُتْلَىٰ عَلَيْكُمْ ءَايَٰتُ ٱللَّهِ وَفِيكُمْ رَسُولُهُۥ وَمَن يَعْتَصِم بِٱللَّهِ فَقَدْ هُدِىَ إِلَىٰ صِرَٰطٍ مُّسْتَقِيمٍ",
     },
     translation: {
-      en: "And how could you disbelieve while to you are being recited the verses of Allah and among you is His Messenger? And whoever holds firmly to Allah has [indeed] been guided to a straight path.",
-      id: "Dan bagaimana kamu (sampai) menjadi kafir, padahal ayat-ayat Allah dibacakan kepada kamu, dan Rasul-Nya (Muhammad) pun berada di tengah-tengah kamu? Barangsiapa berpegang teguh kepada (agama) Allah, maka sungguh, dia diberi petunjuk kepada jalan yang lurus.",
+      en: {
+        footnotes:
+          "[47] i.e., adhering strictly to His ordinances and to the Sunnah of His Prophet (ﷺ).",
+        text: "How can you disbelieve while Allah’s verses are being recited to you and His Messenger is in your midst? Whoever holds fast to Allah[47] is certainly guided to the straight path.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan bagaimana kamu (sampai) menjadi kafir, padahal ayat-ayat Allah dibacakan kepada kamu, dan Rasul-Nya (Muhammad) pun berada di tengah-tengah kamu? Barang siapa berpegang teguh kepada (agama) Allah, maka sungguh, dia diberi petunjuk ke jalan yang lurus.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/395",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/395.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/395.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 25,
       juz: 4,
       manzil: 1,
       page: 63,
       ruku: 52,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 395,
@@ -229,20 +199,23 @@ export const quranSurah3Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Diserukan kepada kaum Muslimin terutama kaum Aus dan Khazraj agar mereka tetap di Medinah, beriman, bertakwa kepada Allah dengan sebenar-benar takwa, dengan memenuhi segala kewajiban takwa. Dengan mengerahkan segala daya dan kemampuan untuk melaksanakan perintah Allah dan menjauhi larangan-Nya, secara keseluruhan, dan jangan mati, melainkan dalam keadaan memeluk agama Islam.",
-        short:
-          "Supaya kamu memperoleh keimanan yang kuat dan tidak goyah ketika terjadi cobaan, maka wahai orang-orang yang beriman! Bertakwalah kepada Allah sebenar-benar takwa kepada-Nya sesuai kebesaran, keagungan, dan kasih sayang-Nya kepada kamu. Bukti ketakwaan tersebut adalah menaati Allah dan tidak sekalipun durhaka, mengingat-Nya dan tidak sesaat pun melupakan-Nya, serta mensyukuri nikmat-Nya tanpa sekalipun dan sekecil apa pun mengingkarinya sampai batas akhir kemampuan kamu, dan janganlah kamu mati kecuali dalam keadaan muslim, berserah diri kepada Allah dengan tetap memeluk agama yang diridai, yaitu Islam. Karena tidak seorang pun mengetahui kapan datangnya kematian, maka berusahalah sekuat tenaga untuk selalu berada di jalan Allah, karena Allah akan menganugerahi hamba sesuai usaha yang dilakukannya.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman kepada Allah dan mengikuti Rasul-Nya! Takutlah kalian kepada Tuhan kalian dengan sebenar-benarnya takut, yaitu dengan mengikuti perintah-perintah-Nya, menjauhi larangan-larangan-Nya, dan mensyukuri nikmat-nikmat-Nya, serta berpegang-teguhlah kalian pada agama kalian sampai maut menjemput ketika kalian dalam keadaan seperti itu.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0627\u062a\u0651\u064e\u0642\u064f\u0648\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u062d\u064e\u0642\u0651\u064e \u062a\u064f\u0642\u064e\u0627\u062a\u0650\u0647\u0650 \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0645\u064f\u0648\u062a\u064f\u0646\u0651\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0648\u064e\u0623\u064e\u0646\u062a\u064f\u0645 \u0645\u0651\u064f\u0633\u0652\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Yaaa ayyuhal lazeena aamanut taqul laaha haqqa tuqaatihee wa laa tamoontunna illaa wa antum muslimoon",
-      },
+      arabic:
+        "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ حَقَّ تُقَاتِهِۦ وَلَا تَمُوتُنَّ إِلَّا وَأَنتُم مُّسْلِمُونَ",
     },
     translation: {
-      en: "O you who have believed, fear Allah as He should be feared and do not die except as Muslims [in submission to Him].",
-      id: "Wahai orang-orang yang beriman! Bertakwalah kepada Allah sebenar-benar takwa kepada-Nya dan janganlah kamu mati kecuali dalam keadaan Muslim.",
+      en: {
+        footnotes: "",
+        text: "O you who believe, fear Allah as He should be feared, and do not die except as Muslims.",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai orang-orang yang beriman! Bertakwalah kepada Allah sebenar-benar takwa kepada-Nya dan janganlah kamu mati kecuali dalam keadaan Muslim.",
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses91To96 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3879",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3879.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3879.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 449,
       ruku: 388,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3879,
@@ -24,40 +25,33 @@ export const quranSurah37Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Sesudah kaumnya pergi, Ibrahim diam-diam menuju tempat patung-patung itu, lalu berkata dengan maksud mengejek, "Mengapa patung-patung itu tidak memakan makanan yang dihidangkan di hadapannya." Sesajen itu disuguhkan oleh para penyembahnya pada hari-hari tertentu untuk mengharapkan berkah.\n\nTentu saja patung-patung itu tidak berkata apa-apa. Akan tetapi, Ibrahim bertanya lagi, "Mengapa patung-patung itu tidak menjawab pertanyaanku?" Kemudian patung-patung itu dipukulnya dengan keras sampai hancur kecuali sebuah patung yang paling besar. Peristiwa ini menimbulkan kemarahan kaumnya. Lalu mereka mencari pelakunya dan memperoleh keterangan bahwa Ibrahimlah yang memecahkan patung-patung itu. Mereka cepat-cepat menemui Ibrahim dan menanyakan kepadanya, apakah benar dia memecahkan patung-patung itu. Ibrahim mengelak dari pertanyaan itu dan mengatakan bahwa patung yang besar itulah yang memecahkannya. Setelah mendengar ucapan Ibrahim, kaumnya menundukkan kepala dan merenungkan diri masing-masing. Tidak ada yang dapat mereka perbuat terhadap patung besar itu, yang selama ini mereka sembah.',
-        short:
-          "Tidak lama kemudian dia, yakni Nabi Ibrahim, pergi dengan diam-diam kepada berhala-berhala mereka; lalu dia berkata kepadanya dengan nada mengejek “Mengapa kamu tidak makan sajian yang mereka sediakan untukmu?",
+        footnotes: null,
+        text: "Kemudian Ibrahim mendatangi berhala-berhala yang mereka sembah selain Allah. Dia mencibir berhala-berhala tersebut dengan berkata, “Mengapa kalian tidak menyantap makanan yang dibuat oleh para pemuja kalian?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0631\u064e\u0627\u063a\u064e \u0625\u0650\u0644\u064e\u0649\u0670 \u0622\u0644\u0650\u0647\u064e\u062a\u0650\u0647\u0650\u0645\u0652 \u0641\u064e\u0642\u064e\u0627\u0644\u064e \u0623\u064e\u0644\u064e\u0627 \u062a\u064e\u0623\u0652\u0643\u064f\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Faraagha ilaaa aalihatihim faqaala alaa taakuloon",
-      },
+      arabic: "فَرَاغَ إِلَىٰٓ ءَالِهَتِهِمْ فَقَالَ أَلَا تَأْكُلُونَ",
     },
     translation: {
-      en: 'Then he turned to their gods and said, "Do you not eat?',
-      id: "Kemudian dia (Ibrahim) pergi dengan diam-diam kepada berhala-berhala mereka; lalu dia berkata, “Mengapa kamu tidak makan?",
+      en: {
+        footnotes: "[22] The offerings placed before you.",
+        text: "Then he turned to their gods and said, “Why do you not eat[22]?",
+      },
+      id: {
+        footnotes:
+          "[731] Mengejek berhala-berhala itu, karena dekat berhala itu banyak diletakkan makanan-makanan yang baik sebagai sajian-sajian.",
+        text: 'Kemudian dia (Ibrahim) pergi dengan diam-diam kepada berhala-berhala mereka; lalu dia berkata, "Mengapa kamu tidak makan?[731]',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3880",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3880.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3880.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 449,
       ruku: 388,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3880,
@@ -65,39 +59,32 @@ export const quranSurah37Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Sesudah kaumnya pergi, Ibrahim diam-diam menuju tempat patung-patung itu, lalu berkata dengan maksud mengejek, "Mengapa patung-patung itu tidak memakan makanan yang dihidangkan di hadapannya." Sesajen itu disuguhkan oleh para penyembahnya pada hari-hari tertentu untuk mengharapkan berkah.\n\nTentu saja patung-patung itu tidak berkata apa-apa. Akan tetapi, Ibrahim bertanya lagi, "Mengapa patung-patung itu tidak menjawab pertanyaanku?" Kemudian patung-patung itu dipukulnya dengan keras sampai hancur kecuali sebuah patung yang paling besar. Peristiwa ini menimbulkan kemarahan kaumnya. Lalu mereka mencari pelakunya dan memperoleh keterangan bahwa Ibrahimlah yang memecahkan patung-patung itu. Mereka cepat-cepat menemui Ibrahim dan menanyakan kepadanya, apakah benar dia memecahkan patung-patung itu. Ibrahim mengelak dari pertanyaan itu dan mengatakan bahwa patung yang besar itulah yang memecahkannya. Setelah mendengar ucapan Ibrahim, kaumnya menundukkan kepala dan merenungkan diri masing-masing. Tidak ada yang dapat mereka perbuat terhadap patung besar itu, yang selama ini mereka sembah.',
-        short: "Mengapa kamu tidak menjawab sepatah kata pun?”",
+        footnotes: null,
+        text: " Mengapa kalian tidak berkata-kata, tidak menjawab siapa yang bertanya kepada kalian? Apakah seperti ini disembah selain Allah?”",
       },
     },
     text: {
-      arab: "\u0645\u064e\u0627 \u0644\u064e\u0643\u064f\u0645\u0652 \u0644\u064e\u0627 \u062a\u064e\u0646\u0637\u0650\u0642\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Maa lakum laa tantiqoon",
-      },
+      arabic: "مَا لَكُمْ لَا تَنطِقُونَ",
     },
     translation: {
-      en: 'What is [wrong] with you that you do not speak?"',
-      id: "Mengapa kamu tidak menjawab?”",
+      en: {
+        footnotes: "",
+        text: "What is wrong with you that you do not speak?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mengapa kamu tidak menjawab?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3881",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3881.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3881.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 449,
       ruku: 388,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3881,
@@ -105,40 +92,32 @@ export const quranSurah37Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Sesudah kaumnya pergi, Ibrahim diam-diam menuju tempat patung-patung itu, lalu berkata dengan maksud mengejek, "Mengapa patung-patung itu tidak memakan makanan yang dihidangkan di hadapannya." Sesajen itu disuguhkan oleh para penyembahnya pada hari-hari tertentu untuk mengharapkan berkah.\n\nTentu saja patung-patung itu tidak berkata apa-apa. Akan tetapi, Ibrahim bertanya lagi, "Mengapa patung-patung itu tidak menjawab pertanyaanku?" Kemudian patung-patung itu dipukulnya dengan keras sampai hancur kecuali sebuah patung yang paling besar. Peristiwa ini menimbulkan kemarahan kaumnya. Lalu mereka mencari pelakunya dan memperoleh keterangan bahwa Ibrahimlah yang memecahkan patung-patung itu. Mereka cepat-cepat menemui Ibrahim dan menanyakan kepadanya, apakah benar dia memecahkan patung-patung itu. Ibrahim mengelak dari pertanyaan itu dan mengatakan bahwa patung yang besar itulah yang memecahkannya. Setelah mendengar ucapan Ibrahim, kaumnya menundukkan kepala dan merenungkan diri masing-masing. Tidak ada yang dapat mereka perbuat terhadap patung besar itu, yang selama ini mereka sembah.',
-        short:
-          "Lalu dihadapinya berhala-berhala itu sambil memukulnya dengan tangan kanannya hingga hancur.",
+        footnotes: null,
+        text: "Maka Ibrahim maju menghantam berhala-berhala tersebut dengan tangan kanannya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0631\u064e\u0627\u063a\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0636\u064e\u0631\u0652\u0628\u064b\u0627 \u0628\u0650\u0627\u0644\u0652\u064a\u064e\u0645\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Faraagha 'alaihim darbam bilyameen",
-      },
+      arabic: "فَرَاغَ عَلَيْهِمْ ضَرْبًۢا بِٱلْيَمِينِ",
     },
     translation: {
-      en: "And he turned upon them a blow with [his] right hand.",
-      id: "Lalu dihadapinya (berhala-berhala) itu sambil memukulnya dengan tangan kanannya.",
+      en: {
+        footnotes: "",
+        text: "Then he turned upon them, striking them with his right hand.",
+      },
+      id: {
+        footnotes: "",
+        text: "Lalu dihadapinya (berhala-berhala) itu sambil memukulnya dengan tangan kanannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3882",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3882.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3882.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 449,
       ruku: 388,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3882,
@@ -146,40 +125,32 @@ export const quranSurah37Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Sesudah kaumnya pergi, Ibrahim diam-diam menuju tempat patung-patung itu, lalu berkata dengan maksud mengejek, "Mengapa patung-patung itu tidak memakan makanan yang dihidangkan di hadapannya." Sesajen itu disuguhkan oleh para penyembahnya pada hari-hari tertentu untuk mengharapkan berkah.\n\nTentu saja patung-patung itu tidak berkata apa-apa. Akan tetapi, Ibrahim bertanya lagi, "Mengapa patung-patung itu tidak menjawab pertanyaanku?" Kemudian patung-patung itu dipukulnya dengan keras sampai hancur kecuali sebuah patung yang paling besar. Peristiwa ini menimbulkan kemarahan kaumnya. Lalu mereka mencari pelakunya dan memperoleh keterangan bahwa Ibrahimlah yang memecahkan patung-patung itu. Mereka cepat-cepat menemui Ibrahim dan menanyakan kepadanya, apakah benar dia memecahkan patung-patung itu. Ibrahim mengelak dari pertanyaan itu dan mengatakan bahwa patung yang besar itulah yang memecahkannya. Setelah mendengar ucapan Ibrahim, kaumnya menundukkan kepala dan merenungkan diri masing-masing. Tidak ada yang dapat mereka perbuat terhadap patung besar itu, yang selama ini mereka sembah.',
-        short:
-          "Hancurnya berhala-berhala itu diketahui oleh kaum Nabi Ibrahim, kemudian mereka datang bergegas kepadanya dengan penuh amarah.",
+        footnotes: null,
+        text: "Kemudian para penyembah berhala-berhala tersebut datang bergegas kepadanya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0642\u0652\u0628\u064e\u0644\u064f\u0648\u0627 \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u064a\u064e\u0632\u0650\u0641\u0651\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa aqbalooo ilaihi yaziffoon",
-      },
+      arabic: "فَأَقْبَلُوٓا۟ إِلَيْهِ يَزِفُّونَ",
     },
     translation: {
-      en: "Then the people came toward him, hastening.",
-      id: "Kemudian mereka (kaumnya) datang bergegas kepadanya.",
+      en: {
+        footnotes: "",
+        text: "Then his people came rushing towards him.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian mereka (kaumnya) datang bergegas kepadanya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3883",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3883.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3883.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 449,
       ruku: 388,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3883,
@@ -187,40 +158,32 @@ export const quranSurah37Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Sesudah melihat keadaan kaumnya tertegun menunduk-kan kepala, Nabi Ibrahim lalu berkata lagi kepada mereka bahwa tidak patut mereka menyembah patung-patung yang mereka pahat dengan tangannya sendiri. Mereka mestinya bersyukur bahwa dari kalangan mereka sendiri, lahir seorang yang punya akal pikiran, yang mencegah penyembahan patung-patung itu. Nabi Ibrahim menegaskan lagi bahwa yang patut disembah hanyalah Allah yang menciptakan mereka dan patung-patung sesembahan mereka itu. Tuhan Maha Pencipta lebih berhak disembah daripada makhluk-Nya. Firman Allah:\n\nDia (Ibrahim) berkata, "Mengapa kamu menyembah selain Allah, sesuatu yang tidak dapat memberi manfaat sedikit pun, dan tidak (pula) mendatangkan mudarat kepada kamu? Celakalah kamu dan apa yang kamu sembah selain Allah! Tidakkah kamu mengerti?" (al-Anbiya\'/21: 66-67)\n\nAlasan yang disampaikan Nabi Ibrahim tidak dapat mereka bantah dengan alasan pula, sehingga mereka menempuh cara kekerasan menantang Ibrahim. Mereka merencanakan membunuh Ibrahim. Lalu didirikanlah sebuah bangunan untuk dijadikan tempat pembakaran Nabi Ibrahim. Ketika bangunan itu telah selesai dan apinya telah dinyalakan, lalu Nabi Ibrahim dilemparkan ke dalamnya. Firman Allah:\n\nMereka berkata, "Bakarlah dia dan bantulah tuhan-tuhan kamu, jika kamu benar-benar hendak berbuat." (al-Anbiya\'/21: 68)\n\nKaum Ibrahim benar-benar menghendaki ia binasa dan hangus terbakar dalam unggun api itu. Akan tetapi, Allah berkehendak menyelamatkan dia dari kebinasaan dengan memerintahkan kepada api supaya tidak membakar Ibrahim, sebagaimana firman-Nya:\n\nKami (Allah) berfirman, "Wahai api! Jadilah kamu dingin, dan penyelamat bagi Ibrahim!" (al-Anbiya\'/21: 69)\n\nDengan demikian, Nabi Ibrahim selamat dari unggun api, dan mendapat kemenangan atas orang kafir.\n\nSesudah beliau tidak melihat lagi tanda-tanda kesediaan kaumnya untuk beriman, maka beliau bermaksud untuk meninggalkan mereka, hijrah dari kampung halaman. Barangkali di tempat yang baru itu, beliau dapat beribadah kepada Tuhan tanpa gangguan dari kaum yang ingkar, dan dapat mengembangkan agama dengan taufik dan hidayah Allah. Adapun negeri yang beliau tuju ialah Baitulmakdis.',
-        short:
-          "Nabi Ibrahim tidak gentar menghadapi amarah kaumnya. Dia dengan percaya diri berkata, “Apakah kamu menyembah patung-patung yang kamu pahat itu? Bagaimana mungkin kalian menyembah buah karya kalian sendiri?",
+        footnotes: null,
+        text: "Ibrahim menghadapi mereka dengan keberanian dan berkata kepada mereka sembari mencela perbuatan mereka, “Apakah kalian menyembah tuhan-tuhan selain Allah yang kalian pahat sendiri dengan tangan kalian?",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0623\u064e\u062a\u064e\u0639\u0652\u0628\u064f\u062f\u064f\u0648\u0646\u064e \u0645\u064e\u0627 \u062a\u064e\u0646\u0652\u062d\u0650\u062a\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qaala ata'budoona maa tanhitoon",
-      },
+      arabic: "قَالَ أَتَعْبُدُونَ مَا تَنْحِتُونَ",
     },
     translation: {
-      en: 'He said, "Do you worship that which you [yourselves] carve,',
-      id: "Dia (Ibrahim) berkata, “Apakah kamu menyembah patung-patung yang kamu pahat itu?",
+      en: {
+        footnotes: "",
+        text: "He said, “Do you worship what you yourselves carve,",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Ibrahim) berkata, "Apakah kamu menyembah patung-patung yang kamu pahat itu?',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3884",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3884.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3884.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 180,
       juz: 23,
       manzil: 6,
       page: 449,
       ruku: 388,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3884,
@@ -228,20 +191,22 @@ export const quranSurah37Verses91To96 = [
     },
     tafsir: {
       id: {
-        long: 'Sesudah melihat keadaan kaumnya tertegun menunduk-kan kepala, Nabi Ibrahim lalu berkata lagi kepada mereka bahwa tidak patut mereka menyembah patung-patung yang mereka pahat dengan tangannya sendiri. Mereka mestinya bersyukur bahwa dari kalangan mereka sendiri, lahir seorang yang punya akal pikiran, yang mencegah penyembahan patung-patung itu. Nabi Ibrahim menegaskan lagi bahwa yang patut disembah hanyalah Allah yang menciptakan mereka dan patung-patung sesembahan mereka itu. Tuhan Maha Pencipta lebih berhak disembah daripada makhluk-Nya. Firman Allah:\n\nDia (Ibrahim) berkata, "Mengapa kamu menyembah selain Allah, sesuatu yang tidak dapat memberi manfaat sedikit pun, dan tidak (pula) mendatangkan mudarat kepada kamu? Celakalah kamu dan apa yang kamu sembah selain Allah! Tidakkah kamu mengerti?" (al-Anbiya\'/21: 66-67)\n\nAlasan yang disampaikan Nabi Ibrahim tidak dapat mereka bantah dengan alasan pula, sehingga mereka menempuh cara kekerasan menantang Ibrahim. Mereka merencanakan membunuh Ibrahim. Lalu didirikanlah sebuah bangunan untuk dijadikan tempat pembakaran Nabi Ibrahim. Ketika bangunan itu telah selesai dan apinya telah dinyalakan, lalu Nabi Ibrahim dilemparkan ke dalamnya. Firman Allah:\n\nMereka berkata, "Bakarlah dia dan bantulah tuhan-tuhan kamu, jika kamu benar-benar hendak berbuat." (al-Anbiya\'/21: 68)\n\nKaum Ibrahim benar-benar menghendaki ia binasa dan hangus terbakar dalam unggun api itu. Akan tetapi, Allah berkehendak menyelamatkan dia dari kebinasaan dengan memerintahkan kepada api supaya tidak membakar Ibrahim, sebagaimana firman-Nya:\n\nKami (Allah) berfirman, "Wahai api! Jadilah kamu dingin, dan penyelamat bagi Ibrahim!" (al-Anbiya\'/21: 69)\n\nDengan demikian, Nabi Ibrahim selamat dari unggun api, dan mendapat kemenangan atas orang kafir.\n\nSesudah beliau tidak melihat lagi tanda-tanda kesediaan kaumnya untuk beriman, maka beliau bermaksud untuk meninggalkan mereka, hijrah dari kampung halaman. Barangkali di tempat yang baru itu, beliau dapat beribadah kepada Tuhan tanpa gangguan dari kaum yang ingkar, dan dapat mengembangkan agama dengan taufik dan hidayah Allah. Adapun negeri yang beliau tuju ialah Baitulmakdis.',
-        short:
-          "Mengapa kamu tidak menyembah Allah, padahal Allah-lah yang menciptakan kamu dan apa yang kamu perbuat itu?”",
+        footnotes: null,
+        text: "Padahal, Allah -Subḥānahu- yang menciptakan kalian dan menciptakan perbuatan kalian, di antaranya adalah perbuatan kalian membuat berhala-berhala ini. Dialah yang berhak untuk disembah semata dan tidak disekutukan dengan selain-Nya.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u062e\u064e\u0644\u064e\u0642\u064e\u0643\u064f\u0645\u0652 \u0648\u064e\u0645\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wallaahu khalaqakum wa maa ta'maloon",
-      },
+      arabic: "وَٱللَّهُ خَلَقَكُمْ وَمَا تَعْمَلُونَ",
     },
     translation: {
-      en: 'While Allah created you and that which you do?"',
-      id: "Padahal Allah-lah yang menciptakan kamu dan apa yang kamu perbuat itu.”",
+      en: {
+        footnotes: "",
+        text: "when it is Allah Who created you and all what you do?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Padahal Allah lah yang menciptakan kamu dan apa yang kamu perbuat."',
+      },
     },
   },
 ];

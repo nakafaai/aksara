@@ -34,6 +34,7 @@ function manifestInput(inlineVersion: 1 | 2, expanded: boolean) {
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"] as const,
   };
 }
 

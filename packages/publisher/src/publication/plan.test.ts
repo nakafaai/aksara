@@ -8,7 +8,11 @@ import {
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
-import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import {
+  inheritContentSnapshots,
+  type PublicationScope,
+  PublicationScopeSchema,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Redacted, Stream } from "effect";
 import { describe, expect, it } from "vitest";
@@ -24,7 +28,12 @@ import {
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { testFileLayer } from "#test/files";
-import { contentRecord, head, rendererManifest } from "#test/publication";
+import {
+  contentRecord,
+  head,
+  publicationScope,
+  rendererManifest,
+} from "#test/publication";
 import {
   emptySnapshotSources,
   makeProgramSnapshotFixture,
@@ -51,7 +60,10 @@ type SnapshotSources<E> = Pick<
 >;
 
 /** Prepares one real deletion against an authenticated compact base catalog. */
-async function prepareDeletion<E>(snapshotSources: SnapshotSources<E>) {
+async function prepareDeletion<E>(
+  snapshotSources: SnapshotSources<E>,
+  snapshots: PublicationScope["snapshots"] = []
+) {
   const baseReleaseId = ReleaseIdSchema.make("test-plan-base");
   const base = await Effect.runPromise(
     digestResultCatalog(baseReleaseId, Stream.make(head))
@@ -89,6 +101,7 @@ async function prepareDeletion<E>(snapshotSources: SnapshotSources<E>) {
           },
           next: { contentKey: head.contentKey, locale: head.locale },
         }),
+      scope: { ...publicationScope, snapshots },
       ...snapshotSources,
     })
   );
@@ -110,6 +123,11 @@ async function prepareProgramOnly() {
       rendererManifest,
       result: () => Stream.empty,
       routes: () => Stream.empty,
+      scope: PublicationScopeSchema.make({
+        content: [],
+        families: [],
+        snapshots: ["program"],
+      }),
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
     })
@@ -159,7 +177,7 @@ describe("preparePublicationPlan", () => {
 
   it("retains item and structured invalidation in a mixed release", async () => {
     const snapshot = await makeProgramSnapshotFixture();
-    const prepared = await prepareDeletion(snapshot);
+    const prepared = await prepareDeletion(snapshot, ["program"]);
     const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([

@@ -12,48 +12,28 @@ import { quranSurah22Verses61To66 } from "#corpus/quran/surah/22/61-66";
 import { quranSurah22Verses67To72 } from "#corpus/quran/surah/22/67-72";
 import { quranSurah22Verses73To78 } from "#corpus/quran/surah/22/73-78";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah22 = {
   name: {
-    long: "\u0633\u0648\u0631\u0629 \u0627\u0644\u062d\u062c",
-    short: "الحج",
-    translation: {
-      en: "The Pilgrimage",
-      id: "Haji",
-    },
-    transliteration: {
-      en: "Al-Hajj",
-      id: "Al-Hajj",
-    },
+    arabic: "الحج",
+    translation: "The Pilgrimage",
+    transliteration: "Al-Hajj",
   },
   number: 22,
   numberOfVerses: 78,
-  preBismillah: {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1.mp3",
-      ],
-    },
-    text: {
-      arab: "\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Bismillaahir Rahmaanir Raheem",
-      },
-    },
-    translation: {
-      en: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
-      id: "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
-    },
-  },
   revelation: {
-    arab: "\u0645\u062F\u064A\u0646\u0629",
-    en: "Medinan",
-    id: "Madaniyyah",
-  },
-  sequence: 103,
-  tafsir: {
-    id: "Surat Al Hajj, termasuk golongan surat-surat Madaniyyah, terdiri atas 78 ayat, sedang menurut pendapat sebahagian ahli tafsir termasuk golongan surat-surat Makkiyah. Sebab perbedaan ini ialah karena sebahagian ayat-ayat surat ini ada yang diturunkan di Mekah dan sebahagian lagi diturunkan di Madinah. Dinamai surat ini Al Hajj, karena surat ini mengemukakan hal-hal yang berhubungan dengan ibadat haji, seperti ihram, thawaf, sa'i, wuquf di Arafah, mencukur rambut, syi'ar-syi'ar Allah, faedah-faedah dan hikmah-hikmah disyari'atkannya haji. Ditegaskan pula bahwa ibadat haji itu telah disyari'atkan di masa Nabi Ibrahim a.s., dan Ka'bah didirikan oleh Nabi Ibrahim a.s. bersama puteranya Ismail a.s.Menurut Al Ghaznawi, surat Al Hajj termasuk di antara surat- surat yang ajaib, diturunkan di malam dan di siang hari, dalam musafir dan dalam keadaan tidak musafir, ada ayat-ayat yang diturunkan di Mekah dan ada pula yang diturunkan di Madinah, isinya ada yang berhubungan dengan peperangan dan ada pula yang berhubungan dengan perdamaian, ada ayat-ayatnya yang muhkam dan ada pula yang mutasyabihaat.",
+    order: 103,
+    place: "Medinan",
   },
   verses: [
     ...quranSurah22Verses1To6,

@@ -1,38 +1,70 @@
 # Third-party notices
 
 Aksara preserves third-party rights independently from the Nakafa software and
-content licenses. Inclusion here is attribution and license compliance; it is
-not a claim that an intermediary may grant rights it does not own.
+content licenses. The Quran source identities, exact artifacts, retrieval
+metadata, and legal-evidence hashes are recorded in
+`docs/baselines/quran-provenance.md`.
 
-## Quran data lineage
+## Tanzil Quran Text
 
-The reviewed Quran corpus was imported through these MIT-licensed projects:
+Tanzil Quran Text (Uthmani, Version 1.1)
 
-- `gadingnst/quran-api`, copyright 2020 Sutan Nasution.
-- `gadingnst/quran.machine`, copyright 2021 Sutan Nasution.
-- `rioastamal/quran-json`, copyright 2018 Rio Astamal
-  `<rio@rioastamal.net>`.
+Copyright (C) 2007-2026 Tanzil Project
 
-Their exact source chain and unresolved primary-source permissions are recorded
-in `packages/corpus/quran/provenance.ts`. Quran publication remains blocked
-until every primary-source gate is approved.
+License: Creative Commons Attribution 3.0
 
-### MIT License
+Permission is granted to copy and distribute verbatim copies of this text, but
+changing it is not allowed. Its source, Tanzil Project, must be clearly
+indicated and linked to [tanzil.net](https://tanzil.net) so users can track
+changes. Check updates at [tanzil.net/updates](https://tanzil.net/updates/).
+The complete official notice remains inside
+`packages/corpus/quran/sources/tanzil/text.txt`.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
+## Tanzil Quran Metadata
 
-The above copyright notices and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Quran Metadata, Version 1.0
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Copyright (C) 2008-2009 Tanzil.info
+
+The exact official XML declares the `cc-by` license. See the
+[Tanzil metadata documentation](https://tanzil.net/docs/Quran_Metadata).
+
+## QuranEnc English translation
+
+Translation of the meanings of the Noble Qur'an, English Rwwad
+v1.0.19-xml.1.
+
+Translated by the Rowwad Translation Center team, in cooperation with the
+Rabwah Dawah Association, the Islamic Content Service Association in
+Languages, and IslamHouse.com. Source:
+[QuranEnc.com](https://quranenc.com/en/browse/english_rwwad).
+
+## QuranEnc Indonesian translation
+
+Indonesian Translation - Ministry of Religious Affairs,
+v1.0.1-xml.1.
+
+Issued by the Indonesian Ministry of Religious Affairs and developed under the
+supervision of Rowwad Translation Center. Source:
+[QuranEnc.com](https://quranenc.com/en/browse/indonesian_affairs).
+
+## QuranEnc Indonesian Al-Mukhtasar
+
+Indonesian Translation of Al-Mukhtasar in Interpreting the Noble Quran,
+v1.0.0.
+
+Issued by Tafsir Center for Quranic Studies. Source:
+[QuranEnc.com](https://quranenc.com/en/browse/indonesian_mokhtasar).
+
+## QuranEnc republication conditions
+
+QuranEnc permits its translations to be downloaded and republished when the
+content is not modified, added to, or deleted; the publisher, QuranEnc.com, and
+version are clearly stated; transcript information is retained; notes are
+reported to QuranEnc; the source is updated to the latest issued version; and
+no inappropriate advertisements accompany the Quran translation.
+
+The exact reviewed terms page is retained at
+`packages/corpus/quran/sources/quranenc/terms.html`. Aksara preserves
+translation and footnote values exactly and publishes the required attribution
+as a signed runtime row.

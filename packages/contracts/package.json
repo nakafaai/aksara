@@ -1,7 +1,7 @@
 {
   "name": "@nakafa/aksara-contracts",
   "version": "0.1.0",
-  "description": "Public schemas and verification contracts for Nakafa content releases.",
+  "description": "Schemas and verification contracts for Nakafa content releases.",
   "homepage": "https://github.com/nakafaai/aksara#readme",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
@@ -26,9 +26,6 @@
     "type": "git",
     "url": "git+https://github.com/nakafaai/aksara.git",
     "directory": "packages/contracts"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "exports": {
     "./content": {
@@ -180,6 +177,11 @@
       "aksara-source": "./src/quran/spec.ts",
       "types": "./dist/quran/spec.d.ts",
       "import": "./dist/quran/spec.js"
+    },
+    "./quran/source": {
+      "aksara-source": "./src/quran/source.ts",
+      "types": "./dist/quran/source.d.ts",
+      "import": "./dist/quran/source.js"
     },
     "./preview/spec": {
       "aksara-source": "./src/preview/spec.ts",
@@ -341,6 +343,11 @@
       "types": "./dist/renderer/component.d.ts",
       "import": "./dist/renderer/component.js"
     },
+    "./renderer/compatibility": {
+      "aksara-source": "./src/renderer/compatibility.ts",
+      "types": "./dist/renderer/compatibility.d.ts",
+      "node": "./dist/renderer/compatibility.js"
+    },
     "./renderer/domain": {
       "aksara-source": "./src/renderer/domain.ts",
       "types": "./dist/renderer/domain.d.ts",
@@ -439,14 +446,14 @@
   },
   "scripts": {
     "clean": "git clean -xdf dist coverage",
-    "prebuild": "git clean -xdf dist",
     "build": "tsc --project tsconfig.build.json",
-    "prepack": "pnpm run build",
     "test": "vitest run --config ../../vitest.config.ts",
     "typecheck": "tsc --project tsconfig.json",
-    "verify:package": "pnpm run build && node scripts/verify-edge.ts && node scripts/verify-package.ts"
+    "verify:consumer": "pnpm run build && node scripts/verify-edge.ts && node scripts/verify-consumer.ts"
   },
   "devDependencies": {
+    "@effect/platform": "catalog:",
+    "@effect/platform-node": "catalog:",
     "@nakafa/typescript-config": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "effect": "catalog:",

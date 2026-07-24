@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah24Verses31To36 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2822",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2822.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2822.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 141,
       juz: 18,
       manzil: 4,
       page: 353,
       ruku: 304,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2822,
@@ -24,40 +25,34 @@ export const quranSurah24Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menyuruh Rasul-Nya agar mengingatkan perempuan-perempuan yang beriman supaya mereka tidak memandang hal-hal yang tidak halal bagi mereka, seperti aurat laki-laki ataupun perempuan, terutama antara pusat dan lutut bagi laki-laki dan seluruh tubuh bagi perempuan. Begitu pula mereka diperintahkan untuk memelihara kemaluannya (farji) agar tidak jatuh ke lembah perzinaan, atau terlihat oleh orang lain. \n\nSabda Rasulullah Saw. \n\nDari Ummu Salamah, bahwa ketika dia dan Maimunah berada di samping Rasulullah datanglah Abdullah bin Umi Maktum dan masuk ke dalam rumah Rasulullah (pada waktu itu telah ada perintah hijab). Rasulullah memerintahkan kepada Ummu Salamah dan Maimunah untuk berlindung (berhijab) dari Abdullah bin Umi Maktum, Ummu Salamah berkata, wahai Rasulullah bukankah dia itu buta tidak melihat dan mengenal kami?, Rasulullah menjawab, apakah kalian berdua buta dan tidak melihat dia?. (Riwayat Abu Daud dan at-Tirmidzi) \n\nBegitu pula mereka para perempuan diharuskan untuk menutup kepala dan dadanya dengan kerudung, agar tidak terlihat rambut dan leher serta dadanya. Sebab kebiasaan perempuan mereka menutup kepalanya namun kerudungnya diuntaikan ke belakang sehingga nampak leher dan sebagian dadanya, sebagaimana yang dilakukan oleh perempuan-perempuan jahiliah. \n\nDi samping itu, perempuan dilarang untuk menampakkan perhiasannya kepada orang lain, kecuali yang tidak dapat disembunyikan seperti cincin, celak/sifat, pacar/inai, dan sebagainya. Lain halnya dengan gelang tangan, gelang kaki, kalung, mahkota, selempang, anting-anting, kesemuanya itu dilarang untuk ditampakkan, karena terdapat pada anggota tubuh yang termasuk aurat perempuan, sebab benda-benda tersebut terdapat pada lengan, betis, leher, kepala, dan telinga yang tidak boleh dilihat oleh orang lain. \n\nPerhiasan tersebut hanya boleh dilihat oleh suaminya, bahkan suami boleh saja melihat seluruh anggota tubuh istrinya, ayahnya, ayah suami (mertua), putra-putranya, putra-putra suaminya, saudara-saudaranya, putra-putra saudara laki-lakinya, putra-putra saudara perempuannya, karena dekatnya pergaulan di antara mereka, karena jarang terjadi hal-hal yang tidak senonoh dengan mereka. Begitu pula perhiasan boleh dilihat oleh sesama perempuan muslimah, atau hamba sahaya yang mereka miliki, atau pelayan/pembantu laki-laki yang tidak mempunyai keinginan terhadap perempuan, baik karena ia sudah lanjut usia, impoten, ataupun karena terpotong alat kelaminnya. Perhiasan juga boleh ditampakkan dan dilihat oleh anak-anak yang belum mengerti tentang aurat perempuan, sehingga tidak akan timbul nafsu birahi karena mereka belum memiliki syahwat kepada perempuan.\n\nDi samping para perempuan dilarang untuk menampakkan perhiasan, mereka juga dilarang untuk menghentakkan kakinya, dengan maksud memperlihatkan dan memperdengarkan perhiasan yang dipakainya yang semestinya harus disembunyikan. Perempuan-perempuan itu sering dengan sengaja memasukkan sesuatu ke dalam gelang kaki mereka, supaya berbunyi ketika ia berjalan, meskipun dengan perlahan-lahan, guna menarik perhatian orang. Sebab sebagian manusia kadang-kadang lebih tertarik dengan bunyi yang khas daripada bendanya sendiri, sedangkan benda tersebut berada pada betis perempuan.\n\nPada akhir ayat ini, Allah menganjurkan agar manusia bertobat dan sadar kembali serta taat dan patuh mengerjakan perintah-Nya menjauhi larangan-Nya, seperti membatasi pandangan, memelihara kemaluan/kelamin, tidak memasuki rumah oranglain tanpa izin dan memberi salam, bila semua itu mereka lakukan, pasti akan bahagia baik di dunia maupun di akhirat.",
-        short:
-          "Dan katakanlah pula, wahai Nabi Muhammad, kepada para perempuan yang beriman dengan mantap, agar mereka menjaga pandangannya dan memelihara kemaluannya dari yang haram, dan janganlah mereka menampakkan perhiasannya kecuali yang biasa terlihat darinya menurut kebiasaan dan sulit untuk mereka sembunyikan, seperti baju luar, wajah, dan telapak tangan. Dan hendaklah mereka menutupkan jilbab atau kain kerudung ke kepala, leher, dan dadanya, dan janganlah menampakkan perhiasannya atau auratnya kecuali kepada suami mereka, atau ayah mereka, atau ayah suami mereka, atau putra-putra mereka, atau putra-putra suami mereka, termasuk cucu, cicit, dan seterusnya, atau saudara-saudara laki-laki mereka, atau putra-putra saudara laki-laki mereka, atau putra-putra saudara perempuan mereka, atau para perempuan mereka sesama muslim, atau hamba sahaya yang mereka miliki, atau para pelayan laki-laki tua yang tidak lagi mempunyai keinginan dan syahwat kepada perempuan, atau anak-anak yang belum mengerti tentang aurat perempuan. Dan janganlah mereka menghentakkan kakinya agar diketahui perhiasan yang mereka sembunyikan. Dan bertobatlah kamu semua kepada Allah, wahai orang-orang yang beriman dari segala dosa, khususnya pandangan terlarang, agar kamu beruntung dan mendapat kebahagiaan di dunia dan akhirat.",
+        footnotes: null,
+        text: "Katakanlah pula kepada wanita-wanita yang beriman agar mereka menahan pandangan mereka dari melihat hal-hal yang tidak halal bagi mereka berupa aurat dan agar mereka menjaga kemaluan mereka dengan menjauhi perbuatan keji dan dengan menutup aurat mereka. Janganlah mereka menampakkan perhiasan mereka kepada laki-laki asing (yang bukan mahram mereka) kecuali yang biasa tampak darinya yang tidak mungkin untuk disembunyikan seperti pakaian. Hendaklah mereka menutupkan kain kerudung ke dada mereka agar menutup rambut, kepala, wajah, dan leher mereka dan janganlah menampakkan perhiasan mereka yang tersembunyi kecuali kepada suami-suami mereka, ayah-ayah mereka, ayah-ayah para suami mereka, putra-putra mereka, putra-putra para suami mereka, saudara-saudara laki-laki mereka, putra-putra saudara lelaki mereka, putra-putra saudari mereka, wanita-wanita yang amanah dan terpercaya -baik muslimah atau kafir-, budak-budak yang mereka miliki -baik laki-laki atau wanita-, pelayan laki-laki yang tidak mempunyai keinginan syahwat terhadap wanita, atau anak laki-laki yang belum mengerti tentang aurat wanita lantaran masih kecil. Janganlah pula kaum wanita menghentakkan kaki mereka dengan tujuan agar diketahui perhiasan yang mereka sembunyikan seperti gelang kaki dan semisalnya. Bertobatlah kamu sekalian kepada Allah -wahai orang-orang yang beriman- dari pandangan kalian terhadap yang tidak halal dan maksiat lainnya, supaya kalian beruntung dengan meraih apa yang kalian harapkan dan selamat dari apa yang kalian takuti.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064f\u0644 \u0644\u0651\u0650\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064e\u0627\u062a\u0650 \u064a\u064e\u063a\u0652\u0636\u064f\u0636\u0652\u0646\u064e \u0645\u0650\u0646\u0652 \u0623\u064e\u0628\u0652\u0635\u064e\u0627\u0631\u0650\u0647\u0650\u0646\u0651\u064e \u0648\u064e\u064a\u064e\u062d\u0652\u0641\u064e\u0638\u0652\u0646\u064e \u0641\u064f\u0631\u064f\u0648\u062c\u064e\u0647\u064f\u0646\u0651\u064e \u0648\u064e\u0644\u064e\u0627 \u064a\u064f\u0628\u0652\u062f\u0650\u064a\u0646\u064e \u0632\u0650\u064a\u0646\u064e\u062a\u064e\u0647\u064f\u0646\u0651\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0627 \u0638\u064e\u0647\u064e\u0631\u064e \u0645\u0650\u0646\u0652\u0647\u064e\u0627 \u06d6 \u0648\u064e\u0644\u0652\u064a\u064e\u0636\u0652\u0631\u0650\u0628\u0652\u0646\u064e \u0628\u0650\u062e\u064f\u0645\u064f\u0631\u0650\u0647\u0650\u0646\u0651\u064e \u0639\u064e\u0644\u064e\u0649\u0670 \u062c\u064f\u064a\u064f\u0648\u0628\u0650\u0647\u0650\u0646\u0651\u064e \u06d6 \u0648\u064e\u0644\u064e\u0627 \u064a\u064f\u0628\u0652\u062f\u0650\u064a\u0646\u064e \u0632\u0650\u064a\u0646\u064e\u062a\u064e\u0647\u064f\u0646\u0651\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0644\u0650\u0628\u064f\u0639\u064f\u0648\u0644\u064e\u062a\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0622\u0628\u064e\u0627\u0626\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0622\u0628\u064e\u0627\u0621\u0650 \u0628\u064f\u0639\u064f\u0648\u0644\u064e\u062a\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0623\u064e\u0628\u0652\u0646\u064e\u0627\u0626\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0623\u064e\u0628\u0652\u0646\u064e\u0627\u0621\u0650 \u0628\u064f\u0639\u064f\u0648\u0644\u064e\u062a\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0625\u0650\u062e\u0652\u0648\u064e\u0627\u0646\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0628\u064e\u0646\u0650\u064a \u0625\u0650\u062e\u0652\u0648\u064e\u0627\u0646\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0628\u064e\u0646\u0650\u064a \u0623\u064e\u062e\u064e\u0648\u064e\u0627\u062a\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0646\u0650\u0633\u064e\u0627\u0626\u0650\u0647\u0650\u0646\u0651\u064e \u0623\u064e\u0648\u0652 \u0645\u064e\u0627 \u0645\u064e\u0644\u064e\u0643\u064e\u062a\u0652 \u0623\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064f\u0647\u064f\u0646\u0651\u064e \u0623\u064e\u0648\u0650 \u0627\u0644\u062a\u0651\u064e\u0627\u0628\u0650\u0639\u0650\u064a\u0646\u064e \u063a\u064e\u064a\u0652\u0631\u0650 \u0623\u064f\u0648\u0644\u0650\u064a \u0627\u0644\u0652\u0625\u0650\u0631\u0652\u0628\u064e\u0629\u0650 \u0645\u0650\u0646\u064e \u0627\u0644\u0631\u0651\u0650\u062c\u064e\u0627\u0644\u0650 \u0623\u064e\u0648\u0650 \u0627\u0644\u0637\u0651\u0650\u0641\u0652\u0644\u0650 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0644\u064e\u0645\u0652 \u064a\u064e\u0638\u0652\u0647\u064e\u0631\u064f\u0648\u0627 \u0639\u064e\u0644\u064e\u0649\u0670 \u0639\u064e\u0648\u0652\u0631\u064e\u0627\u062a\u0650 \u0627\u0644\u0646\u0651\u0650\u0633\u064e\u0627\u0621\u0650 \u06d6 \u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u0636\u0652\u0631\u0650\u0628\u0652\u0646\u064e \u0628\u0650\u0623\u064e\u0631\u0652\u062c\u064f\u0644\u0650\u0647\u0650\u0646\u0651\u064e \u0644\u0650\u064a\u064f\u0639\u0652\u0644\u064e\u0645\u064e \u0645\u064e\u0627 \u064a\u064f\u062e\u0652\u0641\u0650\u064a\u0646\u064e \u0645\u0650\u0646 \u0632\u0650\u064a\u0646\u064e\u062a\u0650\u0647\u0650\u0646\u0651\u064e \u06da \u0648\u064e\u062a\u064f\u0648\u0628\u064f\u0648\u0627 \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0643\u064f\u0645\u0652 \u062a\u064f\u0641\u0652\u0644\u0650\u062d\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa qul lilmu'minaati yaghdudna min absaarihinna wa yahfazna furoojahunna wa laa yubdeena zeenatahunna illaa maa zahara minhaa walyadribna bikhumurihinna 'alaa juyoobihinna wa laa yubdeena zeenatahunna illaa libu'oolatihinna aw aabaaa'i hinna aw aabaaa'i bu'oolati hinna aw abnaaa'ihinaa aw abnaaa'i bu'oolatihinnna aw ikhwaanihinnna aw baneee ikhwaanihinna aw banee akhawaatihinna aw nisaaa'i hinna aw maa malakat aimaanuhunna awit taabi'eena ghairi ilil irbati minar rijaali awit tiflillazeena lam yazharoo 'alaa 'awraatin nisaaa'i wala yadribnna bi arjulihinna min zeenatihinn; wa toobooo ilallaahi jammee'an aiyuhal mu'minoona la'allakum tuflihoon",
-      },
+      arabic:
+        "وَقُل لِّلْمُؤْمِنَٰتِ يَغْضُضْنَ مِنْ أَبْصَٰرِهِنَّ وَيَحْفَظْنَ فُرُوجَهُنَّ وَلَا يُبْدِينَ زِينَتَهُنَّ إِلَّا مَا ظَهَرَ مِنْهَا وَلْيَضْرِبْنَ بِخُمُرِهِنَّ عَلَىٰ جُيُوبِهِنَّ وَلَا يُبْدِينَ زِينَتَهُنَّ إِلَّا لِبُعُولَتِهِنَّ أَوْ ءَابَآئِهِنَّ أَوْ ءَابَآءِ بُعُولَتِهِنَّ أَوْ أَبْنَآئِهِنَّ أَوْ أَبْنَآءِ بُعُولَتِهِنَّ أَوْ إِخْوَٰنِهِنَّ أَوْ بَنِىٓ إِخْوَٰنِهِنَّ أَوْ بَنِىٓ أَخَوَٰتِهِنَّ أَوْ نِسَآئِهِنَّ أَوْ مَا مَلَكَتْ أَيْمَٰنُهُنَّ أَوِ ٱلتَّٰبِعِينَ غَيْرِ أُو۟لِى ٱلْإِرْبَةِ مِنَ ٱلرِّجَالِ أَوِ ٱلطِّفْلِ ٱلَّذِينَ لَمْ يَظْهَرُوا۟ عَلَىٰ عَوْرَٰتِ ٱلنِّسَآءِ وَلَا يَضْرِبْنَ بِأَرْجُلِهِنَّ لِيُعْلَمَ مَا يُخْفِينَ مِن زِينَتِهِنَّ وَتُوبُوٓا۟ إِلَى ٱللَّهِ جَمِيعًا أَيُّهَ ٱلْمُؤْمِنُونَ لَعَلَّكُمْ تُفْلِحُونَ",
     },
     translation: {
-      en: "And tell the believing women to reduce [some] of their vision and guard their private parts and not expose their adornment except that which [necessarily] appears thereof and to wrap [a portion of] their headcovers over their chests and not expose their adornment except to their husbands, their fathers, their husbands' fathers, their sons, their husbands' sons, their brothers, their brothers' sons, their sisters' sons, their women, that which their right hands possess, or those male attendants having no physical desire, or children who are not yet aware of the private aspects of women. And let them not stamp their feet to make known what they conceal of their adornment. And turn to Allah in repentance, all of you, O believers, that you might succeed.",
-      id: "Dan katakanlah kepada para perempuan yang beriman, agar mereka menjaga pandangannya, dan memelihara kemaluannya, dan janganlah menampakkan perhiasannya (auratnya), kecuali yang (biasa) terlihat. Dan hendaklah mereka menutupkan kain kerudung ke dadanya, dan janganlah menampakkan perhiasannya (auratnya), kecuali kepada suami mereka, atau ayah mereka, atau ayah suami mereka, atau putra-putra mereka, atau putra-putra suami mereka, atau saudara-saudara laki-laki mereka, atau putra-putra saudara laki-laki mereka, atau putra-putra saudara perempuan mereka, atau para perempuan (sesama Islam) mereka, atau hamba sahaya yang mereka miliki, atau para pelayan laki-laki (tua) yang tidak mempunyai keinginan (terhadap perempuan) atau anak-anak yang belum mengerti tentang aurat perempuan. Dan janganlah mereka menghentakkan kakinya agar diketahui perhiasan yang mereka sembunyikan. Dan bertobatlah kamu semua kepada Allah, wahai orang-orang yang beriman, agar kamu beruntung.",
+      en: {
+        footnotes:
+          "[19] Both natural beauty such as hair and body shape, and other beauty such as clothing, jewelry, etc. [20] i.e., outer garments, etc. [21] i.e., hair, neck, arms, legs, etc.\n [22] An abnormal condition where a man is devoid of sexual feelings.",
+        text: "Tell the believing women to lower their gazes and guard their private parts, and not to reveal their beauty[19] except what appears[20]. And let them draw their veils over their chests, and not to reveal their beauty[21] except to their husbands, their fathers, their fathers-in-law, their sons, their stepsons, their brothers, their brothers’ sons or sisters’ sons, their fellow women, slaves whom they own, male attendants who have no [sexual] desire[22], or children who are still unaware of private aspects of women. Nor let them stamp their feet in order to draw attention to their hidden charm. And turn to Allah in repentance all together, O believers, so that you may be successful.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan katakanlah kepada para perempuan yang beriman, agar mereka menjaga pandangannya, dan memelihara kemaluannya, dan janganlah menampakkan perhiasannya (auratnya), kecuali yang (biasa) terlihat. Dan hendaklah mereka menutupkan kain kerudung ke dadanya, dan janganlah menampakkan perhiasannya (auratnya), kecuali kepada suami mereka, atau ayah mereka, atau ayah suami mereka, atau putra-putra mereka, atau putra-putra suami mereka, atau saudara-saudara laki-laki mereka, atau putra-putra saudara laki-laki mereka, atau putra-putra saudara perempuan mereka, atau para perempuan (sesama Islam) mereka, atau hamba sahaya yang mereka miliki, atau para pelayan laki-laki (tua) yang tidak mempunyai hasrat (terhadap perempuan), atau anak-anak yang belum mengerti tentang aurat perempuan. Dan janganlah mereka menghentakkan kakinya agar diketahui perhiasan yang mereka sembunyikan. Dan bertobatlah kamu semua kepada Allah, wahai orang-orang yang beriman, agar kamu beruntung.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2823",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2823.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2823.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 141,
       juz: 18,
       manzil: 4,
       page: 354,
       ruku: 304,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2823,
@@ -65,40 +60,33 @@ export const quranSurah24Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menyerukan kepada semua pihak yang memikul tanggung jawab atas kesucian dan kebersihan akhlak umat, agar mereka menikahkan laki-laki yang tidak beristri, baik duda atau jejaka dan perempuan yang tidak bersuami baik janda atau gadis. Demikian pula terhadap hamba sahaya laki-laki atau perempuan yang sudah patut dinikahkan, hendaklah diberikan pula kesempatan yang serupa. Seruan ini berlaku untuk semua para wali (wali nikah) seperti bapak, paman dan saudara yang memikul tanggung jawab atas keselamatan keluarganya, berlaku pula untuk orang-orang yang memiliki hamba sahaya, janganlah mereka menghalangi anggota keluarga atau budak yang di bawah kekuasaan mereka untuk nikah, asal saja syarat-syarat untuk nikah itu sudah dipenuhi. Dengan demikian terbentuklah keluarga yang sehat bersih dan terhormat. Dari keluarga inilah akan terbentuk suatu umat dan pastilah umat atau bangsa itu menjadi kuat dan terhormat pula. Oleh sebab itu Rasulullah saw bersabda:\n\nNikah itu termasuk Sunnahku. Barangsiapa yang membenci Sunnahku maka dia tidak termasuk golonganku.(Riwayat Muslim)\n\nBila di antara orang-orang yang mau nikah itu ada yang dalam keadaan miskin sehingga belum sanggup memenuhi semua keperluan pernikahannya dan belum sanggup memenuhi segala kebutuhan rumh tangganya, hendaklah orang-orang seperti itu didorong dan dibantu untuk melaksanakan niat baiknya itu. Janganlah kemiskinan seseorang menjadi alasan untuk mengurungkan pernikahan, asal saja benar-benar dapat diharapkan daripadanya kemauan yang kuat untuk melangsungkan pernikahan. Siapa tahu di belakang hari Allah akan membukakan baginya pintu rezeki yang halal, baik, dan memberikan kepadanya karunia dan rahmat-Nya. Sesungguhnya Allah Mahaluas rahmat-Nya dan kasih sayang-Nya, Mahaluas Ilmu pengetahuan-Nya. Dia melapangkan rezeki bagi siapa yang dikehendaki-Nya dan menyempitkan rezeki bagi siapa yang dikehendaki sesuai dengan hikmat kebijaksanaan-Nya.\n\nIbnu Abbas berkata, Allah menganjurkan pernikahan dan menggalakkannya, serta menyuruh manusia supaya mengawinkan orang-orang yang merdeka dan hamba sahaya, dan Allah menjanjikan akan memberikan kecukupan kepada orang-orang yang telah berkeluarga itu kekayaan. \n\nDiriwayatkan dari Abu Hurairah Rasulullah bersabda:\n\nAda tiga macam orang yang Allah berkewajiban menolongnya: orang yang nikah dengan maksud memelihara kesucian dirinya, hamba sahaya yang berusaha memerdekakan dirinya dengan membayar tebusan kepada tuannya, dan orang yang berperang di jalan Allah.(Riwayat Ahmad)",
-        short:
-          "Setelah uraian tersebut, datanglah perintah untuk menikah sebagai salah satu cara memelihara kesucian nasab. Dan nikahkanlah, yaitu bantulah supaya bisa menikah, orang-orang yang masih membujang di antara kamu agar mereka dapat hidup tenang dan terhindar dari zina serta perbuatan haram lainnya, dan bantulah juga orang-orang yang layak menikah dari hamba-hamba sahayamu yang laki-laki dan perempuan. Jika mereka miskin, Allah akan memberi kemampuan kepada mereka dengan karunia-Nya. Dan Allah Mahaluas pemberian-Nya; tidak akan berkurang khazanah-Nya seberapa banyak pun Dia memberi hamba-Nya keka-yaan, lagi Maha Mengetahui.",
+        footnotes: null,
+        text: 'Nikahkanlah -wahai kaum beriman- laki-laki yang belum memiliki istri dan wanita-wanita merdeka yang belum memiliki suami di antara kalian. Nikahkanlah pula orang-orang mukmin yang layak menikah dari hamba-hamba sahayamu yang lelaki dan perempuan. Jika mereka miskin Allah akan memampukan mereka dengan karunia-Nya yang sangat luas. Allah Mahaluas rezeki-Nya; rezeki-Nya sama sekali tidak berkurang karena diberikan kepada seorang manusia, lagi Maha Mengetahui keadaan hamba-hamba-Nya."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0646\u0643\u0650\u062d\u064f\u0648\u0627 \u0627\u0644\u0652\u0623\u064e\u064a\u064e\u0627\u0645\u064e\u0649\u0670 \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0648\u064e\u0627\u0644\u0635\u0651\u064e\u0627\u0644\u0650\u062d\u0650\u064a\u0646\u064e \u0645\u0650\u0646\u0652 \u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0643\u064f\u0645\u0652 \u0648\u064e\u0625\u0650\u0645\u064e\u0627\u0626\u0650\u0643\u064f\u0645\u0652 \u06da \u0625\u0650\u0646 \u064a\u064e\u0643\u064f\u0648\u0646\u064f\u0648\u0627 \u0641\u064f\u0642\u064e\u0631\u064e\u0627\u0621\u064e \u064a\u064f\u063a\u0652\u0646\u0650\u0647\u0650\u0645\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0645\u0650\u0646 \u0641\u064e\u0636\u0652\u0644\u0650\u0647\u0650 \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0648\u064e\u0627\u0633\u0650\u0639\u064c \u0639\u064e\u0644\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wa ankihul ayaamaa minkum was saaliheena min 'ibaadikum wa imaa'kum; iny-yakoonoo fuqaraaa'a yughni himul laahu min fadlih; wal laahu Waasi'un 'Aleem",
-      },
+      arabic:
+        "وَأَنكِحُوا۟ ٱلْأَيَٰمَىٰ مِنكُمْ وَٱلصَّٰلِحِينَ مِنْ عِبَادِكُمْ وَإِمَآئِكُمْ إِن يَكُونُوا۟ فُقَرَآءَ يُغْنِهِمُ ٱللَّهُ مِن فَضْلِهِۦ وَٱللَّهُ وَٰسِعٌ عَلِيمٌ",
     },
     translation: {
-      en: "And marry the unmarried among you and the righteous among your male slaves and female slaves. If they should be poor, Allah will enrich them from His bounty, and Allah is all-Encompassing and Knowing.",
-      id: "Dan nikahkanlah orang-orang yang masih membujang di antara kamu, dan juga orang-orang yang layak (menikah) dari hamba-hamba sahayamu yang laki-laki dan perempuan. Jika mereka miskin, Allah akan memberi kemampuan kepada mereka dengan karunia-Nya. Dan Allah Mahaluas (pemberian-Nya), Maha Mengetahui.",
+      en: {
+        footnotes: "[23] Males or females.",
+        text: "Arrange marriages for those of you who are unmarried[23], and for the righteous of your bondmen and bondwomen. If they are poor, Allah will suffice them from His bounty, for Allah is All-Bountiful, All-Knowing.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan nikahkanlah orang-orang yang masih membujang di antara kamu, dan juga orang-orang yang layak (menikah) dari hamba-hamba sahayamu yang laki-laki dan perempuan. Jika mereka miskin, Allah akan memberi kemampuan kepada mereka dengan karunia-Nya. Dan Allah Mahaluas (pemberian-Nya), Maha Mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2824",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2824.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2824.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 141,
       juz: 18,
       manzil: 4,
       page: 354,
       ruku: 304,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2824,
@@ -106,40 +94,34 @@ export const quranSurah24Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Bagi orang-orang yang benar-benar tidak mampu untuk membiayai keperluan pernikahan dan kebutuhan hidup berkeluarga sedangkan wali dan keluarga mereka tidak pula sanggup membantunya, maka hendaklah ia menahan diri sampai mempunyai kemampuan untuk itu. Menahan diri artinya menjauhi segala tindakan yang bertentangan dengan kesusilaan apalagi melakukan perzinaan karena perbuatan itu adalah sangat keji dan termasuk dosa besar. \n\nDi antara tujuan anjuran untuk mengawinkan pria dan perempuan yang tidak beristri atau bersuami adalah untuk memelihara moral umat dan bersihnya masyarakat dari tindakan-tidakan asusila. Bila pria atau perempuan belum dapat nikah tidak menjaga dirinya dan memelihara kebersihan masyarakatnya, tentulah tujuan tersebut tidak akan tercapai. Sebagai suatu cara untuk memelihara diri agar jangan jatuh ke jurang maksiat, Nabi Besar memberikan petunjuk dengan sabdanya:\n\nHai para pemuda! Siapa di antara kamu sanggup nikah, hendaklah ia nikah karena pernikahan itu lebih menjamin terpeliharanya mata dan terpeliharanya kehormatan. Dan barangsiapa yang tidak sanggup, maka hendaklah berpuasa, karena berpuasa itu mengurangi naluri seksnya. (Riwayat shahihain dari Ibnu Mas'ud)\n\nDi masa dahulu kesempatan melakukan tindakan asusila amat sempit sekali karena masyarakat sangat ketat menjaga kemungkinan terjadinya dan bila diketahui hukuman yang ditimpakan kepada pelakunya amat berat sekali. Oleh sebab itu, perbuatan asusila itu jarang terjadi.\n\nBerlainan dengan masa sekarang di mana masyarakat terutama di kota-kota besar tidak begitu mengindahkan masalah ini bahkan di daerah-daerah tertentu dilokalisir sehingga banyak pemuda-pemuda kita yang kurang kuat imannya jatuh terperosok ke dunia hitam itu. Oleh sebab itu dianjurkan kepada pemuda-pemuda bahkan kepada semua pria yang tidak beristri dan perempuan yang tidak bersuami yang patuh dan taat kepada ajaran agamanya, agar benar-benar menjaga kebersihan diri dan moralnya dari perbuatan terkutuk itu, terutama dengan berpuasa sebagaimana dianjurkan oleh Rasulullah dan dengan menyibukkan diri pada pekerjaan dan berbagai macam urusan yang banyak faedahnya atau melakukan berbagai macam hobby yang disenangi seperti olahraga, musik dan sebagainya. \n\nKemudian Allah menyuruh kepada para pemilik hamba sahaya agar memberikan kesempatan kepada budak mereka yang ingin membebaskan dirinya dari perbudakan dengan menebus dirinya dengan harta, bila ternyata budak itu bermaksud baik dan mempunyai sifat jujur dan amanah. Biasanya pembayaran itu dilakukan berangsur-angsur sehingga apabila jumlah pembayaran yang ditentukan sudah lunas maka budak tersebut menjadi merdeka. Ini adalah suatu cara yang disyariatkan Islam untuk melenyapkan perbudakan, sebab pada dasarnya Islam tidak mengakui perbudakan karena bertentangan dengan perikemanusiaan dan bertentangan pula dengan harga diri seseorang yang dalam Islam sangat dihormati, karena semua Bani Adam telah dimuliakan oleh Allah, sebagai tersebut dalam firman-Nya.\n\nDan sungguh, Kami telah memuliakan anak cucu Adam, dan Kami angkut mereka di darat dan di laut, dan Kami beri mereka rezeki dari yang baik-baik dan Kami lebihkan mereka di atas banyak makhluk yang Kami ciptakan dengan kelebihan yang sempurna. (al-Isra'/17: 70)\n\nTetapi karena pada masa Rasulullah itu semua bangsa mempraktikkan perbudakan, maka diakuinya perbudakan itu oleh Nabi Muhammad sebagai hukum darurat dan sementara. Karena musuh-musuh kaum Muslimin bila mereka mengalahkan kaum Muslimin dalam suatu peperangan mereka menganggap tawanan-tawanan yang terdiri dari kaum Muslimin itu dianggap sebagai budak pula. Karena perbudakan itu bertentangan dengan pokok ajaran Islam, maka dimulailah memberantasnya, di antaranya seperti yang tersebut dalam ayat ini. Banyak lagi cara untuk memerdekakan budak itu, seperti kaffarat bersetubuh di bulan puasa atau di waktu ihram, kaffarat membunuh, kaffarat melanggar sumpah dan sebagainya.\n\nDi samping seruan kepada pemilik hamba sahaya agar memberikan kesempatan kepada budak mereka untuk memerdekakan dirinya, diserukan pula kepada kaum Muslimin supaya membantu para budak itu dengan harta benda baik berupa zakat atau sedekah agar budak itu dalam waktu yang relatif singkat sudah dapat memerdekakan dirinya. Sebenarnya adanya perbudakan dan banyaknya budak itu dalam suatu masyarakat membawa kepada merosotnya moral masyarakat itu sendiri, dan membawa kepada terjadinya pelacuran, karena budak merasa dirinya jauh lebih rendah dari orang yang merdeka. Dengan demikian mereka tidak menganggap mempertahankan moral yang tinggi sebagai kewajiban mereka dan dengan mudah mereka menjadi permainan orang-orang merdeka dan menjadi sarana bagi pemuasan hawa nafsu. \n\nSelanjutnya sebagai satu cara untuk memberantas kemaksiatan dan memelihara masyarakat agar tetap bersih dari segala macam perbuatan yang bertentangan dengan moral dan susila, Allah melarang para pemilik hamba sahaya perempuan memaksa mereka melakukan perbuatan pelacuran, sedang budak-budak itu sendiri tidak ingin melakukannya dan ingin supaya tetap bersih dan terpelihara dari perbuatan kotor itu. Banyak di antara pemilik budak perempuan yang karena tamak akan harta benda dan kekayaan mereka tidak segan-segan dan merasa tidak malu sedikit pun melacurkan budak-budak itu kepada siapa saja yang mau membayar. Bila terjadi pemaksaan seperti ini sesudah turunnya ayat ini maka berdosa besarlah para pemilik budak itu. Sedang para budak yang dilacurkan itu tidak bersalah karena mereka harus melaksanakan perintah para pemilik mereka. Mudah-mudahan Allah Yang Maha Penyayang dan Maha Pengampun mengampuni mereka, karena mereka melakukan perbuatan maksiat itu bukan atas kemauan mereka sendiri, tetapi karena dipaksa oleh pemilik mereka.\n\nDiriwayatkan oleh Muslim dan Abu Daud dari Jabir ra bahwa Abdullah bin Ubay bin Salul mempunyai dua amat (hamba sahaya perempuan), yaitu Musaikah dan Umaimah. Lalu dia memaksanya untuk melacur, kemudian mereka mengadukan hal itu kepada Rasulullah, maka turunlah ayat ini: \n\nDemikian peraturan yang diturunkan Allah untuk keharmonisan dan kebersihan suatu masyarakat, bila dijalankan dengan sebaik-baiknya akan terciptalah masyarakat yang bersih, aman dan bahagia jauh dari hal-hal yang membahayakannya.",
-        short:
-          "Bila arahan pada ayat sebelumnya ditujukan kepada para wali atau pihak yang dapat membantu pernikahan, arahan pada ayat ini ditujukan kepada pria agar tidak mendesak wali untuk buru-buru menikahkannya. Dan orang-orang yang tidak mampu menikah hendaklah menjaga kesucian diri-nya dengan berpuasa atau aktivitas lain, sampai Allah memberi kemampuan kepada mereka dengan karunia-Nya dan memberi mereka kemudahan untuk menikah. Dan jika hamba sahaya yang kamu miliki menginginkan perjanjian, yaitu kesepakatan untuk memerdekakan diri dengan membayar tebusan, hendaklah kamu buat perjanjian kepada mereka jika kamu mengetahui ada kebaikan pada mereka, yaitu jika kamu tahu mereka akan mampu melaksanakan tugas dan kewajiban mereka, mampu menjaga diri, serta mampu menjalankan tuntunan agama mereka; dan berikanlah kepada mereka sebagian dari harta Allah yang dikaruniakan-Nya kepadamu berupa zakat untuk membantu pembebasan mereka dari perbudakan. Dan janganlah kamu paksa hamba sahaya perempuanmu untuk melakukan pelacuran, sedang mereka sendiri menginginkan kesucian, hanya karena kamu hendak mencari keuntungan kehidupan duniawi dari pelacuran itu. Barang siapa memaksa mereka untuk melakukan perbuatan tercela itu maka sungguh, Allah Maha Pengampun terhadap perempuan-perempuan yang dipaksa itu, Maha Penyayang kepada mereka setelah mereka dipaksa, dan Dia akan memikulkan dosa kepada orang yang memaksa mereka.",
+        footnotes: null,
+        text: "Orang-orang yang tidak mampu menikah karena miskin hendaknya menjaga kesucian dirinya dari perbuatan zina, sampai Allah memampukan mereka dengan karunia-Nya yang sangat luas. Para hamba sahaya yang menginginkan perjanjian merdeka dari tuan-tuan mereka dengan membayar sejumlah uang tertentu, hendaklah tuan-tuan mereka menerima hal tersebut jika diketahui bahwa para hamba sahaya tersebut sanggup untuk melakukan pembayaran dan memiliki kesalehan dari segi agama. Juga hendaknya tuan-tuan mereka memberikan kepada mereka sebahagian dari harta Allah yang Dia karuniakan kepada mereka dengan mengurangi jumlah uang tebusan yang mereka bayar agar merdeka. Janganlah kalian paksa hamba-hamba wanita kalian untuk melakukan pelacuran dengan tujuan meraih harta duniawi dengan pelacuran tersebut sebagaimana yang dilakukan oleh Abdullah bin Ubay dengan dua hamba sahaya wanitanya, padahal keduanya telah memohon agar disucikan dan dijauhkan dari zina. Barang siapa di antara kalian memaksa mereka untuk melakukan hal tersebut maka sesungguhnya Allah adalah Maha Pengampun kepada mereka sesudah mereka dipaksa, juga Maha Pengasih terhadap mereka karena terpaksa melakukannya dan dosa hanya didapatkan oleh orang yang memaksa mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u0652\u064a\u064e\u0633\u0652\u062a\u064e\u0639\u0652\u0641\u0650\u0641\u0650 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0644\u064e\u0627 \u064a\u064e\u062c\u0650\u062f\u064f\u0648\u0646\u064e \u0646\u0650\u0643\u064e\u0627\u062d\u064b\u0627 \u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u064a\u064f\u063a\u0652\u0646\u0650\u064a\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0645\u0650\u0646 \u0641\u064e\u0636\u0652\u0644\u0650\u0647\u0650 \u06d7 \u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064e\u0628\u0652\u062a\u064e\u063a\u064f\u0648\u0646\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0645\u0650\u0645\u0651\u064e\u0627 \u0645\u064e\u0644\u064e\u0643\u064e\u062a\u0652 \u0623\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064f\u0643\u064f\u0645\u0652 \u0641\u064e\u0643\u064e\u0627\u062a\u0650\u0628\u064f\u0648\u0647\u064f\u0645\u0652 \u0625\u0650\u0646\u0652 \u0639\u064e\u0644\u0650\u0645\u0652\u062a\u064f\u0645\u0652 \u0641\u0650\u064a\u0647\u0650\u0645\u0652 \u062e\u064e\u064a\u0652\u0631\u064b\u0627 \u06d6 \u0648\u064e\u0622\u062a\u064f\u0648\u0647\u064f\u0645 \u0645\u0651\u0650\u0646 \u0645\u0651\u064e\u0627\u0644\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0622\u062a\u064e\u0627\u0643\u064f\u0645\u0652 \u06da \u0648\u064e\u0644\u064e\u0627 \u062a\u064f\u0643\u0652\u0631\u0650\u0647\u064f\u0648\u0627 \u0641\u064e\u062a\u064e\u064a\u064e\u0627\u062a\u0650\u0643\u064f\u0645\u0652 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0628\u0650\u063a\u064e\u0627\u0621\u0650 \u0625\u0650\u0646\u0652 \u0623\u064e\u0631\u064e\u062f\u0652\u0646\u064e \u062a\u064e\u062d\u064e\u0635\u0651\u064f\u0646\u064b\u0627 \u0644\u0651\u0650\u062a\u064e\u0628\u0652\u062a\u064e\u063a\u064f\u0648\u0627 \u0639\u064e\u0631\u064e\u0636\u064e \u0627\u0644\u0652\u062d\u064e\u064a\u064e\u0627\u0629\u0650 \u0627\u0644\u062f\u0651\u064f\u0646\u0652\u064a\u064e\u0627 \u06da \u0648\u064e\u0645\u064e\u0646 \u064a\u064f\u0643\u0652\u0631\u0650\u0647\u0647\u0651\u064f\u0646\u0651\u064e \u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0625\u0650\u0643\u0652\u0631\u064e\u0627\u0647\u0650\u0647\u0650\u0646\u0651\u064e \u063a\u064e\u0641\u064f\u0648\u0631\u064c \u0631\u0651\u064e\u062d\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wal yasta'fifil lazeena laa yajidoona nikaahan hata yughniyahumul laahu mi fadlih; wallazeena yabtaghoonal kitaaba mimmaa malakat aimaanukum fakaatiboohum in 'alimtum feehim khairanw wa aatoohum mimmaalil laahil lazeee aataakum; wa laa tukrihoo fatayaatikum 'alal bighaaa'i in aradna tahassunal litabtaghoo 'aradal hayaatid dunyaa; wa mai yukrihhunna fa innal laaha mim ba'di ikraahihinna Ghafoor Raheem",
-      },
+      arabic:
+        "وَلْيَسْتَعْفِفِ ٱلَّذِينَ لَا يَجِدُونَ نِكَاحًا حَتَّىٰ يُغْنِيَهُمُ ٱللَّهُ مِن فَضْلِهِۦ وَٱلَّذِينَ يَبْتَغُونَ ٱلْكِتَٰبَ مِمَّا مَلَكَتْ أَيْمَٰنُكُمْ فَكَاتِبُوهُمْ إِنْ عَلِمْتُمْ فِيهِمْ خَيْرًا وَءَاتُوهُم مِّن مَّالِ ٱللَّهِ ٱلَّذِىٓ ءَاتَىٰكُمْ وَلَا تُكْرِهُوا۟ فَتَيَٰتِكُمْ عَلَى ٱلْبِغَآءِ إِنْ أَرَدْنَ تَحَصُّنًا لِّتَبْتَغُوا۟ عَرَضَ ٱلْحَيَوٰةِ ٱلدُّنْيَا وَمَن يُكْرِههُّنَّ فَإِنَّ ٱللَّهَ مِنۢ بَعْدِ إِكْرَٰهِهِنَّ غَفُورٌ رَّحِيمٌ",
     },
     translation: {
-      en: "But let them who find not [the means for] marriage abstain [from sexual relations] until Allah enriches them from His bounty. And those who seek a contract [for eventual emancipation] from among whom your right hands possess - then make a contract with them if you know there is within them goodness and give them from the wealth of Allah which He has given you. And do not compel your slave girls to prostitution, if they desire chastity, to seek [thereby] the temporary interests of worldly life. And if someone should compel them, then indeed, Allah is [to them], after their compulsion, Forgiving and Merciful.",
-      id: "Dan orang-orang yang tidak mampu menikah hendaklah menjaga kesucian (diri)nya, sampai Allah memberi kemampuan kepada mereka dengan karunia-Nya. Dan jika hamba sahaya yang kamu miliki menginginkan perjanjian (kebebasan), hendaklah kamu buat perjanjian kepada mereka, jika kamu mengetahui ada kebaikan pada mereka, dan berikanlah kepada mereka sebagian dari harta Allah yang dikaruniakan-Nya kepadamu. Dan janganlah kamu paksa hamba sahaya perempuanmu untuk melakukan pelacuran, sedang mereka sendiri menginginkan kesucian, karena kamu hendak mencari keuntungan kehidupan duniawi. Barangsiapa memaksa mereka, maka sungguh, Allah Maha Pengampun, Maha Penyayang (kepada mereka) setelah mereka dipaksa.",
+      en: {
+        footnotes:
+          "[24] i.e., those slaves who want to purchase their freedom for a specific price.\n [25] As happened with Abdullah ibn ’Ubayy, the head of the hypocrites, who forced his two slave-girls to commit illegal sexual acts for worldly gains, while they wished to keep chaste.",
+        text: "Let those who cannot afford marriage keep themselves chaste until Allah suffices them from His bounty. If any of your slaves wishes to enter the contract of emancipation[24], make this contract with them, if you find goodness in them, and give them some of the wealth that Allah has given you. Do not compel your slave girls into prostitution – if they wish to keep chaste – seeking the worldly gains of this life[25]. But if anyone compels them, then Allah, after such a compulsion, is All-Forgiving, Most Merciful.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan orang-orang yang tidak mampu menikah hendaklah menjaga kesucian (dirinya), sampai Allah memberi kemampuan kepada mereka dengan karunia-Nya. Dan jika hamba sahaya yang kamu miliki menginginkan perjanjian (kebebasan), hendaklah kamu buat perjanjian kepada mereka, jika kamu mengetahui ada kebaikan pada mereka, dan berikanlah kepada mereka sebagian dari harta Allah yang dikaruniakan-Nya kepadamu. Dan janganlah kamu paksa hamba sahaya perempuanmu untuk melakukan pelacuran, sedang mereka sendiri menginginkan kesucian, karena kamu hendak mencari keuntungan kehidupan duniawi. Barangsiapa memaksa mereka, maka sungguh, Allah Maha Pengampun, Maha Penyayang (kepada mereka) setelah mereka dipaksa.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2825",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2825.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2825.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 141,
       juz: 18,
       manzil: 4,
       page: 354,
       ruku: 304,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2825,
@@ -147,40 +129,33 @@ export const quranSurah24Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Allah telah menurunkan ayat-ayat-Nya yang jelas baik yang menyangkut hukum yang sangat berguna bagi kebahagiaan masyarakat manusia. Begitu pula Allah telah menurunkan kisah-kisah yang dapat menjadi contoh dan teladan yaitu kisah rasul-rasul dan umat-umat yang terdahulu seperti kisah Nabi Yusuf, kisah Maryam dan sebagainya, selanjutnya tergantung kepada manusia itu sendiri apakah ia akan mengambil manfaat dari syariat dan kisah-kisah itu ataukah dia akan tetap berpaling tidak mengindahkan ajaran dan contoh teladan itu. Tetapi ajaran dan kisah-kisah itu tentu sangat berguna dan bermanfaat bagi orang-orang yang beriman.\n\nAli bin Abi thalib berkata tentang Al-Qur'an, \"Di dalamnya terdapat hukum-hukum (yang dapat dijadikan pedoman) kisah-kisah umat dahulu, dan berita tentang yang akan terjadi kemudian. Dialah yang membedakan (antara yang hak dan yang batil) bukan kata-kata yang tidak berguna (sekadar untuk main-main saja). Siapa saja mengabaikannya meski bagaimana pun kuatnya akan dipatahkan oleh Allah. Siapa saja yang mencari petunjuk (dengan berpedoman) kepada selain Al-Qur'an, Allah akan menyesatkannya.\"",
-        short:
-          "Ayat ini menutup uraian kelompok ayat-ayat tentang kabar bohong yang menimpa keluarga Nabi serta petunjuk-petunjuk yang berkaitan dengan isu tersebut. Dan sungguh, Kami telah menurunkan kepada kamu ayat-ayat yang memberi penjelasan, tuntunan hidup, dan contoh-contoh yang serupa dengan apa yang kamu alami dari orang-orang yang terdahulu sebelum kamu, seperti Maryam dan Yusuf yang dituduh berzina dan menerima pembebasan dari tuduhan itu; dan sebagai pelajaran bagi mereka yang mau membuka pikiran dan hatinya, yaitu orang-orang yang bertakwa.",
+        footnotes: null,
+        text: "Kami telah menurunkan kepada kalian -wahai manusia- ayat-ayat yang jelas yang menjelaskan antara hak dan batil. Kami juga menurunkan kepada kalian contoh-contoh dari orang-orang yang terdahulu sebelum kalian, baik orang-orang mukmin maupun kafir, serta Kami menurunkan pada kalian pelajaran yang hanya bisa dipetik oleh orang-orang yang bertakwa kepada Tuhan mereka dengan mengerjakan perintah-Nya dan menjauhi larangan-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0642\u064e\u062f\u0652 \u0623\u064e\u0646\u0632\u064e\u0644\u0652\u0646\u064e\u0627 \u0625\u0650\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0622\u064a\u064e\u0627\u062a\u064d \u0645\u0651\u064f\u0628\u064e\u064a\u0651\u0650\u0646\u064e\u0627\u062a\u064d \u0648\u064e\u0645\u064e\u062b\u064e\u0644\u064b\u0627 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062e\u064e\u0644\u064e\u0648\u0652\u0627 \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650\u0643\u064f\u0645\u0652 \u0648\u064e\u0645\u064e\u0648\u0652\u0639\u0650\u0638\u064e\u0629\u064b \u0644\u0651\u0650\u0644\u0652\u0645\u064f\u062a\u0651\u064e\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa laqad anzalnaaa ilaikum Aayaatim mubaiyinaatinw wa masalam minnal lazeena khalaw min qablikum wa maw'izatal lilmuttaqeen",
-      },
+      arabic:
+        "وَلَقَدْ أَنزَلْنَآ إِلَيْكُمْ ءَايَٰتٍ مُّبَيِّنَٰتٍ وَمَثَلًا مِّنَ ٱلَّذِينَ خَلَوْا۟ مِن قَبْلِكُمْ وَمَوْعِظَةً لِّلْمُتَّقِينَ",
     },
     translation: {
-      en: "And We have certainly sent down to you distinct verses and examples from those who passed on before you and an admonition for those who fear Allah.",
-      id: "Dan sungguh, Kami telah menurunkan kepada kamu ayat-ayat yang memberi penjelasan, dan contoh-contoh dari orang-orang yang terdahulu sebelum kamu dan sebagai pelajaran bagi orang-orang yang bertakwa.",
+      en: {
+        footnotes: "",
+        text: "We have sent down to you verses clarifying the right path, and examples of those who passed on before you, and an admonition for those who fear Allah.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, Kami telah menurunkan kepadamu ayat-ayat yang memberi penjelasan, dan contoh-contoh dari orang-orang yang terdahulu sebelummu dan sebagai pelajaran bagi orang-orang yang bertakwa.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2826",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2826.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2826.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 142,
       juz: 18,
       manzil: 4,
       page: 354,
       ruku: 305,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2826,
@@ -188,40 +163,35 @@ export const quranSurah24Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah adalah Pemberi cahaya kepada langit dan bumi dan semua yang ada pada keduanya. Dengan cahaya itu segala sesuatu berjalan dengan tertib dan teratur, tak ada yang menyimpang dari jalan yang telah ditentukan baginya, ibarat orang yang berjalan di tengah malam yang gelap gulita dan di tangannya ada sebuah lampu yang terang benderang yang menerangi apa yang ada di sekitarnya. Tentu dia akan aman dalam perjalanannya tidak akan tersesat atau terperosok ke jurang yang dalam, walau bagaimana pun banyak liku-liku yang dilaluinya. Berbeda dengan orang yang tidak mempunyai lampu, tentu akan banyak menemui kesulitan. Meraba-raba kesana kemari berjalan tertegun-tegun karena tidak tahu arah, maka pastilah orang ini akan tersesat atau mendapat kecelakaan karena tidak melihat alam sekitarnya. Amat besarlah faedahnya cahaya yang diberikan Allah kepada alam semesta ini. Cahaya yang dikaruniakan Allah itu bukan sembarang cahaya. Ia adalah cahaya yang istimewa yang tidak ada bandingannya, karena cahaya itu bukan saja menerangi alam lahiriah, tetapi menerangi batiniah. \n\nAllah memberikan perumpamaan bagi cahaya-Nya dengan sesuatu yang dapat dilihat dan dirasakan oleh manusia pada waktu diturunkannya ayat ini, yaitu dengan cahaya lampu yang dianggap pada masa itu merupakan cahaya yang paling cemerlang. Mungkin bagi kita sekarang ini cahaya lampu itu kurang artinya bila dibandingkan dengan cahaya lampu listrik seribu watt apalagi cahaya yang dapat menembus lapisan-lapisan yang ada di depannya. Sebenarnya cahaya yang menjadi sumber kekuatan bagi alam semesta tidak dapat diserupakan dengan cahaya apa pun yang dapat ditemukan manusia seperti cahaya laser umpamanya. \n\nAllah memberikan perumpamaan bagi cahaya-Nya dengan cahaya sebuah lampu yang terletak pada suatu tempat di dinding rumah yang sengaja dibuat untuk meletakkan lampu sehingga cahayanya amat terang sekali, berlainan dengan lampu yang diletakkan di tengah rumah, maka cahayanya akan berkurang karena luasnya ruangan yang menyerap cahayanya. Sumbu lampu itu berada dalam kaca yang bersih dan jernih. Kaca itu sendiri sudah cemerlang seperti kristal. Minyaknya diperas dari buah zaitun yang ditanam di atas bukit, selalu disinari cahaya matahari pagi dan petang. Maka pada ayat ini diibaratkan dengan tumbuh-tumbuhan yang tidak tumbuh di timur dan tidak pula di barat, karena kalau pohon itu tumbuh di sebelah timur, mungkin pada sorenya tidak ditimpa cahaya matahari lagi, demikian pula sebaliknya. Minyak lampu itu sendiri karena jernihnya dan baik mutunya hampir-hampir bercahaya, walaupun belum disentuh api, apalagi kalau sudah menyala tentulah cahaya yang ditimbulkannya akan berlipat ganda. \n\nDi samping cahaya lampu itu sendiri yang amat cemerlang, cahaya itu juga dipantulkan oleh tempat letaknya, maka cahaya yang dipantulkan lampu itu menjadi berlipat ganda. Demikianlah perumpamaan bagi cahaya Allah meskipun amat jauh perbedaan antara cahaya Allah dan cahaya yang dijadikan perumpamaan.\n\nAllah memberi petunjuk kepada siapa yang dikehendaki-Nya untuk mendapat cahaya itu sehingga dia selalu menempuh jalan yang lurus yang menyampaikannya kepada cita-citanya yang baik dan selalu bertindak bijaksana dalam menghadapi berbagai macam persoalan dalam hidupnya. Berbahagialah orang yang mendapat pancaran Nur Ilahi itu, karena dia telah mempunyai pedoman yang tepat yang tidak akan membawanya kepada hal-hal yang tidak benar dan menyesatkan. Untuk memperoleh Nur Ilahi itu seseorang harus benar-benar beriman dan taat kepada perintah Allah serta menjauhi segala perbuatan maksiat. \n\nImam Syafi'i pernah bertanya kepada gurunya yang bernama Waki' tentang hafalannya yang tidak pernah mantap dan cepat lupa, maka gurunya itu menasehatinya supaya ia menjauhi segala perbuatan maksiat, karena ilmu itu adalah Nur Ilahi, dan Nur Ilahi itu tidak akan diberikan kepada orang yang berbuat maksiat. Seperti dalam syair di bawah ini: \n\nAku mengadu kepada Waki' tentang buruknya hafalanku, \n\nLalu ia menasihatiku agar meninggalkan kemaksiatan.\n\nIa memberitahuku bahwa ilmu itu adalah cahaya, \n\nDan Cahaya Allah tidak diberikan kepada orang yang berbuat maksiat.\n\nYahya bin Salam pernah berkata, \"Hati seorang mukmin dapat mengetahui mana yang benar sebelum diterangkan kepadanya, karena hatinya itu selalu sesuai dengan kebenaran.\" Inilah yang dimaksud dengan sabda Rasulullah saw. \n\nBerhati-hatilah terhadap firasat orang mukmin, karena ia melihat dengan Nur Allah. (Riwayat al-Bukhari dalam kitab at-Tarikh al-Kabir dari Abu Sa'id al-Khudri)\n\nTentu saja yang dimaksud dengan orang mukmin di sini ialah orang-orang yang benar beriman dan bertakwa kepada Allah dengan sepenuhnya.\n\nIbnu 'Abbas berkata tentang ayat ini, \"Inilah contoh bagi Nur Allah dan petunjuk-Nya yang berada dalam hati orang mukmin. Jika minyak lampu dapat bercahaya sendiri sebelum disentuh api, dan bila disentuh oleh api bertambah cemerlang cahayanya, maka seperti itu pula hati orang mukmin, dia selalu mendapat petunjuk dalam tindakannya sebelum dia diberi ilmu. Apabila dia diberi ilmu, akan bertambahlah keyakinannya, dan bertambah pula cahaya dalam hatinya. Demikianlah Allah memberikan perumpamaan kepada manusia tentang Nur-Nya. Sesungguhnya Dia Maha Mengetahui segala sesuatu.\"",
-        short:
-          "Allah adalah pemberi cahaya, karenanya Dia menurunkan Al-Qur’an untuk menjadi cahaya bagi kehidupan manusia. Allah adalah pemberi cahaya pada langit dan bumi, baik cahaya material yang kasat mata maupun cahaya immaterial seperti keimanan, pengetahuan, dan lainnya. Perumpamaan kecerlangan cahaya-Nya yang menerangi hati orang-orang mukmin seperti sebuah lubang yang tidak tembus sehingga tidak diterpa angin yang dapat memadamkan cahaya, dan membantu mengumpulkan cahaya lalu memantulkannya; yang di dalamnya ada pelita besar. Pelita itu di dalam tabung kaca dan tabung kaca itu bagaikan bintang yang berkilauan, yang dinyalakan dengan minyak dari pohon yang diberkahi, yaitu pohon zaitun, yang tumbuh tidak di timur dan tidak pula di barat, sehingga pohon itu selalu mendapat sinar matahari sepanjang hari. Kejernihan minyaknya saja hampir-hampir menerangi, walaupun tidak disentuh api. Cahaya di atas cahaya, berlapis-lapis; pelita adalah cahaya, demikian pula kaca dan minyak yang begitu jernih, sehingga sempurnalah sinarnya. Allah memberi petunjuk kepada cahaya-Nya bagi orang yang Dia kehendaki, yaitu siapa saja yang mengikuti petunjuk Al-Qur’an, dan Allah membuat perumpamaan-perumpamaan bagi manusia agar mereka mudah memahami kandungannya dan mengambil pela-jaran darinya hingga akhirnya mau beriman. Dan Allah Maha Mengetahui segala sesuatu; tidak ada sedikit pun yang tersembunyi dari-Nya.",
+        footnotes: null,
+        text: "Allah adalah cahaya langit dan bumi dan pemberi petunjuk kepada semua makhluk yang tinggal pada keduanya. Perumpamaan cahaya Allah dalam hati seorang mukmin adalah seperti satu lubang yang tak tembus di suatu dinding yang di dalamnya ada pelita. Pelita itu ditempatkan dalam kaca bening seakan-akan bintang yang bercahaya seperti mutiara, ia dinyalakan dengan minyak yang berasal dari pohon yang berkah, yaitu pohon zaitun yang tumbuh di tempat yang tidak dihalangi oleh sesuatu pun dari sinar matahari, baik di pagi atau sore hari. Lantaran kemurnian minyaknya maka ia hampir saja bercahaya dan menerangi walaupun tidak disentuh api, lalu bagaimana bila disentuh oleh api?! Cahaya lampu berada dalam cahaya kaca (cahaya yang berlapis-lapis). Beginilah perumpamaan hati seorang mukmin bila di dalamnya bersinar cahaya petunjuk. Allah membimbing kepada cahaya-Nya, yaitu Al-Qur`ān siapa yang Dia kehendaki dari hamba-hamba-Nya. Allah menjelaskan banyak perkara dengan membuat perumpamaan-perumpamaan dan Allah Maha Mengetahui segala sesuatu, tidak ada sesuatu pun yang tersembunyi dari-Nya.",
       },
     },
     text: {
-      arab: "\u06de \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0646\u064f\u0648\u0631\u064f \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u06da \u0645\u064e\u062b\u064e\u0644\u064f \u0646\u064f\u0648\u0631\u0650\u0647\u0650 \u0643\u064e\u0645\u0650\u0634\u0652\u0643\u064e\u0627\u0629\u064d \u0641\u0650\u064a\u0647\u064e\u0627 \u0645\u0650\u0635\u0652\u0628\u064e\u0627\u062d\u064c \u06d6 \u0627\u0644\u0652\u0645\u0650\u0635\u0652\u0628\u064e\u0627\u062d\u064f \u0641\u0650\u064a \u0632\u064f\u062c\u064e\u0627\u062c\u064e\u0629\u064d \u06d6 \u0627\u0644\u0632\u0651\u064f\u062c\u064e\u0627\u062c\u064e\u0629\u064f \u0643\u064e\u0623\u064e\u0646\u0651\u064e\u0647\u064e\u0627 \u0643\u064e\u0648\u0652\u0643\u064e\u0628\u064c \u062f\u064f\u0631\u0651\u0650\u064a\u0651\u064c \u064a\u064f\u0648\u0642\u064e\u062f\u064f \u0645\u0650\u0646 \u0634\u064e\u062c\u064e\u0631\u064e\u0629\u064d \u0645\u0651\u064f\u0628\u064e\u0627\u0631\u064e\u0643\u064e\u0629\u064d \u0632\u064e\u064a\u0652\u062a\u064f\u0648\u0646\u064e\u0629\u064d \u0644\u0651\u064e\u0627 \u0634\u064e\u0631\u0652\u0642\u0650\u064a\u0651\u064e\u0629\u064d \u0648\u064e\u0644\u064e\u0627 \u063a\u064e\u0631\u0652\u0628\u0650\u064a\u0651\u064e\u0629\u064d \u064a\u064e\u0643\u064e\u0627\u062f\u064f \u0632\u064e\u064a\u0652\u062a\u064f\u0647\u064e\u0627 \u064a\u064f\u0636\u0650\u064a\u0621\u064f \u0648\u064e\u0644\u064e\u0648\u0652 \u0644\u064e\u0645\u0652 \u062a\u064e\u0645\u0652\u0633\u064e\u0633\u0652\u0647\u064f \u0646\u064e\u0627\u0631\u064c \u06da \u0646\u0651\u064f\u0648\u0631\u064c \u0639\u064e\u0644\u064e\u0649\u0670 \u0646\u064f\u0648\u0631\u064d \u06d7 \u064a\u064e\u0647\u0652\u062f\u0650\u064a \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0644\u0650\u0646\u064f\u0648\u0631\u0650\u0647\u0650 \u0645\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u06da \u0648\u064e\u064a\u064e\u0636\u0652\u0631\u0650\u0628\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0652\u0623\u064e\u0645\u0652\u062b\u064e\u0627\u0644\u064e \u0644\u0650\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0643\u064f\u0644\u0651\u0650 \u0634\u064e\u064a\u0652\u0621\u064d \u0639\u064e\u0644\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Allaahu noorus samaawaati wal ard; masalu noorihee kamishkaatin feehaa misbaah; almisbaahu fee zujaajatin azzujaajatu ka annahaa kawkabun durriyyuny yooqadu min shajaratim mubaarakatin zaitoonatil laa shariqiyyatinw wa laa gharbiyyatiny yakaadu zaituhaa yudeee'u wa law alm tamsashu naar; noorun 'alaa noor; yahdil laahu linoorihee mai yashaaa'; wa yadribul laahul amsaala linnaas; wallaahu bikulli shai'in Aleem",
-      },
+      arabic:
+        "ٱللَّهُ نُورُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ مَثَلُ نُورِهِۦ كَمِشْكَوٰةٍ فِيهَا مِصْبَاحٌ ٱلْمِصْبَاحُ فِى زُجَاجَةٍ ٱلزُّجَاجَةُ كَأَنَّهَا كَوْكَبٌ دُرِّىٌّ يُوقَدُ مِن شَجَرَةٍ مُّبَٰرَكَةٍ زَيْتُونَةٍ لَّا شَرْقِيَّةٍ وَلَا غَرْبِيَّةٍ يَكَادُ زَيْتُهَا يُضِىٓءُ وَلَوْ لَمْ تَمْسَسْهُ نَارٌ نُّورٌ عَلَىٰ نُورٍ يَهْدِى ٱللَّهُ لِنُورِهِۦ مَن يَشَآءُ وَيَضْرِبُ ٱللَّهُ ٱلْأَمْثَٰلَ لِلنَّاسِ وَٱللَّهُ بِكُلِّ شَىْءٍ عَلِيمٌ",
     },
     translation: {
-      en: "Allah is the Light of the heavens and the earth. The example of His light is like a niche within which is a lamp, the lamp is within glass, the glass as if it were a pearly [white] star lit from [the oil of] a blessed olive tree, neither of the east nor of the west, whose oil would almost glow even if untouched by fire. Light upon light. Allah guides to His light whom He wills. And Allah presents examples for the people, and Allah is Knowing of all things.",
-      id: "Allah (pemberi) cahaya (kepada) langit dan bumi. Perumpamaan cahaya-Nya, seperti sebuah lubang yang tidak tembus, yang di dalamnya ada pelita besar. Pelita itu di dalam tabung kaca (dan) tabung kaca itu bagaikan bintang yang berkilauan, yang dinyalakan dengan minyak dari pohon yang diberkahi, (yaitu) pohon zaitun yang tumbuh tidak di timur dan tidak pula di barat, yang minyaknya (saja) hampir-hampir menerangi, walaupun tidak disentuh api. Cahaya di atas cahaya (berlapis-lapis), Allah memberi petunjuk kepada cahaya-Nya bagi orang yang Dia kehendaki, dan Allah membuat perumpamaan-perumpamaan bagi manusia. Dan Allah Maha Mengetahui segala sesuatu.",
+      en: {
+        footnotes:
+          "[26] i.e., the source and Bestower of light.\n [27] The light of guidance in the heart of the believer. [28] As it is located in a central place, so it is hit by sunrays all day long; thus, its oil is of premium quality.",
+        text: "Allah is the Light[26] of the heavens and earth. The likeness of His light[27] is that of a niche in which is a lamp; the lamp is in a glass; the glass is like a shining star – it is lit by [the oil of] a blessed olive tree, which is neither of the east nor of the west[28]. Its oil would almost glow, even without being touched by fire. Light upon light; Allah guides to His light whom He wills. Allah sets forth comparisons for people, and Allah is All-Knowing of everything.",
+      },
+      id: {
+        footnotes:
+          "[563] “Lubang yang tidak tembus” (misykāt), ialah suatu lubang di dinding rumah yang tidak tembus sampai ke sebelahnya, biasanya digunakan untuk tempat lampu, atau barang-barang lain. \n[564] Pohon zaitun itu tumbuh di puncak bukit, ia mendapat sinar matahari baik pada waktu matahari terbit maupun ketika akan terbenam, sehingga pohonnya subur dan buahnya menghasilkan minyak yang baik.",
+        text: "Allah (pemberi) cahaya (kepada) langit dan bumi. Perumpamaan cahaya-Nya, seperti sebuah lubang yang tidak tembus,[563] yang di dalamnya ada pelita besar. Pelita itu di dalam tabung kaca, (dan) tabung kaca itu bagaikan bintang yang berkilauan, yang dinyalakan dengan minyak dari pohon yang diberkahi, (yaitu) pohon zaitun yang tumbuh tidak di timur dan tidak pula di barat,[564] yang minyaknya (saja) hampir-hampir menerangi, walaupun tidak disentuh api. Cahaya di atas cahaya (berlapis-lapis), Allah memberi petunjuk kepada cahaya-Nya bagi orang yang Dia kehendaki, dan Allah membuat perumpamaan-perumpamaan bagi manusia. Dan Allah Maha Mengetahui segala sesuatu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2827",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2827.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2827.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 142,
       juz: 18,
       manzil: 4,
       page: 354,
       ruku: 305,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2827,
@@ -229,20 +199,24 @@ export const quranSurah24Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Di antara orang-orang yang akan diberi Allah pancaran Nur Ilahi itu ialah orang-orang yang selalu menyebut nama Allah di masjid-masjid pada pagi dan petang hari serta bertasbih menyucikan-Nya. Mereka tidak lalai mengingat Allah dan mengerjakan salat walaupun melakukan urusan perniagaan dan jual beli, mereka tidak enggan mengeluarkan zakat karena tamak mengumpulkan harta kekayaan, mereka selalu ingat akan hari akhirat yang karena dahsyatnya banyak hati menjadi guncang dan mata menjadi terbelalak. Ini bukan berarti mereka mengabaikan sama sekali urusan dunia dan menghabiskan waktu dan tenaganya untuk berzikir dan bertasbih, karena hal demikian tidak disukai oleh Nabi Muhammad dan bertentangan dengan prinsip-prinsip Islam.\n\nNabi Muhammad telah bersabda:\n\nBerusahalah seperti usaha orang yang mengira bahwa ia tidak akan mati selama-lamanya dan waspadalah seperti kewaspadaan orang yang takut akan mati besok. (Riwayat al-Baihaqi dari Ibnu Auz)\n\nUrusan duniawi dan urusan ukhrawi keduanya sama penting dalam Islam. Seorang muslim harus pandai menciptakan keseimbangan antara kedua urusan itu, jangan sampai salah satu di antara keduanya dikalahkan oleh yang lain. Melalaikan urusan akhirat karena mementingkan urusan dunia adalah terlarang, sebagaimana disebut dalam firman-Nya:\n\nWahai orang-orang yang beriman! Janganlah harta-bendamu dan anak-anakmu melalaikan kamu dari mengingat Allah. Dan barang siapa berbuat demikian, maka mereka itulah orang-orang yang rugi. (al-Munafiqun/63: 9)\n\nDan firman-Nya:\n\nWahai orang-orang yang beriman! Apabila telah diseru untuk melaksanakan salat pada hari Jumat, maka segeralah kamu mengingat Allah dan tinggalkanlah jual beli. Yang demikian itu lebih baik bagimu jika kamu mengetahui. (al-Jumu'ah/62: 9)\n\nTetapi apabila kewajiban-kewajiban terhadap agama telah ditunaikan dengan sebaik-baiknya, seorang muslim diperintahkan untuk kembali mengurus urusan dunianya dengan ketentuan tidak lupa mengingat Allah agar dia jangan melanggar perintah-Nya atau mengerjakan larangan-Nya sebagai tersebut dalam firman-Nya:\n\nApabila salat telah dilaksanakan, maka bertebaranlah kamu di bumi; carilah karunia Allah dan ingatlah Allah banyak-banyak agar kamu beruntung. (al-Jumu'ah/62: 10)\n\nSebaliknya melalaikan urusan dunia dan hanya mementingkan urusan akhirat juga tercela, karena orang muslim diperintahkan Allah supaya berusaha mencari rezeki untuk memenuhi kebutuhannya, dan kebutuhan keluarganya. Orang-orang yang berusaha menyeimbangkan antara urusan duniawi dan urusan ukhrawi itulah orang-orang yang diridai oleh Allah. Dia bekerja untuk dunianya karena taat dan patuh kepada perintah dan petunjuk-Nya. Dia beramal untuk akhirat karena taat dan patuh kepada perintah serta petunjuk-Nya, sebagai persiapan untuk menghadapi hari akhirat yang amat dahsyat dan penuh kesulitan, sebagaimana disebut dalam firman-Nya:\n\nSungguh, kami takut akan (azab) Tuhan pada hari (ketika) orang-orang berwajah masam penuh kesulitan.\" Maka Allah melindungi mereka dari kesusahan hari itu, dan memberikan kepada mereka keceriaan dan kegembiraan. Dan Dia memberi balasan kepada mereka karena kesabarannya (berupa) surga dan (pakaian) sutera. (al-Insan/76: 10-12)",
-        short:
-          "Cahaya itu Allah pancarkan di langit dan bumi, seperti disebutkan dalam ayat sebelumnya. Namun, tidak semua orang dapat meraih cahaya itu. Cahaya itu di rumah-rumah ibadah yang di sana telah diperintahkan Allah untuk memuliakan dan menyebut nama-Nya; di sana bertasbih-lah orang-orang yang menyucikan nama-Nya melalui berbagai ibadah, seperti azan, salat, dan tilawah Al-Qur’an, pada waktu pagi dan petang,",
+        footnotes: null,
+        text: "Lampu penerang tersebut dinyalakan dalam masjid-masjid yang Allah perintahkan untuk diagungkan kemuliaan dan bangunannya, dan disebut nama-Nya di dalamnya dengan azan, zikir dan salat, serta (laki-laki yang tidak lalai) mendirikan salat di dalamnya demi meraih rida Allah pada waktu pagi dan waktu petang.",
       },
     },
     text: {
-      arab: "\u0641\u0650\u064a \u0628\u064f\u064a\u064f\u0648\u062a\u064d \u0623\u064e\u0630\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0623\u064e\u0646 \u062a\u064f\u0631\u0652\u0641\u064e\u0639\u064e \u0648\u064e\u064a\u064f\u0630\u0652\u0643\u064e\u0631\u064e \u0641\u0650\u064a\u0647\u064e\u0627 \u0627\u0633\u0652\u0645\u064f\u0647\u064f \u064a\u064f\u0633\u064e\u0628\u0651\u0650\u062d\u064f \u0644\u064e\u0647\u064f \u0641\u0650\u064a\u0647\u064e\u0627 \u0628\u0650\u0627\u0644\u0652\u063a\u064f\u062f\u064f\u0648\u0651\u0650 \u0648\u064e\u0627\u0644\u0652\u0622\u0635\u064e\u0627\u0644\u0650",
-      transliteration: {
-        en: "Fee buyootin azinal laahu an turfa'a wa yuzkara feehasmuhoo yusabbihu lahoo feehaa bilghuduwwi wal aasaal",
-      },
+      arabic:
+        "فِى بُيُوتٍ أَذِنَ ٱللَّهُ أَن تُرْفَعَ وَيُذْكَرَ فِيهَا ٱسْمُهُۥ يُسَبِّحُ لَهُۥ فِيهَا بِٱلْغُدُوِّ وَٱلْـَٔاصَالِ",
     },
     translation: {
-      en: "[Such niches are] in mosques which Allah has ordered to be raised and that His name be mentioned therein; exalting Him within them in the morning and the evenings",
-      id: "(Cahaya itu) di rumah-rumah yang di sana telah diperintahkan Allah untuk memuliakan dan menyebut nama-Nya, di sana bertasbih (menyucikan)  nama-Nya pada waktu pagi dan petang,",
+      en: {
+        footnotes: "",
+        text: "[Such niches are lit] in the houses [of worship] which Allah has ordered to raise up, and where His Name is mentioned, and He is glorified therein morning and evening",
+      },
+      id: {
+        footnotes:
+          "[565] Yang bertasbih ialah orang yang disebut pada ayat 37.",
+        text: "(Cahaya itu) di rumah-rumah yang di sana telah diperintahkan Allah untuk memuliakan dan menyebut nama-Nya, di sana bertasbih (menyucikan)[565] nama-Nya pada waktu pagi dan petang,",
+      },
     },
   },
 ];

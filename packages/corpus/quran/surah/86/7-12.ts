@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah86Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5938",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5938.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5938.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 591,
       ruku: 528,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5938,
@@ -24,40 +25,33 @@ export const quranSurah86Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menerangkan bahwa manusia dijadikan-Nya dari air yang terpancar, yang keluar dari antara tulang punggung (as-sulb) dan tulang dada laki-laki. Pernyataan Allah ini adalah sebagai jawaban atas pertanyaan pada ayat terdahulu.",
-        short:
-          "Itulah sperma yang keluar dari antara tulang punggung laki-laki dan ovum yang keluar dari antara tulang dada perempuan. Campuran keduanya kemudian melalui berbagai proses dan tahapan di dalam rahim menjadi janin, cikal bakal manusia.",
+        footnotes: null,
+        text: "Air ini keluar dari tulang rusuk laki-laki dan tulang dada perempuan.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u062e\u0652\u0631\u064f\u062c\u064f \u0645\u0650\u0646 \u0628\u064e\u064a\u0652\u0646\u0650 \u0627\u0644\u0635\u0651\u064f\u0644\u0652\u0628\u0650 \u0648\u064e\u0627\u0644\u062a\u0651\u064e\u0631\u064e\u0627\u0626\u0650\u0628\u0650",
-      transliteration: {
-        en: "Yakhruju mim bainissulbi wat taraaa'ib",
-      },
+      arabic: "يَخْرُجُ مِنۢ بَيْنِ ٱلصُّلْبِ وَٱلتَّرَآئِبِ",
     },
     translation: {
-      en: "Emerging from between the backbone and the ribs.",
-      id: "yang keluar dari antara tulang punggung (sulbi) dan tulang dada.",
+      en: {
+        footnotes:
+          "[2] Both testes and ovaries are sustained by arteries originating between the backbone and the ribcage.",
+        text: "emerging from between the backbone and the ribs[2].",
+      },
+      id: {
+        footnotes: "",
+        text: "yang keluar dari antara tulang punggung (sulbi) dan tulang dada.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5939",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5939.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5939.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 591,
       ruku: 528,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5939,
@@ -65,40 +59,32 @@ export const quranSurah86Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah menerangkan bahwa Ia benar-benar berkuasa untuk mengembalikan manusia hidup sesudah mati. Allah berfirman:\n\nKatakanlah (Muhammad), "Yang akan menghidupkannya ialah (Allah) yang menciptakannya pertama kali. Dan Dia Maha Mengetahui tentang segala makhluk. (Yasin/36: 79)\n\nDan Dialah yang memulai penciptaan, kemudian mengulanginya kembali, dan itu lebih mudah bagi-Nya. Dia memiliki sifat yang Mahatinggi di langit dan di bumi. Dan Dialah Yang Mahaperkasa, Mahabijaksana. (ar-Rum/30: 27)',
-        short:
-          "Allah kuasa menciptakan manusia dari ketiadaan, dari air yang memancar, maka sungguh Allah benar-benar kuasa pula untuk mengembalikannya menjadi hidup kembali sesudah mati. Mengembalikan sesuatu kepada kondisi semula, dalam perspektif manusia, tentu lebih mudah daripada menciptakannya untuk pertama kali. Namun, kedua hal itu sama mudahnya bagi Allah.",
+        footnotes: null,
+        text: "Tatkala Allah menciptakannya dari air yang hina itu sesungguhnya Allah Mahakuasa untuk membangkitkannya setelah kematiannya untuk perhitungan amal perbuatan dan pembalasan.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0631\u064e\u062c\u0652\u0639\u0650\u0647\u0650 \u0644\u064e\u0642\u064e\u0627\u062f\u0650\u0631\u064c",
-      transliteration: {
-        en: "Innahoo 'alaa raj'ihee laqaadir",
-      },
+      arabic: "إِنَّهُۥ عَلَىٰ رَجْعِهِۦ لَقَادِرٌ",
     },
     translation: {
-      en: "Indeed, Allah, to return him [to life], is Able.",
-      id: "Sungguh, Allah benar-benar kuasa untuk mengembalikannya (hidup setelah mati).",
+      en: {
+        footnotes: "",
+        text: "Indeed, Allah is able to bring him back to life.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, Allah benar-benar kuasa untuk mengembalikannya (hidup setelah mati).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5940",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5940.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5940.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 591,
       ruku: 528,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5940,
@@ -106,40 +92,33 @@ export const quranSurah86Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini diterangkan bahwa Allah akan membangkitkan manusia kembali pada hari yang ditampakkan segala rahasia, yaitu hari Kiamat. Ketika itu, tidak seorang pun dapat luput dari apa yang sudah ditentukan sebagai balasan atas perbuatannya, yaitu surga bagi yang beramal saleh dan neraka bagi yang durhaka dan melanggar perintah Allah.\n\nKetika di akhirat, semua manusia akan memperoleh balasan sesuai dengan perbuatan masing-masing. Jadi, setiap orang akan memperoleh sebagaimana amal yang telah dilakukan di dunia. Tidak ada satu kekuatan pun yang dapat mengubahnya dan tidak ada penolong yang dapat membantunya kecuali kekuasaan Allah semata, sebagaimana firman-Nya:\n\nDan tidak ada (lagi) baginya segolongan pun yang dapat menolongnya selain Allah; dan dia pun tidak akan dapat membela dirinya. (al-Kahf/18: 43)",
-        short:
-          "Allah akan membangkitkan manusia dari kubur mereka pada hari ditampakkan segala rahasia, seperti isi hati manusia, meliputi keyakinan, niat dan rahasia lain yang belum terkuak di dunia.",
+        footnotes: null,
+        text: "Itu terjadi pada hari ketika semua rahasia terkuak, lalu tersingkaplah niat, keyakinan, dan lainnya yang dulu tersembunyi di dalam hati, sehingga tampaklah perbedaan antara orang yang baik dan orang yang buruk.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0648\u0652\u0645\u064e \u062a\u064f\u0628\u0652\u0644\u064e\u0649 \u0627\u0644\u0633\u0651\u064e\u0631\u064e\u0627\u0626\u0650\u0631\u064f",
-      transliteration: {
-        en: "Yawma tublas saraaa'ir",
-      },
+      arabic: "يَوْمَ تُبْلَى ٱلسَّرَآئِرُ",
     },
     translation: {
-      en: "The Day when secrets will be put on trial,",
-      id: "Pada hari ditampakkan segala rahasia,",
+      en: {
+        footnotes:
+          "[3] The secrets will be examined, disclosing the real intentions and faiths people harbored, distinguishing between righteous and evil therefrom.",
+        text: "On the Day when all secrets will be disclosed[3],",
+      },
+      id: {
+        footnotes: "",
+        text: "Pada hari ditampakkan segala rahasia,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5941",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5941.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5941.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 591,
       ruku: 528,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5941,
@@ -147,40 +126,32 @@ export const quranSurah86Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini diterangkan bahwa Allah akan membangkitkan manusia kembali pada hari yang ditampakkan segala rahasia, yaitu hari Kiamat. Ketika itu, tidak seorang pun dapat luput dari apa yang sudah ditentukan sebagai balasan atas perbuatannya, yaitu surga bagi yang beramal saleh dan neraka bagi yang durhaka dan melanggar perintah Allah.\n\nKetika di akhirat, semua manusia akan memperoleh balasan sesuai dengan perbuatan masing-masing. Jadi, setiap orang akan memperoleh sebagaimana amal yang telah dilakukan di dunia. Tidak ada satu kekuatan pun yang dapat mengubahnya dan tidak ada penolong yang dapat membantunya kecuali kekuasaan Allah semata, sebagaimana firman-Nya:\n\nDan tidak ada (lagi) baginya segolongan pun yang dapat menolongnya selain Allah; dan dia pun tidak akan dapat membela dirinya. (al-Kahf/18: 43)",
-        short:
-          "Ketika semua persoalan terkuak di hadapan Allah maka manusia tidak lagi mempunyai suatu kekuatan dalam dirinya sendiri dan tidak pula ada penolong dari luar dirinya yang mengelakkan nya dari balasan Allah. Allah-lah penguasa tunggal pada hari itu.",
+        footnotes: null,
+        text: "Pada hari itu manusia sama sekali tidak mempunyai kekuatan yang bisa mencegahnya dari siksa Allah dan tidak ada penolong yang dapat menolongnya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0645\u064e\u0627 \u0644\u064e\u0647\u064f \u0645\u0650\u0646 \u0642\u064f\u0648\u0651\u064e\u0629\u064d \u0648\u064e\u0644\u064e\u0627 \u0646\u064e\u0627\u0635\u0650\u0631\u064d",
-      transliteration: {
-        en: "Famaa lahoo min quwwatinw wa laa naasir",
-      },
+      arabic: "فَمَا لَهُۥ مِن قُوَّةٍ وَلَا نَاصِرٍ",
     },
     translation: {
-      en: "Then man will have no power or any helper.",
-      id: "maka manusia tidak lagi mempunyai suatu kekuatan dan tidak (pula) ada penolong.",
+      en: {
+        footnotes: "",
+        text: "he will then have no power, nor any helper.",
+      },
+      id: {
+        footnotes: "",
+        text: "maka manusia tidak lagi mempunyai suatu kekuatan dan tidak (pula) ada penolong.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5942",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5942.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5942.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 591,
       ruku: 528,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5942,
@@ -188,40 +159,33 @@ export const quranSurah86Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah bersumpah dengan langit yang mengandung hujan yang sangat diharapkan manusia, karena hujanlah yang menjadikan tanah tandus menjadi subur, yang membuat makhluk yang berada di bumi hidup dan yang menjadikan udara panas menjadi sejuk.",
-        short:
-          "Demi langit yang mengandung hujan yang turun kembali ke bumi. Dengan hujan bumi yang tandus menjadi subur. Inilah salah satu bukti kasih sayang Allah kepada makhluk-Nya.",
+        footnotes: null,
+        text: " Allah bersumpah dengan langit yang mempunyai hujan, karena hujan turun dari arah langit.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0621\u0650 \u0630\u064e\u0627\u062a\u0650 \u0627\u0644\u0631\u0651\u064e\u062c\u0652\u0639\u0650",
-      transliteration: {
-        en: "Wassamaaa'i zaatir raj'",
-      },
+      arabic: "وَٱلسَّمَآءِ ذَاتِ ٱلرَّجْعِ",
     },
     translation: {
-      en: "By the sky which returns [rain]",
-      id: "Demi langit yang mengandung hujan,",
+      en: {
+        footnotes: "[4] And sun, moon, stars, clouds, heat, etc.",
+        text: "By the sky and its recurring rain[4],",
+      },
+      id: {
+        footnotes:
+          "[905] Raj'i berarti kembali berputar. Hujan dinamakan raj'i dalam ayat ini, karena hujan itu berasal dari uap yang naik dari bumi ke udara, kemudian turun ke bumi, kemudian kembali ke atas, dan dari atas kembali ke bumi, dan begitulah seterusnya.",
+        text: "Demi langit yang mengandung hujan,[905]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5943",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5943.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5943.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 591,
       ruku: 528,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5943,
@@ -229,20 +193,22 @@ export const quranSurah86Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Allah bersumpah dengan bumi yang mempunyai tumbuh-tumbuhan dan buah-buahan yang sangat diperlukan untuk kehidupan manusia dan binatang ternak mereka.",
-        short:
-          "Dan demi bumi yang mempunyai tumbuh-tumbuhan. Benih yang tersiram hujan akan mulai tumbuh dan menembus permukaan tanah untuk berkembang. Banyaknya tumbuhan dan pepohonan mendatangkan manfaat yang besar bagi makhluk hidup lainnya.",
+        footnotes: null,
+        text: " Dia juga bersumpah dengan bumi yang memunculkan apa yang ada di dalamnya berupa tumbuh-tumbuhan, buah-buahan, dan pepohonan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0630\u064e\u0627\u062a\u0650 \u0627\u0644\u0635\u0651\u064e\u062f\u0652\u0639\u0650",
-      transliteration: {
-        en: "Wal ardi zaatis sad'",
-      },
+      arabic: "وَٱلْأَرْضِ ذَاتِ ٱلصَّدْعِ",
     },
     translation: {
-      en: "And [by] the earth which cracks open,",
-      id: "dan bumi yang mempunyai tumbuh-tumbuhan,",
+      en: {
+        footnotes: "",
+        text: "and by the earth that cracks open [with the sprout of plants],",
+      },
+      id: {
+        footnotes: "",
+        text: "dan bumi yang mempunyai tumbuh-tumbuhan,",
+      },
     },
   },
 ];

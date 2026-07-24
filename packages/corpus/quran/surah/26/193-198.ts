@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah26Verses193To198 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3125",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3125.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3125.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3125,
@@ -24,40 +25,32 @@ export const quranSurah26Verses193To198 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini diterangkan bahwa Al-Qur'an yang diturunkan kepada Muhammad adalah kitab suci yang berasal dari Tuhan semesta alam. Diturunkan kepada Muhammad secara berangsur-angsur dengan perantaraan Jibril, malaikat yang bertugas membawa wahyu kepada para rasul. Al-Qur'an itu ditanamkan ke dalam hati Muhammad, maksudnya ialah Al-Qur'an itu dibacakan oleh Jibril sedemikian rupa sehingga Nabi Muhammad memahami betul arti dan maksudnya. Dengan pemahaman dan pengertian yang demikian, maka Nabi Muhammad mudah menyampaikan kepada umatnya dan umatnya mudah pula menerimanya.\n\nSebagai contoh, ketika Surah al-An'am yang ayatnya berjumlah 165 ayat dan Surah Yusuf sebanyak 111 ayat diturunkan sekaligus, Rasulullah langsung menerima dan menghafalnya. Ini bukti bahwa Al-Qur'an telah dihunjamkan ke hati Rasul oleh malaikat dengan lisannya.\n\nAllah menerangkan bahwa Al-Qur'an itu diturunkan dalam bahasa Arab yang jelas dan fasih serta gaya bahasa yang indah. Di dalamnya terdapat pula ayat-ayat yang menantang orang-orang musyrik Mekah agar membuat ayat-ayat yang lain seperti ayat-ayat Al-Qur'an itu, kalau mereka tidak percaya bahwa Al-Qur'an itu diturunkan dari Allah dan hanyalah buatan Muhammad sendiri. Akan tetapi, mereka tidak mampu menandinginya, walaupun dengan membuat satu surah pun yang sefasih dan seindah gaya bahasa Al-Qur'an. Dengan demikian, tidak ada lagi alasan bagi orang-orang musyrik Mekah itu untuk mengatakan bahwa Al-Qur'an itu hanyalah buatan Muhammad semata. Tegasnya, kendati Al-Qur'an itu diturunkan dalam bahasa Arab, yakni bahasa mereka sendiri, tetapi mereka tidak mampu menandingi ayat-ayatnya. Kalau Muhammad dapat membuat Al-Qur'an, tentu menurut logikanya, mereka juga dapat membuatnya, karena sama-sama bangsa Arab dan sama-sama berbahasa Arab. \n\nMereka memahami ayat-ayat Al-Qur'an itu, mengetahui keindahan gaya bahasanya, dan meyakini bahwa Al-Qur'an itu bukan bersumber dari manusia. Mereka mengetahui betul sampai di mana batas kemampuan manusia, namun mereka tetap tidak mau beriman kepadanya karena sifat takabur dan keingkaran yang berurat dan berakar pada diri mereka.",
-        short:
-          "Al-Qur’an itu dibawa turun secara berangsur-angsur oleh Ar-Ruh Al-Amin yaitu Jibril, atas izin Allah. Ruh adalah sesuatu yang dengannya raga menjadi hidup, begitu juga Al-Qur’an.",
+        footnotes: null,
+        text: "Dia dibawa turun oleh Jibril -'alaihissalām- yang amanah lagi terpercaya.",
       },
     },
     text: {
-      arab: "\u0646\u064e\u0632\u064e\u0644\u064e \u0628\u0650\u0647\u0650 \u0627\u0644\u0631\u0651\u064f\u0648\u062d\u064f \u0627\u0644\u0652\u0623\u064e\u0645\u0650\u064a\u0646\u064f",
-      transliteration: {
-        en: "Nazala bihir Roohul Ameen",
-      },
+      arabic: "نَزَلَ بِهِ ٱلرُّوحُ ٱلْأَمِينُ",
     },
     translation: {
-      en: "The Trustworthy Spirit has brought it down",
-      id: "Yang dibawa turun oleh ar-Ruh al-Amin (Jibril),",
+      en: {
+        footnotes: "",
+        text: "which the Trustworthy Spirit [Gabriel] has brought down",
+      },
+      id: {
+        footnotes: "",
+        text: "Yang dibawa turun oleh Ar-Rūḥ Al-Amīn (Jibril),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3126",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3126.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3126.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3126,
@@ -65,40 +58,32 @@ export const quranSurah26Verses193To198 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini diterangkan bahwa Al-Qur'an yang diturunkan kepada Muhammad adalah kitab suci yang berasal dari Tuhan semesta alam. Diturunkan kepada Muhammad secara berangsur-angsur dengan perantaraan Jibril, malaikat yang bertugas membawa wahyu kepada para rasul. Al-Qur'an itu ditanamkan ke dalam hati Muhammad, maksudnya ialah Al-Qur'an itu dibacakan oleh Jibril sedemikian rupa sehingga Nabi Muhammad memahami betul arti dan maksudnya. Dengan pemahaman dan pengertian yang demikian, maka Nabi Muhammad mudah menyampaikan kepada umatnya dan umatnya mudah pula menerimanya.\n\nSebagai contoh, ketika Surah al-An'am yang ayatnya berjumlah 165 ayat dan Surah Yusuf sebanyak 111 ayat diturunkan sekaligus, Rasulullah langsung menerima dan menghafalnya. Ini bukti bahwa Al-Qur'an telah dihunjamkan ke hati Rasul oleh malaikat dengan lisannya.\n\nAllah menerangkan bahwa Al-Qur'an itu diturunkan dalam bahasa Arab yang jelas dan fasih serta gaya bahasa yang indah. Di dalamnya terdapat pula ayat-ayat yang menantang orang-orang musyrik Mekah agar membuat ayat-ayat yang lain seperti ayat-ayat Al-Qur'an itu, kalau mereka tidak percaya bahwa Al-Qur'an itu diturunkan dari Allah dan hanyalah buatan Muhammad sendiri. Akan tetapi, mereka tidak mampu menandinginya, walaupun dengan membuat satu surah pun yang sefasih dan seindah gaya bahasa Al-Qur'an. Dengan demikian, tidak ada lagi alasan bagi orang-orang musyrik Mekah itu untuk mengatakan bahwa Al-Qur'an itu hanyalah buatan Muhammad semata. Tegasnya, kendati Al-Qur'an itu diturunkan dalam bahasa Arab, yakni bahasa mereka sendiri, tetapi mereka tidak mampu menandingi ayat-ayatnya. Kalau Muhammad dapat membuat Al-Qur'an, tentu menurut logikanya, mereka juga dapat membuatnya, karena sama-sama bangsa Arab dan sama-sama berbahasa Arab. \n\nMereka memahami ayat-ayat Al-Qur'an itu, mengetahui keindahan gaya bahasanya, dan meyakini bahwa Al-Qur'an itu bukan bersumber dari manusia. Mereka mengetahui betul sampai di mana batas kemampuan manusia, namun mereka tetap tidak mau beriman kepadanya karena sifat takabur dan keingkaran yang berurat dan berakar pada diri mereka.",
-        short:
-          "Jibril langsung memasukkan Al-Qur’an ke dalam hatimu, wahai Nabi Muhmmad, yang dengan itu Al-Qur’an terpelihara. Tujuannya agar engkau termasuk orang yang memberi peringatan kepada manusia agar mawas diri. Jika mereka memilih kekafiran dan kefasikan, setelah datangnya penjelasan, mereka akan diberi sanksi yang berat oleh Allah.",
+        footnotes: null,
+        text: "Dia menurunkannya ke dalam hatimu -wahai Rasul- agar engkau menjadi salah seorang rasul yang memberi peringatan kepada manusia dan mengancam mereka akan datangnya azab Allah.",
       },
     },
     text: {
-      arab: "\u0639\u064e\u0644\u064e\u0649\u0670 \u0642\u064e\u0644\u0652\u0628\u0650\u0643\u064e \u0644\u0650\u062a\u064e\u0643\u064f\u0648\u0646\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064f\u0646\u0630\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "'Alaa qalbika litakoona minal munzireen",
-      },
+      arabic: "عَلَىٰ قَلْبِكَ لِتَكُونَ مِنَ ٱلْمُنذِرِينَ",
     },
     translation: {
-      en: "Upon your heart, [O Muhammad] - that you may be of the warners -",
-      id: "ke dalam hatimu (Muhammad) agar engkau termasuk orang yang memberi peringatan,",
+      en: {
+        footnotes: "",
+        text: "to your heart [O Prophet] so that you may be one of the warners,",
+      },
+      id: {
+        footnotes: "",
+        text: "ke dalam hatimu (Muhammad) agar engkau termasuk orang yang memberi peringatan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3127",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3127.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3127.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3127,
@@ -106,40 +91,32 @@ export const quranSurah26Verses193To198 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini diterangkan bahwa Al-Qur'an yang diturunkan kepada Muhammad adalah kitab suci yang berasal dari Tuhan semesta alam. Diturunkan kepada Muhammad secara berangsur-angsur dengan perantaraan Jibril, malaikat yang bertugas membawa wahyu kepada para rasul. Al-Qur'an itu ditanamkan ke dalam hati Muhammad, maksudnya ialah Al-Qur'an itu dibacakan oleh Jibril sedemikian rupa sehingga Nabi Muhammad memahami betul arti dan maksudnya. Dengan pemahaman dan pengertian yang demikian, maka Nabi Muhammad mudah menyampaikan kepada umatnya dan umatnya mudah pula menerimanya.\n\nSebagai contoh, ketika Surah al-An'am yang ayatnya berjumlah 165 ayat dan Surah Yusuf sebanyak 111 ayat diturunkan sekaligus, Rasulullah langsung menerima dan menghafalnya. Ini bukti bahwa Al-Qur'an telah dihunjamkan ke hati Rasul oleh malaikat dengan lisannya.\n\nAllah menerangkan bahwa Al-Qur'an itu diturunkan dalam bahasa Arab yang jelas dan fasih serta gaya bahasa yang indah. Di dalamnya terdapat pula ayat-ayat yang menantang orang-orang musyrik Mekah agar membuat ayat-ayat yang lain seperti ayat-ayat Al-Qur'an itu, kalau mereka tidak percaya bahwa Al-Qur'an itu diturunkan dari Allah dan hanyalah buatan Muhammad sendiri. Akan tetapi, mereka tidak mampu menandinginya, walaupun dengan membuat satu surah pun yang sefasih dan seindah gaya bahasa Al-Qur'an. Dengan demikian, tidak ada lagi alasan bagi orang-orang musyrik Mekah itu untuk mengatakan bahwa Al-Qur'an itu hanyalah buatan Muhammad semata. Tegasnya, kendati Al-Qur'an itu diturunkan dalam bahasa Arab, yakni bahasa mereka sendiri, tetapi mereka tidak mampu menandingi ayat-ayatnya. Kalau Muhammad dapat membuat Al-Qur'an, tentu menurut logikanya, mereka juga dapat membuatnya, karena sama-sama bangsa Arab dan sama-sama berbahasa Arab. \n\nMereka memahami ayat-ayat Al-Qur'an itu, mengetahui keindahan gaya bahasanya, dan meyakini bahwa Al-Qur'an itu bukan bersumber dari manusia. Mereka mengetahui betul sampai di mana batas kemampuan manusia, namun mereka tetap tidak mau beriman kepadanya karena sifat takabur dan keingkaran yang berurat dan berakar pada diri mereka.",
-        short:
-          "Al-Qur'an yang diturunkan kepadamu, dan penjelasanmu tentangnya itu dengan bahasa Arab yang jelas. dengan demikian, bisa dengan mudah dipahami oleh masyarakat Arab, di mana Al-Qur’an turun pertama kali kepada mereka.",
+        footnotes: null,
+        text: "Dia menurunkannya dengan bahasa Arab yang jelas.",
       },
     },
     text: {
-      arab: "\u0628\u0650\u0644\u0650\u0633\u064e\u0627\u0646\u064d \u0639\u064e\u0631\u064e\u0628\u0650\u064a\u0651\u064d \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Bilisaanin 'Arabiyyim mubeen",
-      },
+      arabic: "بِلِسَانٍ عَرَبِىٍّ مُّبِينٍ",
     },
     translation: {
-      en: "In a clear Arabic language.",
-      id: "dengan bahasa Arab yang jelas.",
+      en: {
+        footnotes: "",
+        text: "in a clear Arabic language.",
+      },
+      id: {
+        footnotes: "",
+        text: "dengan bahasa Arab yang jelas.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3128",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3128.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3128.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3128,
@@ -147,40 +124,32 @@ export const quranSurah26Verses193To198 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Al-Qur'an yang diturunkan kepada Nabi Muhammad itu telah diisyaratkan dalam kitab-kitab Allah yang diturunkan kepada para rasul-Nya terdahulu. Dalam ayat yang lain Allah berfirman:\n\nDan (ingatlah) ketika Isa putra Maryam berkata, \"Wahai Bani Israil! Sesungguhnya aku utusan Allah kepadamu, yang membenarkan kitab (yang turun) sebelumku, yaitu Taurat dan memberi kabar gembira dengan seorang rasul yang akan datang setelahku, yang namanya Ahmad (Muhammad).\" (as-saff/61: 6).\n\nDi samping adanya isyarat-isyarat akan turun-Nya Al-Qur'an dalam kitab-kitab yang diturunkan kepada para rasul terdahulu, juga telah ada nubuat-nubuat tentang akan diutusnya Nabi Muhammad. Sekalipun kitab Taurat yang sekarang telah dicampuri tangan-tangan manusia, ada yang ditambah, dikurangi, dan sebagainya, namun masih terdapat ayat-ayat yang menjelaskan kedatangan Nabi Muhammad sebagai rasul terakhir dan membawa syariat yang sempurna. Firman Allah:\n\n(Yaitu) orang-orang yang mengikuti Rasul, Nabi yang ummi (tidak bisa baca tulis) yang (namanya) mereka dapati tertulis di dalam Taurat dan Injil yang ada pada mereka, yang menyuruh mereka berbuat yang makruf dan mencegah dari yang mungkar, dan yang menghalalkan segala yang baik bagi mereka dan mengharamkan segala yang buruk bagi mereka, dan membebaskan beban-beban dan belenggu-belenggu yang ada pada mereka. Adapun orang-orang yang beriman kepadanya, memuliakannya, menolongnya dan mengikuti cahaya yang terang yang diturunkan kepadanya (Al-Qur'an), mereka itulah orang-orang beruntung. (al-A'raf/7: 157)",
-        short:
-          "Dan sungguh, Al-Qur'an itu benar-benar disebut dalam kitab-kitab orang yang dahulu seperti Taurat, Zabur, dan Injil (Lihat: Surah al-A’raf/7: 157). Hal ini menunjukkan akan satunya tujuan, satunya sumber, dan keterkaitan antara satu kitab suci dengan kitab suci lainnya sama-sama menyeru kepada Tauhid.",
+        footnotes: null,
+        text: "Sesungguhnya Al-Qur`ān ini benar-benar telah disebutkan dalam kitab umat-umat terdahulu, bahkan kitab-kitab samawi terdahulu telah memberitakan tentang turunnya Al-Qur`ān ini.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0644\u064e\u0641\u0650\u064a \u0632\u064f\u0628\u064f\u0631\u0650 \u0627\u0644\u0652\u0623\u064e\u0648\u0651\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa innahoo lafee Zuburil awwaleen",
-      },
+      arabic: "وَإِنَّهُۥ لَفِى زُبُرِ ٱلْأَوَّلِينَ",
     },
     translation: {
-      en: "And indeed, it is [mentioned] in the scriptures of former peoples.",
-      id: "Dan sungguh, (Al-Qur'an) itu (disebut) dalam kitab-kitab orang yang terdahulu.",
+      en: {
+        footnotes: "",
+        text: "And it was indeed [mentioned] in the scriptures of the former peoples.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, (Al-Qur`an) itu (disebut) dalam kitab-kitab orang yang terdahulu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3129",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3129.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3129.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3129,
@@ -188,40 +157,33 @@ export const quranSurah26Verses193To198 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa di samping diberitakan dalam Taurat dan Injil, kedatangan dan kenabian Muhammad saw itu juga ditegaskan oleh ulama-ulama Yahudi yang hidup di Madinah pada waktu itu. Mereka mengatakan bahwa sebenarnya terdapat di dalam Taurat dan Injil isyarat-isyarat atau keterangan-keterangan tentang Nabi Muhammad. Oleh karena itu, banyak orang-orang musyrik Mekah yang pergi ke Medinah menemui ulama-ulama Yahudi untuk menanyakan berita-berita tentang Nabi Muhammad.\n\nAts-sa'labi menerangkan dari Ibnu 'Abbas bahwa orang-orang musyrik Mekah pernah mengutus utusan ke Madinah menemui pendeta-pendeta Yahudi untuk meminta keterangan tentang Muhammad. Mereka menjawab, \"Ini masa kedatangannya\", dan mereka menyebutkan sifat-sifatnya.",
-        short:
-          "Dukungan terhadap kebenaran Al-Qur’an juga datang dari para ulama Bani Israil. Apakah tidak cukup menjadi bukti bagi mereka, bahwa para ulama Bani Israil mengetahuinya? Mereka, dahulu, bahkan sangat menantikan kedatangan Nabi Muhammad.",
+        footnotes: null,
+        text: "Apakah tidak cukup bagi orang-orang yang mendustakanmu suatu bukti kebenaranmu dengan adanya ilmu dan pengakuan ulama Bani Israil -semisal Abdullah bin Salām- tentang kebenaran wahyu yang turun pada dirimu?",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0648\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u0643\u064f\u0646 \u0644\u0651\u064e\u0647\u064f\u0645\u0652 \u0622\u064a\u064e\u0629\u064b \u0623\u064e\u0646 \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064e\u0647\u064f \u0639\u064f\u0644\u064e\u0645\u064e\u0627\u0621\u064f \u0628\u064e\u0646\u0650\u064a \u0625\u0650\u0633\u0652\u0631\u064e\u0627\u0626\u0650\u064a\u0644\u064e",
-      transliteration: {
-        en: "Awalam yakul lahum Aayatan ai ya'lamahoo 'ulamaaa'u Baneee Israaa'eel",
-      },
+      arabic: "أَوَلَمْ يَكُن لَّهُمْ ءَايَةً أَن يَعْلَمَهُۥ عُلَمَٰٓؤُا۟ بَنِىٓ إِسْرَٰٓءِيلَ",
     },
     translation: {
-      en: "And has it not been a sign to them that it is recognized by the scholars of the Children of Israel?",
-      id: "Apakah tidak (cukup) menjadi bukti bagi mereka, bahwa para ulama Bani Israil mengetahuinya?",
+      en: {
+        footnotes:
+          "[24] e.g., Abdullah ibn Salām, a Jewish scholar, accepted Islam during the lifetime of the Prophet (ﷺ), for he knew that he came with a true message.",
+        text: "Was it not a proof for them that the learned men of the Children of Israel recognized it [to be true][24]?",
+      },
+      id: {
+        footnotes: "",
+        text: "Apakah tidak (cukup) menjadi bukti bagi mereka, bahwa para ulama Bani Israil mengetahuinya?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3130",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3130.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3130.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3130,
@@ -229,20 +191,22 @@ export const quranSurah26Verses193To198 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan bahwa walaupun bukti-bukti kenabian Muhammad sudah diterangkan dalam kitab-kitab terdahulu, dan hal ini diakui oleh ulama-ulama Yahudi, serta diketahui oleh orang-orang musyrik Mekah dari para pemimpin Yahudi, namun orang-orang musyrik itu tidak akan beriman, walau buku atau kitab suci apa pun yang dikemukakan kepada mereka. Seakan-akan Allah mencela sikap mereka itu dengan mengatakan, \"Kami telah menurunkan Al-Qur'an itu dalam bahasa Arab yang jelas dan gaya bahasa yang indah kepada seseorang dari bangsa Arab, tepatnya dari suku Quraisy yang berpengaruh di Mekah, dan mereka telah mengetahui pula dari orang-orang Yahudi di Madinah tentang kenabian Muhammad itu, namun mereka tetap tidak beriman. Maka andaikata Al-Qur'an itu diturunkan kepada seseorang dari golongan bukan Arab yang tidak pandai berbahasa Arab, tetapi dengan kehendak Allah orang itu dapat membacakannya dengan fasih kepada orang-orang musyrik Mekah itu, mereka itu tidak juga akan beriman kepadanya. Di sisi lain, kalau pun kejadian yang semacam itu terjadi, hal itu merupakan kejadian yang luar biasa.\"\n\nAyat ini merupakan hiburan yang dapat menenteramkan dan menyejukkan hati Muhammad yang telah digundahkan oleh sikap orang-orang musyrik yang selalu menantang dan mendustakan seruannya.",
-        short:
-          "Dan seandainya Al-Qur'an itu Kami turunkan kepada sebagian dari golongan bukan Arab yang tidak bisa berbicara menggunakan bahasa Arab,",
+        footnotes: null,
+        text: "Padahal, jikalau Al-Qur`ān ini Kami turunkan kepada sebagian dari golongan ajam (non-Arab) yang tidak bisa berbahasa Arab,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0648\u0652 \u0646\u064e\u0632\u0651\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0628\u064e\u0639\u0652\u0636\u0650 \u0627\u0644\u0652\u0623\u064e\u0639\u0652\u062c\u064e\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa law nazzalnaahu 'alaa ba'dil a'jameen",
-      },
+      arabic: "وَلَوْ نَزَّلْنَٰهُ عَلَىٰ بَعْضِ ٱلْأَعْجَمِينَ",
     },
     translation: {
-      en: "And even if We had revealed it to one among the foreigners",
-      id: "Dan seandainya (Al-Qur'an) itu Kami turunkan kepada sebagian dari golongan bukan Arab,",
+      en: {
+        footnotes: "",
+        text: "If We had sent it down to any of the non-Arabs,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan seandainya (Al-Qur`an) itu Kami turunkan kepada sebagian dari golongan bukan Arab,",
+      },
     },
   },
 ];

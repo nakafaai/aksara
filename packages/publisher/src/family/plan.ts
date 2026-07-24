@@ -1,6 +1,6 @@
-import {
-  type ContentHeadIdentity,
-  headIdentity,
+import type {
+  ContentFamily,
+  ContentHeadIdentity,
 } from "@nakafa/aksara-contracts/content";
 import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
 import type {
@@ -11,9 +11,15 @@ import type {
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Order, Stream, Tuple } from "effect";
+import { Effect, Stream } from "effect";
+import {
+  diffScopedFamilyHeads,
+  type PublicationScopeIdentityError,
+  type ScopedFamilyDiff,
+} from "#publisher/family/scope";
 import type {
   PreparedContentTransition,
   PreparedContentUpsert,
@@ -39,11 +45,6 @@ interface FamilyIdentityAdapter<Entry extends FamilyEntry> {
   /** Selects public route ownership only for route-bearing source entries. */
   readonly publicPath: (entry: Entry) => PublicPath | undefined;
 }
-
-type FamilyDiff<Entry, Head> =
-  | { readonly entry: Entry; readonly kind: "current" }
-  | { readonly entry: Entry; readonly head: Head; readonly kind: "matched" }
-  | { readonly head: Head; readonly kind: "published" };
 
 /** One family-local transition, desired head, or both from one diff row. */
 export interface FamilyPublicationPlan<Head extends ContentHead> {
@@ -97,44 +98,6 @@ function isUnchanged<Entry extends FamilyEntry>(
   );
 }
 
-/** Builds a canonical constant-space diff from one registry and head family. */
-function diffFamilyHeads<
-  Entry extends FamilyEntry,
-  Head extends ContentHead,
-  E,
-  R,
->(
-  adapter: Pick<FamilyIdentityAdapter<Entry>, "identity">,
-  entries: readonly Entry[],
-  published: Stream.Stream<Head, E, R>
-) {
-  const current = Stream.fromIterable(entries).pipe(
-    Stream.map((entry) =>
-      Tuple.make(headIdentity(adapter.identity(entry)), entry)
-    )
-  );
-  const prior = published.pipe(
-    Stream.map((head) => Tuple.make(headIdentity(head), head))
-  );
-  return Stream.zipAllSortedByKeyWith(current, {
-    onBoth: (entry, head): FamilyDiff<Entry, Head> => ({
-      entry,
-      head,
-      kind: "matched",
-    }),
-    onOther: (head): FamilyDiff<Entry, Head> => ({
-      head,
-      kind: "published",
-    }),
-    onSelf: (entry): FamilyDiff<Entry, Head> => ({
-      entry,
-      kind: "current",
-    }),
-    order: Order.string,
-    other: prior,
-  }).pipe(Stream.map(([, diff]) => diff));
-}
-
 /** Plans one deletion, unchanged head, or compiled replacement generically. */
 const prepareFamilyDiff = Effect.fn("AksaraPublisher.prepareFamilyDiff")(
   function* <
@@ -156,10 +119,13 @@ const prepareFamilyDiff = Effect.fn("AksaraPublisher.prepareFamilyDiff")(
       CompileContext
     >;
     readonly checkoutRoot: string;
-    readonly diff: FamilyDiff<Entry, Head>;
+    readonly diff: ScopedFamilyDiff<Entry, Head>;
     readonly rendererManifest: RendererManifestEnvelope;
   }) {
     const { adapter, diff } = input;
+    if (!diff.scoped) {
+      return { result: diff.head } satisfies FamilyPublicationPlan<Head>;
+    }
     if (diff.kind === "published") {
       return {
         record: {
@@ -225,14 +191,22 @@ export function planFamilyPublication<
   >;
   readonly checkoutRoot: string;
   readonly entries: readonly Entry[];
+  readonly family: ContentFamily;
   readonly published: Stream.Stream<Head, PublishedError, PublishedContext>;
   readonly rendererManifest: RendererManifestEnvelope;
+  readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<
   FamilyPublicationPlan<Head>,
-  CompileError | InspectError | PublishedError,
+  CompileError | InspectError | PublicationScopeIdentityError | PublishedError,
   CompileContext | InspectContext | PublishedContext
 > {
-  return diffFamilyHeads(input.adapter, input.entries, input.published).pipe(
+  return diffScopedFamilyHeads({
+    entries: input.entries,
+    family: input.family,
+    identity: input.adapter.identity,
+    published: input.published,
+    scope: input.scope,
+  }).pipe(
     Stream.mapEffect((diff) =>
       prepareFamilyDiff({
         adapter: input.adapter,

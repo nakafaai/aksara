@@ -5,7 +5,7 @@ import { Effect, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import type { QuranSnapshotInput } from "#contracts/quran/snapshot";
 
-const SNAPSHOT_DOMAIN = "nakafa.aksara.quran-snapshot.v1";
+const SNAPSHOT_DOMAIN = "nakafa.aksara.quran-snapshot.v2";
 
 /** Node could not complete a deterministic snapshot hash operation. */
 export class QuranSnapshotHashError extends Schema.TaggedError<QuranSnapshotHashError>()(
@@ -18,6 +18,7 @@ export function canonicalizeQuranSnapshotIdentity(
   manifest: QuranSnapshotInput
 ) {
   return JSON.stringify({
+    attributionCount: manifest.attributionCount,
     chunkCount: manifest.chunkCount,
     format: manifest.format,
     locales: manifest.locales,
@@ -31,6 +32,7 @@ export function canonicalizeQuranSnapshotIdentity(
     searchDigest: manifest.searchDigest,
     sourceBytes: manifest.sourceBytes,
     sourceDigest: manifest.sourceDigest,
+    sourceFileCount: manifest.sourceFileCount,
     surahCount: manifest.surahCount,
     tafsirLocales: manifest.tafsirLocales,
     verseCount: manifest.verseCount,

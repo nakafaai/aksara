@@ -18,6 +18,8 @@ import {
   hasEmptySnapshotBases,
   hasGitSnapshotModes,
   hasRollbackSnapshotModes,
+  hasScopedSnapshotTransitions,
+  PublicationScopeSchema,
   snapshotRowCount,
 } from "#contracts/release/snapshot";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
@@ -89,6 +91,7 @@ const ContentReleaseManifestFields = {
   rollbackDigest: Sha256HashSchema,
   routeCount: ProjectionCountSchema,
   routeDigest: Sha256HashSchema,
+  scope: PublicationScopeSchema,
   snapshots: ContentSnapshotSetSchema,
   upsertCount: ProjectionCountSchema,
 };
@@ -104,6 +107,7 @@ function hasCoherentReleaseOrigin(input: {
   readonly origin: typeof ReleaseOriginSchema.Type;
   readonly releaseId: typeof ReleaseIdSchema.Type;
   readonly rollbackCount: number;
+  readonly scope: typeof PublicationScopeSchema.Type;
   readonly snapshots: ContentSnapshotSet;
   readonly upsertCount: number;
 }) {
@@ -111,7 +115,8 @@ function hasCoherentReleaseOrigin(input: {
     (input.baseReleaseId === null) !== (input.baseManifestHash === null) ||
     input.baseReleaseId === input.releaseId ||
     input.deleteCount + input.upsertCount !== input.itemCount ||
-    input.rollbackCount !== input.itemCount
+    input.rollbackCount !== input.itemCount ||
+    !hasScopedSnapshotTransitions(input.scope, input.snapshots)
   ) {
     return false;
   }

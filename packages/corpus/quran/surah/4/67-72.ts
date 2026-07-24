@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah4Verses67To72 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/560",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/560.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/560.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 35,
       juz: 5,
       manzil: 1,
       page: 89,
       ruku: 70,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 560,
@@ -24,40 +25,32 @@ export const quranSurah4Verses67To72 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian dijelaskan bahwa kalau mereka berbuat kebaikan dan mematuhi segala perintah Allah dan meninggalkan semua larangan-Nya serta beramal dengan penuh ikhlas, niscaya Allah akan memberikan kepada mereka pahala yang besar dan akan memimpin mereka ke jalan yang lurus yang dapat membawa kebahagiaan hidup dunia dan akhirat.",
-        short:
-          "pabila mereka meksanakan perintah dan pengajaran yang diberikan oleh Allah dan Rasul itu, dan dengan demikian, pasti Kami berikan kepada mereka anugerah yang tidak pernah mereka bayangkan sebelumnya, serta pahala yang besar dari sisi Kami.",
+        footnotes: null,
+        text: "66 - 68. Sekiranya Kami perintahkan kepada mereka untuk saling bunuh satu sama lain, atau keluar dari kampung halaman mereka, niscaya hanya sebagian kecil saja dari mereka yang mau melakukannya. Oleh karena itu, hendaklah mereka memuji Allah -Ta'ālā- karena Dia tidak membebani mereka dengan sesuatu yang memberatkan mereka. Sekiranya mereka mau melakukan apa yang dinasihatkan kepada mereka berupa ketaatan kepada Allah, niscaya hal itu akan lebih baik bagi mereka daripada menyelisihinya dan lebih menguatkan iman mereka. Bahkan, niscaya Kami pasti memberi mereka ganjaran yang besar dari sisi Kami, serta Kami akan membimbing mereka ke jalan lurus yang akan mengantarkan mereka kepada Allah -Ta'ālā- dan surga-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064b\u0627 \u0644\u0651\u064e\u0622\u062a\u064e\u064a\u0652\u0646\u064e\u0627\u0647\u064f\u0645 \u0645\u0651\u0650\u0646 \u0644\u0651\u064e\u062f\u064f\u0646\u0651\u064e\u0627 \u0623\u064e\u062c\u0652\u0631\u064b\u0627 \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Wa izal la aatainaahum mil ladunnaaa ajran 'azeemaa",
-      },
+      arabic: "وَإِذًا لَّـَٔاتَيْنَٰهُم مِّن لَّدُنَّآ أَجْرًا عَظِيمًا",
     },
     translation: {
-      en: "And then We would have given them from Us a great reward.",
-      id: "dan dengan demikian, pasti Kami berikan kepada mereka pahala yang besar dari sisi Kami,",
+      en: {
+        footnotes: "",
+        text: "and then We would certainly give them from Us a great reward,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan dengan demikian, pasti Kami berikan kepada mereka pahala yang besar dari sisi Kami,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/561",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/561.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/561.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 35,
       juz: 5,
       manzil: 1,
       page: 89,
       ruku: 70,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 561,
@@ -65,40 +58,32 @@ export const quranSurah4Verses67To72 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian dijelaskan bahwa kalau mereka berbuat kebaikan dan mematuhi segala perintah Allah dan meninggalkan semua larangan-Nya serta beramal dengan penuh ikhlas, niscaya Allah akan memberikan kepada mereka pahala yang besar dan akan memimpin mereka ke jalan yang lurus yang dapat membawa kebahagiaan hidup dunia dan akhirat.",
-        short:
-          "Pada waktu yang bersamaan, pasti Kami akan tunjukkan pula kepada mereka jalan yang lurus yang mengantarkan mereka menuju kebahagiaan hidup di dunia dan di akhirat.",
+        footnotes: null,
+        text: "66 - 68. Sekiranya Kami perintahkan kepada mereka untuk saling bunuh satu sama lain, atau keluar dari kampung halaman mereka, niscaya hanya sebagian kecil saja dari mereka yang mau melakukannya. Oleh karena itu, hendaklah mereka memuji Allah -Ta'ālā- karena Dia tidak membebani mereka dengan sesuatu yang memberatkan mereka. Sekiranya mereka mau melakukan apa yang dinasihatkan kepada mereka berupa ketaatan kepada Allah, niscaya hal itu akan lebih baik bagi mereka daripada menyelisihinya dan lebih menguatkan iman mereka. Bahkan, niscaya Kami pasti memberi mereka ganjaran yang besar dari sisi Kami, serta Kami akan membimbing mereka ke jalan lurus yang akan mengantarkan mereka kepada Allah -Ta'ālā- dan surga-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0647\u064e\u062f\u064e\u064a\u0652\u0646\u064e\u0627\u0647\u064f\u0645\u0652 \u0635\u0650\u0631\u064e\u0627\u0637\u064b\u0627 \u0645\u0651\u064f\u0633\u0652\u062a\u064e\u0642\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Wa lahadainaahum Siraatam mustaqeemaa",
-      },
+      arabic: "وَلَهَدَيْنَٰهُمْ صِرَٰطًا مُّسْتَقِيمًا",
     },
     translation: {
-      en: "And We would have guided them to a straight path.",
-      id: "dan pasti Kami tunjukkan kepada mereka  jalan yang lurus.",
+      en: {
+        footnotes: "",
+        text: "and would surely guide them to a straight path.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan pasti Kami tunjukan kepada mereka jalan yang lurus.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/562",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/562.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/562.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 35,
       juz: 5,
       manzil: 1,
       page: 89,
       ruku: 70,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 562,
@@ -106,40 +91,34 @@ export const quranSurah4Verses67To72 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini mengajak dan mendorong setiap orang agar taat kepada Allah dan kepada Rasul-Nya. Allah berjanji akan membalas ketaatan dengan pahala yang sangat besar, yaitu bukan saja sekedar masuk surga, tetapi akan ditempatkan bersama-sama dengan orang-orang yang paling tinggi derajatnya di sisi Tuhan, yaitu para nabi, para shiddiqin, para syuhada (orang-orang yang mati syahid) dan orang-orang yang saleh.\n\nBerdasarkan ayat ini para ahli tafsir secara garis besarnya membagi orang-orang yang memperoleh anugerah Allah yang paling besar di dalam surga kepada empat macam yaitu:\n\n1.Para rasul dan nabi, yaitu mereka yang menerima wahyu dari Allah.\n\n2.Para shiddiqin, yaitu orang-orang yang teguh keimanannya kepada kebenaran nabi dan rasul.\n\n3.Para syuhada mempunyai kriteria sebagai berikut:\n\na.Orang beriman yang berjuang di jalan Allah dan mati syahid dalam peperangan melawan orang kafir\n\nb.Orang yang menghabiskan usianya berjuang di jalan Allah dengan harta dan dengan segala macam jalan yang dapat dilaksanakannya.\n\nc.Orang beriman yang mati ditimpa musibah mendadak atau teraniaya, seperti mati bersalin, tenggelam, terbunuh dengan aniaya. Bagian (a) disebut syahid dunia dan akhirat yang lebih tinggi pahalanya dari bagian (b) dan (c) yang keduanya hanya dinamakan syahid akhirat. Ada satu bagian lagi yang disebut namanya syahid dunia, yaitu orang-orang yang mati berperang melawan kafir, hanya untuk mencari keuntungan duniawi, seperti untuk mendapatkan harta rampasan, untuk mencari nama dan sebagainya. Syahid yang serupa ini tidak dimasukkan pembagian syahid di atas, karena syahid dunia tersebut tidak termaksud sama sekali dalam kedua ayat ini.\n\n4. Orang-orang saleh, yaitu orang-orang yang selalu berbuat amal baik yang bermanfaat untuk umum, termasuk dirinya dan keluarganya baik untuk kebahagiaan hidup duniawi maupun untuk kebahagiaan hidup ukhrawi yang sesuai dengan ajaran Allah.\n\nOrang yang benar-benar taat kepada Allah dan Rasul-Nya sebagaimana yang tersebut dalam ayat ini akan masuk surga dan ditempatkan bersama-sama dengan semua golongan yang empat itu.",
-        short:
-          "Dan barang siapa menaati Allah dengan mematuhi perintah dan menjauhi larangan-Nya, dan juga menaati Rasul dengan cara memuliakan dan memperkenankan perintahnya, maka mereka yang sehari-hari beramal dengan ikhlas seperti itu, akan bersama-sama dengan orang yang diberikan nikmat oleh Allah di dalam surga, yaitu para nabi, para pencinta kebenaran, yakni para sahabat Nabi, orang-orang yang mati syahid di medan perang dan orang-orang beramal saleh. Mereka itulah orang yang telah mencapai kedudukan yang tinggi di sisi Allah dan juga merekalah sebenarnya teman yang sebaik-baiknya di kehidupan dunia.",
+        footnotes: null,
+        text: "Barang siapa yang taat kepada Allah dan Rasul maka ia akan bersama orang-orang yang dianugerahi Allah hak untuk masuk surga, yaitu para nabi, ṣiddīqīn yang memiliki keyakinan sempurna terhadap ajaran yang dibawa oleh para rasul dan mengamalkannya dengan sungguh-sungguh, syuhada yang gugur di jalan Allah (di medan jihad), dan orang-orang saleh yang memiliki amal perbuatan yang baik secara lahir dan batin. Sungguh, mereka itulah teman-teman terbaik di dalam surga.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0646 \u064a\u064f\u0637\u0650\u0639\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0627\u0644\u0631\u0651\u064e\u0633\u064f\u0648\u0644\u064e \u0641\u064e\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0645\u064e\u0639\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064e\u0646\u0652\u0639\u064e\u0645\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0628\u0650\u064a\u0651\u0650\u064a\u0646\u064e \u0648\u064e\u0627\u0644\u0635\u0651\u0650\u062f\u0651\u0650\u064a\u0642\u0650\u064a\u0646\u064e \u0648\u064e\u0627\u0644\u0634\u0651\u064f\u0647\u064e\u062f\u064e\u0627\u0621\u0650 \u0648\u064e\u0627\u0644\u0635\u0651\u064e\u0627\u0644\u0650\u062d\u0650\u064a\u0646\u064e \u06da \u0648\u064e\u062d\u064e\u0633\u064f\u0646\u064e \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0631\u064e\u0641\u0650\u064a\u0642\u064b\u0627",
-      transliteration: {
-        en: "Wa many-yuti'il laaha war Rasoola fa ulaaa'ika ma'al lazeena an'amal laahu 'alaihim minan nabiyyeena wassiddeeqeena washshuhadaaa'i wassaaliheen; wa hasuna ulaaa'ika rafeeqaa",
-      },
+      arabic:
+        "وَمَن يُطِعِ ٱللَّهَ وَٱلرَّسُولَ فَأُو۟لَٰٓئِكَ مَعَ ٱلَّذِينَ أَنْعَمَ ٱللَّهُ عَلَيْهِم مِّنَ ٱلنَّبِيِّـۧنَ وَٱلصِّدِّيقِينَ وَٱلشُّهَدَآءِ وَٱلصَّٰلِحِينَ وَحَسُنَ أُو۟لَٰٓئِكَ رَفِيقًا",
     },
     translation: {
-      en: "And whoever obeys Allah and the Messenger - those will be with the ones upon whom Allah has bestowed favor of the prophets, the steadfast affirmers of truth, the martyrs and the righteous. And excellent are those as companions.",
-      id: "Dan barangsiapa menaati Allah dan Rasul (Muhammad), maka mereka itu akan bersama-sama dengan orang yang diberikan nikmat oleh Allah, (yaitu) para nabi, para pencinta kebenaran, orang-orang yang mati syahid dan orang-orang saleh. Mereka itulah teman yang sebaik-baiknya.",
+      en: {
+        footnotes:
+          "[50] Al-Siddiqīn (the people of the Truth): They realized the Truth and confirmed it with their hearts, and embodied it with words and actions. Al-Sālihīn (the righteous): Those whose outward actions are a manifestation of their inner Truth.",
+        text: "Those who obey Allah and the Messenger will be with those whom Allah has blessed: the prophets, the people of Truth, the martyrs, and the righteous[50]. What excellent companions they are!",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan barang siapa menaati Allah dan Rasul (Muhammad), maka mereka itu akan bersama-sama dengan orang yang diberikan nikmat oleh Allah, (yaitu) para nabi, para pecinta kebenaran, orang-orang yang mati syahid dan orang-orang saleh. Mereka itulah teman yang sebaik-baiknya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/563",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/563.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/563.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 35,
       juz: 5,
       manzil: 1,
       page: 89,
       ruku: 70,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 563,
@@ -147,40 +126,32 @@ export const quranSurah4Verses67To72 = [
     },
     tafsir: {
       id: {
-        long: "Pahala yang dijanjikan Allah kepada orang yang taat kepada-Nya dan kepada Rasul-Nya, adalah karunia yang tidak ada tara dan bandingannya bagi yang ingin mencapainya. Allah lah Yang Maha Mengetahui siapa yang benar-benar taat kepada-Nya, sehingga berhak memperoleh pahala yang besar itu.",
-        short:
-          "Yang demikian itu, yakni keadaan bersama-sama dengan para nabi, para pencinta kebenaran, orang-orang yang mati syahid, dan orangorang saleh berada di kehidupan surga, adalah karunia yang bersumber dari Allah, dan cukuplah Allah Yang Maha Pemurah yang juga Maha Mengetahui pemberi ganjaran yang setimpal.",
+        footnotes: null,
+        text: "Ganjaran tersebut merupakan anugerah dari Allah kepada hamba-hamba-Nya dan cukuplah bagi Allah Yang Maha Mengetahui kondisi mereka dan akan memberikan balasan yang setimpal menurut amal perbuatannya masing-masing.",
       },
     },
     text: {
-      arab: "\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0627\u0644\u0652\u0641\u064e\u0636\u0652\u0644\u064f \u0645\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06da \u0648\u064e\u0643\u064e\u0641\u064e\u0649\u0670 \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Zaalikal fadlu minal laah; wa kafaa billaahi 'Aleemaa",
-      },
+      arabic: "ذَٰلِكَ ٱلْفَضْلُ مِنَ ٱللَّهِ وَكَفَىٰ بِٱللَّهِ عَلِيمًا",
     },
     translation: {
-      en: "That is the bounty from Allah, and sufficient is Allah as Knower.",
-      id: "Yang demikian itu adalah karunia dari Allah, dan cukuplah Allah yang Maha Mengetahui.",
+      en: {
+        footnotes: "",
+        text: "That grace is from Allah, and sufficient is Allah as Knower.",
+      },
+      id: {
+        footnotes: "",
+        text: "Yang demikian itu adalah karunia dari Allah, dan cukuplah Allah yang Maha Mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/564",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/564.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/564.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 35,
       juz: 5,
       manzil: 1,
       page: 89,
       ruku: 71,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 564,
@@ -188,40 +159,32 @@ export const quranSurah4Verses67To72 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini diperintahkan untuk mengadakan segala macam persiapan menghadapi musuh, ayat ini seirama dengan ayat 60 surah al-Anfal. Menurut Sayyid Qutub, ayat-ayat ini diturunkan segera setelah Perang Uhud dan sebelum Perang Khandak. Tetapi beliau tidak menyebutkan sebab turunnya.\n\nOrang mukmin harus senantiasa bersiap siaga dalam segala hal, untuk menghadapi orang-orang kafir dalam peperangan, dimana wajib maju ke medan pertempuran, baik secara berkelompok maupun secara serempak, sesuai dengan taktik strategi peperangan, dan menurut komando yang diatur dengan baik.\n\nHal ini sudah dipraktekkan oleh Nabi Muhammad saw dalam menghadapi beberapa peperangan yang terjadi antara kaum Muslimin dengan orang-orang kafir. Beliau sebelum membebaskan kota Mekah lebih dahulu telah mengetahui kekuatan musuh dan strategi mereka dalam menghadapi kaum Muslimin dan mengetahui pula secara mendalam bagaimana semangat dan kekuatan iman yang dimiliki oleh pengikut-pengikutnya. Pada umumnya Nabi dalam melakukan peperangan telah mengetahui lebih dahulu keadaan musuh dan kesetiaan pengikutnya.",
-        short:
-          "Wahai orang-orang yang beriman! Bersiapsiagalah kamu menghadapi musuh, dan majulah dengan sungguh-sungguh dan penuh keberanian ke medan pertempuran secara berkelompok yakni menyerang secara bergelombang sekelompok dengan sekelompok bila taktik ini terbaik, atau majulah bersama-sama secara serentak apabila taktik ini kamu nilai lebih efektif.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman kepada Allah dan mengikuti Rasul-Nya! Waspadalah terhadap musuh-musuh kalian dengan melakukan upaya-upaya persiapan untuk menghadapi serangan mereka. Lalu keluarlah untuk menghadapi mereka secara per kelompok atau keluarlah untuk menghadapi mereka secara serentak. Semua itu tergantung mana yang lebih menguntungkan bagi kalian dan merugikan musuh-musuh kalian.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u062e\u064f\u0630\u064f\u0648\u0627 \u062d\u0650\u0630\u0652\u0631\u064e\u0643\u064f\u0645\u0652 \u0641\u064e\u0627\u0646\u0641\u0650\u0631\u064f\u0648\u0627 \u062b\u064f\u0628\u064e\u0627\u062a\u064d \u0623\u064e\u0648\u0650 \u0627\u0646\u0641\u0650\u0631\u064f\u0648\u0627 \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627",
-      transliteration: {
-        en: "Yaaa aiyuhal lazeena aamanoo khuzoo hizrakum fanfiroo subaain awin firoo jamee'aa",
-      },
+      arabic: "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ خُذُوا۟ حِذْرَكُمْ فَٱنفِرُوا۟ ثُبَاتٍ أَوِ ٱنفِرُوا۟ جَمِيعًا",
     },
     translation: {
-      en: "O you who have believed, take your precaution and [either] go forth in companies or go forth all together.",
-      id: "Wahai orang-orang yang beriman! Bersiapsiagalah kamu, dan majulah (ke medan pertempuran) secara berkelompok, atau majulah bersama-sama (serentak).",
+      en: {
+        footnotes: "",
+        text: "O you who believe, take your precautions, then march out in groups or march out all together.",
+      },
+      id: {
+        footnotes: "",
+        text: "Wahai orang-orang yang beriman! Bersiap-siagalah kamu, dan majulah (ke medan pertempuran) secara berkelompok, atau majulah bersama-sama (serentak).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/565",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/565.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/565.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 35,
       juz: 5,
       manzil: 1,
       page: 89,
       ruku: 71,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 565,
@@ -229,20 +192,23 @@ export const quranSurah4Verses67To72 = [
     },
     tafsir: {
       id: {
-        long: "Di antara kaum Muslimin ada yang enggan dan tidak segera bersiap-siap untuk pergi ke medan pertempuran dengan bermacam alasan agar mereka tidak jadi ikut bertempur. Mereka ini adalah orang-orang yang lemah iman dan orang-orang munafik yang selalu terdapat dalam setiap peperangan dan perjuangan di sepanjang masa.\n\nSelanjutnya ayat ini menjelaskan bagaimana sikap kaum munafik dan orang yang tidak ikut berperang. Bila kaum Muslimin ditimpa musibah atau kekalahan dalam medan pertempuran, mereka merasa gembira dan menganggap bahwa tidak ikutnya mereka dalam peperangan sebagai satu karunia dari Allah karena mereka tidak ikut terbunuh atau luka-luka.",
-        short:
-          'Dan sesungguhnya ingatlah, wahai orang-orang beriman, di antara kamu pasti ada orang yang sangat enggan dan sangat berat hati bila diajak ke medan pertempuran. Lalu jika kamu ditimpa musibah, yakni kamu mengalami kekalahan di medan perang yang mereka tidak ikut itu, dia berkata, "Sungguh, Allah telah memberikan nikmat kepadaku karena tidak menjadi korban dalam peperangan itu karena aku memang tidak ikut berperang bersama mereka."',
+        footnotes: null,
+        text: "Sesungguhnya di antara kalian -wahai kaum muslimin- ada sekelompok orang yang menunda-nunda keberangkatan ke medan perang untuk melawan musuh-musuh kalian karena ketakutan mereka yang luar biasa, serta mereka mengajak orang lain juga untuk menunda-nundanya. Mereka itu ialah kalangan munafik dan orang-orang yang lemah iman. Lalu apabila kalian terbunuh atau mengalami kekalahan maka salah satu dari mereka mengatakan -untuk mengungkapkan kegembiraannya karena selamat dari hal tersebut-, “Allah telah melimpahkan karunia-Nya kepadaku sehingga aku tidak pergi ke medan perang bersama mereka dan tidak mengalami apa yang menimpa mereka.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0644\u064e\u0645\u064e\u0646 \u0644\u0651\u064e\u064a\u064f\u0628\u064e\u0637\u0651\u0650\u0626\u064e\u0646\u0651\u064e \u0641\u064e\u0625\u0650\u0646\u0652 \u0623\u064e\u0635\u064e\u0627\u0628\u064e\u062a\u0652\u0643\u064f\u0645 \u0645\u0651\u064f\u0635\u0650\u064a\u0628\u064e\u0629\u064c \u0642\u064e\u0627\u0644\u064e \u0642\u064e\u062f\u0652 \u0623\u064e\u0646\u0652\u0639\u064e\u0645\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u064a\u0651\u064e \u0625\u0650\u0630\u0652 \u0644\u064e\u0645\u0652 \u0623\u064e\u0643\u064f\u0646 \u0645\u0651\u064e\u0639\u064e\u0647\u064f\u0645\u0652 \u0634\u064e\u0647\u0650\u064a\u062f\u064b\u0627",
-      transliteration: {
-        en: "Wa inna minkum lamal la yubatti'anna fa in asaabatkum museebatun qaala qad an'amal laahu 'alaiya iz lam akum ma'ahum shaheeda",
-      },
+      arabic:
+        "وَإِنَّ مِنكُمْ لَمَن لَّيُبَطِّئَنَّ فَإِنْ أَصَٰبَتْكُم مُّصِيبَةٌ قَالَ قَدْ أَنْعَمَ ٱللَّهُ عَلَىَّ إِذْ لَمْ أَكُن مَّعَهُمْ شَهِيدًا",
     },
     translation: {
-      en: 'And indeed, there is among you he who lingers behind; and if disaster strikes you, he says, "Allah has favored me in that I was not present with them."',
-      id: "Dan sesungguhnya di antara kamu pasti ada orang yang sangat enggan (ke medan pertempuran). Lalu jika kamu ditimpa musibah dia berkata, “Sungguh, Allah telah memberikan nikmat kepadaku karena aku tidak ikut berperang bersama mereka.”",
+      en: {
+        footnotes: "[51] i.e., the hypocrites.",
+        text: "There are some[51] among you who lag behind [from the battle]; then if a calamity befalls you, he will say, “Allah has blessed me that I was not present with them.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan sesungguhnya di antara kamu pasti ada orang yang sangat enggan (ke medan pertempuran). Lalu jika kamu ditimpa musibah dia berkata, "Sungguh, Allah telah memberikan nikmat kepadaku karena aku tidak ikut berperang bersama mereka."',
+      },
     },
   },
 ];

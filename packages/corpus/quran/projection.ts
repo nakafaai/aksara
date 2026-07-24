@@ -3,6 +3,7 @@ import {
   makeLearningGraphIdentity,
 } from "@nakafa/aksara-contracts/graph/identity";
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
+import { QuranAttributionRowSchema } from "@nakafa/aksara-contracts/quran/source";
 import {
   QURAN_CHUNK_SIZE,
   QURAN_LOCALES,
@@ -15,7 +16,7 @@ import {
   QuranSurahRowSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Stream } from "effect";
-
+import { quranSourceAttributions } from "#corpus/quran/provenance";
 import {
   type QuranCountError,
   type QuranRevelationError,
@@ -25,16 +26,9 @@ import {
 } from "#corpus/quran/registry";
 import type { QuranSurah, QuranVerse } from "#corpus/quran/schema";
 
-/** Projects one authored verse while excluding its long Tafsir source. */
+/** Validates one source verse against the exact runtime contract. */
 function projectVerse(verse: QuranVerse) {
-  return QuranRuntimeVerseSchema.make({
-    audio: verse.audio,
-    meta: verse.meta,
-    number: verse.number,
-    tafsir: { id: { short: verse.tafsir.id.short } },
-    text: verse.text,
-    translation: verse.translation,
-  });
+  return QuranRuntimeVerseSchema.make(verse);
 }
 
 /** Projects immutable metadata without embedding any verse bodies. */
@@ -44,9 +38,7 @@ function projectSurah(surah: QuranSurah) {
     name: surah.name,
     number: surah.number,
     numberOfVerses: surah.numberOfVerses,
-    preBismillah: surah.preBismillah,
     revelation: surah.revelation,
-    sequence: surah.sequence,
   });
 }
 
@@ -80,30 +72,29 @@ function projectChunks(surah: QuranSurah) {
   return chunks;
 }
 
-/** Resolves the exact source-owned name used by current Quran routes. */
-function localizedName(
-  surah: QuranSurah,
-  locale: typeof QuranLocaleSchema.Type
-) {
-  return surah.name.transliteration[locale];
-}
-
-/** Builds one search row with parity to Nakafa's current Quran projection. */
+/** Builds one search row only from exact source-owned text. */
 const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
   surah: QuranSurah,
   locale: typeof QuranLocaleSchema.Type
 ) {
-  const title = `${surah.number}. ${localizedName(surah, locale)}`;
-  const description = surah.name.translation[locale];
+  const title = `${surah.number}. ${surah.name.transliteration}`;
   const verseText = surah.verses
-    .map((verse) =>
-      [
+    .map((verse) => {
+      const translation = verse.translation[locale];
+      const values = [
         verse.number.inSurah.toString(),
-        verse.text.arab,
-        verse.text.transliteration.en,
-        verse.translation[locale],
-      ].join(" ")
-    )
+        verse.text.arabic,
+        translation.text,
+        translation.footnotes,
+      ];
+      if (locale === "id") {
+        values.push(verse.tafsir.id.text);
+        if (verse.tafsir.id.footnotes !== null) {
+          values.push(verse.tafsir.id.footnotes);
+        }
+      }
+      return values.join(" ");
+    })
     .join(" ");
   const graph = yield* makeLearningGraphIdentity({
     concept: ["quran", "surah", surah.number.toString()],
@@ -112,13 +103,18 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
     locale,
   });
   return QuranSearchRowSchema.make({
-    description,
     graph,
     kind: "quran-search",
     locale,
     route: PublicPathSchema.make(`quran/${surah.number}`),
     surahNumber: surah.number,
-    text: [title, description, surah.revelation[locale], verseText].join(" "),
+    text: [
+      title,
+      surah.name.arabic,
+      surah.name.translation,
+      surah.revelation.place,
+      verseText,
+    ].join(" "),
     title,
   });
 });
@@ -157,7 +153,15 @@ export type QuranRegistrySource = () => Stream.Stream<
 export function streamQuranRows(
   source: QuranRegistrySource = () => streamQuranRegistry()
 ) {
-  const runtime = source().pipe(Stream.flatMap(streamSurahRuntime));
+  const attribution = Stream.succeed(
+    QuranAttributionRowSchema.make({
+      kind: "quran-attribution",
+      sources: quranSourceAttributions,
+    })
+  );
+  const runtime = attribution.pipe(
+    Stream.concat(source().pipe(Stream.flatMap(streamSurahRuntime)))
+  );
   const search = source().pipe(Stream.flatMap(streamSurahSearch));
   return runtime.pipe(Stream.concat(search));
 }

@@ -48,6 +48,7 @@ export const rollbackRendererManifest = await Effect.runPromise(
       chemistry: [{ name: "TestChemistry", version: 1 }],
       mathematics: [{ name: "TestMathematics", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({

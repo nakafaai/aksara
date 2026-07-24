@@ -34,8 +34,12 @@ import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/ro
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
 import type { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
-import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot";
+import type {
+  ContentSnapshotSet,
+  PublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
+import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { type Effect, Schema, type Stream } from "effect";
@@ -46,6 +50,7 @@ import type {
   PreparedContentReplayError,
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
+  PreparedSnapshotScopeError,
 } from "#publisher/preparation/errors";
 import type { QuranProvenanceBlockedError } from "#publisher/preparation/provenance";
 import type {
@@ -122,6 +127,7 @@ export interface PrepareContentReleaseInput<E, R>
   readonly rendererManifest: unknown;
   readonly result: PreparedResultCatalogSource<E, R>;
   readonly routes: PreparedRouteSource<E, R>;
+  readonly scope: PublicationScope;
 }
 
 type SourceHashError = Effect.Effect.Error<
@@ -194,6 +200,10 @@ type RendererManifestError = Effect.Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
 
+type RendererCompatibilityError = Effect.Effect.Error<
+  ReturnType<typeof verifyContentRendererCompatibility>
+>;
+
 type RouteVerificationError<E, R> = Effect.Effect.Error<
   ReturnType<typeof verifyContentRoutes<E, R>>
 >;
@@ -225,8 +235,10 @@ type PrepareContentReleaseError<E, R> =
   | PreparedContentStreamError<E>
   | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
+  | PreparedSnapshotScopeError
   | QuranProvenanceBlockedError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
+  | RendererCompatibilityError
   | RendererManifestError
   | ResultDigestError
   | ResultVerificationError<E, R>

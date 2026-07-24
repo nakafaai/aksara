@@ -1,11 +1,15 @@
 import { NodeContext, NodeHttpClient } from "@effect/platform-node";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import type { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { vi } from "vitest";
-import type { ReleaseArguments, RollbackArguments } from "#cli/args";
 import { runProductionCommand } from "#cli/production";
+import type {
+  ReleaseArguments,
+  RollbackArguments,
+} from "#cli/production-arguments";
 import { unusedExactProcess } from "#test/process";
 import type { TargetCalls } from "#test/production-mock";
 
@@ -35,6 +39,8 @@ interface ProductionCalls extends TargetCalls {
   targetServiceReads: number;
   verifiedBundle: ContentReleaseBundle | undefined;
 }
+
+type PrepareContentReleaseInput = Parameters<typeof prepareContentRelease>[0];
 
 const calls = vi.hoisted(() => {
   /** Creates pristine observable state for one production-command test. */
@@ -123,17 +129,10 @@ vi.mock("@nakafa/aksara-publisher/git/source", async () =>
 
 vi.mock("@nakafa/aksara-publisher/preparation", async () => {
   const { Sha256HashSchema } = await import("@nakafa/aksara-contracts/ids");
-  const { Effect: TestEffect } = await import("effect");
+  const { Effect: TestEffect, Stream: TestStream } = await import("effect");
   const { gitBundle, releaseId } = await import("#test/target");
   return {
-    prepareContentRelease: (input: {
-      readonly aksaraSha: string;
-      readonly baseManifestHash: ContentReleaseManifest["baseManifestHash"];
-      readonly baseReleaseId: ContentReleaseManifest["baseReleaseId"];
-      readonly baseResultCount: number;
-      readonly baseResultDigest: ContentReleaseManifest["baseResultDigest"];
-      readonly releaseId: string;
-    }) => {
+    prepareContentRelease: (input: PrepareContentReleaseInput) => {
       calls.baseReleaseId = input.baseReleaseId;
       calls.baseManifestHash = input.baseManifestHash;
       calls.baseResultCount = input.baseResultCount;
@@ -153,12 +152,17 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
               ),
             }
           : {}),
+        scope: input.scope,
       });
-      return TestEffect.succeed({
-        kind: "git",
-        manifest: bundle.release.manifest,
-        releaseId: input.releaseId,
-        storedRelease: null,
+      return TestEffect.gen(function* () {
+        yield* input.snapshotManifests().pipe(TestStream.runDrain);
+        yield* input.snapshotRows().pipe(TestStream.runDrain);
+        return {
+          kind: "git" as const,
+          manifest: bundle.release.manifest,
+          releaseId: input.releaseId,
+          storedRelease: null,
+        };
       });
     },
   };

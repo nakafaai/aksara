@@ -17,9 +17,12 @@ import {
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Schema } from "effect";
-import type { ReleaseArguments, RollbackArguments } from "#cli/args";
+import type {
+  ReleaseArguments,
+  RollbackArguments,
+} from "#cli/production-arguments";
 import { selectProductionAction } from "#cli/state";
-import { RENDERER_MANIFEST } from "#test/real";
+import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 
 export const STATE_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const SIGNATURE = `${"A".repeat(85)}A`;
@@ -60,6 +63,7 @@ export function stateBundle(
       rollbackDigest: STATE_HASH,
       routeCount: 0,
       routeDigest: STATE_HASH,
+      scope: FUNCTION_SCOPE,
       snapshots: inheritContentSnapshots(null),
       upsertCount: 0,
     },

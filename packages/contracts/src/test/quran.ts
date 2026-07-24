@@ -5,9 +5,15 @@ import { digestQuranRows } from "#contracts/quran/row-digest";
 import { bindQuranRow } from "#contracts/quran/row-hash";
 import {
   QURAN_SNAPSHOT_FORMAT,
+  type QuranSnapshotInput,
   QuranSnapshotManifestSchema,
 } from "#contracts/quran/snapshot";
 import { hashQuranSnapshot } from "#contracts/quran/snapshot-hash";
+import {
+  QURAN_SOURCE_IDS,
+  QuranAttributionRowSchema,
+  QuranSourceAttributionSchema,
+} from "#contracts/quran/source";
 import {
   QURAN_LOCALES,
   QuranChunkRowSchema,
@@ -22,25 +28,58 @@ const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 /** Builds one technical verse at exact local and global positions. */
 function quranVerse(inSurah: number, inQuran: number) {
   return QuranRuntimeVerseSchema.make({
-    audio: {
-      primary: "https://example.test/primary.mp3",
-      secondary: [
-        "https://example.test/secondary.mp3",
-        "https://example.test/alternate.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 1,
       juz: 1,
       manzil: 1,
       page: 1,
       ruku: 1,
-      sajda: { obligatory: false, recommended: false },
+      sajda: null,
     },
     number: { inQuran, inSurah },
-    tafsir: { id: { short: "Tafsir teknis" } },
-    text: { arab: "نص", transliteration: { en: "Technical text" } },
-    translation: { en: "Technical text", id: "Teks teknis" },
+    tafsir: { id: { footnotes: null, text: "Tafsir teknis" } },
+    text: { arabic: "نص" },
+    translation: {
+      en: { footnotes: "", text: "Technical text" },
+      id: { footnotes: "", text: "Teks teknis" },
+    },
+  });
+}
+
+/** Builds the complete technical attribution row in canonical source order. */
+function quranAttribution() {
+  const sources = QURAN_SOURCE_IDS.map((id) =>
+    QuranSourceAttributionSchema.make({
+      artifact: {
+        byteCount: 1,
+        digest: sourceHash,
+        fileCount: 1,
+      },
+      id,
+      notice: `Technical notice for ${id}.`,
+      publisher: `Technical publisher for ${id}.`,
+      retrievedAt: "2026-07-24T17:57:50Z",
+      sourceUrl: `https://example.test/source/${id}`,
+      terms: {
+        artifact: {
+          byteCount: 1,
+          digest: sourceHash,
+          fileCount: 1,
+        },
+        url: `https://example.test/terms/${id}`,
+      },
+      title: `Technical source ${id}.`,
+      updateUrl: `https://example.test/update/${id}`,
+      version: "test-v1",
+    })
+  );
+  const [first, ...rest] = sources;
+  if (!first) {
+    throw new Error("Expected technical Quran source identities.");
+  }
+  return QuranAttributionRowSchema.make({
+    kind: "quran-attribution",
+    sources: [first, ...rest],
   });
 }
 
@@ -61,6 +100,7 @@ function quranVerseCounts() {
 /** Builds a complete technical Quran projection without authored claims. */
 export function quranTestPayloads() {
   const rows: QuranRowPayload[] = [];
+  rows.push(quranAttribution());
   let inQuran = 1;
   for (const [index, numberOfVerses] of quranVerseCounts().entries()) {
     const surahNumber = index + 1;
@@ -68,23 +108,13 @@ export function quranTestPayloads() {
       QuranSurahRowSchema.make({
         kind: "quran-surah",
         name: {
-          long: `Test Surah ${surahNumber}`,
-          short: `S${surahNumber}`,
-          translation: { en: "Test name", id: "Nama uji" },
-          transliteration: { en: "Test name", id: "Nama uji" },
+          arabic: `سورة ${surahNumber}`,
+          translation: `Test Surah ${surahNumber}`,
+          transliteration: `Test-Surah-${surahNumber}`,
         },
         number: surahNumber,
         numberOfVerses,
-        preBismillah:
-          surahNumber === 2
-            ? {
-                audio: quranVerse(1, inQuran).audio,
-                text: quranVerse(1, inQuran).text,
-                translation: quranVerse(1, inQuran).translation,
-              }
-            : null,
-        revelation: { arab: "وحي", en: "Test", id: "Uji" },
-        sequence: surahNumber,
+        revelation: { order: surahNumber, place: "Meccan" },
       })
     );
     for (let firstVerse = 1; firstVerse <= numberOfVerses; firstVerse += 6) {
@@ -114,7 +144,6 @@ export function quranTestPayloads() {
     for (const locale of QURAN_LOCALES) {
       rows.push(
         QuranSearchRowSchema.make({
-          description: "Test-only Quran description",
           graph: {
             alignmentId: `alignment:quran:quran-surah:${surahNumber}`,
             assetId: `asset:${locale}:quran:quran-surah:${surahNumber}`,
@@ -144,6 +173,7 @@ export const makeQuranTestData = Effect.fn("AksaraContracts.makeQuranTestData")(
     );
     const summary = yield* digestQuranRows(Stream.fromIterable(unbound));
     const identity = {
+      attributionCount: 1,
       chunkCount: 1085,
       format: QURAN_SNAPSHOT_FORMAT,
       locales: ["en", "id"],
@@ -155,12 +185,13 @@ export const makeQuranTestData = Effect.fn("AksaraContracts.makeQuranTestData")(
       runtimeDigest: summary.runtimeDigest,
       searchCount: summary.searchCount,
       searchDigest: summary.searchDigest,
-      sourceBytes: 19_376_634,
+      sourceBytes: 11_506_941,
       sourceDigest: sourceHash,
+      sourceFileCount: 118,
       surahCount: 114,
       tafsirLocales: ["id"],
       verseCount: 6236,
-    } as const;
+    } satisfies QuranSnapshotInput;
     const snapshotId = yield* hashQuranSnapshot(identity);
     const manifest = QuranSnapshotManifestSchema.make({
       ...identity,

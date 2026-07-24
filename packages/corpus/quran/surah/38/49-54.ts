@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah38Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4019",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4019.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4019.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 182,
       juz: 23,
       manzil: 6,
       page: 456,
       ruku: 394,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4019,
@@ -24,40 +25,32 @@ export const quranSurah38Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Allah menjelaskan bahwa ayat-ayat yang menceritakan kemuliaan para nabi dan kebahagiaan mereka di akhirat adalah kehormatan bagi mereka untuk selalu diingat oleh manusia. Di samping memperoleh kemuliaan di dunia, mereka pun disediakan tempat kembali yang baik di akhirat. Pada ayat ini, para nabi dimasukkan ke dalam kelompok orang-orang yang takwa, agar orang-orang yang memperhatikan seruan Rasulullah pada saat mendengar firman Allah ini menjadi sadar bahwa apabila mereka mau mencontoh dan meneladani perjuangan para rasul itu, tentu mereka juga akan memperoleh kehormatan di dunia dan kebaikan di akhirat. Demikian pula orang-orang yang mau melaksanakan perintah Allah serta menjauhi larangan-Nya, tentu akan memperoleh nasib yang sama.",
-        short:
-          "Setelah menjelaskan kisah para nabi penyampai risalah, Allah beralih menguraikan imbalan bagi orang-orang yang mengikuti risalah mereka. Al-Qur’an ini adalah kehormatan bagi mereka yang berharap petunjuk-Nya. Dan sungguh, Allah meyediakan bagi orang-orang yang bertakwa kepada-Nya tempat kembali yang terbaik di akhirat.",
+        footnotes: null,
+        text: "Ini adalah sanjungan yang baik untuk mereka di dalam Al-Qur`ān. Sesungguhnya orang-orang yang bertakwa dengan melaksanakan perintah-perintah Allah dan menjauhi larangan-larangan-Nya mendapatkan tempat kembali yang baik di alam akhirat.",
       },
     },
     text: {
-      arab: "\u0647\u064e\u0670\u0630\u064e\u0627 \u0630\u0650\u0643\u0652\u0631\u064c \u06da \u0648\u064e\u0625\u0650\u0646\u0651\u064e \u0644\u0650\u0644\u0652\u0645\u064f\u062a\u0651\u064e\u0642\u0650\u064a\u0646\u064e \u0644\u064e\u062d\u064f\u0633\u0652\u0646\u064e \u0645\u064e\u0622\u0628\u064d",
-      transliteration: {
-        en: "Haazaa zikr; wa inna lilmuttaqeena lahusna ma aab",
-      },
+      arabic: "هَٰذَا ذِكْرٌ وَإِنَّ لِلْمُتَّقِينَ لَحُسْنَ مَـَٔابٍ",
     },
     translation: {
-      en: "This is a reminder. And indeed, for the righteous is a good place of return",
-      id: "Ini adalah kehormatan (bagi mereka). Dan sungguh, bagi orang-orang yang bertakwa (disediakan) tempat kembali yang terbaik,",
+      en: {
+        footnotes: "",
+        text: "This is a reminder. And the righteous will surely have a good return:",
+      },
+      id: {
+        footnotes: "",
+        text: "Ini adalah kehormatan (bagi mereka). Dan sungguh, bagi orang-orang yang bertakwa (disediakan) tempat kembali yang terbaik,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4020",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4020.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4020.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 182,
       juz: 23,
       manzil: 6,
       page: 456,
       ruku: 394,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4020,
@@ -65,40 +58,32 @@ export const quranSurah38Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini Allah menjelaskan betapa nikmatnya tempat kembali yang disediakan kepada para rasul dan orang-orang yang bertakwa itu. Pintu surga 'Adn selalu terbuka, dan keadaannya selalu menyenangkan, sebagai tanda bahwa segalanya telah dipersiapkan untuk menghormati hamba-hamba pilihan Allah yang akan menghuninya. Kamar-kamarnya luas yang mengagumkan, pelayan-pelayannya yang indah dipandang mata, dan suasana lingkungannya yang mencengangkan. Semuanya dalam tata ciptaan yang memesonakan, yang belum pernah terlihat sebelumnya, belum pernah terngiang di telinga dan belum pernah terlintas dalam hati.\n\nDi dalam surga itu keinginan mereka terpenuhi, dipan-dipan tempat mereka membaringkan diri, tersedia serba memuaskan, buah-buahan yang beraneka ragam, jenis rasa dan aromanya, serta minuman dengan segala macamnya, siap disuguhkan.\n\nSebenarnya kenikmatan yang terdapat dalam surga itu adalah puncak dari segala kenikmatan. Kenikmatan yang ada di surga itu diungkapkan dengan buah-buahan dan minuman sebagai kenikmatan yang sesuai dengan keadaan masyarakat Mekah pada waktu itu.\n\nKalau disebutkan buah-buahan yang beraneka ragam dan minuman yang bermacam jenisnya, sudah barang tentu selera mereka terangsang, dan timbullah keinginan mereka untuk menikmati. Di samping itu, mereka didampingi oleh bidadari-bidadari yang sangat sopan. Masing-masing penghuni surga dilayani oleh perempuan-perempuan surga yang khusus untuknya, dan tidak memberikan pelayanannya kepada penghuni surga yang lain. Semua perempuan surga sama-sama cantiknya dan semuanya remaja.",
-        short:
-          "Itulah surga ‘Adn, tempat tinggal yang kekal yang pintu-pintunya terbuka lebar bagi mereka, menyambut kedatangan mereka.",
+        footnotes: null,
+        text: "Tempat kembali yang baik itu adalah surga 'Adn yang mereka masuki pada hari Kiamat, pintu-pintunya telah terbuka untuk menyambut mereka.",
       },
     },
     text: {
-      arab: "\u062c\u064e\u0646\u0651\u064e\u0627\u062a\u0650 \u0639\u064e\u062f\u0652\u0646\u064d \u0645\u0651\u064f\u0641\u064e\u062a\u0651\u064e\u062d\u064e\u0629\u064b \u0644\u0651\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0623\u064e\u0628\u0652\u0648\u064e\u0627\u0628\u064f",
-      transliteration: {
-        en: "Jannaati 'adnim mufat tahatal lahumul abwaab",
-      },
+      arabic: "جَنَّٰتِ عَدْنٍ مُّفَتَّحَةً لَّهُمُ ٱلْأَبْوَٰبُ",
     },
     translation: {
-      en: "Gardens of perpetual residence, whose doors will be opened to them.",
-      id: "(yaitu) surga ’Adn yang pintu-pintunya terbuka bagi mereka,",
+      en: {
+        footnotes: "",
+        text: "Gardens of Eternity, with gates wide open for them.",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) surga 'Adn yang pintu-pintunya terbuka bagi mereka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4021",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4021.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4021.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 182,
       juz: 23,
       manzil: 6,
       page: 456,
       ruku: 394,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4021,
@@ -106,40 +91,32 @@ export const quranSurah38Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini Allah menjelaskan betapa nikmatnya tempat kembali yang disediakan kepada para rasul dan orang-orang yang bertakwa itu. Pintu surga 'Adn selalu terbuka, dan keadaannya selalu menyenangkan, sebagai tanda bahwa segalanya telah dipersiapkan untuk menghormati hamba-hamba pilihan Allah yang akan menghuninya. Kamar-kamarnya luas yang mengagumkan, pelayan-pelayannya yang indah dipandang mata, dan suasana lingkungannya yang mencengangkan. Semuanya dalam tata ciptaan yang memesonakan, yang belum pernah terlihat sebelumnya, belum pernah terngiang di telinga dan belum pernah terlintas dalam hati.\n\nDi dalam surga itu keinginan mereka terpenuhi, dipan-dipan tempat mereka membaringkan diri, tersedia serba memuaskan, buah-buahan yang beraneka ragam, jenis rasa dan aromanya, serta minuman dengan segala macamnya, siap disuguhkan.\n\nSebenarnya kenikmatan yang terdapat dalam surga itu adalah puncak dari segala kenikmatan. Kenikmatan yang ada di surga itu diungkapkan dengan buah-buahan dan minuman sebagai kenikmatan yang sesuai dengan keadaan masyarakat Mekah pada waktu itu.\n\nKalau disebutkan buah-buahan yang beraneka ragam dan minuman yang bermacam jenisnya, sudah barang tentu selera mereka terangsang, dan timbullah keinginan mereka untuk menikmati. Di samping itu, mereka didampingi oleh bidadari-bidadari yang sangat sopan. Masing-masing penghuni surga dilayani oleh perempuan-perempuan surga yang khusus untuknya, dan tidak memberikan pelayanannya kepada penghuni surga yang lain. Semua perempuan surga sama-sama cantiknya dan semuanya remaja.",
-        short:
-          "Di dalamnya mereka bersandar di atas dipan-dipan sambil meminta suguhan berupa buah-buahan yang banyak dan minuman dengan berbagai jenis dan rasa.",
+        footnotes: null,
+        text: "Di dalamnya mereka duduk bersandar di atas ranjang-ranjang yang indah. Mereka meminta para pelayan untuk datang membawa apa yang mereka inginkan berupa buah-buahan yang banyak dan beraneka macam dan minuman yang mereka inginkan berupa khamar dan lainnya.",
       },
     },
     text: {
-      arab: "\u0645\u064f\u062a\u0651\u064e\u0643\u0650\u0626\u0650\u064a\u0646\u064e \u0641\u0650\u064a\u0647\u064e\u0627 \u064a\u064e\u062f\u0652\u0639\u064f\u0648\u0646\u064e \u0641\u0650\u064a\u0647\u064e\u0627 \u0628\u0650\u0641\u064e\u0627\u0643\u0650\u0647\u064e\u0629\u064d \u0643\u064e\u062b\u0650\u064a\u0631\u064e\u0629\u064d \u0648\u064e\u0634\u064e\u0631\u064e\u0627\u0628\u064d",
-      transliteration: {
-        en: "Muttaki'eena feehaa yad'oona feehaa bifaakihatin kaseeratinw wa sharaab",
-      },
+      arabic: "مُتَّكِـِٔينَ فِيهَا يَدْعُونَ فِيهَا بِفَٰكِهَةٍ كَثِيرَةٍ وَشَرَابٍ",
     },
     translation: {
-      en: "Reclining within them, they will call therein for abundant fruit and drink.",
-      id: "di dalamnya mereka bersandar (di atas dipan-dipan) sambil meminta buah-buahan yang banyak dan minuman (di surga itu).",
+      en: {
+        footnotes: "",
+        text: "They will recline therein, calling for abundant fruit and drink.",
+      },
+      id: {
+        footnotes: "",
+        text: "Di dalamnya mereka bersandar (di atas dipan-dipan) sambil meminta buah-buahan yang banyak dan minuman (di surga itu).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4022",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4022.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4022.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 456,
       ruku: 394,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4022,
@@ -147,40 +124,32 @@ export const quranSurah38Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini Allah menjelaskan betapa nikmatnya tempat kembali yang disediakan kepada para rasul dan orang-orang yang bertakwa itu. Pintu surga 'Adn selalu terbuka, dan keadaannya selalu menyenangkan, sebagai tanda bahwa segalanya telah dipersiapkan untuk menghormati hamba-hamba pilihan Allah yang akan menghuninya. Kamar-kamarnya luas yang mengagumkan, pelayan-pelayannya yang indah dipandang mata, dan suasana lingkungannya yang mencengangkan. Semuanya dalam tata ciptaan yang memesonakan, yang belum pernah terlihat sebelumnya, belum pernah terngiang di telinga dan belum pernah terlintas dalam hati.\n\nDi dalam surga itu keinginan mereka terpenuhi, dipan-dipan tempat mereka membaringkan diri, tersedia serba memuaskan, buah-buahan yang beraneka ragam, jenis rasa dan aromanya, serta minuman dengan segala macamnya, siap disuguhkan.\n\nSebenarnya kenikmatan yang terdapat dalam surga itu adalah puncak dari segala kenikmatan. Kenikmatan yang ada di surga itu diungkapkan dengan buah-buahan dan minuman sebagai kenikmatan yang sesuai dengan keadaan masyarakat Mekah pada waktu itu.\n\nKalau disebutkan buah-buahan yang beraneka ragam dan minuman yang bermacam jenisnya, sudah barang tentu selera mereka terangsang, dan timbullah keinginan mereka untuk menikmati. Di samping itu, mereka didampingi oleh bidadari-bidadari yang sangat sopan. Masing-masing penghuni surga dilayani oleh perempuan-perempuan surga yang khusus untuknya, dan tidak memberikan pelayanannya kepada penghuni surga yang lain. Semua perempuan surga sama-sama cantiknya dan semuanya remaja.",
-        short:
-          "Dan di samping mereka ada bidadari-bidadari cantik dan sopan yang redup pandangannya, setia pada pasangannya, dan mereka semua sebaya umurnya.",
+        footnotes: null,
+        text: "Di sisi mereka ada istri-istri yang pandangan mata mereka hanya terfokus pada suami-suami mereka, tidak menoleh kepada selain mereka, dan usia mereka semua sepadan.",
       },
     },
     text: {
-      arab: "\u06de \u0648\u064e\u0639\u0650\u0646\u062f\u064e\u0647\u064f\u0645\u0652 \u0642\u064e\u0627\u0635\u0650\u0631\u064e\u0627\u062a\u064f \u0627\u0644\u0637\u0651\u064e\u0631\u0652\u0641\u0650 \u0623\u064e\u062a\u0652\u0631\u064e\u0627\u0628\u064c",
-      transliteration: {
-        en: "Wa 'indahum qaasiraatut tarfi atraab",
-      },
+      arabic: "وَعِندَهُمْ قَٰصِرَٰتُ ٱلطَّرْفِ أَتْرَابٌ",
     },
     translation: {
-      en: "And with them will be women limiting [their] glances and of equal age.",
-      id: "dan di samping mereka (ada bidadari-bidadari) yang redup pandangannya dan sebaya umurnya.",
+      en: {
+        footnotes: "[21] Their gaze will be restricted to their mates alone.",
+        text: "And they will have maidens of modest gaze[21] and equal age.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan di samping mereka (ada bidadari-bidadari) yang redup pandangannya dan sebaya umurnya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4023",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4023.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4023.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 456,
       ruku: 394,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4023,
@@ -188,40 +157,32 @@ export const quranSurah38Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa segala macam kenikmatan yang terdapat di surga itulah yang dijanjikan kepada hamba Allah yang bertakwa, yang pasti datang setelah manusia seluruhnya dibangkitkan kembali dari kubur, dan diadili di Padang Mahsyar. Allah menegaskan bahwa nikmat yang ada di surga itu bukan sembarang kenikmatan, tetapi nikmat yang abadi.",
-        short:
-          "Inilah apa yang dijanjikan Allah kepadamu pada hari perhitungan, hari ketika manusia dibangkitkan dari kubur lalu diarak ke padang mahsyar dan diadili di hadapan Allah.",
+        footnotes: null,
+        text: "Inilah apa yang dijanjikan kepada kalian wahai orang-orang yang bertakwa, balasan yang baik pada Hari Kiamat atas amal-amal kalian yang saleh yang kalian lakukan di dunia.",
       },
     },
     text: {
-      arab: "\u0647\u064e\u0670\u0630\u064e\u0627 \u0645\u064e\u0627 \u062a\u064f\u0648\u0639\u064e\u062f\u064f\u0648\u0646\u064e \u0644\u0650\u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u062d\u0650\u0633\u064e\u0627\u0628\u0650",
-      transliteration: {
-        en: "Haaza maa too'odoona li Yawmil Hisaab",
-      },
+      arabic: "هَٰذَا مَا تُوعَدُونَ لِيَوْمِ ٱلْحِسَابِ",
     },
     translation: {
-      en: "This is what you, [the righteous], are promised for the Day of Account.",
-      id: "Inilah apa yang dijanjikan kepadamu pada hari perhitungan.",
+      en: {
+        footnotes: "",
+        text: "This is what you are promised for the Day of Account.",
+      },
+      id: {
+        footnotes: "",
+        text: "Inilah apa yang dijanjikan kepadamu pada hari perhitungan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4024",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4024.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4024.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 456,
       ruku: 394,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4024,
@@ -229,20 +190,22 @@ export const quranSurah38Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa segala macam kenikmatan yang terdapat di surga itulah yang dijanjikan kepada hamba Allah yang bertakwa, yang pasti datang setelah manusia seluruhnya dibangkitkan kembali dari kubur, dan diadili di Padang Mahsyar. Allah menegaskan bahwa nikmat yang ada di surga itu bukan sembarang kenikmatan, tetapi nikmat yang abadi.",
-        short:
-          "Sungguh, karunia besar dan mulia inilah rezeki dari Kami yang tidak ada habis-habisnya dan tidak pula berkurang. Kami berikan karunia itu kepada hamba-hamba yang taat dan berbakti.",
+        footnotes: null,
+        text: "Sesungguhnya balasan yang Kami jelaskan ini adalah rezeki dari Kami pada hari Kiamat, yang Kami limpahkan kepada orang-orang yang bertakwa. Ia adalah rezeki yang terus menerus, tidak berakhir, dan tidak habis.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0647\u064e\u0670\u0630\u064e\u0627 \u0644\u064e\u0631\u0650\u0632\u0652\u0642\u064f\u0646\u064e\u0627 \u0645\u064e\u0627 \u0644\u064e\u0647\u064f \u0645\u0650\u0646 \u0646\u0651\u064e\u0641\u064e\u0627\u062f\u064d",
-      transliteration: {
-        en: "Inna haazaa larizqunaa maa lahoo min nafaad",
-      },
+      arabic: "إِنَّ هَٰذَا لَرِزْقُنَا مَا لَهُۥ مِن نَّفَادٍ",
     },
     translation: {
-      en: "Indeed, this is Our provision; for it there is no depletion.",
-      id: "Sungguh, inilah rezeki dari Kami yang tidak ada habis-habisnya.",
+      en: {
+        footnotes: "",
+        text: "Indeed, this is Our provision [for the righteous] that will never cease.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, inilah rezeki dari Kami yang tidak ada habis-habisnya.",
+      },
     },
   },
 ];

@@ -116,6 +116,7 @@ export const validateCatalogSnapshots: <E, R>(
 ) {
   const prepared = yield* prepareReleaseSnapshots({
     checkoutRoot: input.checkoutRoot,
+    families: ["program", "quran", "tryout"],
     previousSnapshots: null,
     questionHeads: input.questionHeads,
     rendererManifest: input.rendererManifest,

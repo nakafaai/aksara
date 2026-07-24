@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah92Verses19To21 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6077",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6077.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6077.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6077,
@@ -24,40 +25,32 @@ export const quranSurah92Verses19To21 = [
     },
     tafsir: {
       id: {
-        long: "Orang-orang yang bertakwa membantu orang lain bukan karena orang itu berjasa kepadanya yang karena itu ia perlu membalasnya. Ia membantu orang itu semata-mata karena mengharapkan rida dan surga Allah di akhirat.",
-        short:
-          "Dan tidak ada seorang pun memberikan suatu nikmat atau jasa padanya yang harus dibalasnya. Dia tidak berinfak hanya karena hendak membalas budi baik orang lain kepadanya, melainkan berinfak dengan tulus dan ikhlas.",
+        footnotes: null,
+        text: "Padahal tidaklah ia menafkahkan apa yang telah dinafkahkan dari hartanya itu untuk membalas kenikmatan yang pernah orang lain berikan kepadanya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0644\u0650\u0623\u064e\u062d\u064e\u062f\u064d \u0639\u0650\u0646\u062f\u064e\u0647\u064f \u0645\u0650\u0646 \u0646\u0651\u0650\u0639\u0652\u0645\u064e\u0629\u064d \u062a\u064f\u062c\u0652\u0632\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa maa li ahadin 'indahoo min ni'matin tujzaaa",
-      },
+      arabic: "وَمَا لِأَحَدٍ عِندَهُۥ مِن نِّعْمَةٍ تُجْزَىٰٓ",
     },
     translation: {
-      en: "And not [giving] for anyone who has [done him] a favor to be rewarded",
-      id: "dan tidak ada seorang pun memberikan suatu nikmat padanya yang harus dibalasnya,",
+      en: {
+        footnotes: "[2] i.e., not as a repayment for a favor he received.",
+        text: "not in return for someone’s favors[2],",
+      },
+      id: {
+        footnotes: "",
+        text: "dan tidak ada seorang pun memberikan suatu nikmat padanya yang harus dibalasnya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6078",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6078.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6078.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6078,
@@ -65,40 +58,32 @@ export const quranSurah92Verses19To21 = [
     },
     tafsir: {
       id: {
-        long: "Orang-orang yang bertakwa membantu orang lain bukan karena orang itu berjasa kepadanya yang karena itu ia perlu membalasnya. Ia membantu orang itu semata-mata karena mengharapkan rida dan surga Allah di akhirat.",
-        short:
-          "Dia tidak berinfak demi manusia, tetapi berinfak semata karena mencari keridaan Tuhannya yang Mahatinggi. Allah sangat senang kepada orang yang tulus dan ikhlas dalam berinfak maupun ibadah lainnya.",
+        footnotes: null,
+        text: "Dia tidak menginginkan dari harta yang dia nafkahkan itu kecuali wajah Tuhannya Yang Mahatinggi di atas makhluk-Nya.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0628\u0652\u062a\u0650\u063a\u064e\u0627\u0621\u064e \u0648\u064e\u062c\u0652\u0647\u0650 \u0631\u064e\u0628\u0651\u0650\u0647\u0650 \u0627\u0644\u0652\u0623\u064e\u0639\u0652\u0644\u064e\u0649\u0670",
-      transliteration: {
-        en: "Illab tighaaa'a wajhi rabbihil a 'laa",
-      },
+      arabic: "إِلَّا ٱبْتِغَآءَ وَجْهِ رَبِّهِ ٱلْأَعْلَىٰ",
     },
     translation: {
-      en: "But only seeking the countenance of his Lord, Most High.",
-      id: "tetapi (dia memberikan itu semata-mata) karena mencari keridaan Tuhannya Yang Mahatinggi.",
+      en: {
+        footnotes: "",
+        text: "but to seek the pleasure of his Lord, the Most High.",
+      },
+      id: {
+        footnotes: "",
+        text: "tetapi (dia memberikan itu semata-mata) karena mencari keridaan Tuhannya Yang Mahatinggi.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6079",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6079.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6079.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 534,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6079,
@@ -106,20 +91,22 @@ export const quranSurah92Verses19To21 = [
     },
     tafsir: {
       id: {
-        long: "Orang takwa yang membantu orang lain untuk mencari rida Allah itu akhirnya akan memperolehnya. Orang itu terjauh dari neraka, dan pasti masuk surga.",
-        short:
-          "Dan niscaya kelak dia akan mendapat kesenangan yang sempurna dari Allah sebagai balasan atas ketulusannya. Allah memperlakukannya dengan baik, memasukkanya ke surga yang penuh nikmat, dan mempersilakannya bertemu dan melihat Allah.",
+        footnotes: null,
+        text: "Sungguh, dia pasti akan merasa puas dengan balasan mulia yang diberikan Allah kepadanya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0633\u064e\u0648\u0652\u0641\u064e \u064a\u064e\u0631\u0652\u0636\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa lasawfa yardaa",
-      },
+      arabic: "وَلَسَوْفَ يَرْضَىٰ",
     },
     translation: {
-      en: "And he is going to be satisfied.",
-      id: "Dan niscaya kelak dia akan mendapat kesenangan (yang sempurna).",
+      en: {
+        footnotes: "",
+        text: "He will surely be well pleased.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan niscaya kelak dia akan mendapat kesenangan (yang sempurna).",
+      },
     },
   },
 ];

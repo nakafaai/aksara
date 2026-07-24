@@ -4,48 +4,28 @@ import { quranSurah71Verses13To18 } from "#corpus/quran/surah/71/13-18";
 import { quranSurah71Verses19To24 } from "#corpus/quran/surah/71/19-24";
 import { quranSurah71Verses25To28 } from "#corpus/quran/surah/71/25-28";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah71 = {
   name: {
-    long: "\u0633\u0648\u0631\u0629 \u0646\u0648\u062d",
-    short: "نوح",
-    translation: {
-      en: "Noah",
-      id: "Nuh",
-    },
-    transliteration: {
-      en: "Nooh",
-      id: "Nuh",
-    },
+    arabic: "نوح",
+    translation: "Noah",
+    transliteration: "Nooh",
   },
   number: 71,
   numberOfVerses: 28,
-  preBismillah: {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1.mp3",
-      ],
-    },
-    text: {
-      arab: "\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Bismillaahir Rahmaanir Raheem",
-      },
-    },
-    translation: {
-      en: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
-      id: "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
-    },
-  },
   revelation: {
-    arab: "\u0645\u0643\u0629",
-    en: "Meccan",
-    id: "Makkiyyah",
-  },
-  sequence: 71,
-  tafsir: {
-    id: "Surat ini terdiri atas 28 ayat, termasuk golongan surat-surat Makkiyah, diturunkan sesudah surat An Nahl. Dinamakan dengan surat Nuh karena surat ini seluruhnya menjelaskan da'wah dan doa Nabi Nuh a.s.",
+    order: 71,
+    place: "Meccan",
   },
   verses: [
     ...quranSurah71Verses1To6,

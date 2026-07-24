@@ -225,5 +225,6 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     rendererManifest,
     result: resultSpool.replay,
     routes: () => inverseRouteStream(routeSpool.replay, input.releaseId),
+    scope: proof.release.manifest.scope,
   });
 });

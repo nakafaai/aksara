@@ -6,6 +6,7 @@ import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
   inheritContentSnapshots,
   invertContentSnapshots,
+  replaceContentSnapshot,
   restoreContentSnapshot,
 } from "#contracts/release/snapshot";
 import {
@@ -61,6 +62,14 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"f".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"f".repeat(64)}`,
+  scope: {
+    content: [
+      { contentKey: "test:content", family: "material", locale: "en" },
+      { contentKey: "test:content", family: "material", locale: "id" },
+    ],
+    families: [],
+    snapshots: [],
+  },
   snapshots: inheritContentSnapshots(null),
   upsertCount: itemSummary.upsertCount,
 });
@@ -147,6 +156,23 @@ describe("release spec", () => {
       { ...manifest, baseReleaseId: releaseId },
       { ...manifest, baseResultCount: 1 },
       { ...manifest, baseResultDigest: `sha256:${"1".repeat(64)}` },
+      {
+        ...manifest,
+        scope: {
+          content: manifest.scope.content,
+          families: [],
+          snapshots: ["program"],
+        },
+        snapshots: {
+          ...manifest.snapshots,
+          program: replaceContentSnapshot({
+            baseSnapshotId: manifest.resultDigest,
+            resultSnapshotId: manifest.baseResultDigest,
+            rowCount: 1,
+            rowDigest: manifest.resultDigest,
+          }),
+        },
+      },
       {
         ...manifest,
         snapshots: {

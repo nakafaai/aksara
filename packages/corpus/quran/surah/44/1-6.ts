@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah44Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4415",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4415.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4415.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 496,
       ruku: 431,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4415,
@@ -24,39 +25,32 @@ export const quranSurah44Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini terdiri dari huruf-huruf hijaiah, sebagaimana terdapat pada permulaan beberapa surah Al-Qur\'an. Para ahli tafsir berbeda pendapat tentang maksud huruf-huruf itu. Selanjutnya dipersilahkan menelaah masalah ini pada "Al-Qur\'an dan Tafsirnya" jilid I yaitu tafsir ayat pertama Surah al-Baqarah."',
-        short: "Hà Mìm",
+        footnotes: null,
+        text: "Ḥā Mīm. Pembahasan tentang huruf-huruf semacam ini sudah ada di awal surah Al-Baqarah.",
       },
     },
     text: {
-      arab: "\u062d\u0645",
-      transliteration: {
-        en: "Haa Meeem",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ حمٓ",
     },
     translation: {
-      en: "Ha, Meem.",
-      id: "Ha Mim",
+      en: {
+        footnotes: "[1] See footnote 2:1.",
+        text: "Hā Mīm[1].",
+      },
+      id: {
+        footnotes: "",
+        text: "Ḥā Mīm.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4416",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4416.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4416.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 496,
       ruku: 431,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4416,
@@ -64,40 +58,32 @@ export const quranSurah44Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa Dia telah menurunkan Al-Qur'an pada malam yang dikenal dengan malam \"Lailatul Qadar\" untuk memperingatkan hamba-Nya dan supaya mereka takut kepada siksa-Nya, dan pada malam itu Dia telah memerinci semua hal yang bermanfaat bagi hamba-Nya di dunia dan di akhirat. Dia adalah Tuhan semesta alam yang mengatur langit dan bumi dan yang ada di antara keduanya.\n\nTidak ada yang tersembunyi bagi Allah tentang hal ihwal hamba-Nya, hidup dan mati mereka adalah di tangan-Nya. Dialah Tuhan mereka dan Tuhan nenek moyang mereka, tetapi mereka masih juga ragu setelah kebenaran itu nyata dan jelas. Firman Allah:\n\nSesungguhnya Kami telah menurunkannya (Al-Qur'an) pada malam qadar. Dan tahukah kamu apakah malam kemuliaan itu?Malam kemuliaan itu lebih baik daripada seribu bulan. (al-Qadr/97: 1-3)\n\nPeristiwa turunnya Al-Qur'an itu terjadi pada bulan Ramadan sebagaimana firman Allah:\n\nBulan Ramadan adalah (bulan) yang di dalamnya diturunkan Al-Qur'an, (al-Baqarah/2: 185)\n\nDari hadis Nabi:\n\nDari Watsilah bin al-Asqa' bahwa Rasulullah saw bersabda: shuhuf Ibrahim diurunkan pada malam pertama bulan Ramadan, Taurat diturunkan pada tanggal 6 Ramadan, Zabur pada malam 12 Ramadan, Injil pada malam 18 Ramadan dan Al-Qur'an diturunkan pada malam 24 Ramadan. (Riwayat Ahmad, ath-thabrani, dan al-Baihaqi)\n\nAllah menurunkan Al-Qur'an untuk memberitahukan kepada manusia tentang hal-hal yang bermanfaat untuk diamalkan dan hal-hal yang akan mencelakakan mereka, supaya mereka menjauhinya, untuk menjadi hujah bagi Allah atas hamba-Nya.",
-        short:
-          "Allah bersumpah dalam ayat ini dengan kitab suci Al-Qur\\'an mengatakan, “Demi Kitab, yaitu Al-Qur’an yang menjelaskan petunjuk-petunjuk Allah untuk manusia agar senantiasa berada pada jalan yang benar.",
+        footnotes: null,
+        text: "Allah bersumpah dengan Al-Qur`ān yang menjelaskan jalan petunjuk menuju kebenaran.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u0650 \u0627\u0644\u0652\u0645\u064f\u0628\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Wal Kitaabil Mubeen",
-      },
+      arabic: "وَٱلْكِتَٰبِ ٱلْمُبِينِ",
     },
     translation: {
-      en: "By the clear Book,",
-      id: "Demi Kitab (Al-Qur'an) yang jelas,",
+      en: {
+        footnotes: "",
+        text: "By the clear Book.",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi Kitab (Al-Qur`an) yang jelas,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4417",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4417.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4417.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 496,
       ruku: 431,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4417,
@@ -105,40 +91,33 @@ export const quranSurah44Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa Dia telah menurunkan Al-Qur'an pada malam yang dikenal dengan malam \"Lailatul Qadar\" untuk memperingatkan hamba-Nya dan supaya mereka takut kepada siksa-Nya, dan pada malam itu Dia telah memerinci semua hal yang bermanfaat bagi hamba-Nya di dunia dan di akhirat. Dia adalah Tuhan semesta alam yang mengatur langit dan bumi dan yang ada di antara keduanya.\n\nTidak ada yang tersembunyi bagi Allah tentang hal ihwal hamba-Nya, hidup dan mati mereka adalah di tangan-Nya. Dialah Tuhan mereka dan Tuhan nenek moyang mereka, tetapi mereka masih juga ragu setelah kebenaran itu nyata dan jelas. Firman Allah:\n\nSesungguhnya Kami telah menurunkannya (Al-Qur'an) pada malam qadar. Dan tahukah kamu apakah malam kemuliaan itu?Malam kemuliaan itu lebih baik daripada seribu bulan. (al-Qadr/97: 1-3)\n\nPeristiwa turunnya Al-Qur'an itu terjadi pada bulan Ramadan sebagaimana firman Allah:\n\nBulan Ramadan adalah (bulan) yang di dalamnya diturunkan Al-Qur'an, (al-Baqarah/2: 185)\n\nDari hadis Nabi:\n\nDari Watsilah bin al-Asqa' bahwa Rasulullah saw bersabda: shuhuf Ibrahim diurunkan pada malam pertama bulan Ramadan, Taurat diturunkan pada tanggal 6 Ramadan, Zabur pada malam 12 Ramadan, Injil pada malam 18 Ramadan dan Al-Qur'an diturunkan pada malam 24 Ramadan. (Riwayat Ahmad, ath-thabrani, dan al-Baihaqi)\n\nAllah menurunkan Al-Qur'an untuk memberitahukan kepada manusia tentang hal-hal yang bermanfaat untuk diamalkan dan hal-hal yang akan mencelakakan mereka, supaya mereka menjauhinya, untuk menjadi hujah bagi Allah atas hamba-Nya.",
-        short:
-          "Sesungguhnya Kami menurunkannya pertama kali dari Lauhul-Mahfùz ke langit dunia sekaligus pada malam yang di berkahi. Sungguh, Kamilah yang memberi peringatan.",
+        footnotes: null,
+        text: "Sesungguhnya Kami menurunkan Al-Qur`ān ini pada malam Lailatulqadar, yaitu suatu malam yang mengandung banyak kebaikan, dan sesungguhnya Kami menakut-nakuti manusia dengan Al-Qur`ān ini.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0627 \u0623\u064e\u0646\u0632\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f \u0641\u0650\u064a \u0644\u064e\u064a\u0652\u0644\u064e\u0629\u064d \u0645\u0651\u064f\u0628\u064e\u0627\u0631\u064e\u0643\u064e\u0629\u064d \u06da \u0625\u0650\u0646\u0651\u064e\u0627 \u0643\u064f\u0646\u0651\u064e\u0627 \u0645\u064f\u0646\u0630\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Innaaa anzalnaahu fee lailatim mubaarakah; innaa kunnaa munzireen",
-      },
+      arabic: "إِنَّآ أَنزَلْنَٰهُ فِى لَيْلَةٍ مُّبَٰرَكَةٍ إِنَّا كُنَّا مُنذِرِينَ",
     },
     translation: {
-      en: "Indeed, We sent it down during a blessed night. Indeed, We were to warn [mankind].",
-      id: "sesungguhnya Kami menurunkannya pada malam yang diberkahi. ) Sungguh, Kamilah yang memberi peringatan.",
+      en: {
+        footnotes:
+          "[2] The revelation of the Qur’an started on the Night of Decree (al-Qadr) in the month of Ramadān, the 9th month of the lunar calendar. The Night of Decree is better than one thousand months. See (97:1 and 2:185).",
+        text: "Indeed, We sent it[2] down on a blessed night, We have been warning about.",
+      },
+      id: {
+        footnotes: "[791] Malam Al-Qur`an pertama kali diturunkan.",
+        text: "Sesungguhnya Kami menurunkannya pada malam yang diberkahi.[791] Sungguh, Kamilah yang memberi peringatan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4418",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4418.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4418.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 496,
       ruku: 431,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4418,
@@ -146,40 +125,34 @@ export const quranSurah44Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa pada malam \"Lailatul Qadar\", dijelaskan segala perkara yang berhubungan dengan kehidupan makhluk, hidup, mati, rezeki, nasib baik, nasib buruk dan sebagainya. Semuanya itu merupakan ketentuan dari Allah yang penuh hikmah sesuai dengan kebijaksanaan-Nya. Ayat 5 ini ditutup dengan satu ketegasan bahwa Allah telah mengutus Rasul-Nya kepada manusia dari golongan mereka sendiri, membersihkan jiwa mereka, mengajarkan kepada mereka al-kitab, al-hikmah; agar menjadi hujah bagi Allah atas hamba-Nya dan menjadi alasan untuk menghukum mereka apabila mereka berbuat dosa, menentang rasul yang diutus kepada mereka, menolak petunjuk yang dibawa oleh rasul itu dari Allah dan tidak ada alasan bagi mereka untuk membantah dan tidak menerima siksaan Allah, sebagaimana firman-Nya:\n\nTetapi Kami tidak akan menyiksa sebelum Kami mengutus seorang rasul. (al-Isra'/17: 15)\n\nDan firman-Nya:\n\nRasul-rasul itu adalah sebagai pembawa berita gembira dan pemberi peringatan, agar tidak ada alasan bagi manusia untuk membantah Allah setelah rasul-rasul itu diutus. (an-Nisa'/4: 165)",
-        short:
-          "Pada malam itu dijelaskan oleh Allah segala urusan yang penuh hikmah, yaitu segala perkara yang berhubungan dengan kehidupan makhluk di bumi, seperti hidup, mati, rezeki, nasib baik, nasib buruk, dan sebagainya,",
+        footnotes: null,
+        text: "Pada malam itu diperinci setiap urusan yang sudah ditetapkan yang berkenaan dengan rezeki, kematian, dan lain-lain yang akan diwujudkan oleh Allah pada tahun itu.",
       },
     },
     text: {
-      arab: "\u0641\u0650\u064a\u0647\u064e\u0627 \u064a\u064f\u0641\u0652\u0631\u064e\u0642\u064f \u0643\u064f\u0644\u0651\u064f \u0623\u064e\u0645\u0652\u0631\u064d \u062d\u064e\u0643\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Feehaa yufraqu kullu amrin hakeem",
-      },
+      arabic: "فِيهَا يُفْرَقُ كُلُّ أَمْرٍ حَكِيمٍ",
     },
     translation: {
-      en: "On that night is made distinct every precise matter -",
-      id: "Pada (malam itu) dijelaskan segala urusan yang penuh hikmah,",
+      en: {
+        footnotes:
+          "[3] The angels record and descend with whatever Allah has decreed for the coming year, according to what is inscribed in the Preserved Tablet.",
+        text: "On that night, every matter of wisdom is determined[3]",
+      },
+      id: {
+        footnotes:
+          "[792] Segala perkara yang berhubungan dengan kehidupan makhluk seperti hidup, mati, rezeki, nasib baik, nasib buruk, dan sebagainya.",
+        text: "Pada (malam itu) dijelaskan segala urusan yang penuh hikmah,[792]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4419",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4419.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4419.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 496,
       ruku: 431,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4419,
@@ -187,40 +160,32 @@ export const quranSurah44Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa pada malam \"Lailatul Qadar\", dijelaskan segala perkara yang berhubungan dengan kehidupan makhluk, hidup, mati, rezeki, nasib baik, nasib buruk dan sebagainya. Semuanya itu merupakan ketentuan dari Allah yang penuh hikmah sesuai dengan kebijaksanaan-Nya. Ayat 5 ini ditutup dengan satu ketegasan bahwa Allah telah mengutus Rasul-Nya kepada manusia dari golongan mereka sendiri, membersihkan jiwa mereka, mengajarkan kepada mereka al-kitab, al-hikmah; agar menjadi hujah bagi Allah atas hamba-Nya dan menjadi alasan untuk menghukum mereka apabila mereka berbuat dosa, menentang rasul yang diutus kepada mereka, menolak petunjuk yang dibawa oleh rasul itu dari Allah dan tidak ada alasan bagi mereka untuk membantah dan tidak menerima siksaan Allah, sebagaimana firman-Nya:\n\nTetapi Kami tidak akan menyiksa sebelum Kami mengutus seorang rasul. (al-Isra'/17: 15)\n\nDan firman-Nya:\n\nRasul-rasul itu adalah sebagai pembawa berita gembira dan pemberi peringatan, agar tidak ada alasan bagi manusia untuk membantah Allah setelah rasul-rasul itu diutus. (an-Nisa'/4: 165)",
-        short:
-          "yaitu urusan yang datang dari sisi Kami. Sungguh, Kamilah yang mengutus rasul-rasul kepada umat-umat terdahulu dan termasuk engkau, ya Muhammad, yang diutus kepada kaummu,",
+        footnotes: null,
+        text: "Kami memperinci dan menetapkan setiap perkara yang sudah ditetapkan dari sisi Kami. Sesungguhnya Kami telah mengutus para rasul.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652\u0631\u064b\u0627 \u0645\u0651\u0650\u0646\u0652 \u0639\u0650\u0646\u062f\u0650\u0646\u064e\u0627 \u06da \u0625\u0650\u0646\u0651\u064e\u0627 \u0643\u064f\u0646\u0651\u064e\u0627 \u0645\u064f\u0631\u0652\u0633\u0650\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Amram min 'indinaaa; innaa kunnaa mursileen",
-      },
+      arabic: "أَمْرًا مِّنْ عِندِنَآ إِنَّا كُنَّا مُرْسِلِينَ",
     },
     translation: {
-      en: "[Every] matter [proceeding] from Us. Indeed, We were to send [a messenger]",
-      id: "(yaitu) urusan dari sisi Kami. Sungguh, Kamilah yang mengutus rasul-rasul,",
+      en: {
+        footnotes: "",
+        text: "by Our command. We have always sent messengers.",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) urusan dari sisi Kami. Sungguh, Kamilah yang mengutus rasul-rasul,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4420",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4420.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4420.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 198,
       juz: 25,
       manzil: 6,
       page: 496,
       ruku: 431,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4420,
@@ -228,20 +193,22 @@ export const quranSurah44Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menjelaskan bahwa hikmah dan latar belakang pengutusan rasul merupakan satu rahmat daripada-Nya bagi alam semesta sebagaimana firman-Nya:\n\nDan Kami tidak mengutus engkau (Muhammad) melainkan untuk (menjadi) rahmat bagi seluruh alam. (al-Anbiya'/21: 107)\n\nSebagian ahli tafsir berpendapat bahwa rahmat itu adalah latar belakang diturunkan-Nya Al-Qur'an, karena dengan mengikuti isi dan petunjuk Al-Qur'an, manusia dapat mengatur dengan baik urusan dunia dan akhirat, memperbaiki cara hidupnya sehingga nampak bagi mereka keberkahan hidup dalam masyarakatnya. Firman Allah:\n\nDan Kami turunkan dari Al-Qur'an (sesuatu) yang menjadi penawar dan rahmat bagi orang yang beriman. (al-Isra'/17: 82)\n\nAllah itu Maha Mendengar, mendengar semua yang dikatakan manusia. Maha Mengetahui segala hal yang mendatangkan kemaslahatan bagi mereka.",
-        short:
-          "Sebagai Rahmat yang dilimpahkan kepada mereka dari Tuhanmu, wahai Nabi Muhammad. Sungguh, Dia Maha Mendengar semua yang mereka katakan, dan Maha Mengetahui semua yang mereka lakukan.",
+        footnotes: null,
+        text: "Kami mengutus para rasul sebagai rahmat dari Tuhanmu -wahai Rasul- untuk kaum yang diutusi para rasul. Sesungguhnya Dia -Subḥānahu- Maha Mendengar ucapan-ucapan hamba-hamba-Nya dan Maha Mengetahui perbuatan-perbuatan mereka dan niat-niat mereka, tidak ada sedikit pun dari hal itu yang tersembunyi dari-Nya.",
       },
     },
     text: {
-      arab: "\u0631\u064e\u062d\u0652\u0645\u064e\u0629\u064b \u0645\u0651\u0650\u0646 \u0631\u0651\u064e\u0628\u0651\u0650\u0643\u064e \u06da \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0647\u064f\u0648\u064e \u0627\u0644\u0633\u0651\u064e\u0645\u0650\u064a\u0639\u064f \u0627\u0644\u0652\u0639\u064e\u0644\u0650\u064a\u0645\u064f",
-      transliteration: {
-        en: "Rahmatam mir rabbik; innahoo Huwas Samee'ul 'Aleem",
-      },
+      arabic: "رَحْمَةً مِّن رَّبِّكَ إِنَّهُۥ هُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ",
     },
     translation: {
-      en: "As mercy from your Lord. Indeed, He is the Hearing, the Knowing.",
-      id: "sebagai rahmat dari Tuhanmu. Sungguh, Dia Maha Mendengar, Maha Mengetahui,",
+      en: {
+        footnotes: "",
+        text: "as a mercy from your Lord. He is indeed the All-Hearing, the All-Knowing,",
+      },
+      id: {
+        footnotes: "",
+        text: "sebagai rahmat dari Tuhanmu. Sungguh, Dia Maha Mendengar, Maha Mengetahui.",
+      },
     },
   },
 ];

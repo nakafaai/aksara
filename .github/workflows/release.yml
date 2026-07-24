@@ -26,6 +26,10 @@ on:
         description: Exact active release to reverse
         required: false
         type: string
+      scope:
+        description: Canonical publication selectors as a JSON string array
+        required: false
+        type: string
 
 permissions: {}
 
@@ -38,35 +42,59 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  package:
+  contracts:
     if: >-
       github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
-      && (inputs.operation == 'accept'
-        || inputs.operation == 'release'
-        || inputs.operation == 'rollback')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
+      attestations: read
       contents: read
-    uses: ./.github/workflows/package-proof.yml
-    with:
-      proof_mode: current
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-  publish:
-    needs: package
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build exact contract archive
+        env:
+          TARBALL: ${{ runner.temp }}/nakafa-aksara-contracts.tgz
+        run: >-
+          pnpm --filter @nakafa/aksara-contracts verify:consumer --
+          --output "$TARBALL"
+
+      - name: Prove immutable contract release
+        env:
+          CURRENT_ARCHIVE: ${{ runner.temp }}/nakafa-aksara-contracts.tgz
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          node packages/contracts/scripts/release-command.ts prove
+          --archive "$CURRENT_ARCHIVE"
+          --repository "$GITHUB_REPOSITORY"
+          --source-sha "$GITHUB_SHA"
+
+  operate:
+    needs: contracts
     if: >-
-      always()
-      && github.ref == 'refs/heads/main'
+      github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
-      && (
-        ((inputs.operation == 'accept'
-          || inputs.operation == 'release'
-          || inputs.operation == 'rollback')
-          && needs.package.result == 'success')
-        || ((inputs.operation == 'abort'
-          || inputs.operation == 'cleanup'
-          || inputs.operation == 'recover')
-          && needs.package.result == 'skipped')
-      )
+      && needs.contracts.result == 'success'
     environment: content-production
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -79,6 +107,7 @@ jobs:
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           ROLLBACK_OF: ${{ inputs.rollback_of }}
+          PUBLICATION_SCOPE: ${{ inputs.scope }}
         run: |
           if [[ "$OPERATION" != "rollback" && -n "$ROLLBACK_OF" ]]; then
             echo "Only rollback may select prior release state." >&2
@@ -103,6 +132,15 @@ jobs:
           fi
           if [[ "$OPERATION" == "rollback" && ( "$ROLLBACK_OF" == "$RELEASE_ID" || "$ROLLBACK_OF" == "$RECOVERY_ID" ) ]]; then
             echo "Rollback, candidate, and recovery identities must differ." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "release" ]]; then
+            if ! jq -e 'type == "array" and length > 0 and all(.[]; type == "string" and length > 0)' <<<"$PUBLICATION_SCOPE" >/dev/null; then
+              echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
+              exit 1
+            fi
+          elif [[ -n "$PUBLICATION_SCOPE" ]]; then
+            echo "Only release may select a publication scope." >&2
             exit 1
           fi
 
@@ -149,7 +187,7 @@ jobs:
           pnpm typecheck
           pnpm test
           pnpm build
-          pnpm verify:package
+          pnpm verify:consumer
 
       - name: Verify terminal operation revision
         if: inputs.operation == 'abort' || inputs.operation == 'cleanup' || inputs.operation == 'recover'
@@ -187,9 +225,15 @@ jobs:
           AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
-        run: >-
-          pnpm release -- --release-id "$RELEASE_ID"
-          --recovery-id "$RECOVERY_ID"
+          PUBLICATION_SCOPE: ${{ inputs.scope }}
+        run: |
+          mapfile -t SCOPE_SELECTORS < <(jq -er '.[]' <<<"$PUBLICATION_SCOPE")
+          scope_args=()
+          for selector in "${SCOPE_SELECTORS[@]}"; do
+            scope_args+=(--scope "$selector")
+          done
+          pnpm release -- --release-id "$RELEASE_ID" \
+            --recovery-id "$RECOVERY_ID" "${scope_args[@]}"
 
       - name: Publish rollback
         if: inputs.operation == 'rollback'

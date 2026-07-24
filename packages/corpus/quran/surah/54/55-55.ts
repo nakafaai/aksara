@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah54Verses55To55 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4901",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4901.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4901.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 212,
       juz: 27,
       manzil: 7,
       page: 531,
       ruku: 465,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4901,
@@ -24,20 +25,22 @@ export const quranSurah54Verses55To55 = [
     },
     tafsir: {
       id: {
-        long: "Bagi mereka yang bertakwa, Allah memberikan surgasurga sesuai tingkat ketakwaan mereka. Sebagaimana diketahui surga itu bertingkat-tingkat. Di dalam surga-surga mengalir sungaisungai yang menunjukkan bahwa surga adalah tempat yang menyejukkan, indah dan memberikan hasil yang banyak. Mereka menempati tempat yang benar yang tidak ada cacat atau kekurangannya dan mereka berada di bawah naungan Maharaja yang Mahakuasa, yang akan memberi mereka apa yang Ia kehendaki tanpa halangan siapa pun.",
-        short:
-          "Mereka tinggal di tempat yang disenangi dan penuh kebahagiaan, di sisi Tuhan Yang Mahakuasa.",
+        footnotes: null,
+        text: "Mereka dalam majelis kebenaran, tidak ada kelalaian dan dosa padanya, di sisi Maha Penguasa yang memiliki segala sesuatu, lagi Mahakuasa yang tidak ada sesuatu pun yang melemahkan-Nya. Sebab itu, janganlah kamu tanya tentang kenikmatan abadi yang mereka dapatkan dari-Nya.",
       },
     },
     text: {
-      arab: "\u0641\u0650\u064a \u0645\u064e\u0642\u0652\u0639\u064e\u062f\u0650 \u0635\u0650\u062f\u0652\u0642\u064d \u0639\u0650\u0646\u062f\u064e \u0645\u064e\u0644\u0650\u064a\u0643\u064d \u0645\u0651\u064f\u0642\u0652\u062a\u064e\u062f\u0650\u0631\u064d",
-      transliteration: {
-        en: "Fee maq'adi sidqin 'inda Maleekim Muqtadir",
-      },
+      arabic: "فِى مَقْعَدِ صِدْقٍ عِندَ مَلِيكٍ مُّقْتَدِرٍۭ",
     },
     translation: {
-      en: "In a seat of honor near a Sovereign, Perfect in Ability.",
-      id: "di tempat yang disenangi di sisi Tuhan Yang Mahakuasa.",
+      en: {
+        footnotes: "",
+        text: "seated in honor in the presence of the Most Powerful Sovereign.",
+      },
+      id: {
+        footnotes: "",
+        text: "di tempat yang disenangi di sisi Tuhan Yang Mahakuasa.",
+      },
     },
   },
 ];

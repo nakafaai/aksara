@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah17Verses103To108 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2132",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2132.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2132.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 117,
       juz: 15,
       manzil: 4,
       page: 292,
       ruku: 251,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2132,
@@ -24,40 +25,32 @@ export const quranSurah17Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Setelah Fir'aun melihat kegigihan Musa dalam menyampaikan risalahnya, dan hal itu akan membahayakan diri dan kekuasaannya, maka Fir'aun berencana untuk mengeluarkan Musa dan pengikut-pengikutnya dari bumi Mesir, baik dengan cara mengusir atau melenyapkan mereka. Akan tetapi, Allah swt lebih dahulu menenggelamkan Fir'aun beserta pengikut-pengikutnya ke dalam laut Qulzum.",
-        short:
-          "Mendengar jawaban Nabi Musa, sikap Fir'aun tetap tidak percaya bahkan semakin durhaka. Kemudian dia, yakni Fir'aun hendak mengusir mereka, yaitu Nabi Musa dan pengikutnya dari bumi Mesir, maka ketika ia benar-benar mengusir Nabi Musa dan pengikutnya, Kami tenggelamkan dia, yakni Fir'aun, beserta orang yang bersama dia seluruhnya ketika menyeberangi Laut Merah dalam perjalanan dari Mesir menuju Sinai.",
+        footnotes: null,
+        text: "Lalu Firaun hendak menghukum Musa dan kaumnya dengan mengusir mereka dari negeri Mesir, sebab itu Kami binasakan dirinya beserta seluruh bala tentara yang bersamanya dengan penenggelaman.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0631\u064e\u0627\u062f\u064e \u0623\u064e\u0646 \u064a\u064e\u0633\u0652\u062a\u064e\u0641\u0650\u0632\u0651\u064e\u0647\u064f\u0645 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0641\u064e\u0623\u064e\u063a\u0652\u0631\u064e\u0642\u0652\u0646\u064e\u0627\u0647\u064f \u0648\u064e\u0645\u064e\u0646 \u0645\u0651\u064e\u0639\u064e\u0647\u064f \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627",
-      transliteration: {
-        en: "Fa araada any yastafizzahum minal ardi fa aghraqnaahu wa mam ma'ahoo jamee'aa",
-      },
+      arabic: "فَأَرَادَ أَن يَسْتَفِزَّهُم مِّنَ ٱلْأَرْضِ فَأَغْرَقْنَٰهُ وَمَن مَّعَهُۥ جَمِيعًا",
     },
     translation: {
-      en: "So he intended to drive them from the land, but We drowned him and those with him all together.",
-      id: "Kemudian dia (Fir‘aun) hendak mengusir mereka (Musa dan pengikutnya) dari bumi (Mesir), maka Kami tenggelamkan dia (Fir‘aun) beserta orang yang bersama dia seluruhnya.",
+      en: {
+        footnotes: "",
+        text: "So he decided to exile them out of the land, but We drowned him and all those who were with him.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian dia (Fir'aun) hendak mengusir mereka (Musa dan pengikutnya) dari bumi (Mesir), maka Kami tenggelamkan dia (Fir'aun) beserta orang yang bersama dia seluruhnya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2133",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2133.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2133.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 117,
       juz: 15,
       manzil: 4,
       page: 292,
       ruku: 251,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2133,
@@ -65,40 +58,33 @@ export const quranSurah17Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah swt menyelamatkan Musa dan Bani Israil serta memerintahkan mereka agar mendiami negeri yang telah dijanjikan kepada mereka sampai waktu yang ditentukan. Jika telah sampai waktunya, mereka akan diwafatkan kemudian dibangkitkan kembali pada hari kiamat, untuk menetapkan keputusan yang paling adil di antara mereka. Ketika itu, mereka beserta musuh-musuhnya bercampur baur dan menyatu untuk menerima balasan dari Allah. Perbuatan baik akan dibalas dengan pahala yang berlipat ganda, sedangkan perbuatan mungkar akan dibalas dengan siksa neraka.",
-        short:
-          'Dan setelah itu, yakni setelah penenggelaman itu, Kami berfirman kepada Bani Israil, "Tinggallah di negeri ini, Palestina dan sekitarnya, tetapi apabila masa berbangkit datang kelak di hari kiamat, niscaya Kami kumpulkan kamu dalam keadaan bercampur baur dengan orang-orang kafir dan semua musuh-musuhmu. Dan kami akan memperhitungkan amal perbuatanmu dan memberikan pembalasan yang setimpal sesuai apa yang mereka lakukan.',
+        footnotes: null,
+        text: 'Setelah kebinasaan Firaun dan bala tentaranya, Kami berfirman kepada Bani Israil, "Menetaplah kalian di negeri Syam. Tetapi, apabila hari Kiamat telah tiba, Kami akan kumpulkan kalian semua di padang mahsyar untuk dihisab."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064f\u0644\u0652\u0646\u064e\u0627 \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650\u0647\u0650 \u0644\u0650\u0628\u064e\u0646\u0650\u064a \u0625\u0650\u0633\u0652\u0631\u064e\u0627\u0626\u0650\u064a\u0644\u064e \u0627\u0633\u0652\u0643\u064f\u0646\u064f\u0648\u0627 \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064e \u0641\u064e\u0625\u0650\u0630\u064e\u0627 \u062c\u064e\u0627\u0621\u064e \u0648\u064e\u0639\u0652\u062f\u064f \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u064e\u0629\u0650 \u062c\u0650\u0626\u0652\u0646\u064e\u0627 \u0628\u0650\u0643\u064f\u0645\u0652 \u0644\u064e\u0641\u0650\u064a\u0641\u064b\u0627",
-      transliteration: {
-        en: "Wa qulnaa mim ba'dihee li Baneee Israaa'eelas kunul arda faizaa jaaa'a wa'dulaakhirati ji'naa bikum lafeefaa",
-      },
+      arabic:
+        "وَقُلْنَا مِنۢ بَعْدِهِۦ لِبَنِىٓ إِسْرَٰٓءِيلَ ٱسْكُنُوا۟ ٱلْأَرْضَ فَإِذَا جَآءَ وَعْدُ ٱلْـَٔاخِرَةِ جِئْنَا بِكُمْ لَفِيفًا",
     },
     translation: {
-      en: 'And We said after Pharaoh to the Children of Israel, "Dwell in the land, and when there comes the promise of the Hereafter, We will bring you forth in [one] gathering."',
-      id: "Dan setelah itu Kami berfirman kepada Bani Israil, “Tinggallah di negeri ini, tetapi apabila masa berbangkit datang, niscaya Kami kumpulkan kamu dalam keadaan bercampur baur.”",
+      en: {
+        footnotes: "[83] After the drowning of Pharaoh and his people.",
+        text: "Thereafter[83] We said to the Children of Israel, “Dwell in the land, but when the promise of the Hereafter comes, We will bring you all together.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'dan setelah itu Kami berfirman kepada Bani Israil, "Tinggallah di negeri ini, tetapi apabila masa berbangkit datang, niscaya Kami kumpulkan kamu dalam keadaan bercampur baur ."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2134",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2134.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2134.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 117,
       juz: 15,
       manzil: 4,
       page: 293,
       ruku: 251,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2134,
@@ -106,40 +92,33 @@ export const quranSurah17Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah swt menegaskan kepada Rasul saw bahwa Allah benar-benar telah menurunkan Al-Qur'an dari sisi-Nya. Maka manusia tidak boleh meragukan dan berpaling darinya. \n\nDalam ayat yang lain Allah swt berfirman:\n\nTetapi Allah menjadi saksi atas (Al-Qur'an) yang diturunkan-Nya kepadamu (Muhammad). Dia menurunkannya dengan ilmu-Nya, dan para malaikat pun menyaksikan. Dan cukuplah Allah yang menjadi saksi. (an-Nisa'/4: 166)\n\nAl-Qur'an membawa berbagai ajaran yang benar yang mendatangkan ketertiban dan kesejahteraan bagi umat manusia. Di dalamnya terdapat ajaran tentang moral, akidah ketuhanan, peraturan-peraturan, hukum, sejarah, dan ilmu pengetahuan. Segala isinya senantiasa terpelihara, baik lafal maupun maknanya tidak akan ternoda dengan penambahan atau pengurangan yang menyebabkan kekacauan dan kesimpangsiuran, sebagaimana dijelaskan Allah dalam firman-Nya:\n\nSesungguhnya Kamilah yang menurunkan Al-Qur'an, dan pasti Kami (pula) yang memeliharanya. (al-hijr/15: 9)\n\nFirman-Nya lagi:\n\n(Yang) tidak akan didatangi oleh kebatilan baik dari depan maupun dari belakang (pada masa lalu dan yang akan datang), yang diturunkan dari Tuhan Yang Mahabijaksana, Maha Terpuji. (Fushshilat/41: 42)\n\nDemikianlah Allah menerangkan sifat-sifat Al-Qur'an dengan segala jaminan akan kesuciannya dari tangan-tangan manusia yang berusaha mengotorinya. Dia diturunkan kepada Nabi Muhammad saw yang diutus kepada umat manusia untuk memberikan kabar gembira tentang pahala dan surga bagi orang-orang yang beriman dan taat kepada ajaran agama, dan memberikan peringatan tentang azab dan neraka bagi yang kafir dan berbuat dosa.",
-        short:
-          "Setelah menguraikan kisah Nabi Musa dan kaumnya serta kaum musyrik yang enggan menerima kebenaran yang disampaikan Nabi Muhammad, ayat selanjutnya menjelaskan tujuan diturunkan kitab suci Al-Qur'an untuk menyatakan bukti-bukti kebenaran itu. Dan Kami turunkan Al-Qur'an itu dengan benar, yakni benar Al-Qur'an itu datang dari Allah, dan Al-Qur'an itu turun dengan membawa kebenaran, dalam kandungannya. Dan Kami tidaklah mengutus engkau wahai Nabi Muhammad, melainkan sebagai pembawa berita gembira bagi orang-orang yang taat akan masuk surga dan pemberi peringatan bagi orang-orang yang durhaka akan masuk neraka.",
+        footnotes: null,
+        text: "Kami turunkan Al-Qur`ān ini dengan sebenarnya kepada Muhammad -ṣallallāhu 'alaihi wa sallam-, dan ia turun kepadanya dengan membawa kebenaran tanpa bisa diganti dan diubah. Kami tidaklah mengutusmu -wahai Rasul- kecuali sebagai pembawa kabar gembira terhadap orang-orang yang bertakwa dengan adanya surga, dan sebagai pemberi ancaman terhadap orang-orang kafir dan bermaksiat dengan adanya neraka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0628\u0650\u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u0623\u064e\u0646\u0632\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f \u0648\u064e\u0628\u0650\u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u0646\u064e\u0632\u064e\u0644\u064e \u06d7 \u0648\u064e\u0645\u064e\u0627 \u0623\u064e\u0631\u0652\u0633\u064e\u0644\u0652\u0646\u064e\u0627\u0643\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064f\u0628\u064e\u0634\u0651\u0650\u0631\u064b\u0627 \u0648\u064e\u0646\u064e\u0630\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Wa bilhaqqi anzalnaahu wa bilhaqqi nazal; wa maaa arsalnaaka illaa mubash shiranw wa nazeeraa",
-      },
+      arabic: "وَبِٱلْحَقِّ أَنزَلْنَٰهُ وَبِٱلْحَقِّ نَزَلَ وَمَآ أَرْسَلْنَٰكَ إِلَّا مُبَشِّرًا وَنَذِيرًا",
     },
     translation: {
-      en: "And with the truth We have sent the Qur'an down, and with the truth it has descended. And We have not sent you, [O Muhammad], except as a bringer of good tidings and a warner.",
-      id: "Dan Kami turunkan (Al-Qur'an) itu dengan sebenarnya dan (Al-Qur'an) itu turun dengan (membawa) kebenaran. Dan Kami mengutus engkau (Muhammad), hanya sebagai pembawa berita gembira dan pemberi peringatan.",
+      en: {
+        footnotes:
+          "[84] It is repeated twice in the face of the ardent denial of the pagans of Makkah and their demand to provide them with miracles, asserting here that the Qur’an is a revelation from Allah: it contains truthful news and just rulings, as it is sent down by Gabriel (عليه السلام), the strong and trustworthy, to Prophet Muhammad (ﷺ), safeguarded against the devils, free from alteration, additions or omission, throughout all times.",
+        text: "With the truth We have sent down this [Qur’an] and with the truth it has descended[84], and We have not sent you [O Prophet] except as a bearer of glad tidings and a warner.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan Kami turunkan (Al-Qur`an) itu dengan sebenarnya dan (Al-Qur`an) itu turun dengan (membawa) kebenaran. Dan Kami mengutus engkau (Muhammad), hanya sebagai pembawa berita gembira dan pemberi peringatan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2135",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2135.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2135.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 117,
       juz: 15,
       manzil: 4,
       page: 293,
       ruku: 251,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2135,
@@ -147,40 +126,33 @@ export const quranSurah17Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah swt menerangkan bahwa Al-Qur'an diwahyu-kan kepada Nabi Muhammad saw secara berangsur-angsur sebagian demi sebagian, agar ia dapat membacakannya kepada umatnya, serta memberi pemahaman secara perlahan-lahan. Ayat Al-Qur'an pertama kali diwahyukan di bulan Ramadan, pada malam qadar, kemudian seterusnya diturunkan kepada Nabi berangsur-angsur sesuai dengan kebutuhan dan peristiwa yang terjadi dalam tempo kurang dari duapuluh tiga tahun. Dengan penurunan secara berangsur-angsur itu, umat Islam memperoleh keutamaan dan manfaat yang besar, antara lain:\n\nPertama: Kaum Muslimin mudah menghafalnya ketika diturunkan.\n\nKedua: Kaum Muslimin berkesempatan untuk memahami setiap kelompok ayat yang diturunkan, karena jangkauan maknanya yang luas memerlukan waktu yang cukup untuk memahaminya agar mendapat pemahaman yang tepat dan benar.\n\nKetiga: Kaum Muslimin tidak mengalami kegoncangan jiwa yang berarti dalam menghadapi berbagai perubahan yang dibawa oleh Islam. Sebelum kedatangan agama Islam, mereka menganut kepercayaan animis yang bermacam-macam, dan tidak memiliki peraturan dan tata kehidupan yang dipatuhi. Penurunan Al-Qur'an secara berangsur-angsur mempermudah mereka menyesuaikan diri dengan ajaran-ajaran yang baru, baik ajaran yang berhubungan dengan akidah, maupun yang berhubungan dengan ibadah dan kemasyarakatan.\n\nKeempat: Sebagian ayat-ayat Al-Qur'an merupakan penjelasan yang berhubungan dengan suatu peristiwa yang terjadi.\n\nFirman Allah swt:\n\nDan mereka (orang-orang kafir itu) tidak datang kepadamu (membawa) sesuatu yang aneh, melainkan Kami datangkan kepadamu yang benar dan penjelasan yang paling baik. (al-Furqan/25: 33)\n\nDengan demikian, kaum Muslimin merasakan bahwa mereka selalu mendapat bimbingan dan petunjuk dari Allah swt ketika menghadapi setiap peristiwa yang terjadi di antara mereka.\n\nBagi Nabi Muhammad saw, penurunan Al-Qur'an secara berangsur-angsur itu amat besar manfaatnya dalam memperteguh hatinya, seperti dijelaskan Allah dalam firman-Nya:\n\nDan orang-orang kafir berkata, \"Mengapa Al-Qur'an itu tidak diturunkan kepadanya sekaligus?\" Demikianlah, agar Kami memperteguh hatimu (Mu-hammad) dengannya dan Kami membacakannya secara tartil (berangsur-angsur, perlahan dan benar). (al-Furqan/25: 32)\n\nPada umumnya ayat-ayat yang diturunkan berkisar antara lima sampai dengan sepuluh ayat sesuai dengan kebutuhan, sebagaimana Umar bin Khaththab berkata:\n\nDiriwayatkan dari Umar r.a., dia berkata, \"Pelajarilah Al-Qur'an lima ayat lima ayat. Karena sesungguhnya Jibril menurunkannya lima ayat lima ayat. (Riwayat al-Baihaqi).",
-        short:
-          "Selanjutnya dijelaskan tentang cara turunnya Al-Qur'an. Dan Al-Qur'an Kami turunkan berangsur-angsur, ayat demi ayat dalam masa lebih kurang 23 tahun, tidak Kami turunkan secara sekaligus agar engkau wahai Nabi Muhammad membacakannya kepada manusia perlahan-lahan, dengan demikian dapat dipahami tuntunannya dengan sebaik-baiknya dan mudah dihafalkan, dan Kami menurunkannya secara bertahap sesuai dengan kebutuhan dan kemaslahatan manusia.",
+        footnotes: null,
+        text: "Al-Qur`ān itu Kami turunkan dengan keterangan yang jelas, dengan harapan agar engkau membacakannya kepada manusia secara perlahan-lahan dan tidak tergesa-gesa karena hal itu lebih mudah untuk dipahami dan ditadaburi. Kami juga menurunkannya secara berangsur-angsur dan berpisah-pisah sesuai dengan peristiwa dan kondisi tertentu.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064f\u0631\u0652\u0622\u0646\u064b\u0627 \u0641\u064e\u0631\u064e\u0642\u0652\u0646\u064e\u0627\u0647\u064f \u0644\u0650\u062a\u064e\u0642\u0652\u0631\u064e\u0623\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u0639\u064e\u0644\u064e\u0649\u0670 \u0645\u064f\u0643\u0652\u062b\u064d \u0648\u064e\u0646\u064e\u0632\u0651\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f \u062a\u064e\u0646\u0632\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Wa quraanan faraqnaahu litaqra ahoo 'alan naasi 'alaa muksinw wa nazzalnaahu tanzeelaa",
-      },
+      arabic: "وَقُرْءَانًا فَرَقْنَٰهُ لِتَقْرَأَهُۥ عَلَى ٱلنَّاسِ عَلَىٰ مُكْثٍ وَنَزَّلْنَٰهُ تَنزِيلًا",
     },
     translation: {
-      en: "And [it is] a Qur'an which We have separated [by intervals] that you might recite it to the people over a prolonged period. And We have sent it down progressively.",
-      id: "Dan Al-Qur'an (Kami turunkan) berangsur-angsur agar engkau (Muhammad) membacakannya kepada manusia perlahan-lahan dan Kami menurunkannya secara bertahap.",
+      en: {
+        footnotes:
+          "[85] In separate segments, one coming after another over the duration of 23 years of his mission.",
+        text: "This is a Qur’an that We have revealed over stages so that you may recite it to people at a slower pace, and We have sent it down in a successive manner[85].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan Al-Qur`an (kami turunkan) berangsur-angsur agar engkau (Muhammad) membacakannya kepada manusia perlahan-lahan dan Kami menurunkannya secara bertahap.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2136",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2136.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2136.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 117,
       juz: 15,
       manzil: 4,
       page: 293,
       ruku: 251,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2136,
@@ -188,40 +160,33 @@ export const quranSurah17Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah swt memerintahkan kepada Rasul-Nya untuk menyatakan dengan tegas kepada kaum musyrikin yang ingkar kepada kebenaran Al-Qur'an itu, bahwa sekiranya mereka beriman maka keimanan mereka itu tidaklah memperkaya perbendaharaan rahmat-Nya. Demikian pula sebaliknya, sekiranya mereka tetap ingkar, tidak mau beriman kepada Al-Qur'an, keingkaran dan penolakan mereka itu tidaklah mengurangi keagungan Allah swt. Firman Allah:\n\nDan mereka berkata, \"Kami tidak akan percaya kepadamu (Muhammad) sebelum engkau memancarkan mata air dari bumi untuk kami. (al-Isra'/17: 90)\n\nPernyataan Rasul saw ini merupakan celaan dan kecaman kepada kaum musyrikin, serta mengandung penghinaan kepada mereka. Bagaimanapun sikap mereka terhadap Al-Qur'an, tidak patut dipedulikan. Kebenaran Al-Qur'an tidak tergantung kepada sikap orang-orang yang ingkar itu. Tidak mengherankan kalau mereka menolak kebenaran Al-Qur'an, karena mereka memang orang Jahiliah. Tetapi orang-orang baik dan terpelajar di antara mereka tentu beriman dan tunduk sepenuhnya bila mendengar ayat-ayat Al-Qur'an dibacakan. Seperti Zaid bin Amru bin Nufail dan Waraqah bin Naufal yang telah membacakan kitab-kitab suci yang terdahulu sebelum Al-Qur'an diturunkan, dan mereka mengetahui kelak pada waktunya akan lahir seorang rasul akhir zaman. Mereka sujud dan bersyukur kepada Allah swt yang telah memenuhi janji-Nya, yaitu mengutus Muhammad saw sebagai rasul terakhir. Dengan turunnya ayat ini, Nabi Muhammad saw merasa terhibur hatinya, karena keimanan orang-orang yang terpelajar lebih berarti dari keimanan orang-orang jahil, meskipun keimanan orang-orang jahil itu tetap diharapkan.",
-        short:
-          "Jika demikian sifat dan ciri-ciri Al-Qur'an sebagaimana dijelaskan oleh ayat-ayat yang lalu, maka wahai Nabi Muhammad, katakanlah kepada orang-orang kafir Mekah dan kepada manusia seluruhnya, \"Berimanlah kamu kepadanya, yakni Al-Qur'an, atau tidak usah beriman, itu sama saja bagi Allah. Jika engkau beriman, engkau mendapat manfaat dari keimananmu. Dan jika engkau ingkar, engkau juga yang mendapat kerugian. Tidak ada manfaat sedikit pun bagi Allah dari keimanan kamu, dan tidak ada pula mudarat bagi Allah dari keingkaran kamu. Sesungguhnya orang yang telah diberi pengetahuan sebelumnya, yakni ulama Ahli Kitab yang beriman kepada Nabi Muhammad, mereka diberi pengetahuan tentang wahyu Allah sebelum turunnya Al-Qur'an, apabila Al-Qur'an dibacakan kepada mereka, mereka menyungkurkan wajah, yakni menjatuhkan wajahnya untuk bersujud mengakui kebesaran Allah dan kebenaran firman-Nya.",
+        footnotes: null,
+        text: 'Katakanlah -wahai Rasul-, "Berimanlah kalian kepadanya karena keimanan kalian tersebut tidaklah memberinya satu kelebihan apa pun, atau janganlah kalian beriman kepadanya karena kekafiran kalian tersebut tidaklah memberinya suatu kekurangan apa pun." Sesungguhnya orang-orang yang membaca kitab-kitab samawi terdahulu dan mengetahui adanya wahyu dan kenabian, apabila Al-Qur`ān dibacakan kepada mereka maka mereka segera menyungkurkan wajah untuk bersujud kepada Allah sebagai tanda syukur kepada-Nya.',
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u0622\u0645\u0650\u0646\u064f\u0648\u0627 \u0628\u0650\u0647\u0650 \u0623\u064e\u0648\u0652 \u0644\u064e\u0627 \u062a\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0627 \u06da \u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064f\u0648\u062a\u064f\u0648\u0627 \u0627\u0644\u0652\u0639\u0650\u0644\u0652\u0645\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650\u0647\u0650 \u0625\u0650\u0630\u064e\u0627 \u064a\u064f\u062a\u0652\u0644\u064e\u0649\u0670 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u064a\u064e\u062e\u0650\u0631\u0651\u064f\u0648\u0646\u064e \u0644\u0650\u0644\u0652\u0623\u064e\u0630\u0652\u0642\u064e\u0627\u0646\u0650 \u0633\u064f\u062c\u0651\u064e\u062f\u064b\u0627",
-      transliteration: {
-        en: "Qul aaaniminoo biheee aw laa tu'minoo; innal lazeena ootul 'ilma min qabliheee izaa yutlaa 'alaihim yakhirroona lil azqaani sujjadaa",
-      },
+      arabic:
+        "قُلْ ءَامِنُوا۟ بِهِۦٓ أَوْ لَا تُؤْمِنُوٓا۟ إِنَّ ٱلَّذِينَ أُوتُوا۟ ٱلْعِلْمَ مِن قَبْلِهِۦٓ إِذَا يُتْلَىٰ عَلَيْهِمْ يَخِرُّونَ لِلْأَذْقَانِ سُجَّدًا",
     },
     translation: {
-      en: 'Say, "Believe in it or do not believe. Indeed, those who were given knowledge before it - when it is recited to them, they fall upon their faces in prostration,',
-      id: "Katakanlah (Muhammad), “Berimanlah kamu kepadanya (Al-Qur'an) atau tidak usah beriman (sama saja bagi Allah). Sesungguhnya orang yang telah diberi pengetahuan sebelumnya, apabila (Al-Qur'an) dibacakan kepada mereka, mereka menyungkurkan wajah, bersujud,”",
+      en: {
+        footnotes: "[86] Of the People of the Book who recognize the truth.",
+        text: "Say, “Believe in it, or do not believe. Those who were given knowledge before it[86], when it is recited to them, they fall on their faces in prostration,",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Berimanlah kamu kepadanya (Al-Qur`an) atau tidak usah beriman (sama saja bagi Allah). Sesungguhnya orang yang telah diberi pengetahuan sebelumnya, apabila (Al-Qur`an) dibacakan kepada mereka, mereka menyungkurkan wajah bersujud,"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2137",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2137.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2137.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 117,
       juz: 15,
       manzil: 4,
       page: 293,
       ruku: 251,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2137,
@@ -229,20 +194,22 @@ export const quranSurah17Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini Allah swt menerangkan bahwa orang-orang yang telah diberi ilmu itu mengucapkan tasbih, yaitu lafal Subhanallah (Mahasuci Allah), sewaktu sujud tanda syukur kepada Allah swt. Mereka menyucikan Tuhan dari sifat-sifat yang tidak patut bagi-Nya, seperti menyalahi janji-Nya kepada umat manusia untuk mengutus seorang rasul. Mereka juga mengatakan bahwa sebenarnya janji Allah itu telah datang dan menjadi kenyataan.\n\nAyat ini menunjukkan kebaikan membaca tasbih dalam sujud. 'Aisyah r.a. berkata, \"Adalah Rasul saw banyak membaca dalam sujud dan rukuknya:\n\nMahasuci Engkau ya Allah Tuhan kami, kami bertasbih dengan memuji-Mu. Ya Allah ampunilah aku. (Riwayat Muslim dalam Sahihnya)",
-        short:
-          "Dan dalam kondisi bersujud mereka berkata, \"Mahasuci Tuhan kami dari segala kekurangan dan ketidaksempurnaan; sungguh, janji Tuhan kami bahwa Dia akan menurunkan wahyu dan mengutus Rasul-Nya pasti dipenuhi, dan telah dipenuhi janji itu dengan diutusnya Nabi Muhammad dan diturunkannya Al-Qur'an.",
+        footnotes: null,
+        text: 'Dalam sujud itu mereka berkata, "Sungguh, Mahasuci Tuhan kami dari sifat menyelisihi janji. Apa yang Dia janjikan berupa diutusnya Muhammad -ṣallallāhu \'alaihi wa sallam- telah terjadi karena sesungguhnya janji Tuhan kami dengan hal itu atau hal lainnya pasti akan terjadi."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0633\u064f\u0628\u0652\u062d\u064e\u0627\u0646\u064e \u0631\u064e\u0628\u0651\u0650\u0646\u064e\u0627 \u0625\u0650\u0646 \u0643\u064e\u0627\u0646\u064e \u0648\u064e\u0639\u0652\u062f\u064f \u0631\u064e\u0628\u0651\u0650\u0646\u064e\u0627 \u0644\u064e\u0645\u064e\u0641\u0652\u0639\u064f\u0648\u0644\u064b\u0627",
-      transliteration: {
-        en: "Wa yaqooloona Subhaana Rabbinaaa in kaana wa'du Rabbinaa lamaf'oolaa",
-      },
+      arabic: "وَيَقُولُونَ سُبْحَٰنَ رَبِّنَآ إِن كَانَ وَعْدُ رَبِّنَا لَمَفْعُولًا",
     },
     translation: {
-      en: 'And they say, "Exalted is our Lord! Indeed, the promise of our Lord has been fulfilled."',
-      id: "dan mereka berkata, “Mahasuci Tuhan kami; sungguh, janji Tuhan kami pasti dipenuhi.”",
+      en: {
+        footnotes: "",
+        text: "and they say, “Glory be to our Lord. The promise of our Lord is bound to be fulfilled.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'dan mereka berkata, "Mahasuci Tuhan kami; sungguh, janji Tuhan kami pasti dipenuhi."',
+      },
     },
   },
 ];

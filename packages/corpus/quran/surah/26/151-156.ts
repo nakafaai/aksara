@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah26Verses151To156 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3083",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3083.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3083.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 323,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3083,
@@ -24,40 +25,32 @@ export const quranSurah26Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan bahwa Nabi Saleh tetap melaksanakan tugasnya sebagai rasul Allah. Dia menyeru kaumnya untuk bertakwa kepada Allah, dan mengikuti agama yang disampaikannya. Nabi Saleh juga mengajak mereka melakukan perbuatan-perbuatan yang diridai Allah dan bermanfaat bagi hidup mereka di dunia dan di akhirat, yaitu menyembah Allah yang telah memberikan berbagai nikmat itu kepada mereka. Nabi Saleh mengingatkan agar mereka tidak lagi menaati para pemimpin mereka yang selalu mengerjakan kejahatan, kemaksiatan, dan kerusakan di bumi ini.",
-        short:
-          "Dan janganlah kamu menaati perintah orang-orang yang melampaui batas,",
+        footnotes: null,
+        text: "Janganlah kalian menaati perintah orang-orang yang melewati batas atas diri mereka sendiri dengan melakukan berbagai kemaksiatan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u062a\u064f\u0637\u0650\u064a\u0639\u064f\u0648\u0627 \u0623\u064e\u0645\u0652\u0631\u064e \u0627\u0644\u0652\u0645\u064f\u0633\u0652\u0631\u0650\u0641\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa laa tutee'ooo amral musrifeen",
-      },
+      arabic: "وَلَا تُطِيعُوٓا۟ أَمْرَ ٱلْمُسْرِفِينَ",
     },
     translation: {
-      en: "And do not obey the order of the transgressors,",
-      id: "dan janganlah kamu menaati perintah orang-orang yang melampaui batas,",
+      en: {
+        footnotes: "",
+        text: "And do not obey the command of the transgressors,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan janganlah kamu menaati perintah orang-orang yang melampaui batas,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3084",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3084.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3084.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 323,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3084,
@@ -65,40 +58,32 @@ export const quranSurah26Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan bahwa Nabi Saleh tetap melaksanakan tugasnya sebagai rasul Allah. Dia menyeru kaumnya untuk bertakwa kepada Allah, dan mengikuti agama yang disampaikannya. Nabi Saleh juga mengajak mereka melakukan perbuatan-perbuatan yang diridai Allah dan bermanfaat bagi hidup mereka di dunia dan di akhirat, yaitu menyembah Allah yang telah memberikan berbagai nikmat itu kepada mereka. Nabi Saleh mengingatkan agar mereka tidak lagi menaati para pemimpin mereka yang selalu mengerjakan kejahatan, kemaksiatan, dan kerusakan di bumi ini.",
-        short:
-          "Mereka adalah para pemuka masyarakatmu yang kafir, sombong, berbuat kerusakan, keonaran, dan kemaksiatan di muka bumi dan mereka sama sekali tidak mengadakan perbaikan dalam kehidupan mereka.\" Mereka yang dimaksud Nabi Saleh berjumlah 9 orang (lihat surah an-Naml/27:48) dan tinggal dikawasan antara Madinah dan Yordania yang disebut dengan negeri Mada'in tempat tinggal kaum Samud.",
+        footnotes: null,
+        text: 'Mereka itulah orang-orang yang membuat kerusakan di muka bumi dengan menyebarkan berbagai maksiat dan tidak mengadakan perbaikan pada diri mereka sendiri dengan konsisten melakukan ketaatan kepada Allah."',
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u064a\u064f\u0641\u0652\u0633\u0650\u062f\u064f\u0648\u0646\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0648\u064e\u0644\u064e\u0627 \u064a\u064f\u0635\u0652\u0644\u0650\u062d\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Allazeena yufsidoona fil ardi wa laa yuslihoon",
-      },
+      arabic: "ٱلَّذِينَ يُفْسِدُونَ فِى ٱلْأَرْضِ وَلَا يُصْلِحُونَ",
     },
     translation: {
-      en: 'Who cause corruption in the land and do not amend."',
-      id: "yang berbuat kerusakan di bumi dan tidak mengadakan perbaikan.”",
+      en: {
+        footnotes: "",
+        text: "those who spread corruption in the land and never do what is right.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'yang berbuat kerusakan di bumi dan tidak mengadakan perbaikan."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3085",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3085.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3085.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 323,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3085,
@@ -106,40 +91,32 @@ export const quranSurah26Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: 'Semua yang dikemukakan Nabi Saleh kepada kaumnya, berupa bukti-bukti kebenaran dakwah, tidak dapat mereka bantah. Bahkan hati mereka mengakui kebenaran yang disampaikan kepada mereka, tetapi jiwa mereka yang telah rusak yang menyebabkan mereka ingkar kepada seruan Nabi Saleh. Oleh karena itu, mereka mengatakan kepada Nabi Saleh, "Hai Saleh, engkau mengemukakan sesuatu kepada kami yang bertujuan agar kami meninggalkan agama nenek moyang kami, dan mengikuti agama yang engkau bawa. Cara-cara engkau menyampaikan agama itu sangat menarik dan memesona kami, seakan-akan engkau telah menyihir kami. Sebenarnya engkau telah gila dan terkena sihir, karena tuhan kami telah menimpakan penyakit gila kepadamu, maka tiada pantas lagi kami mendengar perkataanmu dan menerima ajakanmu."',
-        short:
-          'Akan tetapi mereka menolak dakwah Nabi Saleh dengan berkata, "Sungguh, engkau hanyalah termasuk orang yang kena sihir, karena apa yang engkau dakwahkan tidak sesuai dengan kebiiasaan kami.',
+        footnotes: null,
+        text: 'Kaumnya lalu berkata kepadanya, "Sesungguhnya engkau adalah salah seorang yang selalu terkena sihir sehingga sihir itu mendominasi akal pikiran mereka dan menghilangkannya.',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u0623\u064e\u0646\u062a\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064f\u0633\u064e\u062d\u0651\u064e\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qaalooo innamaa anta minal musahhareen",
-      },
+      arabic: "قَالُوٓا۟ إِنَّمَآ أَنتَ مِنَ ٱلْمُسَحَّرِينَ",
     },
     translation: {
-      en: 'They said, "You are only of those affected by magic.',
-      id: "Mereka berkata, “Sungguh, engkau hanyalah termasuk orang yang kena sihir;",
+      en: {
+        footnotes: "",
+        text: "They said, “You are but one of those who are bewitched!",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka berkata, "Sungguh, engkau hanyalah termasuk orang yang kena sihir;',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3086",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3086.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3086.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 323,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3086,
@@ -147,40 +124,32 @@ export const quranSurah26Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Kaum Samud tetap tidak percaya pada kerasulan Nabi Saleh karena menurut mereka, dia adalah manusia biasa seperti mereka juga. Seharusnya rasul yang diutus Allah itu bukan manusia biasa, tetapi malaikat atau makhluk yang berbeda dengan mereka. Utusan harus sanggup melakukan sesuatu yang ajaib dan aneh, di mana manusia tidak sanggup melaksanakannya. Oleh karena itu, mereka meminta Nabi Saleh untuk mendatangkan mukjizat sebagai bukti kerasulannya, atau yang menunjukkan bahwa dia adalah benar-benar nabi yang diutus Allah kepada mereka.\n\nAllah memenuhi keinginan mereka dengan mendatangkan seekor unta betina sebagai mukjizat bagi Nabi Saleh. Mereka dilarang mengganggu unta tersebut, dan membiarkannya makan dan minum sesukanya. Nabi Saleh mengancam mereka dengan mengatakan bahwa mereka akan segera diazab Allah jika mengganggu unta itu.\n\nAspek-aspek kemukjizatan unta itu menurut para mufasir ialah:\n\n1. Unta itu keluar dari batu, sedangkan unta-unta yang lain tidak demikian.\n\n2. Sumber-sumber air minum penduduk dibagi dua antara unta dan penduduk negeri itu. Pada hari unta itu minum, penduduk tidak boleh mengambil air. Untuk memenuhi keperluan air minum, mereka diperbolehkan memerah susu unta itu. Pada waktu giliran penduduk mengambil air, maka unta tidak datang untuk minum air ke tempat itu.\n\n3. Pada hari unta itu minum, binatang-binatang lain tidak datang ke tempat itu.\n\nSifat luar biasa dari unta itu merupakan bukti yang nyata bagi kerasulan Saleh. Mereka akan dibinasakan oleh Allah, jika melanggar perintah-Nya tentang unta itu.\n\nLarangan Nabi Saleh agar mereka tidak menyentuh dan mengganggu unta itu tidak mereka hiraukan, bahkan mereka ingin membuktikan kebenaran ucapan Nabi Saleh. Oleh sebab itu, mereka ingin membunuhnya dan menantang apa yang telah diancamkan kepada mereka. Nabi Saleh mengatakan bahwa mereka akan dibinasakan oleh Allah setelah berlalu tiga hari karena perbuatan membunuh unta itu.",
-        short:
-          'Engkau wahai Saleh, tidak lain hanyalah seorang manusia biasa seperti kami; makan, minum, dan lain-lainnya. Mengapa hanya engkau yang diberi wahyu? Maka, oleh karena itu, datangkanlah sesuatu mukjizat, kejadian yang luar biasa jika engkau memang termasuk orang-orang yang benar”, bahwa kamu adalah utusan Allah."',
+        footnotes: null,
+        text: 'Engkau tidak lain hanyalah seorang manusia biasa seperti kami, dirimu tidak memiliki keistimewaan lebih dari kami yang membuatmu menjadi rasul. Datangkanlah suatu mukjizat dan bukti yang menunjukkan kerasulanmu jika engkau memang termasuk orang-orang yang benar dalam klaimmu bahwa engkau seorang rasul."',
       },
     },
     text: {
-      arab: "\u0645\u064e\u0627 \u0623\u064e\u0646\u062a\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0628\u064e\u0634\u064e\u0631\u064c \u0645\u0651\u0650\u062b\u0652\u0644\u064f\u0646\u064e\u0627 \u0641\u064e\u0623\u0652\u062a\u0650 \u0628\u0650\u0622\u064a\u064e\u0629\u064d \u0625\u0650\u0646 \u0643\u064f\u0646\u062a\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0635\u0651\u064e\u0627\u062f\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Maaa anta illaa basharum mislunaa faati bi Aayatin in kunta minas saadiqeen",
-      },
+      arabic: "مَآ أَنتَ إِلَّا بَشَرٌ مِّثْلُنَا فَأْتِ بِـَٔايَةٍ إِن كُنتَ مِنَ ٱلصَّٰدِقِينَ",
     },
     translation: {
-      en: 'You are but a man like ourselves, so bring a sign, if you should be of the truthful."',
-      id: "engkau hanyalah manusia seperti kami; maka datangkanlah sesuatu mukjizat jika engkau termasuk orang yang benar.”",
+      en: {
+        footnotes: "",
+        text: "You are but a human like us, so bring a sign if you are one of the truthful.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'engkau hanyalah manusia seperti kami; maka datangkanlah suatu mukjizat jika engkau termasuk orang yang benar."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3087",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3087.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3087.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 323,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3087,
@@ -188,40 +157,33 @@ export const quranSurah26Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Kaum Samud tetap tidak percaya pada kerasulan Nabi Saleh karena menurut mereka, dia adalah manusia biasa seperti mereka juga. Seharusnya rasul yang diutus Allah itu bukan manusia biasa, tetapi malaikat atau makhluk yang berbeda dengan mereka. Utusan harus sanggup melakukan sesuatu yang ajaib dan aneh, di mana manusia tidak sanggup melaksanakannya. Oleh karena itu, mereka meminta Nabi Saleh untuk mendatangkan mukjizat sebagai bukti kerasulannya, atau yang menunjukkan bahwa dia adalah benar-benar nabi yang diutus Allah kepada mereka.\n\nAllah memenuhi keinginan mereka dengan mendatangkan seekor unta betina sebagai mukjizat bagi Nabi Saleh. Mereka dilarang mengganggu unta tersebut, dan membiarkannya makan dan minum sesukanya. Nabi Saleh mengancam mereka dengan mengatakan bahwa mereka akan segera diazab Allah jika mengganggu unta itu.\n\nAspek-aspek kemukjizatan unta itu menurut para mufasir ialah:\n\n1. Unta itu keluar dari batu, sedangkan unta-unta yang lain tidak demikian.\n\n2. Sumber-sumber air minum penduduk dibagi dua antara unta dan penduduk negeri itu. Pada hari unta itu minum, penduduk tidak boleh mengambil air. Untuk memenuhi keperluan air minum, mereka diperbolehkan memerah susu unta itu. Pada waktu giliran penduduk mengambil air, maka unta tidak datang untuk minum air ke tempat itu.\n\n3. Pada hari unta itu minum, binatang-binatang lain tidak datang ke tempat itu.\n\nSifat luar biasa dari unta itu merupakan bukti yang nyata bagi kerasulan Saleh. Mereka akan dibinasakan oleh Allah, jika melanggar perintah-Nya tentang unta itu.\n\nLarangan Nabi Saleh agar mereka tidak menyentuh dan mengganggu unta itu tidak mereka hiraukan, bahkan mereka ingin membuktikan kebenaran ucapan Nabi Saleh. Oleh sebab itu, mereka ingin membunuhnya dan menantang apa yang telah diancamkan kepada mereka. Nabi Saleh mengatakan bahwa mereka akan dibinasakan oleh Allah setelah berlalu tiga hari karena perbuatan membunuh unta itu.",
-        short:
-          "Kemudian Nabi Saleh meminta kepada Allah agar diturunkan tanda-tanda kebesaran-Nya sebagaimana yang dimintakan oleh kaum-nya. Lalu Allah memenuhi permintaan Nabi Saleh dengan keluarnya seekor unta dari batu-batu besar yang ada di sekeliling mereka. Nabi Shaleh menjelaskan, “Ini seekor unta betina, sebagai pertanda kebenaran kenabianku seperti apa yang kamu inginkan, dengan dua ketentuan. Pertama, Dia berhak mendapatkan giliran untuk mendapatkan air minum pada satu hari, dan kamu mempunyai giliran pula untuk mendapatkan air di hari yang tertentu, secara bergiliran.",
+        footnotes: null,
+        text: 'Saleh lalu berkata kepada mereka setelah Allah memberikan padanya tanda kebenarannya berupa unta betina yang Allah keluarkan dari sebongkah batu besar, "Ini seekor unta betina yang bisa dilihat dan disentuh, ia mempunyai kebutuhan air dan kalian juga mempunyai kebutuhan air yang telah ditentukan, sebab itu ia tidak akan minum pada hari yang menjadi giliran kalian mengambil air dan kalian juga hendaknya jangan mengambil air pada hari yang menjadi gilirannya untuk minum.',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0647\u064e\u0670\u0630\u0650\u0647\u0650 \u0646\u064e\u0627\u0642\u064e\u0629\u064c \u0644\u0651\u064e\u0647\u064e\u0627 \u0634\u0650\u0631\u0652\u0628\u064c \u0648\u064e\u0644\u064e\u0643\u064f\u0645\u0652 \u0634\u0650\u0631\u0652\u0628\u064f \u064a\u064e\u0648\u0652\u0645\u064d \u0645\u0651\u064e\u0639\u0652\u0644\u064f\u0648\u0645\u064d",
-      transliteration: {
-        en: "Qaala haazihee naaqatul lahaa shirbunw w alakum shirbu yawmim ma'loom",
-      },
+      arabic: "قَالَ هَٰذِهِۦ نَاقَةٌ لَّهَا شِرْبٌ وَلَكُمْ شِرْبُ يَوْمٍ مَّعْلُومٍ",
     },
     translation: {
-      en: 'He said, "This is a she-camel. For her is a [time of] drink, and for you is a [time of] drink, [each] on a known day.',
-      id: "Dia (Saleh) menjawab, “Ini seekor unta betina, yang berhak mendapatkan (giliran) minum, dan kamu juga berhak mendapatkan minum pada hari yang ditentukan.",
+      en: {
+        footnotes:
+          "[18] That was miraculously sent to them as a sign by Allah.",
+        text: "Sālih said, “This is a she-camel[18]; she will have her share of water and you will have yours, each on a specified day.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Saleh) menjawab, "Ini seekor unta betina, yang berhak mendapatkan (giliran) minum, dan kamu juga berhak mendapatkan minum pada hari yang ditentukan.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3088",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3088.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3088.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 323,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3088,
@@ -229,20 +191,22 @@ export const quranSurah26Verses151To156 = [
     },
     tafsir: {
       id: {
-        long: "Kaum Samud tetap tidak percaya pada kerasulan Nabi Saleh karena menurut mereka, dia adalah manusia biasa seperti mereka juga. Seharusnya rasul yang diutus Allah itu bukan manusia biasa, tetapi malaikat atau makhluk yang berbeda dengan mereka. Utusan harus sanggup melakukan sesuatu yang ajaib dan aneh, di mana manusia tidak sanggup melaksanakannya. Oleh karena itu, mereka meminta Nabi Saleh untuk mendatangkan mukjizat sebagai bukti kerasulannya, atau yang menunjukkan bahwa dia adalah benar-benar nabi yang diutus Allah kepada mereka.\n\nAllah memenuhi keinginan mereka dengan mendatangkan seekor unta betina sebagai mukjizat bagi Nabi Saleh. Mereka dilarang mengganggu unta tersebut, dan membiarkannya makan dan minum sesukanya. Nabi Saleh mengancam mereka dengan mengatakan bahwa mereka akan segera diazab Allah jika mengganggu unta itu.\n\nAspek-aspek kemukjizatan unta itu menurut para mufasir ialah:\n\n1. Unta itu keluar dari batu, sedangkan unta-unta yang lain tidak demikian.\n\n2. Sumber-sumber air minum penduduk dibagi dua antara unta dan penduduk negeri itu. Pada hari unta itu minum, penduduk tidak boleh mengambil air. Untuk memenuhi keperluan air minum, mereka diperbolehkan memerah susu unta itu. Pada waktu giliran penduduk mengambil air, maka unta tidak datang untuk minum air ke tempat itu.\n\n3. Pada hari unta itu minum, binatang-binatang lain tidak datang ke tempat itu.\n\nSifat luar biasa dari unta itu merupakan bukti yang nyata bagi kerasulan Saleh. Mereka akan dibinasakan oleh Allah, jika melanggar perintah-Nya tentang unta itu.\n\nLarangan Nabi Saleh agar mereka tidak menyentuh dan mengganggu unta itu tidak mereka hiraukan, bahkan mereka ingin membuktikan kebenaran ucapan Nabi Saleh. Oleh sebab itu, mereka ingin membunuhnya dan menantang apa yang telah diancamkan kepada mereka. Nabi Saleh mengatakan bahwa mereka akan dibinasakan oleh Allah setelah berlalu tiga hari karena perbuatan membunuh unta itu.",
-        short:
-          "Dan, ketentuan kedua, janganlah kamu sentuh unta betina itu dengan sesuatu kejahatan, baik dengan memukulnya apalagi membunuhnya, hal yang menyebabkan kamu akan ditimpa azab hari yang besar.",
+        footnotes: null,
+        text: 'Janganlah kalian berbuat jahat terhadap unta tersebut dengan meyembelih atau memukulnya, sehingga kalian akan ditimpa azab Allah yang membinasakan kalian pada hari yang besar karena di dalamnya akan turun azab kepada kalian."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0645\u064e\u0633\u0651\u064f\u0648\u0647\u064e\u0627 \u0628\u0650\u0633\u064f\u0648\u0621\u064d \u0641\u064e\u064a\u064e\u0623\u0652\u062e\u064f\u0630\u064e\u0643\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064f \u064a\u064e\u0648\u0652\u0645\u064d \u0639\u064e\u0638\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Wa laa tamassoohaa bisooo'in fa yaakhuzakum 'azaabu Yawmin 'Azeem",
-      },
+      arabic: "وَلَا تَمَسُّوهَا بِسُوٓءٍ فَيَأْخُذَكُمْ عَذَابُ يَوْمٍ عَظِيمٍ",
     },
     translation: {
-      en: 'And do not touch her with harm, lest you be seized by the punishment of a terrible day."',
-      id: "Dan jangan kamu menyentuhnya (unta itu) dengan sesuatu kejahatan, nanti kamu akan ditimpa azab pada hari yang dahsyat.”",
+      en: {
+        footnotes: "",
+        text: "Do not touch her with harm, or you will be seized by the punishment of a horrible day.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan jangan kamu menyentuhnya (unta itu) dengan jahat, nanti kamu akan ditimpa azab pada hari yang dahsyat."',
+      },
     },
   },
 ];

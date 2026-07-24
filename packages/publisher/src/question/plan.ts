@@ -5,6 +5,7 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import {
@@ -13,6 +14,7 @@ import {
 } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
+import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   PreparedContentTransitionSchema,
   type PreparedContentUpsert,
@@ -35,7 +37,8 @@ export type QuestionPublicationPlan = typeof QuestionPublicationPlanSchema.Type;
 
 type PlanQuestionPublicationError =
   | Effect.Effect.Error<ReturnType<typeof compileQuestionDocument>>
-  | Effect.Effect.Error<ReturnType<typeof inspectQuestionDocument>>;
+  | Effect.Effect.Error<ReturnType<typeof inspectQuestionDocument>>
+  | PublicationScopeIdentityError;
 
 type PlanQuestionPublicationContext =
   | Effect.Effect.Context<ReturnType<typeof compileQuestionDocument>>
@@ -108,6 +111,7 @@ export function planQuestionPublication<E, R>(input: {
   readonly entries: readonly QuestionEntry[];
   readonly published: Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
+  readonly scope?: PublicationScope | undefined;
   readonly sources: readonly QuestionSource[];
 }): Stream.Stream<
   QuestionPublicationPlan,
@@ -131,6 +135,7 @@ export function planQuestionPublication<E, R>(input: {
       prior: priorQuestion,
       publicPath: () => undefined,
     },
+    family: "question",
     ...input,
   });
 }

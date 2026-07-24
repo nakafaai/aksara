@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah30Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3458",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3458.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3458.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 163,
       juz: 21,
       manzil: 5,
       page: 409,
       ruku: 353,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3458,
@@ -24,40 +25,32 @@ export const quranSurah30Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Kegembiraan itu akan dirasakan sekali oleh orang yang sudah lama mengalami kekeringan. Ketiadaan hujan dalam waktu yang lama membuat manusia putus asa. Keputusasaan itu segera sirna begitu hujan turun. Oleh karena itu, seharusnya mereka beriman dan bersyukur.",
-        short:
-          "Padahal, sebelum hujan diturunkan kepada mereka, mereka benar-benar telah berputus asa dan tidak tahu harus berbuat apa.",
+        footnotes: null,
+        text: "Padahal, sebelum Allah menurunkan hujan atas mereka, mereka benar-benar telah putus asa dari turunnya hujan itu atas mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650 \u0623\u064e\u0646 \u064a\u064f\u0646\u064e\u0632\u0651\u064e\u0644\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645 \u0645\u0651\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650\u0647\u0650 \u0644\u064e\u0645\u064f\u0628\u0652\u0644\u0650\u0633\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa in kaanoo min qabli any yunazzala 'alaihim min qablihee lamubliseen",
-      },
+      arabic: "وَإِن كَانُوا۟ مِن قَبْلِ أَن يُنَزَّلَ عَلَيْهِم مِّن قَبْلِهِۦ لَمُبْلِسِينَ",
     },
     translation: {
-      en: "Although they were, before it was sent down upon them - before that, in despair.",
-      id: "Padahal walaupun sebelum hujan diturunkan kepada mereka, mereka benar-benar telah berputus asa.",
+      en: {
+        footnotes: "",
+        text: "although they had lost all hope before it was sent down to them.",
+      },
+      id: {
+        footnotes: "",
+        text: "Padahal sebelum hujan diturunkan kepada mereka, sungguh mereka benar-benar telah berputus asa.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3459",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3459.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3459.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 163,
       juz: 21,
       manzil: 5,
       page: 409,
       ruku: 353,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3459,
@@ -65,40 +58,33 @@ export const quranSurah30Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Demikianlah rahmat Allah kepada manusia. Allah meminta Nabi Muhammad dan seluruh umatnya untuk melihat bagaimana pengaruh rahmat Allah berupa hujan itu bagi bumi. Tanah yang tadinya mati, kering, dan tandus menjadi hidup, gembur, dan subur, sehingga menumbuhkan segala macam tanaman. Allah menegaskan bahwa peristiwa itu merupakan petunjuk bahwa Allah mampu menghidupkan kembali manusia di akhirat setelah mati. Dalam Al-Qur'an diterangkan bahwa dengan satu tiupan sangkakala saja, semua makhluk hidup akan mati pada hari Kiamat. Kemudian dengan satu tiupan lagi, semuanya akan hidup kembali, baik yang mati sebelum hari Kiamat maupun yang mati pada hari Kiamat itu. Allah berfirman:\n\nDan sangkakala pun ditiup, maka matilah semua (makhluk) yang di langit dan di bumi kecuali mereka yang dikehendaki Allah. Kemudian ditiup sekali lagi (sangkakala itu) maka seketika itu mereka bangun (dari kubur-nya) menunggu (keputusan Allah). (az-Zumar/39: 68)\n\nBagaimana hakikat kiamat dan kehidupan kembali itu tidak dapat diketahui dengan pasti, karena termasuk peristiwa gaib yang tidak bisa diketahui secara konkrit sekarang. Manusia hanya perlu mengimaninya bahwa Allah mampu mewujudkan semua itu karena Ia Mahakuasa.",
-        short:
-          "Demikianlah cara Allah menurunkan hujan. Maka, perhatikanlah bekas-bekas rahmat Allah, berupa hujan, bagaimana Allah melalui air hujan itu menghidupkan bumi setelah mati atau kering. Sungguh, jika Allah mampu menghidupkan bumi yang sudah kering dengan air hujan, itu berarti Dia pasti berkuasa juga untuk menghidupkan manusia yang telah mati. Dan Dia Mahakuasa atas segala sesuatu.",
+        footnotes: null,
+        text: "Maka lihatlah -wahai Rasul- kepada pengaruh hujan yang Allah turunkan sebagai rahmat kepada hamba-hamba-Nya itu, bagaimana dengannya Allah menghidupkan bumi dengan menumbuhkan di atasnya berbagai jenis tanaman yang sebelumnya kering dan gersang. Sesungguhnya Tuhan yang menghidupkan bumi yang kering itu benar-benar akan membangkitkan orang-orang yang mati kembali hidup dan Dia Mahakuasa atas segala sesuatu, tidak ada yang dapat melemahkan-Nya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0646\u0638\u064f\u0631\u0652 \u0625\u0650\u0644\u064e\u0649\u0670 \u0622\u062b\u064e\u0627\u0631\u0650 \u0631\u064e\u062d\u0652\u0645\u064e\u062a\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0643\u064e\u064a\u0652\u0641\u064e \u064a\u064f\u062d\u0652\u064a\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064e \u0628\u064e\u0639\u0652\u062f\u064e \u0645\u064e\u0648\u0652\u062a\u0650\u0647\u064e\u0627 \u06da \u0625\u0650\u0646\u0651\u064e \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0644\u064e\u0645\u064f\u062d\u0652\u064a\u0650\u064a \u0627\u0644\u0652\u0645\u064e\u0648\u0652\u062a\u064e\u0649\u0670 \u06d6 \u0648\u064e\u0647\u064f\u0648\u064e \u0639\u064e\u0644\u064e\u0649\u0670 \u0643\u064f\u0644\u0651\u0650 \u0634\u064e\u064a\u0652\u0621\u064d \u0642\u064e\u062f\u0650\u064a\u0631\u064c",
-      transliteration: {
-        en: "Fanzur ilaaa aasaari rahmatil laahi kaifa yuhyil arda ba'da mawtihaa; inna zaalika lamuhyil mawtaa wa Huwa 'alaa kulli shai'in Qadeer",
-      },
+      arabic:
+        "فَٱنظُرْ إِلَىٰٓ ءَاثَٰرِ رَحْمَتِ ٱللَّهِ كَيْفَ يُحْىِ ٱلْأَرْضَ بَعْدَ مَوْتِهَآ إِنَّ ذَٰلِكَ لَمُحْىِ ٱلْمَوْتَىٰ وَهُوَ عَلَىٰ كُلِّ شَىْءٍ قَدِيرٌ",
     },
     translation: {
-      en: "So observe the effects of the mercy of Allah - how He gives life to the earth after its lifelessness. Indeed, that [same one] will give life to the dead, and He is over all things competent.",
-      id: "Maka perhatikanlah bekas-bekas rahmat Allah, bagaimana Allah menghidupkan bumi setelah mati (kering). Sungguh, itu berarti Dia pasti (berkuasa) menghidupkan yang telah mati. Dan Dia Mahakuasa atas segala sesuatu.",
+      en: {
+        footnotes: "",
+        text: "See then the effects of Allah’s mercy, how He revives the earth after its death. Indeed, it is He Who will raise the dead, and He is Most Capable of all things.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka perhatikanlah bekas-bekas rahmat Allah, bagaimana Allah menghidupkan bumi setelah mati (kering). Sungguh, itu berarti Dia pasti (berkuasa) menghidupkan yang telah mati. Dan Dia Mahakuasa atas segala sesuatu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3460",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3460.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3460.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 163,
       juz: 21,
       manzil: 5,
       page: 410,
       ruku: 353,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3460,
@@ -106,40 +92,33 @@ export const quranSurah30Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini disampaikan pengandaian, yaitu bagaimana jika yang dikirim Allah itu angin yang kering dan panas serta membuat tanaman mereka yang tadinya subur menjadi kuning dan kering. Mereka pasti bertambah ingkar kepada Allah. Pada waktu Allah mengirimkan angin yang membawa hujan saja, yang membuat tanaman mereka subur, mereka hanya bergembira dan tidak bersyukur kepada-Nya. Apalagi bila yang dikirim adalah angin kering itu. Kematian tanaman mereka yang tadinya subur itu akan membuat mereka menggerutu dan bertambah ingkar kepada Allah.",
-        short:
-          "Usai menjelaskan rahmat-Nya yang berupa hujan Allah bersumpah, “Sungguh jika Kami mengirimkan angin panas yang memicu bencana lalu sawah ladang mereka terbakar karenanya sehingga mereka melihat tumbuh-tumbuhan dan buah-buahan di kebun itu yang semula segar berubah menjadi kuning, kering, dan layu, pasti setelah itu mereka tetap dan terus ingkar kepada Allah. Inilah gambaran orang yang meletakkan ukuran kebahagiaannya pada hal-hal yang bersifat materi sehingga jiwanya terombang-ambing oleh keadaan yang menimpanya.",
+        footnotes: null,
+        text: "Jika Kami kirimkan kepada ladang dan tumbuh-tumbuhan mereka angin yang menghancurkannya, lalu mereka melihat ladang mereka berwarna kekuningan padahal sebelumnya berwarna kehijauan, maka setelah menyaksikan hal itu pastilah mereka akan tetap mengingkari nikmat-nikmat Allah yang disebutkan sebelumnya meskipun banyak.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0626\u0650\u0646\u0652 \u0623\u064e\u0631\u0652\u0633\u064e\u0644\u0652\u0646\u064e\u0627 \u0631\u0650\u064a\u062d\u064b\u0627 \u0641\u064e\u0631\u064e\u0623\u064e\u0648\u0652\u0647\u064f \u0645\u064f\u0635\u0652\u0641\u064e\u0631\u0651\u064b\u0627 \u0644\u0651\u064e\u0638\u064e\u0644\u0651\u064f\u0648\u0627 \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650\u0647\u0650 \u064a\u064e\u0643\u0652\u0641\u064f\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa la'in arsalnaa reehan fara awhu musfarral lazalloo mim ba'dihee yakfuroon",
-      },
+      arabic: "وَلَئِنْ أَرْسَلْنَا رِيحًا فَرَأَوْهُ مُصْفَرًّا لَّظَلُّوا۟ مِنۢ بَعْدِهِۦ يَكْفُرُونَ",
     },
     translation: {
-      en: "But if We should send a [bad] wind and they saw [their crops] turned yellow, they would remain thereafter disbelievers.",
-      id: "Dan sungguh, jika Kami mengirimkan angin lalu mereka melihat (tumbuh-tumbuhan itu) menjadi kuning (kering), niscaya setelah itu mereka tetap ingkar.",
+      en: {
+        footnotes:
+          "[21] i.e., they become ungrateful to the previous favors of Allah.",
+        text: "But if We send a [harmful] wind and they see [their crops] turning yellow, they become ungrateful thereafter[21].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, jika Kami mengirimkan angin lalu mereka melihat (tumbuh-tumbuhan itu) menjadi kuning (kering), niscaya setelah itu mereka tetap ingkar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3461",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3461.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3461.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 163,
       juz: 21,
       manzil: 5,
       page: 410,
       ruku: 353,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3461,
@@ -147,40 +126,33 @@ export const quranSurah30Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan kepada Nabi Muhammad bahwa ia tidak akan bisa memasukkan hidayah ke dalam hati orang yang ingkar sampai orang itu berpaling dari keingkaran dan lalu beriman. Untuk itu Allah memberikan sebuah contoh yaitu orang buta yang tersesat. Orang buta tidak mungkin menemukan jalan, karena ia tidak melihatnya, kecuali kalau dituntun. Begitu pula orang yang telah memilih kekafiran dan kemusyrikan. Orang itu hatinya sudah tertutup. Oleh karena itu, petunjuk apa pun yang disampaikan kepadanya, tidak akan didengar dan diikutinya. Bagi mereka ditunjuki atau tidak ditunjuki sama saja, mereka tidak akan beriman. Yang bisa membuka hatinya itu hanyalah Allah bila Ia menghendaki. Akan tetapi, Ia tidak akan menghendaki bila orang yang bersangkutan tidak berusaha, karena hal itu melanggar hukum-hukum yang telah ditetapkan-Nya. Ayat ini dengan demikian mengingatkan Nabi saw sekali lagi agar tidak kecewa bila ada manusia yang menolak dakwahnya.\n\nOrang yang akan menerima bila ditunjuki oleh Nabi saw hanyalah yang beriman. Hal itu karena hati mereka terbuka menerima segala kebenaran yang disampaikan kepadanya. Setelah menerima kebenaran itu, mereka melaksanakannya dengan sepenuh hati untuk membaktikan diri kepada-Nya.",
-        short:
-          "Wahai Nabi Muhammad, demikianlah perilaku orang kafir, maka janganlah engkau bersedih karena sungguh, engkau tidak akan sanggup menjadikan mereka bisa mendengar ajaran agama, layaknya orang-orang yang mati itu juga tidak dapat mendengar, dan engkau juga tidak mampu menjadikan orang kafir yang serupa orang-orang yang tuli dapat mendengar seruan kebenaran, apabila mereka berpaling ke belakang meninggalkanmu. Padahal, orang tuli sekalipun bisa memahami penjelasan orang lain melalui gerakan mulut jika ia mau menghadap ke arahnya.",
+        footnotes: null,
+        text: "Sebagaimana kamu tidak bisa menjadikan orang-orang yang sudah meninggal itu mendengar dan tidak bisa menjadikan orang tuli mendengar, bahkan mereka menjauh darimu untuk memastikan bahwa mereka memang tidak bisa mendengar, maka demikian pula engkau tidak bisa memberi petunjuk kepada orang-orang yang semisal mereka dalam sikap berpaling dan tidak mau mengambil manfaat.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0643\u064e \u0644\u064e\u0627 \u062a\u064f\u0633\u0652\u0645\u0650\u0639\u064f \u0627\u0644\u0652\u0645\u064e\u0648\u0652\u062a\u064e\u0649\u0670 \u0648\u064e\u0644\u064e\u0627 \u062a\u064f\u0633\u0652\u0645\u0650\u0639\u064f \u0627\u0644\u0635\u0651\u064f\u0645\u0651\u064e \u0627\u0644\u062f\u0651\u064f\u0639\u064e\u0627\u0621\u064e \u0625\u0650\u0630\u064e\u0627 \u0648\u064e\u0644\u0651\u064e\u0648\u0652\u0627 \u0645\u064f\u062f\u0652\u0628\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fa innaka laa tusmi'ul mawtaa wa laa tusmi'us summad du'aaa'a izaa wallaw mudbireen",
-      },
+      arabic: "فَإِنَّكَ لَا تُسْمِعُ ٱلْمَوْتَىٰ وَلَا تُسْمِعُ ٱلصُّمَّ ٱلدُّعَآءَ إِذَا وَلَّوْا۟ مُدْبِرِينَ",
     },
     translation: {
-      en: "So indeed, you will not make the dead hear, nor will you make the deaf hear the call when they turn their backs, retreating.",
-      id: "Maka sungguh, engkau tidak akan sanggup menjadikan orang-orang yang mati itu dapat mendengar, dan menjadikan orang-orang yang tuli dapat mendengar seruan, apabila mereka berpaling ke belakang.",
+      en: {
+        footnotes: "",
+        text: "You cannot make the dead hear, nor can you make the deaf hear the call when they turn their backs and walk away.",
+      },
+      id: {
+        footnotes:
+          "[645] Orang kafir itu disamakan Allah dengan orang mati yang tidak mungkin lagi mendengarkan pelajaran-pelajaran. Begitu juga disamakan orang kafir itu dengan orang tuli yang tidak bisa mendengar panggilan sama sekali apabila mereka membelakangi kita.",
+        text: "Maka sungguh, engkau tidak akan sanggup menjadikan orang-orang yang mati itu dapat mendengar, dan menjadikan orang-orang yang tuli dapat mendengar seruan, apabila mereka berpaling ke belakang.[645]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3462",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3462.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3462.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 163,
       juz: 21,
       manzil: 5,
       page: 410,
       ruku: 353,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3462,
@@ -188,40 +160,33 @@ export const quranSurah30Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Demikianlah kerasnya hati sebagian manusia, yaitu yang kafir dan musyrik. Nikmat tidak melunakkan hati mereka, dan laknat tidak membuat mereka jera. Mereka dipersamakan dengan orang mati atau tuli. Orang mati tidak mendengar apa pun yang dikatakan kepadanya. Begitu juga orang tuli yang lari tunggang-langgang, tidak akan mendengar panggilan yang ditujukan kepadanya. Oleh karena itu, Allah mengingatkan Nabi Muhammad bahwa bagaimana pun ia berusaha menyadarkan orang seperti itu, tidak akan berhasil bila Allah tidak mengizinkannya, dan karena itu Nabi tidak boleh kecewa.\n\n(53) Allah menegaskan kepada Nabi Muhammad bahwa ia tidak akan bisa memasukkan hidayah ke dalam hati orang yang ingkar sampai orang itu berpaling dari keingkaran dan lalu beriman. Untuk itu Allah memberikan sebuah contoh yaitu orang buta yang tersesat. Orang buta tidak mungkin menemukan jalan, karena ia tidak melihatnya, kecuali kalau dituntun. Begitu pula orang yang telah memilih kekafiran dan kemusyrikan. Orang itu hatinya sudah tertutup. Oleh karena itu, petunjuk apa pun yang disampaikan kepadanya, tidak akan didengar dan diikutinya. Bagi mereka ditunjuki atau tidak ditunjuki sama saja, mereka tidak akan beriman. Yang bisa membuka hatinya itu hanyalah Allah bila Ia menghendaki. Akan tetapi, Ia tidak akan menghendaki bila orang yang bersangkutan tidak berusaha, karena hal itu melanggar hukum-hukum yang telah ditetapkan-Nya. Ayat ini dengan demikian mengingatkan Nabi saw sekali lagi agar tidak kecewa bila ada manusia yang menolak dakwahnya.\n\nOrang yang akan menerima bila ditunjuki oleh Nabi saw hanyalah yang beriman. Hal itu karena hati mereka terbuka menerima segala kebenaran yang disampaikan kepadanya. Setelah menerima kebenaran itu, mereka melaksanakannya dengan sepenuh hati untuk membaktikan diri kepada-Nya.",
-        short:
-          "Dan begitupun engkau tidak akan dapat memberi petunjuk kepada orang-orang yang buta mata hatinya dari kesesatannya karena hidayah yang disertai taufik itu hanya milik Allah. Karena itu, wahai Nabi Muhammad, engkau tidak dapat memperdengarkan petunjuk Tuhan kepada mereka, kecuali kepada orang-orang yang beriman dengan ayat-ayat Kami, maka mereka itulah orang-orang yang senantiasa berserah diri dengan senantiasa tunduk dan patuh pada perintah dan larangan Kami.",
+        footnotes: null,
+        text: "Engkau bukanlah orang yang mampu memberi petunjuk kepada orang yang sesat dari jalan yang lurus agar melangkah pada jalan yang benar dan engkau tidak mampu menjadikan mereka mendengar sesuatu yang bermanfaat bagi mereka kecuali orang yang beriman kepada ayat-ayat Kami karena dialah yang bisa mengambil manfaat dari apa yang engkau ucapkan dan dia patuh kepada perintah Kami serta tunduk padanya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0623\u064e\u0646\u062a\u064e \u0628\u0650\u0647\u064e\u0627\u062f\u0650 \u0627\u0644\u0652\u0639\u064f\u0645\u0652\u064a\u0650 \u0639\u064e\u0646 \u0636\u064e\u0644\u064e\u0627\u0644\u064e\u062a\u0650\u0647\u0650\u0645\u0652 \u06d6 \u0625\u0650\u0646 \u062a\u064f\u0633\u0652\u0645\u0650\u0639\u064f \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0646 \u064a\u064f\u0624\u0652\u0645\u0650\u0646\u064f \u0628\u0650\u0622\u064a\u064e\u0627\u062a\u0650\u0646\u064e\u0627 \u0641\u064e\u0647\u064f\u0645 \u0645\u0651\u064f\u0633\u0652\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa maa anta bihaadil 'umyi 'an dalaalatihim in tusmi'u illaa mai yuminu bi aayaatinaa fahum muslimoon",
-      },
+      arabic:
+        "وَمَآ أَنتَ بِهَٰدِ ٱلْعُمْىِ عَن ضَلَٰلَتِهِمْ إِن تُسْمِعُ إِلَّا مَن يُؤْمِنُ بِـَٔايَٰتِنَا فَهُم مُّسْلِمُونَ",
     },
     translation: {
-      en: "And you cannot guide the blind away from their error. You will only make hear those who believe in Our verses so they are Muslims [in submission to Allah].",
-      id: "Dan engkau tidak akan dapat memberi petunjuk kepada orang-orang yang buta (mata hatinya) dari kesesatannya. Dan engkau tidak dapat memperdengarkan (petunjuk Tuhan) kecuali kepada orang-orang yang beriman dengan ayat-ayat Kami, maka mereka itulah orang-orang yang berserah diri (kepada Kami).",
+      en: {
+        footnotes: "",
+        text: "Nor can you guide the blind out of their misguidance. You cannot make anyone hear except those who believe in Our verses, for they are ready to submit [to Allah].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan engkau tidak akan dapat memberi petunjuk kepada orang-orang yang buta (mata hatinya) dari kesesatannya. Dan engkau tidak dapat memperdengarkan (petunjuk Tuhan) kecuali kepada orang-orang yang beriman dengan ayat-ayat Kami, maka mereka itulah orang-orang yang berserah diri (kepada Kami).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3463",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3463.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3463.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 164,
       juz: 21,
       manzil: 5,
       page: 410,
       ruku: 354,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3463,
@@ -229,20 +194,23 @@ export const quranSurah30Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Di dalam ayat ini disampaikan perjalanan hidup manusia. Mereka berasal dari sesuatu yang tidak ada arti dan tidak punya daya apa-apa, yaitu nutfah (zygot) yang merupakan telur yang terbuahi sperma. Nuthfah itu kemudian berkembang menjadi janin, dan kemudian lahir, sebagaimana diinformasikan al-Mu'minun/23: 12-14. Dari kanak-kanak manusia kemudian menjadi remaja, dewasa, lalu matang, dan menjadi manusia yang perkasa dan berkuasa. Setelah itu manusia menginjak usia tua. Dalam usia tua itu manusia menjadi makhluk yang lemah kembali. Di samping lemah, manusia juga mengalami perubahan fisik, di antaranya rambut yang tadinya hitam menjadi uban, kulit menjadi keriput, daya penglihatan dan pendengaran semakin lemah, dan perubahan-perubahan lainnya. Setelah itu manusia pasti mati. Demikianlah Allah menciptakan makhluk yang dikehendaki-Nya, yaitu bahwa perjalanan hidup manusia di dunia pada umumnya demikian. Namun Allah dapat menentukan lain, yaitu bahwa manusia dapat saja wafat pada usia-usia yang dikehendaki-Nya sebelum usia tua tersebut. Demikianlah lemahnya manusia di depan Tuhan. Oleh karena itu, mereka hendaknya tidak menyombongkan diri, tetapi beriman dan patuh kepada-Nya.",
-        short:
-          "Ayat ini menjelaskan bahwa manusia itu saat masih bayi berada dalam kondisi lemah, bahkan sebelum itu mereka dalam ketiadaan. Allah-lah yang menciptakan kamu dari keadaan lemah, yakni pada masa bayi. Kemudian Dia menjadikan kamu setelah keadaan lemah itu menjadi kuat dan berdaya, yakni pada masa dewasa, sehingga kamu dapat melakukan banyak hal, kemudian Dia menjadikan kamu setelah kuat dan berdaya itu lemah kembali dan beruban, yakni masa tua. Demikianlah, Dia akan terus menciptakan apa yang Dia kehendaki, antara lain menciptakanmu dari lemah menjadi kuat dan sebaliknya. Dan Dia Maha Mengetahui atas segala pengaturan ciptaan-Nya, Mahakuasa atas segala sesuatu yang Dia kehendaki, termasuk membangkitkanmu kembali dari kematian.",
+        footnotes: null,
+        text: "Allahlah yang menciptakan kalian -wahai manusia- dari air yang hina, kemudian Dia merubah masa kecil kalian yang lemah menjadi orang dewasa yang kuat, lalu mengembalikan masa dewasa kalian yang kuat itu menjadi masa tua yang lemah. Allah menciptakan lemah dan kuat sekehendak-Nya dan Dia Maha Mengetahui segala sesuatu, tidak ada sesuatu pun yang luput dari-Nya dan Dia Mahakuasa, tidak ada sesuatu pun yang melemahkan-Nya.",
       },
     },
     text: {
-      arab: "\u06de \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u062e\u064e\u0644\u064e\u0642\u064e\u0643\u064f\u0645 \u0645\u0651\u0650\u0646 \u0636\u064e\u0639\u0652\u0641\u064d \u062b\u064f\u0645\u0651\u064e \u062c\u064e\u0639\u064e\u0644\u064e \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0636\u064e\u0639\u0652\u0641\u064d \u0642\u064f\u0648\u0651\u064e\u0629\u064b \u062b\u064f\u0645\u0651\u064e \u062c\u064e\u0639\u064e\u0644\u064e \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0642\u064f\u0648\u0651\u064e\u0629\u064d \u0636\u064e\u0639\u0652\u0641\u064b\u0627 \u0648\u064e\u0634\u064e\u064a\u0652\u0628\u064e\u0629\u064b \u06da \u064a\u064e\u062e\u0652\u0644\u064f\u0642\u064f \u0645\u064e\u0627 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u06d6 \u0648\u064e\u0647\u064f\u0648\u064e \u0627\u0644\u0652\u0639\u064e\u0644\u0650\u064a\u0645\u064f \u0627\u0644\u0652\u0642\u064e\u062f\u0650\u064a\u0631\u064f",
-      transliteration: {
-        en: "Allahul lazee khalaqa kum min du'fin summa ja'ala mim ba'di du'fin quwwatan summa ja'ala mim ba'di quwwatin du'fanw wa shaibah; yakhluqu maa yashaaa'u wa Huwal 'Aleemul Qadeer",
-      },
+      arabic:
+        "ٱللَّهُ ٱلَّذِى خَلَقَكُم مِّن ضَعْفٍ ثُمَّ جَعَلَ مِنۢ بَعْدِ ضَعْفٍ قُوَّةً ثُمَّ جَعَلَ مِنۢ بَعْدِ قُوَّةٍ ضَعْفًا وَشَيْبَةً يَخْلُقُ مَا يَشَآءُ وَهُوَ ٱلْعَلِيمُ ٱلْقَدِيرُ",
     },
     translation: {
-      en: "Allah is the one who created you from weakness, then made after weakness strength, then made after strength weakness and white hair. He creates what He wills, and He is the Knowing, the Competent.",
-      id: "Allah-lah yang menciptakan kamu dari keadaan lemah, kemudian Dia menjadikan (kamu) setelah keadaan lemah itu menjadi kuat, kemudian Dia menjadikan (kamu) setelah kuat itu lemah (kembali) dan beruban. Dia menciptakan apa yang Dia kehendaki. Dan Dia Maha Mengetahui, Mahakuasa.",
+      en: {
+        footnotes: "",
+        text: "It is Allah Who created you in a state of weakness, then after weakness He gave you strength, then after strength He made you weak and old. He creates what He wills, and He is the All-Knowing, the Most Capable.",
+      },
+      id: {
+        footnotes: "",
+        text: "Allah lah yang menciptakan kamu dari keadaan lemah, kemudian Dia menjadikan (kamu) setelah keadaan lemah itu menjadi kuat, kemudian Dia menjadikan (kamu) setelah kuat itu lemah (kembali) dan beruban. Dia menciptakan apa yang Dia kehendaki. Dan Dia Maha Mengetahui, Mahakuasa.",
+      },
     },
   },
 ];

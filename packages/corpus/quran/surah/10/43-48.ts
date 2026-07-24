@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah10Verses43To48 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1407",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1407.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1407.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 85,
       juz: 11,
       manzil: 3,
       page: 214,
       ruku: 176,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1407,
@@ -24,40 +25,34 @@ export const quranSurah10Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Sesudah itu Allah menjelaskan bahwa di antara orang-orang yang mendustakan ayat-ayat Allah ada pula kelompok orang yang benar-benar memperhatikan Nabi Muhammad saw pada saat membacakan Al-Qur'an. Akan tetapi, perhatian mereka itu hanya lahiriyah semata dan hanya melihat gerakan lidah Nabi pada saat mengucapkan lafaz dan susunannya, bukan merupakan perhatian yang murni yang dapat memahami dan memikirkan makna yang terkandung di dalam kata yang tersusun dalam kalimat itu. Itulah sebabnya maka cahaya iman dalam hati mereka tidak dapat memancar karena tertutup noda-noda kemusyrikan. Mereka tidak dapat melihat tanda-tanda kebenaran dan petunjuk yang terkandung dalam Al-Qur'an. Padahal pandangan batin inilah yang membedakan manusia dengan binatang. Seharusnya dengan perhatian itu manusia dapat memahami dan memikirkan apa yang dilihatnya, karena Allah menyamakan mereka itu dengan orang buta.\n\nPada akhir ayat, Allah menegaskan bahwa Nabi Muhammad sebagai utusan tidaklah mampu membuat mereka itu melihat tanda-tanda kebenaran yang terdapat di dalam ayat-ayat Al-Qur'an. Karena mereka memang tidak akan mampu mengindera tanda-tanda kebenaran ayatnya apalagi mereka tidak mempunyai niat untuk mempergunakan indera batinnya untuk memahami kandungan isi ayat-ayat Al-Qur'an itu selama-lamanya.",
-        short:
-          "Dan di antara mereka ada yang melihat kepada engkau wahai Nabi Muhammad, yakni menyaksikan tanda-tanda kenabianmu, tetapi mereka tidak mengakuinya. Maka apakah engkau dapat memberi petunjuk kepada orang-orang yang buta mata hatinya itu, sedangkan mereka tidak memperhatikan? Tentu tidak bisa.",
+        footnotes: null,
+        text: "Di antara orang-orang musyrik itu ada yang melihatmu -wahai Rasul- dengan mata lahirnya bukan dengan mata batinnya. Apakah engkau mampu membuat orang buta bisa melihat?! Engkau pasti tidak mampu melakukannya. Begitu juga engkau tidak akan mampu memberikan petunjuk kepada orang yang tidak punya mata hati.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u064e\u0646 \u064a\u064e\u0646\u0638\u064f\u0631\u064f \u0625\u0650\u0644\u064e\u064a\u0652\u0643\u064e \u06da \u0623\u064e\u0641\u064e\u0623\u064e\u0646\u062a\u064e \u062a\u064e\u0647\u0652\u062f\u0650\u064a \u0627\u0644\u0652\u0639\u064f\u0645\u0652\u064a\u064e \u0648\u064e\u0644\u064e\u0648\u0652 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0644\u064e\u0627 \u064a\u064f\u0628\u0652\u0635\u0650\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa minhum mai yanzuru ilaik; afa anta tahdil 'umya wa law kaanoo laa yubsiroon",
-      },
+      arabic: "وَمِنْهُم مَّن يَنظُرُ إِلَيْكَ أَفَأَنتَ تَهْدِى ٱلْعُمْىَ وَلَوْ كَانُوا۟ لَا يُبْصِرُونَ",
     },
     translation: {
-      en: "And among them are those who look at you. But can you guide the blind although they will not [attempt to] see?",
-      id: "Dan di antara mereka ada yang melihat kepada engkau. Tetapi apakah engkau dapat memberi petunjuk kepada orang yang buta, walaupun mereka tidak memperhatikan?",
+      en: {
+        footnotes:
+          "[39] “It is not the eyes that turn blind, but it is the hearts within the breasts that turn blind.” See 22:46.",
+        text: "And among them are some who look at you, but can you guide the blind even though they have no sight[39]?",
+      },
+      id: {
+        footnotes:
+          "[390] Artinya menyaksikan tanda-tanda kenabianmu, tetapi mereka tidak mengakuinya.",
+        text: "Dan di antara mereka ada yang melihat kepada engkau.[390] Tetapi apakah engkau dapat memberi petunjuk kepada orang yang buta, walaupun mereka tidak memperhatikan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1408",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1408.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1408.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 85,
       juz: 11,
       manzil: 3,
       page: 214,
       ruku: 176,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1408,
@@ -65,40 +60,32 @@ export const quranSurah10Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah menandaskan kepada kaum Muslimin, bahwa Dia tidak akan menganiaya hambanya dan tidak akan mengurangi daya indera dan semua alat yang dimiliki manusia untuk memperoleh petunjuk, agar mereka sampai kepada kebenaran dan dapat mempedomani petunjuk itu sehingga dapat melaksanakannya untuk mencapai segala sesuatu yang bermanfaat bagi mereka, asalkan manusia itu sendiri mau mempergunakan pancainderanya sebaik-baiknya. Kalau terjadi sebaliknya, merekalah yang menganiaya diri mereka sendiri. Karena mereka diberi mata dan telinga, tetapi tidak mau memahami petunjuk Allah berarti merekalah yang menganiaya diri mereka sendiri. Karena mereka tidak mau mendengar, dan diberi hati tetapi tidak mau mengerti, maka sepantasnyalah apabila mereka disiksa sebab menganiaya diri mereka sendiri. Allah telah menurunkan utusan untuk membimbing mereka kepada kehidupan yang bahagia di dunia dan di akhirat, tetapi mereka tidak mau mendengar dan tidak mau menaatinya, maka apabila mereka tersesat di dunia dan di akhirat kelak dijatuhi siksaan yang berat, maka yang menganiaya mereka itu tiada lain adalah diri mereka sendiri.",
-        short:
-          "Sesungguhnya Allah tidak menzalimi manusia sedikit pun, karena Dia sudah memberikan petunjuk menuju jalan kebenaran dan melarang ke jalan kesesatan serta memberi kebebasan kepada manusia untuk menentukan pilihan, tetapi manusia itulah yang menzalimi dirinya sendiri dengan berbuat kejahatan dan mengabaikan kebenaran.",
+        footnotes: null,
+        text: "Sesungguhnya Allah bersih dari tindakan zalim (semena-mena) kepada hamba-hamba-Nya. Dia tidak pernah menzalimi mereka sedikit pun. Tetapi, merekalah yang gemar menzalimi diri mereka sendiri dengan cara menjerumuskan diri ke dalam jurang kehancuran, akibat terlalu fanatik kepada kebatilan, sombong, dan angkuh.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0644\u064e\u0627 \u064a\u064e\u0638\u0652\u0644\u0650\u0645\u064f \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064e \u0634\u064e\u064a\u0652\u0626\u064b\u0627 \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646\u0651\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064e \u0623\u064e\u0646\u0641\u064f\u0633\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u0638\u0652\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Innal laaha laa yazlimun naasa shai'anw wa laakin nannaasa anfusahum yazlimoon",
-      },
+      arabic: "إِنَّ ٱللَّهَ لَا يَظْلِمُ ٱلنَّاسَ شَيْـًٔا وَلَٰكِنَّ ٱلنَّاسَ أَنفُسَهُمْ يَظْلِمُونَ",
     },
     translation: {
-      en: "Indeed, Allah does not wrong the people at all, but it is the people who are wronging themselves.",
-      id: "Sesungguhnya Allah tidak menzalimi manusia sedikit pun, tetapi manusia itulah yang menzalimi dirinya sendiri.",
+      en: {
+        footnotes: "",
+        text: "Allah does not wrong people in the least, but it is people who wrong themselves.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sesungguhnya Allah tidak menzalimi manusia sedikit pun, tetapi manusia itulah yang menzalimi dirinya sendiri.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1409",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1409.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1409.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 85,
       juz: 11,
       manzil: 3,
       page: 214,
       ruku: 176,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1409,
@@ -106,40 +93,34 @@ export const quranSurah10Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Allah memerintahkan Rasul-Nya agar memberikan peringatan kepada orang musyrik bahwa Allah akan menimpakan siksa kepada mereka di Hari Kiamat yaitu pada saat mereka dihimpun di Padang Mahsyar setelah mereka dibangkitkan kembali dari alam kubur. Mereka akan diperiksa pada hari itu dan akan diberikan pembalasan yang setimpal dengan amalnya. Pada hari itu mereka akan dapat membandingkan betapa lamanya waktu yang harus mereka lalui apabila dibandingkan dengan kehidupan dunia yang terasa sebentar saja. Di saat itulah mereka akan merasa menyesal karena tertipu oleh kehidupan dan kenikmatan dunia yang sifatnya hanya sementara, serta melupakan kehidupan akhirat padahal kehidupan akhirat itu adalah kehidupan yang kekal dan di saat itu pulalah mereka akan merasakan penyesalan yang berkepanjangan dan menerima hukuman. Allah berfirman:\n\nPada hari mereka melihat azab yang dijanjikan, mereka merasa seolah-olah mereka tinggal (di dunia) hanya sesaat saja pada siang hari. Tugasmu hanya menyampaikan. Maka tidak ada yang dibinasakan kecuali kaum yang fasik (tidak taat kepada Allah). (al- Ahqaf/46: 35)\n\nDan firman Allah:\n\nDan pada hari (ketika) terjadinya Kiamat, orang-orang yang berdosa bersumpah, bahwa mereka berdiam (dalam kubur) hanya sesaat (saja). Begitulah dahulu mereka dipalingkan (dari kebenaran). (ar-Rum/30: 55)\n\nAllah menjelaskan bahwa orang-orang musyrik merasa merugi karena mereka tidak dapat merasakan kebahagiaan yang abadi, karena mereka tidak beriman dengan iman yang benar, serta tidak melakukan amal yang baik, yang dapat meningkatkan diri mereka menjadi makhluk yang mulia yang pantas menerima keridaan Allah, sehingga mereka berhak memasuki surga. Mereka juga mendustakan kepercayaan bahwa orang-orang yang diridai Allah dapat bertemu dengan Allah. Itulah sebabnya maka Allah pada akhir ayat menandaskan bahwa mereka itu tergolong orang-orang yang tidak mendapat petunjuk, karena mereka telah menentukan pilihan yang salah yaitu mengutamakan kehidupan dunia yang fana, daripada kehidupan akhirat yang abadi yang mengandung kenikmatan yang tiada taranya.",
-        short:
-          "Setelah dijelaskan pada ayat sebelumnya bahwa Allah tidak sedikit pun menzalimi hamba-Nya, lalu dijelaskan tentang kebenaran ajaran Al-Qur'an, diantaranya adalah datangnya Hari Pembalasan. Dan ingatlah pada hari ketika Allah mengumpulkan mereka di Padang Mahsyar, mereka merasa seakan-akan tidak pernah berdiam di dunia kecuali sesaat saja pada siang hari, pada waktu mereka saling berkenalan. Sungguh rugi orang yang mendustakan pertemuan mereka dengan siksa dan pahala dari Allah dan mereka itulah orang-orang yang benar-benar tidak mendapat petunjuk.",
+        footnotes: null,
+        text: "Pada hari Kiamat kelak, di saat Allah mengumpulkan manusia di padang Mahsyar untuk menghisab amal mereka, seolah-olah mereka hidup di alam dunia dan alam barzakh tidak lebih dari sesaat di siang hari. Dalam sesaat itu mereka saling mengenal satu sama lain, kemudian mereka tidak saling mengenal lagi akibat dahsyatnya penderitaan di hari Kiamat yang mereka saksikan. Sungguh merugi orang-orang yang mendustakan perjumpaan dengan Tuhan mereka di hari Kiamat, dan selama di dunia mereka tidak beriman akan adanya hari kebangkitan hingga mereka selamat dari kerugian.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u064a\u064e\u0648\u0652\u0645\u064e \u064a\u064e\u062d\u0652\u0634\u064f\u0631\u064f\u0647\u064f\u0645\u0652 \u0643\u064e\u0623\u064e\u0646 \u0644\u0651\u064e\u0645\u0652 \u064a\u064e\u0644\u0652\u0628\u064e\u062b\u064f\u0648\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0633\u064e\u0627\u0639\u064e\u0629\u064b \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0647\u064e\u0627\u0631\u0650 \u064a\u064e\u062a\u064e\u0639\u064e\u0627\u0631\u064e\u0641\u064f\u0648\u0646\u064e \u0628\u064e\u064a\u0652\u0646\u064e\u0647\u064f\u0645\u0652 \u06da \u0642\u064e\u062f\u0652 \u062e\u064e\u0633\u0650\u0631\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0643\u064e\u0630\u0651\u064e\u0628\u064f\u0648\u0627 \u0628\u0650\u0644\u0650\u0642\u064e\u0627\u0621\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0645\u064e\u0627 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0645\u064f\u0647\u0652\u062a\u064e\u062f\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa Yawma yahshuruhum ka al lam yalbasooo illaa saa'atam minan nahaari yata'aarafoona bainahum; qad khasiral lazeena kazzaboo biliqaaa'il laahi wa maa kaanoo muhtadeen",
-      },
+      arabic:
+        "وَيَوْمَ يَحْشُرُهُمْ كَأَن لَّمْ يَلْبَثُوٓا۟ إِلَّا سَاعَةً مِّنَ ٱلنَّهَارِ يَتَعَارَفُونَ بَيْنَهُمْ قَدْ خَسِرَ ٱلَّذِينَ كَذَّبُوا۟ بِلِقَآءِ ٱللَّهِ وَمَا كَانُوا۟ مُهْتَدِينَ",
     },
     translation: {
-      en: "And on the Day when He will gather them, [it will be] as if they had not remained [in the world] but an hour of the day, [and] they will know each other. Those will have lost who denied the meeting with Allah and were not guided",
-      id: "Dan (ingatlah) pada hari (ketika) Allah mengumpulkan mereka, (mereka merasa) seakan-akan tidak pernah berdiam (di dunia) kecuali sesaat saja pada siang hari, (pada waktu) mereka saling berkenalan. Sungguh rugi orang yang mendustakan pertemuan mereka dengan Allah dan mereka tidak mendapat petunjuk.",
+      en: {
+        footnotes:
+          "[40] Only then they will realize their fatal error, and their interaction will only be one of mutual reproach.",
+        text: "On the Day when He will gather them, it will be as if they had not stayed [in this world] except for an hour of a day, they will recognize one another[40]. Those who denied the meeting of Allah will be losers, for they did not follow guidance.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan (ingatlah) pada hari (ketika) Allah mengumpulkan mereka, (mereka merasa) seakan-akan tidak pernah berdiam (di dunia) kecuali sesaat saja pada siang hari, (pada waktu) mereka saling berkenalan. Sungguh, rugi orang yang mendustakan pertemuan mereka dengan Allah, dan mereka tidak mendapat petunjuk.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1410",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1410.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1410.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 85,
       juz: 11,
       manzil: 3,
       page: 214,
       ruku: 176,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1410,
@@ -147,40 +128,33 @@ export const quranSurah10Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Selanjutnya ditegaskan adanya siksaan yang dijanjikan Allah kepada orang-orang musyrik, yaitu siksaan yang akan ditimpakan kepada mereka di dunia dan di akhirat. Siksaan yang akan ditimpakan kepada mereka akan diperlihatkan kepada Rasul keseluruhan atau sebagiannya baik di waktu Rasul masih hidup ataupun setelah wafat. Hal itu bergantung kepada kehendak Allah semata. Yang dimaksud dalam ayat itu bahwa Rasulullah saw akan mengetahui siksaan yang akan ditimpakan kepada mereka itu tidak seluruhnya, tetapi hanya sebagian saja, yaitu siksaan yang telah ditimpakan kepada mereka di dunia seperti terkabulnya doa Nabi di waktu perang Badar, yaitu turunnya hujan yang deras yang menguntungkan kaum Muslimin dan merugikan orang-orang musyrik sehingga kaum Muslimin mendapat kemenangan yang gilang gemilang. Juga seperti kekalahan total orang-orang musyrik pada Fath Makkah sehingga kekuatan mereka menjadi binasa sama sekali. Sekalipun demikian, persoalan mereka akan dikembalikan kepada allah, karena di hari Mahsyar kelak Allah akan memperlihatkan kepada Nabi Muhammad saw keseluruhan azab yang akan mereka rasakan.\n\nKemudian Allah akan memberikan balasan yang setimpal dengan perbuatan yang mereka lakukan dan tidak ada sesuatupun yang dapat menghalang-halangi pembalasan dan siksaan yang akan mereka rasakan dan mereka alami. Allah berfirman:\n\nMaka bersabarlah engkau (Muhammad), sesungguhnya janji Allah itu benar. Meskipun Kami perlihatkan kepadamu sebagian siksa yang Kami ancamkan kepada mereka, atau pun Kami wafatkan engkau (sebelum ajal menimpa mereka), namun kepada Kamilah mereka dikembalikan. (Gafir/40: 77)\n\nDan firman Allah:\n\nAtau Kami perlihatkan kepadamu (azab) yang telah Kami ancamkan kepada mereka. Maka sungguh, Kami berkuasa atas mereka. (az-Zukhruf/43: 42)",
-        short:
-          "Dan jika Kami perlihatkan kepadamu wahai Nabi Muhammad, sebagian dari siksaan yang Kami janjikan sebagai ancaman hukuman kepada mereka, tentulah engkau akan melihatnya atau jika Kami wafatkan engkau sebelum datangnya siksa itu, sehingga engkau tidak menyaksikan ketika siksaan itu datang, maka kepada Kami jualah mereka kembali dengan mempertanggungjawabkan seluruh amal perbuatan mereka, dan Allah menjadi saksi atas apa yang mereka kerjakan dan akan memberikan balasan dengan seadil-adilnya. Hukuman Tuhan bagi orang yang berbuat maksiat dapat diberikan di dunia atau di akhirat.",
+        footnotes: null,
+        text: "Jika Kami perlihatkan kepadamu -wahai Rasul- sebagian dari azab yang kami janjikan kepada mereka sebelum engkau wafat, atau kami mewafatkanmu sebelum hal itu terjadi, maka bagaimanapun juga mereka akan kembali kepada Kami di hari Kiamat nanti. Kemudian Allah mengetahui apa yang telah mereka perbuat, tidak ada satu pun yang luput dari pengetahuan-Nya, dan Dia akan memberi mereka balasan yang setimpal dengan amal perbuatan mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0645\u0651\u064e\u0627 \u0646\u064f\u0631\u0650\u064a\u064e\u0646\u0651\u064e\u0643\u064e \u0628\u064e\u0639\u0652\u0636\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0646\u064e\u0639\u0650\u062f\u064f\u0647\u064f\u0645\u0652 \u0623\u064e\u0648\u0652 \u0646\u064e\u062a\u064e\u0648\u064e\u0641\u0651\u064e\u064a\u064e\u0646\u0651\u064e\u0643\u064e \u0641\u064e\u0625\u0650\u0644\u064e\u064a\u0652\u0646\u064e\u0627 \u0645\u064e\u0631\u0652\u062c\u0650\u0639\u064f\u0647\u064f\u0645\u0652 \u062b\u064f\u0645\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0634\u064e\u0647\u0650\u064a\u062f\u064c \u0639\u064e\u0644\u064e\u0649\u0670 \u0645\u064e\u0627 \u064a\u064e\u0641\u0652\u0639\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa imma nuriyannaka ba'dal lazee na'iduhum aw natawaffayannaka fa ilainaa marji'uhum summal laahu shaheedun 'alaa maa yaf'aloon",
-      },
+      arabic:
+        "وَإِمَّا نُرِيَنَّكَ بَعْضَ ٱلَّذِى نَعِدُهُمْ أَوْ نَتَوَفَّيَنَّكَ فَإِلَيْنَا مَرْجِعُهُمْ ثُمَّ ٱللَّهُ شَهِيدٌ عَلَىٰ مَا يَفْعَلُونَ",
     },
     translation: {
-      en: "And whether We show you some of what We promise them, [O Muhammad], or We take you in death, to Us is their return; then, [either way], Allah is a witness concerning what they are doing",
-      id: "Dan jika Kami perlihatkan kepadamu (Muhammad) sebagian dari (siksaan) yang Kami janjikan kepada mereka, (tentulah engkau akan melihatnya) atau (jika) Kami wafatkan engkau (sebelum itu), maka kepada Kami (jualah) mereka kembali, dan Allah menjadi saksi atas apa yang mereka kerjakan.",
+      en: {
+        footnotes: "",
+        text: "Whether We show you [O Prophet] some of that [punishment] of which We warn them, or We cause you to die, to Us is their return, and Allah is a Witness to all what they do.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan jika Kami perlihatkan kepadamu (Muhammad) sebagian dari (siksaan) yang Kami janjikan kepada mereka, (tentulah engkau akan melihatnya) atau (jika) Kami wafatkan engkau (sebelum itu), maka kepada Kami (jualah) mereka kembali, dan Allah menjadi saksi atas apa yang mereka kerjakan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1411",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1411.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1411.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 85,
       juz: 11,
       manzil: 3,
       page: 214,
       ruku: 176,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1411,
@@ -188,40 +162,33 @@ export const quranSurah10Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menjelaskan bahwa Allah telah mengutus rasul pada tiap-tiap umat, pada saat umat itu memerlukannya. Tujuan pengutusan rasul ialah untuk memberikan berbagai pedoman yang wajib mereka turuti seperti pokok-pokok akidah dan segala amal saleh yang menyelamatkan mereka dari siksaan di hari pembalasan. Pada saat para rasul itu telah datang kepada mereka dan telah menyampaikan kepada mereka petunjuk-petunjuk yang harus mereka ketahui mengenai urusan agama, maka seharusnyalah mereka tidak membuat alasan untuk menolak dan menentangnya. Pada hari pembalasan nanti Allah juga akan memberikan keputusan tentang apa yang harus mereka rasakan dengan seadil-adilnya, dan mereka sedikitpun tidak teraniaya, itulah pembalasan yang setimpal dengan perbuatan yang mereka lakukan, oleh karena itu mereka berhak dijatuhi siksaan yang pedih.",
-        short:
-          "Sebagai wujud keadilan Tuhan, Dia mengutus rasul-rasul sebagai pemberi peringatan. Dan setiap umat mempunyai rasul yang menyampaikan ajaran kebenaran disertai bukti-bukti atas kebenaran ajaran tersebut. Maka apabila rasul mereka telah datang, diberlakukanlah hukum bagi mereka dengan adil dan sedikit pun tidak dizalimi. Orang yang beriman dan berbuat kebaikan akan diberi pahala, sedangkan yang ingkar dan berbuat mungkar, maka akan disiksa.",
+        footnotes: null,
+        text: "Setiap umat yang ada di masa lalu mempunyai rasul yang diutus oleh Allah kepada mereka. Apabila rasul itu telah menyampaikan kepada mereka apa yang harus disampaikannya kepada mereka dan ternyata mereka mendustakannya maka kedua belah pihak diberi keputusan secara adil. Kemudian Allah menyelamatkan utusan-Nya dengan karunia-Nya dan membinasakan umatnya dengan keadilan-Nya. Mereka tidak dizalimi sedikit pun terkait dengan balasan amal perbuatan mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u0650\u0643\u064f\u0644\u0651\u0650 \u0623\u064f\u0645\u0651\u064e\u0629\u064d \u0631\u0651\u064e\u0633\u064f\u0648\u0644\u064c \u06d6 \u0641\u064e\u0625\u0650\u0630\u064e\u0627 \u062c\u064e\u0627\u0621\u064e \u0631\u064e\u0633\u064f\u0648\u0644\u064f\u0647\u064f\u0645\u0652 \u0642\u064f\u0636\u0650\u064a\u064e \u0628\u064e\u064a\u0652\u0646\u064e\u0647\u064f\u0645 \u0628\u0650\u0627\u0644\u0652\u0642\u0650\u0633\u0652\u0637\u0650 \u0648\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0627 \u064a\u064f\u0638\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa likulli ummatir Rasoolun fa izaa jaaa'a Rasooluhum qudiya bainahum bilqisti wa hum laa yuzlamoon",
-      },
+      arabic: "وَلِكُلِّ أُمَّةٍ رَّسُولٌ فَإِذَا جَآءَ رَسُولُهُمْ قُضِىَ بَيْنَهُم بِٱلْقِسْطِ وَهُمْ لَا يُظْلَمُونَ",
     },
     translation: {
-      en: "And for every nation is a messenger. So when their messenger comes, it will be judged between them in justice, and they will not be wronged",
-      id: "Dan setiap umat (mempunyai) rasul. Maka apabila rasul mereka telah datang, diberlakukanlah hukum bagi mereka dengan adil dan (sedikit pun) tidak dizalimi.",
+      en: {
+        footnotes:
+          "[41] By his coming, wheat is sorted out from the chaff: Those who believe are saved but those who deny are doomed.",
+        text: "For every people there is a messenger. When their messenger comes, it will be judged[41] between them with justice, and they will not be wronged.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan setiap umat (mempunyai) Rasul. Maka apabila rasul mereka telah datang, diberlakukanlah hukum bagi mereka dengan adil dan (sedikit pun) tidak dizalimi.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1412",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1412.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1412.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 85,
       juz: 11,
       manzil: 3,
       page: 214,
       ruku: 176,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1412,
@@ -229,20 +196,23 @@ export const quranSurah10Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini dijelaskan bahwa mereka akan bertanya kepada Rasulullah dan pengikut-pengikutnya tentang kapan saatnya janji yang telah dijanjikan kepada mereka itu akan terjadi. Pertanyaan itu adalah pertanyaan yang mengejek kepada Rasulullah dan pengikut-pengikutnya seolah-olah menurut penilaian mereka bahwa janji Allah itu tidak akan terjadi. Janji Allah yang ditanyakan kepada Nabi saw dan pengikutnya ialah ancaman Allah yang akan ditimpakan kepada mereka baik siksaan di dunia ataupun siksaan di akhirat.\n\nAllah berfirman:\n\n...Sehingga apabila mereka telah melihat apa yang diancamkan kepada mereka, baik azab maupun Kiamat, maka mereka akan mengetahui siapa yang lebih jelek kedudukannya dan lebih lemah bala tentaranya. (Maryam/19: 75)\n\nDan firman-Nya :\n\nKatakanlah (Muhammad), "Aku tidak mengetahui, apakah azab yang diancamkan kepadamu itu sudah dekat ataukah Tuhanku menetapkan waktunya masih lama. (al-Jinn/72: 25)',
-        short:
-          'Dan mendengar adanya ancaman tersebut, mereka orang-orang kafir mengatakan, "Bilakah datangnya ancaman itu, siang atau malam, atau segerakanlah, jika kamu orang-orang yang benar?"',
+        footnotes: null,
+        text: 'Orang-orang kafir itu berkata dengan nada angkuh dan menantang, "Kapan datangnya azab yang kalian janjikan kepada kami, jika kalian sungguh-sungguh dengan pengakuan kalian itu?!"',
       },
     },
     text: {
-      arab: "\u0648\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0645\u064e\u062a\u064e\u0649\u0670 \u0647\u064e\u0670\u0630\u064e\u0627 \u0627\u0644\u0652\u0648\u064e\u0639\u0652\u062f\u064f \u0625\u0650\u0646 \u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u0635\u064e\u0627\u062f\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa yaqooloona mataa haazal wa'du in kuntum saadiqeen",
-      },
+      arabic: "وَيَقُولُونَ مَتَىٰ هَٰذَا ٱلْوَعْدُ إِن كُنتُمْ صَٰدِقِينَ",
     },
     translation: {
-      en: 'And they say, "When is [the fulfillment of] this promise, if you should be truthful?"',
-      id: "Dan mereka mengatakan,  ”Bilakah (datangnya) ancaman itu, jika kamu orang-orang yang benar?”",
+      en: {
+        footnotes:
+          "[42] i.e., their due punishment in this life or the coming of the Hour.",
+        text: "They say, “When will this warning[42] come to pass, if you are truthful?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan mereka mengatakan, "Bilakah (datangnya) ancaman itu, jika kamu orang-orang yang benar?"',
+      },
     },
   },
 ];

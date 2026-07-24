@@ -5,6 +5,7 @@ import { Effect, Schema, Stream } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import { hashQuranRow, QuranHashError } from "#contracts/quran/row-hash";
 import {
+  QURAN_ATTRIBUTION_COUNT,
   QURAN_CHUNK_SIZE,
   QURAN_LOCALES,
   QURAN_SEARCH_COUNT,
@@ -15,9 +16,9 @@ import {
   type QuranSnapshotRow,
 } from "#contracts/quran/spec";
 
-const RUNTIME_DOMAIN = "nakafa.aksara.quran-runtime.v1";
-const SEARCH_DOMAIN = "nakafa.aksara.quran-search.v1";
-const PROJECTION_DOMAIN = "nakafa.aksara.quran-projection.v1";
+const RUNTIME_DOMAIN = "nakafa.aksara.quran-runtime.v2";
+const SEARCH_DOMAIN = "nakafa.aksara.quran-search.v2";
+const PROJECTION_DOMAIN = "nakafa.aksara.quran-projection.v2";
 
 /** A supplied row hash does not authenticate its structured payload. */
 export class QuranRowIntegrityError extends Schema.TaggedError<QuranRowIntegrityError>()(
@@ -39,6 +40,9 @@ export class QuranRowOrderError extends Schema.TaggedError<QuranRowOrderError>()
 
 /** Resolves the complete stable identity fields for one structured row. */
 function rowIdentity(payload: QuranRowPayload) {
+  if (payload.kind === "quran-attribution") {
+    return `quran-attribution:${payload.sources.map(({ id }) => id).join(":")}`;
+  }
   if (payload.kind === "quran-surah") {
     return `quran-surah:${payload.number}`;
   }
@@ -75,6 +79,7 @@ class QuranDigestState {
   #nextSurah = 1;
   #nextSurahVerse = 0;
   #surahVerseCount = 0;
+  attributionCount = 0;
   chunkCount = 0;
   projectionCount = 0;
   runtimeCount = 0;
@@ -82,6 +87,9 @@ class QuranDigestState {
 
   /** Returns the only row identity valid at the current stream position. */
   expectedIdentity() {
+    if (this.attributionCount === 0) {
+      return "quran-attribution:tanzil-text:tanzil-metadata:quranenc-english:quranenc-indonesian:quranenc-tafsir";
+    }
     if (this.#nextSurah <= QURAN_SURAH_COUNT) {
       if (this.#nextSurahVerse === 0) {
         return `quran-surah:${this.#nextSurah}`;
@@ -116,6 +124,9 @@ class QuranDigestState {
 
   /** Advances deterministic identity state after one accepted row. */
   advance(payload: QuranRowPayload) {
+    if (payload.kind === "quran-attribution") {
+      return;
+    }
     if (payload.kind === "quran-surah") {
       this.#surahVerseCount = payload.numberOfVerses;
       this.#nextSurahVerse = 1;
@@ -162,6 +173,9 @@ class QuranDigestState {
         }
         this.#runtime.update(canonical);
         this.runtimeCount += 1;
+        if (row.payload.kind === "quran-attribution") {
+          this.attributionCount += 1;
+        }
         if (row.payload.kind === "quran-chunk") {
           this.chunkCount += 1;
         }
@@ -174,6 +188,7 @@ class QuranDigestState {
     const actual = [
       this.expectedIdentity(),
       this.#nextQuranNumber,
+      this.attributionCount,
       this.chunkCount,
       this.runtimeCount,
       this.searchCount,
@@ -182,15 +197,18 @@ class QuranDigestState {
     const expected = [
       "end",
       QURAN_VERSE_COUNT + 1,
+      QURAN_ATTRIBUTION_COUNT,
       this.chunkCount,
-      QURAN_SURAH_COUNT + this.chunkCount,
+      QURAN_ATTRIBUTION_COUNT + QURAN_SURAH_COUNT + this.chunkCount,
       QURAN_SEARCH_COUNT,
       this.runtimeCount + this.searchCount,
     ].join(":");
     if (
       this.expectedIdentity() === "end" &&
       this.#nextQuranNumber === QURAN_VERSE_COUNT + 1 &&
-      this.runtimeCount === QURAN_SURAH_COUNT + this.chunkCount &&
+      this.attributionCount === QURAN_ATTRIBUTION_COUNT &&
+      this.runtimeCount ===
+        QURAN_ATTRIBUTION_COUNT + QURAN_SURAH_COUNT + this.chunkCount &&
       this.searchCount === QURAN_SEARCH_COUNT &&
       this.projectionCount === this.runtimeCount + this.searchCount
     ) {
@@ -202,6 +220,7 @@ class QuranDigestState {
   /** Finalizes all ordered Quran row digest domains. */
   digest() {
     return {
+      attributionCount: this.attributionCount,
       chunkCount: this.chunkCount,
       projectionCount: this.projectionCount,
       projectionDigest: Sha256HashSchema.make(

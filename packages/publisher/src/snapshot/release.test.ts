@@ -22,6 +22,7 @@ import {
 import {
   ContentSnapshotSetSchema,
   inheritContentSnapshot,
+  type PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import type {
   ContentSnapshotManifest,
@@ -40,7 +41,6 @@ import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 import { materialGraph } from "#test/graph";
 
 const checkoutRoot = resolve(process.cwd(), "..", "..");
-
 interface TryoutFixture {
   readonly manifest: Extract<
     ContentSnapshotManifest,
@@ -50,14 +50,12 @@ interface TryoutFixture {
   /** Replays the representative technical row used by this unit test. */
   readonly rows: () => Stream.Stream<ContentSnapshotRow>;
 }
-
 interface QuranFixture {
   readonly manifest: QuranSnapshotManifest;
   readonly rowCount: number;
   /** Replays the representative technical Quran rows used by this unit test. */
   readonly rows: () => Stream.Stream<QuranSnapshotRow>;
 }
-
 const testHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranState = vi.hoisted((): { current: QuranFixture | undefined } => ({
   current: undefined,
@@ -89,8 +87,9 @@ vi.mock("#publisher/tryout/snapshot", async () => {
 /** Builds one valid technical Quran dependency fixture without corpus replay. */
 function makeQuranFixture(): QuranFixture {
   const chunkCount = 1;
-  const runtimeCount = QURAN_SURAH_COUNT + chunkCount;
+  const runtimeCount = 1 + QURAN_SURAH_COUNT + chunkCount;
   const manifest = QuranSnapshotManifestSchema.make({
+    attributionCount: 1,
     chunkCount,
     format: QURAN_SNAPSHOT_FORMAT,
     locales: QURAN_LOCALES,
@@ -105,13 +104,13 @@ function makeQuranFixture(): QuranFixture {
     snapshotId: testHash,
     sourceBytes: 1,
     sourceDigest: testHash,
+    sourceFileCount: 118,
     surahCount: QURAN_SURAH_COUNT,
     tafsirLocales: QURAN_TAFSIR_LOCALES,
     verseCount: QURAN_VERSE_COUNT,
   });
   const row = QuranSnapshotRowSchema.make({
     payload: QuranSearchRowSchema.make({
-      description: "Test-only release orchestration row",
       graph: materialGraph("en", "quran", "release"),
       kind: "quran-search",
       locale: "en",
@@ -185,13 +184,15 @@ async function makeTryoutFixture(): Promise<TryoutFixture> {
 function prepare(
   previousSnapshots: Parameters<
     typeof prepareReleaseSnapshots
-  >[0]["previousSnapshots"]
+  >[0]["previousSnapshots"],
+  families: PublicationScope["snapshots"] = ["program", "quran", "tryout"]
 ) {
   return Effect.runPromise(
     Effect.scoped(
       Effect.gen(function* () {
         const prepared = yield* prepareReleaseSnapshots({
           checkoutRoot,
+          families,
           previousSnapshots,
           questionHeads: () => Stream.empty,
           rendererManifest: {},
@@ -229,35 +230,31 @@ quranState.current = quranFixture;
 tryoutState.current = tryoutFixture;
 const changedSnapshots = await prepare(null);
 const completeSnapshots = requireCompleteManifests(changedSnapshots.manifests);
-const inheritedSnapshots = await prepare(
-  ContentSnapshotSetSchema.make({
-    program: inheritContentSnapshot(
-      completeSnapshots.program.manifest.snapshotId
-    ),
-    quran: inheritContentSnapshot(completeSnapshots.quran.manifest.snapshotId),
-    tryout: inheritContentSnapshot(
-      completeSnapshots.tryout.manifest.snapshotId
-    ),
-  })
-);
-const changedQuran = await prepare(
-  ContentSnapshotSetSchema.make({
-    program: inheritContentSnapshot(
-      completeSnapshots.program.manifest.snapshotId
-    ),
-    quran: inheritContentSnapshot(null),
-    tryout: inheritContentSnapshot(
-      completeSnapshots.tryout.manifest.snapshotId
-    ),
-  })
-);
 
+/** Builds one exact active structured set while varying only Quran identity. */
+function activeSnapshots(quranSnapshotId: typeof testHash | null) {
+  return ContentSnapshotSetSchema.make({
+    program: inheritContentSnapshot(
+      completeSnapshots.program.manifest.snapshotId
+    ),
+    quran: inheritContentSnapshot(quranSnapshotId),
+    tryout: inheritContentSnapshot(
+      completeSnapshots.tryout.manifest.snapshotId
+    ),
+  });
+}
+
+const inheritedSnapshots = await prepare(
+  activeSnapshots(completeSnapshots.quran.manifest.snapshotId)
+);
+tryoutState.current = undefined;
+const changedQuran = await prepare(activeSnapshots(null), ["quran"]);
+tryoutState.current = tryoutFixture;
 describe("release snapshot preparation", () => {
-  it("stages every changed snapshot and row in canonical family order", () => {
+  it("stages every changed snapshot and row in canonical family order", async () => {
     const { program, quran } = completeSnapshots;
     const programRowCount = program.manifest.rowCount;
     const quranRowCount = quranFixture.rowCount;
-
     expect(changedSnapshots.manifests.map(({ family }) => family)).toEqual([
       "program",
       "quran",
@@ -281,12 +278,15 @@ describe("release snapshot preparation", () => {
       family: "quran",
       manifest: { provenanceStatus: "blocked" },
     });
+    quranState.current = undefined;
+    const tryoutOnly = await prepare(null, ["tryout"]);
+    quranState.current = quranFixture;
+    expect(tryoutOnly.manifests).toEqual([completeSnapshots.tryout]);
+    expect(tryoutOnly.rows).toHaveLength(tryoutFixture.rowCount);
   });
-
   it("inherits exact active snapshot identities without restaging rows", () => {
     expect(inheritedSnapshots).toEqual({ manifests: [], rows: [] });
   });
-
   it("streams rows only for a family whose active identity changed", () => {
     expect(changedQuran.manifests).toEqual([completeSnapshots.quran]);
     expect(changedQuran.rows).toHaveLength(quranFixture.rowCount);

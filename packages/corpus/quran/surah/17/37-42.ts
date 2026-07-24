@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah17Verses37To42 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2066",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2066.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2066.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 114,
       juz: 15,
       manzil: 4,
       page: 285,
       ruku: 243,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2066,
@@ -24,40 +25,33 @@ export const quranSurah17Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Allah melarang kaum Muslimin berjalan di muka bumi dengan sombong. Berjalan dengan sombong di muka bumi bukanlah sikap yang wajar, karena bagaimanapun kerasnya derap kaki yang dihentakkan di atas bumi, tidak akan menembus permukaannya dan bagaimanapun juga tingginya ia mengangkat kepalanya, tidaklah dapat melampaui tinggi gunung. Bahkan ditinjau dari segi ilmu jiwa, orang yang biasa berjalan dengan penuh kesombongan, berarti dalam jiwanya terdapat kelemahan. Ia merasa rendah diri, sehingga untuk menutupi kelemahan dirinya, ia berjalan dengan sombong dan berlagak dengan maksud menarik perhatian orang lain.\n\nAllah swt menegaskan bahwa mereka sekali-kali tidak akan dapat menembus bumi dan menyamai tinggi gunung. Hal ini bertujuan agar kaum Muslimin menyadari kelemahan-kelemahan yang terdapat pada diri mereka, bersikap rendah hati, dan tidak bersikap takabur. Sebab, sebagai manusia yang memiliki kemampuan terbatas, mereka tidak akan sanggup mencapai sesuatu di luar kemampuan dirinya.\n\nDi dalam ayat ini terdapat juga celaan bagi orang-orang musyrik yang suka bermegah-megah, menyombongkan diri karena harta kekayaan dan menghambur-hamburkannya, suka bermabuk-mabukan, dan berzina.",
-        short:
-          "Dan janganlah engkau berjalan di muka bumi ini dengan sombong, untuk menampakkan kekuasaan dan kekuatanmu, karena sesungguhnya sekuat apa pun hentakan kakimu, kamu sekali-kali tidak dapat menembus bumi dan setinggi apa pun kepalamu, sekali-kali kamu tidak akan sampai setinggi gunung. Sesungguhnya kamu adalah makhluk yang lemah dan rendah di hadapan Allah, kamu tidak memiliki kekuatan dan kemuliaan, melainkan apa yang dianugerahkan oleh-Nya.",
+        footnotes: null,
+        text: "Janganlah pula kamu berjalan di muka bumi dengan sikap angkuh dan sombong sebab walaupun engkau berjalan dengan sikap keangkuhan bumi tidak akan terbelah karenanya, dan tidak pula dirimu akan menjulang tinggi seperti tingginya gunung-gunung, lalu kenapa harus menunjukkan sikap angkuh?!",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0645\u0652\u0634\u0650 \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0645\u064e\u0631\u064e\u062d\u064b\u0627 \u06d6 \u0625\u0650\u0646\u0651\u064e\u0643\u064e \u0644\u064e\u0646 \u062a\u064e\u062e\u0652\u0631\u0650\u0642\u064e \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064e \u0648\u064e\u0644\u064e\u0646 \u062a\u064e\u0628\u0652\u0644\u064f\u063a\u064e \u0627\u0644\u0652\u062c\u0650\u0628\u064e\u0627\u0644\u064e \u0637\u064f\u0648\u0644\u064b\u0627",
-      transliteration: {
-        en: "Wa laa tamshi fil ardi marahan innaka lan takhriqal arda wa lan tablughal jibaala toola",
-      },
+      arabic: "وَلَا تَمْشِ فِى ٱلْأَرْضِ مَرَحًا إِنَّكَ لَن تَخْرِقَ ٱلْأَرْضَ وَلَن تَبْلُغَ ٱلْجِبَالَ طُولًا",
     },
     translation: {
-      en: "And do not walk upon the earth exultantly. Indeed, you will never tear the earth [apart], and you will never reach the mountains in height.",
-      id: "Dan janganlah engkau berjalan di bumi ini dengan sombong, karena sesungguhnya engkau tidak akan dapat menembus bumi dan tidak akan mampu menjulang setinggi gunung.",
+      en: {
+        footnotes:
+          "[35] Man is indeed a weak and small creature, then why arrogance?!",
+        text: "Do not walk on the earth arrogantly; you cannot cleave the earth, nor can you reach the mountains in height[35].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan janganlah engkau berjalan di bumi ini dengan sombong, karena sesungguhnya engkau tidak akan dapat menembus bumi dan tidak akan mampu menjulang setinggi gunung.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2067",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2067.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2067.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 114,
       juz: 15,
       manzil: 4,
       page: 285,
       ruku: 243,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2067,
@@ -65,40 +59,33 @@ export const quranSurah17Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah swt menjelaskan bahwa semua larangan-Nya yang disebutkan sebelum ayat ini, seperti mengadakan tuhan selain Allah, durhaka kepada kedua ibu bapak, berlaku boros, membunuh anak perempuan, berbuat zina, membunuh manusia yang diharamkan membunuhnya, memakan harta anak yatim, mengurangi atau melebihkan takaran dan timbangan, mengikuti perkataan dan perbuatan yang tidak diketahui kebenarannya, dan bersikap sombong adalah perbuatan-perbuatan yang sangat dibenci-Nya. Para pelakunya patut diancam dengan hukuman yang keras dan harus dirasakan di dunia. Di akhirat mereka akan mendapat azab yang pedih.",
-        short:
-          "Semua itu, yakni keburukan-keburukan yang disebutkan dalam ayata-yat sebelum ini, kejahatannya amat dibenci di sisi Tuhanmu.",
+        footnotes: null,
+        text: "Wahai manusia, semua yang telah disebutkan diatas berupa amalan yang dilarang merupakan kejahatan yang sangat dibenci dan dilarang oleh Tuhanmu, Allah tidak akan meridhai pelakunya, bahkan Dia memurkainya.",
       },
     },
     text: {
-      arab: "\u0643\u064f\u0644\u0651\u064f \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0643\u064e\u0627\u0646\u064e \u0633\u064e\u064a\u0651\u0650\u0626\u064f\u0647\u064f \u0639\u0650\u0646\u062f\u064e \u0631\u064e\u0628\u0651\u0650\u0643\u064e \u0645\u064e\u0643\u0652\u0631\u064f\u0648\u0647\u064b\u0627",
-      transliteration: {
-        en: "Kullu zaalika kaana sayyi'uhoo inda Rabbika makroohaa",
-      },
+      arabic: "كُلُّ ذَٰلِكَ كَانَ سَيِّئُهُۥ عِندَ رَبِّكَ مَكْرُوهًا",
     },
     translation: {
-      en: "All that - its evil is ever, in the sight of your Lord, detested.",
-      id: "Semua itu kejahatannya sangat dibenci di sisi Tuhanmu.",
+      en: {
+        footnotes: "",
+        text: "The evil of all these actions is hateful to your Lord.",
+      },
+      id: {
+        footnotes:
+          "[475] Semua larangan yang disebut pada ayat 22, 23, 26, 29, 31, 32, 33, 34, 36, dan 37 surah ini.",
+        text: "Semua itu[475] kejahatannya sangat dibenci di sisi Tuhanmu.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2068",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2068.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2068.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 114,
       juz: 15,
       manzil: 4,
       page: 286,
       ruku: 243,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2068,
@@ -106,40 +93,34 @@ export const quranSurah17Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini dijelaskan bahwa bimbingan Allah berupa perintah-Nya yang harus diikuti, dan semua larangan yang harus dijauhi, yang disebutkan dalam ayat-ayat yang lalu, apabila ditaati niscaya akan membimbing manusia kepada kesejahteraan hidup di dunia dan kebahagiaan di akhirat. Sebab, semua itu adalah sebagian dari hikmah yang diwahyukan Allah kepada Rasul-Nya, yang berupa peraturan-peraturan agama. \n\nSelanjutnya Allah swt mengulangi kembali larangan mengadakan tuhan selain Allah. Pengulangan larangan mempersekutukan tuhan-tuhan yang lain dengan Allah, yang berarti perintah untuk beragama tauhid, menunjukkan kepada pengertian bahwa tauhid adalah inti dari semua agama samawi, dan sebagai titik tolak dan tujuan akhir dari segala macam urusan seluruh makhluk. Semua makhluk adalah milik Allah dan kepada-Nya pula semuanya akan kembali.\n\nDi akhir ayat, Allah swt menegaskan bahwa akibat yang akan dirasakan oleh kaum musyrikin ialah mereka dilemparkan ke dalam neraka dalam keadaan tercela, baik celaan itu datang dari pihak lain, ataupun datang dari dirinya sendiri, serta dijauhkan dari rahmat Allah. Mereka tidak akan mendapat pertolongan dari siapapun.",
-        short:
-          "Itulah sebagian hikmah, hukum-hukum yang mengandung kebenaran yang bermanfaat bagi kehidupan manusia, yang diwahyukan Tuhanmu kepadamu, yakni Nabi Muhammad, melalui malaikat Jibril. Dan janganlah kamu mengadakan tuhan yang lain di samping Allah, yang menyebabkan engkau dilemparkan ke dalam neraka dalam keadaan tercela oleh dirimu sendiri dan orang lain dan dijauhkan dari rahmat Allah.",
+        footnotes: null,
+        text: "Perkara yang Kami jelaskan tersebut berupa perintah, larangan, dan hukum-hukum merupakan ilmu dan hikmah yang diwahyukan Tuhanmu kepadamu, sebab itu janganlah engkau -wahai manusia- mengadakan Tuhan lain bersama Allah, nanti engkau diceburkan ke dalam neraka Jahanam pada hari Kiamat kelak dalam keadaan tercela di mata dirimu sendiri dan di mata manusia lainnya, serta terjauhkan dari segala kebaikan.",
       },
     },
     text: {
-      arab: "\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0645\u0650\u0645\u0651\u064e\u0627 \u0623\u064e\u0648\u0652\u062d\u064e\u0649\u0670 \u0625\u0650\u0644\u064e\u064a\u0652\u0643\u064e \u0631\u064e\u0628\u0651\u064f\u0643\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u062d\u0650\u0643\u0652\u0645\u064e\u0629\u0650 \u06d7 \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u062c\u0652\u0639\u064e\u0644\u0652 \u0645\u064e\u0639\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0625\u0650\u0644\u064e\u0670\u0647\u064b\u0627 \u0622\u062e\u064e\u0631\u064e \u0641\u064e\u062a\u064f\u0644\u0652\u0642\u064e\u0649\u0670 \u0641\u0650\u064a \u062c\u064e\u0647\u064e\u0646\u0651\u064e\u0645\u064e \u0645\u064e\u0644\u064f\u0648\u0645\u064b\u0627 \u0645\u0651\u064e\u062f\u0652\u062d\u064f\u0648\u0631\u064b\u0627",
-      transliteration: {
-        en: "Zaalika mimmaaa awhaaa ilaika Rabbuka minal hikmah; wa laa taj'al ma'allaahi ilaahan aakhara fatulqaa fee Jahannama maloomam mad hooraa",
-      },
+      arabic:
+        "ذَٰلِكَ مِمَّآ أَوْحَىٰٓ إِلَيْكَ رَبُّكَ مِنَ ٱلْحِكْمَةِ وَلَا تَجْعَلْ مَعَ ٱللَّهِ إِلَٰهًا ءَاخَرَ فَتُلْقَىٰ فِى جَهَنَّمَ مَلُومًا مَّدْحُورًا",
     },
     translation: {
-      en: "That is from what your Lord has revealed to you, [O Muhammad], of wisdom. And, [O mankind], do not make [as equal] with Allah another deity, lest you be thrown into Hell, blamed and banished.",
-      id: "Itulah sebagian hikmah yang diwahyukan Tuhan kepadamu (Muhammad). Dan janganlah engkau mengadakan tuhan yang lain di samping Allah, nanti engkau dilemparkan ke dalam neraka dalam keadaan tercela dan dijauhkan (dari rahmat Allah).",
+      en: {
+        footnotes:
+          "[36] i.e., self-reproached and blamed by others for this miserable end, as well as shut away from all good.",
+        text: "This is part of the wisdom that your Lord has revealed to you [O Prophet]. Do not set up any other god with Allah, or you will be thrown into Hell, blameworthy and rejected[36].",
+      },
+      id: {
+        footnotes: "",
+        text: "Itulah sebagian hikmah yang diwahyukan Tuhan kepadamu (Muhammad). Dan janganlah engkau mengadakan tuhan yang lain di samping Allah, nanti engkau dilemparkan ke dalam neraka dalam keadaan tercela dan dijauhkan (dari rahmat Allah).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2069",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2069.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2069.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 114,
       juz: 15,
       manzil: 4,
       page: 286,
       ruku: 243,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2069,
@@ -147,40 +128,34 @@ export const quranSurah17Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: 'Allah swt membantah anggapan kaum musyrikin Mekah bahwa malaikat adalah anak perempuan Allah, dengan menanyakan apakah patut Tuhanmu memilih bagimu anak laki-laki, sedang Dia sendiri mengambil anak-anak perempuan di antara malaikat. Pertanyaan ini mengandung arti penyangkalan terhadap anggapan mereka bahwa Allah swt mempunyai anak-anak perempuan yang berupa malaikat. Bantahan Allah, dalam ayat ini, dengan cara menunjukkan kesalahan jalan pikiran mereka, bertujuan agar mereka dapat memahami kesalahannya. Bagaimana mungkin Allah swt yang menciptakan langit dan bumi serta benda-benda yang berada di antara keduanya dikatakan mempunyai anak-anak perempuan yang berupa malaikat, sedangkan mereka sendiri lebih suka mempunyai anak-anak laki-laki dan membenci anak perempuan. Mereka bahkan menguburkan anak perempuan itu hidup-hidup. Dalam hal ini, mereka memberi suatu sifat kepada Allah yang mereka sendiri tidak menyukainya. Jalan pikiran mereka benar-benar kacau. Mereka menyifati Zat Yang Maha Esa dan Mulia dengan sifat yang rendah menurut pandangan mereka sendiri. Anggapan seperti ini mengakibatkan tiga macam kesalahan.\n\n1. Mereka menganggap bahwa para malaikat itu anak-anak perempuan.\n\n2. Mereka menganggap bahwa malaikat adalah anak perempuan Allah.\n\n3. Mereka menyembah malaikat-malaikat itu.\n\nAllah swt berfirman:\n\nMaka tanyakanlah (Muhammad) kepada mereka (orang-orang kafir Mekah), "Apakah anak-anak perempuan itu untuk Tuhanmu sedangkan untuk mereka anak-anak laki-laki?" Atau apakah Kami menciptakan malaikat-malaikat berupa perempuan sedangkan mereka menyaksikan(nya)? Ingatlah, sesungguhnya di antara kebohongannya mereka benar-benar mengatakan, "Allah mempunyai anak." Dan sungguh, mereka benar-benar pendusta. (ash-shaffat/37: 149-152)\n\nAllah swt menegaskan bahwa dengan ucapan itu, kaum musyrikin telah mengatakan ucapan yang besar dosanya. Mereka telah mengada-adakan kebohongan terhadap Allah, dan karenanya diancam dengan siksaan yang pedih. Mereka juga telah menyia-nyiakan akal pikiran mereka sendiri, karena memutarbalikkan kebenaran yang semestinya mereka junjung tinggi.\n\nDan mereka berkata, "(Allah) Yang Maha Pengasih mempunyai anak." Sungguh, kamu telah membawa sesuatu yang sangat mungkar, hampir saja langit pecah, dan bumi terbelah, dan gunung-gunung runtuh, (karena ucapan itu), karena mereka menganggap (Allah) Yang Maha Pengasih mempunyai anak. Dan tidak mungkin bagi (Allah) Yang Maha Pengasih mempunyai anak. (Maryam/19: 88-92) (Lihat juga al-Baqarah/2: 116)',
-        short:
-          'Setelah mengingatkan umat Islam agar tidak mengikuti perkataan dan perbuatan yang tidak diketahui kebenarannya, pada ayat ini Allah menjelaskan kesalahan kaum musyrik yang menyembah patung-patung sebagai perantara mendekatkan diri mereka kepada Tuhan. Allah menyatakan, "Maka apakah pantas, apa yang engkau katakan bahwa Tuhanmu memilihkan anak-anak laki-laki untukmu dan Dia mengambil anak-anak perempuan di antara para malaikat, yang menurut pandanganmu lebih rendah derajatnya daripada anak laki-laki? Sungguh, kamu benar-benar mengucapkan kata yang besar dosanya, yaitu bahwa Tuhan mempunyai anak dan para malaikat berjenis kelamin perempuan, sungguh perkataan itu adalah kebohongan yang nyata.',
+        footnotes: null,
+        text: "Wahai orang-orang yang mengklaim bahwa para malaikat adalah anak-anak perempuan Allah! Apakah Tuhan kalian -wahai kaum musyrikin- mengistimewakan kalian dengan anak laki-laki dan Dia memilih untuk diri-Nya para malaikat sebagai anak-anak perempuan? Sungguh Allah Mahatinggi dari apa yang kalian katakan, sungguh kalian benar-benar telah mengatakan tentang Allah perkataan yang sangat keji dengan menisbahkan pada-Nya anak, serta mengklaim bahwa Dia memiliki anak perempuan sebagai bentuk kekufuran yang melampaui batas kepada-Nya.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0641\u064e\u0623\u064e\u0635\u0652\u0641\u064e\u0627\u0643\u064f\u0645\u0652 \u0631\u064e\u0628\u0651\u064f\u0643\u064f\u0645 \u0628\u0650\u0627\u0644\u0652\u0628\u064e\u0646\u0650\u064a\u0646\u064e \u0648\u064e\u0627\u062a\u0651\u064e\u062e\u064e\u0630\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064e\u0644\u064e\u0627\u0626\u0650\u0643\u064e\u0629\u0650 \u0625\u0650\u0646\u064e\u0627\u062b\u064b\u0627 \u06da \u0625\u0650\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0644\u064e\u062a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0642\u064e\u0648\u0652\u0644\u064b\u0627 \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Afa asfaakum rabbukum bilbaneena wattakhaza minal malaaa'ikati inaasaa; innakum lataqooloona qawlan 'azeema",
-      },
+      arabic:
+        "أَفَأَصْفَىٰكُمْ رَبُّكُم بِٱلْبَنِينَ وَٱتَّخَذَ مِنَ ٱلْمَلَٰٓئِكَةِ إِنَٰثًا إِنَّكُمْ لَتَقُولُونَ قَوْلًا عَظِيمًا",
     },
     translation: {
-      en: "Then, has your Lord chosen you for [having] sons and taken from among the angels daughters? Indeed, you say a grave saying.",
-      id: "Maka apakah pantas Tuhan memilihkan anak laki-laki untukmu dan Dia mengambil anak perempuan dari malaikat? Sungguh, kamu benar-benar mengucapkan kata yang besar (dosanya).",
+      en: {
+        footnotes:
+          "[37] Their feeble argument is debunked and refuted concerning the issue of purity of Faith and Monotheism. Although preferring male over female is a heathen way; yet, how would Allah, the Omnipotent Creator, accept for Himself what they do not accept for themselves? (cf. 37:149-155). They worshiped the angels based on the claim that they were Allah’s daughters. (cf. 43:19-20).",
+        text: "Has your Lord favored you with sons and has taken for Himself angels as daughters[37]? You are indeed making a monstrous claim.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka apakah pantas Tuhan memilihkan anak laki-laki untukmu dan Dia mengambil anak perempuan dari malaikat? Sungguh, kamu benar-benar mengucapkan perkataan yang besar (dosanya).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2070",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2070.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2070.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 114,
       juz: 15,
       manzil: 4,
       page: 286,
       ruku: 244,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2070,
@@ -188,40 +163,33 @@ export const quranSurah17Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini dijelaskan bahwa dalam Al-Qur'an, Allah telah memberikan peringatan berkali-kali, baik berupa bukti-bukti kebenaran eksistensi Allah melalui ciptaan-ciptaan-Nya, ataupun alasan-alasan yang menunjukkan kebenaran tauhid, Al-Qur'an juga berisi beberapa kisah tentang nasib umat yang menyekutukan Allah dengan yang lain, agar kaum musyrikin Mekah dapat mengambil pelajaran dari berbagai peristiwa tersebut dan menghentikan kemusyrikan dan kebiasaan mereka yang jelek. Semestinya keterangan dan peringatan yang berulang-ulang itu dapat melunakkan hati dan menyadarkan pikiran mereka, agar mau mengikuti seruan Al-Qur'an. Namun demikian, keterangan-keterangan itu ternyata hanya membuat mereka lari dari Al-Qur'an. Mereka tidak mau mendengarkan dan menerima kebenarannya karena jiwa mereka telah dikotori oleh kebiasaan-kebiasaan buruk. mereka tidak bisa lagi menilai suatu kebenaran sebagai kebenaran, bahkan mereka menjauh darinya dan lebih memilih bergelimang dalam kebatilan.",
-        short:
-          "Dan sungguh, dalam Al-Qur'an ini telah Kami jelaskan berulang-ulang peringatan dengan beraneka macam perupamaan, janji, dan ancaman agar mereka selalu ingat dan mengambil pelajaran. Tetapi peringatan yang berulang-ulang itu tidak lain hanyalah menambah mereka lari semakin jauh dari kebenaran.",
+        footnotes: null,
+        text: "Sungguh, dalam Al-Qur`ān ini telah Kami jelaskan berulang-ulang tentang hukum-hukum, mauizah, dan berbagai perumpamaan agar manusia mengambilnya sebagai peringatan, sehingga mereka bisa mengerjakan apa yang mendatangkan manfaat dan menjauhi apa yang memberikan mudarat. Akan tetapi, kenyataannya sebagian mereka adalah orang-orang yang sifat fitrah mereka telah berubah, yang dengannya mereka hanya semakin bertambah jauh dari kebenaran dan semakin membencinya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0642\u064e\u062f\u0652 \u0635\u064e\u0631\u0651\u064e\u0641\u0652\u0646\u064e\u0627 \u0641\u0650\u064a \u0647\u064e\u0670\u0630\u064e\u0627 \u0627\u0644\u0652\u0642\u064f\u0631\u0652\u0622\u0646\u0650 \u0644\u0650\u064a\u064e\u0630\u0651\u064e\u0643\u0651\u064e\u0631\u064f\u0648\u0627 \u0648\u064e\u0645\u064e\u0627 \u064a\u064e\u0632\u0650\u064a\u062f\u064f\u0647\u064f\u0645\u0652 \u0625\u0650\u0644\u0651\u064e\u0627 \u0646\u064f\u0641\u064f\u0648\u0631\u064b\u0627",
-      transliteration: {
-        en: "Wa laqad sarrafnaa fee haazal Quraani liyazzakkaroo wa maa yazeeduhum illaa nufooraa",
-      },
+      arabic: "وَلَقَدْ صَرَّفْنَا فِى هَٰذَا ٱلْقُرْءَانِ لِيَذَّكَّرُوا۟ وَمَا يَزِيدُهُمْ إِلَّا نُفُورًا",
     },
     translation: {
-      en: "And We have certainly diversified [the contents] in this Qur'an that mankind may be reminded, but it does not increase the disbelievers except in aversion.",
-      id: "Dan sungguh, dalam Al-Qur'an ini telah Kami (jelaskan) berulang-ulang (peringatan), agar mereka selalu ingat. Tetapi (peringatan) itu hanya menambah mereka lari (dari kebenaran).",
+      en: {
+        footnotes:
+          "[38] “We send down the Qur’an as a healing and mercy for the believers, but it does not increase the wrongdoers except in loss.” See below 17:82.",
+        text: "We have explained things in various ways in this Qur’an, so that they may take heed, but it only increases them in aversion[38].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, dalam Al-Qur`an ini telah Kami (jelaskan) berulang-ulang (peringatan), agar mereka selalu ingat. Tetapi (peringatan) itu hanya menambah mereka lari (dari kebenaran).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2071",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2071.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2071.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 114,
       juz: 15,
       manzil: 4,
       page: 286,
       ruku: 244,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2071,
@@ -229,20 +197,22 @@ export const quranSurah17Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah swt membantah kepercayaan kaum musyrikin Mekah dengan memerintahkan kepada Rasul-Nya agar mengatakan kepada mereka bahwa jika ada tuhan-tuhan selain Dia, niscaya tuhan-tuhan yang mereka persekutukan itu akan mencari jalan untuk menyampaikan apa yang mereka inginkan kepada Allah yang mempunyai Arasy, yang kekuasaan-Nya meliputi langit, bumi, dan benda-benda lainnya. Sudah tentu tuhan-tuhan yang mereka persekutukan itu memohon lebih dulu dan menghambakan dirinya kepada-Nya. Maka cara mereka meminta kepada Allah dengan perantaraan tuhan-tuhan itu sudah menempuh jalan yang berliku-liku. Mengapa mereka tidak langsung menyembah dan memohon saja kepada Allah Yang Maha Esa.\n\nAyat ini mengandung sindiran kepada kaum musyrikin Mekah agar mereka menyembah hanya kepada Allah Yang Maha Esa, dan melarang mereka mengada-adakan tuhan yang lain sebagai perantara yang dapat menyampaikan keinginan mereka kepada Zat Yang Maha Esa. Allah tidak menyukai adanya perantara-perantara seperti yang mereka yakini, bahkan Allah telah melarang manusia mengadakan perantara-perantara seperti itu melalui wahyu yang telah disampaikan oleh para rasul-Nya.",
-        short:
-          "Katakanlah wahai Nabi Muhammad kepada kaum musyrik, \"Jika ada tuhan-tuhan di samping-Nya, dan mustahil adanya yang demikian itu sebagaimana yang mereka katakan, dan mereka percaya, niscaya tuhan-tuhan itu mencari jalan kepada Tuhan Yang mempunyai 'Arsy, untuk menyaingi, mengalahkan, atau berbagi kekuasaan dengan-Nya.",
+        footnotes: null,
+        text: 'Wahai Rasul! Katakanlah kepada orang-orang musyrik itu, "Seandainya ada tuhan-tuhan sesembahan lain di samping Allah -Ta\'ālā- sebagaimana yang mereka klaim secara fitnah dan dusta, niscaya tuhan-tuhan sesembahan itu akan mencari jalan kepada Allah, Sang Pemilik Arasy untuk mengalahkan dan merebut kekuasaan-Nya."',
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644 \u0644\u0651\u064e\u0648\u0652 \u0643\u064e\u0627\u0646\u064e \u0645\u064e\u0639\u064e\u0647\u064f \u0622\u0644\u0650\u0647\u064e\u0629\u064c \u0643\u064e\u0645\u064e\u0627 \u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0625\u0650\u0630\u064b\u0627 \u0644\u0651\u064e\u0627\u0628\u0652\u062a\u064e\u063a\u064e\u0648\u0652\u0627 \u0625\u0650\u0644\u064e\u0649\u0670 \u0630\u0650\u064a \u0627\u0644\u0652\u0639\u064e\u0631\u0652\u0634\u0650 \u0633\u064e\u0628\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Qul law kaana ma'ahooo aalihatun kamaa yaqooloona izal labtaghaw ilaa zil 'Arshi Sabeela",
-      },
+      arabic: "قُل لَّوْ كَانَ مَعَهُۥٓ ءَالِهَةٌ كَمَا يَقُولُونَ إِذًا لَّٱبْتَغَوْا۟ إِلَىٰ ذِى ٱلْعَرْشِ سَبِيلًا",
     },
     translation: {
-      en: 'Say, [O Muhammad], "If there had been with Him [other] gods, as they say, then they [each] would have sought to the Owner of the Throne a way."',
-      id: "Katakanlah (Muhammad), “Jika ada tuhan-tuhan di samping-Nya, sebagai-mana yang mereka katakan, niscaya tuhan-tuhan itu mencari jalan kepada Tuhan yang mempunyai ’Arsy.”",
+      en: {
+        footnotes: "[39] To please Him or take over His Throne.",
+        text: "Say, “If there were other gods besides Him – as they claim – they would have surely sought a way to the Lord of the Throne[39].”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Jika ada tuhan-tuhan disamping-Nya, sebagaimana yang mereka katakan, niscaya tuhan-tuhan itu mencari jalan kepada Tuhan yang mempunyai Arasy."',
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah107Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6198",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6198.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6198.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 602,
       ruku: 549,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6198,
@@ -24,40 +25,32 @@ export const quranSurah107Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah menghadapkan pertanyaan kepada Nabi Muhammad, "Apakah engkau mengetahui orang yang mendustakan agama dan yang dimaksud dengan orang yang mendustakan agama?" Pertanyaan ini dijawab pada ayat-ayat berikut.',
-        short:
-          "Tahukah kamu, wahai Rasul, orang yang mendustakan agama dan mengingkari hisab serta hari pembalasan di akhirat nanti?",
+        footnotes: null,
+        text: "Tahukah kamu orang yang mendustakan adanya pembalasan amal perbuatan pada hari Kiamat?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0631\u064e\u0623\u064e\u064a\u0652\u062a\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u064a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064f \u0628\u0650\u0627\u0644\u062f\u0651\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Ara-aital lazee yu kazzibu bid deen",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ أَرَءَيْتَ ٱلَّذِى يُكَذِّبُ بِٱلدِّينِ",
     },
     translation: {
-      en: "Have you seen the one who denies the Recompense?",
-      id: "Tahukah kamu (orang) yang mendustakan agama?",
+      en: {
+        footnotes: "",
+        text: "Have you seen the one who denies the Recompense?",
+      },
+      id: {
+        footnotes: "",
+        text: "Tahukah kamu (orang) yang mendustakan agama?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6199",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6199.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6199.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 602,
       ruku: 549,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6199,
@@ -65,40 +58,32 @@ export const quranSurah107Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah lalu menjelaskan bahwa sebagian dari sifat-sifat orang yang mendustakan agama ialah orang-orang yang menolak dan membentak anak-anak yatim yang datang kepadanya untuk memohon belas-kasihnya demi kebutuhan hidupnya. Penolakannya itu sebagai penghinaan dan takabur terhadap anak-anak yatim itu.",
-        short:
-          "Jika engkau ingin tahu, maka para pendusta agama, hisab, dan hari pembalasan itulah orang yang menghardik anak yatim, menyakiti hatinya, dan berbuat zalim kepadanya dengan menahan haknya. Dia tidak lagi peduli terhadap anak yang sudah kehilangan tumpuan hidupnya itu.",
+        footnotes: null,
+        text: "Dialah orang yang menolak anak yatim dengan keras dari memenuhi kebutuhannya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u064a\u064e\u062f\u064f\u0639\u0651\u064f \u0627\u0644\u0652\u064a\u064e\u062a\u0650\u064a\u0645\u064e",
-      transliteration: {
-        en: "Fa zaalikal lazi yadu'ul-yateem",
-      },
+      arabic: "فَذَٰلِكَ ٱلَّذِى يَدُعُّ ٱلْيَتِيمَ",
     },
     translation: {
-      en: "For that is the one who drives away the orphan",
-      id: "Maka itulah orang yang menghardik anak yatim,",
+      en: {
+        footnotes: "",
+        text: "Such is the one who repulses the orphan harshly,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka itulah orang yang menghardik anak yatim,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6200",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6200.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6200.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 602,
       ruku: 549,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6200,
@@ -106,40 +91,32 @@ export const quranSurah107Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan lebih lanjut sifat pendusta itu, yaitu dia tidak mengajak orang lain untuk membantu dan memberi makan orang miskin. Bila tidak mau mengajak orang memberi makan dan membantu orang miskin berarti ia tidak melakukannya sama sekali. Berdasarkan keterangan di atas, bila seorang tidak sanggup membantu orang-orang miskin maka hendaklah ia menganjurkan orang lain agar melakukan usaha yang mulia itu.",
-        short:
-          "dan dia tidak mendorong orang lain untuk memberi makan orang miskin yang tidak mempunyai kecukupan untuk memenuhi keperluan hidupnya sehari-hari. Bila dia enggan mendorong orang lain untuk memberi makan dan memperhatikan kesejahteraan anak yatim, bagaimana mungkin dia, dengan kekikiran dan kecintaannya pada harta, mendorong dirinya sendiri untuk berbuat demikian?",
+        footnotes: null,
+        text: "Dia juga tidak menganjurkan dirinya dan orang lain untuk memberi makan kepada orang yang fakir.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0627 \u064a\u064e\u062d\u064f\u0636\u0651\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0637\u064e\u0639\u064e\u0627\u0645\u0650 \u0627\u0644\u0652\u0645\u0650\u0633\u0652\u0643\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Wa la ya huddu 'alaa ta'amil miskeen",
-      },
+      arabic: "وَلَا يَحُضُّ عَلَىٰ طَعَامِ ٱلْمِسْكِينِ",
     },
     translation: {
-      en: "And does not encourage the feeding of the poor.",
-      id: "dan tidak mendorong memberi makan orang miskin.",
+      en: {
+        footnotes: "",
+        text: "and does not urge others to feed the needy.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan tidak mengajak memberi makan orang miskin.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6201",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6201.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6201.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 602,
       ruku: 549,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6201,
@@ -147,40 +124,32 @@ export const quranSurah107Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah mengungkapkan satu ancaman yaitu celakalah orang-orang yang mengerjakan salat dengan tubuh dan lidahnya, tidak sampai ke hatinya. Dia lalai dan tidak menyadari apa yang diucapkan lidahnya dan yang dikerjakan oleh anggota tubuhnya. Ia rukuk dan sujud dalam keadaan lalai, ia mengucapkan takbir tetapi tidak menyadari apa yang diucapkannya. Semua itu adalah hanya gerak biasa dan kata-kata hafalan semata-mata yang tidak mempengaruhi apa-apa, tidak ubahnya seperti robot.\n\nPerilaku tersebut ditujukan kepada orang-orang yang mendustakan agama, yaitu orang munafik. Ancaman itu tidak ditujukan kepada orang-orang muslim yang awam, tidak mengerti bahasa Arab, dan tidak tahu tentang arti dari apa yang dibacanya. Jadi orang-orang awam yang tidak memahami makna dari apa yang dibacanya dalam salat tidak termasuk orang-orang yang lalai seperti yang disebut dalam ayat ini.",
-        short:
-          "Maka binasa dan celakalah orang yang salat yang memiliki sifat-sifat tercela berikut.",
+        footnotes: null,
+        text: "4 - 5. Maka kehancuran dan siksa bagi orang-orang yang mendirikan salat, yaitu orang-orang yang lalai dalam salat mereka dengan tidak memedulikannya hingga waktunya selesai.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0648\u064e\u064a\u0652\u0644\u064c \u0644\u0651\u0650\u0644\u0652\u0645\u064f\u0635\u064e\u0644\u0651\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fa wai lul-lil mu salleen",
-      },
+      arabic: "فَوَيْلٌ لِّلْمُصَلِّينَ",
     },
     translation: {
-      en: "So woe to those who pray",
-      id: "Maka celakalah orang yang salat,",
+      en: {
+        footnotes: "",
+        text: "So woe to those who pray,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka celakalah orang yang salat,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6202",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6202.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6202.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 602,
       ruku: 549,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6202,
@@ -188,40 +157,34 @@ export const quranSurah107Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah mengungkapkan satu ancaman yaitu celakalah orang-orang yang mengerjakan salat dengan tubuh dan lidahnya, tidak sampai ke hatinya. Dia lalai dan tidak menyadari apa yang diucapkan lidahnya dan yang dikerjakan oleh anggota tubuhnya. Ia rukuk dan sujud dalam keadaan lalai, ia mengucapkan takbir tetapi tidak menyadari apa yang diucapkannya. Semua itu adalah hanya gerak biasa dan kata-kata hafalan semata-mata yang tidak mempengaruhi apa-apa, tidak ubahnya seperti robot.\n\nPerilaku tersebut ditujukan kepada orang-orang yang mendustakan agama, yaitu orang munafik. Ancaman itu tidak ditujukan kepada orang-orang muslim yang awam, tidak mengerti bahasa Arab, dan tidak tahu tentang arti dari apa yang dibacanya. Jadi orang-orang awam yang tidak memahami makna dari apa yang dibacanya dalam salat tidak termasuk orang-orang yang lalai seperti yang disebut dalam ayat ini.",
-        short:
-          "Yaitu orang-orang yang lalai terhadap salatnya, di antaranya dengan tidak memenuhi ketentuannya, mengerjakannya di luar waktunya, bermalas-malasan, dan lalai akan tujuan pelaksanaanya.",
+        footnotes: null,
+        text: "4 - 5. Maka kehancuran dan siksa bagi orang-orang yang mendirikan salat, yaitu orang-orang yang lalai dalam salat mereka dengan tidak memedulikannya hingga waktunya selesai.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0647\u064f\u0645\u0652 \u0639\u064e\u0646 \u0635\u064e\u0644\u064e\u0627\u062a\u0650\u0647\u0650\u0645\u0652 \u0633\u064e\u0627\u0647\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Al lazeena hum 'an salaatihim sahoon",
-      },
+      arabic: "ٱلَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ",
     },
     translation: {
-      en: "[But] who are heedless of their prayer -",
-      id: "(yaitu) orang-orang yang lalai terhadap salatnya,",
+      en: {
+        footnotes:
+          "[1] i.e., the hypocrites who do not pray except to show off and others who are heedless to pray at their specified times.",
+        text: "but are heedless of their prayer[1];",
+      },
+      id: {
+        footnotes:
+          "[927] Orang-orang yang tidak menghargai serta melalaikan pelaksanaan dan waktu-waktu salat.",
+        text: "(yaitu) orang-orang yang lalai terhadap salatnya,[927]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6203",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6203.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6203.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 602,
       ruku: 549,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6203,
@@ -229,20 +192,23 @@ export const quranSurah107Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah selanjutnya menambah penjelasan tentang sifat orang pendusta agama, yaitu mereka melakukan perbuatan-perbuatan lahir hanya semata karena ria, tidak terkesan pada jiwanya untuk meresapi rahasia dan hikmahnya.",
-        short:
-          "Tidak hanya itu, mereka jugalah orang-orang yang berbuat ria, baik dalam salatnya maupun semua perbuatan baiknya. Dia beramal tanpa rasa ikhlas, melainkan demi mendapat pujian dan penilaian baik dari orang lain.",
+        footnotes: null,
+        text: "Mereka ialah orang-orang yang berbuat ria dengan salat dan amal perbuatan mereka, tidak mengikhlaskan amal mereka untuk Allah semata.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0647\u064f\u0645\u0652 \u064a\u064f\u0631\u064e\u0627\u0621\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Al lazeena hum yuraa-oon",
-      },
+      arabic: "ٱلَّذِينَ هُمْ يُرَآءُونَ",
     },
     translation: {
-      en: "Those who make show [of their deeds]",
-      id: "yang berbuat ria,",
+      en: {
+        footnotes: "",
+        text: "those who only show off,",
+      },
+      id: {
+        footnotes:
+          "[928] Riya ialah melakukan perbuatan tidak untuk mencari keridaan Allah, melainkan untuk mencari pujian atau kamasyhuran di masyarakat.",
+        text: "yang berbuat riya,[928]",
+      },
     },
   },
 ];

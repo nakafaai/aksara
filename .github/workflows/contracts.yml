@@ -1,0 +1,334 @@
+name: Release contracts
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: release-contracts
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main' && github.repository == 'nakafaai/aksara'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+    outputs:
+      asset_name: ${{ steps.decision.outputs.asset_name }}
+      mode: ${{ steps.decision.outputs.mode }}
+      release_tag: ${{ steps.decision.outputs.release_tag }}
+      sha256: ${{ steps.decision.outputs.sha256 }}
+      size: ${{ steps.decision.outputs.size }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: package.json
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Capture immutable contract releases
+        env:
+          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh api --paginate
+          "repos/$GITHUB_REPOSITORY/releases?per_page=100"
+          --jq '.[] | select(.draft == false and .immutable == true and
+          .prerelease == false) | .tag_name |
+          select(startswith("contracts-v"))' > "$CONTRACT_TAGS"
+
+      - name: Resolve release identity
+        id: identity
+        env:
+          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+        run: >-
+          node packages/contracts/scripts/release-command.ts describe
+          --tags "$CONTRACT_TAGS" --output "$GITHUB_OUTPUT"
+
+      - name: Build verified archive
+        env:
+          TARBALL: ${{ runner.temp }}/${{ steps.identity.outputs.asset_name }}
+        run: pnpm verify:consumer -- --output "$TARBALL"
+
+      - name: Download latest immutable archive
+        if: steps.identity.outputs.has_latest == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LATEST_ASSET: ${{ steps.identity.outputs.latest_asset_name }}
+          LATEST_ROOT: ${{ runner.temp }}/latest-contract
+          LATEST_TAG: ${{ steps.identity.outputs.latest_tag }}
+        run: |
+          release=$(gh release view "$LATEST_TAG" \
+            --json isDraft,isImmutable,isPrerelease \
+            --repo "$GITHUB_REPOSITORY")
+          if ! jq -e \
+            '.isDraft == false
+              and .isImmutable == true
+              and .isPrerelease == false' \
+            <<< "$release" >/dev/null; then
+            echo "The latest contract tag must own a final immutable release." >&2
+            exit 1
+          fi
+          mkdir -p "$LATEST_ROOT"
+          gh release download "$LATEST_TAG" --clobber \
+            --dir "$LATEST_ROOT" --pattern "$LATEST_ASSET" \
+            --repo "$GITHUB_REPOSITORY"
+
+      - name: Decide exact archive release
+        id: decision
+        env:
+          CONTRACT_TAGS: ${{ runner.temp }}/contract-tags.txt
+          CURRENT_ARCHIVE: ${{ runner.temp }}/${{ steps.identity.outputs.asset_name }}
+          HAS_LATEST: ${{ steps.identity.outputs.has_latest }}
+          LATEST_ARCHIVE: ${{ runner.temp }}/latest-contract/${{ steps.identity.outputs.latest_asset_name }}
+        run: |
+          arguments=(decide --tags "$CONTRACT_TAGS" \
+            --archive "$CURRENT_ARCHIVE" --output "$GITHUB_OUTPUT")
+          if [[ "$HAS_LATEST" == "true" ]]; then
+            arguments+=(--previous "$LATEST_ARCHIVE")
+          fi
+          node packages/contracts/scripts/release-command.ts "${arguments[@]}"
+
+      - name: Verify repository
+        if: steps.decision.outputs.mode == 'create'
+        run: |
+          pnpm lint
+          pnpm deprecations
+          pnpm names
+          pnpm jsdocs
+          pnpm lines
+          pnpm workflows
+          pnpm boundaries
+          pnpm typecheck
+          pnpm test
+          pnpm build
+
+      - name: Attest verified archive
+        if: steps.decision.outputs.mode == 'create'
+        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4.2.0
+        with:
+          subject-path: ${{ runner.temp }}/${{ steps.decision.outputs.asset_name }}
+
+      - name: Verify archive attestation
+        if: steps.decision.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARBALL: ${{ runner.temp }}/${{ steps.decision.outputs.asset_name }}
+        run: >-
+          gh attestation verify "$TARBALL"
+          --repo "$GITHUB_REPOSITORY"
+          --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/contracts.yml"
+          --source-digest "$GITHUB_SHA"
+          --source-ref "refs/heads/main"
+
+      - name: Upload verified archive
+        if: steps.decision.outputs.mode == 'create'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          compression-level: 0
+          if-no-files-found: error
+          name: contract-archive
+          path: ${{ runner.temp }}/${{ steps.decision.outputs.asset_name }}
+          retention-days: 1
+
+  publish:
+    needs: build
+    if: needs.build.outputs.mode == 'create'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      attestations: read
+      contents: write
+    steps:
+      - name: Download verified archive
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: contract-archive
+          path: ${{ runner.temp }}/contract-archive
+
+      - name: Verify transported archive
+        env:
+          EXPECTED_SHA256: ${{ needs.build.outputs.sha256 }}
+          EXPECTED_SIZE: ${{ needs.build.outputs.size }}
+          GH_TOKEN: ${{ github.token }}
+          TARBALL: ${{ runner.temp }}/contract-archive/${{ needs.build.outputs.asset_name }}
+        run: |
+          actual_sha256=$(sha256sum "$TARBALL" | cut -d ' ' -f 1)
+          actual_size=$(stat --format='%s' "$TARBALL")
+          if [[ "$actual_sha256" != "$EXPECTED_SHA256" || "$actual_size" != "$EXPECTED_SIZE" ]]; then
+            echo "The transported archive differs from the verified build output." >&2
+            exit 1
+          fi
+          gh attestation verify "$TARBALL" \
+            --repo "$GITHUB_REPOSITORY" \
+            --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/contracts.yml" \
+            --source-digest "$GITHUB_SHA" \
+            --source-ref "refs/heads/main"
+
+      - name: Resolve release state
+        id: state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
+        run: |
+          release=$(gh release view "$RELEASE_TAG" \
+            --json isDraft,isImmutable,isPrerelease,targetCommitish \
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null || true)
+          tag=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" 2>/dev/null || true)
+
+          if [[ -z "$release" ]]; then
+            if [[ -n "$tag" ]]; then
+              echo "The contract tag exists without a GitHub Release." >&2
+              exit 1
+            fi
+            echo "mode=create" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if jq -e \
+            '.isDraft == true or .isImmutable == false' \
+            <<< "$release" >/dev/null; then
+            target=$(jq -r '.targetCommitish' <<< "$release")
+            if [[ "$target" != "$GITHUB_SHA" ]]; then
+              echo "A mutable contract release belongs to a different source commit." >&2
+              exit 1
+            fi
+            if [[ "$(jq -r '.isPrerelease' <<< "$release")" == "true" ]]; then
+              echo "A mutable contract release cannot be a prerelease." >&2
+              exit 1
+            fi
+            if [[ -n "$tag" ]] && ! jq -e \
+              --arg sha "$GITHUB_SHA" \
+              '.object.type == "commit" and .object.sha == $sha' \
+              <<< "$tag" >/dev/null; then
+              echo "The mutable contract tag belongs to a different source commit." >&2
+              exit 1
+            fi
+            gh release delete "$RELEASE_TAG" --cleanup-tag \
+              --repo "$GITHUB_REPOSITORY" --yes
+            echo "mode=create" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "A published contract release already owns this new version." >&2
+          exit 1
+
+      - name: Create draft release
+        if: steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
+        run: >-
+          gh release create "$RELEASE_TAG" --draft --latest=false
+          --notes "Contracts built from Aksara commit $GITHUB_SHA."
+          --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "$RELEASE_TAG"
+
+      - name: Attach verified archive
+        if: steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
+          TARBALL: ${{ runner.temp }}/contract-archive/${{ needs.build.outputs.asset_name }}
+        run: gh release upload "$RELEASE_TAG" "$TARBALL" --repo "$GITHUB_REPOSITORY"
+
+      - name: Publish immutable release
+        if: steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
+        run: >-
+          gh release edit "$RELEASE_TAG" --draft=false --latest=false
+          --repo "$GITHUB_REPOSITORY"
+
+      - name: Verify published release
+        env:
+          ASSET_NAME: ${{ needs.build.outputs.asset_name }}
+          EXPECTED_SHA256: ${{ needs.build.outputs.sha256 }}
+          EXPECTED_SIZE: ${{ needs.build.outputs.size }}
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
+          TARBALL: ${{ runner.temp }}/contract-archive/${{ needs.build.outputs.asset_name }}
+        run: |
+          release=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG")
+          if ! jq -e \
+            --arg asset "$ASSET_NAME" \
+            --arg digest "sha256:$EXPECTED_SHA256" \
+            --arg sha "$GITHUB_SHA" \
+            --argjson size "$EXPECTED_SIZE" \
+            --arg tag "$RELEASE_TAG" \
+            '.draft == false
+              and .immutable == true
+              and .prerelease == false
+              and .published_at != null
+              and .tag_name == $tag
+              and .target_commitish == $sha
+              and (.assets | length) == 1
+              and .assets[0].name == $asset
+              and .assets[0].size == $size
+              and .assets[0].digest == $digest' \
+            <<< "$release" >/dev/null; then
+            echo "The published release differs from the verified archive." >&2
+            exit 1
+          fi
+
+          tag=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG")
+          if ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.object.type == "commit" and .object.sha == $sha' \
+            <<< "$tag" >/dev/null; then
+            echo "The release tag does not target the reviewed source commit." >&2
+            exit 1
+          fi
+
+          gh release verify "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"
+          gh release verify-asset "$RELEASE_TAG" "$TARBALL" --repo "$GITHUB_REPOSITORY"
+          gh attestation verify "$TARBALL" \
+            --repo "$GITHUB_REPOSITORY" \
+            --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/contracts.yml" \
+            --source-digest "$GITHUB_SHA" \
+            --source-ref "refs/heads/main"
+
+      - name: Remove failed mutable release
+        if: failure() && steps.state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.release_tag }}
+        run: |
+          release=$(gh release view "$RELEASE_TAG" \
+            --json isImmutable,targetCommitish \
+            --repo "$GITHUB_REPOSITORY" 2>/dev/null || true)
+          if [[ -z "$release" ]] || ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.isImmutable == false and .targetCommitish == $sha' \
+            <<< "$release" >/dev/null; then
+            exit 0
+          fi
+          tag=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" \
+            2>/dev/null || true)
+          if [[ -n "$tag" ]] && ! jq -e \
+            --arg sha "$GITHUB_SHA" \
+            '.object.type == "commit" and .object.sha == $sha' \
+            <<< "$tag" >/dev/null; then
+            exit 0
+          fi
+          gh release delete "$RELEASE_TAG" --cleanup-tag \
+            --repo "$GITHUB_REPOSITORY" --yes

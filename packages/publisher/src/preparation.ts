@@ -26,6 +26,10 @@ import {
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
 import {
+  type PublicationScope,
+  publicationScopeSelectsSnapshot,
+} from "@nakafa/aksara-contracts/release/snapshot";
+import {
   decodeContentSnapshotManifests,
   decodeContentSnapshotRows,
   verifyContentSnapshots,
@@ -35,8 +39,10 @@ import { Effect, Stream } from "effect";
 import {
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
+  PreparedSnapshotScopeError,
 } from "#publisher/preparation/errors";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
+import { requirePublishedRendererDomain } from "#publisher/preparation/renderer";
 import {
   makePreparedGitRelease,
   type PrepareContentRelease,
@@ -54,6 +60,17 @@ function isDerivedUpsert(
   record: DerivedContentRecord
 ): record is Extract<DerivedContentRecord, { readonly kind: "upsert" }> {
   return record.kind === "upsert";
+}
+
+/** Rejects a replacement manifest outside the signed publication scope. */
+function requireScopedSnapshot(
+  scope: PublicationScope,
+  family: Parameters<typeof publicationScopeSelectsSnapshot>[1]
+) {
+  if (publicationScopeSelectsSnapshot(scope, family)) {
+    return Effect.void;
+  }
+  return Effect.fail(new PreparedSnapshotScopeError({ family }));
 }
 
 /** Prepares a self-verified release from one replayable authored record source. */
@@ -85,7 +102,13 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     decodeContentSnapshotManifests(input.snapshotManifests());
   /** Replays strict immutable-row decoding without retaining row bodies. */
   const snapshotRows = () => decodeContentSnapshotRows(input.snapshotRows());
-  yield* snapshotManifests().pipe(Stream.runForEach(requireSnapshotProvenance));
+  yield* snapshotManifests().pipe(
+    Stream.runForEach((snapshot) =>
+      requireSnapshotProvenance(snapshot).pipe(
+        Effect.zipRight(requireScopedSnapshot(input.scope, snapshot.family))
+      )
+    )
+  );
   const snapshotSummary = yield* verifyContentSnapshots({
     manifests: input.snapshotManifests,
     previousSnapshots: input.previousSnapshots,
@@ -119,10 +142,17 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
       updateReleaseItemsDigest(input.releaseId, itemState, record.item).pipe(
         Effect.zipRight(
           isDerivedUpsert(record)
-            ? updateProjectionDigest(
-                input.releaseId,
-                projectionState,
-                record.projection
+            ? requirePublishedRendererDomain(
+                record.payload,
+                rendererManifest
+              ).pipe(
+                Effect.zipRight(
+                  updateProjectionDigest(
+                    input.releaseId,
+                    projectionState,
+                    record.projection
+                  )
+                )
               )
             : Effect.void
         ),
@@ -180,6 +210,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     rollbackDigest,
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
+    scope: input.scope,
     snapshots: snapshotSummary.snapshots,
     upsertCount: itemState.upsertCount,
   });

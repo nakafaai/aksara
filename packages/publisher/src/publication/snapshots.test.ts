@@ -23,6 +23,7 @@ import {
   contentRecord,
   head,
   projection,
+  publicationScope,
   record,
   rendererManifest,
 } from "#test/publication";
@@ -59,6 +60,7 @@ async function prepareProgramRelease() {
             publicPath: projection.publicPath,
           },
         }),
+      scope: { ...publicationScope, snapshots: ["program"] },
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
     })

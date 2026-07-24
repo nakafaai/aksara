@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah52Verses49To49 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4784",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4784.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4784.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 210,
       juz: 27,
       manzil: 7,
       page: 525,
       ruku: 459,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4784,
@@ -24,20 +25,23 @@ export const quranSurah52Verses49To49 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah dalam ayat ini memerintahkan kepada Muhammad saw supaya ia bertasbih kepada Allah dengan salat malam. Karena ibadah pada waktu itu berat melaksanakannya, dan jauh dari ria, dan supaya ia salat tatkala terbenamnya bintangbintang pada waktu subuh. Dalam ayat yang sama artinya Allah berfirman: \n\nDan pada sebagian malam, lakukanlah salat Tahajud (sebagai suatu ibadah) tambahan bagimu: mudah-mudahan Tuhanmu mengangkatmu ke tempat yang terpuji. (al-Isra'/17: 79) \n\nMakna membaca tasbih dalam ayat ini dapat berarti membaca tasbih seperti pada hadis di atas, juga dapat diartikan melaksanakan salat, baik salat Isya, salat malam maupun salat Subuh.",
-        short:
-          "Dan selain itu, pada sebagian malam, ketika kebanyakan orang tidur, dekatkanlah dirimu kepada Allah, bertasbihlah kepada-Nya, dan berzikir serta bertasbihlah pada waktu terbenamnya bintang-bintang pada waktu fajar.",
+        footnotes: null,
+        text: "Pada sebagian malam hari juga bertasbihlah kepada Tuhanmu dan dirikanlah salat untuk-Nya, lalu dirikan salat Subuh ketika bintang-bintang terbenam dengan munculnya cahaya siang.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u064a\u0652\u0644\u0650 \u0641\u064e\u0633\u064e\u0628\u0651\u0650\u062d\u0652\u0647\u064f \u0648\u064e\u0625\u0650\u062f\u0652\u0628\u064e\u0627\u0631\u064e \u0627\u0644\u0646\u0651\u064f\u062c\u064f\u0648\u0645\u0650",
-      transliteration: {
-        en: "Wa minal laili fasabbihhu wa idbaaran nujoom",
-      },
+      arabic: "وَمِنَ ٱلَّيْلِ فَسَبِّحْهُ وَإِدْبَٰرَ ٱلنُّجُومِ",
     },
     translation: {
-      en: "And in a part of the night exalt Him and after [the setting of] the stars.",
-      id: "dan pada sebagian malam bertasbihlah kepada-Nya dan (juga) pada waktu terbenamnya bintang-bintang (pada waktu fajar).",
+      en: {
+        footnotes:
+          "[18] i.e., the early hours of the morning when the stars set; the time of the Fajr Prayer.",
+        text: "And glorify Him at night and when the stars fade away[18].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan pada sebagian malam bertasbihlah kepada-Nya dan (juga) pada waktu terbenamnya bintang-bintang (pada waktu fajar).",
+      },
     },
   },
 ];

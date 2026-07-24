@@ -53,6 +53,7 @@ const rendererManifest = await Effect.runPromise(
       chemistry: [{ name: "AtomShellLab", version: 1 }],
       mathematics: [{ name: "FunctionMachine", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 const { privateKey, publicKey } = generateKeyPairSync("ed25519");
@@ -103,6 +104,17 @@ const manifest = ContentReleaseManifestSchema.make({
   rollbackDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
   routeCount: 0,
   routeDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
+  scope: {
+    content: [
+      {
+        contentKey: item.change.contentKey,
+        family: item.change.family,
+        locale: item.change.locale,
+      },
+    ],
+    families: [],
+    snapshots: [],
+  },
   snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
   upsertCount: 1,
 });

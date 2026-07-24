@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah55Verses61To66 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4962",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4962.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4962.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 533,
       ruku: 468,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4962,
@@ -24,40 +25,32 @@ export const quranSurah55Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa pada saat itu Allah bertanya tentang nikmat mana lagi yang kamu dustakan, terutama nikmat yang telah Allah berikan pada hari ini. Allah juga mengingatkan tentang kabar derita dan peringatan pedih yang telah disampaikanNya, yaitu agar manusia meninggalkan dan menjauhi perbuatan dosa. Maka nikmat Tuhan kamu yang manakah yang kamu dustakan, hai manusia dan jin? Masing-masing mendapat ganjaran sebagaimana yang diterangkan Allah. Bukankah itu nikmat yang besar bagi kamu sekalian.",
-        short:
-          "Maka, wahai manusia dan jin, nikmat Tuhanmu yang manakah yang kamu dustakan?",
+        footnotes: null,
+        text: "Maka, nikmat Allah yang besar manakah -wahai sekalian jin dan manusia- yang kalian dustakan?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u0650\u0623\u064e\u064a\u0651\u0650 \u0622\u0644\u064e\u0627\u0621\u0650 \u0631\u064e\u0628\u0651\u0650\u0643\u064f\u0645\u064e\u0627 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Fabi ayyi aalaaa'i Rabbikumaa tukazzibaan.",
-      },
+      arabic: "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
     },
     translation: {
-      en: "So which of the favors of your Lord would you deny?",
-      id: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      en: {
+        footnotes: "",
+        text: "Then which of the favors of your Lord will you deny?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4963",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4963.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4963.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 533,
       ruku: 468,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4963,
@@ -65,40 +58,33 @@ export const quranSurah55Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini Allah menerangkan bahwa selain dua surga yang tersebut terdahulu ada lagi dua surga yang disediakan untuk orang-orang mukmin dari golongan Ashsabul-yamin. Yaitu dua surga yang terdahulu diperuntukkan bagi golongan orang-orang yang terdahulu beriman dan dua surga yang lain diperuntukkan bagi golongan Ashabul-yamin dari orang yang beriman kemudian. Hal ini sesuai dengan sabda Rasulullah dalam hadisnya: Dua surga dari emas untuk Muqarrabin dan dua buah lagi surga dari perak untuk Ashabul-yamin." (Riwayat Ibnu Jarir, Ibnu Abi hatim, Ibnu Mardawaih dari Abu Musa) \n\nMaka nikmat Tuhan yang manakah yang masih didustakan oleh jin dan manusia?',
-        short:
-          "Bila pada ayat yang lalu Allah menjelaskan keadaan surga, pada ayat ini Dia menerangkan suasana surga yang lain lagi. Dan selain dari dua surga yang telah dijelaskan itu masih ada dua surga lagi.",
+        footnotes: null,
+        text: "Di samping dua surga tersebut ada lagi dua surga lainnya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u0650\u0646 \u062f\u064f\u0648\u0646\u0650\u0647\u0650\u0645\u064e\u0627 \u062c\u064e\u0646\u0651\u064e\u062a\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Wa min doonihimaa jannataan",
-      },
+      arabic: "وَمِن دُونِهِمَا جَنَّتَانِ",
     },
     translation: {
-      en: "And below them both [in excellence] are two [other] gardens -",
-      id: "Dan selain dari dua surga itu ada dua surga lagi.",
+      en: {
+        footnotes: "",
+        text: "And besides these two there will be two other gardens.",
+      },
+      id: {
+        footnotes:
+          "[824] Selain dua surga yang tersebut di atas ada lagi dua surga untuk orang-orang mukmin yang kurang derajatnya dari orang-orang mukmin yang dimasukkan ke dalam surga yang pertama.",
+        text: "Dan selain dari dua surga itu ada dua surga lagi.[824]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4964",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4964.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4964.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 533,
       ruku: 468,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4964,
@@ -106,40 +92,32 @@ export const quranSurah55Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini Allah menerangkan bahwa selain dua surga yang tersebut terdahulu ada lagi dua surga yang disediakan untuk orang-orang mukmin dari golongan Ashsabul-yamin. Yaitu dua surga yang terdahulu diperuntukkan bagi golongan orang-orang yang terdahulu beriman dan dua surga yang lain diperuntukkan bagi golongan Ashabul-yamin dari orang yang beriman kemudian. Hal ini sesuai dengan sabda Rasulullah dalam hadisnya: Dua surga dari emas untuk Muqarrabin dan dua buah lagi surga dari perak untuk Ashabul-yamin." (Riwayat Ibnu Jarir, Ibnu Abi hatim, Ibnu Mardawaih dari Abu Musa) \n\nMaka nikmat Tuhan yang manakah yang masih didustakan oleh jin dan manusia?',
-        short:
-          "Maka, wahai manusia dan jin, nikmat Tuhanmu yang manakah yang kamu dustakan?",
+        footnotes: null,
+        text: "Maka, nikmat Allah yang besar manakah -wahai sekalian jin dan manusia- yang kalian dustakan?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u0650\u0623\u064e\u064a\u0651\u0650 \u0622\u0644\u064e\u0627\u0621\u0650 \u0631\u064e\u0628\u0651\u0650\u0643\u064f\u0645\u064e\u0627 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Fabi ayyi aalaaa'i Rabbikumaa tukazzibaan.",
-      },
+      arabic: "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
     },
     translation: {
-      en: "So which of the favors of your Lord would you deny? -",
-      id: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan,",
+      en: {
+        footnotes: "",
+        text: "Then which of the favors of your Lord will you deny?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4965",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4965.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4965.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 533,
       ruku: 468,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4965,
@@ -147,40 +125,32 @@ export const quranSurah55Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Di dalam dua surga yang lain itu terdapat tumbuhtumbuhan dan bunga-bungaan yang hijau tua warnanya. Maka nikmat Tuhan yang manakah yang didustakan oleh jin dan manusia?",
-        short:
-          "Kedua surga yang lain itu tampak hijau tua warnanya karena lebat-nya pepohonan.",
+        footnotes: null,
+        text: "Warna hijau dari kedua surga itu terlihat hijau tua.",
       },
     },
     text: {
-      arab: "\u0645\u064f\u062f\u0652\u0647\u064e\u0627\u0645\u0651\u064e\u062a\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Mudhaaammataan",
-      },
+      arabic: "مُدْهَآمَّتَانِ",
     },
     translation: {
-      en: "Dark green [in color].",
-      id: "kedua surga itu (kelihatan) hijau tua warnanya.",
+      en: {
+        footnotes: "",
+        text: "Both of the deepest green.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kedua surga itu (kelihatan) hijau tua warnanya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4966",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4966.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4966.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 533,
       ruku: 468,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4966,
@@ -188,40 +158,32 @@ export const quranSurah55Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Di dalam dua surga yang lain itu terdapat tumbuhtumbuhan dan bunga-bungaan yang hijau tua warnanya. Maka nikmat Tuhan yang manakah yang didustakan oleh jin dan manusia?",
-        short:
-          "Maka, wahai manusia dan jin, nikmat Tuhanmu yang manakah yang kamu dustakan?",
+        footnotes: null,
+        text: "Maka, nikmat Allah yang besar manakah -wahai sekalian jin dan manusia- yang kalian dustakan?!",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u0650\u0623\u064e\u064a\u0651\u0650 \u0622\u0644\u064e\u0627\u0621\u0650 \u0631\u064e\u0628\u0651\u0650\u0643\u064f\u0645\u064e\u0627 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Fabi ayyi aalaaa'i Rabbikumaa tukazzibaan.",
-      },
+      arabic: "فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ",
     },
     translation: {
-      en: "So which of the favors of your Lord would you deny?",
-      id: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      en: {
+        footnotes: "",
+        text: "Then which of the favors of your Lord will you deny?",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka nikmat Tuhanmu yang manakah yang kamu dustakan?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4967",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4967.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4967.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 213,
       juz: 27,
       manzil: 7,
       page: 533,
       ruku: 468,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4967,
@@ -229,20 +191,22 @@ export const quranSurah55Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini mengungkapkan bahwa di dalam surga ada dua mata air yang memancarkan air, berbeda dengan air pada surga yang terdahulu. Maka nikmat Tuhan yang manakah yang didustakan oleh jin dan manusia?",
-        short:
-          "Di dalam keduanya ada dua buah mata air yang memancar dan mengeluarkan air yang jernih dan segar.",
+        footnotes: null,
+        text: "Di dua surga ini ada dua mata air yang memancarkan air dengan kuat, pancaran airnya tidak berhenti.",
       },
     },
     text: {
-      arab: "\u0641\u0650\u064a\u0647\u0650\u0645\u064e\u0627 \u0639\u064e\u064a\u0652\u0646\u064e\u0627\u0646\u0650 \u0646\u064e\u0636\u0651\u064e\u0627\u062e\u064e\u062a\u064e\u0627\u0646\u0650",
-      transliteration: {
-        en: "Feehimaa 'aynaani nad daakhataan",
-      },
+      arabic: "فِيهِمَا عَيْنَانِ نَضَّاخَتَانِ",
     },
     translation: {
-      en: "In both of them are two springs, spouting.",
-      id: "Di dalam keduanya (surga itu) ada dua buah mata air yang memancar.",
+      en: {
+        footnotes: "",
+        text: "In each there are two gushing springs.",
+      },
+      id: {
+        footnotes: "",
+        text: "Di dalam keduanya (surga itu) ada dua mata air yang memancar.",
+      },
     },
   },
 ];

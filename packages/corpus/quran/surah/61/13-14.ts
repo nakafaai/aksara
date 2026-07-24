@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah61Verses13To14 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5176",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5176.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5176.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 220,
       juz: 28,
       manzil: 7,
       page: 552,
       ruku: 485,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5176,
@@ -24,40 +25,32 @@ export const quranSurah61Verses13To14 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini diterangkan kemenangan dan keuntungan yang akan diperoleh oleh Rasulullah dan kaum Muslimin di dunia, yaitu mereka akan dapat mengalahkan musuh-musuh mereka, menaklukkan beberapa negeri dalam waktu yang dekat, memberikan kedudukan yang baik bagi kaum Muslimin, serta kekuatan iman dan fisik. Dengan demikian, mereka berkuasa di Timur dan Barat, dan agama Islam tersebar di seluruh dunia.\n\nAyat ini termasuk ayat yang menerangkan kemukjizatan, yaitu menerangkan sesuatu yang akan terjadi pada masa yang akan datang. Hal ini dipercayai betul oleh Rasulullah dan sahabat-sahabatnya, sehingga menumbuhkan kekuatan dan semangat yang hebat di kalangan kaum Muslimin. Dalam sejarah terlihat dan terbukti bahwa dalam waktu yang sangat singkat agama Islam telah dianut oleh sebagian penduduk dunia, sejak dari ujung barat Afrika sampai ujung timur Indonesia, dari Maroko ke Merauke, dan dari Asia Tengah di utara sampai ke Afrika di selatan.\n\nKemudian Allah memerintahkan kepada Nabi Muhammad saw untuk menyampaikan kepada kaum Muslimin mengenai keuntungan yang akan mereka peroleh dari perdagangan itu di dunia dengan keuntungan-keuntungan dan di akhirat berupa surga. Penggunaan kata perniagaan dalam ayat ini sebagai perumpamaan karena masyarakat Arab pada saat itu hidup dari perniagaan dan perdagangan.",
-        short:
-          "Bagi orang yang beriman dan berjihad selain mendapat ampunan dan masuk surga ‘Adn juga akan mendapat keuntungan lain yang sangat berharga. Dan ada lagi karunia yang lain yang kamu sukai dari keuntungan beriman dan berjihad pada jalan Allah, yaitu pertolongan dari Allah dalam menghadapi musuh-musuh Islam dan kaum muslim sehingga Islam menjadi harum; dan kemenangan yang dekat waktunya untuk meraih kekuasaan dalam mengatur kehidupan ini. Dan sampaikanlah berita gembira kepada orang-orang mukmin karena dengan beriman dan berjihad mereka akan mendapat pertolongan dan kemenangan di dunia dan mendapat ampunan dan surga di akhirat.",
+        footnotes: null,
+        text: "Di antara keuntungan lain perdagangan ini adalah suatu pemberian yang pasti kalian menyukainya, dan itu disegerakan di dunia, yaitu Allah menolong kalian atas musuh-musuh kalian dan kemenangan yang dekat yang diberikan kepada kalian, yaitu pembebasan Kota Makkah dan lainnya. Kabarkan -wahai Rasul- kepada orang-orang yang beriman apa yang menggembirakan mereka berupa kemenangan di dunia dan kemenangan dengan surga di akhirat.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064f\u062e\u0652\u0631\u064e\u0649\u0670 \u062a\u064f\u062d\u0650\u0628\u0651\u064f\u0648\u0646\u064e\u0647\u064e\u0627 \u06d6 \u0646\u064e\u0635\u0652\u0631\u064c \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0641\u064e\u062a\u0652\u062d\u064c \u0642\u064e\u0631\u0650\u064a\u0628\u064c \u06d7 \u0648\u064e\u0628\u064e\u0634\u0651\u0650\u0631\u0650 \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa ukhraa tuhibboonahaa nasrum minal laahi wa fat hun qaree; wa bashshiril mu 'mineen",
-      },
+      arabic: "وَأُخْرَىٰ تُحِبُّونَهَا نَصْرٌ مِّنَ ٱللَّهِ وَفَتْحٌ قَرِيبٌ وَبَشِّرِ ٱلْمُؤْمِنِينَ",
     },
     translation: {
-      en: "And [you will obtain] another [favor] that you love - victory from Allah and an imminent conquest; and give good tidings to the believers.",
-      id: "Dan (ada lagi) karunia yang lain yang kamu sukai (yaitu) pertolongan dari Allah dan kemenangan yang dekat (waktunya). Dan sampaikanlah berita gembira kepada orang-orang mukmin.",
+      en: {
+        footnotes: "",
+        text: "And [He will grant you] another favor that you love: help from Allah [against your enemies] and an imminent conquest. Give glad tidings to the believers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan (ada lagi) karunia lain yang kamu sukai (yaitu) pertolongan dari Allah dan kemenangan yang dekat (waktunya). Dan sampaikanlah berita gembira kepada orang-orang mukmin.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5177",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5177.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5177.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 220,
       juz: 28,
       manzil: 7,
       page: 552,
       ruku: 485,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5177,
@@ -65,20 +58,23 @@ export const quranSurah61Verses13To14 = [
     },
     tafsir: {
       id: {
-        long: 'Allah memerintahkan kaum Muslimin agar menjadi penolong-penolong agama Allah, menyebarluaskan agama-Nya, meninggikan kalimat-Nya sehingga tidak ada yang mengalahkannya, dengan beriman dan berjihad. Hal yang sama pernah dilakukan sahabat-sahabat terdekat Nabi Isa yang berkata kepada mereka, "Siapakah penolong agama Allah?" Mereka menjawab, "Kamilah penolong-penolong agama Allah."\n\nKetika Nabi Isa menyampaikan risalahnya kepada Bani Israil dengan bantuan sahabat-sahabat setianya, sebagian Bani Israil itu ada yang memperkenankan seruannya, sedang yang lain ada yang mengingkari dan menolaknya. Mereka yang menolak itu menuduh Isa sebagai seorang anak zina, yang dilahirkan karena perzinaan ibunya Maryam dengan seorang laki-laki, dan ada pula yang mengatakan bahwa Isa itu putra Allah, kekasih-Nya, dan sebagainya.\n\nDalam menghadapi orang-orang yang mengingkari seruan Nabi Isa itu serta mengada-adakan kebohongan tentangnya, maka Allah menguatkan hati orang-orang yang beriman dari mereka, sehingga mereka berhasil mengalahkan musuh-musuh itu. Firman Allah:\n\nSesungguhnya Kami akan menolong rasul-rasul Kami dan orang-orang yang beriman dalam kehidupan dunia dan pada hari tampilnya para saksi (hari Kiamat). (Gafir/40: 51)',
-        short:
-          "Wahai orang-orang yang beriman! Di mana pun dan kapan pun kamu hidup, jadilah kamu penolong-penolong agama Allah dengan memahami, mengamalkan, dan mengharumkan Islam dan kaum muslim, serta berjihad membela hak dan kehormatan Islam sebagaimana Isa putra Maryam telah berkata kepada pengikut-pengikutnya yang setia, kaum hawariyun, “Siapakah yang akan menjadi penolong-penolongku untuk menegakkan agama Allah dalam kehidupan ini?” Pengikut-pengikutnya yang setia itu berkata kepada Nabi Isa dengan meyakinkan, “Kamilah penolong-penolong agama Allah.” Mereka menyampaikan ajaran Allah kepada masyarakat dan mengajak masyarakat beriman dan mengamalkannya; lalu segolongan dari Bani Israil beriman kepada Allah dan mengikuti ajaran Nabi Isa dengan setia; dan segolongan yang lain yang jumlahnya jauh lebih banyak memilih kafir, yaitu menjadi orang yang menutup diri, menolak, dan mendustakan ajaran Nabi Isa, bahkan berusaha menghalangi penyebaran ajarannya dan membunuh para juru dakwahnya. Orang beriman itu bermunajat kepada Kami, lalu Kami memberikan kekuatan kepada orang-orang yang beriman terhadap musuh-musuh mereka dengan menghilangan perasaan lemah, takut, dan ragu untuk berjihad sehingga mereka menjadi orang-orang yang menang dalam menghadapi musuh.",
+        footnotes: null,
+        text: "Wahai orang-orang yang beriman kepada Allah dan menjalankan syariat-Nya! Jadilah penolong-penolong Allah dengan pertolongan kalian kepada agama-Nya yang dibawa oleh Rasul kalian, seperti pertolongan kaum Hawari tatkala Isa berkata kepada mereka, “Siapakah yang mau menjadi penolong-penolongku kepada Allah?” Maka, mereka menjawab dengan segera, “Kami adalah penolong Allah.” Lalu sebagian dari Bani Israil beriman kepada Isa -'alaihissalām- dan sebagian yang lain kafir terhadapnya, maka Kami berikan kekuatan kepada orang-orang yang beriman kepada Isa -'alaihissalām- atas orang-orang yang kafir kepadanya, sehingga mereka menang atas orang-orang yang kafir.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0643\u064f\u0648\u0646\u064f\u0648\u0627 \u0623\u064e\u0646\u0635\u064e\u0627\u0631\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0643\u064e\u0645\u064e\u0627 \u0642\u064e\u0627\u0644\u064e \u0639\u0650\u064a\u0633\u064e\u0649 \u0627\u0628\u0652\u0646\u064f \u0645\u064e\u0631\u0652\u064a\u064e\u0645\u064e \u0644\u0650\u0644\u0652\u062d\u064e\u0648\u064e\u0627\u0631\u0650\u064a\u0651\u0650\u064a\u0646\u064e \u0645\u064e\u0646\u0652 \u0623\u064e\u0646\u0635\u064e\u0627\u0631\u0650\u064a \u0625\u0650\u0644\u064e\u0649 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06d6 \u0642\u064e\u0627\u0644\u064e \u0627\u0644\u0652\u062d\u064e\u0648\u064e\u0627\u0631\u0650\u064a\u0651\u064f\u0648\u0646\u064e \u0646\u064e\u062d\u0652\u0646\u064f \u0623\u064e\u0646\u0635\u064e\u0627\u0631\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06d6 \u0641\u064e\u0622\u0645\u064e\u0646\u064e\u062a \u0637\u0651\u064e\u0627\u0626\u0650\u0641\u064e\u0629\u064c \u0645\u0651\u0650\u0646 \u0628\u064e\u0646\u0650\u064a \u0625\u0650\u0633\u0652\u0631\u064e\u0627\u0626\u0650\u064a\u0644\u064e \u0648\u064e\u0643\u064e\u0641\u064e\u0631\u064e\u062a \u0637\u0651\u064e\u0627\u0626\u0650\u0641\u064e\u0629\u064c \u06d6 \u0641\u064e\u0623\u064e\u064a\u0651\u064e\u062f\u0652\u0646\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0622\u0645\u064e\u0646\u064f\u0648\u0627 \u0639\u064e\u0644\u064e\u0649\u0670 \u0639\u064e\u062f\u064f\u0648\u0651\u0650\u0647\u0650\u0645\u0652 \u0641\u064e\u0623\u064e\u0635\u0652\u0628\u064e\u062d\u064f\u0648\u0627 \u0638\u064e\u0627\u0647\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Yaaa ayyuhal lazeena aamaanoo koonooo ansaaral laahi kamaa qaala 'Eesab-nu-Maryama lil Hawaariyyeena man ansaareee ilal laah; qaalal Hawaariyyoona nahnu ansaa rul laahi fa aamanat taaa'ifatum mim Bannee Israaa'eela wa kafarat taaa'ifatun fa ayyadnal lazeena aammanoo 'alaa 'aduwwihim fa asbahoo zaahireen",
-      },
+      arabic:
+        "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ كُونُوٓا۟ أَنصَارَ ٱللَّهِ كَمَا قَالَ عِيسَى ٱبْنُ مَرْيَمَ لِلْحَوَارِيِّـۧنَ مَنْ أَنصَارِىٓ إِلَى ٱللَّهِ قَالَ ٱلْحَوَارِيُّونَ نَحْنُ أَنصَارُ ٱللَّهِ فَـَٔامَنَت طَّآئِفَةٌ مِّنۢ بَنِىٓ إِسْرَٰٓءِيلَ وَكَفَرَت طَّآئِفَةٌ فَأَيَّدْنَا ٱلَّذِينَ ءَامَنُوا۟ عَلَىٰ عَدُوِّهِمْ فَأَصْبَحُوا۟ ظَٰهِرِينَ",
     },
     translation: {
-      en: 'O you who have believed, be supporters of Allah, as when Jesus, the son of Mary, said to the disciples, "Who are my supporters for Allah?" The disciples said, "We are supporters of Allah." And a faction of the Children of Israel believed and a faction disbelieved. So We supported those who believed against their enemy, and they became dominant.',
-      id: "Wahai orang-orang yang beriman! Jadilah kamu penolong-penolong (agama) Allah sebagaimana Isa putra Maryam telah berkata kepada pengikut-pengikutnya yang setia, “Siapakah yang akan menjadi penolong-penolongku (untuk menegakkan agama) Allah?” Pengikut-pengikutnya yang setia itu berkata, “Kamilah penolong-penolong (agama) Allah,” lalu segolongan dari Bani Israil beriman dan segolongan (yang lain) kafir; lalu Kami berikan kekuatan ke-pada orang-orang yang beriman terhadap musuh-musuh mereka, sehingga mereka menjadi orang-orang yang menang.",
+      en: {
+        footnotes: "",
+        text: "O you who believe, be supporters of Allah’s cause, as Jesus, son of Mary, said to the disciples, “Who will be my supporters for Allah’s cause?” The disciples said, “We are the supporters of Allah’s cause.” Then a group of the Children of Israel believed and another disbelieved. We then supported those who believed against their enemies, so they prevailed.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Wahai orang-orang yang beriman! Jadilah kamu penolong-penolong (agama) Allah sebagaimana Isa putra Maryam telah berkata kepada pengikut-pengikutnya yang setia, "Siapakah yang akan menjadi penolong-penolongku (untuk menegakkan agama) Allah?" Pengikut-pengikutnya yang setia itu berkata, "Kamilah penolong-penolong (agama) Allah." Lalu segolongan dari Bani Israil beriman dan segolongan (yang lain) kafir; lalu Kami berikan kekuatan kepada orang-orang yang beriman terhadap musuh-musuh mereka, sehingga mereka menjadi orang-orang yang menang.',
+      },
     },
   },
 ];

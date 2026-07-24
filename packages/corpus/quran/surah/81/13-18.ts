@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah81Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5813",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5813.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5813.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5813,
@@ -24,40 +25,32 @@ export const quranSurah81Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Dan apabila surga didekatkan kepada orang-orang yang akan memasukinya yaitu orang-orang mukmin yang bertakwa. Ini adalah balasan atas jerih payah dan usaha mereka berjihad menegakkan agama Allah dan menjalankan perintah agama. Allah berfirman:\n\nDan surga didekatkan kepada orang-orang yang bertakwa. (asy-Syu'ara'/26: 90)",
-        short:
-          "Dan apabila surga dengan segala kenikmatannya didekatkan kepada mereka yang beriman dan beramal saleh.",
+        footnotes: null,
+        text: "dan jika surga telah didekatkan kepada orang-orang yang bertakwa,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0627\u0644\u0652\u062c\u064e\u0646\u0651\u064e\u0629\u064f \u0623\u064f\u0632\u0652\u0644\u0650\u0641\u064e\u062a\u0652",
-      transliteration: {
-        en: "Wa izal jannatu uzlifat",
-      },
+      arabic: "وَإِذَا ٱلْجَنَّةُ أُزْلِفَتْ",
     },
     translation: {
-      en: "And when Paradise is brought near,",
-      id: "dan apabila surga didekatkan,",
+      en: {
+        footnotes: "",
+        text: "and when Paradise is brought near –",
+      },
+      id: {
+        footnotes: "",
+        text: "dan apabila surga didekatkan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5814",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5814.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5814.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5814,
@@ -65,40 +58,32 @@ export const quranSurah81Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Jika semua peristiwa-peristiwa yang disebutkan sebelum ayat ini telah terjadi, tiap jiwa akan mengetahui apa yang telah dikerjakannya. Sebagian besar dari manusia ketika hidup di dunia tertipu oleh godaan setan. Mereka akan menjumpai amal perbuatan mereka pada hari Kiamat tidak diterima oleh Allah bahkan dijauhkan dari rahmat-Nya dan berada di bawah murka-Nya.\n\nOrang-orang yang amal perbuatannya diselubungi dengan ria, tidak mendapat faedah dari amalnya itu kecuali sekadar kepayahan dan kesulitan. Setiap orang wajib memandang kepada amal perbuatannya dengan kaca mata agama dan menimbangnya dengan timbangan yang benar, sebab Allah tidak menerima amal perbuatan melainkan yang muncul dari hati yang penuh dengan keimanan dan keikhlasan.",
-        short:
-          "Pada saat itulah setiap jiwa akan mengetahui apa yang telah dikerjakannya di dunia, apakah perbuatan baik atau buruk.",
+        footnotes: null,
+        text: "Apabila semua peristiwa tersebut sudah terjadi, setiap jiwa mengetahui bekal amalan yang telah dilakukannya untuk menghadapi hari itu.",
       },
     },
     text: {
-      arab: "\u0639\u064e\u0644\u0650\u0645\u064e\u062a\u0652 \u0646\u064e\u0641\u0652\u0633\u064c \u0645\u0651\u064e\u0627 \u0623\u064e\u062d\u0652\u0636\u064e\u0631\u064e\u062a\u0652",
-      transliteration: {
-        en: "'Alimat nafsum maaa ahdarat",
-      },
+      arabic: "عَلِمَتْ نَفْسٌ مَّآ أَحْضَرَتْ",
     },
     translation: {
-      en: "A soul will [then] know what it has brought [with it].",
-      id: "setiap jiwa akan mengetahui apa yang telah dikerjakannya.",
+      en: {
+        footnotes: "[5] Of faith or disbelief, good or bad deeds for that Day.",
+        text: "then every soul will know what it has brought about[5].",
+      },
+      id: {
+        footnotes: "",
+        text: "setiap jiwa akan mengetahui apa yang telah dikerjakannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5815",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5815.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5815.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5815,
@@ -106,40 +91,32 @@ export const quranSurah81Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah bersumpah demi bintang-bintang yang beredar dan terbenam. Bintang-bintang itu semuanya tidak tampak oleh penglihatan pada siang hari, namun akan kelihatan bersinar pada malam hari. Allah bersumpah dengan bintang-bintang itu karena dalam keadaannya yang silih berganti, tidak tampak ketika siang dan bersinar pada malam hari, merupakan tanda atas kekuasaan Allah yang mengatur perjalanannya.",
-        short:
-          "Usai menjelaskan ihwal hari kiamat dan kesudahan manusia, Allah beralih menjelaskan kedudukan Al-Qur’an sebagai kalamullah yang didustakan oleh kafir Quraisy. Aku bersumpah demi bintang-bintang yang cahayanya redup di siang hari dan terang di malam hari.",
+        footnotes: null,
+        text: "Allah bersumpah dengan bintang-bintang yang tersembunyi sebelum terbit pada malam hari,",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u064e\u0627 \u0623\u064f\u0642\u0652\u0633\u0650\u0645\u064f \u0628\u0650\u0627\u0644\u0652\u062e\u064f\u0646\u0651\u064e\u0633\u0650",
-      transliteration: {
-        en: "Falaaa uqsimu bil khunnas",
-      },
+      arabic: "فَلَآ أُقْسِمُ بِٱلْخُنَّسِ",
     },
     translation: {
-      en: "So I swear by the retreating stars -",
-      id: "Aku bersumpah demi bintang-bintang,",
+      en: {
+        footnotes: "",
+        text: "I swear by the receding stars,",
+      },
+      id: {
+        footnotes: "",
+        text: "Aku bersumpah demi bintang-bintang,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5816",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5816.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5816.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5816,
@@ -147,39 +124,33 @@ export const quranSurah81Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah bersumpah demi bintang-bintang yang beredar dan terbenam. Bintang-bintang itu semuanya tidak tampak oleh penglihatan pada siang hari, namun akan kelihatan bersinar pada malam hari. Allah bersumpah dengan bintang-bintang itu karena dalam keadaannya yang silih berganti, tidak tampak ketika siang dan bersinar pada malam hari, merupakan tanda atas kekuasaan Allah yang mengatur perjalanannya.",
-        short: "yang beredar di garis edarnya dan terbenam,",
+        footnotes: null,
+        text: "yaitu yang beredar di orbitnya dan terbenam saat datangnya pagi, sebagaimana kijang yang masuk ke dalam sarangnya.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0652\u062c\u064e\u0648\u064e\u0627\u0631\u0650 \u0627\u0644\u0652\u0643\u064f\u0646\u0651\u064e\u0633\u0650",
-      transliteration: {
-        en: "Al jawaaril kunnas",
-      },
+      arabic: "ٱلْجَوَارِ ٱلْكُنَّسِ",
     },
     translation: {
-      en: "Those that run [their courses] and disappear -",
-      id: "yang beredar dan terbenam,",
+      en: {
+        footnotes:
+          '[6] This probably refers to black holes in the sky. "Kanasa" means sweeping or hiding.',
+        text: "that rise and hide[6],",
+      },
+      id: {
+        footnotes: "",
+        text: "yang beredar dan terbenam,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5817",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5817.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5817.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5817,
@@ -187,40 +158,32 @@ export const quranSurah81Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah bersumpah demi malam apabila telah hampir meninggalkan gelapnya.",
-        short:
-          "demi malam apabila telah larut dan meninggalkan gelapnya, atau datang dengan kegelapan yang dibawanya,",
+        footnotes: null,
+        text: "Dia bersumpah dengan awal malam jika datang dan akhir malam ketika pergi.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0644\u0651\u064e\u064a\u0652\u0644\u0650 \u0625\u0650\u0630\u064e\u0627 \u0639\u064e\u0633\u0652\u0639\u064e\u0633\u064e",
-      transliteration: {
-        en: "Wallaili izaa 'as'as",
-      },
+      arabic: "وَٱلَّيْلِ إِذَا عَسْعَسَ",
     },
     translation: {
-      en: "And by the night as it closes in",
-      id: "demi malam apabila telah larut,",
+      en: {
+        footnotes: "",
+        text: "and by the night as it departs,",
+      },
+      id: {
+        footnotes: "",
+        text: "demi malam apabila telah larut,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5818",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5818.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5818.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 234,
       juz: 30,
       manzil: 7,
       page: 586,
       ruku: 523,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5818,
@@ -228,20 +191,22 @@ export const quranSurah81Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian dalam ayat ini Allah bersumpah demi subuh apabila fajar mulai menyingsing dan bersinar. Waktu subuh digunakan Allah dalam bersumpah karena waktu ini menimbulkan harapan yang menggembirakan bagi setiap manusia yang bangun pagi karena menghadapi hari yang baru. Saat itu mereka dapat menemukan hajat keperluan hidupnya mengganti yang hilang dan bersiap-siap untuk yang akan datang.\n\nKemudian Allah menerangkan apa yang dijadikan objek sumpahnya itu, dengan firman-Nya pada ayat berikut ini.",
-        short:
-          "dan demi subuh apabila fajar telah menyingsing, tersibak cahayanya sedikit demi sedikit, layaknya orang bernafas. Ketiga peristiwa tersebut merupakan tanda-tanda kebesaran Allah di alam semesta yang dapat dilihat. Begitupun, Al-Qur’an merupakan tanda kebesaran-Nya yang dapat dibaca.",
+        footnotes: null,
+        text: "Dia bersumpah dengan waktu subuh jika mulai menampakkan cahayanya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0635\u0651\u064f\u0628\u0652\u062d\u0650 \u0625\u0650\u0630\u064e\u0627 \u062a\u064e\u0646\u064e\u0641\u0651\u064e\u0633\u064e",
-      transliteration: {
-        en: "Wassubhi izaa tanaffas",
-      },
+      arabic: "وَٱلصُّبْحِ إِذَا تَنَفَّسَ",
     },
     translation: {
-      en: "And by the dawn when it breathes",
-      id: "dan demi subuh apabila fajar telah menyingsing,",
+      en: {
+        footnotes: "",
+        text: "and by the day as it breaks –",
+      },
+      id: {
+        footnotes: "",
+        text: "dan demi subuh apabila telah menyinsing,",
+      },
     },
   },
 ];

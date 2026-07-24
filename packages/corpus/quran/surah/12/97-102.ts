@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah12Verses97To102 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1693",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1693.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1693.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 98,
       juz: 13,
       manzil: 3,
       page: 247,
       ruku: 203,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1693,
@@ -24,40 +25,32 @@ export const quranSurah12Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Setelah saudara-saudara Yusuf melihat bukti-bukti dan kenyataan yang tidak dapat dipungkiri, mereka menjadi sadar dan dengan jujur mengakui kesalahannya. Mereka juga meminta kepada ayahnya agar mau memohonkan ampun kepada Allah swt atas kedurhakaan yang telah mereka perbuat kepada ayahnya dan kezaliman yang dilakukan terhadap Yusuf. Pengakuan saudara-saudara Yusuf tentang kesalahan dan dosa yang telah diperbuat itu adalah pengakuan yang kedua kalinya. Sebelum itu, mereka pernah mengakui dosa dan kesalahannya di hadapan Yusuf, hanya pada waktu itu Yusuf langsung memohonkan ampunan dari Allah swt tanpa permintaan dari mereka.",
-        short:
-          'Kejadian yang baru saja mereka saksikan membuat keluarga besar Nabi Yakub sadar bahwa selama ini dia mengetahui mereka telah membohonginya. Karena itu, mereka meminta maaf kepada Nabi Yakub dan minta dimohonkan ampunan kepada Allah atas dosa mereka. Mereka berkata, "Wahai ayah kami! Mohonkanlah kepada Allah agar Dia memberi ampunan untuk kami atas dosa-dosa kami. Sesungguh-nya kami sejak dulu adalah orang yang bersalah dan berdosa."',
+        footnotes: null,
+        text: 'Anak-anak Yakub meminta maaf kepadanya atas apa yang telah mereka lakukan terhadap Yusuf dan saudaranya seraya berkata, "Wahai Ayah kami! Mohonkanlah ampun kepada Allah untuk dosa-dosa kami di masa lalu. Sesungguhnya kami telah berdosa dan bersalah dalam memperlakukan Yusuf dan saudara kandungnya."',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u064a\u064e\u0627 \u0623\u064e\u0628\u064e\u0627\u0646\u064e\u0627 \u0627\u0633\u0652\u062a\u064e\u063a\u0652\u0641\u0650\u0631\u0652 \u0644\u064e\u0646\u064e\u0627 \u0630\u064f\u0646\u064f\u0648\u0628\u064e\u0646\u064e\u0627 \u0625\u0650\u0646\u0651\u064e\u0627 \u0643\u064f\u0646\u0651\u064e\u0627 \u062e\u064e\u0627\u0637\u0650\u0626\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qaaloo yaaa abaanas taghfir lanaa zunoo =banaaa innaa kunnaa khaati'een",
-      },
+      arabic: "قَالُوا۟ يَٰٓأَبَانَا ٱسْتَغْفِرْ لَنَا ذُنُوبَنَآ إِنَّا كُنَّا خَٰطِـِٔينَ",
     },
     translation: {
-      en: 'They said, "O our father, ask for us forgiveness of our sins; indeed, we have been sinners."',
-      id: "Mereka berkata, “Wahai ayah kami! Mohonkanlah ampunan untuk kami atas dosa-dosa kami, sesungguhnya kami adalah orang yang bersalah (berdosa).”",
+      en: {
+        footnotes: "",
+        text: "They said, “O our father, pray to Allah to forgive us our sins; we were certainly mistaken.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka berkata, "Wahai ayah kami! Mohonkanlah ampunan untuk kami atas dosa-dosa kami, sesungguhnya kami adalah orang yang bersalah (berdosa)."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1694",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1694.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1694.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 98,
       juz: 13,
       manzil: 3,
       page: 247,
       ruku: 203,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1694,
@@ -65,40 +58,32 @@ export const quranSurah12Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah Yakub melihat kesadaran dan pengakuan anak-anaknya atas kesalahan yang mereka perbuat dengan terus terang serta permintaan mereka supaya ayahnya memohonkan ampunan kepada Allah swt, beliau menjawab, "Aku akan memohonkan ampun bagimu kepada Allah swt. Semoga Allah swt mengampunimu semua karena Dia Maha Pengampun dan Maha Penyayang. Allah tidak akan mengecewakan seorang mukmin yang memohon kepada-Nya dengan sungguh-sungguh."',
-        short:
-          'Memenuhi permohonan keluarganya itu, dia (Nabi Yakub) berkata, "Aku akan memohonkan ampunan bagimu semua kepada Tuhanku. Sungguh, Dia adalah Tuhan Yang Maha Pengampun, Maha Penyayang."',
+        footnotes: null,
+        text: 'Sang Ayah berkata kepada mereka, "Aku akan memohonkan ampun kepada Tuhanku untuk dosa-dosa kalian. Sesungguhnya Dia Maha Pengampun lagi Maha Penyayang terhadap hamba-hamba-Nya yang bertobat."',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0633\u064e\u0648\u0652\u0641\u064e \u0623\u064e\u0633\u0652\u062a\u064e\u063a\u0652\u0641\u0650\u0631\u064f \u0644\u064e\u0643\u064f\u0645\u0652 \u0631\u064e\u0628\u0651\u0650\u064a \u06d6 \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0647\u064f\u0648\u064e \u0627\u0644\u0652\u063a\u064e\u0641\u064f\u0648\u0631\u064f \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u064f",
-      transliteration: {
-        en: "Qaala sawfa astaghfiru lakum Rabbeee innahoo Huwal Ghafoorur Raheem",
-      },
+      arabic: "قَالَ سَوْفَ أَسْتَغْفِرُ لَكُمْ رَبِّىٓ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ",
     },
     translation: {
-      en: 'He said, "I will ask forgiveness for you from my Lord. Indeed, it is He who is the Forgiving, the Merciful."',
-      id: "Dia (Yakub) berkata, “Aku akan memohonkan ampunan bagimu kepada Tuhanku. Sungguh, Dia Yang Maha Pengampun, Maha Penyayang.”",
+      en: {
+        footnotes: "",
+        text: "He said, “I will ask my Lord to forgive you, for He is the All-Forgiving, the Most Merciful.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Yakub) berkata, "Aku akan memohonkan ampunan bagimu kepada Tuhanku. Sungguh, Dia Yang Maha Pengampun, Maha Penyayang."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1695",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1695.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1695.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 98,
       juz: 13,
       manzil: 3,
       page: 247,
       ruku: 203,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1695,
@@ -106,40 +91,33 @@ export const quranSurah12Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: 'Pada ayat ini, dijelaskan bahwa saudara-saudara Yusuf pulang ke negerinya untuk memboyong semua keluarganya ke Mesir sesuai dengan anjuran Yusuf. Setelah sampai, mereka memberitahukan kepada kedua orang tuanya tentang kedudukan Yusuf di Mesir, dimana dia adalah penguasa yang berkuasa penuh di sana. Disampaikan pula bahwa Yusuf mengundang semua keluarganya untuk menetap di Mesir bersama-sama dengannya, menikmati kemajuan dan keindahan kota Mesir. Mendengar berita itu, berangkatlah mereka bersama-sama ke Mesir. Setelah sampai di Mesir mereka bertemu dengan Yusuf dan rombongan yang pergi menjemput mereka di tengah jalan. Yusuf merangkul kedua orang tuanya dan berkata, "Silakan memasuki negeri Mesir dengan selamat dan aman, insya Allah kamu sekalian tidak akan mengalami kesulitan dan kelaparan, sekalipun musim kemarau masih saja mencekam." Ucapan "Insya Allah" yang dikatakan Yusuf ini menjadi pelajaran bagi kita kaum Muslimin bahwa apabila hendak melakukan sesuatu, supaya disandarkan kepada kehendak Allah. Hal ini telah menjadi kebiasaan bagi para nabi dan shiddiqin. Hal tersebut sesuai pula dengan maksud firman Allah swt:\n\nDan jangan sekali-kali engkau mengatakan terhadap sesuatu, "Aku pasti melakukan itu besok pagi," kecuali (dengan mengatakan), "Insya Allah." (al-Kahf/18: 23 dan 24)',
-        short:
-          'Sekian lama berlalu setelah kejadian itu, berangkatlah Nabi Yakub bersama keluarga besarnya ke Mesir menuruti pesan Nabi Yusuf. Maka ketika mereka sudah sampai di Mesir dan masuk ke tempat yang telah disediakan oleh Nabi Yusuf, dia merangkul kedua orang tuanya seraya berkata kepada semua anggota rombongan, "Masuklah kamu ke negeri Mesir, insya Allah kalian masuk dalam keadaan aman."',
+        footnotes: null,
+        text: 'Kemudian berangkatlah Yakub dan keluarganya meninggalkan kampung halaman mereka untuk menemui Yusuf di negeri Mesir. Setelah mereka bertemu dengannya, Yusuf langsung memeluk ayah dan ibunya lalu dia berkata kepada saudara-saudaranya beserta segenap keluarga mereka, "Masuklah ke negeri Mesir dengan aman sentosa sesuai kehendak Allah. Di dalamnya tidak akan ada bahaya yang mengancam kalian."',
       },
     },
     text: {
-      arab: "\u0641\u064e\u0644\u064e\u0645\u0651\u064e\u0627 \u062f\u064e\u062e\u064e\u0644\u064f\u0648\u0627 \u0639\u064e\u0644\u064e\u0649\u0670 \u064a\u064f\u0648\u0633\u064f\u0641\u064e \u0622\u0648\u064e\u0649\u0670 \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u0623\u064e\u0628\u064e\u0648\u064e\u064a\u0652\u0647\u0650 \u0648\u064e\u0642\u064e\u0627\u0644\u064e \u0627\u062f\u0652\u062e\u064f\u0644\u064f\u0648\u0627 \u0645\u0650\u0635\u0652\u0631\u064e \u0625\u0650\u0646 \u0634\u064e\u0627\u0621\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0622\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Falammaa dakhaloo 'alaa Yoosufa aawaaa ilaihi abayaihi wa qaalad khuloo Misra inshaaa'al laahu aamineen",
-      },
+      arabic:
+        "فَلَمَّا دَخَلُوا۟ عَلَىٰ يُوسُفَ ءَاوَىٰٓ إِلَيْهِ أَبَوَيْهِ وَقَالَ ٱدْخُلُوا۟ مِصْرَ إِن شَآءَ ٱللَّهُ ءَامِنِينَ",
     },
     translation: {
-      en: 'And when they entered upon Joseph, he took his parents to himself and said, "Enter Egypt, Allah willing, safe [and secure]."',
-      id: "Maka ketika mereka masuk ke (tempat) Yusuf, dia merangkul (dan menyiapkan tempat untuk) kedua orang tuanya seraya berkata, “Masuklah kamu ke negeri Mesir, insya Allah dalam keadaan aman.”",
+      en: {
+        footnotes: "",
+        text: "When they came into Joseph’s presence, he embraced his parents and said, “Enter Egypt, if Allah wills, safe and secure.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Maka ketika mereka masuk ke (tempat) Yusuf, dia merangkul (dan menyiapkan tempat untuk) kedua orang tuanya seraya berkata, "Masuklah kamu ke negeri Mesir, insya Allah dalam keadaan aman."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1696",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1696.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1696.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 98,
       juz: 13,
       manzil: 3,
       page: 247,
       ruku: 203,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1696,
@@ -147,40 +125,34 @@ export const quranSurah12Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menjelaskan Yusuf kemudian mengangkat kedua orang tuanya dan mendudukkan mereka di atas singgasana sebagai penghormatan lebih daripada apa yang telah diperbuat kepada saudara-saudaranya. Mereka merebahkan diri seraya sujud memberi hormat kepada Yusuf, sebagaimana lazimnya orang-orang memberi hormat kepada raja dan para pembesar pada waktu itu. Yusuf lalu berkata, "Wahai ayahku! Inilah takbir mimpiku dahulu ketika saya masih kecil yang telah saya sampaikan kepada ayah dengan ucapan:\n\nSungguh, aku (bermimpi) melihat sebelas bintang, matahari dan bulan; kulihat semuanya sujud kepadaku. (Yusuf/12: 4)\n\nLebih lanjut Yusuf berkata, "Allah swt menjadikan mimpiku itu benar-benar terjadi, bukan khayalan. Sebelas bintang itu adalah saudara-saudaraku yang berjumlah sebelas orang, sedang matahari dan bulan adalah ayah dan ibuku." Dengan keluarga inilah Allah swt memelihara keturunan Nabi Ishak, anak Nabi Ibrahim as, untuk mengembangkan agama tauhid di muka bumi ini. Selanjutnya Yusuf berkata kepada ayahnya, "Allah swt telah berbuat baik kepadaku. Dia melepaskan aku dari penjara dan mengangkatku sebagai penguasa. Dia memindahkan ayah dari dusun padang pasir berpenghidupan sederhana dan kasar, ke negeri yang ramai, menikmati hidup yang bahagia, penyiaran agama yang benar, dan tolong menolong di dalam memajukan ilmu pengetahuan. Ini semua terjadi setelah setan memutus hubungan silaturrahim antara aku dan saudara-saudaraku sehingga rusaklah hubungan persaudaraan, dan timbullah rasa dengki dan buruk sangka antara kita. Sesungguhnya Allah swt Maha Mengetahui segala sesuatu yang bagaimanapun halusnya, bersifat lemah lembut kepada hamba-hamba-Nya, dan menetapkan apa yang Dia kehendaki dengan kebijaksanaan-Nya. Sesungguhnya Dia Maha Mengetahui apa yang menjadi maslahat bagi hamba-hamba-Nya. Tiada suatu hal yang tersembunyi bagi-Nya. Mahabijaksana di dalam segala hal, membalas orang-orang yang berbuat baik dengan kebaikan, dan kesudahan yang baik diberikan kepada orang-orang yang bertakwa."',
-        short:
-          'Dan ketika keluarga besar Nabi Yusuf sudah menempati ruangan yang disediakan, dia menuntun dan menaikkan kedua orang tuanya ke atas singgasana yang sudah disiapkannya. Dan mereka semua tunduk bersujud memberi penghormatan kepadanya. Dan dia berkata kepada ayahnya, "Wahai ayahku! Inilah takwil dari mimpiku yang dahulu itu aku ceritakan kepada engkau. Dan sesungguhnya Tuhanku yang selalu memelihara dan melindungiku telah menjadikannya kenyataan. Sesungguhnya Tuhanku telah berbuat baik kepadaku dengan menyempurnakan nikmat-Nya, antara lain ketika Dia membebaskan aku dari penjara setelah difitnah, ketika membawa kamu dari dusun menuju Mesir, dan setelah setan memerdaya saudara-saudaraku sehingga merusak hubungan antara aku dengan saudara-saudaraku itu. Sungguh, Tuhanku Mahalembut terhadap apa yang Dia kehendaki dengan mengaturnya secara rapi. Sungguh, Dia Yang Maha Mengetahui segala sesuatu, lagi Mahabijaksana dalam ketetapan-Nya."',
+        footnotes: null,
+        text: 'Yusuf kemudian mempersilakan kedua orang tuanya untuk duduk di tempat duduknya. Lalu kedua orang tuanya dan saudara-saudaranya yang berjumlah sebelas orang memberikan penghormatan kepada Yusuf dengan melakukan sujud. Itu merupakan sujud penghormatan (yang diperbolehkan dalam syariat mereka), bukan sujud ibadah, sebagai pembuktian perintah Allah dalam mimpinya. Sebab itu, Yusuf berkata kepada ayahnya, "Penghormatan dari kalian untukku ini adalah takwil dari mimpi yang dahulu kulihat di dalam tidurku dan kuceritakan kepadamu. Sekarang Tuhanku telah membuat mimpi itu menjadi kenyataan. Tuhanku telah berbuat baik kepadaku ketika Dia mengeluarkanku dari penjara dan juga ketika Dia mendatangkan kalian dari gurun pasir setelah hubungan baik antara aku dan saudara-saudaraku dirusak oleh setan. Sesungguhnya Tuhanku sangat lembut dalam mengatur apa yang dikehendaki-Nya. Sesungguhnya Dia Maha Mengetahui keadaan hamba-hamba-Nya, lagi Mahabijaksana dalam mengatur urusan mereka."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0631\u064e\u0641\u064e\u0639\u064e \u0623\u064e\u0628\u064e\u0648\u064e\u064a\u0652\u0647\u0650 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0639\u064e\u0631\u0652\u0634\u0650 \u0648\u064e\u062e\u064e\u0631\u0651\u064f\u0648\u0627 \u0644\u064e\u0647\u064f \u0633\u064f\u062c\u0651\u064e\u062f\u064b\u0627 \u06d6 \u0648\u064e\u0642\u064e\u0627\u0644\u064e \u064a\u064e\u0627 \u0623\u064e\u0628\u064e\u062a\u0650 \u0647\u064e\u0670\u0630\u064e\u0627 \u062a\u064e\u0623\u0652\u0648\u0650\u064a\u0644\u064f \u0631\u064f\u0624\u0652\u064a\u064e\u0627\u064a\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u064f \u0642\u064e\u062f\u0652 \u062c\u064e\u0639\u064e\u0644\u064e\u0647\u064e\u0627 \u0631\u064e\u0628\u0651\u0650\u064a \u062d\u064e\u0642\u0651\u064b\u0627 \u06d6 \u0648\u064e\u0642\u064e\u062f\u0652 \u0623\u064e\u062d\u0652\u0633\u064e\u0646\u064e \u0628\u0650\u064a \u0625\u0650\u0630\u0652 \u0623\u064e\u062e\u0652\u0631\u064e\u062c\u064e\u0646\u0650\u064a \u0645\u0650\u0646\u064e \u0627\u0644\u0633\u0651\u0650\u062c\u0652\u0646\u0650 \u0648\u064e\u062c\u064e\u0627\u0621\u064e \u0628\u0650\u0643\u064f\u0645 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0628\u064e\u062f\u0652\u0648\u0650 \u0645\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0623\u064e\u0646 \u0646\u0651\u064e\u0632\u064e\u063a\u064e \u0627\u0644\u0634\u0651\u064e\u064a\u0652\u0637\u064e\u0627\u0646\u064f \u0628\u064e\u064a\u0652\u0646\u0650\u064a \u0648\u064e\u0628\u064e\u064a\u0652\u0646\u064e \u0625\u0650\u062e\u0652\u0648\u064e\u062a\u0650\u064a \u06da \u0625\u0650\u0646\u0651\u064e \u0631\u064e\u0628\u0651\u0650\u064a \u0644\u064e\u0637\u0650\u064a\u0641\u064c \u0644\u0651\u0650\u0645\u064e\u0627 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u06da \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0647\u064f\u0648\u064e \u0627\u0644\u0652\u0639\u064e\u0644\u0650\u064a\u0645\u064f \u0627\u0644\u0652\u062d\u064e\u0643\u0650\u064a\u0645\u064f",
-      transliteration: {
-        en: "Wa raf'a abawaihi 'alal 'arshi wa kharroo lahoo sujjadaa; wa qaala yaaa abati haaza taaweelu ru'yaaya min qablu qad ja'alahaa Rabbee haqqaa; wa qad ahsana beee iz akhrajanee minas sijni wa jaaa'a bikum minal badwi mim ba'di an nazaghash Shaitaanu bainee wa baina ikhwatee; inna Rabbee lateeful limaa yashaaa'; innahoo Huwal 'Aleemul Hakeem",
-      },
+      arabic:
+        "وَرَفَعَ أَبَوَيْهِ عَلَى ٱلْعَرْشِ وَخَرُّوا۟ لَهُۥ سُجَّدًا وَقَالَ يَٰٓأَبَتِ هَٰذَا تَأْوِيلُ رُءْيَٰىَ مِن قَبْلُ قَدْ جَعَلَهَا رَبِّى حَقًّا وَقَدْ أَحْسَنَ بِىٓ إِذْ أَخْرَجَنِى مِنَ ٱلسِّجْنِ وَجَآءَ بِكُم مِّنَ ٱلْبَدْوِ مِنۢ بَعْدِ أَن نَّزَغَ ٱلشَّيْطَٰنُ بَيْنِى وَبَيْنَ إِخْوَتِىٓ إِنَّ رَبِّى لَطِيفٌ لِّمَا يَشَآءُ إِنَّهُۥ هُوَ ٱلْعَلِيمُ ٱلْحَكِيمُ",
     },
     translation: {
-      en: 'And he raised his parents upon the throne, and they bowed to him in prostration. And he said, "O my father, this is the explanation of my vision of before. My Lord has made it reality. And He was certainly good to me when He took me out of prison and brought you [here] from bedouin life after Satan had induced [estrangement] between me and my brothers. Indeed, my Lord is Subtle in what He wills. Indeed, it is He who is the Knowing, the Wise.',
-      id: "Dan dia menaikkan kedua orang tuanya ke atas singgasana. Dan mereka (semua) tunduk bersujud kepadanya (Yusuf). Dan dia (Yusuf) berkata, “Wahai ayahku! Inilah takwil mimpiku yang dahulu itu. Dan sesungguhnya Tuhanku telah menjadikannya kenyataan. Sesungguhnya Tuhanku telah berbuat baik kepadaku, ketika Dia membebaskan aku dari penjara dan ketika membawa kamu dari dusun, setelah setan merusak (hubungan) antara aku dengan saudara-saudaraku. Sungguh, Tuhanku Mahalembut terhadap apa yang Dia kehendaki. Sungguh, Dia Yang Maha Mengetahui, Mahabijaksana.",
+      en: {
+        footnotes:
+          "[39] That of greeting and respect, not of worship, which was permissible before the time of Prophet Muhammad (ﷺ).",
+        text: "He took his parents to the throne, and they all fell down in prostration[39] before him. He said, “O my father, this is the interpretation of my old dream. My Lord has made it come true. He was kind to me when He freed me from prison and brought you all here from the wilderness after Satan caused a rift between me and my brothers. My Lord is gracious to whom He wills. Indeed, He is the All-Knowing, the All-Wise.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan dia menaikkan kedua orang tuanya ke atas singgasana. Dan mereka (semua) tunduk bersujud kepadanya (Yusuf). Dan dia (Yusuf) berkata, "Wahai ayahku! Inilah takwil mimpiku yang dahulu. Dan sesungguhnya Tuhanku telah menjadikannya kenyataan. Sesungguhnya Tuhanku telah berbuat baik kepadaku, ketika Dia membebaskan aku dari penjara dan ketika membawa kamu dari dusun, setelah setan merusak (hubungan) antara aku dengan saudara-saudaraku. Sungguh, Tuhanku Mahalembut terhadap apa yang Dia kehendaki. Sungguh, Dia Yang Maha Mengetahui, Mahabijaksana.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1697",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1697.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1697.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 99,
       juz: 13,
       manzil: 3,
       page: 247,
       ruku: 203,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1697,
@@ -188,40 +160,34 @@ export const quranSurah12Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini adalah pernyataan dan doa yang diucapkan Yusuf a.s. sesudah Allah swt menyelamatkannya dari dalam sumur, membebaskan dari fitnah istri al-Aziz dan perempuan-perempuan lainnya, membebaskan dari penderitaan dalam penjara, dan menganugerahinya pangkat dan kedudukan sesudah bebas dari semua tuduhan yang ditujukan kepadanya. Yusuf segera berdoa memohon kepada Allah swt supaya dilipatgandakan pahalanya di akhirat kelak sebagaimana dilipatgandakan karunia yang diterimanya di dunia. Yusuf berkata, "Ya Tuhanku, Engkau telah menganugerahkan kepadaku kedudukan dan kekuasaan, mengajarkan kepadaku takbir mimpi, dan memberitahukan kepadaku hal-hal yang akan terjadi di kemudian hari dan rahasia-rahasia yang terkandung di dalam wahyu-Mu. Ya Allah! Engkaulah Pencipta langit dan bumi ini, menciptakan keduanya dengan baik dan teratur, kokoh dan rapi, Engkaulah Pelindungku di dunia dan di akhirat, melindungiku dari maksud jahat orang-orang yang memusuhiku dan orang-orang yang ingin berbuat jahat kepadaku. Ya Allah Yang Mahakuasa! Wafatkanlah aku dalam keadaan Islam, sesuai dengan wasiat leluhurku yang berbunyi:\n\nDan Ibrahim mewasiatkan (ucapan) itu kepada anak-anaknya, demikian pula Yakub, "Wahai anak-anakku! Sesungguhnya Allah telah memilih agama ini untukmu, maka janganlah kamu mati kecuali dalam keadaan muslim. (al-Baqarah/2: 132)\n\nYusuf melanjutkan doanya dengan mengatakan, "Ya Allah Ya Tuhanku! Masukkanlah aku ke dalam kelompok orang-orang yang saleh dari leluhur kami seperti Nabi Ibrahim, Ismail, dan Ishak, begitu pula dengan para nabi dan rasul sebelumnya. Engkaulah Maha Pengasih, Maha Pemurah, dan Mahakuasa atas segala sesuatu."',
-        short:
-          'Nabi Yusuf kemudian berdoa, "Tuhanku, sesungguhnya Engkau telah menganugerahkan kepadaku sebagian kekuasaan yang tidak pernah aku bayangkan sebelumnya, dan Engkau juga telah mengajarkan kepadaku sebagian takwil mimpi. Wahai Tuhan Pencipta langit dan bumi, Engkaulah Pelindungku yang selalu dekat denganku di dunia dan di akhirat, aku mohon kepada-Mu agar bila ajalku telah tiba, wafatkanlah aku dalam keadaan muslim, dan gabungkanlah aku di akhirat kelak dengan orang-orang yang saleh."',
+        footnotes: null,
+        text: 'Kemudian Yusuf berdoa kepada Tuhannya seraya berkata, "Ya Tuhanku! Engkau telah memberiku jabatan di negeri Mesir dan mengajarkan kepadaku ilmu takwil mimpi. Wahai Sang Pencipta langit dan bumi tanpa ada contoh sebelumnya! Engkaulah pelindungku dalam semua urusanku di dunia dan pelindungku dalam semua urusanku di akhirat. Cabutlah nyawaku di saat ajalku berakhir sebagai orang Islam (yang berserah diri) dan gabungkanlah diriku bersama para nabi yang saleh, baik leluhurku maupun bukan leluhurku, di dalam surga Firdaus, surga yang tertinggi."',
       },
     },
     text: {
-      arab: "\u06de \u0631\u064e\u0628\u0651\u0650 \u0642\u064e\u062f\u0652 \u0622\u062a\u064e\u064a\u0652\u062a\u064e\u0646\u0650\u064a \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064f\u0644\u0652\u0643\u0650 \u0648\u064e\u0639\u064e\u0644\u0651\u064e\u0645\u0652\u062a\u064e\u0646\u0650\u064a \u0645\u0650\u0646 \u062a\u064e\u0623\u0652\u0648\u0650\u064a\u0644\u0650 \u0627\u0644\u0652\u0623\u064e\u062d\u064e\u0627\u062f\u0650\u064a\u062b\u0650 \u06da \u0641\u064e\u0627\u0637\u0650\u0631\u064e \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0648\u064e\u0627\u062a\u0650 \u0648\u064e\u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u0623\u064e\u0646\u062a\u064e \u0648\u064e\u0644\u0650\u064a\u0651\u0650\u064a \u0641\u0650\u064a \u0627\u0644\u062f\u0651\u064f\u0646\u0652\u064a\u064e\u0627 \u0648\u064e\u0627\u0644\u0652\u0622\u062e\u0650\u0631\u064e\u0629\u0650 \u06d6 \u062a\u064e\u0648\u064e\u0641\u0651\u064e\u0646\u0650\u064a \u0645\u064f\u0633\u0652\u0644\u0650\u0645\u064b\u0627 \u0648\u064e\u0623\u064e\u0644\u0652\u062d\u0650\u0642\u0652\u0646\u0650\u064a \u0628\u0650\u0627\u0644\u0635\u0651\u064e\u0627\u0644\u0650\u062d\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Rabbi qad aataitanee minal mulki wa 'allamtanee min taaweelil ahaadees; faati ras samaawaati wal ardi Anta waliyyee fid dunyaa wal Aakhirati tawaffanee muslimanw wa alhiqnee bissaaliheen",
-      },
+      arabic:
+        "رَبِّ قَدْ ءَاتَيْتَنِى مِنَ ٱلْمُلْكِ وَعَلَّمْتَنِى مِن تَأْوِيلِ ٱلْأَحَادِيثِ فَاطِرَ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ أَنتَ وَلِىِّۦ فِى ٱلدُّنْيَا وَٱلْـَٔاخِرَةِ تَوَفَّنِى مُسْلِمًا وَأَلْحِقْنِى بِٱلصَّٰلِحِينَ",
     },
     translation: {
-      en: 'My Lord, You have given me [something] of sovereignty and taught me of the interpretation of dreams. Creator of the heavens and earth, You are my protector in this world and in the Hereafter. Cause me to die a Muslim and join me with the righteous."',
-      id: "Tuhanku, sesungguhnya Engkau telah menganugerahkan kepadaku sebagian kekuasaan dan telah mengajarkan kepadaku sebagian takwil mimpi. (Wahai Tuhan) pencipta langit dan bumi, Engkaulah pelindungku di dunia dan di akhirat, wafatkanlah aku dalam keadaan muslim dan gabungkanlah aku dengan orang yang saleh.”",
+      en: {
+        footnotes:
+          "[40] By the ‘righteous’ ones Joseph meant his forefathers Isaac and Abraham and all other prophets and messengers.",
+        text: "“My Lord, You have given me authority and taught me something of the interpretation of dreams. O Originator of the heavens and earth, You are my Protector in this world and in the Hereafter. Cause me to die as a Muslim [submitting to You], and join me with the righteous[40].”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Tuhanku, sesungguhnya Engkau telah menganugerahkan kepadaku sebagian kekuasaan dan telah mengajarkan kepadaku sebagian takwil mimpi. (Wahai Tuhan) pencipta langit dan bumi, Engkaulah pelindungku di dunia dan di akhirat, wafatkanlah aku dalam keadaan muslim dan gabungkanlah aku dengan orang yang saleh."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1698",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1698.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1698.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 99,
       juz: 13,
       manzil: 3,
       page: 247,
       ruku: 203,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1698,
@@ -229,20 +195,23 @@ export const quranSurah12Verses97To102 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini, Allah swt menerangkan bahwa kisah Yusuf yang telah dipaparkan di atas termasuk berita gaib. Berita gaib itu diwahyukan kepada Muhammad. Sebelumnya, ia dan umat Islam tidak mengetahuinya. Dia juga tidak mengetahui ketika saudara-saudara Yusuf bersatu dan sepakat untuk membuang Yusuf ke dalam sumur yang dalam, dan ketika mereka mengatur tipu daya dan makarnya. Muhammad saw mengetahui peristiwa yang telah dialami oleh Yusuf itu dengan perantaraan wahyu dari Allah swt. Peristiwa ini merupakan bukti yang nyata atas kebenaran kenabian dan kerasulan Muhammad saw. Bagi orang yang sadar, bukti ini menjadi alasan untuk mempercayai dan membenarkan kerasulan Muhammad saw itu.",
-        short:
-          "Demikianlah kisah tentang Nabi Yusuf. Allah menceritakan kisah ini kepada Nabi Muhammad agar menjadi pengajaran yang sangat berharga. Itulah sebagian berita gaib yang Kami wahyukan kepadamu, wahai Nabi Muhammad. Dengan wahyu itu engkau dapat mengetahui kisah tersebut, padahal engkau tidak berada di samping mereka, yakni saudarasaudara Yusuf, ketika mereka bersepakat mengatur tipu muslihat untuk melemparkan Nabi Yusuf ke dalam sumur.",
+        footnotes: null,
+        text: "Kisah Yusuf dan saudara-saudaranya yang telah Kami wahyukan kepadamu -wahai Rasul- tidaklah engkau ketahui sebelumnya karena engkau tidak menyaksikan saudara-saudara Yusuf ketika mereka memutuskan untuk membuangnya ke dalam sumur dan membuat tipu muslihat yang jahat. Tetapi, Kamilah yang mewahyukan kisah itu kepadamu.",
       },
     },
     text: {
-      arab: "\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0645\u0650\u0646\u0652 \u0623\u064e\u0646\u0628\u064e\u0627\u0621\u0650 \u0627\u0644\u0652\u063a\u064e\u064a\u0652\u0628\u0650 \u0646\u064f\u0648\u062d\u0650\u064a\u0647\u0650 \u0625\u0650\u0644\u064e\u064a\u0652\u0643\u064e \u06d6 \u0648\u064e\u0645\u064e\u0627 \u0643\u064f\u0646\u062a\u064e \u0644\u064e\u062f\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0625\u0650\u0630\u0652 \u0623\u064e\u062c\u0652\u0645\u064e\u0639\u064f\u0648\u0627 \u0623\u064e\u0645\u0652\u0631\u064e\u0647\u064f\u0645\u0652 \u0648\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u0645\u0652\u0643\u064f\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Zaalika min ambaaa'il ghaibi nooheehi ilaika wa maa kunta ladaihim iz ajma'ooo amrahum wa hum yamkuroon",
-      },
+      arabic:
+        "ذَٰلِكَ مِنْ أَنۢبَآءِ ٱلْغَيْبِ نُوحِيهِ إِلَيْكَ وَمَا كُنتَ لَدَيْهِمْ إِذْ أَجْمَعُوٓا۟ أَمْرَهُمْ وَهُمْ يَمْكُرُونَ",
     },
     translation: {
-      en: "That is from the news of the unseen which We reveal, [O Muhammad], to you. And you were not with them when they put together their plan while they conspired.",
-      id: "Itulah sebagian berita gaib yang Kami wahyukan kepadamu (Muhammad); padahal engkau tidak berada di samping mereka, ketika mereka bersepakat mengatur tipu muslihat (untuk memasukkan Yusuf ke dalam sumur).",
+      en: {
+        footnotes: "",
+        text: "That is from the stories of the unseen which We reveal to you [O Prophet]; you were not with them when they agreed upon their plan as they were plotting.",
+      },
+      id: {
+        footnotes: "",
+        text: "Itulah sebagian berita gaib yang Kami wahyukan kepadamu (Muhammad); padahal engkau tidak berada di samping mereka, ketika mereka bersepakat mengatur tipu muslihat (untuk memasukan Yusuf ke dalam sumur).",
+      },
     },
   },
 ];

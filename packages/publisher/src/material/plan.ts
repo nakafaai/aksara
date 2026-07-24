@@ -5,10 +5,12 @@ import {
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { MaterialEntry } from "@nakafa/aksara-corpus/material/registry";
 import { type Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
+import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   compileMaterialDocument,
   inspectMaterialDocument,
@@ -31,7 +33,8 @@ export type MaterialPublicationPlan = typeof MaterialPublicationPlanSchema.Type;
 
 type PlanMaterialPublicationError =
   | Effect.Effect.Error<ReturnType<typeof compileMaterialDocument>>
-  | Effect.Effect.Error<ReturnType<typeof inspectMaterialDocument>>;
+  | Effect.Effect.Error<ReturnType<typeof inspectMaterialDocument>>
+  | PublicationScopeIdentityError;
 
 type PlanMaterialPublicationContext =
   | Effect.Effect.Context<ReturnType<typeof compileMaterialDocument>>
@@ -76,6 +79,7 @@ export function planMaterialPublication<E, R>(input: {
   readonly entries: readonly MaterialEntry[];
   readonly published: Stream.Stream<MaterialHead, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
+  readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<
   MaterialPublicationPlan,
   E | PlanMaterialPublicationError,
@@ -91,6 +95,7 @@ export function planMaterialPublication<E, R>(input: {
       prior: priorMaterial,
       publicPath: (entry) => entry.route.publicPath,
     },
+    family: "material",
     ...input,
   });
 }

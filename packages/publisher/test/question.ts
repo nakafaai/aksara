@@ -56,6 +56,7 @@ export const rendererManifest = await Effect.runPromise(
       supportedComponents: baseComponents,
     },
     domains: testRendererDomains({}),
+    publishedDomains: ["mathematics"],
   })
 );
 

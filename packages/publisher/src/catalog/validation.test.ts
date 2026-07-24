@@ -24,16 +24,16 @@ const snapshotEvidence = {
     snapshotId: digest,
   },
   quran: {
-    projectionCount: 1427,
+    projectionCount: 1428,
     projectionDigest: digest,
     provenanceDigest: digest,
     provenanceStatus: "blocked",
-    runtimeCount: 1199,
+    runtimeCount: 1200,
     searchCount: 228,
     snapshotId: digest,
     sourceDigest: digest,
   },
-  stagedRows: 2315,
+  stagedRows: 2316,
   tryout: {
     catalogCount: 54,
     catalogDigest: digest,
@@ -174,6 +174,7 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "InlineMath", version: 1 }],
     },
     domains: testRendererDomains({}),
+    publishedDomains: ["mathematics"],
   })
 );
 

@@ -5,6 +5,7 @@ import {
   ArticleHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { ArticleEntry } from "@nakafa/aksara-corpus/articles/registry";
 import { type Effect, Schema, type Stream } from "effect";
@@ -13,6 +14,7 @@ import {
   inspectArticleDocument,
 } from "#publisher/article/document";
 import { planFamilyPublication } from "#publisher/family/plan";
+import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import {
   PreparedContentTransitionSchema,
   type PreparedContentUpsert,
@@ -31,7 +33,8 @@ export type ArticlePublicationPlan = typeof ArticlePublicationPlanSchema.Type;
 
 type PlanArticlePublicationError =
   | Effect.Effect.Error<ReturnType<typeof compileArticleDocument>>
-  | Effect.Effect.Error<ReturnType<typeof inspectArticleDocument>>;
+  | Effect.Effect.Error<ReturnType<typeof inspectArticleDocument>>
+  | PublicationScopeIdentityError;
 
 type PlanArticlePublicationContext =
   | Effect.Effect.Context<ReturnType<typeof compileArticleDocument>>
@@ -76,6 +79,7 @@ export function planArticlePublication<E, R>(input: {
   readonly entries: readonly ArticleEntry[];
   readonly published: Stream.Stream<ArticleHead, E, R>;
   readonly rendererManifest: RendererManifestEnvelope;
+  readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<
   ArticlePublicationPlan,
   E | PlanArticlePublicationError,
@@ -91,6 +95,7 @@ export function planArticlePublication<E, R>(input: {
       prior: priorArticle,
       publicPath: (entry) => entry.route.publicPath,
     },
+    family: "article",
     ...input,
   });
 }

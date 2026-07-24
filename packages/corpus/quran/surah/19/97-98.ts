@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah19Verses97To98 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2347",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2347.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2347.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 312,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2347,
@@ -24,40 +25,32 @@ export const quranSurah19Verses97To98 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa Al-Qur'an diturunkan dalam bahasa Arab, bahasa yang dipakai oleh Nabi Muhammad dan kaumnya gunanya adalah agar mudah bagi Nabi untuk menyampaikan isi dan maksudnya dan mudah pula dipahami oleh kaumnya, karena kepada merekalah pertama kali seruan Islam disampaikan kemudian baru kepada manusia seluruhnya dari berbagai jenis suku dan bahasanya. Al-Qur'an yang berisi peringatan dan kabar gembira, perintah dan larangan, bertujuan memberi hidayah kepada manusia agar bertakwa kepada Allah yaitu beriman kepada-Nya tanpa mempersekutukan-Nya dengan suatu apapun dan menaati perintahNya, menghentikan larangan-Nya dan selalu mencari keridaan-Nya. Orang-orang yang demikian sifatnya akan dikaruniai Allah kebahagiaan di dunia dan di akhirat. \n\nAdapun orang-orang yang ingkar kepada-Nya dan mendustakan Rasul-Nya, mereka akan menerima balasan yang setimpal atas keingkaran dan kedurhakaannya itu baik di dunia maupun di akhirat kelak. Keingkaran umat-umat yang dahulu mendapat balasan di dunia ini dengan menghancurkan dan membinasakan mereka dengan berbagai macam siksa, ada yang berupa gempa yang dahsyat, angin topan, suara keras yang mengguntur dan lain sebagainya, seperti yang ditimpakan kepada kaum 'Ad, samud dan kaum Nabi Nuh. Sedangkan bagi umat Muhammad siksaan di dunia ini tidaklah berupa penghancuran dan pembinasaan tetapi dengan menurunkan cobaan dan malapetaka, dengan harapan mereka akan sadar dan insaf lalu kembali kepada kebenaran. Pembalasan di akhirat ialah dengan melimpahkan karunia-Nya kepada orang-orang mukmin yang bertakwa dengan memasukkan mereka ke dalam surga Jannatun Na'im yang penuh nikmat dan kesenangan serta mendapat kasih sayang dan keridaan-Nya. \n\nBagi orang-orang yang ingkar dan kafir disediakan azab yang pedih yaitu neraka. Sebagai bukti kebenaran ancaman-Nya. Allah menerangkan bahwa telah banyak umat-umat dahulu yang durhaka yang dimusnahkan dan bekas-bekas peninggalan mereka ada yang masih dapat dilihat dan disaksikan sampai sekarang dan ada pula yang tidak ada bekasnya sama sekali. Tetapi yang jelas umat-umat itu telah hancur binasa tiada seorang pun yang tersisa sampai masa kini yang ada hanya beritanya yang dihikayatkan orang secara turun temurun. Berita tentang mereka diceritakan dalam Al-Qur'an dengan jelas, maka kita wajib meyakininya karena sumbernya adalah wahyu Allah.",
-        short:
-          "Wahai Nabi, maka sampaikanlah janji Allah kepada umatmu bahwa sesungguhnya telah Kami mudahkan Al-Qur’an itu dengan bahasamu. Yang demikian ini agar dengan itu engkau dapat memberi kabar gembira tentang janji dan rahmat Allah kepada orang-orang yang bertakwa yang selalu melaksanakan perintah-Nya dan menjauhi larangan-Nya, dan agar engkau dapat memberi peringatan tentang murka dan hukuman-Nya kepada kaum yang membangkang dan mengingkari ajaran-Nya.",
+        footnotes: null,
+        text: "Sungguh Kami telah mudahkan Al-Qur`ān ini dengan menurunkannya dalam bahasamu -wahai Rasul-, agar engkau dapat memberi kabar gembira kepada orang-orang bertakwa yang menjalankan perintah dan menjauhi larangan-Ku, dan agar engkau dapat pula memberi peringatan kepada kaum yang sangat pembangkang dan durhaka untuk tunduk terhadap kebenaran.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u064a\u064e\u0633\u0651\u064e\u0631\u0652\u0646\u064e\u0627\u0647\u064f \u0628\u0650\u0644\u0650\u0633\u064e\u0627\u0646\u0650\u0643\u064e \u0644\u0650\u062a\u064f\u0628\u064e\u0634\u0651\u0650\u0631\u064e \u0628\u0650\u0647\u0650 \u0627\u0644\u0652\u0645\u064f\u062a\u0651\u064e\u0642\u0650\u064a\u0646\u064e \u0648\u064e\u062a\u064f\u0646\u0630\u0650\u0631\u064e \u0628\u0650\u0647\u0650 \u0642\u064e\u0648\u0652\u0645\u064b\u0627 \u0644\u0651\u064f\u062f\u0651\u064b\u0627",
-      transliteration: {
-        en: "Fa innamaa yassarnaahu bilisaanika litubashshira bihil muttaqeena wa tunzira bihee qawmal luddaa",
-      },
+      arabic: "فَإِنَّمَا يَسَّرْنَٰهُ بِلِسَانِكَ لِتُبَشِّرَ بِهِ ٱلْمُتَّقِينَ وَتُنذِرَ بِهِۦ قَوْمًا لُّدًّا",
     },
     translation: {
-      en: "So, [O Muhammad], We have only made Qur'an easy in the Arabic language that you may give good tidings thereby to the righteous and warn thereby a hostile people.",
-      id: "Maka sungguh, telah Kami mudahkan (Al-Qur'an) itu dengan bahasamu (Muhammad), agar dengan itu engkau dapat memberi kabar gembira kepada orang-orang yang bertakwa, dan agar engkau dapat memberi peringatan kepada kaum yang membangkang.",
+      en: {
+        footnotes: "",
+        text: "We have made this [Qur’an] easy in your language so that you may give thereby glad tidings to the righteous and warn people who are contentious.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka sungguh, telah Kami mudahkan (Al-Qur`an) itu dengan bahasamu (Muhammad), agar dengan itu engkau dapat memberi kabar gembira kepada orang-orang yang bertakwa, dan agar engkau dapat memberi peringatan kepada kaum yang membangkang.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2348",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2348.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2348.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 124,
       juz: 16,
       manzil: 4,
       page: 312,
       ruku: 269,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2348,
@@ -65,20 +58,22 @@ export const quranSurah19Verses97To98 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bahwa Al-Qur'an diturunkan dalam bahasa Arab, bahasa yang dipakai oleh Nabi Muhammad dan kaumnya gunanya adalah agar mudah bagi Nabi untuk menyampaikan isi dan maksudnya dan mudah pula dipahami oleh kaumnya, karena kepada merekalah pertama kali seruan Islam disampaikan kemudian baru kepada manusia seluruhnya dari berbagai jenis suku dan bahasanya. Al-Qur'an yang berisi peringatan dan kabar gembira, perintah dan larangan, bertujuan memberi hidayah kepada manusia agar bertakwa kepada Allah yaitu beriman kepada-Nya tanpa mempersekutukan-Nya dengan suatu apapun dan menaati perintahNya, menghentikan larangan-Nya dan selalu mencari keridaan-Nya. Orang-orang yang demikian sifatnya akan dikaruniai Allah kebahagiaan di dunia dan di akhirat. \n\nAdapun orang-orang yang ingkar kepada-Nya dan mendustakan Rasul-Nya, mereka akan menerima balasan yang setimpal atas keingkaran dan kedurhakaannya itu baik di dunia maupun di akhirat kelak. Keingkaran umat-umat yang dahulu mendapat balasan di dunia ini dengan menghancurkan dan membinasakan mereka dengan berbagai macam siksa, ada yang berupa gempa yang dahsyat, angin topan, suara keras yang mengguntur dan lain sebagainya, seperti yang ditimpakan kepada kaum 'Ad, samud dan kaum Nabi Nuh. Sedangkan bagi umat Muhammad siksaan di dunia ini tidaklah berupa penghancuran dan pembinasaan tetapi dengan menurunkan cobaan dan malapetaka, dengan harapan mereka akan sadar dan insaf lalu kembali kepada kebenaran. Pembalasan di akhirat ialah dengan melimpahkan karunia-Nya kepada orang-orang mukmin yang bertakwa dengan memasukkan mereka ke dalam surga Jannatun Na'im yang penuh nikmat dan kesenangan serta mendapat kasih sayang dan keridaan-Nya. \n\nBagi orang-orang yang ingkar dan kafir disediakan azab yang pedih yaitu neraka. Sebagai bukti kebenaran ancaman-Nya. Allah menerangkan bahwa telah banyak umat-umat dahulu yang durhaka yang dimusnahkan dan bekas-bekas peninggalan mereka ada yang masih dapat dilihat dan disaksikan sampai sekarang dan ada pula yang tidak ada bekasnya sama sekali. Tetapi yang jelas umat-umat itu telah hancur binasa tiada seorang pun yang tersisa sampai masa kini yang ada hanya beritanya yang dihikayatkan orang secara turun temurun. Berita tentang mereka diceritakan dalam Al-Qur'an dengan jelas, maka kita wajib meyakininya karena sumbernya adalah wahyu Allah.",
-        short:
-          "Wahai Nabi, sebagai peringatan dan pelajaran bagi para pembangkang itu, kabarkan kepada mereka berapa banyak umat yang telah Kami binasakan sebelum mereka akibat keingkaran dan kedurhakaan mereka. Kami hancurkan mereka, lalu adakah engkau melihat salah seorang dari mereka atau engkau mendengar bisikan mereka? Tidak! Maka, sebagaimana Kami binasakan umat terdahulu itu, Kami pasti akan membinasakan kaummu yang ingkar.",
+        footnotes: null,
+        text: "Betapa banyak umat yang Kami telah binasakan sebelum adanya kaummu, maka apakah hari ini engkau melihat dan merasakan keberadaan salah satu dari umat-umat itu?! Ataukah kamu masih mendengar bisikan-bisikan mereka?! Sungguh, apa yang telah menimpa mereka boleh jadi akan menimpa selain mereka bila Allah menghendakinya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0643\u064e\u0645\u0652 \u0623\u064e\u0647\u0652\u0644\u064e\u0643\u0652\u0646\u064e\u0627 \u0642\u064e\u0628\u0652\u0644\u064e\u0647\u064f\u0645 \u0645\u0651\u0650\u0646 \u0642\u064e\u0631\u0652\u0646\u064d \u0647\u064e\u0644\u0652 \u062a\u064f\u062d\u0650\u0633\u0651\u064f \u0645\u0650\u0646\u0652\u0647\u064f\u0645 \u0645\u0651\u0650\u0646\u0652 \u0623\u064e\u062d\u064e\u062f\u064d \u0623\u064e\u0648\u0652 \u062a\u064e\u0633\u0652\u0645\u064e\u0639\u064f \u0644\u064e\u0647\u064f\u0645\u0652 \u0631\u0650\u0643\u0652\u0632\u064b\u0627",
-      transliteration: {
-        en: "Wa kam ahlaknaa qabla hum min qarnin hal tuhissu minhum min ahadin aw tasma'u lahum rikzaa",
-      },
+      arabic: "وَكَمْ أَهْلَكْنَا قَبْلَهُم مِّن قَرْنٍ هَلْ تُحِسُّ مِنْهُم مِّنْ أَحَدٍ أَوْ تَسْمَعُ لَهُمْ رِكْزًۢا",
     },
     translation: {
-      en: "And how many have We destroyed before them of generations? Do you perceive of them anyone or hear from them a sound?",
-      id: "Dan berapa banyak umat yang telah Kami binasakan sebelum mereka. Adakah engkau (Muhammad) melihat salah seorang dari mereka atau engkau mendengar bisikan mereka?",
+      en: {
+        footnotes: "",
+        text: "How many generations We have destroyed before them! Do you sense a single one of them or even hear from them a whisper?",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan berapa banyak umat yang telah Kami binasakan sebelum mereka. Adakah engkau (Muhammad) melihat salah seorang dari mereka atau engkau mendengar bisikan mereka?",
+      },
     },
   },
 ];

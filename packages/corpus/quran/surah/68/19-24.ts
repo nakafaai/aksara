@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah68Verses19To24 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5290",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5290.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5290.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 565,
       ruku: 498,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5290,
@@ -24,40 +25,32 @@ export const quranSurah68Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Ketentuan dan kehendak Allah pasti berlaku tanpa seorang pun yang dapat menghalanginya. Maka pada malam hari, dengan ketetapan dan kehendak Allah, datanglah petir yang membakar seluruh kebun mereka. Tidak ada satu pun yang tinggal, semua hangus terbakar. Kejadian tersebut terjadi ketika para pemilik kebun itu sedang tidur nyenyak, sehingga tidak seorang pun yang tahu bahwa kebunnya telah habis terbakar. Mereka lalai dan tidak ingat kepada Allah, Tuhan yang memberi rezeki kepada mereka.",
-        short:
-          "Lalu akibat perbuatannya tersebut, kebun itu ditimpa bencana yang besar dan buruk yang datang dari Tuhanmu ketika mereka sedang tidur lelap.",
+        footnotes: null,
+        text: "Allah lantas mengirimkan api ke kebun itu, sehingga ia pun membakarnya, sementara pemiliknya sedang tidur dan tidak mampu memadamkan api dari kebun itu.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0637\u064e\u0627\u0641\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u0637\u064e\u0627\u0626\u0650\u0641\u064c \u0645\u0651\u0650\u0646 \u0631\u0651\u064e\u0628\u0651\u0650\u0643\u064e \u0648\u064e\u0647\u064f\u0645\u0652 \u0646\u064e\u0627\u0626\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fataafa 'alaihaa taaa'i fum mir rabbika wa hum naaa'imoon",
-      },
+      arabic: "فَطَافَ عَلَيْهَا طَآئِفٌ مِّن رَّبِّكَ وَهُمْ نَآئِمُونَ",
     },
     translation: {
-      en: "So there came upon the garden an affliction from your Lord while they were asleep.",
-      id: "Lalu kebun itu ditimpa bencana (yang datang) dari Tuhanmu ketika mereka sedang tidur.",
+      en: {
+        footnotes: "",
+        text: "Then it was struck by an affliction from your Lord while they were asleep,",
+      },
+      id: {
+        footnotes: "",
+        text: "Lalu kebun itu ditimpa bencana (yang datang) dari Tuhanmu ketika mereka sedang tidur.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5291",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5291.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5291.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 565,
       ruku: 498,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5291,
@@ -65,40 +58,33 @@ export const quranSurah68Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: "Ketentuan dan kehendak Allah pasti berlaku tanpa seorang pun yang dapat menghalanginya. Maka pada malam hari, dengan ketetapan dan kehendak Allah, datanglah petir yang membakar seluruh kebun mereka. Tidak ada satu pun yang tinggal, semua hangus terbakar. Kejadian tersebut terjadi ketika para pemilik kebun itu sedang tidur nyenyak, sehingga tidak seorang pun yang tahu bahwa kebunnya telah habis terbakar. Mereka lalai dan tidak ingat kepada Allah, Tuhan yang memberi rezeki kepada mereka.",
-        short:
-          "Maka jadilah kebun itu hitam karena terbakar hangus, seperti malam yang gelap gulita, atau pohon itu telah menjadi gundul setelah dipetik semua buahnya.",
+        footnotes: null,
+        text: "Sebab itu, kebun itu berubah menjadi hitam seperti malam yang gelap.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0635\u0652\u0628\u064e\u062d\u064e\u062a\u0652 \u0643\u064e\u0627\u0644\u0635\u0651\u064e\u0631\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Fa asbahat kassareem",
-      },
+      arabic: "فَأَصْبَحَتْ كَٱلصَّرِيمِ",
     },
     translation: {
-      en: "And it became as though reaped.",
-      id: "Maka jadilah kebun itu hitam seperti malam yang gelap gulita,",
+      en: {
+        footnotes: "",
+        text: "and it turned to ashes [as black as night].",
+      },
+      id: {
+        footnotes:
+          "[847] Maka terbakarlah kebun itu dan tinggallah arang-arangnya yang hitam seperti malam.",
+        text: "Maka jadilah kebun itu hitam seperti malam yang gelap gulita,[847]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5292",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5292.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5292.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 565,
       ruku: 498,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5292,
@@ -106,40 +92,32 @@ export const quranSurah68Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah bangun pada pagi harinya, mereka saling memanggil dan mengajak untuk pergi ke kebun guna memetik hasilnya. Setelah berkumpul, mereka pun berangkat dan berjalan dengan sembunyi-sembunyi sambil berbisik-bisik di antara mereka, "Jangan biarkan seorang pun di antara orang-orang miskin itu datang ke kebun kita seperti dulu ketika ayah masih hidup. Hendaknya seluruh panen kebun ini dapat kita manfaatkan untuk keperluan kita sendiri." Mereka pergi ke kebun pagi-pagi sekali dengan maksud agar orang-orang miskin tidak masuk ke kebun mereka dan mereka sangat yakin akan dapat memetik seluruh hasil kebun itu.',
-        short:
-          "Mereka belum mengetahui bahwa kebun sudah hancur. Sesuai dengan rencana mereka, lalu dengan penuh rahasia pada pagi hari mereka saling memanggil,",
+        footnotes: null,
+        text: "Lalu sebagian dari mereka menyeru kepada sebagian yang lain pada pagi hari.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u062a\u064e\u0646\u064e\u0627\u062f\u064e\u0648\u0652\u0627 \u0645\u064f\u0635\u0652\u0628\u0650\u062d\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fatanaadaw musbiheen",
-      },
+      arabic: "فَتَنَادَوْا۟ مُصْبِحِينَ",
     },
     translation: {
-      en: "And they called one another at morning,",
-      id: "lalu pada pagi hari mereka saling memanggil.",
+      en: {
+        footnotes: "",
+        text: "Then in the early morning they called out to one another:",
+      },
+      id: {
+        footnotes: "",
+        text: "lalu pada pagi hari mereka saling memanggil.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5293",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5293.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5293.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 565,
       ruku: 498,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5293,
@@ -147,40 +125,32 @@ export const quranSurah68Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah bangun pada pagi harinya, mereka saling memanggil dan mengajak untuk pergi ke kebun guna memetik hasilnya. Setelah berkumpul, mereka pun berangkat dan berjalan dengan sembunyi-sembunyi sambil berbisik-bisik di antara mereka, "Jangan biarkan seorang pun di antara orang-orang miskin itu datang ke kebun kita seperti dulu ketika ayah masih hidup. Hendaknya seluruh panen kebun ini dapat kita manfaatkan untuk keperluan kita sendiri." Mereka pergi ke kebun pagi-pagi sekali dengan maksud agar orang-orang miskin tidak masuk ke kebun mereka dan mereka sangat yakin akan dapat memetik seluruh hasil kebun itu.',
-        short:
-          "Pergilah pagi-pagi ke kebunmu jika kamu hendak memetik hasil sesuai dengan yang telah kita rencanakan.",
+        footnotes: null,
+        text: "Mereka saling menyeru sambil berkata, “Keluarlah kalian segera menuju kebun kalian sebelum kedatangan orang-orang fakir jika kalian ingin memetik hasil kebun kalian.”",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0646\u0650 \u0627\u063a\u0652\u062f\u064f\u0648\u0627 \u0639\u064e\u0644\u064e\u0649\u0670 \u062d\u064e\u0631\u0652\u062b\u0650\u0643\u064f\u0645\u0652 \u0625\u0650\u0646 \u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u0635\u064e\u0627\u0631\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Anighdoo 'alaa harsikum in kuntum saarimeen",
-      },
+      arabic: "أَنِ ٱغْدُوا۟ عَلَىٰ حَرْثِكُمْ إِن كُنتُمْ صَٰرِمِينَ",
     },
     translation: {
-      en: '[Saying], "Go early to your crop if you would cut the fruit."',
-      id: "”Pergilah pagi-pagi ke kebunmu jika kamu hendak memetik hasil.”",
+      en: {
+        footnotes: "",
+        text: "“Go early to your garden if you really wish to harvest.”",
+      },
+      id: {
+        footnotes: "",
+        text: '"Pergilah pagi-pagi ke kebunmu jika kamu hendak memetik hasil."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5294",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5294.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5294.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 565,
       ruku: 498,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5294,
@@ -188,40 +158,32 @@ export const quranSurah68Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah bangun pada pagi harinya, mereka saling memanggil dan mengajak untuk pergi ke kebun guna memetik hasilnya. Setelah berkumpul, mereka pun berangkat dan berjalan dengan sembunyi-sembunyi sambil berbisik-bisik di antara mereka, "Jangan biarkan seorang pun di antara orang-orang miskin itu datang ke kebun kita seperti dulu ketika ayah masih hidup. Hendaknya seluruh panen kebun ini dapat kita manfaatkan untuk keperluan kita sendiri." Mereka pergi ke kebun pagi-pagi sekali dengan maksud agar orang-orang miskin tidak masuk ke kebun mereka dan mereka sangat yakin akan dapat memetik seluruh hasil kebun itu.',
-        short:
-          "Maka mereka pun berangkat dengan diam-diam sambil berbisik-bisik dengan meng-ingatkan,",
+        footnotes: null,
+        text: "Lalu mereka berjalan menuju kebun mereka dengan cepat, sebagian dari mereka berkata dengan sebagian yang lain dengan suara yang rendah.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0627\u0646\u0637\u064e\u0644\u064e\u0642\u064f\u0648\u0627 \u0648\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u062a\u064e\u062e\u064e\u0627\u0641\u064e\u062a\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fantalaqoo wa hum yatakhaafatoon",
-      },
+      arabic: "فَٱنطَلَقُوا۟ وَهُمْ يَتَخَٰفَتُونَ",
     },
     translation: {
-      en: "So they set out, while lowering their voices,",
-      id: "Maka mereka pun berangkat sambil berbisik-bisik.",
+      en: {
+        footnotes: "",
+        text: "So they set out, whispering to one another,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka mereka pun berangkat sambil berbisik-bisik.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5295",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5295.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5295.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 226,
       juz: 29,
       manzil: 7,
       page: 565,
       ruku: 498,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5295,
@@ -229,20 +191,22 @@ export const quranSurah68Verses19To24 = [
     },
     tafsir: {
       id: {
-        long: 'Setelah bangun pada pagi harinya, mereka saling memanggil dan mengajak untuk pergi ke kebun guna memetik hasilnya. Setelah berkumpul, mereka pun berangkat dan berjalan dengan sembunyi-sembunyi sambil berbisik-bisik di antara mereka, "Jangan biarkan seorang pun di antara orang-orang miskin itu datang ke kebun kita seperti dulu ketika ayah masih hidup. Hendaknya seluruh panen kebun ini dapat kita manfaatkan untuk keperluan kita sendiri." Mereka pergi ke kebun pagi-pagi sekali dengan maksud agar orang-orang miskin tidak masuk ke kebun mereka dan mereka sangat yakin akan dapat memetik seluruh hasil kebun itu.',
-        short:
-          "“Pada hari ini jangan sampai ada seorang miskin pun masuk ke dalam kebunmu.” Khususnya pada saat sedang memetik hasilnya. Kalau sampai ada, itu akan merusak rencana.",
+        footnotes: null,
+        text: "Sebagian berkata kepada sebagian yang lain, “Janganlah ada satu orang miskin pun yang masuk ke dalam kebun kalian pada hari ini.”",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0646 \u0644\u0651\u064e\u0627 \u064a\u064e\u062f\u0652\u062e\u064f\u0644\u064e\u0646\u0651\u064e\u0647\u064e\u0627 \u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645 \u0645\u0651\u0650\u0633\u0652\u0643\u0650\u064a\u0646\u064c",
-      transliteration: {
-        en: "Al laa yadkhulannahal yawma 'alaikum miskeen",
-      },
+      arabic: "أَن لَّا يَدْخُلَنَّهَا ٱلْيَوْمَ عَلَيْكُم مِّسْكِينٌ",
     },
     translation: {
-      en: '[Saying], "There will surely not enter it today upon you [any] poor person."',
-      id: "”Pada hari ini jangan sampai ada orang miskin masuk ke dalam kebunmu.”",
+      en: {
+        footnotes: "",
+        text: "“Not a single poor person should enter your garden today.”",
+      },
+      id: {
+        footnotes: "",
+        text: '"Pada hari ini jangan sampai ada orang miskin masuk ke dalam kebunmu."',
+      },
     },
   },
 ];

@@ -1,20 +1,25 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
-import { Sha256HashSchema } from "#contracts/ids";
+import { ContentKeySchema, Sha256HashSchema } from "#contracts/ids";
 import {
   baseContentSnapshots,
   ContentSnapshotSetSchema,
   ContentSnapshotStateSchema,
   canonicalizeContentSnapshotSet,
+  canonicalizePublicationScope,
   EMPTY_SNAPSHOT_ROW_DIGEST,
   hasEmptySnapshotBases,
   hasGitSnapshotModes,
   hasRollbackSnapshotModes,
   hasSameContentSnapshots,
+  hasScopedSnapshotTransitions,
   inheritContentSnapshot,
   inheritContentSnapshots,
   invertContentSnapshots,
+  PublicationScopeSchema,
+  publicationScopeContainsContent,
+  publicationScopeSelectsSnapshot,
   replaceContentSnapshot,
   restoreContentSnapshot,
   snapshotRowCount,
@@ -32,6 +37,79 @@ function decode(input: unknown) {
 }
 
 describe("content snapshot state", () => {
+  it("decodes only non-empty canonical unique publication scopes", () => {
+    const scope = Schema.decodeUnknownSync(PublicationScopeSchema)({
+      content: [
+        { contentKey: "test:a", family: "material", locale: "en" },
+        { contentKey: "test:a", family: "material", locale: "id" },
+      ],
+      families: ["article"],
+      snapshots: ["program", "tryout"],
+    });
+    const [english] = scope.content;
+    expect(english).toBeDefined();
+    if (english === undefined) {
+      return;
+    }
+    expect(canonicalizePublicationScope(scope)).toEqual(scope);
+    expect(publicationScopeContainsContent(scope, english)).toBe(true);
+    expect(
+      publicationScopeContainsContent(scope, {
+        contentKey: ContentKeySchema.make("test:family"),
+        family: "article",
+        locale: "en",
+      })
+    ).toBe(true);
+    expect(
+      publicationScopeContainsContent(scope, {
+        ...english,
+        locale: "id",
+      })
+    ).toBe(true);
+    expect(publicationScopeSelectsSnapshot(scope, "program")).toBe(true);
+    expect(publicationScopeSelectsSnapshot(scope, "quran")).toBe(false);
+
+    const failures = [
+      { content: [], families: [], snapshots: [] },
+      {
+        content: [
+          { contentKey: "test:a", family: "material", locale: "en" },
+          { contentKey: "test:a", family: "material", locale: "en" },
+        ],
+        families: [],
+        snapshots: [],
+      },
+      {
+        content: [
+          { contentKey: "test:b", family: "material", locale: "en" },
+          { contentKey: "test:a", family: "material", locale: "en" },
+        ],
+        families: [],
+        snapshots: [],
+      },
+      { content: [], families: ["material", "material"], snapshots: [] },
+      { content: [], families: ["question", "article"], snapshots: [] },
+      {
+        content: [{ contentKey: "test:a", family: "material", locale: "en" }],
+        families: ["material"],
+        snapshots: [],
+      },
+      { content: [], families: ["unknown"], snapshots: [] },
+      { content: [], families: [], snapshots: ["program", "program"] },
+      { content: [], families: [], snapshots: ["tryout", "quran"] },
+      { content: [], families: [], snapshots: ["unknown"] },
+    ].map((invalid) =>
+      Schema.decodeUnknownEither(PublicationScopeSchema)(invalid)
+    );
+    expect(failures.every(Either.isLeft)).toBe(true);
+    const [emptyFailure] = failures;
+    if (emptyFailure !== undefined && Either.isLeft(emptyFailure)) {
+      expect(String(emptyFailure.left)).toContain(
+        "Expected a non-empty publication scope in canonical unique order."
+      );
+    }
+  });
+
   it("constructs fixed inherit, replace, and zero-copy restore states", () => {
     const inherit = inheritContentSnapshot(first);
     const replace = replaceContentSnapshot({
@@ -142,7 +220,7 @@ describe("content snapshot state", () => {
       quran: replaceContentSnapshot({
         baseSnapshotId: null,
         resultSnapshotId: first,
-        rowCount: 1427,
+        rowCount: 1428,
         rowDigest: rows,
       }),
       tryout: replaceContentSnapshot({
@@ -153,7 +231,7 @@ describe("content snapshot state", () => {
       }),
     });
 
-    expect(snapshotRowCount(snapshots)).toBe(2321);
+    expect(snapshotRowCount(snapshots)).toBe(2322);
     expect(canonicalizeContentSnapshotSet(snapshots)).toEqual(snapshots);
     expect(hasSameContentSnapshots(snapshots, snapshots)).toBe(true);
     expect(
@@ -167,7 +245,7 @@ describe("content snapshot state", () => {
       quran: replaceContentSnapshot({
         baseSnapshotId: first,
         resultSnapshotId: second,
-        rowCount: 1427,
+        rowCount: 1428,
         rowDigest: rows,
       }),
       tryout: inheritContentSnapshot(first),
@@ -196,5 +274,21 @@ describe("content snapshot state", () => {
       quran: { resultSnapshotId: first },
       tryout: { resultSnapshotId: first },
     });
+    const materialOnly = Schema.decodeUnknownSync(PublicationScopeSchema)({
+      content: [{ contentKey: "test:a", family: "material", locale: "en" }],
+      families: [],
+      snapshots: [],
+    });
+    expect(hasScopedSnapshotTransitions(materialOnly, snapshots)).toBe(false);
+    expect(
+      hasScopedSnapshotTransitions(
+        Schema.decodeUnknownSync(PublicationScopeSchema)({
+          content: materialOnly.content,
+          families: [],
+          snapshots: ["quran"],
+        }),
+        snapshots
+      )
+    ).toBe(true);
   });
 });

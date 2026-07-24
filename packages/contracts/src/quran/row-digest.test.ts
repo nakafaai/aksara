@@ -6,7 +6,11 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import { digestQuranRows } from "#contracts/quran/row-digest";
 import { hashQuranRow } from "#contracts/quran/row-hash";
-import { QURAN_SURAH_COUNT, type QuranRowPayload } from "#contracts/quran/spec";
+import {
+  QURAN_ATTRIBUTION_COUNT,
+  QURAN_SURAH_COUNT,
+  type QuranRowPayload,
+} from "#contracts/quran/spec";
 import { quranTestPayloads } from "#contracts/test/quran";
 
 const failures = vi.hoisted(
@@ -87,11 +91,14 @@ describe("Quran row digest", () => {
     );
 
     expect(summary).toMatchObject({
-      projectionCount: 1427,
-      runtimeCount: 1199,
+      attributionCount: 1,
+      projectionCount: 1428,
+      runtimeCount: 1200,
       searchCount: 228,
     });
-    expect(summary.chunkCount).toBe(summary.runtimeCount - QURAN_SURAH_COUNT);
+    expect(summary.chunkCount).toBe(
+      summary.runtimeCount - QURAN_ATTRIBUTION_COUNT - QURAN_SURAH_COUNT
+    );
   }, 30_000);
 
   it("rejects tampered, duplicated, displaced, and incomplete rows", async () => {
@@ -131,13 +138,13 @@ describe("Quran row digest", () => {
   });
 
   it("maps state creation, update, and finalization failures", async () => {
-    failures.domain = "nakafa.aksara.quran-runtime.v1";
+    failures.domain = "nakafa.aksara.quran-runtime.v2";
     failures.stage = "first-update";
     const stateError = await Effect.runPromise(
       digestQuranRows(Stream.empty).pipe(Effect.flip)
     );
 
-    failures.domain = "nakafa.aksara.quran-projection.v1";
+    failures.domain = "nakafa.aksara.quran-projection.v2";
     failures.stage = "later-update";
     const [first] = quranTestPayloads();
     if (first === undefined) {

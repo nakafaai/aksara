@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah4Verses109To114 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/602",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/602.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/602.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 38,
       juz: 5,
       manzil: 1,
       page: 96,
       ruku: 77,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 602,
@@ -24,40 +25,33 @@ export const quranSurah4Verses109To114 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini ditujukan kepada orang-orang yang hendak membela mereka yang curang yakni Bani Â¨afar dan berusaha membersihkan diri mereka dari segala tuduhan mencuri. Andaikata pembelaan mereka itu berhasil, maka siapakah yang sanggup membela mereka di hadapan Allah di hari kiamat? Bukankah waktu itu yang menjadi hakim untuk mengadili segala sengketa adalah Allah yang Maha Mengetahui segala amal perbuatan manusia? Tak seorang pun yang dapat menjadi pembela orang-orang yang bersalah di dunia dan menjadi pelindungnya pada hari kiamat.\n\n(Yaitu) hari (ketika) seseorang sama sekali tidak berdaya (menolong) orang lain. Dan segala urusan pada hari itu dalam kekuasaan Allah. (al-Infitar/82:19).\n\nUmat Islam haruslah menyadari bahwa keberuntungan yang diperolehnya secara curang lewat pengadilan di dunia ini akan menjadi siksaan baginya di akhirat.",
-        short:
-          "Pada ayat ini Allah mempertanyakan siapa yang dapat menentang Allah dan melindungi mereka dari azab-Nya di akhirat. Begitulah kamu! Kamu berdebat untuk membela mereka, dan mungkin saja kamu dapat membela mereka dan melindungi mereka dalam kehidupan di dunia ini, tetapi siapa yang akan menentang Allah untuk membela mereka pada hari Kiamat? Atau siapakah yang menjadi pelindung mereka terhadap azab Allah di akhirat? Tidak satu pun yang dapat melakukannya.",
+        footnotes: null,
+        text: "Kalian -wahai orang-orang yang membela urusan orang yang berbuat dosa itu- bisa berdebat untuk membela mereka di dunia untuk membuktikan bahwa mereka tidak bersalah dan membebaskan mereka dari hukuman. Tetapi siapakah yang akan berdebat dengan Allah untuk membela mereka kelak di hari Kiamat, sedangkan kamu telah mengetahui keadaan mereka yang sebenarnya? Dan siapakah yang akan menjadi pelindung mereka pada hari itu? Tidak ada keraguan bahwa tidak ada satu pun yang sanggup melakukan hal itu.",
       },
     },
     text: {
-      arab: "\u0647\u064e\u0627 \u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u0647\u064e\u0670\u0624\u064f\u0644\u064e\u0627\u0621\u0650 \u062c\u064e\u0627\u062f\u064e\u0644\u0652\u062a\u064f\u0645\u0652 \u0639\u064e\u0646\u0652\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0627\u0644\u0652\u062d\u064e\u064a\u064e\u0627\u0629\u0650 \u0627\u0644\u062f\u0651\u064f\u0646\u0652\u064a\u064e\u0627 \u0641\u064e\u0645\u064e\u0646 \u064a\u064f\u062c\u064e\u0627\u062f\u0650\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0639\u064e\u0646\u0652\u0647\u064f\u0645\u0652 \u064a\u064e\u0648\u0652\u0645\u064e \u0627\u0644\u0652\u0642\u0650\u064a\u064e\u0627\u0645\u064e\u0629\u0650 \u0623\u064e\u0645 \u0645\u0651\u064e\u0646 \u064a\u064e\u0643\u064f\u0648\u0646\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0648\u064e\u0643\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "haaa antum haaa'ulaaa'i jaadaltum 'anhum fil hayaatid dunyaa famai yujaadilul laaha 'anhum Yawmal Qiyaamati am mai yakoonu 'alaihim wakeelaa",
-      },
+      arabic:
+        "هَٰٓأَنتُمْ هَٰٓؤُلَآءِ جَٰدَلْتُمْ عَنْهُمْ فِى ٱلْحَيَوٰةِ ٱلدُّنْيَا فَمَن يُجَٰدِلُ ٱللَّهَ عَنْهُمْ يَوْمَ ٱلْقِيَٰمَةِ أَم مَّن يَكُونُ عَلَيْهِمْ وَكِيلًا",
     },
     translation: {
-      en: "Here you are - those who argue on their behalf in [this] worldly life - but who will argue with Allah for them on the Day of Resurrection, or who will [then] be their representative?",
-      id: "Itulah kamu! Kamu berdebat untuk (membela) mereka dalam kehidupan dunia ini, tetapi siapa yang akan menentang Allah untuk (membela) mereka pada hari Kiamat? Atau siapakah yang menjadi pelindung mereka (terhadap azab Allah)?",
+      en: {
+        footnotes: "[78] You, believers, argue on their behalf in this life.",
+        text: "Here you are, you are those who argue on their behalf in the life of this world[78], but who will argue on their behalf before Allah on the Day of Resurrection, or who will be their defender?",
+      },
+      id: {
+        footnotes: "",
+        text: "Itulah kamu! Kamu berdebat untuk (membela) mereka dalam kehidupan dunia ini, tetapi siapa yang akan menentang Allah untuk (membela) mereka pada hari Kiamat? Atau siapakah yang menjadi pelindung mereka (terhadap azab Allah)?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/603",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/603.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/603.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 38,
       juz: 5,
       manzil: 1,
       page: 96,
       ruku: 77,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 603,
@@ -65,40 +59,32 @@ export const quranSurah4Verses109To114 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini memberikan dorongan kepada mereka yang berbuat salah untuk menyadari dirinya dan kembali ke jalan yang benar, bertobat kepada Allah. Perbuatan mereka menzalimi diri sendiri dengan jalan berbuat maksiat, seperti sumpah palsu akan diampuni Allah jika mereka benar-benar minta ampun kepada-Nya. Dalam ayat ini diterangkan bagaimana jalan keluar dari dosa sesudah terperosok ke dalamnya dan sesudah diturunkan peringatan kepada musuh-musuh kebenaran, yaitu dengan tobat dan minta ampun. Orang yang minta ampun akan mendapati Allah Maha Pengampun dan Maha Penyayang. Dia akan merasakan hasil pengampunan Allah pada dirinya yaitu rasa benci kepada kemaksiatan dan penyebab-penyebabnya. Dia juga akan merasakan kasih sayang Allah kepadanya dengan tumbuhnya hasrat dalam hatinya hendak berbuat kebajikan.",
-        short:
-          "Dan barang siapa berbuat kejahatan, atau berbuat dosa terhadap orang lain yang menimbulkan dampak buruk terhadap diri mereka, atau menganiaya dirinya, yaitu melakukan perbuatan dosa yang berdampak buruk hanya terhadap dirinya sendiri, kemudian dia memohon ampunan kepada Allah atas perbuatan dosa yang dilakukannya itu disertai penyesalan atas perbuatannya dan bertekad untuk tidak melakukannya lagi, niscaya dia akan mendapatkan Allah Maha Pengampun atas dosadosanya dan segala dosa yang dilakukan oleh siapa pun yang bertobat kepada-Nya, Maha Penyayang dengan mencurahkan rahmat dan karunia-Nya kepada mereka yang bertobat.",
+        footnotes: null,
+        text: "Barang siapa yang berbuat buruk atau menganiaya dirinya sendiri dengan berbuat dosa, kemudian ia meminta ampun kepada Allah seraya mengakui dosanya, menyesalinya, dan meninggalkannya secara total, ia akan senantiasa mendapati bahwa Allah adalah Tuhan Yang Maha Pengampun atas dosa-dosanya lagi Maha Penyayang kepadanya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0639\u0652\u0645\u064e\u0644\u0652 \u0633\u064f\u0648\u0621\u064b\u0627 \u0623\u064e\u0648\u0652 \u064a\u064e\u0638\u0652\u0644\u0650\u0645\u0652 \u0646\u064e\u0641\u0652\u0633\u064e\u0647\u064f \u062b\u064f\u0645\u0651\u064e \u064a\u064e\u0633\u0652\u062a\u064e\u063a\u0652\u0641\u0650\u0631\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064e\u062c\u0650\u062f\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u063a\u064e\u0641\u064f\u0648\u0631\u064b\u0627 \u0631\u0651\u064e\u062d\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Wa mai ya'mal sooo'an aw yazlim nafsahoo summa yastaghfiril laaha yajidil laaha Ghafoorar Raheemaa",
-      },
+      arabic: "وَمَن يَعْمَلْ سُوٓءًا أَوْ يَظْلِمْ نَفْسَهُۥ ثُمَّ يَسْتَغْفِرِ ٱللَّهَ يَجِدِ ٱللَّهَ غَفُورًا رَّحِيمًا",
     },
     translation: {
-      en: "And whoever does a wrong or wrongs himself but then seeks forgiveness of Allah will find Allah Forgiving and Merciful.",
-      id: "Dan barangsiapa berbuat kejahatan dan menganiaya dirinya, kemudian dia memohon ampunan kepada Allah, niscaya dia akan mendapatkan Allah Maha Pengampun, Maha Penyayang.",
+      en: {
+        footnotes: "",
+        text: "Whoever commits evil or wrongs himself, then seeks Allah’s forgiveness will find Allah All-Forgiving, Most Merciful.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan barang siapa berbuat kejahatan dan menganiaya dirinya, kemudian dia memohon ampunan kepada Allah, niscaya dia akan mendapatkan Allah Maha Pengampun, Maha Penyayang.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/604",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/604.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/604.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 38,
       juz: 5,
       manzil: 1,
       page: 96,
       ruku: 77,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 604,
@@ -106,40 +92,32 @@ export const quranSurah4Verses109To114 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian ayat ini memperingatkan bencana perbuatan dosa, yaitu barang siapa mengerjakan dosa lalu mengira pekerjaan itu akan bermanfaat bagi dirinya niscaya dia mengalami hal yang sebaliknya. Pekerjaannya itu akan mengakibatkan bencana dan penderitaan bagi dirinya, sedikitpun tidak ada manfaatnya. Perbuatan yang busuk lambat atau cepat tercium oleh masyarakat. Pengadilan akan membuka kejelekannya di muka umum dan menjatuhkan hukuman atas dirinya. Inilah penghinaan atas dirinya dan penderitaan di dunia. Di akhirat dia akan mengalami lagi hukuman Allah. Allah dengan ilmu-Nya yang Mahaluas telah menetapkan perbuatan mana yang terlarang, dan dengan kebijaksanaan-Nya ditetapkan hukuman bagi pelanggaran atas perbuatan itu. Manusialah yang merusak dirinya sendiri bila ia melanggar batas-batas yang telah ditetapkan Tuhan.",
-        short:
-          "Dan barang siapa yang berbuat dosa, apa pun bentuk dan macam dosa yang dilakukannya, maka sesungguhnya dia mengerjakannya untuk keburukan dirinya sendiri, karena akibat dari perbuatan dosanya itu akan kembali kepada dirinya, dan Allah menjatuhkan sanksi dari perbuatannya itu kepada dirinya, bukan kepada orang lain. Dan ketahuilah bahwa semua sikap, perilaku, dan perbuatan yang kamu dan siapa pun lakukan, termasuk segala macam dosa-dosa, pasti diketahui oleh Allah karena Allah selamanya Maha Mengetahui semua itu, Mahabijaksana memberikan ganjaran, sanksi dan hukuman kepada siapa pun secara wajar dan benar.",
+        footnotes: null,
+        text: "Barang siapa berbuat dosa kecil atau besar maka hukumannya akan ditanggung oleh dirinya sendiri, tidak akan menjalar kepada orang lain. Allah Maha Mengetahui perbuatan hamba-hamba-Nya lagi Mahabijaksana dalam mengatur urusan makhluk-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0643\u0652\u0633\u0650\u0628\u0652 \u0625\u0650\u062b\u0652\u0645\u064b\u0627 \u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u064a\u064e\u0643\u0652\u0633\u0650\u0628\u064f\u0647\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0646\u064e\u0641\u0652\u0633\u0650\u0647\u0650 \u06da \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u0650\u064a\u0645\u064b\u0627 \u062d\u064e\u0643\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Wa mai yaksib isman fa innamaa yaksibuhoo 'alaa nafsih; wa kaanal laahu 'Aleeman hakeemaa",
-      },
+      arabic: "وَمَن يَكْسِبْ إِثْمًا فَإِنَّمَا يَكْسِبُهُۥ عَلَىٰ نَفْسِهِۦ وَكَانَ ٱللَّهُ عَلِيمًا حَكِيمًا",
     },
     translation: {
-      en: "And whoever commits a sin only earns it against himself. And Allah is ever Knowing and Wise.",
-      id: "Dan barangsiapa berbuat dosa, maka sesungguhnya dia mengerjakannya untuk (kesulitan) dirinya sendiri. Dan Allah Maha Mengetahui, Mahabijak-sana.",
+      en: {
+        footnotes: "",
+        text: "And whoever commits a sin, only commits it against himself. And Allah is All-Knowing, All-Wise.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan barang siapa berbuat dosa, maka sesungguhnya dia mengerjakannya untuk (kesulitan) dirinya sendiri. Dan Allah Maha Mengetahui, Mahabijaksana.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/605",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/605.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/605.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 38,
       juz: 5,
       manzil: 1,
       page: 96,
       ruku: 77,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 605,
@@ -147,40 +125,34 @@ export const quranSurah4Verses109To114 = [
     },
     tafsir: {
       id: {
-        long: "Orang yang melakukan perbuatan dosa dengan tidak disengaja atau dengan sengaja, kemudian mereka melemparkan kesalahan itu kepada orang lain dan menuduh orang lain mengerjakannya, sedang ia mengetahui orang lain itu tidak bersalah, maka dia sesungguhnya telah membuat kebohongan yang besar dan akan memikul dosanya seperti yang dilakukan keluarga Banu Ubairiq yang melemparkan kejahatan Tu'mah kepada Zaid bin Saleh. Orang seperti Tu'mah dan keluarganya tetap melakukan dua macam kejahatan. Kejahatan melakukan perbuatan dosa itu sendiri dan kejahatan melemparkan tuduhan yang tidak benar kepada orang lain.",
-        short:
-          "Dan barang siapa berbuat kesalahan, yaitu perbuatan atau pelanggaran yang dilakukan tanpa sengaja, atau perbuatan dosa yang dilakukan dengan sengaja, kemudian dia tuduhkan atau lemparkan kesalahan dan perbuatan dosa itu kepada orang lain yang tidak bersalah, maka sungguh, dia telah memikul suatu kebohongan yang besar dan dosa yang nyata karena dia yang melakukan kesalahan dan perbuatan dosa itu.",
+        footnotes: null,
+        text: "Barang siapa melakukan kesalahan secara tidak sengaja atau berbuat dosa secara sengaja, kemudian ia menuduh orang lain yang tidak bersalah sebagai pelakunya, maka dengan tindakan itu ia telah memikul kebohongan yang berat dan dosa yang nyata.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0643\u0652\u0633\u0650\u0628\u0652 \u062e\u064e\u0637\u0650\u064a\u0626\u064e\u0629\u064b \u0623\u064e\u0648\u0652 \u0625\u0650\u062b\u0652\u0645\u064b\u0627 \u062b\u064f\u0645\u0651\u064e \u064a\u064e\u0631\u0652\u0645\u0650 \u0628\u0650\u0647\u0650 \u0628\u064e\u0631\u0650\u064a\u0626\u064b\u0627 \u0641\u064e\u0642\u064e\u062f\u0650 \u0627\u062d\u0652\u062a\u064e\u0645\u064e\u0644\u064e \u0628\u064f\u0647\u0652\u062a\u064e\u0627\u0646\u064b\u0627 \u0648\u064e\u0625\u0650\u062b\u0652\u0645\u064b\u0627 \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064b\u0627",
-      transliteration: {
-        en: "Wa mai yaksib khateee'atan aw isman summa yarmi bihee bareee'an faqadih tamala buhtaananw wa ismam mubeenaa",
-      },
+      arabic:
+        "وَمَن يَكْسِبْ خَطِيٓـَٔةً أَوْ إِثْمًا ثُمَّ يَرْمِ بِهِۦ بَرِيٓـًٔا فَقَدِ ٱحْتَمَلَ بُهْتَٰنًا وَإِثْمًا مُّبِينًا",
     },
     translation: {
-      en: "But whoever earns an offense or a sin and then blames it on an innocent [person] has taken upon himself a slander and manifest sin.",
-      id: "Dan barangsiapa berbuat kesalahan atau dosa, kemudian dia tuduhkan kepada orang yang tidak bersalah, maka sungguh, dia telah memikul suatu kebohongan dan dosa yang nyata.",
+      en: {
+        footnotes:
+          "[79] Khatī’ah is an inadvertent misdeed, while ’ithm is a deliberate one.",
+        text: "But whoever commits an offense or a sin, then blames it on an innocent person, will surely bear the guilt of slander and flagrant sin[79].",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan barang siapa berbuat kesalahan atau dosa, kemudian dia tuduhkan kepada orang yang tidak bersalah, maka sungguh, dia telah memikul suatu kebohongan dan dosa yang nyata.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/606",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/606.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/606.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 38,
       juz: 5,
       manzil: 1,
       page: 96,
       ruku: 78,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 606,
@@ -188,40 +160,33 @@ export const quranSurah4Verses109To114 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan anugerah dan nikmat Allah yang diberikan kepada Nabi Muhammad saw. Dijelaskan bahwa tanpa karunia dan nikmat-Nya kepada Nabi tentulah golongan yang berhasrat untuk menyesatkan beliau akan berhasil. Di antara karunia dan rahmat Allah itu ialah pemberitahuan-Nya kepada Nabi tentang perbuatan Tu'mah dan kerabatnya. Berkat adanya pemberitahuan Allah dan petunjuk-Nya gagallah rencana Bani Â¨afar dan pendukung-pendukungnya itu.\n\nSeandainya rencana golongan itu terlaksana tentulah Nabi harus menyediakan waktu dan tenaga untuk mengatasinya. Padahal di hadapan beliau amat banyak perkara dan tugas yang lebih penting yang memerlukan tenaga dan pikiran. Tetapi Allah tidak membiarkan Rasul-Nya dipermainkan oleh orang-orang yang rusak akhlaknya. Mereka sebenarnya menyesalkan diri mereka sendiri karena mereka bertambah jauh dari jalan yang ditunjukkan Allah. Sedikit pun mereka tidak dapat mempersulit Nabi, karena beliau dalam menetapkan putusan tidaklah mengikuti hawa nafsu. Beliau bertindak sesuai dengan kenyataan yang ada. Tidaklah terlintas di hati beliau bahwa keadaan yang sebenarnya berlawanan dengan laporan yang beliau terima.\n\nDengan rahmat dan karunia Allah, Nabi telah terpelihara dari membuat keputusan yang tidak benar. Selanjutnya diterangkan bahwa Allah telah melimpahkan anugerah-Nya kepada Nabi-Nya dengan menurunkan Al-Qur'an dan al-Hikmah untuk digunakan dalam menetapkan suatu keputusan. Dia mengajarkan kepadanya apa yang tidak diketahuinya sebelumnya. Karunia Allah kepada Nabi Muhammad saw sangat besar, karena beliau diutus kepada seluruh umat manusia untuk sepanjang masa.",
-        short:
-          "Ayat ini menggambarkan begitu banyak nikmat dan rahmat yang Allah anugerahkan kepada Nabi Muhammad, termasuk nikmat melindungi beliau dari segala upaya orang-orang munafik untuk menyesatkan beliau. Dan kalau bukan karena karunia Allah dan rahmat-Nya yang beraneka ragam yang dianugerahkan kepadamu, wahai Nabi Muhammad, termasuk memelihara kamu dari kesalahan, tentulah segolongan dari mereka, orang-orang munafik, berkeinginan keras dan berusaha untuk menyesatkanmu dan memalingkan kamu dari kebenaran. Tetapi apa yang mereka inginkan dan usahakan itu hanya menyesatkan diri mereka sendiri, dan tidak membahayakanmu sedikit pun, kapan dan di mana pun. Dan juga karena Allah telah menurunkan Kitab, yaitu AlQur'an yang amat sempurna dengan petunjuk-petunjuk yang ada di dalamnya, yang dengannya engkau dapat mengambil keputusan yang benar dan menjadi petunjuk bagi umatmu dan juga memberikan Hikmah kepadamu, yaitu pemahaman dan pengamalan melalui sunahsunahmu yang dapat diteladani, dijadikan pedoman, dan diikuti oleh umatmu dan Dia juga telah mengajarkan kepadamu apa yang belum engkau ketahui, yaitu hal-hal yang belum disampaikan Allah di dalam Al-Qur'an maupun hikmah. Demikianlah karunia-karunia Allah yang dianugerahkan kepadamu dan karunia Allah yang dilimpahkan kepadamu itu sangat besar.",
+        footnotes: null,
+        text: "Seandainya bukan lantaran karunia Allah yang diberikan kepadamu -wahai Rasul- berupa perlindungan-Nya pada dirimu, niscaya ada sekelompok orang dari mereka yang mengkhianati diri mereka untuk menyesatkanmu dari kebenaran sehingga kamu memutuskan perkara secara tidak adil. Padahal, sejatinya mereka tidak menyesatkan siapa pun selain diri mereka sendiri karena akibat dari upaya penyesatan mereka itu akan kembali kepada diri mereka sendiri, dan mereka tidak kuasa untuk menyakitimu karena perlindungan Allah terhadapmu, Allah juga menurunkan Al-Qur`ān dan Sunnah kepadamu dan mengajarkan kepadamu petunjuk serta cahaya yang sebelumnya belum kamu ketahui. Sungguh, karunia Allah kepadamu berupa kenabian dan perlindungan itu sangatlah besar.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0648\u0652\u0644\u064e\u0627 \u0641\u064e\u0636\u0652\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064e \u0648\u064e\u0631\u064e\u062d\u0652\u0645\u064e\u062a\u064f\u0647\u064f \u0644\u064e\u0647\u064e\u0645\u0651\u064e\u062a \u0637\u0651\u064e\u0627\u0626\u0650\u0641\u064e\u0629\u064c \u0645\u0651\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0623\u064e\u0646 \u064a\u064f\u0636\u0650\u0644\u0651\u064f\u0648\u0643\u064e \u0648\u064e\u0645\u064e\u0627 \u064a\u064f\u0636\u0650\u0644\u0651\u064f\u0648\u0646\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0623\u064e\u0646\u0641\u064f\u0633\u064e\u0647\u064f\u0645\u0652 \u06d6 \u0648\u064e\u0645\u064e\u0627 \u064a\u064e\u0636\u064f\u0631\u0651\u064f\u0648\u0646\u064e\u0643\u064e \u0645\u0650\u0646 \u0634\u064e\u064a\u0652\u0621\u064d \u06da \u0648\u064e\u0623\u064e\u0646\u0632\u064e\u0644\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064e \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u064e \u0648\u064e\u0627\u0644\u0652\u062d\u0650\u0643\u0652\u0645\u064e\u0629\u064e \u0648\u064e\u0639\u064e\u0644\u0651\u064e\u0645\u064e\u0643\u064e \u0645\u064e\u0627 \u0644\u064e\u0645\u0652 \u062a\u064e\u0643\u064f\u0646 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f \u06da \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0641\u064e\u0636\u0652\u0644\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064e \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Wa law laa fadlul laahi 'alaika wa rahmatuhoo lahammat taaa'ifatum minhum ai yudillooka wa maa yudilloona illaaa anfusahum wa maa yadurroonaka min shai'; wa anzalal laahu 'alaikal Kitaaba wal Hikmata wa 'allamaka maa lam takun ta'lam; wa kaana fadlul laahi 'alaika 'azeemaa",
-      },
+      arabic:
+        "وَلَوْلَا فَضْلُ ٱللَّهِ عَلَيْكَ وَرَحْمَتُهُۥ لَهَمَّت طَّآئِفَةٌ مِّنْهُمْ أَن يُضِلُّوكَ وَمَا يُضِلُّونَ إِلَّآ أَنفُسَهُمْ وَمَا يَضُرُّونَكَ مِن شَىْءٍ وَأَنزَلَ ٱللَّهُ عَلَيْكَ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ وَعَلَّمَكَ مَا لَمْ تَكُن تَعْلَمُ وَكَانَ فَضْلُ ٱللَّهِ عَلَيْكَ عَظِيمًا",
     },
     translation: {
-      en: "And if it was not for the favor of Allah upon you, [O Muhammad], and His mercy, a group of them would have determined to mislead you. But they do not mislead except themselves, and they will not harm you at all. And Allah has revealed to you the Book and wisdom and has taught you that which you did not know. And ever has the favor of Allah upon you been great.",
-      id: "Dan kalau bukan karena karunia Allah dan rahmat-Nya kepadamu (Muhammad), tentulah segolongan dari mereka berkeinginan keras untuk menyesatkanmu. Tetapi mereka hanya menyesatkan dirinya sendiri, dan tidak membahayakanmu sedikit pun. Dan (juga karena) Allah telah menurunkan Kitab (Al-Qur'an) dan Hikmah (Sunnah) kepadamu, dan telah mengajarkan kepadamu apa yang belum engkau ketahui. Karunia Allah yang dilimpahkan kepadamu itu sangat besar.",
+      en: {
+        footnotes: "[80] The Sunnah and knowledge of the rulings of Islam.",
+        text: "Were it not for Allah’s grace and mercy upon you [O Prophet], a group of them would have tried to mislead you, but they only mislead themselves, nor can they harm you in the least. For Allah has sent down to you the Book and Wisdom[80] and has taught you what you did not know. And the grace of Allah upon you is always great.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan kalau bukan karena karunia Allah dan rahmat-Nya kepadamu (Muhammad), tentulah segolongan dari mereka berkeinginan keras untuk menyesatkanmu. Tetapi mereka hanya menyesatkan dirinya sendiri, dan tidak membahayakanmu sedikit pun. Dan (juga karena) Allah telah menurunkan Kitab (Al-Qur`an) dan Hikmah (Sunah) kepadamu, dan telah mengajarkan kepadamu apa yang belum engkau ketahui. Karunia Allah yang dilimpahkan kepadamu itu sangat besar.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/607",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/607.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/607.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 39,
       juz: 5,
       manzil: 1,
       page: 97,
       ruku: 78,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 607,
@@ -229,20 +194,24 @@ export const quranSurah4Verses109To114 = [
     },
     tafsir: {
       id: {
-        long: 'Merahasiakan pembicaraan dan perbuatan keji, seperti yang telah dilakukan oleh thu\'mah dan kawan-kawannya adalah perbuatan yang terlarang, tidak ada faedahnya, kecuali bisik-bisik itu untuk menyuruh bersedekah, berbuat makruf dan mengadakan perdamaian di antara manusia.\n\nBerbisik-bisik dan menyembunyikan pembicaraan biasanya dilakukan untuk merahasiakan perbuatan terlarang, perbuatan jahat dan untuk melenyapkan kebaikan, jarang yang dilakukan untuk perbuatan baik dan terpuji.\n\nManusia menurut tabiatnya senang menyatakan dan mengatakan kepada orang lain atau kepada orang banyak tentang perbuatan baik yang telah atau yang akan dilakukannya. Sedang perbuatan jahat atau perbuatan dosa yang telah atau yang akan dilakukannya, selalu disembunyikan dan dirahasiakannya. Ia takut orang lain akan mengetahuinya, sesuai dengan sabda Rasulullah saw:\n\n"Kebajikan itu adalah akhlak yang baik, dan dosa itu adalah apa yang terasa tidak enak di dalam hatimu, dan kamu tidak senang orang lain mengetahuinya" (Riwayat Muslim).\n\nKarena itu diperintahkan agar orang yang beriman menjauhi perbuatan itu, terutama berbisik-bisik atau mengadakan pembicaraan rahasia untuk melakukan perbuatan dosa, permusuhan, mendustakan Rasulullah dan lain sebagainya.\n\nAyat yang lain menegaskan larangan Allah dan menyatakan bahwa berbisik dan mengadakan perjanjian rahasia untuk melakukan perbuatan dosa, termasuk perbuatan setan. Allah berfirman:\n\n(9) Wahai orang-orang yang beriman! Apabila kamu mengadakan pembicaraan rahasia, janganlah kamu membicarakan perbuatan dosa, permusuhan dan durhaka kepada Rasul. Tetapi bicarakanlah tentang perbuatan kebajikan dan takwa. Dan bertakwalah kepada Allah yang kepada-Nya kamu akan dikumpulkan kembali. (10) Sesungguhnya pembicaraan rahasia itu termasuk (perbuatan) setan, agar orang-orang yang beriman itu bersedih hati, sedang (pembicaraan) itu tidaklah memberi bencana sedikit pun kepada mereka, kecuali dengan izin Allah. Dan kepada Allah hendaknya orang-orang yang beriman bertawakal. (al-Mujadalah/58:9-10). \n\nAllah mengecualikan tiga macam perbuatan yang dibolehkan bahkan diperintahkan menyampaikannya dengan berbisik-bisik atau dengan rahasia, yaitu bersedekah, berbuat makruf dan mengadakan perdamaian di antara manusia.\n\nBersedekah adalah salah satu perbuatan baik yang sangat dianjurkan Allah. Tetapi menyebut-nyebut atau memberitahukannya di hadapan orang banyak, kadang-kadang dapat menimbulkan rasa tidak senang di dalam hati orang yang menerimanya. Bahkan adakalanya dirasakan sebagai suatu penghinaan terhadap dirinya, sekalipun si pemberi sedekah itu telah menyatakan bahwa ia bersedekah dengan hati yang ikhlas dan untuk mencari keridaan Allah swt.\n\n"Jika kamu menampakkan sedekah-sedekahmu, maka itu baik. Dan jika kamu menyembunyikannya dan memberikannya kepada orang-orang fakir, maka itu lebih baik bagimu¦" (al-Baqarah/2:271). \n\nPerbuatan makruf adalah lawan dari perbuatan mungkar, lawan dari segala perbuatan yang dilarang Allah Yang Mahatahu dan perbuatan yang mengikuti hawa nafsu. Menasihati seseorang untuk berbuat makruf di hadapan orang banyak, mungkin akan menimbulkan rasa kurang enak pada yang dinasihati, apabila yang diberi nasihat itu teman sebaya atau orang yang lebih tinggi derajatnya dari orang yang menasihati. Biasanya orang yang menasihati lebih tinggi derajat, pangkat atau kedudukannya dari yang dinasihati. Karena itu Allah memerintahkan agar menasihati seseorang untuk berbuat makruf dengan cara berbisik dan tidak didengar orang lain. Bila didengar orang lain, maka orang yang dinasihati itu mungkin akan merasa terhina dan sakit hati, sehingga nasihat itu tidak diterimanya.\n\nKaum Muslimin diperintahkan agar selalu menjaga dan berusaha mengadakan perdamaian di antara manusia yang sedang berselisih terutama mendamaikan antara saudara-saudara yang beriman, sesuai dengan firman Allah:\n\nSesungguhnya orang-orang mukmin itu bersaudara, karena itu damaikanlah antara kedua saudaramu (yang berselisih) dan bertakwalah kepada Allah agar kamu mendapat rahmat. (al-hujurat/49:10).\n\n"¦ Maka bertakwalah kepada Allah dan perbaikilah hubungan di antara sesamamu, ¦" (al-Anfal/8:1).\n\nUsaha mengadakan perdamaian di antara orang-orang mukmin yang berselisih adalah usaha yang terpuji dan diperintahkan Allah. Tetapi menyebut usaha itu kepada orang lain atau didengar oleh orang banyak mungkin akan membawa kepada kemudaratan atau kejahatan yang lain, sehingga maksud mendamaikan itu akan berubah menjadi fitnah yang dapat memperdalam jurang persengketaan antara orang-orang yang akan didamaikan.\n\nAda orang yang enggan didamaikan bila diketahuinya bahwa yang akan mendamaikan itu orang lain. Ada pula orang yang enggan menerima perdamaian bila proses perdamaian itu diketahui orang banyak, karena ia khawatir bahwa usaha itu akan menjadi bahan pembicaraan orang banyak. Di samping itu mungkin ada pula pihak ketiga yang tidak menginginkan terjadinya suatu perdamaian. Karena itu Allah memerintahkan agar orang-orang yang beriman merahasiakan pembicaraan dan usaha yang berhubungan dengan mengadakan perdamaian di antara manusia.\n\nOrang yang melaksanakan tiga macam perintah Allah, yaitu bersedekah, berbuat kebaikan dan mencari perdamaian di antara manusia dengan ketundukan hati dan kepatuhan kepada-Nya serta mencari kerelaan-Nya, akan diberi pahala yang berlipat ganda oleh Allah. Keridaan Allah hanyalah dapat dicapai dengan mengerjakan perbuatan-perbuatan baik dan bermanfaat, disertai dengan keikhlasan hati sesuai dengan yang diperintahkan-Nya.',
-        short:
-          "Sama sekali tidak ada kebaikan dari banyak pembicaraan rahasia atau bisikan-bisikan yang mereka lakukan, tetapi yang baik itu adalah orang yang menyuruh untuk bersedekah, atau berbuat makruf, yaitu perbuatan kebajikan yang sesuai dengan tuntunan agama dan sudah dikenal oleh masyarakat sebagai sesuatu yang baik, atau mengadakan perdamaian di antara manusia yang berselisih dan bertikai. Barang siapa berbuat demikian, yaitu perbuatan-perbuatan yang disebutkan di atas karena niat mencari keridaan Allah, maka kelak Kami akan memberinya pa-hala yang besar, banyak dan berlipat ganda.",
+        footnotes: null,
+        text: "Tidak ada kebaikan pada kebanyakan ucapan yang dirahasiakan oleh manusia, dan juga tidak ada manfaatnya, kecuali jika ucapan itu berupa perintah untuk bersedekah, atau melakukan kebaikan yang diajarkan oleh syariat dan ditunjukkan oleh akal sehat, atau seruan untuk mendamaikan pihak-pihak yang berseru. Barang siapa yang melakukan hal itu demi mencari rida Allah, maka Kami akan memberinya pahala yang sangat besar.",
       },
     },
     text: {
-      arab: "\u06de \u0644\u0651\u064e\u0627 \u062e\u064e\u064a\u0652\u0631\u064e \u0641\u0650\u064a \u0643\u064e\u062b\u0650\u064a\u0631\u064d \u0645\u0651\u0650\u0646 \u0646\u0651\u064e\u062c\u0652\u0648\u064e\u0627\u0647\u064f\u0645\u0652 \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0646\u0652 \u0623\u064e\u0645\u064e\u0631\u064e \u0628\u0650\u0635\u064e\u062f\u064e\u0642\u064e\u0629\u064d \u0623\u064e\u0648\u0652 \u0645\u064e\u0639\u0652\u0631\u064f\u0648\u0641\u064d \u0623\u064e\u0648\u0652 \u0625\u0650\u0635\u0652\u0644\u064e\u0627\u062d\u064d \u0628\u064e\u064a\u0652\u0646\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u06da \u0648\u064e\u0645\u064e\u0646 \u064a\u064e\u0641\u0652\u0639\u064e\u0644\u0652 \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0627\u0628\u0652\u062a\u0650\u063a\u064e\u0627\u0621\u064e \u0645\u064e\u0631\u0652\u0636\u064e\u0627\u062a\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u064e\u0633\u064e\u0648\u0652\u0641\u064e \u0646\u064f\u0624\u0652\u062a\u0650\u064a\u0647\u0650 \u0623\u064e\u062c\u0652\u0631\u064b\u0627 \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "laa khaira fee kaseerim min najwaahum illaa man amara bisadaqatin aw ma'roofin aw islaahim bainan naas; wa mai yaf'al zaalikab tighaaa'a mardaatil laahi fa sawfa nu'teehi ajran 'azeemaa",
-      },
+      arabic:
+        "لَّا خَيْرَ فِى كَثِيرٍ مِّن نَّجْوَىٰهُمْ إِلَّا مَنْ أَمَرَ بِصَدَقَةٍ أَوْ مَعْرُوفٍ أَوْ إِصْلَٰحٍۭ بَيْنَ ٱلنَّاسِ وَمَن يَفْعَلْ ذَٰلِكَ ٱبْتِغَآءَ مَرْضَاتِ ٱللَّهِ فَسَوْفَ نُؤْتِيهِ أَجْرًا عَظِيمًا",
     },
     translation: {
-      en: "No good is there in much of their private conversation, except for those who enjoin charity or that which is right or conciliation between people. And whoever does that seeking means to the approval of Allah - then We are going to give him a great reward.",
-      id: "Tidak ada kebaikan dari banyak pembicaraan rahasia mereka, kecuali pembicaraan rahasia dari orang yang menyuruh (orang) bersedekah, atau berbuat kebaikan, atau mengadakan perdamaian di antara manusia. Barangsiapa berbuat demikian karena mencari keridaan Allah, maka kelak Kami akan memberinya pahala yang besar.",
+      en: {
+        footnotes:
+          "[81] By extending to people useful things such as money, knowledge, kindness.\n [82] All that is good and encouraged by Allah.",
+        text: "There is no good in much of their private talks, except for one who enjoins charity[81], kindness[82], or reconciliation between people. Anyone who does that, seeking Allah’s pleasure, We will give him a great reward.",
+      },
+      id: {
+        footnotes: "",
+        text: "Tidak ada kebaikan dari banyak pembicaraan rahasia mereka, kecuali pembicaraan rahasia dari orang yang menyuruh (orang) bersedekah, atau berbuat kebaikan, atau mengadakan perdamaian di antara manusia. Barang siapa berbuat demikian karena mencari keridaan Allah, maka kelak Kami akan memberinya pahala yang besar.",
+      },
     },
   },
 ];

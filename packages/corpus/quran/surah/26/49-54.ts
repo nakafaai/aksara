@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah26Verses49To54 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2981",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2981.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2981.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 147,
       juz: 19,
       manzil: 5,
       page: 369,
       ruku: 318,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2981,
@@ -24,40 +25,33 @@ export const quranSurah26Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Setelah para ahli sihir itu berikrar bahwa mereka menjadi beriman kepada Tuhan semesta alam, yang berarti tidak lagi mengakui Fir'aun sebagai tuhan mereka, Fir'aun menjadi sangat marah. Dengan sombong, ia mengancam akan menindak mereka, tetapi ancaman itu tidak diindahkan oleh mereka. Bahkan dengan ancaman itu, iman mereka makin bertambah mantap karena tabir kekafiran telah terbuka dan telah kelihatan jelas oleh mereka cahaya kebenaran. \n\nIkrar yang diucapkan oleh ahli-ahli sihir itu membuat Fir'aun merasa dilecehkan haknya sebagai seorang yang berkuasa dan mengakui dirinya sebagai tuhan, karena mereka telah beriman kepada Musa tanpa minta izin lebih dahulu kepadanya. Menurut Fir'aun, sebelum mereka memeluk agama Musa, mereka itu harus lebih dahulu minta izin padanya, karena ia adalah seorang penguasa yang harus dipatuhi. Untuk mengelabui dan menyesatkan orang banyak, Fir'aun menuduh antara Musa dan para ahli sihir itu ada persekongkolan, karena Musa yang mengajarkan kepada mereka ilmu sihir. Tuduhan itu tentu tidak berdasar, karena sebelum adu kekuatan, mereka tidak bertemu dengan Musa. Puncak dari kemarahan Fir'aun, ia mengancam mereka akan merasakan siksaan, sebagai akibat dari perbuatan mereka itu. Ia mengancam akan memotong tangan dan kaki mereka secara bersilang bahkan akan membunuh mereka.",
-        short:
-          'Dengan dikalahkannya para pesihir itu, posisi Fir’aun semakin terdesak. Padahal kejadian ini disaksikan banyak sekali penduduk yang berkerumun. Fir’aun lalu berkata kapada para pesihir dengan suara lantang dan menggertak dengan nada geram, “Mengapa kamu beriman kepada Musa sebelum aku memberi izin kepadamu? Padahal aku adalah pemimpin yang ditaati dan ditakuti. Sesungguhnya dia, Musa, pemimpinmu yang mengajarkan sihir kepadamu." Lalu Fir’aun mengancam mereka, "Nanti kamu pasti akan tahu akibat perbuatanmu. Pasti akan kupotong tangan dan kakimu bersilang dan sungguh, akan kusalib kamu semuanya di tiang sampai kamu mati di tiang salib itu.',
+        footnotes: null,
+        text: 'Firaun berkata sembari mengingkari keimanan para ahli sihir itu, "Apakah kamu sekalian beriman kepada Musa sebelum aku memberi izin kepada kalian untuk beriman?! Sesungguhnya Musa ini benar-benar pemimpin kalian yang mengajarkan sihir kepada kalian, kalian pasti telah bersekongkol untuk mengeluarkan penduduk Mesir dari negeri mereka. Oleh sebab itu, kalian pasti benar-benar akan mengetahui hukuman yang akan aku berikan, aku pasti akan memotong tangan dan kaki kalian dengan bersilangan, yaitu dengan memotong kaki kanan dan tangan kiri atau sebaliknya dan aku pasti akan menyalib kalian semuanya di batang-batang pohon kurma, serta aku tak akan menyisakan seorang pun dari kalian.”',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0622\u0645\u064e\u0646\u062a\u064f\u0645\u0652 \u0644\u064e\u0647\u064f \u0642\u064e\u0628\u0652\u0644\u064e \u0623\u064e\u0646\u0652 \u0622\u0630\u064e\u0646\u064e \u0644\u064e\u0643\u064f\u0645\u0652 \u06d6 \u0625\u0650\u0646\u0651\u064e\u0647\u064f \u0644\u064e\u0643\u064e\u0628\u0650\u064a\u0631\u064f\u0643\u064f\u0645\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a \u0639\u064e\u0644\u0651\u064e\u0645\u064e\u0643\u064f\u0645\u064f \u0627\u0644\u0633\u0651\u0650\u062d\u0652\u0631\u064e \u0641\u064e\u0644\u064e\u0633\u064e\u0648\u0652\u0641\u064e \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e \u06da \u0644\u064e\u0623\u064f\u0642\u064e\u0637\u0651\u0650\u0639\u064e\u0646\u0651\u064e \u0623\u064e\u064a\u0652\u062f\u0650\u064a\u064e\u0643\u064f\u0645\u0652 \u0648\u064e\u0623\u064e\u0631\u0652\u062c\u064f\u0644\u064e\u0643\u064f\u0645 \u0645\u0651\u0650\u0646\u0652 \u062e\u0650\u0644\u064e\u0627\u0641\u064d \u0648\u064e\u0644\u064e\u0623\u064f\u0635\u064e\u0644\u0651\u0650\u0628\u064e\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0623\u064e\u062c\u0652\u0645\u064e\u0639\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qaala aamantum lahoo qabla an aazana lakum innahoo lakabeerukumul lazee 'alla makumus sihra falasawfa ta'lamoon; la uqatti'anna aidiyakum wa arjulakum min khilaafinw wa la usallibanna kum ajma'een",
-      },
+      arabic:
+        "قَالَ ءَامَنتُمْ لَهُۥ قَبْلَ أَنْ ءَاذَنَ لَكُمْ إِنَّهُۥ لَكَبِيرُكُمُ ٱلَّذِى عَلَّمَكُمُ ٱلسِّحْرَ فَلَسَوْفَ تَعْلَمُونَ لَأُقَطِّعَنَّ أَيْدِيَكُمْ وَأَرْجُلَكُم مِّنْ خِلَٰفٍ وَلَأُصَلِّبَنَّكُمْ أَجْمَعِينَ",
     },
     translation: {
-      en: '[Pharaoh] said, "You believed Moses before I gave you permission. Indeed, he is your leader who has taught you magic, but you are going to know. I will surely cut off your hands and your feet on opposite sides, and I will surely crucify you all."',
-      id: "Dia (Fir‘aun) berkata, “Mengapa kamu beriman kepada Musa sebelum aku memberi izin kepadamu? Sesungguhnya dia pemimpinmu yang mengajarkan sihir kepadamu. Nanti kamu pasti akan tahu (akibat perbuatanmu). Pasti akan kupotong tangan dan kakimu bersilang dan sungguh, akan kusalib kamu semuanya.”",
+      en: {
+        footnotes: "",
+        text: "Pharaoh said, “How dare you believe in him before I give you permission. Indeed, he is your master who taught you magic, but you will soon come to know. I will surely cut off your hands and feet on opposite sides, then I will crucify you all.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Fir\'aun) berkata, "Mengapa kamu beriman kepada Musa sebelum aku memberi izin kepadamu? Sesungguhnya dia pemimpinmu yang mengajarkan sihir kepadamu. Nanti kamu pasti akan tahu (akibat perbuatanmu). Pasti akan kupotong tangan dan kakimu bersilang, dan sungguh akan aku menyalib kamu semuanya."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2982",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2982.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2982.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 147,
       juz: 19,
       manzil: 5,
       page: 369,
       ruku: 318,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2982,
@@ -65,40 +59,32 @@ export const quranSurah26Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ancaman Fir'aun yang cukup berat itu, tidak digubris sama sekali oleh para ahli sihir itu. Mereka bahkan berharap dapat merasakan ancaman itu karena bagi mereka semua orang yang hidup pada suatu waktu pasti mati, tidak ada daya upaya untuk mengelak daripadanya. Firman Allah:\n\nSetiap yang bernyawa akan merasakan mati. (al-Anbiya'/21: 35)\n\nDan firman-Nya:\n\nKatakanlah, \"Sesungguhnya kematian yang kamu lari dari padanya, ia pasti menemui kamu,\" (al-Jumu'ah/62: 8)\n\nMereka itu hanya memikirkan dua hal, sebagai penghibur hati mereka:\n\nPertama, mereka akan kembali kepada ajaran Tuhan semesta alam, Tuhan yang disembah Musa dan Harun dan mengikuti agama Nabi Musa a.s. Dengan demikian, mereka akan selamat dari azab akhirat yang amat pedih dan berkepanjangan, yang jauh lebih berat dibanding dengan siksaan yang diancamkan Fir'aun kepada mereka.\n\nKedua, mereka sangat mengharapkan agar Tuhan semesta alam mau mengampuni dosa mereka karena melakukan perbuatan sihir dan kekafiran. Merekalah yang pertama kali beriman kepada Tuhan yang disembah Musa, dari sekian banyak orang yang turut menyaksikan adu kekuatan itu.",
-        short:
-          "Namun ancaman Fir’aun tidak menyurutkan tekad mereka untuk terus beriman kepada Allah. Demikianlah hati jika sudah tenteram dengan keimanan tidak akan mudah goyah dengan ancaman apa pun. Para pesihir itu bahkan berani berterus terang dengan keimanan mereka. Mereka berkata, “Tidak ada sama sekali yang kami takutkan dengan semua yang engkau ancamkan kepada kami, karena pada akhirnya kami semua akan mati, kami akan kembali kepada Tuhan kami dan kami harus mempertanggungjawabkan perbuatan kami di hadapan Tuhan kami.",
+        footnotes: null,
+        text: 'Para penyihir itu berkata kepada Firaun, "Tidak ada kemudaratan bagi kami dengan semua yang engkau ancamkan berupa pemotongan anggota badan dan salib di dunia ini, sebab siksaanmu pasti akan sirna, sedangkan kami akan kembali kepada Tuhan kami dan Dia akan memasukkan kami ke dalam rahmat-Nya yang kekal.',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0644\u064e\u0627 \u0636\u064e\u064a\u0652\u0631\u064e \u06d6 \u0625\u0650\u0646\u0651\u064e\u0627 \u0625\u0650\u0644\u064e\u0649\u0670 \u0631\u064e\u0628\u0651\u0650\u0646\u064e\u0627 \u0645\u064f\u0646\u0642\u064e\u0644\u0650\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qaaloo la daira innaaa ilaa Rabbinaa munqalliboon",
-      },
+      arabic: "قَالُوا۟ لَا ضَيْرَ إِنَّآ إِلَىٰ رَبِّنَا مُنقَلِبُونَ",
     },
     translation: {
-      en: 'They said, "No harm. Indeed, to our Lord we will return.',
-      id: "Mereka berkata, “Tidak ada yang kami takutkan, karena kami akan kembali kepada Tuhan kami.",
+      en: {
+        footnotes: "",
+        text: "They said, “No harm; we will surely return to our Lord.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka berkata, "Tidak ada yang kami takutkan, karena kami akan kembali kepada Tuhan kami.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2983",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2983.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2983.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 147,
       juz: 19,
       manzil: 5,
       page: 369,
       ruku: 318,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2983,
@@ -106,40 +92,32 @@ export const quranSurah26Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ancaman Fir'aun yang cukup berat itu, tidak digubris sama sekali oleh para ahli sihir itu. Mereka bahkan berharap dapat merasakan ancaman itu karena bagi mereka semua orang yang hidup pada suatu waktu pasti mati, tidak ada daya upaya untuk mengelak daripadanya. Firman Allah:\n\nSetiap yang bernyawa akan merasakan mati. (al-Anbiya'/21: 35)\n\nDan firman-Nya:\n\nKatakanlah, \"Sesungguhnya kematian yang kamu lari dari padanya, ia pasti menemui kamu,\" (al-Jumu'ah/62: 8)\n\nMereka itu hanya memikirkan dua hal, sebagai penghibur hati mereka:\n\nPertama, mereka akan kembali kepada ajaran Tuhan semesta alam, Tuhan yang disembah Musa dan Harun dan mengikuti agama Nabi Musa a.s. Dengan demikian, mereka akan selamat dari azab akhirat yang amat pedih dan berkepanjangan, yang jauh lebih berat dibanding dengan siksaan yang diancamkan Fir'aun kepada mereka.\n\nKedua, mereka sangat mengharapkan agar Tuhan semesta alam mau mengampuni dosa mereka karena melakukan perbuatan sihir dan kekafiran. Merekalah yang pertama kali beriman kepada Tuhan yang disembah Musa, dari sekian banyak orang yang turut menyaksikan adu kekuatan itu.",
-        short:
-          'Mereka terus berkata, "Sesungguhnya kami sangat menginginkan sekiranya Tuhan kami akan mengampuni segala kesalahan yang kami perbuat karena perbuatan sihir kami, ketaatan kami kepada Fir’aun, dan lain-lainnya, karena kami menjadi orang yang pertama-tama beriman kepada Tuhan Musa dan Harun."',
+        footnotes: null,
+        text: "Sesungguhnya kami berharap agar Allah menghapus kesalahan yang pernah kami lakukan dahulu karena kami adalah orang-orang yang pertama-tama beriman kepada Musa dan membenarkannya.”",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0627 \u0646\u064e\u0637\u0652\u0645\u064e\u0639\u064f \u0623\u064e\u0646 \u064a\u064e\u063a\u0652\u0641\u0650\u0631\u064e \u0644\u064e\u0646\u064e\u0627 \u0631\u064e\u0628\u0651\u064f\u0646\u064e\u0627 \u062e\u064e\u0637\u064e\u0627\u064a\u064e\u0627\u0646\u064e\u0627 \u0623\u064e\u0646 \u0643\u064f\u0646\u0651\u064e\u0627 \u0623\u064e\u0648\u0651\u064e\u0644\u064e \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Innaa natma'u ai yaghfira lanaa Rabbunna khataa yaanaaa an kunnaaa awwalal mu'mineen",
-      },
+      arabic: "إِنَّا نَطْمَعُ أَن يَغْفِرَ لَنَا رَبُّنَا خَطَٰيَٰنَآ أَن كُنَّآ أَوَّلَ ٱلْمُؤْمِنِينَ",
     },
     translation: {
-      en: 'Indeed, we aspire that our Lord will forgive us our sins because we were the first of the believers."',
-      id: "Sesungguhnya kami sangat menginginkan sekiranya Tuhan kami akan mengampuni kesalahan kami, karena kami menjadi orang yang pertama-tama beriman.”",
+      en: {
+        footnotes: "",
+        text: "We hope that our Lord will forgive us our sins, as we are the first of the believers.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Sesungguhnya kami sangat menginginkan sekiranya Tuhan kami akan mengampuni kesalahan kami, karena menjadi orang yang pertama-tama beriman."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2984",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2984.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2984.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 369,
       ruku: 318,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2984,
@@ -147,40 +125,32 @@ export const quranSurah26Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah mewahyukan kepada Musa supaya pergi bersama Bani Israil meninggalkan Mesir pada malam hari. Allah juga mengabarkan bahwa ketika Fir'aun mendengar berita ini, dia dan tentaranya pasti akan menyusul dan memaksa mereka untuk kembali menjadi budak-budak yang melayani keinginan dan kebutuhan mereka. Kepergian orang-orang Bani Israil akan memberi kerugian besar bagi mereka.",
-        short:
-          'Walaupun Fir’aun telah kalah dalam pertarungan, tapi tetap saja dia angkuh dan sombong, dan bahkan terus menindas Bani Israil di Mesir. Nabi Musa terus berdakwah beberapa tahun lamanya. Sampai pada puncaknya, Allah memerintahkan Nabi Musa untuk keluar dari tanah Mesir menuju ke negeri yang dijanjikan yaitu di baitul Maqdis. Dan Kami wahyukan serta Kami perintahkan kepada Musa, “Pergilah pada malam hari dengan membawa serta hamba-hamba-Ku, yaitu Bani Israil, keluar dari tanah Mesir, agar mereka lepas dari kezaliman raja Fir’aun, sebab pasti kamu akan dikejar. Jika kamu keluar pada malam hari, kamu akan sampai di tepi laut pada pagi harinya. Mereka yang mengejar di pagi hari tidak akan mampu mengejarmu, karena saat itu kamu sudah berada di laut." Mendengar Nabi Musa dan Bani Israil keluar dari Mesir, Fir’aun memerintahkan kaumnya untuk mengejar Nabi Musa dan Bani Israil.',
+        footnotes: null,
+        text: "Kemudian Kami wahyukan kepada Musa dengan memerintahkannya pergi membawa Bani Israil pada malam hari sebab Firaun dan pengikutnya pasti akan mengejar mereka untuk mengembalikan mereka (ke Mesir).",
       },
     },
     text: {
-      arab: "\u06de \u0648\u064e\u0623\u064e\u0648\u0652\u062d\u064e\u064a\u0652\u0646\u064e\u0627 \u0625\u0650\u0644\u064e\u0649\u0670 \u0645\u064f\u0648\u0633\u064e\u0649\u0670 \u0623\u064e\u0646\u0652 \u0623\u064e\u0633\u0652\u0631\u0650 \u0628\u0650\u0639\u0650\u0628\u064e\u0627\u062f\u0650\u064a \u0625\u0650\u0646\u0651\u064e\u0643\u064f\u0645 \u0645\u0651\u064f\u062a\u0651\u064e\u0628\u064e\u0639\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa awhainaaa ilaa Moosaaa an asri bi'ibaadeee innakum muttaba'oon",
-      },
+      arabic: "وَأَوْحَيْنَآ إِلَىٰ مُوسَىٰٓ أَنْ أَسْرِ بِعِبَادِىٓ إِنَّكُم مُّتَّبَعُونَ",
     },
     translation: {
-      en: 'And We inspired to Moses, "Travel by night with My servants; indeed, you will be pursued."',
-      id: "Dan Kami wahyukan (perintahkan) kepada Musa, “Pergilah pada malam hari dengan membawa hamba-hamba-Ku (Bani Israil), sebab pasti kamu akan dikejar.”",
+      en: {
+        footnotes: "",
+        text: "We inspired Moses, “Leave with My slaves by night; you will surely be pursued.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan Kami wahyukan (perintahkan) kepada Musa, "Pergilah pada malam hari dengan membawa hamba-hamba-Ku (Bani Israil), sebab pasti kamu akan dikejar."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2985",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2985.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2985.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 369,
       ruku: 319,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2985,
@@ -188,40 +158,33 @@ export const quranSurah26Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa ketika Fir'aun mengetahui bahwa Musa dan Bani Israil telah berangkat, ia lalu menyebarkan beberapa orang pejabatnya ke segenap negeri Mesir. Ia juga mengumpulkan tentaranya untuk menyusul Musa dan Bani Israil, mengembalikan mereka ke Mesir, dan menyiksa mereka dengan siksaan yang berat. Untuk membangkitkan semangat dan membesarkan hati tentaranya, Fir'aun mengemukakan bahwa tugas yang harus mereka lakukan itu mudah untuk dilaksanakan karena Musa dan Bani Israil, jumlahnya sedikit sekali. Oleh karena itu, mereka tidak perlu ragu-ragu. Dengan mudah dan dalam waktu relatif singkat, mereka akan dapat menyusul Musa dan rombongannya serta mengembalikan mereka.",
-        short:
-          "Kemudian Fir‘aun mengirimkan orang ke kota-kota untuk memobilisasi umum bala tentaranya dan pengikutnya dalam rangka mengejar Nabi Musa kemudian membunuhnya. Setelah Fir’aun melihat jumlah bala tentaranya demikian besar, dia menganggap remeh Nabi Musa dan Bani Israil. Tapi sebenarnya Fir’aun sudah merasa panik dan galau.",
+        footnotes: null,
+        text: "Kemudian Firaun mengirimkan sebagian bala tentaranya ke seluruh pelosok negeri untuk mengumpulkan bala tentaranya dengan tujuan mengembalikan Bani Israil (ke Mesir) tatkala ia mengetahui pergerakan mereka keluar dari Mesir.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u0631\u0652\u0633\u064e\u0644\u064e \u0641\u0650\u0631\u0652\u0639\u064e\u0648\u0652\u0646\u064f \u0641\u0650\u064a \u0627\u0644\u0652\u0645\u064e\u062f\u064e\u0627\u0626\u0650\u0646\u0650 \u062d\u064e\u0627\u0634\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fa arsala Fir'awnu filmadaaa'ini haashireen",
-      },
+      arabic: "فَأَرْسَلَ فِرْعَوْنُ فِى ٱلْمَدَآئِنِ حَٰشِرِينَ",
     },
     translation: {
-      en: "Then Pharaoh sent among the cities gatherers",
-      id: "Kemudian Fir‘aun mengirimkan orang ke kota-kota (untuk mengumpulkan bala tentaranya).",
+      en: {
+        footnotes:
+          "[10] In order to prevent the emigration of the Children of Israel.",
+        text: "So Pharaoh sent heralds to the cities[10],",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian Fir'aun mengirimkan orang ke kota-kota untuk mengumpulkan (bala tentaranya).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2986",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2986.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2986.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 148,
       juz: 19,
       manzil: 5,
       page: 369,
       ruku: 319,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2986,
@@ -229,20 +192,22 @@ export const quranSurah26Verses49To54 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa ketika Fir'aun mengetahui bahwa Musa dan Bani Israil telah berangkat, ia lalu menyebarkan beberapa orang pejabatnya ke segenap negeri Mesir. Ia juga mengumpulkan tentaranya untuk menyusul Musa dan Bani Israil, mengembalikan mereka ke Mesir, dan menyiksa mereka dengan siksaan yang berat. Untuk membangkitkan semangat dan membesarkan hati tentaranya, Fir'aun mengemukakan bahwa tugas yang harus mereka lakukan itu mudah untuk dilaksanakan karena Musa dan Bani Israil, jumlahnya sedikit sekali. Oleh karena itu, mereka tidak perlu ragu-ragu. Dengan mudah dan dalam waktu relatif singkat, mereka akan dapat menyusul Musa dan rombongannya serta mengembalikan mereka.",
-        short:
-          'Fir‘aun berkata kepada para pembesarnya, “Sesungguhnya mereka Bani Israil itu hanya sekelompok kecil. Jumlah mereka sangat tidak sebanding dengan tentara kita. Kita akan dengan mudah bisa mengalahkan mereka."',
+        footnotes: null,
+        text: 'Sambil menganggap remeh Bani Israil, Firaun berkata, "Sesungguhnya mereka (Bani Israil) benar-benar golongan kecil lagi sedikit jumlahnya.',
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0647\u064e\u0670\u0624\u064f\u0644\u064e\u0627\u0621\u0650 \u0644\u064e\u0634\u0650\u0631\u0652\u0630\u0650\u0645\u064e\u0629\u064c \u0642\u064e\u0644\u0650\u064a\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Inna haaa'ulaaa'i lashir zimatun qaleeloon",
-      },
+      arabic: "إِنَّ هَٰٓؤُلَآءِ لَشِرْذِمَةٌ قَلِيلُونَ",
     },
     translation: {
-      en: '[And said], "Indeed, those are but a small band,',
-      id: "(Fir‘aun berkata), “Sesungguhnya mereka (Bani Israil) hanya sekelompok kecil,",
+      en: {
+        footnotes: "",
+        text: "saying, “These are but a small band,",
+      },
+      id: {
+        footnotes: "",
+        text: "(Fir'aun berkata), \"Sesungguhnya mereka (Bani Israil) hanya sekelompok kecil,",
+      },
     },
   },
 ];

@@ -29,14 +29,14 @@ const baseComponents = ["ContentGrid", "InlineMath"].map((name) => ({
   version: 1,
 }));
 const politicsComponents = [
-  "BudgetChart",
-  "CabinetChart",
-  "CompositionChart",
-  "FundChart",
   "KimPlusElectabilityChart",
+  "MerahPutihCabinetChart",
+  "MerahPutihCompositionChart",
+  "NepotismStage",
+  "NepotismStateTable",
+  "PorkBarrelBudgetChart",
   "PorkBarrelElectabilityChart",
-  "Stage",
-  "StateTable",
+  "PorkBarrelFundChart",
 ].map((name) => ({ name, version: 1 }));
 
 /** Creates a valid manifest while varying the real politics contract version. */
@@ -53,6 +53,7 @@ export function articleManifest(politicsVersion = 1) {
           version: politicsVersion,
         })),
       }),
+      publishedDomains: ["politics"],
     })
   );
 }

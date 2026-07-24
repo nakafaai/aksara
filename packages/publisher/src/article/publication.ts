@@ -11,6 +11,7 @@ import {
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
 import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -25,6 +26,7 @@ import {
   ArticlePublicationPlanSchema,
   planArticlePublication,
 } from "#publisher/article/plan";
+import type { PublicationScopeIdentityError } from "#publisher/family/scope";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
@@ -76,7 +78,8 @@ export type ArticlePublicationStreamError<E> =
   | ArticleMetadataError
   | ArticleSourceError
   | CompileContentError
-  | ContentSourceInspectionError;
+  | ContentSourceInspectionError
+  | PublicationScopeIdentityError;
 
 /** Authoritative article plan consumed by whole-catalog release composition. */
 export interface ArticlePublication {
@@ -96,6 +99,7 @@ export interface ArticlePublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<ArticleHead, E, R>;
   readonly rendererManifest: unknown;
+  readonly scope?: PublicationScope | undefined;
 }
 
 type RendererManifestError = Effect.Effect.Error<
@@ -247,6 +251,7 @@ export const prepareArticlePublication: <E, R>(
     entries,
     published: validatePublishedHeads(input.published, rendererByCategory),
     rendererManifest,
+    scope: input.scope,
   });
   const spool = yield* createReplaySpool({
     prefix: "aksara-article-",

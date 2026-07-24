@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah54Verses43To48 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4889",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4889.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4889.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 212,
       juz: 27,
       manzil: 7,
       page: 530,
       ruku: 465,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4889,
@@ -24,40 +25,32 @@ export const quranSurah54Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Allah memperingatkan orang-orang kafir Mekah apakah mereka merasa lebih mulia dari kaum kafir sebelum mereka yang telah ditimpa hukuman Allah seperti kaum Nuh, kaum 'Ad dan kaum Samud. Apakah mereka akan selamat dari azab Allah karena kekafiran mereka terhadap-Nya dan kedustaan mereka terhadap rasulNya. Ataukah mereka benar mendapat jaminan tertulis dalam kitabkitab suci bahwa mereka merasa bebas dari azab Allah walaupun selalu kafir dan berbuat jahat. Jika keyakinan mereka itu benar perlu menunjukkan landasan kebenaran keyakinan mereka itu.",
-        short:
-          "Allah kemudian mengalihkan arah komunikasi kepada kaum musyrik Mekah. Wahai kaum musyrik, apakah orang-orang kafir di lingkunganmu yang lebih baik daripada mereka yang telah dikisahkan itu, ataukah kamu telah mempunyai jaminan kebebasan dari azab seperti yang tercantum dalam kitab-kitab terdahulu, sehingga kamu bersikeras untuk ingkar?",
+        footnotes: null,
+        text: "Apakah orang-orang kafir dari kalian -wahai penghuni Makkah- lebih baik daripada orang-orang kafir yang telah disebutkan itu, yaitu kaum Nabi Nuh, kaum 'Ād, kaum Ṡamūd, kaum Nabi Lut, dan Firaun beserta kaumnya?! Ataukah kalian mempunyai jaminan kebebasan dari siksa Allah yang disebutkan dalam kitab-kitab samawi?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0643\u064f\u0641\u0651\u064e\u0627\u0631\u064f\u0643\u064f\u0645\u0652 \u062e\u064e\u064a\u0652\u0631\u064c \u0645\u0651\u0650\u0646\u0652 \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064f\u0645\u0652 \u0623\u064e\u0645\u0652 \u0644\u064e\u0643\u064f\u0645 \u0628\u064e\u0631\u064e\u0627\u0621\u064e\u0629\u064c \u0641\u0650\u064a \u0627\u0644\u0632\u0651\u064f\u0628\u064f\u0631\u0650",
-      transliteration: {
-        en: "Akuffaarukum khairum min ulaaa'ikum am lakum baraaa'atun fiz Zubur",
-      },
+      arabic: "أَكُفَّارُكُمْ خَيْرٌ مِّنْ أُو۟لَٰٓئِكُمْ أَمْ لَكُم بَرَآءَةٌ فِى ٱلزُّبُرِ",
     },
     translation: {
-      en: "Are your disbelievers better than those [former ones], or have you immunity in the scripture?",
-      id: "Apakah orang-orang kafir di lingkunganmu (kaum musyrikin) lebih baik dari mereka, ataukah kamu telah mempunyai jaminan kebebasan (dari azab) dalam kitab-kitab terdahulu?",
+      en: {
+        footnotes: "[15] i.e., those destroyed peoples.",
+        text: "Are your disbelievers [O Makkans] superior to those[15] or have you been granted immunity in divine Scriptures?",
+      },
+      id: {
+        footnotes: "",
+        text: "Apakah orang-orang kafir di lingkunganmu (kaum musyrikin) lebih baik dari mereka, ataukah kamu telah mempunyai jaminan kebebasan (dari azab) dalam kitab-kitab terdahulu?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4890",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4890.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4890.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 212,
       juz: 27,
       manzil: 7,
       page: 530,
       ruku: 465,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4890,
@@ -65,40 +58,32 @@ export const quranSurah54Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Allah masih melanjutkan pertanyaan apakah mereka merasa merupakan suatu kekuatan yang sangat kompak sehingga begitu kuatnya dan tidak mungkin dikalahkan. Abu Jahal berkata, pasukan mereka banyak dan kuat, mereka pasti akan menang (pada peristiwa Perang Badar). (",
-        short:
-          "Peringatan itu tidak diperhatikan oleh kaum musyrik Mekah. Atau mereka mengatakan dengan penuh kesombongan, “Kami ini golongan yang sangat kompak dan selalu bersatu. Kami adalah golongan yang pasti menang dalam menghadapi siapa saja.”",
+        footnotes: null,
+        text: " Bahkan, apakah orang-orang kafir dari penduduk Makkah itu berkata, “Kami adalah golongan bersatu yang pasti menang menghadapi orang-orang yang ingin berbuat jahat terhadap kami dan ingin memecah belah kesatuan kami”?!",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652 \u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u0646\u064e\u062d\u0652\u0646\u064f \u062c\u064e\u0645\u0650\u064a\u0639\u064c \u0645\u0651\u064f\u0646\u062a\u064e\u0635\u0650\u0631\u064c",
-      transliteration: {
-        en: "Am yaqooloona nahnu jamee'um muntasir",
-      },
+      arabic: "أَمْ يَقُولُونَ نَحْنُ جَمِيعٌ مُّنتَصِرٌ",
     },
     translation: {
-      en: 'Or do they say, "We are an assembly supporting [each other]"?',
-      id: "Atau mereka mengatakan, “Kami ini golongan yang bersatu yang pasti menang.”",
+      en: {
+        footnotes: "",
+        text: "Or do they say, “We are a united front, bound to prevail.”?",
+      },
+      id: {
+        footnotes: "",
+        text: 'Atau mereka mengatakan, "Kami ini golongan yang bersatu yang pasti menang."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4891",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4891.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4891.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 212,
       juz: 27,
       manzil: 7,
       page: 530,
       ruku: 465,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4891,
@@ -106,40 +91,33 @@ export const quranSurah54Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: 'Allah menegaskan bahwa kesatuan mereka akan diceraiberaikan dan kekuatan mereka akan dipatahkan oleh pasukan Islam. Janji Allah itu terbukti dalam Perang Badar, dimana lebih dari 70 orang pemuka-pemuka mereka tewas dan sisanya lari terbirit-birit kembali ke Mekah. Bukti tentang benarnya kenabian Muhammad saw, karena ayat ini turun di Mekah, sedang Nabi saw belum mempunyai pasukan, bahkan pengikut-pengikut Nabi terpencarpencar, diburu dan disiksa oleh orang-orang musyrik di mana saja mereka berada, \'Umar bin al-Khaththab berkata, "Ketika ayat itu turun saya tidak mengerti apa maksudnya. Tetapi pada Perang Badar, saya lihat Nabi saw memakai baju besi dan saya dengan beliau membaca ayat ini, \'Golongan itu pasti akan dikalahkan, waktu itu barulah saya mengerti maksud ayat tersebut." Diriwayatkan oleh al-Bukhari dari Ibnu \'Abbas bahwa Nabi saw berkata ketika beliau masih dalam kemah, pada hari Perang Badar: "Aku menagih pesan-Mu dan janji-Mu! Ya Allah, jika Engkau menghendaki (kekalahan kami) niscaya Engkau tidak akan disembah lagi sesudah hari ini". Lalu Abu Bakar memegang tangan Nabi dan berkata, "Cukup sudah ya Rasulullah! Engkau telah begitu mendesak Tuhanmu."Lalu beliau keluar (dari kemah) melompat dengan memakai baju besi sambil membaca ayat ini. (Riwayat alBukhari) \n\nKemudian Allah menyatakan bahwa yang tersebut itu adalah azab dunia dan mereka akan menemui azab yang lebih hebat lagi pada hari Kiamat.',
-        short:
-          "Allah menegasikan keyakinan kaum kafir itu . Golongan itu pasti akan dikalahkan oleh kaum yang beriman dan mereka akan mundur ke belakang sambil berlari pontang-panting.",
+        footnotes: null,
+        text: "Kesatuan orang-orang kafir itu akan dikalahkan dan mereka melarikan diri di hadapan orang-orang yang beriman. Hal ini telah terjadi pada perang Badar.",
       },
     },
     text: {
-      arab: "\u0633\u064e\u064a\u064f\u0647\u0652\u0632\u064e\u0645\u064f \u0627\u0644\u0652\u062c\u064e\u0645\u0652\u0639\u064f \u0648\u064e\u064a\u064f\u0648\u064e\u0644\u0651\u064f\u0648\u0646\u064e \u0627\u0644\u062f\u0651\u064f\u0628\u064f\u0631\u064e",
-      transliteration: {
-        en: "Sa yuhzamul jam'u wa yuwalloonad dubur",
-      },
+      arabic: "سَيُهْزَمُ ٱلْجَمْعُ وَيُوَلُّونَ ٱلدُّبُرَ",
     },
     translation: {
-      en: "[Their] assembly will be defeated, and they will turn their backs [in retreat].",
-      id: "Golongan itu pasti akan dikalahkan dan mereka akan mundur ke belakang.",
+      en: {
+        footnotes:
+          "[16] This foretold event was fulfilled in the Battle of Badr.",
+        text: "Soon their united front will be defeated, and they will flee[16].",
+      },
+      id: {
+        footnotes: "",
+        text: "Golongan itu pasti akan dikalahkan dan mereka akan mundur ke belakang.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4892",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4892.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4892.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 212,
       juz: 27,
       manzil: 7,
       page: 530,
       ruku: 465,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4892,
@@ -147,40 +125,32 @@ export const quranSurah54Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Peperangan tersebut adalah azab yang akan mereka rasakan di dunia, berupa kekalahan, dibunuh atau ditawan tetapi mereka masih akan menerima azab lain yang lebih dahsyat, yaitu azab neraka di akhirat. Azab akhirat itu lebih hebat dan berlangsung kekal dan kuat selama-lamanya.",
-        short:
-          "Kekalahan mereka di dunia bukan akhir segalanya karena di akhirat mereka juga akan menerima azab atas kekafirannya. Bahkan, hari Kiamat itulah hari paling sulit yang dijanjikan oleh Allah kepada mereka, dan hari Kiamat itu lebih dahsyat daripada semua bencana dunia dan lebih pahit karena siksa itu berlanjut tanpa akhir.",
+        footnotes: null,
+        text: "Bahkan, hari Kiamat yang mereka dustakan adalah hari yang dijanjikan kepada mereka untuk disiksa pada saat itu. Hari Kiamat lebih agung dan lebih menyengsarakan dibanding dengan apa yang mereka dapatkan dari siksa dunia pada perang Badar.",
       },
     },
     text: {
-      arab: "\u0628\u064e\u0644\u0650 \u0627\u0644\u0633\u0651\u064e\u0627\u0639\u064e\u0629\u064f \u0645\u064e\u0648\u0652\u0639\u0650\u062f\u064f\u0647\u064f\u0645\u0652 \u0648\u064e\u0627\u0644\u0633\u0651\u064e\u0627\u0639\u064e\u0629\u064f \u0623\u064e\u062f\u0652\u0647\u064e\u0649\u0670 \u0648\u064e\u0623\u064e\u0645\u064e\u0631\u0651\u064f",
-      transliteration: {
-        en: "Balis Saa'atu maw'iduhum was Saa'atu adhaa wa amarr",
-      },
+      arabic: "بَلِ ٱلسَّاعَةُ مَوْعِدُهُمْ وَٱلسَّاعَةُ أَدْهَىٰ وَأَمَرُّ",
     },
     translation: {
-      en: "But the Hour is their appointment [for due punishment], and the Hour is more disastrous and more bitter.",
-      id: "Bahkan hari Kiamat itulah hari yang dijanjikan kepada mereka dan hari Kiamat itu lebih dahsyat dan lebih pahit.",
+      en: {
+        footnotes: "",
+        text: "But the Hour is their appointed time, and the Hour is more catastrophic and more bitter.",
+      },
+      id: {
+        footnotes: "",
+        text: "Bahkan hari Kiamat itulah hari yang dijanjikan kepada mereka dan hari Kiamat itu lebih dahsyat dan lebih pahit.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4893",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4893.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4893.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 212,
       juz: 27,
       manzil: 7,
       page: 530,
       ruku: 465,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4893,
@@ -188,40 +158,32 @@ export const quranSurah54Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Allah menyatakan, bahwa sesungguhnya orang-orang yang mempersekutukan Allah dan mendustakan rasul-rasul-Nya adalah orang-orang sesat dan menyimpang dari jalan yang benar di dunia. Di akhirat nanti mereka akan ditimpa azab yang pedih akibat kesesatannya.",
-        short:
-          "Uraian tentang peringatan terhadap kaum kafir Mekah diikuti oleh penjelasan mengenai siksa bagi pendosa dan pahala bagi orang yang bertakwa. Sungguh, orang-orang yang berdosa berada dalam kesesatan saat di dunia, dan di akhirat kelak akan berada dalam neraka yang penuh siksa pedih.",
+        footnotes: null,
+        text: "Sesungguhnya orang-orang yang melakukan dosa dengan kekufuran dan perbuatan maksiat itu berada dalam kesesatan dari kebenaran, siksa, dan kesusahan.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u0645\u064f\u062c\u0652\u0631\u0650\u0645\u0650\u064a\u0646\u064e \u0641\u0650\u064a \u0636\u064e\u0644\u064e\u0627\u0644\u064d \u0648\u064e\u0633\u064f\u0639\u064f\u0631\u064d",
-      transliteration: {
-        en: "Innal mujrimeena fee dalaalinw wa su'ur",
-      },
+      arabic: "إِنَّ ٱلْمُجْرِمِينَ فِى ضَلَٰلٍ وَسُعُرٍ",
     },
     translation: {
-      en: "Indeed, the criminals are in error and madness.",
-      id: "Sungguh, orang-orang yang berdosa berada dalam kesesatan (di dunia) dan akan berada dalam neraka (di akhirat).",
+      en: {
+        footnotes: "[17] i.e., will burn in the Hellfire.",
+        text: "Indeed, the wicked are in error and blazes[17].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, orang-orang yang berdosa berada dalam kesesatan (di dunia) dan akan berada dalam neraka (di akhirat).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4894",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4894.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4894.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 212,
       juz: 27,
       manzil: 7,
       page: 530,
       ruku: 465,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4894,
@@ -229,20 +191,22 @@ export const quranSurah54Verses43To48 = [
     },
     tafsir: {
       id: {
-        long: "Orang-orang yang durhaka akan digiring ke dalam neraka dengan terseret-seret dan terbentur-bentur mukanya ke tanah karena itu mereka sangat menderita. Penderitaan mereka di dalam neraka lebih hebat lagi. Neraka akan melelehkan kulit dan daging mereka",
-        short:
-          "Pada hari mereka yang kafir itu diseret ke neraka pada wajahnya, dikatakan kepada mereka, “Rasakanlah sentuhan api neraka yang sangat panas itu.”",
+        footnotes: null,
+        text: " Pada hari di saat mereka diseret ke neraka di atas wajah mereka, dikatakan kepada mereka sebagai bentuk penghinaan terhadap mereka, “Rasakanlah siksa neraka ini.”",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0648\u0652\u0645\u064e \u064a\u064f\u0633\u0652\u062d\u064e\u0628\u064f\u0648\u0646\u064e \u0641\u0650\u064a \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u0650 \u0639\u064e\u0644\u064e\u0649\u0670 \u0648\u064f\u062c\u064f\u0648\u0647\u0650\u0647\u0650\u0645\u0652 \u0630\u064f\u0648\u0642\u064f\u0648\u0627 \u0645\u064e\u0633\u0651\u064e \u0633\u064e\u0642\u064e\u0631\u064e",
-      transliteration: {
-        en: "Yawma yushaboona fin Naari'alaa wujoohimim zooqoo massa saqar",
-      },
+      arabic: "يَوْمَ يُسْحَبُونَ فِى ٱلنَّارِ عَلَىٰ وُجُوهِهِمْ ذُوقُوا۟ مَسَّ سَقَرَ",
     },
     translation: {
-      en: 'The Day they are dragged into the Fire on their faces [it will be said], "Taste the touch of Saqar."',
-      id: "Pada hari mereka diseret ke neraka pada wajahnya. (Dikatakan kepada mereka), “Rasakanlah sentuhan api neraka.”",
+      en: {
+        footnotes: '[18] "Saqar" is one of the names of Hell.',
+        text: "On the Day when they will be dragged into the Fire on their faces, [they will be told], “Taste the agony of Hell[18]!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Pada hari mereka diseret ke neraka pada wajahnya. (Dikatakan kepada mereka), "Rasakanlah sentuhan api neraka."',
+      },
     },
   },
 ];

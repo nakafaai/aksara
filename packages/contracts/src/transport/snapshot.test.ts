@@ -24,7 +24,6 @@ const quranRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
   family: "quran",
   record: {
     payload: {
-      description: "Test-only Quran search row",
       graph: materialGraph("en", "test", "quran", "search"),
       kind: "quran-search",
       locale: "en",

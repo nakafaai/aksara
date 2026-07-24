@@ -45,6 +45,7 @@ export type DerivedContentRecord =
   | {
       readonly item: ContentReleaseItem;
       readonly kind: "upsert";
+      readonly payload: PreparedContentUpsert["payload"];
       readonly projection: ContentProjection;
       readonly rollback: RollbackSnapshotEntry;
     };
@@ -190,7 +191,13 @@ function deriveRecord(
   if (!isPreparedContentUpsert(record)) {
     return { item, kind: "delete", rollback };
   }
-  return { item, kind: "upsert", projection: record.projection, rollback };
+  return {
+    item,
+    kind: "upsert",
+    payload: record.payload,
+    projection: record.projection,
+    rollback,
+  };
 }
 
 /** Replays and derives one canonical stream without collecting the corpus. */

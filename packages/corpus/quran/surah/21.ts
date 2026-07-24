@@ -18,48 +18,28 @@ import { quranSurah21Verses97To102 } from "#corpus/quran/surah/21/97-102";
 import { quranSurah21Verses103To108 } from "#corpus/quran/surah/21/103-108";
 import { quranSurah21Verses109To112 } from "#corpus/quran/surah/21/109-112";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah21 = {
   name: {
-    long: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0623\u0646\u0628\u064a\u0627\u0621",
-    short: "الأنبياء",
-    translation: {
-      en: "The Prophets",
-      id: "Para Nabi",
-    },
-    transliteration: {
-      en: "Al-Anbiyaa",
-      id: "Al-Anbiya'",
-    },
+    arabic: "الأنبياء",
+    translation: "The Prophets",
+    transliteration: "Al-Anbiyaa",
   },
   number: 21,
   numberOfVerses: 112,
-  preBismillah: {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1.mp3",
-      ],
-    },
-    text: {
-      arab: "\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Bismillaahir Rahmaanir Raheem",
-      },
-    },
-    translation: {
-      en: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
-      id: "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
-    },
-  },
   revelation: {
-    arab: "\u0645\u0643\u0629",
-    en: "Meccan",
-    id: "Makkiyyah",
-  },
-  sequence: 73,
-  tafsir: {
-    id: "Surat Al Anbiyaa' yang terdiri atas 112 ayat, termasuk golongan surat Makkiyyah. Dinamai surat ini dengan al anbiyaa'(nabi-nabi), karena surat ini mengutarakan kisah beberapa orang nabi. Permulaan surat Al Anbiyaa' menegaskan bahwa manusia lalai dalam menghadapi hari berhisab, kemudian berhubung adanya pengingkaran kaum musyrik Mekah terhadap wahyu yang dibawa Nabi Muhammad s.a.w. maka ditegaskan Allah, kendatipun nabi-nabi itu manusia biasa, akan tetapi masing-masing mereka adalah manusia yang membawa wahyu yang pokok ajarannya adalah tauhid, dan keharusan manusia menyembah Allah Tuhan Penciptanya. Orang yang tidak mau mengakui kekuasaan Allah dan mengingkari ajaran yang dibawa oleh nabi-nabi itu, akan diazab Allah didunia dan di akhirat nanti. Kemudian dikemukakan kisah beberapa orang nabi dengan umatnya. Akhirnya surat itu ditutup dengan seruan agar kaum musyrik Mekah percaya kepada ajaran yang dibawa Muhammad s.a.w supaya tidak mengalami apa yang telah dialami oleh umat-umat yang dahulu.",
+    order: 73,
+    place: "Meccan",
   },
   verses: [
     ...quranSurah21Verses1To6,

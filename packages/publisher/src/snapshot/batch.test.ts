@@ -73,7 +73,6 @@ function quranRow(boundSnapshotId: typeof snapshotId): QuranRow {
     family: "quran",
     record: QuranSnapshotRowSchema.make({
       payload: QuranSearchRowSchema.make({
-        description: "Test-only Quran batch row",
         graph: materialGraph("en", "quran", "test-batch"),
         kind: "quran-search",
         locale: "en",

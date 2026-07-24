@@ -49,7 +49,7 @@ for clarity, measurable scale, and safe releases.
   Relative module imports are forbidden; relative config inheritance and CLI
   filesystem paths are not module imports.
 - Root task scripts delegate to Turbo, except repository-wide tooling such as
-  Ultracite and Changesets.
+  Ultracite and source-policy checks.
 - Run focused workspace tests through `pnpm exec turbo run test --filter=...`.
   Do not bypass Turbo for tests that consume another workspace because Turbo
   owns the dependency build order.

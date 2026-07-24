@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah70Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5388",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5388.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5388.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 227,
       juz: 29,
       manzil: 7,
       page: 569,
       ruku: 502,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5388,
@@ -24,40 +25,32 @@ export const quranSurah70Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Pada hari itu, orang kafir mengharapkan agar terlepas dari azab yang mereka derita, dengan menebus diri dengan anak-anak yang mereka banggakan, istri yang mereka cintai, saudara-saudara yang biasa membantu mereka selama hidup di dunia, kaum yang selalu membantu dan melindungi mereka, dan semua manusia yang ada di muka bumi. Karena demikianlah yang biasa mereka lakukan di dunia; menolong teman, keluarga, dan anak-anak mereka, walaupun yang ditolong itu melakukan perbuatan jahat dan zalim.",
-        short:
-          "dan bukan hanya itu bahkan keluarga seperti ayah ibu yang selalu melindunginya di dunia.",
+        footnotes: null,
+        text: "Bahkan, ingin menebusnya dengan keluarga-keluarga dekatnya yang bersamanya menghadapi kesusahan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0641\u064e\u0635\u0650\u064a\u0644\u064e\u062a\u0650\u0647\u0650 \u0627\u0644\u0651\u064e\u062a\u0650\u064a \u062a\u064f\u0624\u0652\u0648\u0650\u064a\u0647\u0650",
-      transliteration: {
-        en: "Wa faseelathil latee tu'weeh",
-      },
+      arabic: "وَفَصِيلَتِهِ ٱلَّتِى تُـْٔوِيهِ",
     },
     translation: {
-      en: "And his nearest kindred who shelter him",
-      id: "dan keluarga yang melindunginya (di dunia),",
+      en: {
+        footnotes: "",
+        text: "and his kindred who stood by him,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan keluarga yang melindunginya (di dunia),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5389",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5389.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5389.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 227,
       juz: 29,
       manzil: 7,
       page: 569,
       ruku: 502,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5389,
@@ -65,40 +58,32 @@ export const quranSurah70Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Pada hari itu, orang kafir mengharapkan agar terlepas dari azab yang mereka derita, dengan menebus diri dengan anak-anak yang mereka banggakan, istri yang mereka cintai, saudara-saudara yang biasa membantu mereka selama hidup di dunia, kaum yang selalu membantu dan melindungi mereka, dan semua manusia yang ada di muka bumi. Karena demikianlah yang biasa mereka lakukan di dunia; menolong teman, keluarga, dan anak-anak mereka, walaupun yang ditolong itu melakukan perbuatan jahat dan zalim.",
-        short:
-          "Dan mereka berharap jika dapat menebus dirinya dengan orang-orang di bumi seluruhnya, kemudian mengharapkan kiranya tebusan itu dapat menyelamatkannya dari azab.",
+        footnotes: null,
+        text: "Juga ingin menebusnya dengan semua orang di dunia dari kalangan manusia, jin, dan lain-lainnya, kemudian menyerahkan tebusannya itu agar selamat dari siksa neraka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0646 \u0641\u0650\u064a \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u0650 \u062c\u064e\u0645\u0650\u064a\u0639\u064b\u0627 \u062b\u064f\u0645\u0651\u064e \u064a\u064f\u0646\u062c\u0650\u064a\u0647\u0650",
-      transliteration: {
-        en: "Wa man fil ardi jamee'an summa yunjeeh",
-      },
+      arabic: "وَمَن فِى ٱلْأَرْضِ جَمِيعًا ثُمَّ يُنجِيهِ",
     },
     translation: {
-      en: "And whoever is on earth entirely [so] then it could save him.",
-      id: "dan orang-orang di bumi seluruhnya, kemudian mengharapkan (tebusan) itu dapat menyelamatkannya.",
+      en: {
+        footnotes: "",
+        text: "and everyone on earth, just to save himself.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan orang-orang di bumi seluruhnya, kemudian mengharapkan (tebusan) itu dapat menyelamatkannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5390",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5390.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5390.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 227,
       juz: 29,
       manzil: 7,
       page: 569,
       ruku: 502,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5390,
@@ -106,40 +91,32 @@ export const quranSurah70Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Tidak akan diterima tebusan apa pun dari perbuatan dosa yang telah dikerjakan orang kafir. Allah tidak memerlukan tebusan, Dia Mahakaya dan tidak memerlukan sesuatu apa pun.\n\nSungguh, orang-orang yang kafir dan mati dalam kekafiran, tidak akan diterima (tebusan) dari seseorang di antara mereka sekalipun (berupa) emas sepenuh bumi, sekiranya dia hendak menebus diri dengannya. Mereka itulah orang-orang yang mendapat azab yang pedih dan tidak memperoleh penolong. (Ali Imran/3: 91)\n\nAzab yang disediakan bagi orang kafir ialah neraka. Tidak seorang pun yang selamat dan dapat melepaskan diri dari azabnya. Neraka itu memanggil orang kafir untuk diazab, begitu juga orang-orang yang membelakang dan lari dari kebenaran, suka berbuat curang atau jahat, dan suka mengumpulkan harta, tetapi tidak mau mengeluarkan sedekah dan hak-hak Allah, seperti yang telah ditetapkan-Nya.\n\nAyat ini tidak bertujuan untuk melarang kaum Muslimin mengumpulkan harta. Ayat ini hanya melarang mengumpulkan harta tanpa mengeluarkan hak-hak Allah yang ada dalam harta yang telah dikumpulkan itu.",
-        short:
-          "Keinginan para pendurhaka untuk menebus dirinya dengan segala sesuatu direspons oleh ayat ini: Sama sekali tidak bisa dan tidak akan ada tebusan! Sungguh, neraka itu api yang bergejolak,",
+        footnotes: null,
+        text: "Kenyataannya bukan sebagaimana yang diinginkan oleh pendosa ini karena neraka yang ingin ditebusnya itu adalah api akhirat yang membara dan menyala-nyala.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u06d6 \u0625\u0650\u0646\u0651\u064e\u0647\u064e\u0627 \u0644\u064e\u0638\u064e\u0649\u0670",
-      transliteration: {
-        en: "Kallaa innahaa lazaa",
-      },
+      arabic: "كَلَّآ إِنَّهَا لَظَىٰ",
     },
     translation: {
-      en: "No! Indeed, it is the Flame [of Hell],",
-      id: "Sama sekali tidak! Sungguh, neraka itu api yang bergejolak,",
+      en: {
+        footnotes: '[6] An emphatic denial, meaning "It will never be."',
+        text: "By no means![6] It is a raging Flame,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sama sekali tidak! Sungguh, neraka itu api yang bergejolak,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5391",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5391.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5391.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 227,
       juz: 29,
       manzil: 7,
       page: 569,
       ruku: 502,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5391,
@@ -147,39 +124,33 @@ export const quranSurah70Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Tidak akan diterima tebusan apa pun dari perbuatan dosa yang telah dikerjakan orang kafir. Allah tidak memerlukan tebusan, Dia Mahakaya dan tidak memerlukan sesuatu apa pun.\n\nSungguh, orang-orang yang kafir dan mati dalam kekafiran, tidak akan diterima (tebusan) dari seseorang di antara mereka sekalipun (berupa) emas sepenuh bumi, sekiranya dia hendak menebus diri dengannya. Mereka itulah orang-orang yang mendapat azab yang pedih dan tidak memperoleh penolong. (Ali Imran/3: 91)\n\nAzab yang disediakan bagi orang kafir ialah neraka. Tidak seorang pun yang selamat dan dapat melepaskan diri dari azabnya. Neraka itu memanggil orang kafir untuk diazab, begitu juga orang-orang yang membelakang dan lari dari kebenaran, suka berbuat curang atau jahat, dan suka mengumpulkan harta, tetapi tidak mau mengeluarkan sedekah dan hak-hak Allah, seperti yang telah ditetapkan-Nya.\n\nAyat ini tidak bertujuan untuk melarang kaum Muslimin mengumpulkan harta. Ayat ini hanya melarang mengumpulkan harta tanpa mengeluarkan hak-hak Allah yang ada dalam harta yang telah dikumpulkan itu.",
-        short: "yang mengelupaskan kulit kepala bahkan semua kulit tubuh.",
+        footnotes: null,
+        text: "Ia mengelupas kulit kepala secara ganas karena panas dan nyalanya yang dahsyat.",
       },
     },
     text: {
-      arab: "\u0646\u064e\u0632\u0651\u064e\u0627\u0639\u064e\u0629\u064b \u0644\u0651\u0650\u0644\u0634\u0651\u064e\u0648\u064e\u0649\u0670",
-      transliteration: {
-        en: "Nazzaa'atal lishshawaa",
-      },
+      arabic: "نَزَّاعَةً لِّلشَّوَىٰ",
     },
     translation: {
-      en: "A remover of exteriors.",
-      id: "yang mengelupaskan kulit kepala.",
+      en: {
+        footnotes:
+          "[7] Referring to the skin of the head or of the body extremities, which will be burned away by severe heat and flames.",
+        text: "that will strip off the scalps[7].",
+      },
+      id: {
+        footnotes: "",
+        text: "yang mengelupaskan kulit kepala.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5392",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5392.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5392.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 227,
       juz: 29,
       manzil: 7,
       page: 569,
       ruku: 502,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5392,
@@ -187,40 +158,32 @@ export const quranSurah70Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Tidak akan diterima tebusan apa pun dari perbuatan dosa yang telah dikerjakan orang kafir. Allah tidak memerlukan tebusan, Dia Mahakaya dan tidak memerlukan sesuatu apa pun.\n\nSungguh, orang-orang yang kafir dan mati dalam kekafiran, tidak akan diterima (tebusan) dari seseorang di antara mereka sekalipun (berupa) emas sepenuh bumi, sekiranya dia hendak menebus diri dengannya. Mereka itulah orang-orang yang mendapat azab yang pedih dan tidak memperoleh penolong. (Ali Imran/3: 91)\n\nAzab yang disediakan bagi orang kafir ialah neraka. Tidak seorang pun yang selamat dan dapat melepaskan diri dari azabnya. Neraka itu memanggil orang kafir untuk diazab, begitu juga orang-orang yang membelakang dan lari dari kebenaran, suka berbuat curang atau jahat, dan suka mengumpulkan harta, tetapi tidak mau mengeluarkan sedekah dan hak-hak Allah, seperti yang telah ditetapkan-Nya.\n\nAyat ini tidak bertujuan untuk melarang kaum Muslimin mengumpulkan harta. Ayat ini hanya melarang mengumpulkan harta tanpa mengeluarkan hak-hak Allah yang ada dalam harta yang telah dikumpulkan itu.",
-        short:
-          "Yang selalu memanggil orang yang membelakangi iman dan kebenaran dan yang berpaling dari petunjuk agama,",
+        footnotes: null,
+        text: "Ia menyeru orang yang berpaling dari kebenaran dan menjauh darinya, serta tidak beriman kepadanya dan tidak beramal untuknya.",
       },
     },
     text: {
-      arab: "\u062a\u064e\u062f\u0652\u0639\u064f\u0648 \u0645\u064e\u0646\u0652 \u0623\u064e\u062f\u0652\u0628\u064e\u0631\u064e \u0648\u064e\u062a\u064e\u0648\u064e\u0644\u0651\u064e\u0649\u0670",
-      transliteration: {
-        en: "Tad'oo man adbara wa tawallaa",
-      },
+      arabic: "تَدْعُوا۟ مَنْ أَدْبَرَ وَتَوَلَّىٰ",
     },
     translation: {
-      en: "It invites he who turned his back [on truth] and went away [from obedience]",
-      id: "Yang memanggil orang yang membelakangi dan yang berpaling (dari agama),",
+      en: {
+        footnotes: "",
+        text: "It will call everyone who turned their backs and disobeyed,",
+      },
+      id: {
+        footnotes: "",
+        text: "Yang memanggil orang yang membelakangi dan yang berpaling (dari agama),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5393",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5393.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5393.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 227,
       juz: 29,
       manzil: 7,
       page: 569,
       ruku: 502,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5393,
@@ -228,20 +191,23 @@ export const quranSurah70Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Tidak akan diterima tebusan apa pun dari perbuatan dosa yang telah dikerjakan orang kafir. Allah tidak memerlukan tebusan, Dia Mahakaya dan tidak memerlukan sesuatu apa pun.\n\nSungguh, orang-orang yang kafir dan mati dalam kekafiran, tidak akan diterima (tebusan) dari seseorang di antara mereka sekalipun (berupa) emas sepenuh bumi, sekiranya dia hendak menebus diri dengannya. Mereka itulah orang-orang yang mendapat azab yang pedih dan tidak memperoleh penolong. (Ali Imran/3: 91)\n\nAzab yang disediakan bagi orang kafir ialah neraka. Tidak seorang pun yang selamat dan dapat melepaskan diri dari azabnya. Neraka itu memanggil orang kafir untuk diazab, begitu juga orang-orang yang membelakang dan lari dari kebenaran, suka berbuat curang atau jahat, dan suka mengumpulkan harta, tetapi tidak mau mengeluarkan sedekah dan hak-hak Allah, seperti yang telah ditetapkan-Nya.\n\nAyat ini tidak bertujuan untuk melarang kaum Muslimin mengumpulkan harta. Ayat ini hanya melarang mengumpulkan harta tanpa mengeluarkan hak-hak Allah yang ada dalam harta yang telah dikumpulkan itu.",
-        short:
-          "dan orang yang mengumpulkan harta benda tanpa menghiraukan hukum dan ketentuan Allah lalu menyimpannya, yakni harta yang dikumpulkannya itu, enggan menafkahkan di jalan Allah.",
+        footnotes: null,
+        text: "Juga yang mengumpulkan harta dan enggan untuk menginfakkannya di jalan Allah.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062c\u064e\u0645\u064e\u0639\u064e \u0641\u064e\u0623\u064e\u0648\u0652\u0639\u064e\u0649\u0670",
-      transliteration: {
-        en: "W jama'a fa aw'aa",
-      },
+      arabic: "وَجَمَعَ فَأَوْعَىٰٓ",
     },
     translation: {
-      en: "And collected [wealth] and hoarded.",
-      id: "dan orang yang mengumpulkan (harta benda) lalu menyimpannya.",
+      en: {
+        footnotes: "",
+        text: "and amassed and hoarded wealth.",
+      },
+      id: {
+        footnotes:
+          "[864] Orang yang menyimpan hartanya dan tidak mau mengeluarkan zakat dan tidak pula menginfakkannya ke jalan yang benar.",
+        text: "dan orang yang mengumpulkan (harta benda) lalu menyimpannya.[864]",
+      },
     },
   },
 ];

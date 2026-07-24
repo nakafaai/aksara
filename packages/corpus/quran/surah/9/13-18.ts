@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah9Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1248",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1248.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1248.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 188,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1248,
@@ -24,40 +25,34 @@ export const quranSurah9Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini mendorong semangat orang-orang mukmin untuk melaksanakan dengan sungguh-sungguh perintah memerangi kaum musyrikin. \n\nAllah menyebutkan tiga sebab utama yang membuktikan bahwa orang-orang musyrik tidak bisa didiamkan dan dibiarkan saja, yaitu:\n\n1. Mereka melanggar perjanjian Hudaibiyah yang telah mereka sepakati bersama Nabi Muhammad saw dan para sahabatnya untuk tidak berperang selama 10 tahun dan tidak boleh saling mengganggu antara kedua belah pihak dan sekutu-sekutunya. Tetapi tidak lama berselang, pihak musyrikin Quraisy telah membantu sekutunya dari Bani Bakar untuk menyerang suku Khuzaah sekutu Nabi yang tinggal di Mekah. Oleh karena itu Nabi merasa berkewajiban membela kaum Muslimin. Akhirnya pada tanggal 20 Ramadzan tahun ke-8 Hijri, Mekah dapat dibebaskan oleh kaum Muslimin.\n\n2. Sebelum Nabi Muhammad saw hijrah ke Medinah, kaum musyrikin telah berusaha keras untuk mengusir Nabi Muhammad saw dari Mekah, memenjarakan atau membunuhnya dengan mempergunakan kekuatan dari suku Quraisy agar keluarga Nabi Muhammad saw sukar menuntut bela. Inilah yang diisyaratkan oleh firman Allah:\n\nDan (ingatlah), ketika orang-orang kafir (Quraisy) memikirkan tipu daya terhadapmu (Muhammad) untuk menangkap dan memenjarakanmu atau membunuhmu, atau mengusirmu. Mereka membuat tipu daya dan Allah menggagalkan tipu daya itu. Allah adalah sebaik-baik pembalas tipu daya. (al-Anfal/8: 30)\n\n3. Mereka yang memulai lebih dahulu memerangi kaum Mukminin di Badar, Uhud, Khandaq, dan lain-lain.\n\nSetelah menerangkan tiga sebab utama tersebut, semangat dan perhatian orang mukmin dibangkitkan agar tidak takut menghadapi kaum musyrikin, karena Allah yang lebih berhak untuk ditakuti jika benar-benar mereka beriman. Orang yang benar-benar beriman kepada Allah dan Rasul-Nya harus berani berkorban demi kepentingan agama dan kebenaran tanpa dibayangi oleh suatu keraguan yang menimbulkan ketakutan dan kemunduran semangat yang sangat merugikan mereka sendiri.",
-        short:
-          "Ayat sebelumnya memerintahkan kaum muslim untuk memerangi kaum musyrik yang merusak perjanjian, maka ayat-ayat berikut ini menjelaskan alasan memerangi mereka. Mengapa kamu tidak memerangi orang-orang yang melanggar sumpah janjinya, untuk tidak saling mengganggu selama sepuluh tahun, juga perjanjian-perjanjian lainnya yang sering mereka langgar, dan telah merencanakan untuk mengusir Rasul, dari kediaman beliau bahkan mereka sangat bernafsu untuk membunuh beliau dan mereka yang pertama kali memerangi kamu seperti dalam Perang Badar? Apakah kamu takut kepada mereka, hanya karena mereka didukung oleh kekuatan senjata dan pasukan yang banyak, padahal Allah-lah yang lebih berhak untuk kamu takuti, karena Dialah Yang Mahaperkasa yang tidak mungkin dikalahkan oleh siapa pun jika memang kamu benar-benar orang-orang beriman dengan mantap.",
+        footnotes: null,
+        text: "Mengapa kalian -wahai orang-orang mukmin- tidak memerangi orang-orang yang melanggar perjanjian mereka dan melakukan persekongkolan di Dār an-Nadwah untuk mengusir Rasulullah -ṣallallāhu 'alaihi wa sallam- dari Kota Makkah, dan mereka telah memulai perang dengan kalian ketika mereka membantu suku Bakr, sekutu Quraisy untuk menyerang suku Khuzā’ah, sekutu Rasulullah -ṣallallāhu 'alaihi wa sallam-?! Apakah kalian takut kepada mereka sehingga kalian tidak berani berperang melawan mereka? Allah -Subḥānahu- lebih berhak kalian takuti jika kalian benar-benar beriman kepada-Nya.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0627 \u062a\u064f\u0642\u064e\u0627\u062a\u0650\u0644\u064f\u0648\u0646\u064e \u0642\u064e\u0648\u0652\u0645\u064b\u0627 \u0646\u0651\u064e\u0643\u064e\u062b\u064f\u0648\u0627 \u0623\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e\u0647\u064f\u0645\u0652 \u0648\u064e\u0647\u064e\u0645\u0651\u064f\u0648\u0627 \u0628\u0650\u0625\u0650\u062e\u0652\u0631\u064e\u0627\u062c\u0650 \u0627\u0644\u0631\u0651\u064e\u0633\u064f\u0648\u0644\u0650 \u0648\u064e\u0647\u064f\u0645 \u0628\u064e\u062f\u064e\u0621\u064f\u0648\u0643\u064f\u0645\u0652 \u0623\u064e\u0648\u0651\u064e\u0644\u064e \u0645\u064e\u0631\u0651\u064e\u0629\u064d \u06da \u0623\u064e\u062a\u064e\u062e\u0652\u0634\u064e\u0648\u0652\u0646\u064e\u0647\u064f\u0645\u0652 \u06da \u0641\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0623\u064e\u062d\u064e\u0642\u0651\u064f \u0623\u064e\u0646 \u062a\u064e\u062e\u0652\u0634\u064e\u0648\u0652\u0647\u064f \u0625\u0650\u0646 \u0643\u064f\u0646\u062a\u064f\u0645 \u0645\u0651\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Alaa tuqaatiloona qawman nakasooo aimaanahum wa hammoo bi ikhraajir Rasooli wa hum bada'ookum awwala marrah; atakhshawnahum; fallaahu ahaqqu an takhshawhu in kuntum mu'mineen",
-      },
+      arabic:
+        "أَلَا تُقَٰتِلُونَ قَوْمًا نَّكَثُوٓا۟ أَيْمَٰنَهُمْ وَهَمُّوا۟ بِإِخْرَاجِ ٱلرَّسُولِ وَهُم بَدَءُوكُمْ أَوَّلَ مَرَّةٍ أَتَخْشَوْنَهُمْ فَٱللَّهُ أَحَقُّ أَن تَخْشَوْهُ إِن كُنتُم مُّؤْمِنِينَ",
     },
     translation: {
-      en: "Would you not fight a people who broke their oaths and determined to expel the Messenger, and they had begun [the attack upon] you the first time? Do you fear them? But Allah has more right that you should fear Him, if you are [truly] believers.",
-      id: "Mengapa kamu tidak memerangi orang-orang yang melanggar sumpah (janjinya), dan telah merencanakan untuk mengusir Rasul, dan mereka yang pertama kali memerangi kamu? Apakah kamu takut kepada mereka, padahal Allah-lah yang lebih berhak untuk kamu takuti, jika kamu orang-orang beriman.",
+      en: {
+        footnotes:
+          "[14] From Makkah. [15] By helping the clan of Bakr to kill mercilessly the clan of Khuza‘ah, the allies of the Prophet (ﷺ).",
+        text: "Will you not fight people who broke their oaths, conspired to expel the Messenger[14], and initiated the war against you first[15]? Do you fear them? Rather it is Allah Whom you should fear, if you are [truly] believers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Mengapa kamu tidak memerangi orang-orang yang melanggar sumpah (janjinya), dan telah merencanakan untuk mengusir Rasul, dan mereka yang pertama kali memerangi kamu? Apakah kamu takut kepada mereka, padahal Allahlah yang lebih berhak untuk kamu takuti, jika kamu orang-orang beriman.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1249",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1249.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1249.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 189,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1249,
@@ -65,40 +60,33 @@ export const quranSurah9Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini memerintahkan kaum Muslimin agar memerangi orang musyrik karena mereka telah melanggar janji dan memerangi Rasul dan kaum Muslimin. Jika mereka melaksanakan perintah itu, pasti Allah akan menyiksa kaum musyrikin dengan kekuatan kaum mukmin. Allah menjadikan mereka hina dan Allah menolong orang-orang mukmin menghilangkan kesedihan mereka yang menderita akibat pengkhianatan pihak musyrikin.\n\nYang dimaksud dengan Allah menyiksa orang-orang musyrik dengan kekuatan kaum Muslimin ialah membunuh dan menghancurkan mereka dalam peperangan. Yang menjadikan mereka hina ialah karena kekalahan mereka dan mereka dijadikan tawanan dan budak. \n\nMenurut riwayat Ikrimah dan ulama lain, orang mukmin yang hilang kesedihan hatinya, ialah suku Khuzaah, sedangkan menurut Ibnu 'Abbas suku Yaman dan Saba' yang telah masuk Islam yang pernah mendapat siksaan yang berat dari orang-orang musyrik Mekah. Mereka mengirimkan utusan mengadukan penderitaan mereka kepada Rasulullah di Medinah, maka Rasulullah menyampaikan salam dan kabar gembira, untuk menggembirakan hati mereka, sebab pertolongan Allah akan datang dalam waktu yang dekat.",
-        short:
-          "Atas tiga alasan di atas, yakni merusak perjanjian damai untuk tidak saling mengganggu, berencana untuk mengusir Rasulullah dari tempat kediamannya, dan memulai untuk menyerang kaum muslimin, maka perangilah mereka, demi melaksanakan perintah Allah dan menggapai rida-Nya, bukan semata-mata untuk mengejar hal-hal yang bersifat duniawi seperti rampasan perang. Dengan begitu, niscaya Allah akan menyiksa mereka dengan perantaraan tanganmu, dan melalui peperangan itu pula Dia akan menghina mereka dengan kekalahan dalam perang sehingga menjadi tawanan dan menolongmu dengan kemenangan atas mereka, serta melegakan hati orang-orang yang beriman, setelah mereka mengalami penyiksaan dari kaum musyrik Mekah dalam waktu yang cukup lama yang akhirnya mereka bisa dikalahkan dan agama Islam memperoleh kemuliaan.",
+        footnotes: null,
+        text: "Perangilah -wahai orang-orang mukmin- orang-orang musyrik itu. Jika kalian memerangi mereka niscaya Allah akan mengazab mereka melalui tangan kalian, yaitu kalian akan membunuh dan menghinakan mereka dengan kekalahan dan menjadikan mereka sebagai tawanan perang. Allah akan menolong kalian untuk mengalahkan mereka dengan memberikan kemenangan kepada kalian, serta Dia akan memuaskan hati orang-orang mukmin yang belum pernah menyaksikan perang dengan apa yang dialami oleh musuh mereka, yaitu terbunuh, tertawan, dan kalah dari orang-orang mukmin, serta keberhasilan orang-orang mukmin mengalahkan mereka.",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u062a\u0650\u0644\u064f\u0648\u0647\u064f\u0645\u0652 \u064a\u064f\u0639\u064e\u0630\u0651\u0650\u0628\u0652\u0647\u064f\u0645\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0628\u0650\u0623\u064e\u064a\u0652\u062f\u0650\u064a\u0643\u064f\u0645\u0652 \u0648\u064e\u064a\u064f\u062e\u0652\u0632\u0650\u0647\u0650\u0645\u0652 \u0648\u064e\u064a\u064e\u0646\u0635\u064f\u0631\u0652\u0643\u064f\u0645\u0652 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0648\u064e\u064a\u064e\u0634\u0652\u0641\u0650 \u0635\u064f\u062f\u064f\u0648\u0631\u064e \u0642\u064e\u0648\u0652\u0645\u064d \u0645\u0651\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qaatiloohum yu'az zibhumul laahu bi aideekum wa yukhzihim wa yansurkum 'alaihim wa yashfi sudoora qawmim mu 'mineen",
-      },
+      arabic:
+        "قَٰتِلُوهُمْ يُعَذِّبْهُمُ ٱللَّهُ بِأَيْدِيكُمْ وَيُخْزِهِمْ وَيَنصُرْكُمْ عَلَيْهِمْ وَيَشْفِ صُدُورَ قَوْمٍ مُّؤْمِنِينَ",
     },
     translation: {
-      en: "Fight them; Allah will punish them by your hands and will disgrace them and give you victory over them and satisfy the breasts of a believing people",
-      id: "Perangilah mereka, niscaya Allah akan menyiksa mereka dengan (perantaraan) tanganmu dan Dia akan menghina mereka dan menolongmu (dengan kemenangan) atas mereka, serta melegakan hati orang-orang yang beriman,",
+      en: {
+        footnotes: "",
+        text: "Fight them, Allah will punish them at your hands and will disgrace them and give you victory over them, and will soothe the hearts of people who believe,",
+      },
+      id: {
+        footnotes: "",
+        text: "Perangilah mereka, niscaya Allah akan menyiksa mereka dengan (perantaraan) tanganmu dan Dia akan menghinakan mereka dan menolongmu (dengan kemenangan) atas mereka, serta melegakan hati orang-orang yang beriman,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1250",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1250.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1250.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 189,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1250,
@@ -106,40 +94,32 @@ export const quranSurah9Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Kekalahan kaum musyrikin itu akan melegakan hati dan menghilangkan kesedihan orang-orang mukmin yang banyak menderita siksaan dan penganiayaan dari kaum musyrik selama ini, karena mereka tidak mampu membela diri di Mekah dan tidak mampu pindah ke Medinah atau ke tempat lain yang aman. \n\nSelanjutnya pada akhir ayat ini diterangkan bahwa Allah menerima tobat orang-orang yang dikehendaki-Nya dan Allah Maha Mengetahui dan Mahabijaksana. Ayat ini memberi isyarat bahwa kaum musyrikin banyak yang telah bertobat dan Allah telah menerima tobat mereka. Mereka menjadi orang-orang beriman kepada Allah dan Rasul-Nya dan pembela agama Islam yang tangguh. Allah yang Maha mengatur hamba-Nya dan mengatur kepentingan perkembangan agama-Nya di kemudian hari.",
-        short:
-          "Dan, selain itu, Dia menghilangkan kemarahan hati mereka, orang-orang mukmin, yang disebabkan penyiksaan yang begitu kejam terhadap mereka sejak di Mekah. Namun begitu, jika mereka bertobat, maka akan diterima tobatnya dan mereka memiliki hak dan kewajiban yang sama dengan kalian. Demikian ini, karena Allah menerima tobat orang yang Dia kehendaki jika memang secara tulus bertobat kepada-Nya. Allah Maha Mengetahui segala urusan hamba-hamba-Nya, Mahabijaksana atas segala ketentuan syariat dan kebijakan-Nya.",
+        footnotes: null,
+        text: "Allah juga menjauhkan amarah dari hati hamba-hamba-Nya yang beriman dengan kemenangan yang mereka peroleh atas musuh-musuh mereka dan Dia akan menerima pertobatan orang-orang kafir yang dikehendaki-Nya apabila mereka bertobat, seperti yang terjadi pada sebagian penduduk Makkah pada waktu pembebasan Kota Makkah. Allah Maha Mengetahui kesungguhan mereka yang bertobat itu, lagi Mahabijaksana dalam mengatur makhluk-Nya dan menetapkan syariat-Nya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u064a\u064f\u0630\u0652\u0647\u0650\u0628\u0652 \u063a\u064e\u064a\u0652\u0638\u064e \u0642\u064f\u0644\u064f\u0648\u0628\u0650\u0647\u0650\u0645\u0652 \u06d7 \u0648\u064e\u064a\u064e\u062a\u064f\u0648\u0628\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u0649\u0670 \u0645\u064e\u0646 \u064a\u064e\u0634\u064e\u0627\u0621\u064f \u06d7 \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0644\u0650\u064a\u0645\u064c \u062d\u064e\u0643\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Wa yuzhib ghaiza quloobihim; wa yatoobullaahu 'alaa mai yashaaa'; wallaahu 'Aleemun Hakeem",
-      },
+      arabic: "وَيُذْهِبْ غَيْظَ قُلُوبِهِمْ وَيَتُوبُ ٱللَّهُ عَلَىٰ مَن يَشَآءُ وَٱللَّهُ عَلِيمٌ حَكِيمٌ",
     },
     translation: {
-      en: "And remove the fury in the believers' hearts. And Allah turns in forgiveness to whom He wills; and Allah is Knowing and Wise.",
-      id: "dan Dia menghilangkan kemarahan hati mereka (orang mukmin). Dan Allah menerima tobat orang yang Dia kehendaki. Allah Maha Mengetahui, Mahabijaksana.",
+      en: {
+        footnotes: "",
+        text: "and He will remove rage from their hearts. Allah turns in forgiveness to whom He wills. Allah is All-Knowing, All-Wise.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan Dia menghilangkan kemarahan hati mereka (orang mukmin). Dan Allah menerima tobat orang yang Dia kehendaki. Allah Maha Mengetahui, Mahabijaksana.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1251",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1251.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1251.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 189,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1251,
@@ -147,40 +127,33 @@ export const quranSurah9Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini memberikan peringatan yang sangat penting kepada kaum Muslimin untuk memerangi kaum musyrik. Allah juga mengajak mereka agar introspeksi diri berpikir dengan penuh kesadaran tentang hal-hal berikut:\n\na. Apakah selama ini mereka sudah sungguh-sungguh melaksanakan jihad sebagaimana mestinya?\n\nb. Apakah orang musyrik tidak akan memerangi mereka lagi dan tidak akan melanggar perjanjian sebagaimana yang biasa mereka lakukan?\n\nc. Apakah orang musyrik tidak akan mencerca agama Islam lagi dan menghalang-halangi orang untuk menganutnya, seperti yang mereka lakukan semenjak lahirnya agama Islam.\n\nd. Apakah kaum Muslimin sudah lupa tingkah laku orang-orang munafik yang menikam Nabi dan kaum Muslimin dari belakang?\n\ne. Apakah Muslimin dibiarkan saja tanpa mendapat cobaan dan ujian sehingga diketahui siapa yang benar-benar beriman dan berjihad di jalan Allah dan tidak mengambil orang musyrikin menjadi teman kepercayaan dan siapa yang berbuat sebaliknya?\n\nKaum Muslimin harus tabah menghadapi segala macam cobaan dan ujian, tidak boleh merasa cepat puas dengan hasil yang sudah dicapai dan tidak boleh pula malas dan bosan untuk meneruskan jihad. Mereka juga harus mengetahui kewajiban menjaga diri dan waspada terhadap segala tipu daya musuh, dan tidak boleh menjadikan mereka teman akrab. Hal ini sudah banyak diperingatkan di dalam Al-Qur'an, antara lain firman Allah:\n\nWahai orang-orang yang beriman! Janganlah kamu menjadikan teman orang-orang yang di luar kalanganmu (seagama) sebagai teman kepercayaanmu, (karena) mereka tidak henti-hentinya menyusahkan kamu. Mereka mengharapkan kehancuranmu. Sungguh, telah nyata kebencian dari mulut mereka, dan apa yang tersembunyi di hati mereka lebih jahat. (Ali 'Imran /3: 118)\n\nAllah Maha Mengetahui apa yang dikerjakan kaum Muslimin dalam melaksanakan perintah berjihad dan apa yang tersimpan dalam hati mereka, oleh karena itu diperintahkan agar mereka mematuhi petunjuk dan perintah Allah sebaik-baiknya.",
-        short:
-          "Ayat-ayat yang lalu menerangkan kewajiban kaum muslim untuk memerangi kaum musyrik yang merusak perjanjian damai dengan mereka, sedang ayat ini menegaskan alasannya bahwa perintah berperang itu demi membedakan mana yang berperang dengan ikhlas karena Allah dan yang mengharap duniawi semata. Apakah kamu, wahai kaum mukminin, mengira bahwa kamu akan dibiarkan begitu saja hanya gara-gara kamu mengaku sebagai orang mukmin (Lihat: Surah al'Ankabut/29: 1-3), padahal Allah belum mengetahui kesungguhan keimanan kamu sebagai orang-orang yang berjihad di antara kamu dengan jihad yang sesungguhnya sehingga kaum musyrik tidak lagi berani merusak perjanjian dan mencerca agamamu, dan apakah juga telah terbukti bahwa kamu tidak mengambil kaum musyrik yang menjadi musuhmu itu sebagai teman yang setia selain Allah, Rasul-Nya dan orang-orang yang beriman, sebab mereka akan selalu menciptakan kerusakan dan fitnah di antara kamu? Sungguh, Allah Mahateliti terhadap apa yang kamu kerjakan dan akan membalasnya dengan balasan yang setimpal.",
+        footnotes: null,
+        text: "Apakah kalian -wahai orang-orang mukmin- mengira bahwa Allah akan membiarkan kalian tanpa ujian? Ujian merupakan serangkaian dari sunatullah. Kalian akan diuji sampai Allah mengetahui secara nyata siapa di antara kalian yang berjihad dengan tulus kepada Allah dan tidak menjadikan orang kafir sebagai pelindung yang diloyali serta teman setia yang dicintai selain Allah, Rasul-Nya, dan kaum mukminin. Allah Maha Mengetahui apa yang kalian perbuat, tidak ada sesuatu pun yang luput dari pengetahuan-Nya, dan Dia akan memberi kalian balasan yang setimpal dengan amal perbuatan kalian.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u0652 \u062d\u064e\u0633\u0650\u0628\u0652\u062a\u064f\u0645\u0652 \u0623\u064e\u0646 \u062a\u064f\u062a\u0652\u0631\u064e\u0643\u064f\u0648\u0627 \u0648\u064e\u0644\u064e\u0645\u0651\u064e\u0627 \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062c\u064e\u0627\u0647\u064e\u062f\u064f\u0648\u0627 \u0645\u0650\u0646\u0643\u064f\u0645\u0652 \u0648\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u062a\u0651\u064e\u062e\u0650\u0630\u064f\u0648\u0627 \u0645\u0650\u0646 \u062f\u064f\u0648\u0646\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0644\u064e\u0627 \u0631\u064e\u0633\u064f\u0648\u0644\u0650\u0647\u0650 \u0648\u064e\u0644\u064e\u0627 \u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e \u0648\u064e\u0644\u0650\u064a\u062c\u064e\u0629\u064b \u06da \u0648\u064e\u0627\u0644\u0644\u0651\u064e\u0647\u064f \u062e\u064e\u0628\u0650\u064a\u0631\u064c \u0628\u0650\u0645\u064e\u0627 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Am hasibtum an turakoo wa lammaa ya'lamil laahul lazeena jaahadoo minkum wa lam yattakhizoo min doonil laahi wa laa Rasoolihee wa lalmu'mineena waleejah; wallaahu khabeerum bimaa ta'maloon",
-      },
+      arabic:
+        "أَمْ حَسِبْتُمْ أَن تُتْرَكُوا۟ وَلَمَّا يَعْلَمِ ٱللَّهُ ٱلَّذِينَ جَٰهَدُوا۟ مِنكُمْ وَلَمْ يَتَّخِذُوا۟ مِن دُونِ ٱللَّهِ وَلَا رَسُولِهِۦ وَلَا ٱلْمُؤْمِنِينَ وَلِيجَةً وَٱللَّهُ خَبِيرٌۢ بِمَا تَعْمَلُونَ",
     },
     translation: {
-      en: "Do you think that you will be left [as you are] while Allah has not yet made evident those among you who strive [for His cause] and do not take other than Allah, His Messenger and the believers as intimates? And Allah is Acquainted with what you do.",
-      id: "Apakah kamu mengira bahwa kamu akan dibiarkan (begitu saja), padahal Allah belum mengetahui orang-orang yang berjihad di antara kamu dan tidak mengambil teman yang setia selain Allah, Rasul-Nya dan orang-orang yang beriman. Allah Mahateliti terhadap apa yang kamu kerjakan.",
+      en: {
+        footnotes: "",
+        text: "Do you think that you will be left untested, when Allah has not yet proven who among you strove [in His cause] and did not take any trusted allies other than Allah, His Messenger and the believers? Allah is All-Aware of what you do.",
+      },
+      id: {
+        footnotes: "",
+        text: "Apakah kamu mengira bahwa kamu akan dibiarkan (begitu saja), padahal Allah belum mengetahui orang-orang yang berjihad di antara kamu dan tidak mengambil teman setia selain Allah, Rasul-Nya dan orang-orang yang beriman. Allah Mahateliti terhadap apa yang kamu kerjakan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1252",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1252.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1252.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 189,
       ruku: 158,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1252,
@@ -188,40 +161,34 @@ export const quranSurah9Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa tidak pantas bagi kaum musyrikin memakmurkan Masjidilharam dan mesjid-mesjid lainnya. Memakmurkan mesjid Allah hanyalah dengan menjadikan tempat itu untuk mengesakan dan mengagungkan Allah serta menaati-Nya. Hal ini dilakukan hanya oleh orang-orang mukmin. Memakmurkan mesjid, ialah membangunnya, mengurusnya, menghidupkannya dengan amal ibadah yang diridai Allah. Memakmurkan yang dilarang untuk orang bukan Muslim, ialah penguasaan terhadap mesjid, seperti menjadi pengurusnya. Adapun mempergunakan tenaga orang bukan Muslim untuk membangun mesjid, seperti memakai tukang bangunan dan sebagainya tidak dilarang. Begitu juga kaum Muslimin boleh menerima mesjid yang dibangun oleh orang bukan Muslim atau yang membangunnya diwasiatkan oleh orang bukan Muslim, atau memperbaiki-nya selama tidak mengandung tujuan yang membikin mudarat kepada kaum Muslimin.\n\nSekalipun para mufasir berbeda pendapat tentang mesjid yang dimaksud dalam ayat ini, apakah Masjidilharam saja, sesuai dengan turunnya ayat ini, seperti tersebut pada permulaan tafsir ayat ini, dan sesuai pula dengan bacaan sebagian ulama qira'at yang membacakan dengan masjid artinya lafal mufrad (tunggal) yaitu Masjidilharam, atau yang dimaksud semua mesjid Allah, sesuai dengan lafal jamak masajid. Tetapi semua pendapat, baik Masjidlharam ataupun mesjid-mesjid lainnya, tidak pantas dan tidak boleh bagi musyrikin untuk memakmurkannya. \n\nSelanjutnya pada ayat ini Allah menerangkan bahwa amal dan pekerjaan orang-orang kafir yang mereka bangga-banggakan, yaitu memakmurkan Masjidilharam, memberi minum orang-orang haji, dan lain-lain akan sia-sia selama mereka di dalam kesyirikan. Firman Allah:\n\nSekiranya mereka mempersekutukan Allah, pasti lenyaplah amalan yang telah mereka kerjakan. (al-Anam/6: 88)\n\nAkhir ayat ini menerangkan bahwa orang-orang musyrik itu kekal dalam neraka, karena tidak ada amal mereka di dunia yang berguna dan dapat menolong mereka di hari akhirat.",
-        short:
-          "Rangkaian ayat-ayat di atas menunjukkan pembatalan perjanjian dengan kaum musyrik, sedang ayat ini menegaskan pembatalan amalamal mereka yang selalu mereka banggakan, seperti memakmurkan masjid. Tidaklah pantas bagi orang-orang musyrik, setelah penaklukan kota Mekah, memakmurkan masjid Allah, yakni Masjidilharam dan juga masjid-masjid yang lain, padahal mereka mengakui sendiri kalau mereka itu kafir. Sebab, tanpa didasari iman yang benar, maka amal mereka itu akan sia-sia belaka, dan justru kekufurannya itu menjadikan mereka kekal di dalam neraka sedangkan amal-amal baiknya tidak ada manfaatnya bagi mereka. (Lihat: Surah Ibrahim/14: 18 dan an-Nur/24: 38).",
+        footnotes: null,
+        text: "Tidak sepatutnya orang-orang musyrik memakmurkan masjid-masjid Allah dengan kegiatan-kegiatan ibadah dan ketaatan-ketaatan lainnya, sedangkan mereka mengakui kekafiran mereka secara terbuka. Amal perbuatan mereka itu sia-sia karena tidak memenuhi salah satu syarat diterimanya amal, yaitu iman. Kelak di hari Kiamat mereka akan masuk ke dalam neraka dan menetap di dalamnya untuk selama-lamanya, kecuali apabila mereka bertobat dari kemusyrikan mereka sebelum mereka meninggal dunia.",
       },
     },
     text: {
-      arab: "\u0645\u064e\u0627 \u0643\u064e\u0627\u0646\u064e \u0644\u0650\u0644\u0652\u0645\u064f\u0634\u0652\u0631\u0650\u0643\u0650\u064a\u0646\u064e \u0623\u064e\u0646 \u064a\u064e\u0639\u0652\u0645\u064f\u0631\u064f\u0648\u0627 \u0645\u064e\u0633\u064e\u0627\u062c\u0650\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0634\u064e\u0627\u0647\u0650\u062f\u0650\u064a\u0646\u064e \u0639\u064e\u0644\u064e\u0649\u0670 \u0623\u064e\u0646\u0641\u064f\u0633\u0650\u0647\u0650\u0645 \u0628\u0650\u0627\u0644\u0652\u0643\u064f\u0641\u0652\u0631\u0650 \u06da \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u062d\u064e\u0628\u0650\u0637\u064e\u062a\u0652 \u0623\u064e\u0639\u0652\u0645\u064e\u0627\u0644\u064f\u0647\u064f\u0645\u0652 \u0648\u064e\u0641\u0650\u064a \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u0650 \u0647\u064f\u0645\u0652 \u062e\u064e\u0627\u0644\u0650\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "maa kaana lilmushrikeena ai ya'muroo masaajidal laahi shaahideena 'alaaa anfusihim bilkufr; ulaaa'ika habitat a'maaluhum wa fin naari hum khaalidoon",
-      },
+      arabic:
+        "مَا كَانَ لِلْمُشْرِكِينَ أَن يَعْمُرُوا۟ مَسَٰجِدَ ٱللَّهِ شَٰهِدِينَ عَلَىٰٓ أَنفُسِهِم بِٱلْكُفْرِ أُو۟لَٰٓئِكَ حَبِطَتْ أَعْمَٰلُهُمْ وَفِى ٱلنَّارِ هُمْ خَٰلِدُونَ",
     },
     translation: {
-      en: "It is not for the polytheists to maintain the mosques of Allah [while] witnessing against themselves with disbelief. [For] those, their deeds have become worthless, and in the Fire they will abide eternally.",
-      id: "Tidaklah pantas orang-orang musyrik memakmurkan masjid Allah, padahal mereka mengakui bahwa mereka sendiri kafir. Mereka itu sia-sia amalnya, dan mereka kekal di dalam neraka.",
+      en: {
+        footnotes:
+          "[16] i.e., building them and taking care of them, or performing acts of devotional worship.",
+        text: "It is not for the polytheists to maintain Allah’s mosques[16] while openly displaying their disbelief. Their deeds have become worthless, and they will abide in the Fire forever.",
+      },
+      id: {
+        footnotes: "",
+        text: "Tidaklah pantas orang-orang musyrik memakmurkan masjid Allah, padahal mereka mengakui bahwa mereka sendiri kafir. Mereka itu sia-sia amal-amalnya, dan mereka kekal di dalam neraka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1253",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1253.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1253.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 189,
       ruku: 158,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1253,
@@ -229,20 +196,24 @@ export const quranSurah9Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan bahwa yang patut memakmurkan mesjid-mesjid Allah hanyalah orang-orang yang benar-benar beriman kepada Allah dan berserah diri kepada-Nya serta percaya akan datangnya hari akhirat tempat pembalasan segala amal perbuatan, melaksanakan salat, menunaikan zakat dan tidak takut kepada siapa pun selain kepada Allah. Orang-orang inilah yang diharapkan termasuk golongan yang mendapat petunjuk untuk memakmurkan mesjid-mesjid-Nya. Banyak hadis yang menjelaskan tentang keutamaan memakmurkan mesjid, antara lain sabda Rasulullah saw:\n\nBarang siapa membangun mesjid bagi Allah untuk mengharapkan keridaan-Nya, niscaya Allah akan membangunkan baginya sebuah rumah dalam surga. (Riwayat al-Bukhari, Muslim dan at-Tirmidzi dari \'Utsman bin Affan)\n\nSabda Rasulullah saw:\n\nApabila kamu melihat seseorang membiasakan diri (beribadah) di mesjid, maka bersaksilah bahwa ia orang yang beriman. (Riwayat Ahmad, at-Tirmidzi, Ibnu Majah dan al-hakim dari Abi Said al-Khudri)\n\nDan sabdanya yang lain:\n\nSesungguhnya ada seorang perempuan yang biasa menyapu mesjid lalu meninggal dunia, Rasulullah saw menanyakannya, dan ketika dikatakan kepadanya bahwa perempuan itu sudah meninggal, Rasulullah berkata, "Mengapa kamu tidak memberitahukan kepada saya, agar saya salatkan ia. Tunjukkanlah kepadaku di mana kuburnya." Maka Rasulullah mendatangi kuburan itu, lalu ia salat di atasnya. (Riwayat al-Bukhari, Muslim, Abu Dawud dan Ibnu Majah)\n\nDalam hadis lain:\n\nBarang siapa menyalakan penerangan lampu dalam mesjid, niscaya para malaikat dan para pembawa arasy senantiasa memohon ampun kepada Allah agar diampuni dosanya selama lampu itu bercahaya dalam mesjid. (Riwayat Salim ar-Razi dari Anas r.a.)',
-        short:
-          "Inilah kriteria mereka yang berhak memakmurkan masjid. Sesungguhnya yang paling berhak memakmurkan masjid Allah hanyalah orangorang yang beriman kepada Allah dan hari kemudian, serta tetap atau senantiasa melaksanakan salat, menunaikan zakat jika mampu dan tidak takut kepada siapa pun kecuali kepada Allah, maka mudah-mudahan mereka termasuk orang-orang yang bisa diharapkan untuk selalu mendapat petunjuk ke jalan yang benar.",
+        footnotes: null,
+        text: "Sesungguhnya yang berhak memakmurkan dan mengurus masjid-masjid Allah hanyalah orang yang beriman kepada Allah semata dan tidak menyekutukan-Nya dengan sesuatu, beriman pada hari kiamat, mendirikan salat, membayar zakat, dan tidak takut kepada siapa pun selain Allah -Subḥānahu-. Mereka itulah orang-orang yang diharapkan mendapat petunjuk ke jalan yang lurus, sedangkan orang-orang musyrik terlalu jauh dari harapan itu.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u064a\u064e\u0639\u0652\u0645\u064f\u0631\u064f \u0645\u064e\u0633\u064e\u0627\u062c\u0650\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0645\u064e\u0646\u0652 \u0622\u0645\u064e\u0646\u064e \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u0650 \u0648\u064e\u0623\u064e\u0642\u064e\u0627\u0645\u064e \u0627\u0644\u0635\u0651\u064e\u0644\u064e\u0627\u0629\u064e \u0648\u064e\u0622\u062a\u064e\u0649 \u0627\u0644\u0632\u0651\u064e\u0643\u064e\u0627\u0629\u064e \u0648\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u062e\u0652\u0634\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u06d6 \u0641\u064e\u0639\u064e\u0633\u064e\u0649\u0670 \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0623\u064e\u0646 \u064a\u064e\u0643\u064f\u0648\u0646\u064f\u0648\u0627 \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0645\u064f\u0647\u0652\u062a\u064e\u062f\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Innamaa ya'muru masaa jidal laahi man aamana billaahi wal Yawmil Aakhiri wa aqaamas Salaata wa aataz Zakaata wa lam yakkhsa illal laaha fa'asaaa ulaaa'ika ai yakoonoo minal muhtadeen",
-      },
+      arabic:
+        "إِنَّمَا يَعْمُرُ مَسَٰجِدَ ٱللَّهِ مَنْ ءَامَنَ بِٱللَّهِ وَٱلْيَوْمِ ٱلْـَٔاخِرِ وَأَقَامَ ٱلصَّلَوٰةَ وَءَاتَى ٱلزَّكَوٰةَ وَلَمْ يَخْشَ إِلَّا ٱللَّهَ فَعَسَىٰٓ أُو۟لَٰٓئِكَ أَن يَكُونُوا۟ مِنَ ٱلْمُهْتَدِينَ",
     },
     translation: {
-      en: "The mosques of Allah are only to be maintained by those who believe in Allah and the Last Day and establish prayer and give zakah and do not fear except Allah, for it is expected that those will be of the [rightly] guided.",
-      id: "Sesungguhnya yang memakmurkan masjid Allah hanyalah orang-orang yang beriman kepada Allah dan hari kemudian, serta (tetap) melaksanakan salat, menunaikan zakat dan tidak takut (kepada apa pun) kecuali kepada Allah. Maka mudah-mudahan mereka termasuk orang-orang yang mendapat petunjuk.",
+      en: {
+        footnotes:
+          "[17] Not associating anyone or anything with Allah in worship.",
+        text: "The mosques of Allah are only to be maintained by those who believe in Allah[17] and the Last Day, establish prayer, give zakah and fear none but Allah. It is they who are expected to be rightly guided.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sesungguhnya yang memakmurkan masjid Allah hanyalah orang-orang yang beriman kepada Allah dan hari kemudian, serta (tetap) melaksanakan salat, menunaikan zakat dan tidak takut (kepada apa pun) kecuali kepada Allah. Maka mudah-mudahan mereka termasuk orang-orang yang mendapat petunjuk.",
+      },
     },
   },
 ];

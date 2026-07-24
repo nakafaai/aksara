@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah38Verses73To78 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4043",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4043.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4043.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 457,
       ruku: 395,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4043,
@@ -24,40 +25,32 @@ export const quranSurah38Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Allah menyampaikan kepada malaikat bahwa apabila Ia telah menyempurnakan kejadian manusia dan meniupkan roh ke dalam tubuhnya, mereka diperintahkan untuk sujud kepada Adam, sebagai tanda penghormatan kepadanya.\n\nPada ayat ini diterangkan salah satu proses penciptaan Adam, yaitu dari tanah. Para malaikat bersujud menghormatinya, karena taat kepada Allah, kecuali Iblis. Ia enggan menghormati Adam, sehingga ia termasuk makhluk yang tidak taat kepada Allah. Pembangkangan Iblis terhadap perintah sujud kepada Adam telah disebutkan dalam firmannya:\n\nDan (ingatlah) ketika Kami berfirman kepada para malaikat, "Sujudlah kamu kepada Adam!" Maka mereka pun sujud kecuali Iblis. Ia menolak dan menyombongkan diri, dan ia termasuk golongan yang kafir. (al-Baqarah/2: 34)',
-        short:
-          "Sempurnalah kejadian Adam, lalu dengan serta-merta para malaikat itu bersujud semuanya sebagai bentuk penghormatan kepadanya dan bukti ketaatan kepada perintah Allah.",
+        footnotes: null,
+        text: "Para malaikat pun lantas melaksanakan perintah Tuhan mereka. Mereka semuanya sujud dengan sujud penghormatan dan pemuliaan, tidak ada dari kalangan mereka kecuali dia sujud kepada Adam -'alaihissalām-.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0633\u064e\u062c\u064e\u062f\u064e \u0627\u0644\u0652\u0645\u064e\u0644\u064e\u0627\u0626\u0650\u0643\u064e\u0629\u064f \u0643\u064f\u0644\u0651\u064f\u0647\u064f\u0645\u0652 \u0623\u064e\u062c\u0652\u0645\u064e\u0639\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fasajadal malaaa'ikatu kulluhum ajma'oon",
-      },
+      arabic: "فَسَجَدَ ٱلْمَلَٰٓئِكَةُ كُلُّهُمْ أَجْمَعُونَ",
     },
     translation: {
-      en: "So the angels prostrated - all of them entirely.",
-      id: "Lalu para malaikat itu bersujud semuanya,",
+      en: {
+        footnotes: "",
+        text: "Then the angels fell down in prostration all together,",
+      },
+      id: {
+        footnotes: "",
+        text: "Lalu para malaikat itu bersujud semuanya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4044",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4044.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4044.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 457,
       ruku: 395,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4044,
@@ -65,40 +58,33 @@ export const quranSurah38Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Allah menyampaikan kepada malaikat bahwa apabila Ia telah menyempurnakan kejadian manusia dan meniupkan roh ke dalam tubuhnya, mereka diperintahkan untuk sujud kepada Adam, sebagai tanda penghormatan kepadanya.\n\nPada ayat ini diterangkan salah satu proses penciptaan Adam, yaitu dari tanah. Para malaikat bersujud menghormatinya, karena taat kepada Allah, kecuali Iblis. Ia enggan menghormati Adam, sehingga ia termasuk makhluk yang tidak taat kepada Allah. Pembangkangan Iblis terhadap perintah sujud kepada Adam telah disebutkan dalam firmannya:\n\nDan (ingatlah) ketika Kami berfirman kepada para malaikat, "Sujudlah kamu kepada Adam!" Maka mereka pun sujud kecuali Iblis. Ia menolak dan menyombongkan diri, dan ia termasuk golongan yang kafir. (al-Baqarah/2: 34)',
-        short:
-          "Mereka semua bersujud, kecuali Iblis; ia enggan bersujud di hadapan Adam karena menyombongkan diri dan enggan menaati kepada Allah, dan ia termasuk golongan yang kafir.",
+        footnotes: null,
+        text: "Kecuali Iblis, dia menyombongkan diri dan menolak untuk sujud. Karena kesombongannya di depan perintah Tuhannya itu, maka dia termasuk hamba-hamba yang kafir.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0644\u0651\u064e\u0627 \u0625\u0650\u0628\u0652\u0644\u0650\u064a\u0633\u064e \u0627\u0633\u0652\u062a\u064e\u0643\u0652\u0628\u064e\u0631\u064e \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0643\u064e\u0627\u0641\u0650\u0631\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Illaaa Iblees; istakbara wa kaana minal kaafireen",
-      },
+      arabic: "إِلَّآ إِبْلِيسَ ٱسْتَكْبَرَ وَكَانَ مِنَ ٱلْكَٰفِرِينَ",
     },
     translation: {
-      en: "Except Iblees; he was arrogant and became among the disbelievers.",
-      id: "kecuali Iblis; ia menyombongkan diri dan ia termasuk golongan yang kafir.",
+      en: {
+        footnotes:
+          "[27] This command of Allah to bow down before Adam was a test of obedience. Satan refused to comply out of arrogance for he thought he was better than Adam.",
+        text: "except Iblīs, who was arrogant and became one of the disbelievers[27].",
+      },
+      id: {
+        footnotes: "",
+        text: "kecuali iblis; ia menyombongkan diri dan ia termasuk golongan yang kafir.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4045",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4045.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4045.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 457,
       ruku: 395,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4045,
@@ -106,40 +92,33 @@ export const quranSurah38Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Allah berkata kepada Iblis, "Hai Iblis, apa yang menyebabkanmu enggan sujud menghormati Adam, makhluk yang telah Aku ciptakan sendiri dengan kekuasaan-Ku? Aku sendirilah yang menciptakan Adam itu, bukan makhluk-Ku yang menciptakannya. Kenapa kamu berlaku angkuh dan sombong. Apakah kamu telah merasa dirimu lebih tinggi dan lebih terhormat di antara makhluk-makhluk yang telah Aku ciptakan, sehingga kamu berpendapat bahwa kamu berhak dan berwenang berbuat apa yang kamu inginkan?"\n\nIblis menjawab dan memberikan alasan pembangkangannya. Ia mengatakan bahwa ia lebih baik daripada Adam karena Allah menjadikannya dari api, sedang Adam dari tanah. Menurut Iblis, api lebih baik daripada tanah karena sifat api selalu meninggi dan tanah selalu di bawah. Padahal, materi asal itu tidak bisa dijadikan indikator kemuliaan makhluk. Kemuliaan itu tergantung pada ketaatan dan kepatuhan kepada Allah. Percakapan di atas disebutkan dalam firman Allah:\n\n(Allah) berfirman, "Apakah yang menghalangimu (sehingga) kamu tidak bersujud (kepada Adam) ketika Aku menyuruhmu?" (Iblis) menjawab, "Aku lebih baik daripada dia. Engkau ciptakan aku dari api, sedangkan dia Engkau ciptakan dari tanah."(al-A.\'raf/7: 12)',
-        short:
-          "Mengetahui hal tersebut Allah bertanya, “Wahai Iblis, apakah yang menghalangi kamu sujud dengan hormat kepada Adam yang telah Aku ciptakan dengan kekuasaan-Ku dan Aku muliakan? Apakah kamu menyombongkan diri dengan mengabaikan perintah-Ku atau kamu merasa termasuk golongan yang lebih tinggi dan terhormat daripada Adam?”",
+        footnotes: null,
+        text: "Allah berfirman, “Wahai Iblis! Apa yang menghalangimu untuk sujud kepada Adam yang Aku ciptakan dengan kedua tangan-Ku? Apakah kesombongan menghalangimu untuk sujud atau karena kamu sebelumnya memang menyombongkan diri terhadap Tuhanmu?”",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u064a\u064e\u0627 \u0625\u0650\u0628\u0652\u0644\u0650\u064a\u0633\u064f \u0645\u064e\u0627 \u0645\u064e\u0646\u064e\u0639\u064e\u0643\u064e \u0623\u064e\u0646 \u062a\u064e\u0633\u0652\u062c\u064f\u062f\u064e \u0644\u0650\u0645\u064e\u0627 \u062e\u064e\u0644\u064e\u0642\u0652\u062a\u064f \u0628\u0650\u064a\u064e\u062f\u064e\u064a\u0651\u064e \u06d6 \u0623\u064e\u0633\u0652\u062a\u064e\u0643\u0652\u0628\u064e\u0631\u0652\u062a\u064e \u0623\u064e\u0645\u0652 \u0643\u064f\u0646\u062a\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0639\u064e\u0627\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qaala yaaa Ibleesu maa man'aka an tasjuda limaa khalaqtu biyadai; astakbarta am kunta min 'aaleen",
-      },
+      arabic:
+        "قَالَ يَٰٓإِبْلِيسُ مَا مَنَعَكَ أَن تَسْجُدَ لِمَا خَلَقْتُ بِيَدَىَّ أَسْتَكْبَرْتَ أَمْ كُنتَ مِنَ ٱلْعَالِينَ",
     },
     translation: {
-      en: '[Allah] said, "O Iblees, what prevented you from prostrating to that which I created with My hands? Were you arrogant [then], or were you [already] among the haughty?"',
-      id: "(Allah) berfirman, “Wahai Iblis, apakah yang menghalangi kamu sujud kepada yang telah Aku ciptakan dengan kekuasaan-Ku. Apakah kamu menyombongkan diri atau kamu (merasa) termasuk golongan yang (lebih) tinggi?”",
+      en: {
+        footnotes: "",
+        text: "[Allah] said, “O Iblīs, what prevented you from prostrating to whom I created with My two Hands? Did you just become proud or have you always been arrogant?”",
+      },
+      id: {
+        footnotes: "",
+        text: '(Allah) berfirman, "Wahai iblis, apakah yang menghalangi kamu sujud kepada yang telah Aku ciptakan dengan kedua tangan-Ku. Apakah kamu menyombongkan diri atau kamu (merasa) termasuk golongan yang (lebih) tinggi?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4046",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4046.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4046.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 457,
       ruku: 395,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4046,
@@ -147,40 +126,32 @@ export const quranSurah38Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Allah berkata kepada Iblis, "Hai Iblis, apa yang menyebabkanmu enggan sujud menghormati Adam, makhluk yang telah Aku ciptakan sendiri dengan kekuasaan-Ku? Aku sendirilah yang menciptakan Adam itu, bukan makhluk-Ku yang menciptakannya. Kenapa kamu berlaku angkuh dan sombong. Apakah kamu telah merasa dirimu lebih tinggi dan lebih terhormat di antara makhluk-makhluk yang telah Aku ciptakan, sehingga kamu berpendapat bahwa kamu berhak dan berwenang berbuat apa yang kamu inginkan?"\n\nIblis menjawab dan memberikan alasan pembangkangannya. Ia mengatakan bahwa ia lebih baik daripada Adam karena Allah menjadikannya dari api, sedang Adam dari tanah. Menurut Iblis, api lebih baik daripada tanah karena sifat api selalu meninggi dan tanah selalu di bawah. Padahal, materi asal itu tidak bisa dijadikan indikator kemuliaan makhluk. Kemuliaan itu tergantung pada ketaatan dan kepatuhan kepada Allah. Percakapan di atas disebutkan dalam firman Allah:\n\n(Allah) berfirman, "Apakah yang menghalangimu (sehingga) kamu tidak bersujud (kepada Adam) ketika Aku menyuruhmu?" (Iblis) menjawab, "Aku lebih baik daripada dia. Engkau ciptakan aku dari api, sedangkan dia Engkau ciptakan dari tanah."(al-A.\'raf/7: 12)',
-        short:
-          "Iblis berkata, “Aku lebih baik daripadanya, karena Engkau ciptakan aku dari api, sedangkan dia Engkau ciptakan dari tanah.” Iblis mengira api lebih baik daripada tanah karena api selalu membumbung sedangkan tanah selalu di bawah (Lihat pula: Surah al-A‘ràf/7: 12).",
+        footnotes: null,
+        text: 'Iblis menjawab, “Aku lebih baik dibandingkan Adam karena Engkau menciptakanku dari api dan Engkau menciptakannya dari tanah." Di sini Iblis mengklaim bahwa api lebih mulia daripada tanah.',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0623\u064e\u0646\u064e\u0627 \u062e\u064e\u064a\u0652\u0631\u064c \u0645\u0651\u0650\u0646\u0652\u0647\u064f \u06d6 \u062e\u064e\u0644\u064e\u0642\u0652\u062a\u064e\u0646\u0650\u064a \u0645\u0650\u0646 \u0646\u0651\u064e\u0627\u0631\u064d \u0648\u064e\u062e\u064e\u0644\u064e\u0642\u0652\u062a\u064e\u0647\u064f \u0645\u0650\u0646 \u0637\u0650\u064a\u0646\u064d",
-      transliteration: {
-        en: "Qaala ana khairum minah; khalaqtanee min naarinw wa khalaqtahoo min teen",
-      },
+      arabic: "قَالَ أَنَا۠ خَيْرٌ مِّنْهُ خَلَقْتَنِى مِن نَّارٍ وَخَلَقْتَهُۥ مِن طِينٍ",
     },
     translation: {
-      en: 'He said, "I am better than him. You created me from fire and created him from clay."',
-      id: "(Iblis) berkata, “Aku lebih baik daripadanya, karena Engkau ciptakan aku dari api, sedangkan dia Engkau ciptakan dari tanah.”",
+      en: {
+        footnotes: "",
+        text: "He said, “I am better than him: You created me from fire and created him from clay.”",
+      },
+      id: {
+        footnotes: "",
+        text: '(Iblis) berkata, "Aku lebih baik darinya, karena Engkau ciptakan aku dari api, sedangkan dia Engkau ciptakan dari tanah."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4047",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4047.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4047.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 457,
       ruku: 395,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4047,
@@ -188,40 +159,32 @@ export const quranSurah38Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Karena kedurhakaan Iblis yang enggan menaati perintah Allah, maka Allah mengusir Iblis dari surga, dan menjadikannya sebagai makhluk yang terkutuk. Kutukan itu tetap berlaku sampai hari Kiamat, yaitu hari pembalasan terhadap semua perbuatan manusia.\n\nFirman Allah:\n\n(Allah) berfirman, "Maka turunlah kamu darinya (surga); karena kamu tidak sepatutnya menyombongkan diri di dalamnya. Keluarlah! Sesungguhnya kamu termasuk makhluk yang hina."( al-A.\'raf/7: 13)',
-        short:
-          "Mengetahui kedurhakaan Iblis, Allah mengusirnya seraya berfirman, “Kalau begitu, keluarlah kamu dari surga! Sesungguhnya kamu adalah makhluk yang terkutuk, terusir dari rahmat-Ku, dan terlarang dari surga-Ku.",
+        footnotes: null,
+        text: " Allah berfirman kepada Iblis, “Keluarlah kamu dari surga, karena sesungguhnya kamu terlaknat dan terkutuk.",
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0641\u064e\u0627\u062e\u0652\u0631\u064f\u062c\u0652 \u0645\u0650\u0646\u0652\u0647\u064e\u0627 \u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0643\u064e \u0631\u064e\u062c\u0650\u064a\u0645\u064c",
-      transliteration: {
-        en: "Qaala fakhruj minhaa fainnaka rajeem",
-      },
+      arabic: "قَالَ فَٱخْرُجْ مِنْهَا فَإِنَّكَ رَجِيمٌ",
     },
     translation: {
-      en: '[Allah] said, "Then get out of Paradise, for indeed, you are expelled.',
-      id: "(Allah) berfirman, “Kalau begitu keluarlah kamu dari surga! Sesungguhnya kamu adalah makhluk yang terkutuk.",
+      en: {
+        footnotes: "",
+        text: "[Allah] said, “Then get out of here, for you are accursed,",
+      },
+      id: {
+        footnotes: "",
+        text: '(Allah) berfirman, "Kalau begitu keluarlah kamu dari surga! Sesungguhnya kamu adalah makhluk yang terkutuk.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/4048",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/4048.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/4048.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 183,
       juz: 23,
       manzil: 6,
       page: 457,
       ruku: 395,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 4048,
@@ -229,20 +192,22 @@ export const quranSurah38Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Karena kedurhakaan Iblis yang enggan menaati perintah Allah, maka Allah mengusir Iblis dari surga, dan menjadikannya sebagai makhluk yang terkutuk. Kutukan itu tetap berlaku sampai hari Kiamat, yaitu hari pembalasan terhadap semua perbuatan manusia.\n\nFirman Allah:\n\n(Allah) berfirman, "Maka turunlah kamu darinya (surga); karena kamu tidak sepatutnya menyombongkan diri di dalamnya. Keluarlah! Sesungguhnya kamu termasuk makhluk yang hina."( al-A.\'raf/7: 13)',
-        short:
-          "Dan sungguh, kutukan-Ku tetap berlaku atasmu sampai hari pembalasan, hari ketika seluruh perbuatan diperhitungkan dan dibalas.” Iblis berkata seraya memohon,",
+        footnotes: null,
+        text: "Sesungguhnya kamu terusir dari surga hingga hari pembalasan, yaitu hari Kiamat.”",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064e \u0644\u064e\u0639\u0652\u0646\u064e\u062a\u0650\u064a \u0625\u0650\u0644\u064e\u0649\u0670 \u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u062f\u0651\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Wa inna 'alaika la'nateee ilaa Yawmid Deen",
-      },
+      arabic: "وَإِنَّ عَلَيْكَ لَعْنَتِىٓ إِلَىٰ يَوْمِ ٱلدِّينِ",
     },
     translation: {
-      en: 'And indeed, upon you is My curse until the Day of Recompense."',
-      id: "Dan sungguh, kutukan-Ku tetap atasmu sampai hari pembalasan.”",
+      en: {
+        footnotes: "",
+        text: "and My curse will be upon you until the Day of Judgment.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan sungguh, kutukan-Ku tetap atasmu sampai hari pembalasan."',
+      },
     },
   },
 ];

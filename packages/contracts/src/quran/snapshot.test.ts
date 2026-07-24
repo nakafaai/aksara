@@ -14,20 +14,22 @@ const secondHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 /** Builds the complete fixed-count snapshot manifest. */
 function manifest() {
   return {
+    attributionCount: 1,
     chunkCount: 1085,
     format: QURAN_SNAPSHOT_FORMAT,
     locales: ["en", "id"],
-    projectionCount: 1427,
+    projectionCount: 1428,
     projectionDigest: firstHash,
     provenanceDigest: firstHash,
     provenanceStatus: "blocked",
-    runtimeCount: 1199,
+    runtimeCount: 1200,
     runtimeDigest: firstHash,
     searchCount: 228,
     searchDigest: firstHash,
     snapshotId: secondHash,
-    sourceBytes: 19_376_634,
+    sourceBytes: 11_506_941,
     sourceDigest: firstHash,
+    sourceFileCount: 118,
     surahCount: 114,
     tafsirLocales: ["id"],
     verseCount: 6236,
@@ -44,12 +46,12 @@ describe("Quran snapshot", () => {
     )({
       ...manifest(),
       chunkCount: 1086,
-      projectionCount: 1428,
-      runtimeCount: 1200,
+      projectionCount: 1429,
+      runtimeCount: 1201,
     });
     const decode = Schema.decodeUnknownEither(QuranSnapshotManifestSchema);
     const countError = decode({ ...manifest(), surahCount: 113 });
-    const projectionError = decode({ ...manifest(), runtimeCount: 1198 });
+    const projectionError = decode({ ...manifest(), runtimeCount: 1199 });
     const tafsirError = decode({
       ...manifest(),
       tafsirLocales: ["id", "id"],
@@ -59,7 +61,7 @@ describe("Quran snapshot", () => {
     const inputCountError = decodeInput({ ...input, verseCount: 6235 });
     const inputProjectionError = decodeInput({
       ...input,
-      projectionCount: 1426,
+      projectionCount: 1427,
     });
     if (
       countError._tag === "Right" ||

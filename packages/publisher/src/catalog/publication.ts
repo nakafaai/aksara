@@ -9,6 +9,7 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Schema, type Scope, Stream } from "effect";
 import {
   type PrepareArticlePublicationError,
@@ -68,6 +69,7 @@ export interface ContentCatalogPublicationInput<E, R> {
     readonly question: Stream.Stream<QuestionHead, E, R>;
   };
   readonly rendererManifest: unknown;
+  readonly scope?: PublicationScope | undefined;
 }
 
 type ResultCatalogError = Effect.Effect.Error<
@@ -146,16 +148,19 @@ export const prepareContentCatalog: <E, R>(
     checkoutRoot: input.checkoutRoot,
     published: articleHeads.replay(),
     rendererManifest: input.rendererManifest,
+    scope: input.scope,
   });
   const material = yield* prepareMaterialPublication({
     checkoutRoot: input.checkoutRoot,
     published: materialHeads.replay(),
     rendererManifest: input.rendererManifest,
+    scope: input.scope,
   });
   const question = yield* prepareQuestionPublication({
     checkoutRoot: input.checkoutRoot,
     published: questionHeads.replay(),
     rendererManifest: input.rendererManifest,
+    scope: input.scope,
   });
   /** Replays canonical transitions without collecting either family. */
   const records = () =>

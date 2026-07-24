@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses13To18 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3801",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3801.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3801.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 178,
       juz: 23,
       manzil: 6,
       page: 446,
       ruku: 386,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3801,
@@ -24,40 +25,32 @@ export const quranSurah37Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa karena kekerasan hati orang-orang yang ingkar tadi, maka tidak akan ada manfaatnya apabila mereka diberi nasihat. Karena jiwa mereka telah dikotori tingkah laku dan perbuatan mereka sendiri.\n\nBilamana diperlihatkan kepada mereka dalil-dalil dan mukjizat-mukjizat yang menunjukkan kebenaran Nabi, mereka pun menertawakan dan memperolok-olokkannya serta menuduh Nabi sebagai seorang tukang sihir yang telah memperdaya pikiran mereka dan ingin menjauhkan mereka dari sembahan-sembahan nenek moyang mereka. Mereka juga mengatakan bahwa segala dalil-dalil kenabian yang beliau sampaikan dipandang sebagai permainan sihir. Mereka mengatakan bahwa semua bukti-bukti kebenaran yang dibawa Nabi itu tidak ada artinya sama sekali. Oleh karena itu, mereka menghindari seruan Nabi dan tetap berpegang kepada agama nenek moyang yang sudah dianut berabad-abad.\n\n(16-17) Allah menunjukkan keingkaran kaum musyrikin terhadap peristiwa-peristiwa pada hari Kiamat. Kejadian-kejadian pada hari Kiamat itu membingungkan akal mereka. Mereka sama sekali tidak dapat mengerti apa yang dikatakan Nabi Muhammad bahwa tulang-belulang yang berserakan dan sudah menjadi tanah dapat dihidupkan kembali. Lebih mengherankan mereka lagi adalah kebangkitan nenek moyang mereka yang sudah lama terkubur dalam bumi, yang tidak ada bekasnya lagi, sehingga dengan demikian nenek moyang mereka itu tidak dapat hidup kembali. Semua ini ditanyakan mereka kepada Nabi saw.\n\n(18-19) Allah memerintahkan Nabi Muhammad agar menjawab pertanyaan mereka secara tegas bahwa benar mereka dan nenek moyangnya akan dibangkitkan kembali sesudah menjadi tanah. Mereka yang ingkar itu menjadi hina di hadapan Allah Yang Mahatinggi. Sebagaimana Allah berfirman:\n\nSesungguhnya orang-orang yang sombong tidak mau menyembah-Ku akan masuk neraka Jahanam dalam keadaan hina dina. (al-Mu'min/40: 60)\n\nDalam ayat lain Allah berfirman:\n\n¦ Dan semua mereka datang menghadap-Nya dengan merendahkan diri. (an-Naml/27: 87)\n\nTerjadinya hari Kiamat sangatlah mudah bagi Allah. Dengan satu teriakan saja yang ditiupkan dari sangkakala manusia akan bangkit dari kubur dan hidup kembali. Pada waktu itu, mereka akan menyaksikan terlaksananya ancaman Allah.",
-        short:
-          "Dan apabila mereka diberi peringatan sebagimana yang dijelaskan dalam Al-Qur'an, mereka tidak mengindahkannya, bahkan berpaling darinya.",
+        footnotes: null,
+        text: " Jika orang-orang musyrikin itu dinasehati dengan sebuah nasehat, mereka tidak mengambil manfaat darinya, karena hati mereka sudah menjadi keras.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0630\u064f\u0643\u0651\u0650\u0631\u064f\u0648\u0627 \u0644\u064e\u0627 \u064a\u064e\u0630\u0652\u0643\u064f\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa izaa zukkiroo laa yazkuroon",
-      },
+      arabic: "وَإِذَا ذُكِّرُوا۟ لَا يَذْكُرُونَ",
     },
     translation: {
-      en: "And when they are reminded, they remember not.",
-      id: "Dan apabila mereka diberi peringatan, mereka tidak mengindahkannya.",
+      en: {
+        footnotes: "",
+        text: "and when they are reminded, they pay no heed,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan apabila mereka diberi peringatan, mereka tidak mengindahkannya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3802",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3802.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3802.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 178,
       juz: 23,
       manzil: 6,
       page: 446,
       ruku: 386,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3802,
@@ -65,40 +58,32 @@ export const quranSurah37Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa karena kekerasan hati orang-orang yang ingkar tadi, maka tidak akan ada manfaatnya apabila mereka diberi nasihat. Karena jiwa mereka telah dikotori tingkah laku dan perbuatan mereka sendiri.\n\nBilamana diperlihatkan kepada mereka dalil-dalil dan mukjizat-mukjizat yang menunjukkan kebenaran Nabi, mereka pun menertawakan dan memperolok-olokkannya serta menuduh Nabi sebagai seorang tukang sihir yang telah memperdaya pikiran mereka dan ingin menjauhkan mereka dari sembahan-sembahan nenek moyang mereka. Mereka juga mengatakan bahwa segala dalil-dalil kenabian yang beliau sampaikan dipandang sebagai permainan sihir. Mereka mengatakan bahwa semua bukti-bukti kebenaran yang dibawa Nabi itu tidak ada artinya sama sekali. Oleh karena itu, mereka menghindari seruan Nabi dan tetap berpegang kepada agama nenek moyang yang sudah dianut berabad-abad.\n\n(16-17) Allah menunjukkan keingkaran kaum musyrikin terhadap peristiwa-peristiwa pada hari Kiamat. Kejadian-kejadian pada hari Kiamat itu membingungkan akal mereka. Mereka sama sekali tidak dapat mengerti apa yang dikatakan Nabi Muhammad bahwa tulang-belulang yang berserakan dan sudah menjadi tanah dapat dihidupkan kembali. Lebih mengherankan mereka lagi adalah kebangkitan nenek moyang mereka yang sudah lama terkubur dalam bumi, yang tidak ada bekasnya lagi, sehingga dengan demikian nenek moyang mereka itu tidak dapat hidup kembali. Semua ini ditanyakan mereka kepada Nabi saw.\n\n(18-19) Allah memerintahkan Nabi Muhammad agar menjawab pertanyaan mereka secara tegas bahwa benar mereka dan nenek moyangnya akan dibangkitkan kembali sesudah menjadi tanah. Mereka yang ingkar itu menjadi hina di hadapan Allah Yang Mahatinggi. Sebagaimana Allah berfirman:\n\nSesungguhnya orang-orang yang sombong tidak mau menyembah-Ku akan masuk neraka Jahanam dalam keadaan hina dina. (al-Mu'min/40: 60)\n\nDalam ayat lain Allah berfirman:\n\n¦ Dan semua mereka datang menghadap-Nya dengan merendahkan diri. (an-Naml/27: 87)\n\nTerjadinya hari Kiamat sangatlah mudah bagi Allah. Dengan satu teriakan saja yang ditiupkan dari sangkakala manusia akan bangkit dari kubur dan hidup kembali. Pada waktu itu, mereka akan menyaksikan terlaksananya ancaman Allah.",
-        short:
-          "Dan apabila mereka melihat suatu tanda kebesaran Allah berupa mukjizat yang diberikan kepada Nabi, seperti terbelahnya rembulan dan semisalnya, mereka memperolok-olokkan-nya.",
+        footnotes: null,
+        text: "Jika mereka menyaksikan satu mukjizat dari mukjizat-mukjizat Nabi -ṣallallāhu 'alaihi wa sallam- yang menunjukkan kebenaran beliau, mereka sangat merendahkan dan memperolok-oloknya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0631\u064e\u0623\u064e\u0648\u0652\u0627 \u0622\u064a\u064e\u0629\u064b \u064a\u064e\u0633\u0652\u062a\u064e\u0633\u0652\u062e\u0650\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa izaa ra aw Aayatinw yastaskhiroon",
-      },
+      arabic: "وَإِذَا رَأَوْا۟ ءَايَةً يَسْتَسْخِرُونَ",
     },
     translation: {
-      en: "And when they see a sign, they ridicule",
-      id: "Dan apabila mereka melihat suatu tanda (kebesaran) Allah, mereka memperolok-olokkan.",
+      en: {
+        footnotes: "",
+        text: "and when they see a sign, they ridicule it,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan apabila mereka melihat suatu tanda (kebesaran) Allah, mereka memperolok-olokan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3803",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3803.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3803.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 178,
       juz: 23,
       manzil: 6,
       page: 446,
       ruku: 386,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3803,
@@ -106,40 +91,32 @@ export const quranSurah37Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah menegaskan bahwa karena kekerasan hati orang-orang yang ingkar tadi, maka tidak akan ada manfaatnya apabila mereka diberi nasihat. Karena jiwa mereka telah dikotori tingkah laku dan perbuatan mereka sendiri.\n\nBilamana diperlihatkan kepada mereka dalil-dalil dan mukjizat-mukjizat yang menunjukkan kebenaran Nabi, mereka pun menertawakan dan memperolok-olokkannya serta menuduh Nabi sebagai seorang tukang sihir yang telah memperdaya pikiran mereka dan ingin menjauhkan mereka dari sembahan-sembahan nenek moyang mereka. Mereka juga mengatakan bahwa segala dalil-dalil kenabian yang beliau sampaikan dipandang sebagai permainan sihir. Mereka mengatakan bahwa semua bukti-bukti kebenaran yang dibawa Nabi itu tidak ada artinya sama sekali. Oleh karena itu, mereka menghindari seruan Nabi dan tetap berpegang kepada agama nenek moyang yang sudah dianut berabad-abad.\n\n(16-17) Allah menunjukkan keingkaran kaum musyrikin terhadap peristiwa-peristiwa pada hari Kiamat. Kejadian-kejadian pada hari Kiamat itu membingungkan akal mereka. Mereka sama sekali tidak dapat mengerti apa yang dikatakan Nabi Muhammad bahwa tulang-belulang yang berserakan dan sudah menjadi tanah dapat dihidupkan kembali. Lebih mengherankan mereka lagi adalah kebangkitan nenek moyang mereka yang sudah lama terkubur dalam bumi, yang tidak ada bekasnya lagi, sehingga dengan demikian nenek moyang mereka itu tidak dapat hidup kembali. Semua ini ditanyakan mereka kepada Nabi saw.\n\n(18-19) Allah memerintahkan Nabi Muhammad agar menjawab pertanyaan mereka secara tegas bahwa benar mereka dan nenek moyangnya akan dibangkitkan kembali sesudah menjadi tanah. Mereka yang ingkar itu menjadi hina di hadapan Allah Yang Mahatinggi. Sebagaimana Allah berfirman:\n\nSesungguhnya orang-orang yang sombong tidak mau menyembah-Ku akan masuk neraka Jahanam dalam keadaan hina dina. (al-Mu'min/40: 60)\n\nDalam ayat lain Allah berfirman:\n\n¦ Dan semua mereka datang menghadap-Nya dengan merendahkan diri. (an-Naml/27: 87)\n\nTerjadinya hari Kiamat sangatlah mudah bagi Allah. Dengan satu teriakan saja yang ditiupkan dari sangkakala manusia akan bangkit dari kubur dan hidup kembali. Pada waktu itu, mereka akan menyaksikan terlaksananya ancaman Allah.",
-        short:
-          "Dan mereka berkata dengan nada sinis, “Wahai Muhammad, apa yang engkau tunjukkan ini tidak lain hanyalah sihir yang nyata.”",
+        footnotes: null,
+        text: " Mereka berkata, “Apa yang Muhammad datangkan ini hanyalah sihir yang nyata.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0625\u0650\u0646\u0652 \u0647\u064e\u0670\u0630\u064e\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0633\u0650\u062d\u0652\u0631\u064c \u0645\u0651\u064f\u0628\u0650\u064a\u0646\u064c",
-      transliteration: {
-        en: "Wa qaalooo in haazaa illaa sihrum mubeen",
-      },
+      arabic: "وَقَالُوٓا۟ إِنْ هَٰذَآ إِلَّا سِحْرٌ مُّبِينٌ",
     },
     translation: {
-      en: 'And say, "This is not but obvious magic.',
-      id: "Dan mereka berkata, “Ini tidak lain hanyalah sihir yang nyata.",
+      en: {
+        footnotes: "",
+        text: "and they say, “This is nothing but clear magic.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan mereka berkata, "Ini tidak lain hanyalah sihir yang nyata."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3804",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3804.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3804.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 178,
       juz: 23,
       manzil: 6,
       page: 446,
       ruku: 386,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3804,
@@ -147,40 +124,32 @@ export const quranSurah37Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah menunjukkan keingkaran kaum musyrikin terhadap peristiwa-peristiwa pada hari Kiamat. Kejadian-kejadian pada hari Kiamat itu membingungkan akal mereka. Mereka sama sekali tidak dapat mengerti apa yang dikatakan Nabi Muhammad bahwa tulang-belulang yang berserakan dan sudah menjadi tanah dapat dihidupkan kembali. Lebih mengherankan mereka lagi adalah kebangkitan nenek moyang mereka yang sudah lama terkubur dalam bumi, yang tidak ada bekasnya lagi, sehingga dengan demikian nenek moyang mereka itu tidak dapat hidup kembali. Semua ini ditanyakan mereka kepada Nabi saw.",
-        short:
-          "Mereka berkata pula, “Apabila kami telah mati dan jasad-jasad kami telah berubah menjadi tanah dan tulang-belulang yang lapuk dan hancur, apakah benar kami akan dibangkitkan kembali seperti semula?",
+        footnotes: null,
+        text: "Apakah bila kami sudah mati, menjadi tanah, dan tinggal tulang belulang yang hancur luluh kami akan dibangkitkan sesudahnya dalam keadaan hidup?! Ini benar-benar tidak mungkin.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0625\u0650\u0630\u064e\u0627 \u0645\u0650\u062a\u0652\u0646\u064e\u0627 \u0648\u064e\u0643\u064f\u0646\u0651\u064e\u0627 \u062a\u064f\u0631\u064e\u0627\u0628\u064b\u0627 \u0648\u064e\u0639\u0650\u0638\u064e\u0627\u0645\u064b\u0627 \u0623\u064e\u0625\u0650\u0646\u0651\u064e\u0627 \u0644\u064e\u0645\u064e\u0628\u0652\u0639\u064f\u0648\u062b\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "'A-izaa mitnaa wa kunnaa turaabanw wa 'izaaman 'ainnaa lamab'oosoon",
-      },
+      arabic: "أَءِذَا مِتْنَا وَكُنَّا تُرَابًا وَعِظَٰمًا أَءِنَّا لَمَبْعُوثُونَ",
     },
     translation: {
-      en: "When we have died and become dust and bones, are we indeed to be resurrected?",
-      id: "Apabila kami telah mati dan telah menjadi tanah dan tulang-belulang, apakah benar kami akan dibangkitkan (kembali)?",
+      en: {
+        footnotes: "",
+        text: "Is it that when we are dead and become dust and bones, will we really be raised up again,",
+      },
+      id: {
+        footnotes: "",
+        text: "Apabila kami telah mati dan telah menjadi tanah dan tulang-belulang, apakah benar kami akan dibangkitkan (kembali)?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3805",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3805.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3805.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 178,
       juz: 23,
       manzil: 6,
       page: 446,
       ruku: 386,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3805,
@@ -188,40 +157,32 @@ export const quranSurah37Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah menunjukkan keingkaran kaum musyrikin terhadap peristiwa-peristiwa pada hari Kiamat. Kejadian-kejadian pada hari Kiamat itu membingungkan akal mereka. Mereka sama sekali tidak dapat mengerti apa yang dikatakan Nabi Muhammad bahwa tulang-belulang yang berserakan dan sudah menjadi tanah dapat dihidupkan kembali. Lebih mengherankan mereka lagi adalah kebangkitan nenek moyang mereka yang sudah lama terkubur dalam bumi, yang tidak ada bekasnya lagi, sehingga dengan demikian nenek moyang mereka itu tidak dapat hidup kembali. Semua ini ditanyakan mereka kepada Nabi saw.",
-        short:
-          "dan apakah nenek moyang kami yang telah terdahulu mati akan dibangkitkan pula?”",
+        footnotes: null,
+        text: "Apakah nenek moyang kami yang telah mati sebelum kami juga dibangkitkan?”",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0648\u064e\u0622\u0628\u064e\u0627\u0624\u064f\u0646\u064e\u0627 \u0627\u0644\u0652\u0623\u064e\u0648\u0651\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Awa aabaa'unal awwaloon",
-      },
+      arabic: "أَوَءَابَآؤُنَا ٱلْأَوَّلُونَ",
     },
     translation: {
-      en: 'And our forefathers [as well]?"',
-      id: "dan apakah nenek moyang kami yang telah terdahulu (akan dibangkitkan pula)?”",
+      en: {
+        footnotes: "",
+        text: "and our forefathers too?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dan apakah nenek moyang kami yang telah terdahulu (akan dibangkitkan pula)?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3806",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3806.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3806.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 178,
       juz: 23,
       manzil: 6,
       page: 446,
       ruku: 386,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3806,
@@ -229,20 +190,22 @@ export const quranSurah37Verses13To18 = [
     },
     tafsir: {
       id: {
-        long: "Allah memerintahkan Nabi Muhammad agar menjawab pertanyaan mereka secara tegas bahwa benar mereka dan nenek moyangnya akan dibangkitkan kembali sesudah menjadi tanah. Mereka yang ingkar itu menjadi hina di hadapan Allah Yang Mahatinggi. Sebagaimana Allah berfirman:\n\nSesungguhnya orang-orang yang sombong tidak mau menyembah-Ku akan masuk neraka Jahanam dalam keadaan hina dina. (al-Mu'min/40: 60)\n\nDalam ayat lain Allah berfirman:\n\n¦ Dan semua mereka datang menghadap-Nya dengan merendahkan diri. (an-Naml/27: 87)\n\nTerjadinya hari Kiamat sangatlah mudah bagi Allah. Dengan satu teriakan saja yang ditiupkan dari sangkakala manusia akan bangkit dari kubur dan hidup kembali. Pada waktu itu, mereka akan menyaksikan terlaksananya ancaman Allah.",
-        short:
-          "Wahai Nabi Muhammad, katakanlah kepada mereka, “Ya, Allah akan membangkitkan seluruh umat manusia, dan kamu akan dibangkitkan di hadapan-Nya dalam keadaan rendah dan terhina.”",
+        footnotes: null,
+        text: "Katakanlah -wahai Rasul- untuk menjawab mereka, “Benar, kalian dibangkitkan sesudah jasad kalian menjadi tanah dan tinggal tulang-tulang yang lapuk, demikian juga nenek moyang kalian terdahulu, kalian semuanya akan dibangkitkan dalam keadaan hina dina.”",
       },
     },
     text: {
-      arab: "\u0642\u064f\u0644\u0652 \u0646\u064e\u0639\u064e\u0645\u0652 \u0648\u064e\u0623\u064e\u0646\u062a\u064f\u0645\u0652 \u062f\u064e\u0627\u062e\u0650\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Qul na'am wa antum daakhiroon",
-      },
+      arabic: "قُلْ نَعَمْ وَأَنتُمْ دَٰخِرُونَ",
     },
     translation: {
-      en: 'Say, "Yes, and you will be [rendered] contemptible."',
-      id: "Katakanlah (Muhammad), “Ya, dan kamu akan terhina.”",
+      en: {
+        footnotes: "",
+        text: "Say, “Yes, and you will be disgraced.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Katakanlah (Muhammad), "Ya, dan kamu akan terhina."',
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah9Verses7To12 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1242",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1242.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1242.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 188,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1242,
@@ -24,40 +25,34 @@ export const quranSurah9Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Allah dan Rasul-Nya tidak dapat meneruskan dan memelihara perjanjian dengan orang-orang musyrikin kecuali dengan mereka yang mengindahkan perjanjian di dekat Masjidilharam. Oleh karena itu, sebagai patokan umum yang harus dilaksanakan oleh kaum Muslimin terhadap kaum musyrikin dijelaskan, bahwa jika mereka mematuhi syarat-syarat perjanjian, maka kaum Muslimin pun berbuat demikian pula terhadap mereka, Allah menyukai orang-orang yang bertakwa, sedang orang-orang yang tidak mengindahkan syarat-syarat perjanjian adalah orang-orang yang berkhianat dan tidak bertakwa kepada Allah swt. \n\nYang dimaksud dengan perjanjian Masjidilharam di sini ialah perjanjian Hudaibiyah yang terjadi pada waktu Nabi Muhammad saw dan sejumlah besar para sahabat pada tahun ke-6 Hijri berangkat dari Medinah menuju Mekah untuk mengerjakan ibadah umrah setelah mereka sampai di suatu tempat yang bernama Hudaibiyah, 13 mil sebelah barat kota Mekah, mereka dicegat dan dihalang-halangi oleh orang-orang kafir Quraisy sehingga terjadilah perjanjian damai yang dinamakan dengan tempat itu.\n\nMenurut riwayat Ibnu Abi hatim bahwa di antara suku Arab musyrik yang mengindahkan perjanjian Hudaibiyah itu adalah suku Bani amrah dan suku Kinanah, sehingga menurut sebagian mufasir, Nabi dan kaum Muslimin menyempurnakan perjanjian Hudaibiyah dengan dua suku ini, meskipun telah habis jangka masa empat bulan yang diberikan kepada kaum musyrikin.",
-        short:
-          "Setelah ayat sebelumnya menjelaskan tentang pemutusan perjanjian dengan kaum musyrik Mekah juga Yahudi Bani Quraizah dan seruan untuk memerangi mereka setelah lewat masa tenggang empat bulan, maka ayat ini menunjukkan alasan mengapa pemutusan perjanjian itu harus dilakukan. Bagaimana mungkin ada perjanjian yang dimuliakan di sisi Allah dan Rasul-Nya bagi orang-orang musyrik yang telah sedemikian meresapnya kemusyrikan tersebut sehingga mereka tidak merasa bersalah setiap kali merusak perjanjian? Jika demikian, perjanjian damai tidak boleh dilanjutkan lagi, kecuali dengan orang-orang musyrik yang kamu telah mengadakan perjanjian dengan mereka di dekat Masjidilharam, yakni dalam perjanjian Hudaibiyah, maka selama mereka berlaku jujur dengan tetap memegang perjanjian atau tidak khianat terhadapmu, hendaklah kamu berlaku jujur pula terhadap mereka. Sungguh, Allah menyukai orang-orang yang bertakwa, yang memiliki sifat-sifat terpuji, antara lain dengan senantiasa jujur dan memegang perjanjian dengan siapa pun, bahkan dengan mereka yang berkhianat sekalipun.",
+        footnotes: null,
+        text: "Orang-orang yang menyekutukan Allah dengan sesuatu tidak dibenarkan memiliki perjanjian damai dan jaminan keamanan di sisi Allah dan Rasul-Nya, kecuali perjanjian yang kalian -wahai orang-orang Islam- adakan bersama orang-orang musyrik itu di dekat Masjidilharam dalam Perjanjian Hudaibiyah. Sepanjang mereka menghormati perjanjian yang kalian buat dengan mereka itu dan tidak melanggarnya maka kalian pun harus menghormatinya dan tidak boleh melanggarnya. Sesungguhnya Allah mencintai hamba-hamba-Nya yang bertakwa, yaitu yang menjalankan perintah-perintah-Nya, dan menjauhi larangan-larangan-Nya.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u064a\u0652\u0641\u064e \u064a\u064e\u0643\u064f\u0648\u0646\u064f \u0644\u0650\u0644\u0652\u0645\u064f\u0634\u0652\u0631\u0650\u0643\u0650\u064a\u0646\u064e \u0639\u064e\u0647\u0652\u062f\u064c \u0639\u0650\u0646\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0639\u0650\u0646\u062f\u064e \u0631\u064e\u0633\u064f\u0648\u0644\u0650\u0647\u0650 \u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0639\u064e\u0627\u0647\u064e\u062f\u062a\u0651\u064f\u0645\u0652 \u0639\u0650\u0646\u062f\u064e \u0627\u0644\u0652\u0645\u064e\u0633\u0652\u062c\u0650\u062f\u0650 \u0627\u0644\u0652\u062d\u064e\u0631\u064e\u0627\u0645\u0650 \u06d6 \u0641\u064e\u0645\u064e\u0627 \u0627\u0633\u0652\u062a\u064e\u0642\u064e\u0627\u0645\u064f\u0648\u0627 \u0644\u064e\u0643\u064f\u0645\u0652 \u0641\u064e\u0627\u0633\u0652\u062a\u064e\u0642\u0650\u064a\u0645\u064f\u0648\u0627 \u0644\u064e\u0647\u064f\u0645\u0652 \u06da \u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u064a\u064f\u062d\u0650\u0628\u0651\u064f \u0627\u0644\u0652\u0645\u064f\u062a\u0651\u064e\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Kaifa yakoonu lilmush rikeena 'ahdun 'indallaahi wa 'inda Rasoolihee illal lazeena 'aahattum 'indal Masjidil Haraami famas taqaamoo lakum fastaqeemoo lahum; innallaaha yuhibbul muttaqeen",
-      },
+      arabic:
+        "كَيْفَ يَكُونُ لِلْمُشْرِكِينَ عَهْدٌ عِندَ ٱللَّهِ وَعِندَ رَسُولِهِۦٓ إِلَّا ٱلَّذِينَ عَٰهَدتُّمْ عِندَ ٱلْمَسْجِدِ ٱلْحَرَامِ فَمَا ٱسْتَقَٰمُوا۟ لَكُمْ فَٱسْتَقِيمُوا۟ لَهُمْ إِنَّ ٱللَّهَ يُحِبُّ ٱلْمُتَّقِينَ",
     },
     translation: {
-      en: "How can there be for the polytheists a treaty in the sight of Allah and with His Messenger, except for those with whom you made a treaty at al-Masjid al-Haram? So as long as they are upright toward you, be upright toward them. Indeed, Allah loves the righteous [who fear Him].",
-      id: "Bagaimana mungkin ada perjanjian (aman) di sisi Allah dan Rasul-Nya dengan orang-orang musyrik, kecuali dengan orang-orang yang kamu telah mengadakan perjanjian (dengan mereka) di dekat Masjidilharam (Hudaibiyah), maka selama mereka berlaku jujur terhadapmu, hendaklah kamu berlaku jujur (pula) terhadap mereka. Sungguh, Allah menyukai orang-orang yang bertakwa.",
+      en: {
+        footnotes:
+          "[10] The Treaty of Hudaybiyah made in the environs of the Sacred Mosque.\n [11] i.e., maintain the terms of the treaty.",
+        text: "How can the polytheists have a treaty with Allah and with His Messenger, except those whom you made a treaty with at the Sacred Mosque[10]? Should they fulfill their pledge to you, fulfill your pledge to them[11], for Allah loves those who fear Him.",
+      },
+      id: {
+        footnotes: "",
+        text: "Bagaimana mungkin ada perjanjian (aman) di sisi Allah dan Rasul-Nya dengan orang-orang musyrik, kecuali dengan orang-orang yang kamu telah mengadakan perjanjian (dengan mereka) di dekat Masjidilharam (Hudaibiyah), maka selama mereka berlaku jujur terhadapmu, hendaklah kamu berlaku jujur (pula) terhadap mereka. Sungguh, Allah menyukai orang-orang yang bertakwa.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1243",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1243.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1243.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 188,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1243,
@@ -65,40 +60,34 @@ export const quranSurah9Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Di antara sebab pembatalan perjanjian itu ialah apabila kaum musyrikin memperoleh kemenangan terhadap kaum Muslimin, kemudian mereka tidak peduli lagi dengan hubungan kekerabatan dan ikatan perjanjian damai. Mereka pandai menarik simpati kaum Muslimin dengan kata-kata yang manis, padahal hati mereka tidak sesuai dengan apa yang mereka ucapkan. Mereka berbuat demikian karena kebanyakan mereka orang fasik yang tidak mengenal akidah yang benar dan akhlak yang baik, sehingga mereka berbuat menurut dan mengikuti hawa nafsunya. Jadi kaum musyrikin yang sudah demikian bencinya terhadap Nabi Muhammad saw dan kaum Muslimin, tentu tidak ada gunanya mengadakan perjanjian dengan mereka, bagaimanapun corak dan bentuknya. Mereka pada umumnya telah menghalalkan segala cara untuk mencapai tujuan. Akhir ayat ini menerangkan bahwa kebanyakan mereka adalah orang fasik.",
-        short:
-          "Ayat berikut ini memberikan alasan lain mengapa harus dilakukan pemutusan perjanjian dengan kaum musyrik. Bagaimana mungkin kamu tetap melakukan perjanjian damai dengan kaum musyrik Mekah yang jelas-jelas memusuhimu dan merusak perjanjian, padahal, di samping memusuhimu, mereka juga selalu menyembunyikan sikap khianat kepada kalian. Hal ini bisa dilihat dari sikap mereka. Jika mereka memperoleh kemenangan atas kamu, mereka tidak memelihara hubungan kekerabatan denganmu dan tidak pula mengindahkan perjanjian. Di samping itu, ketika mereka masih lemah, mereka juga senantiasa menunjukkan sikap menipu dengan cara menyenangkan hatimu baik dengan mulut maupun sikapnya, sedang hatinya menolak. Demikian ini, karena kebanyakan mereka adalah orang-orang fasik, yaitu mereka yang keluar dari ketaatan kepada Allah.",
+        footnotes: null,
+        text: "Bagaimana mungkin mereka memiliki perjanjian damai dan jaminan keamanan, sedangkan mereka adalah musuh kalian? Dan sekiranya mereka berhasil mengalahkan kalian pasti mereka tidak akan mengacuhkan Allah, hubungan kekerabatan maupun perjanjian apa pun dalam memperlakukan kalian, melainkan mereka akan menimpakan azab yang sangat buruk kepada kalian. Mereka menyenangkan hati kalian dengan kata-kata manis yang mereka ucapkan, sedangkan hati mereka tidak sejalan dengan mulut mereka. Mereka tidak pernah menepati apa yang mereka ucapkan dan kebanyakan dari mereka tidak taat kepada Allah, karena mereka suka melanggar perjanjian.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u064a\u0652\u0641\u064e \u0648\u064e\u0625\u0650\u0646 \u064a\u064e\u0638\u0652\u0647\u064e\u0631\u064f\u0648\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0644\u064e\u0627 \u064a\u064e\u0631\u0652\u0642\u064f\u0628\u064f\u0648\u0627 \u0641\u0650\u064a\u0643\u064f\u0645\u0652 \u0625\u0650\u0644\u0651\u064b\u0627 \u0648\u064e\u0644\u064e\u0627 \u0630\u0650\u0645\u0651\u064e\u0629\u064b \u06da \u064a\u064f\u0631\u0652\u0636\u064f\u0648\u0646\u064e\u0643\u064f\u0645 \u0628\u0650\u0623\u064e\u0641\u0652\u0648\u064e\u0627\u0647\u0650\u0647\u0650\u0645\u0652 \u0648\u064e\u062a\u064e\u0623\u0652\u0628\u064e\u0649\u0670 \u0642\u064f\u0644\u064f\u0648\u0628\u064f\u0647\u064f\u0645\u0652 \u0648\u064e\u0623\u064e\u0643\u0652\u062b\u064e\u0631\u064f\u0647\u064f\u0645\u0652 \u0641\u064e\u0627\u0633\u0650\u0642\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Kaifa wa iny-yazharoo 'alaikum laa yarquboo feekum illanw wa laa zimmah; yurdoo nakum biafwaahihim wa taabaa quloobuhum wa aksaruhum faasiqoon",
-      },
+      arabic:
+        "كَيْفَ وَإِن يَظْهَرُوا۟ عَلَيْكُمْ لَا يَرْقُبُوا۟ فِيكُمْ إِلًّا وَلَا ذِمَّةً يُرْضُونَكُم بِأَفْوَٰهِهِمْ وَتَأْبَىٰ قُلُوبُهُمْ وَأَكْثَرُهُمْ فَٰسِقُونَ",
     },
     translation: {
-      en: "How [can there be a treaty] while, if they gain dominance over you, they do not observe concerning you any pact of kinship or covenant of protection? They satisfy you with their mouths, but their hearts refuse [compliance], and most of them are defiantly disobedient.",
-      id: "Bagaimana mungkin (ada perjanjian demikian), padahal jika mereka memperoleh kemenangan atas kamu, mereka tidak memelihara hubungan kekerabatan denganmu dan tidak (pula mengindahkan) perjanjian. Mereka menyenangkan hatimu dengan mulutnya, sedang hatinya menolak. Kebanyakan mereka adalah orang-orang fasik (tidak menepati janji).",
+      en: {
+        footnotes:
+          "[12] They cannot be trusted because they constantly renege on their pledges and break their promises.",
+        text: "How [can there be a treaty] – if they were to overcome you, they would neither respect ties of kinship nor treaty[12]? They please you with their tongues, while their hearts are averse to it, and most of them are wicked.",
+      },
+      id: {
+        footnotes: "",
+        text: "Bagaimana mungkin (ada perjanjian demikian), padahal jika mereka memperoleh kemenangan atas kamu, mereka tidak memelihara hubungan kekerabatan denganmu dan tidak (pula mengindahkan) perjanjian. Mereka menyenangkan hatimu dengan mulutnya, sedang hatinya menolak. Kebanyakan mereka adalah orang-orang fasik (tidak menepati janji).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1244",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1244.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1244.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 188,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1244,
@@ -106,40 +95,34 @@ export const quranSurah9Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Kaum musyrikin menukar ayat-ayat Allah yang mengandung ajaran-ajaran tauhid, iman dan lain-lain dengan sesuatu yang sangat rendah mutu dan nilainya, agar mereka dapat terus menikmati keberuntungan duniawi yang mereka kehendaki dan untuk mempertahankan tradisi, kedudukan, kekuasaan, dan pengaruh yang membawa keberuntungan duniawi yang mereka nikmati. Pada hakikatnya, keberuntungan itu sangat sedikit dibandingkan dengan keberuntungan bila mereka beriman kepada ayat-ayat Allah yang membawa kebahagiaan akhirat yang kekal abadi. Tetapi kaum musyrikin itu tidak mempedulikan semuanya itu. Maka pada akhir ayat ini Allah menerangkan bahwa perbuatan itu sangat buruk. Terutama jika semua tindakan itu dimaksudkan untuk menghalangi tersiarnya agama Islam.",
-        short:
-          "Sikap kefasikan itu juga menjadikan mereka berani memperjualbelikan ayat-ayat Allah dengan harga murah, yakni ditukar dengan hal-hal yang bersifat duniawi, padahal ayat-ayat tersebut secara jelas telah menjadi bukti atas keesaan Allah dan kerasulan Nabi Muhammad. Maka, dengan sikapnya itu sesungguhnya mereka telah menghalang-halangi mereka sendiri dan orang lain dari jalan Allah. Sungguh, sikap yang demikian itu menunjukkan betapa buruknya apa yang mereka kerjakan, yakni perilaku sesat dan menyesatkan.",
+        footnotes: null,
+        text: "Mereka menukar dan mengganti kesediaan mereka untuk mengikuti ayat-ayat Allah, termasuk menepati janji dengan harga yang sangat murah, yaitu berupa harta dunia yang mereka gunakan untuk mendapatkan kesenangan dan kepuasan hati mereka. Mereka menghalang-halangi diri mereka sendiri dari kebenaran dan berpaling darinya, serta menghalang-halangi orang lain dari kebenaran. Sungguh buruk perbuatan yang telah mereka lakukan.",
       },
     },
     text: {
-      arab: "\u0627\u0634\u0652\u062a\u064e\u0631\u064e\u0648\u0652\u0627 \u0628\u0650\u0622\u064a\u064e\u0627\u062a\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u062b\u064e\u0645\u064e\u0646\u064b\u0627 \u0642\u064e\u0644\u0650\u064a\u0644\u064b\u0627 \u0641\u064e\u0635\u064e\u062f\u0651\u064f\u0648\u0627 \u0639\u064e\u0646 \u0633\u064e\u0628\u0650\u064a\u0644\u0650\u0647\u0650 \u06da \u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0633\u064e\u0627\u0621\u064e \u0645\u064e\u0627 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u064a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Ishtaraw bi Aayaatil laahi samanan qaleelan fasaddoo 'an sabeelih; innahum saaa'a maa kaanoo ya'maloon",
-      },
+      arabic:
+        "ٱشْتَرَوْا۟ بِـَٔايَٰتِ ٱللَّهِ ثَمَنًا قَلِيلًا فَصَدُّوا۟ عَن سَبِيلِهِۦٓ إِنَّهُمْ سَآءَ مَا كَانُوا۟ يَعْمَلُونَ",
     },
     translation: {
-      en: "They have exchanged the signs of Allah for a small price and averted [people] from His way. Indeed, it was evil that they were doing.",
-      id: "Mereka memperjualbelikan ayat-ayat Allah dengan harga murah, lalu mereka menghalang-halangi (orang) dari jalan Allah. Sungguh, betapa buruknya apa yang mereka kerjakan.",
+      en: {
+        footnotes:
+          "[13] In order to maintain their source of income, they barred their people from embracing Islam.",
+        text: "They have sold the verses of Allah for a small price and prevented [people] from His way[13]. Terrible is indeed what they have done!",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka memperjualbelikan ayat-ayat Allah dengan harga murah, lalu mereka menghalang-halangi (orang) dari jalan Allah. Sungguh, betapa buruknya apa yang mereka kerjakan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1245",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1245.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1245.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 188,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1245,
@@ -147,40 +130,32 @@ export const quranSurah9Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Karena kekufuran mereka, lenyaplah dari jiwa mereka hubungan kekerabatan dan ikatan-ikatan perjanjian, sehingga mereka tidak segan-segan menghantam orang mukmin dengan segala macam cara yang dapat mereka lakukan. Mereka berusaha mengambil setiap kesempatan untuk menghancurkan kaum Muslimin secara kelompok atau perorangan, secara terang-terangan atau sembunyi pada setiap kesempatan. Maka akhir ayat ini menyatakan bahwa berbagai perbuatan itu benar-benar telah melampaui batas.",
-        short:
-          "Mereka bukan saja memperjualbelikan ayat-ayat Allah, menghalanghalangi orang lain dari jalan Allah, bahkan mereka juga tidak memelihara hubungan kekerabatan dengan orang mukmin dan tidak pula mengindahkan perjanjian. Sikap mereka itulah bisa dianggap sebagai sikap orang-orang yang melampaui batas.",
+        footnotes: null,
+        text: "Mereka tidak mengacuhkan Allah, hubungan kekerabatan, dan perjanjian apa pun dalam memperlakukan orang mukmin karena mereka menyimpan rasa permusuhan kepadanya. Mereka melanggar batas-batas Allah karena mereka adalah orang-orang yang zalim dan melampaui batas.",
       },
     },
     text: {
-      arab: "\u0644\u064e\u0627 \u064a\u064e\u0631\u0652\u0642\u064f\u0628\u064f\u0648\u0646\u064e \u0641\u0650\u064a \u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064d \u0625\u0650\u0644\u0651\u064b\u0627 \u0648\u064e\u0644\u064e\u0627 \u0630\u0650\u0645\u0651\u064e\u0629\u064b \u06da \u0648\u064e\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0647\u064f\u0645\u064f \u0627\u0644\u0652\u0645\u064f\u0639\u0652\u062a\u064e\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Laa yarquboona fee mu'minin illanw wa laa zimmah wa ulaaa 'ika humulmu 'tadoon",
-      },
+      arabic: "لَا يَرْقُبُونَ فِى مُؤْمِنٍ إِلًّا وَلَا ذِمَّةً وَأُو۟لَٰٓئِكَ هُمُ ٱلْمُعْتَدُونَ",
     },
     translation: {
-      en: "They do not observe toward a believer any pact of kinship or covenant of protection. And it is they who are the transgressors.",
-      id: "Mereka tidak memelihara (hubungan) kekerabatan dengan orang mukmin dan tidak (pula mengindahkan) perjanjian. Dan mereka itulah orang-orang yang melampaui batas.",
+      en: {
+        footnotes: "",
+        text: "They do not honor the ties of kinship or treaties with regard to the believers. It is they who are the transgressors.",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka tidak memelihara (hubungan) kekerabatan dengan orang mukmin dan tidak (pula mengindahkan) perjanjian. Dan mereka itulah orang-orang yang melampaui batas.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1246",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1246.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1246.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 188,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1246,
@@ -188,40 +163,33 @@ export const quranSurah9Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Kaum musyrik yang seharusnya dibunuh atau diperangi, jika mereka bertobat yakni beriman kepada Allah dan Rasul-Nya, melaksanakan salat lima waktu dan menunaikan kewajiban zakat, maka Allah menyatakan bahwa mereka adalah saudara-saudara seagama dengan orang-orang mukmin yang mempunyai hak dan kewajiban yang sama tanpa ada perbedaan. Ikatan persaudaraan yang demikian adalah ikatan yang sangat kuat dan luas yang dapat menghilangkan segala macam perselisihan dan permusuhan yang ditimbulkan oleh perbedaan suku, bangsa dan sebagainya. Dalam hal ini Rasulullah saw bersabda:\n\nSaya diperintahkan memerangi manusia hingga bersyahadat bahwa tiada Tuhan melainkan Allah dan sesungguhnya Muhammad adalah Rasulullah, maka apabila mereka bersyahadat bahwa tiada Tuhan selain Allah dan sesungguhnya Muhammad adalah Rasulullah, mereka menghadap kiblat kita, memakan sembelihan kita dan salat seperti kita, maka haramlah atas kita darah mereka dan harta-harta mereka, kecuali menurut haknya. Mereka mempunyai hak dan kewajiban seperti orang-orang Islam. (Riwayat Muslim dari Anas bin Malik)\n\nAyat-ayat itu ditujukan kepada orang yang mau mengerti, terutama mengenai kaum musyrikin yang bertobat ataupun yang tidak dan bagaimana seharusnya mereka itu diperlakukan.",
-        short:
-          "Namun, jika mereka bertobat dari perbuatan-perbuatan dosanya dan meninggalkan kekufuran dan kemusyrikan lalu masuk ke dalam Islam, serta secara konsisten melaksanakan ajaran-ajaran Islam dengan melaksanakan salat dan menunaikan zakat, maka berarti mereka itu adalah saudara-saudaramu seagama yang memiliki hak dan kewajiban yang sama untuk saling melindungi dan menyayangi. Kami menjelaskan ayat-ayat itu yang menjadi bukti wujud dan keesaan Allah bagi orang-orang yang mengetahui, yakni mereka yang mau mengambil manfaat atas bukti-bukti tersebut. Melihat konteksnya, rangkaian ayat di atas berkenaan dengan perilaku buruk Yahudi Bani Quraizah. Meski begitu, ayat-ayat tersebut telah memberi ciri-ciri kefasikan yang sangat dibenci Allah, yaitu merusak atau mengkhianati perjanjian, tidak jujur, dan memutuskan hubungan kekerabatan.",
+        footnotes: null,
+        text: "Jika kemudian mereka bertobat kepada Allah dari kekafiran dengan mengucapkan dua kalimat syahadat, mendirikan salat, dan membayarkan zakat harta mereka maka mereka menjadi orang Islam dan menjadi saudara-saudara kalian yang seiman. Mereka mempunyai hak dan kewajiban yang sama dengan kalian dan kalian tidak boleh memerangi mereka karena keislaman mereka telah melindungi darah, harta, serta kehormatan mereka. Kami menerangkan dan menjelaskan ayat-ayat Kami kepada orang-orang yang mengerti karena merekalah yang bisa mendapatkan manfaat darinya dan membagikan manfaat itu kepada orang lain.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0646 \u062a\u064e\u0627\u0628\u064f\u0648\u0627 \u0648\u064e\u0623\u064e\u0642\u064e\u0627\u0645\u064f\u0648\u0627 \u0627\u0644\u0635\u0651\u064e\u0644\u064e\u0627\u0629\u064e \u0648\u064e\u0622\u062a\u064e\u0648\u064f\u0627 \u0627\u0644\u0632\u0651\u064e\u0643\u064e\u0627\u0629\u064e \u0641\u064e\u0625\u0650\u062e\u0652\u0648\u064e\u0627\u0646\u064f\u0643\u064f\u0645\u0652 \u0641\u0650\u064a \u0627\u0644\u062f\u0651\u0650\u064a\u0646\u0650 \u06d7 \u0648\u064e\u0646\u064f\u0641\u064e\u0635\u0651\u0650\u0644\u064f \u0627\u0644\u0652\u0622\u064a\u064e\u0627\u062a\u0650 \u0644\u0650\u0642\u064e\u0648\u0652\u0645\u064d \u064a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa in taaboo wa aqaamus Salaata wa aatawuz Zakaata fa ikhwaanukum fid deen; wa nufassilul Aayaati liqawminy ya'lamoon",
-      },
+      arabic:
+        "فَإِن تَابُوا۟ وَأَقَامُوا۟ ٱلصَّلَوٰةَ وَءَاتَوُا۟ ٱلزَّكَوٰةَ فَإِخْوَٰنُكُمْ فِى ٱلدِّينِ وَنُفَصِّلُ ٱلْـَٔايَٰتِ لِقَوْمٍ يَعْلَمُونَ",
     },
     translation: {
-      en: "But if they repent, establish prayer, and give zakah, then they are your brothers in religion; and We detail the verses for a people who know.",
-      id: "Dan jika mereka bertobat, melaksanakan salat dan menunaikan zakat, maka (berarti mereka itu) adalah saudara-saudaramu seagama. Kami menjelaskan ayat-ayat itu bagi orang-orang yang mengetahui.",
+      en: {
+        footnotes: "",
+        text: "Yet if they repent, establish prayer and give zakah, then they are your brothers in faith. We explain the verses in detail for people who know.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan jika mereka bertobat, melaksanakan salat dan menunaikan zakat, maka (berarti mereka itu) adalah saudara-saudaramu seagama. Kami menjelaskan ayat-ayat itu bagi orang-orang yang mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1247",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1247.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1247.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 75,
       juz: 10,
       manzil: 2,
       page: 188,
       ruku: 157,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1247,
@@ -229,20 +197,23 @@ export const quranSurah9Verses7To12 = [
     },
     tafsir: {
       id: {
-        long: "Kaum musyrikin, apabila melanggar perjanjian yang sudah mereka buat dengan orang mukmin dan mereka mencerca agama Islam, maka Allah memerintahkan kaum Muslimin untuk memerangi pemimpin-pemimpin mereka, karena tidak menepati janjinya untuk menghentikan permusuhan dengan kaum Muslimin dan tidak mau bertobat. Para mufasir menerangkan bahwa yang dimaksud dengan mencerca agama Islam ialah mencerca Nabi, Al-Qur'an, dan lain-lain, sedang yang dimaksud membunuh atau memerangi pemimpin-pemimpin kafir di sini termasuk juga para pengikutnya. Memerangi kaum musyrikin itu diperkenankan bila mereka melanggar perjanjian damai dan menyerang Islam dan kaum Muslimin.",
-        short:
-          "Jika pilihan bertobat ternyata tidak mereka hiraukan dan mereka tetap menunjukkan sikap permusuhan kepada umat Islam, maka ayat ini memberikan pilihan lain, yaitu berperang. Dan jika mereka melanggar sumpah setelah ada perjanjian dengan kamu, dan mencerca agamamu, baik melalui sikap maupun ucapan, maka perangilah pemimpin-pemimpin kafir itu. Sesungguhnya mereka adalah orang-orang yang tidak dapat dipegang janjinya, sehingga menjadi sangat wajar jika perjanjian dengan mereka tidak dilanjutkan. Kalaulah mereka terus mengganggu, maka perangilah mudah-mudahan mereka berhenti mengganggu dan menganiaya siapa pun.",
+        footnotes: null,
+        text: "Jika orang-orang musyrik yang telah mengadakan perjanjian damai dengan kalian sampai batas waktu tertentu itu melanggar perjanjian mereka dan menghina agama kalian, maka perangilah mereka. Mereka adalah para pemimpin dan pemuka kekafiran. Mereka tidak memiliki perjanjian yang dapat melindungi darah mereka. Perangilah mereka agar mereka berhenti dari kekafiran mereka, berhenti melanggar perjanjian mereka dan berhenti menghina agama kalian.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646 \u0646\u0651\u064e\u0643\u064e\u062b\u064f\u0648\u0627 \u0623\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e\u0647\u064f\u0645 \u0645\u0651\u0650\u0646 \u0628\u064e\u0639\u0652\u062f\u0650 \u0639\u064e\u0647\u0652\u062f\u0650\u0647\u0650\u0645\u0652 \u0648\u064e\u0637\u064e\u0639\u064e\u0646\u064f\u0648\u0627 \u0641\u0650\u064a \u062f\u0650\u064a\u0646\u0650\u0643\u064f\u0645\u0652 \u0641\u064e\u0642\u064e\u0627\u062a\u0650\u0644\u064f\u0648\u0627 \u0623\u064e\u0626\u0650\u0645\u0651\u064e\u0629\u064e \u0627\u0644\u0652\u0643\u064f\u0641\u0652\u0631\u0650 \u06d9 \u0625\u0650\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0627 \u0623\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0639\u064e\u0644\u0651\u064e\u0647\u064f\u0645\u0652 \u064a\u064e\u0646\u062a\u064e\u0647\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa in nakasooo aimaanahum mim ba'di 'ahdihim wa ta'anoo fee deenikum faqaatilooo a'immatal kufri innahum laaa aimaana lahum la'allahum yantahoon",
-      },
+      arabic:
+        "وَإِن نَّكَثُوٓا۟ أَيْمَٰنَهُم مِّنۢ بَعْدِ عَهْدِهِمْ وَطَعَنُوا۟ فِى دِينِكُمْ فَقَٰتِلُوٓا۟ أَئِمَّةَ ٱلْكُفْرِ إِنَّهُمْ لَآ أَيْمَٰنَ لَهُمْ لَعَلَّهُمْ يَنتَهُونَ",
     },
     translation: {
-      en: "And if they break their oaths after their treaty and defame your religion, then fight the leaders of disbelief, for indeed, there are no oaths [sacred] to them; [fight them that] they might cease.",
-      id: "Dan jika mereka melanggar sumpah setelah ada perjanjian, dan mencerca agamamu, maka perangilah pemimpin-pemimpin kafir itu. Sesungguhnya mereka adalah orang-orang yang tidak dapat dipegang janjinya, mudah-mudahan mereka berhenti.",
+      en: {
+        footnotes: "",
+        text: "But if they break their oaths after making a pledge and revile your religion, then fight the leaders of disbelief – whose oaths mean nothing to them – so that they may desist.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan jika mereka melanggar sumpah setelah ada perjanjian, dan mencerca agamamu, maka perangilah pemimpin-pemimpin kafir itu. Sesungguhnya mereka adalah orang-orang yang tidak dapat dipegang janjinya, mudah-mudahan mereka berhenti.",
+      },
     },
   },
 ];

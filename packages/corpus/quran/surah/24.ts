@@ -10,48 +10,28 @@ import { quranSurah24Verses49To54 } from "#corpus/quran/surah/24/49-54";
 import { quranSurah24Verses55To60 } from "#corpus/quran/surah/24/55-60";
 import { quranSurah24Verses61To64 } from "#corpus/quran/surah/24/61-64";
 
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah24 = {
   name: {
-    long: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0646\u0648\u0631",
-    short: "النور",
-    translation: {
-      en: "The Light",
-      id: "Cahaya",
-    },
-    transliteration: {
-      en: "An-Noor",
-      id: "An-Nur",
-    },
+    arabic: "النور",
+    translation: "The Light",
+    transliteration: "An-Noor",
   },
   number: 24,
   numberOfVerses: 64,
-  preBismillah: {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1.mp3",
-      ],
-    },
-    text: {
-      arab: "\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Bismillaahir Rahmaanir Raheem",
-      },
-    },
-    translation: {
-      en: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
-      id: "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
-    },
-  },
   revelation: {
-    arab: "\u0645\u062F\u064A\u0646\u0629",
-    en: "Medinan",
-    id: "Madaniyyah",
-  },
-  sequence: 102,
-  tafsir: {
-    id: "Surat An Nuur terdiri atas 64 ayat, dan termasuk golongan surat-surat Madaniyah. Dinamai An Nuur yang berarti Cahaya, diambil dari kata An Nuur yang terdapat pada ayat ke 35. Dalam ayat ini, Allah s.w.t. menjelaskan tentang Nuur Ilahi, yakni Al Quran yang mengandung petunjuk-petunjuk. Petunjuk-petunjuk Allah itu, merupakan cahaya yang terang benderang menerangi alam semesta. Surat ini sebagian besar isinya memuat petunjuk- petunjuk Allah yang berhubungan dengan soal kemasyarakatan dan rumah tangga.",
+    order: 102,
+    place: "Medinan",
   },
   verses: [
     ...quranSurah24Verses1To6,

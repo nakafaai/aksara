@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah85Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5910",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5910.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5910.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 590,
       ruku: 527,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5910,
@@ -24,40 +25,32 @@ export const quranSurah85Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah bersumpah dengan langit yang mempunyai gugusan bintang-bintang yang luar biasa besarnya dan tak terhitung jumlah bintang di dalamnya. Sebagian sangat jauh jaraknya dari bumi sehingga cahayanya dalam perhitungan biasa baru sampai kepada kita setelah ribuan tahun lamanya, bahkan ada pula yang setelah miliaran tahun.\n\nAllah bersumpah dengan gugusan bintang karena mempunyai keajaiban yang luar biasa dan mengandung hikmah yang besar dan banyak serta sangat berguna bagi manusia dalam kehidupannya.\n\nBerbagai keajaiban dan hikmah itu menunjukkan kepada kita tentang kebesaran penciptanya yang Mahakuasa dan Mahatinggi ilmu-Nya serta Mahabijaksana.",
-        short:
-          "Allah bersumpah demi tiga hal yang luar biasa, baik kejadian maupun prosesnya. Demi langit luas yang mempunyai gugusan bintang atau orbit-orbit bintang ketika beredar di angkasa, yang menjadi penanda kekuasaan Allah yang tidak terbatas.",
+        footnotes: null,
+        text: "Allah bersumpah dengan langit yang terdiri dari orbit-orbit matahari, bulan, dan lain sebagainya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0621\u0650 \u0630\u064e\u0627\u062a\u0650 \u0627\u0644\u0652\u0628\u064f\u0631\u064f\u0648\u062c\u0650",
-      transliteration: {
-        en: "Wassamaaa'i zaatil burooj",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ وَٱلسَّمَآءِ ذَاتِ ٱلْبُرُوجِ",
     },
     translation: {
-      en: "By the sky containing great stars",
-      id: "Demi langit yang mempunyai gugusan bintang,",
+      en: {
+        footnotes: "",
+        text: "By the sky full of constellations,",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi langit yang mempunyai gugusan bintang,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5911",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5911.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5911.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 590,
       ruku: 527,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5911,
@@ -65,40 +58,32 @@ export const quranSurah85Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat kedua, Allah bersumpah dengan hari yang dijanjikan-Nya, yaitu hari Kiamat, serta hari kepastian dan pembalasan. Ketika itu, hanya kekuasaan dan hukum Allah-lah yang berlaku.",
-        short:
-          "Dan demi hari yang dijanjikan. Itulah hari kiamat, kebangkitan, dan perhitungan yang pasti datang dengan segala kejadian dan kerepotan yang luar biasa di dalamnya.",
+        footnotes: null,
+        text: "Dia bersumpah dengan hari Kiamat yang pada hari itu Allah berjanji untuk mengumpulkan seluruh makhluk.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u0645\u064e\u0648\u0652\u0639\u064f\u0648\u062f\u0650",
-      transliteration: {
-        en: "Wal yawmil maw'ood",
-      },
+      arabic: "وَٱلْيَوْمِ ٱلْمَوْعُودِ",
     },
     translation: {
-      en: "And [by] the promised Day",
-      id: "dan demi hari yang dijanjikan.",
+      en: {
+        footnotes: "",
+        text: "and by the promised Day,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan demi hari yang dijanjikan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5912",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5912.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5912.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 590,
       ruku: 527,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5912,
@@ -106,40 +91,32 @@ export const quranSurah85Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat yang ketiga, Allah bersumpah dengan alam semesta ini yang dapat memalingkan perhatian. Ringkasnya, Allah bersumpah dengan alam semesta agar dapat memalingkan manusia memikirkan kebesaran dan keagungan-Nya, agar mereka dapat mengambil manfaat dari apa yang dapat mereka lihat itu dan agar mereka mencurahkan perhatiannya untuk dapat memperoleh hakikat dan rahasia alam yang masih tersembunyi.",
-        short:
-          "Demi orang yang menyaksikan hari yang dijanjikan itu dan kejadiankejadian mengerikan dan mencengangkan yang disaksikan oleh mereka pada hari itu.",
+        footnotes: null,
+        text: "Dia bersumpah dengan segala saksi seperti nabi yang bersaksi atas umatnya dan yang disaksikan seperti umat yang diberikan kesaksian oleh nabinya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0634\u064e\u0627\u0647\u0650\u062f\u064d \u0648\u064e\u0645\u064e\u0634\u0652\u0647\u064f\u0648\u062f\u064d",
-      transliteration: {
-        en: "Wa shaahidinw wa mashhood",
-      },
+      arabic: "وَشَاهِدٍ وَمَشْهُودٍ",
     },
     translation: {
-      en: "And [by] the witness and what is witnessed,",
-      id: "Demi yang menyaksikan dan yang disaksikan.",
+      en: {
+        footnotes: "",
+        text: "and by the witness and the witnessed,",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi yang menyaksikan dan yang disaksikan.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5913",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5913.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5913.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 590,
       ruku: 527,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5913,
@@ -147,40 +124,33 @@ export const quranSurah85Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini diterangkan bahwa Allah telah membinasakan Najran, sebuah kota di Yaman, karena penduduknya telah menyiksa dan membunuh para pengikut Nabi Isa (orang-orang Nasrani) yang meninggalkan agama pembesar-pembesar negeri itu, yaitu agama Yahudi dan memeluk agama yang dibawa oleh Nabi Isa dengan memasukkan mereka ke dalam parit-parit yang telah mereka gali dan diberi api yang menyala-nyala. Orang-orang kafir negeri itu duduk di sekitar parit-parit itu menyaksikan siksaan yang tidak berperikemanusia-an itu.\n\nSiksaan itu sebenarnya tidak patut mereka lakukan sebab orang-orang itu tidak mempunyai kesalahan yang besar. Mereka menyiksa hanya karena orang-orang mukmin itu beriman kepada Allah Yang Mahaperkasa lagi Maha Terpuji, yang mempunyai kerajaan langit dan bumi serta berkuasa atas semua yang ada pada keduanya. Sungguh tidak ada jalan bagi orang yang zalim itu untuk lari dari kekuasaan-Nya.\n\nBagi orang-orang mukmin siksaan dan pembunuhan ini hanyalah merupakan cobaan dan ujian yang akan membawa mereka kepada kebahagiaan abadi apabila mereka tetap sabar dengan tetap beriman kepada Allah.",
-        short:
-          "Allah melaknat penguasa kafir dari Najràn, sebuah wilayah di Yaman saat ini, yang berbuat keji terhadap kaum beriman. Terlaknat dan binasalah orang-orang yang membuat parit untuk dijadikan ladang pembantaian terhadap kaum beriman yang tidak mau murtad. Merekalah para pembesar Najran di Yaman.",
+        footnotes: null,
+        text: "Sungguh terlaknat orang-orang yang telah membuat parit di bumi dengan belahan parit yang besar.",
       },
     },
     text: {
-      arab: "\u0642\u064f\u062a\u0650\u0644\u064e \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u064f \u0627\u0644\u0652\u0623\u064f\u062e\u0652\u062f\u064f\u0648\u062f\u0650",
-      transliteration: {
-        en: "Qutila as haabul ukhdood",
-      },
+      arabic: "قُتِلَ أَصْحَٰبُ ٱلْأُخْدُودِ",
     },
     translation: {
-      en: "Cursed were the companions of the trench",
-      id: "Binasalah orang-orang yang membuat parit (yaitu para pembesar Najran di Yaman),",
+      en: {
+        footnotes:
+          "[1] Those who worked for a tyrannical king and did not allow the people to believe in Allah. Their blind obedience to their ruler incurred upon them the curse of Allah.",
+        text: "cursed be the makers of the trench[1],",
+      },
+      id: {
+        footnotes: "",
+        text: "Binasalah orang-orang yang membuat parit (yaitu para pembesar Najran di Yaman),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5914",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5914.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5914.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 590,
       ruku: 527,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5914,
@@ -188,40 +158,32 @@ export const quranSurah85Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini diterangkan bahwa Allah telah membinasakan Najran, sebuah kota di Yaman, karena penduduknya telah menyiksa dan membunuh para pengikut Nabi Isa (orang-orang Nasrani) yang meninggalkan agama pembesar-pembesar negeri itu, yaitu agama Yahudi dan memeluk agama yang dibawa oleh Nabi Isa dengan memasukkan mereka ke dalam parit-parit yang telah mereka gali dan diberi api yang menyala-nyala. Orang-orang kafir negeri itu duduk di sekitar parit-parit itu menyaksikan siksaan yang tidak berperikemanusia-an itu.\n\nSiksaan itu sebenarnya tidak patut mereka lakukan sebab orang-orang itu tidak mempunyai kesalahan yang besar. Mereka menyiksa hanya karena orang-orang mukmin itu beriman kepada Allah Yang Mahaperkasa lagi Maha Terpuji, yang mempunyai kerajaan langit dan bumi serta berkuasa atas semua yang ada pada keduanya. Sungguh tidak ada jalan bagi orang yang zalim itu untuk lari dari kekuasaan-Nya.\n\nBagi orang-orang mukmin siksaan dan pembunuhan ini hanyalah merupakan cobaan dan ujian yang akan membawa mereka kepada kebahagiaan abadi apabila mereka tetap sabar dengan tetap beriman kepada Allah.",
-        short:
-          "Mereka membuat parit yang berapi dan dinyalakan dengan kayu bakar hingga membara untuk membakar kaum beriman.",
+        footnotes: null,
+        text: "Di dalam parit itu, mereka menyalakan api lalu melemparkan orang-orang yang beriman ke dalamnya dalam kondisi hidup.",
       },
     },
     text: {
-      arab: "\u0627\u0644\u0646\u0651\u064e\u0627\u0631\u0650 \u0630\u064e\u0627\u062a\u0650 \u0627\u0644\u0652\u0648\u064e\u0642\u064f\u0648\u062f\u0650",
-      transliteration: {
-        en: "Annaari zaatil waqood",
-      },
+      arabic: "ٱلنَّارِ ذَاتِ ٱلْوَقُودِ",
     },
     translation: {
-      en: "[Containing] the fire full of fuel,",
-      id: "yang berapi (yang mempunyai) kayu bakar,",
+      en: {
+        footnotes: "",
+        text: "the fire full of fuel,",
+      },
+      id: {
+        footnotes: "",
+        text: "yang berapi (yang mempunyai) kayu bakar,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5915",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5915.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5915.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 590,
       ruku: 527,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5915,
@@ -229,20 +191,22 @@ export const quranSurah85Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini diterangkan bahwa Allah telah membinasakan Najran, sebuah kota di Yaman, karena penduduknya telah menyiksa dan membunuh para pengikut Nabi Isa (orang-orang Nasrani) yang meninggalkan agama pembesar-pembesar negeri itu, yaitu agama Yahudi dan memeluk agama yang dibawa oleh Nabi Isa dengan memasukkan mereka ke dalam parit-parit yang telah mereka gali dan diberi api yang menyala-nyala. Orang-orang kafir negeri itu duduk di sekitar parit-parit itu menyaksikan siksaan yang tidak berperikemanusia-an itu.\n\nSiksaan itu sebenarnya tidak patut mereka lakukan sebab orang-orang itu tidak mempunyai kesalahan yang besar. Mereka menyiksa hanya karena orang-orang mukmin itu beriman kepada Allah Yang Mahaperkasa lagi Maha Terpuji, yang mempunyai kerajaan langit dan bumi serta berkuasa atas semua yang ada pada keduanya. Sungguh tidak ada jalan bagi orang yang zalim itu untuk lari dari kekuasaan-Nya.\n\nBagi orang-orang mukmin siksaan dan pembunuhan ini hanyalah merupakan cobaan dan ujian yang akan membawa mereka kepada kebahagiaan abadi apabila mereka tetap sabar dengan tetap beriman kepada Allah.",
-        short:
-          "Penguasa kafir itu menyiksa dan membantai kaum beriman di parit berapi tersebut. Peristiwa memilukan itu terjadi ketika mereka duduk di sekitarnya untuk menyaksikan kekejian mereka.",
+        footnotes: null,
+        text: "Ketika mereka duduk-duduk di sekitar parit yang dipenuhi api itu,",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0630\u0652 \u0647\u064f\u0645\u0652 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u0642\u064f\u0639\u064f\u0648\u062f\u064c",
-      transliteration: {
-        en: "Iz hum 'alaihaa qu'ood",
-      },
+      arabic: "إِذْ هُمْ عَلَيْهَا قُعُودٌ",
     },
     translation: {
-      en: "When they were sitting near it",
-      id: "ketika mereka duduk di sekitarnya,",
+      en: {
+        footnotes: "",
+        text: "when they sat around it,",
+      },
+      id: {
+        footnotes: "",
+        text: "ketika mereka duduk di sekitarnya,",
+      },
     },
   },
 ];

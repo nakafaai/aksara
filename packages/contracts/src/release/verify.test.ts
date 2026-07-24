@@ -35,7 +35,10 @@ import {
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
 import { testRendererDomains } from "#contracts/test/renderer";
-import { replacementSnapshots } from "#contracts/test/request";
+import {
+  replacementSnapshots,
+  release as transportRelease,
+} from "#contracts/test/request";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -79,6 +82,7 @@ const rendererManifest = await Effect.runPromise(
       supportedComponents: [{ name: "BlockMath", version: 1 }],
     },
     domains: testRendererDomains({}),
+    publishedDomains: ["mathematics"],
   })
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
@@ -101,6 +105,7 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"1".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"1".repeat(64)}`,
+  scope: transportRelease.manifest.scope,
   snapshots: inheritContentSnapshots(null),
   upsertCount: 1,
 });
@@ -252,7 +257,6 @@ describe("server-only release verification", () => {
       ...release,
       manifest: { ...release.manifest, ...values },
     });
-
     expect(error._tag).toBe("ReleaseManifestHashMismatchError");
   });
   it("rejects a recomputed hash without a new release signature", async () => {
@@ -268,7 +272,6 @@ describe("server-only release verification", () => {
       manifest: changedManifest,
       manifestHash: Effect.runSync(hashContentReleaseManifest(changedManifest)),
     });
-
     expect(error._tag).toBe("SignatureInvalidError");
   });
   it("does not expose resolved key contents in failures", async () => {
@@ -277,7 +280,6 @@ describe("server-only release verification", () => {
       resolve: () => Effect.succeed(sensitiveKey),
     });
     const error = await reject(signRelease(), resolver);
-
     expect(error._tag).toBe("PublicKeyParseError");
     expect(JSON.stringify(error)).not.toContain(sensitiveKey);
   });
@@ -288,7 +290,6 @@ describe("server-only release verification", () => {
       ...release,
       manifest: { ...release.manifest, sensitiveSource },
     });
-
     expect(error._tag).toBe("ReleaseVerificationDecodeError");
     expect(JSON.stringify(error)).not.toContain(sensitiveSource);
   });
@@ -298,7 +299,6 @@ describe("server-only release verification", () => {
       ...release,
       manifest: { ...release.manifest, releaseId: "hash-failure" },
     });
-
     expect(error).toMatchObject({
       _tag: "ReleaseHashComputationError",
       releaseId: "hash-failure",

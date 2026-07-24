@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah15Verses73To78 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1875",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1875.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1875.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 106,
       juz: 14,
       manzil: 3,
       page: 266,
       ruku: 222,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1875,
@@ -24,40 +25,32 @@ export const quranSurah15Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan azab yang ditimpakan kepada kaum Lut, untuk menunjukkan akibat perbuatan mereka. Azab itu datang pada dini hari berupa suara halilintar yang menghancurkan kota Sodom. Pada ayat yang lain disebut bahwa azab itu datang pada waktu subuh dan berakhir pada waktu matahari terbit.",
-        short:
-          "Dalam keadaan yang demikian itu maka mereka dibinasakan oleh Allah dengan suara keras yang mengguntur yang terjadi ketika matahari akan terbit.",
+        footnotes: null,
+        text: "Lalu mereka pun ditimpa suara mengguntur yang membinasakan ketika matahari hendak terbit.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0623\u064e\u062e\u064e\u0630\u064e\u062a\u0652\u0647\u064f\u0645\u064f \u0627\u0644\u0635\u0651\u064e\u064a\u0652\u062d\u064e\u0629\u064f \u0645\u064f\u0634\u0652\u0631\u0650\u0642\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Fa akhazat humus saihatu mushriqeen",
-      },
+      arabic: "فَأَخَذَتْهُمُ ٱلصَّيْحَةُ مُشْرِقِينَ",
     },
     translation: {
-      en: "So the shriek seized them at sunrise.",
-      id: "Maka mereka dibinasakan oleh suara keras yang mengguntur, ketika matahari akan terbit.",
+      en: {
+        footnotes: "",
+        text: "So they were seized by the blast at sunrise,",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka mereka dibinasakan oleh suara keras yang mengguntur, ketika matahari akan terbit,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1876",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1876.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1876.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 106,
       juz: 14,
       manzil: 3,
       page: 266,
       ruku: 222,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1876,
@@ -65,40 +58,33 @@ export const quranSurah15Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: "Allah menerangkan bentuk azab yang menimpa kaum Lut ada tiga macam:\n\n1. Berupa suara petir yang mengguntur dan menakutkan;\n\n2. Membalikkan kota Sodom, sehingga lapisan tanah yang semula di atas terbalik menjadi lapisan yang di bawah;\n\n3. Menghujani mereka dengan batu.",
-        short:
-          "Seiring datangnya suara keras yang mengguntur itu maka Kami jungkir balikkan kota Sodom dan Gomorah yang menjadi tempat tinggal kaum Nabi Lut, dan selain itu, Kami juga hujani mereka secara bertubi-tubi dengan batu dari tanah yang keras sehingga mereka hancur dan binasa.",
+        footnotes: null,
+        text: "Kami lalu membalik negeri mereka, bagian atasnya Kami balik menjadi bagian bawah dan Kami menghujani mereka dengan bebatuan dari tanah liat yang membatu.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u062c\u064e\u0639\u064e\u0644\u0652\u0646\u064e\u0627 \u0639\u064e\u0627\u0644\u0650\u064a\u064e\u0647\u064e\u0627 \u0633\u064e\u0627\u0641\u0650\u0644\u064e\u0647\u064e\u0627 \u0648\u064e\u0623\u064e\u0645\u0652\u0637\u064e\u0631\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u062d\u0650\u062c\u064e\u0627\u0631\u064e\u0629\u064b \u0645\u0651\u0650\u0646 \u0633\u0650\u062c\u0651\u0650\u064a\u0644\u064d",
-      transliteration: {
-        en: "Faja'alnaa 'aaliyahaa saafilahaa wa amtamaa 'alaihim hijaaratam min sjijjeel",
-      },
+      arabic: "فَجَعَلْنَا عَٰلِيَهَا سَافِلَهَا وَأَمْطَرْنَا عَلَيْهِمْ حِجَارَةً مِّن سِجِّيلٍ",
     },
     translation: {
-      en: "And We made the highest part [of the city] its lowest and rained upon them stones of hard clay.",
-      id: "Maka Kami jungkirbalikkan (negeri itu) dan Kami hujani mereka dengan batu dari tanah yang keras.",
+      en: {
+        footnotes:
+          "[35] Their nature was twisted, so their punishment was of its like.",
+        text: "and We turned their cities upside down[35] and rained down on them stones of baked clay.",
+      },
+      id: {
+        footnotes: "",
+        text: "maka Kami jungkirbalikan (negeri itu) dan Kami hujani mereka dengan batu dari tanah yang keras.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1877",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1877.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1877.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 106,
       juz: 14,
       manzil: 3,
       page: 266,
       ruku: 222,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1877,
@@ -106,40 +92,32 @@ export const quranSurah15Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan perbuatan dan tingkah laku kaum Lut, kemudian mereka dihancurkan karena perbuatan-perbuatan mereka yang bertentangan dengan perintah Allah, Tuhan Yang Maha Esa, Mahakuasa, mengasihi dan menyayangi hamba-hamba-Nya yang beriman, dan mengazab orang-orang yang ingkar kepada-Nya. Orang-orang beriman, yang memperhatikan tanda-tanda kekuasaan dan kebesaran Allah, menjadikan semuanya itu sebagai pelajaran, sebagaimana tersebut dalam hadis: \n\nRasulullah swt bersabda, "Jagalah dirimu terhadap firasat orang-orang yang beriman karena sesungguhnya ia melihat dengan nur Allah," kemudian beliau membaca surah ini. (Riwayat at-Tirmidzi dan Ibnu Jarir ath-thabari dari Abu Sa\'id al-Khudri)\n\nFirasat ini ada dua macam:\n\n1. Suatu kesan dan perasaan yang dijadikan Allah swt pada hati orang-orang yang saleh. Kemampuan yang diberikan kepadanya untuk membaca raut muka, tingkah laku dan keadaan orang lain.\n\n2. Firasat yang ditimbulkan oleh pengalaman, kehidupan yang luhur, dan budi pekerti yang mulia.\n\nDalam hadis disebutkan pula:\n\nRasulullah saw bersabda, "Sesungguhnya Allah mempunyai hamba-hamba yang mengetahui manusia dengan tanda-tanda." (Riwayat ath-thabrani dan al Bazzar dari Anas bin Malik)',
-        short:
-          "Sungguh, pada yang demikian itu, yaitu berita-berita dan kisah-kisah yang Allah sampaikan, benar-benar terdapat tanda-tanda kebesaran, keagungan, dan kekuasaan Allah bagi orang yang memperhatikan tanda-tanda yang diperlihatkan dan dihamparkan di alam semesta ini.",
+        footnotes: null,
+        text: "Sesungguhnya apa yang menimpa kaum Lut -'alaihissalām- berupa kebinasaan itu merupakan bukti dan tanda kebenaran bagi orang-orang yang memperhatikan.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0641\u0650\u064a \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0644\u064e\u0622\u064a\u064e\u0627\u062a\u064d \u0644\u0651\u0650\u0644\u0652\u0645\u064f\u062a\u064e\u0648\u064e\u0633\u0651\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Inna fee zaalika la Aayaatil lilmutawassimeen",
-      },
+      arabic: "إِنَّ فِى ذَٰلِكَ لَـَٔايَٰتٍ لِّلْمُتَوَسِّمِينَ",
     },
     translation: {
-      en: "Indeed in that are signs for those who discern.",
-      id: "Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kekuasaan Allah) bagi orang yang memperhatikan tanda-tanda,",
+      en: {
+        footnotes: "[36] i.e., those who look deeply into signifying signs.",
+        text: "Indeed, there are signs in this for those who discern[36].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kekuasaan Allah) bagi orang yang memperhatikan tanda-tanda,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1878",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1878.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1878.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 106,
       juz: 14,
       manzil: 3,
       page: 266,
       ruku: 222,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1878,
@@ -147,40 +125,33 @@ export const quranSurah15Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: "Allah swt menerangkan bahwa negeri kaum Lut yang telah dihancurkan itu terletak pada jalan-jalan yang biasa dilalui manusia. Reruntuhannya dapat dilihat sampai saat ini oleh orang-orang yang mengadakan perjalanan dari Medinah ke Syam. Hal ini ditegaskan oleh Allah swt dalam firman-Nya yang lain:\n\nDan sesungguhnya kamu (penduduk Mekah) benar-benar akan melalui (bekas-bekas) mereka pada waktu pagi, dan pada waktu malam. Maka mengapa kamu tidak mengerti? (as-shaffat/37: 137-138)\n\nOrang-orang Arab Mekah biasanya mengadakan perdagangan ke Syam. Mereka berangkat dalam kafilah. Dalam perjalanan mereka pulang balik dari Mekah ke Syam itu, mereka melalui negeri kaum Lut dan dapat menyaksikan bekas-bekasnya.",
-        short:
-          "Dan Allah pun menegaskan bahwa se-sungguh-nya kota itu, yakni Sodom dan Gomorah yang terletak di sebelah timur Laut Mati dan menjadi tempat tinggal kaum Nabi Lut, benar-benar terletak di jalan yang masih tetap dapat dilalui manusia, pun dapat disaksikan bekas-bekas kehancurannya.",
+        footnotes: null,
+        text: "Sesungguhnya negeri kaum Lut berada di suatu jalan yang dikenal, musafir yang melewatinya pasti akan melihatnya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0647\u064e\u0627 \u0644\u064e\u0628\u0650\u0633\u064e\u0628\u0650\u064a\u0644\u064d \u0645\u0651\u064f\u0642\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Wa innahaa labi sabeelim muqeem",
-      },
+      arabic: "وَإِنَّهَا لَبِسَبِيلٍ مُّقِيمٍ",
     },
     translation: {
-      en: "And indeed, those cities are [situated] on an established road.",
-      id: "dan sungguh, (negeri) itu benar-benar terletak di jalan yang masih tetap (dilalui manusia).",
+      en: {
+        footnotes:
+          "[37] i.e., on the highway to the Levant, where the Dead Sea is now.",
+        text: "And their place is located by a known route[37].",
+      },
+      id: {
+        footnotes: "",
+        text: "dan sungguh, (negeri) itu benar-benar terletak di jalan yang masih tetap (dilalui manusia).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1879",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1879.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1879.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 106,
       juz: 14,
       manzil: 3,
       page: 266,
       ruku: 222,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1879,
@@ -188,40 +159,32 @@ export const quranSurah15Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah swt memperingatkan bahwa azab yang ditimpakan-Nya kepada kaum Lut sehingga mereka hancur binasa serta terhindarnya Lut beserta pengikutnya merupakan tanda-tanda kekuasaan dan kebesaran Allah. Dia akan mengazab setiap orang yang ingkar dan durhaka dan memberi pahala orang-orang yang beriman kepada-Nya. Sedang bagi orang-orang kafir, peristiwa yang menghancurkan kaum Lut itu hanyalah semata-mata akibat bencana alam. Adanya gempa bumi, panas terik sepanjang tahun, dan timbulnya wabah penyakit adalah suatu hal yang biasa terjadi di alam ini, tidak ada hubungan dengan kedurhakaan dan keingkaran manusia pada Allah swt.",
-        short:
-          "Sungguh, pada yang demikian itu, yaitu peristiwa-peristiwa yang digambarkan dalam kisah-kisah tentang Nabi Ibrahim dan Nabi Lut bersama kaum mereka, benar-benar terdapat tanda kekuasaan Allah bagi orang yang beriman.",
+        footnotes: null,
+        text: "Sesungguhnya pada peristiwa ini terkandung petunjuk bagi orang-orang yang beriman, mereka mengambil pelajaran darinya.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0641\u0650\u064a \u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0644\u064e\u0622\u064a\u064e\u0629\u064b \u0644\u0651\u0650\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Inna fee zaalika la Aayatal lilmu'mineen",
-      },
+      arabic: "إِنَّ فِى ذَٰلِكَ لَـَٔايَةً لِّلْمُؤْمِنِينَ",
     },
     translation: {
-      en: "Indeed in that is a sign for the believers.",
-      id: "Sungguh, pada yang demikian itu benar-benar terdapat tanda (kekuasaan Allah) bagi orang yang beriman.",
+      en: {
+        footnotes: "",
+        text: "Indeed, there are signs in this for the believers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, pada yang demikian itu benar-benar terdapat tanda (kekuasaan Allah) bagi orang yang beriman.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/1880",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1880.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/1880.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 106,
       juz: 14,
       manzil: 3,
       page: 266,
       ruku: 222,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 1880,
@@ -229,20 +192,24 @@ export const quranSurah15Verses73To78 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan bahwa penduduk kota Aikah adalah penduduk yang zalim dan ingkar. Kepada mereka diutus Nabi Syuaib a.s., tetapi mereka mengingkari dan mendustakan dakwahnya.\n\nDalam hadis diterangkan hubungan penduduk Aikah dengan penduduk kota Madyan.\n\nRasulullah saw berkata, "Sesungguhnya penduduk kota Madyan dan penduduk Aikah itu adalah dua umat yang kepada keduanya Allah mengutus Nabi Syuaib". (Riwayat Ibnu Mardawaih dan Ibnu \'Asakir)\n\nArti dasar dari Aikah ialah hutan, kemudian menjadi nama suatu negeri karena negeri itu memiliki banyak hutan. Negeri itu terletak di daerah Madyan.\n\nPenduduk Aikah menganut kepercayaan politeisme, suka menyamun dan merampok orang yang lewat negeri mereka, serta berlaku curang dalam menimbang dan menakar. Kepada mereka diutus Nabi Syuaib a.s., tetapi mereka mengingkarinya.',
-        short:
-          "Setelah mengisahkan pembinasaan kaum Nabi Lut karena kedurhakaan mereka pada ayat-ayat sebelumnya, pada ayat berikut Allah menuturkan kisah kaum Nabi Syu'aib dan kebinasaan mereka. Allah berfirman, \"Dan sesungguhnya penduduk Aikah itu, yakni sebuah lokasi di wilayah Madyan yang ditinggali oleh kaum Nabi Syu'aib, benar-benar kaum yang zalim. Mereka suka menyamun dan merampok orang-orang yang melewati negeri mereka serta curang dalam menakar dan menimbang.",
+        footnotes: null,
+        text: "Dahulunya kaum Syuaib, penduduk negeri yang memiliki pepohonan yang lebat adalah orang-orang zalim karena kafir kepada Allah dan mendustakan rasul mereka, yaitu Syuaib -'alaihissalām-.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646 \u0643\u064e\u0627\u0646\u064e \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u064f \u0627\u0644\u0652\u0623\u064e\u064a\u0652\u0643\u064e\u0629\u0650 \u0644\u064e\u0638\u064e\u0627\u0644\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa in kaana Ashaabul Aikati lazaalimeen",
-      },
+      arabic: "وَإِن كَانَ أَصْحَٰبُ ٱلْأَيْكَةِ لَظَٰلِمِينَ",
     },
     translation: {
-      en: "And the companions of the thicket were [also] wrongdoers.",
-      id: "Dan sesungguhnya penduduk Aikah itu benar-benar kaum yang zalim,",
+      en: {
+        footnotes:
+          "[38] i.e., the people of the thicket, i.e. the people of Prophet Shu‘ayb (عليه السلام) who lived in Madian, not far from the people of Lot.",
+        text: "And the people of the Forest[38] were wrongdoers.",
+      },
+      id: {
+        footnotes:
+          "[440] Penduduk Aikah ialah kaum Syuaib. Aikah ialah tempat yang berhutan di daerah Madyan.",
+        text: "Dan sesungguhnya penduduk Aikah[440] itu benar-benar kaum yang zalim,",
+      },
     },
   },
 ];

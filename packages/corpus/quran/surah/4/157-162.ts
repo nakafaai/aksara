@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah4Verses157To162 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/650",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/650.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/650.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 103,
       ruku: 83,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 650,
@@ -24,40 +25,34 @@ export const quranSurah4Verses157To162 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa di antara sebab-sebab orang Yahudi mendapat kutukan dan kemurkaan Allah ialah karena ucapan mereka, bahwa mereka telah membunuh Almasih putra Maryam, Rasul Allah, padahal mereka sebenarnya tidak membunuhnya dan tidak pula menyalibnya, tetapi yang disalib dan yang dibunuh itu ialah orang yang diserupakan dengan Isa Almasih bernama Yudas Iskariot, salah seorang dari 12 orang muridnya.",
-        short:
-          'Kami hukum juga mereka karena ucapan mereka," Sesungguhnya kami telah membunuh Al-Masih, Isa putra Maryam," yang mereka ejek dengan menamainya Rasul Allah padahal mereka tidak beriman kepadanya. Mereka mengatakan telah membunuhnya, padahal mereka tidak membunuhnya dan tidak pula menyalibnya, tetapi diserupakan bagi mereka orang yang dibunuh itu dengan Nabi Isa. Sesungguhnya mereka yang berselisih pendapat tentangnya, yakni tentang Nabi Isa, benar-benar dalam keragu-raguan tentang hal, yakni pembunuhan itu. Mereka tidak mempunyai sedikit pun pengetahuan menyangkut hal itu, yakni tentang pembunuhan Nabi Isa, dan apa yang mereka katakan kecuali mengikuti persangkaan belaka, dan mereka tidak membunuhnya dengan yakin. Tetapi Allah telah mengangkatnya, Isa, kepada-Nya, yakni mengangkatnya ke tempat yang aman sehingga tidak dapat disentuh oleh musuh-musuhnya. Dan Allah Maha Perkasa, mengalahkan musuh-musuhnya, Maha Bijaksana dalam segala perbuatan-Nya.',
+        footnotes: null,
+        text: "Kami juga mengutuk mereka karena ucapan mereka yang bernada bangga padahal dusta belaka: “Sesungguhnya kami telah membunuh Almasih Isa putra Maryam, utusan Allah.” Padahal, mereka tidak pernah membunuhnya sebagaimana pengakuan mereka dan tidak pernah menyalibnya. Akan tetapi, mereka membunuh dan menyalib seorang laki-laki yang Allah ubah wujudnya menjadi mirip dengan Isa -‘alaihissalām-, sehingga mereka mengira bahwa yang mereka bunuh itu adalah Isa. Orang-orang Yahudi yang mengaku membunuhnya dan orang-orang Nasrani yang menyerahkannya kepada orang-orang Yahudi sama-sama bingung dan bimbang mengenai hal itu. Mereka tidak memiliki pengetahuan yang pasti tentangnya. Mereka hanya mengikuti prasangka semata. Padahal, prasangka itu tidak bisa membuktikan kebenaran sedikit pun. Yang pasti, mereka tidak pernah membunuh Isa dan tidak pernah menyalibnya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0642\u064e\u0648\u0652\u0644\u0650\u0647\u0650\u0645\u0652 \u0625\u0650\u0646\u0651\u064e\u0627 \u0642\u064e\u062a\u064e\u0644\u0652\u0646\u064e\u0627 \u0627\u0644\u0652\u0645\u064e\u0633\u0650\u064a\u062d\u064e \u0639\u0650\u064a\u0633\u064e\u0649 \u0627\u0628\u0652\u0646\u064e \u0645\u064e\u0631\u0652\u064a\u064e\u0645\u064e \u0631\u064e\u0633\u064f\u0648\u0644\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0645\u064e\u0627 \u0642\u064e\u062a\u064e\u0644\u064f\u0648\u0647\u064f \u0648\u064e\u0645\u064e\u0627 \u0635\u064e\u0644\u064e\u0628\u064f\u0648\u0647\u064f \u0648\u064e\u0644\u064e\u0670\u0643\u0650\u0646 \u0634\u064f\u0628\u0651\u0650\u0647\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u06da \u0648\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0627\u062e\u0652\u062a\u064e\u0644\u064e\u0641\u064f\u0648\u0627 \u0641\u0650\u064a\u0647\u0650 \u0644\u064e\u0641\u0650\u064a \u0634\u064e\u0643\u0651\u064d \u0645\u0651\u0650\u0646\u0652\u0647\u064f \u06da \u0645\u064e\u0627 \u0644\u064e\u0647\u064f\u0645 \u0628\u0650\u0647\u0650 \u0645\u0650\u0646\u0652 \u0639\u0650\u0644\u0652\u0645\u064d \u0625\u0650\u0644\u0651\u064e\u0627 \u0627\u062a\u0651\u0650\u0628\u064e\u0627\u0639\u064e \u0627\u0644\u0638\u0651\u064e\u0646\u0651\u0650 \u06da \u0648\u064e\u0645\u064e\u0627 \u0642\u064e\u062a\u064e\u0644\u064f\u0648\u0647\u064f \u064a\u064e\u0642\u0650\u064a\u0646\u064b\u0627",
-      transliteration: {
-        en: "Wa qawlihim innaa qatal nal maseeha 'Eesab-na-Maryama Rasoolal laahi wa maa qataloohu wa maa salaboohu wa laakin shubbiha lahum; wa innal lazeenakh talafoo fee lafee shakkim minh; maa lahum bihee min 'ilmin illat tibaa'az zann; wa maa qataloohu yaqeenaa",
-      },
+      arabic:
+        "وَقَوْلِهِمْ إِنَّا قَتَلْنَا ٱلْمَسِيحَ عِيسَى ٱبْنَ مَرْيَمَ رَسُولَ ٱللَّهِ وَمَا قَتَلُوهُ وَمَا صَلَبُوهُ وَلَٰكِن شُبِّهَ لَهُمْ وَإِنَّ ٱلَّذِينَ ٱخْتَلَفُوا۟ فِيهِ لَفِى شَكٍّ مِّنْهُ مَا لَهُم بِهِۦ مِنْ عِلْمٍ إِلَّا ٱتِّبَاعَ ٱلظَّنِّ وَمَا قَتَلُوهُ يَقِينًۢا",
     },
     translation: {
-      en: 'And [for] their saying, "Indeed, we have killed the Messiah, Jesus, the son of Mary, the messenger of Allah." And they did not kill him, nor did they crucify him; but [another] was made to resemble him to them. And indeed, those who differ over it are in doubt about it. They have no knowledge of it except the following of assumption. And they did not kill him, for certain.',
-      id: "dan (Kami hukum juga) karena ucapan mereka, “Sesungguhnya kami telah membunuh Al-Masih, Isa putra Maryam, Rasul Allah,” padahal mereka tidak membunuhnya dan tidak (pula) menyalibnya, tetapi (yang mereka bunuh adalah) orang yang diserupakan dengan Isa. Sesungguhnya mereka yang berselisih pendapat tentang (pembunuhan) Isa, selalu dalam keragu-raguan tentang yang dibunuh itu. Mereka benar-benar tidak tahu (siapa sebenarnya yang dibunuh itu), melainkan mengikuti persangkaan belaka, jadi mereka tidak yakin telah membunuhnya.",
+      en: {
+        footnotes: "",
+        text: "and for their saying, “We killed the Messiah, Jesus, son of Mary, the messenger of Allah.” But they did not kill him nor did they crucify him, but it was made to appear to them so. Even those who dispute it are in doubt about it; they have no certain knowledge other than conjecture. But they certainly did not kill him.",
+      },
+      id: {
+        footnotes:
+          "[243] Mereka menyebut Isa putra Maryam itu Rasul Allah ialah sebagai ejekan, karena mereka sendiri tidak mempercayai kerasulan Nabi Isa -'alaihissalām-.",
+        text: 'dan (Kami hukum juga) karena ucapan mereka, "Sesungguhnya kami telah membunuh Al-Masih, Isa putra Maryam, Rasul Allah,[243] padahal mereka tidak membunuhnya dan tidak (pula) menyalibnya, tetapi (yang mereka bunuh adalah) orang yang diserupakan dengan Isa. Sesungguhnya mereka yang berselisih pendapat tentang (pembunuhan) Isa, selalu dalam keragu-raguan tentang siapa yang dibunuh. Mereka benar-benar tidak tahu (siapa sebenarnya yang dibunuh), melainkan mengikuti persangkaan belaka, jadi mereka tidak yakin telah membunuhnya,',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/651",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/651.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/651.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 103,
       ruku: 83,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 651,
@@ -65,40 +60,33 @@ export const quranSurah4Verses157To162 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini Allah menerangkan bahwa Isa itu diangkat atas perintah Allah dengan badan dan rohnya dan akan diturunkan kembali di akhir zaman sebagai pembela umat Islam dan penerus syariat Nabi Muhammad saw pada saat umat Islam berada dalam keadaan lemah setelah datangnya Dajjal. Kejadian ini menunjukkan kekuasaan Allah untuk menyelamatkan Nabi-Nya, sesuai dengan kebijaksanaan-Nya yang tercantum dalam firman Allah:\n\n(Ingatlah), ketika Allah berfirman, "Wahai Isa! Aku mengambilmu dan mengangkatmu kepada-Ku, serta menyucikanmu dari orang-orang yang kafir, dan menjadikan orang-orang yang mengikutimu di atas orang-orang yang kafir¦" (Ali \'Imran/3:55).\n\nTentang diangkatnya Nabi Isa ke atas langit ada perbedaan pendapat. Menurut jumhur ahli tafsir, diangkat dengan jasmani dan rohaninya, dalam keadaan hidup sebagai suatu mukjizat. Maka Isa a.s. yang diangkat ke langit dengan jasmani dan rohani, sejak diangkat sampai turun kembali ke bumi, sepenuhnya di tangan Allah. Jika manusia biasa saja, seperti Ashhabul Kahfi, bisa tinggal dalam sebuah gua tanpa makan dan minum selama 309 tahun, kiranya tidak perlu dianggap aneh bagi seorang nabi seperti Nabi Isa, untuk tinggal di langit sekian lamanya, karena beliau diberi mukjizat oleh Allah. Pendapat lain mengatakan Nabi Isa diangkat ke langit sesudah wafat lebih dahulu.',
-        short:
-          'Kami hukum juga mereka karena ucapan mereka," Sesungguhnya kami telah membunuh Al-Masih, Isa putra Maryam," yang mereka ejek dengan menamainya Rasul Allah padahal mereka tidak beriman kepadanya. Mereka mengatakan telah membunuhnya, padahal mereka tidak membunuhnya dan tidak pula menyalibnya, tetapi diserupakan bagi mereka orang yang dibunuh itu dengan Nabi Isa. Sesungguhnya mereka yang berselisih pendapat tentangnya, yakni tentang Nabi Isa, benar-benar dalam keragu-raguan tentang hal, yakni pembunuhan itu. Mereka tidak mempunyai sedikit pun pengetahuan menyangkut hal itu, yakni tentang pembunuhan Nabi Isa, dan apa yang mereka katakan kecuali mengikuti persangkaan belaka, dan mereka tidak membunuhnya dengan yakin. Tetapi Allah telah mengangkatnya, Isa, kepada-Nya, yakni mengangkatnya ke tempat yang aman sehingga tidak dapat disentuh oleh musuh-musuhnya. Dan Allah Maha Perkasa, mengalahkan musuh-musuhnya, Maha Bijaksana dalam segala perbuatan-Nya.',
+        footnotes: null,
+        text: "Sebenarnya, Allah yang telah menyelamatkan Isa dari makar mereka. Allah mengangkat tubuh dan rohnya sekaligus ke sisi-Nya. Sesungguhnya Allah Mahaperkasa dalam kerajaan-Nya, tidak ada seorang pun yang dapat mengalahkan-Nya, lagi Mahabijaksana dalam mengatur makhluk-Nya, memutuskan keputusan-Nya, dan menetapkan syariat-Nya.",
       },
     },
     text: {
-      arab: "\u0628\u064e\u0644 \u0631\u0651\u064e\u0641\u064e\u0639\u064e\u0647\u064f \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0625\u0650\u0644\u064e\u064a\u0652\u0647\u0650 \u06da \u0648\u064e\u0643\u064e\u0627\u0646\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064f \u0639\u064e\u0632\u0650\u064a\u0632\u064b\u0627 \u062d\u064e\u0643\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Bar rafa'ahul laahu ilayh; wa kaanal laahu 'Azeezan Hakeemaa",
-      },
+      arabic: "بَل رَّفَعَهُ ٱللَّهُ إِلَيْهِ وَكَانَ ٱللَّهُ عَزِيزًا حَكِيمًا",
     },
     translation: {
-      en: "Rather, Allah raised him to Himself. And ever is Allah Exalted in Might and Wise.",
-      id: "Tetapi Allah telah mengangkat Isa ke hadirat-Nya. Allah Mahaperkasa, Mahabijaksana.",
+      en: {
+        footnotes: "[106] To Heaven.",
+        text: "Rather, Allah raised him up to Himself[106], and Allah is All-Mighty, All-Wise.",
+      },
+      id: {
+        footnotes:
+          "[244] Ayat ini sebagai bantahan terhadap anggapan orang Yahudi, bahwa mereka telah membunuh Nabi Isa -'alaihissalām-.",
+        text: "tetapi Allah telah mengangkat Isa kehadirat-Nya.[244] Allah Mahaperkasa, Mahabijaksana.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/652",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/652.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/652.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 103,
       ruku: 83,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 652,
@@ -106,40 +94,35 @@ export const quranSurah4Verses157To162 = [
     },
     tafsir: {
       id: {
-        long: "Tidak ada seorang pun dari Ahli Kitab, baik Yahudi maupun Nasrani, melainkan akan beriman kepada Nabi Isa dengan iman yang sebenarnya sebelum mereka itu mati, yaitu ketika menghadapi sakaratul maut. Orang-orang Yahudi akan beriman, bahwa Nabi Isa itu utusan Allah dan roh yang ditiupkan kepada Maryam dan sebagai makhluk ciptaan Allah. Orang-orang Nasrani pun akan beriman bahwa Nabi Isa adalah hamba Allah dan kalimah-Nya, bukan Allah dan bukan pula anak Allah. Keimanan mereka yang sedemikian itu tidak berguna lagi, sebab dinyatakan setelah roh mereka sampai di tenggorokan, setelah mereka melihat tanda-tanda di alam akhirat. Tercantum dalam firman Allah:\n\n¦Pada hari datangnya sebagian tanda-tanda Tuhanmu tidak berguna lagi iman seseorang yang belum beriman sebelum itu¦ (al-An'Am/6:158).\n\nAda pula sebagian ulama yang menafsirkan ayat ini demikian: tidak ada seorang pun dari Ahli Kitab, melainkan akan beriman kepada Nabi Isa dengan iman yang sebenarnya sebelum Nabi Isa wafat. Beliau akan diturunkan lagi ke dunia dari langit pada akhir zaman untuk memperbaiki nasib umat Islam setelah dirusak oleh Dajjal.\n\nBerdasarkan beberapa hadis sahih riwayat al-Bukhari dan Muslim dan lain-lain: Nabi Isa akan turun ke dunia, nanti pada akhir zaman. Beliau akan memecahkan salib lambang umat Nasrani, akan memusnahkan babi dan segala kekejian. Setelah itu dunia akan mengalami kesuburan, keamanan dan kesejahteraan yang adil dan merata. Ketika itu Ahli Kitab dari Yahudi dan Nasrani akan beriman semuanya kepada Nabi Isa sebelum wafat, dan setelah wafat beliau dimakamkan di samping makam Nabi Muhammad di Medinah. Turunnya beliau ke dunia ini adalah untuk menegakkan syariat Muhammad sehingga Nabi Muhammad tetap menjadi saksi atas keimanan atau kekafiran Ahli Kitab, seperti dijelaskan dalam firman Allah:\n\nDan bagaimanakah (keadaan orang kafir nanti), jika Kami mendatangkan seorang saksi (Rasul) dari setiap umat dan Kami mendatangkan engkau (Muhammad) sebagai saksi atas mereka. (an-Nisa/4:41)",
-        short:
-          "Tidak ada seorang pun di antara Ahli Kitab, baik Yahudi maupun Nasrani, yang tidak beriman kepadanya, yakni kepada Nabi Isa bahwa beliau adalah utusan Allah, sebelum kematiannya, yakni sebelum kematian dari Ahli Kitab itu. Dan pada hari Kiamat, dia, Nabi Isa, akan menjadi saksi terhadap mereka bahwa beliau adalah utusan Allah, dan tidak pernah menyampaikan kepada umatnya selain apa yang diperintahkan Allah agar disampaikan kepadanya.",
+        footnotes: null,
+        text: "Semua Ahli Kitab -tanpa kecuali- akan beriman kepada Isa -‘alaihissalām- setelah ia turun ke bumi pada akhir zaman dan sebelum kematiannya. Pada hari Kiamat kelak Isa -‘alaihissalām- akan menjadi saksi atas amal perbuatan mereka; mana yang sesuai dengan syariat Allah dan mana yang menyelisihinya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646 \u0645\u0651\u0650\u0646\u0652 \u0623\u064e\u0647\u0652\u0644\u0650 \u0627\u0644\u0652\u0643\u0650\u062a\u064e\u0627\u0628\u0650 \u0625\u0650\u0644\u0651\u064e\u0627 \u0644\u064e\u064a\u064f\u0624\u0652\u0645\u0650\u0646\u064e\u0646\u0651\u064e \u0628\u0650\u0647\u0650 \u0642\u064e\u0628\u0652\u0644\u064e \u0645\u064e\u0648\u0652\u062a\u0650\u0647\u0650 \u06d6 \u0648\u064e\u064a\u064e\u0648\u0652\u0645\u064e \u0627\u0644\u0652\u0642\u0650\u064a\u064e\u0627\u0645\u064e\u0629\u0650 \u064a\u064e\u0643\u064f\u0648\u0646\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0634\u064e\u0647\u0650\u064a\u062f\u064b\u0627",
-      transliteration: {
-        en: "Wa im min Ahlil Kitaabi illaa layu'minanna bihee qabla mawtihee wa Yawmal Qiyaamati yakoonu 'alaihim shaheedaa",
-      },
+      arabic:
+        "وَإِن مِّنْ أَهْلِ ٱلْكِتَٰبِ إِلَّا لَيُؤْمِنَنَّ بِهِۦ قَبْلَ مَوْتِهِۦ وَيَوْمَ ٱلْقِيَٰمَةِ يَكُونُ عَلَيْهِمْ شَهِيدًا",
     },
     translation: {
-      en: "And there is none from the People of the Scripture but that he will surely believe in Jesus before his death. And on the Day of Resurrection he will be against them a witness.",
-      id: "Tidak ada seorang pun di antara Ahli Kitab yang tidak beriman kepadanya (Isa) menjelang kematiannya. Dan pada hari Kiamat dia (Isa) akan menjadi saksi mereka.",
+      en: {
+        footnotes:
+          "[107] The prevalent interpretation is that the People of the Book, even the Jews, will believe in Jesus; his neither being ‘an impostor’ nor ‘the son of God’, when he descends from heaven at the end of time.",
+        text: "There will be none from the People of the Book but will believe in him [upon his return] before his death[107], and on the Day of Resurrection, he will be a witness against them.",
+      },
+      id: {
+        footnotes:
+          "[245] Setiap orang Yahudi dan Nasrani akan beriman kepada Nabi Isa -'alaihissalām- sebelum wafatnya di akhir zaman ketika dia turun nanti, bahwa dia adalah Rasulullah, bukan anak Allah. Sebagian mufasir berpendapat bahwa mereka mengimani hal itu sebelum wafat.",
+        text: "Tidak ada seorang pun di antara Ahli Kitab yang tidak beriman kepadanya (Isa) menjelang kematiannya.[245] Dan pada hari Kiamat dia (Isa) akan menjadi saksi atas mereka.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/653",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/653.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/653.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 103,
       ruku: 83,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 653,
@@ -147,40 +130,33 @@ export const quranSurah4Verses157To162 = [
     },
     tafsir: {
       id: {
-        long: "Bilamana orang-orang Yahudi itu berbuat dosa atau pelanggaran yang berat seperti penyembahan terhadap patung anak sapi, lalu mereka bertobat, maka walaupun tobatnya diterima, namun sebagai akibat dari pelanggaran itu, Allah mengharamkan kepada mereka beberapa makanan yang baik yang dahulunya halal bagi mereka. Mereka tidak mengakui bahwa makanan-makanan yang baik itu diharamkan sebagai akibat dari dosa-dosanya, bahkan mereka mengatakan, bahwa makanan-makanan itu telah lebih dahulu diharamkan, yaitu sejak Nabi Nuh, Nabi Ibrahim dan nabi-nabi yang datang kemudian; Allah membantah pengakuan mereka dengan firman-Nya:\n\nSemua makanan itu halal bagi Bani Israil, kecuali makanan yang diharamkan oleh Israil (Yakub) atas dirinya sebelum Taurat diturunkan... (Ali 'Imran/3:93).\n\nDan kepada orang-orang Yahudi, Kami haramkan semua (hewan) yang berkuku¦ (al-An'am/6:146)\n\nDiharamkan makanan yang baik itu kepada Bani Israil (Imamat vii.23; xi 4-6) karena mereka menghalangi manusia dari jalan Allah, dan karena mereka menganjurkan kejahatan dan kemungkaran dan melarang berbuat kebajikan dan menyembunyikan sifat-sifat Nabi Muhammad saw yang terdapat dalam kitab-kitab mereka.",
-        short:
-          "Maka disebabkan karena kezaliman orang-orang Yahudi, sebagaimana diterangkan dalam ayat sebelum ini, Kami haramkan kepada mereka makanan yang baik-baik yang dahulu, sebelum mereka berbuat kedurhakaan itu, pernah dihalalkan, antara lain semua binatang yang berkuku sebagaimana disebutkan dalam Surah al-An'a m/6: 146; dan karena mereka sering menghalangi orang lain dari jalan Allah dengan melarang berbuat baik dan menyuruh kepada yang mungkar.",
+        footnotes: null,
+        text: "Karena disebabkan oleh kezaliman orang-orang Yahudi, Kami haramkan kepada mereka sebagian makanan enak yang tadinya halal bagi mereka. Kami pun mengharamkan kepada mereka setiap binatang yang berkuku, sedangkan dari sapi dan kambing Kami haramkan lemaknya bagi mereka kecuali lemak yang melekat di punggung keduanya. Juga disebabkan kebiasaan mereka menghalang-halangi diri mereka sendiri dan orang lain dari jalan Allah, sehingga kebiasaan menghalang-halangi kebaikan itu menjadi watak mereka.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0628\u0650\u0638\u064f\u0644\u0652\u0645\u064d \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0647\u064e\u0627\u062f\u064f\u0648\u0627 \u062d\u064e\u0631\u0651\u064e\u0645\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u0652 \u0637\u064e\u064a\u0651\u0650\u0628\u064e\u0627\u062a\u064d \u0623\u064f\u062d\u0650\u0644\u0651\u064e\u062a\u0652 \u0644\u064e\u0647\u064f\u0645\u0652 \u0648\u064e\u0628\u0650\u0635\u064e\u062f\u0651\u0650\u0647\u0650\u0645\u0652 \u0639\u064e\u0646 \u0633\u064e\u0628\u0650\u064a\u0644\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0643\u064e\u062b\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Fabizulmin minal lazeena haadoo harramnaa 'alaihim taiyibaatin uhillat lahum wa bisadihim 'an sabeelil laahi kaseeraa",
-      },
+      arabic:
+        "فَبِظُلْمٍ مِّنَ ٱلَّذِينَ هَادُوا۟ حَرَّمْنَا عَلَيْهِمْ طَيِّبَٰتٍ أُحِلَّتْ لَهُمْ وَبِصَدِّهِمْ عَن سَبِيلِ ٱللَّهِ كَثِيرًا",
     },
     translation: {
-      en: "For wrongdoing on the part of the Jews, We made unlawful for them [certain] good foods which had been lawful to them, and for their averting from the way of Allah many [people],",
-      id: "Karena kezaliman orang-orang Yahudi, Kami haramkan bagi mereka makanan yang baik-baik yang (dahulu) pernah dihalalkan; dan karena mereka sering menghalangi (orang lain) dari jalan Allah,",
+      en: {
+        footnotes: "[108] For more details see 6:146.",
+        text: "For the wrongdoing of the Jews, We prohibited for them good things[108] that were lawful for them; and for their frequent hindering many from the way of Allah,",
+      },
+      id: {
+        footnotes: "",
+        text: "Karena kezaliman orang-orang Yahudi, Kami haramkan bagi mereka makanan yang baik-baik yang (dahulu) pernah dihalalkan; dan karena mereka sering menghalangi (orang lain) dari jalan Allah,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/654",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/654.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/654.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 103,
       ruku: 83,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 654,
@@ -188,40 +164,33 @@ export const quranSurah4Verses157To162 = [
     },
     tafsir: {
       id: {
-        long: "Diharamkannya sebagian makanan yang baik kepada orang-orang Yahudi juga disebabkan oleh tindakan mereka memakan uang riba yang nyata-nyata telah dilarang Allah dan disebabkan pula oleh perbuatan mereka yang batil seperti memperoleh harta melalui sogokan, penipuan, perampasan dan sebagainya. Terhadap perbuatan-perbuatan yang jahat itu Allah menyediakan siksa yang pedih di akhirat.",
-        short:
-          "Dan, selain itu, juga karena mereka menjalankan riba yang merupakan perbuatan yang tidak manusiawi, padahal sesungguhnya mereka telah dilarang darinya, sebagaimana diterangkan di dalam kitab Taurat, dan karena mereka memakan harta orang dengan cara tidak sah, cara yang batil, seperti penipuan, sogok menyogok, dan lain-lainnya. Dan Kami sediakan untuk orang-orang kafir di antara mereka azab yang pedih kelak di akhirat.",
+        footnotes: null,
+        text: "Juga karena disebabkan oleh kegemaran mereka berjual-beli dengan cara riba setelah Allah melarang mereka dari melakukannya dan disebabkan oleh kesenangan mereka mengambil harta orang lain secara batil, maka Kami siapkan azab yang menyakitkan bagi orang-orang yang kafir di antara mereka.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u062e\u0652\u0630\u0650\u0647\u0650\u0645\u064f \u0627\u0644\u0631\u0651\u0650\u0628\u064e\u0627 \u0648\u064e\u0642\u064e\u062f\u0652 \u0646\u064f\u0647\u064f\u0648\u0627 \u0639\u064e\u0646\u0652\u0647\u064f \u0648\u064e\u0623\u064e\u0643\u0652\u0644\u0650\u0647\u0650\u0645\u0652 \u0623\u064e\u0645\u0652\u0648\u064e\u0627\u0644\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u0650 \u0628\u0650\u0627\u0644\u0652\u0628\u064e\u0627\u0637\u0650\u0644\u0650 \u06da \u0648\u064e\u0623\u064e\u0639\u0652\u062a\u064e\u062f\u0652\u0646\u064e\u0627 \u0644\u0650\u0644\u0652\u0643\u064e\u0627\u0641\u0650\u0631\u0650\u064a\u0646\u064e \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064b\u0627 \u0623\u064e\u0644\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Wa akhzihimur ribaa wa qad nuhoo 'anhu wa aklihim amwaalan naasi bilbaatil; wa a'tadnaa lilkaafireena minhum 'azaaban aleema",
-      },
+      arabic:
+        "وَأَخْذِهِمُ ٱلرِّبَوٰا۟ وَقَدْ نُهُوا۟ عَنْهُ وَأَكْلِهِمْ أَمْوَٰلَ ٱلنَّاسِ بِٱلْبَٰطِلِ وَأَعْتَدْنَا لِلْكَٰفِرِينَ مِنْهُمْ عَذَابًا أَلِيمًا",
     },
     translation: {
-      en: "And [for] their taking of usury while they had been forbidden from it, and their consuming of the people's wealth unjustly. And we have prepared for the disbelievers among them a painful punishment.",
-      id: "dan karena mereka menjalankan riba, padahal sungguh mereka telah dilarang darinya, dan karena mereka memakan harta orang dengan cara tidak sah (batil). Dan Kami sediakan untuk orang-orang kafir di antara mereka azab yang pedih.",
+      en: {
+        footnotes: "",
+        text: "and for their taking usury, although it was forbidden to them, and for unjustly consuming people’s wealth. We have prepared for the disbelievers among them a painful punishment.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan karena mereka menjalankan riba, padahal sungguh mereka telah dilarang darinya, dan karena mereka memakan harta orang dengan cara tidak sah (batil). Dan Kami sediakan untuk orang-orang kafir di antara mereka azab yang pedih.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/655",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/655.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/655.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 41,
       juz: 6,
       manzil: 1,
       page: 103,
       ruku: 83,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 655,
@@ -229,20 +198,23 @@ export const quranSurah4Verses157To162 = [
     },
     tafsir: {
       id: {
-        long: "Tidak semua Ahli Kitab mengerjakan keburukan-keburukan tersebut. Ada pula di antara mereka orang yang mendalam ilmunya, dan orang yang sungguh-sungguh beriman kepada Al-Qur'an yang diturunkan kepada Nabi Muhammad saw, dan yang diturunkan kepada rasul-rasul sebelumnya. Di antara mereka ada pula yang dengan penuh keyakinan mengikuti ajaran Islam dengan tulus ikhlas.\n\nDiriwayatkan dari Abdullah bin Abbas bahwa ayat ini diturunkan terkait dengan orang-orang Yahudi yang dengan penuh kesadaran masuk Islam seperti Abdullah bin Salam dan kawan-kawannya. Mereka rajin salat lima waktu dan menunaikan zakat, beriman kepada Allah dan rasul-rasul-Nya tanpa membedakan di antara rasul yang satu dengan rasul yang lain. Mereka itu telah sampai kepada tingkat keimanan dan keislaman yang tinggi dan Allah menjanjikan kepada mereka pahala yang besar di akhirat.",
-        short:
-          "Tetapi orang-orang yang mendalam ilmunya tentang ajaran Allah di antara mereka, yakni Ahli Kitab; dan orang-orang yang beriman di antara mereka walaupun tidak mendalam ilmunya, mereka beriman kepada apa yang diturunkan kepadamu, wahai Nabi Muhammad, yaitu Al-Qur'an, dan kepada kitab-kitab yang diturunkan sebelummu, yaitu antara lain Taurat, Zabur, dan Injil. Dan secara khusus Allah memuji mereka yaitu orang-orang yang melaksanakan salat dengan khusyuk dan menyempurnakan syarat dan rukunnya, dan selanjutnya orang-orang yang menunaikan zakat dan orang-orang yang beriman kepada Allah dan hari kemudian. Kepada mereka, orang-orang yang disebutkan di atas itu, akan Kami berikan pahala yang besar kelak di akhirat.",
+        footnotes: null,
+        text: "Akan tetapi, orang-orang yang berilmu tinggi dan mumpuni dari kalangan Yahudi dan orang-orang mukmin membenarkan kitab suci Al-Qur`ān yang Allah turunkan kepadamu -wahai Rasul- dan juga membenarkan kitab-kitab suci yang diturunkan kepada rasul-rasul sebelummu, seperti kitab Taurat dan Injil, mereka mendirikan salat, menunaikan zakat harta mereka, meyakini Allah sebagai Tuhan Yang Maha Esa, tidak ada sekutu bagi-Nya, dan meyakini adanya hari Kiamat; mereka yang memiliki sifat-sifat tersebut akan Kami berikan pahala yang sangat besar.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0670\u0643\u0650\u0646\u0650 \u0627\u0644\u0631\u0651\u064e\u0627\u0633\u0650\u062e\u064f\u0648\u0646\u064e \u0641\u0650\u064a \u0627\u0644\u0652\u0639\u0650\u0644\u0652\u0645\u0650 \u0645\u0650\u0646\u0652\u0647\u064f\u0645\u0652 \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u064a\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0628\u0650\u0645\u064e\u0627 \u0623\u064f\u0646\u0632\u0650\u0644\u064e \u0625\u0650\u0644\u064e\u064a\u0652\u0643\u064e \u0648\u064e\u0645\u064e\u0627 \u0623\u064f\u0646\u0632\u0650\u0644\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650\u0643\u064e \u06da \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0642\u0650\u064a\u0645\u0650\u064a\u0646\u064e \u0627\u0644\u0635\u0651\u064e\u0644\u064e\u0627\u0629\u064e \u06da \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0624\u0652\u062a\u064f\u0648\u0646\u064e \u0627\u0644\u0632\u0651\u064e\u0643\u064e\u0627\u0629\u064e \u0648\u064e\u0627\u0644\u0652\u0645\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0628\u0650\u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0648\u064e\u0627\u0644\u0652\u064a\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u0622\u062e\u0650\u0631\u0650 \u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0633\u064e\u0646\u064f\u0624\u0652\u062a\u0650\u064a\u0647\u0650\u0645\u0652 \u0623\u064e\u062c\u0652\u0631\u064b\u0627 \u0639\u064e\u0638\u0650\u064a\u0645\u064b\u0627",
-      transliteration: {
-        en: "Laakinir raasikhoona fil'ilmi minhum walmu'minoona yu'minoona bimaaa unzila ilaika wa maaa unzila min qablika walmuqeemeenas Salaata walmu'toonaz Zakaata walmu 'minoona billaahi wal yawmil Aakhir; ulaaa'ika sanu'teehim ajran 'azeemaa",
-      },
+      arabic:
+        "لَّٰكِنِ ٱلرَّٰسِخُونَ فِى ٱلْعِلْمِ مِنْهُمْ وَٱلْمُؤْمِنُونَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ وَٱلْمُقِيمِينَ ٱلصَّلَوٰةَ وَٱلْمُؤْتُونَ ٱلزَّكَوٰةَ وَٱلْمُؤْمِنُونَ بِٱللَّهِ وَٱلْيَوْمِ ٱلْـَٔاخِرِ أُو۟لَٰٓئِكَ سَنُؤْتِيهِمْ أَجْرًا عَظِيمًا",
     },
     translation: {
-      en: "But those firm in knowledge among them and the believers believe in what has been revealed to you, [O Muhammad], and what was revealed before you. And the establishers of prayer [especially] and the givers of zakah and the believers in Allah and the Last Day - those We will give a great reward.",
-      id: "Tetapi orang-orang yang ilmunya mendalam di antara mereka, dan orang-orang yang beriman, mereka beriman kepada (Al-Qur'an) yang diturunkan kepadamu (Muhammad), dan kepada (kitab-kitab) yang diturunkan sebelummu, begitu pula mereka yang melaksanakan salat dan menunaikan zakat dan beriman kepada Allah dan hari kemudian. Kepada mereka akan Kami berikan pahala yang besar.",
+      en: {
+        footnotes: "",
+        text: "But those well-grounded in knowledge among them and the believers believe in what has been sent down to you [O Prophet], and what was sent down before you; who establish prayer and give zakah, and believe in Allah and the Last Day – it is they who We will give a great reward.",
+      },
+      id: {
+        footnotes: "",
+        text: "Tetapi orang-orang yang ilmunya mendalam di antara mereka, dan orang-orang yang beriman, mereka beriman kepada (Al-Qur`an) yang diturunkan kepadamu (Muhammad), dan kepada (kitab-kitab) yang diturunkan sebelummu, begitu pula mereka yang melaksanakan salat dan menunaikan zakat dan beriman kepada Allah dan hari kemudian. Kepada mereka akan Kami berikan pahala yang besar.",
+      },
     },
   },
 ];

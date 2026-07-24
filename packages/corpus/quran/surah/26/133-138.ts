@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah26Verses133To138 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3065",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3065.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3065.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 372,
       ruku: 322,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3065,
@@ -24,40 +25,32 @@ export const quranSurah26Verses133To138 = [
     },
     tafsir: {
       id: {
-        long: "Di antara nikmat yang dianugerahkan Allah kepada kaum 'Ad ialah binatang-binatang ternak yang dapat mereka manfaatkan, dan anak keturunan yang dapat menyambung generasi dan penerus cita-cita mereka. Mereka juga dianugerahi kebun-kebun yang indah, yang ditumbuhi oleh tumbuh-tumbuhan yang amat berguna bagi mereka. Demikian pula air yang dapat mengairi bumi sebagai hasil irigasi yang telah mereka buat semuanya dengan pertolongan Allah.",
-        short:
-          "Nabi Hud lalu memerinci beberapa kenikmatan itu. Dia telah menganugerahkan dan melimpahkan kepada kamu binatang-binatang ternak yang sangat besar manfaatnya dalam kehidupan kamu dan Dia juga memberimu anak-anak yang dengan mereka kamu merasa kuat.",
+        footnotes: null,
+        text: "Dia telah menganugerahkan kalian binatang ternak dan juga menganugerahkan kalian anak-anak.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0645\u064e\u062f\u0651\u064e\u0643\u064f\u0645 \u0628\u0650\u0623\u064e\u0646\u0652\u0639\u064e\u0627\u0645\u064d \u0648\u064e\u0628\u064e\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Amaddakum bi an'aa minw wa baneen",
-      },
+      arabic: "أَمَدَّكُم بِأَنْعَٰمٍ وَبَنِينَ",
     },
     translation: {
-      en: "Provided you with grazing livestock and children",
-      id: "Dia (Allah) telah menganugerahkan kepadamu hewan ternak dan anak-anak,",
+      en: {
+        footnotes: "",
+        text: "Who provided you with livestock and children,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dia (Allah) telah menganugerahkan kepadamu hewan ternak dan anak-anak,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3066",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3066.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3066.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 372,
       ruku: 322,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3066,
@@ -65,40 +58,32 @@ export const quranSurah26Verses133To138 = [
     },
     tafsir: {
       id: {
-        long: "Di antara nikmat yang dianugerahkan Allah kepada kaum 'Ad ialah binatang-binatang ternak yang dapat mereka manfaatkan, dan anak keturunan yang dapat menyambung generasi dan penerus cita-cita mereka. Mereka juga dianugerahi kebun-kebun yang indah, yang ditumbuhi oleh tumbuh-tumbuhan yang amat berguna bagi mereka. Demikian pula air yang dapat mengairi bumi sebagai hasil irigasi yang telah mereka buat semuanya dengan pertolongan Allah.",
-        short:
-          "Dan kebun-kebun yang rindang, dengan aneka macam tumbuh-tumbuhan dan pepohonan dan mata air yang jernih dan melimpah.",
+        footnotes: null,
+        text: "Dia juga menganugerahkan kalian kebun-kebun dan mata air yang mengalir deras.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u062c\u064e\u0646\u0651\u064e\u0627\u062a\u064d \u0648\u064e\u0639\u064f\u064a\u064f\u0648\u0646\u064d",
-      transliteration: {
-        en: "Wa jannaatinw wa 'uyoon",
-      },
+      arabic: "وَجَنَّٰتٍ وَعُيُونٍ",
     },
     translation: {
-      en: "And gardens and springs.",
-      id: "dan kebun-kebun, dan mata air,",
+      en: {
+        footnotes: "",
+        text: "and with gardens and springs.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan kebun-kebun, dan mata air,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3067",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3067.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3067.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 372,
       ruku: 322,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3067,
@@ -106,40 +91,32 @@ export const quranSurah26Verses133To138 = [
     },
     tafsir: {
       id: {
-        long: "Nabi Hud menyampaikan kepada mereka bahwa semua yang diperoleh itu merupakan nikmat dari Allah. Ia khawatir nikmat-nikmat yang tak terhingga yang mereka peroleh itu akan dicabut atau dihentikan, sebagai azab dari Allah atas keingkaran dan kesombongan mereka. Apakah mereka tidak takut terjadi yang demikian? Menurut sunah Allah, Dia akan menambah nikmat kepada orang yang mensyukuri nikmat-Nya dan akan mengazab orang yang mengingkarinya.",
-        short:
-          "Sesungguhnya aku takut kamu akan ditimpa azab hari yang besar, yaitu hari Kiamat. Apa yang kamu miliki dan kamu banggakan, pada hari itu, tidak akan bisa menolong kamu dari siksa api neraka.",
+        footnotes: null,
+        text: 'Sesungguhnya aku sangat khawatir bila kalian -wahai kaumku- akan mendapatkan azab pada hari yang besar, yaitu hari Kiamat kelak."',
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u0650\u064a \u0623\u064e\u062e\u064e\u0627\u0641\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0639\u064e\u0630\u064e\u0627\u0628\u064e \u064a\u064e\u0648\u0652\u0645\u064d \u0639\u064e\u0638\u0650\u064a\u0645\u064d",
-      transliteration: {
-        en: "Innee akhaafu 'alaikum 'azaaba Yawmin 'azeem",
-      },
+      arabic: "إِنِّىٓ أَخَافُ عَلَيْكُمْ عَذَابَ يَوْمٍ عَظِيمٍ",
     },
     translation: {
-      en: 'Indeed, I fear for you the punishment of a terrible day."',
-      id: "sesungguhnya aku takut kamu akan ditimpa azab pada hari yang besar.”",
+      en: {
+        footnotes: "",
+        text: "I fear for you the punishment of a momentous day.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'sesungguhnya aku takut kamu akan ditimpa azab pada hari yang besar."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3068",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3068.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3068.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 372,
       ruku: 322,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3068,
@@ -147,40 +124,32 @@ export const quranSurah26Verses133To138 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menerangkan bahwa kaum \'ad tetap tidak mengindahkan seruan Nabi Hud, bahkan mereka berkata, "Menurut pendapat kami sama saja engkau berikan peringatan atau tidak, kami tetap pada pendirian kami. Kami tidak mau lagi mendengar kata-katamu, dan tidak akan mundur sedikit pun dari pendirian kami."',
-        short:
-          'Namun, dengan sikap sombong, kaumnya menolak ajakannya. Mereka menjawab, "Adalah sama saja bagi Kami, apakah kamu wahai Hud, memberi nasihat atau tidak memberi nasihat, kami tetap tidak akan menuruti ajakanmu. Kami akan terus berpegang teguh dengan keyakinan kami. Maka kamu tak perlu bersusah payah terus menerus mengajak kami.',
+        footnotes: null,
+        text: 'Kaumnya lalu berkata kepadanya, "Sama saja bagi kami, baik ada peringatan yang engkau sampaikan ataupun tidak ada sebab kami tidak akan pernah beriman kepadamu dan kami tidak akan meninggalkan segala apa yang kami yakini.',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0633\u064e\u0648\u064e\u0627\u0621\u064c \u0639\u064e\u0644\u064e\u064a\u0652\u0646\u064e\u0627 \u0623\u064e\u0648\u064e\u0639\u064e\u0638\u0652\u062a\u064e \u0623\u064e\u0645\u0652 \u0644\u064e\u0645\u0652 \u062a\u064e\u0643\u064f\u0646 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0648\u064e\u0627\u0639\u0650\u0638\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qaaloo sawaaa'un 'alainaaa awa 'azta am lam takum minal waa'izeen",
-      },
+      arabic: "قَالُوا۟ سَوَآءٌ عَلَيْنَآ أَوَعَظْتَ أَمْ لَمْ تَكُن مِّنَ ٱلْوَٰعِظِينَ",
     },
     translation: {
-      en: 'They said, "It is all the same to us whether you advise or are not of the advisors.',
-      id: "Mereka menjawab, “Sama saja bagi kami, apakah engkau memberi nasihat atau tidak memberi nasihat,",
+      en: {
+        footnotes: "",
+        text: "They said, “It is the same to us whether you admonish us or not.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka menjawab, "Sama saja bagi kami, apakah engkau memberi nasihat atau tidak memberi nasihat,',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3069",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3069.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3069.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 322,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3069,
@@ -188,40 +157,32 @@ export const quranSurah26Verses133To138 = [
     },
     tafsir: {
       id: {
-        long: 'Selanjutnya mereka mengatakan bahwa agama yang mereka anut adalah agama nenek moyang yang telah diwariskan kepada mereka. Mereka yakin tidak akan diazab karena mengikuti agama nenek moyang itu.\n\nPada ayat yang lain diterangkan bahwa Hud menantang kaumnya yang semakin ingkar itu dengan menyeru mereka agar melakukan usaha untuk membunuhnya dilakukan bersama-sama. Hud juga menyuruh mereka untuk mengikutkan dewa-dewa yang mereka sembah, seandainya mereka benar-benar percaya akan kemampuan dewa-dewa itu melakukan sesuatu yang mereka inginkan. Seakan-akan Hud berkata kepada mereka, "Bersatulah kamu sekalian dengan dewa-dewa yang kamu sembah itu untuk membunuhku, dan laksanakanlah pembunuhan itu sekarang juga, jangan ditangguhkan lagi. Aku tidak takut sedikit pun dibunuh karena aku bertawakal kepada Allah, Tuhanku dan Tuhanmu yang sebenarnya. Makhluk apa pun yang ada di bumi ini selalu dijaga, dipelihara, dan dikuasai oleh Allah dan perkataan-Nya selalu benar dan lurus."\n\nTantangan yang dikemukakan Hud kepada kaumnya adalah bukti bahwa dia seorang rasul yang diutus Allah. Andaikata ia bukan seorang rasul, dia tidak akan berani melakukan tantangan yang demikian terhadap kaumnya yang lebih kuat tubuhnya dan lebih kejam sifatnya.',
-        short:
-          '"Agama kami ini tidak lain hanyalah adat kebiasaan orang dahulu. Apa yang dilakukan nenek moyang kami, itulah yang kami ikuti." Inilah bentuk taklid buta dalam hal keyakinan agama yang sangat dibenci oleh Allah.',
+        footnotes: null,
+        text: "Agama yang kami anut ini tidak lain hanyalah agama, adat kebiasaan, dan akhlak orang-orang dahulu.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0652 \u0647\u064e\u0670\u0630\u064e\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u062e\u064f\u0644\u064f\u0642\u064f \u0627\u0644\u0652\u0623\u064e\u0648\u0651\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "In haazaaa illaa khuluqul awwaleen",
-      },
+      arabic: "إِنْ هَٰذَآ إِلَّا خُلُقُ ٱلْأَوَّلِينَ",
     },
     translation: {
-      en: "This is not but the custom of the former peoples,",
-      id: "(agama kami) ini tidak lain hanyalah adat kebiasaan orang-orang terdahulu,",
+      en: {
+        footnotes: "",
+        text: "This is nothing but the custom of the former people,",
+      },
+      id: {
+        footnotes: "",
+        text: "(agama kami) ini tidak lain hanyalah adat kebiasaan orang-orang terdahulu,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3070",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3070.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3070.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 149,
       juz: 19,
       manzil: 5,
       page: 373,
       ruku: 322,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3070,
@@ -229,20 +190,22 @@ export const quranSurah26Verses133To138 = [
     },
     tafsir: {
       id: {
-        long: 'Selanjutnya mereka mengatakan bahwa agama yang mereka anut adalah agama nenek moyang yang telah diwariskan kepada mereka. Mereka yakin tidak akan diazab karena mengikuti agama nenek moyang itu.\n\nPada ayat yang lain diterangkan bahwa Hud menantang kaumnya yang semakin ingkar itu dengan menyeru mereka agar melakukan usaha untuk membunuhnya dilakukan bersama-sama. Hud juga menyuruh mereka untuk mengikutkan dewa-dewa yang mereka sembah, seandainya mereka benar-benar percaya akan kemampuan dewa-dewa itu melakukan sesuatu yang mereka inginkan. Seakan-akan Hud berkata kepada mereka, "Bersatulah kamu sekalian dengan dewa-dewa yang kamu sembah itu untuk membunuhku, dan laksanakanlah pembunuhan itu sekarang juga, jangan ditangguhkan lagi. Aku tidak takut sedikit pun dibunuh karena aku bertawakal kepada Allah, Tuhanku dan Tuhanmu yang sebenarnya. Makhluk apa pun yang ada di bumi ini selalu dijaga, dipelihara, dan dikuasai oleh Allah dan perkataan-Nya selalu benar dan lurus."\n\nTantangan yang dikemukakan Hud kepada kaumnya adalah bukti bahwa dia seorang rasul yang diutus Allah. Andaikata ia bukan seorang rasul, dia tidak akan berani melakukan tantangan yang demikian terhadap kaumnya yang lebih kuat tubuhnya dan lebih kejam sifatnya.',
-        short:
-          'Dan dengan pongahnya mereka berkata lagi, "Dan Kami sama sekali tidak akan di azab oleh Allah di akhirat kelak." Mereka menganggap bahwa kenikmatan yang mereka miliki adalah bentuk kasih sayang Allah kepada mereka, maka di akhirat pun mereka yakin tidak akan disiksa.',
+        footnotes: null,
+        text: 'Sebab itu, kami sekali-kali tidak akan diazab."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0646\u064e\u062d\u0652\u0646\u064f \u0628\u0650\u0645\u064f\u0639\u064e\u0630\u0651\u064e\u0628\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Wa maa nahnu bimu 'azzabeen",
-      },
+      arabic: "وَمَا نَحْنُ بِمُعَذَّبِينَ",
     },
     translation: {
-      en: 'And we are not to be punished."',
-      id: "dan kami (sama sekali) tidak akan diazab.”",
+      en: {
+        footnotes: "",
+        text: "and we will never be punished.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'dan kami (sama sekali) tidak akan di azab."',
+      },
     },
   },
 ];

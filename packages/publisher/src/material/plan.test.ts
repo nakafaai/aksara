@@ -1,11 +1,16 @@
 import { resolve } from "node:path";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot";
 import { Effect, Schema } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  atomEnglishPath,
   checkoutRoot,
   collectMaterialPublication,
+  collectMaterialResult,
   englishPath,
+  functionContentKey,
+  functionMaterialScope,
   materialManifest,
   publishedMaterialHeads,
   sourceByPath,
@@ -56,8 +61,6 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 });
 
 const publishedHeads = await publishedMaterialHeads();
-const functionContentKey =
-  "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 const englishHead = await Effect.runPromise(
   Effect.gen(function* () {
     const head = publishedHeads.find(
@@ -207,5 +210,80 @@ describe("material plan", () => {
       records.every(({ record }) => record.change.operation === "upsert")
     ).toBe(true);
     expect(compilerState.calls).toBe(4);
+  });
+
+  it("compiles only the mandatory function-concept locales for scoped genesis", async () => {
+    const records = await collectMaterialPublication({
+      heads: [],
+      scope: functionMaterialScope,
+    });
+
+    expect(
+      records.map(({ record }) => [
+        record.change.contentKey,
+        record.change.locale,
+      ])
+    ).toEqual([
+      [functionContentKey, "en"],
+      [functionContentKey, "id"],
+    ]);
+    expect(compilerState.calls).toBe(2);
+  });
+
+  it("preserves every base head and ignores source changes outside scope", async () => {
+    const sources = new Map(sourceByPath);
+    const absolutePath = resolve(checkoutRoot, atomEnglishPath);
+    const source = sources.get(absolutePath);
+    expect(source).toBeDefined();
+    sources.set(absolutePath, `${source}\n`);
+
+    const records = await collectMaterialPublication({
+      heads: publishedHeads,
+      scope: functionMaterialScope,
+      sources,
+    });
+    const result = await collectMaterialResult({
+      heads: publishedHeads,
+      scope: functionMaterialScope,
+      sources,
+    });
+
+    expect(records).toEqual([]);
+    expect(result).toEqual(publishedHeads);
+    expect(compilerState.calls).toBe(0);
+  });
+
+  it("tombstones only one scoped missing source and preserves other heads", async () => {
+    const stale = modifyHead({
+      ...englishHead,
+      contentKey: "material/lesson/mathematics/removed/lesson",
+      publicPath: "subjects/mathematics/removed/lesson",
+      sourcePath:
+        "packages/corpus/material/lesson/mathematics/removed/lesson/en.mdx",
+    });
+    const scope = Schema.decodeUnknownSync(PublicationScopeSchema)({
+      content: [
+        {
+          contentKey: stale.contentKey,
+          family: stale.family,
+          locale: stale.locale,
+        },
+      ],
+      families: [],
+      snapshots: [],
+    });
+    const heads = [...publishedHeads, stale];
+    const records = await collectMaterialPublication({ heads, scope });
+    const result = await collectMaterialResult({ heads, scope });
+
+    expect(records).toHaveLength(1);
+    expect(records[0]?.record.change).toEqual({
+      contentKey: stale.contentKey,
+      family: "material",
+      locale: "en",
+      operation: "delete",
+    });
+    expect(result).toEqual(publishedHeads);
+    expect(compilerState.calls).toBe(0);
   });
 });

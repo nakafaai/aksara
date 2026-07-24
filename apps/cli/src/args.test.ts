@@ -74,19 +74,6 @@ describe("production arguments", () => {
     });
     await expect(
       parseCli([
-        "release",
-        "--release-id",
-        "release-2026-07-22",
-        "--recovery-id",
-        "recovery-2026-07-22",
-      ])
-    ).resolves.toEqual({
-      command: "release",
-      recoveryId: "recovery-2026-07-22",
-      releaseId: "release-2026-07-22",
-    });
-    await expect(
-      parseCli([
         "accept",
         "--release-id",
         "release-2026-07-22",

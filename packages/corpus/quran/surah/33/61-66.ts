@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah33Verses61To66 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3594",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3594.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3594.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 171,
       juz: 22,
       manzil: 5,
       page: 426,
       ruku: 368,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3594,
@@ -24,40 +25,33 @@ export const quranSurah33Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Ketiga golongan itu dilaknat di mana saja mereka berada, karena sikapnya yang selalu bermusuhan dan merugikan agama dan negara, mereka selalu dikejar-kejar untuk ditangkap dan dibunuh. Nasib orang yang seperti itu telah pula dialami oleh orang-orang sebelumnya karena begitulah sunah Allah.",
-        short:
-          "serta dalam keadaan terlaknat dan terhina. Di mana saja mereka dijumpai, mereka akan ditangkap dan dibunuh tanpa ampun.",
+        footnotes: null,
+        text: "Mereka telah terjauhkan dari rahmat Allah. Di mana saja mereka ditemukan, niscaya mereka akan ditangkap dan dibunuh dengan ganas dikarenakan kemunafikan mereka dan penyebaran kerusakan yang mereka lakukan di bumi.",
       },
     },
     text: {
-      arab: "\u0645\u0651\u064e\u0644\u0652\u0639\u064f\u0648\u0646\u0650\u064a\u0646\u064e \u06d6 \u0623\u064e\u064a\u0652\u0646\u064e\u0645\u064e\u0627 \u062b\u064f\u0642\u0650\u0641\u064f\u0648\u0627 \u0623\u064f\u062e\u0650\u0630\u064f\u0648\u0627 \u0648\u064e\u0642\u064f\u062a\u0651\u0650\u0644\u064f\u0648\u0627 \u062a\u064e\u0642\u0652\u062a\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Mal'ooneena ainamaa suqifoo ukhizoo wa quttiloo taqteelaa",
-      },
+      arabic: "مَّلْعُونِينَ أَيْنَمَا ثُقِفُوٓا۟ أُخِذُوا۟ وَقُتِّلُوا۟ تَقْتِيلًا",
     },
     translation: {
-      en: "Accursed wherever they are found, [being] seized and massacred completely.",
-      id: "dalam keadaan terlaknat. Di mana saja mereka dijumpai, mereka akan ditangkap dan dibunuh tanpa ampun.",
+      en: {
+        footnotes:
+          "[52] It was a deterrence to the hypocrites, for the Prophet (ﷺ) did not kill anyone of them as long as they claimed to be Muslims.",
+        text: "They are cursed; wherever they are found they should be seized and killed outright[52].",
+      },
+      id: {
+        footnotes: "",
+        text: "dalam keadaan terlaknat. Di mana saja mereka dijumpai, mereka akan ditangkap dan dibunuh tanpa ampun.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3595",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3595.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3595.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 171,
       juz: 22,
       manzil: 5,
       page: 426,
       ruku: 368,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3595,
@@ -65,40 +59,32 @@ export const quranSurah33Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Dengan demikian, sunah Allah yang telah berlaku atas orang-orang yang terdahulu sebelum diutusnya Nabi Muhammad saw akan berlaku pula bagi generasi yang datang kemudian. Hal itu tidak mungkin berubah dan pasti berlaku.",
-        short:
-          "Ancaman dan siksa Allah kepada orang-orang munafik, orang-orang yang hatinya berpenyakit, dan orang-orang yang menebar fitnah, sebagaimana dijelaskan dalam ayat sebelumnya, adalah sebagai sunah dan ketetapan Allah yang berlaku juga bagi orang-orang yang telah terdahulu sebelum kamu dan akan berlaku bagi generasi sesudahmu, dan engkau tidak akan mendapati perubahan pada sunah Allah. (Lihat juga: al-Isrà’/17: 77 dan al-Fath/48: 23)",
+        footnotes: null,
+        text: "Ini adalah sunatullah yang berlaku bagi kaum munafik jika menampakkan kemunafikannya dan sunatullah itu tetap, engkau tidak akan mendapati perubahan padanya selama-lamanya.",
       },
     },
     text: {
-      arab: "\u0633\u064f\u0646\u0651\u064e\u0629\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0641\u0650\u064a \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062e\u064e\u0644\u064e\u0648\u0652\u0627 \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u064f \u06d6 \u0648\u064e\u0644\u064e\u0646 \u062a\u064e\u062c\u0650\u062f\u064e \u0644\u0650\u0633\u064f\u0646\u0651\u064e\u0629\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u062a\u064e\u0628\u0652\u062f\u0650\u064a\u0644\u064b\u0627",
-      transliteration: {
-        en: "Sunnatal laahi fil lazeena khalaw min qablu wa lan tajida lisunnatil laahi tabdeelaa",
-      },
+      arabic: "سُنَّةَ ٱللَّهِ فِى ٱلَّذِينَ خَلَوْا۟ مِن قَبْلُ وَلَن تَجِدَ لِسُنَّةِ ٱللَّهِ تَبْدِيلًا",
     },
     translation: {
-      en: "[This is] the established way of Allah with those who passed on before; and you will not find in the way of Allah any change.",
-      id: "Sebagai sunnah Allah yang (berlaku juga) bagi orang-orang yang telah terdahulu sebelum(mu), dan engkau tidak akan mendapati perubahan pada sunnah Allah.",
+      en: {
+        footnotes: "",
+        text: "Such was Allah’s way with those [hypocrites] who came before, and you will find no change in Allah’s way.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sebagai sunnah Allah yang (berlaku juga) bagi orang-orang yang telah terdahulu sebelum(mu), dan engkau tidak akan mendapati perubahan pada sunah Allah.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3596",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3596.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3596.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 171,
       juz: 22,
       manzil: 5,
       page: 427,
       ruku: 368,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3596,
@@ -106,40 +92,33 @@ export const quranSurah33Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Banyak manusia bertanya kepada Nabi Muhammad tentang kapan datangnya hari Kiamat. Orang-orang musyrik menanyakan tentang kiamat tersebut secara mengejek dan mencemooh, serta menantang supaya hari Kiamat segera didatangkan. Orang-orang munafik menanyakan tentang hari Kiamat karena terdorong oleh anggapan bahwa Nabi saw akan menjawab seperti yang mereka perkirakan. Adapun orang-orang Yahudi bertanya dengan maksud menguji kebenaran Nabi saw, apakah jawabannya akan sama atau tidak dengan yang tercantum dalam kitab Taurat, bahwa soal hari Kiamat itu sesungguhnya berada di tangan Allah.",
-        short:
-          "Ancaman dan siksa pedih bagi orang-orang munafik tidak hanya berlangsung di dunia, tetapi juga di akhirat. Karena penasaran tentang hari Kiamat, manusia bertanya kepadamu, wahai Nabi Muhammad, tentang hari Kiamat. Katakanlah, “Ilmu tentang hari Kiamat itu hanya di sisi Allah.” Dan tahukah engkau kapan datangnya Kiamat itu? Pasti engkau tidak tahu. Boleh jadi hari Kiamat itu sudah dekat waktunya.",
+        footnotes: null,
+        text: 'Orang-orang musyrik bertanya kepadamu -wahai Rasul- sebagai bentuk pengingkaran dan pendustaan dan orang-orang Yahudi juga bertanya kepadamu tentang hari Kiamat, "Kapan datangnya?" Katakanlah kepada mereka, “Pengetahuan tentang hari Kiamat hanya ada pada Allah, aku tidak mengetahui sedikit pun tentangnya.” Tahukah kamu -wahai Rasul- bahwa Kiamat itu bisa jadi sudah dekat?',
       },
     },
     text: {
-      arab: "\u064a\u064e\u0633\u0652\u0623\u064e\u0644\u064f\u0643\u064e \u0627\u0644\u0646\u0651\u064e\u0627\u0633\u064f \u0639\u064e\u0646\u0650 \u0627\u0644\u0633\u0651\u064e\u0627\u0639\u064e\u0629\u0650 \u06d6 \u0642\u064f\u0644\u0652 \u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u0639\u0650\u0644\u0652\u0645\u064f\u0647\u064e\u0627 \u0639\u0650\u0646\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u06da \u0648\u064e\u0645\u064e\u0627 \u064a\u064f\u062f\u0652\u0631\u0650\u064a\u0643\u064e \u0644\u064e\u0639\u064e\u0644\u0651\u064e \u0627\u0644\u0633\u0651\u064e\u0627\u0639\u064e\u0629\u064e \u062a\u064e\u0643\u064f\u0648\u0646\u064f \u0642\u064e\u0631\u0650\u064a\u0628\u064b\u0627",
-      transliteration: {
-        en: "Yas'alukan naasu 'anis Saa'ati qul innamaa 'ilmuhaa 'indal laah; wa maa yudreeka la'allas Saa'ata takoonu qareebaa",
-      },
+      arabic:
+        "يَسْـَٔلُكَ ٱلنَّاسُ عَنِ ٱلسَّاعَةِ قُلْ إِنَّمَا عِلْمُهَا عِندَ ٱللَّهِ وَمَا يُدْرِيكَ لَعَلَّ ٱلسَّاعَةَ تَكُونُ قَرِيبًا",
     },
     translation: {
-      en: 'People ask you concerning the Hour. Say," Knowledge of it is only with Allah. And what may make you perceive? Perhaps the Hour is near."',
-      id: "Manusia bertanya kepadamu (Muhammad) tentang hari Kiamat. Katakanlah, “Ilmu tentang hari Kiamat itu hanya di sisi Allah.” Dan tahukah engkau, boleh jadi hari Kiamat itu sudah dekat waktunya.",
+      en: {
+        footnotes: "",
+        text: "People ask you [O Prophet] concerning the Hour. Say, “Its knowledge is only with Allah.” How could you know? Perhaps the Hour is near.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Manusia bertanya kepadamu (Muhammad) tentang hari Kiamat. Katakanlah, "Ilmu tentang hari Kiamat itu hanya di sisi Allah." Dan tahukah engkau, boleh jadi hari Kiamat itu sudah dekat waktunya.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3597",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3597.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3597.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 171,
       juz: 22,
       manzil: 5,
       page: 427,
       ruku: 368,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3597,
@@ -147,40 +126,32 @@ export const quranSurah33Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: 'Kemudian Allah menerangkan bahwa yang mengetahui kapan terjadinya hari Kiamat hanya Allah. Mungkin saja waktu datangnya hari Kiamat sudah dekat, karena setiap yang akan datang memang selalu mendekat dan mungkin dekat. Pepatah Arab mengatakan: \n\n"Setiap yang akan datang adalah dekat."\n\nKemudian Allah akan melaknat dan menjauhkan orang-orang kafir dari kebaikan dan rahmat-Nya. Allah juga menyediakan bagi mereka neraka Sa\'ir.',
-        short:
-          "Sungguh, pada hari Kiamat Allah melaknat dan menyiksa orang-orang kafir dan menyediakan bagi mereka api neraka yang menyala-nyala.",
+        footnotes: null,
+        text: "Sesungguhnya Allah -Subḥānahu- menjauhkan orang-orang kafir dari rahmat-Nya dan menyediakan bagi mereka pada hari Kiamat api menyala-nyala yang menunggu mereka.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0644\u064e\u0639\u064e\u0646\u064e \u0627\u0644\u0652\u0643\u064e\u0627\u0641\u0650\u0631\u0650\u064a\u0646\u064e \u0648\u064e\u0623\u064e\u0639\u064e\u062f\u0651\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u0633\u064e\u0639\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Innal laaha la'anal kaafireena wa a'adda lahum sa'eeraa",
-      },
+      arabic: "إِنَّ ٱللَّهَ لَعَنَ ٱلْكَٰفِرِينَ وَأَعَدَّ لَهُمْ سَعِيرًا",
     },
     translation: {
-      en: "Indeed, Allah has cursed the disbelievers and prepared for them a Blaze.",
-      id: "Sungguh, Allah melaknat orang-orang kafir dan menyediakan bagi mereka api yang menyala-nyala (neraka),",
+      en: {
+        footnotes: "",
+        text: "Indeed, Allah has cursed the disbelievers and has prepared for them a Blazing Fire,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, Allah melaknat orang-orang kafir dan menyediakan bagi mereka api yang menyala-nyala (neraka).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3598",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3598.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3598.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 171,
       juz: 22,
       manzil: 5,
       page: 427,
       ruku: 368,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3598,
@@ -188,40 +159,32 @@ export const quranSurah33Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: "Mereka kekal di dalam neraka selama-lamanya, dan tidak menemukan seorang pun yang dapat melindungi mereka dari azab Allah. Mereka juga tidak mendapatkan seorang penolong yang dapat menyelamatkan dari siksaan-Nya.",
-        short:
-          "Mereka kekal di dalamnya selama-lamanya; mereka tidak akan mendapatkan satu pun pelindung dan penolong yang menyelamatkan mereka dari azab Allah.",
+        footnotes: null,
+        text: "Mereka menetap di dalam siksa api yang disiapkan untuk mereka tersebut selama-lamanya, mereka tidak mendapati pelindung yang bermanfaat bagi mereka dan tidak pula mendapati penolong yang mampu menghindarkan mereka dari siksa.",
       },
     },
     text: {
-      arab: "\u062e\u064e\u0627\u0644\u0650\u062f\u0650\u064a\u0646\u064e \u0641\u0650\u064a\u0647\u064e\u0627 \u0623\u064e\u0628\u064e\u062f\u064b\u0627 \u06d6 \u0644\u0651\u064e\u0627 \u064a\u064e\u062c\u0650\u062f\u064f\u0648\u0646\u064e \u0648\u064e\u0644\u0650\u064a\u0651\u064b\u0627 \u0648\u064e\u0644\u064e\u0627 \u0646\u064e\u0635\u0650\u064a\u0631\u064b\u0627",
-      transliteration: {
-        en: "Khaalideena feehaaa abadaa, laa yajidoona waliyyanw wa laa naseeraa",
-      },
+      arabic: "خَٰلِدِينَ فِيهَآ أَبَدًا لَّا يَجِدُونَ وَلِيًّا وَلَا نَصِيرًا",
     },
     translation: {
-      en: "Abiding therein forever, they will not find a protector or a helper.",
-      id: "mereka kekal di dalamnya selama-lamanya; mereka tidak akan mendapatkan pelindung dan penolong.",
+      en: {
+        footnotes: "",
+        text: "abiding therein forever, never will they find any protector or helper.",
+      },
+      id: {
+        footnotes: "",
+        text: "Mereka kekal di dalamnya selama-lamanya; mereka tidak akan mendapatkan pelindung dan penolong.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3599",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3599.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3599.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 171,
       juz: 22,
       manzil: 5,
       page: 427,
       ruku: 368,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3599,
@@ -229,20 +192,23 @@ export const quranSurah33Verses61To66 = [
     },
     tafsir: {
       id: {
-        long: 'Mereka tidak memperoleh pelindung dan penolong seorang pun ketika mereka dibolak-balikkan di dalam neraka. Dengan penuh penyesalan mereka berkata, "Alangkah bahagianya seandainya kami dahulu di dunia taat kepada Allah dan taat pula kepada Muhammad utusan-Nya."',
-        short:
-          "Sebagai salah satu bentuk siksa yang akan diterima orang-orang kafir adalah bahwa pada hari itu wajah mereka dibolak-balikkan dalam neraka. Mereka berkata dengan penuh penyesalan, “Wahai, kiranya dahulu saat di dunia kami taat kepada Allah dan taat kepada Rasul, niscaya kami tidak akan tersiksa.” (Lihat juga: al-Furqàn/25: 27–29)",
+        footnotes: null,
+        text: "Pada hari Kiamat, wajah-wajah mereka diseret di neraka sembari mereka berkata lantaran besarnya penyesalan mereka, “Seandainya saja pada kehidupan dunia dulu kami menaati Allah dengan mengerjakan segala yang diperintahkan-Nya kepada kami dan menjauhi segala apa yang dilarang-Nya atas kami serta kami menaati Rasul dalam ajaran yang dibawanya dari Tuhannya.”",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0648\u0652\u0645\u064e \u062a\u064f\u0642\u064e\u0644\u0651\u064e\u0628\u064f \u0648\u064f\u062c\u064f\u0648\u0647\u064f\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u0650 \u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e \u064a\u064e\u0627 \u0644\u064e\u064a\u0652\u062a\u064e\u0646\u064e\u0627 \u0623\u064e\u0637\u064e\u0639\u0652\u0646\u064e\u0627 \u0627\u0644\u0644\u0651\u064e\u0647\u064e \u0648\u064e\u0623\u064e\u0637\u064e\u0639\u0652\u0646\u064e\u0627 \u0627\u0644\u0631\u0651\u064e\u0633\u064f\u0648\u0644\u064e\u0627",
-      transliteration: {
-        en: "Yawma tuqallabu wujoohuhum fin Naari yaqooloona yaa laitanaaa ata'nal laaha wa ata'nar Rasoolaa",
-      },
+      arabic:
+        "يَوْمَ تُقَلَّبُ وُجُوهُهُمْ فِى ٱلنَّارِ يَقُولُونَ يَٰلَيْتَنَآ أَطَعْنَا ٱللَّهَ وَأَطَعْنَا ٱلرَّسُولَا۠",
     },
     translation: {
-      en: 'The Day their faces will be turned about in the Fire, they will say, "How we wish we had obeyed Allah and obeyed the Messenger."',
-      id: "Pada hari (ketika) wajah mereka dibolak-balikkan dalam neraka, mereka berkata, “Wahai, kiranya dahulu kami taat kepada Allah dan taat (pula) kepada Rasul.”",
+      en: {
+        footnotes: "",
+        text: "On the Day when their faces are turned over in the Fire, they will say, “Would that we had obeyed Allah and obeyed the Messenger!”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Pada hari (ketika) wajah mereka dibolak-balikkan dalam neraka, mereka berkata, "Duhai, kiranya dahulu kami taat kepada Allah dan taat (pula) kepada Rasul."',
+      },
     },
   },
 ];

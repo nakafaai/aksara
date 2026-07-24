@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah84Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5885",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5885.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5885.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 589,
       ruku: 526,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5885,
@@ -24,40 +25,32 @@ export const quranSurah84Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menerangkan bahwa apabila langit terbelah karena telah rusak hubungan bagian-bagiannya dengan rusaknya peraturan alam semesta pada hari Kiamat nanti, disebabkan perbenturan bintang-bintang di langit karena masing-masing mempunyai daya tarik tersendiri. Oleh karena itu, rusaklah peraturan alam semesta dan terjadilah gumpalan-gumpalan awan yang gelap gulita yang timbul di beberapa tempat di angkasa luar, dan langit itu akan patuh kepada apa-apa yang diperintahkan Allah. Ia pantas menjadi patuh karena dialah makhluk Tuhan yang senantiasa berada dalam kekuasaan-Nya.",
-        short:
-          "Apabila langit yang kukuh itu terbelah ketika Allah menghilangkan keseimbangan di antara benda-benda langit. Terjadilah tabrakan antarbenda langit. Langit pun terbelah lalu digulung dan akhirnya terempas tidak berbekas.",
+        footnotes: null,
+        text: "Jika langit telah terbelah untuk menjadi pintu turunnya para malaikat darinya,",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0630\u064e\u0627 \u0627\u0644\u0633\u0651\u064e\u0645\u064e\u0627\u0621\u064f \u0627\u0646\u0634\u064e\u0642\u0651\u064e\u062a\u0652",
-      transliteration: {
-        en: "Izas samaaa'un shaqqat",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ إِذَا ٱلسَّمَآءُ ٱنشَقَّتْ",
     },
     translation: {
-      en: "When the sky has split [open]",
-      id: "Apabila langit terbelah,",
+      en: {
+        footnotes: "",
+        text: "When the sky is rent asunder,",
+      },
+      id: {
+        footnotes: "",
+        text: "Apabila langit terbelah,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5886",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5886.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5886.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 589,
       ruku: 526,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5886,
@@ -65,40 +58,32 @@ export const quranSurah84Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah menerangkan bahwa apabila langit terbelah karena telah rusak hubungan bagian-bagiannya dengan rusaknya peraturan alam semesta pada hari Kiamat nanti, disebabkan perbenturan bintang-bintang di langit karena masing-masing mempunyai daya tarik tersendiri. Oleh karena itu, rusaklah peraturan alam semesta dan terjadilah gumpalan-gumpalan awan yang gelap gulita yang timbul di beberapa tempat di angkasa luar, dan langit itu akan patuh kepada apa-apa yang diperintahkan Allah. Ia pantas menjadi patuh karena dialah makhluk Tuhan yang senantiasa berada dalam kekuasaan-Nya.",
-        short:
-          "Dan langit pada saat itu patuh kepada Tuhan Pencipta dan Pengatur-nya, dan sudah semestinya langit itu patuh, demikian pula alam raya, kepada Tuhan (Lihat: Surah Fussilat/41: 11).",
+        footnotes: null,
+        text: "lalu langit mendengarkan Tuhannya dengan penuh ketundukan, dan sudah semestinya langit melakukan itu.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0630\u0650\u0646\u064e\u062a\u0652 \u0644\u0650\u0631\u064e\u0628\u0651\u0650\u0647\u064e\u0627 \u0648\u064e\u062d\u064f\u0642\u0651\u064e\u062a\u0652",
-      transliteration: {
-        en: "Wa azinat li Rabbihaa wa huqqat",
-      },
+      arabic: "وَأَذِنَتْ لِرَبِّهَا وَحُقَّتْ",
     },
     translation: {
-      en: "And has responded to its Lord and was obligated [to do so]",
-      id: "dan patuh kepada Tuhannya, dan sudah semestinya patuh,",
+      en: {
+        footnotes: "[1] In full obedience.",
+        text: "and hearkens to its Lord[1], as it must,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan patuh kepada Tuhannya, dan sudah semestinya patuh,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5887",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5887.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5887.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 589,
       ruku: 526,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5887,
@@ -106,40 +91,32 @@ export const quranSurah84Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Selanjutnya Allah menerangkan bahwa bila bumi dan gunung-gunung hancur berkeping-keping sehingga menjadi rata dan mengeluarkan apa yang ada di dalam "perut"-nya, maka hal itu adalah karena ketundukannya pada perintah Allah dan kepatuhan melakukan kehendak-Nya.\n\nDalam ayat-ayat lain, Allah berfirman:\n\nApabila bumi diguncangkan dengan guncangan yang dahsyat, dan bumi telah mengeluarkan beban-beban berat (yang dikandung)nya. (az-Zalzalah/99: 1-2)\n\nDan apabila kuburan-kuburan dibongkar. (al-Infithar/82: 4)\n\nMaka tidakkah dia mengetahui apabila apa yang di dalam kubur dikeluarkan. (al-\'Adiyat/100: 9)\n\nUntuk tafsir pada kalimat "langit terbelah" di atas, dapat dilihat kembali pada telaah ilmiah Surah al-Insyiqaq/84:1-5, lihat pula telaah ilmiah Surah al-haqqah/69:16 dan Surah al-Infithar/82:1. Kemudian, kalimat yang mengikutinya: "¦dan patuh kepada Tuhannya, dan sudah semestinya langit itu patuh", mengandung pengertian bahwa kejadian itu berlangsung menurut sunatullah, yaitu menurut hukum-hukum Allah yang ada di alam semesta ini. Pengertian "bumi diratakan, dan memuntahkan apa yang ada di dalamnya dan menjadi kosong" adalah bahwa bumi benar-benar luluh lantak, baik terjadinya benturan dengan planet atau benda langit lainnya, karena hilang atau kacaunya gaya gravitasi. Luluh lantaknya bumi inilah yang juga menyebabkan seluruh isi bumi dimuntahkan dan menjadikan isi bumi kosong. Kemudian, kalimat yang mengikutinya: "¦dan patuh kepada Tuhannya, dan sudah semestinya bumi itu patuh", mengandung pengertian bahwa kejadian itu berlangsung menurut sunatullah, yaitu menurut hukum-hukum Allah yang ada di alam semesta ini.',
-        short:
-          "Dan apabila bumi diratakan setelah gunung-gunung tersapu dari tempatnya akibat dahsyatnya kekuatan yang menghempaskannya. Gunung yang besar dan kekar berubah menjadi pasir yang kemudian diterbangkan oleh tiupan angin yang dahsyat, menjadi abu yang beterbangan.",
+        footnotes: null,
+        text: "juga jika bumi telah diratakan oleh Allah sebagaimana kulit dibentangkan,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0630\u064e\u0627 \u0627\u0644\u0652\u0623\u064e\u0631\u0652\u0636\u064f \u0645\u064f\u062f\u0651\u064e\u062a\u0652",
-      transliteration: {
-        en: "Wa izal ardu muddat",
-      },
+      arabic: "وَإِذَا ٱلْأَرْضُ مُدَّتْ",
     },
     translation: {
-      en: "And when the earth has been extended",
-      id: "dan apabila bumi diratakan,",
+      en: {
+        footnotes: "[2] i.e., spread out.",
+        text: "and when the earth is leveled out[2],",
+      },
+      id: {
+        footnotes: "",
+        text: "dan apabila bumi diratakan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5888",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5888.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5888.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 589,
       ruku: 526,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5888,
@@ -147,40 +124,32 @@ export const quranSurah84Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Selanjutnya Allah menerangkan bahwa bila bumi dan gunung-gunung hancur berkeping-keping sehingga menjadi rata dan mengeluarkan apa yang ada di dalam "perut"-nya, maka hal itu adalah karena ketundukannya pada perintah Allah dan kepatuhan melakukan kehendak-Nya.\n\nDalam ayat-ayat lain, Allah berfirman:\n\nApabila bumi diguncangkan dengan guncangan yang dahsyat, dan bumi telah mengeluarkan beban-beban berat (yang dikandung)nya. (az-Zalzalah/99: 1-2)\n\nDan apabila kuburan-kuburan dibongkar. (al-Infithar/82: 4)\n\nMaka tidakkah dia mengetahui apabila apa yang di dalam kubur dikeluarkan. (al-\'Adiyat/100: 9)\n\nUntuk tafsir pada kalimat "langit terbelah" di atas, dapat dilihat kembali pada telaah ilmiah Surah al-Insyiqaq/84:1-5, lihat pula telaah ilmiah Surah al-haqqah/69:16 dan Surah al-Infithar/82:1. Kemudian, kalimat yang mengikutinya: "¦dan patuh kepada Tuhannya, dan sudah semestinya langit itu patuh", mengandung pengertian bahwa kejadian itu berlangsung menurut sunatullah, yaitu menurut hukum-hukum Allah yang ada di alam semesta ini. Pengertian "bumi diratakan, dan memuntahkan apa yang ada di dalamnya dan menjadi kosong" adalah bahwa bumi benar-benar luluh lantak, baik terjadinya benturan dengan planet atau benda langit lainnya, karena hilang atau kacaunya gaya gravitasi. Luluh lantaknya bumi inilah yang juga menyebabkan seluruh isi bumi dimuntahkan dan menjadikan isi bumi kosong. Kemudian, kalimat yang mengikutinya: "¦dan patuh kepada Tuhannya, dan sudah semestinya bumi itu patuh", mengandung pengertian bahwa kejadian itu berlangsung menurut sunatullah, yaitu menurut hukum-hukum Allah yang ada di alam semesta ini.',
-        short:
-          "Dan apabila bumi memuntahkan apa saja yang ada di dalamnya, seperti manusia yang terkubur, batuan, dan sebagainya, dan karenanya menjadi kosong bagaikan ibu hamil yang telah melahirkan janinnya.",
+        footnotes: null,
+        text: "serta bumi melemparkan apa yang ada di dalamnya berupa benda berharga dan mayat-mayat, sehingga ia pun menjadi kosong,",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0644\u0652\u0642\u064e\u062a\u0652 \u0645\u064e\u0627 \u0641\u0650\u064a\u0647\u064e\u0627 \u0648\u064e\u062a\u064e\u062e\u064e\u0644\u0651\u064e\u062a\u0652",
-      transliteration: {
-        en: "Wa alqat maa feehaa wa takhallat",
-      },
+      arabic: "وَأَلْقَتْ مَا فِيهَا وَتَخَلَّتْ",
     },
     translation: {
-      en: "And has cast out that within it and relinquished [it]",
-      id: "dan memuntahkan apa yang ada di dalamnya dan menjadi kosong,",
+      en: {
+        footnotes: "[3] i.e., its dead bodies and treasures buried in it.",
+        text: "and casts out all what it contains[3], and becomes empty,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan memuntahkan apa yang ada di dalamnya dan menjadi kosong,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5889",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5889.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5889.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 589,
       ruku: 526,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5889,
@@ -188,40 +157,32 @@ export const quranSurah84Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Selanjutnya Allah menerangkan bahwa bila bumi dan gunung-gunung hancur berkeping-keping sehingga menjadi rata dan mengeluarkan apa yang ada di dalam "perut"-nya, maka hal itu adalah karena ketundukannya pada perintah Allah dan kepatuhan melakukan kehendak-Nya.\n\nDalam ayat-ayat lain, Allah berfirman:\n\nApabila bumi diguncangkan dengan guncangan yang dahsyat, dan bumi telah mengeluarkan beban-beban berat (yang dikandung)nya. (az-Zalzalah/99: 1-2)\n\nDan apabila kuburan-kuburan dibongkar. (al-Infithar/82: 4)\n\nMaka tidakkah dia mengetahui apabila apa yang di dalam kubur dikeluarkan. (al-\'Adiyat/100: 9)\n\nUntuk tafsir pada kalimat "langit terbelah" di atas, dapat dilihat kembali pada telaah ilmiah Surah al-Insyiqaq/84:1-5, lihat pula telaah ilmiah Surah al-haqqah/69:16 dan Surah al-Infithar/82:1. Kemudian, kalimat yang mengikutinya: "¦dan patuh kepada Tuhannya, dan sudah semestinya langit itu patuh", mengandung pengertian bahwa kejadian itu berlangsung menurut sunatullah, yaitu menurut hukum-hukum Allah yang ada di alam semesta ini. Pengertian "bumi diratakan, dan memuntahkan apa yang ada di dalamnya dan menjadi kosong" adalah bahwa bumi benar-benar luluh lantak, baik terjadinya benturan dengan planet atau benda langit lainnya, karena hilang atau kacaunya gaya gravitasi. Luluh lantaknya bumi inilah yang juga menyebabkan seluruh isi bumi dimuntahkan dan menjadikan isi bumi kosong. Kemudian, kalimat yang mengikutinya: "¦dan patuh kepada Tuhannya, dan sudah semestinya bumi itu patuh", mengandung pengertian bahwa kejadian itu berlangsung menurut sunatullah, yaitu menurut hukum-hukum Allah yang ada di alam semesta ini.',
-        short:
-          "Dan apabila bumi patuh kepada Tuhan yang telah menciptakan-nya, dan sudah semestinya bumi itu dan alam semesta tunduk patuh dalam kekuasaan dan genggaman-Nya. Ketika kejadian-kejadian luar biasa ini tiba, manusia akan mengetahui balasan atas semua perbuatannya.",
+        footnotes: null,
+        text: "lalu ia pun mendengarkan Tuhannya dengan penuh ketundukan dan bumi sudah semestinya melakukan itu.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0623\u064e\u0630\u0650\u0646\u064e\u062a\u0652 \u0644\u0650\u0631\u064e\u0628\u0651\u0650\u0647\u064e\u0627 \u0648\u064e\u062d\u064f\u0642\u0651\u064e\u062a\u0652",
-      transliteration: {
-        en: "Wa azinat li Rabbihaa wa huqqat",
-      },
+      arabic: "وَأَذِنَتْ لِرَبِّهَا وَحُقَّتْ",
     },
     translation: {
-      en: "And has responded to its Lord and was obligated [to do so] -",
-      id: "dan patuh kepada Tuhannya, dan sudah semestinya patuh.",
+      en: {
+        footnotes: "",
+        text: "and hearkens to its Lord, as it must,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan patuh kepada Tuhannya, dan sudah semestinya patuh.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5890",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5890.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5890.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 236,
       juz: 30,
       manzil: 7,
       page: 589,
       ruku: 526,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5890,
@@ -229,20 +190,24 @@ export const quranSurah84Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah mengungkapkan bahwa manusia dalam masa hidupnya bekerja dengan sungguh-sungguh untuk mencapai cita-citanya. Setiap langkah manusia sesungguhnya menuju kepada akhir hidupnya, yaitu mati. Hal ini berarti kembali kepada Allah. Oleh karena itu, manusia akan mengetahui tentang baik buruk pekerjaan yang telah mereka kerjakan.",
-        short:
-          "Wahai manusia! Sesungguhnya kamu ketika di dunia telah bekerja keras siang dan malam untuk terus berbuat baik maupun buruk guna menuju kepada Tuhanmu, maka pada akhirnya pasti kamu akan menemui-Nya. Tiap hari yang seseorang lalui pada hakikatnya adalah langkah menuju kematian, menuju pertemuan dengan Tuhannya, berbekal amal masing-masing, lalu Tuhan akan memberinya balasan yang setimpal.",
+        footnotes: null,
+        text: "Wahai manusia, sesungguhnya engkau melakukan perbuatan, yang baik maupun yang buruk, maka engkau akan mendapatinya pada Hari Kiamat agar Allah membalasmu atas perbuatan itu.",
       },
     },
     text: {
-      arab: "\u064a\u064e\u0627 \u0623\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0652\u0625\u0650\u0646\u0633\u064e\u0627\u0646\u064f \u0625\u0650\u0646\u0651\u064e\u0643\u064e \u0643\u064e\u0627\u062f\u0650\u062d\u064c \u0625\u0650\u0644\u064e\u0649\u0670 \u0631\u064e\u0628\u0651\u0650\u0643\u064e \u0643\u064e\u062f\u0652\u062d\u064b\u0627 \u0641\u064e\u0645\u064f\u0644\u064e\u0627\u0642\u0650\u064a\u0647\u0650",
-      transliteration: {
-        en: "Yaaa ayyuhal insaanu innaka kaadihun ilaa Rabbika kad han famulaaqeeh",
-      },
+      arabic: "يَٰٓأَيُّهَا ٱلْإِنسَٰنُ إِنَّكَ كَادِحٌ إِلَىٰ رَبِّكَ كَدْحًا فَمُلَٰقِيهِ",
     },
     translation: {
-      en: "O mankind, indeed you are laboring toward your Lord with [great] exertion and will meet it.",
-      id: "Wahai manusia! Sesungguhnya kamu telah bekerja keras menuju Tuhanmu, maka kamu akan menemui-Nya.",
+      en: {
+        footnotes:
+          "[4] i.e., striving in doing good or evil until you meet your Lord.\n [5] To be recompensed by Him for your deeds.",
+        text: "O humans, you are toiling towards your Lord[4], and you will surely meet Him[5].",
+      },
+      id: {
+        footnotes:
+          "[903] Manusia di dunia ini baik disadari atau tidak adalah dalam perjalanan kepada Tuhannya. Dan pasti dia akan menemui Tuhannya untuk menerima pembalasan-Nya dari perbuatannya yang buruk maupun yang baik.",
+        text: "Wahai manusia! Sesungguhnya kamu telah bekerja keras menuju Tuhanmu, maka kamu akan menemui-Nya.[903]",
+      },
     },
   },
 ];

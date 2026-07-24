@@ -92,6 +92,13 @@ function manifest(rollbackCount: number, rollbackDigest: `sha256:${string}`) {
     rollbackDigest,
     routeCount: 0,
     routeDigest: `sha256:${"f".repeat(64)}`,
+    scope: {
+      content: [
+        { contentKey: "test:rollback", family: "material", locale: "en" },
+      ],
+      families: [],
+      snapshots: [],
+    },
     snapshots: inheritContentSnapshots(null),
     upsertCount: 0,
   });

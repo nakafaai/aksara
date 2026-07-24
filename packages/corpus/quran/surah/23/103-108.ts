@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah23Verses103To108 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2776",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2776.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2776.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 139,
       juz: 18,
       manzil: 4,
       page: 348,
       ruku: 300,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2776,
@@ -24,40 +25,32 @@ export const quranSurah23Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menerangkan kerugian orang yang ringan timbangan kebaikannya. Mereka itu ketika masih berada di dunia banyak berbuat maksiat menuruti kehendak hawa nafsunya. Mereka mengingkari ayat-ayat Allah yang menyebabkan amal-amal mereka tidak bernilai di hari kemudian, sebagaimana firman Allah:\n\nMereka itu adalah orang yang mengingkari ayat-ayat Tuhan mereka dan (tidak percaya) terhadap pertemuan dengan-Nya. Maka sia-sia amal mereka, dan Kami tidak memberikan penimbangan terhadap (amal) mereka pada hari Kiamat. (al-Kahf/18: 105)\n\nMereka itu akan kekal di dalam neraka Jahanam. Sejalan dengan ayat 103 ini firman Allah:\n\nDan adapun orang yang ringan timbangan (kebaikan)nya, maka tempat kembalinya adalah neraka Hawiyah. (al-Qari'ah/101: 8-9)\n\nBukan demikian! Barang siapa berbuat keburukan, dan dosanya telah menenggelamkannya, maka mereka itu penghuni neraka. Mereka kekal di dalamnya. (al-Baqarah/2: 81)",
-        short:
-          "Di hadapan Allah setiap individu akan diperiksa dan ditimbang amalnya, maka barangsiapa berat timbangan kebaikan-nya, mereka itulah orang-orang yang beruntung. Dan sebaliknya, barang siapa ringan timbangan kebaikan-nya, maka mereka itulah orang-orang yang merugikan dirinya sendiri karena gagal meraih keberuntungan dan membuat mereka kekal di dalam neraka Jahanam. Wajah mereka, demikian juga anggota tubuh yang lain, dibakar api neraka, dan mereka di neraka dalam keadaan muram dengan bibir yang cacat sehingga kondisi mereka amat miris.",
+        footnotes: null,
+        text: "Sebaliknya, barang siapa yang ringan timbangan amalan kebaikannya karena dikalahkan oleh timbangan amal buruknya maka mereka itulah yang merugikan diri mereka sendiri karena telah melakukan amalan yang memberi mudarat pada diri mereka dan meninggalkan amalan yang bermanfaat pada diri mereka berupa iman dan amal saleh. Tempat tinggal mereka adalah neraka Jahanam dan tidak akan pernah keluar darinya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0646\u0652 \u062e\u064e\u0641\u0651\u064e\u062a\u0652 \u0645\u064e\u0648\u064e\u0627\u0632\u0650\u064a\u0646\u064f\u0647\u064f \u0641\u064e\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062e\u064e\u0633\u0650\u0631\u064f\u0648\u0627 \u0623\u064e\u0646\u0641\u064f\u0633\u064e\u0647\u064f\u0645\u0652 \u0641\u0650\u064a \u062c\u064e\u0647\u064e\u0646\u0651\u064e\u0645\u064e \u062e\u064e\u0627\u0644\u0650\u062f\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa man khaffat mawaa zeenuhoo fa ulaaa'ikal lazeena khasiroon anfusahum fee Jahannnama khaalidoon",
-      },
+      arabic: "وَمَنْ خَفَّتْ مَوَٰزِينُهُۥ فَأُو۟لَٰٓئِكَ ٱلَّذِينَ خَسِرُوٓا۟ أَنفُسَهُمْ فِى جَهَنَّمَ خَٰلِدُونَ",
     },
     translation: {
-      en: "But those whose scales are light - those are the ones who have lost their souls, [being] in Hell, abiding eternally.",
-      id: "Dan barang siapa ringan timbangan (kebaikan)nya, maka mereka itulah orang-orang yang merugikan dirinya sendiri, mereka kekal di dalam neraka Jahanam",
+      en: {
+        footnotes: "",
+        text: "But those whose scales are light, they are the ones who have lost their souls, abiding in Hell forever.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan barang siapa ringan timbangan (kebaikan)nya, maka mereka itulah orang-orang yang merugikan dirinya sendiri, mereka kekal di dalam neraka Jahanam.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2777",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2777.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2777.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 139,
       juz: 18,
       manzil: 4,
       page: 348,
       ruku: 300,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2777,
@@ -65,40 +58,33 @@ export const quranSurah23Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menerangkan bahwa orang-orang yang dimasukkan ke dalam neraka itu akan dibakar mukanya dengan api sehingga kelihatan jelek sekali dan cacat. Dagingnya hancur, meleleh sampai ke kakinya. Mereka mengeluh atas azab yang menimpanya, dan menyadari perbuatannya ketika masih di dunia, sebagaimana firman Allah:\n\nDan jika mereka ditimpa sedikit saja azab Tuhanmu, pastilah mereka berkata, \"Celakalah kami! Sesungguhnya kami termasuk orang yang selalu menzalimi (diri sendiri).\" (al-Anbiya'/21: 46)\n\nSeandainya orang kafir itu mengetahui, ketika mereka itu tidak mampu mengelakkan api neraka dari wajah dan punggung mereka, sedang mereka tidak mendapat pertolongan (tentulah mereka tidak meminta disegerakan). (al-Anbiya'/21: 39)",
-        short:
-          "Di hadapan Allah setiap individu akan diperiksa dan ditimbang amalnya, maka barangsiapa berat timbangan kebaikan-nya, mereka itulah orang-orang yang beruntung. Dan sebaliknya, barang siapa ringan timbangan kebaikan-nya, maka mereka itulah orang-orang yang merugikan dirinya sendiri karena gagal meraih keberuntungan dan membuat mereka kekal di dalam neraka Jahanam. Wajah mereka, demikian juga anggota tubuh yang lain, dibakar api neraka, dan mereka di neraka dalam keadaan muram dengan bibir yang cacat sehingga kondisi mereka amat miris.",
+        footnotes: null,
+        text: "Wajah mereka dibakar oleh api neraka dan dalam neraka itu wajah mereka sangat muram, sehingga bibir atas mereka mengerut ke atas dan bibir bawah mereka mengerut ke bawah.",
       },
     },
     text: {
-      arab: "\u062a\u064e\u0644\u0652\u0641\u064e\u062d\u064f \u0648\u064f\u062c\u064f\u0648\u0647\u064e\u0647\u064f\u0645\u064f \u0627\u0644\u0646\u0651\u064e\u0627\u0631\u064f \u0648\u064e\u0647\u064f\u0645\u0652 \u0641\u0650\u064a\u0647\u064e\u0627 \u0643\u064e\u0627\u0644\u0650\u062d\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Talfahu wujoohahumun Naaru wa hum feehaa kaalihood",
-      },
+      arabic: "تَلْفَحُ وُجُوهَهُمُ ٱلنَّارُ وَهُمْ فِيهَا كَٰلِحُونَ",
     },
     translation: {
-      en: "The Fire will sear their faces, and they therein will have taut smiles.",
-      id: "Wajah mereka dibakar api neraka, dan mereka di neraka dalam keadaan muram dengan bibir yang cacat.",
+      en: {
+        footnotes:
+          "[47] Kālih means a face whose skin has been removed by scorching until the jaws are exposed.",
+        text: "The Fire will scorch their faces, leaving them disfigured[47].",
+      },
+      id: {
+        footnotes: "",
+        text: "Wajah mereka dibakar api neraka, dan mereka di neraka dalam keadaan muram dengan bibir yang cacat.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2778",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2778.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2778.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 139,
       juz: 18,
       manzil: 4,
       page: 349,
       ruku: 300,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2778,
@@ -106,40 +92,32 @@ export const quranSurah23Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: 'Pada ayat ini Allah menerangkan bahwa berbagai pertanyaan yang sifatnya mengejek diajukan kepada para penghuni neraka. Hal itu mengingatkan mereka kembali bahwa telah diutus para rasul untuk membimbing mereka, dan diturunkan kitab-kitab samawi untuk menjadi pedoman mereka, supaya tidak ada lagi alasan bagi mereka untuk tidak taat dan patuh kepada ajaran-ajaran yang dibawa para rasul itu, sebagaimana firman Allah:\n\nAgar tidak ada alasan bagi manusia untuk membantah Allah setelah rasul-rasul itu diutus. (an-Nisa\'/4: 165)\n\nDan firman-Nya:\n\nTetapi Kami tidak akan menyiksa sebelum Kami mengutus seorang rasul. (al- Isra\'/17: 15)\n\nTetapi mereka itu mendustakan ayat-ayat Allah dan tidak mempercayainya sedikit pun, bahkan rasul-rasul yang diutus kepada mereka disiksa dan dianiayanya. Sejalan dengan ayat 105 ayat ini, firman Allah:\n\nHampir meledak karena marah. Setiap kali ada sekumpulan (orang-orang kafir) dilemparkan ke dalamnya, penjaga-penjaga (neraka itu) bertanya kepada mereka, "Apakah belum pernah ada orang yang datang memberi peringatan kepadamu (di dunia)?" Mereka menjawab, "Benar, sungguh, seorang pemberi peringatan telah datang kepada kami, tetapi kami mendustakan(nya) dan kami katakan, "Allah tidak menurunkan sesuatu apa pun, kamu sebenarnya didalam kesesatan yang besar." (al-Mulk/67: 8-9)',
-        short:
-          "Seiring dengan siksa lahiriah itu, mereka juga mendapat kecaman dari Allah yang membuat batin mereka merana. Kepada mereka dikatakan, “Bukankah ayat-ayat-Ku telah dibacakan kepadamu, tetapi kamu selalu mendustakannya?”",
+        footnotes: null,
+        text: 'Lalu dikatakan kepada mereka sebagai bentuk celaan atas mereka, "Bukankah ayat-ayat Al-Qur`ān telah dibacakan pada kalian tatkala di dunia, akan tetapi kalian malah mendustakannya?!"',
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0645\u0652 \u062a\u064e\u0643\u064f\u0646\u0652 \u0622\u064a\u064e\u0627\u062a\u0650\u064a \u062a\u064f\u062a\u0652\u0644\u064e\u0649\u0670 \u0639\u064e\u0644\u064e\u064a\u0652\u0643\u064f\u0645\u0652 \u0641\u064e\u0643\u064f\u0646\u062a\u064f\u0645 \u0628\u0650\u0647\u064e\u0627 \u062a\u064f\u0643\u064e\u0630\u0651\u0650\u0628\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Alam takun Aayaatee tutlaa 'alaikum fakuntum bihaa tukazziboon",
-      },
+      arabic: "أَلَمْ تَكُنْ ءَايَٰتِى تُتْلَىٰ عَلَيْكُمْ فَكُنتُم بِهَا تُكَذِّبُونَ",
     },
     translation: {
-      en: '[It will be said]. "Were not My verses recited to you and you used to deny them?"',
-      id: "Bukankah ayat-ayat-Ku telah dibacakan kepadamu, tetapi kamu selalu mendustakannya?",
+      en: {
+        footnotes: "",
+        text: "“Were not My verses recited to you, and you used to reject them?”",
+      },
+      id: {
+        footnotes: "",
+        text: "Bukankah ayat-ayat-Ku telah dibacakan kepadamu, tetapi kamu selalu mendustakannya?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2779",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2779.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2779.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 139,
       juz: 18,
       manzil: 4,
       page: 349,
       ruku: 300,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2779,
@@ -147,40 +125,32 @@ export const quranSurah23Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini Allah menerangkan pengakuan penghuni neraka atas kesesatan mereka, sekalipun telah diutus kepada mereka rasul-rasul untuk membimbing mereka, dan diturunkan kitab-kitab samawi untuk menjadi pedoman mereka. Akan tetapi, mereka telah dikalahkan oleh kejahatan mereka, dan dikendalikan oleh hawa nafsu, maka tidak ada jalan bagi mereka untuk berbuat kebaikan dan menghindarkan diri dari jalan kesesatan. Sejalan dengan ayat ini firman Allah:\n\nLalu kami mengakui dosa-dosa kami. Maka adakah suatu jalan (bagi kami) untuk keluar (dari neraka)? (al-Mu'min/40: 11)",
-        short:
-          "Menjawab pertanyaan itu, mereka berkata dengan penuh penyesalan, “Ya Tuhan kami, kami telah dikuasai oleh kejahatan kami. Hawa nafsu telah menjerumuskan kami ke dalam kedurhakaan sehingga membuat kami menderita, dan kami di dunia dulu adalah orang-orang yang sesat.” Dengan pengakuan dan penyesalan itu mereka berharap ampunan dan keringanan siksa. Mereka pun memohon, “Ya Tuhan kami, keluarkanlah kami darinya, yaitu dari siksa neraka dan kesengsaraan ini, kembalikanlah kami ke dunia. Jika Engkau memperkenankan permohonan kami ini lalu setelah itu kami masih juga kembali kepada kekafiran dan kedurhakaan maka sungguh, kami adalah orang-orang yang zalim.”",
+        footnotes: null,
+        text: 'Mereka menjawab, "Wahai Tuhan kami, kami telah dikuasai oleh kejahatan kami sendiri yang telah Engkau tetapkan dalam ilmuMu, dan kami adalah orang-orang yang tersesat dari jalan kebenaran.',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064f\u0648\u0627 \u0631\u064e\u0628\u0651\u064e\u0646\u064e\u0627 \u063a\u064e\u0644\u064e\u0628\u064e\u062a\u0652 \u0639\u064e\u0644\u064e\u064a\u0652\u0646\u064e\u0627 \u0634\u0650\u0642\u0652\u0648\u064e\u062a\u064f\u0646\u064e\u0627 \u0648\u064e\u0643\u064f\u0646\u0651\u064e\u0627 \u0642\u064e\u0648\u0652\u0645\u064b\u0627 \u0636\u064e\u0627\u0644\u0651\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Qaaloo Rabbanaa ghalabat 'alainaa shiqwatunaa wa kunnaa qawman daaalleen",
-      },
+      arabic: "قَالُوا۟ رَبَّنَا غَلَبَتْ عَلَيْنَا شِقْوَتُنَا وَكُنَّا قَوْمًا ضَآلِّينَ",
     },
     translation: {
-      en: 'They will say, "Our Lord, our wretchedness overcame us, and we were a people astray.',
-      id: "Mereka berkata, “Ya Tuhan kami, kami telah dikuasai oleh kejahatan kami, dan kami adalah orang-orang yang sesat.",
+      en: {
+        footnotes: "",
+        text: "They will say, “Our Lord, our misfortune overwhelmed us, and we were a people who went astray.",
+      },
+      id: {
+        footnotes: "",
+        text: 'Mereka berkata, "Ya Tuhan kami, kami telah dikuasai oleh kejahatan kami, dan kami adalah orang-orang yang sesat.',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2780",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2780.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2780.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 139,
       juz: 18,
       manzil: 4,
       page: 349,
       ruku: 300,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2780,
@@ -188,40 +158,32 @@ export const quranSurah23Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan permohonan penghuni neraka kepada Allah, yaitu agar mereka dikeluarkan dari neraka dan dikembalikan ke dunia. Mereka berjanji bahwa kalau permohonan mereka dikabulkan, mereka akan mengubah kekafiran mereka kepada keimanan dan taat kepada segala apa yang diperintahkan Allah kepada mereka. Jika mereka masih tetap saja berbuat maksiat sebagaimana halnya dahulu, maka mereka benar-benar orang yang aniaya dan mereka layak menerima azab dan siksa yang amat pedih.",
-        short:
-          "Menjawab pertanyaan itu, mereka berkata dengan penuh penyesalan, “Ya Tuhan kami, kami telah dikuasai oleh kejahatan kami. Hawa nafsu telah menjerumuskan kami ke dalam kedurhakaan sehingga membuat kami menderita, dan kami di dunia dulu adalah orang-orang yang sesat.” Dengan pengakuan dan penyesalan itu mereka berharap ampunan dan keringanan siksa. Mereka pun memohon, “Ya Tuhan kami, keluarkanlah kami darinya, yaitu dari siksa neraka dan kesengsaraan ini, kembalikanlah kami ke dunia. Jika Engkau memperkenankan permohonan kami ini lalu setelah itu kami masih juga kembali kepada kekafiran dan kedurhakaan maka sungguh, kami adalah orang-orang yang zalim.”",
+        footnotes: null,
+        text: 'Wahai Tuhan kami! Keluarkanlah kami dari neraka dan kembalikan kami ke dunia. Bila kami tetap kembali kafir dan sesat seperti dahulu kala, sungguh kami adalah orang-orang yang zalim kepada diri sendiri dan tidak ada lagi alasan yang bisa kami kemukakan setelahnya."',
       },
     },
     text: {
-      arab: "\u0631\u064e\u0628\u0651\u064e\u0646\u064e\u0627 \u0623\u064e\u062e\u0652\u0631\u0650\u062c\u0652\u0646\u064e\u0627 \u0645\u0650\u0646\u0652\u0647\u064e\u0627 \u0641\u064e\u0625\u0650\u0646\u0652 \u0639\u064f\u062f\u0652\u0646\u064e\u0627 \u0641\u064e\u0625\u0650\u0646\u0651\u064e\u0627 \u0638\u064e\u0627\u0644\u0650\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Rabbanaa akhrijnaa minhaa fa in 'udnaa fa innaa zaalimoon",
-      },
+      arabic: "رَبَّنَآ أَخْرِجْنَا مِنْهَا فَإِنْ عُدْنَا فَإِنَّا ظَٰلِمُونَ",
     },
     translation: {
-      en: 'Our Lord, remove us from it, and if we were to return [to evil], we would indeed be wrongdoers."',
-      id: "Ya Tuhan kami, keluarkanlah kami darinya (kembalikanlah kami ke dunia), jika kami masih juga kembali (kepada kekafiran), sungguh, kami adalah orang-orang yang zalim.”",
+      en: {
+        footnotes: "",
+        text: "Our Lord, take us out of this; if we returned [to evil], we would certainly be wrongdoers.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Ya Tuhan kami, keluarkanlah kami darinya (kembalikanlah kami ke dunia), jika kami masih juga kembali (kepada kekafiran), sungguh, kami adalah orang-orang yang zalim."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/2781",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2781.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/2781.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 139,
       juz: 18,
       manzil: 4,
       page: 349,
       ruku: 300,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 2781,
@@ -229,20 +191,22 @@ export const quranSurah23Verses103To108 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan jawaban Allah terhadap permintaan penghuni neraka untuk dapat dikembalikan ke dunia menebus kesalahan dan dosa-dosa yang telah diperbuatnya. Allah menegaskan kepada mereka supaya tetap berada di dalam neraka, meringkuk dalam keadaan hina dan tidak mempunyai harga diri sedikit pun. Mereka harus diam dan tidak melanjutkan pembicaraannya dengan Allah serta tidak mengulangi lagi perbuatannya karena mereka tak mungkin lagi dapat dikembalikan ke dunia.",
-        short:
-          "Mendengar permohonan para pendurhaka, Dia berfirman, “Tinggallah dengan hina di dalamnya, yakni neraka, dan janganlah kamu berbicara dengan Aku karena tidak ada lagi kesempatan untuk tawar-menawar. Kalian, wahai para pendurhaka, tidak pula akan memperoleh kehormatan untuk berdialog dengan-Ku.” Mengingatkan kembali salah satu kedurhakaan mereka, Allah berfirman, “Sesungguhnya ada segolongan dari hamba-hamba-Ku berdoa, “Ya Tuhan kami, kami telah ber-iman, maka ampunilah kami dan berilah kami rahmat, Engkau adalah pemberi rahmat yang terbaik.”",
+        footnotes: null,
+        text: 'Allah berfirman, "Tinggallah kalian di dalam neraka dengan penuh kehinaan dan tercela dan janganlah kalian berbicara dengan-Ku.',
       },
     },
     text: {
-      arab: "\u0642\u064e\u0627\u0644\u064e \u0627\u062e\u0652\u0633\u064e\u0626\u064f\u0648\u0627 \u0641\u0650\u064a\u0647\u064e\u0627 \u0648\u064e\u0644\u064e\u0627 \u062a\u064f\u0643\u064e\u0644\u0651\u0650\u0645\u064f\u0648\u0646\u0650",
-      transliteration: {
-        en: "Qaalakh sa'oo feehaa wa laa tukallimoon",
-      },
+      arabic: "قَالَ ٱخْسَـُٔوا۟ فِيهَا وَلَا تُكَلِّمُونِ",
     },
     translation: {
-      en: 'He will say, "Remain despised therein and do not speak to Me.',
-      id: "Dia (Allah) berfirman, “Tinggallah dengan hina di dalamnya, dan janganlah kamu berbicara dengan Aku.”",
+      en: {
+        footnotes: "[48] i.e., Do not plead your case with Me.",
+        text: "Allah will say, “Stay therein despised and do not speak to Me[48].",
+      },
+      id: {
+        footnotes: "",
+        text: 'Dia (Allah) berfirman, "Tinggallah dengan hina di dalamnya, dan janganlah kamu berbicara dengan Aku."',
+      },
     },
   },
 ];

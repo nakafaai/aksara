@@ -43,6 +43,29 @@ export const RendererDomainCapabilitySchema = Schema.Struct({
 export type RendererDomainCapability =
   typeof RendererDomainCapabilitySchema.Type;
 
+/** Checks published route domains are unique and ordered by code unit. */
+function hasCanonicalPublishedDomains(domains: readonly RendererDomain[]) {
+  const canonical = [...domains].sort(compareCodeUnits);
+
+  return domains.every(
+    (domain, index) =>
+      domain === canonical[index] && domain !== domains[index - 1]
+  );
+}
+
+/** Canonical route domains that the deployed Nakafa app can publish. */
+export const RendererPublishedDomainsSchema = Schema.Array(
+  RendererDomainSchema
+).pipe(
+  Schema.minItems(1),
+  Schema.filter(hasCanonicalPublishedDomains, {
+    message: () =>
+      "Expected unique published renderer domains in canonical order.",
+  })
+);
+export type RendererPublishedDomains =
+  typeof RendererPublishedDomainsSchema.Type;
+
 /** Sorts route-domain registries with cross-machine code-unit ordering. */
 export function sortRendererDomains<T extends RendererDomainCapability>(
   domains: readonly T[]
@@ -88,6 +111,7 @@ export const RendererManifestEnvelopeSchema = Schema.Struct({
   domains: RendererManifestDomainsSchema,
   format: Schema.Literal(RENDERER_MANIFEST_FORMAT),
   hash: Sha256HashSchema,
+  publishedDomains: RendererPublishedDomainsSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
 }).pipe(
   Schema.filter(hasDistinctBaseComponents, {
@@ -127,6 +151,7 @@ export class RendererManifestHashMismatchError extends Schema.TaggedError<Render
 export function canonicalizeRendererManifestContract(input: {
   readonly base: RendererCapability;
   readonly domains: readonly RendererDomainCapability[];
+  readonly publishedDomains: RendererPublishedDomains;
 }) {
   /** Copies one registry capability into exact canonical wire fields. */
   const capability = (value: RendererCapability) => ({
@@ -147,5 +172,6 @@ export function canonicalizeRendererManifestContract(input: {
       name,
       ...capability(domain),
     })),
+    input.publishedDomains,
   ]);
 }

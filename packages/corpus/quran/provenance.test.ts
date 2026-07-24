@@ -10,22 +10,20 @@ describe("Quran provenance records", () => {
       makeQuranProvenanceManifest(quranProvenanceRecords)
     );
 
-    expect(quranProvenanceRecords).toHaveLength(16);
+    expect(quranProvenanceRecords).toHaveLength(5);
     expect(new Set(quranProvenanceRecords.map(({ scope }) => scope))).toEqual(
       new Set([
         "arabic-text",
-        "audio",
         "en-translation",
         "id-tafsir",
         "id-translation",
         "metadata",
-        "transliteration",
       ])
     );
-    expect(manifest.status).toBe("blocked");
+    expect(manifest.status).toBe("approved");
     expect(
       quranProvenanceRecords.every(
-        ({ retrievedOn }) => retrievedOn === "2026-07-23"
+        ({ attribution }) => attribution.retrievedAt === "2026-07-24T17:57:50Z"
       )
     ).toBe(true);
   });

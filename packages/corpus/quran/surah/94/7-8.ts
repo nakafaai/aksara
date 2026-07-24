@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah94Verses7To8 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6097",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6097.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6097.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 536,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6097,
@@ -24,40 +25,33 @@ export const quranSurah94Verses7To8 = [
     },
     tafsir: {
       id: {
-        long: "Sesudah menyatakan nikmat-nikmat-Nya kepada Nabi Muhammad dan janji-Nya akan menyelamatkan beliau dari bahaya-bahaya yang menimpa, Allah memerintahkan kepadanya agar menyukuri nikmat-nikmat tersebut dengan tekun beramal saleh sambil bertawakal kepada-Nya. Bila telah selesai mengerjakan suatu amal perbuatan, maka hendaklah beliau mengerjakan amal perbuatan lainnya. Sebab, dalam keadaan terus beramal, beliau akan menemui ketenangan jiwa dan kelapangan hati. Ayat ini menganjurkan agar Nabi saw tetap rajin dan terus-menerus tekun beramal.",
-        short:
-          "Maka apabila engkau telah selesai dari suatu urusan, tetaplah bekerja keras untuk urusan yang lain. Bila engkau menyelesaikan suatu urusan dunia atau berdakwah, bergegaslah bersimpuh di hadapan Tuhanmu. Begitu engkau selesai beribadah, bersungguh-sungguhlah dalam ber­doa. Demikian seterusnya.",
+        footnotes: null,
+        text: "Jika engkau telah berhenti dari pekerjaanmu dan menyelesaikannya maka bersungguh-sungguhlah untuk beribadah kepada Tuhanmu.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0625\u0650\u0630\u064e\u0627 \u0641\u064e\u0631\u064e\u063a\u0652\u062a\u064e \u0641\u064e\u0627\u0646\u0635\u064e\u0628\u0652",
-      transliteration: {
-        en: "Fa iza faragh ta fansab",
-      },
+      arabic: "فَإِذَا فَرَغْتَ فَٱنصَبْ",
     },
     translation: {
-      en: "So when you have finished [your duties], then stand up [for worship].",
-      id: "Maka apabila engkau telah selesai (dari sesuatu urusan), tetaplah bekerja keras (untuk urusan yang lain),",
+      en: {
+        footnotes: "[5] Of your duties.",
+        text: "So whenever you are free[5], strive in worship,",
+      },
+      id: {
+        footnotes:
+          '[915] Sebagian mufasir menafsirkan apabila engkau (Muhammad) telah selesai berdakwah maka beribadahlah kepada Allah; apabila engkau telah selesai melaksanakan urusan dunia maka kerjakanlah urusan akhirat dan ada lagi yang mengatakan, "Apabila telah mengerjakan salat maka berdoalah".',
+        text: "Maka apabila engkau telah selesai (dari suatu urusan), tetaplah bekerja keras (untuk urusan yang lain),[915]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6098",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6098.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6098.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 239,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 536,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6098,
@@ -65,20 +59,22 @@ export const quranSurah94Verses7To8 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menegaskan agar Nabi Muhammad tidak mengharapkan pahala dari hasil amal perbuatannya, akan tetapi hanya menuntut keridaan Allah semata. Karena Dia-lah sebenarnya yang dituju dalam amal ibadah dan pada-Nyalah tempat merendahkan diri.",
-        short:
-          "Dan hanya kepada Tuhanmulah engkau patut berharap dengan selalu bertawakal serta meng­harap rahmat dan rida-Nya.",
+        footnotes: null,
+        text: "Lalu jadikanlah keinginan dan tujuanmu hanya kepada Allah semata.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0644\u064e\u0649\u0670 \u0631\u064e\u0628\u0651\u0650\u0643\u064e \u0641\u064e\u0627\u0631\u0652\u063a\u064e\u0628",
-      transliteration: {
-        en: "Wa ilaa rabbika far ghab",
-      },
+      arabic: "وَإِلَىٰ رَبِّكَ فَٱرْغَب",
     },
     translation: {
-      en: "And to your Lord direct [your] longing.",
-      id: "dan hanya kepada Tuhanmulah engkau berharap.",
+      en: {
+        footnotes: "",
+        text: "and turn to your Lord in devotion.",
+      },
+      id: {
+        footnotes: "",
+        text: "dan hanya kepada Tuhanmulah engkau berharap.",
+      },
     },
   },
 ];

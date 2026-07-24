@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses163To168 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3951",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3951.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3951.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3951,
@@ -24,40 +25,32 @@ export const quranSurah37Verses163To168 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat-ayat ini Allah menegaskan bahwa kaum kafir Mekah itu bersama sembahan-sembahan mereka, yaitu patung-patung dan berhala-berhala itu, tidak akan bisa mempengaruhi dan menyesatkan mereka yang beriman. Hal itu karena dasar iman mereka mempertuhankan patung-patung itu tidak ada. Begitu juga menyatakan bahwa malaikat itu adalah anak-anak perempuan Allah. Dasar suatu keimanan adalah wahyu, sedangkan Allah tidak pernah menurunkan wahyu tentang benarnya penyembahan berhala dan tentang malaikat sebagai putrinya. Di samping itu mereka yang beriman kepada Allah, iman mereka kuat sehingga tidak akan terpengaruh oleh akidah mereka yang keliru. Bila ada yang terpengaruh, maka mereka adalah calon-calon penghuni neraka juga, yaitu orang-orang yang lemah imannya. Mereka nanti akan dimasukkan ke dalam neraka Jahim bersama orang-orang yang mempengaruhinya.",
-        short:
-          "kecuali menyesatkan orang-orang yang telah ditetapkan akan masuk ke neraka Jahim akibat langgeng dalam kekafirannya. Sementara itu, orang yang menempuh jalan kebenaran akan selamat dari tipu daya setan sehingga selamat dari siksa neraka.",
+        footnotes: null,
+        text: "Kecuali siapa yang telah Allah tetapkan bahwa dia termasuk penduduk neraka. Allah pasti melaksanakan ketetapannya, sehingga orang itu pun akan menjadi kafir dan masuk neraka. Adapun kalian dan sesembahan kalian maka semuanya tidak memiliki kekuasaan untuk itu.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0646\u0652 \u0647\u064f\u0648\u064e \u0635\u064e\u0627\u0644\u0650 \u0627\u0644\u0652\u062c\u064e\u062d\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Illaa man huwa saalil jaheem",
-      },
+      arabic: "إِلَّا مَنْ هُوَ صَالِ ٱلْجَحِيمِ",
     },
     translation: {
-      en: "Except he who is to [enter and] burn in the Hellfire.",
-      id: "kecuali orang-orang yang akan masuk ke neraka Jahim.",
+      en: {
+        footnotes: "[39] Due to their disbelief and evil deeds.",
+        text: "except those who are destined to burn in the Blazing Fire[39].",
+      },
+      id: {
+        footnotes: "",
+        text: "kecuali orang-orang yang akan masuk ke neraka Jahim.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3952",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3952.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3952.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3952,
@@ -65,40 +58,33 @@ export const quranSurah37Verses163To168 = [
     },
     tafsir: {
       id: {
-        long: "Pada ayat ini disampaikan pengakuan malaikat mengenai dirinya, yaitu bahwa mereka memanggul fungsi dan tugas tertentu. Mereka menjalankan fungsi dan tugasnya itu tanpa mengurangi atau menambah sedikit pun dari yang diperintahkan Allah swt sebagaimana dinyatakan dalam firman-Nya:\n\n¦yang tidak durhaka kepada Allah terhadap apa yang Dia perintahkan kepada mereka dan selalu mengerjakan apa yang diperintahkan. (at-Tahrim/66: 6)",
-        short:
-          "Malaikat bukanlah anak-anak perempuan Allah sebagaimana tuduhan orang musyrik. Mereka hanyalah hamba-hamba Allah yang patuh pada perintah-Nya. Malaikat berkata, “Dan tidak satu pun di antara kami melainkan masing-masing mempunyai kedudukan tertentu dalam melaksanakan tugas dan mengabdi kepada Allah,",
+        footnotes: null,
+        text: 'Para malaikat menjelaskan ubudiah mereka kepada Allah dan kebebasan mereka dari klaim kaum musyrikin dengan mengatakan,"Tidak satu pun dari kami kecuali mempunyai kedudukan yang jelas dalam urusan ibadah dan ketaatan kepada Allah.',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0645\u0650\u0646\u0651\u064e\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0644\u064e\u0647\u064f \u0645\u064e\u0642\u064e\u0627\u0645\u064c \u0645\u0651\u064e\u0639\u0652\u0644\u064f\u0648\u0645\u064c",
-      transliteration: {
-        en: "Wa maa minnasa illaa lahoo maqaamum ma'loom",
-      },
+      arabic: "وَمَا مِنَّآ إِلَّا لَهُۥ مَقَامٌ مَّعْلُومٌ",
     },
     translation: {
-      en: '[The angels say], "There is not among us any except that he has a known position.',
-      id: "Dan tidak satu pun di antara kami (malaikat) melainkan masing-masing mempunyai kedudukan tertentu,",
+      en: {
+        footnotes:
+          "[40] Refuting the disbelievers’ false claims about them.\n [41] In worshiping Allah and obeying Him in our assigned tasks.",
+        text: "[The angels say][40], “There is none among us but has a known station[41]:",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan tidak satu pun di antara kami (malaikat) melainkan masing-masing mempunyai kedudukan tertentu,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3953",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3953.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3953.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3953,
@@ -106,40 +92,32 @@ export const quranSurah37Verses163To168 = [
     },
     tafsir: {
       id: {
-        long: 'Lebih jauh para malaikat itu menjelaskan bahwa mereka dalam menjalankan tugasnya berbaris-baris, yaitu selalu sigap melaksanakan tugasnya dan bekerjasama dalam kesatuan-kesatuan yang kuat. Dengan berbaris-baris seperti itu maka tugas dilaksanakan mereka dengan penuh semangat, gegap-gempita, dan sempurna, sehingga pelaksanaan tugas itu sukses secara maksimal tanpa ada yang kurang atau yang lebih. Pelaksanaan tugas secara serius itu memberikan petunjuk bahwa mereka sangat patuh kepada Allah dan menjalankan perintah-Nya.\n\nKepatuhan dan keseriusan malaikat menjalankan tugasnya itu perlu ditiru oleh kaum muslimin. Dalam sebuah hadis sahih yang diriwayatkan oleh Muslim yang bersumber dari Jabir bin Samurah, ia mengatakan: \n\nDari Jabir bin Samurah bahwa Rasulullah suatu ketika keluar menemui kami sedang kami berada di dalam masjid, lalu beliau bersabda, \'Mengapa kalian tidak berbaris seperti malaikat berbaris di sisi Tuhannya? Lalu kami bertanya, \'Ya, Rasulullah, bagaimana caranya malaikat-malaikat itu berbaris di sisi Tuhannya? Rasulullah bersabda, \'Mereka mengisi sampai penuh barisan pertama dan merapatkannya." (Riwayat Muslim)\n\nKarena terinspirasi oleh ayat itu, Khalifah Umar bin Khaththab mengatur saf-saf sebelum mengimami salat. Dilaporkan oleh Abu Nadhrah: \n\nUmar r.a. ketika iqamat dilantunkan, ia menghadap kepada jamaah dan berkata, "Atur saf-saf kalian, luruskan barisan kalian! Allah Ta\'ala ingin kalian mengikuti perilaku malaikat." Kemudian ia membaca ayat: "wa inna lanahnu ash-shaffun" "Hai Fulan mundur, hai Fulan maju!" Setelah itu ia maju ke depan dan membaca takbir (mengimami salat). (Riwayat Ibnu Abi hatim dan Ibnu Jarir).',
-        short:
-          "dan sesungguhnya kami selalu teratur dalam barisan untuk melaksanakan perintah-Nya.",
+        footnotes: null,
+        text: '165 - 166. Sesungguhnya kami (para malaikat) berdiri berbaris dengan rapi dalam beribadah dan menaati Allah. Sesungguhnya kami juga menyucikan Allah dari apa yang tidak layak bagi-Nya dalam sifat-sifat-Nya."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0627 \u0644\u064e\u0646\u064e\u062d\u0652\u0646\u064f \u0627\u0644\u0635\u0651\u064e\u0627\u0641\u0651\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa innaa llanah nus saaffoon",
-      },
+      arabic: "وَإِنَّا لَنَحْنُ ٱلصَّآفُّونَ",
     },
     translation: {
-      en: "And indeed, we are those who line up [for prayer].",
-      id: "dan sesungguhnya kami selalu teratur dalam barisan (dalam melaksanakan perintah Allah).",
+      en: {
+        footnotes: "",
+        text: "We are indeed those who stand lined up in rows,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan sesungguhnya kami selalu teratur dalam barisan (dalam melaksanakan perintah Allah).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3954",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3954.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3954.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3954,
@@ -147,40 +125,32 @@ export const quranSurah37Verses163To168 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah menjelaskan perilaku malaikat bahwa mereka selalu bertasbih kepada-Nya. Bertasbih adalah mensucikan Allah dari sifat-sifat yang tidak layak bagi-Nya, baik berupa sifat-sifat kekurangan, seperti lemah, mengantuk, perlu pembantu/anak dan sebagainya atau sifat-sifat tercela seperti pemarah, zalim, dan sebagainya. Bertasbih itu tidak cukup hanya dengan ucapan, dengan membaca subhanallah, tetapi perlu diiringi dengan perbuatan. Contoh tasbih yang sempurna adalah apa yang dikerjakan malaikat, dimana mereka tidak hanya terus menerus memuji Allah tetapi juga melaksanakan sepenuhnya perintah-perintah-Nya.",
-        short:
-          "Dan sungguh, kami benar-benar terus bertasbih, menyucikan dan mengagungkan asma-Nya dari sifat-sifat yang tidak layak bagi-Nya.",
+        footnotes: null,
+        text: '165 - 166. Sesungguhnya kami (para malaikat) berdiri berbaris dengan rapi dalam beribadah dan menaati Allah. Sesungguhnya kami juga menyucikan Allah dari apa yang tidak layak bagi-Nya dalam sifat-sifat-Nya."',
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0627 \u0644\u064e\u0646\u064e\u062d\u0652\u0646\u064f \u0627\u0644\u0652\u0645\u064f\u0633\u064e\u0628\u0651\u0650\u062d\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa innaa lanah nul musabbihoon",
-      },
+      arabic: "وَإِنَّا لَنَحْنُ ٱلْمُسَبِّحُونَ",
     },
     translation: {
-      en: 'And indeed, we are those who exalt Allah."',
-      id: "Dan sungguh, kami benar-benar terus bertasbih (kepada Allah).",
+      en: {
+        footnotes: "",
+        text: "and we are indeed those who glorify Allah.”",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, kami benar-benar terus bertasbih (kepada Allah).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3955",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3955.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3955.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3955,
@@ -188,40 +158,32 @@ export const quranSurah37Verses163To168 = [
     },
     tafsir: {
       id: {
-        long: "Dijelaskan bahwa kaum kafir Mekah itu sebelum kedatangan Nabi Muhammad sebenarnya sudah berjanji bahwa seandainya mereka memiliki kitab suci yang berisi pedoman seperti yang dimiliki oleh kaum Yahudi dan Nasrani, mereka akan beriman dan melaksanakan perintah yang tertera dalam kitab suci itu dengan sepatuh-patuhnya. Mereka mengharapkan datangnya seorang rasul untuk membimbing mereka menuju kebahagiaan di dunia dan akhirat seperti yang dipunyai mereka. Mereka ingin pula mengalami kejayaan seperti yang pernah dialami kedua kaum itu di bawah nabi mereka masing-masing, karena umat di bawah pimpinan nabi pastilah terjamin kebahagiaan dan kejayaannya.",
-        short:
-          "Orang-orang kafir selalu mencari pembenaran atas kekafiran mereka, tidak terkecuali mereka yang hidup sebelum Nabi Muhammad. Dan sesungguhnya mereka benar-benar pernah berkata,",
+        footnotes: null,
+        text: "167 - 170. Sesungguhnya orang-orang musyrikin dari penduduk Makkah berkata sebelum Muhammad -ṣallallāhu 'alaihi wa sallam- diutus, “Seandainya kami memiliki kitab dari kitab-kitab terdahulu seperti Taurat, tentunya kami sudah mengikhlaskan ibadah kepada Allah.” Mereka dusta, Muhammad telah datang kepada mereka namun mereka malah kafir kepadanya. Mereka akan mengetahui apa yang mereka tunggu-tunggu, yaitu azab yang keras pada hari Kiamat.  ",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0625\u0650\u0646 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0644\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa in kaanoo la yaqooloon",
-      },
+      arabic: "وَإِن كَانُوا۟ لَيَقُولُونَ",
     },
     translation: {
-      en: "And indeed, the disbelievers used to say,",
-      id: "Dan sesungguhnya mereka (orang kafir Mekah) benar-benar pernah berkata,",
+      en: {
+        footnotes: "[42] Before the revelation of the Qur’an.",
+        text: "And [the pagans] used to say[42],",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sesungguhnya mereka (orang kafir Mekkah) benar-benar pernah berkata,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3956",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3956.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3956.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 181,
       juz: 23,
       manzil: 6,
       page: 452,
       ruku: 390,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3956,
@@ -229,20 +191,22 @@ export const quranSurah37Verses163To168 = [
     },
     tafsir: {
       id: {
-        long: "Dijelaskan bahwa kaum kafir Mekah itu sebelum kedatangan Nabi Muhammad sebenarnya sudah berjanji bahwa seandainya mereka memiliki kitab suci yang berisi pedoman seperti yang dimiliki oleh kaum Yahudi dan Nasrani, mereka akan beriman dan melaksanakan perintah yang tertera dalam kitab suci itu dengan sepatuh-patuhnya. Mereka mengharapkan datangnya seorang rasul untuk membimbing mereka menuju kebahagiaan di dunia dan akhirat seperti yang dipunyai mereka. Mereka ingin pula mengalami kejayaan seperti yang pernah dialami kedua kaum itu di bawah nabi mereka masing-masing, karena umat di bawah pimpinan nabi pastilah terjamin kebahagiaan dan kejayaannya.",
-        short:
-          "“Sekiranya di sisi kami ada sebuah kitab dari Allah yang dibawa oleh seorang rasul sebagaimana Taurat dan Injil yang diturunkan kepada orang-orang dahulu,",
+        footnotes: null,
+        text: "167 - 170. Sesungguhnya orang-orang musyrikin dari penduduk Makkah berkata sebelum Muhammad -ṣallallāhu 'alaihi wa sallam- diutus, “Seandainya kami memiliki kitab dari kitab-kitab terdahulu seperti Taurat, tentunya kami sudah mengikhlaskan ibadah kepada Allah.” Mereka dusta, Muhammad telah datang kepada mereka namun mereka malah kafir kepadanya. Mereka akan mengetahui apa yang mereka tunggu-tunggu, yaitu azab yang keras pada hari Kiamat.  ",
       },
     },
     text: {
-      arab: "\u0644\u064e\u0648\u0652 \u0623\u064e\u0646\u0651\u064e \u0639\u0650\u0646\u062f\u064e\u0646\u064e\u0627 \u0630\u0650\u0643\u0652\u0631\u064b\u0627 \u0645\u0651\u0650\u0646\u064e \u0627\u0644\u0652\u0623\u064e\u0648\u0651\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Law anna 'indana zikram minal awwaleen",
-      },
+      arabic: "لَوْ أَنَّ عِندَنَا ذِكْرًا مِّنَ ٱلْأَوَّلِينَ",
     },
     translation: {
-      en: '"If we had a message from [those of] the former peoples,',
-      id: "”Sekiranya di sisi kami ada sebuah kitab dari (kitab-kitab yang diturunkan) kepada orang-orang dahulu,",
+      en: {
+        footnotes: "[43] Such as the Torah and the Gospel.",
+        text: "“If only we had a scripture[43] like the previous people,",
+      },
+      id: {
+        footnotes: "",
+        text: '"Sekiranya di sisi kami ada suatu kitab dari (kitab-kitab yang diturunkan) kepada orang-orang dahulu,',
+      },
     },
   },
 ];

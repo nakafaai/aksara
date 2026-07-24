@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah56Verses31To36 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5010",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5010.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5010.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5010,
@@ -24,40 +25,32 @@ export const quranSurah56Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, secara terperinci diterangkan bahwa mereka golongan kanan, yang menerima catatan amalnya dengan tangan kanannya adalah penghuni surga yang akan bersenangsenang dan bergembira dalam taman surga yang di antara pohonpohonnya terdapat pohon bidara yang tidak berduri dan pohon pisang yang bersusun-susun buahnya. Mereka bersuka-ria di bawah naungan berbagai macam pohon yang rindang, di mana tercurah air yang mengalir dan pohon-pohon yang lain dengan buahnya yang lezat serta berbuah sepanjang masa tanpa mengenal musim, dengan kelezatan cita rasanya dan pohon-pohon bunga yang wangi lagi semerbak harum baunya yang dapat menikmatinya kapan dan di mana pun mereka berada, tanpa ada yang melarang akan apa yang dikehendakinya.",
-        short:
-          "menjadikannya terasa sejuk, dan selain itu terdapat pula air jernih yang tercurah di sana.",
+        footnotes: null,
+        text: "Juga pada air mengalir yang tidak pernah berhenti.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627\u0621\u064d \u0645\u0651\u064e\u0633\u0652\u0643\u064f\u0648\u0628\u064d",
-      transliteration: {
-        en: "Wa maaa'im maskoob",
-      },
+      arabic: "وَمَآءٍ مَّسْكُوبٍ",
     },
     translation: {
-      en: "And water poured out",
-      id: "dan air yang mengalir terus-menerus,",
+      en: {
+        footnotes: "",
+        text: "and flowing water,",
+      },
+      id: {
+        footnotes: "",
+        text: "dan air yang mengalir terus-menerus,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5011",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5011.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5011.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5011,
@@ -65,40 +58,32 @@ export const quranSurah56Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, secara terperinci diterangkan bahwa mereka golongan kanan, yang menerima catatan amalnya dengan tangan kanannya adalah penghuni surga yang akan bersenangsenang dan bergembira dalam taman surga yang di antara pohonpohonnya terdapat pohon bidara yang tidak berduri dan pohon pisang yang bersusun-susun buahnya. Mereka bersuka-ria di bawah naungan berbagai macam pohon yang rindang, di mana tercurah air yang mengalir dan pohon-pohon yang lain dengan buahnya yang lezat serta berbuah sepanjang masa tanpa mengenal musim, dengan kelezatan cita rasanya dan pohon-pohon bunga yang wangi lagi semerbak harum baunya yang dapat menikmatinya kapan dan di mana pun mereka berada, tanpa ada yang melarang akan apa yang dikehendakinya.",
-        short:
-          "Di surga terdapat beragam sayuran dan buah-buahan yang sudah masak dan banyak macamnya.",
+        footnotes: null,
+        text: "Juga pada buah-buahan yang banyak, tidak terkira jumlahnya.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0641\u064e\u0627\u0643\u0650\u0647\u064e\u0629\u064d \u0643\u064e\u062b\u0650\u064a\u0631\u064e\u0629\u064d",
-      transliteration: {
-        en: "Wa faakihatin kaseerah",
-      },
+      arabic: "وَفَٰكِهَةٍ كَثِيرَةٍ",
     },
     translation: {
-      en: "And fruit, abundant [and varied],",
-      id: "dan buah-buahan yang banyak,",
+      en: {
+        footnotes: "",
+        text: "and abundant fruit –",
+      },
+      id: {
+        footnotes: "",
+        text: "dan buah-buahan yang banyak,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5012",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5012.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5012.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5012,
@@ -106,40 +91,32 @@ export const quranSurah56Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, secara terperinci diterangkan bahwa mereka golongan kanan, yang menerima catatan amalnya dengan tangan kanannya adalah penghuni surga yang akan bersenangsenang dan bergembira dalam taman surga yang di antara pohonpohonnya terdapat pohon bidara yang tidak berduri dan pohon pisang yang bersusun-susun buahnya. Mereka bersuka-ria di bawah naungan berbagai macam pohon yang rindang, di mana tercurah air yang mengalir dan pohon-pohon yang lain dengan buahnya yang lezat serta berbuah sepanjang masa tanpa mengenal musim, dengan kelezatan cita rasanya dan pohon-pohon bunga yang wangi lagi semerbak harum baunya yang dapat menikmatinya kapan dan di mana pun mereka berada, tanpa ada yang melarang akan apa yang dikehendakinya.",
-        short:
-          "Pepohonan di dalamnya merupakan tumbuhan yang tidak berhenti berbuah dan tidak terlarang pula bagi penghuni surga untuk mengambilnya.",
+        footnotes: null,
+        text: "Buah-buahan itu tidak pernah habis untuk mereka selamanya, tidak tergantung pada musimnya, dan tidak ada yang membatasi kapan saja mereka menginginkannya.",
       },
     },
     text: {
-      arab: "\u0644\u0651\u064e\u0627 \u0645\u064e\u0642\u0652\u0637\u064f\u0648\u0639\u064e\u0629\u064d \u0648\u064e\u0644\u064e\u0627 \u0645\u064e\u0645\u0652\u0646\u064f\u0648\u0639\u064e\u0629\u064d",
-      transliteration: {
-        en: "Laa maqtoo'atinw wa laa mamnoo'ah",
-      },
+      arabic: "لَّا مَقْطُوعَةٍ وَلَا مَمْنُوعَةٍ",
     },
     translation: {
-      en: "Neither limited [to season] nor forbidden,",
-      id: "yang tidak berhenti berbuah dan tidak terlarang mengambilnya,",
+      en: {
+        footnotes: "",
+        text: "neither ceasing nor restricted –",
+      },
+      id: {
+        footnotes: "",
+        text: "yang tidak berhenti berbuah dan tidak terlarang mengambilnya,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5013",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5013.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5013.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5013,
@@ -147,40 +124,32 @@ export const quranSurah56Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, lebih diperinci kesenangan dan kegembiraan yang dinikmati oleh para penghuni surga tersebut ialah bahwa mereka akan duduk di atas kasur tebal berlapis-lapis, empuk dan halus yang isinya terbuat dari sutra, di atas ranjang kencana yang bertahtakan emas dan permata, dengan diciptakan pasangannya ialah bidadari-bidadari yang cantik jelita dan suci tak pernah haid dan hamil selama-lamanya, yang selalu dalam keadaan perawan sepanjang masa; bidadari-bidadari yang cantik jelita dan lemah gemulai itu berpakaian serba sutra yang halus dan sangat menarik, dengan hiasan gelang, kalung, dan anting-anting yang menambah kecantikannya yang asli, ditambah lagi dengan semerbak harum wanginya yang sangat menggiurkan.",
-        short:
-          "Bagi mereka disediakan pula tempat istirahat yang dilengkapi pembaringan, dan di atasnya terdapat kasur-kasur yang tebal lagi empuk.",
+        footnotes: null,
+        text: "Mereka juga berada di kasur-kasur yang terangkat tinggi, yang diletakkan di atas dipan.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0641\u064f\u0631\u064f\u0634\u064d \u0645\u0651\u064e\u0631\u0652\u0641\u064f\u0648\u0639\u064e\u0629\u064d",
-      transliteration: {
-        en: "Wa furushim marfoo'ah",
-      },
+      arabic: "وَفُرُشٍ مَّرْفُوعَةٍ",
     },
     translation: {
-      en: "And [upon] beds raised high.",
-      id: "dan kasur-kasur yang tebal lagi empuk.",
+      en: {
+        footnotes: "",
+        text: "and elevated mattresses [on beds].",
+      },
+      id: {
+        footnotes: "",
+        text: "dan kasur-kasur yang tebal lagi empuk.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5014",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5014.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5014.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5014,
@@ -188,40 +157,33 @@ export const quranSurah56Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, lebih diperinci kesenangan dan kegembiraan yang dinikmati oleh para penghuni surga tersebut ialah bahwa mereka akan duduk di atas kasur tebal berlapis-lapis, empuk dan halus yang isinya terbuat dari sutra, di atas ranjang kencana yang bertahtakan emas dan permata, dengan diciptakan pasangannya ialah bidadari-bidadari yang cantik jelita dan suci tak pernah haid dan hamil selama-lamanya, yang selalu dalam keadaan perawan sepanjang masa; bidadari-bidadari yang cantik jelita dan lemah gemulai itu berpakaian serba sutra yang halus dan sangat menarik, dengan hiasan gelang, kalung, dan anting-anting yang menambah kecantikannya yang asli, ditambah lagi dengan semerbak harum wanginya yang sangat menggiurkan.",
-        short:
-          "Selain kenikmatan yang telah diuraikan, sesungguhnya di surga juga terdapat bidadari-bidadari cantik yang Kami ciptakan mereka secara langsung.",
+        footnotes: null,
+        text: "Sesungguhnya Kami menciptakan bidadari-bidadari tersebut dengan penciptaan yang tidak biasa.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0627 \u0623\u064e\u0646\u0634\u064e\u0623\u0652\u0646\u064e\u0627\u0647\u064f\u0646\u0651\u064e \u0625\u0650\u0646\u0634\u064e\u0627\u0621\u064b",
-      transliteration: {
-        en: "Innaaa anshaanaahunna inshaaa'aa",
-      },
+      arabic: "إِنَّآ أَنشَأْنَٰهُنَّ إِنشَآءً",
     },
     translation: {
-      en: "Indeed, We have produced the women of Paradise in a [new] creation",
-      id: "Kami menciptakan mereka (bidadari-bidadari itu) secara langsung,",
+      en: {
+        footnotes: "",
+        text: "Indeed, We have perfectly created them [i.e., their spouses],",
+      },
+      id: {
+        footnotes:
+          "[828] Mereka diciptakan tanpa melalui kelahiran dan langsung menjadi gadis.",
+        text: "Kami menciptakan mereka (bidadari-bidadari itu) secara langsung,[828]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5015",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5015.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5015.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 214,
       juz: 27,
       manzil: 7,
       page: 535,
       ruku: 469,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5015,
@@ -229,19 +191,22 @@ export const quranSurah56Verses31To36 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, lebih diperinci kesenangan dan kegembiraan yang dinikmati oleh para penghuni surga tersebut ialah bahwa mereka akan duduk di atas kasur tebal berlapis-lapis, empuk dan halus yang isinya terbuat dari sutra, di atas ranjang kencana yang bertahtakan emas dan permata, dengan diciptakan pasangannya ialah bidadari-bidadari yang cantik jelita dan suci tak pernah haid dan hamil selama-lamanya, yang selalu dalam keadaan perawan sepanjang masa; bidadari-bidadari yang cantik jelita dan lemah gemulai itu berpakaian serba sutra yang halus dan sangat menarik, dengan hiasan gelang, kalung, dan anting-anting yang menambah kecantikannya yang asli, ditambah lagi dengan semerbak harum wanginya yang sangat menggiurkan.",
-        short: "Kami jadikan mereka sebagai gadis-gadis perawan.",
+        footnotes: null,
+        text: "Lalu Kami jadikan mereka perawan yang tidak pernah dijamah sebelumnya.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u062c\u064e\u0639\u064e\u0644\u0652\u0646\u064e\u0627\u0647\u064f\u0646\u0651\u064e \u0623\u064e\u0628\u0652\u0643\u064e\u0627\u0631\u064b\u0627",
-      transliteration: {
-        en: "Faja'alnaahunna abkaaraa",
-      },
+      arabic: "فَجَعَلْنَٰهُنَّ أَبْكَارًا",
     },
     translation: {
-      en: "And made them virgins,",
-      id: "lalu Kami jadikan mereka perawan-perawan,",
+      en: {
+        footnotes: "",
+        text: "and have made them virgins,",
+      },
+      id: {
+        footnotes: "",
+        text: "lalu Kami jadikan mereka perawan-perawan,",
+      },
     },
   },
 ];

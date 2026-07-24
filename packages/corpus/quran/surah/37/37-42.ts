@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah37Verses37To42 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3825",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3825.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3825.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3825,
@@ -24,40 +25,32 @@ export const quranSurah37Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Allah pada ayat ini membantah tuduhan orang-orang kafir Mekah itu. Nabi Muhammad saw tidak pernah mengucapkan kalimat-kalimat khayalan sebagai penyair, tetapi sesungguhnya beliau pembawa dan pendukung kebenaran. Ajaran tauhid yang disebarluaskan beliau tidak perlu lagi diragukan, sebab keesaan Tuhan itu dikukuhkan oleh pikiran yang sehat dan dapat dibuktikan dengan dalil-dalil yang nyata. Tidaklah patut bilamana Rasul itu dikatakan penyair padahal dia membawa ajaran yang benar. Ajaran yang sama telah dibawakan pula sebelumnya oleh para nabi-nabi terdahulu.\n\nAjaran tauhid yang dibawa beliau meneruskan ajaran tauhid yang dibawa oleh nabi-nabi dahulu, dan bukan sekali-kali buatan Muhammad saw. Jadi tuduhan kepada Rasul sebagai penyair dan orang gila hanyalah karena kebencian dan keingkaran semata-mata. Allah pastilah akan menimpakan azab yang pedih dan hukuman yang berat kepada orang-orang kafir yang menuduh Rasul dengan tuduhan nista itu. Azab bagi mereka yang ingkar kepada ajaran rasul-rasul itu bisa jadi dirasakan di dunia ini, sebelum dirasakan di akhirat. Seperti azab yang diderita oleh kaum Samud, Fir'aun dan lain-lain. Namun Tuhan tidak akan menurunkan azab kepada manusia kecuali hanya sebagai balasan dan akibat dari perbuatan mereka sendiri. Allah berfirman:\n\nBarangsiapa mengerjakan kebajikan maka (pahalanya) untuk dirinya sendiri dan barangsiapa berbuat jahat maka (dosanya) menjadi tanggungan dirinya sendiri. Dan Tuhanmu sama sekali tidak menzalimi hamba-hamba(-Nya). (Fushshilat/41: 46)",
-        short:
-          "Mereka menuduh Nabi Muhammad sebagai penyair gila, padahal dia datang kepada mereka dengan membawa kebenaran dan membenarkan rasul-rasul sebelumnya.",
+        footnotes: null,
+        text: "Sungguh mereka telah melakukan kebohongan besar. Rasulullah -ṣallallāhu 'alaihi wa sallam- bukan orang gila dan bukan seorang penyair, akan tetapi beliau datang membawa Al-Qur`ān yang mengajak untuk menauhidkan Allah dan mengikuti Rasul-Nya. Beliau membenarkan para rasul terkait apa yang mereka bawa dari sisi Allah, yaitu tauhid dan penetapan kebangkitan, beliau tidak menyelisihi mereka sedikit pun.",
       },
     },
     text: {
-      arab: "\u0628\u064e\u0644\u0652 \u062c\u064e\u0627\u0621\u064e \u0628\u0650\u0627\u0644\u0652\u062d\u064e\u0642\u0651\u0650 \u0648\u064e\u0635\u064e\u062f\u0651\u064e\u0642\u064e \u0627\u0644\u0652\u0645\u064f\u0631\u0652\u0633\u064e\u0644\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "bal jaaa'a bilhaqqi wa saddaqal mursaleen",
-      },
+      arabic: "بَلْ جَآءَ بِٱلْحَقِّ وَصَدَّقَ ٱلْمُرْسَلِينَ",
     },
     translation: {
-      en: "Rather, the Prophet has come with the truth and confirmed the [previous] messengers.",
-      id: "Padahal dia (Muhammad) datang dengan membawa kebenaran dan membenarkan rasul-rasul (sebelumnya).",
+      en: {
+        footnotes: "",
+        text: "Rather, he came with the truth and confirmed the messengers.",
+      },
+      id: {
+        footnotes: "",
+        text: "Padahal dia (Muhammad) datang dengan membawa kebenaran dan membenarkan rasul-rasul (sebelumnya).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3826",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3826.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3826.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3826,
@@ -65,40 +58,32 @@ export const quranSurah37Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Allah pada ayat ini membantah tuduhan orang-orang kafir Mekah itu. Nabi Muhammad saw tidak pernah mengucapkan kalimat-kalimat khayalan sebagai penyair, tetapi sesungguhnya beliau pembawa dan pendukung kebenaran. Ajaran tauhid yang disebarluaskan beliau tidak perlu lagi diragukan, sebab keesaan Tuhan itu dikukuhkan oleh pikiran yang sehat dan dapat dibuktikan dengan dalil-dalil yang nyata. Tidaklah patut bilamana Rasul itu dikatakan penyair padahal dia membawa ajaran yang benar. Ajaran yang sama telah dibawakan pula sebelumnya oleh para nabi-nabi terdahulu.\n\nAjaran tauhid yang dibawa beliau meneruskan ajaran tauhid yang dibawa oleh nabi-nabi dahulu, dan bukan sekali-kali buatan Muhammad saw. Jadi tuduhan kepada Rasul sebagai penyair dan orang gila hanyalah karena kebencian dan keingkaran semata-mata. Allah pastilah akan menimpakan azab yang pedih dan hukuman yang berat kepada orang-orang kafir yang menuduh Rasul dengan tuduhan nista itu. Azab bagi mereka yang ingkar kepada ajaran rasul-rasul itu bisa jadi dirasakan di dunia ini, sebelum dirasakan di akhirat. Seperti azab yang diderita oleh kaum Samud, Fir'aun dan lain-lain. Namun Tuhan tidak akan menurunkan azab kepada manusia kecuali hanya sebagai balasan dan akibat dari perbuatan mereka sendiri. Allah berfirman:\n\nBarangsiapa mengerjakan kebajikan maka (pahalanya) untuk dirinya sendiri dan barangsiapa berbuat jahat maka (dosanya) menjadi tanggungan dirinya sendiri. Dan Tuhanmu sama sekali tidak menzalimi hamba-hamba(-Nya). (Fushshilat/41: 46)",
-        short:
-          "Wahai kaum musyrik, sungguh kamu pasti akan merasakan azab yang pedih di neraka akibat kekafiran, kesesatan, dan perlawananmu terhadap Allah dan rasul-Nya.",
+        footnotes: null,
+        text: "Sesungguhnya kalian -wahai orang-orang musyrikin- pasti akan merasakan azab yang pedih pada hari Kiamat karena kekufuran dan pendustaan kalian terhadap para rasul.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0651\u064e\u0643\u064f\u0645\u0652 \u0644\u064e\u0630\u064e\u0627\u0626\u0650\u0642\u064f\u0648 \u0627\u0644\u0652\u0639\u064e\u0630\u064e\u0627\u0628\u0650 \u0627\u0644\u0652\u0623\u064e\u0644\u0650\u064a\u0645\u0650",
-      transliteration: {
-        en: "Innakum lazaaa'iqul 'azaabil aleem",
-      },
+      arabic: "إِنَّكُمْ لَذَآئِقُوا۟ ٱلْعَذَابِ ٱلْأَلِيمِ",
     },
     translation: {
-      en: "Indeed, you [disbelievers] will be tasters of the painful punishment,",
-      id: "Sungguh, kamu pasti akan merasakan azab yang pedih.",
+      en: {
+        footnotes: "",
+        text: "You will surely taste the painful punishment,",
+      },
+      id: {
+        footnotes: "",
+        text: "Sungguh, kamu pasti akan merasakan azab yang pedih.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3827",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3827.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3827.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3827,
@@ -106,40 +91,32 @@ export const quranSurah37Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Allah pada ayat ini membantah tuduhan orang-orang kafir Mekah itu. Nabi Muhammad saw tidak pernah mengucapkan kalimat-kalimat khayalan sebagai penyair, tetapi sesungguhnya beliau pembawa dan pendukung kebenaran. Ajaran tauhid yang disebarluaskan beliau tidak perlu lagi diragukan, sebab keesaan Tuhan itu dikukuhkan oleh pikiran yang sehat dan dapat dibuktikan dengan dalil-dalil yang nyata. Tidaklah patut bilamana Rasul itu dikatakan penyair padahal dia membawa ajaran yang benar. Ajaran yang sama telah dibawakan pula sebelumnya oleh para nabi-nabi terdahulu.\n\nAjaran tauhid yang dibawa beliau meneruskan ajaran tauhid yang dibawa oleh nabi-nabi dahulu, dan bukan sekali-kali buatan Muhammad saw. Jadi tuduhan kepada Rasul sebagai penyair dan orang gila hanyalah karena kebencian dan keingkaran semata-mata. Allah pastilah akan menimpakan azab yang pedih dan hukuman yang berat kepada orang-orang kafir yang menuduh Rasul dengan tuduhan nista itu. Azab bagi mereka yang ingkar kepada ajaran rasul-rasul itu bisa jadi dirasakan di dunia ini, sebelum dirasakan di akhirat. Seperti azab yang diderita oleh kaum Samud, Fir'aun dan lain-lain. Namun Tuhan tidak akan menurunkan azab kepada manusia kecuali hanya sebagai balasan dan akibat dari perbuatan mereka sendiri. Allah berfirman:\n\nBarangsiapa mengerjakan kebajikan maka (pahalanya) untuk dirinya sendiri dan barangsiapa berbuat jahat maka (dosanya) menjadi tanggungan dirinya sendiri. Dan Tuhanmu sama sekali tidak menzalimi hamba-hamba(-Nya). (Fushshilat/41: 46)",
-        short:
-          "Itulah azab bagimu, wahai kaum musyrik, dan kamu tidak diberi balasan dan azab di akhirat melainkan sebagai balasan terhadap kejahatan apa saja yang telah kamu kerjakan. Allah tidak menzalimimu sedikit pun.",
+        footnotes: null,
+        text: "Kalian wahai -orang-orang musyrikin- tidak dibalas kecuali atas apa yang kalian perbuat di dunia berupa kekufuran kepada Allah dan berbagai kelakuan maksiat.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u062a\u064f\u062c\u0652\u0632\u064e\u0648\u0652\u0646\u064e \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u0627 \u0643\u064f\u0646\u062a\u064f\u0645\u0652 \u062a\u064e\u0639\u0652\u0645\u064e\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Wa maa tujzawna illaa maa kuntum ta'maloon",
-      },
+      arabic: "وَمَا تُجْزَوْنَ إِلَّا مَا كُنتُمْ تَعْمَلُونَ",
     },
     translation: {
-      en: "And you will not be recompensed except for what you used to do -",
-      id: "Dan kamu tidak diberi balasan melainkan terhadap apa yang telah kamu kerjakan,",
+      en: {
+        footnotes: "",
+        text: "and you will only be recompensed for what you used to do,",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan kamu tidak diberi balasan melainkan terhadap apa yang telah kamu kerjakan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3828",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3828.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3828.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3828,
@@ -147,40 +124,32 @@ export const quranSurah37Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Allah pada ayat ini membantah tuduhan orang-orang kafir Mekah itu. Nabi Muhammad saw tidak pernah mengucapkan kalimat-kalimat khayalan sebagai penyair, tetapi sesungguhnya beliau pembawa dan pendukung kebenaran. Ajaran tauhid yang disebarluaskan beliau tidak perlu lagi diragukan, sebab keesaan Tuhan itu dikukuhkan oleh pikiran yang sehat dan dapat dibuktikan dengan dalil-dalil yang nyata. Tidaklah patut bilamana Rasul itu dikatakan penyair padahal dia membawa ajaran yang benar. Ajaran yang sama telah dibawakan pula sebelumnya oleh para nabi-nabi terdahulu.\n\nAjaran tauhid yang dibawa beliau meneruskan ajaran tauhid yang dibawa oleh nabi-nabi dahulu, dan bukan sekali-kali buatan Muhammad saw. Jadi tuduhan kepada Rasul sebagai penyair dan orang gila hanyalah karena kebencian dan keingkaran semata-mata. Allah pastilah akan menimpakan azab yang pedih dan hukuman yang berat kepada orang-orang kafir yang menuduh Rasul dengan tuduhan nista itu. Azab bagi mereka yang ingkar kepada ajaran rasul-rasul itu bisa jadi dirasakan di dunia ini, sebelum dirasakan di akhirat. Seperti azab yang diderita oleh kaum Samud, Fir'aun dan lain-lain. Namun Tuhan tidak akan menurunkan azab kepada manusia kecuali hanya sebagai balasan dan akibat dari perbuatan mereka sendiri. Allah berfirman:\n\nBarangsiapa mengerjakan kebajikan maka (pahalanya) untuk dirinya sendiri dan barangsiapa berbuat jahat maka (dosanya) menjadi tanggungan dirinya sendiri. Dan Tuhanmu sama sekali tidak menzalimi hamba-hamba(-Nya). (Fushshilat/41: 46)",
-        short:
-          "Demikianlah siksa pedih yang Allah siapkan bagi orang-orang musyrik, tetapi hamba-hamba Allah yang dibersihkan dari dosa,",
+        footnotes: null,
+        text: "Akan tetapi, hamba-hamba Allah yang beriman yang Allah pilih untuk beribadah kepada-Nya dan mereka mengikhlaskan ibadah kepada Allah, mereka itulah orang-orang yang selamat dari azab.",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0644\u0651\u064e\u0627 \u0639\u0650\u0628\u064e\u0627\u062f\u064e \u0627\u0644\u0644\u0651\u064e\u0647\u0650 \u0627\u0644\u0652\u0645\u064f\u062e\u0652\u0644\u064e\u0635\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Illaa 'ibaadal laahil mukhlaseen",
-      },
+      arabic: "إِلَّا عِبَادَ ٱللَّهِ ٱلْمُخْلَصِينَ",
     },
     translation: {
-      en: "But not the chosen servants of Allah.",
-      id: "tetapi hamba-hamba Allah yang dibersihkan (dari dosa),",
+      en: {
+        footnotes: "",
+        text: "except the chosen slaves of Allah.",
+      },
+      id: {
+        footnotes: "",
+        text: "tetapi hamba-hamba Allah yang dibersihkan (dari dosa),",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3829",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3829.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3829.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3829,
@@ -188,40 +157,32 @@ export const quranSurah37Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Allah menceritakan kenikmatan yang diberikan kepada kaum yang taat kepada Allah dan rasul-Nya. Mereka dengan penuh keikhlasan melakukan amal kebajikan, menjauhi segala bentuk kemaksiatan dan kemungkaran, bersih dari dosa selalu memanjatkan doa dan harapan kepada Tuhan mereka. Itulah hamba-hamba Allah yang ikhlas, yang akan mendapatkan surga, sebagaimana firman Allah:\n\nSungguh, Kami telah menciptakan manusia dalam bentuk yang sebaik-baiknya, kemudian Kami kembalikan dia ke tempat yang serendah-rendahnya, kecuali orang-orang yang beriman dan mengerjakan kebajikan; maka mereka akan mendapat pahala yang tidak ada putus-putusnya. (at-Tin/95: 4-6)\n\nDan firman Allah:\n\nDemi masa, sungguh, manusia berada dalam kerugian, kecuali orang-orang yang beriman dan mengerjakan kebajikan serta saling menasihati untuk kebenaran dan saling menasihati untuk kesabaran. (al-'A.shr/103: 1-3)\n\nGolongan hamba Allah yang ikhlas itu, tidak akan merasakan azab, tidak akan ditanya pada hari hisab, bahkan mereka mungkin diampuni kesalahannya jika ada kesalahan, dan diberi ganjaran pahala sepuluh kali lipat dari tiap amal saleh yang dikerjakannya atau lebih besar dari itu dengan kehendak Allah.\n\nKepada mereka inilah Allah memberikan rezeki yang telah ditentukan yakni buah-buahan yang beraneka ragam harum baunya dan rasanya amat lezat sehingga membangkitkan selera untuk menikmatinya. Mereka hidup mulia serta mendapat pelayanan dan penghormatan.\n\nDari ayat-ayat di atas, dapat dipahami bahwa makanan di surga itu disediakan untuk kenikmatan dan kesenangan.\n\n(43-44) Pada ayat ini, Allah menjelaskan lebih lanjut hamba-hamba Allah yang beriman dan beramal saleh dan surga yang penuh nikmat yang mempunyai tempat-tempat yang tinggi yang di bawahnya terdapat sungai-sungai yang mengalir, sebagaimana dijelaskan Allah dalam firman-Nya:\n\nDan orang-orang yang beriman dan mengerjakan kebajikan, sungguh, mereka akan Kami tempatkan pada tempat-tempat yang tinggi (di dalam surga), yang mengalir di bawahnya sungai-sungai, mereka kekal di dalamnya. Itulah sebaik-baik balasan bagi orang yang berbuat kebajikan. (al-'Ankabut/29: 58)\n\nAhli surga itu duduk di atas kursi yang megah berhadap-hadapan satu sama lain agar saling mengenal dan mereka berbincang-bincang tentang hal-hal yang menyenangkan, yang memberikan mereka kepuasan rohani dan jasmani sebagaimana diterangkan Allah dengan firman-Nya:\n\nDan sebagian mereka berhadap-hadapan satu sama lain saling bertegur sapa. (ath-thur/52: 25)",
-        short:
-          "mereka itu memperoleh rezeki yang sudah ditentukan tanpa henti,",
+        footnotes: null,
+        text: "Hamba-hamba Allah yang ikhlas itu, bagi mereka rezeki yang Allah anugerahkan untuk mereka, rezeki yang diketahui baik, nikmat, dan langgeng.",
       },
     },
     text: {
-      arab: "\u0623\u064f\u0648\u0644\u064e\u0670\u0626\u0650\u0643\u064e \u0644\u064e\u0647\u064f\u0645\u0652 \u0631\u0650\u0632\u0652\u0642\u064c \u0645\u0651\u064e\u0639\u0652\u0644\u064f\u0648\u0645\u064c",
-      transliteration: {
-        en: "Ulaaa'ika lahum rizqum ma'loom",
-      },
+      arabic: "أُو۟لَٰٓئِكَ لَهُمْ رِزْقٌ مَّعْلُومٌ",
     },
     translation: {
-      en: "Those will have a provision determined -",
-      id: "mereka itu memperoleh rezeki yang sudah ditentukan,",
+      en: {
+        footnotes: "",
+        text: "They will have a known provision,",
+      },
+      id: {
+        footnotes: "",
+        text: "mereka itu memperoleh rezeki yang sudah ditentukan,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3830",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3830.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3830.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 179,
       juz: 23,
       manzil: 6,
       page: 447,
       ruku: 387,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3830,
@@ -229,20 +190,22 @@ export const quranSurah37Verses37To42 = [
     },
     tafsir: {
       id: {
-        long: "Allah menceritakan kenikmatan yang diberikan kepada kaum yang taat kepada Allah dan rasul-Nya. Mereka dengan penuh keikhlasan melakukan amal kebajikan, menjauhi segala bentuk kemaksiatan dan kemungkaran, bersih dari dosa selalu memanjatkan doa dan harapan kepada Tuhan mereka. Itulah hamba-hamba Allah yang ikhlas, yang akan mendapatkan surga, sebagaimana firman Allah:\n\nSungguh, Kami telah menciptakan manusia dalam bentuk yang sebaik-baiknya, kemudian Kami kembalikan dia ke tempat yang serendah-rendahnya, kecuali orang-orang yang beriman dan mengerjakan kebajikan; maka mereka akan mendapat pahala yang tidak ada putus-putusnya. (at-Tin/95: 4-6)\n\nDan firman Allah:\n\nDemi masa, sungguh, manusia berada dalam kerugian, kecuali orang-orang yang beriman dan mengerjakan kebajikan serta saling menasihati untuk kebenaran dan saling menasihati untuk kesabaran. (al-'A.shr/103: 1-3)\n\nGolongan hamba Allah yang ikhlas itu, tidak akan merasakan azab, tidak akan ditanya pada hari hisab, bahkan mereka mungkin diampuni kesalahannya jika ada kesalahan, dan diberi ganjaran pahala sepuluh kali lipat dari tiap amal saleh yang dikerjakannya atau lebih besar dari itu dengan kehendak Allah.\n\nKepada mereka inilah Allah memberikan rezeki yang telah ditentukan yakni buah-buahan yang beraneka ragam harum baunya dan rasanya amat lezat sehingga membangkitkan selera untuk menikmatinya. Mereka hidup mulia serta mendapat pelayanan dan penghormatan.\n\nDari ayat-ayat di atas, dapat dipahami bahwa makanan di surga itu disediakan untuk kenikmatan dan kesenangan.\n\n(43-44) Pada ayat ini, Allah menjelaskan lebih lanjut hamba-hamba Allah yang beriman dan beramal saleh dan surga yang penuh nikmat yang mempunyai tempat-tempat yang tinggi yang di bawahnya terdapat sungai-sungai yang mengalir, sebagaimana dijelaskan Allah dalam firman-Nya:\n\nDan orang-orang yang beriman dan mengerjakan kebajikan, sungguh, mereka akan Kami tempatkan pada tempat-tempat yang tinggi (di dalam surga), yang mengalir di bawahnya sungai-sungai, mereka kekal di dalamnya. Itulah sebaik-baik balasan bagi orang yang berbuat kebajikan. (al-'Ankabut/29: 58)\n\nAhli surga itu duduk di atas kursi yang megah berhadap-hadapan satu sama lain agar saling mengenal dan mereka berbincang-bincang tentang hal-hal yang menyenangkan, yang memberikan mereka kepuasan rohani dan jasmani sebagaimana diterangkan Allah dengan firman-Nya:\n\nDan sebagian mereka berhadap-hadapan satu sama lain saling bertegur sapa. (ath-thur/52: 25)",
-        short:
-          "yaitu buah-buahan yang beraneka ragam dan rasa. Dan mereka itulah orang yang dimuliakan di sisi Allah.",
+        footnotes: null,
+        text: "Rezeki tersebut adalah buah-buahan terlezat yang mereka makan dan inginkan, lebih dari itu mereka dimuliakan dengan diberikan derajat-derajat yang tinggi dan dengan melihat ke wajah Allah yang mulia.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0648\u064e\u0627\u0643\u0650\u0647\u064f \u06d6 \u0648\u064e\u0647\u064f\u0645 \u0645\u0651\u064f\u0643\u0652\u0631\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa waakihu wa hum mukramoon",
-      },
+      arabic: "فَوَٰكِهُ وَهُم مُّكْرَمُونَ",
     },
     translation: {
-      en: "Fruits; and they will be honored",
-      id: "(yaitu) buah-buahan. Dan mereka orang yang dimuliakan,",
+      en: {
+        footnotes: "[8] i.e., everything delicious that they desire.",
+        text: "fruits[8]; and they will be honored",
+      },
+      id: {
+        footnotes: "",
+        text: "(yaitu) buah-buahan. Dan mereka orang yang dimuliakan,",
+      },
     },
   },
 ];

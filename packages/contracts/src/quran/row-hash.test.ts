@@ -9,6 +9,7 @@ import {
   canonicalizeQuranRow,
   hashQuranRow,
 } from "#contracts/quran/row-hash";
+import type { QuranAttributionRow } from "#contracts/quran/source";
 import type {
   QuranChunkRow,
   QuranSearchRow,
@@ -43,9 +44,13 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-/** Requires the technical projection to contain all three Quran row kinds. */
+/** Requires the technical projection to contain all four Quran row kinds. */
 function representativeRows() {
   const payloads = quranTestPayloads();
+  const attribution = payloads.find(
+    (payload): payload is QuranAttributionRow =>
+      payload.kind === "quran-attribution"
+  );
   const surah = payloads.find(
     (payload): payload is QuranSurahRow =>
       payload.kind === "quran-surah" && payload.number === 2
@@ -56,10 +61,10 @@ function representativeRows() {
   const search = payloads.find(
     (payload): payload is QuranSearchRow => payload.kind === "quran-search"
   );
-  if (!(surah && chunk && search)) {
+  if (!(attribution && surah && chunk && search)) {
     throw new Error("Expected all technical Quran row kinds.");
   }
-  return [surah, chunk, search] as const;
+  return { attribution, chunk, search, surah };
 }
 
 afterEach(() => {
@@ -68,18 +73,18 @@ afterEach(() => {
 
 describe("Quran row hashing", () => {
   it("authenticates and binds one canonical structured row", async () => {
-    const [surah] = representativeRows();
+    const { surah } = representativeRows();
     const bound = await Effect.runPromise(bindQuranRow(snapshotId, surah));
 
     expect(canonicalizeQuranRow(surah)).toBe(JSON.stringify(surah));
     expect(bound.rowHash).toBe(
-      "sha256:8f6ddb9b632faa23855de66398dad1acd8a366c9abbea395d7caf1360d3f9f03"
+      "sha256:c79e4d2a6e941a5951735b7796f300676effce1ef7215bdc41fb8f51021ad2d7"
     );
     expect(bound).toMatchObject({ payload: surah, snapshotId });
   });
 
   it("ignores observable insertion order for every row kind", async () => {
-    const canonicalRows = representativeRows();
+    const canonicalRows = Object.values(representativeRows());
     const reorderedRows = canonicalRows.map(reverseObjectKeys);
     const canonicalHashes = await Effect.runPromise(
       Effect.forEach(canonicalRows, hashQuranRow)
@@ -98,7 +103,7 @@ describe("Quran row hashing", () => {
   });
 
   it("maps Node hashing failures into the typed row error", async () => {
-    const [surah] = representativeRows();
+    const { surah } = representativeRows();
     failures.rowHash = true;
     const error = await Effect.runPromise(
       hashQuranRow(surah).pipe(Effect.flip)

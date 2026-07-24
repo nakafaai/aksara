@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah93Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6080",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6080.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6080.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 535,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6080,
@@ -24,40 +25,32 @@ export const quranSurah93Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah bersumpah dengan dua macam tanda-tanda kebesaran-Nya, yaitu dhuha (waktu matahari naik sepenggalah) bersama cahayanya dan malam beserta kegelapan dan kesunyiannya, bahwa Dia tidak meninggalkan Rasul-Nya, Muhammad, dan tidak pula memarahinya, sebagaimana orang-orang mengatakannya atau perasaan Rasulullah sendiri.",
-        short:
-          "Demi waktu duha ketika matahari naik sepenggalah, atau demi waktu siang seluruhnya. Penyebutan waktu duha mengisyaratkan bahwa tenggang waktu ketika Nabi tidak menerima wahyu beberapa lama bagaikan malam yang gelap, sedangkan turunnya surah ini setelah itu bagaikan fajar yang menyingsing.",
+        footnotes: null,
+        text: "Allah bersumpah dengan permulaan siang.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0636\u0651\u064f\u062d\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wad duhaa",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ وَٱلضُّحَىٰ",
     },
     translation: {
-      en: "By the morning brightness",
-      id: "Demi waktu duha (ketika matahari naik sepenggalah),",
+      en: {
+        footnotes: "",
+        text: "By the morning sunlight,",
+      },
+      id: {
+        footnotes: "",
+        text: "Demi waktu duha (ketika matahari naik sepenggalan).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6081",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6081.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6081.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 535,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6081,
@@ -65,40 +58,32 @@ export const quranSurah93Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah bersumpah dengan dua macam tanda-tanda kebesaran-Nya, yaitu dhuha (waktu matahari naik sepenggalah) bersama cahayanya dan malam beserta kegelapan dan kesunyiannya, bahwa Dia tidak meninggalkan Rasul-Nya, Muhammad, dan tidak pula memarahinya, sebagaimana orang-orang mengatakannya atau perasaan Rasulullah sendiri.",
-        short:
-          "Dan demi malam apabila telah sunyi dan gelap. Ketika matahari bergeser ke tempat lain, belahan bumi yang ditinggalkannya beranjak tenang dan gelap, menjadi waktu yang tepat untuk istirahat.",
+        footnotes: null,
+        text: "Dia bersumpah dengan malam hari apabila telah gelap dan manusia mulai tenang pada malam itu dari segala aktivitas.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0627\u0644\u0644\u0651\u064e\u064a\u0652\u0644\u0650 \u0625\u0650\u0630\u064e\u0627 \u0633\u064e\u062c\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wal laili iza sajaa",
-      },
+      arabic: "وَٱلَّيْلِ إِذَا سَجَىٰ",
     },
     translation: {
-      en: "And [by] the night when it covers with darkness,",
-      id: "dan demi malam apabila telah sunyi,",
+      en: {
+        footnotes: "[1] And everything becomes still.",
+        text: "and by the night when it covers with darkness[1],",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan demi malam apabila telah sunyi.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6082",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6082.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6082.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 535,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6082,
@@ -106,40 +91,33 @@ export const quranSurah93Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat-ayat ini, Allah bersumpah dengan dua macam tanda-tanda kebesaran-Nya, yaitu dhuha (waktu matahari naik sepenggalah) bersama cahayanya dan malam beserta kegelapan dan kesunyiannya, bahwa Dia tidak meninggalkan Rasul-Nya, Muhammad, dan tidak pula memarahinya, sebagaimana orang-orang mengatakannya atau perasaan Rasulullah sendiri.",
-        short:
-          "Wahai Nabi, tidak adanya wahyu yang turun kepadamu dalam beberapa hari ini bukan karena Allah membencimu. Tuhanmu yang telah memilihmu sebagai nabi dan rasul tidak akan meninggalkan engkau sendirian dalam menyampaikan risalah dan tidak pula membencimu.",
+        footnotes: null,
+        text: "Tuhanmu -wahai Rasul- tidak akan meninggalkanmu dan tidak pula memurkaimu sebagaimana ucapan orang-orang musyrik tatkala wahyu terputus darimu.",
       },
     },
     text: {
-      arab: "\u0645\u064e\u0627 \u0648\u064e\u062f\u0651\u064e\u0639\u064e\u0643\u064e \u0631\u064e\u0628\u0651\u064f\u0643\u064e \u0648\u064e\u0645\u064e\u0627 \u0642\u064e\u0644\u064e\u0649\u0670",
-      transliteration: {
-        en: "Ma wad da'aka rabbuka wa ma qalaa",
-      },
+      arabic: "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",
     },
     translation: {
-      en: "Your Lord has not taken leave of you, [O Muhammad], nor has He detested [you].",
-      id: "Tuhanmu tidak meninggalkan engkau (Muhammad) dan tidak (pula) membencimu,",
+      en: {
+        footnotes: "",
+        text: "your Lord has neither forsaken you [O Prophet] nor hated you;",
+      },
+      id: {
+        footnotes:
+          '[910] Ketika turunnya wahyu kepada Nabi Muhammad -ṣallallāhu \'alaihi wa sallam- terhenti untuk sementara waktu, orang-orang musyrik berkata, "Tuhannya (Muhammad) telah meninggalkannya dan benci kepadanya." Maka turunlah ayat ini untuk membantah perkataan orang-orang musyrik.',
+        text: "Tuhanmu tidak meninggalkan engkau (Muhammad) dan tidak (pula) membencimu.[910]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6083",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6083.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6083.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 535,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6083,
@@ -147,40 +125,33 @@ export const quranSurah93Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah mengungkapkan sesuatu yang melapangkan dada Nabi saw dan menenteramkan jiwanya, bahwa keadaan Nabi dalam kehidupannya di hari-hari mendatang akan lebih baik dibandingkan dengan hari-hari yang telah lalu. Kebesarannya akan bertambah dan namanya akan lebih dikenal. Allah akan selalu membimbingnya untuk mencapai kemuliaan dan untuk menuju kepada kebesaran.\n\nSeakan-akan Allah mengatakan kepada Rasul-Nya, "Apakah engkau kira bahwa Aku akan meninggalkanmu? Bahkan kedudukanmu di sisi-Ku sekarang lebih kukuh dan lebih dekat dari masa yang sudah-sudah."\n\nJanji Allah kepada Nabi Muhammad terus terbukti karena sejak itu nama Nabi saw semakin terkenal, kedudukannya semakin bertambah kuat, sehingga mencapai tingkat yang tidak pernah dicapai oleh para rasul sebelumnya. Allah telah menjadikan Nabi Muhammad sebagai rahmat, petunjuk, dan cahaya untuk seluruh alam dan seluruh hamba-Nya. Allah menjadikan cinta kepada Nabi Muhammad termasuk cinta kepada-Nya juga; mengikuti Nabi dan mematuhinya adalah jalan untuk memperoleh nikmat-nikmat-Nya, serta menjadikan umat Nabi sebagai saksi-saksi untuk manusia seluruhnya. Nabi saw sendiri telah menyiarkan agama Allah sesuai dengan kehendak-Nya sehingga sampai ke pelosok-pelosok dunia.\n\nIni adalah suatu kebesaran yang tiada bandingnya, suatu keunggulan yang tiada taranya, dan suatu kemuliaan yang tidak ada yang dapat mengimbanginya. Semua itu adalah anugerah Allah yang diberikan kepada orang yang dikehendaki-Nya.',
-        short:
-          "Dan sungguh, yang kemudian itu lebih baik bagimu dari yang permulaan. Akhirat beserta pahala yang Allah sediakan untukmu itu lebih baik daripada dunia ini. Kenikmatan akhirat bersifat abadi, sedangkan kehidupan dunia hanya sementara.",
+        footnotes: null,
+        text: "Sungguh, kehidupan akhirat lebih baik bagimu daripada kehidupan dunia karena di akhirat itu terdapat kenikmatan abadi yang tidak pernah terputus.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0644\u0652\u0622\u062e\u0650\u0631\u064e\u0629\u064f \u062e\u064e\u064a\u0652\u0631\u064c \u0644\u0651\u064e\u0643\u064e \u0645\u0650\u0646\u064e \u0627\u0644\u0652\u0623\u064f\u0648\u0644\u064e\u0649\u0670",
-      transliteration: {
-        en: "Walal-aakhiratu khairul laka minal-oola",
-      },
+      arabic: "وَلَلْـَٔاخِرَةُ خَيْرٌ لَّكَ مِنَ ٱلْأُولَىٰ",
     },
     translation: {
-      en: "And the Hereafter is better for you than the first [life].",
-      id: "dan sungguh, yang kemudian itu lebih baik bagimu dari yang permulaan.",
+      en: {
+        footnotes: "",
+        text: "the Hereafter is better for you than the present life;",
+      },
+      id: {
+        footnotes:
+          '[911] Akhir perjuangan Nabi Muhammad -ṣallallāhu \'alaihi wa sallam- itu akan menjumpai kemenangan-kemenangan, sedang permulaannya penuh dengan kesulitan-kesulitan. Ada pula sebagian mufasir yang mengartikan ākhiratu dengan "kehidupan akhirat" beserta segala kesenangannya dan ūlā dengan arti "kehidupan dunia".',
+        text: "Dan sungguh, yang kemudian itu lebih baik bagimu daripada yang permulaan.[911]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6084",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6084.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6084.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 535,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6084,
@@ -188,40 +159,32 @@ export const quranSurah93Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menyampaikan berita gembira kepada Nabi Muhammad, bahwa Dia akan terus-menerus melimpahkan anugerah-Nya kepada beliau, sehingga beliau menjadi senang dan bahagia. Di antara pemberian-Nya itu ialah turunnya wahyu terus-menerus setelah itu sebagai petunjuk bagi Nabi saw dan umatnya untuk mendapat kebahagiaan hidup di dunia dan hari akhirat. Dia akan memenangkan agama yang dibawa Nabi Muhammad atas seluruh agama lainnya dan Dia akan mengangkat kedudukannya di atas kedudukan manusia seluruhnya.",
-        short:
-          "Dan sungguh, kelak Tuhanmu pasti memberikan karunia-Nya yang berlimpah kepadamu, baik dalam urusan dunia seperti kesuksesan menyampaikan risalah, maupun di akhirat dengan pahala, hak memberi syafaat, dan sebagainya. Dia akan mencurahkan karunia kepadamu sehingga engkau menjadi puas karenanya.",
+        footnotes: null,
+        text: "Sungguh, Tuhanmu pasti akan memberi pahala yang banyak bagimu dan bagi umatmu sehingga engkau merasa rida dengan apa yang diberikan Allah kepadamu dan kepada umatmu.",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0644\u064e\u0633\u064e\u0648\u0652\u0641\u064e \u064a\u064f\u0639\u0652\u0637\u0650\u064a\u0643\u064e \u0631\u064e\u0628\u0651\u064f\u0643\u064e \u0641\u064e\u062a\u064e\u0631\u0652\u0636\u064e\u0649\u0670",
-      transliteration: {
-        en: "Wa la sawfa y'uteeka rabbuka fatarda",
-      },
+      arabic: "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰٓ",
     },
     translation: {
-      en: "And your Lord is going to give you, and you will be satisfied.",
-      id: "Dan sungguh, kelak Tuhanmu pasti memberikan karunia-Nya kepadamu, sehingga engkau menjadi puas.",
+      en: {
+        footnotes: "",
+        text: "and your Lord will certainly give you so much that you will be well pleased.",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan sungguh, kelak Tuhanmu pasti memberikan karunia-Nya kepadamu, sehingga engkau menjadi puas.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6085",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6085.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6085.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 238,
       juz: 30,
       manzil: 7,
       page: 596,
       ruku: 535,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6085,
@@ -229,20 +192,22 @@ export const quranSurah93Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah mengingatkan nikmat yang pernah diterima Nabi Muhammad dengan mengatakan, "Bukankah engkau hai Muhammad seorang anak yatim, tidak mempunyai ayah yang bertanggung jawab atas pendidikanmu, menanggulangi kepentingan serta membimbingmu, tetapi Aku telah menjaga, melindungi, dan membimbingmu serta menjauhkanmu dari dosa-dosa perilaku orang-orang Jahiliah dan keburukan mereka, sehingga engkau memperoleh julukan Manusia sempurna."\n\nNabi saw hidup dalam keadaan yatim karena ayahnya meninggal dunia sedangkan ia masih dalam kandungan ibunya. Ketika lahir, Allah memelihara Muhammad saw dengan cara menjadikan kakeknya, Abdul Muththalib, mengasihi dan menyayanginya. Nabi Muhammad berada dalam asuhan dan bimbingannya sampai Abdul Muththalib wafat, sedang umur Nabi ketika itu delapan tahun. Dengan meninggalnya Abdul Muththalib, Nabi Muhammad menjadi tanggungan paman beliau, Abu thalib, berdasarkan wasiat dari Abdul Muththalib. Abu thalib telah mengerahkan semua perhatiannya untuk mengasuh Nabi saw, sehingga beliau meningkat dewasa dan diangkat menjadi rasul. Setelah Muhammad diangkat menjadi rasul, orang-orang Quraisy memusuhi dan menyakitinya, tetapi Abu thalib terus membelanya dari semua ancaman orang musyrik hingga Abu thalib wafat.\n\nDengan wafatnya Abu thalib, bangsa Quraisy mendapat peluang untuk menyakiti Nabi dengan perantaraan orang-orang jahat di kalangan mereka yang menyebabkan beliau terpaksa hijrah.\n\nBetapa hebatnya penggemblengan Allah dan asuhan-Nya terhadap Nabi Muhammad. Biasanya keyatiman seorang anak menjadi sebab kehancuran akhlaknya karena tidak ada pengasuh dan pembimbing yang bertanggung jawab. Apalagi suasana dan sikap penduduk Mekah lebih dari cukup untuk menyesatkan Nabi saw. akan tetapi, perlindungan Allah yang sangat rapi dapat mencegah beliau menemani mereka. Dengan demikian, jadilah beliau seorang pemuda yang sangat jujur, terpercaya, tidak pernah berdusta, dan tidak pernah berlumur dengan dosa orang-orang Jahiliah.',
-        short:
-          "Bukankah Dia mendapatimu sebagai seorang yatim ketika kedua orang tuamu wafat, lalu Dia melindungimu dalam asuhan kakek dan pamanmu? Ayah Nabi wafat ketika beliau dalam kandungan dan ibunya wafat ketika beliau berumur 6 tahun. Allah melindungi Nabi dalam asuhan kakeknya, ‘Abdul Muttalib, sampai usia 8 tahun, dilanjutkan oleh pamannya, Abù Tàlib, hingga sang paman wafat.",
+        footnotes: null,
+        text: "Dia telah mendapatimu tatkala engkau masih kecil sebagai yatim yang ditinggal mati ayahmu, lalu Dia memberikan perlindungan kepadamu melalui kakekmu Abdul Muṭṭalib yang menyayangimu, kemudian pamanmu, Abu Ṭālib.",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u064e\u0645\u0652 \u064a\u064e\u062c\u0650\u062f\u0652\u0643\u064e \u064a\u064e\u062a\u0650\u064a\u0645\u064b\u0627 \u0641\u064e\u0622\u0648\u064e\u0649\u0670",
-      transliteration: {
-        en: "Alam ya jidka yateeman fa aawaa",
-      },
+      arabic: "أَلَمْ يَجِدْكَ يَتِيمًا فَـَٔاوَىٰ",
     },
     translation: {
-      en: "Did He not find you an orphan and give [you] refuge?",
-      id: "Bukankah Dia mendapatimu sebagai seorang yatim, lalu Dia melindungi(mu),",
+      en: {
+        footnotes: "",
+        text: "Did He not find you an orphan then take good care of you?",
+      },
+      id: {
+        footnotes: "",
+        text: "Bukankah Dia mendapatimu sebagai seorang yatim, lalu Dia melindungi(mu).",
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah26Verses199To204 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3131",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3131.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3131.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3131,
@@ -24,40 +25,32 @@ export const quranSurah26Verses199To204 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini dijelaskan bahwa walaupun bukti-bukti kenabian Muhammad sudah diterangkan dalam kitab-kitab terdahulu, dan hal ini diakui oleh ulama-ulama Yahudi, serta diketahui oleh orang-orang musyrik Mekah dari para pemimpin Yahudi, namun orang-orang musyrik itu tidak akan beriman, walau buku atau kitab suci apa pun yang dikemukakan kepada mereka. Seakan-akan Allah mencela sikap mereka itu dengan mengatakan, \"Kami telah menurunkan Al-Qur'an itu dalam bahasa Arab yang jelas dan gaya bahasa yang indah kepada seseorang dari bangsa Arab, tepatnya dari suku Quraisy yang berpengaruh di Mekah, dan mereka telah mengetahui pula dari orang-orang Yahudi di Madinah tentang kenabian Muhammad itu, namun mereka tetap tidak beriman. Maka andaikata Al-Qur'an itu diturunkan kepada seseorang dari golongan bukan Arab yang tidak pandai berbahasa Arab, tetapi dengan kehendak Allah orang itu dapat membacakannya dengan fasih kepada orang-orang musyrik Mekah itu, mereka itu tidak juga akan beriman kepadanya. Di sisi lain, kalau pun kejadian yang semacam itu terjadi, hal itu merupakan kejadian yang luar biasa.\"\n\nAyat ini merupakan hiburan yang dapat menenteramkan dan menyejukkan hati Muhammad yang telah digundahkan oleh sikap orang-orang musyrik yang selalu menantang dan mendustakan seruannya.",
-        short:
-          "lalu ia membacakannya kepada mereka, yakni orang-orang kafir itu, niscaya mereka tidak juga akan beriman kepadanya. Ini menunjukkan keengganan mereka untuk menerima Al-Qur’an. Dari arah mana pun Al-Qur’an itu datang, mereka pasti tak akan beriman dengan berbagai alasan.",
+        footnotes: null,
+        text: "Lalu ia membacakannya kepada mereka, niscaya mereka tidak akan beriman kepadanya karena mereka akan menyatakan, kami sama sekali tidak memahaminya, sebab itu hendaknya mereka bersyukur kepada Allah yang menurunkannya dengan bahasa mereka.",
       },
     },
     text: {
-      arab: "\u0641\u064e\u0642\u064e\u0631\u064e\u0623\u064e\u0647\u064f \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645 \u0645\u0651\u064e\u0627 \u0643\u064e\u0627\u0646\u064f\u0648\u0627 \u0628\u0650\u0647\u0650 \u0645\u064f\u0624\u0652\u0645\u0650\u0646\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Faqara ahoo 'alaihim maa kaanoo bihee mu'mineen",
-      },
+      arabic: "فَقَرَأَهُۥ عَلَيْهِم مَّا كَانُوا۟ بِهِۦ مُؤْمِنِينَ",
     },
     translation: {
-      en: "And he had recited it to them [perfectly], they would [still] not have been believers in it.",
-      id: "lalu dia membacakannya kepada mereka (orang-orang kafir); niscaya mereka tidak juga akan beriman kepadanya.",
+      en: {
+        footnotes: "[25] As a miracle from Allah.",
+        text: "and he had recited it to them[25]; still, they would not have believed in it.",
+      },
+      id: {
+        footnotes: "",
+        text: "lalu dia membacakannya kepada mereka (orang-orang kafir); niscaya mereka tidak juga akan beriman kepadanya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3132",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3132.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3132.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3132,
@@ -65,40 +58,32 @@ export const quranSurah26Verses199To204 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah telah memasukkan ke dalam hati orang-orang musyrik Mekah yang ingkar itu kemampuan untuk memahami ayat-ayat Al-Qur'an dan merasakan keindahan gaya bahasanya. Dengan demikian, mereka yakin bahwa Al-Qur'an itu datang dari Tuhan, bukan buatan manusia. Akan tetapi, mereka mengingkari Al-Qur'an itu, dan mendustakan nabi yang membawanya. Keingkaran mereka itu semakin kuat, tidak tergoyahkan oleh apa pun. Nafsu mengingkari Nabi dan menantangnya itu menyebabkan mereka melakukan perbuatan dosa, dan mereka hanya akan berhenti apabila azab itu telah menimpa mereka. Pada ayat yang lain Allah berfirman:\n\nDan mereka mengingkarinya karena kezaliman dan kesombongannya, padahal hati mereka meyakini (kebenaran)nya. Maka perhatikanlah bagaimana kesudahan orang-orang yang berbuat kerusakan. (an-Naml/27: 14).",
-        short:
-          "Demikianlah, sebagaimana Kami memasukkan rasa dusta terhadap Al-Qur’an pada hati orang kafir, Kami masukkan sifat dusta dan ingkar terhadap Al-Qur'an itu ke dalam hati orang- orang yang berdosa.",
+        footnotes: null,
+        text: "Demikianlah Kami masukkan sifat pendustaan dan kekafiran ke dalam hati orang-orang yang durhaka.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0630\u064e\u0670\u0644\u0650\u0643\u064e \u0633\u064e\u0644\u064e\u0643\u0652\u0646\u064e\u0627\u0647\u064f \u0641\u0650\u064a \u0642\u064f\u0644\u064f\u0648\u0628\u0650 \u0627\u0644\u0652\u0645\u064f\u062c\u0652\u0631\u0650\u0645\u0650\u064a\u0646\u064e",
-      transliteration: {
-        en: "Kazaalika salaknaahu fee quloobil mujrimeen",
-      },
+      arabic: "كَذَٰلِكَ سَلَكْنَٰهُ فِى قُلُوبِ ٱلْمُجْرِمِينَ",
     },
     translation: {
-      en: "Thus have We inserted disbelief into the hearts of the criminals.",
-      id: "Demikianlah, Kami masukkan (sifat dusta dan ingkar) ke dalam hati orang-orang yang berdosa,",
+      en: {
+        footnotes: "",
+        text: "This is how We made it [i.e., disbelief] enter the hearts of the wicked.",
+      },
+      id: {
+        footnotes: "",
+        text: "Demikianlah, Kami masukkan (sifat dusta dan ingkar) ke dalam hati orang-orang yang berdosa,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3133",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3133.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3133.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3133,
@@ -106,40 +91,32 @@ export const quranSurah26Verses199To204 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menerangkan bahwa Allah telah memasukkan ke dalam hati orang-orang musyrik Mekah yang ingkar itu kemampuan untuk memahami ayat-ayat Al-Qur'an dan merasakan keindahan gaya bahasanya. Dengan demikian, mereka yakin bahwa Al-Qur'an itu datang dari Tuhan, bukan buatan manusia. Akan tetapi, mereka mengingkari Al-Qur'an itu, dan mendustakan nabi yang membawanya. Keingkaran mereka itu semakin kuat, tidak tergoyahkan oleh apa pun. Nafsu mengingkari Nabi dan menantangnya itu menyebabkan mereka melakukan perbuatan dosa, dan mereka hanya akan berhenti apabila azab itu telah menimpa mereka. Pada ayat yang lain Allah berfirman:\n\nDan mereka mengingkarinya karena kezaliman dan kesombongannya, padahal hati mereka meyakini (kebenaran)nya. Maka perhatikanlah bagaimana kesudahan orang-orang yang berbuat kerusakan. (an-Naml/27: 14).",
-        short:
-          "Mereka tidak juga akan beriman kepadanya, yakni Al-Qur’an, hingga mereka melihat azab yang pedih.",
+        footnotes: null,
+        text: "Mereka sama sekali tidak berubah dari sikap kekafiran yang mereka miliki dan tidak juga beriman hingga mereka melihat azab yang pedih,",
       },
     },
     text: {
-      arab: "\u0644\u064e\u0627 \u064a\u064f\u0624\u0652\u0645\u0650\u0646\u064f\u0648\u0646\u064e \u0628\u0650\u0647\u0650 \u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u064a\u064e\u0631\u064e\u0648\u064f\u0627 \u0627\u0644\u0652\u0639\u064e\u0630\u064e\u0627\u0628\u064e \u0627\u0644\u0652\u0623\u064e\u0644\u0650\u064a\u0645\u064e",
-      transliteration: {
-        en: "Laa yu'minoona bihee hattaa yarawul 'azaabal aleem",
-      },
+      arabic: "لَا يُؤْمِنُونَ بِهِۦ حَتَّىٰ يَرَوُا۟ ٱلْعَذَابَ ٱلْأَلِيمَ",
     },
     translation: {
-      en: "They will not believe in it until they see the painful punishment.",
-      id: "mereka tidak akan beriman kepadanya, hingga mereka melihat azab yang pedih,",
+      en: {
+        footnotes: "",
+        text: "They will not believe in it until they see the painful punishment,",
+      },
+      id: {
+        footnotes: "",
+        text: "mereka tidak akan beriman kepadanya, hingga mereka melihat azab yang pedih.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3134",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3134.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3134.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3134,
@@ -147,40 +124,32 @@ export const quranSurah26Verses199To204 = [
     },
     tafsir: {
       id: {
-        long: "Dalam keadaan demikian, tanpa mereka sadari, datanglah azab kepada mereka secara tiba-tiba dan tidak diketahui dari mana datangnya. Ketika itu, barulah mereka sadar akan perbuatan mereka selama ini. Mereka mengeluh dan mengharap agar ditangguhkan kedatangan azab itu, sehingga mereka dapat mengerjakan amal saleh, beriman, dan taat kepada Allah dan rasul-Nya. Meskipun telah mengetahui bahwa permintaan itu tidak akan dikabulkan Allah, namun mereka mencoba-coba untuk meminta, sekadar mengurangi kepedihan azab yang sedang mereka alami.",
-        short:
-          "Maka, pada saat  datang azab kepada mereka secara mendadak dan tiba-tiba, ketika mereka tidak menyadarinya, pada saat itulah mereka tersadar akan kesalahan mereka.",
+        footnotes: null,
+        text: "Lalu tiba-tiba datanglah azab itu kepada mereka secara mendadak, sedang mereka tidak menyadari kedatangannya hingga mereka dikagetkan dengannya,",
       },
     },
     text: {
-      arab: "\u0641\u064e\u064a\u064e\u0623\u0652\u062a\u0650\u064a\u064e\u0647\u064f\u0645 \u0628\u064e\u063a\u0652\u062a\u064e\u0629\u064b \u0648\u064e\u0647\u064f\u0645\u0652 \u0644\u064e\u0627 \u064a\u064e\u0634\u0652\u0639\u064f\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fayaatiyahum baghtatanw wa hum laa yash'uroon",
-      },
+      arabic: "فَيَأْتِيَهُم بَغْتَةً وَهُمْ لَا يَشْعُرُونَ",
     },
     translation: {
-      en: "And it will come to them suddenly while they perceive [it] not.",
-      id: "maka datang azab kepada mereka secara mendadak, ketika mereka tidak menyadarinya,",
+      en: {
+        footnotes: "",
+        text: "which will come upon them suddenly when they least expect it.",
+      },
+      id: {
+        footnotes: "",
+        text: "Maka datang azab kepada mereka secara mendadak, ketika mereka tidak menyadarinya.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3135",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3135.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3135.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3135,
@@ -188,40 +157,32 @@ export const quranSurah26Verses199To204 = [
     },
     tafsir: {
       id: {
-        long: "Dalam keadaan demikian, tanpa mereka sadari, datanglah azab kepada mereka secara tiba-tiba dan tidak diketahui dari mana datangnya. Ketika itu, barulah mereka sadar akan perbuatan mereka selama ini. Mereka mengeluh dan mengharap agar ditangguhkan kedatangan azab itu, sehingga mereka dapat mengerjakan amal saleh, beriman, dan taat kepada Allah dan rasul-Nya. Meskipun telah mengetahui bahwa permintaan itu tidak akan dikabulkan Allah, namun mereka mencoba-coba untuk meminta, sekadar mengurangi kepedihan azab yang sedang mereka alami.",
-        short:
-          'Lalu mereka berkata, "Apakah kami diberi penangguhan waktu, yakni perpanjangan umur kami, sehingga kami bisa bertobat, beriman kepada Al-Qur’an dan melakukan amal saleh?',
+        footnotes: null,
+        text: 'Tatkala azab itu datang kepada mereka secara mendadak, mereka berkata dengan penuh penyesalan, "Apakah kami dapat diberi penangguhan agar kami bisa bertobat kepada Allah?"',
       },
     },
     text: {
-      arab: "\u0641\u064e\u064a\u064e\u0642\u064f\u0648\u0644\u064f\u0648\u0627 \u0647\u064e\u0644\u0652 \u0646\u064e\u062d\u0652\u0646\u064f \u0645\u064f\u0646\u0638\u064e\u0631\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Fa yaqooloo hal nahnu munzaroon",
-      },
+      arabic: "فَيَقُولُوا۟ هَلْ نَحْنُ مُنظَرُونَ",
     },
     translation: {
-      en: 'And they will say, "May we be reprieved?"',
-      id: "lalu mereka berkata, “Apakah kami diberi penangguhan waktu?”",
+      en: {
+        footnotes: "",
+        text: "They will then say, “Can we be granted some respite?”",
+      },
+      id: {
+        footnotes: "",
+        text: 'l Lalu mereka berkata, "Apakah kami diberi penangguhan waktu?"',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/3136",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3136.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/3136.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 150,
       juz: 19,
       manzil: 5,
       page: 375,
       ruku: 326,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 3136,
@@ -229,20 +190,22 @@ export const quranSurah26Verses199To204 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menjelaskan bahwa orang-orang musyrik Mekah pernah mengejek Nabi Muhammad dengan menanyakan kapan azab yang dijanjikan itu akan menimpa mereka. Pertanyaan mereka itu dijawab Allah melalui ayat ini dengan mengatakan, "Apakah mereka minta dipercepat datangnya azab yang Kami janjikan itu?" Sebenarnya mereka tidak perlu menanyakan kapan azab yang diancamkan Allah itu datang. Mereka cukup memperhatikan malapetaka yang telah menimpa umat-umat dahulu yang telah mendustakan para rasul yang diutus Allah kepada mereka. Padahal umat-umat dahulu itu adalah umat yang gagah perkasa dan mempunyai kemampuan untuk memakmurkan negara mereka, tetapi tidak seorang pun di antara mereka yang sanggup mengelakkan diri dari azab Allah.',
-        short:
-          "Bukankah mereka yang meminta agar azab kami dipercepat? Akan tetapi, ketika Kami menimpakan azab itu kepada mereka, mereka meminta agar diberi kesempatan sekali lagi untuk bertobat. Inilah sikap mereka yang saling bertentangan.",
+        footnotes: null,
+        text: 'Apakah orang-orang kafir itu meminta supaya azab Kami disegerakan sembari menyatakan, "Kami tidak akan pernah beriman kepadamu sehingga engkau menjatuhkan langit berkeping-keping seperti yang engkau ancamkan."',
       },
     },
     text: {
-      arab: "\u0623\u064e\u0641\u064e\u0628\u0650\u0639\u064e\u0630\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u064a\u064e\u0633\u0652\u062a\u064e\u0639\u0652\u062c\u0650\u0644\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Aafabi 'azaabinaa yasta'jiloon",
-      },
+      arabic: "أَفَبِعَذَابِنَا يَسْتَعْجِلُونَ",
     },
     translation: {
-      en: "So for Our punishment are they impatient?",
-      id: "Bukankah mereka yang meminta agar azab Kami dipercepat?",
+      en: {
+        footnotes: "",
+        text: "Do they really seek to hasten Our punishment?",
+      },
+      id: {
+        footnotes: "",
+        text: "Bukankah mereka yang meminta agar azab Kami dipercepat?",
+      },
     },
   },
 ];

@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah102Verses1To6 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6169",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6169.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6169.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 544,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6169,
@@ -24,40 +25,33 @@ export const quranSurah102Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah mengungkapkan bahwa manusia sibuk bermegah-megahan dengan harta, teman, dan pengikut yang banyak, sehingga melalaikannya dari kegiatan beramal. Mereka asyik dengan berbicara saja, teperdaya oleh keturunan mereka dan teman sejawat tanpa memikirkan amal perbuatan yang bermanfaat untuk diri dan keluarga mereka.\n\nDiriwayatkan dari Mutharrif dari ayahnya, ia berkata:\n\nSaya menemui Nabi saw ketika beliau sedang membaca al-hakumut-takatsur, beliau bersabda, "Anak Adam berkata, \'Inilah harta saya, inilah harta saya. Nabi bersabda, "Wahai anak Adam! Engkau tidak memiliki dari hartamu kecuali apa yang engkau makan dan telah engkau habiskan, atau pakaian yang engkau pakai hingga lapuk, atau yang telah kamu sedekahkan sampai habis." (Riwayat Muslim) \n\nDiriwayatkan pula bahwa Nabi saw bersabda:\n\nSeandainya anak Adam memiliki satu lembah harta, sungguh ia ingin memiliki dua lembah harta, dan seandainya ia memiliki dua lembah harta, sungguh ia ingin memiliki tiga lembah harta dan tidak memenuhi perut manusia (tidak merasa puas) kecuali perutnya diisi dengan tanah dan Allah akan menerima tobat (memberi ampunan) kepada orang yang bertobat. (Riwayat Ahmad, al-Bukhari, Muslim, dan at-Tirmidhi dari Anas)\n\nAhli tafsir ada yang berpendapat bahwa maksud ayat ini adalah bangga dalam berlebih-lebihan. Seseorang berusaha memiliki lebih banyak dari yang lain baik harta ataupun kedudukan dengan tujuan semata-mata untuk mencapai ketinggian dan kebanggaan, bukan untuk digunakan pada jalan kebaikan atau untuk membantu menegakkan keadilan dan maksud baik lainnya.\n\nKetahuilah, sesungguhnya kehidupan dunia itu hanyalah permainan dan sendagurauan, perhiasan dan saling berbangga di antara kamu serta berlomba dalam kekayaan dan anak keturunan, seperti hujan yang tanam-tanamannya mengagumkan para petani; kemudian (tanaman) itu menjadi kering dan kamu lihat warnanya kuning kemudian menjadi hancur. Dan di akhirat (nanti) ada azab yang keras dan ampunan dari Allah serta keridaan-Nya. Dan kehidupan dunia tidak lain hanyalah kesenangan yang palsu. (al-hadid/57: 20)',
-        short:
-          "Wahai manusia, bermegah-megahan dalam hal harta, keturunan, dan pengikut telah melalaikan kamu dari ketaatan kepada Allah dan mempersiapkan diri untuk menghadapi hari akhir.",
+        footnotes: null,
+        text: "Tindakan kalian dalam bermegah-megahan dengan harta dan anak telah melalaikan kalian -wahai manusia- dari ketaatan terhadap Allah,",
       },
     },
     text: {
-      arab: "\u0623\u064e\u0644\u0652\u0647\u064e\u0627\u0643\u064f\u0645\u064f \u0627\u0644\u062a\u0651\u064e\u0643\u064e\u0627\u062b\u064f\u0631\u064f",
-      transliteration: {
-        en: "Al haaku mut takathur",
-      },
+      arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ أَلْهَىٰكُمُ ٱلتَّكَاثُرُ",
     },
     translation: {
-      en: "Competition in [worldly] increase diverts you",
-      id: "Bermegah-megahan telah melalaikan kamu,",
+      en: {
+        footnotes: "",
+        text: "Competition for worldly gains distracts you [from Allah],",
+      },
+      id: {
+        footnotes:
+          "[923] Bermegah-megahan dalam soal banyak anak, harta, pengikut, kemuliaan dan sebagainya, telah melalaikan kamu dari ketaatan kepada Allah.",
+        text: "Bermegah-megahan telah melalaikan kamu,[923]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6170",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6170.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6170.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 544,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6170,
@@ -65,40 +59,32 @@ export const quranSurah102Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Selanjutnya Allah menjelaskan keadaan bermegah-megah di antara manusia atau dengan usaha untuk memiliki lebih banyak dari orang lain akan terus berlanjut hingga mereka masuk lubang kubur. Dengan demikian, mereka telah menyia-nyiakan umur untuk hal yang tidak berfaedah, baik dalam hidup di dunia maupun untuk kehidupan akhirat.\n\nPara ulama berpendapat bahwa menziarahi kuburan adalah obat penawar yang paling ampuh untuk melunakkan hati, karena dengan ziarah kubur itu manusia akan ingat mati dan hari akhirat, maka dengan sendirinya akan membatasi keinginan-keinginan yang bukan-bukan.\n\nNabi Muhammad bersabda:\n\nSaya pernah melarang kamu menziarahi kubur, maka sekarang ziarahilah kubur itu, karena menziarahi kubur itu akan menjadikan zuhud dari kemewahan dunia dan mengingatkan kamu kepada kehidupan akhirat. (Riwayat Ibnu Majah dari Ibnu Mas'ud).",
-        short:
-          "Kamu tidak akan berhenti bermegah-megahan seperti itu sampai kamu mati dan masuk ke dalam kubur.",
+        footnotes: null,
+        text: "hingga kalian mati dan masuk ke dalam kuburan.",
       },
     },
     text: {
-      arab: "\u062d\u064e\u062a\u0651\u064e\u0649\u0670 \u0632\u064f\u0631\u0652\u062a\u064f\u0645\u064f \u0627\u0644\u0652\u0645\u064e\u0642\u064e\u0627\u0628\u0650\u0631\u064e",
-      transliteration: {
-        en: "Hatta zurtumul-maqaabir",
-      },
+      arabic: "حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ",
     },
     translation: {
-      en: "Until you visit the graveyards.",
-      id: "sampai kamu masuk ke dalam kubur.",
+      en: {
+        footnotes: "",
+        text: "until you come to your graves.",
+      },
+      id: {
+        footnotes: "",
+        text: "sampai kamu masuk ke dalam kubur.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6171",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6171.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6171.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 544,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6171,
@@ -106,40 +92,32 @@ export const quranSurah102Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Kemudian Allah dengan ayat ini memperingatkan bahwa bermegah-megahan itu tidak pantas dikerjakan karena akibatnya buruk serta menimbulkan kekacauan dan permusuhan. Sebaliknya Allah menganjurkan agar diciptakan kerukunan hidup, bantu-membantu dalam menegakkan kebenaran dan tolong-menolong dalam kebajikan dan dalam melestarikan hidup bermasyarakat, dengan membina akhlak yang luhur serta budi pekerti yang baik.",
-        short:
-          "Tidak patut bagimu untuk lalai karena bermegah-megahan. Sekali-kali tidak! Kelak kamu akan mengetahui dan menyadari bahwa akhirat itu lebih baik bagimu.",
+        footnotes: null,
+        text: "Tidak sepantasnya kalian tersibukkan oleh tindakan bermegah-megahan dengan harta dan anak hingga melalaikan ketaatan kepada Allah, sungguh kalian akan mengetahui akibat dari kesibukan itu.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u0633\u064e\u0648\u0652\u0641\u064e \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Kalla sawfa ta'lamoon",
-      },
+      arabic: "كَلَّا سَوْفَ تَعْلَمُونَ",
     },
     translation: {
-      en: "No! You are going to know.",
-      id: "Sekali-kali tidak! Kelak kamu akan mengetahui (akibat perbuatanmu itu),",
+      en: {
+        footnotes: "",
+        text: "No indeed! You will come to know.",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekali-kali tidak! Kelak kamu akan mengetahui (akibat perbuatanmu itu).",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6172",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6172.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6172.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 544,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6172,
@@ -147,40 +125,32 @@ export const quranSurah102Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Allah mengulang ancaman-Nya melalui ayat ini dan merupakan ancaman sesudah ancaman, bagaikan seorang tuan berkata kepada hamba sahayanya bahwa agar tidak mengerjakan sesuatu, kemudian tuan itu mengulangi ucapannya itu.",
-        short:
-          "Dan sekali-kali tidak patut bagimu berbuat demikian! Kelak kamu akan mengetahui akibat dari kesibukanmu dengan dunia dan kelalaianmu dari ketaatan.",
+        footnotes: null,
+        text: "Kemudian sungguh kalian akan mengetahui akibatnya.",
       },
     },
     text: {
-      arab: "\u062b\u064f\u0645\u0651\u064e \u0643\u064e\u0644\u0651\u064e\u0627 \u0633\u064e\u0648\u0652\u0641\u064e \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e",
-      transliteration: {
-        en: "Thumma kalla sawfa ta'lamoon",
-      },
+      arabic: "ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ",
     },
     translation: {
-      en: "Then no! You are going to know.",
-      id: "kemudian sekali-kali tidak! Kelak kamu akan mengetahui.",
+      en: {
+        footnotes: "",
+        text: "Again no! You will come to know.",
+      },
+      id: {
+        footnotes: "",
+        text: "Kemudian sekali-kali tidak! Kelak kamu akan mengetahui.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6173",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6173.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6173.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 544,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6173,
@@ -188,40 +158,33 @@ export const quranSurah102Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini merupakan peringatan Allah dalam bentuk perintah agar waspada terhadap tingkah laku yang buruk itu. Keinginan untuk berlebih-lebihan dapat menyibukkan seseorang untuk mengerjakan pekerjaan yang tidak bermanfaat. Pendirian yang dianggapnya benar itu sebenarnya adalah salah. Itu hanya sangkaan belaka yang pasti berubah, karena tidak sesuai dengan kenyataan. Yang harus menjadi pendirian adalah yang sesuai dengan kenyataan yang dapat disaksikan oleh mata, oleh perasaan atau berdasarkan dalil sahih.",
-        short:
-          "Sekali-kali tidak pantas bagimu bermegah-megahan! Sekiranya kamu mengetahui dengan pasti akibat buruk dari perbuatanmu itu di akhirat nanti, niscaya kamu akan meninggalkannya dan beralih menyibukkan diri dengan hal-hal yang menyelamatkanmu dari siksa neraka.",
+        footnotes: null,
+        text: "Sungguh, apabila kalian mengetahui dengan yakin bahwa kalian akan dibangkitkan kepada Allah dan bahwasanya Allah akan membalas kalian atas perbuatan kalian, niscaya kalian tidak akan tersibukkan dengan kesombongan dengan harta dan anak.",
       },
     },
     text: {
-      arab: "\u0643\u064e\u0644\u0651\u064e\u0627 \u0644\u064e\u0648\u0652 \u062a\u064e\u0639\u0652\u0644\u064e\u0645\u064f\u0648\u0646\u064e \u0639\u0650\u0644\u0652\u0645\u064e \u0627\u0644\u0652\u064a\u064e\u0642\u0650\u064a\u0646\u0650",
-      transliteration: {
-        en: "Kalla law ta'lamoona 'ilmal yaqeen",
-      },
+      arabic: "كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ",
     },
     translation: {
-      en: "No! If you only knew with knowledge of certainty...",
-      id: "Sekali-kali tidak! Sekiranya kamu mengetahui dengan pasti,",
+      en: {
+        footnotes:
+          '[1] The conclusion of this verse, "...you would not have been distracted from preparing for the Hereafter by wealth and children."',
+        text: "No indeed! If only you knew for certain[1].",
+      },
+      id: {
+        footnotes: "",
+        text: "Sekali-kali tidak! Sekiranya kamu mengetahui dengan pasti,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/6174",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6174.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/6174.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 240,
       juz: 30,
       manzil: 7,
       page: 600,
       ruku: 544,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 6174,
@@ -229,20 +192,22 @@ export const quranSurah102Verses1To6 = [
     },
     tafsir: {
       id: {
-        long: 'Dalam ayat ini, Allah menerangkan sebagian azab yang akan dialami oleh orang yang bermegah-megahan itu karena kelalaian tersebut. Mereka akan ditimpa azab di akhirat, dan pasti akan melihat tempat itu dengan mata kepala mereka sendiri. Oleh sebab itu, mereka hendaknya selalu merenungkan kedahsyatan azab itu dalam pikiran agar membawa mereka kepada perbuatan yang baik dan bermanfaat. Maksud perkataan "melihat neraka Jahim" adalah merasakan azabnya, sesuai dengan tujuan Al-Qur\'an dalam pemakaian kata-kata tersebut.',
-        short:
-          "Aku bersumpah, niscaya kamu benar-benar akan melihat neraka Jahim dan merasakan panasnya.",
+        footnotes: null,
+        text: "Demi Allah! Sungguh kalian akan menyaksikan neraka pada hari Kiamat nanti.",
       },
     },
     text: {
-      arab: "\u0644\u064e\u062a\u064e\u0631\u064e\u0648\u064f\u0646\u0651\u064e \u0627\u0644\u0652\u062c\u064e\u062d\u0650\u064a\u0645\u064e",
-      transliteration: {
-        en: "Latara-wun nal jaheem",
-      },
+      arabic: "لَتَرَوُنَّ ٱلْجَحِيمَ",
     },
     translation: {
-      en: "You will surely see the Hellfire.",
-      id: "niscaya kamu benar-benar akan melihat neraka Jahim,",
+      en: {
+        footnotes: "",
+        text: "You will surely see the Blazing Fire,",
+      },
+      id: {
+        footnotes: "",
+        text: "niscaya kamu benar-benar akan melihat neraka Jahim,",
+      },
     },
   },
 ];

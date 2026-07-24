@@ -1,22 +1,23 @@
+/**
+ * Generated from pinned official sources. Do not edit by hand.
+ * Tanzil Quran Text (Uthmani, Version 1.1).
+ * Copyright (C) 2007-2026 Tanzil Project. CC BY 3.0.
+ * Distributed verbatim; changing the text is not allowed.
+ * Source and updates: https://tanzil.net and https://tanzil.net/updates/
+ * English Rwwad v1.0.19-xml.1, Rowwad Translation Center.
+ * Indonesian Affairs v1.0.1-xml.1, Ministry of Religious Affairs.
+ * Indonesian Al-Mukhtasar v1.0.0, Tafsir Center for Quranic Studies.
+ * QuranEnc content is unmodified. Source and terms: https://quranenc.com/en/
+ */
 export const quranSurah74Verses25To30 = [
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5520",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5520.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5520.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 230,
       juz: 29,
       manzil: 7,
       page: 576,
       ruku: 510,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5520,
@@ -24,39 +25,32 @@ export const quranSurah74Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menegaskan bahwa al-Walid lalu mengatakan bahwa Al-Qur'an ini tidak lain hanyalah sihir yang dipelajari (dari orang-orang dahulu). Menurut dugaannya, Al-Qur'an adalah suatu ucapan yang disalin Muhammad dari orang lain yang lebih dahulu daripadanya, diterima dari orang yang bercerita kepadanya. \n\nAl-Walid juga mengatakan bahwa Al-Qur'an ini tidak lain hanyalah perkataan manusia. Maksudnya selain menuduh Al-Qur'an sebagai sihir yang bisa dipelajari, juga perkataan manusia biasa dan Muhammad mencurinya dari ucapan-ucapan orang lain. Secara ringkas, ia mengatakan bahwa Al-Qur'an bukan kalamullah seperti yang didakwahkan oleh Muhammad.\n\nAndaikata tuduhan al-Walid itu benar, bahwa Al-Qur'an itu perkataan manusia biasa, tentu orang lain selain Muhammad saw sanggup pula menyusun seperti itu atau membuat tantangan yang lebih bagus lagi. Padahal di kalangan bangsa Arab banyak sekali terdapat tokoh-tokoh sastrawan yang lidahnya fasih bersyair dan berpidato. Di antara mereka, juga ada yang mendalam penguasaannya tentang berbagai macam ilmu pengetahuan. Namun demikian, tidak ada seorang pun yang sanggup menandingi ucapan yang keluar dari mulut Muhammad itu.",
-        short: "Ini hanyalah perkataan manusia bukan firman Allah.”",
+        footnotes: null,
+        text: "Itu bukanlah firman Allah, akan tetapi itu adalah ucapan manusia.”",
       },
     },
     text: {
-      arab: "\u0625\u0650\u0646\u0652 \u0647\u064e\u0670\u0630\u064e\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0642\u064e\u0648\u0652\u0644\u064f \u0627\u0644\u0652\u0628\u064e\u0634\u064e\u0631\u0650",
-      transliteration: {
-        en: "In haazaaa illaa qawlul bashar",
-      },
+      arabic: "إِنْ هَٰذَآ إِلَّا قَوْلُ ٱلْبَشَرِ",
     },
     translation: {
-      en: 'This is not but the word of a human being."',
-      id: "Ini hanyalah perkataan manusia.”",
+      en: {
+        footnotes: "",
+        text: "This is nothing but the words of a man.”",
+      },
+      id: {
+        footnotes: "",
+        text: 'Ini hanyalah perkataan manusia."',
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5521",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5521.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5521.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 230,
       juz: 29,
       manzil: 7,
       page: 576,
       ruku: 510,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5521,
@@ -64,40 +58,32 @@ export const quranSurah74Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Dalam ayat ini, Allah menggambarkan balasan yang setimpal bagi orang yang begitu lancang menuduh Al-Qur'an sebagai ucapan manusia. Allah akan memasukkan al-Walid ke dalam neraka Saqar. Saqar adalah salah satu nama neraka.",
-        short:
-          "Sebagai akibat dari kedurhakaan yang dilakukan oleh al-Walid dan siapa pun, sebagaimana diuraikan oleh ayat-ayat yang lalu, maka ia disiksa dan puncaknya dijelaskan pada ayat-ayat ini. Kelak, Aku akan menyiksanya dengan memasukkannya ke dalam neraka Saqar,",
+        footnotes: null,
+        text: " Aku akan memasukkan orang kafir ini ke dalam salah satu tingkatan neraka, yaitu neraka Saqar, agar ia merasakan panasnya.",
       },
     },
     text: {
-      arab: "\u0633\u064e\u0623\u064f\u0635\u0652\u0644\u0650\u064a\u0647\u0650 \u0633\u064e\u0642\u064e\u0631\u064e",
-      transliteration: {
-        en: "Sa usleehi saqar",
-      },
+      arabic: "سَأُصْلِيهِ سَقَرَ",
     },
     translation: {
-      en: "I will drive him into Saqar.",
-      id: "Kelak, Aku akan memasukkannya ke dalam (neraka) Saqar,",
+      en: {
+        footnotes: '[7] "Saqar" is one of the names of Hell.',
+        text: "Soon I will make him burn in the Scorching Fire[7].",
+      },
+      id: {
+        footnotes: "",
+        text: "Kelak, Aku akan memasukkannya ke dalam (neraka) Saqar,",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5522",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5522.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5522.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 230,
       juz: 29,
       manzil: 7,
       page: 576,
       ruku: 510,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5522,
@@ -105,39 +91,32 @@ export const quranSurah74Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menggambarkan sifat neraka Saqar. Perkataan wa ma adra ka (dan tahukah engkau) dalam bahasa Arab menunjukkan besar dan sangat dahsyatnya masalah yang dipertanyakan. Apakah yang engkau ketahui tentang Saqar? Dan pasti tidak seorang pun mengetahuinya dan mencapai hakikatnya kecuali dengan keterangan yang diberikan oleh wahyu.\n\nSaqar itu tidak meninggalkan dan tidak mengembalikan. Artinya setiap tubuh manusia yang di bakarnya, tidak satu pun yang tersisa dari daging maupun tulang. Kemudian tubuh yang telah hangus itu dikembalikan lagi menjadi baru dan segar, tetapi dibakar lagi sampai hangus untuk kedua kali dan seterusnya. Keterangan seperti itu kita peroleh dari ayat yang lain berbunyi:\n\nSetiap kali kulit mereka hangus, Kami ganti dengan kulit yang lain, agar mereka merasakan azab. (an-Nisa'/4: 56)",
-        short: "dan tahukah kamu apa neraka Saqar itu?",
+        footnotes: null,
+        text: "Tahukah kamu -wahai Muhammad- apa neraka Saqar itu?",
       },
     },
     text: {
-      arab: "\u0648\u064e\u0645\u064e\u0627 \u0623\u064e\u062f\u0652\u0631\u064e\u0627\u0643\u064e \u0645\u064e\u0627 \u0633\u064e\u0642\u064e\u0631\u064f",
-      transliteration: {
-        en: "Wa maaa adraaka maa saqar",
-      },
+      arabic: "وَمَآ أَدْرَىٰكَ مَا سَقَرُ",
     },
     translation: {
-      en: "And what can make you know what is Saqar?",
-      id: "dan tahukah kamu apa (neraka) Saqar itu?",
+      en: {
+        footnotes: "",
+        text: "How do you know what Scorching Fire is?",
+      },
+      id: {
+        footnotes: "",
+        text: "Dan tahukah kamu apa (neraka) Saqar itu?",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5523",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5523.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5523.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 230,
       juz: 29,
       manzil: 7,
       page: 576,
       ruku: 510,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5523,
@@ -145,40 +124,33 @@ export const quranSurah74Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: "Ayat ini menggambarkan sifat neraka Saqar. Perkataan wa ma adra ka (dan tahukah engkau) dalam bahasa Arab menunjukkan besar dan sangat dahsyatnya masalah yang dipertanyakan. Apakah yang engkau ketahui tentang Saqar? Dan pasti tidak seorang pun mengetahuinya dan mencapai hakikatnya kecuali dengan keterangan yang diberikan oleh wahyu.\n\nSaqar itu tidak meninggalkan dan tidak mengembalikan. Artinya setiap tubuh manusia yang di bakarnya, tidak satu pun yang tersisa dari daging maupun tulang. Kemudian tubuh yang telah hangus itu dikembalikan lagi menjadi baru dan segar, tetapi dibakar lagi sampai hangus untuk kedua kali dan seterusnya. Keterangan seperti itu kita peroleh dari ayat yang lain berbunyi:\n\nSetiap kali kulit mereka hangus, Kami ganti dengan kulit yang lain, agar mereka merasakan azab. (an-Nisa'/4: 56)",
-        short:
-          "Saqar itu tidak meninggalkan atau menyisakan, semua anggota tubuhnya akan diliputi siksa dan tidak membiarkan mati, sehingga terbebas dari azab.",
+        footnotes: null,
+        text: "Ia adalah neraka yang tidak menyisakan sesuatu pun yang disiksa di dalamnya melainkan ia menghancurkannya dan tidak membiarkannya, kemudian orang itu kembali lagi seperti semula, lalu kembali dihancurkan. Demikian berulang-ulang.",
       },
     },
     text: {
-      arab: "\u0644\u064e\u0627 \u062a\u064f\u0628\u0652\u0642\u0650\u064a \u0648\u064e\u0644\u064e\u0627 \u062a\u064e\u0630\u064e\u0631\u064f",
-      transliteration: {
-        en: "Laa tubqee wa laa tazar",
-      },
+      arabic: "لَا تُبْقِى وَلَا تَذَرُ",
     },
     translation: {
-      en: "It lets nothing remain and leaves nothing [unburned],",
-      id: "Ia (Saqar itu) tidak meninggalkan dan tidak membiarkan,",
+      en: {
+        footnotes: "",
+        text: "It leaves nothing and spares no one,",
+      },
+      id: {
+        footnotes:
+          "[877] Apa yang dilemparkan ke dalam neraka itu diazabnya sampai binasa kemudian dikembalikannya seperti semula untuk diazab kembali.",
+        text: "Ia (Saqar itu) tidak meninggalkan dan tidak membiarkan,[877]",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5524",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5524.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5524.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 230,
       juz: 29,
       manzil: 7,
       page: 576,
       ruku: 510,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5524,
@@ -186,39 +158,32 @@ export const quranSurah74Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menegaskan bahwa neraka Saqar itu pembakar kulit manusia. Maksudnya, Saqar itu membakar hangus kulit manusia sampai hitam warnanya. Makna kata lawwahah dalam ayat ini sebenarnya adalah "yang mengubah kulit menjadi hitam". Lebih hitam dari kegelapan malam.',
-        short: "Saqar itu adalah yang menghanguskan kulit manusia.",
+        footnotes: null,
+        text: "Neraka itu sangat membakar dan merubah kulit.",
       },
     },
     text: {
-      arab: "\u0644\u064e\u0648\u0651\u064e\u0627\u062d\u064e\u0629\u064c \u0644\u0651\u0650\u0644\u0652\u0628\u064e\u0634\u064e\u0631\u0650",
-      transliteration: {
-        en: "Lawwaahatul lilbashar",
-      },
+      arabic: "لَوَّاحَةٌ لِّلْبَشَرِ",
     },
     translation: {
-      en: "Blackening the skins.",
-      id: "yang menghanguskan kulit manusia.",
+      en: {
+        footnotes: "",
+        text: "scorching the skin.",
+      },
+      id: {
+        footnotes: "",
+        text: "yang menghanguskan kulit manusia.",
+      },
     },
   },
   {
-    audio: {
-      primary: "https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/5525",
-      secondary: [
-        "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5525.mp3",
-        "https://cdn.islamic.network/quran/audio/64/ar.alafasy/5525.mp3",
-      ],
-    },
     meta: {
       hizbQuarter: 230,
       juz: 29,
       manzil: 7,
       page: 576,
       ruku: 510,
-      sajda: {
-        obligatory: false,
-        recommended: false,
-      },
+      sajda: null,
     },
     number: {
       inQuran: 5525,
@@ -226,20 +191,22 @@ export const quranSurah74Verses25To30 = [
     },
     tafsir: {
       id: {
-        long: 'Ayat ini menegaskan bahwa Saqar itu dijaga oleh 19 malaikat yang dikepalai oleh Malik. Diriwayatkan oleh al-Baihaqi dan Ibnu Mardawaih dari al-Bara\' bahwa serombongan orang Yahudi pernah bertanya kepada sebagian sahabat Nabi tentang penjaga-penjaga neraka Jahanam. Mereka menjawab, "Allah dan Rasul-Nya yang lebih mengetahui." Kemudian turunlah Jibril kepada Rasulullah menerangkan tentang apa yang mereka tanyakan itu, seperti dalam ayat ke-30 ini.',
-        short:
-          "Di atas neraka Saqar ada sembilan belas malaikat penjaga, yang siap siaga mengawasi penghuninya.",
+        footnotes: null,
+        text: "Di atasnya ada sembilan belas malaikat, mereka adalah para penjaganya.",
       },
     },
     text: {
-      arab: "\u0639\u064e\u0644\u064e\u064a\u0652\u0647\u064e\u0627 \u062a\u0650\u0633\u0652\u0639\u064e\u0629\u064e \u0639\u064e\u0634\u064e\u0631\u064e",
-      transliteration: {
-        en: "'Alaihaa tis'ata 'ashar",
-      },
+      arabic: "عَلَيْهَا تِسْعَةَ عَشَرَ",
     },
     translation: {
-      en: "Over it are nineteen [angels].",
-      id: "Di atasnya ada sembilan belas (malaikat penjaga).",
+      en: {
+        footnotes: "",
+        text: "It is overseen by nineteen [angels].",
+      },
+      id: {
+        footnotes: "",
+        text: "Di atasnya ada sembilan belas (malaikat penjaga).",
+      },
     },
   },
 ];

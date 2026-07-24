@@ -49,6 +49,7 @@ export const rendererManifest = await Effect.runPromise(
       chemistry: [{ name: "TestChemistry", version: 1 }],
       mathematics: [{ name: "TestMathematics", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 const sourceRendererManifest = await Effect.runPromise(
@@ -67,6 +68,7 @@ const sourceRendererManifest = await Effect.runPromise(
       chemistry: [{ name: "TestChemistry", version: 1 }],
       mathematics: [{ name: "TestMathematics", version: 1 }],
     }),
+    publishedDomains: ["mathematics"],
   })
 );
 const sourcePath = CorpusSourcePathSchema.make(
@@ -162,6 +164,17 @@ const sourcePrepared = await Effect.runPromise(
     rendererManifest: sourceRendererManifest,
     result: () => Stream.make(head),
     routes: () => Stream.empty,
+    scope: {
+      content: [
+        {
+          contentKey: change.contentKey,
+          family: change.family,
+          locale: change.locale,
+        },
+      ],
+      families: [],
+      snapshots: [],
+    },
     ...emptySnapshotSources,
   })
 );
