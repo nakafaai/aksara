@@ -84,7 +84,17 @@ function createRepository(input?: {
   );
 
   git(root, "add", "--force", ".");
-  git(root, "commit", "--quiet", "-m", "test repository");
+  git(
+    root,
+    "commit",
+    "--quiet",
+    "-m",
+    "test repository",
+    "-m",
+    "git-subtree-dir: repos/effect",
+    "-m",
+    `git-subtree-split: ${"a".repeat(40)}`
+  );
   process.chdir(root);
 
   return {
@@ -95,23 +105,26 @@ function createRepository(input?: {
   } satisfies EffectSourceConfig;
 }
 
-/** Runs one source command with the real Node platform layer. */
-function runProgram(action: string | undefined, config: EffectSourceConfig) {
-  return Effect.runPromise(
-    makeEffectSourceProgram(action, config).pipe(
-      Effect.provide(NodeContext.layer)
-    )
+/** Builds one source command with the real Node platform layer. */
+function program(action: string | undefined, config?: EffectSourceConfig) {
+  return makeEffectSourceProgram(action, config).pipe(
+    Effect.provide(NodeContext.layer)
   );
 }
 
-/** Returns one expected typed failure without flattening its tag. */
-function readFailure(action: string | undefined, config: EffectSourceConfig) {
-  return Effect.runPromise(
-    makeEffectSourceProgram(action, config).pipe(
-      Effect.provide(NodeContext.layer),
-      Effect.flip
-    )
-  );
+function runProgram(action: string | undefined, config: EffectSourceConfig) {
+  return Effect.runPromise(program(action, config));
+}
+
+/** Asserts one expected typed failure without discarding its tag. */
+async function expectFailure(
+  action: string | undefined,
+  config: EffectSourceConfig,
+  tag: string
+) {
+  await expect(
+    Effect.runPromise(program(action, config).pipe(Effect.flip))
+  ).resolves.toHaveProperty("_tag", tag);
 }
 
 /** Creates an upstream Effect repository with two immutable release tags. */
@@ -201,12 +214,11 @@ describe("Effect source maintenance", () => {
     const config = createRepository();
 
     await expect(runProgram("check", config)).resolves.toBeUndefined();
-    await expect(
-      Effect.runPromise(
-        makeEffectSourceProgram("check").pipe(Effect.provide(NodeContext.layer))
-      )
-    ).resolves.toBeUndefined();
+    await expect(Effect.runPromise(program("check"))).resolves.toBeUndefined();
     expect(runtime.calls).toBe(1);
+
+    git(process.cwd(), "commit", "--amend", "--quiet", "-m", "drop identity");
+    await expectFailure("check", config, "EffectSourceMismatch");
   });
 
   it("rejects unsupported operations and mismatched versions", async () => {
@@ -214,12 +226,8 @@ describe("Effect source maintenance", () => {
       vendored: '{"version":"3.21.0"}',
     });
 
-    await expect(readFailure("unknown", config)).resolves.toMatchObject({
-      _tag: "EffectSourceUsageError",
-    });
-    await expect(readFailure("check", config)).resolves.toMatchObject({
-      _tag: "EffectSourceMismatch",
-    });
+    await expectFailure("unknown", config, "EffectSourceUsageError");
+    await expectFailure("check", config, "EffectSourceMismatch");
   });
 
   it.each([
@@ -228,9 +236,7 @@ describe("Effect source maintenance", () => {
   ])("rejects %s manifests", async (_label, vendored) => {
     const config = createRepository({ vendored });
 
-    await expect(readFailure("check", config)).resolves.toMatchObject({
-      _tag: "EffectSourceReadError",
-    });
+    await expectFailure("check", config, "EffectSourceReadError");
   });
 
   it("rejects missing and locally edited source", async () => {
@@ -239,17 +245,17 @@ describe("Effect source maintenance", () => {
     git(process.cwd(), "add", "--all");
     git(process.cwd(), "commit", "--quiet", "-m", "remove source");
 
-    await expect(readFailure("check", missing)).resolves.toMatchObject({
-      _tag: "EffectSourceReadError",
-    });
+    await expectFailure("check", missing, "EffectSourceReadError");
 
     process.chdir(originalDirectory);
     const dirty = createRepository();
-    writeFileSync(dirty.vendoredManifest, '{"version":"3.21.0"}');
+    const editedSource = "repos/effect/README.md";
+    writeFileSync(editedSource, "edited");
 
-    await expect(readFailure("check", dirty)).resolves.toMatchObject({
-      _tag: "EffectSourceMismatch",
-    });
+    await expectFailure("check", dirty, "EffectSourceMismatch");
+    git(process.cwd(), "add", editedSource);
+    git(process.cwd(), "commit", "--quiet", "-m", "edit vendored source");
+    await expectFailure("check", dirty, "EffectSourceMismatch");
   });
 
   it("keeps current source unchanged and rejects unsafe update states", async () => {
@@ -257,16 +263,12 @@ describe("Effect source maintenance", () => {
     await expect(runProgram("update", current)).resolves.toBeUndefined();
 
     writeFileSync("dirty.txt", "dirty");
-    await expect(readFailure("update", current)).resolves.toMatchObject({
-      _tag: "EffectSourceMismatch",
-    });
+    await expectFailure("update", current, "EffectSourceMismatch");
 
     git(process.cwd(), "add", "dirty.txt");
     git(process.cwd(), "commit", "--quiet", "-m", "clean again");
     git(process.cwd(), "checkout", "--quiet", "--detach");
-    await expect(readFailure("update", current)).resolves.toMatchObject({
-      _tag: "EffectSourceGitError",
-    });
+    await expectFailure("update", current, "EffectSourceGitError");
   });
 
   it("updates an outdated subtree from the matching release tag", async () => {
@@ -293,8 +295,6 @@ describe("Effect source maintenance", () => {
     const config = createRepository();
     process.env.PATH = "";
 
-    await expect(readFailure("check", config)).resolves.toMatchObject({
-      _tag: "EffectSourceGitError",
-    });
+    await expectFailure("check", config, "EffectSourceGitError");
   });
 });
