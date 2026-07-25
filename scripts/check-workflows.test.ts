@@ -5,6 +5,11 @@ import {
   type WorkflowSources,
 } from "#scripts/check-workflows";
 
+const OPERATION_HISTORY_INPUT =
+  /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
+const OPERATION_SETUP_INPUT =
+  /(^ {2}operate:\n[\s\S]*?^ {6}- name: Setup pnpm\n[\s\S]*?^ {10}version: \$\{\{ env\.PNPM_VERSION \}\})$/mu;
+
 /** Reads the exact workflow set exercised by repository policy. */
 function currentSources(): WorkflowSources {
   return {
@@ -21,7 +26,6 @@ describe("workflow policy", () => {
 
   it("rejects registry publication machinery", () => {
     const sources = currentSources();
-
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -34,7 +38,6 @@ describe("workflow policy", () => {
 
   it("requires CI to use the tested archive identity decision", () => {
     const sources = currentSources();
-
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -220,7 +223,6 @@ describe("workflow policy", () => {
 
   it("requires exact action commits", () => {
     const sources = currentSources();
-
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -232,19 +234,23 @@ describe("workflow policy", () => {
     ).toThrow("Workflow action actions/checkout@main must use an exact commit");
   });
 
-  it("requires complete history for every content contract proof", () => {
+  it("requires complete history for content operations", () => {
     const sources = currentSources();
-
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        release: sources.release.replace(
-          "          fetch-depth: 0",
-          "          fetch-depth: 1"
-        ),
-      })
-    ).toThrow(
+    const contract = sources.release.replace(
+      "          fetch-depth: 0",
+      "          fetch-depth: 1"
+    );
+    const operation = sources.release
+      .replace(OPERATION_HISTORY_INPUT, "$1          fetch-depth: 1")
+      .replace(
+        OPERATION_SETUP_INPUT,
+        "$1\n          fetch-depth: 0 # unrelated input"
+      );
+    expect(() => verifyWorkflows({ ...sources, release: contract })).toThrow(
       "Every content operation must depend on the exact immutable contract proof"
+    );
+    expect(() => verifyWorkflows({ ...sources, release: operation })).toThrow(
+      "Production content operations must preserve complete Git history"
     );
   });
 
@@ -256,7 +262,6 @@ describe("workflow policy", () => {
         "      - name: Prove immutable contract release",
         "    environment: content-production\n      - name: Prove immutable contract release"
       );
-
     expect(() => verifyWorkflows({ ...sources, release })).toThrow(
       "Contract proof must finish before production credentials are approved"
     );
