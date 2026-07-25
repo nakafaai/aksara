@@ -74,4 +74,5 @@ for clarity, measurable scale, and safe releases.
 - Never edit, import from, build, lint, or test `repos/effect` as Aksara code.
 - `pnpm effect:source:check` verifies that the installed and vendored Effect
   versions match. After committing an Effect dependency update, run
-  `pnpm effect:source:update`; Git subtree creates the reference update commit.
+  `pnpm effect:source:update`; it pulls the matching release tag and creates one
+  linear reference update commit.
