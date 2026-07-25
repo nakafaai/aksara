@@ -201,6 +201,7 @@ export const testArticleProjection = Schema.decodeUnknownSync(
   ArticleProjectionSchema
 )({
   ...testArticleDocument.route,
+  categoryTitle: "Politics",
   kind: "article",
   metadata,
   official: true,

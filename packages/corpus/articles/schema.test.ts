@@ -9,7 +9,11 @@ import {
 /** Builds one real-shaped source so tests vary one contract field at a time. */
 function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {
   return {
-    category: "politics",
+    category: {
+      key: "politics",
+      rendererDomain: "politics",
+      titles: { en: "Politics", id: "Politik" },
+    },
     references: [
       {
         authors: "Reviewed Author",
@@ -17,7 +21,6 @@ function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {
         year: 2024,
       },
     ],
-    rendererDomain: "politics",
     slug: "reviewed-article",
     sourceRoot: "articles/politics/reviewed/article",
     ...values,
@@ -33,8 +36,11 @@ describe("article source", () => {
 
   it("accepts a generic test category with its source-owned renderer", async () => {
     const generic = source({
-      category: "test-category",
-      rendererDomain: "physics",
+      category: {
+        key: "test-category",
+        rendererDomain: "physics",
+        titles: { en: "Test category", id: "Kategori uji" },
+      },
       slug: "test-group-test-article",
       sourceRoot: "articles/test-category/test-group/test-article",
     });
@@ -56,6 +62,22 @@ describe("article source", () => {
       sourceRoot: "articles/politics/flat",
     });
     expect(String(root.cause)).toContain("Invalid article source root.");
+  });
+
+  it("requires a non-empty display title for every supported locale", async () => {
+    const error = await Effect.runPromise(
+      defineArticleSource(
+        source({
+          category: {
+            key: "politics",
+            rendererDomain: "politics",
+            titles: { en: "Politics", id: "" },
+          },
+        })
+      ).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({ _tag: "ArticleSourceError" });
   });
 
   it.each([

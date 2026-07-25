@@ -6,6 +6,7 @@ import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identi
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ArticleCategorySchema,
+  ArticleCategoryTitleSchema,
   ArticleReferenceSchema,
   ArticleRouteSchema,
   ArticleSlugSchema,
@@ -20,6 +21,7 @@ import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 
 const ArticleEntrySchema = Schema.Struct({
+  categoryTitle: ArticleCategoryTitleSchema,
   delivery: Schema.Literal("public"),
   references: Schema.Array(ArticleReferenceSchema),
   rendererDomain: RendererDomainSchema,
@@ -45,6 +47,17 @@ export class ArticleRendererError extends Schema.TaggedError<ArticleRendererErro
   }
 ) {}
 
+/** One category maps to conflicting localized display titles. */
+export class ArticleTitleError extends Schema.TaggedError<ArticleTitleError>()(
+  "ArticleTitleError",
+  {
+    actual: ArticleCategoryTitleSchema,
+    category: ArticleCategorySchema,
+    expected: ArticleCategoryTitleSchema,
+    locale: ContentLocaleSchema,
+  }
+) {}
+
 /** A projected article registry failed strict entry decoding. */
 export class ArticleRegistryError extends Schema.TaggedError<ArticleRegistryError>()(
   "ArticleRegistryError",
@@ -57,20 +70,22 @@ const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
 ) {
   return yield* Effect.forEach(ContentLocaleSchema.literals, (locale) =>
     Effect.gen(function* () {
-      const contentKey = `articles/${source.category}/${source.slug}`;
+      const category = source.category.key;
+      const contentKey = `articles/${category}/${source.slug}`;
       const graph = yield* makeLearningGraphIdentity({
-        concept: ["article", source.category],
-        learningObject: ["article", source.category, source.slug],
-        lens: ["article", source.category],
+        concept: ["article", category],
+        learningObject: ["article", category, source.slug],
+        lens: ["article", category],
         locale,
       });
       return {
+        categoryTitle: source.category.titles[locale],
         delivery: "public",
         references: source.references,
-        rendererDomain: source.rendererDomain,
+        rendererDomain: source.category.rendererDomain,
         route: {
           articleSlug: source.slug,
-          category: source.category,
+          category,
           contentKey,
           graph,
           locale,
@@ -86,26 +101,46 @@ const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
 /** Rejects category-local slug duplicates and renderer contradictions. */
 const validateSources = Effect.fn("AksaraCorpus.validateArticleSources")(
   function* (sources: readonly ArticleSource[]) {
-    const rendererByCategory = new Map<string, RendererDomain>();
+    const categoryByKey = new Map<
+      string,
+      {
+        readonly rendererDomain: RendererDomain;
+        readonly titles: ArticleSource["category"]["titles"];
+      }
+    >();
     const slugs = new Set<string>();
 
     for (const source of sources) {
-      const rendererDomain = rendererByCategory.get(source.category);
+      const { category: sourceCategory, slug: sourceSlug } = source;
+      const { key, rendererDomain, titles } = sourceCategory;
+      const category = categoryByKey.get(key);
       if (
-        rendererDomain !== undefined &&
-        rendererDomain !== source.rendererDomain
+        category !== undefined &&
+        category.rendererDomain !== rendererDomain
       ) {
         return yield* new ArticleRendererError({
-          actual: source.rendererDomain,
-          category: source.category,
-          expected: rendererDomain,
+          actual: rendererDomain,
+          category: key,
+          expected: category.rendererDomain,
         });
       }
-      rendererByCategory.set(source.category, source.rendererDomain);
+      if (category !== undefined) {
+        for (const locale of ContentLocaleSchema.literals) {
+          if (category.titles[locale] !== titles[locale]) {
+            return yield* new ArticleTitleError({
+              actual: titles[locale],
+              category: key,
+              expected: category.titles[locale],
+              locale,
+            });
+          }
+        }
+      }
+      categoryByKey.set(key, sourceCategory);
 
-      const slug = `${source.category}\0${source.slug}`;
+      const slug = `${key}\0${sourceSlug}`;
       if (slugs.has(slug)) {
-        return yield* new ArticleSlugError({ slug: source.slug });
+        return yield* new ArticleSlugError({ slug: sourceSlug });
       }
       slugs.add(slug);
     }

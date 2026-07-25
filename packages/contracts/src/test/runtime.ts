@@ -162,6 +162,7 @@ const articleContentKey = ContentKeySchema.make(
 const articleProjection = ArticleProjectionSchema.make({
   articleSlug: ArticleSlugSchema.make("dynastic-politics-asian-values"),
   category: ArticleCategorySchema.make("politics"),
+  categoryTitle: "Politics",
   contentKey: articleContentKey,
   graph: articleGraph("en", "politics", "dynastic-politics-asian-values"),
   kind: "article",

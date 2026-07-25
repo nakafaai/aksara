@@ -78,6 +78,7 @@ export const makeArticleProjectionFromSource: (
     )
   );
   return makeArticleProjection({
+    categoryTitle: source.categoryTitle,
     metadata: decoded,
     official: decoded.authors.some(({ name }) => teams.has(name)),
     references: source.references,

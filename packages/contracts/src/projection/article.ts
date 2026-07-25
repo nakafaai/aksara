@@ -16,6 +16,10 @@ export const ArticleCategorySchema = Schema.String.pipe(
 );
 export type ArticleCategory = typeof ArticleCategorySchema.Type;
 
+/** Localized display title owned by one reviewed article category source. */
+export const ArticleCategoryTitleSchema = Schema.NonEmptyTrimmedString;
+export type ArticleCategoryTitle = typeof ArticleCategoryTitleSchema.Type;
+
 /** Stable source-owned article segment used below its category route. */
 export const ArticleSlugSchema = Schema.String.pipe(
   Schema.filter(isLowerKebab),
@@ -93,6 +97,7 @@ export type ArticleRoute = typeof ArticleRouteSchema.Type;
 /** Canonical published read model for one reviewed article body. */
 export const ArticleProjectionSchema = Schema.Struct({
   ...ArticleRouteFields,
+  categoryTitle: ArticleCategoryTitleSchema,
   kind: Schema.Literal("article"),
   metadata: ArticleMetadataSchema,
   official: Schema.Boolean,
@@ -116,6 +121,7 @@ export type ArticleProjection = typeof ArticleProjectionSchema.Type;
 
 /** Combines source-owned routing with decoded metadata and references. */
 export function makeArticleProjection(input: {
+  readonly categoryTitle: ArticleCategoryTitle;
   readonly metadata: ArticleMetadata;
   readonly official: boolean;
   readonly references: readonly ArticleReference[];
@@ -123,6 +129,7 @@ export function makeArticleProjection(input: {
 }) {
   return ArticleProjectionSchema.make({
     ...input.route,
+    categoryTitle: input.categoryTitle,
     kind: "article",
     metadata: input.metadata,
     official: input.official,
@@ -137,6 +144,7 @@ export function canonicalizeArticleProjection(projection: ArticleProjection) {
   return JSON.stringify({
     articleSlug: projection.articleSlug,
     category: projection.category,
+    categoryTitle: projection.categoryTitle,
     contentKey: projection.contentKey,
     graph: canonicalizeLearningGraphIdentity(projection.graph),
     kind: projection.kind,

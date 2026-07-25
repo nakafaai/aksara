@@ -15,6 +15,7 @@ import { articleGraph, materialGraph } from "#contracts/test/graph";
 const article = Schema.decodeUnknownSync(ArticleProjectionSchema)({
   articleSlug: "test-article",
   category: "politics",
+  categoryTitle: "Politics",
   contentKey: "articles/politics/test-article",
   graph: articleGraph("en", "politics", "test-article"),
   kind: "article",

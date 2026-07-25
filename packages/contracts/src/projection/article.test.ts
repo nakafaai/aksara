@@ -25,6 +25,7 @@ const metadata = Schema.decodeUnknownSync(ArticleMetadataSchema)({
   title: "Protocol Article",
 });
 const projection = makeArticleProjection({
+  categoryTitle: "Politics",
   metadata,
   official: true,
   references: [
@@ -71,6 +72,7 @@ describe("article projection", () => {
 
   it("omits absent optional metadata and reference fields", () => {
     const minimal = makeArticleProjection({
+      categoryTitle: "Politics",
       metadata: { authors: [], date: "2024-01-01", title: "Minimal" },
       official: false,
       references: [{ authors: "Test Author", title: "Reference", year: 2024 }],

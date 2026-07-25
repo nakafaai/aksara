@@ -10,7 +10,11 @@ const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
 /** Builds one reviewed source so failure tests vary only one identity. */
 function articleSource() {
   return {
-    category: "politics",
+    category: {
+      key: "politics",
+      rendererDomain: "politics",
+      titles: { en: "Politics", id: "Politik" },
+    },
     references: [
       {
         authors: "Reviewed Author",
@@ -18,7 +22,6 @@ function articleSource() {
         year: 2024,
       },
     ],
-    rendererDomain: "politics",
     slug: "dynastic-politics-asian-values",
     sourceRoot: "articles/politics/dynastic-politics/asian-values",
   };
@@ -87,8 +90,11 @@ describe("article registry", () => {
         articleSource(),
         {
           ...articleSource(),
-          category: "test-category",
-          rendererDomain: "physics",
+          category: {
+            key: "test-category",
+            rendererDomain: "physics",
+            titles: { en: "Test category", id: "Kategori uji" },
+          },
           slug: "test-group-test-article",
           sourceRoot: "articles/test-category/test-group/test-article",
         },
@@ -102,6 +108,10 @@ describe("article registry", () => {
     expect(
       testEntries.every(({ rendererDomain }) => rendererDomain === "physics")
     ).toBe(true);
+    expect(testEntries.map(({ categoryTitle }) => categoryTitle)).toEqual([
+      "Test category",
+      "Kategori uji",
+    ]);
   });
 
   it("maps malformed catalogs and invalid projected paths to typed failures", async () => {
@@ -140,7 +150,10 @@ describe("article registry", () => {
       articleSource(),
       {
         ...articleSource(),
-        rendererDomain: "physics",
+        category: {
+          ...articleSource().category,
+          rendererDomain: "physics",
+        },
         slug: "second-test-article",
         sourceRoot: "articles/politics/second-test/article",
       },
@@ -151,6 +164,29 @@ describe("article registry", () => {
       actual: "physics",
       category: "politics",
       expected: "politics",
+    });
+  });
+
+  it("rejects conflicting localized titles within one category", async () => {
+    const error = await rejectRegistry([
+      articleSource(),
+      {
+        ...articleSource(),
+        category: {
+          ...articleSource().category,
+          titles: { en: "Politics changed", id: "Politik" },
+        },
+        slug: "second-test-article",
+        sourceRoot: "articles/politics/second-test/article",
+      },
+    ]);
+
+    expect(error).toMatchObject({
+      _tag: "ArticleTitleError",
+      actual: "Politics changed",
+      category: "politics",
+      expected: "Politics",
+      locale: "en",
     });
   });
 
