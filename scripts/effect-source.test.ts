@@ -35,6 +35,8 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
 const originalDirectory = process.cwd();
 const originalPath = process.env.PATH;
 const temporaryRoots = new Set<string>();
+const installedManifest = "node_modules/effect/package.json";
+const vendoredManifest = "repos/effect/packages/effect/package.json";
 
 /** Runs Git inside one isolated test repository. */
 function git(root: string, ...args: readonly string[]) {
@@ -52,6 +54,13 @@ function writeManifest(root: string, path: string, source: string) {
   writeFileSync(target, source);
 }
 
+/** Commits one installed Effect version in an isolated consumer. */
+function commitInstalledVersion(root: string, version: string) {
+  writeManifest(root, installedManifest, JSON.stringify({ version }));
+  git(root, "add", "--force", installedManifest);
+  git(root, "commit", "--quiet", "-m", `install Effect ${version}`);
+}
+
 /** Creates a clean Git repository with configurable installed and source data. */
 function createRepository(input?: {
   readonly installed?: string;
@@ -63,39 +72,26 @@ function createRepository(input?: {
   git(root, "config", "user.email", "tests@nakafa.com");
   git(root, "config", "user.name", "Nakafa Tests");
 
-  if (input?.installed === undefined) {
-    writeManifest(
-      root,
-      "node_modules/effect/package.json",
-      '{"version":"3.22.0"}'
-    );
-  } else {
-    writeManifest(root, "node_modules/effect/package.json", input.installed);
-  }
-
-  if (input?.vendored === undefined) {
-    writeManifest(
-      root,
-      "repos/effect/packages/effect/package.json",
-      '{"version":"3.22.0"}'
-    );
-  } else {
-    writeManifest(
-      root,
-      "repos/effect/packages/effect/package.json",
-      input.vendored
-    );
-  }
+  writeManifest(
+    root,
+    installedManifest,
+    input?.installed ?? '{"version":"3.22.0"}'
+  );
+  writeManifest(
+    root,
+    vendoredManifest,
+    input?.vendored ?? '{"version":"3.22.0"}'
+  );
 
   git(root, "add", "--force", ".");
   git(root, "commit", "--quiet", "-m", "test repository");
   process.chdir(root);
 
   return {
-    installedManifest: "node_modules/effect/package.json",
+    installedManifest,
     repository: root,
     sourcePath: "repos/effect",
-    vendoredManifest: "repos/effect/packages/effect/package.json",
+    vendoredManifest,
   } satisfies EffectSourceConfig;
 }
 
@@ -126,7 +122,7 @@ function createUpstream() {
   git(root, "config", "user.email", "tests@nakafa.com");
   git(root, "config", "user.name", "Nakafa Tests");
 
-  for (const version of ["1.0.0", "2.0.0"]) {
+  for (const version of ["1.0.0", "2.0.0", "3.0.0"]) {
     writeManifest(
       root,
       "packages/effect/package.json",
@@ -140,6 +136,25 @@ function createUpstream() {
   return root;
 }
 
+/** Replaces subtree's initial merge with an equivalent linear source commit. */
+function linearizeSubtreeImport(root: string, split: string) {
+  const mergeHead = git(root, "rev-parse", "HEAD").trim();
+  const previousHead = git(root, "rev-parse", "HEAD^1").trim();
+  const tree = git(root, "rev-parse", "HEAD^{tree}").trim();
+  const linearHead = git(
+    root,
+    "commit-tree",
+    tree,
+    "-p",
+    previousHead,
+    "-m",
+    "vendor Effect source",
+    "-m",
+    `git-subtree-dir: repos/effect\ngit-subtree-split: ${split}`
+  ).trim();
+  git(root, "update-ref", "HEAD", linearHead, mergeHead);
+}
+
 /** Creates a consumer whose installed dependency is ahead of its subtree. */
 function createOutdatedConsumer(upstream: string) {
   const root = mkdtempSync(resolve(tmpdir(), "aksara-effect-consumer-"));
@@ -147,13 +162,7 @@ function createOutdatedConsumer(upstream: string) {
   git(root, "init", "--quiet");
   git(root, "config", "user.email", "tests@nakafa.com");
   git(root, "config", "user.name", "Nakafa Tests");
-  writeManifest(
-    root,
-    "node_modules/effect/package.json",
-    '{"version":"1.0.0"}'
-  );
-  git(root, "add", "--force", ".");
-  git(root, "commit", "--quiet", "-m", "install Effect 1");
+  commitInstalledVersion(root, "1.0.0");
   git(
     root,
     "subtree",
@@ -163,20 +172,18 @@ function createOutdatedConsumer(upstream: string) {
     "effect@1.0.0",
     "--squash"
   );
-  writeManifest(
+  linearizeSubtreeImport(
     root,
-    "node_modules/effect/package.json",
-    '{"version":"2.0.0"}'
+    git(upstream, "rev-parse", "effect@1.0.0^{commit}").trim()
   );
-  git(root, "add", "--force", ".");
-  git(root, "commit", "--quiet", "-m", "install Effect 2");
+  commitInstalledVersion(root, "2.0.0");
   process.chdir(root);
 
   return {
-    installedManifest: "node_modules/effect/package.json",
+    installedManifest,
     repository: upstream,
     sourcePath: "repos/effect",
-    vendoredManifest: "repos/effect/packages/effect/package.json",
+    vendoredManifest,
   } satisfies EffectSourceConfig;
 }
 
@@ -270,6 +277,16 @@ describe("Effect source maintenance", () => {
     expect(JSON.parse(readFileSync(config.vendoredManifest, "utf8"))).toEqual({
       version: "2.0.0",
     });
+
+    commitInstalledVersion(process.cwd(), "3.0.0");
+    await expect(runProgram("update", config)).resolves.toBeUndefined();
+
+    expect(JSON.parse(readFileSync(config.vendoredManifest, "utf8"))).toEqual({
+      version: "3.0.0",
+    });
+    expect(
+      git(process.cwd(), "rev-list", "--count", "--merges", "HEAD").trim()
+    ).toBe("0");
   });
 
   it("maps platform spawn failures into the Git error channel", async () => {
