@@ -16,7 +16,10 @@ afterEach(() => {
 describe("files", () => {
   it("parses existing nonempty Git paths", () => {
     expect(
-      parseTrackedFiles("kept.ts\nmissing.ts\n\n", (path) => path === "kept.ts")
+      parseTrackedFiles(
+        "kept.ts\nrepos/effect/source.ts\nmissing.ts\n\n",
+        (path) => path !== "missing.ts"
+      )
     ).toEqual(["kept.ts"]);
   });
 

@@ -61,3 +61,17 @@ for clarity, measurable scale, and safe releases.
 - Use colocated `name.test.ts` files to test the real `name.ts` module.
 - Do not add compatibility layers. Migration-only seams need explicit deletion
   gates.
+
+## Vendored References
+
+- External source references live under `repos/` as read-only Git subtrees.
+- `repos/effect` is pinned to the installed `effect` package version. Before
+  writing or reviewing Effect code, read its `AGENTS.md`, then inspect the
+  relevant implementation, tests, and type-level tests under `packages/effect`.
+- Prefer the matching vendored source for Effect API shape and idioms instead
+  of guessing from memory, generated declarations, or examples for another
+  major version.
+- Never edit, import from, build, lint, or test `repos/effect` as Aksara code.
+- `pnpm effect:source:check` verifies that the installed and vendored Effect
+  versions match. After committing an Effect dependency update, run
+  `pnpm effect:source:update`; Git subtree creates the reference update commit.
