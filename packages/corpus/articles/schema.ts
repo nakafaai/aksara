@@ -1,6 +1,7 @@
+import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import {
-  type ArticleCategory,
   ArticleCategorySchema,
+  ArticleCategoryTitleSchema,
   ArticleReferenceSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
@@ -27,15 +28,28 @@ export const ArticleRootSchema = Schema.String.pipe(
   })
 );
 
+const ArticleCategoryTitlesSchema = Schema.Record({
+  key: ContentLocaleSchema,
+  value: ArticleCategoryTitleSchema,
+});
+
+/** One source-owned category identity, renderer, and complete locale titles. */
+export const ArticleCategorySourceSchema = Schema.Struct({
+  key: ArticleCategorySchema,
+  rendererDomain: RendererDomainSchema,
+  titles: ArticleCategoryTitlesSchema,
+});
+export type ArticleCategorySource = typeof ArticleCategorySourceSchema.Type;
+
 /** Checks one pair-grouped physical root flattens to its canonical route slug. */
 function hasCoherentArticleIdentity(input: {
-  readonly category: ArticleCategory;
+  readonly category: ArticleCategorySource;
   readonly slug: string;
   readonly sourceRoot: string;
 }) {
   const [, category, group, name] = input.sourceRoot.split("/");
   return (
-    category === input.category &&
+    category === input.category.key &&
     group !== undefined &&
     name !== undefined &&
     `${group}-${name}` === input.slug
@@ -44,9 +58,8 @@ function hasCoherentArticleIdentity(input: {
 
 /** Complete reviewed source contract for one localized article pair. */
 export const ArticleSourceSchema = Schema.Struct({
-  category: ArticleCategorySchema,
+  category: ArticleCategorySourceSchema,
   references: Schema.Array(ArticleReferenceSchema),
-  rendererDomain: RendererDomainSchema,
   slug: ArticleSlugSchema,
   sourceRoot: ArticleRootSchema,
 }).pipe(

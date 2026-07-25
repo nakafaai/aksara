@@ -1,7 +1,9 @@
-const category = "politics";
-
-/** Source-owned route category and deployed renderer for politics articles. */
+/** Source-owned route, renderer, and localized display titles for politics. */
 export const politicsArticleCategory = Object.freeze({
-  category,
-  rendererDomain: category,
+  key: "politics",
+  rendererDomain: "politics",
+  titles: Object.freeze({
+    en: "Politics",
+    id: "Politik",
+  }),
 });

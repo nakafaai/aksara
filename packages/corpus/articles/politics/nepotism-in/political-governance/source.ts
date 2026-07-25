@@ -3,7 +3,7 @@ import { references } from "#corpus/articles/politics/nepotism-in/political-gove
 import { defineArticleSource } from "#corpus/articles/schema";
 
 export const nepotismPoliticalGovernanceArticle = defineArticleSource({
-  ...politicsArticleCategory,
+  category: politicsArticleCategory,
   references,
   slug: "nepotism-in-political-governance",
   sourceRoot: "articles/politics/nepotism-in/political-governance",

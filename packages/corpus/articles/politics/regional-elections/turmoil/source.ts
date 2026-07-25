@@ -3,7 +3,7 @@ import { references } from "#corpus/articles/politics/regional-elections/turmoil
 import { defineArticleSource } from "#corpus/articles/schema";
 
 export const regionalElectionsTurmoilArticle = defineArticleSource({
-  ...politicsArticleCategory,
+  category: politicsArticleCategory,
   references,
   slug: "regional-elections-turmoil",
   sourceRoot: "articles/politics/regional-elections/turmoil",
