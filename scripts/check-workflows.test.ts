@@ -15,7 +15,7 @@ function currentSources(): WorkflowSources {
 }
 
 describe("workflow policy", () => {
-  it("accepts the current immutable archive and content release paths", () => {
+  it("accepts immutable archives and the direct content release path", () => {
     expect(() => verifyWorkflows(currentSources())).not.toThrow();
   });
 
