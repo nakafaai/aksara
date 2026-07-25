@@ -1,0 +1,283 @@
+import { execFileSync } from "node:child_process";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, resolve } from "node:path";
+import { NodeContext } from "@effect/platform-node";
+import { Effect } from "effect";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import {
+  type EffectSourceConfig,
+  makeEffectSourceProgram,
+} from "#scripts/effect-source";
+
+const runtime = vi.hoisted(() => ({ calls: 0 }));
+
+vi.mock("@effect/platform-node", async (importOriginal) => {
+  const platform =
+    await importOriginal<typeof import("@effect/platform-node")>();
+  return {
+    ...platform,
+    NodeRuntime: {
+      ...platform.NodeRuntime,
+      runMain: vi.fn(() => {
+        runtime.calls += 1;
+      }),
+    },
+  };
+});
+
+const originalDirectory = process.cwd();
+const originalPath = process.env.PATH;
+const temporaryRoots = new Set<string>();
+
+/** Runs Git inside one isolated test repository. */
+function git(root: string, ...args: readonly string[]) {
+  return execFileSync("git", args, {
+    cwd: root,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+}
+
+/** Writes one package manifest source, including intentionally invalid JSON. */
+function writeManifest(root: string, path: string, source: string) {
+  const target = resolve(root, path);
+  mkdirSync(dirname(target), { recursive: true });
+  writeFileSync(target, source);
+}
+
+/** Creates a clean Git repository with configurable installed and source data. */
+function createRepository(input?: {
+  readonly installed?: string;
+  readonly vendored?: string;
+}) {
+  const root = mkdtempSync(resolve(tmpdir(), "aksara-effect-source-"));
+  temporaryRoots.add(root);
+  git(root, "init", "--quiet");
+  git(root, "config", "user.email", "tests@nakafa.com");
+  git(root, "config", "user.name", "Nakafa Tests");
+
+  if (input?.installed === undefined) {
+    writeManifest(
+      root,
+      "node_modules/effect/package.json",
+      '{"version":"3.22.0"}'
+    );
+  } else {
+    writeManifest(root, "node_modules/effect/package.json", input.installed);
+  }
+
+  if (input?.vendored === undefined) {
+    writeManifest(
+      root,
+      "repos/effect/packages/effect/package.json",
+      '{"version":"3.22.0"}'
+    );
+  } else {
+    writeManifest(
+      root,
+      "repos/effect/packages/effect/package.json",
+      input.vendored
+    );
+  }
+
+  git(root, "add", "--force", ".");
+  git(root, "commit", "--quiet", "-m", "test repository");
+  process.chdir(root);
+
+  return {
+    installedManifest: "node_modules/effect/package.json",
+    repository: root,
+    sourcePath: "repos/effect",
+    vendoredManifest: "repos/effect/packages/effect/package.json",
+  } satisfies EffectSourceConfig;
+}
+
+/** Runs one source command with the real Node platform layer. */
+function runProgram(action: string | undefined, config: EffectSourceConfig) {
+  return Effect.runPromise(
+    makeEffectSourceProgram(action, config).pipe(
+      Effect.provide(NodeContext.layer)
+    )
+  );
+}
+
+/** Returns one expected typed failure without flattening its tag. */
+function readFailure(action: string | undefined, config: EffectSourceConfig) {
+  return Effect.runPromise(
+    makeEffectSourceProgram(action, config).pipe(
+      Effect.provide(NodeContext.layer),
+      Effect.flip
+    )
+  );
+}
+
+/** Creates an upstream Effect repository with two immutable release tags. */
+function createUpstream() {
+  const root = mkdtempSync(resolve(tmpdir(), "aksara-effect-upstream-"));
+  temporaryRoots.add(root);
+  git(root, "init", "--quiet");
+  git(root, "config", "user.email", "tests@nakafa.com");
+  git(root, "config", "user.name", "Nakafa Tests");
+
+  for (const version of ["1.0.0", "2.0.0"]) {
+    writeManifest(
+      root,
+      "packages/effect/package.json",
+      JSON.stringify({ version })
+    );
+    git(root, "add", ".");
+    git(root, "commit", "--quiet", "-m", `Effect ${version}`);
+    git(root, "tag", `effect@${version}`);
+  }
+
+  return root;
+}
+
+/** Creates a consumer whose installed dependency is ahead of its subtree. */
+function createOutdatedConsumer(upstream: string) {
+  const root = mkdtempSync(resolve(tmpdir(), "aksara-effect-consumer-"));
+  temporaryRoots.add(root);
+  git(root, "init", "--quiet");
+  git(root, "config", "user.email", "tests@nakafa.com");
+  git(root, "config", "user.name", "Nakafa Tests");
+  writeManifest(
+    root,
+    "node_modules/effect/package.json",
+    '{"version":"1.0.0"}'
+  );
+  git(root, "add", "--force", ".");
+  git(root, "commit", "--quiet", "-m", "install Effect 1");
+  git(
+    root,
+    "subtree",
+    "add",
+    "--prefix=repos/effect",
+    upstream,
+    "effect@1.0.0",
+    "--squash"
+  );
+  writeManifest(
+    root,
+    "node_modules/effect/package.json",
+    '{"version":"2.0.0"}'
+  );
+  git(root, "add", "--force", ".");
+  git(root, "commit", "--quiet", "-m", "install Effect 2");
+  process.chdir(root);
+
+  return {
+    installedManifest: "node_modules/effect/package.json",
+    repository: upstream,
+    sourcePath: "repos/effect",
+    vendoredManifest: "repos/effect/packages/effect/package.json",
+  } satisfies EffectSourceConfig;
+}
+
+afterEach(() => {
+  process.chdir(originalDirectory);
+  process.env.PATH = originalPath;
+  for (const root of temporaryRoots) {
+    rmSync(root, { force: true, recursive: true });
+  }
+  temporaryRoots.clear();
+});
+
+describe("Effect source maintenance", () => {
+  it("runs one main boundary and accepts matching source", async () => {
+    const config = createRepository();
+
+    await expect(runProgram("check", config)).resolves.toBeUndefined();
+    await expect(
+      Effect.runPromise(
+        makeEffectSourceProgram("check").pipe(Effect.provide(NodeContext.layer))
+      )
+    ).resolves.toBeUndefined();
+    expect(runtime.calls).toBe(1);
+  });
+
+  it("rejects unsupported operations and mismatched versions", async () => {
+    const config = createRepository({
+      vendored: '{"version":"3.21.0"}',
+    });
+
+    await expect(readFailure("unknown", config)).resolves.toMatchObject({
+      _tag: "EffectSourceUsageError",
+    });
+    await expect(readFailure("check", config)).resolves.toMatchObject({
+      _tag: "EffectSourceMismatch",
+    });
+  });
+
+  it.each([
+    ["invalid JSON", "not-json"],
+    ["invalid version", '{"version":"latest"}'],
+  ])("rejects %s manifests", async (_label, vendored) => {
+    const config = createRepository({ vendored });
+
+    await expect(readFailure("check", config)).resolves.toMatchObject({
+      _tag: "EffectSourceReadError",
+    });
+  });
+
+  it("rejects missing and locally edited source", async () => {
+    const missing = createRepository();
+    rmSync(missing.vendoredManifest);
+    git(process.cwd(), "add", "--all");
+    git(process.cwd(), "commit", "--quiet", "-m", "remove source");
+
+    await expect(readFailure("check", missing)).resolves.toMatchObject({
+      _tag: "EffectSourceReadError",
+    });
+
+    process.chdir(originalDirectory);
+    const dirty = createRepository();
+    writeFileSync(dirty.vendoredManifest, '{"version":"3.21.0"}');
+
+    await expect(readFailure("check", dirty)).resolves.toMatchObject({
+      _tag: "EffectSourceMismatch",
+    });
+  });
+
+  it("keeps current source unchanged and rejects unsafe update states", async () => {
+    const current = createRepository();
+    await expect(runProgram("update", current)).resolves.toBeUndefined();
+
+    writeFileSync("dirty.txt", "dirty");
+    await expect(readFailure("update", current)).resolves.toMatchObject({
+      _tag: "EffectSourceMismatch",
+    });
+
+    git(process.cwd(), "add", "dirty.txt");
+    git(process.cwd(), "commit", "--quiet", "-m", "clean again");
+    git(process.cwd(), "checkout", "--quiet", "--detach");
+    await expect(readFailure("update", current)).resolves.toMatchObject({
+      _tag: "EffectSourceGitError",
+    });
+  });
+
+  it("updates an outdated subtree from the matching release tag", async () => {
+    const upstream = createUpstream();
+    const config = createOutdatedConsumer(upstream);
+
+    await expect(runProgram("update", config)).resolves.toBeUndefined();
+    expect(JSON.parse(readFileSync(config.vendoredManifest, "utf8"))).toEqual({
+      version: "2.0.0",
+    });
+  });
+
+  it("maps platform spawn failures into the Git error channel", async () => {
+    const config = createRepository();
+    process.env.PATH = "";
+
+    await expect(readFailure("check", config)).resolves.toMatchObject({
+      _tag: "EffectSourceGitError",
+    });
+  });
+});

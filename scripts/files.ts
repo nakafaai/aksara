@@ -3,17 +3,23 @@ import { existsSync } from "node:fs";
 
 const GIT_OUTPUT_LIMIT = 16 * 1024 * 1024;
 const TYPESCRIPT_PATTERN = /\.(?:[cm]?ts|tsx)$/u;
+const VENDORED_PATH_PREFIX = "repos/";
 const GENERATED_PATH_PATTERN =
   /(?:^|\/)(?:dist|node_modules|_generated)(?:\/|$)/u;
 
-/** Parses Git output while excluding deleted paths and the trailing empty line. */
+/** Parses Git output while excluding missing files and vendored references. */
 export function parseTrackedFiles(
   output: string,
   pathExists: (path: string) => boolean
 ): readonly string[] {
   return output
     .split("\n")
-    .filter((file) => file.length > 0 && pathExists(file));
+    .filter(
+      (file) =>
+        file.length > 0 &&
+        !file.startsWith(VENDORED_PATH_PREFIX) &&
+        pathExists(file)
+    );
 }
 
 /** Lists Git-known repository files that still exist on disk. */
