@@ -32,8 +32,7 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
   };
 });
 
-const originalDirectory = process.cwd();
-const originalPath = process.env.PATH;
+const original = { directory: process.cwd(), path: process.env.PATH };
 const temporaryRoots = new Set<string>();
 const installedManifest = "node_modules/effect/package.json";
 const vendoredManifest = "repos/effect/packages/effect/package.json";
@@ -112,6 +111,7 @@ function program(action: string | undefined, config?: EffectSourceConfig) {
   );
 }
 
+/** Runs one source command at the test boundary. */
 function runProgram(action: string | undefined, config: EffectSourceConfig) {
   return Effect.runPromise(program(action, config));
 }
@@ -201,8 +201,8 @@ function createOutdatedConsumer(upstream: string) {
 }
 
 afterEach(() => {
-  process.chdir(originalDirectory);
-  process.env.PATH = originalPath;
+  process.chdir(original.directory);
+  process.env.PATH = original.path;
   for (const root of temporaryRoots) {
     rmSync(root, { force: true, recursive: true });
   }
@@ -247,7 +247,7 @@ describe("Effect source maintenance", () => {
 
     await expectFailure("check", missing, "EffectSourceReadError");
 
-    process.chdir(originalDirectory);
+    process.chdir(original.directory);
     const dirty = createRepository();
     const editedSource = "repos/effect/README.md";
     writeFileSync(editedSource, "edited");
