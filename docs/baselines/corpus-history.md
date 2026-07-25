@@ -206,3 +206,19 @@ git rev-list --count HEAD
 Each family must repeat the bounded secret and provenance review before it is
 published or cut over. Importing reviewed source history does not satisfy the
 family publication gates.
+
+## Article category labels
+
+- Source Nakafa SHA:
+  `8ed5d1a1efc68037890b1a5cc055c8be8fd6ae3f`
+- Source path: `packages/contents/_types/articles/category.ts`
+- Source Git blob: `e1feaf27847bdbc91fb47f98dd950a866542b6a3`
+- Durable source ref: `refs/tags/history/full-corpus`
+- Filtered path: `packages/corpus/_types/articles/category.ts`
+- Source SHA-256:
+  `b8bddda272600138a08647ba5e775167f9b98cfdeb2dc02904e6c93774a810f5`
+
+The source and filtered paths resolve to the same Git blob and SHA-256 digest.
+That reviewed Nakafa source owns the exact `politics` category labels
+`Politics` for English and `Politik` for Indonesian. The current cohesive
+category source preserves those values without translation or invention.

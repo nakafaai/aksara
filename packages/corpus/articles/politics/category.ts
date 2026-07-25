@@ -1,4 +1,7 @@
-/** Source-owned route, renderer, and localized display titles for politics. */
+/**
+ * Source-owned route, renderer, and exact reviewed labels whose provenance is
+ * recorded in `docs/baselines/corpus-history.md`.
+ */
 export const politicsArticleCategory = Object.freeze({
   key: "politics",
   rendererDomain: "politics",
