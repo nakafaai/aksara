@@ -9,7 +9,7 @@ import {
   ExactProcess,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, type Stream } from "effect";
+import { Effect, Layer, type Stream } from "effect";
 import type { RunningNakafa } from "#cli/child";
 import type { SelectedDocument } from "#cli/integrity";
 import { NakafaApp } from "#cli/nakafa";
@@ -81,7 +81,7 @@ export function runWatch(
   );
   return openSelectedWatcher(selected, invalidate, refresh).pipe(
     Effect.flatMap((watcher) => watcher.run),
-    Effect.provide(
+    Effect.provide([
       FileSystem.layerNoop({
         readDirectory: (directory) =>
           Effect.succeed([
@@ -91,9 +91,9 @@ export function runWatch(
           ]),
         realPath: (path) => Effect.succeed(path),
         watch: () => stream,
-      })
-    ),
-    Effect.provide(Path.layer)
+      }),
+      Path.layer,
+    ])
   );
 }
 
@@ -145,9 +145,11 @@ export function runLocal<A, E>(
         ),
       }).pipe(Effect.flatMap(use))
     ).pipe(
-      Effect.provideService(NakafaApp, app),
-      Effect.provideService(ExactProcess, exactProcess),
-      Effect.provide(NodeContext.layer)
+      Effect.provide([
+        Layer.succeed(NakafaApp, app),
+        Layer.succeed(ExactProcess, exactProcess),
+        NodeContext.layer,
+      ])
     )
   );
 }

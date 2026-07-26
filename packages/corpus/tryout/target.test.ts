@@ -44,7 +44,7 @@ async function loadFixture(): Promise<TargetFixture> {
     Effect.all([
       selectQuestionContent(corpusRoot, sources, answerPath),
       selectQuestionContent(corpusRoot, sources, promptPath),
-    ]).pipe(Effect.provide(makeQuestionLayer()), Effect.provide(Path.layer))
+    ]).pipe(Effect.provide([makeQuestionLayer(), Path.layer]))
   );
   const rows = await Effect.runPromise(projectTryoutCatalog(sources));
   return {

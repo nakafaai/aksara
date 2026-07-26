@@ -56,8 +56,7 @@ function collect(input: {
     }).pipe(
       Stream.runCollect,
       Effect.map((records) => [...records]),
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(sourceByPath), Path.layer])
     )
   );
 }
@@ -78,8 +77,7 @@ function reject(input: {
     }).pipe(
       Stream.runDrain,
       Effect.flip,
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(sourceByPath), Path.layer])
     )
   );
 }

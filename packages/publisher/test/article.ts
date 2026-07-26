@@ -80,8 +80,7 @@ export function collectArticlePublication(input: {
         );
       })
     ).pipe(
-      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
   );
 }
@@ -105,8 +104,7 @@ export function collectArticleRoutes(input: {
         );
       })
     ).pipe(
-      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
   );
 }
@@ -121,8 +119,7 @@ export function rejectArticlePublication(heads: readonly ArticleHead[]) {
         rendererManifest,
       })
     ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer),
+      Effect.provide([testFileLayer(sourceByPath), Path.layer]),
       Effect.flip
     )
   );

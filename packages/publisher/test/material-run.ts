@@ -84,9 +84,6 @@ export async function publishMaterialRelease() {
         );
         return { receipt, stageArtifacts: state.stageArtifactBatch };
       })
-    ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer)
-    )
+    ).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
   );
 }

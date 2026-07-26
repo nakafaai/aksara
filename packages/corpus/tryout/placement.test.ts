@@ -16,8 +16,7 @@ async function loadPlacementFixture() {
   const sources = await Effect.runPromise(decodeTryoutRegistry());
   const content = await Effect.runPromise(
     selectQuestionContent(corpusRoot, sources, promptPath).pipe(
-      Effect.provide(makeQuestionLayer()),
-      Effect.provide(Path.layer)
+      Effect.provide([makeQuestionLayer(), Path.layer])
     )
   );
   const source = sources.find(({ examKey }) => examKey === "snbt");

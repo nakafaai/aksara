@@ -114,10 +114,7 @@ function prepare(inputHeads: readonly QuestionHead[] = tryoutHeads) {
           second: [...second],
         };
       })
-    ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer)
-    )
+    ).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
   );
 }
 
@@ -136,8 +133,7 @@ function reject(input: {
         rendererManifest: input.renderer ?? rendererManifest,
       })
     ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer),
+      Effect.provide([testFileLayer(sourceByPath), Path.layer]),
       Effect.flip
     )
   );

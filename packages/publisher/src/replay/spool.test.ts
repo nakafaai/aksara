@@ -160,11 +160,7 @@ describe("replay spool", () => {
           schema: ReplayEntrySchema,
           stream: Stream.empty,
         })
-      ).pipe(
-        Effect.provide(fileLayer),
-        Effect.provide(NodePath.layer),
-        Effect.flip
-      )
+      ).pipe(Effect.provide([fileLayer, NodePath.layer]), Effect.flip)
     );
     expect(error).toMatchObject({ operation: "create" });
   });
@@ -190,11 +186,7 @@ describe("replay spool", () => {
             schema: ReplayEntrySchema,
             stream: Stream.make(firstEntry),
           })
-        ).pipe(
-          Effect.provide(fileLayer),
-          Effect.provide(NodePath.layer),
-          Effect.flip
-        )
+        ).pipe(Effect.provide([fileLayer, NodePath.layer]), Effect.flip)
       );
       expect(error).toMatchObject({ index: 0, operation: "write" });
     }

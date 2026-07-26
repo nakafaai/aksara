@@ -78,8 +78,7 @@ function runRegistry(
   return Effect.runPromise(
     loadQuestionContent(corpusRoot, tryoutSources).pipe(
       Effect.map(({ entries }) => entries),
-      Effect.provide(fileLayer(discoveredEntries, choices)),
-      Effect.provide(Path.layer)
+      Effect.provide([fileLayer(discoveredEntries, choices), Path.layer])
     )
   );
 }
@@ -92,8 +91,7 @@ function rejectRegistry(
   return Effect.runPromise(
     loadQuestionContent(corpusRoot, tryoutSources).pipe(
       Effect.map(({ entries }) => entries),
-      Effect.provide(fileLayer(discoveredEntries, choices)),
-      Effect.provide(Path.layer),
+      Effect.provide([fileLayer(discoveredEntries, choices), Path.layer]),
       Effect.flip
     )
   );

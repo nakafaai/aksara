@@ -86,8 +86,7 @@ function runSources(
 ) {
   return Effect.runPromise(
     discoverQuestionSources(corpusRoot, questionBanks).pipe(
-      Effect.provide(fileLayer(entries, sources)),
-      Effect.provide(Path.layer)
+      Effect.provide([fileLayer(entries, sources), Path.layer])
     )
   );
 }
@@ -100,8 +99,7 @@ function rejectSources(
 ) {
   return Effect.runPromise(
     discoverQuestionSources(corpusRoot, questionBanks).pipe(
-      Effect.provide(fileLayer(entries, sources, failDirectory)),
-      Effect.provide(Path.layer),
+      Effect.provide([fileLayer(entries, sources, failDirectory), Path.layer]),
       Effect.flip
     )
   );
@@ -172,8 +170,7 @@ describe("question source", () => {
     );
     const selectedDirectoryError = await Effect.runPromise(
       readQuestionSource(corpusRoot, location).pipe(
-        Effect.provide(fileLayer([], new Map(), true)),
-        Effect.provide(Path.layer),
+        Effect.provide([fileLayer([], new Map(), true), Path.layer]),
         Effect.flip
       )
     );
@@ -266,8 +263,7 @@ describe("question source", () => {
     const sourcePath = `${sourceRoot}/${physicalRoot}/question.en.mdx`;
     const content = await Effect.runPromise(
       loadQuestionContent(corpusRoot, tryoutSources).pipe(
-        Effect.provide(fileLayer(realEntries, realChoices)),
-        Effect.provide(Path.layer)
+        Effect.provide([fileLayer(realEntries, realChoices), Path.layer])
       )
     );
     const entry = content.entries.find(
@@ -284,8 +280,7 @@ describe("question source", () => {
     /** Reads the same registry row through a supplied source map. */
     const read = (sources: ReadonlyMap<string, string>) =>
       readQuestionDocument(corpusRoot, entry, source.choices).pipe(
-        Effect.provide(fileLayer([], sources)),
-        Effect.provide(Path.layer)
+        Effect.provide([fileLayer([], sources), Path.layer])
       );
     const document = await Effect.runPromise(
       read(new Map([[resolve(corpusRoot, sourcePath), rawMdx]]))

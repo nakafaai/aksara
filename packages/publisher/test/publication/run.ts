@@ -10,7 +10,7 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Redacted, Schema, Stream } from "effect";
+import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import {
   makePreparedRollbackRelease,
   type PreparedGitRelease,
@@ -124,17 +124,19 @@ export function publishFromSource<E, R>(
   activationService = activation
 ) {
   return publishGitRelease(prepared).pipe(
-    Effect.provide(testFileLayer(new Map())),
-    Effect.provide(Path.layer),
-    Effect.provideService(
-      PublicationSigningKey,
-      PublicationSigningKey.of({ ...signingKey, keyId: currentKeyId })
-    ),
-    Effect.provideService(PublicationRecoveryId, recoveryId),
-    Effect.provideService(PublicationSource, source),
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.provideService(PublicationActivation, activationService),
-    Effect.provideService(PublicationTarget, target)
+    Effect.provide([
+      testFileLayer(new Map()),
+      Path.layer,
+      Layer.succeed(
+        PublicationSigningKey,
+        PublicationSigningKey.of({ ...signingKey, keyId: currentKeyId })
+      ),
+      Layer.succeed(PublicationRecoveryId, recoveryId),
+      Layer.succeed(PublicationSource, source),
+      Layer.succeed(ContentVerificationKeyResolver, resolver),
+      Layer.succeed(PublicationActivation, activationService),
+      Layer.succeed(PublicationTarget, target),
+    ])
   );
 }
 
@@ -167,13 +169,15 @@ export function publishRollbackPrepared<E, R>(
   activationService = activation
 ) {
   return publishRollbackRelease(prepared).pipe(
-    Effect.provide(testFileLayer(new Map())),
-    Effect.provide(Path.layer),
-    Effect.provideService(PublicationRecoveryId, recoveryId),
-    Effect.provideService(PublicationSigningKey, signingKey),
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.provideService(PublicationActivation, activationService),
-    Effect.provideService(PublicationTarget, target)
+    Effect.provide([
+      testFileLayer(new Map()),
+      Path.layer,
+      Layer.succeed(PublicationRecoveryId, recoveryId),
+      Layer.succeed(PublicationSigningKey, signingKey),
+      Layer.succeed(ContentVerificationKeyResolver, resolver),
+      Layer.succeed(PublicationActivation, activationService),
+      Layer.succeed(PublicationTarget, target),
+    ])
   );
 }
 

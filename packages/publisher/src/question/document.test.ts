@@ -27,8 +27,7 @@ if (!(promptEntry && answerEntry)) {
 /** Loads one selected question body through the deterministic test filesystem. */
 function load(entry: QuestionEntry) {
   return loadQuestionDocument(checkoutRoot, entry, questionChoices).pipe(
-    Effect.provide(testFileLayer(sourceByPath)),
-    Effect.provide(Path.layer)
+    Effect.provide([testFileLayer(sourceByPath), Path.layer])
   );
 }
 
@@ -36,8 +35,7 @@ describe("question document", () => {
   it("maps a missing registry-owned source to its typed checkout error", async () => {
     const error = await Effect.runPromise(
       loadQuestionDocument(checkoutRoot, promptEntry, questionChoices).pipe(
-        Effect.provide(testFileLayer(new Map())),
-        Effect.provide(Path.layer),
+        Effect.provide([testFileLayer(new Map()), Path.layer]),
         Effect.flip
       )
     );

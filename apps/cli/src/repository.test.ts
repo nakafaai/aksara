@@ -1,6 +1,6 @@
 import { realpathSync, symlinkSync, unlinkSync } from "node:fs";
 import { relative, resolve } from "node:path";
-import { Effect } from "effect";
+import { Data, Effect } from "effect";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { selectCatalogDocument, selectPreviewDocument } from "#cli/repository";
 import { runNode } from "#test/effect";
@@ -12,6 +12,9 @@ import {
 
 const registryControl = vi.hoisted(() => ({ empty: false, fail: false }));
 
+/** Test-only typed failure for the mocked material registry boundary. */
+class TestRegistryError extends Data.TaggedError("TestRegistryError") {}
+
 vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const registry =
     await importOriginal<
@@ -22,7 +25,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
     /** Injects one registry failure without changing its production contract. */
     decodeMaterialRegistry: () => {
       if (registryControl.fail) {
-        return Effect.fail(new Error("Test-only registry failure."));
+        return Effect.fail(new TestRegistryError());
       }
       if (registryControl.empty) {
         return Effect.succeed([]);

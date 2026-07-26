@@ -97,8 +97,7 @@ export function collectMaterialPublication(input: {
         );
       })
     ).pipe(
-      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
   );
 }
@@ -124,8 +123,7 @@ export function collectMaterialResult(input: {
         );
       })
     ).pipe(
-      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
   );
 }
@@ -152,8 +150,7 @@ export function collectMaterialRoutes(input: {
         );
       })
     ).pipe(
-      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
   );
 }
@@ -172,8 +169,7 @@ export function rejectMaterialPublication(
         scope,
       })
     ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer),
+      Effect.provide([testFileLayer(sourceByPath), Path.layer]),
       Effect.flip
     )
   );
@@ -194,10 +190,7 @@ function collectMaterialRecords() {
           Effect.map((records) => [...records])
         );
       })
-    ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer)
-    )
+    ).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
   );
 }
 

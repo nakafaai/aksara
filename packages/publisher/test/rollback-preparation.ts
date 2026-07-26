@@ -23,7 +23,7 @@ import {
 } from "@nakafa/aksara-contracts/release/rollback";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Layer, Schema, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
@@ -272,9 +272,11 @@ export function prepareRollbackFixture(
     rendererManifest: manifest,
     rollbackOf: requestedRollbackOf,
   }).pipe(
-    Effect.provide(testFileLayer(new Map())),
-    Effect.provide(Path.layer),
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
-    Effect.provideService(PublicationTarget, target)
+    Effect.provide([
+      testFileLayer(new Map()),
+      Path.layer,
+      Layer.succeed(ContentVerificationKeyResolver, resolver),
+      Layer.succeed(PublicationTarget, target),
+    ])
   );
 }

@@ -19,9 +19,7 @@ export function makeMainProgram(input: {
   readonly cwd: string;
 }) {
   return makeCliProgram(input).pipe(
-    Effect.provide(NodeHttpClient.layer),
-    Effect.provide(ExactProcessLive),
-    Effect.provide(cliNodeLayer)
+    Effect.provide([NodeHttpClient.layer, ExactProcessLive, cliNodeLayer])
   );
 }
 
