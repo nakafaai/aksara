@@ -69,6 +69,7 @@ function projection(contentKey = "test:projection") {
     publicPath: "subjects/test/material/lesson",
     sectionKey: "test-lesson",
     sitemap: true,
+    topicTitle: "Test Material",
   });
 }
 

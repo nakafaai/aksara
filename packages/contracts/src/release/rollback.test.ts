@@ -64,6 +64,7 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   publicPath: "subjects/test/material/lesson",
   sectionKey: "test-lesson",
   sitemap: true,
+  topicTitle: "Test Material",
 });
 const head = Schema.decodeUnknownSync(MaterialHeadSchema)({
   artifactHash: artifact.artifactHash,
@@ -98,11 +99,9 @@ const reverseRecord = RollbackRecordSchema.make({
   prior: upsert,
 });
 /** Strictly decodes one page with excess properties rejected. */
-function decodePage(input: unknown) {
-  return Schema.decodeUnknownEither(RollbackPageSchema)(input, {
-    onExcessProperty: "error",
-  });
-}
+const decodePage = Schema.decodeUnknownEither(RollbackPageSchema, {
+  onExcessProperty: "error",
+});
 /** Adds the immutable source identity shared by rollback-page fixtures. */
 function page(input: object) {
   return {

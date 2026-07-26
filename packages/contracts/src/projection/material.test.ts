@@ -19,6 +19,7 @@ const projection = makeMaterialLessonProjection(
     order: 1,
     publicPath: "subjects/test/material/lesson",
     sectionKey: "test-lesson",
+    topicTitle: "Test Material",
   }),
   Schema.decodeUnknownSync(MaterialMetadataSchema)({
     authors: [{ name: "Test Author" }],
@@ -35,6 +36,7 @@ describe("material projection", () => {
       projection
     );
     expect(projection.metadata.title).toBe("Body Metadata Title");
+    expect(projection.topicTitle).toBe("Test Material");
   });
 
   it("canonicalizes metadata whose optional fields are absent", () => {

@@ -20,6 +20,7 @@ const subject = Schema.decodeUnknownSync(CurriculumRouteSchema)({
   programKey: "merdeka",
   publicPath: "curriculum/merdeka/class-10/mathematics",
   sitemap: true,
+  sourcePath: "packages/corpus/curriculum/merdeka",
   title: "Mathematics",
 });
 const group = Schema.decodeUnknownSync(CurriculumRouteSchema)({

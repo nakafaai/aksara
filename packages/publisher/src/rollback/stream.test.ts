@@ -103,6 +103,7 @@ function oversizedPage() {
     publicPath: "subjects/test/rollback/large",
     sectionKey: "test-large",
     sitemap: true,
+    topicTitle: "Test Rollback Topic",
   });
   const state = RollbackUpsertStateSchema.make({
     artifact,

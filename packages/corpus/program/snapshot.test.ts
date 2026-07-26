@@ -16,7 +16,7 @@ describe("program snapshot preparation", () => {
 
     expect(prepared.manifest).toMatchObject({
       curriculumRowCount: 390,
-      format: "program-v2",
+      format: "program-v3",
       locales: ["en", "id"],
       programRowCount: 6,
       rowCount: 396,

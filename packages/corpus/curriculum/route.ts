@@ -1,5 +1,8 @@
 import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
-import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  CorpusSourcePathSchema,
+  PublicPathSchema,
+} from "@nakafa/aksara-contracts/ids";
 import {
   CURRICULUM_NAMESPACES,
   type CurriculumRoute,
@@ -111,6 +114,15 @@ function nodeSegments(
   return node.path.map((item) => item.translations[locale].routeSlug);
 }
 
+/** Derives the reviewed corpus directory owned by one program tree. */
+function curriculumSourcePath(
+  programKey: typeof LearningProgramKeySchema.Type
+) {
+  return CorpusSourcePathSchema.make(
+    `packages/corpus/curriculum/${programKey}`
+  );
+}
+
 /** Projects complete localized roots and node routes from reviewed sources. */
 export const projectCurriculumRoutes = Effect.fn(
   "AksaraCorpus.projectCurriculumRoutes"
@@ -155,6 +167,7 @@ export const projectCurriculumRoutes = Effect.fn(
           programKey: program.key,
           publicPath: PublicPathSchema.make(root),
           sitemap: hasMaterials,
+          sourcePath: curriculumSourcePath(program.key),
           title: program.translations[locale].title,
         })
       );
@@ -205,6 +218,7 @@ export const projectCurriculumRoutes = Effect.fn(
           sitemap:
             isRenderableCurriculumLevel(node.level) &&
             materialAncestors.has(`${node.curriculumKey}\0${node.key}`),
+          sourcePath: curriculumSourcePath(node.curriculumKey),
           title: node.translations[locale].title,
         })
       );

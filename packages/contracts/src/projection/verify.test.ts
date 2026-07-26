@@ -37,6 +37,7 @@ function projection(
     publicPath,
     sectionKey: "test-lesson",
     sitemap: true,
+    topicTitle: "Test Material",
   });
 }
 

@@ -9,7 +9,7 @@ import { CurriculumRouteSchema } from "#contracts/program/curriculum";
 import { LearningProgramSchema } from "#contracts/program/spec";
 
 /** Wire format for programs and exact localized curriculum routes. */
-export const PROGRAM_SNAPSHOT_FORMAT = "program-v2";
+export const PROGRAM_SNAPSHOT_FORMAT = "program-v3";
 
 const CountSchema = Schema.Int.pipe(Schema.nonNegative());
 const ProgramCountFields = {

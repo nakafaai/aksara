@@ -47,6 +47,7 @@ const material = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   publicPath: "subjects/test/material/lesson",
   sectionKey: "test-lesson",
   sitemap: true,
+  topicTitle: "Test Material",
 });
 const question = Schema.decodeUnknownSync(QuestionBodyProjectionSchema)({
   bodyKind: "question",

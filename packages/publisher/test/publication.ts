@@ -65,6 +65,7 @@ export const projection = MaterialLessonProjectionSchema.make({
   publicPath: PublicPathSchema.make("subjects/test/material/lesson"),
   sectionKey: MaterialSectionSchema.make("test-lesson"),
   sitemap: true,
+  topicTitle: "Test Material",
 });
 export const contentRecord = {
   change: ContentUpsertSchema.make({

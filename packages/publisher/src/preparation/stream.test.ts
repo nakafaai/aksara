@@ -57,6 +57,7 @@ const projection = MaterialLessonProjectionSchema.make({
   publicPath: PublicPathSchema.make("subjects/test/material/a"),
   sectionKey: MaterialSectionSchema.make("test-a"),
   sitemap: true,
+  topicTitle: "Test Material",
 });
 const baseRecord: PreparedContentUpsert = {
   change: ContentUpsertSchema.make({

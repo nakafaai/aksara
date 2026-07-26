@@ -5,7 +5,7 @@ import { Effect, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import type { ProgramSnapshotInput } from "#contracts/program/snapshot";
 
-const SNAPSHOT_DOMAIN = "nakafa.aksara.program-snapshot.v2";
+const SNAPSHOT_DOMAIN = "nakafa.aksara.program-snapshot.v3";
 
 /** Node could not compute a deterministic program snapshot identity. */
 export class ProgramSnapshotHashError extends Schema.TaggedError<ProgramSnapshotHashError>()(

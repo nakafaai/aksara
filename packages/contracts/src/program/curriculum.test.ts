@@ -19,6 +19,7 @@ const merdekaRoute = {
   programKey: "merdeka",
   publicPath: "curriculum/merdeka/class-10/mathematics",
   sitemap: true,
+  sourcePath: "packages/corpus/curriculum/merdeka",
   title: "Mathematics",
 } as const;
 
@@ -73,6 +74,10 @@ describe("curriculum route contract", () => {
       "wrong locale namespace",
       { locale: "id", publicPath: merdekaRoute.publicPath },
     ],
+    [
+      "wrong source ownership",
+      { sourcePath: "packages/corpus/curriculum/cambridge-international" },
+    ],
     ["wrong parent", { parentPath: "curriculum/merdeka" }],
     ["partial material binding", { materialKey: "lesson.mathematics.matrix" }],
     [
@@ -115,6 +120,7 @@ describe("curriculum route contract", () => {
       programKey: "merdeka",
       publicPath: "kurikulum/merdeka",
       sitemap: true,
+      sourcePath: "packages/corpus/curriculum/merdeka",
       title: "Kurikulum Merdeka",
     });
 

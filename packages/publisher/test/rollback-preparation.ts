@@ -108,6 +108,7 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   publicPath: "subjects/test/rollback/forward",
   sectionKey: "test-forward",
   sitemap: true,
+  topicTitle: "Test Rollback Topic",
 });
 const artifactHash = hashCompiledContentPayload(payload);
 const change = {

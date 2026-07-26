@@ -118,6 +118,7 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
               order: sectionIndex + 1,
               publicPath,
               sectionKey: section.slug,
+              topicTitle: source.translations[locale].title,
             },
             sourcePath: `packages/corpus/${contentKey}/${locale}.mdx`,
           };

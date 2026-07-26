@@ -145,6 +145,7 @@ export const testMaterialDocument = Schema.decodeUnknownSync(
     order: 1,
     publicPath: "subjects/test/material/test-lesson",
     sectionKey: "test-lesson",
+    topicTitle: "Test Material",
   },
   sourcePath:
     "packages/corpus/material/lesson/test/material/test-lesson/en.mdx",

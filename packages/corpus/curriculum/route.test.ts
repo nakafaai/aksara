@@ -30,6 +30,14 @@ describe("curriculum route projection", () => {
     expect(roots).toHaveLength(8);
     expect(materialRoutes).toHaveLength(192);
     expect(routes.filter(({ sitemap }) => sitemap)).toHaveLength(52);
+    expect(new Set(routes.map(({ sourcePath }) => sourcePath))).toEqual(
+      new Set([
+        "packages/corpus/curriculum/cambridge-international",
+        "packages/corpus/curriculum/merdeka",
+        "packages/corpus/curriculum/singapore-moe",
+        "packages/corpus/curriculum/united-states",
+      ])
+    );
     expect(
       routes.find(
         ({ locale, programKey, publicPath }) =>

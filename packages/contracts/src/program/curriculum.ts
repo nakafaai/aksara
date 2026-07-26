@@ -1,7 +1,7 @@
 import { Schema } from "effect";
 
 import { ContentLocaleSchema } from "#contracts/content";
-import { PublicPathSchema } from "#contracts/ids";
+import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import { MaterialDomainSchema } from "#contracts/material/domain";
 import {
   LearningProgramKeySchema,
@@ -78,6 +78,7 @@ const CurriculumRouteFields = {
   programKey: LearningProgramKeySchema,
   publicPath: PublicPathSchema,
   sitemap: Schema.Boolean,
+  sourcePath: CorpusSourcePathSchema,
   title: Schema.String,
 };
 
@@ -94,9 +95,13 @@ function hasCoherentRoute(input: {
   readonly parentPath?: string | undefined;
   readonly programKey: string;
   readonly publicPath: string;
+  readonly sourcePath: string;
 }) {
   const namespace = `${CURRICULUM_NAMESPACES[input.locale]}/`;
   if (!input.publicPath.startsWith(namespace)) {
+    return false;
+  }
+  if (input.sourcePath !== `packages/corpus/curriculum/${input.programKey}`) {
     return false;
   }
   if (input.parentPath === undefined) {
@@ -225,6 +230,7 @@ export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
     programKey: route.programKey,
     publicPath: route.publicPath,
     sitemap: route.sitemap,
+    sourcePath: route.sourcePath,
     title: route.title,
   });
 }
