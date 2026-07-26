@@ -29,7 +29,7 @@ vi.mock("node:crypto", async (importOriginal) => {
             return (data: BinaryLike) => {
               if (
                 failures.enabled &&
-                String(data).startsWith("nakafa.aksara.program-snapshot.v2\n")
+                String(data).startsWith("nakafa.aksara.program-snapshot.v3\n")
               ) {
                 throw new TypeError("injected program snapshot hash failure");
               }

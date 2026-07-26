@@ -21,7 +21,7 @@ import type {
 import type { LearningProgram } from "#contracts/program/spec";
 import { compareCodeUnits } from "#contracts/text/order";
 
-const DIGEST_DOMAIN = "nakafa.aksara.program-rows.v2";
+const DIGEST_DOMAIN = "nakafa.aksara.program-rows.v3";
 
 /** An aggregate program stream is incomplete, duplicated, or tampered. */
 export class ProgramDigestError extends Schema.TaggedError<ProgramDigestError>()(

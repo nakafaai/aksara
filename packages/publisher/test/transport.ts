@@ -55,7 +55,7 @@ export const transportSnapshot = Schema.decodeUnknownSync(
   family: "program",
   manifest: {
     curriculumRowCount: 390,
-    format: "program-v2",
+    format: "program-v3",
     locales: ["en", "id"],
     programRowCount: 6,
     rowCount: 396,

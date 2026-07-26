@@ -1,6 +1,6 @@
 import { Effect } from "effect";
 import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
-import { PublicPathSchema } from "#contracts/ids";
+import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import { CurriculumRouteSchema } from "#contracts/program/curriculum";
 import {
   makeCurriculumSnapshotRow,
@@ -66,6 +66,9 @@ export function makeTestCurriculumRoot(
       publicPath ?? `${namespace}/${translation.publicSlug}`
     ),
     sitemap: true,
+    sourcePath: CorpusSourcePathSchema.make(
+      `packages/corpus/curriculum/${program.key}`
+    ),
     title: translation.title,
   });
 }
@@ -99,6 +102,9 @@ function makeTestCurriculumChildren(
       programKey: program.key,
       publicPath: PublicPathSchema.make(`${root}/${nodeKey}`),
       sitemap: position <= sitemapCount,
+      sourcePath: CorpusSourcePathSchema.make(
+        `packages/corpus/curriculum/${program.key}`
+      ),
       title: `Test Node ${position}`,
     });
   });

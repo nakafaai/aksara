@@ -35,6 +35,7 @@ function projection(index: number, title = "Test Projection") {
     publicPath: `subjects/test/material/lesson-${index}`,
     sectionKey: `test-lesson-${index}`,
     sitemap: true,
+    topicTitle: "Test Material",
   });
 }
 

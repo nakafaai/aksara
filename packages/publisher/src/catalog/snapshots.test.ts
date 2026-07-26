@@ -27,7 +27,7 @@ const quranRuntimeCount =
 const quranProjectionCount = quranRuntimeCount + QURAN_SEARCH_COUNT;
 const programManifest = ProgramSnapshotSchema.make({
   curriculumRowCount: 390,
-  format: "program-v2",
+  format: "program-v3",
   locales: ["en", "id"],
   programRowCount: 6,
   rowCount: 396,

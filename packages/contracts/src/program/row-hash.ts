@@ -17,7 +17,7 @@ import {
   type LearningProgram,
 } from "#contracts/program/spec";
 
-const ROW_DOMAIN = "nakafa.aksara.program-row.v2";
+const ROW_DOMAIN = "nakafa.aksara.program-row.v3";
 
 /** Node could not complete a deterministic aggregate program hash. */
 export class ProgramHashError extends Schema.TaggedError<ProgramHashError>()(

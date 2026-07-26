@@ -40,11 +40,10 @@ const realFileLayer = FileSystem.layerNoop({
   },
 });
 
-/** Loads the exact active projection from the checked-in corpus. */
-function loadProjection() {
+/** Loads the exact active content and projection from one corpus scan. */
+function loadContent() {
   return Effect.runPromise(
     loadTryoutContent(corpusRoot).pipe(
-      Effect.map(({ projection }) => projection),
       Effect.provide([realFileLayer, Path.layer])
     )
   );
@@ -80,7 +79,7 @@ describe("tryout projection", () => {
   it("projects the exact active hierarchy and localized placements", {
     timeout: 30_000,
   }, async () => {
-    const projection = await loadProjection();
+    const { projection } = await loadContent();
     const counts = Object.fromEntries(
       ["country", "exam", "track", "set", "section"].map((kind) => [
         kind,
@@ -124,10 +123,7 @@ describe("tryout projection", () => {
   it("uses exact localized choices without adding question language", {
     timeout: 30_000,
   }, async () => {
-    const [projection, [, questions]] = await Promise.all([
-      loadProjection(),
-      loadSources(),
-    ]);
+    const { projection, sources: questions } = await loadContent();
     const english = projection.placements.filter(({ questionContentKey }) =>
       questionContentKey.includes("/snbt/english-language/")
     );
@@ -172,7 +168,7 @@ describe("tryout projection", () => {
   it("derives graph identity from source keys for routes and internal entries", {
     timeout: 30_000,
   }, async () => {
-    const projection = await loadProjection();
+    const { projection } = await loadContent();
     const trackEn = requireSource(
       projection.catalog.find(
         ({ row }) =>
@@ -222,7 +218,7 @@ describe("tryout projection", () => {
   it("excludes every physical set outside the active source registry", {
     timeout: 30_000,
   }, async () => {
-    const projection = await loadProjection();
+    const { projection } = await loadContent();
     const snbt = projection.placements.filter(
       ({ examKey }) => examKey === "snbt"
     );

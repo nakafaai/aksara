@@ -135,6 +135,7 @@ describe("material registry", () => {
           publicPath:
             "subjects/mathematics/function-composition-inverse-function/function-concept",
           sectionKey: "function-concept",
+          topicTitle: "Function Composition and Inverse Function",
         },
         sourcePath:
           "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
@@ -155,6 +156,7 @@ describe("material registry", () => {
           publicPath:
             "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
           sectionKey: "function-concept",
+          topicTitle: "Fungsi Komposisi dan Fungsi Invers",
         },
         sourcePath:
           "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx",

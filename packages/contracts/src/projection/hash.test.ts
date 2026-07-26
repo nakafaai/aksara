@@ -22,12 +22,13 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   publicPath: "subjects/test/projection",
   sectionKey: "test-projection",
   sitemap: true,
+  topicTitle: "Test Projection Topic",
 });
 
 describe("content projection hash", () => {
   it("hashes canonical projection bytes with one stable identity", () => {
     expect(hashContentProjection(projection)).toBe(
-      "sha256:48cb0acf2b0c22bd5289e14bb2ef84299924ab402700347cdcd95150e8b393c8"
+      "sha256:8f5ea50020652fd2608bc5aab52a63f8feda4d24d29301eb1b808e24b02a7b5f"
     );
   });
 });

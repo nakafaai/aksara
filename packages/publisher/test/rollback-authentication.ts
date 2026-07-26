@@ -103,6 +103,7 @@ export const rollbackProjection = Schema.decodeUnknownSync(
   publicPath: "subjects/test/rollback/record",
   sectionKey: "test-record",
   sitemap: true,
+  topicTitle: "Test Rollback Topic",
 });
 export const rollbackUpsert = RollbackUpsertStateSchema.make({
   artifact: rollbackArtifact,

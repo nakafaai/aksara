@@ -43,7 +43,7 @@ vi.mock("node:crypto", async (importOriginal) => {
         get(target, property, receiver) {
           if (property === "update") {
             return (data: BinaryLike) => {
-              if (String(data).startsWith("nakafa.aksara.program-rows.v2\n")) {
+              if (String(data).startsWith("nakafa.aksara.program-rows.v3\n")) {
                 aggregate = true;
               } else if (aggregate && failures.stage === "update") {
                 throw new TypeError("injected digest update failure");
@@ -252,6 +252,7 @@ describe("aggregate program row digest", () => {
             "curriculum/test-program-1/matrix/test-matrix"
           ),
           sitemap: false,
+          sourcePath: `packages/corpus/curriculum/${firstProgram.key}`,
           title: "Test-only matrix row",
         })
       )

@@ -47,6 +47,7 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   publicPath: "subjects/test/http",
   sectionKey: "test-http",
   sitemap: true,
+  topicTitle: "Test HTTP Topic",
 });
 
 const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({

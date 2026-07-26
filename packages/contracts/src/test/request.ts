@@ -172,6 +172,7 @@ export const projection = Schema.decodeUnknownSync(
   publicPath: "subjects/test/transport",
   sectionKey: "test-transport",
   sitemap: true,
+  topicTitle: "Test Transport Topic",
 });
 
 export const route = Schema.decodeUnknownSync(ContentRouteItemSchema)({

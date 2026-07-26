@@ -55,6 +55,7 @@ export const MaterialLessonRouteSchema = Schema.Struct({
   order: Schema.Number.pipe(Schema.int(), Schema.positive()),
   publicPath: MaterialPublicPathSchema,
   sectionKey: MaterialSectionSchema,
+  topicTitle: Schema.String,
 });
 export type MaterialLessonRoute = typeof MaterialLessonRouteSchema.Type;
 
@@ -159,5 +160,6 @@ export function canonicalizeMaterialProjection(
     publicPath: projection.publicPath,
     sectionKey: projection.sectionKey,
     sitemap: projection.sitemap,
+    topicTitle: projection.topicTitle,
   });
 }
