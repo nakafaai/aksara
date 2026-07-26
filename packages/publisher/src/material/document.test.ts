@@ -26,8 +26,7 @@ describe("material document", () => {
   it("maps a missing registry-owned source to its typed checkout error", async () => {
     const error = await Effect.runPromise(
       loadMaterialDocument(checkoutRoot, englishEntry).pipe(
-        Effect.provide(testFileLayer(new Map())),
-        Effect.provide(Path.layer),
+        Effect.provide([testFileLayer(new Map()), Path.layer]),
         Effect.flip
       )
     );
@@ -43,10 +42,7 @@ describe("material document", () => {
       Effect.gen(function* () {
         const source = yield* loadMaterialDocument(checkoutRoot, englishEntry);
         return yield* makeMaterialProjection(source, {}).pipe(Effect.flip);
-      }).pipe(
-        Effect.provide(testFileLayer(sourceByPath)),
-        Effect.provide(Path.layer)
-      )
+      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
     );
 
     expect(error).toMatchObject({

@@ -141,31 +141,28 @@ export const prepareTryoutSnapshot: <E, R>(
     rendererManifest,
     sources,
   });
-  const sourceRows = Stream.fromIterable(projection.catalog)
-    .pipe(
-      Stream.map(
-        (record) =>
-          ({
-            family: "tryout",
-            record,
-            rowKind: "catalog",
-          }) satisfies ContentSnapshotRow
-      )
-    )
-    .pipe(
-      Stream.concat(
-        placements.pipe(
-          Stream.map(
-            (record) =>
-              ({
-                family: "tryout",
-                record,
-                rowKind: "placement",
-              }) satisfies ContentSnapshotRow
-          )
+  const sourceRows = Stream.fromIterable(projection.catalog).pipe(
+    Stream.map(
+      (record) =>
+        ({
+          family: "tryout",
+          record,
+          rowKind: "catalog",
+        }) satisfies ContentSnapshotRow
+    ),
+    Stream.concat(
+      placements.pipe(
+        Stream.map(
+          (record) =>
+            ({
+              family: "tryout",
+              record,
+              rowKind: "placement",
+            }) satisfies ContentSnapshotRow
         )
       )
-    );
+    )
+  );
   const spool = yield* createReplaySpool({
     prefix: "aksara-tryout-",
     schema: ContentSnapshotRowSchema,

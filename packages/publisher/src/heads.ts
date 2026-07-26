@@ -102,7 +102,7 @@ export function streamContentHeads(
         limit: MAX_HEAD_PAGE_COUNT,
       });
       if (page.family !== family) {
-        return yield* Effect.fail(headPageError());
+        return yield* headPageError();
       }
       yield* validatePageOrder(state.last, page.heads);
       const next = yield* nextPageState(state, page);

@@ -113,7 +113,7 @@ function catalogProgram(input: CatalogTestInput) {
       question: Stream.fromIterable(input.question ?? []),
     },
     rendererManifest,
-  }).pipe(Effect.provide(testFileLayer(sources)), Effect.provide(Path.layer));
+  }).pipe(Effect.provide([testFileLayer(sources), Path.layer]));
 }
 
 /** Collects every replay while the catalog's private spool scope is alive. */

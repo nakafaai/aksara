@@ -70,15 +70,14 @@ function streamPreparedProgramRows({
   programs,
   routes,
 }: PreparedProgramSources) {
-  return Stream.fromIterable(programs)
-    .pipe(Stream.mapEffect(makeProgramSnapshotRow))
-    .pipe(
-      Stream.concat(
-        Stream.fromIterable(routes).pipe(
-          Stream.mapEffect(makeCurriculumSnapshotRow)
-        )
+  return Stream.fromIterable(programs).pipe(
+    Stream.mapEffect(makeProgramSnapshotRow),
+    Stream.concat(
+      Stream.fromIterable(routes).pipe(
+        Stream.mapEffect(makeCurriculumSnapshotRow)
       )
-    );
+    )
+  );
 }
 
 /** Errors emitted while replaying source-decoded aggregate program records. */

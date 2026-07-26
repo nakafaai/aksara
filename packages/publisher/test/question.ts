@@ -80,8 +80,7 @@ export function collectQuestionPublication(input: {
         );
       })
     ).pipe(
-      Effect.provide(testFileLayer(input.sources ?? sourceByPath)),
-      Effect.provide(Path.layer)
+      Effect.provide([testFileLayer(input.sources ?? sourceByPath), Path.layer])
     )
   );
 }
@@ -101,10 +100,7 @@ export function collectQuestionRoutes(heads: readonly QuestionHead[]) {
           Effect.map((routes) => [...routes])
         );
       })
-    ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer)
-    )
+    ).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
   );
 }
 
@@ -118,8 +114,7 @@ export function rejectQuestionPublication(heads: readonly QuestionHead[]) {
         rendererManifest,
       })
     ).pipe(
-      Effect.provide(testFileLayer(sourceByPath)),
-      Effect.provide(Path.layer),
+      Effect.provide([testFileLayer(sourceByPath), Path.layer]),
       Effect.flip
     )
   );

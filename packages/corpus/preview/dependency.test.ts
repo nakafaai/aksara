@@ -21,8 +21,7 @@ const corpusSources = new Map(
 function discoverReal(sourcePath: CorpusSourcePath) {
   return Effect.runPromise(
     discoverSourceDependencies(corpusRoot, sourcePath).pipe(
-      Effect.provide(sourceLayer(corpusSources)),
-      Effect.provide(Path.layer)
+      Effect.provide([sourceLayer(corpusSources), Path.layer])
     )
   );
 }
@@ -54,8 +53,7 @@ function discover(
 ) {
   return Effect.runPromise(
     discoverSourceDependencies(corpusRoot, sourcePath).pipe(
-      Effect.provide(sourceLayer(sources)),
-      Effect.provide(Path.layer)
+      Effect.provide([sourceLayer(sources), Path.layer])
     )
   );
 }
@@ -67,8 +65,7 @@ function reject(
 ) {
   return Effect.runPromise(
     discoverSourceDependencies(corpusRoot, sourcePath).pipe(
-      Effect.provide(sourceLayer(sources)),
-      Effect.provide(Path.layer),
+      Effect.provide([sourceLayer(sources), Path.layer]),
       Effect.flip
     )
   );

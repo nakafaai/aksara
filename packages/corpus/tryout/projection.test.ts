@@ -45,8 +45,7 @@ function loadProjection() {
   return Effect.runPromise(
     loadTryoutContent(corpusRoot).pipe(
       Effect.map(({ projection }) => projection),
-      Effect.provide(realFileLayer),
-      Effect.provide(Path.layer)
+      Effect.provide([realFileLayer, Path.layer])
     )
   );
 }
@@ -60,7 +59,7 @@ function loadSources() {
       const questions = yield* discoverQuestionSources(
         corpusRoot,
         questionBanks
-      ).pipe(Effect.provide(realFileLayer), Effect.provide(Path.layer));
+      ).pipe(Effect.provide([realFileLayer, Path.layer]));
       return [sources, questions] satisfies readonly [
         typeof sources,
         typeof questions,

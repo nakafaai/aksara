@@ -159,8 +159,7 @@ describe("question plan", () => {
         sources: [],
       }).pipe(
         Stream.runDrain,
-        Effect.provide(testFileLayer(sourceByPath)),
-        Effect.provide(Path.layer),
+        Effect.provide([testFileLayer(sourceByPath), Path.layer]),
         Effect.flip
       )
     );

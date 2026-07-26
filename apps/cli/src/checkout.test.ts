@@ -86,8 +86,7 @@ describe("preview checkout resolution", () => {
     });
     const error = await Effect.runPromise(
       findAksaraRoot("/virtual/aksara").pipe(
-        Effect.provide(fileLayer),
-        Effect.provide(Path.layer),
+        Effect.provide([fileLayer, Path.layer]),
         Effect.flip
       )
     );

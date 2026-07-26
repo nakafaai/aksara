@@ -21,8 +21,7 @@ describe("article document", () => {
   it("maps a missing registry-owned source to its typed checkout error", async () => {
     const error = await Effect.runPromise(
       loadArticleDocument(checkoutRoot, englishEntry).pipe(
-        Effect.provide(testFileLayer(new Map())),
-        Effect.provide(Path.layer),
+        Effect.provide([testFileLayer(new Map()), Path.layer]),
         Effect.flip
       )
     );
@@ -40,10 +39,7 @@ describe("article document", () => {
         return yield* makeArticleProjectionFromSource(source, {}).pipe(
           Effect.flip
         );
-      }).pipe(
-        Effect.provide(testFileLayer(sourceByPath)),
-        Effect.provide(Path.layer)
-      )
+      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
     );
 
     expect(error).toMatchObject({
@@ -75,10 +71,7 @@ describe("article document", () => {
           }
         );
         return [officialProjection, independentProjection] as const;
-      }).pipe(
-        Effect.provide(testFileLayer(sourceByPath)),
-        Effect.provide(Path.layer)
-      )
+      }).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]))
     );
 
     expect(official.official).toBe(true);

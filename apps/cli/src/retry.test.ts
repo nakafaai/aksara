@@ -1,8 +1,11 @@
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
-import { Effect } from "effect";
+import { Data, Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { retryPublicationTarget, retryTransport } from "#cli/retry";
+
+/** Test-only typed failure that must bypass transient transport retries. */
+class TestPermanentFailure extends Data.TaggedError("TestPermanentFailure") {}
 
 /** Creates one retryable target failure at the publication client boundary. */
 function transportFailure() {
@@ -77,16 +80,17 @@ describe("publication transport retry", () => {
 
   it("never retries permanent failures", async () => {
     let attempts = 0;
+    const failure = new TestPermanentFailure();
     const error = await Effect.runPromise(
       retryTransport(
         Effect.suspend(() => {
           attempts += 1;
-          return Effect.fail(new Error("permanent-test-failure"));
+          return Effect.fail(failure);
         })
       ).pipe(Effect.flip)
     );
 
-    expect(error).toEqual(new Error("permanent-test-failure"));
+    expect(error).toBe(failure);
     expect(attempts).toBe(1);
   });
 

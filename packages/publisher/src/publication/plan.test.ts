@@ -14,7 +14,7 @@ import {
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Redacted, Stream } from "effect";
+import { Effect, Layer, Redacted, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
 import type {
@@ -150,11 +150,13 @@ function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
         return yield* plan.cacheChanges().pipe(Stream.runCollect);
       })
     ).pipe(
-      Effect.provide(testFileLayer(new Map())),
-      Effect.provide(Path.layer),
-      Effect.provideService(PublicationSigningKey, signingKey),
-      Effect.provideService(PublicationTarget, makePublicationTarget({})),
-      Effect.provideService(ContentVerificationKeyResolver, resolver)
+      Effect.provide([
+        testFileLayer(new Map()),
+        Path.layer,
+        Layer.succeed(PublicationSigningKey, signingKey),
+        Layer.succeed(PublicationTarget, makePublicationTarget({})),
+        Layer.succeed(ContentVerificationKeyResolver, resolver),
+      ])
     )
   );
 }

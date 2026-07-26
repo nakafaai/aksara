@@ -44,7 +44,7 @@ function readSources(sources: ReadonlyMap<string, string>) {
   return Effect.runPromise(
     Effect.forEach(entries, (entry) =>
       readMaterialDocument(corpusRoot, entry)
-    ).pipe(Effect.provide(fileLayer(sources)), Effect.provide(Path.layer))
+    ).pipe(Effect.provide([fileLayer(sources), Path.layer]))
   );
 }
 
@@ -92,8 +92,7 @@ describe("material source", () => {
 
     const error = await Effect.runPromise(
       readMaterialDocument(corpusRoot, entry).pipe(
-        Effect.provide(fileLayer(new Map())),
-        Effect.provide(Path.layer),
+        Effect.provide([fileLayer(new Map()), Path.layer]),
         Effect.flip
       )
     );
