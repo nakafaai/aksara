@@ -205,6 +205,18 @@ describe("local preview manifest", () => {
         document: testMaterialDocument,
       },
       {
+        artifacts: [
+          artifact(
+            {
+              ...testMaterialProjection,
+              topicTitle: "Different test material",
+            },
+            "0"
+          ),
+        ],
+        document: testMaterialDocument,
+      },
+      {
         artifacts: [answerArtifact],
         document: testPromptDocument,
       },
@@ -226,7 +238,7 @@ describe("local preview manifest", () => {
     expect(
       String(
         Schema.decodeUnknownEither(LocalPreviewManifestSchema)({
-          ...cases[1],
+          ...cases[2],
           format: LOCAL_PREVIEW_FORMAT,
           rendererManifestHash: `sha256:${"a".repeat(64)}`,
           repositories,

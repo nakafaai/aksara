@@ -13,8 +13,8 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
-  type RoutedContentProjection,
-  RoutedContentProjectionSchema,
+  type RoutedContentProjectionWire,
+  RoutedContentProjectionWireSchema,
 } from "#contracts/projection/spec";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
@@ -36,7 +36,7 @@ export type ContentRuntimeRequest = typeof ContentRuntimeRequestSchema.Type;
 /** Confirms one runtime artifact and projection describe the same document. */
 function hasCoherentContent(input: {
   readonly artifact: SignedContentArtifact;
-  readonly projection: RoutedContentProjection;
+  readonly projection: RoutedContentProjectionWire;
 }) {
   const { payload } = input.artifact;
   return (
@@ -58,7 +58,7 @@ export const ContentRuntimeFoundSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
   delivery: ContentDeliveryClassSchema,
   kind: Schema.Literal("found"),
-  projection: RoutedContentProjectionSchema,
+  projection: RoutedContentProjectionWireSchema,
   projectionHash: Sha256HashSchema,
   release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,

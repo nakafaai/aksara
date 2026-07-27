@@ -88,7 +88,8 @@ function matchesMaterialDocument(
     projection.materialKey === document.route.materialKey &&
     projection.order === document.route.order &&
     projection.publicPath === document.route.publicPath &&
-    projection.sectionKey === document.route.sectionKey
+    projection.sectionKey === document.route.sectionKey &&
+    projection.topicTitle === document.route.topicTitle
   );
 }
 

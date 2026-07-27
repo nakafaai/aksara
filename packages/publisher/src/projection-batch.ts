@@ -1,6 +1,6 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
-  type ContentProjection,
+  type ContentProjectionWire,
   canonicalizeContentProjection,
 } from "@nakafa/aksara-contracts/projection/spec";
 import {
@@ -23,7 +23,7 @@ export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {
 /** Streams bounded projection envelopes with contiguous batch identities. */
 export function makeProjectionBatches<E, R>(
   releaseId: ReleaseId,
-  projections: Stream.Stream<ContentProjection, E, R>
+  projections: Stream.Stream<ContentProjectionWire, E, R>
 ) {
   return streamBatches({
     build: (values, batchIndex, batchReleaseId) => ({

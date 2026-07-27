@@ -6,7 +6,7 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
-  type ContentProjection,
+  type ContentProjectionWire,
   canonicalizeContentProjection,
 } from "#contracts/projection/spec";
 
@@ -30,7 +30,7 @@ class ProjectionDigestState {
   }
 
   /** Adds one canonical projection to this invocation-owned digest. */
-  update(projection: ContentProjection): void {
+  update(projection: ContentProjectionWire): void {
     this.#hash.update(canonicalizeContentProjection(projection));
     this.#hash.update("\n");
     this.count += 1;
@@ -54,7 +54,7 @@ export function createProjectionDigest(releaseId: typeof ReleaseIdSchema.Type) {
 export function updateProjectionDigest(
   releaseId: typeof ReleaseIdSchema.Type,
   state: ProjectionDigestState,
-  projection: ContentProjection
+  projection: ContentProjectionWire
 ) {
   return Effect.try({
     catch: () => new ProjectionHashError({ releaseId }),
@@ -80,7 +80,7 @@ export function finalizeProjectionDigest(
 export const digestProjections = Effect.fn("AksaraContracts.digestProjections")(
   function* <E, R>(
     releaseId: ReleaseId,
-    projections: Stream.Stream<ContentProjection, E, R>
+    projections: Stream.Stream<ContentProjectionWire, E, R>
   ) {
     const initial = yield* createProjectionDigest(releaseId);
     const state = yield* projections.pipe(

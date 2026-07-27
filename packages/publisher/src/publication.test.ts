@@ -267,7 +267,7 @@ describe("content publication", () => {
     const mismatch = makePreparedGitRelease({
       items: release.prepared.items,
       manifest: release.manifest,
-      projections: release.prepared.projections,
+      projections: () => Stream.make(projection),
       rendererManifest,
       routes: release.prepared.routes,
       ...emptySnapshotSources,
