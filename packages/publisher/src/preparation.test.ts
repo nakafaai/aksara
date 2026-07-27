@@ -109,6 +109,21 @@ describe("prepareContentRelease", () => {
     expect(prepared.rendererManifest).toEqual(rendererManifest);
   });
 
+  it("rejects retained material v2 from exact-Git authoring", async () => {
+    const { topicTitle: _topicTitle, ...projectionV2 } =
+      baseTransition.record.projection;
+    const error = await Effect.runPromise(
+      prepare(() =>
+        Stream.make({
+          ...baseTransition,
+          record: { ...baseTransition.record, projection: projectionV2 },
+        })
+      ).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({ _tag: "PreparedContentDecodeError" });
+  });
+
   it("self-verifies every replay against its derived signed digests", async () => {
     let replayCount = 0;
     const error = await Effect.runPromise(

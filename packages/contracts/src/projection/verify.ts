@@ -7,8 +7,8 @@ import {
 } from "#contracts/ids";
 import { digestProjections } from "#contracts/projection/digest";
 import {
-  type ContentProjection,
-  ContentProjectionSchema,
+  type ContentProjectionWire,
+  ContentProjectionWireSchema,
   projectionPublicPath,
 } from "#contracts/projection/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
@@ -62,7 +62,7 @@ export class ProjectionDigestError extends Schema.TaggedError<ProjectionDigestEr
 
 interface ProjectionState {
   readonly firstIndexByRoute: Map<string, number>;
-  previous: ContentProjection | undefined;
+  previous: ContentProjectionWire | undefined;
 }
 
 /** Count authenticated without retaining complete projection bodies. */
@@ -76,7 +76,7 @@ function decodeProjection(
   source: unknown,
   projectionIndex: number
 ) {
-  return Schema.decodeUnknown(ContentProjectionSchema)(source, {
+  return Schema.decodeUnknown(ContentProjectionWireSchema)(source, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(() => new ProjectionDecodeError({ projectionIndex })),

@@ -6,6 +6,7 @@ import {
 import {
   canonicalizeMaterialProjection,
   MaterialLessonProjectionSchema,
+  MaterialProjectionV2Schema,
 } from "#contracts/projection/material";
 import {
   canonicalizeQuestionProjection,
@@ -27,8 +28,23 @@ export const RoutedContentProjectionSchema = Schema.Union(
 );
 export type RoutedContentProjection = typeof RoutedContentProjectionSchema.Type;
 
+/** Temporary published wire vocabulary accepted while v2 material heads migrate. */
+export const ContentProjectionWireSchema = Schema.Union(
+  ContentProjectionSchema,
+  MaterialProjectionV2Schema
+);
+export type ContentProjectionWire = typeof ContentProjectionWireSchema.Type;
+
+/** Temporary routed wire vocabulary accepted while v2 material heads migrate. */
+export const RoutedContentProjectionWireSchema = Schema.Union(
+  RoutedContentProjectionSchema,
+  MaterialProjectionV2Schema
+);
+export type RoutedContentProjectionWire =
+  typeof RoutedContentProjectionWireSchema.Type;
+
 /** Returns the release family that owns one discriminated projection. */
-export function familyForProjection(projection: ContentProjection) {
+export function familyForProjection(projection: ContentProjectionWire) {
   if (projection.kind === "article") {
     return "article" as const;
   }
@@ -40,7 +56,7 @@ export function familyForProjection(projection: ContentProjection) {
 }
 
 /** Returns public route ownership only for route-bearing projections. */
-export function projectionPublicPath(projection: ContentProjection) {
+export function projectionPublicPath(projection: ContentProjectionWire) {
   if (projection.kind === "question-body") {
     return;
   }
@@ -48,7 +64,9 @@ export function projectionPublicPath(projection: ContentProjection) {
 }
 
 /** Serializes one projection through its exhaustive family-owned canonicalizer. */
-export function canonicalizeContentProjection(projection: ContentProjection) {
+export function canonicalizeContentProjection(
+  projection: ContentProjectionWire
+) {
   if (projection.kind === "article") {
     return canonicalizeArticleProjection(projection);
   }
