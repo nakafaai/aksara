@@ -12,8 +12,13 @@ credentials, signing keys, unpublished content, or personal data.
 
 ## Supported code
 
-Only the latest `main` revision is supported. No contracts archive or content
-runtime has been released to production yet.
+Only the latest `main` revision and immutable contract archives currently
+referenced by Nakafa production are supported. The signed content runtime is
+production-supported only for explicitly activated scopes: the article family
+and the `en`/`id` function-concept material slice. Other corpus scopes are not
+production-supported until their separate activation gates pass. The exact
+source commits and production acceptance evidence are recorded in
+[`README.md`](README.md).
 
 ## Trust boundary
 
@@ -26,5 +31,7 @@ never reach the artifact compiler or Nakafa's server-side MDX runtime.
 The implemented publication module resolves each signed corpus path from the
 manifest's exact full Git commit, recompiles that immutable blob, matches the
 canonical artifact hash to the signed release item, and only then permits the
-package-private signing primitive to authenticate it. No Convex or production
-ingress adapter is implemented yet.
+package-private signing primitive to authenticate it. No publication credential
+is exposed from this repository. The authenticated Convex ingress, immutable
+artifact storage, and server-only runtime adapters are implemented and owned in
+`nakafaai/nakafa.com`.
