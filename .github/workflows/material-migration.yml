@@ -1,0 +1,189 @@
+name: Migrate material wire
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_id:
+        description: Exact canonical migration release ID
+        required: true
+        type: string
+      recovery_id:
+        description: Exact retained inverse ID
+        required: true
+        type: string
+
+permissions: {}
+
+env:
+  MIGRATION_REF: contracts-v0.3.1
+  MIGRATION_SHA: f46e7ee9eff87ebb0a0a5857a03598d8670dace4
+  NODE_VERSION: 24.18.0
+  PNPM_VERSION: 11.15.1
+
+concurrency:
+  group: content-production
+  cancel-in-progress: false
+
+# Deletion gate: remove this workflow after the accepted material release and
+# its retained recovery both use the canonical projection contract.
+jobs:
+  source:
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      attestations: read
+      contents: read
+    steps:
+      - name: Checkout controls
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Prepare exact migration source
+        env:
+          MIGRATION_ROOT: ${{ runner.temp }}/aksara-migration
+        run: |
+          resolved="$(git rev-parse "$MIGRATION_REF^{commit}")"
+          if [[ "$resolved" != "$MIGRATION_SHA" ]]; then
+            echo "The immutable migration tag does not resolve to its reviewed commit." >&2
+            exit 1
+          fi
+          git worktree add --detach "$MIGRATION_ROOT" "$MIGRATION_SHA"
+          pnpm --dir "$MIGRATION_ROOT" install --frozen-lockfile
+          if [[ "$(git -C "$MIGRATION_ROOT" rev-parse --verify HEAD)" != "$MIGRATION_SHA" ]]; then
+            echo "The migration checkout does not match its reviewed commit." >&2
+            exit 1
+          fi
+          if [[ -n "$(git -C "$MIGRATION_ROOT" status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The migration checkout is dirty." >&2
+            exit 1
+          fi
+
+      - name: Verify migration source
+        env:
+          MIGRATION_ROOT: ${{ runner.temp }}/aksara-migration
+        run: |
+          pnpm --dir "$MIGRATION_ROOT" lint
+          pnpm --dir "$MIGRATION_ROOT" deprecations
+          pnpm --dir "$MIGRATION_ROOT" names
+          pnpm --dir "$MIGRATION_ROOT" jsdocs
+          pnpm --dir "$MIGRATION_ROOT" lines
+          pnpm --dir "$MIGRATION_ROOT" workflows
+          pnpm --dir "$MIGRATION_ROOT" boundaries
+          pnpm --dir "$MIGRATION_ROOT" typecheck
+          pnpm --dir "$MIGRATION_ROOT" test
+          pnpm --dir "$MIGRATION_ROOT" build
+
+      - name: Prove immutable migration contract
+        env:
+          CURRENT_ARCHIVE: ${{ runner.temp }}/nakafa-aksara-contracts.tgz
+          GH_TOKEN: ${{ github.token }}
+          MIGRATION_ROOT: ${{ runner.temp }}/aksara-migration
+        run: |
+          pnpm --dir "$MIGRATION_ROOT" --filter @nakafa/aksara-contracts \
+            verify:consumer --output "$CURRENT_ARCHIVE"
+          node "$MIGRATION_ROOT/packages/contracts/scripts/release-command.ts" prove \
+            --archive "$CURRENT_ARCHIVE" \
+            --package "$MIGRATION_ROOT/packages/contracts/package.json" \
+            --repository "$GITHUB_REPOSITORY" \
+            --source-sha "$MIGRATION_SHA"
+
+  migrate:
+    needs: source
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+      && needs.source.result == 'success'
+    environment: content-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Validate identities
+        env:
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: |
+          if [[ ! "$RELEASE_ID" =~ ^[a-z0-9][a-z0-9._-]{0,127}$ ]]; then
+            echo "The release ID is not canonical." >&2
+            exit 1
+          fi
+          if [[ ! "$RECOVERY_ID" =~ ^[a-z0-9][a-z0-9._-]{0,127}$ ]]; then
+            echo "The recovery ID is not canonical." >&2
+            exit 1
+          fi
+          if [[ "$RELEASE_ID" == "$RECOVERY_ID" ]]; then
+            echo "Release and recovery identities must differ." >&2
+            exit 1
+          fi
+
+      - name: Checkout controls
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Prepare isolated migration checkout
+        env:
+          MIGRATION_ROOT: ${{ runner.temp }}/aksara-migration
+        run: |
+          resolved="$(git rev-parse "$MIGRATION_REF^{commit}")"
+          if [[ "$resolved" != "$MIGRATION_SHA" ]]; then
+            echo "The immutable migration tag does not resolve to its reviewed commit." >&2
+            exit 1
+          fi
+          git worktree add --detach "$MIGRATION_ROOT" "$MIGRATION_SHA"
+          pnpm --dir "$MIGRATION_ROOT" install --frozen-lockfile
+          if [[ "$(git -C "$MIGRATION_ROOT" rev-parse --verify HEAD)" != "$MIGRATION_SHA" ]]; then
+            echo "The migration checkout does not match its reviewed commit." >&2
+            exit 1
+          fi
+          if [[ -n "$(git -C "$MIGRATION_ROOT" status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The migration checkout is dirty." >&2
+            exit 1
+          fi
+
+      - name: Publish canonical material migration
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
+          AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_RENDERER_TOKEN }}
+          AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
+          AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          MIGRATION_ROOT: ${{ runner.temp }}/aksara-migration
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: >-
+          pnpm --dir "$MIGRATION_ROOT" release --
+          --release-id "$RELEASE_ID"
+          --recovery-id "$RECOVERY_ID"
+          --scope content:material:en:material/lesson/mathematics/function-composition-inverse-function/function-concept
+          --scope content:material:id:material/lesson/mathematics/function-composition-inverse-function/function-concept
