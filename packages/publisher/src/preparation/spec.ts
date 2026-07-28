@@ -12,7 +12,6 @@ import type {
 import {
   type ContentProjection,
   ContentProjectionSchema,
-  type ContentProjectionWire,
 } from "@nakafa/aksara-contracts/projection/spec";
 import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
@@ -155,11 +154,8 @@ const PreparedContentReleaseTypeId: unique symbol = Symbol(
 );
 
 /** Shared authenticated streams carried by every prepared release mode. */
-interface PreparedContentReleaseBase<
-  E,
-  R,
-  Projection extends ContentProjectionWire,
-> extends PreparedSnapshotSources<E, R> {
+interface PreparedContentReleaseBase<E, R, Projection extends ContentProjection>
+  extends PreparedSnapshotSources<E, R> {
   /** Replays canonical items authenticated by the immutable manifest. */
   readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
   readonly manifest: ContentReleaseManifest;
@@ -181,7 +177,7 @@ export interface PreparedGitRelease<E, R>
 
 /** Forward rollback whose existing signed artifacts must remain unchanged. */
 export interface PreparedRollbackRelease<E, R>
-  extends PreparedContentReleaseBase<E, R, ContentProjectionWire> {
+  extends PreparedContentReleaseBase<E, R, ContentProjection> {
   /** Replays exact old signed envelopes for every ordered upsert item. */
   readonly artifacts: () => Stream.Stream<SignedContentArtifact, E, R>;
   readonly kind: "rollback";
@@ -290,7 +286,7 @@ export function makePreparedRollbackRelease<E, R>(
     readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
     readonly manifest: ContentReleaseManifest;
     /** Replays canonical projections authenticated by the same manifest. */
-    readonly projections: () => Stream.Stream<ContentProjectionWire, E, R>;
+    readonly projections: () => Stream.Stream<ContentProjection, E, R>;
     readonly rendererManifest: RendererManifestEnvelope;
     /** Replays canonical route changes authenticated by the same manifest. */
     readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;

@@ -1,7 +1,7 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { SignedContentArtifactSchema } from "#contracts/content";
-import { MaterialProjectionV2Schema } from "#contracts/projection/material";
+import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import {
   MaterialHeadSchema,
   QuestionHeadSchema,
@@ -52,7 +52,7 @@ const change = Schema.decodeUnknownSync(ContentUpsertSchema)({
   rendererDomain: artifact.payload.rendererDomain,
   sourcePath: "packages/corpus/test/rollback/en.mdx",
 });
-const projection = Schema.decodeUnknownSync(MaterialProjectionV2Schema)({
+const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   contentKey: artifact.payload.contentKey,
   graph: materialGraph("en", "test", "material", "test-lesson"),
   kind: "subject-lesson",
@@ -64,6 +64,7 @@ const projection = Schema.decodeUnknownSync(MaterialProjectionV2Schema)({
   publicPath: "subjects/test/material/lesson",
   sectionKey: "test-lesson",
   sitemap: true,
+  topicTitle: "Test Material",
 });
 const head = Schema.decodeUnknownSync(MaterialHeadSchema)({
   artifactHash: artifact.artifactHash,

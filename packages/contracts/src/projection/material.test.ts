@@ -6,7 +6,6 @@ import {
   MaterialLessonProjectionSchema,
   MaterialLessonRouteSchema,
   MaterialMetadataSchema,
-  MaterialProjectionV2Schema,
   makeMaterialLessonProjection,
 } from "#contracts/projection/material";
 import { materialGraph } from "#contracts/test/graph";
@@ -40,41 +39,17 @@ describe("material projection", () => {
     expect(projection.topicTitle).toBe("Test Material");
   });
 
-  it("retains exact v2 wire decoding without weakening new authoring", () => {
-    const { topicTitle: _topicTitle, ...v2 } = projection;
-    expect(Schema.decodeUnknownSync(MaterialProjectionV2Schema)(v2)).toEqual(
-      v2
-    );
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(MaterialLessonProjectionSchema)(v2)
-      )
-    ).toBe(true);
-    expect(
-      Either.isLeft(
-        Schema.decodeUnknownEither(MaterialProjectionV2Schema)(projection)
-      )
-    ).toBe(true);
-    expect(JSON.parse(canonicalizeMaterialProjection(v2))).toEqual(v2);
-    const parent = Schema.decodeUnknownEither(MaterialProjectionV2Schema)({
-      ...v2,
-      parentPath: "subjects/unrelated/material",
-    });
-    expect(Either.isLeft(parent)).toBe(true);
-    if (Either.isLeft(parent)) {
-      expect(String(parent.left)).toContain(
-        "Expected the material parent path to match the lesson public path."
-      );
-    }
-    const graph = Schema.decodeUnknownEither(MaterialProjectionV2Schema)({
-      ...v2,
-      graph: materialGraph("en", "test", "other", "test-lesson"),
-    });
-    expect(Either.isLeft(graph)).toBe(true);
-    if (Either.isLeft(graph)) {
-      expect(String(graph.left)).toContain(
-        "Expected material graph identities to match its stable source keys."
-      );
+  it("requires the canonical topic label and public discovery state", () => {
+    const { topicTitle: _topicTitle, ...missingTopicTitle } = projection;
+    for (const input of [
+      missingTopicTitle,
+      { ...projection, sitemap: false },
+    ]) {
+      expect(
+        Either.isLeft(
+          Schema.decodeUnknownEither(MaterialLessonProjectionSchema)(input)
+        )
+      ).toBe(true);
     }
   });
 

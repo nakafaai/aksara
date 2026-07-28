@@ -109,14 +109,17 @@ describe("prepareContentRelease", () => {
     expect(prepared.rendererManifest).toEqual(rendererManifest);
   });
 
-  it("rejects retained material v2 from exact-Git authoring", async () => {
-    const { topicTitle: _topicTitle, ...projectionV2 } =
+  it("rejects incomplete material projections from exact-Git authoring", async () => {
+    const { topicTitle: _topicTitle, ...incompleteProjection } =
       baseTransition.record.projection;
     const error = await Effect.runPromise(
       prepare(() =>
         Stream.make({
           ...baseTransition,
-          record: { ...baseTransition.record, projection: projectionV2 },
+          record: {
+            ...baseTransition.record,
+            projection: incompleteProjection,
+          },
         })
       ).pipe(Effect.flip)
     );

@@ -10,7 +10,7 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
-  ContentProjectionWireSchema,
+  ContentProjectionSchema,
   canonicalizeContentProjection,
   familyForProjection,
 } from "#contracts/projection/spec";
@@ -97,7 +97,7 @@ export function canonicalizeRollbackSnapshotEntry(
 function hasBoundRollbackUpsert(input: {
   readonly artifact: typeof SignedContentArtifactSchema.Type;
   readonly change: typeof ContentUpsertSchema.Type;
-  readonly projection: typeof ContentProjectionWireSchema.Type;
+  readonly projection: typeof ContentProjectionSchema.Type;
 }) {
   const { artifact, change, projection } = input;
   const { payload } = artifact;
@@ -116,7 +116,7 @@ function hasBoundRollbackUpsert(input: {
 export const RollbackUpsertStateSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
   change: ContentUpsertSchema,
-  projection: ContentProjectionWireSchema,
+  projection: ContentProjectionSchema,
 }).pipe(
   Schema.filter(hasBoundRollbackUpsert, {
     message: () =>
