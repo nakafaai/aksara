@@ -9,6 +9,20 @@ serves the article family and the signed `en`/`id` function-concept material
 slice from Aksara. Every additional scope keeps its existing owner until its
 renderer, publication, recovery, and production acceptance gates pass.
 
+The article runtime ownership landed in Nakafa commit
+[`4bf134519c`](https://github.com/nakafaai/nakafa.com/commit/4bf134519cb1cfb0d4181ed6d84d446afc973b9b);
+release `article-family-forward-20260727-e7a29e2` from Aksara commit
+[`e7a29e2c63`](https://github.com/nakafaai/aksara/commit/e7a29e2c63f2133a733c2093a6cc0268279a8721)
+was accepted by production
+[run `30217046243`](https://github.com/nakafaai/aksara/actions/runs/30217046243).
+The material runtime path is recorded by Nakafa commit
+[`4df9f6a0a0`](https://github.com/nakafaai/nakafa.com/commit/4df9f6a0a0b8f7573ddb95940b00e5391c710ba1);
+release `material-function-concept-canonical-final-20260728-f46e7ee` from Aksara
+commit
+[`f46e7ee9ef`](https://github.com/nakafaai/aksara/commit/f46e7ee9eff87ebb0a0a5857a03598d8670dace4)
+was accepted by production
+[run `30370321308`](https://github.com/nakafaai/aksara/actions/runs/30370321308).
+
 ## Current modules
 
 - `@nakafa/aksara-contracts` defines signed artifact, release, and renderer
