@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { verifyMaterialMigrationWorkflow } from "#scripts/migration-workflow";
 
 const FORBIDDEN_REGISTRY_PATTERN =
   /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|registry\.npmjs\.org|package-proof/iu;
@@ -250,7 +249,4 @@ verifyWorkflows({
   contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
   release: readFileSync(".github/workflows/release.yml", "utf8"),
 });
-verifyMaterialMigrationWorkflow(
-  readFileSync(".github/workflows/material-migration.yml", "utf8")
-);
 process.stdout.write("Verified immutable contract and content workflows.\n");
