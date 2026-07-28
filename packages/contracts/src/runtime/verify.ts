@@ -1,7 +1,7 @@
 import { Effect, Schema } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import { hashContentProjection } from "#contracts/projection/hash";
-import type { RoutedContentProjectionWire } from "#contracts/projection/spec";
+import type { RoutedContentProjection } from "#contracts/projection/spec";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import {
@@ -28,10 +28,7 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
 
 /** Checks one article path preserves its pair-grouped physical source identity. */
 function hasArticleSourcePath(
-  projection: Extract<
-    RoutedContentProjectionWire,
-    { readonly kind: "article" }
-  >,
+  projection: Extract<RoutedContentProjection, { readonly kind: "article" }>,
   sourcePath: string
 ) {
   const prefix = `packages/corpus/articles/${projection.category}/`;
@@ -46,7 +43,7 @@ function hasArticleSourcePath(
 
 /** Checks one target-owned path exactly matches its projected content family. */
 function hasProjectionSourcePath(
-  projection: RoutedContentProjectionWire,
+  projection: RoutedContentProjection,
   sourcePath: string
 ) {
   if (projection.kind === "article") {

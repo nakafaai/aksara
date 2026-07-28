@@ -46,7 +46,7 @@ export const MaterialMetadataSchema = Schema.Struct({
 });
 export type MaterialMetadata = typeof MaterialMetadataSchema.Type;
 
-/** Stable route fields shared by every material projection revision. */
+/** Stable route fields shared by material routes and published projections. */
 const MaterialLessonRouteFields = {
   contentKey: ContentKeySchema,
   graph: LearningGraphIdentitySchema,
@@ -64,7 +64,7 @@ export const MaterialLessonRouteSchema = Schema.Struct({
 });
 export type MaterialLessonRoute = typeof MaterialLessonRouteSchema.Type;
 
-/** Fields shared by every filtered material projection wire revision. */
+/** Fields shared by the filtered material projection contract. */
 const MaterialLessonProjectionFields = {
   ...MaterialLessonRouteFields,
   kind: Schema.Literal("subject-lesson"),
@@ -108,22 +108,6 @@ function hasCoherentMaterialGraph(input: {
   );
 }
 
-/** Retained v2 wire projection needed only while active material heads migrate. */
-export const MaterialProjectionV2Schema = Schema.Struct({
-  ...MaterialLessonProjectionFields,
-  topicTitle: Schema.optionalWith(Schema.Never, { exact: true }),
-}).pipe(
-  Schema.filter(hasCoherentParentPath, {
-    message: () =>
-      "Expected the material parent path to match the lesson public path.",
-  }),
-  Schema.filter(hasCoherentMaterialGraph, {
-    message: () =>
-      "Expected material graph identities to match its stable source keys.",
-  })
-);
-export type MaterialProjectionV2 = typeof MaterialProjectionV2Schema.Type;
-
 /** Canonical route read model for one published material lesson body. */
 export const MaterialLessonProjectionSchema = Schema.Struct({
   ...MaterialLessonProjectionFields,
@@ -140,10 +124,6 @@ export const MaterialLessonProjectionSchema = Schema.Struct({
 );
 export type MaterialLessonProjection =
   typeof MaterialLessonProjectionSchema.Type;
-/** Temporary published wire vocabulary accepted during the v2 material migration. */
-export type MaterialProjectionWire =
-  | MaterialLessonProjection
-  | MaterialProjectionV2;
 
 /** Combines registry-owned routing with metadata decoded from authored MDX. */
 export function makeMaterialLessonProjection(
@@ -162,9 +142,9 @@ export function makeMaterialLessonProjection(
 
 /** Serializes one material projection with stable signed field order. */
 export function canonicalizeMaterialProjection(
-  projection: MaterialProjectionWire
+  projection: MaterialLessonProjection
 ) {
-  const canonical = {
+  return JSON.stringify({
     contentKey: projection.contentKey,
     graph: canonicalizeLearningGraphIdentity(projection.graph),
     kind: projection.kind,
@@ -186,9 +166,6 @@ export function canonicalizeMaterialProjection(
     publicPath: projection.publicPath,
     sectionKey: projection.sectionKey,
     sitemap: projection.sitemap,
-  };
-  if (projection.topicTitle !== undefined) {
-    return JSON.stringify({ ...canonical, topicTitle: projection.topicTitle });
-  }
-  return JSON.stringify(canonical);
+    topicTitle: projection.topicTitle,
+  });
 }

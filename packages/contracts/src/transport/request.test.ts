@@ -1,6 +1,5 @@
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { MaterialProjectionV2Schema } from "#contracts/projection/material";
 import { ContentReleaseBundleSchema } from "#contracts/release/lifecycle";
 import { batchCeilingCases, emptyBatchCases } from "#contracts/test/batch";
 import {
@@ -205,18 +204,15 @@ describe("publication requests", () => {
     }
   });
 
-  it("accepts retained material v2 only through the publication wire", () => {
-    const { topicTitle: _topicTitle, ...materialV2Input } = projection;
-    const materialV2 = Schema.decodeUnknownSync(MaterialProjectionV2Schema)(
-      materialV2Input
-    );
+  it("rejects incomplete material projections at publication ingress", () => {
+    const { topicTitle: _topicTitle, ...incompleteMaterial } = projection;
     expect(
       accepts(StageProjectionBatchInputSchema, {
         batchIndex: 0,
-        projections: [materialV2],
+        projections: [incompleteMaterial],
         releaseId,
       })
-    ).toBe(true);
+    ).toBe(false);
   });
 
   it("requires non-empty batches and enforces canonical count ceilings", () => {

@@ -2,7 +2,7 @@ import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import { ReleaseIdSchema } from "#contracts/ids";
-import { ContentProjectionWireSchema } from "#contracts/projection/spec";
+import { ContentProjectionSchema } from "#contracts/projection/spec";
 import { HeadPageRequestSchema } from "#contracts/release/head";
 import {
   ContentReleaseBundleSchema,
@@ -183,7 +183,7 @@ export type StageRouteBatchRequest = typeof StageRouteBatchRequestSchema.Type;
 
 const StageProjectionBatchFields = {
   batchIndex: BatchIndexSchema,
-  projections: Schema.NonEmptyArray(ContentProjectionWireSchema).pipe(
+  projections: Schema.NonEmptyArray(ContentProjectionSchema).pipe(
     Schema.maxItems(MAX_PROJECTION_BATCH_COUNT)
   ),
   releaseId: ReleaseIdSchema,

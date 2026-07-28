@@ -4,7 +4,7 @@ import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
-  ContentProjectionWireSchema,
+  ContentProjectionSchema,
   projectionPublicPath,
 } from "@nakafa/aksara-contracts/projection/spec";
 import {
@@ -64,7 +64,7 @@ export const DerivedRollbackStateSchema = Schema.Union(
     artifact: SignedContentArtifactSchema,
     item: DerivedRollbackUpsertItemSchema,
     kind: Schema.Literal("upsert"),
-    projection: ContentProjectionWireSchema,
+    projection: ContentProjectionSchema,
   })
 );
 export type DerivedRollbackState = typeof DerivedRollbackStateSchema.Type;
