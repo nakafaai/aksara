@@ -4,7 +4,10 @@ Aksara is Nakafa's trusted content compilation and publication system. It is a
 small public Turborepo. The repository contains Nakafa's real `en` and `id`
 source corpus: articles, materials, question banks, learning programs, try-out
 catalogs, and a Quran corpus generated from pinned official Tanzil and QuranEnc
-artifacts. Nakafa production has not cut over to this source yet.
+artifacts. Production cutover is explicit and scope-owned: Nakafa currently
+serves the article family and the signed `en`/`id` function-concept material
+slice from Aksara. Every additional scope keeps its existing owner until its
+renderer, publication, recovery, and production acceptance gates pass.
 
 ## Current modules
 
@@ -19,7 +22,8 @@ artifacts. Nakafa production has not cut over to this source yet.
   release data from exact Git source. A Quran replacement fails the global
   candidate before signing or publication IO unless every required source scope
   is approved. The Nakafa-owned Convex ingress, storage, and runtime adapter
-  remain outside this repository and have not been cut over to production.
+  remain outside this repository and serve only explicitly activated Aksara
+  scopes.
 - `@nakafa/aksara-corpus` contains all reviewed `en` and `id` sources plus
   their non-React registries and projections. No substitute lessons or React
   implementations live in this package.
@@ -32,10 +36,10 @@ artifacts. Nakafa production has not cut over to this source yet.
 - `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
 
-Production activation remains gated by renderer fidelity, migration, release,
-rollback, and provenance checks. The current Quran source scopes are approved
-and carry one mandatory visible attribution row; production cutover remains a
-separate operation.
+Each additional production activation remains gated by renderer fidelity,
+migration, release, rollback, and provenance checks. The current Quran source
+scopes are approved and carry one mandatory visible attribution row; Quran
+production cutover remains a separate operation.
 
 ## Commands
 
@@ -94,12 +98,12 @@ can remove that module declaration before body compilation. Corpus registries
 and publisher capabilities then validate each real family through its
 authoritative schema rather than one speculative universal metadata contract.
 
-Signed artifacts are a trusted-source seam, not a sandbox. Nakafa does not
-execute Aksara artifacts in production yet. The accepted design keeps the
-official server-only `@mdx-js/mdx/run` runtime and finite static route-domain
-registries in Nakafa; production integration still requires the hosted
-fidelity proof, Nakafa-side activation, stable user-state migration, and
-release/rollback gates.
+Signed artifacts are a trusted-source seam, not a sandbox. Nakafa executes them
+only for explicitly activated scopes. The accepted design keeps the official
+server-only `@mdx-js/mdx/run` runtime and finite static route-domain registries
+in Nakafa; each new production scope still requires hosted fidelity proof,
+Nakafa-side activation, stable user-state migration, and release/rollback
+gates.
 
 The executable-content decision is recorded in
 [`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md).
