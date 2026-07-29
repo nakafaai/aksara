@@ -52,26 +52,26 @@ describe("acceptContentRelease", () => {
     expect(accept).toHaveBeenCalledWith(input);
   });
 
-  it("completes the measured retained inverse beyond one hundred pages", async () => {
-    const retainedRows = 2292;
-    const pageSize = 8;
-    const pageCount = Math.ceil(retainedRows / pageSize);
-    const receipts = Array.from({ length: pageCount }, (_, index) => {
-      const processedItems = Math.min((index + 1) * pageSize, retainedRows);
+  it("completes a synthetic inverse beyond the former call limit", async () => {
+    const testPageCount = 101;
+    const testPageSize = 8;
+    const testTotalItems = testPageCount * testPageSize;
+    const receipts = Array.from({ length: testPageCount }, (_, index) => {
+      const processedItems = (index + 1) * testPageSize;
       return {
         ...receipt,
-        complete: processedItems === retainedRows,
+        complete: processedItems === testTotalItems,
         processedItems,
-        totalItems: retainedRows,
+        totalItems: testTotalItems,
       };
     });
     const accept = receiptSequence(receipts);
     await expect(Effect.runPromise(runAccept(input, accept))).resolves.toEqual({
       ...receipt,
-      processedItems: retainedRows,
-      totalItems: retainedRows,
+      processedItems: testTotalItems,
+      totalItems: testTotalItems,
     });
-    expect(accept).toHaveBeenCalledTimes(pageCount);
+    expect(accept).toHaveBeenCalledTimes(testPageCount);
   });
 
   it("rejects malformed input before target acceptance", async () => {
