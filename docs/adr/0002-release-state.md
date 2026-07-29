@@ -99,6 +99,18 @@ signature or release state.
 The candidate is never visible before step 6. A second candidate is rejected
 while recovery is retained.
 
+Verification is durable and request-independent. The first bounded `verify`
+request atomically records one workflow identity on the release row and starts
+the proof; later requests only poll that exact identity until the release row
+contains final evidence or a stable failure. The workflow coordinates the
+proof, but the Convex release row remains authoritative state. Concurrent
+requests cannot start duplicate proofs, and an HTTP disconnect cannot cancel or
+restart verification. The publisher polls one-second bounded requests for at
+most ten minutes, then fails with a typed timeout without activating content.
+Successful polling clears the workflow identity only after terminal workflow
+cleanup succeeds. Abort first cancels and cleans any active proof coordinator,
+then resumes its existing bounded row deletion.
+
 ### Acceptance and recovery
 
 `accept --release-id A --recovery-id R` is the explicit healthy-release
