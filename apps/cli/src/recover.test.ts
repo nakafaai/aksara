@@ -5,16 +5,29 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { runRecoverCommand } from "#cli/recover";
 import { captureClient } from "#test/http";
 
-const calls = vi.hoisted(() => ({
-  activationEndpoint: "",
-  activationToken: "",
-  fail: false,
-  input: undefined as
+interface RecoverCalls {
+  activationEndpoint: string;
+  activationToken: string;
+  fail: boolean;
+  input:
     | { readonly recoveryId: string; readonly releaseId: string }
-    | undefined,
-  targetEndpoint: "",
-  targetToken: "",
-}));
+    | undefined;
+  targetEndpoint: string;
+  targetTimeout: unknown;
+  targetToken: string;
+}
+
+const calls = vi.hoisted(
+  (): RecoverCalls => ({
+    activationEndpoint: "",
+    activationToken: "",
+    fail: false,
+    input: undefined,
+    targetEndpoint: "",
+    targetTimeout: undefined,
+    targetToken: "",
+  })
+);
 
 vi.mock("#cli/env", async () => {
   const { Effect: TestEffect, Redacted: TestRedacted } = await import("effect");
@@ -37,9 +50,11 @@ vi.mock("@nakafa/aksara-publisher/target/http", async () => {
   return {
     makeHttpPublicationTarget: (input: {
       readonly endpoint: URL;
+      readonly timeout: unknown;
       readonly token: Redacted.Redacted<string>;
     }) => {
       calls.targetEndpoint = input.endpoint.href;
+      calls.targetTimeout = input.timeout;
       calls.targetToken = TestRedacted.value(input.token);
       return TestEffect.succeed(
         makeProductionTarget(() => ({
@@ -133,6 +148,7 @@ beforeEach(() => {
   calls.fail = false;
   calls.input = undefined;
   calls.targetEndpoint = "";
+  calls.targetTimeout = undefined;
   calls.targetToken = "";
 });
 
@@ -147,6 +163,7 @@ describe("recover command", () => {
       activationToken: "renderer-token",
       input: { recoveryId, releaseId },
       targetEndpoint: "https://content.example.test/publish",
+      targetTimeout: "2 minutes",
       targetToken: "publication-token",
     });
   });

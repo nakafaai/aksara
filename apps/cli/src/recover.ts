@@ -16,9 +16,7 @@ import { makeProductionActivation } from "#cli/activation";
 import { readRecoveryEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import type { RecoverArguments } from "#cli/production-arguments";
-import { retryPublicationTarget } from "#cli/retry";
-
-const RECOVERY_TIMEOUT = "30 seconds";
+import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
 
 type RecoverCommand = Effect.Effect<
   PublicationReceipt,
@@ -36,7 +34,7 @@ export const runRecoverCommand: (args: RecoverArguments) => RecoverCommand =
       const rawTarget = yield* makeHttpPublicationTarget({
         allowInsecureLoopback: false,
         endpoint: environment.publicationEndpoint,
-        timeout: RECOVERY_TIMEOUT,
+        timeout: PUBLICATION_TARGET_TIMEOUT,
         token: environment.publicationToken,
       }).pipe(Effect.mapError(mapProductionError("target")));
       const target = retryPublicationTarget(rawTarget);

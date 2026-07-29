@@ -40,10 +40,8 @@ import type {
   RollbackArguments,
 } from "#cli/production-arguments";
 import { fetchProductionRenderer } from "#cli/production-renderer";
-import { retryPublicationTarget } from "#cli/retry";
+import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
-
-const PUBLICATION_TIMEOUT = "30 seconds";
 
 /** Explicit decoded command input for the production publication boundary. */
 export interface ProductionInput {
@@ -129,7 +127,7 @@ export const runProductionCommand: (
     const rawTarget = yield* makeHttpPublicationTarget({
       allowInsecureLoopback: false,
       endpoint: recoveryEnvironment.publicationEndpoint,
-      timeout: PUBLICATION_TIMEOUT,
+      timeout: PUBLICATION_TARGET_TIMEOUT,
       token: recoveryEnvironment.publicationToken,
     }).pipe(Effect.mapError(mapProductionError("target")));
     const target = retryPublicationTarget(rawTarget);
