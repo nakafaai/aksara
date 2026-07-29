@@ -38,6 +38,7 @@ import type {
   PublicationSourceError,
   PublicationStatusMismatchError,
   PublicationTarget,
+  PublicationVerificationTimeoutError,
 } from "#publisher/publication/spec";
 import type {
   PublicationReceiptMismatchError,
@@ -76,6 +77,7 @@ export type PublishContentReleaseError<E> =
   | PublicationResumePhaseError
   | PublicationSourceError
   | PublicationStatusMismatchError
+  | PublicationVerificationTimeoutError
   | PublicationTargetFailure
   | RecoveryPreparationError
   | ReplaySpoolError

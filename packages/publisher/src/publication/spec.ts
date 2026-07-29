@@ -7,7 +7,7 @@ import {
 import type {
   ContentReleaseItem,
   PublicationReceipt,
-  ReleaseVerificationEvidence,
+  ReleaseVerificationStatus,
   RollbackSignedContentRelease,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
@@ -67,6 +67,15 @@ export class PublicationStatusMismatchError extends Schema.TaggedError<Publicati
     actualReleaseId: ReleaseIdSchema,
     expectedManifestHash: Sha256HashSchema,
     expectedReleaseId: ReleaseIdSchema,
+  }
+) {}
+
+/** Durable target verification did not finish inside the release SLO. */
+export class PublicationVerificationTimeoutError extends Schema.TaggedError<PublicationVerificationTimeoutError>()(
+  "PublicationVerificationTimeoutError",
+  {
+    releaseId: ReleaseIdSchema,
+    timeoutSeconds: Schema.Number.pipe(Schema.int(), Schema.positive()),
   }
 ) {}
 /** A durably aborted immutable release cannot resume under the same identity. */
@@ -253,9 +262,9 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     readonly status: (
       request: ContentReleaseStatusRequest
     ) => Effect.Effect<ContentReleaseStatus, PublicationTargetFailure>;
-    /** Recomputes staged evidence before activation is allowed. */
+    /** Starts or polls durable staged-evidence verification. */
     readonly verify: (
       release: SignedContentRelease
-    ) => Effect.Effect<ReleaseVerificationEvidence, PublicationTargetFailure>;
+    ) => Effect.Effect<ReleaseVerificationStatus, PublicationTargetFailure>;
   }
 >() {}

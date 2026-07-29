@@ -7,8 +7,6 @@ import {
 } from "#publisher/publication/discard";
 import {
   activateCandidateRelease,
-  stageCandidateRelease,
-  stageRecoveryRelease,
   verifyCandidateActivation,
 } from "#publisher/publication/lifecycle";
 import {
@@ -19,12 +17,14 @@ import type {
   PublishGitRelease,
   PublishRollbackRelease,
 } from "#publisher/publication/program";
+import { stageRecoveryRelease } from "#publisher/publication/recovery";
 import {
   PublicationActivation,
   PublicationRecoveryId,
   PublicationRecoveryIdentityError,
   PublicationSource,
 } from "#publisher/publication/spec";
+import { stageCandidateRelease } from "#publisher/publication/verification";
 import { prepareRollback } from "#publisher/rollback";
 
 /** Rejects a retained inverse identity that aliases either protected release. */
