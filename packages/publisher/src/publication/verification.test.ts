@@ -8,9 +8,13 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Fiber, TestClock, TestContext } from "effect";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { stageCandidateRelease } from "#publisher/publication/verification";
-import { PublicationTargetConflictError } from "#publisher/target/errors";
+import {
+  PublicationTargetConflictError,
+  PublicationTargetProtocolError,
+  PublicationTargetTransportError,
+} from "#publisher/target/errors";
 import { releaseEvidence } from "#test/lifecycle-state";
 import { testVerificationResolver } from "#test/publication/run";
 import {
@@ -77,6 +81,60 @@ describe("candidate verification", () => {
     );
     expect(result).toEqual({ kind: "verified" });
     expect(attempts).toBe(2);
+    expect(state.stage).not.toHaveBeenCalled();
+  });
+
+  it("retries transient verification transport failures", async () => {
+    let attempts = 0;
+    const transport = new PublicationTargetTransportError({
+      detail: { reason: "timeout" },
+      stage: "verify",
+    });
+    const state = makeVerificationPlan("verifying", {
+      verify: () =>
+        Effect.suspend(() => {
+          attempts += 1;
+          return attempts === 1
+            ? Effect.fail(transport)
+            : Effect.succeed(
+                ReleaseVerificationCompleteSchema.make({
+                  evidence: releaseEvidence(verificationRelease),
+                  phase: "verified",
+                })
+              );
+        }),
+    });
+    const result = await Effect.runPromise(
+      Effect.gen(function* () {
+        const fiber = yield* stageCandidateRelease(state.plan).pipe(
+          Effect.fork
+        );
+        yield* TestClock.adjust("1 second");
+        return yield* Fiber.join(fiber);
+      }).pipe(
+        Effect.provideService(
+          ContentVerificationKeyResolver,
+          testVerificationResolver
+        ),
+        Effect.provide(TestContext.TestContext)
+      )
+    );
+    expect(result).toEqual({ kind: "verified" });
+    expect(attempts).toBe(2);
+    expect(state.stage).not.toHaveBeenCalled();
+  });
+
+  it("does not retry permanent verification failures", async () => {
+    const protocol = new PublicationTargetProtocolError({
+      reason: "response-decoding",
+      stage: "verify",
+    });
+    const verify = vi.fn(() => Effect.fail(protocol));
+    const state = makeVerificationPlan("verifying", { verify });
+    await expect(
+      runVerification(stageCandidateRelease(state.plan).pipe(Effect.flip))
+    ).resolves.toEqual(protocol);
+    expect(verify).toHaveBeenCalledTimes(1);
     expect(state.stage).not.toHaveBeenCalled();
   });
 
