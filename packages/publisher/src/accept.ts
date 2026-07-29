@@ -1,4 +1,4 @@
-import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type ReleaseAbortReceipt,
   ReleaseAbortReceiptSchema,
@@ -9,36 +9,17 @@ import { decodeContract } from "#publisher/contract/decode";
 import { PublicationTarget } from "#publisher/publication/spec";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
-const ACCEPT_CALL_LIMIT = 100;
-const AcceptCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
-);
-
 /** Acceptance input or cumulative target evidence violated its exact contract. */
 export class ReleaseAcceptContractError extends Schema.TaggedError<ReleaseAcceptContractError>()(
   "ReleaseAcceptContractError",
   { contract: Schema.Literal("request", "receipt") }
 ) {}
 
-/** One bounded acceptance invocation ended with retained rows still present. */
-export class ReleaseAcceptIncompleteError extends Schema.TaggedError<ReleaseAcceptIncompleteError>()(
-  "ReleaseAcceptIncompleteError",
-  {
-    attempts: Schema.Number.pipe(Schema.int(), Schema.positive()),
-    processedItems: AcceptCountSchema,
-    releaseId: ReleaseIdSchema,
-    totalItems: AcceptCountSchema,
-  }
-) {}
-
 type AcceptContentRelease = (
   input: unknown
 ) => Effect.Effect<
   ReleaseAbortReceipt,
-  | PublicationTargetFailure
-  | ReleaseAcceptContractError
-  | ReleaseAcceptIncompleteError,
+  PublicationTargetFailure | ReleaseAcceptContractError,
   PublicationTarget
 >;
 
@@ -59,7 +40,11 @@ function validateReceipt(
   return Effect.fail(new ReleaseAcceptContractError({ contract: "receipt" }));
 }
 
-/** Resumably discards a retained inverse after accepting its healthy release. */
+/**
+ * Discards every retained inverse row after accepting its healthy release.
+ *
+ * The stable total and strict integer progress bound calls to the target.
+ */
 export const acceptContentRelease: AcceptContentRelease = Effect.fn(
   "AksaraPublisher.acceptContentRelease"
 )(function* (input: unknown) {
@@ -69,26 +54,17 @@ export const acceptContentRelease: AcceptContentRelease = Effect.fn(
     new ReleaseAcceptContractError({ contract: "request" })
   );
   const target = yield* PublicationTarget;
-  let progress = { processedItems: 0, totalItems: 0 };
   let previous: ReleaseAbortReceipt | undefined;
-  for (let attempts = 1; attempts <= ACCEPT_CALL_LIMIT; attempts += 1) {
+  let receipt: ReleaseAbortReceipt;
+  do {
     const response = yield* target.accept(request);
-    const receipt = yield* decodeContract(
+    receipt = yield* decodeContract(
       ReleaseAbortReceiptSchema,
       response,
       new ReleaseAcceptContractError({ contract: "receipt" })
     );
     yield* validateReceipt(request.recoveryId, previous, receipt);
-    if (receipt.complete) {
-      return receipt;
-    }
     previous = receipt;
-    progress = receipt;
-  }
-  return yield* new ReleaseAcceptIncompleteError({
-    attempts: ACCEPT_CALL_LIMIT,
-    processedItems: progress.processedItems,
-    releaseId: request.recoveryId,
-    totalItems: progress.totalItems,
-  });
+  } while (!receipt.complete);
+  return receipt;
 });

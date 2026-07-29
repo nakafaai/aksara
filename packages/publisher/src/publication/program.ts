@@ -5,10 +5,7 @@ import type { ContractDecodeError } from "@nakafa/aksara-contracts/errors";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { Effect } from "effect";
-import type {
-  ReleaseAbortContractError,
-  ReleaseAbortIncompleteError,
-} from "#publisher/abort";
+import type { ReleaseAbortContractError } from "#publisher/abort";
 import type { PublicationBatchLimitError } from "#publisher/batch/core";
 import type {
   PreparedGitRelease,
@@ -66,7 +63,6 @@ export type PublishContentReleaseError<E> =
   | ContractDecodeError
   | ContentSigningError
   | ReleaseAbortContractError
-  | ReleaseAbortIncompleteError
   | PublicationBatchLimitError
   | SnapshotBatchBindingError
   | PublicationActivationError
