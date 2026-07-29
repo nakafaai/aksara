@@ -15,7 +15,7 @@ import { RollbackPageSchema } from "#contracts/release/rollback";
 import { RoutePageSchema } from "#contracts/release/route-page";
 import {
   PublicationReceiptSchema,
-  ReleaseVerificationEvidenceSchema,
+  ReleaseVerificationStatusSchema,
 } from "#contracts/release/spec";
 import { PublicationFailureSchema } from "#contracts/transport/failure";
 import {
@@ -140,11 +140,11 @@ export const PublicationStatusSuccessSchema = Schema.Struct({
   value: ContentReleaseStatusSchema,
 });
 
-/** Returns recomputed evidence for every staged release projection. */
+/** Returns bounded progress or final evidence for durable verification. */
 export const VerifyReleaseSuccessSchema = Schema.Struct({
   ok: Schema.Literal(true),
   operation: Schema.Literal("verify"),
-  value: ReleaseVerificationEvidenceSchema,
+  value: ReleaseVerificationStatusSchema,
 });
 
 /** Returns the atomic activation receipt for one verified release. */

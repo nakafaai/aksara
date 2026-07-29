@@ -3,10 +3,8 @@ import {
   type SignedContentArtifact,
 } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import {
-  type ContentReleaseItem,
-  canonicalizeContentReleaseItem,
-} from "@nakafa/aksara-contracts/release";
+import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
+import { canonicalizeContentReleaseItem } from "@nakafa/aksara-contracts/release/canonical";
 import {
   type ContentRouteItem,
   canonicalizeContentRouteItem,

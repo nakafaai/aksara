@@ -14,6 +14,7 @@ import {
   canonicalizeContentProjection,
   familyForProjection,
 } from "#contracts/projection/spec";
+import { canonicalizeContentChange } from "#contracts/release/canonical";
 import {
   ArticleHeadSchema,
   canonicalizeContentHead,
@@ -23,7 +24,6 @@ import {
 import {
   ContentDeleteSchema,
   ContentUpsertSchema,
-  canonicalizeContentChange,
   ReleaseItemIndexSchema,
 } from "#contracts/release/spec";
 

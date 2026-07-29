@@ -106,7 +106,10 @@ describe("publication responses", () => {
     const invalidHeads = Schema.decodeUnknownEither(PublicationResponseSchema)({
       ok: true,
       operation: "verify",
-      value: { ...evidence, deleteHeads: 1 },
+      value: {
+        evidence: { ...evidence, deleteHeads: 1 },
+        phase: "verified",
+      },
     });
     expect(Either.isLeft(invalidHeads)).toBe(true);
     if (Either.isLeft(invalidHeads)) {
@@ -118,7 +121,26 @@ describe("publication responses", () => {
       accepts({
         ok: true,
         operation: "verify",
-        value: { ...evidence, stagedArtifacts: 0 },
+        value: {
+          evidence: { ...evidence, stagedArtifacts: 0 },
+          phase: "verified",
+        },
+      })
+    ).toBe(false);
+  });
+  it("accepts only identity-bound pending verification progress", () => {
+    expect(
+      accepts({
+        ok: true,
+        operation: "verify",
+        value: { manifestHash, phase: "verifying", releaseId },
+      })
+    ).toBe(true);
+    expect(
+      accepts({
+        ok: true,
+        operation: "verify",
+        value: { manifestHash, phase: "verifying" },
       })
     ).toBe(false);
   });

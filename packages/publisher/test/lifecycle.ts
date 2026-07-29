@@ -1,6 +1,7 @@
-import type {
-  ContentReleaseManifest,
-  SignedContentRelease,
+import {
+  type ContentReleaseManifest,
+  ReleaseVerificationCompleteSchema,
+  type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type {
   ActiveContentRelease,
@@ -109,7 +110,10 @@ export function makeTarget(release: {
         ) {
           recovery = { ...recovery, phase: "verified" };
         }
-        return releaseEvidence(signed);
+        return ReleaseVerificationCompleteSchema.make({
+          evidence: releaseEvidence(signed),
+          phase: "verified",
+        });
       })
   );
   const activate = vi.fn((signed: SignedContentRelease) =>

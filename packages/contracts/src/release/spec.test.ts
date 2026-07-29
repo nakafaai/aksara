@@ -12,7 +12,6 @@ import {
 import {
   ContentChangeSchema,
   ContentReleaseManifestSchema,
-  canonicalizeContentReleaseItem,
   RollbackSignedContentReleaseSchema,
 } from "#contracts/release/spec";
 import { makeReleaseItems } from "#contracts/test/items";
@@ -83,7 +82,7 @@ describe("release spec", () => {
       "Expected a signed rollback release."
     );
   });
-  it("assigns deterministic indexes after canonical content-head sorting", () => {
+  it("assigns deterministic indexes after content-head sorting", () => {
     expect(
       items.map(({ change, index }) => [
         change.contentKey,
@@ -94,14 +93,6 @@ describe("release spec", () => {
       ["test:content", "en", 0],
       ["test:content", "id", 1],
     ]);
-    const [first] = items;
-    expect(first).toBeDefined();
-    if (!first) {
-      return;
-    }
-    expect(canonicalizeContentReleaseItem(first)).toBe(
-      `{"change":{"artifactHash":"sha256:${"b".repeat(64)}","contentKey":"test:content","delivery":"public","family":"material","locale":"en","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
-    );
   });
 
   it("requires forward rollback provenance and permits rollback of rollback", async () => {

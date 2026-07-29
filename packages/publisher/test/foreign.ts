@@ -88,7 +88,21 @@ export function foreignTransportSuccess(
       stageSnapshotBatch: (value) =>
         replaceIdentity(value, "releaseId", foreignReleaseId),
       status: (value) => replaceIdentity(value, "manifestHash", foreignHash),
-      verify: (value) => replaceIdentity(value, "releaseId", foreignReleaseId),
+      verify: (value) => {
+        if (value.value.phase === "verifying") {
+          return replaceIdentity(value, "releaseId", foreignReleaseId);
+        }
+        return {
+          ...value,
+          value: {
+            ...value.value,
+            evidence: {
+              ...value.value.evidence,
+              releaseId: foreignReleaseId,
+            },
+          },
+        };
+      },
     })
   );
   return Schema.decodeUnknownSync(PublicationSuccessSchema)(foreign);

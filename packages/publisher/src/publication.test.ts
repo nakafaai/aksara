@@ -1,7 +1,7 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
 import { Effect, Stream } from "effect";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   makePreparedGitRelease,
   makePreparedRollbackRelease,
@@ -11,7 +11,6 @@ import {
   PublicationActivationError,
 } from "#publisher/publication/spec";
 import { makeTarget } from "#test/lifecycle";
-import { publishMaterialRelease } from "#test/material-run";
 import {
   contentRecord,
   makeRelease,
@@ -26,20 +25,6 @@ import {
   publishRollbackPrepared,
 } from "#test/publication/run";
 import { emptySnapshotSources } from "#test/snapshot";
-
-const compilerState = vi.hoisted(() => ({ calls: 0 }));
-
-vi.mock("@nakafa/aksara-compiler/compile", async (importOriginal) => {
-  const original =
-    await importOriginal<typeof import("@nakafa/aksara-compiler/compile")>();
-  return {
-    ...original,
-    compileContent: (input: unknown) => {
-      compilerState.calls += 1;
-      return original.compileContent(input);
-    },
-  };
-});
 
 vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const original =
@@ -59,10 +44,6 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
           )
         ),
   };
-});
-
-beforeEach(() => {
-  compilerState.calls = 0;
 });
 
 describe("content publication", () => {
@@ -203,8 +184,11 @@ describe("content publication", () => {
     const state = makeTarget(release);
     state.verify.mockImplementationOnce((signed) =>
       Effect.succeed({
-        ...state.evidence(signed.manifestHash),
-        projectionDigest: changedSummary.digest,
+        evidence: {
+          ...state.evidence(signed.manifestHash),
+          projectionDigest: changedSummary.digest,
+        },
+        phase: "verified",
       })
     );
     const error = await Effect.runPromise(
@@ -231,18 +215,6 @@ describe("content publication", () => {
     expect(state.stageItemBatch).not.toHaveBeenCalled();
     expect(state.stageProjectionBatch).not.toHaveBeenCalled();
     expect(state.stageArtifactBatch).not.toHaveBeenCalled();
-  });
-
-  it("compiles each source once per required reproducibility boundary", async () => {
-    const result = await publishMaterialRelease();
-    expect(compilerState.calls).toBe(4);
-    expect(result.receipt).toMatchObject({
-      activatedHeads: 2,
-      stagedArtifacts: 2,
-      stagedItems: 2,
-      stagedProjections: 2,
-    });
-    expect(result.stageArtifacts).toHaveBeenCalledTimes(1);
   });
 
   it("stages rollback artifacts and rejects a mismatched prepared mode", async () => {

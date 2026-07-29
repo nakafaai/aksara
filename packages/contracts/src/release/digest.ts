@@ -5,10 +5,8 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import {
-  type ContentReleaseItem,
-  canonicalizeContentReleaseItem,
-} from "#contracts/release/spec";
+import { canonicalizeContentReleaseItem } from "#contracts/release/canonical";
+import type { ContentReleaseItem } from "#contracts/release/spec";
 
 const CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN =
   "nakafa.aksara.content-release-items.v1";

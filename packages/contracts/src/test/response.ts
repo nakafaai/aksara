@@ -1,9 +1,14 @@
+import { Schema } from "effect";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
   inheritContentSnapshots,
   snapshotRowCount,
 } from "#contracts/release/snapshot";
-import type { SignedContentRelease } from "#contracts/release/spec";
+import {
+  ReleaseVerificationCompleteSchema,
+  ReleaseVerificationEvidenceSchema,
+  type SignedContentRelease,
+} from "#contracts/release/spec";
 import {
   hash as manifestHash,
   release,
@@ -56,7 +61,9 @@ export const receipt = {
 
 const status = { manifestHash, phase: "staging", releaseId };
 
-export const evidence = {
+export const evidence = Schema.decodeUnknownSync(
+  ReleaseVerificationEvidenceSchema
+)({
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
@@ -81,7 +88,12 @@ export const evidence = {
   stagedRoutes: 0,
   stagedSnapshotRows: 0,
   upsertHeads: 1,
-};
+});
+
+export const verification = ReleaseVerificationCompleteSchema.make({
+  evidence,
+  phase: "verified",
+});
 
 export const successes = [
   {
@@ -187,7 +199,7 @@ export const successes = [
     value: { batchIndex: 0, created: 1, releaseId, unchanged: 0 },
   },
   { ok: true, operation: "status", value: status },
-  { ok: true, operation: "verify", value: evidence },
+  { ok: true, operation: "verify", value: verification },
   { ok: true, operation: "activate", value: receipt },
   { ok: true, operation: "activateRecovery", value: receipt },
   {

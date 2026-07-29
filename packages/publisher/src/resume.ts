@@ -4,7 +4,6 @@ import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/ver
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
 import { allContentCacheChanges } from "#publisher/cache";
-import { validatePublicationStatus } from "#publisher/publication/lifecycle";
 import {
   PublicationActivation,
   type PublicationActivationError,
@@ -13,6 +12,7 @@ import {
   type PublicationStatusMismatchError,
   PublicationTarget,
 } from "#publisher/publication/spec";
+import { validatePublicationStatus } from "#publisher/publication/verification";
 import {
   type PublicationReceiptMismatchError,
   validateManifestReceipt,

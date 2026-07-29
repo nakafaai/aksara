@@ -1,4 +1,8 @@
-import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
+import type { ReleaseVerificationEvidence } from "@nakafa/aksara-contracts/release";
+import {
+  ContentSnapshotKindSchema,
+  snapshotRowCount,
+} from "@nakafa/aksara-contracts/release/snapshot";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type {
   PublicationSuccess,
@@ -64,9 +68,9 @@ function hasBoundSnapshotBatchReceipt(
 /** Checks every fixed structured-family transition field for exact equality. */
 function hasBoundSnapshots(
   expected: VerifyRequest["release"]["manifest"]["snapshots"],
-  actual: VerifySuccess["value"]["snapshots"]
+  actual: ReleaseVerificationEvidence["snapshots"]
 ) {
-  return (["program", "quran", "tryout"] as const).every((family) => {
+  return ContentSnapshotKindSchema.literals.every((family) => {
     const expectedState = expected[family];
     const actualState = actual[family];
     return (
@@ -198,10 +202,17 @@ function hasBoundRoutePage(
   );
 }
 
-/** Binds recomputed verification evidence to one exact signed manifest. */
+/** Binds durable verification progress to one exact signed manifest. */
 function hasBoundVerification(request: VerifyRequest, response: VerifySuccess) {
   const { manifest, manifestHash } = request.release;
-  const evidence = response.value;
+  const verification = response.value;
+  if (verification.phase === "verifying") {
+    return (
+      verification.releaseId === manifest.releaseId &&
+      verification.manifestHash === manifestHash
+    );
+  }
+  const { evidence } = verification;
   return (
     evidence.releaseId === manifest.releaseId &&
     evidence.manifestHash === manifestHash &&

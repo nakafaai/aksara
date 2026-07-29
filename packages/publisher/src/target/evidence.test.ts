@@ -98,24 +98,27 @@ describe("publication success evidence", () => {
     if (success.operation !== "verify") {
       return;
     }
+    if (success.value.phase !== "verified") {
+      return;
+    }
     const foreignHash = `sha256:${"f".repeat(64)}`;
     const evidenceCases = [
-      { ...success.value, manifestHash: foreignHash },
+      { ...success.value.evidence, manifestHash: foreignHash },
       {
-        ...success.value,
+        ...success.value.evidence,
         baseManifestHash: foreignHash,
         baseReleaseId: "test-foreign-base",
       },
       {
-        ...success.value,
+        ...success.value.evidence,
         deleteHeads: 0,
         itemCount: 1,
         rollbackCount: 1,
       },
-      { ...success.value, itemsDigest: foreignHash },
-      { ...success.value, projectionCount: 2 },
-      { ...success.value, projectionDigest: foreignHash },
-      { ...success.value, rendererManifestHash: foreignHash },
+      { ...success.value.evidence, itemsDigest: foreignHash },
+      { ...success.value.evidence, projectionCount: 2 },
+      { ...success.value.evidence, projectionDigest: foreignHash },
+      { ...success.value.evidence, rendererManifestHash: foreignHash },
     ];
     expect(
       evidenceCases.map((value) =>
@@ -123,11 +126,46 @@ describe("publication success evidence", () => {
           request,
           Schema.decodeUnknownSync(PublicationSuccessSchema)({
             ...success,
-            value,
+            value: { evidence: value, phase: "verified" },
           })
         )
       )
     ).toEqual(evidenceCases.map(() => false));
+  });
+
+  it("binds pending verification to the requested release identity", () => {
+    const request = transportRequests.find(
+      (candidate) => candidate.operation === "verify"
+    );
+    if (request?.operation !== "verify") {
+      return;
+    }
+    const pending = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ok: true,
+      operation: "verify",
+      value: {
+        manifestHash: request.release.manifestHash,
+        phase: "verifying",
+        releaseId: request.release.manifest.releaseId,
+      },
+    });
+    const foreign = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ...pending,
+      value: {
+        ...pending.value,
+        releaseId: ReleaseIdSchema.make("test-foreign-release"),
+      },
+    });
+    const foreignHash = Schema.decodeUnknownSync(PublicationSuccessSchema)({
+      ...pending,
+      value: {
+        ...pending.value,
+        manifestHash: `sha256:${"f".repeat(64)}`,
+      },
+    });
+    expect(hasBoundPublicationSuccess(request, pending)).toBe(true);
+    expect(hasBoundPublicationSuccess(request, foreign)).toBe(false);
+    expect(hasBoundPublicationSuccess(request, foreignHash)).toBe(false);
   });
 
   it("rejects activation receipts that contradict their signed manifest", () => {
