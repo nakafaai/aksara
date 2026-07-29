@@ -72,7 +72,7 @@ describe("production preparation", () => {
     expect(calls.publicationConfig).toEqual({
       allowInsecureLoopback: false,
       endpoint: "https://content.example.test/publish",
-      timeout: "30 seconds",
+      timeout: "2 minutes",
     });
   });
 
