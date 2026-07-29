@@ -5,7 +5,7 @@ import type {
 } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Duration, Effect } from "effect";
+import { Duration, Effect, Schedule } from "effect";
 import type { PublicationPlan } from "#publisher/publication/plan";
 import type { PublishContentReleaseError } from "#publisher/publication/program";
 import {
@@ -50,7 +50,13 @@ const VERIFICATION_TIMEOUT = Duration.seconds(VERIFICATION_TIMEOUT_SECONDS);
 function pollVerification<E, R>(
   plan: PublicationPlan<E, R>
 ): Effect.Effect<ReleaseVerificationEvidence, PublicationTargetFailure> {
-  return plan.target.verify(plan.bundle.release).pipe(
+  const request = plan.target.verify(plan.bundle.release).pipe(
+    Effect.retry({
+      schedule: Schedule.spaced(VERIFICATION_POLL_DELAY),
+      while: (error) => error._tag === "PublicationTargetTransportError",
+    })
+  );
+  return request.pipe(
     Effect.flatMap((verification) => {
       if (verification.phase === "verified") {
         return Effect.succeed(verification.evidence);
