@@ -4,8 +4,10 @@ import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  EDGE_CONTRACT_EXPORTS,
   runEdgeVerification,
   runtimeImports,
+  verifyEdgeContracts,
   verifyEdgeEntry,
 } from "#scripts/verify-edge";
 
@@ -16,15 +18,32 @@ function writeModule(root: string, path: string, source: string) {
   writeFileSync(file, source);
 }
 
+/** Writes the exact import conditions required by the Edge verifier. */
+function writePackageManifest(
+  root: string,
+  canonicalCondition: "import" | "node" = "import"
+) {
+  const exports = Object.fromEntries(
+    EDGE_CONTRACT_EXPORTS.map((entry) => [
+      `./${entry}`,
+      {
+        [entry === "release/canonical" ? canonicalCondition : "import"]:
+          `./dist/${entry}.js`,
+        types: `./dist/${entry}.d.ts`,
+      },
+    ])
+  );
+  writeFileSync(
+    join(root, "package.json"),
+    JSON.stringify({ exports, name: "@nakafa/aksara-contracts" })
+  );
+}
+
 describe("Edge contract verification", () => {
   it("runs only for the selected CLI entrypoint", () => {
     const packageRoot = mkdtempSync(join(tmpdir(), "aksara-edge-cli-"));
-    for (const entry of [
-      "release/snapshot-data",
-      "transport/request",
-      "transport/response",
-      "transport/snapshot",
-    ]) {
+    writePackageManifest(packageRoot);
+    for (const entry of EDGE_CONTRACT_EXPORTS) {
       writeModule(join(packageRoot, "dist"), entry, "export {};");
     }
     const entry = join(packageRoot, "verify-edge.ts");
@@ -94,5 +113,18 @@ describe("Edge contract verification", () => {
       "Edge contract module is missing"
     );
     rmSync(missingRoot, { recursive: true });
+  });
+
+  it("rejects Edge entries exposed only through a Node condition", () => {
+    const packageRoot = mkdtempSync(join(tmpdir(), "aksara-edge-export-"));
+    writePackageManifest(packageRoot, "node");
+    for (const entry of EDGE_CONTRACT_EXPORTS) {
+      writeModule(join(packageRoot, "dist"), entry, "export {};");
+    }
+
+    expect(() => verifyEdgeContracts(packageRoot)).toThrow(
+      "Edge contract export must declare an import condition: release/canonical"
+    );
+    rmSync(packageRoot, { recursive: true });
   });
 });

@@ -3,8 +3,10 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, extname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import ts from "typescript";
+import { parseInstalledManifest } from "#scripts/manifest";
 
-const EDGE_EXPORTS = [
+export const EDGE_CONTRACT_EXPORTS = [
+  "release/canonical",
   "release/snapshot-data",
   "transport/request",
   "transport/response",
@@ -99,7 +101,16 @@ export function verifyEdgeEntry(
 /** Verifies every contract entry consumed by Convex Edge mutations. */
 export function verifyEdgeContracts(packageRoot: string): void {
   const distRoot = resolve(packageRoot, "dist");
-  for (const entry of EDGE_EXPORTS) {
+  const manifest = parseInstalledManifest(
+    readFileSync(resolve(packageRoot, "package.json"), "utf8")
+  );
+  for (const entry of EDGE_CONTRACT_EXPORTS) {
+    const descriptor = manifest.exports[`./${entry}`];
+    assert.ok(descriptor, `Edge contract export is missing: ${entry}`);
+    assert.ok(
+      descriptor.import,
+      `Edge contract export must declare an import condition: ${entry}`
+    );
     verifyEdgeEntry(distRoot, entry);
   }
 }
