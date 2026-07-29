@@ -96,7 +96,9 @@ jobs:
       && needs.contracts.result == 'success'
     environment: content-production
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Two independent durable proofs may each consume the ten-minute publication
+    # SLO after the exact-revision gate completes.
+    timeout-minutes: 30
     permissions:
       contents: read
     steps:
