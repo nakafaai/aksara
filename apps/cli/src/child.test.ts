@@ -77,12 +77,12 @@ describe("Nakafa child process", () => {
       "next",
       "dev",
       "--hostname",
-      "127.0.0.1",
+      "localhost",
     ]);
     expect(started.args.at(-2)).toBe("--port");
     expect(started.args.at(-1)).toBe(result.child.origin.port);
     expect(result.child.origin.toString()).toBe(
-      `http://127.0.0.1:${result.child.origin.port}/`
+      `http://localhost:${result.child.origin.port}/`
     );
     expect(started.root).toBe(input.root);
     expect(Object.keys(started.environment).sort()).toEqual([

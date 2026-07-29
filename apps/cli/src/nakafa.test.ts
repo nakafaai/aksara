@@ -56,7 +56,7 @@ describe("Nakafa app service", () => {
         Effect.flatMap((app) =>
           Effect.all([
             app.fetchRenderer(
-              new URL("http://127.0.0.1:31234"),
+              new URL("http://localhost:31234"),
               credentials.renderer
             ),
             app

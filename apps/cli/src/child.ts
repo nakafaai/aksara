@@ -4,9 +4,9 @@ import { isAddressInfo } from "#cli/address";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import { NakafaProcess } from "#cli/child-process";
 import type { PreviewCredentials } from "#cli/credentials";
+import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";
 import type { PreviewProvider } from "#cli/provider";
 
-const LOOPBACK_HOST = "127.0.0.1";
 const LOOPBACK_ADDRESSES = new Set(["127.0.0.1", "::1"]);
 
 const ChildEnvironmentSchema = Schema.Struct({
@@ -47,7 +47,7 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
     server.once("error", () =>
       resume(Effect.fail(makeNakafaAppError("start", false)))
     );
-    server.listen({ host: LOOPBACK_HOST, port: 0 }, () => {
+    server.listen({ host: NAKAFA_LOOPBACK_HOST, port: 0 }, () => {
       const address = server.address();
       if (
         !(isAddressInfo(address) && LOOPBACK_ADDRESSES.has(address.address))
@@ -108,7 +108,7 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(function* (
         "next",
         "dev",
         "--hostname",
-        LOOPBACK_HOST,
+        NAKAFA_LOOPBACK_HOST,
         "--port",
         String(port),
       ],
@@ -124,6 +124,6 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(function* (
         Effect.fail(makeNakafaAppError("exit", false, Number(status)))
       )
     ),
-    origin: new URL(`http://${LOOPBACK_HOST}:${port}`),
+    origin: new URL(`http://${NAKAFA_LOOPBACK_HOST}:${port}`),
   } satisfies RunningNakafa;
 });

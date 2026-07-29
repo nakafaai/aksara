@@ -10,11 +10,12 @@ import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/
 import { Effect, Redacted, Schedule, Schema } from "effect";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import type { RendererCredentials } from "#cli/credentials";
+import { isNakafaOrigin } from "#cli/origin";
 import { fetchRendererBody } from "#cli/renderer/http";
 
-const LOOPBACK_HOST = "127.0.0.1";
 const RENDERER_PATH = "/api/internal/content/renderer";
 const RENDERER_RETRY_DELAY = "1 second";
+const RENDERER_STARTUP_LIMIT = "3 minutes";
 
 /** Actual authenticated renderer capability consumed by the Nakafa service. */
 export type FetchRenderer = (
@@ -25,20 +26,6 @@ export type FetchRenderer = (
   NakafaAppError,
   HttpClient.HttpClient
 >;
-
-/** Proves renderer discovery cannot leave the spawned localhost origin. */
-function isNakafaOrigin(origin: URL) {
-  return (
-    origin.protocol === "http:" &&
-    origin.hostname === LOOPBACK_HOST &&
-    origin.port.length > 0 &&
-    origin.pathname === "/" &&
-    origin.search === "" &&
-    origin.hash === "" &&
-    origin.username === "" &&
-    origin.password === ""
-  );
-}
 
 /** Creates one unpredictable renderer challenge without exposing crypto errors. */
 const makeRendererNonce = Effect.fn("AksaraCli.makeRendererNonce")(() =>
@@ -87,7 +74,7 @@ export const fetchRendererManifest: FetchRenderer = Effect.fn(
   return fetchPreviewRenderer(new URL(RENDERER_PATH, origin), credentials);
 });
 
-/** Retries only startup-transient renderer failures within one bounded minute. */
+/** Allows one cold Next graph bootstrap while keeping a hung child bounded. */
 export const waitForRenderer: FetchRenderer = Effect.fn(
   "AksaraCli.waitForRenderer"
 )((origin, credentials) =>
@@ -97,7 +84,7 @@ export const waitForRenderer: FetchRenderer = Effect.fn(
       while: (error) => error.retryable,
     }),
     Effect.timeoutFail({
-      duration: "60 seconds",
+      duration: RENDERER_STARTUP_LIMIT,
       onTimeout: () => makeNakafaAppError("timeout", false),
     })
   )
