@@ -13,6 +13,7 @@ import { Effect, Layer, type Stream } from "effect";
 import type { RunningNakafa } from "#cli/child";
 import type { SelectedDocument } from "#cli/integrity";
 import { NakafaApp } from "#cli/nakafa";
+import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";
 import { type PreviewProvider, PreviewProviderError } from "#cli/provider";
 import { type LocalPreviewSession, openLocalPreview } from "#cli/session";
 import { openSelectedWatcher } from "#cli/watch";
@@ -102,7 +103,7 @@ export function makeApp(
   capture: { input?: Parameters<NakafaApp["Type"]["start"]>[0] },
   child: RunningNakafa = {
     awaitExit: Effect.never,
-    origin: new URL("http://127.0.0.1:31234"),
+    origin: new URL(`http://${NAKAFA_LOOPBACK_HOST}:31234`),
   },
   fetchRenderer = Effect.succeed(RENDERER_MANIFEST)
 ) {

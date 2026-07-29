@@ -30,7 +30,7 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-const ORIGIN = new URL("http://127.0.0.1:31234");
+const ORIGIN = new URL("http://localhost:31234");
 const RENDERER_URL = new URL("/api/internal/content/renderer", ORIGIN);
 const RENDERER_SECRET = PreviewRendererSecretSchema.make("s".repeat(43));
 const CREDENTIALS: RendererCredentials = {
@@ -172,13 +172,13 @@ describe("Nakafa renderer discovery", () => {
   });
 
   it.each([
-    new URL("https://127.0.0.1:31234"),
-    new URL("http://localhost:31234"),
-    new URL("http://127.0.0.1"),
-    new URL("http://user@127.0.0.1:31234"),
-    new URL("http://127.0.0.1:31234/other"),
-    new URL("http://127.0.0.1:31234/?query=true"),
-    new URL("http://127.0.0.1:31234/#fragment"),
+    new URL("https://localhost:31234"),
+    new URL("http://127.0.0.1:31234"),
+    new URL("http://localhost"),
+    new URL("http://user@localhost:31234"),
+    new URL("http://localhost:31234/other"),
+    new URL("http://localhost:31234/?query=true"),
+    new URL("http://localhost:31234/#fragment"),
   ])("rejects renderer origin %s", async (origin) => {
     const captured = captureClient((request) =>
       Effect.succeed(rendererResponse(request))
@@ -216,7 +216,7 @@ describe("Nakafa renderer discovery", () => {
       waitForRenderer(ORIGIN, CREDENTIALS).pipe(Effect.flip),
       stalled.client
     );
-    await vi.advanceTimersByTimeAsync(60_100);
+    await vi.advanceTimersByTimeAsync(180_100);
     await expect(previewTimeout).resolves.toMatchObject({ reason: "timeout" });
   });
 });
