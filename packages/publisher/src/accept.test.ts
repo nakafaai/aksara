@@ -4,7 +4,6 @@ import { describe, expect, it, vi } from "vitest";
 import {
   acceptContentRelease,
   ReleaseAcceptContractError,
-  ReleaseAcceptIncompleteError,
 } from "#publisher/accept";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { makePublicationTarget } from "#test/target";
@@ -53,24 +52,26 @@ describe("acceptContentRelease", () => {
     expect(accept).toHaveBeenCalledWith(input);
   });
 
-  it("returns typed resumable evidence after the bounded call budget", async () => {
-    const receipts = Array.from({ length: 100 }, (_, index) => ({
+  it("completes the measured retained inverse beyond one hundred pages", async () => {
+    const retainedRows = 2292;
+    const pageSize = 8;
+    const pageCount = Math.ceil(retainedRows / pageSize);
+    const receipts = Array.from({ length: pageCount }, (_, index) => {
+      const processedItems = Math.min((index + 1) * pageSize, retainedRows);
+      return {
+        ...receipt,
+        complete: processedItems === retainedRows,
+        processedItems,
+        totalItems: retainedRows,
+      };
+    });
+    const accept = receiptSequence(receipts);
+    await expect(Effect.runPromise(runAccept(input, accept))).resolves.toEqual({
       ...receipt,
-      complete: false,
-      processedItems: index + 1,
-      totalItems: 101,
-    }));
-    const error = await Effect.runPromise(
-      runAccept(input, receiptSequence(receipts)).pipe(Effect.flip)
-    );
-    expect(error).toEqual(
-      new ReleaseAcceptIncompleteError({
-        attempts: 100,
-        processedItems: 100,
-        releaseId: input.recoveryId,
-        totalItems: 101,
-      })
-    );
+      processedItems: retainedRows,
+      totalItems: retainedRows,
+    });
+    expect(accept).toHaveBeenCalledTimes(pageCount);
   });
 
   it("rejects malformed input before target acceptance", async () => {

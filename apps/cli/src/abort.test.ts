@@ -81,27 +81,28 @@ describe("abort command", () => {
     });
   });
 
-  it("keeps bounded incomplete evidence actionable", async () => {
+  it("drains more than one hundred target pages in one command", async () => {
     let processedItems = 0;
+    const totalItems = 101;
     const captured = captureClient((request) =>
       Effect.sync(() => {
         processedItems += 1;
         return abortResponse(request, {
-          complete: false,
+          complete: processedItems === totalItems,
           processedItems,
           releaseId,
-          totalItems: 101,
+          totalItems,
         });
       })
     );
 
-    await expect(rejectAbort(captured.client)).resolves.toMatchObject({
-      _tag: "ReleaseAbortIncompleteError",
-      attempts: 100,
-      processedItems: 100,
+    await expect(runAbort(captured.client)).resolves.toEqual({
+      complete: true,
+      processedItems: totalItems,
       releaseId,
-      totalItems: 101,
+      totalItems,
     });
+    expect(captured.requests).toHaveLength(totalItems);
   });
 
   it("sanitizes target protocol failures at the abort stage", async () => {

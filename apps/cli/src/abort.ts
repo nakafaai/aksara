@@ -1,9 +1,6 @@
 import type { HttpClient } from "@effect/platform";
 import type { ReleaseAbortReceipt } from "@nakafa/aksara-contracts/release/lifecycle";
-import {
-  abortContentRelease,
-  ReleaseAbortIncompleteError,
-} from "@nakafa/aksara-publisher/abort";
+import { abortContentRelease } from "@nakafa/aksara-publisher/abort";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
@@ -16,16 +13,9 @@ const ABORT_TIMEOUT = "30 seconds";
 
 type AbortCommand = Effect.Effect<
   ReleaseAbortReceipt,
-  ProductionError | ReleaseAbortIncompleteError,
+  ProductionError,
   HttpClient.HttpClient
 >;
-
-/** Preserves resumable abort evidence while sanitizing other failures. */
-function mapAbortError(error: unknown) {
-  return error instanceof ReleaseAbortIncompleteError
-    ? error
-    : mapProductionError("abort")(error);
-}
 
 /** Emits only cumulative non-secret evidence after abort completes. */
 function logAbortReceipt(receipt: ReleaseAbortReceipt) {
@@ -57,7 +47,7 @@ export const runAbortCommand: (args: AbortArguments) => AbortCommand =
         releaseId: args.releaseId,
       }).pipe(
         Effect.provideService(PublicationTarget, target),
-        Effect.mapError(mapAbortError)
+        Effect.mapError(mapProductionError("abort"))
       );
       return yield* logAbortReceipt(receipt);
     })

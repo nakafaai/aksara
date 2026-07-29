@@ -8,7 +8,6 @@ import { describe, expect, it, vi } from "vitest";
 import {
   abortContentRelease,
   ReleaseAbortContractError,
-  ReleaseAbortIncompleteError,
 } from "#publisher/abort";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { makePublicationTarget } from "#test/target";
@@ -63,25 +62,29 @@ describe("abortContentRelease", () => {
     expect(abort).toHaveBeenCalledWith({ releaseId });
   });
 
-  it("returns resumable evidence after one bounded call budget", async () => {
+  it("completes a retained inverse beyond one hundred pages", async () => {
+    const retainedRows = 2292;
+    const pageSize = 8;
+    const pageCount = Math.ceil(retainedRows / pageSize);
     const abort = receiptSequence(
-      Array.from({ length: 100 }, (_, index) => ({
-        ...progress,
-        processedItems: index + 1,
-        totalItems: 101,
-      }))
-    );
-    const error = await Effect.runPromise(
-      runAbort({ releaseId }, abort).pipe(Effect.flip)
-    );
-    expect(error).toEqual(
-      new ReleaseAbortIncompleteError({
-        attempts: 100,
-        processedItems: 100,
-        releaseId,
-        totalItems: 101,
+      Array.from({ length: pageCount }, (_, index) => {
+        const processedItems = Math.min((index + 1) * pageSize, retainedRows);
+        return {
+          ...progress,
+          complete: processedItems === retainedRows,
+          processedItems,
+          totalItems: retainedRows,
+        };
       })
     );
+    await expect(
+      Effect.runPromise(runAbort({ releaseId }, abort))
+    ).resolves.toEqual({
+      ...complete,
+      processedItems: retainedRows,
+      totalItems: retainedRows,
+    });
+    expect(abort).toHaveBeenCalledTimes(pageCount);
   });
 
   it("rejects malformed input before target abort", async () => {
