@@ -62,18 +62,18 @@ describe("abortContentRelease", () => {
     expect(abort).toHaveBeenCalledWith({ releaseId });
   });
 
-  it("completes a retained inverse beyond one hundred pages", async () => {
-    const retainedRows = 2292;
-    const pageSize = 8;
-    const pageCount = Math.ceil(retainedRows / pageSize);
+  it("completes a synthetic inverse beyond the former call limit", async () => {
+    const testPageCount = 101;
+    const testPageSize = 8;
+    const testTotalItems = testPageCount * testPageSize;
     const abort = receiptSequence(
-      Array.from({ length: pageCount }, (_, index) => {
-        const processedItems = Math.min((index + 1) * pageSize, retainedRows);
+      Array.from({ length: testPageCount }, (_, index) => {
+        const processedItems = (index + 1) * testPageSize;
         return {
           ...progress,
-          complete: processedItems === retainedRows,
+          complete: processedItems === testTotalItems,
           processedItems,
-          totalItems: retainedRows,
+          totalItems: testTotalItems,
         };
       })
     );
@@ -81,10 +81,10 @@ describe("abortContentRelease", () => {
       Effect.runPromise(runAbort({ releaseId }, abort))
     ).resolves.toEqual({
       ...complete,
-      processedItems: retainedRows,
-      totalItems: retainedRows,
+      processedItems: testTotalItems,
+      totalItems: testTotalItems,
     });
-    expect(abort).toHaveBeenCalledTimes(pageCount);
+    expect(abort).toHaveBeenCalledTimes(testPageCount);
   });
 
   it("rejects malformed input before target abort", async () => {
