@@ -7,8 +7,10 @@ const PNPM_SELECTOR_PATTERN =
 const PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
 const TOOLCHAIN_ENV_NAMES = new Set(["NODE_VERSION", "PNPM_VERSION"]);
-const SHELL_VARIABLE_PATTERN =
-  /\$(?:\{(?<braced>[A-Za-z_][A-Za-z0-9_]*)\}|(?<plain>[A-Za-z_][A-Za-z0-9_]*))/gu;
+const ENVIRONMENT_ALIAS_PATTERNS = [
+  /\$\{\{\s*env\.([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/gu,
+  /\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))/gu,
+] as const;
 
 interface WorkflowStructure {
   readonly jobs: readonly YAMLMap[];
@@ -126,10 +128,12 @@ function usesPnpmAlias(
   command: string,
   environment: ReadonlyMap<string, string>
 ): boolean {
-  for (const match of command.matchAll(SHELL_VARIABLE_PATTERN)) {
-    const name = match.groups?.braced ?? match.groups?.plain;
-    if (name !== undefined && environment.get(name) === "pnpm") {
-      return true;
+  for (const pattern of ENVIRONMENT_ALIAS_PATTERNS) {
+    for (const match of command.matchAll(pattern)) {
+      const name = match[1] ?? match[2];
+      if (name !== undefined && environment.get(name) === "pnpm") {
+        return true;
+      }
     }
   }
 
@@ -174,6 +178,17 @@ function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
       command !== undefined && PNPM_SELECTOR_PATTERN.test(command),
       false,
       "Workflows must not replace the package.json-selected pnpm version"
+    );
+
+    const uses = scalarText(mapValue(step, "uses"));
+    if (!uses?.startsWith(PNPM_SETUP_PREFIX)) {
+      continue;
+    }
+
+    assert.equal(
+      setupInputs(step)?.has("run_install") ?? false,
+      false,
+      "The pnpm setup action must not run a hidden install"
     );
   }
 }
