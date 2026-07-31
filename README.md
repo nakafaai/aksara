@@ -5,9 +5,9 @@ small public Turborepo. The repository contains Nakafa's real `en` and `id`
 source corpus: articles, materials, question banks, learning programs, try-out
 catalogs, and a Quran corpus generated from pinned official Tanzil and QuranEnc
 artifacts. Production cutover is explicit and scope-owned: Nakafa currently
-serves the article family and the signed `en`/`id` function-concept material
-slice from Aksara. Every additional scope keeps its existing owner until its
-renderer, publication, recovery, and production acceptance gates pass.
+serves the article, material, and learning-program families from Aksara. Every
+additional scope keeps its existing owner until its renderer, publication,
+recovery, and production acceptance gates pass.
 
 The article runtime ownership landed in Nakafa commit
 [`4bf134519c`](https://github.com/nakafaai/nakafa.com/commit/4bf134519cb1cfb0d4181ed6d84d446afc973b9b);
@@ -15,13 +15,23 @@ release `article-family-forward-20260727-e7a29e2` from Aksara commit
 [`e7a29e2c63`](https://github.com/nakafaai/aksara/commit/e7a29e2c63f2133a733c2093a6cc0268279a8721)
 was accepted by production
 [run `30217046243`](https://github.com/nakafaai/aksara/actions/runs/30217046243).
-The material runtime path is recorded by Nakafa commit
-[`4df9f6a0a0`](https://github.com/nakafaai/nakafa.com/commit/4df9f6a0a0b8f7573ddb95940b00e5391c710ba1);
-release `material-function-concept-canonical-final-20260728-f46e7ee` from Aksara
-commit
-[`f46e7ee9ef`](https://github.com/nakafaai/aksara/commit/f46e7ee9eff87ebb0a0a5857a03598d8670dace4)
-was accepted by production
+The initial function-concept material slice was accepted by production
 [run `30370321308`](https://github.com/nakafaai/aksara/actions/runs/30370321308).
+Nakafa commit
+[`91eef3fa7a`](https://github.com/nakafaai/nakafa.com/commit/91eef3fa7afa4fe964e350c673d0e6b9d0dc14f6)
+then made the signed release the active runtime owner for the complete material
+and learning-program families. Release
+`material-program-family-20260731-e68ed35` from Aksara commit
+[`e68ed356d4`](https://github.com/nakafaai/aksara/commit/e68ed356d4de69e2d2ce3093028c5c22032d09d8)
+activated the complete reviewed scope through production
+[run `30647670604`](https://github.com/nakafaai/aksara/actions/runs/30647670604).
+The exact-source idempotent retry passed in
+[run `30654679754`](https://github.com/nakafaai/aksara/actions/runs/30654679754),
+then terminal recovery acceptance passed in
+[run `30657823700`](https://github.com/nakafaai/aksara/actions/runs/30657823700)
+after sitemap cache revalidation and unchanged projection proof. Production now
+has that release active at sequence 20 with 764 heads, items, artifacts, and
+projections; candidate, recovery, and compaction state are empty.
 
 ## Current modules
 

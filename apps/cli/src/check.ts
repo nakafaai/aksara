@@ -5,7 +5,7 @@ import { readPreviewEnvironment } from "#cli/env";
 import { NakafaAppLive } from "#cli/nakafa";
 import { openRendererSession } from "#cli/renderer-session";
 
-/** Quran provenance still blocks complete catalog publication. */
+/** Signals that the reviewed Quran source is not approved for publication. */
 export class CatalogCheckBlockedError extends Schema.TaggedError<CatalogCheckBlockedError>()(
   "CatalogCheckBlockedError",
   { provenanceDigest: Sha256HashSchema }

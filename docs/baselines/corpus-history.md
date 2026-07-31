@@ -46,10 +46,10 @@ for English and
 for Indonesian. Both are byte-identical to the exact Nakafa source after that
 same import removal; no educational text or metadata was added or rewritten.
 
-The repository accepts only squash merges. The two immutable `history/*` tags
-therefore pin the exact filtered source ancestry independently of temporary PR
-branches, so branch cleanup cannot make the reviewed provenance objects
-unreachable.
+The repository enforces linear history and accepts squash or rebase merges. The
+two immutable `history/*` tags therefore pin the exact filtered source ancestry
+independently of temporary PR branches, so branch cleanup cannot make the
+reviewed provenance objects unreachable.
 
 ## Complete authored inputs
 

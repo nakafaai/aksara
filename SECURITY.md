@@ -14,11 +14,11 @@ credentials, signing keys, unpublished content, or personal data.
 
 Only the latest `main` revision and immutable contract archives currently
 referenced by Nakafa production are supported. The signed content runtime is
-production-supported only for explicitly activated scopes: the article family
-and the `en`/`id` function-concept material slice. Other corpus scopes are not
-production-supported until their separate activation gates pass. The exact
-source commits and production acceptance evidence are recorded in
-[`README.md`](README.md).
+production-supported only for explicitly activated scopes: the article,
+material, and learning-program families. Question-bank, try-out, and Quran
+scopes are not production-supported until their separate runtime, migration,
+and activation gates pass. The exact source commits and production acceptance
+evidence are recorded in [`README.md`](README.md).
 
 ## Trust boundary
 

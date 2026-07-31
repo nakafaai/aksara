@@ -25,22 +25,22 @@ compressed, 55 MiB unpacked, and 6,894 files before dependency preparation.
 References:
 
 - [pnpm dependency sources](https://pnpm.io/package_json#dependencies)
-- [GitHub artifact attestations](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations/use-artifact-attestations)
+- [GitHub artifact attestations](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations)
 - [GitHub immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases)
 
 ## Release identity
 
-The source version lives only in `packages/contracts/package.json`.
-Version `0.1.0` produces:
+The source version lives only in `packages/contracts/package.json`. A version
+named `<version>` produces:
 
 ```text
-tag:   contracts-v0.1.0
-asset: nakafa-aksara-contracts-0.1.0.tgz
+tag:   contracts-v<version>
+asset: nakafa-aksara-contracts-<version>.tgz
 ```
 
 After the first release, a changed archive must use a stable semantic version
-strictly greater than the latest `contracts-v*` tag. The first release is
-exactly `0.1.0`. CI builds the verified archive and compares its exact bytes
+strictly greater than the latest `contracts-v*` tag. The historical first
+release was `0.1.0`. CI builds the verified archive and compares its exact bytes
 with the latest immutable release:
 
 - identical bytes keep the existing version and publish nothing;
@@ -77,17 +77,16 @@ pnpm consumer, typechecks every public export with TypeScript 7, executes every
 runtime export, and rejects missing files, private source targets, nested Effect
 runtimes, or a mismatched license.
 
-Consumers pin the immutable asset URL:
+Consumers pin the immutable asset URL generated from that package version:
 
-```json
-{
-  "dependencies": {
-    "@nakafa/aksara-contracts": "https://github.com/nakafaai/aksara/releases/download/contracts-v0.1.0/nakafa-aksara-contracts-0.1.0.tgz"
-  }
-}
+```text
+https://github.com/nakafaai/aksara/releases/download/
+  contracts-v<version>/nakafa-aksara-contracts-<version>.tgz
 ```
 
-The committed pnpm lockfile records the downloaded archive integrity. The
+The exact current pin lives in the Nakafa package manifests and committed pnpm
+lockfile; this document does not duplicate that mutable version. The lockfile
+records the downloaded archive integrity. The
 contracts package has no registry fallback and no Git source fallback; ordinary
 third-party dependencies continue to use pnpm's configured registry.
 
@@ -138,27 +137,32 @@ same-SHA state therefore reaches the guarded publish job on retry; that job may
 delete only the mutable release and tag targeting its exact source SHA. It
 never deletes an immutable release or another revision's tag.
 
-An operator independently verifies the final release and downloaded archive:
+An operator derives the release identity from package metadata, then verifies
+the final release and downloaded archive:
 
 ```sh
-gh release verify contracts-v0.1.0 --repo nakafaai/aksara
+CONTRACT_VERSION="$(jq -r .version packages/contracts/package.json)"
+CONTRACT_TAG="contracts-v${CONTRACT_VERSION}"
+CONTRACT_ASSET="nakafa-aksara-contracts-${CONTRACT_VERSION}.tgz"
 
-gh release verify-asset contracts-v0.1.0 \
-  nakafa-aksara-contracts-0.1.0.tgz \
+gh release verify "$CONTRACT_TAG" --repo nakafaai/aksara
+
+gh release verify-asset "$CONTRACT_TAG" \
+  "$CONTRACT_ASSET" \
   --repo nakafaai/aksara
 
-gh attestation verify nakafa-aksara-contracts-0.1.0.tgz \
+gh attestation verify "$CONTRACT_ASSET" \
   --repo nakafaai/aksara \
   --signer-workflow nakafaai/aksara/.github/workflows/contracts.yml \
   --source-digest <exact-40-character-source-sha> \
   --source-ref refs/heads/main
 
-gh api repos/nakafaai/aksara/git/ref/tags/contracts-v0.1.0 \
+gh api "repos/nakafaai/aksara/git/ref/tags/${CONTRACT_TAG}" \
   --jq '.object.type + " " + .object.sha'
 
-sha256sum nakafa-aksara-contracts-0.1.0.tgz
+sha256sum "$CONTRACT_ASSET"
 ```
 
 The tag object must be a commit at the same source SHA passed to
 `--source-digest`. The local SHA-256 must equal the release asset's `digest`
-field from `gh api repos/nakafaai/aksara/releases/tags/contracts-v0.1.0`.
+field from `gh api "repos/nakafaai/aksara/releases/tags/${CONTRACT_TAG}"`.

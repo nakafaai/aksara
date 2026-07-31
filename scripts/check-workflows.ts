@@ -47,6 +47,12 @@ const CONTENT_CONTRACT_PATTERN =
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup pnpm$/mu;
 const PINNED_ACTION_PATTERN = /^[a-z0-9-]+\/[a-z0-9-]+@[0-9a-f]{40}$/u;
+const INLINE_TOOLCHAIN_VERSION_PATTERN =
+  /\b(?:NODE_VERSION|PNPM_VERSION):|^ {10}node-version:|^ {10}version:/mu;
+const PNPM_SETUP_PATTERN =
+  /^ {6}- name: Setup pnpm\n^ {8}uses: pnpm\/action-setup@[^\n]+$/gmu;
+const NODE_SETUP_PATTERN =
+  /^ {6}- name: Setup Node\.js\n^ {8}uses: actions\/setup-node@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?^ {10}node-version-file: package\.json$/gmu;
 
 /** Workflow sources whose release controls must remain coherent. */
 export interface WorkflowSources {
@@ -71,6 +77,22 @@ export function verifyWorkflows({
     combined,
     SWALLOWED_CLI_OUTPUT_PATTERN,
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
+  );
+  assert.doesNotMatch(
+    combined,
+    INLINE_TOOLCHAIN_VERSION_PATTERN,
+    "Workflows must derive Node and pnpm versions from package.json"
+  );
+  const pnpmSetups = [...combined.matchAll(PNPM_SETUP_PATTERN)];
+  const nodeSetups = [...combined.matchAll(NODE_SETUP_PATTERN)];
+  assert.equal(
+    nodeSetups.length,
+    pnpmSetups.length,
+    "Every pnpm workflow setup must read the Node version from package.json"
+  );
+  assert.ok(
+    pnpmSetups.length > 0,
+    "Workflows must set up pnpm from package.json"
   );
   assert.match(
     ci,
