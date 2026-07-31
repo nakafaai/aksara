@@ -3,7 +3,7 @@ import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from "yaml";
 
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
 const PNPM_SELECTOR_PATTERN =
-  /\b(?:corepack\s+(?:install\s+--global|prepare|use)\s+pnpm@|pnpm\s+env\s+use)\b/u;
+  /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm@|pnpm\s+env\s+use)\b/u;
 const PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
 const TOOLCHAIN_ENV_NAMES = new Set(["NODE_VERSION", "PNPM_VERSION"]);
@@ -170,6 +170,12 @@ function setupInputs(step: YAMLMap): YAMLMap | undefined {
   return inputs;
 }
 
+/** Reports whether one setup action must stop the job when it fails. */
+function stopsOnFailure(step: YAMLMap): boolean {
+  const value = mapValue(step, "continue-on-error");
+  return value === undefined || (isScalar(value) && value.value === false);
+}
+
 /** Rejects commands that replace the package.json-selected pnpm version. */
 function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
   for (const step of steps) {
@@ -233,6 +239,14 @@ function verifyPnpmJob(
     mapValue(nodeStep, "if"),
     undefined,
     "The Node.js setup step must run unconditionally"
+  );
+  assert.ok(
+    stopsOnFailure(pnpmStep),
+    "The pnpm setup step must stop on failure"
+  );
+  assert.ok(
+    stopsOnFailure(nodeStep),
+    "The Node.js setup step must stop on failure"
   );
 
   const pnpmInputs = setupInputs(pnpmStep);

@@ -217,8 +217,15 @@ ${PNPM_STEP}`
       "      - name: Install dependencies",
       "      - name: Replace pnpm\n        run: corepack use pnpm@10\n\n      - name: Install dependencies"
     );
+    const corepackUpdate = ci.replace(
+      "      - name: Install dependencies",
+      "      - name: Update pnpm\n        run: corepack up\n\n      - name: Install dependencies"
+    );
 
     expect(() => verifyWorkflowToolchains([competingSelector])).toThrow(
+      "Workflows must not replace the package.json-selected pnpm version"
+    );
+    expect(() => verifyWorkflowToolchains([corepackUpdate])).toThrow(
       "Workflows must not replace the package.json-selected pnpm version"
     );
   });
@@ -239,6 +246,29 @@ ${PNPM_STEP}`
     expect(() => verifyWorkflowToolchains([conditionalNode])).toThrow(
       "The Node.js setup step must run unconditionally"
     );
+  });
+
+  it("requires every toolchain setup step to stop on failure", () => {
+    const ignoredPnpmFailure = ci.replace(
+      PNPM_STEP,
+      `${PNPM_STEP}\n        continue-on-error: true`
+    );
+    expect(() => verifyWorkflowToolchains([ignoredPnpmFailure])).toThrow(
+      "The pnpm setup step must stop on failure"
+    );
+
+    const ignoredNodeFailure = ci.replace(
+      NODE_STEP,
+      `${NODE_STEP}\n        continue-on-error: \${{ matrix.experimental }}`
+    );
+    expect(() => verifyWorkflowToolchains([ignoredNodeFailure])).toThrow(
+      "The Node.js setup step must stop on failure"
+    );
+
+    const explicitFailureStop = ci
+      .replace(PNPM_STEP, `${PNPM_STEP}\n        continue-on-error: false`)
+      .replace(NODE_STEP, `${NODE_STEP}\n        continue-on-error: false`);
+    expect(() => verifyWorkflowToolchains([explicitFailureStop])).not.toThrow();
   });
 
   it("rejects malformed action inputs without matching unrelated values", () => {
