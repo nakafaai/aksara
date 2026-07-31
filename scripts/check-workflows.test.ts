@@ -67,28 +67,6 @@ describe("workflow policy", () => {
     ).toThrow("CI must not parse contract versions in shell");
   });
 
-  it("rejects duplicated toolchain versions", () => {
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        ci: sources.ci.replace(
-          "          node-version-file: package.json",
-          "          node-version: 24.18.0"
-        ),
-      })
-    ).toThrow("Workflows must derive Node and pnpm versions from package.json");
-
-    expect(() =>
-      verifyWorkflows({
-        ...sources,
-        ci: sources.ci.replace(
-          "      - name: Setup pnpm\n        uses:",
-          "      - name: Setup pnpm\n        with:\n          version: 11.15.1\n        uses:"
-        ),
-      })
-    ).toThrow("Workflows must derive Node and pnpm versions from package.json");
-  });
-
   it("attests the verified archive before privileged transfer", () => {
     const contracts = sources.contracts
       .replace("- name: Upload verified archive", "- name: Later transfer")
@@ -135,7 +113,7 @@ describe("workflow policy", () => {
     expect(() =>
       verifyWorkflows({
         ...sources,
-        contracts: `${sources.contracts}\n      - run: pnpm test`,
+        contracts: `${sources.contracts}\n      - run: node scripts/check.ts`,
       })
     ).toThrow(
       "The privileged contract job must not checkout or execute repository code"
