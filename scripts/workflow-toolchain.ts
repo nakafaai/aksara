@@ -2,9 +2,13 @@ import assert from "node:assert/strict";
 import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from "yaml";
 
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
+const PNPM_SELECTOR_PATTERN =
+  /\b(?:corepack\s+(?:install\s+--global|prepare|use)\s+pnpm@|pnpm\s+env\s+use)\b/u;
 const PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
 const TOOLCHAIN_ENV_NAMES = new Set(["NODE_VERSION", "PNPM_VERSION"]);
+const SHELL_VARIABLE_PATTERN =
+  /\$(?:\{(?<braced>[A-Za-z_][A-Za-z0-9_]*)\}|(?<plain>[A-Za-z_][A-Za-z0-9_]*))/gu;
 
 interface WorkflowStructure {
   readonly jobs: readonly YAMLMap[];
@@ -81,11 +85,73 @@ function setupIndexes(
   });
 }
 
+/** Returns environment values declared by one workflow scope. */
+function environmentValues(scope: YAMLMap): ReadonlyMap<string, string> {
+  const environment = mapValue(scope, "env");
+  if (environment === undefined) {
+    return new Map();
+  }
+
+  assert.ok(isMap(environment), "Workflow environment must be a mapping");
+
+  const values = new Map<string, string>();
+  for (const item of environment.items) {
+    const name = scalarText(item.key);
+    assert.ok(name !== undefined, "Workflow environment names must be strings");
+    assert.equal(
+      TOOLCHAIN_ENV_NAMES.has(name),
+      false,
+      "Workflows must not duplicate Node or pnpm versions"
+    );
+
+    const value = scalarText(item.value);
+    if (value !== undefined) {
+      values.set(name, value);
+    }
+  }
+
+  return values;
+}
+
+/** Merges inherited and local workflow environment values. */
+function mergeEnvironment(
+  inherited: ReadonlyMap<string, string>,
+  local: ReadonlyMap<string, string>
+): ReadonlyMap<string, string> {
+  return new Map([...inherited, ...local]);
+}
+
+/** Reports whether one shell command executes pnpm through an environment alias. */
+function usesPnpmAlias(
+  command: string,
+  environment: ReadonlyMap<string, string>
+): boolean {
+  for (const match of command.matchAll(SHELL_VARIABLE_PATTERN)) {
+    const name = match.groups?.braced ?? match.groups?.plain;
+    if (name !== undefined && environment.get(name) === "pnpm") {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 /** Returns the first step index that executes pnpm. */
-function firstPnpmCommand(steps: readonly YAMLMap[]): number {
+function firstPnpmCommand(
+  steps: readonly YAMLMap[],
+  inheritedEnvironment: ReadonlyMap<string, string>
+): number {
   return steps.findIndex((step) => {
     const command = scalarText(mapValue(step, "run"));
-    return command !== undefined && PNPM_COMMAND_PATTERN.test(command);
+    const environment = mergeEnvironment(
+      inheritedEnvironment,
+      environmentValues(step)
+    );
+    return (
+      command !== undefined &&
+      (PNPM_COMMAND_PATTERN.test(command) ||
+        usesPnpmAlias(command, environment))
+    );
   });
 }
 
@@ -100,30 +166,27 @@ function setupInputs(step: YAMLMap): YAMLMap | undefined {
   return inputs;
 }
 
-/** Rejects toolchain versions duplicated in one workflow environment scope. */
-function verifyEnvironment(scope: YAMLMap): void {
-  const environment = mapValue(scope, "env");
-  if (environment === undefined) {
-    return;
-  }
-
-  assert.ok(isMap(environment), "Workflow environment must be a mapping");
-
-  for (const item of environment.items) {
-    const name = scalarText(item.key);
-    assert.ok(name !== undefined, "Workflow environment names must be strings");
+/** Rejects commands that replace the package.json-selected pnpm version. */
+function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
+  for (const step of steps) {
+    const command = scalarText(mapValue(step, "run"));
     assert.equal(
-      TOOLCHAIN_ENV_NAMES.has(name),
+      command !== undefined && PNPM_SELECTOR_PATTERN.test(command),
       false,
-      "Workflows must not duplicate Node or pnpm versions"
+      "Workflows must not replace the package.json-selected pnpm version"
     );
   }
 }
 
 /** Verifies package.json-owned toolchain setup for one pnpm job. */
-function verifyPnpmJob(job: YAMLMap): void {
+function verifyPnpmJob(
+  job: YAMLMap,
+  environment: ReadonlyMap<string, string>
+): void {
   const steps = jobSteps(job);
-  const commandIndex = firstPnpmCommand(steps);
+  verifyPnpmSelectors(steps);
+
+  const commandIndex = firstPnpmCommand(steps, environment);
   if (commandIndex === -1) {
     return;
   }
@@ -187,14 +250,14 @@ function verifyPnpmJob(job: YAMLMap): void {
 export function verifyWorkflowToolchains(workflows: readonly string[]): void {
   for (const source of workflows) {
     const workflow = parseWorkflow(source);
-    verifyEnvironment(workflow.root);
+    const rootEnvironment = environmentValues(workflow.root);
 
     for (const job of workflow.jobs) {
-      verifyEnvironment(job);
-      for (const step of jobSteps(job)) {
-        verifyEnvironment(step);
-      }
-      verifyPnpmJob(job);
+      const jobEnvironment = mergeEnvironment(
+        rootEnvironment,
+        environmentValues(job)
+      );
+      verifyPnpmJob(job, jobEnvironment);
     }
   }
 }

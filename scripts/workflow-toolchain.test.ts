@@ -111,6 +111,24 @@ describe("workflow toolchain policy", () => {
     );
   });
 
+  it("detects pnpm invoked through a workflow environment alias", () => {
+    const aliasedPnpm = ci
+      .replace("  verify:\n", "  verify:\n    env:\n      PM: pnpm\n")
+      .replace("run: pnpm install", "run: $PM install");
+    const numericEnvironment = ci.replace(
+      "  verify:\n",
+      "  verify:\n    env:\n      RETRIES: 3\n"
+    );
+
+    expect(() => verifyWorkflowToolchains([aliasedPnpm])).not.toThrow();
+    expect(() => verifyWorkflowToolchains([numericEnvironment])).not.toThrow();
+
+    const missingSetups = aliasedPnpm.replace(`${SETUP_PAIR}\n\n`, "");
+    expect(() => verifyWorkflowToolchains([missingSetups])).toThrow(
+      "Every pnpm job must set up pnpm once"
+    );
+  });
+
   it("requires setup before the first pnpm command", () => {
     const wrongOrder = ci.replace(SETUP_PAIR, `${NODE_STEP}\n\n${PNPM_STEP}`);
     expect(() => verifyWorkflowToolchains([wrongOrder])).toThrow(
@@ -168,6 +186,17 @@ ${PNPM_STEP}`
     );
     expect(() => verifyWorkflowToolchains([competingNode])).toThrow(
       "The Node.js setup must not override node-version-file"
+    );
+  });
+
+  it("rejects commands that replace the selected pnpm version", () => {
+    const competingSelector = ci.replace(
+      "      - name: Install dependencies",
+      "      - name: Replace pnpm\n        run: corepack use pnpm@10\n\n      - name: Install dependencies"
+    );
+
+    expect(() => verifyWorkflowToolchains([competingSelector])).toThrow(
+      "Workflows must not replace the package.json-selected pnpm version"
     );
   });
 
