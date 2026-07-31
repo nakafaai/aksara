@@ -12,11 +12,10 @@ const OPERATION_SETUP_INPUT =
 
 /** Reads the exact workflow set exercised by repository policy. */
 function currentSources(): WorkflowSources {
-  return {
-    ci: readFileSync(".github/workflows/ci.yml", "utf8"),
-    contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
-    release: readFileSync(".github/workflows/release.yml", "utf8"),
-  };
+  const ci = readFileSync(".github/workflows/ci.yml", "utf8");
+  const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
+  const release = readFileSync(".github/workflows/release.yml", "utf8");
+  return { all: [ci, contracts, release], ci, contracts, release };
 }
 
 const sources = currentSources();
@@ -24,6 +23,13 @@ const sources = currentSources();
 describe("workflow policy", () => {
   it("accepts immutable archives and the direct content release path", () => {
     expect(() => verifyWorkflows(sources)).not.toThrow();
+  });
+
+  it("verifies every tracked workflow source", () => {
+    const unconfigured = "jobs:\n  verify:\n    steps:\n      - run: pnpm test";
+    expect(() =>
+      verifyWorkflows({ ...sources, all: [...sources.all, unconfigured] })
+    ).toThrow("Every pnpm job must set up pnpm once");
   });
 
   it("rejects registry publication machinery", () => {

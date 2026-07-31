@@ -3,7 +3,7 @@ import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from "yaml";
 
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
 const PNPM_SELECTOR_PATTERN =
-  /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm@|pnpm\s+env\s+use)\b/u;
+  /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)|pnpm\s+env\s+use)\b/u;
 const PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
 const TOOLCHAIN_ENV_NAMES = new Set(["NODE_VERSION", "PNPM_VERSION"]);
@@ -170,6 +170,19 @@ function setupInputs(step: YAMLMap): YAMLMap | undefined {
   return inputs;
 }
 
+/** Returns one case-insensitive action input value. */
+function actionInput(inputs: YAMLMap | undefined, key: string): unknown {
+  if (!inputs) {
+    return;
+  }
+
+  for (const item of inputs.items) {
+    if (scalarText(item.key)?.toLowerCase() === key) {
+      return item.value;
+    }
+  }
+}
+
 /** Reports whether one setup action must stop the job when it fails. */
 function stopsOnFailure(step: YAMLMap): boolean {
   const value = mapValue(step, "continue-on-error");
@@ -192,8 +205,8 @@ function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
     }
 
     assert.equal(
-      setupInputs(step)?.has("run_install") ?? false,
-      false,
+      actionInput(setupInputs(step), "run_install"),
+      undefined,
       "The pnpm setup action must not run a hidden install"
     );
   }
@@ -251,26 +264,26 @@ function verifyPnpmJob(
 
   const pnpmInputs = setupInputs(pnpmStep);
   assert.equal(
-    pnpmInputs?.has("version") ?? false,
-    false,
+    actionInput(pnpmInputs, "version"),
+    undefined,
     "Workflows must derive the pnpm version from package.json"
   );
   assert.equal(
-    pnpmInputs?.has("package_json_file") ?? false,
-    false,
+    actionInput(pnpmInputs, "package_json_file"),
+    undefined,
     "Workflows must derive pnpm from the root package.json"
   );
 
   const nodeInputs = setupInputs(nodeStep);
   assert.ok(nodeInputs, "The Node.js setup step must define inputs");
   assert.equal(
-    scalarText(mapValue(nodeInputs, "node-version-file")),
+    scalarText(actionInput(nodeInputs, "node-version-file")),
     "package.json",
     "Every pnpm job must read the Node version from package.json"
   );
   assert.equal(
-    nodeInputs.has("node-version"),
-    false,
+    actionInput(nodeInputs, "node-version"),
+    undefined,
     "The Node.js setup must not override node-version-file"
   );
 }

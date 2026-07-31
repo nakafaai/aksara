@@ -25,28 +25,25 @@ describe("workflow toolchain policy", () => {
     expect(() => verifyWorkflowToolchains([quotedUppercaseJob])).not.toThrow();
   });
 
-  it("rejects invalid workflow and job structures", () => {
-    expect(() => verifyWorkflowToolchains(["jobs: ["])).toThrow();
-    expect(() => verifyWorkflowToolchains(["name: Empty"])).toThrow(
-      "Workflow must define jobs"
-    );
-    expect(() => verifyWorkflowToolchains(["jobs: {}"])).toThrow(
-      "Workflow must define at least one job"
-    );
-    expect(() => verifyWorkflowToolchains(["jobs:\n  verify: []"])).toThrow(
-      "Every workflow job must be a mapping"
-    );
-    expect(() =>
-      verifyWorkflowToolchains(["jobs:\n  ? [invalid]\n  : {}"])
-    ).toThrow("Workflow job identifiers must be strings");
-    expect(() =>
-      verifyWorkflowToolchains(["jobs:\n  verify:\n    steps: {}"])
-    ).toThrow("Workflow job steps must be a sequence");
-    expect(() =>
-      verifyWorkflowToolchains([
-        "jobs:\n  verify:\n    steps:\n      - invalid",
-      ])
-    ).toThrow("Every workflow step must be a mapping");
+  it.each([
+    ["jobs: [", undefined],
+    ["name: Empty", "Workflow must define jobs"],
+    ["jobs: {}", "Workflow must define at least one job"],
+    ["jobs:\n  verify: []", "Every workflow job must be a mapping"],
+    [
+      "jobs:\n  ? [invalid]\n  : {}",
+      "Workflow job identifiers must be strings",
+    ],
+    [
+      "jobs:\n  verify:\n    steps: {}",
+      "Workflow job steps must be a sequence",
+    ],
+    [
+      "jobs:\n  verify:\n    steps:\n      - invalid",
+      "Every workflow step must be a mapping",
+    ],
+  ])("rejects invalid workflow structure %#", (source, message) => {
+    expect(() => verifyWorkflowToolchains([source])).toThrow(message);
   });
 
   it("ignores jobs that do not execute pnpm", () => {
@@ -83,31 +80,20 @@ describe("workflow toolchain policy", () => {
     );
   });
 
-  it("requires one pnpm and Node.js setup in every pnpm job", () => {
-    const missingSetups = ci.replace(`${SETUP_PAIR}\n\n`, "");
-    expect(() => verifyWorkflowToolchains([missingSetups])).toThrow(
-      "Every pnpm job must set up pnpm once"
-    );
-
-    const missingNode = ci.replace(`${NODE_STEP}\n\n`, "");
-    expect(() => verifyWorkflowToolchains([missingNode])).toThrow(
-      "Every pnpm job must set up Node.js once"
-    );
-
-    const duplicatedPnpm = ci.replace(
-      NODE_STEP,
-      `${PNPM_STEP}\n\n${NODE_STEP}`
-    );
-    expect(() => verifyWorkflowToolchains([duplicatedPnpm])).toThrow(
-      "Every pnpm job must set up pnpm once"
-    );
-
-    const duplicatedNode = ci.replace(
-      "      - name: Install dependencies",
-      `${NODE_STEP}\n\n      - name: Install dependencies`
-    );
-    expect(() => verifyWorkflowToolchains([duplicatedNode])).toThrow(
-      "Every pnpm job must set up Node.js once"
+  it.each([
+    [ci.replace(`${SETUP_PAIR}\n\n`, ""), "pnpm"],
+    [ci.replace(`${NODE_STEP}\n\n`, ""), "Node.js"],
+    [ci.replace(NODE_STEP, `${PNPM_STEP}\n\n${NODE_STEP}`), "pnpm"],
+    [
+      ci.replace(
+        "      - name: Install dependencies",
+        `${NODE_STEP}\n\n      - name: Install dependencies`
+      ),
+      "Node.js",
+    ],
+  ])("requires exactly one toolchain setup %#", (source, tool) => {
+    expect(() => verifyWorkflowToolchains([source])).toThrow(
+      `Every pnpm job must set up ${tool} once`
     );
   });
 
@@ -212,23 +198,19 @@ ${PNPM_STEP}`
     );
   });
 
-  it("rejects commands that replace the selected pnpm version", () => {
-    const competingSelector = ci.replace(
-      "      - name: Install dependencies",
-      "      - name: Replace pnpm\n        run: corepack use pnpm@10\n\n      - name: Install dependencies"
-    );
-    const corepackUpdate = ci.replace(
-      "      - name: Install dependencies",
-      "      - name: Update pnpm\n        run: corepack up\n\n      - name: Install dependencies"
-    );
+  it.each(["corepack use pnpm@10", "corepack up", "corepack use pnpm"])(
+    "rejects pnpm replacement command %s",
+    (command) => {
+      const replacement = ci.replace(
+        "      - name: Install dependencies",
+        `      - name: Replace pnpm\n        run: ${command}\n\n      - name: Install dependencies`
+      );
 
-    expect(() => verifyWorkflowToolchains([competingSelector])).toThrow(
-      "Workflows must not replace the package.json-selected pnpm version"
-    );
-    expect(() => verifyWorkflowToolchains([corepackUpdate])).toThrow(
-      "Workflows must not replace the package.json-selected pnpm version"
-    );
-  });
+      expect(() => verifyWorkflowToolchains([replacement])).toThrow(
+        "Workflows must not replace the package.json-selected pnpm version"
+      );
+    }
+  );
 
   it("requires every toolchain setup step to run unconditionally", () => {
     const conditionalPnpm = ci.replace(
@@ -285,5 +267,34 @@ ${PNPM_STEP}`
       "          persist-credentials: false\n          version: stable"
     );
     expect(() => verifyWorkflowToolchains([unrelatedVersion])).not.toThrow();
+  });
+
+  it.each([
+    ["VERSION: 11", "Workflows must derive the pnpm version from package.json"],
+    [
+      "PACKAGE_JSON_FILE: other/package.json",
+      "Workflows must derive pnpm from the root package.json",
+    ],
+    [
+      "RUN_INSTALL: true",
+      "The pnpm setup action must not run a hidden install",
+    ],
+  ])("normalizes pnpm input %s", (input, message) => {
+    const uppercaseInput = ci.replace(
+      PNPM_STEP,
+      `${PNPM_STEP}\n        with:\n          ${input}`
+    );
+
+    expect(() => verifyWorkflowToolchains([uppercaseInput])).toThrow(message);
+  });
+
+  it("normalizes the Node version input name", () => {
+    const uppercaseInput = ci.replace(
+      "          node-version-file: package.json",
+      "          node-version-file: package.json\n          NODE-VERSION: 24"
+    );
+    expect(() => verifyWorkflowToolchains([uppercaseInput])).toThrow(
+      "The Node.js setup must not override node-version-file"
+    );
   });
 });
