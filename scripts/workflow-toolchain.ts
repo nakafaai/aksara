@@ -1,26 +1,143 @@
 import assert from "node:assert/strict";
+import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from "yaml";
 
 const TOOLCHAIN_ENV_PATTERN = /\b(?:NODE_VERSION|PNPM_VERSION):/u;
-const PNPM_SETUP_PATTERN =
-  /^ {6}- name: Setup pnpm\n^ {8}uses: pnpm\/action-setup@[^\n]+(?:\n^ {8}with:\n(?:^ {10}[^\n]+\n?)*)?/gmu;
-const NODE_SETUP_PATTERN =
-  /^ {6}- name: Setup Node\.js\n^ {8}uses: actions\/setup-node@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?^ {10}node-version-file: package\.json$/gmu;
-const INLINE_PNPM_VERSION_PATTERN = /^ {10}version:/mu;
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
-const JOB_PATTERN = /^ {2}[a-z0-9_-]+:\n/gmu;
+const PNPM_SETUP_PREFIX = "pnpm/action-setup@";
+const NODE_SETUP_PREFIX = "actions/setup-node@";
 
-/** Returns each top-level job body from one GitHub Actions workflow. */
-function workflowJobs(workflow: string): readonly string[] {
-  const jobsStart = workflow.indexOf("\njobs:\n");
-  assert.notEqual(jobsStart, -1, "Workflow must define jobs");
-  const jobsSource = workflow.slice(jobsStart + "\njobs:\n".length);
-  const starts = [...jobsSource.matchAll(JOB_PATTERN)].map((match) => {
-    assert.notEqual(match.index, undefined, "Workflow job must have an offset");
-    return match.index;
+/** Returns a string scalar or `undefined` for another YAML node kind. */
+function scalarText(node: unknown): string | undefined {
+  if (!isScalar(node) || typeof node.value !== "string") {
+    return;
+  }
+
+  return node.value;
+}
+
+/** Returns one named value from a YAML mapping. */
+function mapValue(map: YAMLMap, key: string): unknown {
+  for (const item of map.items) {
+    if (scalarText(item.key) === key) {
+      return item.value;
+    }
+  }
+}
+
+/** Returns every step mapping declared by one workflow job. */
+function jobSteps(job: YAMLMap): readonly YAMLMap[] {
+  const steps = mapValue(job, "steps");
+  if (steps === undefined) {
+    return [];
+  }
+
+  assert.ok(isSeq(steps), "Workflow job steps must be a sequence");
+
+  return steps.items.map((step) => {
+    assert.ok(isMap(step), "Every workflow step must be a mapping");
+    return step;
   });
+}
 
-  return starts.map((start, index) =>
-    jobsSource.slice(start, starts[index + 1] ?? jobsSource.length)
+/** Parses every top-level job mapping from one GitHub Actions workflow. */
+function workflowJobs(workflow: string): readonly YAMLMap[] {
+  const document = parseDocument(workflow);
+  assert.equal(
+    document.errors.length,
+    0,
+    document.errors[0]?.message ?? "Workflow YAML must parse"
+  );
+  assert.ok(isMap(document.contents), "Workflow must be a mapping");
+
+  const jobs = mapValue(document.contents, "jobs");
+  assert.ok(isMap(jobs), "Workflow must define jobs");
+  assert.ok(jobs.items.length > 0, "Workflow must define at least one job");
+
+  return jobs.items.map((item) => {
+    assert.ok(
+      scalarText(item.key) !== undefined,
+      "Workflow job identifiers must be strings"
+    );
+    assert.ok(isMap(item.value), "Every workflow job must be a mapping");
+    return item.value;
+  });
+}
+
+/** Returns each step index whose action reference starts with `prefix`. */
+function setupIndexes(
+  steps: readonly YAMLMap[],
+  prefix: string
+): readonly number[] {
+  return steps.flatMap((step, index) => {
+    const uses = scalarText(mapValue(step, "uses"));
+    return uses?.startsWith(prefix) ? [index] : [];
+  });
+}
+
+/** Returns the first step index that executes pnpm. */
+function firstPnpmCommand(steps: readonly YAMLMap[]): number {
+  return steps.findIndex((step) => {
+    const command = scalarText(mapValue(step, "run"));
+    return command !== undefined && PNPM_COMMAND_PATTERN.test(command);
+  });
+}
+
+/** Returns the action input mapping for one setup step. */
+function setupInputs(step: YAMLMap): YAMLMap | undefined {
+  const inputs = mapValue(step, "with");
+  if (inputs === undefined) {
+    return;
+  }
+
+  assert.ok(isMap(inputs), "Workflow action inputs must be a mapping");
+  return inputs;
+}
+
+/** Verifies package.json-owned toolchain setup for one pnpm job. */
+function verifyPnpmJob(job: YAMLMap): void {
+  const steps = jobSteps(job);
+  const commandIndex = firstPnpmCommand(steps);
+  if (commandIndex === -1) {
+    return;
+  }
+
+  const pnpmSetups = setupIndexes(steps, PNPM_SETUP_PREFIX);
+  const nodeSetups = setupIndexes(steps, NODE_SETUP_PREFIX);
+  assert.equal(pnpmSetups.length, 1, "Every pnpm job must set up pnpm once");
+  assert.equal(nodeSetups.length, 1, "Every pnpm job must set up Node.js once");
+
+  const [pnpmIndex] = pnpmSetups;
+  const [nodeIndex] = nodeSetups;
+  assert.ok(pnpmIndex !== undefined, "The pnpm setup step must exist");
+  assert.ok(nodeIndex !== undefined, "The Node.js setup step must exist");
+  assert.ok(
+    pnpmIndex < nodeIndex && nodeIndex < commandIndex,
+    "Every pnpm job must set up pnpm, then Node.js, before running pnpm"
+  );
+
+  const pnpmStep = steps[pnpmIndex];
+  const nodeStep = steps[nodeIndex];
+  assert.ok(pnpmStep, "The pnpm setup step must exist");
+  assert.ok(nodeStep, "The Node.js setup step must exist");
+
+  const pnpmInputs = setupInputs(pnpmStep);
+  assert.equal(
+    pnpmInputs?.has("version") ?? false,
+    false,
+    "Workflows must derive the pnpm version from package.json"
+  );
+
+  const nodeInputs = setupInputs(nodeStep);
+  assert.ok(nodeInputs, "The Node.js setup step must define inputs");
+  assert.equal(
+    scalarText(mapValue(nodeInputs, "node-version-file")),
+    "package.json",
+    "Every pnpm job must read the Node version from package.json"
+  );
+  assert.equal(
+    nodeInputs.has("node-version"),
+    false,
+    "The Node.js setup must not override node-version-file"
   );
 }
 
@@ -34,28 +151,7 @@ export function verifyWorkflowToolchains(workflows: readonly string[]): void {
 
   for (const workflow of workflows) {
     for (const job of workflowJobs(workflow)) {
-      if (!PNPM_COMMAND_PATTERN.test(job)) {
-        continue;
-      }
-      const pnpmSetups = [...job.matchAll(PNPM_SETUP_PATTERN)];
-      const nodeSetups = [...job.matchAll(NODE_SETUP_PATTERN)];
-      assert.equal(
-        pnpmSetups.length,
-        1,
-        "Every pnpm job must set up pnpm once"
-      );
-      assert.equal(
-        nodeSetups.length,
-        1,
-        "Every pnpm job must read the Node version from package.json"
-      );
-      const [pnpmSetup] = pnpmSetups;
-      assert.ok(pnpmSetup, "Every pnpm job must expose its setup block");
-      assert.doesNotMatch(
-        pnpmSetup[0],
-        INLINE_PNPM_VERSION_PATTERN,
-        "Workflows must derive the pnpm version from package.json"
-      );
+      verifyPnpmJob(job);
     }
   }
 }

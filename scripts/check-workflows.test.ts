@@ -233,8 +233,8 @@ describe("workflow policy", () => {
     const release = sources.release
       .replace("environment: content-production", "environment: moved")
       .replace(
-        "      - name: Prove immutable contract release",
-        "    environment: content-production\n      - name: Prove immutable contract release"
+        "    steps:\n      - name: Checkout",
+        "    environment: content-production\n    steps:\n      - name: Checkout"
       );
     expect(() => verifyWorkflows({ ...sources, release })).toThrow(
       "Contract proof must finish before production credentials are approved"
