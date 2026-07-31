@@ -57,10 +57,30 @@ describe("workflow toolchain policy", () => {
     ).not.toThrow();
   });
 
-  it("rejects duplicated environment versions", () => {
-    expect(() =>
-      verifyWorkflowToolchains([...sources, "env:\n  NODE_VERSION: 24"])
-    ).toThrow("Workflows must not duplicate Node or pnpm versions");
+  it("rejects duplicated environment versions at every workflow scope", () => {
+    const workflowEnvironment = ci.replace(
+      "permissions:\n",
+      "env:\n  NODE_VERSION: 24\n\npermissions:\n"
+    );
+    expect(() => verifyWorkflowToolchains([workflowEnvironment])).toThrow(
+      "Workflows must not duplicate Node or pnpm versions"
+    );
+
+    const jobEnvironment = ci.replace(
+      "  verify:\n",
+      '  verify:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
+    );
+    expect(() => verifyWorkflowToolchains([jobEnvironment])).toThrow(
+      "Workflows must not duplicate Node or pnpm versions"
+    );
+
+    const stepEnvironment = ci.replace(
+      "      - name: Install dependencies",
+      '      - name: Install dependencies\n        env:\n          "NODE_VERSION" : 24'
+    );
+    expect(() => verifyWorkflowToolchains([stepEnvironment])).toThrow(
+      "Workflows must not duplicate Node or pnpm versions"
+    );
   });
 
   it("requires one pnpm and Node.js setup in every pnpm job", () => {
@@ -118,6 +138,14 @@ ${PNPM_STEP}`
       "Workflows must derive the pnpm version from package.json"
     );
 
+    const alternateManifest = ci.replace(
+      PNPM_STEP,
+      `${PNPM_STEP}\n        with:\n          package_json_file: test/package.json`
+    );
+    expect(() => verifyWorkflowToolchains([alternateManifest])).toThrow(
+      "Workflows must derive pnpm from the root package.json"
+    );
+
     const noNodeInputs = ci.replace(
       `${NODE_STEP}\n`,
       "      - name: Setup Node.js\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n"
@@ -140,6 +168,24 @@ ${PNPM_STEP}`
     );
     expect(() => verifyWorkflowToolchains([competingNode])).toThrow(
       "The Node.js setup must not override node-version-file"
+    );
+  });
+
+  it("requires every toolchain setup step to run unconditionally", () => {
+    const conditionalPnpm = ci.replace(
+      PNPM_STEP,
+      `${PNPM_STEP}\n        if: false`
+    );
+    expect(() => verifyWorkflowToolchains([conditionalPnpm])).toThrow(
+      "The pnpm setup step must run unconditionally"
+    );
+
+    const conditionalNode = ci.replace(
+      NODE_STEP,
+      `${NODE_STEP}\n        if: \${{ matrix.enabled }}`
+    );
+    expect(() => verifyWorkflowToolchains([conditionalNode])).toThrow(
+      "The Node.js setup step must run unconditionally"
     );
   });
 
