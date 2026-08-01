@@ -16,6 +16,7 @@ import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 
 const OPTION_KEY_PATTERN = /^option-[1-9]\d*$/u;
+const TRYOUT_CONTENT_HASH_PATTERN = /^[a-f\d]{64}$/u;
 /** Scoring model selected by one authored exam. */
 export const TryoutScoringSchema = Schema.Literal("irt", "raw");
 export type TryoutScoring = typeof TryoutScoringSchema.Type;
@@ -32,7 +33,8 @@ const NonNegativeCountSchema = Schema.Number.pipe(
   Schema.int(),
   Schema.nonNegative()
 );
-const SourceRevisionSchema = Schema.NonEmptyTrimmedString.pipe(
+/** Bounded authored revision shared by one try-out source hierarchy. */
+export const TryoutSourceRevisionSchema = Schema.NonEmptyTrimmedString.pipe(
   Schema.maxLength(128)
 );
 const DescriptionSchema = Schema.optional(Schema.String);
@@ -40,7 +42,7 @@ const LocalizedFields = {
   description: DescriptionSchema,
   graph: LearningGraphIdentitySchema,
   locale: ContentLocaleSchema,
-  sourceRevision: SourceRevisionSchema,
+  sourceRevision: TryoutSourceRevisionSchema,
   title: Schema.String,
 };
 const ParentFields = {
@@ -192,7 +194,7 @@ const PlacementFields = {
   scope: Schema.Literal("server"),
   sectionKey: TryoutKeySchema,
   setKey: TryoutKeySchema,
-  sourceRevision: SourceRevisionSchema,
+  sourceRevision: TryoutSourceRevisionSchema,
   trackKey: TryoutKeySchema,
 };
 
@@ -240,10 +242,18 @@ export const TryoutPlacementSourceSchema = Schema.Struct(PlacementFields).pipe(
 );
 export type TryoutPlacementSource = typeof TryoutPlacementSourceSchema.Type;
 
+/** Durable complete-question identity retained by every frozen placement. */
+export const TryoutContentHashSchema = Schema.String.pipe(
+  Schema.pattern(TRYOUT_CONTENT_HASH_PATTERN),
+  Schema.brand("@NakafaAI/AksaraTryoutContentHash")
+);
+export type TryoutContentHash = typeof TryoutContentHashSchema.Type;
+
 /** Active locale placement bound to reviewed question and answer artifacts. */
 export const TryoutPlacementSchema = Schema.Struct({
   ...PlacementFields,
   answerArtifactHash: Sha256HashSchema,
+  contentHash: TryoutContentHashSchema,
   questionArtifactHash: Sha256HashSchema,
   title: Schema.String,
 }).pipe(

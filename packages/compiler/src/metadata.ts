@@ -44,6 +44,13 @@ export interface MetadataCollector {
   readonly syntaxReasons: AuthoredMetadataSyntaxReason[];
 }
 
+/** Exact source and UTF-16 offsets occupied by one validated metadata export. */
+export interface MetadataSourceRange {
+  readonly end: number;
+  readonly source: string;
+  readonly start: number;
+}
+
 /** Creates a failed static-metadata decode result for one syntax reason. */
 function failed(reason: AuthoredMetadataSyntaxReason): DecodeResult {
   return { reason, success: false };
@@ -238,15 +245,27 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
 );
 
 /** Reads static metadata from an already parsed MDX tree without code generation. */
-export const readMetadataTree = Effect.fn("AksaraCompiler.readMetadataTree")(
-  function* (contentKey: ContentKey, tree: Root) {
-    const collector: MetadataCollector = {
-      candidates: [],
-      syntaxReasons: [],
-    };
-    for (const node of tree.children) {
-      collectMetadata(node, collector);
+export const readMetadataDocument = Effect.fn(
+  "AksaraCompiler.readMetadataDocument"
+)(function* (contentKey: ContentKey, tree: Root) {
+  const collector: MetadataCollector = {
+    candidates: [],
+    syntaxReasons: [],
+  };
+  let sourceRange: MetadataSourceRange | undefined;
+  for (const node of tree.children) {
+    if (node.type !== "mdxjsEsm") {
+      continue;
     }
-    return yield* validateMetadata(contentKey, collector);
+    if (collectMetadata(node, collector)) {
+      continue;
+    }
+    const start = node.position?.start.offset;
+    const end = node.position?.end.offset;
+    if (start !== undefined && end !== undefined) {
+      sourceRange = { end, source: node.value, start };
+    }
   }
-);
+  const metadata = yield* validateMetadata(contentKey, collector);
+  return { metadata, sourceRange };
+});

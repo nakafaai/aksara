@@ -1,4 +1,4 @@
-import { compile } from "@mdx-js/mdx";
+import { compile, createProcessor } from "@mdx-js/mdx";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import type { Root } from "mdast";
@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 import {
   extractMetadata,
   type MetadataCollector,
+  readMetadataDocument,
   validateMetadata,
 } from "#compiler/metadata";
 
@@ -76,6 +77,38 @@ describe("authored metadata", () => {
 
     expect(missing._tag).toBe("AuthoredMetadataMissingError");
     expect(duplicate._tag).toBe("AuthoredMetadataDuplicateError");
+  });
+
+  it("does not invent missing metadata source offsets", async () => {
+    const tree = createProcessor({ format: "mdx" }).parse(VALID_METADATA);
+    const document = await Effect.runPromise(
+      readMetadataDocument(contentKey, {
+        ...tree,
+        children: tree.children.map(({ position: _position, ...node }) => node),
+      })
+    );
+
+    expect(document).toEqual({ metadata: {}, sourceRange: undefined });
+  });
+
+  it("records the exact metadata module when other exports precede it", async () => {
+    const rawMdx = `export const note = "x"\n\n${VALID_METADATA}`;
+    const document = await Effect.runPromise(
+      readMetadataDocument(
+        contentKey,
+        createProcessor({ format: "mdx" }).parse(rawMdx)
+      )
+    );
+    const start = rawMdx.indexOf(VALID_METADATA);
+
+    expect(document).toEqual({
+      metadata: {},
+      sourceRange: {
+        end: start + VALID_METADATA.length,
+        source: VALID_METADATA,
+        start,
+      },
+    });
   });
 
   it("handles incomplete ESTree metadata without an implicit fallback", async () => {

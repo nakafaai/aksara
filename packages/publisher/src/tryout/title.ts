@@ -1,5 +1,6 @@
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { hashTryoutContent } from "@nakafa/aksara-contracts/tryout/content-hash";
 import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/row-hash";
 import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/spec";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
@@ -142,6 +143,16 @@ const inspectPlacement = Effect.fn("AksaraPublisher.inspectTryoutPlacement")(
       TryoutPlacementSchema.make({
         ...binding.placement,
         answerArtifactHash: binding.answerHead.artifactHash,
+        contentHash: hashTryoutContent({
+          answerBody: answerDocument.inspection.bodyMdx,
+          choices: questionChoices[binding.placement.locale],
+          date: questionDocument.projection.metadata.date,
+          locale: binding.placement.locale,
+          questionBody: questionDocument.inspection.bodyMdx,
+          sourcePath: questionDocument.projection.questionKey,
+          sourceRevision: binding.placement.sourceRevision,
+          title: questionDocument.projection.metadata.title,
+        }),
         questionArtifactHash: binding.questionHead.artifactHash,
         title: questionDocument.projection.metadata.title,
       })

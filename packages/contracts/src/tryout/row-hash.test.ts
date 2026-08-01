@@ -17,13 +17,16 @@ import {
 import {
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
+  TryoutContentHashSchema,
   TryoutPlacementSchema,
 } from "#contracts/tryout/spec";
 
 const hashes = {
   answer: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
+  content: TryoutContentHashSchema.make("c".repeat(64)),
   question: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   tampered: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+  tamperedContent: TryoutContentHashSchema.make("f".repeat(64)),
 };
 /** Derives current SNBT graph facts for one canonical hierarchy sample. */
 function graph(kind: TryoutCatalogRow["kind"]) {
@@ -145,6 +148,7 @@ function placement(locale: ContentLocale, order: number) {
         order: 1,
       },
     ],
+    contentHash: hashes.content,
     countryKey: "indonesia",
     examKey: "snbt",
     locale,
@@ -186,9 +190,14 @@ describe("try-out row hashing", () => {
     const row = placement("en", 1);
     const first = makeTryoutPlacementRecord(row);
     const second = makeTryoutPlacementRecord(row);
+    const changed = TryoutPlacementSchema.make({
+      ...row,
+      contentHash: hashes.tamperedContent,
+    });
 
     expect(first).toEqual(second);
     expect(JSON.parse(canonicalizeTryoutPlacement(row))).toEqual(row);
+    expect(first.rowHash).not.toBe(makeTryoutPlacementRecord(changed).rowHash);
   });
 
   it("binds graph identity into each immutable catalog row", () => {
