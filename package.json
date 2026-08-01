@@ -7,14 +7,14 @@
   "imports": {
     "#scripts/*": "./scripts/*.ts"
   },
-  "packageManager": "pnpm@11.15.1",
+  "packageManager": "pnpm@11.18.0",
   "engines": {
     "node": ">=24.0.0 <25.0.0"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "24.18.0",
+      "version": "24.18.1",
       "onFail": "download"
     }
   },
@@ -23,6 +23,7 @@
     "abort": "turbo run abort --filter=@nakafa/aksara-cli",
     "boundaries": "node scripts/check-imports.ts",
     "build": "turbo run build",
+    "bump-deps": "pnpm update --recursive --latest",
     "check": "turbo run check --filter=@nakafa/aksara-cli",
     "clean": "turbo run clean",
     "clean:root": "git clean -xdf coverage",
@@ -50,7 +51,7 @@
     "status": "turbo run status --filter=@nakafa/aksara-cli"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.5",
+    "@biomejs/biome": "2.5.6",
     "@effect/language-service": "0.87.1",
     "@effect/platform": "catalog:",
     "@effect/platform-node": "catalog:",
@@ -58,7 +59,7 @@
     "@typescript/native": "npm:typescript@7.0.2",
     "@vitest/coverage-istanbul": "catalog:",
     "effect": "catalog:",
-    "turbo": "2.10.7",
+    "turbo": "2.10.8",
     "typescript": "catalog:",
     "ultracite": "7.9.4",
     "vitest": "catalog:",

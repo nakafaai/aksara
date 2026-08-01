@@ -74,6 +74,7 @@ production cutover remains a separate operation.
 
 ```sh
 pnpm install --frozen-lockfile
+pnpm bump-deps
 pnpm format
 pnpm lint
 pnpm names
@@ -104,6 +105,13 @@ Turbo owns that dependency build order.
 `package.json` is the toolchain source for Node and pnpm in development and
 GitHub Actions. Aksara does not duplicate that contract in `.npmrc`,
 `.node-version`, or `.nvmrc`.
+
+`pnpm bump-deps` updates ordinary workspace dependencies after the configured
+24-hour release-age gate. It deliberately leaves Effect, TypeScript, and Node
+types unchanged because those toolchain boundaries require a separately
+reviewed, coordinated update. An Effect update must keep `effect`,
+`@effect/platform`, and `@effect/platform-node` compatible and must update the
+read-only `repos/effect` source through `pnpm effect:source:update`.
 
 All non-MDX hand-written executable source and repository tooling is
 TypeScript. The file-name gate rejects tracked JavaScript source. `dist/*.js`
