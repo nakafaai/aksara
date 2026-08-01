@@ -8,7 +8,7 @@ export const MAX_PUBLICATION_RESPONSE_BYTES = 5 * 1024 * 1024;
 export const MAX_ARTIFACT_BATCH_BYTES = 4 * 1024 * 1024;
 
 /** Maximum signed artifacts accepted by one staging transaction. */
-export const MAX_ARTIFACT_BATCH_COUNT = 8;
+export const MAX_ARTIFACT_BATCH_COUNT = 64;
 
 /** Maximum complete ordered-item batch accepted by publication ingress. */
 export const MAX_ITEM_BATCH_BYTES = 512 * 1024;
