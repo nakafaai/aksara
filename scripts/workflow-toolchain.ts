@@ -176,11 +176,14 @@ function actionInput(inputs: YAMLMap | undefined, key: string): unknown {
     return;
   }
 
-  for (const item of inputs.items) {
-    if (scalarText(item.key)?.toLowerCase() === key) {
-      return item.value;
-    }
-  }
+  const matches = inputs.items.filter(
+    (item) => scalarText(item.key)?.toLowerCase() === key
+  );
+  assert.ok(
+    matches.length <= 1,
+    `Workflow action input ${key} must not be duplicated case-insensitively`
+  );
+  return matches[0]?.value;
 }
 
 /** Reports whether one setup action must stop the job when it fails. */

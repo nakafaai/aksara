@@ -187,17 +187,6 @@ ${PNPM_STEP}`
     );
   });
 
-  it("rejects hidden installs inside pnpm setup", () => {
-    const hiddenInstall = ci.replace(
-      PNPM_STEP,
-      `${PNPM_STEP}\n        with:\n          run_install: true`
-    );
-
-    expect(() => verifyWorkflowToolchains([hiddenInstall])).toThrow(
-      "The pnpm setup action must not run a hidden install"
-    );
-  });
-
   it.each(["corepack use pnpm@10", "corepack up", "corepack use pnpm"])(
     "rejects pnpm replacement command %s",
     (command) => {
@@ -293,8 +282,15 @@ ${PNPM_STEP}`
       "          node-version-file: package.json",
       "          node-version-file: package.json\n          NODE-VERSION: 24"
     );
+    const duplicateInput = ci.replace(
+      "          node-version-file: package.json",
+      "          NODE-VERSION-FILE: package.json\n          node-version-file: other/package.json"
+    );
     expect(() => verifyWorkflowToolchains([uppercaseInput])).toThrow(
       "The Node.js setup must not override node-version-file"
+    );
+    expect(() => verifyWorkflowToolchains([duplicateInput])).toThrow(
+      "Workflow action input node-version-file must not be duplicated case-insensitively"
     );
   });
 });

@@ -32,6 +32,16 @@ describe("workflow policy", () => {
     ).toThrow("Every pnpm job must set up pnpm once");
   });
 
+  it("always verifies each named release workflow", () => {
+    const release = sources.release.replaceAll(
+      "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+      "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
+    );
+    expect(() => verifyWorkflows({ ...sources, release })).toThrow(
+      "Every pnpm job must set up Node.js once"
+    );
+  });
+
   it("rejects registry publication machinery", () => {
     expect(() =>
       verifyWorkflows({

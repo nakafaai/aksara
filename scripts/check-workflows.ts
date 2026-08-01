@@ -77,7 +77,7 @@ export function verifyWorkflows({
     SWALLOWED_CLI_OUTPUT_PATTERN,
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
-  verifyWorkflowToolchains(all);
+  verifyWorkflowToolchains([...new Set([ci, contracts, release, ...all])]);
   assert.match(
     ci,
     FROZEN_INSTALL_PATTERN,
