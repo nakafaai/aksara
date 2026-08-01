@@ -34,9 +34,9 @@ The exact-source idempotent retry passed in
 [run `30654679754`](https://github.com/nakafaai/aksara/actions/runs/30654679754),
 then terminal recovery acceptance passed in
 [run `30657823700`](https://github.com/nakafaai/aksara/actions/runs/30657823700)
-after sitemap cache revalidation and unchanged projection proof. Production now
-has that release active at sequence 20 with 764 heads, items, artifacts, and
-projections; candidate, recovery, and compaction state are empty.
+after sitemap cache revalidation and unchanged projection proof. That acceptance
+recorded sequence 20 with 764 heads, items, artifacts, and projections while
+candidate, recovery, and compaction state were empty.
 
 ## Current modules
 
@@ -73,7 +73,7 @@ production cutover remains a separate operation.
 ## Commands
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
 pnpm format
 pnpm lint
 pnpm names
