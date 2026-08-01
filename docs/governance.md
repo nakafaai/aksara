@@ -1,7 +1,7 @@
 # Repository governance
 
 This file records the external repository controls that were verified on
-2026-07-24. These settings are part of the release boundary but do not replace
+2026-07-31. These settings are part of the release boundary but do not replace
 artifact signatures, application authorization, or content entitlement checks.
 
 ## Current GitHub state
@@ -11,11 +11,12 @@ artifact signatures, application authorization, or content entitlement checks.
   `1e5214e474dcbd32eb3a72dff944d657127fa0aa`.
 - Ruleset `19330486` targets `refs/heads/main` and requires pull requests,
   resolved review conversations, and the strict `verify` check, and blocks
-  deletion and non-fast-forward updates. It has no bypass actor. Only squash
-  merges are currently allowed, and merged branches are deleted automatically.
+  deletion and non-fast-forward updates. It has no bypass actor. Squash and
+  rebase merges are allowed, merge commits are disabled, and merged branches
+  are deleted automatically.
 - Ruleset `19595471` targets `refs/tags/history/*`, blocks deletion and
   non-fast-forward updates, and has no bypass actor. Those tags retain reviewed
-  filtered Nakafa ancestry without weakening the repository's squash-only
+  filtered Nakafa ancestry without weakening the repository's linear-history
   branch policy.
 - Required approval count is currently zero because only one real repository
   owner is available. `CODEOWNERS` assigns all paths to `@nabilfatih`; separate
@@ -67,8 +68,8 @@ The repository owner explicitly authorized the bootstrap commit and push on
 5. Completed: re-read the ruleset, Actions permissions, repository merge and
    security settings, and production environment through the GitHub API after
    the ruleset update. No other setting drift was found.
-6. Completed: restore squash-only merges and automatic merged-branch deletion
-   after the foundation pull requests.
+6. Completed: allow squash and rebase merges, keep merge commits disabled, and
+   delete merged branches automatically.
 
 The owner selected the existing Nakafa license set for Aksara. Software uses
 the Nakafa Source Available License 1.0, educational corpus uses the Nakafa

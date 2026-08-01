@@ -22,6 +22,10 @@ for clarity, measurable scale, and safe releases.
   source and commit.
 - Treat Effect as architecture. Expected failures use typed errors, effectful
   seams compose Effects, and runners stay at CLI, framework, or test boundaries.
+- Optimize for code that is easy to read and skim. Use direct names, early
+  returns, and small named steps. Avoid clever pipelines, nested ternaries,
+  workaround types, wrapper-only functions, and abstractions without a real
+  caller.
 - Use the documented stable `Context.Tag` plus `Layer` pattern for dependency
   contracts. `Effect.Service` is an optional convenience only when a module
   genuinely owns a default implementation and Aksara deliberately accepts its
@@ -41,8 +45,8 @@ for clarity, measurable scale, and safe releases.
 - Do not use APIs marked deprecated by the installed TypeScript declarations.
   `pnpm deprecations` must cover every tracked authored TypeScript file.
 - Keep handwritten TypeScript modules at or below 300 lines.
-- Give every stable callable declaration—functions, methods, and callable
-  bindings—useful JSDoc. Keep framework callbacks anonymous instead of
+- Give every stable callable declaration, including functions, methods, and
+  callable bindings, useful JSDoc. Keep framework callbacks anonymous instead of
   inventing names or filler comments solely for compliance. JSDoc-only lines
   do not count toward the 300-line module limit.
 - Put dependencies in the workspace that uses them and use `workspace:*` for
@@ -69,9 +73,12 @@ for clarity, measurable scale, and safe releases.
 ## Vendored References
 
 - External source references live under `repos/` as read-only Git subtrees.
+- Follow the official Effect guidance on
+  [vendoring source for coding agents](https://www.effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive).
 - `repos/effect` is pinned to the installed `effect` package version. Before
   writing or reviewing Effect code, read its `AGENTS.md`, then inspect the
-  relevant implementation, tests, and type-level tests under `packages/effect`.
+  relevant implementation, tests, type-level tests, module structure, and API
+  design under `packages/effect`.
 - Prefer the matching vendored source for Effect API shape and idioms instead
   of guessing from memory, generated declarations, or examples for another
   major version.

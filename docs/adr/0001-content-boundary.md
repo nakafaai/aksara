@@ -19,7 +19,7 @@ valid only for reviewed and trusted source; it is not a sandbox for user input.
 Aksara is intentionally public-source as of 2026-07-21, matching the existing
 public Nakafa corpus. Trust comes from review, immutable hashes,
 domain-separated Ed25519 signatures for artifacts and releases, authorization,
-and delivery policy—not from repository secrecy. Protected content must
+and delivery policy, not from repository secrecy. Protected content must
 therefore never use Git visibility as its entitlement boundary.
 
 References:
@@ -164,9 +164,10 @@ implementation.
 
 This is a measured deviation from the originally selected single static global
 implementation registry, explicitly approved by the repository owner on
-2026-07-21. The current Nakafa candidate still downloads an unnecessary Three.js
-chunk on a plain material route through the old filesystem MDX graph, so the
-later published-artifact runtime must still prove final body isolation.
+2026-07-21. At that baseline, the Nakafa candidate still downloaded an
+unnecessary Three.js chunk on a plain material route through the old filesystem
+MDX graph. The later published-artifact runtime therefore had to prove final
+body isolation before material activation.
 
 Evidence is recorded in
 [`docs/baselines/renderer-isolation.md`](../baselines/renderer-isolation.md).

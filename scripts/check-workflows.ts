@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { trackedFiles } from "#scripts/files";
+import { verifyWorkflowToolchains } from "#scripts/workflow-toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
   /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|registry\.npmjs\.org|package-proof/iu;
@@ -47,9 +49,11 @@ const CONTENT_CONTRACT_PATTERN =
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup pnpm$/mu;
 const PINNED_ACTION_PATTERN = /^[a-z0-9-]+\/[a-z0-9-]+@[0-9a-f]{40}$/u;
+const WORKFLOW_PATH_PATTERN = /^\.github\/workflows\/[^/]+\.ya?ml$/u;
 
 /** Workflow sources whose release controls must remain coherent. */
 export interface WorkflowSources {
+  readonly all: readonly string[];
   readonly ci: string;
   readonly contracts: string;
   readonly release: string;
@@ -57,6 +61,7 @@ export interface WorkflowSources {
 
 /** Verifies one source-only contract archive and one content release path. */
 export function verifyWorkflows({
+  all,
   ci,
   contracts,
   release,
@@ -72,6 +77,7 @@ export function verifyWorkflows({
     SWALLOWED_CLI_OUTPUT_PATTERN,
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
+  verifyWorkflowToolchains([...new Set([ci, contracts, release, ...all])]);
   assert.match(
     ci,
     FROZEN_INSTALL_PATTERN,
@@ -244,7 +250,12 @@ export function verifyWorkflows({
   );
 }
 
+const workflowPaths = trackedFiles().filter((path) =>
+  WORKFLOW_PATH_PATTERN.test(path)
+);
+const trackedSources = workflowPaths.map((path) => readFileSync(path, "utf8"));
 verifyWorkflows({
+  all: trackedSources,
   ci: readFileSync(".github/workflows/ci.yml", "utf8"),
   contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
   release: readFileSync(".github/workflows/release.yml", "utf8"),
