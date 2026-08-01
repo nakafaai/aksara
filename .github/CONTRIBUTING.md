@@ -42,8 +42,13 @@ Do not submit a contribution if you cannot grant these rights.
 ```bash
 git clone https://github.com/YOUR-USERNAME/aksara.git
 cd aksara
-pnpm install
+pnpm install --frozen-lockfile
 ```
+
+Before editing, read root `AGENTS.md` and the nearest nested `AGENTS.md`. For
+Effect work, read `repos/effect/AGENTS.md`, then inspect the matching
+implementation, tests, type-level tests, module structure, and API design.
+Treat the vendored subtree as read-only application reference material.
 
 ## Project Structure
 
