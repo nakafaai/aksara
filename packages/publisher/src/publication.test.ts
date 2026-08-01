@@ -53,6 +53,7 @@ describe("content publication", () => {
     const first = await Effect.runPromise(publish(release, state.target));
     const second = await Effect.runPromise(publish(release, state.target));
     expect(second).toEqual(first);
+    expect(state.stageGroup).toHaveBeenCalledTimes(2);
     expect(state.stageItemBatch).toHaveBeenCalledTimes(2);
     expect(state.stageRelease).toHaveBeenCalledTimes(2);
     expect(state.stageRecovery).toHaveBeenCalledOnce();

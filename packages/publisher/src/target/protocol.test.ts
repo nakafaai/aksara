@@ -75,6 +75,7 @@ describe("publication target protocol", () => {
       "items",
       "projections",
       "artifacts",
+      "staging",
       "status",
       "verify",
       "activate",

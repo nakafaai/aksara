@@ -46,6 +46,7 @@ const TARGET_STAGES: Readonly<{
   rollbackPage: "rollback",
   routePage: "rollback",
   stageArtifactBatch: "artifacts",
+  stageGroup: "staging",
   stageItemBatch: "items",
   stageProjectionBatch: "projections",
   stageRecovery: "recovery",

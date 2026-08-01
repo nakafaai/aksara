@@ -1,6 +1,5 @@
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
-import { ReleaseIdSchema } from "#contracts/ids";
 import {
   ContentReleaseCurrentSchema,
   RecoveryLookupSchema,
@@ -17,13 +16,13 @@ import {
   PublicationReceiptSchema,
   ReleaseVerificationStatusSchema,
 } from "#contracts/release/spec";
+import { StageBatchReceiptSchema } from "#contracts/transport/batch";
 import { PublicationFailureSchema } from "#contracts/transport/failure";
+import { StageGroupSuccessSchema } from "#contracts/transport/group";
 import {
   StageSnapshotBatchReceiptSchema,
   StageSnapshotReceiptSchema,
 } from "#contracts/transport/snapshot";
-
-const CountSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());
 
 /** Returns authoritative active, candidate, and recovery identities. */
 export const PublicationCurrentSuccessSchema = Schema.Struct({
@@ -59,15 +58,6 @@ export const PublicationRecoverySuccessSchema = Schema.Struct({
   operation: Schema.Literal("recovery"),
   value: RecoveryLookupSchema,
 });
-
-/** Idempotent row counts returned by one bounded staging request. */
-export const StageBatchReceiptSchema = Schema.Struct({
-  batchIndex: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
-  created: CountSchema,
-  releaseId: ReleaseIdSchema,
-  unchanged: CountSchema,
-});
-export type StageBatchReceipt = typeof StageBatchReceiptSchema.Type;
 
 /** Durable release status that proves stageRelease found or created a row. */
 export const StagedReleaseStatusSchema = ContentReleaseStatusSchema.pipe(
@@ -193,6 +183,7 @@ export const PublicationSuccessSchema = Schema.Union(
   StageRecoverySuccessSchema,
   StageSnapshotSuccessSchema,
   StageSnapshotBatchSuccessSchema,
+  StageGroupSuccessSchema,
   StageItemBatchSuccessSchema,
   StageRouteBatchSuccessSchema,
   StageProjectionBatchSuccessSchema,

@@ -37,7 +37,8 @@ import type {
   StageItemBatchInput,
   StageProjectionBatchInput,
   StageRouteBatchInput,
-} from "@nakafa/aksara-contracts/transport/request";
+} from "@nakafa/aksara-contracts/transport/batch";
+import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
 import type {
   StageSnapshotBatchInput,
   StageSnapshotInput,
@@ -229,6 +230,10 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     /** Stages one immutable artifact batch idempotently. */
     readonly stageArtifactBatch: (
       batch: StageArtifactBatchInput
+    ) => Effect.Effect<void, PublicationTargetFailure>;
+    /** Stages multiple transaction-safe batches through one HTTP exchange. */
+    readonly stageGroup: (
+      group: StageGroupInput
     ) => Effect.Effect<void, PublicationTargetFailure>;
     /** Stages one ordered release-item batch idempotently. */
     readonly stageItemBatch: (

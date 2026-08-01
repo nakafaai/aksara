@@ -9,6 +9,11 @@ import {
   type ContentRouteItem,
   canonicalizeContentRouteItem,
 } from "@nakafa/aksara-contracts/release/route";
+import type {
+  StageArtifactBatchInput,
+  StageItemBatchInput,
+  StageRouteBatchInput,
+} from "@nakafa/aksara-contracts/transport/batch";
 import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ARTIFACT_BATCH_COUNT,
@@ -17,11 +22,6 @@ import {
   MAX_ROUTE_BATCH_BYTES,
   MAX_ROUTE_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
-import type {
-  StageArtifactBatchInput,
-  StageItemBatchInput,
-  StageRouteBatchInput,
-} from "@nakafa/aksara-contracts/transport/request";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 

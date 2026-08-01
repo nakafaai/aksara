@@ -29,27 +29,18 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Redacted, type Scope, Stream } from "effect";
-import {
-  makeArtifactBatches,
-  makeReleaseItemBatches,
-  makeRouteBatches,
-} from "#publisher/batching";
 import { contentSnapshotCacheChanges } from "#publisher/cache";
 import type {
   PreparedContentRelease,
   PreparedGitRelease,
   PreparedRollbackRelease,
 } from "#publisher/preparation/spec";
-import { makeProjectionBatches } from "#publisher/projection-batch";
 import {
   makeGitArtifacts,
   makeRollbackArtifacts,
 } from "#publisher/publication/artifacts";
 import type { PublishContentReleaseError } from "#publisher/publication/program";
-import {
-  stagePublicationSnapshots,
-  verifyPublicationSnapshots,
-} from "#publisher/publication/snapshots";
+import { verifyPublicationSnapshots } from "#publisher/publication/snapshots";
 import {
   PublicationModeMismatchError,
   PublicationSigningKey,
@@ -64,6 +55,7 @@ import {
   CompiledReleaseSourceSchema,
   compileReleaseSources,
 } from "#publisher/source-compilation";
+import { stagePreparedRelease } from "#publisher/stage/plan";
 
 /** One prepared release mode plus any exact-Git source dependency it needs. */
 export type PublicationInvocation<E, R> =
@@ -253,35 +245,22 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     ? signer.signRelease(input.manifest)
     : Effect.succeed(input.storedRelease);
   const release = yield* verifySignedContentRelease(signedRelease);
-  const stage = Effect.gen(function* () {
-    yield* makeReleaseItemBatches(
-      input.manifest.releaseId,
-      decodedItems()
-    ).pipe(Stream.runForEach(target.stageItemBatch));
-    yield* makeProjectionBatches(
-      input.manifest.releaseId,
-      decodedProjections()
-    ).pipe(Stream.runForEach(target.stageProjectionBatch));
-    yield* makeRouteBatches(input.manifest.releaseId, decodedRoutes()).pipe(
-      Stream.runForEach(target.stageRouteBatch)
-    );
-    if (artifactPlan.kind === "rollback") {
-      yield* makeArtifactBatches(
-        input.manifest.releaseId,
-        artifactPlan.artifacts.replay()
-      ).pipe(Stream.runForEach(target.stageArtifactBatch));
-    } else {
-      const artifacts = makeGitArtifacts({
-        compiled: artifactPlan.compiled.replay(),
-        manifest: input.manifest,
-        rendererManifest,
-        signer,
-      });
-      yield* makeArtifactBatches(input.manifest.releaseId, artifacts).pipe(
-        Stream.runForEach(target.stageArtifactBatch)
-      );
-    }
-    yield* stagePublicationSnapshots(input, target);
+  const artifacts =
+    artifactPlan.kind === "rollback"
+      ? artifactPlan.artifacts.replay()
+      : makeGitArtifacts({
+          compiled: artifactPlan.compiled.replay(),
+          manifest: input.manifest,
+          rendererManifest,
+          signer,
+        });
+  const stage = stagePreparedRelease({
+    artifacts,
+    items: decodedItems(),
+    prepared: input,
+    projections: decodedProjections(),
+    routes: decodedRoutes(),
+    target,
   });
   return {
     bundle: { release, rendererManifest },

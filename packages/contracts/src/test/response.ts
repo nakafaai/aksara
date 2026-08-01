@@ -198,6 +198,11 @@ export const successes = [
     operation: "stageArtifactBatch",
     value: { batchIndex: 0, created: 1, releaseId, unchanged: 0 },
   },
+  {
+    ok: true,
+    operation: "stageGroup",
+    value: { releaseId, requestCount: 6 },
+  },
   { ok: true, operation: "status", value: status },
   { ok: true, operation: "verify", value: verification },
   { ok: true, operation: "activate", value: receipt },

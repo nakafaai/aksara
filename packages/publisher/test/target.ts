@@ -22,6 +22,7 @@ export function makePublicationTarget(overrides: TargetOverrides) {
     rollbackPage: unsupported,
     routePage: unsupported,
     stageArtifactBatch: unsupported,
+    stageGroup: unsupported,
     stageItemBatch: unsupported,
     stageProjectionBatch: unsupported,
     stageRecovery: unsupported,

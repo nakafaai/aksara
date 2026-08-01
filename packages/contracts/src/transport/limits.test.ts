@@ -13,6 +13,8 @@ import {
   MAX_ROUTE_BATCH_COUNT,
   MAX_SNAPSHOT_BATCH_BYTES,
   MAX_SNAPSHOT_BATCH_COUNT,
+  MAX_STAGE_GROUP_BYTES,
+  MAX_STAGE_GROUP_COUNT,
 } from "#contracts/transport/limits";
 
 describe("publication transport limits", () => {
@@ -30,5 +32,7 @@ describe("publication transport limits", () => {
     expect(MAX_PROJECTION_BATCH_COUNT).toBe(16);
     expect(MAX_SNAPSHOT_BATCH_BYTES).toBe(4 * 1024 * 1024);
     expect(MAX_SNAPSHOT_BATCH_COUNT).toBe(16);
+    expect(MAX_STAGE_GROUP_BYTES).toBe(4 * 1024 * 1024 + 512 * 1024);
+    expect(MAX_STAGE_GROUP_COUNT).toBe(64);
   });
 });

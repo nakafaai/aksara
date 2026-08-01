@@ -13,6 +13,7 @@ import type {
   ContentReleaseBundle,
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
@@ -93,6 +94,29 @@ export function makeTarget(release: {
     Effect.sync(() =>
       rows.forRelease(batch.releaseId).routes.push(...batch.routes)
     )
+  );
+  /** Applies one grouped operation to the observable transaction mock. */
+  function stageOperation(request: StageOperation) {
+    if (request.operation === "stageArtifactBatch") {
+      return stageArtifactBatch(request);
+    }
+    if (request.operation === "stageItemBatch") {
+      return stageItemBatch(request);
+    }
+    if (request.operation === "stageProjectionBatch") {
+      return stageProjectionBatch(request);
+    }
+    if (request.operation === "stageRouteBatch") {
+      return stageRouteBatch(request);
+    }
+    if (request.operation === "stageSnapshot") {
+      return stageSnapshot(request);
+    }
+    return stageSnapshotBatch(request);
+  }
+  /** Applies one authenticated group while preserving child transaction order. */
+  const stageGroup = vi.fn(({ requests }) =>
+    Effect.forEach(requests, stageOperation, { discard: true })
   );
   const verify = vi.fn(
     (
@@ -197,6 +221,7 @@ export function makeTarget(release: {
     rollbackPage: (request) => Effect.succeed(rows.rollbackPage(request)),
     routePage: (request) => Effect.succeed(rows.routePage(request)),
     stageArtifactBatch,
+    stageGroup,
     stageItemBatch,
     stageProjectionBatch,
     stageRecovery,
@@ -237,6 +262,7 @@ export function makeTarget(release: {
     }),
     snapshot: () => ({ active, candidate, recovery }),
     stageArtifactBatch,
+    stageGroup,
     stageItemBatch,
     stageProjectionBatch,
     stageRecovery,
