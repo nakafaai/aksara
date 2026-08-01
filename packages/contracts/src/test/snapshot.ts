@@ -27,10 +27,12 @@ import {
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot-hash";
 import {
   TryoutCatalogRowSchema,
+  TryoutContentHashSchema,
   TryoutPlacementSchema,
 } from "#contracts/tryout/spec";
 
 const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const contentHash = TryoutContentHashSchema.make("c".repeat(64));
 
 /** Builds a test-owned graph identity for one try-out hierarchy row. */
 function tryoutGraph(locale: ContentLocale, kind: string) {
@@ -138,6 +140,7 @@ function tryoutPlacement(locale: ContentLocale) {
         order: 1,
       },
     ],
+    contentHash,
     countryKey: "indonesia",
     examKey: "snbt",
     locale,

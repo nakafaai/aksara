@@ -10,11 +10,12 @@ import {
 } from "#compiler/engine";
 import { MdxCompilationError } from "#compiler/errors";
 import { hashUtf8 } from "#compiler/hash";
-import type { AuthoredMetadata } from "#compiler/metadata";
-import { readMetadataTree } from "#compiler/metadata";
+import type { AuthoredMetadata, MetadataSourceRange } from "#compiler/metadata";
+import { readMetadataDocument } from "#compiler/metadata";
 
 /** Lightweight source facts used before deciding whether code generation is needed. */
 export interface ContentSourceInspection {
+  readonly bodyMdx: string;
   readonly compilerConfigHash: Sha256Hash;
   readonly metadata: AuthoredMetadata;
   readonly sourceHash: Sha256Hash;
@@ -23,9 +24,36 @@ export interface ContentSourceInspection {
 /** Every expected failure surfaced by lightweight source inspection. */
 export type ContentSourceInspectionError =
   | Effect.Effect.Error<ReturnType<typeof enforceContentByteLimit>>
-  | Effect.Effect.Error<ReturnType<typeof readMetadataTree>>
+  | Effect.Effect.Error<ReturnType<typeof extractAuthoredBody>>
+  | Effect.Effect.Error<ReturnType<typeof readMetadataDocument>>
   | Effect.Effect.Error<ReturnType<typeof validateCompileRequest>>
   | MdxCompilationError;
+
+/** Removes one validated metadata export while preserving exact authored MDX. */
+export const extractAuthoredBody = Effect.fn(
+  "AksaraCompiler.extractAuthoredBody"
+)(function* (
+  contentKey: CompileDocumentRequest["contentKey"],
+  rawMdx: string,
+  sourceRange: MetadataSourceRange | undefined
+) {
+  if (sourceRange === undefined) {
+    return yield* new MdxCompilationError({
+      cause: "metadata-source-range",
+      contentKey,
+      message: "The metadata source range is missing.",
+    });
+  }
+  const metadataSource = rawMdx.slice(sourceRange.start, sourceRange.end);
+  if (metadataSource !== sourceRange.source) {
+    return yield* new MdxCompilationError({
+      cause: "metadata-source-range",
+      contentKey,
+      message: "The metadata source range does not match the authored source.",
+    });
+  }
+  return rawMdx.slice(0, sourceRange.start) + rawMdx.slice(sourceRange.end);
+});
 
 /** Parses one trusted source to metadata and hashes without emitting JavaScript. */
 function parseSource(request: CompileDocumentRequest) {
@@ -58,13 +86,22 @@ export const inspectContentSource: (
             MAX_RAW_MDX_BYTES
           );
           const tree = yield* parseSource(request);
-          const metadata = yield* readMetadataTree(request.contentKey, tree);
+          const document = yield* readMetadataDocument(
+            request.contentKey,
+            tree
+          );
+          const bodyMdx = yield* extractAuthoredBody(
+            request.contentKey,
+            request.rawMdx,
+            document.sourceRange
+          );
           return {
+            bodyMdx,
             compilerConfigHash: createCompilerConfigHash(
               request.rendererManifest,
               request.rendererDomain
             ),
-            metadata,
+            metadata: document.metadata,
             sourceHash: hashUtf8(request.rawMdx),
           } satisfies ContentSourceInspection;
         })

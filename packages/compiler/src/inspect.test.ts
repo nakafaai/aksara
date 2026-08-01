@@ -1,9 +1,10 @@
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { compileContent } from "#compiler/compile";
-import { inspectContentSource } from "#compiler/inspect";
+import { extractAuthoredBody, inspectContentSource } from "#compiler/inspect";
 import { testRendererDomains } from "#compiler/test/renderer";
 
 const rendererManifest = await Effect.runPromise(
@@ -36,6 +37,7 @@ describe("content source inspection", () => {
     const compiled = await Effect.runPromise(compileContent(request));
 
     expect(first).toEqual(second);
+    expect(first.bodyMdx).toBe("\n\n## Body");
     expect(first.metadata).toEqual({ title: "Real title" });
     expect(first.sourceHash).toMatch(SHA256_PREFIX);
     expect(first.compilerConfigHash).toMatch(SHA256_PREFIX);
@@ -52,6 +54,37 @@ describe("content source inspection", () => {
     expect(error).toMatchObject({
       _tag: "MdxCompilationError",
       contentKey: "test:inspection",
+    });
+  });
+
+  it("fails closed when validated metadata has no source range", async () => {
+    const error = await Effect.runPromise(
+      extractAuthoredBody(
+        ContentKeySchema.make(request.contentKey),
+        request.rawMdx,
+        undefined
+      ).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "MdxCompilationError",
+      cause: "metadata-source-range",
+      contentKey: request.contentKey,
+    });
+  });
+
+  it("fails closed when parser offsets do not match the authored source", async () => {
+    const error = await Effect.runPromise(
+      inspectContentSource({
+        ...request,
+        rawMdx: `\uFEFF${request.rawMdx}`,
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "MdxCompilationError",
+      cause: "metadata-source-range",
+      contentKey: request.contentKey,
     });
   });
 

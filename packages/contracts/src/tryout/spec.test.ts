@@ -7,6 +7,7 @@ import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
   TryoutCatalogRowSchema,
   TryoutChoiceSchema,
+  TryoutContentHashSchema,
   TryoutPlacementSchema,
   TryoutPlacementSourceSchema,
 } from "#contracts/tryout/spec";
@@ -74,6 +75,14 @@ describe("try-out contracts", () => {
         })
       )
     ).toBe(true);
+  });
+
+  it("preserves the existing raw lowercase content-hash representation", () => {
+    const decode = Schema.decodeUnknownEither(TryoutContentHashSchema);
+
+    expect(Either.isRight(decode("c".repeat(64)))).toBe(true);
+    expect(Either.isLeft(decode(`sha256:${"c".repeat(64)}`))).toBe(true);
+    expect(Either.isLeft(decode("C".repeat(64)))).toBe(true);
   });
 
   it("rejects incoherent hierarchy counts, routes, and choices", () => {
@@ -230,6 +239,7 @@ describe("try-out contracts", () => {
         Schema.decodeUnknownEither(TryoutPlacementSchema)({
           ...incoherent,
           answerArtifactHash: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
+          contentHash: TryoutContentHashSchema.make("c".repeat(64)),
           questionArtifactHash: Sha256HashSchema.make(
             `sha256:${"b".repeat(64)}`
           ),

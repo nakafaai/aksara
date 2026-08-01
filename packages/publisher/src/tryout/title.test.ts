@@ -39,6 +39,10 @@ function firstBinding(): BoundTryoutPlacement {
 }
 const binding = firstBinding();
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
+const EXPECTED_CONTENT_HASHES = [
+  "1b6c432c703c2ec40f2fa73190c4dcc1f20caa390da21dfe3e9fd8759fdb4448",
+  "ed60ae42365df1c9997bbd547b24147a3a5de897c95442597d3def829137aa87",
+];
 
 /** Collects exact title records through the real question inspection seam. */
 function collect(input: {
@@ -111,13 +115,16 @@ function entriesWithout(bodyKind: QuestionBodyKind) {
 }
 
 describe("try-out title binding", () => {
-  it("uses exact real titles and artifact hashes from both body heads", async () => {
+  it("uses exact real titles, content hashes, and both body heads", async () => {
     const records = await collect({});
 
     expect(records.map(({ row }) => row.title)).toEqual([
       "Problem 1",
       "Soal 1",
     ]);
+    expect(records.map(({ row }) => row.contentHash)).toEqual(
+      EXPECTED_CONTENT_HASHES
+    );
     expect(
       records.every(({ row }, index) => {
         const current = bindings[index];

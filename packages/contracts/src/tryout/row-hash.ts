@@ -125,6 +125,7 @@ export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
       optionKey,
       order,
     })),
+    contentHash: row.contentHash,
     countryKey: row.countryKey,
     examKey: row.examKey,
     locale: row.locale,
