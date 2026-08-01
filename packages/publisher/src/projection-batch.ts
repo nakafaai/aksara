@@ -3,11 +3,11 @@ import {
   type ContentProjection,
   canonicalizeContentProjection,
 } from "@nakafa/aksara-contracts/projection/spec";
+import type { StageProjectionBatchInput } from "@nakafa/aksara-contracts/transport/batch";
 import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
-import type { StageProjectionBatchInput } from "@nakafa/aksara-contracts/transport/request";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 

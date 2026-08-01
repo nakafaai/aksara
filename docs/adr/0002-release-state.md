@@ -87,7 +87,10 @@ signature or release state.
 1. Read authoritative current state and reject a conflicting candidate or
    retained recovery.
 2. Stage the signed candidate and its bounded item, route, projection,
-   structured-snapshot, and artifact batches.
+   structured-snapshot, and artifact batches. The publisher packs those
+   transaction-safe batches into bounded authenticated HTTP groups. Nakafa
+   executes each group in order while every child remains its own idempotent
+   Convex transaction.
 3. Recompute and verify every signed candidate count and digest.
 4. Derive, sign, stage, and verify the candidate's exact inverse under the
    operator-selected recovery ID.

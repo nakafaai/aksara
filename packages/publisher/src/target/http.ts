@@ -1,4 +1,8 @@
 import { HttpClient } from "@effect/platform";
+import {
+  type StageGroupRequest,
+  StageGroupSuccessSchema,
+} from "@nakafa/aksara-contracts/transport/group";
 import type {
   ActivateRecoveryRequest,
   ActivateReleaseRequest,
@@ -177,6 +181,18 @@ export const makeHttpPublicationTarget = Effect.fn(
     },
     stageArtifactBatch: (input) =>
       send({ ...input, operation: "stageArtifactBatch" }).pipe(Effect.asVoid),
+    stageGroup: (input) => {
+      const request: StageGroupRequest = {
+        ...input,
+        operation: "stageGroup",
+      };
+      return send(request).pipe(
+        Effect.flatMap((response) =>
+          decodeSuccess(StageGroupSuccessSchema, response)
+        ),
+        Effect.asVoid
+      );
+    },
     stageItemBatch: (input) =>
       send({ ...input, operation: "stageItemBatch" }).pipe(Effect.asVoid),
     stageProjectionBatch: (input) =>

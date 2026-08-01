@@ -5,11 +5,7 @@ import { Effect, Schedule } from "effect";
 const TRANSPORT_RETRY_COUNT = 3;
 const TRANSPORT_RETRY_DELAY = "100 millis";
 
-/**
- * Bounds release activation above the measured 67-second read-model proof.
- *
- * Short lifecycle commands retain their narrower command-owned timeouts.
- */
+/** Bounds each authenticated ingress exchange, including grouped staging. */
 export const PUBLICATION_TARGET_TIMEOUT = "2 minutes";
 
 /** Identifies the only idempotent failure class eligible for bounded retry. */
@@ -51,6 +47,7 @@ export function retryPublicationTarget(
     rollbackPage: retryOperation(target.rollbackPage),
     routePage: retryOperation(target.routePage),
     stageArtifactBatch: retryOperation(target.stageArtifactBatch),
+    stageGroup: retryOperation(target.stageGroup),
     stageItemBatch: retryOperation(target.stageItemBatch),
     stageProjectionBatch: retryOperation(target.stageProjectionBatch),
     stageRecovery: retryOperation(target.stageRecovery),

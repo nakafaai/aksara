@@ -99,6 +99,7 @@ function invokeTarget(
       rollbackPage: (value) => target.rollbackPage(value),
       routePage: (value) => target.routePage(value),
       stageArtifactBatch: (value) => target.stageArtifactBatch(value),
+      stageGroup: (value) => target.stageGroup(value),
       stageItemBatch: (value) => target.stageItemBatch(value),
       stageProjectionBatch: (value) => target.stageProjectionBatch(value),
       stageRecovery: (value) =>
@@ -133,7 +134,7 @@ describe("HTTP publication target", () => {
         }
       )
     );
-    expect(captured.requests).toHaveLength(20);
+    expect(captured.requests).toHaveLength(21);
     for (const request of captured.requests) {
       expect(request.method).toBe("POST");
       expect(request.url).toBe(endpoint.toString());

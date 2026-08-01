@@ -1,26 +1,22 @@
 import {
   artifact,
-  hash,
   items,
   projection,
   releaseId,
   route,
-  snapshotRow,
 } from "#contracts/test/request";
-import {
-  MAX_ARTIFACT_BATCH_COUNT,
-  MAX_ITEM_BATCH_COUNT,
-  MAX_PROJECTION_BATCH_COUNT,
-  MAX_ROUTE_BATCH_COUNT,
-  MAX_SNAPSHOT_BATCH_COUNT,
-} from "#contracts/transport/limits";
 import {
   StageArtifactBatchRequestSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchRequestSchema,
   StageRouteBatchRequestSchema,
-} from "#contracts/transport/request";
-import { StageSnapshotBatchRequestSchema } from "#contracts/transport/snapshot";
+} from "#contracts/transport/batch";
+import {
+  MAX_ARTIFACT_BATCH_COUNT,
+  MAX_ITEM_BATCH_COUNT,
+  MAX_PROJECTION_BATCH_COUNT,
+  MAX_ROUTE_BATCH_COUNT,
+} from "#contracts/transport/limits";
 
 /** Builds empty publication batches that every bounded wire schema must reject. */
 export function emptyBatchCases() {
@@ -61,17 +57,6 @@ export function emptyBatchCases() {
       },
       schema: StageArtifactBatchRequestSchema,
     },
-    {
-      input: {
-        batchIndex: 0,
-        family: "tryout",
-        operation: "stageSnapshotBatch",
-        releaseId,
-        rows: [],
-        snapshotId: hash,
-      },
-      schema: StageSnapshotBatchRequestSchema,
-    },
   ] as const;
 }
 
@@ -93,11 +78,6 @@ export function batchCeilingCases() {
     { length: MAX_ROUTE_BATCH_COUNT },
     (_, index) => ({ ...route, index })
   );
-  const snapshotBatch = Array.from(
-    { length: MAX_SNAPSHOT_BATCH_COUNT },
-    () => snapshotRow
-  );
-
   return [
     {
       invalid: {
@@ -157,25 +137,6 @@ export function batchCeilingCases() {
         operation: "stageRouteBatch",
         releaseId,
         routes: routeBatch,
-      },
-    },
-    {
-      invalid: {
-        batchIndex: 0,
-        family: "tryout",
-        operation: "stageSnapshotBatch",
-        releaseId,
-        rows: [...snapshotBatch, snapshotRow],
-        snapshotId: hash,
-      },
-      schema: StageSnapshotBatchRequestSchema,
-      valid: {
-        batchIndex: 0,
-        family: "tryout",
-        operation: "stageSnapshotBatch",
-        releaseId,
-        rows: snapshotBatch,
-        snapshotId: hash,
       },
     },
   ] as const;

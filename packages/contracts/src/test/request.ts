@@ -21,6 +21,7 @@ import {
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
 import { testRendererDomains } from "#contracts/test/renderer";
+import { StageOperationSchema } from "#contracts/transport/group";
 
 export const releaseId = "test-transport";
 export const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -223,22 +224,9 @@ export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
   rowKind: "catalog",
 });
 
-/** Exact publication request fixtures shared by one transport contract test. */
-export const requests = [
-  { operation: "accept", recoveryId, releaseId },
-  { operation: "abort", releaseId },
-  { operation: "current" },
-  {
-    activeManifestHash: manifestHash,
-    activeReleaseId: releaseId,
-    cursor: null,
-    family: "material",
-    limit: 500,
-    operation: "headPage",
-  },
-  { operation: "recovery", recoveryId, releaseId },
-  { operation: "stageRelease", release, rendererManifest },
-  { operation: "stageRecovery", release: recoveryRelease, rendererManifest },
+const stageOperations = Schema.decodeUnknownSync(
+  Schema.NonEmptyArray(StageOperationSchema)
+)([
   { operation: "stageSnapshot", releaseId, snapshot: snapshotManifest },
   {
     batchIndex: 0,
@@ -267,6 +255,26 @@ export const requests = [
     operation: "stageArtifactBatch",
     releaseId,
   },
+]);
+
+/** Exact publication request fixtures shared by one transport contract test. */
+export const requests = [
+  { operation: "accept", recoveryId, releaseId },
+  { operation: "abort", releaseId },
+  { operation: "current" },
+  {
+    activeManifestHash: manifestHash,
+    activeReleaseId: releaseId,
+    cursor: null,
+    family: "material",
+    limit: 500,
+    operation: "headPage",
+  },
+  { operation: "recovery", recoveryId, releaseId },
+  { operation: "stageRelease", release, rendererManifest },
+  { operation: "stageRecovery", release: recoveryRelease, rendererManifest },
+  ...stageOperations,
+  { operation: "stageGroup", releaseId, requests: stageOperations },
   { manifestHash, operation: "status", releaseId },
   { operation: "verify", release },
   { operation: "activate", release },

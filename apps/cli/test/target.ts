@@ -228,6 +228,7 @@ export function makeProductionTarget(
     rollbackPage: unused,
     routePage: unused,
     stageArtifactBatch: unused,
+    stageGroup: unused,
     stageItemBatch: unused,
     stageProjectionBatch: unused,
     stageRecovery: unused,

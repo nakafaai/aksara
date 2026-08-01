@@ -11,6 +11,7 @@ import {
   MAX_PUBLICATION_REQUEST_BYTES,
   MAX_ROUTE_BATCH_BYTES,
   MAX_SNAPSHOT_BATCH_BYTES,
+  MAX_STAGE_GROUP_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
 import {
   type PublicationRequest,
@@ -49,6 +50,7 @@ const REQUEST_BYTE_LIMITS: Readonly<{
   rollbackPage: MAX_PUBLICATION_REQUEST_BYTES,
   routePage: MAX_PUBLICATION_REQUEST_BYTES,
   stageArtifactBatch: MAX_ARTIFACT_BATCH_BYTES,
+  stageGroup: MAX_STAGE_GROUP_BYTES,
   stageItemBatch: MAX_ITEM_BATCH_BYTES,
   stageProjectionBatch: MAX_PROJECTION_BATCH_BYTES,
   stageRecovery: MAX_PUBLICATION_REQUEST_BYTES,
@@ -73,7 +75,14 @@ function protocolError(
 
 /** Fails if encoded JSON exceeds its operation-specific ingress ceiling. */
 function validateRequestBytes(request: PublicationRequest, bytes: number) {
-  if (bytes <= REQUEST_BYTE_LIMITS[request.operation]) {
+  const hasOversizedChild =
+    request.operation === "stageGroup" &&
+    request.requests.some(
+      (child) =>
+        Buffer.byteLength(JSON.stringify(child), "utf8") >
+        REQUEST_BYTE_LIMITS[child.operation]
+    );
+  if (bytes <= REQUEST_BYTE_LIMITS[request.operation] && !hasOversizedChild) {
     return Effect.void;
   }
   if (request.operation === "current") {

@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect, Stream } from "effect";
+import { Effect, Ref, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { streamBatches } from "#publisher/batch/core";
 
@@ -79,6 +79,62 @@ describe("streamBatches", () => {
         (batch) => Buffer.byteLength(serializeBatch(batch), "utf8") <= maxBytes
       )
     ).toBe(true);
+  });
+
+  it("emits a byte-bounded batch without reading the count ceiling", async () => {
+    const values = Array.from({ length: 64 }, (_, index) =>
+      `${index}`.padEnd(32, "x")
+    );
+    const maxBytes = Buffer.byteLength(
+      serializeBatch(
+        buildBatch(values.slice(0, 1), Number.MAX_SAFE_INTEGER, releaseId)
+      ),
+      "utf8"
+    );
+    const [batches, consumedCount] = await Effect.runPromise(
+      Effect.gen(function* () {
+        const consumption = yield* Ref.make(0);
+        const output = yield* streamBatches({
+          build: buildBatch,
+          count: (batch) => batch.values.length,
+          kind: "release-item",
+          maxBytes,
+          maxCount: values.length,
+          releaseId,
+          serialize: serializeBatch,
+          values: Stream.fromIterable(values).pipe(
+            Stream.rechunk(1),
+            Stream.tap(() => Ref.update(consumption, (count) => count + 1))
+          ),
+        }).pipe(
+          Stream.take(1),
+          Stream.runCollect,
+          Effect.map((chunk) => [...chunk])
+        );
+        return [output, yield* Ref.get(consumption)];
+      })
+    );
+
+    expect(batches).toHaveLength(1);
+    expect(batches[0]?.values).toEqual(values.slice(0, 1));
+    expect(consumedCount).toBe(2);
+  });
+
+  it("reports the global offset of an oversized value after a valid batch", async () => {
+    const error = await Effect.runPromise(
+      streamBatches({
+        build: buildBatch,
+        count: (batch) => batch.values.length,
+        kind: "release-item",
+        maxBytes: 100,
+        maxCount: 2,
+        releaseId,
+        serialize: serializeBatch,
+        values: Stream.make("alpha", "x".repeat(101)),
+      }).pipe(Stream.runCollect, Effect.flip)
+    );
+
+    expect(error).toMatchObject({ actualCount: 1, itemOffset: 1 });
   });
 
   it("rejects a builder that drops a partition value", async () => {

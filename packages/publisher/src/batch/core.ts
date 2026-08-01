@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import { Effect, Array as EffectArray, Schema, Stream } from "effect";
+import { Effect, Array as EffectArray, Option, Schema, Stream } from "effect";
 import type { NonEmptyReadonlyArray } from "effect/Array";
 
 type PublicationBatchKind =
@@ -8,7 +8,8 @@ type PublicationBatchKind =
   | "content-route"
   | "content-projection"
   | "release-item"
-  | "snapshot";
+  | "snapshot"
+  | "stage-group";
 
 /** One value cannot fit inside its mandatory publication batch ceiling. */
 export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBatchLimitError>()(
@@ -23,7 +24,8 @@ export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBa
       "content-route",
       "content-projection",
       "release-item",
-      "snapshot"
+      "snapshot",
+      "stage-group"
     ),
     maxBytes: Schema.Number.pipe(Schema.int(), Schema.positive()),
     maxCount: Schema.Number.pipe(Schema.int(), Schema.positive()),
@@ -70,8 +72,15 @@ function validateBatch<T>(input: {
   );
 }
 
-/** Splits one bounded group using conservative complete envelope bytes. */
-function partitionBatch<T>(input: {
+interface BatchState<T> {
+  readonly itemOffset: number;
+  readonly values: readonly T[];
+}
+
+/** Adds one value without retaining more than one complete output batch. */
+function packBatchValue<T>(input: {
+  readonly state: BatchState<T>;
+  readonly value: T;
   readonly kind: PublicationBatchKind;
   readonly maxBytes: number;
   readonly maxCount: number;
@@ -82,31 +91,9 @@ function partitionBatch<T>(input: {
     batchIndex: number,
     releaseId: ReleaseId
   ) => string;
-  readonly values: readonly T[];
 }) {
-  const batches: NonEmptyReadonlyArray<T>[] = [];
-  let batch: T[] = [];
-  for (const [itemOffset, value] of input.values.entries()) {
-    const isLast = itemOffset === input.values.length - 1;
-    const candidate = EffectArray.append(batch, value);
-    const candidateBytes = utf8Bytes(
-      input.serializeBatch(candidate, Number.MAX_SAFE_INTEGER, input.releaseId)
-    );
-    if (
-      candidate.length <= input.maxCount &&
-      candidateBytes <= input.maxBytes
-    ) {
-      batch = candidate;
-      if (isLast) {
-        batches.push(candidate);
-      }
-      continue;
-    }
-    if (EffectArray.isNonEmptyReadonlyArray(batch)) {
-      batches.push(batch);
-    }
-    const standalone = EffectArray.of(value);
-    batch = standalone;
+  if (!EffectArray.isNonEmptyReadonlyArray(input.state.values)) {
+    const standalone = EffectArray.of(input.value);
     const standaloneBytes = utf8Bytes(
       input.serializeBatch(standalone, Number.MAX_SAFE_INTEGER, input.releaseId)
     );
@@ -116,18 +103,63 @@ function partitionBatch<T>(input: {
           actualBytes: standaloneBytes,
           actualCount: 1,
           expectedCount: 1,
-          itemOffset,
+          itemOffset: input.state.itemOffset,
           kind: input.kind,
           maxBytes: input.maxBytes,
           maxCount: input.maxCount,
         })
       );
     }
-    if (isLast) {
-      batches.push(standalone);
-    }
+    const transition: readonly [
+      BatchState<T>,
+      Option.Option<NonEmptyReadonlyArray<T>>,
+    ] = [
+      { itemOffset: input.state.itemOffset + 1, values: standalone },
+      Option.none(),
+    ];
+    return Effect.succeed(transition);
   }
-  return Effect.succeed(batches);
+
+  const candidate = EffectArray.append(input.state.values, input.value);
+  const candidateBytes = utf8Bytes(
+    input.serializeBatch(candidate, Number.MAX_SAFE_INTEGER, input.releaseId)
+  );
+  if (candidate.length <= input.maxCount && candidateBytes <= input.maxBytes) {
+    const transition: readonly [
+      BatchState<T>,
+      Option.Option<NonEmptyReadonlyArray<T>>,
+    ] = [
+      { itemOffset: input.state.itemOffset + 1, values: candidate },
+      Option.none(),
+    ];
+    return Effect.succeed(transition);
+  }
+
+  const standalone = EffectArray.of(input.value);
+  const standaloneBytes = utf8Bytes(
+    input.serializeBatch(standalone, Number.MAX_SAFE_INTEGER, input.releaseId)
+  );
+  if (standaloneBytes > input.maxBytes) {
+    return Effect.fail(
+      new PublicationBatchLimitError({
+        actualBytes: standaloneBytes,
+        actualCount: 1,
+        expectedCount: 1,
+        itemOffset: input.state.itemOffset,
+        kind: input.kind,
+        maxBytes: input.maxBytes,
+        maxCount: input.maxCount,
+      })
+    );
+  }
+  const transition: readonly [
+    BatchState<T>,
+    Option.Option<NonEmptyReadonlyArray<T>>,
+  ] = [
+    { itemOffset: input.state.itemOffset + 1, values: standalone },
+    Option.some(input.state.values),
+  ];
+  return Effect.succeed(transition);
 }
 
 /**
@@ -158,19 +190,36 @@ export function streamBatches<T, B, E, R>(input: {
     releaseId: ReleaseId
   ) => input.serialize(input.build(values, batchIndex, releaseId));
 
-  return input.values.pipe(
-    Stream.grouped(input.maxCount),
-    Stream.mapEffect((chunk) =>
-      partitionBatch({
-        kind: input.kind,
-        maxBytes: input.maxBytes,
-        maxCount: input.maxCount,
-        releaseId: input.releaseId,
-        serializeBatch: buildCandidate,
-        values: [...chunk],
-      })
-    ),
-    Stream.flatMap(Stream.fromIterable),
+  const initialState: BatchState<T> = { itemOffset: 0, values: [] };
+  const sourceValues = input.values.pipe(
+    Stream.rechunk(1),
+    Stream.map(Option.some),
+    Stream.concat(Stream.succeed(Option.none<T>()))
+  );
+
+  return sourceValues.pipe(
+    Stream.mapAccumEffect(initialState, (state, value) => {
+      if (Option.isSome(value)) {
+        return packBatchValue({
+          kind: input.kind,
+          maxBytes: input.maxBytes,
+          maxCount: input.maxCount,
+          releaseId: input.releaseId,
+          serializeBatch: buildCandidate,
+          state,
+          value: value.value,
+        });
+      }
+      const output = EffectArray.isNonEmptyReadonlyArray(state.values)
+        ? Option.some(state.values)
+        : Option.none();
+      const transition: readonly [
+        BatchState<T>,
+        Option.Option<NonEmptyReadonlyArray<T>>,
+      ] = [state, output];
+      return Effect.succeed(transition);
+    }),
+    Stream.filterMap((batch) => batch),
     Stream.zipWithIndex,
     Stream.mapEffect(([values, batchIndex]) => {
       const batch = input.build(values, batchIndex, input.releaseId);

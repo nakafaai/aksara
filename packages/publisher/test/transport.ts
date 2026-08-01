@@ -13,6 +13,7 @@ import {
   ContentSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/release/snapshot-data";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { StageOperationSchema } from "@nakafa/aksara-contracts/transport/group";
 import {
   type PublicationRequest,
   PublicationRequestSchema,
@@ -172,6 +173,48 @@ const transportRoute = ContentRouteItemSchema.make({
   releaseId: transportRelease.manifest.releaseId,
 });
 
+const transportStageRequests = Schema.decodeUnknownSync(
+  Schema.NonEmptyArray(StageOperationSchema)
+)([
+  {
+    operation: "stageSnapshot",
+    releaseId: transportReleaseId,
+    snapshot: transportSnapshot,
+  },
+  {
+    batchIndex: 0,
+    family: transportSnapshot.family,
+    operation: "stageSnapshotBatch",
+    releaseId: transportReleaseId,
+    rows: [transportSnapshotRow],
+    snapshotId: transportSnapshot.manifest.snapshotId,
+  },
+  {
+    batchIndex: 0,
+    operation: "stageRouteBatch",
+    releaseId: transportReleaseId,
+    routes: [transportRoute],
+  },
+  {
+    batchIndex: 0,
+    items: transportContent.items,
+    operation: "stageItemBatch",
+    releaseId: transportReleaseId,
+  },
+  {
+    batchIndex: 0,
+    operation: "stageProjectionBatch",
+    projections: [transportContent.projection],
+    releaseId: transportReleaseId,
+  },
+  {
+    artifacts: [transportContent.artifact],
+    batchIndex: 0,
+    operation: "stageArtifactBatch",
+    releaseId: transportReleaseId,
+  },
+]);
+
 export const transportRequests: readonly PublicationRequest[] =
   Schema.decodeUnknownSync(Schema.Array(PublicationRequestSchema))([
     { operation: "current" },
@@ -189,42 +232,11 @@ export const transportRequests: readonly PublicationRequest[] =
       release: transportRecovery,
       rendererManifest: transportRenderer,
     },
+    ...transportStageRequests,
     {
-      operation: "stageSnapshot",
+      operation: "stageGroup",
       releaseId: transportReleaseId,
-      snapshot: transportSnapshot,
-    },
-    {
-      batchIndex: 0,
-      family: transportSnapshot.family,
-      operation: "stageSnapshotBatch",
-      releaseId: transportReleaseId,
-      rows: [transportSnapshotRow],
-      snapshotId: transportSnapshot.manifest.snapshotId,
-    },
-    {
-      batchIndex: 0,
-      operation: "stageRouteBatch",
-      releaseId: transportReleaseId,
-      routes: [transportRoute],
-    },
-    {
-      batchIndex: 0,
-      items: transportContent.items,
-      operation: "stageItemBatch",
-      releaseId: transportReleaseId,
-    },
-    {
-      batchIndex: 0,
-      operation: "stageProjectionBatch",
-      projections: [transportContent.projection],
-      releaseId: transportReleaseId,
-    },
-    {
-      artifacts: [transportContent.artifact],
-      batchIndex: 0,
-      operation: "stageArtifactBatch",
-      releaseId: transportReleaseId,
+      requests: transportStageRequests,
     },
     { manifestHash, operation: "status", releaseId: transportReleaseId },
     { operation: "verify", release: transportRelease },

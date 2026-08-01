@@ -6,8 +6,8 @@ import {
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
-import { Effect, Stream } from "effect";
-import { describe, expect, it, vi } from "vitest";
+import { Chunk, Effect, Stream } from "effect";
+import { describe, expect, it } from "vitest";
 
 import { prepareContentRelease } from "#publisher/preparation";
 import {
@@ -15,10 +15,9 @@ import {
   type PreparedGitRelease,
 } from "#publisher/preparation/spec";
 import {
-  stagePublicationSnapshots,
+  makeSnapshotRequests,
   verifyPublicationSnapshots,
 } from "#publisher/publication/snapshots";
-import type { PublicationTarget } from "#publisher/publication/spec";
 import {
   contentRecord,
   head,
@@ -31,7 +30,6 @@ import {
   emptySnapshotSources,
   makeProgramSnapshotFixture,
 } from "#test/snapshot";
-import { makePublicationTarget } from "#test/target";
 
 /** Prepares one body release that replaces the exact real program catalog. */
 async function prepareProgramRelease() {
@@ -134,48 +132,40 @@ describe("publication snapshots", () => {
 
   it("stages one manifest before its bounded exact row batch", async () => {
     const { prepared, snapshot } = programRelease;
-    const calls: string[] = [];
-    let stagedRows = 0;
-    const stageSnapshot = vi.fn(() =>
-      Effect.sync(() => {
-        calls.push("manifest");
-      })
+    const requests = Chunk.toReadonlyArray(
+      await Effect.runPromise(
+        makeSnapshotRequests(prepared).pipe(Stream.runCollect)
+      )
     );
-    const stageSnapshotBatch = vi.fn(
-      (
-        batch: Parameters<
-          (typeof PublicationTarget.Service)["stageSnapshotBatch"]
-        >[0]
-      ) =>
-        Effect.sync(() => {
-          calls.push("batch");
-          stagedRows += batch.rows.length;
-        })
-    );
-    const target = makePublicationTarget({
-      stageSnapshot,
-      stageSnapshotBatch,
-    });
+    const [manifest, ...batches] = requests;
 
-    await Effect.runPromise(stagePublicationSnapshots(prepared, target));
-
-    expect(calls[0]).toBe("manifest");
-    expect(calls.slice(1)).not.toHaveLength(0);
-    expect(calls.slice(1).every((call) => call === "batch")).toBe(true);
-    expect(stageSnapshot).toHaveBeenCalledWith({
+    expect(manifest).toEqual({
+      operation: "stageSnapshot",
       releaseId: prepared.manifest.releaseId,
       snapshot: snapshot.snapshot,
     });
-    expect(stageSnapshotBatch).toHaveBeenCalledWith(
+    expect(batches).not.toHaveLength(0);
+    expect(
+      batches.every((request) => request.operation === "stageSnapshotBatch")
+    ).toBe(true);
+    expect(batches[0]).toEqual(
       expect.objectContaining({
         batchIndex: 0,
         family: "program",
+        operation: "stageSnapshotBatch",
         releaseId: prepared.manifest.releaseId,
         rows: expect.arrayContaining([
           expect.objectContaining({ family: "program" }),
         ]),
         snapshotId: snapshot.snapshot.manifest.snapshotId,
       })
+    );
+    const stagedRows = batches.reduce(
+      (total, request) =>
+        request.operation === "stageSnapshotBatch"
+          ? total + request.rows.length
+          : total,
+      0
     );
     expect(stagedRows).toBe(snapshot.snapshot.manifest.rowCount);
   });

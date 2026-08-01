@@ -73,6 +73,8 @@ export function foreignTransportSuccess(
         replaceIdentity(value, "rollbackOf", foreignReleaseId),
       stageArtifactBatch: (value) =>
         replaceIdentity(value, "releaseId", foreignReleaseId),
+      stageGroup: (value) =>
+        replaceIdentity(value, "releaseId", foreignReleaseId),
       stageItemBatch: (value) =>
         replaceIdentity(value, "releaseId", foreignReleaseId),
       stageProjectionBatch: (value) =>

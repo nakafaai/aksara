@@ -34,5 +34,11 @@ export const MAX_SNAPSHOT_BATCH_BYTES = 4 * 1024 * 1024;
 /** Maximum structured snapshot rows accepted by one staging transaction. */
 export const MAX_SNAPSHOT_BATCH_COUNT = 16;
 
+/** Maximum complete grouped staging body below the Node action argument cap. */
+export const MAX_STAGE_GROUP_BYTES = 4 * 1024 * 1024 + 512 * 1024;
+
+/** Maximum safe staging transactions executed by one authenticated action. */
+export const MAX_STAGE_GROUP_COUNT = 64;
+
 /** Maximum compact material heads returned by one authoritative page. */
 export const MAX_HEAD_PAGE_COUNT = 500;

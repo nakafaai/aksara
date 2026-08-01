@@ -4,11 +4,11 @@ import {
   type VerifiedContentSnapshots,
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot-verify";
+import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import { Effect, Stream } from "effect";
 
 import type { PreparedContentRelease } from "#publisher/preparation/spec";
 import type { SnapshotVerificationError } from "#publisher/publication/failure";
-import type { PublicationTarget } from "#publisher/publication/spec";
 import {
   ReleaseVerificationMismatchError,
   validateReleaseSnapshots,
@@ -58,30 +58,34 @@ export const verifyPublicationSnapshots: VerifyPublicationSnapshots = Effect.fn(
   return summary;
 });
 
-/** Stages replacement manifests and their bounded immutable row batches. */
-export const stagePublicationSnapshots = Effect.fn(
-  "AksaraPublisher.stagePublicationSnapshots"
-)(function* <E, R>(
-  input: PreparedContentRelease<E, R>,
-  target: typeof PublicationTarget.Service
+/** Streams each replacement manifest before its transaction-safe row batches. */
+export function makeSnapshotRequests<E, R>(
+  input: PreparedContentRelease<E, R>
 ) {
-  yield* input.snapshotManifests().pipe(
-    Stream.runForEach((snapshot) =>
-      Effect.gen(function* () {
-        yield* target.stageSnapshot({
-          releaseId: input.manifest.releaseId,
-          snapshot,
-        });
-        const rows = input
-          .snapshotRows()
-          .pipe(Stream.filter((row) => row.family === snapshot.family));
-        yield* makeSnapshotBatches(
-          input.manifest.releaseId,
-          snapshot.family,
-          contentSnapshotId(snapshot),
-          rows
-        ).pipe(Stream.runForEach(target.stageSnapshotBatch));
-      })
-    )
+  return input.snapshotManifests().pipe(
+    Stream.flatMap((snapshot) => {
+      const manifest: StageOperation = {
+        operation: "stageSnapshot",
+        releaseId: input.manifest.releaseId,
+        snapshot,
+      };
+      const rows = input
+        .snapshotRows()
+        .pipe(Stream.filter((row) => row.family === snapshot.family));
+      const batches = makeSnapshotBatches(
+        input.manifest.releaseId,
+        snapshot.family,
+        contentSnapshotId(snapshot),
+        rows
+      ).pipe(
+        Stream.map(
+          (batch): StageOperation => ({
+            ...batch,
+            operation: "stageSnapshotBatch",
+          })
+        )
+      );
+      return Stream.concat(Stream.succeed(manifest), batches);
+    })
   );
-});
+}

@@ -107,6 +107,14 @@ export function transportSuccess(
           unchanged: 0,
         },
       }),
+      stageGroup: (value) => ({
+        ok: true,
+        operation: value.operation,
+        value: {
+          releaseId: value.releaseId,
+          requestCount: value.requests.length,
+        },
+      }),
       stageItemBatch: (value) => ({
         ok: true,
         operation: value.operation,

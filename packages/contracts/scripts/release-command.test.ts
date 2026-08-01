@@ -24,7 +24,7 @@ it("executes the release identity CLI boundary", async () => {
 
   await vi.waitFor(() => {
     expect(readFileSync(output, "utf8")).toContain(
-      "asset_name=nakafa-aksara-contracts-0.5.0.tgz"
+      "asset_name=nakafa-aksara-contracts-0.6.0.tgz"
     );
   });
   process.argv = originalArguments;

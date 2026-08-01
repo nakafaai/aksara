@@ -4,11 +4,14 @@ import {
   HttpClientRequest,
   HttpClientResponse,
 } from "@effect/platform";
+import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
+import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
 import { Duration, Effect, Redacted } from "effect";
 import { describe, expect, it } from "vitest";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
+import { transportRequests } from "#test/transport";
 import { transportSuccess } from "#test/transport-success";
 
 const endpoint = new URL("https://publish.test.invalid/content");
@@ -92,5 +95,56 @@ describe("sendPublicationRequest", () => {
       reason: "response-evidence",
       stage: "current",
     });
+  });
+
+  it("rejects an oversized grouped child before network IO", async () => {
+    const groupRequest = transportRequests.find(
+      (value) => value.operation === "stageGroup"
+    );
+    expect(groupRequest?.operation).toBe("stageGroup");
+    if (groupRequest?.operation !== "stageGroup") {
+      return;
+    }
+    const projectionRequest = groupRequest.requests.find(
+      (value) => value.operation === "stageProjectionBatch"
+    );
+    expect(projectionRequest?.operation).toBe("stageProjectionBatch");
+    if (projectionRequest?.operation !== "stageProjectionBatch") {
+      return;
+    }
+    const [projection] = projectionRequest.projections;
+    const oversized: StageGroupRequest = {
+      operation: "stageGroup",
+      releaseId: groupRequest.releaseId,
+      requests: [
+        {
+          ...projectionRequest,
+          projections: [
+            {
+              ...projection,
+              metadata: {
+                ...projection.metadata,
+                title: "x".repeat(MAX_PROJECTION_BATCH_BYTES),
+              },
+            },
+          ],
+        },
+      ],
+    };
+    let requestCount = 0;
+    const client = HttpClient.make(() => {
+      requestCount += 1;
+      return Effect.die("Oversized groups must not reach network IO.");
+    });
+
+    await expect(
+      Effect.runPromise(
+        sendPublicationRequest(client, config, oversized).pipe(Effect.flip)
+      )
+    ).resolves.toMatchObject({
+      _tag: "PublicationTargetRejectedError",
+      rejection: { code: "CONTENT_RELEASE_SIZE" },
+    });
+    expect(requestCount).toBe(0);
   });
 });

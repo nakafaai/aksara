@@ -3,11 +3,9 @@ import {
   ContentSnapshotKindSchema,
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot";
+import type { StageBatchReceipt } from "@nakafa/aksara-contracts/transport/batch";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import type {
-  PublicationSuccess,
-  StageBatchReceipt,
-} from "@nakafa/aksara-contracts/transport/response";
+import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 import type { StageSnapshotBatchReceipt } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Match } from "effect";
 
@@ -273,6 +271,10 @@ export function hasBoundPublicationSuccess(
       stageArtifactBatch: (value) =>
         response.operation === "stageArtifactBatch" &&
         hasBoundBatchReceipt(value, response.value),
+      stageGroup: (value) =>
+        response.operation === "stageGroup" &&
+        response.value.releaseId === value.releaseId &&
+        response.value.requestCount === value.requests.length,
       stageItemBatch: (value) =>
         response.operation === "stageItemBatch" &&
         hasBoundBatchReceipt(value, response.value),

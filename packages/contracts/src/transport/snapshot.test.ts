@@ -10,6 +10,7 @@ import {
   snapshotManifest,
   snapshotRow,
 } from "#contracts/test/request";
+import { MAX_SNAPSHOT_BATCH_COUNT } from "#contracts/transport/limits";
 import {
   StageSnapshotBatchInputSchema,
   StageSnapshotBatchRequestSchema,
@@ -73,6 +74,18 @@ describe("snapshot transport", () => {
     expect(accepts(StageSnapshotBatchInputSchema, input)).toBe(true);
     expect(accepts(StageSnapshotBatchRequestSchema, request)).toBe(true);
     expect(accepts(StageSnapshotBatchInputSchema, request)).toBe(false);
+    expect(
+      accepts(StageSnapshotBatchRequestSchema, { ...request, rows: [] })
+    ).toBe(false);
+    expect(
+      accepts(StageSnapshotBatchRequestSchema, {
+        ...request,
+        rows: Array.from(
+          { length: MAX_SNAPSHOT_BATCH_COUNT + 1 },
+          () => snapshotRow
+        ),
+      })
+    ).toBe(false);
   });
 
   it("rejects mixed families and Quran rows from another snapshot", () => {

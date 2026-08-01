@@ -12,6 +12,7 @@ export const PublicationTargetStageSchema = Schema.Literal(
   "current",
   "heads",
   "release",
+  "staging",
   "items",
   "routes",
   "projections",
