@@ -196,6 +196,41 @@ export const articleFound = {
   ),
 } as const;
 
+export const protectedContentKey = ContentKeySchema.make(
+  "question-bank/tryout/indonesia/snbt/general-knowledge/set-1/question-1/question"
+);
+export const protectedArtifact = createSignedArtifact(protectedContentKey);
+export const protectedSnapshotId = Sha256HashSchema.make(
+  `sha256:${"9".repeat(64)}`
+);
+export const protectedRequest = {
+  artifactHash: protectedArtifact.artifactHash,
+  contentKey: protectedContentKey,
+  delivery: "authenticated",
+  locale: "en",
+  snapshotId: protectedSnapshotId,
+} as const;
+export const protectedAnswerRequest = {
+  ...protectedRequest,
+  contentKey: ContentKeySchema.make(
+    "question-bank/tryout/indonesia/snbt/general-knowledge/set-1/question-1/answer"
+  ),
+  delivery: "entitled",
+} as const;
+export const protectedFound = {
+  activeManifestHash: release.manifestHash,
+  activeReleaseId: release.manifest.releaseId,
+  artifact: protectedArtifact,
+  delivery: "authenticated",
+  kind: "found",
+  release,
+  rendererManifest,
+  snapshotId: protectedSnapshotId,
+  sourcePath: CorpusSourcePathSchema.make(
+    "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-1/question-1/question.en.mdx"
+  ),
+} as const;
+
 /** Builds one runtime exchange with the fixture's trusted verification key. */
 function exchangeProgram(input: {
   readonly rendererManifest?: unknown;

@@ -5,8 +5,8 @@ import {
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
-import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
+  ContentKeySchema,
   CorpusSourcePathSchema,
   PublicPathSchema,
   ReleaseIdSchema,
@@ -25,12 +25,42 @@ export const MAX_RUNTIME_REQUEST_BYTES = 4 * 1024;
 /** Maximum UTF-8 bytes returned by the server-only runtime endpoint. */
 export const MAX_RUNTIME_RESPONSE_BYTES = 1024 * 1024;
 
-/** Exact route and access class requested by the Nakafa server runtime. */
-export const ContentRuntimeRequestSchema = Schema.Struct({
-  delivery: ContentDeliveryClassSchema,
+/** Exact public route requested by the Nakafa server runtime. */
+export const PublicContentRuntimeRequestSchema = Schema.Struct({
+  delivery: Schema.Literal("public"),
   locale: ContentLocaleSchema,
   publicPath: PublicPathSchema,
 });
+
+/** Checks one protected body selector uses its required delivery class. */
+function hasProtectedBodyKind(input: {
+  readonly contentKey: string;
+  readonly delivery: "authenticated" | "entitled";
+}) {
+  if (input.delivery === "authenticated") {
+    return input.contentKey.endsWith("/question");
+  }
+  return input.contentKey.endsWith("/answer");
+}
+
+/** Exact frozen try-out body requested after product authorization. */
+export const ProtectedContentRuntimeRequestSchema = Schema.Struct({
+  artifactHash: Sha256HashSchema,
+  contentKey: ContentKeySchema,
+  delivery: Schema.Literal("authenticated", "entitled"),
+  locale: ContentLocaleSchema,
+  snapshotId: Sha256HashSchema,
+}).pipe(
+  Schema.filter(hasProtectedBodyKind, {
+    message: () => "Expected authenticated prompts and entitled answer bodies.",
+  })
+);
+
+/** Complete public and protected server-runtime request vocabulary. */
+export const ContentRuntimeRequestSchema = Schema.Union(
+  PublicContentRuntimeRequestSchema,
+  ProtectedContentRuntimeRequestSchema
+);
 export type ContentRuntimeRequest = typeof ContentRuntimeRequestSchema.Type;
 
 /** Confirms one runtime artifact and projection describe the same document. */
@@ -52,22 +82,40 @@ function hasCoherentContent(input: {
  * Route, head, delivery, and active-pointer membership remain target authority;
  * this envelope is deliberately not a cryptographic inclusion proof.
  */
-export const ContentRuntimeFoundSchema = Schema.Struct({
+const ContentRuntimeFoundFields = {
   activeManifestHash: Sha256HashSchema,
   activeReleaseId: ReleaseIdSchema,
   artifact: SignedContentArtifactSchema,
-  delivery: ContentDeliveryClassSchema,
   kind: Schema.Literal("found"),
-  projection: RoutedContentProjectionSchema,
-  projectionHash: Sha256HashSchema,
   release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
   sourcePath: CorpusSourcePathSchema,
+};
+
+/** Public route body selected from the active indexed read model. */
+export const PublicContentRuntimeFoundSchema = Schema.Struct({
+  ...ContentRuntimeFoundFields,
+  delivery: Schema.Literal("public"),
+  projection: RoutedContentProjectionSchema,
+  projectionHash: Sha256HashSchema,
 }).pipe(
   Schema.filter(hasCoherentContent, {
     message: () =>
       "Expected the runtime artifact and projection to share one identity.",
   })
+);
+
+/** Protected frozen body selected from one retained try-out snapshot. */
+export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
+  ...ContentRuntimeFoundFields,
+  delivery: Schema.Literal("authenticated", "entitled"),
+  snapshotId: Sha256HashSchema,
+});
+
+/** Complete verified artifact response vocabulary for every delivery class. */
+export const ContentRuntimeFoundSchema = Schema.Union(
+  PublicContentRuntimeFoundSchema,
+  ProtectedContentRuntimeFoundSchema
 );
 export type ContentRuntimeFound = typeof ContentRuntimeFoundSchema.Type;
 
