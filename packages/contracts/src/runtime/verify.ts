@@ -5,25 +5,13 @@ import type { RoutedContentProjection } from "#contracts/projection/spec";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import {
-  type ContentRuntimeFound,
-  type ContentRuntimeRequest,
   decodeContentRuntimeRequest,
   decodeContentRuntimeResponse,
+  type ProtectedContentRuntimeFound,
+  type ProtectedContentRuntimeRequest,
+  type PublicContentRuntimeFound,
+  type PublicContentRuntimeRequest,
 } from "#contracts/runtime/spec";
-
-type PublicRuntimeRequest = Extract<
-  ContentRuntimeRequest,
-  { readonly delivery: "public" }
->;
-type ProtectedRuntimeRequest = Exclude<
-  ContentRuntimeRequest,
-  PublicRuntimeRequest
->;
-type PublicRuntimeFound = Extract<
-  ContentRuntimeFound,
-  { readonly delivery: "public" }
->;
-type ProtectedRuntimeFound = Exclude<ContentRuntimeFound, PublicRuntimeFound>;
 
 /** A decoded runtime response does not belong to its initiating request. */
 export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRuntimeMismatchError>()(
@@ -91,7 +79,10 @@ function hasProtectedSourcePath(
 
 /** Verifies one active public artifact belongs to its exact route request. */
 const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
-  function* (request: PublicRuntimeRequest, response: PublicRuntimeFound) {
+  function* (
+    request: PublicContentRuntimeRequest,
+    response: PublicContentRuntimeFound
+  ) {
     if (response.projection.locale !== request.locale) {
       return yield* new ContentRuntimeMismatchError({ reason: "locale" });
     }
@@ -115,8 +106,8 @@ const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
 const verifyProtectedIdentity = Effect.fn(
   "AksaraContracts.verifyProtectedIdentity"
 )(function* (
-  request: ProtectedRuntimeRequest,
-  response: ProtectedRuntimeFound
+  request: ProtectedContentRuntimeRequest,
+  response: ProtectedContentRuntimeFound
 ) {
   if (response.artifact.payload.locale !== request.locale) {
     return yield* new ContentRuntimeMismatchError({ reason: "locale" });
