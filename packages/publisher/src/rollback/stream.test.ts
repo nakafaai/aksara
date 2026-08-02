@@ -189,7 +189,7 @@ describe("streamRollbackRecords", () => {
     ).toEqual([-1, 0, 1]);
     expect(rollbackPage.mock.calls[0]?.[0]).toEqual({
       afterIndex: -1,
-      limit: 8,
+      limit: 64,
       rollbackOf,
       rollbackOfManifestHash,
     });
