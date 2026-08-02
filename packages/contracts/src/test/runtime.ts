@@ -196,8 +196,10 @@ export const articleFound = {
   ),
 } as const;
 
+const protectedQuestionKey =
+  "question-bank/tryout/test/runtime/protected/set-1/question-1";
 export const protectedContentKey = ContentKeySchema.make(
-  "question-bank/tryout/indonesia/snbt/general-knowledge/set-1/question-1/question"
+  `${protectedQuestionKey}/question`
 );
 export const protectedArtifact = createSignedArtifact(protectedContentKey);
 export const protectedSnapshotId = Sha256HashSchema.make(
@@ -212,9 +214,7 @@ export const protectedRequest = {
 } as const;
 export const protectedAnswerRequest = {
   ...protectedRequest,
-  contentKey: ContentKeySchema.make(
-    "question-bank/tryout/indonesia/snbt/general-knowledge/set-1/question-1/answer"
-  ),
+  contentKey: ContentKeySchema.make(`${protectedQuestionKey}/answer`),
   delivery: "entitled",
 } as const;
 export const protectedFound = {
@@ -227,7 +227,7 @@ export const protectedFound = {
   rendererManifest,
   snapshotId: protectedSnapshotId,
   sourcePath: CorpusSourcePathSchema.make(
-    "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-1/question-1/question.en.mdx"
+    `packages/corpus/${protectedQuestionKey}/question.en.mdx`
   ),
 } as const;
 
