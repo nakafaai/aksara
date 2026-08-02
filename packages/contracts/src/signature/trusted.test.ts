@@ -11,7 +11,7 @@ import {
 
 const oldKeyId = SigningKeyIdSchema.make("content-2026-01");
 const currentPublicKey =
-  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n";
+  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA4M6d4UVKO4A40UvzKwyD71KKvuaW6ePSM3Fk6RRhO/I=\n-----END PUBLIC KEY-----\n";
 const oldPublicKey = generateKeyPairSync("ed25519")
   .publicKey.export({ format: "pem", type: "spki" })
   .toString();
@@ -21,10 +21,10 @@ const oldEntry = TrustedKeySchema.make({
 });
 
 describe("trusted content keys", () => {
-  it("contains the exact first production public key", () => {
+  it("contains the exact Agent Mode public key", () => {
     expect(TRUSTED_CONTENT_KEYS).toEqual([
       {
-        keyId: "content-2026-07-23",
+        keyId: "agent-0046a870c0d485f4b6dce0ad",
         publicKeyPem: currentPublicKey,
       },
     ]);
