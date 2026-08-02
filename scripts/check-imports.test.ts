@@ -111,6 +111,51 @@ const multiple = require("first", "second");
     ]);
   });
 
+  it("allows the shared testing package only from declared Vitest configs", () => {
+    const resolveIdentity = createWorkspaceIdentityResolver(
+      createManifestReader({
+        "packages/compiler/package.json": {
+          devDependencies: { "@nakafa/testing": "workspace:*" },
+          name: "@nakafa/aksara-compiler",
+        },
+      })
+    );
+
+    expect(
+      importViolations(
+        "packages/compiler/vitest.config.ts",
+        'import config from "@nakafa/testing";',
+        resolveIdentity
+      )
+    ).toEqual([]);
+    expect(
+      importViolations(
+        "packages/compiler/src/source.ts",
+        'import config from "@nakafa/testing";',
+        resolveIdentity
+      )
+    ).toEqual([
+      "packages/compiler/src/source.ts:1 @nakafa/testing: workspace dependency violates the architecture graph",
+    ]);
+
+    const missingDependency = createWorkspaceIdentityResolver(
+      createManifestReader({
+        "packages/compiler/package.json": {
+          name: "@nakafa/aksara-compiler",
+        },
+      })
+    );
+    expect(
+      importViolations(
+        "packages/compiler/vitest.config.ts",
+        'import config from "@nakafa/testing";',
+        missingDependency
+      )
+    ).toEqual([
+      "packages/compiler/vitest.config.ts:1 @nakafa/testing: test config dependency is absent from package devDependencies",
+    ]);
+  });
+
   it("does not impose workspace policy on root tooling", () => {
     const resolveIdentity = createWorkspaceIdentityResolver(() => {
       throw new Error("Root tooling must not read a workspace manifest");
