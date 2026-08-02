@@ -5,9 +5,25 @@ import type { RoutedContentProjection } from "#contracts/projection/spec";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import {
+  type ContentRuntimeFound,
+  type ContentRuntimeRequest,
   decodeContentRuntimeRequest,
   decodeContentRuntimeResponse,
 } from "#contracts/runtime/spec";
+
+type PublicRuntimeRequest = Extract<
+  ContentRuntimeRequest,
+  { readonly delivery: "public" }
+>;
+type ProtectedRuntimeRequest = Exclude<
+  ContentRuntimeRequest,
+  PublicRuntimeRequest
+>;
+type PublicRuntimeFound = Extract<
+  ContentRuntimeFound,
+  { readonly delivery: "public" }
+>;
+type ProtectedRuntimeFound = Exclude<ContentRuntimeFound, PublicRuntimeFound>;
 
 /** A decoded runtime response does not belong to its initiating request. */
 export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRuntimeMismatchError>()(
@@ -16,11 +32,14 @@ export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRunti
     reason: Schema.Literal(
       "activeManifestHash",
       "activeReleaseId",
+      "artifactHash",
+      "contentKey",
       "delivery",
       "locale",
       "projectionHash",
       "publicPath",
       "rendererManifest",
+      "snapshotId",
       "sourcePath"
     ),
   }
@@ -41,7 +60,7 @@ function hasArticleSourcePath(
   return segments.length === 2 && segments.join("-") === projection.articleSlug;
 }
 
-/** Checks one target-owned path exactly matches its projected content family. */
+/** Checks one public path exactly matches its projected content family. */
 function hasProjectionSourcePath(
   projection: RoutedContentProjection,
   sourcePath: string
@@ -55,6 +74,72 @@ function hasProjectionSourcePath(
     `packages/corpus/${projection.contentKey}/${projection.locale}.mdx`
   );
 }
+
+/** Checks one protected body path matches its exact content key and locale. */
+function hasProtectedSourcePath(
+  contentKey: string,
+  locale: string,
+  sourcePath: string
+) {
+  const separator = contentKey.lastIndexOf("/");
+  const sourceRoot = contentKey.slice(0, separator);
+  const bodyKind = contentKey.slice(separator + 1);
+  return (
+    sourcePath === `packages/corpus/${sourceRoot}/${bodyKind}.${locale}.mdx`
+  );
+}
+
+/** Verifies one active public artifact belongs to its exact route request. */
+const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
+  function* (request: PublicRuntimeRequest, response: PublicRuntimeFound) {
+    if (response.projection.locale !== request.locale) {
+      return yield* new ContentRuntimeMismatchError({ reason: "locale" });
+    }
+    if (response.projection.publicPath !== request.publicPath) {
+      return yield* new ContentRuntimeMismatchError({ reason: "publicPath" });
+    }
+    if (!hasProjectionSourcePath(response.projection, response.sourcePath)) {
+      return yield* new ContentRuntimeMismatchError({ reason: "sourcePath" });
+    }
+    if (
+      response.projectionHash !== hashContentProjection(response.projection)
+    ) {
+      return yield* new ContentRuntimeMismatchError({
+        reason: "projectionHash",
+      });
+    }
+  }
+);
+
+/** Verifies one protected artifact belongs to its frozen snapshot selector. */
+const verifyProtectedIdentity = Effect.fn(
+  "AksaraContracts.verifyProtectedIdentity"
+)(function* (
+  request: ProtectedRuntimeRequest,
+  response: ProtectedRuntimeFound
+) {
+  if (response.artifact.payload.locale !== request.locale) {
+    return yield* new ContentRuntimeMismatchError({ reason: "locale" });
+  }
+  if (response.artifact.artifactHash !== request.artifactHash) {
+    return yield* new ContentRuntimeMismatchError({ reason: "artifactHash" });
+  }
+  if (response.artifact.payload.contentKey !== request.contentKey) {
+    return yield* new ContentRuntimeMismatchError({ reason: "contentKey" });
+  }
+  if (response.snapshotId !== request.snapshotId) {
+    return yield* new ContentRuntimeMismatchError({ reason: "snapshotId" });
+  }
+  if (
+    !hasProtectedSourcePath(
+      request.contentKey,
+      request.locale,
+      response.sourcePath
+    )
+  ) {
+    return yield* new ContentRuntimeMismatchError({ reason: "sourcePath" });
+  }
+});
 
 /**
  * Verifies independently signed runtime values selected for one exact request.
@@ -74,17 +159,19 @@ export const verifyContentRuntimeExchange = Effect.fn(
   if (response.kind !== "found") {
     return response;
   }
-  if (response.delivery !== request.delivery) {
-    return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
-  }
-  if (response.projection.locale !== request.locale) {
-    return yield* new ContentRuntimeMismatchError({ reason: "locale" });
-  }
-  if (response.projection.publicPath !== request.publicPath) {
-    return yield* new ContentRuntimeMismatchError({ reason: "publicPath" });
-  }
-  if (!hasProjectionSourcePath(response.projection, response.sourcePath)) {
-    return yield* new ContentRuntimeMismatchError({ reason: "sourcePath" });
+  if (response.delivery === "public") {
+    if (request.delivery !== "public") {
+      return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
+    }
+    yield* verifyPublicIdentity(request, response);
+  } else {
+    if (request.delivery === "public") {
+      return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
+    }
+    if (response.delivery !== request.delivery) {
+      return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
+    }
+    yield* verifyProtectedIdentity(request, response);
   }
   const bundle = yield* verifyContentReleaseBundle({
     release: response.release,
@@ -107,9 +194,6 @@ export const verifyContentRuntimeExchange = Effect.fn(
     return yield* new ContentRuntimeMismatchError({
       reason: "activeManifestHash",
     });
-  }
-  if (response.projectionHash !== hashContentProjection(response.projection)) {
-    return yield* new ContentRuntimeMismatchError({ reason: "projectionHash" });
   }
   yield* verifySignedContentArtifact({
     artifact: response.artifact,

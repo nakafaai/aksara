@@ -9,6 +9,9 @@ import {
   artifact,
   found,
   incompatibleManifest,
+  protectedArtifact,
+  protectedFound,
+  protectedRequest,
   rejectExchange,
   release,
   tamperSignature,
@@ -20,7 +23,6 @@ describe("content runtime verification", () => {
   it("binds a found response to its exact request", async () => {
     await expect(verifyExchange({ response: found })).resolves.toEqual(found);
     const responses = [
-      { ...found, delivery: "entitled" },
       {
         ...found,
         artifact: {
@@ -63,7 +65,6 @@ describe("content runtime verification", () => {
           : "none"
       )
     ).toEqual([
-      "delivery",
       "locale",
       "publicPath",
       "sourcePath",
@@ -72,6 +73,18 @@ describe("content runtime verification", () => {
       "activeManifestHash",
       "projectionHash",
     ]);
+    await expect(
+      rejectExchange({ response: protectedFound })
+    ).resolves.toMatchObject({
+      _tag: "ContentRuntimeMismatchError",
+      reason: "delivery",
+    });
+    await expect(
+      rejectExchange({ request: protectedRequest, response: found })
+    ).resolves.toMatchObject({
+      _tag: "ContentRuntimeMismatchError",
+      reason: "delivery",
+    });
   });
 
   it("binds an article response to its pair-grouped physical source", async () => {
@@ -99,6 +112,71 @@ describe("content runtime verification", () => {
         expect.objectContaining({
           _tag: "ContentRuntimeMismatchError",
           reason: "sourcePath",
+        })
+      )
+    );
+  });
+
+  it("binds a protected body to its frozen snapshot selector", async () => {
+    await expect(
+      verifyExchange({ request: protectedRequest, response: protectedFound })
+    ).resolves.toEqual(protectedFound);
+
+    const cases = [
+      ["delivery", { ...protectedFound, delivery: "entitled" }],
+      [
+        "artifactHash",
+        {
+          ...protectedFound,
+          artifact: {
+            ...protectedArtifact,
+            artifactHash: artifact.artifactHash,
+          },
+        },
+      ],
+      [
+        "contentKey",
+        {
+          ...protectedFound,
+          artifact: {
+            ...protectedArtifact,
+            payload: {
+              ...protectedArtifact.payload,
+              contentKey: artifact.payload.contentKey,
+            },
+          },
+        },
+      ],
+      [
+        "locale",
+        {
+          ...protectedFound,
+          artifact: {
+            ...protectedArtifact,
+            payload: { ...protectedArtifact.payload, locale: "id" },
+          },
+        },
+      ],
+      ["snapshotId", { ...protectedFound, snapshotId: artifact.artifactHash }],
+      [
+        "sourcePath",
+        {
+          ...protectedFound,
+          sourcePath: "packages/corpus/question/wrong.en.mdx",
+        },
+      ],
+    ] as const;
+
+    const outcomes = await Promise.all(
+      cases.map(([, response]) =>
+        rejectExchange({ request: protectedRequest, response })
+      )
+    );
+    expect(outcomes).toEqual(
+      cases.map(([reason]) =>
+        expect.objectContaining({
+          _tag: "ContentRuntimeMismatchError",
+          reason,
         })
       )
     );

@@ -14,6 +14,9 @@ import {
   articleFound,
   artifact,
   found,
+  protectedAnswerRequest,
+  protectedFound,
+  protectedRequest,
   request,
 } from "#contracts/test/runtime";
 
@@ -36,6 +39,38 @@ describe("content runtime contract", () => {
     }
   });
 
+  it("decodes only exact protected question selectors", async () => {
+    expect(accepts(ContentRuntimeRequestSchema, protectedRequest)).toBe(true);
+    await expect(
+      Effect.runPromise(decodeContentRuntimeRequest(protectedRequest))
+    ).resolves.toEqual(protectedRequest);
+
+    expect(accepts(ContentRuntimeRequestSchema, protectedAnswerRequest)).toBe(
+      true
+    );
+
+    const mismatchedDelivery = Schema.decodeUnknownEither(
+      ContentRuntimeRequestSchema
+    )(
+      { ...protectedRequest, delivery: "entitled" },
+      { onExcessProperty: "error" }
+    );
+    expect(Either.isLeft(mismatchedDelivery)).toBe(true);
+    if (Either.isLeft(mismatchedDelivery)) {
+      expect(String(mismatchedDelivery.left)).toContain(
+        "Expected authenticated prompts and entitled answer bodies."
+      );
+    }
+
+    for (const invalid of [
+      { ...protectedRequest, publicPath: "tryout/private" },
+      { ...protectedRequest, snapshotId: "snapshot-1" },
+      { ...protectedRequest, artifactHash: "artifact-1" },
+    ]) {
+      expect(accepts(ContentRuntimeRequestSchema, invalid)).toBe(false);
+    }
+  });
+
   it("accepts found, missing, and sanitized failure responses", async () => {
     expect(Buffer.byteLength(JSON.stringify(found), "utf8")).toBeLessThan(
       MAX_RUNTIME_RESPONSE_BYTES
@@ -43,6 +78,7 @@ describe("content runtime contract", () => {
     for (const response of [
       found,
       articleFound,
+      protectedFound,
       { kind: "missing" },
       { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
       { code: "CONTENT_RUNTIME_FORBIDDEN", kind: "failure" },
@@ -57,6 +93,9 @@ describe("content runtime contract", () => {
     await expect(
       Effect.runPromise(decodeContentRuntimeResponse(articleFound))
     ).resolves.toEqual(articleFound);
+    await expect(
+      Effect.runPromise(decodeContentRuntimeResponse(protectedFound))
+    ).resolves.toEqual(protectedFound);
   });
 
   it("rejects mismatched identities and uncontracted response fields", () => {
