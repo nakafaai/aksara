@@ -27,7 +27,8 @@ export const PublicationTargetStageSchema = Schema.Literal(
 );
 export type PublicationTargetStage = typeof PublicationTargetStageSchema.Type;
 
-const PublicationTransportDetailSchema = Schema.Union(
+/** Sanitized transport evidence safe to expose at an operator boundary. */
+export const PublicationTransportDetailSchema = Schema.Union(
   Schema.Struct({ reason: Schema.Literal("network") }),
   Schema.Struct({ reason: Schema.Literal("timeout") }),
   Schema.Struct({

@@ -1,3 +1,7 @@
+import {
+  PublicationTargetTransportError,
+  PublicationTransportDetailSchema,
+} from "@nakafa/aksara-publisher/target/errors";
 import { Predicate, Schema } from "effect";
 
 const ProductionStageSchema = Schema.Literal(
@@ -24,6 +28,8 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
     failure: Schema.NonEmptyTrimmedString,
     phase: Schema.optional(ActivationPhaseSchema),
     stage: ProductionStageSchema,
+    targetStage: Schema.optional(PublicationTargetTransportError.fields.stage),
+    transport: Schema.optional(PublicationTransportDetailSchema),
   }
 ) {}
 
@@ -54,10 +60,15 @@ function activationPhase(error: unknown) {
 export function mapProductionError(stage: ProductionStage) {
   return (error: unknown) => {
     const phase = activationPhase(error);
+    const target =
+      error instanceof PublicationTargetTransportError
+        ? { targetStage: error.stage, transport: error.detail }
+        : {};
     return new ProductionError({
       failure: failureName(error),
       ...(phase === undefined ? {} : { phase }),
       stage,
+      ...target,
     });
   };
 }
