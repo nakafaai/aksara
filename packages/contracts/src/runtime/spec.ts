@@ -16,6 +16,7 @@ import {
   type RoutedContentProjection,
   RoutedContentProjectionSchema,
 } from "#contracts/projection/spec";
+import { QuestionKeySchema } from "#contracts/question/identity";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 
@@ -31,12 +32,22 @@ export const PublicContentRuntimeRequestSchema = Schema.Struct({
   locale: ContentLocaleSchema,
   publicPath: PublicPathSchema,
 });
+export type PublicContentRuntimeRequest =
+  typeof PublicContentRuntimeRequestSchema.Type;
 
 /** Checks one protected body selector uses its required delivery class. */
 function hasProtectedBodyKind(input: {
   readonly contentKey: string;
   readonly delivery: "authenticated" | "entitled";
 }) {
+  const separator = input.contentKey.lastIndexOf("/");
+  if (separator < 1) {
+    return false;
+  }
+  const questionKey = input.contentKey.slice(0, separator);
+  if (!Schema.is(QuestionKeySchema)(questionKey)) {
+    return false;
+  }
   if (input.delivery === "authenticated") {
     return input.contentKey.endsWith("/question");
   }
@@ -55,6 +66,8 @@ export const ProtectedContentRuntimeRequestSchema = Schema.Struct({
     message: () => "Expected authenticated prompts and entitled answer bodies.",
   })
 );
+export type ProtectedContentRuntimeRequest =
+  typeof ProtectedContentRuntimeRequestSchema.Type;
 
 /** Complete public and protected server-runtime request vocabulary. */
 export const ContentRuntimeRequestSchema = Schema.Union(
@@ -104,6 +117,8 @@ export const PublicContentRuntimeFoundSchema = Schema.Struct({
       "Expected the runtime artifact and projection to share one identity.",
   })
 );
+export type PublicContentRuntimeFound =
+  typeof PublicContentRuntimeFoundSchema.Type;
 
 /** Protected frozen body selected from one retained try-out snapshot. */
 export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
@@ -111,6 +126,8 @@ export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
   delivery: Schema.Literal("authenticated", "entitled"),
   snapshotId: Sha256HashSchema,
 });
+export type ProtectedContentRuntimeFound =
+  typeof ProtectedContentRuntimeFoundSchema.Type;
 
 /** Complete verified artifact response vocabulary for every delivery class. */
 export const ContentRuntimeFoundSchema = Schema.Union(

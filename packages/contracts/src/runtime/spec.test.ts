@@ -66,6 +66,12 @@ describe("content runtime contract", () => {
       { ...protectedRequest, publicPath: "tryout/private" },
       { ...protectedRequest, snapshotId: "snapshot-1" },
       { ...protectedRequest, artifactHash: "artifact-1" },
+      { ...protectedRequest, contentKey: "question" },
+      { ...protectedRequest, contentKey: "material/lesson/test/question" },
+      {
+        ...protectedRequest,
+        contentKey: "question-bank/tryout/indonesia/snbt/question",
+      },
     ]) {
       expect(accepts(ContentRuntimeRequestSchema, invalid)).toBe(false);
     }
