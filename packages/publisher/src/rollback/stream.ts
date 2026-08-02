@@ -2,6 +2,7 @@ import { Buffer } from "node:buffer";
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeRollbackPage,
+  MAX_ROLLBACK_PAGE_RECORDS,
   type RollbackPage,
   RollbackPageSchema,
   type RollbackRecord,
@@ -19,9 +20,6 @@ import type { PublicationTargetFailure } from "#publisher/target/errors";
 
 /** Maximum complete rollback page bytes accepted from publication storage. */
 export const MAX_ROLLBACK_PAGE_BYTES = 4 * 1024 * 1024;
-
-/** Operational page size that keeps body reconstruction within query budget. */
-const ROLLBACK_PAGE_RECORDS = 16;
 
 interface RollbackCursor {
   readonly afterIndex: number;
@@ -130,7 +128,7 @@ function loadPage(
     Effect.flatMap((target) =>
       target.rollbackPage({
         afterIndex: cursor.afterIndex,
-        limit: ROLLBACK_PAGE_RECORDS,
+        limit: MAX_ROLLBACK_PAGE_RECORDS,
         rollbackOf,
         rollbackOfManifestHash,
       })

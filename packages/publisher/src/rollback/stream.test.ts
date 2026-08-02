@@ -13,6 +13,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
+  MAX_ROLLBACK_PAGE_RECORDS,
   RollbackDeleteStateSchema,
   type RollbackPageRequest,
   RollbackPageSchema,
@@ -189,14 +190,17 @@ describe("streamRollbackRecords", () => {
     ).toEqual([-1, 0, 1]);
     expect(rollbackPage.mock.calls[0]?.[0]).toEqual({
       afterIndex: -1,
-      limit: 16,
+      limit: MAX_ROLLBACK_PAGE_RECORDS,
       rollbackOf,
       rollbackOfManifestHash,
     });
   });
 
   it("replays a source larger than one operational page", async () => {
-    const records = Array.from({ length: 33 }, (_, index) => deletion(index));
+    const records = Array.from(
+      { length: MAX_ROLLBACK_PAGE_RECORDS + 1 },
+      (_, index) => deletion(index)
+    );
     const rollbackPage = vi.fn((request: RollbackPageRequest) => {
       const start = request.afterIndex + 1;
       const selected = records.slice(start, start + request.limit);
@@ -216,9 +220,10 @@ describe("streamRollbackRecords", () => {
     expect([...replayed].map(({ index }) => index)).toEqual(
       records.map(({ index }) => index)
     );
-    expect(rollbackPage.mock.calls).toHaveLength(3);
+    expect(rollbackPage.mock.calls).toHaveLength(2);
     expect(rollbackPage.mock.calls.map(([request]) => request.limit)).toEqual([
-      16, 16, 16,
+      MAX_ROLLBACK_PAGE_RECORDS,
+      MAX_ROLLBACK_PAGE_RECORDS,
     ]);
   });
 
