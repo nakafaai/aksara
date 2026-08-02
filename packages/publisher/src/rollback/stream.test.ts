@@ -189,10 +189,37 @@ describe("streamRollbackRecords", () => {
     ).toEqual([-1, 0, 1]);
     expect(rollbackPage.mock.calls[0]?.[0]).toEqual({
       afterIndex: -1,
-      limit: 64,
+      limit: 16,
       rollbackOf,
       rollbackOfManifestHash,
     });
+  });
+
+  it("replays a source larger than one operational page", async () => {
+    const records = Array.from({ length: 33 }, (_, index) => deletion(index));
+    const rollbackPage = vi.fn((request: RollbackPageRequest) => {
+      const start = request.afterIndex + 1;
+      const selected = records.slice(start, start + request.limit);
+      const nextIndex = selected.at(-1)?.index ?? request.afterIndex;
+      return Effect.succeed(
+        page({
+          done: nextIndex === records.length - 1,
+          nextIndex,
+          records: selected,
+          total: records.length,
+        })
+      );
+    });
+
+    const replayed = await collect(targetWith(rollbackPage), records.length);
+
+    expect([...replayed].map(({ index }) => index)).toEqual(
+      records.map(({ index }) => index)
+    );
+    expect(rollbackPage.mock.calls).toHaveLength(3);
+    expect(rollbackPage.mock.calls.map(([request]) => request.limit)).toEqual([
+      16, 16, 16,
+    ]);
   });
 
   it("accepts the one canonical empty final page", async () => {
