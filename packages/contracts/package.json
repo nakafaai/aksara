@@ -467,13 +467,14 @@
   "scripts": {
     "clean": "git clean -xdf dist coverage",
     "build": "tsc --project tsconfig.build.json",
-    "test": "vitest run --config ../../vitest.config.ts",
+    "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json",
     "verify:consumer": "pnpm run build && node scripts/verify-edge.ts && node scripts/verify-consumer.ts"
   },
   "devDependencies": {
     "@effect/platform": "catalog:",
     "@effect/platform-node": "catalog:",
+    "@nakafa/testing": "workspace:*",
     "@nakafa/typescript-config": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "effect": "catalog:",

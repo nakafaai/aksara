@@ -8,9 +8,12 @@ const WORKSPACE_SOURCE_PATTERN = /^(apps|packages)\/([^/]+)\//u;
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
 const FILESYSTEM_IMPORT_PATTERN = /^(?:\/|file:|packages\/)/u;
 const IMPORT_WILDCARD_PATTERN = /\*$/u;
+const VITEST_CONFIG_PATTERN = /\/vitest\.config\.ts$/u;
+const TESTING_PACKAGE = "@nakafa/testing";
 
 interface WorkspaceIdentity {
   readonly allowedDependencies: ReadonlySet<string>;
+  readonly developmentDependencies: ReadonlySet<string>;
   readonly privatePrefixes: readonly string[];
   readonly publicName: string;
   readonly runtimeDependencies: ReadonlySet<string>;
@@ -46,6 +49,7 @@ const allowedWorkspaceDependencies: ReadonlyMap<
       "@nakafa/aksara-utilities",
     ]),
   ],
+  ["testing", new Set()],
   ["utilities", new Set()],
 ]);
 
@@ -149,6 +153,9 @@ export function createWorkspaceIdentityResolver(
       : [];
     const identity = {
       allowedDependencies,
+      developmentDependencies: new Set(
+        dependencyNames(manifest.devDependencies)
+      ),
       privatePrefixes: imports
         .filter((specifier) => specifier.startsWith("#"))
         .map((specifier) => specifier.replace(IMPORT_WILDCARD_PATTERN, "")),
@@ -193,6 +200,11 @@ function importViolation(
     return;
   }
   const packageName = specifier.split("/").slice(0, 2).join("/");
+  if (packageName === TESTING_PACKAGE && VITEST_CONFIG_PATTERN.test(file)) {
+    return identity.developmentDependencies.has(packageName)
+      ? undefined
+      : "test config dependency is absent from package devDependencies";
+  }
   if (!identity.allowedDependencies.has(packageName)) {
     return "workspace dependency violates the architecture graph";
   }

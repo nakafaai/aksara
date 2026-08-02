@@ -6,9 +6,10 @@ for clarity, measurable scale, and safe releases.
 - Keep only workspaces with a real implemented capability. The domain modules
   are `packages/contracts`, `packages/compiler`, `packages/corpus`, and
   `packages/publisher`. `packages/utilities` owns only generic cross-workspace
-  primitives, while `packages/typescript-config` owns the shared compiler
-  contract. Add CLI ownership only with the actual Nakafa preview caller;
-  never fill a workspace with substitute content.
+  primitives. `packages/typescript-config` owns the shared compiler contract,
+  while `packages/testing` owns shared test-runner defaults consumed by local
+  workspace configs. Add CLI ownership only with the actual Nakafa preview
+  caller; never fill a workspace with substitute content.
 - File and folder names may contain at most two words. Exact source-owned
   educational directory segments below `packages/corpus/material/lesson` and
   `packages/corpus/question-bank/tryout` are the only exceptions; never split
