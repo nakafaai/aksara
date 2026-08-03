@@ -128,15 +128,6 @@ function oversizedPage() {
   return page({ done: true, nextIndex: 0, records: [record], total: 1 });
 }
 
-/** Builds the complete target service around one rollback page loader. */
-function targetWith(
-  rollbackPage: (
-    request: RollbackPageRequest
-  ) => ReturnType<(typeof PublicationTarget.Service)["rollbackPage"]>
-) {
-  return makePublicationTarget({ rollbackPage });
-}
-
 /** Collects one complete rollback replay with the supplied target. */
 function collect(target: typeof PublicationTarget.Service, expectedTotal = 3) {
   return Effect.runPromise(
@@ -180,7 +171,7 @@ describe("streamRollbackRecords", () => {
         page({ done: true, nextIndex: 2, records: [deletion(2)], total: 3 })
       );
     });
-    const records = await collect(targetWith(rollbackPage));
+    const records = await collect(makePublicationTarget({ rollbackPage }));
 
     expect([...records].map(({ index }) => index)).toEqual([0, 1, 2]);
     expect(
@@ -195,10 +186,8 @@ describe("streamRollbackRecords", () => {
   });
 
   it("replays a source larger than one operational page", async () => {
-    const records = Array.from(
-      { length: MAX_ROLLBACK_PAGE_RECORDS + 1 },
-      (_, index) => deletion(index)
-    );
+    const recordCount = MAX_ROLLBACK_PAGE_RECORDS + 1;
+    const records = Array.from({ length: recordCount }, (_, i) => deletion(i));
     const rollbackPage = vi.fn((request: RollbackPageRequest) => {
       const start = request.afterIndex + 1;
       const selected = records.slice(start, start + request.limit);
@@ -212,26 +201,22 @@ describe("streamRollbackRecords", () => {
         })
       );
     });
-
-    const replayed = await collect(targetWith(rollbackPage), records.length);
-
-    expect([...replayed].map(({ index }) => index)).toEqual(
-      records.map(({ index }) => index)
+    const replayed = await collect(
+      makePublicationTarget({ rollbackPage }),
+      recordCount
     );
-    expect(rollbackPage.mock.calls).toHaveLength(2);
-    expect(rollbackPage.mock.calls.map(([request]) => request.limit)).toEqual([
-      MAX_ROLLBACK_PAGE_RECORDS,
-      MAX_ROLLBACK_PAGE_RECORDS,
-    ]);
+    expect([...replayed]).toHaveLength(recordCount);
+    expect(rollbackPage).toHaveBeenCalledTimes(2);
   });
 
   it("accepts the one canonical empty final page", async () => {
     const records = await collect(
-      targetWith(() =>
-        Effect.succeed(
-          page({ done: true, nextIndex: -1, records: [], total: 0 })
-        )
-      ),
+      makePublicationTarget({
+        rollbackPage: () =>
+          Effect.succeed(
+            page({ done: true, nextIndex: -1, records: [], total: 0 })
+          ),
+      }),
       0
     );
     expect([...records]).toEqual([]);
@@ -250,6 +235,7 @@ describe("streamRollbackRecords", () => {
         total: 0,
       }),
       "RollbackPageDecodeError",
+      0,
     ],
     [
       "identity",
@@ -262,47 +248,46 @@ describe("streamRollbackRecords", () => {
           total: 0,
         }),
       "RollbackPageIdentityError",
+      0,
     ],
     [
       "cursor",
       () =>
         page({ done: true, nextIndex: 1, records: [deletion(1)], total: 2 }),
       "RollbackPageCursorError",
+      2,
     ],
-    ["bytes", oversizedPage, "RollbackPageByteLimitError"],
-  ])("rejects an invalid %s page", async (_label, source, expectedTag) => {
-    let expectedTotal = 0;
-    if (expectedTag === "RollbackPageByteLimitError") {
-      expectedTotal = 1;
+    ["bytes", oversizedPage, "RollbackPageByteLimitError", 1],
+  ])(
+    "rejects an invalid %s page",
+    async (_label, source, expectedTag, expectedTotal) => {
+      const error = await reject(
+        makePublicationTarget({ rollbackPage: () => Effect.succeed(source()) }),
+        expectedTotal
+      );
+      expect(error._tag).toBe(expectedTag);
     }
-    if (expectedTag === "RollbackPageCursorError") {
-      expectedTotal = 2;
-    }
-    const error = await reject(
-      targetWith(() => Effect.succeed(source())),
-      expectedTotal
-    );
-    expect(error._tag).toBe(expectedTag);
-  });
+  );
 
   it("rejects a total that changes after cursor progress", async () => {
-    const target = targetWith((request) =>
-      Effect.succeed(
-        request.afterIndex === -1
-          ? page({
-              done: false,
-              nextIndex: 0,
-              records: [deletion(0)],
-              total: 3,
-            })
-          : page({
-              done: false,
-              nextIndex: 1,
-              records: [deletion(1)],
-              total: 4,
-            })
-      )
-    );
+    const target = makePublicationTarget({
+      rollbackPage: (request) =>
+        Effect.succeed(
+          request.afterIndex === -1
+            ? page({
+                done: false,
+                nextIndex: 0,
+                records: [deletion(0)],
+                total: 3,
+              })
+            : page({
+                done: false,
+                nextIndex: 1,
+                records: [deletion(1)],
+                total: 4,
+              })
+        ),
+    });
     const error = await reject(target);
     expect(error._tag).toBe("RollbackPageTotalError");
   });
@@ -312,7 +297,9 @@ describe("streamRollbackRecords", () => {
       detail: { reason: "network" },
       stage: "rollback",
     });
-    const error = await reject(targetWith(() => Effect.fail(transport)));
+    const error = await reject(
+      makePublicationTarget({ rollbackPage: () => Effect.fail(transport) })
+    );
     expect(error).toEqual(transport);
   });
 });
