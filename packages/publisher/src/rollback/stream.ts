@@ -2,6 +2,7 @@ import { Buffer } from "node:buffer";
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeRollbackPage,
+  MAX_ROLLBACK_PAGE_BYTES,
   MAX_ROLLBACK_PAGE_RECORDS,
   type RollbackPage,
   RollbackPageSchema,
@@ -17,9 +18,6 @@ import {
   RollbackPageTotalError,
 } from "#publisher/rollback/errors";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
-
-/** Maximum complete rollback page bytes accepted from publication storage. */
-export const MAX_ROLLBACK_PAGE_BYTES = 4 * 1024 * 1024;
 
 interface RollbackCursor {
   readonly afterIndex: number;
