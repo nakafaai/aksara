@@ -17,6 +17,7 @@ import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import { Effect, Schema } from "effect";
 import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
+import { PublicationTargetRejectedError } from "#publisher/target/errors";
 import {
   createLifecycleRows,
   releaseEvidence,
@@ -120,7 +121,17 @@ export function makeTarget(release: {
     (
       signed: SignedContentRelease
     ): ReturnType<typeof PublicationTarget.Service.verify> =>
-      Effect.sync(() => {
+      Effect.gen(function* () {
+        if (!rows.hasRetainedArtifacts(signed.manifest.releaseId)) {
+          return yield* new PublicationTargetRejectedError({
+            rejection: {
+              code: "CONTENT_RELEASE_MISSING",
+              kind: "rejected",
+              operation: "verify",
+              releaseId: signed.manifest.releaseId,
+            },
+          });
+        }
         phases.set(signed.manifest.releaseId, "verified");
         if (
           candidate?.release.manifest.releaseId === signed.manifest.releaseId

@@ -119,6 +119,13 @@ export function createLifecycleRows() {
     return created;
   };
 
+  /** Confirms every release upsert still has its immutable artifact body. */
+  const hasRetainedArtifacts = (releaseId: string) =>
+    forRelease(releaseId).items.every(
+      ({ change }) =>
+        change.operation === "delete" || artifacts.has(change.artifactHash)
+    );
+
   /** Returns one material head reconstructed from exact staged rows. */
   const materialHead = (item: ContentReleaseItem): MaterialHead | null => {
     if (item.change.operation === "delete") {
@@ -238,5 +245,12 @@ export function createLifecycleRows() {
     };
   };
 
-  return { forRelease, headPage, retainArtifacts, rollbackPage, routePage };
+  return {
+    forRelease,
+    hasRetainedArtifacts,
+    headPage,
+    retainArtifacts,
+    rollbackPage,
+    routePage,
+  };
 }

@@ -235,7 +235,10 @@ export class PublicationTarget extends Context.Tag("AksaraPublicationTarget")<
     readonly stageGroup: (
       group: StageGroupInput
     ) => Effect.Effect<void, PublicationTargetFailure>;
-    /** Stages one ordered release-item batch idempotently. */
+    /**
+     * Stages one ordered release-item batch idempotently.
+     * Rollback targets also bind retained artifacts for its upserts here.
+     */
     readonly stageItemBatch: (
       batch: StageItemBatchInput
     ) => Effect.Effect<void, PublicationTargetFailure>;

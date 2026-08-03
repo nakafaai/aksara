@@ -49,7 +49,12 @@ export const StageItemBatchInputSchema = Schema.Struct(
 );
 export type StageItemBatchInput = typeof StageItemBatchInputSchema.Type;
 
-/** Stages one non-empty bounded batch of ordered signed release items. */
+/**
+ * Stages one non-empty bounded batch of ordered signed release items.
+ *
+ * Rollback targets bind each upsert to its retained immutable artifact here;
+ * later verification must reject any missing or mismatched retained body.
+ */
 export const StageItemBatchRequestSchema = Schema.Struct({
   ...StageItemBatchFields,
   operation: Schema.Literal("stageItemBatch"),
