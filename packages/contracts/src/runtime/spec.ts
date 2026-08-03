@@ -61,6 +61,7 @@ export const ProtectedContentRuntimeRequestSchema = Schema.Struct({
   delivery: Schema.Literal("authenticated", "entitled"),
   locale: ContentLocaleSchema,
   snapshotId: Sha256HashSchema,
+  snapshotReleaseId: ReleaseIdSchema,
 }).pipe(
   Schema.filter(hasProtectedBodyKind, {
     message: () => "Expected authenticated prompts and entitled answer bodies.",
@@ -92,12 +93,11 @@ function hasCoherentContent(input: {
  * Server-only content selected by trusted Convex publication state.
  *
  * The signed release, renderer, and artifact are authenticated independently.
- * Route, head, delivery, and active-pointer membership remain target authority;
- * this envelope is deliberately not a cryptographic inclusion proof.
+ * Public route and head membership or protected snapshot membership remain
+ * target authority. This envelope is deliberately not a cryptographic
+ * inclusion proof.
  */
 const ContentRuntimeFoundFields = {
-  activeManifestHash: Sha256HashSchema,
-  activeReleaseId: ReleaseIdSchema,
   artifact: SignedContentArtifactSchema,
   kind: Schema.Literal("found"),
   release: SignedContentReleaseSchema,
@@ -108,6 +108,8 @@ const ContentRuntimeFoundFields = {
 /** Public route body selected from the active indexed read model. */
 export const PublicContentRuntimeFoundSchema = Schema.Struct({
   ...ContentRuntimeFoundFields,
+  activeManifestHash: Sha256HashSchema,
+  activeReleaseId: ReleaseIdSchema,
   delivery: Schema.Literal("public"),
   projection: RoutedContentProjectionSchema,
   projectionHash: Sha256HashSchema,
@@ -125,6 +127,8 @@ export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
   ...ContentRuntimeFoundFields,
   delivery: Schema.Literal("authenticated", "entitled"),
   snapshotId: Sha256HashSchema,
+  snapshotManifestHash: Sha256HashSchema,
+  snapshotReleaseId: ReleaseIdSchema,
 });
 export type ProtectedContentRuntimeFound =
   typeof ProtectedContentRuntimeFoundSchema.Type;

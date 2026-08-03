@@ -64,6 +64,7 @@ describe("content runtime contract", () => {
 
     for (const invalid of [
       { ...protectedRequest, publicPath: "tryout/private" },
+      { ...protectedRequest, snapshotReleaseId: "" },
       { ...protectedRequest, snapshotId: "snapshot-1" },
       { ...protectedRequest, artifactHash: "artifact-1" },
       { ...protectedRequest, contentKey: "question" },

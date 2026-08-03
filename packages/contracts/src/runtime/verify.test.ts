@@ -7,9 +7,10 @@ import {
   articleFound,
   articleRequest,
   artifact,
+  compatibleManifest,
   found,
   incompatibleManifest,
-  protectedArtifact,
+  protectedExpandedArtifact,
   protectedFound,
   protectedRequest,
   rejectExchange,
@@ -18,6 +19,7 @@ import {
   verifyExchange,
   verifyExchangeEither,
 } from "#contracts/test/runtime";
+import { protectedMismatchCases } from "#contracts/test/runtime-mismatch";
 
 describe("content runtime verification", () => {
   it("binds a found response to its exact request", async () => {
@@ -121,59 +123,21 @@ describe("content runtime verification", () => {
     await expect(
       verifyExchange({ request: protectedRequest, response: protectedFound })
     ).resolves.toEqual(protectedFound);
-
-    const cases = [
-      ["delivery", { ...protectedFound, delivery: "entitled" }],
-      [
-        "artifactHash",
-        {
-          ...protectedFound,
-          artifact: {
-            ...protectedArtifact,
-            artifactHash: artifact.artifactHash,
-          },
-        },
-      ],
-      [
-        "contentKey",
-        {
-          ...protectedFound,
-          artifact: {
-            ...protectedArtifact,
-            payload: {
-              ...protectedArtifact.payload,
-              contentKey: artifact.payload.contentKey,
-            },
-          },
-        },
-      ],
-      [
-        "locale",
-        {
-          ...protectedFound,
-          artifact: {
-            ...protectedArtifact,
-            payload: { ...protectedArtifact.payload, locale: "id" },
-          },
-        },
-      ],
-      ["snapshotId", { ...protectedFound, snapshotId: artifact.artifactHash }],
-      [
-        "sourcePath",
-        {
-          ...protectedFound,
-          sourcePath: "packages/corpus/question/wrong.en.mdx",
-        },
-      ],
-    ] as const;
+    await expect(
+      verifyExchange({
+        rendererManifest: compatibleManifest,
+        request: protectedRequest,
+        response: protectedFound,
+      })
+    ).resolves.toEqual(protectedFound);
 
     const outcomes = await Promise.all(
-      cases.map(([, response]) =>
-        rejectExchange({ request: protectedRequest, response })
+      protectedMismatchCases.map(([, response, request = protectedRequest]) =>
+        rejectExchange({ request, response })
       )
     );
     expect(outcomes).toEqual(
-      cases.map(([reason]) =>
+      protectedMismatchCases.map(([reason]) =>
         expect.objectContaining({
           _tag: "ContentRuntimeMismatchError",
           reason,
@@ -219,14 +183,43 @@ describe("content runtime verification", () => {
     expect(error).toMatchObject({ _tag: "SignatureInvalidError" });
   });
 
-  it("rejects a live renderer different from the signed release", async () => {
+  it("requires an exact live renderer for public content", async () => {
     const error = await rejectExchange({
-      rendererManifest: incompatibleManifest,
+      rendererManifest: compatibleManifest,
       response: found,
     });
     expect(error).toMatchObject({
       _tag: "ContentRuntimeMismatchError",
       reason: "rendererManifest",
+    });
+  });
+
+  it("rejects an incompatible live renderer for protected content", async () => {
+    const error = await rejectExchange({
+      rendererManifest: incompatibleManifest,
+      request: protectedRequest,
+      response: protectedFound,
+    });
+    expect(error).toMatchObject({
+      _tag: "ArtifactRendererComponentMissingError",
+    });
+  });
+
+  it("rejects a protected artifact absent from its frozen renderer", async () => {
+    const error = await rejectExchange({
+      rendererManifest: compatibleManifest,
+      request: {
+        ...protectedRequest,
+        artifactHash: protectedExpandedArtifact.artifactHash,
+      },
+      response: {
+        ...protectedFound,
+        artifact: protectedExpandedArtifact,
+      },
+    });
+    expect(error).toMatchObject({
+      _tag: "ArtifactRendererComponentMissingError",
+      componentName: "InlineMath",
     });
   });
 

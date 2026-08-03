@@ -93,10 +93,13 @@ size, so truncated or substituted source cannot silently enter compilation.
 Nakafa may execute an artifact only in a server-only Node runtime through the
 official `@mdx-js/mdx/run` API and only after all of these checks pass:
 
-1. The artifact belongs to the active immutable release.
+1. The artifact belongs to the active public release or the exact retained
+   release selected by a protected snapshot.
 2. Its content hash matches the signed payload.
 3. Its signature is valid.
-4. Its renderer contract matches Nakafa's pure global contract manifest.
+4. Public content matches Nakafa's deployed renderer manifest exactly.
+   Protected content matches its frozen release renderer and remains compatible
+   with the deployed renderer.
 5. Every required component and component version is available.
 6. Its statically analyzable renderer boundary implements every required rich
    component without leaking unrelated client capabilities into the route.
