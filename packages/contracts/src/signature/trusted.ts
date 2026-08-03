@@ -15,9 +15,9 @@ export type TrustedKey = typeof TrustedKeySchema.Type;
 
 const ACTIVE_CONTENT_KEY = Object.freeze(
   TrustedKeySchema.make({
-    keyId: SigningKeyIdSchema.make("agent-0046a870c0d485f4b6dce0ad"),
+    keyId: SigningKeyIdSchema.make("content-2026-07-23"),
     publicKeyPem:
-      "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA4M6d4UVKO4A40UvzKwyD71KKvuaW6ePSM3Fk6RRhO/I=\n-----END PUBLIC KEY-----\n",
+      "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n",
   })
 );
 
