@@ -1,4 +1,8 @@
-import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  PublicationTargetRejectedError,
+  PublicationTargetTransportError,
+} from "@nakafa/aksara-publisher/target/errors";
 import { describe, expect, it } from "vitest";
 import { mapProductionError } from "#cli/failure";
 
@@ -33,6 +37,52 @@ describe("production failure boundary", () => {
       })
     );
     expect(failure).not.toHaveProperty("transport");
+  });
+
+  it("keeps stable authenticated rejection evidence", () => {
+    expect(
+      mapProductionError("publish")(
+        new PublicationTargetRejectedError({
+          rejection: {
+            code: "CONTENT_RELEASE_UNSUPPORTED",
+            kind: "rejected",
+            operation: "stageRelease",
+            releaseId: ReleaseIdSchema.make("release-2026"),
+          },
+        })
+      )
+    ).toMatchObject({
+      failure: "PublicationTargetRejectedError",
+      rejectionCode: "CONTENT_RELEASE_UNSUPPORTED",
+      stage: "publish",
+      targetOperation: "stageRelease",
+    });
+  });
+
+  it("keeps a predecode code without inventing an operation", () => {
+    const failure = mapProductionError("target")({
+      _tag: "PublicationTargetRejectedError",
+      rejection: {
+        code: "CONTENT_RELEASE_UNSUPPORTED",
+        kind: "rejected",
+        operation: null,
+        releaseId: null,
+      },
+    });
+    expect(failure).toMatchObject({
+      rejectionCode: "CONTENT_RELEASE_UNSUPPORTED",
+      stage: "target",
+    });
+    expect(failure).not.toHaveProperty("targetOperation");
+  });
+
+  it("drops malformed rejection evidence", () => {
+    const failure = mapProductionError("publish")({
+      _tag: "PublicationTargetRejectedError",
+      rejection: { code: "secret=value", operation: "stageRelease" },
+    });
+    expect(failure).not.toHaveProperty("rejectionCode");
+    expect(failure).not.toHaveProperty("targetOperation");
   });
 
   it.each([

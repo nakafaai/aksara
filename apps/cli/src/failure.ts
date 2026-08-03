@@ -1,8 +1,13 @@
 import {
+  PublicationRejectedSchema,
+  PublicationRejectionCodeSchema,
+} from "@nakafa/aksara-contracts/transport/failure";
+import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
+import {
   PublicationTargetTransportError,
   PublicationTransportDetailSchema,
 } from "@nakafa/aksara-publisher/target/errors";
-import { Predicate, Schema } from "effect";
+import { Option, Predicate, Schema } from "effect";
 
 const ProductionStageSchema = Schema.Literal(
   "abort",
@@ -19,6 +24,10 @@ const ProductionStageSchema = Schema.Literal(
 );
 export type ProductionStage = typeof ProductionStageSchema.Type;
 const ActivationPhaseSchema = Schema.Literal("cache", "preflight");
+const PublicationOperationSchema = Schema.pluck(
+  PublicationRequestSchema,
+  "operation"
+);
 const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
 
 /** Sanitized production failure emitted by the outer CLI boundary. */
@@ -27,7 +36,9 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
   {
     failure: Schema.NonEmptyTrimmedString,
     phase: Schema.optional(ActivationPhaseSchema),
+    rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
     stage: ProductionStageSchema,
+    targetOperation: Schema.optional(PublicationOperationSchema),
     targetStage: Schema.optional(PublicationTargetTransportError.fields.stage),
     transport: Schema.optional(PublicationTransportDetailSchema),
   }
@@ -56,19 +67,41 @@ function activationPhase(error: unknown) {
   return phase === "cache" || phase === "preflight" ? phase : undefined;
 }
 
+/** Preserves only stable target evidence already authenticated by the wire. */
+function targetEvidence(error: unknown) {
+  if (error instanceof PublicationTargetTransportError) {
+    return { targetStage: error.stage, transport: error.detail };
+  }
+  if (
+    !Predicate.isRecord(error) ||
+    Reflect.get(error, "_tag") !== "PublicationTargetRejectedError"
+  ) {
+    return {};
+  }
+  const rejection = Schema.decodeUnknownOption(PublicationRejectedSchema)(
+    Reflect.get(error, "rejection")
+  );
+  if (Option.isNone(rejection)) {
+    return {};
+  }
+  if (rejection.value.operation === null) {
+    return { rejectionCode: rejection.value.code };
+  }
+  return {
+    rejectionCode: rejection.value.code,
+    targetOperation: rejection.value.operation,
+  };
+}
+
 /** Maps one capability failure to a stable, secret-free CLI error. */
 export function mapProductionError(stage: ProductionStage) {
   return (error: unknown) => {
     const phase = activationPhase(error);
-    const target =
-      error instanceof PublicationTargetTransportError
-        ? { targetStage: error.stage, transport: error.detail }
-        : {};
     return new ProductionError({
       failure: failureName(error),
       ...(phase === undefined ? {} : { phase }),
       stage,
-      ...target,
+      ...targetEvidence(error),
     });
   };
 }
