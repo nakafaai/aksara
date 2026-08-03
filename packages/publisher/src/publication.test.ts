@@ -218,9 +218,13 @@ describe("content publication", () => {
     expect(state.stageArtifactBatch).not.toHaveBeenCalled();
   });
 
-  it("stages rollback artifacts and rejects a mismatched prepared mode", async () => {
+  it("verifies rollback artifacts without restaging immutable bodies", async () => {
     const release = await makeRollbackRelease("test-release-rollback");
     const state = makeTarget(release);
+    const retainedArtifacts = await Effect.runPromise(
+      release.prepared.artifacts().pipe(Stream.runCollect)
+    );
+    state.retainArtifacts(retainedArtifacts);
     let artifactReplays = 0;
     const prepared = makePreparedRollbackRelease({
       artifacts: () => {
@@ -235,7 +239,7 @@ describe("content publication", () => {
       ...emptySnapshotSources,
     });
     await Effect.runPromise(publishRollbackPrepared(prepared, state.target));
-    expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
+    expect(state.stageArtifactBatch).not.toHaveBeenCalled();
     expect(artifactReplays).toBe(1);
     const mismatch = makePreparedGitRelease({
       items: release.prepared.items,
