@@ -66,7 +66,7 @@ async function prepareProgramRelease() {
   return { prepared, snapshot };
 }
 
-/** Builds the zero-copy inverse of one structured Git release. */
+/** Builds the row-free snapshot inverse of one structured Git release. */
 function prepareSnapshotRollback(source: PreparedGitRelease<unknown, never>) {
   const baseReleaseId = source.manifest.releaseId;
   const manifest = ContentReleaseManifestSchema.make({
@@ -93,7 +93,7 @@ function prepareSnapshotRollback(source: PreparedGitRelease<unknown, never>) {
 const programRelease = await prepareProgramRelease();
 
 describe("publication snapshots", () => {
-  it("verifies exact Git replacement sources and zero-copy rollback", async () => {
+  it("verifies Git snapshot sources and row-free rollback snapshots", async () => {
     const { prepared, snapshot } = programRelease;
     const gitSummary = await Effect.runPromise(
       verifyPublicationSnapshots(prepared)

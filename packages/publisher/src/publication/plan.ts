@@ -1,5 +1,9 @@
 import type { FileSystem, Path } from "@effect/platform";
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
+import {
+  type SignedContentArtifact,
+  SignedContentArtifactSchema,
+} from "@nakafa/aksara-contracts/content";
 import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
   decodeContentProjections,
@@ -71,6 +75,7 @@ type PublicationArtifactPlan =
       readonly kind: "git";
     }
   | {
+      readonly artifacts: ReplaySpool<SignedContentArtifact>;
       readonly kind: "rollback";
     };
 
@@ -204,13 +209,17 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   let artifactPlan: PublicationArtifactPlan;
   if (invocation.kind === "rollback") {
     yield* validateRollbackMode(invocation.input);
-    yield* makeRollbackArtifacts({
-      artifacts: invocation.input.artifacts(),
-      items: upsertItems(decodedItems()),
-      manifest: input.manifest,
-      rendererManifest,
-    }).pipe(Stream.runDrain);
-    artifactPlan = { kind: "rollback" };
+    const artifacts = yield* createReplaySpool({
+      prefix: "aksara-rollback-artifacts-",
+      schema: SignedContentArtifactSchema,
+      stream: makeRollbackArtifacts({
+        artifacts: invocation.input.artifacts(),
+        items: upsertItems(decodedItems()),
+        manifest: input.manifest,
+        rendererManifest,
+      }),
+    });
+    artifactPlan = { artifacts, kind: "rollback" };
   } else {
     const aksaraSha = yield* validateGitMode(invocation.input);
     const items = upsertItems(decodedItems());
@@ -238,7 +247,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   const release = yield* verifySignedContentRelease(signedRelease);
   const artifacts =
     artifactPlan.kind === "rollback"
-      ? Stream.empty
+      ? artifactPlan.artifacts.replay()
       : makeGitArtifacts({
           compiled: artifactPlan.compiled.replay(),
           manifest: input.manifest,
