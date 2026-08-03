@@ -27,7 +27,6 @@ import type {
 } from "@nakafa/aksara-contracts/release/snapshot-data";
 
 interface StagedRows {
-  readonly artifacts: SignedContentArtifact[];
   readonly items: ContentReleaseItem[];
   readonly projections: MaterialLessonProjection[];
   readonly routes: ContentRouteItem[];
@@ -93,7 +92,15 @@ export function releaseEvidence(
 
 /** Owns staged rows and derives exact material heads for one isolated target. */
 export function createLifecycleRows() {
+  const artifacts = new Map<string, SignedContentArtifact>();
   const rows = new Map<string, StagedRows>();
+
+  /** Retains immutable artifact bodies independently from release-owned rows. */
+  const retainArtifacts = (values: Iterable<SignedContentArtifact>) => {
+    for (const artifact of values) {
+      artifacts.set(artifact.artifactHash, artifact);
+    }
+  };
 
   /** Returns release-owned staged rows, creating them on first write. */
   const forRelease = (releaseId: string) => {
@@ -102,7 +109,6 @@ export function createLifecycleRows() {
       return existing;
     }
     const created: StagedRows = {
-      artifacts: [],
       items: [],
       projections: [],
       routes: [],
@@ -120,9 +126,7 @@ export function createLifecycleRows() {
     }
     const staged = forRelease(item.releaseId);
     const { change } = item;
-    const artifact = staged.artifacts.find(
-      (value) => value.artifactHash === change.artifactHash
-    );
+    const artifact = artifacts.get(change.artifactHash);
     const projection = staged.projections.find(
       (value) =>
         value.contentKey === change.contentKey && value.locale === change.locale
@@ -186,9 +190,7 @@ export function createLifecycleRows() {
       if (!(head && change.operation === "upsert")) {
         throw new TypeError("Expected one staged upsert rollback record.");
       }
-      const artifact = staged.artifacts.find(
-        (value) => value.artifactHash === change.artifactHash
-      );
+      const artifact = artifacts.get(change.artifactHash);
       const projection = staged.projections.find(
         (value) =>
           value.contentKey === change.contentKey &&
@@ -236,5 +238,5 @@ export function createLifecycleRows() {
     };
   };
 
-  return { forRelease, headPage, rollbackPage, routePage };
+  return { forRelease, headPage, retainArtifacts, rollbackPage, routePage };
 }

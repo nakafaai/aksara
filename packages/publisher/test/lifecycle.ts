@@ -66,9 +66,7 @@ export function makeTarget(release: {
     })
   );
   const stageArtifactBatch = vi.fn((batch) =>
-    Effect.sync(() =>
-      rows.forRelease(batch.releaseId).artifacts.push(...batch.artifacts)
-    )
+    Effect.sync(() => rows.retainArtifacts(batch.artifacts))
   );
   const stageItemBatch = vi.fn((batch) =>
     Effect.sync(() =>
@@ -260,6 +258,7 @@ export function makeTarget(release: {
     evidence: (manifestHash: SignedContentRelease["manifestHash"]) => ({
       ...releaseEvidence({ manifest: release.manifest, manifestHash }),
     }),
+    retainArtifacts: rows.retainArtifacts,
     snapshot: () => ({ active, candidate, recovery }),
     stageArtifactBatch,
     stageGroup,
