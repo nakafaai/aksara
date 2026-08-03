@@ -151,9 +151,12 @@ reviewed code, not a sandbox and not a public-upload format.
 
 Production v1 trusts authenticated Convex state for route and head membership,
 delivery classification, and the active publication pointer. Nakafa still
-independently decodes and verifies the signed release, exact renderer manifest,
-signed artifact, artifact hash, component requirements, and projection hash
-before execution.
+independently decodes and verifies the signed release, signed artifact,
+artifact hash, component requirements, and projection hash before execution.
+Public content requires the release renderer manifest to match the deployed
+manifest exactly. Protected content is bound to the exact signed snapshot
+release, verified against its frozen renderer manifest, and then checked for
+compatibility with the deployed renderer.
 
 The signed result catalog digest authenticates the complete canonical result
 set. It is not a per-row inclusion proof. The current design therefore detects
