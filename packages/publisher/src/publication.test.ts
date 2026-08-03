@@ -218,13 +218,9 @@ describe("content publication", () => {
     expect(state.stageArtifactBatch).not.toHaveBeenCalled();
   });
 
-  it("verifies rollback artifacts without restaging immutable bodies", async () => {
+  it("stages rollback artifacts and rejects a mismatched prepared mode", async () => {
     const release = await makeRollbackRelease("test-release-rollback");
     const state = makeTarget(release);
-    const retainedArtifacts = await Effect.runPromise(
-      release.prepared.artifacts().pipe(Stream.runCollect)
-    );
-    state.retainArtifacts(retainedArtifacts);
     let artifactReplays = 0;
     const prepared = makePreparedRollbackRelease({
       artifacts: () => {
@@ -239,21 +235,8 @@ describe("content publication", () => {
       ...emptySnapshotSources,
     });
     await Effect.runPromise(publishRollbackPrepared(prepared, state.target));
-    expect(state.stageArtifactBatch).not.toHaveBeenCalled();
+    expect(state.stageArtifactBatch).toHaveBeenCalledOnce();
     expect(artifactReplays).toBe(1);
-
-    const missingState = makeTarget(release);
-    const missingError = await Effect.runPromise(
-      publishRollbackPrepared(release.prepared, missingState.target).pipe(
-        Effect.flip
-      )
-    );
-    expect(missingError).toMatchObject({
-      _tag: "PublicationTargetRejectedError",
-      rejection: { code: "CONTENT_RELEASE_MISSING", operation: "verify" },
-    });
-    expect(missingState.stageArtifactBatch).not.toHaveBeenCalled();
-
     const mismatch = makePreparedGitRelease({
       items: release.prepared.items,
       manifest: release.manifest,

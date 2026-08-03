@@ -224,7 +224,7 @@ export function replaceContentSnapshot(input: {
   });
 }
 
-/** Builds a zero-copy forward restore to an existing or absent snapshot. */
+/** Builds a row-free forward restore to an existing or absent snapshot. */
 export function restoreContentSnapshot(
   baseSnapshotId: ContentSnapshotState["baseSnapshotId"],
   resultSnapshotId: ContentSnapshotState["resultSnapshotId"]

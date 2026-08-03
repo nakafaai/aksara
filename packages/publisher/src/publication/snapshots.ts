@@ -23,7 +23,7 @@ type VerifyPublicationSnapshots = <E, R>(
   R
 >;
 
-/** Rejects row-bearing snapshot sources on a zero-copy rollback release. */
+/** Rejects row-bearing sources on a row-free snapshot rollback release. */
 function requireEmptyRollbackSources(manifestCount: number, rowCount: number) {
   if (manifestCount === 0 && rowCount === 0) {
     return Effect.void;
@@ -35,7 +35,7 @@ function requireEmptyRollbackSources(manifestCount: number, rowCount: number) {
   );
 }
 
-/** Verifies replacement sources or one zero-copy rollback transition. */
+/** Verifies replacement sources or one row-free snapshot rollback. */
 export const verifyPublicationSnapshots: VerifyPublicationSnapshots = Effect.fn(
   "AksaraPublisher.verifyPublicationSnapshots"
 )(function* <E, R>(input: PreparedContentRelease<E, R>) {

@@ -110,7 +110,7 @@ describe("content snapshot state", () => {
     }
   });
 
-  it("constructs fixed inherit, replace, and zero-copy restore states", () => {
+  it("constructs fixed inherit, replace, and row-free restore states", () => {
     const inherit = inheritContentSnapshot(first);
     const replace = replaceContentSnapshot({
       baseSnapshotId: first,
