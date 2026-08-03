@@ -14,7 +14,6 @@ import {
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
   MAX_ROLLBACK_PAGE_BYTES,
-  MAX_ROLLBACK_PAGE_RECORDS,
   RollbackDeleteStateSchema,
   type RollbackPageRequest,
   RollbackPageSchema,
@@ -179,14 +178,14 @@ describe("streamRollbackRecords", () => {
     ).toEqual([-1, 0, 1]);
     expect(rollbackPage.mock.calls[0]?.[0]).toEqual({
       afterIndex: -1,
-      limit: MAX_ROLLBACK_PAGE_RECORDS,
+      limit: 64,
       rollbackOf,
       rollbackOfManifestHash,
     });
   });
 
   it("replays a source larger than one operational page", async () => {
-    const recordCount = MAX_ROLLBACK_PAGE_RECORDS + 1;
+    const recordCount = 65;
     const records = Array.from({ length: recordCount }, (_, i) => deletion(i));
     const rollbackPage = vi.fn((request: RollbackPageRequest) => {
       const start = request.afterIndex + 1;

@@ -3,7 +3,6 @@ import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeRollbackPage,
   MAX_ROLLBACK_PAGE_BYTES,
-  MAX_ROLLBACK_PAGE_RECORDS,
   type RollbackPage,
   RollbackPageSchema,
   type RollbackRecord,
@@ -18,6 +17,9 @@ import {
   RollbackPageTotalError,
 } from "#publisher/rollback/errors";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
+
+/** Request ceiling retained until every publication target accepts v0.7.5 pages. */
+const ROLLBACK_REQUEST_PAGE_RECORDS = 64;
 
 interface RollbackCursor {
   readonly afterIndex: number;
@@ -126,7 +128,7 @@ function loadPage(
     Effect.flatMap((target) =>
       target.rollbackPage({
         afterIndex: cursor.afterIndex,
-        limit: MAX_ROLLBACK_PAGE_RECORDS,
+        limit: ROLLBACK_REQUEST_PAGE_RECORDS,
         rollbackOf,
         rollbackOfManifestHash,
       })
