@@ -241,6 +241,19 @@ describe("content publication", () => {
     await Effect.runPromise(publishRollbackPrepared(prepared, state.target));
     expect(state.stageArtifactBatch).not.toHaveBeenCalled();
     expect(artifactReplays).toBe(1);
+
+    const missingState = makeTarget(release);
+    const missingError = await Effect.runPromise(
+      publishRollbackPrepared(release.prepared, missingState.target).pipe(
+        Effect.flip
+      )
+    );
+    expect(missingError).toMatchObject({
+      _tag: "PublicationTargetRejectedError",
+      rejection: { code: "CONTENT_RELEASE_MISSING", operation: "verify" },
+    });
+    expect(missingState.stageArtifactBatch).not.toHaveBeenCalled();
+
     const mismatch = makePreparedGitRelease({
       items: release.prepared.items,
       manifest: release.manifest,
