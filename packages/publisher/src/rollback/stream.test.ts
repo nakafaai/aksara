@@ -13,6 +13,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
+  MAX_ROLLBACK_PAGE_BYTES,
   MAX_ROLLBACK_PAGE_RECORDS,
   RollbackDeleteStateSchema,
   type RollbackPageRequest,
@@ -24,10 +25,7 @@ import {
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
-import {
-  MAX_ROLLBACK_PAGE_BYTES,
-  streamRollbackRecords,
-} from "#publisher/rollback/stream";
+import { streamRollbackRecords } from "#publisher/rollback/stream";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
 import { materialGraph } from "#test/graph";
 import { makePublicationTarget } from "#test/target";

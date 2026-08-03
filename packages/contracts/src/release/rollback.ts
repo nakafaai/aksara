@@ -27,8 +27,11 @@ import {
   ReleaseItemIndexSchema,
 } from "#contracts/release/spec";
 
+/** Maximum complete body rollback page below the publication wire ceiling. */
+export const MAX_ROLLBACK_PAGE_BYTES = 4 * 1024 * 1024;
+
 /** Maximum byte-bounded rollback transitions requested from one target page. */
-export const MAX_ROLLBACK_PAGE_RECORDS = 64;
+export const MAX_ROLLBACK_PAGE_RECORDS = 512;
 
 const RollbackCursorSchema = Schema.Number.pipe(
   Schema.int(),
