@@ -1,5 +1,11 @@
 import { Chunk, Effect, Schema, Stream } from "effect";
-
+import {
+  type ContentSnapshotManifest,
+  ContentSnapshotManifestSchema,
+  type ContentSnapshotRow,
+  ContentSnapshotRowSchema,
+} from "#contracts/release/snapshot/data";
+import { verifySnapshotRows } from "#contracts/release/snapshot/evidence";
 import {
   type ContentSnapshotKind,
   ContentSnapshotKindSchema,
@@ -8,14 +14,7 @@ import {
   inheritContentSnapshots,
   replaceContentSnapshot,
   snapshotRowCount,
-} from "#contracts/release/snapshot";
-import {
-  type ContentSnapshotManifest,
-  ContentSnapshotManifestSchema,
-  type ContentSnapshotRow,
-  ContentSnapshotRowSchema,
-} from "#contracts/release/snapshot-data";
-import { verifySnapshotRows } from "#contracts/release/snapshot-domain";
+} from "#contracts/release/snapshot/spec";
 import { tryoutSnapshotRowEvidence } from "#contracts/tryout/snapshot-hash";
 
 const StreamIndexSchema = Schema.Int.pipe(Schema.nonNegative());

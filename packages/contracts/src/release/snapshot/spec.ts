@@ -1,3 +1,4 @@
+/** Publication scope and signed structured snapshot transition contracts. */
 import { Schema } from "effect";
 
 import {

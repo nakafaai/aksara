@@ -12,7 +12,7 @@ import {
   inheritContentSnapshots,
   type PublicationScope,
   PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Redacted, Stream } from "effect";
 import { describe, expect, it } from "vitest";

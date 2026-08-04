@@ -15,16 +15,16 @@ import type {
   RollbackPage,
   RollbackPageRequest,
 } from "@nakafa/aksara-contracts/release/rollback";
-import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
 import type {
   RoutePage,
   RoutePageRequest,
-} from "@nakafa/aksara-contracts/release/route-page";
-import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/route/page";
+import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot-data";
+} from "@nakafa/aksara-contracts/release/snapshot/data";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 
 interface StagedRows {
   readonly items: ContentReleaseItem[];

@@ -5,7 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
-import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Chunk, Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 

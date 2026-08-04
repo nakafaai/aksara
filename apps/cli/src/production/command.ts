@@ -3,7 +3,7 @@ import type {
   ContentReleaseManifest,
   PublicationReceipt,
 } from "@nakafa/aksara-contracts/release";
-import { canonicalizePublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
+import { canonicalizePublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {

@@ -1,11 +1,11 @@
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-import { ContentRouteItemSchema } from "#contracts/release/route";
-import { digestRoutes } from "#contracts/release/route-digest";
+import { digestRoutes } from "#contracts/release/route/digest";
+import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import {
   decodeContentRoutes,
   verifyContentRoutes,
-} from "#contracts/release/routes";
+} from "#contracts/release/route/verify";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 import { release } from "#contracts/test/request";
 

@@ -7,7 +7,7 @@ import { parseInstalledManifest } from "#scripts/manifest";
 
 export const EDGE_CONTRACT_EXPORTS = [
   "release/canonical",
-  "release/snapshot-data",
+  "release/snapshot/data",
   "transport/request",
   "transport/response",
   "transport/snapshot",

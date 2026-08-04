@@ -1,8 +1,8 @@
 import type { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
 import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
-import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
-import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
+import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
+import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { Effect } from "effect";

@@ -1,8 +1,8 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
-import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route";
-import type { RouteRollbackRecord } from "@nakafa/aksara-contracts/release/route-page";
-import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import type { RouteRollbackRecord } from "@nakafa/aksara-contracts/release/route/page";
+import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
+import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import { Effect, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import type { RollbackProofMode } from "#publisher/rollback/proof";

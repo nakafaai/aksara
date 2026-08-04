@@ -22,8 +22,8 @@ import {
   decodeContentRoutes,
   type VerifiedContentRoutes,
   verifyContentRoutes,
-} from "@nakafa/aksara-contracts/release/routes";
-import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
+} from "@nakafa/aksara-contracts/release/route/verify";
+import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";

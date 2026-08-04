@@ -23,17 +23,17 @@ import {
   updateRollbackSnapshotDigest,
   verifyRollbackSnapshot,
 } from "@nakafa/aksara-contracts/release/rollback-digest";
-import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
-import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
+import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import {
   type PublicationScope,
   publicationScopeSelectsSnapshot,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   decodeContentSnapshotManifests,
   decodeContentSnapshotRows,
   verifyContentSnapshots,
-} from "@nakafa/aksara-contracts/release/snapshot-verify";
+} from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import {

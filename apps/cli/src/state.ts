@@ -7,7 +7,7 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import {
   canonicalizePublicationScope,
   type PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Schema } from "effect";
 import type {
   ReleaseArguments,

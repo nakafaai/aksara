@@ -1,13 +1,13 @@
 import type { FileSystem, Path } from "@effect/platform";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
-  ContentSnapshotSet,
-  PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot";
-import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot-data";
+} from "@nakafa/aksara-contracts/release/snapshot/data";
+import type {
+  ContentSnapshotSet,
+  PublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   type ProgramRowError,
   type ProgramSnapshotError,

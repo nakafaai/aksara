@@ -1,12 +1,12 @@
+import type {
+  ContentSnapshotManifest,
+  ContentSnapshotRow,
+} from "@nakafa/aksara-contracts/release/snapshot/data";
 import {
   type ContentSnapshotSet,
   inheritContentSnapshots,
   replaceContentSnapshot,
-} from "@nakafa/aksara-contracts/release/snapshot";
-import type {
-  ContentSnapshotManifest,
-  ContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot-data";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
 import { Effect, Stream } from "effect";
 

@@ -4,9 +4,9 @@ import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot-data";
-import { ContentSnapshotRowSchema } from "@nakafa/aksara-contracts/release/snapshot-data";
-import { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
+} from "@nakafa/aksara-contracts/release/snapshot/data";
+import { ContentSnapshotRowSchema } from "@nakafa/aksara-contracts/release/snapshot/data";
+import { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   digestTryoutCatalog,

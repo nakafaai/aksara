@@ -11,7 +11,7 @@ import {
   updateRollbackSnapshotDigest,
   verifyRollbackSnapshot,
 } from "#contracts/release/rollback-digest";
-import { inheritContentSnapshots } from "#contracts/release/snapshot";
+import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));

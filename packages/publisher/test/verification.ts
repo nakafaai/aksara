@@ -3,7 +3,7 @@ import type {
   ContentReleaseBundle,
   ContentReleaseStatus,
 } from "@nakafa/aksara-contracts/release/lifecycle";
-import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Stream } from "effect";
 import { vi } from "vitest";

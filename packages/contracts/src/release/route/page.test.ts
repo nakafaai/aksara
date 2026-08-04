@@ -5,7 +5,7 @@ import {
   RoutePageRequestSchema,
   RoutePageSchema,
   RouteRollbackRecordSchema,
-} from "#contracts/release/route-page";
+} from "#contracts/release/route/page";
 
 const hash = `sha256:${"a".repeat(64)}`;
 const releaseId = "test-route-page";

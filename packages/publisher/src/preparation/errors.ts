@@ -2,7 +2,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot";
+import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Schema } from "effect";
 
 const RecordIndexSchema = Schema.Number.pipe(

@@ -1,7 +1,7 @@
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
-import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
+import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import { Effect, Stream } from "effect";
 import {

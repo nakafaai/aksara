@@ -15,7 +15,7 @@ import {
 import {
   inheritContentSnapshots,
   invertContentSnapshots,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Stream } from "effect";

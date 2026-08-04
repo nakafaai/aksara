@@ -10,7 +10,7 @@ import {
   baseContentSnapshots,
   type ContentSnapshotSet,
   type PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";

@@ -4,7 +4,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import { ContentRouteItemSchema } from "#contracts/release/route";
+import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 
 /** Maximum route rollback records returned by one target page. */
 export const MAX_ROUTE_PAGE_RECORDS = 100;

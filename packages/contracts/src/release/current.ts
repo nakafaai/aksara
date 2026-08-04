@@ -9,7 +9,7 @@ import {
   hasSameContentSnapshots,
   invertContentSnapshots,
   snapshotRowCount,
-} from "#contracts/release/snapshot";
+} from "#contracts/release/snapshot/spec";
 import { PublicationReceiptSchema } from "#contracts/release/spec";
 
 /** Checks terminal receipt counts against its signed immutable manifest. */

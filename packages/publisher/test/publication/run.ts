@@ -8,7 +8,7 @@ import {
   ContentReleaseManifestSchema,
   RollbackSignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
-import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import {

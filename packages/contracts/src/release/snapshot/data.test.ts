@@ -17,7 +17,7 @@ import {
   ContentSnapshotRowSchema,
   canonicalizeContentSnapshotRow,
   contentSnapshotId,
-} from "#contracts/release/snapshot-data";
+} from "#contracts/release/snapshot/data";
 import { materialGraph } from "#contracts/test/graph";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot";
 import { TryoutCatalogRecordSchema } from "#contracts/tryout/spec";

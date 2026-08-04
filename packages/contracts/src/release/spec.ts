@@ -21,7 +21,7 @@ import {
   hasScopedSnapshotTransitions,
   PublicationScopeSchema,
   snapshotRowCount,
-} from "#contracts/release/snapshot";
+} from "#contracts/release/snapshot/spec";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 

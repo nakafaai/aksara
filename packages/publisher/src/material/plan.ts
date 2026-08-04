@@ -5,7 +5,7 @@ import {
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { MaterialEntry } from "@nakafa/aksara-corpus/material/registry";
 import { type Effect, Schema, type Stream } from "effect";

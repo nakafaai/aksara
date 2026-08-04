@@ -26,13 +26,13 @@ import {
   updateRollbackSnapshotDigest,
   verifyRollbackSnapshot,
 } from "@nakafa/aksara-contracts/release/rollback-digest";
-import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
-import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
-import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
+import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
+import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import type {
   ContentSnapshotSet,
   PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
 import {

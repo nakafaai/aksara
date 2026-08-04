@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
 import { verifyContentReleaseItems } from "#contracts/release/items";
-import { inheritContentSnapshots } from "#contracts/release/snapshot";
+import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import {
   ContentChangeSchema,
   type ContentReleaseItem,

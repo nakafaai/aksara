@@ -1,20 +1,20 @@
 import { Effect, Stream } from "effect";
 import { beforeAll, describe, expect, it } from "vitest";
+import type {
+  ContentSnapshotManifest,
+  ContentSnapshotRow,
+} from "#contracts/release/snapshot/data";
 import {
   ContentSnapshotSetSchema,
   inheritContentSnapshot,
   inheritContentSnapshots,
-} from "#contracts/release/snapshot";
-import type {
-  ContentSnapshotManifest,
-  ContentSnapshotRow,
-} from "#contracts/release/snapshot-data";
+} from "#contracts/release/snapshot/spec";
 import {
   decodeContentSnapshotManifests,
   decodeContentSnapshotRows,
   verifyContentSnapshots,
   verifyStagedSnapshotRows,
-} from "#contracts/release/snapshot-verify";
+} from "#contracts/release/snapshot/verify";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
 let snapshotData: Effect.Effect.Success<

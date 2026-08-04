@@ -29,7 +29,7 @@ import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
-import { replaceContentSnapshot } from "#contracts/release/snapshot";
+import { replaceContentSnapshot } from "#contracts/release/snapshot/spec";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { verifyContentRuntimeExchange } from "#contracts/runtime/verify";

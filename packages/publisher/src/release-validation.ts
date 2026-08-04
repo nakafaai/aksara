@@ -16,12 +16,12 @@ import type {
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type { VerifiedContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
-import type { VerifiedContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import type { VerifiedContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import {
   hasSameContentSnapshots,
   snapshotRowCount,
-} from "@nakafa/aksara-contracts/release/snapshot";
-import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema } from "effect";
 

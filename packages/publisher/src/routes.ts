@@ -15,7 +15,7 @@ import {
   type ContentRouteChange,
   type ContentRouteItem,
   ContentRouteItemSchema,
-} from "@nakafa/aksara-contracts/release/route";
+} from "@nakafa/aksara-contracts/release/route/spec";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { Effect, Schema, Stream } from "effect";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";

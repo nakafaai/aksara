@@ -3,7 +3,7 @@ import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
 import {
   inheritContentSnapshots,
   snapshotRowCount,
-} from "#contracts/release/snapshot";
+} from "#contracts/release/snapshot/spec";
 import {
   ReleaseVerificationCompleteSchema,
   ReleaseVerificationEvidenceSchema,

@@ -2,7 +2,7 @@ import { Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { ContentProjectionSchema } from "#contracts/projection/spec";
-import { ContentRouteItemSchema } from "#contracts/release/route";
+import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import { ContentReleaseItemSchema } from "#contracts/release/spec";
 import {
   MAX_ARTIFACT_BATCH_COUNT,

@@ -2,7 +2,7 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import { ContentSnapshotRowSchema } from "#contracts/release/snapshot-data";
+import { ContentSnapshotRowSchema } from "#contracts/release/snapshot/data";
 import { materialGraph } from "#contracts/test/graph";
 import {
   hash,

@@ -7,7 +7,7 @@ import {
 } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";

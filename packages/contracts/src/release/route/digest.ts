@@ -8,7 +8,7 @@ import {
 import {
   type ContentRouteItem,
   canonicalizeContentRouteItem,
-} from "#contracts/release/route";
+} from "#contracts/release/route/spec";
 
 const CONTENT_ROUTE_DIGEST_DOMAIN = "nakafa.aksara.content-routes.v1";
 

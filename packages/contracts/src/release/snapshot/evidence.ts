@@ -8,7 +8,7 @@ import { hashQuranSnapshot } from "#contracts/quran/snapshot-hash";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
-} from "#contracts/release/snapshot-data";
+} from "#contracts/release/snapshot/data";
 import {
   digestTryoutCatalog,
   digestTryoutPlacements,

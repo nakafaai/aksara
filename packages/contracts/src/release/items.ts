@@ -2,7 +2,7 @@ import { Effect, Schema, Stream } from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
-import { publicationScopeContainsContent } from "#contracts/release/snapshot";
+import { publicationScopeContainsContent } from "#contracts/release/snapshot/spec";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,

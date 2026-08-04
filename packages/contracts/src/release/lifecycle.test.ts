@@ -11,7 +11,7 @@ import {
   ReleaseCleanupRequestSchema,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
-import { inheritContentSnapshots } from "#contracts/release/snapshot";
+import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { release, rendererManifest } from "#contracts/test/request";
 
 const releaseId = "release-lifecycle";

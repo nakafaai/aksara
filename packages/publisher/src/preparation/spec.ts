@@ -31,14 +31,14 @@ import type {
 } from "@nakafa/aksara-contracts/release/result-digest";
 import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback";
 import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback-digest";
-import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route";
-import type { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
-import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/routes";
+import type { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
+import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
+import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import type {
   ContentSnapshotSet,
   PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot";
-import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot-verify";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";

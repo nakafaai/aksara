@@ -17,7 +17,7 @@ import {
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";

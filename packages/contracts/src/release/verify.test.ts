@@ -18,7 +18,7 @@ import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signi
 import {
   inheritContentSnapshots,
   invertContentSnapshots,
-} from "#contracts/release/snapshot";
+} from "#contracts/release/snapshot/spec";
 import {
   ContentReleaseManifestSchema,
   type SignedContentRelease,
