@@ -4,6 +4,7 @@ import {
   PublicationTargetTransportError,
 } from "@nakafa/aksara-publisher/target/errors";
 import { describe, expect, it } from "vitest";
+import { makeNakafaAppError } from "#cli/app-error";
 import { mapProductionError } from "#cli/failure";
 
 describe("production failure boundary", () => {
@@ -22,6 +23,36 @@ describe("production failure boundary", () => {
       targetStage: "verify",
       transport: { reason: "transient-status", status: 503 },
     });
+  });
+
+  it("keeps safe Nakafa app evidence", () => {
+    expect(
+      mapProductionError("renderer")(makeNakafaAppError("status", false, 401))
+    ).toMatchObject({
+      appReason: "status",
+      appStatus: 401,
+      failure: "NakafaAppError",
+      stage: "renderer",
+    });
+    const networkFailure = mapProductionError("renderer")(
+      makeNakafaAppError("network", true)
+    );
+    expect(networkFailure).toMatchObject({
+      appReason: "network",
+      failure: "NakafaAppError",
+      stage: "renderer",
+    });
+    expect(networkFailure).not.toHaveProperty("appStatus");
+  });
+
+  it("does not trust Nakafa-app-shaped plain records", () => {
+    const failure = mapProductionError("renderer")({
+      _tag: "NakafaAppError",
+      reason: "status",
+      status: 401,
+    });
+    expect(failure).not.toHaveProperty("appReason");
+    expect(failure).not.toHaveProperty("appStatus");
   });
 
   it("does not trust transport-shaped plain records", () => {

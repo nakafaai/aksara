@@ -8,6 +8,7 @@ import {
   PublicationTransportDetailSchema,
 } from "@nakafa/aksara-publisher/target/errors";
 import { Option, Predicate, Schema } from "effect";
+import { NakafaAppError } from "#cli/app-error";
 
 const ProductionStageSchema = Schema.Literal(
   "abort",
@@ -34,6 +35,8 @@ const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
 export class ProductionError extends Schema.TaggedError<ProductionError>()(
   "ProductionError",
   {
+    appReason: Schema.optional(NakafaAppError.fields.reason),
+    appStatus: NakafaAppError.fields.status,
     failure: Schema.NonEmptyTrimmedString,
     phase: Schema.optional(ActivationPhaseSchema),
     rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
@@ -43,6 +46,17 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
     transport: Schema.optional(PublicationTransportDetailSchema),
   }
 ) {}
+
+/** Preserves the safe reason and status owned by the Nakafa app boundary. */
+function appEvidence(error: unknown) {
+  if (!(error instanceof NakafaAppError)) {
+    return {};
+  }
+  return {
+    appReason: error.reason,
+    ...(error.status === undefined ? {} : { appStatus: error.status }),
+  };
+}
 
 /** Extracts only a bounded tagged-error identity, never nested secret data. */
 function failureName(error: unknown) {
@@ -98,6 +112,7 @@ export function mapProductionError(stage: ProductionStage) {
   return (error: unknown) => {
     const phase = activationPhase(error);
     return new ProductionError({
+      ...appEvidence(error),
       failure: failureName(error),
       ...(phase === undefined ? {} : { phase }),
       stage,
