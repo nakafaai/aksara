@@ -23,7 +23,7 @@ import {
   replaceContentSnapshot,
   restoreContentSnapshot,
   snapshotRowCount,
-} from "#contracts/release/snapshot";
+} from "#contracts/release/snapshot/spec";
 
 const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);

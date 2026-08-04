@@ -1,11 +1,11 @@
 import { Schema } from "effect";
 
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { ContentSnapshotKindSchema } from "#contracts/release/snapshot";
 import {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
-} from "#contracts/release/snapshot-data";
+} from "#contracts/release/snapshot/data";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/spec";
 import { MAX_SNAPSHOT_BATCH_COUNT } from "#contracts/transport/limits";
 
 const BatchIndexSchema = Schema.Int.pipe(Schema.nonNegative());

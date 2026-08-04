@@ -25,7 +25,7 @@ import {
 import { digestItems } from "@nakafa/aksara-contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
-import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";

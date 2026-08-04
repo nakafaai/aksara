@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { ContentSnapshotKindSchema } from "#contracts/release/snapshot";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/spec";
 
 /** Stable rejection codes that require no message parsing by clients. */
 export const PublicationDomainRejectionCodeSchema = Schema.Literal(

@@ -4,7 +4,7 @@ import {
   type RoutePage,
   RoutePageSchema,
   type RouteRollbackRecord,
-} from "@nakafa/aksara-contracts/release/route-page";
+} from "@nakafa/aksara-contracts/release/route/page";
 import { Chunk, Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {

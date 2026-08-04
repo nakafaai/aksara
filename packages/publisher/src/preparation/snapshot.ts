@@ -1,12 +1,12 @@
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot-data";
+} from "@nakafa/aksara-contracts/release/snapshot/data";
 import type {
   SnapshotManifestDecodeError,
   SnapshotManifestOrderError,
   SnapshotRowDecodeError,
-} from "@nakafa/aksara-contracts/release/snapshot-verify";
+} from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { Stream } from "effect";
 
 /** Raw replay factories required before structured snapshots are verified. */

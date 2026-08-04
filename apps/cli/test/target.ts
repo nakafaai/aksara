@@ -28,7 +28,7 @@ import {
   invertContentSnapshots,
   type PublicationScope,
   snapshotRowCount,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";

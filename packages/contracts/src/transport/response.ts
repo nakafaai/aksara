@@ -11,7 +11,7 @@ import {
   ReleaseCleanupReceiptSchema,
 } from "#contracts/release/lifecycle";
 import { RollbackPageSchema } from "#contracts/release/rollback";
-import { RoutePageSchema } from "#contracts/release/route-page";
+import { RoutePageSchema } from "#contracts/release/route/page";
 import {
   PublicationReceiptSchema,
   ReleaseVerificationStatusSchema,

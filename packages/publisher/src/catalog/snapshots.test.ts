@@ -14,7 +14,7 @@ import {
   QURAN_TAFSIR_LOCALES,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot-data";
+import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot-hash";
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -104,11 +104,11 @@ vi.mock("#publisher/snapshot/release", async () => {
 });
 
 vi.mock(
-  "@nakafa/aksara-contracts/release/snapshot-verify",
+  "@nakafa/aksara-contracts/release/snapshot/verify",
   async (importOriginal) => {
     const original =
       await importOriginal<
-        typeof import("@nakafa/aksara-contracts/release/snapshot-verify")
+        typeof import("@nakafa/aksara-contracts/release/snapshot/verify")
       >();
     const { Effect: TestEffect } = await import("effect");
     return {

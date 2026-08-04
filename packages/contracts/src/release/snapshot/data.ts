@@ -1,3 +1,4 @@
+/** Structured snapshot manifest and row wire contracts. */
 import { Schema } from "effect";
 
 import {

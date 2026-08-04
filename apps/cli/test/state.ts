@@ -15,7 +15,7 @@ import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/re
 import {
   inheritContentSnapshots,
   snapshotRowCount,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Schema } from "effect";
 import type {
   ReleaseArguments,

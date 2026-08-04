@@ -19,15 +19,15 @@ import {
   type QuranSnapshotRow,
   QuranSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
+import type {
+  ContentSnapshotManifest,
+  ContentSnapshotRow,
+} from "@nakafa/aksara-contracts/release/snapshot/data";
 import {
   ContentSnapshotSetSchema,
   inheritContentSnapshot,
   type PublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot";
-import type {
-  ContentSnapshotManifest,
-  ContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot-data";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   digestTryoutCatalog,
   digestTryoutPlacements,

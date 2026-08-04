@@ -6,7 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Order, Schema, Stream, Tuple } from "effect";
 
 /** One requested content identity is absent from both source and active state. */

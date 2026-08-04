@@ -8,7 +8,7 @@ import {
 import {
   invertContentSnapshots,
   restoreContentSnapshot,
-} from "#contracts/release/snapshot";
+} from "#contracts/release/snapshot/spec";
 import {
   RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,

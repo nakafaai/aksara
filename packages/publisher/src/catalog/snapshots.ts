@@ -1,12 +1,12 @@
 import type { FileSystem, Path } from "@effect/platform";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
-import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot";
-import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot-data";
+import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
+import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   decodeContentSnapshotManifests,
   verifyContentSnapshots,
-} from "@nakafa/aksara-contracts/release/snapshot-verify";
+} from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { Chunk, Effect, Schema, type Scope, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 

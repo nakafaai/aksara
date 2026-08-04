@@ -1,5 +1,5 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot-data";
+import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { Effect, Schema } from "effect";
 
 /** A Git release attempted to replace Quran with unapproved source provenance. */

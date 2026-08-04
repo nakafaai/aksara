@@ -8,7 +8,7 @@ import { canonicalizeContentReleaseItem } from "@nakafa/aksara-contracts/release
 import {
   type ContentRouteItem,
   canonicalizeContentRouteItem,
-} from "@nakafa/aksara-contracts/release/route";
+} from "@nakafa/aksara-contracts/release/route/spec";
 import type {
   StageArtifactBatchInput,
   StageItemBatchInput,

@@ -3,7 +3,7 @@ import { canonicalizeReleaseOrigin } from "#contracts/release/origin";
 import {
   canonicalizeContentSnapshotSet,
   canonicalizePublicationScope,
-} from "#contracts/release/snapshot";
+} from "#contracts/release/snapshot/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const CONTENT_RELEASE_SIGNATURE_DOMAIN = "nakafa.aksara.content-release.v1";

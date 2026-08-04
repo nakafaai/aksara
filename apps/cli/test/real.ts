@@ -11,7 +11,7 @@ import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { NodeContext } from "@effect/platform-node";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";

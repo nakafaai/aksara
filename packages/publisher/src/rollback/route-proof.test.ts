@@ -3,8 +3,8 @@ import {
   PublicPathSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route";
-import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route-page";
+import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route/page";
+import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { inverseRouteStream } from "#publisher/rollback/route-proof";

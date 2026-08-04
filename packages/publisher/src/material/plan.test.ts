@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Schema } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {

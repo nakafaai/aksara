@@ -2,7 +2,7 @@ import type { ReleaseVerificationEvidence } from "@nakafa/aksara-contracts/relea
 import {
   ContentSnapshotKindSchema,
   snapshotRowCount,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { StageBatchReceipt } from "@nakafa/aksara-contracts/transport/batch";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";

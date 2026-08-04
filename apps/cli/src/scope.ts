@@ -1,7 +1,7 @@
 import {
   type PublicationScope,
   PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Option, Schema } from "effect";
 
 /** One CLI selector does not form a canonical exact publication scope. */

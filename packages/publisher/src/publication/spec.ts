@@ -31,7 +31,7 @@ import type {
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback";
-import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route-page";
+import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route/page";
 import type {
   StageArtifactBatchInput,
   StageItemBatchInput,

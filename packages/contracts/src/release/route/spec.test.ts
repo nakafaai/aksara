@@ -5,7 +5,7 @@ import {
   ContentRouteItemSchema,
   canonicalizeContentRouteChange,
   canonicalizeContentRouteItem,
-} from "#contracts/release/route";
+} from "#contracts/release/route/spec";
 
 const releaseId = "test-route";
 

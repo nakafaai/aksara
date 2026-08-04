@@ -4,13 +4,13 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route";
 import {
   type RoutePageRequest,
   RoutePageSchema,
   type RouteRollbackRecord,
   RouteRollbackRecordSchema,
-} from "@nakafa/aksara-contracts/release/route-page";
+} from "@nakafa/aksara-contracts/release/route/page";
+import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
 import { Effect, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";

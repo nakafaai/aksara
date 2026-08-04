@@ -6,12 +6,12 @@ import {
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
-import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route";
-import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot";
+import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
 import {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
-} from "@nakafa/aksara-contracts/release/snapshot-data";
+} from "@nakafa/aksara-contracts/release/snapshot/data";
+import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { StageOperationSchema } from "@nakafa/aksara-contracts/transport/group";
 import {

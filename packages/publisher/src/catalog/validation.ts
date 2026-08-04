@@ -3,7 +3,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { digestRoutes } from "@nakafa/aksara-contracts/release/route-digest";
+import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema, type Scope, Stream } from "effect";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";

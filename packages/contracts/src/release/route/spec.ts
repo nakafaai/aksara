@@ -1,3 +1,4 @@
+/** Signed public route change and item wire contracts. */
 import { Schema } from "effect";
 import { ContentLocaleSchema } from "#contracts/content";
 import {

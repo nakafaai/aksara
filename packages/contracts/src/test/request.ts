@@ -3,16 +3,16 @@ import { SignedContentArtifactSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
-import { ContentRouteItemSchema } from "#contracts/release/route";
+import { ContentRouteItemSchema } from "#contracts/release/route/spec";
+import {
+  ContentSnapshotManifestSchema,
+  ContentSnapshotRowSchema,
+} from "#contracts/release/snapshot/data";
 import {
   inheritContentSnapshots,
   invertContentSnapshots,
   replaceContentSnapshot,
-} from "#contracts/release/snapshot";
-import {
-  ContentSnapshotManifestSchema,
-  ContentSnapshotRowSchema,
-} from "#contracts/release/snapshot-data";
+} from "#contracts/release/snapshot/spec";
 import {
   ContentReleaseItemSchema,
   RollbackSignedContentReleaseSchema,

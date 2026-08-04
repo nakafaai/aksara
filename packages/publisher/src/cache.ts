@@ -3,7 +3,7 @@ import {
   ContentCacheChangeSchema,
 } from "@nakafa/aksara-contracts/cache/content";
 import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
-import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot";
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Stream } from "effect";
 
 const allFamilies = ContentFamilySchema.literals.map((family) =>

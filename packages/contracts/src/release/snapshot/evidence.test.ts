@@ -5,8 +5,8 @@ import { Sha256HashSchema } from "#contracts/ids";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
-} from "#contracts/release/snapshot-data";
-import { verifySnapshotRows } from "#contracts/release/snapshot-domain";
+} from "#contracts/release/snapshot/data";
+import { verifySnapshotRows } from "#contracts/release/snapshot/evidence";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
 const unrelatedHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);

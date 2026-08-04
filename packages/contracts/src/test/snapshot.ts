@@ -11,7 +11,7 @@ import { hashProgramSnapshot } from "#contracts/program/snapshot-hash";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
-} from "#contracts/release/snapshot-data";
+} from "#contracts/release/snapshot/data";
 import { makeTestProgramRecords } from "#contracts/test/program";
 import { makeQuranTestData } from "#contracts/test/quran";
 import {

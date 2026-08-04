@@ -11,7 +11,7 @@ import {
   QuranSearchRowSchema,
   QuranSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
-import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot-data";
+import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot/data";
 import {
   MAX_SNAPSHOT_BATCH_BYTES,
   MAX_SNAPSHOT_BATCH_COUNT,

@@ -1,4 +1,4 @@
-import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot";
+import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   type PublicationSuccess,
   PublicationSuccessSchema,

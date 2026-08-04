@@ -6,7 +6,7 @@ import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-dig
 import {
   inheritContentSnapshots,
   invertContentSnapshots,
-} from "@nakafa/aksara-contracts/release/snapshot";
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { buildRollbackRelease } from "#publisher/rollback/release";

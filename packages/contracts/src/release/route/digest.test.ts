@@ -2,14 +2,14 @@ import type { BinaryLike } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
-import { ContentRouteItemSchema } from "#contracts/release/route";
 import {
   completeRouteDigest,
   createRouteDigest,
   digestRoutes,
   RouteHashError,
   updateRouteDigest,
-} from "#contracts/release/route-digest";
+} from "#contracts/release/route/digest";
+import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
 const releaseId =

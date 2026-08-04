@@ -5,8 +5,8 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import { ContentRouteItemSchema } from "#contracts/release/route";
-import { digestRoutes } from "#contracts/release/route-digest";
+import { digestRoutes } from "#contracts/release/route/digest";
+import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const RouteIndexSchema = Schema.Number.pipe(Schema.int(), Schema.nonNegative());

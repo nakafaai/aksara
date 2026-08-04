@@ -1,6 +1,6 @@
 {
   "name": "@nakafa/aksara-contracts",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Schemas and verification contracts for Nakafa content releases.",
   "homepage": "https://github.com/nakafaai/aksara#readme",
   "license": "SEE LICENSE IN LICENSE",
@@ -278,25 +278,25 @@
       "types": "./dist/release/rollback.d.ts",
       "import": "./dist/release/rollback.js"
     },
-    "./release/route": {
-      "aksara-source": "./src/release/route.ts",
-      "types": "./dist/release/route.d.ts",
-      "import": "./dist/release/route.js"
+    "./release/route/spec": {
+      "aksara-source": "./src/release/route/spec.ts",
+      "types": "./dist/release/route/spec.d.ts",
+      "import": "./dist/release/route/spec.js"
     },
-    "./release/route-digest": {
-      "aksara-source": "./src/release/route-digest.ts",
-      "types": "./dist/release/route-digest.d.ts",
-      "node": "./dist/release/route-digest.js"
+    "./release/route/digest": {
+      "aksara-source": "./src/release/route/digest.ts",
+      "types": "./dist/release/route/digest.d.ts",
+      "node": "./dist/release/route/digest.js"
     },
-    "./release/routes": {
-      "aksara-source": "./src/release/routes.ts",
-      "types": "./dist/release/routes.d.ts",
-      "node": "./dist/release/routes.js"
+    "./release/route/verify": {
+      "aksara-source": "./src/release/route/verify.ts",
+      "types": "./dist/release/route/verify.d.ts",
+      "node": "./dist/release/route/verify.js"
     },
-    "./release/route-page": {
-      "aksara-source": "./src/release/route-page.ts",
-      "types": "./dist/release/route-page.d.ts",
-      "import": "./dist/release/route-page.js"
+    "./release/route/page": {
+      "aksara-source": "./src/release/route/page.ts",
+      "types": "./dist/release/route/page.d.ts",
+      "import": "./dist/release/route/page.js"
     },
     "./release/rollback-digest": {
       "aksara-source": "./src/release/rollback-digest.ts",
@@ -318,20 +318,20 @@
       "types": "./dist/release/signing.d.ts",
       "import": "./dist/release/signing.js"
     },
-    "./release/snapshot": {
-      "aksara-source": "./src/release/snapshot.ts",
-      "types": "./dist/release/snapshot.d.ts",
-      "import": "./dist/release/snapshot.js"
+    "./release/snapshot/spec": {
+      "aksara-source": "./src/release/snapshot/spec.ts",
+      "types": "./dist/release/snapshot/spec.d.ts",
+      "import": "./dist/release/snapshot/spec.js"
     },
-    "./release/snapshot-data": {
-      "aksara-source": "./src/release/snapshot-data.ts",
-      "types": "./dist/release/snapshot-data.d.ts",
-      "import": "./dist/release/snapshot-data.js"
+    "./release/snapshot/data": {
+      "aksara-source": "./src/release/snapshot/data.ts",
+      "types": "./dist/release/snapshot/data.d.ts",
+      "import": "./dist/release/snapshot/data.js"
     },
-    "./release/snapshot-verify": {
-      "aksara-source": "./src/release/snapshot-verify.ts",
-      "types": "./dist/release/snapshot-verify.d.ts",
-      "node": "./dist/release/snapshot-verify.js"
+    "./release/snapshot/verify": {
+      "aksara-source": "./src/release/snapshot/verify.ts",
+      "types": "./dist/release/snapshot/verify.d.ts",
+      "node": "./dist/release/snapshot/verify.js"
     },
     "./release/verify": {
       "aksara-source": "./src/release/verify.ts",
@@ -466,7 +466,7 @@
   },
   "scripts": {
     "clean": "git clean -xdf dist coverage",
-    "build": "tsc --project tsconfig.build.json",
+    "build": "git clean -xdf dist && tsc --project tsconfig.build.json",
     "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json",
     "verify:consumer": "pnpm run build && node scripts/verify-edge.ts && node scripts/verify-consumer.ts"
