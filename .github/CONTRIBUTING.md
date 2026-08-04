@@ -36,11 +36,12 @@ Do not submit a contribution if you cannot grant these rights.
 - Node.js 24
 - pnpm, using the version declared in `package.json`
 - Git
+- GitHub CLI, authenticated with `gh auth login`
 
 ### Development Setup
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/aksara.git
+gh repo fork nakafaai/aksara --clone --remote
 cd aksara
 pnpm install --frozen-lockfile
 ```
