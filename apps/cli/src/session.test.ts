@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import { Effect, Logger, Redacted } from "effect";
 import { afterEach, describe, expect, it } from "vitest";
 import { makeNakafaAppError } from "#cli/app-error";
-import type { RunningNakafa } from "#cli/child";
+import type { RunningNakafa } from "#cli/child/session";
 import type { PreviewDocumentCompiler } from "#cli/document";
 import { PreviewEvidenceError } from "#cli/evidence";
 import { PreviewRepositoryError, PreviewRestartError } from "#cli/integrity";

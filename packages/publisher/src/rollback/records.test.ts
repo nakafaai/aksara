@@ -7,7 +7,7 @@ import {
   type RollbackRecord,
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
-} from "@nakafa/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -18,7 +18,7 @@ import {
   isDerivedRollbackUpsert,
   snapshotRollbackState,
 } from "#publisher/rollback/records";
-import { collectQuestionPublication } from "#test/question";
+import { collectQuestionPublication } from "#test/question/spec";
 import {
   collectRollbackRecords,
   currentRollbackReleaseId,
@@ -36,7 +36,7 @@ import {
   rollbackUpsertRecord,
   signRollbackPayload,
   tamperRollbackSignature,
-} from "#test/rollback-authentication";
+} from "#test/rollback/authentication";
 
 describe("deriveRollbackRecords", () => {
   it("authenticates upserts and preserves body-free deletes", async () => {

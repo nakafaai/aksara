@@ -49,7 +49,7 @@ import {
 } from "#publisher/publication/spec";
 import { validateReleaseRendererManifest } from "#publisher/release-validation";
 import { createReplaySpool, type ReplaySpool } from "#publisher/replay/spool";
-import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import {
   type CompiledReleaseSource,
   CompiledReleaseSourceSchema,

@@ -8,7 +8,7 @@ import {
   makeDerivedDelete,
   makeDerivedMaterial,
   makeDerivedTransition,
-} from "#test/rollback";
+} from "#test/rollback/spec";
 
 const current = makeDerivedMaterial({
   contentKey: "test:catalog:a",

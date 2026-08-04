@@ -22,7 +22,7 @@ import {
   type ContentReleaseBundle,
   ContentReleaseBundleSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
   inheritContentSnapshots,
   invertContentSnapshots,

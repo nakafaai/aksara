@@ -8,7 +8,7 @@ import {
   transportRelease,
   transportRenderer,
   type transportRequests,
-} from "#test/transport";
+} from "#test/transport/spec";
 
 type RecoveryRequest = Extract<
   (typeof transportRequests)[number],

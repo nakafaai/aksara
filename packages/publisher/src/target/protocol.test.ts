@@ -13,8 +13,8 @@ import {
   transportRelease,
   transportRequests,
   transportResponse,
-} from "#test/transport";
-import { transportSuccess } from "#test/transport-success";
+} from "#test/transport/spec";
+import { transportSuccess } from "#test/transport/success";
 
 /** Interprets one status and body pair through the typed wire protocol. */
 function interpret(

@@ -19,7 +19,7 @@ import {
   questionSources,
   rendererManifest,
   sourceByPath,
-} from "#test/question";
+} from "#test/question/spec";
 import { tryoutHeads, tryoutPlacements } from "#test/tryout";
 
 const bindings = [

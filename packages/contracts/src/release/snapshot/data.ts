@@ -4,10 +4,10 @@ import { Schema } from "effect";
 import {
   ProgramSnapshotRowSchema,
   ProgramSnapshotSchema,
-} from "#contracts/program/snapshot";
-import { QuranSnapshotManifestSchema } from "#contracts/quran/snapshot";
+} from "#contracts/program/snapshot/spec";
+import { QuranSnapshotManifestSchema } from "#contracts/quran/snapshot/spec";
 import { QuranSnapshotRowSchema } from "#contracts/quran/spec";
-import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot";
+import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 import {
   TryoutCatalogRecordSchema,
   TryoutPlacementRecordSchema,

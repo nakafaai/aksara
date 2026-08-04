@@ -5,14 +5,14 @@ import {
   collectMaterialRoutes,
   publishedMaterialHeads,
   rejectMaterialPublication,
-} from "#test/material";
+} from "#test/material/spec";
 
 vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const original =
     await importOriginal<
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
-  const { materialSlicePaths } = await import("#test/material-slice");
+  const { materialSlicePaths } = await import("#test/material/slice");
   const sourcePaths = new Set<string>(materialSlicePaths);
   return {
     ...original,

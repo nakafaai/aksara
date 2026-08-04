@@ -18,7 +18,7 @@ import {
   protectedFound,
   protectedRequest,
   request,
-} from "#contracts/test/runtime";
+} from "#contracts/test/runtime/spec";
 
 describe("content runtime contract", () => {
   it("decodes the exact bounded route request", async () => {

@@ -11,8 +11,8 @@ import { Duration, Effect, Redacted } from "effect";
 import { describe, expect, it } from "vitest";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
-import { transportRequests } from "#test/transport";
-import { transportSuccess } from "#test/transport-success";
+import { transportRequests } from "#test/transport/spec";
+import { transportSuccess } from "#test/transport/success";
 
 const endpoint = new URL("https://publish.test.invalid/content");
 const request: PublicationCurrentRequest = { operation: "current" };

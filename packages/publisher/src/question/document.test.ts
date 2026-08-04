@@ -12,7 +12,7 @@ import {
   questionChoices,
   questionEntries,
   sourceByPath,
-} from "#test/question";
+} from "#test/question/spec";
 
 const promptEntry = questionEntries.find(
   ({ bodyKind, locale }) => bodyKind === "question" && locale === "en"

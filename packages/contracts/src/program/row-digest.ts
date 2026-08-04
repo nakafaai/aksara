@@ -17,7 +17,7 @@ import {
 import type {
   ProgramCounts,
   ProgramSnapshotRow,
-} from "#contracts/program/snapshot";
+} from "#contracts/program/snapshot/spec";
 import type { LearningProgram } from "#contracts/program/spec";
 import { compareCodeUnits } from "#contracts/text/order";
 

@@ -2,7 +2,7 @@ import { Effect, Either, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
   inheritContentSnapshots,
   invertContentSnapshots,

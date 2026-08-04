@@ -8,7 +8,7 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Schema, type Scope, Stream } from "effect";
 import {

@@ -30,7 +30,7 @@ import type {
   ReleaseCleanupRequest,
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
-import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback";
+import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route/page";
 import type {
   StageArtifactBatchInput,

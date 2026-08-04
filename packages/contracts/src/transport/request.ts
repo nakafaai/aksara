@@ -9,7 +9,7 @@ import {
   ReleaseCleanupRequestSchema,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
-import { RollbackPageRequestSchema } from "#contracts/release/rollback";
+import { RollbackPageRequestSchema } from "#contracts/release/rollback/spec";
 import { RoutePageRequestSchema } from "#contracts/release/route/page";
 import {
   RollbackSignedContentReleaseSchema,

@@ -13,7 +13,7 @@ import {
 import {
   ProgramCountsSchema,
   type ProgramSnapshotRow,
-} from "#contracts/program/snapshot";
+} from "#contracts/program/snapshot/spec";
 import {
   makeTestCurriculumRoot,
   makeTestProgram,

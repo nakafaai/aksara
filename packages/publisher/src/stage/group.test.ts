@@ -7,7 +7,7 @@ import {
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeStageGroups } from "#publisher/stage/group";
-import { transportRequests } from "#test/transport";
+import { transportRequests } from "#test/transport/spec";
 
 describe("makeStageGroups", () => {
   it("preserves order while reducing safe requests into bounded groups", async () => {

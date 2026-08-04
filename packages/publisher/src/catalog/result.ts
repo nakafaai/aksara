@@ -16,7 +16,7 @@ import {
   createResultCatalogDigest,
   finalizeResultCatalogDigest,
   updateResultCatalogDigest,
-} from "@nakafa/aksara-contracts/release/result-digest";
+} from "@nakafa/aksara-contracts/release/result/digest";
 import { Effect, Ref, Schema, Stream } from "effect";
 import type { ExpectedCatalogHead } from "#publisher/catalog/expectation";
 import type { ReplaySpoolError } from "#publisher/replay/error";

@@ -8,7 +8,7 @@ import {
   QURAN_SNAPSHOT_FORMAT,
   type QuranSnapshotManifest,
   QuranSnapshotManifestSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot";
+} from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import {
   QURAN_LOCALES,
   QURAN_SEARCH_COUNT,
@@ -33,7 +33,7 @@ import {
   digestTryoutPlacements,
   makeTryoutCatalogRecord,
 } from "@nakafa/aksara-contracts/tryout/row-hash";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot-hash";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { TryoutCountrySchema } from "@nakafa/aksara-contracts/tryout/spec";
 import { Effect, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";

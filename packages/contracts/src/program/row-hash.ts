@@ -11,7 +11,7 @@ import {
   CurriculumRouteRecordSchema,
   LearningProgramRecordSchema,
   type ProgramSnapshotRow,
-} from "#contracts/program/snapshot";
+} from "#contracts/program/snapshot/spec";
 import {
   canonicalizeLearningProgram,
   type LearningProgram,

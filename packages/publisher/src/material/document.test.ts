@@ -7,7 +7,7 @@ import {
   makeMaterialProjection,
 } from "#publisher/material/document";
 import { testFileLayer } from "#test/files";
-import { checkoutRoot, englishPath, sourceByPath } from "#test/material";
+import { checkoutRoot, englishPath, sourceByPath } from "#test/material/spec";
 
 const englishEntry = await Effect.runPromise(
   decodeMaterialRegistry().pipe(

@@ -16,7 +16,7 @@ import {
   isRollbackUpsert,
   type RollbackRecord,
   type RollbackSnapshotState,
-} from "@nakafa/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema, Stream } from "effect";
 import {

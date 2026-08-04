@@ -1,10 +1,10 @@
 import { NodeContext } from "@effect/platform-node";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot";
+import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import {
   QURAN_SNAPSHOT_FORMAT,
   QuranSnapshotManifestSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot";
+} from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import { QURAN_SOURCE_FILE_COUNT } from "@nakafa/aksara-contracts/quran/source";
 import {
   QURAN_ATTRIBUTION_COUNT,
@@ -15,7 +15,7 @@ import {
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot-hash";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";

@@ -8,8 +8,8 @@ import {
   writeFileSync,
 } from "node:fs";
 import { relative, resolve } from "node:path";
-import type { PublicationSigner } from "@nakafa/aksara-publisher/signing";
-import { ContentSigningError } from "@nakafa/aksara-publisher/signing-errors";
+import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
+import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import { Effect } from "effect";
 import { afterEach, describe, expect, it } from "vitest";
 import { makePreviewCredentials } from "#cli/credentials";

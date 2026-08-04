@@ -9,6 +9,10 @@ import {
   type ProgramHashError,
 } from "@nakafa/aksara-contracts/program/row-hash";
 import {
+  hashProgramSnapshot,
+  type ProgramSnapshotHashError,
+} from "@nakafa/aksara-contracts/program/snapshot/hash";
+import {
   PROGRAM_SNAPSHOT_FORMAT,
   type ProgramCounts,
   ProgramCountsSchema,
@@ -16,11 +20,7 @@ import {
   ProgramSnapshotInputSchema,
   type ProgramSnapshotRow,
   ProgramSnapshotSchema,
-} from "@nakafa/aksara-contracts/program/snapshot";
-import {
-  hashProgramSnapshot,
-  type ProgramSnapshotHashError,
-} from "@nakafa/aksara-contracts/program/snapshot-hash";
+} from "@nakafa/aksara-contracts/program/snapshot/spec";
 import { Effect, Stream } from "effect";
 
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";

@@ -6,7 +6,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ProgramSnapshotRowSchema } from "@nakafa/aksara-contracts/program/snapshot";
+import { ProgramSnapshotRowSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import {
   QuranSearchRowSchema,
   QuranSnapshotRowSchema,

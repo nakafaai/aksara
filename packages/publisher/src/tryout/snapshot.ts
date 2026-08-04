@@ -12,8 +12,8 @@ import {
   digestTryoutCatalog,
   digestTryoutPlacements,
 } from "@nakafa/aksara-contracts/tryout/row-hash";
-import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot-hash";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
+import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/spec";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Effect, Option, type Scope, Stream } from "effect";

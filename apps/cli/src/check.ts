@@ -3,7 +3,7 @@ import { validateContentCatalog } from "@nakafa/aksara-publisher/catalog/validat
 import { Effect, Schema } from "effect";
 import { readPreviewEnvironment } from "#cli/env";
 import { NakafaAppLive } from "#cli/nakafa";
-import { openRendererSession } from "#cli/renderer-session";
+import { openRendererSession } from "#cli/renderer/session";
 
 /** Signals that the reviewed Quran source is not approved for publication. */
 export class CatalogCheckBlockedError extends Schema.TaggedError<CatalogCheckBlockedError>()(

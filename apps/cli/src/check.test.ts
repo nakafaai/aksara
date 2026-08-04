@@ -31,7 +31,7 @@ vi.mock("#cli/nakafa", async () => {
   return { NakafaAppLive: Layer.empty };
 });
 
-vi.mock("#cli/renderer-session", async () => {
+vi.mock("#cli/renderer/session", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Supplies one authenticated actual-renderer session identity. */

@@ -8,7 +8,7 @@ import {
   collectQuestionRoutes,
   publishedQuestionHeads,
   rejectQuestionPublication,
-} from "#test/question";
+} from "#test/question/spec";
 
 const publishedHeads = await publishedQuestionHeads();
 const questionKey =

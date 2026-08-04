@@ -8,15 +8,15 @@ import type {
   MaterialHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
-import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { sourceByPath as articleSources, checkoutRoot } from "#test/article";
 import { testFileLayer } from "#test/files";
-import { sourceByPath as materialSources } from "#test/material";
-import { sourceByPath as questionSources } from "#test/question";
+import { sourceByPath as materialSources } from "#test/material/spec";
+import { sourceByPath as questionSources } from "#test/question/spec";
 import { testRendererDomains } from "#test/renderer";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
@@ -38,7 +38,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
     await importOriginal<
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
-  const { materialSlicePaths } = await import("#test/material-slice");
+  const { materialSlicePaths } = await import("#test/material/slice");
   const sourcePaths = new Set<string>(materialSlicePaths);
   return {
     ...original,

@@ -2,7 +2,7 @@ import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import {
   ContentSnapshotManifestSchema,

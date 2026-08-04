@@ -5,8 +5,8 @@ import type {
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
-import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/rollback";
-import { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback-digest";
+import { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback/digest";
+import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { RollbackProofIdentityError } from "#publisher/rollback/errors";

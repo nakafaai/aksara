@@ -3,11 +3,11 @@ import { Effect, Schema, Stream } from "effect";
 import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import { digestProgramRows } from "#contracts/program/row-digest";
+import { hashProgramSnapshot } from "#contracts/program/snapshot/hash";
 import {
   PROGRAM_SNAPSHOT_FORMAT,
   ProgramSnapshotSchema,
-} from "#contracts/program/snapshot";
-import { hashProgramSnapshot } from "#contracts/program/snapshot-hash";
+} from "#contracts/program/snapshot/spec";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -24,7 +24,7 @@ import {
   makeTryoutCatalogRecord,
   makeTryoutPlacementRecord,
 } from "#contracts/tryout/row-hash";
-import { makeTryoutSnapshot } from "#contracts/tryout/snapshot-hash";
+import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 import {
   TryoutCatalogRowSchema,
   TryoutContentHashSchema,

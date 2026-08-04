@@ -44,7 +44,7 @@ import type {
   ReleaseVerificationMismatchError,
 } from "#publisher/release-validation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
-import type { ContentSigningError } from "#publisher/signing-errors";
+import type { ContentSigningError } from "#publisher/signing/error";
 import type { SnapshotBatchBindingError } from "#publisher/snapshot/batch";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 

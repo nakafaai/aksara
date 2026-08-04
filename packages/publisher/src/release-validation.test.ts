@@ -7,7 +7,7 @@ import {
   ReleaseVerificationEvidenceSchema,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
   inheritContentSnapshot,
   inheritContentSnapshots,

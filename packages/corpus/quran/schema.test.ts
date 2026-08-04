@@ -7,7 +7,7 @@ import {
 import { Chunk, Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { QuranSurahSchema } from "#corpus/quran/schema";
-import { quranSurahSourceStream } from "#corpus/quran/source";
+import { quranSurahSourceStream } from "#corpus/quran/source/stream";
 
 const decodeSurah = Schema.decodeUnknown(QuranSurahSchema);
 

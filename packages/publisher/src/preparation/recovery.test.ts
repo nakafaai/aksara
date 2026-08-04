@@ -5,7 +5,7 @@ import {
   reuseStoredGitRelease,
   reuseStoredRollbackRelease,
 } from "#publisher/preparation/recovery";
-import { makeTarget } from "#test/lifecycle";
+import { makeTarget } from "#test/lifecycle/spec";
 import { makeRelease } from "#test/publication";
 import {
   makeRollbackRelease,

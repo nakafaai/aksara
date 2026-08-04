@@ -17,9 +17,9 @@ import {
 import {
   englishPath,
   rendererManifest as materialRenderer,
-} from "#test/material";
-import { questionEntries } from "#test/question";
-import { questionRendererManifest } from "#test/question-renderer";
+} from "#test/material/spec";
+import { questionRendererManifest } from "#test/question/renderer";
+import { questionEntries } from "#test/question/spec";
 
 const articleEntry = articleEntries.find(({ route }) => route.locale === "en");
 const promptEntry = questionEntries.find(

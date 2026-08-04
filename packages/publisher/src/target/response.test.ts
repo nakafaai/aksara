@@ -4,8 +4,8 @@ import { PublicationStatusRequestSchema } from "@nakafa/aksara-contracts/transpo
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { readPublicationResponse } from "#publisher/target/response";
-import { transportRelease } from "#test/transport";
-import { transportSuccess } from "#test/transport-success";
+import { transportRelease } from "#test/transport/spec";
+import { transportSuccess } from "#test/transport/success";
 
 const request = PublicationStatusRequestSchema.make({
   manifestHash: transportRelease.manifestHash,

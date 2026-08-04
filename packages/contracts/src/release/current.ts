@@ -4,7 +4,7 @@ import {
   ContentReleaseBundleSchema,
   type RollbackContentReleaseBundle,
 } from "#contracts/release/lifecycle";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
   hasSameContentSnapshots,
   invertContentSnapshots,

@@ -1,7 +1,7 @@
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { ContentSigningError } from "@nakafa/aksara-publisher/signing-errors";
+import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { describeDocumentFailure } from "#cli/diagnostic";

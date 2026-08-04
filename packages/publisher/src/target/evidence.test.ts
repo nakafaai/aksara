@@ -6,8 +6,8 @@ import { describe, expect, it } from "vitest";
 import { hasBoundPublicationSuccess } from "#publisher/target/evidence";
 import { foreignTransportSuccess } from "#test/foreign";
 import { completedRecovery } from "#test/recovery";
-import { transportRequests } from "#test/transport";
-import { transportSuccess } from "#test/transport-success";
+import { transportRequests } from "#test/transport/spec";
+import { transportSuccess } from "#test/transport/success";
 
 describe("publication success evidence", () => {
   it("binds every successful operation to its exact request", () => {

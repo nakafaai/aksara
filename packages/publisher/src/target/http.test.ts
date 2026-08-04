@@ -19,8 +19,8 @@ import {
   transportRelease,
   transportRenderer,
   transportRequests,
-} from "#test/transport";
-import { transportSuccess } from "#test/transport-success";
+} from "#test/transport/spec";
+import { transportSuccess } from "#test/transport/success";
 
 const endpoint = new URL("https://publish.test.invalid/content");
 const token = Redacted.make("test-secret-token");
