@@ -20,7 +20,7 @@ import { Effect, Schema } from "effect";
 import type {
   ReleaseArguments,
   RollbackArguments,
-} from "#cli/production-arguments";
+} from "#cli/production/arguments";
 import { selectProductionAction } from "#cli/state";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 

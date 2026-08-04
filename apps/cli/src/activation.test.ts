@@ -26,9 +26,9 @@ const calls = vi.hoisted(() => ({
   token: "",
 }));
 
-vi.mock("#cli/production-renderer", async (importOriginal) => {
+vi.mock("#cli/production/renderer", async (importOriginal) => {
   const original =
-    await importOriginal<typeof import("#cli/production-renderer")>();
+    await importOriginal<typeof import("#cli/production/renderer")>();
   const { Effect: TestEffect, Redacted: TestRedacted } = await import("effect");
   return {
     ...original,

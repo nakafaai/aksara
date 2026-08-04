@@ -10,7 +10,7 @@ import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http"
 import { Effect } from "effect";
 import { readPublicationEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
-import type { CleanupArguments } from "#cli/production-arguments";
+import type { CleanupArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";
 
 const CLEANUP_TIMEOUT = "30 seconds";

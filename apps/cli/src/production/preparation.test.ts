@@ -9,7 +9,7 @@ import {
   productionCalls,
   rejectProduction,
   runProduction,
-} from "#test/production";
+} from "#test/production/harness";
 import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,

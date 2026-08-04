@@ -50,7 +50,7 @@ export interface RecoverArguments {
   readonly releaseId: ReleaseId;
 }
 
-/** Complete production command vocabulary accepted by the Aksara CLI. */
+/** Complete production command vocabulary accepted at the Aksara CLI boundary. */
 export type ProductionArguments =
   | AcceptArguments
   | AbortArguments

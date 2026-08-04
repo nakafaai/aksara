@@ -174,7 +174,7 @@ vi.mock("#cli/session", async () => {
   };
 });
 
-vi.mock("#cli/production", async () => {
+vi.mock("#cli/production/command", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Records production dispatch without performing external publication. */

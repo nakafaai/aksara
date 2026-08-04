@@ -5,13 +5,13 @@ import type { prepareContentRelease } from "@nakafa/aksara-publisher/preparation
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { vi } from "vitest";
-import { runProductionCommand } from "#cli/production";
 import type {
   ReleaseArguments,
   RollbackArguments,
-} from "#cli/production-arguments";
+} from "#cli/production/arguments";
+import { runProductionCommand } from "#cli/production/command";
 import { unusedExactProcess } from "#test/process";
-import type { TargetCalls } from "#test/production-mock";
+import type { TargetCalls } from "#test/production/mock";
 
 interface ProductionCalls extends TargetCalls {
   baseManifestHash: string | null | undefined;
@@ -100,31 +100,31 @@ export function productionCalls() {
 }
 
 vi.mock("#cli/env", async () =>
-  (await import("#test/production-mock")).environmentMock(calls)
+  (await import("#test/production/mock")).environmentMock(calls)
 );
 vi.mock("#cli/evidence", async () =>
-  (await import("#test/production-mock")).evidenceMock(calls)
+  (await import("#test/production/mock")).evidenceMock(calls)
 );
-vi.mock("#cli/production-renderer", async () =>
-  (await import("#test/production-mock")).rendererMock(calls)
+vi.mock("#cli/production/renderer", async () =>
+  (await import("#test/production/mock")).rendererMock(calls)
 );
 vi.mock("#cli/checkout", async () =>
-  (await import("#test/production-mock")).checkoutMock(calls)
+  (await import("#test/production/mock")).checkoutMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/heads", async () =>
-  (await import("#test/production-mock")).headsMock(calls)
+  (await import("#test/production/mock")).headsMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/catalog/publication", async () =>
-  (await import("#test/production-mock")).catalogMock(calls)
+  (await import("#test/production/mock")).catalogMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/snapshot/release", async () =>
-  (await import("#test/production-mock")).snapshotMock(calls)
+  (await import("#test/production/mock")).snapshotMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/target/http", async () =>
-  (await import("#test/production-mock")).httpTargetMock(calls)
+  (await import("#test/production/mock")).httpTargetMock(calls)
 );
 vi.mock("@nakafa/aksara-publisher/git/source", async () =>
-  (await import("#test/production-mock")).sourceMock(calls)
+  (await import("#test/production/mock")).sourceMock(calls)
 );
 
 vi.mock("@nakafa/aksara-publisher/preparation", async () => {

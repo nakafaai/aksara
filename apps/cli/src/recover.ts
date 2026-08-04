@@ -15,7 +15,7 @@ import { Effect } from "effect";
 import { makeProductionActivation } from "#cli/activation";
 import { readRecoveryEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
-import type { RecoverArguments } from "#cli/production-arguments";
+import type { RecoverArguments } from "#cli/production/arguments";
 import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
 
 type RecoverCommand = Effect.Effect<

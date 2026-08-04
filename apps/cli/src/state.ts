@@ -12,7 +12,7 @@ import { Effect, Schema } from "effect";
 import type {
   ReleaseArguments,
   RollbackArguments,
-} from "#cli/production-arguments";
+} from "#cli/production/arguments";
 
 /** Durable publication state does not permit the requested production command. */
 export class ProductionStateError extends Schema.TaggedError<ProductionStateError>()(
