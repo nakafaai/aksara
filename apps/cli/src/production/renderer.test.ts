@@ -1,7 +1,7 @@
 import type { HttpClientRequest } from "@effect/platform";
 import { Effect, Redacted } from "effect";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { fetchProductionRenderer } from "#cli/production-renderer";
+import { fetchProductionRenderer } from "#cli/production/renderer";
 import { captureClient, runClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 

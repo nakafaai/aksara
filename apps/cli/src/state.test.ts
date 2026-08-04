@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import type {
   ReleaseArguments,
   RollbackArguments,
-} from "#cli/production-arguments";
+} from "#cli/production/arguments";
 import { FUNCTION_SCOPE } from "#test/real";
 import {
   activeState,

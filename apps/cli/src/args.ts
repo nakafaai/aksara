@@ -3,7 +3,7 @@ import {
   isProductionCommand,
   type ProductionArguments,
   parseProductionArguments,
-} from "#cli/production-arguments";
+} from "#cli/production/arguments";
 
 /** One exact authored document requested by the local preview command. */
 export interface PreviewArguments {

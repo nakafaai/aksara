@@ -18,7 +18,7 @@ import { invalidateContentCache } from "#cli/cache/exchange";
 import {
   fetchProductionRenderer,
   isRendererEndpoint,
-} from "#cli/production-renderer";
+} from "#cli/production/renderer";
 
 const CACHE_PATH = "/api/internal/content/cache";
 const RETRY_COUNT = 3;

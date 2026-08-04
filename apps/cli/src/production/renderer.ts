@@ -21,7 +21,7 @@ export function isRendererEndpoint(endpoint: URL) {
   );
 }
 
-/** Reads one renderer manifest only from an explicit secure production URL. */
+/** Reads one renderer manifest only from the explicit secure production URL. */
 export const fetchProductionRenderer: (
   endpoint: URL,
   token: Redacted.Redacted<string>

@@ -48,7 +48,7 @@ const QUESTION_HEAD = QuestionHeadSchema.make({
   ),
 });
 
-/** Observable fields required by small production mock implementations. */
+/** Observable fields shared by focused production mock implementations. */
 export interface TargetCalls {
   catalogCalls: number;
   checkoutRoot: string | undefined;

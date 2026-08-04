@@ -6,7 +6,7 @@ import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http"
 import { Effect } from "effect";
 import { readPublicationEnvironment } from "#cli/env";
 import { mapProductionError, type ProductionError } from "#cli/failure";
-import type { AcceptArguments } from "#cli/production-arguments";
+import type { AcceptArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";
 
 const ACCEPT_TIMEOUT = "30 seconds";

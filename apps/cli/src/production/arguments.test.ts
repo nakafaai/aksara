@@ -1,6 +1,6 @@
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import { parseProductionArguments } from "#cli/production-arguments";
+import { parseProductionArguments } from "#cli/production/arguments";
 
 const FUNCTION_CONTENT_KEY =
   "material/lesson/mathematics/function-composition-inverse-function/function-concept";

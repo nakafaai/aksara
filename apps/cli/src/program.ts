@@ -5,7 +5,7 @@ import { parseCliArguments } from "#cli/args";
 import { runCheckCommand } from "#cli/check";
 import { runCleanupCommand } from "#cli/cleanup";
 import { runPreviewCommand } from "#cli/preview";
-import { runProductionCommand } from "#cli/production";
+import { runProductionCommand } from "#cli/production/command";
 import { runRecoverCommand } from "#cli/recover";
 import { runStatusCommand } from "#cli/status";
 
