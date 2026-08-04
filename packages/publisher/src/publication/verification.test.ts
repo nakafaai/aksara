@@ -150,13 +150,9 @@ describe("candidate verification", () => {
         ),
     });
     const error = await Effect.runPromise(
-      Effect.gen(function* () {
-        const fiber = yield* stageCandidateRelease(state.plan).pipe(
-          Effect.fork
-        );
-        yield* TestClock.adjust("10 minutes");
-        return yield* Fiber.join(fiber).pipe(Effect.flip);
-      }).pipe(
+      stageCandidateRelease(state.plan).pipe(
+        Effect.flip,
+        TestClock.adjustWith("10 minutes"),
         Effect.provideService(
           ContentVerificationKeyResolver,
           testVerificationResolver
