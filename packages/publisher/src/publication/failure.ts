@@ -7,7 +7,7 @@ import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/releas
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { Effect } from "effect";
 import type { prepareRollback } from "#publisher/rollback";
-import type { PublicationSigner } from "#publisher/signing";
+import type { PublicationSigner } from "#publisher/signing/service";
 
 /** Failure inferred from canonical release-item verification. */
 export type ReleaseItemVerificationError<E, R> = Effect.Effect.Error<

@@ -9,7 +9,7 @@ import {
   PublicationActivationError,
   PublicationRecoveryIdentityError,
 } from "#publisher/publication/spec";
-import { makeTarget } from "#test/lifecycle";
+import { makeTarget } from "#test/lifecycle/spec";
 import { rendererManifest } from "#test/publication";
 import { makeRollbackRelease, makeSignedBundle } from "#test/publication/run";
 

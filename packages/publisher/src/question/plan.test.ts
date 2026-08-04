@@ -12,7 +12,7 @@ import {
   questionEntries,
   rendererManifest,
   sourceByPath,
-} from "#test/question";
+} from "#test/question/spec";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 

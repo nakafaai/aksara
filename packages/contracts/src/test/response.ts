@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
   inheritContentSnapshots,
   snapshotRowCount,

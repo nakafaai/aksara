@@ -7,7 +7,7 @@ import {
 import {
   makeEd25519PublicationSigner,
   type PublicationSigner,
-} from "@nakafa/aksara-publisher/signing";
+} from "@nakafa/aksara-publisher/signing/service";
 import { Effect, Redacted, Schema } from "effect";
 
 /** Independent bearer and HMAC values for one local renderer process. */

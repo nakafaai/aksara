@@ -18,14 +18,14 @@ import {
   finalizeResultCatalogDigest,
   updateResultCatalogDigest,
   verifyResultCatalog,
-} from "@nakafa/aksara-contracts/release/result-digest";
-import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/result/digest";
 import {
   createRollbackSnapshotDigest,
   finalizeRollbackSnapshotDigest,
   updateRollbackSnapshotDigest,
   verifyRollbackSnapshot,
-} from "@nakafa/aksara-contracts/release/rollback-digest";
+} from "@nakafa/aksara-contracts/release/rollback/digest";
+import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";

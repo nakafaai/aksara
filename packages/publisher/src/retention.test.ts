@@ -2,7 +2,7 @@ import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { selectRetainedRecovery } from "#publisher/retention";
-import { makeTarget } from "#test/lifecycle";
+import { makeTarget } from "#test/lifecycle/spec";
 import { makeRelease } from "#test/publication";
 import { publish } from "#test/publication/run";
 

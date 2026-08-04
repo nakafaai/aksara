@@ -1,4 +1,4 @@
-import { transportRequests } from "#test/transport";
+import { transportRequests } from "#test/transport/spec";
 
 /** Builds authenticated target failures from exact decoded request fixtures. */
 export function publicationFailures() {

@@ -20,7 +20,7 @@ import {
   type RollbackRecord,
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
-} from "@nakafa/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";

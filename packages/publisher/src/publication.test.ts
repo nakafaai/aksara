@@ -10,7 +10,7 @@ import {
   PublicationActivation,
   PublicationActivationError,
 } from "#publisher/publication/spec";
-import { makeTarget } from "#test/lifecycle";
+import { makeTarget } from "#test/lifecycle/spec";
 import {
   contentRecord,
   makeRelease,
@@ -31,7 +31,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
     await importOriginal<
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
-  const { materialSlicePaths } = await import("#test/material-slice");
+  const { materialSlicePaths } = await import("#test/material/slice");
   const sourcePaths = new Set<string>(materialSlicePaths);
   return {
     ...original,

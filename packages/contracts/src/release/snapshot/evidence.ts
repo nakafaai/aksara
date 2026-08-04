@@ -2,9 +2,9 @@ import { Effect, Option, Schema, Stream } from "effect";
 
 import type { Sha256Hash } from "#contracts/ids";
 import { digestProgramRows } from "#contracts/program/row-digest";
-import { hashProgramSnapshot } from "#contracts/program/snapshot-hash";
+import { hashProgramSnapshot } from "#contracts/program/snapshot/hash";
 import { digestQuranRows } from "#contracts/quran/row-digest";
-import { hashQuranSnapshot } from "#contracts/quran/snapshot-hash";
+import { hashQuranSnapshot } from "#contracts/quran/snapshot/hash";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -13,8 +13,8 @@ import {
   digestTryoutCatalog,
   digestTryoutPlacements,
 } from "#contracts/tryout/row-hash";
-import type { TryoutCatalogCounts } from "#contracts/tryout/snapshot";
-import { makeTryoutSnapshot } from "#contracts/tryout/snapshot-hash";
+import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
+import type { TryoutCatalogCounts } from "#contracts/tryout/snapshot/spec";
 import type { TryoutCatalogRecord } from "#contracts/tryout/spec";
 
 /** Signed snapshot evidence differs from its authenticated row stream. */

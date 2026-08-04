@@ -11,7 +11,7 @@ import {
   type ContentHead,
   canonicalizeContentHead,
 } from "@nakafa/aksara-contracts/release/head";
-import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
+import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Option, Order, Schema, Stream, Tuple } from "effect";
 import {
   type DerivedRollbackRecord,

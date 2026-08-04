@@ -13,7 +13,7 @@ import {
 import {
   type RollbackSnapshotEntry,
   RollbackSnapshotEntrySchema,
-} from "@nakafa/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Schema, Stream } from "effect";
 import {
   type CoherenceFieldSchema,

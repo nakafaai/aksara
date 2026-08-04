@@ -12,7 +12,7 @@ import {
   loadPreviewSources,
   projectPreviewSource,
 } from "@nakafa/aksara-publisher/preview/source";
-import type { PublicationSigner } from "@nakafa/aksara-publisher/signing";
+import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import { Effect, HashMap, Option, Ref } from "effect";
 import {
   fingerprintSelectedDocument,

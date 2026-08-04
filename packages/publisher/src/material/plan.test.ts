@@ -14,7 +14,7 @@ import {
   materialManifest,
   publishedMaterialHeads,
   sourceByPath,
-} from "#test/material";
+} from "#test/material/spec";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 const registryState = vi.hoisted(() => ({ changedOrder: false }));
@@ -36,7 +36,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
     await importOriginal<
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
-  const { materialSlicePaths } = await import("#test/material-slice");
+  const { materialSlicePaths } = await import("#test/material/slice");
   const sourcePaths = new Set<string>(materialSlicePaths);
   return {
     ...original,

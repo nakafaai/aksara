@@ -3,14 +3,14 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import { Context, Effect, Layer } from "effect";
 import type * as Scope from "effect/Scope";
 import type { NakafaAppError } from "#cli/app-error";
+import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import {
   type NakafaStartInput,
   type RunningNakafa,
   startNakafa,
-} from "#cli/child";
-import { NakafaProcess, NakafaProcessLive } from "#cli/child-process";
+} from "#cli/child/session";
 import type { RendererCredentials } from "#cli/credentials";
-import { waitForRenderer } from "#cli/renderer";
+import { waitForRenderer } from "#cli/renderer/manifest";
 
 /** Injectable actual-app boundary used by the preview orchestration. */
 export class NakafaApp extends Context.Tag("AksaraCliNakafaApp")<

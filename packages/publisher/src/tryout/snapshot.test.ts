@@ -6,7 +6,7 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot/data";
-import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot";
+import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type {
   TryoutCatalogRecord,
   TryoutPlacementSource,
@@ -24,7 +24,7 @@ import {
   questionSources,
   rendererManifest,
   sourceByPath,
-} from "#test/question";
+} from "#test/question/spec";
 
 interface TestProjection {
   readonly catalog: readonly TryoutCatalogRecord[];

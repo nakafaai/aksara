@@ -10,7 +10,7 @@ import type {
 } from "@nakafa/aksara-contracts/ids";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
-import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
+import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";

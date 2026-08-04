@@ -4,7 +4,7 @@ import { Effect, Schema } from "effect";
 
 import { ContentLocaleSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
-import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot";
+import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot/spec";
 import {
   type QuranSourceAttribution,
   QuranSourceAttributionSchema,

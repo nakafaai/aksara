@@ -27,7 +27,7 @@ import {
   PublicationSource,
   PublicationTarget,
 } from "#publisher/publication/spec";
-import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { testFileLayer } from "#test/files";
 import {
   makeRelease,

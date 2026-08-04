@@ -11,7 +11,7 @@ import {
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import { ReleaseOriginSchema } from "#contracts/release/origin";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
   type ContentSnapshotSet,
   ContentSnapshotSetSchema,

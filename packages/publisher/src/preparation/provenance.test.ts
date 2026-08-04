@@ -2,7 +2,7 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   QURAN_SNAPSHOT_FORMAT,
   QuranSnapshotManifestSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot";
+} from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";

@@ -3,12 +3,12 @@ import { Effect, Stream } from "effect";
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestQuranRows } from "#contracts/quran/row-digest";
 import { bindQuranRow } from "#contracts/quran/row-hash";
+import { hashQuranSnapshot } from "#contracts/quran/snapshot/hash";
 import {
   QURAN_SNAPSHOT_FORMAT,
   type QuranSnapshotInput,
   QuranSnapshotManifestSchema,
-} from "#contracts/quran/snapshot";
-import { hashQuranSnapshot } from "#contracts/quran/snapshot-hash";
+} from "#contracts/quran/snapshot/spec";
 import {
   QURAN_SOURCE_IDS,
   QuranAttributionRowSchema,

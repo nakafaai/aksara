@@ -9,13 +9,13 @@ import {
   hashQuranRow,
   type QuranHashError,
 } from "@nakafa/aksara-contracts/quran/row-hash";
+import { hashQuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot/hash";
 import {
   QURAN_SNAPSHOT_FORMAT,
   QuranSnapshotInputSchema,
   type QuranSnapshotManifest,
   QuranSnapshotManifestSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot";
-import { hashQuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot-hash";
+} from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import {
   QURAN_LOCALES,
   QURAN_SURAH_COUNT,
@@ -33,7 +33,7 @@ import {
 } from "#corpus/quran/projection";
 import { quranProvenanceRecords } from "#corpus/quran/provenance";
 import { streamQuranRegistry } from "#corpus/quran/registry";
-import { quranSourceSummary } from "#corpus/quran/source-hash";
+import { quranSourceSummary } from "#corpus/quran/source/evidence";
 
 type PreparedQuranRowError = QuranHashError | QuranProjectionError;
 

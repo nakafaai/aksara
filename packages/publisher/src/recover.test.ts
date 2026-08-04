@@ -9,7 +9,7 @@ import {
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { recoverContentRelease } from "#publisher/recover";
-import { makeTarget } from "#test/lifecycle";
+import { makeTarget } from "#test/lifecycle/spec";
 import { makeRelease } from "#test/publication";
 import { publish, testVerificationResolver } from "#test/publication/run";
 import { makePublicationTarget } from "#test/target";

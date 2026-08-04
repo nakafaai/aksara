@@ -21,7 +21,7 @@ import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signatu
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeRollbackArtifacts } from "#publisher/publication/artifacts";
-import { makeEd25519PublicationSigner } from "#publisher/signing";
+import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { testRendererDomains } from "#test/renderer";
 
 const rawMdx = "Protocol body";

@@ -8,9 +8,9 @@ import {
   PublicationSuccessSchema,
 } from "@nakafa/aksara-contracts/transport/response";
 import { Match, Schema } from "effect";
-import { releaseReceipt } from "#test/lifecycle-state";
-import { transportRecovery, transportRenderer } from "#test/transport";
-import { transportSuccess } from "#test/transport-success";
+import { releaseReceipt } from "#test/lifecycle/state";
+import { transportRecovery, transportRenderer } from "#test/transport/spec";
+import { transportSuccess } from "#test/transport/success";
 
 const foreignReleaseId = ReleaseIdSchema.make("test-foreign-release");
 const foreignHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);

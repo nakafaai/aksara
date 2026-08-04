@@ -1,7 +1,7 @@
 import type { FileSystem, Path } from "@effect/platform";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
 import { Effect, Either, Fiber, Ref } from "effect";
-import type { RunningNakafa } from "#cli/child";
+import type { RunningNakafa } from "#cli/child/session";
 import { describeDocumentFailure } from "#cli/diagnostic";
 import {
   makePreviewDocumentCompiler,
@@ -13,7 +13,7 @@ import type { PreviewEnvironment } from "#cli/env";
 import type { PreviewEvidenceError } from "#cli/evidence";
 import { PreviewRestartError } from "#cli/integrity";
 import type { PreviewProvider, PreviewProviderError } from "#cli/provider";
-import { openRendererSession } from "#cli/renderer-session";
+import { openRendererSession } from "#cli/renderer/session";
 import { openSelectedWatcher, type PreviewWatchError } from "#cli/watch";
 
 /** Controls one scoped provider, compiler, watcher, and actual Nakafa child. */

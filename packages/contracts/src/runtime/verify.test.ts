@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import { materialGraph } from "#contracts/test/graph";
 import { hash, rendererManifest } from "#contracts/test/request";
+import { protectedMismatchCases } from "#contracts/test/runtime/mismatch";
 import {
   articleFound,
   articleRequest,
@@ -18,8 +19,7 @@ import {
   tamperSignature,
   verifyExchange,
   verifyExchangeEither,
-} from "#contracts/test/runtime";
-import { protectedMismatchCases } from "#contracts/test/runtime-mismatch";
+} from "#contracts/test/runtime/spec";
 
 describe("content runtime verification", () => {
   it("binds a found response to its exact request", async () => {

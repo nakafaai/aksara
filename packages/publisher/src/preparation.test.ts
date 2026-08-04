@@ -5,7 +5,7 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
   inheritContentSnapshots,
   PublicationScopeSchema,

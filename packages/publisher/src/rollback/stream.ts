@@ -6,7 +6,7 @@ import {
   type RollbackPage,
   RollbackPageSchema,
   type RollbackRecord,
-} from "@nakafa/aksara-contracts/release/rollback";
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Chunk, Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {

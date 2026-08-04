@@ -1,5 +1,5 @@
 import { beforeEach, expect, it, vi } from "vitest";
-import { publishMaterialRelease } from "#test/material-run";
+import { publishMaterialRelease } from "#test/material/run";
 import { publicationRequirements } from "#test/requirements";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));

@@ -4,7 +4,7 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback";
+import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";

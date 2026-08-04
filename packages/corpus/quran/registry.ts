@@ -5,7 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Option, Schema, Stream } from "effect";
 import { type QuranSurah, QuranSurahSchema } from "#corpus/quran/schema";
-import { quranSurahSourceStream } from "#corpus/quran/source";
+import { quranSurahSourceStream } from "#corpus/quran/source/stream";
 
 interface QuranRegistryState {
   readonly nextSurah: number;

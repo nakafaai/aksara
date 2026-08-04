@@ -5,7 +5,7 @@ import {
   checkoutRoot,
   publishedQuestionHeads,
   questionEntries,
-} from "#test/question";
+} from "#test/question/spec";
 
 export const tryoutHeads = await publishedQuestionHeads();
 export const tryoutPrompts = questionEntries.filter(

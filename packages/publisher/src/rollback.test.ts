@@ -14,7 +14,7 @@ import {
   rollbackTarget,
   signer,
   sourceRelease,
-} from "#test/rollback-preparation";
+} from "#test/rollback/preparation";
 
 describe("prepareRollback", () => {
   it("prepares an authenticated prior state as a new forward release", async () => {

@@ -6,12 +6,12 @@ import {
   LearningProgramRecordSchema,
   PROGRAM_SNAPSHOT_FORMAT,
   ProgramSnapshotSchema,
-} from "#contracts/program/snapshot";
+} from "#contracts/program/snapshot/spec";
 import { LearningProgramSchema } from "#contracts/program/spec";
 import {
   QURAN_SNAPSHOT_FORMAT,
   QuranSnapshotManifestSchema,
-} from "#contracts/quran/snapshot";
+} from "#contracts/quran/snapshot/spec";
 import {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
@@ -19,7 +19,7 @@ import {
   contentSnapshotId,
 } from "#contracts/release/snapshot/data";
 import { materialGraph } from "#contracts/test/graph";
-import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot";
+import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 import { TryoutCatalogRecordSchema } from "#contracts/tryout/spec";
 
 const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);

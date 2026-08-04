@@ -10,7 +10,7 @@ import {
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
 import { Effect, Layer, type Stream } from "effect";
-import type { RunningNakafa } from "#cli/child";
+import type { RunningNakafa } from "#cli/child/session";
 import type { SelectedDocument } from "#cli/integrity";
 import { NakafaApp } from "#cli/nakafa";
 import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";

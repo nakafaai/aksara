@@ -9,7 +9,7 @@ import {
   decodeContentProjections,
   verifyContentProjections,
 } from "#contracts/projection/verify";
-import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { materialGraph } from "#contracts/test/graph";

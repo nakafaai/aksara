@@ -10,7 +10,7 @@ import {
   ReleaseArtifactMismatchError,
   validateArtifactForItem,
 } from "#publisher/release-validation";
-import type { PublicationSigner } from "#publisher/signing";
+import type { PublicationSigner } from "#publisher/signing/service";
 import type { CompiledReleaseSource } from "#publisher/source-compilation";
 
 type ArtifactVerificationError = Effect.Effect.Error<

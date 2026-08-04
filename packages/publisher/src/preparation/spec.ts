@@ -28,9 +28,9 @@ import type {
   finalizeResultCatalogDigest,
   updateResultCatalogDigest,
   verifyResultCatalog,
-} from "@nakafa/aksara-contracts/release/result-digest";
-import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback";
-import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback-digest";
+} from "@nakafa/aksara-contracts/release/result/digest";
+import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback/digest";
+import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";

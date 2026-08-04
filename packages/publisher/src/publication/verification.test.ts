@@ -15,7 +15,7 @@ import {
   PublicationTargetProtocolError,
   PublicationTargetTransportError,
 } from "#publisher/target/errors";
-import { releaseEvidence } from "#test/lifecycle-state";
+import { releaseEvidence } from "#test/lifecycle/state";
 import { testVerificationResolver } from "#test/publication/run";
 import {
   makeVerificationPlan,

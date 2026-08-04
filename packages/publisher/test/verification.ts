@@ -9,7 +9,7 @@ import { Effect, Stream } from "effect";
 import { vi } from "vitest";
 import type { PublicationPlan } from "#publisher/publication/plan";
 import type { PublicationTarget } from "#publisher/publication/spec";
-import { releaseEvidence, releaseReceipt } from "#test/lifecycle-state";
+import { releaseEvidence, releaseReceipt } from "#test/lifecycle/state";
 import { rendererManifest } from "#test/publication";
 import {
   makeRollbackRelease,

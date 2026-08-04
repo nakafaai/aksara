@@ -2,7 +2,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result-digest";
+import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import {
   inheritContentSnapshots,
   invertContentSnapshots,
@@ -15,7 +15,7 @@ import {
   makeDerivedDelete,
   makeDerivedMaterial,
   makeDerivedTransition,
-} from "#test/rollback";
+} from "#test/rollback/spec";
 
 describe("buildRollbackRelease", () => {
   it("derives an upsert release, artifact, projection, result, and snapshot", async () => {

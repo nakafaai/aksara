@@ -15,7 +15,7 @@ import {
   replaceContentSnapshot,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
-import { tryoutSnapshotRowEvidence } from "#contracts/tryout/snapshot-hash";
+import { tryoutSnapshotRowEvidence } from "#contracts/tryout/snapshot/hash";
 
 const StreamIndexSchema = Schema.Int.pipe(Schema.nonNegative());
 
