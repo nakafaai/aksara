@@ -77,18 +77,12 @@ pnpm consumer, typechecks every public export with TypeScript 7, executes every
 runtime export, and rejects missing files, private source targets, nested Effect
 runtimes, or a mismatched license.
 
-Consumers pin the immutable asset URL generated from that package version:
-
-```text
-https://github.com/nakafaai/aksara/releases/download/
-  contracts-v<version>/nakafa-aksara-contracts-<version>.tgz
-```
-
-The exact current pin lives in the Nakafa package manifests and committed pnpm
-lockfile; this document does not duplicate that mutable version. The lockfile
-records the downloaded archive integrity. The
-contracts package has no registry fallback and no Git source fallback; ordinary
-third-party dependencies continue to use pnpm's configured registry.
+Consumers pin the `nakafa-aksara-contracts-<version>.tgz` asset from the
+`contracts-v<version>` GitHub Release. The exact current URL lives in the Nakafa
+package manifests and committed pnpm lockfile; this document does not duplicate
+that mutable version. The lockfile records the downloaded archive integrity.
+The contracts package has no registry fallback and no Git source fallback;
+ordinary third-party dependencies continue to use pnpm's configured registry.
 
 Nakafa content publication also rebuilds the contract archive from its exact
 Aksara source revision before production approval. An unprivileged proof job
