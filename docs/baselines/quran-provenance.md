@@ -5,6 +5,12 @@
 - Decision: source provenance approved; production cutover not performed
 - Aksara source: `packages/corpus/quran`
 
+This is the dated provenance decision from 2026-07-25. Production activation
+later completed through the exact release and acceptance evidence recorded in
+the root [production scope](../../README.md#production-scope). The historical
+decision below is retained to show what this review did and did not prove at
+that time.
+
 ## Exact official artifacts
 
 | Scope | Official edition | Exact artifact | Bytes | SHA-256 |

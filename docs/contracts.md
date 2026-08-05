@@ -18,9 +18,12 @@ and prepared the full Aksara repository, including the corpus, before selecting
 the contracts subdirectory. That defeats the package's small installation
 boundary.
 
-The accepted artifact is approximately 176 KiB compressed and 2.3 MiB
-unpacked. The measured exact-Git repository archive was approximately 8.3 MiB
-compressed, 55 MiB unpacked, and 6,894 files before dependency preparation.
+The accepted artifact contains only the compiled contract package, its release
+manifest, README, and license. Release verification owns its exact current
+bytes, digest, and size so this document does not duplicate mutable artifact
+measurements. The initial exact-Git comparison fetched the complete repository
+and corpus before dependency preparation, which is why that distribution path
+remains rejected.
 
 References:
 

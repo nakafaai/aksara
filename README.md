@@ -5,9 +5,11 @@ small public Turborepo. The repository contains Nakafa's real `en` and `id`
 source corpus: articles, materials, question banks, learning programs, try-out
 catalogs, and a Quran corpus generated from pinned official Tanzil and QuranEnc
 artifacts. Production cutover is explicit and scope-owned: Nakafa currently
-serves the article, material, and learning-program families from Aksara. Every
-additional scope keeps its existing owner until its renderer, publication,
-recovery, and production acceptance gates pass.
+serves the article, material, question, learning-program, Quran, and try-out
+scopes from signed Aksara releases. Filesystem copies of an activated scope in
+Nakafa are coordinated deletion work, not another editable source of truth.
+
+## Production scope
 
 The article runtime ownership landed in Nakafa commit
 [`4bf134519c`](https://github.com/nakafaai/nakafa.com/commit/4bf134519cb1cfb0d4181ed6d84d446afc973b9b);
@@ -38,6 +40,19 @@ after sitemap cache revalidation and unchanged projection proof. That acceptance
 recorded sequence 20 with 764 heads, items, artifacts, and projections while
 candidate, recovery, and compaction state were empty.
 
+Nakafa commits
+[`0d3df7ca07`](https://github.com/nakafaai/nakafa.com/commit/0d3df7ca072d155a020c9b0ba90cf539c4f0299a),
+[`a743518173`](https://github.com/nakafaai/nakafa.com/commit/a7435181732ebf009fcf99200c72a9a395444873),
+and
+[`6604d6e0b3`](https://github.com/nakafaai/nakafa.com/commit/6604d6e0b3d68ce65974a8a2d5d088cd3f7b9694)
+completed the signed Quran and try-out runtime boundary. Release
+`quran-tryout-cutover-20260804-a48d644` from Aksara commit
+[`a48d644c80`](https://github.com/nakafaai/aksara/commit/a48d644c809419c93dc247239eabba9ced519051)
+activated the question family plus Quran and try-out snapshots in production
+[run `30958694458`](https://github.com/nakafaai/aksara/actions/runs/30958694458).
+Its retained recovery was accepted in
+[run `30966405666`](https://github.com/nakafaai/aksara/actions/runs/30966405666).
+
 ## Current modules
 
 - `@nakafa/aksara-contracts` defines signed artifact, release, and renderer
@@ -64,11 +79,13 @@ candidate, recovery, and compaction state were empty.
   content-domain contracts.
 - `@nakafa/typescript-config` owns the single Node ESM compiler contract used
   by the domain packages.
+- `@nakafa/testing` owns shared Vitest defaults consumed by package-local test
+  configs.
 
-Each additional production activation remains gated by renderer fidelity,
-migration, release, rollback, and provenance checks. The current Quran source
-scopes are approved and carry one mandatory visible attribution row; Quran
-production cutover remains a separate operation.
+Every future production scope remains gated by renderer fidelity, migration,
+release, rollback, provenance, and hosted acceptance. The active Quran snapshot
+carries one mandatory visible attribution row and still fails closed if its
+pinned provenance contract changes.
 
 ## Commands
 
@@ -77,6 +94,7 @@ pnpm install --frozen-lockfile
 pnpm bump-deps
 pnpm format
 pnpm lint
+pnpm security:audit
 pnpm names
 pnpm jsdocs
 pnpm lines
@@ -92,6 +110,14 @@ pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-comp
 
 `pnpm status` reads the authoritative publication slots using publication
 credentials only; it does not sign, stage, activate, or mutate a release.
+
+Concurrent backend verification uses a task-owned Nakafa deployment through
+[Convex Agent Mode](https://docs.convex.dev/cli/agent-mode), never shared
+development or production. Aksara receives only that deployment's explicit
+publication and renderer endpoints. When an isolated release verifies a local
+HTTPS renderer, set `NODE_EXTRA_CA_CERTS` to its temporary CA certificate.
+Turbo passes that trust path only to release, recover, and rollback tasks.
+Never disable TLS verification for this workflow.
 
 Run a focused workspace test through Turbo so dependency builds stay current:
 
@@ -109,9 +135,15 @@ GitHub Actions. Aksara does not duplicate that contract in `.npmrc`,
 `pnpm bump-deps` updates ordinary workspace dependencies after the configured
 24-hour release-age gate. It deliberately leaves Effect, TypeScript, and Node
 types unchanged because those toolchain boundaries require a separately
-reviewed, coordinated update. An Effect update must keep `effect`,
-`@effect/platform`, and `@effect/platform-node` compatible and must update the
-read-only `repos/effect` source through `pnpm effect:source:update`.
+reviewed, coordinated update.
+
+Effect work follows the read-only workflow in
+[`AGENTS.md`](AGENTS.md#vendored-references): inspect the matching
+implementation and tests under `repos/effect` before writing or reviewing
+code, then run `pnpm effect:source:check`. A coordinated Effect dependency
+update keeps `effect`, `@effect/platform`, and `@effect/platform-node`
+compatible and updates the pinned subtree only through
+`pnpm effect:source:update`.
 
 All non-MDX hand-written executable source and repository tooling is
 TypeScript. The file-name gate rejects tracked JavaScript source. `dist/*.js`
