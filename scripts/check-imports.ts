@@ -2,13 +2,22 @@ import { readFileSync } from "node:fs";
 import { isRecord } from "effect/Predicate";
 import ts from "typescript";
 
-import { enforceViolations, typescriptFiles } from "#scripts/files";
+import {
+  enforceViolations,
+  trackedFiles,
+  typescriptFiles,
+} from "#scripts/files";
+import {
+  sourceConditionFromConfig,
+  sourceConditionViolations,
+} from "#scripts/source-conditions";
 
 const WORKSPACE_SOURCE_PATTERN = /^(apps|packages)\/([^/]+)\//u;
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
 const FILESYSTEM_IMPORT_PATTERN = /^(?:\/|file:|packages\/)/u;
 const IMPORT_WILDCARD_PATTERN = /\*$/u;
 const VITEST_CONFIG_PATTERN = /\/vitest\.config\.ts$/u;
+const WORKSPACE_MANIFEST_PATTERN = /^(?:apps|packages)\/[^/]+\/package\.json$/u;
 const TESTING_PACKAGE = "@nakafa/testing";
 
 interface WorkspaceIdentity {
@@ -245,4 +254,19 @@ enforceViolations(
   typescriptFiles().flatMap((file) =>
     importViolations(file, readFileSync(file, "utf8"), repositoryIdentity)
   )
+);
+const workspaceSourceCondition = sourceConditionFromConfig(
+  readFileSync("packages/typescript-config/base.json", "utf8")
+);
+enforceViolations(
+  "Workspace source conditions must resolve before generated output",
+  trackedFiles()
+    .filter((file) => WORKSPACE_MANIFEST_PATTERN.test(file))
+    .flatMap((file) =>
+      sourceConditionViolations(
+        file,
+        readFileSync(file, "utf8"),
+        workspaceSourceCondition
+      )
+    )
 );
