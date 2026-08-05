@@ -4,6 +4,10 @@ This evidence records the bounded rich-slice history imports and the complete
 authored-input history import. Publication and source cutover remain a
 family-by-family migration.
 
+This file preserves the migration-time source evidence. Current production
+ownership is recorded in the root
+[production scope](../../README.md#production-scope).
+
 ## Function Concept
 
 - Source Nakafa SHA: `25506da68a5dd97bc55f99b6f7304384c4744206`
