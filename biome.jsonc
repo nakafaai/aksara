@@ -4,6 +4,18 @@
   "files": {
     "includes": ["!packages/corpus/quran/sources", "!repos/**/*"]
   },
+  "overrides": [
+    {
+      "includes": ["apps/*/package.json", "packages/*/package.json"],
+      "assist": {
+        "actions": {
+          "source": {
+            "useSortedPackageJson": "off"
+          }
+        }
+      }
+    }
+  ],
   "linter": {
     "rules": {
       "style": {
