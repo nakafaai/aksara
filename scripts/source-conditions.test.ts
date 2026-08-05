@@ -53,7 +53,7 @@ describe("workspace source conditions", () => {
         "aksara-source"
       )
     ).toEqual([
-      "packages/contracts/package.json: imports.#content must put aksara-source first",
+      "packages/contracts/package.json: imports/#content must put aksara-source first",
     ]);
     expect(
       sourceConditionViolations(
@@ -77,5 +77,31 @@ describe("workspace source conditions", () => {
         )
       ).toEqual([]);
     }
+  });
+
+  it("checks nested conditions and fallback arrays", () => {
+    const nestedGeneratedFirst =
+      '{"exports":{".":{"node":{"types":"./dist/index.d.ts","aksara-source":"./src/index.ts"}}}}';
+    const fallbackGeneratedFirst =
+      '{"imports":{"#content":["./dist/content.js",{"types":"./dist/content.d.ts","aksara-source":"./src/content.ts"}]}}';
+
+    expect(
+      sourceConditionViolations(
+        "packages/contracts/package.json",
+        nestedGeneratedFirst,
+        "aksara-source"
+      )
+    ).toEqual([
+      "packages/contracts/package.json: exports/./node must put aksara-source first",
+    ]);
+    expect(
+      sourceConditionViolations(
+        "packages/contracts/package.json",
+        fallbackGeneratedFirst,
+        "aksara-source"
+      )
+    ).toEqual([
+      "packages/contracts/package.json: imports/#content[1] must put aksara-source first",
+    ]);
   });
 });
