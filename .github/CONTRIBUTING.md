@@ -73,6 +73,7 @@ educational content or fixtures.
 ```bash
 pnpm format
 pnpm lint
+pnpm security:audit
 pnpm names
 pnpm jsdocs
 pnpm lines

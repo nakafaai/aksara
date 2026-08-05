@@ -1,7 +1,7 @@
 # Repository governance
 
 This file records the external repository controls that were verified on
-2026-07-31. These settings are part of the release boundary but do not replace
+2026-08-05. These settings are part of the release boundary but do not replace
 artifact signatures, application authorization, or content entitlement checks.
 
 ## Current GitHub state
@@ -30,8 +30,10 @@ artifact signatures, application authorization, or content entitlement checks.
   the initial main ref and cleanup pull request.
 - GitHub Actions default token permissions are read-only and workflows cannot
   approve pull requests.
-- Actions are limited to GitHub-owned actions and `pnpm/action-setup`; every
+- Actions are limited to GitHub-owned actions and `pnpm/setup`; every
   action is pinned to a full commit SHA.
+- CI and every source-executing release job install the frozen lockfile and
+  reject known dependency advisories before running repository code.
 - Immutable releases are enabled. GitHub's ordinary workflow token cannot read
   that Administration setting, so publication verifies the resulting release
   itself is immutable instead of claiming an impossible preflight. A failed

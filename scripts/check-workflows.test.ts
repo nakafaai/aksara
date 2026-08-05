@@ -8,7 +8,7 @@ import {
 const OPERATION_HISTORY_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
 const OPERATION_SETUP_INPUT =
-  /(^ {2}operate:\n[\s\S]*?^ {6}- name: Setup Node\.js\n[\s\S]*?^ {10}node-version-file: package\.json)$/mu;
+  /(^ {2}operate:\n[\s\S]*?^ {6}- name: Setup toolchain\n[\s\S]*?^ {10}install: false)$/mu;
 
 /** Reads the exact workflow set exercised by repository policy. */
 function currentSources(): WorkflowSources {
@@ -29,16 +29,16 @@ describe("workflow policy", () => {
     const unconfigured = "jobs:\n  verify:\n    steps:\n      - run: pnpm test";
     expect(() =>
       verifyWorkflows({ ...sources, all: [...sources.all, unconfigured] })
-    ).toThrow("Every pnpm job must set up pnpm once");
+    ).toThrow("Every pnpm job must set up the toolchain once");
   });
 
   it("always verifies each named release workflow", () => {
     const release = sources.release.replaceAll(
-      "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+      "pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c",
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
     );
     expect(() => verifyWorkflows({ ...sources, release })).toThrow(
-      "Every pnpm job must set up Node.js once"
+      "Every pnpm job must set up the toolchain once"
     );
   });
 

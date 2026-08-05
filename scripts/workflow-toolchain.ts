@@ -4,7 +4,8 @@ import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from "yaml";
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
 const PNPM_SELECTOR_PATTERN =
   /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)|pnpm\s+env\s+use)\b/u;
-const PNPM_SETUP_PREFIX = "pnpm/action-setup@";
+const TOOLCHAIN_SETUP_PREFIX = "pnpm/setup@";
+const LEGACY_PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
 const TOOLCHAIN_ENV_NAMES = new Set(["NODE_VERSION", "PNPM_VERSION"]);
 const ENVIRONMENT_ALIAS_PATTERNS = [
@@ -74,17 +75,6 @@ function parseWorkflow(workflow: string): WorkflowStructure {
   });
 
   return { jobs: jobMaps, root: document.contents };
-}
-
-/** Returns each step index whose action reference starts with `prefix`. */
-function setupIndexes(
-  steps: readonly YAMLMap[],
-  prefix: string
-): readonly number[] {
-  return steps.flatMap((step, index) => {
-    const uses = scalarText(mapValue(step, "uses"));
-    return uses?.startsWith(prefix) ? [index] : [];
-  });
 }
 
 /** Returns environment values declared by one workflow scope. */
@@ -171,11 +161,7 @@ function setupInputs(step: YAMLMap): YAMLMap | undefined {
 }
 
 /** Returns one case-insensitive action input value. */
-function actionInput(inputs: YAMLMap | undefined, key: string): unknown {
-  if (!inputs) {
-    return;
-  }
-
+function actionInput(inputs: YAMLMap, key: string): unknown {
   const matches = inputs.items.filter(
     (item) => scalarText(item.key)?.toLowerCase() === key
   );
@@ -192,7 +178,7 @@ function stopsOnFailure(step: YAMLMap): boolean {
   return value === undefined || (isScalar(value) && value.value === false);
 }
 
-/** Rejects commands that replace the package.json-selected pnpm version. */
+/** Rejects alternate or legacy toolchain owners. */
 function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
   for (const step of steps) {
     const command = scalarText(mapValue(step, "run"));
@@ -202,15 +188,16 @@ function verifyPnpmSelectors(steps: readonly YAMLMap[]): void {
       "Workflows must not replace the package.json-selected pnpm version"
     );
 
-    const uses = scalarText(mapValue(step, "uses"));
-    if (!uses?.startsWith(PNPM_SETUP_PREFIX)) {
-      continue;
-    }
-
+    const uses = scalarText(mapValue(step, "uses")) ?? "";
     assert.equal(
-      actionInput(setupInputs(step), "run_install"),
-      undefined,
-      "The pnpm setup action must not run a hidden install"
+      uses.startsWith(LEGACY_PNPM_SETUP_PREFIX),
+      false,
+      "Workflows must not use legacy pnpm/action-setup"
+    );
+    assert.equal(
+      uses.startsWith(NODE_SETUP_PREFIX),
+      false,
+      "Workflows must not use a second Node.js setup action"
     );
   }
 }
@@ -228,70 +215,65 @@ function verifyPnpmJob(
     return;
   }
 
-  const pnpmSetups = setupIndexes(steps, PNPM_SETUP_PREFIX);
-  const nodeSetups = setupIndexes(steps, NODE_SETUP_PREFIX);
-  assert.equal(pnpmSetups.length, 1, "Every pnpm job must set up pnpm once");
-  assert.equal(nodeSetups.length, 1, "Every pnpm job must set up Node.js once");
-
-  const [pnpmIndex] = pnpmSetups;
-  const [nodeIndex] = nodeSetups;
-  assert.ok(pnpmIndex !== undefined, "The pnpm setup step must exist");
-  assert.ok(nodeIndex !== undefined, "The Node.js setup step must exist");
-  assert.ok(
-    pnpmIndex < nodeIndex && nodeIndex < commandIndex,
-    "Every pnpm job must set up pnpm, then Node.js, before running pnpm"
+  const setupSteps = steps.flatMap((step, index) => {
+    const uses = scalarText(mapValue(step, "uses"));
+    return uses?.startsWith(TOOLCHAIN_SETUP_PREFIX) ? [index] : [];
+  });
+  assert.equal(
+    setupSteps.length,
+    1,
+    "Every pnpm job must set up the toolchain once"
   );
 
-  const pnpmStep = steps[pnpmIndex];
-  const nodeStep = steps[nodeIndex];
-  assert.ok(pnpmStep, "The pnpm setup step must exist");
-  assert.ok(nodeStep, "The Node.js setup step must exist");
+  const [setupIndex] = setupSteps;
+  assert.ok(setupIndex !== undefined, "The toolchain setup step must exist");
+  assert.ok(
+    setupIndex < commandIndex,
+    "Every pnpm job must set up the toolchain before running pnpm"
+  );
+
+  const setupStep = steps[setupIndex];
+  assert.ok(setupStep, "The toolchain setup step must exist");
   assert.equal(
-    mapValue(pnpmStep, "if"),
+    mapValue(setupStep, "if"),
     undefined,
-    "The pnpm setup step must run unconditionally"
-  );
-  assert.equal(
-    mapValue(nodeStep, "if"),
-    undefined,
-    "The Node.js setup step must run unconditionally"
+    "The toolchain setup step must run unconditionally"
   );
   assert.ok(
-    stopsOnFailure(pnpmStep),
-    "The pnpm setup step must stop on failure"
-  );
-  assert.ok(
-    stopsOnFailure(nodeStep),
-    "The Node.js setup step must stop on failure"
+    stopsOnFailure(setupStep),
+    "The toolchain setup step must stop on failure"
   );
 
-  const pnpmInputs = setupInputs(pnpmStep);
+  const inputs = setupInputs(setupStep);
+  assert.ok(inputs, "The toolchain setup step must define inputs");
   assert.equal(
-    actionInput(pnpmInputs, "version"),
+    actionInput(inputs, "version"),
     undefined,
     "Workflows must derive the pnpm version from package.json"
   );
   assert.equal(
-    actionInput(pnpmInputs, "package_json_file"),
+    actionInput(inputs, "runtime"),
     undefined,
-    "Workflows must derive pnpm from the root package.json"
-  );
-
-  const nodeInputs = setupInputs(nodeStep);
-  assert.ok(nodeInputs, "The Node.js setup step must define inputs");
-  assert.equal(
-    scalarText(actionInput(nodeInputs, "node-version-file")),
-    "package.json",
-    "Every pnpm job must read the Node version from package.json"
+    "Workflows must derive the runtime from package.json"
   );
   assert.equal(
-    actionInput(nodeInputs, "node-version"),
+    actionInput(inputs, "package-json-file"),
     undefined,
-    "The Node.js setup must not override node-version-file"
+    "Workflows must derive the toolchain from the root package.json"
+  );
+  const cache = actionInput(inputs, "cache");
+  assert.ok(
+    isScalar(cache) && cache.value === true,
+    "The toolchain setup must cache the root pnpm store"
+  );
+  const install = actionInput(inputs, "install");
+  assert.ok(
+    isScalar(install) && install.value === false,
+    "The toolchain setup must leave the frozen install explicit"
   );
 }
 
-/** Verifies package.json-owned Node and pnpm setup within every pnpm job. */
+/** Verifies package.json-owned runtime and pnpm setup within every pnpm job. */
 export function verifyWorkflowToolchains(workflows: readonly string[]): void {
   for (const source of workflows) {
     const workflow = parseWorkflow(source);

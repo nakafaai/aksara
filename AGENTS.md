@@ -45,6 +45,8 @@ for clarity, measurable scale, and safe releases.
   files or generated JavaScript to Git.
 - Do not use APIs marked deprecated by the installed TypeScript declarations.
   `pnpm deprecations` must cover every tracked authored TypeScript file.
+- Run `pnpm security:audit` after changing dependencies or the lockfile. Known
+  dependency advisories are release blockers.
 - Keep handwritten TypeScript modules at or below 300 lines.
 - Give every stable callable declaration, including functions, methods, and
   callable bindings, useful JSDoc. Keep framework callbacks anonymous instead of
