@@ -9,7 +9,7 @@ import {
   type PreviewDocumentCompiler,
   type PreviewDocumentResult,
 } from "#cli/document";
-import type { PreviewEnvironment } from "#cli/env";
+import type { PreviewEnvironment } from "#cli/environment/read";
 import type { PreviewEvidenceError } from "#cli/evidence";
 import { PreviewRestartError } from "#cli/integrity";
 import type { PreviewProvider, PreviewProviderError } from "#cli/provider";

@@ -7,7 +7,7 @@ import {
   readProductionEnvironment,
   readPublicationEnvironment,
   readRecoveryEnvironment,
-} from "#cli/env";
+} from "#cli/environment/read";
 
 const privateKeyPem = generateKeyPairSync("ed25519")
   .privateKey.export({

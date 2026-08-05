@@ -9,6 +9,7 @@ import {
 } from "@nakafa/aksara-publisher/target/errors";
 import { Option, Predicate, Schema } from "effect";
 import { NakafaAppError } from "#cli/app-error";
+import { ProductionEnvironmentError } from "#cli/environment/error";
 
 const ProductionStageSchema = Schema.Literal(
   "abort",
@@ -37,6 +38,9 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
   {
     appReason: Schema.optional(NakafaAppError.fields.reason),
     appStatus: NakafaAppError.fields.status,
+    environmentVariable: Schema.optional(
+      ProductionEnvironmentError.fields.variable
+    ),
     failure: Schema.NonEmptyTrimmedString,
     phase: Schema.optional(ActivationPhaseSchema),
     rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
@@ -56,6 +60,14 @@ function appEvidence(error: unknown) {
     appReason: error.reason,
     ...(error.status === undefined ? {} : { appStatus: error.status }),
   };
+}
+
+/** Preserves the safe variable name owned by the production environment. */
+function environmentEvidence(error: unknown) {
+  if (!(error instanceof ProductionEnvironmentError)) {
+    return {};
+  }
+  return { environmentVariable: error.variable };
 }
 
 /** Extracts only a bounded tagged-error identity, never nested secret data. */
@@ -113,6 +125,7 @@ export function mapProductionError(stage: ProductionStage) {
     const phase = activationPhase(error);
     return new ProductionError({
       ...appEvidence(error),
+      ...environmentEvidence(error),
       failure: failureName(error),
       ...(phase === undefined ? {} : { phase }),
       stage,

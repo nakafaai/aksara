@@ -8,7 +8,7 @@ import {
   makePreviewCredentials,
   type PreviewCredentials,
 } from "#cli/credentials";
-import type { PreviewEnvironment } from "#cli/env";
+import type { PreviewEnvironment } from "#cli/environment/read";
 import {
   type PreviewEvidenceError,
   readRepositoryEvidence,

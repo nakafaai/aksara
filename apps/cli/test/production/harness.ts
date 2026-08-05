@@ -99,7 +99,7 @@ export function productionCalls() {
   return calls;
 }
 
-vi.mock("#cli/env", async () =>
+vi.mock("#cli/environment/read", async () =>
   (await import("#test/production/mock")).environmentMock(calls)
 );
 vi.mock("#cli/evidence", async () =>
