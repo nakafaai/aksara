@@ -29,7 +29,7 @@ const calls = vi.hoisted(
   })
 );
 
-vi.mock("#cli/env", async () => {
+vi.mock("#cli/environment/read", async () => {
   const { Effect: TestEffect, Redacted: TestRedacted } = await import("effect");
   return {
     readRecoveryEnvironment: () =>

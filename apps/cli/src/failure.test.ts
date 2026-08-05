@@ -5,6 +5,7 @@ import {
 } from "@nakafa/aksara-publisher/target/errors";
 import { describe, expect, it } from "vitest";
 import { makeNakafaAppError } from "#cli/app-error";
+import { ProductionEnvironmentError } from "#cli/environment/error";
 import { mapProductionError } from "#cli/failure";
 
 describe("production failure boundary", () => {
@@ -53,6 +54,28 @@ describe("production failure boundary", () => {
     });
     expect(failure).not.toHaveProperty("appReason");
     expect(failure).not.toHaveProperty("appStatus");
+  });
+
+  it("keeps the safe production environment variable", () => {
+    expect(
+      mapProductionError("environment")(
+        new ProductionEnvironmentError({
+          variable: "AKSARA_PUBLICATION_ENDPOINT",
+        })
+      )
+    ).toMatchObject({
+      environmentVariable: "AKSARA_PUBLICATION_ENDPOINT",
+      failure: "ProductionEnvironmentError",
+      stage: "environment",
+    });
+  });
+
+  it("does not trust environment-shaped plain records", () => {
+    const failure = mapProductionError("environment")({
+      _tag: "ProductionEnvironmentError",
+      variable: "AKSARA_PUBLICATION_TOKEN",
+    });
+    expect(failure).not.toHaveProperty("environmentVariable");
   });
 
   it("does not trust transport-shaped plain records", () => {

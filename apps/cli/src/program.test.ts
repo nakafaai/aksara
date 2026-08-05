@@ -125,7 +125,7 @@ vi.mock("#cli/abort", async () => {
   };
 });
 
-vi.mock("#cli/env", async () => {
+vi.mock("#cli/environment/read", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Supplies the decoded preview environment after arguments are accepted. */

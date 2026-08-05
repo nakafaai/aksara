@@ -1,6 +1,6 @@
 import { Effect } from "effect";
 import type { PreviewArguments } from "#cli/args";
-import { readPreviewEnvironment } from "#cli/env";
+import { readPreviewEnvironment } from "#cli/environment/read";
 import { NakafaAppLive } from "#cli/nakafa";
 import { openLocalPreview } from "#cli/session";
 

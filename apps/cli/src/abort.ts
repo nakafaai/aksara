@@ -4,7 +4,7 @@ import { abortContentRelease } from "@nakafa/aksara-publisher/abort";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
-import { readPublicationEnvironment } from "#cli/env";
+import { readPublicationEnvironment } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import type { AbortArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";

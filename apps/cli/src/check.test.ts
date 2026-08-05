@@ -17,7 +17,7 @@ const control = vi.hoisted(() => ({
     | undefined,
 }));
 
-vi.mock("#cli/env", async () => {
+vi.mock("#cli/environment/read", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Supplies one explicit sibling checkout for the command test. */

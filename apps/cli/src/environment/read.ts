@@ -1,25 +1,16 @@
 import { createPrivateKey, createPublicKey } from "node:crypto";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Config, Effect, Option, Redacted, Schema } from "effect";
+import {
+  ProductionEnvironmentError,
+  type ProductionVariable,
+} from "#cli/environment/error";
 
 const PreviewEnvironmentSchema = Schema.Struct({
   nakafaAppDir: Schema.optional(Schema.NonEmptyTrimmedString),
 });
 export type PreviewEnvironment = typeof PreviewEnvironmentSchema.Type;
 
-const PublicationVariableSchema = Schema.Literal(
-  "AKSARA_PUBLICATION_ENDPOINT",
-  "AKSARA_PUBLICATION_TOKEN"
-);
-
-const ProductionVariableSchema = Schema.Literal(
-  ...PublicationVariableSchema.literals,
-  "AKSARA_RENDERER_ENDPOINT",
-  "AKSARA_RENDERER_TOKEN",
-  "AKSARA_SIGNING_KEY_ID",
-  "AKSARA_SIGNING_PRIVATE_KEY"
-);
-type ProductionVariable = typeof ProductionVariableSchema.Type;
 const TOKEN_WHITESPACE = /\s/u;
 
 /** Narrow target configuration shared by publication lifecycle commands. */
@@ -45,12 +36,6 @@ interface ProductionEnvironment extends RecoveryEnvironment {
 export class PreviewEnvironmentError extends Schema.TaggedError<PreviewEnvironmentError>()(
   "PreviewEnvironmentError",
   { variable: Schema.Literal("NAKAFA_APP_DIR") }
-) {}
-
-/** One required production variable is absent, malformed, or unsafe. */
-export class ProductionEnvironmentError extends Schema.TaggedError<ProductionEnvironmentError>()(
-  "ProductionEnvironmentError",
-  { variable: ProductionVariableSchema }
 ) {}
 
 /** Creates a sanitized configuration failure naming only its variable. */

@@ -1,7 +1,7 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { validateContentCatalog } from "@nakafa/aksara-publisher/catalog/validation";
 import { Effect, Schema } from "effect";
-import { readPreviewEnvironment } from "#cli/env";
+import { readPreviewEnvironment } from "#cli/environment/read";
 import { NakafaAppLive } from "#cli/nakafa";
 import { openRendererSession } from "#cli/renderer/session";
 

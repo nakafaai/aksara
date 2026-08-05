@@ -28,7 +28,10 @@ import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { makeProductionActivation } from "#cli/activation";
 import { findAksaraRoot } from "#cli/checkout";
-import { readProductionEnvironment, readRecoveryEnvironment } from "#cli/env";
+import {
+  readProductionEnvironment,
+  readRecoveryEnvironment,
+} from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
 import type {
