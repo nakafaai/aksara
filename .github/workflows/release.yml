@@ -90,9 +90,9 @@ jobs:
       && needs.contracts.result == 'success'
     environment: content-production
     runs-on: ubuntu-latest
-    # Preserve setup, exact-revision gates, upload, two independent ten-minute
-    # proof SLOs, and bounded compensation within one orchestration budget.
-    timeout-minutes: 45
+    # Preserve setup, exact-revision gates, bounded renderer recovery, upload,
+    # two independent ten-minute proof SLOs, and compensation in one budget.
+    timeout-minutes: 50
     permissions:
       contents: read
     steps:

@@ -59,24 +59,25 @@ describe("production renderer", () => {
     expect(captured.requests).toHaveLength(0);
   });
 
-  it.each([408, 429, 503])(
-    "retries transient status %d with the same bound",
+  it.each([408, 429, 503, 530])(
+    "recovers from transient status %d within the total bound",
     async (status) => {
       vi.useFakeTimers();
-      const captured = captureClient((request) =>
-        Effect.succeed(rendererResponse(request, status))
-      );
-      const exhausted = runClient(
-        fetchProductionRenderer(ENDPOINT, TOKEN).pipe(Effect.flip),
+      let attempt = 0;
+      const captured = captureClient((request) => {
+        attempt += 1;
+        return Effect.succeed(
+          rendererResponse(request, attempt < 3 ? status : 200)
+        );
+      });
+      const recovered = runClient(
+        fetchProductionRenderer(ENDPOINT, TOKEN),
         captured.client
       );
 
-      await vi.advanceTimersByTimeAsync(1000);
-      await expect(exhausted).resolves.toMatchObject({
-        reason: "status",
-        retryable: true,
-      });
-      expect(captured.requests).toHaveLength(4);
+      await vi.advanceTimersByTimeAsync(10_100);
+      await expect(recovered).resolves.toEqual(RENDERER_MANIFEST);
+      expect(captured.requests).toHaveLength(3);
     }
   );
 
@@ -97,7 +98,7 @@ describe("production renderer", () => {
     }
   );
 
-  it("fails when the total renderer wait exceeds thirty seconds", async () => {
+  it("fails when the total renderer wait exceeds three minutes", async () => {
     vi.useFakeTimers();
     const stalled = captureClient(() => Effect.never);
     const timeout = runClient(
@@ -105,7 +106,7 @@ describe("production renderer", () => {
       stalled.client
     );
 
-    await vi.advanceTimersByTimeAsync(30_100);
+    await vi.advanceTimersByTimeAsync(180_100);
     await expect(timeout).resolves.toMatchObject({ reason: "timeout" });
   });
 });

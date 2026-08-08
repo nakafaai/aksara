@@ -4,9 +4,8 @@ import { Effect, type Redacted, Schedule } from "effect";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
 
-const RETRY_COUNT = 3;
-const RETRY_DELAY = "100 millis";
-const RENDERER_TIMEOUT = "30 seconds";
+const RETRY_DELAY = "5 seconds";
+const RENDERER_TIMEOUT = "3 minutes";
 const RENDERER_PATH = "/api/internal/content/renderer";
 
 /** Proves one exact production renderer endpoint cannot leak credentials. */
@@ -35,8 +34,7 @@ export const fetchProductionRenderer: (
   }
   return fetchRendererEndpoint(endpoint, token).pipe(
     Effect.retry({
-      schedule: Schedule.exponential(RETRY_DELAY),
-      times: RETRY_COUNT,
+      schedule: Schedule.spaced(RETRY_DELAY),
       while: (error) => error.retryable,
     }),
     Effect.timeoutFail({
