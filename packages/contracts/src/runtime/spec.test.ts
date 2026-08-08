@@ -2,31 +2,28 @@ import { Buffer } from "node:buffer";
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  ContentRuntimeRequestSchema,
-  ContentRuntimeResponseSchema,
-  decodeContentRuntimeRequest,
-  decodeContentRuntimeResponse,
-  MAX_RUNTIME_REQUEST_BYTES,
-  MAX_RUNTIME_RESPONSE_BYTES,
+  decodePublicContentRuntimeRequest,
+  decodePublicContentRuntimeResponse,
+  MAX_PUBLIC_RUNTIME_REQUEST_BYTES,
+  MAX_PUBLIC_RUNTIME_RESPONSE_BYTES,
+  PublicContentRuntimeRequestSchema,
+  PublicContentRuntimeResponseSchema,
 } from "#contracts/runtime/spec";
+import { accepts } from "#contracts/test/runtime/fixture";
 import {
-  accepts,
   articleFound,
   artifact,
   found,
-  protectedAnswerRequest,
-  protectedFound,
-  protectedRequest,
   request,
-} from "#contracts/test/runtime/spec";
+} from "#contracts/test/runtime/public";
 
 describe("content runtime contract", () => {
   it("decodes the exact bounded route request", async () => {
-    expect(MAX_RUNTIME_REQUEST_BYTES).toBe(4096);
-    expect(MAX_RUNTIME_RESPONSE_BYTES).toBe(1024 * 1024);
-    expect(accepts(ContentRuntimeRequestSchema, request)).toBe(true);
+    expect(MAX_PUBLIC_RUNTIME_REQUEST_BYTES).toBe(4096);
+    expect(MAX_PUBLIC_RUNTIME_RESPONSE_BYTES).toBe(1024 * 1024);
+    expect(accepts(PublicContentRuntimeRequestSchema, request)).toBe(true);
     await expect(
-      Effect.runPromise(decodeContentRuntimeRequest(request))
+      Effect.runPromise(decodePublicContentRuntimeRequest(request))
     ).resolves.toEqual(request);
 
     for (const invalid of [
@@ -35,78 +32,36 @@ describe("content runtime contract", () => {
       { ...request, publicPath: "/subjects/test/transport" },
       { ...request, extra: true },
     ]) {
-      expect(accepts(ContentRuntimeRequestSchema, invalid)).toBe(false);
-    }
-  });
-
-  it("decodes only exact protected question selectors", async () => {
-    expect(accepts(ContentRuntimeRequestSchema, protectedRequest)).toBe(true);
-    await expect(
-      Effect.runPromise(decodeContentRuntimeRequest(protectedRequest))
-    ).resolves.toEqual(protectedRequest);
-
-    expect(accepts(ContentRuntimeRequestSchema, protectedAnswerRequest)).toBe(
-      true
-    );
-
-    const mismatchedDelivery = Schema.decodeUnknownEither(
-      ContentRuntimeRequestSchema
-    )(
-      { ...protectedRequest, delivery: "entitled" },
-      { onExcessProperty: "error" }
-    );
-    expect(Either.isLeft(mismatchedDelivery)).toBe(true);
-    if (Either.isLeft(mismatchedDelivery)) {
-      expect(String(mismatchedDelivery.left)).toContain(
-        "Expected authenticated prompts and entitled answer bodies."
-      );
-    }
-
-    for (const invalid of [
-      { ...protectedRequest, publicPath: "tryout/private" },
-      { ...protectedRequest, snapshotReleaseId: "" },
-      { ...protectedRequest, snapshotId: "snapshot-1" },
-      { ...protectedRequest, artifactHash: "artifact-1" },
-      { ...protectedRequest, contentKey: "question" },
-      { ...protectedRequest, contentKey: "material/lesson/test/question" },
-      {
-        ...protectedRequest,
-        contentKey: "question-bank/tryout/indonesia/snbt/question",
-      },
-    ]) {
-      expect(accepts(ContentRuntimeRequestSchema, invalid)).toBe(false);
+      expect(accepts(PublicContentRuntimeRequestSchema, invalid)).toBe(false);
     }
   });
 
   it("accepts found, missing, and sanitized failure responses", async () => {
     expect(Buffer.byteLength(JSON.stringify(found), "utf8")).toBeLessThan(
-      MAX_RUNTIME_RESPONSE_BYTES
+      MAX_PUBLIC_RUNTIME_RESPONSE_BYTES
     );
     for (const response of [
       found,
       articleFound,
-      protectedFound,
       { kind: "missing" },
       { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
-      { code: "CONTENT_RUNTIME_FORBIDDEN", kind: "failure" },
       { code: "CONTENT_RUNTIME_INVALID", kind: "failure" },
       { code: "CONTENT_RUNTIME_INTERNAL", kind: "failure" },
     ]) {
-      expect(accepts(ContentRuntimeResponseSchema, response)).toBe(true);
+      expect(accepts(PublicContentRuntimeResponseSchema, response)).toBe(true);
     }
     await expect(
-      Effect.runPromise(decodeContentRuntimeResponse(found))
+      Effect.runPromise(decodePublicContentRuntimeResponse(found))
     ).resolves.toEqual(found);
     await expect(
-      Effect.runPromise(decodeContentRuntimeResponse(articleFound))
+      Effect.runPromise(decodePublicContentRuntimeResponse(articleFound))
     ).resolves.toEqual(articleFound);
-    await expect(
-      Effect.runPromise(decodeContentRuntimeResponse(protectedFound))
-    ).resolves.toEqual(protectedFound);
   });
 
   it("rejects mismatched identities and uncontracted response fields", () => {
-    const mismatch = Schema.decodeUnknownEither(ContentRuntimeResponseSchema)({
+    const mismatch = Schema.decodeUnknownEither(
+      PublicContentRuntimeResponseSchema
+    )({
       ...found,
       projection: { ...found.projection, contentKey: "test:other" },
     });
@@ -117,7 +72,7 @@ describe("content runtime contract", () => {
       );
     }
     expect(
-      accepts(ContentRuntimeResponseSchema, {
+      accepts(PublicContentRuntimeResponseSchema, {
         ...found,
         artifact: {
           ...artifact,
@@ -126,7 +81,10 @@ describe("content runtime contract", () => {
       })
     ).toBe(false);
     expect(
-      accepts(ContentRuntimeResponseSchema, { kind: "missing", reason: "x" })
+      accepts(PublicContentRuntimeResponseSchema, {
+        kind: "missing",
+        reason: "x",
+      })
     ).toBe(false);
   });
 });
