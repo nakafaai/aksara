@@ -17,6 +17,10 @@ import {
 } from "#contracts/projection/spec";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
+import {
+  ContentRuntimeFailureSchema,
+  ContentRuntimeMissingSchema,
+} from "#contracts/runtime/result";
 
 /** Maximum UTF-8 bytes accepted by the server-only runtime endpoint. */
 export const MAX_PUBLIC_RUNTIME_REQUEST_BYTES = 4 * 1024;
@@ -77,24 +81,6 @@ export const PublicContentRuntimeFoundSchema = Schema.Struct({
 );
 export type PublicContentRuntimeFound =
   typeof PublicContentRuntimeFoundSchema.Type;
-
-/** Exact absence response distinct from runtime or integrity failures. */
-export const ContentRuntimeMissingSchema = Schema.Struct({
-  kind: Schema.Literal("missing"),
-});
-
-/** Sanitized failure codes exposed by the server-only runtime endpoint. */
-export const ContentRuntimeFailureCodeSchema = Schema.Literal(
-  "CONTENT_RUNTIME_INTERNAL",
-  "CONTENT_RUNTIME_INVALID",
-  "CONTENT_RUNTIME_UNAUTHORIZED"
-);
-
-/** Sanitized runtime failure without implementation details or body bytes. */
-export const ContentRuntimeFailureSchema = Schema.Struct({
-  code: ContentRuntimeFailureCodeSchema,
-  kind: Schema.Literal("failure"),
-});
 
 /** Complete response vocabulary for the public server-runtime seam. */
 export const PublicContentRuntimeResponseSchema = Schema.Union(

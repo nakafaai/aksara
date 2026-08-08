@@ -1,12 +1,14 @@
-import { Buffer } from "node:buffer";
 import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
-  decodeProtectedContentRuntimeRequest,
-  decodeProtectedContentRuntimeResponse,
   MAX_PROTECTED_RUNTIME_REQUEST_BYTES,
   MAX_PROTECTED_RUNTIME_RESPONSE_BYTES,
   MAX_PROTECTED_RUNTIME_SELECTORS,
+  protectedRuntimeResponseBytes,
+} from "#contracts/runtime/protected/limits";
+import {
+  decodeProtectedContentRuntimeRequest,
+  decodeProtectedContentRuntimeResponse,
   ProtectedContentRuntimeRequestSchema,
   ProtectedContentRuntimeResponseSchema,
 } from "#contracts/runtime/protected/spec";
@@ -94,15 +96,16 @@ describe("protected content runtime contract", () => {
   });
 
   it("accepts exact found, missing, and sanitized failure responses", async () => {
-    expect(
-      Buffer.byteLength(JSON.stringify(protectedFound), "utf8")
-    ).toBeLessThan(MAX_PROTECTED_RUNTIME_RESPONSE_BYTES);
+    expect(protectedRuntimeResponseBytes(protectedFound)).toBeLessThan(
+      MAX_PROTECTED_RUNTIME_RESPONSE_BYTES
+    );
     for (const response of [
       protectedFound,
       { kind: "missing" },
       { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
       { code: "CONTENT_RUNTIME_INVALID", kind: "failure" },
       { code: "CONTENT_RUNTIME_INTERNAL", kind: "failure" },
+      { code: "CONTENT_RUNTIME_RESPONSE_TOO_LARGE", kind: "failure" },
     ]) {
       expect(accepts(ProtectedContentRuntimeResponseSchema, response)).toBe(
         true
@@ -124,5 +127,30 @@ describe("protected content runtime contract", () => {
         "Expected unique protected runtime artifacts."
       );
     }
+  });
+
+  it("rejects a found response above its exact JSON byte ceiling", () => {
+    const oversized = {
+      ...protectedFound,
+      items: [
+        {
+          ...protectedFound.items[0],
+          artifact: {
+            ...protectedFound.items[0].artifact,
+            payload: {
+              ...protectedFound.items[0].artifact.payload,
+              byteLength: MAX_PROTECTED_RUNTIME_RESPONSE_BYTES,
+              compiledCode: "x".repeat(MAX_PROTECTED_RUNTIME_RESPONSE_BYTES),
+            },
+          },
+        },
+      ],
+    };
+    expect(protectedRuntimeResponseBytes(oversized)).toBeGreaterThan(
+      MAX_PROTECTED_RUNTIME_RESPONSE_BYTES
+    );
+    expect(accepts(ProtectedContentRuntimeResponseSchema, oversized)).toBe(
+      false
+    );
   });
 });

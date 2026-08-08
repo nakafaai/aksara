@@ -15,18 +15,13 @@ import { QuestionKeySchema } from "#contracts/question/identity";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import {
+  hasBoundedProtectedRuntimeResponse,
+  MAX_PROTECTED_RUNTIME_SELECTORS,
+} from "#contracts/runtime/protected/limits";
+import {
   ContentRuntimeFailureSchema,
   ContentRuntimeMissingSchema,
-} from "#contracts/runtime/spec";
-
-/** Maximum protected selectors accepted in one retained-snapshot read. */
-export const MAX_PROTECTED_RUNTIME_SELECTORS = 64;
-
-/** Maximum UTF-8 bytes accepted by the protected batch endpoint. */
-export const MAX_PROTECTED_RUNTIME_REQUEST_BYTES = 64 * 1024;
-
-/** Maximum UTF-8 bytes returned by the protected batch endpoint. */
-export const MAX_PROTECTED_RUNTIME_RESPONSE_BYTES = 4 * 1024 * 1024;
+} from "#contracts/runtime/result";
 
 /** Checks one protected body selector uses its required delivery class. */
 function hasProtectedBodyKind(input: {
@@ -124,7 +119,12 @@ export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
   snapshotId: Sha256HashSchema,
   snapshotManifestHash: Sha256HashSchema,
   snapshotReleaseId: ReleaseIdSchema,
-});
+}).pipe(
+  Schema.filter(hasBoundedProtectedRuntimeResponse, {
+    message: () =>
+      "Expected the protected runtime response to fit its wire ceiling.",
+  })
+);
 export type ProtectedContentRuntimeFound =
   typeof ProtectedContentRuntimeFoundSchema.Type;
 
