@@ -1,42 +1,18 @@
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import { hashContentProjection } from "#contracts/projection/hash";
 import type { RoutedContentProjection } from "#contracts/projection/spec";
 import type { ContentReleaseBundle } from "#contracts/release/lifecycle";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
-import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
 import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
+import { ContentRuntimeMismatchError } from "#contracts/runtime/error";
 import {
-  decodeContentRuntimeRequest,
-  decodeContentRuntimeResponse,
-  type ProtectedContentRuntimeFound,
-  type ProtectedContentRuntimeRequest,
+  decodePublicContentRuntimeRequest,
+  decodePublicContentRuntimeResponse,
   type PublicContentRuntimeFound,
   type PublicContentRuntimeRequest,
 } from "#contracts/runtime/spec";
-
-/** A decoded runtime response does not belong to its initiating request. */
-export class ContentRuntimeMismatchError extends Schema.TaggedError<ContentRuntimeMismatchError>()(
-  "ContentRuntimeMismatchError",
-  {
-    reason: Schema.Literal(
-      "activeManifestHash",
-      "activeReleaseId",
-      "artifactHash",
-      "contentKey",
-      "delivery",
-      "locale",
-      "projectionHash",
-      "publicPath",
-      "rendererManifest",
-      "snapshotId",
-      "snapshotManifestHash",
-      "snapshotReleaseId",
-      "sourcePath"
-    ),
-  }
-) {}
 
 /** Checks one article path preserves its pair-grouped physical source identity. */
 function hasArticleSourcePath(
@@ -68,20 +44,6 @@ function hasProjectionSourcePath(
   );
 }
 
-/** Checks one protected body path matches its exact content key and locale. */
-function hasProtectedSourcePath(
-  contentKey: string,
-  locale: string,
-  sourcePath: string
-) {
-  const separator = contentKey.lastIndexOf("/");
-  const sourceRoot = contentKey.slice(0, separator);
-  const bodyKind = contentKey.slice(separator + 1);
-  return (
-    sourcePath === `packages/corpus/${sourceRoot}/${bodyKind}.${locale}.mdx`
-  );
-}
-
 /** Verifies one active public artifact belongs to its exact route request. */
 const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
   function* (
@@ -106,41 +68,6 @@ const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
     }
   }
 );
-
-/** Verifies one protected artifact belongs to its frozen snapshot selector. */
-const verifyProtectedIdentity = Effect.fn(
-  "AksaraContracts.verifyProtectedIdentity"
-)(function* (
-  request: ProtectedContentRuntimeRequest,
-  response: ProtectedContentRuntimeFound
-) {
-  if (response.artifact.payload.locale !== request.locale) {
-    return yield* new ContentRuntimeMismatchError({ reason: "locale" });
-  }
-  if (response.artifact.artifactHash !== request.artifactHash) {
-    return yield* new ContentRuntimeMismatchError({ reason: "artifactHash" });
-  }
-  if (response.artifact.payload.contentKey !== request.contentKey) {
-    return yield* new ContentRuntimeMismatchError({ reason: "contentKey" });
-  }
-  if (response.snapshotId !== request.snapshotId) {
-    return yield* new ContentRuntimeMismatchError({ reason: "snapshotId" });
-  }
-  if (response.snapshotReleaseId !== request.snapshotReleaseId) {
-    return yield* new ContentRuntimeMismatchError({
-      reason: "snapshotReleaseId",
-    });
-  }
-  if (
-    !hasProtectedSourcePath(
-      request.contentKey,
-      request.locale,
-      response.sourcePath
-    )
-  ) {
-    return yield* new ContentRuntimeMismatchError({ reason: "sourcePath" });
-  }
-});
 
 /** Binds public content to the exact active release and deployed renderer. */
 const verifyPublicRelease = Effect.fn("AksaraContracts.verifyPublicRelease")(
@@ -167,31 +94,6 @@ const verifyPublicRelease = Effect.fn("AksaraContracts.verifyPublicRelease")(
   }
 );
 
-/** Binds protected content to the exact release retained by its snapshot. */
-const verifyProtectedRelease = Effect.fn(
-  "AksaraContracts.verifyProtectedRelease"
-)(function* (
-  response: ProtectedContentRuntimeFound,
-  bundle: ContentReleaseBundle
-) {
-  if (
-    response.snapshotId !==
-    bundle.release.manifest.snapshots.tryout.resultSnapshotId
-  ) {
-    return yield* new ContentRuntimeMismatchError({ reason: "snapshotId" });
-  }
-  if (response.snapshotReleaseId !== bundle.release.manifest.releaseId) {
-    return yield* new ContentRuntimeMismatchError({
-      reason: "snapshotReleaseId",
-    });
-  }
-  if (response.snapshotManifestHash !== bundle.release.manifestHash) {
-    return yield* new ContentRuntimeMismatchError({
-      reason: "snapshotManifestHash",
-    });
-  }
-});
-
 /**
  * Verifies independently signed runtime values selected for one exact request.
  *
@@ -205,25 +107,12 @@ export const verifyContentRuntimeExchange = Effect.fn(
   readonly request: unknown;
   readonly response: unknown;
 }) {
-  const request = yield* decodeContentRuntimeRequest(input.request);
-  const response = yield* decodeContentRuntimeResponse(input.response);
+  const request = yield* decodePublicContentRuntimeRequest(input.request);
+  const response = yield* decodePublicContentRuntimeResponse(input.response);
   if (response.kind !== "found") {
     return response;
   }
-  if (response.delivery === "public") {
-    if (request.delivery !== "public") {
-      return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
-    }
-    yield* verifyPublicIdentity(request, response);
-  } else {
-    if (request.delivery === "public") {
-      return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
-    }
-    if (response.delivery !== request.delivery) {
-      return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
-    }
-    yield* verifyProtectedIdentity(request, response);
-  }
+  yield* verifyPublicIdentity(request, response);
   const bundle = yield* verifyContentReleaseBundle({
     release: response.release,
     rendererManifest: response.rendererManifest,
@@ -231,22 +120,11 @@ export const verifyContentRuntimeExchange = Effect.fn(
   const liveRenderer = yield* validateRendererManifestHash(
     input.rendererManifest
   );
-  if (response.delivery === "public") {
-    yield* verifyPublicRelease(response, bundle, liveRenderer);
-  } else {
-    yield* verifyProtectedRelease(response, bundle);
-  }
-  const artifact = yield* verifySignedContentArtifact({
+  yield* verifyPublicRelease(response, bundle, liveRenderer);
+  yield* verifySignedContentArtifact({
     artifact: response.artifact,
     rendererContractVersion: bundle.release.manifest.rendererContractVersion,
     rendererManifest: bundle.rendererManifest,
   });
-  if (liveRenderer.hash !== bundle.rendererManifest.hash) {
-    yield* verifyContentRendererCompatibility({
-      payload: artifact.payload,
-      rendererContractVersion: bundle.release.manifest.rendererContractVersion,
-      rendererManifest: liveRenderer,
-    });
-  }
   return response;
 });

@@ -3,23 +3,20 @@ import { describe, expect, it } from "vitest";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import { materialGraph } from "#contracts/test/graph";
 import { hash, rendererManifest } from "#contracts/test/request";
-import { protectedMismatchCases } from "#contracts/test/runtime/mismatch";
+import {
+  compatibleManifest,
+  release,
+  tamperSignature,
+} from "#contracts/test/runtime/fixture";
 import {
   articleFound,
   articleRequest,
   artifact,
-  compatibleManifest,
   found,
-  incompatibleManifest,
-  protectedExpandedArtifact,
-  protectedFound,
-  protectedRequest,
   rejectExchange,
-  release,
-  tamperSignature,
   verifyExchange,
   verifyExchangeEither,
-} from "#contracts/test/runtime/spec";
+} from "#contracts/test/runtime/public";
 
 describe("content runtime verification", () => {
   it("binds a found response to its exact request", async () => {
@@ -75,18 +72,6 @@ describe("content runtime verification", () => {
       "activeManifestHash",
       "projectionHash",
     ]);
-    await expect(
-      rejectExchange({ response: protectedFound })
-    ).resolves.toMatchObject({
-      _tag: "ContentRuntimeMismatchError",
-      reason: "delivery",
-    });
-    await expect(
-      rejectExchange({ request: protectedRequest, response: found })
-    ).resolves.toMatchObject({
-      _tag: "ContentRuntimeMismatchError",
-      reason: "delivery",
-    });
   });
 
   it("binds an article response to its pair-grouped physical source", async () => {
@@ -114,33 +99,6 @@ describe("content runtime verification", () => {
         expect.objectContaining({
           _tag: "ContentRuntimeMismatchError",
           reason: "sourcePath",
-        })
-      )
-    );
-  });
-
-  it("binds a protected body to its frozen snapshot selector", async () => {
-    await expect(
-      verifyExchange({ request: protectedRequest, response: protectedFound })
-    ).resolves.toEqual(protectedFound);
-    await expect(
-      verifyExchange({
-        rendererManifest: compatibleManifest,
-        request: protectedRequest,
-        response: protectedFound,
-      })
-    ).resolves.toEqual(protectedFound);
-
-    const outcomes = await Promise.all(
-      protectedMismatchCases.map(([, response, request = protectedRequest]) =>
-        rejectExchange({ request, response })
-      )
-    );
-    expect(outcomes).toEqual(
-      protectedMismatchCases.map(([reason]) =>
-        expect.objectContaining({
-          _tag: "ContentRuntimeMismatchError",
-          reason,
         })
       )
     );
@@ -194,35 +152,6 @@ describe("content runtime verification", () => {
     });
   });
 
-  it("rejects an incompatible live renderer for protected content", async () => {
-    const error = await rejectExchange({
-      rendererManifest: incompatibleManifest,
-      request: protectedRequest,
-      response: protectedFound,
-    });
-    expect(error).toMatchObject({
-      _tag: "ArtifactRendererComponentMissingError",
-    });
-  });
-
-  it("rejects a protected artifact absent from its frozen renderer", async () => {
-    const error = await rejectExchange({
-      rendererManifest: compatibleManifest,
-      request: {
-        ...protectedRequest,
-        artifactHash: protectedExpandedArtifact.artifactHash,
-      },
-      response: {
-        ...protectedFound,
-        artifact: protectedExpandedArtifact,
-      },
-    });
-    expect(error).toMatchObject({
-      _tag: "ArtifactRendererComponentMissingError",
-      componentName: "InlineMath",
-    });
-  });
-
   it("rejects a tampered frozen renderer envelope", async () => {
     const tamperedRenderer = { ...rendererManifest, hash };
     const error = await rejectExchange({
@@ -236,7 +165,7 @@ describe("content runtime verification", () => {
   it("preserves request-bound missing and failure responses", async () => {
     const responses = [
       { kind: "missing" },
-      { code: "CONTENT_RUNTIME_FORBIDDEN", kind: "failure" },
+      { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
     ];
     await Promise.all(
       responses.map((response) =>

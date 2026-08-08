@@ -1,45 +1,68 @@
 import { hash } from "#contracts/test/request";
 import {
-  artifact,
   protectedArtifact,
   protectedFound,
   protectedRequest,
-} from "#contracts/test/runtime/spec";
+} from "#contracts/test/runtime/protected";
+import { artifact } from "#contracts/test/runtime/public";
+
+const [protectedItem] = protectedFound.items;
 
 /** Protected responses and requests that violate one exact snapshot selector. */
 export const protectedMismatchCases = [
-  ["delivery", { ...protectedFound, delivery: "entitled" }],
+  [
+    "delivery",
+    {
+      ...protectedFound,
+      items: [{ ...protectedItem, delivery: "entitled" }],
+    },
+  ],
   [
     "artifactHash",
     {
       ...protectedFound,
-      artifact: {
-        ...protectedArtifact,
-        artifactHash: artifact.artifactHash,
-      },
+      items: [
+        {
+          ...protectedItem,
+          artifact: {
+            ...protectedArtifact,
+            artifactHash: artifact.artifactHash,
+          },
+        },
+      ],
     },
   ],
   [
     "contentKey",
     {
       ...protectedFound,
-      artifact: {
-        ...protectedArtifact,
-        payload: {
-          ...protectedArtifact.payload,
-          contentKey: artifact.payload.contentKey,
+      items: [
+        {
+          ...protectedItem,
+          artifact: {
+            ...protectedArtifact,
+            payload: {
+              ...protectedArtifact.payload,
+              contentKey: artifact.payload.contentKey,
+            },
+          },
         },
-      },
+      ],
     },
   ],
   [
     "locale",
     {
       ...protectedFound,
-      artifact: {
-        ...protectedArtifact,
-        payload: { ...protectedArtifact.payload, locale: "id" },
-      },
+      items: [
+        {
+          ...protectedItem,
+          artifact: {
+            ...protectedArtifact,
+            payload: { ...protectedArtifact.payload, locale: "id" },
+          },
+        },
+      ],
     },
   ],
   ["snapshotId", { ...protectedFound, snapshotId: artifact.artifactHash }],
@@ -62,7 +85,12 @@ export const protectedMismatchCases = [
     "sourcePath",
     {
       ...protectedFound,
-      sourcePath: "packages/corpus/question/wrong.en.mdx",
+      items: [
+        {
+          ...protectedItem,
+          sourcePath: "packages/corpus/question/wrong.en.mdx",
+        },
+      ],
     },
   ],
 ] as const;

@@ -6,7 +6,6 @@ import {
 } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import {
-  ContentKeySchema,
   CorpusSourcePathSchema,
   PublicPathSchema,
   ReleaseIdSchema,
@@ -16,15 +15,14 @@ import {
   type RoutedContentProjection,
   RoutedContentProjectionSchema,
 } from "#contracts/projection/spec";
-import { QuestionKeySchema } from "#contracts/question/identity";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 
 /** Maximum UTF-8 bytes accepted by the server-only runtime endpoint. */
-export const MAX_RUNTIME_REQUEST_BYTES = 4 * 1024;
+export const MAX_PUBLIC_RUNTIME_REQUEST_BYTES = 4 * 1024;
 
 /** Maximum UTF-8 bytes returned by the server-only runtime endpoint. */
-export const MAX_RUNTIME_RESPONSE_BYTES = 1024 * 1024;
+export const MAX_PUBLIC_RUNTIME_RESPONSE_BYTES = 1024 * 1024;
 
 /** Exact public route requested by the Nakafa server runtime. */
 export const PublicContentRuntimeRequestSchema = Schema.Struct({
@@ -34,48 +32,6 @@ export const PublicContentRuntimeRequestSchema = Schema.Struct({
 });
 export type PublicContentRuntimeRequest =
   typeof PublicContentRuntimeRequestSchema.Type;
-
-/** Checks one protected body selector uses its required delivery class. */
-function hasProtectedBodyKind(input: {
-  readonly contentKey: string;
-  readonly delivery: "authenticated" | "entitled";
-}) {
-  const separator = input.contentKey.lastIndexOf("/");
-  if (separator < 1) {
-    return false;
-  }
-  const questionKey = input.contentKey.slice(0, separator);
-  if (!Schema.is(QuestionKeySchema)(questionKey)) {
-    return false;
-  }
-  if (input.delivery === "authenticated") {
-    return input.contentKey.endsWith("/question");
-  }
-  return input.contentKey.endsWith("/answer");
-}
-
-/** Exact frozen try-out body requested after product authorization. */
-export const ProtectedContentRuntimeRequestSchema = Schema.Struct({
-  artifactHash: Sha256HashSchema,
-  contentKey: ContentKeySchema,
-  delivery: Schema.Literal("authenticated", "entitled"),
-  locale: ContentLocaleSchema,
-  snapshotId: Sha256HashSchema,
-  snapshotReleaseId: ReleaseIdSchema,
-}).pipe(
-  Schema.filter(hasProtectedBodyKind, {
-    message: () => "Expected authenticated prompts and entitled answer bodies.",
-  })
-);
-export type ProtectedContentRuntimeRequest =
-  typeof ProtectedContentRuntimeRequestSchema.Type;
-
-/** Complete public and protected server-runtime request vocabulary. */
-export const ContentRuntimeRequestSchema = Schema.Union(
-  PublicContentRuntimeRequestSchema,
-  ProtectedContentRuntimeRequestSchema
-);
-export type ContentRuntimeRequest = typeof ContentRuntimeRequestSchema.Type;
 
 /** Confirms one runtime artifact and projection describe the same document. */
 function hasCoherentContent(input: {
@@ -97,7 +53,7 @@ function hasCoherentContent(input: {
  * target authority. This envelope is deliberately not a cryptographic
  * inclusion proof.
  */
-const ContentRuntimeFoundFields = {
+const PublicContentRuntimeFoundFields = {
   artifact: SignedContentArtifactSchema,
   kind: Schema.Literal("found"),
   release: SignedContentReleaseSchema,
@@ -107,7 +63,7 @@ const ContentRuntimeFoundFields = {
 
 /** Public route body selected from the active indexed read model. */
 export const PublicContentRuntimeFoundSchema = Schema.Struct({
-  ...ContentRuntimeFoundFields,
+  ...PublicContentRuntimeFoundFields,
   activeManifestHash: Sha256HashSchema,
   activeReleaseId: ReleaseIdSchema,
   delivery: Schema.Literal("public"),
@@ -122,24 +78,6 @@ export const PublicContentRuntimeFoundSchema = Schema.Struct({
 export type PublicContentRuntimeFound =
   typeof PublicContentRuntimeFoundSchema.Type;
 
-/** Protected frozen body selected from one retained try-out snapshot. */
-export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
-  ...ContentRuntimeFoundFields,
-  delivery: Schema.Literal("authenticated", "entitled"),
-  snapshotId: Sha256HashSchema,
-  snapshotManifestHash: Sha256HashSchema,
-  snapshotReleaseId: ReleaseIdSchema,
-});
-export type ProtectedContentRuntimeFound =
-  typeof ProtectedContentRuntimeFoundSchema.Type;
-
-/** Complete verified artifact response vocabulary for every delivery class. */
-export const ContentRuntimeFoundSchema = Schema.Union(
-  PublicContentRuntimeFoundSchema,
-  ProtectedContentRuntimeFoundSchema
-);
-export type ContentRuntimeFound = typeof ContentRuntimeFoundSchema.Type;
-
 /** Exact absence response distinct from runtime or integrity failures. */
 export const ContentRuntimeMissingSchema = Schema.Struct({
   kind: Schema.Literal("missing"),
@@ -147,7 +85,6 @@ export const ContentRuntimeMissingSchema = Schema.Struct({
 
 /** Sanitized failure codes exposed by the server-only runtime endpoint. */
 export const ContentRuntimeFailureCodeSchema = Schema.Literal(
-  "CONTENT_RUNTIME_FORBIDDEN",
   "CONTENT_RUNTIME_INTERNAL",
   "CONTENT_RUNTIME_INVALID",
   "CONTENT_RUNTIME_UNAUTHORIZED"
@@ -159,24 +96,33 @@ export const ContentRuntimeFailureSchema = Schema.Struct({
   kind: Schema.Literal("failure"),
 });
 
-/** Complete response vocabulary for the server-authenticated runtime seam. */
-export const ContentRuntimeResponseSchema = Schema.Union(
-  ContentRuntimeFoundSchema,
+/** Complete response vocabulary for the public server-runtime seam. */
+export const PublicContentRuntimeResponseSchema = Schema.Union(
+  PublicContentRuntimeFoundSchema,
   ContentRuntimeMissingSchema,
   ContentRuntimeFailureSchema
 );
-export type ContentRuntimeResponse = typeof ContentRuntimeResponseSchema.Type;
+export type PublicContentRuntimeResponse =
+  typeof PublicContentRuntimeResponseSchema.Type;
 
-/** Strictly decodes one unknown server-runtime request. */
-export const decodeContentRuntimeRequest = Effect.fn(
-  "AksaraContracts.decodeContentRuntimeRequest"
+/** Strictly decodes one unknown public server-runtime request. */
+export const decodePublicContentRuntimeRequest = Effect.fn(
+  "AksaraContracts.decodePublicContentRuntimeRequest"
 )((input: unknown) =>
-  decodeContract(ContentRuntimeRequestSchema, "ContentRuntimeRequest", input)
+  decodeContract(
+    PublicContentRuntimeRequestSchema,
+    "PublicContentRuntimeRequest",
+    input
+  )
 );
 
-/** Strictly decodes one unknown server-runtime response. */
-export const decodeContentRuntimeResponse = Effect.fn(
-  "AksaraContracts.decodeContentRuntimeResponse"
+/** Strictly decodes one unknown public server-runtime response. */
+export const decodePublicContentRuntimeResponse = Effect.fn(
+  "AksaraContracts.decodePublicContentRuntimeResponse"
 )((input: unknown) =>
-  decodeContract(ContentRuntimeResponseSchema, "ContentRuntimeResponse", input)
+  decodeContract(
+    PublicContentRuntimeResponseSchema,
+    "PublicContentRuntimeResponse",
+    input
+  )
 );
