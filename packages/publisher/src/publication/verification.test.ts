@@ -141,18 +141,25 @@ describe("candidate verification", () => {
   it("fails when durable verification exceeds the release SLO", async () => {
     const state = makeVerificationPlan("verifying", {
       verify: () =>
-        Effect.succeed(
-          ReleaseVerificationPendingSchema.make({
-            manifestHash: verificationRelease.manifestHash,
-            phase: "verifying",
-            releaseId: verificationRelease.manifest.releaseId,
-          })
+        Effect.sleep("11 minutes").pipe(
+          Effect.as(
+            ReleaseVerificationPendingSchema.make({
+              manifestHash: verificationRelease.manifestHash,
+              phase: "verifying",
+              releaseId: verificationRelease.manifest.releaseId,
+            })
+          )
         ),
     });
     const error = await Effect.runPromise(
-      stageCandidateRelease(state.plan).pipe(
-        Effect.flip,
-        TestClock.adjustWith("10 minutes"),
+      Effect.gen(function* () {
+        const fiber = yield* stageCandidateRelease(state.plan).pipe(
+          Effect.flip,
+          Effect.fork
+        );
+        yield* TestClock.adjust("10 minutes");
+        return yield* Fiber.join(fiber);
+      }).pipe(
         Effect.provideService(
           ContentVerificationKeyResolver,
           testVerificationResolver
