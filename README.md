@@ -53,6 +53,16 @@ activated the question family plus Quran and try-out snapshots in production
 Its retained recovery was accepted in
 [run `30966405666`](https://github.com/nakafaai/aksara/actions/runs/30966405666).
 
+Contract `0.11.0` then republished the complete six-scope corpus from Aksara
+commit
+[`16a7436af5`](https://github.com/nakafaai/aksara/commit/16a7436af5fb3e96d72a946dadc377541f8eecbe)
+as release `full-corpus-runtime-v011-20260809-16a7436`. Production
+[run `31288847248`](https://github.com/nakafaai/aksara/actions/runs/31288847248)
+returned all 4,140 results with no head changes because the signed state was
+already current. Its retained recovery
+`recovery-full-corpus-runtime-v011-20260809-16a7436` was accepted in
+[run `31290006866`](https://github.com/nakafaai/aksara/actions/runs/31290006866).
+
 ## Current modules
 
 - `@nakafa/aksara-contracts` defines signed artifact, release, and renderer
