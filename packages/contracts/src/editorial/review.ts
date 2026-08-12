@@ -2,11 +2,7 @@ import { createHash } from "node:crypto";
 
 import { Effect, Schema } from "effect";
 
-import {
-  CorpusSourcePathSchema,
-  GitCommitShaSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { CorpusSourcePathSchema, Sha256HashSchema } from "#contracts/ids";
 import { AppLocaleSchema, DeliveryLanguageSchema } from "#contracts/locale";
 import { compareCodeUnits } from "#contracts/text/order";
 
@@ -119,7 +115,6 @@ export const EditorialReviewManifestSchema = Schema.Struct({
   digest: Sha256HashSchema,
   format: Schema.Literal(EDITORIAL_REVIEW_FORMAT),
   records: EditorialReviewRecordListSchema,
-  revision: GitCommitShaSchema,
 });
 export type EditorialReviewManifest = typeof EditorialReviewManifestSchema.Type;
 
@@ -155,26 +150,18 @@ export class EditorialReviewHashError extends Schema.TaggedError<EditorialReview
 /** Hashes exact canonical review records with domain separation. */
 export const hashEditorialReviews = Effect.fn(
   "AksaraContracts.hashEditorialReviews"
-)(
-  (input: {
-    readonly records: readonly EditorialReviewRecord[];
-    readonly revision: typeof GitCommitShaSchema.Type;
-  }) =>
-    Effect.try({
-      catch: () => new EditorialReviewHashError(),
-      try: () => {
-        const hash = createHash("sha256").update(
-          `${EDITORIAL_REVIEW_DOMAIN}\n`
-        );
-        hash.update(JSON.stringify({ revision: input.revision }));
+)((records: readonly EditorialReviewRecord[]) =>
+  Effect.try({
+    catch: () => new EditorialReviewHashError(),
+    try: () => {
+      const hash = createHash("sha256").update(`${EDITORIAL_REVIEW_DOMAIN}\n`);
+      for (const record of records) {
+        hash.update(canonicalizeEditorialReview(record));
         hash.update("\n");
-        for (const record of input.records) {
-          hash.update(canonicalizeEditorialReview(record));
-          hash.update("\n");
-        }
-        return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
-      },
-    })
+      }
+      return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
+    },
+  })
 );
 
 /** Review records could not satisfy the canonical manifest contract. */
@@ -195,25 +182,18 @@ export class EditorialReviewDigestMismatchError extends Schema.TaggedError<Edito
 /** Builds canonical content-addressed review evidence from exact records. */
 export const makeEditorialReviewManifest = Effect.fn(
   "AksaraContracts.makeEditorialReviewManifest"
-)(function* (input: {
-  readonly records: readonly EditorialReviewRecord[];
-  readonly revision: typeof GitCommitShaSchema.Type;
-}) {
-  const ordered = [...input.records].sort(compareReviewRecords);
+)(function* (records: readonly EditorialReviewRecord[]) {
+  const ordered = [...records].sort(compareReviewRecords);
   const canonical = yield* Schema.decodeUnknown(
     EditorialReviewRecordListSchema
   )(ordered).pipe(
     Effect.mapError((cause) => new EditorialReviewManifestError({ cause }))
   );
-  const digest = yield* hashEditorialReviews({
-    records: canonical,
-    revision: input.revision,
-  });
+  const digest = yield* hashEditorialReviews(canonical);
   return EditorialReviewManifestSchema.make({
     digest,
     format: EDITORIAL_REVIEW_FORMAT,
     records: canonical,
-    revision: input.revision,
   });
 });
 
@@ -227,10 +207,7 @@ export const verifyEditorialReviewManifest = Effect.fn(
   ).pipe(
     Effect.mapError((cause) => new EditorialReviewManifestError({ cause }))
   );
-  const actualDigest = yield* hashEditorialReviews({
-    records: manifest.records,
-    revision: manifest.revision,
-  });
+  const actualDigest = yield* hashEditorialReviews(manifest.records);
   if (actualDigest !== manifest.digest) {
     return yield* new EditorialReviewDigestMismatchError({
       actualDigest,

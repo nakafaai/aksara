@@ -73,7 +73,7 @@ function verify(
     },
   });
   return {
-    program: verifyEditorialReviewSources({ manifest }).pipe(
+    program: verifyEditorialReviewSources({ manifest, revision }).pipe(
       Effect.provideService(GitBlob, gitBlob)
     ),
     reads,
@@ -86,7 +86,7 @@ describe("editorial review source verification", () => {
       Schema.Array(EditorialReviewRecordSchema)
     )([reviewRecord("de"), reviewRecord("en")]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest({ records, revision })
+      makeEditorialReviewManifest(records)
     );
     const verification = verify(manifest);
 
@@ -106,7 +106,7 @@ describe("editorial review source verification", () => {
       reviewMode: "immutable-official-source",
     });
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest({ records: [immutable], revision })
+      makeEditorialReviewManifest([immutable])
     );
     const verification = verify(manifest);
 
@@ -122,7 +122,7 @@ describe("editorial review source verification", () => {
       Schema.Array(EditorialReviewRecordSchema)
     )([reviewRecord("de")]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest({ records, revision })
+      makeEditorialReviewManifest(records)
     );
     const verification = verify(manifest, {
       ...files,
@@ -146,7 +146,7 @@ describe("editorial review source verification", () => {
       reviewRecord("en", Sha256HashSchema.make(`sha256:${"f".repeat(64)}`)),
     ]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest({ records, revision })
+      makeEditorialReviewManifest(records)
     );
     const verification = verify(manifest);
 
@@ -167,7 +167,7 @@ describe("editorial review source verification", () => {
       Schema.Array(EditorialReviewRecordSchema)
     )([reviewRecord("de"), immutable]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest({ records, revision })
+      makeEditorialReviewManifest(records)
     );
     const verification = verify(manifest);
 

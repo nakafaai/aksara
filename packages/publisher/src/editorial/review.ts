@@ -148,13 +148,16 @@ const verifyReviewFile = Effect.fn("AksaraPublisher.verifyReviewFile")(
 /** Authenticates review records and every source or target blob they bind. */
 export const verifyEditorialReviewSources = Effect.fn(
   "AksaraPublisher.verifyEditorialReviewSources"
-)(function* (input: { readonly manifest: unknown }) {
+)(function* (input: {
+  readonly manifest: unknown;
+  readonly revision: GitCommitSha;
+}) {
   const manifest = yield* verifyEditorialReviewManifest(input.manifest);
   const files = yield* collectReviewFiles(manifest.records);
   const gitBlob = yield* GitBlob;
   yield* Effect.forEach(
     files,
-    (expectation) => verifyReviewFile(gitBlob, manifest.revision, expectation),
+    (expectation) => verifyReviewFile(gitBlob, input.revision, expectation),
     { concurrency: 8, discard: true }
   );
   return manifest satisfies EditorialReviewManifest;
