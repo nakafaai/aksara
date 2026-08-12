@@ -3,11 +3,12 @@ import { Schema } from "effect";
 
 import {
   ProgramSnapshotRowSchema,
-  ProgramSnapshotSchema,
+  ProgramSnapshotWireSchema,
 } from "#contracts/program/snapshot/spec";
-import { QuranSnapshotManifestSchema } from "#contracts/quran/snapshot/spec";
+import { QuranSnapshotWireSchema } from "#contracts/quran/snapshot/spec";
 import { QuranSnapshotRowSchema } from "#contracts/quran/spec";
-import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
+import { TryoutPlacementV2RecordSchema } from "#contracts/tryout/placement";
+import { TryoutSnapshotWireSchema } from "#contracts/tryout/snapshot/spec";
 import {
   TryoutCatalogRecordSchema,
   TryoutPlacementRecordSchema,
@@ -16,19 +17,19 @@ import {
 /** Program manifest selected by one globally signed content release. */
 const ProgramManifestSchema = Schema.Struct({
   family: Schema.Literal("program"),
-  manifest: ProgramSnapshotSchema,
+  manifest: ProgramSnapshotWireSchema,
 });
 
 /** Quran manifest selected by one globally signed content release. */
 const QuranManifestSchema = Schema.Struct({
   family: Schema.Literal("quran"),
-  manifest: QuranSnapshotManifestSchema,
+  manifest: QuranSnapshotWireSchema,
 });
 
 /** Try-out manifest selected by one globally signed content release. */
 const TryoutManifestSchema = Schema.Struct({
   family: Schema.Literal("tryout"),
-  manifest: TryoutSnapshotSchema,
+  manifest: TryoutSnapshotWireSchema,
 });
 
 /** Complete structured snapshot manifest vocabulary staged before its rows. */
@@ -65,12 +66,20 @@ const TryoutPlacementRowSchema = Schema.Struct({
   rowKind: Schema.Literal("placement"),
 });
 
+/** One v2 placement with separate app and delivery language identity. */
+const TryoutPlacementV2RowSchema = Schema.Struct({
+  family: Schema.Literal("tryout"),
+  record: TryoutPlacementV2RecordSchema,
+  rowKind: Schema.Literal("placement-v2"),
+});
+
 /** Complete structured row vocabulary accepted by snapshot publication. */
 export const ContentSnapshotRowSchema = Schema.Union(
   ProgramRowSchema,
   QuranRowSchema,
   TryoutCatalogRowSchema,
-  TryoutPlacementRowSchema
+  TryoutPlacementRowSchema,
+  TryoutPlacementV2RowSchema
 );
 export type ContentSnapshotRow = typeof ContentSnapshotRowSchema.Type;
 

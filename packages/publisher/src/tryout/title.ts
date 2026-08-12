@@ -1,7 +1,7 @@
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { hashTryoutContent } from "@nakafa/aksara-contracts/tryout/content-hash";
-import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/row-hash";
+import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/spec";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import {

@@ -142,6 +142,7 @@ describe("preview document compiler", () => {
           })
         ),
       signRelease: credentials.signer.signRelease,
+      signReleaseV2: credentials.signer.signReleaseV2,
     };
     const { compiler } = await makeCompiler(repository, signer);
     const error = await runNode(compiler.compile().pipe(Effect.flip));
@@ -165,6 +166,7 @@ describe("preview document compiler", () => {
           }
         }).pipe(Effect.zipRight(credentials.signer.signArtifact(payload))),
       signRelease: credentials.signer.signRelease,
+      signReleaseV2: credentials.signer.signReleaseV2,
     };
     const { compiler } = await makeCompiler(repository, signer);
     const error = await runNode(compiler.compile().pipe(Effect.flip));

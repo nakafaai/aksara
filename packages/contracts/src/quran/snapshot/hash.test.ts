@@ -1,16 +1,20 @@
 import type { BinaryLike } from "node:crypto";
 
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   canonicalizeQuranSnapshotIdentity,
+  canonicalizeQuranSnapshotV3Identity,
   hashQuranSnapshot,
+  hashQuranSnapshotV3,
 } from "#contracts/quran/snapshot/hash";
 import {
   QURAN_SNAPSHOT_FORMAT,
+  QURAN_SNAPSHOT_V3_FORMAT,
   QuranSnapshotManifestSchema,
+  QuranSnapshotV3InputSchema,
 } from "#contracts/quran/snapshot/spec";
 import { reverseObjectKeys } from "#contracts/test/order";
 
@@ -72,6 +76,21 @@ function manifest() {
   });
 }
 
+/** Builds one complete current Quran snapshot input. */
+function manifestV3() {
+  const {
+    locales: _locales,
+    snapshotId: _snapshotId,
+    ...historical
+  } = manifest();
+  return Schema.decodeUnknownSync(QuranSnapshotV3InputSchema)({
+    ...historical,
+    activeAppLocales: ["en", "id", "de"],
+    editorialReviewDigest: firstHash,
+    format: QURAN_SNAPSHOT_V3_FORMAT,
+  });
+}
+
 describe("Quran snapshot hashing", () => {
   it("hashes the canonical snapshot identity", async () => {
     const value = manifest();
@@ -99,5 +118,30 @@ describe("Quran snapshot hashing", () => {
     failures.domain = null;
 
     expect(snapshotError.scope).toBe("snapshot");
+  });
+
+  it("binds active locales and review identity in v3", async () => {
+    const value = manifestV3();
+    const hash = await Effect.runPromise(hashQuranSnapshotV3(value));
+    expect(JSON.parse(canonicalizeQuranSnapshotV3Identity(value))).toEqual(
+      value
+    );
+    expect(hash).not.toBe(
+      await Effect.runPromise(
+        hashQuranSnapshot(
+          (({ snapshotId: _snapshotId, ...identity }) => identity)(manifest())
+        )
+      )
+    );
+  });
+
+  it("maps v3 snapshot hashing failures", async () => {
+    failures.domain = "nakafa.aksara.quran-snapshot.v3";
+    const error = await Effect.runPromise(
+      hashQuranSnapshotV3(manifestV3()).pipe(Effect.flip)
+    );
+    failures.domain = null;
+
+    expect(error.scope).toBe("snapshot");
   });
 });

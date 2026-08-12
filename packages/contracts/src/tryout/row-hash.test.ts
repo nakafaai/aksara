@@ -1,32 +1,19 @@
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-import type { ContentLocale } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
-import {
-  compareTryoutCatalog,
-  compareTryoutPlacements,
-} from "#contracts/tryout/identity";
+import { compareTryoutCatalog } from "#contracts/tryout/identity";
 import {
   canonicalizeTryoutCatalog,
-  canonicalizeTryoutPlacement,
   digestTryoutCatalog,
-  digestTryoutPlacements,
   makeTryoutCatalogRecord,
-  makeTryoutPlacementRecord,
 } from "#contracts/tryout/row-hash";
 import {
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
-  TryoutContentHashSchema,
-  TryoutPlacementSchema,
 } from "#contracts/tryout/spec";
 
 const hashes = {
-  answer: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
-  content: TryoutContentHashSchema.make("c".repeat(64)),
-  question: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   tampered: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-  tamperedContent: TryoutContentHashSchema.make("f".repeat(64)),
 };
 /** Derives current SNBT graph facts for one canonical hierarchy sample. */
 function graph(kind: TryoutCatalogRow["kind"]) {
@@ -135,37 +122,6 @@ function catalogRows() {
   ]);
 }
 
-/** Builds one artifact-bound placement using test-only hash identities. */
-function placement(locale: ContentLocale, order: number) {
-  return Schema.decodeUnknownSync(TryoutPlacementSchema)({
-    answerArtifactHash: hashes.answer,
-    answerContentKey: `question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-${order}/answer`,
-    choices: [
-      {
-        isCorrect: true,
-        label: "Test-only choice",
-        optionKey: "option-1",
-        order: 1,
-      },
-    ],
-    contentHash: hashes.content,
-    countryKey: "indonesia",
-    examKey: "snbt",
-    locale,
-    questionArtifactHash: hashes.question,
-    questionContentKey: `question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-${order}/question`,
-    questionOrder: order,
-    questionSourcePath: `packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-${order}`,
-    rendererDomain: "snbt-quant",
-    scope: "server",
-    sectionKey: "quantitative-knowledge",
-    setKey: "set-1",
-    sourceRevision: "2026-07-05",
-    title: "Test-only question",
-    trackKey: "2027",
-  });
-}
-
 describe("try-out row hashing", () => {
   it("canonically serializes every hierarchy kind and optional field", () => {
     const parsed = catalogRows().map((row) =>
@@ -186,20 +142,6 @@ describe("try-out row hashing", () => {
     expect(parsed[4]).not.toHaveProperty("publicPath");
   });
 
-  it("binds placement choices deterministically", () => {
-    const row = placement("en", 1);
-    const first = makeTryoutPlacementRecord(row);
-    const second = makeTryoutPlacementRecord(row);
-    const changed = TryoutPlacementSchema.make({
-      ...row,
-      contentHash: hashes.tamperedContent,
-    });
-
-    expect(first).toEqual(second);
-    expect(JSON.parse(canonicalizeTryoutPlacement(row))).toEqual(row);
-    expect(first.rowHash).not.toBe(makeTryoutPlacementRecord(changed).rowHash);
-  });
-
   it("binds graph identity into each immutable catalog row", () => {
     const [row] = catalogRows();
     if (row === undefined) {
@@ -218,25 +160,15 @@ describe("try-out row hashing", () => {
     );
   });
 
-  it("digests sorted hierarchy and placement records", async () => {
+  it("digests sorted hierarchy records", async () => {
     const catalog = catalogRows()
       .map(makeTryoutCatalogRecord)
       .sort((left, right) => compareTryoutCatalog(left.row, right.row));
-    const placements = [
-      makeTryoutPlacementRecord(placement("en", 1)),
-      makeTryoutPlacementRecord(placement("id", 1)),
-      makeTryoutPlacementRecord(placement("en", 2)),
-    ].sort((left, right) => compareTryoutPlacements(left.row, right.row));
-    const [catalogSummary, placementSummary] = await Effect.runPromise(
-      Effect.all([
-        digestTryoutCatalog(Stream.fromIterable(catalog)),
-        digestTryoutPlacements(Stream.fromIterable(placements)),
-      ])
+    const summary = await Effect.runPromise(
+      digestTryoutCatalog(Stream.fromIterable(catalog))
     );
 
-    expect(catalogSummary.count).toBe(5);
-    expect(placementSummary.count).toBe(3);
-    expect(catalogSummary.digest).not.toBe(placementSummary.digest);
+    expect(summary.count).toBe(5);
   });
 
   it("rejects tampered and non-increasing record streams", async () => {
@@ -247,38 +179,22 @@ describe("try-out row hashing", () => {
     if (firstCatalog === undefined) {
       throw new Error("Expected one catalog row.");
     }
-    const placementRecord = makeTryoutPlacementRecord(placement("en", 1));
     const failures = [
       digestTryoutCatalog(
         Stream.make({ ...firstCatalog, rowHash: hashes.tampered })
       ),
       digestTryoutCatalog(Stream.make(firstCatalog, firstCatalog)),
-      digestTryoutPlacements(
-        Stream.make({ ...placementRecord, rowHash: hashes.tampered })
-      ),
-      digestTryoutPlacements(Stream.make(placementRecord, placementRecord)),
     ];
     const errors = await Effect.runPromise(
       Effect.all(failures.map((failure) => failure.pipe(Effect.flip)))
     );
 
-    expect(errors.map(({ code }) => code)).toEqual([
-      "integrity",
-      "order",
-      "integrity",
-      "order",
-    ]);
+    expect(errors.map(({ code }) => code)).toEqual(["integrity", "order"]);
   });
 
   it("digests empty streams without retaining rows", async () => {
-    const [catalog, placements] = await Effect.runPromise(
-      Effect.all([
-        digestTryoutCatalog(Stream.empty),
-        digestTryoutPlacements(Stream.empty),
-      ])
-    );
+    const catalog = await Effect.runPromise(digestTryoutCatalog(Stream.empty));
 
     expect(catalog.count).toBe(0);
-    expect(placements.count).toBe(0);
   });
 });

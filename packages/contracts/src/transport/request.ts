@@ -9,12 +9,12 @@ import {
   ReleaseCleanupRequestSchema,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
+import {
+  RollbackSignedContentReleaseWireSchema,
+  SignedContentReleaseWireSchema,
+} from "#contracts/release/manifest/v2";
 import { RollbackPageRequestSchema } from "#contracts/release/rollback/spec";
 import { RoutePageRequestSchema } from "#contracts/release/route/page";
-import {
-  RollbackSignedContentReleaseSchema,
-  SignedContentReleaseSchema,
-} from "#contracts/release/spec";
 import {
   StageArtifactBatchRequestSchema,
   StageItemBatchRequestSchema,
@@ -90,21 +90,21 @@ export type PublicationStatusRequest =
 /** Recomputes all staged evidence for one signed release. */
 export const VerifyReleaseRequestSchema = Schema.Struct({
   operation: Schema.Literal("verify"),
-  release: SignedContentReleaseSchema,
+  release: SignedContentReleaseWireSchema,
 });
 export type VerifyReleaseRequest = typeof VerifyReleaseRequestSchema.Type;
 
 /** Atomically activates one fully verified signed release. */
 export const ActivateReleaseRequestSchema = Schema.Struct({
   operation: Schema.Literal("activate"),
-  release: SignedContentReleaseSchema,
+  release: SignedContentReleaseWireSchema,
 });
 export type ActivateReleaseRequest = typeof ActivateReleaseRequestSchema.Type;
 
 /** Atomically activates the retained inverse for the exact active release. */
 export const ActivateRecoveryRequestSchema = Schema.Struct({
   operation: Schema.Literal("activateRecovery"),
-  release: RollbackSignedContentReleaseSchema,
+  release: RollbackSignedContentReleaseWireSchema,
 });
 export type ActivateRecoveryRequest = typeof ActivateRecoveryRequestSchema.Type;
 

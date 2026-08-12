@@ -1,15 +1,21 @@
-import { Schema } from "effect";
+import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   QURAN_SNAPSHOT_FORMAT,
+  QURAN_SNAPSHOT_V3_FORMAT,
   QuranSnapshotInputSchema,
   QuranSnapshotManifestSchema,
+  QuranSnapshotV3InputSchema,
+  QuranSnapshotV3ManifestSchema,
+  QuranSnapshotWireSchema,
 } from "#contracts/quran/snapshot/spec";
 
 const firstHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const secondHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
+const SNAPSHOT_COUNT_ERROR_PATTERN =
+  /Expected (?:the complete reviewed Quran snapshot counts|Quran runtime and search counts to cover every projection)\./u;
 
 /** Builds the complete fixed-count snapshot manifest. */
 function manifest() {
@@ -90,5 +96,54 @@ describe("Quran snapshot", () => {
     expect(String(inputProjectionError.left)).toContain(
       "Expected Quran runtime and search counts to cover every projection."
     );
+  });
+
+  it("accepts current active locales and review identity", () => {
+    const { locales: _locales, ...historical } = manifest();
+    const current = Schema.decodeUnknownSync(QuranSnapshotV3ManifestSchema)({
+      ...historical,
+      activeAppLocales: ["en", "id", "de"],
+      editorialReviewDigest: firstHash,
+      format: QURAN_SNAPSHOT_V3_FORMAT,
+    });
+    expect(current.activeAppLocales).toEqual(["en", "id", "de"]);
+    expect(Schema.decodeUnknownSync(QuranSnapshotWireSchema)(current)).toEqual(
+      current
+    );
+  });
+
+  it("rejects incomplete and incoherent v3 inputs and manifests", () => {
+    const { locales: _locales, snapshotId, ...historical } = manifest();
+    const current = {
+      ...historical,
+      activeAppLocales: ["en", "id", "de"],
+      editorialReviewDigest: firstHash,
+      format: QURAN_SNAPSHOT_V3_FORMAT,
+    } as const;
+    const cases = [
+      Schema.decodeUnknownEither(QuranSnapshotV3InputSchema)({
+        ...current,
+        verseCount: 6235,
+      }),
+      Schema.decodeUnknownEither(QuranSnapshotV3InputSchema)({
+        ...current,
+        projectionCount: 1427,
+      }),
+      Schema.decodeUnknownEither(QuranSnapshotV3ManifestSchema)({
+        ...current,
+        snapshotId,
+        verseCount: 6235,
+      }),
+      Schema.decodeUnknownEither(QuranSnapshotV3ManifestSchema)({
+        ...current,
+        projectionCount: 1427,
+        snapshotId,
+      }),
+    ];
+
+    for (const result of cases) {
+      expect(Either.isLeft(result)).toBe(true);
+      expect(String(result)).toMatch(SNAPSHOT_COUNT_ERROR_PATTERN);
+    }
   });
 });

@@ -1,14 +1,24 @@
 import { Effect, Schema } from "effect";
 import type { ReleaseId, Sha256Hash } from "#contracts/ids";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { hashContentReleaseManifest } from "#contracts/release/hash";
+import {
+  hashContentReleaseManifest,
+  hashContentReleaseManifestV2,
+} from "#contracts/release/hash";
 import {
   type ContentReleaseBundle,
   ContentReleaseBundleSchema,
   type RollbackContentReleaseBundle,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
-import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
+import {
+  type SignedContentReleaseWire,
+  SignedContentReleaseWireSchema,
+} from "#contracts/release/manifest/v2";
+import {
+  canonicalizeContentReleaseSigningInput,
+  canonicalizeContentReleaseV2SigningInput,
+} from "#contracts/release/signing";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
@@ -61,6 +71,37 @@ function validateManifestHash(
   );
 }
 
+/** Authenticates one already decoded historical or current release. */
+const authenticateRelease = Effect.fn("AksaraContracts.authenticateRelease")(
+  function* (release: SignedContentReleaseWire) {
+    const isCurrent = "format" in release.manifest;
+    const actualHash = isCurrent
+      ? yield* hashContentReleaseManifestV2(release.manifest)
+      : yield* hashContentReleaseManifest(release.manifest);
+    yield* validateManifestHash(
+      release.manifest.releaseId,
+      release.manifestHash,
+      actualHash
+    );
+    const message = isCurrent
+      ? canonicalizeContentReleaseV2SigningInput(
+          release.manifestHash,
+          release.manifest
+        )
+      : canonicalizeContentReleaseSigningInput(
+          release.manifestHash,
+          release.manifest
+        );
+    yield* verifyEd25519Signature({
+      keyId: release.keyId,
+      message,
+      signature: release.signature,
+      subject: "release",
+    });
+    return release;
+  }
+);
+
 /** Strictly decodes and authenticates one complete release envelope. */
 export const verifySignedContentRelease = Effect.fn(
   "AksaraContracts.verifySignedContentRelease"
@@ -75,26 +116,25 @@ export const verifySignedContentRelease = Effect.fn(
             "Release verification input does not satisfy its exact wire contract.",
         })
     ),
-    Effect.flatMap((release) =>
-      Effect.gen(function* () {
-        const actualHash = yield* hashContentReleaseManifest(release.manifest);
-        yield* validateManifestHash(
-          release.manifest.releaseId,
-          release.manifestHash,
-          actualHash
-        );
-        yield* verifyEd25519Signature({
-          keyId: release.keyId,
-          message: canonicalizeContentReleaseSigningInput(
-            release.manifestHash,
-            release.manifest
-          ),
-          signature: release.signature,
-          subject: "release",
-        });
-        return release;
-      })
-    )
+    Effect.flatMap(authenticateRelease)
+  )
+);
+
+/** Strictly decodes and authenticates historical and current releases. */
+export const verifySignedContentReleaseWire = Effect.fn(
+  "AksaraContracts.verifySignedContentReleaseWire"
+)((input: unknown) =>
+  Schema.decodeUnknown(SignedContentReleaseWireSchema)(input, {
+    onExcessProperty: "error",
+  }).pipe(
+    Effect.mapError(
+      () =>
+        new ReleaseVerificationDecodeError({
+          message:
+            "Release verification input does not satisfy its exact wire contract.",
+        })
+    ),
+    Effect.flatMap(authenticateRelease)
   )
 );
 
@@ -116,7 +156,7 @@ function verifyBundle<A extends ContentReleaseBundle, I>(
     Effect.tap((bundle) =>
       Effect.all(
         [
-          verifySignedContentRelease(bundle.release),
+          verifySignedContentReleaseWire(bundle.release),
           validateRendererManifestHash(bundle.rendererManifest),
         ],
         { discard: true }

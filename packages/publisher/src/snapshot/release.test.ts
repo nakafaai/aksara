@@ -28,9 +28,9 @@ import {
   inheritContentSnapshot,
   type PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import {
   digestTryoutCatalog,
-  digestTryoutPlacements,
   makeTryoutCatalogRecord,
 } from "@nakafa/aksara-contracts/tryout/row-hash";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";

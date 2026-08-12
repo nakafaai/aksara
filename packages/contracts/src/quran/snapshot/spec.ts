@@ -1,7 +1,10 @@
 import { Schema } from "effect";
 
-import { ContentLocaleListSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
+import {
+  ActiveAppLocaleListSchema,
+  HistoricalAppLocaleListSchema,
+} from "#contracts/locale";
 import { QURAN_SOURCE_FILE_COUNT } from "#contracts/quran/source";
 import {
   QURAN_ATTRIBUTION_COUNT,
@@ -13,6 +16,9 @@ import {
 
 /** Wire format for the official-source Quran snapshot. */
 export const QURAN_SNAPSHOT_FORMAT = "quran-snapshot-v2";
+
+/** Current Quran wire format with active locales and review identity. */
+export const QURAN_SNAPSHOT_V3_FORMAT = "quran-snapshot-v3";
 
 const CountSchema = Schema.Int.pipe(Schema.nonNegative());
 const SourceBytesSchema = Schema.Int.pipe(Schema.positive());
@@ -57,11 +63,11 @@ function hasCoherentProjectionCounts(input: {
   );
 }
 
-const SnapshotFields = {
+const SnapshotV2Fields = {
   attributionCount: CountSchema,
   chunkCount: CountSchema,
   format: Schema.Literal(QURAN_SNAPSHOT_FORMAT),
-  locales: ContentLocaleListSchema,
+  locales: HistoricalAppLocaleListSchema,
   projectionCount: CountSchema,
   projectionDigest: Sha256HashSchema,
   provenanceDigest: Sha256HashSchema,
@@ -79,7 +85,7 @@ const SnapshotFields = {
 };
 
 /** Immutable Quran snapshot identity before its content hash is attached. */
-export const QuranSnapshotInputSchema = Schema.Struct(SnapshotFields).pipe(
+export const QuranSnapshotInputSchema = Schema.Struct(SnapshotV2Fields).pipe(
   Schema.filter(hasCompleteSnapshotCounts, {
     message: () => "Expected the complete reviewed Quran snapshot counts.",
   }),
@@ -92,7 +98,7 @@ export type QuranSnapshotInput = typeof QuranSnapshotInputSchema.Type;
 
 /** Immutable identity and completeness proof for one Quran snapshot. */
 export const QuranSnapshotManifestSchema = Schema.Struct({
-  ...SnapshotFields,
+  ...SnapshotV2Fields,
   snapshotId: Sha256HashSchema,
 }).pipe(
   Schema.filter(hasCompleteSnapshotCounts, {
@@ -104,3 +110,59 @@ export const QuranSnapshotManifestSchema = Schema.Struct({
   })
 );
 export type QuranSnapshotManifest = typeof QuranSnapshotManifestSchema.Type;
+
+const SnapshotV3Fields = {
+  activeAppLocales: ActiveAppLocaleListSchema,
+  attributionCount: CountSchema,
+  chunkCount: CountSchema,
+  editorialReviewDigest: Sha256HashSchema,
+  format: Schema.Literal(QURAN_SNAPSHOT_V3_FORMAT),
+  projectionCount: CountSchema,
+  projectionDigest: Sha256HashSchema,
+  provenanceDigest: Sha256HashSchema,
+  provenanceStatus: QuranProvenanceStatusSchema,
+  runtimeCount: CountSchema,
+  runtimeDigest: Sha256HashSchema,
+  searchCount: CountSchema,
+  searchDigest: Sha256HashSchema,
+  sourceBytes: SourceBytesSchema,
+  sourceDigest: Sha256HashSchema,
+  sourceFileCount: CountSchema,
+  surahCount: CountSchema,
+  tafsirLocales: QuranTafsirLocaleListSchema,
+  verseCount: CountSchema,
+};
+
+/** Immutable v3 Quran facts before content-addressed identity. */
+export const QuranSnapshotV3InputSchema = Schema.Struct(SnapshotV3Fields).pipe(
+  Schema.filter(hasCompleteSnapshotCounts, {
+    message: () => "Expected the complete reviewed Quran snapshot counts.",
+  }),
+  Schema.filter(hasCoherentProjectionCounts, {
+    message: () =>
+      "Expected Quran runtime and search counts to cover every projection.",
+  })
+);
+export type QuranSnapshotV3Input = typeof QuranSnapshotV3InputSchema.Type;
+
+/** Immutable v3 identity and completeness proof for one Quran snapshot. */
+export const QuranSnapshotV3ManifestSchema = Schema.Struct({
+  ...SnapshotV3Fields,
+  snapshotId: Sha256HashSchema,
+}).pipe(
+  Schema.filter(hasCompleteSnapshotCounts, {
+    message: () => "Expected the complete reviewed Quran snapshot counts.",
+  }),
+  Schema.filter(hasCoherentProjectionCounts, {
+    message: () =>
+      "Expected Quran runtime and search counts to cover every projection.",
+  })
+);
+export type QuranSnapshotV3Manifest = typeof QuranSnapshotV3ManifestSchema.Type;
+
+/** Historical and current Quran snapshot decoder for retained consumers. */
+export const QuranSnapshotWireSchema = Schema.Union(
+  QuranSnapshotManifestSchema,
+  QuranSnapshotV3ManifestSchema
+);
+export type QuranSnapshotWire = typeof QuranSnapshotWireSchema.Type;

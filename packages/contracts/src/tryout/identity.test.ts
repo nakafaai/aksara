@@ -22,7 +22,7 @@ describe("try-out identity", () => {
       }
       if (row.rowKind === "catalog") {
         catalog.push(row.record.row);
-      } else {
+      } else if (row.rowKind === "placement") {
         placements.push(row.record.row);
       }
     }

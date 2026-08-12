@@ -15,7 +15,11 @@ import {
   replaceContentSnapshot,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
-import { tryoutSnapshotRowEvidence } from "#contracts/tryout/snapshot/hash";
+import {
+  tryoutSnapshotRowEvidence,
+  tryoutSnapshotV2RowEvidence,
+} from "#contracts/tryout/snapshot/hash";
+import { TRYOUT_SNAPSHOT_FORMAT } from "#contracts/tryout/snapshot/spec";
 
 const StreamIndexSchema = Schema.Int.pipe(Schema.nonNegative());
 
@@ -96,7 +100,9 @@ function snapshotRowEvidence(snapshot: ContentSnapshotManifest) {
       rowDigest: snapshot.manifest.projectionDigest,
     };
   }
-  return tryoutSnapshotRowEvidence(snapshot.manifest);
+  return snapshot.manifest.format === TRYOUT_SNAPSHOT_FORMAT
+    ? tryoutSnapshotRowEvidence(snapshot.manifest)
+    : tryoutSnapshotV2RowEvidence(snapshot.manifest);
 }
 
 /** Strictly decodes one manifest and advances canonical family order. */

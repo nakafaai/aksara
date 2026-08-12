@@ -9,31 +9,21 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
+import {
+  HistoricalAppLocaleListSchema,
+  HistoricalAppLocaleSchema,
+} from "#contracts/locale";
 import { CompiledContentRequirementsSchema } from "#contracts/renderer/component";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { compareCodeUnits } from "#contracts/text/order";
 
-/** Locales currently supported end to end by Aksara and Nakafa. */
-export const ContentLocaleSchema = Schema.Literal("en", "id");
+/** Authored-content locales active before the current-locale cutover. */
+export const ContentLocaleSchema = HistoricalAppLocaleSchema;
 export type ContentLocale = typeof ContentLocaleSchema.Type;
 
-/** Checks the exact locale capability order owned by this contract version. */
-function hasExactContentLocales(locales: readonly ContentLocale[]) {
-  return (
-    locales.length === ContentLocaleSchema.literals.length &&
-    locales.every(
-      (locale, index) => locale === ContentLocaleSchema.literals[index]
-    )
-  );
-}
-
-/** Complete ordered locale capability carried by aggregate snapshots. */
-export const ContentLocaleListSchema = Schema.Array(ContentLocaleSchema).pipe(
-  Schema.filter(hasExactContentLocales, {
-    message: () => "Locales must match the content contract.",
-  })
-);
+/** Exact authored-content locale list retained by historical contracts. */
+export const ContentLocaleListSchema = HistoricalAppLocaleListSchema;
 export type ContentLocaleList = typeof ContentLocaleListSchema.Type;
 
 /** Published content families backed by real Aksara source registries. */

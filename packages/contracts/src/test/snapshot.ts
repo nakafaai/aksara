@@ -19,10 +19,12 @@ import {
   compareTryoutPlacements,
 } from "#contracts/tryout/identity";
 import {
-  digestTryoutCatalog,
   digestTryoutPlacements,
-  makeTryoutCatalogRecord,
   makeTryoutPlacementRecord,
+} from "#contracts/tryout/placement-hash";
+import {
+  digestTryoutCatalog,
+  makeTryoutCatalogRecord,
 } from "#contracts/tryout/row-hash";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 import {

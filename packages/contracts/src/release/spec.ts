@@ -10,16 +10,15 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import { ReleaseOriginSchema } from "#contracts/release/origin";
+import {
+  ContentReleaseManifestFields,
+  hasCoherentReleaseOrigin,
+  ReleaseCountSchema,
+} from "#contracts/release/manifest/core";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
   type ContentSnapshotSet,
   ContentSnapshotSetSchema,
-  hasEmptySnapshotBases,
-  hasGitSnapshotModes,
-  hasRollbackSnapshotModes,
-  hasScopedSnapshotTransitions,
-  PublicationScopeSchema,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
@@ -64,81 +63,6 @@ export const ContentReleaseItemSchema = Schema.Struct({
   releaseId: ReleaseIdSchema,
 });
 export type ContentReleaseItem = typeof ContentReleaseItemSchema.Type;
-
-const ProjectionCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
-);
-
-/** Deterministic desired-state transition for one content release. */
-const ContentReleaseManifestFields = {
-  baseManifestHash: Schema.NullOr(Sha256HashSchema),
-  baseReleaseId: Schema.NullOr(ReleaseIdSchema),
-  baseResultCount: ProjectionCountSchema,
-  baseResultDigest: Sha256HashSchema,
-  deleteCount: ProjectionCountSchema,
-  itemCount: ProjectionCountSchema,
-  itemsDigest: Sha256HashSchema,
-  origin: ReleaseOriginSchema,
-  projectionCount: ProjectionCountSchema,
-  projectionDigest: Sha256HashSchema,
-  releaseId: ReleaseIdSchema,
-  rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
-  rendererManifestHash: Sha256HashSchema,
-  resultCount: ProjectionCountSchema,
-  resultDigest: Sha256HashSchema,
-  rollbackCount: ProjectionCountSchema,
-  rollbackDigest: Sha256HashSchema,
-  routeCount: ProjectionCountSchema,
-  routeDigest: Sha256HashSchema,
-  scope: PublicationScopeSchema,
-  snapshots: ContentSnapshotSetSchema,
-  upsertCount: ProjectionCountSchema,
-};
-
-/** Checks rollback provenance against the forward release identities. */
-function hasCoherentReleaseOrigin(input: {
-  readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
-  readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
-  readonly baseResultCount: number;
-  readonly baseResultDigest: typeof Sha256HashSchema.Type;
-  readonly deleteCount: number;
-  readonly itemCount: number;
-  readonly origin: typeof ReleaseOriginSchema.Type;
-  readonly releaseId: typeof ReleaseIdSchema.Type;
-  readonly rollbackCount: number;
-  readonly scope: typeof PublicationScopeSchema.Type;
-  readonly snapshots: ContentSnapshotSet;
-  readonly upsertCount: number;
-}) {
-  if (
-    (input.baseReleaseId === null) !== (input.baseManifestHash === null) ||
-    input.baseReleaseId === input.releaseId ||
-    input.deleteCount + input.upsertCount !== input.itemCount ||
-    input.rollbackCount !== input.itemCount ||
-    !hasScopedSnapshotTransitions(input.scope, input.snapshots)
-  ) {
-    return false;
-  }
-  if (
-    input.baseReleaseId === null &&
-    (input.baseResultCount !== 0 ||
-      input.baseResultDigest !== EMPTY_RESULT_CATALOG_DIGEST)
-  ) {
-    return false;
-  }
-  if (input.baseReleaseId === null && !hasEmptySnapshotBases(input.snapshots)) {
-    return false;
-  }
-  if (input.origin.kind === "git") {
-    return hasGitSnapshotModes(input.snapshots);
-  }
-  return (
-    input.baseReleaseId === input.origin.releaseId &&
-    input.releaseId !== input.origin.releaseId &&
-    hasRollbackSnapshotModes(input.snapshots)
-  );
-}
 
 /** Deterministic desired-state transition with signed source provenance. */
 export const ContentReleaseManifestSchema = Schema.Struct(
@@ -210,28 +134,28 @@ function hasCoherentVerificationCounts(input: {
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
-  baseResultCount: ProjectionCountSchema,
+  baseResultCount: ReleaseCountSchema,
   baseResultDigest: Sha256HashSchema,
-  deleteHeads: ProjectionCountSchema,
-  itemCount: ProjectionCountSchema,
+  deleteHeads: ReleaseCountSchema,
+  itemCount: ReleaseCountSchema,
   itemsDigest: Sha256HashSchema,
   manifestHash: Sha256HashSchema,
-  projectionCount: ProjectionCountSchema,
+  projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
-  resultCount: ProjectionCountSchema,
+  resultCount: ReleaseCountSchema,
   resultDigest: Sha256HashSchema,
-  rollbackCount: ProjectionCountSchema,
+  rollbackCount: ReleaseCountSchema,
   rollbackDigest: Sha256HashSchema,
-  routeCount: ProjectionCountSchema,
+  routeCount: ReleaseCountSchema,
   routeDigest: Sha256HashSchema,
   snapshots: ContentSnapshotSetSchema,
-  stagedArtifacts: ProjectionCountSchema,
-  stagedRoutes: ProjectionCountSchema,
-  stagedSnapshotRows: ProjectionCountSchema,
-  upsertHeads: ProjectionCountSchema,
+  stagedArtifacts: ReleaseCountSchema,
+  stagedRoutes: ReleaseCountSchema,
+  stagedSnapshotRows: ReleaseCountSchema,
+  upsertHeads: ReleaseCountSchema,
 }).pipe(
   Schema.filter(hasCoherentVerificationCounts, {
     message: () =>
@@ -264,20 +188,20 @@ export type ReleaseVerificationStatus =
 
 /** Delta evidence returned after a release is staged and activated. */
 export const PublicationReceiptSchema = Schema.Struct({
-  activatedHeads: ProjectionCountSchema,
-  deletedHeads: ProjectionCountSchema,
+  activatedHeads: ReleaseCountSchema,
+  deletedHeads: ReleaseCountSchema,
   manifestHash: Sha256HashSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
-  resultCount: ProjectionCountSchema,
+  resultCount: ReleaseCountSchema,
   resultDigest: Sha256HashSchema,
   routeDigest: Sha256HashSchema,
   snapshots: ContentSnapshotSetSchema,
-  stagedArtifacts: ProjectionCountSchema,
-  stagedItems: ProjectionCountSchema,
-  stagedProjections: ProjectionCountSchema,
-  stagedRoutes: ProjectionCountSchema,
-  stagedSnapshotRows: ProjectionCountSchema,
+  stagedArtifacts: ReleaseCountSchema,
+  stagedItems: ReleaseCountSchema,
+  stagedProjections: ReleaseCountSchema,
+  stagedRoutes: ReleaseCountSchema,
+  stagedSnapshotRows: ReleaseCountSchema,
 }).pipe(
   Schema.filter(
     (receipt) =>

@@ -82,11 +82,13 @@ describe("content", () => {
       Schema.decodeUnknownSync(ContentLocaleListSchema)(["en", "id"])
     ).toEqual(["en", "id"]);
     for (const locales of [["en"], ["id", "en"]] as const) {
-      expect(
-        Either.isLeft(
-          Schema.decodeUnknownEither(ContentLocaleListSchema)(locales)
-        )
-      ).toBe(true);
+      const result = Schema.decodeUnknownEither(ContentLocaleListSchema)(
+        locales
+      );
+      expect(Either.isLeft(result)).toBe(true);
+      expect(String(result)).toContain(
+        "Historical app locales must be exactly en and id."
+      );
     }
   });
 

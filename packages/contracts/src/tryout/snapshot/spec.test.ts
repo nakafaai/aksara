@@ -1,7 +1,11 @@
 import { Either, ParseResult, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
-import { TryoutSnapshotInputSchema } from "#contracts/tryout/snapshot/spec";
+import {
+  TryoutSnapshotInputSchema,
+  TryoutSnapshotV2InputSchema,
+  TryoutSnapshotWireSchema,
+} from "#contracts/tryout/snapshot/spec";
 
 const snapshot = {
   catalogDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
@@ -43,6 +47,29 @@ describe("try-out snapshot", () => {
           locales: ["id", "en"],
         })
       )
-    ).toContain("Locales must match the content contract.");
+    ).toContain("Historical app locales must be exactly en and id.");
+  });
+
+  it("decodes current active locale and editorial review identity", () => {
+    const current = {
+      activeAppLocales: ["en", "id", "de"],
+      catalogDigest: snapshot.catalogDigest,
+      counts: snapshot.counts,
+      editorialReviewDigest: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
+      format: "tryout-v2",
+      placementCount: snapshot.placementCount,
+      placementDigest: snapshot.placementDigest,
+      routeCount: snapshot.routeCount,
+    } as const;
+    expect(
+      Schema.decodeUnknownSync(TryoutSnapshotV2InputSchema)(current)
+        .activeAppLocales
+    ).toEqual(["en", "id", "de"]);
+    expect(
+      Schema.decodeUnknownSync(TryoutSnapshotWireSchema)({
+        ...current,
+        snapshotId: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
+      }).format
+    ).toBe("tryout-v2");
   });
 });

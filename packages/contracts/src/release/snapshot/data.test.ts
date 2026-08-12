@@ -1,4 +1,4 @@
-import { Either, Schema } from "effect";
+import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
@@ -19,6 +19,7 @@ import {
   contentSnapshotId,
 } from "#contracts/release/snapshot/data";
 import { materialGraph } from "#contracts/test/graph";
+import { makeSnapshotV2TestData } from "#contracts/test/snapshot-v2";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 import { TryoutCatalogRecordSchema } from "#contracts/tryout/spec";
 
@@ -156,5 +157,27 @@ describe("structured snapshot data", () => {
     );
     expect(Either.isRight(decode(programValue))).toBe(true);
     expect(Either.isRight(decode(tryoutValue))).toBe(true);
+  });
+
+  it("strictly decodes current manifests and explicit v2 placements", async () => {
+    const current = await Effect.runPromise(makeSnapshotV2TestData());
+    const decodeManifest = Schema.decodeUnknownEither(
+      ContentSnapshotManifestSchema,
+      { onExcessProperty: "error" }
+    );
+    const decodeRow = Schema.decodeUnknownEither(ContentSnapshotRowSchema, {
+      onExcessProperty: "error",
+    });
+    const placements = current.rows.filter(
+      (row) => row.family === "tryout" && row.rowKind === "placement-v2"
+    );
+
+    expect(
+      current.manifests.every((value) => Either.isRight(decodeManifest(value)))
+    ).toBe(true);
+    expect(placements).toHaveLength(2);
+    expect(placements.every((value) => Either.isRight(decodeRow(value)))).toBe(
+      true
+    );
   });
 });

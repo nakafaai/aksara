@@ -1,6 +1,15 @@
 import { Schema } from "effect";
-import { ContentLocaleListSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
+import {
+  ActiveAppLocaleListSchema,
+  HistoricalAppLocaleListSchema,
+} from "#contracts/locale";
+
+/** Immutable wire format used before app and delivery language separation. */
+export const TRYOUT_SNAPSHOT_FORMAT = "tryout-v1";
+
+/** Current wire format with active locales and editorial review identity. */
+export const TRYOUT_SNAPSHOT_V2_FORMAT = "tryout-v2";
 
 const NonNegativeCountSchema = Schema.Number.pipe(
   Schema.int(),
@@ -20,8 +29,8 @@ export type TryoutCatalogCounts = typeof TryoutCatalogCountsSchema.Type;
 const SnapshotFields = {
   catalogDigest: Sha256HashSchema,
   counts: TryoutCatalogCountsSchema,
-  format: Schema.Literal("tryout-v1"),
-  locales: ContentLocaleListSchema,
+  format: Schema.Literal(TRYOUT_SNAPSHOT_FORMAT),
+  locales: HistoricalAppLocaleListSchema,
   placementCount: NonNegativeCountSchema,
   placementDigest: Sha256HashSchema,
   routeCount: NonNegativeCountSchema,
@@ -37,3 +46,32 @@ export const TryoutSnapshotSchema = Schema.Struct({
   snapshotId: Sha256HashSchema,
 });
 export type TryoutSnapshot = typeof TryoutSnapshotSchema.Type;
+
+const SnapshotV2Fields = {
+  activeAppLocales: ActiveAppLocaleListSchema,
+  catalogDigest: Sha256HashSchema,
+  counts: TryoutCatalogCountsSchema,
+  editorialReviewDigest: Sha256HashSchema,
+  format: Schema.Literal(TRYOUT_SNAPSHOT_V2_FORMAT),
+  placementCount: NonNegativeCountSchema,
+  placementDigest: Sha256HashSchema,
+  routeCount: NonNegativeCountSchema,
+};
+
+/** Canonical v2 snapshot facts authenticated by the global release. */
+export const TryoutSnapshotV2InputSchema = Schema.Struct(SnapshotV2Fields);
+export type TryoutSnapshotV2Input = typeof TryoutSnapshotV2InputSchema.Type;
+
+/** Content-addressed v2 try-out snapshot selected by one release. */
+export const TryoutSnapshotV2Schema = Schema.Struct({
+  ...SnapshotV2Fields,
+  snapshotId: Sha256HashSchema,
+});
+export type TryoutSnapshotV2 = typeof TryoutSnapshotV2Schema.Type;
+
+/** Historical and current try-out snapshot decoder for retained consumers. */
+export const TryoutSnapshotWireSchema = Schema.Union(
+  TryoutSnapshotSchema,
+  TryoutSnapshotV2Schema
+);
+export type TryoutSnapshotWire = typeof TryoutSnapshotWireSchema.Type;

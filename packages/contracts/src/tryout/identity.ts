@@ -1,4 +1,5 @@
 import { compareCodeUnits } from "#contracts/text/order";
+import type { TryoutPlacementV2Source } from "#contracts/tryout/placement";
 import type {
   TryoutCountry,
   TryoutExam,
@@ -74,5 +75,30 @@ export function compareTryoutPlacements(
   return compareCodeUnits(
     tryoutPlacementIdentity(left),
     tryoutPlacementIdentity(right)
+  );
+}
+
+/** Builds the deterministic v2 placement identity across app locales. */
+export function tryoutPlacementV2Identity(row: TryoutPlacementV2Source) {
+  return [
+    row.countryKey,
+    row.examKey,
+    row.trackKey,
+    row.setKey,
+    row.sectionKey,
+    row.questionOrder,
+    row.questionContentKey,
+    row.appLocale,
+  ].join("\0");
+}
+
+/** Compares v2 placements in the order used by question-head binding. */
+export function compareTryoutPlacementsV2(
+  left: TryoutPlacementV2Source,
+  right: TryoutPlacementV2Source
+) {
+  return compareCodeUnits(
+    tryoutPlacementV2Identity(left),
+    tryoutPlacementV2Identity(right)
   );
 }

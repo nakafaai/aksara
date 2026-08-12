@@ -4,21 +4,14 @@ import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { Sha256HashSchema } from "#contracts/ids";
 import { compareCodeUnits } from "#contracts/text/order";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
-import {
-  tryoutCatalogIdentity,
-  tryoutPlacementIdentity,
-} from "#contracts/tryout/identity";
+import { tryoutCatalogIdentity } from "#contracts/tryout/identity";
 import {
   type TryoutCatalogRecord,
   TryoutCatalogRecordSchema,
   type TryoutCatalogRow,
-  type TryoutPlacement,
-  type TryoutPlacementRecord,
-  TryoutPlacementRecordSchema,
 } from "#contracts/tryout/spec";
 
 const CATALOG_DOMAIN = "nakafa.aksara.tryout-catalog.v1";
-const PLACEMENT_DOMAIN = "nakafa.aksara.tryout-placements.v1";
 
 /** An immutable snapshot stream is duplicated, unsorted, or tampered. */
 export class TryoutDigestError extends Schema.TaggedError<TryoutDigestError>()(
@@ -114,35 +107,6 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
   });
 }
 
-/** Serializes one artifact-bound placement with stable field order. */
-export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
-  return JSON.stringify({
-    answerArtifactHash: row.answerArtifactHash,
-    answerContentKey: row.answerContentKey,
-    choices: row.choices.map(({ isCorrect, label, optionKey, order }) => ({
-      isCorrect,
-      label,
-      optionKey,
-      order,
-    })),
-    contentHash: row.contentHash,
-    countryKey: row.countryKey,
-    examKey: row.examKey,
-    locale: row.locale,
-    questionArtifactHash: row.questionArtifactHash,
-    questionContentKey: row.questionContentKey,
-    questionOrder: row.questionOrder,
-    questionSourcePath: row.questionSourcePath,
-    rendererDomain: row.rendererDomain,
-    scope: row.scope,
-    sectionKey: row.sectionKey,
-    setKey: row.setKey,
-    sourceRevision: row.sourceRevision,
-    title: row.title,
-    trackKey: row.trackKey,
-  });
-}
-
 /** Creates one immutable hierarchy record from a canonical row. */
 export function makeTryoutCatalogRecord(
   row: TryoutCatalogRow
@@ -156,21 +120,7 @@ export function makeTryoutCatalogRecord(
   });
 }
 
-/** Creates one immutable placement record from artifact-bound content. */
-export function makeTryoutPlacementRecord(
-  row: TryoutPlacement
-): TryoutPlacementRecord {
-  return TryoutPlacementRecordSchema.make({
-    row,
-    rowHash: hashTryoutCanonical(
-      PLACEMENT_DOMAIN,
-      canonicalizeTryoutPlacement(row)
-    ),
-  });
-}
-
 interface DigestRecord<Row> {
-  readonly identity: string;
   readonly row: Row;
   readonly rowHash: typeof Sha256HashSchema.Type;
 }
@@ -203,6 +153,7 @@ class TryoutDigestState {
 function updateDigest<Row>(
   state: TryoutDigestState,
   record: DigestRecord<Row>,
+  identity: string,
   expectedHash: typeof Sha256HashSchema.Type,
   canonical: string
 ) {
@@ -210,59 +161,60 @@ function updateDigest<Row>(
     return Effect.fail(
       new TryoutDigestError({
         code: "integrity",
-        identity: record.identity,
+        identity,
       })
     );
   }
   if (
     state.previous !== undefined &&
-    compareCodeUnits(state.previous, record.identity) >= 0
+    compareCodeUnits(state.previous, identity) >= 0
   ) {
-    return Effect.fail(
-      new TryoutDigestError({ code: "order", identity: record.identity })
-    );
+    return Effect.fail(new TryoutDigestError({ code: "order", identity }));
   }
-  state.update(canonical, record.identity);
+  state.update(canonical, identity);
   return Effect.succeed(state);
 }
 
-/** Digests canonically ordered hierarchy records in constant space. */
-export const digestTryoutCatalog = Effect.fn(
-  "AksaraContracts.digestTryoutCatalog"
-)(function* <E, R>(records: Stream.Stream<TryoutCatalogRecord, E, R>) {
-  const state = yield* records.pipe(
+/** Digests one canonically ordered record stream with constant memory. */
+export const digestTryoutRecords = Effect.fn(
+  "AksaraContracts.digestTryoutRecords"
+)(function* <E, R, Row>(input: {
+  /** Serializes one row through its version-owned canonical format. */
+  readonly canonicalize: (row: Row) => string;
+  readonly domain: string;
+  /** Returns the stable identity used to enforce canonical row order. */
+  readonly identity: (row: Row) => string;
+  readonly records: Stream.Stream<DigestRecord<Row>, E, R>;
+  /** Recomputes the version-owned hash for one decoded row. */
+  readonly rowHash: (row: Row) => typeof Sha256HashSchema.Type;
+}) {
+  const state = yield* input.records.pipe(
     Stream.runFoldEffect(
-      new TryoutDigestState(CATALOG_DOMAIN),
-      (current, record) =>
-        updateDigest(
+      new TryoutDigestState(input.domain),
+      (current, record) => {
+        const canonical = input.canonicalize(record.row);
+        return updateDigest(
           current,
-          { ...record, identity: tryoutCatalogIdentity(record.row) },
-          makeTryoutCatalogRecord(record.row).rowHash,
-          `${canonicalizeTryoutCatalog(record.row)}\0${record.rowHash}`
-        )
+          record,
+          input.identity(record.row),
+          input.rowHash(record.row),
+          `${canonical}\0${record.rowHash}`
+        );
+      }
     )
   );
   return { count: state.count, digest: state.digest() };
 });
 
-/** Digests canonically ordered artifact-bound placements in constant space. */
-export const digestTryoutPlacements = Effect.fn(
-  "AksaraContracts.digestTryoutPlacements"
-)(function* <E, R>(records: Stream.Stream<TryoutPlacementRecord, E, R>) {
-  const state = yield* records.pipe(
-    Stream.runFoldEffect(
-      new TryoutDigestState(PLACEMENT_DOMAIN),
-      (current, record) =>
-        updateDigest(
-          current,
-          {
-            ...record,
-            identity: tryoutPlacementIdentity(record.row),
-          },
-          makeTryoutPlacementRecord(record.row).rowHash,
-          `${canonicalizeTryoutPlacement(record.row)}\0${record.rowHash}`
-        )
-    )
-  );
-  return { count: state.count, digest: state.digest() };
+/** Digests canonically ordered hierarchy records in constant space. */
+export const digestTryoutCatalog = Effect.fn(
+  "AksaraContracts.digestTryoutCatalog"
+)(function* <E, R>(records: Stream.Stream<TryoutCatalogRecord, E, R>) {
+  return yield* digestTryoutRecords({
+    canonicalize: canonicalizeTryoutCatalog,
+    domain: CATALOG_DOMAIN,
+    identity: tryoutCatalogIdentity,
+    records,
+    rowHash: (row) => makeTryoutCatalogRecord(row).rowHash,
+  });
 });

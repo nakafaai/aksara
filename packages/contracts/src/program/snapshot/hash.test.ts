@@ -1,19 +1,25 @@
 import type { BinaryLike } from "node:crypto";
 
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { describe, expect, it, vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   canonicalizeProgramSnapshot,
+  canonicalizeProgramSnapshotV4,
   hashProgramSnapshot,
+  hashProgramSnapshotV4,
 } from "#contracts/program/snapshot/hash";
 import {
   PROGRAM_SNAPSHOT_FORMAT,
+  PROGRAM_SNAPSHOT_V4_FORMAT,
   ProgramSnapshotInputSchema,
+  ProgramSnapshotV4InputSchema,
 } from "#contracts/program/snapshot/spec";
 
-const failures = vi.hoisted((): { enabled: boolean } => ({ enabled: false }));
+const failures = vi.hoisted((): { domain: string | null } => ({
+  domain: null,
+}));
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -28,8 +34,8 @@ vi.mock("node:crypto", async (importOriginal) => {
           if (property === "update") {
             return (data: BinaryLike) => {
               if (
-                failures.enabled &&
-                String(data).startsWith("nakafa.aksara.program-snapshot.v3\n")
+                failures.domain !== null &&
+                String(data).startsWith(`${failures.domain}\n`)
               ) {
                 throw new TypeError("injected program snapshot hash failure");
               }
@@ -56,6 +62,18 @@ const input = ProgramSnapshotInputSchema.make({
   slugCount: 12,
 });
 
+const inputV4 = Schema.decodeUnknownSync(ProgramSnapshotV4InputSchema)({
+  activeAppLocales: ["en", "id", "de"],
+  curriculumRowCount: input.curriculumRowCount,
+  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
+  format: PROGRAM_SNAPSHOT_V4_FORMAT,
+  programRowCount: input.programRowCount,
+  rowCount: input.rowCount,
+  rowDigest: input.rowDigest,
+  sitemapCount: input.sitemapCount,
+  slugCount: 18,
+});
+
 describe("program snapshot hashing", () => {
   it("hashes canonical complete snapshot facts reproducibly", async () => {
     const first = await Effect.runPromise(hashProgramSnapshot(input));
@@ -77,11 +95,27 @@ describe("program snapshot hashing", () => {
   });
 
   it("maps Node hashing failures to the typed contract error", async () => {
-    failures.enabled = true;
+    failures.domain = "nakafa.aksara.program-snapshot.v3";
     const error = await Effect.runPromise(
       hashProgramSnapshot(input).pipe(Effect.flip)
     );
-    failures.enabled = false;
+    failures.domain = null;
+
+    expect(error._tag).toBe("ProgramSnapshotHashError");
+  });
+
+  it("binds active locales and editorial review identity in v4", async () => {
+    const hash = await Effect.runPromise(hashProgramSnapshotV4(inputV4));
+    expect(JSON.parse(canonicalizeProgramSnapshotV4(inputV4))).toEqual(inputV4);
+    expect(hash).not.toBe(await Effect.runPromise(hashProgramSnapshot(input)));
+  });
+
+  it("maps v4 hashing failures to the stable typed error", async () => {
+    failures.domain = "nakafa.aksara.program-snapshot.v4";
+    const error = await Effect.runPromise(
+      hashProgramSnapshotV4(inputV4).pipe(Effect.flip)
+    );
+    failures.domain = null;
 
     expect(error._tag).toBe("ProgramSnapshotHashError");
   });
