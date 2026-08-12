@@ -26,7 +26,7 @@ import {
 const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
 /** Builds one technical verse at exact local and global positions. */
-function quranVerse(inSurah: number, inQuran: number) {
+export function quranVerse(inSurah: number, inQuran: number) {
   return QuranRuntimeVerseSchema.make({
     meta: {
       hizbQuarter: 1,
@@ -47,7 +47,7 @@ function quranVerse(inSurah: number, inQuran: number) {
 }
 
 /** Builds the complete technical attribution row in canonical source order. */
-function quranAttribution() {
+export function quranAttribution() {
   const sources = QURAN_SOURCE_IDS.map((id) =>
     QuranSourceAttributionSchema.make({
       artifact: {

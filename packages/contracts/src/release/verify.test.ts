@@ -7,6 +7,7 @@ import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { invertContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import {
+  ReleaseBundleVerificationDecodeError,
   ReleaseVerificationDecodeError,
   verifyContentReleaseBundle,
   verifyRollbackContentReleaseBundle,
@@ -87,6 +88,15 @@ function verifyBundle(input: unknown) {
     )
   );
 }
+/** Returns one typed production bundle decoding or verification failure. */
+function rejectBundle(input: unknown) {
+  return Effect.runPromise(
+    verifyContentReleaseBundle(input).pipe(
+      Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
+      Effect.flip
+    )
+  );
+}
 /** Runs rollback-only bundle verification with the trusted test resolver. */
 function verifyRollbackBundle(input: unknown) {
   return Effect.runPromise(
@@ -113,8 +123,8 @@ describe("server-only release verification", () => {
     await expect(verifyWire(historical)).resolves.toEqual(historical);
     await expect(verifyWire(current)).resolves.toEqual(current);
     await expect(
-      verifyBundle({ release: current, rendererManifest })
-    ).resolves.toEqual({ release: current, rendererManifest });
+      rejectBundle({ release: current, rendererManifest })
+    ).resolves.toBeInstanceOf(ReleaseBundleVerificationDecodeError);
     await expect(
       Effect.runPromise(
         verifySignedContentRelease(current).pipe(

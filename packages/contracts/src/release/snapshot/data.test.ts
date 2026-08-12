@@ -19,6 +19,7 @@ import {
   contentSnapshotId,
 } from "#contracts/release/snapshot/data";
 import { materialGraph } from "#contracts/test/graph";
+import { makeSnapshotTestData } from "#contracts/test/snapshot";
 import { makeSnapshotV2TestData } from "#contracts/test/snapshot-v2";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 import { TryoutCatalogRecordSchema } from "#contracts/tryout/spec";
@@ -138,7 +139,7 @@ describe("structured snapshot data", () => {
     expect(Either.isLeft(decode({ ...value, extra: true }))).toBe(true);
   });
 
-  it("serializes program and try-out rows without ambiguous nesting", () => {
+  it("serializes program and try-out rows without ambiguous nesting", async () => {
     const programValue = { family: "program", record: programRow } as const;
     const tryoutValue = {
       family: "tryout",
@@ -157,6 +158,16 @@ describe("structured snapshot data", () => {
     );
     expect(Either.isRight(decode(programValue))).toBe(true);
     expect(Either.isRight(decode(tryoutValue))).toBe(true);
+    const historical = await Effect.runPromise(makeSnapshotTestData());
+    const quranValue = historical.rows.find(
+      (row) => row.family === "quran" && !("rowKind" in row)
+    );
+    if (quranValue?.family !== "quran" || "rowKind" in quranValue) {
+      throw new Error("Expected one historical Quran row.");
+    }
+    expect(JSON.parse(canonicalizeContentSnapshotRow(quranValue))).toEqual(
+      quranValue
+    );
   });
 
   it("strictly decodes current manifests and explicit v2 placements", async () => {

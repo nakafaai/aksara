@@ -31,18 +31,9 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import {
   hashContentReleaseManifest,
-  hashContentReleaseManifestV2,
   type ReleaseHashComputationError,
 } from "@nakafa/aksara-contracts/release/hash";
-import {
-  type ContentReleaseManifestV2,
-  type SignedContentReleaseV2,
-  SignedContentReleaseV2Schema,
-} from "@nakafa/aksara-contracts/release/manifest/v2";
-import {
-  canonicalizeContentReleaseSigningInput,
-  canonicalizeContentReleaseV2SigningInput,
-} from "@nakafa/aksara-contracts/release/signing";
+import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { Effect, Schema } from "effect";
 import { ContentSigningError } from "#publisher/signing/error";
 
@@ -65,13 +56,6 @@ export interface PublicationSigner {
     manifest: ContentReleaseManifest
   ) => Effect.Effect<
     SignedContentRelease,
-    ContentSigningError | ReleaseHashComputationError
-  >;
-  /** Signs one canonical current release manifest. */
-  readonly signReleaseV2: (
-    manifest: ContentReleaseManifestV2
-  ) => Effect.Effect<
-    SignedContentReleaseV2,
     ContentSigningError | ReleaseHashComputationError
   >;
 }
@@ -155,32 +139,6 @@ function signRelease(
   );
 }
 
-/** Hashes and signs one current release manifest. */
-function signReleaseV2(
-  keyId: typeof SigningKeyIdSchema.Type,
-  privateKey: KeyObject,
-  manifest: ContentReleaseManifestV2
-) {
-  return hashContentReleaseManifestV2(manifest).pipe(
-    Effect.flatMap((manifestHash) =>
-      signCanonicalInput(
-        privateKey,
-        canonicalizeContentReleaseV2SigningInput(manifestHash, manifest),
-        "release"
-      ).pipe(
-        Effect.map((signature) =>
-          SignedContentReleaseV2Schema.make({
-            keyId,
-            manifest,
-            manifestHash,
-            signature,
-          })
-        )
-      )
-    )
-  );
-}
-
 /** Builds one Ed25519 signer used for artifacts and their release envelope. */
 export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
   "AksaraPublisher.makeEd25519PublicationSigner"
@@ -220,10 +178,6 @@ export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
       /** Signs one canonical release manifest with the configured key. */
       signRelease: Effect.fn("AksaraPublisher.signRelease")((manifest) =>
         signRelease(keyId, privateKey, manifest)
-      ),
-      /** Signs one canonical current manifest with the configured key. */
-      signReleaseV2: Effect.fn("AksaraPublisher.signReleaseV2")((manifest) =>
-        signReleaseV2(keyId, privateKey, manifest)
       ),
     } satisfies PublicationSigner;
   })

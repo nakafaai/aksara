@@ -15,7 +15,7 @@ import {
   type RoutedContentProjection,
   RoutedContentProjectionSchema,
 } from "#contracts/projection/spec";
-import { SignedContentReleaseWireSchema } from "#contracts/release/manifest/v2";
+import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import {
   ContentRuntimeFailureSchema,
@@ -60,7 +60,7 @@ function hasCoherentContent(input: {
 const PublicContentRuntimeFoundFields = {
   artifact: SignedContentArtifactSchema,
   kind: Schema.Literal("found"),
-  release: SignedContentReleaseWireSchema,
+  release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
   sourcePath: CorpusSourcePathSchema,
 };

@@ -2,7 +2,6 @@ import { Schema } from "effect";
 
 import {
   Ed25519SignatureSchema,
-  type ReleaseId,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
@@ -47,26 +46,6 @@ export const SignedContentReleaseWireSchema = Schema.Union(
 );
 export type SignedContentReleaseWire =
   typeof SignedContentReleaseWireSchema.Type;
-
-/** Signed release wire whose provenance identifies one rollback target. */
-export type RollbackSignedContentReleaseWire = SignedContentReleaseWire & {
-  readonly manifest: SignedContentReleaseWire["manifest"] & {
-    readonly origin: {
-      readonly kind: "rollback";
-      readonly releaseId: ReleaseId;
-    };
-  };
-};
-
-/** Historical or current release accepted only for rollback operations. */
-export const RollbackSignedContentReleaseWireSchema =
-  SignedContentReleaseWireSchema.pipe(
-    Schema.filter(
-      (release): release is RollbackSignedContentReleaseWire =>
-        release.manifest.origin.kind === "rollback",
-      { message: () => "Expected a signed rollback release." }
-    )
-  );
 
 /** Checks whether one app locale is active in a current release. */
 export function releaseActivatesAppLocale(

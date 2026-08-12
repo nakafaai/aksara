@@ -1,11 +1,10 @@
-import { Either, Schema } from "effect";
+import { Either, ParseResult, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { AppLocaleSchema } from "#contracts/locale";
 import {
   CONTENT_RELEASE_V2_FORMAT,
   ContentReleaseManifestV2Schema,
-  RollbackSignedContentReleaseWireSchema,
   releaseActivatesAppLocale,
   SignedContentReleaseV2Schema,
   SignedContentReleaseWireSchema,
@@ -67,12 +66,20 @@ describe("release manifest v2", () => {
     }
   });
 
-  it("rejects a non-rollback release at rollback boundaries", () => {
-    const result = Schema.decodeUnknownEither(
-      RollbackSignedContentReleaseWireSchema
-    )(currentRelease);
+  it("reports an incoherent current release origin", () => {
+    const result = Schema.decodeUnknownEither(ContentReleaseManifestV2Schema)({
+      ...currentManifest,
+      origin: {
+        kind: "rollback",
+        releaseId: currentManifest.releaseId,
+      },
+    });
+    if (Either.isRight(result)) {
+      throw new Error("Expected an incoherent current release origin.");
+    }
 
-    expect(Either.isLeft(result)).toBe(true);
-    expect(String(result)).toContain("Expected a signed rollback release.");
+    expect(ParseResult.TreeFormatter.formatErrorSync(result.left)).toContain(
+      "Expected a new release identity and a coherent source origin."
+    );
   });
 });

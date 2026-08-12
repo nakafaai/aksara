@@ -2,7 +2,9 @@ import { Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
+  type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
+  AppLocaleSchema,
   HistoricalAppLocaleListSchema,
 } from "#contracts/locale";
 import { QURAN_SOURCE_FILE_COUNT } from "#contracts/quran/source";
@@ -13,6 +15,7 @@ import {
   QURAN_VERSE_COUNT,
   QuranTafsirLocaleListSchema,
 } from "#contracts/quran/spec";
+import { quranV3SourceFileCount } from "#contracts/quran/v3";
 
 /** Wire format for the official-source Quran snapshot. */
 export const QURAN_SNAPSHOT_FORMAT = "quran-snapshot-v2";
@@ -129,13 +132,37 @@ const SnapshotV3Fields = {
   sourceDigest: Sha256HashSchema,
   sourceFileCount: CountSchema,
   surahCount: CountSchema,
-  tafsirLocales: QuranTafsirLocaleListSchema,
+  tafsirLocales: Schema.Array(Schema.Literal("id")).pipe(Schema.maxItems(1)),
   verseCount: CountSchema,
 };
 
+/** Checks current counts and Tafsir capability against active app locales. */
+function hasCompleteV3SnapshotCounts(input: {
+  readonly activeAppLocales: ActiveAppLocaleList;
+  readonly attributionCount: number;
+  readonly searchCount: number;
+  readonly sourceFileCount: number;
+  readonly surahCount: number;
+  readonly tafsirLocales: readonly "id"[];
+  readonly verseCount: number;
+}) {
+  const hasIndonesian = input.activeAppLocales.includes(
+    AppLocaleSchema.make("id")
+  );
+  return (
+    input.attributionCount === QURAN_ATTRIBUTION_COUNT &&
+    input.surahCount === QURAN_SURAH_COUNT &&
+    input.verseCount === QURAN_VERSE_COUNT &&
+    input.searchCount === QURAN_SURAH_COUNT * input.activeAppLocales.length &&
+    input.sourceFileCount === quranV3SourceFileCount(input.activeAppLocales) &&
+    JSON.stringify(input.tafsirLocales) ===
+      JSON.stringify(hasIndonesian ? ["id"] : [])
+  );
+}
+
 /** Immutable v3 Quran facts before content-addressed identity. */
 export const QuranSnapshotV3InputSchema = Schema.Struct(SnapshotV3Fields).pipe(
-  Schema.filter(hasCompleteSnapshotCounts, {
+  Schema.filter(hasCompleteV3SnapshotCounts, {
     message: () => "Expected the complete reviewed Quran snapshot counts.",
   }),
   Schema.filter(hasCoherentProjectionCounts, {
@@ -150,7 +177,7 @@ export const QuranSnapshotV3ManifestSchema = Schema.Struct({
   ...SnapshotV3Fields,
   snapshotId: Sha256HashSchema,
 }).pipe(
-  Schema.filter(hasCompleteSnapshotCounts, {
+  Schema.filter(hasCompleteV3SnapshotCounts, {
     message: () => "Expected the complete reviewed Quran snapshot counts.",
   }),
   Schema.filter(hasCoherentProjectionCounts, {

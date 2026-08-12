@@ -1,11 +1,15 @@
 import { Either, ParseResult, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
+import { AppLocaleSchema } from "#contracts/locale";
 import {
   CurriculumNodeKeySchema,
   CurriculumRouteDraftSchema,
   CurriculumRouteSchema,
+  CurriculumRouteV4DraftSchema,
+  CurriculumRouteV4Schema,
   canonicalizeCurriculumRoute,
+  curriculumNamespace,
 } from "#contracts/program/curriculum";
 
 const merdekaRoute = {
@@ -125,6 +129,67 @@ describe("curriculum route contract", () => {
     });
 
     expect(root.nodeKey).toBe("merdeka:root");
+  });
+
+  it("owns the exact German namespace and v4 route policy", () => {
+    const root = Schema.decodeUnknownSync(CurriculumRouteV4Schema)({
+      iconKey: "state",
+      kind: "curriculum-context",
+      level: "track",
+      locale: "de",
+      nodeKey: "merdeka:root",
+      order: 10,
+      programKey: "merdeka",
+      publicPath: "lehrplaene/merdeka",
+      sitemap: true,
+      sourcePath: "packages/corpus/curriculum/merdeka",
+      title: "Merdeka Lehrplan",
+    });
+
+    expect(curriculumNamespace(AppLocaleSchema.make("de"))).toBe("lehrplaene");
+    expect(root.publicPath).toBe("lehrplaene/merdeka");
+  });
+
+  it("reports every v4 route ownership failure", () => {
+    const german = {
+      ...merdekaRoute,
+      locale: "de",
+      parentPath: "lehrplaene/merdeka/class-10",
+      publicPath: "lehrplaene/merdeka/class-10/mathematik",
+      title: "Mathematik",
+    } as const;
+    const routeFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)({
+      ...german,
+      publicPath: merdekaRoute.publicPath,
+    });
+    const materialFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)(
+      { ...german, materialKey: "lesson.mathematics.matrix" }
+    );
+    const sitemapFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)({
+      ...german,
+      level: "lesson",
+    });
+    const draft = Schema.decodeUnknownSync(CurriculumRouteV4DraftSchema)({
+      ...german,
+      canonicalPath: "subjects/mathematics/matrix",
+      materialKey: "lesson.mathematics.matrix",
+    });
+    const contextFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)(
+      draft
+    );
+
+    expect(formatFailure(routeFailure)).toContain(
+      "Expected coherent localized curriculum route ownership."
+    );
+    expect(formatFailure(materialFailure)).toContain(
+      "Expected coherent curriculum material ownership."
+    );
+    expect(formatFailure(sitemapFailure)).toContain(
+      "Expected only renderable curriculum sitemap routes."
+    );
+    expect(formatFailure(contextFailure)).toContain(
+      "Expected complete curriculum material context ownership."
+    );
   });
 
   it("reports each exact curriculum ownership failure", () => {

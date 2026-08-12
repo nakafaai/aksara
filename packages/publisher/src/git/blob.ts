@@ -3,7 +3,7 @@ import type {
   GitCommitSha,
 } from "@nakafa/aksara-contracts/ids";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
-import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import { MAX_REVIEWED_OFFICIAL_SOURCE_BYTES } from "@nakafa/aksara-contracts/limits";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Context, Effect, Layer, Schema } from "effect";
@@ -23,6 +23,11 @@ const GitBlobSizeSchema = Schema.NumberFromString.pipe(
   Schema.int(),
   Schema.nonNegative()
 );
+const GitBlobLimitSchema = Schema.Number.pipe(
+  Schema.int(),
+  Schema.positive(),
+  Schema.lessThanOrEqualTo(MAX_REVIEWED_OFFICIAL_SOURCE_BYTES)
+);
 
 /** A repository command or exact-revision validation step failed. */
 export class GitBlobError extends Schema.TaggedError<GitBlobError>()(
@@ -36,6 +41,7 @@ export class GitBlobError extends Schema.TaggedError<GitBlobError>()(
 
 /** Branded exact-revision coordinates for one authored corpus blob. */
 export interface GitBlobInput {
+  readonly maxBytes: number;
   readonly revision: GitCommitSha;
   readonly sourcePath: CorpusSourcePath;
 }
@@ -134,6 +140,18 @@ export function makeGitBlobLive(repositoryRoot: string) {
         const read = Effect.fn("AksaraPublisher.GitBlob.read")(function* (
           input: GitBlobInput
         ) {
+          const maxBytes = yield* Schema.decodeUnknown(GitBlobLimitSchema)(
+            input.maxBytes
+          ).pipe(
+            Effect.mapError(
+              (cause) =>
+                new GitBlobError({
+                  cause,
+                  message: "The reviewed corpus blob limit is invalid.",
+                  operation: "size-blob",
+                })
+            )
+          );
           const revisionOutput = yield* runGitText(
             exactProcess,
             repositoryRoot,
@@ -190,11 +208,10 @@ export function makeGitBlobLive(repositoryRoot: string) {
                 })
             )
           );
-          if (blobSize > MAX_RAW_MDX_BYTES) {
+          if (blobSize > maxBytes) {
             return yield* new GitBlobError({
-              cause: { actualBytes: blobSize, maxBytes: MAX_RAW_MDX_BYTES },
-              message:
-                "The reviewed corpus blob exceeds the raw MDX byte limit.",
+              cause: { actualBytes: blobSize, maxBytes },
+              message: "The reviewed corpus blob exceeds its byte limit.",
               operation: "size-blob",
             });
           }

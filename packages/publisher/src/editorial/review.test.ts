@@ -9,11 +9,16 @@ import {
   GitCommitShaSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  MAX_RAW_MDX_BYTES,
+  MAX_REVIEWED_OFFICIAL_SOURCE_BYTES,
+} from "@nakafa/aksara-contracts/limits";
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
   EditorialReviewFileConflictError,
+  EditorialReviewFileLimitConflictError,
   verifyEditorialReviewSources,
 } from "#publisher/editorial/review";
 import { GitBlob } from "#publisher/git/blob";
@@ -59,8 +64,8 @@ function verify(
 ) {
   const reads: string[] = [];
   const gitBlob = GitBlob.of({
-    read: ({ sourcePath }) => {
-      reads.push(sourcePath);
+    read: ({ maxBytes, sourcePath }) => {
+      reads.push(`${sourcePath}:${maxBytes}`);
       const value = overrides[sourcePath as keyof typeof overrides];
       return value === undefined
         ? Effect.dieMessage(`Missing test file ${sourcePath}.`)
@@ -68,7 +73,7 @@ function verify(
     },
   });
   return {
-    program: verifyEditorialReviewSources({ manifest, revision }).pipe(
+    program: verifyEditorialReviewSources({ manifest }).pipe(
       Effect.provideService(GitBlob, gitBlob)
     ),
     reads,
@@ -81,7 +86,7 @@ describe("editorial review source verification", () => {
       Schema.Array(EditorialReviewRecordSchema)
     )([reviewRecord("de"), reviewRecord("en")]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest(records)
+      makeEditorialReviewManifest({ records, revision })
     );
     const verification = verify(manifest);
 
@@ -89,8 +94,26 @@ describe("editorial review source verification", () => {
       manifest
     );
     expect(verification.reads).toEqual([
-      "packages/corpus/material/example/de.mdx",
-      "packages/corpus/material/example/en.mdx",
+      `packages/corpus/material/example/de.mdx:${MAX_RAW_MDX_BYTES}`,
+      `packages/corpus/material/example/en.mdx:${MAX_RAW_MDX_BYTES}`,
+    ]);
+  });
+
+  it("uses the bounded official-source reader for immutable records", async () => {
+    const immutable = Schema.decodeUnknownSync(EditorialReviewRecordSchema)({
+      ...reviewRecord("de"),
+      deliveryLanguage: "de",
+      reviewMode: "immutable-official-source",
+    });
+    const manifest = await Effect.runPromise(
+      makeEditorialReviewManifest({ records: [immutable], revision })
+    );
+    const verification = verify(manifest);
+
+    await Effect.runPromise(verification.program);
+    expect(verification.reads).toEqual([
+      `packages/corpus/material/example/de.mdx:${MAX_REVIEWED_OFFICIAL_SOURCE_BYTES}`,
+      `packages/corpus/material/example/en.mdx:${MAX_REVIEWED_OFFICIAL_SOURCE_BYTES}`,
     ]);
   });
 
@@ -99,7 +122,7 @@ describe("editorial review source verification", () => {
       Schema.Array(EditorialReviewRecordSchema)
     )([reviewRecord("de")]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest(records)
+      makeEditorialReviewManifest({ records, revision })
     );
     const verification = verify(manifest, {
       ...files,
@@ -123,7 +146,7 @@ describe("editorial review source verification", () => {
       reviewRecord("en", Sha256HashSchema.make(`sha256:${"f".repeat(64)}`)),
     ]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest(records)
+      makeEditorialReviewManifest({ records, revision })
     );
     const verification = verify(manifest);
 
@@ -131,6 +154,27 @@ describe("editorial review source verification", () => {
       verification.program.pipe(Effect.flip)
     );
     expect(error).toBeInstanceOf(EditorialReviewFileConflictError);
+    expect(verification.reads).toHaveLength(0);
+  });
+
+  it("rejects contradictory bounded read policies before reading Git", async () => {
+    const immutable = Schema.decodeUnknownSync(EditorialReviewRecordSchema)({
+      ...reviewRecord("en"),
+      deliveryLanguage: "en",
+      reviewMode: "immutable-official-source",
+    });
+    const records = Schema.decodeUnknownSync(
+      Schema.Array(EditorialReviewRecordSchema)
+    )([reviewRecord("de"), immutable]);
+    const manifest = await Effect.runPromise(
+      makeEditorialReviewManifest({ records, revision })
+    );
+    const verification = verify(manifest);
+
+    const error = await Effect.runPromise(
+      verification.program.pipe(Effect.flip)
+    );
+    expect(error).toBeInstanceOf(EditorialReviewFileLimitConflictError);
     expect(verification.reads).toHaveLength(0);
   });
 });

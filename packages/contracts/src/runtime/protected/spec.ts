@@ -12,7 +12,7 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import { QuestionKeySchema } from "#contracts/question/identity";
-import { SignedContentReleaseWireSchema } from "#contracts/release/manifest/v2";
+import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import {
   hasBoundedProtectedRuntimeResponse,
@@ -114,7 +114,7 @@ const ProtectedContentRuntimeItemsSchema = Schema.Array(
 export const ProtectedContentRuntimeFoundSchema = Schema.Struct({
   items: ProtectedContentRuntimeItemsSchema,
   kind: Schema.Literal("found"),
-  release: SignedContentReleaseWireSchema,
+  release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
   snapshotId: Sha256HashSchema,
   snapshotManifestHash: Sha256HashSchema,

@@ -105,11 +105,30 @@ describe("Quran snapshot", () => {
       activeAppLocales: ["en", "id", "de"],
       editorialReviewDigest: firstHash,
       format: QURAN_SNAPSHOT_V3_FORMAT,
+      projectionCount: 1542,
+      searchCount: 342,
+      sourceFileCount: 119,
     });
     expect(current.activeAppLocales).toEqual(["en", "id", "de"]);
     expect(Schema.decodeUnknownSync(QuranSnapshotWireSchema)(current)).toEqual(
       current
     );
+  });
+
+  it("keeps Tafsir unavailable when Indonesian is inactive", () => {
+    const { locales: _locales, ...historical } = manifest();
+    const current = Schema.decodeUnknownSync(QuranSnapshotV3ManifestSchema)({
+      ...historical,
+      activeAppLocales: ["de"],
+      editorialReviewDigest: firstHash,
+      format: QURAN_SNAPSHOT_V3_FORMAT,
+      projectionCount: 1314,
+      searchCount: 114,
+      sourceFileCount: 3,
+      tafsirLocales: [],
+    });
+
+    expect(current.tafsirLocales).toEqual([]);
   });
 
   it("rejects incomplete and incoherent v3 inputs and manifests", () => {
@@ -119,6 +138,9 @@ describe("Quran snapshot", () => {
       activeAppLocales: ["en", "id", "de"],
       editorialReviewDigest: firstHash,
       format: QURAN_SNAPSHOT_V3_FORMAT,
+      projectionCount: 1542,
+      searchCount: 342,
+      sourceFileCount: 119,
     } as const;
     const cases = [
       Schema.decodeUnknownEither(QuranSnapshotV3InputSchema)({

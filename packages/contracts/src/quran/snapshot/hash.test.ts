@@ -88,6 +88,9 @@ function manifestV3() {
     activeAppLocales: ["en", "id", "de"],
     editorialReviewDigest: firstHash,
     format: QURAN_SNAPSHOT_V3_FORMAT,
+    projectionCount: 1542,
+    searchCount: 342,
+    sourceFileCount: 119,
   });
 }
 

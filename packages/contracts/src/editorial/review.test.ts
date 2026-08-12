@@ -10,9 +10,11 @@ import {
   makeEditorialReviewManifest,
   verifyEditorialReviewManifest,
 } from "#contracts/editorial/review";
+import { GitCommitShaSchema } from "#contracts/ids";
 
 const sourceHash = `sha256:${"a".repeat(64)}` as const;
 const targetHash = `sha256:${"b".repeat(64)}` as const;
+const revision = GitCommitShaSchema.make("c".repeat(40));
 
 const [germanReview] = Schema.decodeUnknownSync(
   EditorialReviewRecordListSchema
@@ -42,12 +44,15 @@ describe("editorial review", () => {
 
   it("builds a deterministic review manifest", async () => {
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest([germanReview])
+      makeEditorialReviewManifest({ records: [germanReview], revision })
     );
     expect(manifest.format).toBe("editorial-review-v1");
     expect(manifest.records).toEqual([germanReview]);
+    expect(manifest.revision).toBe(revision);
     expect(manifest.digest).toBe(
-      await Effect.runPromise(hashEditorialReviews([germanReview]))
+      await Effect.runPromise(
+        hashEditorialReviews({ records: [germanReview], revision })
+      )
     );
     await expect(
       Effect.runPromise(verifyEditorialReviewManifest(manifest))
@@ -55,10 +60,10 @@ describe("editorial review", () => {
   });
 
   it("rejects duplicate targets and duplicate source paths", async () => {
-    const duplicateTargets = makeEditorialReviewManifest([
-      germanReview,
-      germanReview,
-    ]).pipe(Effect.flip);
+    const duplicateTargets = makeEditorialReviewManifest({
+      records: [germanReview, germanReview],
+      revision,
+    }).pipe(Effect.flip);
     expect(await Effect.runPromise(duplicateTargets)).toBeInstanceOf(
       EditorialReviewManifestError
     );
@@ -125,12 +130,15 @@ describe("editorial review", () => {
       },
     ]);
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest([
-        preservedReview,
-        Schema.decodeUnknownSync(EditorialReviewRecordListSchema)([
-          { ...preservedReview, appLocale: "en" },
-        ])[0],
-      ])
+      makeEditorialReviewManifest({
+        records: [
+          preservedReview,
+          Schema.decodeUnknownSync(EditorialReviewRecordListSchema)([
+            { ...preservedReview, appLocale: "en" },
+          ])[0],
+        ],
+        revision,
+      })
     );
 
     expect(manifest.records).toHaveLength(2);
@@ -146,7 +154,10 @@ describe("editorial review", () => {
       ]
     );
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest([germanReview, earlier])
+      makeEditorialReviewManifest({
+        records: [germanReview, earlier],
+        revision,
+      })
     );
 
     expect(manifest.records.map(({ targetPath }) => targetPath)).toEqual([
@@ -164,10 +175,12 @@ describe("editorial review", () => {
       },
     };
     const hashError = await Effect.runPromise(
-      hashEditorialReviews([brokenReview]).pipe(Effect.flip)
+      hashEditorialReviews({ records: [brokenReview], revision }).pipe(
+        Effect.flip
+      )
     );
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest([germanReview])
+      makeEditorialReviewManifest({ records: [germanReview], revision })
     );
     const decodeError = await Effect.runPromise(
       verifyEditorialReviewManifest({ ...manifest, unexpected: true }).pipe(
@@ -181,7 +194,7 @@ describe("editorial review", () => {
 
   it("rejects a stale review manifest digest", async () => {
     const manifest = await Effect.runPromise(
-      makeEditorialReviewManifest([germanReview])
+      makeEditorialReviewManifest({ records: [germanReview], revision })
     );
     const error = await Effect.runPromise(
       verifyEditorialReviewManifest({
@@ -193,6 +206,24 @@ describe("editorial review", () => {
     expect(error).toMatchObject({
       _tag: "EditorialReviewDigestMismatchError",
       expectedDigest: sourceHash,
+    });
+  });
+
+  it("binds the exact reviewed Git revision into the digest", async () => {
+    const manifest = await Effect.runPromise(
+      makeEditorialReviewManifest({ records: [germanReview], revision })
+    );
+    const changedRevision = GitCommitShaSchema.make("d".repeat(40));
+    const error = await Effect.runPromise(
+      verifyEditorialReviewManifest({
+        ...manifest,
+        revision: changedRevision,
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "EditorialReviewDigestMismatchError",
+      expectedDigest: manifest.digest,
     });
   });
 });

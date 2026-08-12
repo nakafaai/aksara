@@ -1,7 +1,8 @@
 import { Schema } from "effect";
 
-import { ContentLocaleSchema } from "#contracts/content";
+import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
+import { type AppLocale, AppLocaleSchema } from "#contracts/locale";
 import { MaterialDomainSchema } from "#contracts/material/domain";
 import {
   LearningProgramKeySchema,
@@ -36,6 +37,17 @@ export const CURRICULUM_NAMESPACES = CurriculumNamespaceMapSchema.make({
   en: "curriculum",
   id: "kurikulum",
 });
+
+/** Resolves the route namespace owned by one application locale. */
+export function curriculumNamespace(locale: AppLocale | ContentLocale) {
+  if (locale === "de") {
+    return "lehrplaene";
+  }
+  if (locale === "en") {
+    return CURRICULUM_NAMESPACES.en;
+  }
+  return CURRICULUM_NAMESPACES.id;
+}
 
 /** Checks whether one curriculum level owns a learner-renderable route. */
 export const isRenderableCurriculumLevel = Schema.is(
@@ -82,6 +94,11 @@ const CurriculumRouteFields = {
   title: Schema.String,
 };
 
+const CurriculumRouteV4Fields = {
+  ...CurriculumRouteFields,
+  locale: AppLocaleSchema,
+};
+
 /** Returns the direct parent of one canonical public path. */
 function parentPath(publicPath: string) {
   return publicPath.slice(0, publicPath.lastIndexOf("/"));
@@ -90,14 +107,14 @@ function parentPath(publicPath: string) {
 /** Checks namespace, root, and direct-parent route ownership. */
 function hasCoherentRoute(input: {
   readonly level: string;
-  readonly locale: typeof ContentLocaleSchema.Type;
+  readonly locale: AppLocale | typeof ContentLocaleSchema.Type;
   readonly nodeKey: string;
   readonly parentPath?: string | undefined;
   readonly programKey: string;
   readonly publicPath: string;
   readonly sourcePath: string;
 }) {
-  const namespace = `${CURRICULUM_NAMESPACES[input.locale]}/`;
+  const namespace = `${curriculumNamespace(input.locale)}/`;
   if (!input.publicPath.startsWith(namespace)) {
     return false;
   }
@@ -187,8 +204,34 @@ export const CurriculumRouteSchema = CurriculumRouteDraftSchema.pipe(
 );
 export type CurriculumRoute = typeof CurriculumRouteSchema.Type;
 
+/** Current localized curriculum route before presentation context is added. */
+export const CurriculumRouteV4DraftSchema = Schema.Struct(
+  CurriculumRouteV4Fields
+).pipe(
+  Schema.filter(hasCoherentRoute, {
+    message: () => "Expected coherent localized curriculum route ownership.",
+  }),
+  Schema.filter(hasCoherentMaterialLink, {
+    message: () => "Expected coherent curriculum material ownership.",
+  }),
+  Schema.filter(hasCoherentSitemap, {
+    message: () => "Expected only renderable curriculum sitemap routes.",
+  })
+);
+export type CurriculumRouteV4Draft = typeof CurriculumRouteV4DraftSchema.Type;
+
+/** Exact current localized route stored inside a program-v4 snapshot. */
+export const CurriculumRouteV4Schema = CurriculumRouteV4DraftSchema.pipe(
+  Schema.filter(hasCompleteMaterialContext, {
+    message: () => "Expected complete curriculum material context ownership.",
+  })
+);
+export type CurriculumRouteV4 = typeof CurriculumRouteV4Schema.Type;
+
 /** Serializes one curriculum route in stable signed field order. */
-export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
+export function canonicalizeCurriculumRoute(
+  route: CurriculumRoute | CurriculumRouteV4
+) {
   return JSON.stringify({
     ...(route.canonicalPath === undefined
       ? {}

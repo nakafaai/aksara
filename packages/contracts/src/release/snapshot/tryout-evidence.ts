@@ -8,6 +8,9 @@ import {
   requireSnapshotEvidence,
   type SnapshotRowFactory,
 } from "#contracts/release/snapshot/evidence-requirement";
+import { digestTryoutCatalogV2 } from "#contracts/tryout/catalog-hash";
+import type { TryoutCatalogV2Record } from "#contracts/tryout/catalog-v2";
+import { verifyTryoutV2LocaleClosure } from "#contracts/tryout/locale-closure";
 import {
   digestTryoutPlacements,
   digestTryoutPlacementsV2,
@@ -33,6 +36,19 @@ function tryoutCatalog<E, R>(rows: Stream.Stream<ContentSnapshotRow, E, R>) {
   return rows.pipe(
     Stream.filterMap((row) =>
       row.family === "tryout" && row.rowKind === "catalog"
+        ? Option.some(row.record)
+        : Option.none()
+    )
+  );
+}
+
+/** Selects current hierarchy rows while preserving source failures. */
+function currentTryoutCatalog<E, R>(
+  rows: Stream.Stream<ContentSnapshotRow, E, R>
+) {
+  return rows.pipe(
+    Stream.filterMap((row) =>
+      row.family === "tryout" && row.rowKind === "catalog-v2"
         ? Option.some(row.record)
         : Option.none()
     )
@@ -67,7 +83,7 @@ function currentPlacements<E, R>(
 
 /** Derives signed per-kind and public-route counts from catalog rows. */
 function summarizeTryoutCatalog<E, R>(
-  records: Stream.Stream<TryoutCatalogRecord, E, R>
+  records: Stream.Stream<TryoutCatalogRecord | TryoutCatalogV2Record, E, R>
 ) {
   const initial: TryoutCatalogEvidence = {
     counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
@@ -95,10 +111,23 @@ export const verifyTryoutSnapshotRows = Effect.fn(
     snapshot.manifest.format === TRYOUT_SNAPSHOT_FORMAT
       ? yield* digestTryoutPlacements(historicalPlacements(rows()))
       : yield* digestTryoutPlacementsV2(currentPlacements(rows()));
-  const [catalogDigest, catalogEvidence] = yield* Effect.all([
-    digestTryoutCatalog(tryoutCatalog(rows())),
-    summarizeTryoutCatalog(tryoutCatalog(rows())),
-  ]);
+  const isHistorical = snapshot.manifest.format === TRYOUT_SNAPSHOT_FORMAT;
+  const [catalogDigest, catalogEvidence] = isHistorical
+    ? yield* Effect.all([
+        digestTryoutCatalog(tryoutCatalog(rows())),
+        summarizeTryoutCatalog(tryoutCatalog(rows())),
+      ])
+    : yield* Effect.all([
+        digestTryoutCatalogV2(currentTryoutCatalog(rows())),
+        summarizeTryoutCatalog(currentTryoutCatalog(rows())),
+      ]);
+  if (!isHistorical) {
+    yield* verifyTryoutV2LocaleClosure({
+      activeAppLocales: snapshot.manifest.activeAppLocales,
+      catalog: currentTryoutCatalog(rows()),
+      placements: currentPlacements(rows()),
+    });
+  }
   yield* requireSnapshotEvidence({
     actual: catalogDigest.digest,
     expected: snapshot.manifest.catalogDigest,

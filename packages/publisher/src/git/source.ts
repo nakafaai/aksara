@@ -1,5 +1,6 @@
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
+import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import { Effect, Layer, Stream } from "effect";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
@@ -28,6 +29,7 @@ function loadItem(
 
   return gitBlob
     .read({
+      maxBytes: MAX_RAW_MDX_BYTES,
       revision: aksaraSha,
       sourcePath: change.sourcePath,
     })

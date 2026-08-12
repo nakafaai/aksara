@@ -2,7 +2,10 @@ import {
   CorpusSourcePathSchema,
   GitCommitShaSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
+import {
+  MAX_RAW_MDX_BYTES,
+  MAX_REVIEWED_OFFICIAL_SOURCE_BYTES,
+} from "@nakafa/aksara-contracts/limits";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import {
   ExactProcess,
@@ -68,10 +71,14 @@ function makeGitProcess(
 }
 
 /** Reads the fixed branded test coordinate through one exact process service. */
-function readTestBlob(exactProcess: typeof ExactProcess.Service) {
+function readTestBlob(
+  exactProcess: typeof ExactProcess.Service,
+  maxBytes = MAX_RAW_MDX_BYTES
+) {
   return GitBlob.pipe(
     Effect.flatMap((gitBlob) =>
       gitBlob.read({
+        maxBytes,
         revision: TEST_COMMIT_SHA,
         sourcePath: TEST_SOURCE_PATH,
       })
@@ -131,6 +138,35 @@ describe("GitBlob", () => {
       operation: "size-blob",
     });
     expect(commands).toHaveLength(2);
+  });
+
+  it("reads a bounded official source larger than authored MDX", async () => {
+    const officialBytes = new Uint8Array(MAX_RAW_MDX_BYTES + 1).fill(0x61);
+    await expect(
+      Effect.runPromise(
+        readTestBlob(
+          makeGitProcess({
+            blob: officialBytes,
+            size: `${officialBytes.byteLength}\n`,
+          }),
+          MAX_REVIEWED_OFFICIAL_SOURCE_BYTES
+        )
+      )
+    ).resolves.toHaveLength(officialBytes.byteLength);
+  });
+
+  it("rejects an unbounded reviewed source policy", async () => {
+    const error = await Effect.runPromise(
+      readTestBlob(
+        makeGitProcess({}),
+        MAX_REVIEWED_OFFICIAL_SOURCE_BYTES + 1
+      ).pipe(Effect.flip)
+    );
+    expect(error).toMatchObject({
+      _tag: "GitBlobError",
+      operation: "size-blob",
+    });
+    expect(error.message).toContain("limit is invalid");
   });
 
   it("rejects invalid UTF-8 instead of inserting replacement text", async () => {

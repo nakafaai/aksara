@@ -92,6 +92,19 @@ export function tryoutPlacementV2Identity(row: TryoutPlacementV2Source) {
   ].join("\0");
 }
 
+/** Builds one locale-neutral v2 placement identity for closure checks. */
+export function tryoutPlacementV2LogicalIdentity(row: TryoutPlacementV2Source) {
+  return [
+    row.countryKey,
+    row.examKey,
+    row.trackKey,
+    row.setKey,
+    row.sectionKey,
+    row.questionOrder,
+    row.questionContentKey,
+  ].join("\0");
+}
+
 /** Compares v2 placements in the order used by question-head binding. */
 export function compareTryoutPlacementsV2(
   left: TryoutPlacementV2Source,

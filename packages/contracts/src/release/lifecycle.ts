@@ -1,10 +1,10 @@
 import { Schema } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
-  type RollbackSignedContentReleaseWire,
-  SignedContentReleaseWireSchema,
-} from "#contracts/release/manifest/v2";
-import { PublicationReceiptSchema } from "#contracts/release/spec";
+  PublicationReceiptSchema,
+  type RollbackSignedContentRelease,
+  SignedContentReleaseSchema,
+} from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 
 const CleanupCountSchema = Schema.Number.pipe(
@@ -31,7 +31,7 @@ export type ContentReleaseStatusRequest =
 
 /** Frozen renderer and signed release required for exact crash recovery. */
 export const ContentReleaseBundleSchema = Schema.Struct({
-  release: SignedContentReleaseWireSchema,
+  release: SignedContentReleaseSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
 }).pipe(
   Schema.filter(
@@ -50,7 +50,7 @@ export type ContentReleaseBundle = typeof ContentReleaseBundleSchema.Type;
 
 /** Frozen renderer plus one signed rollback release at recovery boundaries. */
 export type RollbackContentReleaseBundle = ContentReleaseBundle & {
-  readonly release: RollbackSignedContentReleaseWire;
+  readonly release: RollbackSignedContentRelease;
 };
 
 /** Exact renderer-bound bundle accepted only for recovery publication. */

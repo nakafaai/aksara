@@ -7,6 +7,7 @@ import {
   hashQuranSnapshotV3,
 } from "#contracts/quran/snapshot/hash";
 import { QURAN_SNAPSHOT_FORMAT } from "#contracts/quran/snapshot/spec";
+import { digestQuranV3Rows } from "#contracts/quran/v3-digest";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -23,7 +24,31 @@ function quranRows<E, R>(
 ) {
   return rows.pipe(
     Stream.filterMap((row) =>
-      row.family === "quran" ? Option.some(row.record) : Option.none()
+      row.family === "quran" && !("rowKind" in row)
+        ? Option.some(row.record)
+        : Option.none()
+    ),
+    Stream.mapEffect((record) =>
+      requireSnapshotEvidence({
+        actual: record.snapshotId,
+        expected: snapshotId,
+        family: "quran",
+        field: "snapshotId",
+      }).pipe(Effect.as(record))
+    )
+  );
+}
+
+/** Selects and binds current Quran rows to the manifest identity. */
+function quranV3Rows<E, R>(
+  rows: Stream.Stream<ContentSnapshotRow, E, R>,
+  snapshotId: Sha256Hash
+) {
+  return rows.pipe(
+    Stream.filterMap((row) =>
+      row.family === "quran" && "rowKind" in row
+        ? Option.some(row.record)
+        : Option.none()
     ),
     Stream.mapEffect((record) =>
       requireSnapshotEvidence({
@@ -43,9 +68,13 @@ export const verifyQuranSnapshotRows = Effect.fn(
   snapshot: Extract<ContentSnapshotManifest, { family: "quran" }>,
   rows: SnapshotRowFactory<E, R>
 ) {
-  const summary = yield* digestQuranRows(
-    quranRows(rows(), snapshot.manifest.snapshotId)
-  );
+  const summary =
+    snapshot.manifest.format === QURAN_SNAPSHOT_FORMAT
+      ? yield* digestQuranRows(quranRows(rows(), snapshot.manifest.snapshotId))
+      : yield* digestQuranV3Rows({
+          activeAppLocales: snapshot.manifest.activeAppLocales,
+          rows: quranV3Rows(rows(), snapshot.manifest.snapshotId),
+        });
   for (const field of [
     "projectionCount",
     "projectionDigest",

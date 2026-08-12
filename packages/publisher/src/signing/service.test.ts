@@ -8,16 +8,12 @@ import {
 } from "@nakafa/aksara-contracts/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
-import {
-  canonicalizeContentReleaseSigningInput,
-  canonicalizeContentReleaseV2SigningInput,
-} from "@nakafa/aksara-contracts/release/signing";
+import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import {
   signingManifest as manifest,
-  signingManifestV2 as manifestV2,
   signingPayload as payload,
 } from "#test/signing";
 
@@ -50,7 +46,6 @@ describe("Ed25519 publication signing", () => {
     );
     const artifact = await Effect.runPromise(signer.signArtifact(payload));
     const release = await Effect.runPromise(signer.signRelease(manifest));
-    const releaseV2 = await Effect.runPromise(signer.signReleaseV2(manifestV2));
 
     expect(artifact.keyId).toBe("test-signing-key");
     expect(
@@ -65,20 +60,6 @@ describe("Ed25519 publication signing", () => {
         ),
         publicKey,
         Buffer.from(artifact.signature, "base64url")
-      )
-    ).toBe(true);
-    expect(
-      verify(
-        null,
-        Buffer.from(
-          canonicalizeContentReleaseV2SigningInput(
-            releaseV2.manifestHash,
-            releaseV2.manifest
-          ),
-          "utf8"
-        ),
-        publicKey,
-        Buffer.from(releaseV2.signature, "base64url")
       )
     ).toBe(true);
     expect(release.keyId).toBe(artifact.keyId);

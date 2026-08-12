@@ -91,15 +91,15 @@ describe("structured snapshot domain verification", () => {
     const error = await reject(current, [
       ...snapshotV2Data.rows.filter((row) => row.family !== "tryout"),
       ...snapshotV2Data.rows.filter(
-        (row) => row.family === "tryout" && row.rowKind === "catalog"
+        (row) => row.family === "tryout" && row.rowKind === "catalog-v2"
       ),
       ...historicalRows,
     ]);
 
     expect(error).toMatchObject({
-      _tag: "SnapshotEvidenceError",
-      family: "tryout",
-      field: "placementCount",
+      _tag: "TryoutLocaleClosureError",
+      identity: "empty",
+      scope: "placement",
     });
   });
 
@@ -145,7 +145,11 @@ describe("structured snapshot domain verification", () => {
       (row) => row.family === "quran"
     );
     const firstQuran = snapshotData.rows[firstQuranIndex];
-    if (quran.family !== "quran" || firstQuran?.family !== "quran") {
+    if (
+      quran.family !== "quran" ||
+      firstQuran?.family !== "quran" ||
+      "rowKind" in firstQuran
+    ) {
       throw new Error("Expected Quran test values.");
     }
     const rows = snapshotData.rows.slice();
@@ -173,7 +177,7 @@ describe("structured snapshot domain verification", () => {
         manifest: { ...quran.manifest, snapshotId: unrelatedHash },
       },
       snapshotData.rows.map((row) =>
-        row.family === "quran"
+        row.family === "quran" && !("rowKind" in row)
           ? {
               ...row,
               record: { ...row.record, snapshotId: unrelatedHash },

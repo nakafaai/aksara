@@ -156,7 +156,7 @@ function verifyBundle<A extends ContentReleaseBundle, I>(
     Effect.tap((bundle) =>
       Effect.all(
         [
-          verifySignedContentReleaseWire(bundle.release),
+          verifySignedContentRelease(bundle.release),
           validateRendererManifestHash(bundle.rendererManifest),
         ],
         { discard: true }

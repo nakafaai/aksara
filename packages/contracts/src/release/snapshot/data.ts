@@ -5,8 +5,11 @@ import {
   ProgramSnapshotRowSchema,
   ProgramSnapshotWireSchema,
 } from "#contracts/program/snapshot/spec";
+import { ProgramSnapshotV4RowSchema } from "#contracts/program/v4";
 import { QuranSnapshotWireSchema } from "#contracts/quran/snapshot/spec";
 import { QuranSnapshotRowSchema } from "#contracts/quran/spec";
+import { QuranSnapshotV3RowSchema } from "#contracts/quran/v3";
+import { TryoutCatalogV2RecordSchema } from "#contracts/tryout/catalog-v2";
 import { TryoutPlacementV2RecordSchema } from "#contracts/tryout/placement";
 import { TryoutSnapshotWireSchema } from "#contracts/tryout/snapshot/spec";
 import {
@@ -46,10 +49,24 @@ const ProgramRowSchema = Schema.Struct({
   record: ProgramSnapshotRowSchema,
 });
 
+/** One current program record with explicit app-locale ownership. */
+const ProgramV4RowSchema = Schema.Struct({
+  family: Schema.Literal("program"),
+  record: ProgramSnapshotV4RowSchema,
+  rowKind: Schema.Literal("program-v4"),
+});
+
 /** One immutable Quran record already bound to its snapshot identity. */
 const QuranRowSchema = Schema.Struct({
   family: Schema.Literal("quran"),
   record: QuranSnapshotRowSchema,
+});
+
+/** One current Quran record with explicit application-locale ownership. */
+const QuranV3RowSchema = Schema.Struct({
+  family: Schema.Literal("quran"),
+  record: QuranSnapshotV3RowSchema,
+  rowKind: Schema.Literal("quran-v3"),
 });
 
 /** One immutable try-out hierarchy record staged before activation. */
@@ -57,6 +74,13 @@ const TryoutCatalogRowSchema = Schema.Struct({
   family: Schema.Literal("tryout"),
   record: TryoutCatalogRecordSchema,
   rowKind: Schema.Literal("catalog"),
+});
+
+/** One current try-out hierarchy record with explicit app-locale ownership. */
+const TryoutCatalogV2RowSchema = Schema.Struct({
+  family: Schema.Literal("tryout"),
+  record: TryoutCatalogV2RecordSchema,
+  rowKind: Schema.Literal("catalog-v2"),
 });
 
 /** One immutable try-out placement record staged before activation. */
@@ -76,8 +100,11 @@ const TryoutPlacementV2RowSchema = Schema.Struct({
 /** Complete structured row vocabulary accepted by snapshot publication. */
 export const ContentSnapshotRowSchema = Schema.Union(
   ProgramRowSchema,
+  ProgramV4RowSchema,
   QuranRowSchema,
+  QuranV3RowSchema,
   TryoutCatalogRowSchema,
+  TryoutCatalogV2RowSchema,
   TryoutPlacementRowSchema,
   TryoutPlacementV2RowSchema
 );
@@ -90,7 +117,10 @@ export function contentSnapshotId(snapshot: ContentSnapshotManifest) {
 
 /** Serializes one structured row with stable envelope field order. */
 export function canonicalizeContentSnapshotRow(row: ContentSnapshotRow) {
-  if (row.family !== "tryout") {
+  if (
+    (row.family === "quran" && !("rowKind" in row)) ||
+    (row.family === "program" && !("rowKind" in row))
+  ) {
     return JSON.stringify({ family: row.family, record: row.record });
   }
   return JSON.stringify({
