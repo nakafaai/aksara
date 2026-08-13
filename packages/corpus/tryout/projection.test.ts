@@ -88,8 +88,8 @@ describe("tryout projection", () => {
     );
     const bodyHeads = new Set(
       projection.placements.flatMap((row) => [
-        `${row.questionContentKey}\0${row.locale}`,
-        `${row.answerContentKey}\0${row.locale}`,
+        `${row.questionContentKey}\0${row.appLocale}`,
+        `${row.answerContentKey}\0${row.appLocale}`,
       ])
     );
 
@@ -120,7 +120,7 @@ describe("tryout projection", () => {
     ).toBe(true);
   });
 
-  it("uses exact localized choices without adding question language", {
+  it("reuses exact assessed-language choices across app locales", {
     timeout: 30_000,
   }, async () => {
     const { projection, sources: questions } = await loadContent();
@@ -128,13 +128,14 @@ describe("tryout projection", () => {
       questionContentKey.includes("/snbt/english-language/")
     );
     const placement = requireSource(
-      english.find(({ locale }) => locale === "en"),
+      english.find(({ appLocale }) => appLocale === "en"),
       "English-language placement"
     );
     const peer = requireSource(
       english.find(
-        ({ locale, questionContentKey }) =>
-          locale === "id" && questionContentKey === placement.questionContentKey
+        ({ appLocale, questionContentKey }) =>
+          appLocale === "id" &&
+          questionContentKey === placement.questionContentKey
       ),
       "Indonesian-locale placement"
     );
@@ -145,9 +146,12 @@ describe("tryout projection", () => {
       ),
       "physical English-language question"
     );
-
+    const englishChoices = requireSource(
+      source.choices.en,
+      "English assessed-language choices"
+    );
     expect(placement.choices).toEqual(
-      source.choices.en.map(({ label, value }, index) => ({
+      englishChoices.map(({ label, value }, index) => ({
         isCorrect: value,
         label,
         optionKey: `option-${index + 1}`,
@@ -155,13 +159,14 @@ describe("tryout projection", () => {
       }))
     );
     expect(peer.choices).toEqual(
-      source.choices.id.map(({ label, value }, index) => ({
+      englishChoices.map(({ label, value }, index) => ({
         isCorrect: value,
         label,
         optionKey: `option-${index + 1}`,
         order: index + 1,
       }))
     );
+    expect(source.choices.id).toBeUndefined();
     expect("questionLanguage" in placement).toBe(false);
   });
 
@@ -172,14 +177,18 @@ describe("tryout projection", () => {
     const trackEn = requireSource(
       projection.catalog.find(
         ({ row }) =>
-          row.kind === "track" && row.examKey === "tka" && row.locale === "en"
+          row.kind === "track" &&
+          row.examKey === "tka" &&
+          row.appLocale === "en"
       )?.row,
       "English TKA track"
     );
     const trackId = requireSource(
       projection.catalog.find(
         ({ row }) =>
-          row.kind === "track" && row.examKey === "tka" && row.locale === "id"
+          row.kind === "track" &&
+          row.examKey === "tka" &&
+          row.appLocale === "id"
       )?.row,
       "Indonesian TKA track"
     );
@@ -189,7 +198,7 @@ describe("tryout projection", () => {
           row.kind === "section" &&
           row.examKey === "tka" &&
           row.setKey === "set-1" &&
-          row.locale === "id"
+          row.appLocale === "id"
       )?.row,
       "internal-entry TKA section"
     );
@@ -248,13 +257,17 @@ describe("tryout projection", () => {
       ),
       "active question"
     );
+    const activeEnglishChoices = requireSource(
+      active.choices.en,
+      "active English choices"
+    );
     const invalidChoices = questions.map((question) =>
       question.questionKey === active.questionKey
         ? {
             ...question,
             choices: {
               ...question.choices,
-              en: question.choices.en.map((choice) => ({
+              en: activeEnglishChoices.map((choice) => ({
                 ...choice,
                 value: false,
               })),

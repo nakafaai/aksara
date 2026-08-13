@@ -12,6 +12,7 @@ function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {
     category: {
       key: "politics",
       rendererDomain: "politics",
+      routeSlugs: { en: "politics", id: "politics" },
       titles: { en: "Politics", id: "Politik" },
     },
     references: [
@@ -21,6 +22,7 @@ function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {
         year: 2024,
       },
     ],
+    routeSlugs: { en: "reviewed-article", id: "reviewed-article" },
     slug: "reviewed-article",
     sourceRoot: "articles/politics/reviewed/article",
     ...values,
@@ -39,6 +41,7 @@ describe("article source", () => {
       category: {
         key: "test-category",
         rendererDomain: "physics",
+        routeSlugs: { en: "test-category", id: "kategori-uji" },
         titles: { en: "Test category", id: "Kategori uji" },
       },
       slug: "test-group-test-article",
@@ -71,6 +74,7 @@ describe("article source", () => {
           category: {
             key: "politics",
             rendererDomain: "politics",
+            routeSlugs: { en: "politics", id: "politics" },
             titles: { en: "Politics", id: "" },
           },
         })

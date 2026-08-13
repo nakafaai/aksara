@@ -11,7 +11,7 @@ import { testFileLayer } from "#test/files";
 const englishEntry = articleEntries.find(
   ({ route }) =>
     route.articleSlug === "dynastic-politics-asian-values" &&
-    route.locale === "en"
+    route.artifactLocale === "en"
 );
 if (englishEntry === undefined) {
   throw new Error("Expected the real English politics article entry.");

@@ -1,3 +1,4 @@
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { makeQuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/provenance";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
@@ -7,7 +8,10 @@ import { quranProvenanceRecords } from "#corpus/quran/provenance";
 describe("Quran provenance records", () => {
   it("keeps every independently reviewed source chain explicit", async () => {
     const manifest = await Effect.runPromise(
-      makeQuranProvenanceManifest(quranProvenanceRecords)
+      makeQuranProvenanceManifest({
+        activeAppLocales: ACTIVE_APP_LOCALES,
+        records: quranProvenanceRecords,
+      })
     );
 
     expect(quranProvenanceRecords).toHaveLength(5);

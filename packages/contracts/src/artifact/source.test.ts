@@ -34,13 +34,13 @@ vi.mock("node:crypto", async (importOriginal) => {
 /** Builds one compiled payload with an authenticated raw source hash. */
 function payload(rawMdx: string, sourceHash?: string) {
   return Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+    artifactLocale: "en",
     byteLength: 10,
     compiledCode: "return {};",
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
     compilerVersion: "0.1.0",
     contentKey: "test:source",
-    format: "mdx-function-body-v1",
-    locale: "en",
+    format: "mdx-function-body",
     mdxCompilerVersion: "3.1.1",
     plainText: "Source",
     rawMdx,

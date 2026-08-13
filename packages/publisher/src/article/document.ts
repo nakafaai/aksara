@@ -54,8 +54,8 @@ export function mapArticleSourceError(checkoutRoot: string) {
 /** Creates the exact authored body shared by every article compiler mode. */
 export function makeArticleCompileSource(source: ArticleDocumentSource) {
   return {
+    artifactLocale: source.route.artifactLocale,
     contentKey: source.route.contentKey,
-    locale: source.route.locale,
     rawMdx: source.rawMdx,
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
@@ -136,10 +136,10 @@ function makeArticleRecord(
 ): PreparedContentUpsert {
   const change = ContentUpsertSchema.make({
     artifactHash: hashCompiledContentPayload(result.payload),
+    artifactLocale: source.route.artifactLocale,
     contentKey: source.route.contentKey,
     delivery: source.delivery,
     family: "article",
-    locale: source.route.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
@@ -149,8 +149,8 @@ function makeArticleRecord(
     payload: result.payload,
     projection,
     source: {
+      artifactLocale: source.route.artifactLocale,
       contentKey: source.route.contentKey,
-      locale: source.route.locale,
       rawMdx: source.rawMdx,
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,

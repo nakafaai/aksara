@@ -1,11 +1,6 @@
 import { createHash } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
-import {
-  type ContentLocale,
-  ContentLocaleSchema,
-  compareContentHeads,
-  routeIdentity,
-} from "#contracts/content";
+import { compareContentHeads, routeIdentity } from "#contracts/content";
 import {
   ContentKeySchema,
   type PublicPath,
@@ -14,6 +9,11 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
+import {
+  AppLocaleSchema,
+  type ArtifactLocale,
+  ArtifactLocaleSchema,
+} from "#contracts/locale";
 import {
   type ContentHead,
   canonicalizeContentHead,
@@ -30,8 +30,8 @@ export class ResultCatalogHashError extends Schema.TaggedError<ResultCatalogHash
 export class ResultCatalogOrderError extends Schema.TaggedError<ResultCatalogOrderError>()(
   "ResultCatalogOrderError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
     releaseId: ReleaseIdSchema,
   }
 ) {}
@@ -40,8 +40,8 @@ export class ResultCatalogOrderError extends Schema.TaggedError<ResultCatalogOrd
 export class ResultCatalogRouteError extends Schema.TaggedError<ResultCatalogRouteError>()(
   "ResultCatalogRouteError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
     publicPath: PublicPathSchema,
     releaseId: ReleaseIdSchema,
   }
@@ -81,9 +81,9 @@ class ResultCatalogDigestState {
   }
 
   /** Claims one public route and reports whether it was globally unique. */
-  claimRoute(locale: ContentLocale, publicPath: PublicPath) {
+  claimRoute(artifactLocale: ArtifactLocale, publicPath: PublicPath) {
     const identity = routeIdentity({
-      locale,
+      appLocale: AppLocaleSchema.make(artifactLocale),
       publicPath,
     });
     if (this.#routes.has(identity)) {
@@ -127,20 +127,20 @@ export function updateResultCatalogDigest(
   if (state.previous && compareContentHeads(state.previous, head) >= 0) {
     return Effect.fail(
       new ResultCatalogOrderError({
+        artifactLocale: head.artifactLocale,
         contentKey: head.contentKey,
-        locale: head.locale,
         releaseId,
       })
     );
   }
   if (
     head.publicPath !== undefined &&
-    !state.claimRoute(head.locale, head.publicPath)
+    !state.claimRoute(head.artifactLocale, head.publicPath)
   ) {
     return Effect.fail(
       new ResultCatalogRouteError({
+        artifactLocale: head.artifactLocale,
         contentKey: head.contentKey,
-        locale: head.locale,
         publicPath: head.publicPath,
         releaseId,
       })

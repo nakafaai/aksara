@@ -1,7 +1,7 @@
 import { Schema } from "effect";
 
-import { ContentLocaleSchema } from "#contracts/content";
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
+import { type AppLocale, AppLocaleSchema } from "#contracts/locale";
 import { MaterialDomainSchema } from "#contracts/material/domain";
 import {
   LearningProgramKeySchema,
@@ -11,9 +11,10 @@ import {
 import { MaterialKeySchema } from "#contracts/projection/material";
 import { isLowerKebab } from "#contracts/text/syntax";
 
-const CurriculumNamespaceMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
-  value: Schema.NonEmptyTrimmedString,
+const CurriculumNamespaceMapSchema = Schema.Struct({
+  de: Schema.Literal("lehrplaene"),
+  en: Schema.Literal("curriculum"),
+  id: Schema.Literal("kurikulum"),
 });
 const RenderableCurriculumLevelSchema = Schema.Literal(
   "class",
@@ -33,9 +34,22 @@ function isCurriculumRouteNodeKey(value: string) {
 
 /** Localized public route namespaces shared by projection and verification. */
 export const CURRICULUM_NAMESPACES = CurriculumNamespaceMapSchema.make({
+  de: "lehrplaene",
   en: "curriculum",
   id: "kurikulum",
 });
+
+/** Resolves the route namespace owned by one application locale. */
+export function curriculumNamespace(appLocale: AppLocale) {
+  const localeCode = String(appLocale);
+  if (localeCode === "de") {
+    return CURRICULUM_NAMESPACES.de;
+  }
+  if (localeCode === "id") {
+    return CURRICULUM_NAMESPACES.id;
+  }
+  return CURRICULUM_NAMESPACES.en;
+}
 
 /** Checks whether one curriculum level owns a learner-renderable route. */
 export const isRenderableCurriculumLevel = Schema.is(
@@ -58,13 +72,13 @@ const CurriculumRouteNodeKeySchema = Schema.String.pipe(
 );
 
 const CurriculumRouteFields = {
+  appLocale: AppLocaleSchema,
   canonicalPath: Schema.optional(PublicPathSchema),
   displayGroupIconKey: Schema.optional(ProgramNavigationIconKeySchema),
   displayGroupTitle: Schema.optional(Schema.String),
   iconKey: ProgramNavigationIconKeySchema,
   kind: Schema.Literal("curriculum-context"),
   level: ProgramNavigationLevelSchema,
-  locale: ContentLocaleSchema,
   materialCardDescription: Schema.optional(Schema.String),
   materialCardTitle: Schema.optional(Schema.String),
   materialContextNodeKey: Schema.optional(CurriculumNodeKeySchema),
@@ -89,15 +103,15 @@ function parentPath(publicPath: string) {
 
 /** Checks namespace, root, and direct-parent route ownership. */
 function hasCoherentRoute(input: {
+  readonly appLocale: AppLocale;
   readonly level: string;
-  readonly locale: typeof ContentLocaleSchema.Type;
   readonly nodeKey: string;
   readonly parentPath?: string | undefined;
   readonly programKey: string;
   readonly publicPath: string;
   readonly sourcePath: string;
 }) {
-  const namespace = `${CURRICULUM_NAMESPACES[input.locale]}/`;
+  const namespace = `${curriculumNamespace(input.appLocale)}/`;
   if (!input.publicPath.startsWith(namespace)) {
     return false;
   }
@@ -190,6 +204,7 @@ export type CurriculumRoute = typeof CurriculumRouteSchema.Type;
 /** Serializes one curriculum route in stable signed field order. */
 export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
   return JSON.stringify({
+    appLocale: route.appLocale,
     ...(route.canonicalPath === undefined
       ? {}
       : { canonicalPath: route.canonicalPath }),
@@ -202,7 +217,6 @@ export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
     iconKey: route.iconKey,
     kind: route.kind,
     level: route.level,
-    locale: route.locale,
     ...(route.materialCardDescription === undefined
       ? {}
       : { materialCardDescription: route.materialCardDescription }),

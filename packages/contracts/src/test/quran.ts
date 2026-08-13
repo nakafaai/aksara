@@ -1,32 +1,29 @@
-import { Effect, Stream } from "effect";
+import { Effect } from "effect";
 
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
-import { digestQuranRows } from "#contracts/quran/row-digest";
-import { bindQuranRow } from "#contracts/quran/row-hash";
-import { hashQuranSnapshot } from "#contracts/quran/snapshot/hash";
+import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
 import {
-  QURAN_SNAPSHOT_FORMAT,
-  type QuranSnapshotInput,
-  QuranSnapshotManifestSchema,
-} from "#contracts/quran/snapshot/spec";
-import {
-  QURAN_SOURCE_IDS,
-  QuranAttributionRowSchema,
-  QuranSourceAttributionSchema,
-} from "#contracts/quran/source";
-import {
-  QURAN_LOCALES,
   QuranChunkRowSchema,
   type QuranRowPayload,
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
-  QuranSurahRowSchema,
-} from "#contracts/quran/spec";
+} from "#contracts/quran/snapshot/row";
+import { bindQuranRow } from "#contracts/quran/snapshot/row-hash";
+import {
+  QuranAttributionRowSchema,
+  QuranSourceAttributionSchema,
+  quranSourceIds,
+} from "#contracts/quran/source";
+import { QURAN_SURAH_COUNT, QuranSurahRowSchema } from "#contracts/quran/spec";
 
 const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const snapshotId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
+const english = AppLocaleSchema.make("en");
+const indonesian = AppLocaleSchema.make("id");
+const activeAppLocales = ActiveAppLocaleListSchema.make([english, indonesian]);
 
 /** Builds one technical verse at exact local and global positions. */
-function quranVerse(inSurah: number, inQuran: number) {
+export function quranVerse(inSurah: number, inQuran: number) {
   return QuranRuntimeVerseSchema.make({
     meta: {
       hizbQuarter: 1,
@@ -37,26 +34,49 @@ function quranVerse(inSurah: number, inQuran: number) {
       sajda: null,
     },
     number: { inQuran, inSurah },
-    tafsir: { id: { footnotes: null, text: "Tafsir teknis" } },
+    tafsir: [
+      {
+        appLocale: "id",
+        footnotes: null,
+        text: "Tafsir teknis",
+      },
+    ],
     text: { arabic: "نص" },
-    translation: {
-      en: { footnotes: "", text: "Technical text" },
-      id: { footnotes: "", text: "Teks teknis" },
-    },
+    translations: [
+      {
+        appLocale: english,
+        value: { footnotes: "", text: "Technical text" },
+      },
+      {
+        appLocale: indonesian,
+        value: { footnotes: "", text: "Teks teknis" },
+      },
+    ],
   });
 }
 
 /** Builds the complete technical attribution row in canonical source order. */
-function quranAttribution() {
-  const sources = QURAN_SOURCE_IDS.map((id) =>
+export function quranAttribution() {
+  const sources = quranSourceIds(activeAppLocales).map((id) =>
     QuranSourceAttributionSchema.make({
       artifact: {
         byteCount: 1,
         digest: sourceHash,
-        fileCount: 1,
+        fileCount: id === "quranenc-tafsir" ? QURAN_SURAH_COUNT : 1,
       },
+      copy: [
+        {
+          appLocale: activeAppLocales[0],
+          notice: `Technical ${activeAppLocales[0]} notice for ${id}.`,
+          title: `Technical ${activeAppLocales[0]} source ${id}.`,
+        },
+        ...activeAppLocales.slice(1).map((appLocale) => ({
+          appLocale,
+          notice: `Technical ${appLocale} notice for ${id}.`,
+          title: `Technical ${appLocale} source ${id}.`,
+        })),
+      ],
       id,
-      notice: `Technical notice for ${id}.`,
       publisher: `Technical publisher for ${id}.`,
       retrievedAt: "2026-07-24T17:57:50Z",
       sourceUrl: `https://example.test/source/${id}`,
@@ -68,25 +88,25 @@ function quranAttribution() {
         },
         url: `https://example.test/terms/${id}`,
       },
-      title: `Technical source ${id}.`,
       updateUrl: `https://example.test/update/${id}`,
-      version: "test-v1",
+      version: "test-source",
     })
   );
   const [first, ...rest] = sources;
-  if (!first) {
+  if (first === undefined) {
     throw new Error("Expected technical Quran source identities.");
   }
   return QuranAttributionRowSchema.make({
+    activeAppLocales,
     kind: "quran-attribution",
     sources: [first, ...rest],
   });
 }
 
-/** Returns technical counts matching all fixed Quran snapshot totals. */
+/** Returns technical counts matching the fixed Quran totals. */
 function quranVerseCounts() {
-  return Array.from({ length: 114 }, (_, index) => {
-    const chunks = index === 113 ? 68 : 9;
+  return Array.from({ length: QURAN_SURAH_COUNT }, (_, index) => {
+    const chunks = index === QURAN_SURAH_COUNT - 1 ? 68 : 9;
     if (index < 54) {
       return chunks * 6 - 5;
     }
@@ -99,8 +119,7 @@ function quranVerseCounts() {
 
 /** Builds a complete technical Quran projection without authored claims. */
 export function quranTestPayloads() {
-  const rows: QuranRowPayload[] = [];
-  rows.push(quranAttribution());
+  const rows: QuranRowPayload[] = [quranAttribution()];
   let inQuran = 1;
   for (const [index, numberOfVerses] of quranVerseCounts().entries()) {
     const surahNumber = index + 1;
@@ -140,19 +159,23 @@ export function quranTestPayloads() {
       inQuran += verses.length;
     }
   }
-  for (let surahNumber = 1; surahNumber <= 114; surahNumber += 1) {
-    for (const locale of QURAN_LOCALES) {
+  for (
+    let surahNumber = 1;
+    surahNumber <= QURAN_SURAH_COUNT;
+    surahNumber += 1
+  ) {
+    for (const appLocale of activeAppLocales) {
       rows.push(
         QuranSearchRowSchema.make({
+          appLocale,
           graph: {
             alignmentId: `alignment:quran:quran-surah:${surahNumber}`,
-            assetId: `asset:${locale}:quran:quran-surah:${surahNumber}`,
+            assetId: `asset:${appLocale}:quran:quran-surah:${surahNumber}`,
             conceptId: `concept:quran:surah:${surahNumber}`,
             learningObjectId: `lo:quran-surah:${surahNumber}`,
             lensId: "lens:quran",
           },
           kind: "quran-search",
-          locale,
           route: PublicPathSchema.make(`quran/${surahNumber}`),
           surahNumber,
           text: "Test-only Quran search text",
@@ -164,42 +187,52 @@ export function quranTestPayloads() {
   return rows;
 }
 
-/** Prepares a complete technical Quran manifest and bound records. */
-export const makeQuranTestData = Effect.fn("AksaraContracts.makeQuranTestData")(
-  function* () {
-    const payloads = quranTestPayloads();
-    const unbound = yield* Effect.forEach(payloads, (payload) =>
-      bindQuranRow(sourceHash, payload)
-    );
-    const summary = yield* digestQuranRows(Stream.fromIterable(unbound));
-    const identity = {
-      attributionCount: 1,
-      chunkCount: 1085,
-      format: QURAN_SNAPSHOT_FORMAT,
-      locales: ["en", "id"],
-      projectionCount: summary.projectionCount,
-      projectionDigest: summary.projectionDigest,
-      provenanceDigest: sourceHash,
-      provenanceStatus: "blocked",
-      runtimeCount: summary.runtimeCount,
-      runtimeDigest: summary.runtimeDigest,
-      searchCount: summary.searchCount,
-      searchDigest: summary.searchDigest,
-      sourceBytes: 11_506_941,
-      sourceDigest: sourceHash,
-      sourceFileCount: 118,
-      surahCount: 114,
-      tafsirLocales: ["id"],
-      verseCount: 6236,
-    } satisfies QuranSnapshotInput;
-    const snapshotId = yield* hashQuranSnapshot(identity);
-    const manifest = QuranSnapshotManifestSchema.make({
-      ...identity,
-      snapshotId,
-    });
-    const records = yield* Effect.forEach(payloads, (payload) =>
-      bindQuranRow(snapshotId, payload)
-    );
-    return { manifest, records };
-  }
-);
+/** Returns one small current payload for each Quran row kind. */
+export function quranRepresentativePayloads() {
+  return [
+    quranAttribution(),
+    QuranSurahRowSchema.make({
+      kind: "quran-surah",
+      name: {
+        arabic: "سورة 1",
+        translation: "Test Surah 1",
+        transliteration: "Test-Surah-1",
+      },
+      number: 1,
+      numberOfVerses: 2,
+      revelation: { order: 1, place: "Meccan" },
+    }),
+    QuranChunkRowSchema.make({
+      firstQuranNumber: 1,
+      firstVerse: 1,
+      kind: "quran-chunk",
+      lastVerse: 2,
+      surahNumber: 1,
+      verses: [quranVerse(1, 1), quranVerse(2, 2)],
+    }),
+    QuranSearchRowSchema.make({
+      appLocale: english,
+      graph: {
+        alignmentId: "alignment:quran:quran-surah:1",
+        assetId: "asset:en:quran:quran-surah:1",
+        conceptId: "concept:quran:surah:1",
+        learningObjectId: "lo:quran-surah:1",
+        lensId: "lens:quran",
+      },
+      kind: "quran-search",
+      route: PublicPathSchema.make("quran/1"),
+      surahNumber: 1,
+      text: "Test-only Quran search text",
+      title: "Test-only Quran title",
+    }),
+  ] satisfies readonly QuranRowPayload[];
+}
+
+/** Binds the complete technical Quran projection to current rows. */
+export const makeQuranTestRecords = Effect.fn(
+  "AksaraContracts.makeQuranTestRecords"
+)(function* () {
+  return yield* Effect.forEach(quranTestPayloads(), (payload) =>
+    bindQuranRow(snapshotId, payload)
+  );
+});

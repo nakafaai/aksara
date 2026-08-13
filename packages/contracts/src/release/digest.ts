@@ -9,7 +9,7 @@ import { canonicalizeContentReleaseItem } from "#contracts/release/canonical";
 import type { ContentReleaseItem } from "#contracts/release/spec";
 
 const CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN =
-  "nakafa.aksara.content-release-items.v1";
+  "nakafa.aksara.content-release-items";
 
 /** SHA-256 computation failed before item integrity was established. */
 export class ReleaseItemsHashComputationError extends Schema.TaggedError<ReleaseItemsHashComputationError>()(

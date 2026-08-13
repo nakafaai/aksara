@@ -22,8 +22,8 @@ const rendererManifest = await Effect.runPromise(
 const SHA256_PREFIX = /^sha256:/u;
 
 const request = {
+  artifactLocale: "en",
   contentKey: "test:inspection",
-  locale: "en",
   rawMdx: `export const metadata = { title: "Real title" }\n\n## Body`,
   rendererDomain: "mathematics",
   rendererManifest,

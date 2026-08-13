@@ -15,8 +15,8 @@ function record(index: number) {
   return Schema.decodeUnknownSync(RouteRollbackRecordSchema)({
     current: {
       change: {
+        appLocale: "en",
         contentKey: `test:route-${index}`,
-        locale: "en",
         operation: "bind",
         publicPath: `subjects/test/${index}`,
       },
@@ -127,7 +127,7 @@ describe("route rollback pages", () => {
       accepts(RouteRollbackRecordSchema, {
         current: {
           change: {
-            locale: "en",
+            appLocale: "en",
             operation: "delete",
             publicPath: "subjects/test/deleted",
           },

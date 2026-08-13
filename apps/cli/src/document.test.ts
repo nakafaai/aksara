@@ -81,7 +81,7 @@ describe("preview document compiler", () => {
     expect(secondResult.compileKind).toBe("unchanged");
     expect(secondResult.artifact).toEqual(firstResult.artifact);
     expect(firstResult.projection).toMatchObject({
-      locale: "en",
+      appLocale: "en",
       metadata: { title: "Function Concept" },
     });
   });
@@ -97,8 +97,8 @@ describe("preview document compiler", () => {
     const [articleResult] = article.results;
     expect(article.results).toHaveLength(1);
     expect(articleResult.projection).toMatchObject({
+      appLocale: "en",
       kind: "article",
-      locale: "en",
     });
     expect(answer.results).toHaveLength(2);
     expect(answer.results.map(({ projection }) => projection)).toMatchObject([

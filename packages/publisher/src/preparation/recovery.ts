@@ -9,7 +9,7 @@ import { Effect, Schema } from "effect";
 import type {
   PreparedGitRelease,
   PreparedRollbackRelease,
-} from "#publisher/preparation/spec";
+} from "#publisher/preparation/prepared";
 
 /** A rebuilt prepared manifest differs from its exact stored candidate envelope. */
 export class PreparedStoredReleaseMismatchError extends Schema.TaggedError<PreparedStoredReleaseMismatchError>()(

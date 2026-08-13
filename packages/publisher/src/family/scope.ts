@@ -1,10 +1,10 @@
 import {
   type ContentFamily,
   type ContentHeadIdentity,
-  ContentLocaleSchema,
   headIdentity,
 } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Order, Schema, Stream, Tuple } from "effect";
@@ -13,9 +13,9 @@ import { Effect, Order, Schema, Stream, Tuple } from "effect";
 export class PublicationScopeIdentityError extends Schema.TaggedError<PublicationScopeIdentityError>()(
   "PublicationScopeIdentityError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
     family: Schema.Literal("article", "material", "question"),
-    locale: ContentLocaleSchema,
   }
 ) {}
 
@@ -73,7 +73,7 @@ export function diffScopedFamilyHeads<
 >(input: {
   readonly entries: readonly Entry[];
   readonly family: ContentFamily;
-  /** Selects the exact locale-specific identity owned by one registry entry. */
+  /** Selects the exact artifactLocale-specific identity owned by one registry entry. */
   readonly identity: (entry: Entry) => ContentHeadIdentity;
   readonly published: Stream.Stream<Head, E, R>;
   readonly scope?: PublicationScope | undefined;

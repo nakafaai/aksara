@@ -77,11 +77,11 @@ function findCoherenceMismatch(
     return "family";
   }
   if (
-    payload.locale !== change.locale ||
-    source.locale !== change.locale ||
-    projection.locale !== change.locale
+    payload.artifactLocale !== change.artifactLocale ||
+    source.artifactLocale !== change.artifactLocale ||
+    projection.artifactLocale !== change.artifactLocale
   ) {
-    return "locale";
+    return "artifactLocale";
   }
   if (
     payload.rendererDomain !== change.rendererDomain ||
@@ -139,7 +139,7 @@ function validatePriorState(
   const matchesIdentity =
     identity.contentKey === change.contentKey &&
     identity.family === change.family &&
-    identity.locale === change.locale;
+    identity.artifactLocale === change.artifactLocale;
   const validAbsence =
     transition.prior.state !== "absent" || change.operation === "upsert";
   if (matchesIdentity && validAbsence) {

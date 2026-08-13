@@ -1,6 +1,6 @@
-import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
+import { hashText } from "#contracts/hash/text";
 import { Sha256HashSchema } from "#contracts/ids";
 import { RendererComponentRequirementSchema } from "#contracts/renderer/component";
 import {
@@ -57,15 +57,11 @@ const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(
     readonly domains: readonly RendererDomainCapability[];
     readonly publishedDomains: RendererManifestEnvelope["publishedDomains"];
   }) =>
-    Effect.try({
-      catch: (cause) => new RendererManifestHashComputeError({ cause }),
-      try: () =>
-        Sha256HashSchema.make(
-          `sha256:${createHash("sha256")
-            .update(canonicalizeRendererManifestContract(input))
-            .digest("hex")}`
-        ),
-    })
+    hashText(canonicalizeRendererManifestContract(input)).pipe(
+      Effect.mapError(
+        ({ cause }) => new RendererManifestHashComputeError({ cause })
+      )
+    )
 );
 
 /** Creates a canonical renderer envelope from real registry capabilities. */

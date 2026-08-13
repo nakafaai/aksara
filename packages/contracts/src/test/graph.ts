@@ -1,8 +1,8 @@
-import type { ContentLocale } from "#contracts/content";
+import type { AppLocaleCode } from "#contracts/locale";
 
 /** Builds exact graph identity for one test-owned article source. */
 export function articleGraph(
-  locale: ContentLocale,
+  appLocale: AppLocaleCode,
   category: string,
   slug: string
 ) {
@@ -10,7 +10,7 @@ export function articleGraph(
   const object = `article:${category}:${slug}`;
   return {
     alignmentId: `alignment:${lens}:${object}`,
-    assetId: `asset:${locale}:${lens}:${object}`,
+    assetId: `asset:${appLocale}:${lens}:${object}`,
     conceptId: `concept:${lens}`,
     learningObjectId: `lo:${object}`,
     lensId: `lens:${lens}`,
@@ -19,7 +19,7 @@ export function articleGraph(
 
 /** Builds exact graph identity for one test-owned material lesson source. */
 export function materialGraph(
-  locale: ContentLocale,
+  appLocale: AppLocaleCode,
   domain: string,
   topic: string,
   section: string
@@ -28,7 +28,7 @@ export function materialGraph(
   const object = `material-section:${domain}:${topic}:${section}`;
   return {
     alignmentId: `alignment:${lens}:${object}`,
-    assetId: `asset:${locale}:${lens}:${object}`,
+    assetId: `asset:${appLocale}:${lens}:${object}`,
     conceptId: `concept:${lens}:${topic}`,
     learningObjectId: `lo:${object}`,
     lensId: `lens:${lens}`,

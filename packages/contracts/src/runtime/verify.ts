@@ -20,7 +20,7 @@ function hasArticleSourcePath(
   sourcePath: string
 ) {
   const prefix = `packages/corpus/articles/${projection.category}/`;
-  const suffix = `/${projection.locale}.mdx`;
+  const suffix = `/${projection.artifactLocale}.mdx`;
   if (!(sourcePath.startsWith(prefix) && sourcePath.endsWith(suffix))) {
     return false;
   }
@@ -40,7 +40,7 @@ function hasProjectionSourcePath(
 
   return (
     sourcePath ===
-    `packages/corpus/${projection.contentKey}/${projection.locale}.mdx`
+    `packages/corpus/${projection.contentKey}/${projection.artifactLocale}.mdx`
   );
 }
 
@@ -50,7 +50,7 @@ const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
     request: PublicContentRuntimeRequest,
     response: PublicContentRuntimeFound
   ) {
-    if (response.projection.locale !== request.locale) {
+    if (response.projection.appLocale !== request.appLocale) {
       return yield* new ContentRuntimeMismatchError({ reason: "locale" });
     }
     if (response.projection.publicPath !== request.publicPath) {

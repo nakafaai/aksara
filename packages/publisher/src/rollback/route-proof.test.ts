@@ -3,6 +3,7 @@ import {
   PublicPathSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
 import { Effect, Stream } from "effect";
@@ -17,8 +18,8 @@ function record(index: number, priorContentKey: string | null) {
   return RouteRollbackRecordSchema.make({
     current: ContentRouteItemSchema.make({
       change: {
+        appLocale: AppLocaleSchema.make("en"),
         contentKey: ContentKeySchema.make(`test:current-${index}`),
-        locale: "en",
         operation: "bind",
         publicPath: PublicPathSchema.make(`subjects/test/proof-${index}`),
       },
@@ -42,7 +43,7 @@ describe("inverseRouteStream", () => {
     expect([...routes]).toEqual([
       {
         change: {
-          locale: "en",
+          appLocale: "en",
           operation: "delete",
           publicPath: "subjects/test/proof-0",
         },
@@ -51,8 +52,8 @@ describe("inverseRouteStream", () => {
       },
       {
         change: {
+          appLocale: "en",
           contentKey: "test:prior",
-          locale: "en",
           operation: "bind",
           publicPath: "subjects/test/proof-1",
         },

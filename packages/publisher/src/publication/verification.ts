@@ -140,17 +140,15 @@ export const stageAndVerify: StageAndVerify = Effect.fn(
   if (status.phase === "missing" || status.phase === "staging") {
     yield* plan.stage;
   }
-  if (status.phase !== "verified") {
-    const verification = yield* awaitVerification(plan);
-    yield* validateVerificationEvidence(
-      release,
-      plan.summary,
-      plan.projectionSummary,
-      plan.routeSummary,
-      plan.snapshotSummary,
-      verification
-    );
-  }
+  const verification = yield* awaitVerification(plan);
+  yield* validateVerificationEvidence(
+    release,
+    plan.summary,
+    plan.projectionSummary,
+    plan.routeSummary,
+    plan.snapshotSummary,
+    verification
+  );
   return { kind: "verified" };
 });
 

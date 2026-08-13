@@ -20,16 +20,16 @@ describe("tryout routes", () => {
     await Effect.runPromise(validateTryoutRoutes(rows));
     const countries = rows.filter((row) => row.kind === "country");
     const first = requireRoute(
-      countries.find((row) => row.locale === "en"),
+      countries.find((row) => row.appLocale === "en"),
       "English country row"
     );
     const second = requireRoute(
-      countries.find((row) => row.locale === "id"),
+      countries.find((row) => row.appLocale === "id"),
       "Indonesian country row"
     );
     const duplicate = {
       ...second,
-      locale: first.locale,
+      appLocale: first.appLocale,
       publicPath: first.publicPath,
     };
     const error = await Effect.runPromise(
@@ -37,7 +37,7 @@ describe("tryout routes", () => {
     );
 
     expect(error).toMatchObject({
-      locale: first.locale,
+      appLocale: first.appLocale,
       publicPath: first.publicPath,
     });
   });

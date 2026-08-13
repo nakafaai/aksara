@@ -26,12 +26,15 @@ describe("content runtime verification", () => {
         ...found,
         artifact: {
           ...artifact,
-          payload: { ...artifact.payload, locale: "id" },
+          payload: { ...artifact.payload, artifactLocale: "id" },
         },
         projection: {
           ...found.projection,
+          appLocale: "id",
+          artifactLocale: "id",
           graph: materialGraph("id", "test", "transport", "test-transport"),
-          locale: "id",
+          parentPath: "materi/test",
+          publicPath: "materi/test/transport",
         },
       },
       {

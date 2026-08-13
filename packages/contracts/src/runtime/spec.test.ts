@@ -28,7 +28,7 @@ describe("content runtime contract", () => {
 
     for (const invalid of [
       { ...request, delivery: "private" },
-      { ...request, locale: "de" },
+      { ...request, appLocale: "fr" },
       { ...request, publicPath: "/subjects/test/transport" },
       { ...request, extra: true },
     ]) {
@@ -76,7 +76,7 @@ describe("content runtime contract", () => {
         ...found,
         artifact: {
           ...artifact,
-          payload: { ...artifact.payload, locale: "id" },
+          payload: { ...artifact.payload, artifactLocale: "id" },
         },
       })
     ).toBe(false);

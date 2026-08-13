@@ -2,21 +2,39 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
+import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
 import {
-  QURAN_SOURCE_FILE_COUNT,
-  QURAN_SOURCE_IDS,
+  hasRequiredQuranSources,
   QuranAttributionRowSchema,
   QuranSourceAttributionSchema,
+  quranSourceFileCount,
+  quranSourceIds,
 } from "#contracts/quran/source";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
-/** Builds one complete technical official-source attribution. */
-function source(id: (typeof QURAN_SOURCE_IDS)[number]) {
-  return {
+/** Builds one complete test attribution for a required source identity. */
+function source(id: ReturnType<typeof quranSourceIds>[number]) {
+  return QuranSourceAttributionSchema.make({
     artifact: { byteCount: 1, digest: hash, fileCount: 1 },
+    copy: [
+      {
+        appLocale: AppLocaleSchema.make("en"),
+        notice: "Technical English attribution notice.",
+        title: "Technical English source",
+      },
+      {
+        appLocale: AppLocaleSchema.make("id"),
+        notice: "Catatan atribusi teknis bahasa Indonesia.",
+        title: "Sumber teknis bahasa Indonesia",
+      },
+      {
+        appLocale: AppLocaleSchema.make("de"),
+        notice: "Technischer deutscher Quellenhinweis.",
+        title: "Technische deutsche Quelle",
+      },
+    ],
     id,
-    notice: "Technical attribution notice.",
     publisher: "Technical publisher",
     retrievedAt: "2026-07-24T17:57:50Z",
     sourceUrl: `https://example.test/source/${id}`,
@@ -24,57 +42,68 @@ function source(id: (typeof QURAN_SOURCE_IDS)[number]) {
       artifact: { byteCount: 1, digest: hash, fileCount: 1 },
       url: `https://example.test/terms/${id}`,
     },
-    title: "Technical Quran source",
     updateUrl: `https://example.test/update/${id}`,
-    version: "test-v1",
-  };
+    version: "test-source",
+  });
 }
 
 describe("Quran source contracts", () => {
-  it("locks exact source coverage and visible attribution order", () => {
-    const sources = QURAN_SOURCE_IDS.map((id) =>
-      QuranSourceAttributionSchema.make(source(id))
-    );
-    const [first, ...rest] = sources;
-    if (!first) {
-      throw new Error("Expected Quran source identities.");
-    }
+  it("derives exact source coverage from active application locales", () => {
+    const active = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+      "en",
+      "id",
+      "de",
+    ]);
+    const sources = quranSourceIds(active).map(source);
     const row = Schema.decodeUnknownSync(QuranAttributionRowSchema)({
+      activeAppLocales: active,
       kind: "quran-attribution",
-      sources: [first, ...rest],
+      sources,
     });
-    const reversed = Schema.decodeUnknownEither(QuranAttributionRowSchema)({
-      kind: "quran-attribution",
-      sources: [...sources].reverse(),
-    });
-
-    expect(row.sources.map(({ id }) => id)).toEqual(QURAN_SOURCE_IDS);
-    expect(QURAN_SOURCE_FILE_COUNT).toBe(118);
-    expect(Either.isLeft(reversed)).toBe(true);
-    if (Either.isLeft(reversed)) {
-      expect(String(reversed.left)).toContain(
-        "Expected every official Quran source in canonical attribution order."
-      );
-    }
+    expect(row.sources.map(({ id }) => id)).toEqual(quranSourceIds(active));
+    expect(quranSourceFileCount(active)).toBe(119);
+    expect(hasRequiredQuranSources(row.sources, active)).toBe(true);
+    expect(hasRequiredQuranSources(row.sources.slice(0, -1), active)).toBe(
+      false
+    );
+    expect(
+      Either.isLeft(
+        Schema.decodeUnknownEither(QuranAttributionRowSchema)({
+          activeAppLocales: active,
+          kind: "quran-attribution",
+          sources: [...sources].reverse(),
+        })
+      )
+    ).toBe(true);
+    expect(
+      Either.isLeft(
+        Schema.decodeUnknownEither(QuranAttributionRowSchema)({
+          activeAppLocales: active,
+          kind: "quran-attribution",
+          sources: sources.map((item) => ({
+            ...item,
+            copy: item.copy.slice(0, -1),
+          })),
+        })
+      )
+    ).toBe(true);
   });
 
-  it("rejects imprecise retrieval metadata and non-HTTPS evidence", () => {
-    const imprecise = Schema.decodeUnknownEither(QuranSourceAttributionSchema)({
-      ...source("tanzil-text"),
+  it("rejects imprecise retrieval metadata and insecure evidence", () => {
+    const base = source("tanzil-text");
+    const retrieval = Schema.decodeUnknownEither(QuranSourceAttributionSchema)({
+      ...base,
       retrievedAt: "2026-07-24",
     });
-    const insecure = Schema.decodeUnknownEither(QuranSourceAttributionSchema)({
-      ...source("tanzil-text"),
+    const sourceUrl = Schema.decodeUnknownEither(QuranSourceAttributionSchema)({
+      ...base,
       sourceUrl: "http://example.test/source",
     });
-    if (Either.isRight(imprecise) || Either.isRight(insecure)) {
-      throw new Error("Expected precise secure Quran source evidence.");
-    }
 
-    expect(String(imprecise.left)).toContain(
+    expect(Either.isLeft(retrieval) ? String(retrieval.left) : "").toContain(
       "Expected an exact UTC Quran source retrieval time."
     );
-    expect(String(insecure.left)).toContain(
+    expect(Either.isLeft(sourceUrl) ? String(sourceUrl.left) : "").toContain(
       "Quran source links must use HTTPS."
     );
   });

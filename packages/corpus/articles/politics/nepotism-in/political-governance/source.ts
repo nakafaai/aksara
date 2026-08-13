@@ -5,6 +5,10 @@ import { defineArticleSource } from "#corpus/articles/schema";
 export const nepotismPoliticalGovernanceArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
+  routeSlugs: {
+    en: "nepotism-in-political-governance",
+    id: "nepotism-in-political-governance",
+  },
   slug: "nepotism-in-political-governance",
   sourceRoot: "articles/politics/nepotism-in/political-governance",
 });

@@ -1,4 +1,4 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   type LearningProgram,
   LearningProgramSchema,
@@ -23,7 +23,7 @@ export class ProgramCatalogError extends Schema.TaggedError<ProgramCatalogError>
 export class ProgramIdentityError extends Schema.TaggedError<ProgramIdentityError>()(
   "ProgramIdentityError",
   {
-    scope: Schema.Literal("key", "order", "slug"),
+    scope: Schema.Literal("key", "order", "slug", "translation"),
     value: Schema.NonEmptyTrimmedString,
   }
 ) {}
@@ -31,7 +31,7 @@ export class ProgramIdentityError extends Schema.TaggedError<ProgramIdentityErro
 /** Rejects duplicate identity inside one exact program catalog. */
 function addIdentity(
   identities: Set<string>,
-  scope: "key" | "order" | "slug",
+  scope: "key" | "order" | "slug" | "translation",
   value: string
 ) {
   if (identities.has(value)) {
@@ -51,11 +51,26 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
     for (const program of programs) {
       yield* addIdentity(keys, "key", program.key);
       yield* addIdentity(orders, "order", program.displayOrder.toString());
-      for (const locale of ContentLocaleSchema.literals) {
+      if (program.translations.length !== ACTIVE_APP_LOCALES.length) {
+        return yield* new ProgramIdentityError({
+          scope: "translation",
+          value: `${program.key}:expected-${ACTIVE_APP_LOCALES.join(",")}:actual-${program.translations.map(({ appLocale }) => appLocale).join(",")}`,
+        });
+      }
+      for (const appLocale of ACTIVE_APP_LOCALES) {
+        const translation = program.translations.find(
+          (candidate) => candidate.appLocale === appLocale
+        );
+        if (translation === undefined) {
+          return yield* new ProgramIdentityError({
+            scope: "translation",
+            value: `${program.key}:${appLocale}:missing`,
+          });
+        }
         yield* addIdentity(
           slugs,
           "slug",
-          `${locale}:${program.translations[locale].publicSlug}`
+          `${appLocale}:${translation.publicSlug}`
         );
       }
     }

@@ -54,10 +54,11 @@ vi.mock("node:crypto", async (importOriginal) => {
 /** Builds one unmistakably test-only material projection. */
 function projection(contentKey = "test:projection") {
   return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+    appLocale: "en",
+    artifactLocale: "en",
     contentKey,
     graph: materialGraph("en", "test", "material", "test-lesson"),
     kind: "subject-lesson",
-    locale: "en",
     materialKey: "lesson.test.material",
     metadata: {
       authors: [{ name: "Test Author" }],

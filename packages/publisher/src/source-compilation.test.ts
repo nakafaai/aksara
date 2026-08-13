@@ -10,6 +10,7 @@ import {
   type ReleaseId,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   type ContentChange,
   type ContentReleaseItem,
@@ -35,8 +36,8 @@ const rendererManifest = await Effect.runPromise(
   })
 );
 const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({
+  artifactLocale: "en",
   contentKey: "test:publication",
-  locale: "en",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
   rendererDomain: "mathematics",
   sourcePath: "packages/corpus/test/publication/en.mdx",
@@ -60,10 +61,10 @@ function upsertWithArtifactHash(
 ) {
   return {
     artifactHash,
+    artifactLocale: source.artifactLocale,
     contentKey: source.contentKey,
     delivery: "public",
     family: "material",
-    locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
@@ -96,7 +97,7 @@ const identityMismatches = [
   }),
   CompileDocumentSourceSchema.make({
     ...source,
-    locale: "id",
+    artifactLocale: ArtifactLocaleSchema.make("id"),
     sourcePath: CorpusSourcePathSchema.make(
       "packages/corpus/test/publication/id.mdx"
     ),

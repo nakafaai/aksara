@@ -6,6 +6,7 @@ import {
   publishedQuestionHeads,
   questionEntries,
 } from "#test/question/spec";
+import { selectTryoutSlice } from "#test/tryout-slice";
 
 export const tryoutHeads = await publishedQuestionHeads();
 export const tryoutPrompts = questionEntries.filter(
@@ -14,13 +15,5 @@ export const tryoutPrompts = questionEntries.filter(
 const tryoutContent = await Effect.runPromise(
   loadTryoutContent(checkoutRoot).pipe(Effect.provide(NodeContext.layer))
 );
-const promptKeys = new Set(
-  tryoutPrompts.map(({ contentKey, locale }) => `${contentKey}\0${locale}`)
-);
-export const tryoutPlacements = tryoutContent.projection.placements.filter(
-  ({ locale, questionContentKey }) =>
-    promptKeys.has(`${questionContentKey}\0${locale}`)
-);
-export const tryoutCatalog = tryoutContent.projection.catalog.filter(
-  ({ row }) => row.kind === "country"
-);
+export const { catalog: tryoutCatalog, placements: tryoutPlacements } =
+  selectTryoutSlice(tryoutContent.projection, tryoutPrompts);

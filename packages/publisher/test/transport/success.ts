@@ -200,11 +200,16 @@ export function transportSuccess(
         operation: value.operation,
         value: {
           evidence: {
+            activeAppLocales: value.release.manifest.activeAppLocales,
+            baseActiveAppLocales: value.release.manifest.baseActiveAppLocales,
+            baseEditorialReviewDigest:
+              value.release.manifest.baseEditorialReviewDigest,
             baseManifestHash: value.release.manifest.baseManifestHash,
             baseReleaseId: value.release.manifest.baseReleaseId,
             baseResultCount: value.release.manifest.baseResultCount,
             baseResultDigest: value.release.manifest.baseResultDigest,
             deleteHeads: 1,
+            editorialReviewDigest: value.release.manifest.editorialReviewDigest,
             itemCount: value.release.manifest.itemCount,
             itemsDigest: value.release.manifest.itemsDigest,
             manifestHash: value.release.manifestHash,

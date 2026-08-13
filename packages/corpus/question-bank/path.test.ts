@@ -241,8 +241,8 @@ describe("question path", () => {
     ]);
 
     expect(body).toMatchObject({
+      artifactLocale: "en",
       bodyKind: "question",
-      locale: "en",
       rendererDomain: "snbt-general",
       sourcePath: bodyPath,
     });

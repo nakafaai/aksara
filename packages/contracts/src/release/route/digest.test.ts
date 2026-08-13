@@ -54,8 +54,8 @@ vi.mock("node:crypto", async (importOriginal) => {
 function route(contentKey = "test:route") {
   return Schema.decodeUnknownSync(ContentRouteItemSchema)({
     change: {
+      appLocale: "en",
       contentKey,
-      locale: "en",
       operation: "bind",
       publicPath: "subjects/test/route",
     },

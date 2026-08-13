@@ -20,7 +20,13 @@ import type {
 } from "#contracts/question/identity";
 
 /** Stable protocol implemented by the loopback-only authoring provider. */
-export const LOCAL_PREVIEW_FORMAT = "aksara-local-preview-v1";
+export const LOCAL_PREVIEW_FORMAT = "aksara-local-preview";
+export const LOCAL_PREVIEW_ARTIFACT_PREFIX = "/v1/artifacts/";
+
+/** Builds the one content-addressed path owned by the preview protocol. */
+export function localPreviewArtifactPath(artifactHash: string) {
+  return `${LOCAL_PREVIEW_ARTIFACT_PREFIX}${encodeURIComponent(artifactHash)}`;
+}
 
 /** Exact Git evidence printed and served for one participating checkout. */
 export const PreviewRepositorySchema = Schema.Struct({
@@ -34,10 +40,7 @@ function hasCoherentArtifactPath(input: {
   readonly artifactHash: string;
   readonly artifactPath: string;
 }) {
-  return (
-    input.artifactPath ===
-    `/v1/artifacts/${encodeURIComponent(input.artifactHash)}`
-  );
+  return input.artifactPath === localPreviewArtifactPath(input.artifactHash);
 }
 
 /** One signed artifact reference and its exact renderer projection. */
@@ -71,7 +74,8 @@ function matchesArticleDocument(
     projection.articleSlug === document.route.articleSlug &&
     projection.category === document.route.category &&
     projection.contentKey === document.route.contentKey &&
-    projection.locale === document.route.locale &&
+    projection.appLocale === document.route.appLocale &&
+    projection.artifactLocale === document.route.artifactLocale &&
     projection.publicPath === document.route.publicPath
   );
 }
@@ -84,7 +88,8 @@ function matchesMaterialDocument(
   return (
     projection.kind === "subject-lesson" &&
     projection.contentKey === document.route.contentKey &&
-    projection.locale === document.route.locale &&
+    projection.appLocale === document.route.appLocale &&
+    projection.artifactLocale === document.route.artifactLocale &&
     projection.materialKey === document.route.materialKey &&
     projection.order === document.route.order &&
     projection.publicPath === document.route.publicPath &&
@@ -102,7 +107,7 @@ function matchesQuestionIdentity(
     projection.kind === "question-body" &&
     projection.bodyKind === identity.bodyKind &&
     projection.contentKey === identity.contentKey &&
-    projection.locale === identity.locale &&
+    projection.artifactLocale === identity.artifactLocale &&
     projection.peerContentKey === identity.peerContentKey &&
     projection.questionKey === identity.questionKey &&
     projection.questionNumber === identity.questionNumber &&
@@ -119,7 +124,7 @@ function matchesAnswerPrompt(
     projection.kind === "question-body" &&
     projection.bodyKind === "question" &&
     projection.contentKey === identity.peerContentKey &&
-    projection.locale === identity.locale &&
+    projection.artifactLocale === identity.artifactLocale &&
     projection.peerContentKey === identity.contentKey &&
     projection.questionKey === identity.questionKey &&
     projection.questionNumber === identity.questionNumber &&

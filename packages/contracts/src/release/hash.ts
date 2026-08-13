@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
+
 import { Effect, Schema } from "effect";
+
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { canonicalizeContentReleaseManifest } from "#contracts/release/signing";
 import type { ContentReleaseManifest } from "#contracts/release/spec";

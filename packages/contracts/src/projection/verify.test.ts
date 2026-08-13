@@ -1,7 +1,7 @@
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
-import type { ContentLocale } from "#contracts/content";
 import { ReleaseIdSchema } from "#contracts/ids";
+import { ACTIVE_APP_LOCALES, type AppLocaleCode } from "#contracts/locale";
 import { digestProjections } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { QuestionBodyProjectionSchema } from "#contracts/projection/question";
@@ -11,21 +11,25 @@ import {
 } from "#contracts/projection/verify";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
-import { ContentReleaseManifestSchema } from "#contracts/release/spec";
+import {
+  CONTENT_RELEASE_FORMAT,
+  ContentReleaseManifestSchema,
+} from "#contracts/release/spec";
 import { materialGraph } from "#contracts/test/graph";
 
 /** Builds one unmistakably test-only canonical material projection. */
 function projection(
   contentKey: string,
-  locale: ContentLocale,
+  appLocale: AppLocaleCode,
   publicPath: string
 ) {
   const parentPath = publicPath.slice(0, publicPath.lastIndexOf("/"));
   return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+    appLocale,
+    artifactLocale: appLocale,
     contentKey,
-    graph: materialGraph(locale, "test", "material", "test-lesson"),
+    graph: materialGraph(appLocale, "test", "material", "test-lesson"),
     kind: "subject-lesson",
-    locale,
     materialKey: "lesson.test.material",
     metadata: {
       authors: [{ name: "Test Author" }],
@@ -47,11 +51,11 @@ const projections = [firstProjection, secondProjection];
 const questionProjection = Schema.decodeUnknownSync(
   QuestionBodyProjectionSchema
 )({
+  artifactLocale: "en",
   bodyKind: "answer",
   contentKey:
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer",
   kind: "question-body",
-  locale: "en",
   metadata: {
     authors: [{ name: "Test Author" }],
     date: "2026-01-01",
@@ -71,11 +75,16 @@ const projectionSummary = await Effect.runPromise(
   digestProjections(releaseId, Stream.fromIterable(projections))
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  activeAppLocales: ACTIVE_APP_LOCALES,
+  baseActiveAppLocales: null,
+  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: 0,
+  editorialReviewDigest: `sha256:${"e".repeat(64)}`,
+  format: CONTENT_RELEASE_FORMAT,
   itemCount: 0,
   itemsDigest: `sha256:${"b".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -92,8 +101,16 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   routeDigest: `sha256:${"d".repeat(64)}`,
   scope: {
     content: [
-      { contentKey: "test:a", family: "material", locale: "en" },
-      { contentKey: "test:b", family: "material", locale: "id" },
+      {
+        artifactLocale: "en",
+        contentKey: "test:a",
+        family: "material",
+      },
+      {
+        artifactLocale: "id",
+        contentKey: "test:b",
+        family: "material",
+      },
     ],
     families: [],
     snapshots: [],

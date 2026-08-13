@@ -45,11 +45,11 @@ function makeMaterialHead(record: PreparedContentUpsert): MaterialHead {
   const { change, payload, projection } = record;
   return MaterialHeadSchema.make({
     artifactHash: change.artifactHash,
+    artifactLocale: change.artifactLocale,
     compilerConfigHash: payload.compilerConfigHash,
     contentKey: change.contentKey,
     delivery: change.delivery,
     family: "material",
-    locale: change.locale,
     projectionHash: hashContentProjection(projection),
     publicPath: projectionPublicPath(projection),
     rendererDomain: change.rendererDomain,
@@ -66,9 +66,9 @@ function priorMaterial(head: MaterialHead): RollbackSnapshotState {
 /** Proves one newly authored material head had no prior active state. */
 function absentMaterial(entry: MaterialEntry): RollbackSnapshotState {
   return {
+    artifactLocale: entry.route.artifactLocale,
     contentKey: entry.route.contentKey,
     family: "material",
-    locale: entry.route.locale,
     state: "absent",
   };
 }

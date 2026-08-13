@@ -1,11 +1,11 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import {
   compareTryoutCatalog,
-  compareTryoutPlacements,
-} from "@nakafa/aksara-contracts/tryout/identity";
-import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/row-hash";
-import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/spec";
+  makeTryoutCatalogRecord,
+} from "@nakafa/aksara-contracts/tryout/catalog-hash";
+import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
+import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Schema } from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
@@ -87,8 +87,12 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
         return yield* new TryoutQuestionMissingError({ questionKey });
       }
       rows.push(
-        yield* Effect.forEach(ContentLocaleSchema.literals, (locale) =>
-          makeTryoutPlacement({ section, set, source, track }, question, locale)
+        yield* Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
+          makeTryoutPlacement(
+            { section, set, source, track },
+            question,
+            appLocale
+          )
         )
       );
     }

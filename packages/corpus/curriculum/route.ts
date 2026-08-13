@@ -1,13 +1,17 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import {
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
-  CURRICULUM_NAMESPACES,
+  ACTIVE_APP_LOCALES,
+  type ActiveAppLocale,
+  activeAppLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
+import {
   type CurriculumRoute,
   type CurriculumRouteDraft,
   CurriculumRouteDraftSchema,
+  curriculumNamespace,
   isRenderableCurriculumLevel,
 } from "@nakafa/aksara-contracts/program/curriculum";
 import {
@@ -35,7 +39,7 @@ import type { LessonMaterialSource } from "#corpus/material/schema";
 export class CurriculumRouteError extends Schema.TaggedError<CurriculumRouteError>()(
   "CurriculumRouteError",
   {
-    code: Schema.Literal("curriculum", "program"),
+    code: Schema.Literal("curriculum", "program", "translation"),
     programKey: LearningProgramKeySchema,
     value: Schema.String,
   }
@@ -109,9 +113,30 @@ function routeIcon(
 /** Resolves a node's localized segments through its complete ancestry. */
 function nodeSegments(
   node: ProjectedCurriculumNode,
-  locale: typeof ContentLocaleSchema.Type
+  appLocale: ActiveAppLocale
 ) {
-  return node.path.map((item) => item.translations[locale].routeSlug);
+  const appLocaleCode = activeAppLocaleCode(appLocale);
+  return node.path.map((item) => item.translations[appLocaleCode].routeSlug);
+}
+
+/** Resolves one required active translation from a decoded program row. */
+function requireProgramTranslation(
+  program: LearningProgram,
+  appLocale: ActiveAppLocale
+) {
+  const translation = program.translations.find(
+    (candidate) => candidate.appLocale === appLocale
+  );
+  if (translation !== undefined) {
+    return Effect.succeed(translation);
+  }
+  return Effect.fail(
+    new CurriculumRouteError({
+      code: "translation",
+      programKey: program.key,
+      value: appLocale,
+    })
+  );
 }
 
 /** Derives the reviewed corpus directory owned by one program tree. */
@@ -149,8 +174,9 @@ export const projectCurriculumRoutes = Effect.fn(
   const routes: CurriculumRouteDraft[] = [];
   for (const curriculum of input.curricula) {
     const program = yield* requireProgram(programByKey, curriculum.programKey);
-    for (const locale of ContentLocaleSchema.literals) {
-      const root = `${CURRICULUM_NAMESPACES[locale]}/${program.translations[locale].publicSlug}`;
+    for (const appLocale of ACTIVE_APP_LOCALES) {
+      const translation = yield* requireProgramTranslation(program, appLocale);
+      const root = `${curriculumNamespace(appLocale)}/${translation.publicSlug}`;
       const hasMaterials = nodes.some(
         (node) =>
           node.curriculumKey === curriculum.programKey &&
@@ -158,17 +184,17 @@ export const projectCurriculumRoutes = Effect.fn(
       );
       routes.push(
         CurriculumRouteDraftSchema.make({
+          appLocale,
           iconKey: program.iconKey,
           kind: "curriculum-context",
           level: "track",
-          locale,
           nodeKey: `${program.key}:root`,
           order: program.displayOrder,
           programKey: program.key,
           publicPath: PublicPathSchema.make(root),
           sitemap: hasMaterials,
           sourcePath: curriculumSourcePath(program.key),
-          title: program.translations[locale].title,
+          title: translation.title,
         })
       );
     }
@@ -188,24 +214,27 @@ export const projectCurriculumRoutes = Effect.fn(
           `${node.curriculumKey}:${node.key}`
         )
       : undefined;
-    for (const locale of ContentLocaleSchema.literals) {
-      const segments = nodeSegments(node, locale);
-      const root = `${CURRICULUM_NAMESPACES[locale]}/${program.translations[locale].publicSlug}`;
+    for (const appLocale of ACTIVE_APP_LOCALES) {
+      const appLocaleCode = activeAppLocaleCode(appLocale);
+      const translation = yield* requireProgramTranslation(program, appLocale);
+      const segments = nodeSegments(node, appLocale);
+      const root = `${curriculumNamespace(appLocale)}/${translation.publicSlug}`;
       const publicPath = `${root}/${segments.join("/")}`;
       routes.push(
         CurriculumRouteDraftSchema.make({
+          appLocale,
           canonicalPath:
             material && materialDescriptor
-              ? materialTopicPath(material, materialDescriptor, locale)
+              ? materialTopicPath(material, materialDescriptor, appLocale)
               : undefined,
           displayGroupIconKey: node.displayGroupIconKey,
-          displayGroupTitle: node.displayGroup?.[locale].title,
+          displayGroupTitle: node.displayGroup?.[appLocaleCode].title,
           iconKey: routeIcon(node, program, nodeDescriptor),
           kind: "curriculum-context",
           level: node.level,
-          locale,
-          materialCardDescription: node.materialCard?.[locale].description,
-          materialCardTitle: node.materialCard?.[locale].title,
+          materialCardDescription:
+            node.materialCard?.[appLocaleCode].description,
+          materialCardTitle: node.materialCard?.[appLocaleCode].title,
           materialDomain: node.materialDomain,
           materialKey: node.materialKeys[0],
           nodeKey: node.key,
@@ -219,15 +248,15 @@ export const projectCurriculumRoutes = Effect.fn(
             isRenderableCurriculumLevel(node.level) &&
             materialAncestors.has(`${node.curriculumKey}\0${node.key}`),
           sourcePath: curriculumSourcePath(node.curriculumKey),
-          title: node.translations[locale].title,
+          title: node.translations[appLocaleCode].title,
         })
       );
     }
   }
   const contextual = yield* addMaterialContext(routes);
   return contextual.sort((left: CurriculumRoute, right: CurriculumRoute) => {
-    const leftKey = `${left.programKey}\0${left.locale}\0${left.publicPath}`;
-    const rightKey = `${right.programKey}\0${right.locale}\0${right.publicPath}`;
+    const leftKey = `${left.programKey}\0${left.appLocale}\0${left.publicPath}`;
+    const rightKey = `${right.programKey}\0${right.appLocale}\0${right.publicPath}`;
     return compareCodeUnits(leftKey, rightKey);
   });
 });

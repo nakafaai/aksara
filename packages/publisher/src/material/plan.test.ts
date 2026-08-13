@@ -48,7 +48,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
             .map((entry) =>
               registryState.changedOrder &&
               entry.rendererDomain === "mathematics" &&
-              entry.route.locale === "en"
+              entry.route.artifactLocale === "en"
                 ? {
                     ...entry,
                     route: { ...entry.route, order: entry.route.order + 1 },
@@ -64,8 +64,8 @@ const publishedHeads = await publishedMaterialHeads();
 const englishHead = await Effect.runPromise(
   Effect.gen(function* () {
     const head = publishedHeads.find(
-      ({ contentKey, locale }) =>
-        contentKey === functionContentKey && locale === "en"
+      ({ contentKey, artifactLocale }) =>
+        contentKey === functionContentKey && artifactLocale === "en"
     );
     if (head === undefined) {
       return yield* Effect.dieMessage(
@@ -98,7 +98,7 @@ function modifyHead(input: unknown) {
 function replaceHead(replacement: typeof englishHead) {
   return publishedHeads.map((head) =>
     head.contentKey === replacement.contentKey &&
-    head.locale === replacement.locale
+    head.artifactLocale === replacement.artifactLocale
       ? replacement
       : head
   );
@@ -131,7 +131,7 @@ describe("material plan", () => {
 
     expect(records).toHaveLength(1);
     expect(records[0]?.record.change).toMatchObject({
-      locale: "en",
+      artifactLocale: "en",
       operation: "upsert",
     });
     expect(compilerState.calls).toBe(1);
@@ -145,7 +145,7 @@ describe("material plan", () => {
     expect(records).toHaveLength(1);
     expect(records[0]).toMatchObject({
       record: {
-        change: { locale: "en", operation: "upsert" },
+        change: { artifactLocale: "en", operation: "upsert" },
         projection: { order: 6 },
       },
     });
@@ -192,9 +192,9 @@ describe("material plan", () => {
       prior: { head: stale, state: "material" },
       record: {
         change: {
+          artifactLocale: "en",
           contentKey: stale.contentKey,
           family: "material",
-          locale: "en",
           operation: "delete",
         },
       },
@@ -221,7 +221,7 @@ describe("material plan", () => {
     expect(
       records.map(({ record }) => [
         record.change.contentKey,
-        record.change.locale,
+        record.change.artifactLocale,
       ])
     ).toEqual([
       [functionContentKey, "en"],
@@ -264,9 +264,9 @@ describe("material plan", () => {
     const scope = Schema.decodeUnknownSync(PublicationScopeSchema)({
       content: [
         {
+          artifactLocale: stale.artifactLocale,
           contentKey: stale.contentKey,
           family: stale.family,
-          locale: stale.locale,
         },
       ],
       families: [],
@@ -278,9 +278,9 @@ describe("material plan", () => {
 
     expect(records).toHaveLength(1);
     expect(records[0]?.record.change).toEqual({
+      artifactLocale: "en",
       contentKey: stale.contentKey,
       family: "material",
-      locale: "en",
       operation: "delete",
     });
     expect(result).toEqual(publishedHeads);

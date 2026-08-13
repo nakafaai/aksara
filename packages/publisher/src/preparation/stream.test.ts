@@ -9,6 +9,10 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
+import {
   MaterialKeySchema,
   MaterialLessonProjectionSchema,
   MaterialSectionSchema,
@@ -36,8 +40,8 @@ const rendererManifest = await Effect.runPromise(
   })
 );
 const source = CompileDocumentSourceSchema.make({
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   contentKey: ContentKeySchema.make("test:stream:a"),
-  locale: "en",
   rawMdx: "export const metadata = {}\n\nTest protocol.",
   rendererDomain: "mathematics",
   sourcePath: CorpusSourcePathSchema.make("packages/corpus/test/a/en.mdx"),
@@ -46,10 +50,11 @@ const { payload } = await Effect.runPromise(
   compileContent({ ...source, rendererManifest })
 );
 const projection = MaterialLessonProjectionSchema.make({
+  appLocale: AppLocaleSchema.make("en"),
+  artifactLocale: source.artifactLocale,
   contentKey: source.contentKey,
-  graph: materialGraph(source.locale, "material", "test-a"),
+  graph: materialGraph(AppLocaleSchema.make("en"), "material", "test-a"),
   kind: "subject-lesson",
-  locale: source.locale,
   materialKey: MaterialKeySchema.make("lesson.test.material"),
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
@@ -62,10 +67,10 @@ const projection = MaterialLessonProjectionSchema.make({
 const baseRecord: PreparedContentUpsert = {
   change: ContentUpsertSchema.make({
     artifactHash: hashCompiledContentPayload(payload),
+    artifactLocale: source.artifactLocale,
     contentKey: source.contentKey,
     delivery: "public",
     family: "material",
-    locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
@@ -75,18 +80,21 @@ const baseRecord: PreparedContentUpsert = {
   source,
 };
 const releaseId = ReleaseIdSchema.make("test-stream-release");
-/** Pairs one candidate record with an explicit prior absence proof. */
-function transition(
-  record: unknown,
-  identity: PreparedContentUpsert["change"] = baseRecord.change
-) {
+
+/** Projects one upsert identity into its explicit prior absence proof. */
+function absentHead(identity: PreparedContentUpsert["change"]) {
   return {
-    prior: {
-      contentKey: identity.contentKey,
-      family: identity.family,
-      locale: identity.locale,
-      state: "absent",
-    },
+    artifactLocale: identity.artifactLocale,
+    contentKey: identity.contentKey,
+    family: identity.family,
+    state: "absent" as const,
+  };
+}
+
+/** Pairs one candidate record with an explicit prior absence proof. */
+function transition(record: unknown, identity = baseRecord.change) {
+  return {
+    prior: absentHead(identity),
     record,
   };
 }
@@ -97,10 +105,7 @@ function derive<E, R>(records: () => Stream.Stream<unknown, E, R>) {
 }
 
 /** Moves one complete record while preserving every bound identity. */
-function relocateRecord(
-  contentKey: string,
-  publicPath: string
-): PreparedContentUpsert {
+function relocateRecord(contentKey: string, publicPath: string) {
   const nextKey = ContentKeySchema.make(contentKey);
   const parentPath = PublicPathSchema.make(
     publicPath.slice(0, publicPath.lastIndexOf("/"))
@@ -152,10 +157,13 @@ const mismatchCases = [
     }),
   ],
   [
-    "locale",
+    "artifactLocale",
     (value: PreparedContentUpsert) => ({
       ...value,
-      source: { ...value.source, locale: "id" },
+      source: {
+        ...value.source,
+        artifactLocale: ArtifactLocaleSchema.make("id"),
+      },
     }),
   ],
   [
@@ -245,34 +253,25 @@ describe("derivePreparedRecords", () => {
   it.each([
     {
       prior: {
+        ...absentHead(baseRecord.change),
         contentKey: ContentKeySchema.make("test:another-head"),
-        family: "material",
-        locale: baseRecord.change.locale,
-        state: "absent",
       },
       record: baseRecord,
     },
     {
       prior: {
-        contentKey: baseRecord.change.contentKey,
+        ...absentHead(baseRecord.change),
         family: "article",
-        locale: baseRecord.change.locale,
-        state: "absent",
       },
       record: baseRecord,
     },
     {
-      prior: {
-        contentKey: baseRecord.change.contentKey,
-        family: "material",
-        locale: baseRecord.change.locale,
-        state: "absent",
-      },
+      prior: absentHead(baseRecord.change),
       record: {
         change: {
+          artifactLocale: baseRecord.change.artifactLocale,
           contentKey: baseRecord.change.contentKey,
           family: "material",
-          locale: baseRecord.change.locale,
           operation: "delete",
         },
       },

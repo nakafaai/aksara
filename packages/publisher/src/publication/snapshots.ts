@@ -7,7 +7,7 @@ import {
 import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import { Effect, Stream } from "effect";
 
-import type { PreparedContentRelease } from "#publisher/preparation/spec";
+import type { PreparedContentRelease } from "#publisher/preparation/prepared";
 import type { SnapshotVerificationError } from "#publisher/publication/failure";
 import {
   ReleaseVerificationMismatchError,

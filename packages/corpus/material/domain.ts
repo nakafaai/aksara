@@ -1,7 +1,8 @@
 import {
-  type ContentLocale,
-  ContentLocaleSchema,
-} from "@nakafa/aksara-contracts/content";
+  ACTIVE_APP_LOCALES,
+  type ActiveAppLocale,
+  activeAppLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
 import {
   type MaterialDomain,
   MaterialDomainSchema,
@@ -106,15 +107,16 @@ export const decodeMaterialDomains = Effect.fn(
     }
     keys.add(descriptor.key);
 
-    for (const locale of ContentLocaleSchema.literals) {
-      const routeSlug = descriptor.routeSlugs[locale];
-      const identity = `${locale}\0${routeSlug}`;
+    for (const appLocale of ACTIVE_APP_LOCALES) {
+      const appLocaleCode = activeAppLocaleCode(appLocale);
+      const routeSlug = descriptor.routeSlugs[appLocaleCode];
+      const identity = `${appLocale}\0${routeSlug}`;
       const owner = routes.get(identity);
       if (owner) {
         return yield* new MaterialDomainConflictError({
           code: "route",
           key: descriptor.key,
-          value: `${locale}:${routeSlug}:${owner}`,
+          value: `${appLocale}:${routeSlug}:${owner}`,
         });
       }
       routes.set(identity, descriptor.key);
@@ -142,7 +144,7 @@ export const requireMaterialDomain = Effect.fn(
 /** Reads one descriptor's localized public route segment. */
 export function materialDomainRoute(
   descriptor: MaterialDomainDescriptor,
-  locale: ContentLocale
+  appLocale: ActiveAppLocale
 ) {
-  return descriptor.routeSlugs[locale];
+  return descriptor.routeSlugs[activeAppLocaleCode(appLocale)];
 }

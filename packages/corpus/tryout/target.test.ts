@@ -1,7 +1,8 @@
 import { Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
-import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/spec";
+import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import type { QuestionEntry } from "#corpus/question-bank/content";
@@ -71,7 +72,11 @@ function rejectTarget(
 /** Finds the canonical English SNBT track without weakening the row union. */
 function findSelectedTrack(rows: readonly TryoutCatalogRow[]) {
   for (const row of rows) {
-    if (row.kind === "track" && row.examKey === "snbt" && row.locale === "en") {
+    if (
+      row.kind === "track" &&
+      row.examKey === "snbt" &&
+      row.appLocale === "en"
+    ) {
       return row;
     }
   }
@@ -100,7 +105,7 @@ describe("tryout target", () => {
     );
 
     expect(prompt).toMatchObject({
-      exam: { examKey: "snbt", locale: "en" },
+      exam: { appLocale: "en", examKey: "snbt" },
       placement: {
         questionOrder: 1,
         questionSourcePath: questionRoot,
@@ -111,9 +116,9 @@ describe("tryout target", () => {
     });
     expect("choices" in prompt.placement).toBe(false);
     expect(answer).toMatchObject({
-      exam: { examKey: "snbt", locale: "id" },
+      exam: { appLocale: "id", examKey: "snbt" },
       placement: {
-        locale: "id",
+        appLocale: "id",
         questionOrder: 1,
         questionSourcePath: questionRoot,
       },
@@ -134,7 +139,7 @@ describe("tryout target", () => {
         (row) =>
           row.kind === kind &&
           row.examKey === "snbt" &&
-          row.locale === "en" &&
+          row.appLocale === "en" &&
           (row.kind === "exam" || row.trackKey === "2027") &&
           (row.kind === "exam" ||
             row.kind === "track" ||
@@ -240,7 +245,7 @@ describe("tryout target", () => {
     const rows = fixture.rows.map((row) =>
       row.kind === "set" &&
       row.examKey === "snbt" &&
-      row.locale === "en" &&
+      row.appLocale === "en" &&
       row.setKey === "set-1"
         ? { ...row, sourceRevision: "mismatch" }
         : row
@@ -255,23 +260,27 @@ describe("tryout target", () => {
     expect(error).toMatchObject({ count: 1, rowKind: "target" });
   });
 
-  it("rejects a body joined with another question source", {
+  it("rejects a body joined to another source or inactive locale", {
     timeout: 30_000,
   }, async () => {
     const fixture = await loadFixture();
-    const error = await rejectTarget(
-      fixture.rows,
-      fixture.sources,
-      fixture.prompt,
-      {
+    const [sourceError, localeError] = await Promise.all([
+      rejectTarget(fixture.rows, fixture.sources, fixture.prompt, {
         ...fixture.question,
         questionKey: QuestionKeySchema.make(
           "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-2"
         ),
-      }
-    );
+      }),
+      rejectTarget(
+        fixture.rows,
+        fixture.sources,
+        { ...fixture.prompt, artifactLocale: ArtifactLocaleSchema.make("de") },
+        fixture.question
+      ),
+    ]);
 
-    expect(error).toMatchObject({ count: 0, rowKind: "context" });
+    expect(sourceError).toMatchObject({ count: 0, rowKind: "context" });
+    expect(localeError).toMatchObject({ count: 0, rowKind: "target" });
   });
 
   it("ignores a same-exam catalog row owned by another track", {

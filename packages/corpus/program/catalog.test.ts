@@ -54,10 +54,9 @@ describe("learning program catalog", () => {
         { ...first },
         {
           ...second,
-          translations: {
-            ...second.translations,
-            en: first.translations.en,
-          },
+          translations: second.translations.map((translation) =>
+            translation.appLocale === "en" ? first.translations[0] : translation
+          ),
         },
       ],
     ],
@@ -66,6 +65,38 @@ describe("learning program catalog", () => {
 
     expect(error).toBeInstanceOf(ProgramIdentityError);
     expect(error).toMatchObject({ scope });
+  });
+
+  it("rejects a program missing one active translation", async () => {
+    const error = await reject([
+      {
+        ...first,
+        translations: first.translations.filter(
+          ({ appLocale }) => appLocale !== "id"
+        ),
+      },
+    ]);
+
+    expect(error).toMatchObject({ scope: "translation" });
+  });
+
+  it("rejects a program translation for an inactive app locale", async () => {
+    const error = await reject([
+      {
+        ...first,
+        translations: first.translations.map((translation) =>
+          translation.appLocale === "id"
+            ? {
+                appLocale: "de",
+                publicSlug: "deutsches-testprogramm",
+                title: "Deutsches Testprogramm",
+              }
+            : translation
+        ),
+      },
+    ]);
+
+    expect(error).toMatchObject({ scope: "translation" });
   });
 
   it("sorts valid source rows instead of trusting authored array order", async () => {

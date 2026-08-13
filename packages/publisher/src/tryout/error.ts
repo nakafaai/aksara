@@ -1,5 +1,5 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Schema } from "effect";
 
 export const TryoutHeadBodySchema = Schema.Literal("answer", "question");
@@ -14,25 +14,25 @@ const TryoutHeadFieldSchema = Schema.Literal(
   "sourcePath"
 );
 
-/** A complete desired head stream repeated one locale-specific identity. */
+/** A complete desired head stream repeated one artifactLocale-specific identity. */
 export class TryoutHeadDuplicateError extends Schema.TaggedError<TryoutHeadDuplicateError>()(
   "TryoutHeadDuplicateError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** A complete desired head stream is outside canonical content-head order. */
 export class TryoutHeadOrderError extends Schema.TaggedError<TryoutHeadOrderError>()(
   "TryoutHeadOrderError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** One active placement has no desired question or answer artifact head. */
 export class TryoutHeadMissingError extends Schema.TaggedError<TryoutHeadMissingError>()(
   "TryoutHeadMissingError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     bodyKind: TryoutHeadBodySchema,
     contentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
   }
 ) {}
 
@@ -40,9 +40,9 @@ export class TryoutHeadMissingError extends Schema.TaggedError<TryoutHeadMissing
 export class TryoutHeadMismatchError extends Schema.TaggedError<TryoutHeadMismatchError>()(
   "TryoutHeadMismatchError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
     field: TryoutHeadFieldSchema,
-    locale: ContentLocaleSchema,
   }
 ) {}
 
@@ -54,11 +54,11 @@ export type TryoutHeadBindingError<E> =
   | TryoutHeadMissingError
   | TryoutHeadOrderError;
 
-/** An active placement has no exact question source for its authored title. */
-export class TryoutTitleMissingError extends Schema.TaggedError<TryoutTitleMissingError>()(
-  "TryoutTitleMissingError",
+/** An active placement has no exact question or answer source. */
+export class TryoutContentMissingError extends Schema.TaggedError<TryoutContentMissingError>()(
+  "TryoutContentMissingError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
   }
 ) {}

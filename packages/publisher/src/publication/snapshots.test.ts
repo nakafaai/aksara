@@ -1,3 +1,5 @@
+import { resolve } from "node:path";
+import { NodeContext } from "@effect/platform-node";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -13,11 +15,12 @@ import { prepareContentRelease } from "#publisher/preparation";
 import {
   makePreparedRollbackRelease,
   type PreparedGitRelease,
-} from "#publisher/preparation/spec";
+} from "#publisher/preparation/prepared";
 import {
   makeSnapshotRequests,
   verifyPublicationSnapshots,
 } from "#publisher/publication/snapshots";
+import { makeEditorialReviewForRelease } from "#test/editorial";
 import {
   contentRecord,
   head,
@@ -29,19 +32,26 @@ import {
 import {
   emptySnapshotSources,
   makeProgramSnapshotFixture,
+  snapshotPolicyBase,
 } from "#test/snapshot";
+
+const checkoutRoot = resolve(import.meta.dirname, "../../../..");
 
 /** Prepares one body release that replaces the exact real program catalog. */
 async function prepareProgramRelease() {
-  const snapshot = await makeProgramSnapshotFixture();
+  const editorialReview = await makeEditorialReviewForRelease({
+    checkoutRoot,
+    heads: [head],
+  });
+  const editorialReviewDigest = editorialReview.digest;
+  const snapshot = await makeProgramSnapshotFixture(editorialReviewDigest);
   const prepared = await Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
-      baseManifestHash: null,
-      baseReleaseId: null,
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      previousSnapshots: null,
+      checkoutRoot,
+      editorialReview,
       records: () => Stream.make(record),
       releaseId: ReleaseIdSchema.make("test-program-snapshot"),
       rendererManifest,
@@ -49,19 +59,23 @@ async function prepareProgramRelease() {
       routes: () =>
         Stream.make({
           current: {
+            appLocale: projection.appLocale,
             contentKey: contentRecord.change.contentKey,
-            locale: contentRecord.change.locale,
           },
           next: {
+            appLocale: projection.appLocale,
             contentKey: contentRecord.change.contentKey,
-            locale: contentRecord.change.locale,
             publicPath: projection.publicPath,
           },
         }),
       scope: { ...publicationScope, snapshots: ["program"] },
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
-    })
+      ...snapshotPolicyBase(
+        editorialReviewDigest,
+        "test-program-snapshot-base"
+      ),
+    }).pipe(Effect.provide(NodeContext.layer))
   );
   return { prepared, snapshot };
 }
@@ -71,6 +85,8 @@ function prepareSnapshotRollback(source: PreparedGitRelease<unknown, never>) {
   const baseReleaseId = source.manifest.releaseId;
   const manifest = ContentReleaseManifestSchema.make({
     ...source.manifest,
+    baseActiveAppLocales: source.manifest.activeAppLocales,
+    baseEditorialReviewDigest: source.manifest.editorialReviewDigest,
     baseManifestHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
     baseReleaseId,
     baseResultCount: source.manifest.resultCount,

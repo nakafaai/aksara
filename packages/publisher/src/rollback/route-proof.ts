@@ -18,13 +18,13 @@ function inverseRoute(
     change:
       record.priorContentKey === null
         ? {
-            locale: change.locale,
+            appLocale: change.appLocale,
             operation: "delete",
             publicPath: change.publicPath,
           }
         : {
+            appLocale: change.appLocale,
             contentKey: record.priorContentKey,
-            locale: change.locale,
             operation: "bind",
             publicPath: change.publicPath,
           },

@@ -23,7 +23,9 @@ const bundle = await makeSignedBundle("test-resume");
 const { manifest } = bundle.release;
 const receipt = {
   activatedHeads: manifest.upsertCount,
+  activeAppLocales: manifest.activeAppLocales,
   deletedHeads: manifest.deleteCount,
+  editorialReviewDigest: manifest.editorialReviewDigest,
   manifestHash: bundle.release.manifestHash,
   projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,

@@ -34,10 +34,10 @@ export const examProgramSources = [
         url: "https://pusatinformasi.rumahpendidikan.kemendikdasmen.go.id/hc/id/articles/52474902769689-Kenali-Tes-Kemampuan-Akademik-TKA",
       },
     ],
-    translations: {
-      en: { publicSlug: "tka", title: "TKA 2026" },
-      id: { publicSlug: "tka", title: "TKA 2026" },
-    },
+    translations: [
+      { appLocale: "en", publicSlug: "tka", title: "TKA 2026" },
+      { appLocale: "id", publicSlug: "tka", title: "TKA 2026" },
+    ],
     version: {
       endsAt: "2026-12-31",
       label: "2026",
@@ -69,10 +69,10 @@ export const examProgramSources = [
         url: "https://snpmb.id/utbk-snbt/informasi-umum",
       },
     ],
-    translations: {
-      en: { publicSlug: "snbt", title: "SNBT 2026" },
-      id: { publicSlug: "snbt", title: "SNBT 2026" },
-    },
+    translations: [
+      { appLocale: "en", publicSlug: "snbt", title: "SNBT 2026" },
+      { appLocale: "id", publicSlug: "snbt", title: "SNBT 2026" },
+    ],
     version: {
       endsAt: "2026-12-31",
       label: "2026",

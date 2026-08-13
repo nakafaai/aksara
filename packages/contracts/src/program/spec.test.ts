@@ -7,7 +7,6 @@ import {
   ProgramNavigationIconKeySchema,
   ProgramNavigationLevelSchema,
 } from "#contracts/program/spec";
-import { reverseObjectKeys } from "#contracts/test/order";
 
 const source = {
   defaultCoverageStatus: "partial",
@@ -34,10 +33,18 @@ const source = {
       url: "https://guru.kemendikdasmen.go.id/kurikulum/",
     },
   ],
-  translations: {
-    en: { publicSlug: "merdeka", title: "Kurikulum Merdeka" },
-    id: { publicSlug: "merdeka", title: "Kurikulum Merdeka" },
-  },
+  translations: [
+    {
+      appLocale: "en",
+      publicSlug: "merdeka",
+      title: "Kurikulum Merdeka",
+    },
+    {
+      appLocale: "id",
+      publicSlug: "merdeka",
+      title: "Kurikulum Merdeka",
+    },
+  ],
   version: { label: "Indonesia" },
 } as const;
 
@@ -95,22 +102,26 @@ describe("learning program contract", () => {
     );
   });
 
-  it("keeps localized program identity independent of object insertion order", () => {
+  it("requires localized program identity in canonical app-locale order", () => {
     const canonical = Schema.decodeUnknownSync(LearningProgramSchema)(source);
     const reordered = {
       ...canonical,
-      translations: reverseObjectKeys(canonical.translations),
+      translations: [canonical.translations[1], canonical.translations[0]],
     };
 
-    expect(Object.keys(reordered.translations)).toEqual(["id", "en"]);
-    expect(canonicalizeLearningProgram(reordered)).toBe(
-      canonicalizeLearningProgram(canonical)
-    );
+    expect(
+      Either.isLeft(
+        Schema.decodeUnknownEither(LearningProgramSchema)(reordered)
+      )
+    ).toBe(true);
   });
 
   it.each([
     ["invalid program key", { key: "Merdeka" }],
-    ["missing locale", { translations: { en: source.translations.en } }],
+    [
+      "duplicate locale",
+      { translations: [source.translations[0], source.translations[0]] },
+    ],
     [
       "unsafe URL",
       { sources: [{ ...source.sources[0], url: "http://x.test" }] },

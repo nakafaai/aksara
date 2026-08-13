@@ -6,6 +6,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect, Stream } from "effect";
@@ -22,8 +23,8 @@ const TEST_ARTIFACT_HASH = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 const TEST_REPOSITORY_ROOT = "/test-only/aksara";
 const TEST_SOURCES = [
   CompileDocumentSourceSchema.make({
+    artifactLocale: ArtifactLocaleSchema.make("en"),
     contentKey: ContentKeySchema.make("test:git-source-first"),
-    locale: "en",
     rawMdx: "export const testProtocolFirst = true;\n",
     rendererDomain: "mathematics",
     sourcePath: CorpusSourcePathSchema.make(
@@ -31,8 +32,8 @@ const TEST_SOURCES = [
     ),
   }),
   CompileDocumentSourceSchema.make({
+    artifactLocale: ArtifactLocaleSchema.make("id"),
     contentKey: ContentKeySchema.make("test:git-source-second"),
-    locale: "id",
     rawMdx: "export const testProtocolSecond = true;\n",
     rendererDomain: "chemistry",
     sourcePath: CorpusSourcePathSchema.make(
@@ -44,10 +45,10 @@ const TEST_ITEMS = TEST_SOURCES.map((source, index) =>
   ContentReleaseItemSchema.make({
     change: {
       artifactHash: TEST_ARTIFACT_HASH,
+      artifactLocale: source.artifactLocale,
       contentKey: source.contentKey,
       delivery: "public",
       family: "material",
-      locale: source.locale,
       operation: "upsert",
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,
@@ -85,7 +86,7 @@ function gitResponder() {
     /** Returns one deterministic exact Git response for source tests. */
     run: (input) =>
       Effect.gen(function* () {
-        const [, , replacePolicy, operation, detail, blob] = input.args;
+        const [, , replacePolicy, operation] = input.args;
         if (replacePolicy !== "--no-replace-objects") {
           return yield* Effect.die(
             "Test-only Git command allowed replacement refs."
@@ -98,20 +99,29 @@ function gitResponder() {
             stdout: new TextEncoder().encode(`${TEST_AKSARA_SHA}\n`),
           };
         }
-        const source = TEST_SOURCES.find(
-          (candidate) => `${TEST_AKSARA_SHA}:${candidate.sourcePath}` === blob
-        );
-        if (!source) {
-          return yield* Effect.die("Test-only unexpected Git blob request.");
+        const coordinates = new TextDecoder()
+          .decode(input.stdin)
+          .trimEnd()
+          .split("\n");
+        const sources: (typeof TEST_SOURCES)[number][] = [];
+        for (const coordinate of coordinates) {
+          const source = TEST_SOURCES.find(
+            (candidate) =>
+              `${TEST_AKSARA_SHA}:${candidate.sourcePath}` === coordinate
+          );
+          if (source === undefined) {
+            return yield* Effect.die("Test-only unexpected Git blob request.");
+          }
+          sources.push(source);
         }
-        const stdout =
-          detail === "-s"
-            ? `${new TextEncoder().encode(source.rawMdx).byteLength}\n`
-            : source.rawMdx;
+        const frames = sources.map((source) => {
+          const bytes = new TextEncoder().encode(source.rawMdx);
+          return `${"b".repeat(40)} blob ${bytes.byteLength}\n${source.rawMdx}\n`;
+        });
         return {
           exitCode: 0,
           stderr: new Uint8Array(),
-          stdout: new TextEncoder().encode(stdout),
+          stdout: new TextEncoder().encode(frames.join("")),
         };
       }),
   });
@@ -126,9 +136,9 @@ describe("GitPublicationSourceLive", () => {
   it("rejects a delete item instead of inventing source coordinates", async () => {
     const deleteItem = ContentReleaseItemSchema.make({
       change: {
+        artifactLocale: ArtifactLocaleSchema.make("en"),
         contentKey: ContentKeySchema.make("test:git-source-delete"),
         family: "material",
-        locale: "en",
         operation: "delete",
       },
       index: 0,

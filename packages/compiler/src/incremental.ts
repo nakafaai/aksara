@@ -1,7 +1,6 @@
 import {
   type CompileDocumentRequest,
   CompiledContentPayloadSchema,
-  ContentLocaleSchema,
   canonicalizeCompiledContentPayload,
 } from "@nakafa/aksara-contracts/content";
 import {
@@ -9,6 +8,7 @@ import {
   CorpusSourcePathSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Either, Schema } from "effect";
 import type {
@@ -26,7 +26,7 @@ import type {
   AuthoredMetadataValue,
 } from "#compiler/metadata";
 
-const CACHE_FORMAT = "aksara-local-compile-v1";
+const CACHE_FORMAT = "aksara-local-compile";
 
 const MetadataValueSchema: Schema.Schema<AuthoredMetadataValue> =
   Schema.suspend(() =>
@@ -47,9 +47,9 @@ const MetadataSchema: Schema.Schema<AuthoredMetadata> = Schema.Record({
 
 /** Complete input identity that decides whether local compilation is reusable. */
 const CompileIdentitySchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
   compilerConfigHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
-  locale: ContentLocaleSchema,
   rendererDomain: RendererDomainSchema,
   sourceHash: Sha256HashSchema,
   sourcePath: CorpusSourcePathSchema,
@@ -96,7 +96,7 @@ type CacheLookup =
 function canonicalizeIdentity(identity: CompileIdentity) {
   return JSON.stringify([
     identity.contentKey,
-    identity.locale,
+    identity.artifactLocale,
     identity.sourcePath,
     identity.sourceHash,
     identity.compilerConfigHash,
@@ -130,12 +130,12 @@ function hashResult(result: CompiledContentResult) {
 /** Derives cache identity only from validated source and compiler inputs. */
 function makeIdentity(request: CompileDocumentRequest) {
   return CompileIdentitySchema.make({
+    artifactLocale: request.artifactLocale,
     compilerConfigHash: createCompilerConfigHash(
       request.rendererManifest,
       request.rendererDomain
     ),
     contentKey: request.contentKey,
-    locale: request.locale,
     rendererDomain: request.rendererDomain,
     sourceHash: hashUtf8(request.rawMdx),
     sourcePath: request.sourcePath,
@@ -161,7 +161,7 @@ function payloadIdentity(entry: LocalCache) {
   const { payload } = entry.result;
   return JSON.stringify([
     payload.contentKey,
-    payload.locale,
+    payload.artifactLocale,
     payload.rendererDomain,
     payload.sourceHash,
     payload.compilerConfigHash,
@@ -174,7 +174,7 @@ function isIntact(entry: LocalCache) {
   const { identity } = entry;
   const expectedPayloadIdentity = JSON.stringify([
     identity.contentKey,
-    identity.locale,
+    identity.artifactLocale,
     identity.rendererDomain,
     identity.sourceHash,
     identity.compilerConfigHash,

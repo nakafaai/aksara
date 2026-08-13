@@ -52,7 +52,7 @@ export type PreviewSource =
   | MaterialPreviewSource
   | QuestionPreviewSource;
 
-/** Exact registry selection and ordered compilation closure for preview v1. */
+/** Exact registry selection and ordered compilation closure for preview. */
 export type PreviewSelection =
   | {
       readonly document: ArticlePreviewDocument;

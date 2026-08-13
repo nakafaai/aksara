@@ -1,17 +1,17 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  QURAN_SNAPSHOT_FORMAT,
-  QuranSnapshotManifestSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
+import { QuranSnapshotSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 
-const blockedQuran = QuranSnapshotManifestSchema.make({
+const blockedQuran = QuranSnapshotSchema.make({
+  activeAppLocales: ACTIVE_APP_LOCALES,
   attributionCount: 1,
   chunkCount: 1085,
-  format: QURAN_SNAPSHOT_FORMAT,
-  locales: ["en", "id"],
+  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
+  format: "localized-quran-snapshot",
   projectionCount: 1428,
   projectionDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
   provenanceDigest: Sha256HashSchema.make(`sha256:${"2".repeat(64)}`),
@@ -51,17 +51,18 @@ describe("snapshot provenance", () => {
     } as const;
     const program = {
       family: "program",
-      manifest: {
+      manifest: ProgramSnapshotSchema.make({
+        activeAppLocales: ACTIVE_APP_LOCALES,
         curriculumRowCount: 390,
-        format: "program-v3",
-        locales: ["en", "id"],
+        editorialReviewDigest: blockedQuran.editorialReviewDigest,
+        format: "localized-program-snapshot",
         programRowCount: 6,
         rowCount: 396,
         rowDigest: blockedQuran.projectionDigest,
         sitemapCount: 52,
         slugCount: 12,
         snapshotId: blockedQuran.snapshotId,
-      },
+      }),
     } as const;
 
     await expect(

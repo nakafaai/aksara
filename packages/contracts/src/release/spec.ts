@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { ContentFamilySchema, ContentLocaleSchema } from "#contracts/content";
+import { ContentFamilySchema } from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,
@@ -10,6 +10,11 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
+import {
+  ActiveAppLocaleListSchema,
+  type AppLocale,
+  ArtifactLocaleSchema,
+} from "#contracts/locale";
 import { ReleaseOriginSchema } from "#contracts/release/origin";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
@@ -25,79 +30,44 @@ import {
 import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 
-/** One immutable artifact selected for a locale-specific content head. */
-export const ContentUpsertSchema = Schema.Struct({
-  artifactHash: Sha256HashSchema,
-  contentKey: ContentKeySchema,
-  delivery: ContentDeliveryClassSchema,
-  family: ContentFamilySchema,
-  locale: ContentLocaleSchema,
-  operation: Schema.Literal("upsert"),
-  rendererDomain: RendererDomainSchema,
-  sourcePath: CorpusSourcePathSchema,
-});
-
-/** One locale-specific content head removed by an explicit tombstone. */
-export const ContentDeleteSchema = Schema.Struct({
-  contentKey: ContentKeySchema,
-  family: ContentFamilySchema,
-  locale: ContentLocaleSchema,
-  operation: Schema.Literal("delete"),
-});
-
-/** Complete tagged change vocabulary accepted by a v1 content release. */
-export const ContentChangeSchema = Schema.Union(
-  ContentUpsertSchema,
-  ContentDeleteSchema
-);
-export type ContentChange = typeof ContentChangeSchema.Type;
-
-export const ReleaseItemIndexSchema = Schema.Number.pipe(
+/** Semantic wire identity of the current localized content release. */
+export const CONTENT_RELEASE_FORMAT = "localized-content-release";
+/** Nonnegative release inventory count authenticated by one manifest. */
+export const ReleaseCountSchema = Schema.Number.pipe(
   Schema.int(),
   Schema.nonNegative()
 );
-
-/** One separately stored, ordered item authenticated by a release digest. */
-export const ContentReleaseItemSchema = Schema.Struct({
-  change: ContentChangeSchema,
-  index: ReleaseItemIndexSchema,
-  releaseId: ReleaseIdSchema,
-});
-export type ContentReleaseItem = typeof ContentReleaseItemSchema.Type;
-
-const ProjectionCountSchema = Schema.Number.pipe(
-  Schema.int(),
-  Schema.nonNegative()
-);
-
-/** Deterministic desired-state transition for one content release. */
+/** Stable inventory and provenance fields owned by the current release. */
 const ContentReleaseManifestFields = {
+  baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
+  baseEditorialReviewDigest: Schema.NullOr(Sha256HashSchema),
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
-  baseResultCount: ProjectionCountSchema,
+  baseResultCount: ReleaseCountSchema,
   baseResultDigest: Sha256HashSchema,
-  deleteCount: ProjectionCountSchema,
-  itemCount: ProjectionCountSchema,
+  deleteCount: ReleaseCountSchema,
+  itemCount: ReleaseCountSchema,
   itemsDigest: Sha256HashSchema,
   origin: ReleaseOriginSchema,
-  projectionCount: ProjectionCountSchema,
+  projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
-  resultCount: ProjectionCountSchema,
+  resultCount: ReleaseCountSchema,
   resultDigest: Sha256HashSchema,
-  rollbackCount: ProjectionCountSchema,
+  rollbackCount: ReleaseCountSchema,
   rollbackDigest: Sha256HashSchema,
-  routeCount: ProjectionCountSchema,
+  routeCount: ReleaseCountSchema,
   routeDigest: Sha256HashSchema,
   scope: PublicationScopeSchema,
   snapshots: ContentSnapshotSetSchema,
-  upsertCount: ProjectionCountSchema,
+  upsertCount: ReleaseCountSchema,
 };
-
-/** Checks rollback provenance against the forward release identities. */
+/** Checks rollback provenance against forward release identities. */
 function hasCoherentReleaseOrigin(input: {
+  readonly baseActiveAppLocales: typeof ActiveAppLocaleListSchema.Type | null;
+  readonly baseEditorialReviewDigest: typeof Sha256HashSchema.Type | null;
   readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
   readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
   readonly baseResultCount: number;
@@ -111,8 +81,11 @@ function hasCoherentReleaseOrigin(input: {
   readonly snapshots: ContentSnapshotSet;
   readonly upsertCount: number;
 }) {
+  const hasBaseRelease = input.baseReleaseId !== null;
   if (
-    (input.baseReleaseId === null) !== (input.baseManifestHash === null) ||
+    hasBaseRelease !== (input.baseManifestHash !== null) ||
+    hasBaseRelease !== (input.baseActiveAppLocales !== null) ||
+    hasBaseRelease !== (input.baseEditorialReviewDigest !== null) ||
     input.baseReleaseId === input.releaseId ||
     input.deleteCount + input.upsertCount !== input.itemCount ||
     input.rollbackCount !== input.itemCount ||
@@ -121,13 +94,13 @@ function hasCoherentReleaseOrigin(input: {
     return false;
   }
   if (
-    input.baseReleaseId === null &&
+    !hasBaseRelease &&
     (input.baseResultCount !== 0 ||
       input.baseResultDigest !== EMPTY_RESULT_CATALOG_DIGEST)
   ) {
     return false;
   }
-  if (input.baseReleaseId === null && !hasEmptySnapshotBases(input.snapshots)) {
+  if (!(hasBaseRelease || hasEmptySnapshotBases(input.snapshots))) {
     return false;
   }
   if (input.origin.kind === "git") {
@@ -139,18 +112,54 @@ function hasCoherentReleaseOrigin(input: {
     hasRollbackSnapshotModes(input.snapshots)
   );
 }
-
+/** One immutable artifact selected for a locale-specific content head. */
+export const ContentUpsertSchema = Schema.Struct({
+  artifactHash: Sha256HashSchema,
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: ContentKeySchema,
+  delivery: ContentDeliveryClassSchema,
+  family: ContentFamilySchema,
+  operation: Schema.Literal("upsert"),
+  rendererDomain: RendererDomainSchema,
+  sourcePath: CorpusSourcePathSchema,
+});
+/** One locale-specific content head removed by an explicit tombstone. */
+export const ContentDeleteSchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: ContentKeySchema,
+  family: ContentFamilySchema,
+  operation: Schema.Literal("delete"),
+});
+/** Complete tagged change vocabulary accepted by the current release. */
+export const ContentChangeSchema = Schema.Union(
+  ContentUpsertSchema,
+  ContentDeleteSchema
+);
+export type ContentChange = typeof ContentChangeSchema.Type;
+export const ReleaseItemIndexSchema = Schema.Number.pipe(
+  Schema.int(),
+  Schema.nonNegative()
+);
+/** One separately stored, ordered item authenticated by a release digest. */
+export const ContentReleaseItemSchema = Schema.Struct({
+  change: ContentChangeSchema,
+  index: ReleaseItemIndexSchema,
+  releaseId: ReleaseIdSchema,
+});
+export type ContentReleaseItem = typeof ContentReleaseItemSchema.Type;
 /** Deterministic desired-state transition with signed source provenance. */
-export const ContentReleaseManifestSchema = Schema.Struct(
-  ContentReleaseManifestFields
-).pipe(
+export const ContentReleaseManifestSchema = Schema.Struct({
+  activeAppLocales: ActiveAppLocaleListSchema,
+  ...ContentReleaseManifestFields,
+  editorialReviewDigest: Sha256HashSchema,
+  format: Schema.Literal(CONTENT_RELEASE_FORMAT),
+}).pipe(
   Schema.filter(hasCoherentReleaseOrigin, {
     message: () =>
       "Expected a new release identity and a coherent source origin.",
   })
 );
 export type ContentReleaseManifest = typeof ContentReleaseManifestSchema.Type;
-
 /** Immutable release manifest plus its asymmetric authenticity proof. */
 export const SignedContentReleaseSchema = Schema.Struct({
   keyId: SigningKeyIdSchema,
@@ -159,7 +168,13 @@ export const SignedContentReleaseSchema = Schema.Struct({
   signature: Ed25519SignatureSchema,
 });
 export type SignedContentRelease = typeof SignedContentReleaseSchema.Type;
-
+/** Checks whether one application locale is active in a signed release. */
+export function releaseActivatesAppLocale(
+  release: SignedContentRelease,
+  appLocale: AppLocale
+) {
+  return release.manifest.activeAppLocales.includes(appLocale);
+}
 /** Signed release whose provenance identifies one exact rollback target. */
 export type RollbackSignedContentRelease = SignedContentRelease & {
   readonly manifest: SignedContentRelease["manifest"] & {
@@ -169,7 +184,6 @@ export type RollbackSignedContentRelease = SignedContentRelease & {
     };
   };
 };
-
 /** Signed release contract accepted only for rollback-owned operations. */
 export const RollbackSignedContentReleaseSchema =
   SignedContentReleaseSchema.pipe(
@@ -182,6 +196,8 @@ export const RollbackSignedContentReleaseSchema =
 
 /** Checks that every staged head has exactly one matching item and artifact. */
 function hasCoherentVerificationCounts(input: {
+  readonly baseActiveAppLocales: typeof ActiveAppLocaleListSchema.Type | null;
+  readonly baseEditorialReviewDigest: typeof Sha256HashSchema.Type | null;
   readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
   readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
   readonly baseResultCount: number;
@@ -194,9 +210,12 @@ function hasCoherentVerificationCounts(input: {
   readonly stagedArtifacts: number;
   readonly upsertHeads: number;
 }) {
+  const hasBaseRelease = input.baseReleaseId !== null;
   return (
-    (input.baseReleaseId === null) === (input.baseManifestHash === null) &&
-    (input.baseReleaseId !== null ||
+    hasBaseRelease === (input.baseManifestHash !== null) &&
+    hasBaseRelease === (input.baseActiveAppLocales !== null) &&
+    hasBaseRelease === (input.baseEditorialReviewDigest !== null) &&
+    (hasBaseRelease ||
       (input.baseResultCount === 0 &&
         input.baseResultDigest === EMPTY_RESULT_CATALOG_DIGEST)) &&
     input.deleteHeads + input.upsertHeads === input.itemCount &&
@@ -208,30 +227,34 @@ function hasCoherentVerificationCounts(input: {
 
 /** Pre-activation evidence proving the fully staged release is coherent. */
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
+  activeAppLocales: ActiveAppLocaleListSchema,
+  baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
+  baseEditorialReviewDigest: Schema.NullOr(Sha256HashSchema),
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
-  baseResultCount: ProjectionCountSchema,
+  baseResultCount: ReleaseCountSchema,
   baseResultDigest: Sha256HashSchema,
-  deleteHeads: ProjectionCountSchema,
-  itemCount: ProjectionCountSchema,
+  deleteHeads: ReleaseCountSchema,
+  editorialReviewDigest: Sha256HashSchema,
+  itemCount: ReleaseCountSchema,
   itemsDigest: Sha256HashSchema,
   manifestHash: Sha256HashSchema,
-  projectionCount: ProjectionCountSchema,
+  projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
   rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
-  resultCount: ProjectionCountSchema,
+  resultCount: ReleaseCountSchema,
   resultDigest: Sha256HashSchema,
-  rollbackCount: ProjectionCountSchema,
+  rollbackCount: ReleaseCountSchema,
   rollbackDigest: Sha256HashSchema,
-  routeCount: ProjectionCountSchema,
+  routeCount: ReleaseCountSchema,
   routeDigest: Sha256HashSchema,
   snapshots: ContentSnapshotSetSchema,
-  stagedArtifacts: ProjectionCountSchema,
-  stagedRoutes: ProjectionCountSchema,
-  stagedSnapshotRows: ProjectionCountSchema,
-  upsertHeads: ProjectionCountSchema,
+  stagedArtifacts: ReleaseCountSchema,
+  stagedRoutes: ReleaseCountSchema,
+  stagedSnapshotRows: ReleaseCountSchema,
+  upsertHeads: ReleaseCountSchema,
 }).pipe(
   Schema.filter(hasCoherentVerificationCounts, {
     message: () =>
@@ -264,20 +287,22 @@ export type ReleaseVerificationStatus =
 
 /** Delta evidence returned after a release is staged and activated. */
 export const PublicationReceiptSchema = Schema.Struct({
-  activatedHeads: ProjectionCountSchema,
-  deletedHeads: ProjectionCountSchema,
+  activatedHeads: ReleaseCountSchema,
+  activeAppLocales: ActiveAppLocaleListSchema,
+  deletedHeads: ReleaseCountSchema,
+  editorialReviewDigest: Sha256HashSchema,
   manifestHash: Sha256HashSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
-  resultCount: ProjectionCountSchema,
+  resultCount: ReleaseCountSchema,
   resultDigest: Sha256HashSchema,
   routeDigest: Sha256HashSchema,
   snapshots: ContentSnapshotSetSchema,
-  stagedArtifacts: ProjectionCountSchema,
-  stagedItems: ProjectionCountSchema,
-  stagedProjections: ProjectionCountSchema,
-  stagedRoutes: ProjectionCountSchema,
-  stagedSnapshotRows: ProjectionCountSchema,
+  stagedArtifacts: ReleaseCountSchema,
+  stagedItems: ReleaseCountSchema,
+  stagedProjections: ReleaseCountSchema,
+  stagedRoutes: ReleaseCountSchema,
+  stagedSnapshotRows: ReleaseCountSchema,
 }).pipe(
   Schema.filter(
     (receipt) =>

@@ -180,7 +180,7 @@ The relevant framework constraints are documented in the Next.js
 [lazy-loading guide](https://nextjs.org/docs/app/guides/lazy-loading) and
 [`connection()` reference](https://nextjs.org/docs/app/api-reference/functions/connection).
 
-V1 enforces UTF-8 ceilings at compilation and signing: 128 KiB raw MDX, 256 KiB
+The current contract enforces UTF-8 ceilings at compilation and signing: 128 KiB raw MDX, 256 KiB
 compiled code, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
 artifact wire value. The Nakafa Convex adapter must also enforce a 512 KiB
 complete stored-row ceiling with Convex's official size calculation and a

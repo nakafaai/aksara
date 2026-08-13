@@ -26,7 +26,9 @@ export function receiptFor(signedRelease: SignedContentRelease) {
   const { manifest } = signedRelease;
   return {
     activatedHeads: manifest.upsertCount,
+    activeAppLocales: manifest.activeAppLocales,
     deletedHeads: manifest.deleteCount,
+    editorialReviewDigest: manifest.editorialReviewDigest,
     manifestHash: signedRelease.manifestHash,
     projectionDigest: manifest.projectionDigest,
     releaseId: manifest.releaseId,
@@ -44,7 +46,9 @@ export function receiptFor(signedRelease: SignedContentRelease) {
 
 export const receipt = {
   activatedHeads: 1,
+  activeAppLocales: ["en", "id"],
   deletedHeads: 0,
+  editorialReviewDigest: manifestHash,
   manifestHash,
   projectionDigest,
   releaseId,
@@ -64,11 +68,15 @@ const status = { manifestHash, phase: "staging", releaseId };
 export const evidence = Schema.decodeUnknownSync(
   ReleaseVerificationEvidenceSchema
 )({
+  activeAppLocales: ["en", "id"],
+  baseActiveAppLocales: null,
+  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteHeads: 0,
+  editorialReviewDigest: manifestHash,
   itemCount: 1,
   itemsDigest: manifestHash,
   manifestHash,
@@ -137,11 +145,11 @@ export const successes = [
       heads: [
         {
           artifactHash: manifestHash,
+          artifactLocale: "en",
           compilerConfigHash: manifestHash,
           contentKey: "test:transport",
           delivery: "public",
           family: "material",
-          locale: "en",
           projectionHash: projectionDigest,
           publicPath: "subjects/test/transport",
           rendererDomain: "mathematics",

@@ -37,8 +37,8 @@ const upgradedManifest = await Effect.runPromise(
   createRendererManifest(manifestInput(2))
 );
 const baseRequest = {
+  artifactLocale: "en",
   contentKey: "test:incremental",
-  locale: "en",
   rawMdx: RAW_MDX,
   rendererDomain: "mathematics",
   rendererManifest,
@@ -71,8 +71,8 @@ describe("incremental compilation", () => {
     const unchanged = await runIncremental(baseRequest, first.cache);
 
     expect(first.cache.identity).toMatchObject({
+      artifactLocale: baseRequest.artifactLocale,
       contentKey: baseRequest.contentKey,
-      locale: baseRequest.locale,
       rendererDomain: baseRequest.rendererDomain,
       sourcePath: baseRequest.sourcePath,
     });
@@ -91,7 +91,7 @@ describe("incremental compilation", () => {
     const first = await runIncremental(baseRequest);
     const changedRequests = [
       { ...baseRequest, contentKey: "test:incremental-other" },
-      { ...baseRequest, locale: "id" },
+      { ...baseRequest, artifactLocale: "id" },
       {
         ...baseRequest,
         sourcePath: "packages/corpus/test/other/en.mdx",

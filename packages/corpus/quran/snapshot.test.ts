@@ -1,28 +1,39 @@
-import { QuranSnapshotRowSchema } from "@nakafa/aksara-contracts/quran/spec";
+import { resolve } from "node:path";
+
+import { NodeContext } from "@effect/platform-node";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { QuranSnapshotRowSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import { Chunk, Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareQuranSnapshot } from "#corpus/quran/snapshot";
 
+const editorialReviewDigest = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
+const checkoutRoot = resolve(import.meta.dirname, "../../..");
+
 describe("Quran snapshot preparation", () => {
   it("binds every exact structured row to one reproducible snapshot", async () => {
-    const snapshot = await Effect.runPromise(prepareQuranSnapshot());
+    const snapshot = await Effect.runPromise(
+      prepareQuranSnapshot({ checkoutRoot, editorialReviewDigest }).pipe(
+        Effect.provide(NodeContext.layer)
+      )
+    );
     const rows = Chunk.toReadonlyArray(
       await Effect.runPromise(Stream.runCollect(snapshot.rows()))
     );
 
     expect(snapshot.manifest).toMatchObject({
       projectionDigest:
-        "sha256:e73bd9536a91b494460a92b07b9811abc417bd2543be6837d96056cbe6b9119f",
+        "sha256:5ea9c0dbdcbb4e5adf379a7aad44bcd79b608054276e1e70085b819f36eb9bfb",
       provenanceDigest:
-        "sha256:f275488f9dd9de22a618d282da0f1197e97f19ca8dc2b37304ac4046e68078c8",
+        "sha256:a8e8876015edb2c8d21738c9ce7a0f46f7f7bf1665dc63a52150ac715a21c96b",
       provenanceStatus: "approved",
       runtimeDigest:
-        "sha256:9df742a47aef3647934f4465846313ae1b616ba5d74f17f606c8803a359fa2e9",
+        "sha256:69177909768686d239d5920ede44b59b3ae8ef79c24325554569e16f2b0e2ec0",
       searchCount: 228,
       searchDigest:
-        "sha256:adbb16b3c93cc1b1b7dad66f663c1b53b03e368b9edd1f7114ec4401c7d46661",
+        "sha256:103398dedd49e343d59d2cb0daecaaa5c5f8e0fa8a590b091bd0392c038219a8",
       snapshotId:
-        "sha256:7ffd14d8a77d23de6243a3ba39e653b453c5a18b2d5b728c044a29d3ade98f55",
+        "sha256:af73d2e4d40ac198fc8cc902de50a125de597a6561fa799b731623d5a3c6ab35",
       sourceBytes: 11_506_941,
       sourceDigest:
         "sha256:73e50fb15aac4cd95c86151cc43f002b5c76986584846e16d171bd0be99f58d7",

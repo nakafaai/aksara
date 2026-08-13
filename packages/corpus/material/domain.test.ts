@@ -1,3 +1,4 @@
+import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
@@ -61,7 +62,9 @@ describe("material domain registry", () => {
     );
 
     expect(descriptor.rendererDomain).toBe("physics");
-    expect(materialDomainRoute(descriptor, "id")).toBe("ilmu-bumi");
+    expect(
+      materialDomainRoute(descriptor, ActiveAppLocaleSchema.make("id"))
+    ).toBe("ilmu-bumi");
   });
 
   it("rejects malformed descriptor input", async () => {

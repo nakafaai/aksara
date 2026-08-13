@@ -1,6 +1,9 @@
 /** Maximum UTF-8 bytes accepted for one authored MDX source. */
 export const MAX_RAW_MDX_BYTES = 128 * 1024;
 
+/** Maximum UTF-8 bytes accepted for one reviewed immutable official source. */
+export const MAX_REVIEWED_OFFICIAL_SOURCE_BYTES = 4 * 1024 * 1024;
+
 /** Maximum UTF-8 bytes accepted for one emitted MDX function body. */
 export const MAX_COMPILED_CODE_BYTES = 256 * 1024;
 

@@ -15,10 +15,12 @@ import {
 } from "#test/question/spec";
 
 const promptEntry = questionEntries.find(
-  ({ bodyKind, locale }) => bodyKind === "question" && locale === "en"
+  ({ bodyKind, artifactLocale }) =>
+    bodyKind === "question" && artifactLocale === "en"
 );
 const answerEntry = questionEntries.find(
-  ({ bodyKind, locale }) => bodyKind === "answer" && locale === "en"
+  ({ bodyKind, artifactLocale }) =>
+    bodyKind === "answer" && artifactLocale === "en"
 );
 if (!(promptEntry && answerEntry)) {
   throw new Error("Expected the real English question and answer entries.");
@@ -66,7 +68,7 @@ describe("question document", () => {
     ).toBe(true);
   });
 
-  it("keeps canonical locale choices only on the prompt projection", async () => {
+  it("keeps canonical artifactLocale choices only on the prompt projection", async () => {
     const [promptSource, answerSource] = await Effect.runPromise(
       Effect.all([load(promptEntry), load(answerEntry)])
     );

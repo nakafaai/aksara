@@ -1,8 +1,7 @@
-import { globSync, readFileSync } from "node:fs";
+import { globSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import { Effect, Layer } from "effect";
-import { QUESTION_SOURCE_FILES } from "#corpus/question-bank/path";
 
 export const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
 
@@ -24,6 +23,29 @@ export interface QuestionDirectoryRead {
   readonly recursive: boolean;
 }
 
+/** Creates a deterministic synthetic question filesystem for source tests. */
+export function makeQuestionSourceLayer(
+  directoryEntries: readonly string[],
+  sourceFiles: ReadonlyMap<string, string>,
+  failDirectory = false
+) {
+  return FileSystem.layerNoop({
+    readDirectory: (path) => {
+      if (failDirectory) {
+        return Effect.fail(missing("readDirectory", path));
+      }
+      return Effect.succeed([...directoryEntries]);
+    },
+    readFileString: (path) => {
+      const source = sourceFiles.get(path);
+      if (source === undefined) {
+        return Effect.fail(missing("readFileString", path));
+      }
+      return Effect.succeed(source);
+    },
+  });
+}
+
 /** Creates a path-faithful question filesystem with optional read evidence. */
 export function makeQuestionLayer(
   directoryReads: QuestionDirectoryRead[] = []
@@ -40,7 +62,7 @@ export function makeQuestionLayer(
         !recursive &&
         QUESTION_DIRECTORY_PATTERN.test(path)
       ) {
-        return Effect.succeed([...QUESTION_SOURCE_FILES]);
+        return Effect.succeed(readdirSync(path).sort());
       }
       return Effect.fail(missing("readDirectory", path));
     },

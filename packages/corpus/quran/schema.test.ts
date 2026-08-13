@@ -1,13 +1,12 @@
+import { ACTIVE_APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
 import {
-  QURAN_LOCALES,
   QURAN_SURAH_COUNT,
-  QURAN_TAFSIR_LOCALES,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Chunk, Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { QuranSurahSchema } from "#corpus/quran/schema";
-import { quranSurahSourceStream } from "#corpus/quran/source/stream";
+import { testQuranSources } from "#corpus/test/quran";
 
 const decodeSurah = Schema.decodeUnknown(QuranSurahSchema);
 
@@ -24,11 +23,8 @@ function reject(source: unknown) {
 }
 
 /** Returns the first real decoded surah for isolated schema failures. */
-async function firstSurah() {
-  const sources = await Effect.runPromise(
-    quranSurahSourceStream.pipe(Stream.take(1), Stream.runCollect)
-  );
-  const [source] = Chunk.toReadonlyArray(sources);
+function firstSurah() {
+  const [source] = testQuranSources;
   if (source === undefined) {
     throw new Error("Expected the reviewed Quran source to contain a surah.");
   }
@@ -38,7 +34,7 @@ async function firstSurah() {
 describe("Quran schema", () => {
   it("strictly decodes all 114 surahs and 6,236 verses", async () => {
     const surahs = await Effect.runPromise(
-      quranSurahSourceStream.pipe(
+      Stream.fromIterable(testQuranSources).pipe(
         Stream.mapEffect((source) =>
           decodeSurah(source, { onExcessProperty: "error" })
         ),
@@ -51,8 +47,7 @@ describe("Quran schema", () => {
     expect(
       values.reduce((count, surah) => count + surah.verses.length, 0)
     ).toBe(QURAN_VERSE_COUNT);
-    expect(QURAN_LOCALES).toEqual(["en", "id"]);
-    expect(QURAN_TAFSIR_LOCALES).toEqual(["id"]);
+    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id"]);
     expect(
       values.every(({ verses }) =>
         verses.every(({ tafsir }) => Object.keys(tafsir).length === 1)

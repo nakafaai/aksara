@@ -1,4 +1,5 @@
-import { Effect } from "effect";
+import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
+import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -40,8 +41,8 @@ describe("curriculum route projection", () => {
     );
     expect(
       routes.find(
-        ({ locale, programKey, publicPath }) =>
-          locale === "en" &&
+        ({ appLocale, programKey, publicPath }) =>
+          appLocale === "en" &&
           programKey === "merdeka" &&
           publicPath.endsWith(
             "/mathematics/linear-equation-inequality/linear-equation-inequality"
@@ -96,5 +97,33 @@ describe("curriculum route projection", () => {
     );
 
     expect(error).toMatchObject({ code: "curriculum" });
+  });
+
+  it("rejects a curriculum program without one active translation", async () => {
+    const [curricula, materials, programs] = await Effect.runPromise(
+      Effect.all([
+        decodeCurriculumCatalog(),
+        decodeMaterialSources(),
+        decodeProgramCatalog(),
+      ])
+    );
+    const programKey = curricula[0]?.programKey;
+    const changed = programs.map((program) =>
+      program.key === programKey
+        ? Schema.decodeUnknownSync(LearningProgramSchema)({
+            ...program,
+            translations: program.translations.filter(
+              ({ appLocale }) => appLocale !== "id"
+            ),
+          })
+        : program
+    );
+    const error = await Effect.runPromise(
+      projectCurriculumRoutes({ curricula, materials, programs: changed }).pipe(
+        Effect.flip
+      )
+    );
+
+    expect(error).toMatchObject({ code: "translation", value: "id" });
   });
 });

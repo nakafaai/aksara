@@ -1,226 +1,119 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 
-import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
-import { digestProgramRows } from "#contracts/program/row-digest";
-import { hashProgramSnapshot } from "#contracts/program/snapshot/hash";
-import {
-  PROGRAM_SNAPSHOT_FORMAT,
-  ProgramSnapshotSchema,
-} from "#contracts/program/snapshot/spec";
+import { ACTIVE_APP_LOCALES } from "#contracts/locale";
+import { digestProgramRows } from "#contracts/program/snapshot/digest";
+import { makeProgramSnapshot } from "#contracts/program/snapshot/hash";
+import { digestQuranRows } from "#contracts/quran/snapshot/digest";
+import { makeQuranSnapshot } from "#contracts/quran/snapshot/hash";
+import { bindQuranRow } from "#contracts/quran/snapshot/row-hash";
+import { quranSourceFileCount } from "#contracts/quran/source";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "#contracts/release/snapshot/data";
-import { makeTestProgramRecords } from "#contracts/test/program";
-import { makeQuranTestData } from "#contracts/test/quran";
+import { makeProgramTestRecords } from "#contracts/test/program";
+import { quranTestPayloads } from "#contracts/test/quran";
+import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
   compareTryoutCatalog,
-  compareTryoutPlacements,
-} from "#contracts/tryout/identity";
-import {
   digestTryoutCatalog,
-  digestTryoutPlacements,
-  makeTryoutCatalogRecord,
-  makeTryoutPlacementRecord,
-} from "#contracts/tryout/row-hash";
+} from "#contracts/tryout/catalog-hash";
+import { compareTryoutPlacements } from "#contracts/tryout/identity";
+import { digestTryoutPlacements } from "#contracts/tryout/placement-hash";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
-import {
-  TryoutCatalogRowSchema,
-  TryoutContentHashSchema,
-  TryoutPlacementSchema,
-} from "#contracts/tryout/spec";
 
-const sourceHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const contentHash = TryoutContentHashSchema.make("c".repeat(64));
+const reviewDigest = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
+const sourceDigest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const provisionalQuranId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 
-/** Builds a test-owned graph identity for one try-out hierarchy row. */
-function tryoutGraph(locale: ContentLocale, kind: string) {
+/** Counts hierarchy rows without hardcoding a corpus inventory. */
+function tryoutCounts(rows: ReturnType<typeof makeTryoutTestRows>["catalog"]) {
   return {
-    alignmentId: `alignment:tryout:test:${kind}`,
-    assetId: `asset:${locale}:tryout:test:${kind}`,
-    conceptId: `concept:tryout:test:${kind}`,
-    learningObjectId: `lo:tryout-test-${kind}`,
-    lensId: "lens:tryout:test",
+    country: rows.filter(({ row }) => row.kind === "country").length,
+    exam: rows.filter(({ row }) => row.kind === "exam").length,
+    section: rows.filter(({ row }) => row.kind === "section").length,
+    set: rows.filter(({ row }) => row.kind === "set").length,
+    track: rows.filter(({ row }) => row.kind === "track").length,
   };
 }
 
-/** Builds both locale variants for every try-out hierarchy kind. */
-function tryoutCatalog() {
-  const rows = ContentLocaleSchema.literals.flatMap((locale) => {
-    const root = locale === "en" ? "try-out" : "uji-coba";
-    const common = {
-      locale,
-      sourceRevision: "test-revision",
-      title: "Test-only title",
-    };
-    return [
-      {
-        ...common,
-        countryCode: "ID",
-        countryKey: "indonesia",
-        graph: tryoutGraph(locale, "country"),
-        kind: "country",
-        order: 1,
-        publicPath: `${root}/indonesia`,
-      },
-      {
-        ...common,
-        countryKey: "indonesia",
-        examKey: "snbt",
-        graph: tryoutGraph(locale, "exam"),
-        kind: "exam",
-        order: 1,
-        publicPath: `${root}/indonesia/snbt`,
-        scoringStrategy: "irt",
-      },
-      {
-        ...common,
-        countryKey: "indonesia",
-        examKey: "snbt",
-        graph: tryoutGraph(locale, "track"),
-        kind: "track",
-        order: 1,
-        publicPath: `${root}/indonesia/snbt/2027`,
-        questionCount: 1,
-        sectionCount: 1,
-        setCount: 1,
-        trackKey: "2027",
-        trackKind: "year",
-        visibleSectionCount: 0,
-      },
-      {
-        ...common,
-        countryKey: "indonesia",
-        examKey: "snbt",
-        graph: tryoutGraph(locale, "set"),
-        internalEntrySectionKey: "quantitative-knowledge",
-        kind: "set",
-        order: 1,
-        publicPath: `${root}/indonesia/snbt/2027/set-1`,
-        questionCount: 1,
-        scoringStrategy: "irt",
-        sectionCount: 1,
-        setKey: "set-1",
-        trackKey: "2027",
-        visibleSectionCount: 0,
-      },
-      {
-        ...common,
-        countryKey: "indonesia",
-        examKey: "snbt",
-        graph: tryoutGraph(locale, "section"),
-        kind: "section",
-        order: 1,
-        questionCount: 1,
-        questionSourcePath:
-          "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1",
-        sectionKey: "quantitative-knowledge",
-        setKey: "set-1",
-        timeLimitSeconds: 60,
-        trackKey: "2027",
-        visibility: "internal-entry",
-      },
-    ];
-  });
-  return Schema.decodeUnknownSync(Schema.Array(TryoutCatalogRowSchema))(rows);
-}
-
-/** Builds one localized, artifact-bound test placement. */
-function tryoutPlacement(locale: ContentLocale) {
-  return Schema.decodeUnknownSync(TryoutPlacementSchema)({
-    answerArtifactHash: sourceHash,
-    answerContentKey:
-      "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer",
-    choices: [
-      {
-        isCorrect: true,
-        label: "Test-only choice",
-        optionKey: "option-1",
-        order: 1,
-      },
-    ],
-    contentHash,
-    countryKey: "indonesia",
-    examKey: "snbt",
-    locale,
-    questionArtifactHash: sourceHash,
-    questionContentKey:
-      "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question",
-    questionOrder: 1,
-    questionSourcePath:
-      "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1",
-    rendererDomain: "snbt-quant",
-    scope: "server",
-    sectionKey: "quantitative-knowledge",
-    setKey: "set-1",
-    sourceRevision: "test-revision",
-    title: "Test-only question",
-    trackKey: "2027",
-  });
-}
-
-/** Prepares complete test-only manifests and authenticated rows. */
+/** Prepares complete current structured snapshot fixtures for all families. */
 export const makeSnapshotTestData = Effect.fn(
   "AksaraContracts.makeSnapshotTestData"
 )(function* () {
-  const { curriculumRecords, programRecords } = yield* makeTestProgramRecords();
-  const aggregateRecords = [...programRecords, ...curriculumRecords];
-  const programSummary = yield* digestProgramRows(
-    Stream.fromIterable(aggregateRecords)
-  );
-  const programInput = {
-    format: PROGRAM_SNAPSHOT_FORMAT,
-    locales: ContentLocaleSchema.literals,
+  const programRecords = yield* makeProgramTestRecords();
+  const programSummary = yield* digestProgramRows({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    rows: Stream.fromIterable(programRecords),
+  });
+  const programManifest = yield* makeProgramSnapshot({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    editorialReviewDigest: reviewDigest,
     ...programSummary,
-  } as const;
-  const programId = yield* hashProgramSnapshot(programInput);
-  const programManifest = ProgramSnapshotSchema.make({
-    ...programInput,
-    snapshotId: programId,
   });
 
-  const quran = yield* makeQuranTestData();
+  const quranPayloads = quranTestPayloads();
+  const provisionalQuranRecords = yield* Effect.forEach(
+    quranPayloads,
+    (payload) => bindQuranRow(provisionalQuranId, payload)
+  );
+  const quranSummary = yield* digestQuranRows({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    rows: Stream.fromIterable(provisionalQuranRecords),
+  });
+  const quranManifest = yield* makeQuranSnapshot({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    editorialReviewDigest: reviewDigest,
+    provenanceDigest: sourceDigest,
+    provenanceStatus: "blocked",
+    sourceBytes: 11_506_941,
+    sourceDigest,
+    sourceFileCount: quranSourceFileCount(ACTIVE_APP_LOCALES),
+    surahCount: 114,
+    tafsirLocales: ["id"],
+    verseCount: 6236,
+    ...quranSummary,
+  });
+  const quranRecords = yield* Effect.forEach(quranPayloads, (payload) =>
+    bindQuranRow(quranManifest.snapshotId, payload)
+  );
 
-  const catalogRecords = tryoutCatalog()
-    .map(makeTryoutCatalogRecord)
-    .sort((left, right) => compareTryoutCatalog(left.row, right.row));
-  const placementRecords = ContentLocaleSchema.literals
-    .map(tryoutPlacement)
-    .map(makeTryoutPlacementRecord)
-    .sort((left, right) => compareTryoutPlacements(left.row, right.row));
+  const tryout = makeTryoutTestRows();
+  const catalog = [...tryout.catalog].sort((left, right) =>
+    compareTryoutCatalog(left.row, right.row)
+  );
+  const placements = [...tryout.placements].sort((left, right) =>
+    compareTryoutPlacements(left.row, right.row)
+  );
   const [catalogSummary, placementSummary] = yield* Effect.all([
-    digestTryoutCatalog(Stream.fromIterable(catalogRecords)),
-    digestTryoutPlacements(Stream.fromIterable(placementRecords)),
+    digestTryoutCatalog(Stream.fromIterable(catalog)),
+    digestTryoutPlacements(Stream.fromIterable(placements)),
   ]);
   const tryoutManifest = makeTryoutSnapshot({
+    activeAppLocales: ACTIVE_APP_LOCALES,
     catalogDigest: catalogSummary.digest,
-    counts: { country: 2, exam: 2, section: 2, set: 2, track: 2 },
-    format: "tryout-v1",
-    locales: ContentLocaleSchema.literals,
+    counts: tryoutCounts(tryout.catalog),
+    editorialReviewDigest: reviewDigest,
     placementCount: placementSummary.count,
     placementDigest: placementSummary.digest,
-    routeCount: 8,
+    routeCount: tryout.catalog.filter(
+      ({ row }) => "publicPath" in row && row.publicPath !== undefined
+    ).length,
   });
 
   const manifests: readonly ContentSnapshotManifest[] = [
     { family: "program", manifest: programManifest },
-    { family: "quran", manifest: quran.manifest },
+    { family: "quran", manifest: quranManifest },
     { family: "tryout", manifest: tryoutManifest },
   ];
   const rows: readonly ContentSnapshotRow[] = [
-    ...aggregateRecords.map(
-      (record) =>
-        ({
-          family: "program",
-          record,
-        }) as const
-    ),
-    ...quran.records.map((record) => ({ family: "quran", record }) as const),
-    ...catalogRecords.map(
+    ...programRecords.map((record) => ({ family: "program", record }) as const),
+    ...quranRecords.map((record) => ({ family: "quran", record }) as const),
+    ...catalog.map(
       (record) => ({ family: "tryout", record, rowKind: "catalog" }) as const
     ),
-    ...placementRecords.map(
+    ...placements.map(
       (record) => ({ family: "tryout", record, rowKind: "placement" }) as const
     ),
   ];

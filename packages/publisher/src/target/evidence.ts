@@ -1,13 +1,13 @@
-import type { ReleaseVerificationEvidence } from "@nakafa/aksara-contracts/release";
-import {
-  ContentSnapshotKindSchema,
-  snapshotRowCount,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { StageBatchReceipt } from "@nakafa/aksara-contracts/transport/batch";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 import type { StageSnapshotBatchReceipt } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Match } from "effect";
+
+import {
+  hasBoundManifestReceipt,
+  hasBoundVerification,
+} from "#publisher/target/release-evidence";
 
 type StageBatchRequest = Extract<
   PublicationRequest,
@@ -63,37 +63,6 @@ function hasBoundSnapshotBatchReceipt(
   );
 }
 
-/** Checks every fixed structured-family transition field for exact equality. */
-function hasBoundSnapshots(
-  expected: VerifyRequest["release"]["manifest"]["snapshots"],
-  actual: ReleaseVerificationEvidence["snapshots"]
-) {
-  return ContentSnapshotKindSchema.literals.every((family) => {
-    const expectedState = expected[family];
-    const actualState = actual[family];
-    return (
-      actualState.baseSnapshotId === expectedState.baseSnapshotId &&
-      actualState.mode === expectedState.mode &&
-      actualState.resultSnapshotId === expectedState.resultSnapshotId &&
-      actualState.rowCount === expectedState.rowCount &&
-      actualState.rowDigest === expectedState.rowDigest
-    );
-  });
-}
-
-type VerifyRequest = Extract<PublicationRequest, { operation: "verify" }>;
-type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;
-type ActivateRequest = Extract<PublicationRequest, { operation: "activate" }>;
-type ActivateSuccess = Extract<PublicationSuccess, { operation: "activate" }>;
-type RecoveryRequest = Extract<
-  PublicationRequest,
-  { operation: "activateRecovery" }
->;
-type RecoverySuccess = Extract<
-  PublicationSuccess,
-  { operation: "activateRecovery" }
->;
-
 /** Binds one head page to its active release, scope, cursor, and row ceiling. */
 function hasBoundHeadPage(
   request: Extract<PublicationRequest, { operation: "headPage" }>,
@@ -121,30 +90,6 @@ function hasBoundRecovery(
     manifest.releaseId === request.recoveryId &&
     manifest.origin.kind === "rollback" &&
     manifest.origin.releaseId === request.releaseId
-  );
-}
-
-/** Binds one publication receipt to every signed manifest field it reports. */
-function hasBoundManifestReceipt(
-  request: ActivateRequest["release"] | RecoveryRequest["release"],
-  receipt: ActivateSuccess["value"] | RecoverySuccess["value"]
-) {
-  const { manifest } = request;
-  return (
-    receipt.releaseId === manifest.releaseId &&
-    receipt.manifestHash === request.manifestHash &&
-    receipt.activatedHeads === manifest.upsertCount &&
-    receipt.deletedHeads === manifest.deleteCount &&
-    receipt.projectionDigest === manifest.projectionDigest &&
-    receipt.resultCount === manifest.resultCount &&
-    receipt.resultDigest === manifest.resultDigest &&
-    receipt.routeDigest === manifest.routeDigest &&
-    receipt.stagedArtifacts === manifest.upsertCount &&
-    receipt.stagedItems === manifest.itemCount &&
-    receipt.stagedProjections === manifest.projectionCount &&
-    receipt.stagedRoutes === manifest.routeCount &&
-    receipt.stagedSnapshotRows === snapshotRowCount(manifest.snapshots) &&
-    hasBoundSnapshots(manifest.snapshots, receipt.snapshots)
   );
 }
 
@@ -197,41 +142,6 @@ function hasBoundRoutePage(
     page.rollbackOfManifestHash === request.rollbackOfManifestHash &&
     page.records.length <= request.limit &&
     page.nextIndex === request.afterIndex + page.records.length
-  );
-}
-
-/** Binds durable verification progress to one exact signed manifest. */
-function hasBoundVerification(request: VerifyRequest, response: VerifySuccess) {
-  const { manifest, manifestHash } = request.release;
-  const verification = response.value;
-  if (verification.phase === "verifying") {
-    return (
-      verification.releaseId === manifest.releaseId &&
-      verification.manifestHash === manifestHash
-    );
-  }
-  const { evidence } = verification;
-  return (
-    evidence.releaseId === manifest.releaseId &&
-    evidence.manifestHash === manifestHash &&
-    evidence.baseManifestHash === manifest.baseManifestHash &&
-    evidence.baseReleaseId === manifest.baseReleaseId &&
-    evidence.baseResultCount === manifest.baseResultCount &&
-    evidence.baseResultDigest === manifest.baseResultDigest &&
-    evidence.itemCount === manifest.itemCount &&
-    evidence.itemsDigest === manifest.itemsDigest &&
-    evidence.projectionCount === manifest.projectionCount &&
-    evidence.projectionDigest === manifest.projectionDigest &&
-    evidence.resultCount === manifest.resultCount &&
-    evidence.resultDigest === manifest.resultDigest &&
-    evidence.rollbackCount === manifest.rollbackCount &&
-    evidence.rollbackDigest === manifest.rollbackDigest &&
-    evidence.routeCount === manifest.routeCount &&
-    evidence.routeDigest === manifest.routeDigest &&
-    evidence.stagedRoutes === manifest.routeCount &&
-    evidence.stagedSnapshotRows === snapshotRowCount(manifest.snapshots) &&
-    hasBoundSnapshots(manifest.snapshots, evidence.snapshots) &&
-    evidence.rendererManifestHash === manifest.rendererManifestHash
   );
 }
 

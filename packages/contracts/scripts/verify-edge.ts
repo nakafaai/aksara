@@ -6,11 +6,17 @@ import ts from "typescript";
 import { parseInstalledManifest } from "#scripts/manifest";
 
 export const EDGE_CONTRACT_EXPORTS = [
+  "graph/family",
+  "history/decode",
   "release/canonical",
   "release/snapshot/data",
+  "renderer/compatibility",
+  "renderer/manifest",
   "transport/request",
   "transport/response",
   "transport/snapshot",
+  "tryout/catalog",
+  "tryout/identity",
 ] as const;
 const PRIVATE_PREFIX = "#contracts/";
 

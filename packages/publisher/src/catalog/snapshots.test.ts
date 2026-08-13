@@ -1,17 +1,12 @@
 import { NodeContext } from "@effect/platform-node";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ProgramSnapshotSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
-import {
-  QURAN_SNAPSHOT_FORMAT,
-  QuranSnapshotManifestSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot/spec";
-import { QURAN_SOURCE_FILE_COUNT } from "@nakafa/aksara-contracts/quran/source";
+import { QuranSnapshotSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import { quranSourceFileCount } from "@nakafa/aksara-contracts/quran/source";
 import {
   QURAN_ATTRIBUTION_COUNT,
-  QURAN_LOCALES,
-  QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
-  QURAN_TAFSIR_LOCALES,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
@@ -19,16 +14,19 @@ import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/has
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
+import { editorialReview } from "#test/publication";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranChunkCount = 1;
 const quranRuntimeCount =
   QURAN_ATTRIBUTION_COUNT + QURAN_SURAH_COUNT + quranChunkCount;
-const quranProjectionCount = quranRuntimeCount + QURAN_SEARCH_COUNT;
+const quranSearchCount = QURAN_SURAH_COUNT * ACTIVE_APP_LOCALES.length;
+const quranProjectionCount = quranRuntimeCount + quranSearchCount;
 const programManifest = ProgramSnapshotSchema.make({
+  activeAppLocales: ACTIVE_APP_LOCALES,
   curriculumRowCount: 390,
-  format: "program-v3",
-  locales: ["en", "id"],
+  editorialReviewDigest: hash,
+  format: "localized-program-snapshot",
   programRowCount: 6,
   rowCount: 396,
   rowDigest: hash,
@@ -36,32 +34,33 @@ const programManifest = ProgramSnapshotSchema.make({
   slugCount: 12,
   snapshotId: hash,
 });
-const quranManifest = QuranSnapshotManifestSchema.make({
+const quranManifest = QuranSnapshotSchema.make({
+  activeAppLocales: ACTIVE_APP_LOCALES,
   attributionCount: QURAN_ATTRIBUTION_COUNT,
   chunkCount: quranChunkCount,
-  format: QURAN_SNAPSHOT_FORMAT,
-  locales: QURAN_LOCALES,
+  editorialReviewDigest: hash,
+  format: "localized-quran-snapshot",
   projectionCount: quranProjectionCount,
   projectionDigest: hash,
   provenanceDigest: hash,
   provenanceStatus: "blocked",
   runtimeCount: quranRuntimeCount,
   runtimeDigest: hash,
-  searchCount: QURAN_SEARCH_COUNT,
+  searchCount: quranSearchCount,
   searchDigest: hash,
   snapshotId: hash,
   sourceBytes: 1,
   sourceDigest: hash,
-  sourceFileCount: QURAN_SOURCE_FILE_COUNT,
+  sourceFileCount: quranSourceFileCount(ACTIVE_APP_LOCALES),
   surahCount: QURAN_SURAH_COUNT,
-  tafsirLocales: QURAN_TAFSIR_LOCALES,
+  tafsirLocales: ["id"],
   verseCount: QURAN_VERSE_COUNT,
 });
 const tryoutManifest = makeTryoutSnapshot({
+  activeAppLocales: ACTIVE_APP_LOCALES,
   catalogDigest: hash,
   counts: { country: 2, exam: 2, section: 4, set: 2, track: 2 },
-  format: "tryout-v1",
-  locales: ["en", "id"],
+  editorialReviewDigest: hash,
   placementCount: 8,
   placementDigest: hash,
   routeCount: 10,
@@ -85,6 +84,16 @@ const control = vi.hoisted(
     verifyFailure: false,
   })
 );
+
+vi.mock("@nakafa/aksara-corpus/editorial/requirements", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    /** Supplies no article companions to the isolated snapshot catalog. */
+    loadArticleReviewRequirements: () => TestEffect.succeed([]),
+    /** Supplies no structured companions to the isolated snapshot catalog. */
+    loadStructuredReviewRequirements: () => TestEffect.succeed([]),
+  };
+});
 
 vi.mock("#publisher/snapshot/release", async () => {
   const { Effect: TestEffect, Stream: TestStream } = await import("effect");
@@ -135,6 +144,7 @@ function validate() {
     Effect.scoped(
       validateCatalogSnapshots({
         checkoutRoot: "/code/aksara",
+        editorialReview,
         questionHeads: () => Stream.empty,
         rendererManifest: {},
       })
@@ -157,7 +167,7 @@ describe("catalog snapshots", () => {
         provenanceDigest: hash,
         provenanceStatus: "blocked",
         runtimeCount: quranManifest.runtimeCount,
-        searchCount: QURAN_SEARCH_COUNT,
+        searchCount: quranSearchCount,
         snapshotId: hash,
         sourceDigest: hash,
       },
@@ -188,6 +198,7 @@ describe("catalog snapshots", () => {
           Effect.scoped(
             validateCatalogSnapshots({
               checkoutRoot: "/code/aksara",
+              editorialReview,
               questionHeads: () => Stream.empty,
               rendererManifest: {},
             })
@@ -214,6 +225,7 @@ describe("catalog snapshots", () => {
           Effect.scoped(
             validateCatalogSnapshots({
               checkoutRoot: "/code/aksara",
+              editorialReview,
               questionHeads: () => Stream.empty,
               rendererManifest: {},
             })

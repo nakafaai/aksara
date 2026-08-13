@@ -9,7 +9,10 @@ import {
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
-import { SignedContentReleaseSchema } from "#contracts/release/spec";
+import {
+  type SignedContentRelease,
+  SignedContentReleaseSchema,
+} from "#contracts/release/spec";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
 
@@ -61,6 +64,29 @@ function validateManifestHash(
   );
 }
 
+/** Authenticates one already decoded current release. */
+const authenticateRelease = Effect.fn("AksaraContracts.authenticateRelease")(
+  function* (release: SignedContentRelease) {
+    const actualHash = yield* hashContentReleaseManifest(release.manifest);
+    yield* validateManifestHash(
+      release.manifest.releaseId,
+      release.manifestHash,
+      actualHash
+    );
+    const message = canonicalizeContentReleaseSigningInput(
+      release.manifestHash,
+      release.manifest
+    );
+    yield* verifyEd25519Signature({
+      keyId: release.keyId,
+      message,
+      signature: release.signature,
+      subject: "release",
+    });
+    return release;
+  }
+);
+
 /** Strictly decodes and authenticates one complete release envelope. */
 export const verifySignedContentRelease = Effect.fn(
   "AksaraContracts.verifySignedContentRelease"
@@ -75,26 +101,7 @@ export const verifySignedContentRelease = Effect.fn(
             "Release verification input does not satisfy its exact wire contract.",
         })
     ),
-    Effect.flatMap((release) =>
-      Effect.gen(function* () {
-        const actualHash = yield* hashContentReleaseManifest(release.manifest);
-        yield* validateManifestHash(
-          release.manifest.releaseId,
-          release.manifestHash,
-          actualHash
-        );
-        yield* verifyEd25519Signature({
-          keyId: release.keyId,
-          message: canonicalizeContentReleaseSigningInput(
-            release.manifestHash,
-            release.manifest
-          ),
-          signature: release.signature,
-          subject: "release",
-        });
-        return release;
-      })
-    )
+    Effect.flatMap(authenticateRelease)
   )
 );
 

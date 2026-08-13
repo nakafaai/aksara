@@ -45,11 +45,11 @@ function makeArticleHead(record: PreparedContentUpsert): ArticleHead {
   const { change, payload, projection } = record;
   return ArticleHeadSchema.make({
     artifactHash: change.artifactHash,
+    artifactLocale: change.artifactLocale,
     compilerConfigHash: payload.compilerConfigHash,
     contentKey: change.contentKey,
     delivery: change.delivery,
     family: "article",
-    locale: change.locale,
     projectionHash: hashContentProjection(projection),
     publicPath: projectionPublicPath(projection),
     rendererDomain: change.rendererDomain,
@@ -66,9 +66,9 @@ function priorArticle(head: ArticleHead): RollbackSnapshotState {
 /** Proves one newly authored article head had no prior active state. */
 function absentArticle(entry: ArticleEntry): RollbackSnapshotState {
   return {
+    artifactLocale: entry.route.artifactLocale,
     contentKey: entry.route.contentKey,
     family: "article",
-    locale: entry.route.locale,
     state: "absent",
   };
 }

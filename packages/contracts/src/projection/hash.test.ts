@@ -5,10 +5,11 @@ import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { materialGraph } from "#contracts/test/graph";
 
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  appLocale: "en",
+  artifactLocale: "en",
   contentKey: "test:projection",
   graph: materialGraph("en", "test", "projection", "test-projection"),
   kind: "subject-lesson",
-  locale: "en",
   materialKey: "lesson.test.projection",
   metadata: {
     authors: [{ name: "Nakafa" }],
@@ -28,7 +29,7 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
 describe("content projection hash", () => {
   it("hashes canonical projection bytes with one stable identity", () => {
     expect(hashContentProjection(projection)).toBe(
-      "sha256:8f5ea50020652fd2608bc5aab52a63f8feda4d24d29301eb1b808e24b02a7b5f"
+      "sha256:05bab2b9b369637397ace78a0062f69467037e3179aba8cdcf67baac66db0bbf"
     );
   });
 });

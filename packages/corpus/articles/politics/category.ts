@@ -5,6 +5,7 @@
 export const politicsArticleCategory = Object.freeze({
   key: "politics",
   rendererDomain: "politics",
+  routeSlugs: Object.freeze({ en: "politics", id: "politics" }),
   titles: Object.freeze({
     en: "Politics",
     id: "Politik",

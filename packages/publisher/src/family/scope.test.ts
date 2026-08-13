@@ -1,5 +1,6 @@
 import type { ContentHeadIdentity } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Stream } from "effect";
@@ -7,11 +8,11 @@ import { describe, expect, it } from "vitest";
 import { diffScopedFamilyHeads } from "#publisher/family/scope";
 
 const entry = {
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   contentKey: ContentKeySchema.make("test:family"),
-  locale: "en",
 } satisfies ContentHeadIdentity;
 
-/** Selects the stable locale identity carried directly by one test entry. */
+/** Selects the stable artifactLocale identity carried directly by one test entry. */
 function identity(value: ContentHeadIdentity) {
   return value;
 }

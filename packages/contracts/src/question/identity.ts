@@ -1,10 +1,10 @@
 import { Schema } from "effect";
-import { ContentLocaleSchema } from "#contracts/content";
 import {
   CONTENT_KEY_MAX_LENGTH,
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "#contracts/ids";
+import { ArtifactLocaleSchema } from "#contracts/locale";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 
 /** Stable namespace shared by every try-out question-bank identity. */
@@ -146,10 +146,10 @@ const QuestionSourceFields = {
 /** Complete physical MDX source identity derived from one question body. */
 export const QuestionBodySourcePartsSchema = Schema.Struct({
   ...QuestionSourceFields,
+  artifactLocale: ArtifactLocaleSchema,
   bodyKind: QuestionBodyKindSchema,
   contentKey: ContentKeySchema,
   kind: Schema.Literal("body"),
-  locale: ContentLocaleSchema,
 });
 
 /** Complete physical TypeScript source identity for one choice registry. */
@@ -198,21 +198,21 @@ function parseQuestionSourceParts(
     return;
   }
   const bodyKind = fileStem.slice(0, localeSeparator);
-  const locale = fileStem.slice(localeSeparator + 1);
+  const artifactLocale = fileStem.slice(localeSeparator + 1);
   if (
     !(
       Schema.is(QuestionBodyKindSchema)(bodyKind) &&
-      Schema.is(ContentLocaleSchema)(locale)
+      Schema.is(ArtifactLocaleSchema)(artifactLocale)
     )
   ) {
     return;
   }
   return Schema.decodeUnknownSync(QuestionBodySourcePartsSchema)({
     ...questionParts,
+    artifactLocale,
     bodyKind,
     contentKey: `${questionKey}/${bodyKind}`,
     kind: "body",
-    locale,
     questionKey,
     sourcePath: input,
   });
@@ -235,8 +235,8 @@ export function questionSourcePathParts(sourcePath: QuestionSourcePath) {
 }
 
 const QuestionIdentityFields = {
+  artifactLocale: ArtifactLocaleSchema,
   contentKey: ContentKeySchema,
-  locale: ContentLocaleSchema,
   peerContentKey: ContentKeySchema,
   questionKey: QuestionKeySchema,
   questionNumber: Schema.Number.pipe(Schema.int(), Schema.positive()),

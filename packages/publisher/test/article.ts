@@ -136,11 +136,11 @@ export async function publishedArticleHeads() {
     return [
       ArticleHeadSchema.make({
         artifactHash: record.change.artifactHash,
+        artifactLocale: record.change.artifactLocale,
         compilerConfigHash: record.payload.compilerConfigHash,
         contentKey: record.change.contentKey,
         delivery: record.change.delivery,
         family: "article",
-        locale: record.change.locale,
         projectionHash: hashContentProjection(record.projection),
         publicPath: projectionPublicPath(record.projection),
         rendererDomain: record.change.rendererDomain,

@@ -21,12 +21,16 @@ import {
 import { questionRendererManifest } from "#test/question/renderer";
 import { questionEntries } from "#test/question/spec";
 
-const articleEntry = articleEntries.find(({ route }) => route.locale === "en");
+const articleEntry = articleEntries.find(
+  ({ route }) => route.artifactLocale === "en"
+);
 const promptEntry = questionEntries.find(
-  ({ bodyKind, locale }) => bodyKind === "question" && locale === "en"
+  ({ bodyKind, artifactLocale }) =>
+    bodyKind === "question" && artifactLocale === "en"
 );
 const answerEntry = questionEntries.find(
-  ({ bodyKind, locale }) => bodyKind === "answer" && locale === "en"
+  ({ bodyKind, artifactLocale }) =>
+    bodyKind === "answer" && artifactLocale === "en"
 );
 if (!(articleEntry && promptEntry && answerEntry)) {
   throw new Error(
@@ -85,12 +89,15 @@ describe("preview source", () => {
       projectSource(promptSource, questionRendererManifest),
     ]);
 
-    expect(article).toMatchObject({ kind: "article", locale: "en" });
-    expect(material).toMatchObject({ kind: "subject-lesson", locale: "en" });
+    expect(article).toMatchObject({ artifactLocale: "en", kind: "article" });
+    expect(material).toMatchObject({
+      artifactLocale: "en",
+      kind: "subject-lesson",
+    });
     expect(question).toMatchObject({
+      artifactLocale: "en",
       bodyKind: "question",
       kind: "question-body",
-      locale: "en",
     });
   });
 

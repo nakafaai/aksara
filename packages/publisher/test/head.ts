@@ -35,11 +35,11 @@ export function headSuccess(request: PublicationHeadPageRequest) {
       heads: [
         {
           artifactHash,
+          artifactLocale: "en",
           compilerConfigHash: artifactHash,
           contentKey: "test:http",
           delivery: "public",
           family: "material",
-          locale: "en",
           projectionHash,
           publicPath: "subjects/test/http",
           rendererDomain: "mathematics",

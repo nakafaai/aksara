@@ -28,8 +28,8 @@ function withMetadata(body: string) {
 function compileFailure(rawMdx: string) {
   return Effect.runPromise(
     compileContent({
+      artifactLocale: "en",
       contentKey: CONTENT_KEY,
-      locale: "en",
       rawMdx,
       rendererDomain: "mathematics",
       rendererManifest: RENDERER_MANIFEST,

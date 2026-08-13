@@ -1,4 +1,5 @@
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
 import {
   createProjectionDigest,
   finalizeProjectionDigest,
@@ -38,7 +39,7 @@ import { Effect, Stream } from "effect";
 import {
   makePreparedRollbackRelease,
   type PreparedRollbackRelease,
-} from "#publisher/preparation/spec";
+} from "#publisher/preparation/prepared";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import {
   rollbackItemStream,
@@ -51,18 +52,26 @@ import {
   snapshotRollbackState,
 } from "#publisher/rollback/records";
 
-/** Exact active identity and root replaced by one rollback release. */
-export interface RollbackBaseCatalog {
+/** Exact active catalog identity replaced by one rollback release. */
+export interface RollbackActiveCatalog {
+  readonly activeAppLocales: ActiveAppLocaleList;
+  readonly editorialReviewDigest: Sha256Hash;
   readonly manifestHash: Sha256Hash;
   readonly releaseId: ReleaseId;
   readonly resultCount: number;
   readonly resultDigest: Sha256Hash;
+}
+
+/** Locale, editorial, and snapshot policy restored by one rollback. */
+export interface RollbackTargetPolicy {
+  readonly activeAppLocales: ActiveAppLocaleList;
+  readonly editorialReviewDigest: Sha256Hash;
   readonly snapshots: ContentSnapshotSet;
 }
 
 /** Complete inputs for signing one already-authenticated rollback transition. */
 export interface BuildRollbackReleaseInput<E, R> {
-  readonly base: RollbackBaseCatalog;
+  readonly active: RollbackActiveCatalog;
   /** Replays authenticated rollback transitions for release derivation. */
   readonly records: () => Stream.Stream<
     DerivedRollbackRecord,
@@ -75,6 +84,7 @@ export interface BuildRollbackReleaseInput<E, R> {
   /** Replays independent inverse route ownership changes. */
   readonly routes: () => Stream.Stream<ContentRouteItem, ReplaySpoolError>;
   readonly scope: PublicationScope;
+  readonly target: RollbackTargetPolicy;
 }
 
 type BuildRollbackReleaseError<E, R> =
@@ -196,14 +206,19 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
   );
   const routeSummary = yield* digestRoutes(input.releaseId, routes());
   const manifest = ContentReleaseManifestSchema.make({
-    baseManifestHash: input.base.manifestHash,
-    baseReleaseId: input.base.releaseId,
-    baseResultCount: input.base.resultCount,
-    baseResultDigest: input.base.resultDigest,
+    activeAppLocales: input.target.activeAppLocales,
+    baseActiveAppLocales: input.active.activeAppLocales,
+    baseEditorialReviewDigest: input.active.editorialReviewDigest,
+    baseManifestHash: input.active.manifestHash,
+    baseReleaseId: input.active.releaseId,
+    baseResultCount: input.active.resultCount,
+    baseResultDigest: input.active.resultDigest,
     deleteCount: itemState.deleteCount,
+    editorialReviewDigest: input.target.editorialReviewDigest,
+    format: "localized-content-release",
     itemCount: itemState.count,
     itemsDigest,
-    origin: { kind: "rollback", releaseId: input.base.releaseId },
+    origin: { kind: "rollback", releaseId: input.active.releaseId },
     projectionCount: projectionState.count,
     projectionDigest,
     releaseId: input.releaseId,
@@ -216,7 +231,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     routeCount: routeSummary.count,
     routeDigest: routeSummary.digest,
     scope: input.scope,
-    snapshots: input.base.snapshots,
+    snapshots: input.target.snapshots,
     upsertCount: itemState.upsertCount,
   });
   yield* verifyContentReleaseItems({ items: items(), manifest });

@@ -1,12 +1,12 @@
-import {
-  ContentLocaleSchema,
-  headIdentity,
-  routeIdentity,
-} from "@nakafa/aksara-contracts/content";
+import { headIdentity, routeIdentity } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import {
   type ContentHead,
   canonicalizeContentHead,
@@ -31,8 +31,8 @@ type CatalogMerge =
 export class RollbackCatalogStateMismatchError extends Schema.TaggedError<RollbackCatalogStateMismatchError>()(
   "RollbackCatalogStateMismatchError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
     reason: Schema.Literal("missing", "unexpected", "different"),
   }
 ) {}
@@ -40,7 +40,7 @@ export class RollbackCatalogStateMismatchError extends Schema.TaggedError<Rollba
 /** A restored route collides with an untouched structurally shared head. */
 export class RollbackCatalogRouteError extends Schema.TaggedError<RollbackCatalogRouteError>()(
   "RollbackCatalogRouteError",
-  { locale: ContentLocaleSchema, publicPath: PublicPathSchema }
+  { appLocale: AppLocaleSchema, publicPath: PublicPathSchema }
 ) {}
 
 /** Emits the prior compact state after proving the active current state. */
@@ -55,8 +55,8 @@ function resolveMerge(merge: CatalogMerge) {
     if (current.state !== "absent") {
       return Effect.fail(
         new RollbackCatalogStateMismatchError({
+          artifactLocale: identity.artifactLocale,
           contentKey: identity.contentKey,
-          locale: identity.locale,
           reason: "missing",
         })
       );
@@ -66,8 +66,8 @@ function resolveMerge(merge: CatalogMerge) {
   if (current.state === "absent") {
     return Effect.fail(
       new RollbackCatalogStateMismatchError({
+        artifactLocale: identity.artifactLocale,
         contentKey: identity.contentKey,
-        locale: identity.locale,
         reason: "unexpected",
       })
     );
@@ -78,8 +78,8 @@ function resolveMerge(merge: CatalogMerge) {
   ) {
     return Effect.fail(
       new RollbackCatalogStateMismatchError({
+        artifactLocale: identity.artifactLocale,
         contentKey: identity.contentKey,
-        locale: identity.locale,
         reason: "different",
       })
     );
@@ -94,19 +94,19 @@ function headFromSnapshot(snapshot: RollbackSnapshotState) {
     : Option.some(snapshot.head);
 }
 
-/** Rejects duplicate locale-specific routes across the complete result. */
+/** Rejects duplicate artifactLocale-specific routes across the complete result. */
 function validateResultRoute(routes: Set<string>, head: ContentHead) {
   if (head.publicPath === undefined) {
     return Effect.succeed(Tuple.make(routes, head));
   }
   const identity = routeIdentity({
-    locale: head.locale,
+    appLocale: AppLocaleSchema.make(head.artifactLocale),
     publicPath: head.publicPath,
   });
   if (routes.has(identity)) {
     return Effect.fail(
       new RollbackCatalogRouteError({
-        locale: head.locale,
+        appLocale: AppLocaleSchema.make(head.artifactLocale),
         publicPath: head.publicPath,
       })
     );

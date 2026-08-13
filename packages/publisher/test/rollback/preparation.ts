@@ -1,6 +1,8 @@
 import { Buffer } from "node:buffer";
 import { createHash, generateKeyPairSync } from "node:crypto";
+import { resolve } from "node:path";
 import { Path } from "@effect/platform";
+import { NodeContext } from "@effect/platform-node";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   CompileDocumentSourceSchema,
@@ -11,8 +13,10 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
@@ -28,10 +32,11 @@ import { prepareContentRelease } from "#publisher/preparation";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
+import { makeEditorialReviewForHeads } from "#test/editorial";
 import { testFileLayer } from "#test/files";
 import { materialGraph } from "#test/graph";
 import { testRendererDomains } from "#test/renderer";
-import { emptySnapshotSources } from "#test/snapshot";
+import { emptySnapshotSources, snapshotPolicyBase } from "#test/snapshot";
 import { makePublicationTarget } from "#test/target";
 
 export const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
@@ -75,13 +80,13 @@ const sourcePath = CorpusSourcePathSchema.make(
   "packages/corpus/test/rollback/forward.mdx"
 );
 const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  artifactLocale: "en",
   byteLength: Buffer.byteLength(compiledCode, "utf8"),
   compiledCode,
   compilerConfigHash: `sha256:${"a".repeat(64)}`,
   compilerVersion: "0.1.0",
   contentKey: "test:rollback-forward",
-  format: "mdx-function-body-v1",
-  locale: "en",
+  format: "mdx-function-body",
   mdxCompilerVersion: "3.1.1",
   plainText: "Test protocol",
   rawMdx,
@@ -89,18 +94,20 @@ const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   requiredComponents: [{ name: "CurrentOnly", version: 1 }],
   sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
 });
+const rollbackAppLocale = AppLocaleSchema.make("en");
 const source = CompileDocumentSourceSchema.make({
+  artifactLocale: payload.artifactLocale,
   contentKey: payload.contentKey,
-  locale: payload.locale,
   rawMdx,
   rendererDomain: payload.rendererDomain,
   sourcePath,
 });
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  appLocale: rollbackAppLocale,
+  artifactLocale: payload.artifactLocale,
   contentKey: payload.contentKey,
-  graph: materialGraph(payload.locale, "rollback", "test-forward"),
+  graph: materialGraph(rollbackAppLocale, "rollback", "test-forward"),
   kind: "subject-lesson",
-  locale: payload.locale,
   materialKey: "lesson.test.rollback",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
@@ -113,21 +120,21 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
 const artifactHash = hashCompiledContentPayload(payload);
 const change = {
   artifactHash,
+  artifactLocale: payload.artifactLocale,
   contentKey: payload.contentKey,
   delivery: "public" as const,
   family: "material" as const,
-  locale: payload.locale,
   operation: "upsert" as const,
   rendererDomain: payload.rendererDomain,
   sourcePath,
 };
 const head = MaterialHeadSchema.make({
   artifactHash,
+  artifactLocale: payload.artifactLocale,
   compilerConfigHash: payload.compilerConfigHash,
   contentKey: payload.contentKey,
   delivery: change.delivery,
   family: "material",
-  locale: payload.locale,
   projectionHash: hashContentProjection(projection),
   publicPath: projection.publicPath,
   rendererDomain: payload.rendererDomain,
@@ -143,20 +150,21 @@ export const signer = await Effect.runPromise(
   })
 );
 const artifact = await Effect.runPromise(signer.signArtifact(payload));
+const editorialReview = await makeEditorialReviewForHeads([head]);
+const editorialReviewDigest = editorialReview.digest;
 const sourcePrepared = await Effect.runPromise(
   prepareContentRelease({
     aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
-    baseManifestHash: null,
-    baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-    previousSnapshots: null,
+    checkoutRoot: resolve(import.meta.dirname, "../../../.."),
+    editorialReview,
     records: () =>
       Stream.make({
         prior: {
+          artifactLocale: payload.artifactLocale,
           contentKey: payload.contentKey,
           family: "material",
-          locale: payload.locale,
           state: "absent" as const,
         },
         record: { change, payload, projection, source },
@@ -168,19 +176,27 @@ const sourcePrepared = await Effect.runPromise(
     scope: {
       content: [
         {
+          artifactLocale: change.artifactLocale,
           contentKey: change.contentKey,
           family: change.family,
-          locale: change.locale,
         },
       ],
       families: [],
       snapshots: [],
     },
+    ...snapshotPolicyBase(editorialReviewDigest, "test-rollback-source-base"),
     ...emptySnapshotSources,
-  })
+  }).pipe(Effect.provide(NodeContext.layer))
 );
+const sourceManifest = ContentReleaseManifestSchema.make({
+  ...sourcePrepared.manifest,
+  baseActiveAppLocales: null,
+  baseEditorialReviewDigest: null,
+  baseManifestHash: null,
+  baseReleaseId: null,
+});
 export const sourceRelease = await Effect.runPromise(
-  signer.signRelease(sourcePrepared.manifest)
+  signer.signRelease(sourceManifest)
 );
 export const proofBundle = {
   release: sourceRelease,
@@ -191,9 +207,9 @@ const transition = RollbackRecordSchema.make({
   index: 0,
   prior: RollbackDeleteStateSchema.make({
     change: {
+      artifactLocale: payload.artifactLocale,
       contentKey: payload.contentKey,
       family: "material",
-      locale: payload.locale,
       operation: "delete",
     },
   }),

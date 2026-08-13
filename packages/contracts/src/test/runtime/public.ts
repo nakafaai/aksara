@@ -4,9 +4,11 @@ import {
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "#contracts/ids";
+import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
 import {
   ArticleCategorySchema,
   ArticleProjectionSchema,
+  ArticleRouteSlugSchema,
   ArticleSlugSchema,
 } from "#contracts/projection/article";
 import { hashContentProjection } from "#contracts/projection/hash";
@@ -22,8 +24,8 @@ import {
 } from "#contracts/test/runtime/fixture";
 
 export const request = {
+  appLocale: AppLocaleSchema.make("en"),
   delivery: "public",
-  locale: "en",
   publicPath: "subjects/test/transport",
 } as const;
 
@@ -32,6 +34,8 @@ const runtimeContentKey = ContentKeySchema.make(
 );
 const runtimeProjection = MaterialLessonProjectionSchema.make({
   ...projection,
+  appLocale: AppLocaleSchema.make("en"),
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   contentKey: runtimeContentKey,
 });
 export const artifact = createSignedArtifact(runtimeContentKey);
@@ -55,13 +59,18 @@ const articleContentKey = ContentKeySchema.make(
   "articles/politics/dynastic-politics-asian-values"
 );
 const articleProjection = ArticleProjectionSchema.make({
+  appLocale: AppLocaleSchema.make("en"),
+  articleRouteSlug: ArticleRouteSlugSchema.make(
+    "dynastic-politics-asian-values"
+  ),
   articleSlug: ArticleSlugSchema.make("dynastic-politics-asian-values"),
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   category: ArticleCategorySchema.make("politics"),
+  categoryRouteSlug: ArticleRouteSlugSchema.make("politics"),
   categoryTitle: "Politics",
   contentKey: articleContentKey,
   graph: articleGraph("en", "politics", "dynastic-politics-asian-values"),
   kind: "article",
-  locale: "en",
   metadata: {
     authors: [{ name: "Nabil Fatih" }],
     date: "2024-02-14",
@@ -77,8 +86,8 @@ const articleProjection = ArticleProjectionSchema.make({
 });
 export const articleArtifact = createSignedArtifact(articleContentKey);
 export const articleRequest = {
+  appLocale: "en",
   delivery: "public",
-  locale: "en",
   publicPath: articleProjection.publicPath,
 } as const;
 export const articleFound = {

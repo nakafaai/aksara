@@ -15,7 +15,7 @@ import {
   makePreparedRollbackRelease,
   type PreparedGitRelease,
   type PreparedRollbackRelease,
-} from "#publisher/preparation/spec";
+} from "#publisher/preparation/prepared";
 import {
   publishGitRelease,
   publishRollbackRelease,
@@ -76,6 +76,8 @@ export async function makeRollbackRelease(releaseId: string) {
   const rollbackOf = ReleaseIdSchema.make("test-active-release");
   const manifest = ContentReleaseManifestSchema.make({
     ...git.manifest,
+    baseActiveAppLocales: git.manifest.activeAppLocales,
+    baseEditorialReviewDigest: git.manifest.editorialReviewDigest,
     baseManifestHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
     baseReleaseId: rollbackOf,
     baseResultCount: git.manifest.resultCount,

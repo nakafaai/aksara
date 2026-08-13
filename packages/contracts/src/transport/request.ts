@@ -132,7 +132,7 @@ export const PublicationCleanupRequestSchema = Schema.Struct({
 export type PublicationCleanupRequest =
   typeof PublicationCleanupRequestSchema.Type;
 
-/** Complete request vocabulary accepted by publication ingress v1. */
+/** Complete request vocabulary accepted by publication ingress. */
 export const PublicationRequestSchema = Schema.Union(
   PublicationAcceptRequestSchema,
   PublicationAbortRequestSchema,

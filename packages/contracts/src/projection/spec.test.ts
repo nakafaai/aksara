@@ -13,13 +13,16 @@ import {
 import { articleGraph, materialGraph } from "#contracts/test/graph";
 
 const article = Schema.decodeUnknownSync(ArticleProjectionSchema)({
+  appLocale: "en",
+  articleRouteSlug: "test-article",
   articleSlug: "test-article",
+  artifactLocale: "en",
   category: "politics",
+  categoryRouteSlug: "politics",
   categoryTitle: "Politics",
   contentKey: "articles/politics/test-article",
   graph: articleGraph("en", "politics", "test-article"),
   kind: "article",
-  locale: "en",
   metadata: {
     authors: [{ name: "Test Author" }],
     date: "2026-01-01",
@@ -32,10 +35,11 @@ const article = Schema.decodeUnknownSync(ArticleProjectionSchema)({
   sitemap: true,
 });
 const material = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  appLocale: "en",
+  artifactLocale: "en",
   contentKey: "test:material",
   graph: materialGraph("en", "test", "material", "test-lesson"),
   kind: "subject-lesson",
-  locale: "en",
   materialKey: "lesson.test.material",
   metadata: {
     authors: [{ name: "Test Author" }],
@@ -50,6 +54,7 @@ const material = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
   topicTitle: "Test Material",
 });
 const question = Schema.decodeUnknownSync(QuestionBodyProjectionSchema)({
+  artifactLocale: "en",
   bodyKind: "question",
   choices: [
     { label: "A", value: true },
@@ -58,7 +63,6 @@ const question = Schema.decodeUnknownSync(QuestionBodyProjectionSchema)({
   contentKey:
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
   kind: "question-body",
-  locale: "en",
   metadata: {
     authors: [{ name: "Test Author" }],
     date: "2026-01-01",

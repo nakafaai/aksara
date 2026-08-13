@@ -1,21 +1,23 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
+import { Path } from "@effect/platform";
+import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-
 import { loadQuestionContent } from "#corpus/question-bank/content";
 import {
   decodeQuestionPath,
   indexQuestionBanks,
-  QUESTION_SOURCE_FILES,
+  questionSourceFiles,
 } from "#corpus/question-bank/path";
 import {
   discoverQuestionSources,
   indexQuestionChoices,
+  readQuestionChoices,
   readQuestionDocument,
   readQuestionSource,
 } from "#corpus/question-bank/source";
+import { makeQuestionSourceLayer } from "#corpus/test/question-layer";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
@@ -40,45 +42,15 @@ const choices: QuestionChoices = {
 };
 
 export default choices;`;
-
+const sourceFiles = questionSourceFiles(
+  TryoutKeySchema.make("general-reasoning")
+);
+const INDONESIAN_CHOICE_FIXTURE =
+  /\n {2}id: \[\{ label: "A", value: false \}, \{ label: "B", value: true \}\],/u;
 /** Creates recursive directory output for one synthetic question directory. */
-function questionEntries(root: string, files = QUESTION_SOURCE_FILES) {
+function questionEntries(root: string, files = sourceFiles) {
   return [root, ...files.map((file) => `${root}/${file}`)];
 }
-
-/** Creates one deterministic Effect Platform filesystem test layer. */
-function fileLayer(
-  entries: readonly string[],
-  sources: ReadonlyMap<string, string>,
-  failDirectory = false
-) {
-  return FileSystem.layerNoop({
-    readDirectory: (path) => {
-      if (!failDirectory) {
-        return Effect.succeed([...entries]);
-      }
-      return Effect.fail(systemError("readDirectory", path));
-    },
-    readFileString: (path) => {
-      const source = sources.get(path);
-      if (source !== undefined) {
-        return Effect.succeed(source);
-      }
-      return Effect.fail(systemError("readFileString", path));
-    },
-  });
-}
-
-/** Creates a stable missing-file failure for the filesystem adapter. */
-function systemError(method: "readDirectory" | "readFileString", path: string) {
-  return new PlatformError.SystemError({
-    method,
-    module: "FileSystem",
-    pathOrDescriptor: path,
-    reason: "NotFound",
-  });
-}
-
 /** Provides the filesystem and path services at the Vitest boundary. */
 function runSources(
   entries: readonly string[],
@@ -86,11 +58,10 @@ function runSources(
 ) {
   return Effect.runPromise(
     discoverQuestionSources(corpusRoot, questionBanks).pipe(
-      Effect.provide([fileLayer(entries, sources), Path.layer])
+      Effect.provide([makeQuestionSourceLayer(entries, sources), Path.layer])
     )
   );
 }
-
 /** Returns one typed discovery failure at the Vitest boundary. */
 function rejectSources(
   entries: readonly string[],
@@ -99,17 +70,18 @@ function rejectSources(
 ) {
   return Effect.runPromise(
     discoverQuestionSources(corpusRoot, questionBanks).pipe(
-      Effect.provide([fileLayer(entries, sources, failDirectory), Path.layer]),
+      Effect.provide([
+        makeQuestionSourceLayer(entries, sources, failDirectory),
+        Path.layer,
+      ]),
       Effect.flip
     )
   );
 }
-
 /** Maps a physical synthetic question root to its absolute choices source. */
 function choicesFor(root: string, source = validChoices) {
   return new Map([[resolve(absoluteSourceRoot, root, "choices.ts"), source]]);
 }
-
 describe("question source", () => {
   it("discovers and validates all 840 real question directories", {
     timeout: 30_000,
@@ -152,7 +124,6 @@ describe("question source", () => {
   it("allows an empty checkout without inventing question sources", async () => {
     await expect(runSources([], new Map())).resolves.toEqual([]);
   });
-
   it("rejects files outside the canonical question hierarchy", async () => {
     const error = await rejectSources(["notes.ts"], new Map());
 
@@ -161,7 +132,6 @@ describe("question source", () => {
       reason: "grammar",
     });
   });
-
   it("maps directory and choice reads to typed failures", async () => {
     const root = "indonesia/snbt/general-reasoning/set-1/question-1";
     const directoryError = await rejectSources([], new Map(), true);
@@ -170,7 +140,10 @@ describe("question source", () => {
     );
     const selectedDirectoryError = await Effect.runPromise(
       readQuestionSource(corpusRoot, location).pipe(
-        Effect.provide([fileLayer([], new Map(), true), Path.layer]),
+        Effect.provide([
+          makeQuestionSourceLayer([], new Map(), true),
+          Path.layer,
+        ]),
         Effect.flip
       )
     );
@@ -189,22 +162,18 @@ describe("question source", () => {
       path: `${sourceRoot}/${root}/choices.ts`,
     });
   });
-
   it("rejects missing, replaced, and nested companion files", async () => {
     const root = "indonesia/snbt/general-reasoning/set-1/question-1";
     const missing = await rejectSources(
-      questionEntries(root, QUESTION_SOURCE_FILES.slice(1)),
+      questionEntries(root, sourceFiles.slice(1)),
       new Map()
     );
     const replaced = await rejectSources(
-      questionEntries(root, [
-        ...QUESTION_SOURCE_FILES.slice(0, 4),
-        "wrong.mdx",
-      ]),
+      questionEntries(root, [...sourceFiles.slice(0, 4), "wrong.mdx"]),
       new Map()
     );
     const nested = await rejectSources(
-      questionEntries(root, [...QUESTION_SOURCE_FILES, "nested/extra.mdx"]),
+      questionEntries(root, [...sourceFiles, "nested/extra.mdx"]),
       new Map()
     );
     expect(missing._tag).toBe("QuestionFileSetError");
@@ -214,7 +183,6 @@ describe("question source", () => {
       sourcePath: `${sourceRoot}/${root}`,
     });
   });
-
   it("rejects unevaluable and invalid localized choice catalogs", async () => {
     const roots = [
       "indonesia/snbt/general-reasoning/set-1/question-1",
@@ -242,6 +210,39 @@ describe("question source", () => {
     );
   });
 
+  it("requires exactly the section-derived choice locales", async () => {
+    const location = await Effect.runPromise(
+      decodeQuestionPath(
+        questionBanks,
+        "indonesia/snbt/english-language/set-1/question-1"
+      )
+    );
+    const sourcePath = resolve(corpusRoot, location.sourceRoot, "choices.ts");
+    const englishOnly = validChoices.replace(INDONESIAN_CHOICE_FIXTURE, "");
+    /** Reads the language-section choices through the synthetic source Adapter. */
+    const read = (source: string) =>
+      readQuestionChoices(corpusRoot, location).pipe(
+        Effect.provide([
+          makeQuestionSourceLayer([], new Map([[sourcePath, source]])),
+          Path.layer,
+        ])
+      );
+
+    await expect(Effect.runPromise(read(englishOnly))).resolves.toEqual({
+      en: [
+        { label: "A", value: true },
+        { label: "B", value: false },
+      ],
+    });
+    await expect(
+      Effect.runPromise(read(validChoices).pipe(Effect.flip))
+    ).resolves.toMatchObject({
+      _tag: "QuestionChoiceLocaleError",
+      actualLocales: ["en", "id"],
+      expectedLocales: ["en"],
+    });
+  });
+
   it("rejects non-contiguous numbering within each logical set", async () => {
     const first = "indonesia/snbt/general-reasoning/set-1/question-1";
     const third = "indonesia/snbt/general-reasoning/set-1/question-3";
@@ -263,7 +264,10 @@ describe("question source", () => {
     const sourcePath = `${sourceRoot}/${physicalRoot}/question.en.mdx`;
     const content = await Effect.runPromise(
       loadQuestionContent(corpusRoot, tryoutSources).pipe(
-        Effect.provide([fileLayer(realEntries, realChoices), Path.layer])
+        Effect.provide([
+          makeQuestionSourceLayer(realEntries, realChoices),
+          Path.layer,
+        ])
       )
     );
     const entry = content.entries.find(
@@ -280,7 +284,7 @@ describe("question source", () => {
     /** Reads the same registry row through a supplied source map. */
     const read = (sources: ReadonlyMap<string, string>) =>
       readQuestionDocument(corpusRoot, entry, source.choices).pipe(
-        Effect.provide([fileLayer([], sources), Path.layer])
+        Effect.provide([makeQuestionSourceLayer([], sources), Path.layer])
       );
     const document = await Effect.runPromise(
       read(new Map([[resolve(corpusRoot, sourcePath), rawMdx]]))

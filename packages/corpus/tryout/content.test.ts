@@ -11,11 +11,11 @@ describe("tryout content", () => {
       loadTryoutContent(corpusRoot).pipe(Effect.provide(questionLayer))
     );
 
-    expect(content.entries).toHaveLength(3360);
+    expect(content.entries).toHaveLength(3260);
     expect(content.projection.placements).toHaveLength(840);
     expect(
       content.entries.filter(({ bodyKind }) => bodyKind === "question")
-    ).toHaveLength(1680);
+    ).toHaveLength(1580);
     expect(
       content.entries.filter(({ bodyKind }) => bodyKind === "answer")
     ).toHaveLength(1680);

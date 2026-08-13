@@ -57,11 +57,11 @@ function head(contentKey: string) {
   const slug = contentKey.replace(":", "-");
   return Schema.decodeUnknownSync(MaterialHeadSchema)({
     artifactHash: `sha256:${"a".repeat(64)}`,
+    artifactLocale: "en",
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
     contentKey,
     delivery: "public",
     family: "material",
-    locale: "en",
     projectionHash: `sha256:${"c".repeat(64)}`,
     publicPath: `subjects/test/${slug}`,
     rendererDomain: "mathematics",
@@ -131,8 +131,8 @@ describe("result catalog digest", () => {
 
     expect(error).toMatchObject({
       _tag: "ResultCatalogRouteError",
+      artifactLocale: conflicting.artifactLocale,
       contentKey: conflicting.contentKey,
-      locale: conflicting.locale,
       publicPath: firstHead.publicPath,
       releaseId,
     });

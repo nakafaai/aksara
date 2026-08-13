@@ -77,4 +77,25 @@ describe("tryout catalog", () => {
 
     expect(failure._tag).toBe("TryoutCatalogDecodeError");
   });
+
+  it("preserves an authored country description when present", async () => {
+    const sources = await Effect.runPromise(decodeTryoutRegistry());
+    const source = requireNode(sources[0], "try-out source");
+    const description = "Official Indonesian assessment catalog.";
+    const rows = await Effect.runPromise(
+      projectTryoutCatalog([
+        {
+          ...source,
+          countryTranslations: {
+            ...source.countryTranslations,
+            en: { ...source.countryTranslations.en, description },
+          },
+        },
+      ])
+    );
+
+    expect(rows).toContainEqual(
+      expect.objectContaining({ appLocale: "en", description, kind: "country" })
+    );
+  });
 });

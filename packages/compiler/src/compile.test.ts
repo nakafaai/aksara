@@ -62,8 +62,8 @@ function compileRawMdx(
 ) {
   return Effect.runPromise(
     compileContent({
+      artifactLocale: "en",
       contentKey: "test:compile",
-      locale: "en",
       rawMdx,
       rendererDomain,
       rendererManifest: manifest,
@@ -80,8 +80,8 @@ function rejectRawMdx(
 ) {
   return Effect.runPromise(
     compileContent({
+      artifactLocale: "en",
       contentKey: "test:compile",
-      locale: "en",
       rawMdx,
       rendererDomain,
       rendererManifest: manifest,
@@ -96,7 +96,7 @@ describe("compileContent", () => {
       '## Compiler test\n\n<BlockMath math="x" />\n\n<InlineMath math="x" />'
     );
     const { metadata, payload } = await compileRawMdx(rawMdx);
-    expect(payload.format).toBe("mdx-function-body-v1");
+    expect(payload.format).toBe("mdx-function-body");
     expect(payload.compiledCode).toContain("_missingMdxReference");
     expect(payload.requiredComponents).toEqual([
       { name: "BlockMath", version: 1 },

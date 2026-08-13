@@ -26,7 +26,11 @@ describe("release signing", () => {
     expect(canonical).toContain(`"routeCount":${manifest.routeCount}`);
     expect(canonical).toContain(`"scope":${JSON.stringify(manifest.scope)}`);
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
-      `nakafa.aksara.content-release.v1\n${manifestHash}\n${canonical}`
+      `nakafa.aksara.localized-content-release\n${manifestHash}\n${canonical}`
+    );
+    expect(canonical).toContain('"activeAppLocales":["en","id"]');
+    expect(canonical).toContain(
+      `"editorialReviewDigest":"${manifest.editorialReviewDigest}"`
     );
   });
 });

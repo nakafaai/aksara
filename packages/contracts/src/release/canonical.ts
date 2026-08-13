@@ -8,10 +8,10 @@ export function canonicalizeContentChange(change: ContentChange) {
   if (change.operation === "upsert") {
     return {
       artifactHash: change.artifactHash,
+      artifactLocale: change.artifactLocale,
       contentKey: change.contentKey,
       delivery: change.delivery,
       family: change.family,
-      locale: change.locale,
       operation: change.operation,
       rendererDomain: change.rendererDomain,
       sourcePath: change.sourcePath,
@@ -19,9 +19,9 @@ export function canonicalizeContentChange(change: ContentChange) {
   }
 
   return {
+    artifactLocale: change.artifactLocale,
     contentKey: change.contentKey,
     family: change.family,
-    locale: change.locale,
     operation: change.operation,
   };
 }

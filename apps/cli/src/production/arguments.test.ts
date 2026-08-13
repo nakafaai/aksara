@@ -40,14 +40,14 @@ describe("release production arguments", () => {
       scope: {
         content: [
           {
+            artifactLocale: "en",
             contentKey: FUNCTION_CONTENT_KEY,
             family: "material",
-            locale: "en",
           },
           {
+            artifactLocale: "id",
             contentKey: FUNCTION_CONTENT_KEY,
             family: "material",
-            locale: "id",
           },
         ],
         families: [],

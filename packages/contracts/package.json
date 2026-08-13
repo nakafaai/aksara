@@ -1,6 +1,6 @@
 {
   "name": "@nakafa/aksara-contracts",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Schemas and verification contracts for Nakafa content releases.",
   "homepage": "https://github.com/nakafaai/aksara#readme",
   "license": "SEE LICENSE IN LICENSE",
@@ -88,6 +88,11 @@
       "types": "./dist/graph/identity.d.ts",
       "import": "./dist/graph/identity.js"
     },
+    "./graph/family": {
+      "aksara-source": "./src/graph/family.ts",
+      "types": "./dist/graph/family.d.ts",
+      "import": "./dist/graph/family.js"
+    },
     "./graph/spec": {
       "aksara-source": "./src/graph/spec.ts",
       "types": "./dist/graph/spec.d.ts",
@@ -102,6 +107,21 @@
       "aksara-source": "./src/limits.ts",
       "types": "./dist/limits.d.ts",
       "import": "./dist/limits.js"
+    },
+    "./locale": {
+      "aksara-source": "./src/locale.ts",
+      "types": "./dist/locale.d.ts",
+      "import": "./dist/locale.js"
+    },
+    "./history/decode": {
+      "aksara-source": "./src/history/decode.ts",
+      "types": "./dist/history/decode.d.ts",
+      "import": "./dist/history/decode.js"
+    },
+    "./editorial/review": {
+      "aksara-source": "./src/editorial/review.ts",
+      "types": "./dist/editorial/review.d.ts",
+      "node": "./dist/editorial/review.js"
     },
     "./material/domain": {
       "aksara-source": "./src/material/domain.ts",
@@ -148,15 +168,20 @@
       "types": "./dist/question/identity.d.ts",
       "import": "./dist/question/identity.js"
     },
-    "./quran/row-hash": {
-      "aksara-source": "./src/quran/row-hash.ts",
-      "types": "./dist/quran/row-hash.d.ts",
-      "node": "./dist/quran/row-hash.js"
+    "./quran/snapshot/row": {
+      "aksara-source": "./src/quran/snapshot/row.ts",
+      "types": "./dist/quran/snapshot/row.d.ts",
+      "import": "./dist/quran/snapshot/row.js"
     },
-    "./quran/row-digest": {
-      "aksara-source": "./src/quran/row-digest.ts",
-      "types": "./dist/quran/row-digest.d.ts",
-      "node": "./dist/quran/row-digest.js"
+    "./quran/snapshot/row-hash": {
+      "aksara-source": "./src/quran/snapshot/row-hash.ts",
+      "types": "./dist/quran/snapshot/row-hash.d.ts",
+      "node": "./dist/quran/snapshot/row-hash.js"
+    },
+    "./quran/snapshot/digest": {
+      "aksara-source": "./src/quran/snapshot/digest.ts",
+      "types": "./dist/quran/snapshot/digest.d.ts",
+      "node": "./dist/quran/snapshot/digest.js"
     },
     "./quran/snapshot/hash": {
       "aksara-source": "./src/quran/snapshot/hash.ts",
@@ -213,15 +238,20 @@
       "types": "./dist/program/curriculum.d.ts",
       "import": "./dist/program/curriculum.js"
     },
-    "./program/row-hash": {
-      "aksara-source": "./src/program/row-hash.ts",
-      "types": "./dist/program/row-hash.d.ts",
-      "node": "./dist/program/row-hash.js"
+    "./program/snapshot/row": {
+      "aksara-source": "./src/program/snapshot/row.ts",
+      "types": "./dist/program/snapshot/row.d.ts",
+      "import": "./dist/program/snapshot/row.js"
     },
-    "./program/row-digest": {
-      "aksara-source": "./src/program/row-digest.ts",
-      "types": "./dist/program/row-digest.d.ts",
-      "node": "./dist/program/row-digest.js"
+    "./program/snapshot/row-hash": {
+      "aksara-source": "./src/program/snapshot/row-hash.ts",
+      "types": "./dist/program/snapshot/row-hash.d.ts",
+      "node": "./dist/program/snapshot/row-hash.js"
+    },
+    "./program/snapshot/digest": {
+      "aksara-source": "./src/program/snapshot/digest.ts",
+      "types": "./dist/program/snapshot/digest.d.ts",
+      "node": "./dist/program/snapshot/digest.js"
     },
     "./program/snapshot/spec": {
       "aksara-source": "./src/program/snapshot/spec.ts",
@@ -272,6 +302,11 @@
       "aksara-source": "./src/release/lifecycle.ts",
       "types": "./dist/release/lifecycle.d.ts",
       "import": "./dist/release/lifecycle.js"
+    },
+    "./release/policy": {
+      "aksara-source": "./src/release/policy.ts",
+      "types": "./dist/release/policy.d.ts",
+      "import": "./dist/release/policy.js"
     },
     "./release/rollback/spec": {
       "aksara-source": "./src/release/rollback/spec.ts",
@@ -351,7 +386,7 @@
     "./renderer/compatibility": {
       "aksara-source": "./src/renderer/compatibility.ts",
       "types": "./dist/renderer/compatibility.d.ts",
-      "node": "./dist/renderer/compatibility.js"
+      "import": "./dist/renderer/compatibility.js"
     },
     "./renderer/domain": {
       "aksara-source": "./src/renderer/domain.ts",
@@ -361,7 +396,7 @@
     "./renderer/manifest": {
       "aksara-source": "./src/renderer/manifest.ts",
       "types": "./dist/renderer/manifest.d.ts",
-      "node": "./dist/renderer/manifest.js"
+      "import": "./dist/renderer/manifest.js"
     },
     "./runtime/spec": {
       "aksara-source": "./src/runtime/spec.ts",
@@ -458,6 +493,16 @@
       "types": "./dist/tryout/content-hash.d.ts",
       "node": "./dist/tryout/content-hash.js"
     },
+    "./tryout/catalog": {
+      "aksara-source": "./src/tryout/catalog.ts",
+      "types": "./dist/tryout/catalog.d.ts",
+      "import": "./dist/tryout/catalog.js"
+    },
+    "./tryout/catalog-hash": {
+      "aksara-source": "./src/tryout/catalog-hash.ts",
+      "types": "./dist/tryout/catalog-hash.d.ts",
+      "node": "./dist/tryout/catalog-hash.js"
+    },
     "./tryout/identity": {
       "aksara-source": "./src/tryout/identity.ts",
       "types": "./dist/tryout/identity.d.ts",
@@ -467,6 +512,26 @@
       "aksara-source": "./src/tryout/key.ts",
       "types": "./dist/tryout/key.d.ts",
       "import": "./dist/tryout/key.js"
+    },
+    "./tryout/language": {
+      "aksara-source": "./src/tryout/language.ts",
+      "types": "./dist/tryout/language.d.ts",
+      "import": "./dist/tryout/language.js"
+    },
+    "./tryout/locale-closure": {
+      "aksara-source": "./src/tryout/locale-closure.ts",
+      "types": "./dist/tryout/locale-closure.d.ts",
+      "node": "./dist/tryout/locale-closure.js"
+    },
+    "./tryout/placement": {
+      "aksara-source": "./src/tryout/placement.ts",
+      "types": "./dist/tryout/placement.d.ts",
+      "import": "./dist/tryout/placement.js"
+    },
+    "./tryout/placement-hash": {
+      "aksara-source": "./src/tryout/placement-hash.ts",
+      "types": "./dist/tryout/placement-hash.d.ts",
+      "node": "./dist/tryout/placement-hash.js"
     },
     "./tryout/row-hash": {
       "aksara-source": "./src/tryout/row-hash.ts",

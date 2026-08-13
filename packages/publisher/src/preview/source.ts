@@ -23,10 +23,11 @@ import {
   makeQuestionProjectionFromSource,
 } from "#publisher/question/document";
 
-type QuestionSourceRoot = Extract<
+type QuestionEntry = Extract<
   PreviewSource,
   { readonly family: "question" }
->["entry"]["sourceRoot"];
+>["entry"];
+type QuestionSourceRoot = QuestionEntry["sourceRoot"];
 
 /** Loaded article source normalized for trusted preview compilation. */
 interface LoadedArticlePreview {
@@ -69,14 +70,15 @@ export class PreviewChoiceSourceError extends Schema.TaggedError<PreviewChoiceSo
 const loadQuestionChoices = Effect.fn("AksaraPublisher.loadPreviewChoices")(
   function* (
     checkoutRoot: string,
-    sourceRoot: QuestionSourceRoot,
+    entry: QuestionEntry,
     choicesByRoot: Map<QuestionSourceRoot, QuestionChoices>
   ) {
+    const { sourceRoot } = entry;
     const cached = choicesByRoot.get(sourceRoot);
     if (cached !== undefined) {
       return cached;
     }
-    const choices = yield* readQuestionChoices(checkoutRoot, sourceRoot).pipe(
+    const choices = yield* readQuestionChoices(checkoutRoot, entry).pipe(
       Effect.mapError(
         (cause) =>
           new PreviewChoiceSourceError({
@@ -118,7 +120,7 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
 
     const choices = yield* loadQuestionChoices(
       checkoutRoot,
-      selected.entry.sourceRoot,
+      selected.entry,
       choicesByRoot
     );
     const source = yield* loadQuestionDocument(

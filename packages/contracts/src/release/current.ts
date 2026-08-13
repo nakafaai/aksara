@@ -12,6 +12,14 @@ import {
 } from "#contracts/release/snapshot/spec";
 import { PublicationReceiptSchema } from "#contracts/release/spec";
 
+/** Compares canonical signed locale lists without erasing their role. */
+function hasSameAppLocales(left: readonly string[], right: readonly string[]) {
+  return (
+    left.length === right.length &&
+    left.every((locale, index) => locale === right[index])
+  );
+}
+
 /** Checks terminal receipt counts against its signed immutable manifest. */
 function hasBoundCompletedReceipt(input: {
   readonly receipt: typeof PublicationReceiptSchema.Type;
@@ -21,6 +29,8 @@ function hasBoundCompletedReceipt(input: {
   const { receipt } = input;
   return (
     receipt.releaseId === manifest.releaseId &&
+    hasSameAppLocales(receipt.activeAppLocales, manifest.activeAppLocales) &&
+    receipt.editorialReviewDigest === manifest.editorialReviewDigest &&
     receipt.manifestHash === input.release.manifestHash &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
@@ -89,28 +99,46 @@ export const StagedRollbackContentReleaseSchema =
     )
   );
 
-/** Checks the candidate and retained inverse against their exact bases. */
-function hasCoherentCurrentState(input: {
+/** Checks one candidate against its exact active base or genesis identity. */
+function hasCoherentCandidate(
+  active: ActiveContentRelease | null,
+  candidate: StagedContentRelease | null
+) {
+  if (candidate === null) {
+    return true;
+  }
+  const { manifest } = candidate.release;
+  if (active === null) {
+    return (
+      manifest.baseReleaseId === null &&
+      manifest.baseManifestHash === null &&
+      manifest.baseActiveAppLocales === null &&
+      manifest.baseEditorialReviewDigest === null &&
+      manifest.baseResultCount === 0 &&
+      manifest.baseResultDigest === EMPTY_RESULT_CATALOG_DIGEST
+    );
+  }
+  const activeManifest = active.release.manifest;
+  return (
+    activeManifest.releaseId === manifest.baseReleaseId &&
+    active.release.manifestHash === manifest.baseManifestHash &&
+    activeManifest.resultCount === manifest.baseResultCount &&
+    activeManifest.resultDigest === manifest.baseResultDigest &&
+    manifest.baseActiveAppLocales !== null &&
+    hasSameAppLocales(
+      activeManifest.activeAppLocales,
+      manifest.baseActiveAppLocales
+    ) &&
+    activeManifest.editorialReviewDigest === manifest.baseEditorialReviewDigest
+  );
+}
+
+/** Checks one retained inverse against the candidate or active target it restores. */
+function hasCoherentRecovery(input: {
   readonly active: ActiveContentRelease | null;
   readonly candidate: StagedContentRelease | null;
   readonly recovery: StagedRollbackContentRelease | null;
 }) {
-  const activeReleaseId = input.active?.release.manifest.releaseId ?? null;
-  const activeManifestHash = input.active?.release.manifestHash ?? null;
-  const activeResultCount = input.active?.release.manifest.resultCount ?? 0;
-  const activeResultDigest =
-    input.active?.release.manifest.resultDigest ?? EMPTY_RESULT_CATALOG_DIGEST;
-  if (input.candidate !== null) {
-    const { manifest } = input.candidate.release;
-    if (
-      activeReleaseId !== manifest.baseReleaseId ||
-      activeManifestHash !== manifest.baseManifestHash ||
-      activeResultCount !== manifest.baseResultCount ||
-      activeResultDigest !== manifest.baseResultDigest
-    ) {
-      return false;
-    }
-  }
   if (input.recovery === null) {
     return true;
   }
@@ -135,20 +163,46 @@ function hasCoherentCurrentState(input: {
   }
   const { manifest } = input.recovery.release;
   const targetManifest = target.release.manifest;
+  const restoredActiveAppLocales =
+    targetManifest.baseActiveAppLocales ?? targetManifest.activeAppLocales;
+  const restoredEditorialReviewDigest =
+    targetManifest.baseEditorialReviewDigest ??
+    targetManifest.editorialReviewDigest;
   return (
     manifest.origin.releaseId === targetManifest.releaseId &&
     manifest.baseReleaseId === targetManifest.releaseId &&
     manifest.baseManifestHash === target.release.manifestHash &&
     manifest.baseResultCount === targetManifest.resultCount &&
     manifest.baseResultDigest === targetManifest.resultDigest &&
+    manifest.baseActiveAppLocales !== null &&
+    hasSameAppLocales(
+      manifest.baseActiveAppLocales,
+      targetManifest.activeAppLocales
+    ) &&
+    manifest.baseEditorialReviewDigest ===
+      targetManifest.editorialReviewDigest &&
     manifest.resultCount === targetManifest.baseResultCount &&
     manifest.resultDigest === targetManifest.baseResultDigest &&
-    manifest.releaseId !== activeReleaseId &&
+    hasSameAppLocales(manifest.activeAppLocales, restoredActiveAppLocales) &&
+    manifest.editorialReviewDigest === restoredEditorialReviewDigest &&
+    manifest.releaseId !== input.active?.release.manifest.releaseId &&
     hasSameContentSnapshots(
       manifest.snapshots,
       invertContentSnapshots(targetManifest.snapshots)
     ) &&
     input.recovery.rendererManifest.hash === target.rendererManifest.hash
+  );
+}
+
+/** Checks the candidate and retained inverse against their exact bases. */
+function hasCoherentCurrentState(input: {
+  readonly active: ActiveContentRelease | null;
+  readonly candidate: StagedContentRelease | null;
+  readonly recovery: StagedRollbackContentRelease | null;
+}) {
+  return (
+    hasCoherentCandidate(input.active, input.candidate) &&
+    hasCoherentRecovery(input)
   );
 }
 

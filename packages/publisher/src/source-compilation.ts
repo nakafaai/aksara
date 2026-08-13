@@ -47,7 +47,7 @@ function validateSourceIdentity(
   const matches =
     item.change.operation === "upsert" &&
     item.change.contentKey === source.contentKey &&
-    item.change.locale === source.locale &&
+    item.change.artifactLocale === source.artifactLocale &&
     item.change.rendererDomain === source.rendererDomain &&
     item.change.sourcePath === source.sourcePath;
   if (matches) {

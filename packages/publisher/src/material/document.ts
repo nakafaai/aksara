@@ -53,8 +53,8 @@ export function mapMaterialSourceError(checkoutRoot: string) {
 /** Creates the exact authored body shared by every material compiler mode. */
 export function makeMaterialCompileSource(source: MaterialDocumentSource) {
   return {
+    artifactLocale: source.route.artifactLocale,
     contentKey: source.route.contentKey,
-    locale: source.route.locale,
     rawMdx: source.rawMdx,
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
@@ -129,10 +129,10 @@ function makeMaterialRecord(
 ): PreparedContentUpsert {
   const change = ContentUpsertSchema.make({
     artifactHash: hashCompiledContentPayload(result.payload),
+    artifactLocale: source.route.artifactLocale,
     contentKey: source.route.contentKey,
     delivery: source.delivery,
     family: "material",
-    locale: source.route.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
@@ -142,8 +142,8 @@ function makeMaterialRecord(
     payload: result.payload,
     projection,
     source: {
+      artifactLocale: source.route.artifactLocale,
       contentKey: source.route.contentKey,
-      locale: source.route.locale,
       rawMdx: source.rawMdx,
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,

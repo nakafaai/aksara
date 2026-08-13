@@ -1,58 +1,29 @@
 import { compareCodeUnits } from "#contracts/text/order";
 import type {
-  TryoutCountry,
-  TryoutExam,
-  TryoutPlacementSource,
-  TryoutSection,
-  TryoutSet,
-  TryoutTrack,
-} from "#contracts/tryout/spec";
+  TryoutCatalogNodeIdentity,
+  TryoutCatalogRow,
+} from "#contracts/tryout/catalog";
+import type { TryoutPlacementSource } from "#contracts/tryout/placement";
 
-/** Minimal hierarchy keys required to derive one canonical catalog identity. */
-export type TryoutCatalogIdentityInput =
-  | Pick<TryoutCountry, "countryKey" | "kind" | "locale">
-  | Pick<TryoutExam, "countryKey" | "examKey" | "kind" | "locale">
-  | Pick<TryoutTrack, "countryKey" | "examKey" | "kind" | "locale" | "trackKey">
-  | Pick<
-      TryoutSet,
-      "countryKey" | "examKey" | "kind" | "locale" | "setKey" | "trackKey"
-    >
-  | Pick<
-      TryoutSection,
-      | "countryKey"
-      | "examKey"
-      | "kind"
-      | "locale"
-      | "sectionKey"
-      | "setKey"
-      | "trackKey"
-    >;
-
-/** Builds the deterministic hierarchy identity used for sorting and dedupe. */
-export function tryoutCatalogIdentity(row: TryoutCatalogIdentityInput) {
+/** Builds one deterministic current node identity before its row is loaded. */
+export function tryoutCatalogNodeIdentity(input: TryoutCatalogNodeIdentity) {
   return [
-    row.locale,
-    row.kind,
-    row.countryKey,
-    "examKey" in row ? row.examKey : "",
-    "trackKey" in row ? row.trackKey : "",
-    "setKey" in row ? row.setKey : "",
-    "sectionKey" in row ? row.sectionKey : "",
+    input.appLocale,
+    input.kind,
+    input.countryKey,
+    "examKey" in input ? input.examKey : "",
+    "trackKey" in input ? input.trackKey : "",
+    "setKey" in input ? input.setKey : "",
+    "sectionKey" in input ? input.sectionKey : "",
   ].join("\0");
 }
 
-/** Compares immutable hierarchy rows by their stable locale identity. */
-export function compareTryoutCatalog(
-  left: TryoutCatalogIdentityInput,
-  right: TryoutCatalogIdentityInput
-) {
-  return compareCodeUnits(
-    tryoutCatalogIdentity(left),
-    tryoutCatalogIdentity(right)
-  );
+/** Builds one deterministic current hierarchy identity from its signed row. */
+export function tryoutCatalogIdentity(row: TryoutCatalogRow) {
+  return tryoutCatalogNodeIdentity(row);
 }
 
-/** Builds the deterministic active-placement identity across locales. */
+/** Builds the deterministic placement identity across application locales. */
 export function tryoutPlacementIdentity(row: TryoutPlacementSource) {
   return [
     row.countryKey,
@@ -62,11 +33,24 @@ export function tryoutPlacementIdentity(row: TryoutPlacementSource) {
     row.sectionKey,
     row.questionOrder,
     row.questionContentKey,
-    row.locale,
+    row.appLocale,
   ].join("\0");
 }
 
-/** Compares active placements in the order used by question-head binding. */
+/** Builds one locale-neutral placement identity for closure checks. */
+export function tryoutPlacementLogicalIdentity(row: TryoutPlacementSource) {
+  return [
+    row.countryKey,
+    row.examKey,
+    row.trackKey,
+    row.setKey,
+    row.sectionKey,
+    row.questionOrder,
+    row.questionContentKey,
+  ].join("\0");
+}
+
+/** Compares placements in the order used by question-head binding. */
 export function compareTryoutPlacements(
   left: TryoutPlacementSource,
   right: TryoutPlacementSource

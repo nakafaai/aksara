@@ -18,11 +18,11 @@ function makeHead(contentKey: string, hashCharacter: string) {
   const hash = `sha256:${hashCharacter.repeat(64)}`;
   return Schema.decodeUnknownSync(MaterialHeadSchema)({
     artifactHash: hash,
+    artifactLocale: "en",
     compilerConfigHash: hash,
     contentKey,
     delivery: "public",
     family: "material",
-    locale: "en",
     projectionHash: hash,
     publicPath: `subjects/test/${contentKey}`,
     rendererDomain: "mathematics",

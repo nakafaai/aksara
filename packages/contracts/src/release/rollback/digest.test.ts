@@ -62,9 +62,9 @@ function entry(contentKey = "test:rollback") {
     index: 0,
     releaseId,
     snapshot: {
+      artifactLocale: "en",
       contentKey,
       family: "material",
-      locale: "en",
       state: "absent",
     },
   });
@@ -73,11 +73,16 @@ function entry(contentKey = "test:rollback") {
 /** Builds one exact manifest with supplied rollback snapshot evidence. */
 function manifest(rollbackCount: number, rollbackDigest: `sha256:${string}`) {
   return Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+    activeAppLocales: ["en", "id"],
+    baseActiveAppLocales: null,
+    baseEditorialReviewDigest: null,
     baseManifestHash: null,
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: rollbackCount,
+    editorialReviewDigest: `sha256:${"1".repeat(64)}`,
+    format: "localized-content-release",
     itemCount: rollbackCount,
     itemsDigest: `sha256:${"a".repeat(64)}`,
     origin: { kind: "git", sha: "a".repeat(40) },
@@ -94,7 +99,11 @@ function manifest(rollbackCount: number, rollbackDigest: `sha256:${string}`) {
     routeDigest: `sha256:${"f".repeat(64)}`,
     scope: {
       content: [
-        { contentKey: "test:rollback", family: "material", locale: "en" },
+        {
+          artifactLocale: "en",
+          contentKey: "test:rollback",
+          family: "material",
+        },
       ],
       families: [],
       snapshots: [],

@@ -1,160 +1,59 @@
-import { Either, Schema } from "effect";
-import { describe, expect, it } from "vitest";
+import { Effect, Either, Schema } from "effect";
+import { beforeAll, describe, expect, it } from "vitest";
 
-import { Sha256HashSchema } from "#contracts/ids";
-import {
-  LearningProgramRecordSchema,
-  PROGRAM_SNAPSHOT_FORMAT,
-  ProgramSnapshotSchema,
-} from "#contracts/program/snapshot/spec";
-import { LearningProgramSchema } from "#contracts/program/spec";
-import {
-  QURAN_SNAPSHOT_FORMAT,
-  QuranSnapshotManifestSchema,
-} from "#contracts/quran/snapshot/spec";
 import {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
   canonicalizeContentSnapshotRow,
   contentSnapshotId,
 } from "#contracts/release/snapshot/data";
-import { materialGraph } from "#contracts/test/graph";
-import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
-import { TryoutCatalogRecordSchema } from "#contracts/tryout/spec";
+import { makeSnapshotTestData } from "#contracts/test/snapshot";
 
-const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
-const third = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
+let snapshotData: Effect.Effect.Success<
+  ReturnType<typeof makeSnapshotTestData>
+>;
 
-const program = ProgramSnapshotSchema.make({
-  curriculumRowCount: 390,
-  format: PROGRAM_SNAPSHOT_FORMAT,
-  locales: ["en", "id"],
-  programRowCount: 6,
-  rowCount: 396,
-  rowDigest: first,
-  sitemapCount: 52,
-  slugCount: 12,
-  snapshotId: second,
-});
-
-const quran = QuranSnapshotManifestSchema.make({
-  attributionCount: 1,
-  chunkCount: 1085,
-  format: QURAN_SNAPSHOT_FORMAT,
-  locales: ["en", "id"],
-  projectionCount: 1428,
-  projectionDigest: second,
-  provenanceDigest: first,
-  provenanceStatus: "blocked",
-  runtimeCount: 1200,
-  runtimeDigest: first,
-  searchCount: 228,
-  searchDigest: first,
-  snapshotId: third,
-  sourceBytes: 11_506_941,
-  sourceDigest: first,
-  sourceFileCount: 118,
-  surahCount: 114,
-  tafsirLocales: ["id"],
-  verseCount: 6236,
-});
-
-const tryout = TryoutSnapshotSchema.make({
-  catalogDigest: first,
-  counts: { country: 2, exam: 4, section: 34, set: 10, track: 4 },
-  format: "tryout-v1",
-  locales: ["en", "id"],
-  placementCount: 840,
-  placementDigest: second,
-  routeCount: 48,
-  snapshotId: third,
-});
-
-const programRow = LearningProgramRecordSchema.make({
-  kind: "program",
-  row: Schema.decodeUnknownSync(LearningProgramSchema)({
-    defaultCoverageStatus: "partial",
-    displayOrder: 1,
-    iconKey: "school",
-    key: "test-program",
-    kind: "school-curriculum",
-    navigation: {
-      levels: ["stage"],
-      model: "curriculum-tree",
-    },
-    provider: { kind: "nakafa", name: "Nakafa" },
-    sources: [
-      {
-        label: "Test-only source",
-        retrievedAt: "2026-07-23",
-        type: "nakafa-editorial",
-        url: "https://example.test/program",
-      },
-    ],
-    translations: {
-      en: { publicSlug: "test-program", title: "Test Program" },
-      id: { publicSlug: "program-uji", title: "Program Uji" },
-    },
-    version: { label: "Test" },
-  }),
-  rowHash: first,
-});
-
-const tryoutRow = Schema.decodeUnknownSync(TryoutCatalogRecordSchema)({
-  row: {
-    countryCode: "ID",
-    countryKey: "indonesia",
-    graph: materialGraph("en", "test", "tryout", "country"),
-    kind: "country",
-    locale: "en",
-    order: 1,
-    publicPath: "try-out/indonesia",
-    sourceRevision: "2026-07-23",
-    title: "Indonesia",
-  },
-  rowHash: second,
-});
+beforeAll(async () => {
+  snapshotData = await Effect.runPromise(makeSnapshotTestData());
+}, 30_000);
 
 describe("structured snapshot data", () => {
-  it("returns every domain manifest identity", () => {
-    const values = [
-      { family: "program", manifest: program },
-      { family: "quran", manifest: quran },
-      { family: "tryout", manifest: tryout },
-    ] as const;
+  it("returns every current domain manifest identity", () => {
+    const identities = snapshotData.manifests.map(contentSnapshotId);
 
-    expect(values.map(contentSnapshotId)).toEqual([second, third, third]);
+    expect(identities).toHaveLength(3);
+    expect(new Set(identities).size).toBe(3);
   });
 
-  it("strictly decodes one family envelope", () => {
-    const value = { family: "program", manifest: program } as const;
+  it("strictly decodes each family envelope", () => {
     const decode = Schema.decodeUnknownEither(ContentSnapshotManifestSchema, {
       onExcessProperty: "error",
     });
 
-    expect(Either.isRight(decode(value))).toBe(true);
-    expect(Either.isLeft(decode({ ...value, extra: true }))).toBe(true);
+    expect(
+      snapshotData.manifests.every((value) => Either.isRight(decode(value)))
+    ).toBe(true);
+    expect(
+      snapshotData.manifests.every((value) =>
+        Either.isLeft(decode({ ...value, extra: true }))
+      )
+    ).toBe(true);
   });
 
-  it("serializes program and try-out rows without ambiguous nesting", () => {
-    const programValue = { family: "program", record: programRow } as const;
-    const tryoutValue = {
-      family: "tryout",
-      record: tryoutRow,
-      rowKind: "catalog",
-    } as const;
+  it("serializes every current row without ambiguous nesting", () => {
     const decode = Schema.decodeUnknownEither(ContentSnapshotRowSchema, {
       onExcessProperty: "error",
     });
 
-    expect(JSON.parse(canonicalizeContentSnapshotRow(programValue))).toEqual(
-      programValue
-    );
-    expect(JSON.parse(canonicalizeContentSnapshotRow(tryoutValue))).toEqual(
-      tryoutValue
-    );
-    expect(Either.isRight(decode(programValue))).toBe(true);
-    expect(Either.isRight(decode(tryoutValue))).toBe(true);
+    expect(
+      snapshotData.rows.every((row) =>
+        Either.isRight(decode(JSON.parse(canonicalizeContentSnapshotRow(row))))
+      )
+    ).toBe(true);
+    expect(
+      snapshotData.rows
+        .filter((row) => row.family === "tryout")
+        .map((row) => row.rowKind)
+    ).toContain("placement");
   });
 });

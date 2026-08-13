@@ -1,35 +1,33 @@
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import {
-  type TryoutSnapshotInput,
+  TRYOUT_SNAPSHOT_FORMAT,
+  type TryoutSnapshot,
+  type TryoutSnapshotFacts,
   TryoutSnapshotSchema,
 } from "#contracts/tryout/snapshot/spec";
 
-const SNAPSHOT_DOMAIN = "nakafa.aksara.tryout-snapshot.v1";
-const ROWS_DOMAIN = "nakafa.aksara.tryout-rows.v1";
+const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-tryout-snapshot";
+const ROWS_DOMAIN = "nakafa.aksara.tryout-rows";
 
-/** Serializes snapshot facts without their content-addressed identity. */
-export function canonicalizeTryoutSnapshot(input: TryoutSnapshotInput) {
+/** Serializes snapshot facts without content-addressed identity. */
+export function canonicalizeTryoutSnapshot(input: TryoutSnapshotFacts) {
   return JSON.stringify({
+    activeAppLocales: input.activeAppLocales,
     catalogDigest: input.catalogDigest,
-    counts: {
-      country: input.counts.country,
-      exam: input.counts.exam,
-      section: input.counts.section,
-      set: input.counts.set,
-      track: input.counts.track,
-    },
-    format: input.format,
-    locales: input.locales,
+    counts: input.counts,
+    editorialReviewDigest: input.editorialReviewDigest,
+    format: TRYOUT_SNAPSHOT_FORMAT,
     placementCount: input.placementCount,
     placementDigest: input.placementDigest,
     routeCount: input.routeCount,
   });
 }
 
-/** Creates the content-addressed identity selected by a global release. */
-export function makeTryoutSnapshot(input: TryoutSnapshotInput) {
+/** Creates one complete content-addressed try-out snapshot. */
+export function makeTryoutSnapshot(input: TryoutSnapshotFacts): TryoutSnapshot {
   return TryoutSnapshotSchema.make({
     ...input,
+    format: TRYOUT_SNAPSHOT_FORMAT,
     snapshotId: hashTryoutCanonical(
       SNAPSHOT_DOMAIN,
       canonicalizeTryoutSnapshot(input)
@@ -37,22 +35,15 @@ export function makeTryoutSnapshot(input: TryoutSnapshotInput) {
   });
 }
 
-/** Derives the signed aggregate evidence for all hierarchy and placement rows. */
-export function tryoutSnapshotRowEvidence(input: TryoutSnapshotInput) {
-  const catalogCount = Object.values(input.counts).reduce(
-    (total, count) => total + count,
-    0
-  );
+/** Returns exact structured row evidence authenticated by a snapshot. */
+export function tryoutSnapshotRowEvidence(input: TryoutSnapshotFacts) {
   return {
-    rowCount: catalogCount + input.placementCount,
+    rowCount:
+      Object.values(input.counts).reduce((total, count) => total + count, 0) +
+      input.placementCount,
     rowDigest: hashTryoutCanonical(
       ROWS_DOMAIN,
-      JSON.stringify({
-        catalogCount,
-        catalogDigest: input.catalogDigest,
-        placementCount: input.placementCount,
-        placementDigest: input.placementDigest,
-      })
+      `${input.catalogDigest}\n${input.placementDigest}`
     ),
   };
 }

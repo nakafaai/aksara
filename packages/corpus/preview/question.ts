@@ -6,6 +6,7 @@ import type {
   QuestionAnswerPreviewDocument,
   QuestionPromptPreviewDocument,
 } from "@nakafa/aksara-contracts/preview/document";
+import { questionKeyParts } from "@nakafa/aksara-contracts/question/identity";
 import { Effect } from "effect";
 import type {
   PreviewSelection,
@@ -13,7 +14,7 @@ import type {
 } from "#corpus/preview/source";
 import { restartDependencies } from "#corpus/preview/topology";
 import { selectQuestionContent } from "#corpus/question-bank/content";
-import { QUESTION_SOURCE_FILES } from "#corpus/question-bank/path";
+import { questionSourceFiles } from "#corpus/question-bank/path";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import { selectTryoutTarget } from "#corpus/tryout/target";
@@ -54,7 +55,9 @@ export const selectQuestion = Effect.fn("AksaraCorpus.selectPreviewQuestion")(
     ] satisfies QuestionPreviewSource["dependencies"];
     const directories = [
       {
-        files: QUESTION_SOURCE_FILES,
+        files: questionSourceFiles(
+          questionKeyParts(content.source.questionKey).sectionKey
+        ),
         sourcePath: selected.sourceRoot,
       },
     ] satisfies QuestionPreviewSource["directories"];
@@ -63,9 +66,9 @@ export const selectQuestion = Effect.fn("AksaraCorpus.selectPreviewQuestion")(
         delivery: selected.delivery,
         family: "question",
         identity: {
+          artifactLocale: selected.artifactLocale,
           bodyKind: selected.bodyKind,
           contentKey: selected.contentKey,
-          locale: selected.locale,
           peerContentKey: selected.peerContentKey,
           questionKey: selected.questionKey,
           questionNumber: selected.questionNumber,
@@ -92,9 +95,9 @@ export const selectQuestion = Effect.fn("AksaraCorpus.selectPreviewQuestion")(
       delivery: selected.delivery,
       family: "question",
       identity: {
+        artifactLocale: selected.artifactLocale,
         bodyKind: selected.bodyKind,
         contentKey: selected.contentKey,
-        locale: selected.locale,
         peerContentKey: selected.peerContentKey,
         questionKey: selected.questionKey,
         questionNumber: selected.questionNumber,

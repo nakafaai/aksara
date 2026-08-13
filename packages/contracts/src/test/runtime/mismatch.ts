@@ -50,21 +50,6 @@ export const protectedMismatchCases = [
       ],
     },
   ],
-  [
-    "locale",
-    {
-      ...protectedFound,
-      items: [
-        {
-          ...protectedItem,
-          artifact: {
-            ...protectedArtifact,
-            payload: { ...protectedArtifact.payload, locale: "id" },
-          },
-        },
-      ],
-    },
-  ],
   ["snapshotId", { ...protectedFound, snapshotId: artifact.artifactHash }],
   [
     "snapshotId",

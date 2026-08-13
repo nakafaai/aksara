@@ -1,25 +1,24 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   digestProgramRows,
   type ProgramDigestError,
-} from "@nakafa/aksara-contracts/program/row-digest";
+} from "@nakafa/aksara-contracts/program/snapshot/digest";
+import {
+  makeProgramSnapshot,
+  type ProgramSnapshotHashError,
+} from "@nakafa/aksara-contracts/program/snapshot/hash";
+import type { ProgramSnapshotRow } from "@nakafa/aksara-contracts/program/snapshot/row";
 import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshotRow,
-  type ProgramHashError,
-} from "@nakafa/aksara-contracts/program/row-hash";
+  type ProgramRowHashError,
+} from "@nakafa/aksara-contracts/program/snapshot/row-hash";
 import {
-  hashProgramSnapshot,
-  type ProgramSnapshotHashError,
-} from "@nakafa/aksara-contracts/program/snapshot/hash";
-import {
-  PROGRAM_SNAPSHOT_FORMAT,
   type ProgramCounts,
   ProgramCountsSchema,
   type ProgramSnapshot,
-  ProgramSnapshotInputSchema,
-  type ProgramSnapshotRow,
-  ProgramSnapshotSchema,
+  ProgramSnapshotFactsSchema,
 } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import { Effect, Stream } from "effect";
 
@@ -61,7 +60,7 @@ function programSourceCounts({
     programRowCount,
     rowCount: curriculumRowCount + programRowCount,
     sitemapCount: routes.filter(({ sitemap }) => sitemap).length,
-    slugCount: programRowCount * ContentLocaleSchema.literals.length,
+    slugCount: programRowCount * ACTIVE_APP_LOCALES.length,
   });
 }
 
@@ -83,7 +82,7 @@ function streamPreparedProgramRows({
 /** Errors emitted while replaying source-decoded aggregate program records. */
 export type ProgramRowError =
   | Effect.Effect.Error<ReturnType<typeof prepareProgramSources>>
-  | ProgramHashError;
+  | ProgramRowHashError;
 
 /** Failures emitted while deriving the aggregate manifest and row stream. */
 export type ProgramSnapshotError =
@@ -106,24 +105,25 @@ export function streamProgramRows(programInput?: unknown) {
 }
 
 /** Prepares the complete aggregate program snapshot selected by a release. */
-export const prepareProgramSnapshot: (
-  input?: unknown
-) => Effect.Effect<PreparedProgramSnapshot, ProgramSnapshotError> = Effect.fn(
+export const prepareProgramSnapshot = Effect.fn(
   "AksaraCorpus.prepareProgramSnapshot"
-)(function* (input) {
-  const sources = yield* prepareProgramSources(input);
+)(function* (input: {
+  readonly editorialReviewDigest: Sha256Hash;
+  readonly programInput?: unknown;
+}) {
+  const sources = yield* prepareProgramSources(input.programInput);
   /** Replays the same decoded source rows used to derive the manifest. */
   const rows = () => streamPreparedProgramRows(sources);
-  const summary = yield* digestProgramRows(
-    rows(),
-    programSourceCounts(sources)
-  );
-  const identity = ProgramSnapshotInputSchema.make({
-    format: PROGRAM_SNAPSHOT_FORMAT,
-    locales: ContentLocaleSchema.literals,
+  const summary = yield* digestProgramRows({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    expected: programSourceCounts(sources),
+    rows: rows(),
+  });
+  const facts = ProgramSnapshotFactsSchema.make({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    editorialReviewDigest: input.editorialReviewDigest,
     ...summary,
   });
-  const snapshotId = yield* hashProgramSnapshot(identity);
-  const manifest = ProgramSnapshotSchema.make({ ...identity, snapshotId });
+  const manifest = yield* makeProgramSnapshot(facts);
   return { manifest, rows };
 });

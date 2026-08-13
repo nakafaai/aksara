@@ -4,6 +4,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   type RoutePageRequest,
   RoutePageSchema,
@@ -29,8 +30,8 @@ function routeRecord(index: number, priorOwner: string | null = null) {
   return RouteRollbackRecordSchema.make({
     current: ContentRouteItemSchema.make({
       change: {
+        appLocale: AppLocaleSchema.make("en"),
         contentKey: currentOwner,
-        locale: "en",
         operation: "bind",
         publicPath: PublicPathSchema.make(`subjects/test/route-${index}`),
       },

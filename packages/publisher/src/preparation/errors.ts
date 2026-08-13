@@ -14,7 +14,7 @@ export const CoherenceFieldSchema = Schema.Literal(
   "artifactHash",
   "contentKey",
   "family",
-  "locale",
+  "artifactLocale",
   "rendererDomain",
   "sourcePath",
   "rawMdx",
@@ -33,6 +33,8 @@ export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<Prepare
   {
     baseManifestHash: Schema.NullOr(Sha256HashSchema),
     baseReleaseId: Schema.NullOr(ReleaseIdSchema),
+    hasBaseActiveAppLocales: Schema.Boolean,
+    hasBaseEditorialReviewDigest: Schema.Boolean,
     hasSnapshotBase: Schema.Boolean,
   }
 ) {}
@@ -49,7 +51,7 @@ export class PreparedContentReplayError extends Schema.TaggedError<PreparedConte
   { cause: Schema.Unknown }
 ) {}
 
-/** One authored record failed its exact v1 schema. */
+/** One authored record failed its exact current schema. */
 export class PreparedContentDecodeError extends Schema.TaggedError<PreparedContentDecodeError>()(
   "PreparedContentDecodeError",
   { recordIndex: RecordIndexSchema }

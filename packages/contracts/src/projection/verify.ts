@@ -9,7 +9,6 @@ import { digestProjections } from "#contracts/projection/digest";
 import {
   type ContentProjection,
   ContentProjectionSchema,
-  projectionPublicPath,
 } from "#contracts/projection/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
@@ -88,11 +87,14 @@ function decodeProjection(
         return Effect.fail(new ProjectionOrderError({ projectionIndex }));
       }
       state.previous = projection;
-      const publicPath = projectionPublicPath(projection);
-      if (publicPath === undefined) {
+      if (projection.kind === "question-body") {
         return Effect.void;
       }
-      const identity = routeIdentity({ locale: projection.locale, publicPath });
+      const { appLocale, publicPath } = projection;
+      const identity = routeIdentity({
+        appLocale,
+        publicPath,
+      });
       const firstIndex = state.firstIndexByRoute.get(identity);
       if (firstIndex !== undefined) {
         return Effect.fail(

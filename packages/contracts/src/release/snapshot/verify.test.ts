@@ -95,7 +95,7 @@ describe("structured snapshot verification", () => {
     ]);
     expect({ manifestReplays, rowReplays }).toEqual({
       manifestReplays: 1,
-      rowReplays: 6,
+      rowReplays: 8,
     });
   }, 30_000);
 

@@ -1,21 +1,21 @@
 import { Schema } from "effect";
-import { ContentLocaleSchema } from "#contracts/content";
 import { PublicPathSchema } from "#contracts/ids";
+import { AppLocaleSchema } from "#contracts/locale";
 import {
   type TryoutExam,
   TryoutExamSchema,
-  TryoutPlacementSourceSchema,
   type TryoutSection,
   TryoutSectionSchema,
   type TryoutSet,
   TryoutSetSchema,
   type TryoutTrack,
   TryoutTrackSchema,
-} from "#contracts/tryout/spec";
+} from "#contracts/tryout/catalog";
+import { TryoutPlacementSourceSchema } from "#contracts/tryout/placement";
 
 /** Locale and existing public route refreshed by one preview update. */
 export const PreviewRouteSchema = Schema.Struct({
-  locale: ContentLocaleSchema,
+  appLocale: AppLocaleSchema,
   publicPath: PublicPathSchema,
 });
 
@@ -42,7 +42,7 @@ function hasCoherentTryoutHierarchy(input: TryoutPreviewTargetInput) {
   return (
     rows.every(({ countryKey }) => countryKey === input.exam.countryKey) &&
     rows.every(({ examKey }) => examKey === input.exam.examKey) &&
-    rows.every(({ locale }) => locale === input.exam.locale) &&
+    rows.every(({ appLocale }) => appLocale === input.exam.appLocale) &&
     rows.every(
       ({ sourceRevision }) => sourceRevision === input.exam.sourceRevision
     ) &&
@@ -107,7 +107,7 @@ export type TryoutPreviewTarget = typeof TryoutPreviewTargetSchema.Type;
 /** Derives the existing try-out page used by the trusted authoring preview. */
 export function previewTryoutRoute(target: TryoutPreviewTarget) {
   return PreviewRouteSchema.make({
-    locale: target.section.locale,
+    appLocale: target.section.appLocale,
     publicPath: target.section.publicPath ?? target.set.publicPath,
   });
 }

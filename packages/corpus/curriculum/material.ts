@@ -1,4 +1,7 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import {
+  ACTIVE_APP_LOCALES,
+  activeAppLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
 import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
@@ -40,11 +43,14 @@ function duplicatesMaterialDisplay(
   material: LessonMaterialSource
 ) {
   const translations = materialTranslations(material);
-  return ContentLocaleSchema.literals.every(
-    (locale) =>
-      override[locale].routeSlug === translations[locale].routeSlug &&
-      override[locale].title === translations[locale].title
-  );
+  return ACTIVE_APP_LOCALES.every((appLocale) => {
+    const appLocaleCode = activeAppLocaleCode(appLocale);
+    return (
+      override[appLocaleCode].routeSlug ===
+        translations[appLocaleCode].routeSlug &&
+      override[appLocaleCode].title === translations[appLocaleCode].title
+    );
+  });
 }
 
 /** Resolves one curriculum leaf through exact material and domain ownership. */

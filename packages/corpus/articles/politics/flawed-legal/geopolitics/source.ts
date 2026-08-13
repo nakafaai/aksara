@@ -5,6 +5,10 @@ import { defineArticleSource } from "#corpus/articles/schema";
 export const flawedLegalGeopoliticsArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
+  routeSlugs: {
+    en: "flawed-legal-geopolitics",
+    id: "flawed-legal-geopolitics",
+  },
   slug: "flawed-legal-geopolitics",
   sourceRoot: "articles/politics/flawed-legal/geopolitics",
 });

@@ -1,12 +1,12 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
-import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/spec";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect, Schema } from "effect";
 
 /** Two source-derived nodes claim one locale-specific public route. */
 export class TryoutRouteDuplicateError extends Schema.TaggedError<TryoutRouteDuplicateError>()(
   "TryoutRouteDuplicateError",
-  { locale: ContentLocaleSchema, publicPath: PublicPathSchema }
+  { appLocale: AppLocaleSchema, publicPath: PublicPathSchema }
 ) {}
 
 /** Rejects locale-specific route collisions in the canonical catalog. */
@@ -18,10 +18,10 @@ export const validateTryoutRoutes = Effect.fn(
     if (!("publicPath" in row) || row.publicPath === undefined) {
       continue;
     }
-    const identity = `${row.locale}\0${row.publicPath}`;
+    const identity = `${row.appLocale}\0${row.publicPath}`;
     if (routes.has(identity)) {
       return yield* new TryoutRouteDuplicateError({
-        locale: row.locale,
+        appLocale: row.appLocale,
         publicPath: row.publicPath,
       });
     }

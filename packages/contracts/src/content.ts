@@ -9,32 +9,15 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
+import {
+  type AppLocale,
+  type ArtifactLocale,
+  ArtifactLocaleSchema,
+} from "#contracts/locale";
 import { CompiledContentRequirementsSchema } from "#contracts/renderer/component";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { compareCodeUnits } from "#contracts/text/order";
-
-/** Locales currently supported end to end by Aksara and Nakafa. */
-export const ContentLocaleSchema = Schema.Literal("en", "id");
-export type ContentLocale = typeof ContentLocaleSchema.Type;
-
-/** Checks the exact locale capability order owned by this contract version. */
-function hasExactContentLocales(locales: readonly ContentLocale[]) {
-  return (
-    locales.length === ContentLocaleSchema.literals.length &&
-    locales.every(
-      (locale, index) => locale === ContentLocaleSchema.literals[index]
-    )
-  );
-}
-
-/** Complete ordered locale capability carried by aggregate snapshots. */
-export const ContentLocaleListSchema = Schema.Array(ContentLocaleSchema).pipe(
-  Schema.filter(hasExactContentLocales, {
-    message: () => "Locales must match the content contract.",
-  })
-);
-export type ContentLocaleList = typeof ContentLocaleListSchema.Type;
 
 /** Published content families backed by real Aksara source registries. */
 export const ContentFamilySchema = Schema.Literal(
@@ -44,11 +27,11 @@ export const ContentFamilySchema = Schema.Literal(
 );
 export type ContentFamily = typeof ContentFamilySchema.Type;
 
-/** Exact locale-specific content identity selected for publication. */
+/** Exact artifact identity selected for publication. */
 export const ContentPublicationIdentitySchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
   contentKey: ContentKeySchema,
   family: ContentFamilySchema,
-  locale: ContentLocaleSchema,
 });
 export type ContentPublicationIdentity =
   typeof ContentPublicationIdentitySchema.Type;
@@ -57,23 +40,23 @@ export type ContentPublicationIdentity =
 export const ContentAuthorSchema = Schema.Struct({ name: Schema.String });
 export type ContentAuthor = typeof ContentAuthorSchema.Type;
 
-/** Stable locale-specific identity shared by content heads and projections. */
+/** Stable language-specific identity shared by artifacts and content heads. */
 export interface ContentHeadIdentity {
+  readonly artifactLocale: ArtifactLocale;
   readonly contentKey: ContentKey;
-  readonly locale: ContentLocale;
 }
 
-/** Builds the unambiguous key used for one locale-specific content head. */
+/** Builds the unambiguous key used for one language-specific content head. */
 export function headIdentity(input: ContentHeadIdentity) {
-  return `${input.contentKey}\0${input.locale}`;
+  return `${input.contentKey}\0${input.artifactLocale}`;
 }
 
-/** Builds the unambiguous key used for one locale-specific public route. */
+/** Builds the unambiguous key used for one application-localized route. */
 export function routeIdentity(input: {
-  readonly locale: ContentLocale;
+  readonly appLocale: AppLocale;
   readonly publicPath: PublicPath;
 }) {
-  return `${input.locale}\0${input.publicPath}`;
+  return `${input.appLocale}\0${input.publicPath}`;
 }
 
 /** Compares content heads using deterministic Unicode code-unit order. */
@@ -82,7 +65,10 @@ export function compareContentHeads(
   right: ContentHeadIdentity
 ) {
   const contentKeyOrder = compareCodeUnits(left.contentKey, right.contentKey);
-  return contentKeyOrder || compareCodeUnits(left.locale, right.locale);
+  return (
+    contentKeyOrder ||
+    compareCodeUnits(left.artifactLocale, right.artifactLocale)
+  );
 }
 
 /** Compares publication identities in canonical family and head order. */
@@ -102,8 +88,8 @@ export const MDX_COMPILER_VERSION = "3.1.1";
 
 /** Authored source identity accepted before deterministic compilation. */
 export const CompileDocumentSourceSchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
   contentKey: ContentKeySchema,
-  locale: ContentLocaleSchema,
   rawMdx: Schema.String,
   rendererDomain: RendererDomainSchema,
   sourcePath: CorpusSourcePathSchema,
@@ -119,13 +105,13 @@ export type CompileDocumentRequest = typeof CompileDocumentRequestSchema.Type;
 
 /** Precompiled trusted payload stored and signed before server-only execution. */
 export const CompiledContentPayloadSchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
   byteLength: Schema.Number.pipe(Schema.int(), Schema.nonNegative()),
   compiledCode: Schema.String,
   compilerConfigHash: Sha256HashSchema,
   compilerVersion: Schema.Literal(AKSARA_COMPILER_VERSION),
   contentKey: ContentKeySchema,
-  format: Schema.Literal("mdx-function-body-v1"),
-  locale: ContentLocaleSchema,
+  format: Schema.Literal("mdx-function-body"),
   mdxCompilerVersion: Schema.Literal(MDX_COMPILER_VERSION),
   plainText: Schema.String,
   rawMdx: Schema.String,
@@ -144,20 +130,20 @@ export const SignedContentArtifactSchema = Schema.Struct({
 });
 export type SignedContentArtifact = typeof SignedContentArtifactSchema.Type;
 
-const CONTENT_ARTIFACT_SIGNATURE_DOMAIN = "nakafa.aksara.content-artifact.v1";
+const CONTENT_ARTIFACT_SIGNATURE_DOMAIN = "nakafa.aksara.content-artifact";
 
 /** Serializes a compiled payload with stable field and component order. */
 export function canonicalizeCompiledContentPayload(
   payload: CompiledContentPayload
 ) {
   return JSON.stringify({
+    artifactLocale: payload.artifactLocale,
     byteLength: payload.byteLength,
     compiledCode: payload.compiledCode,
     compilerConfigHash: payload.compilerConfigHash,
     compilerVersion: payload.compilerVersion,
     contentKey: payload.contentKey,
     format: payload.format,
-    locale: payload.locale,
     mdxCompilerVersion: payload.mdxCompilerVersion,
     plainText: payload.plainText,
     rawMdx: payload.rawMdx,

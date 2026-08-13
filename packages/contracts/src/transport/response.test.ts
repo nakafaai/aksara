@@ -19,7 +19,7 @@ function accepts(input: unknown) {
 describe("publication responses", () => {
   it("decodes every operation-specific success result", async () => {
     for (const response of successes) {
-      expect(accepts(response)).toBe(true);
+      expect(accepts(response), response.operation).toBe(true);
     }
     const decoded = await Effect.runPromise(
       decodePublicationResponse(

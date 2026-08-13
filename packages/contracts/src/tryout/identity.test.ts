@@ -1,42 +1,66 @@
-import { Effect } from "effect";
+import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import { makeSnapshotTestData } from "#contracts/test/snapshot";
+
+import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { TryoutCatalogNodeIdentitySchema } from "#contracts/tryout/catalog";
 import {
-  compareTryoutCatalog,
   compareTryoutPlacements,
   tryoutCatalogIdentity,
+  tryoutCatalogNodeIdentity,
   tryoutPlacementIdentity,
+  tryoutPlacementLogicalIdentity,
 } from "#contracts/tryout/identity";
-import type { TryoutCatalogRow, TryoutPlacement } from "#contracts/tryout/spec";
 
-describe("try-out identity", () => {
-  it("orders catalog and placement identities deterministically", {
-    timeout: 30_000,
-  }, async () => {
-    const snapshot = await Effect.runPromise(makeSnapshotTestData());
-    const catalog: TryoutCatalogRow[] = [];
-    const placements: TryoutPlacement[] = [];
-    for (const row of snapshot.rows) {
-      if (row.family !== "tryout") {
-        continue;
-      }
-      if (row.rowKind === "catalog") {
-        catalog.push(row.record.row);
-      } else {
-        placements.push(row.record.row);
-      }
-    }
-    const sortedCatalog = [...catalog].sort(compareTryoutCatalog);
-    const sortedPlacements = [...placements].sort(compareTryoutPlacements);
-    const [firstCatalog] = sortedCatalog;
-    const [firstPlacement] = sortedPlacements;
-    if (firstCatalog === undefined || firstPlacement === undefined) {
-      throw new Error("Expected canonical try-out rows.");
-    }
+describe("try-out placement identity", () => {
+  it("derives complete-row identities from the minimal semantic contract", () => {
+    const rows = makeTryoutTestRows().catalog.map(({ row }) => row);
+    const identities = rows.map((row) => {
+      const identity = Schema.decodeUnknownSync(
+        TryoutCatalogNodeIdentitySchema
+      )(row, { onExcessProperty: "ignore" });
+      return [tryoutCatalogNodeIdentity(identity), tryoutCatalogIdentity(row)];
+    });
 
-    expect(new Set(sortedCatalog.map(tryoutCatalogIdentity)).size).toBe(10);
-    expect(new Set(sortedPlacements.map(tryoutPlacementIdentity)).size).toBe(2);
-    expect(compareTryoutCatalog(firstCatalog, firstCatalog)).toBe(0);
-    expect(compareTryoutPlacements(firstPlacement, firstPlacement)).toBe(0);
+    expect(
+      identities.every(([minimal, complete]) => minimal === complete)
+    ).toBe(true);
+  });
+
+  it("keeps catalog kinds and application locales distinct", () => {
+    const country = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+      appLocale: "en",
+      countryKey: "indonesia",
+      kind: "country",
+    });
+    const exam = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+      appLocale: "en",
+      countryKey: "indonesia",
+      examKey: "snbt",
+      kind: "exam",
+    });
+    const german = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+      ...country,
+      appLocale: "de",
+    });
+
+    expect(tryoutCatalogNodeIdentity(country)).not.toBe(
+      tryoutCatalogNodeIdentity(exam)
+    );
+    expect(tryoutCatalogNodeIdentity(country)).not.toBe(
+      tryoutCatalogNodeIdentity(german)
+    );
+  });
+
+  it("orders application-localized placements deterministically", () => {
+    const placements = makeTryoutTestRows().placements.map(({ row }) => row);
+    const sorted = [...placements].sort(compareTryoutPlacements);
+    const [first] = sorted;
+
+    expect(first).toBeDefined();
+    expect(new Set(sorted.map(tryoutPlacementIdentity)).size).toBe(2);
+    expect(new Set(sorted.map(tryoutPlacementLogicalIdentity)).size).toBe(1);
+    if (first !== undefined) {
+      expect(compareTryoutPlacements(first, first)).toBe(0);
+    }
   });
 });

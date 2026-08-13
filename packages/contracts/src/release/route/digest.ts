@@ -10,7 +10,7 @@ import {
   canonicalizeContentRouteItem,
 } from "#contracts/release/route/spec";
 
-const CONTENT_ROUTE_DIGEST_DOMAIN = "nakafa.aksara.content-routes.v1";
+const CONTENT_ROUTE_DIGEST_DOMAIN = "nakafa.aksara.content-routes";
 
 /** SHA-256 computation failed before route integrity was established. */
 export class RouteHashError extends Schema.TaggedError<RouteHashError>()(

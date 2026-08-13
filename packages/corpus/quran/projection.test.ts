@@ -1,16 +1,23 @@
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import type { QuranRowPayload } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import {
   QURAN_CHUNK_SIZE,
-  QURAN_SEARCH_COUNT,
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
-  type QuranChunkRow,
-  type QuranRowPayload,
-  type QuranSearchRow,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Chunk, Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { streamQuranRows } from "#corpus/quran/projection";
-import { streamQuranRegistry } from "#corpus/quran/registry";
+import { testQuranRegistry } from "#corpus/test/quran";
+
+/** Replays the verified Quran fixture for each projection assertion. */
+const source = () => testQuranRegistry();
+
+type QuranChunkRow = Extract<QuranRowPayload, { readonly kind: "quran-chunk" }>;
+type QuranSearchRow = Extract<
+  QuranRowPayload,
+  { readonly kind: "quran-search" }
+>;
 
 /** Narrows one structured snapshot row to a runtime verse chunk. */
 function isChunk(row: QuranRowPayload): row is QuranChunkRow {
@@ -25,7 +32,7 @@ function isSearch(row: QuranRowPayload): row is QuranSearchRow {
 describe("Quran projection", () => {
   it("emits the complete bounded runtime and locale search snapshot", async () => {
     const rows = Chunk.toReadonlyArray(
-      await Effect.runPromise(Stream.runCollect(streamQuranRows()))
+      await Effect.runPromise(Stream.runCollect(streamQuranRows(source)))
     );
     const surahs = rows.filter(({ kind }) => kind === "quran-surah");
     const attributions = rows.filter(
@@ -44,8 +51,28 @@ describe("Quran projection", () => {
       attributions.length + surahs.length + chunks.length + searches.length
     );
     expect(attributions).toHaveLength(1);
+    expect(attributions[0]).toMatchObject({
+      activeAppLocales: ["en", "id"],
+      sources: expect.arrayContaining([
+        expect.objectContaining({
+          copy: [
+            expect.objectContaining({
+              appLocale: "en",
+              title: "Tanzil Quran Text (Uthmani)",
+            }),
+            expect.objectContaining({
+              appLocale: "id",
+              title: "Teks Al-Qur'an Tanzil (Utsmani)",
+            }),
+          ],
+          id: "tanzil-text",
+        }),
+      ]),
+    });
     expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
-    expect(searches).toHaveLength(QURAN_SEARCH_COUNT);
+    expect(searches).toHaveLength(
+      QURAN_SURAH_COUNT * ACTIVE_APP_LOCALES.length
+    );
     expect(verseCount).toBe(QURAN_VERSE_COUNT);
     expect(firstChunks).toMatchObject([
       { firstVerse: 1, lastVerse: 6, surahNumber: 1 },
@@ -53,12 +80,12 @@ describe("Quran projection", () => {
     ]);
     expect(firstSearches).toMatchObject([
       {
-        locale: "en",
+        appLocale: "en",
         route: "quran/1",
         title: "1. Al-Faatiha",
       },
       {
-        locale: "id",
+        appLocale: "id",
         route: "quran/1",
         title: "1. Al-Faatiha",
       },
@@ -67,11 +94,13 @@ describe("Quran projection", () => {
       chunks.every(
         ({ verses }) =>
           verses.length <= QURAN_CHUNK_SIZE &&
-          verses.every(
-            ({ tafsir }) =>
-              Object.keys(tafsir.id).length === 2 &&
-              typeof tafsir.id.text === "string"
-          )
+          verses.every(({ tafsir }) => {
+            const [indonesian] = tafsir;
+            return (
+              indonesian?.appLocale === "id" &&
+              typeof indonesian.text === "string"
+            );
+          })
       )
     ).toBe(true);
   }, 30_000);
@@ -79,7 +108,7 @@ describe("Quran projection", () => {
   it("derives stable graph identities with locale-specific assets", async () => {
     const searches = Chunk.toReadonlyArray(
       await Effect.runPromise(
-        streamQuranRows().pipe(
+        streamQuranRows(source).pipe(
           Stream.filter(isSearch),
           Stream.take(2),
           Stream.runCollect
@@ -105,17 +134,17 @@ describe("Quran projection", () => {
   });
 
   it("preserves non-null Tafsir footnotes in Indonesian search text", async () => {
-    const [source] = Chunk.toReadonlyArray(
+    const [quranSource] = Chunk.toReadonlyArray(
       await Effect.runPromise(
-        streamQuranRegistry().pipe(Stream.take(1), Stream.runCollect)
+        testQuranRegistry().pipe(Stream.take(1), Stream.runCollect)
       )
     );
-    const firstVerse = source?.verses[0];
-    if (!(source && firstVerse)) {
+    const firstVerse = quranSource?.verses[0];
+    if (!(quranSource && firstVerse)) {
       throw new Error("Expected one reviewed Quran verse.");
     }
     const surah = {
-      ...source,
+      ...quranSource,
       verses: [
         {
           ...firstVerse,
@@ -123,7 +152,7 @@ describe("Quran projection", () => {
             id: { ...firstVerse.tafsir.id, footnotes: "Catatan tafsir." },
           },
         },
-        ...source.verses.slice(1),
+        ...quranSource.verses.slice(1),
       ],
     };
     const searches = Chunk.toReadonlyArray(
@@ -135,8 +164,8 @@ describe("Quran projection", () => {
       )
     );
 
-    expect(searches.find(({ locale }) => locale === "id")?.text).toContain(
-      "Catatan tafsir."
-    );
+    expect(
+      searches.find(({ appLocale }) => appLocale === "id")?.text
+    ).toContain("Catatan tafsir.");
   });
 });

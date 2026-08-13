@@ -17,6 +17,10 @@ import {
   ReleaseIdSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
   RollbackDeleteStateSchema,
@@ -52,13 +56,13 @@ export const rollbackRendererManifest = await Effect.runPromise(
   })
 );
 const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  artifactLocale: "en",
   byteLength: Buffer.byteLength(compiledCode, "utf8"),
   compiledCode,
   compilerConfigHash: `sha256:${"a".repeat(64)}`,
   compilerVersion: "0.1.0",
   contentKey: "test:rollback-record",
-  format: "mdx-function-body-v1",
-  locale: "en",
+  format: "mdx-function-body",
   mdxCompilerVersion: "3.1.1",
   plainText: "Test protocol",
   rawMdx,
@@ -66,6 +70,7 @@ const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
   requiredComponents: [],
   sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
 });
+const rollbackAppLocale = AppLocaleSchema.make("en");
 
 /** Signs one compiled payload with the shared rollback test key. */
 export function signRollbackPayload(value: typeof payload) {
@@ -92,10 +97,11 @@ export const rollbackArtifact = signRollbackPayload(payload);
 export const rollbackProjection = Schema.decodeUnknownSync(
   MaterialLessonProjectionSchema
 )({
+  appLocale: rollbackAppLocale,
+  artifactLocale: payload.artifactLocale,
   contentKey: payload.contentKey,
-  graph: materialGraph(payload.locale, "rollback", "test-record"),
+  graph: materialGraph(rollbackAppLocale, "rollback", "test-record"),
   kind: "subject-lesson",
-  locale: payload.locale,
   materialKey: "lesson.test.rollback",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
@@ -109,10 +115,10 @@ export const rollbackUpsert = RollbackUpsertStateSchema.make({
   artifact: rollbackArtifact,
   change: {
     artifactHash: rollbackArtifact.artifactHash,
+    artifactLocale: payload.artifactLocale,
     contentKey: payload.contentKey,
     delivery: "public",
     family: "material",
-    locale: payload.locale,
     operation: "upsert",
     rendererDomain: payload.rendererDomain,
     sourcePath: CorpusSourcePathSchema.make(
@@ -137,17 +143,17 @@ export const incompatibleRollbackUpsert = RollbackUpsertStateSchema.make({
 });
 export const rollbackDeletion = RollbackDeleteStateSchema.make({
   change: {
+    artifactLocale: ArtifactLocaleSchema.make("en"),
     contentKey: ContentKeySchema.make("test:rollback-delete"),
     family: "material",
-    locale: "en",
     operation: "delete",
   },
 });
 export const matchingRollbackDeletion = RollbackDeleteStateSchema.make({
   change: {
+    artifactLocale: payload.artifactLocale,
     contentKey: payload.contentKey,
     family: "material",
-    locale: payload.locale,
     operation: "delete",
   },
 });

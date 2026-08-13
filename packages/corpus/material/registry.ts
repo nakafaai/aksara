@@ -1,5 +1,4 @@
 import {
-  ContentLocaleSchema,
   compareContentHeads,
   headIdentity,
   routeIdentity,
@@ -10,6 +9,12 @@ import {
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  ACTIVE_APP_LOCALES,
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+  activeAppLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
 import {
   MaterialKeySchema,
   MaterialLessonRouteSchema,
@@ -63,8 +68,8 @@ export class MaterialRegistryError extends Schema.TaggedError<MaterialRegistryEr
 export class MaterialIdentityError extends Schema.TaggedError<MaterialIdentityError>()(
   "MaterialIdentityError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    locale: MaterialLessonRouteSchema.fields.locale,
   }
 ) {}
 
@@ -72,7 +77,7 @@ export class MaterialIdentityError extends Schema.TaggedError<MaterialIdentityEr
 export class MaterialRouteError extends Schema.TaggedError<MaterialRouteError>()(
   "MaterialRouteError",
   {
-    locale: MaterialLessonRouteSchema.fields.locale,
+    appLocale: AppLocaleSchema,
     publicPath: PublicPathSchema,
   }
 ) {}
@@ -85,16 +90,18 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
   const sections = yield* Effect.forEach(
     source.sections,
     (section, sectionIndex) =>
-      Effect.forEach(ContentLocaleSchema.literals, (locale) =>
+      Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
         Effect.gen(function* () {
+          const appLocaleCode = activeAppLocaleCode(appLocale);
           const contentKey = `${source.assetRoot}/${section.slug}`;
           const publicPath = materialLessonPath(
             source,
             section,
             descriptor,
-            locale
+            appLocale
           );
           const graph = yield* makeLearningGraphIdentity({
+            appLocale,
             concept: ["material", "lesson", source.domain, source.slug],
             learningObject: [
               "material-section",
@@ -103,7 +110,6 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
               section.slug,
             ],
             lens: ["material", "lesson", source.domain],
-            locale,
           });
 
           return {
@@ -111,16 +117,17 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
             delivery: "public",
             rendererDomain: descriptor.rendererDomain,
             route: {
+              appLocale,
+              artifactLocale: appLocale,
               contentKey,
               graph,
-              locale,
               materialKey: source.key,
               order: sectionIndex + 1,
               publicPath,
               sectionKey: section.slug,
-              topicTitle: source.translations[locale].title,
+              topicTitle: source.translations[appLocaleCode].title,
             },
-            sourcePath: `packages/corpus/${contentKey}/${locale}.mdx`,
+            sourcePath: `packages/corpus/${contentKey}/${appLocaleCode}.mdx`,
           };
         })
       )
@@ -170,8 +177,8 @@ const validateEntries = Effect.fn("AksaraCorpus.validateMaterialEntries")(
       const head = headIdentity(entry.route);
       if (heads.has(head)) {
         return yield* new MaterialIdentityError({
+          artifactLocale: entry.route.artifactLocale,
           contentKey: entry.route.contentKey,
-          locale: entry.route.locale,
         });
       }
       heads.add(head);
@@ -179,7 +186,7 @@ const validateEntries = Effect.fn("AksaraCorpus.validateMaterialEntries")(
       const route = routeIdentity(entry.route);
       if (routes.has(route)) {
         return yield* new MaterialRouteError({
-          locale: entry.route.locale,
+          appLocale: entry.route.appLocale,
           publicPath: entry.route.publicPath,
         });
       }

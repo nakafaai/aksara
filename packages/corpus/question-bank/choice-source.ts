@@ -1,5 +1,8 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  type AppLocaleCode,
+  AppLocaleCodeSchema,
+} from "@nakafa/aksara-contracts/locale";
 import {
   type QuestionChoices,
   QuestionChoicesSchema,
@@ -8,7 +11,7 @@ import { hasTypeScriptSyntaxError } from "@nakafa/aksara-utilities/typescript/sy
 import { Effect, Schema } from "effect";
 import ts from "typescript";
 
-const isContentLocale = Schema.is(ContentLocaleSchema);
+const isAppLocaleCode = Schema.is(AppLocaleCodeSchema);
 
 /** A choices module contains executable or structurally invalid TypeScript. */
 export class QuestionChoiceError extends Schema.TaggedError<QuestionChoiceError>()(
@@ -78,7 +81,7 @@ function readChoiceList(expression: ts.Expression) {
     return;
   }
 
-  const choices: QuestionChoices[typeof ContentLocaleSchema.Type] = [];
+  const choices: NonNullable<QuestionChoices[AppLocaleCode]> = [];
   for (const element of expression.elements) {
     const choice = readChoiceItem(element);
     if (choice === undefined) {
@@ -96,7 +99,7 @@ function readChoicesObject(expression: ts.Expression) {
   }
 
   const choices = new Map<
-    typeof ContentLocaleSchema.Type,
+    AppLocaleCode,
     NonNullable<ReturnType<typeof readChoiceList>>
   >();
   for (const property of expression.properties) {
@@ -104,7 +107,7 @@ function readChoicesObject(expression: ts.Expression) {
       return;
     }
     const name = readPropertyName(property.name);
-    if (name === undefined || !isContentLocale(name) || choices.has(name)) {
+    if (name === undefined || !isAppLocaleCode(name) || choices.has(name)) {
       return;
     }
     const items = readChoiceList(property.initializer);
@@ -114,10 +117,7 @@ function readChoicesObject(expression: ts.Expression) {
     choices.set(name, items);
   }
 
-  if (
-    ContentLocaleSchema.literals.some((locale) => !choices.has(locale)) ||
-    choices.size !== ContentLocaleSchema.literals.length
-  ) {
+  if (choices.size === 0) {
     return;
   }
   return Object.fromEntries(choices);

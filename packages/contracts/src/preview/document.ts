@@ -53,11 +53,14 @@ function hasCoherentQuestionDocument(input: QuestionPreviewDocumentInput) {
         identity.peerContentKey === target.placement.questionContentKey;
   return (
     contentKeysMatch &&
-    identity.locale === target.placement.locale &&
+    identity.artifactLocale ===
+      (identity.bodyKind === "question"
+        ? target.placement.questionArtifactLocale
+        : target.placement.answerArtifactLocale) &&
     identity.questionNumber === target.placement.questionOrder &&
     input.rendererDomain === target.placement.rendererDomain &&
     input.sourcePath ===
-      `${target.placement.questionSourcePath}/${identity.bodyKind}.${identity.locale}.mdx`
+      `${target.placement.questionSourcePath}/${identity.bodyKind}.${identity.artifactLocale}.mdx`
   );
 }
 
@@ -95,7 +98,7 @@ export const QuestionAnswerPreviewDocumentSchema = Schema.Struct({
 export type QuestionAnswerPreviewDocument =
   typeof QuestionAnswerPreviewDocumentSchema.Type;
 
-/** Complete discriminated document vocabulary supported by preview v1. */
+/** Complete discriminated document vocabulary supported by preview. */
 export const PreviewDocumentSchema = Schema.Union(
   ArticlePreviewDocumentSchema,
   MaterialPreviewDocumentSchema,
@@ -111,7 +114,7 @@ export function previewDocumentRoute(document: PreviewDocument) {
   }
 
   return PreviewRouteSchema.make({
-    locale: document.route.locale,
+    appLocale: document.route.appLocale,
     publicPath: document.route.publicPath,
   });
 }

@@ -1,12 +1,10 @@
-import {
-  type ContentLocale,
-  compareContentHeads,
-} from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
 import {
   type QuestionHead,
@@ -15,7 +13,7 @@ import {
 import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
-} from "@nakafa/aksara-contracts/tryout/spec";
+} from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { bindTryoutHeads } from "#publisher/tryout/bind";
@@ -27,16 +25,19 @@ const sourceRoot =
 const hash = Sha256HashSchema.make(`sha256:${"1".repeat(64)}`);
 
 /** Returns one strict test-owned active placement without authored body text. */
-function placement(locale: ContentLocale) {
+function placement(artifactLocale: typeof ArtifactLocaleSchema.Encoded) {
   return Schema.decodeUnknownSync(TryoutPlacementSourceSchema)({
+    answerArtifactLocale: artifactLocale,
     answerContentKey: `${questionRoot}/answer`,
+    appLocale: artifactLocale,
     choices: [
       { isCorrect: true, label: "Test A", optionKey: "option-1", order: 1 },
       { isCorrect: false, label: "Test B", optionKey: "option-2", order: 2 },
     ],
     countryKey: "indonesia",
+    deliveryLanguage: artifactLocale,
     examKey: "snbt",
-    locale,
+    questionArtifactLocale: artifactLocale,
     questionContentKey: `${questionRoot}/question`,
     questionOrder: 1,
     questionSourcePath: sourceRoot,
@@ -44,16 +45,16 @@ function placement(locale: ContentLocale) {
     scope: "server",
     sectionKey: "general-reasoning",
     setKey: "set-1",
-    sourceRevision: "test-v1",
+    sourceRevision: "test",
     trackKey: "2027",
   });
 }
 
 interface HeadInput {
+  readonly artifactLocale: typeof ArtifactLocaleSchema.Encoded;
   readonly bodyKind: QuestionBodyKind;
   readonly contentRoot?: string;
   readonly delivery?: QuestionHead["delivery"];
-  readonly locale: ContentLocale;
   readonly rendererDomain?: QuestionHead["rendererDomain"];
   readonly sourcePath?: string;
 }
@@ -63,18 +64,19 @@ function head(input: HeadInput) {
   const root = input.contentRoot ?? questionRoot;
   return QuestionHeadSchema.make({
     artifactHash: hash,
+    artifactLocale: ArtifactLocaleSchema.make(input.artifactLocale),
     compilerConfigHash: hash,
     contentKey: ContentKeySchema.make(`${root}/${input.bodyKind}`),
     delivery:
       input.delivery ??
       (input.bodyKind === "answer" ? "entitled" : "authenticated"),
     family: "question",
-    locale: input.locale,
     projectionHash: hash,
     rendererDomain: input.rendererDomain ?? "snbt-general",
     sourceHash: hash,
     sourcePath: CorpusSourcePathSchema.make(
-      input.sourcePath ?? `${sourceRoot}/${input.bodyKind}.${input.locale}.mdx`
+      input.sourcePath ??
+        `${sourceRoot}/${input.bodyKind}.${input.artifactLocale}.mdx`
     ),
   });
 }
@@ -82,10 +84,10 @@ function head(input: HeadInput) {
 /** Returns all four active heads in canonical content order. */
 function activeHeads() {
   return [
-    head({ bodyKind: "answer", locale: "en" }),
-    head({ bodyKind: "answer", locale: "id" }),
-    head({ bodyKind: "question", locale: "en" }),
-    head({ bodyKind: "question", locale: "id" }),
+    head({ artifactLocale: "en", bodyKind: "answer" }),
+    head({ artifactLocale: "id", bodyKind: "answer" }),
+    head({ artifactLocale: "en", bodyKind: "question" }),
+    head({ artifactLocale: "id", bodyKind: "question" }),
   ];
 }
 
@@ -117,7 +119,7 @@ function reject(
 
 /** Alters exactly one active-head ownership field for failure coverage. */
 function mismatchedHead(field: "delivery" | "rendererDomain" | "sourcePath") {
-  const current = head({ bodyKind: "answer", locale: "en" });
+  const current = head({ artifactLocale: "en", bodyKind: "answer" });
   if (field === "delivery") {
     return QuestionHeadSchema.make({ ...current, delivery: "public" });
   }
@@ -141,16 +143,16 @@ describe("try-out head binding", () => {
     const heads = [
       ...activeHeads(),
       head({
+        artifactLocale: "en",
         bodyKind: "answer",
         contentRoot: inactiveRoot,
-        locale: "en",
         sourcePath:
           "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1/answer.en.mdx",
       }),
     ].sort(compareContentHeads);
     const result = await collect(placements, heads);
 
-    expect(result.map(({ placement: row }) => row.locale)).toEqual([
+    expect(result.map(({ placement: row }) => row.appLocale)).toEqual([
       "en",
       "id",
     ]);
@@ -163,8 +165,8 @@ describe("try-out head binding", () => {
   });
 
   it("rejects duplicate and descending complete head streams", async () => {
-    const answer = head({ bodyKind: "answer", locale: "en" });
-    const question = head({ bodyKind: "question", locale: "en" });
+    const answer = head({ artifactLocale: "en", bodyKind: "answer" });
+    const question = head({ artifactLocale: "en", bodyKind: "question" });
     const errors = await Promise.all(
       [
         [answer, answer],
@@ -182,7 +184,7 @@ describe("try-out head binding", () => {
       activeHeads().slice(1)
     );
     const trailing = QuestionHeadSchema.make({
-      ...head({ bodyKind: "answer", locale: "en" }),
+      ...head({ artifactLocale: "en", bodyKind: "answer" }),
       contentKey: ContentKeySchema.make(`${questionRoot}/zzz`),
       sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/zzz.en.mdx`),
     });
@@ -202,8 +204,8 @@ describe("try-out head binding", () => {
 
     expect(missing).toMatchObject({
       _tag: "TryoutHeadMissingError",
+      artifactLocale: "en",
       bodyKind: "answer",
-      locale: "en",
     });
     expect(trailingError).toMatchObject({
       _tag: "TryoutHeadMismatchError",
@@ -223,8 +225,8 @@ describe("try-out head binding", () => {
 
     expect(error).toMatchObject({
       _tag: "TryoutHeadMissingError",
+      artifactLocale: "id",
       bodyKind: "question",
-      locale: "id",
     });
   });
 
@@ -243,15 +245,19 @@ describe("try-out head binding", () => {
     }
   );
 
-  it("rejects incomplete and repeated locale placement pairs", async () => {
-    const [incomplete, repeated] = await Promise.all([
+  it("rejects incomplete and repeated artifactLocale placement pairs", async () => {
+    const [incomplete, repeated, substituted] = await Promise.all([
       reject(
         [placement("en")],
-        activeHeads().filter(({ locale }) => locale === "en")
+        activeHeads().filter(({ artifactLocale }) => artifactLocale === "en")
       ),
       reject(
         [placement("en"), placement("en")],
-        activeHeads().filter(({ locale }) => locale === "en")
+        activeHeads().filter(({ artifactLocale }) => artifactLocale === "en")
+      ),
+      reject(
+        [placement("en"), placement("de")],
+        activeHeads().filter(({ artifactLocale }) => artifactLocale === "en")
       ),
     ]);
 
@@ -260,6 +266,10 @@ describe("try-out head binding", () => {
       field: "bodyPair",
     });
     expect(repeated).toMatchObject({
+      _tag: "TryoutHeadMismatchError",
+      field: "bodyPair",
+    });
+    expect(substituted).toMatchObject({
       _tag: "TryoutHeadMismatchError",
       field: "bodyPair",
     });

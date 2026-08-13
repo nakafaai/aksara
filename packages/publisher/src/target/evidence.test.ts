@@ -17,7 +17,6 @@ describe("publication success evidence", () => {
       )
     ).toEqual(transportRequests.map(() => true));
   });
-
   it("rejects every success carrying a foreign operation identity", () => {
     expect(
       transportRequests.map((request) =>
@@ -27,7 +26,6 @@ describe("publication success evidence", () => {
       transportRequests.map(({ operation }) => operation === "current")
     );
   });
-
   it("binds completed recovery evidence to the protected active relation", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "recovery"
@@ -45,7 +43,6 @@ describe("publication success evidence", () => {
       )
     ).toBe(false);
   });
-
   it("binds head pages to the requested cursor and row ceiling", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "headPage"
@@ -86,7 +83,6 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(request, wrongCursor)).toBe(false);
     expect(hasBoundPublicationSuccess(limited, twoHeads)).toBe(false);
   });
-
   it("rejects verification evidence from another signed manifest", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "verify"
@@ -106,6 +102,8 @@ describe("publication success evidence", () => {
       { ...success.value.evidence, manifestHash: foreignHash },
       {
         ...success.value.evidence,
+        baseActiveAppLocales: success.value.evidence.activeAppLocales,
+        baseEditorialReviewDigest: foreignHash,
         baseManifestHash: foreignHash,
         baseReleaseId: "test-foreign-base",
       },
@@ -114,6 +112,12 @@ describe("publication success evidence", () => {
         deleteHeads: 0,
         itemCount: 1,
         rollbackCount: 1,
+      },
+      {
+        ...success.value.evidence,
+        deleteHeads: 0,
+        stagedArtifacts: 2,
+        upsertHeads: 2,
       },
       { ...success.value.evidence, itemsDigest: foreignHash },
       { ...success.value.evidence, projectionCount: 2 },
@@ -132,7 +136,6 @@ describe("publication success evidence", () => {
       )
     ).toEqual(evidenceCases.map(() => false));
   });
-
   it("binds pending verification to the requested release identity", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "verify"
@@ -167,7 +170,6 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(request, foreign)).toBe(false);
     expect(hasBoundPublicationSuccess(request, foreignHash)).toBe(false);
   });
-
   it("rejects activation receipts that contradict their signed manifest", () => {
     const request = transportRequests.find(
       (candidate) => candidate.operation === "activate"
@@ -212,9 +214,9 @@ describe("publication success evidence", () => {
     const records = [0, 1].map((index) => {
       const state = {
         change: {
+          artifactLocale: "en" as const,
           contentKey: `test:deleted-${index}`,
           family: "material" as const,
-          locale: "en" as const,
           operation: "delete" as const,
         },
       };

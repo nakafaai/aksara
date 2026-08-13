@@ -1,9 +1,10 @@
 import type { FileSystem, Path } from "@effect/platform";
-import type {
-  ContentFamily,
-  ContentLocale,
-} from "@nakafa/aksara-contracts/content";
+import type { ContentFamily } from "@nakafa/aksara-contracts/content";
 import type { ContentKey, PublicPath } from "@nakafa/aksara-contracts/ids";
+import type {
+  AppLocale,
+  ArtifactLocale,
+} from "@nakafa/aksara-contracts/locale";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
@@ -12,9 +13,9 @@ import type { RouteTransition } from "#publisher/routes";
 
 /** Source-owned identity expected to survive complete catalog preparation. */
 export interface ExpectedCatalogHead {
+  readonly artifactLocale: ArtifactLocale;
   readonly contentKey: ContentKey;
   readonly family: ContentFamily;
-  readonly locale: ContentLocale;
 }
 
 /** Source-derived body inventory used to prove compiler and route completeness. */
@@ -35,18 +36,19 @@ export class ContentCatalogExpectationError extends Schema.TaggedError<ContentCa
 
 /** Projects one public source route into its expected genesis transition. */
 function expectedRoute(route: {
+  readonly appLocale: AppLocale;
   readonly contentKey: ContentKey;
-  readonly locale: ContentLocale;
+  readonly artifactLocale: ArtifactLocale;
   readonly publicPath: PublicPath;
 }): RouteTransition {
   return {
     current: {
+      appLocale: route.appLocale,
       contentKey: route.contentKey,
-      locale: route.locale,
     },
     next: {
+      appLocale: route.appLocale,
       contentKey: route.contentKey,
-      locale: route.locale,
       publicPath: route.publicPath,
     },
   };
@@ -74,23 +76,23 @@ export const readContentCatalogExpectation: (
     const heads: ExpectedCatalogHead[] = [
       ...articles.map(
         ({ route }): ExpectedCatalogHead => ({
+          artifactLocale: route.artifactLocale,
           contentKey: route.contentKey,
           family: "article",
-          locale: route.locale,
         })
       ),
       ...materials.map(
         ({ route }): ExpectedCatalogHead => ({
+          artifactLocale: route.artifactLocale,
           contentKey: route.contentKey,
           family: "material",
-          locale: route.locale,
         })
       ),
       ...tryout.entries.map(
-        ({ contentKey, locale }): ExpectedCatalogHead => ({
+        ({ contentKey, artifactLocale }): ExpectedCatalogHead => ({
+          artifactLocale,
           contentKey,
           family: "question",
-          locale,
         })
       ),
     ];

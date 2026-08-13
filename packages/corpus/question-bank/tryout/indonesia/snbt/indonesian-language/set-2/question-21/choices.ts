@@ -1,28 +1,6 @@
 import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 
 const choices: QuestionChoices = {
-  en: [
-    {
-      label:
-        "Banyak mayat yang ditemukan di sekitar maupun di dalam danau tersebut",
-      value: true,
-    },
-    { label: "Sering kejadian bunuh diri di danau tersebut", value: false },
-    {
-      label: "Zaman dulu disekitar danau tersebut adalah pemukiman",
-      value: false,
-    },
-    {
-      label:
-        "Perperangan terjadi di sekitar danau tersebut sehingga yang meninggal dibiarkan begitu saja",
-      value: false,
-    },
-    {
-      label:
-        "Kutukan alam terhadap orang-orang yang merusak alam sekitar danau tersebut",
-      value: false,
-    },
-  ],
   id: [
     {
       label:

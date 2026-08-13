@@ -1,6 +1,6 @@
 import { globSync } from "node:fs";
 import { resolve } from "node:path";
-import type { ContentLocale } from "@nakafa/aksara-contracts/content";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
@@ -54,7 +54,7 @@ function rejectRegistry(input: unknown) {
 }
 
 /** Builds the expected signed graph identity for the representative lesson. */
-function lessonGraph(locale: ContentLocale) {
+function lessonGraph(locale: AppLocaleCode) {
   return {
     alignmentId:
       "alignment:material:lesson:mathematics:material-section:mathematics:function-composition-inverse-function:function-concept",
@@ -79,12 +79,12 @@ describe("material registry", () => {
     expect(new Set(entries.map(({ route }) => route.materialKey)).size).toBe(
       36
     );
-    expect(entries.filter(({ route }) => route.locale === "en")).toHaveLength(
-      383
-    );
-    expect(entries.filter(({ route }) => route.locale === "id")).toHaveLength(
-      383
-    );
+    expect(
+      entries.filter(({ route }) => route.appLocale === "en")
+    ).toHaveLength(383);
+    expect(
+      entries.filter(({ route }) => route.appLocale === "id")
+    ).toHaveLength(383);
     expect(new Set(projectedPaths).size).toBe(766);
     expect(projectedPaths).toEqual(authoredPaths);
 
@@ -125,10 +125,11 @@ describe("material registry", () => {
         delivery: "public",
         rendererDomain: "mathematics",
         route: {
+          appLocale: "en",
+          artifactLocale: "en",
           contentKey:
             "material/lesson/mathematics/function-composition-inverse-function/function-concept",
           graph: lessonGraph("en"),
-          locale: "en",
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",
           order: 1,
@@ -146,10 +147,11 @@ describe("material registry", () => {
         delivery: "public",
         rendererDomain: "mathematics",
         route: {
+          appLocale: "id",
+          artifactLocale: "id",
           contentKey:
             "material/lesson/mathematics/function-composition-inverse-function/function-concept",
           graph: lessonGraph("id"),
-          locale: "id",
           materialKey:
             "lesson.mathematics.function-composition-inverse-function",
           order: 1,
@@ -281,11 +283,11 @@ describe("material registry", () => {
 
     expect(duplicateHead).toMatchObject({
       _tag: "MaterialIdentityError",
-      locale: "en",
+      artifactLocale: "en",
     });
     expect(duplicateRoute).toMatchObject({
       _tag: "MaterialRouteError",
-      locale: "en",
+      appLocale: "en",
       publicPath:
         "subjects/mathematics/function-composition-inverse-function/function-concept",
     });

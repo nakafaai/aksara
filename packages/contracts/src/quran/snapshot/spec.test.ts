@@ -1,93 +1,115 @@
-import { Schema } from "effect";
+import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   QURAN_SNAPSHOT_FORMAT,
-  QuranSnapshotInputSchema,
-  QuranSnapshotManifestSchema,
+  QuranSnapshotFactsSchema,
+  QuranSnapshotSchema,
 } from "#contracts/quran/snapshot/spec";
 
-const firstHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const secondHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
+const digest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const facts = {
+  activeAppLocales: ["en", "id"],
+  attributionCount: 1,
+  chunkCount: 1085,
+  editorialReviewDigest: digest,
+  projectionCount: 1428,
+  projectionDigest: digest,
+  provenanceDigest: digest,
+  provenanceStatus: "blocked",
+  runtimeCount: 1200,
+  runtimeDigest: digest,
+  searchCount: 228,
+  searchDigest: digest,
+  sourceBytes: 1,
+  sourceDigest: digest,
+  sourceFileCount: 118,
+  surahCount: 114,
+  tafsirLocales: ["id"],
+  verseCount: 6236,
+};
 
-/** Builds the complete fixed-count snapshot manifest. */
-function manifest() {
-  return {
-    attributionCount: 1,
-    chunkCount: 1085,
-    format: QURAN_SNAPSHOT_FORMAT,
-    locales: ["en", "id"],
-    projectionCount: 1428,
-    projectionDigest: firstHash,
-    provenanceDigest: firstHash,
-    provenanceStatus: "blocked",
-    runtimeCount: 1200,
-    runtimeDigest: firstHash,
-    searchCount: 228,
-    searchDigest: firstHash,
-    snapshotId: secondHash,
-    sourceBytes: 11_506_941,
-    sourceDigest: firstHash,
-    sourceFileCount: 118,
-    surahCount: 114,
-    tafsirLocales: ["id"],
-    verseCount: 6236,
-  };
-}
+describe("Quran snapshot contract", () => {
+  it("accepts complete source and projection evidence", () => {
+    const decoded = Schema.decodeUnknownSync(QuranSnapshotFactsSchema)(facts);
+    const snapshot = Schema.decodeUnknownSync(QuranSnapshotSchema)({
+      ...facts,
+      format: QURAN_SNAPSHOT_FORMAT,
+      snapshotId: digest,
+    });
+    expect(decoded.activeAppLocales).toEqual(["en", "id"]);
+    expect(snapshot.format).toBe("localized-quran-snapshot");
 
-describe("Quran snapshot", () => {
-  it("locks source counts while deriving coherent projection inventory", () => {
-    const decoded = Schema.decodeUnknownSync(QuranSnapshotManifestSchema)(
-      manifest()
-    );
-    const alternateChunking = Schema.decodeUnknownSync(
-      QuranSnapshotManifestSchema
-    )({
-      ...manifest(),
-      chunkCount: 1086,
-      projectionCount: 1429,
-      runtimeCount: 1201,
-    });
-    const decode = Schema.decodeUnknownEither(QuranSnapshotManifestSchema);
-    const countError = decode({ ...manifest(), surahCount: 113 });
-    const projectionError = decode({ ...manifest(), runtimeCount: 1199 });
-    const tafsirError = decode({
-      ...manifest(),
-      tafsirLocales: ["id", "id"],
-    });
-    const { snapshotId: _snapshotId, ...input } = manifest();
-    const decodeInput = Schema.decodeUnknownEither(QuranSnapshotInputSchema);
-    const inputCountError = decodeInput({ ...input, verseCount: 6235 });
-    const inputProjectionError = decodeInput({
-      ...input,
-      projectionCount: 1427,
-    });
-    if (
-      countError._tag === "Right" ||
-      projectionError._tag === "Right" ||
-      tafsirError._tag === "Right" ||
-      inputCountError._tag === "Right" ||
-      inputProjectionError._tag === "Right"
-    ) {
-      throw new Error("Expected incomplete Quran snapshot counts to fail.");
+    const englishOnly = {
+      ...facts,
+      activeAppLocales: ["en"],
+      projectionCount: 1314,
+      searchCount: 114,
+      sourceFileCount: 3,
+      tafsirLocales: [],
+    };
+    expect(
+      Schema.decodeUnknownSync(QuranSnapshotFactsSchema)(englishOnly)
+        .activeAppLocales
+    ).toEqual(["en"]);
+  });
+
+  it("rejects missing locale sources and incoherent projection counts", () => {
+    for (const change of [
+      { sourceFileCount: 4 },
+      { searchCount: 114 },
+      { runtimeCount: 1199 },
+      { projectionCount: 1427 },
+      { tafsirLocales: [] },
+    ]) {
+      expect(
+        Either.isLeft(
+          Schema.decodeUnknownEither(QuranSnapshotFactsSchema)({
+            ...facts,
+            ...change,
+          })
+        )
+      ).toBe(true);
     }
-
-    expect(decoded.snapshotId).toBe(secondHash);
-    expect(alternateChunking.chunkCount).toBe(1086);
-    expect(String(countError.left)).toContain(
-      "Expected the complete reviewed Quran snapshot counts."
-    );
-    expect(String(projectionError.left)).toContain(
+    expect(
+      String(
+        Schema.decodeUnknownEither(QuranSnapshotFactsSchema)({
+          ...facts,
+          sourceFileCount: 4,
+        })
+      )
+    ).toContain("Expected complete active-locale Quran source counts.");
+    expect(
+      String(
+        Schema.decodeUnknownEither(QuranSnapshotFactsSchema)({
+          ...facts,
+          runtimeCount: 1199,
+        })
+      )
+    ).toContain(
       "Expected Quran runtime and search counts to cover every projection."
     );
-    expect(String(tafsirError.left)).toContain(
-      "Tafsir locales must match the reviewed corpus contract."
-    );
-    expect(String(inputCountError.left)).toContain(
-      "Expected the complete reviewed Quran snapshot counts."
-    );
-    expect(String(inputProjectionError.left)).toContain(
+    expect(
+      String(
+        Schema.decodeUnknownEither(QuranSnapshotSchema)({
+          ...facts,
+          format: QURAN_SNAPSHOT_FORMAT,
+          snapshotId: digest,
+          sourceFileCount: 4,
+        })
+      )
+    ).toContain("Expected complete active-locale Quran source counts.");
+    expect(
+      String(
+        Schema.decodeUnknownEither(QuranSnapshotSchema)({
+          ...facts,
+          format: QURAN_SNAPSHOT_FORMAT,
+          projectionCount: 1427,
+          snapshotId: digest,
+        })
+      )
+    ).toContain(
       "Expected Quran runtime and search counts to cover every projection."
     );
   });
