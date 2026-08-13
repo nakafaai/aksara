@@ -1,7 +1,7 @@
 // @vitest-environment node
 
 import { Buffer } from "node:buffer";
-import { generateKeyPairSync, type KeyLike, sign } from "node:crypto";
+import { generateKeyPairSync, sign } from "node:crypto";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";
@@ -10,25 +10,6 @@ import {
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects one deterministic Ed25519 verification failure. */
-    verify(
-      algorithm: null,
-      data: NodeJS.ArrayBufferView,
-      key: KeyLike,
-      signatureBytes: NodeJS.ArrayBufferView
-    ) {
-      if (String(data) === "signature-check-failure") {
-        throw new TypeError("injected signature check failure");
-      }
-      return crypto.verify(algorithm, data, key, signatureBytes);
-    },
-  };
-});
 
 const keyId = SigningKeyIdSchema.make("test-signing-key");
 const keys = generateKeyPairSync("ed25519");
@@ -119,6 +100,20 @@ describe("verifyEd25519Signature", () => {
     });
   });
 
+  it("maps Web Crypto key import failures to a typed parse failure", async () => {
+    const resolver = ContentVerificationKeyResolver.of({
+      resolve: () => Effect.succeed(publicKey),
+    });
+    const importKey = vi
+      .spyOn(crypto.subtle, "importKey")
+      .mockRejectedValueOnce(new TypeError("injected key import failure"));
+
+    const error = await reject(resolver);
+    importKey.mockRestore();
+
+    expect(error).toMatchObject({ _tag: "PublicKeyParseError" });
+  });
+
   it("rejects unknown keys without exposing key material", async () => {
     const resolver = ContentVerificationKeyResolver.of({
       resolve: (requestedKeyId) =>
@@ -163,7 +158,11 @@ describe("verifyEd25519Signature", () => {
     const resolver = ContentVerificationKeyResolver.of({
       resolve: () => Effect.succeed(publicKey),
     });
+    const verification = vi
+      .spyOn(crypto.subtle, "verify")
+      .mockRejectedValueOnce(new TypeError("injected signature check failure"));
     const error = await reject(resolver, "signature-check-failure");
+    verification.mockRestore();
 
     expect(error).toMatchObject({
       _tag: "SignatureCheckError",

@@ -1,13 +1,56 @@
+import { Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { TryoutCatalogNodeIdentitySchema } from "#contracts/tryout/catalog";
 import {
   compareTryoutPlacements,
+  tryoutCatalogIdentity,
+  tryoutCatalogNodeIdentity,
   tryoutPlacementIdentity,
   tryoutPlacementLogicalIdentity,
 } from "#contracts/tryout/identity";
 
 describe("try-out placement identity", () => {
+  it("derives complete-row identities from the minimal semantic contract", () => {
+    const rows = makeTryoutTestRows().catalog.map(({ row }) => row);
+    const identities = rows.map((row) => {
+      const identity = Schema.decodeUnknownSync(
+        TryoutCatalogNodeIdentitySchema
+      )(row, { onExcessProperty: "ignore" });
+      return [tryoutCatalogNodeIdentity(identity), tryoutCatalogIdentity(row)];
+    });
+
+    expect(
+      identities.every(([minimal, complete]) => minimal === complete)
+    ).toBe(true);
+  });
+
+  it("keeps catalog kinds and application locales distinct", () => {
+    const country = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+      appLocale: "en",
+      countryKey: "indonesia",
+      kind: "country",
+    });
+    const exam = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+      appLocale: "en",
+      countryKey: "indonesia",
+      examKey: "snbt",
+      kind: "exam",
+    });
+    const german = Schema.decodeUnknownSync(TryoutCatalogNodeIdentitySchema)({
+      ...country,
+      appLocale: "de",
+    });
+
+    expect(tryoutCatalogNodeIdentity(country)).not.toBe(
+      tryoutCatalogNodeIdentity(exam)
+    );
+    expect(tryoutCatalogNodeIdentity(country)).not.toBe(
+      tryoutCatalogNodeIdentity(german)
+    );
+  });
+
   it("orders application-localized placements deterministically", () => {
     const placements = makeTryoutTestRows().placements.map(({ row }) => row);
     const sorted = [...placements].sort(compareTryoutPlacements);

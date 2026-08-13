@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
   compareHistoricalCodeUnits,
   HistoricalPrimitive,
+  HistoricalSha256HashSchema,
   historicalQuestionKeyParts,
 } from "#contracts/history/primitives";
 
@@ -53,6 +54,16 @@ describe("historical primitives", () => {
     expect(Either.isLeft(result)).toBe(true);
     expect(Either.isLeft(result) ? String(result.left) : "").toContain(
       "historical prefixes"
+    );
+  });
+
+  it("rejects a retained hash outside its exact old wire", () => {
+    const result = Schema.decodeUnknownEither(HistoricalSha256HashSchema)(
+      `sha256:${"g".repeat(64)}`
+    );
+
+    expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+      "exact SHA-256 wire format"
     );
   });
 });

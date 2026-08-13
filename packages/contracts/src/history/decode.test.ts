@@ -1,6 +1,4 @@
 // @vitest-environment node
-import type { BinaryLike } from "node:crypto";
-
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 
@@ -27,35 +25,6 @@ import {
   retainedTryoutPlacementWithHashRow,
   retainedTryoutSnapshot,
 } from "#contracts/test/history";
-
-const hashFailures = vi.hoisted(() => ({ active: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Creates a real hash whose update call supports deterministic failure. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Intercepts update while preserving every other real hash method. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (hashFailures.active) {
-                throw new TypeError("injected retained-content hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 /** Decodes one retained release with its frozen verification key. */
 function readRelease(input: unknown) {
@@ -119,7 +88,9 @@ describe("stored history decoding", () => {
   });
 
   it("maps retained release, snapshot, and row hashing failures", async () => {
-    hashFailures.active = true;
+    const digest = vi
+      .spyOn(crypto.subtle, "digest")
+      .mockRejectedValue(new TypeError("injected retained hash failure"));
     const [releaseError, snapshotError, rowError] = await Promise.all([
       Effect.runPromise(
         decodeStoredRelease(retainedRelease).pipe(
@@ -137,7 +108,7 @@ describe("stored history decoding", () => {
         decodeStoredTryoutRow(retainedTryoutCatalogRow).pipe(Effect.flip)
       ),
     ]);
-    hashFailures.active = false;
+    digest.mockRestore();
 
     expect(releaseError.message).toBe(
       "Stored release bytes could not be hashed."

@@ -1,6 +1,7 @@
 import { Schema } from "effect";
 
 const HISTORICAL_QUESTION_SEGMENT_PATTERN = /^question-[1-9]\d*$/u;
+const HISTORICAL_SHA256_HASH_PATTERN = /^sha256:[a-f\d]{64}$/u;
 
 const ContentKeySchema = Schema.String.pipe(
   Schema.pattern(/^[a-z0-9][a-z0-9._:/-]*$/u),
@@ -27,8 +28,15 @@ const GitCommitShaSchema = Schema.String.pipe(
   Schema.pattern(/^[a-f\d]{40}$/u),
   Schema.brand("@NakafaAI/AksaraGitCommitSha")
 );
+/** Checks one exact historical hash wire while preserving its string shape. */
+function isHistoricalSha256Hash(value: string): value is `sha256:${string}` {
+  return HISTORICAL_SHA256_HASH_PATTERN.test(value);
+}
+
 export const HistoricalSha256HashSchema = Schema.String.pipe(
-  Schema.pattern(/^sha256:[a-f\d]{64}$/u),
+  Schema.filter(isHistoricalSha256Hash, {
+    message: () => "Stored hash must use the exact SHA-256 wire format.",
+  }),
   Schema.brand("@NakafaAI/AksaraSha256Hash")
 );
 const SigningKeyIdSchema = Schema.String.pipe(
@@ -44,7 +52,8 @@ const TryoutKeySchema = Schema.String.pipe(
   Schema.pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u),
   Schema.maxLength(128)
 );
-const RendererDomainSchema = Schema.Literal(
+/** Exact renderer-domain inventory carried by retained signed manifests. */
+export const HISTORICAL_RENDERER_DOMAINS = [
   "ai-ds",
   "biology",
   "chemistry",
@@ -55,8 +64,9 @@ const RendererDomainSchema = Schema.Literal(
   "snbt-math",
   "snbt-plain",
   "snbt-quant",
-  "tka-math"
-);
+  "tka-math",
+] as const;
+const RendererDomainSchema = Schema.Literal(...HISTORICAL_RENDERER_DOMAINS);
 const LearningGraphIdSchema = Schema.String.pipe(
   Schema.pattern(
     /^(?:alignment|asset|concept|lens|lo):[a-z0-9]+(?:-[a-z0-9]+)*(?::[a-z0-9]+(?:-[a-z0-9]+)*)*$/u

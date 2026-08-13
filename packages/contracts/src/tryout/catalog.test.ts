@@ -2,6 +2,7 @@ import { Either, ParseResult, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
+  TryoutCatalogNodeIdentitySchema,
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
 } from "#contracts/tryout/catalog";
@@ -28,6 +29,36 @@ describe("try-out catalog contract", () => {
     expect(new Set(kinds)).toEqual(
       new Set(["country", "exam", "track", "set", "section"])
     );
+  });
+
+  it("requires exact keys for each pre-read catalog identity", () => {
+    const valid = Schema.decodeUnknownEither(TryoutCatalogNodeIdentitySchema)({
+      appLocale: "de",
+      countryKey: "indonesia",
+      examKey: "snbt",
+      kind: "exam",
+    });
+    const missing = Schema.decodeUnknownEither(TryoutCatalogNodeIdentitySchema)(
+      {
+        appLocale: "de",
+        countryKey: "indonesia",
+        kind: "exam",
+      }
+    );
+    const excess = Schema.decodeUnknownEither(TryoutCatalogNodeIdentitySchema)(
+      {
+        appLocale: "de",
+        countryKey: "indonesia",
+        examKey: "snbt",
+        kind: "exam",
+        trackKey: "2027",
+      },
+      { onExcessProperty: "error" }
+    );
+
+    expect(Either.isRight(valid)).toBe(true);
+    expect(Either.isLeft(missing)).toBe(true);
+    expect(Either.isLeft(excess)).toBe(true);
   });
 
   it("reports track, set, and section inventory violations", () => {

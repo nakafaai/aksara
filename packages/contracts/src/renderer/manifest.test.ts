@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { type BinaryLike, createHash } from "node:crypto";
+import { createHash } from "node:crypto";
 import { Effect } from "effect";
 import { describe, expect, it, vi } from "vitest";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
@@ -11,32 +11,6 @@ import {
 } from "#contracts/renderer/manifest";
 import { testRendererDomains } from "#contracts/test/renderer";
 
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects one deterministic renderer-hashing failure. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Preserves real hash methods while intercepting one marker. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (typeof data === "string" && data.includes("HashFailure")) {
-                throw new TypeError("injected renderer hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 const CHEMISTRY = {
   authoringComponents: [{ name: "AtomShellLab", version: 1 }],
   name: "chemistry",
@@ -292,6 +266,9 @@ describe("renderer manifest", () => {
   });
 
   it("maps renderer hashing failures without leaking raw crypto errors", async () => {
+    const digest = vi
+      .spyOn(crypto.subtle, "digest")
+      .mockRejectedValueOnce(new TypeError("injected renderer hash failure"));
     const error = await Effect.runPromise(
       createRendererManifest(
         creation(
@@ -300,6 +277,7 @@ describe("renderer manifest", () => {
         )
       ).pipe(Effect.flip)
     );
+    digest.mockRestore();
     expect(error._tag).toBe("RendererManifestHashComputeError");
   });
 });

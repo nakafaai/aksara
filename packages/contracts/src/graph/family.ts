@@ -3,8 +3,9 @@ import { Effect, Schema } from "effect";
 import {
   type LearningGraphIdentity,
   LearningGraphIdentitySchema,
+  LearningGraphIdSchema,
 } from "#contracts/graph/spec";
-import { AppLocaleCodeSchema } from "#contracts/locale";
+import { AppLocaleCodeSchema, AppLocaleSchema } from "#contracts/locale";
 
 /** Current semantic families addressable through learning-graph identities. */
 export const LearningGraphFamilySchema = Schema.Literal(
@@ -14,6 +15,40 @@ export const LearningGraphFamilySchema = Schema.Literal(
   "tryout"
 );
 export type LearningGraphFamily = typeof LearningGraphFamilySchema.Type;
+
+/** Checks one graph ID has the exact current asset dispatch prefix and shape. */
+function hasAssetIdentityShape(assetId: string) {
+  const [prefix, appLocale, family, ...identity] = assetId.split(":");
+  return (
+    prefix === "asset" &&
+    Schema.is(AppLocaleCodeSchema)(appLocale) &&
+    Schema.is(LearningGraphFamilySchema)(family) &&
+    identity.length > 0
+  );
+}
+
+/** Current asset identity accepted by route and graph read-model dispatch. */
+export const LearningGraphAssetIdSchema = LearningGraphIdSchema.pipe(
+  Schema.filter(hasAssetIdentityShape, {
+    message: () =>
+      "Expected asset:<appLocale>:<family>:<identity> graph identity.",
+  }),
+  Schema.brand("@NakafaAI/AksaraLearningGraphAssetId")
+);
+export type LearningGraphAssetId = typeof LearningGraphAssetIdSchema.Type;
+
+/** Semantic owner extracted from one exact current learning-graph asset ID. */
+export const LearningGraphAssetOwnerSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
+  family: LearningGraphFamilySchema,
+});
+export type LearningGraphAssetOwner = typeof LearningGraphAssetOwnerSchema.Type;
+
+/** One asset ID cannot address a supported current semantic content family. */
+export class LearningGraphAssetFamilyError extends Schema.TaggedError<LearningGraphAssetFamilyError>()(
+  "LearningGraphAssetFamilyError",
+  { assetId: Schema.String }
+) {}
 
 /** One graph identity does not coherently belong to a current semantic family. */
 export class LearningGraphFamilyError extends Schema.TaggedError<LearningGraphFamilyError>()(
@@ -59,11 +94,6 @@ function hasCoherentFamily(
   identity: LearningGraphIdentity,
   family: LearningGraphFamily
 ) {
-  const [assetLocale, assetFamily] = identityBody(identity.assetId).split(":");
-  if (!Schema.is(AppLocaleCodeSchema)(assetLocale) || assetFamily !== family) {
-    return false;
-  }
-
   return (
     hasOwner(identityBody(identity.alignmentId), family) &&
     hasOwner(identityBody(identity.conceptId), family) &&
@@ -72,16 +102,32 @@ function hasCoherentFamily(
   );
 }
 
+/** Classifies one assetId-only reference without fabricating a full identity. */
+export const classifyLearningGraphAssetId = Effect.fn(
+  "AksaraContracts.classifyLearningGraphAssetId"
+)(function* (input: string) {
+  const [, appLocale, family] = input.split(":");
+  const owner = yield* Schema.decodeUnknown(LearningGraphAssetOwnerSchema)({
+    appLocale,
+    family,
+  }).pipe(
+    Effect.mapError(() => new LearningGraphAssetFamilyError({ assetId: input }))
+  );
+  if (!Schema.is(LearningGraphAssetIdSchema)(input)) {
+    return yield* new LearningGraphAssetFamilyError({ assetId: input });
+  }
+  return owner;
+});
+
 /** Classifies one coherent current learning-graph identity for direct dispatch. */
 export const classifyLearningGraphIdentity = Effect.fn(
   "AksaraContracts.classifyLearningGraphIdentity"
 )(function* (identity: LearningGraphIdentity) {
-  const [lensOwner] = identityBody(identity.lensId).split(":");
-  const family = Schema.decodeUnknownEither(LearningGraphFamilySchema)(
-    lensOwner
+  const owner = yield* classifyLearningGraphAssetId(identity.assetId).pipe(
+    Effect.mapError(() => new LearningGraphFamilyError({ identity }))
   );
-  if (family._tag === "Left" || !hasCoherentFamily(identity, family.right)) {
+  if (!hasCoherentFamily(identity, owner.family)) {
     return yield* new LearningGraphFamilyError({ identity });
   }
-  return family.right;
+  return owner.family;
 });

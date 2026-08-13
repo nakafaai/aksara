@@ -32,7 +32,7 @@ export class PublicKeyTypeError extends Schema.TaggedError<PublicKeyTypeError>()
   { keyId: SigningKeyIdSchema, subject: ContentSignatureSubjectSchema }
 ) {}
 
-/** Node crypto could not complete an Ed25519 verification operation. */
+/** Web Crypto could not complete an Ed25519 verification operation. */
 export class SignatureCheckError extends Schema.TaggedError<SignatureCheckError>()(
   "SignatureCheckError",
   { keyId: SigningKeyIdSchema, subject: ContentSignatureSubjectSchema }

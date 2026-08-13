@@ -227,7 +227,7 @@ function hasCoherentHistoricalRelease(input: {
   );
 }
 
-const HistoricalContentReleaseManifestSchema = Schema.Struct({
+export const HistoricalContentReleaseManifestSchema = Schema.Struct({
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
   baseResultCount: NonNegativeCountSchema,

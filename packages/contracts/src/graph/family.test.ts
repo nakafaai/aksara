@@ -1,8 +1,11 @@
-import { Effect, Schema } from "effect";
+import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
+  classifyLearningGraphAssetId,
   classifyLearningGraphIdentity,
+  LearningGraphAssetFamilyError,
+  LearningGraphAssetIdSchema,
   LearningGraphFamilyError,
   LearningGraphFamilySchema,
 } from "#contracts/graph/family";
@@ -75,6 +78,56 @@ const fixtures = [
 ] as const;
 
 describe("classifyLearningGraphIdentity", () => {
+  it.each(fixtures)(
+    "classifies $expected asset-only identities",
+    async (fixture) => {
+      const [, appLocale] = fixture.identity.assetId.split(":");
+
+      await expect(
+        Effect.runPromise(
+          classifyLearningGraphAssetId(fixture.identity.assetId)
+        )
+      ).resolves.toEqual({
+        appLocale,
+        family: fixture.expected,
+      });
+    }
+  );
+
+  it.each([
+    "concept:en:quran:quran-surah:1",
+    "asset:fr:quran:quran-surah:1",
+    "asset:en:quran",
+    "asset:en:school:course:1",
+  ])("rejects an unsupported asset-only identity: %s", async (assetId) => {
+    const error = await Effect.runPromise(
+      classifyLearningGraphAssetId(assetId).pipe(Effect.flip)
+    );
+
+    expect(error).toBeInstanceOf(LearningGraphAssetFamilyError);
+  });
+
+  it("owns the exact schema for asset-only dispatch identities", () => {
+    const accepted = Schema.decodeUnknownEither(LearningGraphAssetIdSchema)(
+      "asset:de:article:politics:source"
+    );
+    const rejected = [
+      Schema.decodeUnknownEither(LearningGraphAssetIdSchema)(
+        "asset:de:article"
+      ),
+      Schema.decodeUnknownEither(LearningGraphAssetIdSchema)(
+        "asset:de:school:course:1"
+      ),
+    ];
+
+    expect(Either.isRight(accepted)).toBe(true);
+    for (const result of rejected) {
+      expect(Either.isLeft(result) ? String(result.left) : "").toContain(
+        "asset:<appLocale>:<family>:<identity>"
+      );
+    }
+  });
+
   it.each(fixtures)("classifies $expected identities", async (fixture) => {
     const identity = Schema.decodeUnknownSync(LearningGraphIdentitySchema)(
       fixture.identity

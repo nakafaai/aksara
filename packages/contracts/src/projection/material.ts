@@ -84,7 +84,6 @@ const MaterialLessonRouteFields = {
   sectionKey: MaterialSectionSchema,
 };
 
-/** Non-authored material route fields preserved from Nakafa's registry. */
 /** Fields shared by the filtered material projection contract. */
 const MaterialLessonProjectionFields = {
   ...MaterialLessonRouteFields,

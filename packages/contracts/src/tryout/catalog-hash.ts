@@ -8,6 +8,7 @@ import {
   TryoutCatalogRecordSchema,
   type TryoutCatalogRow,
 } from "#contracts/tryout/catalog";
+import { tryoutCatalogIdentity } from "#contracts/tryout/identity";
 import { digestTryoutRecords } from "#contracts/tryout/row-hash";
 
 const CATALOG_DOMAIN = "nakafa.aksara.tryout-catalog";
@@ -15,19 +16,6 @@ const CATALOG_DOMAIN = "nakafa.aksara.tryout-catalog";
 /** Includes an optional field without serializing absence as null. */
 function optionalField(key: string, value: string | undefined) {
   return value === undefined ? {} : { [key]: value };
-}
-
-/** Builds one deterministic current hierarchy identity including app locale. */
-export function tryoutCatalogIdentity(row: TryoutCatalogRow) {
-  return [
-    row.appLocale,
-    row.kind,
-    row.countryKey,
-    "examKey" in row ? row.examKey : "",
-    "trackKey" in row ? row.trackKey : "",
-    "setKey" in row ? row.setKey : "",
-    "sectionKey" in row ? row.sectionKey : "",
-  ].join("\0");
 }
 
 /** Compares localized hierarchy rows in their canonical digest order. */

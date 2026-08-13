@@ -32,6 +32,61 @@ const ParentFields = {
   countryKey: TryoutKeySchema,
   examKey: TryoutKeySchema,
 };
+const CatalogNodeFields = {
+  appLocale: AppLocaleSchema,
+  countryKey: TryoutKeySchema,
+};
+
+/** Minimal country identity used to retrieve its complete signed row. */
+const TryoutCountryIdentitySchema = Schema.Struct({
+  ...CatalogNodeFields,
+  kind: Schema.Literal("country"),
+});
+
+/** Minimal exam identity used to retrieve its complete signed row. */
+const TryoutExamIdentitySchema = Schema.Struct({
+  ...CatalogNodeFields,
+  examKey: TryoutKeySchema,
+  kind: Schema.Literal("exam"),
+});
+
+/** Minimal track identity used to retrieve its complete signed row. */
+const TryoutTrackIdentitySchema = Schema.Struct({
+  ...CatalogNodeFields,
+  examKey: TryoutKeySchema,
+  kind: Schema.Literal("track"),
+  trackKey: TryoutKeySchema,
+});
+
+/** Minimal set identity used to retrieve its complete signed row. */
+const TryoutSetIdentitySchema = Schema.Struct({
+  ...CatalogNodeFields,
+  examKey: TryoutKeySchema,
+  kind: Schema.Literal("set"),
+  setKey: TryoutKeySchema,
+  trackKey: TryoutKeySchema,
+});
+
+/** Minimal section identity used to retrieve its complete signed row. */
+const TryoutSectionIdentitySchema = Schema.Struct({
+  ...CatalogNodeFields,
+  examKey: TryoutKeySchema,
+  kind: Schema.Literal("section"),
+  sectionKey: TryoutKeySchema,
+  setKey: TryoutKeySchema,
+  trackKey: TryoutKeySchema,
+});
+
+/** Current semantic catalog key accepted before its signed row is loaded. */
+export const TryoutCatalogNodeIdentitySchema = Schema.Union(
+  TryoutCountryIdentitySchema,
+  TryoutExamIdentitySchema,
+  TryoutTrackIdentitySchema,
+  TryoutSetIdentitySchema,
+  TryoutSectionIdentitySchema
+);
+export type TryoutCatalogNodeIdentity =
+  typeof TryoutCatalogNodeIdentitySchema.Type;
 
 /** One localized country row. */
 export const TryoutCountrySchema = Schema.Struct({

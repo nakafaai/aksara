@@ -1,226 +1,58 @@
-import { createHash } from "node:crypto";
+/**
+ * Single public read-only entrypoint required by retained Nakafa attempts.
+ * Implementations stay split by immutable wire ownership below this package
+ * boundary so current writers never import historical contracts.
+ */
 
-import { Effect, Schema } from "effect";
-import {
-  HistoricalPrimitive,
-  HistoricalSha256HashSchema,
-} from "#contracts/history/primitives";
-import { HistoricalSignedContentReleaseSchema } from "#contracts/history/release";
-import {
-  canonicalizeHistoricalContentReleaseManifest,
-  historicalReleaseSigningInput,
-} from "#contracts/history/release-bytes";
-import {
-  canonicalizeHistoricalTryoutSnapshot,
-  HISTORICAL_TRYOUT_SNAPSHOT_DOMAIN,
-  HistoricalTryoutSnapshotSchema,
-} from "#contracts/history/tryout";
-import {
-  canonicalizeHistoricalTryoutCatalog,
-  canonicalizeHistoricalTryoutPlacement,
-  HISTORICAL_TRYOUT_CATALOG_DOMAIN,
-  HISTORICAL_TRYOUT_PLACEMENT_DOMAIN,
-} from "#contracts/history/tryout-bytes";
-import {
-  type HistoricalTryoutRow,
-  HistoricalTryoutRowSchema,
-} from "#contracts/history/tryout-row";
-import { verifyEd25519Signature } from "#contracts/signature/verify";
-
-const { ReleaseIdSchema } = HistoricalPrimitive;
-const Sha256HashSchema = HistoricalSha256HashSchema;
-
-/** Unknown retained release bytes do not satisfy the immutable old contract. */
-export class StoredReleaseDecodeError extends Schema.TaggedError<StoredReleaseDecodeError>()(
-  "StoredReleaseDecodeError",
-  {}
-) {
-  /** Explains why unknown retained release bytes were rejected. */
-  get message() {
-    return "Stored release bytes do not satisfy the immutable history contract.";
-  }
-}
-
-/** A retained release hash does not authenticate its exact old manifest. */
-export class StoredReleaseHashMismatchError extends Schema.TaggedError<StoredReleaseHashMismatchError>()(
-  "StoredReleaseHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
-) {
-  /** Identifies the retained release whose hash did not authenticate. */
-  get message() {
-    return `Stored release ${this.releaseId} does not match its manifest hash.`;
-  }
-}
-
-/** Node could not hash one retained immutable object. */
-export class StoredContentHashError extends Schema.TaggedError<StoredContentHashError>()(
-  "StoredContentHashError",
-  { subject: Schema.Literal("release", "tryout-row", "tryout-snapshot") }
-) {
-  /** Identifies which retained object could not be hashed. */
-  get message() {
-    return `Stored ${this.subject} bytes could not be hashed.`;
-  }
-}
-
-/** Unknown retained try-out bytes do not satisfy the immutable old contract. */
-export class StoredTryoutSnapshotDecodeError extends Schema.TaggedError<StoredTryoutSnapshotDecodeError>()(
-  "StoredTryoutSnapshotDecodeError",
-  {}
-) {
-  /** Explains why unknown retained try-out bytes were rejected. */
-  get message() {
-    return "Stored try-out snapshot bytes do not satisfy the immutable history contract.";
-  }
-}
-
-/** A retained try-out snapshot ID does not authenticate its exact old facts. */
-export class StoredTryoutSnapshotHashMismatchError extends Schema.TaggedError<StoredTryoutSnapshotHashMismatchError>()(
-  "StoredTryoutSnapshotHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
-  }
-) {
-  /** Explains that the retained snapshot identity did not authenticate. */
-  get message() {
-    return "Stored try-out snapshot does not match its content-addressed identity.";
-  }
-}
-
-/** Unknown retained row bytes do not satisfy the immutable old contract. */
-export class StoredTryoutRowDecodeError extends Schema.TaggedError<StoredTryoutRowDecodeError>()(
-  "StoredTryoutRowDecodeError",
-  {}
-) {
-  /** Explains why unknown retained row bytes were rejected. */
-  get message() {
-    return "Stored try-out row bytes do not satisfy the immutable history contract.";
-  }
-}
-
-/** A retained row hash does not authenticate its exact old row facts. */
-export class StoredTryoutRowHashMismatchError extends Schema.TaggedError<StoredTryoutRowHashMismatchError>()(
-  "StoredTryoutRowHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
-    rowKind: Schema.Literal("catalog", "placement"),
-  }
-) {
-  /** Identifies the retained row kind whose bytes did not authenticate. */
-  get message() {
-    return `Stored try-out ${this.rowKind} row does not match its content-addressed identity.`;
-  }
-}
-
-/** Hashes canonical immutable bytes with one explicit history domain. */
-function hashStoredContent(
-  parts: readonly string[],
-  subject: "release" | "tryout-row" | "tryout-snapshot"
-) {
-  return Effect.try({
-    catch: () => new StoredContentHashError({ subject }),
-    try: () => {
-      const hash = createHash("sha256");
-      for (const part of parts) {
-        hash.update(part);
-      }
-      return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
-    },
-  });
-}
-
-/** Authenticates immutable release bytes retained by existing user history. */
-export const decodeStoredRelease = Effect.fn(
-  "AksaraContracts.decodeStoredRelease"
-)(function* (input: unknown) {
-  const release = yield* Schema.decodeUnknown(
-    HistoricalSignedContentReleaseSchema
-  )(input, { onExcessProperty: "error" }).pipe(
-    Effect.mapError(() => new StoredReleaseDecodeError())
-  );
-  const actualHash = yield* hashStoredContent(
-    [canonicalizeHistoricalContentReleaseManifest(release.manifest)],
-    "release"
-  );
-  if (actualHash !== release.manifestHash) {
-    return yield* new StoredReleaseHashMismatchError({
-      actualHash,
-      expectedHash: release.manifestHash,
-      releaseId: release.manifest.releaseId,
-    });
-  }
-  yield* verifyEd25519Signature({
-    keyId: release.keyId,
-    message: historicalReleaseSigningInput(
-      release.manifestHash,
-      release.manifest
-    ),
-    signature: release.signature,
-    subject: "release",
-  });
-  return release;
-});
-
-/** Authenticates one immutable try-out snapshot retained by user attempts. */
-export const decodeStoredTryoutSnapshot = Effect.fn(
-  "AksaraContracts.decodeStoredTryoutSnapshot"
-)(function* (input: unknown) {
-  const snapshot = yield* Schema.decodeUnknown(HistoricalTryoutSnapshotSchema)(
-    input,
-    { onExcessProperty: "error" }
-  ).pipe(Effect.mapError(() => new StoredTryoutSnapshotDecodeError()));
-  const actualHash = yield* hashStoredContent(
-    [
-      HISTORICAL_TRYOUT_SNAPSHOT_DOMAIN,
-      "\n",
-      canonicalizeHistoricalTryoutSnapshot(snapshot),
-    ],
-    "tryout-snapshot"
-  );
-  if (actualHash !== snapshot.snapshotId) {
-    return yield* new StoredTryoutSnapshotHashMismatchError({
-      actualHash,
-      expectedHash: snapshot.snapshotId,
-    });
-  }
-  return snapshot;
-});
-
-/** Authenticates one immutable catalog or placement row retained by attempts. */
-export const decodeStoredTryoutRow = Effect.fn(
-  "AksaraContracts.decodeStoredTryoutRow"
-)(function* (input: unknown) {
-  const envelope = yield* Schema.decodeUnknown(HistoricalTryoutRowSchema)(
-    input,
-    { onExcessProperty: "error" }
-  ).pipe(Effect.mapError(() => new StoredTryoutRowDecodeError()));
-  const domain =
-    envelope.rowKind === "catalog"
-      ? HISTORICAL_TRYOUT_CATALOG_DOMAIN
-      : HISTORICAL_TRYOUT_PLACEMENT_DOMAIN;
-  const canonical =
-    envelope.rowKind === "catalog"
-      ? canonicalizeHistoricalTryoutCatalog(envelope.record.row)
-      : canonicalizeHistoricalTryoutPlacement(envelope.record.row);
-  const actualHash = yield* hashStoredContent(
-    [domain, "\n", canonical],
-    "tryout-row"
-  );
-  if (actualHash !== envelope.record.rowHash) {
-    return yield* new StoredTryoutRowHashMismatchError({
-      actualHash,
-      expectedHash: envelope.record.rowHash,
-      rowKind: envelope.rowKind,
-    });
-  }
-  return envelope;
-});
-
-/** Semantic retained row result exposed only through the read-only history seam. */
-export type StoredTryoutRow = HistoricalTryoutRow;
+// biome-ignore lint/performance/noBarrelFile: This externally mandated package entrypoint keeps immutable history behind one read-only seam.
+export {
+  StoredArtifactCompiledByteLengthMismatchError,
+  StoredArtifactDecodeError,
+  StoredArtifactFieldByteLimitError,
+  StoredArtifactHashComputeError,
+  StoredArtifactHashMismatchError,
+  StoredArtifactSourceHashComputeError,
+  StoredArtifactSourceHashMismatchError,
+  StoredArtifactWireByteLimitError,
+} from "#contracts/history/artifact-spec";
+export {
+  StoredAttemptIdSchema,
+  StoredProtectedRuntimeFailureSchema,
+  type StoredProtectedRuntimeFound,
+  StoredProtectedRuntimeFoundSchema,
+  type StoredProtectedRuntimeItem,
+  StoredProtectedRuntimeItemSchema,
+  StoredProtectedRuntimeMissingSchema,
+  type StoredProtectedRuntimeRequest,
+  StoredProtectedRuntimeRequestSchema,
+  type StoredProtectedRuntimeResponse,
+  StoredProtectedRuntimeResponseSchema,
+  type StoredProtectedRuntimeSelector,
+  StoredProtectedRuntimeSelectorSchema,
+} from "#contracts/history/protected";
+export {
+  decodeStoredRelease,
+  decodeStoredTryoutRow,
+  decodeStoredTryoutSnapshot,
+  StoredContentHashError,
+  StoredReleaseDecodeError,
+  StoredReleaseHashMismatchError,
+  type StoredTryoutRow,
+  StoredTryoutRowDecodeError,
+  StoredTryoutRowHashMismatchError,
+  StoredTryoutSnapshotDecodeError,
+  StoredTryoutSnapshotHashMismatchError,
+} from "#contracts/history/read";
+export {
+  StoredRendererComponentMissingError,
+  StoredRendererDecodeError,
+  StoredRendererDomainUnpublishedError,
+  StoredRendererHashComputeError,
+  StoredRendererHashMismatchError,
+  StoredRendererVersionUnsupportedError,
+} from "#contracts/history/renderer";
+export {
+  StoredProtectedRuntimeDecodeError,
+  StoredProtectedRuntimeMismatchError,
+  verifyStoredProtectedContentRuntimeExchange,
+} from "#contracts/history/runtime";
