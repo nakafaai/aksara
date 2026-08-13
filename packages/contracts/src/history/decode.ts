@@ -15,6 +15,18 @@ export {
   StoredArtifactSourceHashMismatchError,
   StoredArtifactWireByteLimitError,
 } from "#contracts/history/artifact-spec";
+export { verifyStoredTryoutInventory } from "#contracts/history/inventory";
+export {
+  type StoredTryoutCatalogRow,
+  type StoredTryoutInventory,
+  StoredTryoutInventoryCountMismatchError,
+  StoredTryoutInventoryDecodeError,
+  StoredTryoutInventoryDigestMismatchError,
+  StoredTryoutInventoryHashError,
+  StoredTryoutInventoryOrderError,
+  StoredTryoutInventorySnapshotMismatchError,
+  type StoredTryoutPlacementRow,
+} from "#contracts/history/inventory-spec";
 export {
   StoredAttemptIdSchema,
   StoredProtectedRuntimeFailureSchema,

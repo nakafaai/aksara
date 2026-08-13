@@ -223,7 +223,7 @@ export const HistoricalTryoutPlacementSchema = Schema.Struct({
 export type HistoricalTryoutPlacement =
   typeof HistoricalTryoutPlacementSchema.Type;
 
-const HistoricalTryoutCatalogEnvelopeSchema = Schema.Struct({
+export const HistoricalTryoutCatalogEnvelopeSchema = Schema.Struct({
   family: Schema.Literal("tryout"),
   record: Schema.Struct({
     row: HistoricalTryoutCatalogRowSchema,
@@ -231,7 +231,10 @@ const HistoricalTryoutCatalogEnvelopeSchema = Schema.Struct({
   }),
   rowKind: Schema.Literal("catalog"),
 });
-const HistoricalTryoutPlacementEnvelopeSchema = Schema.Struct({
+export type HistoricalTryoutCatalogEnvelope =
+  typeof HistoricalTryoutCatalogEnvelopeSchema.Type;
+
+export const HistoricalTryoutPlacementEnvelopeSchema = Schema.Struct({
   family: Schema.Literal("tryout"),
   record: Schema.Struct({
     row: HistoricalTryoutPlacementSchema,
@@ -239,6 +242,8 @@ const HistoricalTryoutPlacementEnvelopeSchema = Schema.Struct({
   }),
   rowKind: Schema.Literal("placement"),
 });
+export type HistoricalTryoutPlacementEnvelope =
+  typeof HistoricalTryoutPlacementEnvelopeSchema.Type;
 
 /** Exact retained row envelopes required by immutable try-out attempts. */
 export const HistoricalTryoutRowSchema = Schema.Union(
