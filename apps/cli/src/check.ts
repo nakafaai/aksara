@@ -1,7 +1,12 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { validateContentCatalog } from "@nakafa/aksara-publisher/catalog/validation";
+import { loadEditorialReviewManifest } from "@nakafa/aksara-publisher/editorial/review";
 import { Effect, Schema } from "effect";
 import { readPreviewEnvironment } from "#cli/environment/read";
+import {
+  readCleanAksaraRevision,
+  validateStableAksaraRevision,
+} from "#cli/evidence";
 import { NakafaAppLive } from "#cli/nakafa";
 import { openRendererSession } from "#cli/renderer/session";
 
@@ -20,10 +25,20 @@ export function runCheckCommand(cwd: string) {
       environment,
       selection: { kind: "catalog" },
     });
+    const revision = yield* readCleanAksaraRevision(renderer.aksaraRoot);
+    const editorialReview = yield* loadEditorialReviewManifest({
+      repositoryRoot: renderer.aksaraRoot,
+      revision,
+    });
     const validation = yield* validateContentCatalog({
       checkoutRoot: renderer.aksaraRoot,
+      editorialReview,
       rendererManifest: renderer.manifest,
     });
+    const validatedRevision = yield* readCleanAksaraRevision(
+      renderer.aksaraRoot
+    );
+    yield* validateStableAksaraRevision(revision, validatedRevision);
     yield* Effect.logInfo("Complete content catalog validation finished.").pipe(
       Effect.annotateLogs({
         articleCount: validation.articleCount,

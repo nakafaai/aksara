@@ -1,9 +1,15 @@
+import { resolve } from "node:path";
+import { NodeContext } from "@effect/platform-node";
 import {
   ContentKeySchema,
   GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  ACTIVE_APP_LOCALES,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
@@ -13,15 +19,24 @@ import {
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
+import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 import {
   record as baseTransition,
   contentRecord,
+  editorialReview,
   rendererManifest,
   head as resultHead,
 } from "#test/publication";
 import { makeProgramSnapshotFixture } from "#test/snapshot";
 
 const aksaraSha = GitCommitShaSchema.make("a".repeat(40));
+const checkoutRoot = resolve(import.meta.dirname, "../../..");
+const editorialReviewDigest = editorialReview.digest;
+const inheritedSnapshots = {
+  previousSnapshots: inheritContentSnapshots(null),
+  snapshotManifests: () => Stream.empty,
+  snapshotRows: () => Stream.empty,
+} as const;
 const emptySnapshots = {
   previousSnapshots: null,
   snapshotManifests: () => Stream.empty,
@@ -30,40 +45,43 @@ const emptySnapshots = {
 const scope = PublicationScopeSchema.make({
   content: [
     {
+      artifactLocale: contentRecord.change.artifactLocale,
       contentKey: contentRecord.change.contentKey,
       family: "material",
-      locale: contentRecord.change.locale,
     },
     {
+      artifactLocale: ArtifactLocaleSchema.make("en"),
       contentKey: ContentKeySchema.make("test:publication:z"),
       family: "material",
-      locale: "en",
     },
   ],
   families: [],
   snapshots: [],
 });
 
-/** Runs preparation with one replayable in-memory test protocol source. */
-function prepare<E, R>(
-  records: () => Stream.Stream<unknown, E, R>,
-  snapshotManifests: () => Stream.Stream<unknown, E, R> = () => Stream.empty
-) {
+type TestPreparationInput = PrepareContentReleaseInput<never, never>;
+
+/** Runs preparation with direct overrides around one valid retained base. */
+function prepare(overrides: Partial<TestPreparationInput> = {}) {
   return prepareContentRelease({
     aksaraSha,
-    baseManifestHash: null,
-    baseReleaseId: null,
+    baseActiveAppLocales: ACTIVE_APP_LOCALES,
+    baseEditorialReviewDigest: editorialReviewDigest,
+    baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
+    baseReleaseId: ReleaseIdSchema.make("test-prepare-base"),
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-    ...emptySnapshots,
-    records,
+    checkoutRoot,
+    editorialReview,
+    ...inheritedSnapshots,
+    records: () => Stream.make(baseTransition),
     releaseId: ReleaseIdSchema.make("test-prepare-release"),
     rendererManifest,
     result: () => Stream.make(resultHead),
     routes: () => Stream.empty,
     scope,
-    snapshotManifests,
-  });
+    ...overrides,
+  }).pipe(Effect.provide(NodeContext.layer));
 }
 
 describe("prepareContentRelease", () => {
@@ -78,15 +96,15 @@ describe("prepareContentRelease", () => {
       },
       record: {
         change: ContentDeleteSchema.make({
+          artifactLocale: ArtifactLocaleSchema.make("en"),
           contentKey: ContentKeySchema.make("test:publication:z"),
           family: "material",
-          locale: "en",
           operation: "delete",
         }),
       },
     };
     const prepared = await Effect.runPromise(
-      prepare(() => Stream.make(baseTransition, deletion))
+      prepare({ records: () => Stream.make(baseTransition, deletion) })
     );
     const [items, projections, snapshotManifests, snapshotRows] =
       await Effect.runPromise(
@@ -113,15 +131,16 @@ describe("prepareContentRelease", () => {
     const { topicTitle: _topicTitle, ...incompleteProjection } =
       baseTransition.record.projection;
     const error = await Effect.runPromise(
-      prepare(() =>
-        Stream.make({
-          ...baseTransition,
-          record: {
-            ...baseTransition.record,
-            projection: incompleteProjection,
-          },
-        })
-      ).pipe(Effect.flip)
+      prepare({
+        records: () =>
+          Stream.make({
+            ...baseTransition,
+            record: {
+              ...baseTransition.record,
+              projection: incompleteProjection,
+            },
+          }),
+      }).pipe(Effect.flip)
     );
 
     expect(error).toMatchObject({ _tag: "PreparedContentDecodeError" });
@@ -130,9 +149,11 @@ describe("prepareContentRelease", () => {
   it("self-verifies every replay against its derived signed digests", async () => {
     let replayCount = 0;
     const error = await Effect.runPromise(
-      prepare(() => {
-        replayCount += 1;
-        return replayCount === 1 ? Stream.make(baseTransition) : Stream.empty;
+      prepare({
+        records: () => {
+          replayCount += 1;
+          return replayCount === 1 ? Stream.make(baseTransition) : Stream.empty;
+        },
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("ReleaseItemCountMismatchError");
@@ -141,25 +162,20 @@ describe("prepareContentRelease", () => {
   it("validates the renderer before invoking the authored source", async () => {
     let invoked = false;
     const error = await Effect.runPromise(
-      prepareContentRelease({
-        aksaraSha,
+      prepare({
+        baseActiveAppLocales: null,
+        baseEditorialReviewDigest: null,
         baseManifestHash: null,
         baseReleaseId: null,
-        baseResultCount: 0,
-        baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
         ...emptySnapshots,
         records: () => {
           invoked = true;
           return Stream.make(baseTransition);
         },
-        releaseId: ReleaseIdSchema.make("test-invalid-renderer"),
         rendererManifest: {
           ...rendererManifest,
           hash: Sha256HashSchema.make(`sha256:${"9".repeat(64)}`),
         },
-        result: () => Stream.make(resultHead),
-        routes: () => Stream.empty,
-        scope,
       }).pipe(Effect.flip)
     );
     expect(error._tag).toBe("RendererManifestHashMismatchError");
@@ -167,12 +183,11 @@ describe("prepareContentRelease", () => {
   });
 
   it("rejects a replacement manifest outside the signed scope", async () => {
-    const snapshot = makeProgramSnapshotFixture();
+    const snapshot = await makeProgramSnapshotFixture(editorialReviewDigest);
     const error = await Effect.runPromise(
-      prepare(
-        () => Stream.make(baseTransition),
-        snapshot.snapshotManifests
-      ).pipe(Effect.flip)
+      prepare({ snapshotManifests: snapshot.snapshotManifests }).pipe(
+        Effect.flip
+      )
     );
     expect(error).toMatchObject({
       _tag: "PreparedSnapshotScopeError",
@@ -180,28 +195,50 @@ describe("prepareContentRelease", () => {
     });
   });
 
+  it("rejects a policy transition that omits any authored family", async () => {
+    const snapshot = await makeProgramSnapshotFixture(editorialReviewDigest);
+    const error = await Effect.runPromise(
+      prepare({
+        baseActiveAppLocales: ACTIVE_APP_LOCALES,
+        baseEditorialReviewDigest: Sha256HashSchema.make(
+          `sha256:${"f".repeat(64)}`
+        ),
+        baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
+        baseReleaseId: ReleaseIdSchema.make("test-policy-base"),
+        previousSnapshots: inheritContentSnapshots(null),
+        scope: PublicationScopeSchema.make({
+          content: [],
+          families: [],
+          snapshots: ["program"],
+        }),
+        snapshotManifests: snapshot.snapshotManifests,
+        snapshotRows: () => snapshot.snapshotRows().pipe(Stream.orDie),
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({
+      _tag: "ReleasePolicyClosureError",
+      family: "article",
+      field: "scope",
+    });
+  });
+
   it("rejects reuse of the base release identity before reading records", async () => {
     const selfBasedRelease = ReleaseIdSchema.make("test-self-based-release");
     let invoked = false;
     const error = await Effect.runPromise(
-      prepareContentRelease({
-        aksaraSha,
+      prepare({
+        baseActiveAppLocales: ACTIVE_APP_LOCALES,
+        baseEditorialReviewDigest: editorialReviewDigest,
         baseManifestHash: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
         baseReleaseId: selfBasedRelease,
         baseResultCount: 1,
         baseResultDigest: resultHead.projectionHash,
-        previousSnapshots: inheritContentSnapshots(null),
         records: () => {
           invoked = true;
           return Stream.make(baseTransition);
         },
         releaseId: selfBasedRelease,
-        rendererManifest,
-        result: () => Stream.make(resultHead),
-        routes: () => Stream.empty,
-        scope,
-        snapshotManifests: () => Stream.empty,
-        snapshotRows: () => Stream.empty,
       }).pipe(Effect.flip)
     );
 
@@ -215,31 +252,40 @@ describe("prepareContentRelease", () => {
 
   it.each([
     {
+      baseActiveAppLocales: null,
+      baseEditorialReviewDigest: null,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
       baseReleaseId: null,
     },
     {
+      baseActiveAppLocales: ACTIVE_APP_LOCALES,
+      baseEditorialReviewDigest: editorialReviewDigest,
       baseManifestHash: null,
       baseReleaseId: ReleaseIdSchema.make("test-unpaired-base"),
     },
     {
+      baseActiveAppLocales: ACTIVE_APP_LOCALES,
+      baseEditorialReviewDigest: editorialReviewDigest,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"6".repeat(64)}`),
       baseReleaseId: ReleaseIdSchema.make("test-missing-snapshot-base"),
     },
+    {
+      baseActiveAppLocales: null,
+      baseEditorialReviewDigest: editorialReviewDigest,
+      baseManifestHash: null,
+      baseReleaseId: null,
+    },
+    {
+      baseActiveAppLocales: ACTIVE_APP_LOCALES,
+      baseEditorialReviewDigest: null,
+      baseManifestHash: null,
+      baseReleaseId: null,
+    },
   ])("rejects an unpaired exact base identity", async (base) => {
     const error = await Effect.runPromise(
-      prepareContentRelease({
-        aksaraSha,
+      prepare({
         ...base,
-        baseResultCount: 0,
-        baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
         ...emptySnapshots,
-        records: () => Stream.make(baseTransition),
-        releaseId: ReleaseIdSchema.make("test-invalid-base-pair"),
-        rendererManifest,
-        result: () => Stream.make(resultHead),
-        routes: () => Stream.empty,
-        scope,
       }).pipe(Effect.flip)
     );
 

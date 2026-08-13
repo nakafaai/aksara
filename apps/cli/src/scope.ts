@@ -37,9 +37,9 @@ function decodeSelector(value: string): Option.Option<DecodedSelector> {
     return Option.some({
       kind,
       value: {
+        artifactLocale: second,
         contentKey: remaining.join(":"),
         family: first,
-        locale: second,
       },
     });
   }

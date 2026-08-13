@@ -56,9 +56,9 @@ not rewrite the pinned acquisition names or bytes.
   with transcript information retained; with notes reported and current
   versions adopted; and without inappropriate advertisements.
 
-The raw Tanzil copyright block remains byte-for-byte intact. Generated verse
-modules, the public attribution row, and `THIRD_PARTY.md` reproduce the required
-notices. Every published Quran snapshot begins with one validated
+The raw Tanzil copyright block remains byte-for-byte intact. The public
+attribution row and `THIRD_PARTY.md` reproduce the required notices. Every
+published Quran snapshot begins with one validated
 `quran-attribution` row containing the five publishers, exact versions,
 retrieval time, source/update/terms links, artifact byte counts, and hashes.
 
@@ -72,8 +72,8 @@ retrieval time, source/update/terms links, artifact byte counts, and hashes.
 | `translation.id.text` and `.footnotes` | QuranEnc Indonesian Affairs XML |
 | `tafsir.id.text` and `.footnotes` | QuranEnc Indonesian Al-Mukhtasar API |
 
-The generator preserves source strings exactly. It does not trim, normalize,
-translate, repair, shorten, lengthen, or invent content. Empty QuranEnc XML
+The verified source parser preserves source strings exactly. It does not trim,
+normalize, translate, repair, shorten, lengthen, or invent content. Empty QuranEnc XML
 footnotes remain `""`; API `null` footnotes remain `null`.
 
 The blocked legacy fields were deleted rather than adapted:
@@ -91,9 +91,10 @@ contract was proven for a specific recitation artifact.
 
 ## Completeness and publication identity
 
-The generated corpus contains 114 ordered surahs, 6,236 ordered verses, 1,085
-bounded verse chunks, 228 locale search rows, and one visible attribution row.
-The v2 snapshot therefore contains 1,200 runtime rows and 1,428 total
+The verified source contains 114 ordered surahs and 6,236 ordered verses. Its
+published projection contains 1,085 bounded verse chunks, 228 locale search
+rows, and one visible attribution row.
+The current snapshot therefore contains 1,200 runtime rows and 1,428 total
 projections. Registry validation rejects count, surah order, local verse order,
 global verse order, revelation-order duplication, source-schema drift, and
 unsupported fields as typed failures.

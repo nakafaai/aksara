@@ -1,5 +1,5 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { CountryCodeSchema } from "@nakafa/aksara-contracts/country";
+import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import {
   QuestionSetKeySchema,
   questionSetKeyParts,
@@ -21,7 +21,7 @@ import {
 const DEFAULT_SECTION_VISIBILITY = "visible";
 
 const TryoutTranslationMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: Schema.Struct({
     description: Schema.optional(Schema.String),
     title: Schema.String,

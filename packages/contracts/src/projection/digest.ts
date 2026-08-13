@@ -10,7 +10,7 @@ import {
   canonicalizeContentProjection,
 } from "#contracts/projection/spec";
 
-const CONTENT_PROJECTION_DIGEST_DOMAIN = "nakafa.aksara.content-projections.v1";
+const CONTENT_PROJECTION_DIGEST_DOMAIN = "nakafa.aksara.content-projections";
 
 /** SHA-256 computation failed before projection integrity was established. */
 export class ProjectionHashError extends Schema.TaggedError<ProjectionHashError>()(

@@ -5,6 +5,13 @@ import ts from "typescript";
 import { enforceViolations, typescriptFiles } from "#scripts/files";
 
 const LOCALE_CONTRACT_MODULE = "packages/contracts/src/locale.ts";
+const HISTORICAL_LOCALE_MODULE = "packages/contracts/src/history/locale.ts";
+const LOCALE_POLICY_SCRIPT = "scripts/check-locales.ts";
+const LOCALE_VOCABULARY_MODULES = new Set([
+  HISTORICAL_LOCALE_MODULE,
+  LOCALE_CONTRACT_MODULE,
+  LOCALE_POLICY_SCRIPT,
+]);
 const TEST_SOURCE_PATTERN = /(?:^|\/)(?:test|tests)(?:\/|$)|\.test\.[^.]+$/u;
 const localeCodes = new Set(["de", "en", "id"]);
 
@@ -50,24 +57,18 @@ function duplicatedLocaleVocabulary(node: ts.Node) {
   return declaredLocaleCodes(members).size >= 2;
 }
 
-/** Detects the old two-locale capability as a hardcoded array or tuple. */
-function hardcodedHistoricalLocaleList(node: ts.Node) {
+/** Detects a duplicated multi-locale policy array or tuple. */
+function duplicatedLocaleList(node: ts.Node) {
   let values: ts.NodeArray<ts.Node> | undefined;
   if (ts.isArrayLiteralExpression(node)) {
     values = node.elements;
   } else if (ts.isTupleTypeNode(node)) {
     values = node.elements;
   }
-  if (values?.length !== 2) {
+  if (values === undefined) {
     return false;
   }
-  const [first, second] = values.map(localeCode);
-  return first === "en" && second === "id";
-}
-
-/** Selects authored policy sources while allowing concrete test fixtures. */
-export function isLocalePolicySource(file: string) {
-  return !TEST_SOURCE_PATTERN.test(file);
+  return declaredLocaleCodes(values).size >= 2;
 }
 
 /** Reports locale vocabularies that bypass the canonical contract module. */
@@ -86,15 +87,19 @@ export function localePolicyViolations(
     readonly reason: string;
   }> = [];
   const nodes: ts.Node[] = [sourceFile];
+  const ownsLocaleVocabulary = LOCALE_VOCABULARY_MODULES.has(file);
+  const allowsConcreteLists = TEST_SOURCE_PATTERN.test(file);
 
   for (const node of nodes) {
     const duplicatedVocabulary =
-      file !== LOCALE_CONTRACT_MODULE && duplicatedLocaleVocabulary(node);
-    const hardcodedList = hardcodedHistoricalLocaleList(node);
+      !ownsLocaleVocabulary && duplicatedLocaleVocabulary(node);
+    const hardcodedList =
+      !(ownsLocaleVocabulary || allowsConcreteLists) &&
+      duplicatedLocaleList(node);
     if (duplicatedVocabulary || hardcodedList) {
       const reason = duplicatedVocabulary
         ? "locale vocabulary must derive from the locale contract"
-        : "historical locale lists must derive from the named decoder";
+        : "locale lists must derive from the locale contract";
       violations.push({ offset: node.getStart(sourceFile), reason });
     }
     ts.forEachChild(node, (child) => {
@@ -112,7 +117,7 @@ export function localePolicyViolations(
 
 enforceViolations(
   "Locale vocabularies must have one contract source",
-  typescriptFiles()
-    .filter(isLocalePolicySource)
-    .flatMap((file) => localePolicyViolations(file, readFileSync(file, "utf8")))
+  typescriptFiles().flatMap((file) =>
+    localePolicyViolations(file, readFileSync(file, "utf8"))
+  )
 );

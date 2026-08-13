@@ -70,9 +70,9 @@ function logCompilation(result: PreviewCompileResult) {
   return Effect.logInfo("Selected document compilation succeeded.").pipe(
     Effect.annotateLogs({
       artifactHash: result.artifact.artifactHash,
+      artifactLocale: result.projection.artifactLocale,
       compileKind: result.compileKind,
       contentKey: result.projection.contentKey,
-      locale: result.projection.locale,
     })
   );
 }
@@ -198,7 +198,7 @@ export const openLocalPreview = Effect.fn("AksaraCli.openLocalPreview")(
       Effect.annotateLogs({
         origin: renderer.provider.origin.toString(),
         url: new URL(
-          `/${route.locale}/${route.publicPath}`,
+          `/${route.appLocale}/${route.publicPath}`,
           renderer.child.origin
         ).toString(),
       })

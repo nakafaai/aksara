@@ -4,6 +4,7 @@ import {
   ActiveContentReleaseSchema,
   ContentReleaseCurrentSchema,
   RecoveryLookupSchema,
+  StagedRollbackContentReleaseSchema,
 } from "#contracts/release/current";
 import {
   invertContentSnapshots,
@@ -28,10 +29,15 @@ const decodeCurrent = Schema.decodeUnknownEither(ContentReleaseCurrentSchema);
 /** Strictly checks current-state schema acceptance. */
 function accepts(input: unknown) {
   const result = decodeCurrent(input, { onExcessProperty: "error" });
-  if (Either.isLeft(result)) {
-    String(result.left);
-  }
   return Either.isRight(result);
+}
+/** Builds one completed active release from its signed bundle. */
+function activeRelease(signedRelease: typeof release = release) {
+  return {
+    receipt: receiptFor(signedRelease),
+    release: signedRelease,
+    rendererManifest,
+  };
 }
 /** Builds one candidate derived from the shared active release. */
 function candidateRelease() {
@@ -39,6 +45,8 @@ function candidateRelease() {
     ...release,
     manifest: {
       ...release.manifest,
+      baseActiveAppLocales: release.manifest.activeAppLocales,
+      baseEditorialReviewDigest: release.manifest.editorialReviewDigest,
       baseManifestHash: release.manifestHash,
       baseReleaseId: release.manifest.releaseId,
       baseResultCount: release.manifest.resultCount,
@@ -54,6 +62,8 @@ function recoveryRelease(target = candidateRelease()) {
     ...release,
     manifest: {
       ...release.manifest,
+      baseActiveAppLocales: target.manifest.activeAppLocales,
+      baseEditorialReviewDigest: target.manifest.editorialReviewDigest,
       baseManifestHash: target.manifestHash,
       baseReleaseId: target.manifest.releaseId,
       baseResultCount: target.manifest.resultCount,
@@ -67,10 +77,27 @@ function recoveryRelease(target = candidateRelease()) {
     manifestHash: `sha256:${"e".repeat(64)}`,
   });
 }
+const active = activeRelease(),
+  next = candidateRelease();
+const inverse = recoveryRelease(next);
+const candidate = { phase: "verified", release: next, rendererManifest };
+const retained = { phase: "verified", release: inverse, rendererManifest };
+/** Alters only the candidate manifest for relationship failure coverage. */
+function candidateWith(manifest: object) {
+  return {
+    ...candidate,
+    release: { ...next, manifest: { ...next.manifest, ...manifest } },
+  };
+}
+/** Alters only the recovery manifest for relationship failure coverage. */
+function recoveryWith(manifest: object) {
+  return {
+    ...retained,
+    release: { ...inverse, manifest: { ...inverse.manifest, ...manifest } },
+  };
+}
 describe("current release state", () => {
   it("decodes coherent active, genesis, and candidate states", () => {
-    const active = { receipt: receiptFor(release), release, rendererManifest };
-    const next = candidateRelease();
     for (const current of [
       { active, candidate: null, recovery: null },
       {
@@ -88,7 +115,6 @@ describe("current release state", () => {
     }
   });
   it("binds terminal receipt evidence to the active manifest", () => {
-    const active = { receipt: receiptFor(release), release, rendererManifest };
     for (const invalid of [
       { releaseId: "release-other" },
       { activatedHeads: 0, deletedHeads: 2, stagedArtifacts: 0 },
@@ -96,6 +122,8 @@ describe("current release state", () => {
       { stagedProjections: 2 },
       { stagedRoutes: 1 },
       { manifestHash: otherHash },
+      { activeAppLocales: ["en"] },
+      { editorialReviewDigest: otherHash },
       { projectionDigest: otherHash },
       { resultCount: release.manifest.resultCount + 1 },
       { resultDigest: otherHash },
@@ -112,20 +140,16 @@ describe("current release state", () => {
     }
   });
   it("decodes missing and completed historical recovery lookups", () => {
-    const active = {
-      receipt: receiptFor(completedRecovery),
-      release: completedRecovery,
-      rendererManifest,
-    };
+    const recoveredActive = activeRelease(completedRecovery);
     expect(
       Schema.decodeUnknownSync(RecoveryLookupSchema)({ kind: "missing" })
     ).toEqual({ kind: "missing" });
     expect(
       Schema.decodeUnknownSync(RecoveryLookupSchema)({
         kind: "completed",
-        value: active,
+        value: recoveredActive,
       })
-    ).toEqual({ kind: "completed", value: active });
+    ).toEqual({ kind: "completed", value: recoveredActive });
     const invalid = Schema.decodeUnknownEither(RecoveryLookupSchema)({
       kind: "completed",
       value: { receipt: receiptFor(release), release, rendererManifest },
@@ -135,29 +159,12 @@ describe("current release state", () => {
     );
   });
   it("accepts resumable inverse phases bound to the candidate", () => {
-    const active = { receipt: receiptFor(release), release, rendererManifest };
-    const next = candidateRelease();
-    const inverse = recoveryRelease(next);
-    const candidate = {
-      phase: "verified",
-      release: next,
-      rendererManifest,
-    };
-    const retained = {
-      phase: "verified",
-      release: inverse,
-      rendererManifest,
-    };
     for (const phase of ["staging", "verifying", "verified"] as const) {
       expect(
         accepts({ active, candidate, recovery: { ...retained, phase } })
       ).toBe(true);
     }
-    const activated = {
-      receipt: receiptFor(next),
-      release: next,
-      rendererManifest,
-    };
+    const activated = activeRelease(next);
     expect(
       accepts({ active: activated, candidate: null, recovery: retained })
     ).toBe(true);
@@ -169,29 +176,43 @@ describe("current release state", () => {
       })
     ).toBe(true);
   });
+  it("retains the inverse of a genesis candidate before and after activation", () => {
+    const genesisRecovery = { ...retained, release: recoveryRelease(release) };
+    expect(
+      accepts({
+        active: null,
+        candidate: { phase: "verified", release, rendererManifest },
+        recovery: genesisRecovery,
+      })
+    ).toBe(true);
+    expect(
+      accepts({
+        active: activeRelease(release),
+        candidate: null,
+        recovery: genesisRecovery,
+      })
+    ).toBe(true);
+  });
   it("rejects incoherent candidate and recovery identities", () => {
-    const active = { receipt: receiptFor(release), release, rendererManifest };
-    const next = candidateRelease();
-    const inverse = recoveryRelease(next);
-    const candidate = {
-      phase: "verified",
-      release: next,
-      rendererManifest,
-    };
-    const retained = {
-      phase: "verified",
-      release: inverse,
-      rendererManifest,
-    };
+    const invalidRecovery = Schema.decodeUnknownEither(
+      StagedRollbackContentReleaseSchema
+    )({ ...retained, release });
+    expect(
+      Either.isLeft(invalidRecovery) ? String(invalidRecovery.left) : ""
+    ).toContain("Expected a staged rollback release.");
     const invalidManifests = [
       { origin: { kind: "git", sha: "a".repeat(40) } },
       { origin: { kind: "rollback", releaseId: "release-other" } },
       { baseReleaseId: "release-other" },
       { baseManifestHash: otherHash },
+      { baseActiveAppLocales: ["en"] },
+      { baseEditorialReviewDigest: otherHash },
       { baseResultCount: inverse.manifest.baseResultCount + 1 },
       { baseResultDigest: otherHash },
       { resultCount: inverse.manifest.resultCount + 1 },
       { resultDigest: otherHash },
+      { activeAppLocales: ["en"] },
+      { editorialReviewDigest: otherHash },
       {
         snapshots: {
           ...inverse.manifest.snapshots,
@@ -219,13 +240,7 @@ describe("current release state", () => {
       ...invalidManifests.map((manifest) => ({
         active,
         candidate,
-        recovery: {
-          ...retained,
-          release: {
-            ...inverse,
-            manifest: { ...inverse.manifest, ...manifest },
-          },
-        },
+        recovery: recoveryWith(manifest),
       })),
       {
         active,
@@ -242,46 +257,34 @@ describe("current release state", () => {
           rendererManifest: { ...rendererManifest, hash: otherHash },
         },
       },
-      { active, candidate: { ...candidate, release }, recovery: null },
+      { active, candidate, recovery: { ...retained, release } },
       { active: null, candidate, recovery: null },
       {
         active,
-        candidate: {
-          ...candidate,
-          release: {
-            ...next,
-            manifest: {
-              ...next.manifest,
-              baseResultCount: next.manifest.baseResultCount + 1,
-            },
-          },
-        },
+        candidate: candidateWith({
+          baseResultCount: next.manifest.baseResultCount + 1,
+        }),
         recovery: null,
       },
       {
         active,
-        candidate: {
-          ...candidate,
-          release: {
-            ...next,
-            manifest: { ...next.manifest, baseResultDigest: otherHash },
-          },
-        },
+        candidate: candidateWith({ baseActiveAppLocales: ["en"] }),
+        recovery: null,
+      },
+      {
+        active,
+        candidate: candidateWith({ baseEditorialReviewDigest: otherHash }),
+        recovery: null,
+      },
+      {
+        active,
+        candidate: candidateWith({ baseResultDigest: otherHash }),
         recovery: null,
       },
       {
         active,
         candidate,
-        recovery: {
-          ...retained,
-          release: {
-            ...inverse,
-            manifest: {
-              ...inverse.manifest,
-              releaseId: release.manifest.releaseId,
-            },
-          },
-        },
+        recovery: recoveryWith({ releaseId: release.manifest.releaseId }),
       },
       { active, candidate: { ...candidate, phase: "active" }, recovery: null },
       {

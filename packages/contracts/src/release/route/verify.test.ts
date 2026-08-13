@@ -15,8 +15,8 @@ const { releaseId } = release.manifest;
 function route(index: number, publicPath = `subjects/test/${index}`) {
   return Schema.decodeUnknownSync(ContentRouteItemSchema)({
     change: {
+      appLocale: "en",
       contentKey: `test:route-${index}`,
-      locale: "en",
       operation: "bind",
       publicPath,
     },

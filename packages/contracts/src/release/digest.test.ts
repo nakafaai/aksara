@@ -54,9 +54,9 @@ vi.mock("node:crypto", async (importOriginal) => {
 function item(contentKey = "test:digest") {
   return Schema.decodeUnknownSync(ContentReleaseItemSchema)({
     change: {
+      artifactLocale: "en",
       contentKey,
       family: "material",
-      locale: "en",
       operation: "delete",
     },
     index: 0,

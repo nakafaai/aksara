@@ -1,4 +1,4 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { Schema } from "effect";
 
@@ -14,6 +14,6 @@ export const PublicRouteSegmentSchema = Schema.String.pipe(
 
 /** Required public route segment for every supported content locale. */
 export const PublicRouteSlugMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: PublicRouteSegmentSchema,
 });

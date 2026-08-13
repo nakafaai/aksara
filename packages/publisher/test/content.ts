@@ -1,4 +1,5 @@
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { Schema } from "effect";
@@ -11,10 +12,10 @@ export const transportSignature = `${"A".repeat(85)}A`;
 const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   change: {
     artifactHash: transportArtifactHash,
+    artifactLocale: "en",
     contentKey: "test:http",
     delivery: "public",
     family: "material",
-    locale: "en",
     operation: "upsert",
     publicPath: "subjects/test/http",
     rendererDomain: "mathematics",
@@ -26,9 +27,9 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
 
 const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   change: {
+    artifactLocale: "id",
     contentKey: "test:deleted",
     family: "material",
-    locale: "id",
     operation: "delete",
   },
   index: 1,
@@ -36,10 +37,11 @@ const deletedItem = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
 });
 
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  appLocale: "en",
+  artifactLocale: "en",
   contentKey: "test:http",
-  graph: materialGraph("en", "http", "test-http"),
+  graph: materialGraph(AppLocaleSchema.make("en"), "http", "test-http"),
   kind: "subject-lesson",
-  locale: "en",
   materialKey: "lesson.test.http",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
@@ -54,13 +56,13 @@ const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
   artifactHash: transportArtifactHash,
   keyId: "test-http-key",
   payload: {
+    artifactLocale: "en",
     byteLength: 1,
     compiledCode: "x",
     compilerConfigHash: transportArtifactHash,
     compilerVersion: "0.1.0",
     contentKey: "test:http",
-    format: "mdx-function-body-v1",
-    locale: "en",
+    format: "mdx-function-body",
     mdxCompilerVersion: "3.1.1",
     plainText: "Test protocol",
     rawMdx: "x",

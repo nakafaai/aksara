@@ -5,6 +5,7 @@ import { defineArticleSource } from "#corpus/articles/schema";
 export const kimPlusEmptyBoxArticle = defineArticleSource({
   category: politicsArticleCategory,
   references,
+  routeSlugs: { en: "kim-plus-empty-box", id: "kim-plus-empty-box" },
   slug: "kim-plus-empty-box",
   sourceRoot: "articles/politics/kim-plus/empty-box",
 });

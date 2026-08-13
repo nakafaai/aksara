@@ -2,6 +2,7 @@
 
 import { Buffer } from "node:buffer";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
   MAX_PROJECTION_BATCH_BYTES,
@@ -19,11 +20,13 @@ const releaseId = ReleaseIdSchema.make("test-release-projections");
 
 /** Builds one unmistakably test-only material projection. */
 function projection(index: number, title = "Test Projection") {
+  const appLocale = AppLocaleSchema.make("en");
   return Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+    appLocale,
+    artifactLocale: "en",
     contentKey: `test:projection-${index.toString().padStart(4, "0")}`,
-    graph: materialGraph("en", "material", `test-lesson-${index}`),
+    graph: materialGraph(appLocale, "material", `test-lesson-${index}`),
     kind: "subject-lesson",
-    locale: "en",
     materialKey: "lesson.test.material",
     metadata: {
       authors: [{ name: "Test Author" }],

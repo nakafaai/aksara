@@ -172,7 +172,7 @@ export const PublicationCleanupSuccessSchema = Schema.Struct({
   value: ReleaseCleanupReceiptSchema,
 });
 
-/** Complete success vocabulary returned by publication ingress v1. */
+/** Complete success vocabulary returned by publication ingress. */
 export const PublicationSuccessSchema = Schema.Union(
   PublicationAcceptSuccessSchema,
   PublicationAbortSuccessSchema,

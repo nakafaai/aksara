@@ -3,6 +3,7 @@ import {
   PublicPathSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import {
@@ -17,8 +18,8 @@ const releaseId = ReleaseIdSchema.make("test-routes");
 /** Creates one unmistakably test-owned public route version. */
 function version(name: string, path?: string): RouteVersion {
   return {
+    appLocale: AppLocaleSchema.make("en"),
     contentKey: ContentKeySchema.make(`test:${name}`),
-    locale: "en",
     ...(path === undefined
       ? {}
       : { publicPath: PublicPathSchema.make(`subjects/test/${path}`) }),
@@ -59,8 +60,8 @@ describe("route derivation", () => {
 
     expect(items.map(({ change }) => change)).toEqual([
       {
+        appLocale: "en",
         contentKey: created.contentKey,
-        locale: "en",
         operation: "bind",
         publicPath: created.publicPath,
       },
@@ -77,8 +78,8 @@ describe("route derivation", () => {
 
     expect(items.map(({ change }) => change)).toEqual([
       {
+        appLocale: "en",
         contentKey: newOwner.contentKey,
-        locale: "en",
         operation: "bind",
         publicPath: newOwner.publicPath,
       },
@@ -95,14 +96,14 @@ describe("route derivation", () => {
 
     expect(items.map(({ change }) => change)).toEqual([
       {
+        appLocale: "en",
         contentKey: second.contentKey,
-        locale: "en",
         operation: "bind",
         publicPath: first.publicPath,
       },
       {
+        appLocale: "en",
         contentKey: first.contentKey,
-        locale: "en",
         operation: "bind",
         publicPath: second.publicPath,
       },
@@ -120,13 +121,13 @@ describe("route derivation", () => {
 
     expect(items.map(({ change }) => change)).toEqual([
       {
+        appLocale: "en",
         contentKey: next.contentKey,
-        locale: "en",
         operation: "bind",
         publicPath: next.publicPath,
       },
-      { locale: "en", operation: "delete", publicPath: renamed.publicPath },
-      { locale: "en", operation: "delete", publicPath: removed.publicPath },
+      { appLocale: "en", operation: "delete", publicPath: renamed.publicPath },
+      { appLocale: "en", operation: "delete", publicPath: removed.publicPath },
     ]);
   });
 
@@ -150,9 +151,9 @@ describe("route derivation", () => {
 
       await expect(reject(transitions)).resolves.toEqual(
         new RoutePlanConflictError({
+          appLocale: AppLocaleSchema.make("en"),
           existingContentKey: first.contentKey,
           incomingContentKey: second.contentKey,
-          locale: "en",
           publicPath: PublicPathSchema.make("subjects/test/shared"),
           side,
         })

@@ -1,9 +1,6 @@
 import { createHash } from "node:crypto";
 
-import type {
-  EditorialReviewManifest,
-  EditorialReviewRecord,
-} from "@nakafa/aksara-contracts/editorial/review";
+import type { EditorialReviewRecord } from "@nakafa/aksara-contracts/editorial/review";
 import { verifyEditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
 import type {
   CorpusSourcePath,
@@ -20,7 +17,18 @@ import {
 } from "@nakafa/aksara-contracts/limits";
 import { Effect, Schema } from "effect";
 
-import { GitBlob } from "#publisher/git/blob";
+import {
+  assembleEditorialReviewManifest,
+  decodeEditorialJson,
+  EditorialReviewCatalogSchema,
+  MAX_EDITORIAL_REVIEW_CATALOG_BYTES,
+  MAX_EDITORIAL_REVIEW_PART_BYTES,
+} from "#publisher/editorial/catalog";
+import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
+
+const EDITORIAL_REVIEW_MANIFEST_PATH = CorpusSourcePathSchema.make(
+  "packages/corpus/editorial/review/catalog.json"
+);
 
 /** One reviewed file is assigned contradictory hashes. */
 export class EditorialReviewFileConflictError extends Schema.TaggedError<EditorialReviewFileConflictError>()(
@@ -42,14 +50,10 @@ export class EditorialReviewFileHashError extends Schema.TaggedError<EditorialRe
   }
 ) {}
 
-/** One reviewed file is assigned contradictory bounded read policies. */
-export class EditorialReviewFileLimitConflictError extends Schema.TaggedError<EditorialReviewFileLimitConflictError>()(
-  "EditorialReviewFileLimitConflictError",
-  {
-    firstMaxBytes: Schema.Int,
-    path: CorpusSourcePathSchema,
-    secondMaxBytes: Schema.Int,
-  }
+/** Exact-Git review evidence could not be loaded or authenticated. */
+export class EditorialReviewLoadError extends Schema.TaggedError<EditorialReviewLoadError>()(
+  "EditorialReviewLoadError",
+  { cause: Schema.Unknown }
 ) {}
 
 interface ReviewFileExpectation {
@@ -69,16 +73,10 @@ function registerExpectation(
     return Effect.void;
   }
   if (existing.hash === expectation.hash) {
-    if (existing.maxBytes === expectation.maxBytes) {
-      return Effect.void;
+    if (expectation.maxBytes > existing.maxBytes) {
+      files.set(expectation.path, expectation);
     }
-    return Effect.fail(
-      new EditorialReviewFileLimitConflictError({
-        firstMaxBytes: existing.maxBytes,
-        path: expectation.path,
-        secondMaxBytes: expectation.maxBytes,
-      })
-    );
+    return Effect.void;
   }
   return Effect.fail(
     new EditorialReviewFileConflictError({
@@ -115,8 +113,8 @@ const collectReviewFiles = Effect.fn("AksaraPublisher.collectReviewFiles")(
   }
 );
 
-/** Computes the exact SHA-256 identity of one UTF-8 Git blob. */
-function hashReviewFile(content: string) {
+/** Computes the exact SHA-256 identity of one Git blob. */
+function hashReviewFile(content: Uint8Array) {
   return Sha256HashSchema.make(
     `sha256:${createHash("sha256").update(content).digest("hex")}`
   );
@@ -124,16 +122,7 @@ function hashReviewFile(content: string) {
 
 /** Verifies one review-owned file against its exact immutable Git blob. */
 const verifyReviewFile = Effect.fn("AksaraPublisher.verifyReviewFile")(
-  function* (
-    gitBlob: typeof GitBlob.Service,
-    revision: GitCommitSha,
-    expectation: ReviewFileExpectation
-  ) {
-    const content = yield* gitBlob.read({
-      maxBytes: expectation.maxBytes,
-      revision,
-      sourcePath: expectation.path,
-    });
+  function* (expectation: ReviewFileExpectation, content: Uint8Array) {
     const actualHash = hashReviewFile(content);
     if (actualHash !== expectation.hash) {
       return yield* new EditorialReviewFileHashError({
@@ -155,10 +144,57 @@ export const verifyEditorialReviewSources = Effect.fn(
   const manifest = yield* verifyEditorialReviewManifest(input.manifest);
   const files = yield* collectReviewFiles(manifest.records);
   const gitBlob = yield* GitBlob;
-  yield* Effect.forEach(
-    files,
-    (expectation) => verifyReviewFile(gitBlob, input.revision, expectation),
-    { concurrency: 8, discard: true }
+  const contents = yield* gitBlob.readManyBytes(
+    files.map(({ maxBytes, path }) => ({
+      maxBytes,
+      revision: input.revision,
+      sourcePath: path,
+    }))
   );
-  return manifest satisfies EditorialReviewManifest;
+  for (const expectation of files) {
+    const content = contents.get(expectation.path);
+    if (content === undefined) {
+      return yield* new EditorialReviewLoadError({ cause: expectation });
+    }
+    yield* verifyReviewFile(expectation, content);
+  }
+  return manifest;
+});
+
+/** Loads and verifies the canonical review manifest from one exact revision. */
+export const loadEditorialReviewManifest = Effect.fn(
+  "AksaraPublisher.loadEditorialReviewManifest"
+)(function* (input: {
+  readonly repositoryRoot: string;
+  readonly revision: GitCommitSha;
+}) {
+  const program = Effect.gen(function* () {
+    const gitBlob = yield* GitBlob;
+    const catalogBytes = yield* gitBlob.readBytes({
+      maxBytes: MAX_EDITORIAL_REVIEW_CATALOG_BYTES,
+      revision: input.revision,
+      sourcePath: EDITORIAL_REVIEW_MANIFEST_PATH,
+    });
+    const catalog = yield* decodeEditorialJson(
+      EditorialReviewCatalogSchema,
+      catalogBytes,
+      EDITORIAL_REVIEW_MANIFEST_PATH
+    );
+    const parts = yield* gitBlob.readManyBytes(
+      catalog.parts.map(({ sourcePath }) => ({
+        maxBytes: MAX_EDITORIAL_REVIEW_PART_BYTES,
+        revision: input.revision,
+        sourcePath,
+      }))
+    );
+    const manifest = yield* assembleEditorialReviewManifest(catalog, parts);
+    return yield* verifyEditorialReviewSources({
+      manifest,
+      revision: input.revision,
+    });
+  });
+  return yield* program.pipe(
+    Effect.provide(makeGitBlobLive(input.repositoryRoot)),
+    Effect.mapError((cause) => new EditorialReviewLoadError({ cause }))
+  );
 });

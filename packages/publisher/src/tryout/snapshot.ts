@@ -1,5 +1,6 @@
 import type { FileSystem, Path } from "@effect/platform";
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
@@ -8,26 +9,27 @@ import type {
 import { ContentSnapshotRowSchema } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
+import { digestTryoutCatalog } from "@nakafa/aksara-contracts/tryout/catalog-hash";
 import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
-import { digestTryoutCatalog } from "@nakafa/aksara-contracts/tryout/row-hash";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
-import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/spec";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Effect, Option, type Scope, Stream } from "effect";
 import type { inspectQuestionDocument } from "#publisher/question/document";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import { bindTryoutHeads } from "#publisher/tryout/bind";
+import { bindTryoutContent } from "#publisher/tryout/content";
 import type {
+  TryoutContentMissingError,
   TryoutHeadBindingError,
-  TryoutTitleMissingError,
 } from "#publisher/tryout/error";
-import { bindTryoutTitles } from "#publisher/tryout/title";
 
 /** Exact-Git inputs required to prepare one complete try-out snapshot. */
 export interface TryoutSnapshotPreparationInput<E, R> {
   readonly checkoutRoot: string;
+  readonly editorialReviewDigest: Sha256Hash;
   /** Replays the complete desired question-head catalog in canonical order. */
   readonly questionHeads: () => Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
@@ -69,7 +71,7 @@ export type PrepareTryoutSnapshotError<E> =
   | SnapshotVerificationError
   | TryoutHeadBindingError<never>
   | TryoutContentError
-  | TryoutTitleMissingError;
+  | TryoutContentMissingError;
 
 /** Selects immutable hierarchy records from a complete snapshot replay. */
 function selectCatalogRows(
@@ -132,7 +134,7 @@ export const prepareTryoutSnapshot: <E, R>(
     projection.placements,
     input.questionHeads()
   );
-  const placements = bindTryoutTitles({
+  const placements = bindTryoutContent({
     bindings,
     checkoutRoot: input.checkoutRoot,
     entries,
@@ -175,10 +177,10 @@ export const prepareTryoutSnapshot: <E, R>(
   const manifest = {
     family: "tryout",
     manifest: makeTryoutSnapshot({
+      activeAppLocales: ACTIVE_APP_LOCALES,
       catalogDigest: catalog.digest,
       counts: countCatalogKinds(projection.catalog),
-      format: "tryout-v1",
-      locales: ContentLocaleSchema.literals,
+      editorialReviewDigest: input.editorialReviewDigest,
       placementCount: placement.count,
       placementDigest: placement.digest,
       routeCount: projection.routeCount,

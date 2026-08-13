@@ -1,11 +1,9 @@
 import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import {
-  ContentLocaleSchema,
-  compareContentHeads,
-} from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -32,7 +30,7 @@ import {
 
 const MaterialFamilyFieldSchema = Schema.Literal(
   "contentKey",
-  "locale",
+  "artifactLocale",
   "publicPath",
   "sourcePath"
 );
@@ -40,22 +38,22 @@ const MaterialFamilyFieldSchema = Schema.Literal(
 /** A target returned the same material identity more than once. */
 export class MaterialHeadDuplicateError extends Schema.TaggedError<MaterialHeadDuplicateError>()(
   "MaterialHeadDuplicateError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** A target returned material heads outside canonical content-head order. */
 export class MaterialHeadOrderError extends Schema.TaggedError<MaterialHeadOrderError>()(
   "MaterialHeadOrderError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** A material-head page contained a row owned by another content family. */
 export class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFamilyError>()(
   "MaterialHeadFamilyError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
     field: MaterialFamilyFieldSchema,
-    locale: ContentLocaleSchema,
   }
 ) {}
 
@@ -120,8 +118,8 @@ function mismatchedFamilyField(
   if (!head.sourcePath.startsWith("packages/corpus/material/lesson/")) {
     return "sourcePath";
   }
-  if (!head.sourcePath.endsWith(`/${head.locale}.mdx`)) {
-    return "locale";
+  if (!head.sourcePath.endsWith(`/${head.artifactLocale}.mdx`)) {
+    return "artifactLocale";
   }
 }
 
@@ -137,9 +135,9 @@ function validatePublishedHead(
   if (field !== undefined) {
     return Effect.fail(
       new MaterialHeadFamilyError({
+        artifactLocale: head.artifactLocale,
         contentKey: head.contentKey,
         field,
-        locale: head.locale,
       })
     );
   }
@@ -149,16 +147,16 @@ function validatePublishedHead(
     if (comparison === 0) {
       return Effect.fail(
         new MaterialHeadDuplicateError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }
     if (comparison > 0) {
       return Effect.fail(
         new MaterialHeadOrderError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }

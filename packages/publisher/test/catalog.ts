@@ -1,7 +1,47 @@
-import type {
-  ContentFamily,
-  ContentLocale,
-} from "@nakafa/aksara-contracts/content";
+import type { ContentFamily } from "@nakafa/aksara-contracts/content";
+import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
+  PublicPathSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  type ArtifactLocale,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
+
+const CATALOG_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+
+/** Stable structured evidence for full-catalog validation tests. */
+export const catalogSnapshotEvidence = {
+  program: {
+    rowCount: 396,
+    rowDigest: CATALOG_HASH,
+    sitemapCount: 52,
+    snapshotId: CATALOG_HASH,
+  },
+  quran: {
+    projectionCount: 1428,
+    projectionDigest: CATALOG_HASH,
+    provenanceDigest: CATALOG_HASH,
+    provenanceStatus: "blocked",
+    runtimeCount: 1200,
+    searchCount: 228,
+    snapshotId: CATALOG_HASH,
+    sourceDigest: CATALOG_HASH,
+  },
+  stagedRows: 2316,
+  tryout: {
+    catalogCount: 54,
+    catalogDigest: CATALOG_HASH,
+    placementCount: 420,
+    placementDigest: CATALOG_HASH,
+    routeCount: 48,
+    snapshotId: CATALOG_HASH,
+  },
+};
 
 /** Compact family counts used by catalog orchestration tests. */
 export interface TestCatalogCounts {
@@ -12,15 +52,15 @@ export interface TestCatalogCounts {
 
 /** Stable source identity used without inventing educational fixture bodies. */
 export interface TestCatalogIdentity {
+  readonly artifactLocale: ArtifactLocale;
   readonly contentKey: string;
   readonly family: ContentFamily;
-  readonly locale: ContentLocale;
   readonly publicPath?: string;
 }
 
-/** Returns one deterministic locale for compact source identities. */
-function localeFor(index: number): TestCatalogIdentity["locale"] {
-  return index % 2 === 0 ? "en" : "id";
+/** Returns one deterministic artifactLocale for compact source identities. */
+function localeFor(index: number): TestCatalogIdentity["artifactLocale"] {
+  return ArtifactLocaleSchema.make(index % 2 === 0 ? "en" : "id");
 }
 
 /** Builds registry-owned identities for one content family. */
@@ -29,28 +69,28 @@ export function catalogIdentities(
   count: number
 ): readonly TestCatalogIdentity[] {
   return Array.from({ length: count }, (_, index) => {
-    const locale = localeFor(index);
+    const artifactLocale = localeFor(index);
     if (family === "article") {
       const contentKey = `articles/politics/test-article-${index}`;
       return {
+        artifactLocale,
         contentKey,
         family,
-        locale,
         publicPath: contentKey,
       };
     }
     if (family === "material") {
       return {
+        artifactLocale,
         contentKey: `material/lesson/mathematics/test-lesson-${index}`,
         family,
-        locale,
         publicPath: `subjects/mathematics/test-lesson-${index}`,
       };
     }
     return {
+      artifactLocale,
       contentKey: `question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-${index + 1}/question`,
       family,
-      locale,
     };
   });
 }
@@ -71,7 +111,32 @@ export function catalogTotal(counts: TestCatalogCounts) {
 
 /** Builds prepared identities in canonical result-catalog order. */
 export function catalogResult(counts: TestCatalogCounts) {
-  return catalogHeads(counts);
+  return catalogHeads(counts).map((identity): ContentHead => {
+    const sourcePath =
+      identity.family === "question"
+        ? `packages/corpus/${identity.contentKey}.${identity.artifactLocale}.mdx`
+        : `packages/corpus/test/catalog/${identity.contentKey}.${identity.artifactLocale}.mdx`;
+    const common = {
+      artifactHash: CATALOG_HASH,
+      artifactLocale: identity.artifactLocale,
+      compilerConfigHash: CATALOG_HASH,
+      contentKey: ContentKeySchema.make(identity.contentKey),
+      delivery: identity.family === "question" ? "authenticated" : "public",
+      family: identity.family,
+      projectionHash: CATALOG_HASH,
+      rendererDomain:
+        identity.family === "question" ? "snbt-general" : "mathematics",
+      sourceHash: CATALOG_HASH,
+      sourcePath: CorpusSourcePathSchema.make(sourcePath),
+    } as const;
+    if (identity.publicPath === undefined) {
+      return common;
+    }
+    return {
+      ...common,
+      publicPath: PublicPathSchema.make(identity.publicPath),
+    };
+  });
 }
 
 /** Projects public identities into genesis route transitions. */
@@ -87,10 +152,13 @@ export function catalogRoutes(
     } => row.publicPath !== undefined
   );
   return publicRows.map((row, index) => ({
-    current: { contentKey: row.contentKey, locale: row.locale },
-    next: {
+    current: {
+      appLocale: AppLocaleSchema.make(row.artifactLocale),
       contentKey: row.contentKey,
-      locale: row.locale,
+    },
+    next: {
+      appLocale: AppLocaleSchema.make(row.artifactLocale),
+      contentKey: row.contentKey,
       publicPath:
         replaceLast && index === publicRows.length - 1
           ? "subjects/mathematics/test-replaced-route"

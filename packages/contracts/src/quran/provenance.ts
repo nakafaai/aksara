@@ -2,15 +2,21 @@ import { createHash } from "node:crypto";
 
 import { Effect, Schema } from "effect";
 
-import { ContentLocaleSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
+import {
+  type ActiveAppLocaleList,
+  ActiveAppLocaleListSchema,
+  type AppLocale,
+  AppLocaleCodeSchema,
+  AppLocaleSchema,
+} from "#contracts/locale";
 import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot/spec";
 import {
+  hasCompleteQuranSourceCopy,
   type QuranSourceAttribution,
   QuranSourceAttributionSchema,
+  type QuranSourceId,
 } from "#contracts/quran/source";
-import { QuranTafsirLocaleSchema } from "#contracts/quran/spec";
-import { compareCodeUnits } from "#contracts/text/order";
 
 /** Quran source fields that require independent provenance decisions. */
 const QuranStaticProvenanceScopeSchema = Schema.Literal(
@@ -19,44 +25,63 @@ const QuranStaticProvenanceScopeSchema = Schema.Literal(
 );
 
 const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral(
-  ContentLocaleSchema,
+  AppLocaleCodeSchema,
   "-translation"
 );
 
-const QuranTafsirProvenanceScopeSchema = Schema.TemplateLiteral(
-  QuranTafsirLocaleSchema,
-  "-tafsir"
-);
-
-/** Quran source fields derived from static fields and locale capabilities. */
+/** Complete source-field vocabulary supported by current Quran publication. */
 export const QuranProvenanceScopeSchema = Schema.Union(
   QuranStaticProvenanceScopeSchema,
   QuranTranslationProvenanceScopeSchema,
-  QuranTafsirProvenanceScopeSchema
+  Schema.Literal("id-tafsir")
 );
 export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
 
-/** Decodes derived scope names through their single runtime contract. */
-const decodeProvenanceScope = Schema.decodeUnknownSync(
-  QuranProvenanceScopeSchema
-);
-
-const localizedProvenanceScopes = ContentLocaleSchema.literals.flatMap(
-  (locale) => {
-    const translation = decodeProvenanceScope(`${locale}-translation`);
-    if (!Schema.is(QuranTafsirLocaleSchema)(locale)) {
-      return [translation];
-    }
-    return [decodeProvenanceScope(`${locale}-tafsir`), translation];
+/** Maps one active application locale to its exact translation source field. */
+function translationScope(appLocale: AppLocale): QuranProvenanceScope {
+  if (appLocale === AppLocaleSchema.make("en")) {
+    return "en-translation";
   }
-);
+  if (appLocale === AppLocaleSchema.make("id")) {
+    return "id-translation";
+  }
+  return "de-translation";
+}
 
-/** Canonical scope order derived from supported locale capabilities. */
-export const QURAN_PROVENANCE_SCOPES = [
-  decodeProvenanceScope("arabic-text"),
-  ...localizedProvenanceScopes,
-  decodeProvenanceScope("metadata"),
-];
+/** Derives the exact provenance scope order for one active locale set. */
+export function quranProvenanceScopes(
+  activeAppLocales: ActiveAppLocaleList
+): readonly QuranProvenanceScope[] {
+  const scopes: QuranProvenanceScope[] = ["arabic-text"];
+  for (const appLocale of activeAppLocales) {
+    scopes.push(translationScope(appLocale));
+    if (appLocale === AppLocaleSchema.make("id")) {
+      scopes.push("id-tafsir");
+    }
+  }
+  scopes.push("metadata");
+  return scopes;
+}
+
+/** Resolves the only official source allowed to prove one provenance scope. */
+function sourceForScope(scope: QuranProvenanceScope): QuranSourceId {
+  if (scope === "arabic-text") {
+    return "tanzil-text";
+  }
+  if (scope === "metadata") {
+    return "tanzil-metadata";
+  }
+  if (scope === "en-translation") {
+    return "quranenc-english";
+  }
+  if (scope === "id-translation") {
+    return "quranenc-indonesian";
+  }
+  if (scope === "de-translation") {
+    return "quranenc-german";
+  }
+  return "quranenc-tafsir";
+}
 
 /** One reviewed official artifact and its field-level permission decision. */
 export const QuranProvenanceRecordSchema = Schema.Struct({
@@ -64,59 +89,30 @@ export const QuranProvenanceRecordSchema = Schema.Struct({
   evidence: Schema.NonEmptyTrimmedString,
   scope: QuranProvenanceScopeSchema,
   status: QuranProvenanceStatusSchema,
-});
+}).pipe(
+  Schema.filter(
+    ({ attribution, scope }) => attribution.id === sourceForScope(scope),
+    { message: () => "Expected each Quran scope to bind its official source." }
+  )
+);
 export type QuranProvenanceRecord = typeof QuranProvenanceRecordSchema.Type;
 
-/** Compares two provenance records in stable scope and source order. */
-function compareProvenance(
-  left: QuranProvenanceRecord,
-  right: QuranProvenanceRecord
-) {
-  const leftScope = QURAN_PROVENANCE_SCOPES.indexOf(left.scope);
-  const rightScope = QURAN_PROVENANCE_SCOPES.indexOf(right.scope);
-  if (leftScope !== rightScope) {
-    return leftScope - rightScope;
-  }
-  return compareCodeUnits(left.attribution.id, right.attribution.id);
+/** Checks exact active-locale coverage and canonical scope order. */
+function hasCanonicalSourceCoverage(input: {
+  readonly activeAppLocales: ActiveAppLocaleList;
+  readonly records: readonly QuranProvenanceRecord[];
+}) {
+  const expected = quranProvenanceScopes(input.activeAppLocales);
+  return (
+    input.records.length === expected.length &&
+    input.records.every(
+      (record, index) =>
+        record.scope === expected[index] &&
+        record.attribution.id === sourceForScope(record.scope) &&
+        hasCompleteQuranSourceCopy(record.attribution, input.activeAppLocales)
+    )
+  );
 }
-
-/** Checks complete scope coverage, unique sources, and canonical order. */
-function hasCanonicalSourceCoverage(records: readonly QuranProvenanceRecord[]) {
-  const coveredScopes = new Set<QuranProvenanceScope>();
-  const sourceIdentities = new Set<string>();
-  const canonicalRecords = [...records].sort(compareProvenance);
-  const sourceOrder = records.map(({ attribution, scope }) => [
-    scope,
-    attribution.id,
-  ]);
-  const canonicalOrder = canonicalRecords.map(({ attribution, scope }) => [
-    scope,
-    attribution.id,
-  ]);
-  if (JSON.stringify(sourceOrder) !== JSON.stringify(canonicalOrder)) {
-    return false;
-  }
-
-  for (const record of records) {
-    const identity = `${record.scope}\n${record.attribution.id}`;
-    if (sourceIdentities.has(identity)) {
-      return false;
-    }
-    sourceIdentities.add(identity);
-    coveredScopes.add(record.scope);
-  }
-
-  return QURAN_PROVENANCE_SCOPES.every((scope) => coveredScopes.has(scope));
-}
-
-const QuranProvenanceRecordsSchema = Schema.NonEmptyArray(
-  QuranProvenanceRecordSchema
-).pipe(
-  Schema.filter(hasCanonicalSourceCoverage, {
-    message: () =>
-      "Expected complete Quran provenance scopes with unique sources in canonical order.",
-  })
-);
 
 /** Checks that the declared gate status matches every reviewed record. */
 function hasCoherentProvenanceStatus(input: {
@@ -131,10 +127,15 @@ function hasCoherentProvenanceStatus(input: {
 
 /** Complete ordered evidence set that gates Quran production publication. */
 export const QuranProvenanceManifestSchema = Schema.Struct({
+  activeAppLocales: ActiveAppLocaleListSchema,
   digest: Sha256HashSchema,
-  records: QuranProvenanceRecordsSchema,
+  records: Schema.NonEmptyArray(QuranProvenanceRecordSchema),
   status: QuranProvenanceStatusSchema,
 }).pipe(
+  Schema.filter(hasCanonicalSourceCoverage, {
+    message: () =>
+      "Expected exact active-locale Quran provenance scope coverage.",
+  }),
   Schema.filter(hasCoherentProvenanceStatus, {
     message: () =>
       "Expected Quran provenance status to match its complete evidence.",
@@ -142,7 +143,7 @@ export const QuranProvenanceManifestSchema = Schema.Struct({
 );
 export type QuranProvenanceManifest = typeof QuranProvenanceManifestSchema.Type;
 
-/** Provenance omitted a scope, duplicated a source, or broke canonical order. */
+/** Quran provenance omitted or misordered an active-locale scope. */
 export class QuranProvenanceCoverageError extends Schema.TaggedError<QuranProvenanceCoverageError>()(
   "QuranProvenanceCoverageError",
   {
@@ -150,7 +151,13 @@ export class QuranProvenanceCoverageError extends Schema.TaggedError<QuranProven
   }
 ) {}
 
-const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance.v2";
+/** Node could not compute the deterministic provenance digest. */
+export class QuranProvenanceHashError extends Schema.TaggedError<QuranProvenanceHashError>()(
+  "QuranProvenanceHashError",
+  {}
+) {}
+
+const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance";
 
 /** Serializes one public attribution without trusting insertion order. */
 function canonicalizeAttribution(attribution: QuranSourceAttribution) {
@@ -160,8 +167,12 @@ function canonicalizeAttribution(attribution: QuranSourceAttribution) {
       digest: attribution.artifact.digest,
       fileCount: attribution.artifact.fileCount,
     },
+    copy: attribution.copy.map((entry) => ({
+      appLocale: entry.appLocale,
+      notice: entry.notice,
+      title: entry.title,
+    })),
     id: attribution.id,
-    notice: attribution.notice,
     publisher: attribution.publisher,
     retrievedAt: attribution.retrievedAt,
     sourceUrl: attribution.sourceUrl,
@@ -173,7 +184,6 @@ function canonicalizeAttribution(attribution: QuranSourceAttribution) {
       },
       url: attribution.terms.url,
     },
-    title: attribution.title,
     updateUrl: attribution.updateUrl,
     version: attribution.version,
   };
@@ -189,13 +199,19 @@ export function canonicalizeQuranProvenance(record: QuranProvenanceRecord) {
   });
 }
 
-/** Digests the exact ordered provenance records encoded into a snapshot. */
-export function hashQuranProvenance(records: readonly QuranProvenanceRecord[]) {
+/** Digests exact ordered provenance records under their active locale set. */
+export function hashQuranProvenance(input: {
+  readonly activeAppLocales: ActiveAppLocaleList;
+  readonly records: readonly QuranProvenanceRecord[];
+}) {
   return Effect.try({
     catch: () => new QuranProvenanceHashError(),
     try: () => {
-      const hash = createHash("sha256").update(`${PROVENANCE_DOMAIN}\n`);
-      for (const record of records) {
+      const hash = createHash("sha256")
+        .update(`${PROVENANCE_DOMAIN}\n`)
+        .update(JSON.stringify(input.activeAppLocales))
+        .update("\n");
+      for (const record of input.records) {
         hash.update(canonicalizeQuranProvenance(record));
         hash.update("\n");
       }
@@ -204,34 +220,29 @@ export function hashQuranProvenance(records: readonly QuranProvenanceRecord[]) {
   });
 }
 
-/** Node could not compute the deterministic provenance digest. */
-export class QuranProvenanceHashError extends Schema.TaggedError<QuranProvenanceHashError>()(
-  "QuranProvenanceHashError",
-  {}
-) {}
-
-/** Builds a signed-snapshot provenance gate from exact reviewed records. */
+/** Builds a snapshot provenance gate from exact reviewed source records. */
 export const makeQuranProvenanceManifest = Effect.fn(
   "AksaraContracts.makeQuranProvenanceManifest"
-)(function* (records: readonly QuranProvenanceRecord[]) {
-  const ordered = [...records].sort(compareProvenance);
-  const canonical = yield* Schema.decodeUnknown(QuranProvenanceRecordsSchema)(
-    ordered
-  ).pipe(
+)(function* (input: {
+  readonly activeAppLocales: ActiveAppLocaleList;
+  readonly records: readonly QuranProvenanceRecord[];
+}) {
+  const decoded = yield* Schema.decodeUnknown(
+    Schema.Struct({
+      activeAppLocales: ActiveAppLocaleListSchema,
+      records: Schema.NonEmptyArray(QuranProvenanceRecordSchema),
+    }).pipe(Schema.filter(hasCanonicalSourceCoverage))
+  )(input).pipe(
     Effect.mapError(
       () =>
         new QuranProvenanceCoverageError({
-          actualScopes: records.map(({ scope }) => scope),
+          actualScopes: input.records.map(({ scope }) => scope),
         })
     )
   );
-  const digest = yield* hashQuranProvenance(canonical);
-  const status = canonical.some((record) => record.status === "blocked")
+  const digest = yield* hashQuranProvenance(decoded);
+  const status = decoded.records.some((record) => record.status === "blocked")
     ? "blocked"
     : "approved";
-  return QuranProvenanceManifestSchema.make({
-    digest,
-    records: canonical,
-    status,
-  });
+  return QuranProvenanceManifestSchema.make({ ...decoded, digest, status });
 });

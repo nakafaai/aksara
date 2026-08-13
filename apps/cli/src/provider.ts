@@ -10,6 +10,7 @@ import {
   LOCAL_PREVIEW_FORMAT,
   type LocalPreviewManifest,
   LocalPreviewManifestSchema,
+  localPreviewArtifactPath,
   type PreviewArtifact,
 } from "@nakafa/aksara-contracts/preview/spec";
 import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
@@ -21,13 +22,15 @@ import {
   PREVIEW_MANIFEST_PATH,
   type PreviewHttp,
   type PreviewHttpState,
-  previewArtifactPath,
 } from "#cli/provider/http";
 
 /** Loopback provider startup or state encoding failed safely. */
 export class PreviewProviderError extends Schema.TaggedError<PreviewProviderError>()(
   "PreviewProviderError",
-  { stage: Schema.Literal("coherence", "encode", "listen") }
+  {
+    cause: Schema.optional(Schema.Unknown),
+    stage: Schema.Literal("coherence", "encode", "listen"),
+  }
 ) {}
 
 type PreviewRepositories = LocalPreviewManifest["repositories"];
@@ -83,7 +86,9 @@ const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
     Schema.decodeUnknown(LocalPreviewManifestSchema)(manifest, {
       onExcessProperty: "error",
     }).pipe(
-      Effect.mapError(() => new PreviewProviderError({ stage: "encode" })),
+      Effect.mapError(
+        (cause) => new PreviewProviderError({ cause, stage: "encode" })
+      ),
       Effect.map((decoded) => ({
         manifest: decoded,
         manifestJson: JSON.stringify(decoded),
@@ -129,7 +134,7 @@ function closeServer(server: Server, http: PreviewHttp) {
 function artifactReference(result: PreviewReadyResult): PreviewArtifact {
   return {
     artifactHash: result.artifact.artifactHash,
-    artifactPath: previewArtifactPath(result.artifact.artifactHash),
+    artifactPath: localPreviewArtifactPath(result.artifact.artifactHash),
     projection: result.projection,
   };
 }
@@ -164,7 +169,7 @@ function hasCoherentReadyResult(
   if (payload.contentKey !== projection.contentKey) {
     return false;
   }
-  if (payload.locale !== projection.locale) {
+  if (payload.artifactLocale !== projection.artifactLocale) {
     return false;
   }
   return payload.rendererDomain === document.rendererDomain;

@@ -6,17 +6,15 @@ import {
   CurriculumNodeKeySchema,
   CurriculumRouteDraftSchema,
   CurriculumRouteSchema,
-  CurriculumRouteV4DraftSchema,
-  CurriculumRouteV4Schema,
   canonicalizeCurriculumRoute,
   curriculumNamespace,
 } from "#contracts/program/curriculum";
 
 const merdekaRoute = {
+  appLocale: "en",
   iconKey: "mathematics",
   kind: "curriculum-context",
   level: "subject",
-  locale: "en",
   nodeKey: "class-10-mathematics",
   order: 10,
   parentPath: "curriculum/merdeka/class-10",
@@ -76,7 +74,7 @@ describe("curriculum route contract", () => {
   it.each([
     [
       "wrong locale namespace",
-      { locale: "id", publicPath: merdekaRoute.publicPath },
+      { appLocale: "id", publicPath: merdekaRoute.publicPath },
     ],
     [
       "wrong source ownership",
@@ -115,10 +113,10 @@ describe("curriculum route contract", () => {
 
   it("accepts the exact localized curriculum root shape", () => {
     const root = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+      appLocale: "id",
       iconKey: "state",
       kind: "curriculum-context",
       level: "track",
-      locale: "id",
       nodeKey: "merdeka:root",
       order: 10,
       programKey: "merdeka",
@@ -131,12 +129,12 @@ describe("curriculum route contract", () => {
     expect(root.nodeKey).toBe("merdeka:root");
   });
 
-  it("owns the exact German namespace and v4 route policy", () => {
-    const root = Schema.decodeUnknownSync(CurriculumRouteV4Schema)({
+  it("owns the exact German namespace and current route policy", () => {
+    const root = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+      appLocale: "de",
       iconKey: "state",
       kind: "curriculum-context",
       level: "track",
-      locale: "de",
       nodeKey: "merdeka:root",
       order: 10,
       programKey: "merdeka",
@@ -150,31 +148,32 @@ describe("curriculum route contract", () => {
     expect(root.publicPath).toBe("lehrplaene/merdeka");
   });
 
-  it("reports every v4 route ownership failure", () => {
+  it("reports every current route ownership failure", () => {
     const german = {
       ...merdekaRoute,
-      locale: "de",
+      appLocale: "de",
       parentPath: "lehrplaene/merdeka/class-10",
       publicPath: "lehrplaene/merdeka/class-10/mathematik",
       title: "Mathematik",
     } as const;
-    const routeFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)({
+    const routeFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
       ...german,
       publicPath: merdekaRoute.publicPath,
     });
-    const materialFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)(
-      { ...german, materialKey: "lesson.mathematics.matrix" }
-    );
-    const sitemapFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)({
+    const materialFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
+      ...german,
+      materialKey: "lesson.mathematics.matrix",
+    });
+    const sitemapFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
       ...german,
       level: "lesson",
     });
-    const draft = Schema.decodeUnknownSync(CurriculumRouteV4DraftSchema)({
+    const draft = Schema.decodeUnknownSync(CurriculumRouteDraftSchema)({
       ...german,
       canonicalPath: "subjects/mathematics/matrix",
       materialKey: "lesson.mathematics.matrix",
     });
-    const contextFailure = Schema.decodeUnknownEither(CurriculumRouteV4Schema)(
+    const contextFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)(
       draft
     );
 
@@ -195,7 +194,7 @@ describe("curriculum route contract", () => {
   it("reports each exact curriculum ownership failure", () => {
     const routeFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
       ...merdekaRoute,
-      locale: "id",
+      appLocale: "id",
     });
     const materialFailure = Schema.decodeUnknownEither(CurriculumRouteSchema)({
       ...merdekaRoute,

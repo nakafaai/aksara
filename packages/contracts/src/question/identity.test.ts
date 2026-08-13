@@ -17,9 +17,9 @@ import {
 const setKey = "question-bank/tryout/indonesia/snbt/general-reasoning/set-1";
 const questionKey = `${setKey}/question-1`;
 const prompt = {
+  artifactLocale: "en",
   bodyKind: "question",
   contentKey: `${questionKey}/question`,
-  locale: "en",
   peerContentKey: `${questionKey}/answer`,
   questionKey,
   questionNumber: 1,
@@ -90,12 +90,12 @@ describe("question body identity", () => {
     );
 
     expect(questionSourcePathParts(bodyPath)).toMatchObject({
+      artifactLocale: "id",
       bodyKind: "answer",
       contentKey: `${questionKey}/answer`,
       countryKey: "indonesia",
       examKey: "snbt",
       kind: "body",
-      locale: "id",
       questionKey,
       questionNumber: 1,
       sectionKey: "general-reasoning",
@@ -121,7 +121,7 @@ describe("question body identity", () => {
       `packages/corpus/${questionKey}/notes.ts`,
       `packages/corpus/${questionKey}/question.mdx`,
       `packages/corpus/${questionKey}/prompt.en.mdx`,
-      `packages/corpus/${questionKey}/question.de.mdx`,
+      `packages/corpus/${questionKey}/question.fr.mdx`,
       `packages/corpus/question-bank/tryout/germany/abitur/${longHierarchy}/mathematics/set-1/question-1/choices.ts`,
     ];
 

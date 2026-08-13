@@ -5,7 +5,6 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Option, Schema, Stream } from "effect";
 import { type QuranSurah, QuranSurahSchema } from "#corpus/quran/schema";
-import { quranSurahSourceStream } from "#corpus/quran/source/stream";
 
 interface QuranRegistryState {
   readonly nextSurah: number;
@@ -183,9 +182,7 @@ function validateEnd(state: QuranRegistryState) {
 }
 
 /** Emits the complete strictly validated Quran corpus one surah at a time. */
-export function streamQuranRegistry(
-  source: Stream.Stream<unknown> = quranSurahSourceStream
-) {
+export function streamQuranRegistry(source: Stream.Stream<unknown>) {
   const items = source.pipe(
     Stream.map(
       (value): QuranRegistryItem => ({ _tag: "Source", source: value })

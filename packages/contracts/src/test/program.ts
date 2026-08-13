@@ -1,17 +1,26 @@
 import { Effect } from "effect";
-import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
+
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
-import { CurriculumRouteSchema } from "#contracts/program/curriculum";
+import { type AppLocale, AppLocaleSchema } from "#contracts/locale";
+import {
+  CurriculumRouteSchema,
+  curriculumNamespace,
+} from "#contracts/program/curriculum";
+import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
 import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshotRow,
-} from "#contracts/program/row-hash";
+} from "#contracts/program/snapshot/row-hash";
 import {
   LearningProgramKeySchema,
   LearningProgramSchema,
 } from "#contracts/program/spec";
 
-/** Builds one clearly test-only learning program at a stable display position. */
+const english = AppLocaleSchema.make("en");
+const indonesian = AppLocaleSchema.make("id");
+const activeAppLocales = [english, indonesian] as const;
+
+/** Builds one clearly test-only learning program at a stable position. */
 export function makeTestProgram(index: number) {
   return LearningProgramSchema.make({
     defaultCoverageStatus: "planned",
@@ -32,38 +41,54 @@ export function makeTestProgram(index: number) {
         url: `https://example.test/program-${index}`,
       },
     ],
-    translations: {
-      en: {
+    translations: [
+      {
+        appLocale: english,
         publicSlug: `test-program-${index}`,
         title: `Test Program ${index}`,
       },
-      id: {
+      {
+        appLocale: indonesian,
         publicSlug: `program-uji-${index}`,
         title: `Program Uji ${index}`,
       },
-    },
+    ],
     version: { label: "Test version" },
   });
+}
+
+/** Resolves one required localized program translation. */
+function programTranslation(
+  program: ReturnType<typeof makeTestProgram>,
+  appLocale: AppLocale
+) {
+  const translation = program.translations.find(
+    (candidate) => candidate.appLocale === appLocale
+  );
+  if (translation === undefined) {
+    throw new Error("Expected a test program translation.");
+  }
+  return translation;
 }
 
 /** Builds one localized root route owned by a test-only program. */
 export function makeTestCurriculumRoot(
   program: ReturnType<typeof makeTestProgram>,
-  locale: ContentLocale,
+  appLocale: AppLocale,
   publicPath?: string
 ) {
-  const translation = program.translations[locale];
-  const namespace = locale === "en" ? "curriculum" : "kurikulum";
+  const translation = programTranslation(program, appLocale);
   return CurriculumRouteSchema.make({
+    appLocale,
     iconKey: program.iconKey,
     kind: "curriculum-context",
     level: "track",
-    locale,
     nodeKey: `${program.key}:root`,
     order: program.displayOrder,
     programKey: program.key,
     publicPath: PublicPathSchema.make(
-      publicPath ?? `${namespace}/${translation.publicSlug}`
+      publicPath ??
+        `${curriculumNamespace(appLocale)}/${translation.publicSlug}`
     ),
     sitemap: true,
     sourcePath: CorpusSourcePathSchema.make(
@@ -73,29 +98,23 @@ export function makeTestCurriculumRoot(
   });
 }
 
-/** Builds every technical child route required by the exact snapshot counts. */
+/** Builds every technical child route required by snapshot tests. */
 function makeTestCurriculumChildren(
   program: ReturnType<typeof makeTestProgram>,
-  locale: ContentLocale
+  appLocale: AppLocale
 ) {
-  const translation = program.translations[locale];
-  const namespace = locale === "en" ? "curriculum" : "kurikulum";
-  const root = `${namespace}/${translation.publicSlug}`;
-  const childCount = locale === "en" ? 32 : 31;
-  let sitemapCount = 2;
-  if (locale === "en") {
-    sitemapCount = 4;
-  } else if (program.displayOrder <= 40) {
-    sitemapCount = 3;
-  }
+  const translation = programTranslation(program, appLocale);
+  const root = `${curriculumNamespace(appLocale)}/${translation.publicSlug}`;
+  const childCount = appLocale === english ? 32 : 31;
+  const sitemapCount = appLocale === english ? 4 : 3;
   return Array.from({ length: childCount }, (_, index) => {
     const position = index + 1;
     const nodeKey = `node-${String(position).padStart(2, "0")}`;
     return CurriculumRouteSchema.make({
+      appLocale,
       iconKey: program.iconKey,
       kind: "curriculum-context",
       level: "subject",
-      locale,
       nodeKey,
       order: position,
       parentPath: PublicPathSchema.make(root),
@@ -110,9 +129,9 @@ function makeTestCurriculumChildren(
   });
 }
 
-/** Hashes the exact-size test-only program and curriculum snapshot rows. */
-export const makeTestProgramRecords = Effect.fn(
-  "AksaraContracts.makeTestProgramRecords"
+/** Hashes one complete current program and curriculum fixture. */
+export const makeProgramTestRecords = Effect.fn(
+  "AksaraContracts.makeProgramTestRecords"
 )(function* () {
   const programs = [1, 2, 3, 4, 5, 6].map(makeTestProgram);
   const programRecords = yield* Effect.forEach(
@@ -121,12 +140,28 @@ export const makeTestProgramRecords = Effect.fn(
   );
   const curriculumRecords = yield* Effect.forEach(
     programs.flatMap((program) =>
-      ContentLocaleSchema.literals.flatMap((locale) => [
-        makeTestCurriculumRoot(program, locale),
-        ...makeTestCurriculumChildren(program, locale),
+      activeAppLocales.flatMap((appLocale) => [
+        makeTestCurriculumRoot(program, appLocale),
+        ...makeTestCurriculumChildren(program, appLocale),
       ])
     ),
     makeCurriculumSnapshotRow
   );
-  return { curriculumRecords, programRecords };
+  return [...programRecords, ...curriculumRecords];
 });
+
+/** Selects current program catalog records from one complete fixture. */
+export function programCatalogRows(records: readonly ProgramSnapshotRow[]) {
+  return records.filter(
+    (record): record is Extract<ProgramSnapshotRow, { kind: "program" }> =>
+      record.kind === "program"
+  );
+}
+
+/** Selects current curriculum records from one complete fixture. */
+export function curriculumRows(records: readonly ProgramSnapshotRow[]) {
+  return records.filter(
+    (record): record is Extract<ProgramSnapshotRow, { kind: "curriculum" }> =>
+      record.kind === "curriculum"
+  );
+}

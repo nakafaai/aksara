@@ -1,6 +1,7 @@
 import { Effect, Either, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
+import { AppLocaleSchema } from "#contracts/locale";
 import { digestItems } from "#contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
@@ -13,6 +14,7 @@ import {
   ContentChangeSchema,
   ContentReleaseManifestSchema,
   RollbackSignedContentReleaseSchema,
+  releaseActivatesAppLocale,
 } from "#contracts/release/spec";
 import { makeReleaseItems } from "#contracts/test/items";
 import { release as gitRelease } from "#contracts/test/request";
@@ -21,17 +23,17 @@ const releaseId = Schema.decodeUnknownSync(ReleaseIdSchema)("test-release");
 
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
   {
+    artifactLocale: "id",
     contentKey: "test:content",
     family: "material",
-    locale: "id",
     operation: "delete",
   },
   {
     artifactHash: `sha256:${"b".repeat(64)}`,
+    artifactLocale: "en",
     contentKey: "test:content",
     delivery: "public",
     family: "material",
-    locale: "en",
     operation: "upsert",
     rendererDomain: "mathematics",
     sourcePath: "packages/corpus/test/content/en.mdx",
@@ -42,11 +44,16 @@ const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  activeAppLocales: ["en", "id"],
+  baseActiveAppLocales: null,
+  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: itemSummary.deleteCount,
+  editorialReviewDigest: `sha256:${"1".repeat(64)}`,
+  format: "localized-content-release",
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -63,8 +70,8 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   routeDigest: `sha256:${"f".repeat(64)}`,
   scope: {
     content: [
-      { contentKey: "test:content", family: "material", locale: "en" },
-      { contentKey: "test:content", family: "material", locale: "id" },
+      { artifactLocale: "en", contentKey: "test:content", family: "material" },
+      { artifactLocale: "id", contentKey: "test:content", family: "material" },
     ],
     families: [],
     snapshots: [],
@@ -74,6 +81,15 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
 });
 
 describe("release spec", () => {
+  it("checks activation from the signed current locale set", () => {
+    expect(
+      releaseActivatesAppLocale(gitRelease, AppLocaleSchema.make("en"))
+    ).toBe(true);
+    expect(
+      releaseActivatesAppLocale(gitRelease, AppLocaleSchema.make("de"))
+    ).toBe(false);
+  });
+
   it("rejects non-rollback envelopes at recovery boundaries", () => {
     const result = Schema.decodeUnknownEither(
       RollbackSignedContentReleaseSchema
@@ -86,7 +102,7 @@ describe("release spec", () => {
     expect(
       items.map(({ change, index }) => [
         change.contentKey,
-        change.locale,
+        change.artifactLocale,
         index,
       ])
     ).toEqual([
@@ -103,6 +119,8 @@ describe("release spec", () => {
     );
     const first = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...manifest,
+      baseActiveAppLocales: manifest.activeAppLocales,
+      baseEditorialReviewDigest: manifest.editorialReviewDigest,
       baseManifestHash: `sha256:${"1".repeat(64)}`,
       baseReleaseId: releaseId,
       baseResultCount: manifest.resultCount,
@@ -119,6 +137,8 @@ describe("release spec", () => {
     });
     const second = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
       ...first,
+      baseActiveAppLocales: first.activeAppLocales,
+      baseEditorialReviewDigest: first.editorialReviewDigest,
       baseManifestHash: `sha256:${"2".repeat(64)}`,
       baseReleaseId: firstId,
       origin: { kind: "rollback", releaseId: firstId },

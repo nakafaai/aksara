@@ -30,14 +30,15 @@ vi.mock("@nakafa/aksara-compiler/compile", async (importOriginal) => {
 
 const publishedHeads = await publishedQuestionHeads();
 const englishEntry = questionEntries.find(
-  ({ bodyKind, locale }) => bodyKind === "question" && locale === "en"
+  ({ bodyKind, artifactLocale }) =>
+    bodyKind === "question" && artifactLocale === "en"
 );
 if (englishEntry === undefined) {
   throw new Error("Expected the real English question.");
 }
 const selectedEnglishHead = publishedHeads.find(
-  ({ contentKey, locale }) =>
-    contentKey === englishEntry.contentKey && locale === "en"
+  ({ contentKey, artifactLocale }) =>
+    contentKey === englishEntry.contentKey && artifactLocale === "en"
 );
 if (selectedEnglishHead === undefined) {
   throw new Error("Expected the published English question.");
@@ -60,7 +61,7 @@ function modifyHead(input: unknown) {
 function replaceHead(replacement: typeof englishHead) {
   return publishedHeads.map((head) =>
     head.contentKey === replacement.contentKey &&
-    head.locale === replacement.locale
+    head.artifactLocale === replacement.artifactLocale
       ? replacement
       : head
   );
@@ -92,9 +93,9 @@ describe("question plan", () => {
 
     expect(records).toHaveLength(1);
     expect(records[0]?.record.change).toMatchObject({
+      artifactLocale: "en",
       delivery: "authenticated",
       family: "question",
-      locale: "en",
       operation: "upsert",
     });
     expect(compilerState.calls).toBe(1);
@@ -129,9 +130,9 @@ describe("question plan", () => {
       prior: { head: stale, state: "question" },
       record: {
         change: {
+          artifactLocale: "en",
           contentKey: stale.contentKey,
           family: "question",
-          locale: "en",
           operation: "delete",
         },
       },

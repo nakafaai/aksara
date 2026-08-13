@@ -8,21 +8,14 @@ import type {
 } from "#contracts/release/snapshot/data";
 import { verifySnapshotRows } from "#contracts/release/snapshot/evidence";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
-import { makeSnapshotV2TestData } from "#contracts/test/snapshot-v2";
 
 const unrelatedHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
 let snapshotData: Effect.Effect.Success<
   ReturnType<typeof makeSnapshotTestData>
 >;
-let snapshotV2Data: Effect.Effect.Success<
-  ReturnType<typeof makeSnapshotV2TestData>
->;
 
 beforeAll(async () => {
-  [snapshotData, snapshotV2Data] = await Promise.all([
-    Effect.runPromise(makeSnapshotTestData()),
-    Effect.runPromise(makeSnapshotV2TestData()),
-  ]);
+  snapshotData = await Effect.runPromise(makeSnapshotTestData());
 }, 30_000);
 
 /** Returns the exact test manifest owned by one structured family. */
@@ -69,39 +62,6 @@ describe("structured snapshot domain verification", () => {
 
     expect(counts).toEqual([396, 1428, 12]);
   }, 30_000);
-
-  it("authenticates all three current manifests against v2 rows", async () => {
-    const counts = await Promise.all(
-      snapshotV2Data.manifests.map((manifest) =>
-        verify(manifest, snapshotV2Data.rows)
-      )
-    );
-
-    expect(counts).toEqual([396, 1428, 12]);
-  }, 30_000);
-
-  it("rejects historical placements under a v2 try-out manifest", async () => {
-    const current = manifestFor(snapshotV2Data.manifests, "tryout");
-    const historicalRows = snapshotData.rows.filter(
-      (row) => row.family === "tryout" && row.rowKind === "placement"
-    );
-    if (current.family !== "tryout") {
-      throw new Error("Expected the current try-out manifest.");
-    }
-    const error = await reject(current, [
-      ...snapshotV2Data.rows.filter((row) => row.family !== "tryout"),
-      ...snapshotV2Data.rows.filter(
-        (row) => row.family === "tryout" && row.rowKind === "catalog-v2"
-      ),
-      ...historicalRows,
-    ]);
-
-    expect(error).toMatchObject({
-      _tag: "TryoutLocaleClosureError",
-      identity: "empty",
-      scope: "placement",
-    });
-  });
 
   it("rejects mismatched program and try-out signed evidence", async () => {
     const program = manifestFor(snapshotData.manifests, "program");

@@ -1,5 +1,4 @@
 import {
-  ContentLocaleSchema,
   compareContentHeads,
   headIdentity,
 } from "@nakafa/aksara-contracts/content";
@@ -8,12 +7,16 @@ import {
   type ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  ACTIVE_APP_LOCALES,
+  type ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
 import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
-} from "@nakafa/aksara-contracts/tryout/spec";
+} from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Stream } from "effect";
 import {
   type TryoutHeadBodySchema,
@@ -24,10 +27,10 @@ import {
 } from "#publisher/tryout/error";
 
 interface HeadRequirement {
+  readonly artifactLocale: typeof ArtifactLocaleSchema.Type;
   readonly bodyKind: typeof TryoutHeadBodySchema.Type;
   readonly contentKey: typeof ContentKeySchema.Type;
   readonly delivery: typeof ContentDeliveryClassSchema.Type;
-  readonly locale: typeof ContentLocaleSchema.Type;
   readonly placement: TryoutPlacementSource;
   readonly sourcePath: typeof CorpusSourcePathSchema.Type;
 }
@@ -57,16 +60,16 @@ function validateHeadOrder(
     if (order === 0) {
       return Effect.fail(
         new TryoutHeadDuplicateError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }
     if (order > 0) {
       return Effect.fail(
         new TryoutHeadOrderError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }
@@ -80,23 +83,23 @@ function requirementsForPlacement(
 ): readonly [HeadRequirement, HeadRequirement] {
   return [
     {
+      artifactLocale: placement.answerArtifactLocale,
       bodyKind: "answer",
       contentKey: placement.answerContentKey,
       delivery: "entitled",
-      locale: placement.locale,
       placement,
       sourcePath: CorpusSourcePathSchema.make(
-        `${placement.questionSourcePath}/answer.${placement.locale}.mdx`
+        `${placement.questionSourcePath}/answer.${placement.answerArtifactLocale}.mdx`
       ),
     },
     {
+      artifactLocale: placement.questionArtifactLocale,
       bodyKind: "question",
       contentKey: placement.questionContentKey,
       delivery: "authenticated",
-      locale: placement.locale,
       placement,
       sourcePath: CorpusSourcePathSchema.make(
-        `${placement.questionSourcePath}/question.${placement.locale}.mdx`
+        `${placement.questionSourcePath}/question.${placement.questionArtifactLocale}.mdx`
       ),
     },
   ];
@@ -137,34 +140,37 @@ function questionRoot(contentKey: string) {
   return contentKey.slice(0, contentKey.lastIndexOf("/"));
 }
 
-/** Rejects incomplete or repeated locale placements for one question root. */
+/** Rejects incomplete or repeated app-locale placements for one question root. */
 function validatePlacementPairs(placements: readonly TryoutPlacementSource[]) {
   const localesByRoot = new Map<string, Set<string>>();
   for (const placement of placements) {
     const root = questionRoot(placement.questionContentKey);
     const locales = localesByRoot.get(root) ?? new Set<string>();
-    if (locales.has(placement.locale)) {
+    if (locales.has(placement.appLocale)) {
       return Effect.fail(
         new TryoutHeadMismatchError({
+          artifactLocale: placement.answerArtifactLocale,
           contentKey: placement.questionContentKey,
           field: "bodyPair",
-          locale: placement.locale,
         })
       );
     }
-    locales.add(placement.locale);
+    locales.add(placement.appLocale);
     localesByRoot.set(root, locales);
   }
   for (const placement of placements) {
     const locales = localesByRoot.get(
       questionRoot(placement.questionContentKey)
     );
-    if (locales?.size !== ContentLocaleSchema.literals.length) {
+    if (
+      locales?.size !== ACTIVE_APP_LOCALES.length ||
+      ACTIVE_APP_LOCALES.some((appLocale) => !locales.has(appLocale))
+    ) {
       return Effect.fail(
         new TryoutHeadMismatchError({
+          artifactLocale: placement.answerArtifactLocale,
           contentKey: placement.questionContentKey,
           field: "bodyPair",
-          locale: placement.locale,
         })
       );
     }
@@ -195,9 +201,9 @@ function indexTryoutHeads<E, R>(
         if (requirement === undefined) {
           return Effect.fail(
             new TryoutHeadMismatchError({
+              artifactLocale: head.artifactLocale,
               contentKey: head.contentKey,
               field: "contentKey",
-              locale: head.locale,
             })
           );
         }
@@ -205,9 +211,9 @@ function indexTryoutHeads<E, R>(
         if (field !== undefined) {
           return Effect.fail(
             new TryoutHeadMismatchError({
+              artifactLocale: head.artifactLocale,
               contentKey: head.contentKey,
               field,
-              locale: head.locale,
             })
           );
         }
@@ -227,9 +233,9 @@ function requiredHead(
   return head === undefined
     ? Effect.fail(
         new TryoutHeadMissingError({
+          artifactLocale: requirement.artifactLocale,
           bodyKind: requirement.bodyKind,
           contentKey: requirement.contentKey,
-          locale: requirement.locale,
         })
       )
     : Effect.succeed(head);

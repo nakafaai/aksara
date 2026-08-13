@@ -40,7 +40,7 @@ interface InspectedFamilyDocument {
 }
 
 interface FamilyIdentityAdapter<Entry extends FamilyEntry> {
-  /** Selects the stable locale-specific head identity for one source entry. */
+  /** Selects the stable artifactLocale-specific head identity for one source entry. */
   readonly identity: (entry: Entry) => ContentHeadIdentity;
   /** Selects public route ownership only for route-bearing source entries. */
   readonly publicPath: (entry: Entry) => PublicPath | undefined;
@@ -132,9 +132,9 @@ const prepareFamilyDiff = Effect.fn("AksaraPublisher.prepareFamilyDiff")(
           prior: adapter.prior(diff.head),
           record: {
             change: ContentDeleteSchema.make({
+              artifactLocale: diff.head.artifactLocale,
               contentKey: diff.head.contentKey,
               family: diff.head.family,
-              locale: diff.head.locale,
               operation: "delete",
             }),
           },

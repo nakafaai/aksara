@@ -47,6 +47,11 @@ export function projectionPublicPath(projection: ContentProjection) {
   return projection.publicPath;
 }
 
+/** Returns the exact compiled artifact locale owned by one projection. */
+export function projectionArtifactLocale(projection: ContentProjection) {
+  return projection.artifactLocale;
+}
+
 /** Serializes one projection through its exhaustive family-owned canonicalizer. */
 export function canonicalizeContentProjection(projection: ContentProjection) {
   if (projection.kind === "article") {

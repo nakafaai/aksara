@@ -9,7 +9,7 @@ import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/ver
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, type Scope, Stream } from "effect";
 import { streamContentHeads } from "#publisher/heads";
-import type { PreparedRollbackRelease } from "#publisher/preparation/spec";
+import type { PreparedRollbackRelease } from "#publisher/preparation/prepared";
 import { validateReleaseRendererManifest } from "#publisher/release-validation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
@@ -31,7 +31,7 @@ import {
 } from "#publisher/rollback/records";
 import {
   buildRollbackRelease,
-  type RollbackBaseCatalog,
+  type RollbackTargetPolicy,
 } from "#publisher/rollback/release";
 import { streamRouteRecords } from "#publisher/rollback/route-page";
 import {
@@ -100,28 +100,47 @@ export type PrepareRollback = (
   PrepareRollbackContext
 >;
 
-/** Extracts the exact active catalog identity from source or recovery proof. */
-function baseCatalogFromProof(
+/** Extracts the active catalog and restored policy from signed proof. */
+function rollbackPolicyFromProof(
   proof: ContentReleaseBundle,
   selection: RollbackProofSelection
-): RollbackBaseCatalog {
+) {
   const { manifest } = proof.release;
   if (selection.kind === "source") {
-    return {
-      manifestHash: proof.release.manifestHash,
-      releaseId: manifest.releaseId,
-      resultCount: manifest.resultCount,
-      resultDigest: manifest.resultDigest,
+    const target: RollbackTargetPolicy = {
+      activeAppLocales:
+        manifest.baseActiveAppLocales ?? manifest.activeAppLocales,
+      editorialReviewDigest:
+        manifest.baseEditorialReviewDigest ?? manifest.editorialReviewDigest,
       snapshots: invertContentSnapshots(manifest.snapshots),
     };
+    return Effect.succeed({
+      active: {
+        activeAppLocales: manifest.activeAppLocales,
+        editorialReviewDigest: manifest.editorialReviewDigest,
+        manifestHash: proof.release.manifestHash,
+        releaseId: manifest.releaseId,
+        resultCount: manifest.resultCount,
+        resultDigest: manifest.resultDigest,
+      },
+      target,
+    });
   }
-  return {
-    manifestHash: selection.baseManifestHash,
-    releaseId: selection.baseReleaseId,
-    resultCount: manifest.baseResultCount,
-    resultDigest: manifest.baseResultDigest,
-    snapshots: manifest.snapshots,
-  };
+  return Effect.succeed({
+    active: {
+      activeAppLocales: selection.baseActiveAppLocales,
+      editorialReviewDigest: selection.baseEditorialReviewDigest,
+      manifestHash: selection.baseManifestHash,
+      releaseId: selection.baseReleaseId,
+      resultCount: manifest.baseResultCount,
+      resultDigest: manifest.baseResultDigest,
+    },
+    target: {
+      activeAppLocales: manifest.activeAppLocales,
+      editorialReviewDigest: manifest.editorialReviewDigest,
+      snapshots: manifest.snapshots,
+    },
+  });
 }
 
 /** Prepares one self-verified rollback from signed source or recovery proof. */
@@ -150,7 +169,7 @@ export const prepareRollback: PrepareRollback = Effect.fn(
       rendererManifest
     );
   }
-  const base = baseCatalogFromProof(proof, proofSelection);
+  const policy = yield* rollbackPolicyFromProof(proof, proofSelection);
   const currentPolicy: RollbackArtifactPolicy =
     proofMode === "source"
       ? {
@@ -163,12 +182,12 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     schema: DerivedRollbackRecordSchema,
     stream: deriveRollbackRecords({
       currentPolicy,
-      currentReleaseId: base.releaseId,
+      currentReleaseId: policy.active.releaseId,
       priorPolicy: { kind: "compatible", rendererManifest },
       priorReleaseId: input.releaseId,
       records: streamRollbackRecords(
-        base.releaseId,
-        base.manifestHash,
+        policy.active.releaseId,
+        policy.active.manifestHash,
         proof.release.manifest.rollbackCount
       ),
     }),
@@ -182,8 +201,8 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     prefix: "aksara-route-rollback-",
     schema: RouteRollbackRecordSchema,
     stream: streamRouteRecords(
-      base.releaseId,
-      base.manifestHash,
+      policy.active.releaseId,
+      policy.active.manifestHash,
       proof.release.manifest.routeCount
     ),
   });
@@ -196,19 +215,31 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     prefix: "aksara-rollback-active-",
     schema: ContentHeadSchema,
     stream: Stream.concat(
-      streamContentHeads(base.releaseId, base.manifestHash, "article"),
-      streamContentHeads(base.releaseId, base.manifestHash, "material")
+      streamContentHeads(
+        policy.active.releaseId,
+        policy.active.manifestHash,
+        "article"
+      ),
+      streamContentHeads(
+        policy.active.releaseId,
+        policy.active.manifestHash,
+        "material"
+      )
     ).pipe(
       Stream.concat(
-        streamContentHeads(base.releaseId, base.manifestHash, "question")
+        streamContentHeads(
+          policy.active.releaseId,
+          policy.active.manifestHash,
+          "question"
+        )
       )
     ),
   });
   yield* verifyResultCatalog({
-    expectedCount: base.resultCount,
-    expectedDigest: base.resultDigest,
+    expectedCount: policy.active.resultCount,
+    expectedDigest: policy.active.resultDigest,
     heads: activeSpool.replay(),
-    releaseId: base.releaseId,
+    releaseId: policy.active.releaseId,
   });
   const resultSpool = yield* createReplaySpool({
     prefix: "aksara-rollback-result-",
@@ -219,12 +250,13 @@ export const prepareRollback: PrepareRollback = Effect.fn(
     }),
   });
   return yield* buildRollbackRelease({
-    base,
+    active: policy.active,
     records: transitionSpool.replay,
     releaseId: input.releaseId,
     rendererManifest,
     result: resultSpool.replay,
     routes: () => inverseRouteStream(routeSpool.replay, input.releaseId),
     scope: proof.release.manifest.scope,
+    target: policy.target,
   });
 });

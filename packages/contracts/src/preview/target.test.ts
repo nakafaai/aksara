@@ -21,7 +21,7 @@ describe("try-out preview target", () => {
       Schema.decodeUnknownSync(TryoutPreviewTargetSchema)(testPreviewTarget)
     ).toEqual(testPreviewTarget);
     expect(previewTryoutRoute(testPreviewTarget)).toEqual({
-      locale: "en",
+      appLocale: "en",
       publicPath: "try-out/indonesia/snbt/2027/set-1/general-reasoning",
     });
   });
@@ -42,7 +42,7 @@ describe("try-out preview target", () => {
     });
 
     expect(previewTryoutRoute(target)).toEqual({
-      locale: "en",
+      appLocale: "en",
       publicPath: "try-out/indonesia/snbt/2027/set-1",
     });
   });
@@ -62,7 +62,7 @@ describe("try-out preview target", () => {
       },
       {
         ...testPreviewTarget,
-        set: { ...testPreviewTarget.set, locale: "id" },
+        set: { ...testPreviewTarget.set, appLocale: "id" },
       },
       {
         ...testPreviewTarget,

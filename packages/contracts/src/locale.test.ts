@@ -1,17 +1,22 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-
+import { HistoricalAppLocaleListSchema } from "#contracts/history/locale";
 import {
   ActiveAppLocaleListSchema,
+  ActiveAppLocaleSchema,
   AppLocaleSchema,
+  ArtifactLocaleSchema,
+  activeAppLocaleCode,
+  artifactLocaleCode,
   DeliveryLanguageSchema,
-  HistoricalAppLocaleListSchema,
 } from "#contracts/locale";
 
 describe("locale", () => {
   it("decodes distinct branded app and delivery language values", () => {
     expect(Schema.decodeUnknownSync(AppLocaleSchema)("de")).toBe("de");
     expect(Schema.decodeUnknownSync(DeliveryLanguageSchema)("de")).toBe("de");
+    expect(activeAppLocaleCode(ActiveAppLocaleSchema.make("en"))).toBe("en");
+    expect(artifactLocaleCode(ArtifactLocaleSchema.make("de"))).toBe("de");
   });
 
   it("accepts nonempty canonical active locale subsets", () => {

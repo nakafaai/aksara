@@ -11,9 +11,10 @@ import {
   streamQuranRegistry,
 } from "#corpus/quran/registry";
 import type { QuranSurah } from "#corpus/quran/schema";
+import { testQuranRegistry } from "#corpus/test/quran";
 
 /** Collects one registry stream only at the Vitest runner boundary. */
-function collect(source = streamQuranRegistry()) {
+function collect(source = testQuranRegistry()) {
   return Effect.runPromise(Stream.runCollect(source));
 }
 
@@ -24,7 +25,7 @@ function reject(source: ReturnType<typeof streamQuranRegistry>) {
 
 /** Returns the first two real decoded surahs for isolated invariant failures. */
 function firstTwoSurahs() {
-  return collect(streamQuranRegistry().pipe(Stream.take(2))).then((chunk) =>
+  return collect(testQuranRegistry().pipe(Stream.take(2))).then((chunk) =>
     Chunk.toReadonlyArray(chunk)
   );
 }

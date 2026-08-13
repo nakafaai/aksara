@@ -16,7 +16,6 @@ import {
   verifyStagedSnapshotRows,
 } from "#contracts/release/snapshot/verify";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
-import { makeSnapshotV2TestData } from "#contracts/test/snapshot-v2";
 
 let snapshotData: Effect.Effect.Success<
   ReturnType<typeof makeSnapshotTestData>
@@ -96,7 +95,7 @@ describe("structured snapshot verification", () => {
     ]);
     expect({ manifestReplays, rowReplays }).toEqual({
       manifestReplays: 1,
-      rowReplays: 6,
+      rowReplays: 8,
     });
   }, 30_000);
 
@@ -232,13 +231,4 @@ describe("structured snapshot verification", () => {
 
     expect(result).toEqual({ snapshots: previous, stagedRows: 0 });
   });
-
-  it("derives row evidence from current try-out placements", async () => {
-    const current = await Effect.runPromise(makeSnapshotV2TestData());
-    const result = await Effect.runPromise(
-      verify({ manifests: current.manifests, rows: current.rows })
-    );
-
-    expect(result.stagedRows).toBe(1836);
-  }, 30_000);
 });

@@ -1,8 +1,7 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   QUESTION_BANK_KEY_ROOT,
-  QuestionBodyKindSchema,
   QuestionKeySchema,
   QuestionSegmentSchema,
   QuestionSetKeySchema,
@@ -12,6 +11,8 @@ import {
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
+import type { TryoutKey } from "@nakafa/aksara-contracts/tryout/key";
+import { questionArtifactLocalesForSection } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Schema } from "effect";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
@@ -21,16 +22,6 @@ export const QUESTION_BANK_ROOT = CorpusSourcePathSchema.make(
 );
 
 const isQuestionSegment = Schema.is(QuestionSegmentSchema);
-
-/** Exact direct files required in every authored question directory. */
-export const QUESTION_SOURCE_FILES = Object.freeze(
-  [
-    "choices.ts",
-    ...QuestionBodyKindSchema.literals.flatMap((bodyKind) =>
-      ContentLocaleSchema.literals.map((locale) => `${bodyKind}.${locale}.mdx`)
-    ),
-  ].sort()
-);
 
 /** Canonical logical identity derived from one physical question directory. */
 export const QuestionLocationSchema = Schema.Struct({
@@ -45,6 +36,19 @@ export type QuestionBankIndex = ReadonlyMap<
   string,
   typeof RendererDomainSchema.Type
 >;
+
+/** Derives exact answer and assessed-language prompt files for one section. */
+export function questionSourceFiles(sectionKey: TryoutKey) {
+  return Object.freeze(
+    [
+      "choices.ts",
+      ...ACTIVE_APP_LOCALES.map((appLocale) => `answer.${appLocale}.mdx`),
+      ...questionArtifactLocalesForSection(sectionKey).map(
+        (artifactLocale) => `question.${artifactLocale}.mdx`
+      ),
+    ].sort()
+  );
+}
 
 /** Finds the terminal question directory and its direct relative file path. */
 export function locateQuestionEntry(entry: string, separator: string) {
@@ -152,8 +156,8 @@ export const decodeQuestionDocumentPath = Effect.fn(
   const location = yield* decodeQuestionPath(questionBanks, physicalRoot);
   return {
     ...location,
+    artifactLocale: parts.artifactLocale,
     bodyKind: parts.bodyKind,
-    locale: parts.locale,
     sourcePath,
   };
 });

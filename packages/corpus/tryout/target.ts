@@ -2,11 +2,10 @@ import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { TryoutPreviewTargetSchema } from "@nakafa/aksara-contracts/preview/target";
-import type {
-  TryoutCatalogRow,
-  TryoutPlacementSource,
-} from "@nakafa/aksara-contracts/tryout/spec";
+import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
+import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Schema } from "effect";
 import type { QuestionEntry } from "#corpus/question-bank/content";
 import type { QuestionSource } from "#corpus/question-bank/source";
@@ -83,7 +82,7 @@ const selectCatalogRow = Effect.fn("AksaraCorpus.selectTryoutCatalogRow")(
           row.kind !== rowKind ||
           row.countryKey !== placement.countryKey ||
           row.examKey !== placement.examKey ||
-          row.locale !== placement.locale
+          row.appLocale !== placement.appLocale
         ) {
           return false;
         }
@@ -130,11 +129,19 @@ export const selectTryoutTarget = Effect.fn("AksaraCorpus.selectTryoutTarget")(
         sourcePath: entry.sourcePath,
       });
     }
-    const placement = yield* makeTryoutPlacement(
-      context,
-      question,
-      entry.locale
+    const appLocale = yield* Schema.decodeUnknown(ActiveAppLocaleSchema)(
+      entry.artifactLocale
+    ).pipe(
+      Effect.mapError(
+        () =>
+          new TryoutTargetError({
+            count: 0,
+            rowKind: "target",
+            sourcePath: entry.sourcePath,
+          })
+      )
     );
+    const placement = yield* makeTryoutPlacement(context, question, appLocale);
     const [exam, track, set, section] = yield* Effect.all([
       selectCatalogRow(rows, placement, "exam", entry.sourcePath),
       selectCatalogRow(rows, placement, "track", entry.sourcePath),

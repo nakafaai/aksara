@@ -1,4 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
+import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
@@ -27,6 +28,7 @@ import {
 /** Exact sources required to prepare structured state for one Git release. */
 export interface ReleaseSnapshotInput<E, R> {
   readonly checkoutRoot: string;
+  readonly editorialReviewDigest: Sha256Hash;
   readonly families: PublicationScope["snapshots"];
   readonly previousSnapshots: ContentSnapshotSet | null;
   /** Replays the complete desired question catalog used by try-out placement. */
@@ -51,7 +53,6 @@ type PrepareQuranSnapshotError = Effect.Effect.Error<
 type PreparedQuranRowError = Stream.Stream.Error<
   ReturnType<PreparedQuranSnapshot["rows"]>
 >;
-
 /** Every expected failure before structured release sources are replayable. */
 export type PrepareReleaseSnapshotError<E> =
   | E
@@ -81,14 +82,20 @@ export const prepareReleaseSnapshots: <E, R>(
   input: ReleaseSnapshotInput<E, R>
 ) {
   const program = input.families.includes("program")
-    ? yield* prepareProgramSnapshot()
+    ? yield* prepareProgramSnapshot({
+        editorialReviewDigest: input.editorialReviewDigest,
+      })
     : undefined;
   const quran = input.families.includes("quran")
-    ? yield* prepareQuranSnapshot()
+    ? yield* prepareQuranSnapshot({
+        checkoutRoot: input.checkoutRoot,
+        editorialReviewDigest: input.editorialReviewDigest,
+      })
     : undefined;
   const tryout = input.families.includes("tryout")
     ? yield* prepareTryoutSnapshot({
         checkoutRoot: input.checkoutRoot,
+        editorialReviewDigest: input.editorialReviewDigest,
         questionHeads: input.questionHeads,
         rendererManifest: input.rendererManifest,
       })

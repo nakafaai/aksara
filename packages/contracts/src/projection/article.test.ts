@@ -5,17 +5,21 @@ import {
   ArticleMetadataSchema,
   ArticleProjectionSchema,
   ArticleRouteSchema,
+  ArticleRouteSlugSchema,
   canonicalizeArticleProjection,
   makeArticleProjection,
 } from "#contracts/projection/article";
 import { articleGraph } from "#contracts/test/graph";
 
 const route = Schema.decodeUnknownSync(ArticleRouteSchema)({
+  appLocale: "en",
+  articleRouteSlug: "reviewed-article",
   articleSlug: "reviewed-article",
+  artifactLocale: "en",
   category: "politics",
+  categoryRouteSlug: "politics",
   contentKey: "articles/politics/reviewed-article",
   graph: articleGraph("en", "politics", "reviewed-article"),
-  locale: "en",
   publicPath: "articles/politics/reviewed-article",
 });
 const metadata = Schema.decodeUnknownSync(ArticleMetadataSchema)({
@@ -51,12 +55,15 @@ describe("article projection", () => {
 
   it("accepts a second test category through the generic route contract", () => {
     const genericRoute = Schema.decodeUnknownSync(ArticleRouteSchema)({
+      appLocale: "en",
+      articleRouteSlug: "test-article",
       articleSlug: "test-group-test-article",
+      artifactLocale: "en",
       category: "test-category",
+      categoryRouteSlug: "test-category",
       contentKey: "articles/test-category/test-group-test-article",
       graph: articleGraph("en", "test-category", "test-group-test-article"),
-      locale: "en",
-      publicPath: "articles/test-category/test-group-test-article",
+      publicPath: "articles/test-category/test-article",
     });
 
     expect(genericRoute.category).toBe("test-category");
@@ -66,6 +73,29 @@ describe("article projection", () => {
     expect(
       Either.isLeft(
         Schema.decodeUnknownEither(ArticleCategorySchema)("Test_Category")
+      )
+    ).toBe(true);
+  });
+
+  it("supports a German route without changing stable article identity", () => {
+    const german = Schema.decodeUnknownSync(ArticleRouteSchema)({
+      ...route,
+      appLocale: "de",
+      articleRouteSlug: "gepruefter-artikel",
+      artifactLocale: "de",
+      categoryRouteSlug: "politik",
+      graph: articleGraph("de", "politics", "reviewed-article"),
+      publicPath: "articles/politik/gepruefter-artikel",
+    });
+
+    expect(german.contentKey).toBe(route.contentKey);
+    expect(german.publicPath).not.toBe(route.publicPath);
+  });
+
+  it("rejects non-ASCII and non-kebab localized route segments", () => {
+    expect(
+      Either.isLeft(
+        Schema.decodeUnknownEither(ArticleRouteSlugSchema)("geprüft")
       )
     ).toBe(true);
   });
@@ -96,9 +126,26 @@ describe("article projection", () => {
     expect(Either.isLeft(result)).toBe(true);
     if (Either.isLeft(result)) {
       expect(String(result.left)).toContain(
-        "Expected article identity and public path"
+        "Expected stable article identity and locale-owned public route"
       );
     }
+  });
+
+  it("rejects route and projection artifact locale drift", () => {
+    const routeResult = Schema.decodeUnknownEither(ArticleRouteSchema)({
+      ...route,
+      artifactLocale: "id",
+    });
+    const projectionResult = Schema.decodeUnknownEither(
+      ArticleProjectionSchema
+    )({ ...projection, artifactLocale: "id" });
+
+    expect(
+      Either.isLeft(routeResult) ? String(routeResult.left) : ""
+    ).toContain("Expected public article route and artifact locales to match.");
+    expect(
+      Either.isLeft(projectionResult) ? String(projectionResult.left) : ""
+    ).toContain("Expected public article route and artifact locales to match.");
   });
 
   it("rejects graph identities that contradict the signed source route", () => {

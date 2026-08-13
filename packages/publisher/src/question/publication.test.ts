@@ -1,4 +1,7 @@
-import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { Effect, Schema, Stream } from "effect";
 import { describe, expect, it } from "vitest";
@@ -14,16 +17,16 @@ const publishedHeads = await publishedQuestionHeads();
 const questionKey =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
 const selectedEnglishHead = publishedHeads.find(
-  ({ contentKey, locale }) =>
-    contentKey === `${questionKey}/question` && locale === "en"
+  ({ contentKey, artifactLocale }) =>
+    contentKey === `${questionKey}/question` && artifactLocale === "en"
 );
 const answerHead = publishedHeads.find(
-  ({ contentKey, locale }) =>
-    contentKey === `${questionKey}/answer` && locale === "en"
+  ({ contentKey, artifactLocale }) =>
+    contentKey === `${questionKey}/answer` && artifactLocale === "en"
 );
 const indonesianHead = publishedHeads.find(
-  ({ contentKey, locale }) =>
-    contentKey === `${questionKey}/question` && locale === "id"
+  ({ contentKey, artifactLocale }) =>
+    contentKey === `${questionKey}/question` && artifactLocale === "id"
 );
 if (!(selectedEnglishHead && answerHead && indonesianHead)) {
   throw new Error("Expected both real question locales and their answer.");
@@ -58,7 +61,7 @@ const familyCases = [
     },
   ],
   [
-    "locale",
+    "artifactLocale",
     {
       ...englishHead,
       sourcePath:
@@ -106,7 +109,22 @@ function staleHead(
 
 describe("question publication", () => {
   it("never produces a route bind for question or answer bodies", async () => {
-    const transitions = await collectQuestionRoutes([]);
+    const [firstPublishedHead, ...remainingPublishedHeads] = publishedHeads;
+    if (firstPublishedHead === undefined) {
+      throw new Error("Expected one published question head.");
+    }
+    const stalePublishedHeads = [
+      QuestionHeadSchema.make({
+        ...firstPublishedHead,
+        sourceHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+      }),
+      ...remainingPublishedHeads,
+    ];
+    const [created, retained] = await Promise.all([
+      collectQuestionRoutes([]),
+      collectQuestionRoutes(stalePublishedHeads),
+    ]);
+    const transitions = [...created, ...retained];
     const items = await Effect.runPromise(
       makeRouteItems(
         ReleaseIdSchema.make("test-question-routes"),
@@ -114,7 +132,8 @@ describe("question publication", () => {
       ).pipe(Stream.runCollect)
     );
 
-    expect(transitions).toHaveLength(4);
+    expect(created).toHaveLength(4);
+    expect(retained).toHaveLength(1);
     expect(
       transitions.every(
         ({ current, next }) =>

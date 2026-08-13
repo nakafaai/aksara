@@ -12,13 +12,13 @@ import {
 } from "#contracts/limits";
 
 const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  artifactLocale: "en",
   byteLength: 10,
   compiledCode: "return {};",
   compilerConfigHash: `sha256:${"b".repeat(64)}`,
   compilerVersion: "0.1.0",
   contentKey: "test:limits",
-  format: "mdx-function-body-v1",
-  locale: "en",
+  format: "mdx-function-body",
   mdxCompilerVersion: "3.1.1",
   plainText: "Limits",
   rawMdx: "## Limits",

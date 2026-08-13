@@ -12,10 +12,10 @@ const contentKey = "articles/politics/dynastic-politics-asian-values";
 const [englishHead, indonesianHead] = await Effect.runPromise(
   Effect.gen(function* () {
     const english = publishedHeads.find(
-      (head) => head.contentKey === contentKey && head.locale === "en"
+      (head) => head.contentKey === contentKey && head.artifactLocale === "en"
     );
     const indonesian = publishedHeads.find(
-      (head) => head.contentKey === contentKey && head.locale === "id"
+      (head) => head.contentKey === contentKey && head.artifactLocale === "id"
     );
     if (!(english && indonesian)) {
       return yield* Effect.dieMessage("Expected both real article locales.");
@@ -29,6 +29,8 @@ const familyCases = [
     "publicPath",
     { ...englishHead, publicPath: "articles/politics/other-article" },
   ],
+  ["publicPath", { ...englishHead, publicPath: "articles/politics" }],
+  ["publicPath", { ...englishHead, publicPath: undefined }],
   ["rendererDomain", { ...englishHead, rendererDomain: "mathematics" }],
   [
     "sourcePath",
@@ -38,7 +40,7 @@ const familyCases = [
     },
   ],
   [
-    "locale",
+    "artifactLocale",
     {
       ...englishHead,
       sourcePath:
@@ -84,13 +86,37 @@ describe("article publication", () => {
 
     expect(routes).toEqual([
       {
-        current: stale,
-        next: {
+        current: {
+          appLocale: stale.artifactLocale,
           contentKey: stale.contentKey,
-          locale: stale.locale,
+          publicPath: stale.publicPath,
+        },
+        next: {
+          appLocale: stale.artifactLocale,
+          contentKey: stale.contentKey,
         },
       },
     ]);
+  });
+
+  it("accepts the registry-owned localized public path", async () => {
+    expect(englishHead.publicPath).toBe(
+      "articles/politics/dynastic-politics-asian-values"
+    );
+    expect(indonesianHead.publicPath).toBe(
+      "articles/politics/dynastic-politics-asian-values"
+    );
+    await expect(
+      rejectArticlePublication([
+        modifyHead({
+          ...indonesianHead,
+          publicPath: "articles/politik/politik-dinasti-dan-nilai-asia",
+        }),
+      ])
+    ).resolves.toMatchObject({
+      _tag: "ArticleHeadFamilyError",
+      field: "publicPath",
+    });
   });
 
   it("rejects duplicate and noncanonical published heads as typed failures", async () => {

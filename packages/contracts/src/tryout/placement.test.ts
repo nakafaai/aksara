@@ -2,8 +2,8 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import {
-  TryoutPlacementV2Schema,
-  TryoutPlacementV2SourceSchema,
+  TryoutPlacementSchema,
+  TryoutPlacementSourceSchema,
 } from "#contracts/tryout/placement";
 
 const QUESTION_SUFFIX_PATTERN = /\/question$/u;
@@ -34,9 +34,9 @@ const placement = {
   trackKey: "snbt",
 } as const;
 
-describe("try-out placement v2", () => {
+describe("try-out placement", () => {
   it("keeps German explanations around assessed English content", () => {
-    const decoded = Schema.decodeUnknownSync(TryoutPlacementV2SourceSchema)(
+    const decoded = Schema.decodeUnknownSync(TryoutPlacementSourceSchema)(
       placement
     );
     expect(decoded.appLocale).toBe("de");
@@ -46,7 +46,7 @@ describe("try-out placement v2", () => {
   });
 
   it("rejects translated assessed-language questions", () => {
-    const result = Schema.decodeUnknownEither(TryoutPlacementV2SourceSchema)({
+    const result = Schema.decodeUnknownEither(TryoutPlacementSourceSchema)({
       ...placement,
       questionArtifactLocale: "de",
     });
@@ -59,7 +59,7 @@ describe("try-out placement v2", () => {
   it("rejects an explanation outside the app locale", () => {
     expect(
       Either.isLeft(
-        Schema.decodeUnknownEither(TryoutPlacementV2SourceSchema)({
+        Schema.decodeUnknownEither(TryoutPlacementSourceSchema)({
           ...placement,
           answerArtifactLocale: "en",
         })
@@ -68,7 +68,7 @@ describe("try-out placement v2", () => {
   });
 
   it("uses the app locale throughout non-language sections", () => {
-    const decoded = Schema.decodeUnknownSync(TryoutPlacementV2SourceSchema)({
+    const decoded = Schema.decodeUnknownSync(TryoutPlacementSourceSchema)({
       ...placement,
       answerContentKey:
         "question-bank/tryout/indonesia/snbt/mathematical-reasoning/set-1/question-1/answer",
@@ -88,7 +88,7 @@ describe("try-out placement v2", () => {
       placement.questionContentKey.replace(QUESTION_SUFFIX_PATTERN, "/prompt"),
       "invalid/question",
     ]) {
-      const result = Schema.decodeUnknownEither(TryoutPlacementV2SourceSchema)({
+      const result = Schema.decodeUnknownEither(TryoutPlacementSourceSchema)({
         ...placement,
         questionContentKey,
       });
@@ -105,16 +105,15 @@ describe("try-out placement v2", () => {
       answerArtifactHash: `sha256:${"a".repeat(64)}`,
       contentHash: "c".repeat(64),
       questionArtifactHash: `sha256:${"b".repeat(64)}`,
-      title: "Test-only question",
     };
-    const keyError = Schema.decodeUnknownEither(TryoutPlacementV2Schema)({
+    const keyError = Schema.decodeUnknownEither(TryoutPlacementSchema)({
       ...bound,
       questionContentKey: bound.questionContentKey.replace(
         QUESTION_SUFFIX_PATTERN,
         "/prompt"
       ),
     });
-    const languageError = Schema.decodeUnknownEither(TryoutPlacementV2Schema)({
+    const languageError = Schema.decodeUnknownEither(TryoutPlacementSchema)({
       ...bound,
       answerArtifactLocale: "en",
     });

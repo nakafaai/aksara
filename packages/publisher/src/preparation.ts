@@ -1,3 +1,5 @@
+import { verifyEditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   createProjectionDigest,
   finalizeProjectionDigest,
@@ -11,6 +13,7 @@ import {
   updateReleaseItemsDigest,
 } from "@nakafa/aksara-contracts/release/digest";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import { verifyReleasePolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import {
   createResultCatalogDigest,
   finalizeResultCatalogDigest,
@@ -26,6 +29,7 @@ import {
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import {
+  ContentSnapshotKindSchema,
   type PublicationScope,
   publicationScopeSelectsSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
@@ -35,19 +39,21 @@ import {
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
 import {
-  PreparedReleaseBaseIdentityError,
-  PreparedReleaseIdentityError,
-  PreparedSnapshotScopeError,
-} from "#publisher/preparation/errors";
+  loadArticleReviewRequirements,
+  loadStructuredReviewRequirements,
+} from "@nakafa/aksara-corpus/editorial/requirements";
+import { Chunk, Effect, Stream } from "effect";
+import { verifyCompleteEditorialReviewCoverage } from "#publisher/editorial/coverage";
+import { prepareReleaseBase } from "#publisher/preparation/base";
+import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
+import { makePreparedGitRelease } from "#publisher/preparation/prepared";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
 import { requirePublishedRendererDomain } from "#publisher/preparation/renderer";
-import {
-  makePreparedGitRelease,
-  type PrepareContentRelease,
-  type PrepareContentReleaseInput,
-  type PreparedReleaseStreamError,
+import type {
+  PrepareContentRelease,
+  PrepareContentReleaseInput,
+  PreparedReleaseStreamError,
 } from "#publisher/preparation/spec";
 import {
   type DerivedContentRecord,
@@ -77,23 +83,10 @@ function requireScopedSnapshot(
 export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   "AksaraPublisher.prepareContentRelease"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
-  const hasBaseRelease = input.baseReleaseId !== null;
-  if (
-    hasBaseRelease !== (input.baseManifestHash !== null) ||
-    hasBaseRelease !== (input.previousSnapshots !== null)
-  ) {
-    return yield* new PreparedReleaseBaseIdentityError({
-      baseManifestHash: input.baseManifestHash,
-      baseReleaseId: input.baseReleaseId,
-      hasSnapshotBase: input.previousSnapshots !== null,
-    });
-  }
-  if (input.baseReleaseId === input.releaseId) {
-    return yield* new PreparedReleaseIdentityError({
-      baseReleaseId: input.baseReleaseId,
-      releaseId: input.releaseId,
-    });
-  }
+  const basePolicy = yield* prepareReleaseBase(input);
+  const editorialReview = yield* verifyEditorialReviewManifest(
+    input.editorialReview
+  );
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
@@ -102,13 +95,35 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     decodeContentSnapshotManifests(input.snapshotManifests());
   /** Replays strict immutable-row decoding without retaining row bodies. */
   const snapshotRows = () => decodeContentSnapshotRows(input.snapshotRows());
-  yield* snapshotManifests().pipe(
-    Stream.runForEach((snapshot) =>
-      requireSnapshotProvenance(snapshot).pipe(
-        Effect.zipRight(requireScopedSnapshot(input.scope, snapshot.family))
-      )
+  const decodedSnapshotManifests = Chunk.toReadonlyArray(
+    yield* snapshotManifests().pipe(Stream.runCollect)
+  );
+  const [articleReviewRequirements, structuredReviewRequirements] =
+    yield* Effect.all(
+      [
+        loadArticleReviewRequirements(ACTIVE_APP_LOCALES),
+        loadStructuredReviewRequirements({
+          activeAppLocales: ACTIVE_APP_LOCALES,
+          checkoutRoot: input.checkoutRoot,
+          families: ContentSnapshotKindSchema.literals,
+        }),
+      ],
+      { concurrency: 2 }
+    );
+  yield* Effect.forEach(decodedSnapshotManifests, (snapshot) =>
+    requireSnapshotProvenance(snapshot).pipe(
+      Effect.zipRight(requireScopedSnapshot(input.scope, snapshot.family))
     )
   );
+  yield* verifyReleasePolicyTransition({
+    basePolicy,
+    manifests: decodedSnapshotManifests,
+    policy: {
+      activeAppLocales: ACTIVE_APP_LOCALES,
+      editorialReviewDigest: editorialReview.digest,
+    },
+    scope: input.scope,
+  });
   const snapshotSummary = yield* verifyContentSnapshots({
     manifests: input.snapshotManifests,
     previousSnapshots: input.previousSnapshots,
@@ -173,6 +188,15 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
         updateResultCatalogDigest(input.releaseId, resultState, head)
       )
     );
+  yield* verifyCompleteEditorialReviewCoverage({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    heads: input.result(),
+    manifest: editorialReview,
+    requirements: Stream.fromIterable([
+      ...articleReviewRequirements,
+      ...structuredReviewRequirements,
+    ]),
+  });
   const itemsDigest = yield* finalizeReleaseItemsDigest(
     input.releaseId,
     itemState
@@ -191,11 +215,16 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   );
   const routeSummary = yield* digestRoutes(input.releaseId, routes());
   const manifest = ContentReleaseManifestSchema.make({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    baseActiveAppLocales: input.baseActiveAppLocales,
+    baseEditorialReviewDigest: input.baseEditorialReviewDigest,
     baseManifestHash: input.baseManifestHash,
     baseReleaseId: input.baseReleaseId,
     baseResultCount: input.baseResultCount,
     baseResultDigest: input.baseResultDigest,
     deleteCount: itemState.deleteCount,
+    editorialReviewDigest: editorialReview.digest,
+    format: "localized-content-release",
     itemCount: itemState.count,
     itemsDigest,
     origin: { kind: "git", sha: input.aksaraSha },

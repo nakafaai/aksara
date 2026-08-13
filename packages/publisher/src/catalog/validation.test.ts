@@ -1,5 +1,6 @@
 import { NodeContext } from "@effect/platform-node";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import type { EditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -9,40 +10,22 @@ import {
   catalogIdentities,
   catalogResult,
   catalogRoutes,
+  catalogSnapshotEvidence,
   catalogTotal,
 } from "#test/catalog";
+import { makeEditorialReviewForHeads } from "#test/editorial";
 import { testRendererDomains } from "#test/renderer";
 
-const digest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const catalogHeadsForReview = catalogResult({
+  article: 2,
+  material: 3,
+  question: 4,
+});
+const editorialReview = await makeEditorialReviewForHeads(
+  catalogHeadsForReview
+);
 const IDENTITY_FAILURE = { _tag: "ContentCatalogIdentityError" };
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
-const snapshotEvidence = {
-  program: {
-    rowCount: 396,
-    rowDigest: digest,
-    sitemapCount: 52,
-    snapshotId: digest,
-  },
-  quran: {
-    projectionCount: 1428,
-    projectionDigest: digest,
-    provenanceDigest: digest,
-    provenanceStatus: "blocked",
-    runtimeCount: 1200,
-    searchCount: 228,
-    snapshotId: digest,
-    sourceDigest: digest,
-  },
-  stagedRows: 2316,
-  tryout: {
-    catalogCount: 54,
-    catalogDigest: digest,
-    placementCount: 420,
-    placementDigest: digest,
-    routeCount: 48,
-    snapshotId: digest,
-  },
-};
 const control = vi.hoisted(() => ({
   actual: { article: 2, material: 3, question: 4 },
   catalogFailure: false,
@@ -54,11 +37,23 @@ const control = vi.hoisted(() => ({
   registryFailure: false,
   resultCalls: 0,
   resultFailure: false,
+  reviewRequirementFailure: false,
   routeFailure: false,
   routeMode: "complete",
   snapshotFailure: false,
   source: { article: 2, material: 3, question: 4 },
 }));
+
+vi.mock("@nakafa/aksara-corpus/editorial/requirements", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    loadArticleReviewRequirements: () => TestEffect.succeed([]),
+    loadStructuredReviewRequirements: () =>
+      control.reviewRequirementFailure
+        ? TestEffect.fail("review-requirements")
+        : TestEffect.succeed([]),
+  };
+});
 
 vi.mock("#publisher/catalog/expectation", async () => {
   const { Effect: TestEffect } = await import("effect");
@@ -79,7 +74,9 @@ vi.mock("#publisher/catalog/expectation", async () => {
           } else {
             heads[0] = {
               ...first,
-              locale: first.locale === "en" ? "id" : "en",
+              artifactLocale: ArtifactLocaleSchema.make(
+                first.artifactLocale === "en" ? "id" : "en"
+              ),
             };
           }
         }
@@ -92,7 +89,7 @@ vi.mock("#publisher/catalog/expectation", async () => {
             ...second,
             next: {
               ...second.next,
-              locale: first.next.locale,
+              appLocale: first.next.appLocale,
               publicPath: first.next.publicPath,
             },
           };
@@ -163,7 +160,7 @@ vi.mock("#publisher/catalog/snapshots", async (importOriginal) => {
     validateCatalogSnapshots: () =>
       control.snapshotFailure
         ? TestEffect.fail("snapshots")
-        : TestEffect.succeed(snapshotEvidence),
+        : TestEffect.succeed(catalogSnapshotEvidence),
   };
 });
 
@@ -186,6 +183,7 @@ beforeEach(() => {
   control.identityMismatch = "none";
   control.recordFailure = false;
   control.records = 9;
+  control.reviewRequirementFailure = false;
   control.registryFailure = false;
   control.resultCalls = 0;
   control.resultFailure = false;
@@ -196,18 +194,14 @@ beforeEach(() => {
 });
 
 /** Builds full-catalog validation through scoped platform requirements. */
-function validationProgram() {
+function validationProgram(review: EditorialReviewManifest = editorialReview) {
   return Effect.scoped(
     validateContentCatalog({
       checkoutRoot: "/code/aksara",
+      editorialReview: review,
       rendererManifest,
     })
   ).pipe(Effect.provide(NodeContext.layer));
-}
-
-/** Returns successful validation at the test runner boundary. */
-function validate() {
-  return Effect.runPromise(validationProgram());
 }
 
 /** Returns one typed validation failure without a FiberFailure wrapper. */
@@ -217,32 +211,43 @@ function rejectValidation() {
 
 describe("content catalog validation", () => {
   it("returns source-derived body, route, and structured evidence", async () => {
-    await expect(validate()).resolves.toMatchObject({
-      articleCount: 2,
-      materialCount: 3,
-      questionCount: 4,
-      recordCount: 9,
-      rendererManifestHash: rendererManifest.hash,
-      resultDigest: expect.stringMatching(SHA256_PATTERN),
-      routeCount: 5,
-      snapshots: snapshotEvidence,
-      totalCount: 9,
-    });
+    await expect(Effect.runPromise(validationProgram())).resolves.toMatchObject(
+      {
+        articleCount: 2,
+        materialCount: 3,
+        questionCount: 4,
+        recordCount: 9,
+        rendererManifestHash: rendererManifest.hash,
+        resultDigest: expect.stringMatching(SHA256_PATTERN),
+        routeCount: 5,
+        snapshots: catalogSnapshotEvidence,
+        totalCount: 9,
+      }
+    );
     expect(control.resultCalls).toBe(1);
   });
-
+  it("rejects incomplete editorial review coverage", async () => {
+    const incompleteReview = await makeEditorialReviewForHeads(
+      catalogHeadsForReview.slice(1)
+    );
+    await expect(
+      Effect.runPromise(validationProgram(incompleteReview).pipe(Effect.flip))
+    ).resolves.toMatchObject({
+      _tag: "ContentCatalogValidationError",
+      cause: { _tag: "EditorialReviewCoverageError", field: "record" },
+      stage: "result",
+    });
+  });
   it.each(["article", "material", "question"])(
     "rejects an incomplete %s result family",
     async (kind) => {
       control.countMismatch = kind;
-
       await expect(rejectValidation()).resolves.toMatchObject({
         _tag: "ContentCatalogCountError",
         kind,
       });
     }
   );
-
   it("preserves a source identity mismatch as a public domain failure", async () => {
     control.identityMismatch = "content";
     await expect(rejectValidation()).resolves.toMatchObject(IDENTITY_FAILURE);
@@ -250,17 +255,14 @@ describe("content catalog validation", () => {
     control.source.question -= 1;
     await expect(rejectValidation()).resolves.toMatchObject(IDENTITY_FAILURE);
   });
-
   it("rejects a mismatched transition record count", async () => {
     control.records = 8;
-
     await expect(rejectValidation()).resolves.toMatchObject({
       _tag: "ContentCatalogCountError",
       actualCount: 8,
       kind: "records",
     });
   });
-
   it.each(["drop", "replace"])(
     "rejects a %s public route catalog",
     async (routeMode) => {
@@ -274,28 +276,25 @@ describe("content catalog validation", () => {
       });
     }
   );
-
   it("owns invalid source route expectations", async () => {
     control.expectedRouteConflict = true;
-
     await expect(rejectValidation()).resolves.toMatchObject({
       _tag: "ContentCatalogValidationError",
       stage: "routes",
     });
   });
-
   it.each([
     ["registryFailure", "catalog"],
     ["catalogFailure", "catalog"],
     ["resultFailure", "result"],
     ["recordFailure", "result"],
+    ["reviewRequirementFailure", "result"],
     ["routeFailure", "routes"],
     ["snapshotFailure", "snapshots"],
   ] as const)(
     "owns a %s behind the stable validation error",
     async (field, stage) => {
       control[field] = true;
-
       await expect(rejectValidation()).resolves.toMatchObject({
         _tag: "ContentCatalogValidationError",
         stage,

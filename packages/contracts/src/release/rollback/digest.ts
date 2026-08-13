@@ -11,7 +11,7 @@ import {
 } from "#contracts/release/rollback/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
-const ROLLBACK_SNAPSHOT_DIGEST_DOMAIN = "nakafa.aksara.rollback-snapshot.v1";
+const ROLLBACK_SNAPSHOT_DIGEST_DOMAIN = "nakafa.aksara.rollback-snapshot";
 
 /** SHA-256 computation failed before rollback-state integrity was established. */
 export class RollbackSnapshotHashError extends Schema.TaggedError<RollbackSnapshotHashError>()(

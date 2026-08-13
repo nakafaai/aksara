@@ -37,7 +37,7 @@ export const protectedAnswerSelector = {
   delivery: "entitled",
 } as const;
 export const protectedRequest = {
-  locale: "en",
+  appLocale: "en",
   selectors: [protectedSelector],
   snapshotId: protectedSnapshotId,
   snapshotReleaseId: release.manifest.releaseId,

@@ -1,5 +1,6 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
+import { AppLocaleSchema } from "#contracts/locale";
 import {
   canonicalizeMaterialProjection,
   MaterialKeySchema,
@@ -7,14 +8,16 @@ import {
   MaterialLessonRouteSchema,
   MaterialMetadataSchema,
   makeMaterialLessonProjection,
+  materialPublicNamespace,
 } from "#contracts/projection/material";
 import { materialGraph } from "#contracts/test/graph";
 
 const projection = makeMaterialLessonProjection(
   Schema.decodeUnknownSync(MaterialLessonRouteSchema)({
+    appLocale: "en",
+    artifactLocale: "en",
     contentKey: "test:material-a",
     graph: materialGraph("en", "test", "material", "test-lesson"),
-    locale: "en",
     materialKey: "lesson.test.material",
     order: 1,
     publicPath: "subjects/test/material/lesson",
@@ -90,6 +93,47 @@ describe("material projection", () => {
     if (Either.isLeft(result)) {
       expect(String(result.left)).toContain(
         "Expected a material lesson path with a parent route."
+      );
+    }
+  });
+
+  it("owns the exact public namespace for every application locale", () => {
+    expect([
+      materialPublicNamespace(Schema.decodeUnknownSync(AppLocaleSchema)("en")),
+      materialPublicNamespace(Schema.decodeUnknownSync(AppLocaleSchema)("id")),
+      materialPublicNamespace(Schema.decodeUnknownSync(AppLocaleSchema)("de")),
+    ]).toEqual(["subjects", "materi", "faecher"]);
+
+    const germanRoute = Schema.decodeUnknownSync(MaterialLessonRouteSchema)({
+      ...projection,
+      appLocale: "de",
+      artifactLocale: "de",
+      graph: materialGraph("de", "test", "material", "test-lesson"),
+      publicPath: "faecher/test/material/lektion",
+    });
+    expect(germanRoute.publicPath).toBe("faecher/test/material/lektion");
+  });
+
+  it("rejects a material route under another locale namespace", () => {
+    const result = Schema.decodeUnknownEither(MaterialLessonRouteSchema)({
+      ...projection,
+      publicPath: "materi/test/material/lesson",
+    });
+    expect(Either.isLeft(result)).toBe(true);
+    if (Either.isLeft(result)) {
+      expect(String(result.left)).toContain("locale-owned namespace");
+    }
+  });
+
+  it("rejects a public material route whose locales differ", () => {
+    const result = Schema.decodeUnknownEither(MaterialLessonRouteSchema)({
+      ...projection,
+      appLocale: "id",
+    });
+    expect(Either.isLeft(result)).toBe(true);
+    if (Either.isLeft(result)) {
+      expect(String(result.left)).toContain(
+        "Expected public material route and artifact locales to match."
       );
     }
   });

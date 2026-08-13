@@ -12,6 +12,7 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   ContentChangeSchema,
   ContentReleaseItemSchema,
@@ -34,9 +35,9 @@ import {
 const releaseId = ReleaseIdSchema.make("test-release-batching");
 const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))(
   Array.from({ length: MAX_ITEM_BATCH_COUNT + 1 }, (_, index) => ({
+    artifactLocale: ArtifactLocaleSchema.make("en"),
     contentKey: `test:${index.toString().padStart(4, "0")}`,
     family: "material" as const,
-    locale: "en",
     operation: "delete",
   }))
 );
@@ -48,13 +49,13 @@ const items = changes.map((change, index) =>
 function artifact(index: number, compiledBytes = 10) {
   const compiledCode = "x".repeat(compiledBytes);
   const payload = CompiledContentPayloadSchema.make({
+    artifactLocale: ArtifactLocaleSchema.make("en"),
     byteLength: compiledCode.length,
     compiledCode,
     compilerConfigHash: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
     compilerVersion: "0.1.0",
     contentKey: ContentKeySchema.make(`test:artifact-${index}`),
-    format: "mdx-function-body-v1",
-    locale: "en",
+    format: "mdx-function-body",
     mdxCompilerVersion: "3.1.1",
     plainText: "",
     rawMdx: "",

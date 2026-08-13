@@ -1,6 +1,5 @@
 import { Effect, Schema } from "effect";
 import {
-  ContentLocaleSchema,
   type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "#contracts/content";
@@ -11,6 +10,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
+import { AppLocaleSchema } from "#contracts/locale";
 import { QuestionKeySchema } from "#contracts/question/identity";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
@@ -75,7 +75,7 @@ const ProtectedContentRuntimeSelectorsSchema = Schema.Array(
 
 /** One bounded protected read sharing a retained snapshot and locale. */
 export const ProtectedContentRuntimeRequestSchema = Schema.Struct({
-  locale: ContentLocaleSchema,
+  appLocale: AppLocaleSchema,
   selectors: ProtectedContentRuntimeSelectorsSchema,
   snapshotId: Sha256HashSchema,
   snapshotReleaseId: ReleaseIdSchema,

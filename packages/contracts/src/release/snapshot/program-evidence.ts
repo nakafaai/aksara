@@ -1,12 +1,7 @@
 import { Effect, Option, Stream } from "effect";
 
-import { digestProgramRows } from "#contracts/program/row-digest";
-import {
-  hashProgramSnapshot,
-  hashProgramSnapshotV4,
-} from "#contracts/program/snapshot/hash";
-import { PROGRAM_SNAPSHOT_FORMAT } from "#contracts/program/snapshot/spec";
-import { digestProgramV4Rows } from "#contracts/program/v4-digest";
+import { digestProgramRows } from "#contracts/program/snapshot/digest";
+import { verifyProgramSnapshotHash } from "#contracts/program/snapshot/hash";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -16,24 +11,11 @@ import {
   type SnapshotRowFactory,
 } from "#contracts/release/snapshot/evidence-requirement";
 
-/** Selects one program row stream while preserving source failures. */
+/** Selects current program rows while preserving source failures. */
 function programRows<E, R>(rows: Stream.Stream<ContentSnapshotRow, E, R>) {
   return rows.pipe(
     Stream.filterMap((row) =>
-      row.family === "program" && !("rowKind" in row)
-        ? Option.some(row.record)
-        : Option.none()
-    )
-  );
-}
-
-/** Selects current program rows while preserving source failures. */
-function programV4Rows<E, R>(rows: Stream.Stream<ContentSnapshotRow, E, R>) {
-  return rows.pipe(
-    Stream.filterMap((row) =>
-      row.family === "program" && "rowKind" in row
-        ? Option.some(row.record)
-        : Option.none()
+      row.family === "program" ? Option.some(row.record) : Option.none()
     )
   );
 }
@@ -45,13 +27,11 @@ export const verifyProgramSnapshotRows = Effect.fn(
   snapshot: Extract<ContentSnapshotManifest, { family: "program" }>,
   rows: SnapshotRowFactory<E, R>
 ) {
-  const summary =
-    snapshot.manifest.format === PROGRAM_SNAPSHOT_FORMAT
-      ? yield* digestProgramRows(programRows(rows()))
-      : yield* digestProgramV4Rows({
-          activeAppLocales: snapshot.manifest.activeAppLocales,
-          rows: programV4Rows(rows()),
-        });
+  const summary = yield* digestProgramRows({
+    activeAppLocales: snapshot.manifest.activeAppLocales,
+    expected: snapshot.manifest,
+    rows: programRows(rows()),
+  });
   for (const field of [
     "curriculumRowCount",
     "programRowCount",
@@ -67,14 +47,10 @@ export const verifyProgramSnapshotRows = Effect.fn(
       field,
     });
   }
-  const { snapshotId, ...identity } = snapshot.manifest;
-  const actualId =
-    identity.format === PROGRAM_SNAPSHOT_FORMAT
-      ? yield* hashProgramSnapshot(identity)
-      : yield* hashProgramSnapshotV4(identity);
+  const actualId = yield* verifyProgramSnapshotHash(snapshot.manifest);
   yield* requireSnapshotEvidence({
     actual: actualId,
-    expected: snapshotId,
+    expected: snapshot.manifest.snapshotId,
     family: "program",
     field: "snapshotId",
   });

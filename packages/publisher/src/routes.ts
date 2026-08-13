@@ -1,8 +1,4 @@
-import {
-  type ContentLocale,
-  ContentLocaleSchema,
-  routeIdentity,
-} from "@nakafa/aksara-contracts/content";
+import { routeIdentity } from "@nakafa/aksara-contracts/content";
 import {
   type ContentKey,
   ContentKeySchema,
@@ -10,6 +6,10 @@ import {
   PublicPathSchema,
   type ReleaseId,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  type AppLocale,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type ContentRouteChange,
@@ -22,8 +22,8 @@ import type { PreparedContentTransition } from "#publisher/preparation/spec";
 
 /** One route-bearing state on either side of a content transition. */
 export interface RouteVersion {
+  readonly appLocale: AppLocale;
   readonly contentKey: ContentKey;
-  readonly locale: ContentLocale;
   readonly publicPath?: PublicPath | undefined;
 }
 
@@ -41,9 +41,9 @@ interface RouteOwner extends RouteVersion {
 export class RoutePlanConflictError extends Schema.TaggedError<RoutePlanConflictError>()(
   "RoutePlanConflictError",
   {
+    appLocale: AppLocaleSchema,
     existingContentKey: ContentKeySchema,
     incomingContentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
     publicPath: PublicPathSchema,
     side: Schema.Literal("current", "next"),
   }
@@ -65,17 +65,34 @@ export function routeTransitionForContent(
 ): RouteTransition {
   const current: RouteVersion =
     transition.prior.state === "absent"
-      ? transition.prior
-      : transition.prior.head;
-  const { change } = transition.record;
-  const next: RouteVersion =
-    "projection" in transition.record
       ? {
-          contentKey: change.contentKey,
-          locale: change.locale,
-          publicPath: projectionPublicPath(transition.record.projection),
+          appLocale: AppLocaleSchema.make(transition.prior.artifactLocale),
+          contentKey: transition.prior.contentKey,
         }
-      : { contentKey: change.contentKey, locale: change.locale };
+      : {
+          appLocale: AppLocaleSchema.make(transition.prior.head.artifactLocale),
+          contentKey: transition.prior.head.contentKey,
+          ...("publicPath" in transition.prior.head
+            ? { publicPath: transition.prior.head.publicPath }
+            : {}),
+        };
+  const { change } = transition.record;
+  const publicPath =
+    "projection" in transition.record
+      ? projectionPublicPath(transition.record.projection)
+      : undefined;
+  const next: RouteVersion =
+    "projection" in transition.record &&
+    "appLocale" in transition.record.projection
+      ? {
+          appLocale: transition.record.projection.appLocale,
+          contentKey: change.contentKey,
+          publicPath,
+        }
+      : {
+          appLocale: AppLocaleSchema.make(change.artifactLocale),
+          contentKey: change.contentKey,
+        };
   return { current, next };
 }
 
@@ -94,9 +111,9 @@ function addOwner(
   if (existing !== undefined) {
     return Effect.fail(
       new RoutePlanConflictError({
+        appLocale: version.appLocale,
         existingContentKey: existing.contentKey,
         incomingContentKey: version.contentKey,
-        locale: version.locale,
         publicPath: version.publicPath,
         side,
       })
@@ -115,14 +132,14 @@ function indexTransition(state: RoutePlanState, transition: RouteTransition) {
   });
 }
 
-/** Derives one final desired-state change for a locale-specific route. */
+/** Derives one final desired-state change for an app-locale-specific route. */
 function finalChange(
   current: RouteOwner,
   next: RouteOwner | undefined
 ): ContentRouteChange | undefined {
   if (next === undefined) {
     return {
-      locale: current.locale,
+      appLocale: current.appLocale,
       operation: "delete",
       publicPath: current.publicPath,
     };
@@ -131,8 +148,8 @@ function finalChange(
     return;
   }
   return {
+    appLocale: next.appLocale,
     contentKey: next.contentKey,
-    locale: next.locale,
     operation: "bind",
     publicPath: next.publicPath,
   };
@@ -153,8 +170,8 @@ function routeChanges(state: RoutePlanState) {
         : [
             {
               change: {
+                appLocale: next.appLocale,
                 contentKey: next.contentKey,
-                locale: next.locale,
                 operation: "bind",
                 publicPath: next.publicPath,
               },

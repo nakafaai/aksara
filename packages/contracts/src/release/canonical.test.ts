@@ -11,10 +11,10 @@ describe("release canonicalization", () => {
   it("serializes authenticated item fields in stable wire order", () => {
     const change = Schema.decodeUnknownSync(ContentChangeSchema)({
       artifactHash: `sha256:${"b".repeat(64)}`,
+      artifactLocale: "en",
       contentKey: "test:content",
       delivery: "public",
       family: "material",
-      locale: "en",
       operation: "upsert",
       rendererDomain: "mathematics",
       sourcePath: "packages/corpus/test/content/en.mdx",
@@ -26,7 +26,7 @@ describe("release canonicalization", () => {
     });
 
     expect(canonicalizeContentReleaseItem(item)).toBe(
-      `{"change":{"artifactHash":"sha256:${"b".repeat(64)}","contentKey":"test:content","delivery":"public","family":"material","locale":"en","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
+      `{"change":{"artifactHash":"sha256:${"b".repeat(64)}","artifactLocale":"en","contentKey":"test:content","delivery":"public","family":"material","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/content/en.mdx"},"index":0,"releaseId":"test-release"}`
     );
   });
 });

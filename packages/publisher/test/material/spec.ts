@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Path } from "@effect/platform";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
@@ -37,8 +38,16 @@ export const functionContentKey = ContentKeySchema.make(
 );
 export const functionMaterialScope = PublicationScopeSchema.make({
   content: [
-    { contentKey: functionContentKey, family: "material", locale: "en" },
-    { contentKey: functionContentKey, family: "material", locale: "id" },
+    {
+      artifactLocale: ArtifactLocaleSchema.make("en"),
+      contentKey: functionContentKey,
+      family: "material",
+    },
+    {
+      artifactLocale: ArtifactLocaleSchema.make("id"),
+      contentKey: functionContentKey,
+      family: "material",
+    },
   ],
   families: [],
   snapshots: [],
@@ -205,11 +214,11 @@ export async function publishedMaterialHeads() {
     return [
       MaterialHeadSchema.make({
         artifactHash: record.change.artifactHash,
+        artifactLocale: record.change.artifactLocale,
         compilerConfigHash: record.payload.compilerConfigHash,
         contentKey: record.change.contentKey,
         delivery: record.change.delivery,
         family: "material",
-        locale: record.change.locale,
         projectionHash: hashContentProjection(record.projection),
         publicPath: projectionPublicPath(record.projection),
         rendererDomain: record.change.rendererDomain,

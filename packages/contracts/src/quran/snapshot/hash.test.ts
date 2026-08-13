@@ -5,39 +5,33 @@ import { describe, expect, it, vi } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
-  canonicalizeQuranSnapshotIdentity,
-  canonicalizeQuranSnapshotV3Identity,
-  hashQuranSnapshot,
-  hashQuranSnapshotV3,
+  canonicalizeQuranSnapshot,
+  makeQuranSnapshot,
+  verifyQuranSnapshotHash,
 } from "#contracts/quran/snapshot/hash";
-import {
-  QURAN_SNAPSHOT_FORMAT,
-  QURAN_SNAPSHOT_V3_FORMAT,
-  QuranSnapshotManifestSchema,
-  QuranSnapshotV3InputSchema,
-} from "#contracts/quran/snapshot/spec";
-import { reverseObjectKeys } from "#contracts/test/order";
+import { QuranSnapshotFactsSchema } from "#contracts/quran/snapshot/spec";
 
-const failures = vi.hoisted((): { domain: string | null } => ({
-  domain: null,
-}));
-const firstHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const secondHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
+const failures = vi.hoisted(() => ({ hash: false }));
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
   return {
     ...crypto,
-    /** Injects deterministic failures into one selected snapshot domain. */
+    /** Creates a real hash whose update call supports deterministic failure. */
     createHash(algorithm: string) {
       const hash = crypto.createHash(algorithm);
       return new Proxy(hash, {
-        /** Preserves native binding while intercepting explicit test state. */
+        /** Intercepts update while preserving every other real hash method. */
         get(target, property, receiver) {
           if (property === "update") {
             return (data: BinaryLike) => {
-              if (String(data).startsWith(`${failures.domain}\n`)) {
-                throw new TypeError("injected snapshot hash failure");
+              if (
+                failures.hash &&
+                String(data).startsWith(
+                  "nakafa.aksara.localized-quran-snapshot\n"
+                )
+              ) {
+                throw new TypeError("injected Quran snapshot hash failure");
               }
               target.update(data);
               return receiver;
@@ -51,100 +45,45 @@ vi.mock("node:crypto", async (importOriginal) => {
   };
 });
 
-/** Builds one complete fixed-count snapshot manifest. */
-function manifest() {
-  return QuranSnapshotManifestSchema.make({
-    attributionCount: 1,
-    chunkCount: 1085,
-    format: QURAN_SNAPSHOT_FORMAT,
-    locales: ["en", "id"],
-    projectionCount: 1428,
-    projectionDigest: firstHash,
-    provenanceDigest: firstHash,
-    provenanceStatus: "blocked",
-    runtimeCount: 1200,
-    runtimeDigest: firstHash,
-    searchCount: 228,
-    searchDigest: firstHash,
-    snapshotId: secondHash,
-    sourceBytes: 11_506_941,
-    sourceDigest: firstHash,
-    sourceFileCount: 118,
-    surahCount: 114,
-    tafsirLocales: ["id"],
-    verseCount: 6236,
-  });
-}
-
-/** Builds one complete current Quran snapshot input. */
-function manifestV3() {
-  const {
-    locales: _locales,
-    snapshotId: _snapshotId,
-    ...historical
-  } = manifest();
-  return Schema.decodeUnknownSync(QuranSnapshotV3InputSchema)({
-    ...historical,
-    activeAppLocales: ["en", "id", "de"],
-    editorialReviewDigest: firstHash,
-    format: QURAN_SNAPSHOT_V3_FORMAT,
-    projectionCount: 1542,
-    searchCount: 342,
-    sourceFileCount: 119,
-  });
-}
+const digest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const facts = Schema.decodeUnknownSync(QuranSnapshotFactsSchema)({
+  activeAppLocales: ["en", "id"],
+  attributionCount: 1,
+  chunkCount: 1085,
+  editorialReviewDigest: digest,
+  projectionCount: 1428,
+  projectionDigest: digest,
+  provenanceDigest: digest,
+  provenanceStatus: "blocked",
+  runtimeCount: 1200,
+  runtimeDigest: digest,
+  searchCount: 228,
+  searchDigest: digest,
+  sourceBytes: 11_506_941,
+  sourceDigest: digest,
+  sourceFileCount: 118,
+  surahCount: 114,
+  tafsirLocales: ["id"],
+  verseCount: 6236,
+});
 
 describe("Quran snapshot hashing", () => {
-  it("hashes the canonical snapshot identity", async () => {
-    const value = manifest();
-    const { snapshotId: _snapshotId, ...identity } = value;
-    const reordered = reverseObjectKeys(identity);
-    const [snapshotId, reorderedSnapshotId] = await Effect.runPromise(
-      Effect.all([hashQuranSnapshot(identity), hashQuranSnapshot(reordered)])
-    );
-
-    expect(Object.keys(reordered)[0]).toBe("verseCount");
-    expect(canonicalizeQuranSnapshotIdentity(identity)).toBe(
-      canonicalizeQuranSnapshotIdentity(reordered)
-    );
-    expect(snapshotId).toBe(reorderedSnapshotId);
-    expect(snapshotId).not.toBe(value.snapshotId);
+  it("creates and verifies one reproducible snapshot identity", async () => {
+    const first = await Effect.runPromise(makeQuranSnapshot(facts));
+    const second = await Effect.runPromise(makeQuranSnapshot(facts));
+    expect(JSON.parse(canonicalizeQuranSnapshot(facts))).toMatchObject(facts);
+    expect(first.snapshotId).toBe(second.snapshotId);
+    await expect(
+      Effect.runPromise(verifyQuranSnapshotHash(first))
+    ).resolves.toBe(first.snapshotId);
   });
 
-  it("maps snapshot hashing failures", async () => {
-    const value = manifest();
-    const { snapshotId: _snapshotId, ...identity } = value;
-    failures.domain = "nakafa.aksara.quran-snapshot.v2";
-    const snapshotError = await Effect.runPromise(
-      hashQuranSnapshot(identity).pipe(Effect.flip)
-    );
-    failures.domain = null;
-
-    expect(snapshotError.scope).toBe("snapshot");
-  });
-
-  it("binds active locales and review identity in v3", async () => {
-    const value = manifestV3();
-    const hash = await Effect.runPromise(hashQuranSnapshotV3(value));
-    expect(JSON.parse(canonicalizeQuranSnapshotV3Identity(value))).toEqual(
-      value
-    );
-    expect(hash).not.toBe(
-      await Effect.runPromise(
-        hashQuranSnapshot(
-          (({ snapshotId: _snapshotId, ...identity }) => identity)(manifest())
-        )
-      )
-    );
-  });
-
-  it("maps v3 snapshot hashing failures", async () => {
-    failures.domain = "nakafa.aksara.quran-snapshot.v3";
+  it("maps Node hashing failures to the typed contract error", async () => {
+    failures.hash = true;
     const error = await Effect.runPromise(
-      hashQuranSnapshotV3(manifestV3()).pipe(Effect.flip)
+      makeQuranSnapshot(facts).pipe(Effect.flip)
     );
-    failures.domain = null;
-
-    expect(error.scope).toBe("snapshot");
+    failures.hash = false;
+    expect(error._tag).toBe("QuranSnapshotHashError");
   });
 });

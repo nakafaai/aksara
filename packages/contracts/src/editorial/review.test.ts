@@ -5,6 +5,7 @@ import {
   canonicalizeEditorialReview,
   EditorialReviewManifestError,
   EditorialReviewRecordListSchema,
+  EditorialReviewRequirementSchema,
   HUMANIZER_WORKFLOW_VERSION,
   hashEditorialReviews,
   makeEditorialReviewManifest,
@@ -44,7 +45,7 @@ describe("editorial review", () => {
     const manifest = await Effect.runPromise(
       makeEditorialReviewManifest([germanReview])
     );
-    expect(manifest.format).toBe("editorial-review-v1");
+    expect(manifest.format).toBe("editorial-review");
     expect(manifest.records).toEqual([germanReview]);
     expect(manifest.digest).toBe(
       await Effect.runPromise(hashEditorialReviews([germanReview]))
@@ -112,6 +113,57 @@ describe("editorial review", () => {
     ]);
     expect(assessed.appLocale).toBe("de");
     expect(assessed.deliveryLanguage).toBe("en");
+  });
+
+  it("decodes canonical structured-source requirements", () => {
+    const requirement = Schema.decodeUnknownSync(
+      EditorialReviewRequirementSchema
+    )({
+      appLocale: "de",
+      deliveryLanguage: "de",
+      expectedTargetHash: null,
+      requiredSourcePaths: [
+        "packages/corpus/quran/sources/quranenc/terms.html",
+        "packages/corpus/quran/sources/tanzil/terms.html",
+      ],
+      reviewMode: "immutable-official-source",
+      targetPath: "packages/corpus/quran/sources/quranenc/de.xml",
+    });
+
+    expect(requirement).toMatchObject({
+      appLocale: "de",
+      expectedTargetHash: null,
+      reviewMode: "immutable-official-source",
+    });
+  });
+
+  it("rejects noncanonical and language-drifted requirements", () => {
+    const input = {
+      appLocale: "de",
+      deliveryLanguage: "de",
+      expectedTargetHash: null,
+      requiredSourcePaths: [
+        "packages/corpus/quran/sources/tanzil/terms.html",
+        "packages/corpus/quran/sources/quranenc/terms.html",
+      ],
+      reviewMode: "immutable-official-source",
+      targetPath: "packages/corpus/quran/sources/tanzil/text.txt",
+    };
+    const sourceOrder = Schema.decodeUnknownEither(
+      EditorialReviewRequirementSchema
+    )(input);
+    const language = Schema.decodeUnknownEither(
+      EditorialReviewRequirementSchema
+    )({ ...input, deliveryLanguage: "en", requiredSourcePaths: [] });
+
+    expect(Either.isLeft(sourceOrder)).toBe(true);
+    expect(String(sourceOrder)).toContain(
+      "Required review source paths must be unique and canonical."
+    );
+    expect(Either.isLeft(language)).toBe(true);
+    expect(String(language)).toContain(
+      "Authored and immutable review requirements must match app and delivery language."
+    );
   });
 
   it("allows one preserved target to serve distinct app locales", async () => {

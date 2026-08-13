@@ -1,6 +1,5 @@
 import { Effect, Schema } from "effect";
 import {
-  ContentLocaleSchema,
   type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "#contracts/content";
@@ -11,6 +10,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
+import { AppLocaleSchema } from "#contracts/locale";
 import {
   type RoutedContentProjection,
   RoutedContentProjectionSchema,
@@ -30,8 +30,8 @@ export const MAX_PUBLIC_RUNTIME_RESPONSE_BYTES = 1024 * 1024;
 
 /** Exact public route requested by the Nakafa server runtime. */
 export const PublicContentRuntimeRequestSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
   delivery: Schema.Literal("public"),
-  locale: ContentLocaleSchema,
   publicPath: PublicPathSchema,
 });
 export type PublicContentRuntimeRequest =
@@ -45,7 +45,7 @@ function hasCoherentContent(input: {
   const { payload } = input.artifact;
   return (
     payload.contentKey === input.projection.contentKey &&
-    payload.locale === input.projection.locale
+    String(payload.artifactLocale) === String(input.projection.appLocale)
   );
 }
 

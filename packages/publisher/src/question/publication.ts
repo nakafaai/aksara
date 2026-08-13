@@ -1,11 +1,10 @@
 import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import {
-  ContentLocaleSchema,
-  compareContentHeads,
-} from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import type { QuestionChoiceLocaleMissingError } from "@nakafa/aksara-contracts/projection/question";
 import {
   QuestionKeySchema,
   QuestionSourcePathSchema,
@@ -43,7 +42,7 @@ import {
 const QuestionFamilyFieldSchema = Schema.Literal(
   "contentKey",
   "delivery",
-  "locale",
+  "artifactLocale",
   "rendererDomain",
   "sourcePath"
 );
@@ -51,22 +50,22 @@ const QuestionFamilyFieldSchema = Schema.Literal(
 /** A target returned the same question identity more than once. */
 export class QuestionHeadDuplicateError extends Schema.TaggedError<QuestionHeadDuplicateError>()(
   "QuestionHeadDuplicateError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** A target returned question heads outside canonical content-head order. */
 export class QuestionHeadOrderError extends Schema.TaggedError<QuestionHeadOrderError>()(
   "QuestionHeadOrderError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** A question-head page contained identity owned by another family or body. */
 export class QuestionHeadFamilyError extends Schema.TaggedError<QuestionHeadFamilyError>()(
   "QuestionHeadFamilyError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
     field: QuestionFamilyFieldSchema,
-    locale: ContentLocaleSchema,
   }
 ) {}
 
@@ -82,6 +81,7 @@ export type QuestionPublicationStreamError<E> =
   | QuestionHeadDuplicateError
   | QuestionHeadFamilyError
   | QuestionHeadOrderError
+  | QuestionChoiceLocaleMissingError
   | QuestionMetadataError
   | QuestionSourceError
   | PublicationScopeIdentityError;
@@ -156,8 +156,8 @@ function mismatchedFamilyField(
   if (document.kind !== "body") {
     return "sourcePath";
   }
-  if (document.locale !== head.locale) {
-    return "locale";
+  if (document.artifactLocale !== head.artifactLocale) {
+    return "artifactLocale";
   }
   if (document.bodyKind !== bodyKind || document.questionKey !== questionKey) {
     return "sourcePath";
@@ -182,9 +182,9 @@ function validatePublishedHead(
   if (field !== undefined) {
     return Effect.fail(
       new QuestionHeadFamilyError({
+        artifactLocale: head.artifactLocale,
         contentKey: head.contentKey,
         field,
-        locale: head.locale,
       })
     );
   }
@@ -194,16 +194,16 @@ function validatePublishedHead(
     if (comparison === 0) {
       return Effect.fail(
         new QuestionHeadDuplicateError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }
     if (comparison > 0) {
       return Effect.fail(
         new QuestionHeadOrderError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }

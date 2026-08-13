@@ -11,9 +11,14 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import {
   MAX_ROLLBACK_PAGE_BYTES,
+  MAX_ROLLBACK_PAGE_RECORDS,
   RollbackDeleteStateSchema,
   type RollbackPageRequest,
   RollbackPageSchema,
@@ -38,9 +43,9 @@ const rollbackOfManifestHash = Sha256HashSchema.make(
 function deletion(index: number) {
   const state = RollbackDeleteStateSchema.make({
     change: {
+      artifactLocale: ArtifactLocaleSchema.make("en"),
       contentKey: ContentKeySchema.make(`test:rollback-delete-${index}`),
       family: "material",
-      locale: "en",
       operation: "delete",
     },
   });
@@ -66,16 +71,17 @@ function page(input: {
 
 /** Creates one schema-valid page whose canonical wire exceeds four MiB. */
 function oversizedPage() {
+  const appLocale = AppLocaleSchema.make("en");
   const compiledCode = "x".repeat(MAX_ROLLBACK_PAGE_BYTES);
   const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
   const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+    artifactLocale: "en",
     byteLength: Buffer.byteLength(compiledCode, "utf8"),
     compiledCode,
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
     compilerVersion: "0.1.0",
     contentKey: "test:rollback-large",
-    format: "mdx-function-body-v1",
-    locale: "en",
+    format: "mdx-function-body",
     mdxCompilerVersion: "3.1.1",
     plainText: "Test protocol",
     rawMdx: "## Test protocol",
@@ -90,10 +96,11 @@ function oversizedPage() {
     signature: Ed25519SignatureSchema.make("A".repeat(86)),
   });
   const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+    appLocale,
+    artifactLocale: payload.artifactLocale,
     contentKey: payload.contentKey,
-    graph: materialGraph(payload.locale, "rollback", "test-large"),
+    graph: materialGraph(appLocale, "rollback", "test-large"),
     kind: "subject-lesson",
-    locale: payload.locale,
     materialKey: "lesson.test.rollback",
     metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
     order: 1,
@@ -107,10 +114,10 @@ function oversizedPage() {
     artifact,
     change: {
       artifactHash,
+      artifactLocale: payload.artifactLocale,
       contentKey: payload.contentKey,
       delivery: "public",
       family: "material",
-      locale: payload.locale,
       operation: "upsert",
       rendererDomain: payload.rendererDomain,
       sourcePath: CorpusSourcePathSchema.make(
@@ -127,30 +134,23 @@ function oversizedPage() {
   return page({ done: true, nextIndex: 0, records: [record], total: 1 });
 }
 
-/** Collects one complete rollback replay with the supplied target. */
+/** Builds one complete rollback replay with the supplied target. */
+function replay(target: typeof PublicationTarget.Service, expectedTotal = 3) {
+  return streamRollbackRecords(
+    rollbackOf,
+    rollbackOfManifestHash,
+    expectedTotal
+  ).pipe(Stream.runCollect, Effect.provideService(PublicationTarget, target));
+}
+
+/** Collects one complete rollback replay. */
 function collect(target: typeof PublicationTarget.Service, expectedTotal = 3) {
-  return Effect.runPromise(
-    streamRollbackRecords(
-      rollbackOf,
-      rollbackOfManifestHash,
-      expectedTotal
-    ).pipe(Stream.runCollect, Effect.provideService(PublicationTarget, target))
-  );
+  return Effect.runPromise(replay(target, expectedTotal));
 }
 
 /** Returns the typed failure from one complete rollback replay. */
 function reject(target: typeof PublicationTarget.Service, expectedTotal = 3) {
-  return Effect.runPromise(
-    streamRollbackRecords(
-      rollbackOf,
-      rollbackOfManifestHash,
-      expectedTotal
-    ).pipe(
-      Stream.runCollect,
-      Effect.provideService(PublicationTarget, target),
-      Effect.flip
-    )
-  );
+  return Effect.runPromise(replay(target, expectedTotal).pipe(Effect.flip));
 }
 
 describe("streamRollbackRecords", () => {
@@ -178,14 +178,14 @@ describe("streamRollbackRecords", () => {
     ).toEqual([-1, 0, 1]);
     expect(rollbackPage.mock.calls[0]?.[0]).toEqual({
       afterIndex: -1,
-      limit: 64,
+      limit: MAX_ROLLBACK_PAGE_RECORDS,
       rollbackOf,
       rollbackOfManifestHash,
     });
   });
 
   it("replays a source larger than one operational page", async () => {
-    const recordCount = 65;
+    const recordCount = MAX_ROLLBACK_PAGE_RECORDS + 1;
     const records = Array.from({ length: recordCount }, (_, i) => deletion(i));
     const rollbackPage = vi.fn((request: RollbackPageRequest) => {
       const start = request.afterIndex + 1;

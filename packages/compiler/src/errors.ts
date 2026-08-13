@@ -70,7 +70,7 @@ export class ExecutablePolicyError extends Schema.TaggedError<ExecutablePolicyEr
   }
 ) {}
 
-/** One UTF-8 content field exceeded its evidence-led v1 byte ceiling. */
+/** One UTF-8 content field exceeded its evidence-led byte ceiling. */
 export class ContentByteLimitExceededError extends Schema.TaggedError<ContentByteLimitExceededError>()(
   "ContentByteLimitExceededError",
   {

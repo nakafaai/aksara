@@ -1,6 +1,7 @@
 import { Effect, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
+import { ACTIVE_APP_LOCALES } from "#contracts/locale";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
@@ -14,6 +15,7 @@ import {
   replaceContentSnapshot,
 } from "#contracts/release/snapshot/spec";
 import {
+  CONTENT_RELEASE_FORMAT,
   ContentReleaseItemSchema,
   RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,
@@ -21,6 +23,7 @@ import {
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
 import { testRendererDomains } from "#contracts/test/renderer";
+import { makeSnapshotTestData } from "#contracts/test/snapshot";
 import { StageOperationSchema } from "#contracts/transport/group";
 
 export const releaseId = "test-transport";
@@ -53,11 +56,16 @@ export const rendererManifest = await Effect.runPromise(
 export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   keyId: "test-transport-key",
   manifest: {
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    baseActiveAppLocales: null,
+    baseEditorialReviewDigest: null,
     baseManifestHash: null,
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: 1,
+    editorialReviewDigest: hash,
+    format: CONTENT_RELEASE_FORMAT,
     itemCount: 2,
     itemsDigest: hash,
     origin: { kind: "git", sha: "a".repeat(40) },
@@ -74,8 +82,16 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
     routeDigest: hash,
     scope: {
       content: [
-        { contentKey: "test:transport", family: "material", locale: "en" },
-        { contentKey: "test:transport", family: "material", locale: "id" },
+        {
+          artifactLocale: "en",
+          contentKey: "test:transport",
+          family: "material",
+        },
+        {
+          artifactLocale: "id",
+          contentKey: "test:transport",
+          family: "material",
+        },
       ],
       families: [],
       snapshots: ["program"],
@@ -96,6 +112,8 @@ export const recoveryRelease = Schema.decodeUnknownSync(
   ...release,
   manifest: {
     ...release.manifest,
+    baseActiveAppLocales: release.manifest.activeAppLocales,
+    baseEditorialReviewDigest: release.manifest.editorialReviewDigest,
     baseManifestHash: release.manifestHash,
     baseReleaseId: release.manifest.releaseId,
     baseResultCount: release.manifest.resultCount,
@@ -115,10 +133,10 @@ export const items = Schema.decodeUnknownSync(
   {
     change: {
       artifactHash: hash,
+      artifactLocale: "en",
       contentKey: "test:transport",
       delivery: "public",
       family: "material",
-      locale: "en",
       operation: "upsert",
       rendererDomain: "mathematics",
       sourcePath: "packages/corpus/test/transport/en.mdx",
@@ -128,9 +146,9 @@ export const items = Schema.decodeUnknownSync(
   },
   {
     change: {
+      artifactLocale: "id",
       contentKey: "test:transport",
       family: "material",
-      locale: "id",
       operation: "delete",
     },
     index: 1,
@@ -142,13 +160,13 @@ export const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
   artifactHash: hash,
   keyId: "test-transport-key",
   payload: {
+    artifactLocale: "en",
     byteLength: 1,
     compiledCode: "x",
     compilerConfigHash: hash,
     compilerVersion: "0.1.0",
     contentKey: "test:transport",
-    format: "mdx-function-body-v1",
-    locale: "en",
+    format: "mdx-function-body",
     mdxCompilerVersion: "3.1.1",
     plainText: "Test protocol",
     rawMdx: "x",
@@ -162,10 +180,11 @@ export const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
 export const projection = Schema.decodeUnknownSync(
   MaterialLessonProjectionSchema
 )({
+  appLocale: "en",
+  artifactLocale: "en",
   contentKey: "test:transport",
   graph: materialGraph("en", "test", "transport", "test-transport"),
   kind: "subject-lesson",
-  locale: "en",
   materialKey: "lesson.test.transport",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
@@ -178,8 +197,8 @@ export const projection = Schema.decodeUnknownSync(
 
 export const route = Schema.decodeUnknownSync(ContentRouteItemSchema)({
   change: {
+    appLocale: "en",
     contentKey: "test:transport",
-    locale: "en",
     operation: "bind",
     publicPath: projection.publicPath,
   },
@@ -187,42 +206,19 @@ export const route = Schema.decodeUnknownSync(ContentRouteItemSchema)({
   releaseId,
 });
 
-/** One test-owned try-out manifest used only by transport protocol tests. */
+const snapshotData = await Effect.runPromise(makeSnapshotTestData());
+
+/** One current try-out manifest used only by transport contract tests. */
 export const snapshotManifest = Schema.decodeUnknownSync(
   ContentSnapshotManifestSchema
-)({
-  family: "tryout",
-  manifest: {
-    catalogDigest: hash,
-    counts: { country: 1, exam: 0, section: 0, set: 0, track: 0 },
-    format: "tryout-v1",
-    locales: ["en", "id"],
-    placementCount: 0,
-    placementDigest: hash,
-    routeCount: 1,
-    snapshotId: hash,
-  },
-});
+)(snapshotData.manifests.find(({ family }) => family === "tryout"));
 
-/** One test-owned hierarchy row used only by transport protocol tests. */
-export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)({
-  family: "tryout",
-  record: {
-    row: {
-      countryCode: "TS",
-      countryKey: "test-country",
-      graph: materialGraph("en", "test", "transport", "snapshot"),
-      kind: "country",
-      locale: "en",
-      order: 1,
-      publicPath: "try-out/test-country",
-      sourceRevision: "test-transport-v1",
-      title: "Test Country",
-    },
-    rowHash: hash,
-  },
-  rowKind: "catalog",
-});
+/** One current hierarchy row used only by transport contract tests. */
+export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)(
+  snapshotData.rows.find(
+    (row) => row.family === "tryout" && row.rowKind === "catalog"
+  )
+);
 
 const stageOperations = Schema.decodeUnknownSync(
   Schema.NonEmptyArray(StageOperationSchema)

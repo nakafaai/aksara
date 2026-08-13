@@ -2,6 +2,7 @@ import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { ContentKeySchema, Sha256HashSchema } from "#contracts/ids";
+import { ArtifactLocaleSchema } from "#contracts/locale";
 import {
   baseContentSnapshots,
   ContentSnapshotSetSchema,
@@ -40,8 +41,8 @@ describe("content snapshot state", () => {
   it("decodes only non-empty canonical unique publication scopes", () => {
     const scope = Schema.decodeUnknownSync(PublicationScopeSchema)({
       content: [
-        { contentKey: "test:a", family: "material", locale: "en" },
-        { contentKey: "test:a", family: "material", locale: "id" },
+        { artifactLocale: "en", contentKey: "test:a", family: "material" },
+        { artifactLocale: "id", contentKey: "test:a", family: "material" },
       ],
       families: ["article"],
       snapshots: ["program", "tryout"],
@@ -55,15 +56,15 @@ describe("content snapshot state", () => {
     expect(publicationScopeContainsContent(scope, english)).toBe(true);
     expect(
       publicationScopeContainsContent(scope, {
+        artifactLocale: ArtifactLocaleSchema.make("en"),
         contentKey: ContentKeySchema.make("test:family"),
         family: "article",
-        locale: "en",
       })
     ).toBe(true);
     expect(
       publicationScopeContainsContent(scope, {
         ...english,
-        locale: "id",
+        artifactLocale: ArtifactLocaleSchema.make("id"),
       })
     ).toBe(true);
     expect(publicationScopeSelectsSnapshot(scope, "program")).toBe(true);
@@ -73,16 +74,16 @@ describe("content snapshot state", () => {
       { content: [], families: [], snapshots: [] },
       {
         content: [
-          { contentKey: "test:a", family: "material", locale: "en" },
-          { contentKey: "test:a", family: "material", locale: "en" },
+          { artifactLocale: "en", contentKey: "test:a", family: "material" },
+          { artifactLocale: "en", contentKey: "test:a", family: "material" },
         ],
         families: [],
         snapshots: [],
       },
       {
         content: [
-          { contentKey: "test:b", family: "material", locale: "en" },
-          { contentKey: "test:a", family: "material", locale: "en" },
+          { artifactLocale: "en", contentKey: "test:b", family: "material" },
+          { artifactLocale: "en", contentKey: "test:a", family: "material" },
         ],
         families: [],
         snapshots: [],
@@ -90,7 +91,9 @@ describe("content snapshot state", () => {
       { content: [], families: ["material", "material"], snapshots: [] },
       { content: [], families: ["question", "article"], snapshots: [] },
       {
-        content: [{ contentKey: "test:a", family: "material", locale: "en" }],
+        content: [
+          { artifactLocale: "en", contentKey: "test:a", family: "material" },
+        ],
         families: ["material"],
         snapshots: [],
       },
@@ -275,7 +278,9 @@ describe("content snapshot state", () => {
       tryout: { resultSnapshotId: first },
     });
     const materialOnly = Schema.decodeUnknownSync(PublicationScopeSchema)({
-      content: [{ contentKey: "test:a", family: "material", locale: "en" }],
+      content: [
+        { artifactLocale: "en", contentKey: "test:a", family: "material" },
+      ],
       families: [],
       snapshots: [],
     });

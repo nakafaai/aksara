@@ -49,6 +49,18 @@ const EditorialReviewSourceListSchema = Schema.NonEmptyArray(
   })
 );
 
+/** Checks one review mode against its application and delivery languages. */
+function hasReviewLanguagePolicy(input: {
+  readonly appLocale: string;
+  readonly deliveryLanguage: string;
+  readonly reviewMode: EditorialReviewMode;
+}) {
+  return (
+    input.reviewMode === "assessed-language-preserved" ||
+    input.appLocale === input.deliveryLanguage
+  );
+}
+
 /** Complete review evidence for one exact authored or immutable target. */
 export const EditorialReviewRecordSchema = Schema.Struct({
   appLocale: AppLocaleSchema,
@@ -59,17 +71,51 @@ export const EditorialReviewRecordSchema = Schema.Struct({
   targetPath: CorpusSourcePathSchema,
   workflowVersion: Schema.Literal(HUMANIZER_WORKFLOW_VERSION),
 }).pipe(
+  Schema.filter(hasReviewLanguagePolicy, {
+    message: () =>
+      "Authored and immutable reviews must match app and delivery language.",
+  })
+);
+export type EditorialReviewRecord = typeof EditorialReviewRecordSchema.Type;
+
+/** Source paths that one review record must bind in canonical order. */
+const EditorialReviewRequiredSourceListSchema = Schema.Array(
+  CorpusSourcePathSchema
+).pipe(
   Schema.filter(
-    ({ appLocale, deliveryLanguage, reviewMode }) =>
-      reviewMode === "assessed-language-preserved" ||
-      String(appLocale) === String(deliveryLanguage),
+    (paths) => {
+      let previous: string | undefined;
+      for (const path of paths) {
+        if (previous !== undefined && compareCodeUnits(previous, path) >= 0) {
+          return false;
+        }
+        previous = path;
+      }
+      return true;
+    },
     {
       message: () =>
-        "Authored and immutable reviews must match app and delivery language.",
+        "Required review source paths must be unique and canonical.",
     }
   )
 );
-export type EditorialReviewRecord = typeof EditorialReviewRecordSchema.Type;
+
+/** Exact editorial binding required by one selected release source. */
+export const EditorialReviewRequirementSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
+  deliveryLanguage: DeliveryLanguageSchema,
+  expectedTargetHash: Schema.NullOr(Sha256HashSchema),
+  requiredSourcePaths: EditorialReviewRequiredSourceListSchema,
+  reviewMode: EditorialReviewModeSchema,
+  targetPath: CorpusSourcePathSchema,
+}).pipe(
+  Schema.filter(hasReviewLanguagePolicy, {
+    message: () =>
+      "Authored and immutable review requirements must match app and delivery language.",
+  })
+);
+export type EditorialReviewRequirement =
+  typeof EditorialReviewRequirementSchema.Type;
 
 /** Compares review records through their unique target identity. */
 function compareReviewRecords(
@@ -108,7 +154,7 @@ export type EditorialReviewRecordList =
   typeof EditorialReviewRecordListSchema.Type;
 
 /** Stable wire format for exact editorial review evidence. */
-export const EDITORIAL_REVIEW_FORMAT = "editorial-review-v1";
+export const EDITORIAL_REVIEW_FORMAT = "editorial-review";
 
 /** Signed-release editorial evidence with content-addressed identity. */
 export const EditorialReviewManifestSchema = Schema.Struct({
@@ -118,7 +164,7 @@ export const EditorialReviewManifestSchema = Schema.Struct({
 });
 export type EditorialReviewManifest = typeof EditorialReviewManifestSchema.Type;
 
-const EDITORIAL_REVIEW_DOMAIN = "nakafa.aksara.editorial-review.v1";
+const EDITORIAL_REVIEW_DOMAIN = "nakafa.aksara.editorial-review";
 
 /** Serializes one source record without trusting object insertion order. */
 function canonicalizeReviewSource(source: EditorialReviewSource) {

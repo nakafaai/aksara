@@ -3,32 +3,45 @@ import {
   makeLearningGraphIdentity,
 } from "@nakafa/aksara-contracts/graph/identity";
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
-import { QuranAttributionRowSchema } from "@nakafa/aksara-contracts/quran/source";
 import {
-  QURAN_CHUNK_SIZE,
-  QURAN_LOCALES,
+  ACTIVE_APP_LOCALES,
+  type ActiveAppLocale,
+  activeAppLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
+import {
   QuranChunkRowSchema,
-  type QuranLocaleSchema,
   type QuranRowPayload,
   type QuranRuntimeVerse,
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
+} from "@nakafa/aksara-contracts/quran/snapshot/row";
+import { QuranAttributionRowSchema } from "@nakafa/aksara-contracts/quran/source";
+import {
+  QURAN_CHUNK_SIZE,
   QuranSurahRowSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { quranSourceAttributions } from "#corpus/quran/provenance";
-import {
-  type QuranCountError,
-  type QuranRevelationError,
-  type QuranSequenceError,
-  type QuranSourceError,
-  streamQuranRegistry,
+import type {
+  QuranCountError,
+  QuranRevelationError,
+  QuranSequenceError,
+  QuranSourceError,
 } from "#corpus/quran/registry";
 import type { QuranSurah, QuranVerse } from "#corpus/quran/schema";
 
 /** Validates one source verse against the exact runtime contract. */
 function projectVerse(verse: QuranVerse) {
-  return QuranRuntimeVerseSchema.make(verse);
+  return Schema.decodeUnknownSync(QuranRuntimeVerseSchema)({
+    meta: verse.meta,
+    number: verse.number,
+    tafsir: [{ appLocale: "id", ...verse.tafsir.id }],
+    text: verse.text,
+    translations: ACTIVE_APP_LOCALES.map((appLocale) => ({
+      appLocale,
+      value: verse.translation[activeAppLocaleCode(appLocale)],
+    })),
+  });
 }
 
 /** Projects immutable metadata without embedding any verse bodies. */
@@ -75,19 +88,20 @@ function projectChunks(surah: QuranSurah) {
 /** Builds one search row only from exact source-owned text. */
 const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
   surah: QuranSurah,
-  locale: typeof QuranLocaleSchema.Type
+  appLocale: ActiveAppLocale
 ) {
+  const appLocaleCode = activeAppLocaleCode(appLocale);
   const title = `${surah.number}. ${surah.name.transliteration}`;
   const verseText = surah.verses
     .map((verse) => {
-      const translation = verse.translation[locale];
+      const translation = verse.translation[appLocaleCode];
       const values = [
         verse.number.inSurah.toString(),
         verse.text.arabic,
         translation.text,
         translation.footnotes,
       ];
-      if (locale === "id") {
+      if (appLocale === "id") {
         values.push(verse.tafsir.id.text);
         if (verse.tafsir.id.footnotes !== null) {
           values.push(verse.tafsir.id.footnotes);
@@ -97,15 +111,15 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
     })
     .join(" ");
   const graph = yield* makeLearningGraphIdentity({
+    appLocale,
     concept: ["quran", "surah", surah.number.toString()],
     learningObject: ["quran-surah", surah.number.toString()],
     lens: ["quran"],
-    locale,
   });
   return QuranSearchRowSchema.make({
+    appLocale,
     graph,
     kind: "quran-search",
-    locale,
     route: PublicPathSchema.make(`quran/${surah.number}`),
     surahNumber: surah.number,
     text: [
@@ -126,8 +140,8 @@ function streamSurahRuntime(surah: QuranSurah) {
 
 /** Emits both complete locale-specific search rows for one surah. */
 function streamSurahSearch(surah: QuranSurah) {
-  return Stream.fromIterable(QURAN_LOCALES).pipe(
-    Stream.mapEffect((locale) => projectSearch(surah, locale))
+  return Stream.fromIterable(ACTIVE_APP_LOCALES).pipe(
+    Stream.mapEffect((appLocale) => projectSearch(surah, appLocale))
   );
 }
 
@@ -150,11 +164,10 @@ export type QuranRegistrySource = () => Stream.Stream<
 >;
 
 /** Emits all runtime rows first and all search rows second deterministically. */
-export function streamQuranRows(
-  source: QuranRegistrySource = () => streamQuranRegistry()
-) {
+export function streamQuranRows(source: QuranRegistrySource) {
   const attribution = Stream.succeed(
     QuranAttributionRowSchema.make({
+      activeAppLocales: ACTIVE_APP_LOCALES,
       kind: "quran-attribution",
       sources: quranSourceAttributions,
     })

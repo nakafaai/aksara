@@ -1,10 +1,13 @@
 import { generateKeyPairSync } from "node:crypto";
+import { resolve } from "node:path";
 import { Path } from "@effect/platform";
+import { NodeContext } from "@effect/platform-node";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
@@ -17,26 +20,28 @@ import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signatu
 import { Effect, Layer, Redacted, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareContentRelease } from "#publisher/preparation";
-import type {
-  PrepareContentReleaseInput,
-  PreparedGitRelease,
-} from "#publisher/preparation/spec";
+import type { PreparedGitRelease } from "#publisher/preparation/prepared";
+import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 import { preparePublicationPlan } from "#publisher/publication/plan";
 import {
   PublicationSigningKey,
   PublicationSource,
   PublicationTarget,
 } from "#publisher/publication/spec";
+import { makeEditorialReviewForRelease } from "#test/editorial";
 import { testFileLayer } from "#test/files";
 import {
   contentRecord,
+  editorialReview,
   head,
+  projection,
   publicationScope,
   rendererManifest,
 } from "#test/publication";
 import {
   emptySnapshotSources,
   makeProgramSnapshotFixture,
+  snapshotPolicyBase,
 } from "#test/snapshot";
 import { makePublicationTarget } from "#test/target";
 
@@ -53,6 +58,7 @@ const resolver = ContentVerificationKeyResolver.of({
       keys.publicKey.export({ format: "pem", type: "spki" }).toString()
     ),
 });
+const checkoutRoot = resolve(import.meta.dirname, "../../../..");
 
 type SnapshotSources<E> = Pick<
   PrepareContentReleaseInput<E, never>,
@@ -62,29 +68,35 @@ type SnapshotSources<E> = Pick<
 /** Prepares one real deletion against an authenticated compact base catalog. */
 async function prepareDeletion<E>(
   snapshotSources: SnapshotSources<E>,
-  snapshots: PublicationScope["snapshots"] = []
+  snapshots: PublicationScope["snapshots"] = [],
+  review = editorialReview
 ) {
   const baseReleaseId = ReleaseIdSchema.make("test-plan-base");
   const base = await Effect.runPromise(
     digestResultCatalog(baseReleaseId, Stream.make(head))
   );
+  const editorialReviewDigest = review.digest;
 
   return Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
+      baseActiveAppLocales: ACTIVE_APP_LOCALES,
+      baseEditorialReviewDigest: editorialReviewDigest,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
       baseReleaseId,
       baseResultCount: base.count,
       baseResultDigest: base.digest,
+      checkoutRoot,
+      editorialReview: review,
       previousSnapshots: inheritContentSnapshots(null),
       records: () =>
         Stream.make({
           prior: { head, state: "material" as const },
           record: {
             change: ContentDeleteSchema.make({
+              artifactLocale: contentRecord.change.artifactLocale,
               contentKey: contentRecord.change.contentKey,
               family: "material",
-              locale: contentRecord.change.locale,
               operation: "delete",
             }),
           },
@@ -95,29 +107,36 @@ async function prepareDeletion<E>(
       routes: () =>
         Stream.make({
           current: {
+            appLocale: projection.appLocale,
             contentKey: head.contentKey,
-            locale: head.locale,
-            publicPath: head.publicPath,
+            publicPath: projection.publicPath,
           },
-          next: { contentKey: head.contentKey, locale: head.locale },
+          next: {
+            appLocale: projection.appLocale,
+            contentKey: head.contentKey,
+          },
         }),
       scope: { ...publicationScope, snapshots },
       ...snapshotSources,
-    })
+    }).pipe(Effect.provide(NodeContext.layer))
   );
 }
 
 /** Prepares a real Program replacement without changing any MDX body head. */
 async function prepareProgramOnly() {
-  const snapshot = await makeProgramSnapshotFixture();
+  const review = await makeEditorialReviewForRelease({
+    checkoutRoot,
+    heads: [],
+  });
+  const editorialReviewDigest = review.digest;
+  const snapshot = await makeProgramSnapshotFixture(editorialReviewDigest);
   return Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
-      baseManifestHash: null,
-      baseReleaseId: null,
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      previousSnapshots: null,
+      checkoutRoot,
+      editorialReview: review,
       records: () => Stream.empty,
       releaseId: ReleaseIdSchema.make("test-plan-program-only"),
       rendererManifest,
@@ -130,7 +149,8 @@ async function prepareProgramOnly() {
       }),
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
-    })
+      ...snapshotPolicyBase(editorialReviewDigest, "test-plan-program-base"),
+    }).pipe(Effect.provide(NodeContext.layer))
   );
 }
 
@@ -161,11 +181,19 @@ function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
   );
 }
 
+const deletionReview = await makeEditorialReviewForRelease({
+  checkoutRoot,
+  heads: [],
+});
 const programOnlyRelease = await prepareProgramOnly();
 
 describe("preparePublicationPlan", () => {
   it("keeps family-wide invalidation for a body-free deletion", async () => {
-    const prepared = await prepareDeletion(emptySnapshotSources);
+    const prepared = await prepareDeletion(
+      emptySnapshotSources,
+      [],
+      deletionReview
+    );
     const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([{ family: "material" }]);
@@ -178,8 +206,12 @@ describe("preparePublicationPlan", () => {
   });
 
   it("retains item and structured invalidation in a mixed release", async () => {
-    const snapshot = await makeProgramSnapshotFixture();
-    const prepared = await prepareDeletion(snapshot, ["program"]);
+    const review = await makeEditorialReviewForRelease({
+      checkoutRoot,
+      heads: [],
+    });
+    const snapshot = await makeProgramSnapshotFixture(review.digest);
+    const prepared = await prepareDeletion(snapshot, ["program"], review);
     const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([

@@ -23,7 +23,9 @@ function findMaterialContext(
 ) {
   let current: CurriculumRouteDraft = route;
   while (current.parentPath) {
-    const parent = routeByPath.get(`${current.locale}\0${current.parentPath}`);
+    const parent = routeByPath.get(
+      `${current.programKey}\0${current.appLocale}\0${current.parentPath}`
+    );
     if (!parent) {
       return;
     }
@@ -38,7 +40,10 @@ function findMaterialContext(
 export const addMaterialContext = Effect.fn("AksaraCorpus.addMaterialContext")(
   function* (routes: readonly CurriculumRouteDraft[]) {
     const routeByPath = new Map(
-      routes.map((route) => [`${route.locale}\0${route.publicPath}`, route])
+      routes.map((route) => [
+        `${route.programKey}\0${route.appLocale}\0${route.publicPath}`,
+        route,
+      ])
     );
     const contextualRoutes: CurriculumRoute[] = [];
     for (const route of routes) {

@@ -1,13 +1,24 @@
-import {
-  ContentLocaleSchema,
-  compareContentHeads,
-} from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
+import {
+  ACTIVE_APP_LOCALES,
+  AppLocaleSchema,
+  type ArtifactLocale,
+  ArtifactLocaleSchema,
+  artifactLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
+import {
+  type QuestionBodyKind,
+  questionKeyParts,
+} from "@nakafa/aksara-contracts/question/identity";
+import {
+  questionArtifactLocaleForSection,
+  questionArtifactLocalesForSection,
+} from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Schema } from "effect";
 import {
   decodeQuestionDocumentPath,
@@ -24,8 +35,8 @@ import type { TryoutExamSource } from "#corpus/tryout/schema";
 const QuestionEntryBaseSchema = Schema.extend(
   QuestionSourceSchema.pipe(Schema.omit("choices")),
   Schema.Struct({
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
-    locale: ContentLocaleSchema,
     peerContentKey: ContentKeySchema,
     sourcePath: CorpusSourcePathSchema,
   })
@@ -59,12 +70,12 @@ export type QuestionEntry = typeof QuestionEntrySchema.Type;
 /** Projects one exact body and locale from its decoded question source. */
 function projectQuestionEntry(
   source: QuestionSource,
-  bodyKind: typeof QuestionBodyKindSchema.Type,
-  locale: typeof ContentLocaleSchema.Type
+  bodyKind: QuestionBodyKind,
+  artifactLocale: ArtifactLocale
 ) {
   const entry = {
+    artifactLocale,
     contentKey: ContentKeySchema.make(`${source.questionKey}/${bodyKind}`),
-    locale,
     peerContentKey: ContentKeySchema.make(
       `${source.questionKey}/${bodyKind === "question" ? "answer" : "question"}`
     ),
@@ -73,7 +84,7 @@ function projectQuestionEntry(
     rendererDomain: source.rendererDomain,
     setKey: source.setKey,
     sourcePath: CorpusSourcePathSchema.make(
-      `${source.sourceRoot}/${bodyKind}.${locale}.mdx`
+      `${source.sourceRoot}/${bodyKind}.${artifactLocale}.mdx`
     ),
     sourceRoot: source.sourceRoot,
   };
@@ -94,13 +105,21 @@ function projectQuestionEntry(
 /** Projects discovered question sources into the canonical body registry. */
 function projectQuestionEntries(sources: readonly QuestionSource[]) {
   return sources
-    .flatMap((source) =>
-      QuestionBodyKindSchema.literals.flatMap((bodyKind) =>
-        ContentLocaleSchema.literals.map((locale) =>
-          projectQuestionEntry(source, bodyKind, locale)
+    .flatMap((source) => {
+      const { sectionKey } = questionKeyParts(source.questionKey);
+      const answers = ACTIVE_APP_LOCALES.map((appLocale) =>
+        projectQuestionEntry(
+          source,
+          "answer",
+          ArtifactLocaleSchema.make(appLocale)
         )
-      )
-    )
+      );
+      const prompts = questionArtifactLocalesForSection(sectionKey).map(
+        (artifactLocale) =>
+          projectQuestionEntry(source, "question", artifactLocale)
+      );
+      return [...answers, ...prompts];
+    })
     .sort(compareContentHeads);
 }
 
@@ -128,7 +147,7 @@ export const selectQuestionContent = Effect.fn(
   const selected = projectQuestionEntry(
     source,
     location.bodyKind,
-    location.locale
+    location.artifactLocale
   );
   if (selected.bodyKind === "question") {
     return {
@@ -141,7 +160,15 @@ export const selectQuestionContent = Effect.fn(
       readonly source: typeof source;
     };
   }
-  const prompt = projectQuestionEntry(source, "question", location.locale);
+  const { sectionKey } = questionKeyParts(source.questionKey);
+  const appLocale = AppLocaleSchema.make(
+    artifactLocaleCode(location.artifactLocale)
+  );
+  const prompt = projectQuestionEntry(
+    source,
+    "question",
+    questionArtifactLocaleForSection(sectionKey, appLocale)
+  );
   return {
     entries: [prompt, selected],
     selected,

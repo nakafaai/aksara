@@ -15,17 +15,18 @@ import {
   type ProtectedContentRuntimeSelector,
 } from "#contracts/runtime/protected/spec";
 
-/** Checks one protected body path matches its exact content key and locale. */
+/** Checks one protected body path matches its exact content and artifact locale. */
 function hasProtectedSourcePath(
   contentKey: string,
-  locale: string,
+  artifactLocale: string,
   sourcePath: string
 ) {
   const separator = contentKey.lastIndexOf("/");
   const sourceRoot = contentKey.slice(0, separator);
   const bodyKind = contentKey.slice(separator + 1);
   return (
-    sourcePath === `packages/corpus/${sourceRoot}/${bodyKind}.${locale}.mdx`
+    sourcePath ===
+    `packages/corpus/${sourceRoot}/${bodyKind}.${artifactLocale}.mdx`
   );
 }
 
@@ -33,7 +34,6 @@ function hasProtectedSourcePath(
 const verifyProtectedItem = Effect.fn(
   "AksaraContracts.verifyProtectedRuntimeItem"
 )(function* (
-  request: ProtectedContentRuntimeRequest,
   selector: ProtectedContentRuntimeSelector,
   item: ProtectedContentRuntimeItem,
   bundle: ContentReleaseBundle,
@@ -41,9 +41,6 @@ const verifyProtectedItem = Effect.fn(
 ) {
   if (item.delivery !== selector.delivery) {
     return yield* new ContentRuntimeMismatchError({ reason: "delivery" });
-  }
-  if (item.artifact.payload.locale !== request.locale) {
-    return yield* new ContentRuntimeMismatchError({ reason: "locale" });
   }
   if (item.artifact.artifactHash !== selector.artifactHash) {
     return yield* new ContentRuntimeMismatchError({ reason: "artifactHash" });
@@ -54,7 +51,7 @@ const verifyProtectedItem = Effect.fn(
   if (
     !hasProtectedSourcePath(
       selector.contentKey,
-      request.locale,
+      item.artifact.payload.artifactLocale,
       item.sourcePath
     )
   ) {
@@ -137,7 +134,7 @@ export const verifyProtectedContentRuntimeExchange = Effect.fn(
   yield* Effect.forEach(
     ReadonlyArray.zip(request.selectors, response.items),
     ([selector, item]) =>
-      verifyProtectedItem(request, selector, item, bundle, liveRenderer),
+      verifyProtectedItem(selector, item, bundle, liveRenderer),
     { concurrency: "unbounded", discard: true }
   );
   return response;

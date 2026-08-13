@@ -13,6 +13,7 @@ function articleSource() {
     category: {
       key: "politics",
       rendererDomain: "politics",
+      routeSlugs: { en: "politics", id: "politik" },
       titles: { en: "Politics", id: "Politik" },
     },
     references: [
@@ -22,6 +23,10 @@ function articleSource() {
         year: 2024,
       },
     ],
+    routeSlugs: {
+      en: "dynastic-politics-asian-values",
+      id: "politik-dinasti-dan-nilai-asia",
+    },
     slug: "dynastic-politics-asian-values",
     sourceRoot: "articles/politics/dynastic-politics/asian-values",
   };
@@ -40,25 +45,27 @@ describe("article registry", () => {
     }).sort();
 
     expect(entries).toHaveLength(14);
-    expect(entries.filter(({ route }) => route.locale === "en")).toHaveLength(
-      7
-    );
-    expect(entries.filter(({ route }) => route.locale === "id")).toHaveLength(
-      7
-    );
+    expect(
+      entries.filter(({ route }) => route.appLocale === "en")
+    ).toHaveLength(7);
+    expect(
+      entries.filter(({ route }) => route.appLocale === "id")
+    ).toHaveLength(7);
     expect(entries.map(({ sourcePath }) => sourcePath).sort()).toEqual(
       authoredPaths
     );
-    expect(entries.find(({ route }) => route.locale === "en")).toMatchObject({
-      delivery: "public",
-      rendererDomain: "politics",
-    });
+    expect(entries.find(({ route }) => route.appLocale === "en")).toMatchObject(
+      {
+        delivery: "public",
+        rendererDomain: "politics",
+      }
+    );
 
     const english = entries.find(
       ({ route }) =>
         route.contentKey ===
           "articles/politics/dynastic-politics-asian-values" &&
-        route.locale === "en"
+        route.appLocale === "en"
     );
     expect(english).toMatchObject({
       route: {
@@ -77,8 +84,12 @@ describe("article registry", () => {
       decodeArticleRegistry([articleSource()])
     );
 
-    expect(entries.map(({ route }) => route.locale)).toEqual(["en", "id"]);
+    expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "id"]);
     expect(new Set(entries.map(({ route }) => route.contentKey)).size).toBe(1);
+    expect(entries.map(({ route }) => route.publicPath)).toEqual([
+      "articles/politics/dynastic-politics-asian-values",
+      "articles/politik/politik-dinasti-dan-nilai-asia",
+    ]);
     expect(entries.every(({ references }) => references.length === 1)).toBe(
       true
     );
@@ -93,8 +104,10 @@ describe("article registry", () => {
           category: {
             key: "test-category",
             rendererDomain: "physics",
+            routeSlugs: { en: "test-category", id: "kategori-uji" },
             titles: { en: "Test category", id: "Kategori uji" },
           },
+          routeSlugs: { en: "test-article", id: "artikel-uji" },
           slug: "test-group-test-article",
           sourceRoot: "articles/test-category/test-group/test-article",
         },
@@ -184,9 +197,53 @@ describe("article registry", () => {
     expect(error).toMatchObject({
       _tag: "ArticleTitleError",
       actual: "Politics changed",
+      appLocale: "en",
       category: "politics",
       expected: "Politics",
-      locale: "en",
+    });
+  });
+
+  it("rejects conflicting localized category routes", async () => {
+    const error = await rejectRegistry([
+      articleSource(),
+      {
+        ...articleSource(),
+        category: {
+          ...articleSource().category,
+          routeSlugs: { en: "government", id: "politik" },
+        },
+        routeSlugs: { en: "second-article", id: "artikel-kedua" },
+        slug: "second-test-article",
+        sourceRoot: "articles/politics/second-test/article",
+      },
+    ]);
+
+    expect(error).toMatchObject({
+      _tag: "ArticleCategoryRouteError",
+      actual: "government",
+      appLocale: "en",
+      category: "politics",
+      expected: "politics",
+    });
+  });
+
+  it("rejects locale route collisions across stable article identities", async () => {
+    const error = await rejectRegistry([
+      articleSource(),
+      {
+        ...articleSource(),
+        routeSlugs: articleSource().routeSlugs,
+        slug: "second-test-article",
+        sourceRoot: "articles/politics/second-test/article",
+      },
+    ]);
+
+    expect(error).toMatchObject({
+      _tag: "ArticleRouteCollisionError",
+      appLocale: "en",
+      conflictingContentKey: "articles/politics/dynastic-politics-asian-values",
+      contentKey: "articles/politics/second-test-article",
+      publicPath: "articles/politics/dynastic-politics-asian-values",
     });
   });
 

@@ -1,3 +1,8 @@
+import {
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -10,21 +15,34 @@ import {
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
 import { Effect, Stream } from "effect";
 
-const preparedProgramSnapshot = await Effect.runPromise(
-  prepareProgramSnapshot()
-);
-
 /** Replayable empty structured sources for body-only publisher fixtures. */
 export const emptySnapshotSources = {
   snapshotManifests: () => Stream.empty,
   snapshotRows: () => Stream.empty,
 } as const;
 
+/** Builds one exact active policy for an incremental test release. */
+export function snapshotPolicyBase(
+  editorialReviewDigest: typeof Sha256HashSchema.Type,
+  releaseId = "test-snapshot-policy-base"
+) {
+  return {
+    baseActiveAppLocales: ACTIVE_APP_LOCALES,
+    baseEditorialReviewDigest: editorialReviewDigest,
+    baseManifestHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
+    baseReleaseId: ReleaseIdSchema.make(releaseId),
+    previousSnapshots: inheritContentSnapshots(null),
+  } as const;
+}
+
 /** Builds one replacement from the exact source-owned program catalog. */
-export function makeProgramSnapshotFixture(
+export async function makeProgramSnapshotFixture(
+  editorialReviewDigest: typeof Sha256HashSchema.Type,
   previous: ContentSnapshotSet = inheritContentSnapshots(null)
 ) {
-  const prepared = preparedProgramSnapshot;
+  const prepared = await Effect.runPromise(
+    prepareProgramSnapshot({ editorialReviewDigest })
+  );
   const snapshot: ContentSnapshotManifest = {
     family: "program",
     manifest: prepared.manifest,

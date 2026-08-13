@@ -24,7 +24,7 @@ content is bound to its signed snapshot release, verified against that frozen
 renderer manifest, and then verified against the deployed renderer. A later
 deployed renderer may serve the retained snapshot only when it remains
 compatible with every artifact requirement. The renderer is not a third signed
-value. Production v1 trusts authenticated Convex state for route/head
+value. Current production trusts authenticated Convex state for route/head
 membership, delivery class, and the active pointer; a release result digest is
 not a per-row inclusion proof. This boundary is recorded explicitly in
 [ADR 0002](https://github.com/nakafaai/aksara/blob/main/docs/adr/0002-release-state.md).

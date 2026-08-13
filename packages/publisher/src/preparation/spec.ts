@@ -1,28 +1,25 @@
+import type { FileSystem, Path } from "@effect/platform";
 import type { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
-  type SignedContentArtifact,
 } from "@nakafa/aksara-contracts/content";
+import type { verifyEditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
 import type {
   GitCommitSha,
   ReleaseId,
   Sha256Hash,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  type ContentProjection,
-  ContentProjectionSchema,
-} from "@nakafa/aksara-contracts/projection/spec";
+import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
   ContentDeleteSchema,
-  type ContentReleaseItem,
-  type ContentReleaseManifest,
   ContentUpsertSchema,
-  type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import type { verifyReleasePolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import type {
   createResultCatalogDigest,
   finalizeResultCatalogDigest,
@@ -32,7 +29,6 @@ import type {
 import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback/digest";
 import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
-import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import type {
   ContentSnapshotSet,
@@ -40,9 +36,17 @@ import type {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type {
+  loadArticleReviewRequirements,
+  loadStructuredReviewRequirements,
+} from "@nakafa/aksara-corpus/editorial/requirements";
 import { type Effect, Schema, type Stream } from "effect";
+import type {
+  EditorialReviewCoverageError,
+  EditorialReviewCoverageExcessError,
+} from "#publisher/editorial/coverage";
+import type { EditorialReviewCoverageIdentityError } from "#publisher/editorial/requirements";
 import type {
   PreparedContentCoherenceError,
   PreparedContentDecodeError,
@@ -52,9 +56,9 @@ import type {
   PreparedReleaseIdentityError,
   PreparedSnapshotScopeError,
 } from "#publisher/preparation/errors";
+import type { PreparedGitRelease } from "#publisher/preparation/prepared";
 import type { QuranProvenanceBlockedError } from "#publisher/preparation/provenance";
 import type {
-  PreparedSnapshotSources,
   PreparedSnapshotStreamError,
   SnapshotPreparationSources,
 } from "#publisher/preparation/snapshot";
@@ -77,7 +81,7 @@ const PreparedContentDeleteSchema = Schema.Struct({
 /** One authored upsert with every value needed to prove source coherence. */
 export type PreparedContentUpsert = typeof PreparedContentUpsertSchema.Type;
 
-/** Complete v1 authored record vocabulary accepted by release preparation. */
+/** Complete authored record vocabulary accepted by release preparation. */
 export const PreparedContentRecordSchema = Schema.Union(
   PreparedContentUpsertSchema,
   PreparedContentDeleteSchema
@@ -117,10 +121,14 @@ export type PreparedRouteSource<E, R> = () => Stream.Stream<
 export interface PrepareContentReleaseInput<E, R>
   extends SnapshotPreparationSources<E, R> {
   readonly aksaraSha: GitCommitSha;
+  readonly baseActiveAppLocales: ActiveAppLocaleList | null;
+  readonly baseEditorialReviewDigest: Sha256Hash | null;
   readonly baseManifestHash: Sha256Hash | null;
   readonly baseReleaseId: ReleaseId | null;
   readonly baseResultCount: number;
   readonly baseResultDigest: Sha256Hash;
+  readonly checkoutRoot: string;
+  readonly editorialReview: unknown;
   readonly previousSnapshots: ContentSnapshotSet | null;
   readonly records: PreparedContentTransitionSource<E, R>;
   readonly releaseId: ReleaseId;
@@ -132,6 +140,10 @@ export interface PrepareContentReleaseInput<E, R>
 
 type SourceHashError = Effect.Effect.Error<
   ReturnType<typeof verifyCompiledContentSourceHash>
+>;
+
+type EditorialReviewError = Effect.Effect.Error<
+  ReturnType<typeof verifyEditorialReviewManifest>
 >;
 
 /** Failures possible on every replay of the one authored record source. */
@@ -148,45 +160,6 @@ export type PreparedContentStreamError<E> =
 export type PreparedReleaseStreamError<E> =
   | PreparedContentStreamError<E>
   | PreparedSnapshotStreamError<E>;
-
-const PreparedContentReleaseTypeId: unique symbol = Symbol(
-  "@NakafaAI/AksaraPreparedContentRelease"
-);
-
-/** Shared authenticated streams carried by every prepared release mode. */
-interface PreparedContentReleaseBase<E, R, Projection extends ContentProjection>
-  extends PreparedSnapshotSources<E, R> {
-  /** Replays canonical items authenticated by the immutable manifest. */
-  readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
-  readonly manifest: ContentReleaseManifest;
-  /** Replays canonical projections authenticated by the same manifest. */
-  readonly projections: () => Stream.Stream<Projection, E, R>;
-  readonly rendererManifest: RendererManifestEnvelope;
-  /** Replays canonical route changes authenticated by the same manifest. */
-  readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
-  /** Reuses one exact authenticated candidate envelope during deterministic rebuild. */
-  readonly storedRelease: SignedContentRelease | null;
-  readonly [PreparedContentReleaseTypeId]: true;
-}
-
-/** Exact-Git release whose artifacts must be reproducibly recompiled. */
-export interface PreparedGitRelease<E, R>
-  extends PreparedContentReleaseBase<E, R, ContentProjection> {
-  readonly kind: "git";
-}
-
-/** Forward rollback whose existing signed artifacts must remain unchanged. */
-export interface PreparedRollbackRelease<E, R>
-  extends PreparedContentReleaseBase<E, R, ContentProjection> {
-  /** Replays exact old signed envelopes for every ordered upsert item. */
-  readonly artifacts: () => Stream.Stream<SignedContentArtifact, E, R>;
-  readonly kind: "rollback";
-}
-
-/** Constructor-private prepared modes accepted by safe publication. */
-export type PreparedContentRelease<E, R> =
-  | PreparedGitRelease<E, R>
-  | PreparedRollbackRelease<E, R>;
 
 type ItemVerificationError<E, R> = Effect.Effect.Error<
   ReturnType<typeof verifyContentReleaseItems<E, R>>
@@ -229,6 +202,10 @@ type SnapshotVerificationError<E, R> = Effect.Effect.Error<
   ReturnType<typeof verifyContentSnapshots<E, R, E, R>>
 >;
 
+type SnapshotPolicyError = Effect.Effect.Error<
+  ReturnType<typeof verifyReleasePolicyTransition>
+>;
+
 /** Every expected failure surfaced before a release can be signed. */
 type PrepareContentReleaseError<E, R> =
   | ItemVerificationError<PreparedContentStreamError<E>, R>
@@ -236,6 +213,10 @@ type PrepareContentReleaseError<E, R> =
   | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
   | PreparedSnapshotScopeError
+  | EditorialReviewCoverageError
+  | EditorialReviewCoverageExcessError
+  | EditorialReviewCoverageIdentityError
+  | EditorialReviewError
   | QuranProvenanceBlockedError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
   | RendererCompatibilityError
@@ -243,7 +224,10 @@ type PrepareContentReleaseError<E, R> =
   | ResultDigestError
   | ResultVerificationError<E, R>
   | RollbackVerificationError<PreparedContentStreamError<E>, R>
+  | SnapshotPolicyError
   | SnapshotVerificationError<E, R>
+  | Effect.Effect.Error<ReturnType<typeof loadArticleReviewRequirements>>
+  | Effect.Effect.Error<ReturnType<typeof loadStructuredReviewRequirements>>
   | RouteDigestError<PreparedContentStreamError<E>, R>
   | RouteVerificationError<PreparedContentStreamError<E>, R>;
 
@@ -253,49 +237,5 @@ export type PrepareContentRelease = <E, R>(
 ) => Effect.Effect<
   PreparedGitRelease<PreparedReleaseStreamError<E>, R>,
   PrepareContentReleaseError<E, R>,
-  R
+  FileSystem.FileSystem | Path.Path | R
 >;
-
-/** Creates a private exact-Git value after all preparation proofs pass. */
-export function makePreparedGitRelease<E, R>(
-  input: PreparedSnapshotSources<E, R> & {
-    /** Replays canonical items authenticated by the immutable manifest. */
-    readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
-    readonly manifest: ContentReleaseManifest;
-    /** Replays canonical projections authenticated by the same manifest. */
-    readonly projections: () => Stream.Stream<ContentProjection, E, R>;
-    readonly rendererManifest: RendererManifestEnvelope;
-    /** Replays canonical route changes authenticated by the same manifest. */
-    readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
-  }
-): PreparedGitRelease<E, R> {
-  return {
-    [PreparedContentReleaseTypeId]: true,
-    kind: "git",
-    storedRelease: null,
-    ...input,
-  };
-}
-
-/** Creates a private rollback value after all preparation proofs pass. */
-export function makePreparedRollbackRelease<E, R>(
-  input: PreparedSnapshotSources<E, R> & {
-    /** Replays exact old signed envelopes for every ordered upsert item. */
-    readonly artifacts: () => Stream.Stream<SignedContentArtifact, E, R>;
-    /** Replays canonical items authenticated by the immutable manifest. */
-    readonly items: () => Stream.Stream<ContentReleaseItem, E, R>;
-    readonly manifest: ContentReleaseManifest;
-    /** Replays canonical projections authenticated by the same manifest. */
-    readonly projections: () => Stream.Stream<ContentProjection, E, R>;
-    readonly rendererManifest: RendererManifestEnvelope;
-    /** Replays canonical route changes authenticated by the same manifest. */
-    readonly routes: () => Stream.Stream<ContentRouteItem, E, R>;
-  }
-): PreparedRollbackRelease<E, R> {
-  return {
-    [PreparedContentReleaseTypeId]: true,
-    kind: "rollback",
-    storedRelease: null,
-    ...input,
-  };
-}

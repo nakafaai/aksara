@@ -25,7 +25,7 @@ import {
 
 const PositiveCountSchema = Schema.Number.pipe(Schema.int(), Schema.positive());
 
-const PlacementV2Fields = {
+const PlacementFields = {
   answerArtifactLocale: ArtifactLocaleSchema,
   answerContentKey: ContentKeySchema,
   appLocale: AppLocaleSchema,
@@ -45,7 +45,7 @@ const PlacementV2Fields = {
   trackKey: TryoutKeySchema,
 };
 
-/** Checks that v2 content keys, source path, and authored order agree. */
+/** Checks that content keys, source path, and authored order agree. */
 function hasCoherentPlacementKeys(input: {
   readonly answerContentKey: string;
   readonly countryKey: string;
@@ -99,10 +99,8 @@ function hasCoherentPlacementLanguages(input: {
   );
 }
 
-/** Active v2 placement before immutable artifact hashes are bound. */
-export const TryoutPlacementV2SourceSchema = Schema.Struct(
-  PlacementV2Fields
-).pipe(
+/** Active placement before immutable artifact hashes are bound. */
+export const TryoutPlacementSourceSchema = Schema.Struct(PlacementFields).pipe(
   Schema.filter(hasCoherentPlacementKeys, {
     message: () =>
       "Placement source, content keys, and authored order must agree.",
@@ -112,15 +110,14 @@ export const TryoutPlacementV2SourceSchema = Schema.Struct(
       "Placement app, delivery, question, and answer languages must agree.",
   })
 );
-export type TryoutPlacementV2Source = typeof TryoutPlacementV2SourceSchema.Type;
+export type TryoutPlacementSource = typeof TryoutPlacementSourceSchema.Type;
 
-/** Artifact-bound v2 placement retained by signed attempt state. */
-export const TryoutPlacementV2Schema = Schema.Struct({
-  ...PlacementV2Fields,
+/** Artifact-bound placement retained by signed attempt state. */
+export const TryoutPlacementSchema = Schema.Struct({
+  ...PlacementFields,
   answerArtifactHash: Sha256HashSchema,
   contentHash: TryoutContentHashSchema,
   questionArtifactHash: Sha256HashSchema,
-  title: Schema.String,
 }).pipe(
   Schema.filter(hasCoherentPlacementKeys, {
     message: () =>
@@ -131,11 +128,11 @@ export const TryoutPlacementV2Schema = Schema.Struct({
       "Placement app, delivery, question, and answer languages must agree.",
   })
 );
-export type TryoutPlacementV2 = typeof TryoutPlacementV2Schema.Type;
+export type TryoutPlacement = typeof TryoutPlacementSchema.Type;
 
-/** Hashed immutable v2 placement accepted by snapshot publication. */
-export const TryoutPlacementV2RecordSchema = Schema.Struct({
-  row: TryoutPlacementV2Schema,
+/** Hashed immutable placement accepted by snapshot publication. */
+export const TryoutPlacementRecordSchema = Schema.Struct({
+  row: TryoutPlacementSchema,
   rowHash: Sha256HashSchema,
 });
-export type TryoutPlacementV2Record = typeof TryoutPlacementV2RecordSchema.Type;
+export type TryoutPlacementRecord = typeof TryoutPlacementRecordSchema.Type;

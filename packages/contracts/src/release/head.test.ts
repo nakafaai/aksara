@@ -1,6 +1,6 @@
 import { Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import type { ContentLocale } from "#contracts/content";
+import type { AppLocaleCode } from "#contracts/locale";
 import {
   ArticleHeadSchema,
   canonicalizeContentHead,
@@ -15,53 +15,56 @@ const hash = `sha256:${"a".repeat(64)}`;
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const releaseId = "test-active";
 
-/** Builds one strict material-head sample at a deterministic identity. */
-function materialHead(contentKey: string, locale: ContentLocale = "en") {
-  return Schema.decodeUnknownSync(MaterialHeadSchema)({
+/** Builds the shared immutable identity fields for one test head. */
+function headIdentity(contentKey: string, artifactLocale: AppLocaleCode) {
+  return {
     artifactHash: hash,
+    artifactLocale,
     compilerConfigHash: hash,
     contentKey,
+    projectionHash: hash,
+    sourceHash: hash,
+  };
+}
+
+/** Builds one strict material-head sample at a deterministic identity. */
+function materialHead(
+  contentKey: string,
+  artifactLocale: AppLocaleCode = "en"
+) {
+  return Schema.decodeUnknownSync(MaterialHeadSchema)({
+    ...headIdentity(contentKey, artifactLocale),
     delivery: "public",
     family: "material",
-    locale,
-    projectionHash: hash,
     publicPath: `subjects/test/${contentKey.replace(":", "-")}`,
     rendererDomain: "mathematics",
-    sourceHash: hash,
-    sourcePath: `packages/corpus/test/${contentKey.replace(":", "-")}/${locale}.mdx`,
+    sourcePath: `packages/corpus/test/${contentKey.replace(":", "-")}/${artifactLocale}.mdx`,
   });
 }
 
 /** Builds one strict article-head sample at a deterministic identity. */
-function articleHead(contentKey: string, locale: ContentLocale = "en") {
+function articleHead(contentKey: string, artifactLocale: AppLocaleCode = "en") {
   return Schema.decodeUnknownSync(ArticleHeadSchema)({
-    artifactHash: hash,
-    compilerConfigHash: hash,
-    contentKey,
+    ...headIdentity(contentKey, artifactLocale),
     delivery: "public",
     family: "article",
-    locale,
-    projectionHash: hash,
     publicPath: contentKey,
     rendererDomain: "politics",
-    sourceHash: hash,
-    sourcePath: `packages/corpus/${contentKey}/${locale}.mdx`,
+    sourcePath: `packages/corpus/${contentKey}/${artifactLocale}.mdx`,
   });
 }
 
 /** Builds one strict route-free question-head sample. */
-function questionHead(contentKey: string, locale: ContentLocale = "en") {
+function questionHead(
+  contentKey: string,
+  artifactLocale: AppLocaleCode = "en"
+) {
   return Schema.decodeUnknownSync(QuestionHeadSchema)({
-    artifactHash: hash,
-    compilerConfigHash: hash,
-    contentKey,
+    ...headIdentity(contentKey, artifactLocale),
     delivery: "authenticated",
     family: "question",
-    locale,
-    projectionHash: hash,
     rendererDomain: "snbt-general",
-    sourceHash: hash,
-    sourcePath: `packages/corpus/${contentKey}/${locale}.mdx`,
+    sourcePath: `packages/corpus/${contentKey}/${artifactLocale}.mdx`,
   });
 }
 

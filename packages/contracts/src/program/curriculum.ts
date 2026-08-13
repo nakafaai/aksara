@@ -1,6 +1,5 @@
 import { Schema } from "effect";
 
-import { type ContentLocale, ContentLocaleSchema } from "#contracts/content";
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import { type AppLocale, AppLocaleSchema } from "#contracts/locale";
 import { MaterialDomainSchema } from "#contracts/material/domain";
@@ -12,9 +11,10 @@ import {
 import { MaterialKeySchema } from "#contracts/projection/material";
 import { isLowerKebab } from "#contracts/text/syntax";
 
-const CurriculumNamespaceMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
-  value: Schema.NonEmptyTrimmedString,
+const CurriculumNamespaceMapSchema = Schema.Struct({
+  de: Schema.Literal("lehrplaene"),
+  en: Schema.Literal("curriculum"),
+  id: Schema.Literal("kurikulum"),
 });
 const RenderableCurriculumLevelSchema = Schema.Literal(
   "class",
@@ -34,19 +34,21 @@ function isCurriculumRouteNodeKey(value: string) {
 
 /** Localized public route namespaces shared by projection and verification. */
 export const CURRICULUM_NAMESPACES = CurriculumNamespaceMapSchema.make({
+  de: "lehrplaene",
   en: "curriculum",
   id: "kurikulum",
 });
 
 /** Resolves the route namespace owned by one application locale. */
-export function curriculumNamespace(locale: AppLocale | ContentLocale) {
-  if (locale === "de") {
-    return "lehrplaene";
+export function curriculumNamespace(appLocale: AppLocale) {
+  const localeCode = String(appLocale);
+  if (localeCode === "de") {
+    return CURRICULUM_NAMESPACES.de;
   }
-  if (locale === "en") {
-    return CURRICULUM_NAMESPACES.en;
+  if (localeCode === "id") {
+    return CURRICULUM_NAMESPACES.id;
   }
-  return CURRICULUM_NAMESPACES.id;
+  return CURRICULUM_NAMESPACES.en;
 }
 
 /** Checks whether one curriculum level owns a learner-renderable route. */
@@ -70,13 +72,13 @@ const CurriculumRouteNodeKeySchema = Schema.String.pipe(
 );
 
 const CurriculumRouteFields = {
+  appLocale: AppLocaleSchema,
   canonicalPath: Schema.optional(PublicPathSchema),
   displayGroupIconKey: Schema.optional(ProgramNavigationIconKeySchema),
   displayGroupTitle: Schema.optional(Schema.String),
   iconKey: ProgramNavigationIconKeySchema,
   kind: Schema.Literal("curriculum-context"),
   level: ProgramNavigationLevelSchema,
-  locale: ContentLocaleSchema,
   materialCardDescription: Schema.optional(Schema.String),
   materialCardTitle: Schema.optional(Schema.String),
   materialContextNodeKey: Schema.optional(CurriculumNodeKeySchema),
@@ -94,11 +96,6 @@ const CurriculumRouteFields = {
   title: Schema.String,
 };
 
-const CurriculumRouteV4Fields = {
-  ...CurriculumRouteFields,
-  locale: AppLocaleSchema,
-};
-
 /** Returns the direct parent of one canonical public path. */
 function parentPath(publicPath: string) {
   return publicPath.slice(0, publicPath.lastIndexOf("/"));
@@ -106,15 +103,15 @@ function parentPath(publicPath: string) {
 
 /** Checks namespace, root, and direct-parent route ownership. */
 function hasCoherentRoute(input: {
+  readonly appLocale: AppLocale;
   readonly level: string;
-  readonly locale: AppLocale | typeof ContentLocaleSchema.Type;
   readonly nodeKey: string;
   readonly parentPath?: string | undefined;
   readonly programKey: string;
   readonly publicPath: string;
   readonly sourcePath: string;
 }) {
-  const namespace = `${curriculumNamespace(input.locale)}/`;
+  const namespace = `${curriculumNamespace(input.appLocale)}/`;
   if (!input.publicPath.startsWith(namespace)) {
     return false;
   }
@@ -204,35 +201,10 @@ export const CurriculumRouteSchema = CurriculumRouteDraftSchema.pipe(
 );
 export type CurriculumRoute = typeof CurriculumRouteSchema.Type;
 
-/** Current localized curriculum route before presentation context is added. */
-export const CurriculumRouteV4DraftSchema = Schema.Struct(
-  CurriculumRouteV4Fields
-).pipe(
-  Schema.filter(hasCoherentRoute, {
-    message: () => "Expected coherent localized curriculum route ownership.",
-  }),
-  Schema.filter(hasCoherentMaterialLink, {
-    message: () => "Expected coherent curriculum material ownership.",
-  }),
-  Schema.filter(hasCoherentSitemap, {
-    message: () => "Expected only renderable curriculum sitemap routes.",
-  })
-);
-export type CurriculumRouteV4Draft = typeof CurriculumRouteV4DraftSchema.Type;
-
-/** Exact current localized route stored inside a program-v4 snapshot. */
-export const CurriculumRouteV4Schema = CurriculumRouteV4DraftSchema.pipe(
-  Schema.filter(hasCompleteMaterialContext, {
-    message: () => "Expected complete curriculum material context ownership.",
-  })
-);
-export type CurriculumRouteV4 = typeof CurriculumRouteV4Schema.Type;
-
 /** Serializes one curriculum route in stable signed field order. */
-export function canonicalizeCurriculumRoute(
-  route: CurriculumRoute | CurriculumRouteV4
-) {
+export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
   return JSON.stringify({
+    appLocale: route.appLocale,
     ...(route.canonicalPath === undefined
       ? {}
       : { canonicalPath: route.canonicalPath }),
@@ -245,7 +217,6 @@ export function canonicalizeCurriculumRoute(
     iconKey: route.iconKey,
     kind: route.kind,
     level: route.level,
-    locale: route.locale,
     ...(route.materialCardDescription === undefined
       ? {}
       : { materialCardDescription: route.materialCardDescription }),

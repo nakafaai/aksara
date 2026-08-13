@@ -1,14 +1,13 @@
-import {
-  ContentFamilySchema,
-  ContentLocaleSchema,
-} from "@nakafa/aksara-contracts/content";
+import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   ReleaseIdSchema,
   type Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   type ContentHead,
+  ContentHeadSchema,
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
@@ -25,15 +24,17 @@ import { createReplaySpool } from "#publisher/replay/spool";
 const CHECK_RELEASE_ID = ReleaseIdSchema.make("catalog-check");
 const CountSchema = Schema.Int.pipe(Schema.nonNegative());
 const CatalogHeadIdentitySchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
   contentKey: ContentKeySchema,
   family: ContentFamilySchema,
-  locale: ContentLocaleSchema,
 });
 
 /** Family counts and digest produced by one complete result-catalog replay. */
 export interface CatalogResultEvidence {
   readonly articleCount: number;
   readonly digest: typeof Sha256HashSchema.Type;
+  /** Replays every validated current content head in canonical family order. */
+  readonly heads: () => Stream.Stream<ContentHead, ReplaySpoolError>;
   readonly materialCount: number;
   readonly questionCount: number;
   /** Replays only validated question heads for structured try-out binding. */
@@ -77,9 +78,9 @@ const EMPTY_RESULT_STATE: CatalogResultState = {
 /** Retains only the source-owned identity fields from one compact head. */
 function resultIdentity(head: ContentHead): ExpectedCatalogHead {
   return {
+    artifactLocale: head.artifactLocale,
     contentKey: head.contentKey,
     family: head.family,
-    locale: head.locale,
   };
 }
 
@@ -91,7 +92,7 @@ function hasSameIdentity(
   return (
     expected.contentKey === actual.contentKey &&
     expected.family === actual.family &&
-    expected.locale === actual.locale
+    expected.artifactLocale === actual.artifactLocale
   );
 }
 
@@ -137,7 +138,7 @@ function validateHead(
 
 /**
  * Validates identities and digest in one result replay while sealing the
- * question subset needed by structured snapshots.
+ * complete catalog and question subset needed by downstream verification.
  */
 export const validateCatalogResult = Effect.fn(
   "AksaraPublisher.validateCatalogResult"
@@ -153,13 +154,23 @@ export const validateCatalogResult = Effect.fn(
         yield* Ref.set(counts, next);
         return head;
       })
-    ),
-    Stream.filter((head): head is QuestionHead => head.family === "question")
+    )
   );
+  const heads = yield* createReplaySpool({
+    prefix: "aksara-catalog-heads-",
+    schema: ContentHeadSchema,
+    stream: validated,
+  });
   const questions = yield* createReplaySpool({
     prefix: "aksara-catalog-questions-",
     schema: QuestionHeadSchema,
-    stream: validated,
+    stream: heads
+      .replay()
+      .pipe(
+        Stream.filter(
+          (head): head is QuestionHead => head.family === "question"
+        )
+      ),
   });
   const state = yield* Ref.get(counts);
   const resultDigest = yield* finalizeResultCatalogDigest(
@@ -170,6 +181,7 @@ export const validateCatalogResult = Effect.fn(
   return {
     articleCount: state.articleCount,
     digest: resultDigest,
+    heads: heads.replay,
     materialCount: state.materialCount,
     questionCount: state.questionCount,
     questionHeads: questions.replay,

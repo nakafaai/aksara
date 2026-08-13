@@ -8,22 +8,11 @@ import {
   ReleaseIdSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import {
-  hashContentReleaseManifest,
-  hashContentReleaseManifestV2,
-} from "#contracts/release/hash";
-import {
-  CONTENT_RELEASE_V2_FORMAT,
-  ContentReleaseManifestV2Schema,
-  type SignedContentReleaseV2,
-  SignedContentReleaseV2Schema,
-} from "#contracts/release/manifest/v2";
-import {
-  canonicalizeContentReleaseSigningInput,
-  canonicalizeContentReleaseV2SigningInput,
-} from "#contracts/release/signing";
+import { hashContentReleaseManifest } from "#contracts/release/hash";
+import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import {
+  CONTENT_RELEASE_FORMAT,
   type ContentReleaseManifest,
   ContentReleaseManifestSchema,
   type SignedContentRelease,
@@ -61,15 +50,20 @@ export const verificationRendererManifest = await Effect.runPromise(
   })
 );
 
-/** Complete historical release manifest used by authenticity tests. */
+/** Complete current release manifest used by authenticity tests. */
 export const verificationManifest = Schema.decodeUnknownSync(
   ContentReleaseManifestSchema
 )({
+  activeAppLocales: ["en", "id"],
+  baseActiveAppLocales: ["en", "id"],
+  baseEditorialReviewDigest: `sha256:${"3".repeat(64)}`,
   baseManifestHash: `sha256:${"d".repeat(64)}`,
   baseReleaseId: verificationBaseReleaseId,
   baseResultCount: 1,
   baseResultDigest: `sha256:${"e".repeat(64)}`,
   deleteCount: 1,
+  editorialReviewDigest: `sha256:${"2".repeat(64)}`,
+  format: CONTENT_RELEASE_FORMAT,
   itemCount: 2,
   itemsDigest: `sha256:${"b".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -89,7 +83,7 @@ export const verificationManifest = Schema.decodeUnknownSync(
   upsertCount: 1,
 });
 
-/** Produces a valid historical signed release for verification scenarios. */
+/** Produces a valid current signed release for verification scenarios. */
 export function signVerificationRelease(
   value: ContentReleaseManifest = verificationManifest
 ): SignedContentRelease {
@@ -103,32 +97,6 @@ export function signVerificationRelease(
         null,
         Buffer.from(
           canonicalizeContentReleaseSigningInput(manifestHash, value),
-          "utf8"
-        ),
-        keys.privateKey
-      ).toString("base64url")
-    ),
-  });
-}
-
-/** Produces one valid current signed release with shared transition facts. */
-export function signVerificationReleaseV2(): SignedContentReleaseV2 {
-  const manifest = Schema.decodeUnknownSync(ContentReleaseManifestV2Schema)({
-    activeAppLocales: ["en", "id"],
-    ...verificationManifest,
-    editorialReviewDigest: `sha256:${"2".repeat(64)}`,
-    format: CONTENT_RELEASE_V2_FORMAT,
-  });
-  const manifestHash = Effect.runSync(hashContentReleaseManifestV2(manifest));
-  return SignedContentReleaseV2Schema.make({
-    keyId,
-    manifest,
-    manifestHash,
-    signature: Ed25519SignatureSchema.make(
-      signBytes(
-        null,
-        Buffer.from(
-          canonicalizeContentReleaseV2SigningInput(manifestHash, manifest),
           "utf8"
         ),
         keys.privateKey

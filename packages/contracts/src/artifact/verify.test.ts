@@ -85,13 +85,13 @@ const rendererManifest = await Effect.runPromise(
   createRendererManifest(manifestInput())
 );
 const basePayload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  artifactLocale: "en",
   byteLength: 10,
   compiledCode: "return {};",
   compilerConfigHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   compilerVersion: "0.1.0",
   contentKey: "test:content",
-  format: "mdx-function-body-v1",
-  locale: "en",
+  format: "mdx-function-body",
   mdxCompilerVersion: "3.1.1",
   plainText: TEST_HEADING,
   rawMdx: `## ${TEST_HEADING}`,

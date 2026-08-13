@@ -90,7 +90,7 @@ export function publicationScopeContainsContent(
       (selected) =>
         selected.contentKey === identity.contentKey &&
         selected.family === identity.family &&
-        selected.locale === identity.locale
+        selected.artifactLocale === identity.artifactLocale
     )
   );
 }
@@ -106,10 +106,10 @@ export function publicationScopeSelectsSnapshot(
 /** Serializes one exact scope with stable signed field order. */
 export function canonicalizePublicationScope(scope: PublicationScope) {
   return {
-    content: scope.content.map(({ contentKey, family, locale }) => ({
+    content: scope.content.map(({ artifactLocale, contentKey, family }) => ({
+      artifactLocale,
       contentKey,
       family,
-      locale,
     })),
     families: [...scope.families],
     snapshots: [...scope.snapshots],

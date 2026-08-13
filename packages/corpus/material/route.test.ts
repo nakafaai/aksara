@@ -1,3 +1,4 @@
+import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 
@@ -29,14 +30,19 @@ describe("material public routes", () => {
     const descriptor = await Effect.runPromise(
       requireMaterialDomain(domains, material.domain, material.key)
     );
-    expect(materialTopicPath(material, descriptor, "en")).toBe(
-      "subjects/mathematics/function-modeling"
-    );
-    expect(materialTopicPath(material, descriptor, "id")).toBe(
-      "materi/matematika/fungsi-dan-pemodelannya"
-    );
-    expect(materialLessonPath(material, section, descriptor, "en")).toBe(
-      "subjects/mathematics/function-modeling/absolute-value-function"
-    );
+    expect(
+      materialTopicPath(material, descriptor, ActiveAppLocaleSchema.make("en"))
+    ).toBe("subjects/mathematics/function-modeling");
+    expect(
+      materialTopicPath(material, descriptor, ActiveAppLocaleSchema.make("id"))
+    ).toBe("materi/matematika/fungsi-dan-pemodelannya");
+    expect(
+      materialLessonPath(
+        material,
+        section,
+        descriptor,
+        ActiveAppLocaleSchema.make("en")
+      )
+    ).toBe("subjects/mathematics/function-modeling/absolute-value-function");
   });
 });

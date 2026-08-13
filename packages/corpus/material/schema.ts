@@ -1,4 +1,4 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
 import {
@@ -36,12 +36,12 @@ const LocalizedDescriptionSchema = Schema.Struct({
 });
 
 const LocaleTitleMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: LocalizedTitleSchema,
 });
 
 const LocaleDescriptionMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: LocalizedDescriptionSchema,
 });
 

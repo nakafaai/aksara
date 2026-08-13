@@ -56,19 +56,19 @@ describe("preview document", () => {
       ].map(previewDocumentRoute)
     ).toEqual([
       {
-        locale: testArticleDocument.route.locale,
+        appLocale: testArticleDocument.route.appLocale,
         publicPath: testArticleDocument.route.publicPath,
       },
       {
-        locale: testMaterialDocument.route.locale,
+        appLocale: testMaterialDocument.route.appLocale,
         publicPath: testMaterialDocument.route.publicPath,
       },
       {
-        locale: testPromptDocument.target.section.locale,
+        appLocale: testPromptDocument.target.section.appLocale,
         publicPath: testPromptDocument.target.section.publicPath,
       },
       {
-        locale: testAnswerDocument.target.section.locale,
+        appLocale: testAnswerDocument.target.section.appLocale,
         publicPath: testAnswerDocument.target.section.publicPath,
       },
     ]);
@@ -95,7 +95,10 @@ describe("preview document", () => {
       { ...testPromptDocument, identity: secondQuestion },
       {
         ...testPromptDocument,
-        identity: { ...testPromptDocument.identity, locale: "id" },
+        identity: {
+          ...testPromptDocument.identity,
+          artifactLocale: "id",
+        },
         sourcePath: testPromptDocument.sourcePath.replace(".en.", ".id."),
       },
       { ...testPromptDocument, rendererDomain: "snbt-math" },

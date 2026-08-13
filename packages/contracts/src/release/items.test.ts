@@ -16,21 +16,32 @@ import { makeReleaseItems } from "#contracts/test/items";
 const releaseId =
   Schema.decodeUnknownSync(ReleaseIdSchema)("test-release-items");
 
-const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
-  {
-    artifactHash: `sha256:${"a".repeat(64)}`,
-    contentKey: "test:a",
-    delivery: "public",
+/** Builds one complete upsert change for item-integrity tests. */
+function upsertChange(
+  contentKey: string,
+  artifactLocale: string,
+  delivery: string,
+  hashCharacter: string
+) {
+  const slug = contentKey.replace(":", "/");
+  return {
+    artifactHash: `sha256:${hashCharacter.repeat(64)}`,
+    artifactLocale,
+    contentKey,
+    delivery,
     family: "material",
-    locale: "en",
     operation: "upsert",
     rendererDomain: "mathematics",
-    sourcePath: "packages/corpus/test/a/en.mdx",
-  },
+    sourcePath: `packages/corpus/${slug}/${artifactLocale}.mdx`,
+  };
+}
+
+const changes = Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
+  upsertChange("test:a", "en", "public", "a"),
   {
+    artifactLocale: "id",
     contentKey: "test:b",
     family: "material",
-    locale: "id",
     operation: "delete",
   },
 ]);
@@ -39,11 +50,16 @@ const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  activeAppLocales: ["en", "id"],
+  baseActiveAppLocales: ["en", "id"],
+  baseEditorialReviewDigest: `sha256:${"a".repeat(64)}`,
   baseManifestHash: `sha256:${"d".repeat(64)}`,
   baseReleaseId: "test-release-parent",
   baseResultCount: 1,
   baseResultDigest: `sha256:${"e".repeat(64)}`,
   deleteCount: itemSummary.deleteCount,
+  editorialReviewDigest: `sha256:${"1".repeat(64)}`,
+  format: "localized-content-release",
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -60,9 +76,9 @@ const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   routeDigest: `sha256:${"d".repeat(64)}`,
   scope: {
     content: [
-      { contentKey: "test:a", family: "material", locale: "en" },
-      { contentKey: "test:b", family: "material", locale: "en" },
-      { contentKey: "test:b", family: "material", locale: "id" },
+      { artifactLocale: "en", contentKey: "test:a", family: "material" },
+      { artifactLocale: "en", contentKey: "test:b", family: "material" },
+      { artifactLocale: "id", contentKey: "test:b", family: "material" },
     ],
     families: [],
     snapshots: [],
@@ -110,9 +126,9 @@ async function makeCandidate(candidateChanges: readonly unknown[]) {
     rollbackCount: candidateItems.length,
     scope: {
       content: candidateItems.map(({ change }) => ({
+        artifactLocale: change.artifactLocale,
         contentKey: change.contentKey,
         family: change.family,
-        locale: change.locale,
       })),
       families: [],
       snapshots: manifest.scope.snapshots,
@@ -188,7 +204,7 @@ describe("release item integrity", () => {
       "delete tombstone",
       replaceItem(1, (item) => ({
         ...item,
-        change: { ...item.change, locale: "en" },
+        change: { ...item.change, artifactLocale: "en" },
       })),
     ],
   ])(
@@ -220,44 +236,17 @@ describe("release item integrity", () => {
   });
   it("keeps body items independent from route ownership", async () => {
     const transfer = await makeCandidate([
+      upsertChange("test:a", "en", "public", "a"),
       {
-        artifactHash: `sha256:${"a".repeat(64)}`,
-        contentKey: "test:a",
-        delivery: "public",
-        family: "material",
-        locale: "en",
-        operation: "upsert",
-        rendererDomain: "mathematics",
-        sourcePath: "packages/corpus/test/a/en.mdx",
-      },
-      {
+        artifactLocale: "en",
         contentKey: "test:b",
         family: "material",
-        locale: "en",
         operation: "delete",
       },
     ]);
     const locales = await makeCandidate([
-      {
-        artifactHash: `sha256:${"a".repeat(64)}`,
-        contentKey: "test:a",
-        delivery: "public",
-        family: "material",
-        locale: "en",
-        operation: "upsert",
-        rendererDomain: "mathematics",
-        sourcePath: "packages/corpus/test/a/en.mdx",
-      },
-      {
-        artifactHash: `sha256:${"b".repeat(64)}`,
-        contentKey: "test:b",
-        delivery: "entitled",
-        family: "material",
-        locale: "id",
-        operation: "upsert",
-        rendererDomain: "mathematics",
-        sourcePath: "packages/corpus/test/b/id.mdx",
-      },
+      upsertChange("test:a", "en", "public", "a"),
+      upsertChange("test:b", "id", "entitled", "b"),
     ]);
     await expect(
       Effect.runPromise(

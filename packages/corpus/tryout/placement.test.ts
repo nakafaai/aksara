@@ -1,5 +1,6 @@
 import { Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { selectQuestionContent } from "#corpus/question-bank/content";
@@ -43,7 +44,11 @@ describe("tryout placement", () => {
   it("builds the canonical placement from one owned hierarchy", async () => {
     const fixture = await loadPlacementFixture();
     const placement = await Effect.runPromise(
-      makeTryoutPlacement(fixture.context, fixture.question, "en")
+      makeTryoutPlacement(
+        fixture.context,
+        fixture.question,
+        ActiveAppLocaleSchema.make("en")
+      )
     );
 
     expect(placement).toMatchObject({
@@ -66,16 +71,33 @@ describe("tryout placement", () => {
     };
     const [owner, order] = await Effect.runPromise(
       Effect.all([
-        makeTryoutPlacement(detachedContext, fixture.question, "en").pipe(
-          Effect.flip
-        ),
-        makeTryoutPlacement(fixture.context, outOfRange, "en").pipe(
-          Effect.flip
-        ),
+        makeTryoutPlacement(
+          detachedContext,
+          fixture.question,
+          ActiveAppLocaleSchema.make("en")
+        ).pipe(Effect.flip),
+        makeTryoutPlacement(
+          fixture.context,
+          outOfRange,
+          ActiveAppLocaleSchema.make("en")
+        ).pipe(Effect.flip),
       ])
     );
 
     expect(owner).toMatchObject({ reason: "owner" });
     expect(order).toMatchObject({ reason: "order" });
+  });
+
+  it("rejects a prompt without choices in its delivered language", async () => {
+    const fixture = await loadPlacementFixture();
+    const error = await Effect.runPromise(
+      makeTryoutPlacement(
+        fixture.context,
+        { ...fixture.question, choices: { id: fixture.question.choices.id } },
+        ActiveAppLocaleSchema.make("en")
+      ).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({ reason: "choices" });
   });
 });

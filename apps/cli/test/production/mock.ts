@@ -6,6 +6,7 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   MaterialHeadSchema,
   QuestionHeadSchema,
@@ -18,11 +19,11 @@ import { makeProductionTarget } from "#test/target";
 const HEAD_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const MATERIAL_HEAD = MaterialHeadSchema.make({
   artifactHash: HEAD_HASH,
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   compilerConfigHash: HEAD_HASH,
   contentKey: ContentKeySchema.make("test:material"),
   delivery: "public",
   family: "material",
-  locale: "en",
   projectionHash: HEAD_HASH,
   publicPath: PublicPathSchema.make("test/material"),
   rendererDomain: "mathematics",
@@ -33,13 +34,13 @@ const MATERIAL_HEAD = MaterialHeadSchema.make({
 });
 const QUESTION_HEAD = QuestionHeadSchema.make({
   artifactHash: HEAD_HASH,
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   compilerConfigHash: HEAD_HASH,
   contentKey: ContentKeySchema.make(
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question"
   ),
   delivery: "authenticated",
   family: "question",
-  locale: "en",
   projectionHash: HEAD_HASH,
   rendererDomain: "snbt-general",
   sourceHash: HEAD_HASH,
@@ -172,6 +173,14 @@ export function catalogMock(calls: TargetCalls) {
         routes: () => Stream.empty,
       });
     },
+  };
+}
+
+/** Supplies one already verified review manifest identity for orchestration. */
+export function editorialReviewMock() {
+  return {
+    loadEditorialReviewManifest: () =>
+      Effect.succeed({ digest: HEAD_HASH, records: [] }),
   };
 }
 

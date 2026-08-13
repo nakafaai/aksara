@@ -55,9 +55,10 @@ export const transportSnapshot = Schema.decodeUnknownSync(
 )({
   family: "program",
   manifest: {
+    activeAppLocales: ["en", "id"],
     curriculumRowCount: 390,
-    format: "program-v3",
-    locales: ["en", "id"],
+    editorialReviewDigest: snapshotRowDigest,
+    format: "localized-program-snapshot",
     programRowCount: 6,
     rowCount: 396,
     rowDigest: snapshotRowDigest,
@@ -93,10 +94,18 @@ export const transportSnapshotRow = Schema.decodeUnknownSync(
           url: "https://example.test/publisher-transport",
         },
       ],
-      translations: {
-        en: { publicSlug: "test-http-program", title: "Test HTTP Program" },
-        id: { publicSlug: "program-http-uji", title: "Program HTTP Uji" },
-      },
+      translations: [
+        {
+          appLocale: "en",
+          publicSlug: "test-http-program",
+          title: "Test HTTP Program",
+        },
+        {
+          appLocale: "id",
+          publicSlug: "program-http-uji",
+          title: "Program HTTP Uji",
+        },
+      ],
       version: { label: "Test-only version" },
     },
     rowHash: snapshotRowHash,
@@ -108,11 +117,16 @@ export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
 )({
   keyId: "test-http-key",
   manifest: {
+    activeAppLocales: ["en", "id"],
+    baseActiveAppLocales: null,
+    baseEditorialReviewDigest: null,
     baseManifestHash: null,
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: 1,
+    editorialReviewDigest: snapshotRowDigest,
+    format: "localized-content-release",
     itemCount: 2,
     itemsDigest: transportArtifactHash,
     origin: { kind: "git", sha: "a".repeat(40) },
@@ -129,8 +143,12 @@ export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
     routeDigest: manifestHash,
     scope: {
       content: [
-        { contentKey: "test:deleted", family: "material", locale: "id" },
-        { contentKey: "test:http", family: "material", locale: "en" },
+        {
+          artifactLocale: "id",
+          contentKey: "test:deleted",
+          family: "material",
+        },
+        { artifactLocale: "en", contentKey: "test:http", family: "material" },
       ],
       families: [],
       snapshots: [],
@@ -148,6 +166,9 @@ export const transportRecovery: RollbackSignedContentRelease =
     ...transportRelease,
     manifest: {
       ...transportRelease.manifest,
+      baseActiveAppLocales: transportRelease.manifest.activeAppLocales,
+      baseEditorialReviewDigest:
+        transportRelease.manifest.editorialReviewDigest,
       baseManifestHash: transportRelease.manifestHash,
       baseReleaseId: transportRelease.manifest.releaseId,
       baseResultCount: transportRelease.manifest.resultCount,
@@ -164,8 +185,8 @@ export const transportRecovery: RollbackSignedContentRelease =
   });
 const transportRoute = ContentRouteItemSchema.make({
   change: {
+    appLocale: transportContent.projection.appLocale,
     contentKey: transportContent.projection.contentKey,
-    locale: transportContent.projection.locale,
     operation: "bind",
     publicPath: transportContent.projection.publicPath,
   },

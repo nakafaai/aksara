@@ -1,4 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
+import type { EditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
@@ -60,6 +61,7 @@ export class ContentCatalogSnapshotError extends Schema.TaggedError<ContentCatal
 /** Sources required to validate every current structured snapshot family. */
 interface CatalogSnapshotInput<E, R> {
   readonly checkoutRoot: string;
+  readonly editorialReview: EditorialReviewManifest;
   /** Replays validated question heads for exact try-out placement binding. */
   readonly questionHeads: () => Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
@@ -116,6 +118,7 @@ export const validateCatalogSnapshots: <E, R>(
 ) {
   const prepared = yield* prepareReleaseSnapshots({
     checkoutRoot: input.checkoutRoot,
+    editorialReviewDigest: input.editorialReview.digest,
     families: ["program", "quran", "tryout"],
     previousSnapshots: null,
     questionHeads: input.questionHeads,
@@ -144,7 +147,6 @@ export const validateCatalogSnapshots: <E, R>(
     )
   );
   const { program, quran, tryout } = yield* selectCompleteManifests(manifests);
-
   return CatalogSnapshotEvidenceSchema.make({
     program: {
       rowCount: program.manifest.rowCount,

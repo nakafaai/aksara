@@ -1,11 +1,16 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
+import { NodeContext } from "@effect/platform-node";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-
-import { loadQuestionContent } from "#corpus/question-bank/content";
-import { QUESTION_SOURCE_FILES } from "#corpus/question-bank/path";
+import {
+  loadQuestionContent,
+  selectQuestionContent,
+} from "#corpus/question-bank/content";
+import { questionSourceFiles } from "#corpus/question-bank/path";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
@@ -27,12 +32,15 @@ const choices: QuestionChoices = {
 };
 
 export default choices;`;
+const genericQuestionSourceFiles = questionSourceFiles(
+  TryoutKeySchema.make("general-reasoning")
+);
 
 /** Creates recursive directory output for synthetic question directories. */
 function questionEntries(...roots: readonly string[]) {
   return roots.flatMap((root) => [
     root,
-    ...QUESTION_SOURCE_FILES.map((file) => `${root}/${file}`),
+    ...genericQuestionSourceFiles.map((file) => `${root}/${file}`),
   ]);
 }
 
@@ -108,21 +116,27 @@ describe("question registry", () => {
     ).sort();
     const projectedPaths = entries.map(({ sourcePath }) => sourcePath).sort();
 
-    expect(entries).toHaveLength(3360);
+    expect(entries).toHaveLength(3260);
     expect(
       new Set(
-        entries.map(({ contentKey, locale }) => `${contentKey}\0${locale}`)
+        entries.map(
+          ({ artifactLocale, contentKey }) => `${contentKey}\0${artifactLocale}`
+        )
       ).size
-    ).toBe(3360);
+    ).toBe(3260);
     expect(projectedPaths).toEqual(authoredPaths);
     expect(
       entries.filter(({ delivery }) => delivery === "authenticated")
-    ).toHaveLength(1680);
+    ).toHaveLength(1580);
     expect(
       entries.filter(({ delivery }) => delivery === "entitled")
     ).toHaveLength(1680);
-    expect(entries.filter(({ locale }) => locale === "en")).toHaveLength(1680);
-    expect(entries.filter(({ locale }) => locale === "id")).toHaveLength(1680);
+    expect(
+      entries.filter(({ artifactLocale }) => artifactLocale === "en")
+    ).toHaveLength(1620);
+    expect(
+      entries.filter(({ artifactLocale }) => artifactLocale === "id")
+    ).toHaveLength(1640);
     expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "snbt-general")
     ).toHaveLength(800);
@@ -131,7 +145,7 @@ describe("question registry", () => {
     ).toHaveLength(560);
     expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "snbt-plain")
-    ).toHaveLength(720);
+    ).toHaveLength(620);
     expect(
       entries.filter(({ rendererDomain }) => rendererDomain === "snbt-quant")
     ).toHaveLength(800);
@@ -150,24 +164,24 @@ describe("question registry", () => {
   }, async () => {
     const entries = await runRegistry(realEntries, realChoices);
     const question = entries.find(
-      ({ contentKey, locale }) =>
+      ({ artifactLocale, contentKey }) =>
         contentKey ===
           "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question" &&
-        locale === "en"
+        artifactLocale === "en"
     );
     const answer = entries.find(
-      ({ contentKey, locale }) =>
+      ({ artifactLocale, contentKey }) =>
         contentKey ===
           "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/answer" &&
-        locale === "id"
+        artifactLocale === "id"
     );
 
     expect(question).toEqual({
+      artifactLocale: "en",
       bodyKind: "question",
       contentKey:
         "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question",
       delivery: "authenticated",
-      locale: "en",
       peerContentKey:
         "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/answer",
       questionKey:
@@ -189,6 +203,43 @@ describe("question registry", () => {
       sourcePath:
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/answer.id.mdx",
     });
+  });
+
+  it("selects assessed-language prompts by delivery language for answer preview", async () => {
+    const cases = [
+      {
+        answer:
+          "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/answer.id.mdx",
+        prompt:
+          "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question.en.mdx",
+      },
+      {
+        answer:
+          "packages/corpus/question-bank/tryout/indonesia/snbt/indonesian-language/set-1/question-1/answer.en.mdx",
+        prompt:
+          "packages/corpus/question-bank/tryout/indonesia/snbt/indonesian-language/set-1/question-1/question.id.mdx",
+      },
+    ] as const;
+
+    const selectedCases = await Promise.all(
+      cases.map((testCase) =>
+        Effect.runPromise(
+          selectQuestionContent(
+            corpusRoot,
+            tryoutSources,
+            CorpusSourcePathSchema.make(testCase.answer)
+          ).pipe(Effect.provide(NodeContext.layer))
+        ).then((selected) => ({ selected, testCase }))
+      )
+    );
+
+    for (const { selected, testCase } of selectedCases) {
+      expect(selected.selected.sourcePath).toBe(testCase.answer);
+      expect(selected.entries.map(({ sourcePath }) => sourcePath)).toEqual([
+        testCase.prompt,
+        testCase.answer,
+      ]);
+    }
   });
 
   it("rejects an oversized physical question identity before projection", async () => {

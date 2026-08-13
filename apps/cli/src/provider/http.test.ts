@@ -5,6 +5,7 @@ import { MaterialPreviewDocumentSchema } from "@nakafa/aksara-contracts/preview/
 import {
   LOCAL_PREVIEW_FORMAT,
   LocalPreviewManifestSchema,
+  localPreviewArtifactPath,
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import { HashMap, Schema } from "effect";
@@ -15,7 +16,6 @@ import {
   PREVIEW_EVENTS_PATH,
   PREVIEW_MANIFEST_PATH,
   type PreviewHttpState,
-  previewArtifactPath,
 } from "#cli/provider/http";
 import { ENGLISH_ENTRY } from "#test/real";
 
@@ -117,7 +117,7 @@ describe("preview HTTP transport", () => {
       );
       const responses = await Promise.all(
         [firstHash, secondHash].map((artifactHash) =>
-          fetch(new URL(previewArtifactPath(artifactHash), origin), {
+          fetch(new URL(localPreviewArtifactPath(artifactHash), origin), {
             headers,
           })
         )
@@ -126,7 +126,7 @@ describe("preview HTTP transport", () => {
         responses.map((response) => response.text())
       );
       const unknown = await fetch(
-        new URL(previewArtifactPath(unknownHash), origin),
+        new URL(localPreviewArtifactPath(unknownHash), origin),
         { headers }
       );
       const events = await fetch(new URL(PREVIEW_EVENTS_PATH, origin), {

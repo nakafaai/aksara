@@ -3,7 +3,7 @@
 Aksara is Nakafa's trusted content compilation and publication system. It is a
 small public Turborepo. The repository contains Nakafa's real `en` and `id`
 source corpus: articles, materials, question banks, learning programs, try-out
-catalogs, and a Quran corpus generated from pinned official Tanzil and QuranEnc
+catalogs, and Quran rows parsed from pinned official Tanzil and QuranEnc
 artifacts. Production cutover is explicit and scope-owned: Nakafa currently
 serves the article, material, question, learning-program, Quran, and try-out
 scopes from signed Aksara releases. Filesystem copies of an activated scope in
@@ -109,7 +109,7 @@ pnpm names
 pnpm jsdocs
 pnpm lines
 pnpm boundaries
-pnpm quran:generate
+pnpm editorial:write -- /absolute/path/to/review-records.json
 pnpm typecheck
 pnpm test
 pnpm build

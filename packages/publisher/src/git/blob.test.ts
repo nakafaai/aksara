@@ -8,87 +8,75 @@ import {
 } from "@nakafa/aksara-contracts/limits";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import {
-  ExactProcess,
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
-import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
-
-const TEST_COMMIT_SHA = GitCommitShaSchema.make("b".repeat(40));
-const TEST_SOURCE_PATH = CorpusSourcePathSchema.make(
-  "packages/corpus/test-protocol/source/en.mdx"
-);
-const TEST_RAW_MDX = 'export const testProtocol = "byte-identical-✓";\r\n';
-const TEST_RAW_BYTES = new TextEncoder().encode(TEST_RAW_MDX);
-const TEST_REPOSITORY_ROOT = "/test-only/aksara";
-
-interface TestGitOverrides {
-  readonly blob?: string | Uint8Array;
-  readonly exitCode?: number;
-  readonly failure?: ExactProcessError;
-  readonly revision?: string;
-  readonly size?: string;
-  readonly stderr?: string | Uint8Array;
-}
-
-/** Converts one test output value into exact process bytes. */
-function outputBytes(value: string | Uint8Array | undefined) {
-  if (typeof value === "string") {
-    return new TextEncoder().encode(value);
-  }
-  return value ?? new Uint8Array();
-}
-
-/** Responds to every exact-Git command with independently overridable data. */
-function makeGitProcess(
-  overrides: TestGitOverrides,
-  commands?: ExactProcessInput[]
-) {
-  return ExactProcess.of({
-    /** Runs one deterministic exact-Git process response. */
-    run: (input) =>
-      Effect.gen(function* () {
-        commands?.push(input);
-        if (overrides.failure) {
-          return yield* overrides.failure;
-        }
-        const [, , , operation, detail] = input.args;
-        let stdout = overrides.blob ?? TEST_RAW_BYTES;
-        if (operation === "rev-parse") {
-          stdout = overrides.revision ?? `${TEST_COMMIT_SHA}\n`;
-        } else if (operation === "cat-file" && detail === "-s") {
-          stdout = overrides.size ?? `${TEST_RAW_BYTES.byteLength}\n`;
-        }
-        return {
-          exitCode: overrides.exitCode ?? 0,
-          stderr: outputBytes(overrides.stderr),
-          stdout: outputBytes(stdout),
-        };
-      }),
-  });
-}
-
-/** Reads the fixed branded test coordinate through one exact process service. */
-function readTestBlob(
-  exactProcess: typeof ExactProcess.Service,
-  maxBytes = MAX_RAW_MDX_BYTES
-) {
-  return GitBlob.pipe(
-    Effect.flatMap((gitBlob) =>
-      gitBlob.read({
-        maxBytes,
-        revision: TEST_COMMIT_SHA,
-        sourcePath: TEST_SOURCE_PATH,
-      })
-    ),
-    Effect.provide(makeGitBlobLive(TEST_REPOSITORY_ROOT)),
-    Effect.provideService(ExactProcess, exactProcess)
-  );
-}
+import {
+  makeGitProcess,
+  readTestBlob,
+  readTestBlobs,
+  TEST_COMMIT_SHA,
+  TEST_RAW_MDX,
+  TEST_REPOSITORY_ROOT,
+  TEST_SOURCE_PATH,
+} from "#test/git";
 
 describe("GitBlob", () => {
+  it("returns an empty batch without starting Git", async () => {
+    const commands: ExactProcessInput[] = [];
+
+    await expect(
+      Effect.runPromise(readTestBlobs(makeGitProcess({}, commands), []))
+    ).resolves.toEqual(new Map());
+    expect(commands).toEqual([]);
+  });
+
+  it("rejects duplicate paths and mixed revisions before starting Git", async () => {
+    const commands: ExactProcessInput[] = [];
+    const input = {
+      maxBytes: MAX_RAW_MDX_BYTES,
+      revision: TEST_COMMIT_SHA,
+      sourcePath: TEST_SOURCE_PATH,
+    };
+    const otherPath = CorpusSourcePathSchema.make(
+      "packages/corpus/test-protocol/source/id.mdx"
+    );
+    const duplicate = await Effect.runPromise(
+      readTestBlobs(makeGitProcess({}, commands), [input, input]).pipe(
+        Effect.flip
+      )
+    );
+    const mixedRevision = await Effect.runPromise(
+      readTestBlobs(makeGitProcess({}, commands), [
+        input,
+        {
+          ...input,
+          revision: GitCommitShaSchema.make("c".repeat(40)),
+          sourcePath: otherPath,
+        },
+      ]).pipe(Effect.flip)
+    );
+
+    expect(duplicate).toMatchObject({ operation: "resolve-commit" });
+    expect(mixedRevision).toMatchObject({ operation: "resolve-commit" });
+    expect(commands).toEqual([]);
+  });
+
+  it("preserves exact blob bytes before UTF-8 decoding", async () => {
+    const bytes = Uint8Array.from([0xef, 0xbb, 0xbf, 0x61]);
+    await expect(
+      Effect.runPromise(
+        readTestBlob(
+          makeGitProcess({ blob: bytes }),
+          MAX_RAW_MDX_BYTES,
+          "bytes"
+        )
+      )
+    ).resolves.toEqual(bytes);
+  });
+
   it("reads byte-identical content through explicit immutable Git coordinates", async () => {
     const commands: ExactProcessInput[] = [];
 
@@ -108,16 +96,13 @@ describe("GitBlob", () => {
         stdoutLimit: 4096,
       }),
       makeExactGitInput({
-        args: ["cat-file", "-s", `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}`],
+        args: ["cat-file", "--batch"],
         root: TEST_REPOSITORY_ROOT,
         stderrLimit: 16 * 1024,
-        stdoutLimit: 4096,
-      }),
-      makeExactGitInput({
-        args: ["cat-file", "blob", `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}`],
-        root: TEST_REPOSITORY_ROOT,
-        stderrLimit: 16 * 1024,
-        stdoutLimit: TEST_RAW_BYTES.byteLength,
+        stdin: new TextEncoder().encode(
+          `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}\n`
+        ),
+        stdoutLimit: MAX_RAW_MDX_BYTES + 97,
       }),
     ]);
   });
@@ -126,14 +111,19 @@ describe("GitBlob", () => {
     const commands: ExactProcessInput[] = [];
     const error = await Effect.runPromise(
       readTestBlob(
-        makeGitProcess({ size: `${MAX_RAW_MDX_BYTES + 1}\n` }, commands)
+        makeGitProcess(
+          { blob: new Uint8Array(), blobSize: MAX_RAW_MDX_BYTES + 1 },
+          commands
+        )
       ).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "GitBlobError",
       cause: {
-        actualBytes: MAX_RAW_MDX_BYTES + 1,
-        maxBytes: MAX_RAW_MDX_BYTES,
+        detail: {
+          actualBytes: MAX_RAW_MDX_BYTES + 1,
+          maxBytes: MAX_RAW_MDX_BYTES,
+        },
       },
       operation: "size-blob",
     });
@@ -147,7 +137,6 @@ describe("GitBlob", () => {
         readTestBlob(
           makeGitProcess({
             blob: officialBytes,
-            size: `${officialBytes.byteLength}\n`,
           }),
           MAX_REVIEWED_OFFICIAL_SOURCE_BYTES
         )
@@ -175,7 +164,6 @@ describe("GitBlob", () => {
       readTestBlob(
         makeGitProcess({
           blob: invalidUtf8,
-          size: `${invalidUtf8.byteLength}`,
         })
       ).pipe(Effect.flip)
     );
@@ -196,9 +184,19 @@ describe("GitBlob", () => {
       cause: processError,
       operation: "resolve-commit",
     });
+
+    const batchError = await Effect.runPromise(
+      readTestBlob(makeGitProcess({ batchFailure: processError })).pipe(
+        Effect.flip
+      )
+    );
+    expect(batchError).toMatchObject({
+      cause: processError,
+      operation: "read-blob",
+    });
   });
 
-  it("rejects invalid Git metadata before reading a blob body", async () => {
+  it("rejects invalid Git revision metadata before reading a blob body", async () => {
     const invalidRevision = await Effect.runPromise(
       readTestBlob(makeGitProcess({ revision: "main\n" })).pipe(Effect.flip)
     );
@@ -216,35 +214,22 @@ describe("GitBlob", () => {
       },
       operation: "resolve-commit",
     });
-
-    const invalidSize = await Effect.runPromise(
-      readTestBlob(makeGitProcess({ size: "not-a-byte-size" })).pipe(
-        Effect.flip
-      )
-    );
-    expect(invalidSize).toMatchObject({ operation: "size-blob" });
   });
 
-  it("rejects body output that disagrees with its preflight size", async () => {
+  it("rejects body output that disagrees with its batch header size", async () => {
     const oversized = await Effect.runPromise(
       readTestBlob(
-        makeGitProcess({ blob: Uint8Array.from([0x61, 0x62]), size: "1" })
+        makeGitProcess({ blob: Uint8Array.from([0x61, 0x62]), blobSize: 1 })
       ).pipe(Effect.flip)
     );
-    expect(oversized).toMatchObject({
-      cause: { actualBytes: 2, expectedBytes: 1 },
-      operation: "read-blob",
-    });
+    expect(oversized).toMatchObject({ operation: "read-blob" });
 
     const undersized = await Effect.runPromise(
       readTestBlob(
-        makeGitProcess({ blob: Uint8Array.from([0x61]), size: "2" })
+        makeGitProcess({ blob: Uint8Array.from([0x61]), blobSize: 2 })
       ).pipe(Effect.flip)
     );
-    expect(undersized).toMatchObject({
-      cause: { actualBytes: 1, expectedBytes: 2 },
-      operation: "read-blob",
-    });
+    expect(undersized).toMatchObject({ operation: "read-blob" });
   });
 
   it("types nonzero and non-UTF-8 Git diagnostics", async () => {

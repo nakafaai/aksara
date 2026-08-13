@@ -1,5 +1,5 @@
 import { Schema } from "effect";
-import { ContentAuthorSchema, ContentLocaleSchema } from "#contracts/content";
+import { ContentAuthorSchema } from "#contracts/content";
 import { DateOnlySchema } from "#contracts/date";
 import {
   canonicalizeLearningGraphIdentity,
@@ -7,6 +7,11 @@ import {
   LearningGraphIdentitySchema,
 } from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
+import {
+  type AppLocale,
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "#contracts/locale";
 
 const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
@@ -17,6 +22,27 @@ const MaterialPublicPathSchema = PublicPathSchema.pipe(
     message: () => "Expected a material lesson path with a parent route.",
   })
 );
+
+/** Locale-owned root namespace for public material routes. */
+export const MaterialPublicNamespaceSchema = Schema.Literal(
+  "subjects",
+  "materi",
+  "faecher"
+);
+export type MaterialPublicNamespace = typeof MaterialPublicNamespaceSchema.Type;
+
+/** Resolves the only public material namespace owned by one app locale. */
+export function materialPublicNamespace(
+  appLocale: AppLocale
+): MaterialPublicNamespace {
+  if (appLocale === AppLocaleSchema.make("en")) {
+    return "subjects";
+  }
+  if (appLocale === AppLocaleSchema.make("id")) {
+    return "materi";
+  }
+  return "faecher";
+}
 
 /** Stable reusable material identity preserved from Nakafa's source registry. */
 export const MaterialKeySchema = Schema.String.pipe(
@@ -48,9 +74,10 @@ export type MaterialMetadata = typeof MaterialMetadataSchema.Type;
 
 /** Stable route fields shared by material routes and published projections. */
 const MaterialLessonRouteFields = {
+  appLocale: AppLocaleSchema,
+  artifactLocale: ArtifactLocaleSchema,
   contentKey: ContentKeySchema,
   graph: LearningGraphIdentitySchema,
-  locale: ContentLocaleSchema,
   materialKey: MaterialKeySchema,
   order: Schema.Number.pipe(Schema.int(), Schema.positive()),
   publicPath: MaterialPublicPathSchema,
@@ -58,12 +85,6 @@ const MaterialLessonRouteFields = {
 };
 
 /** Non-authored material route fields preserved from Nakafa's registry. */
-export const MaterialLessonRouteSchema = Schema.Struct({
-  ...MaterialLessonRouteFields,
-  topicTitle: Schema.String,
-});
-export type MaterialLessonRoute = typeof MaterialLessonRouteSchema.Type;
-
 /** Fields shared by the filtered material projection contract. */
 const MaterialLessonProjectionFields = {
   ...MaterialLessonRouteFields,
@@ -89,7 +110,7 @@ function hasCoherentParentPath(input: {
 /** Checks signed graph identities against stable material source keys. */
 function hasCoherentMaterialGraph(input: {
   readonly graph: LearningGraphIdentity;
-  readonly locale: typeof ContentLocaleSchema.Type;
+  readonly appLocale: typeof AppLocaleSchema.Type;
   readonly materialKey: string;
   readonly sectionKey: string;
 }) {
@@ -101,21 +122,67 @@ function hasCoherentMaterialGraph(input: {
   const object = `material-section:${domain}:${topic}:${input.sectionKey}`;
   return (
     input.graph.alignmentId === `alignment:${lens}:${object}` &&
-    input.graph.assetId === `asset:${input.locale}:${lens}:${object}` &&
+    input.graph.assetId === `asset:${input.appLocale}:${lens}:${object}` &&
     input.graph.conceptId === `concept:${lens}:${topic}` &&
     input.graph.learningObjectId === `lo:${object}` &&
     input.graph.lensId === `lens:${lens}`
   );
 }
 
+/** Public material bodies use the same locale for routes and artifacts. */
+function hasCoherentMaterialLocales(input: {
+  readonly appLocale: string;
+  readonly artifactLocale: string;
+}) {
+  return input.appLocale === input.artifactLocale;
+}
+
+/** Checks one signed material route against its locale-owned namespace. */
+function hasCoherentMaterialNamespace(input: {
+  readonly appLocale: AppLocale;
+  readonly publicPath: string;
+}) {
+  return input.publicPath.startsWith(
+    `${materialPublicNamespace(input.appLocale)}/`
+  );
+}
+
+/** Non-authored material route fields preserved from Nakafa's registry. */
+export const MaterialLessonRouteSchema = Schema.Struct({
+  ...MaterialLessonRouteFields,
+  topicTitle: Schema.String,
+}).pipe(
+  Schema.filter(hasCoherentMaterialLocales, {
+    message: () =>
+      "Expected public material route and artifact locales to match.",
+  }),
+  Schema.filter(hasCoherentMaterialNamespace, {
+    message: () =>
+      "Expected the material public path to use its locale-owned namespace.",
+  }),
+  Schema.filter(hasCoherentMaterialGraph, {
+    message: () =>
+      "Expected material graph identities to match its stable source keys.",
+  })
+);
+export type MaterialLessonRoute = typeof MaterialLessonRouteSchema.Type;
+
 /** Canonical route read model for one published material lesson body. */
 export const MaterialLessonProjectionSchema = Schema.Struct({
   ...MaterialLessonProjectionFields,
-  topicTitle: MaterialLessonRouteSchema.fields.topicTitle,
+  topicTitle: Schema.String,
 }).pipe(
+  Schema.filter(hasCoherentMaterialLocales, {
+    message: () =>
+      "Expected public material route and artifact locales to match.",
+  }),
   Schema.filter(hasCoherentParentPath, {
     message: () =>
       "Expected the material parent path to match the lesson public path.",
+  }),
+  Schema.filter(hasCoherentMaterialNamespace, {
+    message: () =>
+      "Expected the material public path to use its locale-owned namespace.",
   }),
   Schema.filter(hasCoherentMaterialGraph, {
     message: () =>
@@ -145,10 +212,11 @@ export function canonicalizeMaterialProjection(
   projection: MaterialLessonProjection
 ) {
   return JSON.stringify({
+    appLocale: projection.appLocale,
+    artifactLocale: projection.artifactLocale,
     contentKey: projection.contentKey,
     graph: canonicalizeLearningGraphIdentity(projection.graph),
     kind: projection.kind,
-    locale: projection.locale,
     materialKey: projection.materialKey,
     metadata: {
       authors: projection.metadata.authors.map(({ name }) => ({ name })),

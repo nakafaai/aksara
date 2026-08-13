@@ -26,14 +26,14 @@ describe("publication scope selectors", () => {
     ).resolves.toEqual({
       content: [
         {
+          artifactLocale: "en",
           contentKey: FUNCTION_CONTENT_KEY,
           family: "material",
-          locale: "en",
         },
         {
+          artifactLocale: "id",
           contentKey: FUNCTION_CONTENT_KEY,
           family: "material",
-          locale: "id",
         },
       ],
       families: [],
@@ -63,7 +63,6 @@ describe("publication scope selectors", () => {
     { selectors: ["snapshot:program", "snapshot:program"] },
     { selectors: ["snapshot:unknown"] },
     { selectors: [`content:unknown:en:${FUNCTION_CONTENT_KEY}`] },
-    { selectors: [`content:material:de:${FUNCTION_CONTENT_KEY}`] },
     { selectors: ["content:material:en"] },
     { selectors: ["material:en:function-concept"] },
   ])(

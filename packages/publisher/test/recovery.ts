@@ -22,6 +22,8 @@ export function completedRecovery(
 ): PublicationSuccess {
   const manifest = {
     ...transportRelease.manifest,
+    baseActiveAppLocales: transportRelease.manifest.activeAppLocales,
+    baseEditorialReviewDigest: transportRelease.manifest.editorialReviewDigest,
     baseManifestHash: transportRelease.manifestHash,
     baseReleaseId: originReleaseId,
     baseResultCount: transportRelease.manifest.resultCount,
@@ -44,7 +46,9 @@ export function completedRecovery(
       value: {
         receipt: {
           activatedHeads: manifest.upsertCount,
+          activeAppLocales: manifest.activeAppLocales,
           deletedHeads: manifest.deleteCount,
+          editorialReviewDigest: manifest.editorialReviewDigest,
           manifestHash: release.manifestHash,
           projectionDigest: manifest.projectionDigest,
           releaseId: manifest.releaseId,

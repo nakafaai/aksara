@@ -6,11 +6,12 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ProgramSnapshotRowSchema } from "@nakafa/aksara-contracts/program/snapshot/spec";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ProgramSnapshotRowSchema } from "@nakafa/aksara-contracts/program/snapshot/row";
 import {
   QuranSearchRowSchema,
   QuranSnapshotRowSchema,
-} from "@nakafa/aksara-contracts/quran/spec";
+} from "@nakafa/aksara-contracts/quran/snapshot/row";
 import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot/data";
 import {
   MAX_SNAPSHOT_BATCH_BYTES,
@@ -56,10 +57,18 @@ function programRow(index: number, title = "Test Program"): ProgramRow {
             url: "https://example.test/publisher-batch",
           },
         ],
-        translations: {
-          en: { publicSlug: `test-program-${index}`, title },
-          id: { publicSlug: `program-uji-${index}`, title },
-        },
+        translations: [
+          {
+            appLocale: "en",
+            publicSlug: `test-program-${index}`,
+            title,
+          },
+          {
+            appLocale: "id",
+            publicSlug: `program-uji-${index}`,
+            title,
+          },
+        ],
         version: { label: "Test-only version" },
       },
       rowHash: snapshotId,
@@ -73,9 +82,9 @@ function quranRow(boundSnapshotId: typeof snapshotId): QuranRow {
     family: "quran",
     record: QuranSnapshotRowSchema.make({
       payload: QuranSearchRowSchema.make({
-        graph: materialGraph("en", "quran", "test-batch"),
+        appLocale: AppLocaleSchema.make("en"),
+        graph: materialGraph(AppLocaleSchema.make("en"), "quran", "test-batch"),
         kind: "quran-search",
-        locale: "en",
         route: PublicPathSchema.make("quran/1"),
         surahNumber: 1,
         text: "Test-only Quran protocol text",

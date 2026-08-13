@@ -19,13 +19,13 @@ function accepts(schema: Schema.Schema.AnyNoContext, input: unknown) {
 describe("content routes", () => {
   it("decodes and canonically serializes bind and delete changes", () => {
     const bind = Schema.decodeUnknownSync(ContentRouteChangeSchema)({
+      appLocale: "en",
       contentKey: "test:route",
-      locale: "en",
       operation: "bind",
       publicPath: "subjects/test/route",
     });
     const deletion = Schema.decodeUnknownSync(ContentRouteChangeSchema)({
-      locale: "id",
+      appLocale: "id",
       operation: "delete",
       publicPath: "subjects/test/rute",
     });
@@ -46,23 +46,23 @@ describe("content routes", () => {
   it("rejects incomplete and unsupported route changes", () => {
     for (const change of [
       {
-        locale: "en",
+        appLocale: "en",
         operation: "bind",
         publicPath: "subjects/test/route",
       },
       {
+        appLocale: "en",
         contentKey: "test:route",
-        locale: "en",
         operation: "delete",
         publicPath: "subjects/test/route",
       },
       {
-        locale: "de",
+        appLocale: "fr",
         operation: "delete",
         publicPath: "subjects/test/route",
       },
       {
-        locale: "en",
+        appLocale: "en",
         operation: "move",
         publicPath: "subjects/test/route",
       },

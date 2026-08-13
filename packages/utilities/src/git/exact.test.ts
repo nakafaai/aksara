@@ -68,6 +68,21 @@ describe("exact Git process", () => {
     });
   });
 
+  it("forwards explicit standard input without changing the Git policy", () => {
+    const stdin = new TextEncoder().encode("batch input");
+    const input = makeExactGitInput({
+      args: ["cat-file", "--batch"],
+      root: "/code/aksara",
+      stderrLimit: 20,
+      stdin,
+      stdoutLimit: 10,
+    });
+
+    expect(input.stdin).toBe(stdin);
+    expect(input.environment).toBe(GIT_ENVIRONMENT);
+    expect(input.executable).toBe(GIT_EXECUTABLE);
+  });
+
   it("ignores foreign ambient Git coordinates in a real repository", async () => {
     const root = mkdtempSync(join(tmpdir(), "aksara-git-exact-"));
     mkdirSync(join(root, "foreign"));

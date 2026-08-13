@@ -7,12 +7,10 @@ import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { invertContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import {
-  ReleaseBundleVerificationDecodeError,
   ReleaseVerificationDecodeError,
   verifyContentReleaseBundle,
   verifyRollbackContentReleaseBundle,
   verifySignedContentRelease,
-  verifySignedContentReleaseWire,
 } from "#contracts/release/verify";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
 import {
@@ -20,7 +18,6 @@ import {
   verificationManifest as manifest,
   verificationRendererManifest as rendererManifest,
   signVerificationRelease as signRelease,
-  signVerificationReleaseV2 as signReleaseV2,
   verificationKeyResolver as trustedResolver,
 } from "#contracts/test/release-verification";
 import { replacementSnapshots } from "#contracts/test/request";
@@ -63,37 +60,11 @@ function reject(input: unknown, resolver = trustedResolver) {
     )
   );
 }
-/** Runs historical or current wire verification and returns its typed failure. */
-function rejectWire(input: unknown) {
-  return Effect.runPromise(
-    verifySignedContentReleaseWire(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
-      Effect.flip
-    )
-  );
-}
-/** Authenticates one historical or current release with the trusted test key. */
-function verifyWire(input: unknown) {
-  return Effect.runPromise(
-    verifySignedContentReleaseWire(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-    )
-  );
-}
 /** Runs bundle verification with the trusted test resolver. */
 function verifyBundle(input: unknown) {
   return Effect.runPromise(
     verifyContentReleaseBundle(input).pipe(
       Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
-    )
-  );
-}
-/** Returns one typed production bundle decoding or verification failure. */
-function rejectBundle(input: unknown) {
-  return Effect.runPromise(
-    verifyContentReleaseBundle(input).pipe(
-      Effect.provideService(ContentVerificationKeyResolver, trustedResolver),
-      Effect.flip
     )
   );
 }
@@ -116,34 +87,13 @@ describe("server-only release verification", () => {
       )
     ).resolves.toEqual(release);
   });
-  it("authenticates both signed wire generations without widening v1", async () => {
-    const historical = signRelease();
-    const current = signReleaseV2();
-
-    await expect(verifyWire(historical)).resolves.toEqual(historical);
-    await expect(verifyWire(current)).resolves.toEqual(current);
-    await expect(
-      rejectBundle({ release: current, rendererManifest })
-    ).resolves.toBeInstanceOf(ReleaseBundleVerificationDecodeError);
-    await expect(
-      Effect.runPromise(
-        verifySignedContentRelease(current).pipe(
-          Effect.provideService(
-            ContentVerificationKeyResolver,
-            trustedResolver
-          ),
-          Effect.flip
-        )
-      )
-    ).resolves.toBeInstanceOf(ReleaseVerificationDecodeError);
-  });
-  it("maps current wire decoding and hashing failures", async () => {
-    const current = signReleaseV2();
+  it("maps current decoding and hashing failures", async () => {
+    const release = signRelease();
     const [decodeError, hashError] = await Promise.all([
-      rejectWire({ unexpected: true }),
-      rejectWire({
-        ...current,
-        manifest: { ...current.manifest, releaseId: "hash-failure" },
+      reject({ unexpected: true }),
+      reject({
+        ...release,
+        manifest: { ...release.manifest, releaseId: "hash-failure" },
       }),
     ]);
 

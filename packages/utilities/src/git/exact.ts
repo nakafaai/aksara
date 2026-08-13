@@ -18,9 +18,10 @@ export function makeExactGitInput(input: {
   readonly args: readonly string[];
   readonly root: string;
   readonly stderrLimit: number;
+  readonly stdin?: Uint8Array;
   readonly stdoutLimit: number;
 }): ExactProcessInput {
-  return {
+  const exactInput: ExactProcessInput = {
     args: [
       `--git-dir=${join(input.root, ".git")}`,
       `--work-tree=${input.root}`,
@@ -33,4 +34,8 @@ export function makeExactGitInput(input: {
     stderrLimit: input.stderrLimit,
     stdoutLimit: input.stdoutLimit,
   };
+  if (input.stdin === undefined) {
+    return exactInput;
+  }
+  return { ...exactInput, stdin: input.stdin };
 }

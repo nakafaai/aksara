@@ -35,7 +35,7 @@ const keys = generateKeyPairSync("ed25519");
 const publicKey = keys.publicKey
   .export({ format: "pem", type: "spki" })
   .toString();
-const message = "nakafa.aksara.signature.test.v1";
+const message = "nakafa.aksara.signature.test";
 const signature = Ed25519SignatureSchema.make(
   sign(null, Buffer.from(message, "utf8"), keys.privateKey).toString(
     "base64url"

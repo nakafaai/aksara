@@ -9,6 +9,10 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
+  ACTIVE_APP_LOCALES,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
+import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
 } from "@nakafa/aksara-contracts/release";
@@ -29,13 +33,13 @@ const sourceHash = Sha256HashSchema.make(
   `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
 );
 const payload = CompiledContentPayloadSchema.make({
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   byteLength: 1,
   compiledCode: "x",
   compilerConfigHash: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
   compilerVersion: "0.1.0",
   contentKey: ContentKeySchema.make("test:rollback-artifact"),
-  format: "mdx-function-body-v1",
-  locale: "en",
+  format: "mdx-function-body",
   mdxCompilerVersion: "3.1.1",
   plainText: rawMdx,
   rawMdx,
@@ -71,10 +75,10 @@ const releaseId = ReleaseIdSchema.make("test-rollback-release");
 const item = ContentReleaseItemSchema.make({
   change: {
     artifactHash: artifact.artifactHash,
+    artifactLocale: payload.artifactLocale,
     contentKey: payload.contentKey,
     delivery: "public",
     family: "material",
-    locale: payload.locale,
     operation: "upsert",
     rendererDomain: payload.rendererDomain,
     sourcePath: CorpusSourcePathSchema.make(
@@ -85,11 +89,16 @@ const item = ContentReleaseItemSchema.make({
   releaseId,
 });
 const manifest = ContentReleaseManifestSchema.make({
+  activeAppLocales: ACTIVE_APP_LOCALES,
+  baseActiveAppLocales: ACTIVE_APP_LOCALES,
+  baseEditorialReviewDigest: Sha256HashSchema.make(`sha256:${"2".repeat(64)}`),
   baseManifestHash: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
   baseReleaseId: rollbackOf,
   baseResultCount: 1,
   baseResultDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
   deleteCount: 0,
+  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"3".repeat(64)}`),
+  format: "localized-content-release",
   itemCount: 1,
   itemsDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   origin: { kind: "rollback", releaseId: rollbackOf },
@@ -107,9 +116,9 @@ const manifest = ContentReleaseManifestSchema.make({
   scope: {
     content: [
       {
+        artifactLocale: item.change.artifactLocale,
         contentKey: item.change.contentKey,
         family: item.change.family,
-        locale: item.change.locale,
       },
     ],
     families: [],

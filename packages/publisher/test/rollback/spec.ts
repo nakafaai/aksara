@@ -9,6 +9,10 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialLessonProjectionSchema,
@@ -37,6 +41,8 @@ interface MaterialFixtureInput {
 
 /** Builds one internally coherent derived material state and compact head. */
 export function makeDerivedMaterial(input: MaterialFixtureInput) {
+  const appLocale = AppLocaleSchema.make("en");
+  const artifactLocale = ArtifactLocaleSchema.make("en");
   const contentKey = ContentKeySchema.make(input.contentKey);
   const publicPath = PublicPathSchema.make(input.publicPath);
   const sourcePath = CorpusSourcePathSchema.make(
@@ -47,8 +53,10 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
   );
   const projection = MaterialLessonProjectionSchema.make({
     ...baseProjection,
+    appLocale,
+    artifactLocale,
     contentKey,
-    graph: materialGraph("en", "material", `test-${input.hashCharacter}`),
+    graph: materialGraph(appLocale, "material", `test-${input.hashCharacter}`),
     parentPath: PublicPathSchema.make(
       input.publicPath.slice(0, input.publicPath.lastIndexOf("/"))
     ),
@@ -69,15 +77,15 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
   });
   const change = {
     artifactHash: hash,
+    artifactLocale,
     contentKey,
     delivery: "public" as const,
     family: "material" as const,
-    locale: "en" as const,
     operation: "upsert" as const,
     rendererDomain: "mathematics" as const,
     sourcePath,
   };
-  const state: DerivedRollbackState = {
+  const state = {
     artifact,
     item: {
       change,
@@ -86,15 +94,15 @@ export function makeDerivedMaterial(input: MaterialFixtureInput) {
     },
     kind: "upsert",
     projection,
-  };
+  } satisfies DerivedRollbackState;
   const snapshot = snapshotRollbackState(state);
   const head = MaterialHeadSchema.make({
     artifactHash: change.artifactHash,
+    artifactLocale: change.artifactLocale,
     compilerConfigHash: payload.compilerConfigHash,
     contentKey: change.contentKey,
     delivery: change.delivery,
     family: "material",
-    locale: change.locale,
     projectionHash: hashContentProjection(projection),
     publicPath: projection.publicPath,
     rendererDomain: change.rendererDomain,
@@ -114,12 +122,13 @@ export function makeDerivedDelete(input: {
   readonly index: number;
   readonly releaseId?: ReleaseId;
 }) {
+  const artifactLocale = ArtifactLocaleSchema.make("en");
   return {
     item: {
       change: {
+        artifactLocale,
         contentKey: ContentKeySchema.make(input.contentKey),
         family: "material" as const,
-        locale: "en" as const,
         operation: "delete" as const,
       },
       index: input.index,

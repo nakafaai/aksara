@@ -1,6 +1,14 @@
-import type { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import {
+  type ActiveAppLocale,
+  ArtifactLocaleSchema,
+  artifactLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
-import { TryoutPlacementSourceSchema } from "@nakafa/aksara-contracts/tryout/spec";
+import {
+  deliveryLanguageForSection,
+  questionArtifactLocaleForSection,
+} from "@nakafa/aksara-contracts/tryout/language";
+import { TryoutPlacementSourceSchema } from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Schema } from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
@@ -22,7 +30,7 @@ export class TryoutPlacementError extends Schema.TaggedError<TryoutPlacementErro
   "TryoutPlacementError",
   {
     questionKey: QuestionKeySchema,
-    reason: Schema.Literal("decode", "order", "owner"),
+    reason: Schema.Literal("choices", "decode", "order", "owner"),
   }
 ) {}
 
@@ -45,7 +53,7 @@ export const makeTryoutPlacement = Effect.fn(
 )(function* (
   context: TryoutPlacementContext,
   question: QuestionSource,
-  locale: typeof ContentLocaleSchema.Type
+  appLocale: ActiveAppLocale
 ) {
   if (
     !ownsContext(context) ||
@@ -64,18 +72,34 @@ export const makeTryoutPlacement = Effect.fn(
     });
   }
   const { section, set, source, track } = context;
+  const deliveryLanguage = deliveryLanguageForSection(section.key, appLocale);
+  const questionArtifactLocale = questionArtifactLocaleForSection(
+    section.key,
+    appLocale
+  );
+  const answerArtifactLocale = ArtifactLocaleSchema.make(appLocale);
+  const choices = question.choices[artifactLocaleCode(questionArtifactLocale)];
+  if (choices === undefined) {
+    return yield* new TryoutPlacementError({
+      questionKey: question.questionKey,
+      reason: "choices",
+    });
+  }
   return yield* Schema.decodeUnknown(TryoutPlacementSourceSchema)(
     {
+      answerArtifactLocale,
       answerContentKey: `${question.questionKey}/answer`,
-      choices: question.choices[locale].map(({ label, value }, index) => ({
+      appLocale,
+      choices: choices.map(({ label, value }, index) => ({
         isCorrect: value,
         label,
         optionKey: `option-${index + 1}`,
         order: index + 1,
       })),
       countryKey: source.countryKey,
+      deliveryLanguage,
       examKey: source.examKey,
-      locale,
+      questionArtifactLocale,
       questionContentKey: `${question.questionKey}/question`,
       questionOrder: question.questionNumber,
       questionSourcePath: question.sourceRoot,

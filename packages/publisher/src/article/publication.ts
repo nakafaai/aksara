@@ -1,13 +1,12 @@
 import type { FileSystem, Path } from "@effect/platform";
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import {
-  ContentLocaleSchema,
-  compareContentHeads,
-} from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   ArticleCategorySchema,
+  ArticleRouteSlugSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
 import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
@@ -37,7 +36,7 @@ import {
 
 const ArticleFamilyFieldSchema = Schema.Literal(
   "contentKey",
-  "locale",
+  "artifactLocale",
   "publicPath",
   "rendererDomain",
   "sourcePath"
@@ -46,27 +45,39 @@ const ArticleFamilyFieldSchema = Schema.Literal(
 /** A target returned the same article identity more than once. */
 export class ArticleHeadDuplicateError extends Schema.TaggedError<ArticleHeadDuplicateError>()(
   "ArticleHeadDuplicateError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** A target returned article heads outside canonical content-head order. */
 export class ArticleHeadOrderError extends Schema.TaggedError<ArticleHeadOrderError>()(
   "ArticleHeadOrderError",
-  { contentKey: ContentKeySchema, locale: ContentLocaleSchema }
+  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
 ) {}
 
 /** An article-head page contained a route or source owned by another family. */
 export class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamilyError>()(
   "ArticleHeadFamilyError",
   {
+    artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
     field: ArticleFamilyFieldSchema,
-    locale: ContentLocaleSchema,
   }
 ) {}
 
 interface HeadOrderState {
   readonly previous: ArticleHead | undefined;
+}
+
+interface ArticleHeadOwner {
+  readonly publicPath: string;
+}
+
+/** Builds the stable key shared by one registry entry and published head. */
+function headOwnerKey(input: {
+  readonly artifactLocale: string;
+  readonly contentKey: string;
+}) {
+  return `${input.artifactLocale}\0${input.contentKey}`;
 }
 
 /** Every failure possible while replaying authoritative article records. */
@@ -116,6 +127,7 @@ export type PrepareArticlePublicationError<E> =
 /** Finds the first field proving a head does not own its article source. */
 function mismatchedFamilyField(
   head: ArticleHead,
+  ownerByHead: ReadonlyMap<string, ArticleHeadOwner>,
   rendererByCategory: ReadonlyMap<string, RendererDomain>
 ): typeof ArticleFamilyFieldSchema.Type | undefined {
   const [family, category, slug, contentRemainder] = head.contentKey.split("/");
@@ -129,7 +141,20 @@ function mismatchedFamilyField(
   ) {
     return "contentKey";
   }
-  if (String(head.publicPath) !== String(head.contentKey)) {
+  const [routeFamily, routeCategory, routeSlug, routeRemainder] =
+    head.publicPath?.split("/") ?? [];
+  if (
+    routeFamily !== "articles" ||
+    routeCategory === undefined ||
+    !Schema.is(ArticleRouteSlugSchema)(routeCategory) ||
+    routeSlug === undefined ||
+    !Schema.is(ArticleRouteSlugSchema)(routeSlug) ||
+    routeRemainder !== undefined
+  ) {
+    return "publicPath";
+  }
+  const owner = ownerByHead.get(headOwnerKey(head));
+  if (owner !== undefined && head.publicPath !== owner.publicPath) {
     return "publicPath";
   }
   const rendererDomain = rendererByCategory.get(category);
@@ -161,8 +186,8 @@ function mismatchedFamilyField(
   ) {
     return "sourcePath";
   }
-  if (fileName !== `${head.locale}.mdx`) {
-    return "locale";
+  if (fileName !== `${head.artifactLocale}.mdx`) {
+    return "artifactLocale";
   }
   if (`${group}-${name}` !== slug) {
     return "sourcePath";
@@ -173,18 +198,19 @@ function mismatchedFamilyField(
 function validatePublishedHead(
   state: HeadOrderState,
   head: ArticleHead,
+  ownerByHead: ReadonlyMap<string, ArticleHeadOwner>,
   rendererByCategory: ReadonlyMap<string, RendererDomain>
 ): Effect.Effect<
   readonly [HeadOrderState, ArticleHead],
   ArticleHeadDuplicateError | ArticleHeadFamilyError | ArticleHeadOrderError
 > {
-  const field = mismatchedFamilyField(head, rendererByCategory);
+  const field = mismatchedFamilyField(head, ownerByHead, rendererByCategory);
   if (field !== undefined) {
     return Effect.fail(
       new ArticleHeadFamilyError({
+        artifactLocale: head.artifactLocale,
         contentKey: head.contentKey,
         field,
-        locale: head.locale,
       })
     );
   }
@@ -195,16 +221,16 @@ function validatePublishedHead(
     if (comparison === 0) {
       return Effect.fail(
         new ArticleHeadDuplicateError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }
     if (comparison > 0) {
       return Effect.fail(
         new ArticleHeadOrderError({
+          artifactLocale: head.artifactLocale,
           contentKey: head.contentKey,
-          locale: head.locale,
         })
       );
     }
@@ -215,12 +241,13 @@ function validatePublishedHead(
 /** Proves every published article head before the constant-space merge. */
 function validatePublishedHeads<E, R>(
   published: Stream.Stream<ArticleHead, E, R>,
+  ownerByHead: ReadonlyMap<string, ArticleHeadOwner>,
   rendererByCategory: ReadonlyMap<string, RendererDomain>
 ) {
   const initial: HeadOrderState = { previous: undefined };
   return published.pipe(
     Stream.mapAccumEffect(initial, (state, head) =>
-      validatePublishedHead(state, head, rendererByCategory)
+      validatePublishedHead(state, head, ownerByHead, rendererByCategory)
     )
   );
 }
@@ -243,13 +270,21 @@ export const prepareArticlePublication: <E, R>(
     Effect.mapError(mapArticleSourceError(input.checkoutRoot))
   );
   const rendererByCategory = new Map<string, RendererDomain>();
+  const ownerByHead = new Map<string, ArticleHeadOwner>();
   for (const entry of entries) {
     rendererByCategory.set(entry.route.category, entry.rendererDomain);
+    ownerByHead.set(headOwnerKey(entry.route), {
+      publicPath: entry.route.publicPath,
+    });
   }
   const plans = planArticlePublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(input.published, rendererByCategory),
+    published: validatePublishedHeads(
+      input.published,
+      ownerByHead,
+      rendererByCategory
+    ),
     rendererManifest,
     scope: input.scope,
   });

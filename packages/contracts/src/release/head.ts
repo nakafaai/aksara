@@ -1,9 +1,5 @@
 import { Schema } from "effect";
-import {
-  ContentFamilySchema,
-  ContentLocaleSchema,
-  compareContentHeads,
-} from "#contracts/content";
+import { ContentFamilySchema, compareContentHeads } from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,
@@ -12,6 +8,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
+import { ArtifactLocaleSchema } from "#contracts/locale";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
@@ -21,10 +18,10 @@ const HeadCursorSchema = Schema.NullOr(
 
 const ContentHeadFields = {
   artifactHash: Sha256HashSchema,
+  artifactLocale: ArtifactLocaleSchema,
   compilerConfigHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
   delivery: ContentDeliveryClassSchema,
-  locale: ContentLocaleSchema,
   projectionHash: Sha256HashSchema,
   publicPath: Schema.optional(PublicPathSchema),
   rendererDomain: RendererDomainSchema,
@@ -69,11 +66,11 @@ export type ContentHead = typeof ContentHeadSchema.Type;
 export function canonicalizeContentHead(head: ContentHead) {
   return JSON.stringify({
     artifactHash: head.artifactHash,
+    artifactLocale: head.artifactLocale,
     compilerConfigHash: head.compilerConfigHash,
     contentKey: head.contentKey,
     delivery: head.delivery,
     family: head.family,
-    locale: head.locale,
     projectionHash: head.projectionHash,
     ...(head.publicPath === undefined ? {} : { publicPath: head.publicPath }),
     rendererDomain: head.rendererDomain,

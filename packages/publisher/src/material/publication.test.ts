@@ -33,12 +33,12 @@ const functionContentKey =
 const [englishHead, indonesianHead] = await Effect.runPromise(
   Effect.gen(function* () {
     const english = publishedHeads.find(
-      ({ contentKey, locale }) =>
-        contentKey === functionContentKey && locale === "en"
+      ({ contentKey, artifactLocale }) =>
+        contentKey === functionContentKey && artifactLocale === "en"
     );
     const indonesian = publishedHeads.find(
-      ({ contentKey, locale }) =>
-        contentKey === functionContentKey && locale === "id"
+      ({ contentKey, artifactLocale }) =>
+        contentKey === functionContentKey && artifactLocale === "id"
     );
     if (!(english && indonesian)) {
       return yield* Effect.dieMessage("Expected both real material locales.");
@@ -55,7 +55,7 @@ const familyCases = [
     { ...englishHead, sourcePath: "packages/corpus/article/test/en.mdx" },
   ],
   [
-    "locale",
+    "artifactLocale",
     {
       ...englishHead,
       sourcePath: "packages/corpus/material/lesson/test/id.mdx",
@@ -85,10 +85,14 @@ describe("material publication", () => {
 
     expect(routes).toHaveLength(1);
     expect(routes[0]).toEqual({
-      current: stale,
-      next: {
+      current: {
+        appLocale: stale.artifactLocale,
         contentKey: stale.contentKey,
-        locale: stale.locale,
+        publicPath: stale.publicPath,
+      },
+      next: {
+        appLocale: stale.artifactLocale,
+        contentKey: stale.contentKey,
       },
     });
   });

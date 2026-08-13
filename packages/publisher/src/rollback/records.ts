@@ -176,9 +176,9 @@ export function snapshotRollbackState(
   if (!isDerivedRollbackUpsert(state)) {
     const { change } = state.item;
     return {
+      artifactLocale: change.artifactLocale,
       contentKey: change.contentKey,
       family: change.family,
-      locale: change.locale,
       state: "absent",
     };
   }
@@ -186,10 +186,10 @@ export function snapshotRollbackState(
   const { payload } = state.artifact;
   const head = {
     artifactHash: change.artifactHash,
+    artifactLocale: change.artifactLocale,
     compilerConfigHash: payload.compilerConfigHash,
     contentKey: change.contentKey,
     delivery: change.delivery,
-    locale: change.locale,
     projectionHash: hashContentProjection(state.projection),
     publicPath: projectionPublicPath(state.projection),
     rendererDomain: change.rendererDomain,

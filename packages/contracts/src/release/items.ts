@@ -102,9 +102,9 @@ function validateItemIdentity(
   }
   if (
     !publicationScopeContainsContent(manifest.scope, {
+      artifactLocale: item.change.artifactLocale,
       contentKey: item.change.contentKey,
       family: item.change.family,
-      locale: item.change.locale,
     })
   ) {
     return Effect.fail(

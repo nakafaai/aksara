@@ -1,16 +1,15 @@
 import { Path } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot/data";
+import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
+import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
-import type {
-  TryoutCatalogRecord,
-  TryoutPlacementSource,
-} from "@nakafa/aksara-contracts/tryout/spec";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Stream } from "effect";
@@ -25,6 +24,7 @@ import {
   rendererManifest,
   sourceByPath,
 } from "#test/question/spec";
+import { selectTryoutSlice } from "#test/tryout-slice";
 
 interface TestProjection {
   readonly catalog: readonly TryoutCatalogRecord[];
@@ -52,25 +52,19 @@ vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
   };
 });
 
+const tryoutHeads = await publishedQuestionHeads();
 const { loadTryoutContent: loadRealTryoutContent } = await vi.importActual<
   typeof import("@nakafa/aksara-corpus/tryout/content")
 >("@nakafa/aksara-corpus/tryout/content");
 const completeTryoutContent = await Effect.runPromise(
   loadRealTryoutContent(checkoutRoot).pipe(Effect.provide(NodeContext.layer))
 );
-const tryoutHeads = await publishedQuestionHeads();
-const promptKeys = new Set(
-  questionEntries
-    .filter(({ bodyKind }) => bodyKind === "question")
-    .map(({ contentKey, locale }) => `${contentKey}\0${locale}`)
-);
-const tryoutPlacements = completeTryoutContent.projection.placements.filter(
-  ({ locale, questionContentKey }) =>
-    promptKeys.has(`${questionContentKey}\0${locale}`)
-);
-const tryoutCatalog = completeTryoutContent.projection.catalog.filter(
-  ({ row }) => row.kind === "country"
-);
+const { catalog: tryoutCatalog, placements: tryoutPlacements } =
+  selectTryoutSlice(
+    completeTryoutContent.projection,
+    questionEntries.filter(({ bodyKind }) => bodyKind === "question")
+  );
+const editorialReviewDigest = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
 
 /** Counts exact hierarchy kinds from the configured snapshot fixture. */
 function countCatalogKinds(records: readonly TryoutCatalogRecord[]) {
@@ -101,6 +95,7 @@ function prepare(inputHeads: readonly QuestionHead[] = tryoutHeads) {
       Effect.gen(function* () {
         const prepared = yield* prepareTryoutSnapshot({
           checkoutRoot,
+          editorialReviewDigest,
           questionHeads: () => Stream.fromIterable(inputHeads),
           rendererManifest,
         });
@@ -128,6 +123,7 @@ function reject(input: {
     Effect.scoped(
       prepareTryoutSnapshot({
         checkoutRoot,
+        editorialReviewDigest,
         questionHeads:
           input.questionHeads ?? (() => Stream.fromIterable(tryoutHeads)),
         rendererManifest: input.renderer ?? rendererManifest,
@@ -165,7 +161,7 @@ describe("try-out snapshot preparation", () => {
     );
     const headByIdentity = new Map(
       tryoutHeads.map((head) => [
-        `${head.contentKey}\0${head.locale}`,
+        `${head.contentKey}\0${head.artifactLocale}`,
         head.artifactHash,
       ])
     );
@@ -173,21 +169,17 @@ describe("try-out snapshot preparation", () => {
     expect(prepared.second).toEqual(prepared.first);
     expect(prepared.manifest.manifest).toMatchObject({
       counts: countCatalogKinds(tryoutCatalog),
-      format: "tryout-v1",
+      format: "localized-tryout-snapshot",
       placementCount: tryoutPlacements.length,
       routeCount: countCatalogRoutes(tryoutCatalog),
     });
-    expect(placements.map(({ record }) => record.row.title)).toEqual([
-      "Problem 1",
-      "Soal 1",
-    ]);
     expect(
       placements.every(({ record: { row } }) => {
         const question = headByIdentity.get(
-          `${row.questionContentKey}\0${row.locale}`
+          `${row.questionContentKey}\0${row.questionArtifactLocale}`
         );
         const answer = headByIdentity.get(
-          `${row.answerContentKey}\0${row.locale}`
+          `${row.answerContentKey}\0${row.answerArtifactLocale}`
         );
         return (
           row.questionArtifactHash === question &&

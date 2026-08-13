@@ -1,4 +1,4 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import {
@@ -25,19 +25,19 @@ export const CurriculumNodeTranslationSchema = Schema.Struct({
 
 /** Complete localized route copy for one curriculum node. */
 export const CurriculumNodeTranslationMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: CurriculumNodeTranslationSchema,
 });
 
 /** Complete localized group labels attached to one navigation row. */
 export const CurriculumDisplayGroupMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: Schema.Struct({ title: Schema.String }),
 });
 
 /** Complete localized material-card copy attached to one navigation row. */
 export const CurriculumMaterialCardMapSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: Schema.Struct({
     description: MaterialCardDescriptionSchema,
     title: Schema.String,

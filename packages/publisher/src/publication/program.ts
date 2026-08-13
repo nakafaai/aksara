@@ -10,7 +10,7 @@ import type { PublicationBatchLimitError } from "#publisher/batch/core";
 import type {
   PreparedGitRelease,
   PreparedRollbackRelease,
-} from "#publisher/preparation/spec";
+} from "#publisher/preparation/prepared";
 import type {
   ArtifactSigningError,
   ArtifactVerificationError,

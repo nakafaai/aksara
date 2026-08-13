@@ -1,4 +1,3 @@
-import type { FileSystem, Path } from "@effect/platform";
 import {
   type CompiledContentResult,
   compileContent,
@@ -11,10 +10,15 @@ import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/in
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
+  makeQuestionAnswerProjection,
   makeQuestionBodyProjection,
+  makeQuestionPromptProjection,
+  type QuestionAnswerProjection,
   type QuestionBodyProjection,
+  type QuestionChoiceLocaleMissingError,
   type QuestionChoices,
   QuestionMetadataSchema,
+  type QuestionPromptProjection,
 } from "@nakafa/aksara-contracts/projection/question";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
@@ -39,12 +43,23 @@ export class QuestionSourceError extends Schema.TaggedError<QuestionSourceError>
 ) {}
 
 /** Lightweight question facts sufficient to decide whether compilation is needed. */
-export interface InspectedQuestionDocument {
+export interface InspectedQuestionDocument<
+  Projection extends QuestionBodyProjection = QuestionBodyProjection,
+> {
   readonly inspection: ContentSourceInspection;
-  readonly projection: QuestionBodyProjection;
+  readonly projection: Projection;
   readonly projectionHash: ReturnType<typeof hashContentProjection>;
   readonly source: QuestionDocumentSource;
 }
+
+type QuestionPromptEntry = Extract<
+  QuestionEntry,
+  { readonly bodyKind: "question" }
+>;
+type QuestionAnswerEntry = Extract<
+  QuestionEntry,
+  { readonly bodyKind: "answer" }
+>;
 
 /** Wraps every registry and filesystem failure at the checkout source seam. */
 export function mapQuestionSourceError(checkoutRoot: string) {
@@ -54,52 +69,133 @@ export function mapQuestionSourceError(checkoutRoot: string) {
 /** Creates the exact authored body shared by every question compiler mode. */
 export function makeQuestionCompileSource(source: QuestionDocumentSource) {
   return {
+    artifactLocale: source.artifactLocale,
     contentKey: source.contentKey,
-    locale: source.locale,
     rawMdx: source.rawMdx,
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
   };
 }
 
-/** Decodes authored metadata and derives the canonical question projection. */
-export const makeQuestionProjectionFromSource: (
-  source: QuestionDocumentSource,
-  metadata: unknown
-) => Effect.Effect<QuestionBodyProjection, QuestionMetadataError> = Effect.fn(
-  "AksaraPublisher.makeQuestionProjection"
+/** Decodes one question document's exact authored metadata. */
+const decodeQuestionMetadata = Effect.fn(
+  "AksaraPublisher.decodeQuestionMetadata"
 )(function* (source: QuestionDocumentSource, metadata: unknown) {
-  const decoded = yield* Schema.decodeUnknown(QuestionMetadataSchema)(
-    metadata,
-    {
-      onExcessProperty: "error",
-    }
-  ).pipe(
+  return yield* Schema.decodeUnknown(QuestionMetadataSchema)(metadata, {
+    onExcessProperty: "error",
+  }).pipe(
     Effect.mapError(
       (cause) =>
         new QuestionMetadataError({ cause, sourcePath: source.sourcePath })
     )
   );
-  return makeQuestionBodyProjection({ ...source, metadata: decoded });
+});
+
+/** Decodes authored metadata and derives the canonical question projection. */
+export const makeQuestionProjectionFromSource: (
+  source: QuestionDocumentSource,
+  metadata: unknown
+) => Effect.Effect<
+  QuestionBodyProjection,
+  QuestionChoiceLocaleMissingError | QuestionMetadataError
+> = Effect.fn("AksaraPublisher.makeQuestionProjection")(function* (
+  source: QuestionDocumentSource,
+  metadata: unknown
+) {
+  const decoded = yield* decodeQuestionMetadata(source, metadata);
+  return yield* makeQuestionBodyProjection({ ...source, metadata: decoded });
 });
 
 /** Reads one registry-owned question document from the supplied checkout. */
-export const loadQuestionDocument: (
+export const loadQuestionDocument = Effect.fn(
+  "AksaraPublisher.loadQuestionDocument"
+)(function* <Entry extends QuestionEntry>(
   checkoutRoot: string,
-  entry: QuestionEntry,
-  choices: QuestionChoices
-) => Effect.Effect<
-  QuestionDocumentSource,
-  QuestionSourceError,
-  FileSystem.FileSystem | Path.Path
-> = Effect.fn("AksaraPublisher.loadQuestionDocument")(function* (
-  checkoutRoot: string,
-  entry: QuestionEntry,
+  entry: Entry,
   choices: QuestionChoices
 ) {
   return yield* readQuestionDocument(checkoutRoot, entry, choices).pipe(
     Effect.mapError(mapQuestionSourceError(checkoutRoot))
   );
+});
+
+/** Reads and inspects one body without projecting its publication identity. */
+const inspectQuestionSource = Effect.fn(
+  "AksaraPublisher.inspectQuestionSource"
+)(function* <Entry extends QuestionEntry>(
+  checkoutRoot: string,
+  rendererManifest: RendererManifestEnvelope,
+  entry: Entry,
+  choices: QuestionChoices
+) {
+  const source = yield* loadQuestionDocument(checkoutRoot, entry, choices);
+  const inspection = yield* inspectContentSource({
+    ...makeQuestionCompileSource(source),
+    rendererManifest,
+  });
+  const metadata = yield* decodeQuestionMetadata(source, inspection.metadata);
+  return { inspection, metadata, source };
+});
+
+/** Joins one inspected source to its typed projection and exact hash. */
+function inspectedDocument<Projection extends QuestionBodyProjection>(
+  inspection: ContentSourceInspection,
+  source: QuestionDocumentSource,
+  projection: Projection
+) {
+  return {
+    inspection,
+    projection,
+    projectionHash: hashContentProjection(projection),
+    source,
+  } satisfies InspectedQuestionDocument<Projection>;
+}
+
+/** Inspects one prompt and preserves its prompt projection type. */
+export const inspectQuestionPromptDocument = Effect.fn(
+  "AksaraPublisher.inspectQuestionPromptDocument"
+)(function* (
+  checkoutRoot: string,
+  rendererManifest: RendererManifestEnvelope,
+  entry: QuestionPromptEntry,
+  choices: QuestionChoices
+) {
+  const document = yield* inspectQuestionSource(
+    checkoutRoot,
+    rendererManifest,
+    entry,
+    choices
+  );
+  const projection: QuestionPromptProjection =
+    yield* makeQuestionPromptProjection({
+      ...document.source,
+      bodyKind: "question",
+      metadata: document.metadata,
+    });
+  return inspectedDocument(document.inspection, document.source, projection);
+});
+
+/** Inspects one answer and preserves its answer projection type. */
+export const inspectQuestionAnswerDocument = Effect.fn(
+  "AksaraPublisher.inspectQuestionAnswerDocument"
+)(function* (
+  checkoutRoot: string,
+  rendererManifest: RendererManifestEnvelope,
+  entry: QuestionAnswerEntry,
+  choices: QuestionChoices
+) {
+  const document = yield* inspectQuestionSource(
+    checkoutRoot,
+    rendererManifest,
+    entry,
+    choices
+  );
+  const projection: QuestionAnswerProjection = makeQuestionAnswerProjection({
+    ...document.source,
+    bodyKind: "answer",
+    metadata: document.metadata,
+  });
+  return inspectedDocument(document.inspection, document.source, projection);
 });
 
 /** Inspects one question source without generating its executable MDX body. */
@@ -111,21 +207,20 @@ export const inspectQuestionDocument = Effect.fn(
   entry: QuestionEntry,
   choices: QuestionChoices
 ) {
-  const source = yield* loadQuestionDocument(checkoutRoot, entry, choices);
-  const inspection = yield* inspectContentSource({
-    ...makeQuestionCompileSource(source),
+  if (entry.bodyKind === "question") {
+    return yield* inspectQuestionPromptDocument(
+      checkoutRoot,
+      rendererManifest,
+      entry,
+      choices
+    );
+  }
+  return yield* inspectQuestionAnswerDocument(
+    checkoutRoot,
     rendererManifest,
-  });
-  const projection = yield* makeQuestionProjectionFromSource(
-    source,
-    inspection.metadata
+    entry,
+    choices
   );
-  return {
-    inspection,
-    projection,
-    projectionHash: hashContentProjection(projection),
-    source,
-  } satisfies InspectedQuestionDocument;
 });
 
 /** Binds compiled output to its registry-owned question change and projection. */
@@ -136,10 +231,10 @@ function makeQuestionRecord(
 ): PreparedContentUpsert {
   const change = ContentUpsertSchema.make({
     artifactHash: hashCompiledContentPayload(result.payload),
+    artifactLocale: source.artifactLocale,
     contentKey: source.contentKey,
     delivery: source.delivery,
     family: "question",
-    locale: source.locale,
     operation: "upsert",
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
@@ -149,8 +244,8 @@ function makeQuestionRecord(
     payload: result.payload,
     projection,
     source: {
+      artifactLocale: source.artifactLocale,
       contentKey: source.contentKey,
-      locale: source.locale,
       rawMdx: source.rawMdx,
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,

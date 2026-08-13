@@ -26,13 +26,13 @@ const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
   artifactHash: `sha256:${"a".repeat(64)}`,
   keyId: "test-old-key",
   payload: {
+    artifactLocale: "en",
     byteLength: 1,
     compiledCode: "x",
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
     compilerVersion: "0.1.0",
     contentKey: "test:rollback",
-    format: "mdx-function-body-v1",
-    locale: "en",
+    format: "mdx-function-body",
     mdxCompilerVersion: "3.1.1",
     plainText: "x",
     rawMdx: "x",
@@ -44,19 +44,20 @@ const artifact = Schema.decodeUnknownSync(SignedContentArtifactSchema)({
 });
 const change = Schema.decodeUnknownSync(ContentUpsertSchema)({
   artifactHash: artifact.artifactHash,
+  artifactLocale: artifact.payload.artifactLocale,
   contentKey: artifact.payload.contentKey,
   delivery: "public",
   family: "material",
-  locale: artifact.payload.locale,
   operation: "upsert",
   rendererDomain: artifact.payload.rendererDomain,
   sourcePath: "packages/corpus/test/rollback/en.mdx",
 });
 const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
+  appLocale: "en",
+  artifactLocale: artifact.payload.artifactLocale,
   contentKey: artifact.payload.contentKey,
   graph: materialGraph("en", "test", "material", "test-lesson"),
   kind: "subject-lesson",
-  locale: artifact.payload.locale,
   materialKey: "lesson.test.material",
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
@@ -68,11 +69,11 @@ const projection = Schema.decodeUnknownSync(MaterialLessonProjectionSchema)({
 });
 const head = Schema.decodeUnknownSync(MaterialHeadSchema)({
   artifactHash: artifact.artifactHash,
+  artifactLocale: change.artifactLocale,
   compilerConfigHash: artifact.payload.compilerConfigHash,
   contentKey: change.contentKey,
   delivery: change.delivery,
   family: "material",
-  locale: change.locale,
   projectionHash: `sha256:${"d".repeat(64)}`,
   publicPath: projection.publicPath,
   rendererDomain: change.rendererDomain,
@@ -82,9 +83,9 @@ const head = Schema.decodeUnknownSync(MaterialHeadSchema)({
 const upsert = RollbackUpsertStateSchema.make({ artifact, change, projection });
 const deletion = Schema.decodeUnknownSync(RollbackDeleteStateSchema)({
   change: {
+    artifactLocale: change.artifactLocale,
     contentKey: change.contentKey,
     family: "material",
-    locale: change.locale,
     operation: "delete",
   },
 });
@@ -147,9 +148,9 @@ describe("rollback contracts", () => {
         index: 0,
         releaseId: "release-active",
         snapshot: {
+          artifactLocale: change.artifactLocale,
           contentKey: change.contentKey,
           family: "material",
-          locale: change.locale,
           state: "absent",
         },
       }),
@@ -238,7 +239,10 @@ describe("rollback contracts", () => {
       "payload content",
       { payload: { ...artifact.payload, contentKey: "test:other" } },
     ],
-    ["payload locale", { payload: { ...artifact.payload, locale: "id" } }],
+    [
+      "payload artifact locale",
+      { payload: { ...artifact.payload, artifactLocale: "id" } },
+    ],
     [
       "payload domain",
       { payload: { ...artifact.payload, rendererDomain: "chemistry" } },
@@ -254,7 +258,7 @@ describe("rollback contracts", () => {
   });
   it.each([
     ["content", { contentKey: "test:other" }],
-    ["locale", { locale: "id" }],
+    ["artifact locale", { artifactLocale: "id" }],
     ["route", { publicPath: "subjects/test/other" }],
   ])("rejects a projection with mismatched %s", (_label, values) => {
     expect(
@@ -267,32 +271,28 @@ describe("rollback contracts", () => {
     ).toBe(true);
   });
   it("requires current and prior states to share one head identity", () => {
-    const errors: string[] = [];
-    for (const prior of [
+    const errors = [
       { change: { ...deletion.change, contentKey: "test:other" } },
-      { change: { ...deletion.change, locale: "id" } },
-    ]) {
+      { change: { ...deletion.change, artifactLocale: "id" } },
+    ].flatMap((prior) => {
       const result = Schema.decodeUnknownEither(RollbackRecordSchema)({
         current: upsert,
         index: 0,
         prior,
       });
-      if (Either.isLeft(result)) {
-        errors.push(String(result.left));
-      }
-    }
+      return Either.isLeft(result) ? [String(result.left)] : [];
+    });
     expect(errors).toHaveLength(2);
     expect(errors.join("\n")).toContain(
       "Expected rollback current and prior states to share one identity"
     );
   });
   it("does not allow artifact or projection bodies on a delete", () => {
-    const invalidPrior = { ...deletion, artifact, projection };
     const result = decodePage(
       page({
         done: true,
         nextIndex: 0,
-        records: [{ ...record, prior: invalidPrior }],
+        records: [{ ...record, prior: { ...deletion, artifact, projection } }],
         total: 1,
       })
     );

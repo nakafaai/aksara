@@ -7,8 +7,9 @@ const control = vi.hoisted(() => ({
   articles: [
     {
       route: {
+        appLocale: "en",
+        artifactLocale: "en",
         contentKey: "articles/politics/one",
-        locale: "en",
         publicPath: "articles/politics/one",
       },
     },
@@ -17,17 +18,18 @@ const control = vi.hoisted(() => ({
   materials: [
     {
       route: {
+        appLocale: "id",
+        artifactLocale: "id",
         contentKey: "material/lesson/mathematics/one",
-        locale: "id",
         publicPath: "materi/matematika/one",
       },
     },
   ],
   questions: [
     {
+      artifactLocale: "en",
       contentKey:
         "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
-      locale: "en",
     },
   ],
 }));
@@ -64,8 +66,9 @@ beforeEach(() => {
   control.articles = [
     {
       route: {
+        appLocale: "en",
+        artifactLocale: "en",
         contentKey: "articles/politics/one",
-        locale: "en",
         publicPath: "articles/politics/one",
       },
     },
@@ -73,17 +76,18 @@ beforeEach(() => {
   control.materials = [
     {
       route: {
+        appLocale: "id",
+        artifactLocale: "id",
         contentKey: "material/lesson/mathematics/one",
-        locale: "id",
         publicPath: "materi/matematika/one",
       },
     },
   ];
   control.questions = [
     {
+      artifactLocale: "en",
       contentKey:
         "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
-      locale: "en",
     },
   ];
 });
@@ -103,20 +107,20 @@ describe("content catalog expectation", () => {
       articleCount: 1,
       heads: [
         {
+          artifactLocale: "en",
           contentKey: "articles/politics/one",
           family: "article",
-          locale: "en",
         },
         {
+          artifactLocale: "id",
           contentKey: "material/lesson/mathematics/one",
           family: "material",
-          locale: "id",
         },
         {
+          artifactLocale: "en",
           contentKey:
             "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
           family: "question",
-          locale: "en",
         },
       ],
       materialCount: 1,
@@ -124,23 +128,23 @@ describe("content catalog expectation", () => {
       routes: [
         {
           current: {
+            appLocale: "en",
             contentKey: "articles/politics/one",
-            locale: "en",
           },
           next: {
+            appLocale: "en",
             contentKey: "articles/politics/one",
-            locale: "en",
             publicPath: "articles/politics/one",
           },
         },
         {
           current: {
+            appLocale: "id",
             contentKey: "material/lesson/mathematics/one",
-            locale: "id",
           },
           next: {
+            appLocale: "id",
             contentKey: "material/lesson/mathematics/one",
-            locale: "id",
             publicPath: "materi/matematika/one",
           },
         },
@@ -152,9 +156,9 @@ describe("content catalog expectation", () => {
   it("derives additions and deletions directly from current sources", async () => {
     control.articles = [];
     control.questions.push({
+      artifactLocale: "id",
       contentKey:
         "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-2/question",
-      locale: "id",
     });
 
     await expect(readExpectation()).resolves.toMatchObject({

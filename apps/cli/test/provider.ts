@@ -22,7 +22,7 @@ export function makeIncoherentResults(
     }),
     Schema.decodeUnknownSync(SignedContentArtifactSchema)({
       ...compiled.artifact,
-      payload: { ...compiled.artifact.payload, locale: "id" },
+      payload: { ...compiled.artifact.payload, artifactLocale: "id" },
     }),
     Schema.decodeUnknownSync(SignedContentArtifactSchema)({
       ...compiled.artifact,

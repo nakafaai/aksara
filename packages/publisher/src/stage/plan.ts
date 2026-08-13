@@ -9,7 +9,7 @@ import {
   makeReleaseItemBatches,
   makeRouteBatches,
 } from "#publisher/batching";
-import type { PreparedContentRelease } from "#publisher/preparation/spec";
+import type { PreparedContentRelease } from "#publisher/preparation/prepared";
 import { makeProjectionBatches } from "#publisher/projection-batch";
 import { makeSnapshotRequests } from "#publisher/publication/snapshots";
 import type { PublicationTarget } from "#publisher/publication/spec";

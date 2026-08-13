@@ -27,10 +27,18 @@ export const schoolProgramSources = [
         url: "https://guru.kemendikdasmen.go.id/kurikulum/referensi-penerapan/capaian-pembelajaran/",
       },
     ],
-    translations: {
-      en: { publicSlug: "merdeka", title: "Kurikulum Merdeka" },
-      id: { publicSlug: "merdeka", title: "Kurikulum Merdeka" },
-    },
+    translations: [
+      {
+        appLocale: "en",
+        publicSlug: "merdeka",
+        title: "Kurikulum Merdeka",
+      },
+      {
+        appLocale: "id",
+        publicSlug: "merdeka",
+        title: "Kurikulum Merdeka",
+      },
+    ],
     version: { label: "Indonesia" },
   },
   {
@@ -92,16 +100,18 @@ export const schoolProgramSources = [
         url: "https://www.cambridgeinternational.org/Images/697209-2026-2028-syllabus.pdf",
       },
     ],
-    translations: {
-      en: {
+    translations: [
+      {
+        appLocale: "en",
         publicSlug: "cambridge-international",
         title: "Cambridge International",
       },
-      id: {
+      {
+        appLocale: "id",
         publicSlug: "cambridge-international",
         title: "Cambridge International",
       },
-    },
+    ],
     version: {
       endsAt: "2027-12-31",
       label: "Cambridge Pathway",
@@ -168,10 +178,18 @@ export const schoolProgramSources = [
         url: "https://www.moe.gov.sg/post-secondary/a-level-curriculum-and-subject-syllabuses",
       },
     ],
-    translations: {
-      en: { publicSlug: "singapore-moe", title: "Singapore MOE" },
-      id: { publicSlug: "singapore-moe", title: "Singapore MOE" },
-    },
+    translations: [
+      {
+        appLocale: "en",
+        publicSlug: "singapore-moe",
+        title: "Singapore MOE",
+      },
+      {
+        appLocale: "id",
+        publicSlug: "singapore-moe",
+        title: "Singapore MOE",
+      },
+    ],
     version: { label: "Singapore MOE" },
   },
   {
@@ -205,16 +223,18 @@ export const schoolProgramSources = [
         url: "https://www.nextgenscience.org/",
       },
     ],
-    translations: {
-      en: {
+    translations: [
+      {
+        appLocale: "en",
         publicSlug: "united-states",
         title: "United States Standards-Aligned Pathway",
       },
-      id: {
+      {
+        appLocale: "id",
         publicSlug: "amerika-serikat",
         title: "United States Standards-Aligned Pathway",
       },
-    },
+    ],
     version: { label: "K-12 standards-aligned pathway" },
   },
 ] as const;

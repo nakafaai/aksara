@@ -55,11 +55,11 @@ function makeQuestionHead(record: PreparedContentUpsert): QuestionHead {
   const { change, payload, projection } = record;
   return QuestionHeadSchema.make({
     artifactHash: change.artifactHash,
+    artifactLocale: change.artifactLocale,
     compilerConfigHash: payload.compilerConfigHash,
     contentKey: change.contentKey,
     delivery: change.delivery,
     family: "question",
-    locale: change.locale,
     projectionHash: hashContentProjection(projection),
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
@@ -75,9 +75,9 @@ function priorQuestion(head: QuestionHead): RollbackSnapshotState {
 /** Proves one newly authored question head had no prior active state. */
 function absentQuestion(entry: QuestionEntry): RollbackSnapshotState {
   return {
+    artifactLocale: entry.artifactLocale,
     contentKey: entry.contentKey,
     family: "question",
-    locale: entry.locale,
     state: "absent",
   };
 }

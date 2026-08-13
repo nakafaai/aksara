@@ -149,7 +149,7 @@ finalize visibility, or delete an active, candidate, or recovery release.
 Aksara authors are trusted production code authors. Signed MDX is executable
 reviewed code, not a sandbox and not a public-upload format.
 
-Production v1 trusts authenticated Convex state for route and head membership,
+Production trusts authenticated Convex state for route and head membership,
 delivery classification, and the active publication pointer. Nakafa still
 independently decodes and verifies the signed release, signed artifact,
 artifact hash, component requirements, and projection hash before execution.

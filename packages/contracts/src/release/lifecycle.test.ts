@@ -18,7 +18,9 @@ const releaseId = "release-lifecycle";
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const statusReceipt = {
   activatedHeads: 1,
+  activeAppLocales: ["en", "id"],
   deletedHeads: 0,
+  editorialReviewDigest: manifestHash,
   manifestHash,
   projectionDigest: `sha256:${"a".repeat(64)}`,
   releaseId,

@@ -31,7 +31,7 @@ const englishEntry = await Effect.runPromise(
       ({ route }) =>
         route.contentKey ===
           "articles/politics/dynastic-politics-asian-values" &&
-        route.locale === "en"
+        route.artifactLocale === "en"
     );
     if (entry === undefined) {
       return yield* Effect.dieMessage("Expected the real English article.");
@@ -42,8 +42,8 @@ const englishEntry = await Effect.runPromise(
 const englishHead = await Effect.runPromise(
   Effect.gen(function* () {
     const head = publishedHeads.find(
-      ({ contentKey, locale }) =>
-        contentKey === englishEntry.route.contentKey && locale === "en"
+      ({ contentKey, artifactLocale }) =>
+        contentKey === englishEntry.route.contentKey && artifactLocale === "en"
     );
     if (head === undefined) {
       return yield* Effect.dieMessage(
@@ -74,7 +74,7 @@ function modifyHead(input: unknown) {
 function replaceHead(replacement: typeof englishHead) {
   return publishedHeads.map((head) =>
     head.contentKey === replacement.contentKey &&
-    head.locale === replacement.locale
+    head.artifactLocale === replacement.artifactLocale
       ? replacement
       : head
   );
@@ -106,7 +106,7 @@ describe("article plan", () => {
 
     expect(records).toHaveLength(1);
     expect(records[0]?.record.change).toMatchObject({
-      locale: "en",
+      artifactLocale: "en",
       operation: "upsert",
     });
     expect(compilerState.calls).toBe(1);
@@ -140,9 +140,9 @@ describe("article plan", () => {
       prior: { head: stale, state: "article" },
       record: {
         change: {
+          artifactLocale: "en",
           contentKey: stale.contentKey,
           family: "article",
-          locale: "en",
           operation: "delete",
         },
       },

@@ -34,7 +34,7 @@ import type {
   PreparedContentRelease,
   PreparedGitRelease,
   PreparedRollbackRelease,
-} from "#publisher/preparation/spec";
+} from "#publisher/preparation/prepared";
 import {
   makeGitArtifacts,
   makeRollbackArtifacts,

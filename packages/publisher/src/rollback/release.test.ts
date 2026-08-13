@@ -2,6 +2,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import {
   inheritContentSnapshots,
@@ -35,14 +36,18 @@ describe("buildRollbackRelease", () => {
     const resultSummary = await Effect.runPromise(
       digestResultCatalog(releaseId, Stream.make(prior.head))
     );
+    const editorialReviewDigest = Sha256HashSchema.make(
+      `sha256:${"c".repeat(64)}`
+    );
     const prepared = await Effect.runPromise(
       buildRollbackRelease({
-        base: {
+        active: {
+          activeAppLocales: ACTIVE_APP_LOCALES,
+          editorialReviewDigest,
           manifestHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
           releaseId: ReleaseIdSchema.make("test-build-base"),
           resultCount: 0,
           resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-          snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
         },
         records: () => Stream.make(record),
         releaseId,
@@ -52,13 +57,18 @@ describe("buildRollbackRelease", () => {
         scope: {
           content: [
             {
+              artifactLocale: prior.head.artifactLocale,
               contentKey: prior.head.contentKey,
               family: prior.head.family,
-              locale: prior.head.locale,
             },
           ],
           families: [],
           snapshots: [],
+        },
+        target: {
+          activeAppLocales: ACTIVE_APP_LOCALES,
+          editorialReviewDigest,
+          snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
         },
       })
     );

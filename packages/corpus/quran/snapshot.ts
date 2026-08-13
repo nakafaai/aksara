@@ -1,45 +1,42 @@
 import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   makeQuranProvenanceManifest,
   type QuranProvenanceManifest,
 } from "@nakafa/aksara-contracts/quran/provenance";
-import { digestQuranRows } from "@nakafa/aksara-contracts/quran/row-digest";
+import { digestQuranRows } from "@nakafa/aksara-contracts/quran/snapshot/digest";
+import { makeQuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot/hash";
+import type {
+  QuranRowPayload,
+  QuranSnapshotRow,
+} from "@nakafa/aksara-contracts/quran/snapshot/row";
 import {
   bindQuranRow,
   hashQuranRow,
-  type QuranHashError,
-} from "@nakafa/aksara-contracts/quran/row-hash";
-import { hashQuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot/hash";
+  type QuranRowHashError,
+} from "@nakafa/aksara-contracts/quran/snapshot/row-hash";
 import {
-  QURAN_SNAPSHOT_FORMAT,
-  QuranSnapshotInputSchema,
-  type QuranSnapshotManifest,
-  QuranSnapshotManifestSchema,
+  type QuranSnapshot,
+  QuranSnapshotFactsSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import {
-  QURAN_LOCALES,
   QURAN_SURAH_COUNT,
-  QURAN_TAFSIR_LOCALES,
   QURAN_VERSE_COUNT,
-  type QuranRowPayload,
-  type QuranSnapshotRow,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Stream } from "effect";
 
 import {
   type QuranProjectionError,
-  type QuranRegistrySource,
   streamQuranRows,
 } from "#corpus/quran/projection";
 import { quranProvenanceRecords } from "#corpus/quran/provenance";
-import { streamQuranRegistry } from "#corpus/quran/registry";
-import { quranSourceSummary } from "#corpus/quran/source/evidence";
+import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
 
-type PreparedQuranRowError = QuranHashError | QuranProjectionError;
+type PreparedQuranRowError = QuranRowHashError | QuranProjectionError;
 
 /** Replayable complete snapshot prepared from one exact Quran source. */
 export interface PreparedQuranSnapshot {
-  readonly manifest: QuranSnapshotManifest;
+  readonly manifest: QuranSnapshot;
   readonly provenance: QuranProvenanceManifest;
   /** Replays every content-addressed row bound to the snapshot identity. */
   readonly rows: () => Stream.Stream<QuranSnapshotRow, PreparedQuranRowError>;
@@ -69,16 +66,24 @@ function bindRows<E, R>(
 /** Prepares one complete structured Quran snapshot without retaining bodies. */
 export const prepareQuranSnapshot = Effect.fn(
   "AksaraCorpus.prepareQuranSnapshot"
-)(function* (source: QuranRegistrySource = () => streamQuranRegistry()) {
-  const provenance = yield* makeQuranProvenanceManifest(quranProvenanceRecords);
-  const rowSummary = yield* digestQuranRows(
-    rowHashStream(streamQuranRows(source))
-  );
-  const identity = QuranSnapshotInputSchema.make({
+)(function* (input: {
+  readonly checkoutRoot: string;
+  readonly editorialReviewDigest: Sha256Hash;
+}) {
+  const verifiedSource = yield* loadVerifiedQuranSource(input.checkoutRoot);
+  const provenance = yield* makeQuranProvenanceManifest({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    records: quranProvenanceRecords,
+  });
+  const rowSummary = yield* digestQuranRows({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    rows: rowHashStream(streamQuranRows(verifiedSource.source)),
+  });
+  const facts = QuranSnapshotFactsSchema.make({
+    activeAppLocales: ACTIVE_APP_LOCALES,
     attributionCount: rowSummary.attributionCount,
     chunkCount: rowSummary.chunkCount,
-    format: QURAN_SNAPSHOT_FORMAT,
-    locales: QURAN_LOCALES,
+    editorialReviewDigest: input.editorialReviewDigest,
     projectionCount: rowSummary.projectionCount,
     projectionDigest: rowSummary.projectionDigest,
     provenanceDigest: provenance.digest,
@@ -87,22 +92,19 @@ export const prepareQuranSnapshot = Effect.fn(
     runtimeDigest: rowSummary.runtimeDigest,
     searchCount: rowSummary.searchCount,
     searchDigest: rowSummary.searchDigest,
-    sourceBytes: quranSourceSummary.bytes,
-    sourceDigest: quranSourceSummary.digest,
-    sourceFileCount: quranSourceSummary.fileCount,
+    sourceBytes: verifiedSource.summary.byteCount,
+    sourceDigest: verifiedSource.summary.digest,
+    sourceFileCount: verifiedSource.summary.fileCount,
     surahCount: QURAN_SURAH_COUNT,
-    tafsirLocales: QURAN_TAFSIR_LOCALES,
+    tafsirLocales: ["id"],
     verseCount: QURAN_VERSE_COUNT,
   });
-  const snapshotId = yield* hashQuranSnapshot(identity);
-  const manifest = QuranSnapshotManifestSchema.make({
-    ...identity,
-    snapshotId,
-  });
+  const manifest = yield* makeQuranSnapshot(facts);
   return {
     manifest,
     provenance,
     /** Replays exact source rows and binds them to the finalized snapshot. */
-    rows: () => bindRows(snapshotId, streamQuranRows(source)),
+    rows: () =>
+      bindRows(manifest.snapshotId, streamQuranRows(verifiedSource.source)),
   } satisfies PreparedQuranSnapshot;
 });

@@ -1,8 +1,8 @@
 import { Schema } from "effect";
 
-import { ContentLocaleSchema } from "#contracts/content";
 import { CountryCodeSchema } from "#contracts/country";
 import { DateOnlySchema } from "#contracts/date";
+import { APP_LOCALE_CODES, AppLocaleSchema } from "#contracts/locale";
 import { isHttpsUrl, isLowerKebab } from "#contracts/text/syntax";
 
 /** Canonical language-neutral identity for one learning program. */
@@ -111,14 +111,34 @@ export const ProgramSourceKindSchema = Schema.Literal(
 );
 
 const ProgramSlugSchema = Schema.String.pipe(Schema.filter(isLowerKebab));
-const ProgramTranslationSchema = Schema.Struct({
+/** One localized title and public slug owned by a learning program. */
+export const ProgramTranslationSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
   publicSlug: ProgramSlugSchema,
   title: Schema.NonEmptyTrimmedString,
 });
-const ProgramTranslationsSchema = Schema.Record({
-  key: ContentLocaleSchema,
-  value: ProgramTranslationSchema,
-});
+export type ProgramTranslation = typeof ProgramTranslationSchema.Type;
+
+/** Checks translations for unique canonical application-locale order. */
+function hasCanonicalTranslations(translations: readonly ProgramTranslation[]) {
+  return translations.every((translation, index) => {
+    const previous = translations[index - 1];
+    return (
+      previous === undefined ||
+      APP_LOCALE_CODES.indexOf(previous.appLocale) <
+        APP_LOCALE_CODES.indexOf(translation.appLocale)
+    );
+  });
+}
+
+const ProgramTranslationListSchema = Schema.NonEmptyArray(
+  ProgramTranslationSchema
+).pipe(
+  Schema.filter(hasCanonicalTranslations, {
+    message: () =>
+      "Program translations must use unique canonical app-locale order.",
+  })
+);
 
 /** Reviewed provider identity attached to one learning program. */
 export const ProgramProviderSchema = Schema.Struct({
@@ -163,7 +183,7 @@ export const LearningProgramSchema = Schema.Struct({
   provider: ProgramProviderSchema,
   recommendedCountry: Schema.optional(CountryCodeSchema),
   sources: Schema.NonEmptyArray(ProgramSourceSchema),
-  translations: ProgramTranslationsSchema,
+  translations: ProgramTranslationListSchema,
   version: ProgramVersionSchema,
 });
 export type LearningProgram = typeof LearningProgramSchema.Type;
@@ -199,15 +219,11 @@ export function canonicalizeLearningProgram(program: LearningProgram) {
       type: source.type,
       url: source.url,
     })),
-    translations: Object.fromEntries(
-      ContentLocaleSchema.literals.map((locale) => [
-        locale,
-        {
-          publicSlug: program.translations[locale].publicSlug,
-          title: program.translations[locale].title,
-        },
-      ])
-    ),
+    translations: program.translations.map((translation) => ({
+      appLocale: translation.appLocale,
+      publicSlug: translation.publicSlug,
+      title: translation.title,
+    })),
     version: {
       ...(program.version.endsAt === undefined
         ? {}

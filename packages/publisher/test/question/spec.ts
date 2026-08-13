@@ -130,11 +130,11 @@ export async function publishedQuestionHeads() {
     return [
       QuestionHeadSchema.make({
         artifactHash: record.change.artifactHash,
+        artifactLocale: record.change.artifactLocale,
         compilerConfigHash: record.payload.compilerConfigHash,
         contentKey: record.change.contentKey,
         delivery: record.change.delivery,
         family: "question",
-        locale: record.change.locale,
         projectionHash: hashContentProjection(record.projection),
         rendererDomain: record.change.rendererDomain,
         sourceHash: record.payload.sourceHash,

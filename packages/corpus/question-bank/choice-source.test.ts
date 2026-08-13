@@ -110,6 +110,7 @@ describe("question choice source", () => {
   it("rejects executable, computed, incomplete, and invalid choice values", async () => {
     const invalidObjects = [
       "[]",
+      "{}",
       "{ ...other }",
       "{ en: [], en: [], id: [] }",
       "{ en: [] }",

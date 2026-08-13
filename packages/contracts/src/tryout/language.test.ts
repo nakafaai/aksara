@@ -11,6 +11,8 @@ import {
   deliveryLanguageForSection,
   ENGLISH_LANGUAGE_SECTION_KEY,
   INDONESIAN_LANGUAGE_SECTION_KEY,
+  questionArtifactLocaleForSection,
+  questionArtifactLocalesForSection,
 } from "#contracts/tryout/language";
 
 describe("try-out language", () => {
@@ -43,5 +45,27 @@ describe("try-out language", () => {
         AppLocaleSchema.make("de")
       )
     ).toBe("de");
+  });
+
+  it("derives the immutable question artifact locale without exchanging brands", () => {
+    expect(
+      questionArtifactLocaleForSection(
+        TryoutKeySchema.make(ENGLISH_LANGUAGE_SECTION_KEY),
+        AppLocaleSchema.make("de")
+      )
+    ).toBe("en");
+  });
+
+  it("deduplicates assessed prompt and choice locales across app locales", () => {
+    expect(
+      questionArtifactLocalesForSection(
+        TryoutKeySchema.make(ENGLISH_LANGUAGE_SECTION_KEY)
+      )
+    ).toEqual(["en"]);
+    expect(
+      questionArtifactLocalesForSection(
+        TryoutKeySchema.make("mathematical-reasoning")
+      )
+    ).toEqual(["en", "id"]);
   });
 });

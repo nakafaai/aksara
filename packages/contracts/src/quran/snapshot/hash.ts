@@ -3,101 +3,68 @@ import { createHash } from "node:crypto";
 import { Effect, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import type {
-  QuranSnapshotInput,
-  QuranSnapshotV3Input,
+import {
+  QURAN_SNAPSHOT_FORMAT,
+  type QuranSnapshot,
+  type QuranSnapshotFacts,
+  QuranSnapshotSchema,
 } from "#contracts/quran/snapshot/spec";
 
-const SNAPSHOT_DOMAIN = "nakafa.aksara.quran-snapshot.v2";
-const SNAPSHOT_V3_DOMAIN = "nakafa.aksara.quran-snapshot.v3";
+const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-quran-snapshot";
 
-/** Node could not complete a deterministic snapshot hash operation. */
+/** Node could not compute a deterministic Quran snapshot identity. */
 export class QuranSnapshotHashError extends Schema.TaggedError<QuranSnapshotHashError>()(
   "QuranSnapshotHashError",
-  { scope: Schema.Literal("snapshot") }
+  {}
 ) {}
 
-/** Produces stable identity bytes without the self-referential snapshot ID. */
-export function canonicalizeQuranSnapshotIdentity(
-  manifest: QuranSnapshotInput
-) {
+/** Serializes Quran snapshot facts in stable signed field order. */
+export function canonicalizeQuranSnapshot(input: QuranSnapshotFacts) {
   return JSON.stringify({
-    attributionCount: manifest.attributionCount,
-    chunkCount: manifest.chunkCount,
-    format: manifest.format,
-    locales: manifest.locales,
-    projectionCount: manifest.projectionCount,
-    projectionDigest: manifest.projectionDigest,
-    provenanceDigest: manifest.provenanceDigest,
-    provenanceStatus: manifest.provenanceStatus,
-    runtimeCount: manifest.runtimeCount,
-    runtimeDigest: manifest.runtimeDigest,
-    searchCount: manifest.searchCount,
-    searchDigest: manifest.searchDigest,
-    sourceBytes: manifest.sourceBytes,
-    sourceDigest: manifest.sourceDigest,
-    sourceFileCount: manifest.sourceFileCount,
-    surahCount: manifest.surahCount,
-    tafsirLocales: manifest.tafsirLocales,
-    verseCount: manifest.verseCount,
+    activeAppLocales: input.activeAppLocales,
+    attributionCount: input.attributionCount,
+    chunkCount: input.chunkCount,
+    editorialReviewDigest: input.editorialReviewDigest,
+    format: QURAN_SNAPSHOT_FORMAT,
+    projectionCount: input.projectionCount,
+    projectionDigest: input.projectionDigest,
+    provenanceDigest: input.provenanceDigest,
+    provenanceStatus: input.provenanceStatus,
+    runtimeCount: input.runtimeCount,
+    runtimeDigest: input.runtimeDigest,
+    searchCount: input.searchCount,
+    searchDigest: input.searchDigest,
+    sourceBytes: input.sourceBytes,
+    sourceDigest: input.sourceDigest,
+    sourceFileCount: input.sourceFileCount,
+    surahCount: input.surahCount,
+    tafsirLocales: input.tafsirLocales,
+    verseCount: input.verseCount,
   });
 }
 
-/** Computes the content identity of one complete Quran snapshot. */
-export function hashQuranSnapshot(manifest: QuranSnapshotInput) {
-  return Effect.try({
-    catch: () => new QuranSnapshotHashError({ scope: "snapshot" }),
-    try: () =>
-      Sha256HashSchema.make(
-        `sha256:${createHash("sha256")
-          .update(
-            `${SNAPSHOT_DOMAIN}\n${canonicalizeQuranSnapshotIdentity(manifest)}`
-          )
-          .digest("hex")}`
-      ),
-  });
-}
+/** Creates the content-addressed identity of one complete Quran snapshot. */
+export const makeQuranSnapshot = Effect.fn("AksaraContracts.makeQuranSnapshot")(
+  (input: QuranSnapshotFacts) =>
+    Effect.try({
+      catch: () => new QuranSnapshotHashError(),
+      try: () => {
+        const snapshotId = Sha256HashSchema.make(
+          `sha256:${createHash("sha256")
+            .update(`${SNAPSHOT_DOMAIN}\n${canonicalizeQuranSnapshot(input)}`)
+            .digest("hex")}`
+        );
+        return QuranSnapshotSchema.make({
+          ...input,
+          format: QURAN_SNAPSHOT_FORMAT,
+          snapshotId,
+        });
+      },
+    })
+);
 
-/** Produces stable v3 identity bytes without the snapshot ID. */
-export function canonicalizeQuranSnapshotV3Identity(
-  manifest: QuranSnapshotV3Input
-) {
-  return JSON.stringify({
-    activeAppLocales: manifest.activeAppLocales,
-    attributionCount: manifest.attributionCount,
-    chunkCount: manifest.chunkCount,
-    editorialReviewDigest: manifest.editorialReviewDigest,
-    format: manifest.format,
-    projectionCount: manifest.projectionCount,
-    projectionDigest: manifest.projectionDigest,
-    provenanceDigest: manifest.provenanceDigest,
-    provenanceStatus: manifest.provenanceStatus,
-    runtimeCount: manifest.runtimeCount,
-    runtimeDigest: manifest.runtimeDigest,
-    searchCount: manifest.searchCount,
-    searchDigest: manifest.searchDigest,
-    sourceBytes: manifest.sourceBytes,
-    sourceDigest: manifest.sourceDigest,
-    sourceFileCount: manifest.sourceFileCount,
-    surahCount: manifest.surahCount,
-    tafsirLocales: manifest.tafsirLocales,
-    verseCount: manifest.verseCount,
-  });
-}
-
-/** Computes the content identity of one complete v3 Quran snapshot. */
-export function hashQuranSnapshotV3(manifest: QuranSnapshotV3Input) {
-  return Effect.try({
-    catch: () => new QuranSnapshotHashError({ scope: "snapshot" }),
-    try: () =>
-      Sha256HashSchema.make(
-        `sha256:${createHash("sha256")
-          .update(
-            `${SNAPSHOT_V3_DOMAIN}\n${canonicalizeQuranSnapshotV3Identity(
-              manifest
-            )}`
-          )
-          .digest("hex")}`
-      ),
-  });
+/** Recomputes the content identity of one stored current snapshot. */
+export function verifyQuranSnapshotHash(snapshot: QuranSnapshot) {
+  const { format: _format, snapshotId: _snapshotId, ...facts } = snapshot;
+  return makeQuranSnapshot(facts).pipe(Effect.map((value) => value.snapshotId));
 }

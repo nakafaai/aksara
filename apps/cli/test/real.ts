@@ -11,6 +11,7 @@ import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { NodeContext } from "@effect/platform-node";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -27,14 +28,14 @@ const functionContentKey =
 export const FUNCTION_SCOPE = PublicationScopeSchema.make({
   content: [
     {
+      artifactLocale: ArtifactLocaleSchema.make("en"),
       contentKey: ContentKeySchema.make(functionContentKey),
       family: "material",
-      locale: "en",
     },
     {
+      artifactLocale: ArtifactLocaleSchema.make("id"),
       contentKey: ContentKeySchema.make(functionContentKey),
       family: "material",
-      locale: "id",
     },
   ],
   families: [],
@@ -42,7 +43,7 @@ export const FUNCTION_SCOPE = PublicationScopeSchema.make({
 });
 const englishEntry = MATERIAL_ENTRIES.find(
   ({ route }) =>
-    route.contentKey === functionContentKey && route.locale === "en"
+    route.contentKey === functionContentKey && route.appLocale === "en"
 );
 if (!englishEntry) {
   throw new Error(
@@ -52,7 +53,7 @@ if (!englishEntry) {
 export const ENGLISH_ENTRY = englishEntry;
 const indonesianEntry = MATERIAL_ENTRIES.find(
   ({ route }) =>
-    route.contentKey === functionContentKey && route.locale === "id"
+    route.contentKey === functionContentKey && route.appLocale === "id"
 );
 if (!indonesianEntry) {
   throw new Error(

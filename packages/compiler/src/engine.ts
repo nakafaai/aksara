@@ -230,6 +230,7 @@ export const compileValidatedContent = Effect.fn(
     authoringComponents
   );
   const payload = CompiledContentPayloadSchema.make({
+    artifactLocale: request.artifactLocale,
     byteLength,
     compiledCode,
     compilerConfigHash: createCompilerConfigHash(
@@ -238,8 +239,7 @@ export const compileValidatedContent = Effect.fn(
     ),
     compilerVersion: AKSARA_COMPILER_VERSION,
     contentKey: request.contentKey,
-    format: "mdx-function-body-v1",
-    locale: request.locale,
+    format: "mdx-function-body",
     mdxCompilerVersion: MDX_COMPILER_VERSION,
     plainText,
     rawMdx: request.rawMdx,

@@ -1,9 +1,9 @@
 import { Effect, Schema } from "effect";
-import { ContentLocaleSchema } from "#contracts/content";
 import {
   type LearningGraphIdentity,
   LearningGraphIdentitySchema,
 } from "#contracts/graph/spec";
+import { AppLocaleSchema } from "#contracts/locale";
 import { isLowerKebab } from "#contracts/text/syntax";
 
 const LearningGraphSegmentSchema = Schema.String.pipe(
@@ -12,10 +12,10 @@ const LearningGraphSegmentSchema = Schema.String.pipe(
 
 /** Validated hierarchy segments required to derive one graph identity. */
 export const LearningGraphSegmentsSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
   concept: Schema.NonEmptyArray(LearningGraphSegmentSchema),
   learningObject: Schema.NonEmptyArray(LearningGraphSegmentSchema),
   lens: Schema.NonEmptyArray(LearningGraphSegmentSchema),
-  locale: ContentLocaleSchema,
 });
 export type LearningGraphSegments = typeof LearningGraphSegmentsSchema.Type;
 
@@ -52,7 +52,7 @@ export const makeLearningGraphIdentity: (
         ...segments.learningObject,
       ]),
       assetId: graphId("asset", [
-        segments.locale,
+        segments.appLocale,
         ...segments.lens,
         ...segments.learningObject,
       ]),

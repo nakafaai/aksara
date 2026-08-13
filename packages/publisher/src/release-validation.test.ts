@@ -1,5 +1,6 @@
 import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
@@ -25,11 +26,16 @@ import {
 import { testRendererDomains } from "#test/renderer";
 
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
+  activeAppLocales: ACTIVE_APP_LOCALES,
+  baseActiveAppLocales: null,
+  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: 0,
+  editorialReviewDigest: `sha256:${"f".repeat(64)}`,
+  format: "localized-content-release",
   itemCount: 0,
   itemsDigest: `sha256:${"c".repeat(64)}`,
   origin: { kind: "git", sha: "a".repeat(40) },
@@ -55,11 +61,15 @@ const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   signature: `${"A".repeat(85)}A`,
 });
 const evidence = Schema.decodeUnknownSync(ReleaseVerificationEvidenceSchema)({
+  activeAppLocales: manifest.activeAppLocales,
+  baseActiveAppLocales: manifest.baseActiveAppLocales,
+  baseEditorialReviewDigest: manifest.baseEditorialReviewDigest,
   baseManifestHash: manifest.baseManifestHash,
   baseReleaseId: manifest.baseReleaseId,
   baseResultCount: manifest.baseResultCount,
   baseResultDigest: manifest.baseResultDigest,
   deleteHeads: 0,
+  editorialReviewDigest: manifest.editorialReviewDigest,
   itemCount: 0,
   itemsDigest: manifest.itemsDigest,
   manifestHash: release.manifestHash,
@@ -88,10 +98,10 @@ const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   change: {
     artifactHash,
+    artifactLocale: "en",
     contentKey: "test:content",
     delivery: "public",
     family: "material",
-    locale: "en",
     operation: "upsert",
     rendererDomain: "mathematics",
     sourcePath: "packages/corpus/test/content/en.mdx",
@@ -100,13 +110,13 @@ const item = Schema.decodeUnknownSync(ContentReleaseItemSchema)({
   releaseId: manifest.releaseId,
 });
 const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+  artifactLocale: "en",
   byteLength: 1,
   compiledCode: "x",
   compilerConfigHash: `sha256:${"e".repeat(64)}`,
   compilerVersion: "0.1.0",
   contentKey: "test:content",
-  format: "mdx-function-body-v1",
-  locale: "en",
+  format: "mdx-function-body",
   mdxCompilerVersion: "3.1.1",
   plainText: "x",
   rawMdx: "x",
@@ -213,7 +223,9 @@ describe("release validation", () => {
     };
     const receipt = PublicationReceiptSchema.make({
       activatedHeads: 0,
+      activeAppLocales: manifest.activeAppLocales,
       deletedHeads: 0,
+      editorialReviewDigest: manifest.editorialReviewDigest,
       manifestHash: release.manifestHash,
       projectionDigest: manifest.projectionDigest,
       releaseId: manifest.releaseId,
@@ -244,7 +256,9 @@ describe("release validation", () => {
   it("rejects receipt counts from another replayed stream", async () => {
     const receipt = PublicationReceiptSchema.make({
       activatedHeads: 0,
+      activeAppLocales: manifest.activeAppLocales,
       deletedHeads: 0,
+      editorialReviewDigest: manifest.editorialReviewDigest,
       manifestHash: release.manifestHash,
       projectionDigest: manifest.projectionDigest,
       releaseId: manifest.releaseId,

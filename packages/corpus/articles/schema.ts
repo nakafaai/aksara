@@ -1,8 +1,9 @@
-import { ContentLocaleSchema } from "@nakafa/aksara-contracts/content";
+import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import {
   ArticleCategorySchema,
   ArticleCategoryTitleSchema,
   ArticleReferenceSchema,
+  ArticleRouteSlugSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
@@ -29,14 +30,19 @@ export const ArticleRootSchema = Schema.String.pipe(
 );
 
 const ArticleCategoryTitlesSchema = Schema.Record({
-  key: ContentLocaleSchema,
+  key: ActiveAppLocaleCodeSchema,
   value: ArticleCategoryTitleSchema,
+});
+const ArticleRouteSlugsSchema = Schema.Record({
+  key: ActiveAppLocaleCodeSchema,
+  value: ArticleRouteSlugSchema,
 });
 
 /** One source-owned category identity, renderer, and complete locale titles. */
 export const ArticleCategorySourceSchema = Schema.Struct({
   key: ArticleCategorySchema,
   rendererDomain: RendererDomainSchema,
+  routeSlugs: ArticleRouteSlugsSchema,
   titles: ArticleCategoryTitlesSchema,
 });
 export type ArticleCategorySource = typeof ArticleCategorySourceSchema.Type;
@@ -60,6 +66,7 @@ function hasCoherentArticleIdentity(input: {
 export const ArticleSourceSchema = Schema.Struct({
   category: ArticleCategorySourceSchema,
   references: Schema.Array(ArticleReferenceSchema),
+  routeSlugs: ArticleRouteSlugsSchema,
   slug: ArticleSlugSchema,
   sourceRoot: ArticleRootSchema,
 }).pipe(

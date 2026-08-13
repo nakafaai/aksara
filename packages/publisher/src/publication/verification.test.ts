@@ -31,7 +31,7 @@ describe("candidate verification", () => {
     ["missing", 1, 1],
     ["staging", 1, 1],
     ["verifying", 0, 1],
-    ["verified", 0, 0],
+    ["verified", 0, 1],
   ] as const)(
     "resumes candidate phase %s",
     async (phase, stageCalls, verifyCalls) => {
@@ -44,6 +44,29 @@ describe("candidate verification", () => {
       expect(state.verify).toHaveBeenCalledTimes(verifyCalls);
     }
   );
+
+  it("revalidates target evidence when resuming a verified candidate", async () => {
+    const verify = vi.fn(() =>
+      Effect.succeed(
+        ReleaseVerificationCompleteSchema.make({
+          evidence: {
+            ...releaseEvidence(verificationRelease),
+            resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+          },
+          phase: "verified",
+        })
+      )
+    );
+    const state = makeVerificationPlan("verified", { verify });
+
+    const error = await runVerification(
+      stageCandidateRelease(state.plan).pipe(Effect.flip)
+    );
+
+    expect(error._tag).toBe("ReleaseVerificationMismatchError");
+    expect(verify).toHaveBeenCalledOnce();
+    expect(state.stage).not.toHaveBeenCalled();
+  });
 
   it("polls durable verification without replaying staged rows", async () => {
     let attempts = 0;

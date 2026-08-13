@@ -94,6 +94,18 @@ describe("ExactProcess", () => {
     });
   });
 
+  it("writes exact bounded stdin bytes and closes the pipe", async () => {
+    const stdin = new TextEncoder().encode("exact-input\0with-bytes");
+    const output = await runLive(
+      nodeInput(
+        "const chunks=[];process.stdin.on('data',(chunk)=>chunks.push(chunk));process.stdin.on('end',()=>process.stdout.write(Buffer.concat(chunks)));",
+        { stdin }
+      )
+    );
+
+    expect(output.stdout).toEqual(stdin);
+  });
+
   it.each([
     [nodeInput("", { executable: "node" }), "executable"],
     [nodeInput("", { root: "relative" }), "root"],
@@ -103,10 +115,16 @@ describe("ExactProcess", () => {
     await expect(rejectLive(input)).resolves.toMatchObject({ reason });
   });
 
-  it("types spawn, stdout, stderr, and signal failures", async () => {
+  it("types spawn, stdin, stdout, stderr, and signal failures", async () => {
+    const largeInput = new Uint8Array(8 * 1024 * 1024).fill(0x61);
     const failures = await Promise.all([
       rejectLive(nodeInput("", { executable: "/aksara/\0invalid" })),
       rejectLive(nodeInput("", { executable: "/aksara/missing-executable" })),
+      rejectLive(
+        nodeInput("process.stdin.destroy();setTimeout(()=>{},100);", {
+          stdin: largeInput,
+        })
+      ),
       rejectLive(nodeInput('process.stdout.write("xx");', { stdoutLimit: 1 })),
       rejectLive(nodeInput('process.stderr.write("xx");', { stderrLimit: 1 })),
       rejectLive(nodeInput('process.kill(process.pid, "SIGTERM");')),
@@ -115,6 +133,7 @@ describe("ExactProcess", () => {
     expect(failures.map(({ reason }) => reason)).toEqual([
       "spawn",
       "spawn",
+      "stdin",
       "stdout",
       "stderr",
       "signal",

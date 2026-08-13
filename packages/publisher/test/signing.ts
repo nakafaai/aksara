@@ -12,10 +12,6 @@ import {
   ContentReleaseManifestSchema,
 } from "@nakafa/aksara-contracts/release";
 import { digestItems } from "@nakafa/aksara-contracts/release/digest";
-import {
-  CONTENT_RELEASE_V2_FORMAT,
-  ContentReleaseManifestV2Schema,
-} from "@nakafa/aksara-contracts/release/manifest/v2";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -38,8 +34,8 @@ const rendererManifest = await Effect.runPromise(
 );
 
 const source = Schema.decodeUnknownSync(CompileDocumentSourceSchema)({
+  artifactLocale: "en",
   contentKey: "test:signing",
-  locale: "en",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
   rendererDomain: "mathematics",
   sourcePath: "packages/corpus/test/signing/en.mdx",
@@ -66,10 +62,10 @@ const items = makeItems(
   Schema.decodeUnknownSync(Schema.Array(ContentChangeSchema))([
     {
       artifactHash: hashCompiledContentPayload(signingPayload),
+      artifactLocale: signingPayload.artifactLocale,
       contentKey: signingPayload.contentKey,
       delivery: "public",
       family: "material",
-      locale: signingPayload.locale,
       operation: "upsert",
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,
@@ -81,15 +77,20 @@ const itemSummary = await Effect.runPromise(
   digestItems(releaseId, Stream.fromIterable(items))
 );
 
-/** Historical release manifest used by publication signer tests. */
+/** Current release manifest used by publication signer tests. */
 export const signingManifest = Schema.decodeUnknownSync(
   ContentReleaseManifestSchema
 )({
+  activeAppLocales: ["en", "id"],
+  baseActiveAppLocales: null,
+  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: 0,
+  editorialReviewDigest: `sha256:${"1".repeat(64)}`,
+  format: "localized-content-release",
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
   origin: { kind: "git", sha: "d".repeat(40) },
@@ -107,14 +108,4 @@ export const signingManifest = Schema.decodeUnknownSync(
   scope: { content: [], families: ["material"], snapshots: [] },
   snapshots: inheritContentSnapshots(null),
   upsertCount: items.length,
-});
-
-/** Current release manifest used by publication signer tests. */
-export const signingManifestV2 = Schema.decodeUnknownSync(
-  ContentReleaseManifestV2Schema
-)({
-  activeAppLocales: ["en", "id"],
-  ...signingManifest,
-  editorialReviewDigest: `sha256:${"1".repeat(64)}`,
-  format: CONTENT_RELEASE_V2_FORMAT,
 });

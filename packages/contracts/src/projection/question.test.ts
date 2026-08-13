@@ -1,12 +1,13 @@
-import { Either, Schema } from "effect";
+import { Effect, Either, Schema } from "effect";
 import { describe, expect, it } from "vitest";
-import type { ContentLocale } from "#contracts/content";
 import { ContentKeySchema } from "#contracts/ids";
+import { type ArtifactLocale, ArtifactLocaleSchema } from "#contracts/locale";
 import {
   canonicalizeQuestionProjection,
   makeQuestionBodyProjection,
   QuestionAnswerProjectionSchema,
   QuestionBodyProjectionSchema,
+  QuestionChoiceLocaleMissingError,
   QuestionChoicesSchema,
   QuestionPromptProjectionSchema,
 } from "#contracts/projection/question";
@@ -38,43 +39,47 @@ const choices = Schema.decodeUnknownSync(QuestionChoicesSchema)({
 });
 
 /** Builds one strict prompt projection for the selected locale. */
-function promptProjection(locale: ContentLocale) {
+function promptProjection(artifactLocale: ArtifactLocale) {
   return Schema.decodeUnknownSync(QuestionPromptProjectionSchema)(
-    makeQuestionBodyProjection({
-      bodyKind: "question",
-      choices,
-      contentKey: ContentKeySchema.make(`${questionKey}/question`),
-      locale,
-      metadata,
-      peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
-      questionKey,
-      questionNumber: 1,
-      setKey,
-    })
+    Effect.runSync(
+      makeQuestionBodyProjection({
+        artifactLocale,
+        bodyKind: "question",
+        choices,
+        contentKey: ContentKeySchema.make(`${questionKey}/question`),
+        metadata,
+        peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
+        questionKey,
+        questionNumber: 1,
+        setKey,
+      })
+    )
   );
 }
 
 /** Builds one strict answer projection for the selected locale. */
-function answerProjection(locale: ContentLocale) {
+function answerProjection(artifactLocale: ArtifactLocale) {
   return Schema.decodeUnknownSync(QuestionAnswerProjectionSchema)(
-    makeQuestionBodyProjection({
-      bodyKind: "answer",
-      choices,
-      contentKey: ContentKeySchema.make(`${questionKey}/answer`),
-      locale,
-      metadata,
-      peerContentKey: ContentKeySchema.make(`${questionKey}/question`),
-      questionKey,
-      questionNumber: 1,
-      setKey,
-    })
+    Effect.runSync(
+      makeQuestionBodyProjection({
+        artifactLocale,
+        bodyKind: "answer",
+        choices,
+        contentKey: ContentKeySchema.make(`${questionKey}/answer`),
+        metadata,
+        peerContentKey: ContentKeySchema.make(`${questionKey}/question`),
+        questionKey,
+        questionNumber: 1,
+        setKey,
+      })
+    )
   );
 }
 
 describe("question projection", () => {
   it("projects only locale choices on prompts and none on answers", () => {
-    const prompt = promptProjection("id");
-    const answer = answerProjection("en");
+    const prompt = promptProjection(ArtifactLocaleSchema.make("id"));
+    const answer = answerProjection(ArtifactLocaleSchema.make("en"));
 
     expect(prompt.choices).toEqual(choices.id);
     expect("choices" in answer).toBe(false);
@@ -86,7 +91,10 @@ describe("question projection", () => {
   });
 
   it("canonically serializes both body variants", () => {
-    for (const value of [promptProjection("en"), answerProjection("id")]) {
+    for (const value of [
+      promptProjection(ArtifactLocaleSchema.make("en")),
+      answerProjection(ArtifactLocaleSchema.make("id")),
+    ]) {
       expect(JSON.parse(canonicalizeQuestionProjection(value))).toEqual(value);
     }
   });
@@ -111,8 +119,8 @@ describe("question projection", () => {
   });
 
   it("rejects invented metadata and answer choices", () => {
-    const prompt = promptProjection("en");
-    const answer = answerProjection("en");
+    const prompt = promptProjection(ArtifactLocaleSchema.make("en"));
+    const answer = answerProjection(ArtifactLocaleSchema.make("en"));
     const decode = Schema.decodeUnknownEither(QuestionBodyProjectionSchema, {
       onExcessProperty: "error",
     });
@@ -123,5 +131,23 @@ describe("question projection", () => {
     expect(Either.isLeft(decode({ ...answer, choices: choices.en }))).toBe(
       true
     );
+  });
+
+  it("returns a typed failure when prompt choices are missing", () => {
+    const error = Effect.runSync(
+      makeQuestionBodyProjection({
+        artifactLocale: ArtifactLocaleSchema.make("de"),
+        bodyKind: "question",
+        choices,
+        contentKey: ContentKeySchema.make(`${questionKey}/question`),
+        metadata,
+        peerContentKey: ContentKeySchema.make(`${questionKey}/answer`),
+        questionKey,
+        questionNumber: 1,
+        setKey,
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toBeInstanceOf(QuestionChoiceLocaleMissingError);
   });
 });

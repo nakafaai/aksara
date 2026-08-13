@@ -13,6 +13,7 @@ import {
   ContentProjectionSchema,
   canonicalizeContentProjection,
   familyForProjection,
+  projectionArtifactLocale,
 } from "#contracts/projection/spec";
 import { canonicalizeContentChange } from "#contracts/release/canonical";
 import {
@@ -40,9 +41,9 @@ const RollbackCursorSchema = Schema.Number.pipe(
 
 /** Explicit proof that a changed content head did not previously exist. */
 export const RollbackAbsentStateSchema = Schema.Struct({
+  artifactLocale: ContentUpsertSchema.fields.artifactLocale,
   contentKey: ContentKeySchema,
   family: ContentFamilySchema,
-  locale: ContentUpsertSchema.fields.locale,
   state: Schema.Literal("absent"),
 });
 export type RollbackAbsentState = typeof RollbackAbsentStateSchema.Type;
@@ -91,7 +92,7 @@ export function canonicalizeRollbackSnapshotEntry(
 ) {
   const snapshot =
     entry.snapshot.state === "absent"
-      ? `{"contentKey":${JSON.stringify(entry.snapshot.contentKey)},"family":${JSON.stringify(entry.snapshot.family)},"locale":${JSON.stringify(entry.snapshot.locale)},"state":"absent"}`
+      ? `{"artifactLocale":${JSON.stringify(entry.snapshot.artifactLocale)},"contentKey":${JSON.stringify(entry.snapshot.contentKey)},"family":${JSON.stringify(entry.snapshot.family)},"state":"absent"}`
       : `{"head":${canonicalizeContentHead(entry.snapshot.head)},"state":${JSON.stringify(entry.snapshot.state)}}`;
   return `{"index":${entry.index},"releaseId":${JSON.stringify(entry.releaseId)},"snapshot":${snapshot}}`;
 }
@@ -107,10 +108,10 @@ function hasBoundRollbackUpsert(input: {
   return (
     artifact.artifactHash === change.artifactHash &&
     payload.contentKey === change.contentKey &&
-    payload.locale === change.locale &&
+    payload.artifactLocale === change.artifactLocale &&
     payload.rendererDomain === change.rendererDomain &&
     projection.contentKey === change.contentKey &&
-    projection.locale === change.locale &&
+    projectionArtifactLocale(projection) === change.artifactLocale &&
     familyForProjection(projection) === change.family
   );
 }
@@ -149,7 +150,7 @@ function hasBoundRollbackTransition(input: {
   return (
     input.current.change.contentKey === input.prior.change.contentKey &&
     input.current.change.family === input.prior.change.family &&
-    input.current.change.locale === input.prior.change.locale
+    input.current.change.artifactLocale === input.prior.change.artifactLocale
   );
 }
 

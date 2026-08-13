@@ -1,8 +1,8 @@
 import type { ChildProcessByStdio } from "node:child_process";
 import { spawn } from "node:child_process";
 import { isAbsolute } from "node:path";
-import type { Readable } from "node:stream";
-import { NodeStream } from "@effect/platform-node";
+import type { Readable, Writable } from "node:stream";
+import { NodeSink, NodeStream } from "@effect/platform-node";
 import {
   Chunk,
   Context,
@@ -12,7 +12,7 @@ import {
   Schema,
   Stream,
 } from "effect";
-import { constant } from "effect/Function";
+import { constant, constVoid } from "effect/Function";
 import { joinBytes } from "#utilities/bytes/join";
 import { terminateProcessGroup } from "#utilities/process/group";
 
@@ -26,6 +26,7 @@ export interface ExactProcessInput {
   readonly executable: string;
   readonly root: string;
   readonly stderrLimit: number;
+  readonly stdin?: Uint8Array;
   readonly stdoutLimit: number;
 }
 
@@ -45,6 +46,7 @@ export class ExactProcessError extends Schema.TaggedError<ExactProcessError>()(
       "root",
       "limit",
       "spawn",
+      "stdin",
       "stdout",
       "stderr",
       "signal"
@@ -64,7 +66,7 @@ export class ExactProcess extends Context.Tag("AksaraExactProcess")<
 >() {}
 
 interface OpenedProcess {
-  readonly child: ChildProcessByStdio<null, Readable, Readable>;
+  readonly child: ChildProcessByStdio<Writable, Readable, Readable>;
   readonly exit: Deferred.Deferred<number, ExactProcessError>;
   readonly pid: number;
 }
@@ -137,7 +139,7 @@ const openProcess = Effect.fn("AksaraUtilities.openExactProcess")(function* (
         detached: true,
         env: input.environment,
         shell: false,
-        stdio: ["ignore", "pipe", "pipe"],
+        stdio: ["pipe", "pipe", "pipe"],
       }),
   });
   const pid = yield* Effect.async<number, ExactProcessError>((resume) => {
@@ -171,13 +173,34 @@ function runOpened(
   opened: OpenedProcess,
   input: ExactProcessInput
 ): Effect.Effect<ExactProcessOutput, ExactProcessError> {
+  const writeStdin =
+    input.stdin === undefined
+      ? Effect.sync(() => {
+          opened.child.stdin.on("error", constVoid);
+          opened.child.stdin.end();
+        })
+      : Stream.make(input.stdin).pipe(
+          Stream.run(
+            NodeSink.fromWritable(
+              () => opened.child.stdin,
+              () => new ExactProcessError({ reason: "stdin" })
+            )
+          )
+        );
   return Effect.all(
     {
       exitCode: Deferred.await(opened.exit),
       stderr: collectOutput(opened.child.stderr, input.stderrLimit, "stderr"),
+      stdin: writeStdin,
       stdout: collectOutput(opened.child.stdout, input.stdoutLimit, "stdout"),
     },
     { concurrency: "unbounded" }
+  ).pipe(
+    Effect.map(({ exitCode, stderr, stdout }) => ({
+      exitCode,
+      stderr,
+      stdout,
+    }))
   );
 }
 

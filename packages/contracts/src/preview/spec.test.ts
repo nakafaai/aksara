@@ -256,7 +256,7 @@ describe("local preview manifest", () => {
       format: LOCAL_PREVIEW_FORMAT,
       revision: 3,
       route: {
-        locale: "en",
+        appLocale: "en",
         publicPath: "articles/politics/test-article",
       },
       status: "failed",

@@ -10,10 +10,10 @@ import {
 } from "#corpus/curriculum/context";
 
 const subject = Schema.decodeUnknownSync(CurriculumRouteSchema)({
+  appLocale: "en",
   iconKey: "mathematics",
   kind: "curriculum-context",
   level: "subject",
-  locale: "en",
   nodeKey: "class-10-mathematics",
   order: 10,
   parentPath: "curriculum/merdeka/class-10",

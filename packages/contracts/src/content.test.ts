@@ -1,9 +1,8 @@
 import { createHash } from "node:crypto";
-import { Effect, Either, Schema } from "effect";
+import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   CompiledContentPayloadSchema,
-  ContentLocaleListSchema,
   ContentPublicationIdentitySchema,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
@@ -17,6 +16,7 @@ import {
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
+import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
@@ -24,8 +24,8 @@ const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const TEST_HEADING = "Protocol Test Heading";
 
 const validRequest = {
+  artifactLocale: "en",
   contentKey: "test:content",
-  locale: "en",
   rawMdx: `## ${TEST_HEADING}`,
   rendererDomain: "mathematics",
   rendererManifest: {
@@ -48,11 +48,16 @@ const validRequest = {
 
 describe("content", () => {
   it("orders stable content identity before locale", () => {
+    const englishArtifactLocale = ArtifactLocaleSchema.make("en");
+    const indonesianArtifactLocale = ArtifactLocaleSchema.make("id");
     const english = {
+      artifactLocale: englishArtifactLocale,
       contentKey: ContentKeySchema.make("test:a"),
-      locale: "en",
     } as const;
-    const indonesian = { ...english, locale: "id" } as const;
+    const indonesian = {
+      ...english,
+      artifactLocale: indonesianArtifactLocale,
+    } as const;
     const next = {
       ...english,
       contentKey: ContentKeySchema.make("test:b"),
@@ -77,21 +82,6 @@ describe("content", () => {
     ).toEqual({ ...english, family: "material" });
   });
 
-  it("owns the complete ordered locale capability", () => {
-    expect(
-      Schema.decodeUnknownSync(ContentLocaleListSchema)(["en", "id"])
-    ).toEqual(["en", "id"]);
-    for (const locales of [["en"], ["id", "en"]] as const) {
-      const result = Schema.decodeUnknownEither(ContentLocaleListSchema)(
-        locales
-      );
-      expect(Either.isLeft(result)).toBe(true);
-      expect(String(result)).toContain(
-        "Historical app locales must be exactly en and id."
-      );
-    }
-  });
-
   it("owns unambiguous content-head and public-route identities", () => {
     const content = Schema.decodeUnknownSync(
       CompiledContentPayloadSchema.fields.contentKey
@@ -100,12 +90,18 @@ describe("content", () => {
       "subjects/mathematics"
     );
 
-    expect(headIdentity({ contentKey: content, locale: "en" })).toBe(
-      "test:content\0en"
-    );
-    expect(routeIdentity({ locale: "en", publicPath })).toBe(
-      "en\0subjects/mathematics"
-    );
+    expect(
+      headIdentity({
+        artifactLocale: ArtifactLocaleSchema.make("en"),
+        contentKey: content,
+      })
+    ).toBe("test:content\0en");
+    expect(
+      routeIdentity({
+        appLocale: AppLocaleSchema.make("en"),
+        publicPath,
+      })
+    ).toBe("en\0subjects/mathematics");
   });
 
   it("decodes a strict compile request", async () => {
@@ -138,13 +134,13 @@ describe("content", () => {
 
   it("matches exact canonical artifact bytes and hashes", () => {
     const payload = Schema.decodeUnknownSync(CompiledContentPayloadSchema)({
+      artifactLocale: "en",
       byteLength: 10,
       compiledCode: "return {};",
       compilerConfigHash: `sha256:${"c".repeat(64)}`,
       compilerVersion: "0.1.0",
       contentKey: "test:content",
-      format: "mdx-function-body-v1",
-      locale: "en",
+      format: "mdx-function-body",
       mdxCompilerVersion: "3.1.1",
       plainText: TEST_HEADING,
       rawMdx: `## ${TEST_HEADING}`,
@@ -157,7 +153,7 @@ describe("content", () => {
         "sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb",
     });
     const canonicalPayload =
-      '{"byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body-v1","locale":"en","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":[{"name":"BlockMath","version":1},{"name":"FunctionMachine","version":2}],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
+      '{"artifactLocale":"en","byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":[{"name":"BlockMath","version":1},{"name":"FunctionMachine","version":2}],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
     const artifactHash = `sha256:${createHash("sha256")
       .update(canonicalPayload)
       .digest("hex")}`;
@@ -176,7 +172,7 @@ describe("content", () => {
     expect(
       canonicalizeContentArtifactSigningInput(artifact.artifactHash, payload)
     ).toBe(
-      `nakafa.aksara.content-artifact.v1\n${artifactHash}\n${canonicalPayload}`
+      `nakafa.aksara.content-artifact\n${artifactHash}\n${canonicalPayload}`
     );
     expect(canonicalizeSignedContentArtifact(artifact)).toBe(canonicalArtifact);
     expect(

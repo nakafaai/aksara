@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   makePreparedGitRelease,
   makePreparedRollbackRelease,
-} from "#publisher/preparation/spec";
+} from "#publisher/preparation/prepared";
 import {
   PublicationActivation,
   PublicationActivationError,

@@ -1,4 +1,5 @@
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseManifest,
@@ -20,6 +21,8 @@ import {
 export type RollbackProofSelection =
   | { readonly kind: "source" }
   | {
+      readonly baseActiveAppLocales: ActiveAppLocaleList;
+      readonly baseEditorialReviewDigest: Sha256Hash;
       readonly baseManifestHash: Sha256Hash;
       readonly baseReleaseId: ReleaseId;
       readonly kind: "recovery";
@@ -37,14 +40,19 @@ export function selectRollbackProof(
   if (proof.manifest.releaseId === rollbackOf) {
     return Effect.succeed<RollbackProofSelection>({ kind: "source" });
   }
-  const isRecovery =
-    proof.manifest.releaseId === releaseId &&
-    proof.manifest.origin.kind === "rollback" &&
-    proof.manifest.baseReleaseId === rollbackOf &&
-    proof.manifest.baseManifestHash !== null;
-  if (isRecovery && proof.manifest.baseManifestHash !== null) {
+  const { manifest } = proof;
+  if (
+    manifest.releaseId === releaseId &&
+    manifest.origin.kind === "rollback" &&
+    manifest.baseReleaseId === rollbackOf &&
+    manifest.baseActiveAppLocales !== null &&
+    manifest.baseEditorialReviewDigest !== null &&
+    manifest.baseManifestHash !== null
+  ) {
     return Effect.succeed<RollbackProofSelection>({
-      baseManifestHash: proof.manifest.baseManifestHash,
+      baseActiveAppLocales: manifest.baseActiveAppLocales,
+      baseEditorialReviewDigest: manifest.baseEditorialReviewDigest,
+      baseManifestHash: manifest.baseManifestHash,
       baseReleaseId: rollbackOf,
       kind: "recovery",
     });

@@ -36,8 +36,8 @@ function loadItem(
     .pipe(
       Effect.map((rawMdx) =>
         CompileDocumentSourceSchema.make({
+          artifactLocale: change.artifactLocale,
           contentKey: change.contentKey,
-          locale: change.locale,
           rawMdx,
           rendererDomain: change.rendererDomain,
           sourcePath: change.sourcePath,

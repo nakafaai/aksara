@@ -8,38 +8,16 @@ import {
   requireSnapshotEvidence,
   type SnapshotRowFactory,
 } from "#contracts/release/snapshot/evidence-requirement";
-import { digestTryoutCatalogV2 } from "#contracts/tryout/catalog-hash";
-import type { TryoutCatalogV2Record } from "#contracts/tryout/catalog-v2";
-import { verifyTryoutV2LocaleClosure } from "#contracts/tryout/locale-closure";
-import {
-  digestTryoutPlacements,
-  digestTryoutPlacementsV2,
-} from "#contracts/tryout/placement-hash";
-import { digestTryoutCatalog } from "#contracts/tryout/row-hash";
-import {
-  makeTryoutSnapshot,
-  makeTryoutSnapshotV2,
-} from "#contracts/tryout/snapshot/hash";
-import {
-  TRYOUT_SNAPSHOT_FORMAT,
-  type TryoutCatalogCounts,
-} from "#contracts/tryout/snapshot/spec";
-import type { TryoutCatalogRecord } from "#contracts/tryout/spec";
+import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
+import { digestTryoutCatalog } from "#contracts/tryout/catalog-hash";
+import { verifyTryoutLocaleClosure } from "#contracts/tryout/locale-closure";
+import { digestTryoutPlacements } from "#contracts/tryout/placement-hash";
+import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
+import type { TryoutCatalogCounts } from "#contracts/tryout/snapshot/spec";
 
 interface TryoutCatalogEvidence {
   readonly counts: TryoutCatalogCounts;
   readonly routeCount: number;
-}
-
-/** Selects one try-out hierarchy stream while preserving source failures. */
-function tryoutCatalog<E, R>(rows: Stream.Stream<ContentSnapshotRow, E, R>) {
-  return rows.pipe(
-    Stream.filterMap((row) =>
-      row.family === "tryout" && row.rowKind === "catalog"
-        ? Option.some(row.record)
-        : Option.none()
-    )
-  );
 }
 
 /** Selects current hierarchy rows while preserving source failures. */
@@ -48,20 +26,7 @@ function currentTryoutCatalog<E, R>(
 ) {
   return rows.pipe(
     Stream.filterMap((row) =>
-      row.family === "tryout" && row.rowKind === "catalog-v2"
-        ? Option.some(row.record)
-        : Option.none()
-    )
-  );
-}
-
-/** Selects historical placements while preserving source failures. */
-function historicalPlacements<E, R>(
-  rows: Stream.Stream<ContentSnapshotRow, E, R>
-) {
-  return rows.pipe(
-    Stream.filterMap((row) =>
-      row.family === "tryout" && row.rowKind === "placement"
+      row.family === "tryout" && row.rowKind === "catalog"
         ? Option.some(row.record)
         : Option.none()
     )
@@ -74,7 +39,7 @@ function currentPlacements<E, R>(
 ) {
   return rows.pipe(
     Stream.filterMap((row) =>
-      row.family === "tryout" && row.rowKind === "placement-v2"
+      row.family === "tryout" && row.rowKind === "placement"
         ? Option.some(row.record)
         : Option.none()
     )
@@ -83,7 +48,7 @@ function currentPlacements<E, R>(
 
 /** Derives signed per-kind and public-route counts from catalog rows. */
 function summarizeTryoutCatalog<E, R>(
-  records: Stream.Stream<TryoutCatalogRecord | TryoutCatalogV2Record, E, R>
+  records: Stream.Stream<TryoutCatalogRecord, E, R>
 ) {
   const initial: TryoutCatalogEvidence = {
     counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
@@ -107,27 +72,16 @@ export const verifyTryoutSnapshotRows = Effect.fn(
   snapshot: Extract<ContentSnapshotManifest, { family: "tryout" }>,
   rows: SnapshotRowFactory<E, R>
 ) {
-  const placementDigest =
-    snapshot.manifest.format === TRYOUT_SNAPSHOT_FORMAT
-      ? yield* digestTryoutPlacements(historicalPlacements(rows()))
-      : yield* digestTryoutPlacementsV2(currentPlacements(rows()));
-  const isHistorical = snapshot.manifest.format === TRYOUT_SNAPSHOT_FORMAT;
-  const [catalogDigest, catalogEvidence] = isHistorical
-    ? yield* Effect.all([
-        digestTryoutCatalog(tryoutCatalog(rows())),
-        summarizeTryoutCatalog(tryoutCatalog(rows())),
-      ])
-    : yield* Effect.all([
-        digestTryoutCatalogV2(currentTryoutCatalog(rows())),
-        summarizeTryoutCatalog(currentTryoutCatalog(rows())),
-      ]);
-  if (!isHistorical) {
-    yield* verifyTryoutV2LocaleClosure({
-      activeAppLocales: snapshot.manifest.activeAppLocales,
-      catalog: currentTryoutCatalog(rows()),
-      placements: currentPlacements(rows()),
-    });
-  }
+  const [placementDigest, catalogDigest, catalogEvidence] = yield* Effect.all([
+    digestTryoutPlacements(currentPlacements(rows())),
+    digestTryoutCatalog(currentTryoutCatalog(rows())),
+    summarizeTryoutCatalog(currentTryoutCatalog(rows())),
+  ]);
+  yield* verifyTryoutLocaleClosure({
+    activeAppLocales: snapshot.manifest.activeAppLocales,
+    catalog: currentTryoutCatalog(rows()),
+    placements: currentPlacements(rows()),
+  });
   yield* requireSnapshotEvidence({
     actual: catalogDigest.digest,
     expected: snapshot.manifest.catalogDigest,
@@ -160,11 +114,8 @@ export const verifyTryoutSnapshotRows = Effect.fn(
     family: "tryout",
     field: "routeCount",
   });
-  const { snapshotId, ...identity } = snapshot.manifest;
-  const actualId =
-    identity.format === TRYOUT_SNAPSHOT_FORMAT
-      ? makeTryoutSnapshot(identity).snapshotId
-      : makeTryoutSnapshotV2(identity).snapshotId;
+  const { format: _format, snapshotId, ...facts } = snapshot.manifest;
+  const actualId = makeTryoutSnapshot(facts).snapshotId;
   yield* requireSnapshotEvidence({
     actual: actualId,
     expected: snapshotId,

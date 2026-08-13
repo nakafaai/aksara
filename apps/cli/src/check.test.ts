@@ -1,5 +1,18 @@
 import { NodeContext, NodeHttpClient } from "@effect/platform-node";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  type EditorialReviewManifest,
+  EditorialReviewManifestSchema,
+  EditorialReviewRecordSchema,
+  HUMANIZER_WORKFLOW_VERSION,
+} from "@nakafa/aksara-contracts/editorial/review";
+import {
+  CorpusSourcePathSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  DeliveryLanguageSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -7,11 +20,32 @@ import { runCheckCommand } from "#cli/check";
 import { unusedExactProcess } from "#test/process";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const sourcePath = CorpusSourcePathSchema.make(
+  "packages/corpus/test/check.en.mdx"
+);
+const editorialReview = EditorialReviewManifestSchema.make({
+  digest: hash,
+  format: "editorial-review",
+  records: [
+    EditorialReviewRecordSchema.make({
+      appLocale: AppLocaleSchema.make("en"),
+      deliveryLanguage: DeliveryLanguageSchema.make("en"),
+      reviewMode: "authored-humanizer-review",
+      sources: [{ sourceHash: hash, sourcePath }],
+      targetHash: hash,
+      targetPath: sourcePath,
+      workflowVersion: HUMANIZER_WORKFLOW_VERSION,
+    }),
+  ],
+});
 const control = vi.hoisted(() => ({
+  revisionCalls: 0,
+  revisionChanged: false,
   status: "approved" as "approved" | "blocked",
   validation: undefined as
     | {
         readonly checkoutRoot: string;
+        readonly editorialReview: EditorialReviewManifest;
         readonly rendererManifest: { readonly hash: string };
       }
     | undefined,
@@ -23,6 +57,35 @@ vi.mock("#cli/environment/read", async () => {
     /** Supplies one explicit sibling checkout for the command test. */
     readPreviewEnvironment: () =>
       TestEffect.succeed({ nakafaAppDir: "/code/nakafa.com" }),
+  };
+});
+
+vi.mock("#cli/evidence", async () => {
+  const { GitCommitShaSchema } = await import("@nakafa/aksara-contracts/ids");
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    readCleanAksaraRevision: () => {
+      control.revisionCalls += 1;
+      const changed = control.revisionChanged && control.revisionCalls === 2;
+      return TestEffect.succeed(
+        GitCommitShaSchema.make((changed ? "b" : "a").repeat(40))
+      );
+    },
+    validateStableAksaraRevision: (expected: string, actual: string) =>
+      expected === actual
+        ? TestEffect.void
+        : TestEffect.fail({
+            _tag: "ReleaseRevisionChangedError",
+            actual,
+            expected,
+          }),
+  };
+});
+
+vi.mock("@nakafa/aksara-publisher/editorial/review", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    loadEditorialReviewManifest: () => TestEffect.succeed(editorialReview),
   };
 });
 
@@ -92,6 +155,8 @@ vi.mock("@nakafa/aksara-publisher/catalog/validation", async () => {
 });
 
 beforeEach(() => {
+  control.revisionCalls = 0;
+  control.revisionChanged = false;
   control.status = "approved";
   control.validation = undefined;
 });
@@ -125,6 +190,7 @@ describe("catalog check command", () => {
 
     expect(control.validation).toEqual({
       checkoutRoot: "/code/aksara",
+      editorialReview,
       rendererManifest: { hash },
     });
     expect(result).toMatchObject({
@@ -139,6 +205,16 @@ describe("catalog check command", () => {
     await expect(rejectCheck()).resolves.toMatchObject({
       _tag: "CatalogCheckBlockedError",
       provenanceDigest: hash,
+    });
+  });
+
+  it("rejects source drift during catalog validation", async () => {
+    control.revisionChanged = true;
+
+    await expect(rejectCheck()).resolves.toMatchObject({
+      _tag: "ReleaseRevisionChangedError",
+      actual: "b".repeat(40),
+      expected: "a".repeat(40),
     });
   });
 });

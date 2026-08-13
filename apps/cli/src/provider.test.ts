@@ -184,7 +184,7 @@ describe("local preview provider", () => {
       const route = previewDocumentRoute(ready.document);
       expect(initialEvent).toContain('"revision":1');
       expect(initialEvent).toContain(
-        `"route":{"locale":"${route.locale}","publicPath":"${route.publicPath}"}`
+        `"route":{"appLocale":"${route.appLocale}","publicPath":"${route.publicPath}"}`
       );
       await Effect.runPromise(provider.pending(PREVIEW_REPOSITORIES));
       const changed = await reader?.read();

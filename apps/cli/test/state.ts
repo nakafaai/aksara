@@ -44,11 +44,16 @@ export function stateBundle(
   const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
     keyId: "test-state-key",
     manifest: {
+      activeAppLocales: ["en", "id"],
+      baseActiveAppLocales: baseReleaseId === null ? null : ["en", "id"],
+      baseEditorialReviewDigest: baseReleaseId === null ? null : STATE_HASH,
       baseManifestHash: baseReleaseId === null ? null : STATE_HASH,
       baseReleaseId,
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       deleteCount: 0,
+      editorialReviewDigest: STATE_HASH,
+      format: "localized-content-release",
       itemCount: 0,
       itemsDigest: STATE_HASH,
       origin,
@@ -88,7 +93,10 @@ export function stateCompleted(
     ...releaseBundle,
     receipt: {
       activatedHeads: 0,
+      activeAppLocales: releaseBundle.release.manifest.activeAppLocales,
       deletedHeads: 0,
+      editorialReviewDigest:
+        releaseBundle.release.manifest.editorialReviewDigest,
       manifestHash: releaseBundle.release.manifestHash,
       projectionDigest: STATE_HASH,
       releaseId: id,

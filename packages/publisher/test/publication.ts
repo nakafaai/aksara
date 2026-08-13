@@ -1,3 +1,5 @@
+import { resolve } from "node:path";
+import { NodeContext } from "@effect/platform-node";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
@@ -8,6 +10,10 @@ import {
   PublicPathSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   MaterialKeySchema,
@@ -21,9 +27,10 @@ import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapsho
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
+import { makeEditorialReviewForHeads } from "#test/editorial";
 import { materialGraph } from "#test/graph";
 import { testRendererDomains } from "#test/renderer";
-import { emptySnapshotSources } from "#test/snapshot";
+import { emptySnapshotSources, snapshotPolicyBase } from "#test/snapshot";
 
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -40,8 +47,8 @@ export const rendererManifest = await Effect.runPromise(
 );
 
 export const publicationSource = CompileDocumentSourceSchema.make({
+  artifactLocale: ArtifactLocaleSchema.make("en"),
   contentKey: ContentKeySchema.make("test:publication"),
-  locale: "en",
   rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
   rendererDomain: "mathematics",
   sourcePath: CorpusSourcePathSchema.make(
@@ -53,11 +60,14 @@ export const { payload: publicationPayload } = await Effect.runPromise(
   compileContent({ ...publicationSource, rendererManifest })
 );
 
+const publicationAppLocale = AppLocaleSchema.make("en");
+
 export const projection = MaterialLessonProjectionSchema.make({
+  appLocale: publicationAppLocale,
+  artifactLocale: publicationSource.artifactLocale,
   contentKey: publicationSource.contentKey,
-  graph: materialGraph(publicationSource.locale, "material", "test-lesson"),
+  graph: materialGraph(publicationAppLocale, "material", "test-lesson"),
   kind: "subject-lesson",
-  locale: publicationSource.locale,
   materialKey: MaterialKeySchema.make("lesson.test.material"),
   metadata: { authors: [], date: "2026-01-01", title: "Test protocol" },
   order: 1,
@@ -70,10 +80,10 @@ export const projection = MaterialLessonProjectionSchema.make({
 export const contentRecord = {
   change: ContentUpsertSchema.make({
     artifactHash: hashCompiledContentPayload(publicationPayload),
+    artifactLocale: publicationPayload.artifactLocale,
     contentKey: publicationPayload.contentKey,
     delivery: "public",
     family: "material",
-    locale: publicationPayload.locale,
     operation: "upsert",
     rendererDomain: publicationPayload.rendererDomain,
     sourcePath: publicationSource.sourcePath,
@@ -85,9 +95,9 @@ export const contentRecord = {
 export const publicationScope = PublicationScopeSchema.make({
   content: [
     {
+      artifactLocale: contentRecord.change.artifactLocale,
       contentKey: contentRecord.change.contentKey,
       family: contentRecord.change.family,
-      locale: contentRecord.change.locale,
     },
   ],
   families: [],
@@ -95,22 +105,23 @@ export const publicationScope = PublicationScopeSchema.make({
 });
 export const head = MaterialHeadSchema.make({
   artifactHash: contentRecord.change.artifactHash,
+  artifactLocale: contentRecord.change.artifactLocale,
   compilerConfigHash: publicationPayload.compilerConfigHash,
   contentKey: contentRecord.change.contentKey,
   delivery: contentRecord.change.delivery,
   family: "material",
-  locale: contentRecord.change.locale,
   projectionHash: hashContentProjection(projection),
   publicPath: projection.publicPath,
   rendererDomain: contentRecord.change.rendererDomain,
   sourceHash: publicationPayload.sourceHash,
   sourcePath: contentRecord.change.sourcePath,
 });
+export const editorialReview = await makeEditorialReviewForHeads([head]);
 export const record = {
   prior: {
+    artifactLocale: contentRecord.change.artifactLocale,
     contentKey: contentRecord.change.contentKey,
     family: "material",
-    locale: contentRecord.change.locale,
     state: "absent" as const,
   },
   record: contentRecord,
@@ -122,14 +133,14 @@ export async function makeRelease(
   records: () => Stream.Stream<unknown> = () => Stream.make(record),
   sha = "a".repeat(40)
 ) {
+  const editorialReviewDigest = editorialReview.digest;
   const prepared = await Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make(sha),
-      baseManifestHash: null,
-      baseReleaseId: null,
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      previousSnapshots: null,
+      checkoutRoot: resolve(import.meta.dirname, "../../.."),
+      editorialReview,
       records,
       releaseId: ReleaseIdSchema.make(releaseId),
       rendererManifest,
@@ -137,18 +148,19 @@ export async function makeRelease(
       routes: () =>
         Stream.make({
           current: {
+            appLocale: projection.appLocale,
             contentKey: contentRecord.change.contentKey,
-            locale: contentRecord.change.locale,
           },
           next: {
+            appLocale: projection.appLocale,
             contentKey: contentRecord.change.contentKey,
-            locale: contentRecord.change.locale,
             publicPath: projection.publicPath,
           },
         }),
       scope: publicationScope,
+      ...snapshotPolicyBase(editorialReviewDigest, `${releaseId}-base`),
       ...emptySnapshotSources,
-    })
+    }).pipe(Effect.provide(NodeContext.layer))
   );
   return { manifest: prepared.manifest, prepared };
 }

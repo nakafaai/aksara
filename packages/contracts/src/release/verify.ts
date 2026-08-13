@@ -1,25 +1,18 @@
 import { Effect, Schema } from "effect";
 import type { ReleaseId, Sha256Hash } from "#contracts/ids";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import {
-  hashContentReleaseManifest,
-  hashContentReleaseManifestV2,
-} from "#contracts/release/hash";
+import { hashContentReleaseManifest } from "#contracts/release/hash";
 import {
   type ContentReleaseBundle,
   ContentReleaseBundleSchema,
   type RollbackContentReleaseBundle,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
+import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import {
-  type SignedContentReleaseWire,
-  SignedContentReleaseWireSchema,
-} from "#contracts/release/manifest/v2";
-import {
-  canonicalizeContentReleaseSigningInput,
-  canonicalizeContentReleaseV2SigningInput,
-} from "#contracts/release/signing";
-import { SignedContentReleaseSchema } from "#contracts/release/spec";
+  type SignedContentRelease,
+  SignedContentReleaseSchema,
+} from "#contracts/release/spec";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
 
@@ -71,27 +64,19 @@ function validateManifestHash(
   );
 }
 
-/** Authenticates one already decoded historical or current release. */
+/** Authenticates one already decoded current release. */
 const authenticateRelease = Effect.fn("AksaraContracts.authenticateRelease")(
-  function* (release: SignedContentReleaseWire) {
-    const isCurrent = "format" in release.manifest;
-    const actualHash = isCurrent
-      ? yield* hashContentReleaseManifestV2(release.manifest)
-      : yield* hashContentReleaseManifest(release.manifest);
+  function* (release: SignedContentRelease) {
+    const actualHash = yield* hashContentReleaseManifest(release.manifest);
     yield* validateManifestHash(
       release.manifest.releaseId,
       release.manifestHash,
       actualHash
     );
-    const message = isCurrent
-      ? canonicalizeContentReleaseV2SigningInput(
-          release.manifestHash,
-          release.manifest
-        )
-      : canonicalizeContentReleaseSigningInput(
-          release.manifestHash,
-          release.manifest
-        );
+    const message = canonicalizeContentReleaseSigningInput(
+      release.manifestHash,
+      release.manifest
+    );
     yield* verifyEd25519Signature({
       keyId: release.keyId,
       message,
@@ -107,24 +92,6 @@ export const verifySignedContentRelease = Effect.fn(
   "AksaraContracts.verifySignedContentRelease"
 )((input: unknown) =>
   Schema.decodeUnknown(SignedContentReleaseSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(
-      () =>
-        new ReleaseVerificationDecodeError({
-          message:
-            "Release verification input does not satisfy its exact wire contract.",
-        })
-    ),
-    Effect.flatMap(authenticateRelease)
-  )
-);
-
-/** Strictly decodes and authenticates historical and current releases. */
-export const verifySignedContentReleaseWire = Effect.fn(
-  "AksaraContracts.verifySignedContentReleaseWire"
-)((input: unknown) =>
-  Schema.decodeUnknown(SignedContentReleaseWireSchema)(input, {
     onExcessProperty: "error",
   }).pipe(
     Effect.mapError(

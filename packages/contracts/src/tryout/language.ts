@@ -1,5 +1,8 @@
 import {
+  ACTIVE_APP_LOCALES,
   type AppLocale,
+  type ArtifactLocale,
+  ArtifactLocaleSchema,
   type DeliveryLanguage,
   DeliveryLanguageSchema,
 } from "#contracts/locale";
@@ -23,4 +26,25 @@ export function deliveryLanguageForSection(
     return DeliveryLanguageSchema.make("id");
   }
   return DeliveryLanguageSchema.make(appLocale);
+}
+
+/** Derives the immutable question artifact locale from section language policy. */
+export function questionArtifactLocaleForSection(
+  sectionKey: TryoutKey,
+  appLocale: AppLocale
+): ArtifactLocale {
+  return ArtifactLocaleSchema.make(
+    deliveryLanguageForSection(sectionKey, appLocale)
+  );
+}
+
+/** Lists the unique prompt and choice locales required by one current section. */
+export function questionArtifactLocalesForSection(sectionKey: TryoutKey) {
+  return Object.freeze([
+    ...new Set(
+      ACTIVE_APP_LOCALES.map((appLocale) =>
+        questionArtifactLocaleForSection(sectionKey, appLocale)
+      )
+    ),
+  ]);
 }

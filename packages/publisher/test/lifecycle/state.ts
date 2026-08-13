@@ -41,7 +41,9 @@ export function releaseReceipt(
   const { manifest } = release;
   return {
     activatedHeads: manifest.upsertCount,
+    activeAppLocales: manifest.activeAppLocales,
     deletedHeads: manifest.deleteCount,
+    editorialReviewDigest: manifest.editorialReviewDigest,
     manifestHash: release.manifestHash,
     projectionDigest: manifest.projectionDigest,
     releaseId: manifest.releaseId,
@@ -63,11 +65,15 @@ export function releaseEvidence(
 ) {
   const { manifest } = release;
   return {
+    activeAppLocales: manifest.activeAppLocales,
+    baseActiveAppLocales: manifest.baseActiveAppLocales,
+    baseEditorialReviewDigest: manifest.baseEditorialReviewDigest,
     baseManifestHash: manifest.baseManifestHash,
     baseReleaseId: manifest.baseReleaseId,
     baseResultCount: manifest.baseResultCount,
     baseResultDigest: manifest.baseResultDigest,
     deleteHeads: manifest.deleteCount,
+    editorialReviewDigest: manifest.editorialReviewDigest,
     itemCount: manifest.itemCount,
     itemsDigest: manifest.itemsDigest,
     manifestHash: release.manifestHash,
@@ -136,18 +142,19 @@ export function createLifecycleRows() {
     const artifact = artifacts.get(change.artifactHash);
     const projection = staged.projections.find(
       (value) =>
-        value.contentKey === change.contentKey && value.locale === change.locale
+        value.contentKey === change.contentKey &&
+        value.artifactLocale === change.artifactLocale
     );
     if (!(artifact && projection)) {
       return null;
     }
     return {
       artifactHash: artifact.artifactHash,
+      artifactLocale: change.artifactLocale,
       compilerConfigHash: artifact.payload.compilerConfigHash,
       contentKey: change.contentKey,
       delivery: change.delivery,
       family: "material",
-      locale: change.locale,
       projectionHash: hashContentProjection(projection),
       publicPath: projection.publicPath,
       rendererDomain: change.rendererDomain,
@@ -201,7 +208,7 @@ export function createLifecycleRows() {
       const projection = staged.projections.find(
         (value) =>
           value.contentKey === change.contentKey &&
-          value.locale === change.locale
+          value.artifactLocale === change.artifactLocale
       );
       if (!(artifact && projection)) {
         throw new TypeError("Expected complete staged rollback state.");
@@ -211,9 +218,9 @@ export function createLifecycleRows() {
         index: item.index,
         prior: {
           change: {
+            artifactLocale: change.artifactLocale,
             contentKey: change.contentKey,
             family: change.family,
-            locale: change.locale,
             operation: "delete" as const,
           },
         },
