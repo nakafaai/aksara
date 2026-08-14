@@ -38,7 +38,8 @@ skill for every content addition, revision, or translation in this repository.
 | --- | --- |
 | Any authored revision or translation | `references/editorial-workflow.md`, `references/writing-quality.md` |
 | Lesson or article MDX | `references/mdx-quality.md` |
-| Question, answer, or choices | `references/question-bank.md` |
+| Question or choices | `references/question-bank.md` |
+| Worked answer explanation | `references/question-bank.md`, `references/worked-solutions.md`, `references/mdx-quality.md` |
 | Preview and release checks | `references/verification.md` |
 
 ## Always enforce
@@ -56,6 +57,14 @@ skill for every content addition, revision, or translation in this repository.
   symbols, and prerequisites on first use.
 - Every section must teach a real idea. Avoid thin headings, copied lesson
   skeletons, generic summaries, and decorative visuals.
+- Treat a lesson and a worked answer explanation as different teaching forms.
+  A lesson develops a concept across a sequence. An answer must completely
+  resolve one attempted problem for a learner who may not know which step
+  failed.
+- Do not optimize answer explanations for fewer lines. Preserve every
+  meaningful subgoal, condition, substitution, case, transformation, unit, and
+  check needed to reproduce the reasoning. Group connected calculations when
+  that improves readability, but do not delete instructional steps.
 - Do not use U+2014 in authored content, metadata, documentation, or code.
 - Do not add compatibility routes, fallback content, manual MDX import maps,
   duplicate preview renderers, JSON renderers, or a second corpus.
