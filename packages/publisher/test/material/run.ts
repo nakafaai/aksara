@@ -5,15 +5,11 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { loadStructuredReviewRequirements } from "@nakafa/aksara-corpus/editorial/requirements";
 import { Effect, Stream } from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { prepareContentRelease } from "#publisher/preparation";
 import { PublicationSource } from "#publisher/publication/spec";
-import { makeEditorialReviewForHeads } from "#test/editorial";
 import { testFileLayer } from "#test/files";
 import { makeTarget } from "#test/lifecycle/spec";
 import {
@@ -37,28 +33,17 @@ export async function publishMaterialRelease() {
           scope: functionMaterialScope,
         });
         const resultHeads = yield* material.result().pipe(Stream.runCollect);
-        const structuredRequirements = yield* loadStructuredReviewRequirements({
-          activeAppLocales: ACTIVE_APP_LOCALES,
-          checkoutRoot,
-          families: ContentSnapshotKindSchema.literals,
-        });
-        const editorialReview = yield* Effect.promise(() =>
-          makeEditorialReviewForHeads([...resultHeads], structuredRequirements)
-        );
-        const editorialReviewDigest = editorialReview.digest;
         const prepared = yield* prepareContentRelease({
           aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
           baseResultCount: 0,
           baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-          checkoutRoot,
-          editorialReview,
           records: material.records,
           releaseId: ReleaseIdSchema.make("test-material-replay"),
           rendererManifest,
           result: () => Stream.fromIterable(resultHeads),
           routes: material.routes,
           scope: functionMaterialScope,
-          ...snapshotPolicyBase(editorialReviewDigest, "test-material-base"),
+          ...snapshotPolicyBase("test-material-base"),
           ...emptySnapshotSources,
         });
         const state = makeTarget(prepared);

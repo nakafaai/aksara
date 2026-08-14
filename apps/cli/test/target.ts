@@ -76,14 +76,12 @@ export function gitBundle(
     ContentReleaseManifestSchema.make({
       activeAppLocales: ACTIVE_APP_LOCALES,
       baseActiveAppLocales: baseReleaseId === null ? null : ACTIVE_APP_LOCALES,
-      baseEditorialReviewDigest: baseReleaseId === null ? null : HASH,
       baseManifestHash:
         baseReleaseId === null ? null : (input.baseManifestHash ?? HASH),
       baseReleaseId,
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       deleteCount: 0,
-      editorialReviewDigest: HASH,
       format: "localized-content-release",
       itemCount: 0,
       itemsDigest: HASH,
@@ -120,13 +118,11 @@ export function rollbackBundle(
     ContentReleaseManifestSchema.make({
       activeAppLocales: ACTIVE_APP_LOCALES,
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
-      baseEditorialReviewDigest: HASH,
       baseManifestHash,
       baseReleaseId: rollbackOf,
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
       deleteCount: 0,
-      editorialReviewDigest: HASH,
       format: "localized-content-release",
       itemCount: 0,
       itemsDigest: HASH,
@@ -158,15 +154,11 @@ export function recoveryBundle(id: string, target: ContentReleaseBundle) {
         activeAppLocales:
           targetManifest.baseActiveAppLocales ?? ACTIVE_APP_LOCALES,
         baseActiveAppLocales: targetManifest.activeAppLocales,
-        baseEditorialReviewDigest: targetManifest.editorialReviewDigest,
         baseManifestHash: target.release.manifestHash,
         baseReleaseId: targetManifest.releaseId,
         baseResultCount: targetManifest.resultCount,
         baseResultDigest: targetManifest.resultDigest,
         deleteCount: 0,
-        editorialReviewDigest:
-          targetManifest.baseEditorialReviewDigest ??
-          targetManifest.editorialReviewDigest,
         format: "localized-content-release",
         itemCount: 0,
         itemsDigest: HASH,
@@ -207,7 +199,6 @@ export function receiptFor(
     activatedHeads: manifest.upsertCount,
     activeAppLocales: manifest.activeAppLocales,
     deletedHeads: manifest.deleteCount,
-    editorialReviewDigest: manifest.editorialReviewDigest,
     manifestHash: Effect.runSync(hashContentReleaseManifest(manifest)),
     projectionDigest: manifest.projectionDigest,
     releaseId: manifest.releaseId,

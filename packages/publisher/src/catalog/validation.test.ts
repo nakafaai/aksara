@@ -1,5 +1,4 @@
 import { NodeContext } from "@effect/platform-node";
-import type { EditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
@@ -13,17 +12,8 @@ import {
   catalogSnapshotEvidence,
   catalogTotal,
 } from "#test/catalog";
-import { makeEditorialReviewForHeads } from "#test/editorial";
 import { testRendererDomains } from "#test/renderer";
 
-const catalogHeadsForReview = catalogResult({
-  article: 2,
-  material: 3,
-  question: 4,
-});
-const editorialReview = await makeEditorialReviewForHeads(
-  catalogHeadsForReview
-);
 const IDENTITY_FAILURE = { _tag: "ContentCatalogIdentityError" };
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const control = vi.hoisted(() => ({
@@ -37,23 +27,11 @@ const control = vi.hoisted(() => ({
   registryFailure: false,
   resultCalls: 0,
   resultFailure: false,
-  reviewRequirementFailure: false,
   routeFailure: false,
   routeMode: "complete",
   snapshotFailure: false,
   source: { article: 2, material: 3, question: 4 },
 }));
-
-vi.mock("@nakafa/aksara-corpus/editorial/requirements", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    loadArticleReviewRequirements: () => TestEffect.succeed([]),
-    loadStructuredReviewRequirements: () =>
-      control.reviewRequirementFailure
-        ? TestEffect.fail("review-requirements")
-        : TestEffect.succeed([]),
-  };
-});
 
 vi.mock("#publisher/catalog/expectation", async () => {
   const { Effect: TestEffect } = await import("effect");
@@ -183,7 +161,6 @@ beforeEach(() => {
   control.identityMismatch = "none";
   control.recordFailure = false;
   control.records = 9;
-  control.reviewRequirementFailure = false;
   control.registryFailure = false;
   control.resultCalls = 0;
   control.resultFailure = false;
@@ -194,11 +171,10 @@ beforeEach(() => {
 });
 
 /** Builds full-catalog validation through scoped platform requirements. */
-function validationProgram(review: EditorialReviewManifest = editorialReview) {
+function validationProgram() {
   return Effect.scoped(
     validateContentCatalog({
       checkoutRoot: "/code/aksara",
-      editorialReview: review,
       rendererManifest,
     })
   ).pipe(Effect.provide(NodeContext.layer));
@@ -225,18 +201,6 @@ describe("content catalog validation", () => {
       }
     );
     expect(control.resultCalls).toBe(1);
-  });
-  it("rejects incomplete editorial review coverage", async () => {
-    const incompleteReview = await makeEditorialReviewForHeads(
-      catalogHeadsForReview.slice(1)
-    );
-    await expect(
-      Effect.runPromise(validationProgram(incompleteReview).pipe(Effect.flip))
-    ).resolves.toMatchObject({
-      _tag: "ContentCatalogValidationError",
-      cause: { _tag: "EditorialReviewCoverageError", field: "record" },
-      stage: "result",
-    });
   });
   it.each(["article", "material", "question"])(
     "rejects an incomplete %s result family",
@@ -288,7 +252,6 @@ describe("content catalog validation", () => {
     ["catalogFailure", "catalog"],
     ["resultFailure", "result"],
     ["recordFailure", "result"],
-    ["reviewRequirementFailure", "result"],
     ["routeFailure", "routes"],
     ["snapshotFailure", "snapshots"],
   ] as const)(

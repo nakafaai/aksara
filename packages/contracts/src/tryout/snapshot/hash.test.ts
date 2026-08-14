@@ -17,14 +17,13 @@ const input = Schema.decodeUnknownSync(TryoutSnapshotFactsSchema)({
   activeAppLocales: ["en", "id", "de"],
   catalogDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
   counts: { country: 2, exam: 4, section: 34, set: 10, track: 4 },
-  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
   placementCount: 840,
   placementDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   routeCount: 48,
 });
 
 describe("try-out snapshot hashing", () => {
-  it("binds locale, editorial, and inventory facts", () => {
+  it("binds locale and inventory facts", () => {
     const first = makeTryoutSnapshot(input);
     const second = makeTryoutSnapshot(input);
 

@@ -23,7 +23,6 @@ import { compareTryoutPlacements } from "#contracts/tryout/identity";
 import { digestTryoutPlacements } from "#contracts/tryout/placement-hash";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
-const reviewDigest = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
 const sourceDigest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const provisionalQuranId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 
@@ -49,7 +48,6 @@ export const makeSnapshotTestData = Effect.fn(
   });
   const programManifest = yield* makeProgramSnapshot({
     activeAppLocales: ACTIVE_APP_LOCALES,
-    editorialReviewDigest: reviewDigest,
     ...programSummary,
   });
 
@@ -64,7 +62,6 @@ export const makeSnapshotTestData = Effect.fn(
   });
   const quranManifest = yield* makeQuranSnapshot({
     activeAppLocales: ACTIVE_APP_LOCALES,
-    editorialReviewDigest: reviewDigest,
     provenanceDigest: sourceDigest,
     provenanceStatus: "blocked",
     sourceBytes: 11_506_941,
@@ -94,7 +91,6 @@ export const makeSnapshotTestData = Effect.fn(
     activeAppLocales: ACTIVE_APP_LOCALES,
     catalogDigest: catalogSummary.digest,
     counts: tryoutCounts(tryout.catalog),
-    editorialReviewDigest: reviewDigest,
     placementCount: placementSummary.count,
     placementDigest: placementSummary.digest,
     routeCount: tryout.catalog.filter(

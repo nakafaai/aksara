@@ -22,7 +22,6 @@ export type RollbackProofSelection =
   | { readonly kind: "source" }
   | {
       readonly baseActiveAppLocales: ActiveAppLocaleList;
-      readonly baseEditorialReviewDigest: Sha256Hash;
       readonly baseManifestHash: Sha256Hash;
       readonly baseReleaseId: ReleaseId;
       readonly kind: "recovery";
@@ -46,12 +45,10 @@ export function selectRollbackProof(
     manifest.origin.kind === "rollback" &&
     manifest.baseReleaseId === rollbackOf &&
     manifest.baseActiveAppLocales !== null &&
-    manifest.baseEditorialReviewDigest !== null &&
     manifest.baseManifestHash !== null
   ) {
     return Effect.succeed<RollbackProofSelection>({
       baseActiveAppLocales: manifest.baseActiveAppLocales,
-      baseEditorialReviewDigest: manifest.baseEditorialReviewDigest,
       baseManifestHash: manifest.baseManifestHash,
       baseReleaseId: rollbackOf,
       kind: "recovery",

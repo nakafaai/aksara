@@ -46,13 +46,11 @@ const itemSummary = await Effect.runPromise(
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: null,
-  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: itemSummary.deleteCount,
-  editorialReviewDigest: `sha256:${"1".repeat(64)}`,
   format: "localized-content-release",
   itemCount: items.length,
   itemsDigest: itemSummary.digest,
@@ -120,7 +118,6 @@ describe("release spec", () => {
     const first = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...manifest,
       baseActiveAppLocales: manifest.activeAppLocales,
-      baseEditorialReviewDigest: manifest.editorialReviewDigest,
       baseManifestHash: `sha256:${"1".repeat(64)}`,
       baseReleaseId: releaseId,
       baseResultCount: manifest.resultCount,
@@ -138,7 +135,6 @@ describe("release spec", () => {
     const second = Schema.decodeUnknownEither(ContentReleaseManifestSchema)({
       ...first,
       baseActiveAppLocales: first.activeAppLocales,
-      baseEditorialReviewDigest: first.editorialReviewDigest,
       baseManifestHash: `sha256:${"2".repeat(64)}`,
       baseReleaseId: firstId,
       origin: { kind: "rollback", releaseId: firstId },

@@ -1,6 +1,5 @@
 import { Effect, Schema } from "effect";
 import { ContentFamilySchema } from "#contracts/content";
-import { Sha256HashSchema } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
 import {
@@ -10,15 +9,13 @@ import {
 
 const ClosureFieldSchema = Schema.Literal(
   "activeAppLocales",
-  "editorialReviewDigest",
   "manifest",
   "scope"
 );
 
-/** Locale and editorial identity shared by one release and its snapshots. */
+/** Locale policy shared by one release and its structured snapshots. */
 export const ReleasePolicySchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,
-  editorialReviewDigest: Sha256HashSchema,
 });
 export type ReleasePolicy = typeof ReleasePolicySchema.Type;
 
@@ -43,10 +40,7 @@ function hasSameLocaleCodes(left: readonly string[], right: readonly string[]) {
 
 /** Returns whether two release policies have the same signed identity. */
 function hasSamePolicy(left: ReleasePolicy, right: ReleasePolicy) {
-  return (
-    left.editorialReviewDigest === right.editorialReviewDigest &&
-    hasSameLocaleCodes(left.activeAppLocales, right.activeAppLocales)
-  );
+  return hasSameLocaleCodes(left.activeAppLocales, right.activeAppLocales);
 }
 
 /** Fails with one exact structured-scope policy mismatch. */
@@ -77,16 +71,6 @@ function verifyManifestPolicy(
       expected: policy.activeAppLocales.join(","),
       family: manifest.family,
       field: "activeAppLocales",
-    });
-  }
-  if (
-    manifest.manifest.editorialReviewDigest !== policy.editorialReviewDigest
-  ) {
-    return failClosure({
-      actual: manifest.manifest.editorialReviewDigest,
-      expected: policy.editorialReviewDigest,
-      family: manifest.family,
-      field: "editorialReviewDigest",
     });
   }
   return Effect.void;

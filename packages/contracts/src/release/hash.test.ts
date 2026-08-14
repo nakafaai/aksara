@@ -22,11 +22,10 @@ describe("release manifest hash", () => {
     expect(familyHash).not.toBe(exactHash);
   });
 
-  it("binds active application locales and editorial evidence", () => {
+  it("binds active application locales", () => {
     const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
       ...release.manifest,
       activeAppLocales: ["en", "id", "de"],
-      editorialReviewDigest: `sha256:${"1".repeat(64)}`,
     });
     expect(Effect.runSync(hashContentReleaseManifest(manifest))).not.toBe(
       Effect.runSync(hashContentReleaseManifest(release.manifest))

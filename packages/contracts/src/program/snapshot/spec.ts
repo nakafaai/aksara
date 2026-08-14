@@ -39,7 +39,6 @@ function hasCompleteProgramSnapshot(input: {
 const ProgramSnapshotFactFields = {
   activeAppLocales: ActiveAppLocaleListSchema,
   ...ProgramCountFields,
-  editorialReviewDigest: Sha256HashSchema,
   rowDigest: Sha256HashSchema,
 };
 

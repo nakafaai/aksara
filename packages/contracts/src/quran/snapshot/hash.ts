@@ -24,7 +24,6 @@ export function canonicalizeQuranSnapshot(input: QuranSnapshotFacts) {
     activeAppLocales: input.activeAppLocales,
     attributionCount: input.attributionCount,
     chunkCount: input.chunkCount,
-    editorialReviewDigest: input.editorialReviewDigest,
     format: QURAN_SNAPSHOT_FORMAT,
     projectionCount: input.projectionCount,
     projectionDigest: input.projectionDigest,

@@ -30,7 +30,6 @@ function hasBoundCompletedReceipt(input: {
   return (
     receipt.releaseId === manifest.releaseId &&
     hasSameAppLocales(receipt.activeAppLocales, manifest.activeAppLocales) &&
-    receipt.editorialReviewDigest === manifest.editorialReviewDigest &&
     receipt.manifestHash === input.release.manifestHash &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
@@ -113,7 +112,6 @@ function hasCoherentCandidate(
       manifest.baseReleaseId === null &&
       manifest.baseManifestHash === null &&
       manifest.baseActiveAppLocales === null &&
-      manifest.baseEditorialReviewDigest === null &&
       manifest.baseResultCount === 0 &&
       manifest.baseResultDigest === EMPTY_RESULT_CATALOG_DIGEST
     );
@@ -128,8 +126,7 @@ function hasCoherentCandidate(
     hasSameAppLocales(
       activeManifest.activeAppLocales,
       manifest.baseActiveAppLocales
-    ) &&
-    activeManifest.editorialReviewDigest === manifest.baseEditorialReviewDigest
+    )
   );
 }
 
@@ -165,9 +162,6 @@ function hasCoherentRecovery(input: {
   const targetManifest = target.release.manifest;
   const restoredActiveAppLocales =
     targetManifest.baseActiveAppLocales ?? targetManifest.activeAppLocales;
-  const restoredEditorialReviewDigest =
-    targetManifest.baseEditorialReviewDigest ??
-    targetManifest.editorialReviewDigest;
   return (
     manifest.origin.releaseId === targetManifest.releaseId &&
     manifest.baseReleaseId === targetManifest.releaseId &&
@@ -179,12 +173,9 @@ function hasCoherentRecovery(input: {
       manifest.baseActiveAppLocales,
       targetManifest.activeAppLocales
     ) &&
-    manifest.baseEditorialReviewDigest ===
-      targetManifest.editorialReviewDigest &&
     manifest.resultCount === targetManifest.baseResultCount &&
     manifest.resultDigest === targetManifest.baseResultDigest &&
     hasSameAppLocales(manifest.activeAppLocales, restoredActiveAppLocales) &&
-    manifest.editorialReviewDigest === restoredEditorialReviewDigest &&
     manifest.releaseId !== input.active?.release.manifest.releaseId &&
     hasSameContentSnapshots(
       manifest.snapshots,

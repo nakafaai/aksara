@@ -1,5 +1,4 @@
 import { generateKeyPairSync } from "node:crypto";
-import { resolve } from "node:path";
 import { Path } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
 import {
@@ -28,11 +27,9 @@ import {
   PublicationSource,
   PublicationTarget,
 } from "#publisher/publication/spec";
-import { makeEditorialReviewForRelease } from "#test/editorial";
 import { testFileLayer } from "#test/files";
 import {
   contentRecord,
-  editorialReview,
   head,
   projection,
   publicationScope,
@@ -58,8 +55,6 @@ const resolver = ContentVerificationKeyResolver.of({
       keys.publicKey.export({ format: "pem", type: "spki" }).toString()
     ),
 });
-const checkoutRoot = resolve(import.meta.dirname, "../../../..");
-
 type SnapshotSources<E> = Pick<
   PrepareContentReleaseInput<E, never>,
   "snapshotManifests" | "snapshotRows"
@@ -68,26 +63,20 @@ type SnapshotSources<E> = Pick<
 /** Prepares one real deletion against an authenticated compact base catalog. */
 async function prepareDeletion<E>(
   snapshotSources: SnapshotSources<E>,
-  snapshots: PublicationScope["snapshots"] = [],
-  review = editorialReview
+  snapshots: PublicationScope["snapshots"] = []
 ) {
   const baseReleaseId = ReleaseIdSchema.make("test-plan-base");
   const base = await Effect.runPromise(
     digestResultCatalog(baseReleaseId, Stream.make(head))
   );
-  const editorialReviewDigest = review.digest;
-
   return Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
-      baseEditorialReviewDigest: editorialReviewDigest,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
       baseReleaseId,
       baseResultCount: base.count,
       baseResultDigest: base.digest,
-      checkoutRoot,
-      editorialReview: review,
       previousSnapshots: inheritContentSnapshots(null),
       records: () =>
         Stream.make({
@@ -124,19 +113,12 @@ async function prepareDeletion<E>(
 
 /** Prepares a real Program replacement without changing any MDX body head. */
 async function prepareProgramOnly() {
-  const review = await makeEditorialReviewForRelease({
-    checkoutRoot,
-    heads: [],
-  });
-  const editorialReviewDigest = review.digest;
-  const snapshot = await makeProgramSnapshotFixture(editorialReviewDigest);
+  const snapshot = await makeProgramSnapshotFixture();
   return Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      checkoutRoot,
-      editorialReview: review,
       records: () => Stream.empty,
       releaseId: ReleaseIdSchema.make("test-plan-program-only"),
       rendererManifest,
@@ -149,7 +131,7 @@ async function prepareProgramOnly() {
       }),
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
-      ...snapshotPolicyBase(editorialReviewDigest, "test-plan-program-base"),
+      ...snapshotPolicyBase("test-plan-program-base"),
     }).pipe(Effect.provide(NodeContext.layer))
   );
 }
@@ -181,19 +163,11 @@ function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
   );
 }
 
-const deletionReview = await makeEditorialReviewForRelease({
-  checkoutRoot,
-  heads: [],
-});
 const programOnlyRelease = await prepareProgramOnly();
 
 describe("preparePublicationPlan", () => {
   it("keeps family-wide invalidation for a body-free deletion", async () => {
-    const prepared = await prepareDeletion(
-      emptySnapshotSources,
-      [],
-      deletionReview
-    );
+    const prepared = await prepareDeletion(emptySnapshotSources);
     const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([{ family: "material" }]);
@@ -206,12 +180,8 @@ describe("preparePublicationPlan", () => {
   });
 
   it("retains item and structured invalidation in a mixed release", async () => {
-    const review = await makeEditorialReviewForRelease({
-      checkoutRoot,
-      heads: [],
-    });
-    const snapshot = await makeProgramSnapshotFixture(review.digest);
-    const prepared = await prepareDeletion(snapshot, ["program"], review);
+    const snapshot = await makeProgramSnapshotFixture();
+    const prepared = await prepareDeletion(snapshot, ["program"]);
     const changes = await collectCacheChanges(prepared);
 
     expect([...changes]).toEqual([

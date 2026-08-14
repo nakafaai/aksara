@@ -22,13 +22,9 @@ export const emptySnapshotSources = {
 } as const;
 
 /** Builds one exact active policy for an incremental test release. */
-export function snapshotPolicyBase(
-  editorialReviewDigest: typeof Sha256HashSchema.Type,
-  releaseId = "test-snapshot-policy-base"
-) {
+export function snapshotPolicyBase(releaseId = "test-snapshot-policy-base") {
   return {
     baseActiveAppLocales: ACTIVE_APP_LOCALES,
-    baseEditorialReviewDigest: editorialReviewDigest,
     baseManifestHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
     baseReleaseId: ReleaseIdSchema.make(releaseId),
     previousSnapshots: inheritContentSnapshots(null),
@@ -37,12 +33,9 @@ export function snapshotPolicyBase(
 
 /** Builds one replacement from the exact source-owned program catalog. */
 export async function makeProgramSnapshotFixture(
-  editorialReviewDigest: typeof Sha256HashSchema.Type,
   previous: ContentSnapshotSet = inheritContentSnapshots(null)
 ) {
-  const prepared = await Effect.runPromise(
-    prepareProgramSnapshot({ editorialReviewDigest })
-  );
+  const prepared = await Effect.runPromise(prepareProgramSnapshot());
   const snapshot: ContentSnapshotManifest = {
     family: "program",
     manifest: prepared.manifest,

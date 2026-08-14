@@ -14,7 +14,6 @@ import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/has
 import { Effect, Stream } from "effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
-import { editorialReview } from "#test/publication";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranChunkCount = 1;
@@ -25,7 +24,6 @@ const quranProjectionCount = quranRuntimeCount + quranSearchCount;
 const programManifest = ProgramSnapshotSchema.make({
   activeAppLocales: ACTIVE_APP_LOCALES,
   curriculumRowCount: 390,
-  editorialReviewDigest: hash,
   format: "localized-program-snapshot",
   programRowCount: 6,
   rowCount: 396,
@@ -38,7 +36,6 @@ const quranManifest = QuranSnapshotSchema.make({
   activeAppLocales: ACTIVE_APP_LOCALES,
   attributionCount: QURAN_ATTRIBUTION_COUNT,
   chunkCount: quranChunkCount,
-  editorialReviewDigest: hash,
   format: "localized-quran-snapshot",
   projectionCount: quranProjectionCount,
   projectionDigest: hash,
@@ -60,7 +57,6 @@ const tryoutManifest = makeTryoutSnapshot({
   activeAppLocales: ACTIVE_APP_LOCALES,
   catalogDigest: hash,
   counts: { country: 2, exam: 2, section: 4, set: 2, track: 2 },
-  editorialReviewDigest: hash,
   placementCount: 8,
   placementDigest: hash,
   routeCount: 10,
@@ -84,16 +80,6 @@ const control = vi.hoisted(
     verifyFailure: false,
   })
 );
-
-vi.mock("@nakafa/aksara-corpus/editorial/requirements", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    /** Supplies no article companions to the isolated snapshot catalog. */
-    loadArticleReviewRequirements: () => TestEffect.succeed([]),
-    /** Supplies no structured companions to the isolated snapshot catalog. */
-    loadStructuredReviewRequirements: () => TestEffect.succeed([]),
-  };
-});
 
 vi.mock("#publisher/snapshot/release", async () => {
   const { Effect: TestEffect, Stream: TestStream } = await import("effect");
@@ -144,7 +130,6 @@ function validate() {
     Effect.scoped(
       validateCatalogSnapshots({
         checkoutRoot: "/code/aksara",
-        editorialReview,
         questionHeads: () => Stream.empty,
         rendererManifest: {},
       })
@@ -198,7 +183,6 @@ describe("catalog snapshots", () => {
           Effect.scoped(
             validateCatalogSnapshots({
               checkoutRoot: "/code/aksara",
-              editorialReview,
               questionHeads: () => Stream.empty,
               rendererManifest: {},
             })
@@ -225,7 +209,6 @@ describe("catalog snapshots", () => {
           Effect.scoped(
             validateCatalogSnapshots({
               checkoutRoot: "/code/aksara",
-              editorialReview,
               questionHeads: () => Stream.empty,
               rendererManifest: {},
             })

@@ -140,7 +140,6 @@ export function validateVerificationEvidence(
       manifest.activeAppLocales.join(",") &&
     evidence.baseActiveAppLocales?.join(",") ===
       manifest.baseActiveAppLocales?.join(",") &&
-    evidence.baseEditorialReviewDigest === manifest.baseEditorialReviewDigest &&
     evidence.baseManifestHash === manifest.baseManifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
     evidence.baseResultCount === manifest.baseResultCount &&
@@ -153,7 +152,6 @@ export function validateVerificationEvidence(
     evidence.upsertHeads === summary.upsertCount &&
     evidence.deleteHeads === manifest.deleteCount &&
     evidence.deleteHeads === summary.deleteCount &&
-    evidence.editorialReviewDigest === manifest.editorialReviewDigest &&
     evidence.rendererContractVersion === manifest.rendererContractVersion &&
     evidence.rendererManifestHash === manifest.rendererManifestHash &&
     evidence.projectionCount === manifest.projectionCount &&
@@ -191,7 +189,6 @@ export function validateManifestReceipt(
     receipt.manifestHash === release.manifestHash &&
     receipt.activeAppLocales.join(",") ===
       manifest.activeAppLocales.join(",") &&
-    receipt.editorialReviewDigest === manifest.editorialReviewDigest &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&

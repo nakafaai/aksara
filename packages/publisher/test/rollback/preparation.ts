@@ -1,6 +1,5 @@
 import { Buffer } from "node:buffer";
 import { createHash, generateKeyPairSync } from "node:crypto";
-import { resolve } from "node:path";
 import { Path } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
@@ -32,7 +31,6 @@ import { prepareContentRelease } from "#publisher/preparation";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { prepareRollback } from "#publisher/rollback";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
-import { makeEditorialReviewForHeads } from "#test/editorial";
 import { testFileLayer } from "#test/files";
 import { materialGraph } from "#test/graph";
 import { testRendererDomains } from "#test/renderer";
@@ -150,15 +148,11 @@ export const signer = await Effect.runPromise(
   })
 );
 const artifact = await Effect.runPromise(signer.signArtifact(payload));
-const editorialReview = await makeEditorialReviewForHeads([head]);
-const editorialReviewDigest = editorialReview.digest;
 const sourcePrepared = await Effect.runPromise(
   prepareContentRelease({
     aksaraSha: GitCommitShaSchema.make("a".repeat(40)),
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-    checkoutRoot: resolve(import.meta.dirname, "../../../.."),
-    editorialReview,
     records: () =>
       Stream.make({
         prior: {
@@ -184,14 +178,13 @@ const sourcePrepared = await Effect.runPromise(
       families: [],
       snapshots: [],
     },
-    ...snapshotPolicyBase(editorialReviewDigest, "test-rollback-source-base"),
+    ...snapshotPolicyBase("test-rollback-source-base"),
     ...emptySnapshotSources,
   }).pipe(Effect.provide(NodeContext.layer))
 );
 const sourceManifest = ContentReleaseManifestSchema.make({
   ...sourcePrepared.manifest,
   baseActiveAppLocales: null,
-  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
 });

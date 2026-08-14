@@ -12,14 +12,13 @@ const facts = {
   activeAppLocales: ["en", "id", "de"],
   catalogDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
   counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
-  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
   placementCount: 1,
   placementDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   routeCount: 1,
 } as const;
 
 describe("try-out snapshot", () => {
-  it("decodes the current active locale and editorial identity", () => {
+  it("decodes the current active locale and inventory identity", () => {
     expect(
       Schema.decodeUnknownSync(TryoutSnapshotFactsSchema)(facts)
         .activeAppLocales

@@ -96,7 +96,6 @@ function makeQuranFixture(): QuranFixture {
     activeAppLocales: ACTIVE_APP_LOCALES,
     attributionCount: 1,
     chunkCount,
-    editorialReviewDigest: testHash,
     format: "localized-quran-snapshot",
     projectionCount: runtimeCount + searchCount,
     projectionDigest: testHash,
@@ -166,7 +165,6 @@ async function makeTryoutFixture(): Promise<TryoutFixture> {
       activeAppLocales: ACTIVE_APP_LOCALES,
       catalogDigest: catalog.digest,
       counts,
-      editorialReviewDigest: testHash,
       placementCount: placement.count,
       placementDigest: placement.digest,
       routeCount,
@@ -197,7 +195,6 @@ function prepare(
       Effect.gen(function* () {
         const prepared = yield* prepareReleaseSnapshots({
           checkoutRoot,
-          editorialReviewDigest: testHash,
           families,
           previousSnapshots,
           questionHeads: () => Stream.empty,

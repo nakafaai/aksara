@@ -91,13 +91,11 @@ const item = ContentReleaseItemSchema.make({
 const manifest = ContentReleaseManifestSchema.make({
   activeAppLocales: ACTIVE_APP_LOCALES,
   baseActiveAppLocales: ACTIVE_APP_LOCALES,
-  baseEditorialReviewDigest: Sha256HashSchema.make(`sha256:${"2".repeat(64)}`),
   baseManifestHash: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
   baseReleaseId: rollbackOf,
   baseResultCount: 1,
   baseResultDigest: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
   deleteCount: 0,
-  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"3".repeat(64)}`),
   format: "localized-content-release",
   itemCount: 1,
   itemsDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),

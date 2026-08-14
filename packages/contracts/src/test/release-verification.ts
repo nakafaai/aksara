@@ -56,13 +56,11 @@ export const verificationManifest = Schema.decodeUnknownSync(
 )({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: ["en", "id"],
-  baseEditorialReviewDigest: `sha256:${"3".repeat(64)}`,
   baseManifestHash: `sha256:${"d".repeat(64)}`,
   baseReleaseId: verificationBaseReleaseId,
   baseResultCount: 1,
   baseResultDigest: `sha256:${"e".repeat(64)}`,
   deleteCount: 1,
-  editorialReviewDigest: `sha256:${"2".repeat(64)}`,
   format: CONTENT_RELEASE_FORMAT,
   itemCount: 2,
   itemsDigest: `sha256:${"b".repeat(64)}`,

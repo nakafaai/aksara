@@ -2,17 +2,21 @@
 
 ## Classify ownership first
 
-Use exactly one review mode for each target.
+Classify each target before changing its bytes.
 
-- `authored-humanizer-review` covers Nakafa-authored prose and localized
-  metadata.
-- `assessed-language-preserved` covers prompts and choices whose language is
-  the skill being assessed.
-- `immutable-official-source` covers byte-exact official sources and quoted
-  material whose provenance requires preservation.
+- Nakafa-authored prose and localized metadata receive the authored review
+  workflow below.
+- Prompts and choices whose language is being assessed retain that assessed
+  language.
+- Byte-exact official sources and quoted material retain their required source
+  bytes and provenance.
 
 Classification controls which bytes may change. It is not a label added after
 translation.
+
+Humanizer is Codex authoring guidance only. Never encode its name, version,
+completion, classification, or output in Aksara contracts, corpus metadata,
+snapshot identities, release manifests, digests, or runtime publication gates.
 
 ## Authored translation sequence
 
@@ -32,12 +36,8 @@ For every authored target document or localized metadata record:
    accessibility, punctuation, and route identity.
 7. Compile the exact document through Aksara and preview it through Nakafa's
    real renderer.
-8. Record exact target and source hashes in editorial review evidence only after
-   the reviewed bytes are final.
-
-Humanizer is an editorial workflow, not proof that a person wrote the text. Use
-the phrase `Humanizer-reviewed editorial content`, never `human-authored`, in
-release evidence.
+8. Keep the resulting authored bytes in their domain-owned Aksara source. Git
+   provenance and the publication contracts authenticate those bytes.
 
 ## Assessed language
 
@@ -48,8 +48,7 @@ release evidence.
 - Answers and explanations use the app locale.
 - Do not create German prompt or choice copies for an English or Indonesian
   language assessment.
-- Do not change assessed bytes merely to match authored style. Bind them through
-  `assessed-language-preserved` evidence.
+- Do not change assessed bytes merely to match authored style.
 
 ## Immutable sources
 
@@ -57,7 +56,7 @@ release evidence.
 - Never pass exact Quran translation, Tafsir, or other official source bytes
   through Humanizer.
 - Keep path, exact byte hash, source version, attribution, and terms bound by
-  `immutable-official-source` evidence.
+  the source-owned provenance contract.
 - Localized explanatory shell copy is authored content and follows the authored
   workflow separately.
 

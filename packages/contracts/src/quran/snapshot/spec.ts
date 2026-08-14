@@ -30,7 +30,6 @@ const QuranSnapshotFactFields = {
   activeAppLocales: ActiveAppLocaleListSchema,
   attributionCount: CountSchema,
   chunkCount: CountSchema,
-  editorialReviewDigest: Sha256HashSchema,
   projectionCount: CountSchema,
   projectionDigest: Sha256HashSchema,
   provenanceDigest: Sha256HashSchema,

@@ -77,13 +77,11 @@ const projectionSummary = await Effect.runPromise(
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   activeAppLocales: ACTIVE_APP_LOCALES,
   baseActiveAppLocales: null,
-  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: 0,
-  editorialReviewDigest: `sha256:${"e".repeat(64)}`,
   format: CONTENT_RELEASE_FORMAT,
   itemCount: 0,
   itemsDigest: `sha256:${"b".repeat(64)}`,

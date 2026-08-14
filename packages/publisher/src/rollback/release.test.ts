@@ -36,14 +36,10 @@ describe("buildRollbackRelease", () => {
     const resultSummary = await Effect.runPromise(
       digestResultCatalog(releaseId, Stream.make(prior.head))
     );
-    const editorialReviewDigest = Sha256HashSchema.make(
-      `sha256:${"c".repeat(64)}`
-    );
     const prepared = await Effect.runPromise(
       buildRollbackRelease({
         active: {
           activeAppLocales: ACTIVE_APP_LOCALES,
-          editorialReviewDigest,
           manifestHash: Sha256HashSchema.make(`sha256:${"e".repeat(64)}`),
           releaseId: ReleaseIdSchema.make("test-build-base"),
           resultCount: 0,
@@ -67,7 +63,6 @@ describe("buildRollbackRelease", () => {
         },
         target: {
           activeAppLocales: ACTIVE_APP_LOCALES,
-          editorialReviewDigest,
           snapshots: invertContentSnapshots(inheritContentSnapshots(null)),
         },
       })

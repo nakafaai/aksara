@@ -110,14 +110,11 @@ function rollbackPolicyFromProof(
     const target: RollbackTargetPolicy = {
       activeAppLocales:
         manifest.baseActiveAppLocales ?? manifest.activeAppLocales,
-      editorialReviewDigest:
-        manifest.baseEditorialReviewDigest ?? manifest.editorialReviewDigest,
       snapshots: invertContentSnapshots(manifest.snapshots),
     };
     return Effect.succeed({
       active: {
         activeAppLocales: manifest.activeAppLocales,
-        editorialReviewDigest: manifest.editorialReviewDigest,
         manifestHash: proof.release.manifestHash,
         releaseId: manifest.releaseId,
         resultCount: manifest.resultCount,
@@ -129,7 +126,6 @@ function rollbackPolicyFromProof(
   return Effect.succeed({
     active: {
       activeAppLocales: selection.baseActiveAppLocales,
-      editorialReviewDigest: selection.baseEditorialReviewDigest,
       manifestHash: selection.baseManifestHash,
       releaseId: selection.baseReleaseId,
       resultCount: manifest.baseResultCount,
@@ -137,7 +133,6 @@ function rollbackPolicyFromProof(
     },
     target: {
       activeAppLocales: manifest.activeAppLocales,
-      editorialReviewDigest: manifest.editorialReviewDigest,
       snapshots: manifest.snapshots,
     },
   });

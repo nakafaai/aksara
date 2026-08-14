@@ -109,7 +109,6 @@ pnpm names
 pnpm jsdocs
 pnpm lines
 pnpm boundaries
-pnpm editorial:write -- /absolute/path/to/review-records.json
 pnpm typecheck
 pnpm test
 pnpm build

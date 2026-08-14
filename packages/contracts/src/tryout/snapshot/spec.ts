@@ -22,7 +22,6 @@ const TryoutSnapshotFactFields = {
   activeAppLocales: ActiveAppLocaleListSchema,
   catalogDigest: Sha256HashSchema,
   counts: TryoutCatalogCountsSchema,
-  editorialReviewDigest: Sha256HashSchema,
   placementCount: NonNegativeCountSchema,
   placementDigest: Sha256HashSchema,
   routeCount: NonNegativeCountSchema,

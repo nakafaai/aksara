@@ -58,13 +58,11 @@ export const release = Schema.decodeUnknownSync(SignedContentReleaseSchema)({
   manifest: {
     activeAppLocales: ACTIVE_APP_LOCALES,
     baseActiveAppLocales: null,
-    baseEditorialReviewDigest: null,
     baseManifestHash: null,
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: 1,
-    editorialReviewDigest: hash,
     format: CONTENT_RELEASE_FORMAT,
     itemCount: 2,
     itemsDigest: hash,
@@ -113,7 +111,6 @@ export const recoveryRelease = Schema.decodeUnknownSync(
   manifest: {
     ...release.manifest,
     baseActiveAppLocales: release.manifest.activeAppLocales,
-    baseEditorialReviewDigest: release.manifest.editorialReviewDigest,
     baseManifestHash: release.manifestHash,
     baseReleaseId: release.manifest.releaseId,
     baseResultCount: release.manifest.resultCount,

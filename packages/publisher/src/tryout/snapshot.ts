@@ -1,5 +1,4 @@
 import type { FileSystem, Path } from "@effect/platform";
-import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
@@ -29,7 +28,6 @@ import type {
 /** Exact-Git inputs required to prepare one complete try-out snapshot. */
 export interface TryoutSnapshotPreparationInput<E, R> {
   readonly checkoutRoot: string;
-  readonly editorialReviewDigest: Sha256Hash;
   /** Replays the complete desired question-head catalog in canonical order. */
   readonly questionHeads: () => Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
@@ -180,7 +178,6 @@ export const prepareTryoutSnapshot: <E, R>(
       activeAppLocales: ACTIVE_APP_LOCALES,
       catalogDigest: catalog.digest,
       counts: countCatalogKinds(projection.catalog),
-      editorialReviewDigest: input.editorialReviewDigest,
       placementCount: placement.count,
       placementDigest: placement.digest,
       routeCount: projection.routeCount,

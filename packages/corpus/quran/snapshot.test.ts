@@ -1,19 +1,17 @@
 import { resolve } from "node:path";
 
 import { NodeContext } from "@effect/platform-node";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { QuranSnapshotRowSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import { Chunk, Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { prepareQuranSnapshot } from "#corpus/quran/snapshot";
 
-const editorialReviewDigest = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
 const checkoutRoot = resolve(import.meta.dirname, "../../..");
 
 describe("Quran snapshot preparation", () => {
   it("binds every exact structured row to one reproducible snapshot", async () => {
     const snapshot = await Effect.runPromise(
-      prepareQuranSnapshot({ checkoutRoot, editorialReviewDigest }).pipe(
+      prepareQuranSnapshot({ checkoutRoot }).pipe(
         Effect.provide(NodeContext.layer)
       )
     );
@@ -33,7 +31,7 @@ describe("Quran snapshot preparation", () => {
       searchDigest:
         "sha256:103398dedd49e343d59d2cb0daecaaa5c5f8e0fa8a590b091bd0392c038219a8",
       snapshotId:
-        "sha256:af73d2e4d40ac198fc8cc902de50a125de597a6561fa799b731623d5a3c6ab35",
+        "sha256:2994ca7d8e65000978f78ede7fb57973461e9f7a923b93508c1c4045aec1d9cb",
       sourceBytes: 11_506_941,
       sourceDigest:
         "sha256:73e50fb15aac4cd95c86151cc43f002b5c76986584846e16d171bd0be99f58d7",

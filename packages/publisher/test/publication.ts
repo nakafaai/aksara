@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { NodeContext } from "@effect/platform-node";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
@@ -27,7 +26,6 @@ import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapsho
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
-import { makeEditorialReviewForHeads } from "#test/editorial";
 import { materialGraph } from "#test/graph";
 import { testRendererDomains } from "#test/renderer";
 import { emptySnapshotSources, snapshotPolicyBase } from "#test/snapshot";
@@ -116,7 +114,6 @@ export const head = MaterialHeadSchema.make({
   sourceHash: publicationPayload.sourceHash,
   sourcePath: contentRecord.change.sourcePath,
 });
-export const editorialReview = await makeEditorialReviewForHeads([head]);
 export const record = {
   prior: {
     artifactLocale: contentRecord.change.artifactLocale,
@@ -133,14 +130,11 @@ export async function makeRelease(
   records: () => Stream.Stream<unknown> = () => Stream.make(record),
   sha = "a".repeat(40)
 ) {
-  const editorialReviewDigest = editorialReview.digest;
   const prepared = await Effect.runPromise(
     prepareContentRelease({
       aksaraSha: GitCommitShaSchema.make(sha),
       baseResultCount: 0,
       baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      checkoutRoot: resolve(import.meta.dirname, "../../.."),
-      editorialReview,
       records,
       releaseId: ReleaseIdSchema.make(releaseId),
       rendererManifest,
@@ -158,7 +152,7 @@ export async function makeRelease(
           },
         }),
       scope: publicationScope,
-      ...snapshotPolicyBase(editorialReviewDigest, `${releaseId}-base`),
+      ...snapshotPolicyBase(`${releaseId}-base`),
       ...emptySnapshotSources,
     }).pipe(Effect.provide(NodeContext.layer))
   );

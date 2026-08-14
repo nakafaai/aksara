@@ -46,7 +46,6 @@ function candidateRelease() {
     manifest: {
       ...release.manifest,
       baseActiveAppLocales: release.manifest.activeAppLocales,
-      baseEditorialReviewDigest: release.manifest.editorialReviewDigest,
       baseManifestHash: release.manifestHash,
       baseReleaseId: release.manifest.releaseId,
       baseResultCount: release.manifest.resultCount,
@@ -63,7 +62,6 @@ function recoveryRelease(target = candidateRelease()) {
     manifest: {
       ...release.manifest,
       baseActiveAppLocales: target.manifest.activeAppLocales,
-      baseEditorialReviewDigest: target.manifest.editorialReviewDigest,
       baseManifestHash: target.manifestHash,
       baseReleaseId: target.manifest.releaseId,
       baseResultCount: target.manifest.resultCount,
@@ -123,7 +121,6 @@ describe("current release state", () => {
       { stagedRoutes: 1 },
       { manifestHash: otherHash },
       { activeAppLocales: ["en"] },
-      { editorialReviewDigest: otherHash },
       { projectionDigest: otherHash },
       { resultCount: release.manifest.resultCount + 1 },
       { resultDigest: otherHash },
@@ -206,13 +203,11 @@ describe("current release state", () => {
       { baseReleaseId: "release-other" },
       { baseManifestHash: otherHash },
       { baseActiveAppLocales: ["en"] },
-      { baseEditorialReviewDigest: otherHash },
       { baseResultCount: inverse.manifest.baseResultCount + 1 },
       { baseResultDigest: otherHash },
       { resultCount: inverse.manifest.resultCount + 1 },
       { resultDigest: otherHash },
       { activeAppLocales: ["en"] },
-      { editorialReviewDigest: otherHash },
       {
         snapshots: {
           ...inverse.manifest.snapshots,
@@ -269,11 +264,6 @@ describe("current release state", () => {
       {
         active,
         candidate: candidateWith({ baseActiveAppLocales: ["en"] }),
-        recovery: null,
-      },
-      {
-        active,
-        candidate: candidateWith({ baseEditorialReviewDigest: otherHash }),
         recovery: null,
       },
       {

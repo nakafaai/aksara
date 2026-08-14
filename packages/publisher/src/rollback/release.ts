@@ -55,17 +55,15 @@ import {
 /** Exact active catalog identity replaced by one rollback release. */
 export interface RollbackActiveCatalog {
   readonly activeAppLocales: ActiveAppLocaleList;
-  readonly editorialReviewDigest: Sha256Hash;
   readonly manifestHash: Sha256Hash;
   readonly releaseId: ReleaseId;
   readonly resultCount: number;
   readonly resultDigest: Sha256Hash;
 }
 
-/** Locale, editorial, and snapshot policy restored by one rollback. */
+/** Locale and snapshot policy restored by one rollback. */
 export interface RollbackTargetPolicy {
   readonly activeAppLocales: ActiveAppLocaleList;
-  readonly editorialReviewDigest: Sha256Hash;
   readonly snapshots: ContentSnapshotSet;
 }
 
@@ -208,13 +206,11 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
   const manifest = ContentReleaseManifestSchema.make({
     activeAppLocales: input.target.activeAppLocales,
     baseActiveAppLocales: input.active.activeAppLocales,
-    baseEditorialReviewDigest: input.active.editorialReviewDigest,
     baseManifestHash: input.active.manifestHash,
     baseReleaseId: input.active.releaseId,
     baseResultCount: input.active.resultCount,
     baseResultDigest: input.active.resultDigest,
     deleteCount: itemState.deleteCount,
-    editorialReviewDigest: input.target.editorialReviewDigest,
     format: "localized-content-release",
     itemCount: itemState.count,
     itemsDigest,

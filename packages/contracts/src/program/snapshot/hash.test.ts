@@ -52,7 +52,6 @@ const facts = Schema.decodeUnknownSync(ProgramSnapshotFactsSchema)({
     AppLocaleSchema.make("id"),
   ]),
   curriculumRowCount: 390,
-  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   programRowCount: 6,
   rowCount: 396,
   rowDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),

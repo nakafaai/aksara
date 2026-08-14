@@ -10,7 +10,6 @@ const blockedQuran = QuranSnapshotSchema.make({
   activeAppLocales: ACTIVE_APP_LOCALES,
   attributionCount: 1,
   chunkCount: 1085,
-  editorialReviewDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
   format: "localized-quran-snapshot",
   projectionCount: 1428,
   projectionDigest: Sha256HashSchema.make(`sha256:${"1".repeat(64)}`),
@@ -54,7 +53,6 @@ describe("snapshot provenance", () => {
       manifest: ProgramSnapshotSchema.make({
         activeAppLocales: ACTIVE_APP_LOCALES,
         curriculumRowCount: 390,
-        editorialReviewDigest: blockedQuran.editorialReviewDigest,
         format: "localized-program-snapshot",
         programRowCount: 6,
         rowCount: 396,

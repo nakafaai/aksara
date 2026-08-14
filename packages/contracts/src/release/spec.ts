@@ -40,7 +40,6 @@ export const ReleaseCountSchema = Schema.Number.pipe(
 /** Stable inventory and provenance fields owned by the current release. */
 const ContentReleaseManifestFields = {
   baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
-  baseEditorialReviewDigest: Schema.NullOr(Sha256HashSchema),
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
   baseResultCount: ReleaseCountSchema,
@@ -67,7 +66,6 @@ const ContentReleaseManifestFields = {
 /** Checks rollback provenance against forward release identities. */
 function hasCoherentReleaseOrigin(input: {
   readonly baseActiveAppLocales: typeof ActiveAppLocaleListSchema.Type | null;
-  readonly baseEditorialReviewDigest: typeof Sha256HashSchema.Type | null;
   readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
   readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
   readonly baseResultCount: number;
@@ -85,7 +83,6 @@ function hasCoherentReleaseOrigin(input: {
   if (
     hasBaseRelease !== (input.baseManifestHash !== null) ||
     hasBaseRelease !== (input.baseActiveAppLocales !== null) ||
-    hasBaseRelease !== (input.baseEditorialReviewDigest !== null) ||
     input.baseReleaseId === input.releaseId ||
     input.deleteCount + input.upsertCount !== input.itemCount ||
     input.rollbackCount !== input.itemCount ||
@@ -151,7 +148,6 @@ export type ContentReleaseItem = typeof ContentReleaseItemSchema.Type;
 export const ContentReleaseManifestSchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,
   ...ContentReleaseManifestFields,
-  editorialReviewDigest: Sha256HashSchema,
   format: Schema.Literal(CONTENT_RELEASE_FORMAT),
 }).pipe(
   Schema.filter(hasCoherentReleaseOrigin, {
@@ -197,7 +193,6 @@ export const RollbackSignedContentReleaseSchema =
 /** Checks that every staged head has exactly one matching item and artifact. */
 function hasCoherentVerificationCounts(input: {
   readonly baseActiveAppLocales: typeof ActiveAppLocaleListSchema.Type | null;
-  readonly baseEditorialReviewDigest: typeof Sha256HashSchema.Type | null;
   readonly baseManifestHash: typeof Sha256HashSchema.Type | null;
   readonly baseReleaseId: typeof ReleaseIdSchema.Type | null;
   readonly baseResultCount: number;
@@ -214,7 +209,6 @@ function hasCoherentVerificationCounts(input: {
   return (
     hasBaseRelease === (input.baseManifestHash !== null) &&
     hasBaseRelease === (input.baseActiveAppLocales !== null) &&
-    hasBaseRelease === (input.baseEditorialReviewDigest !== null) &&
     (hasBaseRelease ||
       (input.baseResultCount === 0 &&
         input.baseResultDigest === EMPTY_RESULT_CATALOG_DIGEST)) &&
@@ -229,13 +223,11 @@ function hasCoherentVerificationCounts(input: {
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,
   baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
-  baseEditorialReviewDigest: Schema.NullOr(Sha256HashSchema),
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
   baseResultCount: ReleaseCountSchema,
   baseResultDigest: Sha256HashSchema,
   deleteHeads: ReleaseCountSchema,
-  editorialReviewDigest: Sha256HashSchema,
   itemCount: ReleaseCountSchema,
   itemsDigest: Sha256HashSchema,
   manifestHash: Sha256HashSchema,
@@ -290,7 +282,6 @@ export const PublicationReceiptSchema = Schema.Struct({
   activatedHeads: ReleaseCountSchema,
   activeAppLocales: ActiveAppLocaleListSchema,
   deletedHeads: ReleaseCountSchema,
-  editorialReviewDigest: Sha256HashSchema,
   manifestHash: Sha256HashSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
