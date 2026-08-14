@@ -41,12 +41,24 @@ local override file or language mapping.
 
 ## Answer rules
 
-- Explain the reasoning, not only the final result.
+- Read `worked-solutions.md` before writing or revising any answer explanation.
+- Treat the answer as a novice-safe worked example shown after the learner has
+  attempted the problem. It is not a shortened lesson and not an answer key
+  with extra words.
+- Explain why the method applies, show how each meaningful step follows, and
+  connect the result back to what the question asks.
+- Preserve every method change, substitution, theorem condition, probability
+  case, domain restriction, non-obvious transformation, unit, and useful
+  check. Group continuous algebra into one aligned display without deleting
+  steps.
 - Start explanation sections at `####`.
-- Use descriptive concept headings, not numbered steps.
+- Use descriptive headings only for real subgoals, not for every arithmetic
+  action.
 - Restate the context needed to understand the answer.
 - State the final answer by its content, not by an option letter.
 - Keep notation consistent with the prompt.
+- Do not remove reasoning merely to reduce line count. Remove only duplicated
+  conclusions, generic headings, filler transitions, and presentation noise.
 
 ## Choices
 

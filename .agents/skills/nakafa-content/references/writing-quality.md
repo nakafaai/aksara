@@ -6,6 +6,8 @@
   page, or internal content note.
 - Match the route, subject, education level, and target locale.
 - Prefer short paragraphs with clear transitions.
+- Prefer concise completeness over brevity. A shorter explanation is worse when
+  it forces the learner to invent a missing premise or reasoning step.
 - Use concrete examples only when they immediately clarify the concept.
 - Define technical terms before using them as shortcuts.
 - Reintroduce prerequisite context briefly so each document stands alone.
@@ -33,6 +35,8 @@
 - Check every localized title, description, label, and route slug with the body.
 - Remove vague intensifiers, canned transitions, false balance, repetitive
   conclusions, and prose that explains its own writing process.
+- Never use Humanizer as a compression rule. It removes artificial prose
+  patterns, not necessary teaching context, worked reasoning, or evidence.
 
 ## Final language review
 
