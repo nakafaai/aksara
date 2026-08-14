@@ -1,7 +1,6 @@
 import { Path } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type QuestionHead,
   QuestionHeadSchema,
@@ -64,8 +63,6 @@ const { catalog: tryoutCatalog, placements: tryoutPlacements } =
     completeTryoutContent.projection,
     questionEntries.filter(({ bodyKind }) => bodyKind === "question")
   );
-const editorialReviewDigest = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
-
 /** Counts exact hierarchy kinds from the configured snapshot fixture. */
 function countCatalogKinds(records: readonly TryoutCatalogRecord[]) {
   const counts = {
@@ -95,7 +92,6 @@ function prepare(inputHeads: readonly QuestionHead[] = tryoutHeads) {
       Effect.gen(function* () {
         const prepared = yield* prepareTryoutSnapshot({
           checkoutRoot,
-          editorialReviewDigest,
           questionHeads: () => Stream.fromIterable(inputHeads),
           rendererManifest,
         });
@@ -123,7 +119,6 @@ function reject(input: {
     Effect.scoped(
       prepareTryoutSnapshot({
         checkoutRoot,
-        editorialReviewDigest,
         questionHeads:
           input.questionHeads ?? (() => Stream.fromIterable(tryoutHeads)),
         rendererManifest: input.renderer ?? rendererManifest,

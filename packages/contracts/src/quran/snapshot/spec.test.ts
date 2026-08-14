@@ -13,7 +13,6 @@ const facts = {
   activeAppLocales: ["en", "id"],
   attributionCount: 1,
   chunkCount: 1085,
-  editorialReviewDigest: digest,
   projectionCount: 1428,
   projectionDigest: digest,
   provenanceDigest: digest,

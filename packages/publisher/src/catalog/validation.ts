@@ -1,17 +1,10 @@
 import type { FileSystem, Path } from "@effect/platform";
-import type { EditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
-import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import {
-  loadArticleReviewRequirements,
-  loadStructuredReviewRequirements,
-} from "@nakafa/aksara-corpus/editorial/requirements";
 import { Effect, Schema, type Scope, Stream } from "effect";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
@@ -23,7 +16,6 @@ import {
   CatalogSnapshotEvidenceSchema,
   validateCatalogSnapshots,
 } from "#publisher/catalog/snapshots";
-import { verifyCompleteEditorialReviewCoverage } from "#publisher/editorial/coverage";
 import { makeRouteItems } from "#publisher/routes";
 
 const CHECK_RELEASE_ID = ReleaseIdSchema.make("catalog-check");
@@ -130,7 +122,6 @@ function validationError(
 /** Compiles and validates every current body and structured source family. */
 export const validateContentCatalog: (input: {
   readonly checkoutRoot: string;
-  readonly editorialReview: EditorialReviewManifest;
   readonly rendererManifest: RendererManifestEnvelope;
 }) => Effect.Effect<
   ContentCatalogValidation,
@@ -167,56 +158,31 @@ export const validateContentCatalog: (input: {
         : validationError("result", cause)
     )
   );
-  const [recordCount, routes, expectedRoutes, snapshots, reviewRequirements] =
-    yield* Effect.all(
-      [
-        publication.records().pipe(
-          Stream.runCount,
-          Effect.mapError((cause) => validationError("result", cause))
-        ),
-        digestRoutes(
+  const [recordCount, routes, expectedRoutes, snapshots] = yield* Effect.all(
+    [
+      publication.records().pipe(
+        Stream.runCount,
+        Effect.mapError((cause) => validationError("result", cause))
+      ),
+      digestRoutes(
+        CHECK_RELEASE_ID,
+        makeRouteItems(CHECK_RELEASE_ID, publication.routes())
+      ).pipe(Effect.mapError((cause) => validationError("routes", cause))),
+      digestRoutes(
+        CHECK_RELEASE_ID,
+        makeRouteItems(
           CHECK_RELEASE_ID,
-          makeRouteItems(CHECK_RELEASE_ID, publication.routes())
-        ).pipe(Effect.mapError((cause) => validationError("routes", cause))),
-        digestRoutes(
-          CHECK_RELEASE_ID,
-          makeRouteItems(
-            CHECK_RELEASE_ID,
-            Stream.fromIterable(expectation.routes)
-          )
-        ).pipe(Effect.mapError((cause) => validationError("routes", cause))),
-        validateCatalogSnapshots({
-          checkoutRoot: input.checkoutRoot,
-          editorialReview: input.editorialReview,
-          questionHeads: result.questionHeads,
-          rendererManifest: input.rendererManifest,
-        }).pipe(
-          Effect.mapError((cause) => validationError("snapshots", cause))
-        ),
-        Effect.all(
-          [
-            loadArticleReviewRequirements(ACTIVE_APP_LOCALES),
-            loadStructuredReviewRequirements({
-              activeAppLocales: ACTIVE_APP_LOCALES,
-              checkoutRoot: input.checkoutRoot,
-              families: ContentSnapshotKindSchema.literals,
-            }),
-          ],
-          { concurrency: 2 }
-        ).pipe(
-          Effect.map(([article, structured]) => [...article, ...structured]),
-          Effect.mapError((cause) => validationError("result", cause))
-        ),
-      ],
-      { concurrency: 6 }
-    );
-
-  yield* verifyCompleteEditorialReviewCoverage({
-    activeAppLocales: ACTIVE_APP_LOCALES,
-    heads: result.heads(),
-    manifest: input.editorialReview,
-    requirements: Stream.fromIterable(reviewRequirements),
-  }).pipe(Effect.mapError((cause) => validationError("result", cause)));
+          Stream.fromIterable(expectation.routes)
+        )
+      ).pipe(Effect.mapError((cause) => validationError("routes", cause))),
+      validateCatalogSnapshots({
+        checkoutRoot: input.checkoutRoot,
+        questionHeads: result.questionHeads,
+        rendererManifest: input.rendererManifest,
+      }).pipe(Effect.mapError((cause) => validationError("snapshots", cause))),
+    ],
+    { concurrency: 5 }
+  );
 
   yield* requireCount("article", result.articleCount, expectation.articleCount);
   yield* requireCount(

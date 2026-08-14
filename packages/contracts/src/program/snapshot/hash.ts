@@ -23,7 +23,6 @@ export function canonicalizeProgramSnapshot(input: ProgramSnapshotFacts) {
   return JSON.stringify({
     activeAppLocales: input.activeAppLocales,
     curriculumRowCount: input.curriculumRowCount,
-    editorialReviewDigest: input.editorialReviewDigest,
     format: PROGRAM_SNAPSHOT_FORMAT,
     programRowCount: input.programRowCount,
     rowCount: input.rowCount,

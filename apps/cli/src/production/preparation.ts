@@ -1,9 +1,5 @@
 import type { FileSystem, Path } from "@effect/platform";
-import type {
-  GitCommitSha,
-  ReleaseId,
-  Sha256Hash,
-} from "@nakafa/aksara-contracts/ids";
+import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
 import type {
   ContentHead,
@@ -19,7 +15,6 @@ import {
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
-import { loadEditorialReviewManifest } from "@nakafa/aksara-publisher/editorial/review";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import {
@@ -40,7 +35,6 @@ import { validateRecoveryRevision } from "#cli/recovery";
 
 interface BaseCatalogIdentity {
   readonly activeAppLocales: ActiveAppLocaleList;
-  readonly editorialReviewDigest: Sha256Hash;
   readonly manifestHash: ContentReleaseBundle["release"]["manifestHash"];
   readonly releaseId: ReleaseId;
   readonly resultCount: number;
@@ -130,7 +124,6 @@ function selectSourceBase(bundle: ContentReleaseBundle | null) {
   }
   return {
     activeAppLocales: bundle.release.manifest.activeAppLocales,
-    editorialReviewDigest: bundle.release.manifest.editorialReviewDigest,
     manifestHash: bundle.release.manifestHash,
     releaseId: bundle.release.manifest.releaseId,
     resultCount: bundle.release.manifest.resultCount,
@@ -144,7 +137,6 @@ function selectRecoveryBase(bundle: ContentReleaseBundle) {
   const { manifest } = bundle.release;
   if (
     manifest.baseActiveAppLocales === null ||
-    manifest.baseEditorialReviewDigest === null ||
     manifest.baseReleaseId === null ||
     manifest.baseManifestHash === null
   ) {
@@ -152,7 +144,6 @@ function selectRecoveryBase(bundle: ContentReleaseBundle) {
   }
   return {
     activeAppLocales: manifest.baseActiveAppLocales,
-    editorialReviewDigest: manifest.baseEditorialReviewDigest,
     manifestHash: manifest.baseManifestHash,
     releaseId: manifest.baseReleaseId,
     resultCount: manifest.baseResultCount,
@@ -184,10 +175,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       input.kind === "new"
         ? input.rendererManifest
         : input.bundle.rendererManifest;
-    const editorialReview = yield* loadEditorialReviewManifest({
-      repositoryRoot: input.checkoutRoot,
-      revision: aksaraSha,
-    });
     const catalog = yield* prepareContentCatalog({
       base:
         base === null
@@ -210,7 +197,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
           }
         : yield* prepareReleaseSnapshots({
             checkoutRoot: input.checkoutRoot,
-            editorialReviewDigest: editorialReview.digest,
             families: input.scope.snapshots,
             previousSnapshots: base?.snapshots ?? null,
             questionHeads: () =>
@@ -220,14 +206,11 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
     const prepared = yield* prepareContentRelease({
       aksaraSha,
       baseActiveAppLocales: base?.activeAppLocales ?? null,
-      baseEditorialReviewDigest: base?.editorialReviewDigest ?? null,
       baseManifestHash: base === null ? null : base.manifestHash,
       baseReleaseId: base === null ? null : base.releaseId,
       baseResultCount: base === null ? 0 : base.resultCount,
       baseResultDigest:
         base === null ? EMPTY_RESULT_CATALOG_DIGEST : base.resultDigest,
-      checkoutRoot: input.checkoutRoot,
-      editorialReview,
       previousSnapshots: base?.snapshots ?? null,
       records: catalog.records,
       releaseId: input.releaseId,

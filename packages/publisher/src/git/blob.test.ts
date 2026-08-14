@@ -2,10 +2,7 @@ import {
   CorpusSourcePathSchema,
   GitCommitShaSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  MAX_RAW_MDX_BYTES,
-  MAX_REVIEWED_OFFICIAL_SOURCE_BYTES,
-} from "@nakafa/aksara-contracts/limits";
+import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import {
   ExactProcessError,
@@ -130,26 +127,9 @@ describe("GitBlob", () => {
     expect(commands).toHaveLength(2);
   });
 
-  it("reads a bounded official source larger than authored MDX", async () => {
-    const officialBytes = new Uint8Array(MAX_RAW_MDX_BYTES + 1).fill(0x61);
-    await expect(
-      Effect.runPromise(
-        readTestBlob(
-          makeGitProcess({
-            blob: officialBytes,
-          }),
-          MAX_REVIEWED_OFFICIAL_SOURCE_BYTES
-        )
-      )
-    ).resolves.toHaveLength(officialBytes.byteLength);
-  });
-
-  it("rejects an unbounded reviewed source policy", async () => {
+  it("rejects a source policy above the authored byte bound", async () => {
     const error = await Effect.runPromise(
-      readTestBlob(
-        makeGitProcess({}),
-        MAX_REVIEWED_OFFICIAL_SOURCE_BYTES + 1
-      ).pipe(Effect.flip)
+      readTestBlob(makeGitProcess({}), MAX_RAW_MDX_BYTES + 1).pipe(Effect.flip)
     );
     expect(error).toMatchObject({
       _tag: "GitBlobError",

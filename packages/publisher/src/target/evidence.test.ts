@@ -103,7 +103,6 @@ describe("publication success evidence", () => {
       {
         ...success.value.evidence,
         baseActiveAppLocales: success.value.evidence.activeAppLocales,
-        baseEditorialReviewDigest: foreignHash,
         baseManifestHash: foreignHash,
         baseReleaseId: "test-foreign-base",
       },

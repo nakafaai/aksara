@@ -50,7 +50,6 @@ export function hasBoundManifestReceipt(
       manifest.activeAppLocales.join(",") &&
     receipt.activatedHeads === manifest.upsertCount &&
     receipt.deletedHeads === manifest.deleteCount &&
-    receipt.editorialReviewDigest === manifest.editorialReviewDigest &&
     receipt.projectionDigest === manifest.projectionDigest &&
     receipt.resultCount === manifest.resultCount &&
     receipt.resultDigest === manifest.resultDigest &&
@@ -85,13 +84,11 @@ export function hasBoundVerification(
       manifest.activeAppLocales.join(",") &&
     evidence.baseActiveAppLocales?.join(",") ===
       manifest.baseActiveAppLocales?.join(",") &&
-    evidence.baseEditorialReviewDigest === manifest.baseEditorialReviewDigest &&
     evidence.baseManifestHash === manifest.baseManifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
     evidence.baseResultCount === manifest.baseResultCount &&
     evidence.baseResultDigest === manifest.baseResultDigest &&
     evidence.deleteHeads === manifest.deleteCount &&
-    evidence.editorialReviewDigest === manifest.editorialReviewDigest &&
     evidence.itemCount === manifest.itemCount &&
     evidence.itemsDigest === manifest.itemsDigest &&
     evidence.projectionCount === manifest.projectionCount &&

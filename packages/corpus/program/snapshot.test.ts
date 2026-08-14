@@ -1,4 +1,3 @@
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { Chunk, Effect, Stream } from "effect";
 import { describe, expect, it } from "vitest";
 import { examProgramSources } from "#corpus/program/exam";
@@ -7,8 +6,6 @@ import {
   prepareProgramSnapshot,
   streamProgramRows,
 } from "#corpus/program/snapshot";
-
-const editorialReviewDigest = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
 
 /** Reads one required canonical active translation from a program row. */
 function translation(
@@ -31,9 +28,7 @@ function translation(
 
 describe("program snapshot preparation", () => {
   it("prepares exact programs and localized curriculum routes", async () => {
-    const prepared = await Effect.runPromise(
-      prepareProgramSnapshot({ editorialReviewDigest })
-    );
+    const prepared = await Effect.runPromise(prepareProgramSnapshot());
     const rows = Chunk.toReadonlyArray(
       await Effect.runPromise(Stream.runCollect(prepared.rows()))
     );
@@ -41,7 +36,6 @@ describe("program snapshot preparation", () => {
     expect(prepared.manifest).toMatchObject({
       activeAppLocales: ["en", "id"],
       curriculumRowCount: 390,
-      editorialReviewDigest,
       format: "localized-program-snapshot",
       programRowCount: 6,
       rowCount: 396,
@@ -87,19 +81,14 @@ describe("program snapshot preparation", () => {
   it("replays reproducible rows and rejects malformed source input", {
     timeout: 30_000,
   }, async () => {
-    const first = await Effect.runPromise(
-      prepareProgramSnapshot({ editorialReviewDigest })
-    );
-    const second = await Effect.runPromise(
-      prepareProgramSnapshot({ editorialReviewDigest })
-    );
+    const first = await Effect.runPromise(prepareProgramSnapshot());
+    const second = await Effect.runPromise(prepareProgramSnapshot());
     const firstRows = await Effect.runPromise(
       Stream.runCollect(streamProgramRows())
     );
     const replayRows = await Effect.runPromise(Stream.runCollect(first.rows()));
     const error = await Effect.runPromise(
       prepareProgramSnapshot({
-        editorialReviewDigest,
         programInput: [{ invented: true }],
       }).pipe(Effect.flip)
     );
@@ -113,7 +102,6 @@ describe("program snapshot preparation", () => {
     const [firstExam] = examProgramSources;
     const expanded = await Effect.runPromise(
       prepareProgramSnapshot({
-        editorialReviewDigest,
         programInput: [
           ...schoolProgramSources,
           ...examProgramSources,

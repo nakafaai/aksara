@@ -83,13 +83,11 @@ export const signingManifest = Schema.decodeUnknownSync(
 )({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: null,
-  baseEditorialReviewDigest: null,
   baseManifestHash: null,
   baseReleaseId: null,
   baseResultCount: 0,
   baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
   deleteCount: 0,
-  editorialReviewDigest: `sha256:${"1".repeat(64)}`,
   format: "localized-content-release",
   itemCount: items.length,
   itemsDigest: itemSummary.digest,

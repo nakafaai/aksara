@@ -34,7 +34,6 @@ export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<Prepare
     baseManifestHash: Schema.NullOr(Sha256HashSchema),
     baseReleaseId: Schema.NullOr(ReleaseIdSchema),
     hasBaseActiveAppLocales: Schema.Boolean,
-    hasBaseEditorialReviewDigest: Schema.Boolean,
     hasSnapshotBase: Schema.Boolean,
   }
 ) {}

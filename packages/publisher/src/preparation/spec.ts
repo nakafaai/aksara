@@ -1,10 +1,8 @@
-import type { FileSystem, Path } from "@effect/platform";
 import type { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
 } from "@nakafa/aksara-contracts/content";
-import type { verifyEditorialReviewManifest } from "@nakafa/aksara-contracts/editorial/review";
 import type {
   GitCommitSha,
   ReleaseId,
@@ -37,16 +35,7 @@ import type {
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import type {
-  loadArticleReviewRequirements,
-  loadStructuredReviewRequirements,
-} from "@nakafa/aksara-corpus/editorial/requirements";
 import { type Effect, Schema, type Stream } from "effect";
-import type {
-  EditorialReviewCoverageError,
-  EditorialReviewCoverageExcessError,
-} from "#publisher/editorial/coverage";
-import type { EditorialReviewCoverageIdentityError } from "#publisher/editorial/requirements";
 import type {
   PreparedContentCoherenceError,
   PreparedContentDecodeError,
@@ -122,13 +111,10 @@ export interface PrepareContentReleaseInput<E, R>
   extends SnapshotPreparationSources<E, R> {
   readonly aksaraSha: GitCommitSha;
   readonly baseActiveAppLocales: ActiveAppLocaleList | null;
-  readonly baseEditorialReviewDigest: Sha256Hash | null;
   readonly baseManifestHash: Sha256Hash | null;
   readonly baseReleaseId: ReleaseId | null;
   readonly baseResultCount: number;
   readonly baseResultDigest: Sha256Hash;
-  readonly checkoutRoot: string;
-  readonly editorialReview: unknown;
   readonly previousSnapshots: ContentSnapshotSet | null;
   readonly records: PreparedContentTransitionSource<E, R>;
   readonly releaseId: ReleaseId;
@@ -140,10 +126,6 @@ export interface PrepareContentReleaseInput<E, R>
 
 type SourceHashError = Effect.Effect.Error<
   ReturnType<typeof verifyCompiledContentSourceHash>
->;
-
-type EditorialReviewError = Effect.Effect.Error<
-  ReturnType<typeof verifyEditorialReviewManifest>
 >;
 
 /** Failures possible on every replay of the one authored record source. */
@@ -213,10 +195,6 @@ type PrepareContentReleaseError<E, R> =
   | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
   | PreparedSnapshotScopeError
-  | EditorialReviewCoverageError
-  | EditorialReviewCoverageExcessError
-  | EditorialReviewCoverageIdentityError
-  | EditorialReviewError
   | QuranProvenanceBlockedError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
   | RendererCompatibilityError
@@ -226,8 +204,6 @@ type PrepareContentReleaseError<E, R> =
   | RollbackVerificationError<PreparedContentStreamError<E>, R>
   | SnapshotPolicyError
   | SnapshotVerificationError<E, R>
-  | Effect.Effect.Error<ReturnType<typeof loadArticleReviewRequirements>>
-  | Effect.Effect.Error<ReturnType<typeof loadStructuredReviewRequirements>>
   | RouteDigestError<PreparedContentStreamError<E>, R>
   | RouteVerificationError<PreparedContentStreamError<E>, R>;
 
@@ -237,5 +213,5 @@ export type PrepareContentRelease = <E, R>(
 ) => Effect.Effect<
   PreparedGitRelease<PreparedReleaseStreamError<E>, R>,
   PrepareContentReleaseError<E, R>,
-  FileSystem.FileSystem | Path.Path | R
+  R
 >;

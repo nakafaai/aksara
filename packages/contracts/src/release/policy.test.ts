@@ -1,7 +1,6 @@
 import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
-import { Sha256HashSchema } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
 import { PROGRAM_SNAPSHOT_FORMAT } from "#contracts/program/snapshot/spec";
 import {
@@ -15,8 +14,10 @@ const activeAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
   "en",
   "id",
 ]);
-const editorialReviewDigest = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
-const policy = { activeAppLocales, editorialReviewDigest } as const;
+const priorAppLocales = Schema.decodeUnknownSync(ActiveAppLocaleListSchema)([
+  "en",
+]);
+const policy = { activeAppLocales } as const;
 const completeScope = PublicationScopeSchema.make({
   content: [],
   families: ["article", "material", "question"],
@@ -64,12 +65,7 @@ describe("release policy", () => {
   it.each([
     { basePolicy: null, name: "genesis" },
     {
-      basePolicy: {
-        ...policy,
-        editorialReviewDigest: Sha256HashSchema.make(
-          `sha256:${"e".repeat(64)}`
-        ),
-      },
+      basePolicy: { activeAppLocales: priorAppLocales },
       name: "policy change",
     },
   ])("rejects incomplete snapshots during $name", async ({ basePolicy }) => {
@@ -114,7 +110,7 @@ describe("release policy", () => {
     });
   });
 
-  it("rejects locale and editorial policy drift", async () => {
+  it("rejects locale policy drift", async () => {
     const current = await Effect.runPromise(makeSnapshotTestData());
     const program = current.manifests.find(
       (manifest) => manifest.family === "program"
@@ -143,7 +139,7 @@ describe("release policy", () => {
           scope: completeScope,
         }).pipe(Effect.flip)
       );
-    const [shortLocales, changedLocales, changedReview] = await Promise.all([
+    const [shortLocales, changedLocales] = await Promise.all([
       reject({
         ...program,
         manifest: { ...program.manifest, activeAppLocales: shortAppLocales },
@@ -152,23 +148,13 @@ describe("release policy", () => {
         ...program,
         manifest: { ...program.manifest, activeAppLocales: changedAppLocales },
       }),
-      reject({
-        ...program,
-        manifest: {
-          ...program.manifest,
-          editorialReviewDigest: Sha256HashSchema.make(
-            `sha256:${"e".repeat(64)}`
-          ),
-        },
-      }),
     ]);
 
     expect(shortLocales).toMatchObject({ field: "activeAppLocales" });
     expect(changedLocales).toMatchObject({ field: "activeAppLocales" });
-    expect(changedReview).toMatchObject({ field: "editorialReviewDigest" });
   });
 
-  it("rejects partial content scope during locale or editorial policy changes", async () => {
+  it("rejects partial content scope during genesis or locale policy changes", async () => {
     const current = await Effect.runPromise(makeSnapshotTestData());
     const error = await Effect.runPromise(
       verifyReleasePolicyTransition({

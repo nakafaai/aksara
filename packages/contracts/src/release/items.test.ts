@@ -52,13 +52,11 @@ const itemSummary = await Effect.runPromise(
 const manifest = Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
   activeAppLocales: ["en", "id"],
   baseActiveAppLocales: ["en", "id"],
-  baseEditorialReviewDigest: `sha256:${"a".repeat(64)}`,
   baseManifestHash: `sha256:${"d".repeat(64)}`,
   baseReleaseId: "test-release-parent",
   baseResultCount: 1,
   baseResultDigest: `sha256:${"e".repeat(64)}`,
   deleteCount: itemSummary.deleteCount,
-  editorialReviewDigest: `sha256:${"1".repeat(64)}`,
   format: "localized-content-release",
   itemCount: items.length,
   itemsDigest: itemSummary.digest,

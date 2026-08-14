@@ -66,10 +66,7 @@ function bindRows<E, R>(
 /** Prepares one complete structured Quran snapshot without retaining bodies. */
 export const prepareQuranSnapshot = Effect.fn(
   "AksaraCorpus.prepareQuranSnapshot"
-)(function* (input: {
-  readonly checkoutRoot: string;
-  readonly editorialReviewDigest: Sha256Hash;
-}) {
+)(function* (input: { readonly checkoutRoot: string }) {
   const verifiedSource = yield* loadVerifiedQuranSource(input.checkoutRoot);
   const provenance = yield* makeQuranProvenanceManifest({
     activeAppLocales: ACTIVE_APP_LOCALES,
@@ -83,7 +80,6 @@ export const prepareQuranSnapshot = Effect.fn(
     activeAppLocales: ACTIVE_APP_LOCALES,
     attributionCount: rowSummary.attributionCount,
     chunkCount: rowSummary.chunkCount,
-    editorialReviewDigest: input.editorialReviewDigest,
     projectionCount: rowSummary.projectionCount,
     projectionDigest: rowSummary.projectionDigest,
     provenanceDigest: provenance.digest,

@@ -11,33 +11,10 @@ import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 export const prepareReleaseBase = Effect.fn(
   "AksaraPublisher.prepareReleaseBase"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
-  let basePolicy: ReleasePolicy | null;
-  if (input.baseActiveAppLocales === null) {
-    if (input.baseEditorialReviewDigest !== null) {
-      return yield* new PreparedReleaseBaseIdentityError({
-        baseManifestHash: input.baseManifestHash,
-        baseReleaseId: input.baseReleaseId,
-        hasBaseActiveAppLocales: false,
-        hasBaseEditorialReviewDigest: true,
-        hasSnapshotBase: input.previousSnapshots !== null,
-      });
-    }
-    basePolicy = null;
-  } else {
-    if (input.baseEditorialReviewDigest === null) {
-      return yield* new PreparedReleaseBaseIdentityError({
-        baseManifestHash: input.baseManifestHash,
-        baseReleaseId: input.baseReleaseId,
-        hasBaseActiveAppLocales: true,
-        hasBaseEditorialReviewDigest: false,
-        hasSnapshotBase: input.previousSnapshots !== null,
-      });
-    }
-    basePolicy = {
-      activeAppLocales: input.baseActiveAppLocales,
-      editorialReviewDigest: input.baseEditorialReviewDigest,
-    };
-  }
+  const basePolicy: ReleasePolicy | null =
+    input.baseActiveAppLocales === null
+      ? null
+      : { activeAppLocales: input.baseActiveAppLocales };
   const hasBaseRelease = input.baseReleaseId !== null;
   if (
     hasBaseRelease !== (input.baseManifestHash !== null) ||
@@ -48,7 +25,6 @@ export const prepareReleaseBase = Effect.fn(
       baseManifestHash: input.baseManifestHash,
       baseReleaseId: input.baseReleaseId,
       hasBaseActiveAppLocales: input.baseActiveAppLocales !== null,
-      hasBaseEditorialReviewDigest: input.baseEditorialReviewDigest !== null,
       hasSnapshotBase: input.previousSnapshots !== null,
     });
   }

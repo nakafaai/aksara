@@ -9,20 +9,18 @@ import type { ContentReleaseManifest } from "#contracts/release/spec";
 const CONTENT_RELEASE_SIGNATURE_DOMAIN =
   "nakafa.aksara.localized-content-release";
 
-/** Produces stable manifest bytes including locale and editorial identity. */
+/** Produces stable manifest bytes including locale and source identity. */
 export function canonicalizeContentReleaseManifest(
   manifest: ContentReleaseManifest
 ) {
   return JSON.stringify({
     activeAppLocales: manifest.activeAppLocales,
     baseActiveAppLocales: manifest.baseActiveAppLocales,
-    baseEditorialReviewDigest: manifest.baseEditorialReviewDigest,
     baseManifestHash: manifest.baseManifestHash,
     baseReleaseId: manifest.baseReleaseId,
     baseResultCount: manifest.baseResultCount,
     baseResultDigest: manifest.baseResultDigest,
     deleteCount: manifest.deleteCount,
-    editorialReviewDigest: manifest.editorialReviewDigest,
     format: manifest.format,
     itemCount: manifest.itemCount,
     itemsDigest: manifest.itemsDigest,

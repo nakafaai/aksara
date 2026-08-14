@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { NodeContext } from "@effect/platform-node";
 import {
   ContentKeySchema,
@@ -8,6 +7,8 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+  AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
@@ -23,15 +24,15 @@ import type { PrepareContentReleaseInput } from "#publisher/preparation/spec";
 import {
   record as baseTransition,
   contentRecord,
-  editorialReview,
   rendererManifest,
   head as resultHead,
 } from "#test/publication";
 import { makeProgramSnapshotFixture } from "#test/snapshot";
 
 const aksaraSha = GitCommitShaSchema.make("a".repeat(40));
-const checkoutRoot = resolve(import.meta.dirname, "../../..");
-const editorialReviewDigest = editorialReview.digest;
+const priorAppLocales = ActiveAppLocaleListSchema.make([
+  AppLocaleSchema.make("en"),
+]);
 const inheritedSnapshots = {
   previousSnapshots: inheritContentSnapshots(null),
   snapshotManifests: () => Stream.empty,
@@ -66,13 +67,10 @@ function prepare(overrides: Partial<TestPreparationInput> = {}) {
   return prepareContentRelease({
     aksaraSha,
     baseActiveAppLocales: ACTIVE_APP_LOCALES,
-    baseEditorialReviewDigest: editorialReviewDigest,
     baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
     baseReleaseId: ReleaseIdSchema.make("test-prepare-base"),
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-    checkoutRoot,
-    editorialReview,
     ...inheritedSnapshots,
     records: () => Stream.make(baseTransition),
     releaseId: ReleaseIdSchema.make("test-prepare-release"),
@@ -164,7 +162,6 @@ describe("prepareContentRelease", () => {
     const error = await Effect.runPromise(
       prepare({
         baseActiveAppLocales: null,
-        baseEditorialReviewDigest: null,
         baseManifestHash: null,
         baseReleaseId: null,
         ...emptySnapshots,
@@ -183,7 +180,7 @@ describe("prepareContentRelease", () => {
   });
 
   it("rejects a replacement manifest outside the signed scope", async () => {
-    const snapshot = await makeProgramSnapshotFixture(editorialReviewDigest);
+    const snapshot = await makeProgramSnapshotFixture();
     const error = await Effect.runPromise(
       prepare({ snapshotManifests: snapshot.snapshotManifests }).pipe(
         Effect.flip
@@ -196,13 +193,10 @@ describe("prepareContentRelease", () => {
   });
 
   it("rejects a policy transition that omits any authored family", async () => {
-    const snapshot = await makeProgramSnapshotFixture(editorialReviewDigest);
+    const snapshot = await makeProgramSnapshotFixture();
     const error = await Effect.runPromise(
       prepare({
-        baseActiveAppLocales: ACTIVE_APP_LOCALES,
-        baseEditorialReviewDigest: Sha256HashSchema.make(
-          `sha256:${"f".repeat(64)}`
-        ),
+        baseActiveAppLocales: priorAppLocales,
         baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
         baseReleaseId: ReleaseIdSchema.make("test-policy-base"),
         previousSnapshots: inheritContentSnapshots(null),
@@ -229,7 +223,6 @@ describe("prepareContentRelease", () => {
     const error = await Effect.runPromise(
       prepare({
         baseActiveAppLocales: ACTIVE_APP_LOCALES,
-        baseEditorialReviewDigest: editorialReviewDigest,
         baseManifestHash: Sha256HashSchema.make(`sha256:${"8".repeat(64)}`),
         baseReleaseId: selfBasedRelease,
         baseResultCount: 1,
@@ -253,33 +246,18 @@ describe("prepareContentRelease", () => {
   it.each([
     {
       baseActiveAppLocales: null,
-      baseEditorialReviewDigest: null,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
       baseReleaseId: null,
     },
     {
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
-      baseEditorialReviewDigest: editorialReviewDigest,
       baseManifestHash: null,
       baseReleaseId: ReleaseIdSchema.make("test-unpaired-base"),
     },
     {
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
-      baseEditorialReviewDigest: editorialReviewDigest,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"6".repeat(64)}`),
       baseReleaseId: ReleaseIdSchema.make("test-missing-snapshot-base"),
-    },
-    {
-      baseActiveAppLocales: null,
-      baseEditorialReviewDigest: editorialReviewDigest,
-      baseManifestHash: null,
-      baseReleaseId: null,
-    },
-    {
-      baseActiveAppLocales: ACTIVE_APP_LOCALES,
-      baseEditorialReviewDigest: null,
-      baseManifestHash: null,
-      baseReleaseId: null,
     },
   ])("rejects an unpaired exact base identity", async (base) => {
     const error = await Effect.runPromise(

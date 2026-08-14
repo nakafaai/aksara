@@ -12,7 +12,6 @@ const digest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const facts = {
   activeAppLocales: ["en", "id"],
   curriculumRowCount: 5,
-  editorialReviewDigest: digest,
   programRowCount: 3,
   rowCount: 8,
   rowDigest: digest,

@@ -57,7 +57,6 @@ export const transportSnapshot = Schema.decodeUnknownSync(
   manifest: {
     activeAppLocales: ["en", "id"],
     curriculumRowCount: 390,
-    editorialReviewDigest: snapshotRowDigest,
     format: "localized-program-snapshot",
     programRowCount: 6,
     rowCount: 396,
@@ -119,13 +118,11 @@ export const transportRelease: SignedContentRelease = Schema.decodeUnknownSync(
   manifest: {
     activeAppLocales: ["en", "id"],
     baseActiveAppLocales: null,
-    baseEditorialReviewDigest: null,
     baseManifestHash: null,
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: 1,
-    editorialReviewDigest: snapshotRowDigest,
     format: "localized-content-release",
     itemCount: 2,
     itemsDigest: transportArtifactHash,
@@ -167,8 +164,6 @@ export const transportRecovery: RollbackSignedContentRelease =
     manifest: {
       ...transportRelease.manifest,
       baseActiveAppLocales: transportRelease.manifest.activeAppLocales,
-      baseEditorialReviewDigest:
-        transportRelease.manifest.editorialReviewDigest,
       baseManifestHash: transportRelease.manifestHash,
       baseReleaseId: transportRelease.manifest.releaseId,
       baseResultCount: transportRelease.manifest.resultCount,

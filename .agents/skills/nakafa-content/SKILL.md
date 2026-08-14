@@ -31,9 +31,6 @@ skill for every content addition, revision, or translation in this repository.
 - Pinned Quran source bytes and policy live under
   `packages/corpus/quran/source/`. Never Humanizer-rewrite immutable source
   bytes.
-- Editorial evidence lives only in
-  `packages/corpus/editorial/review/`. Temporary record-list input is an
-  operator artifact, not a second content source.
 
 ## Reference map
 
@@ -42,15 +39,15 @@ skill for every content addition, revision, or translation in this repository.
 | Any authored revision or translation | `references/editorial-workflow.md`, `references/writing-quality.md` |
 | Lesson or article MDX | `references/mdx-quality.md` |
 | Question, answer, or choices | `references/question-bank.md` |
-| Preview, editorial evidence, and release checks | `references/verification.md` |
+| Preview and release checks | `references/verification.md` |
 
 ## Always enforce
 
 - `appLocale` and `deliveryLanguage` are different concepts. Localize shell and
   explanations through `appLocale`. Preserve the language being assessed in
   prompts and choices through `deliveryLanguage`.
-- German authored prose binds exact English and Indonesian sibling hashes in
-  editorial evidence. Do not translate from an unreviewed meaning.
+- German authored prose must preserve the reviewed meaning of its English and
+  Indonesian siblings. Do not translate from an unreviewed meaning.
 - Use natural teacher voice for the target locale. A translation must read as a
   lesson written for that student, while preserving meaning and evidence.
 - Do not translate assessed passages, assessed choices, quotations, code,
@@ -63,4 +60,4 @@ skill for every content addition, revision, or translation in this repository.
 - Do not add compatibility routes, fallback content, manual MDX import maps,
   duplicate preview renderers, JSON renderers, or a second corpus.
 - Compile through Aksara and preview through Nakafa's real renderer before
-  recording final review hashes.
+  considering the authored revision complete.

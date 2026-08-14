@@ -117,9 +117,6 @@ vi.mock("@nakafa/aksara-publisher/heads", async () =>
 vi.mock("@nakafa/aksara-publisher/catalog/publication", async () =>
   (await import("#test/production/mock")).catalogMock(calls)
 );
-vi.mock("@nakafa/aksara-publisher/editorial/review", async () =>
-  (await import("#test/production/mock")).editorialReviewMock()
-);
 vi.mock("@nakafa/aksara-publisher/snapshot/release", async () =>
   (await import("#test/production/mock")).snapshotMock(calls)
 );

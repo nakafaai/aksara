@@ -15,7 +15,6 @@ export function canonicalizeTryoutSnapshot(input: TryoutSnapshotFacts) {
     activeAppLocales: input.activeAppLocales,
     catalogDigest: input.catalogDigest,
     counts: input.counts,
-    editorialReviewDigest: input.editorialReviewDigest,
     format: TRYOUT_SNAPSHOT_FORMAT,
     placementCount: input.placementCount,
     placementDigest: input.placementDigest,

@@ -176,14 +176,6 @@ export function catalogMock(calls: TargetCalls) {
   };
 }
 
-/** Supplies one already verified review manifest identity for orchestration. */
-export function editorialReviewMock() {
-  return {
-    loadEditorialReviewManifest: () =>
-      Effect.succeed({ digest: HEAD_HASH, records: [] }),
-  };
-}
-
 /** Exposes unchanged structured state for CLI orchestration tests. */
 export function snapshotMock(calls: TargetCalls) {
   return {

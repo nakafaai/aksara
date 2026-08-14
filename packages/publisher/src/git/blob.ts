@@ -3,7 +3,7 @@ import type {
   GitCommitSha,
 } from "@nakafa/aksara-contracts/ids";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
-import { MAX_REVIEWED_OFFICIAL_SOURCE_BYTES } from "@nakafa/aksara-contracts/limits";
+import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Context, Effect, Layer, Schema } from "effect";
@@ -27,7 +27,7 @@ type GitBlobOperation = typeof GitBlobOperationSchema.Type;
 const GitBlobLimitSchema = Schema.Number.pipe(
   Schema.int(),
   Schema.positive(),
-  Schema.lessThanOrEqualTo(MAX_REVIEWED_OFFICIAL_SOURCE_BYTES)
+  Schema.lessThanOrEqualTo(MAX_RAW_MDX_BYTES)
 );
 
 /** A repository command or exact-revision validation step failed. */
@@ -157,7 +157,7 @@ export function makeGitBlobLive(repositoryRoot: string) {
                 (cause) =>
                   new GitBlobError({
                     cause,
-                    message: "The reviewed corpus blob limit is invalid.",
+                    message: "The authored corpus blob limit is invalid.",
                     operation: "size-blob",
                   })
               ),
@@ -193,7 +193,7 @@ export function makeGitBlobLive(repositoryRoot: string) {
               `${revision}^{commit}`,
             ],
             "resolve-commit",
-            "Git could not resolve the reviewed Aksara revision."
+            "Git could not resolve the authored Aksara revision."
           );
           const commitSha = yield* Schema.decodeUnknown(GitCommitShaSchema)(
             revisionOutput.trim()
@@ -246,7 +246,7 @@ export function makeGitBlobLive(repositoryRoot: string) {
                         },
                         message:
                           cause.reason === "limit"
-                            ? "The reviewed corpus blob exceeds its byte limit."
+                            ? "The authored corpus blob exceeds its byte limit."
                             : "Git returned an invalid corpus blob batch.",
                         operation:
                           cause.reason === "limit" ? "size-blob" : "read-blob",

@@ -1,4 +1,3 @@
-import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   digestProgramRows,
@@ -107,10 +106,7 @@ export function streamProgramRows(programInput?: unknown) {
 /** Prepares the complete aggregate program snapshot selected by a release. */
 export const prepareProgramSnapshot = Effect.fn(
   "AksaraCorpus.prepareProgramSnapshot"
-)(function* (input: {
-  readonly editorialReviewDigest: Sha256Hash;
-  readonly programInput?: unknown;
-}) {
+)(function* (input: { readonly programInput?: unknown } = {}) {
   const sources = yield* prepareProgramSources(input.programInput);
   /** Replays the same decoded source rows used to derive the manifest. */
   const rows = () => streamPreparedProgramRows(sources);
@@ -121,7 +117,6 @@ export const prepareProgramSnapshot = Effect.fn(
   });
   const facts = ProgramSnapshotFactsSchema.make({
     activeAppLocales: ACTIVE_APP_LOCALES,
-    editorialReviewDigest: input.editorialReviewDigest,
     ...summary,
   });
   const manifest = yield* makeProgramSnapshot(facts);

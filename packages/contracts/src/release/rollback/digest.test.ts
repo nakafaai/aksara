@@ -75,13 +75,11 @@ function manifest(rollbackCount: number, rollbackDigest: `sha256:${string}`) {
   return Schema.decodeUnknownSync(ContentReleaseManifestSchema)({
     activeAppLocales: ["en", "id"],
     baseActiveAppLocales: null,
-    baseEditorialReviewDigest: null,
     baseManifestHash: null,
     baseReleaseId: null,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     deleteCount: rollbackCount,
-    editorialReviewDigest: `sha256:${"1".repeat(64)}`,
     format: "localized-content-release",
     itemCount: rollbackCount,
     itemsDigest: `sha256:${"a".repeat(64)}`,

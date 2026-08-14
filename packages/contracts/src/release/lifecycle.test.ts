@@ -20,7 +20,6 @@ const statusReceipt = {
   activatedHeads: 1,
   activeAppLocales: ["en", "id"],
   deletedHeads: 0,
-  editorialReviewDigest: manifestHash,
   manifestHash,
   projectionDigest: `sha256:${"a".repeat(64)}`,
   releaseId,
