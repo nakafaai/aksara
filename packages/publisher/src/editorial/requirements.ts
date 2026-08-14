@@ -3,6 +3,7 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type ActiveAppLocaleList,
   AppLocaleSchema,
+  type ArtifactLocale,
   artifactLocaleCode,
   DeliveryLanguageSchema,
 } from "@nakafa/aksara-contracts/locale";
@@ -31,15 +32,23 @@ type EditorialRequirementEffect = Effect.Effect<
   EditorialReviewCoverageIdentityError
 >;
 
+/** Minimal exact body identity from which editorial policy is derived. */
+export interface EditorialContentTarget {
+  readonly artifactLocale: ArtifactLocale;
+  readonly family: ContentHead["family"];
+  readonly sourceHash: ContentHead["sourceHash"];
+  readonly sourcePath: ContentHead["sourcePath"];
+}
+
 /** Derives an app locale from a content artifact without exchanging brands. */
-function appLocaleForHead(head: ContentHead) {
+function appLocaleForHead(head: EditorialContentTarget) {
   return AppLocaleSchema.make(artifactLocaleCode(head.artifactLocale));
 }
 
 /** Binds German authored prose to both reviewed source-locale siblings. */
-function authoredSourcePaths(head: ContentHead) {
+function authoredSourcePaths(head: EditorialContentTarget) {
   if (head.artifactLocale !== "de") {
-    return [];
+    return [head.sourcePath];
   }
   const localeSuffix = `${head.artifactLocale}.mdx`;
   if (!head.sourcePath.endsWith(localeSuffix)) {
@@ -56,7 +65,9 @@ function authoredSourcePaths(head: ContentHead) {
 }
 
 /** Builds the ordinary authored requirement shared by routed bodies and answers. */
-function authoredRequirement(head: ContentHead): EditorialRequirementEffect {
+function authoredRequirement(
+  head: EditorialContentTarget
+): EditorialRequirementEffect {
   const requiredSourcePaths = authoredSourcePaths(head);
   if (requiredSourcePaths === null) {
     return Effect.fail(
@@ -86,7 +97,7 @@ function isAssessedLanguageSection(sectionKey: string) {
 
 /** Derives every app-locale policy binding served by one question prompt head. */
 function promptRequirements(
-  head: ContentHead,
+  head: EditorialContentTarget,
   sectionKey: Parameters<typeof deliveryLanguageForSection>[0],
   activeAppLocales: ActiveAppLocaleList
 ): EditorialRequirementEffect {
@@ -135,7 +146,7 @@ function promptRequirements(
 
 /** Derives the exact review bindings required by one current catalog head. */
 export function requirementsForHead(
-  head: ContentHead,
+  head: EditorialContentTarget,
   activeAppLocales: ActiveAppLocaleList
 ): EditorialRequirementEffect {
   if (head.family !== "question") {

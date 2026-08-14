@@ -1,5 +1,6 @@
 import {
   CorpusSourcePathSchema,
+  type GitCommitSha,
   GitCommitShaSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
@@ -86,6 +87,64 @@ export function makeGitProcess(
           stdout: outputBytes(stdout),
         };
       }),
+  });
+}
+
+/** Serves one explicit file map through the exact Git batch wire protocol. */
+export function makeGitFileProcess(
+  files: Readonly<Record<string, string>>,
+  revision: GitCommitSha = TEST_COMMIT_SHA
+) {
+  return ExactProcess.of({
+    run: (input) => {
+      const [, , , operation] = input.args;
+      if (operation === "rev-parse") {
+        return Effect.succeed({
+          exitCode: 0,
+          stderr: new Uint8Array(),
+          stdout: new TextEncoder().encode(`${revision}\n`),
+        });
+      }
+      const coordinates = new TextDecoder()
+        .decode(input.stdin)
+        .trimEnd()
+        .split("\n");
+      const sources = coordinates.map((coordinate) => {
+        const separator = coordinate.indexOf(":");
+        return files[coordinate.slice(separator + 1)];
+      });
+      if (sources.some((source) => source === undefined)) {
+        return Effect.succeed({
+          exitCode: 1,
+          stderr: new TextEncoder().encode("Missing test blob."),
+          stdout: new Uint8Array(),
+        });
+      }
+      const frames = sources.map((source) => {
+        const bytes = new TextEncoder().encode(source);
+        const header = new TextEncoder().encode(
+          `${"b".repeat(40)} blob ${bytes.byteLength}\n`
+        );
+        const frame = new Uint8Array(header.byteLength + bytes.byteLength + 1);
+        frame.set(header);
+        frame.set(bytes, header.byteLength);
+        frame[frame.byteLength - 1] = 0x0a;
+        return frame;
+      });
+      const stdout = new Uint8Array(
+        frames.reduce((total, frame) => total + frame.byteLength, 0)
+      );
+      let offset = 0;
+      for (const frame of frames) {
+        stdout.set(frame, offset);
+        offset += frame.byteLength;
+      }
+      return Effect.succeed({
+        exitCode: 0,
+        stderr: new Uint8Array(),
+        stdout,
+      });
+    },
   });
 }
 

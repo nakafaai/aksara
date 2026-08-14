@@ -20,10 +20,11 @@ import { Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   EditorialReviewFileConflictError,
-  loadEditorialReviewManifest,
+  loadEditorialReviewEvidence,
   verifyEditorialReviewSources,
 } from "#publisher/editorial/review";
 import { GitBlob } from "#publisher/git/blob";
+import { makeGitFileProcess } from "#test/git";
 
 const revision = GitCommitShaSchema.make("a".repeat(40));
 const repositoryRoot = "/test-only/aksara";
@@ -109,65 +110,10 @@ function verify(
   };
 }
 
-/** Serves exact Git metadata and blobs for the live review loader adapter. */
-function makeGitProcess(blobs: Readonly<Record<string, string>>) {
-  return ExactProcess.of({
-    run: (input) => {
-      const [, , , operation] = input.args;
-      if (operation === "rev-parse") {
-        return Effect.succeed({
-          exitCode: 0,
-          stderr: new Uint8Array(),
-          stdout: new TextEncoder().encode(`${revision}\n`),
-        });
-      }
-      const coordinates = new TextDecoder()
-        .decode(input.stdin)
-        .trimEnd()
-        .split("\n");
-      const sources = coordinates.map((coordinate) => {
-        const separator = coordinate.indexOf(":");
-        return blobs[coordinate.slice(separator + 1)];
-      });
-      if (sources.some((source) => source === undefined)) {
-        return Effect.succeed({
-          exitCode: 1,
-          stderr: new TextEncoder().encode("Missing test blob."),
-          stdout: new Uint8Array(),
-        });
-      }
-      const frames = sources.map((source) => {
-        const bytes = new TextEncoder().encode(source);
-        const header = new TextEncoder().encode(
-          `${"b".repeat(40)} blob ${bytes.byteLength}\n`
-        );
-        const frame = new Uint8Array(header.byteLength + bytes.byteLength + 1);
-        frame.set(header);
-        frame.set(bytes, header.byteLength);
-        frame[frame.byteLength - 1] = 0x0a;
-        return frame;
-      });
-      const stdout = new Uint8Array(
-        frames.reduce((total, frame) => total + frame.byteLength, 0)
-      );
-      let offset = 0;
-      for (const frame of frames) {
-        stdout.set(frame, offset);
-        offset += frame.byteLength;
-      }
-      return Effect.succeed({
-        exitCode: 0,
-        stderr: new Uint8Array(),
-        stdout,
-      });
-    },
-  });
-}
-
 /** Loads one manifest through the production exact-Git adapter. */
 function loadReview(blobs: Readonly<Record<string, string>>) {
-  return loadEditorialReviewManifest({ repositoryRoot, revision }).pipe(
-    Effect.provideService(ExactProcess, makeGitProcess(blobs))
+  return loadEditorialReviewEvidence({ repositoryRoot, revision }).pipe(
+    Effect.provideService(ExactProcess, makeGitFileProcess(blobs, revision))
   );
 }
 
@@ -231,11 +177,16 @@ describe("editorial review source verification", () => {
     ]);
   });
   it("loads and authenticates the canonical manifest from exact Git", async () => {
-    const manifest = await makeReviewManifest(reviewRecord("de"));
+    const manifest = await makeReviewManifest(
+      reviewRecord("de"),
+      reviewRecord("en")
+    );
+    const active = await makeReviewManifest(reviewRecord("en"));
+    const candidate = await makeReviewManifest(reviewRecord("de"));
 
     await expect(
       Effect.runPromise(loadReview(reviewBlobs(manifest)))
-    ).resolves.toEqual(manifest);
+    ).resolves.toEqual({ active, candidate });
   });
   it("wraps invalid manifest JSON at the exact Git boundary", async () => {
     const error = await Effect.runPromise(

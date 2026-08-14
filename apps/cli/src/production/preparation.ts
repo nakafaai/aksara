@@ -19,7 +19,7 @@ import {
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
-import { loadEditorialReviewManifest } from "@nakafa/aksara-publisher/editorial/review";
+import { loadEditorialReviewEvidence } from "@nakafa/aksara-publisher/editorial/review";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import {
@@ -184,10 +184,11 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       input.kind === "new"
         ? input.rendererManifest
         : input.bundle.rendererManifest;
-    const editorialReview = yield* loadEditorialReviewManifest({
+    const editorialReviewEvidence = yield* loadEditorialReviewEvidence({
       repositoryRoot: input.checkoutRoot,
       revision: aksaraSha,
     });
+    const editorialReview = editorialReviewEvidence.active;
     const catalog = yield* prepareContentCatalog({
       base:
         base === null

@@ -46,11 +46,7 @@ describe("editorial review coverage", () => {
   });
 
   it("covers one assessed prompt across every active app locale", async () => {
-    const englishSources = [
-      englishPrompt.sourcePath.replace("question.en.mdx", "answer.en.mdx"),
-      editorialChoicesPath(englishPrompt),
-      englishPrompt.sourcePath,
-    ];
+    const englishSources = [editorialChoicesPath(englishPrompt)];
     await expect(
       verifyEditorialCoverage({
         heads: [englishPrompt, indonesianPrompt],
@@ -210,6 +206,39 @@ describe("editorial review coverage", () => {
       requiredSourcePaths: [
         "packages/corpus/material/test/editorial/source.ts",
       ],
+      reviewMode: "authored-humanizer-review",
+      targetPath: material.sourcePath,
+    });
+    const error = await Effect.runPromise(
+      verifyCompleteEditorialReviewCoverage({
+        activeAppLocales: ACTIVE_APP_LOCALES,
+        heads: Stream.empty,
+        manifest,
+        requirements: Stream.make(requirement),
+      }).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({ field: "sourcePath" });
+  });
+
+  it("rejects a structured source with an extra source binding", async () => {
+    const manifest = await Effect.runPromise(
+      makeEditorialReviewManifest([
+        makeEditorialRecord(material, {
+          sourcePaths: [
+            material.sourcePath,
+            "packages/corpus/material/test/editorial/source.ts",
+          ],
+        }),
+      ])
+    );
+    const requirement = Schema.decodeUnknownSync(
+      EditorialReviewRequirementSchema
+    )({
+      appLocale: "en",
+      deliveryLanguage: "en",
+      expectedTargetHash: null,
+      requiredSourcePaths: [material.sourcePath],
       reviewMode: "authored-humanizer-review",
       targetPath: material.sourcePath,
     });

@@ -49,7 +49,9 @@ export function makeReviewRequirement(input: {
     appLocale: input.appLocale,
     deliveryLanguage: DeliveryLanguageSchema.make(input.appLocale),
     expectedTargetHash: null,
-    requiredSourcePaths: canonicalPaths(input.requiredSourcePaths ?? []),
+    requiredSourcePaths: canonicalPaths(
+      input.requiredSourcePaths ?? [input.targetPath]
+    ),
     reviewMode: input.reviewMode,
     targetPath: input.targetPath,
   });

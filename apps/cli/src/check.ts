@@ -1,6 +1,6 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { validateContentCatalog } from "@nakafa/aksara-publisher/catalog/validation";
-import { loadEditorialReviewManifest } from "@nakafa/aksara-publisher/editorial/review";
+import { loadEditorialReviewEvidence } from "@nakafa/aksara-publisher/editorial/review";
 import { Effect, Schema } from "effect";
 import { readPreviewEnvironment } from "#cli/environment/read";
 import {
@@ -26,13 +26,13 @@ export function runCheckCommand(cwd: string) {
       selection: { kind: "catalog" },
     });
     const revision = yield* readCleanAksaraRevision(renderer.aksaraRoot);
-    const editorialReview = yield* loadEditorialReviewManifest({
+    const editorialReviewEvidence = yield* loadEditorialReviewEvidence({
       repositoryRoot: renderer.aksaraRoot,
       revision,
     });
     const validation = yield* validateContentCatalog({
       checkoutRoot: renderer.aksaraRoot,
-      editorialReview,
+      editorialReview: editorialReviewEvidence.active,
       rendererManifest: renderer.manifest,
     });
     const validatedRevision = yield* readCleanAksaraRevision(

@@ -24,6 +24,7 @@ import {
   MAX_EDITORIAL_REVIEW_CATALOG_BYTES,
   MAX_EDITORIAL_REVIEW_PART_BYTES,
 } from "#publisher/editorial/catalog";
+import { projectEditorialReviewEvidence } from "#publisher/editorial/evidence";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 
 const EDITORIAL_REVIEW_MANIFEST_PATH = CorpusSourcePathSchema.make(
@@ -161,9 +162,9 @@ export const verifyEditorialReviewSources = Effect.fn(
   return manifest;
 });
 
-/** Loads and verifies the canonical review manifest from one exact revision. */
-export const loadEditorialReviewManifest = Effect.fn(
-  "AksaraPublisher.loadEditorialReviewManifest"
+/** Loads, authenticates, and projects canonical review evidence from exact Git. */
+export const loadEditorialReviewEvidence = Effect.fn(
+  "AksaraPublisher.loadEditorialReviewEvidence"
 )(function* (input: {
   readonly repositoryRoot: string;
   readonly revision: GitCommitSha;
@@ -187,11 +188,12 @@ export const loadEditorialReviewManifest = Effect.fn(
         sourcePath,
       }))
     );
-    const manifest = yield* assembleEditorialReviewManifest(catalog, parts);
-    return yield* verifyEditorialReviewSources({
-      manifest,
+    const assembled = yield* assembleEditorialReviewManifest(catalog, parts);
+    const manifest = yield* verifyEditorialReviewSources({
+      manifest: assembled,
       revision: input.revision,
     });
+    return yield* projectEditorialReviewEvidence(manifest);
   });
   return yield* program.pipe(
     Effect.provide(makeGitBlobLive(input.repositoryRoot)),

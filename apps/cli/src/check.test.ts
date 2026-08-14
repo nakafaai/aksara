@@ -85,7 +85,8 @@ vi.mock("#cli/evidence", async () => {
 vi.mock("@nakafa/aksara-publisher/editorial/review", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
-    loadEditorialReviewManifest: () => TestEffect.succeed(editorialReview),
+    loadEditorialReviewEvidence: () =>
+      TestEffect.succeed({ active: editorialReview, candidate: null }),
   };
 });
 

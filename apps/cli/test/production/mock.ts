@@ -179,8 +179,11 @@ export function catalogMock(calls: TargetCalls) {
 /** Supplies one already verified review manifest identity for orchestration. */
 export function editorialReviewMock() {
   return {
-    loadEditorialReviewManifest: () =>
-      Effect.succeed({ digest: HEAD_HASH, records: [] }),
+    loadEditorialReviewEvidence: () =>
+      Effect.succeed({
+        active: { digest: HEAD_HASH, records: [] },
+        candidate: null,
+      }),
   };
 }
 

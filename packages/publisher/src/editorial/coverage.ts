@@ -92,10 +92,12 @@ function verifyRequirement(
       new EditorialReviewCoverageError({ ...base, field: "reviewMode" })
     );
   }
+  const actualSourcePaths = record.sources.map(({ sourcePath }) => sourcePath);
   if (
-    requirement.requiredSourcePaths.some(
-      (requiredPath) =>
-        !record.sources.some(({ sourcePath }) => sourcePath === requiredPath)
+    actualSourcePaths.length !== requirement.requiredSourcePaths.length ||
+    actualSourcePaths.some(
+      (sourcePath, index) =>
+        sourcePath !== requirement.requiredSourcePaths[index]
     )
   ) {
     return Effect.fail(

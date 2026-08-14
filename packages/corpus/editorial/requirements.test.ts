@@ -83,8 +83,14 @@ describe("structured editorial requirements", () => {
       requirements.every(
         ({ expectedTargetHash, requiredSourcePaths, reviewMode }) =>
           expectedTargetHash === null &&
-          requiredSourcePaths.length === 0 &&
+          requiredSourcePaths.length === 1 &&
           reviewMode === "authored-humanizer-review"
+      )
+    ).toBe(true);
+    expect(
+      requirements.every(
+        ({ requiredSourcePaths, targetPath }) =>
+          requiredSourcePaths[0] === targetPath
       )
     ).toBe(true);
   });
