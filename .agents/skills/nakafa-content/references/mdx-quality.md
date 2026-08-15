@@ -51,9 +51,13 @@
 - Compiler-owned metadata fields remain schema-owned strings. Keep metadata
   descriptions as natural prose rather than encoding formulas with JSX or raw
   LaTeX.
-- Prefer one aligned `<BlockMath />` for a connected derivation.
-- Use `<MathContainer>` only when separate formula rows should remain visually
-  distinct.
+- Prefer one aligned `<BlockMath />` for a connected derivation. One standalone
+  `<BlockMath />` is complete by itself and does not require a
+  `<MathContainer>` wrapper.
+- Use `<MathContainer>` only when two or more consecutive formula rows belong
+  to the same derivation and should remain visually distinct. Do not use it to
+  group a formula with a graph, diagram, simulation, code block, or other
+  non-math component.
 - MDX math props use a single LaTeX backslash. TypeScript choice strings escape
   the backslash.
 - Use inline code for programming syntax and identifiers.
@@ -79,6 +83,15 @@ Choose a representation for its instructional job, not for variety alone.
 - Use math components for notation and derivation. Use a domain component such
   as a graph, number line, simulation, or interactive model only when it models
   the concept the learner is studying.
+- Compose related block components with the renderer-owned layout primitives.
+  Use `<ContentStack>` when a formula and a graph, diagram, number line,
+  simulation, or other visual form one teaching unit. Use `<ContentBlock>` for
+  one custom visual that needs the standard separation from an adjacent block.
+  A blank line in raw MDX improves source readability but does not create DOM
+  spacing between two JSX flow components.
+- Never repair block spacing with empty paragraphs, repeated `<br />` tags,
+  nonbreaking spaces, or content-local margin props. Preserve the semantic
+  grouping and let `ContentBlock`, `ContentStack`, or `ContentGrid` own layout.
 - Use nearby prose to tell the learner what to notice, how the representation
   connects to the concept, and what conclusion it supports. A visual must not
   carry essential meaning only through color, motion, or position.
