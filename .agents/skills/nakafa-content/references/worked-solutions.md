@@ -109,6 +109,24 @@ Avoid:
 - narrating arithmetic with filler such as `next` or `finally` when the
   derivation already shows the transition.
 
+## Visual structure in worked answers
+
+The answer form follows the problem. Use a diagram, graph, table, number line,
+or other renderer-owned component when the learner must inspect that
+representation to understand the reasoning. Explain the decisive relationship
+in accessible prose and show how it enters the solution.
+
+Do not add a visual merely because the corresponding lesson uses one. A direct
+calculation usually needs a clear orientation, one complete derivation, an
+interpretation or check, and a conclusion. A case analysis may benefit from a
+compact table. A route, dependency, or multi-stage process may benefit from a
+diagram. The representation earns its place by making the reasoning easier to
+reconstruct.
+
+English, Indonesian, and German explanations must preserve the same meaningful
+subgoals, conditions, evidence, representations, checks, and conclusion. They
+may differ in sentence structure so each reads naturally in its own language.
+
 ## Difficulty calibration
 
 - A direct calculation may need one reason, one complete derivation, and one

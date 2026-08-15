@@ -57,6 +57,18 @@ skill for every content addition, revision, or translation in this repository.
   symbols, and prerequisites on first use.
 - Every section must teach a real idea. Avoid thin headings, copied lesson
   skeletons, generic summaries, and decorative visuals.
+- Give every lesson and article a deliberate presentation plan. Use prose,
+  lists, tables, quotations, diagrams, math, or a renderer-owned component
+  according to the learning job each representation does. Break up a wall of
+  text when another representation makes a comparison, sequence, hierarchy,
+  relationship, or worked model materially easier to understand.
+- Do not satisfy a component quota. A decorative table, quotation, diagram, or
+  interaction adds cognitive load without adding instruction. Every visual
+  must be explained in nearby prose and must remain understandable through its
+  accessible text.
+- Keep English, Indonesian, and German siblings equivalent in facts,
+  instructional sequence, examples, visual evidence, and learner support. Use
+  natural language for each locale instead of forcing sentence-level symmetry.
 - Treat a lesson and a worked answer explanation as different teaching forms.
   A lesson develops a concept across a sequence. An answer must completely
   resolve one attempted problem for a learner who may not know which step
