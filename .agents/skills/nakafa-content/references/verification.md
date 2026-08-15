@@ -55,6 +55,11 @@ typed blockers, never fallback conditions.
 - Confirm the document compiles and renders without console or network errors.
 - Confirm localized route identity has no collision.
 - Confirm every new authored translation completed both Humanizer passes.
+- Compare each translated document with its audited EN and ID siblings. The
+  ordered concepts, sections, examples, exercises, worked solutions, checks,
+  tables, diagrams, math, code, and custom MDX components must match exactly.
+  A shorter file, a compiling file, or a semantically similar summary is not
+  sufficient evidence of locale parity.
 - Confirm no U+2014 character exists outside a pinned immutable allowlist.
 - Confirm no temporary input, preview process, cache, or task-owned artifact is
   left behind.
