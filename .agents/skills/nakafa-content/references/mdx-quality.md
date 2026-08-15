@@ -42,9 +42,9 @@
   ```
 
 - This obligation covers axis symbols, variable names, formulas, coordinates,
-  inequalities, values with units, and mathematical labels in English,
-  Indonesian, and German. Text such as `y-axis`, `x = 2`, `(3, 4)`, or `5 m`
-  is not exempt because it appears in a component string.
+  inequalities, values with units, and mathematical labels in every authored
+  locale. Text such as `y-axis`, `x = 2`, `(3, 4)`, or `5 m` is not exempt
+  because it appears in a component string.
 - If a component field accepts only a string, do not place raw LaTeX or a
   plain-text formula in that field. Put the mathematical statement in nearby
   prose with `<InlineMath />`, or use a verified math-aware renderer prop.

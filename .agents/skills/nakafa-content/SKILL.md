@@ -5,8 +5,8 @@ description: Author and review Nakafa educational content in Aksara. Use for art
 
 # Nakafa Content in Aksara
 
-Aksara is the only authored-content source for activated Nakafa scopes. Use this
-skill for every content addition, revision, or translation in this repository.
+Aksara is Nakafa's authored-content source. Use this skill for every content
+addition, revision, review, or translation in this repository.
 
 ## First steps
 
@@ -47,18 +47,17 @@ skill for every content addition, revision, or translation in this repository.
 - `appLocale` and `deliveryLanguage` are different concepts. Localize shell and
   explanations through `appLocale`. Preserve the language being assessed in
   prompts and choices through `deliveryLanguage`.
-- German authored prose must preserve the reviewed meaning of its English and
-  Indonesian siblings. Do not translate from an unreviewed meaning.
+- Localized authored prose must preserve the reconciled, reviewed meaning of
+  its locale siblings. Never translate from an unreviewed or disputed source.
 - Locale siblings are one teaching document expressed in different languages.
   Preserve the same sequence and count of concepts, sections, examples,
   exercises, worked solutions, checks, tables, diagrams, math, code, and custom
   MDX components. Do not condense, expand, reorder, or replace a teaching unit
   in only one locale.
-- If the English or Indonesian source is inaccurate, incomplete, artificial,
-  or pedagogically weak, repair the shared teaching document first. Apply the
-  same correction to EN and ID. When German is part of the explicitly
-  authorized authoring scope, translate that corrected document to DE before
-  treating the locale set as complete.
+- If any existing locale sibling is inaccurate, incomplete, artificial, or
+  pedagogically weak, reconcile the shared teaching document first. Apply the
+  correction to every affected existing sibling before translating the
+  corrected document into another authorized locale.
 - Use natural teacher voice for the target locale. A translation must read as a
   lesson written for that student, while preserving meaning and evidence.
 - Do not translate assessed passages, assessed choices, quotations, code,
@@ -76,9 +75,9 @@ skill for every content addition, revision, or translation in this repository.
   interaction adds cognitive load without adding instruction. Every visual
   must be explained in nearby prose and must remain understandable through its
   accessible text.
-- Keep English, Indonesian, and German siblings equivalent in facts,
-  instructional sequence, examples, visual evidence, and learner support. Use
-  natural language for each locale instead of forcing sentence-level symmetry.
+- Keep all locale siblings equivalent in facts, instructional sequence,
+  examples, visual evidence, and learner support. Use natural language for each
+  locale instead of forcing sentence-level symmetry.
 - Render every learner-facing mathematical expression through Aksara's math
   components, including expressions inside component titles, descriptions, and
   other props that accept React nodes. Do not leave variables, formulas,
