@@ -56,7 +56,9 @@ skill for every content addition, revision, or translation in this repository.
   in only one locale.
 - If the English or Indonesian source is inaccurate, incomplete, artificial,
   or pedagogically weak, repair the shared teaching document first. Apply the
-  same correction to EN and ID, then translate that corrected document to DE.
+  same correction to EN and ID. When German is part of the explicitly
+  authorized authoring scope, translate that corrected document to DE before
+  treating the locale set as complete.
 - Use natural teacher voice for the target locale. A translation must read as a
   lesson written for that student, while preserving meaning and evidence.
 - Do not translate assessed passages, assessed choices, quotations, code,
