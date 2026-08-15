@@ -49,13 +49,13 @@ typed blockers, never fallback conditions.
   token in a React-node-capable title, description, caption, or label must use
   `<InlineMath />`; reject plain strings such as `y-axis`, `x = 2`, `(3, 4)`,
   or `5 m` when they carry mathematical meaning.
-- Compare English, Indonesian, and German siblings for the same formulas,
+- Compare every locale sibling for the same formulas,
   conditions, units, significant steps, and conclusions. Natural phrasing may
   differ, but mathematical meaning and instructional support may not.
 - Confirm the document compiles and renders without console or network errors.
 - Confirm localized route identity has no collision.
 - Confirm every new authored translation completed both Humanizer passes.
-- Compare each translated document with its audited EN and ID siblings. The
+- Compare each translated document with every audited source sibling. The
   ordered concepts, sections, examples, exercises, worked solutions, checks,
   tables, diagrams, math, code, and custom MDX components must match exactly.
   A shorter file, a compiling file, or a semantically similar summary is not

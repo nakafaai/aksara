@@ -24,13 +24,14 @@ For every authored target document or localized metadata record:
 
 1. Identify the exact target path, app locale, delivery language, and source
    paths.
-2. Audit the English and Indonesian sources for factual, citation, structural,
-   terminology, and artificial-writing problems.
+2. Audit every existing locale sibling that owns the reviewed meaning for
+   factual, citation, structural, terminology, and artificial-writing problems.
 3. Read and apply the complete Humanizer skill to the source. Correct the source
    only when evidence supports the change.
 4. Record the corrected document's ordered teaching units: concepts, sections,
    examples, exercises, worked solutions, checks, tables, diagrams, math, code,
-   and custom MDX components. EN, ID, and DE must implement that same inventory.
+   and custom MDX components. Every locale sibling must implement that same
+   inventory.
 5. Translate the complete corrected document. Natural target-language syntax is
    required, but it must not add, remove, reorder, compress, or replace a
    teaching unit. Translation is not permission to redesign the lesson.
@@ -48,13 +49,11 @@ For every authored target document or localized metadata record:
 
 ## Assessed language
 
-- English-language sections use English prompt and choice artifacts for every
+- Prompts and choices use the section's assessed `deliveryLanguage` for every
   app locale.
-- Indonesian-language sections use Indonesian prompt and choice artifacts for
-  every app locale.
 - Answers and explanations use the app locale.
-- Do not create German prompt or choice copies for an English or Indonesian
-  language assessment.
+- Do not duplicate an assessed prompt or its choices merely because the app
+  locale changes.
 - Do not change assessed bytes merely to match authored style.
 
 ## Immutable sources
@@ -67,10 +66,10 @@ For every authored target document or localized metadata record:
 - Localized explanatory shell copy is authored content and follows the authored
   workflow separately.
 
-## German terminology
+## Locale terminology
 
-Create and review one glossary before translating a scope. Use it consistently
-for education levels, subjects, mathematics, science, Quran, account,
-accessibility, and try-out terms. Route slugs use lowercase ASCII kebab case with
-`ae`, `oe`, `ue`, and `ss` where required. Validate collisions and stable
-cross-locale identity rather than adding spelling redirects.
+Create or review the target locale glossary before translating a scope. Use it
+consistently for education levels, subjects, mathematics, science, Quran,
+account, accessibility, and try-out terms. Derive route slugs from the
+contract-owned locale policy, then validate collisions and stable cross-locale
+identity instead of adding spelling redirects.

@@ -123,7 +123,7 @@ compact table. A route, dependency, or multi-stage process may benefit from a
 diagram. The representation earns its place by making the reasoning easier to
 reconstruct.
 
-English, Indonesian, and German explanations must preserve the same meaningful
+All localized explanations must preserve the same meaningful
 subgoals, conditions, evidence, representations, checks, and conclusion. They
 may differ in sentence structure so each reads naturally in its own language.
 

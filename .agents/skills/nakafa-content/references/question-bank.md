@@ -1,6 +1,6 @@
 # Question bank
 
-## Current directory contract
+## Directory contract
 
 Question directories live below:
 
@@ -8,25 +8,18 @@ Question directories live below:
 packages/corpus/question-bank/tryout/{country}/{exam}/{section}/{set}/{question}/
 ```
 
-An active ordinary section owns:
+An ordinary section owns prompt, answer, and choice artifacts derived from the
+contracts and locale lifecycle. Inspect those owners before authoring. Do not
+hardcode a locale list or infer filenames from a neighboring section.
 
-```text
-question.en.mdx
-question.id.mdx
-answer.en.mdx
-answer.id.mdx
-choices.ts
-```
+An app locale explicitly authorized for candidate authoring may additionally
+own its schema-derived prompt, answer, and choice artifacts. Candidate files
+must pass the candidate inventory, ownership, preview, and editorial gates.
+Authoring candidate files does not activate or publish that locale. Activation
+requires the complete release to be locale-closed.
 
-An explicitly authorized German candidate-authoring effort may additionally own
-`question.de.mdx`, `answer.de.mdx`, and `choices.de.ts` for ordinary sections
-while German remains inactive. Candidate files must pass the candidate inventory,
-ownership, preview, and editorial gates. They do not make German publishable.
-German activation remains blocked until the complete release is locale-closed.
-
-An English-language section owns one `question.en.mdx` prompt and English
-choices. An Indonesian-language section owns one `question.id.mdx` prompt and
-Indonesian choices. Both keep one answer explanation for every active or
+An assessed-language section owns one prompt and one choice set in its
+`deliveryLanguage`. It keeps one answer explanation for every active or
 explicitly authorized candidate app locale. Never duplicate assessed prompts or
 choices by app locale.
 
