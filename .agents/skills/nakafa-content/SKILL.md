@@ -49,6 +49,16 @@ skill for every content addition, revision, or translation in this repository.
   prompts and choices through `deliveryLanguage`.
 - German authored prose must preserve the reviewed meaning of its English and
   Indonesian siblings. Do not translate from an unreviewed meaning.
+- Locale siblings are one teaching document expressed in different languages.
+  Preserve the same sequence and count of concepts, sections, examples,
+  exercises, worked solutions, checks, tables, diagrams, math, code, and custom
+  MDX components. Do not condense, expand, reorder, or replace a teaching unit
+  in only one locale.
+- If the English or Indonesian source is inaccurate, incomplete, artificial,
+  or pedagogically weak, repair the shared teaching document first. Apply the
+  same correction to EN and ID. When German is part of the explicitly
+  authorized authoring scope, translate that corrected document to DE before
+  treating the locale set as complete.
 - Use natural teacher voice for the target locale. A translation must read as a
   lesson written for that student, while preserving meaning and evidence.
 - Do not translate assessed passages, assessed choices, quotations, code,

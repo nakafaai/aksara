@@ -20,7 +20,9 @@
   substantive bridge paragraph first.
 - Avoid reusable headings such as `Overview`, `Key Takeaway`, or `Step One` when
   the actual concept can name the section.
-- Do not copy the same section sequence across nearby lessons.
+- Do not copy the same section sequence across different nearby lesson routes.
+  This rule does not apply to locale siblings. EN, ID, and DE versions of one
+  lesson must preserve the same ordered teaching sequence and components.
 - If the text asks students to solve something, include the answer, explanation,
   or an immediate self-check.
 - Use hyphen bullets and avoid deeply nested lists.

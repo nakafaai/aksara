@@ -8,7 +8,7 @@ Question directories live below:
 packages/corpus/question-bank/tryout/{country}/{exam}/{section}/{set}/{question}/
 ```
 
-A current ordinary section owns:
+An active ordinary section owns:
 
 ```text
 question.en.mdx
@@ -18,13 +18,17 @@ answer.id.mdx
 choices.ts
 ```
 
-German activation adds `question.de.mdx`, `answer.de.mdx`, and German choices for
-ordinary sections only after the active locale closes across the entire release.
+An explicitly authorized German candidate-authoring effort may additionally own
+`question.de.mdx`, `answer.de.mdx`, and `choices.de.ts` for ordinary sections
+while German remains inactive. Candidate files must pass the candidate inventory,
+ownership, preview, and editorial gates. They do not make German publishable.
+German activation remains blocked until the complete release is locale-closed.
 
 An English-language section owns one `question.en.mdx` prompt and English
 choices. An Indonesian-language section owns one `question.id.mdx` prompt and
-Indonesian choices. Both keep one answer explanation for every active app
-locale. Never duplicate assessed prompts or choices by app locale.
+Indonesian choices. Both keep one answer explanation for every active or
+explicitly authorized candidate app locale. Never duplicate assessed prompts or
+choices by app locale.
 
 The exact file set is derived by the contracts and corpus reader. Do not add a
 local override file or language mapping.

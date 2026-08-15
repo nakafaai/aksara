@@ -28,15 +28,22 @@ For every authored target document or localized metadata record:
    terminology, and artificial-writing problems.
 3. Read and apply the complete Humanizer skill to the source. Correct the source
    only when evidence supports the change.
-4. Draft from the corrected meaning, the current terminology glossary, and
-   primary evidence. Do not translate sentence by sentence without considering
-   how a teacher would explain the idea in the target locale.
-5. Apply the complete Humanizer skill again to the target draft.
-6. Check fabrication, citations, terminology, headings, math, code,
+4. Record the corrected document's ordered teaching units: concepts, sections,
+   examples, exercises, worked solutions, checks, tables, diagrams, math, code,
+   and custom MDX components. EN, ID, and DE must implement that same inventory.
+5. Translate the complete corrected document. Natural target-language syntax is
+   required, but it must not add, remove, reorder, compress, or replace a
+   teaching unit. Translation is not permission to redesign the lesson.
+6. Apply the complete Humanizer skill again to the target draft. Humanizer may
+   improve wording, rhythm, and clarity, but it may not remove teaching context,
+   reasoning steps, evidence, math, or components.
+7. Check fabrication, citations, terminology, headings, math, code,
    accessibility, punctuation, and route identity.
-7. Compile the exact document through Aksara and preview it through Nakafa's
+8. Compare the locale siblings structurally and semantically. Confirm that every
+   teaching unit and component has one corresponding localized implementation.
+9. Compile the exact document through Aksara and preview it through Nakafa's
    real renderer.
-8. Keep the resulting authored bytes in their domain-owned Aksara source. Git
+10. Keep the resulting authored bytes in their domain-owned Aksara source. Git
    provenance and the publication contracts authenticate those bytes.
 
 ## Assessed language
