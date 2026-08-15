@@ -24,6 +24,33 @@
 - Use `<InlineMath />` for mathematical expressions, variables, quantities,
   units, coordinates, and calculated values in prose.
 - Use `<BlockMath />` for standalone formulas.
+- Apply the same rule inside renderer component props. When `title`,
+  `description`, or another learner-facing prop accepts a React node, pass a
+  JSX fragment and wrap every mathematical token with `<InlineMath />` instead
+  of hiding it in a plain string.
+
+  ```mdx
+  <LineEquation
+    title={<>Reflection of <InlineMath math="h(x)=|x-2|" /></>}
+    description={
+      <>
+        The graph is reflected across the <InlineMath math="y" />-axis; its
+        width is unchanged.
+      </>
+    }
+  />
+  ```
+
+- This obligation covers axis symbols, variable names, formulas, coordinates,
+  inequalities, values with units, and mathematical labels in English,
+  Indonesian, and German. Text such as `y-axis`, `x = 2`, `(3, 4)`, or `5 m`
+  is not exempt because it appears in a component string.
+- If a component field accepts only a string, do not place raw LaTeX or a
+  plain-text formula in that field. Put the mathematical statement in nearby
+  prose with `<InlineMath />`, or use a verified math-aware renderer prop.
+- Compiler-owned metadata fields remain schema-owned strings. Keep metadata
+  descriptions as natural prose rather than encoding formulas with JSX or raw
+  LaTeX.
 - Prefer one aligned `<BlockMath />` for a connected derivation.
 - Use `<MathContainer>` only when separate formula rows should remain visually
   distinct.

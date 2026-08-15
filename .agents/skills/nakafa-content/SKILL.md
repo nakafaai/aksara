@@ -69,6 +69,11 @@ skill for every content addition, revision, or translation in this repository.
 - Keep English, Indonesian, and German siblings equivalent in facts,
   instructional sequence, examples, visual evidence, and learner support. Use
   natural language for each locale instead of forcing sentence-level symmetry.
+- Render every learner-facing mathematical expression through Aksara's math
+  components, including expressions inside component titles, descriptions, and
+  other props that accept React nodes. Do not leave variables, formulas,
+  coordinates, quantities, units, or axis symbols as plain text merely because
+  they appear inside a prop.
 - Treat a lesson and a worked answer explanation as different teaching forms.
   A lesson develops a concept across a sequence. An answer must completely
   resolve one attempted problem for a learner who may not know which step

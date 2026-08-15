@@ -45,6 +45,13 @@ typed blockers, never fallback conditions.
 
 - Confirm app locale and delivery language are intentionally different only for
   assessed-language policy.
+- Inspect learner-facing component props as well as prose. Any mathematical
+  token in a React-node-capable title, description, caption, or label must use
+  `<InlineMath />`; reject plain strings such as `y-axis`, `x = 2`, `(3, 4)`,
+  or `5 m` when they carry mathematical meaning.
+- Compare English, Indonesian, and German siblings for the same formulas,
+  conditions, units, significant steps, and conclusions. Natural phrasing may
+  differ, but mathematical meaning and instructional support may not.
 - Confirm the document compiles and renders without console or network errors.
 - Confirm localized route identity has no collision.
 - Confirm every new authored translation completed both Humanizer passes.
