@@ -34,10 +34,10 @@ Perhatikan bagaimana koordinat <InlineMath math="y" /> berubah tanda, sementara 
   showZAxis={false}
   data={[
     ...[
-      { x: -5, y: 2, label: "A" },
-      { x: -3, y: 1, label: "B" },
-      { x: 1, y: 2, label: "C" },
-      { x: 4, y: -2, label: "D" },
+      { x: -5, y: 2, label: <InlineMath math="A" /> },
+      { x: -3, y: 1, label: <InlineMath math="B" /> },
+      { x: 1, y: 2, label: <InlineMath math="C" /> },
+      { x: 4, y: -2, label: <InlineMath math="D" /> },
     ].map((p, i) => ({
       points: [
         { x: p.x, y: p.y, z: 0 },
@@ -48,10 +48,10 @@ Perhatikan bagaimana koordinat <InlineMath math="y" /> berubah tanda, sementara 
       showPoints: true,
     })),
     ...[
-      { x: -5, y: -2, label: "A'" },
-      { x: -3, y: -1, label: "B'" },
-      { x: 1, y: -2, label: "C'" },
-      { x: 4, y: 2, label: "D'" },
+      { x: -5, y: -2, label: <InlineMath math="A'" /> },
+      { x: -3, y: -1, label: <InlineMath math="B'" /> },
+      { x: 1, y: -2, label: <InlineMath math="C'" /> },
+      { x: 4, y: 2, label: <InlineMath math="D'" /> },
     ].map((p, i) => ({
       points: [
         { x: p.x, y: p.y, z: 0 },
@@ -115,16 +115,16 @@ Akibatnya, peta dari segitiga <InlineMath math="ABC" /> adalah segitiga <InlineM
     // Segitiga ABC (Original)
     ...[
       {
-        from: { x: -1, y: 4, z: 0, label: "A" },
-        to: { x: 2, y: 1, z: 0, label: "B" },
+        from: { x: -1, y: 4, z: 0, label: <InlineMath math="A" /> },
+        to: { x: 2, y: 1, z: 0, label: <InlineMath math="B" /> },
       },
       {
-        from: { x: 2, y: 1, z: 0, label: "B" },
-        to: { x: -2, y: -1, z: 0, label: "C" },
+        from: { x: 2, y: 1, z: 0, label: <InlineMath math="B" /> },
+        to: { x: -2, y: -1, z: 0, label: <InlineMath math="C" /> },
       },
       {
-        from: { x: -2, y: -1, z: 0, label: "C" },
-        to: { x: -1, y: 4, z: 0, label: "A" },
+        from: { x: -2, y: -1, z: 0, label: <InlineMath math="C" /> },
+        to: { x: -1, y: 4, z: 0, label: <InlineMath math="A" /> },
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
@@ -142,16 +142,16 @@ Akibatnya, peta dari segitiga <InlineMath math="ABC" /> adalah segitiga <InlineM
     // Segitiga A'B'C' (Reflected)
     ...[
       {
-        from: { x: -1, y: -4, z: 0, label: "A'" },
-        to: { x: 2, y: -1, z: 0, label: "B'" },
+        from: { x: -1, y: -4, z: 0, label: <InlineMath math="A'" /> },
+        to: { x: 2, y: -1, z: 0, label: <InlineMath math="B'" /> },
       },
       {
-        from: { x: 2, y: -1, z: 0, label: "B'" },
-        to: { x: -2, y: 1, z: 0, label: "C'" },
+        from: { x: 2, y: -1, z: 0, label: <InlineMath math="B'" /> },
+        to: { x: -2, y: 1, z: 0, label: <InlineMath math="C'" /> },
       },
       {
-        from: { x: -2, y: 1, z: 0, label: "C'" },
-        to: { x: -1, y: -4, z: 0, label: "A'" },
+        from: { x: -2, y: 1, z: 0, label: <InlineMath math="C'" /> },
+        to: { x: -1, y: -4, z: 0, label: <InlineMath math="A'" /> },
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
@@ -223,7 +223,7 @@ Jadi, persamaan garis bayangannya adalah:
           { x: 6, y: (2 / 3) * 6, z: 0 },
         ],
         color: "#65a30d",
-        labels: [{ text: "2x - 3y = 0", at: 1, offset: [0.5, 0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
       },
       {
         // Garis Bayangan: 2x + 3y = 0 => y = -(2/3)x
@@ -232,7 +232,7 @@ Jadi, persamaan garis bayangannya adalah:
           { x: 6, y: -(2 / 3) * 6, z: 0 },
         ],
         color: "#c026d3",
-        labels: [{ text: "2x + 3y = 0", at: 1, offset: [0.5, -0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
       },
     ]}
   />
