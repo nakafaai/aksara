@@ -83,6 +83,10 @@ addition, revision, review, or translation in this repository.
   other props that accept React nodes. Do not leave variables, formulas,
   coordinates, quantities, units, or axis symbols as plain text merely because
   they appear inside a prop.
+- Treat graph and 3D labels as semantic React content by default. Plain prose is
+  already valid content; compose prose and `<InlineMath />` in one fragment when
+  a label includes notation. Never flatten mathematical meaning into a string or
+  invent a separate plain-versus-rich authoring mode.
 - Treat a lesson and a worked answer explanation as different teaching forms.
   A lesson develops a concept across a sequence. An answer must completely
   resolve one attempted problem for a learner who may not know which step

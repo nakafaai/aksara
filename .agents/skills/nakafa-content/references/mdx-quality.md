@@ -45,6 +45,11 @@
   inequalities, values with units, and mathematical labels in every authored
   locale. Text such as `y-axis`, `x = 2`, `(3, 4)`, or `5 m` is not exempt
   because it appears in a component string.
+- Graph and 3D label fields are semantic React content. Pass ordinary prose as
+  text, and use a fragment with `<InlineMath />` for mixed prose and notation.
+  Do not choose between plain and rich label modes, encode JSX or LaTeX inside a
+  string, or replace a scientific label with easier prose merely to avoid math
+  rendering.
 - If a component field accepts only a string, do not place raw LaTeX or a
   plain-text formula in that field. Put the mathematical statement in nearby
   prose with `<InlineMath />`, or use a verified math-aware renderer prop.
@@ -95,6 +100,10 @@ Choose a representation for its instructional job, not for variety alone.
 - Use nearby prose to tell the learner what to notice, how the representation
   connects to the concept, and what conclusion it supports. A visual must not
   carry essential meaning only through color, motion, or position.
+- For an interactive graph or 3D model, preserve every semantically necessary
+  point, branch, object, label, and relationship from the audited teaching
+  document. Localize learner-facing prose while keeping mathematical and
+  scientific identity exact.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
