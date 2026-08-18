@@ -13,6 +13,9 @@ import {
   testAnswerProjection,
   testArticleDocument,
   testArticleProjection,
+  testAssessedAnswerDocument,
+  testAssessedAnswerProjection,
+  testGermanPromptProjection,
   testMaterialDocument,
   testMaterialProjection,
   testPromptDocument,
@@ -148,6 +151,32 @@ describe("local preview manifest", () => {
         { ...manifest, artifacts: [answerArtifact] },
         { ...manifest, artifacts: [promptArtifact] },
       ].every(rejectsManifest)
+    ).toBe(true);
+  });
+
+  it("pairs an assessed-language prompt with its localized answer", () => {
+    const localizedAnswerArtifact = artifact(testAssessedAnswerProjection, "1");
+    const manifest = {
+      artifacts: [promptArtifact, localizedAnswerArtifact],
+      document: testAssessedAnswerDocument,
+      format: LOCAL_PREVIEW_FORMAT,
+      rendererManifestHash: `sha256:${"2".repeat(64)}`,
+      repositories,
+      revision: 1,
+      status: "ready",
+    } as const;
+
+    expect(
+      Schema.decodeUnknownSync(LocalPreviewManifestSchema)(manifest)
+    ).toEqual(manifest);
+    expect(
+      rejectsManifest({
+        ...manifest,
+        artifacts: [
+          artifact(testGermanPromptProjection, "3"),
+          localizedAnswerArtifact,
+        ],
+      })
     ).toBe(true);
   });
 

@@ -1,5 +1,6 @@
 import { Schema } from "effect";
 import { GitCommitShaSchema, Sha256HashSchema } from "#contracts/ids";
+import type { ArtifactLocale } from "#contracts/locale";
 import {
   type ArticlePreviewDocument,
   type MaterialPreviewDocument,
@@ -118,13 +119,17 @@ function matchesQuestionIdentity(
 /** Checks the ordered prompt required before one entitled answer artifact. */
 function matchesAnswerPrompt(
   projection: ContentProjection,
-  identity: QuestionAnswerIdentity
+  input: {
+    readonly identity: QuestionAnswerIdentity;
+    readonly questionArtifactLocale: ArtifactLocale;
+  }
 ) {
+  const { identity } = input;
   return (
     projection.kind === "question-body" &&
     projection.bodyKind === "question" &&
     projection.contentKey === identity.peerContentKey &&
-    projection.artifactLocale === identity.artifactLocale &&
+    projection.artifactLocale === input.questionArtifactLocale &&
     projection.peerContentKey === identity.contentKey &&
     projection.questionKey === identity.questionKey &&
     projection.questionNumber === identity.questionNumber &&
@@ -159,7 +164,11 @@ function hasCoherentReadyArtifacts(input: {
   const second = input.artifacts[1]?.projection;
   return (
     input.artifacts.length === 2 &&
-    matchesAnswerPrompt(first, input.document.identity) &&
+    matchesAnswerPrompt(first, {
+      identity: input.document.identity,
+      questionArtifactLocale:
+        input.document.target.placement.questionArtifactLocale,
+    }) &&
     second !== undefined &&
     matchesQuestionIdentity(second, input.document.identity)
   );

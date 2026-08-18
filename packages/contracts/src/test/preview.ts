@@ -115,6 +115,23 @@ export const testPreviewTarget = Schema.decodeUnknownSync(
   },
 });
 
+const testAssessedPreviewTarget = Schema.decodeUnknownSync(
+  TryoutPreviewTargetSchema
+)({
+  ...testPreviewTarget,
+  exam: { ...testPreviewTarget.exam, appLocale: "de" },
+  placement: {
+    ...testPreviewTarget.placement,
+    answerArtifactLocale: "de",
+    appLocale: "de",
+    deliveryLanguage: "en",
+    questionArtifactLocale: "en",
+  },
+  section: { ...testPreviewTarget.section, appLocale: "de" },
+  set: { ...testPreviewTarget.set, appLocale: "de" },
+  track: { ...testPreviewTarget.track, appLocale: "de" },
+});
+
 /** Exact article document used only by preview contract tests. */
 export const testArticleDocument = Schema.decodeUnknownSync(
   ArticlePreviewDocumentSchema
@@ -198,6 +215,16 @@ export const testAnswerDocument = Schema.decodeUnknownSync(
   target: testPreviewTarget,
 });
 
+/** German answer paired with the immutable English assessed-language prompt. */
+export const testAssessedAnswerDocument = Schema.decodeUnknownSync(
+  QuestionAnswerPreviewDocumentSchema
+)({
+  ...testAnswerDocument,
+  identity: { ...testAnswerDocument.identity, artifactLocale: "de" },
+  sourcePath: `${questionRoot}/answer.de.mdx`,
+  target: testAssessedPreviewTarget,
+});
+
 const metadata = {
   authors: [{ name: "Test Author" }],
   date: "2026-07-24",
@@ -242,6 +269,14 @@ export const testPromptProjection = Schema.decodeUnknownSync(
   metadata,
 });
 
+/** Invalid German prompt fixture for an English assessed-language document. */
+export const testGermanPromptProjection = Schema.decodeUnknownSync(
+  QuestionPromptProjectionSchema
+)({
+  ...testPromptProjection,
+  artifactLocale: "de",
+});
+
 /** Exact answer projection used only by preview contract tests. */
 export const testAnswerProjection = Schema.decodeUnknownSync(
   QuestionAnswerProjectionSchema
@@ -249,4 +284,12 @@ export const testAnswerProjection = Schema.decodeUnknownSync(
   ...answerIdentity,
   kind: "question-body",
   metadata,
+});
+
+/** German answer projection paired with the immutable English test prompt. */
+export const testAssessedAnswerProjection = Schema.decodeUnknownSync(
+  QuestionAnswerProjectionSchema
+)({
+  ...testAnswerProjection,
+  artifactLocale: "de",
 });
