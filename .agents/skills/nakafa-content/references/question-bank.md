@@ -8,23 +8,20 @@ Question directories live below:
 packages/corpus/question-bank/tryout/{country}/{exam}/{section}/{set}/{question}/
 ```
 
-An ordinary section owns prompt, answer, and choice artifacts derived from the
-contracts and locale lifecycle. Inspect those owners before authoring. Do not
-hardcode a locale list or infer filenames from a neighboring section.
+The exact required file set is derived by the contracts and corpus reader. Do
+not copy a list of locale suffixes into this skill, and do not add a local
+override file or language mapping.
 
-An app locale explicitly authorized for candidate authoring may additionally
-own its schema-derived prompt, answer, and choice artifacts. Candidate files
-must pass the candidate inventory, ownership, preview, and editorial gates.
-Authoring candidate files does not activate or publish that locale. Activation
-requires the complete release to be locale-closed.
+An ordinary section owns one localized prompt, one localized worked answer,
+and localized choices for every app locale in its authorized authoring scope.
+Every authored locale file must pass the same inventory, ownership, preview,
+and editorial checks, whether or not that locale is included in a publication.
+The presence of an authored source file alone never changes publication state.
 
-An assessed-language section owns one prompt and one choice set in its
-`deliveryLanguage`. It keeps one answer explanation for every active or
-explicitly authorized candidate app locale. Never duplicate assessed prompts or
-choices by app locale.
-
-The exact file set is derived by the contracts and corpus reader. Do not add a
-local override file or language mapping.
+A language-assessment section owns one prompt and one choice set in the
+assessed delivery language. It owns one worked answer explanation for every app
+locale in its authorized authoring scope. Never duplicate an assessed prompt or
+its choices merely because the application locale changes.
 
 ## Prompt rules
 
