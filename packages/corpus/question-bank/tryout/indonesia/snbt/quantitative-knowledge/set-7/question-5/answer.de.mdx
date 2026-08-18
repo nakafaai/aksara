@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-24",
+};
+
+Für die Folge gilt die Rekursionsgleichung
+
+<MathContainer>
+  <BlockMath math="a_{n+1} = a_{n+2} + 2a_n" />
+</MathContainer>
+
+Gegeben sind <InlineMath math="a_3 = -1" /> und <InlineMath math="a_5 = 3" />. Gesucht ist <InlineMath math="a_2" />.
+
+Zunächst bestimmen wir <InlineMath math="a_4" />. Dazu setzen wir <InlineMath math="n = 3" /> ein und verknüpfen <InlineMath math="a_3" />, <InlineMath math="a_4" /> und <InlineMath math="a_5" />.
+
+<MathContainer>
+  <BlockMath math="\begin{align*} a_{3+1} &= a_{3+2} + 2a_3 \\ a_4 &= a_5 + 2a_3 \end{align*}" />
+</MathContainer>
+
+Mit <InlineMath math="a_5 = 3" /> und <InlineMath math="a_3 = -1" /> folgt:
+
+<MathContainer>
+  <BlockMath math="\begin{align*} a_4 &= 3 + 2(-1) \\ a_4 &= 3 - 2 \\ a_4 &= 1 \end{align*}" />
+</MathContainer>
+
+Als Nächstes bestimmen wir <InlineMath math="a_2" />. Da <InlineMath math="a_3" /> und <InlineMath math="a_4" /> bekannt sind, setzen wir <InlineMath math="n = 2" /> ein und verknüpfen <InlineMath math="a_2" />, <InlineMath math="a_3" /> und <InlineMath math="a_4" />.
+
+<MathContainer>
+  <BlockMath math="\begin{align*} a_{2+1} &= a_{2+2} + 2a_2 \\ a_3 &= a_4 + 2a_2 \end{align*}" />
+</MathContainer>
+
+Wir setzen <InlineMath math="a_3 = -1" /> und <InlineMath math="a_4 = 1" /> ein:
+
+<MathContainer>
+  <BlockMath math="\begin{align*} -1 &= 1 + 2a_2 \\ -1 - 1 &= 2a_2 \\ -2 &= 2a_2 \\ a_2 &= -1 \end{align*}" />
+</MathContainer>
+
+Somit ist der Wert von <InlineMath math="a_2" /> <InlineMath math="-1" />.

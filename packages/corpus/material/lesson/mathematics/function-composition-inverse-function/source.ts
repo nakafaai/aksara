@@ -18,14 +18,6 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
           id: "penjumlahan-dan-pengurangan-fungsi",
         },
         slug: "addition-subtraction-function",
-        translations: {
-          en: {
-            title: "Addition and Subtraction of Functions",
-          },
-          id: {
-            title: "Penjumlahan dan Pengurangan Fungsi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -33,14 +25,6 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
           id: "domain-kodomain-dan-range",
         },
         slug: "domain-codomain-range",
-        translations: {
-          en: {
-            title: "Domain, Codomain, and Range",
-          },
-          id: {
-            title: "Domain, Kodomain, dan Range",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -48,38 +32,14 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
           id: "fungsi-dan-bukan-fungsi",
         },
         slug: "function-and-non-function",
-        translations: {
-          en: {
-            title: "Function and Non-Function",
-          },
-          id: {
-            title: "Fungsi dan Bukan Fungsi",
-          },
-        },
       },
       {
         routeSlugs: { en: "function-composition", id: "komposisi-fungsi" },
         slug: "function-composition",
-        translations: {
-          en: {
-            title: "Function Composition",
-          },
-          id: {
-            title: "Komposisi Fungsi",
-          },
-        },
       },
       {
         routeSlugs: { en: "function-concept", id: "konsep-fungsi" },
         slug: "function-concept",
-        translations: {
-          en: {
-            title: "Function Concept",
-          },
-          id: {
-            title: "Konsep Fungsi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -87,26 +47,10 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
           id: "fungsi-injektif-surjektif-dan-bijektif",
         },
         slug: "injective-surjective-bijective-function",
-        translations: {
-          en: {
-            title: "Injective, Surjective, and Bijective Functions",
-          },
-          id: {
-            title: "Fungsi Injektif, Surjektif, dan Bijektif",
-          },
-        },
       },
       {
         routeSlugs: { en: "inverse-function", id: "fungsi-invers" },
         slug: "inverse-function",
-        translations: {
-          en: {
-            title: "Inverse Function",
-          },
-          id: {
-            title: "Fungsi Invers",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -114,14 +58,6 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
           id: "perkalian-dan-pembagian-fungsi",
         },
         slug: "multiplication-division-function",
-        translations: {
-          en: {
-            title: "Multiplication and Division of Functions",
-          },
-          id: {
-            title: "Perkalian dan Pembagian Fungsi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -129,14 +65,6 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
           id: "sifat-komposisi-fungsi",
         },
         slug: "properties-of-function-composition",
-        translations: {
-          en: {
-            title: "Properties of Function Composition",
-          },
-          id: {
-            title: "Sifat Komposisi Fungsi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -144,14 +72,6 @@ export const lessonMathematicsFunctionCompositionInverseFunctionMaterial =
           id: "sifat-fungsi-invers",
         },
         slug: "properties-of-inverse-function",
-        translations: {
-          en: {
-            title: "Properties of Inverse Function",
-          },
-          id: {
-            title: "Sifat Fungsi Invers",
-          },
-        },
       },
     ],
     slug: "function-composition-inverse-function",

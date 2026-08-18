@@ -1,0 +1,74 @@
+export const metadata = {
+  title: "Grundidee der Korrelationsanalyse",
+  description:
+    "Verstehe, wie Korrelation Richtung und Stärke eines linearen Zusammenhangs beschreibt, wie Pearsons r gedeutet wird und warum Korrelation keine Kausalität beweist.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-30",
+  subject: "Statistik",
+};
+
+## Was Korrelation aussagt
+
+Nehmen wir an, wir erfassen für dieselben Beobachtungen zwei numerische Variablen, etwa Lernzeit und Prüfungsergebnis eines Schülers oder Alter und Verkaufspreis eines Autos. Ein Streudiagramm zeigt, ob die Wertepaare ein Muster bilden. Die **Korrelationsanalyse** fasst Richtung und Stärke eines linearen, also annähernd geradlinigen, Musters zusammen.
+
+Korrelation beantwortet eine beschreibende Frage: Wie verändern sich die beiden Variablen gemeinsam? Sie erklärt noch nicht, warum dieses Muster entsteht.
+
+## Der Korrelationskoeffizient
+
+Der Pearson-Korrelationskoeffizient wird mit <InlineMath math="r" /> bezeichnet. Sein Vorzeichen gibt die Richtung an, sein Abstand von null die Stärke des linearen Musters.
+
+| Wert | Deutung |
+| --- | --- |
+| <InlineMath math="r>0" /> | Größere Werte der einen Variablen treten tendenziell mit größeren Werten der anderen auf. |
+| <InlineMath math="r<0" /> | Größere Werte der einen Variablen treten tendenziell mit kleineren Werten der anderen auf. |
+| <InlineMath math="\lvert r\rvert\approx1" /> | Die Datenpunkte liegen dicht an einer Geraden. |
+| <InlineMath math="r\approx0" /> | Es ist kaum oder kein lineares Muster erkennbar. |
+
+Wenn beide Variablen eine von null verschiedene Streuung besitzen und <InlineMath math="r" /> damit definiert ist, liegt der Koeffizient in diesem Intervall:
+
+<BlockMath math="-1\le r\le1" />
+
+- <InlineMath math="r=1" /> bedeutet eine perfekte positive lineare Korrelation.
+- <InlineMath math="r=-1" /> bedeutet eine perfekte negative lineare Korrelation.
+- <InlineMath math="r=0" /> bedeutet keine lineare Korrelation.
+
+Ein Wert nahe null schließt nicht jede Beziehung aus. Die Punkte können einer deutlichen Kurve folgen, obwohl ihre lineare Korrelation klein ist. Deshalb müssen das Streudiagramm und der Sachzusammenhang gemeinsam mit <InlineMath math="r" /> betrachtet werden.
+
+## Variablen vertauschen und Einheiten ändern
+
+Die Korrelation behandelt beide Variablen symmetrisch. Werden die Variablen auf der horizontalen und vertikalen Achse vertauscht, bleibt der Wert gleich:
+
+<BlockMath math="r_{xy}=r_{yx}" />
+
+Auch eine positive Änderung der Maßeinheit verändert <InlineMath math="r" /> nicht. Ob eine Körpergröße in Zentimetern oder Metern gemessen wird, ergibt denselben Koeffizienten. Das unterscheidet Korrelation von Regression, bei der eine Variable gezielt zur Vorhersage der anderen verwendet wird.
+
+## Der Determinationskoeffizient
+
+Das Quadrat des Korrelationskoeffizienten, <InlineMath math="r^2" />, heißt **Determinationskoeffizient**. In einer einfachen linearen Regression mit Achsenabschnitt gibt es den Anteil der Streuung der Zielvariablen an, den das angepasste lineare Modell erfasst.
+
+Haben Lernzeit und Prüfungsergebnis den Wert <InlineMath math="r=0{,}8" />, dann gilt:
+
+<BlockMath math="r^2=(0{,}8)^2=0{,}64" />
+
+Der lineare Zusammenhang erfasst in diesem Datensatz <InlineMath math="64\%" /> der beobachteten Streuung der Ergebnisse. Die übrigen <InlineMath math="36\%" /> werden von diesem linearen Zusammenhang nicht erfasst. Diese Aussage beschreibt die Modellgüte. Sie beweist nicht, dass allein die Lernzeit die Ergebnisunterschiede verursacht hat.
+
+Für den Determinationskoeffizienten gilt:
+
+<BlockMath math="0\le r^2\le1" />
+
+## Korrelation ist keine Kausalität
+
+Eine starke Korrelation beweist nicht, dass eine Variable die andere verursacht. Mehrere Erklärungen können dasselbe Muster hervorbringen:
+
+- Die erste Variable kann die zweite beeinflussen.
+- Die zweite Variable kann die erste beeinflussen.
+- Eine dritte Variable kann beide beeinflussen.
+- Stichprobe, Messung oder eine ungewöhnliche Beobachtung können das Muster verzerren.
+
+Ein Beispiel sind Speiseeisverkäufe und Badeunfälle. Beide können bei heißem Wetter zunehmen. Daraus folgt nicht, dass der Kauf von Speiseeis Badeunfälle verursacht. Sommerwetter und häufigeres Baden wirken sich auf beide Beobachtungen aus.
+
+Korrelation beschreibt ein lineares Muster. Eine kausale Schlussfolgerung benötigt zusätzliche Belege aus dem Untersuchungsdesign, der zeitlichen Abfolge, plausiblen Wirkmechanismen und alternativen Erklärungen.
+
+## Prüfe deine Deutung
+
+Angenommen, ein Datensatz hat <InlineMath math="r=-0{,}9" />. Das zeigt einen starken negativen linearen Zusammenhang: Größere Werte der einen Variablen treten tendenziell mit kleineren Werten der anderen auf. Der Wert nennt für sich allein weder eine Ursache noch garantiert er, dass jeder Punkt genau auf derselben Geraden liegt.

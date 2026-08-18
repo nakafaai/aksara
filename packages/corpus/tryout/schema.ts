@@ -1,5 +1,4 @@
 import { CountryCodeSchema } from "@nakafa/aksara-contracts/country";
-import { ActiveAppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import {
   QuestionSetKeySchema,
   questionSetKeyParts,
@@ -12,6 +11,7 @@ import {
   TryoutVisibilitySchema,
 } from "@nakafa/aksara-contracts/tryout/spec";
 import { Effect, Schema } from "effect";
+import { EmbeddedAppLocaleCodeSchema } from "#corpus/locale/source";
 
 import {
   PublicRouteSegmentSchema,
@@ -21,7 +21,7 @@ import {
 const DEFAULT_SECTION_VISIBILITY = "visible";
 
 const TryoutTranslationMapSchema = Schema.Record({
-  key: ActiveAppLocaleCodeSchema,
+  key: EmbeddedAppLocaleCodeSchema,
   value: Schema.Struct({
     description: Schema.optional(Schema.String),
     title: Schema.String,
@@ -122,7 +122,7 @@ function hasOwnedQuestionSources(source: TryoutExamSourceFields) {
   );
 }
 
-/** Complete authoring contract for one imported try-out exam source. */
+/** Complete active contract for one imported try-out exam source. */
 export const TryoutExamSourceSchema = TryoutExamSourceFieldsSchema.pipe(
   Schema.filter(hasOwnedQuestionSources, {
     message: () =>
@@ -172,7 +172,7 @@ function validateUniqueKeys(
   return new TryoutDuplicateError({ key: duplicate, scope });
 }
 
-/** Strictly decodes one authored try-out exam and validates stable identities. */
+/** Strictly decodes one active try-out exam and validates stable identities. */
 export const defineTryoutExamSource = Effect.fn(
   "AksaraCorpus.defineTryoutExamSource"
 )(function* (input: TryoutExamSourceInput) {

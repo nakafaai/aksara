@@ -1,0 +1,305 @@
+export const metadata = {
+   title: "Wahrscheinlichkeit disjunkter Ereignisse",
+   description: "Disjunkte Ereignisse erkennen, von unabhängigen Ereignissen unterscheiden und ihre Wahrscheinlichkeiten ohne Doppelzählung addieren.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Disjunkte Ereignisse verstehen
+
+Manche Ereignisse können **nicht im selben Versuch gemeinsam eintreten**. Bei einem einzelnen Münzwurf erscheint zum Beispiel entweder Kopf oder Zahl, niemals beides zugleich. Solche Ereignisse heißen disjunkt oder sich gegenseitig ausschließend.
+
+**Disjunkte Ereignisse** können innerhalb desselben Zufallsversuchs nicht gemeinsam eintreten. Tritt eines ein, ist das andere in diesem Versuch ausgeschlossen.
+
+Ziehst du eine Karte aus einem üblichen Kartenspiel, kann sie nicht zugleich rot und schwarz sein. Die beiden Farbereignisse sind disjunkt, weil keine Karte beide Bedingungen erfüllt.
+
+## Merkmale disjunkter Ereignisse
+
+### Leere Schnittmenge
+
+Disjunkte Ereignisse haben **keine gemeinsamen Ergebnisse**. Sind <InlineMath math="A" /> und <InlineMath math="B" /> disjunkt, dann gilt:
+
+<BlockMath math="A \cap B = \emptyset" />
+
+Das Symbol <InlineMath math="\emptyset" /> weist auf eine leere Menge hin, was bedeutet, dass es keine gemeinsamen Elemente zwischen den beiden Ereignissen gibt.
+
+### Einfache Beispiele
+
+Diese Ereignispaare schließen sich jeweils aus:
+
+- bei einem Würfelwurf: gerade Zahl und ungerade Zahl
+- beim Ziehen einer Karte: Ass und König
+- für dieselbe Person in einem Rennen: erster und zweiter Platz
+
+### Disjunkte Ereignisse erkennen
+
+Frage: „Kann ein einziges Ergebnis beide Bedingungen erfüllen?“ Lautet die Antwort nein, sind die Ereignisse disjunkt.
+
+## Additionsregel für disjunkte Ereignisse
+
+Da disjunkte Ereignisse keine Schnittmenge haben, vereinfacht sich die **Additionsregel** zu:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B)" />
+
+Die Wahrscheinlichkeit für <InlineMath math="A" /> oder <InlineMath math="B" /> ist dann die Summe der beiden Einzelwahrscheinlichkeiten.
+
+Disjunkt bedeutet **nicht** unabhängig. Gelten <InlineMath math="P(A) > 0" /> und <InlineMath math="P(B) > 0" />, macht die Information, dass <InlineMath math="A" /> eingetreten ist, <InlineMath math="B" /> unmöglich. Daher ist <InlineMath math="P(A \cap B) = 0" />. Unabhängigkeit würde dagegen <InlineMath math="P(A \cap B) = P(A)P(B) > 0" /> verlangen.
+
+### Warum diese Formel funktioniert
+
+Für disjunkte Ereignisse gilt <InlineMath math="P(A \cap B) = 0" />. Die allgemeine Additionsregel zieht die Schnittmenge ab:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
+
+Setzen wir die leere Schnittmenge ein, erhalten wir:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B) - 0 = P(A) + P(B)" />
+
+## Anwendung in Berechnungen
+
+### Ein Würfelwurf
+
+Ein Würfel wird einmal geworfen. Gesucht ist die Wahrscheinlichkeit für eine Primzahl oder eine Zahl größer als <InlineMath math="4" />.
+
+**Lösung:**
+
+Ergebnisraum: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />
+
+- Ereignis <InlineMath math="A" /> (Primzahl): <InlineMath math="A = \{2, 3, 5\}" />
+- Ereignis <InlineMath math="B" /> (<InlineMath math="\text{Zahl} > 4" />): <InlineMath math="B = \{5, 6\}" />
+
+Schnittmenge prüfen: <InlineMath math="A \cap B = \{5\}" />
+
+Die Zahl <InlineMath math="5" /> liegt in beiden Ereignissen. Sie sind also **nicht disjunkt**. Die ursprüngliche Frage lässt sich dennoch beantworten, allerdings muss die Überschneidung abgezogen werden:
+
+<MathContainer>
+<BlockMath math="P(A \cup B)=P(A)+P(B)-P(A\cap B)" />
+<BlockMath math="P(A \cup B)=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}" />
+</MathContainer>
+
+Das nächste Beispiel zeigt, wann die kürzere Additionsregel für disjunkte Ereignisse gilt.
+
+**Disjunktes Vergleichsbeispiel:**
+
+- Ereignis <InlineMath math="A" /> (ungerade Zahl): <InlineMath math="A = \{1, 3, 5\}" />
+- Ereignis <InlineMath math="C" /> (gerade Zahl): <InlineMath math="C = \{2, 4, 6\}" />
+
+Schnittmenge prüfen: <InlineMath math="A \cap C = \emptyset" />
+
+Da die Schnittmenge leer ist, sind die Ereignisse **disjunkt**.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(C) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(A \cup C) = P(A) + P(C) = \frac{1}{2} + \frac{1}{2} = 1" />
+</MathContainer>
+
+Dieses Ergebnis ist sinnvoll, da beim Würfeln auf jeden Fall entweder eine ungerade oder eine gerade Zahl erscheint (alle Möglichkeiten sind abgedeckt).
+
+### Zwei Würfel werfen
+
+Zwei Würfel werden geworfen. Gesucht ist die Wahrscheinlichkeit für die Summe <InlineMath math="5" /> oder die Summe <InlineMath math="7" />.
+
+**Lösung:**
+
+Zum besseren Verständnis schauen wir uns in der folgenden Tabelle alle möglichen Ergebnisse des Würfelns mit zwei Würfeln an:
+
+| Würfel <InlineMath math="1" /> \\ Würfel <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+|----|---|---|---|---|---|---|
+| <InlineMath math="1" /> | <InlineMath math="(1,1)" /> | <InlineMath math="(1,2)" /> | <InlineMath math="(1,3)" /> | <InlineMath math="(1,4)" /> | <InlineMath math="(1,5)" /> | <InlineMath math="(1,6)" /> |
+| <InlineMath math="2" /> | <InlineMath math="(2,1)" /> | <InlineMath math="(2,2)" /> | <InlineMath math="(2,3)" /> | <InlineMath math="(2,4)" /> | <InlineMath math="(2,5)" /> | <InlineMath math="(2,6)" /> |
+| <InlineMath math="3" /> | <InlineMath math="(3,1)" /> | <InlineMath math="(3,2)" /> | <InlineMath math="(3,3)" /> | <InlineMath math="(3,4)" /> | <InlineMath math="(3,5)" /> | <InlineMath math="(3,6)" /> |
+| <InlineMath math="4" /> | <InlineMath math="(4,1)" /> | <InlineMath math="(4,2)" /> | <InlineMath math="(4,3)" /> | <InlineMath math="(4,4)" /> | <InlineMath math="(4,5)" /> | <InlineMath math="(4,6)" /> |
+| <InlineMath math="5" /> | <InlineMath math="(5,1)" /> | <InlineMath math="(5,2)" /> | <InlineMath math="(5,3)" /> | <InlineMath math="(5,4)" /> | <InlineMath math="(5,5)" /> | <InlineMath math="(5,6)" /> |
+| <InlineMath math="6" /> | <InlineMath math="(6,1)" /> | <InlineMath math="(6,2)" /> | <InlineMath math="(6,3)" /> | <InlineMath math="(6,4)" /> | <InlineMath math="(6,5)" /> | <InlineMath math="(6,6)" /> |
+
+Es gibt insgesamt <InlineMath math="6 \times 6 = 36" /> geordnete Paare.
+
+**Ereignisidentifikation:**
+
+**Ereignis <InlineMath math="A" />** (<InlineMath math="\text{Summe} = 5" />):
+
+Aus der obigen Tabelle sind die Paare, die die Summe <InlineMath math="5" /> ergeben:
+- <InlineMath math="(1,4): 1 + 4 = 5" />
+- <InlineMath math="(2,3): 2 + 3 = 5" />
+- <InlineMath math="(3,2): 3 + 2 = 5" />
+- <InlineMath math="(4,1): 4 + 1 = 5" />
+
+Es gibt also **<InlineMath math="4 \text{Wege}" />**, um die Summe <InlineMath math="5" /> zu erhalten.
+
+**Ereignis <InlineMath math="B" />** (<InlineMath math="\text{Summe} = 7" />):
+
+Aus der obigen Tabelle sind die Paare, die die Summe <InlineMath math="7" /> ergeben:
+- <InlineMath math="(1,6): 1 + 6 = 7" />
+- <InlineMath math="(2,5): 2 + 5 = 7" />
+- <InlineMath math="(3,4): 3 + 4 = 7" />
+- <InlineMath math="(4,3): 4 + 3 = 7" />
+- <InlineMath math="(5,2): 5 + 2 = 7" />
+- <InlineMath math="(6,1): 6 + 1 = 7" />
+
+Es gibt also **<InlineMath math="6 \text{Wege}" />**, um die Summe <InlineMath math="7" /> zu erhalten.
+
+**Schnittmenge prüfen:** Eine Würfelsumme kann nicht zugleich <InlineMath math="5" /> und <InlineMath math="7" /> sein, also <InlineMath math="A \cap B = \emptyset" />.
+
+Beide Ereignisse sind **disjunkt**.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{36} = \frac{1}{9}" />
+<BlockMath math="P(B) = \frac{6}{36} = \frac{1}{6}" />
+<BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{9} + \frac{1}{6}" />
+</MathContainer>
+
+**Brüche addieren:**
+
+Um <InlineMath math="\frac{1}{9} + \frac{1}{6}" /> zu addieren, benötigen wir das kleinste gemeinsame Vielfache von <InlineMath math="9" /> und <InlineMath math="6" />.
+
+<InlineMath math="\operatorname{lcm}(9, 6) = 18" />, also:
+
+<MathContainer>
+<BlockMath math="\frac{1}{9} = \frac{1 \times 2}{9 \times 2} = \frac{2}{18}" />
+<BlockMath math="\frac{1}{6} = \frac{1 \times 3}{6 \times 3} = \frac{3}{18}" />
+<BlockMath math="P(A \cup B) = \frac{2}{18} + \frac{3}{18} = \frac{5}{18}" />
+</MathContainer>
+
+## Problemlösungsstrategie
+
+### Systematische Schritte
+
+Bei Aufgaben zu disjunkten Ereignissen gehst du so vor:
+
+1. **Bestimme den Ergebnisraum** und die Anzahl aller möglichen Ergebnisse
+2. **Definiere die Ereignisse** eindeutig
+3. **Prüfe ihre Schnittmenge**
+4. **Berechne die Einzelwahrscheinlichkeiten**
+5. **Wende die Formel an** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
+
+### Praktische Tipps
+
+Hilfreiche Kontrollen:
+
+- **Visualisiere** die Ereignisse bei Bedarf mit einem Diagramm oder einer Tabelle
+- **Prüfe den Wertebereich**: Eine Wahrscheinlichkeit liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />
+- **Lies „oder“ einschließend**, sofern die Aufgabe nichts anderes sagt
+
+### Vorsicht vor Ereignissen, die sich scheinbar gegenseitig ausschließen
+
+Manche Ereignisse wirken **auf den ersten Blick** disjunkt, sind es aber **tatsächlich nicht**:
+
+**Beispiel <InlineMath math="1" />: Würfeln**
+- Ereignis <InlineMath math="A" />: Das Erhalten einer Primzahl ist <InlineMath math="\{2, 3, 5\}" />
+- Ereignis <InlineMath math="B" />: Das Erhalten einer ungeraden Zahl ist <InlineMath math="\{1, 3, 5\}" />
+
+**Häufiger Fehler**: „Primzahl und ungerade Zahl sind verschiedene Begriffe, also sind die Ereignisse disjunkt.“
+**Tatsächlich**: <InlineMath math="A \cap B = \{3, 5\} \ne \emptyset" />, also **nicht disjunkt**
+
+**Beispiel <InlineMath math="2" />: Kartenziehen**
+- Ereignis <InlineMath math="A" />: Ziehen einer roten Karte
+- Ereignis <InlineMath math="B" />: Ein Ass ziehen
+
+**Häufiger Fehler**: „Farbe und Kartenwert sind verschiedene Merkmale, also sind die Ereignisse disjunkt.“
+**Tatsächlich**: Herz-Ass und Karo-Ass sind rot und zugleich Asse, also sind die Ereignisse **nicht disjunkt**.
+
+**Beispiel <InlineMath math="3" />: Zwei Schülerkriterien**
+- Ereignis <InlineMath math="A" />: Lernende mit einer Körpergröße von <InlineMath math=">160 \text{ cm}" />
+- Ereignis <InlineMath math="B" />: Schüler, deren Punktzahl über <InlineMath math="80" /> liegt
+
+**Häufiger Fehler**: „Größe und Testergebnis sind unterschiedliche Merkmale, daher schließen sich die Ereignisse gegenseitig aus.“
+**Tatsächlich**: Eine Person kann beide Kriterien erfüllen, also sind die Ereignisse **nicht disjunkt**.
+
+**Prüfstrategie:**
+1. **Frage**: „Kann ein Ergebnis beide Kriterien erfüllen?“
+2. **Bilde die Schnittmenge** der beiden Ereignisse
+3. **Ist sie nicht leer**, sind die Ereignisse **nicht disjunkt**
+4. **Ist sie leer**, sind die Ereignisse **disjunkt**
+
+## Übungen
+
+Bearbeite jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Schreibe beide Mengen auf und prüfe ihre Schnittmenge, bevor du die Additionsregel auswählst.
+
+1. Ein Würfel wird einmal geworfen. Bestimme die Wahrscheinlichkeit für eine Zahl kleiner als <InlineMath math="3" /> oder größer als <InlineMath math="5" />.
+
+2. Aus einem üblichen Kartenspiel wird eine Karte zufällig gezogen. Berechne die Wahrscheinlichkeit für ein Ass oder einen König.
+
+3. Zwei Münzen werden geworfen. Bestimme die Wahrscheinlichkeit für genau <InlineMath math="1" />-mal Zahl oder genau <InlineMath math="2" />-mal Kopf.
+
+4. In einer Schachtel liegen <InlineMath math="10 \text{Kugeln}" /> mit den Nummern <InlineMath math="1" /> bis <InlineMath math="10" />. Eine Kugel wird zufällig gezogen. Berechne die Wahrscheinlichkeit für eine gerade Zahl oder eine ungerade Primzahl.
+
+### Ausführliche Lösungen
+
+1. **Lösung:**
+
+   Ergebnisraum: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, also <InlineMath math="n(S) = 6" />
+
+   - Ereignis <InlineMath math="A" /> (<InlineMath math="\text{Zahl} < 3" />): <InlineMath math="A = \{1, 2\}" />, also <InlineMath math="n(A) = 2" />
+   - Ereignis <InlineMath math="B" /> (<InlineMath math="\text{Zahl} > 5" />): <InlineMath math="B = \{6\}" />, also <InlineMath math="n(B) = 1" />
+
+   Schnittmenge prüfen: <InlineMath math="A \cap B = \emptyset" /> (keine Zahl erfüllt gleichzeitig <InlineMath math="x < 3" /> und <InlineMath math="x > 5" />)
+
+   Da die Ereignisse disjunkt sind, verwenden wir die Additionsregel:
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{2}{6} = \frac{1}{3}" />
+   <BlockMath math="P(B) = \frac{1}{6}" />
+   <BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{3} + \frac{1}{6} = \frac{2}{6} + \frac{1}{6} = \frac{3}{6} = \frac{1}{2}" />
+   </MathContainer>
+
+2. **Lösung:**
+
+   Die Gesamtzahl der Karten beträgt <InlineMath math="52" />
+
+   - Ereignis <InlineMath math="A" /> (Ass-Karte): <InlineMath math="4 \text{Asse}" />
+   - Ereignis <InlineMath math="B" /> (Königskarte): <InlineMath math="4 \text{Könige}" />
+
+   Schnittmenge prüfen: Keine Karte ist zugleich Ass und König, also <InlineMath math="A \cap B = \emptyset" />
+
+   Beide Ereignisse schließen sich gegenseitig aus.
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+   <BlockMath math="P(B) = \frac{4}{52} = \frac{1}{13}" />
+   <BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{13} + \frac{1}{13} = \frac{2}{13}" />
+   </MathContainer>
+
+3. **Lösung:**
+
+   Verwende <InlineMath math="0" /> für Kopf und <InlineMath math="1" /> für Zahl. Der Ergebnisraum ist <InlineMath math="\{(0,0), (0,1), (1,0), (1,1)\}" /> und enthält <InlineMath math="4" /> Ergebnisse.
+
+   - Ereignis <InlineMath math="A" /> (genau einmal Zahl): <InlineMath math="\{(0,1), (1,0)\}" />, also <InlineMath math="n(A) = 2" />
+   - Ereignis <InlineMath math="B" /> (genau zweimal Kopf): <InlineMath math="\{(0,0)\}" />, also <InlineMath math="n(B) = 1" />
+
+   Schnittmenge prüfen: <InlineMath math="A \cap B = \emptyset" /> (genau einmal Zahl und genau zweimal Kopf können nicht zugleich eintreten)
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{2}{4} = \frac{1}{2}" />
+   <BlockMath math="P(B) = \frac{1}{4}" />
+   <BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{2} + \frac{1}{4} = \frac{2}{4} + \frac{1}{4} = \frac{3}{4}" />
+   </MathContainer>
+
+4. **Lösung:**
+
+   Eine ungerade Primzahl ist eine Primzahl, die auch ungerade ist. Primzahlen aus <InlineMath math="1\text{-}10" /> sind <InlineMath math="\{2, 3, 5, 7\}" />, ungerade Primzahlen sind also <InlineMath math="\{3, 5, 7\}" />.
+
+   Ergebnisraum: <InlineMath math="S = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}" />, also <InlineMath math="n(S) = 10" />
+
+   - Ereignis <InlineMath math="A" /> (gerade Zahl): <InlineMath math="A = \{2, 4, 6, 8, 10\}" />, also <InlineMath math="n(A) = 5" />
+   - Ereignis <InlineMath math="B" /> (ungerade Primzahl): <InlineMath math="B = \{3, 5, 7\}" />, also <InlineMath math="n(B) = 3" />
+
+   Schnittmenge prüfen: <InlineMath math="A \cap B = \emptyset" /> (keine Zahl ist zugleich gerade und eine ungerade Primzahl)
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{5}{10} = \frac{1}{2}" />
+   <BlockMath math="P(B) = \frac{3}{10}" />
+   <BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{2} + \frac{3}{10}" />
+   </MathContainer>
+
+   **Brüche addieren:**
+
+   Um <InlineMath math="\frac{1}{2} + \frac{3}{10}" /> zu addieren, müssen wir die Nenner ausgleichen.
+
+   <InlineMath math="\operatorname{lcm}(2, 10) = 10" />, also:
+
+   <MathContainer>
+   <BlockMath math="\frac{1}{2} = \frac{1 \times 5}{2 \times 5} = \frac{5}{10}" />
+   <BlockMath math="P(A \cup B) = \frac{5}{10} + \frac{3}{10} = \frac{8}{10} = \frac{4}{5}" />
+   </MathContainer>

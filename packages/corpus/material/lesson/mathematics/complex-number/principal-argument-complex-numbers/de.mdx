@@ -1,0 +1,175 @@
+
+
+export const metadata = {
+  title: "Hauptargument komplexer Zahlen",
+  description: "Bestimme das eindeutige Hauptargument einer komplexen Zahl ungleich null und führe koterminale Winkel in das festgelegte Hauptintervall zurück.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Das Hauptargument verstehen
+
+Das Argument <InlineMath math="\theta" /> einer komplexen Zahl <InlineMath math="z = x + iy" /> ungleich null ist der Winkel, den der Vektor <InlineMath math="z" /> mit der positiven reellen Achse bildet. Der Nullvektor hat keine Richtung, daher ist <InlineMath math="\text{Arg}(0)" /> nicht definiert.
+
+Dieselbe Richtung lässt sich durch unendlich viele koterminale Winkel beschreiben.
+
+Ist <InlineMath math="\theta" /> ein Argument von <InlineMath math="z" />, dann ist auch <InlineMath math="\theta + 2\pi k" /> mit einer ganzen Zahl <InlineMath math="k" />, also <InlineMath math="0, \pm 1, \pm 2, \ldots" />, ein Argument von <InlineMath math="z" />. Jede Addition eines Vielfachen von <InlineMath math="360^\circ" /> beziehungsweise <InlineMath math="2\pi" /> beschreibt dieselbe Richtung.
+
+**Beispiel:**
+
+Die Winkel <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" /> (<InlineMath math="45^\circ + 360^\circ" />) und <InlineMath math="-315^\circ" /> (<InlineMath math="45^\circ - 360^\circ" />) zeigen alle die gleiche Richtung an.
+
+Da es unendlich viele Argumente für eine einzelne komplexe Zahl gibt, benötigen wir oft einen eindeutigen Standardwert. Dieser Wert wird als **Hauptargument** bezeichnet.
+
+## Definition des Hauptarguments
+
+Das Hauptargument einer komplexen Zahl <InlineMath math="z = r(\cos \theta + i\sin \theta)" /> ungleich null, mit <InlineMath math="r>0" />, ist der eindeutige Wert des Arguments <InlineMath math="\theta" /> im festgelegten Intervall.
+
+In diesem Kurs ist das **Hauptargument** (bezeichnet mit <InlineMath math="\text{Arg}(z)" />) als das Argument <InlineMath math="\theta" /> definiert, für das gilt:
+
+<BlockMath math="-\pi &lt; \theta \leq \pi \quad \text{oder} \quad -180^\circ &lt; \theta \leq 180^\circ" />
+
+Einige Quellen verwenden stattdessen <InlineMath math="[0, 2\pi)" />. Beide Konventionen wählen aus jeder Familie koterminaler Winkel genau einen Vertreter. In diesem Kurs wird durchgehend <InlineMath math="(-\pi, \pi]" /> verwendet.
+
+## Bestimmung des Hauptarguments
+
+Bestimme zuerst ein beliebiges Argument. Addiere oder subtrahiere dann volle Umdrehungen, bis das Ergebnis in <InlineMath math="(-\pi, \pi]" /> beziehungsweise <InlineMath math="(-180^\circ, 180^\circ]" /> liegt.
+
+### Das Hauptargument finden
+
+1.  **Bestimme das Hauptargument von <InlineMath math="z = 1 + i" />**
+
+    Der Punkt <InlineMath math="(1, 1)" /> liegt im Quadranten <InlineMath math="I" />.
+
+    <MathContainer>
+      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{1} = 1" />
+      <BlockMath math="\theta = \arctan(1) = 45^\circ" />
+    </MathContainer>
+
+    Da <InlineMath math="45^\circ" /> bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> liegt, lautet das Hauptargument:
+
+    <BlockMath math="\text{Arg}(z) = 45^\circ \text{oder} \frac{\pi}{4} \text{Bogenmaß}" />
+
+2.  **Bestimme das Hauptargument von <InlineMath math="z = \sqrt{3} + i" />**
+
+    Der Punkt <InlineMath math="(\sqrt{3}, 1)" /> liegt im Quadranten <InlineMath math="I" />.
+
+    <MathContainer>
+      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{\sqrt{3}}" />
+      <BlockMath math="\theta = \arctan\left(\frac{1}{\sqrt{3}}\right) = 30^\circ" />
+    </MathContainer>
+
+    Da <InlineMath math="30^\circ" /> bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> liegt, lautet das Hauptargument:
+
+    <BlockMath math="\text{Arg}(z) = 30^\circ \text{oder} \frac{\pi}{6} \text{Bogenmaß}" />
+
+<ContentBlock>
+  <LineEquation
+    title="Hauptargumentvisualisierung"
+    description={
+      <>
+        Die Vektoren <InlineMath math="z_1=1+i" /> und
+        <InlineMath math="z_2=\sqrt{3}+i" /> sind mit ihren Hauptargumenten
+        <InlineMath math="45^\circ" /> und <InlineMath math="30^\circ" /> dargestellt.
+      </>
+    }
+    cameraPosition={[0, 0, 8]}
+    showZAxis={false}
+    data={[
+      {
+        points: [
+          { x: 0, y: 0, z: 0 },
+          { x: 1, y: 1, z: 0 },
+        ],
+        color: "#0284c7",
+        labels: [{ text: <InlineMath math="z_1=1+i" />, at: 1, offset: [-1, 0.5, 0] }],
+        cone: { position: "end" },
+      },
+      {
+        points: [
+          { x: 0, y: 0, z: 0 },
+          { x: Math.sqrt(3), y: 1, z: 0 },
+        ],
+        color: "#65a30d",
+        labels: [{ text: <InlineMath math="z_2=\sqrt{3}+i" />, at: 1, offset: [1.5, 0.5, 0] }],
+        cone: { position: "end" },
+      },
+      // Positive reelle Achse als Winkelreferenz
+      {
+        points: [
+          { x: 0, y: 0, z: 0 },
+          { x: 2, y: 0, z: 0 },
+        ],
+        color: "#d97706",
+      },
+    ]}
+  />
+</ContentBlock>
+
+## Gleichheit zweier komplexer Zahlen in Polarform
+
+Zwei komplexe Zahlen <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> und <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" /> ungleich null, mit <InlineMath math="r_1>0" /> und <InlineMath math="r_2>0" />, heißen genau dann **gleich**, wenn:
+
+1.  Ihre Beträge sind gleich:
+
+    <InlineMath math="r_1 = r_2" /> (oder <InlineMath math="|z_1| = |z_2|" />)
+
+2.  Ihre Argumente sind gleich oder unterscheiden sich um ein Vielfaches von <InlineMath math="2\pi" /> (oder <InlineMath math="360^\circ" />):
+
+    <InlineMath math="\theta_1 = \theta_2 + 2k\pi" /> oder <InlineMath math="\theta_1 - \theta_2 = 2k\pi" /> für
+    eine ganze Zahl <InlineMath math="k" />.
+
+Wenn wir das **Hauptargument** in <InlineMath math="(-\pi, \pi]" /> verwenden, vereinfacht sich die zweite Bedingung zu <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
+
+### Prüfung auf Gleichheit
+
+Entscheide, ob die folgenden Paare komplexer Zahlen gleich oder verschieden sind.
+
+1.  <InlineMath math="z_1 = \sqrt{2}(\cos 45^\circ + i\sin 45^\circ)" /> und <InlineMath math="z_2 = \sqrt{2}(\cos 95^\circ + i\sin 95^\circ)" />
+2.  <InlineMath math="z_1 = \cos 30^\circ + i\sin 30^\circ" /> und <InlineMath math="z_2 = \cos 390^\circ + i\sin 390^\circ" />
+
+**Lösung:**
+
+1.  Vergleiche Betrag und Hauptargument:
+
+    - Betrag: <InlineMath math="|z_1| = \sqrt{2}" /> und <InlineMath math="|z_2| = \sqrt{2}" />. (Gleich)
+    - Hauptargument: <InlineMath math="\text{Arg}(z_1) = 45^\circ" /> und <InlineMath math="\text{Arg}(z_2) = 95^\circ" />. (Anders)
+
+    Da ihre Hauptargumente verschieden sind (<InlineMath math="45^\circ \neq 95^\circ" />), gilt <InlineMath math="z_1 \neq z_2" />.
+
+2.  Vergleiche Betrag und Argument:
+
+    - Betrag: <InlineMath math="|z_1| = 1" /> und <InlineMath math="|z_2| = 1" />. (Gleich)
+    - Argumente: <InlineMath math="\theta_1 = 30^\circ" /> und <InlineMath math="\theta_2 = 390^\circ" />.
+    - Differenz der Argumente: <InlineMath math="\theta_1 - \theta_2 = 30^\circ - 390^\circ = -360^\circ" />.
+
+    Da die Differenz der Argumente ein Vielfaches von <InlineMath math="360^\circ" /> ist (<InlineMath math="-360^\circ = -1 \times 360^\circ" />), gilt <InlineMath math="z_1 = z_2" />.
+
+    Alternativ können wir sehen, dass das Hauptargument von <InlineMath math="z_2" /> <InlineMath math="390^\circ - 360^\circ = 30^\circ" /> ist, was dasselbe ist wie das Hauptargument von <InlineMath math="z_1" />.
+
+## Übung
+
+Bestimme das Hauptargument der folgenden komplexen Zahlen in Grad:
+
+1.  <InlineMath math="1 + \sqrt{3}i" />
+2.  <InlineMath math="-i" />
+
+### Ausführliche Lösungen
+
+1.  **Für <InlineMath math="z = 1 + \sqrt{3}i" />:**
+
+    Der Punkt <InlineMath math="(1, \sqrt{3})" /> liegt im Quadranten <InlineMath math="I" />.
+
+    <MathContainer>
+      <BlockMath math="\tan \theta = \frac{\sqrt{3}}{1} = \sqrt{3}" />
+      <BlockMath math="\theta = \arctan(\sqrt{3}) = 60^\circ" />
+    </MathContainer>
+
+    Aus <InlineMath math="60^\circ \in (-180^\circ, 180^\circ]" /> folgt <InlineMath math="\text{Arg}(z) = 60^\circ" />.
+
+2.  **Für <InlineMath math="z = -i" />:**
+
+    Schreibe die Zahl als <InlineMath math="z = 0 - 1i" />. Der Punkt <InlineMath math="(0, -1)" /> liegt direkt auf der negativen imaginären Achse. Eine Division durch <InlineMath math="x=0" /> ist daher nicht nötig.
+
+    <BlockMath math="\text{Arg}(z) = -90^\circ = -\frac{\pi}{2}" />

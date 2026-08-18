@@ -17,14 +17,6 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
           id: "sistem-persamaan-linear",
         },
         slug: "system-linear-equation",
-        translations: {
-          en: {
-            title: "Linear Equation Systems",
-          },
-          id: {
-            title: "Sistem Persamaan Linear",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -32,14 +24,6 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
           id: "sistem-pertidaksamaan-linear",
         },
         slug: "system-linear-inequality",
-        translations: {
-          en: {
-            title: "Linear Inequality Systems",
-          },
-          id: {
-            title: "Sistem Pertidaksamaan Linear",
-          },
-        },
       },
     ],
     slug: "linear-equation-inequality",

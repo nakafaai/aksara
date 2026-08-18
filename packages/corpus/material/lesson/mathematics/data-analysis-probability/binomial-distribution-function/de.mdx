@@ -1,0 +1,200 @@
+export const metadata = {
+    title: "Wahrscheinlichkeitsmassenfunktion der Binomialverteilung",
+    description: "Lerne die Wahrscheinlichkeitsmassenfunktion der Binomialverteilung kennen, prüfe ihre Voraussetzungen und berechne exakte Wahrscheinlichkeiten in Beispielen und Übungen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Datenanalyse und Wahrscheinlichkeit",
+};
+
+## Jacob Bernoulli kennenlernen
+
+Jacob Bernoullis *Ars Conjectandi* erschien nach seinem Tod im Jahr <InlineMath math="1713" />. Das Buch entwickelte grundlegende Ergebnisse der Wahrscheinlichkeitsrechnung, darunter Bernoullis Gesetz der großen Zahlen, und untersuchte wiederholte Erfolgs-Misserfolgs-Versuche, die heute seinen Namen tragen.
+
+## Kombination und Basiswahrscheinlichkeit
+
+Bevor wir uns mit der Binomialverteilung befassen, müssen wir zunächst einige grundlegende Formeln lernen.
+
+Zunächst die Kombinationsformel zum Auswählen von Objekten:
+
+<BlockMath math="C_k^n = \binom{n}{k} = \frac{n!}{k!(n-k)!}" />
+
+Zweitens Fakultät (sequentielle Multiplikation):
+
+<BlockMath math="n! = n \times (n-1) \times \cdots \times 3 \times 2 \times 1" />
+
+Nach Definition gilt <InlineMath math="0!=1" />.
+
+Und drittens die Beziehung zwischen der Ereigniswahrscheinlichkeit und ihrem Komplement:
+
+<BlockMath math="P(A) + P(A^c) = 1" />
+
+Dabei ist <InlineMath math="P(A)" /> die Wahrscheinlichkeit, dass ein Ereignis eintritt, und <InlineMath math="P(A^c)" /> die Wahrscheinlichkeit, dass das Ereignis nicht eintritt.
+
+## Binomialverteilungskonzept
+
+Eine binomialverteilte Zufallsvariable zählt Erfolge in wiederholten Versuchen. Jeder Versuch hat zwei einander ausschließende Ergebnisse, etwa Kopf oder Zahl bei einer Münze. Das als **Erfolg** bezeichnete Ergebnis wird gezählt.
+
+Das Modell gilt nur bei einer festen Versuchszahl, unabhängigen Versuchen und gleichbleibender Erfolgswahrscheinlichkeit. Unabhängigkeit bedeutet, dass ein früheres Ergebnis die Wahrscheinlichkeit in einem späteren Versuch nicht verändert.
+
+**Anforderungen für Binomialexperimente:**
+
+- Es gibt nur zwei mögliche Ergebnisse: Erfolg oder Misserfolg
+
+- Die Anzahl der Experimente ist vorgegeben und festgelegt
+
+- Die einzelnen Versuche sind voneinander unabhängig
+
+- Die Erfolgswahrscheinlichkeit ist für jedes Experiment gleich
+
+## Wahrscheinlichkeitsmassenfunktion der Binomialverteilung
+
+Für ein Binomialexperiment mit Erfolgswahrscheinlichkeit <InlineMath math="p" /> und Misserfolgswahrscheinlichkeit <InlineMath math="q = 1-p" /> gibt die Wahrscheinlichkeitsmassenfunktion die Wahrscheinlichkeit für genau <InlineMath math="x" /> Erfolge in <InlineMath math="n" /> unabhängigen Versuchen an:
+
+<BlockMath math="P(X=x) = \binom{n}{x}p^xq^{n-x}, \qquad x=0{,}1{,}2{,}\ldots{,}n" />
+
+Wo:
+
+- <InlineMath math="n" /> = feste Anzahl der Versuche
+
+- <InlineMath math="x" /> = Anzahl der gezählten Erfolge
+
+- <InlineMath math="p" /> = Erfolgswahrscheinlichkeit in einem Versuch
+
+- <InlineMath math="q = 1-p" /> = Wahrscheinlichkeit eines Misserfolgs in einem Versuch
+
+Prüfe vor dem Einsetzen alle vier Binomialbedingungen. Andernfalls beschreibt dieses Wahrscheinlichkeitsmodell den Versuch möglicherweise nicht.
+
+## Münzexperiment
+
+Betrachten wir eine faire Münze. Ihr Ergebnisraum enthält Kopf und Zahl:
+
+<BlockMath math="S = \{\text{Kopf},\text{Zahl}\}" />
+
+Wenn „Zahl“ als Erfolg gilt, beträgt die Erfolgswahrscheinlichkeit <InlineMath math="p = \frac{1}{2}" />. Für den Misserfolg „Kopf“ gilt entsprechend <InlineMath math="q = 1 - \frac{1}{2} = \frac{1}{2}" />.
+
+**Aufgabe:** Wir werfen die Münze <InlineMath math="7" />-mal. Wie groß ist die Wahrscheinlichkeit, genau <InlineMath math="5" />-mal Zahl zu erhalten?
+
+**Lösung:**
+
+Zuerst ordnen wir die Parameter zu:
+- <InlineMath math="n = 7" /> (Anzahl der Würfe)
+- <InlineMath math="x = 5" /> (gewünschte Anzahl von „Zahl“)
+- <InlineMath math="p = \frac{1}{2}" /> (Wahrscheinlichkeit, Zahl zu bekommen)
+- <InlineMath math="q = \frac{1}{2}" /> (Wahrscheinlichkeit für Kopf)
+
+Nun verwenden wir die Wahrscheinlichkeitsmassenfunktion:
+
+<MathContainer>
+<BlockMath math="P(X=5) = \binom{7}{5} \left(\frac{1}{2}\right)^5 \left(\frac{1}{2}\right)^{7-5}" />
+<BlockMath math="= \binom{7}{5} \left(\frac{1}{2}\right)^5 \left(\frac{1}{2}\right)^2" />
+<BlockMath math="= \binom{7}{5} \left(\frac{1}{2}\right)^7" />
+</MathContainer>
+
+Berechnen wir zunächst <InlineMath math="\binom{7}{5}" />:
+
+<MathContainer>
+<BlockMath math="\binom{7}{5} = \frac{7!}{5!(7-5)!} = \frac{7!}{5! \cdot 2!}" />
+<BlockMath math="= \frac{7 \times 6 \times 5!}{5! \times 2 \times 1} = \frac{7 \times 6}{2} = \frac{42}{2} = 21" />
+</MathContainer>
+
+Die vollständige Berechnung lautet also:
+
+<MathContainer>
+<BlockMath math="P(X=5) = 21 \times \frac{1}{2^7} = 21 \times \frac{1}{128} = \frac{21}{128}" />
+</MathContainer>
+
+Die Wahrscheinlichkeit, bei <InlineMath math="7" /> Münzwürfen genau <InlineMath math="5" />-mal Zahl zu erhalten, beträgt somit <InlineMath math="\frac{21}{128}" /> oder ungefähr <InlineMath math="16{,}4\%" />.
+
+## Übungsaufgaben
+
+1. In einer Tüte befinden sich <InlineMath math="10" /> Kugeln, die bis auf die Farbe genau gleich sind: <InlineMath math="6" /> rote und <InlineMath math="4" /> blaue Kugeln. Wir ziehen <InlineMath math="5" /> Kugeln nacheinander mit Zurücklegen. Wie groß ist die Wahrscheinlichkeit, genau <InlineMath math="3" /> rote Kugeln zu ziehen?
+
+2. Ein Bogenschütze trifft sein Ziel mit einer Wahrscheinlichkeit von <InlineMath math="80\%" />. Wie groß ist die Wahrscheinlichkeit, dass er bei <InlineMath math="6" /> Schüssen genau <InlineMath math="4" />-mal trifft?
+
+3. Für jede Frage gibt es eine Multiple-Choice-Prüfung mit <InlineMath math="4" /> Antwortmöglichkeiten. Ein Schüler errät zufällig alle Antworten auf <InlineMath math="8" />-Fragen. Wie groß ist die Wahrscheinlichkeit, dass er genau <InlineMath math="2" /> Fragen richtig beantwortet?
+
+### Lösungen
+
+1. **Antwort zum Red-Ball-Problem**
+
+    **Schritt** <InlineMath math="1" />: Parameter identifizieren.
+
+    - <InlineMath math="n = 5" /> (Anzahl der Ziehungen)
+    - <InlineMath math="x = 3" /> (Anzahl der gewünschten roten Kugeln)
+    - <InlineMath math="p = \frac{6}{10} = 0{,}6" /> (Wahrscheinlichkeit, eine rote Kugel zu ziehen)
+    - <InlineMath math="q = 1 - 0{,}6 = 0{,}4" /> (Wahrscheinlichkeit, eine blaue Kugel zu ziehen)
+
+    **Schritt** <InlineMath math="2" />: Mit der Wahrscheinlichkeitsmassenfunktion berechnen.
+
+    <MathContainer>
+    <BlockMath math="P(X=3) = \binom{5}{3} (0{,}6)^3 (0{,}4)^2" />
+    </MathContainer>
+
+    Berechnen wir zunächst <InlineMath math="\binom{5}{3}" />:
+
+    <BlockMath math="\binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{5 \times 4}{2 \times 1} = 10" />
+
+    Dann:
+
+    <MathContainer>
+    <BlockMath math="= 10 \times (0{,}6)^3 \times (0{,}4)^2" />
+    <BlockMath math="= 10 \times 0{,}216 \times 0{,}16 = 0{,}3456" />
+    </MathContainer>
+
+    Daher beträgt die Wahrscheinlichkeit, genau <InlineMath math="3" /> rote Kugeln zu ziehen, <InlineMath math="0{,}3456" /> oder ungefähr <InlineMath math="34{,}6\%" />.
+
+2. **Antwort zum Archer-Problem**
+
+    **Schritt** <InlineMath math="1" />: Parameter identifizieren.
+
+    - <InlineMath math="n = 6" /> (Anzahl der Schüsse)
+    - <InlineMath math="x = 4" /> (Anzahl der gewünschten Ziele)
+    - <InlineMath math="p = 0{,}8" /> (Wahrscheinlichkeit, das Ziel zu treffen)
+    - <InlineMath math="q = 0{,}2" /> (Wahrscheinlichkeit des Fehlens)
+
+    **Schritt** <InlineMath math="2" />: Mit der Wahrscheinlichkeitsmassenfunktion berechnen.
+
+    <MathContainer>
+    <BlockMath math="P(X=4) = \binom{6}{4} (0{,}8)^4 (0{,}2)^2" />
+    </MathContainer>
+
+    Berechnen wir zunächst <InlineMath math="\binom{6}{4}" />:
+
+    <BlockMath math="\binom{6}{4} = \frac{6!}{4! \cdot 2!} = \frac{6 \times 5}{2 \times 1} = 15" />
+
+    Dann:
+
+    <MathContainer>
+    <BlockMath math="= 15 \times (0{,}8)^4 \times (0{,}2)^2" />
+    <BlockMath math="= 15 \times 0{,}4096 \times 0{,}04 = 0{,}24576 \approx 0{,}2458" />
+    </MathContainer>
+
+    Die Wahrscheinlichkeit, dass der Bogenschütze genau <InlineMath math="4" />-mal trifft, beträgt somit <InlineMath math="0{,}2458" /> oder ungefähr <InlineMath math="24{,}6\%" />.
+
+3. **Lösung zur Multiple-Choice-Prüfungsaufgabe**
+
+    **Schritt** <InlineMath math="1" />: Parameter identifizieren.
+
+    - <InlineMath math="n = 8" /> (Anzahl der Fragen)
+    - <InlineMath math="x = 2" /> (Anzahl der gewünschten richtigen Antworten)
+    - <InlineMath math="p = \frac{1}{4} = 0{,}25" /> (Wahrscheinlichkeit der richtigen Antwort durch Raten)
+    - <InlineMath math="q = \frac{3}{4} = 0{,}75" /> (Wahrscheinlichkeit einer falschen Antwort)
+
+    **Schritt** <InlineMath math="2" />: Mit der Wahrscheinlichkeitsmassenfunktion berechnen.
+
+    <MathContainer>
+    <BlockMath math="P(X=2) = \binom{8}{2} (0{,}25)^2 (0{,}75)^6" />
+    </MathContainer>
+
+    Berechnen wir zunächst <InlineMath math="\binom{8}{2}" />:
+
+    <BlockMath math="\binom{8}{2} = \frac{8!}{2! \cdot 6!} = \frac{8 \times 7}{2 \times 1} = 28" />
+
+    Dann:
+
+    <MathContainer>
+    <BlockMath math="= 28 \times (0{,}25)^2 \times (0{,}75)^6" />
+    <BlockMath math="= 28 \times 0{,}0625 \times 0{,}177978515625 = 0{,}31146240234375 \approx 0{,}3115" />
+    </MathContainer>
+
+    Daher beträgt die Wahrscheinlichkeit, dass der Schüler genau <InlineMath math="2" /> Fragen richtig beantwortet, ungefähr <InlineMath math="0{,}3115" /> oder <InlineMath math="31{,}15\%" />.

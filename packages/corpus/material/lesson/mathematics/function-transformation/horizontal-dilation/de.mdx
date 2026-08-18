@@ -1,0 +1,330 @@
+export const metadata = {
+  title: "Horizontale Streckung und Stauchung",
+  description: "Verstehe, wie der Multiplikator im Funktionsargument die horizontale Skalierung bestimmt, und wende die Regel auf Graphen, Definitionsbereiche und Beispiele an.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Funktionstransformation",
+};
+
+
+
+## Grundidee der horizontalen Skalierung
+
+Eine horizontale Skalierung verändert die Breite eines Funktionsgraphen. Man kann sich den Graphen wie ein Gummiband vorstellen, das von links und rechts auseinandergezogen oder zur Mitte hin zusammengedrückt wird. Seine Höhen ändern sich dabei nicht.
+
+Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = f(kx)" />. Dabei ist <InlineMath math="k \ne 0" /> der Multiplikator im Funktionsargument. Der tatsächliche Betrag der horizontalen Skalierung ist <InlineMath math="s = \frac{1}{|k|}" />.
+
+### Skalierungsregel
+
+Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Multiplikator <InlineMath math="k" /> gilt:
+
+<MathContainer>
+  <BlockMath math="g(x) = f(kx)" />
+  <BlockMath math="s = \frac{1}{|k|}" />
+</MathContainer>
+
+Der Multiplikator <InlineMath math="k" /> bestimmt die Wirkung:
+- Bei <InlineMath math="k > 1" /> schrumpft die Breite des Graphen auf <InlineMath math="\frac{1}{k}" /> ihrer ursprünglichen Größe
+- Bei <InlineMath math="0 < k < 1" /> wächst die Breite des Graphen auf das <InlineMath math="\frac{1}{k}" />-Fache
+- Bei <InlineMath math="k = 1" /> bleibt der Graph unverändert
+- Bei <InlineMath math="k < 0" /> wird der Graph zusätzlich an der <InlineMath math="y" />-Achse gespiegelt
+
+Der Wert <InlineMath math="k = 0" /> ist ausgeschlossen: <InlineMath math="f(0x) = f(0)" /> wäre überall, wo der Wert definiert ist, konstant. Der Graph würde also zusammenfallen und nicht horizontal skaliert.
+
+Der Kehrwert ist entscheidend: Ein größerer Multiplikator im Argument macht den Graphen schmaler, während die horizontale Skalierung selbst <InlineMath math="\frac{1}{|k|}" /> beträgt.
+
+## Vergleich am Graphen
+
+Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt die Wirkung verschiedener Multiplikatoren besonders deutlich.
+
+<LineEquation
+  title={<>Horizontale Skalierung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
+  description="Vergleiche, wie verschiedene Multiplikatoren die Breite des Graphen verändern."
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [4, 2, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: (2 * x) * (2 * x), z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="g(x)=(2x)^2" />, offset: [4, 3, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: (0.5 * x) * (0.5 * x), z: 0 };
+      }),
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="h(x)=(0{,}5x)^2" />, offset: [4, 1, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Der Graph zeigt:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = x^2" /> dient als Vergleich
+- Die Funktion <InlineMath math="g(x) = (2x)^2" /> verwendet den Multiplikator <InlineMath math="2" />, ihre horizontale Skalierung beträgt also <InlineMath math="\frac{1}{2}" />
+- Die Funktion <InlineMath math="h(x) = (0{,}5x)^2" /> verwendet den Multiplikator <InlineMath math="0{,}5" />, ihre horizontale Skalierung beträgt also <InlineMath math="2" />
+- Alle Graphen haben den gleichen Scheitelpunkt bei <InlineMath math="(0, 0)" />
+
+## Skalierung einer linearen Funktion
+
+Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = x + 2" /> an.
+
+<LineEquation
+  title={<>Horizontale Skalierung der linearen Funktion <InlineMath math="f(x) = x + 2" /></>}
+  description={<>Der Multiplikator verändert die Steigung, aber nicht den <InlineMath math="y" />-Achsenabschnitt.</>}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: x + 2, z: 0 };
+      }),
+      color: "#d97706",
+      labels: [{ text: <InlineMath math="f(x)=x+2" />, offset: [2, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: (2 * x) + 2, z: 0 };
+      }),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="g(x)=2x+2" />, offset: [1, 1.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: (0.5 * x) + 2, z: 0 };
+      }),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="h(x)=0{,}5x+2" />, offset: [3, -0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Der Vergleich zeigt:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = x + 2" /> hat die Steigung <InlineMath math="1" />
+- Funktion <InlineMath math="g(x) = f(2x) = 2x + 2" /> hat Steigung <InlineMath math="2" /> (horizontal komprimiert)
+- Funktion <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> hat Steigung <InlineMath math="0{,}5" /> (horizontal gestreckt)
+- Alle Geraden schneiden die <InlineMath math="y" />-Achse im gleichen Punkt <InlineMath math="(0, 2)" />
+
+## Wichtige Eigenschaften
+
+### Wirkung auf Koordinatenpunkte
+
+Liegt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, dann liegt auf dem Graphen von <InlineMath math="f(kx)" /> der Punkt <InlineMath math="(\frac{a}{k}, b)" />.
+
+### Definitionsbereich und Wertebereich
+
+- **Definitionsbereich**: Seine horizontalen Koordinaten werden durch den Multiplikator <InlineMath math="k" /> geteilt
+- **Wertebereich**: Bleibt unverändert
+
+Ist der ursprüngliche Definitionsbereich <InlineMath math="[c, d]" />, dann wird er bei einer horizontalen Skalierung mit <InlineMath math="k > 0" /> zu <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
+
+### Achsenabschnitte
+
+- **<InlineMath math="x" />-Achsenabschnitt**: Seine Koordinate wird durch den Multiplikator geteilt
+- **<InlineMath math="y" />-Achsenabschnitt**: Bleibt unverändert
+
+## Weitere Beispiele
+
+### Exponentialfunktion
+
+Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> verändert die horizontale Skalierung, wie schnell der Graph steigt.
+
+<LineEquation
+  title={<>Horizontale Skalierung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
+  description="Der Multiplikator verändert, wie schnell der Exponentialgraph ansteigt."
+  showZAxis={false}
+  cameraPosition={[8, 6, 8]}
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, 2 * x), z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="g(x)=2^{2x}" />, offset: [1, 2, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Für Exponentialfunktionen:
+- Die horizontale Asymptote bleibt für beide Funktionen bei <InlineMath math="y = 0" />
+- Der <InlineMath math="y" />-Achsenabschnitt bleibt bei <InlineMath math="(0, 1)" /> gleich
+- Die Wachstumsrate der Funktion ändert sich entsprechend dem Multiplikator
+
+## Negativer Multiplikator im Funktionsargument
+
+Ein negatives Vorzeichen im Argument spiegelt den Graphen zusätzlich an der senkrechten Achse.
+
+<LineEquation
+  title={<>Horizontale Skalierung mit negativem Multiplikator bei <InlineMath math="f(x) = x^2 + 1" /></>}
+  description="Sein Betrag bestimmt die horizontale Skalierung, sein Vorzeichen die Spiegelung."
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x + 1, z: 0 };
+      }),
+      color: "#0891b2",
+      labels: [{ text: <InlineMath math="f(x)=x^2+1" />, offset: [2, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: (-2 * x) * (-2 * x) + 1, z: 0 };
+      }),
+      color: "#db2777",
+      labels: [{ text: <InlineMath math="g(x)=(-2x)^2+1" />, offset: [3, 2, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Für einen negativen Multiplikator gilt:
+- Der Graph erfährt eine Spiegelung an der <InlineMath math="y" />-Achse
+- Der Betrag der horizontalen Skalierung ist <InlineMath math="\frac{1}{|k|}" />
+- Bei dieser quadratischen Funktion ist die Spiegelung nicht sichtbar, weil ihr Graph bereits symmetrisch ist
+
+## Übungen
+
+1. Wende den Multiplikator <InlineMath math="3" /> auf das Argument der Funktion <InlineMath math="f(x) = x^2 - 2x + 1" /> an und bestimme die neue Funktionsgleichung.
+
+2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird mit dem Multiplikator <InlineMath math="\frac{1}{2}" /> im Funktionsargument horizontal skaliert. Bestimme:
+   - Die Gleichung der skalierten Funktion
+   - Den Definitionsbereich nach der Skalierung
+
+3. Skaliere die Funktion <InlineMath math="h(x) = |x - 2|" /> horizontal mit dem Multiplikator <InlineMath math="-1" /> und bestimme den neuen Scheitelpunkt.
+
+### Lösungen
+
+1. Horizontale Skalierung mit dem Multiplikator <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="f(x) = x^2 - 2x + 1" /> und ihr Skalierungsergebnis</>}
+     description={
+       <>
+         Der Multiplikator <InlineMath math="3" /> ergibt die horizontale Skalierung{" "}
+         <InlineMath math="\frac{1}{3}" /> und macht die Parabel schmaler.
+       </>
+     }
+     showZAxis={false}
+     cameraPosition={[12, 8, 12]}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x - 2 * x + 1, z: 0 };
+         }),
+         color: "#9333ea",
+         labels: [{ text: <InlineMath math="f(x)=x^2-2x+1" />, offset: [4, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: 9 * x * x - 6 * x + 1, z: 0 };
+         }),
+         color: "#ea580c",
+         labels: [{ text: <InlineMath math="f'(x)=9x^2-6x+1" />, offset: [3, 2, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+2. Gleichung der skalierten Funktion:
+
+   - Horizontale Skalierung: <InlineMath math="g'(x) = g(\frac{1}{2}x) = \sqrt{\frac{1}{2}x} = \sqrt{\frac{x}{2}}" />
+   - Definitionsbereich nach der Skalierung: <InlineMath math="[0, \infty)" /> bleibt <InlineMath math="[0, \infty)" />, weil der Multiplikator positiv ist
+
+   Im Graphen:
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="g(x) = \sqrt{x}" /> und ihr Skalierungsergebnis</>}
+     description={
+       <>
+         Der Multiplikator <InlineMath math="0{,}5" /> ergibt die horizontale Skalierung{" "}
+         <InlineMath math="2" /> und macht den Quadratwurzelgraphen doppelt so breit.
+       </>
+     }
+     showZAxis={false}
+     data={[
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25;
+           return { x, y: Math.sqrt(x), z: 0 };
+         }),
+         color: "#7c3aed",
+         labels: [{ text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [2, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25;
+           return { x, y: Math.sqrt(0.5 * x), z: 0 };
+         }),
+         color: "#0d9488",
+         labels: [{ text: <InlineMath math="g'(x)=\sqrt{\frac{x}{2}}" />, offset: [3, 0.5, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+3. Die ursprüngliche Funktion <InlineMath math="h(x) = |x - 2|" /> hat ihren Scheitelpunkt bei <InlineMath math="(2, 0)" />.
+   Nach horizontaler Skalierung mit dem Multiplikator <InlineMath math="-1" />: <InlineMath math="h'(x) = |-x - 2| = |-(x + 2)| = |x + 2|" /> wird der Scheitelpunkt zu <InlineMath math="(-2, 0)" />.
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="h(x) = |x - 2|" /> und ihr Skalierungsergebnis</>}
+     description={<>Der Multiplikator <InlineMath math="-1" /> spiegelt den Betragsgraphen an der <InlineMath math="y" />-Achse, ohne seine horizontale Größe zu ändern.</>}
+     showZAxis={false}
+     cameraPosition={[10, 6, 10]}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: Math.abs(x - 2), z: 0 };
+         }),
+         color: "#4f46e5",
+         labels: [{ text: <InlineMath math="h(x)=|x-2|" />, offset: [2.5, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: Math.abs(-x - 2), z: 0 };
+         }),
+         color: "#059669",
+         labels: [{ text: <InlineMath math="h'(x)=|-x-2|" />, offset: [2.5, 2, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />

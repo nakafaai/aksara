@@ -1,79 +1,56 @@
 import { globSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
+import { Path } from "@effect/platform";
 import { NodeContext } from "@effect/platform-node";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   loadQuestionContent,
+  readQuestionDocument,
   selectQuestionContent,
 } from "#corpus/question-bank/content";
-import { questionSourceFiles } from "#corpus/question-bank/path";
-import { decodeTryoutRegistry } from "#corpus/tryout/registry";
-
-const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const sourceRoot = "packages/corpus/question-bank/tryout";
-const absoluteSourceRoot = resolve(corpusRoot, sourceRoot);
-const tryoutSources = await Effect.runPromise(decodeTryoutRegistry());
-const realEntries = globSync("**/*", { cwd: absoluteSourceRoot });
-const realChoices = new Map(
-  globSync("**/choices.ts", { cwd: absoluteSourceRoot }).map((sourcePath) => {
-    const absolutePath = resolve(absoluteSourceRoot, sourcePath);
-    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-  })
-);
-const validChoices = `import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
-
-const choices: QuestionChoices = {
-  en: [{ label: "A", value: true }],
-  id: [{ label: "A", value: true }],
-};
-
-export default choices;`;
-const genericQuestionSourceFiles = questionSourceFiles(
-  TryoutKeySchema.make("general-reasoning")
-);
+import {
+  absoluteQuestionTestSourceRoot,
+  candidateQuestionChoicesSource,
+  corpusRoot,
+  generalQuestionSourceFiles,
+  makeQuestionSourceLayer,
+  questionTestSourceRoot,
+  realQuestionChoices,
+  realQuestionEntries,
+  realTryoutSources,
+  validQuestionChoicesSource,
+} from "#corpus/test/question-layer";
 
 /** Creates recursive directory output for synthetic question directories. */
 function questionEntries(...roots: readonly string[]) {
   return roots.flatMap((root) => [
     root,
-    ...genericQuestionSourceFiles.map((file) => `${root}/${file}`),
+    ...generalQuestionSourceFiles.map((file) => `${root}/${file}`),
   ]);
-}
-
-/** Creates strict source reads for synthetic or real question trees. */
-function fileLayer(
-  entries: readonly string[],
-  choices: ReadonlyMap<string, string>
-) {
-  return FileSystem.layerNoop({
-    readDirectory: () => Effect.succeed([...entries]),
-    readFileString: (path) => {
-      const source = choices.get(path);
-      if (source !== undefined) {
-        return Effect.succeed(source);
-      }
-      return Effect.fail(
-        new PlatformError.SystemError({
-          method: "readFileString",
-          module: "FileSystem",
-          pathOrDescriptor: path,
-          reason: "NotFound",
-        })
-      );
-    },
-  });
 }
 
 /** Creates localized choice sources for synthetic question directories. */
 function choicesFor(...roots: readonly string[]) {
   return new Map(
     roots.map((root) => [
-      resolve(absoluteSourceRoot, root, "choices.ts"),
-      validChoices,
+      resolve(absoluteQuestionTestSourceRoot, root, "choices.ts"),
+      validQuestionChoicesSource,
+    ])
+  );
+}
+
+/** Builds one synthetic question registry Effect without hiding its error type. */
+function registry(
+  discoveredEntries: readonly string[],
+  choices: ReadonlyMap<string, string>
+) {
+  return loadQuestionContent(corpusRoot, realTryoutSources).pipe(
+    Effect.provide([
+      makeQuestionSourceLayer(discoveredEntries, choices),
+      Path.layer,
     ])
   );
 }
@@ -84,9 +61,8 @@ function runRegistry(
   choices: ReadonlyMap<string, string>
 ) {
   return Effect.runPromise(
-    loadQuestionContent(corpusRoot, tryoutSources).pipe(
-      Effect.map(({ entries }) => entries),
-      Effect.provide([fileLayer(discoveredEntries, choices), Path.layer])
+    registry(discoveredEntries, choices).pipe(
+      Effect.map(({ entries }) => entries)
     )
   );
 }
@@ -97,9 +73,8 @@ function rejectRegistry(
   choices: ReadonlyMap<string, string>
 ) {
   return Effect.runPromise(
-    loadQuestionContent(corpusRoot, tryoutSources).pipe(
+    registry(discoveredEntries, choices).pipe(
       Effect.map(({ entries }) => entries),
-      Effect.provide([fileLayer(discoveredEntries, choices), Path.layer]),
       Effect.flip
     )
   );
@@ -109,11 +84,17 @@ describe("question registry", () => {
   it("projects every real question and answer body onto its exact path", {
     timeout: 30_000,
   }, async () => {
-    const entries = await runRegistry(realEntries, realChoices);
+    const entries = await runRegistry(realQuestionEntries, realQuestionChoices);
     const authoredPaths = globSync(
       "packages/corpus/question-bank/tryout/indonesia/**/*.mdx",
       { cwd: corpusRoot }
-    ).sort();
+    )
+      .filter((sourcePath) =>
+        ACTIVE_APP_LOCALES.some((locale) =>
+          sourcePath.endsWith(`.${locale}.mdx`)
+        )
+      )
+      .sort();
     const projectedPaths = entries.map(({ sourcePath }) => sourcePath).sort();
 
     expect(entries).toHaveLength(3260);
@@ -162,7 +143,7 @@ describe("question registry", () => {
   it("preserves one exact source-owned section directory", {
     timeout: 30_000,
   }, async () => {
-    const entries = await runRegistry(realEntries, realChoices);
+    const entries = await runRegistry(realQuestionEntries, realQuestionChoices);
     const question = entries.find(
       ({ artifactLocale, contentKey }) =>
         contentKey ===
@@ -226,7 +207,7 @@ describe("question registry", () => {
         Effect.runPromise(
           selectQuestionContent(
             corpusRoot,
-            tryoutSources,
+            realTryoutSources,
             CorpusSourcePathSchema.make(testCase.answer)
           ).pipe(Effect.provide(NodeContext.layer))
         ).then((selected) => ({ selected, testCase }))
@@ -240,6 +221,44 @@ describe("question registry", () => {
         testCase.answer,
       ]);
     }
+  });
+
+  it("reads one registry-owned body byte-exactly and types missing reads", {
+    timeout: 30_000,
+  }, async () => {
+    const content = await Effect.runPromise(
+      loadQuestionContent(corpusRoot, realTryoutSources).pipe(
+        Effect.provide(NodeContext.layer)
+      )
+    );
+    const entry = content.entries.find(
+      ({ bodyKind, sourcePath }) =>
+        bodyKind === "question" && sourcePath.endsWith("question.en.mdx")
+    );
+    const source = content.sources.find(
+      ({ sourceRoot: candidateRoot }) => candidateRoot === entry?.sourceRoot
+    );
+    if (!(entry && source)) {
+      throw new Error("Expected one registry-owned question body.");
+    }
+    const rawMdx = readFileSync(resolve(corpusRoot, entry.sourcePath), "utf8");
+    const document = await Effect.runPromise(
+      readQuestionDocument(corpusRoot, entry, source.choices).pipe(
+        Effect.provide(NodeContext.layer)
+      )
+    );
+    const error = await Effect.runPromise(
+      readQuestionDocument(corpusRoot, entry, source.choices).pipe(
+        Effect.provide([makeQuestionSourceLayer([], new Map()), Path.layer]),
+        Effect.flip
+      )
+    );
+
+    expect(document).toMatchObject({ rawMdx, sourcePath: entry.sourcePath });
+    expect(error).toMatchObject({
+      _tag: "QuestionReadError",
+      path: entry.sourcePath,
+    });
   });
 
   it("rejects an oversized physical question identity before projection", async () => {
@@ -256,5 +275,26 @@ describe("question registry", () => {
 
   it("allows an empty checkout without inventing entries", async () => {
     await expect(runRegistry([], new Map())).resolves.toEqual([]);
+  });
+
+  it("projects only the German candidate bodies that are physically present", async () => {
+    const root = "indonesia/snbt/general-reasoning/set-1/question-1";
+    const files = [
+      ...generalQuestionSourceFiles,
+      "choices.de.ts",
+      "question.de.mdx",
+    ];
+    const choices = choicesFor(root);
+    choices.set(
+      resolve(absoluteQuestionTestSourceRoot, root, "choices.de.ts"),
+      candidateQuestionChoicesSource
+    );
+    const content = await Effect.runPromise(
+      registry([root, ...files.map((file) => `${root}/${file}`)], choices)
+    );
+
+    expect(
+      content.candidateEntries.map(({ sourcePath }) => sourcePath)
+    ).toEqual([`${questionTestSourceRoot}/${root}/question.de.mdx`]);
   });
 });

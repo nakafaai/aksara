@@ -1,0 +1,198 @@
+
+export const metadata = {
+  title: "Die drei grundlegenden trigonometrischen Verhältnisse",
+  description: "Sinus, Kosinus und Tangens im rechtwinkligen Dreieck verstehen und mit dem Einheitskreis verknüpfen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-14",
+  subject: "Trigonometrie",
+};
+
+## Die drei grundlegenden trigonometrischen Verhältnisse
+
+Für einen festen spitzen Winkel in einem rechtwinkligen Dreieck haben entsprechende Seiten stets dieselben Verhältnisse. Die drei grundlegenden Verhältnisse sind Sinus (<InlineMath math="\sin" />), Kosinus (<InlineMath math="\cos" />) und Tangens (<InlineMath math="\tan" />).
+
+<MathContainer>
+  <BlockMath math="\sin \theta = \frac{\text{Gegenkathete}}{\text{Hypotenuse}}" />
+  <BlockMath math="\cos \theta = \frac{\text{Ankathete}}{\text{Hypotenuse}}" />
+  <BlockMath math="\tan \theta = \frac{\text{Gegenkathete}}{\text{Ankathete}}" />
+</MathContainer>
+
+### Die Seiten eines rechtwinkligen Dreiecks verstehen
+
+Zuerst müssen wir die drei Seiten eindeutig benennen:
+
+1. **Hypotenuse**: die längste Seite des Dreiecks. Sie liegt dem rechten Winkel <InlineMath math="90^\circ" /> gegenüber.
+2. **Gegenkathete**: die Seite gegenüber dem betrachteten Winkel <InlineMath math="\theta" />.
+3. **Ankathete**: die Kathete, die am betrachteten Winkel <InlineMath math="\theta" /> anliegt.
+
+<ContentBlock>
+  <Triangle
+    title="Visualisierung von Dreiecksseiten"
+    description="Verschiebe den Regler und beobachte, wie sich Gegenkathete und Ankathete mit dem betrachteten Winkel ändern."
+    angle={30}
+    labels={{
+      opposite: "Gegenkathete",
+      adjacent: "Ankathete",
+      hypotenuse: "Hypotenuse",
+    }}
+  />
+</ContentBlock>
+
+## Sinus
+
+Der Sinus des Winkels <InlineMath math="\theta" /> ist das Verhältnis von Gegenkathete zu Hypotenuse.
+
+<BlockMath math="\sin \theta = \frac{\text{Gegenkathete}}{\text{Hypotenuse}}" />
+
+<ContentBlock>
+  <Triangle
+    title={
+      <>
+        Visualisierung von Sinus (<InlineMath math="\sin \theta" />)
+      </>
+    }
+    description={<>Beobachte, wie sich <InlineMath math="\sin \theta" /> mit dem Winkel verändert.</>}
+    angle={30}
+    labels={{
+      opposite: "Gegenkathete (bestimmt den Sinuswert)",
+      adjacent: "Ankathete",
+      hypotenuse: "Hypotenuse (Divisor)",
+    }}
+  />
+</ContentBlock>
+
+### Beispiele für Sinuswerte
+
+| Winkel | Exakter Sinuswert | Dezimale Näherung |
+| ------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="0{,}5" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0{,}71" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0{,}87" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+
+## Kosinus
+
+Der Kosinus des Winkels <InlineMath math="\theta" /> ist das Verhältnis von Ankathete zu Hypotenuse.
+
+<BlockMath math="\cos \theta = \frac{\text{Ankathete}}{\text{Hypotenuse}}" />
+
+<ContentBlock>
+  <Triangle
+    title={
+      <>
+        Visualisierung von Kosinus (<InlineMath math="\cos \theta" />)
+      </>
+    }
+    description={<>Beobachte, wie sich <InlineMath math="\cos \theta" /> mit dem Winkel verändert.</>}
+    angle={60}
+    labels={{
+      opposite: "Gegenkathete",
+      adjacent: "Ankathete (bestimmt den Kosinuswert)",
+      hypotenuse: "Hypotenuse (Divisor)",
+    }}
+  />
+</ContentBlock>
+
+### Beispiele für Kosinuswerte
+
+| Winkel | Exakter Kosinuswert | Dezimale Näherung |
+| ------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="0{,}87" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{\sqrt{2}}{2}" /> | <InlineMath math="0{,}71" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="0{,}5" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+## Tangens
+
+Der Tangens des Winkels <InlineMath math="\theta" /> ist das Verhältnis von Gegenkathete zu Ankathete. Er ist außerdem der Quotient aus Sinus und Kosinus, sofern <InlineMath math="\cos \theta\ne0" /> gilt.
+
+<BlockMath math="\tan \theta = \frac{\text{Gegenkathete}}{\text{Ankathete}} = \frac{\sin \theta}{\cos \theta},\qquad \cos \theta\ne0" />
+
+<ContentBlock>
+  <Triangle
+    title={
+      <>
+        Visualisierung des Tangens (<InlineMath math="\tan \theta" />)
+      </>
+    }
+    description={<>Beobachte, wie sich <InlineMath math="\tan \theta" /> mit dem Winkel verändert.</>}
+    angle={45}
+    labels={{
+      opposite: "Gegenkathete (Zähler)",
+      adjacent: "Ankathete (Nenner)",
+      hypotenuse: "Hypotenuse",
+    }}
+  />
+</ContentBlock>
+
+### Beispiele für Tangenswerte
+
+| Winkel | Exakter Tangenswert | Dezimale Näherung |
+| ------------------------- | ---------------------------------------- | -------------------------- |
+| <InlineMath math="0^\circ" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="30^\circ" /> | <InlineMath math="\frac{1}{\sqrt{3}}" /> | <InlineMath math="0{,}58" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\sqrt{3}" /> | <InlineMath math="1{,}73" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\text{nicht definiert}" /> | <InlineMath math="\text{nicht definiert}" /> |
+
+## Sinus, Kosinus und Tangens im Einheitskreis
+
+Der Einheitskreis ist ein Kreis mit dem Radius <InlineMath math="1" />. Mit ihm lassen sich die drei Verhältnisse auch für Winkel außerhalb eines rechtwinkligen Dreiecks deuten.
+
+<UnitCircle
+  title="Einheitskreis und trigonometrische Verhältnisse"
+  description={<>Verschiebe den Regler und beobachte, wie sich <InlineMath math="\sin \theta" />, <InlineMath math="\cos \theta" /> und <InlineMath math="\tan \theta" /> auf dem Einheitskreis verändern.</>}
+  angle={45}
+/>
+
+Im Einheitskreis:
+
+- Die <InlineMath math="x" />-Koordinate auf dem Einheitskreis ist <InlineMath math="\cos \theta" />.
+- Die <InlineMath math="y" />-Koordinate auf dem Einheitskreis ist <InlineMath math="\sin \theta" />.
+- Für <InlineMath math="\cos \theta\ne0" /> ist <InlineMath math="\tan \theta" /> die Steigung der Geraden vom Mittelpunkt zum Punkt auf dem Einheitskreis. Bei <InlineMath math="90^\circ" /> ist diese Gerade senkrecht, daher sind ihre Steigung und der Tangens nicht definiert.
+
+## Relationen zwischen den drei trigonometrischen Verhältnissen
+
+Zwischen den drei Verhältnissen gelten insbesondere diese beiden Beziehungen:
+
+<MathContainer>
+  <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta},\qquad \cos \theta\ne0" />
+  <BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
+</MathContainer>
+
+## Übung
+
+Das folgende rechtwinklige Dreieck hat einen Winkel von <InlineMath math="30^\circ" /> und die Hypotenuse <InlineMath math="1" />. Bestimme die exakten Längen von Gegenkathete und Ankathete und berechne anschließend <InlineMath math="\sin 30^\circ" />, <InlineMath math="\cos 30^\circ" /> und <InlineMath math="\tan 30^\circ" />.
+
+<Triangle
+  title={
+    <>
+      Dreieck mit einem Winkel von <InlineMath math="30^\circ" />
+    </>
+  }
+  description={
+    <>
+      Rechtwinkliges Dreieck mit einem Winkel von <InlineMath math="30^\circ" />
+    </>
+  }
+  angle={30}
+  labels={{
+    opposite: "Gegenkathete",
+    adjacent: "Ankathete",
+    hypotenuse: "Hypotenuse",
+  }}
+/>
+
+### Lösung
+
+Die exakten Verhältnisse des besonderen Winkels liefern die beiden Kathetenlängen direkt:
+
+<MathContainer>
+  <BlockMath math="\text{Gegenkathete}=1\cdot\sin 30^\circ=\frac{1}{2}" />
+  <BlockMath math="\text{Ankathete}=1\cdot\cos 30^\circ=\frac{\sqrt{3}}{2}" />
+  <BlockMath math="\tan 30^\circ=\frac{1/2}{\sqrt{3}/2}=\frac{1}{\sqrt{3}}=\frac{\sqrt{3}}{3}\approx0{,}577" />
+</MathContainer>
+
+Werden zuerst die exakten Werte verwendet und erst am Ende gerundet, bleibt die Identität <InlineMath math="\tan \theta=\sin \theta/\cos \theta" /> erhalten. So entsteht kein zusätzlicher Fehler durch das Dividieren bereits gerundeter Dezimalzahlen.

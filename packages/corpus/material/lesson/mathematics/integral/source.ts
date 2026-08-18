@@ -10,26 +10,10 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
     {
       routeSlugs: { en: "area-of-a-flat-surface", id: "luas-bidang-datar" },
       slug: "area-of-a-flat-surface",
-      translations: {
-        en: {
-          title: "Area of a Flat Surface",
-        },
-        id: {
-          title: "Luas Bidang Datar",
-        },
-      },
     },
     {
       routeSlugs: { en: "definite-integral", id: "integral-tentu" },
       slug: "definite-integral",
-      translations: {
-        en: {
-          title: "Definite Integral",
-        },
-        id: {
-          title: "Integral Tentu",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -37,14 +21,6 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
         id: "definisi-integral-tak-tentu",
       },
       slug: "definition-of-indefinite-integral",
-      translations: {
-        en: {
-          title: "Definition of Indefinite Integral",
-        },
-        id: {
-          title: "Definisi Integral Tak Tentu",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -52,14 +28,6 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
         id: "teorema-dasar-kalkulus",
       },
       slug: "fundamental-theorem-of-calculus",
-      translations: {
-        en: {
-          title: "Fundamental Theorem of Calculus",
-        },
-        id: {
-          title: "Teorema Dasar Kalkulus",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -67,14 +35,6 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
         id: "integral-dalam-bidang-ekonomi-dan-bisnis",
       },
       slug: "integral-in-economics-and-business",
-      translations: {
-        en: {
-          title: "Integral in Economics and Business",
-        },
-        id: {
-          title: "Integral dalam Bidang Ekonomi dan Bisnis",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -82,14 +42,6 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
         id: "integral-dalam-bidang-fisika",
       },
       slug: "integral-in-physics",
-      translations: {
-        en: {
-          title: "Integral in Physics",
-        },
-        id: {
-          title: "Integral dalam Bidang Fisika",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -97,14 +49,6 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
         id: "sifat-sifat-integral-tentu",
       },
       slug: "properties-of-definite-integral",
-      translations: {
-        en: {
-          title: "Properties of Definite Integral",
-        },
-        id: {
-          title: "Sifat-Sifat Integral Tentu",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -112,26 +56,10 @@ export const lessonMathematicsIntegralMaterial = defineLessonMaterial({
         id: "sifat-sifat-integral-tak-tentu",
       },
       slug: "properties-of-indefinite-integral",
-      translations: {
-        en: {
-          title: "Properties of Indefinite Integral",
-        },
-        id: {
-          title: "Sifat-Sifat Integral Tak Tentu",
-        },
-      },
     },
     {
       routeSlugs: { en: "riemann-sum", id: "jumlahan-riemann" },
       slug: "riemann-sum",
-      translations: {
-        en: {
-          title: "Riemann Sum",
-        },
-        id: {
-          title: "Jumlahan Riemann",
-        },
-      },
     },
   ],
   slug: "integral",

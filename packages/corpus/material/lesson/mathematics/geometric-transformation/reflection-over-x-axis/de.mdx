@@ -1,0 +1,245 @@
+
+
+export const metadata = {
+  title: "Spiegelung an der x-Achse",
+  description: "Spiegle Punkte, Dreiecke und Geraden an der x-Achse und leite die Koordinatenregel aus den Abständen zum Spiegel her.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Spiegelung an der x-Achse verstehen
+
+Bei einer Spiegelung an der <InlineMath math="x" />-Achse liegt jeder Bildpunkt auf der gegenüberliegenden Seite der <InlineMath math="x" />-Achse und hat denselben Abstand zu ihr. Die <InlineMath math="x" />-Achse wirkt dabei wie ein waagerechter Spiegel.
+
+Hat ein Punkt <InlineMath math="P" /> die Koordinaten <InlineMath math="(x,y)" />, dann behält sein Bildpunkt <InlineMath math="P'" /> dieselbe <InlineMath math="x" />-Koordinate. Nur die <InlineMath math="y" />-Koordinate wechselt ihr Vorzeichen: Aus dem bisherigen <InlineMath math="y" />-Wert wird sein Gegenwert.
+
+Wenn der Anfangspunkt mathematisch gesehen <InlineMath math="P(x,y)" /> ist, dann ist sein Bild nach der Spiegelung an der <InlineMath math="x" />-Achse <InlineMath math="P'(x,-y)" />.
+
+### Punkte und ihre Spiegelbilder visualisieren
+
+Betrachten wir einige Punkte und ihre Spiegelungen, nachdem sie an der <InlineMath math="x" />-Achse gespiegelt wurden.
+
+Achte darauf, dass die <InlineMath math="y" />-Koordinate ihr Vorzeichen ändert, während die <InlineMath math="x" />-Koordinate gleich bleibt.
+
+<LineEquation
+  title={
+    <>
+    Spiegelbilder von Punkten an der <InlineMath math="x" />-Achse
+    </>
+  }
+  description={
+    <>
+    Die Punkte <InlineMath math="A, B, C, D" /> und ihre Bildpunkte{" "}
+    <InlineMath math="A', B', C', D'" /> liegen jeweils gleich weit von der{" "}
+    <InlineMath math="x" />-Achse entfernt.
+    </>
+  }
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+  data={[
+    ...[
+      { x: -5, y: 2, label: <InlineMath math="A" /> },
+      { x: -3, y: 1, label: <InlineMath math="B" /> },
+      { x: 1, y: 2, label: <InlineMath math="C" /> },
+      { x: 4, y: -2, label: <InlineMath math="D" /> },
+    ].map((p, i) => ({
+      points: [
+        { x: p.x, y: p.y, z: 0 },
+        { x: p.x, y: p.y, z: 0 }, // Single point
+      ],
+      color: "#d97706",
+      labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
+      showPoints: true,
+    })),
+    ...[
+      { x: -5, y: -2, label: <InlineMath math="A'" /> },
+      { x: -3, y: -1, label: <InlineMath math="B'" /> },
+      { x: 1, y: -2, label: <InlineMath math="C'" /> },
+      { x: 4, y: 2, label: <InlineMath math="D'" /> },
+    ].map((p, i) => ({
+      points: [
+        { x: p.x, y: p.y, z: 0 },
+        { x: p.x, y: p.y, z: 0 }, // Single point
+      ],
+      color: "#0891b2",
+      labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
+      showPoints: true,
+    })),
+  ]}
+/>
+
+In der interaktiven Visualisierung oben lässt sich die Beziehung zwischen den ursprünglichen Punkten (Urbild) und ihren Spiegelpunkten (Bild) direkt beobachten:
+
+- Punkt <InlineMath math="A(-5,2)" /> wird zu <InlineMath math="A'(-5,-2)" />
+- Punkt <InlineMath math="B(-3,1)" /> wird zu <InlineMath math="B'(-3,-1)" />
+- Punkt <InlineMath math="C(1,2)" /> wird zu <InlineMath math="C'(1,-2)" />
+- Punkt <InlineMath math="D(4,-2)" /> wird zu <InlineMath math="D'(4,2)" />
+
+Das Muster ist eindeutig: <InlineMath math="x" /> bleibt unverändert und <InlineMath math="y" /> wechselt sein Vorzeichen.
+
+## Eigenschaften der Spiegelung an der x-Achse
+
+Aus diesen Beobachtungen folgt die Regel für die Spiegelung an der <InlineMath math="x" />-Achse:
+
+<BlockMath math="P(x,y) \xrightarrow{\text{X-Achse}} P'(x,-y)" />
+
+Dies bedeutet, dass das Bild des Punktes <InlineMath math="P(x,y)" />, der an der <InlineMath math="x" />-Achse gespiegelt wird, <InlineMath math="P'(x,-y)" /> ist. Die <InlineMath math="x" />-Achse fungiert in diesem Fall als Gerade <InlineMath math="y=0" />.
+
+## Anwendungsbeispiele
+
+### Ein Dreieck spiegeln
+
+Bestimme das Bild des Dreiecks <InlineMath math="ABC" /> mit den Eckpunkten <InlineMath math="A(-1,4)" />, <InlineMath math="B(2,1)" /> und <InlineMath math="C(-2,-1)" /> bei der Spiegelung an der <InlineMath math="x" />-Achse.
+
+Um das Bild des Dreiecks <InlineMath math="ABC" /> zu bestimmen, wenden wir die Spiegelungseigenschaft auf jeden seiner Eckpunkte an:
+
+<MathContainer>
+  <BlockMath math="A(-1,4) \xrightarrow{\text{X-Achse}} A'(-1,-4)" />
+  <BlockMath math="B(2,1) \xrightarrow{\text{X-Achse}} B'(2,-1)" />
+  <BlockMath math="C(-2,-1) \xrightarrow{\text{X-Achse}} C'(-2,1)" />
+</MathContainer>
+
+Folglich ist das Bild des Dreiecks <InlineMath math="ABC" /> das Dreieck <InlineMath math="A'B'C'" /> mit den Eckpunkten <InlineMath math="A'(-1,-4)" />, <InlineMath math="B'(2,-1)" /> und <InlineMath math="C'(-2,1)" />.
+
+<LineEquation
+  title={
+    <>
+    Spiegelung des Dreiecks <InlineMath math="ABC" /> an der <InlineMath math="x" />-Achse
+    </>
+  }
+  description={
+    <>
+    Das Dreieck <InlineMath math="ABC" /> und sein Bilddreieck{" "}
+    <InlineMath math="A'B'C'" /> liegen symmetrisch zur <InlineMath math="x" />-Achse.
+    </>
+  }
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+  data={[
+    // Ausgangsdreieck ABC
+    ...[
+      {
+        from: { x: -1, y: 4, z: 0, label: <InlineMath math="A" /> },
+        to: { x: 2, y: 1, z: 0, label: <InlineMath math="B" /> },
+      },
+      {
+        from: { x: 2, y: 1, z: 0, label: <InlineMath math="B" /> },
+        to: { x: -2, y: -1, z: 0, label: <InlineMath math="C" /> },
+      },
+      {
+        from: { x: -2, y: -1, z: 0, label: <InlineMath math="C" /> },
+        to: { x: -1, y: 4, z: 0, label: <InlineMath math="A" /> },
+      },
+    ].map((segment) => ({
+      points: [segment.from, segment.to],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        {
+          text: segment.from.label,
+          at: 0,
+          offset: [0.3, 0.3, 0],
+        },
+        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+      ],
+    })),
+    // Bilddreieck A'B'C'
+    ...[
+      {
+        from: { x: -1, y: -4, z: 0, label: <InlineMath math="A'" /> },
+        to: { x: 2, y: -1, z: 0, label: <InlineMath math="B'" /> },
+      },
+      {
+        from: { x: 2, y: -1, z: 0, label: <InlineMath math="B'" /> },
+        to: { x: -2, y: 1, z: 0, label: <InlineMath math="C'" /> },
+      },
+      {
+        from: { x: -2, y: 1, z: 0, label: <InlineMath math="C'" /> },
+        to: { x: -1, y: -4, z: 0, label: <InlineMath math="A'" /> },
+      },
+    ].map((segment) => ({
+      points: [segment.from, segment.to],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [
+        {
+          text: segment.from.label,
+          at: 0,
+          offset: [0.3, 0.3, 0],
+        },
+        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+      ],
+    })),
+  ]}
+/>
+
+### Eine Gerade spiegeln
+
+Die Gerade <InlineMath math="2x - 3y = 0" /> wird an der <InlineMath math="x" />-Achse gespiegelt. Bestimme die Gleichung ihrer Bildgeraden.
+
+**Lösung:**
+
+Ein beliebiger Punkt <InlineMath math="P(a,b)" /> liege auf der Geraden <InlineMath math="2x - 3y = 0" />. Dann gilt:
+
+<BlockMath math="2a - 3b = 0" />
+
+Der an der <InlineMath math="x" />-Achse gespiegelte Punkt <InlineMath math="P(a,b)" /> ergibt das Bild <InlineMath math="P'(a,-b)" />.
+
+Um die Gleichung der gespiegelten Geraden zu erhalten, ersetzen wir die Koordinaten des Bildes durch neue Variablen. Seien <InlineMath math="x' = a" /> und <InlineMath math="y' = -b" />.
+
+Daraus erhalten wir <InlineMath math="a = x'" /> und <InlineMath math="b = -y'" />.
+
+Wir setzen <InlineMath math="a = x'" /> und <InlineMath math="b = -y'" /> in die ursprüngliche Gleichung <InlineMath math="2a - 3b = 0" /> ein:
+
+<MathContainer>
+  <BlockMath math="2(x') - 3(-y') = 0" />
+  <BlockMath math="2x' + 3y' = 0" />
+</MathContainer>
+
+Da <InlineMath math="x'" /> und <InlineMath math="y'" /> beliebige Variablen sind, die die Koordinaten auf der gespiegelten Geraden darstellen, können wir sie als <InlineMath math="x" /> und <InlineMath math="y" /> umschreiben.
+
+Somit lautet die Gleichung der gespiegelten Geraden:
+
+<ContentStack>
+
+  <BlockMath math="2x + 3y = 0" />
+
+  <LineEquation
+    title={
+      <>
+      Spiegelung der Geraden <InlineMath math="2x - 3y = 0" /> an der <InlineMath math="x" />-Achse
+      </>
+    }
+    description={
+      <>
+      Die ursprüngliche Gerade <InlineMath math="2x - 3y = 0" /> in Grün und ihre
+      Bildgerade <InlineMath math="2x + 3y = 0" /> in Magenta.
+      </>
+    }
+    cameraPosition={[0, 0, 15]}
+    showZAxis={false}
+    data={[
+      {
+        // Ursprüngliche Gerade: 2x - 3y = 0  => y = (2/3)x
+        points: [
+          { x: -6, y: (2 / 3) * -6, z: 0 },
+          { x: 6, y: (2 / 3) * 6, z: 0 },
+        ],
+        color: "#65a30d",
+        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
+      },
+      {
+        // Gespiegelte Gerade: 2x + 3y = 0 => y = -(2/3)x
+        points: [
+          { x: -6, y: -(2 / 3) * -6, z: 0 },
+          { x: 6, y: -(2 / 3) * 6, z: 0 },
+        ],
+        color: "#c026d3",
+        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
+      },
+    ]}
+  />
+</ContentStack>
+
+Dies zeigt, wie sich die Gleichung einer Gerade ändert, nachdem sie an der <InlineMath math="x" />-Achse gespiegelt wurde.

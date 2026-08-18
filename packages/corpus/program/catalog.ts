@@ -4,8 +4,14 @@ import {
   LearningProgramSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
-
+import { isActiveAppLocale } from "#corpus/locale/lifecycle";
+import { localeOverlayAppLocaleCode } from "#corpus/locale/source";
 import { examProgramSources } from "#corpus/program/exam";
+import {
+  composeProgramLocaleCatalog,
+  decodeProgramLocaleCatalog,
+} from "#corpus/program/locale";
+import { LearningProgramSourceSchema } from "#corpus/program/schema";
 import { schoolProgramSources } from "#corpus/program/school";
 
 const programSources: readonly unknown[] = [
@@ -51,26 +57,11 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
     for (const program of programs) {
       yield* addIdentity(keys, "key", program.key);
       yield* addIdentity(orders, "order", program.displayOrder.toString());
-      if (program.translations.length !== ACTIVE_APP_LOCALES.length) {
-        return yield* new ProgramIdentityError({
-          scope: "translation",
-          value: `${program.key}:expected-${ACTIVE_APP_LOCALES.join(",")}:actual-${program.translations.map(({ appLocale }) => appLocale).join(",")}`,
-        });
-      }
-      for (const appLocale of ACTIVE_APP_LOCALES) {
-        const translation = program.translations.find(
-          (candidate) => candidate.appLocale === appLocale
-        );
-        if (translation === undefined) {
-          return yield* new ProgramIdentityError({
-            scope: "translation",
-            value: `${program.key}:${appLocale}:missing`,
-          });
-        }
+      for (const translation of program.translations) {
         yield* addIdentity(
           slugs,
           "slug",
-          `${appLocale}:${translation.publicSlug}`
+          `${translation.appLocale}:${translation.publicSlug}`
         );
       }
     }
@@ -84,11 +75,62 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
 /** Strictly decodes every reviewed learning program from source control. */
 export const decodeProgramCatalog = Effect.fn(
   "AksaraCorpus.decodeProgramCatalog"
-)(function* (input: unknown = programSources) {
-  const programs = yield* Schema.decodeUnknown(
-    Schema.Array(LearningProgramSchema)
+)(function* (input: unknown = programSources, localeInput?: unknown) {
+  const sources = yield* Schema.decodeUnknown(
+    Schema.Array(LearningProgramSourceSchema)
   )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new ProgramCatalogError({ cause }))
   );
+  const needsLocaleOverlays = ACTIVE_APP_LOCALES.some(
+    (appLocale) => localeOverlayAppLocaleCode(appLocale) !== undefined
+  );
+  const programs =
+    needsLocaleOverlays || localeInput !== undefined
+      ? yield* composeProgramLocaleCatalog(
+          sources,
+          yield* decodeProgramLocaleCatalog(localeInput)
+        )
+      : sources;
   return yield* validateProgramCatalog(programs);
+});
+
+/** Decodes base programs plus every present permanent locale overlay. */
+export const decodeAuthoringProgramCatalog = Effect.fn(
+  "AksaraCorpus.decodeAuthoringProgramCatalog"
+)(function* (input: unknown = programSources, localeInput?: unknown) {
+  const sources = yield* Schema.decodeUnknown(
+    Schema.Array(LearningProgramSourceSchema)
+  )(input, { onExcessProperty: "error" }).pipe(
+    Effect.mapError((cause) => new ProgramCatalogError({ cause }))
+  );
+  const locales = yield* decodeProgramLocaleCatalog(localeInput);
+  return yield* composeProgramLocaleCatalog(sources, locales).pipe(
+    Effect.flatMap(validateProgramCatalog)
+  );
+});
+
+/** Removes candidate translations before a current signed snapshot is built. */
+export const selectActiveProgramCatalog = Effect.fn(
+  "AksaraCorpus.selectActiveProgramCatalog"
+)(function* (programs: readonly LearningProgram[]) {
+  const selected: LearningProgram[] = [];
+  for (const program of programs) {
+    const translations = program.translations.filter(({ appLocale }) =>
+      isActiveAppLocale(appLocale)
+    );
+    const [firstTranslation, ...remainingTranslations] = translations;
+    if (firstTranslation === undefined) {
+      return yield* new ProgramIdentityError({
+        scope: "translation",
+        value: `${program.key}:active-translations-missing`,
+      });
+    }
+    selected.push(
+      LearningProgramSchema.make({
+        ...program,
+        translations: [firstTranslation, ...remainingTranslations],
+      })
+    );
+  }
+  return selected;
 });

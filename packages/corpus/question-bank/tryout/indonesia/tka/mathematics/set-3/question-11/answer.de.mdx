@@ -1,0 +1,21 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Setze <InlineMath math="y=x-\frac{\pi}{2}" />. Dann gelten <InlineMath math="x=y+\frac{\pi}{2}" /> und <InlineMath math="y\to0" />.
+
+<MathContainer>
+<BlockMath math="\lim_{y\to0}\frac{\sec(2y+\pi)+1}{\tan(2y+\pi)}" />
+<BlockMath math="=\lim_{y\to0}\frac{-\sec 2y+1}{\tan 2y}" />
+<BlockMath math="=\lim_{y\to0}\frac{\cos 2y-1}{\sin 2y}" />
+</MathContainer>
+
+Verwende <InlineMath math="\cos 2y-1=-2\sin^2 y" /> und <InlineMath math="\sin 2y=2\sin y\cos y" />.
+
+<MathContainer>
+<BlockMath math="\lim_{y\to0}\frac{-2\sin^2 y}{2\sin y\cos y}" />
+<BlockMath math="=\lim_{y\to0}(-\tan y)" />
+<BlockMath math="=0" />
+</MathContainer>

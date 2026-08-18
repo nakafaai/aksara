@@ -22,11 +22,11 @@ import {
 } from "@nakafa/aksara-contracts/projection/question";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import {
   type QuestionDocumentSource,
+  type QuestionEntry,
   readQuestionDocument,
-} from "@nakafa/aksara-corpus/question-bank/source";
+} from "@nakafa/aksara-corpus/question-bank/content";
 import { Effect, Schema } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 

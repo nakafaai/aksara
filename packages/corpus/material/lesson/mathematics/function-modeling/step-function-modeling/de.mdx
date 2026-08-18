@@ -1,0 +1,375 @@
+
+export const metadata = {
+  title: "Modellieren mit Stufenfunktionen",
+  description: "Modelliere Stufenfunktionen mit Buchrabatten und Aufzugskapazitäten und vergleiche Abrundungs-, Aufrundungs- und Einheitssprungfunktionen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Stufenfunktionen verstehen
+
+Eine Stufenfunktion hat in jedem Intervall einen konstanten Wert und kann beim Übergang zum nächsten Intervall springen. Ihr Graph ähnelt einer Treppe: Waagerechte Abschnitte zeigen die konstanten Werte, getrennte Endpunkte kennzeichnen mögliche Sprungstellen.
+
+### Mathematische Definition
+
+Eine Stufenfunktion kann als stückweise Funktion der Form definiert werden:
+
+<BlockMath math="f(x) = \begin{cases} c_1, &amp; \text{wenn} a_1 \leq x &lt; b_1 \\ c_2, &amp; \text{wenn} a_2 \leq x &lt; b_2 \\ c_3, &amp; \text{wenn} a_3 \leq x &lt; b_3 \\ \vdots \\ c_n, &amp; \text{wenn} a_n \leq x &lt; b_n \end{cases}" />
+
+Dabei sind <InlineMath math="c_1, c_2, c_3, \ldots, c_n" /> Konstanten und <InlineMath math="[a_i, b_i)" /> nicht überlappende Intervalle.
+
+**Eigenschaften von Stufenfunktionen:**
+
+- Konstante Werte in jedem Intervall
+- Sprungdiskontinuitäten an Intervallgrenzpunkten
+- Graph in Form einer Treppe
+- Gehört zur Kategorie der stückweisen Funktionen
+
+## Typen von Stufenfunktionen
+
+### Abrundungsfunktion
+
+Die Abrundungsfunktion, bezeichnet mit <InlineMath math="\lfloor x \rfloor" />, gibt die größte ganze Zahl an, die kleiner oder gleich <InlineMath math="x" /> ist.
+
+<BlockMath math="\lfloor x \rfloor = \max\{n \in \mathbb{Z} : n \leq x\}" />
+
+Zum besseren Verständnis schauen wir uns das folgende Beispiel an:
+
+<LineEquation
+  title={
+    <>
+    Abrundungsfunktion <InlineMath math="f(x) = \lfloor x \rfloor" />
+    </>
+  }
+  description={
+    <>
+    Der Graph ordnet jeder Zahl <InlineMath math="x" /> die größte ganze Zahl zu,
+    die <InlineMath math="x" /> nicht überschreitet.
+    </>
+  }
+  data={[
+    ...Array.from({ length: 10 }, (_, intervalIndex) => {
+      const integerValue = intervalIndex - 5;
+      return {
+        points: [
+          { x: integerValue, y: integerValue, z: 0 },
+          { x: integerValue + 0.999, y: integerValue, z: 0 },
+        ],
+        color: "#9333ea",
+        showPoints: false,
+        smooth: false,
+        labels:
+          integerValue === 2
+            ? [{ text: <InlineMath math="f(x)=\lfloor x \rfloor" />, at: 1, offset: [1, -1, 0] }]
+            : [],
+      };
+    }),
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+**Wertetabelle der Abrundungsfunktion:**
+
+| <InlineMath math="x" /> | <InlineMath math="-2{,}5" /> | <InlineMath math="-1{,}7" /> | <InlineMath math="-1" /> | <InlineMath math="-0{,}3" /> | <InlineMath math="0" /> | <InlineMath math="0{,}8" /> | <InlineMath math="1" /> | <InlineMath math="1{,}9" /> | <InlineMath math="2{,}4" /> |
+| --------------------------------------- | ---- | ---- | --- | ---- | --- | --- | --- | --- | --- |
+| <InlineMath math="\lfloor x \rfloor" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+
+### Aufrundungsfunktion
+
+Die Aufrundungsfunktion, bezeichnet mit <InlineMath math="\lceil x \rceil" />, gibt die kleinste ganze Zahl an, die größer oder gleich <InlineMath math="x" /> ist.
+
+<BlockMath math="\lceil x \rceil = \min\{n \in \mathbb{Z} : n \geq x\}" />
+
+Betrachten wir das folgende Beispiel:
+
+<LineEquation
+  title={
+    <>
+    Aufrundungsfunktion <InlineMath math="f(x) = \lceil x \rceil" />
+    </>
+  }
+  description={
+    <>
+    Der Graph ordnet jeder Zahl <InlineMath math="x" /> die kleinste ganze Zahl zu,
+    die <InlineMath math="x" /> nicht unterschreitet.
+    </>
+  }
+  data={[
+    ...Array.from({ length: 10 }, (_, intervalIndex) => {
+      const integerValue = intervalIndex - 4;
+      return {
+        points: [
+          { x: integerValue - 0.999, y: integerValue, z: 0 },
+          { x: integerValue, y: integerValue, z: 0 },
+        ],
+        color: "#ea580c",
+        showPoints: false,
+        smooth: false,
+        labels:
+          integerValue === 3
+            ? [{ text: <InlineMath math="f(x)=\lceil x \rceil" />, at: 1, offset: [1, -1, 0] }]
+            : [],
+      };
+    }),
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+### Einheitssprungfunktion (Heaviside)
+
+In diesem Kapitel verwenden wir für die Einheitsschrittfunktion oder Heaviside-Funktion, bezeichnet mit <InlineMath math="H(x)" /> oder <InlineMath math="u(x)" />, die folgende verbreitete Konvention:
+
+<BlockMath math="H(x) = \begin{cases} 0, &amp; \text{wenn} x &lt; 0 \\ 1, &amp; \text{wenn} x \geq 0 \end{cases}" />
+
+Nach dieser Konvention hat die Einheitsschrittfunktion den Wert <InlineMath math="0" /> für <InlineMath math="x < 0" /> und <InlineMath math="1" /> für <InlineMath math="x \geq 0" />. In anderen Fachgebieten wird manchmal <InlineMath math="H(0)=0" /> oder <InlineMath math="H(0)=\frac12" /> gewählt. Deshalb muss der Wert an der Sprungstelle stets angegeben werden.
+
+<LineEquation
+  title={
+    <>
+    Einheitsschrittfunktion <InlineMath math="H(x)" />
+    </>
+  }
+  description={
+    <>
+    Der Graph springt bei <InlineMath math="x=0" /> vom Wert <InlineMath math="0" />
+    auf den Wert <InlineMath math="1" />.
+    </>
+  }
+  data={[
+    {
+      points: [
+        { x: -10, y: 0, z: 0 },
+        { x: -0.001, y: 0, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: 1, z: 0 },
+        { x: 10, y: 1, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [1, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## Eigenschaften von Stufenfunktionen
+
+**Allgemeine Eigenschaften:**
+
+1. Definitionsbereich: <InlineMath math="\mathbb{R}" /> (normalerweise)
+2. Wertebereich: eine diskrete Wertemenge
+3. Kontinuität: Sprungdiskontinuitäten an bestimmten Punkten
+
+**Besondere Eigenschaften der Abrundungs- und Aufrundungsfunktion:**
+
+1. <InlineMath math="\lfloor x \rfloor \leq x < \lfloor x \rfloor + 1" />
+2. <InlineMath math="\lceil x \rceil - 1 < x \leq \lceil x \rceil" />
+3. <InlineMath math="\lceil x \rceil = \lfloor x \rfloor + 1 \text{wenn} x \notin \mathbb{Z}" />
+4. <InlineMath math="\lceil x \rceil = \lfloor x \rfloor \text{wenn} x \in \mathbb{Z}" />
+
+**Vergleichstabelle der Abrundungs- und Aufrundungsfunktion:**
+
+| <InlineMath math="x" /> | <InlineMath math="\lfloor x \rfloor" /> | <InlineMath math="\lceil x \rceil" /> | Unterschied |
+| ---- | --------------------------------------- | ------------------------------------- | ---------- |
+| <InlineMath math="-2{,}3" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="1" /> |
+| <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> |
+| <InlineMath math="0{,}7" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="0" /> |
+| <InlineMath math="3{,}8" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+
+## Transformationen von Stufenfunktionen
+
+### Vertikale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = \lfloor x \rfloor + k" /> verschiebt den Graphen der Abrundungsfunktion nach oben (wenn <InlineMath math="k > 0" />) oder nach unten (wenn <InlineMath math="k < 0" />).
+
+<LineEquation
+  title={<>Vertikale Verschiebung der Abrundungsfunktion</>}
+  description={
+    <>
+    Vergleich von <InlineMath math="f(x) = \lfloor x \rfloor" /> mit{" "}
+      <InlineMath math="g(x) = \lfloor x \rfloor + 2" /> und{" "}
+      <InlineMath math="h(x) = \lfloor x \rfloor - 1" />.
+    </>
+  }
+  data={[
+    ...Array.from({ length: 10 }, (_, intervalIndex) => {
+      const integerValue = intervalIndex - 5;
+      return {
+        points: [
+          { x: integerValue, y: integerValue, z: 0 },
+          { x: integerValue + 0.999, y: integerValue, z: 0 },
+        ],
+        color: "#9333ea",
+        showPoints: false,
+        smooth: false,
+        labels:
+          integerValue === 2
+            ? [{ text: <InlineMath math="f(x)=\lfloor x \rfloor" />, at: 1, offset: [0, 0.5, 0] }]
+            : [],
+      };
+    }),
+    ...Array.from({ length: 10 }, (_, intervalIndex) => {
+      const integerValue = intervalIndex - 5;
+      return {
+        points: [
+          { x: integerValue, y: integerValue + 2, z: 0 },
+          { x: integerValue + 0.999, y: integerValue + 2, z: 0 },
+        ],
+        color: "#0891b2",
+        showPoints: false,
+        smooth: false,
+        labels:
+          integerValue === 2
+            ? [{ text: <InlineMath math="g(x)=\lfloor x \rfloor+2" />, at: 1, offset: [0, 0.5, 0] }]
+            : [],
+      };
+    }),
+    ...Array.from({ length: 10 }, (_, intervalIndex) => {
+      const integerValue = intervalIndex - 5;
+      return {
+        points: [
+          { x: integerValue, y: integerValue - 1, z: 0 },
+          { x: integerValue + 0.999, y: integerValue - 1, z: 0 },
+        ],
+        color: "#e11d48",
+        showPoints: false,
+        smooth: false,
+        labels:
+          integerValue === 2
+            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [2, 0.5, 0] }]
+            : [],
+      };
+    }),
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+### Horizontale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = \lfloor x - h \rfloor" /> verschiebt den Graphen nach rechts (wenn <InlineMath math="h > 0" />) oder nach links (wenn <InlineMath math="h < 0" />).
+
+## Übungsaufgaben
+
+1. Bestimmen Sie den Wert von <InlineMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil" />
+
+2. Eine Buchhandlung gewährt Rabatte abhängig von der Anzahl der gekauften Artikel:
+
+- <InlineMath math="1\text{-}5" /> Bücher: kein Rabatt
+- <InlineMath math="6\text{-}10" /> Bücher: <InlineMath math="10\%" /> Rabatt
+- <InlineMath math="11\text{-}20" /> Bücher: <InlineMath math="15\%" /> Rabatt
+- <InlineMath math="> 20" /> Bücher: <InlineMath math="20\%" /> Rabatt
+
+   Wenn der Preis pro Buch <InlineMath math="\text{Rp}\,50{.}000" /> beträgt, erstellen Sie eine Funktion, die den Gesamtpreis nach Rabatt darstellt!
+
+3. Zeichnen Sie den Graphen der Funktion <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" /> für <InlineMath math="-3 \leq x \leq 3" />.
+
+4. Lösen Sie die Gleichung <InlineMath math="\lfloor 2x + 1 \rfloor = 5" />
+
+5. Ein Aufzug kann maximal <InlineMath math="8 \text{Menschen}" /> aufnehmen. Wenn es <InlineMath math="n \text{Menschen}" /> gibt, die den Aufzug benutzen möchten, wie oft muss der Aufzug fahren?
+
+### Lösungen
+
+1. **Werte der Abrundungs- und Aufrundungsfunktion berechnen:**
+
+   <MathContainer>
+     <BlockMath math="\lfloor 3{,}7 \rfloor = 3 \text{(größte ganze Zahl} \leq 3{,}7\text{)}" />
+     <BlockMath math="\lceil -2{,}3 \rceil = -2 \text{(kleinste ganze Zahl} \geq -2{,}3\text{)}" />
+     <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
+   </MathContainer>
+
+2. **Modell der Rabattfunktion für Buchhandlungen:**
+
+   Sei <InlineMath math="n\in\mathbb{N}" /> die positive ganzzahlige Anzahl der gekauften Bücher. Dann beträgt der Gesamtpreis nach Rabatt:
+
+   <MathContainer>
+     <BlockMath math="H(n) = \begin{cases} 50{.}000n, &amp; \text{wenn} 1 \leq n \leq 5 \\ 50{.}000n \times 0{,}9, &amp; \text{wenn} 6 \leq n \leq 10 \\ 50{.}000n \times 0{,}85, &amp; \text{wenn} 11 \leq n \leq 20 \\ 50{.}000n \times 0{,}8, &amp; \text{wenn} n &gt; 20 \end{cases}" />
+   </MathContainer>
+
+3. **Graph der Funktion <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />:**
+
+   Für jedes Intervall:
+
+   - <InlineMath math="-3 \leq x < -2: f(x) = 2(-3) - 1 = -7" />
+   - <InlineMath math="-2 \leq x < -1: f(x) = 2(-2) - 1 = -5" />
+   - <InlineMath math="-1 \leq x < 0: f(x) = 2(-1) - 1 = -3" />
+   - <InlineMath math="0 \leq x < 1: f(x) = 2(0) - 1 = -1" />
+   - <InlineMath math="1 \leq x < 2: f(x) = 2(1) - 1 = 1" />
+   - <InlineMath math="2 \leq x < 3: f(x) = 2(2) - 1 = 3" />
+   - Am Endpunkt gilt <InlineMath math="f(3)=2\lfloor3\rfloor-1=5" />
+
+   Der Graph sieht so aus:
+
+   <LineEquation
+     title={
+       <>
+    Graph von <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />
+       </>
+     }
+     description={
+       <>
+    Der Graph entsteht aus der Abrundungsfunktion durch eine vertikale Streckung
+    mit dem Faktor <InlineMath math="2" /> und eine Verschiebung um <InlineMath math="1" /> nach unten.
+       </>
+     }
+     data={[
+       ...Array.from({ length: 6 }, (_, intervalIndex) => {
+         const integerValue = intervalIndex - 3;
+         const functionValue = 2 * integerValue - 1;
+         return {
+           points: [
+             { x: integerValue, y: functionValue, z: 0 },
+             { x: integerValue + 0.999, y: functionValue, z: 0 },
+           ],
+           color: "#7c3aed",
+           showPoints: false,
+           smooth: false,
+           labels:
+             integerValue === 1
+               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [1, 1, 0] }]
+               : [],
+         };
+       }),
+       {
+         points: [
+           { x: 3, y: 5, z: 0 },
+           { x: 3.001, y: 5, z: 0 },
+         ],
+         color: "#7c3aed",
+         showPoints: true,
+         smooth: false,
+       },
+     ]}
+     cameraPosition={[0, 0, 10]}
+     showZAxis={false}
+   />
+
+4. **Lösen der Gleichung <InlineMath math="\lfloor 2x + 1 \rfloor = 5" />:**
+
+   <MathContainer>
+     <BlockMath math="5 \leq 2x + 1 < 6" />
+     <BlockMath math="4 \leq 2x < 5" />
+     <BlockMath math="2 \leq x < 2{,}5" />
+   </MathContainer>
+
+   Die Lösungsmenge ist also <InlineMath math="x \in [2; 2{,}5)" />.
+
+5. **Erforderliche Anzahl der Aufzugsfahrten:**
+
+   Sei <InlineMath math="n\in\mathbb{Z}_{\geq0}" /> die Anzahl der Personen. Wenn der Aufzug höchstens <InlineMath math="8 \text{Personen}" /> aufnehmen kann, beträgt die erforderliche Anzahl der Fahrten:
+
+   <BlockMath math="f(n) = \lceil \frac{n}{8} \rceil" />
+
+   Die Aufrundungsfunktion wird verwendet, weil jeder von null verschiedene Rest eine zusätzliche Fahrt erfordert. Für eine leere Warteschlange liefert die Formel außerdem <InlineMath math="f(0)=0" />.

@@ -1,0 +1,290 @@
+export const metadata = {
+    title: "Dictionary",
+    description: "Lerne, wie Python-Dictionaries Schlüssel-Wert-Paare speichern, aktualisieren, durchlaufen und sicher nachschlagen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-18",
+    subject: "KI-Programmierung",
+};
+
+## Wörterbücher definieren und erstellen
+
+Ein Dictionary ist eine veränderliche Zuordnung von eindeutigen Schlüsseln zu Werten. Statt ein Element über seine Zahlenposition anzufordern, schlägst du es über einen aussagekräftigen Schlüssel wie einen Namen, eine Kennung oder ein Datum nach.
+
+### Möglichkeiten zum Erstellen von Wörterbüchern
+
+Python bietet mehrere Möglichkeiten zum Erstellen von Wörterbüchern, von leeren bis hin zu solchen, die bereits Daten enthalten.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_creation.py",
+      code: `# Leere Wörterbücher erstellen
+a = {}
+b = dict()
+print("Leeres Wörterbuch a:", a)
+print("Leeres Wörterbuch b:", b)
+# Ausgabe: Leeres Wörterbuch a: {}
+# Ausgabe: Leeres Wörterbuch b: {}
+
+# Wörterbuch mit Daten erstellen
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+print("Dictionary phone:", phone)
+# Ausgabe: Dictionary phone: {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# Erstellen eines verschachtelten Wörterbuchs
+person = {1: {'name': 'ann', 'age': 23}, 2: {'name': 'bob', 'age': 21}}
+print("Verschachteltes Wörterbuch:", person)
+# Ausgabe: Verschachteltes Wörterbuch: {1: {'name': 'ann', 'age': 23}, 2: {'name': 'bob', 'age': 21}}
+
+# Wörterbuch mit Konstruktor erstellen
+month = dict([(1, 'Jan'), (2, 'Feb'), (3, 'Mar')])
+mass = dict(Mercury=3.3e23, Venus=4.9e24, Earth=6.0e24)
+print("Dictionary month:", month)
+print("Dictionary mass:", mass)
+# Ausgabe: Dictionary month: {1: 'Jan', 2: 'Feb', 3: 'Mar'}
+# Ausgabe: Dictionary mass: {'Mercury': 3.3e23, 'Venus': 4.9e24, 'Earth': 6.0e24}`
+    }
+  ]}
+/>
+
+### Wörterbuchsyntax
+
+Die Darstellung eines Dictionarys verwendet geschweifte Klammern. Kommas trennen die Einträge, ein Doppelpunkt trennt jeweils den Schlüssel vom Wert. Die leere Darstellung `{}` erzeugt ein leeres Dictionary.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_syntax.py",
+      code: `# Grundlegende Wörterbuchsyntax
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'don': 999}
+print(phone)
+# Ausgabe: {'ann': 110, 'bob': 991, 'cat': 112, 'don': 999}`
+    }
+  ]}
+/>
+
+Schlüssel müssen hashbar sein. Deshalb werden häufig unveränderliche Werte wie Strings, Zahlen und geeignete Tupel verwendet. Werte dürfen beliebige Python-Objekte sein, auch weitere Dictionaries.
+
+## Wörterbuch als Container
+
+Ein Dictionary ist ein Container, weil es eine Sammlung anderer Objekte enthält. Es ordnet jedem Schlüssel genau einen Wert zu und bewahrt dabei die Reihenfolge, in der die Schlüssel erstmals eingefügt wurden.
+
+<Mermaid
+  title="Das Wörterbuch speichert Paare nach Schlüssel"
+  description="Sieh dir an, wie ein Schlüssel den zugehörigen Wert ohne numerische Position auswählt."
+  chart={`
+    flowchart TD
+        A[Python Containers] --> B[String]
+        A --> C[List]
+        A --> D[Tuple]
+        A --> E[Dictionary]
+        A --> F[Set]
+
+        E --> E1[Key-value pairs]
+        E --> E2[Unique keys]
+        E --> E3[Mutable]
+        E --> E4[Nach Einfügung geordnet]
+  `}
+/>
+
+Listen und Tupel ordnen Elemente nach Position, Dictionaries dagegen nach Schlüsseln. Dieser Unterschied bestimmt, wie du ihre Inhalte liest, aktualisierst und durchläufst.
+
+## Wörterbucheigenschaften
+
+Ein Dictionary ist veränderlich, seine Schlüssel sind eindeutig und hashbar, und seine Iterationsreihenfolge folgt der Einfügereihenfolge der Schlüssel.
+
+### Einfügereihenfolge und eindeutige Schlüssel
+
+Die Python-Sprachspezifikation garantiert die Einfügereihenfolge von Dictionaries seit Python `3.7`. Ein neuer Wert für einen vorhandenen Schlüssel aktualisiert den Eintrag, ohne den Schlüssel zu verschieben. Löschst du ihn und fügst ihn erneut ein, steht er anschließend am Ende.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_order.py",
+      code: `# Die Einfügereihenfolge bleibt erhalten
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'bob': 999}
+print(phone)
+# Ausgabe: {'ann': 110, 'bob': 999, 'cat': 112}
+
+# Der Schlüssel „bob“ bleibt an zweiter Stelle, auch wenn sich sein Wert geändert hat`
+    }
+  ]}
+/>
+
+Da Schlüssel eindeutig sind, bleibt bei einem wiederholten Schlüssel in einer Dictionary-Darstellung nur der zuletzt zugewiesene Wert erhalten. Der überlebende Schlüssel behält die Position seines ersten Auftretens.
+
+## Zugriff auf Wörterbücher
+
+Ein Dictionary ruft Werte über Schlüssel und nicht über fortlaufende Zahlenindizes ab.
+
+### Indizierung mit Schlüsseln
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_indexing.py",
+      code: `# Mit Schlüsseln auf Werte zugreifen
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# Werte abrufen
+print(phone['cat'])
+# Ausgabe: 112
+
+# Variable als Schlüssel verwenden
+name = 'bob'
+print(phone[name])
+# Ausgabe: 991
+
+# Werte hinzufügen oder ändern
+phone['bob'] = 999  # Vorhandenen Schlüsselwert ändern
+phone['eve'] = 111  # Neuen Schlüssel hinzufügen
+print(phone)
+# Ausgabe: {'ann': 110, 'bob': 999, 'cat': 112, 'dan': 999, 'eve': 111}`
+    }
+  ]}
+/>
+
+Der Zugriff mit eckigen Klammern liest einen vorhandenen Wert. Eine Zuweisung mit eckigen Klammern aktualisiert einen vorhandenen Schlüssel oder hängt ein neues Schlüssel-Wert-Paar an die Einfügereihenfolge an.
+
+## Wörterbuch-Iteration
+
+Wähle die Iterationsform danach, ob du nur Schlüssel, nur Werte oder beide Teile jedes Eintrags brauchst.
+
+### Einfache For-Schleife
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_simple_loop.py",
+      code: `# Iterieren von Wörterbuchschlüsseln
+phone = {'ann': 110, 'bob': 999, 'cat': 112, 'dan': 999}
+
+for key in phone:
+    print(key, phone[key])
+# Ausgabe:
+# ann 110
+# bob 999
+# cat 112
+# dan 999`
+    }
+  ]}
+/>
+
+Wenn du ein Dictionary direkt durchläufst, liefert Python seine Schlüssel in Einfügereihenfolge.
+
+### For-Schleife mit items()-Methode
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_items_loop.py",
+      code: `# Iterieren von Schlüssel-Wert-Paaren mit items()
+phone = {'ann': 110, 'bob': 999, 'cat': 112, 'dan': 999}
+
+for key, val in phone.items():
+    print(key, val)
+# Ausgabe:
+# ann 110
+# bob 999
+# cat 112
+# dan 999`
+    }
+  ]}
+/>
+
+Die Ansicht `items()` liefert Schlüssel und Wert gemeinsam. Durch Tupelentpackung kannst du beide in einer Schleife benennen.
+
+## Wörterbuchmethoden
+
+Ein Dictionary stellt dynamische Ansichten seiner Schlüssel, Werte und Schlüssel-Wert-Paare bereit.
+
+### Methoden keys(), values() und items()
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_methods.py",
+      code: `# Verwendung von Wörterbuchmethoden
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# Alle Schlüssel bekommen
+keys = phone.keys()
+print("Schlüssel:", list(keys))
+# Ausgabe: Schlüssel: ['ann', 'bob', 'cat', 'dan']
+
+# Alle Werte abrufen
+values = phone.values()
+print("Werte:", list(values))
+# Ausgabe: Werte: [110, 991, 112, 999]
+
+# Schlüssel-Wert-Paare abrufen
+items = phone.items()
+print("Items:", list(items))
+# Ausgabe: Items: [('ann', 110), ('bob', 991), ('cat', 112), ('dan', 999)]`
+    }
+  ]}
+/>
+
+Diese Methoden geben dynamische Ansichtsobjekte und keine Listen zurück. Eine Ansicht spiegelt spätere Änderungen am Dictionary wider und kann durchlaufen werden, unterstützt aber weder Positionsindizes noch Elementzuweisungen. Rufe `list()` nur auf, wenn du ausdrücklich eine getrennte Listenmomentaufnahme brauchst.
+
+## get()-Methode
+
+Verwende `get()`, wenn ein fehlender Schlüssel erwartet wird und du einen Ersatzwert möchtest. Verwende eckige Klammern, wenn ein fehlender Schlüssel als Fehler behandelt werden soll.
+
+### Regelmäßige Indizierungsprobleme
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_indexing_problem.py",
+      code: `# Problem beim Zugriff auf nicht vorhandene Schlüssel
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+try:
+    print(phone['pat'])
+except KeyError as e:
+    print("KeyError:", e)
+# Ausgabe: KeyError: 'pat'`
+    }
+  ]}
+/>
+
+Der Zugriff auf einen nicht vorhandenen Schlüssel mit eckigen Klammern führt zu einem `KeyError`.
+
+### Lösung mit get()-Methode
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_get_method.py",
+      code: `# Verwendung der get()-Methode für sicheren Zugriff
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# get() gibt None zurück, wenn der Schlüssel nicht vorhanden ist
+result = phone.get('pat')
+print("Ergebnis get('pat'):", result)
+# Ausgabe: Ergebnis get('pat'): None
+
+# get() mit Standardwert
+result = phone.get('pat', -1)
+print("Ergebnis get('pat', -1):", result)
+# Ausgabe: Ergebnis get('pat', -1): -1
+
+# get() für vorhandenen Schlüssel
+result = phone.get('ann')
+print("Ergebnis get('ann'):", result)
+# Ausgabe: Ergebnis get('ann'): 110`
+    }
+  ]}
+/>
+
+`get()` gibt den gespeicherten Wert zurück, wenn der Schlüssel vorhanden ist. Andernfalls liefert die Methode den angegebenen Standardwert oder `None`, wenn kein Standardwert übergeben wurde. Wähle einen Standard, der nicht mit einem gültigen gespeicherten Wert verwechselt werden kann, falls diese Unterscheidung wichtig ist.

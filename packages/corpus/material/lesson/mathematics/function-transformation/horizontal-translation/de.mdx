@@ -1,0 +1,320 @@
+export const metadata = {
+  title: "Horizontale Verschiebung",
+  description: "Verschiebe Funktionsgraphen nach links oder rechts, leite die Vorzeichenregel her und verfolge Definitions- und Wertebereich.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Funktionstransformation",
+};
+
+
+
+## Grundlegende Konzepte der horizontalen Verschiebung
+
+Eine horizontale Verschiebung bewegt den Graphen einer Funktion entlang der <InlineMath math="x" />-Achse nach links oder rechts, ohne seine Form zu verändern. Wie bei einem Gegenstand, der über einen Tisch geschoben wird, ändert sich nur die Position.
+
+Aus der Funktion <InlineMath math="f(x)" /> entsteht die verschobene Funktion <InlineMath math="g(x) = f(x - h)" />. Die Zahl <InlineMath math="h" /> gibt Richtung und Länge der Verschiebung an.
+
+### Regeln der horizontalen Verschiebung
+
+Für jede Funktion <InlineMath math="f(x)" /> gilt:
+
+<BlockMath math="g(x) = f(x - h)" />
+
+Dabei gilt:
+- Für <InlineMath math="h > 0" /> verschiebt sich der Graph nach **rechts**, und zwar um <InlineMath math="h \text{Einheiten}" />.
+- Für <InlineMath math="h < 0" /> verschiebt sich der Graph nach **links**, und zwar um <InlineMath math="|h| \text{Einheiten}" />.
+- Für <InlineMath math="h = 0" /> bleibt der Graph unverändert.
+
+## Visualisierung der horizontalen Verschiebung
+
+Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt die Vorzeichenregel besonders deutlich.
+
+<LineEquation
+  title={<>Horizontale Verschiebung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
+  description="Die Parabelform bleibt erhalten, während sich der Scheitelpunkt horizontal verschiebt."
+  showZAxis={false}
+  cameraPosition={[12, 8, 12]}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: (x - 3) * (x - 3), z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="g(x)=(x-3)^2" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: (x + 2) * (x + 2), z: 0 };
+      }),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="h(x)=(x+2)^2" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Die Visualisierung zeigt:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = x^2" /> hat ihren Scheitelpunkt bei <InlineMath math="(0, 0)" />
+- Die Funktion <InlineMath math="g(x) = (x - 3)^2" /> ist um <InlineMath math="3 \text{Einheiten}" /> nach rechts verschoben. Ihr Scheitelpunkt liegt bei <InlineMath math="(3, 0)" />.
+- Die Funktion <InlineMath math="h(x) = (x + 2)^2" /> ist um <InlineMath math="2 \text{Einheiten}" /> nach links verschoben. Ihr Scheitelpunkt liegt bei <InlineMath math="(-2, 0)" />.
+
+## Horizontale Verschiebung linearer Funktionen
+
+Wenden wir nun dasselbe Konzept auf die lineare Funktion <InlineMath math="f(x) = 2x + 1" /> an.
+
+<LineEquation
+  title={<>Horizontale Verschiebung der linearen Funktion <InlineMath math="f(x) = 2x + 1" /></>}
+  description="Alle drei Geraden haben dieselbe Steigung, liegen aber an unterschiedlichen Positionen."
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * x + 1, z: 0 };
+      }),
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="f(x)=2x+1" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * (x - 4) + 1, z: 0 };
+      }),
+      color: "#d97706",
+      labels: [{ text: <InlineMath math="g(x)=2(x-4)+1" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * (x + 3) + 1, z: 0 };
+      }),
+      color: "#0891b2",
+      labels: [{ text: <InlineMath math="h(x)=2(x+3)+1" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Die drei Geraden lassen sich direkt vergleichen:
+- Alle haben die Steigung <InlineMath math="2" />.
+- Die Funktion <InlineMath math="g(x) = 2(x - 4) + 1" /> ist um <InlineMath math="4 \text{Einheiten}" /> nach rechts verschoben.
+- Die Funktion <InlineMath math="h(x) = 2(x + 3) + 1" /> ist um <InlineMath math="3 \text{Einheiten}" /> nach links verschoben.
+
+## Wichtige Eigenschaften der horizontalen Verschiebung
+
+### Die Graphenform bleibt unverändert
+
+Eine horizontale Verschiebung erhält die Form des Graphen. Jeder Punkt bewegt sich um dieselbe horizontale Strecke, seine Höhe bleibt unverändert.
+
+### Wirkung auf Koordinatenpunkte
+
+Liegt der Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, liegt nach der Verschiebung um <InlineMath math="h" /> der Punkt <InlineMath math="(a + h, b)" /> auf dem Graphen von <InlineMath math="f(x - h)" />.
+
+### Definitions- und Wertebereich
+
+- **Definitionsbereich**: Verschiebt sich um <InlineMath math="h \text{Einheiten}" />.
+- **Wertebereich**: Bleibt bei einer horizontalen Verschiebung unverändert.
+
+Ist der Definitionsbereich der ursprünglichen Funktion <InlineMath math="[c, d]" />, wird er nach der Verschiebung um <InlineMath math="h" /> zu <InlineMath math="[c + h, d + h]" />.
+
+## Anwendungsbeispiele
+
+### Beispiel mit einer Exponentialfunktion
+
+Nun wird die Exponentialfunktion <InlineMath math="f(x) = 2^x" /> horizontal verschoben.
+
+<LineEquation
+  title={<>Horizontale Verschiebung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
+  description="Die Exponentialkurve behält ihre Eigenschaften nach der horizontalen Verschiebung bei."
+  showZAxis={false}
+  cameraPosition={[8, 5, 8]}
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, x - 2), z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="g(x)=2^{x-2}" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, x + 1), z: 0 };
+      }),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="h(x)=2^{x+1}" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Für Exponentialfunktionen:
+- Die horizontale Asymptote bleibt für alle Funktionen bei <InlineMath math="y = 0" />
+- Der <InlineMath math="y" />-Achsenabschnitt ändert sich aufgrund der horizontalen Verschiebung
+- Funktion <InlineMath math="g(x) = 2^{x-2}" /> verschiebt sich um <InlineMath math="2 \text{Einheiten}" /> nach rechts
+- Funktion <InlineMath math="h(x) = 2^{x+1}" /> verschiebt sich um <InlineMath math="1 \text{Einheit}" /> nach links
+
+## Unterschied zwischen horizontaler und vertikaler Verschiebung
+
+Beide Verschiebungen greifen an unterschiedlichen Stellen der Funktionsvorschrift an:
+
+### Horizontale Verschiebung
+
+- Ändert die Funktionseingabe: <InlineMath math="f(x - h)" />
+- Verändert die Abszisse jedes Punkts
+- Der Definitionsbereich verschiebt sich, der Wertebereich bleibt bestehen
+
+### Vertikale Verschiebung
+
+- Ändert die Funktionsausgabe: <InlineMath math="f(x) + k" />
+- Verändert die Ordinate jedes Punkts
+- Der Definitionsbereich bleibt bestehen, der Wertebereich verschiebt sich
+
+## Übungen
+
+1. Gegeben ist die Funktion <InlineMath math="f(x) = x^2 + 2x + 1" />. Bestimme die Gleichung nach einer horizontalen Verschiebung um <InlineMath math="3 \text{Einheiten}" /> nach rechts.
+
+2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird horizontal um <InlineMath math="4 \text{Einheiten}" /> nach links verschoben. Bestimme:
+   - die Gleichung der verschobenen Funktion
+   - den Definitionsbereich nach der Verschiebung
+
+3. Die Funktion <InlineMath math="h(x) = 3^x" /> wird so verschoben, dass der Punkt <InlineMath math="(0, 1)" /> auf <InlineMath math="(2, 1)" /> abgebildet wird. Bestimme die Verschiebungskonstante und die Gleichung der verschobenen Funktion.
+
+### Lösungen
+
+1. Horizontale Verschiebung nach rechts um <InlineMath math="3 \text{Einheiten}" />: <InlineMath math="f'(x) = f(x - 3) = (x - 3)^2 + 2(x - 3) + 1 = x^2 - 4x + 4" />
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="f(x) = x^2 + 2x + 1" /> und verschobener Graph</>}
+     description={
+       <>
+         Ursprüngliche quadratische Funktion und Verschiebung um
+         <InlineMath math="3 \text{Einheiten}" /> nach rechts.
+       </>
+     }
+     showZAxis={false}
+     cameraPosition={[12, 8, 12]}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x + 2 * x + 1, z: 0 };
+         }),
+         color: "#9333ea",
+         labels: [{ text: <InlineMath math="f(x)=x^2+2x+1" />, offset: [1, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x - 4 * x + 4, z: 0 };
+         }),
+         color: "#ea580c",
+         labels: [{ text: <InlineMath math="f'(x)=x^2-4x+4" />, offset: [1, 1, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+2. Gleichung der verschobenen Funktion:
+
+   - Verschiebung nach links um <InlineMath math="4 \text{Einheiten}" />: <InlineMath math="g'(x) = g(x + 4) = \sqrt{x + 4}" />
+   - Definitionsbereich nach der Verschiebung: <InlineMath math="x + 4 \geq 0" />, also <InlineMath math="x \geq -4" /> oder <InlineMath math="[-4, \infty)" />
+
+   Visualisierung:
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="g(x) = \sqrt{x}" /> und verschobener Graph</>}
+     description={
+       <>
+         Ursprüngliche Quadratwurzelfunktion und Verschiebung um
+         <InlineMath math="4 \text{Einheiten}" /> nach links.
+       </>
+     }
+     showZAxis={false}
+     cameraPosition={[8, 6, 8]}
+     data={[
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25;
+           return { x, y: Math.sqrt(x), z: 0 };
+         }),
+         color: "#7c3aed",
+         labels: [{ text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25 - 4;
+           if (x + 4 >= 0) {
+             return { x, y: Math.sqrt(x + 4), z: 0 };
+           }
+           return null;
+         }).filter(Boolean),
+         color: "#0d9488",
+         labels: [{ text: <InlineMath math="g'(x)=\sqrt{x+4}" />, offset: [1, 0.5, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+3. Punkt <InlineMath math="(0, 1)" /> auf <InlineMath math="h(x) = 3^x" /> wird zu <InlineMath math="(2, 1)" />, was eine horizontale Verschiebung um <InlineMath math="h = 2 \text{Einheiten}" /> nach rechts bedeutet.
+   Die verschobene Funktion lautet <InlineMath math="h'(x) = 3^{x-2}" />.
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="h(x) = 3^x" /> und verschobener Graph</>}
+     description={
+       <>
+         Ursprüngliche Exponentialfunktion und Verschiebung um
+         <InlineMath math="2 \text{Einheiten}" /> nach rechts.
+       </>
+     }
+     showZAxis={false}
+     cameraPosition={[10, 6, 10]}
+     data={[
+       {
+         points: Array.from({ length: 31 }, (_, i) => {
+           const x = (i - 15) * 0.2;
+           return { x, y: Math.pow(3, x), z: 0 };
+         }),
+         color: "#4f46e5",
+         labels: [{ text: <InlineMath math="h(x)=3^x" />, offset: [0.5, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 31 }, (_, i) => {
+           const x = (i - 15) * 0.2;
+           return { x, y: Math.pow(3, x - 2), z: 0 };
+         }),
+         color: "#059669",
+         labels: [{ text: <InlineMath math="h'(x)=3^{x-2}" />, offset: [0.5, 1, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />

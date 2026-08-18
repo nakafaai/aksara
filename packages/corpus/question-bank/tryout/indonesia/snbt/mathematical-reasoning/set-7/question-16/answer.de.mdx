@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 16",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-17",
+};
+
+#### Ausgangsdaten auswerten
+
+Gegeben:
+- Anzahl der Noten: <InlineMath math="n_1 = 22" />
+- Ursprünglicher Mittelwert: <InlineMath math="\bar{x}_1 = 5" />
+- Spannweite: <InlineMath math="R = 4" />
+
+Wir ordnen die Noten aufsteigend und bezeichnen sie mit <InlineMath math="x_1, x_2, \dots, x_{22}" />.
+
+Ihre ursprüngliche Summe ist:
+
+<MathContainer>
+  <BlockMath math="\sum_{i=1}^{22} x_i = n_1 \cdot \bar{x}_1" />
+  <BlockMath math="\sum_{i=1}^{22} x_i = 22 \cdot 5 = 110 \quad \dots(1)" />
+</MathContainer>
+
+Die Spannweite ist die Differenz aus größter und kleinster Note:
+
+<MathContainer>
+  <BlockMath math="x_{22} - x_1 = 4" />
+  <BlockMath math="x_{22} = x_1 + 4 \quad \dots(2)" />
+</MathContainer>
+
+#### Summe nach dem Entfernen der Randwerte
+
+Wenn die kleinste Note <InlineMath math="x_1" /> und die größte Note <InlineMath math="x_{22}" /> entfallen:
+- Verbleibende Anzahl: <InlineMath math="n_2 = 22 - 2 = 20" />
+- Neuer Mittelwert: <InlineMath math="\bar{x}_2 = 4{,}9" />
+
+Die Summe der verbleibenden Noten ist:
+
+<MathContainer>
+  <BlockMath math="\sum_{i=2}^{21} x_i = n_2 \cdot \bar{x}_2" />
+  <BlockMath math="\sum_{i=2}^{21} x_i = 20 \cdot 4{,}9 = 98" />
+</MathContainer>
+
+#### Kleinste Note berechnen
+
+Die ursprüngliche Summe setzt sich aus der kleinsten Note, der Restsumme und der größten Note zusammen:
+
+<MathContainer>
+  <BlockMath math="\sum_{i=1}^{22} x_i = x_1 + \sum_{i=2}^{21} x_i + x_{22}" />
+  <BlockMath math="110 = x_1 + 98 + x_{22}" />
+  <BlockMath math="x_1 + x_{22} = 110 - 98" />
+  <BlockMath math="x_1 + x_{22} = 12 \quad \dots(3)" />
+</MathContainer>
+
+Wir setzen Gleichung <InlineMath math="(2)" /> in Gleichung <InlineMath math="(3)" /> ein:
+
+<MathContainer>
+  <BlockMath math="x_1 + (x_1 + 4) = 12" />
+  <BlockMath math="2x_1 + 4 = 12" />
+  <BlockMath math="2x_1 = 8" />
+  <BlockMath math="x_1 = 4" />
+</MathContainer>
+
+Die kleinste Note war somit <InlineMath math="4" />.

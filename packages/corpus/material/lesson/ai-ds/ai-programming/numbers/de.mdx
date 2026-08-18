@@ -1,0 +1,191 @@
+export const metadata = {
+  title: "Zahlen in Python",
+  description: "Python-Zahlentypen wie Ganzzahlen, Gleitkommazahlen und komplexe Zahlen, einschließlich Typprüfung, Konstruktoren und wissenschaftlicher Notation.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-26",
+  subject: "KI-Programmierung",
+};
+
+## Einführung in Zahlendatentypen
+
+Python stellt eingebaute Zahlentypen für ganze Zahlen, näherungsweise Berechnungen mit reellen Zahlen und komplexe Zahlen bereit. Die Wahl des Typs ist wichtig, weil jeder Typ Werte anders darstellt und verarbeitet.
+
+Python ist sehr flexibel im Umgang mit Zahlen. Wenn Sie Zahlen in die Python-Shell eingeben, erkennt Python diese sofort und zeigt sie an. Sehen wir uns an, wie Python mit Zahlen funktioniert.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_numbers.py",
+      code: `>>> 4
+4
+
+>>> 4.
+4.0
+
+>>> 0.30
+0.3
+
+>>> 0.0000999
+9.99e-05
+
+>>> 2. + 1j
+(2+1j)`
+    }
+  ]}
+/>
+
+Python liest jedes Literal anhand seiner Schreibweise. <InlineMath math="4" /> erzeugt eine Ganzzahl. Der Dezimalpunkt in <InlineMath math="4." /> macht den Ausdruck dagegen zu einem Gleitkommaliteral, das als <InlineMath math="4.0" /> angezeigt wird.
+
+## Arten von Zahlendaten
+
+Die drei wichtigsten eingebauten Zahlentypen sind `int`, `float` und `complex`.
+
+### Ganzzahl
+
+Eine Ganzzahl ist positiv, negativ oder null und besitzt keine Nachkommastellen. Python-Ganzzahlen haben eine beliebige Genauigkeit. Ihre Größe wird also durch den verfügbaren Speicher und nicht durch einen festen 32-Bit- oder 64-Bit-Bereich begrenzt.
+
+**Gültige Ganzzahlbeispiele**
+
+<MathContainer>
+<BlockMath math="-2, -1, 0, 1, 2" />
+<BlockMath math="+1, +2, +3" />
+</MathContainer>
+
+**Besonderheiten von Ganzzahlen in Python**
+
+Zwischen Ziffern dürfen Unterstriche stehen, damit lange Literale leichter lesbar sind. <InlineMath math="123\_456\_789" /> hat denselben Wert wie <InlineMath math="123456789" />. Die Unterstriche verändern nur die Schreibweise im Quellcode.
+
+### Float
+
+Ein `float` speichert eine binäre Gleitkommanäherung. Float-Literale können einen Dezimalpunkt oder einen Exponenten enthalten. Sie eignen sich für Messwerte und numerische Berechnungen, doch viele Dezimalbrüche lassen sich binär nicht exakt darstellen.
+
+**Allgemeine Float-Beispiele**
+
+<MathContainer>
+<BlockMath math="-1.2, 3.85, +7.01" />
+<BlockMath math="-.21, .01, 2., +5." />
+</MathContainer>
+
+**Wissenschaftliche Notation für sehr kleine oder große Zahlen**
+
+Die Exponentschreibweise mit `e` oder `E` erleichtert sehr kleine oder sehr große Float-Literale. Zum Beispiel:
+
+<MathContainer>
+<BlockMath math="-3.2e5 = -3.2 \times 10^5" />
+<BlockMath math="2e-2 = 2 \times 10^{-2}" />
+<BlockMath math="+2.e4 = +2.0 \times 10^4" />
+</MathContainer>
+
+Die Notation <InlineMath math="e" /> oder <InlineMath math="E" /> in Python ist dieselbe wie die wissenschaftliche Notation, die Sie in der Mathematik gelernt haben. Die Zahl <InlineMath math="1E1" /> entspricht <InlineMath math="1 \times 10^1 = 10.0" /> und <InlineMath math="3.1E-7" /> entspricht <InlineMath math="3.1 \times 10^{-7}" />.
+
+### Komplex
+
+Komplexe Zahlen besitzen einen Real- und einen Imaginärteil. In einem Python-Literal kennzeichnet das Suffix <InlineMath math="j" /> den Koeffizienten der imaginären Einheit. Komplexe Arithmetik wird unter anderem in der Signalverarbeitung, Elektrotechnik und wissenschaftlichen Datenverarbeitung eingesetzt.
+
+**Beispiele für komplexe Zahlen**
+
+<MathContainer>
+<BlockMath math="2 + 3j" />
+<BlockMath math="4.5 - 2.1j" />
+</MathContainer>
+
+Stellen Sie sich komplexe Zahlen wie Koordinaten auf einer Karte vor. Der Realteil ist die horizontale Position und der Imaginärteil ist die vertikale Position.
+
+## Die Typfunktion zum Überprüfen von Datentypen
+
+Die Funktion `type()` zeigt die genaue Klasse eines Objekts an. Das ist beim Erkunden von Werten in der Python-Shell oder bei der Fehlersuche hilfreich.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "check_types.py",
+      code: `>>> type(5)
+<class 'int'>
+
+>>> type(.1)
+<class 'float'>
+
+>>> type(2j)
+<class 'complex'>`
+    }
+  ]}
+/>
+
+Für eine strikte Typgleichheit kannst du `type(value)` mit einer Klasse vergleichen. In Anwendungscode ist `isinstance(value, SomeType)` häufig flexibler, weil es auch Unterklassen erkennt.
+
+## Konstruktoren zum Erstellen von Zahlenobjekten
+
+Python bietet Konstruktoren zum Konvertieren oder Erstellen von Zahlenobjekten aus anderen Typen. Dies ist sehr nützlich, wenn Sie Daten von einem Format in ein anderes konvertieren müssen.
+
+### Konstruktor-Float
+
+Der Konstruktor `float()` wandelt andere Zahlen in Dezimalzahlen um.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "float_constructor.py",
+      code: `>>> float(2)
+2.0
+
+>>> float()
+0.0`
+    }
+  ]}
+/>
+
+Wenn Sie `float(2)` aufrufen, wandelt Python die Ganzzahl <InlineMath math="2" /> in den Gleitkommawert <InlineMath math="2.0" /> um. Wenn Sie `float()` ohne Argumente aufrufen, gibt Python den Standardwert <InlineMath math="0.0" /> aus.
+
+### Konstruktor int
+
+Der Konstruktor `int()` wandelt einen endlichen Float in eine Ganzzahl um und schneidet dabei in Richtung null ab.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "int_constructor.py",
+      code: `>>> int(2.1)
+2
+
+>>> int(2.9)
+2
+
+>>> int(-2.9)
+-2`
+    }
+  ]}
+/>
+
+`int()` rundet nicht auf die nächste Ganzzahl. Beide positiven Beispiele ergeben <InlineMath math="2" />. `int(-2.9)` ergibt <InlineMath math="-2" />, weil die Abschneidung in Richtung null erfolgt.
+
+### Konstruktorkomplex
+
+Der Konstruktor `complex()` erzeugt komplexe Zahlen aus reellen Zahlen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "complex_constructor.py",
+      code: `>>> complex(2.)
+(2+0j)
+
+>>> complex(0., 2.)
+2j`
+    }
+  ]}
+/>
+
+`complex(2.)` erzeugt eine komplexe Zahl mit Realteil <InlineMath math="2" /> und Imaginärteil <InlineMath math="0" />. Unterdessen erzeugt `complex(0., 2.)` eine rein imaginäre Zahl <InlineMath math="2j" />.
+
+## Zusammenfassungstabelle für Zahlendatentypen
+
+| Kategorie | Typ | Beispiele | Beschreibung |
+|----------|------|----------|-------------|
+| **Ganzzahl** | `int` | <InlineMath math="-2, -1, 0, 1, 2" /> und <InlineMath math="+1, +2, +3" /> | Ganze Zahlen, zur Verdeutlichung kann ein Unterstrich verwendet werden |
+| **Gleitkomma** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> und <InlineMath math="-.21, .01, 2." /> | Dezimalzahlen, unterstützt die wissenschaftliche Notation mit <InlineMath math="e" /> oder <InlineMath math="E" /> |
+| **Komplex** | `complex` | <InlineMath math="2 + 3j" /> und <InlineMath math="4.5 - 2.1j" /> | Komplexe Zahlen mit <InlineMath math="j" /> als imaginärer Einheit |

@@ -1,0 +1,71 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 15",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-17",
+};
+
+#### Variablen definieren
+
+Wir setzen:
+- Die Anzahl der Lastwagen vom Typ <InlineMath math="\text{I}" /> ist <InlineMath math="x" />.
+- Die Anzahl der Lastwagen vom Typ <InlineMath math="\text{II}" /> ist <InlineMath math="y" />.
+- Die Anzahl der Lastwagen vom Typ <InlineMath math="\text{III}" /> ist <InlineMath math="z" />.
+
+#### Bildung eines Gleichungssystems
+
+Aus dem Problem wissen wir:
+1. Die Gesamtzahl der gemieteten LKW beträgt <InlineMath math="20" />.
+
+   <MathContainer>
+     <BlockMath math="x + y + z = 20 \quad \dots (1)" />
+   </MathContainer>
+
+2. Die Gesamttragfähigkeit beträgt <InlineMath math="96\text{ t}" />. Die drei Typen tragen jeweils <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="6\text{ t}" />.
+
+   <MathContainer>
+     <BlockMath math="3x + 4y + 6z = 96 \quad \dots (2)" />
+   </MathContainer>
+
+3. Das Unternehmen mietet <InlineMath math="4" /> Lastwagen vom Typ <InlineMath math="\text{I}" />.
+
+   <MathContainer>
+     <BlockMath math="x = 4" />
+   </MathContainer>
+
+#### Das System lösen
+
+Wir setzen <InlineMath math="x = 4" /> in Gleichung <InlineMath math="(1)" /> ein:
+
+<MathContainer>
+  <BlockMath math="4 + y + z = 20" />
+  <BlockMath math="y + z = 16 \quad \dots (3)" />
+</MathContainer>
+
+Danach setzen wir <InlineMath math="x = 4" /> in Gleichung <InlineMath math="(2)" /> ein:
+
+<MathContainer>
+  <BlockMath math="3(4) + 4y + 6z = 96" />
+  <BlockMath math="12 + 4y + 6z = 96" />
+  <BlockMath math="4y + 6z = 84" />
+</MathContainer>
+
+Wir teilen beide Seiten durch <InlineMath math="2" />:
+
+<MathContainer>
+  <BlockMath math="2y + 3z = 42 \quad \dots (4)" />
+</MathContainer>
+
+Zum Eliminieren von <InlineMath math="z" /> aus den Gleichungen <InlineMath math="(3)" /> und <InlineMath math="(4)" /> multiplizieren wir Gleichung <InlineMath math="(3)" /> mit <InlineMath math="3" />. Alternativ könnten wir mit <InlineMath math="2" /> multiplizieren und <InlineMath math="y" /> eliminieren. Hier bestimmen wir <InlineMath math="y" /> direkt, indem <InlineMath math="z" /> wegfällt:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} 3(y + z) &= 3(16) \Rightarrow 3y + 3z = 48 \\ 2y + 3z &= 42 \end{aligned}" />
+</MathContainer>
+
+Wir subtrahieren die zweite Gleichung von der ersten:
+
+<MathContainer>
+  <BlockMath math="(3y + 3z) - (2y + 3z) = 48 - 42" />
+  <BlockMath math="y = 6" />
+</MathContainer>
+
+Das Unternehmen mietet somit <InlineMath math="6" /> Lastwagen vom Typ <InlineMath math="\text{II}" />.

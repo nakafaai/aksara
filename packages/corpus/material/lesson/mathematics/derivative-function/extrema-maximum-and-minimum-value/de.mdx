@@ -1,0 +1,307 @@
+
+
+export const metadata = {
+  title: "Extremwerte mit dem ersten und zweiten Ableitungstest",
+  description: "Stationäre Punkte mit der ersten und zweiten Ableitung bestimmen und als lokale Maxima oder Minima einordnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Ableitungsfunktionen",
+};
+
+## Extrempunkte verstehen
+
+Im Alltag suchen wir oft nach einem bestmöglichen Wert, etwa dem größten Gewinn, den geringsten Kosten oder der kürzesten Entfernung. In der Mathematik heißen solche Werte **Extremwerte**. Dazu gehören **Maximalwerte** und **Minimalwerte**; die zugehörigen Punkte nennt man **Extrempunkte**.
+
+Ein lokaler Extrempunkt im Inneren des Definitionsbereichs einer differenzierbaren Funktion ist ein **stationärer Punkt** mit <InlineMath math="f'(x)=0" />. Allgemeiner können lokale Extrempunkte auch dort auftreten, wo die Ableitung nicht definiert ist, oder an einem Randpunkt des Definitionsbereichs. Ein stationärer Punkt ist daher nur ein Kandidat und keine Garantie für ein lokales Extremum. Diese Lektion behandelt differenzierbare stationäre Punkte und klassifiziert sie mit dem ersten und zweiten Ableitungstest.
+
+## Erster Ableitungstest
+
+Beim ersten Ableitungstest betrachten wir, ob die Funktion links und rechts von einer stationären Stelle steigt oder fällt. Entscheidend ist der Vorzeichenwechsel von <InlineMath math="f'(x)" />.
+
+-   **Lokales Maximum (Hochpunkt):** Die Funktion wechselt von **steigend zu fallend**. Das Vorzeichen von <InlineMath math="f'(x)" /> wechselt von **positiv (+) zu negativ (-)**, wie an einem Berggipfel.
+
+-   **Lokales Minimum (Tiefpunkt):** Die Funktion wechselt von **fallend zu steigend**. Das Vorzeichen von <InlineMath math="f'(x)" /> wechselt von **negativ (-) zu positiv (+)**, wie am tiefsten Punkt eines Tals.
+
+-   **Kein lokales Extremum:** Wenn das Vorzeichen von <InlineMath math="f'(x)" /> gleich bleibt, liegt weder ein lokales Maximum noch ein lokales Minimum vor. Die Stelle kann ein stationärer Wendepunkt sein, doch dafür muss sich zusätzlich die Krümmung ändern.
+
+Die folgende Darstellung zeigt die waagerechten Tangenten an einem lokalen Maximum und einem lokalen Minimum.
+
+<LineEquation
+  title={<>Visualisierung des ersten Ableitungstests</>}
+  description={
+    <>
+      Die horizontalen Hilfslinien zeigen, wo die Steigung am lokalen Maximum
+      und am lokalen Minimum null ist.
+    </>
+  }
+  showZAxis={false}
+  cameraPosition={[0, 2, 18]}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = -2 + i * 0.1;
+        return { x: x - 3, y: -(x ** 2) + 4, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: [{ x: -3, y: 4, z: 0 }],
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: "Maximum", offset: [0, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -4, y: 4, z: 0 },
+        { x: -2, y: 4, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = -2 + i * 0.1;
+        return { x: x + 3, y: x ** 2, z: 0 };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 3, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: "Minimum", offset: [0, -0.75, 0] }],
+    },
+    {
+      points: [
+        { x: 2, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+/>
+
+Wenden wir den Test auf ein Beispiel an. Gesucht sind die stationären Werte der Funktion <InlineMath math="f(x) = x(x-3)^2" />.
+
+**Lösung:**
+
+**Schritt** <InlineMath math="1" />: Erste Ableitung bestimmen
+
+Zunächst multiplizieren wir die Funktion aus: <InlineMath math="f(x) = x(x^2 - 6x + 9) = x^3 - 6x^2 + 9x" />.
+
+Damit lautet die Ableitung:
+
+<BlockMath math="f'(x) = 3x^2 - 12x + 9" />
+
+**Schritt** <InlineMath math="2" />: Stationäre Stellen bestimmen
+
+Setze <InlineMath math="f'(x) = 0" />.
+
+<MathContainer>
+    <BlockMath math="3x^2 - 12x + 9 = 0" />
+    <BlockMath math="x^2 - 4x + 3 = 0" />
+    <BlockMath math="(x-1)(x-3) = 0" />
+</MathContainer>
+
+Die stationären Punkte liegen bei <InlineMath math="x = 1" /> und <InlineMath math="x = 3" />.
+
+**Schritt** <InlineMath math="3" />: Vorzeichen in der Umgebung prüfen
+
+-   **Um <InlineMath math="x = 1" />:** Links davon, also für <InlineMath math="x < 1" /> (zum Beispiel <InlineMath math="x=0" />), ist <InlineMath math="f'(0) = 9" /> positiv. Rechts davon, also für <InlineMath math="x > 1" /> (zum Beispiel <InlineMath math="x=2" />), ist <InlineMath math="f'(2) = -3" /> negativ. Der Wechsel von (+) nach (-) zeigt: Bei <InlineMath math="x=1" /> liegt ein Hochpunkt.
+
+-   **Um <InlineMath math="x = 3" />:** Links davon, also für <InlineMath math="x < 3" /> (zum Beispiel <InlineMath math="x=2" />), ist <InlineMath math="f'(2) = -3" /> negativ. Rechts davon, also für <InlineMath math="x > 3" /> (zum Beispiel <InlineMath math="x=4" />), ist <InlineMath math="f'(4) = 9" /> positiv. Der Wechsel von (-) nach (+) zeigt: Bei <InlineMath math="x=3" /> liegt ein Tiefpunkt.
+
+**Schritt** <InlineMath math="4" />: Funktionswerte berechnen
+
+Für die zugehörigen <InlineMath math="y" />-Werte setzen wir die stationären <InlineMath math="x" />-Koordinaten (<InlineMath math="x = 1" /> und <InlineMath math="x = 3" />) in die *ursprüngliche* Funktion <InlineMath math="f(x)" /> ein.
+
+-   Lokaler Maximalwert: <InlineMath math="f(1) = 1(1-3)^2 = 4" />.
+
+-   Lokaler Minimalwert: <InlineMath math="f(3) = 3(3-3)^2 = 0" />.
+
+Damit ist <InlineMath math="4" /> der lokale Maximalwert am Hochpunkt <InlineMath math="(1,4)" />. Der lokale Minimalwert <InlineMath math="0" /> liegt am Tiefpunkt <InlineMath math="(3,0)" />.
+
+<LineEquation
+  title={<>Visualisierung von Extrempunkten</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="f(x) = x(x-3)^2" /> mit waagerechten
+      Tangenten an ihrem Hoch- und Tiefpunkt.
+    </>
+  }
+  showZAxis={false}
+  cameraPosition={[1.5, 2, 15]}
+  data={[
+    {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const x = -0.5 + i * 0.05;
+        const y = x * Math.pow(x - 3, 2);
+        return { x, y, z: 0 };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 1, y: 4, z: 0 }],
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: <>Maximum <InlineMath math="(1,4)" /></>, offset: [0, 1, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 4, z: 0 },
+        { x: 2, y: 4, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: 3, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <>Minimum <InlineMath math="(3,0)" /></>, offset: [0, -1, 0] }],
+    },
+    {
+      points: [
+        { x: 2, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+/>
+
+## Zweiter Ableitungstest
+
+Dieser Test ist oft schneller, weil wir keine Nachbarintervalle prüfen müssen. Er verwendet die zweite Ableitung <InlineMath math="f''(x)" />, um die Krümmung des Graphen an einer stationären Stelle zu bestimmen.
+
+Angenommen, <InlineMath math="f'(c) = 0" /> und <InlineMath math="f''" /> ist auf einem Intervall um <InlineMath math="c" /> stetig.
+
+-   Wenn <InlineMath math="f''(c) < 0" />, ist <InlineMath math="f(c)" /> ein **lokaler Maximalwert**. Der Graph ist dort nach unten gekrümmt, wie eine umgedrehte Schüssel.
+
+-   Wenn <InlineMath math="f''(c) > 0" />, ist <InlineMath math="f(c)" /> ein **lokaler Minimalwert**. Der Graph ist dort nach oben gekrümmt, wie eine offene Schüssel.
+
+-   Wenn <InlineMath math="f''(c) = 0" />, ist der Test **nicht entscheidend**. Dann verwenden wir den ersten Ableitungstest oder ein anderes Argument; die Stelle kann ein Maximum, ein Minimum, ein Wendepunkt oder keiner dieser Fälle sein.
+
+Bestimme die Extremwerte von <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /> mit dem zweiten Ableitungstest.
+
+**Lösung:**
+
+**Schritt** <InlineMath math="1" />: Erste und zweite Ableitung bestimmen
+
+<MathContainer>
+    <BlockMath math="f'(x) = x^2 - 2x - 3" />
+    <BlockMath math="f''(x) = 2x - 2" />
+</MathContainer>
+
+**Schritt** <InlineMath math="2" />: Stationäre Stellen bestimmen
+
+<MathContainer>
+    <BlockMath math="x^2 - 2x - 3 = 0" />
+    <BlockMath math="(x-3)(x+1) = 0" />
+</MathContainer>
+
+Die stationären Punkte liegen bei <InlineMath math="x = 3" /> und <InlineMath math="x = -1" />.
+
+**Schritt** <InlineMath math="3" />: Zweite Ableitung auswerten
+
+-   Für <InlineMath math="x = 3" />: <InlineMath math="f''(3) = 2(3) - 2 = 4" />. Da <InlineMath math="4 > 0" /> gilt, liegt dort ein **lokales Minimum**.
+
+-   Für <InlineMath math="x = -1" />: <InlineMath math="f''(-1) = 2(-1) - 2 = -4" />. Da <InlineMath math="-4 < 0" /> gilt, liegt dort ein **lokales Maximum**.
+
+**Schritt** <InlineMath math="4" />: Extremwerte berechnen
+
+Setze <InlineMath math="x=3" /> und <InlineMath math="x=-1" /> in die ursprüngliche Funktion ein.
+
+-   Lokaler Minimalwert: <InlineMath math="f(3) = \frac{1}{3}(3)^3 - (3)^2 - 3(3) + 2 = 9 - 9 - 9 + 2 = -7" />.
+
+-   Lokaler Maximalwert: <InlineMath math="f(-1) = \frac{1}{3}(-1)^3 - (-1)^2 - 3(-1) + 2 = -\frac{1}{3} - 1 + 3 + 2 = \frac{11}{3}" />.
+
+Wenn wir uns die Visualisierung unten ansehen, ist die Kurve am Punkt <InlineMath math="x=-1" /> nach unten konkav und am Punkt <InlineMath math="x=3" /> nach oben konkav.
+
+<LineEquation
+  title={<>Visualisierung des zweiten Ableitungstests</>}
+  description={
+    <>
+      Der Graph von <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" />.
+      Die Hilfslinien markieren das Maximum bei <InlineMath math="x=-1" />, wo der Graph nach unten gekrümmt ist, und das Minimum bei <InlineMath math="x=3" />, wo er nach oben gekrümmt ist.
+    </>
+  }
+  showZAxis={false}
+  cameraPosition={[1, -2, 20]}
+  data={[
+    {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const x = -2.5 + i * 0.08;
+        const y = (1 / 3) * x ** 3 - x ** 2 - 3 * x + 2;
+        return { x, y, z: 0 };
+      }),
+      color: "#0284c7",
+      showPoints: false,
+    },
+    {
+      points: [{ x: -1, y: 11 / 3, z: 0 }],
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: <>Maximum <InlineMath math="(-1,\frac{11}{3})" /></>, offset: [-1, 1, 0] }],
+    },
+    {
+      points: [
+        { x: -2, y: 11 / 3, z: 0 },
+        { x: 0, y: 11 / 3, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: 3, y: -7, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <>Minimum <InlineMath math="(3,-7)" /></>, offset: [1, -1, 0] }],
+    },
+    {
+      points: [
+        { x: 2, y: -7, z: 0 },
+        { x: 4, y: -7, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+/>
+
+## Übungen
+
+1. Bestimme den stationären Punkt der Funktion <InlineMath math="y = x^2 + 2x - 3" />.
+
+### Ausführliche Lösung
+
+1.  **Lösung:**
+
+    **Schritt** <InlineMath math="1" />: Bestimme die erste Ableitung
+
+    <BlockMath math="f'(x) = 2x + 2" />
+
+    **Schritt** <InlineMath math="2" />: Bestimme die stationäre Stelle
+
+    Setze <InlineMath math="f'(x) = 0" />.
+
+    <BlockMath math="2x + 2 = 0 \implies x = -1" />
+
+    **Schritt** <InlineMath math="3" />: Bestimme den <InlineMath math="y" />-Wert
+
+    Setze <InlineMath math="x = -1" /> in die ursprüngliche Funktion ein.
+
+    <BlockMath math="y = (-1)^2 + 2(-1) - 3 = 1 - 2 - 3 = -4" />
+
+    Der stationäre Punkt ist somit <InlineMath math="(-1, -4)" />. Da beim zweiten Ableitungstest <InlineMath math="f''(x)=2 > 0" /> gilt, liegt dort ein Minimum vor.

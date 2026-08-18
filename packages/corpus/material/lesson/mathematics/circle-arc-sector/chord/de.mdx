@@ -1,0 +1,268 @@
+export const metadata = {
+  title: "Kreissehnen",
+  description: "Kreissehnen, ihren Abstand zum Mittelpunkt und den Sehnensatz anhand von Formeln und vollständig gelösten Aufgaben verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+## Kreissehnen verstehen
+
+Eine Sehne ist eine Strecke, deren Endpunkte auf einem Kreis liegen. Eine gespannte Schnur zwischen zwei Punkten des Kreisrandes ist ein anschauliches Modell. Jede Sehne bestimmt einen kleinen und einen großen Kreisbogen und teilt die Kreisscheibe in ein kleines und ein großes Kreissegment.
+
+Unter den Sehnen desselben Kreises ist eine weiter vom Mittelpunkt entfernte Sehne kürzer. Die längste Sehne verläuft durch den Mittelpunkt und heißt Durchmesser.
+
+<LineEquation
+  title={<>Sehnen in einem Kreis</>}
+  description="Vergleiche Sehnen mit unterschiedlichen Längen und Abständen vom Mittelpunkt."
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#0891b2",
+      smooth: true,
+      showPoints: false,
+      labels: [{ text: "Kreis", at: 25, offset: [1, 0.5, 0] }]
+    },
+    {
+      kind: "circle-chord", radius: 4,
+        startDegrees: 30,
+        sweepDegrees: 120,
+      color: "#ea580c",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }
+      ]
+    },
+    {
+      kind: "circle-chord", radius: 4,
+        startDegrees: 60,
+        sweepDegrees: 180,
+      color: "#9333ea",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="C" />, at: 0, offset: [0.3, 0.3, 0] },
+        { text: <InlineMath math="D" />, at: 1, offset: [-0.3, -0.3, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="E" />, at: 0, offset: [-0.3, -0.3, 0] },
+        { text: <InlineMath math="F" />, at: 1, offset: [0.3, -0.3, 0] }
+      ]
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0.3, 0.3, 0] }]
+    }
+  ]}
+/>
+
+## Nützliche Sehnenkonfigurationen
+
+Die folgenden Konfigurationen helfen dabei, Sehnenaufgaben zu ordnen:
+
+1. **Sehne ohne Durchmesser**: Sie verläuft nicht durch den Mittelpunkt und ist kürzer als der Durchmesser desselben Kreises.
+
+2. **Durchmesser**: Diese Sehne verläuft durch den Mittelpunkt. Sie ist die längste Sehne und teilt die Kreisscheibe in zwei Halbkreise.
+
+3. **Parallele Sehnen**: Die Trägergeraden von zwei oder mehr Sehnen sind parallel. Ihre Längen sind genau dann gleich, wenn auch ihre senkrechten Abstände vom Mittelpunkt gleich sind.
+
+## Beziehung zwischen Sehne und Abstand zur Mitte
+
+Gemeint ist der senkrechte Abstand vom Mittelpunkt zur Sehne. Das Lot vom Mittelpunkt halbiert die Sehne. So entsteht ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="d" /> und <InlineMath math="l/2" /> sowie der Hypotenuse <InlineMath math="r" />.
+
+Ist <InlineMath math="d" /> dieser senkrechte Abstand, <InlineMath math="r" /> der Radius und <InlineMath math="l" /> die Sehnenlänge, folgt aus dem Satz des Pythagoras:
+
+<BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+
+Diese Formel zeigt, dass, wenn <InlineMath math="d = 0" /> (die Sehne geht durch die Mitte), <InlineMath math="l = 2r" /> der Durchmesser ist.
+
+<LineEquation
+  title={<>Zusammenhang zwischen Sehnenlänge und Mittelpunktabstand</>}
+  description="Sehnen mit unterschiedlichem Abstand vom Kreismittelpunkt."
+  cameraPosition={[0, 0, 8]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline", radius: 3,
+      color: "#0891b2",
+      smooth: true,
+      showPoints: false
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <>Durchmesser: <InlineMath math="d=0" /></>, at: 0, offset: [0, -0.5, 0] }]
+    },
+    {
+      points: [
+        { x: -Math.sqrt(9 - 1), y: 1, z: 0 },
+        { x: Math.sqrt(9 - 1), y: 1, z: 0 }
+      ],
+      color: "#9333ea",
+      smooth: false,
+      showPoints: true,
+      labels: []
+    },
+    {
+      points: [
+        { x: -Math.sqrt(9 - 4), y: 2, z: 0 },
+        { x: Math.sqrt(9 - 4), y: 2, z: 0 }
+      ],
+      color: "#d97706",
+      smooth: false,
+      showPoints: true,
+      labels: []
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 1, z: 0 }
+      ],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="d=1" />, at: 1, offset: [0.5, 0, 0] }]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 2, z: 0 }
+      ],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="d=2" />, at: 1, offset: [0.5, 0, 0] }]
+    }
+  ]}
+/>
+
+## Eigenschaften gleichlanger Sehnen
+
+Gleich lange Sehnen desselben Kreises haben denselben senkrechten Abstand vom Mittelpunkt. Umgekehrt sind Sehnen mit demselben senkrechten Abstand vom Mittelpunkt gleich lang.
+
+Diese Eigenschaft ist sehr nützlich bei der Lösung verschiedener Kreisgeometrieprobleme. Wenn zwei Sehnen die gleiche Länge haben, dann gilt:
+
+1. Der Abstand beider Sehnen zum Kreismittelpunkt ist gleich
+2. Die zugehörigen kleinen Kreisbögen sind gleich lang
+3. Die aufgespannten kleinen Mittelpunktswinkel sind gleich groß
+
+## Sehnensatz
+
+Schneiden sich die Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> im Inneren des Kreises im Punkt <InlineMath math="P" />, dann gilt:
+
+<BlockMath math="AP \times PB = CP \times PD" />
+
+Diese Beziehung heißt Sehnensatz.
+
+## Übungsaufgaben
+
+1. Ein Kreis hat einen Radius von <InlineMath math="13 \text{ cm}" />. Der senkrechte Abstand einer Sehne zum Mittelpunkt beträgt <InlineMath math="5 \text{ cm}" />. Bestimme die Länge der Sehne.
+
+2. In einem Kreis mit Radius <InlineMath math="10 \text{ cm}" /> liegt eine Sehne mit der Länge <InlineMath math="16 \text{ cm}" />. Bestimme ihren senkrechten Abstand zum Mittelpunkt.
+
+3. Zwei Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> im selben Kreis sind <InlineMath math="24 \text{ cm}" /> beziehungsweise <InlineMath math="18 \text{ cm}" /> lang. Der Kreisradius beträgt <InlineMath math="15 \text{ cm}" />. Bestimme die Differenz ihrer senkrechten Abstände vom Mittelpunkt.
+
+4. Die Sehnen <InlineMath math="PQ" /> und <InlineMath math="RS" /> schneiden sich im Punkt <InlineMath math="T" />. Es gilt <InlineMath math="PT = 6 \text{ cm}" />, <InlineMath math="TQ = 8 \text{ cm}" /> und <InlineMath math="RT = 4 \text{ cm}" />. Bestimme die Länge von <InlineMath math="TS" />.
+
+5. Ein Kreis hat einen Durchmesser von <InlineMath math="26 \text{ cm}" />. Bestimme die Länge einer Sehne, deren senkrechter Abstand vom Mittelpunkt <InlineMath math="12 \text{ cm}" /> beträgt.
+
+### Ausführliche Lösungen
+
+1. **Antwort: <InlineMath math="24 \text{ cm}" />**
+
+   Gegeben: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 5 \text{ cm}" />
+
+   Mit der Formel für die Sehnenlänge:
+
+   <MathContainer>
+   <BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+   <BlockMath math="l = 2\sqrt{13^2 - 5^2}" />
+   <BlockMath math="l = 2\sqrt{169 - 25}" />
+   <BlockMath math="l = 2\sqrt{144} = 2 \times 12 = 24 \text{ cm}" />
+   </MathContainer>
+
+2. **Antwort: <InlineMath math="6 \text{ cm}" />**
+
+   Gegeben: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="l = 16 \text{ cm}" />
+
+   Mit der Formel für die Sehnenlänge:
+
+   <MathContainer>
+   <BlockMath math="16 = 2\sqrt{10^2 - d^2}" />
+   <BlockMath math="8 = \sqrt{100 - d^2}" />
+   <BlockMath math="64 = 100 - d^2" />
+   <BlockMath math="d^2 = 100 - 64 = 36" />
+   <BlockMath math="d = 6 \text{ cm}" />
+   </MathContainer>
+
+3. **Antwort: <InlineMath math="3 \text{ cm}" />**
+
+   Gegeben: <InlineMath math="r = 15 \text{ cm}" />, <InlineMath math="l_1 = 24 \text{ cm}" />, <InlineMath math="l_2 = 18 \text{ cm}" />
+
+   Den Abstand der ersten Sehne ermitteln:
+
+   <MathContainer>
+   <BlockMath math="24 = 2\sqrt{15^2 - d_1^2}" />
+   <BlockMath math="12 = \sqrt{225 - d_1^2}" />
+   <BlockMath math="144 = 225 - d_1^2" />
+   <BlockMath math="d_1^2 = 81, \text{also} d_1 = 9 \text{ cm}" />
+   </MathContainer>
+
+   Den Abstand der zweiten Sehne ermitteln:
+
+   <MathContainer>
+   <BlockMath math="18 = 2\sqrt{15^2 - d_2^2}" />
+   <BlockMath math="9 = \sqrt{225 - d_2^2}" />
+   <BlockMath math="81 = 225 - d_2^2" />
+   <BlockMath math="d_2^2 = 144, \text{also} d_2 = 12 \text{ cm}" />
+   </MathContainer>
+
+   Distanzunterschied: <InlineMath math="d_2 - d_1 = 12 - 9 = 3 \text{ cm}" />
+
+4. **Antwort: <InlineMath math="12 \text{ cm}" />**
+
+   Gegeben: PT = <InlineMath math="6 \text{ cm}" />, TQ = <InlineMath math="8 \text{ cm}" />, RT = <InlineMath math="4 \text{ cm}" />
+
+   Mit dem Sehnensatz:
+
+   <MathContainer>
+   <BlockMath math="PT \times TQ = RT \times TS" />
+   <BlockMath math="6 \times 8 = 4 \times TS" />
+   <BlockMath math="48 = 4 \times TS" />
+   <BlockMath math="TS = 12 \text{ cm}" />
+   </MathContainer>
+
+5. **Antwort: <InlineMath math="10 \text{ cm}" />**
+
+   Gegeben: Durchmesser = <InlineMath math="26 \text{ cm}" />, also <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 12 \text{ cm}" />
+
+   Mit der Formel für die Sehnenlänge:
+
+   <MathContainer>
+   <BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+   <BlockMath math="l = 2\sqrt{13^2 - 12^2}" />
+   <BlockMath math="l = 2\sqrt{169 - 144}" />
+   <BlockMath math="l = 2\sqrt{25} = 2 \times 5 = 10 \text{ cm}" />
+   </MathContainer>

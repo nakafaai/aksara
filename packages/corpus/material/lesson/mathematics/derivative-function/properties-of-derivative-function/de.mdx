@@ -1,0 +1,91 @@
+export const metadata = {
+  title: "Ableitungsregeln",
+  description: "Konstanten-, Potenz-, Summen-, Produkt-, Quotienten- und Kettenregel verstehen und in vollständigen Ableitungen verbinden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-07",
+  subject: "Ableitungsfunktionen",
+};
+
+## Von der Grenzwertdefinition zu praktischen Regeln
+
+Die Grenzwertdefinition erklärt, was eine Ableitung bedeutet. Würden wir diese vollständige Grenzwertrechnung bei jeder Funktion wiederholen, bliebe das wiederkehrende Muster jedoch leicht verborgen. Ableitungsregeln fassen diese Muster zusammen, ohne die Grundidee der momentanen Änderungsrate zu verändern.
+
+Entscheidend ist nicht, eine lange Liste auswendig zu lernen. Wir müssen erkennen, wie eine Funktion aufgebaut ist, die passende Regel wählen und jeden algebraischen Schritt nachvollziehbar notieren.
+
+## Konstanten-, Potenz- und Linearitätsregeln
+
+### Konstanten- und Potenzfunktionen
+
+1. **Konstantenregel:** Der Graph einer konstanten Funktion ist waagerecht. Seine Steigung ist daher an jeder Stelle null.
+
+   <BlockMath math="f(x)=k \implies f'(x)=0" />
+
+2. **Potenzregel:** Für eine Konstante <InlineMath math="a" /> multiplizieren wir mit dem Exponenten und verringern den Exponenten anschließend um eins.
+
+   <BlockMath math="f(x)=ax^n \implies f'(x)=anx^{n-1}" />
+
+   Diese Formel gilt für jede ganze Zahl <InlineMath math="n" /> überall dort, wo <InlineMath math="x^n" /> definiert ist. Für einen allgemeinen reellen Exponenten gilt sie auf <InlineMath math="x>0" /> und auf jedem größeren reellen Bereich, in dem die Potenzfunktion definiert und differenzierbar ist.
+
+### Linearkombinationen
+
+Seien <InlineMath math="u(x)" /> und <InlineMath math="v(x)" /> differenzierbare Funktionen.
+
+1. **Konstanter Faktor:** Ein konstanter Faktor bleibt vor der Ableitung stehen.
+
+   <BlockMath math="f(x)=k\,u(x) \implies f'(x)=k\,u'(x)" />
+
+2. **Summe und Differenz:** Leite jeden Summanden einzeln ab und behalte die Rechenoperation zwischen ihnen bei.
+
+   <BlockMath math="f(x)=u(x)\pm v(x) \implies f'(x)=u'(x)\pm v'(x)" />
+
+## Produkt-, Quotienten- und Kettenregel
+
+### Produktregel
+
+Bei einem Produkt genügt es nicht, beide Faktoren abzuleiten und die Ergebnisse zu multiplizieren. Leite jeweils einen Faktor ab, während der andere unverändert bleibt, und addiere anschließend beide Terme.
+
+<BlockMath math="f(x)=u(x)v(x) \implies f'(x)=u'(x)v(x)+u(x)v'(x)" />
+
+### Quotientenregel
+
+Bei einem Quotienten ist die Reihenfolge der Terme im Zähler wichtig. Der Nenner <InlineMath math="v(x)" /> muss außerdem überall dort ungleich null sein, wo die ursprüngliche Funktion definiert ist.
+
+<BlockMath math="f(x)=\frac{u(x)}{v(x)} \implies f'(x)=\frac{u'(x)v(x)-u(x)v'(x)}{[v(x)]^2}" />
+
+### Kettenregel
+
+Eine verkettete Funktion setzt eine Funktion in eine andere ein. Leite zunächst die äußere Funktion am unveränderten inneren Ausdruck ab und multipliziere danach mit der Ableitung der inneren Funktion.
+
+<MathContainer>
+  <BlockMath math="f(x)=g(u(x)) \implies f'(x)=g'(u(x))\,u'(x)" />
+  <BlockMath math="f(x)=[u(x)]^n \implies f'(x)=n[u(x)]^{n-1}u'(x)" />
+</MathContainer>
+
+## Ausführliches Beispiel
+
+Bestimme die Ableitung von <InlineMath math="f(x)=(x^2+1)^3" />.
+
+Die äußere Funktion erhebt ihren Eingang zur dritten Potenz. Die innere Funktion lautet <InlineMath math="u(x)=x^2+1" />. Wir wenden außen die Potenzregel an und multiplizieren anschließend mit der Ableitung der inneren Funktion.
+
+<MathContainer>
+  <BlockMath math="u'(x)=2x" />
+  <BlockMath math="f'(x)=3[u(x)]^2u'(x)" />
+  <BlockMath math="f'(x)=6x(x^2+1)^2" />
+</MathContainer>
+
+Der Faktor <InlineMath math="2x" /> ist unverzichtbar. Ohne ihn hätten wir nur die äußere Funktion abgeleitet und die Kettenregel nicht vollständig angewendet.
+
+## Übung
+
+1. Bestimme die Ableitung von <InlineMath math="h(x)=(2x-1)^4" />.
+
+### Ausführliche Lösung
+
+1. Die äußere Funktion ist eine vierte Potenz. Die innere Funktion ist <InlineMath math="u(x)=2x-1" /> mit der Ableitung <InlineMath math="u'(x)=2" />.
+
+   <MathContainer>
+     <BlockMath math="h'(x)=4[u(x)]^3u'(x)" />
+     <BlockMath math="h'(x)=8(2x-1)^3" />
+   </MathContainer>
+
+   Das Ergebnis enthält beide Teile der Verkettung: die Ableitung der vierten Potenz und die Ableitung der linearen inneren Funktion.

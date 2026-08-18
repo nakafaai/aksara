@@ -1,0 +1,145 @@
+export const metadata = {
+  title: "Analyse einer Wurfbewegung",
+  description:
+    "Berechne aus den Geschwindigkeitskomponenten die Zeit bis zum höchsten Punkt, die Wurfweite und die momentane Geschwindigkeit.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-06-01",
+  subject: "Kinematik",
+};
+
+
+## Zuerst wird die Anfangsgeschwindigkeit zerlegt
+
+Die Analyse einer Wurfbewegung beginnt fast immer mit einer einfachen Frage: Welcher Anteil der Geschwindigkeit ist horizontal und welcher vertikal? Für den Anfangsgeschwindigkeitsbetrag <InlineMath math="v_0" /> und den Abwurfwinkel <InlineMath math="\theta" /> lauten die beiden Komponenten:
+
+<MathContainer>
+  <BlockMath math="v_{0x}=v_0\cos\theta" />
+  <BlockMath math="v_{0y}=v_0\sin\theta" />
+</MathContainer>
+
+Anschließend werden die horizontale und vertikale Richtung nach unterschiedlichen Regeln berechnet. Das Modell dieser Lektion vernachlässigt den Luftwiderstand und verwendet eine konstante Gravitationsbeschleunigung. Horizontal liegt eine gleichförmige Bewegung vor, weil keine horizontale Beschleunigung wirkt. Vertikal liegt eine gleichmäßig beschleunigte Bewegung vor, weil die Gravitation nach unten wirkt.
+
+> Der Schlüssel zur Analyse einer Wurfbewegung liegt darin, dieselbe Zeit für zwei verschiedene Richtungen zu nutzen.
+
+<ParabolicMovementAnalysisLab
+  title={<>Komponentenanalyse einer Kanonenkugel</>}
+  description={
+    <>
+    Beobachte die Flugbahn der Kanonenkugel. Halbtransparente Positionsmarken zeigen
+    gleiche Zeitabstände und folgen denselben Formeln wie die Rechnung.
+  </>
+  }
+  labels={{
+    chooseScenario: "Abwurf wählen",
+    scenarioNames: {
+      "sixty-degree": <>Sechzig Grad</>,
+      "long-drive": <>Lange Fahrt</>,
+      "high-arc": <>Hoher Bogen</>,
+    },
+    factLabels: {
+      horizontalComponent: <>Horizontale Komponente</>,
+      verticalComponent: <>Vertikale Komponente</>,
+      peakTime: <>Zeit bis zum höchsten Punkt</>,
+      flightTime: <>Flugzeit</>,
+      range: <>Wurfweite</>,
+      instantaneousVelocity: <>Momentane Geschwindigkeit nach zwei Sekunden</>,
+    },
+    viewLabel: "Visuelle Analyse von Kanonenkugelprojektilen",
+  }}
+/>
+
+Die Flugbahn und die halbtransparenten Kugeln zeigen Positionen in gleichen Zeitabständen, nicht getrennte horizontale und vertikale Wege. Die Werte unter der Szene stammen aus derselben Zerlegung: <InlineMath math="v_{0x}" /> bleibt konstant, während sich <InlineMath math="v_y=v_{0y}-gt" /> durch die nach unten gerichtete Erdbeschleunigung ändert.
+
+Alle dargestellten Würfe starten und landen auf derselben Höhe. Unter dieser Bedingung lässt sich die Rechnung als zusammenhängende Formelfolge lesen:
+
+<BlockMath math="\begin{aligned}
+v_{0x}&=v_0\cos\theta\\
+v_{0y}&=v_0\sin\theta\\
+t_{\text{Höhepunkt}}&=\frac{v_{0y}}{g}\\
+T&=2t_{\text{Höhepunkt}}\\
+R&=v_{0x}T\\
+\vec{v}(2)&=\langle v_{0x},v_{0y}-g(2)\rangle,\quad g=10\text{ m/s}^2
+\end{aligned}" />
+
+Die Werte unter der Szene sind also keine frei gewählten Zahlen. Sie werden aus dem ausgewählten Start berechnet und als Komponenten, Flugzeit, Wurfweite und Momentangeschwindigkeit angezeigt.
+
+## Am höchsten Punkt ist die Vertikalgeschwindigkeit null
+
+Am höchsten Punkt bewegt sich das Objekt weiterhin horizontal, doch seine vertikale Bewegung hält für einen Moment inne. Deshalb gilt dort <InlineMath math="v_y=0" />.
+
+<BlockMath math="v_y=v_{0y}-gt" />
+
+Bei <InlineMath math="v_y=0" /> beträgt die Zeit bis zum Höhepunkt:
+
+<BlockMath math="t_{\text{Höhepunkt}}=\frac{v_{0y}}{g}" />
+
+Bei einem Anfangsgeschwindigkeitsbetrag von <InlineMath math="40\text{ m/s}" /> und einem Winkel von <InlineMath math="60^\circ" /> beträgt die anfängliche vertikale Komponente <InlineMath math="20\sqrt{3}\text{ m/s}" />. Vor dem höchsten Punkt ist sie positiv, dort wird sie null und danach ist sie negativ, weil sich das Objekt nach unten bewegt.
+
+## Die Wurfweite nutzt die gesamte Flugzeit
+
+Wenn das Objekt vom Boden startet und auf derselben Höhe zum Boden zurückkehrt, beträgt die Gesamtzeit das Doppelte der Zeit bis zum Höhepunkt.
+
+<MathContainer>
+  <BlockMath math="t_{\text{gesamt}}=2t_{\text{Höhepunkt}}" />
+  <BlockMath math="R=v_{0x}t_{\text{gesamt}}" />
+</MathContainer>
+
+Diese Formel zeigt, warum die Wurfweite nicht allein vom Winkel abhängt. Entscheidend sind auch die horizontale Geschwindigkeit und die Flugzeit.
+
+## Die momentane Geschwindigkeit entsteht aus zwei Komponenten
+
+Um die Geschwindigkeit zu einem bestimmten Zeitpunkt zu bestimmen, werden zuerst <InlineMath math="v_x" /> und <InlineMath math="v_y" /> für diesen Zeitpunkt berechnet. Die horizontale Komponente bleibt konstant, die vertikale Komponente ändert sich.
+
+<MathContainer>
+  <BlockMath math="v_x=v_{0x}" />
+  <BlockMath math="v_y=v_{0y}-gt" />
+  <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
+</MathContainer>
+
+Die Geschwindigkeitsrichtung muss beide Komponenten und den richtigen Quadranten berücksichtigen:
+
+<BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
+
+Für <InlineMath math="v_x>0" /> ist das gleichbedeutend mit <InlineMath math="\tan\alpha=v_y/v_x" /> und <InlineMath math="-90^\circ<\alpha<90^\circ" />. Ein positives <InlineMath math="v_y" /> zeigt oberhalb der Horizontalen, ein negatives darunter.
+
+## Ein Abwurf bei sechzig Grad verbindet beide Komponenten
+
+Ein Ball wird mit dem Anfangsgeschwindigkeitsbetrag <InlineMath math="40\text{ m/s}" /> unter einem Winkel von <InlineMath math="60^\circ" /> geworfen. Für die Rechnung gilt <InlineMath math="g=10\text{ m/s}^2" />.
+
+Dieser Winkel liefert übersichtliche trigonometrische Komponenten. Dadurch bleibt der gesamte Lösungsweg sichtbar: Zuerst wird die Anfangsgeschwindigkeit zerlegt, dann folgt die Flugzeit aus der vertikalen Bewegung. Dieselbe Zeit wird anschließend für Wurfweite und momentane Geschwindigkeit verwendet.
+
+Die Anfangskomponenten sind:
+
+<MathContainer>
+  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s}" />
+  <BlockMath math="v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+</MathContainer>
+
+Die Zeit bis zum höchsten Punkt beträgt:
+
+<BlockMath math="t_{\text{Höhepunkt}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\text{ s}" />
+
+Gesamte Flugzeit und Wurfweite betragen:
+
+<MathContainer>
+  <BlockMath math="t_{\text{gesamt}}=4\sqrt{3}\text{ s}" />
+  <BlockMath math="R=20(4\sqrt{3})=80\sqrt{3}\text{ m}" />
+</MathContainer>
+
+Angenommen, wir wollen die Geschwindigkeit bei <InlineMath math="t=2\text{ s}" />. Die vertikale Komponente ist:
+
+<BlockMath math="v_y=20\sqrt{3}-10(2)=20\sqrt{3}-20\text{ m/s}" />
+
+Währenddessen bleibt <InlineMath math="v_x=20\text{ m/s}" /> konstant. Der Geschwindigkeitsbetrag ist:
+
+<BlockMath math="\begin{aligned}
+v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
+&=\sqrt{2000-800\sqrt{3}}\\
+&\approx 24{,}8\text{ m/s}
+\end{aligned}" />
+
+Die Richtung der Geschwindigkeit relativ zur Horizontalen ist:
+
+<BlockMath math="\alpha=\operatorname{atan2}(20\sqrt{3}-20,20)\approx 36{,}2^\circ" />
+
+Bei <InlineMath math="t=2\text{ s}" /> bewegt sich die Kugel also immer noch schräg nach oben, da <InlineMath math="v_y" /> immer noch positiv ist.

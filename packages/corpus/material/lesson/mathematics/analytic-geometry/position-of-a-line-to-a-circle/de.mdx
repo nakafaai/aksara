@@ -1,0 +1,304 @@
+export const metadata = {
+  title: "Lage einer Geraden zu einem Kreis",
+  description: "Bestimme mit Diskriminante, Schnittpunkten und Tangentenbedingungen, ob eine Gerade einen Kreis schneidet, berührt oder verfehlt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Wie eine Gerade zu einem Kreis liegen kann
+
+Zeichnen wir einen Kreis und eine Gerade in dieselbe Ebene, sind genau drei Lagebeziehungen möglich.
+
+Die Gerade kann den Kreis **in zwei Punkten schneiden**, ihn **in genau einem Punkt berühren** oder ihn **vollständig verfehlen**. Ein Bleistift über einem Ring liefert ein einfaches Bild dafür: Er kann durch die Ringfläche verlaufen, nur den Rand berühren oder ganz außerhalb liegen.
+
+Diese Lagebeziehung ist ein Grundproblem der analytischen Geometrie. Mit demselben Verfahren lässt sich etwa prüfen, ob eine geplante Straße ein kreisförmiges Schutzgebiet durchquert oder ob eine Flugbahn eine festgelegte Zone berührt.
+
+## Die drei Lagebeziehungen
+
+Die Grafik zeigt alle drei Fälle gleichzeitig:
+
+<LineEquation
+  title="Lage einer Geraden zu einem Kreis"
+  description="Die Darstellung vergleicht Sekante, Tangente und eine Gerade ohne gemeinsamen Punkt mit dem Kreis."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -5;
+        const xMax = 5;
+        const y = 4.5; // Gerade ohne Schnittpunkt
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Kein Schnittpunkt", at: 1, offset: [-2, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -5;
+        const xMax = 5;
+        const y = 3; // Tangente
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Tangente", at: 1, offset: [-2, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -5;
+        const xMax = 5;
+        const y = 1; // Sekante
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Zwei Schnittpunkte", at: 1, offset: [-2, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -6;
+        const xMax = 6;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -4;
+        const yMax = 5;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 14]}
+  showZAxis={false}
+/>
+
+Die oberste Gerade besitzt keinen gemeinsamen Punkt mit dem Kreis. Die mittlere berührt ihn in genau einem Punkt. Die untere verläuft durch den Kreis und hat deshalb zwei Schnittpunkte.
+
+1. Eine **Sekante** verläuft durch das Kreisinnere und trifft den Kreisrand in zwei verschiedenen Punkten.
+
+2. Eine **Tangente** berührt den Kreisrand in genau einem Punkt.
+
+3. Eine **Passante** liegt vollständig außerhalb des Kreises und besitzt keinen Schnittpunkt mit ihm.
+
+## Entscheidung mit der Diskriminante
+
+Um die Lage rechnerisch zu bestimmen, setzen wir die Geradengleichung in die Kreisgleichung ein. Dadurch entsteht eine quadratische Gleichung. Ihre **Diskriminante** verrät, wie viele reelle Schnittpunkte existieren.
+
+Gegeben seien eine Gerade <InlineMath math="y = mx + c" /> und ein Kreis <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />.
+
+Im ersten Schritt wird jedes <InlineMath math="y" /> der Kreisgleichung durch <InlineMath math="mx + c" /> ersetzt:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx + c)^2 + Dx + E(mx + c) + F = 0" />
+  <BlockMath math="x^2 + m^2x^2 + 2mcx + c^2 + Dx + Emx + Ec + F = 0" />
+  <BlockMath math="(1 + m^2)x^2 + (2mc + D + Em)x + (c^2 + Ec + F) = 0" />
+</MathContainer>
+
+Nach der Substitution entsteht eine quadratische Gleichung der Form <InlineMath math="Ax^2 + Bx + C = 0" />. Die Großbuchstaben unterscheiden diese Koeffizienten von der Konstanten <InlineMath math="c" /> in der Geradengleichung:
+
+<MathContainer>
+  <BlockMath math="A = 1 + m^2" />
+  <BlockMath math="B = 2mc + D + Em" />
+  <BlockMath math="C = c^2 + Ec + F" />
+</MathContainer>
+
+Anschließend berechnen wir die **Diskriminante**. Ihr Vorzeichen bestimmt die Anzahl der reellen Lösungen:
+
+<BlockMath math="\Delta = B^2 - 4AC" />
+
+## Das Vorzeichen geometrisch deuten
+
+Jede reelle Lösung für <InlineMath math="x" /> gehört zu einem Schnittpunkt. Deshalb ergeben sich drei Fälle:
+
+1. Bei **positiver Diskriminante** (<InlineMath math="\Delta > 0" />) hat die quadratische Gleichung zwei verschiedene reelle Lösungen. Die Gerade ist eine Sekante und **schneidet den Kreis in zwei Punkten**.
+
+2. Bei **Diskriminante null** (<InlineMath math="\Delta = 0" />) gibt es eine doppelte reelle Lösung. Die Gerade ist eine Tangente und **berührt den Kreis in einem Punkt**.
+
+3. Bei **negativer Diskriminante** (<InlineMath math="\Delta < 0" />) gibt es keine reelle Lösung. Die Gerade ist eine Passante und **schneidet den Kreis nicht**.
+
+## Beispielrechnung
+
+Betrachten wir die Gerade <InlineMath math="y = 2x - 1" /> und den Kreis <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" />.
+
+Wir setzen <InlineMath math="y = 2x - 1" /> in die Kreisgleichung ein:
+
+<MathContainer>
+  <BlockMath math="x^2 + (2x - 1)^2 - 4x + 2(2x - 1) - 4 = 0" />
+  <BlockMath math="x^2 + 4x^2 - 4x + 1 - 4x + 4x - 2 - 4 = 0" />
+  <BlockMath math="5x^2 - 4x - 5 = 0" />
+</MathContainer>
+
+Aus <InlineMath math="5x^2 - 4x - 5 = 0" /> lesen wir <InlineMath math="a = 5" />, <InlineMath math="b = -4" /> und <InlineMath math="c = -5" /> ab.
+
+Damit folgt für die Diskriminante:
+
+<MathContainer>
+  <BlockMath math="\Delta = b^2 - 4ac = (-4)^2 - 4(5)(-5)" />
+  <BlockMath math="\Delta = 16 + 100 = 116" />
+</MathContainer>
+
+Weil <InlineMath math="\Delta = 116 > 0" /> gilt, schneidet die Gerade <InlineMath math="y = 2x - 1" /> **den Kreis in zwei Punkten**.
+
+> Das Vorzeichen der Diskriminante bestimmt die Zahl der Schnittpunkte. Ihre Größe allein ist jedoch kein geometrischer Abstand der Geraden von der Tangente, denn sie hängt auch von der Skalierung der Gleichung ab.
+
+## Sonderfall: Kreis mit Mittelpunkt im Ursprung
+
+Für einen Kreis mit Mittelpunkt im Ursprung, <InlineMath math="x^2 + y^2 = r^2" />, und eine Gerade <InlineMath math="y = mx + c" /> wird die Rechnung kürzer.
+
+Wir setzen die Gerade in die Kreisgleichung ein:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
+  <BlockMath math="x^2 + m^2x^2 + 2mcx + c^2 = r^2" />
+  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
+</MathContainer>
+
+Die Diskriminante für diesen Fall ist:
+
+<BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2)" />
+
+Nach der Vereinfachung:
+
+<BlockMath math="\Delta = 4[r^2(1 + m^2) - c^2]" />
+
+Das Vorzeichen wird genauso gedeutet wie zuvor: positiv für zwei, null für einen und negativ für keinen Schnittpunkt.
+
+## Übungen mit vollständigen Lösungen
+
+1. Bestimme die Lage der Geraden <InlineMath math="y = x + 3" /> zum Kreis <InlineMath math="x^2 + y^2 = 8" />.
+
+2. Untersuche die Lage der Geraden <InlineMath math="y = -2x + 5" /> zum Kreis <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" />.
+
+3. Gegeben sind die Gerade <InlineMath math="2x + y - 4 = 0" /> und der Kreis <InlineMath math="x^2 + y^2 = 5" />. Welche Lagebeziehung haben sie?
+
+4. Bestimme <InlineMath math="k" /> so, dass die Gerade <InlineMath math="y = x + k" /> den Kreis <InlineMath math="x^2 + y^2 = 18" /> berührt.
+
+### Lösungen
+
+1. **Lösung**:
+
+   Setze <InlineMath math="y = x + 3" /> in <InlineMath math="x^2 + y^2 = 8" /> ein:
+
+   <MathContainer>
+     <BlockMath math="x^2 + (x + 3)^2 = 8" />
+     <BlockMath math="x^2 + x^2 + 6x + 9 = 8" />
+     <BlockMath math="2x^2 + 6x + 1 = 0" />
+   </MathContainer>
+
+   Diskriminante: <InlineMath math="\Delta = 6^2 - 4(2)(1) = 36 - 8 = 28" />
+
+   Weil <InlineMath math="\Delta = 28 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
+
+2. **Lösung**:
+
+   Setze <InlineMath math="y = -2x + 5" /> in <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" /> ein:
+
+   <MathContainer>
+     <BlockMath math="x^2 + (-2x + 5)^2 - 6x + 4(-2x + 5) + 9 = 0" />
+     <BlockMath math="x^2 + 4x^2 - 20x + 25 - 6x - 8x + 20 + 9 = 0" />
+     <BlockMath math="5x^2 - 34x + 54 = 0" />
+   </MathContainer>
+
+   Diskriminante: <InlineMath math="\Delta = (-34)^2 - 4(5)(54) = 1156 - 1080 = 76" />
+
+   Weil <InlineMath math="\Delta = 76 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
+
+3. **Lösung**:
+
+   Stelle die Gerade <InlineMath math="2x + y - 4 = 0" /> nach <InlineMath math="y" /> um. Dadurch entsteht <InlineMath math="y = -2x + 4" />.
+
+   Setze diese Form in <InlineMath math="x^2 + y^2 = 5" /> ein:
+
+   <MathContainer>
+     <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
+     <BlockMath math="x^2 + 4x^2 - 16x + 16 = 5" />
+     <BlockMath math="5x^2 - 16x + 11 = 0" />
+   </MathContainer>
+
+   Diskriminante: <InlineMath math="\Delta = (-16)^2 - 4(5)(11) = 256 - 220 = 36" />
+
+   Weil <InlineMath math="\Delta = 36 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
+
+4. **Lösung**:
+
+   Damit die Gerade den Kreis tangiert, muss die Diskriminante gleich Null sein.
+
+   Setze <InlineMath math="y = x + k" /> in <InlineMath math="x^2 + y^2 = 18" /> ein:
+
+   <MathContainer>
+     <BlockMath math="x^2 + (x + k)^2 = 18" />
+     <BlockMath math="x^2 + x^2 + 2kx + k^2 = 18" />
+     <BlockMath math="2x^2 + 2kx + (k^2 - 18) = 0" />
+   </MathContainer>
+
+   Diskriminante: <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = 4k^2 - 8k^2 + 144 = -4k^2 + 144" />
+
+   Für <InlineMath math="\Delta = 0" />:
+
+   <MathContainer>
+     <BlockMath math="-4k^2 + 144 = 0" />
+     <BlockMath math="4k^2 = 144" />
+     <BlockMath math="k^2 = 36" />
+     <BlockMath math="k = \pm 6" />
+   </MathContainer>
+
+   Damit sind <InlineMath math="k = 6" /> und <InlineMath math="k = -6" /> die beiden möglichen Werte.

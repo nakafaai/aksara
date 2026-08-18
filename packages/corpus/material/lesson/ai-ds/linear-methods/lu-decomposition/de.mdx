@@ -1,0 +1,190 @@
+export const metadata = {
+  title: "LU-Zerlegung mit partieller Pivotisierung",
+  description: "Faktorisiere eine quadratische Matrix als PA = LU, verfolge ein vollständiges Eliminationsbeispiel, löse wiederholte lineare Systeme und implementiere einen abgesicherten NumPy-Algorithmus.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-13",
+  subject: "Lineare Methoden der KI",
+};
+
+## Die Faktorisierung
+
+Die LU-Zerlegung speichert die Gauß-Elimination in zwei Dreiecksmatrizen. Mit partieller Pivotisierung wird eine invertierbare quadratische Matrix <InlineMath math="A \in \mathbb{R}^{n\times n}" /> faktorisiert als
+
+<BlockMath math="PA=LU" />
+
+wobei:
+
+- <InlineMath math="P" /> eine Permutationsmatrix ist, welche die Zeilenvertauschungen erfasst
+- <InlineMath math="L" /> eine untere Dreiecksmatrix mit Einsen auf der Diagonalen ist
+- <InlineMath math="U" /> eine obere Dreiecksmatrix ist
+
+Im Eliminationsschritt <InlineMath math="k" /> wählt die partielle Pivotisierung in Spalte <InlineMath math="k" /> den betragsmäßig größten Eintrag auf oder unterhalb der Diagonalen. Dadurch wird eine Division durch einen Nullpivot vermieden und das Wachstum numerischer Fehler gewöhnlich begrenzt.
+
+Für eine Permutationsmatrix gilt <InlineMath math="P^{-1}=P^{\mathsf T}" />. Die Gleichheit <InlineMath math="P^{-1}=P" /> gilt nur für spezielle Permutationen, etwa eine einzelne Zeilenvertauschung, und nicht für jede zusammengesetzte Permutation.
+
+## Wie die Elimination die Faktoren erzeugt
+
+Nach der Pivotwahl in Spalte <InlineMath math="k" /> wird jeder Eintrag darunter mit dem Multiplikator
+
+<BlockMath math="\ell_{ik}=\frac{u_{ik}}{u_{kk}},\qquad i=k+1,\ldots,n" />
+
+und der Zeilenaktualisierung
+
+<BlockMath math="u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj},\qquad j=k,\ldots,n" />
+
+eliminiert. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die bereits gefüllten Spalten von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
+
+## Vollständig durchgerechnetes Beispiel
+
+Betrachten wir
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}0&2&1\\1&1&0\\2&1&1\end{pmatrix}" />
+<BlockMath math="b=\begin{pmatrix}7\\3\\7\end{pmatrix}" />
+</MathContainer>
+
+### Erster Pivot
+
+In der ersten Spalte liegt der größte Betrag <InlineMath math="2" /> in der dritten Zeile. Wir vertauschen die erste und dritte Zeile. Der erste Eliminationsmultiplikator ist <InlineMath math="\ell_{31}=1/2" />; der andere Eintrag unterhalb des Pivots ist bereits null.
+
+### Zweiter Pivot
+
+Der größte verbleibende Eintrag in der zweiten Spalte ist <InlineMath math="2" />, daher ist keine zweite Vertauschung nötig. Der Multiplikator für die letzte Zeile ist <InlineMath math="\ell_{32}=1/4" />.
+
+Damit ergeben sich die Faktoren
+
+<MathContainer>
+<BlockMath math="P=\begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix}" />
+<BlockMath math="L=\begin{pmatrix}1&0&0\\0&1&0\\\frac12&\frac14&1\end{pmatrix}" />
+<BlockMath math="U=\begin{pmatrix}2&1&1\\0&2&1\\0&0&-\frac34\end{pmatrix}" />
+</MathContainer>
+
+Die Multiplikation der Faktoren bestätigt die Zerlegung:
+
+<BlockMath math="LU=\begin{pmatrix}2&1&1\\0&2&1\\1&1&0\end{pmatrix}=PA" />
+
+## Ein lineares System lösen
+
+Aus <InlineMath math="PA=LU" /> wird die Gleichung <InlineMath math="Ax=b" /> zu
+
+<BlockMath math="LUx=Pb" />
+
+Wir lösen sie in zwei Dreiecksschritten.
+
+### Vorwärtssubstitution
+
+Zuerst lösen wir <InlineMath math="Ly=Pb" />. Hier gilt
+
+<MathContainer>
+<BlockMath math="Pb=\begin{pmatrix}7\\7\\3\end{pmatrix}" />
+<BlockMath math="y=\begin{pmatrix}7\\7\\-\frac94\end{pmatrix}" />
+</MathContainer>
+
+Für eine allgemeine untere Dreiecksmatrix lautet die Rekursion
+
+<BlockMath math="y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right),\qquad c=Pb" />
+
+Die Diagonaleinträge dieses <InlineMath math="L" /> sind alle eins.
+
+### Rückwärtssubstitution
+
+Anschließend lösen wir <InlineMath math="Ux=y" /> von der letzten Zeile nach oben:
+
+<BlockMath math="x_i=\frac{1}{u_{ii}}\left(y_i-\sum_{j=i+1}^{n}u_{ij}x_j\right)" />
+
+Für das Beispiel erhalten wir
+
+<BlockMath math="x=\begin{pmatrix}1\\2\\3\end{pmatrix}" />
+
+und direktes Einsetzen bestätigt <InlineMath math="Ax=b" />.
+
+## Aufwand und Wiederverwendung
+
+Eine dichte LU-Faktorisierung benötigt ungefähr
+
+<BlockMath math="\frac{2}{3}n^3+O(n^2)" />
+
+Gleitkommaoperationen, wenn Multiplikationen und Subtraktionen getrennt gezählt werden. Sobald die Faktoren vorliegen, benötigt jede neue rechte Seite nur <InlineMath math="O(n^2)" /> Arbeit für die beiden Substitutionen. Deshalb ist LU besonders nützlich, wenn viele Systeme dieselbe Matrix verwenden.
+
+Auch die Determinante folgt aus den Faktoren:
+
+<BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
+
+## Abgesicherte NumPy-Implementierung
+
+<CodeBlock data={[{
+  language: "python",
+  filename: "plu_solve.py",
+  code: `import numpy as np
+
+
+def plu_factor(matrix, tolerance=1e-12):
+    """Return P, L, U such that P @ matrix == L @ U."""
+    A = np.asarray(matrix, dtype=float)
+    if A.ndim != 2 or A.shape[0] != A.shape[1]:
+        raise ValueError("PLU factorization requires a square matrix")
+
+    n = A.shape[0]
+    U = A.copy()
+    L = np.eye(n)
+    P = np.eye(n)
+
+    for k in range(n - 1):
+        pivot = k + np.argmax(np.abs(U[k:, k]))
+        if abs(U[pivot, k]) <= tolerance:
+            raise np.linalg.LinAlgError("matrix is singular to working precision")
+
+        if pivot != k:
+            U[[k, pivot]] = U[[pivot, k]]
+            P[[k, pivot]] = P[[pivot, k]]
+            L[[k, pivot], :k] = L[[pivot, k], :k]
+
+        for i in range(k + 1, n):
+            L[i, k] = U[i, k] / U[k, k]
+            U[i, k:] -= L[i, k] * U[k, k:]
+
+    if abs(U[-1, -1]) <= tolerance:
+        raise np.linalg.LinAlgError("matrix is singular to working precision")
+
+    return P, L, U
+
+
+def forward_substitution(L, right_hand_side):
+    b = np.asarray(right_hand_side, dtype=float)
+    y = np.empty_like(b)
+    for i in range(len(b)):
+        y[i] = (b[i] - L[i, :i] @ y[:i]) / L[i, i]
+    return y
+
+
+def backward_substitution(U, right_hand_side, tolerance=1e-12):
+    y = np.asarray(right_hand_side, dtype=float)
+    x = np.empty_like(y)
+    for i in range(len(y) - 1, -1, -1):
+        if abs(U[i, i]) <= tolerance:
+            raise np.linalg.LinAlgError("singular triangular system")
+        x[i] = (y[i] - U[i, i + 1:] @ x[i + 1:]) / U[i, i]
+    return x
+
+
+def plu_solve(matrix, right_hand_side):
+    P, L, U = plu_factor(matrix)
+    y = forward_substitution(L, P @ right_hand_side)
+    x = backward_substitution(U, y)
+    return x, P, L, U
+
+
+A = np.array([[0, 2, 1], [1, 1, 0], [2, 1, 1]], dtype=float)
+b = np.array([7, 3, 7], dtype=float)
+x, P, L, U = plu_solve(A, b)
+
+assert np.allclose(P @ A, L @ U)
+assert np.allclose(A @ x, b)
+assert np.allclose(x, np.array([1, 2, 3], dtype=float))`
+}]} />
+
+Die Prüfungen gehören zum Beispiel, weil eine falsche Faktorordnung und fehlerhaftes Verbuchen von Zeilenvertauschungen häufige Implementierungsfehler sind.
+
+## Gültigkeitsbereich der Methode
+
+Diese Implementierung akzeptiert bewusst nur invertierbare quadratische Matrizen. Ein numerischer Nullpivot wird gemeldet und nicht stillschweigend übersprungen. Für rechteckige Ausgleichsprobleme oder rangdefiziente Matrizen verwendet man eine rangenthüllende QR-Zerlegung oder eine SVD. Diese Probleme besitzen andere Ausgabeverträge und sollten nicht in einem quadratischen PLU-Löser verborgen werden.

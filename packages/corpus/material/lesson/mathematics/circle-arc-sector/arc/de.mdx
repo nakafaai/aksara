@@ -1,0 +1,188 @@
+export const metadata = {
+  title: "Kreisbögen",
+  description: "Kreisbögen unterscheiden, ihre Länge berechnen und den Zusammenhang mit dem Mittelpunktswinkel verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+## Kreisbögen verstehen
+
+Ein Kreisbogen ist der Teil einer Kreislinie zwischen zwei Punkten. Anschaulich kann man ihn sich wie ein Stück Schnur vorstellen, das genau auf dem Kreisrand liegt. Markieren wir zwei Punkte auf einem Kreis, entstehen zwischen ihnen immer zwei Bögen.
+
+Jeder Bogen hat zwei Endpunkte auf dem Kreis. Seine Länge hängt vom zugehörigen Mittelpunktswinkel ab: Je größer dieser Winkel ist, desto länger ist der Bogen.
+
+<LineEquation
+  title={<>Visualisierung von Kreisbögen</>}
+  description="Ein Kreisbogen und der zugehörige Mittelpunktswinkel."
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#0891b2",
+      smooth: true,
+      showPoints: false,
+      labels: [{ text: "Kreis", at: 56, offset: [1.5, 0.5, 0] }]
+    },
+    { kind: "circle-arc", radius: 4,
+      startDegrees: 30,
+      sweepDegrees: 120,
+      segments: 12,
+      color: "#ea580c",
+      label: { text: <>Bogen <InlineMath math="AB" /></>, offset: [1.5, 0.5, 0] } },
+    {
+      kind: "circle-radius", radius: 4, degrees: 30,
+      color: "#9333ea",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.3, 0] }]
+    },
+    {
+      kind: "circle-radius", radius: 4, degrees: 150,
+      color: "#9333ea",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }]
+    }
+  ]}
+/>
+
+## Bogenarten nach ihrer Größe
+
+Nach der Größe ihres Mittelpunktswinkels unterscheidet man drei Arten von Bögen:
+
+1. Ein **kleiner Bogen** gehört zu einem Mittelpunktswinkel unter <InlineMath math="180^\circ" />. Er ist der kürzere der beiden Bögen zwischen den Endpunkten.
+
+2. Ein **großer Bogen** gehört zu einem Mittelpunktswinkel über <InlineMath math="180^\circ" />. Er ist der längere der beiden Bögen zwischen den Endpunkten.
+
+3. Ein **Halbkreisbogen** gehört genau zu <InlineMath math="180^\circ" /> und teilt den Kreisrand in zwei gleich lange Bögen.
+
+## Formel für die Bogenlänge
+
+Der Mittelpunktswinkel gibt an, welchen Anteil des Vollwinkels der Bogen einnimmt. Multiplizieren wir diesen Anteil mit dem Kreisumfang <InlineMath math="2\pi r" />, erhalten wir:
+
+<BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+
+Dabei bezeichnet:
+- <InlineMath math="\alpha" /> den Mittelpunktswinkel in Grad
+- <InlineMath math="r" /> den Radius des Kreises
+
+Ist der Mittelpunktswinkel im Bogenmaß angegeben, vereinfacht sich die Formel zu:
+
+<BlockMath math="\text{Bogenlänge} = \alpha \times r" />
+
+Hier steht <InlineMath math="\alpha" /> also nicht für eine Gradzahl, sondern für das Bogenmaß.
+
+<LineEquation
+  title={<>Vergleich der Bogenlängen</>}
+  description="Bögen mit unterschiedlichen Mittelpunktswinkeln auf demselben Kreis."
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline", radius: 3,
+      color: "#0891b2",
+      smooth: true,
+      showPoints: false
+    },
+    { kind: "circle-arc", radius: 3,
+      startDegrees: 0,
+      sweepDegrees: 60,
+      segments: 6,
+      color: "#ea580c",
+      label: { text: <InlineMath math="60^\circ" />, offset: [0.8, 0.3, 0] } },
+    { kind: "circle-arc", radius: 3,
+      startDegrees: 180,
+      sweepDegrees: 120,
+      segments: 12,
+      color: "#9333ea",
+      label: { text: <InlineMath math="120^\circ" />, offset: [-1.5, 0.3, 0] } }
+  ]}
+/>
+
+## Zusammenhang zwischen Bogen und Mittelpunktswinkel
+
+Auf demselben Kreis sind Bogenlänge und Mittelpunktswinkel proportional. Für zwei Bögen gilt deshalb:
+
+<BlockMath math="\frac{\text{Bogenlänge}_1}{\text{Bogenlänge}_2} = \frac{\alpha_1}{\alpha_2}" />
+
+Verdoppelt sich der Mittelpunktswinkel, verdoppelt sich dort auch die Bogenlänge. Wichtig ist die Voraussetzung, dass beide Bögen zum selben Kreis gehören.
+
+Mit diesem Verhältnis lassen sich Bogenlängen vergleichen, ohne den Radius zuerst zu bestimmen.
+
+## Übungsaufgaben
+
+1. Ein Kreis hat den Radius <InlineMath math="14 \text{ cm}" />. Wie lang ist der Bogen zu einem Mittelpunktswinkel von <InlineMath math="90^\circ" />?
+
+2. Der Bogen <InlineMath math="AB" /> ist <InlineMath math="22 \text{ cm}" /> lang. Der zugehörige Mittelpunktswinkel <InlineMath math="AOB" /> beträgt <InlineMath math="120^\circ" />. Wie groß ist der Radius?
+
+3. Auf einem Kreis mit dem Radius <InlineMath math="21 \text{ cm}" /> gehören zwei Bögen zu den Mittelpunktswinkeln <InlineMath math="60^\circ" /> und <InlineMath math="150^\circ" />. Bestimme das Verhältnis ihrer Längen.
+
+4. Ein Kreisbogen ist <InlineMath math="15{,}7 \text{ cm}" /> lang. Der Kreisradius beträgt <InlineMath math="10 \text{ cm}" />. Bestimme den Mittelpunktswinkel in Grad.
+
+5. Ein Kreis hat einen Umfang von <InlineMath math="88 \text{ cm}" />. Wie lang ist der Bogen zu einem Mittelpunktswinkel von <InlineMath math="45^\circ" />?
+
+### Ausführliche Lösungen
+
+1. **Ergebnis:** <InlineMath math="7\pi \text{ cm} \approx 21{,}99 \text{ cm}" />
+
+   Gegeben: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
+
+   Mit der Bogenlängenformel:
+
+   <MathContainer>
+   <BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+   <BlockMath math="= \frac{90^\circ}{360^\circ} \times 2\pi \times 14" />
+   <BlockMath math="= \frac{1}{4} \times 28\pi" />
+   <BlockMath math="= 7\pi \text{ cm} \approx 21{,}99 \text{ cm}" />
+   </MathContainer>
+
+2. **Ergebnis:** <InlineMath math="\frac{33}{\pi} \text{ cm} \approx 10{,}50 \text{ cm}" />
+
+   Gegeben sind die Bogenlänge <InlineMath math="AB = 22 \text{ cm}" /> und <InlineMath math="\alpha = 120^\circ" />.
+
+   Mit der Bogenlängenformel:
+
+   <MathContainer>
+   <BlockMath math="22 = \frac{120^\circ}{360^\circ} \times 2\pi r" />
+   <BlockMath math="22 = \frac{2\pi r}{3}" />
+   <BlockMath math="66 = 2\pi r" />
+   <BlockMath math="r = \frac{33}{\pi} \text{ cm} \approx 10{,}50 \text{ cm}" />
+   </MathContainer>
+
+3. **Ergebnis:** <InlineMath math="2:5" />
+
+   Gegeben: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha_1 = 60^\circ" />, <InlineMath math="\alpha_2 = 150^\circ" />
+
+   Da auf demselben Kreis das Verhältnis der Bogenlängen gleich dem Verhältnis ihrer Mittelpunktswinkel ist:
+
+   <BlockMath math="\frac{\text{Bogenlänge}_1}{\text{Bogenlänge}_2} = \frac{\alpha_1}{\alpha_2} = \frac{60^\circ}{150^\circ} = \frac{2}{5}" />
+
+   Das Verhältnis der beiden Bogenlängen beträgt also <InlineMath math="2:5" />.
+
+4. **Ergebnis:** <InlineMath math="\alpha \approx 90^\circ" />
+
+   Gegeben sind die Bogenlänge <InlineMath math="15{,}7 \text{ cm}" /> und <InlineMath math="r = 10 \text{ cm}" />.
+
+   Mit der Bogenlängenformel:
+
+   <MathContainer>
+   <BlockMath math="15{,}7 = \frac{\alpha}{360^\circ} \times 2\pi \times 10" />
+   <BlockMath math="15{,}7 = \frac{\alpha\pi}{18}" />
+   <BlockMath math="\alpha = \frac{15{,}7 \times 18^\circ}{\pi}" />
+   <BlockMath math="\alpha = \frac{282{,}6^\circ}{\pi} \approx 89{,}95^\circ" />
+   </MathContainer>
+
+5. **Ergebnis: <InlineMath math="11 \text{ cm}" />**
+
+   Gegeben: Umfang = <InlineMath math="88 \text{ cm}" />, <InlineMath math="\alpha = 45^\circ" />
+
+   Der Bogen nimmt denselben Anteil am Umfang ein wie der Mittelpunktswinkel am Vollwinkel:
+
+   <MathContainer>
+   <BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times \text{Umfang}" />
+   <BlockMath math="= \frac{45^\circ}{360^\circ} \times 88" />
+   <BlockMath math="= \frac{1}{8} \times 88 = 11 \text{ cm}" />
+   </MathContainer>

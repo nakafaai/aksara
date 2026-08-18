@@ -1,0 +1,424 @@
+export const metadata = {
+    title: "Funktionen",
+    description: "Verstehe Python-Funktionen mit Parametern, Rückgabewerten, Gültigkeitsbereichen, Closures und klaren Fehlerverträgen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-18",
+    subject: "KI-Programmierung",
+};
+
+## Grundlegende Funktionskonzepte
+
+Eine Funktion gibt einer wiederverwendbaren Operation einen Namen. Parameter beschreiben ihre Eingaben, der Funktionsrumpf erledigt die Arbeit und eine `return`-Anweisung kann dem aufrufenden Code ein Ergebnis liefern.
+
+Beim Programmieren helfen uns Funktionen dabei, das wiederholte Schreiben desselben Codes zu vermeiden. Funktionen haben Namen, können Parameter (Eingabedaten) akzeptieren und Werte zurückgeben.
+
+## Funktionsstruktur und Syntax
+
+Jede Funktion in Python hat eine Grundstruktur, die aus mehreren wichtigen Komponenten besteht.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "function_structure.py",
+      code: `def function_name(parameter_list):
+    """Optionaler Dokumentstring zur Erläuterung der Funktion"""
+    # Codeblock, der ausgeführt werden soll
+    statement_1
+    statement_2
+    return return_value  # Optional`
+    }
+  ]}
+/>
+
+Funktionskomponenten bestehen aus:
+
+1. Das Schlüsselwort `def` zum Starten der Funktionsdefinition
+2. Funktionsname, der den Benennungsregeln für Python-Variablen folgt
+3. Klammern mit Parameterliste (kann leer sein)
+4. Doppelpunkt zum Beenden der Definitionszeile
+5. Eingerückter Codeblock
+6. Optionale `return`-Anweisung zur Rückgabe eines Werts
+
+## Wie Funktionsaufrufe funktionieren
+
+Ein Funktionsaufruf wertet den Callable-Ausdruck aus, bindet die übergebenen Argumente an Parameter und führt den Funktionsrumpf in einem neuen lokalen Frame aus.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "function_example.py",
+      code: `# Funktionsdefinition
+def greet(name):
+    message = f"Hallo, {name}!"
+    return message
+
+# Funktionsaufruf
+result = greet("Alice")
+print(result)  # Ausgabe: Hallo, Alice!
+
+# Direkter Anruf in gedruckter Form
+print(greet("Bob"))  # Ausgabe: Hallo, Bob!`
+    }
+  ]}
+/>
+
+Prozess, der während des Funktionsaufrufs auftritt:
+
+1. Python löst den Namen oder Ausdruck zu einem aufrufbaren Objekt auf
+2. Die Argumentbindung ordnet die übergebenen Werte der Funktionssignatur zu
+3. Python führt den Rumpf in einem neuen lokalen Gültigkeitsbereich aus
+4. `return` beendet den Aufruf mit einem Wert; das Erreichen des Endes liefert `None`
+
+## Parameter und Argumente
+
+Parameter sind in Funktionen definierte Variablen, während Argumente tatsächliche Werte sind, die beim Aufrufen von Funktionen gesendet werden. Python bietet verschiedene Arten von Parametern für mehr Flexibilität.
+
+### Positions- und Schlüsselwortparameter
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "function_parameters.py",
+      code: `def introduction(name, age, city="Jakarta"):
+    return f"Mein Name ist {name}, ich bin {age} Jahre alt und wohne in {city}."
+
+# Verwendung von Positionsparametern
+print(introduction("Sari", 25))
+# Ausgabe: Mein Name ist Sari, ich bin 25 Jahre alt und wohne in Jakarta.
+
+# Verwendung von Schlüsselwortparametern
+print(introduction(age=30, name="Budi", city="Bandung"))
+# Ausgabe: Mein Name ist Budi, ich bin 30 Jahre alt und wohne in Bandung.
+
+# Mischung aus Positions- und Schlüsselwortparametern
+print(introduction("Andi", age=28, city="Surabaya"))
+# Ausgabe: Mein Name ist Andi, ich bin 28 Jahre alt und wohne in Surabaya.`
+    }
+  ]}
+/>
+
+Wichtige Regeln bei der Parameterverwendung:
+
+1. Positionsparameter müssen der Reihe nach angegeben werden
+2. Schlüsselwortparameter können in beliebiger Reihenfolge angegeben werden
+3. Positionsparameter müssen vor Schlüsselwortparametern geschrieben werden
+4. Parameter mit Standardwerten sind optional
+
+### Variable Anzahl von Parametern
+
+Mit `*args` und `**kwargs` kann eine Signatur eine variable Anzahl von Argumenten sammeln. Praktische Grenzen ergeben sich weiterhin aus den verfügbaren Ressourcen und der Arbeit der Funktion.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "variable_parameters.py",
+      code: `def calculate_total(*numbers):
+    """Berechnet die Summe mehrerer Zahlen."""
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+# Aufruf mit unterschiedlicher Anzahl von Argumenten
+print(calculate_total(1, 2, 3))        # Ausgabe: 6
+print(calculate_total(5, 10, 15, 20))  # Ausgabe: 50
+
+def student_info(name, **details):
+    """Studierendeninformationen mit zusätzlichen Details anzeigen"""
+    print(f"Name: {name}")
+    for key, value in details.items():
+        print(f"{key.capitalize()}: {value}")
+
+# Aufruf mit Schlüsselwortargumenten
+student_info("Maya", age=20, major="Informatik", gpa=3.8)
+# Ausgabe:
+# Name: Maya
+# Alter: 20
+# Studiengang: Informatik
+# Gpa: 3.8`
+    }
+  ]}
+/>
+
+Parameter `*args` sammelt zusätzliche Positionsargumente in einem Tupel, während `**kwargs` zusätzliche Schlüsselwortargumente in einem Wörterbuch sammelt.
+
+## Funktionsrückgabewerte
+
+Funktionen können Werte mithilfe der `return`-Anweisung zurückgeben. Wenn es kein `return` oder `return` ohne Wert gibt, gibt die Funktion `None` zurück.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "return_values.py",
+      code: `def circle_area(radius):
+    """Berechnet die Kreisfläche."""
+    import math
+    return math.pi * radius ** 2
+
+def find_min_max(number_list):
+    """Gibt Minimal- und Maximalwerte zurück"""
+    if not number_list:
+        return None, None
+    return min(number_list), max(number_list)
+
+def print_message(message):
+    """Funktion ohne explizite Rückgabe"""
+    print(f"Nachricht: {message}")
+    # Keine Rückgabe, automatische Rückgabe von None
+
+# Anwendungsbeispiel
+area = circle_area(5)
+print(f"Kreisfläche: {area:.2f}")  # Ausgabe: Kreisfläche: 78.54
+
+min_val, max_val = find_min_max([3, 1, 4, 1, 5, 9])
+print(f"Min.: {min_val}, Max: {max_val}")  # Ausgabe: Min.: 1, Max: 9
+
+result = print_message("Hallo Welt")  # Ausgabe: Nachricht: Hallo Welt
+print(f"Ergebnis der print_message-Funktion: {result}")  # Ausgabe: print_message Funktionsergebnis: None`
+    }
+  ]}
+/>
+
+## Variablenumfang in Funktionen
+
+Variablen in Python haben einen Gültigkeitsbereich, der bestimmt, wo auf Variablen zugegriffen werden kann. Das Verständnis des Variablenbereichs ist wichtig, um Fehler in Programmen zu vermeiden.
+
+<Mermaid
+  title="Wo Funktionsvariablen gelesen werden können"
+  description="Verfolge die Namenssuche vom lokalen Bereich nach außen, um die LEGB-Regel sicher anzuwenden."
+  chart={`
+    flowchart TD
+        A[Built-in Scope] --> B[Global Scope]
+        B --> C[Enclosing Scope]
+        C --> D[Local Scope]
+        A1[Built-in functions] --> A
+        B1[Global variables] --> B
+        C1[Enclosing variables] --> C
+        D1[Local variables] --> D
+  `}
+/>
+
+### Lokale und globale Variablen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "scope_variables.py",
+      code: `# Globale Variable
+counter = 0
+
+def add_counter():
+    # Lokale Variable mit demselben Namen
+    counter = 10
+    print(f"Lokaler Zähler: {counter}")
+
+def add_global_counter():
+    global counter
+    counter += 1
+    print(f"Globaler Zähler: {counter}")
+
+# Anwendungsdemonstration
+print(f"Anfangszähler: {counter}")       # Ausgabe: Anfangszähler: 0
+add_counter()                        # Ausgabe: Lokaler Zähler: 10
+print(f"Zähler nach Funktion: {counter}")  # Ausgabe: Zähler nach Funktion: 0
+add_global_counter()                 # Ausgabe: Globaler Zähler: 1
+print(f"Endgültiger Zähler: {counter}")      # Ausgabe: Endzähler: 1`
+    }
+  ]}
+/>
+
+Variablensuchregeln folgen der LEGB-Reihenfolge:
+
+1. **Lokal**: innerhalb der aktuellen Funktion
+2. **Umschließend**: in einer umschließenden Funktion (bei verschachtelten Funktionen)
+3. **Global**: auf Modulebene
+4. **Eingebaut**: in Python integrierte Namen
+
+## Funktioniert als erstklassige Objekte
+
+In Python sind Funktionen Objekte erster Klasse. Du kannst sie an Namen binden, in Collections speichern, als Argument übergeben und aus anderen Funktionen zurückgeben.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "first_class_functions.py",
+      code: `def multiply_two(x):
+    return x * 2
+
+def multiply_three(x):
+    return x * 3
+
+def apply_operation(function, value):
+    """Funktion auf Wert anwenden"""
+    return function(value)
+
+# Funktion in Variable speichern
+operation = multiply_two
+print(operation(5))  # Ausgabe: 10
+
+# Funktionen in Liste speichern
+operation_list = [multiply_two, multiply_three]
+for op in operation_list:
+    print(op(4))  # Ausgabe: 8, dann 12
+
+# Funktion als Argument übergeben
+result1 = apply_operation(multiply_two, 7)
+result2 = apply_operation(multiply_three, 7)
+print(f"Ergebnisse: {result1}, {result2}")  # Ausgabe: Ergebnisse: 14, 21`
+    }
+  ]}
+/>
+
+## Funktionsdokumentation mit Docstring
+
+Docstring ist ein String-Literal, das als erste Anweisung in einer Funktionsdefinition erscheint. Docstring dient als Dokumentation, um den Zweck und die Verwendung der Funktion zu erläutern.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "docstring_example.py",
+      code: `def calculate_factorial(n):
+    """
+    Berechnet die Fakultät einer positiven ganzen Zahl.
+
+    Parameter:
+        n (int): Nichtnegative ganze Zahl
+
+    Returns:
+        int: Faktorwert von n
+
+    Raises:
+        ValueError: Wenn n negativ ist
+        TypeError: Wenn n keine ganze Zahl ist
+
+    Beispiel:
+        >>> calculate_factorial(5)
+        120
+        >>> calculate_factorial(0)
+        1
+    """
+    if not isinstance(n, int):
+        raise TypeError("Die Eingabe muss eine Ganzzahl sein")
+    if n < 0:
+        raise ValueError("Die Eingabe muss positiv oder Null sein")
+
+    if n <= 1:
+        return 1
+    return n * calculate_factorial(n - 1)
+
+# Auf die Dokumentzeichenfolge zugreifen
+print(calculate_factorial.__doc__)
+
+# Funktion verwenden
+print(calculate_factorial(5))  # Ausgabe: 120
+print(calculate_factorial(0))  # Ausgabe: 1`
+    }
+  ]}
+/>
+
+Gute Konventionen zum Schreiben von Dokumentzeichenfolgen:
+
+1. Die erste Zeile enthält eine kurze Funktionszusammenfassung
+2. Eine ausführliche Erläuterung folgt nach einer Leerzeile
+3. Parameter, Rückgabewerte und mögliche Exceptions werden erklärt
+4. Ein hilfreiches Anwendungsbeispiel ergänzt die Beschreibung bei Bedarf
+
+## Verschachtelte Funktionen und Abschluss
+
+Python erlaubt eine Funktionsdefinition innerhalb einer anderen Funktion. Behält die zurückgegebene innere Funktion eine freie Variable aus dem umschließenden Gültigkeitsbereich, bilden Funktion und gespeicherte Umgebung eine Closure.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "nested_functions.py",
+      code: `def create_multiplier(factor):
+    """Multiplikatorfunktion für einen bestimmten Faktor erstellen"""
+
+    def multiplier(value):
+        """Wert mit dem gespeicherten Faktor multiplizieren"""
+        return value * factor
+
+    return multiplier
+
+# Multiplikatorfunktionen für bestimmte Faktoren erstellen
+multiply_two = create_multiplier(2)
+multiply_five = create_multiplier(5)
+
+print(multiply_two(10))   # Ausgabe: 20
+print(multiply_five(4))   # Ausgabe: 20
+
+def simple_calculator():
+    """Rechner mit verschachtelten Funktionen"""
+
+    def add(a, b):
+        return a + b
+
+    def subtract(a, b):
+        return a - b
+
+    def multiply(a, b):
+        return a * b
+
+    # Gibt ein Wörterbuch zurück, das Funktionen enthält
+    return {
+        'hinzufügen': add,
+        'subtrahieren': subtract,
+        'multiplizieren': multiply
+    }
+
+# Taschenrechner verwenden
+calc = simple_calculator()
+print(calc['hinzufügen'](5, 3))  # Ausgabe: 8
+print(calc['subtrahieren'](10, 4)) # Ausgabe: 6
+print(calc['multiplizieren'](6, 7))    # Ausgabe: 42`
+    }
+  ]}
+/>
+
+## Fehlerbehandlung in Funktionen
+
+Eine Funktion sollte ihren Eingabevertrag deutlich machen und bei einer Verletzung ausdrücklich fehlschlagen. Fange eine Exception nur dort ab, wo der Code sich erholen, hilfreichen Kontext ergänzen oder den Fehler einem Menschen präsentieren kann.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "error_handling.py",
+      code: `def divide(numerator, denominator):
+    """Zwei reelle Zahlen mit einem expliziten Eingabevertrag dividieren."""
+    if not isinstance(numerator, (int, float)):
+        raise TypeError("Der Zähler muss eine reelle Zahl sein")
+    if not isinstance(denominator, (int, float)):
+        raise TypeError("Der Nenner muss eine reelle Zahl sein")
+    if denominator == 0:
+        raise ValueError("Der Nenner darf nicht null sein")
+    return numerator / denominator
+
+def convert_to_int(value):
+    """Einen unterstützten Wert konvertieren und Pythons Fehler bewahren."""
+    return int(value)
+
+# Erfolgreiche Aufrufe bleiben direkt
+print(f"Divisionsergebnis: {divide(10, 2)}")
+# Ausgabe: Divisionsergebnis: 5.0
+print(convert_to_int("123"))
+# Ausgabe: 123
+
+# Erst an der Präsentationsgrenze abfangen, an der Erholung möglich ist
+for value in ("abc", [1, 2]):
+    try:
+        print(convert_to_int(value))
+    except (TypeError, ValueError) as error:
+        print(f"{value!r} konnte nicht konvertiert werden: {error}")`
+    }
+  ]}
+/>

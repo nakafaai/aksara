@@ -1,0 +1,148 @@
+export const metadata = {
+   title: "Slot-Füllungsregel",
+   description: "Lernen Sie die Slot-Füllungsregel in der Kombinatorik mit Tabellen, Baumdiagrammen und Multiplikationsmethoden. Lernen Sie Zählanordnungen anhand von Beispielen und Übungen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Verständnis der Slot-Filling-Regel
+
+**Slot-Füllungsregel** ist eine Methode zur Bestimmung der Anzahl der Möglichkeiten, Objekte in verfügbaren Slots zu platzieren. Dieses Konzept ist sehr nützlich bei der Lösung kombinatorischer Probleme, bei denen wir alle möglichen Anordnungen oder Entscheidungen zählen müssen, die getroffen werden können.
+
+Stellen Sie sich vor, Sie füllen ein Formular mit mehreren Spalten aus. Jede Spalte hat bestimmte Optionen und wir möchten wissen, wie viele verschiedene Möglichkeiten es gibt, das gesamte Formular auszufüllen.
+
+## Tabellenregelmethode
+
+**Tabellenmethode** stellt alle möglichen Kombinationen in einem systematischen Tabellenformat dar. Jede Zeile und Spalte stellt Auswahlmöglichkeiten aus verschiedenen Kategorien dar.
+
+Angenommen, ein Student möchte ein Online-Lernpaket auswählen. Es gibt drei Plattformen (Plattform A, Plattform B, Plattform C) und vier Fächer (Mathematik, Physik, Chemie, Biologie).
+
+Anhand einer Tabelle können wir alle möglichen Kombinationen sehen:
+
+| Plattform | Mathematik | Physik | Chemie | Biologie |
+|----------|-------------|---------|-----------|---------|
+| Plattform A | A-Mathe | A-Phys | A-Chem | A-Bio |
+| Plattform B | B-Mathe | B-Phys | B-Chem | B-Bio |
+| Plattform C | C-Mathe | C-Phys | C-Chem | C-Bio |
+
+<MathContainer>
+<BlockMath math="\text{Gesamtkombinationen} = 3 \times 4 = 12 \text{Wege}" />
+</MathContainer>
+
+## Baumdiagramm-Methode
+
+**Baumdiagramm** stellt jede Auswahl als Baumzweig dar. Diese Methode hilft, die schrittweise Entscheidungsfindung zu visualisieren.
+
+Im gleichen Fall beginnt das Baumdiagramm an einem Anfangspunkt und verzweigt dann in die verfügbaren Auswahlmöglichkeiten.
+
+1. Level <InlineMath math="1" />:
+
+   <BlockMath math="1 \text{Ausgangspunkt} \rightarrow 3 \text{Plattformzweige}" />
+
+2. Level <InlineMath math="2" />:
+
+   <BlockMath math="3 \text{Plattformen} \rightarrow 3 \times 4 = 12 \text{Themenzweige}" />
+
+3. Filialstruktur:
+
+   <BlockMath math="\text{Starten} \rightarrow \text{Plattform} \rightarrow \text{Betreff}" />
+
+4. Gesamte komplette Routen:
+
+   <BlockMath math="3 \times 4 = 12 \text{Kombinationen}" />
+
+## Multiplikationsregelmethode
+
+Die **Multiplikationsregel** ist die effizienteste Methode zur Berechnung der Anzahl der Möglichkeiten, verfügbare Slots zu füllen. Wenn es <InlineMath math="n" /> Slots gibt und jeder Slot <InlineMath math="i" /> <InlineMath math="k_i" /> Auswahlmöglichkeiten hat, dann ist die **Gesamtzahl der zu füllenden Möglichkeiten**:
+
+<MathContainer>
+<BlockMath math="\text{Gesamtwege} = k_1 \times k_2 \times k_3 \times \cdots \times k_n" />
+</MathContainer>
+
+### Beispiel für die Verwendung einer Multiplikationsregel
+
+Eine Schule möchte Zugangscodes für digitale Lernsysteme erstellen. Der Code besteht aus:
+- Erster Platz: <InlineMath math="3 \text{Buchstaben}" /> (<InlineMath math="A, B, C" />)
+- Zweiter Steckplatz: <InlineMath math="5 \text{Zahlen}" /> (<InlineMath math="1, 2, 3, 4, 5" />)
+- Dritter Platz: <InlineMath math="2 \text{Symbole}" /> (<InlineMath math="@, \#" />)
+
+Dann können insgesamt folgende Codes erstellt werden:
+
+<MathContainer>
+<BlockMath math="k_1 = 3 \text{(Buchstabenauswahl)}" />
+<BlockMath math="k_2 = 5 \text{(Zahlenauswahl)}" />
+<BlockMath math="k_3 = 2 \text{(Symbolauswahl)}" />
+<BlockMath math="\text{Insgesamt unterschiedliche Codes} = 3 \times 5 \times 2 = 30 \text{Codes}" />
+</MathContainer>
+
+## Fälle mit Einschränkungen
+
+In manchen Situationen gibt es **bestimmte Einschränkungen**, die sich auf die Anzahl der Auswahlmöglichkeiten in jedem Slot auswirken.
+
+### Wiederholung nicht erlaubt
+
+Wenn dasselbe Objekt **nicht wiederholt verwendet werden kann**, verringert jeder gefüllte Platz die Auswahl für den nächsten Platz.
+
+**Beispiel:** Bildung einer <InlineMath math="3\text{-stelligen}" /> Zahl aus den Ziffern <InlineMath math="2, 3, 4, 5, 6" /> ohne Wiederholung.
+
+<MathContainer>
+<BlockMath math="\text{Erster Steckplatz} = 5 \text{Entscheidungen}" />
+<BlockMath math="\text{Zweiter Steckplatz} = 4 \text{Auswahlmöglichkeiten (1 Ziffer bereits verwendet)}" />
+<BlockMath math="\text{Dritter Steckplatz} = 3 \text{Auswahlmöglichkeiten (2 Ziffern bereits verwendet)}" />
+<BlockMath math="\text{Gesamtzahlen} = 5 \times 4 \times 3 = 60 \text{Zahlen}" />
+</MathContainer>
+
+### Wiederholung erlaubt
+
+Wenn dasselbe Objekt **wiederholt verwendet werden kann**, bleiben die Auswahlmöglichkeiten in jedem Slot gleich.
+
+Für den gleichen Fall mit erlaubter Wiederholung:
+
+<MathContainer>
+<BlockMath math="\text{Jeder Steckplatz} = 5 \text{Entscheidungen}" />
+<BlockMath math="\text{Gesamtzahlen} = 5 \times 5 \times 5 = 125 \text{Zahlen}" />
+</MathContainer>
+
+## Übungen
+
+1. Ein Elektronikgeschäft verkauft Smartphones von <InlineMath math="4" /> verschiedenen Marken, jedes mit <InlineMath math="3" /> Speicherkapazität und <InlineMath math="5" /> Farbauswahl. Wie viele verschiedene Smartphone-Kombinationen gibt es?
+
+2. Um ein Passwort zu erstellen, das aus <InlineMath math="1" /> Buchstaben gefolgt von <InlineMath math="2" /> Zahlen besteht, wobei der Buchstabe aus A, B, C, D und die Zahlen aus <InlineMath math="\{1, 2, 3, 4, 5\}" /> ohne Wiederholung ausgewählt werden. Wie viele Passwörter können erstellt werden?
+
+3. Von der Stadt <InlineMath math="P" /> über die Stadt <InlineMath math="R" /> bis zur Stadt <InlineMath math="Q" /> gibt es <InlineMath math="3" /> Straßen von <InlineMath math="P" /> bis <InlineMath math="Q" /> und <InlineMath math="4" /> Straßen von <InlineMath math="Q" /> bis <InlineMath math="R" />. Wie viele verschiedene Routen kann man für die Fahrt von <InlineMath math="P" /> bis <InlineMath math="R" /> wählen?
+
+4. Erstellen von Kennzeichen, bestehend aus <InlineMath math="2" /> Buchstaben gefolgt von <InlineMath math="3" /> Ziffern. Wenn <InlineMath math="26" /> Buchstaben und <InlineMath math="10" /> Zahlen (<InlineMath math="0\text{-}9" />) zur Verfügung stehen und Wiederholungen erlaubt sind, wie viele Kennzeichen können dann erstellt werden?
+
+### Antwortschlüssel
+
+1. Gegeben: <InlineMath math="4 \text{Marken}" />, <InlineMath math="3 \text{Speicherkapazitäten}" />, <InlineMath math="5 \text{Farbauswahl}" />
+
+   <MathContainer>
+   <BlockMath math="\text{Gesamtkombinationen} = 4 \times 3 \times 5 = 60 \text{Smartphone-Kombinationen}" />
+   </MathContainer>
+
+2. Gegeben: <InlineMath math="1 \text{Brief}" /> aus <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{Zahlen}" /> aus <InlineMath math="\{1, 2, 3, 4, 5\}" /> ohne Wiederholung
+
+   <MathContainer>
+   <BlockMath math="\text{Buchstabenauswahl} = 4" />
+   <BlockMath math="\text{Möglichkeiten für die erste Ziffer} = 5" />
+   <BlockMath math="\text{Möglichkeiten für die zweite Ziffer} = 4 \text{ (ohne Wiederholung)}" />
+   <BlockMath math="\text{Gesamtzahl der Passwörter} = 4 \times 5 \times 4 = 80 \text{Passwörter}" />
+   </MathContainer>
+
+3. Gegeben: <InlineMath math="3 \text{Straßen}" /> von <InlineMath math="P" /> bis <InlineMath math="Q" />, <InlineMath math="4 \text{Straßen}" /> von <InlineMath math="Q" /> bis <InlineMath math="R" />
+
+   <MathContainer>
+   <BlockMath math="\text{Gesamtrouten} = 3 \times 4 = 12 \text{verschiedene Routen}" />
+   </MathContainer>
+
+4. Gegeben: <InlineMath math="2 \text{Buchstaben}" /> aus <InlineMath math="26 \text{Buchstaben}" />, <InlineMath math="3 \text{Zahlen}" /> aus <InlineMath math="10 \text{Zahlen}" />, Wiederholung erlaubt
+
+   <MathContainer>
+   <BlockMath math="\text{Auswahl des ersten Buchstabens} = 26" />
+   <BlockMath math="\text{Auswahl des zweiten Buchstabens} = 26" />
+   <BlockMath math="\text{Jede Zahl zur Auswahl} = 10" />
+   <BlockMath math="\text{Gesamtzahl der Nummernschilder} = 26 \times 26 \times 10 \times 10 \times 10" />
+   <BlockMath math="= 676 \times 1000 = 676000 \text{Nummernschilder}" />
+   </MathContainer>

@@ -1,0 +1,306 @@
+
+
+export const metadata = {
+  title: "Gleichung einer Tangente an eine Kurve",
+  description: "Tangentengleichungen mit Ableitungen, Steigungsberechnungen, einer Visualisierung und vollständig gelösten Aufgaben bestimmen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Ableitungsfunktionen",
+};
+
+## Zusammenhang zwischen Ableitung und Tangente
+
+Die Ableitung beschreibt, wie sich eine Funktion an einer bestimmten Stelle verändert. Geometrisch erscheint diese Änderung als **Steigung** der Tangente am Graphen.
+
+Vergrößern wir eine glatte Kurve in der Umgebung eines Punktes, sieht ein hinreichend kleiner Ausschnitt nahezu gerade aus. Die Gerade, die diese lokale Richtung beschreibt, heißt **Tangente**. An der Stelle <InlineMath math="x=a" /> des Graphen <InlineMath math="y=f(x)" /> ist ihre Steigung gleich dem dortigen Ableitungswert: <InlineMath math="m=f'(a)" />.
+
+## Bestimmen der Gleichung einer Tangente
+
+Für die Gleichung einer Geraden benötigen wir einen Punkt auf der Geraden und ihre Steigung. Bei einer Tangente sind das:
+
+1.  **Berührpunkt:** Ein Punkt <InlineMath math="P(a, b)" />, an dem die Gerade die Kurve berührt.
+2.  **Steigung (m):** Die Steigung der Linie an diesem Punkt, die wir aus der Ableitung <InlineMath math="m = f'(a)" /> erhalten.
+
+Beide Werte werden in die Punkt-Steigungs-Form eingesetzt:
+
+<BlockMath math="y - b = m(x - a)" />
+
+> Wir leiten die Funktion ab, berechnen den Ableitungswert am Berührpunkt und setzen diesen als Steigung zusammen mit dem Punkt in die Geradengleichung ein.
+
+## Ausführliches Beispiel
+
+Bestimme die Gleichung der Tangente an die Parabel <InlineMath math="y = 2 - 4x^2" /> im Punkt <InlineMath math="(1, -2)" />.
+
+**Lösung:**
+
+**Schritt** <InlineMath math="1" />: Steigung der Tangente bestimmen
+
+Wir leiten <InlineMath math="f(x) = 2 - 4x^2" /> ab und erhalten damit die Steigung an jeder Stelle.
+
+<BlockMath math="f'(x) = -8x" />
+
+Der Berührpunkt hat die Koordinate <InlineMath math="x=1" />. Deshalb werten wir die Ableitung dort aus.
+
+<BlockMath math="m = f'(1) = -8(1) = -8" />
+
+Die Steigung der Tangente beträgt also <InlineMath math="-8" />.
+
+**Schritt** <InlineMath math="2" />: Geradengleichung aufstellen
+
+Punkt und Steigung sind nun bekannt:
+-   Berührpunkt <InlineMath math="(a, b) = (1, -2)" />
+-   Steigung <InlineMath math="m = -8" />
+
+Wir setzen beide Werte in die Punkt-Steigungs-Form ein:
+
+<MathContainer>
+    <BlockMath math="y - b = m(x - a)" />
+    <BlockMath math="y - (-2) = -8(x - 1)" />
+    <BlockMath math="y + 2 = -8x + 8" />
+    <BlockMath math="y = -8x + 6" />
+</MathContainer>
+
+Die Gleichung der Tangente lautet also <InlineMath math="y = -8x + 6" />.
+
+<LineEquation
+  title={<>Visualisierung der Tangente an der Parabel</>}
+  description={
+    <>
+      Der Graph zeigt die Parabel <InlineMath math="y = 2 - 4x^2" /> und ihre
+      Tangente <InlineMath math="y = -8x + 6" />. Beide treffen sich genau im
+      Berührpunkt <InlineMath math="(1, -2)" />.
+    </>
+  }
+  showZAxis={false}
+  cameraPosition={[0, 0, 15]}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = -2 + i * 0.1;
+        return { x, y: 2 - 4 * x * x, z: 0 };
+      }),
+      color: "#65a30d",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=2 - 4x^2" />,
+          at: 5,
+          offset: [-2, 3, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 6, z: 0 },
+        { x: 2, y: -10, z: 0 },
+      ],
+      color: "#ca8a04",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=-8x + 6" />,
+          at: 0,
+          offset: [2.5, -2.5, 0],
+        },
+      ],
+    },
+    {
+      points: [{ x: 1, y: -2, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="(1, -2)" />,
+          offset: [1.5, -0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+## Übungen
+
+1.  Bestimme die Gleichung der Tangente an die Kurve <InlineMath math="y = x^2 - 6\frac{1}{5}x + 14\frac{1}{2}" />, die parallel zur Geraden <InlineMath math="x + 2y + 3 = 0" /> verläuft.
+
+2.  Bestimme die Gleichungen der Tangenten an die Parabel <InlineMath math="y = 2x^2 - 3x + 5" /> an den Punkten mit der <InlineMath math="y" />-Koordinate <InlineMath math="4" />.
+
+3.  Die Kurve <InlineMath math="y = 3x - \frac{3}{x^2}" /> schneidet die <InlineMath math="x" />-Achse im Punkt <InlineMath math="P" />. Bestimme die Gleichung der Tangente in diesem Punkt.
+
+4.  Die Kurve <InlineMath math="y = (x^2 + 2)^2" /> schneidet die <InlineMath math="y" />-Achse im Punkt <InlineMath math="A" />. Zeigen Sie, dass die Tangente an die Kurve im Punkt <InlineMath math="A" /> parallel zur <InlineMath math="x" />-Achse verläuft und <InlineMath math="4 \text{Einheiten}" /> vom Ursprung entfernt ist!
+
+5.  Bestimme den Punkt auf der Kurve <InlineMath math="y = 2x^2 - 7x + 1" />, in dem die Tangente mit der positiven <InlineMath math="x" />-Achse einen Winkel von <InlineMath math="45^\circ" /> bildet. Bestimme außerdem die Gleichung dieser Tangente.
+
+### Lösungen
+
+1.  **Lösung:**
+
+    **Schritt** <InlineMath math="1" />: Steigung bestimmen.
+
+    Die Tangente muss parallel zur Geraden <InlineMath math="x + 2y + 3 = 0" /> sein. Wir bringen deren Gleichung zunächst in die Form <InlineMath math="y = mx + c" /> und lesen die Steigung ab.
+
+    <MathContainer>
+        <BlockMath math="2y = -x - 3" />
+        <BlockMath math="y = -\frac{1}{2}x - \frac{3}{2}" />
+    </MathContainer>
+
+    Die Gerade und jede zu ihr parallele Tangente haben somit die Steigung <InlineMath math="m = -\frac{1}{2}" />.
+
+    **Schritt** <InlineMath math="2" />: Berührpunkt bestimmen.
+
+    Die Steigung der Kurve an einem Punkt ist gleich dem Wert der ersten Ableitung an diesem Punkt. Ermitteln wir zunächst die Ableitungsfunktion von <InlineMath math="f(x) = x^2 - \frac{31}{5}x + \frac{29}{2}" />.
+
+    <BlockMath math="f'(x) = 2x - \frac{31}{5}" />
+
+    Die Ableitung am Berührpunkt muss gleich der bekannten Steigung <InlineMath math="m=-\frac{1}{2}" /> sein. Daraus bestimmen wir seine <InlineMath math="x" />-Koordinate.
+
+    <MathContainer>
+        <BlockMath math="2x - \frac{31}{5} = -\frac{1}{2}" />
+        <BlockMath math="2x = \frac{31}{5} - \frac{1}{2} = \frac{62 - 5}{10} = \frac{57}{10}" />
+        <BlockMath math="x = \frac{57}{20}" />
+    </MathContainer>
+
+    Wir setzen die <InlineMath math="x" />-Koordinate <InlineMath math="x=\frac{57}{20}" /> in die ursprüngliche Kurvengleichung ein und erhalten die zugehörige <InlineMath math="y" />-Koordinate.
+
+    <BlockMath math="y = (\frac{57}{20})^2 - \frac{31}{5}(\frac{57}{20}) + \frac{29}{2} = \frac{3249}{400} - \frac{1767}{100} + \frac{29}{2} = \frac{3249 - 7068 + 5800}{400} = \frac{1981}{400}" />
+
+    Der Tangentenpunkt ist also <InlineMath math="\left(\frac{57}{20}, \frac{1981}{400}\right)" />.
+
+    **Schritt** <InlineMath math="3" />: Geradengleichung aufstellen.
+
+    Mit dem Punkt <InlineMath math="\left(\frac{57}{20}, \frac{1981}{400}\right)" /> und der Steigung <InlineMath math="m = -\frac{1}{2}" /> lautet die Gleichung:
+
+    <MathContainer>
+        <BlockMath math="y - \frac{1981}{400} = -\frac{1}{2}\left(x - \frac{57}{20}\right)" />
+        <BlockMath math="y = -\frac{1}{2}x + \frac{57}{40} + \frac{1981}{400}" />
+        <BlockMath math="y = -\frac{1}{2}x + \frac{570 + 1981}{400}" />
+        <BlockMath math="y = -\frac{1}{2}x + \frac{2551}{400}" />
+    </MathContainer>
+
+2.  **Lösung:**
+
+    **Schritt** <InlineMath math="1" />: Berührpunkte bestimmen.
+
+    Da die Ordinate <InlineMath math="4" /> ist, setzen wir <InlineMath math="y=4" /> in die Parabelgleichung.
+
+    <MathContainer>
+        <BlockMath math="4 = 2x^2 - 3x + 5" />
+        <BlockMath math="2x^2 - 3x + 1 = 0" />
+        <BlockMath math="(2x-1)(x-1) = 0" />
+    </MathContainer>
+
+    Die Faktorisierung liefert <InlineMath math="x=1" /> und <InlineMath math="x=\frac{1}{2}" />. Daher gibt es zwei Berührpunkte, <InlineMath math="(1, 4)" /> und <InlineMath math="\left(\frac{1}{2}, 4\right)" />, und entsprechend zwei Tangenten.
+
+    **Schritt** <InlineMath math="2" />: Steigung und Gleichung für jeden Punkt bestimmen.
+
+    Wir betrachten beide Berührpunkte getrennt. Die Ableitung lautet <InlineMath math="f'(x) = 4x - 3" />.
+
+    **Fall Eins: Punkt <InlineMath math="(1, 4)" />**
+
+    Die Steigung beträgt dort <InlineMath math="m = f'(1) = 4(1) - 3 = 1" />.
+
+    Somit lautet die Gleichung:
+
+    <BlockMath math="y - 4 = 1(x - 1) \implies y = x + 3" />
+
+    **Fall zwei: Punkt <InlineMath math="\left(\frac{1}{2}, 4\right)" />**
+
+    Die Steigung beträgt dort <InlineMath math="m = f'(\frac{1}{2}) = 4(\frac{1}{2}) - 3 = -1" />.
+
+    Somit lautet die Gleichung:
+
+    <BlockMath math="y - 4 = -1(x - \frac{1}{2}) \implies y = -x + \frac{9}{2}" />
+
+3.  **Lösung:**
+
+    **Schritt <InlineMath math="1" />: Punkt <InlineMath math="P" /> bestimmen.**
+
+    Die Kurve schneidet die <InlineMath math="x" />-Achse, wenn <InlineMath math="y=0" />.
+
+    <MathContainer>
+        <BlockMath math="0 = 3x - \frac{3}{x^2}" />
+        <BlockMath math="3x = \frac{3}{x^2} \implies 3x^3 = 3 \implies x^3 = 1 \implies x=1" />
+    </MathContainer>
+
+    Der Schnittpunkt <InlineMath math="P" /> ist also <InlineMath math="(1, 0)" />.
+
+    **Schritt** <InlineMath math="2" />: Steigung in <InlineMath math="P" /> bestimmen.
+
+    Wir schreiben die Funktion zunächst als <InlineMath math="f(x) = 3x - 3x^{-2}" />, damit sie sich direkt ableiten lässt.
+
+    <BlockMath math="f'(x) = 3 - (-2)(3)x^{-3} = 3 + \frac{6}{x^3}" />
+
+    Die Steigung bei <InlineMath math="x=1" /> beträgt <InlineMath math="m = f'(1) = 3 + \frac{6}{1^3} = 9" />.
+
+    **Schritt** <InlineMath math="3" />: Geradengleichung aufstellen.
+
+    Mit dem Punkt <InlineMath math="(1, 0)" /> und der Steigung <InlineMath math="9" /> lautet die Gleichung:
+
+    <BlockMath math="y - 0 = 9(x - 1) \implies y = 9x - 9" />
+
+4.  **Lösung:**
+
+    **Schritt <InlineMath math="1" />: Punkt <InlineMath math="A" /> bestimmen.**
+
+    Die Kurve schneidet die <InlineMath math="y" />-Achse, wenn <InlineMath math="x=0" />.
+
+    <BlockMath math="y = (0^2 + 2)^2 = 4" />
+
+    Der Schnittpunkt <InlineMath math="A" /> ist also <InlineMath math="(0, 4)" />.
+
+    **Schritt <InlineMath math="2" />: Parallelität zur <InlineMath math="x" />-Achse zeigen.**
+
+    Eine Gerade parallel zur <InlineMath math="x" />-Achse hat die Steigung <InlineMath math="0" />. Deshalb prüfen wir den Ableitungswert im Punkt <InlineMath math="A" /> an der Stelle <InlineMath math="x=0" />.
+
+    Die Ableitung von <InlineMath math="f(x)=(x^2+2)^2" /> unter Verwendung der Kettenregel ist <InlineMath math="f'(x) = 2(x^2+2)(2x) = 4x(x^2+2)" />.
+
+    Die Steigung bei <InlineMath math="x=0" /> beträgt <InlineMath math="m = f'(0) = 4(0)(0^2+2) = 0" />.
+
+    Die Tangente hat also die Steigung null und verläuft parallel zur <InlineMath math="x" />-Achse.
+
+    **Schritt <InlineMath math="3" />: Abstand von <InlineMath math="4 \text{Einheiten}" /> zum Ursprung zeigen.**
+
+    Die Gleichung der Tangente am Punkt <InlineMath math="(0,4)" /> mit der Steigung <InlineMath math="m=0" /> lautet:
+
+    <BlockMath math="y - 4 = 0(x - 0) \implies y = 4" />
+
+    Die Gerade <InlineMath math="y=4" /> ist waagerecht. Jeder ihrer Punkte hat zur <InlineMath math="x" />-Achse, also zur Geraden <InlineMath math="y=0" />, den Abstand <InlineMath math="4 \text{Einheiten}" />. Da der Ursprung <InlineMath math="(0,0)" /> auf der <InlineMath math="x" />-Achse liegt, beträgt auch sein Abstand zur Tangente <InlineMath math="4 \text{Einheiten}" />. Damit sind beide Aussagen gezeigt.
+
+5.  **Lösung:**
+
+    **Schritt** <InlineMath math="1" />: Steigung aus dem Winkel bestimmen.
+
+    Die Beziehung zwischen der Steigung (<InlineMath math="m" />) und dem Winkel (<InlineMath math="\theta" />), den eine Linie mit der positiven <InlineMath math="x" />-Achse bildet, ist durch <InlineMath math="m = \tan(\theta)" /> gegeben.
+
+    <BlockMath math="m = \tan(45^\circ) = 1" />
+
+    Die Steigung der gesuchten Tangente beträgt also <InlineMath math="1" />.
+
+    **Schritt** <InlineMath math="2" />: Koordinaten des Berührpunkts bestimmen.
+
+    Die Steigung der Tangente ist zugleich der Ableitungswert der Kurve <InlineMath math="f(x) = 2x^2 - 7x + 1" />.
+
+    <BlockMath math="f'(x) = 4x - 7" />
+
+    Wir setzen die Ableitung gleich der zuvor bestimmten Steigung:
+
+    <MathContainer>
+        <BlockMath math="4x - 7 = 1" />
+        <BlockMath math="4x = 8 \implies x = 2" />
+    </MathContainer>
+
+    Durch Einsetzen von <InlineMath math="x=2" /> in die Kurvengleichung erhalten wir die <InlineMath math="y" />-Koordinate:
+
+    <BlockMath math="y = 2(2)^2 - 7(2) + 1 = 8 - 14 + 1 = -5" />
+
+    Die Koordinaten des Tangentenpunkts lauten also <InlineMath math="(2, -5)" />.
+
+    **Schritt** <InlineMath math="3" />: Tangentengleichung bestimmen.
+
+    Mit dem Punkt <InlineMath math="(2, -5)" /> und der Steigung <InlineMath math="m=1" /> gilt:
+
+    <MathContainer>
+        <BlockMath math="y - (-5) = 1(x - 2)" />
+        <BlockMath math="y + 5 = x - 2" />
+        <BlockMath math="y = x - 7" />
+    </MathContainer>

@@ -1,0 +1,91 @@
+
+export const metadata = {
+  title: "Anhalteweg",
+  description:
+    "Den Anhalteweg als Summe aus Reaktionsweg und Bremsweg verstehen und mit einer konstanten Bremsverzögerung berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Der Anhalteweg besteht aus Reaktionsweg und Bremsweg
+
+Der **Anhalteweg** ist die gesamte Strecke, die ein Fahrzeug bis zum Stillstand zurücklegt. Er beginnt bereits in dem Moment, in dem der Fahrer eine Gefahr erkennt, nicht erst beim Betätigen der Bremse.
+
+Während der Reaktionszeit fährt das Fahrzeug mit seiner Anfangsgeschwindigkeit weiter. Erst danach beginnt der eigentliche Bremsweg.
+
+<MathContainer>
+  <BlockMath math="d_{\text{Anhalte}}=d_{\text{Reaktion}}+d_{\text{Bremse}}" />
+  <BlockMath math="d_{\text{Reaktion}}=vt_r" />
+</MathContainer>
+
+Der Anhaltevorgang hat somit zwei Phasen: Zuerst reagiert der Fahrer, während das Fahrzeug unverändert weiterfährt. Danach wirken die Bremsen und verringern die Geschwindigkeit bis auf null.
+
+| Teil | Was passiert | Wovon er abhängt |
+| --- | --- | --- |
+| Reaktionsweg | Das Fahrzeug bewegt sich weiterhin mit seiner Anfangsgeschwindigkeit | Geschwindigkeit und Reaktionszeit |
+| Bremsweg | Das Fahrzeug wird langsamer, bis es zum Stillstand kommt | Anfangsgeschwindigkeit und Betrag der Bremsverzögerung |
+
+<StoppingDistanceLab
+  title={<>Anhalteweg eines Autos</>}
+  description={
+    <>
+      Ändere die Anfangsgeschwindigkeit und vergleiche den grünen Reaktionsweg
+      mit dem orangefarbenen Bremsweg.
+    </>
+  }
+  labels={{
+    chooseSpeed: "Anfangsgeschwindigkeit wählen",
+    speed: <>Anfangsgeschwindigkeit</>,
+    reactionDistance: <>Reaktionsweg</>,
+    brakingDistance: <>Bremsweg</>,
+    stoppingDistance: <>Anhalteweg</>,
+    viewLabel: "Reaktionsweg, Bremsweg und gesamter Anhalteweg eines Autos",
+  }}
+/>
+
+## Der Bremsweg folgt aus einer konstanten Verzögerung
+
+Während die Bremsen wirken, wird das Fahrzeug langsamer. Nehmen wir eine konstante Verzögerung und die Endgeschwindigkeit null an, lässt sich der Bremsweg mit einer Gleichung der gleichmäßig beschleunigten Bewegung bestimmen.
+
+<MathContainer>
+  <BlockMath math="v_t^2=v_0^2+2a\Delta x" />
+  <BlockMath math="0=v^2-2b\,d_{\text{Bremse}}" />
+  <BlockMath math="d_{\text{Bremse}}=\frac{v^2}{2b}" />
+</MathContainer>
+
+Die Größe <InlineMath math="b" /> ist der Betrag der Bremsverzögerung und wird deshalb positiv eingesetzt.
+
+Die Formel setzt eine gerade Strecke, eine konstante Bremsverzögerung und ein Fahrzeug ohne Schleudern voraus. Ändern sich Fahrbahn oder Reifenhaftung, ändert sich auch der Wert von <InlineMath math="b" />.
+
+## Mit der Geschwindigkeit wächst der Bremsweg quadratisch
+
+Der Reaktionsweg ist direkt proportional zur Geschwindigkeit. Bei gleicher Reaktionszeit verdoppelt er sich, wenn sich die Geschwindigkeit verdoppelt.
+
+Der Bremsweg wächst stärker, weil die Formel <InlineMath math="v^2" /> enthält. Bei gleichbleibender Fahrzeugmasse folgt auch die kinetische Energie <InlineMath math="K=\frac{1}{2}mv^2" /> dem Quadrat des Geschwindigkeitsbetrags. Bremsen und Reifen-Fahrbahn-Kräfte müssen diese Energie abbauen, bis das Fahrzeug steht.
+
+Angenommen, die Reaktionszeit beträgt <InlineMath math="1\text{ s}" /> und die Größe der Bremsverzögerung beträgt <InlineMath math="5\text{ m/s}^2" />.
+
+| Geschwindigkeit | Reaktionsweg | Bremsweg | Anhalteweg |
+| --- | --- | --- | --- |
+| <InlineMath math="10\text{ m/s}" /> | <InlineMath math="10\text{ m}" /> | <InlineMath math="10\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
+| <InlineMath math="20\text{ m/s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="40\text{ m}" /> | <InlineMath math="60\text{ m}" /> |
+| <InlineMath math="30\text{ m/s}" /> | <InlineMath math="30\text{ m}" /> | <InlineMath math="90\text{ m}" /> | <InlineMath math="120\text{ m}" /> |
+
+Steigt die Geschwindigkeit von <InlineMath math="10\text{ m/s}" /> auf <InlineMath math="20\text{ m/s}" />, wächst der Anhalteweg von <InlineMath math="20\text{ m}" /> auf <InlineMath math="60\text{ m}" />. Er verdoppelt sich nicht nur, weil der Bremsanteil quadratisch von der Geschwindigkeit abhängt.
+
+## Rechenbeispiel unter festgelegten Bedingungen
+
+Ein Fahrzeug bewegt sich mit <InlineMath math="20\text{ m/s}" />. Die Reaktionszeit des Fahrers beträgt <InlineMath math="1\text{ s}" /> und die Größe der Bremsverzögerung beträgt <InlineMath math="5\text{ m/s}^2" />.
+
+<MathContainer>
+  <BlockMath math="d_{\text{Reaktion}}=20(1)=20\text{ m}" />
+  <BlockMath math="d_{\text{Bremse}}=\frac{20^2}{2(5)}=40\text{ m}" />
+  <BlockMath math="d_{\text{Anhalte}}=20+40=60\text{ m}" />
+</MathContainer>
+
+Unter den genannten Bedingungen ergibt dieses Unterrichtsmodell einen Anhalteweg von <InlineMath math="60\text{ m}" />.
+
+Die <InlineMath math="60\text{ m}" /> bestehen aus <InlineMath math="20\text{ m}" /> Reaktionsweg vor dem Bremsen und <InlineMath math="40\text{ m}" /> Bremsweg während der Verzögerung.
+
+> Das Ergebnis ist ein Rechenbeispiel und keine Empfehlung für einen sicheren Straßenabstand. Der tatsächliche Anhalteweg hängt unter anderem von Wahrnehmungs- und Reaktionszeit, Fahrbahn, Reifen, Wetter, Gefälle und Bremsleistung ab. Zum Vergleich verwendet ein [Bemessungsbeispiel der FHWA](https://highways.fhwa.dot.gov/safety/speed-management/guidelines-use-variable-speed-limit-systems-wet-weather/chapter-2-driver) eine Wahrnehmungs- und Reaktionszeit von <InlineMath math="2{,}5\text{ s}" /> sowie eine Verzögerung von <InlineMath math="3{,}4\text{ m/s}^2" />.

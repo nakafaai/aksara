@@ -1,0 +1,40 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 1",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-16",
+};
+
+Von <InlineMath math="07:00" /> bis <InlineMath math="09:24" /> vergehen:
+
+<MathContainer>
+  <BlockMath math="\text{Dauer} = 09:24 - 07:00 = 2 \text{ Stunden } 24 \text{ Minuten}" />
+  <BlockMath math="= (2 \times 60) + 24 = 120 + 24 = 144 \text{ Minuten}" />
+</MathContainer>
+
+Der vierte gemeinsame Durchgang findet nach <InlineMath math="144\text{ Minuten}" /> statt. Zwischen zwei gemeinsamen Durchgängen liegen daher:
+
+<MathContainer>
+  <BlockMath math="\frac{144 \text{ Minuten}}{4 \text{ Durchgänge}} = 36 \text{ Minuten}" />
+</MathContainer>
+
+Dieses gemeinsame Durchgangsintervall entspricht dem kleinsten gemeinsamen Vielfachen (kgV) der Rundenzeiten.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \text{Läufer A} &amp;= 12 \text{ Minuten} \\ \text{Läufer B} &amp;= x \text{ Minuten} \\ \text{Läufer C} &amp;= 9 \text{ Minuten} \end{aligned}" />
+</MathContainer>
+
+Gesucht ist <InlineMath math="x" /> mit <InlineMath math="\text{kgV}(12, x, 9) = 36" />. Zunächst bestimmen wir das kgV von <InlineMath math="12" /> und <InlineMath math="9" />:
+
+<MathContainer>
+  <BlockMath math="\text{kgV}(12, 9) = 36" />
+</MathContainer>
+
+Da <InlineMath math="\text{kgV}(12, 9)" /> bereits <InlineMath math="36" /> beträgt, muss die Rundenzeit <InlineMath math="x" /> das Ergebnis <InlineMath math="\text{kgV}(12, 9, x)" /> bei <InlineMath math="36" /> belassen. Wir prüfen die Antwortmöglichkeiten:
+
+- Für <InlineMath math="x = 5" /> gilt <InlineMath math="\text{kgV}(36, 5) = 180" /> (falsch).
+- Für <InlineMath math="x = 6" /> gilt <InlineMath math="\text{kgV}(36, 6) = 36" /> (richtig).
+- Für <InlineMath math="x = 7" /> gilt <InlineMath math="\text{kgV}(36, 7) = 252" /> (falsch).
+- Für <InlineMath math="x = 10" /> gilt <InlineMath math="\text{kgV}(36, 10) = 180" /> (falsch).
+- Für <InlineMath math="x = 13" /> gilt <InlineMath math="\text{kgV}(36, 13) = 468" /> (falsch).
+
+Nur <InlineMath math="x = 6" /> ergibt den verlangten Abstand zwischen den gemeinsamen Durchgängen.

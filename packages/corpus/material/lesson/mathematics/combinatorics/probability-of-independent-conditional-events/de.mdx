@@ -1,0 +1,175 @@
+export const metadata = {
+    title: "Bedingte Wahrscheinlichkeit und Unabhängigkeit",
+    description: "Bedingte Wahrscheinlichkeiten berechnen, Abhängigkeit von Unabhängigkeit unterscheiden und mehrstufige Ziehungen lösen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Kombinatorik",
+};
+
+## Grundlegende Konzepte verstehen
+
+Stellen Sie sich vor, Sie ziehen eine Karte aus einem Stapel und danach zieht ein Freund die nächste. Verändert Ihre Karte die Wahrscheinlichkeit seiner möglichen Karten? Ohne Zurücklegen ist das oft der Fall. Mit der **bedingten Wahrscheinlichkeit** berechnen wir die zweite Wahrscheinlichkeit anhand der Information aus der ersten Ziehung.
+
+Die **bedingte Wahrscheinlichkeit** von <InlineMath math="B" /> unter der Bedingung <InlineMath math="A" /> fragt: Welcher Anteil der Ergebnisse mit <InlineMath math="A" /> erfüllt zusätzlich <InlineMath math="B" />? Ändert sich die Antwort durch <InlineMath math="A" />, sind die Ereignisse abhängig. Bleibt sie gleich, sind sie unabhängig.
+
+Entscheidend ist, die möglichen Ergebnisse anhand der bereits bekannten **Bedingung** zu aktualisieren, bevor wir die nächste Wahrscheinlichkeit berechnen.
+
+## Mathematische Formel und Notation
+
+Für Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> mit <InlineMath math="P(A) > 0" /> wird die bedingte Wahrscheinlichkeit definiert durch:
+
+<BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
+
+dabei gilt:
+- <InlineMath math="P(B|A)" /> ist die Wahrscheinlichkeit von <InlineMath math="B" /> unter der Bedingung, dass <InlineMath math="A" /> eingetreten ist
+- <InlineMath math="P(A \cap B)" /> ist die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math="B" /> gemeinsam eintreten
+- <InlineMath math="P(A)" /> ist die Wahrscheinlichkeit des bedingenden Ereignisses <InlineMath math="A" />
+
+Durch Neuordnung der Definition erhält man die allgemeine Multiplikationsregel:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
+
+Sind die Ereignisse unabhängig, ändert die Information über <InlineMath math="A" /> nichts an der Wahrscheinlichkeit von <InlineMath math="B" />:
+
+<BlockMath math="P(B|A) = P(B)" />
+
+## Anwendung beim Kartenziehen
+
+### Szenario mit Ass und König
+
+Ein übliches Kartenspiel enthält <InlineMath math="52 \text{Karten}" />, darunter <InlineMath math="4 \text{Asse}" /> und <InlineMath math="4 \text{Könige}" />. Zwei Karten werden ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit für zuerst ein Ass und danach einen König?
+
+**Schritt-für-Schritt-Analyse:**
+
+Wir definieren:
+- Ereignis <InlineMath math="C" />: Bei der ersten Ziehung kommt ein Ass
+- Ereignis <InlineMath math="D" />: Bei der zweiten Ziehung kommt ein König
+
+Wahrscheinlichkeitsrechnung:
+
+<MathContainer>
+<BlockMath math="P(C) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(D|C) = \frac{4}{51}" />
+<BlockMath math="P(C \cap D) = P(C) \times P(D|C) = \frac{4}{52} \times \frac{4}{51} = \frac{1}{13} \times \frac{4}{51} = \frac{4}{663}" />
+</MathContainer>
+
+Nachdem ein Ass gezogen wurde, bleiben <InlineMath math="51 \text{Karten}" /> übrig. Alle <InlineMath math="4 \text{Könige}" /> sind noch vorhanden, daher beträgt die bedingte Wahrscheinlichkeit, einen König zu ziehen, <InlineMath math="\frac{4}{51}" />.
+
+### Zwei Herzkarten nacheinander
+
+Beim Ziehen zweier Herzkarten verändert sich auch die Anzahl der günstigen Karten:
+
+- Erste Ziehung: <InlineMath math="P(A) = \frac{13}{52} = \frac{1}{4}" />
+- Zweite Ziehung nach Erhalt eines Herzens: <InlineMath math="P(B|A) = \frac{12}{51}" />
+
+Die Wahrscheinlichkeit, bei beiden Ziehungen ein Herz zu ziehen, beträgt daher:
+
+<BlockMath math="P(A \cap B) = \frac{13}{52} \times \frac{12}{51} = \frac{156}{2652} = \frac{1}{17}" />
+
+## Anwendung in der Managementauswahl
+
+Stellen Sie sich ein hypothetisches Unternehmen vor, das die Verteilung der Manager nach Geschlecht und Stellenebene überprüft. Seine Daten haben folgende Zusammensetzung:
+
+| Führungsposition | Männlich | Weiblich | Gesamt |
+|------------------|---------------|---------------|-------|
+| Senior (S) | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
+| Mitte (M) | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
+| Junior (J) | <InlineMath math="44" /> | <InlineMath math="156" /> | <InlineMath math="200" /> |
+| **Gesamt** | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="600" /> |
+
+Sei <InlineMath math="L" /> das Ereignis, dass eine ausgewählte Führungskraft männlich ist.
+
+Das Unternehmen wählt nach dem Zufallsprinzip zwei ersatzlose Manager für ein Gremium aus. Die Wahrscheinlichkeit, dass beide ausgewählten Manager männlich sind, beträgt:
+
+<MathContainer>
+<BlockMath math="P(L_1) = \frac{200}{600} = \frac{1}{3}" />
+<BlockMath math="P(L_2|L_1) = \frac{199}{599}" />
+<BlockMath math="P(L_1 \cap L_2) = \frac{200}{600} \times \frac{199}{599} = \frac{1}{3} \times \frac{199}{599} = \frac{199}{1797}" />
+</MathContainer>
+
+Nach der Auswahl eines männlichen Managers bleiben insgesamt <InlineMath math="599" /> Manager mit <InlineMath math="199" /> männlichen Managern übrig, sodass die Wahrscheinlichkeit, einen zweiten männlichen Manager auszuwählen, auf <InlineMath math="\frac{199}{599}" /> sinkt.
+
+## Problemlösungsstrategie
+
+### Schritt für Schritt
+
+So lösen Sie Aufgaben zur bedingten Wahrscheinlichkeit:
+
+1. **Benenne die Ereignisse** der ersten und zweiten Stufe eindeutig
+2. **Aktualisiere die Bedingungen**, nachdem das erste Ereignis eingetreten ist
+3. **Berechne die Wahrscheinlichkeit** des ersten Ereignisses aus der Ausgangslage
+4. **Berechne die bedingte Wahrscheinlichkeit** des zweiten Ereignisses aus der neuen Lage
+5. **Multipliziere beide Wahrscheinlichkeiten**, um die gemeinsame Wahrscheinlichkeit zu erhalten
+
+### Unabhängig oder abhängig?
+
+Bei **unabhängigen Ereignissen** ändert die Bedingung die nächste Wahrscheinlichkeit nicht. Bei **abhängigen Ereignissen** ändert das bekannte Ergebnis entweder die günstige Anzahl, die Gesamtanzahl oder beides.
+
+**Konkretes Beispiel: Zwei Asse ziehen**
+
+Wir berechnen die Wahrscheinlichkeit dafür, aus einem üblichen Kartenspiel nacheinander zwei Asse zu ziehen (<InlineMath math="52 \text{Karten}" />, davon <InlineMath math="4" /> Asse).
+
+1. **Unabhängige Ziehungen (mit Zurücklegen):**
+
+    Nach der ersten Ziehung wird die Karte zurückgelegt und der Stapel neu gemischt:
+
+    <MathContainer>
+    <BlockMath math="P(As_1) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(As_2) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(As_1 \cap As_2) = \frac{4}{52} \times \frac{4}{52} = \frac{1}{13} \times \frac{1}{13} = \frac{1}{169}" />
+    </MathContainer>
+
+2. **Abhängige Ziehungen (ohne Zurücklegen):**
+
+    Die erste Karte wird nicht zurückgelegt:
+
+    <MathContainer>
+    <BlockMath math="P(As_1) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(As_2|As_1) = \frac{3}{51} = \frac{1}{17}" />
+    <BlockMath math="P(As_1 \cap As_2) = \frac{4}{52} \times \frac{3}{51} = \frac{1}{13} \times \frac{1}{17} = \frac{1}{221}" />
+    </MathContainer>
+
+**Ergebnisvergleich:**
+- Mit Zurücklegen: <InlineMath math="\frac{1}{169} = 0{,}00592" />
+- Ohne Zurücklegen: <InlineMath math="\frac{1}{221} = 0{,}00452" />
+
+In diesem Beispiel ist das Ergebnis ohne Zurücklegen **kleiner**. Nach dem ersten Ass sinkt die Zahl der verbleibenden Asse von <InlineMath math="4" /> auf <InlineMath math="3" />, während die Gesamtzahl der Karten von <InlineMath math="52" /> auf <InlineMath math="51" /> fällt.
+
+## Übungen
+
+1. Eine Schachtel enthält <InlineMath math="8 \text{rote Kugeln}" /> und <InlineMath math="12 \text{blaue Kugeln}" />. Zwei Kugeln werden nacheinander ohne Zurücklegen gezogen. Berechne die Wahrscheinlichkeit für zuerst Rot und danach Blau.
+
+2. Ein Kartenspiel wird gemischt. Drei Karten werden nacheinander ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit für Ass, dann König, dann Dame?
+
+Bearbeiten Sie jede Aufgabe selbst, bevor Sie die ausführliche Lösung lesen. Notieren Sie bei jeder Ziehung die Anzahl der günstigen Karten und die neue Gesamtzahl, bevor Sie multiplizieren.
+
+### Ausführliche Lösungen
+
+1. **Lösung:**
+
+   Sei <InlineMath math="A" /> das Ereignis „erste Kugel rot“ und <InlineMath math="B" /> das Ereignis „zweite Kugel blau“.
+
+   Zu Beginn liegen <InlineMath math="8 + 12 = 20 \text{Kugeln}" /> in der Schachtel.
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{8}{20} = \frac{2}{5}" />
+   <BlockMath math="P(B|A) = \frac{12}{19}" />
+   <BlockMath math="P(A \cap B) = \frac{8}{20} \times \frac{12}{19} = \frac{2}{5} \times \frac{12}{19} = \frac{24}{95}" />
+   </MathContainer>
+
+   Nach einer roten Kugel bleiben insgesamt <InlineMath math="19 \text{Kugeln}" /> (<InlineMath math="8 - 1 = 7" /> rote und <InlineMath math="12" /> blaue). Die Zahl der blauen Kugeln bleibt <InlineMath math="12" />, daher beträgt die Wahrscheinlichkeit für Blau bei der zweiten Ziehung <InlineMath math="\frac{12}{19}" />.
+
+2. **Lösung:**
+
+   Sei <InlineMath math="A" /> das Ereignis „zuerst Ass“, <InlineMath math="K" /> das Ereignis „danach König“ und <InlineMath math="Q" /> das Ereignis „zuletzt Dame“.
+
+   Das Kartenspiel enthält <InlineMath math="52 \text{Karten}" />: <InlineMath math="4" /> Asse, <InlineMath math="4" /> Könige und <InlineMath math="4" /> Damen.
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+   <BlockMath math="P(K|A) = \frac{4}{51}" />
+   <BlockMath math="P(Q|A \cap K) = \frac{4}{50} = \frac{2}{25}" />
+   <BlockMath math="P(A \cap K \cap Q) = \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} = \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} = \frac{8}{16575}" />
+   </MathContainer>
+
+   Bei jedem Ziehen sinkt die Gesamtzahl der Karten (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). Vom jeweils als Nächstes gesuchten Rang sind noch alle <InlineMath math="4" /> Karten vorhanden: Ein gezogenes Ass entfernt keinen König, und ein gezogener König entfernt keine Dame.

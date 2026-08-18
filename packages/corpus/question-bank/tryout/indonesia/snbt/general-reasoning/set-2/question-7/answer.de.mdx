@@ -1,0 +1,26 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 7",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-01",
+};
+
+Zunächst halten wir die Anzahl der Möglichkeiten für jede Position fest:
+
+| Ziffer aus <InlineMath math="\{2, 4, 6, 8\}" /> | Erster Buchstabe (nicht <InlineMath math="\mathrm{E}" />) | Ziffer aus <InlineMath math="\{5, 6, 7\}" /> | Zweiter Buchstabe (<InlineMath math="\mathrm{U}" />) |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="2, 4, 6, 8" /> | <InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" /> | <InlineMath math="5, 6, 7" /> | <InlineMath math="\mathrm{U}" /> |
+| <InlineMath math="4" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="1" /> |
+
+Aus der obigen Tabelle erhalten wir die Anzahl der Auswahlmöglichkeiten für jede Position:
+- **Position** <InlineMath math="1" />: Die Menge <InlineMath math="\{2, 4, 6, 8\}" /> liefert <InlineMath math="4" /> Möglichkeiten. Da die Menge ausdrücklich vorgegeben ist, wird <InlineMath math="0" /> nicht mitgezählt.
+- **Position** <InlineMath math="2" />: Vokale außer <InlineMath math="\mathrm{E}" /> (<InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" />) haben <InlineMath math="4" /> Auswahlmöglichkeiten.
+- **Position** <InlineMath math="3" />: Ziffern aus der Menge <InlineMath math="\{5, 6, 7\}" /> haben <InlineMath math="3" /> Auswahlmöglichkeiten.
+- **Position** <InlineMath math="4" />: Der Buchstabe <InlineMath math="\mathrm{U}" /> hat nur <InlineMath math="1" /> Auswahl.
+
+Da die Entscheidungen für die vier Positionen unabhängig miteinander kombiniert werden, verwenden wir die Produktregel:
+
+<MathContainer>
+  <BlockMath math="4 \times 4 \times 3 \times 1 = 48" />
+</MathContainer>
+
+Somit gibt es <InlineMath math="48" /> mögliche Passwörter.

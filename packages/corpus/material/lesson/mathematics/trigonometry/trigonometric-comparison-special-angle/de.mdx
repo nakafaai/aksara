@@ -1,0 +1,61 @@
+
+export const metadata = {
+  title: "Spezielle Winkel in trigonometrischen Vergleichen",
+  description: "Leite die exakten Sinus-, Kosinus- und Tangenswerte für 0°, 30°, 45°, 60° und 90° aus besonderen Dreiecken und dem Einheitskreis her.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-14",
+  subject: "Trigonometrie",
+};
+
+## Was sind Sonderwinkel?
+
+Sonderwinkel sind Winkel, deren trigonometrische Werte sich ohne Taschenrechner exakt angeben lassen. Es geht nicht nur darum, eine Tabelle auswendig zu lernen. Die Werte folgen aus zwei bekannten rechtwinkligen Dreiecken und aus den Koordinaten auf dem Einheitskreis.
+
+Die gebräuchlichsten Sonderwinkel sind <InlineMath math="0^\circ" />, <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />, <InlineMath math="60^\circ" /> und <InlineMath math="90^\circ" />.
+
+<UnitCircle
+  title="Visualisierung spezieller Winkel auf dem Einheitskreis"
+  description={
+    <>
+      Stelle den Schieberegler auf <InlineMath math="0^\circ" />,{" "}
+      <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />,{" "}
+      <InlineMath math="60^\circ" /> oder <InlineMath math="90^\circ" />, um die
+      Lage dieser Sonderwinkel zu vergleichen.
+    </>
+  }
+  angle={45}
+/>
+
+## Woher die exakten Werte kommen
+
+### Das <InlineMath math="45^\circ" />-Dreieck
+
+Teilt man ein Quadrat entlang einer Diagonalen, entstehen gleichschenklige rechtwinklige Dreiecke. Sind beide Katheten <InlineMath math="1" /> lang, liefert der Satz des Pythagoras die Hypotenuse <InlineMath math="\sqrt{2}" />:
+
+<MathContainer>
+  <BlockMath math="1^2+1^2=(\sqrt{2})^2" />
+  <BlockMath math="\sin 45^\circ=\cos 45^\circ=\frac{1}{\sqrt{2}}=\frac{\sqrt{2}}{2}" />
+  <BlockMath math="\tan 45^\circ=\frac{1}{1}=1" />
+</MathContainer>
+
+### Das <InlineMath math="30^\circ" />- und <InlineMath math="60^\circ" />-Dreieck
+
+Halbiert man ein gleichseitiges Dreieck mit Seitenlänge <InlineMath math="2" />, entstehen zwei rechtwinklige Dreiecke. Die Seiten gegenüber <InlineMath math="30^\circ" />, gegenüber <InlineMath math="60^\circ" /> und entlang der Hypotenuse haben die Längen <InlineMath math="1" />, <InlineMath math="\sqrt{3}" /> und <InlineMath math="2" />:
+
+<MathContainer>
+  <BlockMath math="\sqrt{2^2-1^2}=\sqrt{3}" />
+  <BlockMath math="\sin 30^\circ=\cos 60^\circ=\frac{1}{2}" />
+  <BlockMath math="\cos 30^\circ=\sin 60^\circ=\frac{\sqrt{3}}{2}" />
+</MathContainer>
+
+Die Werte bei <InlineMath math="0^\circ" /> und <InlineMath math="90^\circ" /> stammen von den Einheitskreispunkten <InlineMath math="(1,0)" /> und <InlineMath math="(0,1)" />. Weil der Tangens <InlineMath math="\sin \theta/\cos \theta" /> ist, ist <InlineMath math="\tan 90^\circ" /> nicht definiert: Sein Nenner ist null.
+
+## Tabelle der exakten Werte
+
+Die Herleitungen ergeben diese Tabelle:
+
+| Verhältnis | <InlineMath math="0^\circ" /> | <InlineMath math="30^\circ" /> | <InlineMath math="45^\circ" /> | <InlineMath math="60^\circ" /> | <InlineMath math="90^\circ" /> |
+| --------------------------------- | ------------------------ | ------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------- | ------------------------- |
+| <InlineMath math="\sin \theta" /> | <InlineMath math="0" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="\frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="1" /> |
+| <InlineMath math="\cos \theta" /> | <InlineMath math="1" /> | <InlineMath math="\frac{\sqrt{3}}{2}" /> | <InlineMath math="\frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="0" /> |
+| <InlineMath math="\tan \theta" /> | <InlineMath math="0" /> | <InlineMath math="\frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}" /> | <InlineMath math="1" /> | <InlineMath math="\sqrt{3}" /> | <InlineMath math="\text{nicht definiert}" /> |

@@ -45,8 +45,8 @@ function validLength(value: string | undefined, maximumBytes: number) {
   return Number.isSafeInteger(bytes) && bytes >= 0 && bytes <= maximumBytes;
 }
 
-/** Reads strict UTF-8 response text without crossing the byte ceiling. */
-export const readText = Effect.fn("AksaraUtilities.readText")(
+/** Reads exact response bytes without crossing the declared ceiling. */
+export const readBytes = Effect.fn("AksaraUtilities.readBytes")(
   (response: HttpClientResponse.HttpClientResponse, maximumBytes: number) => {
     if (!validLength(response.headers["content-length"], maximumBytes)) {
       return Effect.fail(new BodyError({ reason: "length" }));
@@ -68,13 +68,20 @@ export const readText = Effect.fn("AksaraUtilities.readText")(
           size,
         });
       }),
-      Effect.map((body) => joinBytes(body.chunks, body.size)),
+      Effect.map((body) => joinBytes(body.chunks, body.size))
+    );
+  }
+);
+
+/** Reads strict UTF-8 response text without crossing the byte ceiling. */
+export const readText = Effect.fn("AksaraUtilities.readText")(
+  (response: HttpClientResponse.HttpClientResponse, maximumBytes: number) =>
+    readBytes(response, maximumBytes).pipe(
       Effect.flatMap((bytes) =>
         Effect.try({
           catch: () => new BodyError({ reason: "encoding" }),
           try: () => new TextDecoder("utf-8", { fatal: true }).decode(bytes),
         })
       )
-    );
-  }
+    )
 );

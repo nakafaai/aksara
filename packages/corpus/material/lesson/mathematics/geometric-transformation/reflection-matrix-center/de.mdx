@@ -1,0 +1,146 @@
+
+export const metadata = {
+  title: "Spiegelungsmatrix für den Ursprung",
+  description: "Leite die Spiegelungsmatrix für den Ursprung her und berechne damit die Bildpunkte einzelner Punkte und ganzer Dreiecke.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Spiegelungsmatrix für den Ursprung bestimmen
+
+Die Spiegelung eines Punktes <InlineMath math="(x,y)" /> am Ursprung <InlineMath math="O(0,0)" /> ergibt den Bildpunkt <InlineMath math="(-x,-y)" />. Diese Spiegelung entspricht einer Drehung um <InlineMath math="180^\circ" /> um den Ursprung.
+
+Nun bestimmen wir eine <InlineMath math="2 \times 2" />-Matrix <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />, die diese Transformation darstellt.
+
+Die Einträge <InlineMath math="r, s, t, u" /> müssen für jeden Punkt die folgende Gleichung erfüllen:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -x \\ -y \end{pmatrix}" />
+
+Die Matrixmultiplikation liefert:
+
+<BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} -1x + 0y \\ 0x - 1y \end{pmatrix}" />
+
+Durch Gleichsetzen der entsprechenden Koeffizienten erhalten wir:
+
+- Für die erste Zeile: <InlineMath math="rx + sy = -1x + 0y" />. Dies bedeutet <InlineMath math="r = -1" /> und <InlineMath math="s = 0" />.
+- Für die zweite Zeile: <InlineMath math="tx + uy = 0x - 1y" />. Dies bedeutet <InlineMath math="t = 0" /> und <InlineMath math="u = -1" />.
+
+### Spiegelungsmatrix für den Ursprung
+
+Die Spiegelungsmatrix für den Ursprung <InlineMath math="O(0,0)" /> lautet:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+## Spiegelungsmatrix für den Ursprung anwenden
+
+### Beispiel: Zwei Punkte spiegeln
+
+Bestimme die Bilder der Punkte <InlineMath math="A(-1,1)" /> und <InlineMath math="B(3,-2)" /> bei einer Spiegelung am Ursprung.
+
+**Lösung:**
+
+Wir verwenden die Transformationsmatrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+
+Für Punkt <InlineMath math="A(-1,1)" />:
+
+<BlockMath math="\begin{pmatrix} x'_A \\ y'_A \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -1 \\ 1 \end{pmatrix} = \begin{pmatrix} (-1)(-1) + (0)(1) \\ (0)(-1) + (-1)(1) \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \end{pmatrix}" />
+
+Das Bild des Punktes <InlineMath math="A" /> ist <InlineMath math="A'(1,-1)" />.
+
+Für Punkt <InlineMath math="B(3,-2)" />:
+
+<BlockMath math="\begin{pmatrix} x'_B \\ y'_B \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ -2 \end{pmatrix} = \begin{pmatrix} (-1)(3) + (0)(-2) \\ (0)(3) + (-1)(-2) \end{pmatrix} = \begin{pmatrix} -3 \\ 2 \end{pmatrix}" />
+
+Das Bild des Punktes <InlineMath math="B" /> ist <InlineMath math="B'(-3,2)" />.
+
+<LineEquation
+  title={
+    <>
+      Spiegelung der Punkte <InlineMath math="A" /> und <InlineMath math="B" />{" "}
+      am Ursprung
+    </>
+  }
+  description={
+    <>
+      Die Spiegelung am Ursprung <InlineMath math="O(0,0)" /> bildet{" "}
+      <InlineMath math="A(-1,1)" /> auf <InlineMath math="A'(1,-1)" /> und{" "}
+      <InlineMath math="B(3,-2)" /> auf <InlineMath math="B'(-3,2)" /> ab.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0.3, -0.3, 0] }],
+    }, // Ursprung
+    // Punkte A und A'
+    {
+      points: [{ x: -1, y: 1, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A(-1,1)" />, at: 0, offset: [-0.7, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 1, y: -1, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A'(1,-1)" />, at: 0, offset: [0.3, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -1, y: 1, z: 0 },
+        { x: 1, y: -1, z: 0 },
+      ],
+      color: "#4f46e5",
+    }, // Strecke AA'
+    // Punkte B und B'
+    {
+      points: [{ x: 3, y: -2, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B(3,-2)" />, at: 0, offset: [0.3, -0.3, 0] }],
+    },
+    {
+      points: [{ x: -3, y: 2, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B'(-3,2)" />, at: 0, offset: [-0.7, 0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 3, y: -2, z: 0 },
+        { x: -3, y: 2, z: 0 },
+      ],
+      color: "#4f46e5",
+    }, // Strecke BB'
+  ]}
+  showZAxis={false}
+  cameraPosition={[0, 0, 10]}
+/>
+
+## Übungen
+
+1.  Bestimme die Bilder der Punkte <InlineMath math="A(1,-7)" /> und <InlineMath math="B(-7,-2)" /> bei einer Spiegelung am Ursprung.
+2.  Ein Dreieck <InlineMath math="PQR" /> hat die Eckpunkte <InlineMath math="P(2,2)" />, <InlineMath math="Q(5,2)" /> und <InlineMath math="R(3,5)" />. Bestimme die Koordinaten des Bilddreiecks <InlineMath math="P'Q'R'" /> nach der Spiegelung am Ursprung mithilfe der Matrixmultiplikation.
+
+### Lösungen
+
+1.  Die Spiegelungsmatrix für den Ursprung ist <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+
+    Für <InlineMath math="A(1,-7)" />:
+
+    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
+
+    Der erste Bildpunkt ist <InlineMath math="A'(-1,7)" />. Für <InlineMath math="B(-7,-2)" /> gilt:
+
+    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
+
+    Der zweite Bildpunkt ist <InlineMath math="B'(7,2)" />.
+
+2.  Die Koordinatenmatrix der Eckpunkte von <InlineMath math="PQR" /> ist <InlineMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />.
+
+    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix} = \begin{pmatrix} -2 & -5 & -3 \\ -2 & -2 & -5 \end{pmatrix}" />
+
+    Die Bildpunkte sind <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" /> und <InlineMath math="R'(-3,-5)" />.

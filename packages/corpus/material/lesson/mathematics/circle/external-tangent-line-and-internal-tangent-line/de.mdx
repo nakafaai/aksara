@@ -1,0 +1,1080 @@
+
+export const metadata = {
+  title: "Äußere und innere gemeinsame Tangenten",
+  description: "Gemeinsame Tangenten zweier Kreise: geometrische Herleitung, Existenzbedingungen und vollständig gerechnete Beispiele.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Kreis",
+};
+
+## Gemeinsame Tangenten
+
+Eine gemeinsame Tangente ist eine Gerade, die zwei Kreise berührt. Es gibt zwei Arten gemeinsamer Tangenten:
+
+1. **Äußere gemeinsame Tangente**: Eine Gerade, die beide Kreise von derselben Seite berührt
+2. **Innere gemeinsame Tangente**: Eine Gerade, die beide Kreise von entgegengesetzten Seiten berührt
+
+## Äußere gemeinsame Tangente
+
+Eine äußere gemeinsame Tangente ist eine Gerade, die beide Kreise berührt und die Verbindungslinie der beiden Kreismittelpunkte nicht schneidet.
+
+<LineEquation
+  title="Äußere gemeinsame Tangente"
+  description="Zwei äußere gemeinsame Tangenten an zwei Kreisen."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -4 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 + 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+        {
+      points: (() => {
+        const O1 = { x: -4, y: 0 };
+        const O2 = { x: 4, y: 0 };
+        const r1 = 2;
+        const r2 = 3;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der äußeren Tangente berechnen
+        const sin_alpha = (r2 - r1) / d;
+        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
+
+        // Direction from O1 to O2
+        const dx = O2.x - O1.x;
+        const dy = O2.y - O1.y;
+
+        // Normalize direction
+        const ux = dx / d;
+        const uy = dy / d;
+
+        // Perpendicular direction (rotated 90 degrees)
+        const vx = -uy;
+        const vy = ux;
+
+        // Erste Tangente (oben)
+        // Berührpunkt am ersten Kreis
+        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
+        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
+
+        // Berührpunkt am zweiten Kreis
+        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
+        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
+
+        // Gerade verlängern
+        const tdx = T2x - T1x;
+        const tdy = T2y - T1y;
+        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
+        const tux = tdx / tlen;
+        const tuy = tdy / tlen;
+
+        return [
+          { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
+          { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g_1" />, at: 1, offset: [0, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -4, y: 0 };
+        const O2 = { x: 4, y: 0 };
+        const r1 = 2;
+        const r2 = 3;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der äußeren Tangente berechnen
+        const sin_alpha = (r2 - r1) / d;
+        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
+
+        // Direction from O1 to O2
+        const dx = O2.x - O1.x;
+        const dy = O2.y - O1.y;
+
+        // Normalize direction
+        const ux = dx / d;
+        const uy = dy / d;
+
+        // Perpendicular direction (rotated 90 degrees)
+        const vx = -uy;
+        const vy = ux;
+
+        // Zweite Tangente (unten)
+        // Berührpunkt am ersten Kreis
+        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
+        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
+
+        // Berührpunkt am zweiten Kreis
+        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
+        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
+
+        // Gerade verlängern
+        const tdx = T2x - T1x;
+        const tdy = T2y - T1y;
+        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
+        const tux = tdx / tlen;
+        const tuy = tdy / tlen;
+
+        return [
+          { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
+          { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
+        ];
+      })(),
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g_2" />, at: 1, offset: [0, -0.5, 0] }],
+    },
+
+]}
+cameraPosition={[0, 0, 15]}
+showZAxis={false}
+/>
+
+### Längenformel für die äußere gemeinsame Tangente
+
+Für zwei Kreise mit:
+
+- Erster Kreismittelpunkt: <InlineMath math="O_1" />
+- Zweiter Kreismittelpunkt: <InlineMath math="O_2" />
+- Erster Kreisradius: <InlineMath math="r_1" />
+- Zweiter Kreisradius: <InlineMath math="r_2" />
+- Abstand zwischen den Mittelpunkten: <InlineMath math="d" />
+
+Länge der äußeren gemeinsamen Tangente:
+
+<BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2}" />
+
+Diese Strecke hat eine positive Länge, wenn <InlineMath math="d > |r_2-r_1|" /> gilt. Bei Gleichheit berühren sich die Kreise von innen und besitzen nur die Tangente durch den Berührpunkt.
+
+### Länge der äußeren gemeinsamen Tangente berechnen
+
+Die beiden Kreise haben die Mittelpunkte <InlineMath math="A(-3, 0)" /> und <InlineMath math="B(3, 0)" /> sowie die Radien <InlineMath math="1{,}5" /> und <InlineMath math="2{,}5" />. Gesucht ist die Länge der äußeren gemeinsamen Tangente.
+
+<LineEquation
+  title={
+    <>
+    Kreise mit <InlineMath math="r_1 = 1{,}5" /> und{" "}
+      <InlineMath math="r_2 = 2{,}5" />
+    </>
+  }
+  description="Visualisierung der äußeren gemeinsamen Tangente."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -3 + 1.5 * Math.cos(angle),
+          y: 1.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 + 2.5 * Math.cos(angle),
+          y: 2.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+        {
+      points: (() => {
+        const O1 = { x: -3, y: 0 };
+        const O2 = { x: 3, y: 0 };
+        const r1 = 1.5;
+        const r2 = 2.5;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der äußeren Tangente berechnen
+        const sin_alpha = (r2 - r1) / d;
+        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
+
+        // Direction from O1 to O2
+        const dx = O2.x - O1.x;
+        const dy = O2.y - O1.y;
+
+        // Normalize direction
+        const ux = dx / d;
+        const uy = dy / d;
+
+        // Perpendicular direction (rotated 90 degrees)
+        const vx = -uy;
+        const vy = ux;
+
+        // Erste Tangente (oben)
+        // Berührpunkt am ersten Kreis
+        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
+        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
+
+        // Berührpunkt am zweiten Kreis
+        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
+        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
+
+        return [
+          { x: T1x, y: T1y, z: 0 },
+          { x: T2x, y: T2y, z: 0 },
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
+      ],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -3, y: 0 };
+        const O2 = { x: 3, y: 0 };
+        const r1 = 1.5;
+        const r2 = 2.5;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der äußeren Tangente berechnen
+        const sin_alpha = (r2 - r1) / d;
+        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
+
+        // Direction from O1 to O2
+        const dx = O2.x - O1.x;
+        const dy = O2.y - O1.y;
+
+        // Normalize direction
+        const ux = dx / d;
+        const uy = dy / d;
+
+        // Perpendicular direction (rotated 90 degrees)
+        const vx = -uy;
+        const vy = ux;
+
+        // Zweite Tangente (unten)
+        // Berührpunkt am ersten Kreis
+        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
+        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
+
+        // Berührpunkt am zweiten Kreis
+        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
+        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
+
+        return [
+          { x: T1x, y: T1y, z: 0 },
+          { x: T2x, y: T2y, z: 0 },
+        ];
+      })(),
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="R" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="S" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+
+]}
+cameraPosition={[0, 0, 12]}
+showZAxis={false}
+/>
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="d = \sqrt{(3-(-3))^2 + (0-0)^2} = \sqrt{36} = 6" />
+  <BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2}" />
+  <BlockMath math="l = \sqrt{6^2 - (2{,}5 - 1{,}5)^2}" />
+  <BlockMath math="l = \sqrt{36 - 1}" />
+  <BlockMath math="l = \sqrt{35}" />
+</MathContainer>
+
+Daher beträgt die Länge der äußeren gemeinsamen Tangente <InlineMath math="\sqrt{35} \text{Einheiten}" />.
+
+## Innere gemeinsame Tangente
+
+Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüberliegenden Seiten berührt und die Verbindungslinie der beiden Kreismittelpunkte schneidet.
+
+<LineEquation
+  title="Innere gemeinsame Tangente"
+  description="Zwei innere gemeinsame Tangenten an zwei Kreisen."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -4 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -4, y: 0 };
+        const O2 = { x: 4, y: 0 };
+        const r1 = 2;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
+
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
+          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+      })(),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="h_1" />, at: 0, offset: [-1, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -4, y: 0 };
+        const O2 = { x: 4, y: 0 };
+        const r1 = 2;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
+
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
+          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="h_2" />, at: 0, offset: [-1, -0.5, 0] }],
+    },
+
+]}
+cameraPosition={[0, 0, 15]}
+showZAxis={false}
+/>
+
+### Längenformel für die innere gemeinsame Tangente
+
+Länge der inneren gemeinsamen Tangente:
+
+<BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+
+**Bedingung:** Ein inneres gemeinsames Tangentenstück hat positive Länge, wenn <InlineMath math="d > r_1 + r_2" /> gilt. Bei Gleichheit berühren sich die Kreise von außen: Die beiden Berührpunkte fallen zusammen, das Tangentenstück hat die Länge null und es bleibt nur eine innere gemeinsame Tangente.
+
+### Länge der inneren gemeinsamen Tangente berechnen
+
+Die beiden Kreise haben die Mittelpunkte <InlineMath math="P(-5, 0)" /> und <InlineMath math="Q(5, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Gesucht ist die Länge der inneren gemeinsamen Tangente.
+
+<LineEquation
+  title={
+    <>
+    Kreise mit <InlineMath math="r_1 = 2" /> und{" "}
+      <InlineMath math="r_2 = 3" />
+    </>
+  }
+  description="Die innere gemeinsame Tangente schneidet die Verbindung der Mittelpunkte."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -5 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 5 + 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -5, y: 0 };
+        const O2 = { x: 5, y: 0 };
+        const r1 = 2;
+        const r2 = 3;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
+
+        return [
+          { x: T1x, y: T1y, z: 0 },
+          { x: T2x, y: T2y, z: 0 },
+        ];
+      })(),
+      color: "#db2777",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="E" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="F" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+    {
+      points: (() => {
+        const O1 = { x: -5, y: 0 };
+        const O2 = { x: 5, y: 0 };
+        const r1 = 2;
+        const r2 = 3;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
+
+        return [
+          { x: T1x, y: T1y, z: 0 },
+          { x: T2x, y: T2y, z: 0 },
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="G" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="H" />, at: 1, offset: [0.5, 0.5, 0] },
+      ],
+    },
+
+]}
+cameraPosition={[0, 0, 18]}
+showZAxis={false}
+/>
+
+**Lösung:**
+
+Zuerst prüfen wir, ob eine innere gemeinsame Tangente existiert:
+
+<MathContainer>
+  <BlockMath math="d = \sqrt{(5-(-5))^2 + (0-0)^2} = \sqrt{100} = 10" />
+  <BlockMath math="r_1 + r_2 = 2 + 3 = 5" />
+  <BlockMath math="d = 10 > 5 = r_1 + r_2 \space \checkmark" />
+</MathContainer>
+
+Da die Bedingung erfüllt ist, gilt:
+
+<MathContainer>
+  <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+  <BlockMath math="l = \sqrt{10^2 - 5^2}" />
+  <BlockMath math="l = \sqrt{100 - 25}" />
+  <BlockMath math="l = \sqrt{75}" />
+  <BlockMath math="l = 5\sqrt{3}" />
+</MathContainer>
+
+Die innere gemeinsame Tangente ist daher <InlineMath math="5\sqrt{3} \text{Einheiten}" /> lang.
+
+## Kreise mit gleichen Radien
+
+Wenn zwei Kreise gleiche Radien (<InlineMath math="r_1 = r_2 = r" />) haben, gibt es besondere Eigenschaften:
+
+### Äußere gemeinsame Tangente
+
+<LineEquation
+  title="Äußere gemeinsame Tangente bei gleichen Radien"
+  description="Äußere gemeinsame Tangenten verlaufen parallel zur Mittelpunktslinie."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -3 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: -3, y: 2, z: 0 },
+        { x: 3, y: 2, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -3, y: -2, z: 0 },
+        { x: 3, y: -2, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Für <InlineMath math="r_1 = r_2" />:
+
+- Äußere gemeinsame Tangenten verlaufen **parallel** zur Linie, die die beiden Mittelpunkte verbindet
+- Die Länge der äußeren gemeinsamen Tangente beträgt <InlineMath math="d" /> (Abstand zwischen den Mittelpunkten)
+
+## Fälle mit verschiedenen Kreispositionen
+
+Berechne für die folgenden Kreise die Länge der äußeren und der inneren gemeinsamen Tangente:
+
+### Weit auseinanderliegende Kreise
+
+Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius <InlineMath math="1" />, der zweite den Mittelpunkt <InlineMath math="(6, 0)" /> und den Radius <InlineMath math="2" />.
+
+<LineEquation
+  title="Fall: weit auseinanderliegende Kreise"
+  description="Es gibt beide Arten gemeinsamer Tangenten."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -6 + 1 * Math.cos(angle),
+          y: 1 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 6 + 2 * Math.cos(angle),
+          y: 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+        {
+      points: (() => {
+        const O1 = { x: -6, y: 0 };
+        const O2 = { x: 6, y: 0 };
+        const r1 = 1;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der äußeren Tangente berechnen
+        const sin_alpha = (r2 - r1) / d;
+        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
+
+        // Direction from O1 to O2
+        const dx = O2.x - O1.x;
+        const dy = O2.y - O1.y;
+
+        // Normalize direction
+        const ux = dx / d;
+        const uy = dy / d;
+
+        // Perpendicular direction (rotated 90 degrees)
+        const vx = -uy;
+        const vy = ux;
+
+        // Erste Tangente (oben)
+        // Berührpunkt am ersten Kreis
+        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
+        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
+
+        // Berührpunkt am zweiten Kreis
+        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
+        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
+
+        const tdx = T2x - T1x;
+        const tdy = T2y - T1y;
+        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
+        const tux = tdx / tlen;
+        const tuy = tdy / tlen;
+
+        return [
+          { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
+          { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const O1 = { x: -6, y: 0 };
+        const O2 = { x: 6, y: 0 };
+        const r1 = 1;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        // Winkel der äußeren Tangente berechnen
+        const sin_alpha = (r2 - r1) / d;
+        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
+
+        // Direction from O1 to O2
+        const dx = O2.x - O1.x;
+        const dy = O2.y - O1.y;
+
+        // Normalize direction
+        const ux = dx / d;
+        const uy = dy / d;
+
+        // Perpendicular direction (rotated 90 degrees)
+        const vx = -uy;
+        const vy = ux;
+
+        // Zweite Tangente (unten)
+        // Berührpunkt am ersten Kreis
+        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
+        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
+
+        // Berührpunkt am zweiten Kreis
+        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
+        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
+
+        const tdx = T2x - T1x;
+        const tdy = T2y - T1y;
+        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
+        const tux = tdx / tlen;
+        const tuy = tdy / tlen;
+
+        return [
+          { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
+          { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
+        ];
+      })(),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const O1 = { x: -6, y: 0 };
+        const O2 = { x: 6, y: 0 };
+        const r1 = 1;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
+
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
+          { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
+        ];
+      })(),
+      color: "#db2777",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const O1 = { x: -6, y: 0 };
+        const O2 = { x: 6, y: 0 };
+        const r1 = 1;
+        const r2 = 2;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
+
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
+          { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+    },
+
+]}
+cameraPosition={[0, 0, 18]}
+showZAxis={false}
+/>
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="d = \sqrt{(6-(-6))^2 + (0-0)^2} = 12" />
+  <BlockMath math="l_{\mathrm{ext}} = \sqrt{12^2 - (2-1)^2} = \sqrt{144 - 1} = \sqrt{143}" />
+  <BlockMath math="l_{\mathrm{int}} = \sqrt{12^2 - (1+2)^2} = \sqrt{144 - 9} = \sqrt{135} = 3\sqrt{15}" />
+</MathContainer>
+
+### Nahe beieinanderliegende Kreise
+
+Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius <InlineMath math="1{,}5" />, der zweite den Mittelpunkt <InlineMath math="(2, 0)" /> und den Radius <InlineMath math="1{,}5" />.
+
+<LineEquation
+  title="Fall: nahe beieinanderliegende Kreise mit gleichen Radien"
+  description="Äußere gemeinsame Tangenten verlaufen parallel, innere schneiden sich in der Mitte."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: -2 + 1.5 * Math.cos(angle),
+          y: 1.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 2 + 1.5 * Math.cos(angle),
+          y: 1.5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -5, y: 1.5, z: 0 },
+        { x: 5, y: 1.5, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -5, y: -1.5, z: 0 },
+        { x: 5, y: -1.5, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: (() => {
+        const O1 = { x: -2, y: 0 };
+        const O2 = { x: 2, y: 0 };
+        const r1 = 1.5;
+        const r2 = 1.5;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
+
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
+          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+      })(),
+      color: "#db2777",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const O1 = { x: -2, y: 0 };
+        const O2 = { x: 2, y: 0 };
+        const r1 = 1.5;
+        const r2 = 1.5;
+        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
+
+        const alpha = Math.asin((r1 + r2) / d);
+        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
+
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
+
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
+
+        const dx = T2x - T1x;
+        const dy = T2y - T1y;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / len;
+        const uy = dy / len;
+
+        return [
+          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
+          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+    },
+
+]}
+cameraPosition={[0, 0, 10]}
+showZAxis={false}
+/>
+
+**Lösung:**
+
+<MathContainer>
+  <BlockMath math="d = \sqrt{(2-(-2))^2 + (0-0)^2} = 4" />
+  <BlockMath math="r_1 = r_2 = 1{,}5" />
+  <BlockMath math="l_{\mathrm{ext}} = d = 4" />
+  <BlockMath math="l_{\mathrm{int}} = \sqrt{4^2 - (1{,}5+1{,}5)^2} = \sqrt{16 - 9} = \sqrt{7}" />
+</MathContainer>
+
+## Übungsaufgaben
+
+1. Zwei Kreise haben die Mittelpunkte <InlineMath math="A(-4, 0)" /> und <InlineMath math="B(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimme:
+
+   - Länge der äußeren gemeinsamen Tangente
+   - Länge der inneren gemeinsamen Tangente
+
+2. Der erste Kreis hat den Mittelpunkt <InlineMath math="(0, 0)" /> und den Radius <InlineMath math="4" />, der zweite den Mittelpunkt <InlineMath math="(10, 0)" /> und den Radius <InlineMath math="2" />. Berechne beide Tangentenlängen.
+
+3. Zwei gleich große Kreise haben jeweils den Radius <InlineMath math="3 \text{ cm}" />. Ihre innere gemeinsame Tangente ist <InlineMath math="8 \text{ cm}" /> lang. Bestimme den Abstand der Mittelpunkte.
+
+4. Kreis <InlineMath math="A" /> hat den Mittelpunkt <InlineMath math="(-5, 0)" /> und den Radius <InlineMath math="r" />, Kreis <InlineMath math="B" /> den Mittelpunkt <InlineMath math="(7, 0)" /> und den Radius <InlineMath math="2r" />. Die äußere gemeinsame Tangente ist <InlineMath math="4\sqrt{8}" /> lang. Bestimme <InlineMath math="r" />.
+
+5. Gib die Bedingungen an, unter denen zwei Kreise folgende Anzahl gemeinsamer Tangenten besitzen:
+   - Genau zwei gemeinsame Tangenten
+   - Genau drei gemeinsame Tangenten
+   - Genau vier gemeinsame Tangenten
+
+### Ausführliche Lösungen
+
+1. **Gemeinsame Tangentenlängen berechnen**
+
+   <MathContainer>
+     <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
+     <BlockMath math="l_{\mathrm{ext}} = \sqrt{8^2 - (3-2)^2} = \sqrt{64 - 1} = \sqrt{63} = 3\sqrt{7}" />
+     <BlockMath math="l_{\mathrm{int}} = \sqrt{8^2 - (2+3)^2} = \sqrt{64 - 25} = \sqrt{39}" />
+   </MathContainer>
+
+2. **Kreise mit unterschiedlichen Mittelpunkten**
+
+   <MathContainer>
+     <BlockMath math="d = \sqrt{(10-0)^2 + (0-0)^2} = 10" />
+     <BlockMath math="l_{\mathrm{ext}} = \sqrt{10^2 - (4-2)^2} = \sqrt{100 - 4} = \sqrt{96} = 4\sqrt{6}" />
+     <BlockMath math="l_{\mathrm{int}} = \sqrt{10^2 - (4+2)^2} = \sqrt{100 - 36} = \sqrt{64} = 8" />
+   </MathContainer>
+
+3. **Mittelpunktabstand aus der inneren Tangente bestimmen**
+
+   Gegeben: <InlineMath math="r_1 = r_2 = 3" />, <InlineMath math="l_{\mathrm{int}} = 8" />
+
+   <MathContainer>
+     <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+     <BlockMath math="8 = \sqrt{d^2 - 6^2}" />
+     <BlockMath math="64 = d^2 - 36" />
+     <BlockMath math="d^2 = 100" />
+     <BlockMath math="d = 10 \text{ cm}" />
+   </MathContainer>
+
+4. **Gesuchten Wert bestimmen:** <InlineMath math="r" />
+
+   Gegeben: <InlineMath math="d = 12" />, <InlineMath math="r_1 = r" />, <InlineMath math="r_2 = 2r" />, <InlineMath math="l_{\mathrm{ext}} = 4\sqrt{8}" />
+
+   <MathContainer>
+     <BlockMath math="4\sqrt{8} = \sqrt{12^2 - (2r - r)^2}" />
+     <BlockMath math="16 \cdot 8 = 144 - r^2" />
+     <BlockMath math="128 = 144 - r^2" />
+     <BlockMath math="r^2 = 16" />
+     <BlockMath math="r = 4" />
+   </MathContainer>
+
+5. **Bedingungen für die Anzahl gemeinsamer Tangenten**
+
+   Der Abstand der Mittelpunkte sei <InlineMath math="d" />. Für zwei verschiedene, nicht deckungsgleiche Kreise gilt die vollständige Einteilung:
+
+   | Bedingung für den Mittelpunktabstand | Gemeinsame Tangenten | Lage der Kreise |
+   | --- | ---: | --- |
+   | <InlineMath math="d>r_1+r_2" /> | <InlineMath math="4" /> | außen getrennt |
+   | <InlineMath math="d=r_1+r_2" /> | <InlineMath math="3" /> | äußere Berührung |
+   | <InlineMath math="\lvert r_1-r_2\rvert\lt d\lt r_1+r_2" /> | <InlineMath math="2" /> | Schnitt in zwei Punkten |
+   | <InlineMath math="d=\lvert r_1-r_2\rvert" /> | <InlineMath math="1" /> | innere Berührung |
+   | <InlineMath math="d\lt \lvert r_1-r_2\rvert" /> | <InlineMath math="0" /> | ein Kreis liegt vollständig im anderen |
+
+   Die gesuchten Bedingungen stehen somit in den ersten drei Zeilen. Deckungsgleiche Kreise mit <InlineMath math="d=0" /> und <InlineMath math="r_1=r_2" /> bilden einen Sonderfall mit unendlich vielen gemeinsamen Tangenten.
+
+## Quellen
+
+- [Wolfram MathWorld: Circle-Circle Tangents](https://mathworld.wolfram.com/Circle-CircleTangents.html)
+- [Wolfram MathWorld: Tangent Circles](https://mathworld.wolfram.com/TangentCircles.html)
+- [GeoGebra: Common Internal and Common External Tangents](https://www.geogebra.org/m/bvtxyfaj)

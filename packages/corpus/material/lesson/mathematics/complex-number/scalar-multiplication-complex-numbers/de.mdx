@@ -1,0 +1,205 @@
+export const metadata = {
+  title: "Skalare Multiplikation komplexer Zahlen",
+  description:
+    "Verstehe rechnerisch und geometrisch, wie ein reeller Skalar Länge und Richtung einer komplexen Zahl verändert.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Was ist Skalarmultiplikation?
+
+Bei der Skalarmultiplikation wird eine komplexe Zahl mit einer reellen Zahl, dem **Skalar**, multipliziert.
+
+<LineEquation
+  title="Visualisierung der Skalarmultiplikation"
+  description={
+    <>
+      Vergleiche den Vektor <InlineMath math="z=1+2i" /> mit seinen Bildern für
+      die Skalare <InlineMath math="c=2" /> und{" "}
+      <InlineMath math="c=-0{,}5" />.
+    </>
+  }
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    // Ursprünglicher Vektor z
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1, y: 2, z: 0 },
+      ],
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+    // Vektor 2z
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 4, z: 0 }, // 2 * (1+2i) = 2+4i
+      ],
+      color: "#059669",
+      labels: [{ text: <InlineMath math="2z" />, at: 1, offset: [0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+    // Vektor -0.5z
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -0.5, y: -1, z: 0 }, // -0.5 * (1+2i) = -0.5 - i
+      ],
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="-0{,}5z" />, at: 1, offset: [-0.5, -0.5, 0] }],
+      cone: { position: "end" },
+    },
+  ]}
+/>
+
+Die Visualisierung zeigt drei Fälle:
+
+- Die Multiplikation von <InlineMath math="z" /> mit einem Skalar <InlineMath math="c > 1" />, etwa <InlineMath math="2" />, **streckt** den Vektor <InlineMath math="z" /> in derselben Richtung.
+- Die Multiplikation von <InlineMath math="z" /> mit <InlineMath math="0 < c < 1" /> **staucht** den Vektor <InlineMath math="z" /> in derselben Richtung.
+- Die Multiplikation von <InlineMath math="z" /> mit <InlineMath math="c = 0" /> verschiebt die Vektorspitze in den Ursprung, also gilt <InlineMath math="0z = 0" />.
+- Für <InlineMath math="z\neq0" /> **kehrt** die Multiplikation mit einem Skalar <InlineMath math="c < 0" />, etwa <InlineMath math="-0{,}5" />, die Richtung des Vektors um <InlineMath math="180^\circ" /> um und multipliziert seine Länge mit <InlineMath math="|c|" />.
+
+## Mathematische Definition
+
+Ist <InlineMath math="z = x + iy" /> eine komplexe Zahl und <InlineMath math="c" /> ein reeller Skalar, dann gilt:
+
+<BlockMath math="cz = c(x + iy) = (cx) + i(cy)" />
+
+Der Skalar <InlineMath math="c" /> wird also sowohl mit dem Realteil <InlineMath math="x" /> als auch mit dem Imaginärteil <InlineMath math="y" /> multipliziert.
+
+### Berechnungsbeispiele
+
+Für <InlineMath math="z = -3 + 4i" /> und <InlineMath math="c = 3" /> ergibt sich:
+
+<BlockMath math="cz = 3(-3 + 4i) = 3(-3) + i(3 \times 4) = -9 + 12i" />
+
+Für <InlineMath math="z = 5 - i" /> und <InlineMath math="c = -2" /> ergibt sich:
+
+<BlockMath math="cz = -2(5 - i) = -2(5) + i(-2 \times -1) = -10 + 2i" />
+
+## Visualisierungsbeispiele
+
+Die folgenden Darstellungen trennen Streckung, Stauchung und Richtungswechsel.
+
+### Skalar größer als eins
+
+<LineEquation
+  title={
+    <>
+      Multiplikation mit <InlineMath math="c=1{,}5" />
+    </>
+  }
+  description={
+    <>
+      Der Vektor <InlineMath math="z=-2+i" /> wird bei der Multiplikation mit
+      <InlineMath math="c=1{,}5" /> in derselben Richtung gestreckt. Es entsteht{" "}
+      <InlineMath math="1{,}5z=-3+1{,}5i" />.
+    </>
+  }
+  cameraPosition={[0, 0, 8]}
+  showZAxis={false}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -2, y: 1, z: 0 },
+      ],
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -3, y: 1.5, z: 0 }, // 1.5 * (-2+i)
+      ],
+      color: "#65a30d",
+      labels: [{ text: <InlineMath math="1{,}5z" />, at: 1, offset: [-0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+  ]}
+/>
+
+### Skalar zwischen Null und Eins
+
+<LineEquation
+  title={
+    <>
+      Multiplikation mit <InlineMath math="c=0{,}75" />
+    </>
+  }
+  description={
+    <>
+      Der Vektor <InlineMath math="z=3-2i" /> wird bei der Multiplikation mit
+      <InlineMath math="c=0{,}75" /> in derselben Richtung gestaucht. Es entsteht{" "}
+      <InlineMath math="0{,}75z=2{,}25-1{,}5i" />.
+    </>
+  }
+  cameraPosition={[0, 0, 8]}
+  showZAxis={false}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: -2, z: 0 },
+      ],
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
+      cone: { position: "end" },
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2.25, y: -1.5, z: 0 }, // 0.75 * (3-2i)
+      ],
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="0{,}75z" />, at: 1, offset: [0.5, 1, 0] }],
+      cone: { position: "end" },
+    },
+  ]}
+/>
+
+### Negativer Skalar
+
+Die Multiplikation mit <InlineMath math="-1" /> ergibt die Gegenzahl der komplexen Zahl.
+
+<LineEquation
+  title={
+    <>
+      Multiplikation mit <InlineMath math="c=-1" />
+    </>
+  }
+  description={
+    <>
+      Für <InlineMath math="z=-1-3i" /> kehrt die Multiplikation mit
+      <InlineMath math="c=-1" /> die Richtung um <InlineMath math="180^\circ" /> um.
+      Das Ergebnis ist <InlineMath math="-z=1+3i" />.
+    </>
+  }
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -1, y: -3, z: 0 },
+      ],
+      color: "#c026d3",
+      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
+      cone: { position: "end" },
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1, y: 3, z: 0 }, // -1 * (-1-3i)
+      ],
+      color: "#ca8a04",
+      labels: [{ text: <InlineMath math="-z" />, at: 1, offset: [0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+  ]}
+/>

@@ -1,0 +1,58 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 1",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-23",
+};
+
+Wir ermitteln die Abmessungen des Stalls und die Anzahl der benötigten Paneele.
+
+#### Abmessungen des Hühnerstalls
+
+Gegeben:
+- Stallhöhe <InlineMath math="= 3 \text{ m}" />.
+- Grundfläche <InlineMath math="= 256 \text{ m}^2" />.
+- Größe einer Sperrholzplatte <InlineMath math="= 80 \text{ cm} \times 300 \text{ cm} = 0{,}8 \text{ m} \times 3 \text{ m}" />.
+
+Da die Plattenhöhe der Stallhöhe von <InlineMath math="3 \text{ m}" /> entspricht, werden die Platten senkrecht eingebaut. Damit keine Platte zugeschnitten werden muss, müssen Länge und Breite des Stalls Vielfache der Plattenbreite <InlineMath math="0{,}8 \text{ m}" /> sein.
+
+Breitenbeschränkung (<InlineMath math="w" />):
+
+<BlockMath math="5 \leq w \leq 7{,}5" />
+
+Wir suchen nach Vielfachen von <InlineMath math="0{,}8" /> innerhalb dieses Bereichs:
+- <InlineMath math="0{,}8 \times 7 = 5{,}6" />
+- <InlineMath math="0{,}8 \times 8 = 6{,}4" />
+- <InlineMath math="0{,}8 \times 9 = 7{,}2" />
+
+Überprüfen Sie die entsprechende Länge (<InlineMath math="l" />), sodass die Fläche <InlineMath math="256" /> beträgt und <InlineMath math="l" /> ebenfalls ein Vielfaches von <InlineMath math="0{,}8" /> ist:
+
+1. Für <InlineMath math="w = 5{,}6" /> ergibt sich <InlineMath math="l = \frac{256}{5{,}6} \approx 45{,}71" />. Das ist kein Vielfaches von <InlineMath math="0{,}8" />.
+2. Für <InlineMath math="w = 6{,}4" /> ergibt sich <InlineMath math="l = \frac{256}{6{,}4} = 40" />. Die Kontrolle <InlineMath math="\frac{40}{0{,}8} = 50" /> zeigt, dass auch die Länge aus ganzen Platten gebildet werden kann.
+3. Für <InlineMath math="w = 7{,}2" /> ergibt sich <InlineMath math="l = \frac{256}{7{,}2} \approx 35{,}56" />. Das ist kein Vielfaches von <InlineMath math="0{,}8" />.
+
+Der Hühnerstall muss daher **<InlineMath math="6{,}4 \text{ m}" /> breit** und **<InlineMath math="40 \text{ m}" /> lang** sein.
+
+#### Anzahl der Sperrholzplatten
+
+Anzahl der Paneele für die Breitenseite:
+
+<BlockMath math="\frac{6{,}4}{0{,}8} = 8 \text{ Paneele}" />
+
+Anzahl der Paneele für die Längsseite:
+
+<BlockMath math="\frac{40}{0{,}8} = 50 \text{ Paneele}" />
+
+Insgesamt benötigte Paneele, um den Stall zu umgeben (<InlineMath math="2" /> Seitenbreite + <InlineMath math="2" /> Seitenlänge):
+
+<BlockMath math="\text{Insgesamt} = 2 \times (8 + 50) = 2 \times 58 = 116 \text{ Paneele}" />
+
+#### Kosten berechnen
+
+Eine Sperrholzplatte kostet <InlineMath math="\text{Rp}40{.}000{,}00" />.
+
+<MathContainer>
+  <BlockMath math="\text{Kosten} = 116 \times 40{.}000" />
+  <BlockMath math="\text{Kosten} = 4{.}640{.}000" />
+</MathContainer>
+
+Damit betragen die Gesamtkosten <InlineMath math="\text{Rp}4{.}640{.}000{,}00" />.

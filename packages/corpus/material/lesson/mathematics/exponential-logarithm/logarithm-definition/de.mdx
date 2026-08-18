@@ -1,0 +1,72 @@
+export const metadata = {
+  title: "Logarithmen definieren",
+  description:
+    "Verstehe Logarithmen als Umkehrung des Potenzierens, wechsle zwischen Exponential- und Logarithmusform und bestimme einen unbekannten Exponenten.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-04",
+  subject: "Exponenten und Logarithmen",
+};
+
+## Ein Logarithmus beantwortet eine Exponentenfrage
+
+Ein Logarithmus kehrt das Potenzieren um. Wenn <InlineMath math="a^c=b" /> gilt, fragt der Logarithmus: „Mit welchem Exponenten muss die Basis <InlineMath math="a" /> potenziert werden, damit <InlineMath math="b" /> entsteht?“
+
+<BlockMath math="\log_a b=c\quad\Longleftrightarrow\quad a^c=b" />
+
+Für reelle Logarithmen gelten die Bedingungen:
+
+<BlockMath math="a>0\qquad a\neq1\qquad b>0" />
+
+- <InlineMath math="a" /> ist die **Basis**
+- <InlineMath math="b" /> ist das **Argument**
+- <InlineMath math="c" /> ist der vom Logarithmus gelieferte Exponent
+
+Die Bedingungen ergeben sich aus dem Verhalten der Exponentialfunktion. Eine zulässige Exponentialbasis ist positiv und nicht gleich eins. Außerdem ist <InlineMath math="a^c" /> stets positiv. Deshalb kann ein reeller Logarithmus kein Argument kleiner oder gleich null haben.
+
+## Zwischen beiden Formen umwandeln
+
+Jede Zeile beschreibt denselben Zusammenhang auf zwei Arten:
+
+| Exponentialform | Logarithmusform |
+| ---------------- | --------------- |
+| <InlineMath math="2^5=32" /> | <InlineMath math="\log_2 32=5" /> |
+| <InlineMath math="3^2=9" /> | <InlineMath math="\log_3 9=2" /> |
+| <InlineMath math="5^{-2}=\frac1{25}" /> | <InlineMath math="\log_5\frac1{25}=-2" /> |
+| <InlineMath math="7^0=1" /> | <InlineMath math="\log_7 1=0" /> |
+
+Beim Umwandeln bleibt die Basis unverändert. Das Ergebnis der Potenzierung wird zum Argument des Logarithmus, und der Exponent wird zum Wert des Logarithmus.
+
+## Zehnerlogarithmus und natürlicher Logarithmus
+
+Ein Logarithmus zur Basis <InlineMath math="10" /> heißt **Zehnerlogarithmus**. Die Basis wird häufig weggelassen:
+
+<BlockMath math="\log_{10}x=\log x" />
+
+Ein Logarithmus zur Basis <InlineMath math="e" /> heißt **natürlicher Logarithmus** und wird als <InlineMath math="\ln x" /> geschrieben. Beide Schreibweisen sind Sonderfälle von <InlineMath math="\log_a x" />.
+
+## Einen unbekannten Exponenten bestimmen
+
+Eine idealisierte Kultur beginnt mit <InlineMath math="2{.}000" /> Bakterien und verdoppelt sich jede Stunde:
+
+<BlockMath math="P(x)=2{.}000\cdot2^x" />
+
+Um zu bestimmen, wann das kontinuierliche Modell <InlineMath math="100{.}000" /> erreicht, setzen wir den Funktionswert gleich dem Zielwert:
+
+<MathContainer>
+  <BlockMath math="100{.}000=2{.}000\cdot2^x" />
+  <BlockMath math="50=2^x" />
+  <BlockMath math="x=\log_2 50" />
+</MathContainer>
+
+Mit einem Taschenrechner oder dem Basiswechsel erhalten wir:
+
+<BlockMath math="x=\frac{\ln50}{\ln2}\approx5{,}643856" />
+
+Die kontinuierliche Kurve erreicht <InlineMath math="100{.}000" /> nach ungefähr <InlineMath math="5{,}64\text{ Stunden}" />. Wird die Kultur nur nach vollständig abgeschlossenen Stunden gezählt, ändert sich die Interpretation:
+
+<MathContainer>
+  <BlockMath math="P(5)=2{.}000\cdot2^5=64{.}000" />
+  <BlockMath math="P(6)=2{.}000\cdot2^6=128{.}000" />
+</MathContainer>
+
+Das Ziel wird also erstmals nach <InlineMath math="6\text{ Stunden}" /> erreicht oder überschritten. Der Logarithmus löst die Gleichung. Der Kontext entscheidet, wie das reelle Ergebnis interpretiert werden muss.

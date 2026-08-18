@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-09",
+};
+
+Wir betrachten die beiden Stellen der Hausnummer getrennt und verwenden anschließend die Multiplikationsregel.
+
+**Schritt** <InlineMath math="1" />: Ziffern ordnen
+
+Zur Verfügung stehen die Ziffern von <InlineMath math="0" /> bis <InlineMath math="9" />: <InlineMath math="\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}" />.
+
+Wir teilen sie in ungerade und gerade Ziffern ein:
+
+*   **Ungerade Ziffern**: <InlineMath math="\{1, 3, 5, 7, 9\}" /> (es gibt <InlineMath math="5" /> Ziffern).
+*   **Gerade Ziffern**: <InlineMath math="\{0, 2, 4, 6, 8\}" /> (es gibt <InlineMath math="5" /> Ziffern).
+
+**Schritt** <InlineMath math="2" />: Möglichkeiten je Stelle
+
+Für die beiden Stellen gelten unterschiedliche Bedingungen:
+
+1.  **Erste Ziffer (ungerade)**: Es gibt <InlineMath math="5" /> Möglichkeiten.
+2.  **Zweite Ziffer (gerade)**: Auch hier gibt es <InlineMath math="5" /> Möglichkeiten.
+
+**Schritt** <InlineMath math="3" />: Gesamtzahl berechnen
+
+Da jede ungerade erste Ziffer mit jeder geraden zweiten Ziffer kombiniert werden kann, multiplizieren wir:
+
+<MathContainer>
+  <BlockMath math="\text{Gesamt} = (\text{ungerade Möglichkeiten}) \times (\text{gerade Möglichkeiten})" />
+  <BlockMath math="\text{Gesamt} = 5 \times 5 = 25" />
+</MathContainer>
+
+Es können also <InlineMath math="25" /> verschiedene Hausnummern gebildet werden.

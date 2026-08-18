@@ -1,0 +1,129 @@
+export const metadata = {
+  title: "Orthogonale und unitäre Matrizen",
+  description: "Verstehe orthogonale und unitäre Matrizen anhand der Erhaltung von Skalarprodukten, ihrer Determinanten- und Eigenwertstruktur, Rotationen, Spiegelungen und numerischen Anwendungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-12",
+  subject: "Lineare Methoden der KI",
+};
+
+## Definitionen
+
+Eine reelle quadratische Matrix <InlineMath math="Q\in\mathbb{R}^{n\times n}" /> heißt orthogonal, wenn
+
+<MathContainer>
+<BlockMath math="Q^TQ=QQ^T=I" />
+<BlockMath math="Q^{-1}=Q^T" />
+</MathContainer>
+
+Eine komplexe quadratische Matrix <InlineMath math="U\in\mathbb{C}^{n\times n}" /> heißt unitär, wenn
+
+<MathContainer>
+<BlockMath math="U^HU=UU^H=I" />
+<BlockMath math="U^{-1}=U^H" />
+</MathContainer>
+
+Dabei ist <InlineMath math="U^H=\overline{U}^{,T}" /> die adjungierte Matrix. Eine reelle orthogonale Matrix ist eine unitäre Matrix mit ausschließlich reellen Einträgen.
+
+Die definierenden Gleichungen sind gleichbedeutend damit, dass die Spalten eine Orthonormalbasis bilden. Auch die Zeilen sind orthonormal.
+
+## Was diese Transformationen erhalten
+
+Für reelle Vektoren <InlineMath math="x,y" /> und eine orthogonale Matrix <InlineMath math="Q" /> gilt
+
+<MathContainer>
+<BlockMath math="\langle Qx,Qy\rangle=(Qx)^T(Qy)=x^TQ^TQy=x^Ty" />
+<BlockMath math="\|Qx\|_2=\|x\|_2" />
+<BlockMath math="\|Qx-Qy\|_2=\|x-y\|_2" />
+</MathContainer>
+
+Dieselben Aussagen gelten über <InlineMath math="\mathbb{C}" /> mit komplexen Skalarprodukten und <InlineMath math="U^H" />. Orthogonale und unitäre Transformationen erhalten daher Längen, Abstände, Winkel und Orthogonalität.
+
+Alle ihre Singulärwerte sind gleich <InlineMath math="1" />. Somit gilt
+
+<BlockMath math="\|Q\|_2=1,\qquad\kappa_2(Q)=1" />
+
+Die Multiplikation mit einer solchen Matrix verstärkt relative Fehler in der euklidischen Norm nicht. Deshalb beruhen QR-Faktorisierungen auf Householder-Spiegelungen und Givens-Rotationen.
+
+## Determinanten und Orientierung
+
+Für eine unitäre Matrix gilt
+
+<MathContainer>
+<BlockMath math="1=\det(U^HU)=\overline{\det U}\det U=|\det U|^2" />
+<BlockMath math="|\det U|=1" />
+</MathContainer>
+
+Bei einer reellen orthogonalen Matrix ist die Determinante reell. Daher
+
+<BlockMath math="\det Q\in\{-1,1\}" />
+
+Der Fall <InlineMath math="\det Q=1" /> erhält die Orientierung. Der Fall <InlineMath math="\det Q=-1" /> kehrt die Orientierung um und enthält eine Spiegelungskomponente.
+
+## Eigenwerte und Spektralstruktur
+
+Gilt <InlineMath math="Uv=\lambda v" /> mit <InlineMath math="v\ne0" />, dann
+
+<MathContainer>
+<BlockMath math="\|v\|_2=\|Uv\|_2=\|\lambda v\|_2=|\lambda|\|v\|_2" />
+<BlockMath math="|\lambda|=1" />
+</MathContainer>
+
+Jeder Eigenwert liegt daher auf dem komplexen Einheitskreis. Nichtreelle Eigenwerte einer reellen orthogonalen Matrix treten in konjugierten Paaren auf. Eine unitäre Matrix ist normal. Der komplexe Spektralsatz liefert deshalb
+
+<BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},ldots,e^{i\theta_n})V^H" />
+
+mit unitärem <InlineMath math="V" />. Über den reellen Zahlen lässt sich eine orthogonale Matrix stattdessen auf Blöcke aus <InlineMath math="1" />, <InlineMath math="-1" /> und ebenen Rotationen reduzieren.
+
+## Rotationsbeispiel
+
+Eine Drehung der Ebene gegen den Uhrzeigersinn um <InlineMath math="\alpha" /> ist
+
+<BlockMath math="R(\alpha)=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix}" />
+
+Ihre Spalten sind orthonormal, und direktes Ausmultiplizieren ergibt
+
+<BlockMath math="R(\alpha)^TR(\alpha)=I" />
+
+Das charakteristische Polynom lautet
+
+<MathContainer>
+<BlockMath math="\chi_R(t)=t^2-2t\cos\alpha+1" />
+<BlockMath math="\lambda_{1,2}=\cos\alpha\pm i\sin\alpha=e^{\pm i\alpha}" />
+</MathContainer>
+
+Falls <InlineMath math="\alpha" /> kein Vielfaches von <InlineMath math="\pi" /> ist, besitzt die Drehung keinen reellen Eigenvektor. Das ist zu erwarten: Bei einer echten ebenen Drehung bleibt keine reelle Richtung ungleich null fest oder ändert nur ihr Vorzeichen.
+
+## Spiegelungsbeispiel
+
+Für einen Einheitsvektor <InlineMath math="u\in\mathbb{R}^n" /> spiegelt die Householder-Matrix
+
+<BlockMath math="H=I-2uu^T" />
+
+einen Vektor an der zu <InlineMath math="u" /> senkrechten Hyperebene. Wegen
+
+<MathContainer>
+<BlockMath math="H^T=H" />
+<BlockMath math="H^2=(I-2uu^T)^2=I" />
+</MathContainer>
+
+gilt <InlineMath math="H^TH=I" />. In Richtung <InlineMath math="u" /> hat sie den Eigenwert <InlineMath math="-1" />. Jeder zu <InlineMath math="u" /> senkrechte Vektor hat den Eigenwert <InlineMath math="1" />. Deshalb ist <InlineMath math="\det H=-1" />.
+
+## Gleichwertige Prüfungen und Folgen
+
+| Aussage | Orthogonaler Fall | Unitärer Fall |
+| --- | --- | --- |
+| Inverse | <InlineMath math="Q^{-1}=Q^T" /> | <InlineMath math="U^{-1}=U^H" /> |
+| Spalten | reelle Orthonormalbasis | komplexe Orthonormalbasis |
+| Determinante | <InlineMath math="\pm1" /> | Betrag <InlineMath math="1" /> |
+| Eigenwerte | Einheitskreis, bei nichtreellen Werten konjugierte Paare | Einheitskreis |
+| Singulärwerte | alle <InlineMath math="1" /> | alle <InlineMath math="1" /> |
+| Konditionszahl in der Zweinorm | <InlineMath math="1" /> | <InlineMath math="1" /> |
+
+Produkte und Inversen bleiben in derselben Klasse:
+
+<MathContainer>
+<BlockMath math="(Q_1Q_2)^T(Q_1Q_2)=I" />
+<BlockMath math="Q^{-1}=Q^T" />
+</MathContainer>
+
+Diese Abschluss- und Stabilitätseigenschaften machen orthogonale und unitäre Matrizen zu zentralen Werkzeugen für QR-Algorithmen, Ausgleichsprobleme, Fourier-Transformationen, Quantenmechanik und Geometrieverarbeitung.

@@ -1,0 +1,426 @@
+export const metadata = {
+  title: "Quadratische Ergänzung",
+  description:
+    "Verstehe, wie eine quadratische Gleichung zum vollständigen Quadrat wird, und bestimme daraus Schritt für Schritt ihre Lösungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratische Funktionen",
+};
+
+## Was bedeutet quadratische Ergänzung?
+
+Bei der quadratischen Ergänzung wird eine Gleichung der Form <InlineMath math="ax^2 + bx + c = 0" /> in die Form <InlineMath math="(x + p)^2 = q" /> umgeschrieben. Sobald die linke Seite ein Quadrat ist, lassen sich die Lösungen durch Wurzelziehen bestimmen.
+
+Die Identität <InlineMath math="x^2 + 2px + p^2 = (x + p)^2" /> zeigt genau, welche Konstante das Quadrat ergänzt. Lautet der mittlere Term <InlineMath math="2px" />, fehlt der Term <InlineMath math="p^2" />.
+
+## Warum diese Methode verwenden?
+
+Manche quadratischen Gleichungen lassen sich nicht über den rationalen Zahlen faktorisieren. Für <InlineMath math="x^2 + 4x + 2 = 0" /> gibt es kein rationales Zahlenpaar mit dem Produkt <InlineMath math="2" /> und der Summe <InlineMath math="4" />.
+
+Die quadratische Ergänzung funktioniert trotzdem, denn sie setzt ein solches Zahlenpaar nicht voraus.
+
+## Schritte zum Vervollständigen des Quadrats
+
+Für eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> gehen wir in dieser Reihenfolge vor:
+
+1. Den Koeffizienten von <InlineMath math="x^2" /> auf <InlineMath math="1" /> bringen
+
+   Ist der Koeffizient <InlineMath math="a" /> von <InlineMath math="x^2" /> nicht <InlineMath math="1" />, wird die gesamte Gleichung durch <InlineMath math="a" /> geteilt.
+
+   **Beispiel:** Für die Gleichung <InlineMath math="2x^2 + 6x + 3 = 0" />
+
+   <MathContainer>
+     <BlockMath math="\frac{2x^2 + 6x + 3}{2} = \frac{0}{2}" />
+     <BlockMath math="x^2 + 3x + \frac{3}{2} = 0" />
+   </MathContainer>
+
+2. **Die Konstante auf die rechte Seite bringen**
+
+   Der konstante Term wird auf die rechte Seite der Gleichung gebracht.
+
+   **Beispiel:** Aus der Gleichung <InlineMath math="x^2 + 3x + \frac{3}{2} = 0" />
+
+   <BlockMath math="x^2 + 3x = -\frac{3}{2}" />
+
+3. **Den Ergänzungsterm auf beiden Seiten addieren**
+
+   Auf beiden Seiten wird <InlineMath math="\left(\frac{b}{2}\right)^2" /> addiert. Dieser Wert ist das Quadrat der Hälfte des Koeffizienten von <InlineMath math="x" />.
+
+   **Beispiel:** Für die Gleichung <InlineMath math="x^2 + 3x = -\frac{3}{2}" />
+
+   Die Hälfte des Koeffizienten von <InlineMath math="x" /> ist <InlineMath math="\frac{3}{2}" />
+
+   Das Quadrat dieser Zahl ist <InlineMath math="\left(\frac{3}{2}\right)^2 = \frac{9}{4}" />.
+
+   Wir addieren es auf beiden Seiten:
+
+   <BlockMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
+
+4. **Die linke Seite als binomisches Quadrat schreiben**
+
+   Die linke Seite hat nun die Form <InlineMath math="x^2 + bx + \left(\frac{b}{2}\right)^2" /> und lässt sich als <InlineMath math="\left(x + \frac{b}{2}\right)^2" /> schreiben.
+
+   **Beispiel:** Aus der Gleichung <InlineMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
+
+   <BlockMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
+
+5. **Die rechte Seite vereinfachen**
+
+   Die Terme auf der rechten Seite werden zusammengefasst.
+
+   **Beispiel:** Für <InlineMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
+
+   <BlockMath math="-\frac{3}{2} + \frac{9}{4} = \frac{-6 + 9}{4} = \frac{3}{4}" />
+
+   Damit lautet die Gleichung:
+
+   <BlockMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
+
+6. **Auf beiden Seiten die Quadratwurzel ziehen**
+
+   Durch das Radizieren wird das Quadrat aufgehoben. Dabei müssen beide Vorzeichen berücksichtigt werden.
+
+   **Beispiel:** Aus der Gleichung <InlineMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
+
+   <BlockMath math="x + \frac{3}{2} = \pm\sqrt{\frac{3}{4}} = \pm\frac{\sqrt{3}}{2}" />
+
+7. **Die Variable isolieren**
+
+   Zum Schluss wird die Variable <InlineMath math="x" /> isoliert.
+
+   **Beispiel:** Aus <InlineMath math="x + \frac{3}{2} = \pm\frac{\sqrt{3}}{2}" />
+
+   Für das positive Vorzeichen:
+
+   <BlockMath math="x = \frac{\sqrt{3}}{2} - \frac{3}{2} = -\frac{3}{2} + \frac{\sqrt{3}}{2}" />
+
+   Für das negative Vorzeichen:
+
+   <BlockMath math="x = -\frac{\sqrt{3}}{2} - \frac{3}{2} = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />
+
+   Die Lösungen sind <InlineMath math="x = -\frac{3}{2} + \frac{\sqrt{3}}{2}" /> und <InlineMath math="x = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />.
+
+## Vollständige Lösungsbeispiele
+
+### Gleichung mit führendem Koeffizienten Eins
+
+Betrachten wir die Gleichung <InlineMath math="x^2 + 5x + 6 = 0" />.
+
+**Schritt** <InlineMath math="1" />: Der Koeffizient ist bereits <InlineMath math="a = 1" />. Daher ist keine Division nötig.
+
+**Schritt** <InlineMath math="2" />: Die Konstante auf die rechte Seite bringen.
+
+<BlockMath math="x^2 + 5x = -6" />
+
+**Schritt** <InlineMath math="3" />: Das Quadrat des halben Koeffizienten von <InlineMath math="x" /> auf beiden Seiten addieren.
+
+<MathContainer>
+  <BlockMath math="\text{Hälfte des Koeffizienten von } x = \frac{5}{2}" />
+  <BlockMath math="\text{Quadrat dieser Zahl} = \left(\frac{5}{2}\right)^2 = \frac{25}{4}" />
+  <BlockMath math="x^2 + 5x + \frac{25}{4} = -6 + \frac{25}{4}" />
+</MathContainer>
+
+**Schritt** <InlineMath math="4" />: Die linke Seite als binomisches Quadrat schreiben.
+
+<BlockMath math="\left(x + \frac{5}{2}\right)^2 = -6 + \frac{25}{4}" />
+
+**Schritt** <InlineMath math="5" />: Die rechte Seite vereinfachen.
+
+<MathContainer>
+  <BlockMath math="-6 + \frac{25}{4} = \frac{-24 + 25}{4} = \frac{1}{4}" />
+  <BlockMath math="\left(x + \frac{5}{2}\right)^2 = \frac{1}{4}" />
+</MathContainer>
+
+**Schritt** <InlineMath math="6" />: Beide Seiten radizieren.
+
+<BlockMath math="x + \frac{5}{2} = \pm\frac{1}{2}" />
+
+**Schritt** <InlineMath math="7" />: Nach <InlineMath math="x" /> auflösen.
+
+<MathContainer>
+  <BlockMath math="x + \frac{5}{2} = \frac{1}{2} \quad \text{oder} \quad x + \frac{5}{2} = -\frac{1}{2}" />
+  <BlockMath math="x = \frac{1}{2} - \frac{5}{2} = -2 \quad \text{oder} \quad x = -\frac{1}{2} - \frac{5}{2} = -3" />
+</MathContainer>
+
+Die Lösungen sind <InlineMath math="x = -2" /> und <InlineMath math="x = -3" />.
+
+### Gleichung mit einem Leitkoeffizienten ungleich eins
+
+Nun betrachten wir <InlineMath math="2x^2 + 6x + 3 = 0" /> mit einem anderen Leitkoeffizienten.
+
+**Schritt** <InlineMath math="1" />: Alle Terme durch den Koeffizienten <InlineMath math="a = 2" /> teilen.
+
+<BlockMath math="x^2 + 3x + \frac{3}{2} = 0" />
+
+**Schritt** <InlineMath math="2" />: Die Konstante auf die rechte Seite bringen.
+
+<BlockMath math="x^2 + 3x = -\frac{3}{2}" />
+
+**Schritt** <InlineMath math="3" />: Das Quadrat des halben Koeffizienten von <InlineMath math="x" /> auf beiden Seiten addieren.
+
+<MathContainer>
+  <BlockMath math="\text{Hälfte des Koeffizienten von } x = \frac{3}{2}" />
+  <BlockMath math="\text{Quadrat dieser Zahl} = \left(\frac{3}{2}\right)^2 = \frac{9}{4}" />
+  <BlockMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
+</MathContainer>
+
+**Schritt** <InlineMath math="4" />: Die linke Seite als binomisches Quadrat schreiben.
+
+<BlockMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
+
+**Schritt** <InlineMath math="5" />: Die rechte Seite vereinfachen.
+
+<MathContainer>
+  <BlockMath math="-\frac{3}{2} + \frac{9}{4} = \frac{-6 + 9}{4} = \frac{3}{4}" />
+  <BlockMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
+</MathContainer>
+
+**Schritt** <InlineMath math="6" />: Beide Seiten radizieren.
+
+<BlockMath math="x + \frac{3}{2} = \pm\frac{\sqrt{3}}{2}" />
+
+**Schritt** <InlineMath math="7" />: Nach <InlineMath math="x" /> auflösen.
+
+<MathContainer>
+  <BlockMath math="x + \frac{3}{2} = \frac{\sqrt{3}}{2} \quad \text{oder} \quad x + \frac{3}{2} = -\frac{\sqrt{3}}{2}" />
+  <BlockMath math="x = \frac{\sqrt{3}}{2} - \frac{3}{2} = -\frac{3}{2} + \frac{\sqrt{3}}{2} \quad \text{oder} \quad x = -\frac{\sqrt{3}}{2} - \frac{3}{2} = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />
+</MathContainer>
+
+Die Lösungen sind <InlineMath math="x = -\frac{3}{2} + \frac{\sqrt{3}}{2}" /> und <InlineMath math="x = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />.
+
+## Prüfungen, die häufige Fehler verhindern
+
+1. **Koeffizient von <InlineMath math="x^2" /> ungleich <InlineMath math="1" />**: Zuerst wird die gesamte Gleichung durch den Koeffizienten <InlineMath math="a" /> geteilt. So wird aus <InlineMath math="3x^2 + 6x + 2 = 0" /> die Gleichung <InlineMath math="x^2 + 2x + \frac{2}{3} = 0" />.
+
+2. **Ergänzungsterm**: Das Quadrat der Hälfte des Koeffizienten von <InlineMath math="x" /> wird auf beiden Seiten addiert. Für <InlineMath math="x^2 + 8x = 5" /> ist das <InlineMath math="\left(\frac{8}{2}\right)^2 = 16" />.
+
+3. **Endform**: Die Gleichung erhält die Form <InlineMath math="\left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2}" />. Zum Beispiel wird aus <InlineMath math="x^2 + 6x + 8 = 0" /> die Gleichung <InlineMath math="\left(x + 3\right)^2 = 1" />.
+
+## Sonderfälle und Variationen
+
+### Wenn die Diskriminante negativ ist
+
+Ist <InlineMath math="b^2 - 4ac < 0" />, hat die Gleichung keine reellen Lösungen.
+
+**Konkretes Beispiel:** <InlineMath math="x^2 + 2x + 2 = 0" />
+
+Die quadratische Ergänzung ergibt:
+
+<MathContainer>
+  <BlockMath math="x^2 + 2x + 1 = -2 + 1 \quad \text{(1 auf beiden Seiten addieren)}" />
+  <BlockMath math="(x + 1)^2 = -1" />
+</MathContainer>
+
+Da das Quadrat einer reellen Zahl nicht <InlineMath math="-1" /> sein kann, besitzt die Gleichung keine reelle Lösung.
+
+### Wenn der lineare Term fehlt
+
+Bei Gleichungen der Form <InlineMath math="ax^2 + c = 0" /> ist keine quadratische Ergänzung nötig.
+
+**Konkretes Beispiel:** <InlineMath math="3x^2 - 12 = 0" />
+
+<MathContainer>
+  <BlockMath math="3x^2 = 12" />
+  <BlockMath math="x^2 = 4" />
+  <BlockMath math="x = \pm 2" />
+</MathContainer>
+
+Die Lösungen sind <InlineMath math="x = 2" /> und <InlineMath math="x = -2" />.
+
+## Übungen
+
+Löse die folgenden quadratischen Gleichungen mit der quadratischen Ergänzung:
+
+1. <InlineMath math="x^2 + 5x + 6 = 0" />
+2. <InlineMath math="2x^2 + 6x + 3 = 0" />
+3. <InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
+4. <InlineMath math="x^2 - 12x - 15 = 0" />
+5. <InlineMath math="\frac{3}{2}x^2 - 8x - 6 = 0" />
+
+### Ausführliche Lösungen
+
+1. <InlineMath math="x^2 + 5x + 6 = 0" />
+
+   1. Die Konstante auf die rechte Seite bringen:
+
+      <BlockMath math="x^2 + 5x = -6" />
+
+   2. Das Quadrat des halben Koeffizienten von <InlineMath math="x" /> auf beiden Seiten addieren:
+
+      <MathContainer>
+        <BlockMath math="\text{Hälfte des Koeffizienten von } x = \frac{5}{2}" />
+        <BlockMath math="\text{Quadrat dieser Zahl} = \left(\frac{5}{2}\right)^2 = \frac{25}{4}" />
+        <BlockMath math="x^2 + 5x + \frac{25}{4} = -6 + \frac{25}{4}" />
+      </MathContainer>
+
+   3. Die linke Seite als binomisches Quadrat schreiben:
+
+      <BlockMath math="\left(x + \frac{5}{2}\right)^2 = -6 + \frac{25}{4}" />
+
+   4. Die rechte Seite vereinfachen:
+
+      <MathContainer>
+        <BlockMath math="-6 + \frac{25}{4} = \frac{-24 + 25}{4} = \frac{1}{4}" />
+        <BlockMath math="\left(x + \frac{5}{2}\right)^2 = \frac{1}{4}" />
+      </MathContainer>
+
+   5. Beide Seiten radizieren:
+
+      <BlockMath math="x + \frac{5}{2} = \pm\frac{1}{2}" />
+
+   6. Nach <InlineMath math="x" /> auflösen:
+
+      <MathContainer>
+        <BlockMath math="x + \frac{5}{2} = \frac{1}{2} \quad \text{oder} \quad x + \frac{5}{2} = -\frac{1}{2}" />
+        <BlockMath math="x = \frac{1}{2} - \frac{5}{2} = -2 \quad \text{oder} \quad x = -\frac{1}{2} - \frac{5}{2} = -3" />
+      </MathContainer>
+
+   Die Lösungen sind <InlineMath math="x = -2" /> und <InlineMath math="x = -3" />.
+
+2. <InlineMath math="2x^2 + 6x + 3 = 0" />
+
+   1. Alle Terme durch den Koeffizienten <InlineMath math="a = 2" /> teilen:
+
+      <BlockMath math="x^2 + 3x + \frac{3}{2} = 0" />
+
+   2. Die Konstante auf die rechte Seite bringen:
+
+      <BlockMath math="x^2 + 3x = -\frac{3}{2}" />
+
+   3. Das Quadrat des halben Koeffizienten von <InlineMath math="x" /> auf beiden Seiten addieren:
+
+      <MathContainer>
+        <BlockMath math="\text{Hälfte des Koeffizienten von } x = \frac{3}{2}" />
+        <BlockMath math="\text{Quadrat dieser Zahl} = \left(\frac{3}{2}\right)^2 = \frac{9}{4}" />
+        <BlockMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
+      </MathContainer>
+
+   4. Die linke Seite als binomisches Quadrat schreiben:
+
+      <BlockMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
+
+   5. Die rechte Seite vereinfachen:
+
+      <MathContainer>
+        <BlockMath math="-\frac{3}{2} + \frac{9}{4} = \frac{-6 + 9}{4} = \frac{3}{4}" />
+        <BlockMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
+      </MathContainer>
+
+   6. Beide Seiten radizieren:
+
+      <BlockMath math="x + \frac{3}{2} = \pm\frac{\sqrt{3}}{2}" />
+
+   7. Nach <InlineMath math="x" /> auflösen:
+
+      <MathContainer>
+        <BlockMath math="x = -\frac{3}{2} + \frac{\sqrt{3}}{2} \quad \text{oder} \quad x = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />
+      </MathContainer>
+
+   Die Lösungen sind <InlineMath math="x = -\frac{3}{2} + \frac{\sqrt{3}}{2}" /> und <InlineMath math="x = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />.
+
+3. <InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
+
+   1. Alle Terme durch den Koeffizienten <InlineMath math="a = 6" /> teilen:
+
+      <BlockMath math="x^2 + \frac{1}{3}x + \frac{1}{36} = 0" />
+
+   2. Die Konstante auf die rechte Seite bringen:
+
+      <BlockMath math="x^2 + \frac{1}{3}x = -\frac{1}{36}" />
+
+   3. Das Quadrat des halben Koeffizienten von <InlineMath math="x" /> auf beiden Seiten addieren:
+
+      <MathContainer>
+        <BlockMath math="\text{Hälfte des Koeffizienten von } x = \frac{1}{6}" />
+        <BlockMath math="\text{Quadrat dieser Zahl} = \left(\frac{1}{6}\right)^2 = \frac{1}{36}" />
+        <BlockMath math="x^2 + \frac{1}{3}x + \frac{1}{36} = -\frac{1}{36} + \frac{1}{36}" />
+      </MathContainer>
+
+   4. Die linke Seite als binomisches Quadrat schreiben:
+
+      <BlockMath math="\left(x + \frac{1}{6}\right)^2 = -\frac{1}{36} + \frac{1}{36}" />
+
+   5. Die rechte Seite vereinfachen:
+
+      <BlockMath math="\left(x + \frac{1}{6}\right)^2 = 0" />
+
+   6. Beide Seiten radizieren:
+
+      <BlockMath math="x + \frac{1}{6} = 0" />
+
+   7. Nach <InlineMath math="x" /> auflösen:
+
+      <BlockMath math="x = -\frac{1}{6}" />
+
+   Die Gleichung hat die doppelte Lösung <InlineMath math="x = -\frac{1}{6}" />.
+
+4. <InlineMath math="x^2 - 12x - 15 = 0" />
+
+   1. Die Konstante auf die rechte Seite bringen:
+
+      <BlockMath math="x^2 - 12x = 15" />
+
+   2. Das Quadrat des halben Koeffizienten von <InlineMath math="x" /> auf beiden Seiten addieren:
+
+      <MathContainer>
+        <BlockMath math="\text{Hälfte des Koeffizienten von } x = -6" />
+        <BlockMath math="\text{Quadrat dieser Zahl} = (-6)^2 = 36" />
+        <BlockMath math="x^2 - 12x + 36 = 15 + 36" />
+      </MathContainer>
+
+   3. Die linke Seite als binomisches Quadrat schreiben:
+
+      <BlockMath math="(x - 6)^2 = 51" />
+
+   4. Beide Seiten radizieren:
+
+      <BlockMath math="x - 6 = \pm\sqrt{51}" />
+
+   5. Nach <InlineMath math="x" /> auflösen:
+
+      <BlockMath math="x = 6 \pm \sqrt{51}" />
+
+   Die Lösungen sind <InlineMath math="x = 6 + \sqrt{51}" /> und <InlineMath math="x = 6 - \sqrt{51}" />.
+
+5. <InlineMath math="\frac{3}{2}x^2 - 8x - 6 = 0" />
+
+   1. Alle Terme durch den Koeffizienten <InlineMath math="a = \frac{3}{2}" /> teilen:
+
+      <MathContainer>
+        <BlockMath math="x^2 - \frac{16}{3}x - 4 = 0" />
+      </MathContainer>
+
+   2. Die Konstante auf die rechte Seite bringen:
+
+      <BlockMath math="x^2 - \frac{16}{3}x = 4" />
+
+   3. Das Quadrat des halben Koeffizienten von <InlineMath math="x" /> auf beiden Seiten addieren:
+
+      <MathContainer>
+        <BlockMath math="\text{Hälfte des Koeffizienten von } x = -\frac{8}{3}" />
+        <BlockMath math="\text{Quadrat dieser Zahl} = \left(-\frac{8}{3}\right)^2 = \frac{64}{9}" />
+        <BlockMath math="x^2 - \frac{16}{3}x + \frac{64}{9} = 4 + \frac{64}{9}" />
+      </MathContainer>
+
+   4. Die linke Seite als binomisches Quadrat schreiben:
+
+      <BlockMath math="\left(x - \frac{8}{3}\right)^2 = 4 + \frac{64}{9}" />
+
+   5. Die rechte Seite vereinfachen:
+
+      <MathContainer>
+        <BlockMath math="4 + \frac{64}{9} = \frac{36 + 64}{9} = \frac{100}{9}" />
+        <BlockMath math="\left(x - \frac{8}{3}\right)^2 = \frac{100}{9}" />
+      </MathContainer>
+
+   6. Beide Seiten radizieren:
+
+      <BlockMath math="x - \frac{8}{3} = \pm\frac{10}{3}" />
+
+   7. Nach <InlineMath math="x" /> auflösen:
+
+      <MathContainer>
+        <BlockMath math="x = \frac{8}{3} + \frac{10}{3} = \frac{18}{3} = 6 \quad \text{oder} \quad x = \frac{8}{3} - \frac{10}{3} = -\frac{2}{3}" />
+      </MathContainer>
+
+   Die Lösungen sind <InlineMath math="x = 6" /> und <InlineMath math="x = -\frac{2}{3}" />.

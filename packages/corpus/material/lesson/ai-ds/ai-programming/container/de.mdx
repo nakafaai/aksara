@@ -1,0 +1,418 @@
+export const metadata = {
+  title: "Container",
+  description: "Vergleiche Strings, Listen, Tupel, Dictionaries und Sets und übe Indizierung, Slicing sowie gezielte Datenänderungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-09-18",
+  subject: "KI-Programmierung",
+};
+
+## Containerkonzepte in Python
+
+Container gruppieren Werte und bestimmen, wie Code darauf zugreift. Eine Sequenz bewahrt Positionen, ein Mapping verbindet Schlüssel mit Werten und ein Set beschreibt eindeutige Mitglieder. Die Wahl betrifft also Verhalten und nicht nur die Form der Klammern.
+
+Manche Container können verschiedene Objekttypen mischen, doch jeder hat eigene Bedingungen. Dictionary-Schlüssel und Set-Mitglieder müssen hashbar sein, Strings enthalten Text und die Veränderlichkeit unterscheidet sich je nach Container.
+
+
+Diese Lektion vergleicht fünf eingebaute Sammlungsformen:
+
+- **String**: unveränderliche Textsequenz
+- **Liste**: veränderliche, indexierbare Sequenz
+- **Tupel**: unveränderliche Sequenz
+- **Dictionary**: Zuordnung von Schlüsseln zu Werten
+- **Set** - Sammlung eindeutiger Elemente ohne feste Reihenfolge
+
+## Einführung in Listen
+
+Eine Liste ist eine geordnete, veränderliche Sequenz. Sie kann Werte verschiedener Typen aufnehmen, obwohl Sammlungen mit einer klaren Elementform meist leichter zu verstehen sind.
+
+Anders als ein niedrigstufiges Array fester Größe kann eine Python-Liste wachsen und schrumpfen. Sie speichert Verweise auf Python-Objekte. Eine Änderung an einem verschachtelten Objekt kann deshalb über jeden Verweis auf dieses Objekt sichtbar sein.
+
+
+### Eigenschaften von Listen
+
+| Eigenschaft | Erklärung | Beispiel |
+|---------------|-------------|---------|
+| Geordnet | Elemente haben eine feste Reihenfolge | `[1, 2, 3]` ist nicht dasselbe wie `[3, 2, 1]` |
+| Heterogen | Kann verschiedene Datentypen enthalten | `[1, 'text', 3.14, True]` |
+| Veränderlich | Inhalte können nach der Erstellung geändert werden | Kann Elemente hinzufügen, entfernen oder ändern |
+
+### Syntax zur Listenerstellung
+
+Listen werden mit eckigen Klammern erstellt, wobei die Elemente durch Kommas getrennt sind. Listen können Elemente unterschiedlicher Datentypen oder sogar andere Listen enthalten.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_creation.py",
+      code: `# Verschiedene Listen nach Datentyp
+a = [True, False, True]              # Ausgabe: [True, False, True] # list of bools
+b = [1, 2, 3]                        # Ausgabe: [1, 2, 3] # list of ints
+c = [1.5, 2.5, 3.5]                  # Ausgabe: [1.5, 2.5, 3.5] # list of floats
+d = ['red', 'green', 'blue']         # Ausgabe: ['red', 'green', 'blue'] # list of strings
+
+# Leere Listen
+empty1 = []                          # Ausgabe: []
+empty2 = list()                      # Ausgabe: []
+
+# Heterogene Liste (gemischte Datentypen)
+mixed = [False, 2, 3.5, 'blue']      # Ausgabe: [False, 2, 3.5, 'blue']
+
+# Verschachtelte Liste
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Ausgabe: [1, [2.5, False, 'red'], 3.5, 'blue']`
+    }
+  ]}
+/>
+
+## Listenindizierung
+
+Die Indizierung ist eine Möglichkeit, über Positionsnummern auf einzelne Elemente einer Liste zuzugreifen. Python verwendet eine nullbasierte Indizierung, was bedeutet, dass das erste Element den Index <InlineMath math="0" /> hat.
+
+
+Für die Indizierung in Python gelten spezielle Regeln, die verstanden werden müssen:
+
+- **Positive Indizes** beginnen bei <InlineMath math="0" /> für das erste Element
+- **Negative Indizes** beginnen bei <InlineMath math="-1" /> für das letzte Element
+- **Indizes außerhalb des Bereichs** führen zu IndexError
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_indexing.py",
+      code: `# Beispiel für die Indizierung verschachtelter Listen
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+print('nested =', nested)                    # Ausgabe: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Indizierung der Hauptelemente
+print('nested[0] =', nested[0])              # Ausgabe: nested[0] = 1
+print('nested[-1] =', nested[-1])            # Ausgabe: nested[-1] = blue
+print('nested[1] =', nested[1])              # Ausgabe: nested[1] = [2.5, False, 'red']
+
+# Indizierung von Elementen in verschachtelten Listen
+print('nested[1][2] =', nested[1][2])        # Ausgabe: nested[1][2] = red
+
+# Zeichen in Strings indizieren (doppelte Indizierung)
+print('nested[1][2][1] =', nested[1][2][1])  # Ausgabe: nested[1][2][1] = e`
+    }
+  ]}
+/>
+
+## Slicing mit Schrittweite
+
+Slicing ist eine Technik, um Teile von Elementen aus einer Liste zu entnehmen. Mit Stride können wir Elemente in bestimmten Abständen aufnehmen, nicht nur aufeinanderfolgende Elemente.
+
+
+Die vollständige Slicing-Syntax ist `list[start:stop:step]`, wobei:
+- `start` ist der Startindex (einschließlich)
+- `stop` ist der Endindex (exklusiv)
+- `step` ist das Intervall für die Aufnahme von Elementen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_slicing.py",
+      code: `# Liste mit Slicing-Beispielen
+x = [0, 1, 2, 3, 4, 5]
+print('x =', x)                              # Ausgabe: x = [0, 1, 2, 3, 4, 5]
+
+# Grundlegendes Slicing
+print('x[1:4] =', x[1:4])                    # Ausgabe: x[1:4] = [1, 2, 3]
+
+# Slicing vom negativen Index bis zum Ende
+print('x[-3:] =', x[-3:])                    # Ausgabe: x[-3:] = [3, 4, 5]
+
+# Slicing mit Schrittweite
+print('x[1:4:2] =', x[1:4:2])                # Ausgabe: x[1:4:2] = [1, 3]
+
+# Liste mit negativer Schrittweite umkehren
+print('x[::-1] =', x[::-1])                  # Ausgabe: x[::-1] = [5, 4, 3, 2, 1, 0]`
+    }
+  ]}
+/>
+
+Beim Slicing wählt man einen zusammenhängenden oder regelmäßig übersprungenen Teil einer Liste aus. Für `x = [0, 1, 2, 3, 4, 5]` liefert `x[1:4]` die Elemente an den Indizes <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />. Der Endindex <InlineMath math="4" /> gehört nicht mehr zum Ergebnis. Mit `x[1:4:2]` wird zusätzlich nur jeder zweite Index berücksichtigt, also <InlineMath math="1" /> und <InlineMath math="3" />.
+
+## Operationen und Ähnlichkeiten mit Strings
+
+Listen unterstützen verschiedene Operationen zum Anzeigen und Bearbeiten von Daten. Auch hinsichtlich des Elementzugriffs weisen Listen Ähnlichkeiten mit Zeichenfolgen auf.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_output.py",
+      code: `# Verschiedene Möglichkeiten, Listen anzuzeigen
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Anzeige mit Zuordnung
+print('nested =', nested)
+# Ausgabe: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Anzeige ohne Zuordnung
+print(nested)
+# Ausgabe: [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Ausgabe mit der print-Funktion
+print('Listeninhalt:', nested)
+# Ausgabe: Listeninhalt: [1, [2.5, False, 'red'], 3.5, 'blue']`
+    }
+  ]}
+/>
+
+
+Listen und Strings weisen hinsichtlich des Elementzugriffs Ähnlichkeiten auf. Beide unterstützen die Indizierung und das Slicing mit denselben Mustern.
+
+| Operation | Zeichenfolge | Liste |
+|---------|--------|------|
+| **Indizierung** | Einzelnes Zeichen lesen | Einzelnes Element lesen |
+| **Slicing mit Schrittweite** | Teilstring bilden | Teilliste bilden |
+
+Der Hauptunterschied liegt in der Veränderlichkeit: Ein String kann nach seiner Erstellung nicht in-place geändert werden, eine Liste schon. Deshalb besitzt die Liste Methoden, die ihren Inhalt direkt verändern.
+
+<Mermaid
+  title="Strings, Listen und Tupel haben einige Gemeinsamkeiten"
+  description="Vergleiche ähnliche Operationen, ohne die unterschiedlichen Eigenschaften von Strings, Listen und Tupeln zu vermischen."
+  chart={`
+    flowchart LR
+        A[Listenmethoden] --> B[Hinzufügen]
+        A --> C[Entfernen]
+        A --> D[Ordnen]
+
+        B --> E[append]
+        B --> F[extend]
+        B --> G[insert]
+        C --> H[pop]
+        C --> I[remove]
+        D --> J[sort]
+        D --> K[reverse]
+        D --> L[copy]
+  `}
+/>
+
+| Methode | Beschreibung | Anwendungsbeispiel |
+|--------|-------------|---------------|
+| `append(element)` | Element am Ende der Liste hinzufügen | Neues Element hinzufügen |
+| `extend(list2)` | Mit Elementen aus einer anderen Liste zusammenführen | Zwei Listen kombinieren |
+| `insert(index, element)` | Element an bestimmter Position einfügen | In der Mitte der Liste hinzufügen |
+| `index(element)` | Ersten Index eines Elements finden | Position eines Elements bestimmen |
+| `pop()` | Letztes Element entfernen und zurückgeben | Letztes Element nehmen |
+| `reverse()` | Listenreihenfolge direkt umkehren | Reihenfolge umkehren |
+| `remove(element)` | Erstes Vorkommen des Elements entfernen | Bestimmtes Element entfernen |
+| `sort()` | Liste direkt sortieren | Daten sortieren |
+| `copy()` | Listenkopie erstellen | Liste duplizieren |
+| `count(element)` | Vorkommen eines Elements zählen | Häufigkeit bestimmen |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_methods.py",
+      code: `# Demonstration verschiedener Listenmethoden
+my_list = [1, 2, 3]
+print('Original list:', my_list)            # Ausgabe: Original list: [1, 2, 3]
+
+# Adding elements
+my_list.append(4)
+print('After append(4):', my_list)          # Ausgabe: After append(4): [1, 2, 3, 4]
+
+my_list.extend([5, 6])
+print('After extend([5, 6]):', my_list)     # Ausgabe: After extend([5, 6]): [1, 2, 3, 4, 5, 6]
+
+my_list.insert(0, 0)
+print('After insert(0, 0):', my_list)       # Ausgabe: After insert(0, 0): [0, 1, 2, 3, 4, 5, 6]
+
+# Searching elements
+idx = my_list.index(3)
+print('Index of 3:', idx)                   # Ausgabe: Index of 3: 3
+
+my_list.append(3)
+count = my_list.count(3)
+print('Count of 3:', count)                 # Ausgabe: Count of 3: 2
+
+# Removing elements
+my_list.remove(3)
+print('After remove(3):', my_list)          # Ausgabe: After remove(3): [0, 1, 2, 4, 5, 6, 3]
+
+popped = my_list.pop()
+print('Popped element:', popped)            # Ausgabe: Popped element: 3
+print('After pop():', my_list)              # Ausgabe: After pop(): [0, 1, 2, 4, 5, 6]
+
+# Organizing elements
+my_list.reverse()
+print('After reverse():', my_list)          # Ausgabe: After reverse(): [6, 5, 4, 2, 1, 0]
+
+my_list.sort()
+print('After sort():', my_list)             # Ausgabe: After sort(): [0, 1, 2, 4, 5, 6]
+
+copied = my_list.copy()
+print('Copied list:', copied)               # Ausgabe: Copied list: [0, 1, 2, 4, 5, 6]`
+    }
+  ]}
+/>
+
+## Spezielle Listentypen
+
+Python unterstützt mehrere spezielle Listentypen mit unterschiedlichen Eigenschaften und Verwendungszwecken:
+
+1. **Leere Listen**
+
+   Leere Listen eignen sich als erste Container, die später mit Daten gefüllt werden. Es gibt zwei Möglichkeiten, leere Listen mit demselben Ergebnis zu erstellen.
+
+2. **Heterogene Listen**
+
+   Heterogene Listen können Elemente unterschiedlicher Datentypen in einem Container enthalten. Dies bietet eine hohe Flexibilität bei der Datenspeicherung.
+
+3. **Verschachtelte Listen**
+
+   Verschachtelte Listen sind Listen, die andere Listen als Elemente enthalten. Dieses Konzept ermöglicht die Erstellung mehrdimensionaler Datenstrukturen wie Matrizen oder Tabellen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "special_lists.py",
+      code: `# Leere Listen - zwei Erstellungsmethoden
+a = []                                       # Ausgabe: []
+b = list()                                   # Ausgabe: []
+
+# Heterogene Liste - verschiedene Datentypen
+mixed = [False, 2, 3.5, 'blue']             # Ausgabe: [False, 2, 3.5, 'blue']
+
+# Verschachtelte Liste - Liste innerhalb der Liste
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Ausgabe: [1, [2.5, False, 'red'], 3.5, 'blue']
+
+print('Empty list 1:', a)
+print('Empty list 2:', b)
+print('Mixed types:', mixed)
+print('Nested structure:', nested)`
+    }
+  ]}
+/>
+
+Verschachtelte Listen können Zeilen, Bäume oder kleine tabellenartige Strukturen darstellen. Sie garantieren weder automatisch eine rechteckige Matrix noch unabhängige innere Listen. Eine Mehrfachindizierung wie `nested[1][2]` folgt bei jedem Schritt einem Container.
+
+## Andere Container
+
+Neben Listen stellt Python drei weitere Containertypen mit unterschiedlichen Eigenschaften und Verwendungszwecken zur Verfügung.
+
+### Tupel
+
+Tupel ist eine Datenstruktur ähnlich einer Liste, aber unveränderlich. Tuple unterstützt Pack- und Entpackvorgänge, die für den Datenaustausch nützlich sind. Obwohl Tupel unveränderlich sind, können Tupel Verweise auf veränderliche Objekte wie Listen enthalten.
+
+Ein wichtiges Konzept bei Tupeln ist der Unterschied zwischen dem unveränderlichen Tupel selbst und den darin enthaltenen veränderlichen Objekten. Tupel können ihre Struktur nicht ändern, aber der Inhalt der darin enthaltenen veränderlichen Objekte kann dennoch geändert werden.
+
+| Aspekt | Tupel | Liste |
+|-------|-------|------|
+| **Veränderlichkeit** | Unveränderlich | Veränderlich |
+| **Syntax** | `()` oder ohne Klammern | `[]` |
+| **Nutzung** | Feste Daten, Koordinaten | Daten ändern |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "tuple_operations.py",
+      code: `# Tupelsyntax - zwei Erstellungsmethoden
+t1 = (0, 1, 2)                               # Ausgabe: t1 = (0, 1, 2)
+t2 = 3, 4, 5                                 # Ausgabe: t2 = (3, 4, 5)
+print('t1 =', t1)
+print('t2 =', t2)
+
+# Tupel-Entpacken - Werte trennen
+a, b, c = t2
+print('a, b, c =', a, b, c)                  # Ausgabe: a, b, c = 3 4 5
+
+# Fehlerbehandlung beim Auspacken
+try:
+    a, b = (0, 1, 2)                         # Zu viele Werte
+except ValueError as e:
+    print('ValueError:', e)                  # Ausgabe: ValueError: too many values to unpack (expected 2)
+
+try:
+    a, b, c, d = 0, 1, 2                     # Nicht genügend Werte
+except ValueError as e:
+    print('ValueError:', e)                  # Ausgabe: ValueError: not enough values to unpack (expected 4, got 3)
+
+# Tupel mit veränderlichen Objekten
+t = (0, [1, 2, 3], 4)
+print('Ursprüngliches t =', t)              # Ausgabe: Ursprüngliches t = (0, [1, 2, 3], 4)
+t[1][0] = 'x'                               # Listeninhalte im Tupel ändern
+print('Nach dem Ändern der inneren Liste:', t) # Ausgabe: Nach dem Ändern der inneren Liste: (0, ['x', 2, 3], 4)
+
+# Tupel unveränderlich, aber Objekte darin können veränderbar sein
+# t[1] = [9, 8, 7] # Fehler: Referenz kann nicht geändert werden
+# t[1][0] = 'y' # OK: kann veränderbare Objektinhalte ändern`
+    }
+  ]}
+/>
+
+### Dictionary
+
+Ein Dictionary speichert Schlüssel-Wert-Paare. Jeder Schlüssel ist eindeutig und hashbar, während Werte mehrfach vorkommen und veränderlich sein dürfen. Ein Literal nutzt `{}` mit einem Doppelpunkt zwischen Schlüssel und Wert.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_examples.py",
+      code: `# Wörterbuch erstellen
+kontakte = {'Alice': 'alice@example.com', 'Bob': 'bob@example.com'}
+print('kontakte =', kontakte)
+# Ausgabe: kontakte = {'Alice': 'alice@example.com', 'Bob': 'bob@example.com'}
+
+# Zugriff auf Werte per Schlüssel
+print("kontakte['Alice'] =", kontakte['Alice'])  # Ausgabe: kontakte['Alice'] = alice@example.com
+
+# Neue Schlüssel-Wert-Paare hinzufügen
+kontakte['David'] = 'david@example.com'
+print('Nach dem Hinzufügen von David:', kontakte)
+# Ausgabe: Nach dem Hinzufügen von David: {'Alice': 'alice@example.com', 'Bob': 'bob@example.com', 'David': 'david@example.com'}`
+    }
+  ]}
+/>
+
+### Mengen (Set)
+
+Ein Set speichert eindeutige, hashbare Elemente und unterstützt mathematische Mengenoperationen. Es besitzt keine semantische Position oder garantierte Einfügereihenfolge. Nichtleere Literale nutzen `{}`. Ein leeres Set entsteht mit `set()`, weil `{}` ein leeres Dictionary erzeugt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "set_examples.py",
+      code: `# Set erstellen
+zahlen = {1, 2, 3, 4, 5}
+print('zahlen =', sorted(zahlen))            # Ausgabe: zahlen = [1, 2, 3, 4, 5]
+
+# Elemente zum Set hinzufügen
+zahlen.add(6)
+print('Nach dem Hinzufügen von 6:', sorted(zahlen))
+# Ausgabe: Nach dem Hinzufügen von 6: [1, 2, 3, 4, 5, 6]
+
+# Set-Operationen
+gerade = {2, 4, 6, 8}
+ungerade = {1, 3, 5, 7}
+
+# Union (Kombination)
+print('gerade | ungerade =', sorted(gerade | ungerade))
+# Ausgabe: gerade | ungerade = [1, 2, 3, 4, 5, 6, 7, 8]
+
+# Überschneidung
+print('gerade & ungerade =', gerade & ungerade) # Ausgabe: gerade & ungerade = set()`
+    }
+  ]}
+/>
+
+### Vergleich der Containertypen
+
+| Container | Syntax | Geordnet | Veränderlich | Duplikate | Hauptverwendung |
+|-----------|---------|---------|---------|------------|------------|
+| **Liste** | `[1, 2, 3]` | Ja | Ja | Ja | Daten, die geändert werden müssen |
+| **Tupel** | `(1, 2, 3)` | Ja | Nein | Ja | Feste Daten, Koordinaten |
+| **Wörterbuch** | `{'a': 1}` | Ja* | Ja | Nein (Schlüssel) | Schlüsselwertzuordnung |
+| **Set** | `{1, 2, 3}` | Nein | Ja | Nein | Eindeutige Elemente, Mengenoperationen |
+
+> Dictionary-Iteration bewahrt die Einfügereihenfolge als Sprachgarantie seit Python `3.7`. Das Aktualisieren eines vorhandenen Schlüssels behält seine Position; Löschen und erneutes Einfügen setzt ihn ans Ende.

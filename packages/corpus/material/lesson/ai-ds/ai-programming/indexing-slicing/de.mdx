@@ -1,0 +1,279 @@
+export const metadata = {
+    title: "Indizierung und Slicing",
+    description: "Python-Indizierung und Slicing für Strings und Listen mit positiven Indizes, negativen Indizes und Schrittweitennutzung.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-17",
+    subject: "KI-Programmierung",
+};
+
+## Einführung in die Indizierung
+
+Die Indizierung ist eine Möglichkeit, mithilfe von Positionsnummern auf bestimmte Elemente in Zeichenfolgen oder Listen zuzugreifen. Stellen Sie sich vor, Sie haben eine Reihe Bücher in einem Regal und jedes Buch hat eine fortlaufende Nummer. Durch die Indexierung können Sie ein bestimmtes Buch anhand seiner Seriennummer auswählen.
+
+Python verwendet ein Nummerierungssystem, das bei <InlineMath math="0" /> beginnt, nicht bei <InlineMath math="1" />. Das erste Element hat also den Index <InlineMath math="0" />, das zweite Element hat den Index <InlineMath math="1" /> und so weiter. Darüber hinaus unterstützt Python auch negative Indizes, die vom Ende rückwärts zählen.
+
+### Positive und negative Indizes
+
+In Zeichenfolgen oder Listen verfügt jedes Zeichen oder Element über zwei Arten von Indizes. Positive Indizes beginnen bei <InlineMath math="0" /> am Anfang, während negative Indizes bei <InlineMath math="-1" /> am Ende beginnen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_indexing.py",
+      code: `# Beispiel für die Indizierung einer Zeichenfolge
+s = "Hello"
+
+# Zugriff auf Zeichen mit positiven Indizes
+print(s[0])    # Ausgabe: 'H'
+print(s[4])    # Ausgabe: 'o'
+
+# Zugriff auf Zeichen mit negativen Indizes
+print(s[-1])   # Ausgabe: 'o' (letztes Zeichen)
+print(s[-5])   # Ausgabe: 'H' (erstes Zeichen)
+
+# Es wird versucht, auf einen nicht vorhandenen Index zuzugreifen
+try:
+    print(s[5])
+except IndexError:
+    print("IndexError: Index außerhalb des gültigen Bereichs")`
+    }
+  ]}
+/>
+
+Ein Index außerhalb des gültigen Bereichs löst einen `IndexError` aus. Python-Sequenzen prüfen diese Grenze und liefern keinen beliebigen Wert zurück.
+
+## Slicing-Konzept
+
+Durch das Slicing können Sie einen bestimmten Teil einer Zeichenfolge oder Liste übernehmen, nicht nur ein einzelnes Element. Es ist, als würde man eine Scheibe Brot von einem ganzen Laib abschneiden. Sie können bestimmen, wo Sie mit dem Schneiden beginnen und wo Sie aufhören möchten.
+
+### Einfaches Slicing
+
+Die grundlegende Slicing-Syntax verwendet das Format `[i:j]`, wobei `i` der Startindex und `j` der Endindex ist. Es ist wichtig zu beachten, dass der Endindex nicht im Ergebnis enthalten ist.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_slicing.py",
+      code: `# Beispiel für Slicing eines Strings
+s = "Hello"
+
+# Slicing von Index 1 bis 3, ohne Index 3
+print(s[1:3])    # Ausgabe: 'el'
+
+# Slicing von Index 3 bis zum Ende
+print(s[3:])     # Ausgabe: 'lo'
+
+# Slicing vom Anfang bis Index 3
+print(s[:3])     # Ausgabe: 'Hel'
+
+# Slicing mit negativen Indizes
+print(s[-4:-2])  # Ausgabe: 'el'
+print(s[-2:-4])  # Ausgabe: '' (leerer String)`
+    }
+  ]}
+/>
+
+Wenn beim regulären Slicing der Startindex größer als der Endindex ist, ist das Ergebnis eine leere Zeichenfolge oder Liste. Dies unterscheidet sich vom Slicing mit negativem Schritt.
+
+### Slicing mit Schrittweite
+
+Der Schritt ist der dritte Parameter beim Slicing, der den Schritt oder Abstand zwischen den genommenen Elementen bestimmt. Mit Stride können Sie Elemente mit bestimmten Mustern übernehmen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "stride_slicing.py",
+      code: `# Beispiel für Slicing mit Schritt
+s = "Hello World!"
+
+# Jedes zweite Zeichen auswählen
+print(s[::2])      # Ausgabe: 'HloWrd'
+
+# Ab Index 1 jedes zweite Zeichen auswählen
+print(s[1::2])     # Ausgabe: 'el ol!'
+
+# String mit negativer Schrittweite umkehren
+print(s[::-1])     # Ausgabe: '!dlroW olleH'
+
+# Slicing ab einem bestimmten Index mit negativer Schrittweite
+print(s[-1:4:-1])  # Ausgabe: '!dlroW'`
+    }
+  ]}
+/>
+
+Ein negativer Schritt ist sehr nützlich, um die Reihenfolge der Elemente umzukehren. Wenn der Schritt <InlineMath math="-1" /> beträgt, übernimmt Python alle Elemente vom Ende bis zum Anfang.
+
+## Slicing-Eigenschaften
+
+Das Slicing hat mehrere wichtige Eigenschaften, die verstanden werden müssen, um Fehler bei der Verwendung zu vermeiden.
+
+### Länge des Slicing-Ergebnisses
+
+Im einfachen Fall <InlineMath math="0 \le i \le j \le n" /> mit der positiven Standardschrittweite hat `s[i:j]` die Länge <InlineMath math="j-i" />. Allgemeine Slices können ausgelassene, negative oder außerhalb liegende Grenzen und eine andere Schrittweite besitzen. Python normalisiert sie zunächst anhand der Sequenzlänge. Die genaue Anzahl ist `len(range(*slice(i, j, step).indices(len(s))))`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "slicing_properties.py",
+      code: `# Berechnung der Slicing-Ergebnislänge
+s = "Hello"
+
+# Slicing s[1:4]
+result = s[1:4]
+print(f"Ergebnis: '{result}', Länge: {len(result)}")  # Ausgabe: 'ell', 3
+
+# Beweisen, dass s[:i] + s[i:] == s
+i = 2
+left_part = s[:i]
+right_part = s[i:]
+print(f"'{left_part}' + '{right_part}' = '{left_part + right_part}'")
+
+# Slicing außerhalb der Grenzen löst keinen Fehler aus
+print(s[3:10])   # Ausgabe: 'lo'
+print(s[10:])    # Ausgabe: '' (leerer String)`
+    }
+  ]}
+/>
+
+Ein Vorteil des Slicing besteht darin, dass es selbst dann keinen Fehler verursacht, wenn Indizes die Zeichenfolgen- oder Listenlänge überschreiten. Python passt sich automatisch an gültige Grenzen an.
+
+## Slicing als Schleife
+
+Die von einem Slice ausgewählten Indizes lassen sich mit `range()` modellieren. Dieses Modell erklärt das Ergebnis, ohne zu behaupten, jeder Sequenztyp implementiere Slicing als Python-Schleife.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "slicing_as_loop.py",
+      code: `# Slicing als Schleife verstehen
+s = "Hello World!"
+
+# s[1:8:2] entspricht der folgenden Schleife:
+result_manual = ""
+for index in range(1, 8, 2):
+    result_manual += s[index]
+
+result_slicing = s[1:8:2]
+
+print(f"Manual loop: '{result_manual}'")    # Ausgabe: 'el o'
+print(f"Slicing: '{result_slicing}'")       # Ausgabe: 'el o'
+print(f"Dasselbe Ergebnis? {result_manual == result_slicing}")  # Ausgabe: True
+
+# Beispiel mit negativem Schritt
+print("\\nNegativer Schritt:")
+print(f"s[::-2] = '{s[::-2]}'")            # Ausgabe: '!lo le'
+
+# Äquivalente manuelle Schleife für negativen Schritt
+result_negative = ""
+for index in range(len(s)-1, -1, -2):
+    result_negative += s[index]
+print(f"Manual: '{result_negative}'")`
+    }
+  ]}
+/>
+
+Der Vergleich mit dem `range()`-Modell macht die Regeln für Start, Stopp und Schrittweite sichtbar, besonders bei einer negativen Schrittweite.
+
+## Slicing-Variationen
+
+Python bietet mehrere Kurzmethoden zur Durchführung häufig verwendeter Slicing-Methoden.
+
+### Slicing von Anfang und Ende
+
+Sie können den Start- oder Endparameter leer lassen, um Elemente vom Anfang oder bis zum Ende der Zeichenfolge/Liste zu übernehmen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "slicing_variations.py",
+      code: `# Nützliche Slicing-Varianten
+s = "Hello"
+
+# Die ersten drei Zeichen auswählen
+print(s[:3])     # Ausgabe: 'Hel'
+
+# Zeichen vom Index 3 bis zum Ende übernehmen
+print(s[3:])     # Ausgabe: 'lo'
+
+# Alle Zeichen übernehmen
+print(s[:])      # Ausgabe: 'Hello'
+
+# Praxisbeispiel mit Liste
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Die ersten fünf Elemente auswählen
+first_five = numbers[:5]
+print(f"Die ersten fünf: {first_five}")
+
+# Übernahme der letzten 5-Elemente
+last_five = numbers[-5:]
+print(f"Die letzten fünf: {last_five}")
+
+# Mittlere Elemente nehmen (erstes 2 und letztes 2 überspringen)
+middle = numbers[2:-2]
+print(f"Mittelteil: {middle}")`
+    }
+  ]}
+/>
+
+Diese Slicing-Variationen sind bei der Datenverarbeitung sehr nützlich, wenn Sie bestimmte Teile aus großen Datensätzen entnehmen müssen.
+
+## Praktische Anwendungen
+
+Indizierung und Slicing werden häufig in verschiedenen Programmierszenarien verwendet, von der String-Manipulation bis zur Datenverarbeitung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_applications.py",
+      code: `# Praktische Beispiele für Indizierung und Slicing
+
+# 1. Namen umkehren
+first_name = "Ahmad"
+last_name = "Wijaya"
+reversed_name = (first_name + " " + last_name)[::-1]
+print(f"Umgekehrter Name: {reversed_name}")
+
+# 2. Eine Dateierweiterung zuverlässig ermitteln
+from pathlib import Path
+
+filename = "important_document.pdf"
+extension = Path(filename).suffix
+print(f"Erweiterung: {extension}")
+
+# 3. Telefonnummer formatieren
+number = "081234567890"
+formatted = f"{number[:4]}-{number[4:8]}-{number[8:]}"
+print(f"Formatierte Telefonnummer: {formatted}")
+
+# 4. Initialen eines Namens bestimmen
+full_name = "Siti Nurhaliza Binti Ahmad"
+words = full_name.split()
+initials = ""
+for word in words:
+    initials += word[0]
+print(f"Initialen: {initials}")
+
+# 5. Palindrome checker
+def is_palindrome(text):
+    cleaned = "".join(character for character in text.casefold() if character.isalnum())
+    return cleaned == cleaned[::-1]
+
+print(f"'katak' palindrome? {is_palindrome('katak')}")
+print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
+    }
+  ]}
+/>
+
+Die Beispiele verwenden Indizierung, wenn eine Position bekannt ist, und Slicing für eine zusammenhängende oder regelmäßig übersprungene Teilsequenz. Eine Sequenz mit `[::-1]` umzukehren ist knapp. Dateiendungen folgen einer anderen Regel, weil ihre Länge variiert. `Path.suffix` drückt diese Fachregel zuverlässiger aus als ein fester Slice.
+
+Slice-Grenzen werden an den Bereich der Sequenz angepasst. `s[10:]` liefert bei einem kürzeren String deshalb `""` statt eines `IndexError`. Direkte Indizierung wie `s[10]` löst weiterhin einen Fehler aus. Entscheide danach, ob ein fehlendes Element ein Fehler ist oder ob eine leere Teilsequenz eine sinnvolle Antwort darstellt.
+
+Die Beherrschung negativer Indizes bietet eine neue Perspektive beim Zugriff auf Daten. Anstatt von vorne zu zählen, können Sie Elemente direkt von hinten nehmen, mit `s[-1]` für das letzte Element oder `s[-3:]` für die letzten drei Elemente. Dieser Ansatz ist sehr nützlich bei der Dateiverarbeitung, Textanalyse und Datensatzmanipulation, wo die relative Position am Ende wichtiger ist als die absolute Position am Anfang.

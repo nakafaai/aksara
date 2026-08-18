@@ -1,0 +1,123 @@
+export const metadata = {
+  title: "Eigenschaften des Hauptarguments komplexer Zahlen",
+  description: "Lerne die wichtigsten Regeln für Argumente bei der Multiplikation und Division komplexer Zahlen in Polarform kennen, einschließlich Bereichsanpassung und gelöster Übungsaufgaben.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Argumente bei Produkten und Quotienten
+
+Bei der Multiplikation werden Richtungen durch die Summe ihrer Winkel verknüpft. Bei der Division werden die Winkel voneinander abgezogen. Seien <InlineMath math="z_1" /> und <InlineMath math="z_2" /> zwei komplexe Zahlen ungleich null in Polarform:
+
+<MathContainer>
+  <BlockMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" />
+  <BlockMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />
+</MathContainer>
+
+Dabei ist <InlineMath math="\theta_1" /> ein Argument von <InlineMath math="z_1" /> und <InlineMath math="\theta_2" /> ein Argument von <InlineMath math="z_2" />.
+
+### Argument des Produkts
+
+Das Argument des Produkts zweier komplexer Zahlen (<InlineMath math="z_1 \times z_2" />) ist die **Summe** der Argumente der einzelnen komplexen Zahlen.
+
+Die folgende Gleichheit ist modulo einer vollen Umdrehung zu verstehen:
+
+<BlockMath math="\arg(z_1 z_2) \equiv \arg(z_1) + \arg(z_2) \pmod{2\pi}" />
+
+Das heißt, wenn <InlineMath math="\theta_1" /> ein Argument von <InlineMath math="z_1" /> und <InlineMath math="\theta_2" /> ein Argument von <InlineMath math="z_2" /> ist,
+
+dann ist <InlineMath math="\theta_1 + \theta_2" /> eines der Argumente von <InlineMath math="z_1 z_2" />.
+
+**Um das Hauptargument <InlineMath math="\text{Arg}(z_1 z_2)" /> zu finden:**
+
+1.  Berechne <InlineMath math="\text{Arg}(z_1) + \text{Arg}(z_2)" />.
+2.  Liegt das Ergebnis bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> beziehungsweise <InlineMath math="(-\pi, \pi]" />, ist es das Hauptargument.
+3.  Andernfalls addiere oder subtrahiere volle Umdrehungen, bis das Ergebnis in diesem Intervall liegt.
+
+### Argument des Quotienten
+
+Das Argument des Quotienten zweier komplexer Zahlen (<InlineMath math="\frac{z_1}{z_2}" />, mit <InlineMath math="z_2 \neq 0" />) ist die **Differenz** zwischen dem Argument der komplexen Zahl des Zählers (<InlineMath math="z_1" />) und dem Argument der komplexen Zahl des Nenners (<InlineMath math="z_2" />).
+
+Auch hier ist die Gleichheit modulo einer vollen Umdrehung zu verstehen:
+
+<BlockMath math="\arg\left(\frac{z_1}{z_2}\right) \equiv \arg(z_1) - \arg(z_2) \pmod{2\pi}" />
+
+Das heißt, wenn <InlineMath math="\theta_1" /> ein Argument von <InlineMath math="z_1" /> und <InlineMath math="\theta_2" /> ein Argument von <InlineMath math="z_2" /> ist,
+
+dann ist <InlineMath math="\theta_1 - \theta_2" /> eines der Argumente von <InlineMath math="\frac{z_1}{z_2}" />.
+
+**So bestimmst du das Hauptargument <InlineMath math="\text{Arg}\left(\frac{z_1}{z_2}\right)" />:**
+
+1.  Berechne <InlineMath math="\text{Arg}(z_1) - \text{Arg}(z_2)" />.
+2.  Liegt das Ergebnis bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> beziehungsweise <InlineMath math="(-\pi, \pi]" />, ist es das Hauptargument.
+3.  Andernfalls addiere oder subtrahiere volle Umdrehungen, bis das Ergebnis in diesem Intervall liegt.
+
+## Argumenteigenschaften verwenden
+
+Gegeben sind zwei komplexe Zahlen:
+
+<MathContainer>
+  <BlockMath math="z_1 = 2(\cos 45^\circ + i\sin 45^\circ)" />
+  <BlockMath math="z_2 = 3(\cos 95^\circ + i\sin 95^\circ)" />
+</MathContainer>
+
+Bestimme das Hauptargument von <InlineMath math="z_1 \times z_2" /> und <InlineMath math="\frac{z_1}{z_2}" />.
+
+**Lösung:**
+
+Die beiden Hauptargumente lauten:
+
+<MathContainer>
+  <BlockMath math="\text{Arg}(z_1) = 45^\circ" />
+  <BlockMath math="\text{Arg}(z_2) = 95^\circ" />
+</MathContainer>
+
+1.  **Argument des Produkts (<InlineMath math="z_1 \times z_2" />):**
+
+    Summe der Hauptargumente:
+
+    <BlockMath math="\text{Arg}(z_1) + \text{Arg}(z_2) = 45^\circ + 95^\circ = 140^\circ" />
+
+    Da <InlineMath math="140^\circ" /> bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> liegt, gilt:
+
+    <BlockMath math="\text{Arg}(z_1 \times z_2) = 140^\circ" />
+
+    Die Menge aller Argumente ist <InlineMath math="\{140^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />
+
+2.  **Quotientenargument (<InlineMath math="\frac{z_1}{z_2}" />):**
+
+    Differenz der Hauptargumente:
+
+    <BlockMath math="\text{Arg}(z_1) - \text{Arg}(z_2) = 45^\circ - 95^\circ = -50^\circ" />
+
+    Da <InlineMath math="-50^\circ" /> bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> liegt, gilt:
+
+    <BlockMath math="\text{Arg}\left(\frac{z_1}{z_2}\right) = -50^\circ" />
+
+    Die Menge aller Argumente ist <InlineMath math="\{-50^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />.
+
+## Übung
+
+Gegeben seien <InlineMath math="z_a = 4(\cos 120^\circ + i\sin 120^\circ)" /> und <InlineMath math="z_b = 2(\cos 50^\circ + i\sin 50^\circ)" />. Bestimme:
+
+1.  <InlineMath math="\text{Arg}(z_a \times z_b)" />
+2.  <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right)" />
+
+### Ausführliche Lösung
+
+Gegeben seien <InlineMath math="\text{Arg}(z_a) = 120^\circ" /> und <InlineMath math="\text{Arg}(z_b) = 50^\circ" />.
+
+Die positiven Beträge ändern die Richtung der beiden komplexen Zahlen nicht. Für die Rechnung werden deshalb nur die beiden Argumente benötigt.
+
+1.  **Produktargument:**
+
+    <BlockMath math="\text{Arg}(z_a) + \text{Arg}(z_b) = 120^\circ + 50^\circ = 170^\circ" />
+
+    Aus <InlineMath math="170^\circ \in (-180^\circ, 180^\circ]" /> folgt <InlineMath math="\text{Arg}(z_a z_b) = 170^\circ" />.
+
+2.  **Quotientenargument:**
+
+    <BlockMath math="\text{Arg}(z_a) - \text{Arg}(z_b) = 120^\circ - 50^\circ = 70^\circ" />
+
+    Aus <InlineMath math="70^\circ \in (-180^\circ, 180^\circ]" /> folgt <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right) = 70^\circ" />.

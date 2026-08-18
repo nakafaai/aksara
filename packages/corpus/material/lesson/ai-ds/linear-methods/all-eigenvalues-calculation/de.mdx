@@ -1,0 +1,75 @@
+export const metadata = {
+    title: "Alle Eigenwerte mit der QR-Iteration berechnen",
+    description: "Verfolge die QR-Iteration von der orthogonalen Faktorisierung bis zur Schurform und lies reelle sowie komplexe Eigenwerte ohne charakteristisches Polynom ab.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-17",
+    subject: "Lineare Methoden der KI",
+};
+
+## Von der Matrix zu ihren Eigenwerten
+
+Der QR-Algorithmus berechnet alle Eigenwerte einer quadratischen Matrix durch wiederholte Basiswechsel. Die Eigenwerte ändern sich dabei nicht. Stattdessen bewegt sich die Matrix auf eine Form zu, aus der sich die Eigenwerte leichter ablesen lassen.
+
+Die folgende Variante ist die unverschobene QR-Iteration. An ihr lässt sich die Grundidee besonders klar erkennen. Praktische Eigenwertlöser verwenden zusätzlich Verschiebungen, reduzieren die Matrix zunächst auf Hessenbergform und trennen konvergierte Blöcke ab. So läuft dieselbe Idee schneller und zuverlässiger.
+
+## Eine QR-Iteration
+
+1. Beginne mit <InlineMath math="A_0=A" />.
+
+2. Zerlege die aktuelle Matrix in einen unitären oder orthogonalen Faktor <InlineMath math="Q_k" /> und einen oberen Dreiecksfaktor <InlineMath math="R_k" />:
+
+   <BlockMath math="A_k=Q_kR_k" />
+
+3. Vertausche die Reihenfolge der Faktoren, um die nächste Iterierte zu erhalten:
+
+   <BlockMath math="A_{k+1}=R_kQ_k" />
+
+4. Wiederhole die Zerlegung und die Multiplikation in umgekehrter Reihenfolge. Ein sehr kleines Subdiagonalelement kann auf null gesetzt werden, sobald es gegenüber den benachbarten Diagonalelementen vernachlässigbar ist. Diese **Deflation** trennt einen konvergierten Eigenwert oder Block ab.
+
+   <BlockMath math="|(A_k)_{j+1,j}|\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right)" />
+
+Dabei ist <InlineMath math="\tau" /> eine Toleranz, die zur numerischen Genauigkeit und zur Skalierung des Problems passt. Kleine Änderungen der Diagonale allein sind kein ausreichendes Abbruchkriterium, denn unterhalb der Diagonale können noch wesentliche Einträge stehen.
+
+## Warum die Eigenwerte gleich bleiben
+
+Da <InlineMath math="Q_k" /> unitär ist, gilt <InlineMath math="Q_k^{*}Q_k=I" />. Setzen wir <InlineMath math="R_k=Q_k^{*}A_k" /> in das umgekehrte Produkt ein, erhalten wir
+
+<MathContainer>
+<BlockMath math="A_{k+1}=R_kQ_k" />
+<BlockMath math="A_{k+1}=Q_k^{*}A_kQ_k" />
+</MathContainer>
+
+Damit ist <InlineMath math="A_{k+1}" /> unitär ähnlich zu <InlineMath math="A_k" />. Ähnliche Matrizen besitzen dasselbe charakteristische Polynom und somit dieselben Eigenwerte. Die QR-Iteration wechselt die Koordinaten, nicht die zugrunde liegende lineare Abbildung.
+
+## Welche Form entsteht
+
+Die Grenzform hängt von der Matrix und dem verwendeten Zahlkörper ab.
+
+| Matrix | Konvergierte Form | Eigenwerte ablesen |
+|---|---|---|
+| Reell symmetrisch oder komplex hermitesch | Diagonalmatrix | Die Diagonaleinträge sind die reellen Eigenwerte |
+| Allgemein komplex | Obere Dreiecksschurform | Die Diagonaleinträge sind die Eigenwerte |
+| Allgemein reell | Reelle obere Quasidreiecksform | Jeder <InlineMath math="1\times1" />-Block liefert einen reellen Eigenwert; jeder <InlineMath math="2\times2" />-Block liefert ein komplex konjugiertes Paar |
+
+Die Eigenwerte müssen nicht in einer vorgegebenen Reihenfolge erscheinen. Mehrfache Eigenwerte und besondere Eigenwertanordnungen verlangen ebenfalls mehr Sorgfalt als eine einfache strenge Betragsordnung vermuten lässt.
+
+## Durchgerechnetes symmetrisches Beispiel
+
+Betrachten wir die symmetrische Matrix
+
+<BlockMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />
+
+Eine QR-Zerlegung mit anschließender Multiplikation in umgekehrter Reihenfolge ergibt
+
+<MathContainer>
+<BlockMath math="Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad R_0=\begin{pmatrix}\sqrt5&\frac4{\sqrt5}\\0&\frac3{\sqrt5}\end{pmatrix}" />
+<BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
+</MathContainer>
+
+Der Betrag der Nebendiagonaleinträge ist bereits von <InlineMath math="1" /> auf <InlineMath math="3/5" /> gesunken. Weitere Iterationen treiben beide Einträge gegen null:
+
+<BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
+
+Die Grenzdiagonale zeigt die Eigenwerte <InlineMath math="3" /> und <InlineMath math="1" />. Da jede Iterierte zu <InlineMath math="A_0" /> ähnlich ist, sind dies die Eigenwerte der ursprünglichen Matrix und keine durch eine veränderte Aufgabe erzeugten Näherungen.
+
+> Die QR-Iteration ist ein Ähnlichkeitsprozess. Bei symmetrischen Matrizen nähert sie sich einer Diagonalform; bei allgemeinen reellen Matrizen einer reellen Schurform, die notwendige <InlineMath math="2\times2" />-Blöcke enthalten kann.

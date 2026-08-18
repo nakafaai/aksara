@@ -1,0 +1,123 @@
+
+export const metadata = {
+  title: "Anwendungen des Tangensverhältnisses",
+  description: "Nutze den Tangens, ähnliche Dreiecke und Höhenwinkel, um Höhen, Schattenlängen und schwer zugängliche Entfernungen zu bestimmen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-14",
+  subject: "Trigonometrie",
+};
+
+## Was ist der Tangens?
+
+In einem rechtwinkligen Dreieck ist der Tangens des Winkels <InlineMath math="\theta" /> das Verhältnis der Gegenkathete zur Ankathete. Der Sinus vergleicht dagegen die Gegenkathete mit der Hypotenuse, der Kosinus die Ankathete mit der Hypotenuse.
+
+<Triangle
+  title={
+    <>
+      Visualisierung des Tangens (<InlineMath math="\tan \theta" />)
+    </>
+  }
+  description={<>Bewege den Regler und beobachte, wie sich <InlineMath math="\tan" /> mit dem Winkel verändert.</>}
+  angle={30}
+  labels={{
+    opposite: "Gegenkathete",
+    adjacent: "Ankathete",
+    hypotenuse: "Hypotenuse",
+  }}
+/>
+
+Wenn wir beispielsweise ein rechtwinkliges Dreieck mit dem Winkel <InlineMath math="\theta" /> haben, dann gilt:
+
+<BlockMath math="\tan \theta = \frac{\text{Gegenkathete}}{\text{Ankathete}}" />
+
+Der Tangenswert ändert sich mit dem Winkel. Zum Beispiel gilt <InlineMath math="\tan 30^\circ = \frac{1}{\sqrt{3}} \approx 0{,}577" />.
+
+## Anwendungen des Tangens
+
+Mit dem Tangens lassen sich insbesondere folgende Größen bestimmen:
+
+1. Höhe von Objekten, die schwer direkt zu messen sind
+2. Abstand zwischen zwei Punkten, auf die nicht zugegriffen werden kann
+3. Länge des Schattens eines Objekts
+4. Neigung einer Fläche
+
+### Messung der Höhe durch Schatten
+
+Angenommen, ein Baum oder Gebäude steht senkrecht auf ebenem Boden. Werden die Sonnenstrahlen als parallel betrachtet, bilden das Objekt, sein Schatten und ein Sonnenstrahl ein rechtwinkliges Dreieck. Dann können wir:
+
+1. die waagerechte Schattenlänge als Ankathete messen,
+2. den Sonnenhöhenwinkel <InlineMath math="\theta" /> messen oder übernehmen und
+3. mit <InlineMath math="\tan \theta" /> die senkrechte Höhe als Gegenkathete berechnen.
+
+<MathContainer>
+  <BlockMath math="\text{Objekthöhe} = \text{Schattenlänge} \times \tan \theta" />
+</MathContainer>
+
+<ContentBlock>
+  <Triangle
+    title="Anwendung des Tangens bei einer Messung"
+    description="Beispiel eines Dreiecks, das bei der Höhenmessung mit Schatten entsteht."
+    angle={30}
+    labels={{
+      opposite: "Objekthöhe",
+      adjacent: "Schattenlänge",
+      hypotenuse: "",
+    }}
+  />
+</ContentBlock>
+
+## Methoden zum Berechnen mit Tangens
+
+Es gibt zwei Möglichkeiten, Probleme mithilfe des Tangens zu lösen:
+
+### Ähnlicher Dreiecksvergleich
+
+Wir können das Prinzip ähnlicher Dreiecke nutzen, um Probleme zu lösen. Wenn wir zwei Dreiecke mit derselben Form (ähnlich) haben, dann ist das Verhältnis ihrer Seiten gleich.
+
+Wenn wir beispielsweise Schatten von drei Objekten unterschiedlicher Höhe (Kind, Teenager und Erwachsener) haben, können wir die Gleichung erstellen:
+
+<BlockMath math="\frac{\text{Größe des Kindes}}{\text{Schattenlänge des Kindes}} = \frac{\text{Größe eines Teenagers}}{\text{Schattenlänge eines Teenagers}} = \frac{\text{Körpergröße eines Erwachsenen}}{\text{Schattenlänge eines Erwachsenen}}" />
+
+Stehen ein Kind und ein Jugendlicher gleichzeitig auf demselben ebenen Boden, haben ihre Höhen-Schatten-Dreiecke wegen des Sonnenlichts denselben spitzen Winkel. Das Kind sei <InlineMath math="114 \text{ cm}" /> groß und werfe einen <InlineMath math="200 \text{ cm}" /> langen Schatten. Der Jugendliche sei <InlineMath math="148 \text{ cm}" /> groß. Dann gilt:
+
+<MathContainer>
+  <BlockMath math="\frac{114 \text{ cm}}{200 \text{ cm}} = \frac{148 \text{ cm}}{x \text{ cm}}" />
+  <BlockMath math="x = \frac{148\times200}{114}\text{ cm} \approx 259{,}65 \text{ cm}" />
+</MathContainer>
+
+Für das gemessene Bezugsdreieck ist <InlineMath math="\tan \theta=114/200=0{,}57" />. Der zugehörige Sonnenhöhenwinkel beträgt daher <InlineMath math="\theta=\arctan(0{,}57)\approx29{,}68^\circ" />.
+
+### Verwendung der Tangensformel
+
+Direkter geht es mit dem Tangensverhältnis:
+
+<BlockMath math="\tan \theta = \frac{\text{Gegenkathete}}{\text{Ankathete}}" />
+
+Betrachte nun eine andere Situation mit einem exakten Sonnenhöhenwinkel von <InlineMath math="30^\circ" /> und einer Körpergröße von <InlineMath math="148 \text{ cm}" />:
+
+<MathContainer>
+  <BlockMath math="\tan \theta = \frac{\text{Größe eines Teenagers}}{\text{Schattenlänge eines Teenagers}}" />
+  <BlockMath math="\tan 30^\circ = \frac{148 \text{ cm}}{x \text{ cm}}" />
+  <BlockMath math="\frac{1}{\sqrt{3}} = \frac{148}{x}" />
+  <BlockMath math="x = 148\sqrt{3}\text{ cm} \approx 256{,}34 \text{ cm}" />
+</MathContainer>
+
+Dieser Schatten ist etwas kürzer als <InlineMath math="259{,}65 \text{ cm}" />, weil <InlineMath math="30^\circ" /> etwas größer ist als der gemessene Bezugswinkel <InlineMath math="29{,}68^\circ" />. Bei gleicher Höhe führt ein größerer Höhenwinkel zu einem kürzeren Schatten.
+
+<ContentBlock>
+  <Triangle
+    title={<>Winkel <InlineMath math="30^\circ" /> mit Tangens <InlineMath math="1/\sqrt{3}" /></>}
+    description={
+      <>
+        Visualisierung des Dreiecks mit dem Winkel <InlineMath math="30^\circ" /> aus
+        dem Rechenbeispiel.
+      </>
+    }
+    angle={30}
+    labels={{
+      opposite: "Größe eines Teenagers",
+      adjacent: "Schattenlänge eines Teenagers",
+      hypotenuse: "",
+    }}
+  />
+</ContentBlock>

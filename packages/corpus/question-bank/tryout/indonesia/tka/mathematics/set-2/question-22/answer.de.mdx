@@ -1,0 +1,101 @@
+
+export const metadata = {
+  title: "Lösung zu Aufgabe 22",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Der absolute Wert hat die Definition
+
+<BlockMath math="|x + 3| = \begin{cases} x + 3 ; \text{für } x \geq -3 \\ -(x + 3) ; \text{für } x &lt; -3 \end{cases}" />
+
+Lösen Sie die Ungleichung
+
+Für <InlineMath math="x \geq -3" />
+
+<MathContainer>
+<BlockMath math="9 - x^2 \geq |x + 3|" />
+<BlockMath math="9 - x^2 \geq x + 3" />
+<BlockMath math="-x^2 - x + 6 \geq 0" />
+<BlockMath math="(-x + 2)(x + 3) \geq 0" />
+<BlockMath math="x = 2 \vee x = -3" />
+</MathContainer>
+
+Erstelle den Zahlenstrahl
+
+<NumberLine
+  title={<>Zahlenstrahl für <InlineMath math="x \geq -3" /></>}
+description={<>Das Intervall <InlineMath math="[-3, 2]" /> zeigt, dass beide Endpunkte zur Lösungsmenge gehören.</>}
+  segments={[
+    {
+      start: Number.NEGATIVE_INFINITY,
+      end: -3,
+      shaded: false,
+      label: <InlineMath math="-" />,
+    },
+    {
+      start: -3,
+      end: 2,
+      startInclusive: true,
+      endInclusive: true,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 2,
+      end: Number.POSITIVE_INFINITY,
+      shaded: false,
+      label: <InlineMath math="-" />,
+    },
+  ]}
+/>
+
+Aus der Bedingung <InlineMath math="x \geq -3" /> und dem Zahlenlinienbereich oben ist die Lösungsmenge <InlineMath math="\{-3 \leq x \leq 2\}" />.
+
+Für <InlineMath math="x < -3" />
+
+<MathContainer>
+<BlockMath math="9 - x^2 \geq |x + 3|" />
+<BlockMath math="9 - x^2 \geq -(x + 3)" />
+<BlockMath math="-x^2 + x + 12 \geq 0" />
+<BlockMath math="-(x - 4)(x + 3) \geq 0" />
+<BlockMath math="x = 4 \vee x = -3" />
+</MathContainer>
+
+Der Zahlenstrahl
+
+<NumberLine
+  title={<>Zahlenstrahl für <InlineMath math="x < -3" /></>}
+description={<>Das Intervall <InlineMath math="[-3, 4]" /> zeigt, dass beide Endpunkte zur Lösungsmenge gehören.</>}
+  segments={[
+    {
+      start: Number.NEGATIVE_INFINITY,
+      end: -3,
+      shaded: false,
+      label: <InlineMath math="-" />,
+    },
+    {
+      start: -3,
+      end: 4,
+      startInclusive: true,
+      endInclusive: true,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 4,
+      end: Number.POSITIVE_INFINITY,
+      shaded: false,
+      label: <InlineMath math="-" />,
+    },
+  ]}
+/>
+
+Aus der Bedingung <InlineMath math="x < -3" /> und dem zweiten Zahlenlinienbereich oben ist die Lösungsmenge eine leere Menge.
+
+Daher ist die kombinierte Lösung
+
+<MathContainer>
+<BlockMath math="HP = \{-3 \leq x \leq 2\} \cup \{ \quad \}" />
+<BlockMath math="HP = \{-3 \leq x \leq 2\}" />
+</MathContainer>

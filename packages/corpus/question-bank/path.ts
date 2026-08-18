@@ -12,8 +12,16 @@ import {
 } from "@nakafa/aksara-contracts/question/identity";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import type { TryoutKey } from "@nakafa/aksara-contracts/tryout/key";
-import { questionArtifactLocalesForSection } from "@nakafa/aksara-contracts/tryout/language";
+import {
+  questionArtifactLocaleForSection,
+  questionArtifactLocalesForSection,
+} from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Schema } from "effect";
+import { AUTHORING_APP_LOCALES } from "#corpus/locale/source";
+import {
+  questionChoiceOverlayLocale,
+  questionChoiceSourceFiles,
+} from "#corpus/question-bank/choice-locale";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 /** Repository-relative root containing every authored Nakafa question. */
@@ -41,13 +49,55 @@ export type QuestionBankIndex = ReadonlyMap<
 export function questionSourceFiles(sectionKey: TryoutKey) {
   return Object.freeze(
     [
-      "choices.ts",
+      ...questionChoiceSourceFiles(sectionKey, ACTIVE_APP_LOCALES),
       ...ACTIVE_APP_LOCALES.map((appLocale) => `answer.${appLocale}.mdx`),
       ...questionArtifactLocalesForSection(sectionKey).map(
         (artifactLocale) => `question.${artifactLocale}.mdx`
       ),
     ].sort()
   );
+}
+
+/** Lists unique prompt locales allowed while authoring inactive app locales. */
+export function questionAuthoringArtifactLocalesForSection(
+  sectionKey: TryoutKey
+) {
+  return Object.freeze([
+    ...new Set(
+      AUTHORING_APP_LOCALES.map((appLocale) =>
+        questionArtifactLocaleForSection(sectionKey, appLocale)
+      )
+    ),
+  ]);
+}
+
+/** Derives every allowed active or candidate file in one question directory. */
+export function questionAuthoringSourceFiles(sectionKey: TryoutKey) {
+  return Object.freeze(
+    [
+      ...questionChoiceSourceFiles(sectionKey, AUTHORING_APP_LOCALES),
+      ...AUTHORING_APP_LOCALES.map((appLocale) => `answer.${appLocale}.mdx`),
+      ...questionAuthoringArtifactLocalesForSection(sectionKey).map(
+        (artifactLocale) => `question.${artifactLocale}.mdx`
+      ),
+    ].sort()
+  );
+}
+
+/** Returns whether every choice overlay has its same-locale authored prompt. */
+export function hasCompleteQuestionChoiceOverlays(
+  sectionKey: TryoutKey,
+  files: readonly string[]
+) {
+  return questionChoiceSourceFiles(sectionKey, AUTHORING_APP_LOCALES)
+    .filter((file) => file !== "choices.ts")
+    .every((file) => {
+      const appLocale = questionChoiceOverlayLocale(file);
+      return (
+        appLocale !== undefined &&
+        files.includes(file) === files.includes(`question.${appLocale}.mdx`)
+      );
+    });
 }
 
 /** Finds the terminal question directory and its direct relative file path. */

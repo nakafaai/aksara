@@ -1,0 +1,109 @@
+export const metadata = {
+  title: "Modus und Median",
+  description: "Bestimme Median, Modus und Spannweite anhand vollständiger Beispiele mit einer ungeraden und einer geraden Anzahl von Werten.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Maße der zentralen Tendenz
+
+Lagemaße beschreiben die Mitte eines Datensatzes. Median und Modus erfassen diese Mitte auf unterschiedliche Weise.
+
+## Median: Der mittlere Wert
+
+Der Median ist der **mittlere Wert eines geordneten Datensatzes**.
+
+**So bestimmst du den Median:**
+
+1. Sortiere die Daten vom kleinsten zum größten Wert.
+2. Bestimme die mittlere Position oder die beiden mittleren Positionen.
+
+- **Bei einer ungeraden Anzahl von Datenwerten (<InlineMath math="n" /> ist ungerade):**
+
+  <BlockMath math="\text{Median} = \text{Wert an Position} \frac{n+1}{2}" />
+
+  **Beispiel mit einer ungeraden Anzahl von Werten:**
+
+  Die Punktzahlen von <InlineMath math="5 \text{Lernenden}" /> lauten <InlineMath math="7, 8, 6, 9, 7" />.
+
+  Sortiert: <InlineMath math="6, 7, 7, 8, 9" /> (insgesamt <InlineMath math="5" /> Werte, also <InlineMath math="n=5" />)
+
+  Mittlere Position: <InlineMath math="(5+1)/2 = 3" />. An Position <InlineMath math="3" /> steht der Wert <InlineMath math="7" />.
+
+  Somit gilt <InlineMath math="\text{Median} = 7" />.
+
+- **Bei einer geraden Anzahl von Datenwerten (<InlineMath math="n" /> ist gerade):**
+
+  <BlockMath math="\text{Median} = \frac{\text{Wert an Position}(n/2) + \text{Wert an Position}((n/2)+1)}{2}" />
+
+  **Beispiel mit einer geraden Anzahl von Werten:**
+
+  Die Punktzahlen von <InlineMath math="6 \text{Lernenden}" /> lauten <InlineMath math="7, 8, 6, 9, 7, 10" />.
+
+  Sortiert: <InlineMath math="6, 7, 7, 8, 9, 10" /> (insgesamt <InlineMath math="6" /> Werte, also <InlineMath math="n=6" />)
+
+  Die mittleren Positionen sind <InlineMath math="6/2 = 3" /> und <InlineMath math="(6/2) + 1 = 4" />.
+
+  Die beiden mittleren Zahlen sind <InlineMath math="7" /> und <InlineMath math="8" />.
+
+  Der Median ist das arithmetische Mittel von <InlineMath math="7" /> und <InlineMath math="8" />: <InlineMath math="(7+8)/2 = 7{,}5" />.
+
+  Der Median beträgt also <InlineMath math="7{,}5" />.
+
+Weil der Median von der Position und nicht von der Größe der Werte abhängt, verändern einzelne besonders große oder kleine Randwerte ihn kaum.
+
+## Modus: Der häufigste Wert
+
+Der Modus ist der **Wert, der am häufigsten vorkommt**, also der Wert mit der höchsten Häufigkeit.
+
+**So bestimmst du den Modus:**
+
+1. Zähle, wie oft jeder Wert vorkommt.
+2. Bestimme den Wert oder die Werte mit der höchsten Häufigkeit.
+
+**Beispiel:**
+
+Testergebnisse:
+
+<BlockMath math="7, 8, 6, 9, 7, 8, 7" />
+
+- Der Wert <InlineMath math="6" /> erscheint <InlineMath math="1 \text{Mal}" />.
+- Der Wert <InlineMath math="7" /> erscheint <InlineMath math="3 \text{Mal}" />.
+- Der Wert <InlineMath math="8" /> erscheint <InlineMath math="2 \text{Mal}" />.
+- Der Wert <InlineMath math="9" /> erscheint <InlineMath math="1 \text{Mal}" />.
+
+Am häufigsten erscheint <InlineMath math="7" />, und zwar <InlineMath math="3 \text{Mal}" />.
+
+Der Modus ist also <InlineMath math="7" />.
+
+**Wichtige Hinweise zum Modus:**
+
+- Wenn alle Werte gleich häufig vorkommen, ist kein Wert eindeutig am häufigsten. Nach der hier verwendeten Konvention hat der Datensatz dann **keinen Modus**.
+- Er kann **einen Modus** haben (unimodal).
+- Er kann **zwei Modi** haben (bimodal), wenn zwei Werte dieselbe höchste Häufigkeit besitzen.
+- Er kann **mehr als zwei Modi** haben (multimodal).
+
+Ein einzelner isolierter Extremwert ändert den Modus normalerweise nicht, da seine Häufigkeit nur eins beträgt.
+
+## Die Spannweite zeigt die Gesamtbreite
+
+Neben der Mitte interessiert uns oft, wie **weit gestreut** die Daten sind. Die **Spannweite** liefert dafür ein schnelles Maß.
+
+Die Spannweite ist die **Differenz zwischen dem größten und dem kleinsten Datenwert**.
+
+<BlockMath math="\text{Spannweite} = \text{größter Wert} - \text{kleinster Wert}" />
+
+**Beispiel:**
+
+Daten: <InlineMath math="6, 7, 7, 8, 9, 10" />
+
+Größter Wert <InlineMath math="= 10" />
+
+Kleinster Wert <InlineMath math="= 6" />
+
+Spannweite <InlineMath math="= 10 - 6 = 4" />
+
+Die Spannweite zeigt den Abstand zwischen den beiden Endpunkten, beschreibt aber nicht, wie die Werte dazwischen verteilt sind.
+
+Median und Modus beschreiben die Mitte eines Datensatzes, die Spannweite seine Gesamtbreite.

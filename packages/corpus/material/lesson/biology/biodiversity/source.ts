@@ -10,50 +10,18 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
     {
       routeSlugs: { en: "bacteria", id: "bakteri" },
       slug: "bacteria",
-      translations: {
-        en: {
-          title: "Bacteria",
-        },
-        id: {
-          title: "Bakteri",
-        },
-      },
     },
     {
       routeSlugs: { en: "classification", id: "klasifikasi-makhluk-hidup" },
       slug: "classification",
-      translations: {
-        en: {
-          title: "Classification of Living Organisms",
-        },
-        id: {
-          title: "Klasifikasi Makhluk Hidup",
-        },
-      },
     },
     {
       routeSlugs: { en: "fungi", id: "fungi" },
       slug: "fungi",
-      translations: {
-        en: {
-          title: "Fungi",
-        },
-        id: {
-          title: "Fungi",
-        },
-      },
     },
     {
       routeSlugs: { en: "levels", id: "keanekaragaman-hayati" },
       slug: "levels",
-      translations: {
-        en: {
-          title: "Biological Diversity",
-        },
-        id: {
-          title: "Keanekaragaman Hayati",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -61,14 +29,6 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
         id: "makhluk-hidup-dalam-ekosistem",
       },
       slug: "living-organisms",
-      translations: {
-        en: {
-          title: "Living Organisms in Ecosystems",
-        },
-        id: {
-          title: "Makhluk Hidup dalam Ekosistem",
-        },
-      },
     },
   ],
   slug: "biodiversity",

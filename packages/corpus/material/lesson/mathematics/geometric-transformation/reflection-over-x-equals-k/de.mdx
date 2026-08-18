@@ -1,0 +1,137 @@
+
+export const metadata = {
+  title: "Spiegelung an einer vertikalen Geraden",
+  description: "Spiegle Punkte an einer Geraden der Form x = k und leite die Bildkoordinaten aus gleichen horizontalen Abständen ab.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Spiegelung an einer vertikalen Geraden verstehen
+
+Bei der Spiegelung an der vertikalen Geraden <InlineMath math="x = k" /> wirkt die Gerade <InlineMath math="x = k" /> als Spiegel. Urbild und Bildpunkt liegen auf verschiedenen Seiten der Geraden, sofern der Punkt nicht selbst auf der Spiegelgeraden liegt.
+
+Der horizontale Abstand des Urbildes zur Spiegelgeraden ist genauso groß wie der horizontale Abstand des Bildpunktes. Deshalb bleibt die <InlineMath math="y" />-Koordinate unverändert.
+
+### Regel für die Spiegelung an einer vertikalen Geraden
+
+Wenn ein Punkt <InlineMath math="P(x, y)" /> an der Geraden <InlineMath math="x = k" /> gespiegelt wird, werden die Koordinaten seines Bildes, <InlineMath math="P'(x', y')" />, durch die Regel bestimmt:
+
+<MathContainer>
+  <BlockMath math="x' = 2k - x" />
+  <BlockMath math="y' = y" />
+</MathContainer>
+
+Das Bild des Punktes <InlineMath math="P(x, y)" /> ist also <InlineMath math="P'(2k - x, y)" />. Die <InlineMath math="y" />-Koordinate bleibt gleich. Die <InlineMath math="x" />-Koordinate ändert sich entsprechend ihrem Abstand von der Geraden <InlineMath math="x=k" />.
+
+## Einen Punkt an einer vertikalen Geraden spiegeln
+
+Bestimme das Bild des Punktes <InlineMath math="P(3,2)" /> bei der Spiegelung an der Geraden <InlineMath math="x=3" />.
+
+In diesem Fall <InlineMath math="x=3" />, <InlineMath math="y=2" /> und <InlineMath math="k=3" />.
+
+Mit der Regel <InlineMath math="P'(2k - x, y)" />:
+
+<MathContainer>
+  <BlockMath math="x' = 2(3) - 3 = 6 - 3 = 3" />
+  <BlockMath math="y' = 2" />
+</MathContainer>
+
+Somit ist das Bild des Punktes <InlineMath math="P(3,2)" /> <InlineMath math="P'(3,2)" />. Der Punkt liegt auf der Spiegelgeraden, sein Abbild ist also der Punkt selbst.
+
+Im nächsten Beispiel liegt der Punkt nicht auf der Spiegelgeraden. Bestimme das Bild von <InlineMath math="A(1,4)" /> bei der Spiegelung an <InlineMath math="x=3" />.
+
+Hier <InlineMath math="x=1" />, <InlineMath math="y=4" /> und <InlineMath math="k=3" />.
+
+<MathContainer>
+  <BlockMath math="x' = 2(3) - 1 = 6 - 1 = 5" />
+  <BlockMath math="y' = 4" />
+</MathContainer>
+
+Somit ist das Bild des Punktes <InlineMath math="A(1,4)" /> <InlineMath math="A'(5,4)" />.
+
+<LineEquation
+  title={
+    <>
+      Spiegelbild eines Punktes an der Geraden <InlineMath math="x=k" />
+    </>
+  }
+  description={
+    <>
+      Spiegelung des Punktes <InlineMath math="A(1,4)" /> an der Geraden{" "}
+      <InlineMath math="x=3" /> mit dem Bildpunkt{" "}
+      <InlineMath math="A'(5,4)" />.
+    </>
+  }
+  data={[
+    {
+      points: [
+        { x: 3, y: -5, z: 0 },
+        { x: 3, y: 5, z: 0 },
+      ],
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="x=3" />, at: 1, offset: [0.5, 0.5, 0] }],
+    }, // Spiegelgerade
+    {
+      points: [{ x: 1, y: 4, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A(1,4)" />, at: 0, offset: [-0.5, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 5, y: 4, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A'(5,4)" />, at: 0, offset: [0.2, 0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: 4, z: 0 },
+        { x: 5, y: 4, z: 0 },
+      ],
+      color: "#db2777",
+    }, // Horizontale Hilfslinie
+  ]}
+  showZAxis={false}
+/>
+
+## Übungen
+
+1.  Bestimme das Bild des Punktes <InlineMath math="P(3,2)" /> bei der Spiegelung an der Geraden <InlineMath math="x=5" />.
+2.  Der Punkt <InlineMath math="B(-2, 5)" /> wird an der Geraden <InlineMath math="x=1" /> gespiegelt. Bestimme die Koordinaten seines Bildpunktes.
+3.  Das Bild eines Punktes <InlineMath math="C(x,y)" /> nach der Spiegelung an der Geraden <InlineMath math="x=-2" /> ist <InlineMath math="C'(0,3)" />. Bestimme die Koordinaten von <InlineMath math="C" />.
+
+### Lösungen
+
+1.  Gegeben seien <InlineMath math="P(3,2)" /> und die Spiegelgerade <InlineMath math="x=5" />. Also <InlineMath math="x=3, y=2, k=5" />.
+
+    <MathContainer>
+      <BlockMath math="x' = 2k - x = 2(5) - 3 = 10 - 3 = 7" />
+      <BlockMath math="y' = y = 2" />
+    </MathContainer>
+
+    Somit ist das Bild des Punktes <InlineMath math="P" /> <InlineMath math="P'(7,2)" />.
+
+2.  Gegeben seien <InlineMath math="B(-2, 5)" /> und die Spiegelgerade <InlineMath math="x=1" />. Also <InlineMath math="x=-2, y=5, k=1" />.
+
+    <MathContainer>
+      <BlockMath math="x' = 2k - x = 2(1) - (-2) = 2 + 2 = 4" />
+      <BlockMath math="y' = y = 5" />
+    </MathContainer>
+
+    Somit ist das Bild des Punktes <InlineMath math="B" /> <InlineMath math="B'(4,5)" />.
+
+3.  Gegeben sei das Bild <InlineMath math="C'(0,3)" /> und die Spiegelgerade <InlineMath math="x=-2" />. Also <InlineMath math="x'=0, y'=3, k=-2" />.
+
+    Wir kennen <InlineMath math="x' = 2k - x" /> und <InlineMath math="y' = y" />.
+
+    Aus <InlineMath math="y' = y" /> folgt <InlineMath math="y = 3" />.
+
+    Aus <InlineMath math="x' = 2k - x" /> folgt <InlineMath math="0 = 2(-2) - x" />.
+
+    <MathContainer>
+      <BlockMath math="0 = -4 - x" />
+      <BlockMath math="x = -4" />
+    </MathContainer>
+
+    Somit sind die Koordinaten des Punktes <InlineMath math="C" /> <InlineMath math="C(-4,3)" />.

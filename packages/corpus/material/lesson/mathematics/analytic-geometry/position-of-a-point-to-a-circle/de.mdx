@@ -1,0 +1,240 @@
+export const metadata = {
+  title: "Lage eines Punktes relativ zu einem Kreis",
+  description: "Bestimme mit der Punktpotenz, ob ein Punkt innerhalb, auf oder außerhalb eines Kreises liegt, und übe das Verfahren an vollständigen Beispielen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Die Lage eines Punktes relativ zu einem Kreis
+
+Für einen Kreis und einen Punkt gibt es genau drei Möglichkeiten: Der Punkt liegt innerhalb des Kreises, auf seiner Kreislinie oder außerhalb des Kreises.
+
+Der gleiche Vergleich tritt in vereinfachten Reichweitenmodellen auf, etwa wenn geprüft wird, ob ein Ort innerhalb eines kreisförmig modellierten Funk- oder Radarbereichs liegt. Sobald das Kreismodell feststeht, liefert die Koordinatengeometrie eine eindeutige Antwort.
+
+Kreisgleichung und Punktkoordinaten liefern eine mathematisch eindeutige Einordnung.
+
+## Potenz eines Punktes
+
+Zur Einordnung verwenden wir die **Potenz eines Punktes bezüglich des Kreises**. Sie ist eine vorzeichenbehaftete algebraische Größe und kein gewöhnlicher Abstand. Für einen Kreis mit Mittelpunkt <InlineMath math="(a,b)" /> und Radius <InlineMath math="r" /> gilt:
+
+<BlockMath math="K_A = (x_0-a)^2 + (y_0-b)^2 - r^2" />
+
+Wenn wir Punkt <InlineMath math="A(x_0, y_0)" /> und einen Kreis mit der allgemeinen Gleichung <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> haben, dann ist die Potenz von Punkt <InlineMath math="A" /> definiert als:
+
+<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
+
+Einmaliges Einsetzen der Koordinaten liefert einen Wert, dessen Vorzeichen die Lage bestimmt.
+
+## Drei mögliche Lagen
+
+Der Wert der Punktpotenz unterscheidet drei mögliche Lagen:
+
+1. **Der Punkt liegt innerhalb des Kreises**, wenn <InlineMath math="K_A < 0" />.
+
+2. **Der Punkt liegt auf dem Kreis**, wenn <InlineMath math="K_A = 0" />.
+
+3. **Der Punkt liegt außerhalb des Kreises**, wenn <InlineMath math="K_A > 0" />.
+
+Die drei Fälle sind in der folgenden Grafik dargestellt:
+
+<LineEquation
+  title="Lage eines Punktes relativ zum Kreis"
+  description={<>Darstellung der drei möglichen Lagen des Punktes <InlineMath math="A" /> relativ zum Kreis.</>}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P(0,0)" />, at: 0, offset: [-0.5, -0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 1.5,
+          y: 1,
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <><InlineMath math="A" /> (innen)</>, at: 0, offset: [0, -0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        const angle = Math.PI / 6;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <><InlineMath math="B" /> (auf)</>, at: 0, offset: [0.5, 0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        return {
+          x: 4.5,
+          y: 2,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: true,
+      labels: [
+        { text: <><InlineMath math="C" /> (außen)</>, at: 0, offset: [0.5, 0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -5;
+        const xMax = 5;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -4;
+        const yMax = 4;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## So wird die Lage bestimmt
+
+Zuerst werden Kreisgleichung und Punktkoordinaten bestimmt. Danach setzen wir die Koordinaten in die Gleichung ein und prüfen das Vorzeichen des Ergebnisses.
+
+Ist das Ergebnis negativ, liegt der Punkt im Inneren. Bei null liegt der Punkt auf dem Kreis. Ist es positiv, liegt der Punkt außerhalb des Kreises.
+
+Versuchen wir es anhand eines konkreten Beispiels. Angenommen, wir haben den Punkt <InlineMath math="A(1, -2)" /> und den Kreis <InlineMath math="x^2 + y^2 = 25" />.
+
+Zuerst berechnen wir das Abstandsquadrat zum Mittelpunkt und ziehen dann <InlineMath math="r^2" /> ab:
+
+<MathContainer>
+  <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
+  <BlockMath math="K_A = d_A^2-r^2 = 5-25 = -20" />
+</MathContainer>
+
+Wegen <InlineMath math="K_A = -20 < 0" /> liegt <InlineMath math="A(1, -2)" /> innerhalb des Kreises.
+
+> Für <InlineMath math="x^2 + y^2 = r^2" /> ist der Vergleich von <InlineMath math="d_A^2" /> mit <InlineMath math="r^2" /> gleichbedeutend mit der Vorzeichenprüfung von <InlineMath math="K_A=d_A^2-r^2" />.
+
+## Anwendung auf die allgemeine Form
+
+Hat der Kreis die allgemeine Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, bleibt das Verfahren gleich. Wir setzen die Punktkoordinaten in die gesamte linke Seite ein und prüfen das Vorzeichen.
+
+Zum Beispiel für Punkt <InlineMath math="A(1, -2)" /> und Kreis <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
+
+<MathContainer>
+  <BlockMath math="K_A = 1^2 + (-2)^2 - 8(1) - 2(-2) - 8" />
+  <BlockMath math="K_A = 1 + 4 - 8 + 4 - 8 = -7" />
+</MathContainer>
+
+Da <InlineMath math="K_A = -7 < 0" />, liegt der Punkt <InlineMath math="A(1, -2)" /> innerhalb des Kreises.
+
+## Übungsaufgaben
+
+1. Bestimme die Lage des Punktes <InlineMath math="A(3, 4)" /> relativ zum Kreis <InlineMath math="x^2 + y^2 = 16" />.
+
+2. Untersuche, ob der Punkt <InlineMath math="B(6, -8)" /> auf dem Kreis <InlineMath math="x^2 + y^2 = 100" /> liegt.
+
+3. Bestimme die Lage des Punktes <InlineMath math="C(2, 1)" /> relativ zum Kreis <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />.
+
+4. Ein Kreis hat die Gleichung <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />. Bestimme die Lage von <InlineMath math="D(7, 2)" /> relativ zu diesem Kreis.
+
+### Ausführliche Lösungen
+
+1. **Lösung**:
+
+   Setze die Koordinaten des Punktes <InlineMath math="A(3, 4)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 16" /> ein:
+
+   <MathContainer>
+     <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
+     <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
+   </MathContainer>
+
+   Da <InlineMath math="K_A = 9 > 0" />, liegt <InlineMath math="A(3, 4)" /> außerhalb des Kreises.
+
+2. **Lösung**:
+
+   Setze die Koordinaten des Punktes <InlineMath math="B(6, -8)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 100" /> ein:
+
+   <MathContainer>
+     <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
+     <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
+   </MathContainer>
+
+   Da <InlineMath math="K_B = 0" />, liegt <InlineMath math="B(6, -8)" /> genau auf dem Kreis.
+
+3. **Lösung**:
+
+   Setze die Koordinaten des Punktes <InlineMath math="C(2, 1)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" /> ein:
+
+   <MathContainer>
+     <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
+     <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
+   </MathContainer>
+
+   Da <InlineMath math="K_C = -9 < 0" />, liegt der Punkt <InlineMath math="C(2, 1)" /> innerhalb des Kreises.
+
+4. **Lösung**:
+
+   Der Kreis <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> hat den Mittelpunkt <InlineMath math="(3, -2)" /> und den Radius <InlineMath math="r = 5" />.
+
+   Wir setzen <InlineMath math="D(7, 2)" /> ein:
+
+   <MathContainer>
+     <BlockMath math="d_D^2 = (7-3)^2 + (2-(-2))^2 = 4^2 + 4^2" />
+     <BlockMath math="d_D^2 = 16 + 16 = 32" />
+     <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
+   </MathContainer>
+
+   Da <InlineMath math="K_D = 7 > 0" />, liegt <InlineMath math="D(7, 2)" /> außerhalb des Kreises.

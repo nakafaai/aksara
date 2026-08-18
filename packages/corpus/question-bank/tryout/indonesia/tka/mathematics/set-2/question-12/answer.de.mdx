@@ -1,0 +1,23 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 12",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Wir setzen <InlineMath math="t=\frac1h" />. Aus <InlineMath math="h\to\infty" /> folgen <InlineMath math="t\to0^+" /> und <InlineMath math="h=\frac1t" />. Der gegebene Grenzwert ist damit genau der Differenzenquotient von <InlineMath math="f'" />.
+
+<MathContainer>
+<BlockMath math="\lim_{h \to \infty} h \left[f'\left(x + \frac{1}{h}\right) - f'(x)\right]" />
+<BlockMath math="=\lim_{t\to0^+}\frac{f'(x+t)-f'(x)}{t}" />
+<BlockMath math="=f''(x)" />
+</MathContainer>
+
+Nun leiten wir <InlineMath math="f(x)=\sin^2x" /> zweimal ab.
+
+<MathContainer>
+<BlockMath math="f(x) = \sin^2 x" />
+<BlockMath math="f'(x)=2\sin x\cos x=\sin 2x" />
+<BlockMath math="f''(x) = 2 \cos 2x" />
+</MathContainer>
+
+<BlockMath math="\lim_{h \to \infty} h \left[f'\left(x + \frac{1}{h}\right) - f'(x)\right] = 2 \cos 2x" />

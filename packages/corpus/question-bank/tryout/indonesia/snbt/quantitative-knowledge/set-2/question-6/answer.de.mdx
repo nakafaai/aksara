@@ -1,0 +1,44 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Wir zählen die Möglichkeiten mit der Produktregel. Zur Verfügung stehen die Ziffern <InlineMath math="1, 2, 3, 4, 5, 6" />, und jede Ziffer darf dabei höchstens einmal vorkommen.
+
+Es gibt <InlineMath math="4" /> Ziffernpositionen: Tausender, Hunderter, Zehner und Einer.
+
+#### Schritt eins: die Einerstelle
+
+Damit die Zahl ungerade ist, muss die Einerstelle eine ungerade Zahl sein. Von den verfügbaren Ziffern (<InlineMath math="1, 2, 3, 4, 5, 6" />) sind die ungeraden Zahlen <InlineMath math="1, 3, 5" />.
+
+Für die Einerstelle gibt es also **<InlineMath math="3" />** Möglichkeiten.
+
+#### Schritt zwei: die Tausenderstelle
+
+Nachdem die Einerstelle feststeht, bleiben <InlineMath math="6 - 1 = 5" /> Ziffern für die Tausenderstelle übrig.
+
+Es gibt also **<InlineMath math="5" />** Auswahlmöglichkeiten für die Tausenderstelle.
+
+#### Schritt drei: die Hunderterstelle
+
+Nach der Einer- und der Tausenderstelle sind noch <InlineMath math="6 - 2 = 4" /> Ziffern übrig.
+
+Es gibt also **<InlineMath math="4" />** Auswahlmöglichkeiten für die Hunderterstelle.
+
+#### Schritt vier: die Zehnerstelle
+
+Nachdem drei Ziffern verwendet wurden, sind noch <InlineMath math="6 - 3 = 3" /> Ziffern übrig.
+
+Für die Zehnerstelle gibt es also **<InlineMath math="3" />** Möglichkeiten.
+
+#### Gesamtberechnung
+
+Nach der Produktregel multiplizieren wir die Möglichkeiten der vier Stellen:
+
+<MathContainer>
+  <BlockMath math="\text{Gesamt} = 5 \times 4 \times 3 \times 3" />
+  <BlockMath math="\text{Gesamt} = 180" />
+</MathContainer>
+
+Es gibt also <InlineMath math="180" /> Zahlen, die gebildet werden können.

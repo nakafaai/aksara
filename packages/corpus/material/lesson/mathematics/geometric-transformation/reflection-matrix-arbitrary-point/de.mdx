@@ -1,0 +1,157 @@
+
+export const metadata = {
+  title: "Spiegelungsmatrix für einen beliebigen Punkt",
+  description: "Spiegle Punkte an einem beliebigen Spiegelzentrum, indem du Verschiebungen und Matrixoperationen miteinander verknüpfst.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Spiegelungsmatrix für einen beliebigen Spiegelpunkt bestimmen
+
+Das Bild eines Punktes <InlineMath math="(x,y)" />, der am Punkt <InlineMath math="(a,b)" /> gespiegelt wird, ist <InlineMath math="(-x+2a, -y+2b)" /> oder <InlineMath math="(2a-x, 2b-y)" />.
+
+Diese Transformation lässt sich nicht allein durch eine <InlineMath math="2 \times 2" />-Matrix beschreiben. Weil das Spiegelzentrum <InlineMath math="(a,b)" /> nicht im Ursprung liegt, brauchen wir zusätzlich eine Verschiebung.
+
+Wir können diese Transformation jedoch als eine Kombination von Matrixoperationen darstellen:
+
+1. Verschiebe den Punkt <InlineMath math="(x,y)" /> so, dass das Spiegelzentrum <InlineMath math="(a,b)" /> im Ursprung liegt. Dadurch entsteht <InlineMath math="(x-a, y-b)" />.
+2. Spiegle den verschobenen Punkt mit der Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> am Ursprung.
+3. Verschiebe das Ergebnis zurück, indem du die Koordinaten des Spiegelzentrums <InlineMath math="(a,b)" /> addierst.
+
+Mathematisch gilt, wenn <InlineMath math="(x', y')" /> das Bild von <InlineMath math="(x,y)" /> ist:
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -(x-a) \\ -(y-b) \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+a \\ -y+b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
+</MathContainer>
+
+Damit erhalten wir wieder die bekannte Koordinatenregel.
+
+### Spiegelung an einem Punkt mit Matrizen
+
+Die mit der Spiegelung am Punkt <InlineMath math="P(a,b)" /> für jeden Punkt <InlineMath math="(x,y)" /> verbundene Matrixoperation lautet:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + 2 \begin{pmatrix} a \\ b \end{pmatrix}" />
+
+Dieselbe Abbildung lässt sich auch in den drei beschriebenen Schritten schreiben:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) + \begin{pmatrix} a \\ b \end{pmatrix}" />
+
+Beim Ausmultiplizieren entsteht <InlineMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />. Das ist genau die Koordinatenregel <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In Vektorform lautet dieselbe Beziehung <InlineMath math="Q'=2P-Q" />: Das Zentrum ist der Mittelpunkt zwischen dem Ausgangspunkt und seinem Bildpunkt.
+
+## Das Bild eines Punktes finden
+
+Bestimme das Bild des Punktes <InlineMath math="(2,3)" /> bei der Spiegelung am Punkt <InlineMath math="(1,1)" />.
+
+**Lösung:**
+
+Ausgangspunkt ist <InlineMath math="(x,y) = (2,3)" />, das Spiegelzentrum ist <InlineMath math="(a,b) = (1,1)" />.
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="= \begin{pmatrix} (-1)(2) + (0)(3) \\ (0)(2) + (-1)(3) \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix}" />
+  <BlockMath math="= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} = \begin{pmatrix} 0 \\ -1 \end{pmatrix}" />
+</MathContainer>
+
+Visualisierung:
+
+<LineEquation
+  title={
+    <>
+      Spiegelung von <InlineMath math="Q(2,3)" /> an{" "}
+      <InlineMath math="P(1,1)" />
+    </>
+  }
+  description={
+    <>
+      Der Punkt <InlineMath math="Q(2,3)" /> wird an{" "}
+      <InlineMath math="P(1,1)" /> gespiegelt. Sein Bild ist <InlineMath math="Q'(0,-1)" />.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: 1, y: 1, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="P(1,1)" /> - Spiegelzentrum</>, at: 0, offset: [0.3, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 3, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="Q(2,3)" /> - Ausgangspunkt</>, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: -1, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="Q'(0,-1)" /> - Bild</>, at: 0, offset: [-0.8, -0.2, 0] }],
+    },
+    {
+      points: [
+        { x: 2, y: 3, z: 0 },
+        { x: 0, y: -1, z: 0 },
+      ],
+      color: "#4f46e5",
+    }, // Verbindungslinie QQ'
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 1, 10]}
+/>
+
+## Übungen
+
+1.  Bestimme das Bild des Punktes <InlineMath math="(3,1)" /> bei der Spiegelung am Punkt <InlineMath math="(-2,-1)" />.
+2.  Eine Gerade verläuft durch die Punkte <InlineMath math="A(1,2)" /> und <InlineMath math="B(3,4)" />. Bestimme die Gleichung ihrer Bildgeraden nach der Spiegelung am Punkt <InlineMath math="C(0,1)" />.
+
+### Lösungen
+
+1.  Ausgangspunkt ist <InlineMath math="(x,y) = (3,1)" />, das Spiegelzentrum ist <InlineMath math="(a,b) = (-2,-1)" />.
+
+    Mit der Formel <InlineMath math="x' = 2a-x" /> und <InlineMath math="y' = 2b-y" />:
+
+    <MathContainer>
+      <BlockMath math="x' = 2(-2) - 3 = -4 - 3 = -7" />
+      <BlockMath math="y' = 2(-1) - 1 = -2 - 1 = -3" />
+    </MathContainer>
+
+    Das Bild ist <InlineMath math="(-7,-3)" />. Mit der Matrixrechnung erhalten wir dasselbe Ergebnis:
+
+    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} = \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} = \begin{pmatrix} -7 \\ -3 \end{pmatrix}" />
+
+2.  Spiegelzentrum <InlineMath math="C(0,1)" />. (<InlineMath math="a=0, b=1" />)
+
+    Bild von Punkt <InlineMath math="A(1,2)" />:
+
+    <MathContainer>
+      <BlockMath math="x'_A = 2(0)-1 = -1" />
+      <BlockMath math="y'_A = 2(1)-2 = 0" />
+    </MathContainer>
+
+    Also <InlineMath math="A'(-1,0)" />.
+
+    Bild von Punkt <InlineMath math="B(3,4)" />:
+
+    <MathContainer>
+      <BlockMath math="x'_B = 2(0)-3 = -3" />
+      <BlockMath math="y'_B = 2(1)-4 = -2" />
+    </MathContainer>
+
+    Also <InlineMath math="B'(-3,-2)" />.
+
+    Die Bildgerade verläuft durch <InlineMath math="A'(-1,0)" /> und <InlineMath math="B'(-3,-2)" />.
+
+    Steigung <InlineMath math="m' = \frac{-2 - 0}{-3 - (-1)} = \frac{-2}{-2} = 1" />.
+
+    Gleichung der Geraden:
+
+    <MathContainer>
+      <BlockMath math="y - y'_A = m'(x - x'_A)" />
+      <BlockMath math="y - 0 = 1(x - (-1))" />
+      <BlockMath math="y = x + 1" />
+    </MathContainer>
+
+    oder
+
+    <BlockMath math="x - y + 1 = 0" />

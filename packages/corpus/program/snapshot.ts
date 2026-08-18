@@ -23,20 +23,34 @@ import { Effect, Stream } from "effect";
 
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
+import { decodeMaterialDomains } from "#corpus/material/domain";
 import { decodeMaterialSources } from "#corpus/material/source";
-import { decodeProgramCatalog } from "#corpus/program/catalog";
+import {
+  decodeProgramCatalog,
+  selectActiveProgramCatalog,
+} from "#corpus/program/catalog";
+import { prepareProgramMaterials } from "#corpus/program/materials";
 
 /** Resolves exact source catalogs before replaying aggregate program rows. */
 const prepareProgramSources = Effect.fn("AksaraCorpus.prepareProgramSources")(
-  function* (programInput?: unknown) {
-    const [curricula, materials, programs] = yield* Effect.all([
-      decodeCurriculumCatalog(),
-      decodeMaterialSources(),
-      decodeProgramCatalog(programInput),
-    ]);
+  function* (programInput?: unknown, programLocaleInput?: unknown) {
+    const [curricula, domains, materials, authoringPrograms] =
+      yield* Effect.all([
+        decodeCurriculumCatalog(),
+        decodeMaterialDomains(),
+        decodeMaterialSources(),
+        decodeProgramCatalog(programInput, programLocaleInput),
+      ]);
+    const programs = yield* selectActiveProgramCatalog(authoringPrograms);
+    const localized = yield* prepareProgramMaterials({
+      appLocales: ACTIVE_APP_LOCALES,
+      domains,
+      materials,
+    });
     const routes = yield* projectCurriculumRoutes({
       curricula,
-      materials,
+      domains: localized.domains,
+      materials: localized.materials,
       programs,
     });
     return { programs, routes };
@@ -97,17 +111,28 @@ export interface PreparedProgramSnapshot {
 }
 
 /** Streams catalog rows followed by canonical localized curriculum rows. */
-export function streamProgramRows(programInput?: unknown) {
-  return Stream.fromEffect(prepareProgramSources(programInput)).pipe(
-    Stream.flatMap(streamPreparedProgramRows)
-  );
+export function streamProgramRows(
+  programInput?: unknown,
+  programLocaleInput?: unknown
+) {
+  return Stream.fromEffect(
+    prepareProgramSources(programInput, programLocaleInput)
+  ).pipe(Stream.flatMap(streamPreparedProgramRows));
 }
 
 /** Prepares the complete aggregate program snapshot selected by a release. */
 export const prepareProgramSnapshot = Effect.fn(
   "AksaraCorpus.prepareProgramSnapshot"
-)(function* (input: { readonly programInput?: unknown } = {}) {
-  const sources = yield* prepareProgramSources(input.programInput);
+)(function* (
+  input: {
+    readonly programInput?: unknown;
+    readonly programLocaleInput?: unknown;
+  } = {}
+) {
+  const sources = yield* prepareProgramSources(
+    input.programInput,
+    input.programLocaleInput
+  );
   /** Replays the same decoded source rows used to derive the manifest. */
   const rows = () => streamPreparedProgramRows(sources);
   const summary = yield* digestProgramRows({

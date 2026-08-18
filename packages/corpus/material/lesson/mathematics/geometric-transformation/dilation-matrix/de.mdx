@@ -1,0 +1,264 @@
+
+export const metadata = {
+  title: "Streckungsmatrix",
+  description: "Leite die Streckungsmatrix her und berechne damit Bildpunkte für den Ursprung und für beliebige Streckzentren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Matrix einer zentrischen Streckung bestimmen
+
+Wie lässt sich eine zentrische Streckung als Matrix darstellen? Bei einer Streckung mit dem Zentrum <InlineMath math="O" /> und dem Streckfaktor <InlineMath math="k \neq 0" /> wird ein Punkt <InlineMath math="(x,y)" /> auf <InlineMath math="(kx,ky)" /> abgebildet.
+
+Angenommen, die gesuchte Matrix ist <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />.
+
+Gesucht sind <InlineMath math="r, s, t, u" />, sodass für jeden Punkt gilt:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} kx \\ ky \end{pmatrix}" />
+
+Aus der Matrixmultiplikation auf der linken Seite erhalten wir:
+
+<BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} kx \\ ky \end{pmatrix}" />
+
+Wir vergleichen die Koeffizienten in den entsprechenden Komponenten:
+
+- **Erste Zeile:** <InlineMath math="rx + sy = kx" />. Damit diese Gleichung für alle <InlineMath math="x" /> und <InlineMath math="y" /> gilt, müssen die Koeffizienten von <InlineMath math="x" /> beziehungsweise <InlineMath math="y" /> übereinstimmen. Also gilt <InlineMath math="r = k" /> und <InlineMath math="s = 0" />.
+- **Zweite Zeile:** <InlineMath math="tx + uy = ky" />. Ebenso <InlineMath math="t = 0" /> und <InlineMath math="u = k" />.
+
+## Streckungsmatrix mit dem Ursprung als Zentrum
+
+Die Matrix einer zentrischen Streckung mit dem Zentrum <InlineMath math="O(0,0)" /> und dem Streckfaktor <InlineMath math="k \neq 0" /> lautet:
+
+<BlockMath math="\begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix}" />
+
+## Zentrische Streckung um ein beliebiges Zentrum mit Matrizen
+
+Wird ein Punkt <InlineMath math="(x,y)" /> mit dem Zentrum <InlineMath math="(a,b)" /> und dem Streckfaktor <InlineMath math="k \neq 0" /> gestreckt, lautet sein Bild <InlineMath math="(k(x-a)+a,\, k(y-b)+b)" />.
+
+Gesucht ist eine Folge von Matrixoperationen, die den verschobenen Ortsvektor <InlineMath math="\begin{pmatrix} x-a \\ y-b \end{pmatrix}" /> auf <InlineMath math="\begin{pmatrix} k(x-a)+a \\ k(y-b)+b \end{pmatrix}" /> abbildet.
+
+Die Matrixoperation für eine zentrische Streckung mit dem Streckfaktor <InlineMath math="k \neq 0" /> und dem Zentrum <InlineMath math="(a,b)" /> ist:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+
+Äquivalent dazu gilt:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right)" />
+
+## Bildpunkt einer zentrischen Streckung mit Matrizen bestimmen
+
+Der Punkt <InlineMath math="A(2,4)" /> wird mit dem Zentrum <InlineMath math="P(1,1)" /> und dem Streckfaktor <InlineMath math="2" /> gestreckt. Bestimme den Bildpunkt.
+
+**Lösung:**
+
+Gegeben <InlineMath math="x=2, y=4, k=2, a=1, b=1" />.
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 2-1 \\ 4-1 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 1 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} (2)(1) + (0)(3) \\ (0)(1) + (2)(3) \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 \\ 6 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 7 \end{pmatrix}" />
+</MathContainer>
+
+Somit ist das Bild des Punktes <InlineMath math="A(2,4)" /> <InlineMath math="A'(3,7)" />.
+
+<LineEquation
+  title={
+    <>
+      Streckung von <InlineMath math="A(2,4)" /> mit dem Zentrum{" "}
+      <InlineMath math="P(1,1)" /> und dem Streckfaktor{" "}
+      <InlineMath math="k=2" />
+    </>
+  }
+  description={
+    <>
+      Der Punkt <InlineMath math="A(2,4)" /> wird bezüglich des Zentrums{" "}
+      <InlineMath math="P(1,1)" /> mit dem Streckfaktor <InlineMath math="k=2" />{" "}
+      auf <InlineMath math="A'(3,7)" /> abgebildet. Zentrum, Ausgangspunkt und
+      Bildpunkt liegen auf einer Geraden, und der Abstand <InlineMath math="PA'" />
+      ist doppelt so groß wie der Abstand <InlineMath math="PA" />.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: 1, y: 1, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P(1,1)" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 4, z: 0 }],
+      color: "#0284c7",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A(2,4)" />, at: 0, offset: [1.5, 0.2, 0] }],
+    },
+    {
+      points: [{ x: 3, y: 7, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A'(3,7)" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: 1, z: 0 }, // P
+        { x: 2, y: 4, z: 0 }, // A
+      ],
+      color: "#d97706",
+    },
+    {
+      points: [
+        { x: 1, y: 1, z: 0 }, // P
+        { x: 3, y: 7, z: 0 }, // A'
+      ],
+      color: "#0284c7",
+      cone: { position: "end", size: 0.3 },
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[0, 0, 18]}
+/>
+
+## Übungen
+
+1.  Bestimme die Koordinaten des Bildes eines Punktes <InlineMath math="(a,b)" /> unter der zentrischen Streckung <InlineMath math="[O,3]" />.
+2.  Bestimme die Matrix der zentrischen Streckung mit dem Zentrum <InlineMath math="O(0,0)" /> und dem Streckfaktor <InlineMath math="-2" />.
+3.  Der Punkt <InlineMath math="B(-1, 5)" /> wird mit dem Zentrum <InlineMath math="P(2, -3)" /> und dem Streckfaktor <InlineMath math="k = \frac{1}{2}" /> gestreckt. Bestimme die Koordinaten des Bildpunktes von <InlineMath math="B" />.
+4.  Das Dreieck <InlineMath math="KLM" /> hat die Eckpunkte <InlineMath math="K(1,1)" />, <InlineMath math="L(5,1)" /> und <InlineMath math="M(3,4)" />. Es wird mit dem Zentrum <InlineMath math="O(0,0)" /> und dem Streckfaktor <InlineMath math="2" /> gestreckt. Zeichne das Ausgangs- und das Bilddreieck und bestimme die Koordinaten der Bildeckpunkte.
+
+### Lösungen
+
+1. Bei der zentrischen Streckung <InlineMath math="[O,3]" /> ist <InlineMath math="O(0,0)" /> das Streckzentrum und <InlineMath math="k=3" /> der Streckfaktor.
+
+   Der Punkt sei <InlineMath math="Q(a,b)" />.
+
+   Dann <InlineMath math="x=a, y=b, k=3" />.
+
+   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 3a \\ 3b \end{pmatrix}" />
+
+   Somit sind die Koordinaten des Bildes des Punktes <InlineMath math="(a,b)" /> <InlineMath math="(3a, 3b)" />.
+
+2. Streckzentrum <InlineMath math="O(0,0)" />, Streckfaktor <InlineMath math="k=-2" />.
+
+   Die Streckungsmatrix ist:
+
+   <BlockMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" />
+
+3. Ausgangspunkt <InlineMath math="B(-1, 5)" />, Streckzentrum <InlineMath math="P(2, -3)" />, Streckfaktor <InlineMath math="k = \frac{1}{2}" />.
+
+   <InlineMath math="x=-1, y=5, a=2, b=-3, k=\frac{1}{2}" />.
+
+   <MathContainer>
+     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{pmatrix} \begin{pmatrix} -1-2 \\ 5-(-3) \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
+     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{pmatrix} \begin{pmatrix} -3 \\ 8 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
+     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} (\frac{1}{2})(-3) + (0)(8) \\ (0)(-3) + (\frac{1}{2})(8) \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
+     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -\frac{3}{2} \\ 4 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix} = \begin{pmatrix} -\frac{3}{2} + \frac{4}{2} \\ 4 - 3 \end{pmatrix} = \begin{pmatrix} \frac{1}{2} \\ 1 \end{pmatrix}" />
+   </MathContainer>
+
+   Die Koordinaten des Bildes des Punkts <InlineMath math="B" /> sind <InlineMath math="B'(\frac{1}{2}, 1)" />.
+
+4. Dreieck <InlineMath math="KLM" /> mit <InlineMath math="K(1,1)" />, <InlineMath math="L(5,1)" />, <InlineMath math="M(3,4)" />.
+
+   Streckzentrum <InlineMath math="O(0,0)" />, <InlineMath math="k=2" />.
+
+   Bild des Punktes <InlineMath math="K(1,1)" />:
+
+   <BlockMath math="\begin{pmatrix} x_K' \\ y_K' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \end{pmatrix} \implies K'(2,2)" />
+
+   Bild des Punktes <InlineMath math="L(5,1)" />:
+
+   <BlockMath math="\begin{pmatrix} x_L' \\ y_L' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} = \begin{pmatrix} 10 \\ 2 \end{pmatrix} \implies L'(10,2)" />
+
+   Bild des Punktes <InlineMath math="M(3,4)" />:
+
+   <ContentStack>
+
+     <BlockMath math="\begin{pmatrix} x_M' \\ y_M' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{pmatrix} 6 \\ 8 \end{pmatrix} \implies M'(6,8)" />
+
+     <LineEquation
+       title={
+         <>
+           Streckung des Dreiecks <InlineMath math="KLM" /> mit dem Zentrum{" "}
+           <InlineMath math="O(0,0)" /> und dem Streckfaktor{" "}
+           <InlineMath math="k=2" />
+         </>
+       }
+       description={
+         <>
+           Die zentrische Streckung mit dem Zentrum <InlineMath math="O(0,0)" /> bildet
+           das Dreieck <InlineMath math="KLM" /> auf <InlineMath math="K'L'M'" /> ab.
+         </>
+       }
+       data={[
+         // Ausgangsdreieck KLM
+         {
+           points: [
+             { x: 1, y: 1, z: 0 }, // K
+             { x: 5, y: 1, z: 0 }, // L
+           ],
+           color: "#0284c7",
+           labels: [
+             { text: <InlineMath math="K(1,1)" />, at: 0, offset: [-0.7, -0.2, 0] },
+             { text: <InlineMath math="L(5,1)" />, at: 1, offset: [0.7, -0.2, 0] },
+           ],
+           showPoints: true,
+         },
+         {
+           points: [
+             { x: 5, y: 1, z: 0 }, // L
+             { x: 3, y: 4, z: 0 }, // M
+           ],
+           color: "#ea580c",
+           labels: [{ text: <InlineMath math="M(3,4)" />, at: 1, offset: [0, 0.5, 0] }],
+           showPoints: true,
+         },
+         {
+           points: [
+             { x: 3, y: 4, z: 0 }, // M
+             { x: 1, y: 1, z: 0 }, // K
+           ],
+           color: "#9333ea",
+           showPoints: true,
+         },
+         // Bilddreieck K'L'M'
+         {
+           points: [
+             { x: 2, y: 2, z: 0 }, // K'
+             { x: 10, y: 2, z: 0 }, // L'
+           ],
+           color: "#0d9488",
+           labels: [
+             { text: <InlineMath math="K'(2,2)" />, at: 0, offset: [-0.8, -0.3, 0] },
+             { text: <InlineMath math="L'(10,2)" />, at: 1, offset: [0.8, -0.3, 0] },
+           ],
+           showPoints: true,
+         },
+         {
+           points: [
+             { x: 10, y: 2, z: 0 }, // L'
+             { x: 6, y: 8, z: 0 }, // M'
+           ],
+           color: "#db2777",
+           labels: [{ text: <InlineMath math="M'(6,8)" />, at: 1, offset: [0, 0.6, 0] }],
+           showPoints: true,
+         },
+         {
+           points: [
+             { x: 6, y: 8, z: 0 }, // M'
+             { x: 2, y: 2, z: 0 }, // K'
+           ],
+           color: "#4f46e5",
+           showPoints: true,
+         },
+         // Ursprung
+         {
+           points: [{ x: 0, y: 0, z: 0 }],
+           color: "#4f46e5",
+           showPoints: true,
+           labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
+         },
+       ]}
+       showZAxis={false}
+       cameraPosition={[0, 0, 20]}
+     />
+   </ContentStack>

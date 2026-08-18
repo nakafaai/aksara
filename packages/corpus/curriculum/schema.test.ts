@@ -155,14 +155,19 @@ describe("curriculum schema", () => {
     const files = await Effect.runPromise(
       importCorpusModules("curriculum/**/*.ts", [
         "curriculum/context.ts",
+        "curriculum/locale-registry.ts",
+        "curriculum/locale-source.ts",
+        "curriculum/locale.ts",
         "curriculum/material.ts",
+        "curriculum/node-route.ts",
         "curriculum/projection.ts",
         "curriculum/route.ts",
+        "curriculum/route-source.ts",
         "curriculum/schema.ts",
         "curriculum/source.ts",
       ])
     );
 
-    expect(files).toHaveLength(20);
+    expect(files).toHaveLength(24);
   });
 });

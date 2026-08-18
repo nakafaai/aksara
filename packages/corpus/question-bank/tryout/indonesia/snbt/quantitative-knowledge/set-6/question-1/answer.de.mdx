@@ -1,0 +1,65 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 1",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Gesucht ist der eindeutige Schnittpunkt zweier Geraden:
+
+1. <InlineMath math="y = 2x + 3" />
+2. <InlineMath math="y = ax + b" />
+
+Für einen eindeutigen Schnittpunkt <InlineMath math="(x, y)" /> muss das Gleichungssystem genau eine Lösung besitzen. Dazu setzen wir die rechten Seiten gleich:
+
+<MathContainer>
+  <BlockMath math="2x + 3 = ax + b" />
+  <BlockMath math="2x - ax = b - 3" />
+  <BlockMath math="(2 - a)x = b - 3" />
+</MathContainer>
+
+Der Wert von <InlineMath math="x" /> lässt sich genau dann eindeutig bestimmen, wenn der Koeffizient von <InlineMath math="x" /> nicht null ist, also <InlineMath math="2 - a \neq 0" /> beziehungsweise <InlineMath math="a \neq 2" />. Für <InlineMath math="a \neq 2" /> gilt dann:
+
+<MathContainer>
+  <BlockMath math="x = \frac{b - 3}{2 - a}" />
+</MathContainer>
+
+Anschließend liefert das Einsetzen von <InlineMath math="x" /> in eine der Geradengleichungen den Wert von <InlineMath math="y" />. Wir benötigen daher zwei Informationen:
+
+1. <InlineMath math="a \neq 2" />, damit die Geraden genau einen Schnittpunkt haben.
+2. Den Wert von <InlineMath math="b" />, damit seine Koordinaten berechnet werden können.
+
+#### Analyse der ersten Aussage
+
+Aussage <InlineMath math="(1)" /> liefert <InlineMath math="a \neq 2" />. Die Geraden haben damit unterschiedliche Steigungen (<InlineMath math="m_1 = 2" /> und <InlineMath math="m_2 = a \neq 2" />) und schneiden sich in genau einem Punkt. Allerdings kennen wir den Wert von <InlineMath math="b" /> nicht. Ohne <InlineMath math="b" /> hängen die Koordinaten <InlineMath math="x" /> und <InlineMath math="y" /> weiterhin von <InlineMath math="b" /> ab. Aussage <InlineMath math="(1)" /> allein ist daher **nicht ausreichend**.
+
+#### Analyse der zweiten Aussage
+
+Aussage <InlineMath math="(2)" /> liefert <InlineMath math="b = 3" />. Die zweite Gleichung lautet dann <InlineMath math="y = ax + 3" />, aber <InlineMath math="a" /> bleibt unbekannt.
+
+- Für <InlineMath math="a = 2" /> lautet auch die zweite Gerade <InlineMath math="y = 2x + 3" />. Beide Geraden stimmen dann überein und besitzen unendlich viele gemeinsame Punkte.
+- Bei <InlineMath math="a \neq 2" /> schneiden sich die Geraden in einem Punkt.
+
+Ohne <InlineMath math="a" /> ist also weder ein eindeutiger Schnittpunkt garantiert noch lassen sich seine Koordinaten bestimmen. Aussage <InlineMath math="(2)" /> allein ist **nicht ausreichend**.
+
+#### Analyse beider Aussagen zusammen
+
+Wenn wir beide Aussagen kombinieren:
+
+1. <InlineMath math="a \neq 2" />
+2. <InlineMath math="b = 3" />
+
+Einsetzen in die Gleichung für <InlineMath math="x" /> ergibt:
+
+<MathContainer>
+  <BlockMath math="x = \frac{3 - 3}{2 - a} = \frac{0}{2 - a} = 0" />
+</MathContainer>
+
+Die Division durch <InlineMath math="2 - a" /> ist zulässig, weil <InlineMath math="a \neq 2" /> gilt. Nun bestimmen wir <InlineMath math="y" />:
+
+<MathContainer>
+  <BlockMath math="y = 2(0) + 3 = 3" />
+</MathContainer>
+
+Damit ist der eindeutige Schnittpunkt <InlineMath math="(0, 3)" />. Beide Aussagen zusammen sind **ausreichend**.
+
+Also sind **beide Aussagen zusammen ausreichend, aber keine Aussage allein ist ausreichend**.

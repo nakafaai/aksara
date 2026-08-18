@@ -1,0 +1,443 @@
+export const metadata = {
+  title: "Attribute und Datentypen mit NumPy",
+  description: "Lerne NumPy-Array-Attribute wie shape, dtype, size und ndim kennen und lies sie anschließend in konkreten Codebeispielen aus.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-09-20",
+  subject: "KI-Programmierung",
+};
+
+## NumPy-Datentypsystem
+
+Jedes Element in einem NumPy-Array hat einen bestimmten Typ. Er legt fest, wie NumPy den Wert darstellt und verarbeitet. Datentypen sind also Speicherformate für unterschiedliche Arten von Informationen. Ein NumPy-Boolean belegt ein Byte, während eine komplexe Zahl Real- und Imaginärteil getrennt speichert.
+
+Das Typsystem von NumPy sorgt dafür, dass alle Elemente eines gewöhnlichen Arrays denselben Datentyp haben. Dadurch kann der zugrunde liegende C-Code die Daten effizient verarbeiten. Technische Details und Speichergrößen findest du in der [NumPy-Dokumentation zu Datentypen](https://numpy.org/doc/stable/user/basics.types.html).
+
+### Grundlegende Datentypen
+
+NumPy akzeptiert die eingebauten Skalar-Typen von Python und bietet Typen mit fester Bitbreite, wenn die Darstellung genau festgelegt werden muss:
+
+1. **Boolean** (`bool` oder `np.bool_`) für `True` und `False`, mit einem Byte pro Element
+2. **Integer** (`np.int8` bis `np.int64`) für vorzeichenbehaftete Ganzzahlen mit eindeutiger Bitbreite
+3. **Float** (`np.float16`, `np.float32` oder `np.float64`) für Gleitkommazahlen mit unterschiedlicher Genauigkeit
+4. **Complex** (`np.complex64` oder `np.complex128`) für Werte mit Real- und Imaginärteil
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_data_types.py",
+      code: `import numpy as np
+
+# Beispiele für grundlegende Datentypen
+bool_array = np.array([True, False, True], dtype=np.bool_)
+print("Boolean array:", bool_array)  # Ausgabe: Boolean array: [ True False  True]
+print("Dtype:", bool_array.dtype)  # Ausgabe: Dtype: bool
+
+int_array = np.array([1, 2, 3], dtype=np.int64)
+print("Integer array:", int_array)  # Ausgabe: Integer array: [1 2 3]
+print("Dtype:", int_array.dtype)  # Ausgabe: Dtype: int64
+
+float_array = np.array([1.0, 2.5, 3.7], dtype=np.float64)
+print("Float array:", float_array)  # Ausgabe: Float array: [1.  2.5 3.7]
+print("Dtype:", float_array.dtype)  # Ausgabe: Dtype: float64`
+    }
+  ]}
+/>
+
+### Spezifische numerische Datentypen
+
+NumPy bietet eine detaillierte Präzisionskontrolle mit verschiedenen Größen numerischer Datentypen:
+
+| Kategorie | Datentyp | Beschreibung | Wertebereich |
+|----------|-----------|-------------|-------------|
+| **Ganzzahl mit Vorzeichen** | `int8` | <InlineMath math="8" />-Bit-Ganzzahl mit Vorzeichen | <InlineMath math="-128 \text{zu} 127" /> |
+| | `int16` | <InlineMath math="16" />-Bit-Ganzzahl mit Vorzeichen | <InlineMath math="-32768 \text{zu} 32767" /> |
+| | `int32` | <InlineMath math="32" />-Bit-Ganzzahl mit Vorzeichen | <InlineMath math="-2147483648 \text{zu} 2147483647" /> |
+| | `int64` | <InlineMath math="64" />-Bit-Ganzzahl mit Vorzeichen | Sehr großer Wertebereich |
+| **Ganzzahl ohne Vorzeichen** | `uint8` | <InlineMath math="8" />-Bit-Ganzzahl ohne Vorzeichen | <InlineMath math="0 \text{zu} 255" /> |
+| | `uint16` | <InlineMath math="16" />-Bit-Ganzzahl ohne Vorzeichen | <InlineMath math="0 \text{zu} 65535" /> |
+| | `uint32` | <InlineMath math="32" />-Bit-Ganzzahl ohne Vorzeichen | <InlineMath math="0 \text{zu} 4294967295" /> |
+| | `uint64` | <InlineMath math="64" />-Bit-Ganzzahl ohne Vorzeichen | Sehr großer positiver Bereich |
+| **Gleitkommazahl** | `float16` | Gleitkommazahl mit halber Genauigkeit | <InlineMath math="5 \text{ Exponentenbits}" />, <InlineMath math="10 \text{ Bruchbits}" /> |
+| | `float32` | Gleitkommazahl mit einfacher Genauigkeit | <InlineMath math="8 \text{ Exponentenbits}" />, <InlineMath math="23 \text{ Bruchbits}" /> |
+| | `float64` | Gleitkommazahl mit doppelter Genauigkeit | <InlineMath math="11 \text{ Exponentenbits}" />, <InlineMath math="52 \text{ Bruchbits}" /> |
+| **Komplex** | `complex64` | Komplexe Zahl | Zwei <InlineMath math="32" />-Bit-Gleitkommazahlen |
+| | `complex128` | Komplexe Zahl | Zwei <InlineMath math="64" />-Bit-Gleitkommazahlen |
+
+### Datentypen festlegen
+
+Du kannst den Datentyp beim Erstellen eines Arrays festlegen oder die Werte in ein neues Array mit einem anderen dtype umwandeln:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "specify_data_types.py",
+      code: `import numpy as np
+
+# Datentyp beim Erstellen des Arrays angeben
+a = np.array([0, 1, 2], dtype=float)
+print("Array mit Gleitkomma-Datentyp:", a)  # Ausgabe: Array mit Gleitkomma-Datentyp: [0. 1. 2.]
+print("Dtype:", a.dtype)  # Ausgabe: Dtype: float64
+
+# Die ones-Funktion verwendet standardmäßig den Datentyp float
+a = np.ones((3, 3))
+print("Default ones dtype:", a.dtype)  # Ausgabe: Default ones dtype: float64
+
+# Ganzzahligen Datentyp verwenden
+a = np.ones((3, 3), dtype=np.int64)
+print("Einsen mit dem Datentyp int:", a.dtype)  # Ausgabe: Einsen mit dem Datentyp int: int64
+print("Array:")
+print(a)
+# Ausgabe:
+# [[1 1 1]
+#  [1 1 1]
+#  [1 1 1]]`
+    }
+  ]}
+/>
+
+### Automatische Datentyperkennung
+
+NumPy erkennt Datentypen automatisch anhand der bereitgestellten Elemente:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "automatic_dtype_detection.py",
+      code: `import numpy as np
+
+# Nur Ganzzahlen
+a = np.array([0, 1, 2])
+print("Nur Ganzzahlen - dtype:", a.dtype)  # Typische 64-Bit-Ausgabe: Nur Ganzzahlen - dtype: int64
+
+# Nur Gleitkommazahlen
+a = np.array([0., 1., 2.])
+print("Nur Gleitkommazahlen - dtype:", a.dtype)  # Ausgabe: Nur Gleitkommazahlen - dtype: float64
+
+# Int und Float gemischt
+a = np.array([0, 1, 2.])
+print("Gemischte Werte - dtype:", a.dtype)  # Ausgabe: Gemischte Werte - dtype: float64
+print("Array result:", a)  # Ausgabe: Array result: [0. 1. 2.]`
+    }
+  ]}
+/>
+
+## NumPy-Array-Attribute
+
+Jedes NumPy-Array besitzt Attribute für Form, Elementzahl, Datentyp und Speicherbedarf.
+
+### Dimensions- und Formattribute
+
+Das folgende Beispiel liest die wichtigsten Strukturattribute eines zweidimensionalen Arrays aus.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_attributes.py",
+      code: `import numpy as np
+
+# Ein 2D-Array als Beispiel erstellen
+a = np.array([[0, 1, 2], [3, 4, 5]], dtype=np.int64)
+print("Array:")
+print(a)
+# Ausgabe:
+# [[0 1 2]
+#  [3 4 5]]
+
+print("Form:", a.shape)  # Ausgabe: Form: (2, 3)
+print("Ndim (Dimensionen):", a.ndim)  # Ausgabe: Ndim (Dimensionen): 2
+print("Größe (Elemente insgesamt):", a.size)  # Ausgabe: Größe (Elemente insgesamt): 6
+print("Dtype (Datentyp):", a.dtype)  # Ausgabe: Dtype (Datentyp): int64
+print("Von den Elementen belegte Bytes:", a.nbytes)  # Ausgabe: Von den Elementen belegte Bytes: 48`
+    }
+  ]}
+/>
+
+### Wichtige Attributerklärungen
+
+| Attribut | Funktion | Beispielergebnis |
+|-----------|----------|----------------|
+| `ndarray.shape` | Anzahl der Elemente in jeder Achse | `(2, 3)` für <InlineMath math="2 \times 3" />-Array |
+| `ndarray.ndim` | Anzahl der Achsen/Abmessungen | `2` für zweidimensionales Array |
+| `ndarray.size` | Gesamtzahl der Elemente | `6` für <InlineMath math="2 \times 3" />-Array |
+| `ndarray.dtype` | Elementdatentyp | `int64`, `float64` usw. |
+| `ndarray.nbytes` | Von den Array-Elementen belegte Bytes | `48` für sechs `int64`-Werte |
+
+### Datentypkonsistenz
+
+Alle Elemente eines gewöhnlichen NumPy-Arrays haben denselben Datentyp. Das `numpy.dtype`-Objekt beschreibt, wie diese Werte im Speicher liegen und interpretiert werden. Haben Eingaben unterschiedliche Typen, ermittelt NumPy mit festen Promotionsregeln einen kompatiblen gemeinsamen dtype. Entscheidend sind dabei Genauigkeit und Typkategorie, nicht die Häufigkeit eines Eingabetyps.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dtype_consistency.py",
+      code: `import numpy as np
+
+# Nur Ganzzahlen
+a = np.array([0, 1, 2])
+print("Nur Ganzzahlen - dtype:", a.dtype)  # Typische 64-Bit-Ausgabe: Nur Ganzzahlen - dtype: int64
+
+# Nur Gleitkommazahlen
+a = np.array([0., 1., 2.])
+print("All float - dtype:", a.dtype)  # Ausgabe: All float - dtype: float64
+
+# Gemischte Ganz- und Gleitkommazahlen werden automatisch zu float
+a = np.array([0, 1, 2.])
+print("Mixed - dtype:", a.dtype)  # Ausgabe: Mixed - dtype: float64
+print("Mixed result:", a)  # Ausgabe: Mixed result: [0. 1. 2.]`
+    }
+  ]}
+/>
+
+## Datentypkonvertierung und -manipulation
+
+NumPy bietet verschiedene Möglichkeiten zum Konvertieren und Bearbeiten von Array-Datentypen entsprechend den Anforderungen der Datenanalyse.
+
+### Datentyp-Konvertierungsmethoden
+
+Mit einer Datentypkonvertierung wählst du eine andere Darstellung für die weitere Analyse. `astype()` gibt ein konvertiertes Array zurück und verändert das ursprüngliche Array nicht direkt. Beim Umwandeln von Gleitkommazahlen in Ganzzahlen wird der Nachkommaanteil in Richtung null abgeschnitten, nicht gerundet.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dtype_conversion.py",
+      code: `import numpy as np
+
+# Ursprüngliches Float-Array
+original = np.array([1.1, 2.7, 3.9])
+print("Original array:", original)  # Ausgabe: Original array: [1.1 2.7 3.9]
+print("Original dtype:", original.dtype)  # Ausgabe: Original dtype: float64
+
+# Mit astype in eine Ganzzahl konvertieren
+converted = original.astype(np.int64)
+print("Converted to int:", converted)  # Ausgabe: Converted to int: [1 2 3]
+print("Converted dtype:", converted.dtype)  # Ausgabe: Converted dtype: int64
+
+# In einen bestimmten Datentyp konvertieren
+float32_array = original.astype(np.float32)
+print("Float32 dtype:", float32_array.dtype)  # Ausgabe: Float32 dtype: float32
+
+# Strings in Ganzzahlen konvertieren
+string_array = np.array(['1', '2', '3'])
+int_from_string = string_array.astype(np.int64)
+print("Aus einem String:", int_from_string)  # Ausgabe: Aus einem String: [1 2 3]
+print("Datentyp nach Konvertierung zu int:", int_from_string.dtype)  # Ausgabe: Datentyp nach Konvertierung zu int: int64`
+    }
+  ]}
+/>
+
+### Speicheroptimierung mit Datentypen
+
+Der schmalste Datentyp, der alle benötigten Werte und die erforderliche Genauigkeit abdeckt, kann den Speicherbedarf deutlich senken. Prüfe vor dem Verkleinern eines dtype dessen Wertebereich, damit keine Werte überlaufen oder wichtige Genauigkeit verloren geht.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "memory_optimization.py",
+      code: `import numpy as np
+
+# Array mit explizitem 64-Bit-Ganzzahltyp
+large_array_int64 = np.arange(1000000, dtype=np.int64)
+print("Int64 itemsize:", large_array_int64.itemsize, "bytes")  # Ausgabe: Int64 itemsize: 8 bytes
+print("Int64 total memory:", large_array_int64.nbytes, "bytes")  # Ausgabe: Int64 total memory: 8000000 bytes
+
+# Array mit kleinerem Datentyp (int32)
+large_array_int32 = np.arange(1000000, dtype=np.int32)
+print("Int32 itemsize:", large_array_int32.itemsize, "bytes")  # Ausgabe: Int32 itemsize: 4 bytes
+print("Int32 total memory:", large_array_int32.nbytes, "bytes")  # Ausgabe: Int32 total memory: 4000000 bytes
+
+# Speichereinsparungen
+memory_saved = large_array_int64.nbytes - large_array_int32.nbytes
+print("Memory saved:", memory_saved, "bytes")  # Ausgabe: Memory saved: 4000000 bytes
+print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 100, "%")  # Ausgabe: Memory saved percentage: 50.0 %`
+    }
+  ]}
+/>
+
+### Detaillierte Datentypinformationen
+
+Am Attribut `itemsize` erkennst du unmittelbar den Zusammenhang zwischen Genauigkeit und Speicherbedarf eines Arrays.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dtype_info.py",
+      code: `import numpy as np
+
+# Arrays mit verschiedenen Datentypen erstellen
+arrays = {
+    'int8': np.array([1, 2, 3], dtype=np.int8),
+    'int32': np.array([1, 2, 3], dtype=np.int32),
+    'int64': np.array([1, 2, 3], dtype=np.int64),
+    'float32': np.array([1.0, 2.0, 3.0], dtype=np.float32),
+    'float64': np.array([1.0, 2.0, 3.0], dtype=np.float64)
+}
+
+print("Informationen zum Datentyp:")
+print("=" * 50)
+for name, arr in arrays.items():
+    print(f"{name:8} - itemsize: {arr.itemsize:2} bytes, dtype: {arr.dtype}")
+
+# Ausgabe:
+# Informationen zum Datentyp:
+# ==================================================
+# int8     - itemsize:  1 bytes, dtype: int8
+# int32    - itemsize:  4 bytes, dtype: int32
+# int64    - itemsize:  8 bytes, dtype: int64
+# float32  - itemsize:  4 bytes, dtype: float32
+# float64  - itemsize:  8 bytes, dtype: float64`
+    }
+  ]}
+/>
+
+## Praktische Verwendung von Array-Attributen
+
+Array-Attribute helfen dir beim Debuggen, Optimieren und Bearbeiten wissenschaftlicher Daten.
+
+### Datenstrukturanalyse
+
+Mit einer kleinen Analysefunktion kannst du die Eigenschaften eines Arrays schnell erfassen. Das hilft bei komplexeren Daten und beim Debuggen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_structure_analysis.py",
+      code: `import numpy as np
+
+def analyze_array(arr, name="Array"):
+    """Funktion zur Analyse der Array-Struktur"""
+    print(f"\\n=== Analyse {name} ===")
+    print(f"Shape: {arr.shape}")
+    print(f"Dimensions: {arr.ndim}")
+    print(f"Size: {arr.size}")
+    print(f"Data type: {arr.dtype}")
+    print(f"Item size: {arr.itemsize} bytes")
+    print(f"Total memory: {arr.nbytes} bytes")
+
+    if arr.ndim <= 2:
+        print(f"Array content:\\n{arr}")
+
+# Beispielanalyse verschiedener Arrays
+array_1d = np.array([1, 2, 3, 4, 5], dtype=np.int64)
+array_2d = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)
+array_3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]], dtype=np.int64)
+
+analyze_array(array_1d, "1D")
+analyze_array(array_2d, "2D")
+analyze_array(array_3d, "3D")
+
+# Ausgabe:
+# === Analyse 1D ===
+# Shape: (5,)
+# Dimensions: 1
+# Size: 5
+# Data type: int64
+# Item size: 8 bytes
+# Total memory: 40 bytes
+# Array content:
+# [1 2 3 4 5]
+#
+# === Analyse 2D ===
+# Shape: (2, 3)
+# Dimensions: 2
+# Size: 6
+# Data type: int64
+# Item size: 8 bytes
+# Total memory: 48 bytes
+# Array content:
+# [[1 2 3]
+#  [4 5 6]]
+#
+# === Analyse 3D ===
+# Shape: (2, 2, 2)
+# Dimensions: 3
+# Size: 8
+# Data type: int64
+# Item size: 8 bytes
+# Total memory: 64 bytes`
+    }
+  ]}
+/>
+
+### Datenvalidierung und Debugging
+
+Bevor du ein Array an ein Modell übergibst, prüfst du Form, dtype, fehlende Werte und den Speicherbedarf, den dieses Modell tatsächlich erwartet.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_validation.py",
+      code: `import numpy as np
+
+def validate_feature_matrix(arr):
+    """Eine numerische Merkmalsmatrix vor dem Modellieren prüfen."""
+    print("=== ML-Array-Validierung ===")
+
+    # Dimensionen prüfen
+    if arr.ndim != 2:
+        print(f"WARNUNG: Array ist nicht 2D (aktuell: {arr.ndim}D)")
+    else:
+        print(f"✓ 2D-Array mit Form: {arr.shape}")
+
+    # Prüfen, ob die Matrix numerische Werte enthält
+    if not np.issubdtype(arr.dtype, np.number):
+        print(f"WARNUNG: Der Datentyp muss möglicherweise konvertiert werden: {arr.dtype}")
+        return
+
+    print(f"✓ Numerischer Datentyp: {arr.dtype}")
+
+    # Fehlende Werte prüfen (NaN)
+    if np.isnan(arr).any():
+        nan_count = np.isnan(arr).sum()
+        print(f"WARNUNG: {nan_count} NaN-Werte gefunden")
+    else:
+        print("✓ Keine NaN-Werte")
+
+    # Speicherinformationen
+    memory_mb = arr.nbytes / (1024 * 1024)
+    print(f"Speichernutzung: {memory_mb:.2f} MB")
+
+# Mit verschiedenen Arrays testen
+test_arrays = [
+    np.array([[1, 2, 3], [4, 5, 6]], dtype=np.float64),
+    np.array([1, 2, 3, 4, 5], dtype=np.int64),
+    np.array([[1, 2, np.nan], [4, 5, 6]], dtype=np.float64)
+]
+
+for i, arr in enumerate(test_arrays):
+    print(f"\\n--- Test Array {i+1} ---")
+    validate_feature_matrix(arr)
+
+# Ausgabe:
+# --- Test Array 1 ---
+# === ML-Array-Validierung ===
+# ✓ 2D-Array mit Form: (2, 3)
+# ✓ Numerischer Datentyp: float64
+# ✓ Keine NaN-Werte
+# Speichernutzung: 0.00 MB
+#
+# --- Test Array 2 ---
+# === ML-Array-Validierung ===
+# WARNUNG: Array ist nicht 2D (aktuell: 1D)
+# ✓ Numerischer Datentyp: int64
+# ✓ Keine NaN-Werte
+# Speichernutzung: 0.00 MB
+#
+# --- Test Array 3 ---
+# === ML-Array-Validierung ===
+# ✓ 2D-Array mit Form: (2, 3)
+# ✓ Numerischer Datentyp: float64
+# WARNUNG: 1 NaN-Wert gefunden
+# Speichernutzung: 0.00 MB`
+    }
+  ]}
+/>

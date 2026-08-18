@@ -1,0 +1,78 @@
+export const metadata = {
+  title: "Die Richtung der Resultierenden mit dem Sinussatz bestimmen",
+  description:
+    "Nach dem Betrag auch die Richtung der Resultierenden zweier Vektoren mithilfe des Sinussatzes bestimmen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Vektor",
+};
+
+## Für die Richtung wird ein weiterer Winkel gebraucht
+
+Der Kosinussatz liefert den Betrag der Resultierenden, aber noch nicht ihre vollständige Richtung. Bei einer Vektoraufgabe ist eine Antwort wie <InlineMath math="15{,}6\text{ N}" /> unvollständig, solange die Richtung der Kraft fehlt.
+
+Bei zwei Vektoren lässt sich die Richtung der Resultierenden mit dem **Sinussatz** bestimmen. Er wird auf das Dreieck angewendet, das die beiden Vektoren und ihre Resultierende bilden.
+
+<BlockMath math="\frac{\sin\phi}{B}=\frac{\sin\theta}{R}" />
+
+Dabei ist <InlineMath math="\theta" /> der Zwischenwinkel von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" />, <InlineMath math="R" /> der Betrag der Resultierenden und <InlineMath math="\phi" /> der Winkel zwischen <InlineMath math="\vec{A}" /> und der Resultierenden <InlineMath math="\vec{R}" />.
+
+> Der Sinussatz wird gewöhnlich erst angewendet, wenn der Betrag der Resultierenden bekannt ist.
+
+## Den gesuchten Winkel richtig ablesen
+
+Vor der Rechnung muss die Bezugsrichtung feststehen. Ist die Richtung der Resultierenden relativ zu <InlineMath math="\vec{A}" /> gesucht, wird der Winkel von <InlineMath math="\vec{A}" /> zu <InlineMath math="\vec{R}" /> gemessen.
+
+Wird dagegen die Richtung relativ zu <InlineMath math="\vec{B}" /> verlangt, ist ein anderer Winkel gemeint. Die Winkel dürfen deshalb nicht vertauscht werden, ohne zuvor das Vektordreieck zu prüfen.
+
+Häufig wird folgende Beziehung verwendet:
+
+<MathContainer>
+  <BlockMath math="\sin\phi=\frac{B\sin\theta}{R}" />
+  <BlockMath math="\phi=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
+</MathContainer>
+
+Diese Formel liefert den Winkel der Resultierenden relativ zu <InlineMath math="\vec{A}" />. Der Seite gegenüber dem Winkel <InlineMath math="\phi" /> entspricht der Vektorbetrag <InlineMath math="B" />. Deshalb steht <InlineMath math="B" /> im Zähler.
+
+## Beispiel: Richtung der resultierenden Kraft
+
+An einem Punkt wirken zwei Kräfte mit <InlineMath math="A=10\text{ N}" /> und <InlineMath math="B=8\text{ N}" />. Ihr Zwischenwinkel beträgt <InlineMath math="60^\circ" />. Aus dem Kosinussatz ist bereits der Betrag <InlineMath math="R\approx15{,}6\text{ N}" /> bekannt.
+
+Gesucht ist nun der Winkel <InlineMath math="\phi" /> zwischen <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{R}" />.
+
+<BlockMath math="\begin{aligned}
+\sin\phi&=\frac{B\sin\theta}{R} \\
+&=\frac{8\sin60^\circ}{15{,}6} \\
+&=\frac{8(0{,}866)}{15{,}6} \\
+&\approx0{,}444
+\end{aligned}" />
+
+Damit folgt:
+
+<BlockMath math="\phi=\sin^{-1}(0{,}444)\approx26{,}4^\circ" />
+
+Die resultierende Kraft hat also einen Betrag von etwa <InlineMath math="15{,}6\text{ N}" /> und liegt um <InlineMath math="26{,}4^\circ" /> von <InlineMath math="\vec{A}" /> in Richtung <InlineMath math="\vec{B}" /> gedreht.
+
+## Überprüfung mit Komponenten
+
+Dasselbe Ergebnis lässt sich mit Komponenten prüfen. Liegt <InlineMath math="\vec{A}" /> auf der positiven <InlineMath math="x" />-Achse, gilt:
+
+<MathContainer>
+  <BlockMath math="R_x=A+B\cos\theta" />
+  <BlockMath math="R_y=B\sin\theta" />
+  <BlockMath math="\tan\phi=\frac{R_y}{R_x}" />
+</MathContainer>
+
+Für dasselbe Beispiel ergibt sich:
+
+<BlockMath math="\tan\phi=\frac{8\sin60^\circ}{10+8\cos60^\circ}=\frac{6{,}928}{14}\approx0{,}495" />
+
+Auch hier folgt <InlineMath math="\phi\approx26{,}4^\circ" />, also dasselbe Ergebnis wie mit dem Sinussatz. Diese Kontrolle hilft besonders, wenn unklar ist, auf welchen Vektor sich der gesuchte Winkel bezieht.
+
+Da <InlineMath math="\sin\phi=\sin(180^\circ-\phi)" /> gilt, kann die Umkehrfunktion des Sinus einen spitzen Winkel liefern, obwohl das Dreieck den stumpfen Ergänzungswinkel erfordert. Die Vektorgeometrie oder die Komponentenform <InlineMath math="\phi=\operatorname{atan2}(R_y,R_x)" /> bestimmt den richtigen Quadranten.
+
+## Wann der Sinussatz weniger praktisch ist
+
+Bei mehr als zwei Vektoren oder bei Richtungsangaben gegenüber den Koordinatenachsen ist der Sinussatz weniger praktisch. Dann ist die Komponentenmethode meist sicherer, weil sie alle Richtungen entlang der <InlineMath math="x" />- und <InlineMath math="y" />-Achse ordnet.
+
+Der Sinussatz eignet sich für eine klar abgegrenzte Situation: zwei Vektoren, ein bekannter Zwischenwinkel, ein bereits bekannter Betrag der Resultierenden und eine gesuchte Richtung relativ zu einem der beiden Vektoren. Vor der Richtungsangabe muss die Mehrdeutigkeit der Sinusumkehrung aufgelöst werden.

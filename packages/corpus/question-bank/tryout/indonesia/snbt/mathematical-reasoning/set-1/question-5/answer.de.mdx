@@ -1,0 +1,48 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-23",
+};
+
+Wir legen die Mindestanzahl der Raten fest, damit Jojos monatliche Zahlung das angegebene Limit nicht überschreitet.
+
+#### Berechnen des Preises nach Rabatt
+
+Jojo kauft einen Laptop der Serie <InlineMath math="A" /> für <InlineMath math="\text{Rp}15{.}000{.}000{,}00" />. Da es einen Rabatt von <InlineMath math="20\%" /> gibt, beträgt der zu zahlende Preis:
+
+<MathContainer>
+<BlockMath math="\text{Ermäßigter Preis} = (100\% - 20\%) \times 15{.}000{.}000" />
+<BlockMath math="\text{Ermäßigter Preis} = 80\% \times 15{.}000{.}000 = 12{.}000{.}000" />
+</MathContainer>
+
+Der Hauptdarlehensbetrag beträgt <InlineMath math="\text{Rp}12{.}000{.}000{,}00" />.
+
+#### Ermittlung von Zinsen und Kapitalrate
+
+Bei dieser Jubiläumsaktion erhält Jojo das Angebot mit den niedrigsten Ratenzinsen. Nach den Filialregeln beträgt der erzielbare Mindestzins <InlineMath math="4\%" /> pro Jahr (maximale Reduzierung von <InlineMath math="2\%" /> vom Basiszins von <InlineMath math="6\%" />).
+
+Wir berechnen den monatlichen Zinsanteil:
+
+<MathContainer>
+<BlockMath math="\text{Monatliche Zinsen} = \frac{4\%}{12} \times 12{.}000{.}000" />
+<BlockMath math="\text{Monatliche Zinsen} = \frac{1}{300} \times 12{.}000{.}000 = 40{.}000" />
+</MathContainer>
+
+Der monatliche Ratenbetrag setzt sich aus der Hauptrate und den Zinsen zusammen:
+
+<BlockMath math="\text{Ratenzahlung} = \frac{\text{Darlehensgeber}}{n} + \text{Monatliche Zinsen}" />
+
+Wobei <InlineMath math="n" /> die Anzahl der Raten ist.
+
+#### Berechnung der Mindestratendauer
+
+Es ist bekannt, dass die monatliche Rate <InlineMath math="\text{Rp}600{.}000{,}00" /> nicht überschreiten darf.
+
+<MathContainer>
+  <BlockMath math="\frac{12{.}000{.}000}{n} + 40{.}000 \le 600{.}000" />
+  <BlockMath math="\frac{12{.}000{.}000}{n} \le 560{.}000" />
+  <BlockMath math="n \ge \frac{12{.}000{.}000}{560{.}000}" />
+  <BlockMath math="n \ge 21{,}42" />
+</MathContainer>
+
+Da die Anzahl der Raten ganzzahlig sein muss, benötigt Jojo mindestens **<InlineMath math="22 \text{ Raten}" />**.

@@ -1,0 +1,135 @@
+
+export const metadata = {
+  title: "Massenerhaltung",
+  description:
+    "Warum die Gesamtmasse bei einer chemischen Reaktion erhalten bleibt, wenn Produkte, Reaktantenreste und entweichende Gase vollständig erfasst werden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-01",
+  subject: "Grundgesetze der Chemie",
+};
+
+## Das System behält seine Masse
+
+Bei einer chemischen Reaktion verschwinden Atome nicht und entstehen auch nicht aus dem Nichts. Sie werden lediglich neu angeordnet. Deshalb ist die Masse des gesamten Systems vor und nach der Reaktion gleich.
+
+<BlockMath math="m_{\text{System vor}} = m_{\text{System nach}}" />
+
+Das Schlüsselwort lautet **System**. In einem geschlossenen Behälter bleibt jeder Stoff innerhalb der gewogenen Grenze. Aus einem offenen Behälter kann dagegen Gas entweichen. Dann zeigt die Waage weniger an, obwohl die Masse aller Stoffe einschließlich des entwichenen Gases erhalten ist. OpenStax Chemistry 2e beschreibt diese Erhaltung in [Phases and Classification of Matter](https://openstax.org/books/chemistry-2e/pages/1-2-phases-and-classification-of-matter) als unveränderte Gesamtmenge an Materie während chemischer oder physikalischer Veränderungen.
+
+## Lavoisiers Gleichgewicht
+
+Vor der modernen Chemie wurde Verbrennung häufig mit Phlogiston erklärt, als würde beim Brennen eine unsichtbare Substanz entweichen. Antoine Lavoisier stellte diese Vorstellung durch sorgfältiges Wiegen infrage. Er erfasste die Massen von Reaktanten und Produkten einschließlich der Gase. So ließ sich Verbrennung als Reaktion mit Sauerstoff verstehen, nicht als Verlust eines geheimnisvollen Stoffes.
+
+Das Science History Institute fasst Lavoisiers Rolle bei der Festlegung des Massenerhaltungssatzes und der Verknüpfung von Verbrennung mit Sauerstoff in [Antoine-Laurent Lavoisier](https://www.sciencehistory.org/education/scientific-biographies/antoine-laurent-lavoisier/) zusammen.
+
+## Geschlossene Systembilanz
+
+Wechsle im Modell zwischen geschlossenem und offenem System. Für die Bilanz zählt jeder Stoff, nicht nur der Teil, der im Behälter sichtbar bleibt.
+
+<MassConservationLab
+  title={<>Systembilanz auf der Waage</>}
+  description={
+    <>
+      Vergleiche die Anzeige, wenn der gesamte Schwefel im Behälter bleibt, mit
+      dem Modellfall, in dem ein Anteil vor der Reaktion die Grenze überschreitet.
+    </>
+  }
+  labels={{
+    chooseMode: "Systemgrenze auswählen",
+    before: "Vorher",
+    after: "Nachher",
+    reactionView: "Modell der Massenerhaltungsbilanz",
+    systemLabel: "Was wird gezählt",
+    calculationLabel: "Massenlesung",
+    modes: {
+      closed: {
+        tab: "Geschlossen",
+        helperCaption: (
+          <>
+            In einem geschlossenen System bleiben Produkte und Reaktantenreste
+            innerhalb des gewogenen Bereichs.
+          </>
+        ),
+        readoutBefore: <InlineMath math="12{,}00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="12{,}00\,\mathrm{g}" />,
+        system: <>Behälter, Produkte und übrig gebliebene Reaktanten bilden ein System.</>,
+        calculation: (
+          <>
+            <InlineMath math="10{,}00 + 2{,}00 = 6{,}08 + 5{,}92" />. Die Gesamtmasse
+            bleibt also <InlineMath math="12{,}00\ \mathrm{g}" />.
+          </>
+        ),
+      },
+      open: {
+        tab: "Offen",
+        helperCaption: (
+          <>
+            Im offenen Modell überschreitet Schwefeldampf die Grenze. Die Waage
+            erfasst deshalb nicht mehr das gesamte Ausgangssystem.
+          </>
+        ),
+        readoutBefore: <InlineMath math="12{,}00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="11{,}00\,\mathrm{g}" />,
+        system: <>Der gewogene Behälter ist ein offenes Kontrollvolumen. Zum erweiterten System gehört auch der ausgetretene Schwefel.</>,
+        calculation: (
+          <>
+            <InlineMath math="12{,}00 - 1{,}00 = 11{,}00\ \mathrm{g}" /> bleiben
+            auf der Waage. Mit dem ausgetretenen Schwefel gilt <InlineMath math="11{,}00 + 1{,}00 = 12{,}00\ \mathrm{g}" />.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+## Was die offene Ansicht erfasst
+
+Die offene Ansicht beginnt mit denselben <InlineMath math="10{,}00\ \mathrm{g}" /> Zink und <InlineMath math="2{,}00\ \mathrm{g}" /> Schwefel. Anschließend überschreitet im Modell <InlineMath math="1{,}00\ \mathrm{g}" /> Schwefel als Dampf die Grenze, bevor dieser Anteil reagiert. Mit den [verkürzten Standardatomgewichten der CIAAW von 2024](https://www.ciaaw.org/abridged-atomic-weights.htm), <InlineMath math="A_r(\mathrm{Zn})=65{,}38" /> und <InlineMath math="A_r(\mathrm{S})=32{,}06" />, reagiert der verbleibende Schwefel mit ungefähr <InlineMath math="2{,}04\ \mathrm{g}" /> Zink.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{ZnS}} &\approx 2{,}04 + 1{,}00 = 3{,}04\ \mathrm{g} \\
+m_{\mathrm{Zn\ uebrig}} &\approx 10{,}00 - 2{,}04 = 7{,}96\ \mathrm{g} \\
+m_{\mathrm{auf\ der\ Waage}} &\approx 3{,}04 + 7{,}96 = 11{,}00\ \mathrm{g} \\
+m_{\mathrm{erweitertes\ System}} &= 11{,}00 + 1{,}00 = 12{,}00\ \mathrm{g}
+\end{aligned}" />
+
+Die Anzeige ändert sich, weil Materie die gewählte Grenze überschreitet. Die Grenze ist nicht falsch und der Erhaltungssatz versagt nicht. Entscheidend ist, klar anzugeben, welches System die Zahl beschreibt.
+
+## Zink und Schwefel
+
+Ein Schüler erhitzt <InlineMath math="10{,}00\ \mathrm{g}" /> Zink mit <InlineMath math="2{,}00\ \mathrm{g}" /> Schwefel. Nach der Reaktion sind <InlineMath math="6{,}08\ \mathrm{g}" /> Zinksulfid entstanden, während <InlineMath math="5{,}92\ \mathrm{g}" /> Zink nicht reagiert haben.
+
+Die stöchiometrische Kurzschreibweise auf Teilchenebene lautet:
+
+<BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
+
+Diese Schreibweise verfolgt ein Zinkatom für jedes Schwefelatom, das in Zinksulfid eingebaut wird. Sie ist ein Zusammensetzungsmodell für die Rechnung und behauptet nicht, dass elementarer Schwefel in einer Stoffportion aus einzelnen, voneinander getrennten Atomen besteht.
+
+Bleibt ein Reaktant übrig, entspricht die Produktmasse nicht der gesamten Ausgangsmasse dieses Reaktanten. Deshalb wird zuerst nur die tatsächlich umgesetzte Zinkmasse bestimmt.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{umgesetztes\ Zn}} &= 10{,}00 - 5{,}92 = 4{,}08\ \mathrm{g} \\
+m_{\mathrm{umgesetzte\ Reaktanten}} &= 4{,}08 + 2{,}00 = 6{,}08\ \mathrm{g} \\
+m_{\mathrm{Produkt}} &= 6{,}08\ \mathrm{g}
+\end{aligned}" />
+
+Somit ist die Massenerhaltung für den Teil bestätigt, der tatsächlich reagiert: Die Masse des reagierenden Zinks plus die Masse des Schwefels entspricht der Masse des gebildeten Zinksulfids.
+
+Wird der gesamte Behälter gezählt, bleibt auch die Masse unverändert:
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{vorher}} &= 10{,}00 + 2{,}00 = 12{,}00\ \mathrm{g} \\
+m_{\mathrm{nachher}} &= 6{,}08 + 5{,}92 = 12{,}00\ \mathrm{g}
+\end{aligned}" />
+
+## Messwerte sorgfältig lesen
+
+Drei Fragen müssen dabei getrennt bleiben.
+
+- **Wie groß ist die Produktmasse?** Es zählt nur das neue Produkt, es handelt sich also um <InlineMath math="6{,}08\ \mathrm{g}" /> Zinksulfid.
+- **Ist die Systemmasse erhalten?** Ja, wenn Produkt und übrig gebliebener Reaktant zusammengezählt werden.
+- **Kann der Messwert niedriger erscheinen?** Ja, wenn Gas einen offenen Behälter verlässt und nicht gewogen wird.
+
+Britannica erklärt in [The Conservation of Matter](https://www.britannica.com/science/chemical-reaction/The-conservation-of-matter), dass chemische Gleichungen ausgewogen sein müssen, da auf beiden Seiten die gleiche Anzahl von Atomen jedes Elements vorkommt und Massenberechnungen der Erhaltung der Materie folgen.
+
+Sobald die Gesamtmasse geschützt ist, wird die nächste Frage schärfer: Wenn zwei Elemente dieselbe Verbindung bilden, bleibt ihr Massenverhältnis konstant? Das führt direkt zum Gesetz der konstanten Zusammensetzung.

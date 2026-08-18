@@ -1,0 +1,58 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 30",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Gegeben sei die quadratische Gleichung <InlineMath math="(m + 2)x^2 - (2m - 1)x + m + 1 = 0" /> mit der Bedingung, dass <InlineMath math="x_1 < 0" /> und <InlineMath math="x_2 < 0" />.
+
+Damit die Gleichung eine quadratische Gleichung ist, darf der Koeffizient von <InlineMath math="x^2" /> nicht Null sein, also <InlineMath math="m + 2 \neq 0" /> oder <InlineMath math="m \neq -2" />.
+
+Die Diskriminanzbedingung ist <InlineMath math="D \geq 0" />, dann erhalten wir
+
+<MathContainer>
+<BlockMath math="D = b^2 - 4ac \geq 0" />
+<BlockMath math="[-(2m - 1)]^2 - 4(m + 2)(m + 1) \geq 0" />
+<BlockMath math="(2m - 1)^2 - 4(m + 2)(m + 1) \geq 0" />
+<BlockMath math="4m^2 - 4m + 1 - 4(m^2 + 3m + 2) \geq 0" />
+<BlockMath math="4m^2 - 4m + 1 - 4m^2 - 12m - 8 \geq 0" />
+<BlockMath math="-16m - 7 \geq 0" />
+<BlockMath math="-16m \geq 7" />
+<BlockMath math="m \leq -\frac{7}{16}" />
+</MathContainer>
+
+Bedingung für Wurzelsumme: <InlineMath math="x_1 + x_2 < 0" />
+
+<MathContainer>
+<BlockMath math="x_1 + x_2 = -\frac{b}{a} = -\frac{-(2m - 1)}{m + 2} = \frac{2m - 1}{m + 2}" />
+<BlockMath math="\frac{2m - 1}{m + 2} < 0" />
+</MathContainer>
+
+Die Ungleichung <InlineMath math="\frac{2m - 1}{m + 2} < 0" /> ist erfüllt, wenn Zähler und Nenner unterschiedliche Vorzeichen haben. Dann
+
+<BlockMath math="(2m - 1)(m + 2) < 0" />
+
+Diese Ungleichung ist für <InlineMath math="-2 < m < \frac{1}{2}" /> erfüllt.
+
+Bedingung für Produkt aus Wurzeln: <InlineMath math="x_1x_2 > 0" />
+
+<MathContainer>
+<BlockMath math="x_1x_2 = \frac{c}{a} = \frac{m + 1}{m + 2}" />
+<BlockMath math="\frac{m + 1}{m + 2} > 0" />
+</MathContainer>
+
+Die Ungleichung <InlineMath math="\frac{m + 1}{m + 2} > 0" /> ist erfüllt, wenn Zähler und Nenner das gleiche Vorzeichen haben. Dann
+
+<BlockMath math="(m + 1)(m + 2) > 0" />
+
+Diese Ungleichung ist für <InlineMath math="m < -2" /> oder <InlineMath math="m > -1" /> erfüllt.
+
+Jetzt kombinieren wir alle Bedingungen:
+- <InlineMath math="m \neq -2" /> (damit die Gleichung quadratisch ist)
+- <InlineMath math="m \leq -\frac{7}{16}" /> (aus Diskriminante)
+- <InlineMath math="-2 < m < \frac{1}{2}" /> (aus der Summe der Wurzeln)
+- <InlineMath math="m < -2" /> oder <InlineMath math="m > -1" /> (aus dem Produkt der Wurzeln)
+
+Der Schnittpunkt aller dieser Bedingungen ist <InlineMath math="-1 < m \leq -\frac{7}{16}" />.
+
+Daher sind die Werte von <InlineMath math="m" />, die die Anforderungen erfüllen, <InlineMath math="-1 < m \leq -\frac{7}{16}" />.

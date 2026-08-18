@@ -1,0 +1,97 @@
+export const metadata = {
+  title: "Triangularisierung und Jordan-Normalform",
+  description: "Verstehe Triangularisierung, Jordan-Blöcke, verallgemeinerte Eigenvektorketten und die Aussagen der Jordan-Form über eine nicht diagonalisierbare Matrix.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-17",
+  subject: "Lineare Methoden der KI",
+};
+
+## Wenn eine Diagonalisierung nicht möglich ist
+
+Für eine Diagonalisierung braucht man eine Basis, die vollständig aus Eigenvektoren besteht. Eine solche Basis existiert nicht immer. Ein schwächeres Ergebnis bleibt jedoch erhalten: Zerfällt das charakteristische Polynom von <InlineMath math="A \in \mathbb{K}^{n \times n}" /> über <InlineMath math="\mathbb{K}" /> in Linearfaktoren, so transformiert eine invertierbare Matrix <InlineMath math="S" /> die Matrix <InlineMath math="A" /> in eine obere Dreiecksmatrix.
+
+<MathContainer>
+<BlockMath math="R=S^{-1}AS" />
+<BlockMath math="R=\begin{pmatrix}\lambda_1&*&\cdots&*\\0&\lambda_2&\cdots&*\\\vdots&\ddots&\ddots&\vdots\\0&\cdots&0&\lambda_n\end{pmatrix}" />
+</MathContainer>
+
+Die Diagonaleinträge sind die Eigenwerte, jeweils entsprechend ihrer algebraischen Vielfachheit wiederholt. Über <InlineMath math="\mathbb{C}" /> zerfällt jedes charakteristische Polynom. Über <InlineMath math="\mathbb{R}" /> kann diese Voraussetzung bei nicht reellen Eigenwerten scheitern.
+
+Die Jordan-Normalform präzisiert diese Dreiecksform. Sie erfasst nicht nur die Eigenwerte, sondern zeigt auch genau, warum die vorhandenen Eigenvektoren keine Basis bilden.
+
+## Ein Jordan-Block
+
+Ein Jordan-Block der Größe <InlineMath math="s" /> zum Eigenwert <InlineMath math="\lambda" /> lautet
+
+<MathContainer>
+<BlockMath math="J_s(\lambda)=\begin{pmatrix}\lambda&1&0&\cdots&0\\0&\lambda&1&\ddots&\vdots\\\vdots&\ddots&\ddots&\ddots&0\\0&\cdots&0&\lambda&1\\0&\cdots&\cdots&0&\lambda\end{pmatrix}" />
+<BlockMath math="J_s(\lambda)=\lambda I_s+N_s,\qquad N_s^s=0" />
+</MathContainer>
+
+Die nilpotente Matrix <InlineMath math="N_s" /> besitzt Einsen auf der Superdiagonalen und sonst nur Nullen. Ein Block der Größe <InlineMath math="1" /> ist einfach <InlineMath math="(\lambda)" />. Ein größerer Block zeigt, dass ein Eigenvektor durch verallgemeinerte Eigenvektoren ergänzt werden muss.
+
+## Verallgemeinerte Eigenvektorketten
+
+Die Vektoren <InlineMath math="v_1,\ldots,v_s" /> bilden eine Jordan-Kette zu <InlineMath math="\lambda" />, wenn
+
+<MathContainer>
+<BlockMath math="(A-\lambda I)v_1=0" />
+<BlockMath math="(A-\lambda I)v_{j+1}=v_j,\qquad j=1,\ldots,s-1" />
+</MathContainer>
+
+Der erste Vektor ist ein gewöhnlicher Eigenvektor. Jeder folgende Vektor wird durch <InlineMath math="A-\lambda I" /> auf seinen Vorgänger abgebildet. In der geordneten Basis <InlineMath math="(v_1,\ldots,v_s)" /> wird die Einschränkung von <InlineMath math="A" /> auf diese Kette durch <InlineMath math="J_s(\lambda)" /> dargestellt.
+
+## Die vollständige Jordan-Form
+
+Es gelte
+
+<BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(t-\lambda_i)^{a_i}" />
+
+und dieses Polynom zerfalle über <InlineMath math="\mathbb{K}" />, wobei <InlineMath math="\lambda_1,\ldots,\lambda_k" /> verschiedene Eigenwerte sind. Dann existiert eine invertierbare Matrix <InlineMath math="S" /> mit
+
+<BlockMath math="S^{-1}AS=J=\operatorname{diag}\bigl(J_{s_{11}}(\lambda_1),\ldots,J_{s_{1q_1}}(\lambda_1),\ldots,J_{s_{k1}}(\lambda_k),\ldots,J_{s_{kq_k}}(\lambda_k)\bigr)" />
+
+Für jeden Eigenwert erfüllen die Blockgrößen
+
+<BlockMath math="s_{i1}+\cdots+s_{iq_i}=a_i" />
+
+Die Anzahl der Blöcke zu <InlineMath math="\lambda_i" /> entspricht der geometrischen Vielfachheit <InlineMath math="\dim\ker(A-\lambda_iI)" />. Die Blockgrößen werden durch <InlineMath math="A" /> eindeutig bestimmt, ihre Reihenfolge auf der Diagonalen jedoch nicht.
+
+| Frage | Aussage der Jordan-Blöcke |
+| --- | --- |
+| Ist <InlineMath math="A" /> diagonalisierbar? | Genau dann, wenn jeder Jordan-Block die Größe <InlineMath math="1" /> hat. |
+| Wie viele linear unabhängige Eigenvektoren gehören zu <InlineMath math="\lambda_i" />? | Einer für jeden Jordan-Block zu <InlineMath math="\lambda_i" />. |
+| Warum entscheidet ein mehrfacher Eigenwert noch nicht über die Diagonalisierbarkeit? | Dieselbe algebraische Vielfachheit kann auf Blöcke unterschiedlicher Größe verteilt sein. |
+
+## Durchgerechnetes Beispiel
+
+Betrachten wir
+
+<BlockMath math="A=\begin{pmatrix}1&1&0\\0&1&0\\0&0&2\end{pmatrix}=J_2(1)\oplus J_1(2)" />
+
+Das charakteristische Polynom ist
+
+<BlockMath math="\chi_A(t)=(t-1)^2(t-2)" />
+
+Für <InlineMath math="\lambda=1" /> gilt
+
+<MathContainer>
+<BlockMath math="A-I=\begin{pmatrix}0&1&0\\0&0&0\\0&0&1\end{pmatrix}" />
+<BlockMath math="\ker(A-I)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}\right\}" />
+</MathContainer>
+
+Der Eigenwert <InlineMath math="1" /> hat die algebraische Vielfachheit <InlineMath math="2" />, aber nur einen linear unabhängigen Eigenvektor. Deshalb ist <InlineMath math="A" /> nicht diagonalisierbar. Die Vektoren
+
+<BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
+
+bilden eine Kette, denn <InlineMath math="(A-I)v_1=0" /> und <InlineMath math="(A-I)v_2=v_1" />. Der Eigenwert <InlineMath math="2" /> liefert den separaten Block <InlineMath math="J_1(2)" />.
+
+## Wozu die Jordan-Form dient
+
+Die Darstellung <InlineMath math="J_s(\lambda)=\lambda I+N" /> mit <InlineMath math="N^s=0" /> macht Potenzen explizit berechenbar:
+
+<BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{s-1}\binom{m}{j}\lambda^{m-j}N^j" />
+
+Die Formel erklärt, warum Potenzen einer nicht diagonalisierbaren Matrix neben Eigenwertpotenzen auch Polynomfaktoren in <InlineMath math="m" /> enthalten. Das ist bei der exakten Analyse von Rekursionen und Differentialgleichungen nützlich.
+
+Die Jordan-Form dient vor allem der exakten algebraischen Klassifikation. Sie reagiert sehr empfindlich auf kleine numerische Störungen. Numerische Software berechnet deshalb gewöhnlich eine Schur-Zerlegung statt einer Jordan-Form.

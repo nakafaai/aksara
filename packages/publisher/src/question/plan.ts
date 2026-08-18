@@ -8,10 +8,8 @@ import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rol
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
-import {
-  indexQuestionChoices,
-  type QuestionSource,
-} from "@nakafa/aksara-corpus/question-bank/source";
+import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
+import { indexQuestionChoices } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
 import type { PublicationScopeIdentityError } from "#publisher/family/scope";

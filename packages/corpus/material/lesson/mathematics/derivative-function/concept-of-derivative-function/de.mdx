@@ -1,0 +1,112 @@
+export const metadata = {
+  title: "Grundidee der Ableitung",
+  description: "Die Ableitung als lokale Änderungsrate und Tangentensteigung mithilfe von Sekanten, Grenzwerten und visuellen Beispielen verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Ableitungsfunktionen",
+};
+
+
+
+## Die Idee hinter Ableitungen
+
+Stell dir ein Fahrrad auf einer hügeligen Straße vor. Manche Abschnitte steigen steil an, andere sind fast eben. Die **Steigung** ändert sich von Punkt zu Punkt. Bei einem gekrümmten Funktionsgraphen ist es ähnlich.
+
+Bei einer Geraden ist die Steigung überall gleich. Bei einer gekrümmten Linie verändert sie sich dagegen fortlaufend. Die **Ableitung** liefert die Steigung oder Änderungsrate an **einem bestimmten Punkt** der Kurve.
+
+## Steigung einer Sekantenlinie
+
+Wir beginnen mit einer **Sekante**, also einer Geraden durch zwei verschiedene Punkte einer Kurve.
+
+Die Kurve stelle <InlineMath math="y = f(x)" /> dar. Wir wählen darauf zwei verschiedene Punkte, <InlineMath math="P(x, f(x))" /> und <InlineMath math="Q(x+\Delta x, f(x+\Delta x))" />. Dabei ist <InlineMath math="\Delta x" /> (sprich „Delta x“) die waagerechte Änderung von <InlineMath math="P" /> nach <InlineMath math="Q" />. Daher gilt <InlineMath math="\Delta x \ne 0" />.
+
+Die Steigung der Sekante durch <InlineMath math="P" /> und <InlineMath math="Q" /> lautet:
+
+<BlockMath math="m_{\text{Sekante}} = \frac{\Delta y}{\Delta x} = \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
+
+Diese Steigung ist die **mittlere Änderungsrate** von <InlineMath math="f(x)" /> zwischen <InlineMath math="P" /> und <InlineMath math="Q" />.
+
+<LineEquation
+  title="Sekante und Tangente"
+  description={
+    <>
+      Die Sekante verbindet zwei verschiedene Punkte der Kurve{" "}
+      <InlineMath math="y=x^2" />. Die Tangente beschreibt dagegen die lokale
+      Richtung der Kurve in <InlineMath math="P" />. In diesem Beispiel trifft
+      sie die Parabel in <InlineMath math="P" />. Allgemein kann eine Tangente
+      dieselbe Kurve an anderer Stelle erneut schneiden.
+    </>
+  }
+  showZAxis={false}
+  cameraPosition={[0, 0, 15]}
+  data={(() => {
+    // Kurvenfunktion festlegen
+    const f = (x) => x * x;
+
+    // 1. Hauptkurve festlegen: Parabel y = x^2
+    const curvePoints = Array.from({ length: 101 }, (_, i) => {
+      const x = (i - 50) / 10; // x von -5 bis 5
+      return { x, y: f(x), z: 0 };
+    });
+
+    // 2. Sekante festlegen
+    const p1_secant = { x: 1, y: f(1), z: 0 };
+    const p2_secant = { x: 3, y: f(3), z: 0 };
+
+    // 3. Tangente am Punkt P festlegen
+    const tangentPointX = 1;
+    const tangentPoint = { x: tangentPointX, y: f(tangentPointX), z: 0 };
+    const slope = 2 * tangentPointX; // Die Ableitung von x^2 ist 2x
+    // Geradengleichung: y - y1 = m(x - x1) => y = m(x - x1) + y1
+    const tangentLineFunc = (x) => slope * (x - tangentPointX) + tangentPoint.y;
+    const tangentLinePoints = [
+      { x: -1, y: tangentLineFunc(-1), z: 0 },
+      { x: 3, y: tangentLineFunc(3), z: 0 },
+    ];
+
+    return [
+      {
+        points: curvePoints,
+        color: "#9333ea",
+        showPoints: false,
+      },
+      {
+        points: [p1_secant, p2_secant],
+        color: "#0891b2",
+        labels: [
+          { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
+          { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
+          { text: "Sekante", at: 0, offset: [-1, 2.5, 0] },
+        ],
+      },
+      {
+        points: tangentLinePoints,
+        color: "#d97706",
+        showPoints: false,
+        labels: [{ text: "Tangente", at: 1, offset: [2, -0.5, 0] }],
+      },
+    ];
+  })()}
+/>
+
+## Von der Sekante zur Tangente
+
+Nun verschieben wir <InlineMath math="Q" /> immer näher an <InlineMath math="P" />. Der waagerechte Abstand <InlineMath math="\Delta x" /> wird kleiner und geht gegen Null.
+
+Für <InlineMath math="\Delta x \to 0" /> (sprich „Delta x nähert sich Null“) nähern sich die Sekanten der **Tangente** in <InlineMath math="P" />. Die Tangente beschreibt dort die lokale Richtung der Kurve. Sie muss die gesamte Kurve nicht nur einmal schneiden; entscheidend ist ihr Verhalten in der Umgebung von <InlineMath math="P" />.
+
+Die Tangentensteigung ist die **momentane Änderungsrate** der Kurve in <InlineMath math="P" />. Wir bestimmen sie mit einem **Grenzwert**:
+
+<BlockMath math="m_{\text{Tangente}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
+
+## Definition der Ableitung
+
+Der Grenzwert der Sekantensteigungen für <InlineMath math="\Delta x" /> gegen Null heißt **Ableitung**.
+
+Die Ableitung einer Funktion <InlineMath math="f(x)" />, bezeichnet als <InlineMath math="f'(x)" /> (sprich „f prim x“), ist definiert als:
+
+<BlockMath math="f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
+
+Das Bestimmen einer Ableitung heißt **Differenzieren**.
+
+> Die Ableitung <InlineMath math="f'(x)" /> ist eine neue Funktion. Für jeden Wert <InlineMath math="x" />, an dem der Grenzwert existiert, gibt sie die **momentane Änderungsrate** von <InlineMath math="f(x)" /> und damit die dortige Tangentensteigung an. Diese Idee bildet die Grundlage der Differentialrechnung.

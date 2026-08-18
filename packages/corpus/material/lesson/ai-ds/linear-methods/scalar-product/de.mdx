@@ -1,0 +1,116 @@
+export const metadata = {
+  title: "Skalarprodukte",
+  description: "Reelle und komplexe Skalarprodukte aus positiv definiten Matrizen aufbauen und damit Länge, Winkel, Orthogonalität und Projektion definieren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-13",
+  subject: "Lineare Methoden der KI",
+};
+
+## Welche Geometrie ein Skalarprodukt hinzufügt
+
+Ein Vektorraum beschreibt Addition und Skalarmultiplikation. Ein Skalarprodukt fügt Geometrie hinzu: Damit lassen sich Länge, Winkel und Orthogonalität messen. Diese Lesson verwendet die Konvention, dass ein komplexes Skalarprodukt im ersten Argument konjugiert linear und im zweiten Argument linear ist.
+
+Für <InlineMath math="x,y,z\in\mathbb{C}^n" /> und <InlineMath math="\lambda,\mu\in\mathbb{C}" /> erfüllt ein Skalarprodukt
+
+<MathContainer>
+<BlockMath math="\langle \lambda x+\mu y,z\rangle=\overline\lambda\langle x,z\rangle+\overline\mu\langle y,z\rangle" />
+<BlockMath math="\langle x,\lambda y+\mu z\rangle=\lambda\langle x,y\rangle+\mu\langle x,z\rangle" />
+<BlockMath math="\langle y,x\rangle=\overline{\langle x,y\rangle}" />
+<BlockMath math="\langle x,x\rangle\ge0,\qquad \langle x,x\rangle=0\Longleftrightarrow x=0" />
+</MathContainer>
+
+Die konjugierte Symmetrie stellt sicher, dass <InlineMath math="\langle x,x\rangle" /> reell ist. Über <InlineMath math="\mathbb{R}^n" /> verschwindet die komplexe Konjugation, sodass das Skalarprodukt symmetrisch und bilinear ist.
+
+## Matrixgewichtete Skalarprodukte
+
+Für reelle Vektoren definiert die Formel
+
+<BlockMath math="\langle x,y\rangle_A=x^TAy" />
+
+genau dann ein Skalarprodukt, wenn <InlineMath math="A" /> symmetrisch positiv definit ist. Die Symmetrie von <InlineMath math="A" /> liefert die Symmetrie der Paarung, und <InlineMath math="x^TAx>0" /> für jedes <InlineMath math="x" /> ungleich null liefert die strikte Positivität.
+
+Für komplexe Vektoren lautet die entsprechende Formel
+
+<BlockMath math="\langle x,y\rangle_A=x^HAy" />
+
+wobei <InlineMath math="A" /> hermitesch positiv definit sein muss. Nur zu sagen, dass <InlineMath math="A" /> positive Einträge oder positive Diagonaleinträge besitzt, genügt nicht.
+
+Mit <InlineMath math="A=I" /> erhält man die euklidischen Standardskalarprodukte:
+
+<MathContainer>
+<BlockMath math="\langle x,y\rangle=x^Ty\qquad\text{über }\mathbb{R}^n" />
+<BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{über }\mathbb{C}^n" />
+</MathContainer>
+
+## Länge, Winkel und Orthogonalität
+
+Jedes Skalarprodukt induziert die Norm
+
+<BlockMath math="\|x\|_A=\sqrt{\langle x,x\rangle_A}" />
+
+Die Cauchy-Schwarz-Ungleichung
+
+<BlockMath math="|\langle x,y\rangle_A|\le\|x\|_A\|y\|_A" />
+
+stellt sicher, dass der Winkel für reelle Vektoren ungleich null durch
+
+<BlockMath math="\cos\theta_A=\frac{\langle x,y\rangle_A}{\|x\|_A\|y\|_A}" />
+
+wohldefiniert ist. Vektoren sind <InlineMath math="A" />-orthogonal, wenn <InlineMath math="\langle x,y\rangle_A=0" /> gilt. Eine Änderung von <InlineMath math="A" /> ändert die Geometrie. Daher müssen euklidisch senkrechte Vektoren in einer gewichteten Metrik nicht senkrecht sein.
+
+## Gerechnetes gewichtetes Beispiel
+
+Sei
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix},\qquad x=\begin{pmatrix}1\\0\end{pmatrix},\qquad y=\begin{pmatrix}0\\1\end{pmatrix}" />
+<BlockMath math="\lambda(A)=\{1,3\}" />
+</MathContainer>
+
+Die positiven Eigenwerte bestätigen, dass <InlineMath math="A" /> symmetrisch positiv definit ist. Obwohl <InlineMath math="x^Ty=0" /> gilt, ergibt die gewichtete Geometrie
+
+<MathContainer>
+<BlockMath math="\langle x,y\rangle_A=x^TAy=1" />
+<BlockMath math="\|x\|_A=\|y\|_A=\sqrt2" />
+<BlockMath math="\cos\theta_A=\frac{1}{\sqrt2\sqrt2}=\frac12,\qquad \theta_A=60^\circ" />
+</MathContainer>
+
+Dieselben Koordinatenvektoren stehen somit in der euklidischen Geometrie senkrecht, bilden in der <InlineMath math="A" />-Geometrie aber einen Winkel von <InlineMath math="60^\circ" />.
+
+## Komplexes Beispiel
+
+Für das Standardskalarprodukt sei
+
+<BlockMath math="x=\begin{pmatrix}1\\i\end{pmatrix},\qquad y=\begin{pmatrix}i\\1\end{pmatrix}" />
+
+Dann gilt
+
+<BlockMath math="\langle x,y\rangle=x^Hy=\begin{pmatrix}1&-i\end{pmatrix}\begin{pmatrix}i\\1\end{pmatrix}=i-i=0" />
+
+Die Konjugation in <InlineMath math="x^H" /> ist wesentlich. Mit <InlineMath math="x^Ty" /> erhielte man nicht das komplexe Standardskalarprodukt, denn <InlineMath math="x^Tx" /> muss keine nichtnegative reelle Zahl sein.
+
+## Projektion in gewichteter Geometrie
+
+Die Projektion von <InlineMath math="x" /> auf den von <InlineMath math="u" /> ungleich null aufgespannten eindimensionalen Unterraum lautet
+
+<BlockMath math="\operatorname{proj}^{A}_{u}(x)=u\frac{\langle u,x\rangle_A}{\langle u,u\rangle_A}" />
+
+Das Residuum ist <InlineMath math="A" />-orthogonal zu <InlineMath math="u" />:
+
+<BlockMath math="\left\langle u,x-\operatorname{proj}^{A}_{u}(x)\right\rangle_A=0" />
+
+Dasselbe geometrische Prinzip liegt der gewichteten Methode der kleinsten Quadrate zugrunde: Das angepasste Residuum steht bezüglich des gewählten Skalarprodukts senkrecht auf dem Modellraum.
+
+## Matrixdarstellung und Gram-Matrizen
+
+In der Standardbasis <InlineMath math="e_1,\ldots,e_n" /> besitzt jedes endlichdimensionale Skalarprodukt genau eine Darstellungsmatrix mit den Einträgen
+
+<BlockMath math="a_{ij}=\langle e_i,e_j\rangle" />
+
+Diese Matrix ist über den reellen Zahlen symmetrisch positiv definit und über den komplexen Zahlen hermitesch positiv definit.
+
+Für Vektoren <InlineMath math="v_1,\ldots,v_k" /> ist ihre Gram-Matrix durch
+
+<BlockMath math="G_{ij}=\langle v_i,v_j\rangle_A" />
+
+gegeben. Sie ist hermitesch positiv semidefinit und genau dann positiv definit, wenn die Vektoren linear unabhängig sind. Gram-Matrizen verwandeln geometrische Fragen nach Winkeln und Unabhängigkeit in Matrixfragen.

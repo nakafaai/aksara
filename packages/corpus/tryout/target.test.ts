@@ -1,6 +1,10 @@
 import { Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+  artifactLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect } from "effect";
@@ -64,8 +68,13 @@ function rejectTarget(
   entry: QuestionEntry,
   question: QuestionSource
 ) {
+  const appLocale = AppLocaleSchema.make(
+    artifactLocaleCode(entry.artifactLocale)
+  );
   return Effect.runPromise(
-    selectTryoutTarget(rows, sources, entry, question).pipe(Effect.flip)
+    selectTryoutTarget(rows, sources, entry, question, appLocale).pipe(
+      Effect.flip
+    )
   );
 }
 
@@ -93,13 +102,15 @@ describe("tryout target", () => {
           fixture.rows,
           fixture.sources,
           fixture.prompt,
-          fixture.question
+          fixture.question,
+          AppLocaleSchema.make("en")
         ),
         selectTryoutTarget(
           fixture.rows,
           fixture.sources,
           fixture.answer,
-          fixture.question
+          fixture.question,
+          AppLocaleSchema.make("id")
         ),
       ])
     );
@@ -155,6 +166,11 @@ describe("tryout target", () => {
       ...fixture.rows,
       ...matches(kind),
     ];
+    const hierarchyFailures = (["exam", "track", "set", "section"] as const)
+      .flatMap((kind) => [without(kind), duplicate(kind)])
+      .map((rows) =>
+        rejectTarget(rows, fixture.sources, fixture.prompt, fixture.question)
+      );
     const failures = await Promise.all([
       rejectTarget(
         fixture.rows,
@@ -168,54 +184,7 @@ describe("tryout target", () => {
         fixture.prompt,
         fixture.question
       ),
-      rejectTarget(
-        without("exam"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
-      rejectTarget(
-        duplicate("exam"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
-      rejectTarget(
-        without("track"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
-      rejectTarget(
-        duplicate("track"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
-      rejectTarget(
-        without("set"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
-      rejectTarget(
-        duplicate("set"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
-      rejectTarget(
-        without("section"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
-      rejectTarget(
-        duplicate("section"),
-        fixture.sources,
-        fixture.prompt,
-        fixture.question
-      ),
+      ...hierarchyFailures,
     ]);
     const targetFailures = failures.filter(
       (error) => error._tag === "TryoutTargetError"
@@ -296,7 +265,8 @@ describe("tryout target", () => {
         [...fixture.rows, { ...track, trackKey: "other-track" }],
         fixture.sources,
         fixture.prompt,
-        fixture.question
+        fixture.question,
+        AppLocaleSchema.make("en")
       )
     );
 

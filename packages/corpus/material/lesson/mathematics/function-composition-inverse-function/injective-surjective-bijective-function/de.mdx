@@ -1,0 +1,92 @@
+export const metadata = {
+  title: "Injektive, surjektive und bijektive Funktionen",
+  description: "Unterscheide injektive, surjektive und bijektive Funktionen anhand formaler Bedingungen und anschaulicher Zuordnungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-27",
+  subject: "Funktionszusammensetzung und Umkehrfunktion",
+};
+
+## Funktionszuordnungseigenschaften verstehen
+
+Eine Funktion ordnet jedem Element ihrer Definitionsmenge genau ein Element der Zielmenge zu. Je nachdem, wie diese Zuordnung die beiden Mengen verbindet, unterscheidet man injektive, surjektive und bijektive Funktionen.
+
+Nehmen wir an, wir haben eine Funktion <InlineMath math="f: X \to Y" />.
+
+## Injektive Funktion (Eins-zu-Eins)
+
+Eine Funktion heißt **injektiv**, wenn verschiedene Elemente der Definitionsmenge <InlineMath math="X" /> stets verschiedene Bilder in der Zielmenge <InlineMath math="Y" /> besitzen. Zwei verschiedene Eingaben dürfen also nicht dieselbe Ausgabe erzeugen.
+
+**Formale Definition:**
+
+Eine Funktion <InlineMath math="f: X \to Y" /> ist injektiv, wenn für jedes <InlineMath math="x_1, x_2 \in X" /> gilt:
+
+<BlockMath math="f(x_1) = f(x_2) \implies x_1 = x_2" />
+
+Oder äquivalent (unter Verwendung des Kontrapositivs):
+
+<BlockMath math="x_1 \neq x_2 \implies f(x_1) \neq f(x_2)" />
+
+Stell dir vor, jeder Schüler einer Schule erhält eine eigene Kennnummer. Keine zwei Schüler dürfen dieselbe Nummer besitzen. Die Zuordnung von Schülern zu Kennnummern ist dann injektiv.
+
+**Beispiele:**
+
+- Die Funktion <InlineMath math="f(x) = 2x" /> für <InlineMath math="x \in \mathbb{R}" /> ist injektiv, da jeder eindeutige Wert von <InlineMath math="x" /> ein eindeutiges <InlineMath math="2x" /> erzeugt.
+- Die Funktion <InlineMath math="g(x) = x^2" /> für <InlineMath math="x \in \mathbb{R}" /> ist **nicht** injektiv, da <InlineMath math="g(2) = 4" /> und <InlineMath math="g(-2) = 4" />. Es gibt zwei verschiedene Eingaben (<InlineMath math="2" /> und <InlineMath math="-2" />), die dieselbe Ausgabe erzeugen (<InlineMath math="4" />).
+
+## Surjektive Funktion
+
+Eine Funktion heißt **surjektiv**, wenn jedes Element der Zielmenge <InlineMath math="Y" /> Bild von **mindestens einem** Element der Definitionsmenge <InlineMath math="X" /> ist. Es bleibt also kein Zielwert unerreicht. Bei einer surjektiven Funktion stimmen Bildmenge und Zielmenge überein.
+
+**Formale Definition:**
+
+Eine Funktion <InlineMath math="f: X \to Y" /> ist surjektiv, wenn für jedes <InlineMath math="y \in Y" /> **mindestens ein** <InlineMath math="x \in X" /> existiert, sodass:
+
+<BlockMath math="f(x) = y" />
+
+Stell dir die Zielmenge als Sitzplätze in einem Kino und die Definitionsmenge als Zuschauer vor. Die Zuordnung ist surjektiv, wenn jeder Sitzplatz von mindestens einem Zuschauer erreicht wird.
+
+**Beispiele:**
+
+- Die Funktion <InlineMath math="f(x) = x^3" /> von <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ist surjektiv, denn zu jeder reellen Zahl <InlineMath math="y" /> in der Zielmenge gehört eine reelle Eingabe <InlineMath math="x" />, nämlich <InlineMath math="x = \sqrt[3]{y}" />.
+- Die Funktion <InlineMath math="g(x) = x^2" /> von <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ist **nicht** surjektiv. Es gibt keine reelle Zahl <InlineMath math="x" /> mit <InlineMath math="g(x) = -1" />. Die negativen Werte der Zielmenge werden also nicht erreicht.
+- Beschränkt man die Zielmenge der Funktion <InlineMath math="g(x) = x^2" /> dagegen auf <InlineMath math="\mathbb{R} \to [0, \infty)" />, wird sie surjektiv.
+
+## Bijektive Funktion (Eins-zu-Eins-Korrespondenz)
+
+Eine Funktion heißt **bijektiv**, wenn sie sowohl **injektiv als auch surjektiv** ist. Jedes Element der Zielmenge wird dann von genau einem Element der Definitionsmenge erreicht.
+
+Eine bijektive Funktion stellt damit eine **Eins-zu-eins-Entsprechung** zwischen Definitionsmenge und Zielmenge her.
+
+**Formale Definition:**
+
+Eine Funktion <InlineMath math="f: X \to Y" /> ist bijektiv, wenn für jedes <InlineMath math="y \in Y" /> **genau ein** <InlineMath math="x \in X" /> existiert, sodass:
+
+<BlockMath math="f(x) = y" />
+
+Stell dir zwei Mengen mit gleich vielen Elementen vor. Jedes Element der ersten Menge wird genau einem Element der zweiten Menge zugeordnet, und jedes Element der zweiten Menge wird genau einmal erreicht. Eine solche Abbildung ist bijektiv.
+
+**Wichtig:** Eine Funktion <InlineMath math="f:X\to Y" /> besitzt genau dann eine beidseitige Umkehrfunktion <InlineMath math="f^{-1}:Y\to X" />, wenn sie **bijektiv** ist. Eine injektive Funktion lässt sich auf ihrer tatsächlichen Bildmenge umkehren, sobald diese Bildmenge als Zielmenge gewählt wird.
+
+**Beispiele:**
+
+- Die Funktion <InlineMath math="f(x) = 2x" /> von <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ist bijektiv (injektiv und surjektiv).
+- Die Funktion <InlineMath math="f(x) = x^3" /> von <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ist bijektiv (injektiv und surjektiv).
+- Die Funktion <InlineMath math="g(x) = x^2" /> von <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ist nicht bijektiv (weder injektiv noch surjektiv).
+- Die Funktion <InlineMath math="h(x) = e^x" /> von <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ist nicht bijektiv (injektiv, aber nicht surjektiv).
+- Die Funktion <InlineMath math="k(x) = x^3 - x" /> von <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ist nicht bijektiv (surjektiv, aber nicht injektiv).
+
+## Verständnis prüfen
+
+In jeder der folgenden Abbildungen wird dieselbe Formel <InlineMath math="q(x)=x^2" /> verwendet. Ordne jede Funktion als injektiv, surjektiv, bijektiv oder weder injektiv noch surjektiv ein.
+
+1. <InlineMath math="q:\mathbb{R}\to\mathbb{R}" />
+2. <InlineMath math="q:\mathbb{R}\to[0,\infty)" />
+3. <InlineMath math="q:[0,\infty)\to[0,\infty)" />
+
+### Lösung
+
+1. Die Funktion ist weder injektiv noch surjektiv. Sie ist nicht injektiv, weil <InlineMath math="q(2)=q(-2)=4" /> gilt, und nicht surjektiv, weil keine negative reelle Zahl erreicht wird.
+2. Die Funktion ist surjektiv, aber nicht injektiv. Jeder Wert <InlineMath math="y\ge0" /> wird mit <InlineMath math="x=\sqrt{y}" /> erreicht, doch Eingaben mit entgegengesetztem Vorzeichen haben weiterhin dasselbe Quadrat.
+3. Die Funktion ist bijektiv. Die eingeschränkte Definitionsmenge entfernt die doppelte negative Eingabe, und jeder Wert aus <InlineMath math="[0,\infty)" /> wird genau einmal erreicht. Ihre Umkehrfunktion ist <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
+
+Die Formel hat sich nicht geändert. Die Einordnung ändert sich durch Definitionsmenge und Zielmenge.

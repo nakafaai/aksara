@@ -1,5 +1,8 @@
 import { Effect, Schema } from "effect";
-
+import {
+  mapLocalizedSource,
+  traverseLocalizedSources,
+} from "#corpus/locale/source";
 import { quranGenerationFailure } from "#corpus/quran/source/error";
 import {
   parseQuranMetadata,
@@ -157,10 +160,9 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
     ) {
       return yield* quranGenerationFailure("Tanzil Arabic text is incomplete.");
     }
-    const english = yield* parseTranslation(sources.english, metadata.surahs);
-    const indonesian = yield* parseTranslation(
-      sources.indonesian,
-      metadata.surahs
+    const translations = yield* traverseLocalizedSources(
+      sources.translations,
+      (source) => parseTranslation(source, metadata.surahs)
     );
     const tafsir = yield* parseTafsir(sources.tafsir, metadata.surahs);
 
@@ -175,8 +177,13 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
         const page = quranMarkerAt(metadata.pages, position);
         const ruku = quranMarkerAt(metadata.rukus, position);
         const arabicText = arabic[position - 1];
-        const englishText = english[position - 1];
-        const indonesianText = indonesian[position - 1];
+        const translation = mapLocalizedSource(
+          translations,
+          (localized) => localized[position - 1]
+        );
+        const englishText = translation.en;
+        const indonesianText = translation.id;
+        const germanText = translation.de;
         const tafsirText = tafsir[position - 1];
         if (
           !(
@@ -195,6 +202,10 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
             `Incomplete merged Quran verse ${surah.number}:${index + 1}.`
           );
         }
+        const verseTranslation =
+          germanText === undefined
+            ? { en: englishText, id: indonesianText }
+            : { de: germanText, en: englishText, id: indonesianText };
         verses.push({
           meta: {
             hizbQuarter,
@@ -207,10 +218,7 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
           number: { inQuran: position, inSurah: index + 1 },
           tafsir: { id: tafsirText },
           text: { arabic: arabicText },
-          translation: {
-            en: englishText,
-            id: indonesianText,
-          },
+          translation: verseTranslation,
         });
       }
       surahs.push({

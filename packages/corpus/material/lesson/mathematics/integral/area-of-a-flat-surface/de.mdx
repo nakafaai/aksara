@@ -1,0 +1,254 @@
+export const metadata = {
+  title: "Fläche zwischen Kurve und Achse",
+  description: "Berechne mit bestimmten Integralen Flächen, die von Kurven begrenzt werden, anhand vollständiger Beispiele zu quadratischen Funktionen und Wurzelfunktionen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Integrale",
+};
+
+
+
+## Grundidee der Fläche unter einer Kurve
+
+Für einfache Figuren wie Rechtecke oder Dreiecke gibt es vertraute Flächenformeln. Wird eine Fläche jedoch von einer gekrümmten Linie begrenzt, reicht keine dieser Formeln direkt aus.
+
+**Bestimmte Integrale** behandeln solche Flächen, indem sie die Inhalte immer schmalerer Streifen akkumulieren. Das ist die Idee hinter Riemann-Summen: Wir zerlegen das Intervall, nähern jeden Streifen durch ein Rechteck an und betrachten den Grenzwert der Summe.
+
+Eine Funktion <InlineMath math="f(x)" /> begrenze eine Fläche von <InlineMath math="x = a" /> bis <InlineMath math="x = b" />. Wir zerlegen <InlineMath math="[a, b]" /> in <InlineMath math="n" /> Teilintervalle der Breite <InlineMath math="\Delta x" />.
+
+<MathContainer>
+<BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
+<BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
+</MathContainer>
+
+## Fläche mit einem bestimmten Integral bestimmen
+
+Die Rechnung lässt sich in drei klare Schritte gliedern:
+
+### Integrationsgrenzen identifizieren
+
+Der erste Schritt besteht darin, die untere und obere Grenze der Integration zu bestimmen. Diese Grenzen geben den Bereich der <InlineMath math="x" />-Werte an, die die Region begrenzen, deren Fläche wir berechnen möchten.
+
+### Integranden bestimmen
+
+Der Integrand beschreibt die vertikale Höhe der Fläche. Gilt <InlineMath math="f(x) \ge 0" /> im gesamten Intervall <InlineMath math="[a,b]" />, dann ist der Flächeninhalt <InlineMath math="\int_{a}^{b} f(x) \, dx" />. Schneidet der Graph die Achse, teilen wir das Intervall an seinen Nullstellen oder integrieren <InlineMath math="|f(x)|" />, damit jeder Teil positiv zum Flächeninhalt beiträgt.
+
+### Integral auswerten
+
+Nachdem wir die Grenzen und die Funktion bestimmt haben, können wir das Integral mithilfe des Grundsatzes der Analysis auswerten:
+
+<BlockMath math="\int_{a}^{b} f(x) \, dx = F(b) - F(a)" />
+
+Dabei ist <InlineMath math="F(x)" /> die Stammfunktion von <InlineMath math="f(x)" />.
+
+## Anwendung auf quadratische Funktionen
+
+Wenden wir dieses Konzept auf ein konkretes Beispiel an. Angenommen, wir möchten die Fläche der Region berechnen, die durch die Kurve <InlineMath math="f(x) = x^2 - 4x" /> und die <InlineMath math="x" />-Achse zwischen <InlineMath math="x = 1" /> und <InlineMath math="x = 3" /> begrenzt wird.
+
+<LineEquation
+  title={<>Funktionsgraph <InlineMath math="f(x) = x^2 - 4x" /></>}
+  description="Der Graph und die beiden senkrechten Grenzen des Integrationsintervalls."
+  showZAxis={false}
+  cameraPosition={[0, 0, 12]}
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = 0 + (i * 4) / 30;
+        const y = x * x - 4 * x;
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: true,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="f(x)=x^2-4x" />, at: 25, offset: [0, 3, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 1, y: 0, z: 0 },
+        { x: 1, y: -3, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="x=1" />, at: 0, offset: [0.3, -1.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 },
+        { x: 3, y: -3, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="x=3" />, at: 0, offset: [0.3, -1.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 1, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      lineWidth: 1,
+      labels: [
+        { text: <InlineMath math="x\in[1,3]" />, at: 0, offset: [0, 0.8, 0] }
+      ]
+    }
+  ]}
+/>
+
+Auf <InlineMath math="[1,3]" /> lässt sich die Funktion als <InlineMath math="f(x)=x(x-4)" /> faktorisieren. Jeder Punkt des Intervalls erfüllt <InlineMath math="x>0" /> und <InlineMath math="x-4<0" />. Daher gilt im gesamten Intervall <InlineMath math="f(x)<0" />. Die Randwerte <InlineMath math="f(1)=-3" /> und <InlineMath math="f(3)=-3" /> stimmen mit dieser Vorzeichenanalyse überein.
+
+Hier ist das Vorzeichen entscheidend: Ein **geometrischer Flächeninhalt** ist nicht negativ. Da der Graph im gesamten Intervall unterhalb der Achse liegt, integrieren wir den Betrag der Funktion:
+
+<MathContainer>
+<BlockMath math="A = \int_{1}^{3} |x^2 - 4x| \, dx" />
+<BlockMath math="A = \int_{1}^{3} -(x^2 - 4x) \, dx" />
+<BlockMath math="A = \int_{1}^{3} (-x^2 + 4x) \, dx" />
+</MathContainer>
+
+Eine Stammfunktion liefert nun:
+
+<MathContainer>
+<BlockMath math="A = \left[-\frac{x^3}{3} + 2x^2\right]_{1}^{3}" />
+<BlockMath math="A = \left(-\frac{27}{3} + 18\right) - \left(-\frac{1}{3} + 2\right)" />
+<BlockMath math="A = 9 - \frac{5}{3} = \frac{22}{3}" />
+</MathContainer>
+
+Daher beträgt die Fläche dieser Region <InlineMath math="\frac{22}{3}" /> Quadrateinheiten.
+
+## Anwendung auf eine Wurzelfunktion
+
+Im zweiten Beispiel berechnen wir die Fläche unter <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> von <InlineMath math="x = 0" /> bis <InlineMath math="x = 2" />.
+
+<LineEquation
+  title={<>Funktionsgraph <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
+  description="Bereich unter der Kurve, dessen Fläche mit Intervallhilfslinien berechnet wird."
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = 0 + (i * 2) / 30;
+        const y = x * Math.sqrt(x * x + 5);
+        return { x, y, z: 0 };
+      }),
+      color: "#059669",
+      smooth: true,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="f(x)=x\sqrt{x^2+5}" />, at: 25, offset: [-1, -2, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="x=0" />, at: 0, offset: [-0.5, -0.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 2, y: 0, z: 0 },
+        { x: 2, y: 6, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="x=2" />, at: 0, offset: [0.3, -0.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 2, y: 6, z: 0 },
+        { x: 2, y: 6, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="f(2)=6" />, at: 0, offset: [1.5, -1, 0] }
+      ]
+    }
+  ]}
+/>
+
+Die Form <InlineMath math="x\sqrt{x^2 + 5}" /> legt eine **Substitution** nahe: Der lineare Faktor <InlineMath math="x" /> passt bis auf einen konstanten Faktor zur Ableitung des Ausdrucks unter der Wurzel.
+
+Setze <InlineMath math="u = x^2 + 5" />. Dann gilt <InlineMath math="du = 2x \, dx" /> und damit <InlineMath math="x \, dx = \frac{1}{2} du" />.
+
+Auch die Grenzen werden in die neue Variable umgerechnet: Aus <InlineMath math="x = 0" /> folgt <InlineMath math="u = 5" />, und aus <InlineMath math="x = 2" /> folgt <InlineMath math="u = 9" />.
+
+Nun wird unser Integral:
+
+<MathContainer>
+<BlockMath math="A = \int_{0}^{2} x\sqrt{x^2 + 5} \, dx" />
+<BlockMath math="A = \int_{5}^{9} \frac{1}{2}\sqrt{u} \, du" />
+<BlockMath math="A = \frac{1}{2} \int_{5}^{9} u^{1/2} \, du" />
+<BlockMath math="A = \frac{1}{2} \left[\frac{2}{3}u^{3/2}\right]_{5}^{9}" />
+<BlockMath math="A = \frac{1}{3}\left[u^{3/2}\right]_{5}^{9}" />
+<BlockMath math="A = \frac{1}{3}\left(27 - 5\sqrt{5}\right)" />
+</MathContainer>
+
+Beachte, dass <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> und <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" /> gelten.
+
+> Bei einer Substitution im bestimmten Integral müssen auch die Integrationsgrenzen zur neuen Variablen passen.
+
+## Übungen
+
+1. Berechne die Fläche des Bereichs, der durch <InlineMath math="y = x^2 + 1" />, die <InlineMath math="x" />-Achse sowie die Geraden <InlineMath math="x = 0" /> und <InlineMath math="x = 2" /> begrenzt wird.
+
+2. Bestimme die Fläche unter der Kurve <InlineMath math="y = \frac{1}{x^2 + 1}" /> von <InlineMath math="x = 0" /> bis <InlineMath math="x = 1" />.
+
+3. Berechne die Fläche des Bereichs, der durch <InlineMath math="y = 2x - x^2" /> und die <InlineMath math="x" />-Achse begrenzt wird.
+
+### Ausführliche Lösungen
+
+1. **Erstes Problem mit der Funktion <InlineMath math="y = x^2 + 1" />**
+
+   Da diese Funktion immer positiv ist, können wir das Integral direkt aufstellen:
+
+   <BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
+
+   Nach der Integration und Auswertung erhalten wir:
+
+   <MathContainer>
+   <BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
+   <BlockMath math="A = \left(\frac{8}{3} + 2\right) - 0 = \frac{14}{3}" />
+   </MathContainer>
+
+   Daher beträgt die Fläche dieser Region <InlineMath math="\frac{14}{3}" /> Quadrateinheiten.
+
+2. **Zweites Problem mit rationaler Funktion**
+
+   Für dieses Integral müssen wir bedenken, dass die Stammfunktion von <InlineMath math="\frac{1}{x^2 + 1}" /> <InlineMath math="\arctan(x)" /> ist.
+
+   <MathContainer>
+   <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
+   <BlockMath math="A = [\arctan(x)]_{0}^{1}" />
+   <BlockMath math="A = \arctan(1) - \arctan(0) = \frac{\pi}{4}" />
+   </MathContainer>
+
+   Die Fläche dieser Region beträgt <InlineMath math="\frac{\pi}{4}" /> Quadrateinheiten.
+
+3. **Drittes Problem mit Parabel**
+
+   Finden wir zunächst heraus, wo die Kurve die <InlineMath math="x" />-Achse schneidet:
+
+   <BlockMath math="2x - x^2 = 0 \Rightarrow x(2 - x) = 0" />
+
+   Die Schnittpunkte liegen also bei <InlineMath math="x = 0" /> und <InlineMath math="x = 2" />. Da diese Funktion zwischen diesen beiden Punkten positiv ist, können wir Folgendes direkt integrieren:
+
+   <MathContainer>
+   <BlockMath math="A = \int_{0}^{2} (2x - x^2) \, dx" />
+   <BlockMath math="A = \left[x^2 - \frac{x^3}{3}\right]_{0}^{2}" />
+   <BlockMath math="A = 4 - \frac{8}{3} = \frac{4}{3}" />
+   </MathContainer>
+
+   Die Fläche dieser Region beträgt <InlineMath math="\frac{4}{3}" /> Quadrateinheiten.

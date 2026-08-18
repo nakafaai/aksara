@@ -1,0 +1,78 @@
+export const metadata = {
+    title: "Lösung zu Aufgabe 13",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-11-17",
+};
+
+Gegeben sind die Funktionen <InlineMath math="f(x) = \frac{x-a}{x+a}" /> für <InlineMath math="x \neq -a" /> und <InlineMath math="g(x) = bx^2 - x + 2" />.
+
+Gesucht ist, ob <InlineMath math="\frac{g(-2)}{f(-2)} > 0" /> gilt.
+
+#### Funktionswerte berechnen
+
+Zunächst berechnen wir <InlineMath math="g(-2)" /> und <InlineMath math="f(-2)" />.
+
+Für <InlineMath math="g(-2)" /> setzen wir <InlineMath math="x = -2" /> in <InlineMath math="g(x)" /> ein:
+
+<MathContainer>
+<BlockMath math="g(-2) = b(-2)^2 - (-2) + 2" />
+<BlockMath math="g(-2) = 4b + 2 + 2" />
+<BlockMath math="g(-2) = 4b + 4" />
+</MathContainer>
+
+Für <InlineMath math="f(-2)" /> setzen wir <InlineMath math="x = -2" /> in <InlineMath math="f(x)" /> ein:
+
+<MathContainer>
+<BlockMath math="f(-2) = \frac{-2-a}{-2+a}" />
+<BlockMath math="f(-2) = \frac{-(2+a)}{-(2-a)}" />
+<BlockMath math="f(-2) = \frac{2+a}{2-a}" />
+</MathContainer>
+
+Daher ist das gesuchte Verhältnis:
+
+<BlockMath math="\frac{g(-2)}{f(-2)} = \frac{4b + 4}{\frac{2+a}{2-a}} = \frac{(4b + 4)(2-a)}{2+a}" />
+
+Wir faktorisieren den Zähler:
+
+<BlockMath math="\frac{g(-2)}{f(-2)} = \frac{4(b + 1)(2-a)}{2+a}" />
+
+Damit der Quotient definiert ist, müssen außerdem <InlineMath math="a \neq 2" /> und <InlineMath math="a \neq -2" /> gelten.
+
+Für <InlineMath math="\frac{g(-2)}{f(-2)} > 0" /> benötigen wir <InlineMath math="\frac{4(b + 1)(2-a)}{2+a} > 0" />.
+
+Da <InlineMath math="4" /> immer positiv ist, müssen wir das Vorzeichen von <InlineMath math="\frac{(b + 1)(2-a)}{2+a}" /> analysieren.
+
+#### Aussageanalyse
+
+**Aussage <InlineMath math="(1)" />:** <InlineMath math="a < 5" /> und <InlineMath math="b < 5" />
+
+Aus dieser Aussage wissen wir nur, dass sowohl <InlineMath math="a" /> als auch <InlineMath math="b" /> kleiner als <InlineMath math="5" /> sind. Es gibt jedoch keine eindeutigen Informationen über die Anzeichen der beteiligten Faktoren.
+
+Betrachten wir einige Möglichkeiten:
+
+1. Wenn <InlineMath math="b = 0" />, dann <InlineMath math="b + 1 = 1 > 0" />
+2. Wenn <InlineMath math="b = -2" />, dann <InlineMath math="b + 1 = -1 < 0" />
+3. Für <InlineMath math="2-a" />, wenn <InlineMath math="a = 1" />, dann <InlineMath math="2-a = 1 > 0" />
+4. Für <InlineMath math="2-a" />, wenn <InlineMath math="a = 3" />, dann <InlineMath math="2-a = -1 < 0" />
+5. Für <InlineMath math="2+a" />, wenn <InlineMath math="a = 0" />, dann <InlineMath math="2+a = 2 > 0" />
+6. Für <InlineMath math="2+a" />, wenn <InlineMath math="a = -3" />, dann <InlineMath math="2+a = -1 < 0" />
+
+Da die Vorzeichen dieser Faktoren bei vielen möglichen Kombinationen variieren können, können wir nicht bestimmen, ob <InlineMath math="\frac{g(-2)}{f(-2)} > 0" />.
+
+Daher reicht die Aussage <InlineMath math="(1)" /> allein nicht aus.
+
+**Aussage <InlineMath math="(2)" />:** <InlineMath math="a > 2" /> und <InlineMath math="b > 0" />
+
+Analysieren wir anhand dieser Aussage das Vorzeichen jedes Faktors:
+
+1. Aus <InlineMath math="b > 0" /> folgt <InlineMath math="b + 1 > 1 > 0" /> (positiv)
+2. Aus <InlineMath math="a > 2" /> folgt <InlineMath math="2 - a < 0" /> (negativ)
+3. Aus <InlineMath math="a > 2" /> folgt <InlineMath math="2 + a > 4 > 0" /> (positiv)
+
+Somit haben wir:
+
+<BlockMath math="\frac{(b + 1)(2-a)}{2+a} = \frac{(+)(-)}{(+)} = \frac{(-)}{(+)} = (-)" />
+
+Da das Ergebnis negativ ist, <InlineMath math="\frac{g(-2)}{f(-2)} < 0" />, lautet die Antwort also „Nein“, also ist <InlineMath math="\frac{g(-2)}{f(-2)}" /> nicht größer als <InlineMath math="0" />.
+
+Daher reicht die Aussage <InlineMath math="(2)" /> allein aus. Die gesuchte Ungleichung ist falsch.

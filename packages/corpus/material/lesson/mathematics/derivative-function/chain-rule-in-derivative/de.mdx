@@ -1,0 +1,149 @@
+export const metadata = {
+    title: "Kettenregel",
+    description: "Lerne die Kettenregel für zusammengesetzte Funktionen anhand vollständiger Beispiele mit Potenz- und trigonometrischen Funktionen kennen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Ableitungsfunktionen",
+};
+
+## Zusammengesetzte Funktionen verstehen
+
+Bei einer **zusammengesetzten Funktion** wird das Ergebnis einer Funktion direkt zur Eingabe einer anderen. Ist <InlineMath math="g(x)" /> die **innere Funktion** und <InlineMath math="f(u)" /> die **äußere Funktion**, dann lautet die Zusammensetzung <InlineMath math="y = f(g(x))" />.
+
+Die Kettenregel zeigt, wie sich diese Verschachtelung ableiten lässt, ohne den Einfluss der inneren Funktion zu übergehen.
+
+## Die Kettenregel
+
+Bei einer zusammengesetzten Funktion leiten wir jede Schicht der Reihe nach ab und multiplizieren die entstehenden Ableitungen.
+
+> Ist <InlineMath math="y = f(g(x))" />, wobei <InlineMath math="g" /> an der Stelle <InlineMath math="x" /> und <InlineMath math="f" /> an der Stelle <InlineMath math="g(x)" /> differenzierbar sind, dann ist die Ableitung das Produkt aus der Ableitung der äußeren Funktion an der inneren Funktion und der Ableitung der inneren Funktion.
+
+Setzen wir <InlineMath math="u = g(x)" />, so wird daraus <InlineMath math="y = f(u)" />. Für die Ableitung gilt:
+
+<BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
+
+Das ist die **Kettenregel**: Wir arbeiten von außen nach innen, lassen jeden inneren Ausdruck stehen, bis er an der Reihe ist, und multiplizieren die Ableitungen.
+
+## Anwenden der Kettenregel
+
+Die folgenden Beispiele zeigen den Ablauf bei einer und bei mehreren Verschachtelungen.
+
+### Potenzfunktionen mit innerer Funktion
+
+Bestimme die erste Ableitung von <InlineMath math="y = (x^2 - 4x - 2)^8" />.
+
+**Lösung:**
+
+Zuerst müssen wir diese Funktion in zwei Teile zerlegen: eine äußere Funktion und eine innere Funktion.
+
+-   **Innere Funktion** (<InlineMath math="u" />) ist der Klammerausdruck: <InlineMath math="u = x^2 - 4x - 2" />.
+-   **Äußere Funktion** (<InlineMath math="y" />) ist die Potenzfunktion: <InlineMath math="y = u^8" />.
+
+Als Nächstes bestimmen wir die Ableitung jeder Funktion:
+
+-   Ableitung der inneren Funktion: <InlineMath math="\frac{du}{dx} = 2x - 4" />.
+-   Ableitung der äußeren Funktion: <InlineMath math="\frac{dy}{du} = 8u^7" />.
+
+Jetzt können wir sie mithilfe der Kettenregel kombinieren:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = 8u^7 \cdot (2x - 4)" />
+</MathContainer>
+
+Zum Schluss setzen wir <InlineMath math="u" /> wieder ein und vereinfachen den Ausdruck:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = 8(x^2 - 4x - 2)^7 (2x - 4)" />
+    <BlockMath math="\frac{dy}{dx} = (16x - 32)(x^2 - 4x - 2)^7" />
+</MathContainer>
+
+### Trigonometrische Funktionen
+
+Bestimme die erste Ableitung von <InlineMath math="y = \cos^4(3 - 4x)" />.
+
+**Lösung:**
+
+Wir können diese Funktion als <InlineMath math="y = (\cos(3 - 4x))^4" /> umschreiben. In diesem Fall müssen wir die Kettenregel mehr als einmal anwenden, da es drei Funktionsebenen gibt.
+
+-   **Innerste Funktion**: <InlineMath math="v = 3 - 4x" />
+-   **Mittlere Funktion**: <InlineMath math="u = \cos(v)" />
+-   **Äußerste Funktion**: <InlineMath math="y = u^4" />
+
+Dann differenzieren wir jede Schicht:
+
+-   Ableitung der äußersten Funktion: <InlineMath math="\frac{dy}{du} = 4u^3" />
+-   Ableitung der mittleren Funktion: <InlineMath math="\frac{du}{dv} = -\sin(v)" />
+-   Ableitung der innersten Funktion: <InlineMath math="\frac{dv}{dx} = -4" />
+
+Multipliziere die drei Ableitungen gemäß der Kettenregel:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = (4u^3) \cdot (-\sin(v)) \cdot (-4)" />
+</MathContainer>
+
+Setze nun schrittweise wieder die Ausdrücke für <InlineMath math="u" /> und <InlineMath math="v" /> ein:
+
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = (4\cos^3(v)) \cdot (-\sin(v)) \cdot (-4)" />
+    <BlockMath math="\frac{dy}{dx} = 16\cos^3(v)\sin(v)" />
+    <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
+</MathContainer>
+
+## Übungen
+
+1.  Bestimme die erste Ableitung von <InlineMath math="y = (3x^2 - 1)^3" />.
+2.  Bestimme die erste Ableitung von <InlineMath math="y = \sin^3(2x)" />.
+
+### Ausführliche Lösungen
+
+1.  **Lösung für <InlineMath math="y = (3x^2 - 1)^3" />**
+
+    **Schritt** <InlineMath math="1" />: Identifiziere die Funktionen
+    -   Innere Funktion: <InlineMath math="u = 3x^2 - 1" />
+    -   Äußere Funktion: <InlineMath math="y = u^3" />
+
+    **Schritt** <InlineMath math="2" />: Bestimme beide Ableitungen
+    -   <InlineMath math="\frac{du}{dx} = 6x" />
+    -   <InlineMath math="\frac{dy}{du} = 3u^2" />
+
+    **Schritt** <InlineMath math="3" />: Mit der Kettenregel kombinieren
+
+    <MathContainer>
+        <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
+        <BlockMath math="\frac{dy}{dx} = 3u^2 \cdot 6x = 18x \cdot u^2" />
+    </MathContainer>
+
+    **Schritt** <InlineMath math="4" />: Setze den inneren Ausdruck wieder ein
+
+    <BlockMath math="\frac{dy}{dx} = 18x(3x^2 - 1)^2" />
+
+2.  **Lösung für <InlineMath math="y = \sin^3(2x)" />**
+
+    Die Funktion lässt sich als <InlineMath math="y = (\sin(2x))^3" /> schreiben. Deshalb wird die Kettenregel über drei Schichten angewendet.
+
+    **Schritt** <InlineMath math="1" />: Identifiziere die Funktionen
+    -   Innerste Funktion: <InlineMath math="v = 2x" />
+    -   Mittlere Funktion: <InlineMath math="u = \sin(v)" />
+    -   Äußerste Funktion: <InlineMath math="y = u^3" />
+
+    **Schritt** <InlineMath math="2" />: Bestimme die drei Ableitungen
+    -   <InlineMath math="\frac{dv}{dx} = 2" />
+    -   <InlineMath math="\frac{du}{dv} = \cos(v)" />
+    -   <InlineMath math="\frac{dy}{du} = 3u^2" />
+
+    **Schritt** <InlineMath math="3" />: Mit der Kettenregel kombinieren
+
+    <MathContainer>
+        <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{dx}" />
+        <BlockMath math="\frac{dy}{dx} = (3u^2) \cdot (\cos(v)) \cdot (2)" />
+    </MathContainer>
+
+    **Schritt** <InlineMath math="4" />: Rücksubstituieren und vereinfachen
+
+    <MathContainer>
+        <BlockMath math="\frac{dy}{dx} = 6u^2 \cos(v)" />
+        <BlockMath math="\frac{dy}{dx} = 6\sin^2(v) \cos(v)" />
+        <BlockMath math="\frac{dy}{dx} = 6\sin^2(2x) \cos(2x)" />
+    </MathContainer>

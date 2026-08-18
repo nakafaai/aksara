@@ -1,3 +1,4 @@
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import type { PreviewRepository } from "@nakafa/aksara-contracts/preview/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
@@ -21,7 +22,11 @@ import { selectCatalogDocument, selectPreviewDocument } from "#cli/repository";
 /** Renderer discovery backed by either one request or the complete catalog. */
 export type RendererSessionSelection =
   | { readonly kind: "catalog" }
-  | { readonly kind: "document"; readonly requestedPath: string };
+  | {
+      readonly appLocale?: AppLocale;
+      readonly kind: "document";
+      readonly requestedPath: string;
+    };
 
 /** Inputs required to open one scoped actual Nakafa renderer session. */
 export interface RendererSessionInput {
@@ -87,7 +92,11 @@ function selectDocument(
   if (selection.kind === "catalog") {
     return selectCatalogDocument(aksaraRoot);
   }
-  return selectPreviewDocument(aksaraRoot, selection.requestedPath);
+  return selectPreviewDocument(
+    aksaraRoot,
+    selection.requestedPath,
+    selection.appLocale
+  );
 }
 
 /** Opens and authenticates one scoped session against the actual Nakafa app. */

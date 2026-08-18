@@ -1,0 +1,28 @@
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
+
+const choices: QuestionChoices = {
+  de: [
+    {
+      label: "$$A = B$$",
+      value: false,
+    },
+    {
+      label: "$$A = 2B$$",
+      value: false,
+    },
+    {
+      label: "$$A > B$$",
+      value: true,
+    },
+    {
+      label: "$$A < B$$",
+      value: false,
+    },
+    {
+      label: "$$A = \\frac{1}{2}B$$",
+      value: false,
+    },
+  ],
+};
+
+export default choices;

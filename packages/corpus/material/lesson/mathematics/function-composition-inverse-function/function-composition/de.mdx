@@ -1,0 +1,122 @@
+export const metadata = {
+  title: "Funktionskomposition",
+  description: "Verstehe Funktionskomposition anhand eines Einkaufsbeispiels und erkenne, warum die Reihenfolge der Funktionen wichtig ist.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-27",
+  subject: "Funktionskomposition und Umkehrfunktion",
+};
+
+## Funktionskomposition verstehen
+
+Stellen Sie sich vor, Sie kaufen in einem Geschäft ein, das zwei attraktive Sonderangebote anbietet:
+
+1.  **Aktion A:** <InlineMath math="20\%" /> Rabatt, dann ein weiterer Abzug von <InlineMath math="\text{Rp}25{.}000{,}00" />.
+2.  **Aktion B:** Preisnachlass von <InlineMath math="\text{Rp}25{.}000{,}00" />, dann ein Rabatt von <InlineMath math="20\%" />.
+
+Führen beide Aktionen zum gleichen Endpreis? Welche Aktion ist vorteilhafter? Um dies zu beantworten, müssen wir das Konzept der **Funktionskomposition** verstehen.
+
+### Definition der Funktionszusammensetzung
+
+Unter Funktionskomposition versteht man die sequentielle Kombination von zwei oder mehr Funktionen, um eine neue Funktion zu erzeugen.
+
+Für Funktionen <InlineMath math="g: A \to B" /> und <InlineMath math="f: B \to C" /> ist ihre Zusammensetzung <InlineMath math="(f \circ g)(x)" /> eine neue Funktion von der Definitionsmenge <InlineMath math="A" /> in die Zielmenge <InlineMath math="C" />.
+
+Das bedeutet, dass wir zuerst die Funktion <InlineMath math="g" /> anwenden und dann ihr Ergebnis in die Funktion <InlineMath math="f" /> eingeben.
+
+Mathematisch wird dies wie folgt geschrieben:
+
+<BlockMath math="(f \circ g)(x) = f(g(x))" />
+
+Die Zusammensetzung ist nur für Eingaben <InlineMath math="x" /> aus der Definitionsmenge von <InlineMath math="g" /> definiert, deren Funktionswert <InlineMath math="g(x)" /> in der Definitionsmenge von <InlineMath math="f" /> liegt:
+
+<BlockMath math="D_{f\circ g}=\{x\in D_g\mid g(x)\in D_f\}" />
+
+### Promo-Berechnung
+
+Wir berechnen den Endpreis für einen Artikel im Wert von <InlineMath math="\text{Rp}200{.}000{,}00" />. Das vereinfachte Beispiel lässt Steuern, Mindestkaufbedingungen und Preisuntergrenzen unberücksichtigt, sodass nur die Reihenfolge der beiden Operationen variiert.
+
+Sei <InlineMath math="x" /> der Anfangspreis des Artikels.
+
+- **<InlineMath math="20\%" /> Rabattfunktion:** <InlineMath math="d(x) = x - 0{,}20x = 0{,}80x" />
+- **<InlineMath math="\text{Rp}25{.}000{,}00" /> Reduktionsfunktion:** <InlineMath math="p(x) = x - 25000" />
+
+Nun verknüpfen wir die beiden Funktionen in der jeweiligen Reihenfolge der Aktion:
+
+1.  **Aktion A (erst Rabatt, dann Preisnachlass):** Wir suchen <InlineMath math="(p \circ d)(x)" />
+
+    <BlockMath math="(p \circ d)(x) = p(d(x)) = p(0{,}80x) = 0{,}80x - 25000" />
+
+    Für <InlineMath math="x = 200000" />:
+
+    <BlockMath math="(p \circ d)(200000) = 0{,}80(200000) - 25000 = 160000 - 25000 = 135000" />
+
+    Der Endpreis für Aktion A beträgt also <InlineMath math="\text{Rp}135{.}000{,}00" />.
+
+2.  **Aktion B (zuerst Preissenkung, dann Rabatt):** Wir suchen <InlineMath math="(d \circ p)(x)" />
+
+    <BlockMath math="(d \circ p)(x) = d(p(x)) = d(x - 25000) = 0{,}80(x - 25000) = 0{,}80x - 20000" />
+
+    Für <InlineMath math="x = 200000" />:
+
+    <BlockMath math="(d \circ p)(200000) = 0{,}80(200000) - 20000 = 160000 - 20000 = 140000" />
+
+    Der Endpreis mit Aktion B beträgt also <InlineMath math="\text{Rp}140{.}000{,}00" />.
+
+Es stellt sich heraus, dass die Reihenfolge der Anwendung der Funktionen (Rabatt und Preisnachlass) das Endergebnis beeinflusst. Aktion A (<InlineMath math="p \circ d" />) ist für den Käufer vorteilhafter als Aktion B (<InlineMath math="d \circ p" />) für einen Artikel mit einem Preis von <InlineMath math="\text{Rp}200{.}000{,}00" />. Dies zeigt, dass im Allgemeinen <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />.
+
+## Ein weiteres Beispiel
+
+Angenommen, wir haben zwei Funktionen:
+
+<MathContainer>
+  <BlockMath math="f(x) = 2x + 1" />
+  <BlockMath math="g(x) = x^2 - 3" />
+</MathContainer>
+
+Bestimmen Sie <InlineMath math="(f \circ g)(x)" /> und <InlineMath math="(g \circ f)(x)" />.
+
+**Lösung:**
+
+1.  **Berechnung von <InlineMath math="(f \circ g)(x)" />:**
+
+    <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2 - 3)" />
+
+    Ersetzen Sie <InlineMath math="x" /> in <InlineMath math="f(x)" /> durch <InlineMath math="g(x)" />:
+
+    <BlockMath math="f(x^2 - 3) = 2(x^2 - 3) + 1 = 2x^2 - 6 + 1 = 2x^2 - 5" />
+
+    Also <InlineMath math="(f \circ g)(x) = 2x^2 - 5" />.
+
+2.  **Berechnung von <InlineMath math="(g \circ f)(x)" />:**
+
+    <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x + 1)" />
+
+    Ersetzen Sie <InlineMath math="x" /> in <InlineMath math="g(x)" /> durch <InlineMath math="f(x)" />:
+
+    <BlockMath math="g(2x + 1) = (2x + 1)^2 - 3 = (4x^2 + 4x + 1) - 3 = 4x^2 + 4x - 2" />
+
+    Also <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
+
+Beachten Sie, dass <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" /> die nichtkommutative Eigenschaft veranschaulicht.
+
+## Die Definitionsmenge hängt von der Reihenfolge ab
+
+Eine Funktionszusammensetzung ist nicht dasselbe wie das Produkt zweier Funktionen. Ihre Definitionsmenge lässt sich außerdem nicht allein an der Endformel ablesen. Sei
+
+<MathContainer>
+  <BlockMath math="f(u)=\sqrt{u-1}" />
+  <BlockMath math="g(x)=x^2" />
+</MathContainer>
+
+Dann gilt
+
+<BlockMath math="(f\circ g)(x)=\sqrt{x^2-1}" />
+
+Die Eingabe muss sowohl <InlineMath math="x\in D_g=\mathbb{R}" /> als auch <InlineMath math="g(x)=x^2\in D_f=[1,\infty)" /> erfüllen. Daher gilt
+
+<MathContainer>
+  <BlockMath math="x^2\ge 1" />
+  <BlockMath math="D_{f\circ g}=(-\infty,-1]\cup[1,\infty)" />
+</MathContainer>
+
+Diese Prüfung erklärt, warum Werte zwischen <InlineMath math="-1" /> und <InlineMath math="1" /> ausgeschlossen sind: Sie machen den Ausdruck unter der Quadratwurzel negativ.

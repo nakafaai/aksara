@@ -1,0 +1,230 @@
+
+
+export const metadata = {
+  title: "Betrag und Argument komplexer Zahlen",
+  description: "Berechne Betrag und Argument einer komplexen Zahl, wende die Quadrantenregeln an und wechsle zwischen kartesischer und polarer Form.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Was sind Betrag und Argument?
+
+Eine komplexe Zahl <InlineMath math="z = x + iy" /> kann als Punkt <InlineMath math="(x, y)" /> auf der komplexen Ebene (ähnlich der kartesischen Ebene) dargestellt werden. Abgesehen davon, dass es sich um einen Punkt handelt, können wir ihn auch als **Vektor** betrachten, der vom Ursprung <InlineMath math="(0, 0)" /> bis zum Punkt <InlineMath math="(x, y)" /> beginnt.
+
+Dieser Vektor hat eine **Länge** und eine **Richtung**. Die Länge heißt **Betrag**, die Richtung wird durch das **Argument** beschrieben.
+
+## Betrag einer komplexen Zahl
+
+Der **Betrag** einer komplexen Zahl <InlineMath math="z = x + iy" />, geschrieben als <InlineMath math="|z|" />, ist der **Abstand** vom Ursprung <InlineMath math="(0,0)" /> zum Punkt <InlineMath math="(x, y)" /> in der komplexen Ebene. Er ist zugleich die **Länge des Vektors**, der <InlineMath math="z" /> darstellt.
+
+<LineEquation
+  title="Visualisierung des Betrags"
+  description={
+    <>
+      Der Betrag <InlineMath math="|z|" /> ist die Länge des Vektors vom
+      Ursprung zum Punkt <InlineMath math="z" />. Er entspricht der Hypotenuse
+      eines rechtwinkligen Dreiecks.
+    </>
+  }
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 4, z: 0 },
+      ],
+      color: "#0284c7",
+      labels: [
+        { text: <InlineMath math="z=3+4i" />, at: 1, offset: [0.5, 0.5, 0] },
+        {
+          text: <InlineMath math="|z|" />,
+          at: 1,
+          offset: [-2, -1.5, 0],
+          color: "#d97706",
+        },
+      ],
+      cone: { position: "end" },
+    },
+    // Hilfslinien für x und y
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="x=3" />, at: 1, offset: [-1.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 },
+        { x: 3, y: 4, z: 0 },
+      ],
+      color: "#059669",
+      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [1.5, -1.5, 0] }],
+    },
+  ]}
+/>
+
+Zur Berechnung des Betrags verwenden wir den Satz des Pythagoras. Die Kathetenlängen sind durch den Realteil <InlineMath math="x" /> und den Imaginärteil <InlineMath math="y" /> gegeben; der Betrag <InlineMath math="|z|" /> ist die Hypotenusenlänge.
+
+**Definition des Betrags:**
+
+Der Betrag der komplexen Zahl <InlineMath math="z = x + iy" /> ist:
+
+<BlockMath math="|z| = \sqrt{x^2 + y^2}" />
+
+Als Länge ist der Betrag stets **nicht negativ**.
+
+### Berechnung des Betrags
+
+1.  **Bestimme den Betrag von <InlineMath math="z_1 = 3 + 4i" />** mit <InlineMath math="x=3, y=4" />
+
+    <BlockMath math="|z_1| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5" />
+
+2.  **Bestimme den Betrag von <InlineMath math="z_2 = -1 - 2i" />** mit <InlineMath math="x=-1, y=-2" />
+
+    <BlockMath math="|z_2| = \sqrt{(-1)^2 + (-2)^2} = \sqrt{1 + 4} = \sqrt{5}" />
+
+3.  **Bestimme den Betrag von <InlineMath math="z_3 = 5" />** mit <InlineMath math="x=5, y=0" />
+
+    <BlockMath math="|z_3| = \sqrt{5^2 + 0^2} = \sqrt{25} = 5" />
+
+    Der Betrag einer reellen Zahl stimmt mit ihrem Absolutwert überein.
+
+4.  **Bestimme den Betrag von <InlineMath math="z_4 = -2i" />** mit <InlineMath math="x=0, y=-2" />
+
+    <BlockMath math="|z_4| = \sqrt{0^2 + (-2)^2} = \sqrt{4} = 2" />
+
+## Argument einer komplexen Zahl
+
+Das **Argument** einer von Null verschiedenen komplexen Zahl <InlineMath math="z = x + iy" />, geschrieben als <InlineMath math="\arg(z)" /> oder <InlineMath math="\theta" />, ist der **Winkel**, den der Vektor <InlineMath math="z" /> mit der **positiven reellen Achse** auf der komplexen Ebene bildet. Dieser Winkel wird normalerweise im Bogenmaß oder Grad gemessen.
+
+Aus der Trigonometrie am selben rechtwinkligen Dreieck folgen die Beziehungen:
+
+<MathContainer>
+  <BlockMath math="x = |z| \cos \theta" />
+  <BlockMath math="y = |z| \sin \theta" />
+  <BlockMath math="\tan \theta = \frac{y}{x} \quad (\text{wenn} x \neq 0)" />
+</MathContainer>
+
+Wenn <InlineMath math="x" /> und <InlineMath math="y" /> beide ungleich null sind, berechnen wir zuerst den positiven Bezugswinkel:
+
+<BlockMath math="\alpha = \arctan\left(\left|\frac{y}{x}\right|\right), \qquad 0^\circ < \alpha < 90^\circ" />
+
+Die Vorzeichen von <InlineMath math="x" /> und <InlineMath math="y" /> bestimmen den Quadranten. Damit wird der Bezugswinkel in das Hauptargument im Intervall <InlineMath math="(-180^\circ, 180^\circ]" /> überführt:
+
+- **Quadrant <InlineMath math="I" />** (<InlineMath math="x>0, y>0" />):
+
+  <BlockMath math="\text{Arg}(z) = \alpha" />
+
+- **Quadrant <InlineMath math="II" />** (<InlineMath math="x<0, y>0" />):
+
+  <BlockMath math="\text{Arg}(z) = 180^\circ - \alpha" />
+
+- **Quadrant <InlineMath math="III" />** (<InlineMath math="x<0, y<0" />):
+
+  <BlockMath math="\text{Arg}(z) = -180^\circ + \alpha" />
+
+- **Quadrant <InlineMath math="IV" />** (<InlineMath math="x>0, y<0" />):
+
+  <BlockMath math="\text{Arg}(z) = -\alpha" />
+
+Punkte auf einer Achse benötigen keinen Quotienten <InlineMath math="y/x" />. Ihre Richtung lässt sich direkt ablesen:
+
+<MathContainer>
+  <BlockMath math="x>0,\ y=0 \Rightarrow \text{Arg}(z)=0^\circ" />
+  <BlockMath math="x=0,\ y>0 \Rightarrow \text{Arg}(z)=90^\circ" />
+  <BlockMath math="x<0,\ y=0 \Rightarrow \text{Arg}(z)=180^\circ" />
+  <BlockMath math="x=0,\ y<0 \Rightarrow \text{Arg}(z)=-90^\circ" />
+</MathContainer>
+
+### Berechnung des Arguments
+
+1.  **Bestimme das Hauptargument von <InlineMath math="z_1 = 1 + i" />**
+
+    Der Punkt <InlineMath math="(1, 1)" /> liegt im Quadranten <InlineMath math="I" />.
+
+    <MathContainer>
+      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{1} = 1" />
+      <BlockMath math="\theta = \arctan(1) = 45^\circ \text{oder} \frac{\pi}{4} \text{Bogenmaß}" />
+    </MathContainer>
+
+2.  **Bestimme das Hauptargument von <InlineMath math="z_2 = -\sqrt{3} + i" />**
+
+    Der Punkt <InlineMath math="(-\sqrt{3}, 1)" /> liegt im Quadranten <InlineMath math="II" />.
+
+    <MathContainer>
+      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{-\sqrt{3}}" />
+      <BlockMath math="\text{Basiswinkel} = \arctan\left(\left|\frac{1}{-\sqrt{3}}\right|\right) = \arctan\left(\frac{1}{\sqrt{3}}\right) = 30^\circ" />
+      <BlockMath math="\theta = 180^\circ - 30^\circ = 150^\circ \text{oder} \frac{5\pi}{6} \text{Bogenmaß}" />
+    </MathContainer>
+
+    Der Quadrant <InlineMath math="II" /> liegt oberhalb der negativen reellen Achse. Deshalb wird der Bezugswinkel von <InlineMath math="180^\circ" /> abgezogen.
+
+3.  **Bestimme das Hauptargument von <InlineMath math="z_3 = -1 - i\sqrt{3}" />**
+
+    Der Punkt <InlineMath math="(-1, -\sqrt{3})" /> liegt im Quadranten <InlineMath math="III" />.
+
+    <MathContainer>
+      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-\sqrt{3}}{-1} = \sqrt{3}" />
+      <BlockMath math="\text{Basiswinkel} = \arctan(\sqrt{3}) = 60^\circ" />
+      <BlockMath math="\text{Arg}(z_3) = -180^\circ + 60^\circ = -120^\circ = -\frac{2\pi}{3}" />
+    </MathContainer>
+
+    Der Quadrant <InlineMath math="III" /> liegt unterhalb der negativen reellen Achse. Deshalb ist das Hauptargument negativ.
+
+4.  **Bestimme das Hauptargument von <InlineMath math="z_4 = 3 - 3i" />**
+
+    Der Punkt <InlineMath math="(3, -3)" /> liegt im Quadranten <InlineMath math="IV" />.
+
+    <MathContainer>
+      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-3}{3} = -1" />
+      <BlockMath math="\text{Basiswinkel} = \arctan(|-1|) = \arctan(1) = 45^\circ" />
+      <BlockMath math="\text{Arg}(z_4) = -45^\circ = -\frac{\pi}{4}" />
+    </MathContainer>
+
+    Der Quadrant <InlineMath math="IV" /> liegt unterhalb der positiven reellen Achse. Deshalb ist das Hauptargument negativ.
+
+## Übung
+
+Bestimme Betrag und Hauptargument (in Grad) der folgenden komplexen Zahlen:
+
+1.  <InlineMath math="z_a = 2 + 2i" />
+2.  <InlineMath math="z_b = -4" />
+3.  <InlineMath math="z_c = -i" />
+
+### Ausführliche Lösungen
+
+1.  **Für <InlineMath math="z_a = 2 + 2i" />:**
+
+    <InlineMath math="x=2, y=2" /> (Quadrant <InlineMath math="I" />), Betrag:
+
+    <BlockMath math="|z_a| = \sqrt{2^2 + 2^2} = \sqrt{4+4} = \sqrt{8} = 2\sqrt{2}" />
+
+    Argument:
+
+    <BlockMath math="\tan \theta = \frac{2}{2} = 1 \implies \theta = \arctan(1) = 45^\circ" />
+
+2.  **Für <InlineMath math="z_b = -4" />:**
+
+    <InlineMath math="z_b = -4 + 0i" />. <InlineMath math="x=-4, y=0" /> (Negativ
+    reelle Achse), Betrag:
+
+    <BlockMath math="|z_b| = \sqrt{(-4)^2 + 0^2} = \sqrt{16} = 4" />
+
+    Argument: Der Punkt liegt auf der negativen reellen Achse.
+
+    <BlockMath math="\theta = 180^\circ" />
+
+3.  **Für <InlineMath math="z_c = -i" />:**
+
+    <InlineMath math="z_c = 0 - 1i" />. <InlineMath math="x=0, y=-1" /> (Negativ
+    imaginäre Achse), Betrag:
+
+    <BlockMath math="|z_c| = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
+
+    Argument: Der Punkt liegt auf der negativen imaginären Achse.
+
+    <BlockMath math="\text{Arg}(z_c) = -90^\circ" />

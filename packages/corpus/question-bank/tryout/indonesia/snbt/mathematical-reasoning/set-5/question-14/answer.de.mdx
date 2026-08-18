@@ -1,0 +1,56 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 14",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-09",
+};
+
+Wir übersetzen die drei Einkäufe in ein lineares Gleichungssystem. Dazu bezeichnen wir die Einzelpreise wie folgt:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x &amp;= \text{Preis für 1 Packung Sojasauce} \\ y &amp;= \text{Preis für 1 Packung Würzsoße} \\ z &amp;= \text{Preis für 1 Packung Pfeffer} \end{aligned}" />
+</MathContainer>
+
+Aus den Einkäufen von Angga, Bimo und Cinta folgen diese drei Gleichungen:
+
+<MathContainer>
+  <BlockMath math="\begin{cases} 3x + y + 2z = 20{.}000 &amp; \text{(Angga)} \\ x + 2y + z = 12{.}500 &amp; \text{(Bimo)} \\ 2x + y + 2z = 16{.}000 &amp; \text{(Cinta)} \end{cases}" />
+</MathContainer>
+
+Rizal kauft von jedem Artikel eine Packung. Gesucht ist daher <InlineMath math="x + y + z" />.
+
+In den Gleichungen von Angga und Cinta sind der Würzsoßen-Term <InlineMath math="y" /> und der Pfeffer-Term <InlineMath math="2z" /> gleich. Ziehen wir Cintas Gleichung von Anggas ab, bleibt daher direkt <InlineMath math="x" /> übrig:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} (3x + y + 2z) - (2x + y + 2z) &= 20{.}000 - 16{.}000 \\ x &= 4{.}000 \end{aligned}" />
+</MathContainer>
+
+Eine Packung Sojasauce kostet <InlineMath math="\text{Rp }4{.}000{,}00" />. Diesen Wert setzen wir in die Gleichungen von Bimo und Cinta ein:
+
+<MathContainer>
+  <BlockMath math="\text{Bimo: } 4{.}000 + 2y + z = 12{.}500 \implies 2y + z = 8{.}500" />
+  <BlockMath math="\text{Cinta: } 2(4{.}000) + y + 2z = 16{.}000 \implies y + 2z = 8{.}000" />
+</MathContainer>
+
+Aus <InlineMath math="y + 2z = 8{.}000" /> folgt <InlineMath math="y = 8{.}000 - 2z" />. Diesen Ausdruck setzen wir in <InlineMath math="2y + z = 8{.}500" /> ein:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} 2(8{.}000 - 2z) + z &= 8{.}500 \\ 16{.}000 - 4z + z &= 8{.}500 \\ 16{.}000 - 3z &= 8{.}500 \\ 3z &= 7{.}500 \\ z &= 2{.}500 \end{aligned}" />
+</MathContainer>
+
+Mit <InlineMath math="z = 2{.}500" /> bestimmen wir nun <InlineMath math="y" />:
+
+<MathContainer>
+  <BlockMath math="y = 8{.}000 - 2(2{.}500) = 8{.}000 - 5{.}000 = 3{.}000" />
+</MathContainer>
+
+Damit kennen wir alle Einzelpreise: <InlineMath math="x = 4{.}000" /> für Sojasauce, <InlineMath math="y = 3{.}000" /> für Würzsoße und <InlineMath math="z = 2{.}500" /> für Pfeffer.
+
+Für Rizals Einkauf addieren wir die drei Preise:
+
+<MathContainer>
+  <BlockMath math="\text{Gesamt} = x + y + z" />
+  <BlockMath math="\text{Gesamt} = 4{.}000 + 3{.}000 + 2{.}500" />
+  <BlockMath math="\text{Gesamt} = 9{.}500" />
+</MathContainer>
+
+Rizal muss also <InlineMath math="\text{Rp }9{.}500{,}00" /> bezahlen.

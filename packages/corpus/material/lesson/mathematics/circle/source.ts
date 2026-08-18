@@ -13,14 +13,6 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         id: "sudut-pusat-dan-sudut-keliling",
       },
       slug: "central-angle-and-inscribed-angle",
-      translations: {
-        en: {
-          title: "Central Angle and Inscribed Angle",
-        },
-        id: {
-          title: "Sudut Pusat dan Sudut Keliling",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -28,26 +20,10 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         id: "lingkaran-dan-busur-lingkaran",
       },
       slug: "circle-and-arc-circle",
-      translations: {
-        en: {
-          title: "Circle and Arc Circle",
-        },
-        id: {
-          title: "Lingkaran dan Busur Lingkaran",
-        },
-      },
     },
     {
       routeSlugs: { en: "circle-and-chord", id: "lingkaran-dan-tali-busur" },
       slug: "circle-and-chord",
-      translations: {
-        en: {
-          title: "Circle and Chord",
-        },
-        id: {
-          title: "Lingkaran dan Tali Busur",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -55,14 +31,6 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         id: "lingkaran-dan-garis-singgung",
       },
       slug: "circle-and-tangent-line",
-      translations: {
-        en: {
-          title: "Circle and Tangent Line",
-        },
-        id: {
-          title: "Lingkaran dan Garis Singgung",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -70,14 +38,6 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         id: "garis-singgung-persekutuan-luar-dan-dalam",
       },
       slug: "external-tangent-line-and-internal-tangent-line",
-      translations: {
-        en: {
-          title: "External Tangent Line and Internal Tangent Line",
-        },
-        id: {
-          title: "Garis Singgung Persekutuan Luar dan Dalam",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -85,14 +45,6 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         id: "sifat-sudut-dalam-lingkaran",
       },
       slug: "properties-of-angle-in-circle",
-      translations: {
-        en: {
-          title: "Properties of Angle in Circle",
-        },
-        id: {
-          title: "Sifat Sudut dalam Lingkaran",
-        },
-      },
     },
   ],
   slug: "circle",

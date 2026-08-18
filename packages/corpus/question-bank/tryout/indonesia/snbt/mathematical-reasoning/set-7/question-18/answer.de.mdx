@@ -1,0 +1,33 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+#### Die Geometrie der Skizze lesen
+
+Die Skizze zeigt eine gerade Sichtlinie, die die Wasseroberfläche schneidet. Der Fisch befindet sich unterhalb der Oberfläche, der Adler oberhalb davon.
+
+<Set7Question18Graph
+  title="Adler- und Fischpositionen"
+  description={<>Die <InlineMath math="18\text{ m}" /> lange Sichtlinie bildet mit der waagerechten Wasseroberfläche einen Winkel von <InlineMath math="30^\circ" />.</>}
+  labels={{
+    eagle: "Adler",
+    fish: "Fisch",
+    surface: "Wasseroberfläche",
+    sightDistance: "18 m"
+  }}
+/>
+
+Mit <InlineMath math="h" /> bezeichnen wir die Flughöhe des Adlers über dem Wasser. Der gesamte Höhenunterschied zwischen Adler und Fisch beträgt dann <InlineMath math="h+3" /> Meter. Im rechtwinkligen Dreieck liegt dieser Höhenunterschied dem Winkel von <InlineMath math="30^\circ" /> gegenüber. Die <InlineMath math="18\text{ m}" /> lange Sichtlinie ist die Hypotenuse.
+
+#### Das Sinusverhältnis verwenden
+
+<MathContainer>
+  <BlockMath math="\sin 30^\circ = \frac{h+3}{18}" />
+  <BlockMath math="\frac{1}{2} = \frac{h+3}{18}" />
+  <BlockMath math="h+3=9" />
+  <BlockMath math="h=6" />
+</MathContainer>
+
+Der Adler fliegt also <InlineMath math="6\text{ m}" /> über der Wasseroberfläche.

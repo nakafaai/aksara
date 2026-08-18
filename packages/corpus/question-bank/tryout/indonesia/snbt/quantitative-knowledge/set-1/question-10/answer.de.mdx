@@ -1,0 +1,87 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+
+Gegeben ist die Funktion <InlineMath math="f(x) = \frac{1}{\sqrt{-x^2 + 4x + 21}}" />.
+
+Außerdem gilt <InlineMath math="P = 7" />.
+
+Um <InlineMath math="Q" /> zu bestimmen, ermitteln wir alle ganzzahligen Werte von <InlineMath math="x" />, für die <InlineMath math="f(x)" /> reell definiert ist.
+
+Damit <InlineMath math="f(x)" /> reell definiert ist, muss der Radikand echt positiv sein. Dadurch ist die Wurzel reell und zugleich von null verschieden:
+
+<MathContainer>
+<BlockMath math="\sqrt{-x^2 + 4x + 21} \neq 0" />
+<BlockMath math="-x^2 + 4x + 21 > 0" />
+</MathContainer>
+
+Wir multiplizieren die Ungleichung mit <InlineMath math="-1" /> und kehren dabei das Ungleichheitszeichen um:
+
+<MathContainer>
+<BlockMath math="x^2 - 4x - 21 < 0" />
+</MathContainer>
+
+Nun faktorisieren wir den quadratischen Ausdruck:
+
+<MathContainer>
+<BlockMath math="(x - 7)(x + 3) < 0" />
+</MathContainer>
+
+Die Wurzeln von <InlineMath math="(x - 7)(x + 3) = 0" /> sind <InlineMath math="x = 7" /> und <InlineMath math="x = -3" />.
+
+Auf dem Zahlenstrahl ist <InlineMath math="(x - 7)(x + 3) < 0" /> zwischen den beiden Nullstellen erfüllt. Daher gilt <InlineMath math="-3 < x < 7" />.
+
+<NumberLine
+  title="Zahlenstrahl"
+  description={<>Visualisierung der Lösung der Ungleichung <InlineMath math="(x - 7)(x + 3) < 0" /> auf einer Zahlengeraden.</>}
+  min={-5}
+  max={9}
+  segments={[
+    {
+      start: Number.NEGATIVE_INFINITY,
+      end: -3,
+      startInclusive: false,
+      endInclusive: false,
+      shaded: false,
+      showPoints: true,
+      startLabel: <InlineMath math="-\infty" />,
+      endLabel: <InlineMath math="-3" />,
+      label: <InlineMath math="-" />,
+    },
+    {
+      start: -3,
+      end: 7,
+      startInclusive: false,
+      endInclusive: false,
+      shaded: true,
+      showPoints: true,
+      startLabel: <InlineMath math="-3" />,
+      endLabel: <InlineMath math="7" />,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 7,
+      end: Number.POSITIVE_INFINITY,
+      startInclusive: false,
+      endInclusive: false,
+      shaded: false,
+      showPoints: true,
+      startLabel: <InlineMath math="7" />,
+      endLabel: <InlineMath math="+\infty" />,
+      label: <InlineMath math="-" />,
+    },
+  ]}
+/>
+
+Der Definitionsbereich von <InlineMath math="f" /> ist somit <InlineMath math="-3 < x < 7" />.
+
+Die Ganzzahlwerte von <InlineMath math="x" />, die dies erfüllen, sind die Ganzzahlen im Intervall <InlineMath math="(-3, 7)" />, also <InlineMath math="x = -2, -1, 0, 1, 2, 3, 4, 5, 6" />.
+
+Die Anzahl solcher Werte von <InlineMath math="x" /> beträgt <InlineMath math="9" />, also <InlineMath math="Q = 9" />.
+
+Aus <InlineMath math="P = 7" /> und <InlineMath math="Q = 9" /> folgt <InlineMath math="P < Q" />.
+
+Daher ist die Größe <InlineMath math="P" /> kleiner als die Größe <InlineMath math="Q" />.

@@ -1,0 +1,49 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Gesucht sind alle <InlineMath math="x" />-Werte, für die der Funktionswert <InlineMath math="f(x)" /> mindestens <InlineMath math="5" /> beträgt (<InlineMath math="f(x) \geq 5" />).
+
+Wir prüfen die vier Teilintervalle:
+
+1. **Intervall <InlineMath math="0 \leq x < 2" />**
+
+   In diesem Intervall <InlineMath math="f(x) = 3" />.
+   Ist <InlineMath math="3 \geq 5" />? **Nein**.
+   Dieses Intervall **erfüllt also nicht** die Bedingung.
+
+2. **Intervall <InlineMath math="2 \leq x < 5" />**
+
+   In diesem Intervall <InlineMath math="f(x) = 5" />.
+   Ist <InlineMath math="5 \geq 5" />? **Ja**.
+   Das Intervall <InlineMath math="[2, 5)" /> **erfüllt** also die Bedingung.
+
+3. **Intervall <InlineMath math="5 \leq x < 8" />**
+
+   In diesem Intervall <InlineMath math="f(x) = 7" />.
+   Ist <InlineMath math="7 \geq 5" />? **Ja**.
+   Das Intervall <InlineMath math="[5, 8)" /> **erfüllt** also die Bedingung.
+
+4. **Intervall <InlineMath math="8 \leq x < 10" />**
+
+   In diesem Intervall <InlineMath math="f(x) = 9" />.
+   Ist <InlineMath math="9 \geq 5" />? **Ja**.
+   Das Intervall <InlineMath math="[8, 10)" /> **erfüllt** also die Bedingung.
+
+#### Intervalle kombinieren
+
+Wir kombinieren alle Intervalle, die die Bedingung erfüllen:
+
+<MathContainer>
+  <BlockMath math="[2, 5) \cup [5, 8) \cup [8, 10)" />
+</MathContainer>
+
+Die Teilintervalle schließen direkt aneinander an. Die Randpunkte <InlineMath math="5" /> und <InlineMath math="8" /> gehören jeweils zum folgenden Intervall, sodass keine Lücke entsteht. Deshalb lassen sie sich zu einem Intervall zusammenfassen.
+
+<MathContainer>
+  <BlockMath math="[2, 10)" />
+</MathContainer>
+
+Somit ist das Intervall von <InlineMath math="x" />-Werten, das die Bedingung erfüllt, <InlineMath math="x \in [2, 10)" />.

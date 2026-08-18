@@ -1,3 +1,7 @@
+import {
+  type AppLocale,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
 import {
   isProductionCommand,
@@ -7,6 +11,7 @@ import {
 
 /** One exact authored document requested by the local preview command. */
 export interface PreviewArguments {
+  readonly appLocale?: AppLocale;
   readonly document: string;
 }
 
@@ -35,21 +40,37 @@ export class CheckArgumentsError extends Schema.TaggedError<CheckArgumentsError>
   { reason: Schema.Literal("unknown") }
 ) {}
 
-/** Decodes only `--document <path>` and rejects every ambiguous argument. */
+const isAppLocale = Schema.is(AppLocaleSchema);
+
+/** Decodes one document and its optional explicit application locale. */
 export const parsePreviewArguments = Effect.fn("AksaraCli.parseArguments")(
   (args: readonly string[]) => {
+    let appLocale: AppLocale | undefined;
     let document: string | undefined;
     for (let index = 0; index < args.length; index += 1) {
       const argument = args[index];
-      if (argument !== "--document") {
+      if (argument !== "--app-locale" && argument !== "--document") {
         return Effect.fail(new PreviewArgumentsError({ reason: "unknown" }));
+      }
+      const value = args[index + 1];
+      if (!(value && value.trim().length > 0 && !value.startsWith("--"))) {
+        return Effect.fail(new PreviewArgumentsError({ reason: "value" }));
+      }
+      if (argument === "--app-locale") {
+        if (appLocale !== undefined) {
+          return Effect.fail(
+            new PreviewArgumentsError({ reason: "duplicate" })
+          );
+        }
+        if (!isAppLocale(value)) {
+          return Effect.fail(new PreviewArgumentsError({ reason: "value" }));
+        }
+        appLocale = value;
+        index += 1;
+        continue;
       }
       if (document !== undefined) {
         return Effect.fail(new PreviewArgumentsError({ reason: "duplicate" }));
-      }
-      const value = args[index + 1];
-      if (!(value && value.trim().length > 0 && value !== "--document")) {
-        return Effect.fail(new PreviewArgumentsError({ reason: "value" }));
       }
       document = value;
       index += 1;
@@ -57,7 +78,10 @@ export const parsePreviewArguments = Effect.fn("AksaraCli.parseArguments")(
     if (document === undefined) {
       return Effect.fail(new PreviewArgumentsError({ reason: "missing" }));
     }
-    return Effect.succeed({ document } satisfies PreviewArguments);
+    return Effect.succeed({
+      document,
+      ...(appLocale === undefined ? {} : { appLocale }),
+    } satisfies PreviewArguments);
   }
 );
 

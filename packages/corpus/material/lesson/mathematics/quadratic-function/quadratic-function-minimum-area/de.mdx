@@ -1,0 +1,172 @@
+export const metadata = {
+  title: "Eine minimale Fläche bestimmen",
+  description: "Aus einer Flächenaufgabe mit Nebenbedingung ein quadratisches Modell aufstellen, sein Minimum bestimmen und das Ergebnis im Sachzusammenhang prüfen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratische Funktionen",
+};
+
+## Wie aus einer Nebenbedingung ein Minimum wird
+
+Manche Optimierungsaufgaben fragen nach dem kleinstmöglichen Wert. Ein Unternehmen möchte vielleicht die niedrigsten Kosten erreichen, oder eine Konstruktion soll unter einer festen geometrischen Bedingung eine möglichst kleine Gesamtfläche haben. Das Ziel ändert sich, der Weg zum Modell bleibt gleich: Wir übersetzen die Nebenbedingung, stellen eine Funktion mit einer Variablen auf und deuten ihren Scheitel.
+
+Ein Minimum zu suchen bedeutet nicht, automatisch den Wert null zu wählen. Die ursprüngliche Aufgabe legt fest, welche Werte zulässig sind. Das Minimum muss in diesem Bereich liegen.
+
+## Warum eine nach oben geöffnete Parabel ein Minimum besitzt
+
+Eine quadratische Funktion hat die Form
+
+<BlockMath math="f(x)=ax^2+bx+c,\qquad a\neq0" />
+
+Für <InlineMath math="a>0" /> öffnet sich ihr Graph nach oben. Der Scheitel ist dann der tiefste Punkt des Graphen. Liegt er im zulässigen Bereich, ist sein Funktionswert das Minimum.
+
+### Den Scheitel bestimmen
+
+Für <InlineMath math="f(x)=ax^2+bx+c" /> gilt
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{b}{2a}" />
+  <BlockMath math="y_v=f(x_v)" />
+</MathContainer>
+
+Gleichwertig dazu ist die Darstellung über die Diskriminante:
+
+<MathContainer>
+  <BlockMath math="\Delta=b^2-4ac" />
+  <BlockMath math="y_v=-\frac{\Delta}{4a}" />
+</MathContainer>
+
+Nach der Rechnung kehren wir immer zur Aufgabe zurück. Wir prüfen den zulässigen Bereich, die Einheiten und die Frage, ob die Variable ganzzahlig sein muss.
+
+## Ausführliches Beispiel: ein Draht, zwei Quadrate
+
+Ein <InlineMath math="40\text{ cm}" /> langer Draht wird in zwei Stücke geteilt. Aus jedem Stück wird ein Quadrat gebogen. Wo muss der Draht geteilt werden, damit die Summe der beiden Quadratflächen möglichst klein ist?
+
+1. **Benenne die Seitenlängen.** Das erste Quadrat habe die Seitenlänge <InlineMath math="x\text{ cm}" />, das zweite die Seitenlänge <InlineMath math="y\text{ cm}" />.
+2. **Übersetze die Bedingung für die Drahtlänge.**
+
+   <MathContainer>
+     <BlockMath math="4x+4y=40" />
+     <BlockMath math="x+y=10" />
+     <BlockMath math="y=10-x" />
+   </MathContainer>
+
+3. **Stelle die Funktion für die Gesamtfläche auf.**
+
+   <MathContainer>
+     <BlockMath math="A=x^2+y^2" />
+     <BlockMath math="A(x)=x^2+(10-x)^2" />
+     <BlockMath math="A(x)=x^2+(100-20x+x^2)" />
+     <BlockMath math="A(x)=2x^2-20x+100" />
+   </MathContainer>
+
+4. **Gib den zulässigen Bereich an.** Beide Quadrate brauchen positive Seitenlängen, also gilt <InlineMath math="0<x<10" />. Wegen <InlineMath math="a=2>0" /> öffnet sich der Graph nach oben.
+5. **Bestimme den Scheitel.**
+
+   <BlockMath math="x_v=-\frac{-20}{2(2)}=\frac{20}{4}=5" />
+
+6. **Berechne die zweite Seitenlänge und die Gesamtfläche.**
+
+   <MathContainer>
+     <BlockMath math="y=10-x=10-5=5" />
+     <BlockMath math="A(5)=5^2+5^2=50" />
+   </MathContainer>
+
+7. **Deute die Teilung.** Jedes Quadrat benötigt einen Umfang von <InlineMath math="4(5)=20\text{ cm}" />. Der Draht wird also in zwei Stücke von je <InlineMath math="20\text{ cm}" /> geteilt. Die gesamten <InlineMath math="40\text{ cm}" /> werden weiterhin verwendet. Nur die Summe der eingeschlossenen Flächen wird minimiert.
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Modell der Gesamtfläche <InlineMath math="A(x)=2x^2-20x+100" />
+      </>
+    }
+    description={
+      <>
+        Der Graph ist für <InlineMath math="0\le x\le10" /> dargestellt. Im zulässigen Intervall <InlineMath math="0<x<10" /> erreicht er seinen tiefsten Punkt bei <InlineMath math="(5,50)" />.
+      </>
+    }
+    showZAxis={false}
+    cameraPosition={[5, 24, 30]}
+    data={[
+      {
+        points: Array.from({ length: 11 }, (_, x) => ({
+          x,
+          y: 2 * x * x - 20 * x + 100,
+          z: 0,
+        })),
+        color: "#7c3aed",
+        labels: [
+          {
+            text: "Tiefpunkt",
+            at: 5,
+            offset: [0, -4, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+Die minimale Gesamtfläche beträgt <InlineMath math="50\text{ cm}^2" />. Sie entsteht, wenn beide Quadrate die Seitenlänge <InlineMath math="5\text{ cm}" /> haben.
+
+## Das Modell auf einen Blick
+
+| Teil der Aufgabe | Mathematische Aussage | Bedeutung |
+| ---------------- | ---------------------- | --------- |
+| Feste Drahtlänge | <InlineMath math="4x+4y=40" /> | Die Umfänge beider Quadrate nutzen die gesamten <InlineMath math="40\text{ cm}" /> Draht. |
+| Modell mit einer Variablen | <InlineMath math="A(x)=2x^2-20x+100" /> | Jede zulässige erste Seitenlänge bestimmt genau eine Gesamtfläche. |
+| Zulässiger Bereich | <InlineMath math="0<x<10" /> | Beide Quadrate behalten positive Seitenlängen. |
+| Scheitel | <InlineMath math="(5,50)" /> | Gleiche Seitenlängen erzeugen die kleinste Gesamtfläche. |
+
+## Weitere Anwendung: Produktionskosten
+
+Die Kosten für die Herstellung von <InlineMath math="x" /> Artikeln werde in Tausend Rupiah durch folgende Funktion beschrieben:
+
+<BlockMath math="C(x)=3x^2-60x+500" />
+
+Wegen <InlineMath math="a=3>0" /> besitzt das Modell ein Minimum:
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{-60}{2(3)}=10" />
+  <BlockMath math="C(10)=3(10)^2-60(10)+500=300-600+500=200" />
+</MathContainer>
+
+Das Modell sagt minimale Kosten von <InlineMath math="\text{IDR }200\,000" /> bei <InlineMath math="10" /> Artikeln voraus. Bei einer realen Produktionsentscheidung müsste zusätzlich geprüft werden, ob der angegebene Definitionsbereich und die betrieblichen Bedingungen diese Stückzahl zulassen.
+
+## Übungsaufgabe
+
+Die Summe zweier positiver Zahlen ist <InlineMath math="16" />. Bestimme die beiden Zahlen, für die die Summe ihrer Quadrate minimal wird, und berechne diese minimale Summe.
+
+### Ausführliche Lösung
+
+1. Die erste Zahl sei <InlineMath math="x" />, die zweite <InlineMath math="y" />.
+2. Übersetze die Bedingung für die Summe.
+
+   <MathContainer>
+     <BlockMath math="x+y=16" />
+     <BlockMath math="y=16-x" />
+   </MathContainer>
+
+3. Stelle die Zielfunktion auf.
+
+   <MathContainer>
+     <BlockMath math="S=x^2+y^2" />
+     <BlockMath math="S(x)=x^2+(16-x)^2" />
+     <BlockMath math="S(x)=x^2+(256-32x+x^2)" />
+     <BlockMath math="S(x)=2x^2-32x+256" />
+   </MathContainer>
+
+4. Der zulässige Bereich ist <InlineMath math="0<x<16" />. Außerdem gilt <InlineMath math="a=2>0" />, sodass der Scheitel das Minimum liefert.
+5. Berechne die erste Zahl am Scheitel.
+
+   <BlockMath math="x_v=-\frac{-32}{2(2)}=\frac{32}{4}=8" />
+
+6. Berechne die zweite Zahl und den Wert der Zielfunktion.
+
+   <MathContainer>
+     <BlockMath math="y=16-x=16-8=8" />
+     <BlockMath math="S(8)=8^2+8^2=128" />
+   </MathContainer>
+
+Die beiden Zahlen sind <InlineMath math="8" /> und <InlineMath math="8" />. Die minimale Summe ihrer Quadrate beträgt <InlineMath math="128" />.

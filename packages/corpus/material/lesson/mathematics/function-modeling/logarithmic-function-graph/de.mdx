@@ -1,0 +1,428 @@
+
+export const metadata = {
+  title: "Graphen logarithmischer Funktionen",
+  description: "Logarithmische Funktionen zeichnen und anhand von Definitionsbereich, Wertebereich, Asymptote, Monotonie und Verschiebungen untersuchen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Die Form logarithmischer Graphen verstehen
+
+Ein logarithmischer Graph verändert sich nahe seiner senkrechten Asymptote stark und bei wachsender Eingabe immer langsamer. Diese Form entsteht, wenn eine Ausgabe den Logarithmus eines positiven Verhältnisses beschreibt, etwa bei Schallpegel- und pH-Skalen. Im Mittelpunkt stehen hier der Einfluss der Basis und die Verschiebung des Graphen durch Transformationen.
+
+## Eigenschaften von Graphen logarithmischer Funktionen
+
+Vergleichen wir den Grundgraphen <InlineMath math="y = \log_b x" /> für mehrere Basen. Alle gezeigten Graphen steigen, aber unterschiedlich schnell.
+
+<LineEquation
+  title="Vergleich logarithmischer Graphen mit unterschiedlichen Basen"
+  description={
+    <>
+      Graphen logarithmischer Funktionen für <InlineMath math="b > 1" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const x = (i / 99) * 10 + 0.1;
+        return { x, y: Math.log2(x), z: 0 };
+      }),
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 70, offset: [0.5, -0.4, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const x = (i / 99) * 10 + 0.1;
+        return { x, y: Math.log10(x), z: 0 };
+      }),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="y=\log_{10} x" />, at: 70, offset: [0.5, -0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const x = (i / 99) * 10 + 0.1;
+        return { x, y: Math.log(x), z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="y=\ln x" />, at: 70, offset: [0.5, -0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+### Wichtige Eigenschaften
+
+Für Funktion <InlineMath math="f(x) = \log_b x" /> mit <InlineMath math="b > 1" />:
+
+1. **Definitionsbereich**: <InlineMath math="x > 0" />
+2. **Wertebereich**: alle reellen Zahlen (<InlineMath math="-\infty < y < \infty" />)
+3. **Schnittpunkt mit der <InlineMath math="x" />-Achse**: <InlineMath math="(1, 0)" />, weil <InlineMath math="\log_b 1 = 0" />
+4. **Vertikale Asymptote**: <InlineMath math="y" />-Achse (<InlineMath math="x = 0" />)
+5. **Funktionsverhalten**:
+   - streng monoton steigend für <InlineMath math="b > 1" />
+   - streng monoton fallend für <InlineMath math="0 < b < 1" />
+
+## Zeichnen logarithmischer Funktionsgraphen
+
+Zwei Wertetabellen zeigen, wie sich ein steigender und ein fallender logarithmischer Graph zeichnen lassen.
+
+1. **Graph von <InlineMath math="y = \log_2 x" />**
+
+   Für die Wertetabelle wählen wir <InlineMath math="x" />-Werte, die Potenzen von <InlineMath math="2" /> sind. Dann lassen sich die Logarithmen direkt ablesen:
+
+   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
+   | ---------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+   | <InlineMath math="y = \log_2 x" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+
+   <LineEquation
+     title={
+       <>
+         Graph von <InlineMath math="y = \log_2 x" />
+       </>
+     }
+     description="Die markierten Punkte stammen aus der Wertetabelle und liegen auf dem steigenden Graphen."
+     data={[
+       {
+         points: Array.from({ length: 100 }, (_, i) => {
+           const x = (i / 99) * 10 + 0.01;
+           return { x, y: Math.log2(x), z: 0 };
+         }),
+         color: "#0284c7",
+         labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 50, offset: [0.5, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: [
+           { x: 0.125, y: -3, z: 0 },
+           { x: 0.25, y: -2, z: 0 },
+           { x: 0.5, y: -1, z: 0 },
+           { x: 1, y: 0, z: 0 },
+           { x: 2, y: 1, z: 0 },
+           { x: 4, y: 2, z: 0 },
+           { x: 8, y: 3, z: 0 },
+         ],
+         color: "#e11d48",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="(1,0)" />, at: 3, offset: [0.5, 0.5, 0] }],
+       },
+     ]}
+     cameraPosition={[0, 0, 15]}
+     showZAxis={false}
+   />
+
+2. **Graph von <InlineMath math="y = \log_{\frac{1}{3}} x" />**
+
+   Für eine Basis mit <InlineMath math="0 < b < 1" /> fällt der Graph:
+
+   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{27}" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
+   | ---------------------------------------------- | ---------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+   | <InlineMath math="y = \log_{\frac{1}{3}} x" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> |
+
+   <LineEquation
+     title={
+       <>
+         Graph von <InlineMath math="y = \log_{\frac{1}{3}} x" />
+       </>
+     }
+     description="Der Graph fällt, weil die Basis zwischen 0 und 1 liegt."
+     data={[
+       {
+         points: Array.from({ length: 100 }, (_, i) => {
+           const x = (i / 99) * 10 + 0.01;
+           return { x, y: Math.log(x) / Math.log(1 / 3), z: 0 };
+         }),
+         color: "#e11d48",
+         labels: [{ text: <InlineMath math="y=\log_{\frac{1}{3}} x" />, at: 30, offset: [0.5, -1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: [
+           { x: 1 / 27, y: 3, z: 0 },
+           { x: 1 / 9, y: 2, z: 0 },
+           { x: 1 / 3, y: 1, z: 0 },
+           { x: 1, y: 0, z: 0 },
+           { x: 3, y: -1, z: 0 },
+           { x: 9, y: -2, z: 0 },
+         ],
+         color: "#9333ea",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="(1,0)" />, at: 3, offset: [0.5, 0.5, 0] }],
+       },
+     ]}
+     cameraPosition={[0, 0, 15]}
+     showZAxis={false}
+   />
+
+## Logarithmische Graphen vergleichen
+
+Im selben Koordinatensystem wird der Einfluss der Basis besonders deutlich:
+
+<LineEquation
+  title={
+    <>
+      Vergleich logarithmischer Graphen für <InlineMath math="b > 1" /> und{" "}
+      <InlineMath math="0 < b < 1" />.
+    </>
+  }
+  description="Der eine Graph steigt, der andere fällt; beide nähern sich der senkrechten Asymptote."
+  data={[
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const x = (i / 99) * 8 + 0.01;
+        return { x, y: Math.log2(x), z: 0 };
+      }),
+      color: "#0284c7",
+      labels: [
+        { text: <><InlineMath math="y=\log_{2} x" /> (steigend)</>, at: 40, offset: [0.5, 0.5, 0] },
+      ],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const x = (i / 99) * 8 + 0.01;
+        return { x, y: Math.log(x) / Math.log(0.5), z: 0 };
+      }),
+      color: "#e11d48",
+      labels: [
+        { text: <><InlineMath math="y=\log_{0{,}5} x" /> (abnehmend)</>, at: 40, offset: [0.5, -0.5, 0] },
+      ],
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      color: "#9333ea",
+      labels: [{ text: <><InlineMath math="x=0" /> (Asymptote)</>, at: 1, offset: [0.5, 0, 0] }],
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+| Eigenschaft | <InlineMath math="b > 1" /> | <InlineMath math="0 < b < 1" /> |
+| ------------------- | ------------- | ---------------- |
+| Verlauf | Streng monoton steigend | Streng monoton fallend |
+| Definitionsbereich | <InlineMath math="x > 0" /> | <InlineMath math="x > 0" /> |
+| Wertebereich | Alle reellen Zahlen | Alle reellen Zahlen |
+| <InlineMath math="x" />-Achsenabschnitt | <InlineMath math="(1, 0)" /> | <InlineMath math="(1, 0)" /> |
+| Vertikale Asymptote | <InlineMath math="x = 0" /> | <InlineMath math="x = 0" /> |
+
+## Transformationen logarithmischer Graphen
+
+Logarithmische Graphen können auf verschiedene Arten transformiert werden:
+
+### Vertikale Verschiebung
+
+Eine außerhalb des Logarithmus addierte Konstante <InlineMath math="k" /> verschiebt den Graphen in vertikaler Richtung.
+
+<ContentStack>
+
+  <BlockMath math="y = \log_b x + k" />
+
+  <LineEquation
+    title="Vertikale Verschiebung"
+    description={
+      <>
+        Der Graph verschiebt sich nach oben, wenn <InlineMath math="k > 0" /> gilt, und nach unten, wenn{" "}
+        <InlineMath math="k < 0" />.
+      </>
+    }
+    data={[
+      {
+        points: Array.from({ length: 100 }, (_, i) => {
+          const x = (i / 99) * 10 + 0.1;
+          return { x, y: Math.log2(x), z: 0 };
+        }),
+        color: "#9333ea",
+        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 40, offset: [0.5, -1, 0] }],
+        showPoints: false,
+      },
+      {
+        points: Array.from({ length: 100 }, (_, i) => {
+          const x = (i / 99) * 10 + 0.1;
+          return { x, y: Math.log2(x) + 2, z: 0 };
+        }),
+        color: "#0284c7",
+        labels: [{ text: <InlineMath math="y=\log_{2} x+2" />, at: 40, offset: [0.5, -1, 0] }],
+        showPoints: false,
+      },
+      {
+        points: Array.from({ length: 100 }, (_, i) => {
+          const x = (i / 99) * 10 + 0.1;
+          return { x, y: Math.log2(x) - 2, z: 0 };
+        }),
+        color: "#e11d48",
+        labels: [{ text: <InlineMath math="y=\log_{2} x-2" />, at: 40, offset: [0.5, -1, 0] }],
+        showPoints: false,
+      },
+    ]}
+    cameraPosition={[0, 0, 15]}
+    showZAxis={false}
+  />
+</ContentStack>
+
+### Horizontale Verschiebung
+
+Eine im Argument eingetragene Konstante <InlineMath math="h" /> verschiebt den Graphen in horizontaler Richtung.
+
+<ContentStack>
+
+  <BlockMath math="y = \log_b (x - h)" />
+
+  <LineEquation
+    title="Horizontale Verschiebung"
+    description={
+      <>
+        Der Graph verschiebt sich nach rechts, wenn <InlineMath math="h > 0" /> gilt, und nach links, wenn{" "}
+        <InlineMath math="h < 0" />.
+      </>
+    }
+    data={[
+      {
+        points: Array.from({ length: 100 }, (_, i) => {
+          const x = (i / 99) * 10 + 0.1;
+          return { x, y: Math.log2(x), z: 0 };
+        }),
+        color: "#9333ea",
+        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 40, offset: [0.5, 1, 0] }],
+        showPoints: false,
+      },
+      {
+        points: Array.from({ length: 100 }, (_, i) => {
+          const x = (i / 99) * 8 + 2.1;
+          return { x, y: Math.log2(x - 2), z: 0 };
+        }),
+        color: "#059669",
+        labels: [{ text: <InlineMath math="y=\log_{2}(x-2)" />, at: 40, offset: [1, -1, 0] }],
+        showPoints: false,
+      },
+    ]}
+    cameraPosition={[0, 0, 15]}
+    showZAxis={false}
+  />
+</ContentStack>
+
+## Übungen
+
+1. Erstelle eine Wertetabelle und zeichne die Graphen von:
+
+   - <InlineMath math="y = \log_3 x" />
+   - <InlineMath math="y = \log_{\frac{1}{2}} x" />
+
+2. Bestimme Definitionsbereich, Wertebereich und Asymptote der Funktion <InlineMath math="f(x) = \log_5 (x + 3)" />.
+
+3. Für <InlineMath math="f(x) = \log_2 x" /> und <InlineMath math="g(x) = \log_2 (x - 4)" /> sind zu bestimmen:
+
+   - die Verschiebung des Graphen <InlineMath math="g(x)" /> gegenüber <InlineMath math="f(x)" />
+   - der Definitionsbereich von <InlineMath math="g(x)" />
+
+4. Skizziere den Graphen von <InlineMath math="y = \log_3 x + 2" /> und bestimme seinen Schnittpunkt mit der <InlineMath math="y" />-Achse.
+
+### Ausführliche Lösungen
+
+1. Wertetabellen:
+
+   Für <InlineMath math="y = \log_3 x" />:
+   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+   |-----------|---------|------------------------------------|----|----|----|
+   | <InlineMath math="y" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+
+   Für <InlineMath math="y = \log_{\frac{1}{2}} x" />:
+   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+   |-----------|---------|------------------------------------|----|----|----|
+   | <InlineMath math="y" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> |
+
+   Trage alle Punkte ein und verbinde sie zu einer glatten Kurve, die rechts von der senkrechten Asymptote <InlineMath math="x=0" /> bleibt. Der Graph zur Basis <InlineMath math="3" /> steigt, während der Graph zur Basis <InlineMath math="\frac{1}{2}" /> fällt.
+
+2. Für <InlineMath math="f(x) = \log_5 (x + 3)" />:
+
+   Der Logarithmus ist nur für ein positives Argument definiert. Die Grenze dieser Bedingung liefert die senkrechte Asymptote:
+
+   - Definitionsbereich: <InlineMath math="x + 3 > 0 \Rightarrow x > -3" />
+   - Wertebereich: alle reellen Zahlen
+   - Vertikale Asymptote: <InlineMath math="x = -3" />
+
+3. Für <InlineMath math="g(x) = \log_2 (x - 4)" />:
+
+   Wird <InlineMath math="x" /> durch <InlineMath math="x-4" /> ersetzt, verschiebt sich der Graph nach rechts. Derselbe Ausdruck muss außerdem positiv bleiben:
+
+   - Verschiebung: <InlineMath math="4 \text{Einheiten}" /> nach rechts
+   - Definitionsbereich: <InlineMath math="x - 4 > 0 \Rightarrow x > 4" />
+
+4. Für <InlineMath math="y = \log_3 x + 2" />:
+
+   Die Addition von <InlineMath math="2" /> außerhalb des Logarithmus verschiebt jeden Punkt nach oben, ohne Definitionsbereich oder Asymptote zu verändern:
+
+   - Der Graph von <InlineMath math="y = \log_3 x" /> wird um <InlineMath math="2 \text{Einheiten}" /> nach oben verschoben
+   - Es gibt keinen Schnittpunkt mit der <InlineMath math="y" />-Achse, weil der Definitionsbereich <InlineMath math="x > 0" /> ist
+
+   Ein Schnittpunkt mit der <InlineMath math="y" />-Achse würde insbesondere <InlineMath math="x=0" /> voraussetzen. Dort ist der Logarithmus jedoch nicht definiert. Der folgende Graph bestätigt, dass sich die Kurve der <InlineMath math="y" />-Achse nur nähert.
+
+   <ContentBlock>
+     <LineEquation
+       title={
+         <>
+           Skizze des Graphen von <InlineMath math="y = \log_3 x + 2" />
+         </>
+       }
+       description={
+         <>
+           Der Graph zur Basis <InlineMath math="3" /> ist um <InlineMath math="2 \text{ Einheiten}" /> nach oben verschoben.
+         </>
+       }
+       data={[
+         {
+           points: Array.from({ length: 100 }, (_, i) => {
+             const x = (i / 99) * 10 + 0.01;
+             return { x, y: Math.log(x) / Math.log(3), z: 0 };
+           }),
+           color: "#9333ea",
+           labels: [{ text: <InlineMath math="y=\log_{3} x" />, at: 40, offset: [0.5, -0.5, 0] }],
+           showPoints: false,
+         },
+         {
+           points: Array.from({ length: 100 }, (_, i) => {
+             const x = (i / 99) * 10 + 0.01;
+             return { x, y: Math.log(x) / Math.log(3) + 2, z: 0 };
+           }),
+           color: "#059669",
+           labels: [{ text: <InlineMath math="y=\log_{3} x+2" />, at: 50, offset: [0.5, 1, 0] }],
+           showPoints: false,
+         },
+         {
+           points: [
+             { x: 1 / 9, y: Math.log(1 / 9) / Math.log(3) + 2, z: 0 },
+             { x: 1 / 3, y: Math.log(1 / 3) / Math.log(3) + 2, z: 0 },
+             { x: 1, y: 2, z: 0 },
+             { x: 3, y: 3, z: 0 },
+             { x: 9, y: 4, z: 0 },
+           ],
+           color: "#e11d48",
+           showPoints: true,
+           labels: [
+             { text: <InlineMath math="(1,2)" />, at: 2, offset: [0, 1, 0] },
+             { text: <InlineMath math="(3,3)" />, at: 3, offset: [0, 0.5, 0] },
+           ],
+         },
+         {
+           points: [
+             { x: 0, y: -2, z: 0 },
+             { x: 0, y: 5, z: 0 },
+           ],
+           color: "#9333ea",
+           labels: [{ text: <><InlineMath math="x=0" /> (Asymptote)</>, at: 1, offset: [0.5, 0, 0] }],
+           showPoints: false,
+         },
+       ]}
+       cameraPosition={[0, 0, 15]}
+       showZAxis={false}
+     />
+   </ContentBlock>

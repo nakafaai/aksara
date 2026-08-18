@@ -1,0 +1,120 @@
+
+export const metadata = {
+  title: "Beschleunigung",
+  description:
+    "Untersuche Beschleunigung als Geschwindigkeitsänderung pro Zeit mithilfe von Bewegungsspuren, Geschwindigkeits-Zeit-Diagrammen und Berechnungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Beschleunigung entsteht durch eine Geschwindigkeitsänderung
+
+Wenn ein Auto anfährt, wird der Körper scheinbar nach hinten gedrückt. Beim Bremsen bewegt er sich scheinbar nach vorn. In beiden Fällen steckt dieselbe physikalische Idee dahinter: Die Geschwindigkeit des Autos ändert sich.
+
+In der Physik beschreibt die mittlere Beschleunigung die Geschwindigkeitsänderung innerhalb eines Zeitintervalls. Da die Geschwindigkeit einen Betrag und eine Richtung besitzt, muss auch das Vorzeichen der Beschleunigung relativ zur gewählten positiven Richtung gelesen werden.
+
+> Beschleunigung bedeutet nicht automatisch, dass ein Körper schneller wird. Entscheidend ist, dass sich seine Geschwindigkeit ändert.
+
+<BlockMath math="\begin{aligned}
+\vec{a}_{\text{mittel}} &= \frac{\Delta \vec{v}}{\Delta t} \\
+&= \frac{\vec{v}_t-\vec{v}_0}{t_t-t_0}
+\end{aligned}" />
+
+Die Einheit der Beschleunigung ist <InlineMath math="\text{m/s}^2" />. Ist die Beschleunigung konstant <InlineMath math="a=2\text{ m/s}^2" />, erhöht sich die Geschwindigkeit alle <InlineMath math="1\text{ s}" /> um <InlineMath math="2\text{ m/s}" />. In diesem Sonderfall entspricht die mittlere Beschleunigung in jedem Intervall der Beschleunigung zu jedem Zeitpunkt.
+
+## Vom Tickerband zur Diagrammsteigung
+
+Ein Zeitmarkengeber setzt in gleichen Zeitabständen Punkte auf ein Papierband. Bei einer geradlinigen Bewegung ohne Richtungswechsel bedeuten wachsende Abstände einen größeren Geschwindigkeitsbetrag, gleich große Abstände einen konstanten Betrag und schrumpfende Abstände einen kleineren Betrag. Die Abstände allein zeigen nicht das Vorzeichen der Geschwindigkeit. Dafür bleibt die gewählte positive Richtung notwendig.
+
+<AccelerationLab
+  title={<>Raketenbeschleunigung durch den Weltraum</>}
+  description={
+    <>
+      Eine Verfolgungskamera zeigt die Rakete an Zeitmarken im Abstand von{" "}
+      <InlineMath math="1\text{ s}" />. Beobachte, ob die Abstände wachsen,
+      gleich bleiben oder kleiner werden.
+    </>
+  }
+  labels={{
+    chooseCase: "Bewegungsart wählen",
+    scenarioNames: {
+      "speed-up": <>Schneller werden</>,
+      steady: <>Konstante Geschwindigkeit</>,
+      "slow-down": <>Langsamer werden</>,
+    },
+    factLabels: {
+      initialVelocity: <>Anfangsgeschwindigkeit</>,
+      acceleration: <>Beschleunigung</>,
+      finalVelocity: <>Endgeschwindigkeit</>,
+      timeStep: <>Zeitintervall</>,
+    },
+    viewLabel: "Bewegung einer Rakete mit unterschiedlichen Beschleunigungen",
+  }}
+/>
+
+Ein Geschwindigkeits-Zeit-Diagramm stellt dieselbe Idee kompakt dar. Die Steigung eines Abschnitts gibt die mittlere Beschleunigung in diesem Intervall an. Bei einem geraden Abschnitt ist die Steigung konstant und gibt zugleich die Beschleunigung zu jedem Zeitpunkt des Abschnitts an.
+
+Die Bewegungsspur macht den Ablauf anschaulich. Im Diagramm lässt sich die Geschwindigkeitsänderung anschließend direkt berechnen.
+
+<AccelerationGraphCard
+  title={<>Geschwindigkeits-Zeit-Diagramm</>}
+  description={
+    <>
+      Wähle einen Abschnitt des Diagramms aus und lies seine Steigung als
+      Geschwindigkeitsänderung pro Sekunde.
+    </>
+  }
+  labels={{
+    chooseCase: "Abschnitt wählen",
+    contextLine: "Vollständiger Graph",
+    scenarioNames: {
+      "speed-up": "Schneller werden",
+      steady: "Konstante Geschwindigkeit",
+      "slow-down": "Langsamer werden",
+    },
+    timeAxis: "t (s)",
+    velocityAxis: "v (m/s)",
+  }}
+/>
+
+Die gestrichelte Linie zeigt den vollständigen Verlauf, die dicke Linie den ausgewählten Abschnitt. Eine steigende Linie bedeutet zunehmende Geschwindigkeit, eine waagerechte Linie konstante Geschwindigkeit und eine fallende Linie abnehmende Geschwindigkeit. Die mittlere Beschleunigung des Abschnitts ist das Verhältnis von <InlineMath math="\Delta v" /> zu <InlineMath math="\Delta t" />.
+
+## Das Zeichen der Beschleunigung lesen
+
+Das Vorzeichen der Beschleunigung ist nur zusammen mit der gewählten positiven Richtung aussagekräftig. In diesem eindimensionalen Beispiel sei die Richtung nach rechts positiv.
+
+| Beschleunigungszeichen | Geschwindigkeitsänderung | Lesen mit rechts als positiv |
+| --- | --- | --- |
+| <InlineMath math="a>0" /> | <InlineMath math="v_t>v_0" /> | Geschwindigkeit nimmt in positiver Richtung zu |
+| <InlineMath math="a=0" /> | <InlineMath math="v_t=v_0" /> | Geschwindigkeit bleibt konstant |
+| <InlineMath math="a<0" /> | <InlineMath math="v_t<v_0" /> | Die Geschwindigkeit nimmt ab, wenn sich das Objekt immer noch in positiver Richtung bewegt |
+
+Die letzte Zeile ist leicht misszuverstehen: Eine negative Beschleunigung bedeutet nicht automatisch, dass sich das Objekt nach links bewegt. Sie bedeutet, dass die Geschwindigkeitsänderung in die negative Achsenrichtung zeigt.
+
+## Berechnung der Geschwindigkeitsänderung pro Sekunde
+
+Angenommen, ein Auto ändert seine Geschwindigkeit in <InlineMath math="4\text{ s}" /> von <InlineMath math="2\text{ m/s}" /> auf <InlineMath math="18\text{ m/s}" />. Seine mittlere Beschleunigung beträgt:
+
+<BlockMath math="\begin{aligned}
+a_{\text{mittel}} &= \frac{v_t-v_0}{\Delta t} \\
+&= \frac{18-2}{4} \\
+&= 4\text{ m/s}^2
+\end{aligned}" />
+
+Dieses Ergebnis bedeutet, dass die Geschwindigkeit jede Sekunde um <InlineMath math="4\text{ m/s}" /> zunimmt. Bei konstanter Beschleunigung entsteht die Folge <InlineMath math="2\text{ m/s}" />, <InlineMath math="6\text{ m/s}" />, <InlineMath math="10\text{ m/s}" /> und so weiter.
+
+Da dieses Beispiel eine konstante Beschleunigung voraussetzt, gilt derselbe Wert zu jedem Zeitpunkt. Vergleiche das mit einem Auto, dessen Geschwindigkeit sich in <InlineMath math="4\text{ s}" /> von <InlineMath math="18\text{ m/s}" /> auf <InlineMath math="2\text{ m/s}" /> ändert.
+
+<BlockMath math="\begin{aligned}
+a_{\text{mittel}} &= \frac{2-18}{4} \\
+&= -4\text{ m/s}^2
+\end{aligned}" />
+
+Der Wert <InlineMath math="-4\text{ m/s}^2" /> bedeutet, dass die Geschwindigkeit jede Sekunde um <InlineMath math="4\text{ m/s}" /> abnimmt, wenn sich das Auto noch in positiver Richtung bewegt.
+
+## Auch eine Beschleunigung von null muss interpretiert werden
+
+Wenn <InlineMath math="a=0" /> gilt, ändert sich die Geschwindigkeit des Objekts nicht. Das Objekt muss deshalb nicht ruhen. Es kann sich weiterhin mit einer konstanten Geschwindigkeit bewegen, zum Beispiel mit <InlineMath math="10\text{ m/s}" /> nach rechts.
+
+Für die Beurteilung müssen wir daher zusätzlich die Geschwindigkeit betrachten. Bei <InlineMath math="a=0" /> und <InlineMath math="v=0" /> ruht das Objekt. Bei <InlineMath math="a=0" /> und <InlineMath math="v\neq 0" /> bewegt es sich geradlinig mit konstanter Geschwindigkeit.

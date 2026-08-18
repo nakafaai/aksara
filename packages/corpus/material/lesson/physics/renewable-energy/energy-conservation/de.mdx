@@ -1,0 +1,115 @@
+export const metadata = {
+  title: "Gesetz der Energieerhaltung",
+  description:
+    "Nutze die Energieerhaltung, um Umwandlungen, Nutzenergie und dissipierte Energie in erneuerbaren Energiesystemen nachzuvollziehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-27",
+  subject: "Erneuerbare Energie",
+};
+
+## Energie verschwindet nicht, sie wechselt Form oder Ort
+
+Das Energieerhaltungsgesetz besagt, dass Energie weder erzeugt noch zerstört werden kann. Energie kann von einem Objekt zum anderen wandern oder von einer Form in eine andere wechseln.
+
+Im Internationalen Einheitensystem (SI) kann jede Energieform weiterhin in Joule mit dem Symbol <InlineMath math="\text{J}" /> ausgedrückt werden.
+
+<BlockMath math="\text{Gesamtenergie vor einem Prozess}=\text{Gesamtenergie nach einem Prozess}" />
+
+Dieser Satz klingt einfach, wird aber leicht missverstanden. Gibt ein Gerät weniger elektrische Energie ab, als ihm zugeführt wurde, ist der Rest nicht verschwunden. Er steckt meist in Wärme, Schall, Vibrationen, nicht genutztem Licht oder innerer Energie der Bauteile.
+
+OpenStax College Physics 2e erläutert das Gesetz auf der Seite [Conservation of Energy](https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy).
+
+## Zuerst die Systemgrenze festlegen
+
+Ein **System** ist der Teil, den wir analysieren möchten. Alles außerhalb des Systems wird **Umgebung** genannt. Der Energieerhaltungssatz wird am klarsten, wenn das System explizit ausgewählt wird.
+
+<Mermaid
+  title="Die Systemgrenze bestimmt die Energiebilanz"
+  description="Eine klare Systemgrenze trennt zugeführte, abgegebene und gespeicherte Energie."
+  chart={`flowchart TD
+    A["Zugeführte Energie"] --> B["System"]
+    B --> C["Nutzenergie"]
+    B --> D["Dissipierte Energie"]
+    D --> E["Wärme, Schall, Vibration"]`}/>
+
+Das Diagramm erfüllt eine fachliche Aufgabe: Es macht sichtbar, dass ein System mehrere Energieausgänge besitzen kann.
+
+| Ausgewähltes System | Energie, die in das System gelangt | Energie, die das System verlässt |
+| :------------ | :----------- | :---------- |
+| Fallendes Wasser | potentielle Gravitationsenergie | kinetische Energie von Wasser |
+| Turbine und Generator | Rotationskinetische Energie | elektrische Energie, Wärme, Schall |
+| Solarpanel | Strahlungsenergie aus Sonnenlicht | elektrische Energie, Wärme, reflektiertes Licht |
+
+Wird das System zu eng gewählt, scheint Energie zu verschwinden. Beziehen wir die Umgebung mit ein, taucht sie dort als andere Energieform wieder auf. Die Gesamtenergie bleibt erhalten.
+
+## Wenn Reibung ignoriert wird
+
+Bei vielen Einführungsaufgaben werden Reibung und Luftwiderstand ignoriert, damit die Hauptidee leichter zu erkennen ist. Für Bewegungen, die nur kinetische Energie und potenzielle Gravitationsenergie erfordern, wird mechanische Energie wie folgt geschrieben:
+
+<BlockMath math="\begin{aligned}
+E_m &= E_k+E_p \\
+&= \frac{1}{2}mv^2+mgh
+\end{aligned}" />
+
+Wenn keine Reibung, kein Luftwiderstand und keine äußere Arbeit vorhanden ist, bleibt die mechanische Energie konstant.
+
+<BlockMath math="\frac{1}{2}mv_i^2+mgh_i=\frac{1}{2}mv_f^2+mgh_f" />
+
+Der Index <InlineMath math="i" /> kennzeichnet den Anfangszustand, der Index <InlineMath math="f" /> den Endzustand.
+
+Angenommen, Wasser mit der Masse <InlineMath math="1 \text{ kg}" /> fällt aus einer Höhe von <InlineMath math="12 \text{ m}" />. Wenn wir <InlineMath math="g=10 \text{ m/s}^2" /> verwenden und das Wasser als ursprünglich ruhend behandeln, beträgt seine anfängliche potentielle Gravitationsenergie:
+
+<BlockMath math="\begin{aligned}
+E_p &= mgh \\
+&= (1 \text{ kg})(10 \text{ m/s}^2)(12 \text{ m}) \\
+&= 120 \text{ J}
+\end{aligned}" />
+
+Ohne Dissipation werden die <InlineMath math="120 \text{ J}" /> vollständig in kinetische Energie des Wassers umgewandelt. In einer realen Anlage gelangt dagegen stets ein Teil als Wärme, Schall oder Vibration an die Umgebung.
+
+## Nutzenergie ist nur ein Teil der Gesamtenergie
+
+In einer Anlage für erneuerbare Energien ist die gewünschte Ausgabe meist **Nutzenergie**, etwa elektrische Energie. Die Energieerhaltung gilt weiterhin, doch die zugeführte Energie wird nicht vollständig in Strom umgewandelt.
+
+<BlockMath math="E_{\text{zugeführt}}=E_{\text{nützlich}}+E_{\text{dissipiert}}" />
+
+Beispiel: Fließendes Wasser transportiert <InlineMath math="120 \text{ J}" /> Energie zu einer kleinen Turbine. Der Generator erzeugt <InlineMath math="90 \text{ J}" /> elektrische Energie. Die dissipierte Energie beträgt:
+
+<BlockMath math="\begin{aligned}
+E_{\text{dissipiert}}
+&= E_{\text{zugeführt}}-E_{\text{nützlich}} \\
+&= 120 \text{ J}-90 \text{ J} \\
+&= 30 \text{ J}
+\end{aligned}" />
+
+Die <InlineMath math="30 \text{ J}" /> sind also nicht verschwunden. Sie wurden an die Umgebung abgegeben, etwa als Wärme an der Welle, als Schall oder als Vibration der Konstruktion.
+
+Das US-Energieministerium erläutert auf seiner Seite über die [Funktionsweise von Wasserkraft](https://www.energy.gov/cmei/water/how-hydropower-works), wie Wasserkraftwerke einen Höhenunterschied nutzen, um Turbinen und Generatoren anzutreiben.
+
+## Energieaussagen mit dem Erhaltungsgesetz prüfen
+
+Das Energieerhaltungsgesetz dient auch als Prüfwerkzeug. Bei einer Energieangabe müssen alle Umwandlungs- und Übertragungswege berücksichtigt werden.
+
+| Behauptung | Prüfung mit der Energieerhaltung |
+| :---- | :-------------- |
+| Ein Modul empfängt <InlineMath math="500 \text{ J}" /> Strahlungsenergie und erzeugt <InlineMath math="500 \text{ J}" /> elektrische Energie | Für ein reales Modul unrealistisch; nach der Energieerhaltung nur möglich, wenn weder Licht reflektiert noch Energie in Wärme umgewandelt wird |
+| Eine Turbine erhält <InlineMath math="120 \text{ J}" /> und produziert <InlineMath math="90 \text{ J}" /> Strom | sinnvoll, wenn <InlineMath math="30 \text{ J}" /> abgeführt wird |
+| Eine Maschine produziert ohne weitere Quelle <InlineMath math="150 \text{ J}" /> Strom aus <InlineMath math="120 \text{ J}" /> zugeführter Energie | widerspricht der Energieerhaltung |
+
+Das US-Energieministerium erklärt, dass eine Photovoltaikzelle nicht das gesamte einfallende Licht in Strom umwandelt. Ein Teil wird reflektiert oder in Wärme umgewandelt. Die Hintergründe erläutert das DOE auf seiner Seite über [Leistung und Wirkungsgrad von Solarmodulen](https://www.energy.gov/cmei/systems/solar-performance-and-efficiency).
+
+Das Gesetz hilft, Begriffe wie *sparsam*, *effizient* und *sauber* genauer zu beurteilen. Ein effizientes Gerät erzeugt keine neue Energie. Es wandelt lediglich einen größeren Anteil der zugeführten Energie in die gewünschte Nutzenergie um und dissipiert einen kleineren Anteil.
+
+## Warum das für erneuerbare Energien wichtig ist
+
+Auch erneuerbare Energiequellen gehorchen dem Energieerhaltungsgesetz. Sonnenlicht, Wind, Wasser, Erdwärme und Biomasse liefern Energie. Technische Anlagen wandeln sie in die Form um, die wir nutzen möchten.
+
+<BlockMath math="\text{Energiequelle} \rightarrow \text{Umwandlungsanlage} \rightarrow \text{Nutzenergie}+\text{dissipierte Energie}" />
+
+Da Energie nicht aus dem Nichts entsteht, dreht sich die Diskussion über erneuerbare Energien immer um drei Fragen:
+
+- Woher kommt die zugeführte Energie?
+- Wohin geht die Energie, die nicht in nutzbare Leistung umgewandelt wird?
+- Welcher Anteil wird tatsächlich als Nutzenergie abgegeben?
+
+Wer diese drei Fragen beantworten kann, hat das Energieerhaltungsgesetz nicht nur auswendig gelernt, sondern kann damit Energietechnik kritisch beurteilen.

@@ -1,0 +1,48 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 14",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-21",
+};
+
+Um zu bestimmen, wie lange es dauert, bis das Wasser ausgeht, müssen wir zunächst das Wasservolumen im Tank berechnen und es dann durch die Leckagerate dividieren.
+
+#### Bekannte Daten
+
+Hier sind die Abmessungen des Wassertanks (Zylinder), umgerechnet in Dezimeter (dm), um der Durchflusseinheit (<InlineMath math="\text{dm}^3" />) zu entsprechen:
+
+| Variable | Anfangswert | Umrechnung (dm) |
+| :--- | :--- | :--- |
+| Höhe (<InlineMath math="h" />) | <InlineMath math="4{,}2\text{ m}" /> | <InlineMath math="42\text{ dm}" /> |
+| Durchmesser (<InlineMath math="d" />) | <InlineMath math="3\text{ m}" /> | <InlineMath math="30\text{ dm}" /> |
+| Radius (<InlineMath math="r" />) | <InlineMath math="1{,}5\text{ m}" /> | <InlineMath math="15\text{ dm}" /> |
+| Rate (<InlineMath math="Q" />) | <InlineMath math="12\text{ dm}^3/\text{Minute}" /> | - |
+
+#### Volumenberechnung
+
+Das Volumen eines Zylinders wird mit der Formel <InlineMath math="V = \pi r^2 h" /> berechnet.
+
+<MathContainer>
+  <BlockMath math="V = \frac{22}{7} \times 15^2 \times 42" />
+  <BlockMath math="V = \frac{22}{7} \times 225 \times 42" />
+  <BlockMath math="V = 22 \times 225 \times 6" />
+  <BlockMath math="V = 29{.}700\text{ dm}^3" />
+</MathContainer>
+
+#### Zeitberechnung
+
+Die Zeit, die das Wasser zum Auslaufen benötigt, ist das Volumen dividiert durch die Leckagerate.
+
+<MathContainer>
+  <BlockMath math="t = \frac{V}{Q} = \frac{29{.}700}{12} = 2{.}475\text{ Minuten}" />
+</MathContainer>
+
+Als nächstes konvertieren wir die Zeit von Minuten in Stunden und Minuten:
+
+<MathContainer>
+  <BlockMath math="2{.}475\text{ Minuten} = \frac{2{.}475}{60}\text{ Stunden}" />
+  <BlockMath math="2{.}475\text{ Minuten} = 41{,}25\text{ Stunden}" />
+  <BlockMath math="2{.}475\text{ Minuten} = 41\text{ Stunden} + (0{,}25 \times 60)\text{ Minuten}" />
+  <BlockMath math="2{.}475\text{ Minuten} = 41\text{ Stunden } 15\text{ Minuten}" />
+</MathContainer>
+
+Das Wasser wird also in <InlineMath math="41\text{ Stunden } 15\text{ Minuten}" /> ausgehen.

@@ -1,17 +1,19 @@
-import {
-  ACTIVE_APP_LOCALES,
-  activeAppLocaleCode,
-} from "@nakafa/aksara-contracts/locale";
 import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, Record as EffectRecord, Schema } from "effect";
-
+import { Effect, Schema } from "effect";
 import type {
   CurriculumMaterialNode,
-  CurriculumNodeTranslationMapSchema,
   CurriculumSource,
+  LocalizedCurriculumNodeTranslationMapSchema,
 } from "#corpus/curriculum/schema";
+import {
+  AUTHORING_APP_LOCALES,
+  addLocalizedSource,
+  LOCALE_OVERLAY_APP_LOCALE_CODES,
+  LocaleOverlayAppLocaleSchema,
+  sourceLocaleValue,
+} from "#corpus/locale/source";
 import {
   type MaterialDomainDescriptor,
   requireMaterialDomain,
@@ -30,28 +32,71 @@ export class CurriculumProjectionError extends Schema.TaggedError<CurriculumProj
 ) {}
 
 /** Reads source-owned translations for one validated material reference. */
-function materialTranslations(material: LessonMaterialSource) {
-  return EffectRecord.map(material.routeSlugs, (routeSlug, locale) => ({
-    routeSlug,
-    title: material.translations[locale].title,
-  }));
-}
+const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(
+  function* (
+    material: LessonMaterialSource,
+    nodeKey: CurriculumProjectionError["nodeKey"],
+    programKey: CurriculumProjectionError["programKey"]
+  ) {
+    let translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type =
+      {
+        en: {
+          routeSlug: material.routeSlugs.en,
+          title: material.translations.en.title,
+        },
+        id: {
+          routeSlug: material.routeSlugs.id,
+          title: material.translations.id.title,
+        },
+      };
+    for (const appLocaleCode of LOCALE_OVERLAY_APP_LOCALE_CODES) {
+      const appLocale = Schema.decodeUnknownSync(LocaleOverlayAppLocaleSchema)(
+        appLocaleCode
+      );
+      const routeSlug = sourceLocaleValue(material.routeSlugs, appLocale);
+      const translation = sourceLocaleValue(material.translations, appLocale);
+      if ((routeSlug === undefined) !== (translation === undefined)) {
+        return yield* new CurriculumProjectionError({
+          code: "display",
+          nodeKey,
+          programKey,
+          value: material.key,
+        });
+      }
+      if (routeSlug !== undefined && translation !== undefined) {
+        translations = addLocalizedSource(translations, appLocale, {
+          routeSlug,
+          title: translation.title,
+        });
+      }
+    }
+    return translations;
+  }
+);
 
 /** Checks whether an override redundantly copies material-owned display data. */
-function duplicatesMaterialDisplay(
+const duplicatesMaterialDisplay = Effect.fn(
+  "AksaraCorpus.duplicatesMaterialDisplay"
+)(function* (
   override: NonNullable<CurriculumMaterialNode["displayOverride"]>,
-  material: LessonMaterialSource
+  material: LessonMaterialSource,
+  nodeKey: CurriculumProjectionError["nodeKey"],
+  programKey: CurriculumProjectionError["programKey"]
 ) {
-  const translations = materialTranslations(material);
-  return ACTIVE_APP_LOCALES.every((appLocale) => {
-    const appLocaleCode = activeAppLocaleCode(appLocale);
+  const translations = yield* materialTranslations(
+    material,
+    nodeKey,
+    programKey
+  );
+  return AUTHORING_APP_LOCALES.every((appLocale) => {
+    const overrideCopy = sourceLocaleValue(override, appLocale);
+    const materialCopy = sourceLocaleValue(translations, appLocale);
     return (
-      override[appLocaleCode].routeSlug ===
-        translations[appLocaleCode].routeSlug &&
-      override[appLocaleCode].title === translations[appLocaleCode].title
+      overrideCopy?.routeSlug === materialCopy?.routeSlug &&
+      overrideCopy?.title === materialCopy?.title
     );
   });
-}
+});
 
 /** Resolves one curriculum leaf through exact material and domain ownership. */
 export const resolveCurriculumMaterial = Effect.fn(
@@ -109,7 +154,7 @@ export const resolveCurriculumMaterial = Effect.fn(
     });
   }
 
-  let translations: typeof CurriculumNodeTranslationMapSchema.Type;
+  let translations: typeof LocalizedCurriculumNodeTranslationMapSchema.Type;
   if (materials.length > 1) {
     if (!node.displayOverride) {
       return yield* new CurriculumProjectionError({
@@ -122,7 +167,12 @@ export const resolveCurriculumMaterial = Effect.fn(
     translations = node.displayOverride;
   } else if (
     node.displayOverride &&
-    duplicatesMaterialDisplay(node.displayOverride, firstMaterial)
+    (yield* duplicatesMaterialDisplay(
+      node.displayOverride,
+      firstMaterial,
+      node.key,
+      curriculum.programKey
+    ))
   ) {
     return yield* new CurriculumProjectionError({
       code: "display",
@@ -131,7 +181,13 @@ export const resolveCurriculumMaterial = Effect.fn(
       value: firstMaterial.key,
     });
   } else {
-    translations = node.displayOverride ?? materialTranslations(firstMaterial);
+    translations =
+      node.displayOverride ??
+      (yield* materialTranslations(
+        firstMaterial,
+        node.key,
+        curriculum.programKey
+      ));
   }
 
   return { materialDomain, translations };

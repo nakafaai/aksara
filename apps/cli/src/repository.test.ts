@@ -1,5 +1,6 @@
 import { realpathSync, symlinkSync, unlinkSync } from "node:fs";
 import { relative, resolve } from "node:path";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Data, Effect } from "effect";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { selectCatalogDocument, selectPreviewDocument } from "#cli/repository";
@@ -35,6 +36,25 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   };
 });
 
+vi.mock("@nakafa/aksara-corpus/preview/selection", async (importOriginal) => {
+  const selection =
+    await importOriginal<
+      typeof import("@nakafa/aksara-corpus/preview/selection")
+    >();
+  return {
+    ...selection,
+    /** Injects one corpus selection failure at the CLI repository boundary. */
+    selectPreviewDocument: (
+      ...input: Parameters<typeof selection.selectPreviewDocument>
+    ) => {
+      if (registryControl.fail) {
+        return Effect.fail(new TestRegistryError());
+      }
+      return selection.selectPreviewDocument(...input);
+    },
+  };
+});
+
 const repositories = makeRepositoryTracker();
 
 afterEach(() => {
@@ -56,6 +76,20 @@ describe("preview repository selection", () => {
 
     expect(relativeDocument).toEqual(absoluteDocument);
     expect(relativeDocument.sources[0].entry).toEqual(ENGLISH_ENTRY);
+  });
+
+  it("preserves an actionable explicit application-locale failure", async () => {
+    const repository = repositories.create();
+    const requested = relative(repository.aksaraRoot, repository.documentPath);
+    const error = await runNode(
+      selectPreviewDocument(
+        repository.aksaraRoot,
+        requested,
+        AppLocaleSchema.make("de")
+      ).pipe(Effect.flip)
+    );
+
+    expect(error).toMatchObject({ reason: "app-locale" });
   });
 
   it("selects one real catalog document and rejects an empty catalog", async () => {

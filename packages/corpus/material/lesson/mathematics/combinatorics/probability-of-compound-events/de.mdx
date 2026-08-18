@@ -1,0 +1,242 @@
+export const metadata = {
+   title: "Wahrscheinlichkeit zusammengesetzter Ereignisse",
+   description: "Vereinigung und Schnitt unterscheiden, Abhängigkeiten erkennen und die passende Wahrscheinlichkeitsregel wählen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Zusammengesetzte Ereignisse verstehen
+
+Viele Wahrscheinlichkeitsfragen verbinden **zwei oder mehr Ereignisse**. Wir werfen etwa einen Würfel und eine Münze oder ziehen zwei Karten aus einem Stapel. Solche Situationen beschreiben zusammengesetzte Ereignisse.
+
+Ein **zusammengesetztes Ereignis** verbindet zwei oder mehr einfache Ereignisse in einem Wahrscheinlichkeitsmodell. Statt nur den Würfel oder nur die Münze zu betrachten, formulieren wir eine Bedingung für beide Ergebnisse.
+
+Angenommen, du wirfst einen Würfel und eine Münze. Ein einfaches Ereignis betrachtet nur eines der beiden Ergebnisse. Ein zusammengesetztes Ereignis bezieht beide ein, zum Beispiel: „Der Würfel zeigt <InlineMath math="3" /> UND die Münze zeigt Zahl.“
+
+## Typen zusammengesetzter Ereignisse
+
+### Sich ausschließende Ereignisse
+
+Zwei Ereignisse **schließen sich gegenseitig aus**, wenn sie im selben Versuch nicht gemeinsam eintreten können. Tritt <InlineMath math="A" /> ein, kann <InlineMath math="B" /> nicht eintreten, und umgekehrt.
+
+Ein einfaches Beispiel ist ein Würfelwurf. „Das Ergebnis ist gerade“ und „Das Ergebnis ist ungerade“ schließen sich gegenseitig aus, denn eine Zahl kann nicht beides sein.
+
+Für zwei sich ausschließende Ereignisse gilt:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B)" />
+
+**Berechnungsbeispiel:**
+
+Ein Würfel wird einmal geworfen. Gesucht ist die Wahrscheinlichkeit für eine gerade Zahl oder für <InlineMath math="1" /> oder <InlineMath math="3" />.
+
+**Lösung:**
+
+Ergebnisraum: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />
+
+- Ereignis <InlineMath math="A" /> (gerade Zahlen): <InlineMath math="A = \{2, 4, 6\}" />
+- Ereignis <InlineMath math="B" /> (Zahlen <InlineMath math="1" /> oder <InlineMath math="3" />): <InlineMath math="B = \{1, 3\}" />
+
+Schnittmenge prüfen: <InlineMath math="A \cap B = \emptyset" /> (leere Menge)
+
+Da es keinen Schnittpunkt gibt, **schließen sich beide Ereignisse gegenseitig aus**.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{2}{6} = \frac{1}{3}" />
+<BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}" />
+</MathContainer>
+
+### Ereignisse mit Überschneidung
+
+Ereignisse schließen sich **nicht gegenseitig aus**, wenn sie im selben Versuch gemeinsam eintreten können. Ihre Schnittmenge ist nicht leer.
+
+Beispielsweise schließen sich „eine rote Karte ziehen“ und „ein Ass ziehen“ nicht gegenseitig aus. Das Herz-Ass und das Karo-Ass erfüllen beide Bedingungen.
+
+Für Ereignisse mit Überschneidung gilt:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
+
+Wir subtrahieren <InlineMath math="P(A \cap B)" />, weil die Ergebnisse der Schnittmenge einmal in <InlineMath math="P(A)" /> und ein zweites Mal in <InlineMath math="P(B)" /> gezählt wurden.
+
+**Berechnungsbeispiel:**
+
+Aus einem üblichen Kartenspiel mit 52 Karten wird eine Karte zufällig gezogen. Gesucht ist die Wahrscheinlichkeit für eine rote Karte oder eine Bildkarte (Bube, Dame, König).
+
+**Lösung:**
+
+Gesamtzahl der Karten <InlineMath math="= 52" />
+
+- Ereignis <InlineMath math="A" /> (rote Karten): <InlineMath math="26 \text{Karten}" /> (<InlineMath math="13 \text{Herz} + 13 \text{Karo}" />)
+- Ereignis <InlineMath math="B" /> (Bildkarten): <InlineMath math="12 \text{Karten}" /> (<InlineMath math="4 \text{Buben} + 4 \text{Damen} + 4 \text{Könige}" />)
+
+Schnittmenge (rote Bildkarten): <InlineMath math="6 \text{Karten}" /> (Bube, Dame und König in Herz und Karo)
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{26}{52} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{12}{52} = \frac{3}{13}" />
+<BlockMath math="P(A \cap B) = \frac{6}{52} = \frac{3}{26}" />
+<BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{3}{13} - \frac{3}{26} = \frac{13}{26} + \frac{6}{26} - \frac{3}{26} = \frac{16}{26} = \frac{8}{13}" />
+</MathContainer>
+
+### Unabhängige Ereignisse
+
+Zwei Ereignisse sind **unabhängig**, wenn die Erkenntnis, dass eines eingetreten ist, die Wahrscheinlichkeitsverteilung des anderen nicht ändert. Unabhängigkeit betrifft Wahrscheinlichkeiten und nicht nur die Frage, ob zwei Ereignisse gleichzeitig stattfinden.
+
+Ein einfaches Beispiel sind zwei faire Münzen. Die Information, dass die erste Münze Kopf zeigt, ändert nichts an der zweiten: Die Wahrscheinlichkeit für Zahl bleibt <InlineMath math="50\%" />.
+
+Für unabhängige Ereignisse gilt:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+
+**Berechnungsbeispiel:**
+
+Zwei faire Würfel werden geworfen. Gesucht ist die Wahrscheinlichkeit dafür, dass der erste Würfel <InlineMath math="3" /> und der zweite eine gerade Zahl zeigt.
+
+**Lösung:**
+
+- Ereignis <InlineMath math="A" /> (Zahl <InlineMath math="3" /> auf dem ersten Würfel): <InlineMath math="1 \text{Möglichkeit}" /> von <InlineMath math="6" />
+- Ereignis <InlineMath math="B" /> (gerade Zahl auf zweitem Würfel): <InlineMath math="\{2, 4, 6\} = 3 \text{Möglichkeiten}" /> von <InlineMath math="6" />
+
+Da das Ergebnis des ersten Würfels keinen Einfluss auf den zweiten Würfel hat, sind beide Ereignisse unabhängig voneinander.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{1}{6}" />
+<BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{6} \times \frac{1}{2} = \frac{1}{12}" />
+</MathContainer>
+
+### Abhängige Ereignisse
+
+Ereignisse sind **abhängig**, wenn das Ergebnis eines Ereignisses die Wahrscheinlichkeit des nächsten verändert. Für die zweite Stufe gelten dann andere Bedingungen als zu Beginn.
+
+Eine häufige Ursache ist das Ziehen **ohne Zurücklegen**. Das gezogene Objekt kommt nicht zurück. Dadurch ändern sich die Gesamtzahl der Objekte und möglicherweise auch die Anzahl der günstigen Objekte.
+
+Formel für abhängige Ereignisse:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
+
+Dabei bezeichnet <InlineMath math="P(B|A)" /> die Wahrscheinlichkeit von <InlineMath math="B" /> unter der Bedingung, dass <InlineMath math="A" /> bereits eingetreten ist.
+
+**Berechnungsbeispiel:**
+
+In einer Schachtel liegen <InlineMath math="8 \text{blaue Kugeln}" /> und <InlineMath math="4 \text{gelbe Kugeln}" />. Zwei Kugeln werden zufällig **ohne Zurücklegen** gezogen. Gesucht ist die Wahrscheinlichkeit dafür, dass beide blau sind.
+
+**Lösung:**
+
+Zu Beginn liegen <InlineMath math="8 + 4 = 12 \text{Kugeln}" /> in der Schachtel.
+
+- Ereignis <InlineMath math="A" /> (erste Kugel blau): <InlineMath math="8 \text{blaue Kugeln}" /> von insgesamt <InlineMath math="12 \text{Kugeln}" />
+- Ereignis <InlineMath math="B" /> (zweite Kugel blau nach <InlineMath math="A" />): Nach <InlineMath math="1 \text{blauen Kugel}" /> bleiben <InlineMath math="7 \text{blaue Kugeln}" /> unter insgesamt <InlineMath math="11 \text{Kugeln}" />
+
+Da nicht zurückgelegt wird, ändern sich die Bedingungen nach der ersten Ziehung. Die Ereignisse sind daher abhängig.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{8}{12} = \frac{2}{3}" />
+<BlockMath math="P(B|A) = \frac{7}{11}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B|A) = \frac{2}{3} \times \frac{7}{11} = \frac{14}{33}" />
+</MathContainer>
+
+## Anwendung in Berechnungen
+
+### Vereinigung
+
+Für „Ereignis <InlineMath math="A" /> **ODER** Ereignis <InlineMath math="B" />“ verwenden wir die Vereinigung. Das „oder“ ist einschließend: Mindestens eines der Ereignisse tritt ein, und eine Überschneidung gehört ebenfalls dazu.
+
+Wenn wir beim Würfeln die Wahrscheinlichkeit ermitteln wollen, eine ungerade Zahl oder eine Primzahl zu erhalten, müssen wir überlegen, ob sich beide Ereignisse gegenseitig ausschließen oder nicht.
+
+### Schnittmenge
+
+Für „Ereignis <InlineMath math="A" /> **UND** Ereignis <InlineMath math="B" />“ verwenden wir die Schnittmenge. Jedes gezählte Ergebnis muss beide Bedingungen erfüllen.
+
+Wenn wir im Zusammenhang mit dem Kartenziehen nach der Wahrscheinlichkeit suchen, „eine rote Karte UND eine Karte mit gerader Zahl zu ziehen“, müssen wir Karten zählen, die beide Kriterien erfüllen.
+
+## Problemlösungsstrategie
+
+Beginne ein Problem mit zusammengesetzten Ereignissen, indem du **die Beziehung zwischen den Ereignissen bestimmst**. Schlüsselwörter helfen, entscheidend ist aber der zugrunde liegende Zufallsmechanismus:
+
+1. **„oder“** weist auf eine Vereinigung hin
+2. **„und“** weist auf eine Schnittmenge hin
+3. **„ohne Ersatz“** weist auf abhängige Ereignisse hin
+4. **„mit Zurücklegen“** bewahrt oft die Unabhängigkeit, aber prüfe trotzdem, ob ein Ergebnis die Wahrscheinlichkeit des anderen wirklich nicht verändert
+
+Prüfe anschließend, ob beide Ereignisse gemeinsam eintreten können. Wähle erst dann die Formel und kontrolliere, ob eine Überschneidung doppelt gezählt würde.
+
+## Übungen
+
+Bearbeite jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Benenne die Ereignisse, entscheide zwischen Vereinigung und Schnittmenge und begründe, ob sie sich ausschließen, unabhängig oder abhängig sind.
+
+1. Bestimme bei einem Würfelwurf die Wahrscheinlichkeit für eine Primzahl oder eine ungerade Zahl.
+
+2. Eine Schachtel enthält <InlineMath math="6 \text{rote Kugeln}" /> und <InlineMath math="4 \text{weiße Kugeln}" />. Zwei Kugeln werden zufällig ohne Zurücklegen gezogen. Berechne die Wahrscheinlichkeit dafür, dass beide rot sind.
+
+3. Zwei Würfel werden geworfen. Bestimme die Wahrscheinlichkeit dafür, dass ihre Summe <InlineMath math="7" /> oder <InlineMath math="11" /> beträgt.
+
+4. Aus einem üblichen Kartenspiel mit 52 Karten wird eine Karte zufällig gezogen. Berechne die Wahrscheinlichkeit für ein Ass oder eine schwarze Karte.
+
+### Ausführliche Lösungen
+
+1. **Lösung:**
+
+   Ergebnisraum: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, also <InlineMath math="n(S) = 6" />
+
+   - Ereignis <InlineMath math="A" /> (Primzahlen): <InlineMath math="A = \{2, 3, 5\}" />, also <InlineMath math="n(A) = 3" />
+   - Ereignis <InlineMath math="B" /> (ungerade Zahlen): <InlineMath math="B = \{1, 3, 5\}" />, also <InlineMath math="n(B) = 3" />
+
+   Schnittmenge von <InlineMath math="A" /> und <InlineMath math="B" />: <InlineMath math="A \cap B = \{3, 5\}" />, also <InlineMath math="n(A \cap B) = 2" />
+
+   Weil die Schnittmenge nicht leer ist, schließen sich die Ereignisse nicht aus. Wir verwenden daher die allgemeine Additionsregel:
+
+   <MathContainer>
+   <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
+   <BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+   <BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
+   <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
+   <BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{1}{2} - \frac{1}{3} = 1 - \frac{1}{3} = \frac{2}{3}" />
+   </MathContainer>
+
+2. **Lösung:**
+
+   Insgesamt liegen <InlineMath math="6 + 4 = 10 \text{Kugeln}" /> in der Schachtel.
+
+   - Ereignis <InlineMath math="A" /> (erste Kugel rot): <InlineMath math="6 \text{rote Kugeln}" /> von insgesamt <InlineMath math="10 \text{Kugeln}" />
+   - Ereignis <InlineMath math="B" /> (zweite Kugel rot nach <InlineMath math="A" />): Nach <InlineMath math="1 \text{roten Kugel}" /> bleiben <InlineMath math="5 \text{rote Kugeln}" /> unter insgesamt <InlineMath math="9 \text{Kugeln}" />
+
+   Da **ohne Zurücklegen** gezogen wird, ändern sich die Bedingungen nach der ersten Ziehung. Die Ereignisse sind abhängig.
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{6}{10} = \frac{3}{5}" />
+   <BlockMath math="P(B|A) = \frac{5}{9}" />
+   <BlockMath math="P(A \cap B) = P(A) \times P(B|A) = \frac{3}{5} \times \frac{5}{9} = \frac{15}{45} = \frac{1}{3}" />
+   </MathContainer>
+
+3. **Lösung:**
+
+   Es gibt insgesamt <InlineMath math="6 \times 6 = 36" /> geordnete Würfelpaare.
+
+   - Ereignis <InlineMath math="A" /> (Summe ist <InlineMath math="7" />): <InlineMath math="(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)" /> → <InlineMath math="6 \text{Wege}" />
+   - Ereignis <InlineMath math="B" /> (Summe ist <InlineMath math="11" />): <InlineMath math="(5,6), (6,5)" /> → <InlineMath math="2 \text{Wege}" />
+
+   Beide Ereignisse schließen sich gegenseitig aus, da die Würfelsumme nicht gleichzeitig <InlineMath math="7" /> und <InlineMath math="11" /> sein kann.
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{6}{36} = \frac{1}{6}" />
+   <BlockMath math="P(B) = \frac{2}{36} = \frac{1}{18}" />
+   <BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{6} + \frac{1}{18} = \frac{3}{18} + \frac{1}{18} = \frac{4}{18} = \frac{2}{9}" />
+   </MathContainer>
+
+4. **Lösung:**
+
+   Gesamtzahl der Karten <InlineMath math="= 52" />
+
+   - Ereignis <InlineMath math="A" /> (Asskarten): <InlineMath math="4 \text{Asse}" />
+   - Ereignis <InlineMath math="B" /> (schwarze Karten): <InlineMath math="26 \text{Karten}" /> (Pik und Kreuz)
+
+   Schnittmenge (schwarze Asse): Pik-Ass und Kreuz-Ass ergeben <InlineMath math="2 \text{Karten}" />
+
+   <MathContainer>
+   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+   <BlockMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
+   <BlockMath math="P(A \cap B) = \frac{2}{52} = \frac{1}{26}" />
+   <BlockMath math="P(A \cup B) = \frac{1}{13} + \frac{1}{2} - \frac{1}{26} = \frac{2}{26} + \frac{13}{26} - \frac{1}{26} = \frac{14}{26} = \frac{7}{13}" />
+   </MathContainer>

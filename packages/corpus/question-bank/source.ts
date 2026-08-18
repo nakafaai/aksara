@@ -1,14 +1,10 @@
 import { FileSystem, Path } from "@effect/platform";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
-  APP_LOCALE_CODES,
-  AppLocaleCodeSchema,
+  type AppLocale,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import {
-  type QuestionChoices,
-  QuestionChoicesSchema,
-} from "@nakafa/aksara-contracts/projection/question";
+import { QuestionChoicesSchema } from "@nakafa/aksara-contracts/projection/question";
 import {
   QUESTION_BANK_KEY_ROOT,
   QuestionSetKeySchema,
@@ -16,19 +12,25 @@ import {
 } from "@nakafa/aksara-contracts/question/identity";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import { questionArtifactLocalesForSection } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Schema } from "effect";
-
+import {
+  addQuestionChoiceOverlay,
+  embeddedQuestionChoiceLocales,
+  questionChoiceOverlayLocale,
+  questionChoiceOverlayLocales,
+  validateQuestionChoiceLocales,
+} from "#corpus/question-bank/choice-locale";
 import { decodeQuestionChoiceSource } from "#corpus/question-bank/choice-source";
-import type { QuestionEntry } from "#corpus/question-bank/content";
 import {
   decodeQuestionPath,
+  hasCompleteQuestionChoiceOverlays,
   locateQuestionEntry,
   QUESTION_BANK_ROOT,
   type QuestionBankIndex,
   type QuestionLocation,
   QuestionLocationSchema,
   QuestionPathError,
+  questionAuthoringSourceFiles,
   questionSourceFiles,
 } from "#corpus/question-bank/path";
 
@@ -37,8 +39,10 @@ const isTryoutKey = Schema.is(TryoutKeySchema);
 export const QuestionSourceSchema = Schema.Struct({
   ...QuestionLocationSchema.fields,
   choices: QuestionChoicesSchema,
+  files: Schema.Array(Schema.String),
 });
 export type QuestionSource = typeof QuestionSourceSchema.Type;
+
 /** Indexes canonical choices once by their physical question directory. */
 export function indexQuestionChoices(sources: readonly QuestionSource[]) {
   return new Map(
@@ -49,15 +53,6 @@ export function indexQuestionChoices(sources: readonly QuestionSource[]) {
 export class QuestionReadError extends Schema.TaggedError<QuestionReadError>()(
   "QuestionReadError",
   { cause: Schema.Unknown, path: CorpusSourcePathSchema }
-) {}
-/** Authored choices do not exactly match the section's delivery languages. */
-export class QuestionChoiceLocaleError extends Schema.TaggedError<QuestionChoiceLocaleError>()(
-  "QuestionChoiceLocaleError",
-  {
-    actualLocales: Schema.Array(AppLocaleCodeSchema),
-    expectedLocales: Schema.Array(ArtifactLocaleSchema),
-    sourcePath: CorpusSourcePathSchema,
-  }
 ) {}
 /** A question directory does not contain its exact section-owned file set. */
 export class QuestionFileSetError extends Schema.TaggedError<QuestionFileSetError>()(
@@ -75,11 +70,6 @@ export class QuestionSequenceError extends Schema.TaggedError<QuestionSequenceEr
     setPath: QuestionSetKeySchema,
   }
 ) {}
-/** Complete authored question or answer body joined with canonical choices. */
-export type QuestionDocumentSource = Omit<QuestionEntry, "sourceRoot"> & {
-  readonly choices: QuestionChoices;
-  readonly rawMdx: string;
-};
 /** Groups every recursive directory entry beneath its question directory. */
 function groupQuestionFiles(entries: readonly string[], separator: string) {
   const filesByRoot = new Map<string, Set<string>>();
@@ -139,7 +129,10 @@ export const readQuestionChoices = Effect.fn(
   "AksaraCorpus.readQuestionChoices"
 )(function* (
   corpusRoot: string,
-  location: Pick<QuestionLocation, "questionKey" | "sourceRoot">
+  location: Pick<QuestionLocation, "questionKey" | "sourceRoot"> & {
+    readonly appLocale?: AppLocale;
+    readonly files?: readonly string[];
+  }
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
@@ -153,21 +146,44 @@ export const readQuestionChoices = Effect.fn(
         (cause) => new QuestionReadError({ cause, path: sourcePath })
       )
     );
-  const choices = yield* decodeQuestionChoiceSource(source, sourcePath);
+  let choices = yield* decodeQuestionChoiceSource(source, sourcePath);
   const { sectionKey } = questionKeyParts(location.questionKey);
-  const expectedLocales = questionArtifactLocalesForSection(sectionKey);
-  const actualLocales = APP_LOCALE_CODES.filter(
-    (locale) => choices[locale] !== undefined
+  choices = yield* validateQuestionChoiceLocales(
+    choices,
+    embeddedQuestionChoiceLocales(sectionKey),
+    sourcePath
   );
-  if (
-    actualLocales.length !== expectedLocales.length ||
-    actualLocales.some((locale, index) => locale !== expectedLocales[index])
-  ) {
-    return yield* new QuestionChoiceLocaleError({
-      actualLocales,
-      expectedLocales,
-      sourcePath,
-    });
+  let overlayCodes =
+    location.files?.flatMap((file) => {
+      const code = questionChoiceOverlayLocale(file);
+      return code === undefined ? [] : [code];
+    }) ?? [];
+  if (location.files === undefined && location.appLocale !== undefined) {
+    overlayCodes = questionChoiceOverlayLocales(sectionKey, [
+      location.appLocale,
+    ]);
+  }
+  for (const code of overlayCodes) {
+    const artifactLocale = ArtifactLocaleSchema.make(code);
+    const overlayPath = CorpusSourcePathSchema.make(
+      `${location.sourceRoot}/choices.${code}.ts`
+    );
+    const overlaySource = yield* fileSystem
+      .readFileString(path.join(corpusRoot, overlayPath), "utf8")
+      .pipe(
+        Effect.mapError(
+          (cause) => new QuestionReadError({ cause, path: overlayPath })
+        )
+      );
+    const overlay = yield* decodeQuestionChoiceSource(
+      overlaySource,
+      overlayPath
+    ).pipe(
+      Effect.flatMap((decoded) =>
+        validateQuestionChoiceLocales(decoded, [artifactLocale], overlayPath)
+      )
+    );
+    choices = addQuestionChoiceOverlay(choices, overlay, code);
   }
   return choices;
 });
@@ -176,12 +192,16 @@ export const readQuestionChoices = Effect.fn(
 const validateQuestionFiles = Effect.fn("AksaraCorpus.validateQuestionFiles")(
   function* (location: QuestionLocation, discoveredFiles: readonly string[]) {
     const { sectionKey } = questionKeyParts(location.questionKey);
-    const expectedFiles = questionSourceFiles(sectionKey);
+    const requiredFiles = questionSourceFiles(sectionKey);
+    const allowedFiles = questionAuthoringSourceFiles(sectionKey);
     const files = [...discoveredFiles].sort();
-    if (
-      files.length !== expectedFiles.length ||
-      files.some((file, index) => file !== expectedFiles[index])
-    ) {
+    const missingRequired = requiredFiles.some((file) => !files.includes(file));
+    const unsupported = files.some((file) => !allowedFiles.includes(file));
+    const incompleteChoiceOverlay = !hasCompleteQuestionChoiceOverlays(
+      sectionKey,
+      files
+    );
+    if (missingRequired || unsupported || incompleteChoiceOverlay) {
       return yield* new QuestionFileSetError({
         files,
         sourcePath: location.sourceRoot,
@@ -195,9 +215,8 @@ export const readQuestionSource = Effect.fn("AksaraCorpus.readQuestionSource")(
   function* (corpusRoot: string, location: QuestionLocation) {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
-    const absoluteRoot = path.join(corpusRoot, location.sourceRoot);
     const files = yield* fileSystem
-      .readDirectory(absoluteRoot)
+      .readDirectory(path.join(corpusRoot, location.sourceRoot))
       .pipe(
         Effect.mapError(
           (cause) => new QuestionReadError({ cause, path: location.sourceRoot })
@@ -214,9 +233,13 @@ const loadQuestionSource = Effect.fn("AksaraCorpus.loadQuestionSource")(
     location: QuestionLocation,
     discoveredFiles: readonly string[]
   ) {
-    yield* validateQuestionFiles(location, discoveredFiles);
-    const choices = yield* readQuestionChoices(corpusRoot, location);
-    return { ...location, choices } satisfies QuestionSource;
+    const files = [...discoveredFiles].sort();
+    yield* validateQuestionFiles(location, files);
+    const choices = yield* readQuestionChoices(corpusRoot, {
+      ...location,
+      files,
+    });
+    return { ...location, choices, files };
   }
 );
 
@@ -288,30 +311,4 @@ export const discoverQuestionSources = Effect.fn(
   );
 
   return yield* validateSequences(sources);
-});
-
-/** Reads one registry-owned question body from its exact reviewed source path. */
-export const readQuestionDocument = Effect.fn(
-  "AksaraCorpus.readQuestionDocument"
-)(function* <Entry extends QuestionEntry>(
-  corpusRoot: string,
-  entry: Entry,
-  choices: QuestionChoices
-) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const path = yield* Path.Path;
-  const rawMdx = yield* fileSystem
-    .readFileString(path.join(corpusRoot, entry.sourcePath), "utf8")
-    .pipe(
-      Effect.mapError(
-        (cause) => new QuestionReadError({ cause, path: entry.sourcePath })
-      )
-    );
-
-  const { sourceRoot: _sourceRoot, ...document } = entry;
-  return {
-    ...document,
-    choices,
-    rawMdx,
-  } satisfies QuestionDocumentSource;
 });

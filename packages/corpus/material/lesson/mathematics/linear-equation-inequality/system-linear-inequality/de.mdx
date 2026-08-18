@@ -1,0 +1,243 @@
+
+
+export const metadata = {
+  title: "Lineare Ungleichungssysteme",
+  description: "Lineare Ungleichungssysteme grafisch lösen, Nebenbedingungen modellieren und zulässige Bereiche in interaktiven Darstellungen lesen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-18",
+  subject: "Systeme linearer Gleichungen und Ungleichungen",
+};
+
+## Lineare Ungleichungssysteme verstehen
+
+Ein Plan kann gleichzeitig ein Budget einhalten und eine Mindestteilnehmerzahl erreichen müssen. Jede Bedingung schließt einen Teil der Möglichkeiten aus. Ein lineares Ungleichungssystem beschreibt die Entscheidungen, die alle Bedingungen zugleich erfüllen.
+
+### Was ist ein lineares Ungleichungssystem?
+
+Ein lineares Ungleichungssystem ist eine Sammlung von zwei oder mehr linearen Ungleichungen, die gleichzeitig erfüllt sein müssen. Lineare Ungleichungen haben die Form:
+
+<BlockMath math="a_1x_1 + a_2x_2 + ... + a_nx_n \leq b \text{oder} a_1x_1 + a_2x_2 + ... + a_nx_n \geq b" />
+
+Dabei sind <InlineMath math="a_1, a_2, ..., a_n" /> die Koeffizienten, <InlineMath math="x_1, x_2, ..., x_n" /> die Variablen und <InlineMath math="b" /> eine Konstante. Als Ungleichheitszeichen kommen <InlineMath math="\leq, \geq, <, >" /> infrage.
+
+Der grundlegende Unterschied liegt in der Beziehung zwischen den beiden Seiten:
+
+- Eine lineare Gleichung setzt zwei Ausdrücke gleich (<InlineMath math="=" />)
+- Eine lineare Ungleichung vergleicht zwei Ausdrücke (<InlineMath math="\leq, \geq, <, >" />)
+
+### Lineare Ungleichungssysteme mit zwei Variablen
+
+Ein lineares Ungleichungssystem mit zwei Variablen enthält mindestens zwei Ungleichungen in den Variablen <InlineMath math="x" /> und <InlineMath math="y" />:
+
+<BlockMath math="\begin{cases} a_1x + b_1y \leq c_1 \\ a_2x + b_2y \leq c_2 \end{cases}" />
+
+**Beispiel**:
+
+<BlockMath math="\begin{cases} 2x + 5y < 10 \\ 6x + 2y > 10 \end{cases}" />
+
+Die Lösung dieses Systems ist die Menge geordneter Paare <InlineMath math="(x,y)" />, die alle Ungleichungen gleichzeitig erfüllen.
+
+## Lineare Ungleichungssysteme lösen
+
+Bei zwei Variablen lässt sich die Lösungsmenge grafisch in drei Schritten bestimmen.
+
+### Grenzgeraden zeichnen
+
+Ersetze in jeder Ungleichung das Ungleichheitszeichen durch ein Gleichheitszeichen und zeichne die entstehende Grenzgerade.
+
+**Beispiel**:
+
+Zum System:
+
+<BlockMath math="\begin{cases} 2x + 5y < 10 \\ 6x + 2y > 10 \end{cases}" />
+
+Zeichne die Geraden:
+
+<BlockMath math="\begin{cases} 2x + 5y = 10 \\ 6x + 2y = 10 \end{cases}" />
+
+### Die richtige Halbebene bestimmen
+
+Für jede Ungleichung wird eine Seite der Grenzgeraden ausgewählt:
+
+1. Wähle einen Testpunkt, etwa den Ursprung <InlineMath math="(0,0)" />, sofern er nicht auf der Geraden liegt
+2. Setze seine Koordinaten in die Ungleichung ein
+3. Ist die Aussage wahr, gehört die Halbebene mit dem Testpunkt zur Lösung
+4. Ist sie falsch, gehört die gegenüberliegende Halbebene zur Lösung
+
+**Beispiel**:
+
+Prüfe für <InlineMath math="2x + 5y < 10" /> den Punkt <InlineMath math="(0, 0)" />:
+
+<BlockMath math="2(0) + 5(0) = 0 < 10" />
+
+_(wahr)_
+
+Die Lösung ist die Halbebene mit dem Punkt <InlineMath math="(0, 0)" />, also die Fläche unterhalb der Geraden <InlineMath math="2x + 5y = 10" />.
+
+Prüfe für <InlineMath math="6x + 2y > 10" /> wieder den Punkt <InlineMath math="(0, 0)" />:
+
+<BlockMath math="6(0) + 2(0) = 0 > 10" />
+
+_(falsch)_
+
+Diesmal gehört die Halbebene ohne den Punkt <InlineMath math="(0, 0)" /> zur Lösung. Sie liegt oberhalb der Geraden <InlineMath math="6x + 2y = 10" />.
+
+### Die Lösungsbereiche schneiden
+
+Die Lösung des Systems ist die Schnittmenge aller Halbebenen, also die Fläche, in der jede Bedingung gleichzeitig erfüllt ist.
+
+### Grafische Darstellung
+
+Für die Darstellung gilt:
+
+- Bei <InlineMath math="\leq" /> oder <InlineMath math="\geq" /> wird die Grenzgerade durchgezogen, weil ihre Punkte zur Lösung gehören
+- Bei <InlineMath math="<" /> oder <InlineMath math=">" /> wird sie gestrichelt, weil ihre Punkte nicht zur Lösung gehören
+- Die passende Halbebene wird schattiert
+
+## Verständnis prüfen
+
+Betrachte das System:
+
+<BlockMath math="\begin{cases} x+y\leq6 \\ 2x-y\geq0 \end{cases}" />
+
+Prüfe, ob <InlineMath math="(2,3)" /> und <InlineMath math="(1,5)" /> zur Lösungsmenge gehören.
+
+### Ausführliche Lösung
+
+Setze <InlineMath math="(2,3)" /> in beide Ungleichungen ein:
+
+<MathContainer>
+  <BlockMath math="2+3=5\leq6" />
+  <BlockMath math="2(2)-3=1\geq0" />
+</MathContainer>
+
+Beide Aussagen sind wahr, also ist <InlineMath math="(2,3)" /> eine Lösung.
+
+Prüfe nun <InlineMath math="(1,5)" />:
+
+<MathContainer>
+  <BlockMath math="1+5=6\leq6" />
+  <BlockMath math="2(1)-5=-3\not\geq0" />
+</MathContainer>
+
+Die zweite Aussage ist falsch, also ist <InlineMath math="(1,5)" /> keine Lösung. Die beiden Grenzgeraden schneiden sich in <InlineMath math="(2,4)" />, doch dieser Punkt ist nur ein Teil der Lösung. Die vollständige Lösung ist der gesamte Überlappungsbereich einschließlich beider durchgezogenen Grenzen.
+
+## Anwendungen im Alltag
+
+### Mathematische Modellierung
+
+Lineare Ungleichungssysteme beschreiben die zulässigen Entscheidungen in Optimierungsproblemen, etwa bei:
+
+- Produktionsprobleme mit Ressourcenbeschränkungen
+- Budgetplanung mit Kostenbeschränkungen
+- Ernährungsplanung mit Kalorienrestriktionen
+
+Ein Optimierungsmodell benötigt außerdem ein Ziel, etwa minimale Kosten oder maximale Produktion. Die Ungleichungen allein legen fest, welche Entscheidungen zulässig sind.
+
+### Aktivitätsplanung
+
+Kiki organisiert in ihrer Nachbarschaft eine Feier zum Unabhängigkeitstag. Aus dem Gemeinschaftsfonds stehen <InlineMath math="\text{Rp}500{.}000{,}00" /> zur Verfügung. Die Organisation von Wettbewerben kostet <InlineMath math="\text{Rp}20{.}000{,}00" /> pro Kind. Die Preise für die Gewinner sind für jede Wettbewerbsart mit <InlineMath math="\text{Rp}40{.}000{,}00" /> veranschlagt. Es wird erwartet, dass mehr als <InlineMath math="13" /> Kinder teilnehmen werden.
+
+Definieren wir:
+
+- <InlineMath math="x" /> = Anzahl der Teilnehmer
+- <InlineMath math="y" /> = Anzahl der Wettbewerbe
+
+Das mathematische Modell ist:
+
+<BlockMath math="\begin{cases} 20{.}000x + 40{.}000y \leq 500{.}000 \\ x > 13 \\ x,y \in \mathbb{Z}_{>0} \end{cases}" />
+
+Wenn wir vereinfachen:
+
+<BlockMath math="\begin{cases} 20x + 40y \leq 500 \\ x > 13 \\ x,y \in \mathbb{Z}_{>0} \end{cases}" />
+
+Die Grafik zeigt den zusammenhängenden zulässigen Bereich. Da Teilnehmer und Wettbewerbe nur in ganzen Zahlen gezählt werden können, sind die gültigen Pläne genau die positiven ganzzahligen Punkte in diesem Bereich.
+
+## Strategie für Sachaufgaben
+
+Gehe bei einer Sachaufgabe in dieser Reihenfolge vor:
+
+1. Lege die Variablen und ihre Einheiten fest
+2. Übersetze jede Bedingung in eine Ungleichung
+3. Bestimme die gemeinsame Lösungsmenge grafisch
+4. Prüfe zusätzliche Bedingungen wie Ganzzahligkeit und deute die Lösung im Ausgangskontext
+
+## Gleichungssystem und Ungleichungssystem im Vergleich
+
+| Aspekt | Lineare Gleichungssysteme | Lineare Ungleichungssysteme |
+| ------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Operationszeichen** | Verwendet Gleichheitszeichen (<InlineMath math="=" />) | Verwendet Ungleichheitszeichen (<InlineMath math="<, >, \leq, \geq" />) |
+| **Lösungsform** | Gemeinsame Punkte aller Gleichungen | Die gemeinsame zulässige Menge aller Ungleichungen |
+| **Grafische Darstellung** | Gemeinsame Punkte der Geraden | Schnitt der schattierten Halbebenen |
+| **Lösungsmethoden** | Substitution, Eliminierung, Determinanten | Grafik, Zulässigkeitsprüfung und lineare Optimierung bei vorhandener Zielfunktion |
+| **Anzahl der Lösungen** | Keine, eine oder unendlich viele | Leer, ein Punkt oder Randstück, oder ein Bereich mit unendlich vielen reellen Lösungen |
+| **Zeichnung** | Verwendet immer durchgezogene Linien | Durchgezogene Linien für <InlineMath math="\leq, \geq" /> und gestrichelte Linien für <InlineMath math="<, >" /> |
+
+## Interaktive Visualisierung linearer Ungleichungssysteme
+
+Jede Ungleichung legt eine zulässige Halbebene fest. Bei mehreren Ungleichungen erfüllt nur der Schnitt dieser Halbebenen alle Bedingungen.
+
+Die interaktive Darstellung zeigt genau diese Überlagerung.
+
+### Beispiel eines Ungleichheitssystems
+
+Betrachte das folgende System:
+
+<BlockMath math="\begin{cases} x + y \leq 10 \\ 15x + 9y \geq 120 \end{cases}" />
+
+Der blaue Bereich erfüllt <InlineMath math="x + y \leq 10" />. Er enthält alle Punkte unterhalb oder auf der Geraden <InlineMath math="x + y = 10" />.
+
+Der rote Bereich erfüllt <InlineMath math="15x + 9y \geq 120" />. Er enthält alle Punkte oberhalb oder auf der Geraden <InlineMath math="15x + 9y = 120" />.
+
+Der violette Überlappungsbereich erfüllt beide Bedingungen und ist damit die Lösung des Systems.
+
+<Inequality
+  title="Lineares Ungleichungssystem"
+  description={
+    <>
+      Visualisierung des Systems der Ungleichungen{" "}
+      <InlineMath math="x + y \leq 10" /> und{" "}
+      <InlineMath math="15x + 9y \geq 120" />.
+    </>
+  }
+  data={[
+    {
+      is2D: true,
+      boundaryLine2D: [1, 1, -10],
+      xRange: [-15, 15],
+      yRange: [-15, 15],
+      zRange: [-0.05, 0.05],
+      color: "#0891b2",
+      boundaryColor: "#2563eb",
+      label: {
+        text: <InlineMath math="x + y \le 10" />,
+        position: [3, 3, 0.15],
+      },
+    },
+    {
+      is2D: true,
+      boundaryLine2D: [-15, -9, 120],
+      xRange: [-15, 15],
+      yRange: [-15, 15],
+      zRange: [-0.05, 0.05],
+      color: "#e11d48",
+      boundaryColor: "#dc2626",
+      label: {
+        text: <InlineMath math="15x + 9y \ge 120" />,
+        position: [6, 8, 0.15],
+      },
+    },
+  ]}
+/>
+
+### Die Visualisierung lesen
+
+Achte auf drei Elemente:
+
+1. **Grenzlinien** zeigen die Gleichungen (z. B. <InlineMath math="x + y = 10" /> und <InlineMath math="15x + 9y = 120" />)
+2. **Farbige Bereiche** zeigen die Lösung für jede Ungleichung
+3. **Schnittbereich** (der Bereich, der alle Ungleichungen erfüllt) ist die Lösung des Ungleichheitssystems
+
+Die beiden Grenzgeraden schneiden sich in <InlineMath math="(5,5)" />. Dieser Punkt ist ein Randpunkt der zulässigen Menge, nicht die gesamte Lösung.
+
+Dasselbe Vorgehen lässt sich auf Sachaufgaben übertragen: Jede Bedingung erzeugt einen Bereich, und nur ihre Schnittmenge erfüllt alle Bedingungen gleichzeitig.

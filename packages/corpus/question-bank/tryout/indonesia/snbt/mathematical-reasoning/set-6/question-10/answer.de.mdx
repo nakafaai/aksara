@@ -1,0 +1,36 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-17",
+};
+
+#### Passendes Zählverfahren erkennen
+
+Wir besetzen drei verschiedene Ämter mit <InlineMath math="3\text{ Personen}" /> aus <InlineMath math="7" /> Kandidaten. Da Vorsitz <InlineMath math="\neq" /> Schriftführung <InlineMath math="\neq" /> Kassenführung gilt, zählt die Zuordnung. Wir verwenden daher eine **Permutation**.
+
+#### Berechnung der Permutation
+
+Die Formel für die Permutation von <InlineMath math="r" />-Objekten aus <InlineMath math="n" />-Objekten lautet:
+
+<BlockMath math="P^n_r = \frac{n!}{(n - r)!}" />
+
+Gegeben:
+- Die Zahl der Kandidaten <InlineMath math="n" /> ist <InlineMath math="7" />.
+- Die Zahl der Ämter <InlineMath math="r" /> ist <InlineMath math="3" />.
+
+Wir setzen die Werte ein:
+
+<MathContainer>
+  <BlockMath math="P^7_3 = \frac{7!}{(7 - 3)!}" />
+  <BlockMath math="P^7_3 = \frac{7!}{4!}" />
+</MathContainer>
+
+Nach dem Kürzen der gemeinsamen Fakultät bleibt:
+
+<MathContainer>
+  <BlockMath math="P^7_3 = \frac{7 \times 6 \times 5 \times 4!}{4!}" />
+  <BlockMath math="P^7_3 = 7 \times 6 \times 5" />
+  <BlockMath math="P^7_3 = 210" />
+</MathContainer>
+
+Es gibt also <InlineMath math="210" /> mögliche Besetzungen.

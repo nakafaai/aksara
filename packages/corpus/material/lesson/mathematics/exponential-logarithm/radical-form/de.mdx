@@ -1,0 +1,71 @@
+export const metadata = {
+  title: "Wurzelform",
+  description:
+    "Gebrochene Exponenten mit Wurzeln verbinden, beide Schreibweisen ineinander umformen und Wurzelausdrücke ohne ungültige Abkürzungen vereinfachen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-04",
+  subject: "Potenzen und Logarithmen",
+};
+
+## Zusammenhang zwischen Potenzen und Wurzeln
+
+Gebrochene Exponenten und Wurzeln sind zwei Schreibweisen für dieselbe Operation. Ein Zerfallsmodell macht diesen Zusammenhang anschaulich.
+
+Nehmen wir an, <InlineMath math="f(x)" /> beschreibt die im Körper verbleibende Menge eines Medikaments <InlineMath math="x" /> Stunden nach der Einnahme. Die Anfangsmenge beträgt <InlineMath math="50" /> Einheiten und halbiert sich in jeder Stunde:
+
+<BlockMath math="f(x)=50(0{,}5)^x" />
+
+Dreißig Minuten sind eine halbe Stunde. Deshalb lautet die richtige Eingabe:
+
+<BlockMath math="x=\frac{30}{60}=\frac12" />
+
+Nach dreißig Minuten verbleibt somit folgende Menge:
+
+<BlockMath math="f\left(\frac12\right)=50(0{,}5)^{\frac12}=50\sqrt{0{,}5}\approx35{,}36" />
+
+Die Gleichheit <InlineMath math="(0{,}5)^{\frac12}=\sqrt{0{,}5}" /> verbindet die Potenzschreibweise mit der Wurzelschreibweise. Auch die Einheit des Modells ist entscheidend: <InlineMath math="x=30" /> würde dreißig Stunden bedeuten, nicht dreißig Minuten.
+
+## Definition der Wurzelform
+
+Für <InlineMath math="a>0" />, <InlineMath math="m\in\mathbb{Z}" /> und <InlineMath math="n\in\mathbb{N}" /> lautet die reelle Definition:
+
+<BlockMath math="a^{\frac{m}{n}}=\left(\sqrt[n]{a}\right)^m=\sqrt[n]{a^m}" />
+
+Damit können wir zwischen gebrochenen Exponenten und Wurzeln wechseln, ohne den Wert zu verändern. Ist <InlineMath math="n" /> ungerade, können auch negative reelle Zahlen eine reelle <InlineMath math="n" />te Wurzel besitzen. Ist <InlineMath math="n" /> gerade, hat eine negative Zahl unter der Wurzel keine reelle Wurzel.
+
+## Wurzelausdrücke vereinfachen
+
+Vereinfache <InlineMath math="(2\sqrt{x})(3\sqrt[3]{x})" /> für <InlineMath math="x>0" />.
+
+Zuerst schreiben wir beide Wurzeln als Potenzen. Dann multiplizieren wir die Koeffizienten und addieren die Exponenten:
+
+<BlockMath
+  math="\begin{align}
+(2\sqrt{x})(3\sqrt[3]{x}) &= (2x^{\frac{1}{2}})(3x^{\frac{1}{3}}) \\
+&= 2 \cdot 3 \cdot x^{\frac{1}{2} + \frac{1}{3}} \\
+&= 6x^{\frac{3+2}{6}} \\
+&= 6x^{\frac{5}{6}} \\
+&= 6\sqrt[6]{x^5}
+\end{align}"
+/>
+
+Die beiden gleichwertigen vereinfachten Formen sind also <InlineMath math="6x^{\frac56}" /> und <InlineMath math="6\sqrt[6]{x^5}" />.
+
+## Eine häufige falsche Abkürzung
+
+Eine Wurzel lässt sich nicht auf eine Summe verteilen. Im Allgemeinen gilt:
+
+<BlockMath math="\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}" />
+
+Ein einziges Gegenbeispiel genügt, um die vermeintliche Identität zu widerlegen. Setzen wir <InlineMath math="a=4" /> und <InlineMath math="b=9" />:
+
+<BlockMath math="\sqrt{4+9}=\sqrt{13}\neq\sqrt4+\sqrt9=2+3=5" />
+
+Mit zwei Quadratzahlen wird der Unterschied noch deutlicher:
+
+<MathContainer>
+  <BlockMath math="\sqrt{16+9}=\sqrt{25}=5" />
+  <BlockMath math="\sqrt{16}+\sqrt9=4+3=7" />
+</MathContainer>
+
+Da <InlineMath math="5\neq7" /> gilt, sind die beiden Ausdrücke nicht austauschbar. Die Summe bleibt unter der Wurzel, solange kein gültiger algebraischer Schritt sie verändert.

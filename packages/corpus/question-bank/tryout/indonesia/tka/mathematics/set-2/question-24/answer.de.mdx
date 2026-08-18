@@ -1,0 +1,83 @@
+
+export const metadata = {
+  title: "Lösung zu Aufgabe 24",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Die Logarithmusbedingungen sind
+
+<MathContainer>
+<BlockMath math="|x + 1| > 0 \rightarrow x \neq -1" />
+<BlockMath math="|2x - 1| > 0 \rightarrow x \neq \frac{1}{2}" />
+</MathContainer>
+
+Erinnern Sie sich an einige grundlegende Konzepte der absoluten Wertungleichheit
+
+<BlockMath math="\log_a f(x) \geq \log_a g(x) \rightarrow f(x) \geq g(x)" />
+
+Mit Bedingung <InlineMath math="a > 1" />.
+
+Lasst uns die Ungleichung lösen
+
+<MathContainer>
+<BlockMath math="\log|x + 1| \geq \log 3 + \log|2x - 1|" />
+<BlockMath math="\log|x + 1| \geq \log\left(3|2x - 1|\right)" />
+<BlockMath math="\log|x + 1| \geq \log|6x - 3|" />
+<BlockMath math="|x + 1| \geq |6x - 3|" />
+</MathContainer>
+
+Die Lösung
+
+<MathContainer>
+<BlockMath math="[(x + 1) + (6x - 3)][(x + 1) - (6x - 3)] \geq 0" />
+<BlockMath math="(7x - 2)(-5x + 4) \geq 0" />
+<BlockMath math="x = \frac{2}{7} \vee x = \frac{4}{5}" />
+</MathContainer>
+
+Der Zahlenstrahl
+
+<NumberLine
+  title={<>Lösungszahlenreihe</>}
+  description={<>Die Grenzen <InlineMath math="\frac{2}{7}" /> und <InlineMath math="\frac{4}{5}" /> gehören zur Lösung, während <InlineMath math="\frac{1}{2}" /> wegen des Logarithmusbereichs ausgeschlossen ist.</>}
+  segments={[
+    {
+      start: Number.NEGATIVE_INFINITY,
+      end: 2/7,
+      endLabel: <InlineMath math="\frac{2}{7}" />,
+      shaded: false,
+      label: <InlineMath math="-" />,
+    },
+    {
+      start: 2/7,
+      end: 1/2,
+      startLabel: <InlineMath math="\frac{2}{7}" />,
+      endLabel: <InlineMath math="\frac{1}{2}" />,
+      startInclusive: true,
+      endInclusive: false,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 1/2,
+      end: 4/5,
+      startLabel: <InlineMath math="\frac{1}{2}" />,
+      endLabel: <InlineMath math="\frac{4}{5}" />,
+      startInclusive: false,
+      endInclusive: true,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 4/5,
+      end: Number.POSITIVE_INFINITY,
+      startLabel: <InlineMath math="\frac{4}{5}" />,
+      shaded: false,
+      label: <InlineMath math="-" />,
+    },
+  ]}
+/>
+
+Daher lautet die Lösung
+
+<BlockMath math="\left\{\frac{2}{7} \leq x \leq \frac{4}{5}, x \neq \frac{1}{2}\right\}" />

@@ -1,0 +1,130 @@
+export const metadata = {
+  title: "Quartile für nicht gruppierte Daten",
+  description: "Bestimme Q1, Q2 und Q3 ungruppierter Daten mit einer klar benannten Interpolationskonvention und einem vollständig gelösten Beispiel.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Was sind Quartile?
+
+Der Median teilt einen sortierten Datensatz in der Mitte, also bei <InlineMath math="50\%" />, in zwei Hälften. **Quartile** verfeinern diese Aufteilung.
+
+Diese Positionen teilen die Verteilung nach Rang in **vier** Bereiche, die jeweils ungefähr ein Viertel der Beobachtungen repräsentieren. Bei endlichen Daten oder Wertwiederholungen müssen daraus keine vier sichtbar getrennten Gruppen mit exakt gleicher Anzahl entstehen.
+
+Es gibt drei Quartilgrenzen:
+
+1.  **Unteres Quartil (<InlineMath math="Q_1" />):** Die Grenze bei ungefähr <InlineMath math="25\%" /> der Rangordnung.
+2.  **Mittleres Quartil (<InlineMath math="Q_2" />):** Der **Median** bei ungefähr <InlineMath math="50\%" /> der Rangordnung.
+3.  **Oberes Quartil (<InlineMath math="Q_3" />):** Die Grenze bei ungefähr <InlineMath math="75\%" /> der Rangordnung.
+
+Zusammen beschreiben <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> das untere Viertel, die Mitte und das obere Viertel einer geordneten Verteilung.
+
+## Position der Quartile bestimmen
+
+Wie finden wir nun die Rangpositionen von <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> im sortierten Datensatz?
+
+Wir bezeichnen die Anzahl der aufsteigend sortierten Datenwerte mit <InlineMath math="n" />.
+
+Für Quartile gibt es mehrere gültige Rangkonventionen. Daher können verschiedene Programme bei kleinen Datensätzen leicht unterschiedliche Werte liefern. Dieses Kapitel verwendet durchgehend die interpolierte Position <InlineMath math="p(n+1)" /> mit <InlineMath math="p" /> gleich <InlineMath math="\frac14" />, <InlineMath math="\frac12" /> oder <InlineMath math="\frac34" />. Eine Position unter <InlineMath math="1" /> wird auf das Minimum und eine Position über <InlineMath math="n" /> auf das Maximum begrenzt. Beim Vergleichen von Ergebnissen muss die verwendete Konvention genannt werden.
+
+### Unteres Quartil
+
+Für das untere Quartil gilt:
+
+<BlockMath math="\text{Position von} Q_1 = \text{Datenpunkt bei}\frac{1}{4}(n+1)" />
+
+- **Ist das Ergebnis ganzzahlig**, zum Beispiel <InlineMath math="5" />, entspricht <InlineMath math="Q_1" /> dem Wert an Position <InlineMath math="5" />.
+- **Liegt das Ergebnis zwischen zwei Positionen**, zum Beispiel bei <InlineMath math="5{,}25" />, befindet sich <InlineMath math="Q_1" /> zwischen Position <InlineMath math="5" /> und Position <InlineMath math="6" />. Wie der genaue Wert interpoliert wird, folgt später. Hier bestimmen wir zunächst nur die Lage.
+
+**Beispiel:**
+
+Nehmen wir <InlineMath math="20" /> Datenwerte an (<InlineMath math="n=20" />).
+
+Die Position von <InlineMath math="Q_1" /> ergibt sich aus <InlineMath math="\frac{1}{4}(20+1)" />. Das entspricht <InlineMath math="\frac{21}{4}" />, also Position <InlineMath math="5{,}25" />.
+
+Damit liegt <InlineMath math="Q_1" /> zwischen Position <InlineMath math="5" /> und Position <InlineMath math="6" />.
+
+### Mittleres Quartil
+
+Das mittlere Quartil ist zugleich der Median:
+
+<BlockMath math="\text{Position von} Q_2 = \text{Datenpunkt bei}\frac{1}{2}(n+1)" />
+
+Es gelten dieselben Regeln wie für <InlineMath math="Q_1" />:
+
+- **Ist das Ergebnis ganzzahlig**, etwa <InlineMath math="10" />, entspricht <InlineMath math="Q_2" /> dem Wert an Position <InlineMath math="10" />.
+- **Liegt das Ergebnis zwischen zwei Positionen**, etwa bei <InlineMath math="10{,}5" />, befindet sich <InlineMath math="Q_2" /> zwischen Position <InlineMath math="10" /> und Position <InlineMath math="11" />.
+
+**Beispiel mit <InlineMath math="n=20" />:**
+
+Die Position von <InlineMath math="Q_2" /> ergibt sich aus <InlineMath math="\frac{1}{2}(20+1)" />. Das entspricht <InlineMath math="\frac{21}{2}" />, also Position <InlineMath math="10{,}5" />.
+
+Damit liegt <InlineMath math="Q_2" />, also der Median, zwischen Position <InlineMath math="10" /> und Position <InlineMath math="11" />.
+
+### Oberes Quartil
+
+Für das obere Quartil gilt entsprechend:
+
+<BlockMath math="\text{Position von} Q_3 = \text{Datenpunkt bei}\frac{3}{4}(n+1)" />
+
+Auch hier gelten dieselben Regeln:
+
+- **Ist das Ergebnis ganzzahlig**, etwa <InlineMath math="15" />, entspricht <InlineMath math="Q_3" /> dem Wert an Position <InlineMath math="15" />.
+- **Liegt das Ergebnis zwischen zwei Positionen**, etwa bei <InlineMath math="15{,}75" />, befindet sich <InlineMath math="Q_3" /> zwischen Position <InlineMath math="15" /> und Position <InlineMath math="16" />.
+
+**Beispiel mit <InlineMath math="n=20" />:**
+
+Die Position von <InlineMath math="Q_3" /> ergibt sich aus <InlineMath math="\frac{3}{4}(20+1)" />. Das entspricht <InlineMath math="\frac{63}{4}" />, also Position <InlineMath math="15{,}75" />.
+
+Damit liegt <InlineMath math="Q_3" /> zwischen Position <InlineMath math="15" /> und Position <InlineMath math="16" />.
+
+## Übung mit Lösung
+
+Bestimme die Positionen von <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> für die Mathematiknoten dieser <InlineMath math="7" /> Schülerinnen und Schüler:
+
+**Ergebnisse:** <InlineMath math="7, 5, 8, 6, 9, 7, 10" />
+
+Versuche die Aufgabe zunächst selbst. Vergleiche deinen Lösungsweg danach mit der vollständigen Rechnung.
+
+**Schritt** <InlineMath math="1" />: Sortiere zuerst die Daten.
+
+Sortierte Daten: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
+
+Anzahl der Datenpunkte: <InlineMath math="n = 7" />
+
+**Schritt** <InlineMath math="2" />: Berechne die Quartilpositionen mit den Formeln.
+
+- **Position von <InlineMath math="Q_1" />:**
+
+  <InlineMath math="\text{Datenpunkt bei}\frac{1}{4}(n+1) = \text{Datenpunkt bei}\frac{1}{4}(7+1) = \text{Datenpunkt bei}\frac{8}{4} = \text{Datenpunkt bei}2" />
+
+  Das Ergebnis ist ganzzahlig (<InlineMath math="2" />). Deshalb liegt <InlineMath math="Q_1" /> an Position <InlineMath math="2" />.
+
+- **Position von <InlineMath math="Q_2" /> (Median):**
+
+  <InlineMath math="\text{Datenpunkt bei}\frac{1}{2}(n+1) = \text{Datenpunkt bei}\frac{1}{2}(7+1) = \text{Datenpunkt bei}\frac{8}{2} = \text{Datenpunkt bei}4" />
+
+  Das Ergebnis ist ganzzahlig (<InlineMath math="4" />). Deshalb liegt <InlineMath math="Q_2" /> an Position <InlineMath math="4" />.
+
+- **Position von <InlineMath math="Q_3" />:**
+
+  <InlineMath math="\text{Datenpunkt bei}\frac{3}{4}(n+1) = \text{Datenpunkt bei}\frac{3}{4}(7+1) = \text{Datenpunkt bei}\frac{24}{4} = \text{Datenpunkt bei}6" />
+
+  Das Ergebnis ist ganzzahlig (<InlineMath math="6" />). Deshalb liegt <InlineMath math="Q_3" /> an Position <InlineMath math="6" />.
+
+**Schritt** <InlineMath math="3" />: Lies die Quartilwerte ab.
+
+Der sortierte Datensatz lautet: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
+
+- <InlineMath math="Q_1" /> liegt an Position <InlineMath math="2" /> und hat den Wert <InlineMath math="6" />.
+- <InlineMath math="Q_2" /> liegt an Position <InlineMath math="4" /> und hat den Wert <InlineMath math="7" />.
+- <InlineMath math="Q_3" /> liegt an Position <InlineMath math="6" /> und hat den Wert <InlineMath math="9" />.
+
+## Das vierte Quartil
+
+Wenn es <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> gibt, liegt die Frage nach <InlineMath math="Q_4" /> nahe.
+
+Quartile teilen die Daten in vier Bereiche. <InlineMath math="Q_1" /> markiert die Grenze bei <InlineMath math="25\%" />, <InlineMath math="Q_2" /> als Median die Grenze bei <InlineMath math="50\%" /> und <InlineMath math="Q_3" /> die Grenze bei <InlineMath math="75\%" />. Die äußere Grenze bei <InlineMath math="100\%" /> entspricht dem **Maximum** des Datensatzes.
+
+Man könnte dieses Maximum als <InlineMath math="Q_4" /> bezeichnen, der Ausdruck <InlineMath math="Q_4" /> wird in der üblichen statistischen Darstellung jedoch kaum verwendet. Im Mittelpunkt stehen <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" />, weil sie die innere Verteilung des Datensatzes beschreiben. Das Minimum wird gelegentlich <InlineMath math="Q_0" /> genannt. Wie <InlineMath math="Q_4" /> ist auch diese äußere Grenze deutlich seltener als <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" />.

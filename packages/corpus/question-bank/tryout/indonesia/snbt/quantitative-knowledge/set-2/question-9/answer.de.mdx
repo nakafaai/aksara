@@ -1,0 +1,80 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Gegeben sei die Matrixgleichung:
+
+<BlockMath math="A \times M = B" />
+
+Dabei sind <InlineMath math="A = \begin{pmatrix} 6 & 3 \\ b & 14 \end{pmatrix}" /> und <InlineMath math="B = \begin{pmatrix} -1 & 2 \\ 4 & 5 \end{pmatrix}" />.
+
+Wir multiplizieren beide Seiten von rechts mit <InlineMath math="M^{-1}" />:
+
+<MathContainer>
+  <BlockMath math="A \times M \times M^{-1} = B \times M^{-1}" />
+  <BlockMath math="A \times I = B \times M^{-1}" />
+  <BlockMath math="A = B \times M^{-1}" />
+</MathContainer>
+
+Nun setzen wir die bekannten Matrizen ein:
+
+<BlockMath math="\begin{pmatrix} 6 & 3 \\ b & 14 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ 4 & 5 \end{pmatrix} \begin{pmatrix} a & 1 \\ 3 & 2 \end{pmatrix}" />
+
+Die Matrixmultiplikation auf der rechten Seite ergibt:
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 6 & 3 \\ b & 14 \end{pmatrix} = \begin{pmatrix} (-1)(a) + (2)(3) & (-1)(1) + (2)(2) \\ (4)(a) + (5)(3) & (4)(1) + (5)(2) \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} 6 & 3 \\ b & 14 \end{pmatrix} = \begin{pmatrix} -a + 6 & -1 + 4 \\ 4a + 15 & 4 + 10 \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} 6 & 3 \\ b & 14 \end{pmatrix} = \begin{pmatrix} -a + 6 & 3 \\ 4a + 15 & 14 \end{pmatrix}" />
+</MathContainer>
+
+Aus der Gleichheit zweier Matrizen erhalten wir:
+
+**Element in Zeile <InlineMath math="1" /> Spalte <InlineMath math="1" />:**
+
+<MathContainer>
+  <BlockMath math="6 = -a + 6" />
+  <BlockMath math="a = 0" />
+</MathContainer>
+
+**Element in Zeile <InlineMath math="2" /> Spalte <InlineMath math="1" />:**
+
+<MathContainer>
+  <BlockMath math="b = 4a + 15" />
+  <BlockMath math="b = 4(0) + 15" />
+  <BlockMath math="b = 15" />
+</MathContainer>
+
+Damit können wir die drei Aussagen prüfen.
+
+#### Aussage eins
+
+Behauptet wird <InlineMath math="a = 2" />. Da wir <InlineMath math="a = 0" /> erhalten haben, ist die Aussage **falsch**.
+
+#### Aussage zwei
+
+Die Aussage lautet <InlineMath math="a + b = 15" />. Wir berechnen <InlineMath math="a + b" />:
+
+<BlockMath math="a + b = 0 + 15 = 15" />
+
+Diese Aussage ist **wahr**.
+
+#### Aussage drei
+
+Die dritte Aussage behauptet, die Determinante der inversen Matrix <InlineMath math="M" /> sei <InlineMath math="3" />.
+Die inverse Matrix <InlineMath math="M" /> ist <InlineMath math="M^{-1} = \begin{pmatrix} a & 1 \\ 3 & 2 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 3 & 2 \end{pmatrix}" />.
+
+Die Determinante von <InlineMath math="M^{-1}" /> ist:
+
+<MathContainer>
+  <BlockMath math="\det(M^{-1}) = (0)(2) - (1)(3)" />
+  <BlockMath math="\det(M^{-1}) = 0 - 3 = -3" />
+</MathContainer>
+
+Da die Determinante <InlineMath math="-3" /> und nicht <InlineMath math="3" /> beträgt, ist diese Aussage **falsch**.
+
+#### Fazit
+
+Die korrekte Reihenfolge lautet **falsch, wahr, falsch**.

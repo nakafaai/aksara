@@ -1,0 +1,199 @@
+export const metadata = {
+  title: "Konjugierte komplexe Zahlen",
+  description:
+    "Bilde das Konjugierte einer komplexen Zahl, deute es als Spiegelung an der reellen Achse und nutze seine Rechenregeln.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Was ist das Konjugierte einer komplexen Zahl?
+
+Zu jeder komplexen Zahl <InlineMath math="z = x + iy" /> gehört ein **Konjugiertes**, das mit <InlineMath math="\bar{z}" /> bezeichnet wird.
+
+Es entsteht, indem **das Vorzeichen des Imaginärteils gewechselt wird**.
+
+## Formale Definition
+
+Ist <InlineMath math="z = x + iy" /> eine komplexe Zahl mit dem Realteil <InlineMath math="x" /> und dem Imaginärteil <InlineMath math="y" />, dann gilt:
+
+<BlockMath math="\bar{z} = x - iy" />
+
+Der Realteil <InlineMath math="x" /> bleibt also unverändert. Nur das Vorzeichen des Imaginärteils <InlineMath math="y" /> wird umgekehrt.
+
+## Beispiele
+
+Die Regel lässt sich direkt auf verschiedene Formen komplexer Zahlen anwenden:
+
+1.  **Wenn** <InlineMath math="z = 2 + i" />
+
+    Hier sind <InlineMath math="x=2" /> und <InlineMath math="y=1" />.
+
+    Damit ist <InlineMath math="\bar{z} = 2 - i" />. Das Vorzeichen des Imaginärteils wechselt von <InlineMath math="+1" /> zu <InlineMath math="-1" />.
+
+2.  **Wenn** <InlineMath math="z = 2" />
+
+    Wir können <InlineMath math="z = 2 + 0i" /> schreiben. Hier sind <InlineMath math="x=2" /> und <InlineMath math="y=0" />.
+
+    Damit ist <InlineMath math="\bar{z} = 2 - 0i = 2" />. Der Imaginärteil ist <InlineMath math="0" />, sodass der Vorzeichenwechsel nichts ändert.
+
+    Das Konjugat einer reellen Zahl ist die reelle Zahl selbst.
+
+3.  **Wenn** <InlineMath math="z = 3 - 2i" />
+
+    Hier sind <InlineMath math="x=3" /> und <InlineMath math="y=-2" />.
+
+    Damit ist <InlineMath math="\bar{z} = 3 - (-2i) = 3 + 2i" />. Das Vorzeichen des Imaginärteils wechselt von <InlineMath math="-2" /> zu <InlineMath math="+2" />.
+
+4.  **Wenn** <InlineMath math="z = 3i" />
+
+    Wir können <InlineMath math="z = 0 + 3i" /> schreiben. Hier sind <InlineMath math="x=0" /> und <InlineMath math="y=3" />.
+
+    Damit ist <InlineMath math="\bar{z} = 0 - 3i = -3i" />. Das Vorzeichen des Imaginärteils wechselt von <InlineMath math="+3" /> zu <InlineMath math="-3" />.
+
+    Das Konjugat einer rein imaginären Zahl ist ihr Negativ.
+
+## Visualisierung des Konjugats
+
+In der komplexen Ebene ist <InlineMath math="\bar{z}" /> die **Spiegelung** von <InlineMath math="z" /> an der **reellen Achse**, also der <InlineMath math="x" />-Achse.
+
+<LineEquation
+  title={
+    <>
+      <InlineMath math="z=3+2i" /> und sein Konjugiertes{" "}
+      <InlineMath math="\bar{z} = 3-2i" />
+    </>
+  }
+  description={
+    <>
+      <InlineMath math="z" /> und <InlineMath math="\bar{z}" /> liegen
+      spiegelbildlich zur reellen Achse.
+    </>
+  }
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 2, z: 0 },
+      ],
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="z=3+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: -2, z: 0 },
+      ],
+      color: "#65a30d",
+      labels: [{ text: <InlineMath math="\bar{z}=3-2i" />, at: 1, offset: [0.5, -0.5, 0] }],
+      cone: { position: "end" },
+    },
+    // Reelle Achse als Spiegelgerade (optional)
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 },
+      ],
+      color: "#d97706",
+    },
+  ]}
+/>
+
+## Wann ist eine Zahl gleich ihrem Konjugierten?
+
+Kann eine komplexe Zahl <InlineMath math="z=x+iy" /> gleich ihrem Konjugierten <InlineMath math="\bar{z}=x-iy" /> sein? Entscheidend ist der Imaginärteil.
+
+**Herleitung:**
+
+Aus <InlineMath math="z = \bar{z}" /> folgt:
+
+<BlockMath math="x+iy = x-iy" />
+
+Die Gleichung kann nur gelten, wenn <InlineMath math="iy = -iy" />, also <InlineMath math="2iy = 0" /> ist.
+
+Da <InlineMath math="i \neq 0" /> gilt, muss <InlineMath math="y=0" /> sein.
+
+Eine komplexe Zahl ist somit **genau dann gleich ihrem Konjugierten, wenn ihr Imaginärteil null ist**. Anders gesagt: **Die Zahl muss reell sein**.
+
+## Rechenregeln der Konjugation
+
+Für beliebige komplexe Zahlen <InlineMath math="z, z_1," /> und <InlineMath math="z_2" /> gelten die folgenden Rechenregeln.
+
+### Summe und Differenz
+
+Das Konjugierte einer Summe oder Differenz erhält man, indem jeder Summand einzeln konjugiert wird.
+
+<MathContainer>
+  <BlockMath math="\overline{z_1 + z_2} = \bar{z_1} + \bar{z_2}" />
+  <BlockMath math="\overline{z_1 - z_2} = \bar{z_1} - \bar{z_2}" />
+</MathContainer>
+
+### Produkt und Quotient
+
+Dasselbe Prinzip gilt für Produkte und, sofern der Nenner nicht null ist, für Quotienten.
+
+<MathContainer>
+  <BlockMath math="\overline{z_1 \times z_2} = \bar{z_1} \times \bar{z_2}" />
+  <BlockMath math="\overline{\left( \frac{z_1}{z_2} \right)} = \frac{\bar{z_1}}{\bar{z_2}}, \quad \text{für} z_2 \neq 0" />
+</MathContainer>
+
+### Inverse
+
+Das Konjugieren und das Bilden des Kehrwerts können in beliebiger Reihenfolge ausgeführt werden.
+
+<BlockMath math="\overline{z^{-1}} = (\bar{z})^{-1}, \quad z \neq 0" />
+
+### Doppelkonjugat
+
+Zweimaliges Konjugieren führt zur ursprünglichen Zahl zurück.
+
+<BlockMath math="\overline{(\bar{z})} = z" />
+
+### Relation mit Real- und Imaginärteilen
+
+Summe und Differenz einer komplexen Zahl mit ihrem Konjugierten isolieren Real- und Imaginärteil:
+
+<MathContainer>
+  <BlockMath math="z + \bar{z} = 2 \text{Re}(z)" />
+  <BlockMath math="z - \bar{z} = 2i \text{Im}(z)" />
+</MathContainer>
+
+### Multiplikation durch Konjugat
+
+Das Produkt einer komplexen Zahl mit ihrem Konjugierten ist das Quadrat ihres Betrags und damit eine nichtnegative reelle Zahl.
+
+<BlockMath math="z \times \bar{z} = (\text{Re}(z))^2 + (\text{Im}(z))^2 = |z|^2" />
+
+## Übung
+
+Bestimme das Konjugierte der folgenden komplexen Zahlen.
+
+1. <InlineMath math="2+i^2" />
+2. <InlineMath math="1+\frac{1}{i}" />
+3. <InlineMath math="1+2i" />
+
+### Ausführliche Lösungen
+
+1. Zuerst wird die komplexe Zahl vereinfacht:
+
+   <InlineMath math="z = 2+i^2 = 2+(-1) = 1" />. Da <InlineMath math="z=1" /> eine
+   reelle Zahl ist, lässt sie sich als <InlineMath math="1+0i" /> schreiben.
+
+   Ihr Konjugiertes ist daher <InlineMath math="\bar{z} = 1" />.
+
+2. Auch hier wird zuerst vereinfacht.
+
+   Dazu wird der Nenner mit <InlineMath math="-i" /> rationalisiert:
+
+   <BlockMath math="\frac{1}{i} = \frac{1}{i} \times \frac{-i}{-i} = \frac{-i}{-i^2} = \frac{-i}{-(-1)} = \frac{-i}{1} = -i" />
+
+   Also ist <InlineMath math="z = 1 + \frac{1}{i} = 1 - i" />.
+
+   Das Konjugierte lautet <InlineMath math="\bar{z} = 1 - (-i) = 1 + i" />.
+
+3. <InlineMath math="z = 1+2i" />.
+
+   Nach der Definition gilt direkt <InlineMath math="\bar{z} = 1 - 2i" />.

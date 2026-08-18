@@ -1,0 +1,36 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 7",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-19",
+};
+
+Wir führen vier Propositionen ein:
+
+- <InlineMath math="p" /> bedeutet <InlineMath math="A=B" />.
+- <InlineMath math="q" /> bedeutet <InlineMath math="C\neq D" />.
+- <InlineMath math="r" /> bedeutet <InlineMath math="E=F" />.
+- <InlineMath math="s" /> bedeutet <InlineMath math="G=H" />.
+
+Damit lauten die Prämissen:
+
+<MathContainer>
+  <BlockMath math="p\lor q" />
+  <BlockMath math="\neg r\lor s" />
+  <BlockMath math="\neg q\lor\neg s" />
+</MathContainer>
+
+#### Zwischenpropositionen Eliminieren
+
+Die Resolution der ersten und dritten Prämisse über <InlineMath math="q" /> ergibt:
+
+<MathContainer>
+  <BlockMath math="(p\lor q),(\neg q\lor\neg s)\Longrightarrow p\lor\neg s" />
+</MathContainer>
+
+Nun lösen wir dieses Ergebnis mit der zweiten Prämisse über <InlineMath math="s" /> auf:
+
+<MathContainer>
+  <BlockMath math="(p\lor\neg s),(\neg r\lor s)\Longrightarrow p\lor\neg r" />
+</MathContainer>
+
+In den ursprünglichen Aussagen bedeutet <InlineMath math="p\lor\neg r" /> daher **<InlineMath math="A=B" /> oder <InlineMath math="E\neq F" />**.

@@ -1,3 +1,4 @@
+import { FileSystem, Path } from "@effect/platform";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
@@ -11,6 +12,7 @@ import {
   ArtifactLocaleSchema,
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
+import type { QuestionChoices } from "@nakafa/aksara-contracts/projection/question";
 import {
   type QuestionBodyKind,
   questionKeyParts,
@@ -20,12 +22,14 @@ import {
   questionArtifactLocalesForSection,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect, Schema } from "effect";
+import { CANDIDATE_APP_LOCALE_CODES } from "#corpus/locale/lifecycle";
 import {
   decodeQuestionDocumentPath,
   indexQuestionBanks,
 } from "#corpus/question-bank/path";
 import {
   discoverQuestionSources,
+  QuestionReadError,
   type QuestionSource,
   QuestionSourceSchema,
   readQuestionSource,
@@ -33,7 +37,7 @@ import {
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const QuestionEntryBaseSchema = Schema.extend(
-  QuestionSourceSchema.pipe(Schema.omit("choices")),
+  QuestionSourceSchema.pipe(Schema.omit("choices", "files")),
   Schema.Struct({
     artifactLocale: ArtifactLocaleSchema,
     contentKey: ContentKeySchema,
@@ -66,6 +70,21 @@ const QuestionEntrySchema = Schema.Union(
   QuestionAnswerEntrySchema
 );
 export type QuestionEntry = typeof QuestionEntrySchema.Type;
+
+/** Complete authored question or answer body joined with canonical choices. */
+export type QuestionDocumentSource = Omit<QuestionEntry, "sourceRoot"> & {
+  readonly choices: QuestionChoices;
+  readonly rawMdx: string;
+};
+
+/** One selected prompt or answer with its exact source-owned compile closure. */
+export interface QuestionContentSelection {
+  readonly entries:
+    | readonly [QuestionEntry]
+    | readonly [QuestionEntry, QuestionEntry];
+  readonly selected: QuestionEntry;
+  readonly source: QuestionSource;
+}
 
 /** Projects one exact body and locale from its decoded question source. */
 function projectQuestionEntry(
@@ -102,6 +121,26 @@ function projectQuestionEntry(
   } satisfies QuestionEntry;
 }
 
+/** Builds one selected question closure from an already decoded source row. */
+export function questionContentForEntry(
+  source: QuestionSource,
+  selected: QuestionEntry
+): QuestionContentSelection {
+  if (selected.bodyKind === "question") {
+    return { entries: [selected], selected, source };
+  }
+  const { sectionKey } = questionKeyParts(source.questionKey);
+  const appLocale = AppLocaleSchema.make(
+    artifactLocaleCode(selected.artifactLocale)
+  );
+  const prompt = projectQuestionEntry(
+    source,
+    "question",
+    questionArtifactLocaleForSection(sectionKey, appLocale)
+  );
+  return { entries: [prompt, selected], selected, source };
+}
+
 /** Projects discovered question sources into the canonical body registry. */
 function projectQuestionEntries(sources: readonly QuestionSource[]) {
   return sources
@@ -123,6 +162,34 @@ function projectQuestionEntries(sources: readonly QuestionSource[]) {
     .sort(compareContentHeads);
 }
 
+/** Projects only candidate bodies that are physically present in each source. */
+function projectCandidateQuestionEntries(sources: readonly QuestionSource[]) {
+  return sources
+    .flatMap((source) => {
+      const { sectionKey } = questionKeyParts(source.questionKey);
+      return CANDIDATE_APP_LOCALE_CODES.flatMap((appLocaleCode) => {
+        const answerLocale = ArtifactLocaleSchema.make(appLocaleCode);
+        const promptLocale = questionArtifactLocaleForSection(
+          sectionKey,
+          AppLocaleSchema.make(appLocaleCode)
+        );
+        const candidates = [
+          source.files.includes(`answer.${appLocaleCode}.mdx`)
+            ? projectQuestionEntry(source, "answer", answerLocale)
+            : undefined,
+          artifactLocaleCode(promptLocale) === appLocaleCode &&
+          source.files.includes(`question.${appLocaleCode}.mdx`)
+            ? projectQuestionEntry(source, "question", promptLocale)
+            : undefined,
+        ];
+        return candidates.filter(
+          (entry): entry is QuestionEntry => entry !== undefined
+        );
+      });
+    })
+    .sort(compareContentHeads);
+}
+
 /** Discovers every question once and returns its canonical body registry. */
 export const loadQuestionContent = Effect.fn(
   "AksaraCorpus.loadQuestionContent"
@@ -130,7 +197,8 @@ export const loadQuestionContent = Effect.fn(
   const questionBanks = yield* indexQuestionBanks(tryoutSources);
   const sources = yield* discoverQuestionSources(corpusRoot, questionBanks);
   const entries = projectQuestionEntries(sources);
-  return { entries, questionBanks, sources };
+  const candidateEntries = projectCandidateQuestionEntries(sources);
+  return { candidateEntries, entries, questionBanks, sources };
 });
 
 /** Loads only the selected question and its required compilation bodies. */
@@ -149,33 +217,26 @@ export const selectQuestionContent = Effect.fn(
     location.bodyKind,
     location.artifactLocale
   );
-  if (selected.bodyKind === "question") {
-    return {
-      entries: [selected],
-      selected,
-      source,
-    } satisfies {
-      readonly entries: readonly [typeof selected];
-      readonly selected: typeof selected;
-      readonly source: typeof source;
-    };
-  }
-  const { sectionKey } = questionKeyParts(source.questionKey);
-  const appLocale = AppLocaleSchema.make(
-    artifactLocaleCode(location.artifactLocale)
-  );
-  const prompt = projectQuestionEntry(
-    source,
-    "question",
-    questionArtifactLocaleForSection(sectionKey, appLocale)
-  );
-  return {
-    entries: [prompt, selected],
-    selected,
-    source,
-  } satisfies {
-    readonly entries: readonly [typeof prompt, typeof selected];
-    readonly selected: typeof selected;
-    readonly source: typeof source;
-  };
+  return questionContentForEntry(source, selected);
+});
+
+/** Reads one registry-owned question body from its exact reviewed source path. */
+export const readQuestionDocument = Effect.fn(
+  "AksaraCorpus.readQuestionDocument"
+)(function* <Entry extends QuestionEntry>(
+  corpusRoot: string,
+  entry: Entry,
+  choices: QuestionChoices
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const rawMdx = yield* fileSystem
+    .readFileString(path.join(corpusRoot, entry.sourcePath), "utf8")
+    .pipe(
+      Effect.mapError(
+        (cause) => new QuestionReadError({ cause, path: entry.sourcePath })
+      )
+    );
+  const { sourceRoot: _sourceRoot, ...document } = entry;
+  return { ...document, choices, rawMdx } satisfies QuestionDocumentSource;
 });

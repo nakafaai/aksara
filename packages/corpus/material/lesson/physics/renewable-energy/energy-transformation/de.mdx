@@ -1,0 +1,122 @@
+
+export const metadata = {
+  title: "Energieumwandlung",
+  description:
+    "Verfolge die Umwandlung natürlicher Energiequellen in elektrische Energie und unterscheide Nutzenergie, dissipierte Energie und Wirkungsgrad.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-27",
+  subject: "Erneuerbare Energie",
+};
+
+## Eine Anlage wird anhand ihrer Umwandlungskette verstanden
+
+**Energieumwandlung** bedeutet, dass Energie von einer Form in eine andere übergeht. Dabei entsteht keine Energie aus dem Nichts. Nach dem Energieerhaltungsgesetz ändern sich lediglich ihre Form und ihr Übertragungsweg.
+
+Die U.S. Energy Information Administration (EIA) erklärt, dass Energie bei ihrer Nutzung weder erzeugt noch zerstört wird, sondern ihre Form wechselt. Bei jeder Umwandlung entsteht neben der gewünschten Nutzenergie auch Energie, die dem Zweck des Geräts nicht dient. Die EIA fasst diesen Zusammenhang auf ihrer Seite über die [Gesetze der Energie](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php) zusammen.
+
+Eine Energietechnologie lässt sich am besten verstehen, indem wir ihre Umwandlungskette aufschreiben.
+
+<BlockMath math="\text{Energiequelle} \rightarrow \text{Ausgangsform} \rightarrow \text{Umwandlungsanlage} \rightarrow \text{Nutzenergie}+\text{dissipierte Energie}" />
+
+Dissipierte Energie ist nicht verloren. Sie verteilt sich in der Umgebung, etwa als Wärme, Schall, Vibration oder reflektiertes Licht.
+
+## Umwandlungspfade in Kraftwerken
+
+Das folgende Diagramm hilft uns, eine einfache Frage zu stellen: Was wird aus Energie aus der Natur, bevor wir sie nutzen?
+
+<Mermaid
+  title="Kraftwerke wandeln Energie stufenweise um"
+  description="Die Darstellung verfolgt Energie von der natürlichen Quelle über die Umwandlungsanlage bis zur Nutzenergie."
+  chart={`flowchart TD
+    A["Natürliche Quelle"] --> B["Anfängliche Energieform"]
+    B --> C["Umwandlungsanlage"]
+    C --> D["Nutzenergie"]
+    C --> E["Dissipierte Energie"]`}/>
+
+Für Wasserkraft beschreibt das US-Energieministerium (DOE) folgende Kette: Wasser fließt durch eine Druckrohrleitung und dreht die Turbinenschaufeln. Die Turbine treibt einen Generator an, der Strom erzeugt. Mehr dazu steht auf der DOE-Seite über die [Funktionsweise von Wasserkraft](https://www.energy.gov/cmei/water/how-hydropower-works).
+
+Bei Windkraft setzt der Wind die Rotorblätter in Bewegung. Der Rotor treibt einen Generator an, der Strom erzeugt. Das DOE erläutert diese Kette auf seiner Seite über die [Funktionsweise von Windkraftanlagen](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work).
+
+<WindEnergyConversionLab
+  title={<>Energieumwandlung in einer Windkraftanlage</>}
+  description={
+    <>
+      Verändere die Windgeschwindigkeit, beobachte die Drehung des Rotors und
+      verfolge den Weg von bewegter Luft zu elektrischer Energie.
+    </>
+  }
+  labels={{
+    flow: <>Wind dreht den Rotor, der Rotor treibt den Generator an und elektrische Energie wird abgegeben.</>,
+    flowLabel: "Umwandlungskette",
+    meaning: <>Eine höhere Windgeschwindigkeit beschleunigt den Rotor. Die reale Leistung bleibt jedoch durch Anlage und Standort begrenzt.</>,
+    meaningLabel: "Physikalische Bedeutung",
+    speedControl: "Windgeschwindigkeit",
+    speedUnit: "m/s",
+    viewLabel: "Modell zur Windenergieumwandlung",
+  }}
+/>
+
+Bei einem Photovoltaikmodul wandelt die Solarzelle Sonnenlicht direkt in Strom um. Zur Stromerzeugung tragen jedoch nur die Photonen bei, die das Halbleitermaterial absorbiert. Die EIA erklärt den Vorgang auf ihrer Seite über [Photovoltaik und Elektrizität](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php).
+
+| Technologie | Hauptumwandlungskette | Häufige Formen dissipierter Energie |
+| :--------- | :------------------- | :---------------------------------- |
+| Wasserkraftwerk | <InlineMath math="\text{potenzielle Energie des Wassers}\rightarrow\text{Wasserbewegung}\rightarrow\text{Turbine}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Wärme, Schall, Vibration |
+| Windkraftanlage | <InlineMath math="\text{kinetische Energie des Windes}\rightarrow\text{Turbine}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Schall, Vibration, Bauteilwärme |
+| Photovoltaik-Solarpanel | <InlineMath math="\text{Sonneneinstrahlung}\rightarrow\text{Strom}" /> | reflektiertes Licht und Wärme |
+| Biomasse | <InlineMath math="\text{chemische Energie}\rightarrow\text{Verbrennung}\rightarrow\text{Wärme}\rightarrow\text{Turbine}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Abwärme, Abgase, Schall |
+| Biogas | <InlineMath math="\text{chemische Energie}\rightarrow\text{Verbrennung in Motor oder Turbine}\rightarrow\text{Wellenbewegung}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Abwärme, Abgase, Schall |
+| Geothermie | <InlineMath math="\text{Wärmeenergie des Reservoirs}\rightarrow\text{bewegter Dampf oder Arbeitsstoff}\rightarrow\text{Turbine}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Abwärme und Systemreibung |
+
+Das DOE beschreibt, wie Bioenergietechnologien Biomasse durch Verbrennung, bakteriellen Abbau oder die Umwandlung in gasförmige und flüssige Brennstoffe für Wärme und Strom nutzen. Einzelheiten stehen in der DOE-Erklärung zu [Bioenergie für Wärme und Elektrizität](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity).
+
+Geothermiekraftwerke nutzen heiße Flüssigkeiten oder Dampf aus dem Untergrund, um Turbinen anzutreiben und Strom zu erzeugen. Das DOE erläutert dies auf seiner Seite über [geothermische Stromerzeugung](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation).
+
+## Der Wirkungsgrad zeigt den nutzbaren Anteil
+
+Da nicht die gesamte zugeführte Energie zur gewünschten Nutzenergie wird, verwenden wir den **Wirkungsgrad**. Er vergleicht Nutzenergie und zugeführte Energie.
+
+<BlockMath math="\eta=\frac{E_{\text{nützlich}}}{E_{\text{zugeführt}}}\times 100\%" />
+
+Symbolanleitung:
+
+| Symbol | Bedeutung |
+| :----- | :------ |
+| <InlineMath math="\eta" /> | Wirkungsgrad |
+| <InlineMath math="E_{\text{nützlich}}" /> | Energie, die dem Zweck des Geräts entspricht |
+| <InlineMath math="E_{\text{zugeführt}}" /> | dem Gerät zugeführte Energie |
+
+Angenommen, ein Solarmodul empfängt <InlineMath math="800 \text{ J}" /> Strahlungsenergie und gibt <InlineMath math="160 \text{ J}" /> elektrische Energie ab. Sein Wirkungsgrad beträgt:
+
+<BlockMath math="\begin{aligned}
+\eta
+&= \frac{E_{\text{nützlich}}}{E_{\text{zugeführt}}}\times 100\% \\
+&= \frac{160 \text{ J}}{800 \text{ J}}\times 100\% \\
+&= 20\%
+\end{aligned}" />
+
+Die Energie, die nicht in nutzbaren Strom umgewandelt wird, ist:
+
+<BlockMath math="\begin{aligned}
+E_{\text{dissipiert}}
+&= E_{\text{zugeführt}}-E_{\text{nützlich}} \\
+&= 800 \text{ J}-160 \text{ J} \\
+&= 640 \text{ J}
+\end{aligned}" />
+
+Ein Wirkungsgrad von <InlineMath math="20\%" /> bedeutet nicht, dass die übrigen <InlineMath math="80\%" /> verschwinden. Diese Energie gelangt an die Umgebung, etwa als Wärme oder als Licht, das das Modul nicht absorbiert.
+
+Die EIA nutzt den Wirkungsgrad, um die technische Leistung energieumwandelnder und energieverbrauchender Geräte zu beschreiben. Weitere Beispiele bietet ihre Seite über [Energieeffizienz und Energieeinsparung](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php).
+
+## Nicht beim Gerätenamen stehen bleiben
+
+Gerätenamen lassen die Energieumwandlung oft einfacher erscheinen, als sie ist. Solarmodule, Windkraftanlagen, Generatoren und Biogasreaktoren erzeugen keine Energie. Sie lenken vorhandene Energie in eine andere Form.
+
+| Wenn diese Technik genannt wird | Dann ist zu fragen |
+| :---------------- | :------- |
+| Solarpanel | Wie viel Strahlungsenergie wird zu Strom? |
+| Windkraftanlage | Ist der Wind schnell genug, um den Rotor zu drehen? |
+| Wasserkraftwerk | Wie groß sind der Wasserdurchfluss und der Höhenunterschied? |
+| Biomasse | Ist der Rohstoff ausreichend und wird nachhaltig bewirtschaftet? |
+| Erdwärme | Verfügt der Standort über genügend Wärme-, Flüssigkeits- und Strömungswege? |
+
+Die Umwandlungskette ermöglicht eine genaue Beurteilung: Welche Quelle liefert die Energie? In welcher Form liegt sie zunächst vor? In welche Form wandelt die Anlage sie um? Und welcher Anteil ist tatsächlich nutzbar?

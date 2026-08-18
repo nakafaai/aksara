@@ -1,0 +1,172 @@
+
+export const metadata = {
+  title: "Eigenschaften subatomarer Teilchen",
+  description:
+    "Ladung, Masse und Aufenthaltsbereich von Protonen, Neutronen und Elektronen vergleichen und damit Atomsymbole sicher lesen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-28",
+  subject: "Atomstruktur",
+};
+
+## Drei Eigenschaften zum Lesen
+
+Wir kennen bereits die drei Teilchen, aus denen Atome bestehen: **Protonen**, **Neutronen** und **Elektronen**. Jetzt geht es nicht mehr darum, „wer sie entdeckt hat“, sondern darum, **welche Eigenschaften sie auszeichnen**.
+
+Drei Eigenschaften sind für einfache Atommodelle besonders wichtig:
+
+- **Ladung**, das elektrische Vorzeichen des Teilchens
+- **Masse**, wie viel das Teilchen zur Atommasse beiträgt
+- **Aufenthaltsbereich**, der Bereich des Atoms, in dem sich das Teilchen befindet
+
+OpenStax fasst Ladung, Masse und Aufenthaltsbereich der Teilchen im Abschnitt [Properties of Subatomic Particles](https://openstax.org/books/chemistry-atoms-first-2e/pages/2-3-atomic-structure-and-symbolism) zusammen.
+
+Präzisere Konstanten stehen im [CODATA 2022 Wall Chart von NIST](https://physics.nist.gov/cuu/pdf/wall_2022.pdf).
+
+## Teilcheneigenschaften im Modell
+
+Wechsle unten zwischen den drei Eigenschaften. Achte zuerst auf das jeweilige Muster: Ablenkungsrichtung, Massenvergleich und Aufenthaltsbereich im Atom.
+
+<SubatomicParticlePropertiesLab
+  title={<>Karte der Eigenschaften subatomarer Teilchen</>}
+  description={
+    <>
+      Eine gemeinsame Darstellung für Ladung, Masse und Aufenthaltsbereich von
+      Protonen, Neutronen und Elektronen.
+    </>
+  }
+  labels={{
+    chooseMode: "Teilcheneigenschaft auswählen",
+    scene: {
+      electron: "Elektron",
+      electronRegion: "Elektronenregion",
+      negativePlate: (
+        <>
+          Negative Elektrode <InlineMath math="-" />
+        </>
+      ),
+      neutron: "Neutron",
+      nucleus: "Kern",
+      positivePlate: (
+        <>
+          Positive Elektrode <InlineMath math="+" />
+        </>
+      ),
+      proton: "Proton",
+    },
+    modes: {
+      charge: {
+        tab: "Ladung",
+        summary: (
+          <>
+            Protonen sind positiv, Elektronen negativ und Neutronen neutral. In
+            einem elektrischen Feld bestimmt das Ladungsvorzeichen die Richtung
+            der Ablenkung.
+          </>
+        ),
+        facts: [
+          { label: "Proton", value: <InlineMath math="+1" /> },
+          { label: "Neutron", value: <InlineMath math="0" /> },
+          { label: "Elektron", value: <InlineMath math="-1" /> },
+        ],
+      },
+      mass: {
+        tab: "Masse",
+        summary: (
+          <>
+            Protonen und Neutronen haben nahezu dieselbe Masse. Der Balken für
+            Elektronen ist vergrößert, weil Elektronen sehr viel leichter sind.
+          </>
+        ),
+        facts: [
+          { label: "Proton", value: <InlineMath math="1{,}0073\\ \\text{u}" /> },
+          { label: "Neutron", value: <InlineMath math="1{,}0087\\ \\text{u}" /> },
+          { label: "Elektron", value: <InlineMath math="0{,}00055\\ \\text{u}" /> },
+        ],
+      },
+      location: {
+        tab: "Aufenthaltsbereich",
+        summary: (
+          <>
+            Protonen und Neutronen befinden sich im Kern. Elektronen halten sich
+            im Raum um den Kern auf, nicht auf festen Bahnen wie Züge auf Schienen.
+          </>
+        ),
+        facts: [
+          { label: "Kern", value: <InlineMath math="p^+ + n^0" /> },
+          { label: "Außerhalb des Kerns", value: <InlineMath math="e^-" /> },
+          { label: "Rolle", value: "Identität, Masse und Reaktionen" },
+        ],
+      },
+    },
+  }}
+/>
+
+## Die Ladung bestimmt die Ablenkungsrichtung
+
+Elektrische Ladung kann als „Wechselwirkungszeichen“ eines Teilchens gelesen werden. Ein Proton ist positiv, ein Elektron negativ und ein Neutron hat keine Gesamtladung.
+
+Proton und Elektron haben die gleiche Ladungsgröße, aber entgegengesetzte Vorzeichen:
+
+<BlockMath math="e = 1{,}602176634 \times 10^{-19}\ \text{C}" />
+
+Das bedeutet:
+
+- Ein Proton hat die Ladung <InlineMath math="+e" />
+- Ein Elektron hat die Ladung <InlineMath math="-e" />
+- Ein Neutron hat die Ladung <InlineMath math="0" />
+
+In einem elektrischen Feld spürt ein geladenes Teilchen eine Kraft. Die Kurzfassung lautet:
+
+<BlockMath math="F = qE" />
+
+Das Symbol <InlineMath math="q" /> steht für die Teilchenladung, <InlineMath math="E" /> für das elektrische Feld. Bei positivem <InlineMath math="q" /> zeigt die Kraft in Feldrichtung, bei negativem <InlineMath math="q" /> in die Gegenrichtung. Für <InlineMath math="q = 0" /> wird das Teilchen in diesem einfachen Modell nicht abgelenkt.
+
+Ein elektrisches Feld lässt sich mit Wind vergleichen, den nur geladene Objekte spüren. Protonen und Elektronen erfahren einen Schub in entgegengesetzte Richtungen. Ein neutrales Neutron bewegt sich in diesem einfachen Bild gerade weiter.
+
+## Die Masse beeinflusst die Bewegungsänderung
+
+Subatomare Teilchenmassen sind winzig, daher verwenden wir oft die **einheitliche Atommasseneinheit**, geschrieben als <InlineMath math="\text{u}" />. Sie wird aus der Masse eines <InlineMath math="{}^{12}_{6}\mathrm{C}" />-Atoms definiert.
+
+| Teilchen | Relative Ladung | Relative Masse | Absolute Masse | Hauptbereich |
+| :------- | :-------------- | :------------ | :------------ | :------------ |
+| Proton | <InlineMath math="+1" /> | <InlineMath math="1{,}0073\ \text{u}" /> | <InlineMath math="1{,}67262 \times 10^{-24}\ \text{g}" /> | Kern |
+| Neutron | <InlineMath math="0" /> | <InlineMath math="1{,}0087\ \text{u}" /> | <InlineMath math="1{,}67493 \times 10^{-24}\ \text{g}" /> | Kern |
+| Elektron | <InlineMath math="-1" /> | <InlineMath math="0{,}00055\ \text{u}" /> | <InlineMath math="9{,}10939 \times 10^{-28}\ \text{g}" /> | Raum um den Kern |
+
+Die Tabelle zeigt zwei wichtige Ideen. Erstens sind Protonen und Neutronen fast gleich schwer. Zweitens sind Elektronen im Vergleich zu Protonen und Neutronen extrem leicht.
+
+Ein einfacher Vergleich ist:
+
+<BlockMath math="\frac{m_p}{m_e} \approx 1836" />
+
+Ein Proton hat also ungefähr die gleiche Masse wie <InlineMath math="1836" /> Elektronen. Deshalb stammt fast die gesamte Atommasse vom Kern und nicht von den Elektronen.
+
+Erhalten zwei Gegenstände denselben Stoß, ändert ein Tennisball seine Bewegung leichter als eine Bowlingkugel. Der Vergleich bezieht sich nur auf die Masse, nicht auf die Form eines Teilchens. Weil ein Elektron viel leichter ist, verändert eine Kraft seine Bewegung stärker als die eines Protons.
+
+## Der Aufenthaltsbereich prägt die Rolle
+
+Der Aufenthaltsbereich eines Teilchens hängt mit seiner chemischen Rolle zusammen.
+
+| Teilchen | Aufenthaltsbereich | Typische Rolle in der Chemie |
+| :------- | :------- | :--------- |
+| Proton | Kern | Bestimmt die Elementidentität. |
+| Neutron | Kern | Fügt Masse hinzu und unterscheidet Isotope. |
+| Elektron | Raum um den Kern | Beeinflusst stark Reaktionen und Ionenbildung. |
+
+Die Anzahl der Protonen bestimmt das Element. Ein Atom mit <InlineMath math="6" /> Protonen ist beispielsweise Kohlenstoff. Wenn sich die Neutronenzahl ändert, ist das Element immer noch Kohlenstoff, aber das Isotop ist ein anderes. Ändert sich die Elektronenzahl, wird das Atom zum Ion.
+
+Bei einem neutralen Atom ist die Anzahl der Protonen und Elektronen gleich:
+
+<BlockMath math="\text{neutrales Atom} \Rightarrow p^+ = e^-" />
+
+Die Gleichung sagt nicht, dass Protonen und Elektronen dieselbe Masse besitzen. Sie sagt nur, dass sich positive und negative Gesamtladung ausgleichen.
+
+## Bereit für Atomsymbole
+
+Atomsymbole verwenden drei wichtige Informationen. Auf der Seite [Atomsymbole](./atomsymbol) stehen sie rund um das Elementsymbol. Die Teilcheneigenschaften zeigen, wie diese Angaben zu lesen sind:
+
+- die Anzahl der Protonen wird als **Ordnungszahl** gelesen
+- die Anzahl der Protonen plus Neutronen wird als **Massenzahl** gelesen
+- die Differenz zwischen Protonen und Elektronen wird als **Ionenladung** gelesen
+
+Die Tabelle sollte nicht als Sammlung einzelner Zahlen im Gedächtnis bleiben. Entscheidend ist der Zusammenhang: **Protonen bestimmen die Identität**, **Neutronen tragen zur Masse bei** und **Elektronen bestimmen die äußere Ladung des Atoms**.

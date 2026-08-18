@@ -1,3 +1,7 @@
+import {
+  ACTIVE_APP_LOCALES,
+  type ActiveAppLocaleList,
+} from "@nakafa/aksara-contracts/locale";
 import type { QuranSourceArtifact } from "@nakafa/aksara-contracts/quran/source";
 import { Chunk, Effect, Stream } from "effect";
 
@@ -15,8 +19,11 @@ export interface VerifiedQuranSource {
 /** Loads exact official bytes and validates their complete semantic registry. */
 export const loadVerifiedQuranSource = Effect.fn(
   "AksaraCorpus.loadVerifiedQuranSource"
-)(function* (checkoutRoot: string) {
-  const loaded = yield* loadPinnedQuranSources(checkoutRoot);
+)(function* (
+  checkoutRoot: string,
+  activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
+) {
+  const loaded = yield* loadPinnedQuranSources(checkoutRoot, activeAppLocales);
   const parsed = yield* parseQuranSources(loaded.sources);
   const surahs = Chunk.toReadonlyArray(
     yield* streamQuranRegistry(Stream.fromIterable(parsed)).pipe(

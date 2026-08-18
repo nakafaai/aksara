@@ -1,0 +1,58 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-23",
+};
+
+Wir berechnen zunächst das normale Einkommen und bestimmen dann den neuen Preis und die neue Verkaufsmenge, sodass das Einkommen gleich bleibt, der Umsatz jedoch steigt.
+
+#### Berechnung des normalen Einkommens
+
+Das normale Einkommen (<InlineMath math="I_{\text{normal}}" />) beträgt:
+
+<MathContainer>
+  <BlockMath math="I_{\text{normal}} = \text{Preis} \times \text{Verkaufte Menge}" />
+  <BlockMath math="I_{\text{normal}} = 12{.}000 \times 200" />
+  <BlockMath math="I_{\text{normal}} = 2{.}400{.}000" />
+</MathContainer>
+
+#### Bestimmung der Beziehung zwischen Preis und Neuverkäufen
+
+Sei <InlineMath math="x" /> die Anzahl der Preissenkungen von <InlineMath math="\text{Rp}1{.}000{,}00" />.
+- Neuer Preis: <InlineMath math="H = 12{.}000 - 1{.}000x" />
+- Neue verkaufte Menge: <InlineMath math="J = 200 + 20x" />
+
+Wir möchten, dass das Einkommen gleich bleibt (<InlineMath math="\text{Rp}2{.}400{.}000{,}00" />):
+
+<MathContainer>
+  <BlockMath math="H \times J = 2{.}400{.}000" />
+  <BlockMath math="(12{.}000 - 1{.}000x)(200 + 20x) = 2{.}400{.}000" />
+</MathContainer>
+
+Wir vereinfachen, indem wir die Faktoren dividieren (z. B. durch <InlineMath math="1{.}000" /> für den Preis und durch <InlineMath math="20" /> für die Menge):
+
+<MathContainer>
+  <BlockMath math="(12 - x)(10 + x) = \frac{2{.}400{.}000}{1{.}000 \times 20}" />
+  <BlockMath math="(12 - x)(10 + x) = 120" />
+  <BlockMath math="120 + 12x - 10x - x^2 = 120" />
+  <BlockMath math="2x - x^2 = 0" />
+  <BlockMath math="x(2 - x) = 0" />
+</MathContainer>
+
+Wir erhalten zwei Lösungen:
+1. <InlineMath math="x = 0" /> (Normaler Zustand, keine Änderung)
+2. <InlineMath math="x = 2" /> (Preissenkung erfolgt)
+
+Da der Shop-Inhaber den Umsatz **steigern** möchte, wählen wir <InlineMath math="x = 2" />.
+
+#### Berechnung der Anzahl der verkauften Eiskaffees
+
+Ersetzen Sie <InlineMath math="x = 2" /> in der neuen Mengenformel:
+
+<MathContainer>
+  <BlockMath math="J = 200 + 20(2)" />
+  <BlockMath math="J = 200 + 40" />
+  <BlockMath math="J = 240" />
+</MathContainer>
+
+Die Anzahl der verkauften Eiskaffees beträgt also <InlineMath math="240" /> Tassen.

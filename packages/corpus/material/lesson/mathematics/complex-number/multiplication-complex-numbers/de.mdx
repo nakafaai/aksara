@@ -1,0 +1,141 @@
+
+
+export const metadata = {
+  title: "Multiplikation komplexer Zahlen",
+  description: "Multipliziere komplexe Zahlen mit dem Distributivgesetz und vereinfache das Ergebnis anhand ausgearbeiteter binomischer Beispiele.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Multiplikation zweier komplexer Zahlen
+
+Die Multiplikation zweier komplexer Zahlen ähnelt der Multiplikation zweier binomialer algebraischer Ausdrücke. Wir können die Verteilungseigenschaft der Multiplikation über die Addition nutzen.
+
+Wir beginnen mit <InlineMath math="z_1 = x_1 + iy_1" /> und <InlineMath math="z_2 = x_2 + iy_2" /> und verteilen jeden Summanden des ersten Faktors auf den zweiten.
+
+<MathContainer>
+  <BlockMath math="z_1 \times z_2 = (x_1 + iy_1)(x_2 + iy_2)" />
+  <BlockMath math="= x_1(x_2 + iy_2) + iy_1(x_2 + iy_2)" />
+  <BlockMath math="= (x_1x_2 + ix_1y_2) + (ix_2y_1 + i^2y_1y_2)" />
+</MathContainer>
+
+Da <InlineMath math="i^2 = -1" /> gilt, ersetzen wir den quadratischen Term:
+
+<MathContainer>
+  <BlockMath math="= (x_1x_2 + ix_1y_2) + (ix_2y_1 + (-1)y_1y_2)" />
+  <BlockMath math="= x_1x_2 + ix_1y_2 + ix_2y_1 - y_1y_2" />
+</MathContainer>
+
+Anschließend fassen wir die reellen und imaginären Terme zusammen:
+
+<MathContainer>
+  <BlockMath math="= (x_1x_2 - y_1y_2) + (ix_1y_2 + ix_2y_1)" />
+  <BlockMath math="= (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
+</MathContainer>
+
+Die allgemeine Formel für die Multiplikation komplexer Zahlen lautet also:
+
+<BlockMath math="z_1 \times z_2 = (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
+
+## Berechnungsbeispiel
+
+Seien <InlineMath math="z_1 = 2+i" /> und <InlineMath math="z_2 = 1-2i" />. Berechne <InlineMath math="z_1 \times z_2" />.
+
+**Lösung:**
+
+Mit dem Distributivgesetz:
+
+<MathContainer>
+  <BlockMath math="z_1 \times z_2 = (2+i)(1-2i)" />
+  <BlockMath math="= 2(1-2i) + i(1-2i)" />
+  <BlockMath math="= (2 - 4i) + (i - 2i^2)" />
+  <BlockMath math="= (2 - 4i) + (i - 2(-1)) \quad \text{(da } i^2 = -1)" />
+  <BlockMath math="= (2 - 4i) + (i + 2)" />
+  <BlockMath math="= (2+2) + (-4i + i)" />
+  <BlockMath math="= 4 - 3i" />
+</MathContainer>
+
+Alternativ setzen wir <InlineMath math="x_1 = 2, y_1 = 1, x_2 = 1, y_2 = -2" /> in die allgemeine Formel ein:
+
+<MathContainer>
+  <BlockMath math="z_1 \times z_2 = (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
+  <BlockMath math="= (2)(1) - (1)(-2) + i((2)(-2) + (1)(1))" />
+  <BlockMath math="= (2 - (-2)) + i(-4 + 1)" />
+  <BlockMath math="= (2+2) + i(-3)" />
+  <BlockMath math="= 4 - 3i" />
+</MathContainer>
+
+Beide Wege ergeben dasselbe Ergebnis, <InlineMath math="4-3i" />.
+
+<LineEquation
+  title="Visualisierung der Multiplikation komplexer Zahlen"
+  description={
+    <>
+      Die Vektoren <InlineMath math="z_1 = 2+i" /> und{" "}
+      <InlineMath math="z_2 = 1-2i" /> sowie ihr Produkt{" "}
+      <InlineMath math="z_1 \times z_2 = 4-3i" />.
+    </>
+  }
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 1, z: 0 },
+      ],
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="z_1=2+i" />, at: 1, offset: [0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1, y: -2, z: 0 },
+      ],
+      color: "#059669",
+      labels: [{ text: <InlineMath math="z_2=1-2i" />, at: 1, offset: [0.5, -0.5, 0] }],
+      cone: { position: "end" },
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: -3, z: 0 },
+      ],
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="z_1 \times z_2=4-3i" />, at: 1, offset: [0.5, -0.5, 0] }],
+      cone: { position: "end" },
+    },
+  ]}
+/>
+
+## Übung
+
+Seien <InlineMath math="z_1 = 1+i" /> und <InlineMath math="z_2 = \frac{1}{2} - 2i" />. Berechne <InlineMath math="z_1 \times z_2" />.
+
+### Ausführliche Lösung
+
+Mit dem Distributivgesetz:
+
+<MathContainer>
+  <BlockMath math="z_1 \times z_2 = (1+i)(\frac{1}{2} - 2i)" />
+  <BlockMath math="= 1(\frac{1}{2} - 2i) + i(\frac{1}{2} - 2i)" />
+  <BlockMath math="= (\frac{1}{2} - 2i) + (\frac{1}{2}i - 2i^2)" />
+  <BlockMath math="= (\frac{1}{2} - 2i) + (\frac{1}{2}i - 2(-1))" />
+  <BlockMath math="= (\frac{1}{2} - 2i) + (\frac{1}{2}i + 2)" />
+  <BlockMath math="= (\frac{1}{2} + 2) + (-2i + \frac{1}{2}i)" />
+  <BlockMath math="= (\frac{1}{2} + \frac{4}{2}) + (-\frac{4}{2}i + \frac{1}{2}i)" />
+  <BlockMath math="= \frac{5}{2} - \frac{3}{2}i" />
+</MathContainer>
+
+Mit <InlineMath math="x_1 = 1, y_1 = 1, x_2 = \frac{1}{2}, y_2 = -2" /> in der allgemeinen Formel:
+
+<MathContainer>
+  <BlockMath math="z_1 \times z_2 = (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
+  <BlockMath math="= ((1)(\frac{1}{2}) - (1)(-2)) + i((1)(-2) + (\frac{1}{2})(1))" />
+  <BlockMath math="= (\frac{1}{2} - (-2)) + i(-2 + \frac{1}{2})" />
+  <BlockMath math="= (\frac{1}{2} + 2) + i(-\frac{4}{2} + \frac{1}{2})" />
+  <BlockMath math="= (\frac{1}{2} + \frac{4}{2}) + i(-\frac{3}{2})" />
+  <BlockMath math="= \frac{5}{2} - \frac{3}{2}i" />
+</MathContainer>

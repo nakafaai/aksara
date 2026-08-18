@@ -1,0 +1,140 @@
+export const metadata = {
+  title: "Geometrische Reihe",
+  description: "Leite die Summenformel einer endlichen geometrischen Reihe her, behandle besondere Faktoren und löse kumulative Produktionsaufgaben.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Folgen und Reihen",
+};
+
+## Konzept der geometrischen Reihe
+
+Eine Gärtnerei ziehe jeden Monat eine neue Charge Setzlinge nach folgendem idealisierten Muster heran:
+
+| Monat | Januar | Februar | März | April | Mai |
+| :-------------------- | :------ | :------- | :---- | :---- | :-- |
+| Neu herangezogene Setzlinge | <InlineMath math="4" /> | <InlineMath math="12" /> | <InlineMath math="36" /> | <InlineMath math="108" /> | <InlineMath math="324" /> |
+
+Die monatlichen Stückzahlen bilden eine geometrische Folge. Addiert man die neuen Chargen vom ersten bis zu einem gewählten Monat, entsteht eine **geometrische Reihe**. Da jede Charge neu hinzukommt, werden keine Setzlinge doppelt gezählt.
+
+Eine geometrische Reihe ist die Summe der Glieder einer geometrischen Folge. Bei dieser Folge entsteht jedes Glied durch Multiplikation des vorherigen Gliedes mit einem **konstanten Faktor** <InlineMath math="r" />.
+
+Für die Setzlinge gilt:
+
+- Das erste Glied <InlineMath math="a" /> beziehungsweise <InlineMath math="U_1" /> ist <InlineMath math="4" />.
+- Der Faktor ist <InlineMath math="(r) = \frac{12}{4} = \frac{36}{12} = \frac{108}{36} = \frac{324}{108} = 3" />.
+
+Die Folge der monatlichen Chargen lautet <InlineMath math="4, 12, 36, 108, 324" />.
+Die geometrische Reihe entsteht durch Addition ihrer Glieder:
+
+- Summe der ersten <InlineMath math="2 \text{Monate}" /> <InlineMath math="(S_2) = 4 + 12 = 16" />
+- Summe der ersten <InlineMath math="3 \text{Monate}" /> <InlineMath math="(S_3) = 4 + 12 + 36 = 52" />
+- Summe der ersten <InlineMath math="4 \text{Monate}" /> <InlineMath math="(S_4) = 4 + 12 + 36 + 108 = 160" />
+- und so weiter.
+
+## Formel für die Summe der ersten Glieder herleiten
+
+Wie lässt sich die Summe der ersten <InlineMath math="n" /> Glieder <InlineMath math="(S_n)" /> berechnen, ohne jedes Glied einzeln zu addieren?
+
+Die Tabelle zeigt das Muster anhand der Setzlingsfolge:
+
+| Notation | Direkte Summierung | Verwendung von <InlineMath math="U_{n+1}" /> und <InlineMath math="U_1" /> | Allgemeine Form |
+| :------------- | :---------------- | :---------------------------------------------------------------------- | :---------------------------------------- |
+| <InlineMath math="S_2" /> | <InlineMath math="4 + 12 = 16" /> | <InlineMath math="S_2 = \frac{36 - 4}{3 - 1} = \frac{32}{2} = 16" /> | <InlineMath math="S_2 = \frac{U_3 - U_1}{r - 1}" /> |
+| <InlineMath math="S_3" /> | <InlineMath math="4 + 12 + 36 = 52" /> | <InlineMath math="S_3 = \frac{108 - 4}{3 - 1} = \frac{104}{2} = 52" /> | <InlineMath math="S_3 = \frac{U_4 - U_1}{r - 1}" /> |
+| <InlineMath math="S_4" /> | <InlineMath math="4 + 12 + 36 + 108 = 160" /> | <InlineMath math="S_4 = \frac{324 - 4}{3 - 1} = \frac{320}{2} = 160" /> | <InlineMath math="S_4 = \frac{U_5 - U_1}{r - 1}" /> |
+| <InlineMath math="\vdots" /> | <InlineMath math="\dots" /> | <InlineMath math="\dots" /> | <InlineMath math="\dots" /> |
+| <InlineMath math="S_n" /> | <InlineMath math="\dots" /> | <InlineMath math="\dots" /> | <InlineMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" /> |
+
+Für <InlineMath math="r\ne1" /> liefert die rechte untere Zelle die allgemeine Form:
+
+<BlockMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" />
+
+Für das <InlineMath math="n" />-te Glied einer geometrischen Folge gilt <InlineMath math="U_n = ar^{n-1}" />. Daher ist <InlineMath math="U_{n+1} = ar^{(n+1)-1} = ar^n" />. Setzen wir <InlineMath math="U_{n+1} = ar^n" /> und <InlineMath math="U_1 = a" /> in die Formel für <InlineMath math="S_n" /> ein:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{ar^n - a}{r - 1}" />
+  <BlockMath math="S_n = \frac{a(r^n - 1)}{r - 1}" />
+</MathContainer>
+
+Damit ist die Summe der ersten <InlineMath math="n" /> Glieder bestimmt.
+
+Eine zweite Herleitung multipliziert die Summe mit <InlineMath math="r" /> und subtrahiert beide Zeilen:
+
+<MathContainer>
+  <BlockMath math="S_n=a+ar+ar^2+\cdots+ar^{n-1}" />
+  <BlockMath math="rS_n=ar+ar^2+\cdots+ar^n" />
+  <BlockMath math="(1-r)S_n=a(1-r^n)" />
+</MathContainer>
+
+Die mittleren Glieder heben sich auf. Deshalb enthält das Ergebnis nur das erste Glied und die Potenz unmittelbar nach dem letzten Glied.
+
+## Geometrische Reihenformel
+
+Für die Summe der ersten <InlineMath math="n" /> Glieder gilt:
+
+<BlockMath math="S_n=\frac{a(r^n-1)}{r-1},\quad r\ne1" />
+
+Eine äquivalente Form ist
+
+<BlockMath math="S_n=\frac{a(1-r^n)}{1-r},\quad r\ne1" />
+
+Beide Formen gelten für positive und negative Faktoren, solange <InlineMath math="r\ne1" />. Für <InlineMath math="r=1" /> sind alle Glieder gleich <InlineMath math="a" />. Dann gilt:
+
+<BlockMath math="S_n=na" />
+
+**Dabei gilt:**
+
+- <InlineMath math="S_n" /> = Summe der ersten <InlineMath math="n" /> Glieder
+- <InlineMath math="a" /> = erstes Glied <InlineMath math="(U_1)" />
+- <InlineMath math="r" /> = konstanter Faktor, hier mit <InlineMath math="(r \neq 1)" />
+- <InlineMath math="n" /> = Anzahl der Glieder
+
+## Beispielanwendung
+
+Die Monatsproduktion eines Fahrradunternehmens bildet im Jahr <InlineMath math="2020" /> ein idealisiertes geometrisches Muster. Im Januar werden <InlineMath math="120 \text{Einheiten}" /> produziert, im April <InlineMath math="3{.}240 \text{Einheiten}" />. Gesucht ist die gesamte Produktion von Januar bis Mai.
+
+**Lösung:**
+
+- Januar-Produktion <InlineMath math="(U_1) = a = 120" />
+- April-Produktion <InlineMath math="(U_4) = 3{.}240" />
+- Gesucht: Gesamtproduktion bis Mai <InlineMath math="(S_5)" />
+
+**Schritt** <InlineMath math="1" />: Faktor <InlineMath math="(r)" /> bestimmen
+
+<MathContainer>
+  <BlockMath math="U_4 = ar^{4-1} = ar^3" />
+  <BlockMath math="3{.}240 = 120 \cdot r^3" />
+  <BlockMath math="r^3 = \frac{3{.}240}{120}" />
+  <BlockMath math="r^3 = 27" />
+  <BlockMath math="r = \sqrt[3]{27} = 3" />
+</MathContainer>
+
+**Schritt** <InlineMath math="2" />: <InlineMath math="S_5" /> berechnen. Da <InlineMath math="r = 3 > 1" />, verwenden wir die passende Form der Summenformel:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{a(r^n - 1)}{r - 1}" />
+  <BlockMath math="S_5 = \frac{120(3^5 - 1)}{3 - 1}" />
+  <BlockMath math="S_5 = \frac{120(243 - 1)}{2}" />
+  <BlockMath math="S_5 = \frac{120(242)}{2}" />
+  <BlockMath math="S_5 = 60 \cdot 242" />
+  <BlockMath math="S_5 = 14{.}520" />
+</MathContainer>
+
+Die gesamte Fahrradproduktion von Januar bis Mai beträgt <InlineMath math="14{.}520 \text{Einheiten}" />.
+
+Die Addition ist sinnvoll, weil jeder Monatswert neu produzierte Fahrräder beschreibt. Wiederholte Messungen eines unveränderten Bestands dürften dagegen nicht addiert werden, weil dieselben Objekte sonst mehrfach gezählt würden.
+
+## Übung: Ein negativer Faktor
+
+Berechne die endliche Summe:
+
+<BlockMath math="81-27+9-3+1" />
+
+Das erste Glied ist <InlineMath math="a=81" />, der Faktor ist <InlineMath math="r=-\frac13" />, und die Reihe enthält <InlineMath math="n=5" /> Glieder. Daher:
+
+<MathContainer>
+  <BlockMath math="S_5=81\left(\frac{1-(-1/3)^5}{1-(-1/3)}\right)" />
+  <BlockMath math="S_5=81\left(\frac{244/243}{4/3}\right)=61" />
+</MathContainer>
+
+Die direkte Addition bestätigt das Ergebnis: <InlineMath math="81-27+9-3+1=61" />.

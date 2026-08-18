@@ -1,0 +1,86 @@
+export const metadata = {
+  title: "Eigenschaften der Umkehrfunktion",
+  description: "Untersuche Kompositionsidentität, doppelte Umkehrung und den Zusammenhang zwischen Definitions- und Bildmenge.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-27",
+  subject: "Funktionszusammensetzung und Umkehrfunktion",
+};
+
+## Zusammensetzung mit der Umkehrfunktion
+
+Die Umkehrfunktion hebt die Wirkung der ursprünglichen Funktion auf. Setzt man eine Funktion und ihre Umkehrfunktion in der passenden Reihenfolge zusammen, erhält man die Identitätsfunktion <InlineMath math="I(x) = x" />.
+
+1.  **Zusammensetzung von <InlineMath math="f" /> mit <InlineMath math="f^{-1}" />:**
+
+    <BlockMath math="(f \circ f^{-1})(x) = f(f^{-1}(x)) = x" />
+
+    Dies gilt für alle <InlineMath math="x" /> im Definitionsbereich von <InlineMath math="f^{-1}" />. Dieser entspricht der Bildmenge von <InlineMath math="f" />.
+
+2.  **Zusammensetzung von <InlineMath math="f^{-1}" /> mit <InlineMath math="f" />:**
+
+    <BlockMath math="(f^{-1} \circ f)(x) = f^{-1}(f(x)) = x" />
+
+    Dies gilt für alle <InlineMath math="x" /> im Definitionsbereich von <InlineMath math="f" />.
+
+**Beispiel:**
+
+Für <InlineMath math="f(x) = 2x + 3" /> lautet die Umkehrfunktion <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />. Wir prüfen beide Zusammensetzungen:
+
+- <InlineMath math="f(f^{-1}(x)) = f\left(\frac{x - 3}{2}\right) = 2\left(\frac{x - 3}{2}\right) + 3 = (x - 3) + 3 = x" />
+- <InlineMath math="f^{-1}(f(x)) = f^{-1}(2x + 3) = \frac{(2x + 3) - 3}{2} = \frac{2x}{2} = x" />
+
+Beide Zusammensetzungen geben die ursprüngliche Eingabe <InlineMath math="x" /> zurück.
+
+## Umkehrung einer Umkehrfunktion
+
+Kehrt man eine Umkehrfunktion erneut um, erhält man die ursprüngliche Funktion zurück.
+
+<BlockMath math="(f^{-1})^{-1}(x) = f(x)" />
+
+Zweimaliges Umkehren stellt also die ursprüngliche Zuordnung wieder her.
+
+## Umkehrfunktion einer Zusammensetzung
+
+Sind beide Funktionen umkehrbar und passen ihre Definitions- und Zielmengen zueinander, entsteht die Umkehrfunktion ihrer Zusammensetzung aus den beiden Umkehrfunktionen in **umgekehrter Reihenfolge**.
+
+Seien <InlineMath math="f" /> und <InlineMath math="g" /> zwei Funktionen mit den Umkehrfunktionen <InlineMath math="f^{-1}" /> und <InlineMath math="g^{-1}" />. Dann gilt für die Zusammensetzung <InlineMath math="f \circ g" />:
+
+<BlockMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />
+
+Lesen Sie die Zusammensetzung von rechts nach links: Zuerst wird <InlineMath math="f^{-1}" /> und danach <InlineMath math="g^{-1}" /> angewendet.
+
+Das ist wie beim Anziehen: Erst kommen die Socken (<InlineMath math="g" />), dann die Schuhe (<InlineMath math="f" />). Beim Ausziehen muss man zuerst die Schuhe (<InlineMath math="f^{-1}" />) und danach die Socken (<InlineMath math="g^{-1}" />) ablegen.
+
+**Beispiel:**
+
+Sei <InlineMath math="f(x) = x + 1" /> mit <InlineMath math="f^{-1}(x) = x - 1" /> und <InlineMath math="g(x) = 3x" /> mit <InlineMath math="g^{-1}(x) = \frac{x}{3}" />.
+
+1.  **Finde <InlineMath math="(f \circ g)(x)" />:**
+
+    <BlockMath math="(f \circ g)(x) = f(g(x)) = f(3x) = 3x + 1" />
+
+2.  **Finden Sie die Umkehrung von <InlineMath math="(f \circ g)(x)" />:**
+
+    Sei <InlineMath math="y = 3x + 1" />. Tausche <InlineMath math="x" /> und <InlineMath math="y" />: <InlineMath math="x = 3y + 1" />.
+
+    Lösen Sie nach <InlineMath math="y" /> auf: <InlineMath math="x - 1 = 3y \implies y = \frac{x - 1}{3}" />.
+
+    Also <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
+
+3.  **Finde <InlineMath math="(g^{-1} \circ f^{-1})(x)" />:**
+
+    <MathContainer>
+      <BlockMath math="(g^{-1} \circ f^{-1})(x) = g^{-1}(f^{-1}(x)) = g^{-1}(x - 1)" />
+      <BlockMath math="g^{-1}(x - 1) = \frac{x - 1}{3}" />
+    </MathContainer>
+
+Da die Ergebnisse aus den Schritten <InlineMath math="2" /> und <InlineMath math="3" /> gleich sind, ist bewiesen, dass <InlineMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />.
+
+## Zusammenhang von Definitions- und Bildmenge
+
+Die Definitionsmenge von <InlineMath math="f" /> wird zur Bildmenge von <InlineMath math="f^{-1}" />. Umgekehrt wird die Bildmenge von <InlineMath math="f" /> zur Definitionsmenge von <InlineMath math="f^{-1}" />.
+
+<MathContainer>
+  <BlockMath math="\text{Definitionsmenge}(f) = \text{Bildmenge}(f^{-1})" />
+  <BlockMath math="\text{Bildmenge}(f) = \text{Definitionsmenge}(f^{-1})" />
+</MathContainer>

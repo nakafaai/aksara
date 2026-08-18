@@ -1,0 +1,161 @@
+export const metadata = {
+  title: "Orthogonale Projektion",
+  description: "Leite orthogonale Projektionen aus dem Satz über die beste Approximation her, berechne sie mit orthonormalen und beliebigen Basen und prüfe ihre Geometrie numerisch.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-15",
+  subject: "Lineare Methoden der KI",
+};
+
+## Satz über die beste Approximation
+
+Sei <InlineMath math="V" /> ein Skalarproduktraum und <InlineMath math="S\subseteq V" /> ein endlichdimensionaler Unterraum. Zu jedem <InlineMath math="f\in V" /> gibt es genau einen Vektor <InlineMath math="g\in S" /> mit
+
+<BlockMath math="\|f-g\|=\min_{\varphi\in S}\|f-\varphi\|" />
+
+Der Vektor <InlineMath math="g" /> ist die orthogonale Projektion von <InlineMath math="f" /> auf <InlineMath math="S" /> und wird als <InlineMath math="g=P_Sf" /> geschrieben. Er wird durch zwei Bedingungen charakterisiert:
+
+<MathContainer>
+<BlockMath math="g\in S" />
+<BlockMath math="f-g\in S^{\perp}" />
+</MathContainer>
+
+Äquivalent dazu gilt
+
+<BlockMath math="\langle f-g,\varphi\rangle=0\qquad\text{für jedes }\varphi\in S" />
+
+In einem Hilbert-Raum gilt derselbe Satz für jeden abgeschlossenen Unterraum. Ein endlichdimensionaler Unterraum ist automatisch abgeschlossen.
+
+## Warum Orthogonalität das Minimum liefert
+
+Sei <InlineMath math="g=P_Sf" /> und <InlineMath math="\varphi\in S" /> beliebig. Wegen <InlineMath math="g-\varphi\in S" /> und <InlineMath math="f-g\perp S" /> liefert der Satz des Pythagoras
+
+<MathContainer>
+<BlockMath math="f-\varphi=(f-g)+(g-\varphi)" />
+<BlockMath math="\|f-\varphi\|^2=\|f-g\|^2+\|g-\varphi\|^2" />
+<BlockMath math="\|f-\varphi\|^2\ge\|f-g\|^2" />
+</MathContainer>
+
+Gleichheit gilt nur für <InlineMath math="\varphi=g" />. Damit sind sowohl die Optimalität als auch die Eindeutigkeit bewiesen.
+
+## Formel für eine orthonormale Basis
+
+Ist <InlineMath math="\varphi_1,ldots,arphi_n" /> eine orthonormale Basis von <InlineMath math="S" />, dann gilt
+
+<MathContainer>
+<BlockMath math="P_Sf=\sum_{i=1}^n\langle f,\varphi_i\rangle\varphi_i" />
+<BlockMath math="\|f-P_Sf\|^2=\|f\|^2-\sum_{i=1}^n|\langle f,\varphi_i\rangle|^2" />
+</MathContainer>
+
+Die zweite Zeile folgt aus der Zerlegung von <InlineMath math="f" /> in die senkrechten Komponenten <InlineMath math="P_Sf" /> und <InlineMath math="f-P_Sf" />.
+
+Für eine reelle Matrix <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> mit orthonormalen Spalten projiziert
+
+<BlockMath math="P=QQ^T" />
+
+Vektoren aus <InlineMath math="\mathbb{R}^m" /> auf <InlineMath math="\operatorname{col}(Q)" />.
+
+## Vektorrechnung als Beispiel
+
+Projiziere
+
+<MathContainer>
+<BlockMath math="f=\begin{pmatrix}1\\3\end{pmatrix}" />
+<BlockMath math="u=\begin{pmatrix}2\\1\end{pmatrix}" />
+</MathContainer>
+
+auf <InlineMath math="S=\operatorname{span}\{u\}" />. Der Projektionskoeffizient ist
+
+<BlockMath math="\frac{\langle f,u\rangle}{\langle u,u\rangle}=\frac{1\cdot2+3\cdot1}{2^2+1^2}=1" />
+
+Daher gilt
+
+<MathContainer>
+<BlockMath math="g=P_Sf=u=\begin{pmatrix}2\\1\end{pmatrix}" />
+<BlockMath math="r=f-g=\begin{pmatrix}-1\\2\end{pmatrix}" />
+<BlockMath math="\langle r,u\rangle=(-1)2+(2)1=0" />
+<BlockMath math="\|f-g\|_2=\sqrt5" />
+</MathContainer>
+
+<LineEquation
+  title={<>Projektion von <InlineMath math="f" /> auf <InlineMath math="\operatorname{span}\{u\}" /></>}
+  description={<>Der cyanfarbene Vektor ist <InlineMath math="f" />, der orangefarbene Vektor ist <InlineMath math="g=P_Sf" />, und die violette Strecke ist das senkrechte Residuum <InlineMath math="r=f-g" />.</>}
+  cameraPosition={[5, 5, 7]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 0 }],
+      color: "#0891b2",
+      smooth: false,
+      showPoints: true
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: true
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }, { x: 1, y: 3, z: 0 }],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: true
+    }
+  ]}
+/>
+
+## Konstruktion aus einer beliebigen Basis
+
+Sei <InlineMath math="\psi_1,ldots,psi_n" /> eine beliebige Basis von <InlineMath math="S" /> und
+
+<BlockMath math="g=\sum_{i=1}^n\alpha_i\psi_i" />
+
+Die Orthogonalitätsbedingungen ergeben das Gram-System
+
+<MathContainer>
+<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,ldots,n" />
+<BlockMath math="G\alpha=c" />
+</MathContainer>
+
+mit <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> und <InlineMath math="c_k=\langle f,psi_k\rangle" />. Da die Basisvektoren linear unabhängig sind, gilt
+
+<BlockMath math="z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0\qquad\text{für }z\ne0" />
+
+Somit ist <InlineMath math="G" /> symmetrisch positiv definit und die Koeffizienten sind eindeutig.
+
+Sind die Spalten einer Matrix <InlineMath math="A" /> mit vollem Spaltenrang die Basisvektoren, dann ist
+
+<BlockMath math="P=A(A^TA)^{-1}A^T" />
+
+derselbe orthogonale Projektor. Diese Identität ist für die Analyse nützlich. In numerischer Software sind QR oder SVD meist vorzuziehen, weil die Bildung von <InlineMath math="A^TA" /> die Konditionszahl quadriert.
+
+## Beispiel aus einem Funktionenraum
+
+Projiziere <InlineMath math="f(x)=x^2" /> auf <InlineMath math="S=\operatorname{span}\{1,x\}" /> bezüglich
+
+<BlockMath math="\langle f,g\rangle=\int_{-1}^{1}f(x)g(x)\,dx" />
+
+Die Funktionen <InlineMath math="1" /> und <InlineMath math="x" /> sind orthogonal. Ihre Koeffizienten lauten
+
+<MathContainer>
+<BlockMath math="c_0=\frac{\langle x^2,1\rangle}{\langle1,1\rangle}=\frac{2/3}{2}=\frac13" />
+<BlockMath math="c_1=\frac{\langle x^2,x\rangle}{\langle x,x\rangle}=0" />
+</MathContainer>
+
+Damit gilt
+
+<MathContainer>
+<BlockMath math="P_Sf(x)=\frac13" />
+<BlockMath math="\|f-P_Sf\|_2^2=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx=\frac{8}{45}" />
+</MathContainer>
+
+Der lineare Term verschwindet, weil <InlineMath math="x^3" /> auf dem symmetrischen Intervall ungerade ist.
+
+## Eigenschaften eines orthogonalen Projektors
+
+| Eigenschaft | Bedeutung |
+| --- | --- |
+| <InlineMath math="P^2=P" /> | eine zweite Projektion ändert nichts |
+| <InlineMath math="P^T=P" /> | Bild und Kern stehen senkrecht aufeinander |
+| <InlineMath math="\operatorname{range}(P)=S" /> | jede Ausgabe liegt im Zielunterraum |
+| <InlineMath math="\ker(P)=S^\perp" /> | senkrechte Komponenten werden entfernt |
+
+Idempotenz allein genügt nicht: Auch ein schiefer Projektor erfüllt <InlineMath math="P^2=P" />, muss aber nicht symmetrisch sein. Die Symmetrie kennzeichnet den euklidischen orthogonalen Projektor.

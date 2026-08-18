@@ -1,0 +1,106 @@
+
+
+export const metadata = {
+  title: "Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-24",
+};
+
+Betrachte die folgende Abbildung.
+
+<LineEquation
+  title="Kreisillustration"
+  description={<>Ein Kreis mit Mittelpunkt <InlineMath math="O" /> und Winkel <InlineMath math="\angle BOC = 50^\circ" />.</>}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      // Kreis
+      points: Array.from({ length: 65 }, (_, i) => {
+        const angle = (i / 64) * 2 * Math.PI;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      // Strecke AB (Durchmesser)
+      points: Array.from({ length: 11 }, (_, i) => {
+        const t = i / 10;
+        return {
+          x: -3 + t * 6,
+          y: 0,
+          z: 0,
+        };
+      }),
+      color: "#ca8a04",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="O" />, at: 5, offset: [0, 0.5, 0] },
+        { text: <InlineMath math="B" />, at: 10, offset: [0.5, 0.5, 0] },
+      ],
+    },
+    {
+      // Strecke OC (Radius)
+      points: Array.from({ length: 11 }, (_, i) => {
+        const t = i / 10;
+        const angle = (-50 * Math.PI) / 180;
+        return {
+          x: t * 3 * Math.cos(angle),
+          y: t * 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="C" />, at: 10, offset: [0.3, -0.4, 0] },
+      ],
+    },
+    {
+      // Strecke AC (Sehne)
+      points: Array.from({ length: 11 }, (_, i) => {
+        const t = i / 10;
+        const ax = -3;
+        const ay = 0;
+        const angle = (-50 * Math.PI) / 180;
+        const cx = 3 * Math.cos(angle);
+        const cy = 3 * Math.sin(angle);
+
+        return {
+          x: ax + t * (cx - ax),
+          y: ay + t * (cy - ay),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      // Bogen für den 50-Grad-Winkel von OB zu OC
+      points: Array.from({ length: 11 }, (_, i) => {
+        const startAngle = 0; // Winkel für OB (positive x-Achse)
+        const endAngle = (-50 * Math.PI) / 180; // Winkel für OC
+        const angle = startAngle + (i / 10) * (endAngle - startAngle);
+        const radius = 0.8; // Bogenradius kleiner als der Kreisradius
+        return {
+          x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="50^\circ" />, at: 5, offset: [0.5, -0.2, 0], fontSize: 0.35 },
+      ],
+    },
+  ]}
+/>
+
+<InlineMath math="O" /> ist der Mittelpunkt des Kreises. Wie groß ist <InlineMath math="\angle OAC" />?

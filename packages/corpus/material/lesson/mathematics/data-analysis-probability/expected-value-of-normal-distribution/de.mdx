@@ -1,0 +1,138 @@
+export const metadata = {
+   title: "Erwartungswert der Normalverteilung",
+   description: "Verstehe den Erwartungswert einer Normalverteilung und deute den Mittelwert in statistischen Aufgaben.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Datenanalyse und Wahrscheinlichkeit",
+};
+
+## Grundkonzept des Erwartungswerts
+
+Der **Erwartungswert** ist der mit Wahrscheinlichkeiten gewichtete Mittelwert einer Zufallsvariablen. Er beschreibt auch den langfristigen Durchschnitt vieler unabhängiger Beobachtungen. Im Allgemeinen muss er nicht mit dem häufigsten Wert übereinstimmen. Bei einer Normalverteilung liegen Mittelwert, Median, Modus und Erwartungswert jedoch im selben Zentrum.
+
+Aus dieser Symmetrie folgt eine einfache Regel für den Erwartungswert.
+
+> Gilt <InlineMath math="X \sim N(\mu, \sigma^2)" /> mit <InlineMath math="\sigma>0" />, dann entspricht der Erwartungswert dem Mittelwertparameter <InlineMath math="\mu" />.
+
+Mathematisch können wir schreiben:
+
+<BlockMath math="E(X) = \mu" />
+
+Dabei ist <InlineMath math="X" /> eine Zufallsvariable, die der Normalverteilung folgt, und <InlineMath math="\mu" /> der Mittelwertparameter dieser Verteilung.
+
+Die folgende Rechnung zeigt, warum das gilt.
+
+## Mathematischer Beweis
+
+Der Erwartungswert einer stetigen Zufallsvariablen ist definiert als:
+
+<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot f(x) \, dx" />
+
+Für eine Normalverteilung mit <InlineMath math="\sigma>0" /> lautet die Wahrscheinlichkeitsdichtefunktion:
+
+<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+
+Wir setzen diese Funktion in die Erwartungswertformel ein:
+
+<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, dx" />
+
+Nun verwenden wir die Substitution <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Dann gilt <InlineMath math="x = \sigma t + \mu" /> und <InlineMath math="dx = \sigma \, dt" />.
+
+<MathContainer>
+<BlockMath math="E(X) = \int_{-\infty}^{\infty} (\sigma t + \mu) \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}t^2} \cdot \sigma \, dt" />
+<BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
+<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt + \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt" />
+</MathContainer>
+
+Für die beiden Integrale gilt:
+
+- **Erstes Integral:** <InlineMath math="\int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt = 0" />, weil <InlineMath math="g(t)=t e^{-\frac{1}{2}t^2}" /> ungerade ist. Aus <InlineMath math="g(-t) = -g(t)" /> folgt, dass sich die vorzeichenbehafteten Flächen über dem symmetrischen Intervall <InlineMath math="(-\infty, \infty)" /> aufheben.
+
+- **Zweites Integral:** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> ist das Gaußsche Integral. Multipliziert mit dem Normierungsfaktor <InlineMath math="1/\sqrt{2\pi}" /> ergibt es die Gesamtwahrscheinlichkeit <InlineMath math="1" /> der Standardnormaldichte.
+
+Deshalb:
+
+<MathContainer>
+<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi}" />
+<BlockMath math="E(X) = 0 + \mu = \mu" />
+</MathContainer>
+
+Damit ist gezeigt, dass **der Erwartungswert einer normalverteilten Zufallsvariablen ihrem Mittelwertparameter entspricht**.
+
+> Für jede Normalverteilung <InlineMath math="X \sim N(\mu, \sigma^2)" /> gilt <InlineMath math="E(X) = \mu" />. Das bedeutet, dass wir nicht jedes Mal eine Integration durchführen müssen, wenn wir den Erwartungswert einer Normalverteilung berechnen; wir verwenden einfach den Parameterwert <InlineMath math="\mu" />.
+
+## Praktische Interpretation
+
+Das Ergebnis hat eine direkte statistische Bedeutung:
+
+Für eine normalverteilte Zufallsvariable mit Mittelwert <InlineMath math="\mu" /> und Standardabweichung <InlineMath math="\sigma" /> ist der **Erwartungswert** genau <InlineMath math="\mu" />. Bei vielen unabhängigen Beobachtungen aus dieser Verteilung nähert sich der Stichprobenmittelwert nach dem Gesetz der großen Zahlen dem Wert <InlineMath math="\mu" />.
+
+**Beispiel:**
+
+Wenn die Körpergröße der Schüler Ihrer Schule normalverteilt ist und der Mittelwert <InlineMath math="165 \text{ cm}" /> beträgt, beträgt der erwartete Wert der Körpergröße eines zufällig ausgewählten Schülers <InlineMath math="165 \text{ cm}" />.
+
+## Anwendungsbeispiele
+
+**Beispiel** <InlineMath math="1" />
+
+Angenommen, die Ergebnisse einer Mathematikprüfung werden durch eine Normalverteilung mit dem Mittelwert <InlineMath math="\mu = 75" /> und der Standardabweichung <InlineMath math="\sigma = 10" /> modelliert. Wie hoch ist der Erwartungswert der Punktzahl eines zufällig ausgewählten Schülers?
+
+**Lösung:**
+
+Da für die Normalverteilung <InlineMath math="E(X) = \mu" /> gilt, beträgt der Erwartungswert der Prüfungspunktzahl:
+
+<BlockMath math="E(X) = 75" />
+
+Der Erwartungswert der Prüfungspunktzahl beträgt daher <InlineMath math="75" />.
+
+**Beispiel** <InlineMath math="2" />
+
+Angenommen, die Gewichte von Neugeborenen in einem Krankenhaus werden durch eine Normalverteilung mit dem Mittelwert <InlineMath math="3{.}200 \text{Gramm}" /> und der Standardabweichung <InlineMath math="400 \text{Gramm}" /> modelliert. Bestimme das erwartete Gewicht eines zufällig ausgewählten Neugeborenen.
+
+**Lösung:**
+
+Gegeben seien <InlineMath math="\mu = 3{.}200 \text{Gramm}" /> und <InlineMath math="\sigma = 400 \text{Gramm}" />.
+
+Das erwartete Gewicht entspricht dem Mittelwertparameter:
+
+<BlockMath math="E(X) = \mu = 3{.}200 \text{Gramm}" />
+
+## Übungen
+
+1. Die Fahrzeit von zu Hause zur Schule wird durch eine Normalverteilung mit dem Mittelwert <InlineMath math="25 \text{Minuten}" /> und der Standardabweichung <InlineMath math="5 \text{Minuten}" /> modelliert. Bestimme die erwartete Fahrzeit.
+
+2. Die tägliche Lufttemperatur in Jakarta im Juni wird durch eine Normalverteilung mit dem Mittelwert <InlineMath math="28^\circ\text{C}" /> und der Standardabweichung <InlineMath math="3^\circ\text{C}" /> modelliert. Wie hoch ist die erwartete Temperatur an einem zufällig ausgewählten Tag?
+
+3. Die Physikprüfungsergebnisse der Jahrgangsstufe <InlineMath math="12" /> werden durch eine Normalverteilung mit dem Mittelwert <InlineMath math="78" /> und der Standardabweichung <InlineMath math="12" /> modelliert. Wie hoch ist der Erwartungswert für einen zufällig ausgewählten Schüler?
+
+### Lösungen
+
+1. **Lösung zu Aufgabe** <InlineMath math="1" />:
+
+   Gegeben: <InlineMath math="\mu = 25 \text{Minuten}" />, <InlineMath math="\sigma = 5 \text{Minuten}" />
+
+   Da die Normalverteilung die Eigenschaft <InlineMath math="E(X) = \mu" /> hat, gilt:
+
+   <BlockMath math="E(X) = 25 \text{Minuten}" />
+
+   **Antwort:** Der Erwartungswert der Reisezeit beträgt <InlineMath math="25 \text{Minuten}" />.
+
+2. **Lösung zu Aufgabe** <InlineMath math="2" />:
+
+   Gegeben: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
+
+   Verwendung der Grundeigenschaft der Normalverteilung:
+
+   <BlockMath math="E(X) = \mu = 28^\circ\text{C}" />
+
+   **Antwort:** Der erwartete Wert der Lufttemperatur beträgt <InlineMath math="28^\circ\text{C}" />.
+
+3. **Lösung zu Aufgabe** <InlineMath math="3" />:
+
+   Gegeben: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
+
+   Mit der grundlegenden Eigenschaft der Normalverteilung gilt:
+
+   <BlockMath math="E(X) = \mu = 78" />
+
+   **Antwort:** Der Erwartungswert der Prüfungspunktzahl beträgt <InlineMath math="78" />.

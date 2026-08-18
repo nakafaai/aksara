@@ -1,0 +1,171 @@
+export const metadata = {
+  title: "Arithmetische Reihe",
+  description: "Leite die Summenformel einer arithmetischen Reihe mit der Gaußschen Paarungsmethode her und wende sie in vollständigen Beispielen an.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Folgen und Reihen",
+};
+
+## Arithmetische Reihen verstehen
+
+Eine bekannte Schulanekdote über Carl Friedrich Gauß veranschaulicht eine nützliche Summenidee. Darin soll seine Klasse alle Zahlen von <InlineMath math="1" /> bis <InlineMath math="100" /> addieren: <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100" />.
+
+Gauß addiert die Zahlen nicht einzeln, sondern paart geschickt den Anfang mit dem Ende. Eine Summe aus den Gliedern einer _arithmetischen Folge_ heißt **arithmetische Reihe**.
+
+Beispielsweise ist <InlineMath math="1, 2, 3, \dots, 100" /> eine arithmetische Folge mit dem ersten Glied <InlineMath math="a=1" /> und der gemeinsamen Differenz <InlineMath math="b=1" />. Die zugehörige arithmetische Reihe lautet <InlineMath math="1 + 2 + 3 + \dots + 100" />.
+
+### Wie funktioniert die Paarung?
+
+Gauß nutzt folgendes Muster:
+
+- Das erste Glied <InlineMath math="(1)" /> und das letzte Glied <InlineMath math="(100)" /> ergeben zusammen <InlineMath math="101" />.
+- Das zweite Glied <InlineMath math="(2)" /> und das vorletzte Glied <InlineMath math="(99)" /> ergeben ebenfalls <InlineMath math="101" />.
+- Das dritte Glied <InlineMath math="(3)" /> und das drittletzte Glied <InlineMath math="(98)" /> ergeben wieder <InlineMath math="101" />.
+- Das Muster setzt sich bis zur Mitte fort.
+
+<MathContainer>
+  <BlockMath math="\underbrace{1+100}_{101}, \underbrace{2+99}_{101}, \underbrace{3+98}_{101}, \dots, \underbrace{50+51}_{101}" />
+</MathContainer>
+
+Es gibt <InlineMath math="50" /> Zahlenpaare, die jeweils <InlineMath math="101" /> ergeben. Damit beträgt die Gesamtsumme <InlineMath math="50 \times 101 = 5050" />.
+
+## Finden der allgemeinen Formel
+
+Mit derselben Idee lässt sich eine allgemeine Formel für die Summe der ersten <InlineMath math="n" /> Glieder herleiten. Diese Summe wird mit <InlineMath math="S_n" /> bezeichnet.
+
+Ausgangspunkt ist eine arithmetische Reihe:
+
+<BlockMath math="S_n = U_1 + U_2 + U_3 + \dots + U_{n-1} + U_n" />
+
+Mit dem ersten Glied <InlineMath math="(a)" /> und der gemeinsamen Differenz <InlineMath math="(b)" /> ausgeschrieben ergibt sich:
+
+<BlockMath math="S_n = a + (a+b) + (a+2b) + \dots + (a+(n-2)b) + (a+(n-1)b)" />
+
+Nun schreiben wir dieselbe Summe <InlineMath math="S_n" /> in umgekehrter Reihenfolge:
+
+<BlockMath math="S_n = U_n + U_{n-1} + \dots + U_2 + U_1" />
+
+Ausgeschrieben:
+
+<BlockMath math="S_n = (a+(n-1)b) + (a+(n-2)b) + \dots + (a+b) + a" />
+
+Anschließend addieren wir beide Darstellungen von <InlineMath math="S_n" /> gliedweise:
+
+<MathContainer>
+  <BlockMath math="S_n = a + (a+b) + \dots + (a+(n-2)b) + (a+(n-1)b)" />
+  <BlockMath math="S_n = (a+(n-1)b) + (a+(n-2)b) + \dots + (a+b) + a" />
+  <BlockMath math="2S_n = [2a+(n-1)b] + [2a+(n-1)b] + \dots + [2a+(n-1)b] + [2a+(n-1)b]" />
+</MathContainer>
+
+Jedes übereinanderstehende Gliedpaar hat dieselbe Summe <InlineMath math="2a + (n-1)b" />. Da jede Zeile <InlineMath math="n" /> Glieder enthält, entstehen <InlineMath math="n" /> identische Paarsummen.
+
+Daraus folgt:
+
+<BlockMath math="2S_n = n \times (2a + (n-1)b)" />
+
+Nach Division durch <InlineMath math="2" /> erhalten wir die Summe der ersten <InlineMath math="n" /> Glieder:
+
+<BlockMath math="S_n = \frac{n}{2} (2a + (n-1)b)" />
+
+Die Herleitung gilt für gerade und ungerade Werte von <InlineMath math="n" />. Bei ungeradem <InlineMath math="n" /> wird das mittlere Glied korrekt erfasst, weil zwei vollständige Kopien der Reihe addiert und die Summe anschließend halbiert wird.
+
+## Praktische Formeln für arithmetische Reihen
+
+Für <InlineMath math="S_n" /> sind zwei gleichwertige Formen besonders praktisch:
+
+1.  Wenn das **erste Glied <InlineMath math="(a)" />** und die **gemeinsame Differenz <InlineMath math="(b)" />** bekannt sind:
+
+    <BlockMath math="S_n = \frac{n}{2}(2a + (n - 1)b)" />
+
+2.  Wenn das **erste Glied <InlineMath math="(a)" />** und das **<InlineMath math="(n)" />-te Glied <InlineMath math="(U_n)" />** bekannt sind:
+    Für das <InlineMath math="n" />-te Glied gilt <InlineMath math="U_n = a + (n-1)b" />. Setzen wir diesen Ausdruck in die erste Formel ein:
+
+    <MathContainer>
+      <BlockMath math="S_n = \frac{n}{2}(a + a + (n - 1)b)" />
+      <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
+    </MathContainer>
+
+    Diese Form entspricht der Gaußschen Paarung: Man multipliziert die Summe aus erstem und letztem Glied mit <InlineMath math="(\frac{n}{2})" />.
+
+**Notation:**
+
+- <InlineMath math="S_n" /> = Summe der ersten <InlineMath math="n" /> Glieder
+- <InlineMath math="n" /> = Anzahl der Glieder
+- <InlineMath math="a" /> = erstes Glied <InlineMath math="U_1" />
+- <InlineMath math="b" /> = gemeinsame Differenz
+- <InlineMath math="U_n" /> = <InlineMath math="n" />-tes Glied
+
+## Beispiele
+
+### Erstes Problem
+
+Berechnen wir die Summe <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100" /> nun mit der Formel.
+
+Gegeben:
+
+- Erstes Glied <InlineMath math="a = 1" />
+- Letztes Glied <InlineMath math="U_n = U_{100} = 100" />
+- Anzahl der Glieder <InlineMath math="n = 100" />
+
+Da <InlineMath math="a" /> und <InlineMath math="U_n" /> bekannt sind, bietet sich die zweite Formel an:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
+  <BlockMath math="S_{100} = \frac{100}{2}(1 + 100)" />
+  <BlockMath math="S_{100} = 50(101)" />
+  <BlockMath math="S_{100} = 5050" />
+</MathContainer>
+
+Das Ergebnis stimmt mit der Paarungsmethode überein.
+
+### Zweites Problem
+
+Gegeben ist die arithmetische Reihe <InlineMath math="13 + 16 + 19 + 22 + \dots" />. Gesucht ist die Summe der ersten <InlineMath math="30" /> Glieder <InlineMath math="(S_{30})" />.
+
+Gegeben:
+
+- Erstes Glied <InlineMath math="a = 13" />
+- Gemeinsame Differenz <InlineMath math="b = 16 - 13 = 3" />
+- Anzahl der Glieder <InlineMath math="n = 30" />
+
+Da <InlineMath math="a" /> und <InlineMath math="b" /> bekannt sind, verwenden wir die erste Formel:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{n}{2}(2a + (n - 1)b)" />
+  <BlockMath math="S_{30} = \frac{30}{2}[2(13) + (30 - 1)(3)]" />
+  <BlockMath math="S_{30} = 15[26 + (29)(3)]" />
+  <BlockMath math="S_{30} = 15(26 + 87)" />
+  <BlockMath math="S_{30} = 15(113)" />
+  <BlockMath math="S_{30} = 1695" />
+</MathContainer>
+
+Die Summe der ersten <InlineMath math="30" /> Glieder beträgt <InlineMath math="1695" />.
+
+## Anwendung: Theaterbestuhlung
+
+Ein Theater hat <InlineMath math="20" /> Sitzplätze in der ersten Reihe und <InlineMath math="4" /> weitere Sitzplätze in jeder folgenden Reihe. Die Anzahl der Sitzplätze in Reihe <InlineMath math="15" /> und die Gesamtzahl in den ersten fünfzehn Reihen betragen:
+
+<MathContainer>
+  <BlockMath math="U_{15}=20+14\cdot4=76" />
+  <BlockMath math="S_{15}=\frac{15}{2}(20+76)=720" />
+</MathContainer>
+
+Das erste Ergebnis beschreibt nur die <InlineMath math="15" />. Sitzreihe. Das zweite zählt alle Plätze in den ersten fünfzehn Reihen. Ein Folgenglied und eine Reihensumme beantworten also unterschiedliche Fragen.
+
+## Übung
+
+Berechne die endliche arithmetische Reihe:
+
+<BlockMath math="8+13+18+\dots+103" />
+
+### Lösung
+
+Bestimme zunächst die Anzahl der Glieder. Die gemeinsame Differenz beträgt <InlineMath math="5" />:
+
+<MathContainer>
+  <BlockMath math="103=8+(n-1)5" />
+  <BlockMath math="n=20" />
+  <BlockMath math="S_{20}=\frac{20}{2}(8+103)=1110" />
+</MathContainer>
+
+Die Summe ist somit <InlineMath math="1110" />.

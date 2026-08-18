@@ -1,12 +1,12 @@
 import { Path } from "@effect/platform";
+import {
+  type AppLocaleCode,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { Effect, Layer } from "effect";
 import { describe, expect, it } from "vitest";
 import { selectPreviewDocument } from "#corpus/preview/selection";
-import {
-  corpusRoot,
-  makeQuestionLayer,
-  type QuestionDirectoryRead,
-} from "#corpus/test/question-layer";
+import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
 
 const articlePath =
   "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx";
@@ -18,14 +18,13 @@ const promptPath = `${questionRoot}/question.en.mdx`;
 const answerPath = `${questionRoot}/answer.en.mdx`;
 
 /** Runs one real-corpus preview selection at the Vitest boundary. */
-function selectDocument(
-  sourcePath: string,
-  directoryReads: QuestionDirectoryRead[] = []
-) {
+function selectDocument(sourcePath: string, appLocale?: AppLocaleCode) {
   return Effect.runPromise(
-    selectPreviewDocument(corpusRoot, sourcePath).pipe(
-      Effect.provide(Layer.merge(makeQuestionLayer(directoryReads), Path.layer))
-    )
+    selectPreviewDocument(
+      corpusRoot,
+      sourcePath,
+      appLocale === undefined ? undefined : AppLocaleSchema.make(appLocale)
+    ).pipe(Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)))
   );
 }
 
@@ -34,8 +33,8 @@ describe("preview selection", () => {
     timeout: 30_000,
   }, async () => {
     const [article, material, prompt, answer] = await Promise.all([
-      selectDocument(articlePath),
-      selectDocument(materialPath),
+      selectDocument(articlePath, "en"),
+      selectDocument(materialPath, "id"),
       selectDocument(promptPath),
       selectDocument(answerPath),
     ]);
@@ -71,6 +70,10 @@ describe("preview selection", () => {
               mode: "restart",
               sourcePath: "packages/corpus/articles/schema.ts",
             },
+            {
+              mode: "restart",
+              sourcePath: "packages/corpus/locale/source.ts",
+            },
           ],
           family: "article",
         },
@@ -97,6 +100,10 @@ describe("preview selection", () => {
             {
               mode: "restart",
               sourcePath: "packages/corpus/material/schema.ts",
+            },
+            {
+              mode: "restart",
+              sourcePath: "packages/corpus/locale/source.ts",
             },
             {
               mode: "restart",
@@ -143,7 +150,26 @@ describe("preview selection", () => {
             },
             {
               mode: "restart",
+              sourcePath: "packages/corpus/locale/source.ts",
+            },
+            {
+              mode: "restart",
               sourcePath: "packages/corpus/route/schema.ts",
+            },
+          ],
+          directories: [
+            {
+              files: [
+                "answer.de.mdx",
+                "answer.en.mdx",
+                "answer.id.mdx",
+                "choices.de.ts",
+                "choices.ts",
+                "question.de.mdx",
+                "question.en.mdx",
+                "question.id.mdx",
+              ],
+              sourcePath: questionRoot,
             },
           ],
           entry: { sourcePath: promptPath },
@@ -165,17 +191,30 @@ describe("preview selection", () => {
     ]);
   });
 
-  it("reads only the selected question directory without a recursive bank scan", async () => {
-    const directoryReads: QuestionDirectoryRead[] = [];
+  it("rejects an explicit shell locale that contradicts a public body", async () => {
+    const [article, material] = await Promise.all(
+      [articlePath, materialPath].map((sourcePath) =>
+        Effect.runPromise(
+          selectPreviewDocument(
+            corpusRoot,
+            sourcePath,
+            AppLocaleSchema.make("de")
+          ).pipe(
+            Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)),
+            Effect.flip
+          )
+        )
+      )
+    );
 
-    await selectDocument(promptPath, directoryReads);
-
-    expect(directoryReads).toEqual([
-      {
-        path: `${corpusRoot}/${questionRoot}`,
-        recursive: false,
-      },
-    ]);
+    expect(article).toMatchObject({
+      reason: "locale",
+      sourcePath: articlePath,
+    });
+    expect(material).toMatchObject({
+      reason: "locale",
+      sourcePath: materialPath,
+    });
   });
 
   it("rejects invalid, unsupported, and unregistered source paths", {

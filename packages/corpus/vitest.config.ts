@@ -7,6 +7,7 @@ export default mergeConfig(config, {
       include: [
         "articles/**/*.ts",
         "curriculum/**/*.ts",
+        "locale/**/*.ts",
         "material/**/*.ts",
         "preview/**/*.ts",
         "program/**/*.ts",

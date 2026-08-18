@@ -1,0 +1,109 @@
+export const metadata = {
+  title: "Restsatz",
+  description: "Lerne mit Beispielen und Begründungen, wie der Restsatz den Rest einer Polynomdivision ohne vollständige Division liefert.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-04",
+  subject: "Polynom",
+};
+
+## Den Restsatz verstehen
+
+Der Rest einer Polynomdivision lässt sich oft bestimmen, ohne die vollständige Division oder das Horner-Schema auszuführen. Der **Restsatz** verbindet diesen Rest direkt mit einem Funktionswert des Polynoms.
+
+### Aussage des Restsatzes
+
+Wenn ein Polynom <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> geteilt wird, dann ist der Rest <InlineMath math="S = P(c)" />.
+
+Um den Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> zu bestimmen, genügt also die Auswertung von <InlineMath math="P(x)" /> bei <InlineMath math="x = c" />.
+
+### Warum funktioniert der Restsatz?
+
+Der Satz folgt direkt aus dem bekannten Polynomdivisionsalgorithmus:
+
+<BlockMath math="P(x) = (x - c) \cdot H(x) + S" />
+
+Wo:
+
+- <InlineMath math="P(x)" /> ist das Dividendenpolynom.
+- <InlineMath math="(x - c)" /> ist das Teilerpolynom (Grad <InlineMath math="1" />).
+- <InlineMath math="H(x)" /> ist der Quotient.
+- <InlineMath math="S" /> ist der Rest (eine Konstante, da der Divisor der Grad <InlineMath math="1" /> ist).
+
+Setzen wir nun <InlineMath math="x = c" /> in den Divisionsalgorithmus ein:
+
+<MathContainer>
+  <BlockMath math="P(c) = (c - c) \cdot H(c) + S" />
+  <BlockMath math="P(c) = (0) \cdot H(c) + S" />
+  <BlockMath math="P(c) = 0 + S" />
+  <BlockMath math="P(c) = S" />
+</MathContainer>
+
+Dies beweist, dass der Wert des Polynoms <InlineMath math="P(x)" /> bei <InlineMath math="x = c" /> gleich dem Rest <InlineMath math="S" /> ist, wenn <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> geteilt wird.
+
+## Rechnen mit dem Restsatz
+
+Mit dem Restsatz lässt sich ein Divisionsrest schnell bestimmen, ohne den gesamten Divisionsweg auszuschreiben.
+
+Bestimme den Rest bei der Division von <InlineMath math="P(x) = 2x^5 + 5x^4 - 10x^3 + 9x^2 - 10" /> durch <InlineMath math="x + 4" /> auf zwei Wegen.
+
+### Verwendung der Horner-Methode
+
+Der Teiler ist <InlineMath math="x + 4" /> oder <InlineMath math="x - (-4)" />, also <InlineMath math="c = -4" />.
+
+Koeffizienten von <InlineMath math="P(x)" /> (Vervollständigung des <InlineMath math="x" />-Terms): <InlineMath math="2, 5, -10, 9, 0, -10" />.
+
+<BlockMath
+  math="
+\begin{array}{c|cccccc}
+-4 & 2 & 5 & -10 & 9 & 0 & -10 \\
+  &   & -8 & 12 & -8 & -4 & 16 \\
+\hline
+  & 2 & -3 & 2 & 1 & -4 & \boxed{6} \\
+\end{array}
+"
+/>
+
+Aus Horners Methode erhalten wir:
+
+- Quotient: <InlineMath math="H(x) = 2x^4 - 3x^3 + 2x^2 + x - 4" />
+- Rest: <InlineMath math="S = \boxed{6}" />
+
+### Verwendung des Restsatzes
+
+Nach dem Restsatz ist der Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="x - (-4)" /> gleich <InlineMath math="P(-4)" />.
+
+Berechnen wir <InlineMath math="P(-4)" />:
+
+<MathContainer>
+  <BlockMath math="P(-4) = 2(-4)^5 + 5(-4)^4 - 10(-4)^3 + 9(-4)^2 - 10" />
+  <BlockMath math="P(-4) = 2(-1024) + 5(256) - 10(-64) + 9(16) - 10" />
+  <BlockMath math="P(-4) = -2048 + 1280 + 640 + 144 - 10" />
+  <BlockMath math="P(-4) = -2048 + 1920 + 144 - 10" />
+  <BlockMath math="P(-4) = -128 + 144 - 10" />
+  <BlockMath math="P(-4) = 16 - 10" />
+  <BlockMath math="P(-4) = 6" />
+</MathContainer>
+
+Beide Wege ergeben den Rest <InlineMath math="6" />. Der Restsatz kommt dabei ohne das vollständige Divisionsschema aus.
+
+Die Auswertung von <InlineMath math="P(c)" /> liefert also genau den Rest der Division durch <InlineMath math="(x-c)" />.
+
+## Übung
+
+Bestimme mithilfe des Restsatzes den Rest bei der Division von <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> durch <InlineMath math="x - 7" />.
+
+### Ausführliche Lösung
+
+Nach dem Restsatz ist der Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="x-7" /> gleich <InlineMath math="P(7)" />.
+
+<MathContainer>
+  <BlockMath math="P(7) = 3(7)^5 - 20(7)^4 - 6(7)^3 - 48(7) - 8" />
+  <BlockMath math="P(7) = 3(16807) - 20(2401) - 6(343) - 336 - 8" />
+  <BlockMath math="P(7) = 50421 - 48020 - 2058 - 336 - 8" />
+  <BlockMath math="P(7) = 2401 - 2058 - 336 - 8" />
+  <BlockMath math="P(7) = 343 - 336 - 8" />
+  <BlockMath math="P(7) = 7 - 8" />
+  <BlockMath math="P(7) = -1" />
+</MathContainer>
+
+Der Rest ist also <InlineMath math="-1" />.

@@ -1,0 +1,37 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-25",
+};
+
+Die neuen Daten haben die Form:
+
+<MathContainer>
+  <BlockMath math="\frac{x_1}{2} + 3, \frac{x_2}{2} + 5, \frac{x_3}{2} + 7, ..." />
+</MathContainer>
+
+Ihr Mittelwert ist:
+
+<MathContainer>
+  <BlockMath math="\bar{x} = \frac{\left(\frac{x_1}{2} + 3\right) + \left(\frac{x_2}{2} + 5\right) + \left(\frac{x_3}{2} + 7\right) + ... + \left(\frac{x_{10}}{2} + (2(10)+1)\right)}{10}" />
+</MathContainer>
+
+Zuerst bestimmen wir die Summe der arithmetischen Folge <InlineMath math="3, 5, 7, \dots" />. Ihr erstes Glied ist <InlineMath math="a_1 = 3" />, ihre Differenz <InlineMath math="d = 2" />. Das zehnte Glied lautet:
+
+<MathContainer>
+  <BlockMath math="a_{10} = 3 + 9(2) = 21" />
+</MathContainer>
+
+Die Summe der ersten <InlineMath math="10" /> Glieder ist:
+
+<MathContainer>
+  <BlockMath math="S_{10} = \frac{10}{2}(3 + 21) = 5(24) = 120" />
+</MathContainer>
+
+Damit ergibt sich für den neuen Mittelwert:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \bar{x} &= \frac{\frac{1}{2}(x_1 + x_2 + ... + x_{10}) + 120}{10} \\ &= \frac{1}{2}\frac{(x_1 + x_2 + ... + x_{10})}{10} + \frac{120}{10} \\ &= \frac{1}{2}x_0 + 12 \end{aligned}" />
+</MathContainer>
+
+Der neue Mittelwert ist also <InlineMath math="\frac{1}{2}x_0 + 12" />.

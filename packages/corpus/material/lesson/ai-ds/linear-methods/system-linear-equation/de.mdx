@@ -1,0 +1,119 @@
+export const metadata = {
+    title: "Überbestimmte lineare Systeme",
+    description: "Stelle aus Daten ein überbestimmtes lineares System auf und verstehe, warum die kleinsten Quadrate bei fehlender exakter Lösung das bestangepasste Polynom liefern.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-15",
+    subject: "Lineare Methoden der KI",
+};
+
+## Überbestimmte lineare Gleichungssysteme
+
+Angenommen, wir möchten eine Kurve an Messdaten anpassen. Häufig gibt es mehr Beobachtungen als Modellparameter. Schreiben wir für jede Beobachtung eine Gleichung auf, entsteht ein **überbestimmtes lineares System**.
+
+Ein System heißt überbestimmt, wenn die Anzahl <InlineMath math="m" /> der Gleichungen größer als die Anzahl <InlineMath math="n" /> der Unbekannten ist, also <InlineMath math="m > n" /> gilt. Dadurch ist eine exakte Lösung nicht automatisch ausgeschlossen. Messdaten liegen jedoch meist nicht genau auf dem gewählten Modell.
+
+## Reales Beispiel mit quadratischem Polynommodell
+
+Betrachten wir <InlineMath math="7" /> Datenpunkte, an die ein quadratisches Polynom angepasst werden soll.
+
+Die Beobachtungen sind:
+
+| <InlineMath math="i" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> |
+|---|---|---|---|---|---|---|---|
+| <InlineMath math="t_i" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| <InlineMath math="y_i" /> | <InlineMath math="-2{,}2" /> | <InlineMath math="-4{,}2" /> | <InlineMath math="-4{,}2" /> | <InlineMath math="-1{,}8" /> | <InlineMath math="1{,}8" /> | <InlineMath math="8{,}2" /> | <InlineMath math="15{,}8" /> |
+
+Gesucht ist eine Parabel der Form:
+
+<BlockMath math="y = a_2 \cdot t^2 + a_1 \cdot t + a_0" />
+
+Unbekannt sind die <InlineMath math="3" /> Parameter <InlineMath math="a_2" /> (quadratischer Koeffizient), <InlineMath math="a_1" /> (linearer Koeffizient) und <InlineMath math="a_0" /> (konstanter Term).
+
+## Aufstellen des Gleichungssystems
+
+Setzen wir jedes Paar <InlineMath math="(t_i,y_i)" /> in das Polynom ein, entsteht jeweils eine Gleichung. Die <InlineMath math="7" /> Beobachtungen liefern somit <InlineMath math="7" /> Gleichungen für nur <InlineMath math="3" /> unbekannte Koeffizienten.
+
+<MathContainer>
+<BlockMath math="a_2 \cdot (-3)^2 + a_1 \cdot (-3) + a_0 = -2{,}2" />
+<BlockMath math="a_2 \cdot (-2)^2 + a_1 \cdot (-2) + a_0 = -4{,}2" />
+<BlockMath math="a_2 \cdot (-1)^2 + a_1 \cdot (-1) + a_0 = -4{,}2" />
+<BlockMath math="a_2 \cdot 0^2 + a_1 \cdot 0 + a_0 = -1{,}8" />
+<BlockMath math="a_2 \cdot 1^2 + a_1 \cdot 1 + a_0 = 1{,}8" />
+<BlockMath math="a_2 \cdot 2^2 + a_1 \cdot 2 + a_0 = 8{,}2" />
+<BlockMath math="a_2 \cdot 3^2 + a_1 \cdot 3 + a_0 = 15{,}8" />
+</MathContainer>
+
+Nach dem Auswerten der Potenzen von <InlineMath math="t_i" /> ergibt sich:
+
+<MathContainer>
+<BlockMath math="9a_2 - 3a_1 + a_0 = -2{,}2" />
+<BlockMath math="4a_2 - 2a_1 + a_0 = -4{,}2" />
+<BlockMath math="1a_2 - 1a_1 + a_0 = -4{,}2" />
+<BlockMath math="0a_2 + 0a_1 + a_0 = -1{,}8" />
+<BlockMath math="1a_2 + 1a_1 + a_0 = 1{,}8" />
+<BlockMath math="4a_2 + 2a_1 + a_0 = 8{,}2" />
+<BlockMath math="9a_2 + 3a_1 + a_0 = 15{,}8" />
+</MathContainer>
+
+## Matrixform
+
+Das obige Gleichungssystem kann in der Matrixform <InlineMath math="A \cdot x = b" /> geschrieben werden.
+
+<BlockMath math="\begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} -2{,}2 \\ -4{,}2 \\ -4{,}2 \\ -1{,}8 \\ 1{,}8 \\ 8{,}2 \\ 15{,}8 \end{pmatrix}" />
+
+Für ein quadratisches Modell mit <InlineMath math="m" /> Datenpunkten hat dieselbe Konstruktion die allgemeine Form:
+
+<BlockMath math="\begin{pmatrix} t_1^2 & t_1 & 1 \\ \vdots & \vdots & \vdots \\ t_m^2 & t_m & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} y_1 \\ \vdots \\ y_m \end{pmatrix}" />
+
+## Warum es keine exakte Lösung gibt
+
+In diesem Beispiel hat die Matrix <InlineMath math="A" /> die Größe <InlineMath math="7 \times 3" />, der Koeffizientenvektor <InlineMath math="x" /> die Größe <InlineMath math="3 \times 1" />. Es gibt also <InlineMath math="7" /> Gleichungen für <InlineMath math="3" /> Unbekannte.
+
+Ob eine exakte Lösung existiert, folgt nicht allein aus den Dimensionen, sondern aus den Rängen der Matrizen.
+
+Die drei Spalten von <InlineMath math="A" /> sind linear unabhängig. Ein Polynom <InlineMath math="c_2t^2+c_1t+c_0" /> vom Grad höchstens <InlineMath math="2" />, das an allen sieben verschiedenen Werten <InlineMath math="t_i" /> verschwindet, muss nämlich das Nullpolynom sein. Daher gilt <InlineMath math="\operatorname{rank}(A)=3" />.
+
+Durch das Anfügen von <InlineMath math="b" /> entsteht die erweiterte Matrix <InlineMath math="(A\mid b)" />. Bereits ihre ersten vier Zeilen liefern den von null verschiedenen Minor
+
+<BlockMath math="\det\begin{pmatrix}9&-3&1&-2{,}2\\4&-2&1&-4{,}2\\1&-1&1&-4{,}2\\0&0&1&-1{,}8\end{pmatrix}=-\frac45" />
+
+und somit <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
+
+Da <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" /> gilt, **hat das System keine exakte Lösung**. Kein einziges quadratisches Polynom verläuft durch alle <InlineMath math="7" /> Beobachtungen.
+
+## Lösung mit kleinsten Quadraten
+
+Besitzt ein überbestimmtes System keine exakte Lösung, lässt sich stattdessen das Polynom bestimmen, das den Beobachtungen im Sinne der **kleinsten Quadrate** am nächsten liegt.
+
+Für die Beobachtung <InlineMath math="i" /> ist das vertikale Residuum <InlineMath math="r_i = y_i-(a_2t_i^2+a_1t_i+a_0)" />. Die Methode der kleinsten Quadrate wählt die Koeffizienten so, dass die Summe der quadrierten Residuen minimal wird:
+
+<BlockMath math="\min_{a_2,a_1,a_0}\sum_{i=1}^{7}\left[y_i-(a_2t_i^2+a_1t_i+a_0)\right]^2" />
+
+Dieses Kriterium gewichtet große Abweichungen stärker und liefert genau eine bestangepasste Parabel, weil <InlineMath math="A" /> vollen Spaltenrang besitzt. Die Normalgleichungen lauten
+
+<MathContainer>
+<BlockMath math="A^TA=\begin{pmatrix}196&0&28\\0&28&0\\28&0&7\end{pmatrix}" />
+<BlockMath math="A^Tb=\begin{pmatrix}136\\\frac{424}{5}\\\frac{67}{5}\end{pmatrix}" />
+</MathContainer>
+
+Ihre Lösung ist
+
+<MathContainer>
+<BlockMath math="\hat x=\begin{pmatrix}\hat a_2\\\hat a_1\\\hat a_0\end{pmatrix}=\begin{pmatrix}\frac{103}{105}\\\frac{106}{35}\\-\frac{211}{105}\end{pmatrix}" />
+<BlockMath math="\hat y(t)=\frac{103}{105}t^2+\frac{106}{35}t-\frac{211}{105}" />
+</MathContainer>
+
+Die angepassten Werte stimmen erwartungsgemäß nicht mit jeder Beobachtung überein. Der Residuenvektor lautet
+
+<BlockMath math="r=b-A\hat x=\begin{pmatrix}\frac1{15}\\-\frac2{35}\\-\frac17\\\frac{22}{105}\\-\frac15\\\frac8{35}\\-\frac{11}{105}\end{pmatrix}" />
+
+und erfüllt
+
+<MathContainer>
+<BlockMath math="A^Tr=0" />
+<BlockMath math="\lVert r\rVert_2^2=\frac{92}{525}\approx0{,}17524" />
+</MathContainer>
+
+Die Gleichung <InlineMath math="A^Tr=0" /> besagt, dass der verbleibende Fehler zu jeder Spalte von <InlineMath math="A" /> orthogonal ist. Geometrisch ist <InlineMath math="A\hat x" /> die orthogonale Projektion von <InlineMath math="b" /> auf den Spaltenraum von <InlineMath math="A" />.
+
+Überbestimmte Systeme treten in Technik und Naturwissenschaften häufig auf, weil Experimente viele Messwerte für Modelle mit wenigen Parametern liefern. Die Methode der kleinsten Quadrate nutzt alle Messwerte, ohne vorzugeben, verrauschte Daten passten exakt zum Modell.

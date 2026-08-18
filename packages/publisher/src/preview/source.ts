@@ -70,15 +70,19 @@ export class PreviewChoiceSourceError extends Schema.TaggedError<PreviewChoiceSo
 const loadQuestionChoices = Effect.fn("AksaraPublisher.loadPreviewChoices")(
   function* (
     checkoutRoot: string,
-    entry: QuestionEntry,
+    selected: Extract<PreviewSource, { readonly family: "question" }>,
     choicesByRoot: Map<QuestionSourceRoot, QuestionChoices>
   ) {
+    const { entry } = selected;
     const { sourceRoot } = entry;
     const cached = choicesByRoot.get(sourceRoot);
     if (cached !== undefined) {
       return cached;
     }
-    const choices = yield* readQuestionChoices(checkoutRoot, entry).pipe(
+    const choices = yield* readQuestionChoices(checkoutRoot, {
+      ...entry,
+      appLocale: selected.appLocale,
+    }).pipe(
       Effect.mapError(
         (cause) =>
           new PreviewChoiceSourceError({
@@ -120,7 +124,7 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
 
     const choices = yield* loadQuestionChoices(
       checkoutRoot,
-      selected.entry,
+      selected,
       choicesByRoot
     );
     const source = yield* loadQuestionDocument(

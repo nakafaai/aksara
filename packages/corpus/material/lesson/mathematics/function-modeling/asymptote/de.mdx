@@ -1,0 +1,538 @@
+
+
+export const metadata = {
+  title: "Asymptote",
+  description: "Senkrechte, waagerechte und schräge Asymptoten rationaler Funktionen bestimmen und beim Zeichnen ihrer Graphen nutzen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Was ist eine Asymptote?
+
+Eine Asymptote ist eine Gerade, der sich ein Graph in einem bestimmten Grenzprozess annähert. In der Nähe einer senkrechten Asymptote wächst der Funktionswert betragsmäßig ohne Grenze. Bei einer waagerechten oder schrägen Asymptote nähert sich der Abstand zwischen Graph und Gerade für große Beträge der Eingabe dem Wert null.
+
+Ein Graph darf eine waagerechte oder schräge Asymptote bei einem endlichen Eingabewert schneiden. Die Asymptote beschreibt das Grenzverhalten und ist keine unüberwindbare Grenze.
+
+## Arten von Asymptoten
+
+Wir unterscheiden drei Arten von Asymptoten:
+
+### Vertikale Asymptote
+
+Eine senkrechte Asymptote liegt an einer Stelle, an der der Funktionswert von mindestens einer Seite betragsmäßig unbegrenzt wächst.
+
+**Definition:** Die Gerade <InlineMath math="x = a" /> ist eine vertikale Asymptote, wenn mindestens einer der folgenden einseitigen Grenzwerte unendlich ist:
+
+- Wenn sich <InlineMath math="x" /> von links <InlineMath math="a" /> nähert, <InlineMath math="f(x) \to \pm\infty" />
+- Wenn sich <InlineMath math="x" /> von rechts <InlineMath math="a" /> nähert, <InlineMath math="f(x) \to \pm\infty" />
+
+**So wird sie bestimmt:** Zunächst werden gemeinsame Polynomfaktoren gekürzt. In der vereinfachten rationalen Funktion entsteht eine senkrechte Asymptote, wenn <InlineMath math="Q(x) = 0" /> und zugleich <InlineMath math="P(x) \neq 0" /> gilt. Ein gekürzter Faktor erzeugt stattdessen eine Definitionslücke.
+
+### Horizontale Asymptote
+
+Eine horizontale Asymptote ist eine horizontale Linie, der sich der Graph für <InlineMath math="x" /> gegen positiv unendlich, negativ unendlich oder in beiden Richtungen annähert.
+
+**Definition:** Die Gerade <InlineMath math="y = b" /> ist in jeder Richtung eine horizontale Asymptote, in der der zugehörige Grenzwert gilt:
+
+- <InlineMath math="\lim_{x \to \infty} f(x) = b" />
+- <InlineMath math="\lim_{x \to -\infty} f(x) = b" />
+
+### Schräge Asymptote
+
+Eine schräge Asymptote ist eine schräge Linie, der sich der Graph für <InlineMath math="x" /> gegen positiv unendlich, negativ unendlich oder in beiden Richtungen annähert.
+
+**Definition:** Die Gerade <InlineMath math="y = mx + c" /> ist in einer Richtung eine schräge Asymptote, wenn die folgende Differenz dort gegen null geht:
+
+<MathContainer>
+  <BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
+  <BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
+</MathContainer>
+
+## Asymptoten in rationalen Funktionen
+
+Konzentrieren wir uns auf rationale Funktionen <InlineMath math="f(x) = \frac{P(x)}{Q(x)}" />, wobei <InlineMath math="P(x)" /> und <InlineMath math="Q(x)" /> Polynome sind.
+
+### Vertikale Asymptoten bestimmen
+
+**Schritte:**
+
+1. Bestimme die Werte von <InlineMath math="x" />, für die <InlineMath math="Q(x) = 0" /> gilt
+2. Prüfe für diese Werte, ob <InlineMath math="P(x) \neq 0" /> gilt
+3. Ist das der Fall, liegt bei <InlineMath math="x = a" /> eine senkrechte Asymptote
+
+**Beispiel:** Bestimme die senkrechte Asymptote von <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />.
+
+**Lösung:**
+
+- Der Nenner ist Null, wenn: <InlineMath math="x - 2 = 0" />, also <InlineMath math="x = 2" />
+- Bei <InlineMath math="x = 2" /> ist der Zähler <InlineMath math="2 + 3 = 5 \neq 0" />
+- Daher ist <InlineMath math="x = 2" /> eine senkrechte Asymptote.
+
+Betrachten wir das Funktionsverhalten um die vertikale Asymptote:
+
+| <InlineMath math="x" /> | <InlineMath math="f(x) = \frac{x + 3}{x - 2}" /> | Beschreibung |
+| -------------------------- | -------------------------------------------------------- | ---------------------------------------- |
+| <InlineMath math="1{,}9" /> | <InlineMath math="\frac{1{,}9 + 3}{1{,}9 - 2} = \frac{4{,}9}{-0{,}1} = -49" /> | Nähert sich <InlineMath math="-\infty" /> |
+| <InlineMath math="1{,}99" /> | <InlineMath math="\frac{4{,}99}{-0{,}01} = -499" /> | Wird stärker negativ |
+| <InlineMath math="2{,}01" /> | <InlineMath math="\frac{5{,}01}{0{,}01} = 501" /> | Nähert sich <InlineMath math="+\infty" /> |
+| <InlineMath math="2{,}1" /> | <InlineMath math="\frac{5{,}1}{0{,}1} = 51" /> | Wird stärker positiv |
+
+<LineEquation
+  title={
+    <>
+      Graph von <InlineMath math="f(x) = \frac{x + 3}{x - 2}" /> mit
+      senkrechter Asymptote
+    </>
+  }
+  description={
+    <>
+      Der Graph nähert sich der senkrechten Geraden <InlineMath math="x = 2" />
+      von beiden Seiten.
+    </>
+  }
+  data={[
+    {
+      points: [
+        { x: -2, y: -0.25, z: 0 },
+        { x: -1, y: -0.67, z: 0 },
+        { x: 0, y: -1.5, z: 0 },
+        { x: 1, y: -4, z: 0 },
+        { x: 1.5, y: -9, z: 0 },
+        { x: 1.8, y: -24, z: 0 },
+        { x: 1.9, y: -49, z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="x \to 2^{-}" />,
+          at: 1,
+          offset: [-1, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2.1, y: 51, z: 0 },
+        { x: 2.2, y: 26, z: 0 },
+        { x: 2.5, y: 11, z: 0 },
+        { x: 3, y: 6, z: 0 },
+        { x: 4, y: 3.5, z: 0 },
+        { x: 5, y: 2.67, z: 0 },
+        { x: 6, y: 2.25, z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="x \to 2^{+}" />,
+          at: 6,
+          offset: [0.5, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2, y: -50, z: 0 },
+        { x: 2, y: 0, z: 0 },
+        { x: 2, y: 50, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [1, -0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[10, 6, 10]}
+  showZAxis={false}
+/>
+
+### Horizontale Asymptoten finden
+
+**Regeln für rationale Funktionen:**
+
+Der Zähler habe den Grad <InlineMath math="m" /> und der Nenner den Grad <InlineMath math="n" />.
+
+1. Wenn <InlineMath math="m < n" />: Die horizontale Asymptote ist <InlineMath math="y = 0" />
+2. Wenn <InlineMath math="m = n" />: Die horizontale Asymptote ist <InlineMath math="y = \frac{a}{b}" /> (Verhältnis der führenden Koeffizienten)
+3. Wenn <InlineMath math="m > n" />: Keine horizontale Asymptote (aber es könnte eine schräge Asymptote geben)
+
+**Beispiel:** Bestimme die waagerechte Asymptote der folgenden Funktionen:
+
+1. <InlineMath math="f(x) = \frac{2x + 1}{x^2 - 4}" />
+
+   **Lösung:**
+
+   Der Zählergrad ist <InlineMath math="= 1" /> und der Nennergrad ist <InlineMath math="= 2" />. Da <InlineMath math="1 < 2" />, beträgt die horizontale Asymptote <InlineMath math="y = 0" />.
+
+2. <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" />
+
+   **Lösung:**
+
+   Der Zählergrad ist <InlineMath math="= 2" /> und der Nennergrad ist <InlineMath math="= 2" />. Da die Grade gleich sind, beträgt die horizontale Asymptote <InlineMath math="y = \frac{3}{2}" />.
+
+Sehen wir uns an, wie sich die Funktion der horizontalen Asymptote annähert:
+
+| <InlineMath math="x" /> | <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" /> | Annäherung an |
+| -------------------------- | ----------------------------------------------------------------------------------- | ------------------------- |
+| <InlineMath math="10" /> | <InlineMath math="\frac{3(100) - 1}{2(100) + 5} = \frac{299}{205} \approx 1{,}459" /> | <InlineMath math="1{,}5" /> |
+| <InlineMath math="100" /> | <InlineMath math="\frac{29999}{20005} \approx 1{,}4996" /> | <InlineMath math="1{,}5" /> |
+| <InlineMath math="1000" /> | <InlineMath math="\frac{2999999}{2000005} \approx 1{,}499996" /> | <InlineMath math="1{,}5" /> |
+
+<LineEquation
+  title={
+    <>
+      Graph von <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" /> mit
+      waagerechter Asymptote
+    </>
+  }
+  description={
+    <>
+      Für <InlineMath math="x \to \pm\infty" /> nähert sich der Graph der
+      Geraden <InlineMath math="y = 1{,}5" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 40 }, (_, i) => {
+        const x = -10 + i * 0.5;
+        const y = (3 * x * x - 1) / (2 * x * x + 5);
+        return { x, y, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -10, y: 1.5, z: 0 },
+        { x: 0, y: 1.5, z: 0 },
+        { x: 10, y: 1.5, z: 0 },
+      ],
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=1{,}5" />, at: 1, offset: [2, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[10, 6, 10]}
+  showZAxis={false}
+/>
+
+### Schrägasymptoten finden
+
+Bei <InlineMath math="\text{Grad des Zählers} = \text{Grad des Nenners} + 1" /> treten schräge Asymptoten auf.
+
+**Vorgehen:** Führe eine Polynomdivision durch.
+
+**Beispiel:** Bestimme die schräge Asymptote von <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" />.
+
+**Lösung:**
+Die Polynomdivision liefert:
+
+<BlockMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1} = x + 3 + \frac{2}{x - 1}" />
+
+Bei <InlineMath math="x \to \pm\infty" /> ist der Term <InlineMath math="\frac{2}{x - 1} \to 0" />
+
+Daher schräge Asymptote: <InlineMath math="y = x + 3" />
+
+<LineEquation
+  title={
+    <>
+      Graph von <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" /> mit
+      schräger Asymptote
+    </>
+  }
+  description={
+    <>
+      Für <InlineMath math="x \to \pm\infty" /> nähert sich der Graph der
+      Geraden <InlineMath math="y = x + 3" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 30 }, (_, i) => {
+        const x = -8 + i * 0.3;
+        if (Math.abs(x - 1) < 0.1) return null;
+        const y = (x * x + 2 * x - 1) / (x - 1);
+        return { x, y, z: 0 };
+      }).filter((p) => p !== null),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 30 }, (_, i) => {
+        const x = 1.3 + i * 0.3;
+        const y = (x * x + 2 * x - 1) / (x - 1);
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -8, y: -5, z: 0 },
+        { x: 0, y: 3, z: 0 },
+        { x: 10, y: 13, z: 0 },
+      ],
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x+3" />, at: 1, offset: [3, 1.5, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: -10, z: 0 },
+        { x: 1, y: 0, z: 0 },
+        { x: 1, y: 15, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[10, 6, 10]}
+  showZAxis={false}
+/>
+
+## Graphen mit Asymptoten zeichnen
+
+Asymptoten sind beim Zeichnen von Funktionsgraphen sehr hilfreich. Hier sind die Schritte:
+
+1. **Bestimme alle Asymptoten** (senkrecht, waagerecht oder schräg)
+2. **Zeichne die Asymptoten als Hilfslinien**
+3. **Bestimme die Achsenschnittpunkte**
+4. **Berechne einige zusätzliche Punkte**
+5. **Zeichne die Kurvenäste** passend zu Punkten und Grenzverhalten
+
+**Vollständiges Beispiel:** Zeichne den Graphen von <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />.
+
+**Schritt** <InlineMath math="1" />: Asymptoten bestimmen
+
+- Vertikale Asymptote: <InlineMath math="x = 2" /> (<InlineMath math="\text{Nenner} = 0" />)
+- Horizontale Asymptote: <InlineMath math="y = 1" /> (gleicher Grad, Koeffizientenverhältnis <InlineMath math="= 1/1" />)
+
+**Schritt** <InlineMath math="2" />: Achsenschnittpunkte bestimmen
+
+- <InlineMath math="y" />-Achse: <InlineMath math="f(0) = \frac{0 + 1}{0 - 2} = -\frac{1}{2}" />
+- <InlineMath math="x" />-Achse: <InlineMath math="0 = \frac{x + 1}{x - 2}" />, also <InlineMath math="x = -1" />
+
+**Schritt** <InlineMath math="3" />: Verhalten rund um Asymptoten
+
+- Bei <InlineMath math="x \to 2^-" />: <InlineMath math="f(x) \to -\infty" />
+- Bei <InlineMath math="x \to 2^+" />: <InlineMath math="f(x) \to +\infty" />
+- Bei <InlineMath math="x \to \pm\infty" />: <InlineMath math="f(x) \to 1" />
+
+**Schritt** <InlineMath math="4" />: Wertetabelle als Hilfe beim Zeichnen
+
+| <InlineMath math="x" /> | <InlineMath math="f(x) = \frac{x + 1}{x - 2}" /> | Beschreibung |
+| ------------------------ | ----------------------------------------------------------------- | -------------------------------- |
+| <InlineMath math="-3" /> | <InlineMath math="\frac{-3 + 1}{-3 - 2} = \frac{-2}{-5} = 0{,}4" /> | Punkt im Quadranten II |
+| <InlineMath math="-1" /> | <InlineMath math="\frac{-1 + 1}{-1 - 2} = \frac{0}{-3} = 0" /> | <InlineMath math="x" />-Achsenschnittpunkt |
+| <InlineMath math="0" /> | <InlineMath math="\frac{0 + 1}{0 - 2} = \frac{1}{-2} = -0{,}5" /> | <InlineMath math="y" />-Achsenschnittpunkt |
+| <InlineMath math="1" /> | <InlineMath math="\frac{1 + 1}{1 - 2} = \frac{2}{-1} = -2" /> | Annäherung an die vertikale Asymptote |
+| <InlineMath math="3" /> | <InlineMath math="\frac{3 + 1}{3 - 2} = \frac{4}{1} = 4" /> | Rechts der senkrechten Asymptote |
+| <InlineMath math="5" /> | <InlineMath math="\frac{5 + 1}{5 - 2} = \frac{6}{3} = 2" /> | Annäherung an die horizontale Asymptote |
+
+<LineEquation
+  title={
+    <>
+      Vollständiger Graph von <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
+    </>
+  }
+  description={
+    <>
+      Der Graph hat die senkrechte Asymptote <InlineMath math="x = 2" /> und
+      die waagerechte Asymptote <InlineMath math="y = 1" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 40 }, (_, i) => {
+        const x = -5 + i * 0.175;
+        if (Math.abs(x - 2) < 0.05) return null;
+        const y = (x + 1) / (x - 2);
+        if (Math.abs(y) > 20) return null;
+        return { x, y, z: 0 };
+      }).filter((p) => p !== null),
+      color: "#0284c7",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 40 }, (_, i) => {
+        const x = 2.05 + i * 0.175;
+        const y = (x + 1) / (x - 2);
+        if (Math.abs(y) > 20) return null;
+        return { x, y, z: 0 };
+      }).filter((p) => p !== null),
+      color: "#0284c7",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 2, y: -20, z: 0 },
+        { x: 2, y: 0, z: 0 },
+        { x: 2, y: 20, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [2, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -5, y: 1, z: 0 },
+        { x: 0, y: 1, z: 0 },
+        { x: 9, y: 1, z: 0 },
+      ],
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=1" />, at: 1, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(-1,0)" />, at: 0, offset: [-1, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 0, y: -0.5, z: 0 }],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(0,-0{,}5)" />, at: 0, offset: [-1.5, -1, 0] }],
+    },
+  ]}
+  cameraPosition={[10, 6, 10]}
+  showZAxis={false}
+/>
+
+## Übungsaufgaben
+
+1. Bestimme alle Asymptoten von <InlineMath math="f(x) = \frac{2x^2 - 3x + 1}{x - 3}" />.
+
+2. Bestimme die Asymptoten von <InlineMath math="g(x) = \frac{x^2 - 4}{x^2 - 9}" />.
+
+3. Die durchschnittliche Kostenfunktion eines Produkts ist <InlineMath math="C(x) = \frac{500 + 3x}{x}" />. Bestimme den Grenzwert der Kosten pro Einheit, wenn die Produktion unbegrenzt wächst.
+
+4. Zeichne eine Skizze des Graphen <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> einschließlich seiner Asymptoten.
+
+### Ausführliche Lösungen
+
+**Aufgabe** <InlineMath math="1" />:
+
+Der Nenner wird bei <InlineMath math="x = 3" /> null, während der Zähler dort den Wert <InlineMath math="2(3)^2 - 3(3) + 1 = 10" /> hat. Weil der Zähler nicht ebenfalls null wird, ist <InlineMath math="x = 3" /> eine senkrechte Asymptote.
+
+Die Polynomdivision trennt das langfristige lineare Verhalten vom Restterm:
+
+<BlockMath math="\frac{2x^2 - 3x + 1}{x - 3} = 2x + 3 + \frac{10}{x - 3}" />
+
+Für <InlineMath math="x \to \pm\infty" /> gilt <InlineMath math="\frac{10}{x - 3} \to 0" />. Daher ist <InlineMath math="y = 2x + 3" /> die schräge Asymptote.
+
+**Aufgabe** <InlineMath math="2" />:
+
+Zähler und Nenner werden zuerst faktorisiert:
+
+<MathContainer>
+  <BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
+  <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+</MathContainer>
+
+Es gibt keinen gemeinsamen Faktor, der gekürzt werden könnte. Daher sind die Nennernullstellen <InlineMath math="x = -3" /> und <InlineMath math="x = 3" /> senkrechte Asymptoten. Die Zählernullstellen <InlineMath math="x = -2" /> und <InlineMath math="x = 2" /> sind Schnittpunkte mit der <InlineMath math="x" />-Achse. Zähler und Nenner haben denselben Grad und beide Leitkoeffizienten sind <InlineMath math="1" />. Somit ist <InlineMath math="y = 1" /> die waagerechte Asymptote.
+
+**Aufgabe** <InlineMath math="3" />:
+
+<BlockMath math="C(x) = \frac{500 + 3x}{x} = \frac{500}{x} + 3" />
+
+Für <InlineMath math="x \to \infty" /> gilt <InlineMath math="\frac{500}{x} \to 0" />. Daher folgt <InlineMath math="C(x) \to 3" />. Die Kosten nähern sich <InlineMath math="3" /> pro Einheit, erreichen diesen Wert aber für kein endliches positives <InlineMath math="x" />.
+
+**Aufgabe** <InlineMath math="4" />:
+
+Der Nenner wird als <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" /> faktorisiert. Keiner der Faktoren kürzt sich mit dem Zähler. Deshalb sind <InlineMath math="x = -1" /> und <InlineMath math="x = 1" /> senkrechte Asymptoten. Da der Grad des Zählers kleiner als der Grad des Nenners ist, gilt <InlineMath math="h(x) \to 0" /> für <InlineMath math="x \to \pm\infty" />. Die waagerechte Asymptote ist also <InlineMath math="y = 0" />.
+
+Die beiden senkrechten Asymptoten teilen den Definitionsbereich in drei Intervalle. <InlineMath math="h(x)" /> ist für <InlineMath math="x < -1" /> negativ, für <InlineMath math="-1 < x < 0" /> positiv, für <InlineMath math="0 < x < 1" /> negativ und für <InlineMath math="x > 1" /> positiv. Zusammen mit dem Achsenschnittpunkt <InlineMath math="(0,0)" /> bestimmen diese Vorzeichen die Lage aller drei Kurvenäste.
+
+Wertetabelle für <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
+
+| <InlineMath math="x" /> | <InlineMath math="h(x)" /> | Beschreibung |
+| -------------------------- | ------------------------------------------------------- | ----------- |
+| <InlineMath math="-2" /> | <InlineMath math="\frac{-2}{4-1} = -\frac{2}{3}" /> | Linker Teil |
+| <InlineMath math="-0{,}5" /> | <InlineMath math="\frac{-0{,}5}{0{,}25-1} = \frac{2}{3}" /> | Mittelteil |
+| <InlineMath math="0" /> | <InlineMath math="\frac{0}{0-1} = 0" /> | Achsenschnittpunkt |
+| <InlineMath math="0{,}5" /> | <InlineMath math="\frac{0{,}5}{0{,}25-1} = -\frac{2}{3}" /> | Mittelteil |
+| <InlineMath math="2" /> | <InlineMath math="\frac{2}{4-1} = \frac{2}{3}" /> | Rechter Teil |
+
+<LineEquation
+  title={
+    <>
+      Graph von <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> mit zwei
+      senkrechten Asymptoten
+    </>
+  }
+  description={
+    <>
+      Der Graph hat senkrechte Asymptoten bei <InlineMath math="x = -1" /> und{" "}
+      <InlineMath math="x = 1" /> sowie die waagerechte Asymptote{" "}
+      <InlineMath math="y = 0" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 20 }, (_, i) => {
+        const x = -3 + i * 0.095;
+        const y = x / (x * x - 1);
+        if (Math.abs(y) > 10) return null;
+        return { x, y, z: 0 };
+      }).filter((p) => p !== null),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 20 }, (_, i) => {
+        const x = -0.95 + i * 0.09;
+        const y = x / (x * x - 1);
+        if (Math.abs(y) > 10) return null;
+        return { x, y, z: 0 };
+      }).filter((p) => p !== null),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 20 }, (_, i) => {
+        const x = 1.05 + i * 0.095;
+        const y = x / (x * x - 1);
+        if (Math.abs(y) > 10) return null;
+        return { x, y, z: 0 };
+      }).filter((p) => p !== null),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -1, y: -10, z: 0 },
+        { x: -1, y: 0, z: 0 },
+        { x: -1, y: 10, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x=-1" />, at: 1, offset: [-2, 1, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: -10, z: 0 },
+        { x: 1, y: 0, z: 0 },
+        { x: 1, y: 10, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [2, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=0" />, at: 1, offset: [1, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[10, 6, 10]}
+  showZAxis={false}
+/>

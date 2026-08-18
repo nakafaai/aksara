@@ -1,0 +1,230 @@
+export const metadata = {
+   title: "Wahrscheinlichkeit unabhängiger Ereignisse",
+   description: "Unabhängigkeit prüfen und gemeinsame Wahrscheinlichkeiten berechnen, ohne sich von oberflächlichen Schlüsselwörtern täuschen zu lassen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Unabhängige Ereignisse verstehen
+
+In manchen Wahrscheinlichkeitsmodellen gilt: **Die Kenntnis eines Ergebnisses verändert die Wahrscheinlichkeit eines anderen nicht**. Wirf eine faire Münze und einen fairen Würfel. Das Ergebnis der Münze liefert keine Information über das Würfelergebnis. Die beiden Ereignisse sind unabhängig.
+
+Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **unabhängig**, wenn die Wahrscheinlichkeit des jeweils anderen unverändert bleibt, sobald wir eines als Bedingung voraussetzen. Unabhängigkeit ist eine Eigenschaft des Wahrscheinlichkeitsmodells. Gleichzeitig stattfindende Ereignisse sind nicht automatisch unabhängig.
+
+Diese Unterscheidung ist wichtig, weil zwei Ereignisse eine verborgene gemeinsame Ursache haben können. Zwei Alarme steuern einander vielleicht nicht direkt, reagieren aber möglicherweise auf denselben Vorfall. Nimm Unabhängigkeit daher nur an, wenn sie aus dem Modell folgt oder ausdrücklich gegeben ist.
+
+## Eigenschaften unabhängiger Ereignisse
+
+### Keine gegenseitige Beeinflussung
+
+Das Hauptmerkmal unabhängiger Ereignisse lautet: **Das Ergebnis eines Ereignisses verändert die Wahrscheinlichkeit des anderen nicht**. Sind <InlineMath math="A" /> und <InlineMath math="B" /> unabhängig und gilt <InlineMath math="P(B) > 0" />, dann folgt:
+
+<BlockMath math="P(A|B) = P(A)" />
+
+Dies bedeutet, dass die Wahrscheinlichkeit, dass <InlineMath math="A" /> auftritt, wenn <InlineMath math="B" /> bereits aufgetreten ist, genauso groß ist wie die Wahrscheinlichkeit, dass <InlineMath math="A" /> im Allgemeinen auftritt.
+
+### Beispiele aus dem täglichen Leben
+
+Beispiele mit einem klar unabhängigen Mechanismus sind:
+
+- zwei getrennte faire Münzwürfe
+- je eine Karte aus zwei unabhängig gemischten Stapeln
+- zwei getrennte faire Würfel
+- zwei Zufallszahlen aus unabhängigen Versuchen
+
+### Identifizieren unabhängiger Ereignisse
+
+Frage zur Prüfung: „Verändert die Kenntnis des ersten Ergebnisses die Wahrscheinlichkeitsverteilung des zweiten?“ Eine bloße Ursache-Wirkungs-Geschichte reicht nicht. Nutze das angegebene Modell oder vergleiche bedingte und gewöhnliche Wahrscheinlichkeit.
+
+## Formel für die Wahrscheinlichkeit unabhängiger Ereignisse
+
+Da unabhängige Ereignisse sich nicht gegenseitig beeinflussen, wird die Berechnung ihrer gemeinsamen Wahrscheinlichkeit einfach. Die **Grundformel** für die Wahrscheinlichkeit unabhängiger Ereignisse lautet:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+
+Die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math="B" /> gemeinsam eintreten, ist also das Produkt ihrer Einzelwahrscheinlichkeiten.
+
+### Warum diese Formel funktioniert
+
+Bei unabhängigen Ereignissen stimmt die bedingte Wahrscheinlichkeit mit der gewöhnlichen Wahrscheinlichkeit überein. Aus <InlineMath math="P(A|B) = P(A)" /> folgt:
+
+<BlockMath math="P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)" />
+
+Aus diesem Grund können wir einzelne Wahrscheinlichkeiten direkt multiplizieren, um die gemeinsame Wahrscheinlichkeit zu erhalten.
+
+## Anwendung in Berechnungen
+
+### Zwei Würfel werfen
+
+Ein roter und ein weißer Würfel werden geworfen. Gesucht ist die Wahrscheinlichkeit dafür, dass der rote Würfel <InlineMath math="2" /> und der weiße <InlineMath math="5" /> zeigt.
+
+**Lösung:**
+
+- Ereignis <InlineMath math="A" />: Der rote Würfel zeigt <InlineMath math="2" />
+- Ereignis <InlineMath math="B" />: Der weiße Würfel zeigt <InlineMath math="5" />
+
+Beide Ereignisse sind **unabhängig**, da das Ergebnis des roten Würfels keinen Einfluss auf das Ergebnis des weißen Würfels hat.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{1}{6}" />
+<BlockMath math="P(B) = \frac{1}{6}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}" />
+</MathContainer>
+
+Die Wahrscheinlichkeit, die Zahl <InlineMath math="2" /> auf dem roten Würfel und die Zahl <InlineMath math="5" /> auf dem weißen Würfel zu bekommen, beträgt also <InlineMath math="\frac{1}{36}" />.
+
+### Werfen eines Würfels und einer Münze
+
+Ein Würfel und eine Münze werden geworfen. Gesucht ist die Wahrscheinlichkeit für eine gerade Würfelzahl und die Zahlseite der Münze.
+
+**Lösung:**
+
+<MathContainer>
+<BlockMath math="S_1 = \{1, 2, 3, 4, 5, 6\}" />
+<BlockMath math="S_2 = \{0, 1\}" />
+</MathContainer>
+
+- Ereignis <InlineMath math="A" />: Die gerade Würfelzahl liegt in <InlineMath math="\{2, 4, 6\}" />
+- Ereignis <InlineMath math="B" />: Die Zahlseite der Münze wird durch <InlineMath math="1" /> dargestellt, also <InlineMath math="\{1\}" />
+
+Beide Ereignisse sind **unabhängig**, da das Ergebnis des Würfels keinen Einfluss auf das Ergebnis der Münze hat.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{1}{2}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+</MathContainer>
+
+### Beispiel für angewandte Modellierung
+
+Zwei unabhängig versorgte Überwachungssensoren führen täglich einen Selbsttest durch. Sensor <InlineMath math="A" /> besteht ihn mit Wahrscheinlichkeit <InlineMath math="0{,}98" />, Sensor <InlineMath math="B" /> mit Wahrscheinlichkeit <InlineMath math="0{,}92" />. Wie groß ist im angegebenen Unabhängigkeitsmodell die Wahrscheinlichkeit, dass beide Tests erfolgreich sind?
+
+Die Unabhängigkeitsannahme ist Teil dieses Modells. Wenn beide Sensoren eine gemeinsame Stromversorgung oder ein gemeinsames Netzwerk hätten, müssten wir diese Annahme erneut testen.
+
+**Lösung:**
+
+- Ereignis <InlineMath math="A" />: Der erste Sensor besteht seinen Selbsttest
+- Ereignis <InlineMath math="B" />: Der zweite Sensor besteht seinen Selbsttest
+
+Das Problem besagt, dass die beiden Selbsttests **unabhängig** sind, sodass ein Ergebnis die Wahrscheinlichkeit des anderen nicht ändert.
+
+**Detaillierte Berechnung:**
+
+<MathContainer>
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+<BlockMath math="P(A \cap B) = 0{,}98 \times 0{,}92 = 0{,}9016" />
+</MathContainer>
+
+Die Wahrscheinlichkeit, dass beide Sensoren bestehen, beträgt somit <InlineMath math="0{,}9016" /> oder <InlineMath math="90{,}16\%" />.
+
+## Problemlösungsstrategien
+
+### Systematische Schritte
+
+Bei Aufgaben mit unabhängigen Ereignissen gehen Sie so vor:
+
+1. **Benenne die Ereignisse** im Problem
+2. **Prüfe ihre Unabhängigkeit** anhand des Modells oder der bedingten Wahrscheinlichkeiten
+3. **Berechne die Einzelwahrscheinlichkeiten**
+4. **Wende die Formel an** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
+5. **Prüfe das Ergebnis** im Kontext der Aufgabe
+
+### Praktische Tipps
+
+Einige nützliche Strategien:
+
+- **Visualisiere** Ereignisse bei Bedarf mit einem Baumdiagramm
+- **Prüfe die Unabhängigkeit** am Modell oder an bedingten Wahrscheinlichkeiten, nicht allein am Zeitpunkt
+- **Kontrolliere das Ergebnis** mit einem zweiten Ansatz, wenn einer verfügbar ist
+- **Deute das Ergebnis** im Kontext der Aufgabe
+
+### Unabhängige Ereignisse erkennen
+
+Achten Sie auf die folgenden Merkmale, um unabhängige Ereignisse zu identifizieren:
+
+**Unabhängig unter dem angegebenen Modell:**
+- getrennte Würfe mit fairen Münzen
+- Kartenziehen mit Zurücklegen und erneutem Mischen
+- Würfe mit separaten fairen Würfeln
+- unabhängige Zufallsversuche
+
+**Situationen, in denen Unabhängigkeit nicht vorausgesetzt werden darf:**
+- Kartenziehen ohne Zurücklegen
+- Körpergröße und Gewicht einer Person, sofern Modell oder Daten keine Unabhängigkeit belegen
+- Testergebnisse derselben Person in verschiedenen Fächern, sofern keine Unabhängigkeit nachgewiesen ist
+- Lufttemperatur und Luftfeuchtigkeit, sofern keine Unabhängigkeit für das betrachtete Modell nachgewiesen ist
+
+## Übungen
+
+1. Zwei faire Münzen werden unabhängig voneinander geworfen. Bestimme die Wahrscheinlichkeit für Kopf bei der ersten und Zahl bei der zweiten Münze.
+
+2. Ein fairer Würfel wird unabhängig vom Ziehen einer Karte aus einem gemischten Standardkartenspiel geworfen. Berechne die Wahrscheinlichkeit für eine Primzahl auf dem Würfel und eine rote Karte.
+
+3. In einer Klasse beträgt die Wahrscheinlichkeit für das Bestehen in Mathematik <InlineMath math="0{,}85" /> und in Physik <InlineMath math="0{,}78" />. Das Modell nimmt Unabhängigkeit an. Wie groß ist die Wahrscheinlichkeit, beide Fächer zu bestehen?
+
+4. Drei faire Münzen werden unabhängig voneinander geworfen. Bestimme die Wahrscheinlichkeit für genau zweimal Zahl.
+
+Bearbeiten Sie jede Aufgabe selbst, bevor Sie die ausführliche Lösung lesen. Begründen Sie die Unabhängigkeit, bevor Sie Wahrscheinlichkeiten multiplizieren.
+
+### Ausführliche Lösungen
+
+1. **Lösung:**
+
+   - Ereignis <InlineMath math="A" />: Kopf bei der ersten Münze, <InlineMath math="P(A) = \frac{1}{2}" />
+   - Ereignis <InlineMath math="B" />: Zahl bei der zweiten Münze, <InlineMath math="P(B) = \frac{1}{2}" />
+
+   Beide Ereignisse sind unabhängig, da das Ergebnis der ersten Münze keinen Einfluss auf die zweite Münze hat.
+
+   <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+
+2. **Lösung:**
+
+   - Ereignis <InlineMath math="A" />: Primzahl auf dem Würfel ist <InlineMath math="\{2, 3, 5\}" />, also <InlineMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+   - Ereignis <InlineMath math="B" />: Rote Karte (Herzen und Karo), also <InlineMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
+
+   Beide Ereignisse sind unabhängig.
+
+   <BlockMath math="P(A \cap B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+
+3. **Lösung:**
+
+   - Ereignis <InlineMath math="A" />: Mathematik bestanden, <InlineMath math="P(A) = 0{,}85" />
+   - Ereignis <InlineMath math="B" />: Physik bestanden, <InlineMath math="P(B) = 0{,}78" />
+
+   Da beide Fächer unabhängig sind:
+
+   <BlockMath math="P(A \cap B) = 0{,}85 \times 0{,}78 = 0{,}663" />
+
+   Die Wahrscheinlichkeit, beide Fächer zu bestehen, beträgt <InlineMath math="0{,}663" /> oder <InlineMath math="66{,}3\%" />.
+
+4. **Lösung:**
+
+   **Methode <InlineMath math="1" />: Direkte Aufzählung**
+
+   Verwende <InlineMath math="0" /> für Kopf und <InlineMath math="1" /> für Zahl. Der Ergebnisraum für <InlineMath math="3" /> Münzen lautet <InlineMath math="\{000, 001, 010, 011, 100, 101, 110, 111\}" /> und enthält <InlineMath math="8" /> Ergebnisse.
+
+   Genau zweimal Zahl tritt in <InlineMath math="\{011, 101, 110\}" /> auf. Es gibt also <InlineMath math="3" /> günstige Ergebnisse.
+
+   <BlockMath math="P(\text{genau 2-mal Zahl}) = \frac{3}{8}" />
+
+   **Methode <InlineMath math="2" />: Binomialverteilung verwenden**
+
+   Für <InlineMath math="n = 3" /> Würfe mit der Erfolgswahrscheinlichkeit <InlineMath math="p = \frac{1}{2}" /> für Zahl berechnen wir genau <InlineMath math="k = 2" /> Erfolge:
+
+   <BlockMath math="P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k}" />
+
+   Werte ersetzen:
+
+   <BlockMath math="P(\text{genau 2-mal Zahl}) = \binom{3}{2} \times \left(\frac{1}{2}\right)^2 \times \left(\frac{1}{2}\right)^1" />
+
+   **Schritt-für-Schritt-Erklärung:**
+   - <InlineMath math="\binom{3}{2} = 3" /> (Auswahl der <InlineMath math="2" /> Positionen für Zahl unter <InlineMath math="3" /> Würfen)
+   - <InlineMath math="\left(\frac{1}{2}\right)^2 = \frac{1}{4}" /> (Wahrscheinlichkeit für <InlineMath math="2" /> Zahlseiten)
+   - <InlineMath math="\left(\frac{1}{2}\right)^1 = \frac{1}{2}" /> (Wahrscheinlichkeit für <InlineMath math="1" /> Kopfseite)
+
+   Die Berechnung lautet also:
+
+   <BlockMath math="P(\text{genau 2-mal Zahl}) = 3 \times \frac{1}{4} \times \frac{1}{2} = 3 \times \frac{1}{8} = \frac{3}{8}" />
+
+   Die Wahrscheinlichkeit für genau zweimal Zahl beträgt somit <InlineMath math="\frac{3}{8}" />.

@@ -13,14 +13,6 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
         id: "ciri-ciri-reaksi-kimia",
       },
       slug: "chemical-reaction-characteristics",
-      translations: {
-        en: {
-          title: "Characteristics of Chemical Reactions",
-        },
-        id: {
-          title: "Ciri-Ciri Reaksi Kimia",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -28,14 +20,6 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
         id: "aplikasi-hukum-kimia",
       },
       slug: "chemistry-law-applications",
-      translations: {
-        en: {
-          title: "Law Applications",
-        },
-        id: {
-          title: "Aplikasi Hukum Kimia",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -43,14 +27,6 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
         id: "hukum-perbandingan-volume",
       },
       slug: "combining-volumes-law",
-      translations: {
-        en: {
-          title: "Combining Volumes",
-        },
-        id: {
-          title: "Hukum Perbandingan Volume",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -58,26 +34,10 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
         id: "hukum-perbandingan-tetap",
       },
       slug: "constant-composition-law",
-      translations: {
-        en: {
-          title: "Constant Composition",
-        },
-        id: {
-          title: "Hukum Perbandingan Tetap",
-        },
-      },
     },
     {
       routeSlugs: { en: "mass-conservation-law", id: "hukum-kekekalan-massa" },
       slug: "mass-conservation-law",
-      translations: {
-        en: {
-          title: "Mass Conservation",
-        },
-        id: {
-          title: "Hukum Kekekalan Massa",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -85,26 +45,10 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
         id: "hukum-perbandingan-berganda",
       },
       slug: "multiple-proportions-law",
-      translations: {
-        en: {
-          title: "Multiple Proportions",
-        },
-        id: {
-          title: "Hukum Perbandingan Berganda",
-        },
-      },
     },
     {
       routeSlugs: { en: "types-chemical-reaction", id: "jenis-reaksi-kimia" },
       slug: "types-chemical-reaction",
-      translations: {
-        en: {
-          title: "Types of Chemical Reactions",
-        },
-        id: {
-          title: "Jenis Reaksi Kimia",
-        },
-      },
     },
     {
       routeSlugs: {
@@ -112,14 +56,6 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
         id: "cara-menuliskan-reaksi-kimia",
       },
       slug: "writing-chemical-reactions",
-      translations: {
-        en: {
-          title: "Writing Chemical Reactions",
-        },
-        id: {
-          title: "Cara Menuliskan Reaksi Kimia",
-        },
-      },
     },
   ],
   slug: "basic-chemistry-laws",

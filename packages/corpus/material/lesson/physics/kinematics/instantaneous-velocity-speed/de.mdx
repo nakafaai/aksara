@@ -1,0 +1,78 @@
+
+export const metadata = {
+  title: "Momentane Geschwindigkeit und Schnelligkeit",
+  description:
+    "Unterscheide die gerichtete momentane Geschwindigkeit von der momentanen Schnelligkeit, die ein Tachometer anzeigt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Eine Ablesung in einem einzigen Augenblick
+
+Die momentane Schnelligkeit beschreibt, wie schnell sich ein Objekt zu einem bestimmten Zeitpunkt oder an einem bestimmten Punkt seiner Bahn bewegt. Ein vertrautes Beispiel ist die Zahl, die ein Tachometer genau beim Ablesen anzeigt.
+
+Auch die momentane Geschwindigkeit wird für einen bestimmten Zeitpunkt angegeben, enthält aber zusätzlich die Richtung. Bewegt sich das Fahrzeug nach rechts, ist die Geschwindigkeit positiv. Bewegt es sich nach links, ist sie negativ.
+
+> Ein Momentanwert antwortet mit „Wie schnell gerade?“, nicht mit „Wie schnell seit Beginn der Reise?“
+
+<BlockMath math="\text{momentane Schnelligkeit}=\lvert\vec{v}_{\text{momentan}}\rvert" />
+
+Die momentane Schnelligkeit ist der Betrag der momentanen Geschwindigkeit.
+
+Ist die Position eine differenzierbare Funktion der Zeit, ergibt sich die momentane Geschwindigkeit als Grenzwert der Durchschnittsgeschwindigkeit für ein gegen null gehendes Zeitintervall.
+
+<BlockMath math="v_x(t)=\lim_{\Delta t\to 0}\frac{\Delta x}{\Delta t}=\frac{dx}{dt}" />
+
+Reale Messgeräte schätzen diesen Wert über ein kurzes, aber endliches Abtastintervall. Bei einer glatten Bewegung kann ein kürzeres Intervall den Wert im betrachteten Augenblick besser annähern.
+
+<InstantaneousVelocitySpeedLab
+  title={<>Ablesung an einem Messpunkt</>}
+  description={
+    <>
+      Wähle einen Messzeitpunkt und beobachte, wie das Auto den Messpunkt
+      passiert. Vergleiche dabei momentane Schnelligkeit und momentane
+      Geschwindigkeit.
+    </>
+  }
+  labels={{
+    chooseMoment: "Messzeitpunkt wählen",
+    factLabels: {
+      time: <>Messzeitpunkt</>,
+      speed: <>Momentane Schnelligkeit</>,
+      velocity: <>Momentane Geschwindigkeit</>,
+    },
+    viewLabel: "Auto fährt an einer Messstelle vorbei",
+  }}
+/>
+
+## Eine momentane Bewegung ablesen
+
+Der Messpunkt in der Simulation ist der Ort, an dem die Bewegung zu einem bestimmten Zeitpunkt erfasst wird. Die Schnelligkeit liefert den Betrag des Messwertes. Die Fahrtrichtung beim Passieren des Messpunkts bestimmt dagegen das Vorzeichen der Geschwindigkeit.
+
+Bei <InlineMath math="t=6 \text{ s}" /> fährt das Auto mit einer momentanen Schnelligkeit von <InlineMath math="20 \text{ m/s}" /> nach rechts. Da rechts als positive Richtung gewählt ist, beträgt die momentane Geschwindigkeit <InlineMath math="+20 \text{ m/s}" />.
+
+Bei <InlineMath math="t=9 \text{ s}" /> fährt das Auto mit einer momentanen Schnelligkeit von <InlineMath math="8 \text{ m/s}" /> nach links. Links liegt entgegen der positiven Richtung, daher beträgt die momentane Geschwindigkeit <InlineMath math="-8 \text{ m/s}" />.
+
+| Zeitpunkt | Momentane Schnelligkeit | Bewegungsrichtung | Momentane Geschwindigkeit |
+| :--- | :------------ | :------------------ | :--------------------- |
+| <InlineMath math="6 \text{ s}" /> | <InlineMath math="20 \text{ m/s}" /> | nach rechts | <InlineMath math="+20 \text{ m/s}" /> |
+| <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | nach links | <InlineMath math="-8 \text{ m/s}" /> |
+
+Die momentane Schnelligkeit wird also ohne Richtungszeichen angegeben. Die momentane Geschwindigkeit verwendet dagegen ein Vorzeichen, um die Richtung sichtbar zu machen.
+
+## Nicht der Reisedurchschnitt
+
+Die momentane Schnelligkeit unterscheidet sich von der mittleren Schnelligkeit. Die mittlere Schnelligkeit nutzt die gesamte Wegstrecke und die gesamte Zeit, während die momentane Schnelligkeit den Zustand zu einem einzigen Zeitpunkt beschreibt.
+
+Wenn ein Tacho gerade <InlineMath math="15 \text{ m/s}" /> anzeigt, bedeutet das nicht, dass sich das Fahrzeug während der gesamten Fahrt mit <InlineMath math="15 \text{ m/s}" /> bewegt hat.
+
+Ein Fahrzeug kann etwa an einer roten Ampel stehen und danach schnell weiterfahren. Seine mittlere Schnelligkeit kann niedrig sein, weil die gesamte Fahrzeit zählt, obwohl seine momentane Schnelligkeit während der Fahrt deutlich höher ist.
+
+## Tachometer zeigt einen Moment an
+
+Eine ausgeschilderte Grenze von <InlineMath math="80 \text{ km/h}" /> beschränkt die Schnelligkeit des Fahrzeugs zu jedem Zeitpunkt, nicht seine mittlere Schnelligkeit über die gesamte Fahrt. Ein Messgerät am Straßenrand erfasst deshalb den momentanen Zustand beim Vorbeifahren.
+
+Ein Messgerät muss deshalb nicht warten, bis das Fahrzeug sein Ziel erreicht. Es prüft die Schnelligkeit in dem Augenblick, in dem das Fahrzeug den Messpunkt passiert.
+
+Das Wort „momentan“ betont also, dass der Bewegungswert zu einem bestimmten Zeitpunkt und nicht während der gesamten Fahrt gemessen wird.

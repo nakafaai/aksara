@@ -1,0 +1,77 @@
+export const metadata = {
+  title: "Grundlagen von Reihen",
+  description: "Verstehe Reihen als Summen von Folgengliedern, untersuche das Händedruckproblem mit zwei Zählwegen und arbeite mit Partialsummen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Folgen und Reihen",
+};
+
+## Zahlenreihen verstehen
+
+Wie lassen sich die Glieder einer Zahlenfolge zusammenfassen? Ein Ausdruck wie <InlineMath math="1+2+3+\cdots" /> heißt **Reihe**.
+
+Eine **Zahlenreihe** wird gebildet, indem die Glieder einer Zahlenfolge in der angegebenen Reihenfolge addiert werden. Zwei gängige Beispiele sind eine **arithmetische Reihe**, deren Glieder aus einer arithmetischen Folge stammen, und eine **geometrische Reihe**, deren Glieder aus einer geometrischen Folge stammen.
+
+Das Händedruckproblem macht dieses Konzept anschaulich.
+
+## Partialsummen verbinden eine Folge mit ihrer Reihe
+
+Für eine Folge <InlineMath math="(U_n)" /> ist die Summe ihrer ersten <InlineMath math="n" /> Glieder die <InlineMath math="n" />-te Teilsumme:
+
+<BlockMath math="S_n=U_1+U_2+\cdots+U_n=\sum_{k=1}^{n}U_k" />
+
+Endliche Probleme erfordern eine bestimmte Teilsumme. Für eine unendliche Reihe untersuchen wir, ob sich die Folge <InlineMath math="(S_n)" /> einem endlichen Grenzwert nähert, wenn <InlineMath math="n" /> wächst.
+
+## Anzahl der Handshakes
+
+In einer Gruppe schüttelt jede Person jeder anderen Person genau einmal die Hand. Wie viele Händedrücke gibt es insgesamt?
+
+Wir zählen schrittweise:
+
+- **Bei <InlineMath math="2 \text{Personen}" />:** Es gibt genau <InlineMath math="1 \text{Händedruck}" />.
+- **Bei <InlineMath math="3 \text{Personen}" />:** Die erste Person begrüßt <InlineMath math="2 \text{Personen}" />. Die zweite Person hat die erste bereits begrüßt und schüttelt nur noch der dritten die Hand. Insgesamt sind das <InlineMath math="2 + 1 = 3 \text{Händedrücke}" />.
+- **Bei <InlineMath math="4 \text{Personen}" />:** Nach demselben Muster ergeben sich <InlineMath math="3 + 2 + 1 = 6 \text{Händedrücke}" />.
+- **Bei <InlineMath math="5 \text{Personen}" />:** Insgesamt sind es <InlineMath math="4 + 3 + 2 + 1 = 10 \text{Händedrücke}" />.
+
+Die Anzahl der Händedrücke bildet also eine fortlaufende Summe natürlicher Zahlen.
+
+| Anzahl der anwesenden Personen | Anzahl Handshakes | Aufschlüsselung der Handshakes |
+| :--------- | :------------------- | :-------------- |
+| Zwei Personen | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Drei Personen | <InlineMath math="3" /> | <InlineMath math="1+2" /> |
+| Vier Personen | <InlineMath math="6" /> | <InlineMath math="1+2+3" /> |
+| Fünf Personen | <InlineMath math="10" /> | <InlineMath math="1+2+3+4" /> |
+
+Summen wie <InlineMath math="1+2+3+4" /> sind Beispiele für eine **Zahlenreihe**. Hier entsteht die Reihe aus den Gliedern der Folge natürlicher Zahlen <InlineMath math="(1, 2, 3, 4, ...)" />.
+
+Jedes Paar muss genau einmal gezählt werden. Würde man die Handschläge jeder Person einzeln zählen, würde jedes Paar zweimal gezählt, einmal aus der Sicht jeder Person.
+
+### Ein zweiter Zählweg
+
+Ein Händedruck ist ein ungeordnetes Personenpaar. Die Anzahl der aus <InlineMath math="n" /> Personen ausgewählten Paare beträgt:
+
+<BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
+
+Für <InlineMath math="n=5" /> ergibt dies <InlineMath math="\binom52=10" />, passend zur sequentiellen Summe.
+
+### Bildet das eine besondere Folge?
+
+Die Folge der Anzahlen <InlineMath math="(1, 3, 6, 10, ...)" /> ist weder arithmetisch noch geometrisch. Sie besitzt weder eine konstante Differenz noch einen konstanten Quotienten zwischen aufeinanderfolgenden Gliedern (<InlineMath math="3-1=2" />, <InlineMath math="6-3=3" />, <InlineMath math="10-6=4" />).
+
+Die **Aufschlüsselung** der Händedrücke (<InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath math="1+2+3" />, <InlineMath math="1+2+3+4" />) zeigt dagegen eindeutig die Summe von Folgengliedern, hier der natürlichen Zahlen. Genau das ist der Kern einer **Reihe**.
+
+Das Händedruckproblem zeigt damit, wie eine Reihe aus der Summe von Folgengliedern entsteht.
+
+## Übung
+
+Wie viele Händedrücke gibt es bei <InlineMath math="12 \text{Personen}" />, wenn sich jedes Paar genau einmal die Hand schüttelt?
+
+Die sequentielle Summenmethode ergibt:
+
+<BlockMath math="S_{11}=1+2+\cdots+11" />
+
+Die Paarzählformel liefert direkt das gleiche Ergebnis:
+
+<BlockMath math="S_{11}=\frac{12\cdot11}{2}=66" />
+
+Es gibt also <InlineMath math="66 \text{Händedrücke}" />.

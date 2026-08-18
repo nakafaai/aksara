@@ -3,6 +3,10 @@ import { Effect } from "effect";
 import { discoverSourceDependencies } from "#corpus/preview/dependency";
 import type { PreviewDependency } from "#corpus/preview/source";
 
+export type RestartDependencyLookup = (
+  sourcePath: CorpusSourcePath
+) => ReturnType<typeof restartDependencies>;
+
 /** Converts one static source-module closure into restart dependencies. */
 export const restartDependencies = Effect.fn(
   "AksaraCorpus.restartPreviewDependencies"
@@ -24,4 +28,13 @@ export const restartDependencies = Effect.fn(
       })
     ),
   ] satisfies readonly [PreviewDependency, ...PreviewDependency[]];
+});
+
+/** Creates one concurrent-safe dependency lookup scoped to a preview batch. */
+export const makeRestartDependencyLookup = Effect.fn(
+  "AksaraCorpus.makeRestartDependencyLookup"
+)(function* (corpusRoot: string) {
+  return yield* Effect.cachedFunction((sourcePath: CorpusSourcePath) =>
+    restartDependencies(corpusRoot, sourcePath)
+  );
 });

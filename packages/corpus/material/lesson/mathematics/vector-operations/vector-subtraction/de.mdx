@@ -1,0 +1,192 @@
+
+
+export const metadata = {
+  title: "Vektorsubtraktion",
+  description: "Verstehe die Vektorsubtraktion durch geometrische Konstruktionen, Komponentenrechnungen, Beispiele und Anwendungen auf Verschiebungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-12",
+  subject: "Vektoren und ihre Operationen",
+};
+
+## Grundlegendes Konzept der Vektorsubtraktion
+
+Die Vektorsubtraktion liefert die Differenz zweier Vektoren. Wenn wir <InlineMath math="\vec{b}" /> von <InlineMath math="\vec{a}" /> abziehen, erhalten wir den Vektor, den man zu <InlineMath math="\vec{b}" /> addieren muss, um <InlineMath math="\vec{a}" /> zu erhalten.
+
+Mathematisch ist die Subtraktion so definiert:
+
+<BlockMath math="\vec{a} - \vec{b} = \vec{a} + (-\vec{b})" />
+
+Mit anderen Worten: <InlineMath math="\vec{b}" /> von <InlineMath math="\vec{a}" /> abzuziehen ist dasselbe, wie <InlineMath math="\vec{a}" /> mit dem Gegenvektor von <InlineMath math="\vec{b}" /> zu addieren.
+
+## Geometrische Vektorsubtraktion
+
+Die folgenden vier Schritte zeigen zwei gleichwertige Konstruktionen für <InlineMath math="\vec{a} - \vec{b}" />:
+
+1. Zeichne <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> mit demselben Anfangspunkt.
+2. Zeichne den Pfeil vom Endpunkt von <InlineMath math="\vec{b}" /> zum Endpunkt von <InlineMath math="\vec{a}" />. Dieser Pfeil ist <InlineMath math="\vec{a} - \vec{b}" />.
+3. Kehre für die zweite Konstruktion <InlineMath math="\vec{b}" /> zum Gegenvektor <InlineMath math="-\vec{b}" /> um. Verschiebe ihn dann so, dass sein Anfangspunkt am Endpunkt von <InlineMath math="\vec{a}" /> liegt.
+4. Zeichne den Pfeil vom gemeinsamen Ursprung zum letzten Endpunkt. Er ist <InlineMath math="\vec{a}+(-\vec{b})=\vec{a}-\vec{b}" />.
+
+Die Darstellung zeigt beide Konstruktionen. Die beiden Pfeile mit der Beschriftung <InlineMath math="a-b" /> haben dieselben Komponenten, denselben Betrag und dieselbe Richtung, obwohl ihre Anfangspunkte verschieden sind.
+
+<Vector3d
+  title="Vektorsubtraktion im dreidimensionalen Raum"
+  description={
+    <>
+      Konstruktion mit gemeinsamem Anfangspunkt und Spitze an Schaft für{" "}
+      <InlineMath math="a-b=a+(-b)" />.
+    </>
+  }
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [3, 2, 1],
+      color: "#0d9488",
+      label: <InlineMath math="a" />,
+    },
+    {
+      from: [0, 0, 0],
+      to: [1, 2, 2],
+      color: "#e11d48",
+      label: <InlineMath math="b" />,
+    },
+    {
+      from: [1, 2, 2],
+      to: [3, 2, 1],
+      color: "#9333ea",
+      label: <InlineMath math="a-b" />,
+      labelPosition: "middle",
+    },
+    {
+      from: [3, 2, 1],
+      to: [2, 0, -1],
+      color: "#ea580c",
+      label: <InlineMath math="-b" />,
+      labelPosition: "middle",
+    },
+    {
+      from: [0, 0, 0],
+      to: [2, 0, -1],
+      color: "#db2777",
+      label: <InlineMath math="a - b" />,
+    },
+  ]}
+  cameraPosition={[6, 4, 6]}
+/>
+
+## Algebraische Vektorsubtraktion
+
+Algebraisch ziehen wir die jeweils entsprechenden Komponenten voneinander ab. Gegeben seien die beiden Vektoren:
+
+<MathContainer>
+  <BlockMath math="\vec{a} = (a_1, a_2, a_3)" />
+  <BlockMath math="\vec{b} = (b_1, b_2, b_3)" />
+</MathContainer>
+
+Dann berechnen wir <InlineMath math="\vec{a} - \vec{b}" /> komponentenweise:
+
+<BlockMath math="\vec{a} - \vec{b} = (a_1 - b_1, a_2 - b_2, a_3 - b_3)" />
+
+Für zweidimensionale Vektoren lautet die Gleichung:
+
+<BlockMath math="\vec{a} - \vec{b} = (a_1 - b_1, a_2 - b_2)" />
+
+## Rechenbeispiel
+
+Gegeben sind die beiden Vektoren:
+
+<MathContainer>
+  <BlockMath math="\vec{a} = (3, 4)" />
+  <BlockMath math="\vec{b} = (1, 2)" />
+</MathContainer>
+
+Für <InlineMath math="\vec{a} - \vec{b}" /> erhalten wir:
+
+<BlockMath math="\vec{a} - \vec{b} = (3, 4) - (1, 2) = (3-1, 4-2) = (2, 2)" />
+
+In umgekehrter Reihenfolge gilt für <InlineMath math="\vec{b} - \vec{a}" />:
+
+<BlockMath math="\vec{b} - \vec{a} = (1, 2) - (3, 4) = (1-3, 2-4) = (-2, -2)" />
+
+Im Allgemeinen ist <InlineMath math="\vec{a} - \vec{b} \neq \vec{b} - \vec{a}" />. Vertauschen wir die Reihenfolge, kehrt sich die Richtung um: <InlineMath math="\vec{a} - \vec{b} = -(\vec{b} - \vec{a})" />.
+
+<Vector3d
+  title="Beispiel für Vektorsubtraktion"
+  description={
+    <>
+      Visualisierung der Vektorsubtraktion{" "}
+      <InlineMath math="a - b = (3,4,0) - (1,2,0) = (2,2,0)" />.
+    </>
+  }
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [3, 4, 0],
+      color: "#0d9488",
+      label: <InlineMath math="a" />,
+    },
+    {
+      from: [0, 0, 0],
+      to: [1, 2, 0],
+      color: "#e11d48",
+      label: <InlineMath math="b" />,
+    },
+    {
+      from: [0, 0, 0],
+      to: [2, 2, 0],
+      color: "#65a30d",
+      label: <InlineMath math="a - b" />,
+    },
+  ]}
+  cameraPosition={[8, 6, 8]}
+/>
+
+## Anwendungen der Vektorsubtraktion
+
+Vektorsubtraktion wird immer dann gebraucht, wenn wir zwei vektorielle Größen vergleichen:
+
+1. **Verschiebung berechnen**: Ist <InlineMath math="\vec{a}" /> der Ortsvektor der Endposition und <InlineMath math="\vec{b}" /> der Ortsvektor der Anfangsposition, dann ist <InlineMath math="\vec{a} - \vec{b}" /> der Verschiebungsvektor.
+
+2. **Entfernung berechnen**: In einem Spiel liefert Zielposition minus Vogelposition die Richtung zum Ziel. Der Betrag dieses Differenzvektors ist die Luftlinienentfernung.
+
+3. **Geschwindigkeiten vergleichen**: In der Physik ist die Geschwindigkeit des Objekts <InlineMath math="A" /> relativ zum Objekt <InlineMath math="B" /> gleich <InlineMath math="\vec{v}_{A/B}=\vec{v}_A-\vec{v}_B" />. Vertauschen wir die Reihenfolge, kehrt sich der Relativgeschwindigkeitsvektor um.
+
+## Verschiebung durch Vektorsubtraktion
+
+Die Verschiebung zwischen zwei Positionen erhalten wir, indem wir den Ortsvektor der Anfangsposition vom Ortsvektor der Endposition abziehen.
+
+Angenommen, ein Objekt bewegt sich von der Anfangsposition <InlineMath math="\vec{p}_1" /> zur Endposition <InlineMath math="\vec{p}_2" />. Der Verschiebungsvektor des Objekts ist:
+
+<BlockMath math="\vec{d} = \vec{p}_2 - \vec{p}_1" />
+
+Dieser Vektor zeigt von der Anfangsposition zur Endposition. Sein Betrag ist die Luftlinienentfernung zwischen beiden Positionen. Der tatsächlich zurückgelegte Weg kann länger sein.
+
+## Eigenschaften der Vektorsubtraktion
+
+Die Vektorsubtraktion hat mehrere wichtige Eigenschaften:
+
+1. <InlineMath math="\vec{a} - \vec{b} = \vec{a} + (-\vec{b})" />
+2. <InlineMath math="\vec{a} - \vec{a} = \vec{0}" /> (Nullvektor)
+3. <InlineMath math="\vec{a} - \vec{0} = \vec{a}" />
+4. <InlineMath math="\vec{0} - \vec{a} = -\vec{a}" />
+5. <InlineMath math="\vec{a} - \vec{b} = -(\vec{b} - \vec{a})" />
+
+## Beispielaufgabe
+
+Ein Affe befindet sich an der Position <InlineMath math="(3, 4)" />. Eine Banane liegt an der Position <InlineMath math="(2, 1)" />. Bestimme den Verschiebungsvektor, mit dem der Affe die Banane erreicht.
+
+**Lösung:**
+
+Position des Affen: <InlineMath math="\vec{m} = (3, 4)" />
+
+Position der Banane: <InlineMath math="\vec{p} = (2, 1)" />
+
+Der Verschiebungsvektor vom Affen zur Banane ist:
+
+<BlockMath math="\vec{d} = \vec{p} - \vec{m} = (2, 1) - (3, 4) = (2-3, 1-4) = (-1, -3)" />
+
+Der Affe muss sich also <InlineMath math="1 \text{ Einheit}" /> in negative <InlineMath math="x" />-Richtung und <InlineMath math="3 \text{ Einheiten}" /> in negative <InlineMath math="y" />-Richtung bewegen.
+
+Der Betrag des Verschiebungsvektors kann mit dem Satz des Pythagoras berechnet werden:
+
+<BlockMath math="|\vec{d}| = \sqrt{(-1)^2 + (-3)^2} = \sqrt{1 + 9} = \sqrt{10} \approx 3{,}16" />

@@ -1,0 +1,26 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+Gesucht ist die Anzahl der Tage **ohne** eine Lieferung von Öl <InlineMath math="A" /> oder Öl <InlineMath math="B" />. Am einfachsten zählen wir zuerst die Tage **mit** mindestens einer Lieferung und ziehen sie von den <InlineMath math="30\text{ Tagen}" /> im April ab.
+
+Die Liefertermine lassen sich direkt auflisten:
+
+| Ölsorte | Liefertermine (arithmetische Folge) | Anzahl der Tage |
+| :--- | :--- | :---: |
+| **Öl <InlineMath math="A" />** (alle <InlineMath math="3\text{ Tage}" />) | <InlineMath math="1, 4, 7, 10, 13, 16, 19, 22, 25, 28" /> | <InlineMath math="10" /> |
+| **Öl <InlineMath math="B" />** (alle <InlineMath math="4\text{ Tage}" />) | <InlineMath math="1, 5, 9, 13, 17, 21, 25, 29" /> | <InlineMath math="8" /> |
+| **Vereinigung** (<InlineMath math="A \cup B" />) | <InlineMath math="1, 4, 5, 7, 9, 10, 13, 16, 17, 19, 21, 22, 25, 28, 29" /> | **<InlineMath math="15" />** |
+
+Die Vereinigung enthält **<InlineMath math="15\text{ Tage}" />**. An diesen Tagen erhält das Geschäft Öl <InlineMath math="A" />, Öl <InlineMath math="B" /> oder beide Sorten.
+
+Damit ergibt sich für die Tage **ohne** Lieferung:
+
+<MathContainer>
+  <BlockMath math="\text{Tage ohne Lieferung} = \text{Apriltage} - \text{Liefertage}" />
+  <BlockMath math="\text{Tage ohne Lieferung} = 30 - 15 = 15" />
+</MathContainer>
+
+Es gibt also **<InlineMath math="15\text{ Tage}" />**, an denen das Geschäft weder Öl <InlineMath math="A" /> noch Öl <InlineMath math="B" /> erhält.

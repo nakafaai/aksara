@@ -1,0 +1,300 @@
+export const metadata = {
+    title: "Zahlenattribute und -methoden",
+    description: "Erkunde numerische Python-Objekte anhand ihrer Typen, Attribute, Methoden und komplexen Rechenoperationen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-16",
+    subject: "KI-Programmierung",
+};
+
+## Grundkonzept von Zahlen als Objekten
+
+Jede Zahl in Python ist ein Objekt mit einem numerischen Typ. Dieser Typ bestimmt neben den Rechenoperatoren auch die verfügbaren Attribute und Methoden.
+
+Zum Beispiel erzeugt <InlineMath math="5" /> einen `int` und <InlineMath math="3.14" /> einen `float`. Numerische Objekte sind unveränderlich. Ihre Methoden liefern deshalb Informationen oder neue Werte, statt die ursprüngliche Zahl zu verändern.
+
+## Zugriff auf Attribute und Methoden
+
+Ein Attribut liest du mit `object.attribute`. Eine Methode rufst du mit `object.method()` auf, einschließlich der Klammern, die den Aufruf ausführen.
+
+Betrachten wir ein praktisches Beispiel mit komplexen Zahlen:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "complex_example.py",
+      code: `# Erstellen einer komplexen Zahl
+c = 2 + 3j
+
+# Auf das Attribut real (Realteil) zugreifen
+print(c.real)  # Ausgabe: 2.0
+
+# Auf das Attribut imag (Imaginärteil) zugreifen
+print(c.imag)  # Ausgabe: 3.0
+
+# Mit conjugate() die konjugierte Zahl bestimmen
+print(c.conjugate())  # Ausgabe: (2-3j)`
+    }
+  ]}
+/>
+
+## Numerischen Typ erkennen
+
+Bevor du eine typspezifische Operation verwendest, kannst du den numerischen Typ eines Werts prüfen.
+
+### Verwendung der Funktion type()
+
+Die Funktion `type()` gibt die Klasse des Werts zurück:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "type_example.py",
+      code: `# Zahlendatentypen anzeigen
+print(type(42))        # Ausgabe: <class 'int'>
+print(type(3.14))      # Ausgabe: <class 'float'>
+print(type(2+3j))      # Ausgabe: <class 'complex'>`
+    }
+  ]}
+/>
+
+## Komplexe Zahlenattribute
+
+Eine komplexe Zahl stellt ihre beiden Komponenten über die Attribute `real` und `imag` bereit. Beide werden als Gleitkommawerte zurückgegeben.
+
+### Das Attribut real
+
+Das Attribut `real` gibt die reelle Komponente zurück:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "real_attribute.py",
+      code: `# Beispiel für die Verwendung eines realen Attributs
+z1 = 4 + 5j
+z2 = -2 + 7j
+z3 = 10 + 0j  # Reine reelle Zahl
+
+print(f"Der Realteil von {z1} ist {z1.real}")
+print(f"Der Realteil von {z2} ist {z2.real}")
+print(f"Der Realteil von {z3} ist {z3.real}")
+
+# Ausgabe:
+# Der Realteil von (4+5j) ist 4.0
+# Der Realteil von (-2+7j) ist -2.0
+# Der Realteil von (10+0j) ist 10.0`
+    }
+  ]}
+/>
+
+### Das imag-Attribut
+
+Das Attribut `imag` gibt den Koeffizienten von <InlineMath math="i" /> zurück. Python schreibt diese Einheit in komplexen Literalen als `j`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "imag_attribute.py",
+      code: `# Beispiel für die Verwendung des Attributs imag
+z1 = 3 + 8j
+z2 = 6 - 4j
+z3 = 0 + 9j  # Reine imaginäre Zahl
+
+print(f"Der Imaginärteil von {z1} ist {z1.imag}")
+print(f"Der Imaginärteil von {z2} ist {z2.imag}")
+print(f"Der Imaginärteil von {z3} ist {z3.imag}")
+
+# Ausgabe:
+# Der Imaginärteil von (3+8j) ist 8.0
+# Der Imaginärteil von (6-4j) ist -4.0
+# Der Imaginärteil von 9j ist 9.0`
+    }
+  ]}
+/>
+
+## Methoden für komplexe Zahlen
+
+### Die conjugate()-Methode
+
+Für <InlineMath math="z=a+bi" /> gibt `conjugate()` den Wert <InlineMath math="\overline{z}=a-bi" /> zurück. Der Realteil bleibt gleich, während sich das Vorzeichen des Imaginärteils ändert.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "conjugate_method.py",
+      code: `# Beispielverwendung der conjugate()-Methode
+z1 = 3 + 4j
+z2 = -2 - 5j
+z3 = 7 + 0j
+
+print(f"Konjugat von {z1} ist {z1.conjugate()}")
+print(f"Konjugat von {z2} ist {z2.conjugate()}")
+print(f"Konjugat von {z3} ist {z3.conjugate()}")
+
+# Ausgabe:
+# Konjugat von (3+4j) ist (3-4j)
+# Konjugat von (-2-5j) ist (-2+5j)
+# Konjugat von (7+0j) ist (7-0j)`
+    }
+  ]}
+/>
+
+### Praktische Verwendung von Konjugat
+
+Die Identität <InlineMath math="z\overline{z}=|z|^2" /> verbindet eine komplexe Zahl mit ihrem Betrag. Das Beispiel zeigt diesen Zusammenhang ausdrücklich. In gewöhnlichem Python-Code berechnet `abs(z)` den Betrag direkt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "conjugate_practical.py",
+      code: `import math
+
+# Berechnen des komplexen Zahlenmoduls mithilfe der Konjugation
+z = 3 + 4j
+modulus_squared = z * z.conjugate()
+modulus = math.sqrt(modulus_squared.real)
+
+print(f"Komplexe Zahl: {z}")
+print(f"Konjugierte Zahl: {z.conjugate()}")
+print(f"z × z*: {modulus_squared}")
+print(f"Modulus |z|: {modulus}")
+print(f"Eingebautes abs(z): {abs(z)}")
+
+# Ausgabe:
+# Komplexe Zahl: (3+4j)
+# Konjugierte Zahl: (3-4j)
+# z × z*: (25+0j)
+# Modulus |z|: 5.0
+# Eingebautes abs(z): 5.0`
+    }
+  ]}
+/>
+
+## Attribute und Methoden für andere Zahlen
+
+Auch Ganzzahlen und Gleitkommazahlen stellen Methoden bereit, die zu ihrer jeweiligen Darstellung passen.
+
+### Ganzzahlige Zahlen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "integer_methods.py",
+      code: `# Einige Methoden für ganze Zahlen
+n = 42
+
+# bit_length()-Methode - berechnet die benötigte Anzahl von Bits
+print(f"Anzahl der Bits für {n}: {n.bit_length()}")
+
+# to_bytes()-Methode - wandelt den Wert in Bytes um
+byte_representation = n.to_bytes(2, byteorder='big')
+print(f"Byte-Darstellung von {n}: {byte_representation}")
+
+# Ausgabe:
+# Anzahl der Bits für 42: 6
+# Byte-Darstellung von 42: b'\\x00*'`
+    }
+  ]}
+/>
+
+`bit_length()` zählt die Bits für den Absolutwert der Ganzzahl, ohne Vorzeichen und führende Nullen. `to_bytes()` benötigt zusätzlich eine Ausgabelänge und Byte-Reihenfolge. Deshalb beginnt das Zwei-Byte-Ergebnis oben mit einem Nullbyte.
+
+### Float-Zahlen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "float_methods.py",
+      code: `# Einige Methoden für Gleitkommazahlen
+f = 3.14159
+
+# is_integer()-Methode - prüft, ob eine Gleitkommazahl ganzzahlig ist
+print(f"{f} ist eine ganze Zahl: {f.is_integer()}")
+print(f"{4.0} ist eine ganze Zahl: {(4.0).is_integer()}")
+
+# as_integer_ratio()-Methode - gibt das Verhältnis als Bruch zurück
+ratio = f.as_integer_ratio()
+print(f"Verhältnis von {f}: {ratio}")
+
+# Ausgabe:
+# 3.14159 ist eine ganze Zahl: False
+# 4.0 ist eine ganze Zahl: True
+# Verhältnis von 3.14159: (3537115888337719, 1125899906842624)`
+    }
+  ]}
+/>
+
+`is_integer()` prüft, ob ein endlicher Float keinen Nachkommaanteil besitzt. `as_integer_ratio()` gibt den exakten Bruch des gespeicherten binären Floats zurück. Dieser kann vom erwarteten Dezimalbruch abweichen.
+
+## Praktische Anwendungen in der Programmierung
+
+### Datenvalidierung
+
+Attribute können ausdrückliche Validierungsregeln unterstützen. Die folgende Funktion verlangt ein `complex`-Objekt und wendet anschließend zwei beispielhafte Fachregeln auf seine Komponenten an.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_validation.py",
+      code: `def validate_complex_input(z):
+    """Funktion zur Validierung der Eingabe komplexer Zahlen"""
+    if not isinstance(z, complex):
+        return False, "Die Eingabe ist keine komplexe Zahl"
+
+    if z.real < 0:
+        return False, "Der Realteil kann nicht negativ sein"
+
+    if z.imag == 0:
+        return False, "Der Imaginärteil kann nicht Null sein"
+
+    return True, "Gültige Eingabe"
+
+# Validierungsfunktion testen
+test_numbers = [3+4j, -2+5j, 7+0j, 2.5+1.5j]
+
+for num in test_numbers:
+    is_valid, message = validate_complex_input(num)
+    print(f"{num}: {message}")`
+    }
+  ]}
+/>
+
+### Mathematische Berechnungen
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "math_calculations.py",
+      code: `def complex_operations(z1, z2):
+    """Verschiedene Operationen mit komplexen Zahlen ausführen"""
+    print(f"Zahl 1: {z1}")
+    print(f"Zahl 2: {z2}")
+    print(f"Realteil von z1: {z1.real}")
+    print(f"Imaginärer Teil von z1: {z1.imag}")
+    print(f"Konjugat von z1: {z1.conjugate()}")
+
+    # Mathematische Operationen
+    addition = z1 + z2
+    multiplication = z1 * z2.conjugate()
+
+    print(f"z1 + z2 = {addition}")
+    print(f"z1 × z2* = {multiplication}")
+
+# Anwendungsbeispiel
+z1 = 2 + 3j
+z2 = 1 - 2j
+complex_operations(z1, z2)`
+    }
+  ]}
+/>
+
+Das wichtige Muster lautet: Erkenne den numerischen Typ, wähle die Operation dieses Typs und unterscheide, ob sie eine Komponente, eine Darstellung oder einen neuen Wert liefert. Diese Unterscheidung wird wichtiger, sobald numerischer Code über einen einzelnen Ausdruck hinauswächst.

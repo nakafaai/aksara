@@ -1,0 +1,49 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-26",
+};
+
+Sei <InlineMath math="A" /> das Ereignis, dass doppelt so viele grüne wie weiße Kugeln gezogen werden.
+
+In der Schachtel liegen <InlineMath math="9" /> Kugeln:
+
+<MathContainer>
+  <BlockMath math="1 \text{ rot} + 6 \text{ grün} + 2 \text{ weiß} = 9" />
+</MathContainer>
+
+Da <InlineMath math="7" /> Kugeln gleichzeitig gezogen werden, ist jede ungeordnete Auswahl von sieben Kugeln gleich wahrscheinlich. Insgesamt gibt es:
+
+<MathContainer>
+  <BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = 36" />
+</MathContainer>
+
+Mit <InlineMath math="w" />, <InlineMath math="g" /> und <InlineMath math="r" /> bezeichnen wir die gezogenen weißen, grünen und roten Kugeln. Es muss <InlineMath math="g=2w" /> und zugleich <InlineMath math="r+g+w=7" /> gelten. Da höchstens zwei weiße Kugeln vorhanden sind, prüfen wir <InlineMath math="w=0" />, <InlineMath math="w=1" /> und <InlineMath math="w=2" />.
+
+#### Fall <InlineMath math="w=0" />
+
+Dann ist <InlineMath math="g=0" /> und <InlineMath math="r=7" />. Dieser Fall ist unmöglich, weil nur <InlineMath math="1" /> rote Kugel vorhanden ist.
+
+#### Fall <InlineMath math="w=1" />
+
+Dann ist <InlineMath math="g=2" /> und <InlineMath math="r=7-1-2=4" />. Auch dieser Fall ist unmöglich, weil nur <InlineMath math="1" /> rote Kugel vorhanden ist.
+
+#### Fall <InlineMath math="w=2" />
+
+Dann ist <InlineMath math="g=4" /> und <InlineMath math="r=7-2-4=1" />. Dieser Fall ist mit den vorhandenen Kugeln möglich.
+
+Die Anzahl der günstigen Auswahlen ist:
+
+<MathContainer>
+  <BlockMath math="n(A) = C^2_2 \cdot C^6_4 \cdot C^1_1" />
+  <BlockMath math="= 1 \cdot 15 \cdot 1" />
+  <BlockMath math="= 15" />
+</MathContainer>
+
+Damit gilt:
+
+<MathContainer>
+  <BlockMath math="P(A) = \frac{n(A)}{n(S)} = \frac{15}{36} = \frac{5}{12}" />
+</MathContainer>
+
+Die gesuchte Wahrscheinlichkeit beträgt <InlineMath math="\frac{5}{12}" />.

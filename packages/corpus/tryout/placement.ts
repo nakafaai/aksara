@@ -1,5 +1,5 @@
 import {
-  type ActiveAppLocale,
+  type AppLocale,
   ArtifactLocaleSchema,
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
@@ -53,7 +53,7 @@ export const makeTryoutPlacement = Effect.fn(
 )(function* (
   context: TryoutPlacementContext,
   question: QuestionSource,
-  appLocale: ActiveAppLocale
+  appLocale: AppLocale
 ) {
   if (
     !ownsContext(context) ||

@@ -1,0 +1,65 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+Die vier sortierten natürlichen Zahlen seien <InlineMath math="x_1, x_2, x_3, x_4" /> mit <InlineMath math="x_1 \le x_2 \le x_3 \le x_4" />.
+
+Aus den Angaben lassen sich drei Beziehungen ableiten:
+
+1.  **Median**: Da der Datensatz aus <InlineMath math="4" /> Werten besteht, ist der Median der Mittelwert der beiden mittleren Werte.
+
+    <MathContainer>
+      <BlockMath math="\frac{x_2 + x_3}{2} = 8 \implies x_2 + x_3 = 16" />
+    </MathContainer>
+
+2.  **Spannweite**: Die Differenz zwischen dem größten und dem kleinsten Datenwert beträgt <InlineMath math="10" />.
+
+    <MathContainer>
+      <BlockMath math="x_4 - x_1 = 10 \implies x_1 = x_4 - 10" />
+    </MathContainer>
+
+3.  **Mittelwert**: Die Summe aller Daten dividiert durch <InlineMath math="4" /> ist <InlineMath math="8" />.
+
+    <MathContainer>
+      <BlockMath math="\frac{x_1 + x_2 + x_3 + x_4}{4} = 8 \implies x_1 + x_2 + x_3 + x_4 = 32" />
+    </MathContainer>
+
+Wir setzen den Wert <InlineMath math="x_2 + x_3 = 16" /> in die Mittelwertgleichung ein, um die Beziehung zwischen <InlineMath math="x_1" /> und <InlineMath math="x_4" /> zu finden:
+
+<MathContainer>
+  <BlockMath math="\begin{align*} x_1 + (x_2 + x_3) + x_4 &= 32 \\ x_1 + 16 + x_4 &= 32 \\ x_1 + x_4 &= 16 \end{align*}" />
+</MathContainer>
+
+Jetzt haben wir ein System aus zwei Gleichungen für <InlineMath math="x_1" /> und <InlineMath math="x_4" />:
+
+<MathContainer>
+  <BlockMath math="\begin{cases} x_4 - x_1 = 10 \\ x_4 + x_1 = 16 \end{cases}" />
+</MathContainer>
+
+Durch Addition beider Gleichungen erhalten wir:
+
+<MathContainer>
+  <BlockMath math="2x_4 = 26 \implies x_4 = 13" />
+</MathContainer>
+
+Setzen wir <InlineMath math="x_4" /> ein, erhalten wir <InlineMath math="x_1" />:
+
+<MathContainer>
+  <BlockMath math="x_1 = 13 - 10 = 3" />
+</MathContainer>
+
+Abschließend bestimmen wir <InlineMath math="x_2" /> und <InlineMath math="x_3" />. Es gilt <InlineMath math="x_2 + x_3 = 16" /> und <InlineMath math="3 \le x_2 \le x_3 \le 13" />. Ein eindeutiger Modus verlangt genau einen Wert, der mehrfach vorkommt. Wäre <InlineMath math="x_2 = 3" />, dann folgte aus der Summenbedingung <InlineMath math="x_3 = 13" />. Beide Randwerte kämen zweimal vor, der Datensatz hätte also zwei Modi. Für <InlineMath math="x_3 = 13" /> ergibt sich derselbe Fall. Daher muss das mittlere Wertepaar gleich sein:
+
+<MathContainer>
+  <BlockMath math="x_2 = x_3 = 8" />
+</MathContainer>
+
+Der vollständige Datensatz lautet <InlineMath math="3, 8, 8, 13" />. Sein einziger Modus ist <InlineMath math="8" />. Damit sind alle Bedingungen erfüllt.
+
+Somit ist das Produkt aus dem zweiten und dem vierten Datenwert:
+
+<MathContainer>
+  <BlockMath math="x_2 \cdot x_4 = 8 \cdot 13 = 104" />
+</MathContainer>

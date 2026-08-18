@@ -1,0 +1,294 @@
+export const metadata = {
+  title: "Horizontale Spiegelung",
+  description: "Verstehe anhand von Graphen und Beispielen, wie eine Spiegelung an der y-Achse die x-Koordinaten einer Funktion verändert.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Funktionstransformation",
+};
+
+
+
+## Grundidee der horizontalen Spiegelung
+
+Bei einer horizontalen Spiegelung wird ein Funktionsgraph an der <InlineMath math="y" />-Achse gespiegelt. Ein Punkt rechts von der Achse erscheint danach im gleichen Abstand links von ihr, so wie ein Gegenstand in einem senkrechten Spiegel.
+
+Für eine Funktion <InlineMath math="f(x)" /> entsteht dabei die neue Funktion <InlineMath math="g(x) = f(-x)" />. Das Minuszeichen im Argument bewirkt die Spiegelung an der <InlineMath math="y" />-Achse.
+
+### Spiegelungsregel
+
+Für jede Funktion <InlineMath math="f(x)" /> gilt:
+
+<BlockMath math="g(x) = f(-x)" />
+
+Jeder Punkt <InlineMath math="(x, y)" /> des ursprünglichen Graphen wird also zum Punkt <InlineMath math="(-x, y)" />. Die Höhe bleibt gleich, nur die horizontale Position wechselt die Seite.
+
+## Die Spiegelung im Graphen
+
+Betrachten wir zuerst die quadratische Funktion <InlineMath math="f(x) = (x - 2)^2" />.
+
+<LineEquation
+  title={<>Spiegelung der quadratischen Funktion <InlineMath math="f(x) = (x - 2)^2" /></>}
+  description={<>Der zweite Graph ist das Spiegelbild des ersten an der <InlineMath math="y" />-Achse.</>}
+  showZAxis={false}
+  cameraPosition={[12, 8, 12]}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: (x - 2) * (x - 2), z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=(x-2)^2" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: ((-x) - 2) * ((-x) - 2), z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="g(x)=(-x-2)^2" />, offset: [-1, -1, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Am Graphen lässt sich direkt ablesen:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = (x - 2)^2" /> hat ihren Scheitelpunkt bei <InlineMath math="(2, 0)" />
+- Die reflektierte Funktion <InlineMath math="g(x) = (-x - 2)^2" /> hat ihren Scheitelpunkt bei <InlineMath math="(-2, 0)" />
+- Die beiden Graphen sind Spiegelbilder voneinander an der <InlineMath math="y" />-Achse
+
+## Spiegelung einer linearen Funktion
+
+Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 2x + 3" /> an.
+
+<LineEquation
+  title={<>Spiegelung der linearen Funktion <InlineMath math="f(x) = 2x + 3" /></>}
+  description={<>Die gespiegelte Gerade hat die entgegengesetzte Steigung, aber denselben <InlineMath math="y" />-Achsenabschnitt.</>}
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * x + 3, z: 0 };
+      }),
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [2.5, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * (-x) + 3, z: 0 };
+      }),
+      color: "#d97706",
+      labels: [{ text: <InlineMath math="g(x)=-2x+3" />, offset: [-2.5, -0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Der Vergleich zeigt:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = 2x + 3" /> hat eine positive Steigung von <InlineMath math="2" />
+- Die gespiegelte Funktion <InlineMath math="g(x) = -2x + 3" /> hat die Steigung <InlineMath math="-2" />
+- Beide Geraden schneiden die <InlineMath math="y" />-Achse im selben Punkt <InlineMath math="(0, 3)" />
+
+## Wichtige Eigenschaften
+
+### Vertikale Achse als Spiegellinie
+
+Die <InlineMath math="y" />-Achse ist die Spiegellinie. Ein Punkt und sein Spiegelpunkt liegen gleich weit von der <InlineMath math="y" />-Achse entfernt.
+
+### Wirkung auf Koordinatenpunkte
+
+Liegt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, dann liegt auf dem Graphen von <InlineMath math="f(-x)" /> der Punkt <InlineMath math="(-a, b)" />.
+
+### Definitionsbereich und Wertebereich
+
+- **Definitionsbereich**: Die Vorzeichen aller zulässigen Eingabewerte kehren sich um
+- **Wertebereich**: Bleibt unverändert
+
+Wenn der Definitionsbereich der ursprünglichen Funktion <InlineMath math="[c, d]" /> ist, dann wird der Definitionsbereich nach der horizontalen Spiegelung zu <InlineMath math="[-d, -c]" />.
+
+## Weitere Beispiele
+
+### Beispiel für eine Exponentialfunktion
+
+Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> wird aus Wachstum durch die Spiegelung ein Zerfall.
+
+<LineEquation
+  title={<>Spiegelung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
+  description={<>Der gespiegelte Graph fällt, behält aber dieselbe horizontale Asymptote und denselben <InlineMath math="y" />-Achsenabschnitt.</>}
+  showZAxis={false}
+  cameraPosition={[8, 6, 8]}
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [3, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.3;
+        return { x, y: Math.pow(2, -x), z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="g(x)=2^{-x}" />, offset: [-3, 1, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Für Exponentialfunktionen:
+- Die horizontale Asymptote bleibt für beide Funktionen bei <InlineMath math="y = 0" />
+- Der <InlineMath math="y" />-Achsenabschnitt bleibt bei <InlineMath math="(0, 1)" /> gleich
+- Die ursprünglich ansteigende Funktion wird nach der Spiegelung abnehmend
+
+## Spiegelung einer Quadratwurzelfunktion
+
+Bei einer Quadratwurzelfunktion wechselt der gesamte Graph von der rechten auf die linke Seite der senkrechten Achse.
+
+<LineEquation
+  title={<>Spiegelung der Quadratwurzelfunktion <InlineMath math="f(x) = \sqrt{x}" /></>}
+  description="Der gespiegelte Graph verläuft vom Ursprung aus nach links, während seine Höhen unverändert bleiben."
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.25;
+        return { x, y: Math.sqrt(x), z: 0 };
+      }),
+      color: "#0891b2",
+      labels: [{ text: <InlineMath math="f(x)=\sqrt{x}" />, offset: [1, 1.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = -i * 0.25;
+        if (x <= 0) {
+          return { x, y: Math.sqrt(-x), z: 0 };
+        }
+        return null;
+      }).filter(Boolean),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="g(x)=\sqrt{-x}" />, offset: [-1, 1.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Der Graph bestätigt:
+- Der Definitionsbereich der ursprünglichen Funktion <InlineMath math="f(x) = \sqrt{x}" /> ist <InlineMath math="[0, \infty)" />
+- Der Definitionsbereich der reflektierten Funktion <InlineMath math="g(x) = \sqrt{-x}" /> ist <InlineMath math="(-\infty, 0]" />
+- Beide Kurven treffen sich im Ursprung <InlineMath math="(0, 0)" />
+
+## Übungen
+
+1. Spiegle die Funktion <InlineMath math="f(x) = x^2 + 3x + 2" /> horizontal und bestimme die neue Funktionsgleichung.
+
+2. Der Graph der Funktion <InlineMath math="g(x) = 3^x + 1" /> wird an der <InlineMath math="y" />-Achse gespiegelt. Bestimme:
+   - Die Gleichung der resultierenden reflektierten Funktion
+   - Den Definitionsbereich nach der Spiegelung
+
+3. Spiegle die Funktion <InlineMath math="h(x) = |x + 2|" /> horizontal und bestimme den Scheitelpunkt des neuen Graphen.
+
+### Lösungen
+
+1. Horizontale Reflexion: <InlineMath math="f'(x) = f(-x) = (-x)^2 + 3(-x) + 2 = x^2 - 3x + 2" />
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="f(x) = x^2 + 3x + 2" /> und ihr Spiegelbild</>}
+     description={<>Die Spiegelung an der <InlineMath math="y" />-Achse vertauscht die Vorzeichen der x-Koordinaten und verschiebt den Scheitelpunkt auf die andere Seite.</>}
+     showZAxis={false}
+     cameraPosition={[12, 8, 12]}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x + 3 * x + 2, z: 0 };
+         }),
+         color: "#9333ea",
+         labels: [{ text: <InlineMath math="f(x)=x^2+3x+2" />, offset: [1, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x - 3 * x + 2, z: 0 };
+         }),
+         color: "#ea580c",
+         labels: [{ text: <InlineMath math="f'(x)=x^2-3x+2" />, offset: [1, -1, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+2. Gleichung der resultierenden reflektierten Funktion:
+
+   - Horizontale Reflexion: <InlineMath math="g'(x) = g(-x) = 3^{-x} + 1" />
+   - Definitionsbereich nach der Spiegelung: Bleibt <InlineMath math="(-\infty, \infty)" />, weil Exponentialfunktionen für alle reellen Zahlen definiert sind
+
+   Im Graphen:
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="g(x) = 3^x + 1" /> und ihr Spiegelbild</>}
+     description="Der wachsende Exponentialgraph wird zu einem fallenden Graphen mit derselben horizontalen Asymptote."
+     showZAxis={false}
+     cameraPosition={[8, 6, 8]}
+     data={[
+       {
+         points: Array.from({ length: 31 }, (_, i) => {
+           const x = (i - 15) * 0.2;
+           return { x, y: Math.pow(3, x) + 1, z: 0 };
+         }),
+         color: "#7c3aed",
+         labels: [{ text: <InlineMath math="g(x)=3^x+1" />, offset: [3, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 31 }, (_, i) => {
+           const x = (i - 15) * 0.2;
+           return { x, y: Math.pow(3, -x) + 1, z: 0 };
+         }),
+         color: "#0d9488",
+         labels: [{ text: <InlineMath math="g'(x)=3^{-x}+1" />, offset: [-3, 1, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+3. Die ursprüngliche Funktion <InlineMath math="h(x) = |x + 2|" /> hat ihren Scheitelpunkt bei <InlineMath math="(-2, 0)" />.
+   Nach horizontaler Spiegelung: <InlineMath math="h'(x) = |-x + 2| = |-(x - 2)| = |x - 2|" />, der Scheitelpunkt wird <InlineMath math="(2, 0)" />.
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="h(x) = |x + 2|" /> und ihr Spiegelbild</>}
+     description={<>Die Spiegelung an der <InlineMath math="y" />-Achse verschiebt den Scheitelpunkt auf die gegenüberliegende Seite.</>}
+     showZAxis={false}
+     cameraPosition={[10, 6, 10]}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: Math.abs(x + 2), z: 0 };
+         }),
+         color: "#4f46e5",
+         labels: [{ text: <InlineMath math="h(x)=|x+2|" />, offset: [-1, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: Math.abs(-x + 2), z: 0 };
+         }),
+         color: "#059669",
+         labels: [{ text: <InlineMath math="h'(x)=|-x+2|" />, offset: [1, -1, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />

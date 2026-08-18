@@ -1,0 +1,57 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 8",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-17",
+};
+
+#### Quotienten der Folge bestimmen
+
+Das Holz wird in <InlineMath math="6" /> Stücke geschnitten, also gilt <InlineMath math="n = 6" />. Die Längen der Stücke bilden eine geometrische Folge.
+
+Wir ordnen die Stücke vom längsten zum kürzesten. Das erste Glied ist <InlineMath math="a = 96" />, das <InlineMath math="6" />. Glied ist mit <InlineMath math="U_6 = 3" /> das kürzeste.
+
+Die Formel für den <InlineMath math="n" />-ten Term einer geometrischen Folge lautet:
+
+<BlockMath math="U_n = ar^{n-1}" />
+
+Wir setzen die bekannten Werte ein:
+
+<MathContainer>
+  <BlockMath math="U_6 = 96 \cdot r^{6-1}" />
+  <BlockMath math="3 = 96 \cdot r^5" />
+</MathContainer>
+
+Nun bestimmen wir den Quotienten <InlineMath math="r" />:
+
+<MathContainer>
+  <BlockMath math="r^5 = \frac{3}{96}" />
+  <BlockMath math="r^5 = \frac{1}{32}" />
+  <BlockMath math="r^5 = \left(\frac{1}{2}\right)^5" />
+  <BlockMath math="r = \frac{1}{2}" />
+</MathContainer>
+
+Der Quotient ist also <InlineMath math="\frac{1}{2}" />: Jedes folgende Stück ist halb so lang wie das vorherige.
+
+#### Berechnung der Gesamtholzlänge
+
+Die ursprüngliche Länge ist die Summe aller Stücke <InlineMath math="S_6" />. Da <InlineMath math="r < 1" /> gilt, verwenden wir:
+
+<BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
+
+Wir setzen <InlineMath math="a = 96" />, <InlineMath math="r = \frac{1}{2}" /> und <InlineMath math="n = 6" /> ein:
+
+<MathContainer>
+  <BlockMath math="S_6 = \frac{96\left(1 - \left(\frac{1}{2}\right)^6\right)}{1 - \frac{1}{2}}" />
+  <BlockMath math="S_6 = \frac{96\left(1 - \frac{1}{64}\right)}{\frac{1}{2}}" />
+</MathContainer>
+
+Damit erhalten wir:
+
+<MathContainer>
+  <BlockMath math="S_6 = 96 \cdot \left(\frac{63}{64}\right) \cdot 2" />
+  <BlockMath math="S_6 = 192 \cdot \frac{63}{64}" />
+  <BlockMath math="S_6 = 3 \cdot 63" />
+  <BlockMath math="S_6 = 189" />
+</MathContainer>
+
+Das Holzbrett war ursprünglich <InlineMath math="189\text{ cm}" /> lang.

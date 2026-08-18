@@ -184,6 +184,7 @@ describe("selected document watch", () => {
       "packages/corpus/tryout/indonesia/snbt/source.ts",
       "packages/corpus/tryout/indonesia/country.ts",
       "packages/corpus/tryout/schema.ts",
+      "packages/corpus/locale/source.ts",
       "packages/corpus/route/schema.ts",
       answerPath,
     ]);

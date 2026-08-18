@@ -1,0 +1,168 @@
+export const metadata = {
+  title: "Normalgleichungen lösen",
+  description: "Löse lineare Ausgleichsprobleme mit QR-Zerlegung und Moore-Penrose-Pseudoinverser und vergleiche ihr numerisches Verhalten mit Normalgleichungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-15",
+  subject: "Lineare Methoden der KI",
+};
+
+## Welches Problem wird gelöst?
+
+Für <InlineMath math="A \in \mathbb{R}^{m \times n}" /> und <InlineMath math="b \in \mathbb{R}^m" /> sucht ein lineares Ausgleichsproblem den Parametervektor, der das Residuum möglichst klein macht:
+
+<BlockMath math="\min_x \|Ax-b\|_2^2" />
+
+Jeder Minimierer erfüllt die Normalgleichung
+
+<BlockMath math="A^T A\hat{x}=A^T b" />
+
+Diese Gleichung ist immer lösbar. Der Minimierer ist genau dann eindeutig, wenn <InlineMath math="\operatorname{rank}(A)=n" /> gilt. Das setzt <InlineMath math="m\ge n" /> voraus. Bei vollem Spaltenrang gilt
+
+<BlockMath math="\hat{x}=(A^T A)^{-1}A^T b" />
+
+Hat <InlineMath math="A" /> keinen vollen Spaltenrang, bleibt der angepasste Vektor <InlineMath math="A\hat{x}" /> eindeutig, der Parametervektor jedoch nicht. Ist <InlineMath math="\hat{x}" /> eine Lösung, dann liegen alle Lösungen in
+
+<BlockMath math="\hat{x}+\ker(A)" />
+
+### Warum gibt es immer eine Lösung?
+
+Der Spaltenraum von <InlineMath math="A" /> ist ein endlichdimensionaler abgeschlossener Unterraum von <InlineMath math="\mathbb{R}^m" />. Deshalb besitzt <InlineMath math="b" /> eine eindeutige orthogonale Projektion auf diesen Raum. Jedes <InlineMath math="\hat{x}" /> mit <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> ist eine Ausgleichslösung.
+
+Die Normalgleichung beschreibt dieselbe Geometrie, denn
+
+<BlockMath math="A^T(A\hat{x}-b)=0" />
+
+bedeutet, dass das Residuum <InlineMath math="A\hat{x}-b" /> zu jeder Spalte von <InlineMath math="A" /> orthogonal ist.
+
+## Moore-Penrose-Pseudoinverse
+
+Die Moore-Penrose-Pseudoinverse ist für jede reelle Matrix definiert, auch für rechteckige Matrizen und Matrizen ohne vollen Rang. Ist
+
+<BlockMath math="A=U\Sigma V^T" />
+
+eine Singulärwertzerlegung, wird jeder von null verschiedene Singulärwert <InlineMath math="\sigma_i" /> durch <InlineMath math="1/\sigma_i" /> ersetzt. Singulärwerte gleich null bleiben null. Damit erhält man
+
+<MathContainer>
+<BlockMath math="\Sigma^{\dagger}_{ii}=\begin{cases}1/\sigma_i,&\sigma_i>0,\\0,&\sigma_i=0,\end{cases}" />
+<BlockMath math="A^{\dagger}=V\Sigma^{\dagger}U^T" />
+<BlockMath math="x^{\dagger}=A^{\dagger}b" />
+</MathContainer>
+
+Der Vektor <InlineMath math="x^{\dagger}" /> ist die eindeutige Ausgleichslösung mit kleinster euklidischer Norm. Hat <InlineMath math="A" /> vollen Spaltenrang, vereinfacht sich die allgemeine Definition zu
+
+<BlockMath math="A^{\dagger}=(A^T A)^{-1}A^T" />
+
+Die Pseudoinverse wird durch die vier Penrose-Identitäten eindeutig bestimmt:
+
+<MathContainer>
+<BlockMath math="AA^{\dagger}A=A" />
+<BlockMath math="A^{\dagger}AA^{\dagger}=A^{\dagger}" />
+<BlockMath math="(AA^{\dagger})^T=AA^{\dagger}" />
+<BlockMath math="(A^{\dagger}A)^T=A^{\dagger}A" />
+</MathContainer>
+
+## Direkte Lösung mit der QR-Zerlegung
+
+Für eine Matrix mit vollem Spaltenrang und <InlineMath math="m\ge n" /> verwendet man die dünne QR-Zerlegung
+
+<BlockMath math="A=Q_1R_1,\qquad Q_1^TQ_1=I" />
+
+Die Zielfunktion des Ausgleichsproblems zerfällt in
+
+<BlockMath math="\|Ax-b\|_2^2=\|R_1x-Q_1^Tb\|_2^2+\|(I-Q_1Q_1^T)b\|_2^2" />
+
+Der zweite Term hängt nicht von <InlineMath math="x" /> ab. Daher erhält man den Minimierer durch Lösen des oberen Dreieckssystems
+
+<BlockMath math="R_1\hat{x}=Q_1^Tb" />
+
+Dieser Weg löst das ursprüngliche Ausgleichsproblem direkt. Man bildet nicht zuerst <InlineMath math="A^TA" />, um anschließend die Normalgleichung zu lösen.
+
+## Beispiel einer Polynomanpassung
+
+Wir passen <InlineMath math="y=at^2+bt+c" /> an sieben Messwerte an. Die Designmatrix und der Beobachtungsvektor lauten
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}9&-3&1\\4&-2&1\\1&-1&1\\0&0&1\\1&1&1\\4&2&1\\9&3&1\end{pmatrix}" />
+<BlockMath math="b=\begin{pmatrix}-2{,}2\\-4{,}2\\-4{,}2\\-1{,}8\\1{,}8\\8{,}2\\15{,}8\end{pmatrix}" />
+</MathContainer>
+
+Jede Zeile von <InlineMath math="A" /> hat die Form <InlineMath math="[t_i^2,t_i,1]" />. Eine gültige dünne QR-Zerlegung ist
+
+<MathContainer>
+<BlockMath math="Q_1=\begin{pmatrix}-0{,}64286&-0{,}56695&0{,}16496\\-0{,}28571&-0{,}37796&-0{,}24744\\-0{,}07143&-0{,}18898&-0{,}49487\\0&0&-0{,}57735\\-0{,}07143&0{,}18898&-0{,}49487\\-0{,}28571&0{,}37796&-0{,}24744\\-0{,}64286&0{,}56695&0{,}16496\end{pmatrix}" />
+<BlockMath math="R_1=\begin{pmatrix}-14&0&-2\\0&5{,}29150&0\\0&0&-1{,}73205\end{pmatrix}" />
+</MathContainer>
+
+Die Vorzeichen zusammengehöriger Spalten von <InlineMath math="Q_1" /> und Zeilen von <InlineMath math="R_1" /> können sich zwischen gültigen QR-Implementierungen unterscheiden. Das Produkt <InlineMath math="Q_1R_1" /> und die endgültige Anpassung bleiben gleich.
+
+Zuerst berechnen wir
+
+<BlockMath math="Q_1^Tb=\begin{pmatrix}-9{,}71429\\16{,}02569\\3{,}48060\end{pmatrix}" />
+
+Danach folgt die Rückwärtssubstitution:
+
+<MathContainer>
+<BlockMath math="-1{,}73205x_3=3{,}48060\quad\Longrightarrow\quad x_3=-2{,}00952" />
+<BlockMath math="5{,}29150x_2=16{,}02569\quad\Longrightarrow\quad x_2=3{,}02857" />
+<BlockMath math="-14x_1-2x_3=-9{,}71429\quad\Longrightarrow\quad x_1=0{,}98095" />
+</MathContainer>
+
+Damit gilt
+
+<MathContainer>
+<BlockMath math="\hat{x}=\begin{pmatrix}0{,}98095\\3{,}02857\\-2{,}00952\end{pmatrix}" />
+<BlockMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" />
+<BlockMath math="\|A\hat{x}-b\|_2\approx0{,}41861" />
+</MathContainer>
+
+<LineEquation
+  title={<>Ausgleichskurve <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
+  description={<>Die cyanfarbene Kurve ist das angepasste Polynom. Die orangefarbenen Punkte sind die sieben Messwerte aus <InlineMath math="b" />.</>}
+  cameraPosition={[15, 10, 15]}
+  data={(() => {
+    // Die von A und b codierten Messwerte
+    const originalData = [
+      [-3, -2.2],
+      [-2, -4.2],
+      [-1, -4.2],
+      [0, -1.8],
+      [1, 1.8],
+      [2, 8.2],
+      [3, 15.8]
+    ];
+
+    // Die mit der QR-Lösung bestimmten Koeffizienten
+    const a = 0.98095;
+    const b = 3.02857;
+    const c = -2.00952;
+
+    return [
+      {
+        points: Array.from({ length: 50 }, (_, i) => {
+          const t = -3 + (i * 6) / 49;
+          const y = a * t * t + b * t + c;
+          return { x: t, y: y, z: 0 };
+        }),
+        color: "#0891b2",
+        smooth: true,
+        showPoints: false
+      },
+      {
+        points: originalData.map(([t, y]) => ({ x: t, y: y, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: true
+      }
+    ];
+  })()}
+/>
+
+## Wahl des numerischen Verfahrens
+
+| Verfahren | Ungefähre Kosten für dichte Matrizen mit <InlineMath math="m\ge n" /> | Hauptvorteil | Wichtigste Einschränkung |
+| --- | --- | --- | --- |
+| Normalgleichungen und Cholesky | <InlineMath math="A^TA" /> in <InlineMath math="O(mn^2)" /> bilden, dann in etwa <InlineMath math="\frac{1}{3}n^3" /> Flops faktorisieren | schnell bei gut konditioniertem Problem und vollem Rang | <InlineMath math="\kappa_2(A^TA)=\kappa_2(A)^2" /> |
+| Householder-QR | etwa <InlineMath math="2mn^2-\frac{2}{3}n^3" /> Flops | bildet <InlineMath math="A^TA" /> nicht und ist meist stabiler | bei abhängigen Spalten ist eine rangoffenbarende Variante nötig |
+| SVD | aufwendiger als QR | macht den Rang sichtbar und liefert die Lösung kleinster Norm | höchste Kosten der drei Verfahren |
+
+QR ist die übliche Wahl für dichte Probleme mit vollem Rang. Verwende die SVD, wenn Rangmangel, starke Fehlkonditionierung oder die Lösung kleinster Norm wichtig ist. Bilde die Normalmatrix nur, wenn ihr Geschwindigkeitsvorteil den Verlust an numerischer Robustheit rechtfertigt, und berechne in Produktionscode niemals explizit die Inverse.

@@ -1,51 +1,19 @@
-import { globSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
-import { FileSystem, Path, Error as PlatformError } from "@effect/platform";
 import { Effect } from "effect";
 import { describe, expect, it } from "vitest";
 import { indexQuestionBanks } from "#corpus/question-bank/path";
 import { discoverQuestionSources } from "#corpus/question-bank/source";
+import { corpusRoot, questionLayer } from "#corpus/test/question-layer";
 import { loadTryoutContent } from "#corpus/tryout/content";
 import { projectTryoutSources } from "#corpus/tryout/projection";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
-const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-const sourceRoot = "packages/corpus/question-bank/tryout";
-const absoluteSourceRoot = resolve(corpusRoot, sourceRoot);
-const realEntries = globSync("**/*", { cwd: absoluteSourceRoot });
-const realChoices = new Map(
-  globSync("**/choices.ts", { cwd: absoluteSourceRoot }).map((sourcePath) => {
-    const absolutePath = resolve(absoluteSourceRoot, sourcePath);
-    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-  })
-);
 const ENGLISH_PATH_PATTERN = /\/mathematics$/u;
 const INDONESIAN_PATH_PATTERN = /\/matematika$/u;
-/** Supplies the real checked-in question tree through Effect Platform. */
-const realFileLayer = FileSystem.layerNoop({
-  readDirectory: () => Effect.succeed(realEntries),
-  readFileString: (path) => {
-    const source = realChoices.get(path);
-    if (source !== undefined) {
-      return Effect.succeed(source);
-    }
-    return Effect.fail(
-      new PlatformError.SystemError({
-        method: "readFileString",
-        module: "FileSystem",
-        pathOrDescriptor: path,
-        reason: "NotFound",
-      })
-    );
-  },
-});
 
 /** Loads the exact active content and projection from one corpus scan. */
 function loadContent() {
   return Effect.runPromise(
-    loadTryoutContent(corpusRoot).pipe(
-      Effect.provide([realFileLayer, Path.layer])
-    )
+    loadTryoutContent(corpusRoot).pipe(Effect.provide(questionLayer))
   );
 }
 
@@ -58,7 +26,7 @@ function loadSources() {
       const questions = yield* discoverQuestionSources(
         corpusRoot,
         questionBanks
-      ).pipe(Effect.provide([realFileLayer, Path.layer]));
+      ).pipe(Effect.provide(questionLayer));
       return [sources, questions] satisfies readonly [
         typeof sources,
         typeof questions,

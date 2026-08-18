@@ -1,0 +1,73 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 12",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Für die Fläche von <InlineMath math="S" /> bestimmen wir zunächst die Eckpunkte der Lösungsmenge. Sie wird durch drei Geraden begrenzt:
+
+1. Gerade <InlineMath math="1" />: <InlineMath math="y = 2x + 4" />
+2. Gerade <InlineMath math="2" />: <InlineMath math="y + x - 4 = 0 \Rightarrow y = -x + 4" />
+3. Gerade <InlineMath math="3" />: <InlineMath math="x = 4" />
+
+Nun berechnen wir die Schnittpunkte dieser Geraden.
+
+#### Schnittpunkt von Gerade eins und Gerade zwei
+
+Wir setzen die beiden Terme für <InlineMath math="y" /> gleich:
+
+<MathContainer>
+  <BlockMath math="2x + 4 = -x + 4" />
+  <BlockMath math="3x = 0" />
+  <BlockMath math="x = 0" />
+</MathContainer>
+
+Wir setzen <InlineMath math="x = 0" /> in eine der Gleichungen ein, etwa in Gerade <InlineMath math="2" />:
+
+<BlockMath math="y = -0 + 4 = 4" />
+
+Der erste Schnittpunkt ist also <InlineMath math="A(0, 4)" />.
+
+#### Schnittpunkt von Gerade eins und Gerade drei
+
+Wir setzen <InlineMath math="x = 4" /> in die Gleichung der Geraden <InlineMath math="1" /> ein:
+
+<MathContainer>
+  <BlockMath math="y = 2(4) + 4" />
+  <BlockMath math="y = 8 + 4 = 12" />
+</MathContainer>
+
+Der zweite Schnittpunkt ist also <InlineMath math="B(4, 12)" />.
+
+#### Schnittpunkt von Gerade zwei und Gerade drei
+
+Wir setzen <InlineMath math="x = 4" /> in die Gleichung der Geraden <InlineMath math="2" /> ein:
+
+<MathContainer>
+  <BlockMath math="y = -(4) + 4" />
+  <BlockMath math="y = 0" />
+</MathContainer>
+
+Der dritte Schnittpunkt ist also <InlineMath math="C(4, 0)" />.
+
+#### Berechnen der Fläche
+
+Die Region <InlineMath math="S" /> ist ein Dreieck mit den Eckpunkten <InlineMath math="A(0, 4)" />, <InlineMath math="B(4, 12)" /> und <InlineMath math="C(4, 0)" />.
+
+Wir können die Fläche anhand der Grundfläche und der Höhe berechnen.
+
+- **Basis**: Die vertikale Linie, die Punkt <InlineMath math="B" /> und <InlineMath math="C" /> verbindet (da beide <InlineMath math="x = 4" /> haben).
+  Länge der Basis <InlineMath math="= y_B - y_C = 12 - 0 = 12" />.
+
+- **Höhe**: Der horizontale Abstand vom Punkt <InlineMath math="A" /> zur Linie <InlineMath math="x = 4" />.
+  Höhe <InlineMath math="= x_{BC} - x_A = 4 - 0 = 4" />.
+
+Fläche des Dreiecks:
+
+<MathContainer>
+  <BlockMath math="\text{Fläche} = \frac{1}{2} \times \text{Grundseite} \times \text{Höhe}" />
+  <BlockMath math="\text{Fläche} = \frac{1}{2} \times 12 \times 4" />
+  <BlockMath math="\text{Fläche} = 6 \times 4 = 24" />
+</MathContainer>
+
+Somit beträgt die Fläche der Region <InlineMath math="S" /> <InlineMath math="24" /> Quadrateinheiten.

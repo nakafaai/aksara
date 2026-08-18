@@ -11,14 +11,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
       {
         routeSlugs: { en: "application-of-derivative", id: "aplikasi-turunan" },
         slug: "application-of-derivative",
-        translations: {
-          en: {
-            title: "Application of Derivatives",
-          },
-          id: {
-            title: "Aplikasi Turunan",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -26,14 +18,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "aturan-rantai-pada-turunan",
         },
         slug: "chain-rule-in-derivative",
-        translations: {
-          en: {
-            title: "Chain Rule in Derivative",
-          },
-          id: {
-            title: "Aturan Rantai pada Turunan",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -41,14 +25,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "konsep-turunan-fungsi",
         },
         slug: "concept-of-derivative-function",
-        translations: {
-          en: {
-            title: "Concept of Derivative Function",
-          },
-          id: {
-            title: "Konsep Turunan Fungsi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -56,14 +32,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "turunan-fungsi-aljabar",
         },
         slug: "derivative-of-algebraic-function",
-        translations: {
-          en: {
-            title: "Derivative of Algebraic Function",
-          },
-          id: {
-            title: "Turunan Fungsi Aljabar",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -71,14 +39,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "turunan-fungsi-trigonometri",
         },
         slug: "derivative-of-trigonometric-function",
-        translations: {
-          en: {
-            title: "Derivative of Trigonometric Function",
-          },
-          id: {
-            title: "Turunan Fungsi Trigonometri",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -86,14 +46,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "persamaan-garis-singgung-pada-kurva",
         },
         slug: "equation-of-a-tangent-line-to-a-curve",
-        translations: {
-          en: {
-            title: "Equation of a Tangent Line to a Curve",
-          },
-          id: {
-            title: "Persamaan Garis Singgung pada Kurva",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -101,14 +53,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "titik-ekstrim-nilai-balik-maksimum-dan-minimum",
         },
         slug: "extrema-maximum-and-minimum-value",
-        translations: {
-          en: {
-            title: "Extreme Points, Maximum and Minimum Turning Points",
-          },
-          id: {
-            title: "Titik Ekstrim, Nilai Balik Maksimum dan Minimum",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -116,14 +60,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "fungsi-naik-turun-dan-stasioner",
         },
         slug: "increasing-decreasing-and-stationary-function",
-        translations: {
-          en: {
-            title: "Increasing, Decreasing, and Stationary Functions",
-          },
-          id: {
-            title: "Fungsi Naik, Turun, dan Stasioner",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -131,14 +67,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "sifat-turunan-fungsi",
         },
         slug: "properties-of-derivative-function",
-        translations: {
-          en: {
-            title: "Properties of Derivative Function",
-          },
-          id: {
-            title: "Sifat Turunan Fungsi",
-          },
-        },
       },
       {
         routeSlugs: {
@@ -146,14 +74,6 @@ export const lessonMathematicsDerivativeFunctionMaterial = defineLessonMaterial(
           id: "penulisan-turunan-fungsi",
         },
         slug: "writing-the-derivative-function",
-        translations: {
-          en: {
-            title: "Writing the Derivative Function",
-          },
-          id: {
-            title: "Penulisan Turunan Fungsi",
-          },
-        },
       },
     ],
     slug: "derivative-function",

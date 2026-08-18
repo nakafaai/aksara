@@ -1,0 +1,64 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-17",
+};
+
+#### Relevantes Dreieck erkennen
+
+Gesucht ist <InlineMath math="\sin \alpha" /> für <InlineMath math="\alpha = \angle HDF" />. Dazu betrachten wir das Dreieck <InlineMath math="HDF" />.
+
+<Set6Question18Graph
+  title={<>Dreieck <InlineMath math="HDF" /></>}
+  description={<>Visualisierung der Position im Würfel.</>}
+/>
+
+#### Seitenlängen bestimmen
+
+Die Kantenlänge des Würfels beträgt <InlineMath math="s = 4" />.
+
+1. **Gegenkathete (<InlineMath math="HF" />)**: <InlineMath math="HF" /> ist eine Flächendiagonale der oberen Würfelfläche <InlineMath math="EFGH" />.
+
+   <MathContainer>
+     <BlockMath math="HF = \sqrt{EH^2 + EF^2}" />
+     <BlockMath math="HF = \sqrt{4^2 + 4^2} = \sqrt{16 + 16} = \sqrt{32} = 4\sqrt{2}" />
+   </MathContainer>
+
+2. **Ankathete (<InlineMath math="HD" />)**: <InlineMath math="HD" /> ist die vertikale Kante des Würfels.
+
+   <MathContainer>
+     <BlockMath math="HD = 4" />
+   </MathContainer>
+
+3. **Hypotenuse (<InlineMath math="DF" />)**: <InlineMath math="DF" /> ist eine Raumdiagonale des Würfels. Das Dreieck <InlineMath math="HDF" /> ist bei <InlineMath math="H" /> rechtwinklig, denn aus <InlineMath math="HD \perp EFGH" /> folgt insbesondere <InlineMath math="HD \perp HF" />.
+
+   <MathContainer>
+     <BlockMath math="DF = \sqrt{HD^2 + HF^2}" />
+     <BlockMath math="DF = \sqrt{4^2 + (4\sqrt{2})^2} = \sqrt{16 + 32} = \sqrt{48} = 4\sqrt{3}" />
+   </MathContainer>
+
+#### Sinus berechnen
+
+Der Winkel <InlineMath math="\alpha" /> liegt am Punkt <InlineMath math="D" />. Also:
+- Die Gegenkathete zum Winkel <InlineMath math="\alpha" /> ist <InlineMath math="HF" />.
+- Die Hypotenuse ist <InlineMath math="DF" />.
+
+<MathContainer>
+  <BlockMath math="\sin \alpha = \frac{\text{Gegenkathete}}{\text{Hypotenuse}} = \frac{HF}{DF}" />
+</MathContainer>
+
+Wir setzen die berechneten Längen ein:
+
+<MathContainer>
+  <BlockMath math="\sin \alpha = \frac{4\sqrt{2}}{4\sqrt{3}}" />
+  <BlockMath math="\sin \alpha = \frac{\sqrt{2}}{\sqrt{3}}" />
+</MathContainer>
+
+Zum Rationalisieren des Nenners multiplizieren wir mit <InlineMath math="\frac{\sqrt{3}}{\sqrt{3}}" />:
+
+<MathContainer>
+  <BlockMath math="\sin \alpha = \frac{\sqrt{2}}{\sqrt{3}} \cdot \frac{\sqrt{3}}{\sqrt{3}}" />
+  <BlockMath math="\sin \alpha = \frac{\sqrt{6}}{3} = \frac{1}{3}\sqrt{6}" />
+</MathContainer>
+
+Damit ist <InlineMath math="\sin \alpha" /> gleich <InlineMath math="\frac{1}{3}\sqrt{6}" />.
