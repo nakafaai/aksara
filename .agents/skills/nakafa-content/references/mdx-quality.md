@@ -65,6 +65,18 @@
   non-math component.
 - MDX math props use a single LaTeX backslash. TypeScript choice strings escape
   the backslash.
+- Format learner-facing numbers according to the authored locale without
+  changing their value. English uses `.` for decimals and `{,}` for grouped
+  thousands. Indonesian and German use `{,}` for decimals and `{.}` for grouped
+  thousands. Braces keep the separator from acquiring mathematical punctuation
+  spacing in the renderer.
+- Prove whether a separator is decimal or grouping from the source meaning,
+  unit, calculation, or cited evidence. Never infer it from three following
+  digits alone, and never run a global dot-or-comma replacement. Preserve the
+  exact digit sequence and independently recompute the value after editing.
+- Keep programming-language numeric literals in their required source syntax.
+  Render those literals as code rather than localizing syntax that a compiler
+  or runtime must parse.
 - Use inline code for programming syntax and identifiers.
 - MDX content must not import renderer components. Use only component names
   exposed for the document's route domain by Nakafa's authenticated renderer
@@ -100,10 +112,20 @@ Choose a representation for its instructional job, not for variety alone.
 - Use nearby prose to tell the learner what to notice, how the representation
   connects to the concept, and what conclusion it supports. A visual must not
   carry essential meaning only through color, motion, or position.
-- For an interactive graph or 3D model, preserve every semantically necessary
-  point, branch, object, label, and relationship from the audited teaching
-  document. Localize learner-facing prose while keeping mathematical and
-  scientific identity exact.
+- Verify every graph, geometric construction, simulation, and three-dimensional
+  component through Nakafa's real renderer. Compilation proves only that the
+  source is valid. It does not prove that plotted values, signs, domains,
+  discontinuities, asymptotes, labels, axes, legends, camera framing, scale,
+  occlusion, or interaction are mathematically and visually correct.
+- Recalculate representative plotted points independently from the authored
+  equation and compare them with the rendered component. For discontinuous or
+  piecewise objects, inspect every branch and boundary. For three-dimensional
+  objects, inspect and rotate the rendered scene when interaction is available
+  so hidden intersections, incorrect depth, or misleading camera angles are
+  not accepted from one static view.
+- Render every locale sibling that changes learner-facing labels or prose around
+  a visual. Longer localized text must not clip, overlap, obscure data, or
+  detach from the representation it explains.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison

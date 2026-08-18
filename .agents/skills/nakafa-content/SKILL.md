@@ -48,16 +48,17 @@ addition, revision, review, or translation in this repository.
   explanations through `appLocale`. Preserve the language being assessed in
   prompts and choices through `deliveryLanguage`.
 - Localized authored prose must preserve the reconciled, reviewed meaning of
-  its locale siblings. Never translate from an unreviewed or disputed source.
+  every canonical source sibling. Never translate from an unreviewed or
+  disputed source.
 - Locale siblings are one teaching document expressed in different languages.
   Preserve the same sequence and count of concepts, sections, examples,
   exercises, worked solutions, checks, tables, diagrams, math, code, and custom
   MDX components. Do not condense, expand, reorder, or replace a teaching unit
   in only one locale.
-- If any existing locale sibling is inaccurate, incomplete, artificial, or
+- If any canonical source sibling is inaccurate, incomplete, artificial, or
   pedagogically weak, reconcile the shared teaching document first. Apply the
   correction to every affected existing sibling before translating the
-  corrected document into another authorized locale.
+  corrected document into every locale in the authorized scope.
 - Use natural teacher voice for the target locale. A translation must read as a
   lesson written for that student, while preserving meaning and evidence.
 - Do not translate assessed passages, assessed choices, quotations, code,
@@ -76,8 +77,8 @@ addition, revision, review, or translation in this repository.
   must be explained in nearby prose and must remain understandable through its
   accessible text.
 - Keep all locale siblings equivalent in facts, instructional sequence,
-  examples, visual evidence, and learner support. Use natural language for each
-  locale instead of forcing sentence-level symmetry.
+  examples, visual evidence, and learner support. Use
+  natural language for each locale instead of forcing sentence-level symmetry.
 - Render every learner-facing mathematical expression through Aksara's math
   components, including expressions inside component titles, descriptions, and
   other props that accept React nodes. Do not leave variables, formulas,

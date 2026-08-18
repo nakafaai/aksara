@@ -48,6 +48,22 @@ Issued by the Indonesian Ministry of Religious Affairs and developed under the
 supervision of Rowwad Translation Center. Source:
 [QuranEnc.com](https://quranenc.com/en/browse/indonesian_affairs).
 
+## QuranEnc German translation
+
+German Translation - Frank Bubenheim, v1.1.4-xml.1.
+
+Translated by ‘Abdullah as-Sāmit (Frank Bubenheim) and Dr. Nadim Elias. The
+official IslamHouse publication record credits the King Fahd Complex For
+Printing The Holy Quran as the edition's source. Source:
+[QuranEnc.com](https://quranenc.com/en/browse/german_bubenheim). The exact XML
+is pinned for German authoring and remains outside the active production
+locale set until the complete German release is approved.
+
+The exact German IslamHouse record retrieved on 2026-08-13 is retained at
+`packages/corpus/quran/sources/german/publication.json`: 3,485 bytes,
+SHA-256
+`df3b2437afa0f52c3621c8c611384c45b00169e00a259a4f205a7ccd9150f645`.
+
 ## QuranEnc Indonesian Al-Mukhtasar
 
 Indonesian Translation of Al-Mukhtasar in Interpreting the Noble Quran,

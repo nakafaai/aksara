@@ -102,3 +102,36 @@ unsupported fields as typed failures.
 The approved provenance decision means these exact source bytes satisfy the
 current Aksara gate. It does not claim that Nakafa production was deployed,
 migrated, or visually verified in this change.
+
+## German candidate addendum
+
+- Translation retrieved: `2026-08-13T06:12:57Z`
+- Publication record retrieved: `2026-08-13T08:31:04Z`
+- Reviewed: 2026-08-13
+- Decision: German source evidence accepted for authoring only; German remains inactive
+
+The German candidate uses QuranEnc German Bubenheim v1.1.4-xml.1. Its exact
+XML is stored at `sources/german/translation.xml`: 1,523,305 bytes, SHA-256
+`38763b972b2efeeed3062ba3495042c28f320cf734071e010d746c525ebce47e`.
+It contains 114 ordered surahs and 6,236 ordered verses. Every translation is
+present, and all 6,236 footnote elements are empty. The parser preserves those
+values exactly.
+
+QuranEnc names ‘Abdullah as-Sāmit (Frank Bubenheim) and Dr. Nadim Elias as
+translators. The exact German IslamHouse publication record credits the King
+Fahd Complex For Printing The Holy Quran as the edition's source. That record
+is stored at `sources/german/publication.json`: 3,485 bytes, SHA-256
+`df3b2437afa0f52c3621c8c611384c45b00169e00a259a4f205a7ccd9150f645`.
+It came from the official German item API for IslamHouse item 59081. This
+evidence is review-bound to the authored attribution and provenance records;
+it is not part of the Quran data bundle.
+
+The German authoring data bundle contains 119 files and 13,030,246 bytes. Its
+SHA-256 is
+`4834b7d8ca7e55e622c3e27a37c4b210af0ab58f066162603b1d76beb0dd91b8`.
+The current `en` and `id` bundle remains 118 files with its existing digest and
+signed snapshot identity. Candidate `translation.de.text` and `.footnotes`
+come only from the exact German QuranEnc XML.
+
+German Tafsir is unavailable. Nakafa must say so plainly and must not
+substitute another language or label the German translation as Tafsir.
