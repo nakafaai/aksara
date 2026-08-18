@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Grafik Fungsi Trigonometri",
-  description: "Pelajari grafik fungsi trigonometri dengan visualisasi interaktif. Pahami grafik sin, cos, tan, amplitudo, periode, transformasi & konversi sudut.",
+  description: "Baca grafik sinus, kosinus, dan tangen melalui visualisasi interaktif tentang radian, amplitudo, periode, dan transformasi grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Fungsi dan Pemodelannya",
@@ -20,7 +20,7 @@ Satu putaran penuh lingkaran adalah <InlineMath math="360^\circ" /> atau <Inline
 <MathContainer>
   <BlockMath math="180^\circ = \pi \text{ radian}" />
   <BlockMath math="1^\circ = \frac{\pi}{180} \text{ radian}" />
-  <BlockMath math="1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57.3^\circ" />
+  <BlockMath math="1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57{,}3^\circ" />
 </MathContainer>
 
 ### Contoh Konversi
@@ -46,7 +46,7 @@ Dua konsep kunci pada grafik fungsi trigonometri adalah **amplitudo** dan **peri
 
 ### Amplitudo
 
-Amplitudo adalah jarak maksimum dari garis tengah (sumbu <InlineMath math="x" />) ke puncak atau lembah grafik. Untuk fungsi <InlineMath math="y = A \sin x" /> atau <InlineMath math="y = A \cos x" />, amplitudo adalah <InlineMath math="|A|" />.
+Amplitudo adalah jarak vertikal maksimum dari garis tengah gelombang sinusoidal ke puncak atau lembahnya. Pada fungsi tanpa pergeseran <InlineMath math="y = A \sin x" /> dan <InlineMath math="y = A \cos x" />, garis tengah tersebut adalah sumbu <InlineMath math="x" /> dan amplitudonya <InlineMath math="|A|" />.
 
 <LineEquation
   title="Konsep Amplitudo"
@@ -129,13 +129,13 @@ Untuk fungsi trigonometri dalam bentuk:
 
   <MathContainer>
     <BlockMath math="y = A \tan(Bx)" />
-    <BlockMath math="\text{Amplitudo} = \text{tidak terdefinisi (tak terbatas)}" />
+    <BlockMath math="\text{Amplitudo} = \text{tidak terdefinisi}" />
     <BlockMath math="\text{Periode} = \frac{\pi}{|B|}" />
   </MathContainer>
 
 ## Grafik Fungsi Sinus
 
-Fungsi <InlineMath math="y = \sin x" /> adalah fungsi periodik dengan periode <InlineMath math="2\pi" />. Artinya, pola grafiknya berulang setiap interval <InlineMath math="2\pi" />.
+Fungsi <InlineMath math="y = \sin x" /> bersifat periodik dengan periode <InlineMath math="2\pi" />. Artinya, pola grafiknya berulang pada setiap interval sepanjang <InlineMath math="2\pi" />.
 
 <LineEquation
   title={
@@ -159,7 +159,7 @@ Fungsi <InlineMath math="y = \sin x" /> adalah fungsi periodik dengan periode <I
   showZAxis={false}
 />
 
-**Karakteristik grafik** <InlineMath math="y = \sin x" />:
+**Karakteristik grafik:** <InlineMath math="y = \sin x" />
 
 - **Periode**: <InlineMath math="2\pi" /> (grafik berulang setiap <InlineMath math="2\pi \text{ satuan}" />)
 - **Amplitudo**: <InlineMath math="1" /> (nilai maksimum dikurangi nilai minimum, lalu dibagi <InlineMath math="2" />)
@@ -195,7 +195,7 @@ Fungsi <InlineMath math="y = \cos x" /> memiliki bentuk yang mirip dengan sinus,
   showZAxis={false}
 />
 
-**Karakteristik grafik** <InlineMath math="y = \cos x" />:
+**Karakteristik grafik:** <InlineMath math="y = \cos x" />
 
 - **Periode**: <InlineMath math="2\pi" />
 - **Amplitudo**: <InlineMath math="1" />
@@ -248,7 +248,7 @@ Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /
       Grafik <InlineMath math="y = \tan x" />
     </>
   }
-  description="Perhatikan garis putus-putus yang menunjukkan asimtot vertikal."
+  description="Garis vertikal merah menandai asimtotnya."
   data={[
     // Fungsi tangen
     ...Array.from({ length: 3 }, (_, periodIndex) => {
@@ -277,7 +277,7 @@ Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /
         color: "#e11d48",
         showPoints: false,
         labels:
-          i === 1 ? [{ text: `x = π/2`, at: 1, offset: [1, 0.5, 0] }] : [],
+          i === 1 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
       };
     }),
   ]}
@@ -285,7 +285,7 @@ Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /
   showZAxis={false}
 />
 
-**Karakteristik grafik** <InlineMath math="y = \tan x" />:
+**Karakteristik grafik:** <InlineMath math="y = \tan x" />
 
 - **Periode**: <InlineMath math="\pi" /> (lebih pendek dari <InlineMath math="\sin" /> dan <InlineMath math="\cos" />)
 - **Amplitudo**: Tidak terdefinisi
@@ -333,7 +333,7 @@ Fungsi <InlineMath math="y = A \sin x" /> mengubah amplitudo menjadi <InlineMath
         return { x, y: 0.5 * Math.sin(x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=0.5\\sin x" />, at: 25, offset: [1, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0{,}5\\sin x" />, at: 25, offset: [1, 2.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -377,7 +377,7 @@ Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah periode menjadi <InlineMath m
         return { x, y: Math.sin(0.5 * x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=\sin 0.5x" />, at: 25, offset: [1, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin 0{,}5x" />, at: 25, offset: [1, 2.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -452,7 +452,7 @@ Perhatikan pergeseran horizontal dan vertikal dari grafik:
    - Pergeseran fase
    - Pergeseran vertikal
 
-4. Jika tinggi air pasang surut dimodelkan dengan <InlineMath math="h(t) = 2 \sin(\frac{\pi t}{6}) + 5 \text{ meter}" />, dimana t dalam jam:
+4. Jika tinggi air pasang surut dimodelkan dengan <InlineMath math="h(t) = 2 \sin(\frac{\pi t}{6}) + 5 \text{ meter}" />, dengan <InlineMath math="t" /> dalam jam:
 
    - Berapa tinggi air maksimum dan minimum?
    - Berapa periode pasang surut?

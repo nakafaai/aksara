@@ -1,0 +1,240 @@
+export const metadata = {
+  title: "Addition komplexer Zahlen",
+  description:
+    "Addiere komplexe Zahlen über Real- und Imaginärteil und deute die Summe mit der Parallelogrammregel in der komplexen Ebene.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahl",
+};
+
+## Addition zweier komplexer Zahlen
+
+Wie addiert man zwei komplexe Zahlen?
+
+Gegeben sind zwei komplexe Zahlen:
+
+<MathContainer>
+  <BlockMath math="z_1 = x_1 + iy_1" />
+  <BlockMath math="z_2 = x_2 + iy_2" />
+</MathContainer>
+
+Für die Summe <InlineMath math="z_1 + z_2" /> werden die Realteile und die Imaginärteile jeweils miteinander addiert.
+
+<BlockMath math="z_1 + z_2 = (x_1 + x_2) + i(y_1 + y_2)" />
+
+### Additionsbeispiel
+
+Seien <InlineMath math="z_1 = 2 + 3i" /> und <InlineMath math="z_2 = 1 - i" />.
+
+- Der Realteil von <InlineMath math="z_1" /> ist <InlineMath math="2" />, der Realteil von <InlineMath math="z_2" /> ist <InlineMath math="1" />.
+- Der Imaginärteil von <InlineMath math="z_1" /> ist <InlineMath math="3" />, der Imaginärteil von <InlineMath math="z_2" /> ist <InlineMath math="-1" />.
+
+Dann ist ihre Summe:
+
+<BlockMath math="z_1 + z_2 = (2 + 1) + i(3 + (-1)) = 3 + i(2) = 3 + 2i" />
+
+### Visualisierung der Addition
+
+In der komplexen Ebene lässt sich die Addition mit der Parallelogrammregel deuten. Stellen wir <InlineMath math="z_1" /> und <InlineMath math="z_2" /> als Vektoren vom Ursprung <InlineMath math="(0, 0)" /> dar, dann bildet ihre Summe <InlineMath math="z_1 + z_2" /> die Diagonale des Parallelogramms, das <InlineMath math="z_1" /> und <InlineMath math="z_2" /> aufspannen.
+
+<LineEquation
+  title="Geometrische Addition komplexer Zahlen"
+  description={
+    <>
+      Die Vektoren <InlineMath math="z_1=2+3i" /> und{" "}
+      <InlineMath math="z_2=1-i" /> spannen ein Parallelogramm auf. Seine
+      Diagonale stellt ihre Summe dar.
+    </>
+  }
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    // Vektor z1
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 3, z: 0 },
+      ],
+      color: "#0284c7",
+      labels: [{ text: <InlineMath math="z_1=2+3i" />, at: 1, offset: [0.5, 0.5, 0] }],
+      cone: { position: "end" },
+    },
+    // Vektor z2
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1, y: -1, z: 0 },
+      ],
+      color: "#059669",
+      labels: [{ text: <InlineMath math="z_2=1-i" />, at: 1, offset: [0.5, -0.5, 0] }],
+      cone: { position: "end" },
+    },
+    // Resultierender Vektor z1 + z2
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 2, z: 0 },
+      ],
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [2, -1, 0] }],
+      cone: { position: "end" },
+    },
+    // Parallelogramm-Hilfslinie vom Ende von z1 zum Ende von z1+z2
+    {
+      points: [
+        { x: 2, y: 3, z: 0 },
+        { x: 3, y: 2, z: 0 },
+      ],
+      color: "#059669",
+    },
+    // Parallelogramm-Hilfslinie vom Ende von z2 zum Ende von z1+z2
+    {
+      points: [
+        { x: 1, y: -1, z: 0 },
+        { x: 3, y: 2, z: 0 },
+      ],
+      color: "#0284c7",
+    },
+  ]}
+/>
+
+## Verwandte Rechenoperationen
+
+Dieselbe Trennung von Real- und Imaginärteil hilft auch bei weiteren Rechenoperationen.
+
+### Skalare Multiplikation
+
+Bei der Multiplikation einer komplexen Zahl <InlineMath math="z = x + iy" /> mit einem reellen Skalar <InlineMath math="c" /> wird jeder der beiden Teile mit diesem Skalar multipliziert.
+
+<BlockMath math="cz = c(x + iy) = cx + i(cy)" />
+
+Geometrisch wird der Vektor <InlineMath math="z" /> dadurch um den Faktor <InlineMath math="c" /> gestreckt oder gestaucht. Ist <InlineMath math="c" /> negativ, kehrt sich zusätzlich seine Richtung um.
+
+### Gegenzahl einer komplexen Zahl
+
+Die Gegenzahl zu <InlineMath math="z = x + iy" /> ist <InlineMath math="-z" />. Sie entsteht durch Skalarmultiplikation mit <InlineMath math="c = -1" />.
+
+<BlockMath math="-z = -(x + iy) = -x + i(-y) = -x - iy" />
+
+Der Vektor <InlineMath math="-z" /> hat dieselbe Länge wie <InlineMath math="z" />, zeigt aber in die entgegengesetzte Richtung. Das entspricht einer Drehung um <InlineMath math="180^\circ" />.
+
+### Subtraktion zweier komplexer Zahlen
+
+Wird <InlineMath math="z_2" /> von <InlineMath math="z_1" /> subtrahiert, entsteht <InlineMath math="z_1 - z_2" />. Das entspricht der Addition von <InlineMath math="z_1" /> mit der Gegenzahl von <InlineMath math="z_2" />, also <InlineMath math="z_1 + (-z_2)" />.
+
+<BlockMath math="z_1 - z_2 = z_1 + (-z_2) = (x_1 + (-x_2)) + i(y_1 + (-y_2)) = (x_1 - x_2) + i(y_1 - y_2)" />
+
+Damit werden die Realteile und die Imaginärteile jeweils voneinander subtrahiert.
+
+Geometrisch ist <InlineMath math="z_1 - z_2" /> der Vektor von der Spitze von <InlineMath math="z_2" /> zur Spitze von <InlineMath math="z_1" />.
+
+### Beispiel für kombinierte Operationen
+
+Gegeben sind:
+
+<MathContainer>
+  <BlockMath math="z_1 = 2 + \frac{1}{2}i" />
+  <BlockMath math="z_2 = -3 + \sqrt{2}i" />
+</MathContainer>
+
+Nun werden drei kombinierte Ausdrücke berechnet:
+
+1.  **<InlineMath math="2z_1" /> (Skalarmultiplikation):**
+
+    <BlockMath math="2z_1 = 2(2 + \frac{1}{2}i) = 2(2) + i(2 \times \frac{1}{2}) = 4 + i" />
+
+2.  **<InlineMath math="z_1 + 3z_2" /> (Addition und Skalarmultiplikation):**
+
+    <MathContainer>
+      <BlockMath math="z_1 + 3z_2 = (2 + \frac{1}{2}i) + 3(-3 + \sqrt{2}i)" />
+      <BlockMath math="= (2 + \frac{1}{2}i) + (3(-3) + i(3\sqrt{2}))" />
+      <BlockMath math="= (2 + \frac{1}{2}i) + (-9 + 3\sqrt{2}i)" />
+      <BlockMath math="= (2 - 9) + i(\frac{1}{2} + 3\sqrt{2})" />
+      <BlockMath math="= -7 + i(\frac{1}{2} + 3\sqrt{2})" />
+    </MathContainer>
+
+3.  **<InlineMath math="2z_1 - z_2" /> (Subtraktion und Skalarmultiplikation):**
+
+    <MathContainer>
+      <BlockMath math="2z_1 - z_2 = (4 + i) - (-3 + \sqrt{2}i)" />
+      <BlockMath math="= (4 - (-3)) + i(1 - \sqrt{2})" />
+      <BlockMath math="= (4 + 3) + i(1 - \sqrt{2})" />
+      <BlockMath math="= 7 + i(1 - \sqrt{2})" />
+    </MathContainer>
+
+## Übung
+
+Gegeben sind <InlineMath math="z_1=1+2i" /> und <InlineMath math="z_2=3-i" />. Bestimme:
+
+1.  <InlineMath math="z_1 + z_2" />
+2.  <InlineMath math="z_1 - z_2" />
+3.  Zeichne für <InlineMath math="z_3=z_1+z_2" /> die Vektoren <InlineMath math="z_1" />, <InlineMath math="z_2" /> und <InlineMath math="z_3" /> in die komplexe Ebene.
+
+### Lösung
+
+1.  Für die Summe werden Real- und Imaginärteile addiert:
+
+    <BlockMath math="z_1+z_2=(1+3)+i(2+(-1))=4+i" />
+
+2.  Für die Differenz werden die entsprechenden Teile subtrahiert:
+
+    <BlockMath math="z_1-z_2=(1-3)+i(2-(-1))=-2+3i" />
+
+3.  Die Vektoren <InlineMath math="z_1" /> und <InlineMath math="z_2" /> spannen ein Parallelogramm auf. Seine Diagonale endet bei <InlineMath math="z_3=z_1+z_2=4+i" />:
+
+    <LineEquation
+      title="Addition komplexer Zahlen"
+      description={
+        <>
+          Die Vektoren <InlineMath math="z_1" /> und <InlineMath math="z_2" />
+          bilden die Seiten des Parallelogramms. <InlineMath math="z_3=z_1+z_2" />
+          ist seine Diagonale.
+        </>
+      }
+      cameraPosition={[0, 0, 12]}
+      showZAxis={false}
+      data={[
+        {
+          points: [
+            { x: 0, y: 0, z: 0 },
+            { x: 1, y: 2, z: 0 },
+          ],
+          color: "#0284c7",
+          labels: [{ text: <InlineMath math="z_1=1+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
+          cone: { position: "end" },
+        },
+        {
+          points: [
+            { x: 0, y: 0, z: 0 },
+            { x: 3, y: -1, z: 0 },
+          ],
+          color: "#059669",
+          labels: [{ text: <InlineMath math="z_2=3-i" />, at: 1, offset: [0.5, -0.5, 0] }],
+          cone: { position: "end" },
+        },
+        {
+          points: [
+            { x: 0, y: 0, z: 0 },
+            { x: 4, y: 1, z: 0 }, // z3 = z1 + z2
+          ],
+          color: "#e11d48",
+          labels: [{ text: <InlineMath math="z_3=4+i" />, at: 1, offset: [0.5, 0.5, 0] }],
+          cone: { position: "end" },
+        },
+        // Parallelogram helper lines
+        {
+          points: [
+            { x: 1, y: 2, z: 0 }, // end of z1
+            { x: 4, y: 1, z: 0 }, // end of z3
+          ],
+          color: "#059669",
+        },
+        {
+          points: [
+            { x: 3, y: -1, z: 0 }, // end of z2
+            { x: 4, y: 1, z: 0 }, // end of z3
+          ],
+          color: "#0284c7",
+        },
+      ]}
+    />

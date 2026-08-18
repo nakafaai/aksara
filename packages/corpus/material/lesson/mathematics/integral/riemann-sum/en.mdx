@@ -12,7 +12,7 @@ export const metadata = {
 
 Imagine you have a plot of land with one side that is an irregular curve. How would you calculate its area? One of the most practical ways is to divide the land into several rectangular pieces of the same width, calculate the area of each piece, and then add them all up.
 
-That's the basic idea behind a **Riemann Sum**. It is a method to **approximate the area of a region under a curve** by dividing it into multiple rectangles and summing up their areas. The more rectangles we use, the more accurate our area approximation becomes.
+That's the basic idea behind a **Riemann sum**. It approximates a **signed accumulation** by dividing an interval into subintervals and adding the corresponding rectangle contributions. When the function is nonnegative, that accumulation is the area under the curve. For an integrable function, Riemann sums converge to the definite integral as the widest subinterval shrinks toward zero. With equal-width partitions, increasing the number of rectangles makes that width smaller, although each individual increase need not produce a strictly better estimate.
 
 ## Key Components
 
@@ -90,7 +90,7 @@ Let's apply this concept to an example.
 
     <BlockMath math="[0,1], [1,2], [2,3], [3,4], [4,5], [5,6], [6,7]" />
 
-    For the left-endpoint method, we take the x-value from the left side of each subinterval as the sample point:
+    For the left-endpoint method, we take the value of <InlineMath math="x" /> from the left side of each subinterval as the sample point:
 
     <BlockMath math="x_1=0, x_2=1, x_3=2, x_4=3, x_5=4, x_6=5, x_7=6" />
 
@@ -121,13 +121,13 @@ Let's apply this concept to an example.
 
     Thus, the estimated area under the curve <InlineMath math="f(x)=x" /> from <InlineMath math="0" /> to <InlineMath math="7" /> is <InlineMath math="21" />.
 
-> Note that because the function <InlineMath math="f(x)=x" /> is always increasing (monotonically increasing), using the left endpoint will always produce rectangles that are under the curve, resulting in an area approximation that is smaller than the actual area (an underestimate). Conversely, if we use the right endpoint on a monotonically increasing function, the result will always be an overestimate.
+> On <InlineMath math="[0,7]" />, the function <InlineMath math="f(x)=x" /> is nonnegative and strictly increasing. Therefore, rectangles built from left endpoints lie below the graph and underestimate the actual area, while rectangles built from right endpoints overestimate it.
 
 ## Exercises
 
 1.  Calculate the Riemann Sum for the function <InlineMath math="f(x) = x^2 + 1" /> on the interval <InlineMath math="[0, 4]" /> using <InlineMath math="4" /> subintervals of equal width and the **right endpoint** as the sample point.
 
-### Answer Key
+### Worked Solution
 
 1.  We will calculate the Riemann Sum for <InlineMath math="f(x) = x^2+1" /> on <InlineMath math="[0,4]" /> with <InlineMath math="n=4" />.
 
@@ -183,7 +183,7 @@ Let's apply this concept to an example.
 
     <BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
 
-    For the right-endpoint method, we take the x-value from the right side of each subinterval:
+    For the right-endpoint method, we take the value of <InlineMath math="x" /> from the right side of each subinterval:
 
     <BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
 

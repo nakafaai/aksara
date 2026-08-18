@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Pengenalan Tipe Data Angka
 
-Dalam pemrograman Python, angka adalah salah satu tipe data paling fundamental yang akan kamu gunakan setiap hari. Bayangkan angka sebagai bahan baku dasar dalam memasak. Tanpa bahan dasar yang baik, hidangan yang kamu buat tidak akan sempurna. Begitu juga dengan programming, tanpa memahami angka dengan baik, program yang kamu buat akan sulit dikembangkan.
+Python menyediakan tipe numerik bawaan untuk bilangan bulat, perhitungan bilangan real secara aproksimatif, dan bilangan kompleks. Pemilihan tipe penting karena setiap tipe merepresentasikan nilai dan menjalankan aritmetika dengan cara yang berbeda.
 
 Python sangat fleksibel dalam menangani angka. Ketika kamu mengetik angka di Python shell, Python langsung mengenali dan menampilkannya kembali. Mari kita lihat bagaimana Python bekerja dengan angka.
 
@@ -35,15 +35,15 @@ Python sangat fleksibel dalam menangani angka. Ketika kamu mengetik angka di Pyt
   ]}
 />
 
-Dari contoh di atas, kamu bisa melihat Python secara otomatis mengenali berbagai format angka. Ketika kamu mengetik <InlineMath math="4" />, Python tahu itu adalah bilangan bulat. Ketika kamu mengetik <InlineMath math="4." /> dengan titik di belakang, Python mengubahnya menjadi bilangan desimal <InlineMath math="4.0" />.
+Python membaca setiap literal berdasarkan notasinya. <InlineMath math="4" /> menghasilkan integer, sedangkan titik desimal pada <InlineMath math="4." /> menjadikannya literal floating-point yang ditampilkan sebagai <InlineMath math="4.0" />.
 
 ## Jenis Tipe Data Angka
 
-Python memiliki tiga kategori utama untuk angka, masing-masing dengan karakteristik khusus yang perlu kamu pahami.
+Tiga tipe numerik bawaan utama Python adalah `int`, `float`, dan `complex`.
 
 ### Integer
 
-Integer adalah bilangan bulat tanpa koma desimal. Ini termasuk bilangan positif, negatif, dan nol. Dalam kehidupan sehari-hari, kamu menggunakan integer untuk menghitung barang yang tidak bisa dipecah, seperti jumlah mahasiswa dalam satu ruangan atau nomor halaman buku.
+Integer adalah bilangan bulat positif, negatif, atau nol. Integer Python memiliki presisi arbitrer, sehingga ukurannya dibatasi oleh memori yang tersedia, bukan oleh rentang tetap 32-bit atau 64-bit.
 
 **Contoh integer yang valid**
 
@@ -54,11 +54,11 @@ Integer adalah bilangan bulat tanpa koma desimal. Ini termasuk bilangan positif,
 
 **Fitur khusus integer di Python**
 
-Python memungkinkan kamu menggunakan underscore untuk membuat angka besar lebih mudah dibaca. Misalnya, <InlineMath math="123\_456\_789" /> sebenarnya sama dengan <InlineMath math="123456789" />. Ini seperti menggunakan koma dalam penulisan angka dalam bahasa Indonesia.
+Python mengizinkan underscore di antara digit agar literal panjang lebih mudah dibaca. Misalnya, <InlineMath math="123\_456\_789" /> bernilai sama dengan <InlineMath math="123456789" />. Underscore hanya memengaruhi notasi dalam kode sumber.
 
 ### Float
 
-Float adalah bilangan yang memiliki koma desimal. Kamu akan sering menggunakan float untuk perhitungan yang membutuhkan presisi, seperti mengukur jarak, berat, atau persentase.
+`float` menyimpan aproksimasi floating-point biner. Literal float dapat memuat titik desimal atau eksponen. Tipe ini cocok untuk pengukuran dan komputasi numerik, tetapi banyak pecahan desimal tidak dapat direpresentasikan secara persis dalam biner.
 
 **Contoh float yang umum**
 
@@ -69,7 +69,7 @@ Float adalah bilangan yang memiliki koma desimal. Kamu akan sering menggunakan f
 
 **Notasi ilmiah untuk angka sangat kecil atau besar**
 
-Python menggunakan notasi ilmiah untuk angka yang sangat kecil atau sangat besar. Misalnya:
+Notasi eksponen `e` atau `E` memudahkan penulisan literal float yang sangat kecil atau sangat besar. Misalnya:
 
 <MathContainer>
 <BlockMath math="-3.2e5 = -3.2 \times 10^5" />
@@ -81,7 +81,7 @@ Notasi <InlineMath math="e" /> atau <InlineMath math="E" /> dalam Python sama se
 
 ### Complex
 
-Bilangan kompleks terdiri dari bagian real dan imajiner. Dalam Python, huruf <InlineMath math="j" /> digunakan untuk menunjukkan bagian imajiner. Ini sering digunakan dalam matematika lanjut, sinyal processing, dan machine learning.
+Bilangan kompleks memiliki bagian real dan imajiner. Dalam literal Python, sufiks <InlineMath math="j" /> menandai koefisien unit imajiner. Aritmetika kompleks umum digunakan dalam pemrosesan sinyal, teknik listrik, dan komputasi ilmiah.
 
 **Contoh bilangan kompleks**
 
@@ -94,7 +94,7 @@ Bayangkan bilangan kompleks seperti koordinat pada peta. Bagian real adalah posi
 
 ## Fungsi type untuk Memeriksa Tipe Data
 
-Ketika kamu bekerja dengan data yang kompleks, kadang kamu perlu memastikan tipe data yang sedang kamu tangani. Python menyediakan fungsi `type()` untuk keperluan ini.
+Fungsi `type()` melaporkan class persis dari sebuah objek. Fungsi ini berguna ketika mengeksplorasi nilai di Python shell atau melacak data yang tidak sesuai dugaan.
 
 <CodeBlock
   data={[
@@ -113,7 +113,7 @@ Ketika kamu bekerja dengan data yang kompleks, kadang kamu perlu memastikan tipe
   ]}
 />
 
-Fungsi `type()` berguna ketika kamu debugging program atau ingin memastikan data yang diterima sesuai ekspektasi. Ini seperti memeriksa label pada kemasan makanan untuk memastikan kamu mendapat produk yang tepat.
+Untuk pemeriksaan identitas tipe yang ketat, kamu dapat membandingkan `type(value)` dengan sebuah class. Dalam kode aplikasi, `isinstance(value, SomeType)` sering lebih fleksibel karena juga mengenali subclass.
 
 ## Constructor untuk Membuat Objek Angka
 
@@ -141,7 +141,7 @@ Ketika kamu memanggil `float(2)`, Python mengubah integer <InlineMath math="2" /
 
 ### Constructor int
 
-Constructor `int()` mengubah bilangan lain menjadi integer dengan cara membuang bagian desimalnya.
+Constructor `int()` mengubah float berhingga menjadi integer dengan memotong nilainya ke arah nol.
 
 <CodeBlock
   data={[
@@ -152,12 +152,15 @@ Constructor `int()` mengubah bilangan lain menjadi integer dengan cara membuang 
 2
 
 >>> int(2.9)
-2`
+2
+
+>>> int(-2.9)
+-2`
     }
   ]}
 />
 
-Perhatikan bahwa `int()` tidak membulatkan angka, tetapi memotong bagian desimalnya. Baik `int(2.1)` maupun `int(2.9)` menghasilkan <InlineMath math="2" />. Ini seperti memotong ekor bilangan desimal, bukan membulatkannya.
+`int()` tidak membulatkan ke integer terdekat. Kedua contoh positif menghasilkan <InlineMath math="2" />, sedangkan `int(-2.9)` menghasilkan <InlineMath math="-2" /> karena pemotongan bergerak ke arah nol.
 
 ### Constructor complex
 

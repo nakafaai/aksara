@@ -1,0 +1,135 @@
+export const metadata = {
+  title: "Gegenvektor",
+  description: "Lerne, wie ein Gegenvektor bei gleichem Betrag die Richtung umkehrt, und nutze ihn bei Addition, Verschiebung und Kräften.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-12",
+  subject: "Vektoren und ihre Operationen",
+};
+
+## Gegenvektoren verstehen
+
+Für einen Vektor <InlineMath math="\vec{v}" /> ungleich null hat sein **Gegenvektor** denselben Betrag, zeigt aber genau in die entgegengesetzte Richtung. Er wird als <InlineMath math="-\vec{v}" /> geschrieben.
+
+Beschreibt <InlineMath math="\vec{v}" /> eine Verschiebung von links nach rechts, dann beschreibt <InlineMath math="-\vec{v}" /> eine gleich lange Verschiebung von rechts nach links. Die beiden Vektoren unterscheiden sich in ihrer Richtung, nicht in ihrer Länge.
+
+## Formel für einen Gegenvektor
+
+Die Multiplikation mit dem Skalar <InlineMath math="-1" /> kehrt das Vorzeichen jeder Komponente um:
+
+<BlockMath math="-\vec{v}=(-1)\vec{v}" />
+
+Gilt <InlineMath math="\vec{v}=(v_1,v_2,v_3)" />, dann ist:
+
+<BlockMath math="-\vec{v}=(-v_1,-v_2,-v_3)" />
+
+Dabei gilt:
+
+- <InlineMath math="\vec{v}" /> ist der ursprüngliche Vektor.
+- <InlineMath math="-\vec{v}" /> ist sein Gegenvektor.
+- Der Faktor <InlineMath math="-1" /> kehrt die Richtung um, ohne den Betrag zu ändern.
+
+## Rechenbeispiel
+
+Gegeben sei <InlineMath math="\overrightarrow{AB}=6\mathbf{i}+8\mathbf{j}" />.
+
+Sein Betrag ist:
+
+<BlockMath math="|\overrightarrow{AB}|=\sqrt{6^2+8^2}=\sqrt{100}=10" />
+
+Für den Gegenvektor multiplizieren wir jede Komponente mit <InlineMath math="-1" />:
+
+<BlockMath math="-\overrightarrow{AB}=-(6\mathbf{i}+8\mathbf{j})=-6\mathbf{i}-8\mathbf{j}" />
+
+Beide Vektoren haben den Betrag <InlineMath math="10" />, ihre Richtungen unterscheiden sich jedoch um <InlineMath math="180^\circ" />.
+
+<Vector3d
+  title="Ein Vektor und sein Gegenvektor"
+  description="Der rote und der blaue Vektor sind gleich lang und zeigen in entgegengesetzte Richtungen."
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [6, 8, 0],
+      color: "#dc2626",
+      label: <InlineMath math="\overrightarrow{AB}" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [-6, -8, 0],
+      color: "#2563eb",
+      label: <InlineMath math="-\overrightarrow{AB}" />,
+      labelPosition: "end",
+    },
+  ]}
+  cameraPosition={[12, 10, 12]}
+/>
+
+## Eigenschaften von Gegenvektoren
+
+1. Ihre Beträge sind gleich:
+
+   <BlockMath math="|-\vec{v}|=|\vec{v}|" />
+
+2. Bei einem Vektor ungleich null unterscheiden sich ihre Richtungen um <InlineMath math="180^\circ" />.
+
+3. Ihre Summe ist der Nullvektor:
+
+   <BlockMath math="\vec{v}+(-\vec{v})=\vec{0}" />
+
+4. Der Gegenvektor des Gegenvektors ist wieder der ursprüngliche Vektor:
+
+   <BlockMath math="-(-\vec{v})=\vec{v}" />
+
+Der Nullvektor ist sein eigener Gegenvektor, denn <InlineMath math="-\vec{0}=\vec{0}" />.
+
+## Anwendungen von Gegenvektoren
+
+Gegenvektoren treten immer dann auf, wenn eine Richtung umgekehrt wird:
+
+1. **Verschiebung:** Der Rückweg auf derselben geraden Strecke besitzt den entgegengesetzten Verschiebungsvektor.
+
+2. **Kräftegleichgewicht:** Zwei gleich große, entgegengesetzt gerichtete Kräfte ergeben zusammen den Nullvektor.
+
+3. **Vektorgleichungen:** Eine Subtraktion lässt sich als Addition eines Gegenvektors schreiben, <InlineMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />.
+
+## Einheitsvektoren und Gegenrichtung
+
+### Einheitsvektor
+
+Für einen Vektor <InlineMath math="\vec{v}" /> ungleich null ist der zugehörige Einheitsvektor:
+
+<BlockMath math="\hat{v}=\frac{\vec{v}}{|\vec{v}|}" />
+
+Er hat den Betrag <InlineMath math="1" /> und zeigt in dieselbe Richtung wie <InlineMath math="\vec{v}" />.
+
+<ContentBlock>
+  <Vector3d
+    title="Entgegengesetzte Einheitsrichtungen"
+    description="Die beiden Einheitsvektoren sind gleich lang und zeigen in entgegengesetzte Richtungen."
+    vectors={[
+      {
+        from: [0, 0, 0],
+        to: [0.6, 0.8, 0],
+        color: "#16a34a",
+        label: <InlineMath math="\hat{v}" />,
+        labelPosition: "end",
+      },
+      {
+        from: [0, 0, 0],
+        to: [-0.6, -0.8, 0],
+        color: "#7c3aed",
+        label: <InlineMath math="-\hat{v}" />,
+        labelPosition: "end",
+      },
+    ]}
+    cameraPosition={[12, 10, 12]}
+  />
+</ContentBlock>
+
+### Zusammenhang mit dem Gegenvektor
+
+Der Einheitsvektor in Gegenrichtung ist <InlineMath math="-\hat{v}" />. Multiplizieren wir ihn mit dem ursprünglichen Betrag, erhalten wir den Gegenvektor:
+
+<BlockMath math="-\vec{v}=|\vec{v}|(-\hat{v})" />
+
+Damit sind die Rollen klar getrennt: <InlineMath math="|\vec{v}|" /> bestimmt die Länge, während <InlineMath math="-\hat{v}" /> die entgegengesetzte Richtung festlegt.

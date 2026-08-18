@@ -6,11 +6,11 @@ export const metadata = {
     subject: "Pemrograman AI",
 };
 
-## Sifat Immutable String
+## String Bersifat Immutable
 
-String dalam Python memiliki sifat khusus yang disebut immutable, artinya setelah string dibuat, isinya tidak dapat diubah secara langsung. Bayangkan string seperti buku yang sudah dicetak, kamu tidak bisa mengubah kata di dalamnya tanpa mencetak ulang seluruh halaman.
+String Python bersifat immutable: nilai di dalam objek string tidak dapat diedit di tempat. Sebuah operasi dapat membuat string baru dan variabel dapat diarahkan ke objek baru itu, tetapi objek string asal tetap tidak berubah.
 
-Ketika kamu mencoba mengubah karakter dalam string secara langsung, Python akan menampilkan TypeError. Ini berbeda dengan list yang bisa dimodifikasi elemen per elemen.
+Karena itu, assignment ke posisi karakter menghasilkan `TypeError`. List berbeda karena elemennya dapat diganti di tempat.
 
 <CodeBlock
   data={[
@@ -37,11 +37,11 @@ print(f"String asli masih: {s}")`
   ]}
 />
 
-Meskipun string tidak dapat diubah secara langsung, kamu dapat membuat string baru berdasarkan string lama. Operasi seperti concatenation (penggabungan) dengan operator `+` akan menghasilkan string baru, bukan mengubah string yang sudah ada.
+Slicing dan concatenation adalah dua cara untuk membangun string baru dari string lama. Operator `+` tidak menambahkan isi ke objek asal.
 
 ## Mengukur Panjang String
 
-Fungsi `len()` digunakan untuk mengetahui jumlah karakter dalam string. Setiap karakter, termasuk spasi dan tanda baca, dihitung sebagai satu unit.
+Pada string Python, `len()` menghitung jumlah Unicode code point. Huruf Latin biasa, spasi, atau tanda baca umumnya menyumbang satu, tetapi satu grafem yang terlihat dapat terdiri dari beberapa code point, seperti pada sebagian emoji dan tanda gabung.
 
 <CodeBlock
   data={[
@@ -64,18 +64,21 @@ for s in strings:
 # Panjang string dengan karakter khusus
 special = "Hello\\nWorld\\t!"
 print(f"String dengan escape sequence: {len(special)} karakter")
-print(f"Tampilan string: {repr(special)}")`
+print(f"Tampilan string: {repr(special)}")
+
+raw_newline = r"\\n"
+print(f"Penulisan raw \\n: {len(raw_newline)} code point")`
     }
   ]}
 />
 
-Penting untuk memahami bahwa escape sequence seperti `\n` dan `\t` dihitung sebagai satu karakter meskipun ditulis dengan dua simbol.
+Dalam string literal biasa, penulisan `\n` dan `\t` pada kode sumber masing-masing menjadi satu code point newline atau tab. Dalam raw string seperti `r"\n"`, backslash dan `n` tetap menjadi dua code point terpisah.
 
 ## Metode Transformasi String
 
 ### Mengubah Case Huruf
 
-Python menyediakan beberapa metode untuk mengubah format huruf dalam string. Setiap metode menghasilkan string baru dengan format yang diinginkan.
+Python menyediakan beberapa metode konversi huruf. Setiap metode mengembalikan string baru dan mengikuti aturan casing Unicode.
 
 <CodeBlock
   data={[
@@ -109,11 +112,11 @@ print(f"Complex title: {complex_text.title()}")`
   ]}
 />
 
-Metode `title()` sangat berguna untuk memformat nama atau judul, di mana setiap kata dimulai dengan huruf kapital.
+Metode `title()` mengikuti aturan kapitalisasi mekanis. Metode ini cocok untuk label tampilan sederhana, tetapi tidak dapat diandalkan untuk nama orang atau judul editorial. Pertahankan ejaan resmi atau gunakan aturan khusus domain untuk nilai tersebut.
 
 ### Menghapus Karakter di Awal dan Akhir
 
-Metode strip berguna untuk membersihkan string dari karakter yang tidak diinginkan di awal atau akhir string.
+Tanpa argumen, `strip()`, `lstrip()`, dan `rstrip()` menghapus whitespace di tepi string. Argumen `chars` diperlakukan sebagai kumpulan karakter individual yang dihapus berulang kali dari tepi terkait, bukan sebagai satu prefix atau suffix utuh.
 
 <CodeBlock
   data={[
@@ -144,12 +147,16 @@ print(f"Custom strip: '{custom_stripped}'")
 # Strip multiple characters
 messy_text = "---+++Hello World+++---"
 clean_text = messy_text.strip("-+")
-print(f"Multiple char strip: '{clean_text}'")`
+print(f"Multiple char strip: '{clean_text}'")
+
+# Menghapus satu suffix secara persis
+filename = "report.txt"
+print(f"Hasil menghapus suffix: '{filename.removesuffix('.txt')}'")`
     }
   ]}
 />
 
-Metode strip sangat berguna dalam pemrosesan data, terutama ketika membaca input dari pengguna atau file yang mungkin mengandung spasi ekstra.
+Gunakan `removeprefix()` atau `removesuffix()` jika kamu perlu menghapus satu token yang persis. Perbedaan ini mencegah sekumpulan karakter menghapus lebih banyak dari yang dimaksud.
 
 ## Metode Pencarian dan Validasi
 
@@ -182,6 +189,9 @@ print(f"find('powerful'): {pos_find}")
 pos_not_found = text.find("Java")
 print(f"find('Java'): {pos_not_found}")
 
+# Gunakan membership jika hanya perlu memeriksa keberadaan
+print(f"Mengandung 'Python': {'Python' in text}")
+
 # Pencarian dengan parameter start dan end
 substring = "programming"
 start_pos = text.find(substring, 20)  # mulai dari posisi 20
@@ -194,11 +204,11 @@ print(f"Huruf 'a' muncul {count} kali")`
   ]}
 />
 
-Gunakan `find()` ketika kamu tidak yakin apakah substring ada dalam string, dan gunakan `index()` ketika kamu yakin substring pasti ada.
+Pilih metode berdasarkan kontrak kegagalannya: `find()` mengembalikan `-1`, sedangkan `index()` menghasilkan `ValueError`. Jika kamu hanya membutuhkan jawaban ya atau tidak, operator `in` lebih jelas daripada kedua metode posisi tersebut.
 
 ### Validasi Karakter String
 
-Python menyediakan beberapa metode untuk memvalidasi jenis karakter dalam string.
+Python menyediakan predikat untuk mengklasifikasikan code point di dalam string. Predikat ini menjawab kategori karakter, bukan apakah nilainya memenuhi format bisnis secara lengkap.
 
 <CodeBlock
   data={[
@@ -234,8 +244,8 @@ for s in test_strings:
 def validate_username(username):
     if not username:
         return "Username tidak boleh kosong"
-    if not username.isalnum():
-        return "Username hanya boleh berisi huruf dan angka"
+    if not username.isascii() or not username.isalnum():
+        return "Username hanya boleh berisi huruf dan angka ASCII"
     if len(username) < 3:
         return "Username minimal 3 karakter"
     return "Username valid"
@@ -249,7 +259,7 @@ for username in usernames:
   ]}
 />
 
-Metode validasi ini sangat berguna untuk memverifikasi format input pengguna, seperti nomor telepon, kode pos, atau username.
+Metode seperti `isdigit()` dan `isalnum()` mengikuti Unicode, sedangkan string kosong membuat keduanya mengembalikan `False`. Nomor telepon, kode pos, atau username tetap memerlukan aturan eksplisit tentang alfabet, panjang, pemisah, prefix, dan batasan domain lainnya.
 
 ## Metode Pencarian Awalan dan Akhiran
 
@@ -320,7 +330,7 @@ Metode `replace()` digunakan untuk mengganti semua kemunculan substring dengan s
       language: "python",
       filename: "replace_method.py",
       code: `# Contoh penggunaan metode replace
-text = "Python is great. Python is powerful. Python is easy."
+text = "Python sangat berguna. Python sangat kuat. Python mudah dipelajari."
 print(f"Original: {text}")
 
 # Replace semua kemunculan
@@ -357,7 +367,7 @@ Metode `replace()` bersifat case-sensitive dan mengganti semua kemunculan kecual
 
 ### Memisahkan String
 
-Metode `split()` memecah string menjadi list berdasarkan delimiter yang ditentukan.
+Metode `split()` memecah string menjadi list di sekitar delimiter tertentu. Tanpa delimiter, metode ini memperlakukan whitespace berurutan sebagai satu pemisah dan membuang field kosong di awal atau akhir.
 
 <CodeBlock
   data={[
@@ -386,7 +396,7 @@ messy_text = "word1    word2\\t\\tword3\\n\\nword4"
 clean_split = messy_text.split()
 print(f"Clean split: {clean_split}")
 
-# Contoh praktis: parsing data CSV
+# Field sederhana berpemisah koma tanpa kutip
 csv_line = "John,25,Engineer,New York"
 data = csv_line.split(",")
 name, age, job, city = data
@@ -404,11 +414,11 @@ print(f"Joined with pipe: {joined}")`
   ]}
 />
 
-Metode `split()` sangat berguna untuk memproses data terstruktur seperti CSV, parsing input pengguna, atau memecah path file.
+Gunakan `split()` hanya jika aturan delimiter memang sederhana. Metode ini tidak memahami field CSV yang dikutip, escaping, atau path lintas platform. Gunakan modul `csv` untuk CSV dan `pathlib` untuk path filesystem.
 
 ## Chaining Metode String
 
-Karena setiap metode string mengembalikan string baru, kamu dapat menggabungkan beberapa metode dalam satu ekspresi. Ini disebut method chaining.
+Karena metode string mengembalikan string baru, beberapa transformasi dapat dirangkai dalam satu ekspresi. Pertahankan rantainya cukup pendek agar setiap langkah tetap jelas; beri nama nilai antara jika ada validasi atau penjelasan di tengah proses.
 
 <CodeBlock
   data={[
@@ -428,17 +438,17 @@ clean_result = (messy_input
 
 print(f"Clean result: '{clean_result}'")
 
-# Contoh chaining untuk format nama
-names = ["  JOHN DOE  ", "  jane SMITH  ", "  BOB johnson  "]
-formatted_names = []
+# Contoh chaining untuk format label tampilan
+labels = ["  MULAI DI SINI  ", "  dasar ARRAY  ", "  pembersihan DATA  "]
+formatted_labels = []
 
-for name in names:
-    formatted = name.strip().title()
-    formatted_names.append(formatted)
+for label in labels:
+    formatted = label.strip().title()
+    formatted_labels.append(formatted)
 
-print("Formatted names:")
-for name in formatted_names:
-    print(f"- {name}")
+print("Label yang sudah diformat:")
+for label in formatted_labels:
+    print(f"- {label}")
 
 # Chaining dalam list comprehension
 sentences = [
@@ -450,23 +460,31 @@ sentences = [
 processed = [s.strip().title() for s in sentences]
 print(f"Processed sentences: {processed}")
 
-# Contoh chaining untuk validasi dan formatting
-def process_email(email):
-    return email.strip().lower().replace(" ", "")
+# Normalisasi domain tanpa diam-diam menghapus whitespace yang tidak valid
+def normalize_email(email):
+    cleaned = email.strip()
+    if any(char.isspace() for char in cleaned) or cleaned.count("@") != 1:
+        raise ValueError("Email harus memiliki satu @ dan tanpa whitespace")
 
-emails = ["  USER@EXAMPLE.COM  ", "Test User@Gmail.com", "admin@site.org"]
+    local, domain = cleaned.split("@", 1)
+    if not local or not domain:
+        raise ValueError("Email memerlukan bagian lokal dan domain")
+
+    return f"{local}@{domain.lower()}"
+
+emails = ["  USER@EXAMPLE.COM  ", "Test.User@Gmail.com", "admin@site.org"]
 for email in emails:
-    processed = process_email(email)
+    processed = normalize_email(email)
     print(f"'{email}' -> '{processed}'")`
     }
   ]}
 />
 
-Method chaining membuat kode lebih ringkas dan mudah dibaca, terutama ketika kamu perlu melakukan beberapa transformasi berturut-turut pada string.
+Method chaining cocok untuk pembersihan linear yang singkat. Rangkaian metode tidak otomatis lebih jelas daripada langkah bernama.
 
 ## Aplikasi Praktis Metode String
 
-Metode string sering digunakan dalam skenario pemrograman nyata untuk memproses dan memvalidasi data teks.
+Contoh terbatas berikut menggabungkan metode string dengan asumsi yang eksplisit. Contoh ini mengajarkan mekanisme, bukan validator atau parser produksi yang berlaku universal.
 
 <CodeBlock
   data={[
@@ -477,11 +495,12 @@ Metode string sering digunakan dalam skenario pemrograman nyata untuk memproses 
 
 # 1. Validasi dan format nomor telepon
 def format_phone_number(phone):
-    # Hapus semua karakter non-digit
-    digits_only = ""
-    for char in phone:
-        if char.isdigit():
-            digits_only += char
+    # Hanya menerima digit ASCII dan pemisah yang didukung contoh ini
+    allowed_separators = {" ", "-", "(", ")", "+"}
+    if any(char not in "0123456789" and char not in allowed_separators for char in phone):
+        return "Nomor telepon mengandung karakter yang tidak valid"
+
+    digits_only = "".join(char for char in phone if char in "0123456789")
 
     # Format sesuai standar Indonesia
     if len(digits_only) == 13 and digits_only.startswith("62"):
@@ -584,7 +603,7 @@ def create_slug(title):
     for char in slug:
         if char.isalnum():
             clean_slug += char
-        elif char == " " or not char.isalnum():
+        else:
             if clean_slug and clean_slug[-1] != "-":
                 clean_slug += "-"
 
@@ -606,6 +625,6 @@ for title in titles:
   ]}
 />
 
-Keempat contoh aplikasi ini menunjukkan kekuatan kombinasi metode string untuk menyelesaikan masalah real-world. Method chaining memungkinkan transformasi string yang kompleks dalam satu baris kode, sementara sifat immutable string memastikan operasi yang aman dan predictable.
+Keempat contoh ini menggabungkan klasifikasi, pencarian, pemisahan, dan penggantian di bawah format kecil yang dinyatakan jelas. Parser telepon, nama file, log, atau pembuat slug untuk produksi juga membutuhkan kontrak domain, kebijakan error, dan pengujian input ambigu.
 
-Dengan menguasai metode-metode ini, kamu dapat membangun aplikasi yang menangani validasi input, parsing data, dan transformasi teks dengan efisien.
+Kuncinya adalah mencocokkan setiap metode dengan semantik tepatnya, bukan menganggap operasi string yang praktis sebagai validasi lengkap.

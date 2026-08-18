@@ -1,0 +1,32 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-01",
+};
+
+Zunächst bestimmen wir die Gesamtzahl der Früchte in beiden Kisten:
+
+- **Kiste** <InlineMath math="1" />: <InlineMath math="1 + 2 + 4 + 5 = 12" /> Früchte.
+- **Kiste** <InlineMath math="2" />: <InlineMath math="4 + 2 + 3 + 3 = 12" /> Früchte.
+- Eine Frucht aus jeder Kiste ergibt <InlineMath math="12 \times 12 = 144" /> gleich wahrscheinliche geordnete Paare.
+
+Da aus zwei verschiedenen Kisten gezogen wird, multiplizieren wir die Einzelwahrscheinlichkeiten. Wenn eine Kombination in zwei Reihenfolgen auftreten kann, addieren wir beide Fälle.
+
+| Ereignis | Berechnung | Ergebnis |
+| :--- | :--- | :--- |
+| **<InlineMath math="2" /> große Äpfel** | <InlineMath math="\frac{1}{12} \times \frac{4}{12}" /> | <InlineMath math="\frac{4}{144}" /> |
+| **<InlineMath math="2" /> kleine Äpfel** | <InlineMath math="\frac{2}{12} \times \frac{2}{12}" /> | <InlineMath math="\frac{4}{144}" /> |
+| **<InlineMath math="2" /> große Orangen** | <InlineMath math="\frac{4}{12} \times \frac{3}{12}" /> | <InlineMath math="\frac{12}{144}" /> |
+| **<InlineMath math="2" /> kleine Orangen** | <InlineMath math="\frac{5}{12} \times \frac{3}{12}" /> | <InlineMath math="\frac{15}{144}" /> |
+| **<InlineMath math="1" /> großer Apfel & <InlineMath math="1" /> kleine Orange** | <InlineMath math="(\frac{1}{12} \times \frac{3}{12}) + (\frac{5}{12} \times \frac{4}{12})" /> | <InlineMath math="\frac{23}{144}" /> |
+
+> Für **<InlineMath math="1" /> großen Apfel und <InlineMath math="1" /> kleine Orange** gibt es zwei mögliche Reihenfolgen:
+>
+> <InlineMath math="1" />. Großer Apfel aus Kiste <InlineMath math="1" /> und kleine Orange aus Kiste <InlineMath math="2" />: <InlineMath math="\frac{1}{12} \times \frac{3}{12}" />.
+> <InlineMath math="2" />. Kleine Orange aus Kiste <InlineMath math="1" /> und großer Apfel aus Kiste <InlineMath math="2" />: <InlineMath math="\frac{5}{12} \times \frac{4}{12}" />.
+>
+> Deshalb werden beide Wahrscheinlichkeiten addiert.
+
+Der größte Tabellenwert ist <InlineMath math="\frac{23}{144}" />. Er gehört zur Kombination **<InlineMath math="1" /> großer Apfel und <InlineMath math="1" /> kleine Orange**.
+
+Damit ist **<InlineMath math="1" /> großer Apfel und <InlineMath math="1" /> kleine Orange** die wahrscheinlichste Antwort.

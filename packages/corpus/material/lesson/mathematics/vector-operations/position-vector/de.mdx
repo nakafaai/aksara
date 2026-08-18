@@ -1,0 +1,169 @@
+
+
+export const metadata = {
+  title: "Ortsvektor",
+  description: "Lerne, wie Ortsvektoren Punkte vom Ursprung aus festlegen, wie sie mit Verschiebungen zusammenhängen und wie sie in Koordinatensystemen dargestellt werden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-12",
+  subject: "Vektoren und ihre Operationen",
+};
+
+## Definition des Ortsvektors
+
+Ein Ortsvektor beginnt im Ursprung <InlineMath math="O" /> eines Koordinatensystems und endet an einem anderen Punkt. Er beschreibt damit eindeutig die Lage dieses Punktes im gewählten Koordinatensystem.
+
+<Vector3d
+  title="Ortsvektoren in der Koordinatenebene"
+  description={
+    <>
+      Beispiele für Ortsvektoren vom Ursprung <InlineMath math="O" /> zu den Punkten{" "}
+      <InlineMath math="A" /> und <InlineMath math="B" />.
+    </>
+  }
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [-3, 2, 0],
+      color: "#db2777",
+      label: <InlineMath math="OA" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [7, 5, 0],
+      color: "#7c3aed",
+      label: <InlineMath math="OB" />,
+      labelPosition: "end",
+    },
+  ]}
+  cameraPosition={[10, 6, 10]}
+/>
+
+### Eigenschaften von Ortsvektoren
+
+Jeder Ortsvektor hat die folgenden Eigenschaften:
+
+- Beginnt immer im Ursprung <InlineMath math="O" /> des Koordinatensystems
+- Endet an einem bestimmten Punkt im Koordinatensystem
+- Hat dieselben Koordinaten wie sein Endpunkt
+
+## Ortsvektoren darstellen
+
+Liegt ein Punkt <InlineMath math="P" /> mit den Koordinaten <InlineMath math="(x, y)" /> in einer Ebene, dann lautet sein Ortsvektor vom Ursprung <InlineMath math="O" /> zum Punkt <InlineMath math="P" />: <InlineMath math="\overrightarrow{OP} = (x, y)" />.
+
+Hat der Punkt <InlineMath math="P" /> im dreidimensionalen Raum die Koordinaten <InlineMath math="(x, y, z)" />, dann ist sein Ortsvektor <InlineMath math="\overrightarrow{OP} = (x, y, z)" />.
+
+In der folgenden Darstellung bezeichnen <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" /> und <InlineMath math="OD" /> die Ortsvektoren vom Ursprung <InlineMath math="O" /> zu den Punkten <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> und <InlineMath math="D" />.
+
+<Vector3d
+  title="Ortsvektoren im dreidimensionalen Raum"
+  description="Vier Ortsvektoren zeigen vom Ursprung zu verschiedenen Punkten im dreidimensionalen Raum."
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [4, 0, 0],
+      color: "#e11d48",
+      label: <InlineMath math="OA" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [0, 4, 0],
+      color: "#16a34a",
+      label: <InlineMath math="OB" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [0, 0, 4],
+      color: "#2563eb",
+      label: <InlineMath math="OC" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [3, 3, 3],
+      color: "#ca8a04",
+      label: <InlineMath math="OD" />,
+      labelPosition: "end",
+    },
+  ]}
+  cameraPosition={[6, 8, 8]}
+/>
+
+## Beispiele für Ortsvektoren
+
+In der Koordinatenebene liegen die Punkte <InlineMath math="A" /> und <InlineMath math="B" />:
+
+- Punkt <InlineMath math="A" /> mit Koordinaten <InlineMath math="(-3, 2)" />
+- Punkt <InlineMath math="B" /> mit Koordinaten <InlineMath math="(7, 5)" />
+
+Ihre Ortsvektoren lauten:
+
+- <InlineMath math="\overrightarrow{OA} = (-3, 2)" />
+- <InlineMath math="\overrightarrow{OB} = (7, 5)" />
+
+## Wozu Ortsvektoren dienen
+
+Ortsvektoren helfen in Mathematik und Anwendungen bei mehreren Aufgaben:
+
+1. Die Lage eines Punktes in einem Koordinatensystem festlegen
+2. Andere Vektoren wie Verschiebungsvektoren berechnen
+3. Aufgaben zu Positionen und Ortsänderungen übersichtlich lösen
+4. Einen Ort relativ zu einem gewählten Koordinatenursprung darstellen, auch wenn die Koordinaten aus einem Navigationssystem wie GPS stammen
+
+## Zusammenhang mit Verschiebungsvektoren
+
+Der Verschiebungsvektor ergibt sich aus der Differenz zweier Ortsvektoren. Sind <InlineMath math="\overrightarrow{OA}" /> und <InlineMath math="\overrightarrow{OB}" /> gegeben, dann ist der Verschiebungsvektor von <InlineMath math="A" /> nach <InlineMath math="B" />:
+
+<BlockMath math="\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}" />
+
+<ContentBlock>
+  <Vector3d
+    title="Zusammenhang zwischen Ortsvektoren und Verschiebung"
+    description={
+      <>
+        Der Verschiebungsvektor <InlineMath math="AB" /> ergibt sich aus der
+        Differenz der Ortsvektoren <InlineMath math="OB" /> und{" "}
+        <InlineMath math="OA" />.
+      </>
+    }
+    vectors={[
+      {
+        from: [0, 0, 0],
+        to: [-3, 2, 0],
+        color: "#db2777",
+        label: <InlineMath math="OA" />,
+        labelPosition: "end",
+      },
+      {
+        from: [0, 0, 0],
+        to: [7, 5, 0],
+        color: "#7c3aed",
+        label: <InlineMath math="OB" />,
+        labelPosition: "end",
+      },
+      {
+        from: [-3, 2, 0],
+        to: [7, 5, 0],
+        color: "#0d9488",
+        label: <InlineMath math="AB" />,
+        labelPosition: "middle",
+      },
+    ]}
+    cameraPosition={[10, 6, 10]}
+  />
+</ContentBlock>
+
+Für das vorherige Beispiel ergibt sich der Verschiebungsvektor von <InlineMath math="A" /> nach <InlineMath math="B" /> so:
+
+<BlockMath
+  math="\begin{align}
+\overrightarrow{AB} &= \overrightarrow{OB} - \overrightarrow{OA} \\
+&= (7, 5) - (-3, 2) \\
+&= (7-(-3), 5-2) \\
+&= (10, 3)
+\end{align}"
+/>
+
+Um vom Punkt <InlineMath math="A" /> zum Punkt <InlineMath math="B" /> zu gelangen, bewegen wir uns <InlineMath math="10 \text{ Einheiten}" /> nach rechts und <InlineMath math="3 \text{ Einheiten}" /> nach oben.

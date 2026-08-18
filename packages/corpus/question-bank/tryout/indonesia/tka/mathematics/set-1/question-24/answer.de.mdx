@@ -1,0 +1,53 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 24",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+#### Variablen und Parameter
+
+Sei <InlineMath math="X" /> das Gewicht eines Neugeborenen (normalverteilt)
+
+- Mittelwert <InlineMath math="\mu = 3{.}200 \text{ Gramm}" />
+- Standardabweichung <InlineMath math="\sigma = 450 \text{ Gramm}" />
+
+#### Standardisierungsschritt
+
+Wir müssen Gewichtsgrenzen in Z-Scores umrechnen, um die Standardnormalverteilungstabelle verwenden zu können.
+
+#### Untergrenze
+
+Für <InlineMath math="x_1 = 2{.}750 \text{ Gramm}" />
+
+<MathContainer>
+<BlockMath math="z_1 = \frac{x_1 - \mu}{\sigma}" />
+<BlockMath math="= \frac{2{.}750 - 3{.}200}{450}" />
+<BlockMath math="= \frac{-450}{450} = -1" />
+</MathContainer>
+
+#### Obergrenze
+
+Für <InlineMath math="x_2 = 3{.}650 \text{ Gramm}" />
+
+<MathContainer>
+<BlockMath math="z_2 = \frac{x_2 - \mu}{\sigma}" />
+<BlockMath math="= \frac{3{.}650 - 3{.}200}{450}" />
+<BlockMath math="= \frac{450}{450} = 1" />
+</MathContainer>
+
+#### Berechnung der Wahrscheinlichkeit
+
+Wir möchten <InlineMath math="P(2{.}750 \leq X \leq 3{.}650)" /> finden, was <InlineMath math="P(-1 \leq Z \leq 1)" /> in der Standardnormalverteilung entspricht.
+
+Verwendung der kumulativen Verteilungsfunktion (CDF) der Normalverteilung
+
+<MathContainer>
+<BlockMath math="P(-1 \leq Z \leq 1) = P(Z \leq 1) - P(Z < -1)" />
+<BlockMath math="= P(Z < 1) - P(Z < -1)" />
+</MathContainer>
+
+In der Notation der Standard-Normalverteilungs-CDF wird <InlineMath math="P(Z \leq z)" /> oft als <InlineMath math="\Phi(z)" /> oder <InlineMath math="P(Z < z)" /> geschrieben (da die Normalverteilung stetig ist, <InlineMath math="P(Z \leq z) = P(Z < z)" />).
+
+Daher <InlineMath math="P(-1 \leq Z \leq 1) = P(Z \leq 1) - P(Z < -1)" />
+
+Daher wird die Wahrscheinlichkeit, dass das Gewicht eines Neugeborenen zwischen <InlineMath math="2{.}750 \text{ Gramm}" /> und <InlineMath math="3{.}650 \text{ Gramm}" /> liegt, durch <InlineMath math="P(Z < 1) - P(Z < -1)" /> dargestellt.

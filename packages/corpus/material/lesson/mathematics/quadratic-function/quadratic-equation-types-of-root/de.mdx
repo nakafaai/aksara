@@ -1,0 +1,94 @@
+export const metadata = {
+  title: "Arten von Lösungen quadratischer Gleichungen",
+  description: "Unterscheide mithilfe der Diskriminante zwei reelle Lösungen, eine doppelte Lösung und zwei nichtreelle komplexe Lösungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratische Funktionen",
+};
+
+## Lösungen mithilfe der Diskriminante einordnen
+
+Für eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit <InlineMath math="a \neq 0" /> ist jede Zahl <InlineMath math="x" />, welche die Gleichung erfüllt, eine Lösung. Über den komplexen Zahlen besitzt eine quadratische Gleichung zwei Lösungen, wenn eine doppelte Lösung zweimal gezählt wird. Die Lösungsformel liefert diese Werte:
+
+<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+
+Der Ausdruck <InlineMath math="b^2 - 4ac" /> heißt Diskriminante und wird mit <InlineMath math="D" /> bezeichnet. An ihrem Vorzeichen lässt sich bereits vor dem Ausrechnen erkennen, welche Art von Lösungen vorliegt.
+
+### Zwei verschiedene reelle Lösungen
+
+Für <InlineMath math="D > 0" /> oder <InlineMath math="b^2 > 4ac" /> besitzt die quadratische Gleichung zwei verschiedene reelle Lösungen.
+
+<BlockMath math="x_1 = \frac{-b + \sqrt{D}}{2a} \quad \text{und} \quad x_2 = \frac{-b - \sqrt{D}}{2a}" />
+
+Beispiel: <InlineMath math="x^2 - 5x + 6 = 0" />
+
+- <InlineMath math="a = 1, b = -5, c = 6" />
+- <InlineMath math="D = (-5)^2 - 4 \cdot 1 \cdot 6 = 25 - 24 = 1 > 0" />
+- Die Lösungen sind <InlineMath math="x_1 = 3" /> und <InlineMath math="x_2 = 2" />.
+
+### Eine doppelte reelle Lösung
+
+Für <InlineMath math="D = 0" /> oder <InlineMath math="b^2 = 4ac" /> stimmen beide Werte aus der Lösungsformel überein. Die Gleichung besitzt eine doppelte reelle Lösung.
+
+<BlockMath math="x_1 = x_2 = \frac{-b}{2a}" />
+
+Beispiel: <InlineMath math="x^2 - 6x + 9 = 0" />
+
+- <InlineMath math="a = 1, b = -6, c = 9" />
+- <InlineMath math="D = (-6)^2 - 4 \cdot 1 \cdot 9 = 36 - 36 = 0" />
+- Die doppelte Lösung ist <InlineMath math="x_1 = x_2 = 3" />.
+
+### Zwei nichtreelle komplexe Lösungen
+
+Für <InlineMath math="D < 0" /> oder <InlineMath math="b^2 < 4ac" /> besitzt die quadratische Gleichung zwei nichtreelle komplexe Lösungen. Sie bilden ein konjugiertes Paar.
+
+<BlockMath math="x_1 = \frac{-b + i\sqrt{|D|}}{2a} \quad \text{und} \quad x_2 = \frac{-b - i\sqrt{|D|}}{2a}" />
+
+Dabei definiert <InlineMath math="i^2=-1" /> die imaginäre Einheit.
+
+Beispiel: <InlineMath math="x^2 + 2x + 5 = 0" />
+
+- <InlineMath math="a = 1, b = 2, c = 5" />
+- <InlineMath math="D = 2^2 - 4 \cdot 1 \cdot 5 = 4 - 20 = -16 < 0" />
+- Die Lösungen sind <InlineMath math="x_1 = -1 + 2i" /> und <InlineMath math="x_2 = -1 - 2i" />.
+
+## Lösungen und Koeffizienten verknüpfen
+
+Sind <InlineMath math="x_1" /> und <InlineMath math="x_2" /> die Lösungen von <InlineMath math="ax^2 + bx + c = 0" />, gelten nach den Formeln von Vieta:
+
+<MathContainer>
+  <BlockMath math="x_1 + x_2 = -\frac{b}{a}" />
+  <BlockMath math="x_1 \times x_2 = \frac{c}{a}" />
+</MathContainer>
+
+Mit diesen Beziehungen lassen sich berechnete Lösungen überprüfen oder die Koeffizientenverhältnisse <InlineMath math="b/a" /> und <InlineMath math="c/a" /> bestimmen. Eine konkrete Gleichung ist festgelegt, sobald zusätzlich der Leitkoeffizient <InlineMath math="a" /> bekannt ist.
+
+## Übung
+
+Ordne die Lösungen der Gleichung <InlineMath math="2x^2-4x+5=0" /> ein und bestimme sie. Prüfe sie anschließend über ihre Summe und ihr Produkt.
+
+### Ausführliche Lösung
+
+Die Koeffizienten sind <InlineMath math="a=2" />, <InlineMath math="b=-4" /> und <InlineMath math="c=5" />. Die Diskriminante ist
+
+<BlockMath math="D=(-4)^2-4\cdot2\cdot5=16-40=-24" />
+
+Wegen <InlineMath math="D<0" /> besitzt die Gleichung zwei nichtreelle komplexe Lösungen. Wir setzen in die Lösungsformel ein und verwenden <InlineMath math="\sqrt{-24}=2i\sqrt6" />:
+
+<MathContainer>
+  <BlockMath math="x=\frac{-(-4)\pm\sqrt{-24}}{2\cdot2}" />
+  <BlockMath math="x=\frac{4\pm2i\sqrt6}{4}=1\pm\frac{i\sqrt6}{2}" />
+</MathContainer>
+
+Somit gilt:
+
+<BlockMath math="x_1=1+\frac{i\sqrt6}{2}\qquad\text{und}\qquad x_2=1-\frac{i\sqrt6}{2}" />
+
+Summe und Produkt stimmen mit den Formeln von Vieta überein:
+
+<MathContainer>
+  <BlockMath math="x_1+x_2=2=-\frac{b}{a}" />
+  <BlockMath math="x_1x_2=1+\frac{6}{4}=\frac52=\frac{c}{a}" />
+</MathContainer>
+
+Beide Kontrollen verwenden die ursprünglichen Koeffizienten. Dadurch fallen ein verlorenes Vorzeichen oder ein falscher Nenner in der Lösungsformel auf.

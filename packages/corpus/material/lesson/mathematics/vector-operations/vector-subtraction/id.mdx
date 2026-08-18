@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Pengurangan Vektor",
-  description: "Pelajari pengurangan vektor dengan contoh bertahap, visualisasi geometris, dan aplikasi nyata. Pahami metode aljabar dan sifat-sifatnya.",
+  description: "Pahami pengurangan vektor melalui konstruksi geometris, perhitungan komponen, contoh bertahap, dan penerapan pada perpindahan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
   subject: "Vektor dan Operasinya",
@@ -10,31 +10,31 @@ export const metadata = {
 
 ## Konsep Dasar Pengurangan Vektor
 
-Pengurangan vektor merupakan salah satu operasi dasar dalam matematika vektor. Berbeda dengan penjumlahan vektor yang menggabungkan dua vektor, pengurangan vektor menghasilkan selisih antara dua vektor. Ketika kita mengurangkan vektor <InlineMath math="\vec{b}" /> dari vektor <InlineMath math="\vec{a}" />, hasilnya adalah vektor yang bila ditambahkan dengan <InlineMath math="\vec{b}" /> akan menghasilkan <InlineMath math="\vec{a}" />.
+Pengurangan vektor menghasilkan selisih antara dua vektor. Ketika kita mengurangkan <InlineMath math="\vec{b}" /> dari <InlineMath math="\vec{a}" />, kita memperoleh vektor yang harus ditambahkan pada <InlineMath math="\vec{b}" /> agar menghasilkan <InlineMath math="\vec{a}" />.
 
 Secara matematis, pengurangan vektor didefinisikan sebagai:
 
 <BlockMath math="\vec{a} - \vec{b} = \vec{a} + (-\vec{b})" />
 
-Ini berarti pengurangan vektor <InlineMath math="\vec{b}" /> dari vektor <InlineMath math="\vec{a}" /> sama dengan penjumlahan vektor <InlineMath math="\vec{a}" /> dengan vektor negatif dari <InlineMath math="\vec{b}" />.
+Dengan kata lain, mengurangkan <InlineMath math="\vec{b}" /> dari <InlineMath math="\vec{a}" /> sama dengan menjumlahkan <InlineMath math="\vec{a}" /> dengan negatif dari <InlineMath math="\vec{b}" />.
 
 ## Pengurangan Vektor secara Geometris
 
-Secara geometris, pengurangan vektor <InlineMath math="\vec{a} - \vec{b}" /> dapat digambarkan dengan:
+Empat langkah berikut menunjukkan dua konstruksi yang setara untuk <InlineMath math="\vec{a} - \vec{b}" />:
 
-1. Menggambar vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> dengan titik pangkal yang sama.
-2. Menggambar vektor <InlineMath math="-\vec{b}" /> (vektor <InlineMath math="\vec{b}" /> yang arahnya dibalik).
-3. Menggambar vektor dari ujung <InlineMath math="\vec{b}" /> ke ujung <InlineMath math="\vec{a}" />.
+1. Gambar <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> dengan titik pangkal yang sama.
+2. Gambar anak panah dari ujung <InlineMath math="\vec{b}" /> ke ujung <InlineMath math="\vec{a}" />. Anak panah itu adalah <InlineMath math="\vec{a} - \vec{b}" />.
+3. Untuk konstruksi kedua, balikkan <InlineMath math="\vec{b}" /> menjadi <InlineMath math="-\vec{b}" />, lalu geser hingga titik pangkalnya bertemu dengan ujung <InlineMath math="\vec{a}" />.
+4. Gambar anak panah dari titik asal bersama ke ujung terakhir. Anak panah itu adalah <InlineMath math="\vec{a}+(-\vec{b})=\vec{a}-\vec{b}" />.
 
-Vektor yang dihasilkan, yaitu <InlineMath math="\vec{a} - \vec{b}" />, juga dapat diperoleh dengan menarik garis dari ujung vektor <InlineMath math="\vec{b}" /> ke ujung vektor <InlineMath math="\vec{a}" /> ketika kedua vektor digambar dari titik asal yang sama.
+Visualisasi berikut menunjukkan kedua konstruksi. Kedua anak panah berlabel <InlineMath math="a-b" /> memiliki komponen, panjang, dan arah yang sama meskipun titik pangkalnya berbeda.
 
 <Vector3d
   title="Visualisasi Pengurangan Vektor di Ruang 3D"
   description={
     <>
-      Pengurangan vektor <InlineMath math="a - b" /> adalah sama dengan vektor{" "}
-      <InlineMath math="a" /> ditambah dengan negatif vektor{" "}
-      <InlineMath math="b" />.
+      Konstruksi berpangkal sama dan ujung ke pangkal untuk{" "}
+      <InlineMath math="a-b=a+(-b)" />.
     </>
   }
   vectors={[
@@ -51,10 +51,18 @@ Vektor yang dihasilkan, yaitu <InlineMath math="\vec{a} - \vec{b}" />, juga dapa
       label: <InlineMath math="b" />,
     },
     {
-      from: [0, 0, 0],
-      to: [-1, -2, -2],
+      from: [1, 2, 2],
+      to: [3, 2, 1],
+      color: "#9333ea",
+      label: <InlineMath math="a-b" />,
+      labelPosition: "middle",
+    },
+    {
+      from: [3, 2, 1],
+      to: [2, 0, -1],
       color: "#ea580c",
       label: <InlineMath math="-b" />,
+      labelPosition: "middle",
     },
     {
       from: [0, 0, 0],
@@ -68,7 +76,7 @@ Vektor yang dihasilkan, yaitu <InlineMath math="\vec{a} - \vec{b}" />, juga dapa
 
 ## Pengurangan Vektor secara Aljabar
 
-Pengurangan vektor dapat dilakukan dengan mengurangkan komponen-komponen yang bersesuaian. Misalkan kita memiliki dua vektor:
+Secara aljabar, kurangkan komponen-komponen yang bersesuaian. Misalkan kita memiliki dua vektor:
 
 <MathContainer>
   <BlockMath math="\vec{a} = (a_1, a_2, a_3)" />
@@ -100,7 +108,7 @@ Sedangkan pengurangan vektor <InlineMath math="\vec{b} - \vec{a}" /> adalah:
 
 <BlockMath math="\vec{b} - \vec{a} = (1, 2) - (3, 4) = (1-3, 2-4) = (-2, -2)" />
 
-Perhatikan bahwa <InlineMath math="\vec{a} - \vec{b} \neq \vec{b} - \vec{a}" /> dalam umumnya. Sebenarnya, <InlineMath math="\vec{a} - \vec{b} = -(\vec{b} - \vec{a})" />.
+Perhatikan bahwa <InlineMath math="\vec{a} - \vec{b} \neq \vec{b} - \vec{a}" /> secara umum. Membalik urutan akan membalik arah: <InlineMath math="\vec{a} - \vec{b} = -(\vec{b} - \vec{a})" />.
 
 <Vector3d
   title="Contoh Pengurangan Vektor"
@@ -135,23 +143,23 @@ Perhatikan bahwa <InlineMath math="\vec{a} - \vec{b} \neq \vec{b} - \vec{a}" /> 
 
 ## Aplikasi Pengurangan Vektor
 
-Pengurangan vektor memiliki banyak aplikasi dalam kehidupan nyata:
+Pengurangan vektor digunakan ketika kita membandingkan dua besaran vektor:
 
 1. **Menghitung Perpindahan**: Jika <InlineMath math="\vec{a}" /> adalah posisi akhir dan <InlineMath math="\vec{b}" /> adalah posisi awal, maka <InlineMath math="\vec{a} - \vec{b}" /> adalah vektor perpindahan.
 
-2. **Menghitung Jarak**: Dalam game seperti Angry Birds, pengurangan vektor digunakan untuk menghitung jarak dan arah antara burung dan target.
+2. **Menghitung Jarak**: Dalam sebuah gim, posisi target dikurangi posisi burung menghasilkan arah menuju target. Besar vektor selisih tersebut memberikan jarak lurus antara keduanya.
 
-3. **Fisika**: Pengurangan vektor digunakan untuk menghitung gaya resultan dalam sistem dengan beberapa gaya.
+3. **Membandingkan Kecepatan**: Dalam fisika, kecepatan benda <InlineMath math="A" /> relatif terhadap benda <InlineMath math="B" /> adalah <InlineMath math="\vec{v}_{A/B}=\vec{v}_A-\vec{v}_B" />. Membalik urutan akan membalik vektor kecepatan relatif.
 
-## Pengurangan Vektor untuk Mencari Resultan
+## Pengurangan Vektor untuk Mencari Perpindahan
 
-Pengurangan vektor juga dapat digunakan untuk mencari vektor resultan. Resultan vektor adalah vektor yang merepresentasikan efek gabungan dari dua atau lebih vektor.
+Perpindahan antara dua posisi diperoleh dengan mengurangkan vektor posisi awal dari vektor posisi akhir.
 
 Misalkan terdapat sebuah objek yang bergerak dari posisi awal <InlineMath math="\vec{p}_1" /> ke posisi akhir <InlineMath math="\vec{p}_2" />. Vektor perpindahan objek tersebut adalah:
 
 <BlockMath math="\vec{d} = \vec{p}_2 - \vec{p}_1" />
 
-Resultan vektor ini menunjukkan arah dan jarak perpindahan objek.
+Vektor ini menunjuk dari posisi awal ke posisi akhir. Besarnya merupakan jarak lurus antara kedua posisi, yang dapat lebih pendek daripada lintasan yang benar-benar ditempuh.
 
 ## Sifat-sifat Pengurangan Vektor
 
@@ -170,6 +178,7 @@ Seekor monyet berada pada posisi <InlineMath math="(3, 4)" /> dan ingin mengambi
 **Penyelesaian:**
 
 Posisi monyet: <InlineMath math="\vec{m} = (3, 4)" />
+
 Posisi pisang: <InlineMath math="\vec{p} = (2, 1)" />
 
 Vektor perpindahan monyet ke pisang:

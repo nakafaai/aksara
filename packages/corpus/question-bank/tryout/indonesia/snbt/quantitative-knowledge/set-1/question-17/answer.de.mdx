@@ -1,0 +1,79 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-17",
+};
+
+Gegeben seien die Funktion <InlineMath math="f(x) = (x+3)(x^2+6x+8)^4" /> und <InlineMath math="F(x) = \int f(x) \, dx" /> mit der Bedingung <InlineMath math="F(-3) = 2" />.
+
+#### U-Substitution
+
+Um dieses Integral zu lösen, verwenden wir die Substitutionsmethode.
+
+Sei <InlineMath math="u = x^2 + 6x + 8" />.
+
+Die Ableitung von <InlineMath math="u" /> nach <InlineMath math="x" />:
+
+<BlockMath math="\frac{du}{dx} = 2x + 6" />
+
+Wir faktorisieren:
+
+<BlockMath math="\frac{du}{dx} = 2(x + 3)" />
+
+Beide Seiten mit <InlineMath math="dx" /> multiplizieren:
+
+<BlockMath math="du = 2(x + 3) \, dx" />
+
+Wir teilen beide Seiten durch <InlineMath math="2" />:
+
+<BlockMath math="\frac{du}{2} = (x + 3) \, dx" />
+
+#### Das Integral lösen
+
+Wir setzen in das Integral ein:
+
+<BlockMath math="F(x) = \int f(x) \, dx = \int (x+3)(x^2+6x+8)^4 \, dx" />
+
+Mit der Substitution <InlineMath math="u = x^2 + 6x + 8" /> und <InlineMath math="(x+3) \, dx = \frac{du}{2}" /> folgt:
+
+<MathContainer>
+<BlockMath math="F(x) = \int u^4 \cdot \frac{du}{2}" />
+<BlockMath math="= \frac{1}{2} \int u^4 \, du" />
+<BlockMath math="= \frac{1}{2} \cdot \frac{u^5}{5} + C" />
+<BlockMath math="= \frac{1}{10} u^5 + C" />
+</MathContainer>
+
+Wir ersetzen <InlineMath math="u = x^2 + 6x + 8" /> zurück:
+
+<BlockMath math="F(x) = \frac{1}{10}(x^2 + 6x + 8)^5 + C" />
+
+#### Bestimmung der Konstante C
+
+Nun verwenden wir die Bedingung <InlineMath math="F(-3) = 2" />:
+
+<BlockMath math="F(-3) = \frac{1}{10}((-3)^2 + 6(-3) + 8)^5 + C = 2" />
+
+Zuerst berechnen wir den Klammerausdruck:
+
+<MathContainer>
+<BlockMath math="(-3)^2 + 6(-3) + 8 = 9 - 18 + 8 = -1" />
+</MathContainer>
+
+Damit gilt:
+
+<MathContainer>
+<BlockMath math="\frac{1}{10}(-1)^5 + C = 2" />
+<BlockMath math="\frac{1}{10}(-1) + C = 2" />
+<BlockMath math="-\frac{1}{10} + C = 2" />
+<BlockMath math="C = 2 + \frac{1}{10}" />
+<BlockMath math="C = \frac{20}{10} + \frac{1}{10}" />
+<BlockMath math="C = \frac{21}{10}" />
+</MathContainer>
+
+#### Stammfunktion bestimmen
+
+Wir setzen den Wert von <InlineMath math="C" /> in <InlineMath math="F(x)" /> ein:
+
+<BlockMath math="F(x) = \frac{1}{10}(x^2 + 6x + 8)^5 + \frac{21}{10}" />
+
+Daher ist die Funktion <InlineMath math="F(x)" /> <InlineMath math="\frac{1}{10}(x^2 + 6x + 8)^5 + \frac{21}{10}" />.

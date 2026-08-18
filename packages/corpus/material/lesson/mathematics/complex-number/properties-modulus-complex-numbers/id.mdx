@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Sifat Operasi Modulus Bilangan Kompleks",
-  description: "Pelajari hukum modulus: |z₁×z₂|=|z₁|×|z₂|, ketaksamaan segitiga, |z|²=z×z̄. Sederhanakan perhitungan dengan sifat tanpa aritmetika kompleks.",
+  description: "Sifat modulus untuk hasil kali, hasil bagi, konjugat, dan ketaksamaan segitiga, lengkap dengan pembuktian dan contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Bilangan Kompleks",
@@ -50,7 +50,9 @@ Jika <InlineMath math="z_1 = x + iy" />, maka <InlineMath math="\bar{z_1} = x - 
 
 <BlockMath math="z_1 \times \bar{z_1} = (x + iy)(x - iy) = x^2 - (iy)^2 = x^2 - i^2y^2 = x^2 - (-1)y^2 = x^2 + y^2" />
 
-Kita juga tahu bahwa <InlineMath math="|z_1| = \sqrt{x^2 + y^2}" />, sehingga <InlineMath math="|z_1|^2 = (\sqrt{x^2 + y^2})^2 = x^2 + y^2" />. Jadi, kedua sisi sama.
+Kita juga tahu bahwa <InlineMath math="|z_1| = \sqrt{x^2 + y^2}" />, sehingga <InlineMath math="|z_1|^2 = (\sqrt{x^2 + y^2})^2 = x^2 + y^2" />.
+
+Jadi, kedua sisi sama.
 
 ### Modulus Hasil Kali
 
@@ -58,11 +60,23 @@ Modulus dari hasil kali dua bilangan kompleks sama dengan hasil kali modulus mas
 
 <BlockMath math="|z_1 \times z_2| = |z_1| \times |z_2|" />
 
+Sifat ini dapat dibuktikan dengan mengalikan setiap bilangan dengan konjugatnya:
+
+<MathContainer>
+  <BlockMath math="|z_1z_2|^2=(z_1z_2)\overline{(z_1z_2)}" />
+  <BlockMath math="=z_1\bar{z_1}\,z_2\bar{z_2}" />
+  <BlockMath math="=|z_1|^2|z_2|^2" />
+</MathContainer>
+
+Kedua modulus bernilai tak negatif, sehingga pengambilan akar kuadrat menghasilkan sifat hasil kali.
+
 ### Modulus Hasil Bagi
 
 Modulus dari hasil bagi dua bilangan kompleks sama dengan hasil bagi modulus masing-masing bilangan kompleks (dengan penyebut tidak nol).
 
 <BlockMath math="\left| \frac{z_1}{z_2} \right| = \frac{|z_1|}{|z_2|}, \quad \text{untuk } z_2 \neq 0" />
+
+Sifat hasil bagi mengikuti sifat hasil kali karena <InlineMath math="z_1=(z_1/z_2)z_2" /> ketika <InlineMath math="z_2\neq0" />.
 
 ### Ketaksamaan Segitiga
 
@@ -72,11 +86,19 @@ Modulus dari jumlah dua bilangan kompleks kurang dari atau sama dengan jumlah mo
 
 **Penjelasan:**
 
-Secara geometris, jika kita menganggap <InlineMath math="z_1" />, <InlineMath math="z_2" />, dan <InlineMath math="z_1 + z_2" /> sebagai sisi-sisi segitiga pada bidang kompleks, sifat ini menyatakan bahwa panjang satu sisi (<InlineMath math="|z_1 + z_2|" />) tidak mungkin lebih besar dari jumlah panjang dua sisi lainnya (<InlineMath math="|z_1| + |z_2|" />).
+Secara geometris, tempatkan vektor <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> secara ujung ke pangkal. Vektor langsung dari titik awal ke titik akhir adalah <InlineMath math="z_1 + z_2" />, dan panjangnya tidak dapat melebihi jumlah dua sisi lainnya, yaitu <InlineMath math="|z_1| + |z_2|" />.
+
+### Ketaksamaan Segitiga Terbalik
+
+Selisih modulus dua bilangan kompleks tidak dapat melebihi jarak antara kedua bilangan tersebut.
+
+<BlockMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1-z_2|" />
+
+Ketaksamaan ini memberi batas bawah bagi suatu jarak atau jumlah. Misalnya, dengan mengganti <InlineMath math="z_2" /> menjadi <InlineMath math="-z_2" />, kita memperoleh <InlineMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1+z_2|" />.
 
 ## Penggunaan Sifat Modulus
 
-Misalkan diberikan bilangan kompleks <InlineMath math="z = \frac{1 - 2i}{3 + 4i}" />. Tentukanlah <InlineMath math="|z|" />!
+Misalkan diberikan bilangan kompleks <InlineMath math="z = \frac{1 - 2i}{3 + 4i}" />. Tentukan <InlineMath math="|z|" />.
 
 **Penyelesaian:**
 
@@ -97,14 +119,15 @@ Sehingga,
 
 <BlockMath math="|z| = \frac{\sqrt{5}}{5}" />
 
-Ini jauh lebih mudah daripada mengalikan dengan konjugat penyebut terlebih dahulu, baru menghitung modulusnya.
+Sifat hasil bagi menghindari langkah memperluas pecahan dengan konjugat penyebut sebelum menghitung modulus.
 
 ## Latihan
 
 1.  Jika <InlineMath math="z_1 = 6 + 8i" /> dan <InlineMath math="z_2 = 3 - i" />, hitunglah <InlineMath math="|z_1 \times z_2|" /> menggunakan sifat modulus.
 2.  Jika <InlineMath math="z = 5 - 12i" />, buktikan bahwa <InlineMath math="|z|^2 = z \times \bar{z}" />.
+3.  Jika <InlineMath math="|z_1|=3" /> dan <InlineMath math="|z_2|=5" />, tentukan batas nilai yang mungkin untuk <InlineMath math="|z_1+z_2|" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 1.  Kita gunakan sifat <InlineMath math="|z_1 \times z_2| = |z_1| \times |z_2|" />.
 
@@ -135,3 +158,9 @@ Ini jauh lebih mudah daripada mengalikan dengan konjugat penyebut terlebih dahul
     <BlockMath math="z \times \bar{z} = (5 - 12i)(5 + 12i) = 5^2 - (12i)^2 = 25 - 144i^2 = 25 - 144(-1) = 25 + 144 = 169" />
 
     Karena sisi kiri (<InlineMath math="169" />) sama dengan sisi kanan (<InlineMath math="169" />), maka terbukti <InlineMath math="|z|^2 = z \times \bar{z}" />.
+
+3.  Ketaksamaan segitiga biasa dan terbalik memberikan batas atas sekaligus batas bawah:
+
+    <BlockMath math="\bigl||z_1|-|z_2|\bigr|\leq|z_1+z_2|\leq|z_1|+|z_2|" />
+
+    Dengan mensubstitusikan modulus yang diketahui, diperoleh <InlineMath math="2\leq|z_1+z_2|\leq8" />. Nilai tepatnya bergantung pada sudut antara kedua bilangan kompleks tersebut.

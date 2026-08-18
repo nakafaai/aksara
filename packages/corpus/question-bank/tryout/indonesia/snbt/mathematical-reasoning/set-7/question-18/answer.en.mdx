@@ -4,13 +4,13 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-#### Problem Visualization
+#### Read the Geometry
 
-Here is an illustration of the eagle and fish positions based on the problem information:
+The diagram shows one straight line of sight crossing the water surface. The fish is below the surface, while the eagle is above it.
 
 <Set7Question18Graph
   title="Eagle and Fish Positions"
-  description={<>Visualization of the eagle's line of sight to the fish with a <InlineMath math="30^\circ" /> angle of depression.</>}
+  description={<>The <InlineMath math="18\text{ m}" /> line of sight makes a <InlineMath math="30^\circ" /> angle with the horizontal water surface.</>}
   labels={{
     eagle: "Eagle",
     fish: "Fish",
@@ -19,46 +19,15 @@ Here is an illustration of the eagle and fish positions based on the problem inf
   }}
 />
 
-#### Identify Variables
+Let <InlineMath math="h" /> be the eagle's height above the water. The total vertical separation between the eagle and the fish is then <InlineMath math="h+3" /> meters. In the right triangle, this separation is opposite the <InlineMath math="30^\circ" /> angle, while the <InlineMath math="18\text{ m}" /> line of sight is the hypotenuse.
 
-Given:
-- Depth of fish from water surface (<InlineMath math="y_1" />) is <InlineMath math="3 \text{ m}" />.
-- Total line of sight distance (Eagle to Fish) is <InlineMath math="18 \text{ m}" />.
-- Angle between line of sight and water surface is <InlineMath math="30^\circ" />.
-
-Let:
-- <InlineMath math="r_1" /> = line of sight distance from fish to the water surface point.
-- <InlineMath math="r_2" /> = line of sight distance from eagle to the water surface point.
-- <InlineMath math="y_2" /> = height of eagle from water surface.
-
-#### Calculate Fish to Surface Distance
-
-Consider the right triangle formed by the fish's position and the water surface. Using the sine concept:
+#### Use the Sine Ratio
 
 <MathContainer>
-  <BlockMath math="\sin 30^\circ = \frac{y_1}{r_1}" />
-  <BlockMath math="\frac{1}{2} = \frac{3}{r_1}" />
-  <BlockMath math="r_1 = 3 \cdot 2 = 6 \text{ m}" />
+  <BlockMath math="\sin 30^\circ = \frac{h+3}{18}" />
+  <BlockMath math="\frac{1}{2} = \frac{h+3}{18}" />
+  <BlockMath math="h+3=9" />
+  <BlockMath math="h=6" />
 </MathContainer>
 
-#### Calculate Eagle to Surface Distance
-
-The total line of sight distance is the sum of the distance from the fish to the surface and the distance from the eagle to the surface:
-
-<MathContainer>
-  <BlockMath math="R_{\text{total}} = r_1 + r_2" />
-  <BlockMath math="18 = 6 + r_2" />
-  <BlockMath math="r_2 = 18 - 6 = 12 \text{ m}" />
-</MathContainer>
-
-#### Calculate Eagle Height
-
-Now consider the right triangle formed by the eagle's position and the water surface. Again, use the sine concept:
-
-<MathContainer>
-  <BlockMath math="\sin 30^\circ = \frac{y_2}{r_2}" />
-  <BlockMath math="\frac{1}{2} = \frac{y_2}{12}" />
-  <BlockMath math="y_2 = 12 \cdot \frac{1}{2} = 6 \text{ m}" />
-</MathContainer>
-
-Thus, the height of the eagle above the river surface is <InlineMath math="6 \text{ m}" />.
+Therefore, the eagle is <InlineMath math="6\text{ m}" /> above the river surface.

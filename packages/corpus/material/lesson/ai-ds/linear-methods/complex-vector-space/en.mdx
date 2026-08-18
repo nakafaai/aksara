@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Complex Vector Space",
-    description: "Learn complex vector spaces with complex numbers, fundamental theorem of algebra, and 8 essential axioms. Learn AI linear methods one step at a time.",
+    description: "Build complex vector spaces from the complex field, understand the vector-space axioms, and see why the chosen scalar field changes dimension and linearity.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-12",
     subject: "Linear Methods of AI",
@@ -8,15 +8,15 @@ export const metadata = {
 
 ## Introduction to Complex Numbers
 
-Before understanding complex vector spaces, we need to understand complex numbers first. Imagine we have an imaginary unit <InlineMath math="i" /> with the special property <InlineMath math="i^2 = -1" />. Complex numbers are numbers that consist of a real part and an imaginary part.
+The imaginary unit <InlineMath math="i" /> satisfies <InlineMath math="i^2=-1" />. A complex number combines a real and an imaginary coordinate, so it can represent both scaling and rotation in one scalar.
 
 The set of complex numbers is defined as <InlineMath math="\mathbb{C} := \{z = x + iy : x, y \in \mathbb{R}\}" />. In every complex number <InlineMath math="z = x + iy" />, the part <InlineMath math="x = \text{Re}(z)" /> is called the **real part** and the part <InlineMath math="y = \text{Im}(z)" /> is called the **imaginary part**.
 
-Using the property <InlineMath math="i^2 = -1" />, we can perform arithmetic operations on complex numbers such as addition, subtraction, multiplication, and division. The set <InlineMath math="(\mathbb{C}, +, \cdot)" /> forms a **field**.
+Addition, subtraction, multiplication, and division by a nonzero number stay inside <InlineMath math="\mathbb C" />. With these operations, <InlineMath math="(\mathbb{C}, +, \cdot)" /> is a **field**, so its elements can serve as scalars for a vector space.
 
 ### Conjugate and Modulus
 
-For a complex number <InlineMath math="z = x + iy" />, the **complex conjugate** is defined as <InlineMath math="\overline{z} = x - iy" />. This conjugate is useful in various calculations.
+For <InlineMath math="z=x+iy" />, the **complex conjugate** is <InlineMath math="\overline z=x-iy" />. Since <InlineMath math="z\overline z=x^2+y^2" />, conjugation lets us compute both magnitudes and reciprocals, for example <InlineMath math="z^{-1}=\overline z/|z|^2" /> when <InlineMath math="z\neq0" />.
 
 The **modulus** or absolute value of a complex number is calculated with the formula:
 
@@ -26,7 +26,7 @@ This modulus gives the "distance" of the complex number from the origin in the c
 
 ## Fundamental Theorem of Algebra
 
-The fundamental theorem of algebra is an important result that distinguishes complex polynomials from real polynomials. This theorem states that every non-constant polynomial with complex coefficients must have a complex root.
+The fundamental theorem of algebra says that every nonconstant polynomial with complex coefficients has a complex root.
 
 Now, let's look at a very important result. Every non-constant polynomial
 
@@ -34,11 +34,15 @@ Now, let's look at a very important result. Every non-constant polynomial
 
 with degree <InlineMath math="n \geq 1" /> and complex coefficients <InlineMath math="a_k \in \mathbb{C}" /> for <InlineMath math="k = 0, 1, \ldots, n" /> with <InlineMath math="a_n \neq 0" />, has at least one complex root. This means there exists a number <InlineMath math="z_* \in \mathbb{C}" /> such that <InlineMath math="p(z_*) = 0" />.
 
-This theorem is very important because it guarantees that in the field of complex numbers, every polynomial equation always has a solution.
+Applying the theorem repeatedly shows that a degree-<InlineMath math="n" /> polynomial factors completely over <InlineMath math="\mathbb C" />:
+
+<BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
+
+Thus it has exactly <InlineMath math="n" /> complex roots when multiplicities are counted. The qualification "nonconstant" matters: a nonzero constant polynomial has no root.
 
 ## Definition and Axioms of Complex Vector Space
 
-After understanding complex numbers, we can extend the concept of vector spaces from real scalars to complex scalars. Vector spaces can not only be defined with scalars from <InlineMath math="\mathbb{R}" />, but also from other fields such as <InlineMath math="\mathbb{C}" />.
+A complex vector space uses numbers from <InlineMath math="\mathbb C" /> as scalars. The operations must be closed in the stated sets and obey the same algebraic compatibility rules as a real vector space.
 
 A set <InlineMath math="V" /> with an addition operation
 
@@ -74,8 +78,21 @@ is called a **complex vector space** if it satisfies the following axioms:
 
 Elements <InlineMath math="x \in V" /> are called **vectors**, and elements <InlineMath math="\lambda \in \mathbb{C}" /> are called **scalars**.
 
+## A Concrete Example
+
+The set <InlineMath math="V=\mathbb C^2" /> is a complex vector space with componentwise operations. For instance,
+
+<BlockMath math="(1+i)\begin{pmatrix}1\\-i\end{pmatrix}=\begin{pmatrix}1+i\\1-i\end{pmatrix}" />
+
+The scalar field changes how we count dimensions. The set <InlineMath math="\mathbb C" /> itself has basis <InlineMath math="\{1\}" /> as a complex vector space, but basis <InlineMath math="\{1,i\}" /> as a real vector space:
+
+| Same set of vectors | Allowed scalars | Dimension |
+|---|---|---|
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb C" /> | <InlineMath math="1" /> |
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb R" /> | <InlineMath math="2" /> |
+
 ## Differences from Real Vector Spaces
 
-In complex vector spaces, we do not use special properties of real numbers such as ordering or real analysis. All results that apply to vector spaces remain valid for complex vector spaces, especially those related to matrices, systems of linear equations, and determinants.
+Purely algebraic results derived from the vector-space axioms work over both <InlineMath math="\mathbb R" /> and <InlineMath math="\mathbb C" />. Results that use order or a real-only inner product need their assumptions adjusted. For example, complex inner products use conjugation, and complex numbers have no field order compatible with their arithmetic.
 
-The main difference lies in the **scalar field** used. Real vector spaces use <InlineMath math="\mathbb{R}" /> as the scalar field, whereas complex vector spaces use <InlineMath math="\mathbb{C}" /> which provides more flexibility in calculations.
+The scalar field also decides which maps are linear. Complex conjugation is linear over <InlineMath math="\mathbb R" /> but not over <InlineMath math="\mathbb C" />, because <InlineMath math="\overline{iz}=-i\overline z" /> rather than <InlineMath math="i\overline z" />. Always state the scalar field before discussing a basis, dimension, or linear map.

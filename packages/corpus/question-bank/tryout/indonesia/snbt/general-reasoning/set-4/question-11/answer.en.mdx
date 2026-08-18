@@ -4,30 +4,24 @@ export const metadata = {
   date: "2026-01-19",
 };
 
-Let's translate the statements into mathematical logic.
+#### Represent the premises
 
 Let:
 
-*   <InlineMath math="p" />: Nakafa students work on conditional empathy questions.
-*   <InlineMath math="q" />: Nakafa students can work on TOBK questions in the Nakafa application.
-*   <InlineMath math="r" />: Nakafa students get Learning Achievement Evaluation (EPB) results.
+- <InlineMath math="p" />: Dito completes the prerequisite exercises.
+- <InlineMath math="q" />: Dito takes the practice test.
+- <InlineMath math="r" />: Dito receives an evaluation report.
 
-The given statements are:
+The premises are <InlineMath math="p \rightarrow q" />, <InlineMath math="q \rightarrow r" />, and <InlineMath math="\lnot r" />.
 
-1.  If Nakafa students work on conditional empathy questions, then they can work on TOBK questions in the Nakafa application (<InlineMath math="p \rightarrow q" />).
-2.  If Nakafa students work on TOBK questions in the Nakafa application, then they get Learning Achievement Evaluation (EPB) results (<InlineMath math="q \rightarrow r" />).
-3.  Dito does not get Learning Achievement Evaluation (EPB) results (<InlineMath math="\sim r" />).
+#### Reason backward from the missing report
 
-From premises <InlineMath math="1" /> and <InlineMath math="2" />, we can use syllogism:
+From <InlineMath math="q \rightarrow r" /> and <InlineMath math="\lnot r" />, modus tollens gives <InlineMath math="\lnot q" />. Dito therefore did not take the practice test.
 
-<MathContainer>
-  <BlockMath math="\begin{align*} & p \rightarrow q \\ & q \rightarrow r \\ \hline \therefore \ & p \rightarrow r \end{align*}" />
-</MathContainer>
-
-Next, we use that conclusion (<InlineMath math="p \rightarrow r" />) with premise <InlineMath math="3" /> (<InlineMath math="\sim r" />) using the Modus Tollens rule:
+Now combine <InlineMath math="p \rightarrow q" /> with <InlineMath math="\lnot q" />. A second application of modus tollens gives:
 
 <MathContainer>
-  <BlockMath math="\begin{align*} & p \rightarrow r \\ & \sim r \\ \hline \therefore \ & \sim p \end{align*}" />
+  <BlockMath math="\begin{aligned}p &\rightarrow q\\ \lnot q&\\ \therefore\ \lnot p&\end{aligned}" />
 </MathContainer>
 
-The conclusion is <InlineMath math="\sim p" />, which means **Dito does not work on conditional empathy questions**.
+Therefore, Dito **did not complete the prerequisite exercises**. The premises do not say that he is not a student; they only determine what he did not complete.

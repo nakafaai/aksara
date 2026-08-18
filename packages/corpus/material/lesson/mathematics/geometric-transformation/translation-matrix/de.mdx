@@ -1,0 +1,106 @@
+
+export const metadata = {
+  title: "Verschiebungsmatrix",
+  description: "Stelle Verschiebungen als Vektoraddition und mit homogenen Koordinaten dar und verbinde sie dadurch mit weiteren Transformationen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Matrixdarstellung einer Verschiebung
+
+Die Verschiebung eines Punktes <InlineMath math="(x,y)" /> um den Vektor <InlineMath math="\begin{pmatrix} a \\ b \end{pmatrix}" /> ergibt den Bildpunkt <InlineMath math="(x+a, y+b)" />.
+
+Diese Operation kann in Form einer Vektoraddition (Spaltenmatrix) geschrieben werden:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} x+a \\ y+b \end{pmatrix}" />
+
+Anders als eine Drehung oder Spiegelung lässt sich eine reine Verschiebung nicht durch die Multiplikation mit einer <InlineMath math="2 \times 2" />-Matrix darstellen. Sie ist zunächst eine Vektoraddition.
+
+Wenn wir jedoch die Verschiebung mit anderen linearen Transformationen mithilfe der Matrixmultiplikation kombinieren möchten, verwenden wir häufig **homogene Koordinaten**. Bei homogenen Koordinaten wird ein Punkt <InlineMath math="(x,y)" /> als <InlineMath math="\begin{pmatrix} x \\ y \\ 1 \end{pmatrix}" /> dargestellt und die Transformationsmatrix wird zu <InlineMath math="3 \times 3" />. Für die Verschiebung um <InlineMath math="\begin{pmatrix} a \\ b \end{pmatrix}" /> lautet die Matrix:
+
+<BlockMath math="T_{(a,b)} = \begin{pmatrix} 1 & 0 & a \\ 0 & 1 & b \\ 0 & 0 & 1 \end{pmatrix}" />
+
+Also:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \\ 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 & a \\ 0 & 1 & b \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ 1 \end{pmatrix} = \begin{pmatrix} x+a \\ y+b \\ 1 \end{pmatrix}" />
+
+### Matrixdarstellung
+
+Für die Verschiebung eines Punktes <InlineMath math="(x,y)" /> um den Vektor <InlineMath math="\begin{pmatrix} a \\ b \end{pmatrix}" /> gilt:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+
+## Einen Bildpunkt mit Matrizen bestimmen
+
+Bestimme mithilfe der Vektordarstellung das Bild des Punktes <InlineMath math="(-2,3)" /> unter der Verschiebung um <InlineMath math="\begin{pmatrix} -3 \\ 4 \end{pmatrix}" />.
+
+**Lösung:**
+
+Die Matrixoperation liefert den Bildpunkt:
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -2 \\ 3 \end{pmatrix} + \begin{pmatrix} -3 \\ 4 \end{pmatrix} = \begin{pmatrix} -2 + (-3) \\ 3 + 4 \end{pmatrix} = \begin{pmatrix} -5 \\ 7 \end{pmatrix}" />
+
+Der Bildpunkt ist <InlineMath math="(-5,7)" />.
+
+<LineEquation
+  title={
+    <>
+      Verschiebung des Punktes <InlineMath math="P(-2,3)" /> um den Vektor{" "}
+      <InlineMath math="\begin{pmatrix} -3 \\ 4 \end{pmatrix}" />
+    </>
+  }
+  description={
+    <>
+      Der Verschiebungsvektor bildet den Punkt <InlineMath math="P(-2,3)" /> auf{" "}
+      <InlineMath math="P'(-5,7)" /> ab.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: -2, y: 3, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P(-2,3)" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [{ x: -5, y: 7, z: 0 }],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P'(-5,7)" />, at: 0, offset: [-0.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -2, y: 3, z: 0 },
+        { x: -5, y: 7, z: 0 },
+      ],
+      color: "#e11d48",
+      lineWidth: 2,
+      cone: { position: "end", size: 0.3 },
+      labels: [{ text: <>Vektor <InlineMath math="(-3,4)" /></>, at: 0, offset: [-0.5, 2, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[-10, 10, 12]}
+/>
+
+## Übungen
+
+1.  Bestimme mithilfe der Vektordarstellung das Bild des Punktes <InlineMath math="(4,-5)" /> unter der Verschiebung um <InlineMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" />.
+2.  Ein Dreieck <InlineMath math="KLM" /> hat die Eckpunkte <InlineMath math="K(1,0)" />, <InlineMath math="L(4,2)" /> und <InlineMath math="M(2,5)" />. Dieses Dreieck wird durch den Vektor <InlineMath math="T = \begin{pmatrix} -2 \\ 1 \end{pmatrix}" /> verschoben. Bestimme die Koordinaten des Bilddreiecks <InlineMath math="K'L'M'" />.
+
+### Lösungen
+
+1.  Ausgangspunkt <InlineMath math="(4,-5)" />, Verschiebungsvektor <InlineMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" />.
+
+    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} = \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} = \begin{pmatrix} -1 \\ -1 \end{pmatrix}" />
+
+    Der Bildpunkt ist <InlineMath math="(-1,-1)" />.
+
+2.  Verschiebungsvektor <InlineMath math="T = \begin{pmatrix} -2 \\ 1 \end{pmatrix}" />.
+
+    - Für <InlineMath math="K(1,0)" />: <InlineMath math="\begin{pmatrix} x'_K \\ y'_K \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 1 \end{pmatrix}" />. Also <InlineMath math="K'(-1,1)" />.
+    - Für <InlineMath math="L(4,2)" />: <InlineMath math="\begin{pmatrix} x'_L \\ y'_L \end{pmatrix} = \begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 3 \end{pmatrix}" />. Also <InlineMath math="L'(2,3)" />.
+    - Für <InlineMath math="M(2,5)" />: <InlineMath math="\begin{pmatrix} x'_M \\ y'_M \end{pmatrix} = \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 6 \end{pmatrix}" />. Also <InlineMath math="M'(0,6)" />.
+
+    Die Bildpunkte sind <InlineMath math="K'(-1,1)" />, <InlineMath math="L'(2,3)" /> und <InlineMath math="M'(0,6)" />.

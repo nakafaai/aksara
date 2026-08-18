@@ -1,0 +1,264 @@
+export const metadata = {
+  title: "Matrixsubtraktion",
+  description: "Subtrahiere Matrizen eintragsweise, deute die Subtraktion als Addition der Gegenmatrix und prüfe dein Verständnis an vollständig gelösten Aufgaben.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-05",
+  subject: "Matrix",
+};
+
+## Was ist Matrixsubtraktion?
+
+Bei der Matrixsubtraktion werden die Einträge zweier Matrizen voneinander abgezogen. Wie bei der Addition müssen beide Matrizen gleich viele Zeilen und Spalten haben.
+
+Das Ergebnis ist eine Matrix desselben Formats. Jeder ihrer Einträge entsteht aus der Differenz der Einträge an derselben Position.
+
+## Formale Definition der Matrixsubtraktion
+
+Die Matrixsubtraktion lässt sich auf zwei gleichwertige Arten beschreiben.
+
+**Subtraktion als Addition der Gegenmatrix**
+
+Subtrahiert man die Matrix <InlineMath math="B" /> von der Matrix <InlineMath math="A" />, kann man stattdessen <InlineMath math="A" /> und die Gegenmatrix von <InlineMath math="B" />, also <InlineMath math="-B" />, addieren.
+
+<BlockMath math="A - B = A + (-B)" />
+
+Die Matrix <InlineMath math="-B" /> entsteht, indem man jeden Eintrag von <InlineMath math="B" /> mit <InlineMath math="-1" /> multipliziert. Aus <InlineMath math="B = [b_{ij}]" /> wird daher <InlineMath math="-B = [-b_{ij}]" />.
+
+**Subtraktion entsprechender Elemente**
+
+Haben die Matrizen <InlineMath math="A = [a_{ij}]" /> und <InlineMath math="B = [b_{ij}]" /> beide das Format <InlineMath math="m \times n" />, dann hat auch ihre Differenz <InlineMath math="C = A - B" /> das Format <InlineMath math="m \times n" />.
+
+Jeder Eintrag <InlineMath math="c_{ij}" /> der Matrix <InlineMath math="C" /> entsteht, indem man den Eintrag von <InlineMath math="B" /> vom Eintrag von <InlineMath math="A" /> an derselben Position abzieht:
+
+<BlockMath math="c_{ij} = a_{ij} - b_{ij}" />
+
+Es werden also nur Einträge aus derselben Zeile und Spalte miteinander verrechnet.
+
+Beide Definitionen sind gleichwertig und erzeugen dieselbe Differenzmatrix.
+
+## So subtrahiert man Matrizen
+
+Die Rechnung folgt drei Schritten:
+
+1.  **Format prüfen**: Beide Matrizen müssen gleich viele Zeilen und Spalten haben. Bei unterschiedlichen Formaten ist die Subtraktion nicht definiert.
+2.  **Zugehörige Einträge subtrahieren**: Ziehe jeden Eintrag der zweiten Matrix, den Subtrahenden, vom Eintrag an derselben Position in der ersten Matrix ab.
+3.  **Ergebnismatrix bilden**: Ordne die berechneten Differenzen an ihren ursprünglichen Positionen an. Die Ergebnismatrix hat dasselbe Format wie die Ausgangsmatrizen.
+
+### Beispiel für Matrixsubtraktion
+
+Betrachten wir die beiden Matrizen <InlineMath math="P" /> und <InlineMath math="Q" />:
+
+<MathContainer>
+  <BlockMath math="P = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
+  <BlockMath math="Q = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix}" />
+</MathContainer>
+
+Beide haben das Format <InlineMath math="2 \times 2" /> und können daher subtrahiert werden.
+
+Zuerst subtrahieren wir die zugehörigen Einträge:
+
+<MathContainer>
+  <BlockMath math="P - Q = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix} - \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 8-2 & 5-1 \\ 3-(-1) & 7-4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 6 & 4 \\ 3+1 & 3 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Dasselbe Ergebnis erhält man durch Addition der Gegenmatrix (<InlineMath math="P + (-Q)" />):
+
+Zunächst bestimmen wir <InlineMath math="-Q" />:
+
+<BlockMath math="-Q = \begin{bmatrix} -2 & -1 \\ -(-1) & -4 \end{bmatrix} = \begin{bmatrix} -2 & -1 \\ 1 & -4 \end{bmatrix}" />
+
+Anschließend addieren wir <InlineMath math="P" /> und <InlineMath math="-Q" />:
+
+<MathContainer>
+  <BlockMath math="P + (-Q) = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix} + \begin{bmatrix} -2 & -1 \\ 1 & -4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 8+(-2) & 5+(-1) \\ 3+1 & 7+(-4) \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Beide Methoden ergeben die gleiche Matrix.
+
+### Beispiel für Matrizen, die nicht subtrahiert werden können
+
+Betrachten wir die Matrix <InlineMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" /> und die Matrix <InlineMath math="L = \begin{bmatrix} 4 & 2 \\ 0 & 7 \end{bmatrix}" />.
+
+Die Matrix <InlineMath math="K" /> hat das Format <InlineMath math="3 \times 2" />, die Matrix <InlineMath math="L" /> dagegen <InlineMath math="2 \times 2" />. Wegen der unterschiedlichen Formate sind sowohl <InlineMath math="K-L" /> als auch <InlineMath math="L-K" /> nicht definiert.
+
+## Eigenschaften der Matrixsubtraktion
+
+Im Gegensatz zur Matrixaddition, die über mehrere wichtige Eigenschaften wie Kommutativität und Assoziativität verfügt, besitzt die Matrixsubtraktion diese Eigenschaften im Allgemeinen nicht.
+
+1.  **Nicht kommutativ**: Die Reihenfolge der Matrizen beeinflusst das Ergebnis. Im Allgemeinen ist <InlineMath math="A - B" /> nicht gleich <InlineMath math="B - A" />, außer in Sonderfällen wie <InlineMath math="A=B" />.
+
+    <BlockMath math="A - B \neq B - A \quad (\text{im Allgemeinen})" />
+
+    Für die Matrizen <InlineMath math="P" /> und <InlineMath math="Q" /> aus dem Beispiel gilt:
+
+    <InlineMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+
+    In umgekehrter Reihenfolge ergibt sich:
+
+    <MathContainer>
+      <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
+      <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
+      <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
+    </MathContainer>
+
+    Es ist klar, dass <InlineMath math="P-Q \neq Q-P" />.
+
+2.  **Nicht assoziativ**: Auch die Klammerung verändert das Ergebnis. Im Allgemeinen ist <InlineMath math="(A - B) - C" /> nicht gleich <InlineMath math="A - (B - C)" />.
+
+    <BlockMath math="(A - B) - C \neq A - (B - C) \quad (\text{im Allgemeinen})" />
+
+    Dies liegt daran, dass <InlineMath math="(A - B) - C = A - B - C" />, wohingegen <InlineMath math="A - (B - C) = A - B + C" />.
+
+Entscheidend ist deshalb die Beziehung zur Addition: <InlineMath math="A - B = A + (-B)" />.
+
+Schreibt man die Subtraktion als Addition der Gegenmatrix, lassen sich die bekannten Additionsregeln anwenden.
+
+## Übungen
+
+**Problem** <InlineMath math="1" />
+
+Gegeben sind die folgenden Matrizen:
+
+<MathContainer>
+  <BlockMath math="M = \begin{bmatrix} 4 & -2 & 0 \\ 1 & 5 & 3 \end{bmatrix}" />
+  <BlockMath math="N = \begin{bmatrix} -1 & 1 & -2 \\ 6 & 0 & 7 \end{bmatrix}" />
+</MathContainer>
+
+Bestimme <InlineMath math="M-N" />.
+
+**Problem** <InlineMath math="2" />
+
+Bestimme <InlineMath math="x, y," /> und <InlineMath math="z" /> aus der folgenden Matrixgleichung:
+
+<BlockMath math="\begin{bmatrix} 2x & 7 \\ y-1 & 5 \end{bmatrix} - \begin{bmatrix} 3 & z \\ 4 & -2x \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+
+**Problem** <InlineMath math="3" />
+
+Gegeben sind drei Matrizen:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
+</MathContainer>
+
+Berechne <InlineMath math="(A-B)-C" /> und <InlineMath math="A-(B-C)" />. Sind die Ergebnisse gleich?
+
+### Ausführliche Lösungen
+
+**Problem** <InlineMath math="1" />
+
+Gegeben:
+
+<MathContainer>
+  <BlockMath math="M = \begin{bmatrix} 4 & -2 & 0 \\ 1 & 5 & 3 \end{bmatrix}" />
+  <BlockMath math="N = \begin{bmatrix} -1 & 1 & -2 \\ 6 & 0 & 7 \end{bmatrix}" />
+</MathContainer>
+
+Dann ist <InlineMath math="M-N" />:
+
+<MathContainer>
+  <BlockMath math="M-N = \begin{bmatrix} 4 & -2 & 0 \\ 1 & 5 & 3 \end{bmatrix} - \begin{bmatrix} -1 & 1 & -2 \\ 6 & 0 & 7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 4-(-1) & -2-1 & 0-(-2) \\ 1-6 & 5-0 & 3-7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 4+1 & -3 & 0+2 \\ -5 & 5 & -4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 5 & -3 & 2 \\ -5 & 5 & -4 \end{bmatrix}" />
+</MathContainer>
+
+**Problem** <InlineMath math="2" />
+
+Gegeben sei die Matrixgleichung:
+
+<BlockMath math="\begin{bmatrix} 2x & 7 \\ y-1 & 5 \end{bmatrix} - \begin{bmatrix} 3 & z \\ 4 & -2x \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+
+Auf der linken Seite wird eintragsweise subtrahiert:
+
+<MathContainer>
+  <BlockMath math="\begin{bmatrix} 2x-3 & 7-z \\ (y-1)-4 & 5-(-2x) \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+  <BlockMath math="\begin{bmatrix} 2x-3 & 7-z \\ y-5 & 5+2x \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+</MathContainer>
+
+Aus der Gleichheit zweier Matrizen folgt, dass die entsprechenden Einträge übereinstimmen müssen:
+
+Aus dem Element in Zeile <InlineMath math="1" />, Spalte <InlineMath math="1" />: <InlineMath math="2x-3 = 5" />
+
+<MathContainer>
+  <BlockMath math="2x = 5+3" />
+  <BlockMath math="2x = 8" />
+  <BlockMath math="x = 4" />
+</MathContainer>
+
+Aus dem Element in Zeile <InlineMath math="1" />, Spalte <InlineMath math="2" />: <InlineMath math="7-z = 10" />
+
+<MathContainer>
+  <BlockMath math="-z = 10-7" />
+  <BlockMath math="-z = 3" />
+  <BlockMath math="z = -3" />
+</MathContainer>
+
+Aus dem Element in Zeile <InlineMath math="2" />, Spalte <InlineMath math="1" />: <InlineMath math="y-5 = -3" />
+
+<MathContainer>
+  <BlockMath math="y = -3+5" />
+  <BlockMath math="y = 2" />
+</MathContainer>
+
+Aus dem Element in Zeile <InlineMath math="2" />, Spalte <InlineMath math="2" />: <InlineMath math="5+2x = 13" />.
+
+Setzt man <InlineMath math="x=4" /> aus der ersten Gleichung ein, erhält man <InlineMath math="5+2(4) = 13" />.
+
+Der gemeinsame Wert <InlineMath math="13" /> unten rechts bestätigt damit den Wert von <InlineMath math="x" />, statt eine weitere Unbekannte zu liefern.
+
+Die Lösung lautet also <InlineMath math="x=4" />, <InlineMath math="y=2" /> und <InlineMath math="z=-3" />.
+
+Durch Einsetzen in die ursprüngliche Gleichung lassen sich alle vier zugehörigen Einträge überprüfen.
+
+**Problem** <InlineMath math="3" />
+
+Gegeben:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
+</MathContainer>
+
+Berechne zuerst <InlineMath math="(A-B)-C" />:
+
+Zuerst <InlineMath math="A-B" />:
+
+<MathContainer>
+  <BlockMath math="A-B = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1-3 & 0-(-2) \\ 0-5 & 1-1 \end{bmatrix} = \begin{bmatrix} -2 & 2 \\ -5 & 0 \end{bmatrix}" />
+</MathContainer>
+
+Dann <InlineMath math="(A-B)-C" />:
+
+<MathContainer>
+  <BlockMath math="(A-B)-C = \begin{bmatrix} -2 & 2 \\ -5 & 0 \end{bmatrix} - \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} -2-(-4) & 2-0 \\ -5-2 & 0-(-3) \end{bmatrix} = \begin{bmatrix} -2+4 & 2 \\ -7 & 0+3 \end{bmatrix} = \begin{bmatrix} 2 & 2 \\ -7 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Berechne danach <InlineMath math="A-(B-C)" />:
+
+Zuerst <InlineMath math="B-C" />:
+
+<MathContainer>
+  <BlockMath math="B-C = \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix} - \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 3-(-4) & -2-0 \\ 5-2 & 1-(-3) \end{bmatrix} = \begin{bmatrix} 3+4 & -2 \\ 3 & 1+3 \end{bmatrix} = \begin{bmatrix} 7 & -2 \\ 3 & 4 \end{bmatrix}" />
+</MathContainer>
+
+Dann <InlineMath math="A-(B-C)" />:
+
+<MathContainer>
+  <BlockMath math="A-(B-C) = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} 7 & -2 \\ 3 & 4 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1-7 & 0-(-2) \\ 0-3 & 1-4 \end{bmatrix} = \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />
+</MathContainer>
+
+Die Ergebnisse sind nicht die gleichen: <InlineMath math="\begin{bmatrix} 2 & 2 \\ -7 & 3 \end{bmatrix} \neq \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />.
+
+Dies zeigt, dass die Matrixsubtraktion nicht assoziativ ist.

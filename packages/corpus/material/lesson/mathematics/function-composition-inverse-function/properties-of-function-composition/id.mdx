@@ -16,6 +16,10 @@ Komposisi fungsi, yaitu menggabungkan fungsi secara berurutan, memiliki beberapa
   <BlockMath math="h(x) = \frac{1}{x+1}" />
 </MathContainer>
 
+Domain ketiga fungsi adalah:
+
+<BlockMath math="D_f=D_g=\mathbb{R}\qquad D_h=\mathbb{R}\setminus\{-1\}" />
+
 ### Sifat Tidak Komutatif
 
 Sifat pertama dan yang paling sering ditemui adalah bahwa urutan dalam mengkomposisikan fungsi itu **penting**. Mengubah urutan fungsi biasanya akan menghasilkan fungsi komposisi yang berbeda.
@@ -40,11 +44,15 @@ Mari kita bandingkan <InlineMath math="(g \circ f)(x)" /> dan <InlineMath math="
       <BlockMath math="f(x^2+4) = 2(x^2+4) + 1 = (2x^2 + 8) + 1 = 2x^2 + 9" />
     </MathContainer>
 
-Karena <InlineMath math="4x^2 + 4x + 5 \neq 2x^2 + 9" />, maka terbukti bahwa <InlineMath math="(g \circ f)(x) \neq (f \circ g)(x)" />. Sifat ini berlaku juga untuk komposisi lain, misalnya <InlineMath math="(f \circ h)(x) \neq (h \circ f)(x)" /> dan <InlineMath math="(g \circ h)(x) \neq (h \circ g)(x)" />.
+Kedua bentuk polinomial memiliki koefisien yang berbeda, sehingga keduanya bukan fungsi yang sama. Satu input juga memberi contoh penyangkal langsung:
+
+<BlockMath math="(g\circ f)(0)=5\neq9=(f\circ g)(0)" />
+
+Jadi, <InlineMath math="g\circ f\neq f\circ g" /> sebagai fungsi. Pasangan lain harus diperiksa dengan cara yang sama; secara umum, komposisi tidak bersifat komutatif.
 
 ### Sifat Asosiatif
 
-Jika kita mengkomposisikan tiga fungsi atau lebih, urutan **pengerjaan** komposisinya tidak mempengaruhi hasil akhir, asalkan urutan **fungsinya** tetap sama.
+Jika tiga fungsi memiliki domain dan kodomain yang sesuai, perubahan pengelompokan saja tidak mengubah hasil. Urutan **fungsinya** harus tetap sama, dan kedua ruas dibandingkan pada input yang membuat komposisinya terdefinisi.
 
 Secara matematis, untuk fungsi <InlineMath math="f" />, <InlineMath math="g" />, dan <InlineMath math="h" />, berlaku:
 
@@ -81,26 +89,26 @@ Mari kita cek apakah <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \c
       <BlockMath math="f\left(\frac{1}{(x+1)^2} + 4\right) = 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 = \frac{2}{(x+1)^2} + 8 + 1 = \frac{2}{(x+1)^2} + 9" />
     </MathContainer>
 
-Karena hasil keduanya sama (<InlineMath math="\frac{2}{(x+1)^2} + 9" />), maka terbukti sifat asosiatif berlaku: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
+Karena kedua hasilnya sama (<InlineMath math="\frac{2}{(x+1)^2} + 9" />) untuk <InlineMath math="x\neq-1" />, sifat asosiatif berlaku pada domain bersama: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
 Sifat asosiatif ini berlaku untuk kombinasi urutan fungsi lainnya juga, seperti <InlineMath math="((h \circ f) \circ g)(x) = (h \circ (f \circ g))(x)" /> dan <InlineMath math="((g \circ f) \circ h)(x) = (g \circ (f \circ h))(x)" />.
 
 ### Elemen Identitas
 
-Ada sebuah fungsi khusus yang disebut **fungsi identitas**, dilambangkan dengan <InlineMath math="I(x)" />, yang didefinisikan sebagai <InlineMath math="I(x) = x" />. Fungsi ini tidak mengubah inputnya.
+**Fungsi identitas** memetakan setiap anggota suatu himpunan ke dirinya sendiri. Untuk <InlineMath math="f:A\to B" />, misalkan <InlineMath math="I_A" /> adalah identitas pada <InlineMath math="A" /> dan <InlineMath math="I_B" /> adalah identitas pada <InlineMath math="B" />.
 
-Jika fungsi <InlineMath math="f" /> dikomposisikan dengan fungsi identitas <InlineMath math="I" /> (baik dari kiri maupun kanan), hasilnya adalah fungsi <InlineMath math="f" /> itu sendiri.
+Komposisi dengan fungsi identitas pada himpunan yang sesuai tidak mengubah <InlineMath math="f" />:
 
 <MathContainer>
-  <BlockMath math="(f \circ I)(x) = f(I(x)) = f(x)" />
-  <BlockMath math="(I \circ f)(x) = I(f(x)) = f(x)" />
+  <BlockMath math="(f\circ I_A)(x)=f(I_A(x))=f(x)" />
+  <BlockMath math="(I_B\circ f)(x)=I_B(f(x))=f(x)" />
 </MathContainer>
 
 **Contoh:**
 
-Dengan <InlineMath math="f(x) = 2x + 1" />:
+Dengan <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> dan <InlineMath math="f(x) = 2x + 1" />:
 
-- <InlineMath math="(f \circ I)(x) = f(I(x)) = f(x) = 2x + 1" />
-- <InlineMath math="(I \circ f)(x) = I(f(x)) = I(2x+1) = 2x + 1" />
+- <InlineMath math="(f\circ I_{\mathbb{R}})(x)=f(I_{\mathbb{R}}(x))=2x+1" />
+- <InlineMath math="(I_{\mathbb{R}}\circ f)(x)=I_{\mathbb{R}}(f(x))=2x+1" />
 
 Keduanya menghasilkan fungsi <InlineMath math="f(x)" /> kembali.

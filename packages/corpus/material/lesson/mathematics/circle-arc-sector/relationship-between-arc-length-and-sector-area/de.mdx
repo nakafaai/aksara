@@ -1,0 +1,493 @@
+export const metadata = {
+  title: "Beziehung zwischen Bogenlänge und Sektorfläche",
+  description: "Den proportionalen Zusammenhang zwischen Bogenlänge, Sektorfläche und Mittelpunktswinkel verstehen und anwenden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+
+## Grundlegende Konzepte von Bogen- und Sektorbeziehungen
+
+Bogenlänge und Sektorfläche werden vom selben Mittelpunktswinkel bestimmt. Bei einem drehenden Fahrradrad gilt anschaulich: Je größer der Drehwinkel, desto länger ist der Weg eines Punktes am Rand und desto größer ist die vom Radius überstrichene Fläche.
+
+Ändert sich der Mittelpunktswinkel, ändern sich beide Größen im gleichen Verhältnis zum gesamten Umfang beziehungsweise zur gesamten Kreisfläche.
+
+## Grundlegende Proportion
+
+Das Grundverhältnis, das die Bogenlänge und die Sektorfläche zum gesamten Kreis verbindet, kann wie folgt ausgedrückt werden:
+
+<MathContainer>
+<BlockMath math="\frac{\text{Bogenlänge}}{\text{Kreisumfang}} = \frac{\text{Sektorfläche}}{\text{Kreisfläche}} = \frac{\alpha}{360^\circ}" />
+</MathContainer>
+
+Alle drei Brüche beschreiben denselben Anteil am vollständigen Kreis.
+
+## Mathematische Formeln
+
+Aus der Proportion folgen die beiden bekannten Formeln:
+
+<MathContainer>
+<BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
+</MathContainer>
+
+Eliminieren wir den Winkelanteil, erhalten wir einen direkten Zusammenhang:
+
+<MathContainer>
+<BlockMath math="\text{Sektorfläche} = \frac{1}{2} \times \text{Bogenlänge} \times r" />
+</MathContainer>
+
+## Visualisierung proportionaler Beziehungen
+
+Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunktswinkel.
+
+<ContentStack>
+
+<LineEquation
+  title={<>Winkel <InlineMath math="45^\circ" /> ergibt ein Verhältnis <InlineMath math="\frac{1}{8}" /></>}
+  description={<>Kreis mit Mittelpunktswinkel <InlineMath math="45^\circ" /> zeigt, dass Bogenlänge = <InlineMath math="\frac{1}{8}" /> Umfang und Sektorfläche = <InlineMath math="\frac{1}{8}" /> Kreisfläche.</>}
+  cameraPosition={[7, 5, 7]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 16 }, (_, i) => {
+        const angle = (i * Math.PI / 4) / 15;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="45^\circ" />,
+          at: 8,
+          offset: [1, 0.8, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+<LineEquation
+  title={<>Winkel <InlineMath math="90^\circ" /> ergibt ein Verhältnis <InlineMath math="\frac{1}{4}" /></>}
+  description={<>Kreis mit Mittelpunktswinkel <InlineMath math="90^\circ" /> zeigt, dass Bogenlänge = <InlineMath math="\frac{1}{4}" /> Umfang und Sektorfläche = <InlineMath math="\frac{1}{4}" /> Kreisfläche.</>}
+  cameraPosition={[7, 5, 7]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const angle = (i * Math.PI / 2) / 30;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="90^\circ" />,
+          at: 15,
+          offset: [0.8, 1, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+<LineEquation
+  title={<>Winkel <InlineMath math="180^\circ" /> ergibt ein Verhältnis <InlineMath math="\frac{1}{2}" /></>}
+  description={<>Kreis mit Mittelpunktswinkel <InlineMath math="180^\circ" /> zeigt, dass Bogenlänge = <InlineMath math="\frac{1}{2}" /> Umfang und Sektorfläche = <InlineMath math="\frac{1}{2}" /> Kreisfläche.</>}
+  cameraPosition={[7, 5, 7]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const angle = (i * Math.PI) / 30;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="180^\circ" />,
+          at: 15,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+<LineEquation
+  title={<>Allgemeiner Winkel <InlineMath math="\alpha" /></>}
+  description={<>Für jeden Mittelpunktswinkel <InlineMath math="\alpha" /> gilt: Bogenlänge = <InlineMath math="\frac{\alpha}{360^\circ}" /> des Umfangs und Sektorfläche = <InlineMath math="\frac{\alpha}{360^\circ}" /> der Kreisfläche.</>}
+  cameraPosition={[7, 5, 7]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 60;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#65a30d",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3), z: 0 },
+      ],
+      color: "#65a30d",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const angle = (i * 2 * Math.PI / 3) / 40;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#c026d3",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="\alpha=120^\circ" />,
+          at: 20,
+          offset: [-0.8, 1, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+</ContentStack>
+
+Für jeden Mittelpunktswinkel <InlineMath math="\alpha" /> gilt damit:
+
+<MathContainer>
+<BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times \text{Kreisumfang}" />
+<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \text{Kreisfläche}" />
+</MathContainer>
+
+Oder in vollständiger Formelform:
+
+<MathContainer>
+<BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
+</MathContainer>
+
+Auf demselben Kreis gehören zu gleich großen Mittelpunktswinkeln gleich lange Bögen und gleich große Sektoren. Bei benachbarten Winkeln addieren sich auch die zugehörigen Bogenlängen und Sektorflächen.
+
+## Anwendung in der Erdmessung
+
+Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebte, nutzte dieselbe Proportion zur Abschätzung des Erdumfangs. Zur Sommersonnenwende stand die Sonne in Syene senkrecht, während ein senkrechter Stab in Alexandria eine Winkeldifferenz von <InlineMath math="7{,}2^\circ" /> zeigte. Die Entfernung zwischen beiden Orten wurde mit <InlineMath math="5{.}000 \text{ Stadien}" /> angesetzt.
+
+<LineEquation
+  title={<>Erdumfangsmessung durch Eratosthenes</>}
+  description={<>Das Modell verbindet einen Winkel von <InlineMath math="7{,}2^\circ" /> mit einer Oberflächenstrecke von <InlineMath math="5{.}000 \text{ Stadien}" />.</>}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 73 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 72;
+        return {
+          x: 5 * Math.cos(angle),
+          y: 5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 2,
+      labels: [
+        {
+          text: "Erde",
+          at: 18,
+          offset: [1.5, 0, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: "Alexandria",
+          at: 1,
+          offset: [0.5, -0.8, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 5 * Math.cos((7.2 * Math.PI) / 180), y: 5 * Math.sin((7.2 * Math.PI) / 180), z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: "Syene",
+          at: 1,
+          offset: [0.5, 0.8, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 11 }, (_, i) => {
+        const angle = (i * (7.2 * Math.PI) / 180) / 10;
+        return {
+          x: 5 * Math.cos(angle),
+          y: 5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 4,
+      labels: [
+        {
+          text: <InlineMath math="5{.}000\,\text{Stadien}" />,
+          at: 5,
+          offset: [1.2, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 11 }, (_, i) => {
+        const angle = (i * (7.2 * Math.PI) / 180) / 10;
+        const radius = 1.5;
+        return {
+          x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 3,
+      labels: [
+        {
+          text: <InlineMath math="7{,}2^\circ" />,
+          at: 5,
+          offset: [0.8, 0.3, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+Verwendung der proportionalen Beziehung:
+
+<MathContainer>
+<BlockMath math="\frac{\text{Entfernung Alexandria-Syene}}{\text{Erdumfang}} = \frac{7{,}2^\circ}{360^\circ}" />
+<BlockMath math="\frac{5{.}000 \text{ Stadien}}{\text{Erdumfang}} = \frac{7{,}2^\circ}{360^\circ} = \frac{1}{50}" />
+<BlockMath math="\text{Erdumfang} = 5{.}000 \times 50 = 250{.}000 \text{ Stadien}" />
+</MathContainer>
+
+Die genaue Länge eines antiken Stadions ist nicht sicher bekannt. Mit einer häufig verwendeten Umrechnung entspricht das Ergebnis ungefähr <InlineMath math="40{.}000 \text{ km}" />.
+
+## Direkte Beziehung zwischen Bogen und Sektor
+
+Setzen wir Bogenlänge und Sektorfläche desselben Winkels ins Verhältnis, folgt:
+
+<MathContainer>
+<BlockMath math="\frac{\text{Sektorfläche}}{\text{Bogenlänge}} = \frac{r}{2}" />
+</MathContainer>
+
+Das Verhältnis hängt nur vom Radius ab, nicht von der Größe des Mittelpunktswinkels.
+
+## Übungen
+
+1. Ein Kreis hat den Radius <InlineMath math="14 \text{ cm}" />. Die Bogenlänge eines Sektors beträgt <InlineMath math="22 \text{ cm}" />. Bestimme seine Fläche.
+
+2. Ein Sektor hat die Fläche <InlineMath math="154 \text{ cm}^2" /> und die Bogenlänge <InlineMath math="22 \text{ cm}" />. Bestimme den Kreisradius.
+
+3. Zwei Orte liegen auf demselben Großkreis und sind <InlineMath math="1{.}000 \text{ km}" /> voneinander entfernt. Der zugehörige Mittelpunktswinkel der Erde beträgt <InlineMath math="9^\circ" />. Schätze den Erdumfang.
+
+### Ausführliche Lösungen
+
+1. **Lösungsschritte:**
+
+   Gegeben: <InlineMath math="r = 14 \text{ cm}" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
+
+   Verwendet wird: <InlineMath math="\text{Sektorfläche} = \frac{1}{2} \times \text{Bogenlänge} \times r" />
+
+   <MathContainer>
+   <BlockMath math="\text{Sektorfläche} = \frac{1}{2} \times 22 \times 14" />
+   <BlockMath math="= \frac{22 \times 14}{2}" />
+   <BlockMath math="= \frac{308}{2}" />
+   <BlockMath math="= 154 \text{ cm}^2" />
+   </MathContainer>
+
+2. **Lösungsschritte:**
+
+   Gegeben: Sektorfläche = <InlineMath math="154 \text{ cm}^2" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
+
+   Verwendet wird: <InlineMath math="\frac{\text{Sektorfläche}}{\text{Bogenlänge}} = \frac{r}{2}" />
+
+   <MathContainer>
+   <BlockMath math="\frac{154}{22} = \frac{r}{2}" />
+   <BlockMath math="7 = \frac{r}{2}" />
+   <BlockMath math="r = 14 \text{ cm}" />
+   </MathContainer>
+
+3. **Lösungsschritte:**
+
+   Gegeben: Abstand = <InlineMath math="1{.}000 \text{ km}" />, Winkel = <InlineMath math="9^\circ" />
+
+   Verwenden des Verhältnisses: <InlineMath math="\frac{\text{Entfernung}}{\text{Erdumfang}} = \frac{9^\circ}{360^\circ}" />
+
+   <MathContainer>
+   <BlockMath math="\frac{1{.}000}{\text{Erdumfang}} = \frac{9^\circ}{360^\circ} = \frac{1}{40}" />
+   <BlockMath math="\text{Erdumfang} = 1{.}000 \times 40" />
+   <BlockMath math="= 40{.}000 \text{ km}" />
+   </MathContainer>
+
+## Quellen
+
+- [NASA Goddard: The Earth](https://imagine.gsfc.nasa.gov/features/cosmic/earth_info.html)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)

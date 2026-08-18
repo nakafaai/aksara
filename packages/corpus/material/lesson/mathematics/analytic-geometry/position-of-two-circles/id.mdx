@@ -10,15 +10,15 @@ export const metadata = {
 
 ## Hubungan Antar Lingkaran
 
-Pernahkah kamu perhatikan bagaimana dua gelembung sabun berinteraksi? Kadang mereka bersilangan, kadang cuma bersentuhan sekilas, atau malah menghindar satu sama lain. Nah, konsep matematika tentang **kedudukan dua lingkaran** mirip banget dengan fenomena ini!
+Dua gelembung sabun memberi gambaran sederhana tentang berbagai kedudukan lingkaran. Batasnya dapat berpotongan, bersentuhan di satu titik, atau tetap terpisah.
 
-Dalam geometri analitik, kita bisa menentukan dengan pasti bagaimana hubungan dua lingkaran: apakah mereka berpotongan, bersinggungan, atau justru terpisah sama sekali. Yang menarik, semua ini bisa diprediksi hanya dengan mengetahui pusat dan jari-jari masing-masing lingkaran.
+Dalam geometri analitik, pusat dan jari-jari kedua lingkaran sudah cukup untuk menentukan kedudukannya secara tepat. Besaran penentunya adalah jarak antara kedua pusat.
 
-Konsep ini super berguna dalam kehidupan nyata. Misalnya, untuk mendesain roda gigi yang harus bersinggungan dengan sempurna, menghitung area coverage dua antena radio, atau bahkan merencanakan taman dengan kolam bundar yang saling berhubungan.
+Perbandingan yang sama digunakan untuk memeriksa apakah dua daerah berbentuk lingkaran saling tumpang tindih, bersentuhan, atau memiliki celah, misalnya pada peta jangkauan atau rancangan geometri.
 
 ## Lingkaran Berpotongan
 
-Dua lingkaran dikatakan **berpotongan** kalau mereka bertemu di dua titik berbeda. Bayangin aja seperti dua cincin yang saling "menembus" satu sama lain.
+Dua lingkaran **berpotongan** jika memiliki tepat dua titik persekutuan. Daerah lingkarannya bertumpang tindih, sedangkan kelilingnya berpotongan di kedua titik tersebut.
 
 <LineEquation
   title="Dua Lingkaran Berpotongan"
@@ -127,15 +127,15 @@ Untuk dua lingkaran dengan jari-jari <InlineMath math="r_1" /> dan <InlineMath m
 
 <BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
 
-Logikanya gini:
+Kedua batas ketat pada pertidaksamaan menjelaskan syarat tersebut:
 
-- **Batas atas**: Kalau jarak pusat adalah <InlineMath math="r_1 + r_2" />, kedua lingkaran cuma bersentuhan di luar
-- **Batas bawah**: Kalau jarak pusat adalah <InlineMath math="|r_1 - r_2|" />, lingkaran kecil bersentuhan dengan yang besar dari dalam
-- **Area berpotongan**: Di antara kedua batas ini, lingkaran pasti berpotongan di dua titik
+- **Batas atas**: Saat jarak pusat sama dengan <InlineMath math="r_1 + r_2" />, kedua lingkaran bersinggungan luar
+- **Batas bawah**: Saat jarak pusat sama dengan <InlineMath math="|r_1 - r_2|" />, lingkaran kecil bersinggungan dalam dengan lingkaran besar
+- **Di antara kedua batas**: Kedua keliling berpotongan di dua titik
 
 ## Lingkaran Bersinggungan
 
-Bersinggungan artinya dua lingkaran **cuma ketemu di satu titik aja**. Seperti dua roda yang bersentuhan tepat di satu titik buat mentransfer gerak.
+Dua lingkaran **bersinggungan** jika memiliki tepat satu titik persekutuan. Persinggungan dapat terjadi di luar kedua lingkaran atau di dalam lingkaran yang lebih besar.
 
 <LineEquation
   title="Lingkaran Bersinggungan Luar"
@@ -218,13 +218,13 @@ Bersinggungan artinya dua lingkaran **cuma ketemu di satu titik aja**. Seperti d
   showZAxis={false}
 />
 
-Ada dua jenis bersinggungan:
+Untuk dua lingkaran yang tidak berhimpit, ada dua kasus persinggungan:
 
 1. **Bersinggungan luar** terjadi ketika <InlineMath math="d = r_1 + r_2" />. Kedua lingkaran berada terpisah dan bersentuhan di satu titik.
 
-2. **Bersinggungan dalam** terjadi ketika <InlineMath math="d = |r_1 - r_2|" />. Lingkaran kecil ada di dalam yang besar dan bersentuhan di satu titik.
+2. **Bersinggungan dalam** terjadi ketika <InlineMath math="d = |r_1 - r_2| > 0" />. Lingkaran yang lebih kecil berada di dalam lingkaran yang lebih besar dan keduanya bersentuhan di satu titik.
 
-Ini adalah contoh lingkaran bersinggungan dalam:
+Diagram berikut menunjukkan persinggungan dalam:
 
 <LineEquation
   title="Lingkaran Bersinggungan Dalam"
@@ -309,7 +309,7 @@ Ini adalah contoh lingkaran bersinggungan dalam:
 
 ## Lingkaran Terpisah
 
-Kondisi ini terjadi ketika kedua lingkaran **sama sekali gak bersentuhan**. Seperti dua pulau yang terpisah lautan, gak ada koneksi fisik di antara keduanya.
+Dua lingkaran saling lepas di bagian luar jika keliling maupun daerahnya tidak bertemu.
 
 <LineEquation
   title="Dua Lingkaran Terpisah"
@@ -398,11 +398,11 @@ Kondisi terpisah terjadi ketika jarak antar pusat lebih besar dari jumlah kedua 
 
 <BlockMath math="d > r_1 + r_2" />
 
-Dalam situasi ini, gak ada titik yang jadi anggota kedua lingkaran sekaligus. Mereka benar-benar terpisah di bidang koordinat.
+Dalam keadaan ini, tidak ada titik yang menjadi anggota kedua daerah lingkaran sekaligus.
 
 ## Lingkaran Konsentris dan Berhimpit
 
-**Lingkaran konsentris** adalah dua lingkaran yang pusatnya sama tapi jari-jarinya beda. Bayangin target panah dengan lingkaran-lingkaran yang berpusat sama.
+**Lingkaran konsentris** memiliki pusat yang sama tetapi jari-jari berbeda, seperti lingkaran-lingkaran pada papan sasaran panahan.
 
 <LineEquation
   title="Lingkaran Konsentris"
@@ -491,7 +491,7 @@ Dalam situasi ini, gak ada titik yang jadi anggota kedua lingkaran sekaligus. Me
 
 Untuk lingkaran konsentris, jarak antar pusat adalah nol (<InlineMath math="d = 0" />) tapi jari-jari berbeda (<InlineMath math="r_1 \ne r_2" />).
 
-**Lingkaran berhimpit** adalah kondisi khusus dimana kedua lingkaran benar-benar identik. Mereka punya pusat dan jari-jari yang sama persis, jadi keliatan seperti satu lingkaran aja.
+**Lingkaran berhimpit** memiliki pusat dan jari-jari yang sama. Kedua keliling tepat saling menutupi sehingga tampak sebagai satu lingkaran.
 
 Kondisi berhimpit terjadi ketika:
 
@@ -502,7 +502,7 @@ Kondisi berhimpit terjadi ketika:
 
 ## Cara Menentukan Kedudukan
 
-Untuk menentukan kedudukan dua lingkaran secara praktis, kita perlu hitung jarak antar pusat dan bandingkan dengan jari-jari.
+Untuk mengelompokkan kedudukan dua lingkaran, hitung jarak antarpusat lalu bandingkan dengan jumlah dan selisih mutlak kedua jari-jari.
 
 Misalkan lingkaran pertama berpusat di <InlineMath math="(x_1, y_1)" /> dengan jari-jari <InlineMath math="r_1" />, dan lingkaran kedua berpusat di <InlineMath math="(x_2, y_2)" /> dengan jari-jari <InlineMath math="r_2" />.
 
@@ -510,19 +510,19 @@ Jarak antar pusat dihitung dengan rumus:
 
 <BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
 
-Setelah dapat nilai <InlineMath math="d" />, kita bisa tentukan kedudukan berdasarkan kondisi berikut:
+Dengan asumsi kedua jari-jari positif, kondisi berikut mencakup semua kemungkinan dan tidak saling tumpang tindih:
 
-- **Saling lepas**: <InlineMath math="d > r_1 + r_2" /> (lingkaran terpisah jauh)
-- **Bersinggungan luar**: <InlineMath math="d = r_1 + r_2" /> (bersentuhan di luar)
-- **Berpotongan**: <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" /> (memotong di dua titik)
-- **Bersinggungan dalam**: <InlineMath math="d = |r_1 - r_2|" /> (bersentuhan di dalam)
-- **Tidak berpotongan**: <InlineMath math="d < |r_1 - r_2|" /> (satu lingkaran di dalam lainnya)
-- **Konsentris**: <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" /> (pusat sama, jari-jari beda)
-- **Berhimpit**: <InlineMath math="d = 0" /> dan <InlineMath math="r_1 = r_2" /> (lingkaran identik)
+- **Berhimpit**: <InlineMath math="d = 0" /> dan <InlineMath math="r_1 = r_2" /> (kelilingnya sama)
+- **Konsentris tetapi berbeda**: <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" /> (pusat sama, jari-jari berbeda)
+- **Berada di dalam tanpa bersinggungan dan tidak konsentris**: <InlineMath math="0 < d < |r_1-r_2|" /> (satu lingkaran sepenuhnya berada di dalam yang lain)
+- **Bersinggungan dalam**: <InlineMath math="d = |r_1-r_2| > 0" /> (satu titik singgung di bagian dalam)
+- **Berpotongan**: <InlineMath math="|r_1-r_2| < d < r_1+r_2" /> (dua titik persekutuan)
+- **Bersinggungan luar**: <InlineMath math="d = r_1+r_2" /> (satu titik singgung di bagian luar)
+- **Saling lepas di luar**: <InlineMath math="d > r_1+r_2" /> (kedua daerah lingkaran tidak bertemu)
 
 ### Contoh Penerapan
 
-Tentukan kedudukan dua lingkaran dengan persamaan <InlineMath math="x^2 + y^2 = 9" /> dan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
+Kelompokkan kedudukan lingkaran dengan persamaan <InlineMath math="x^2 + y^2 = 9" /> dan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
 
 **Langkah** <InlineMath math="1" />: Identifikasi pusat dan jari-jari masing-masing lingkaran.
 
@@ -551,7 +551,7 @@ Lingkaran kedua: pusat <InlineMath math="(3, 4)" />, jari-jari <InlineMath math=
 
 Karena <InlineMath math="2 < 5 < 8" />, maka kedua lingkaran **saling berpotongan**.
 
-Untuk memastikan jawaban benar, kita bisa cek kondisi <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" />:
+Sebagai pemeriksaan, substitusikan ketiga nilai ke syarat <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" />:
 - <InlineMath math="|3 - 5| = 2" />
 - <InlineMath math="3 + 5 = 8" />
 - <InlineMath math="2 < 5 < 8" /> <InlineMath math="\checkmark" /> (kondisi berpotongan terpenuhi)

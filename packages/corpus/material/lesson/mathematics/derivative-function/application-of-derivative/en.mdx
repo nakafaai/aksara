@@ -8,15 +8,15 @@ export const metadata = {
 
 ## Understanding Motion Through Derivatives
 
-Derivatives are not just an abstract concept in mathematics; they help us understand **change**. One of their most tangible applications is in physics, especially for analyzing the motion of an object. If we know the position function of an object at any given time, we can use derivatives to find its velocity and even its acceleration at any moment.
+Derivatives describe how a quantity **changes**. Motion gives a concrete example: from an object's position function, we can determine its instantaneous velocity and then its acceleration.
 
 ## Instantaneous Velocity from Position
 
-Imagine you are driving a car. Your position is constantly changing over time. **Velocity** is the rate of change of that position. If we have a function that describes position, <InlineMath math="s(t)" />, then the instantaneous velocity, <InlineMath math="v(t)" />, at time <InlineMath math="t" /> is the first derivative of the position function.
+As a car moves, its position changes over time. **Velocity** is the rate of change of that position. If <InlineMath math="s(t)" /> describes position, then the instantaneous velocity <InlineMath math="v(t)" /> at time <InlineMath math="t" /> is the first derivative of the position function.
 
 <BlockMath math="v(t) = s'(t) = \frac{ds}{dt}" />
 
-This means we can determine the precise velocity at any instant, not just the average velocity over a journey.
+At every time where <InlineMath math="s" /> is differentiable, this derivative gives the instantaneous velocity rather than an average over a time interval.
 
 ### Determining the Velocity Function
 
@@ -27,11 +27,15 @@ For example, the motion of a particle is determined by the position function <In
   <BlockMath math="v(t) = 3t^2 - 12t + 9" />
 </MathContainer>
 
-With this function, we can calculate the particle's velocity at any time. For instance, at <InlineMath math="t = 1 \text{ second}" />, the velocity is <InlineMath math="v(1) = 3(1)^2 - 12(1) + 9 = 0 \text{ m/s}" />. This zero result indicates that the particle is momentarily at rest, perhaps pausing for a moment or even changing direction.
+At <InlineMath math="t = 1 \text{ second}" />, the velocity is <InlineMath math="v(1) = 3(1)^2 - 12(1) + 9 = 0 \text{ m/s}" />. A zero velocity means the particle is momentarily at rest, but it does not by itself prove a change of direction. Factor the velocity to inspect its sign on either side of <InlineMath math="t=1" />:
+
+<BlockMath math="v(t)=3(t-1)(t-3)" />
+
+For <InlineMath math="0<t<1" />, both factors are negative, so <InlineMath math="v(t)>0" />. For <InlineMath math="1<t<3" />, the factors have opposite signs, so <InlineMath math="v(t)<0" />. The velocity therefore changes sign at <InlineMath math="t=1" />, which proves that the particle reverses direction there.
 
 ## Acceleration from Velocity
 
-Now, what if the velocity itself is changing? Perhaps you're pressing the gas pedal or the brakes. This change in velocity is called **acceleration**. Just as velocity is the derivative of position, acceleration, <InlineMath math="a(t)" />, is the first derivative of the velocity function. This also makes it the second derivative of the position function.
+Velocity can itself change, as when a car speeds up or brakes. Its rate of change is called **acceleration**. The acceleration <InlineMath math="a(t)" /> is the first derivative of velocity and therefore the second derivative of position.
 
 <BlockMath math="a(t) = v'(t) = s''(t) = \frac{dv}{dt} = \frac{d^2s}{dt^2}" />
 
@@ -60,9 +64,11 @@ Acceleration function:
 
 <BlockMath math="a(t) = v'(t) = -10" />
 
-> The acceleration here is constant and negative. This represents Earth's **gravitational acceleration**, which always pulls objects downward. Its value is approximately <InlineMath math="-9.8 \text{ m/s}^2" />, but it is often rounded to <InlineMath math="-10 \text{ m/s}^2" /> in physics calculations to simplify things.
+> This classroom model chooses upward as the positive direction, ignores air resistance, and uses a constant acceleration of <InlineMath math="-10 \text{ m/s}^2" /> near Earth's surface. The negative sign means the acceleration points downward. The commonly used near-surface approximation is <InlineMath math="-9.8 \text{ m/s}^2" />; this model rounds it to <InlineMath math="-10 \text{ m/s}^2" />.
 
-One of the most interesting questions is: **when does the ball reach its maximum height?**
+Because <InlineMath math="h(0)=0" /> and <InlineMath math="h(10)=0" />, the modeled flight runs from launch at <InlineMath math="t=0" /> until the ball returns to its starting height at <InlineMath math="t=10" />.
+
+We now determine **when the ball reaches its maximum height**.
 
 The ball reaches its highest point exactly when it stops for a moment to change direction and fall back down. In other words, this occurs when its velocity is exactly zero.
 
@@ -77,4 +83,4 @@ So, the ball reaches its peak at <InlineMath math="5 \text{ seconds}" />. To fin
 
 <BlockMath math="h(5) = 50(5) - 5(5)^2 = 250 - 125 = 125" />
 
-Thus, the maximum height the ball reaches is **<InlineMath math="125 \text{ meters}" />**. Through derivatives, we not only describe motion but can also analyze and determine crucial moments, such as the highest point of a projectile.
+Thus, the maximum height is **<InlineMath math="125 \text{ meters}" />**. The calculation follows a complete chain: differentiate position, solve for zero velocity within the physical time interval, and substitute that time into the original height function.

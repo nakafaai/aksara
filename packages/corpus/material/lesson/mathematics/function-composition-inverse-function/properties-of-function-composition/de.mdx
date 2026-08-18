@@ -1,0 +1,114 @@
+export const metadata = {
+  title: "Eigenschaften der Funktionszusammensetzung",
+  description: "Erkunden Sie die Eigenschaften der Funktionszusammensetzung: nichtkommutative Ordnung, assoziative Gruppierung und Identitätselemente. Lernen Sie (f∘g)-Regeln mit Beweisen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-27",
+  subject: "Funktionszusammensetzung und Umkehrfunktion",
+};
+
+## Eigenschaften der Funktionszusammensetzung
+
+Die Funktionszusammensetzung, bei der Funktionen nacheinander kombiniert werden, weist mehrere wichtige Eigenschaften auf, die wir kennen müssen. Untersuchen wir diese Eigenschaften anhand der folgenden Beispielfunktionen:
+
+<MathContainer>
+  <BlockMath math="f(x) = 2x + 1" />
+  <BlockMath math="g(x) = x^2 + 4" />
+  <BlockMath math="h(x) = \frac{1}{x+1}" />
+</MathContainer>
+
+Die Definitionsmengen sind:
+
+<BlockMath math="D_f=D_g=\mathbb{R}\qquad D_h=\mathbb{R}\setminus\{-1\}" />
+
+### Nichtkommutative Eigenschaft
+
+Die erste und häufigste Eigenschaft ist, dass die Reihenfolge, in der Funktionen zusammengesetzt sind, **wichtig** ist. Eine Änderung der Reihenfolge der Funktionen führt normalerweise zu einer anderen zusammengesetzten Funktion.
+
+Im Allgemeinen ist <InlineMath math="(f \circ g)(x)" /> **ungleich** <InlineMath math="(g \circ f)(x)" />.
+
+**Beispiel:**
+
+Vergleichen wir <InlineMath math="(g \circ f)(x)" /> und <InlineMath math="(f \circ g)(x)" />.
+
+1.  **Berechnung von <InlineMath math="(g \circ f)(x)" />:**
+
+    <MathContainer>
+      <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
+      <BlockMath math="g(2x+1) = (2x+1)^2 + 4 = (4x^2 + 4x + 1) + 4 = 4x^2 + 4x + 5" />
+    </MathContainer>
+
+2.  **Berechnung von <InlineMath math="(f \circ g)(x)" />:**
+
+    <MathContainer>
+      <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
+      <BlockMath math="f(x^2+4) = 2(x^2+4) + 1 = (2x^2 + 8) + 1 = 2x^2 + 9" />
+    </MathContainer>
+
+Die beiden Polynomterme haben unterschiedliche Koeffizienten und beschreiben daher nicht dieselbe Funktion. Eine einzige Eingabe liefert außerdem ein direktes Gegenbeispiel:
+
+<BlockMath math="(g\circ f)(0)=5\neq9=(f\circ g)(0)" />
+
+Damit gilt <InlineMath math="g\circ f\neq f\circ g" /> als Aussage über die Funktionen. Andere Paare müssen auf dieselbe Weise geprüft werden; im Allgemeinen ist die Funktionskomposition nicht kommutativ.
+
+### Assoziative Eigenschaft
+
+Wenn wir drei oder mehr Funktionen mit passenden Definitions- und Zielmengen komponieren, hat die **Klammerung** keinen Einfluss auf das Endergebnis. Die Reihenfolge der **Funktionen** bleibt dabei unverändert. Beide Seiten werden nur auf ihrem gemeinsamen Definitionsbereich verglichen.
+
+Mathematisch gesehen gilt für die Funktionen <InlineMath math="f" />, <InlineMath math="g" /> und <InlineMath math="h" /> Folgendes:
+
+<BlockMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />
+
+Das bedeutet, dass wir zuerst <InlineMath math="f" /> mit <InlineMath math="g" /> und dann das Ergebnis mit <InlineMath math="h" /> zusammensetzen können. Alternativ können wir zuerst <InlineMath math="g" /> mit <InlineMath math="h" /> und dann <InlineMath math="f" /> mit dem Ergebnis zusammensetzen. Das Ergebnis wird das gleiche sein.
+
+**Beispiel:**
+
+Wir wollen prüfen, ob <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
+
+1.  **Berechnung von <InlineMath math="((f \circ g) \circ h)(x)" />:**
+
+    Wir kennen bereits <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
+
+    <MathContainer>
+      <BlockMath math="((f \circ g) \circ h)(x) = (f \circ g)(h(x)) = (f \circ g)(\frac{1}{x+1})" />
+      <BlockMath math="(f \circ g)(\frac{1}{x+1}) = 2\left(\frac{1}{x+1}\right)^2 + 9 = \frac{2}{(x+1)^2} + 9" />
+    </MathContainer>
+
+2.  **Berechnung von <InlineMath math="(f \circ (g \circ h))(x)" />:**
+
+    Finden Sie zunächst <InlineMath math="(g \circ h)(x)" />:
+
+    <MathContainer>
+      <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
+      <BlockMath math="g(\frac{1}{x+1}) = \left(\frac{1}{x+1}\right)^2 + 4 = \frac{1}{(x+1)^2} + 4" />
+    </MathContainer>
+
+    Setzen Sie nun <InlineMath math="f" /> mit diesem Ergebnis zusammen:
+
+    <MathContainer>
+      <BlockMath math="(f \circ (g \circ h))(x) = f((g \circ h)(x)) = f\left(\frac{1}{(x+1)^2} + 4\right)" />
+      <BlockMath math="f\left(\frac{1}{(x+1)^2} + 4\right) = 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 = \frac{2}{(x+1)^2} + 8 + 1 = \frac{2}{(x+1)^2} + 9" />
+    </MathContainer>
+
+Da beide Ergebnisse für <InlineMath math="x\neq-1" /> gleich <InlineMath math="\frac{2}{(x+1)^2} + 9" /> sind, gilt die assoziative Eigenschaft auf dem gemeinsamen Definitionsbereich: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
+
+Diese assoziative Eigenschaft gilt auch für andere Kombinationen der Funktionsreihenfolge, wie z. B. <InlineMath math="((h \circ f) \circ g)(x) = (h \circ (f \circ g))(x)" /> und <InlineMath math="((g \circ f) \circ h)(x) = (g \circ (f \circ h))(x)" />.
+
+### Identitätselement
+
+Eine **Identitätsfunktion** ordnet jedes Element einer Menge sich selbst zu. Für <InlineMath math="f:A\to B" /> sei <InlineMath math="I_A" /> die Identität auf <InlineMath math="A" /> und <InlineMath math="I_B" /> die Identität auf <InlineMath math="B" />.
+
+Die Zusammensetzung mit der Identität der passenden Menge lässt <InlineMath math="f" /> unverändert:
+
+<MathContainer>
+  <BlockMath math="(f \circ I_A)(x)=f(I_A(x))=f(x)" />
+  <BlockMath math="(I_B \circ f)(x)=I_B(f(x))=f(x)" />
+</MathContainer>
+
+**Beispiel:**
+
+Mit <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> und <InlineMath math="f(x) = 2x + 1" />:
+
+- <InlineMath math="(f\circ I_{\mathbb{R}})(x)=f(I_{\mathbb{R}}(x))=2x+1" />
+- <InlineMath math="(I_{\mathbb{R}}\circ f)(x)=I_{\mathbb{R}}(f(x))=2x+1" />
+
+Beides ergibt wieder die Funktion <InlineMath math="f(x)" />.

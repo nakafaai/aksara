@@ -1,0 +1,115 @@
+
+export const metadata = {
+  title: "Spiegelung an einer Geraden",
+  description: "Verstehe Spiegelungen an beliebigen Geraden mithilfe von Mittelsenkrechten, gleichen Abständen und einer präzisen Visualisierung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-10",
+  subject: "Geometrische Transformation",
+};
+
+## Was ist eine Spiegelung an einer Geraden?
+
+Eine Spiegelung an einer Geraden bildet jeden Punkt der Ebene auf seine spiegelbildliche Position ab.
+
+Die Gerade, an der gespiegelt wird, heißt **Spiegelgerade** oder **Spiegelachse**.
+
+Stell dir einen ebenen Spiegel vor: Gegenstand und Spiegelbild liegen auf entgegengesetzten Seiten der Spiegelfläche und haben denselben Abstand zu ihr. Genau diese Beziehung beschreibt die geometrische Spiegelung.
+
+Gegeben seien ein Punkt <InlineMath math="P(x,y)" /> und eine Spiegelgerade <InlineMath math="m" />. Der Bildpunkt <InlineMath math="P'(x',y')" /> hat die folgenden Eigenschaften:
+
+1.  **Wenn der Punkt <InlineMath math="P" /> auf der Spiegelgeraden <InlineMath math="m" /> liegt**:
+
+    Sein Bild ist der Punkt selbst.
+
+    <BlockMath math="P' = P" />
+
+2.  **Falls der Punkt <InlineMath math="P" /> nicht auf der Spiegelgeraden <InlineMath math="m" />** liegt:
+
+    Die Gerade <InlineMath math="m" /> ist die Mittelsenkrechte der Strecke <InlineMath math="PP'" />. Daraus folgen zwei wichtige Beziehungen:
+
+    <MathContainer>
+      <BlockMath math="\overline{PP'} \perp m" />
+      <BlockMath math="d(P,m) = d(P',m)" />
+    </MathContainer>
+
+    Folglich schneidet die Gerade <InlineMath math="m" /> die Strecke <InlineMath math="PP'" /> genau in deren Mittelpunkt. Wir nennen diesen Schnittpunkt <InlineMath math="M" />.
+
+## Spiegelung eines Punktes an einer Geraden visualisieren
+
+Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
+
+<LineEquation
+  title="Spiegelung eines Punktes an einer Geraden"
+  description={
+    <>
+      Der Punkt <InlineMath math="P(2,4)" /> wird an der Geraden{" "}
+      <InlineMath math="m" /> gespiegelt. Dabei entsteht der Bildpunkt{" "}
+      <InlineMath math="P'(3{,}6;0{,}8)" />.
+    </>
+  }
+  cameraPosition={[12, 8, 12]}
+  data={[
+    {
+      points: [
+        { x: 0, y: 1, z: 0 },
+        { x: 5, y: 3.5, z: 0 },
+      ],
+      color: "#0891b2",
+      lineWidth: 2,
+      labels: [
+        {
+          text: <><InlineMath math="m" /> (Spiegelgerade)</>,
+          at: 1,
+          offset: [1.2, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [{ x: 2, y: 4, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [
+        {
+          text: <><InlineMath math="P(2,4)" /> (ursprünglicher Punkt)</>,
+          at: 0,
+          offset: [1.2, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [{ x: 3.6, y: 0.8, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [
+        {
+          text: <><InlineMath math="P'(3{,}6;0{,}8)" /> (Bildpunkt)</>,
+          at: 0,
+          offset: [1.7, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [{ x: 2.8, y: 2.4, z: 0 }],
+      color: "#db2777",
+      showPoints: true,
+      labels: [
+        {
+          text: <><InlineMath math="M" /> (Mittelpunkt)</>,
+          at: 0,
+          offset: [3.0, -0.3, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2, y: 4, z: 0 },
+        { x: 2.8, y: 2.4, z: 0 },
+        { x: 3.6, y: 0.8, z: 0 },
+      ],
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="PP'" />, at: 1, offset: [-0.3, 0.3, 0] }],
+    },
+  ]}
+/>
+
+Diese geometrische Beziehung gilt für jede Spiegelgerade: Ausgangspunkt und Bildpunkt liegen auf einer Senkrechten zur Spiegelgeraden und haben von ihr den gleichen Abstand.

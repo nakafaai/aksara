@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Properties of Multiplication of Complex Numbers",
-  description: "Learn commutative, associative, distributive properties and multiplicative inverse of complex numbers with worked examples and algebraic proofs.",
+  description: "Use multiplication laws and the multiplicative inverse to transform and prove expressions with complex numbers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Complex Number",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Properties of Multiplication Operation
 
-Just like arithmetic operations on real numbers, the multiplication operation on complex numbers also has several important properties. Let <InlineMath math="z_1, z_2," /> and <InlineMath math="z_3" /> be any complex numbers.
+Complex multiplication follows the familiar commutative, associative, identity, and distributive laws. Let <InlineMath math="z_1, z_2," /> and <InlineMath math="z_3" /> be any complex numbers.
 
 ### Commutative Property
 
@@ -25,7 +25,7 @@ Let <InlineMath math="z_1 = 1+2i" /> and <InlineMath math="z_2 = 3-i" />.
   <BlockMath math="z_2 \times z_1 = (3-i)(1+2i) = 3(1+2i) - i(1+2i) = 3+6i-i-2i^2 = 3+5i-2(-1) = 5+5i" />
 </MathContainer>
 
-The results are proven to be the same.
+Both products equal <InlineMath math="5+5i" />, which verifies commutativity in this example.
 
 ### Associative Property
 
@@ -42,7 +42,7 @@ Let <InlineMath math="z_1 = i" />, <InlineMath math="z_2 = 2" />, and <InlineMat
   <BlockMath math="z_1 \times (z_2 \times z_3) = i \times (2 \times (3-i)) = i \times (6-2i) = 6i - 2i^2 = 6i - 2(-1) = 2+6i" />
 </MathContainer>
 
-The results are proven to be the same.
+Both groupings equal <InlineMath math="2+6i" />, which verifies associativity in this example.
 
 ### Multiplicative Identity
 
@@ -87,11 +87,11 @@ Let <InlineMath math="z_1=2" />, <InlineMath math="z_2 = 1+i" />, <InlineMath ma
   <BlockMath math="= 8-2i" />
 </MathContainer>
 
-The results are proven to be the same.
+Both sides equal <InlineMath math="8-2i" />, which verifies the distributive law in this example.
 
 ## Example Proof Using Properties
 
-We can prove several algebraic identities using these properties. Let's prove that <InlineMath math="(z_1 + z_2)^2 = z_1^2 + 2z_1z_2 + z_2^2" /> for any <InlineMath math="z_1, z_2" />.
+The same laws prove algebraic identities. For any <InlineMath math="z_1, z_2" />, expand <InlineMath math="(z_1 + z_2)^2" /> as follows:
 
 <MathContainer>
   <BlockMath math="(z_1 + z_2)^2 = (z_1 + z_2)(z_1 + z_2) \quad \text{(Definition of square)}" />
@@ -119,7 +119,21 @@ Based on the equality of two complex numbers, we obtain the system of equations:
 1.  <InlineMath math="xu - yv = 1" />
 2.  <InlineMath math="xv + uy = 0" />
 
-By solving this system of equations (for example, by multiplying equation <InlineMath math="1" /> by <InlineMath math="x" />, equation <InlineMath math="2" /> by <InlineMath math="y" />, then adding them, and using the substitution method), we will get:
+To isolate <InlineMath math="u" />, multiply the first equation by <InlineMath math="x" /> and the second by <InlineMath math="y" />, then add them:
+
+<MathContainer>
+  <BlockMath math="x^2u-xyv=x" />
+  <BlockMath math="xyv+y^2u=0" />
+  <BlockMath math="(x^2+y^2)u=x" />
+</MathContainer>
+
+To isolate <InlineMath math="v" />, multiply the first equation by <InlineMath math="-y" /> and the second by <InlineMath math="x" />, then add them. Because <InlineMath math="z\neq0" />, we have <InlineMath math="x^2+y^2>0" /> and may divide by this value:
+
+<MathContainer>
+  <BlockMath math="-xyu+y^2v=-y" />
+  <BlockMath math="x^2v+xyu=0" />
+  <BlockMath math="(x^2+y^2)v=-y" />
+</MathContainer>
 
 <MathContainer>
   <BlockMath math="u = \frac{x}{x^2+y^2}" />

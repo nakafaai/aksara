@@ -1,0 +1,126 @@
+export const metadata = {
+  title: "Unsicherheit bei wiederholten Messungen",
+  description:
+    "Lies wiederholte Messdaten, berechne ihren Mittelwert, schätze die Unsicherheit ab und gib das Ergebnis ohne vorgetäuschte Genauigkeit an.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-25",
+  subject: "Messen in der Naturwissenschaft",
+};
+
+## Unterschiedliche Daten bedeuten keinen Fehler
+
+Wird derselbe Gegenstand mehrmals gemessen, weichen die Ergebnisse oft leicht voneinander ab. Das ist normal. Der Druck auf das Gerät kann sich ändern, die Skala wird aus einem etwas anderen Winkel abgelesen oder der Gegenstand verrutscht geringfügig.
+
+**Messunsicherheit** ist ein nicht negativer Parameter, der auf Grundlage der verfügbaren Informationen die Streuung der einer Messgröße zugeordneten Größenwerte kennzeichnet. Bei Wiederholungsmessungen gewinnt eine Typ-A-Auswertung eine Unsicherheitskomponente aus der statistischen Analyse der Beobachtungen.
+
+Diese Lektion verwendet zunächst die Stichprobenstandardabweichung <InlineMath math="s" />, um die Streuung einzelner Ablesungen zu beschreiben. Die Standardunsicherheit des Mittelwerts ist eine andere Größe und folgt später.
+
+> Wiederholte Messungen machen zufällige Abweichungen sichtbar, die von einer Ablesung zur nächsten in beide Richtungen schwanken. Systematische Abweichungen verschwinden dadurch nicht. Ein Gerät mit verschobenem Nullpunkt oder beschädigter Skala muss geprüft und gegebenenfalls kalibriert werden.
+
+## Der Mittelwert stellt die Daten dar
+
+Angenommen, <InlineMath math="5" /> Lernende messen den Durchmesser eines Flaschendeckels mit einem Messschieber. Alle Ablesungen verwenden dieselbe Einheit: <InlineMath math="\text{cm}" />.
+
+| Messwert | Durchmesser |
+| :--- | :------- |
+| <InlineMath math="d_1" /> | <InlineMath math="3{,}12 \text{cm}" /> |
+| <InlineMath math="d_2" /> | <InlineMath math="3{,}14 \text{cm}" /> |
+| <InlineMath math="d_3" /> | <InlineMath math="3{,}15 \text{cm}" /> |
+| <InlineMath math="d_4" /> | <InlineMath math="3{,}11 \text{cm}" /> |
+| <InlineMath math="d_5" /> | <InlineMath math="3{,}14 \text{cm}" /> |
+
+Ein sinnvoller Einzelwert zur Beschreibung dieser Messreihe ist der Mittelwert.
+
+<BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
+
+Für die Daten aus der Tabelle ergibt sich:
+
+<BlockMath math="\begin{aligned}
+\bar d
+&= \frac{3{,}12+3{,}14+3{,}15+3{,}11+3{,}14}{5}\text{cm} \\
+&= 3{,}132 \text{cm}
+\end{aligned}" />
+
+Der Mittelwert allein reicht nicht. Ebenso wichtig ist, ob die Messwerte dicht bei ihm liegen oder weit streuen.
+
+## Die Streuung um den Mittelwert
+
+Die Stichprobenstandardabweichung erfasst die Abstände der einzelnen Messwerte vom Mittelwert.
+
+<BlockMath math="s_d=\sqrt{\frac{\sum_{i=1}^{N}(d_i-\bar d)^2}{N-1}}" />
+
+Im Nenner steht <InlineMath math="N-1" />, weil die Messreihe nur eine Stichprobe aller möglichen Wiederholungen darstellt.
+
+<BlockMath math="\begin{aligned}
+s_d
+&= \sqrt{\frac{(-0{,}012)^2+(0{,}008)^2+(0{,}018)^2+(-0{,}022)^2+(0{,}008)^2}{4}}\text{cm} \\
+&= 0{,}0164\text{cm}
+\end{aligned}" />
+
+Mit der gerundeten Streuung lässt sich der Durchmesser so angeben:
+
+<BlockMath math="d=(3{,}13 \pm 0{,}02)\text{cm}" />
+
+Der Wert <InlineMath math="3{,}13 \text{cm}" /> beschreibt die Lage der Daten. <InlineMath math="0{,}02 \text{cm}" /> macht sichtbar, dass die einzelnen Ablesungen nicht genau übereinstimmten.
+
+## Zwei ähnlich aussehende Formeln unterscheiden
+
+Manche Schulbücher schreiben die Streuung wiederholter Messwerte in der folgenden kompakten Form.
+
+<BlockMath math="\Delta x=\frac{1}{\sqrt{N}}\sqrt{\frac{N\sum_{i=1}^{N}x_i^2-\left(\sum_{i=1}^{N}x_i\right)^2}{N-1}}" />
+
+Diese Formel ist algebraisch gleichbedeutend mit der Stichprobenstandardabweichung:
+
+<BlockMath math="\Delta x=s_x=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar x)^2}{N-1}}" />
+
+Der Faktor <InlineMath math="\frac{1}{\sqrt N}" /> in der kompakten Form macht das Ergebnis daher nicht automatisch zur formalen Unsicherheit des Mittelwerts.
+
+In der Metrologie beschreiben NIST und JCGM GUM die Standardunsicherheit des Mittelwerts dagegen als:
+
+<BlockMath math="u(\bar x)=\frac{s_x}{\sqrt N}" />
+
+Bei einfachen Schulaufgaben gilt die im Aufgabentext festgelegte Konvention. Verwendet eine Aufgabe <InlineMath math="\Delta x" /> für die kompakte Formel, kann <InlineMath math="\Delta x" /> in diesem Modell als Unsicherheit der wiederholten Messung bezeichnet werden. Entscheidend ist, beide Bedeutungen ausdrücklich auseinanderzuhalten.
+
+## Wenn das Ziel nicht der Durchmesser ist
+
+Manchmal wird der Durchmesser gemessen, während die Aufgabe nach der Fläche des Flaschendeckels fragt. Für einen Kreis gilt:
+
+<BlockMath math="A=\frac{1}{4}\pi d^2" />
+
+Da die Fläche vom Durchmesser abhängt, liefert jede Durchmesserablesung einen etwas anderen Flächenwert. Verwende den Rechnerwert von <InlineMath math="\pi" /> und behalte die ungerundeten Flächenwerte während der Rechnung. Die Tabelle zeigt zur Lesbarkeit nur <InlineMath math="4" /> Nachkommastellen.
+
+| Messung | Durchmesser | Daraus berechnete Fläche |
+| :--- | :------- | :--------------------- |
+| <InlineMath math="1" /> | <InlineMath math="3{,}12 \text{cm}" /> | <InlineMath math="7{,}6454 \text{cm}^2" /> |
+| <InlineMath math="2" /> | <InlineMath math="3{,}14 \text{cm}" /> | <InlineMath math="7{,}7437 \text{cm}^2" /> |
+| <InlineMath math="3" /> | <InlineMath math="3{,}15 \text{cm}" /> | <InlineMath math="7{,}7931 \text{cm}^2" /> |
+| <InlineMath math="4" /> | <InlineMath math="3{,}11 \text{cm}" /> | <InlineMath math="7{,}5964 \text{cm}^2" /> |
+| <InlineMath math="5" /> | <InlineMath math="3{,}14 \text{cm}" /> | <InlineMath math="7{,}7437 \text{cm}^2" /> |
+
+Die mittlere Fläche beträgt:
+
+<BlockMath math="\bar A=\frac{1}{5}\sum_{i=1}^{5}A_i=7{,}7045 \text{cm}^2" />
+
+Die Streuung der Flächenwerte beträgt:
+
+<BlockMath math="s_A=0{,}0808 \text{cm}^2" />
+
+Das Ergebnis lässt sich so angeben:
+
+<BlockMath math="A=(7{,}70 \pm 0{,}08)\text{cm}^2" />
+
+Die angezeigten Tabellenwerte sind nicht die Recheneingabe. Eine Zwischenrundung der Flächen kann die abschließende Streuung verändern, daher verwenden Mittelwert und Standardabweichung oben die ungerundeten Werte.
+
+## Ein Prozentsatz zeigt die relative Größe
+
+Die relative Streuung setzt die Stichprobenstandardabweichung ins Verhältnis zum Betrag des Mittelwerts.
+
+<BlockMath math="\varepsilon_r=\frac{s_x}{|\bar x|}\times 100\,\%" />
+
+Für die Fläche des Flaschendeckels ergibt sich:
+
+<BlockMath math="\varepsilon_r=\frac{0{,}0808}{7{,}7045}\times 100\,\%\approx 1{,}05\,\%" />
+
+Die Stichprobenstreuung beträgt damit ungefähr <InlineMath math="1{,}05\,\%" /> der mittleren Fläche. Ob das ausreicht, hängt vom Verwendungszweck und von der Zielunsicherheit ab. Ohne eine solche Anforderung darf der Prozentsatz nicht als "klein genug" bezeichnet werden.
+
+Die fachliche Grundlage bilden die NIST Technical Note <InlineMath math="1297" /> zur [Typ-A-Auswertung](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) und der [JCGM Guide to the Expression of Uncertainty in Measurement](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) des BIPM.

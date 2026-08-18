@@ -82,6 +82,10 @@ Langkah <InlineMath math="4" />: Hitung invers matriks <InlineMath math="P" />.
 
 Jadi, invers dari matriks <InlineMath math="P" /> adalah <InlineMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />.
 
+Verifikasi hasilnya, jangan hanya mengandalkan rumus:
+
+<BlockMath math="PP^{-1}=\begin{bmatrix}3&-7\\-1&2\end{bmatrix}\begin{bmatrix}-2&-7\\-1&-3\end{bmatrix}=\begin{bmatrix}1&0\\0&1\end{bmatrix}=I_2" />
+
 ## Invers Matriks Ordo Tiga
 
 Konsep dasar untuk mencari invers matriks ordo <InlineMath math="3 \times 3" /> sama dengan matriks ordo <InlineMath math="2 \times 2" />, yaitu menggunakan rumus:
@@ -95,17 +99,22 @@ Namun, perhitungan determinan (<InlineMath math="\det(A)" />) dan adjoin (<Inlin
 
 Perhitungan determinan dan adjoin matriks <InlineMath math="3 \times 3" /> memerlukan langkah yang lebih panjang, sehingga halaman ini cukup memakai keduanya sebagai alat untuk membaca bentuk invers matriks.
 
-## Sifat Invers Matriks
+## Menyelesaikan Sistem Linear dengan Invers
 
 Salah satu kegunaan penting dari invers matriks adalah untuk menyelesaikan sistem persamaan linear. Jika sebuah sistem persamaan linear dapat dinyatakan dalam bentuk perkalian matriks:
 
 <BlockMath math="AX = B" />
 
-di mana <InlineMath math="A" /> adalah matriks koefisien, <InlineMath math="X" /> adalah matriks variabel, dan <InlineMath math="B" /> adalah matriks konstanta. Jika matriks <InlineMath math="A" /> memiliki invers (<InlineMath math="A^{-1}" />), maka solusi untuk <InlineMath math="X" /> dapat ditemukan dengan:
+di mana <InlineMath math="A" /> adalah matriks koefisien, <InlineMath math="X" /> adalah matriks variabel, dan <InlineMath math="B" /> adalah matriks konstanta. Jika matriks <InlineMath math="A" /> memiliki invers (<InlineMath math="A^{-1}" />), kalikan kedua ruas dari kiri. Sisi perkalian penting karena perkalian matriks umumnya tidak komutatif:
 
-<BlockMath math="X = A^{-1}B" />
+<MathContainer>
+  <BlockMath math="A^{-1}(AX)=A^{-1}B" />
+  <BlockMath math="(A^{-1}A)X=A^{-1}B" />
+  <BlockMath math="IX=A^{-1}B" />
+  <BlockMath math="X=A^{-1}B" />
+</MathContainer>
 
-Ini adalah sifat yang sangat berguna dalam berbagai aplikasi matematika dan rekayasa.
+Ini adalah padanan pembagian pada matriks: setelah <InlineMath math="A^{-1}" /> diketahui, matriks yang belum diketahui dapat diisolasi tanpa menyelesaikan setiap persamaan secara terpisah.
 
 ## Latihan
 
@@ -116,7 +125,7 @@ Diketahui matriks <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bm
 3. Tentukan matriks <InlineMath math="(X+Y)^{-1}" />.
 4. Apakah matriks <InlineMath math="X^{-1} + Y^{-1}" /> sama dengan matriks <InlineMath math="(X+Y)^{-1}" />? Jelaskan jawabanmu.
 
-### Kunci Jawaban
+### Pembahasan Lengkap
 
 1.  **Menentukan <InlineMath math="X^{-1}" />:**
 
@@ -165,4 +174,4 @@ Diketahui matriks <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bm
 
     Jelas bahwa <InlineMath math="X^{-1} + Y^{-1} \neq (X+Y)^{-1}" />. Ini menunjukkan bahwa invers dari penjumlahan dua matriks umumnya tidak sama dengan penjumlahan dari invers masing-masing matriks.
 
-    Sifat ini berbeda dengan beberapa operasi aljabar pada bilangan real.
+    Operasi invers tidak distributif terhadap penjumlahan. Peringatan yang sama berlaku pada kebalikan bilangan biasa: secara umum, <InlineMath math="1/x+1/y\neq1/(x+y)" />.

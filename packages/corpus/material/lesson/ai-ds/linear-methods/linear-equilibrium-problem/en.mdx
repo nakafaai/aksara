@@ -1,66 +1,47 @@
 export const metadata = {
-  title: "Linear Equilibrium Problem",
-  description: "Solve linear equilibrium problems: least squares optimization for over-determined systems with L1, L2, L∞ norms and geometric projection methods.",
+  title: "Linear Least-Squares Problem",
+  description: "Solve inconsistent linear systems with least squares, residual norms, orthogonal projection, normal equations, and numerically stable methods.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-15",
   subject: "Linear Methods of AI",
 };
 
+## From an inconsistent system to a best fit
 
+Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" />, and <InlineMath math="b \in \mathbb{R}^m" />. If <InlineMath math="b" /> does not belong to the column space of <InlineMath math="A" />, the system
 
-## Problem Definition
+<BlockMath math="Ax=b" />
 
-Imagine you're trying to match a puzzle with imperfect pieces. That's the situation we face in the linear equilibrium problem. We have a matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> and vector <InlineMath math="b \in \mathbb{R}^m" />, but the equation system <InlineMath math="A \cdot x = b" /> may not have an exact solution.
+has no exact solution. This commonly happens when a model is fitted to noisy measurements or when an overdetermined system has more independent equations than unknowns.
 
-In cases like this, we search for the best solution we can obtain by minimizing the error function
+Instead of forcing equality, define the residual
 
-<BlockMath math="F(x) = \|A \cdot x - b\|_2^2" />
+<BlockMath math="e(x)=Ax-b" />
 
-This function measures how far the product result <InlineMath math="A \cdot x" /> is from our desired target <InlineMath math="b" />.
+and choose the vector whose residual is smallest. The standard linear least-squares problem is
 
-## Optimization Problem
+<BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
 
-Now let's understand what we actually want to achieve. The minimization problem
+Because the residual has <InlineMath math="m" /> components, the objective expands to
 
-<BlockMath math="\min_x \|A \cdot x - b\|_2^2" />
+<BlockMath math="\|Ax-b\|_2^2=\sum_{i=1}^{m}(Ax-b)_i^2" />
 
-is the core of the **linear equilibrium problem** or what is often called the *linear least squares problem*. Imagine looking for the best position to throw a ball so it lands as close as possible to the target, even though you can't hit it exactly.
+Squaring makes every contribution nonnegative and penalizes a large residual component more strongly than a small one.
 
-Why do we use this approach? Because in many real situations, the data we have contains noise or disturbances that make finding an exact solution impossible.
+## The geometric condition
 
-## Formula Expansion
-
-Now let's break down this formula to see what actually happens inside it
+The vector <InlineMath math="A\hat{x}" /> is the point in <InlineMath math="\operatorname{col}(A)" /> closest to <InlineMath math="b" /> in Euclidean distance. At the optimum, the residual is orthogonal to every column of <InlineMath math="A" />:
 
 <MathContainer>
-<BlockMath math="\min_x \|A \cdot x - b\|_2^2 = \min_x \sum_{i=1}^{n} (A \cdot x - b)_i^2" />
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=0" />
+<BlockMath math="A^{\mathsf T}A\hat{x}=A^{\mathsf T}b" />
 </MathContainer>
 
-This expanded form shows that we're actually summing the squares of each error component. Similar to calculating the total squared distance between several prediction points and the actual target points. By squaring each error, we give a larger penalty to big errors compared to small ones.
-
-## Alternative Norms
-
-It turns out there are several different ways to measure error, depending on the characteristics of the problem we're dealing with.
-
-**<InlineMath math="\ell_1" />-norm** works by summing the absolute values of errors
-
-<BlockMath math="\min_x \|A \cdot x - b\|_1 = \min_x \sum_{i=1}^{n} |(A \cdot x - b)_i|" />
-
-This approach is like measuring distance by walking in a city with grid-shaped streets. You have to move horizontally and vertically only, no diagonal movement. This method is more resistant to extreme outlier data.
-
-**<InlineMath math="\ell_\infty" />-norm** focuses on the largest error
-
-<BlockMath math="\min_x \|A \cdot x - b\|_\infty = \min_x \max_{i=1,\ldots,n} |(A \cdot x - b)_i|" />
-
-Imagine you're adjusting the height of an uneven table. This method will focus on fixing the highest or lowest table leg, ensuring no single part is too extreme.
-
-The right choice of norm depends on the type of error we most want to avoid and the characteristics of the data we have.
-
-## Geometric Interpretation
+The second equation is called the **normal equation**.
 
 <LineEquation
-  title="Linear Equilibrium Problem Solution"
-  description={<>Geometric illustration showing the relationship between vector <InlineMath math="b" />, projection <InlineMath math="A\hat{x}" />, and error vector.</>}
+  title="Orthogonal projection in a least-squares problem"
+  description={<>The blue vector ends at <InlineMath math="A\hat{x}" />, the orange vector ends at <InlineMath math="b" />, and the purple vector is the residual <InlineMath math="A\hat{x}-b" />.</>}
   data={[
     {
       points: [
@@ -72,7 +53,7 @@ The right choice of norm depends on the type of error we most want to avoid and 
       cone: { position: "end" },
       showPoints: false,
       labels: [
-        { text: <InlineMath math="A\cdot \hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
+        { text: <InlineMath math="A\hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
       ]
     },
     {
@@ -98,20 +79,66 @@ The right choice of norm depends on the type of error we most want to avoid and 
       cone: { position: "end" },
       showPoints: false,
       labels: [
-        { text: <InlineMath math="A\cdot \hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
+        { text: <InlineMath math="A\hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
       ]
     }
   ]}
 />
 
-This geometric visualization helps us understand what's actually happening. The flat plane in this diagram represents the column space of matrix <InlineMath math="A" /> (called *Image A*), which is all possible results of multiplication <InlineMath math="A \cdot x" />.
+The scene shows the target, its projection, and the connecting residual. The blue vector represents the projected point in the column space; it is not a drawing of the entire subspace. The orthogonality condition above is the exact statement that makes <InlineMath math="A\hat{x}" /> the nearest point.
 
-Vector <InlineMath math="b" /> is the target we want to reach, but it may not lie within the column space of matrix <InlineMath math="A" />. The optimal solution <InlineMath math="\hat{x}" /> produces <InlineMath math="A\hat{x}" /> which is the closest point to <InlineMath math="b" /> in that column space.
+## A small worked example
 
-Vector <InlineMath math="A\hat{x} - b" /> shows the error vector connecting the best projection with the original target. Like a shadow of an object falling to the floor, <InlineMath math="A\hat{x}" /> is the closest "shadow" of <InlineMath math="b" /> in the available space.
+Suppose one constant <InlineMath math="x" /> must fit the three observations <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="6" />. Then
 
-## Solution Methods
+<BlockMath math="A=\begin{pmatrix}1\\1\\1\end{pmatrix},\qquad b=\begin{pmatrix}1\\2\\6\end{pmatrix}" />
 
-Each type of norm requires a different solution approach. Problems with <InlineMath math="\ell_1" />-norm and <InlineMath math="\ell_\infty" />-norm can be solved using linear optimization techniques, where we transform the problem into a form that can be handled by linear programming algorithms.
+and the objective is
 
-Meanwhile, the least squares problem with Euclidean norm has a special advantage. When errors in the data follow a normal distribution pattern (bell-shaped), then the solution we obtain provides the best estimate in a statistical sense, called the maximum likelihood estimator.
+<MathContainer>
+<BlockMath math="F(x)=(x-1)^2+(x-2)^2+(x-6)^2" />
+<BlockMath math="F'(x)=2(x-1)+2(x-2)+2(x-6)=6x-18" />
+</MathContainer>
+
+Setting the derivative to zero gives <InlineMath math="\hat{x}=3" />. The fitted vector and residual are
+
+<MathContainer>
+<BlockMath math="A\hat{x}=\begin{pmatrix}3\\3\\3\end{pmatrix}" />
+<BlockMath math="A\hat{x}-b=\begin{pmatrix}2\\1\\-3\end{pmatrix}" />
+</MathContainer>
+
+The residual components sum to zero, so
+
+<BlockMath math="A^{\mathsf T}(A\hat{x}-b)=2+1-3=0" />
+
+as required by the normal equation.
+
+## Other residual norms
+
+The norm determines what kind of error the fit prioritizes.
+
+| Objective | What it controls |
+| --- | --- |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_2^2=\min_x\sum_{i=1}^{m}(Ax-b)_i^2" /> | Penalizes large residuals quadratically and gives the usual least-squares projection. |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_1=\min_x\sum_{i=1}^{m}\lvert(Ax-b)_i\rvert" /> | Uses a linear penalty, so an occasional large residual has less influence than under squared loss. |
+| <InlineMath math="\displaystyle\min_x\|Ax-b\|_\infty=\min_x\max_{1\le i\le m}\lvert(Ax-b)_i\rvert" /> | Minimizes the worst absolute residual. |
+
+The <InlineMath math="\ell_1" /> and <InlineMath math="\ell_\infty" /> formulations can be rewritten as linear programs. Their suitability still depends on the data-generating process and the error criterion that matters for the application.
+
+## Solving least squares reliably
+
+If <InlineMath math="A" /> has full column rank, the least-squares minimizer is unique. The normal equation then implies
+
+<BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
+
+This identity is useful for analysis, but explicitly forming the inverse is not the preferred numerical algorithm. In practice:
+
+- use a QR factorization for a stable full-rank least-squares solve
+- use an SVD when rank deficiency or ill-conditioning matters
+- use the pseudoinverse to select the minimum-norm solution when minimizers are not unique
+
+There is also a precise statistical interpretation. In the model
+
+<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
+
+with fixed <InlineMath math="A" /> and independent Gaussian errors of common variance, least squares is the maximum-likelihood estimator of <InlineMath math="x_*" />. Correlated or unequal-variance errors require a different weighting rather than the unqualified ordinary least-squares formula.

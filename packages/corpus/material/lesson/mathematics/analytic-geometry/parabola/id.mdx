@@ -10,11 +10,11 @@ export const metadata = {
 
 ## Mengenal Parabola
 
-Pernahkah kamu melempar bola basket ke ring? Atau melihat air mancur yang menyembur ke udara? Lintasan yang terbentuk dari gerakan-gerakan ini membentuk kurva yang sangat istimewa dalam matematika, yaitu **parabola**.
+Jika hambatan udara diabaikan dan percepatan gravitasi dianggap konstan, lintasan bola basket berbentuk **parabola**. Lengkungan air dari sebuah pancuran memberi gambaran awal yang serupa.
 
-Parabola bukan sekadar kurva biasa. Bentuknya yang unik membuatnya sangat berguna dalam kehidupan nyata. Antena satelit berbentuk parabola untuk menangkap sinyal, lampu sorot menggunakan reflektor parabola untuk memfokuskan cahaya, bahkan jembatan dan arsitektur modern sering menggunakan lengkungan parabola karena kekuatannya.
+Bentuk parabola juga berguna dalam teknologi. Antena satelit mengumpulkan sinyal, reflektor lampu sorot mengarahkan cahaya, dan lengkungan parabola muncul pada jembatan serta arsitektur modern.
 
-Yang menarik dari parabola adalah sifat **refleksinya** yang sempurna. Semua sinar yang datang sejajar dengan sumbu parabola akan dipantulkan menuju satu titik yang disebut **fokus**. Inilah mengapa parabola sangat efektif untuk mengumpulkan atau memancarkan energi.
+Sifat penting parabola adalah **refleksi**. Sinar yang datang sejajar sumbu akan dipantulkan menuju **fokus**. Sebaliknya, sinar yang berasal dari fokus akan meninggalkan reflektor parabola sejajar sumbu. Karena itu, bentuk parabola efektif untuk mengumpulkan atau mengarahkan energi.
 
 <LineEquation
   title={<>Parabola <InlineMath math="y = ax^2" /> dalam Kehidupan Nyata</>}
@@ -92,15 +92,15 @@ Yang menarik dari parabola adalah sifat **refleksinya** yang sempurna. Semua sin
 
 Secara matematis, **parabola adalah tempat kedudukan titik-titik yang jaraknya sama terhadap sebuah titik tetap dan sebuah garis tetap**. Titik tetap itu disebut **fokus**, sedangkan garis tetapnya disebut **direktriks**.
 
-Bayangkan kamu punya satu titik (fokus) dan satu garis lurus (direktriks). Sekarang cari semua titik yang jaraknya ke fokus sama dengan jaraknya ke garis direktriks. Kumpulan titik-titik itulah yang membentuk parabola!
+Mulailah dengan satu titik, yaitu fokus, dan satu garis, yaitu direktriks. Setiap titik yang jaraknya ke fokus sama dengan jarak tegak lurusnya ke direktriks terletak pada parabola.
 
-Definisi ini memberikan kita cara yang sistematis untuk memahami parabola. Tidak peduli bagaimana orientasi atau posisinya, selama memenuhi syarat jarak yang sama ke fokus dan direktriks, maka itu adalah parabola.
+Definisi ini berlaku untuk setiap posisi dan orientasi. Syaratnya selalu sama: jarak ke fokus sama dengan jarak ke direktriks.
 
-> Sifat unik parabola ini membuat semua titik pada kurva memiliki "keseimbangan" jarak yang sempurna antara fokus dan direktriks.
+> Setiap titik pada parabola memiliki jarak yang sama terhadap fokus dan direktriks.
 
 ## Persamaan Parabola Standar
 
-Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak di titik asal** <InlineMath math="O(0,0)" />. Ada empat bentuk dasar parabola standar tergantung arah bukaan kurva.
+Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O(0,0)" />. Arah bukaannya menghasilkan empat bentuk standar.
 
 <LineEquation
   title={<>Empat Bentuk Parabola Standar dengan Puncak <InlineMath math="O(0,0)" /></>}
@@ -109,7 +109,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
     {
       points: Array.from({ length: 61 }, (_, i) => {
         const x = (i - 30) / 10; // x dari -3 ke 3
-        const y = 0.25 * x * x; // parabola x² = 4py dengan p=0.25
+        const y = 0.25 * x * x; // parabola x² = 4py dengan p=1
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
@@ -119,7 +119,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
     {
       points: Array.from({ length: 61 }, (_, i) => {
         const x = (i - 30) / 10; // x dari -3 ke 3
-        const y = -0.25 * x * x; // parabola x² = -4py dengan p=0.25
+        const y = -0.25 * x * x; // parabola x² = -4py dengan p=1
         return { x, y, z: 0 };
       }),
       color: "#ea580c",
@@ -129,7 +129,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
     {
       points: Array.from({ length: 61 }, (_, i) => {
         const y = (i - 30) / 10; // y dari -3 ke 3
-        const x = 0.25 * y * y; // parabola y² = 4px dengan p=0.25
+        const x = 0.25 * y * y; // parabola y² = 4px dengan p=1
         return { x, y, z: 0 };
       }),
       color: "#0891b2",
@@ -139,7 +139,7 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
     {
       points: Array.from({ length: 61 }, (_, i) => {
         const y = (i - 30) / 10; // y dari -3 ke 3
-        const x = -0.25 * y * y; // parabola y² = -4px dengan p=0.25
+        const x = -0.25 * y * y; // parabola y² = -4px dengan p=1
         return { x, y, z: 0 };
       }),
       color: "#0d9488",
@@ -187,16 +187,14 @@ Mari kita mulai dengan parabola yang paling sederhana: **parabola dengan puncak 
   showZAxis={false}
 />
 
-Keempat bentuk persamaan parabola standar adalah:
+Dua persamaan standar yang sejajar sumbu koordinat menggunakan parameter bertanda <InlineMath math="p" />:
 
 <MathContainer>
-  <BlockMath math="y^2 = 4px \quad \text{(terbuka ke kanan)}" />
-  <BlockMath math="y^2 = -4px \quad \text{(terbuka ke kiri)}" />
-  <BlockMath math="x^2 = 4py \quad \text{(terbuka ke atas)}" />
-  <BlockMath math="x^2 = -4py \quad \text{(terbuka ke bawah)}" />
+  <BlockMath math="y^2 = 4px \quad \text{(sumbu horizontal)}" />
+  <BlockMath math="x^2 = 4py \quad \text{(sumbu vertikal)}" />
 </MathContainer>
 
-Nilai <InlineMath math="p" /> dalam persamaan ini menunjukkan **jarak dari puncak ke fokus**. Semakin besar nilai <InlineMath math="p" />, semakin "terbuka" parabola tersebut.
+Jika <InlineMath math="p > 0" />, parabola terbuka ke kanan atau ke atas. Jika <InlineMath math="p < 0" />, parabola terbuka ke kiri atau ke bawah. **Jarak dari puncak ke fokus** adalah <InlineMath math="|p|" />, dan semakin besar <InlineMath math="|p|" />, semakin lebar bukaan parabolanya.
 
 Sebagai contoh, untuk parabola <InlineMath math="y^2 = 4px" /> (terbuka ke kanan):
 
@@ -204,18 +202,16 @@ Sebagai contoh, untuk parabola <InlineMath math="y^2 = 4px" /> (terbuka ke kanan
   <BlockMath math="\text{Puncak: } (0, 0)" />
   <BlockMath math="\text{Fokus: } (p, 0)" />
   <BlockMath math="\text{Direktriks: } x = -p" />
-  <BlockMath math="\text{Sumbu simetri: sumbu } X" />
+  <BlockMath math="\text{Sumbu simetri: } y = 0" />
 </MathContainer>
-
-> Ingat bahwa tanda <InlineMath math="p" /> menentukan arah bukaan: positif untuk kanan/atas, negatif untuk kiri/bawah.
 
 ## Parabola dengan Puncak Sembarang
 
-Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bisa memiliki puncak di titik mana saja <InlineMath math="(h, k)" />. Ini adalah **bentuk umum parabola**.
+Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMath math="(h, k)" />, kita memakai **bentuk standar tergeser**.
 
 <LineEquation
   title={<>Parabola <InlineMath math="(x-h)^2 = 4p(y-k)" /> dengan Puncak <InlineMath math="(h,k)" /></>}
-  description={<>Parabola dengan puncak di <InlineMath math="(2, 1)" /> dan parameter <InlineMath math="p = 0.5" />.</>}
+  description={<>Parabola dengan puncak di <InlineMath math="(2, 1)" /> dan parameter <InlineMath math="p = 0{,}5" />.</>}
   data={[
     {
       points: Array.from({ length: 81 }, (_, i) => {
@@ -238,7 +234,7 @@ Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bis
       points: [{ x: 2, y: 1.5, z: 0 }], // fokus di (h, k+p) = (2, 1+0.5)
       color: "#65a30d",
       showPoints: true,
-      labels: [{ text: <>Fokus <InlineMath math="(2,1.5)" /></>, at: 0, offset: [0.5, 1, 0] }],
+      labels: [{ text: <>Fokus <InlineMath math="(2,1{,}5)" /></>, at: 0, offset: [0.5, 1, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -249,7 +245,7 @@ Dalam aplikasi nyata, parabola tidak selalu berpusat di titik asal. Parabola bis
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <>Direktriks <InlineMath math="y=0.5" /></>, at: 1, offset: [0, 0.5, 0] }],
+      labels: [{ text: <>Direktriks <InlineMath math="y=0{,}5" /></>, at: 1, offset: [0, 0.5, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -324,7 +320,7 @@ Untuk parabola horizontal <InlineMath math="(y-k)^2 = 4p(x-h)" />:
   <BlockMath math="\text{Sumbu simetri: } y = k" />
 </MathContainer>
 
-> Tanda nilai <InlineMath math="p" /> menentukan arah bukaan parabola. Positif untuk ke atas/kanan, negatif untuk ke bawah/kiri.
+> Tanda <InlineMath math="p" /> menentukan arah bukaan. Pada bentuk horizontal, nilai positif berarti ke kanan dan nilai negatif berarti ke kiri. Pada bentuk vertikal, nilai positif berarti ke atas dan nilai negatif berarti ke bawah.
 
 ## Menentukan Unsur Parabola
 
@@ -403,7 +399,7 @@ Maka unsur-unsur parabola adalah:
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
-      labels: [{ text: "Sumbu simetri", at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <>Sumbu simetri <InlineMath math="x=2" /></>, at: 1, offset: [1, 0.5, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -458,7 +454,7 @@ Mari kita kerjakan beberapa soal untuk memperdalam pemahaman tentang parabola.
 
 **Penyelesaian**:
 
-Karena puncak dan fokus memiliki ordinat yang sama, parabola ini **horizontal**.
+Karena puncak dan fokus memiliki koordinat <InlineMath math="y" /> yang sama, parabola ini **horizontal**.
 
 <MathContainer>
   <BlockMath math="\text{Puncak: } (h, k) = (1, -2)" />

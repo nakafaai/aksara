@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Equation of a Tangent Line to a Circle",
-  description: "Learn tangent line equations using substitution, distance, and quadratic methods. Solve problems from external points with worked solutions.",
+  description: "Build circle tangents from a known contact point, a given slope, or a point outside the circle, with complete worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Analytic Geometry",
@@ -10,18 +10,18 @@ export const metadata = {
 
 ## Understanding Tangent Line Equations
 
-Have you ever noticed how a bicycle wheel moves on the road? When the wheel rotates, there's one point at the edge of the wheel that always touches the asphalt perfectly. Well, imagine if we could draw a straight line from that point of contact - that's what we call a **tangent line**!
+Picture a bicycle wheel resting on a level road. At that instant, the road touches the circular rim at exactly one point. The road itself models the **tangent line**, and the radius to the point of contact is perpendicular to it.
 
-This lesson focuses on finding the **explicit mathematical equation** of a tangent line. The equation tells us exactly which straight line touches the circle at one point.
+This lesson develops the equation of that line in three situations: when the point of tangency is known, when the slope is known, and when the line must pass through a point outside the circle.
 
-The ability to determine tangent line equations is very useful in engineering, physics, and even art. Imagine an architect designing a bridge arch, or an engineer calculating projectile trajectories.
+The geometry is the same in each situation. A tangent touches the circle once, while the radius to the point of tangency supplies the perpendicular direction or the required distance.
 
-## Substitution for Specific Points
+## Tangent at a Known Point
 
-When we already know which point on the circle will be touched by the tangent line, our work becomes more focused. Let's look at a systematic approach for this case.
+When the point of tangency is known, first verify that the point lies on the circle. Then the radius to that point becomes a normal vector for the tangent.
 
 <LineEquation
-  title="Tangent Line at a Specific Point"
+  title="Tangent at a Known Point"
   description="Constructing the tangent line equation when the point of tangency is known."
   data={[
     {
@@ -137,25 +137,25 @@ When we already know which point on the circle will be touched by the tangent li
   showZAxis={false}
 />
 
-For circle <InlineMath math="x^2 + y^2 = r^2" /> with point of tangency <InlineMath math="M(p, q)" />, we use the **direct substitution formula**:
+For the circle <InlineMath math="x^2 + y^2 = r^2" /> and a point of tangency <InlineMath math="M(p, q)" /> on that circle, the **point-tangent form** is:
 
 <BlockMath math="px + qy = r^2" />
 
-Why does this formula work? Because the tangent line is always perpendicular to the radius at the point of tangency. If the radius has direction vector <InlineMath math="(p, q)" />, then the tangent line has the same normal vector, which is <InlineMath math="(p, q)" />.
+Why does this formula work? The radius <InlineMath math="OM" /> has direction vector <InlineMath math="(p,q)" />. Because the tangent is perpendicular to <InlineMath math="OM" />, that same vector is normal to the tangent. Substituting <InlineMath math="M" /> gives <InlineMath math="p^2+q^2=r^2" />, so the line really does pass through the point of tangency.
 
-For general circle <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> with point of tangency <InlineMath math="M(p, q)" />, the formula becomes:
+For the circle <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> with point of tangency <InlineMath math="M(p,q)" />, translate the same idea to center <InlineMath math="(h,k)" />:
 
 <BlockMath math="(p-h)(x-h) + (q-k)(y-k) = r^2" />
 
-> The advantage of this method is speed and accuracy. We don't need to calculate gradients separately or perform complex algebraic manipulations.
+> This form is efficient because it uses the radius directly as a normal vector. It also works when the tangent is vertical, where a slope calculation would fail.
 
-## Distance Approach for Given Gradient
+## Distance Method for a Given Slope
 
-Now we move to a more challenging case: finding the tangent line equation when only its gradient is known. Here we use the principle that the distance from the circle's center to the tangent line must equal the radius.
+If the slope is known but the intercept is not, use the defining distance condition: the perpendicular distance from the center to a tangent equals the radius.
 
 <LineEquation
-  title="Tangent Line with Specific Slope"
-  description="Using distance approach to find equation with given gradient."
+  title="Tangents with a Given Slope"
+  description="The center-to-line distance determines the two possible intercepts."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -266,13 +266,13 @@ Now we move to a more challenging case: finding the tangent line equation when o
   showZAxis={false}
 />
 
-Suppose we have circle <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> and want to find a tangent line with gradient <InlineMath math="m" />. The tangent line has form <InlineMath math="y = mx + c" />.
+Suppose the circle is <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> and the tangent has slope <InlineMath math="m" />. Write the line as <InlineMath math="y=mx+c" />.
 
-The key is using the **point-to-line distance formula**. The distance from center <InlineMath math="(h,k)" /> to line <InlineMath math="mx - y + c = 0" /> is:
+The **point-to-line distance formula** gives the distance from center <InlineMath math="(h,k)" /> to line <InlineMath math="mx-y+c=0" />:
 
 <BlockMath math="d = \frac{|mh - k + c|}{\sqrt{m^2 + 1}}" />
 
-Since the line is tangent to the circle, this distance must exactly equal the radius:
+For tangency, this distance must equal the radius:
 
 <MathContainer>
   <BlockMath math="\frac{|mh - k + c|}{\sqrt{m^2 + 1}} = r" />
@@ -280,21 +280,21 @@ Since the line is tangent to the circle, this distance must exactly equal the ra
   <BlockMath math="mh - k + c = \pm r\sqrt{m^2 + 1}" />
 </MathContainer>
 
-Thus we obtain two constant values:
+Solving the absolute-value equation gives two intercepts:
 
 <BlockMath math="c = k - mh \pm r\sqrt{m^2 + 1}" />
 
-Therefore, the equations of both tangent lines are:
+Therefore, the two parallel tangents are:
 
 <BlockMath math="y = mx + k - mh \pm r\sqrt{m^2 + 1}" />
 
-## Quadratic Method for External Points
+## Tangents Through an Outside Point
 
-The most challenging case is when we want to draw tangent lines from a point outside the circle. From one external point, we can draw exactly two tangent lines with different gradients.
+From a point outside a circle, exactly two tangent lines can be drawn. When both tangents have finite slopes, their slopes can be found from one quadratic equation.
 
 <LineEquation
-  title="Tangent Line from External Point"
-  description="Using quadratic method in gradient for points outside the circle."
+  title="Tangents Through an Outside Point"
+  description="The repeated-intersection condition determines the two possible slopes."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -324,7 +324,7 @@ The most challenging case is when we want to draw tangent lines from a point out
       ],
       color: "#d97706",
       showPoints: true,
-      labels: [{ text: "External", at: 0, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: "Outside point", at: 0, offset: [0.5, 0.5, 0] }],
     },
     {
       points: (() => {
@@ -478,32 +478,32 @@ The most challenging case is when we want to draw tangent lines from a point out
   showZAxis={false}
 />
 
-To solve this problem, we use the **quadratic equation in gradient** approach. Let the external point be <InlineMath math="P(x_0, y_0)" /> and the circle have equation <InlineMath math="x^2 + y^2 = r^2" />.
+Let the outside point be <InlineMath math="P(x_0,y_0)" /> and the circle be <InlineMath math="x^2+y^2=r^2" />. A nonvertical line through <InlineMath math="P" /> has slope <InlineMath math="m" />.
 
-The tangent line from point <InlineMath math="P" /> has form <InlineMath math="y - y_0 = m(x - x_0)" />, or <InlineMath math="y = mx - mx_0 + y_0" />.
+Its equation is <InlineMath math="y-y_0=m(x-x_0)" />, or <InlineMath math="y=mx-mx_0+y_0" />.
 
-Substitute into the circle equation and use the condition that discriminant equals zero:
+Substitute this expression into the circle. A tangent meets the circle at one repeated point, so the resulting quadratic in <InlineMath math="x" /> must have discriminant zero:
 
 <MathContainer>
   <BlockMath math="x^2 + (mx - mx_0 + y_0)^2 = r^2" />
   <BlockMath math="(1 + m^2)x^2 + 2m(y_0 - mx_0)x + (y_0 - mx_0)^2 - r^2 = 0" />
 </MathContainer>
 
-Discriminant equals zero gives a quadratic equation in <InlineMath math="m" />:
+After simplification, the discriminant condition becomes:
 
 <BlockMath math="(x_0^2 - r^2)m^2 - 2x_0y_0m + (y_0^2 - r^2) = 0" />
 
-The two roots of this equation are the gradients of both tangent lines.
+Its roots are the slopes of the two nonvertical tangents. If a vertical tangent is possible, handle <InlineMath math="x=x_0" /> separately because it cannot be written as <InlineMath math="y=mx+c" />.
 
-## Complete Applied Example
+## Worked Example
 
-Let's solve one concrete case to clarify understanding. Determine the tangent line equation for circle <InlineMath math="x^2 + y^2 = 25" /> passing through point <InlineMath math="A(7, 1)" />.
+Determine the two tangent lines to <InlineMath math="x^2+y^2=25" /> that pass through <InlineMath math="A(7,1)" />.
 
-**Step** <InlineMath math="1" />: Verify that point <InlineMath math="A" /> is outside the circle.
+**Step** <InlineMath math="1" />: Check that <InlineMath math="A" /> lies outside the circle.
 
 <BlockMath math="7^2 + 1^2 = 49 + 1 = 50 > 25 \quad \checkmark" />
 
-**Step** <InlineMath math="2" />: Form quadratic equation in gradient with <InlineMath math="x_0 = 7" />, <InlineMath math="y_0 = 1" />, <InlineMath math="r^2 = 25" />:
+**Step** <InlineMath math="2" />: Substitute <InlineMath math="x_0=7" />, <InlineMath math="y_0=1" />, and <InlineMath math="r^2=25" /> into the quadratic for <InlineMath math="m" />:
 
 <MathContainer>
   <BlockMath math="(49 - 25)m^2 - 2(7)(1)m + (1 - 25) = 0" />
@@ -511,13 +511,13 @@ Let's solve one concrete case to clarify understanding. Determine the tangent li
   <BlockMath math="12m^2 - 7m - 12 = 0" />
 </MathContainer>
 
-**Step** <InlineMath math="3" />: Solve using quadratic formula:
+**Step** <InlineMath math="3" />: Solve the quadratic.
 
 <BlockMath math="m = \frac{7 \pm \sqrt{49 + 576}}{24} = \frac{7 \pm \sqrt{625}}{24} = \frac{7 \pm 25}{24}" />
 
 So <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> and <InlineMath math="m_2 = \frac{-18}{24} = -\frac{3}{4}" />.
 
-**Step** <InlineMath math="4" />: Construct final equations:
+**Step** <InlineMath math="4" />: Use each slope in the point-slope equation through <InlineMath math="A" />.
 
 <MathContainer>
   <BlockMath math="y - 1 = \frac{4}{3}(x - 7) \Rightarrow 4x - 3y = 25" />
@@ -528,13 +528,13 @@ So <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> and <InlineMath math=
 
 1. Determine the tangent line equation for circle <InlineMath math="x^2 + y^2 = 16" /> at point <InlineMath math="(2\sqrt{2}, 2\sqrt{2})" />.
 
-2. Find the tangent line equation for circle <InlineMath math="x^2 + y^2 = 9" /> with gradient <InlineMath math="-\frac{1}{2}" />.
+2. Find the tangent line equations for circle <InlineMath math="x^2 + y^2 = 9" /> with slope <InlineMath math="-\frac{1}{2}" />.
 
-3. Determine the tangent line equation for circle <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> passing through point <InlineMath math="(11, 10)" />.
+3. Determine the tangent line equations for circle <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> that pass through point <InlineMath math="(11, 10)" />.
 
-4. A circle has equation <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />. Determine the tangent line equation parallel to line <InlineMath math="3x + 4y = 7" />.
+4. A circle has equation <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />. Determine the tangent line equations parallel to line <InlineMath math="3x + 4y = 7" />.
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution**:
 
@@ -581,33 +581,35 @@ So <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> and <InlineMath math=
 
    Point is outside the circle.
 
-   **Step** <InlineMath math="2" />: Use quadratic equation in gradient. With coordinate translation to circle center, point <InlineMath math="(11,10)" /> becomes <InlineMath math="(8,6)" /> relative to center.
+   **Step** <InlineMath math="2" />: Translate the center to the origin. Relative to the center, point <InlineMath math="(11,10)" /> has coordinates <InlineMath math="(8,6)" />.
 
-   **Step** <InlineMath math="3" />: Quadratic equation in gradient for circle <InlineMath math="x^2 + y^2 = 25" /> from point <InlineMath math="(8,6)" />:
+   **Step** <InlineMath math="3" />: Form the quadratic for the slopes from <InlineMath math="(8,6)" /> to circle <InlineMath math="x^2 + y^2 = 25" />.
 
    <MathContainer>
      <BlockMath math="(8^2 - 25)m^2 - 2(8)(6)m + (6^2 - 25) = 0" />
      <BlockMath math="39m^2 - 96m + 11 = 0" />
    </MathContainer>
 
-   **Step** <InlineMath math="4" />: Using quadratic formula:
+   **Step** <InlineMath math="4" />: Solve it with the quadratic formula.
 
    <MathContainer>
      <BlockMath math="m = \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} = \frac{96 \pm \sqrt{9216 - 1716}}{78}" />
      <BlockMath math="m = \frac{96 \pm \sqrt{7500}}{78} = \frac{96 \pm 50\sqrt{3}}{78}" />
    </MathContainer>
 
-   **Step** <InlineMath math="5" />: Simplify gradients and determine tangent line equation through point <InlineMath math="(11,10)" />:
+   **Step** <InlineMath math="5" />: Simplify the slopes and use point-slope form through <InlineMath math="(11,10)" />.
 
    <MathContainer>
-     <BlockMath math="m_1 = \frac{96 + 50\sqrt{3}}{78} \text{ and} m_2 = \frac{96 - 50\sqrt{3}}{78}" />
+     <BlockMath math="m_1 = \frac{48 + 25\sqrt{3}}{39} \quad \text{and} \quad m_2 = \frac{48 - 25\sqrt{3}}{39}" />
+     <BlockMath math="y-10=\frac{48+25\sqrt{3}}{39}(x-11)" />
+     <BlockMath math="y-10=\frac{48-25\sqrt{3}}{39}(x-11)" />
    </MathContainer>
 
-   Both tangent line equations can be written in form <InlineMath math="y - 10 = m(x - 11)" />.
+   These are the two tangent lines through <InlineMath math="(11,10)" />.
 
 4. **Solution**:
 
-   **Step** <InlineMath math="1" />: Convert circle equation to standard form by completing the square
+   **Step** <InlineMath math="1" />: Complete the square to write the circle in standard form.
 
    <MathContainer>
      <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
@@ -617,11 +619,9 @@ So <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> and <InlineMath math=
 
    Center <InlineMath math="(3,4)" />, radius <InlineMath math="r = 5" />.
 
-   **Step** <InlineMath math="2" />: Line <InlineMath math="3x + 4y = 7" /> can be written as <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />
+   **Step** <InlineMath math="2" />: Read the slope of the given line. Since <InlineMath math="3x + 4y = 7" /> is <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />, every parallel line has slope <InlineMath math="m = -\frac{3}{4}" />.
 
-   Parallel line gradient: <InlineMath math="m = -\frac{3}{4}" />
-
-   **Step** <InlineMath math="3" />: For circle with center <InlineMath math="(3,4)" />, parallel tangent line equation:
+   **Step** <InlineMath math="3" />: Substitute center <InlineMath math="(3,4)" />, radius, and slope into the tangent formula.
 
    <MathContainer>
      <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \frac{9}{16}}" />
@@ -629,7 +629,7 @@ So <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> and <InlineMath math=
      <BlockMath math="y = -\frac{3}{4}x + \frac{9}{4} + 4 \pm \frac{25}{4}" />
    </MathContainer>
 
-   **Step** <InlineMath math="4" />: Simplify both equations
+   **Step** <InlineMath math="4" />: Simplify both equations.
 
    <MathContainer>
      <BlockMath math="y = -\frac{3}{4}x + \frac{50}{4} = -\frac{3}{4}x + \frac{25}{2}" />

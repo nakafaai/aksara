@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Area of a Flat Surface",
-  description: "Calculate flat surface areas using definite integrals with worked solutions. Learn quadratic and irrational functions through practical examples.",
+  title: "Area Between a Curve and the Axis",
+  description: "Use definite integrals to calculate areas bounded by curves, with complete examples for quadratic and radical functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Integrals",
@@ -8,16 +8,16 @@ export const metadata = {
 
 
 
-## Basic Concepts of Flat Surface Area
+## Basic Concepts of Area Under a Curve
 
 In everyday life, we often need to calculate the area of various flat shapes. For shapes with simple forms like squares or triangles, we can use familiar formulas. But what if we want to calculate the area of a region bounded by irregular curves?
 
-**Definite integrals** provide an elegant solution to this problem. The basic concept of definite integrals stems from Riemann's approach, where we divide a region into small rectangles and then sum their areas.
+**Definite integrals** handle such regions by accumulating the areas of increasingly narrow strips. This is the idea behind Riemann sums: partition the interval, approximate each strip with a rectangle, and examine the limiting sum.
 
-Imagine we have a function <InlineMath math="f(x)" /> and want to find the area of the region under the curve from <InlineMath math="x = a" /> to <InlineMath math="x = b" />. We can divide the interval <InlineMath math="[a, b]" /> into <InlineMath math="n" /> small parts with width <InlineMath math="\Delta x" />.
+Suppose a function <InlineMath math="f(x)" /> bounds a region from <InlineMath math="x = a" /> to <InlineMath math="x = b" />. We divide <InlineMath math="[a, b]" /> into <InlineMath math="n" /> subintervals of width <InlineMath math="\Delta x" />.
 
 <MathContainer>
-<BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i) \cdot \Delta x" />
+<BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
 <BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
 </MathContainer>
 
@@ -31,7 +31,7 @@ The first step is to determine the lower and upper limits of integration. These 
 
 ### Determine the Integrand Function
 
-The function to be integrated is the function that bounds the region. If the region is above the <InlineMath math="x" />-axis, then the area of the region is <InlineMath math="\int_{a}^{b} f(x) \, dx" />.
+The integrand describes the vertical height of the region. If <InlineMath math="f(x) \ge 0" /> throughout <InlineMath math="[a,b]" />, the area is <InlineMath math="\int_{a}^{b} f(x) \, dx" />. If the graph crosses the axis, split the interval at its zeros or integrate <InlineMath math="|f(x)|" /> so that every part contributes positive area.
 
 ### Evaluate the Integral
 
@@ -47,7 +47,7 @@ Let's apply this concept to a concrete example. Suppose we want to calculate the
 
 <LineEquation
   title={<>Graph of Function <InlineMath math="f(x) = x^2 - 4x" /></>}
-  description="Visualization of the region whose area will be calculated with the help of boundary lines and shaded area."
+  description="The curve and the two vertical boundaries of the integration interval."
   showZAxis={false}
   cameraPosition={[0, 0, 12]}
   data={[
@@ -88,22 +88,22 @@ Let's apply this concept to a concrete example. Suppose we want to calculate the
     },
     {
       points: [
-        { x: 1, y: -3, z: 0 },
-        { x: 3, y: -3, z: 0 }
+        { x: 1, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
       ],
       color: "#d97706",
       showPoints: false,
       lineWidth: 1,
       labels: [
-        { text: "Area Region", at: 0, offset: [0, -1.5, 0] }
+        { text: <InlineMath math="x\in[1,3]" />, at: 0, offset: [0, 0.8, 0] }
       ]
     }
   ]}
 />
 
-Now, try to observe the graph above. The function <InlineMath math="f(x) = x^2 - 4x" /> turns out to have negative values in the interval <InlineMath math="[1, 3]" />. We can easily check: when <InlineMath math="x = 1" />, we get <InlineMath math="f(1) = 1 - 4 = -3" />. Similarly, when <InlineMath math="x = 3" />, we get <InlineMath math="f(3) = 9 - 12 = -3" />.
+On <InlineMath math="[1,3]" />, factor the function as <InlineMath math="f(x)=x(x-4)" />. Every point in the interval satisfies <InlineMath math="x>0" /> and <InlineMath math="x-4<0" />, so <InlineMath math="f(x)<0" /> throughout the interval. The endpoint values <InlineMath math="f(1)=-3" /> and <InlineMath math="f(3)=-3" /> agree with this sign analysis.
 
-Well, here's where the uniqueness lies! Since we're looking for **area** which is always positive, we need to use the absolute value of that function. So our integral becomes:
+**Geometric area** is nonnegative. Because the function is negative throughout this interval, its absolute value equals its negative, so:
 
 <MathContainer>
 <BlockMath math="A = \int_{1}^{3} |x^2 - 4x| \, dx" />
@@ -111,7 +111,7 @@ Well, here's where the uniqueness lies! Since we're looking for **area** which i
 <BlockMath math="A = \int_{1}^{3} (-x^2 + 4x) \, dx" />
 </MathContainer>
 
-Let's solve it step by step:
+Now evaluate the definite integral:
 
 <MathContainer>
 <BlockMath math="A = \left[-\frac{x^3}{3} + 2x^2\right]_{1}^{3}" />
@@ -121,9 +121,9 @@ Let's solve it step by step:
 
 Therefore, the area of that region is <InlineMath math="\frac{22}{3}" /> square units.
 
-## Application to Irrational Functions
+## Application to a Radical Function
 
-Now let's try a slightly more challenging example with an irrational function. We will calculate the area of the region under the curve <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> from <InlineMath math="x = 0" /> to <InlineMath math="x = 2" />.
+For a second example, calculate the area under <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> from <InlineMath math="x = 0" /> to <InlineMath math="x = 2" />.
 
 <LineEquation
   title={<>Graph of Function <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
@@ -179,11 +179,11 @@ Now let's try a slightly more challenging example with an irrational function. W
   ]}
 />
 
-For this integral, we need to use the **substitution technique**. Why? Because there's the form <InlineMath math="x\sqrt{x^2 + 5}" /> which is quite complex if we solve it directly.
+The expression <InlineMath math="x\sqrt{x^2 + 5}" /> suggests **substitution** because the factor <InlineMath math="x" /> is proportional to the derivative of the expression inside the square root.
 
-Let's perform substitution with <InlineMath math="u = x^2 + 5" />. From here, we get the differential <InlineMath math="du = 2x \, dx" />, which means <InlineMath math="x \, dx = \frac{1}{2} du" />.
+Set <InlineMath math="u = x^2 + 5" />. Then <InlineMath math="du = 2x \, dx" />, so <InlineMath math="x \, dx = \frac{1}{2} du" />.
 
-Don't forget to change the integration limits too! When <InlineMath math="x = 0" />, we get <InlineMath math="u = 5" />. When <InlineMath math="x = 2" />, we get <InlineMath math="u = 9" />.
+The limits must use the same variable as the integrand: <InlineMath math="x = 0" /> gives <InlineMath math="u = 5" />, while <InlineMath math="x = 2" /> gives <InlineMath math="u = 9" />.
 
 Now our integral becomes:
 
@@ -208,7 +208,7 @@ Note that <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> and <InlineMath
 
 3. Calculate the area of the region bounded by the curve <InlineMath math="y = 2x - x^2" /> and the <InlineMath math="x" />-axis!
 
-### Answer Key
+### Worked Solutions
 
 1. **First problem with function <InlineMath math="y = x^2 + 1" />**
 

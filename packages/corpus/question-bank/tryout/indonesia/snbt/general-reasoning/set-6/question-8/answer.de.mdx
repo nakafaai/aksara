@@ -1,0 +1,28 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 8",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-22",
+};
+
+Entscheidend sind nur die frei wählbaren Stellen der Kartennummer.
+
+Die Kartennummer besteht aus <InlineMath math="12" /> Ziffern im folgenden Format:
+1.  **Erste <InlineMath math="4" /> Ziffern:** fest vorgegeben als <InlineMath math="0844" />.
+2.  **Letzte <InlineMath math="4" /> Ziffern:** fest vorgegeben als <InlineMath math="1221" />.
+3.  **Mittlere <InlineMath math="4" /> Ziffern:** frei zu besetzen.
+
+Da die ersten <InlineMath math="4" /> und letzten <InlineMath math="4" /> Ziffern bereits festgelegt sind, müssen wir nur die leeren <InlineMath math="12 - 4 - 4 = 4" /> Stellen in der Mitte füllen.
+
+Die verfügbaren Ziffern sind <InlineMath math="\{2, 3, 4, 5, 7, 8, 9\}" />. Damit gibt es für jede mittlere Stelle <InlineMath math="7" /> Möglichkeiten.
+
+Da Wiederholungen ausdrücklich erlaubt sind, bleiben die <InlineMath math="7" /> Möglichkeiten an jeder der <InlineMath math="4" /> mittleren Stellen erhalten.
+
+Die Berechnung lautet wie folgt:
+
+<MathContainer>
+  <BlockMath math="\text{Gesamtkombinationen} = 7 \times 7 \times 7 \times 7" />
+  <BlockMath math="\text{Gesamtkombinationen} = 7^4" />
+  <BlockMath math="\text{Gesamtkombinationen} = 2401" />
+</MathContainer>
+
+Somit beträgt die Anzahl der Kartennummern, die erstellt werden können, <InlineMath math="2401" />.

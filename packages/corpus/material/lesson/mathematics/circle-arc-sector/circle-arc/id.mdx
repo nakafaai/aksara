@@ -12,7 +12,7 @@ export const metadata = {
 
 Setiap busur lingkaran memiliki hubungan erat dengan tali busur yang menghubungkan kedua ujungnya. Tali busur adalah garis lurus yang menghubungkan dua titik ujung busur, sedangkan busur adalah jalur melengkung di sepanjang keliling lingkaran. Bayangkan seperti busur panah, dimana tali adalah garis lurus dan busur adalah lengkungan kayu.
 
-Hubungan ini sangat penting dalam berbagai aplikasi teknik dan arsitektur. Semakin panjang busur, semakin panjang pula tali busur yang menghubungkannya, namun hubungan ini tidak bersifat linear.
+Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghasilkan busur dan tali busur yang lebih panjang, tetapi hubungannya tidak linear. Setelah melewati <InlineMath math="180^\circ" />, busur besar terus memanjang sedangkan tali busurnya memendek, karena tali busur tersebut juga dimiliki oleh busur kecil pelengkapnya.
 
 <LineEquation
   title="Hubungan Busur dan Tali Busur"
@@ -35,12 +35,13 @@ Hubungan ini sangat penting dalam berbagai aplikasi teknik dan arsitektur. Semak
     {
       points: [
         { x: 5, y: 0, z: 0 },
+        { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2, z: 0 },
         { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
       ],
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
-      labels: [{ text: <>Tali Busur <InlineMath math="60^\circ" /></>, at: 0.5, offset: [0.8, -0.5, 0] }],
+      labels: [{ text: <>Tali Busur <InlineMath math="60^\circ" /></>, at: 1, offset: [0.8, -0.5, 0] }],
     },
     {
       points: [
@@ -75,12 +76,13 @@ Hubungan ini sangat penting dalam berbagai aplikasi teknik dan arsitektur. Semak
     {
       points: [
         { x: -5, y: 0, z: 0 },
-        { x: 5 * Math.cos(2 * Math.PI / 3), y: 5 * Math.sin(2 * Math.PI / 3), z: 0 },
+        { x: (-5 + 5 * Math.cos(5 * Math.PI / 3)) / 2, y: (5 * Math.sin(5 * Math.PI / 3)) / 2, z: 0 },
+        { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
       ],
       color: "#d97706",
       lineWidth: 3,
       showPoints: false,
-      labels: [{ text: <>Tali Busur <InlineMath math="120^\circ" /></>, at: 0.5, offset: [-0.8, -0.5, 0] }],
+      labels: [{ text: <>Tali Busur <InlineMath math="120^\circ" /></>, at: 1, offset: [-0.8, -0.5, 0] }],
     },
     {
       points: [
@@ -92,7 +94,7 @@ Hubungan ini sangat penting dalam berbagai aplikasi teknik dan arsitektur. Semak
     },
     {
       points: [
-        { x: 5 * Math.cos(2 * Math.PI / 3), y: 5 * Math.sin(2 * Math.PI / 3), z: 0 },
+        { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
       ],
       color: "#9333ea",
       showPoints: true,
@@ -131,23 +133,23 @@ Panjang tali busur dapat dihitung menggunakan rumus trigonometri yang melibatkan
 
 <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
 
-Dimana:
+dengan:
 - <InlineMath math="c" /> = panjang tali busur
 - <InlineMath math="r" /> = jari-jari lingkaran
-- <InlineMath math="\theta" /> = sudut pusat dalam radian
+- <InlineMath math="\theta" /> = sudut pusat; gunakan mode derajat untuk derajat dan mode radian untuk radian
 
-Rumus ini sangat berguna dalam perhitungan teknik, terutama dalam desain struktur lengkung dan analisis kekuatan material.
+Rumus ini menentukan panjang tali busur dari jari-jari dan sudut pusat sebuah busur lingkaran. Rumus tersebut dapat dipakai untuk menentukan geometri ideal jendela bundar, lengkungan, atau bentuk melengkung lainnya. Struktur nyata tetap memerlukan analisis beban, material, dan tumpuan secara terpisah.
 
 ## Tinggi Busur dan Sagita
 
-Tinggi busur atau sagita adalah jarak tegak lurus dari titik tengah tali busur ke titik tertinggi busur. Konsep ini sangat penting dalam desain jembatan lengkung dan struktur arsitektur.
+Tinggi busur, atau sagita, adalah jarak tegak lurus dari titik tengah tali busur ke titik tengah busur kecil yang bersesuaian. Bersama tali busur, sagita menentukan bentuk sebuah busur lingkaran ideal.
 
 <BlockMath math="h = r - r\cos\left(\frac{\theta}{2}\right) = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-Dimana:
+dengan:
 - <InlineMath math="h" /> = tinggi busur (sagita)
 - <InlineMath math="r" /> = jari-jari lingkaran
-- <InlineMath math="\theta" /> = sudut pusat dalam radian
+- <InlineMath math="\theta" /> = sudut pusat; hitung kosinus dalam satuan sudut yang sama dengan <InlineMath math="\theta" />
 
 Perhatikan visualisasi berikut:
 
@@ -172,12 +174,13 @@ Perhatikan visualisasi berikut:
     {
       points: [
         { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
+        { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
       ],
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
-      labels: [{ text: "Tali Busur", at: 0.5, offset: [0, -0.8, 0] }],
+      labels: [{ text: "Tali Busur", at: 1, offset: [0, -0.8, 0] }],
     },
     {
       points: [
@@ -262,17 +265,17 @@ Perhatikan visualisasi berikut:
 
 ## Busur dalam Sistem Koordinat
 
-Dalam sistem koordinat Cartesian, busur dapat direpresentasikan menggunakan persamaan parametrik:
+Dalam sistem koordinat Kartesius, busur dapat direpresentasikan menggunakan persamaan parametrik:
 
 <MathContainer>
 <BlockMath math="x = r\cos(t)" />
 <BlockMath math="y = r\sin(t)" />
 </MathContainer>
 
-Dimana <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awal hingga sudut akhir busur.
+Di sini, <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awal hingga sudut akhir busur.
 
 <LineEquation
-  title="Busur dalam Koordinat Cartesian"
+  title="Busur dalam Koordinat Kartesius"
   description="Representasi busur menggunakan persamaan parametrik."
   data={[
     {
@@ -308,22 +311,24 @@ Dimana <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awal 
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.sin(Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
       ],
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="r=3" />, at: 0.5, offset: [0.3, -0.3, 0] }],
+      labels: [{ text: <InlineMath math="r=3" />, at: 1, offset: [0.3, -0.3, 0] }],
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(3 * Math.PI / 4), y: 1.5 * Math.sin(3 * Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
       ],
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="r=3" />, at: 0.5, offset: [-0.3, -0.3, 0] }],
+      labels: [{ text: <InlineMath math="r=3" />, at: 1, offset: [-0.3, -0.3, 0] }],
     },
     {
       points: [
@@ -331,7 +336,7 @@ Dimana <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awal 
       ],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <>Origin <InlineMath math="(0,0)" /></>, at: 0, offset: [-0.8, -0.5, 0] }],
+      labels: [{ text: <>Titik asal <InlineMath math="(0,0)" /></>, at: 0, offset: [-0.8, -0.5, 0] }],
     },
     {
       points: Array.from({ length: 101 }, (_, i) => {
@@ -352,9 +357,9 @@ Dimana <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awal 
   showZAxis={false}
 />
 
-## Contoh Perhitungan Teknik
+## Contoh Lengkungan Lingkaran Ideal
 
-Mari kita terapkan konsep ini dalam perhitungan teknik. Misalkan kita merancang jembatan lengkung dengan jari-jari <InlineMath math="25 \text{ meter}" /> dan sudut pusat <InlineMath math="120^\circ" />.
+Perhatikan penampang lingkaran ideal untuk sebuah lengkungan. Jari-jarinya <InlineMath math="25 \text{ meter}" />, sedangkan sudut pusatnya <InlineMath math="120^\circ" />. Kita dapat menentukan bentang yang diwakili tali busur dan kenaikan yang diwakili sagita.
 
 **Menghitung panjang tali busur:**
 
@@ -370,20 +375,20 @@ Mari kita terapkan konsep ini dalam perhitungan teknik. Misalkan kita merancang 
 <MathContainer>
 <BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 <BlockMath math="h = 25\left(1 - \cos(60^\circ)\right)" />
-<BlockMath math="h = 25\left(1 - \frac{1}{2}\right) = 12.5 \text{ meter}" />
+<BlockMath math="h = 25\left(1 - \frac{1}{2}\right) = 12{,}5 \text{ m}" />
 </MathContainer>
 
 ## Latihan
 
-1. Sebuah jembatan lengkung memiliki jari-jari <InlineMath math="30 \text{ meter}" /> dan sudut pusat <InlineMath math="90^\circ" />. Hitunglah panjang tali busur dan tinggi busur jembatan tersebut.
+1. Sebuah lengkungan lingkaran ideal memiliki jari-jari <InlineMath math="30 \text{ m}" /> dan sudut pusat <InlineMath math="90^\circ" />. Hitung panjang tali busur dan tinggi busurnya.
 
-2. Dalam desain kubah masjid, diketahui tinggi busur adalah <InlineMath math="8 \text{ meter}" /> dan jari-jari lingkaran adalah <InlineMath math="15 \text{ meter}" />. Tentukan sudut pusat busur tersebut.
+2. Pada penampang melingkar ideal sebuah kubah, tinggi busurnya <InlineMath math="8 \text{ m}" /> dan jari-jari lingkarannya <InlineMath math="15 \text{ m}" />. Tentukan sudut pusat busur tersebut.
 
-3. Sebuah busur lingkaran memiliki panjang tali busur <InlineMath math="24 \text{ meter}" /> dan jari-jari <InlineMath math="15 \text{ meter}" />. Hitunglah sudut pusat dan tinggi busur.
+3. Sebuah busur kecil memiliki panjang tali busur <InlineMath math="24 \text{ m}" /> dan jari-jari <InlineMath math="15 \text{ m}" />. Hitung sudut pusat kecil dan tinggi busurnya.
 
-4. Dalam sistem koordinat, sebuah busur dimulai dari titik <InlineMath math="(4, 0)" /> dan berakhir di titik <InlineMath math="(0, 4)" /> pada lingkaran dengan pusat di origin. Tentukan persamaan parametrik busur tersebut.
+4. Dalam sistem koordinat, sebuah busur dimulai dari titik <InlineMath math="(4, 0)" /> dan berakhir di titik <InlineMath math="(0, 4)" /> pada lingkaran berpusat di titik asal. Tentukan parameterisasi baku dalam radian untuk busur kecil tersebut.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian:**
 
@@ -393,14 +398,14 @@ Mari kita terapkan konsep ini dalam perhitungan teknik. Misalkan kita merancang 
 
    <MathContainer>
    <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right) = 2 \times 30 \times \sin(45^\circ)" />
-   <BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42.43 \text{ m}" />
+   <BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42{,}43 \text{ m}" />
    </MathContainer>
 
    **Tinggi busur:**
 
    <MathContainer>
    <BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) = 30\left(1 - \cos(45^\circ)\right)" />
-   <BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8.79 \text{ m}" />
+   <BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8{,}79 \text{ m}" />
    </MathContainer>
 
 2. **Penyelesaian:**
@@ -421,8 +426,8 @@ Mari kita terapkan konsep ini dalam perhitungan teknik. Misalkan kita merancang 
    **Langkah** <InlineMath math="3" />: Hitung sudut
 
    <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62.18^\circ" />
-   <BlockMath math="\theta \approx 124.36^\circ" />
+   <BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62{,}18^\circ" />
+   <BlockMath math="\theta \approx 124{,}36^\circ" />
    </MathContainer>
 
 3. **Penyelesaian:**
@@ -433,24 +438,24 @@ Mari kita terapkan konsep ini dalam perhitungan teknik. Misalkan kita merancang 
 
    <MathContainer>
    <BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
-   <BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0.8" />
+   <BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0{,}8" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="2" />: Hitung sudut pusat
+   **Langkah** <InlineMath math="2" />: Hitung sudut pusat kecil
 
    <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arcsin(0.8) \approx 53.13^\circ" />
-   <BlockMath math="\theta \approx 106.26^\circ" />
+   <BlockMath math="\frac{\theta}{2} = \arcsin(0{,}8) \approx 53{,}13^\circ" />
+   <BlockMath math="\theta \approx 106{,}26^\circ" />
    </MathContainer>
 
    **Langkah** <InlineMath math="3" />: Hitung tinggi busur
 
-   <BlockMath math="h = 15\left(1 - \cos(53.13^\circ)\right) = 15(1 - 0.6) = 6 \text{ m}" />
+   <BlockMath math="h = 15\left(1 - \cos(53{,}13^\circ)\right) = 15(1 - 0{,}6) = 6 \text{ m}" />
 
 4. **Penyelesaian:**
 
-   - Titik awal: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0^\circ" />
-   - Titik akhir: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = 90^\circ" />
+   - Titik awal: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
+   - Titik akhir: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
    - Jari-jari: <InlineMath math="r = 4" />
 
    **Persamaan parametrik:**
@@ -458,5 +463,5 @@ Mari kita terapkan konsep ini dalam perhitungan teknik. Misalkan kita merancang 
    <MathContainer>
    <BlockMath math="x = 4\cos(t)" />
    <BlockMath math="y = 4\sin(t)" />
-   <BlockMath math="0^\circ \leq t \leq 90^\circ" />
+   <BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
    </MathContainer>

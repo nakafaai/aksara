@@ -1,0 +1,157 @@
+
+
+export const metadata = {
+  title: "Einheitsvektor zu einem Vektor",
+  description: "Normiere einen Vektor ungleich null zum Einheitsvektor und verbinde den Betrag 1 mit Richtung und den kartesischen Standardeinheitsvektoren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-12",
+  subject: "Vektoren und ihre Operationen",
+};
+
+## Definition des Einheitsvektors
+
+Ein Einheitsvektor hat den Betrag <InlineMath math="1 \text{ Einheit}" />. Er beschreibt eine Richtung, ohne den ursprünglichen Betrag mitzunehmen. Aus jedem Vektor ungleich null erhalten wir einen Einheitsvektor in derselben Richtung, indem wir den Vektor durch seinen Betrag teilen.
+
+## Grundkonzept
+
+Betrachten wir den Vektor <InlineMath math="\overrightarrow{PQ}" /> in einem kartesischen Koordinatensystem. Sein Einheitsvektor entsteht, indem wir <InlineMath math="\overrightarrow{PQ}" /> durch den Betrag von <InlineMath math="\overrightarrow{PQ}" /> teilen.
+
+<BlockMath math="\mathbf{u}_{PQ} = \frac{\overrightarrow{PQ}}{|\overrightarrow{PQ}|}" />
+
+Dabei ist <InlineMath math="|\overrightarrow{PQ}|" /> der Betrag des Vektors <InlineMath math="\overrightarrow{PQ}" />.
+
+Der Einheitsvektor zeigt in dieselbe Richtung wie der ursprüngliche Vektor, hat aber den normierten Betrag <InlineMath math="1 \text{ Einheit}" />.
+
+<Vector3d
+  title="Vektor und Einheitsvektor"
+  description="Der ursprüngliche Vektor und sein Einheitsvektor zeigen in dieselbe Richtung, besitzen aber unterschiedliche Beträge."
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [3, 4, 0],
+      color: "#9333ea",
+      label: <InlineMath math="v" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [0.6, 0.8, 0],
+      color: "#d97706",
+      label: <InlineMath math="\hat{v}" />,
+      labelPosition: "end",
+    },
+  ]}
+  cameraPosition={[6, 6, 8]}
+/>
+
+## Berechnung eines Einheitsvektors
+
+### Rechenschritte
+
+So bestimmst du den Einheitsvektor eines gegebenen Vektors:
+
+1. Bestimme den ursprünglichen Vektor
+2. Berechne seinen Betrag
+3. Teile den Vektor durch seinen Betrag
+
+### Beispielanwendung
+
+Gegeben ist der Vektor <InlineMath math="\vec{v} = (3, 6, 4)" />.
+
+Zuerst berechnen wir seinen Betrag:
+
+<BlockMath math="|\vec{v}| = \sqrt{3^2 + 6^2 + 4^2} = \sqrt{9 + 36 + 16} = \sqrt{61}" />
+
+Anschließend teilen wir den Vektor durch diesen Betrag:
+
+<BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|} = \frac{(3, 6, 4)}{\sqrt{61}}" />
+
+Damit erhalten wir:
+
+<BlockMath math="\hat{v} = \left(\frac{3}{\sqrt{61}}, \frac{6}{\sqrt{61}}, \frac{4}{\sqrt{61}}\right)" />
+
+<ContentBlock>
+  <Vector3d
+    title="Einheitsvektor im dreidimensionalen Raum"
+    description={
+      <>
+        Der Vektor <InlineMath math="v(3,6,4)" /> und sein Einheitsvektor{" "}
+        <InlineMath math="\hat{v}" /> zeigen in dieselbe Richtung.
+      </>
+    }
+    vectors={[
+      {
+        from: [0, 0, 0],
+        to: [3, 6, 4],
+        color: "#db2777",
+        label: <InlineMath math="v" />,
+        labelPosition: "end",
+      },
+      {
+        from: [0, 0, 0],
+        to: [3 / Math.sqrt(61), 6 / Math.sqrt(61), 4 / Math.sqrt(61)],
+        color: "#0d9488",
+        label: <InlineMath math="\hat{v}" />,
+        labelPosition: "end",
+      },
+    ]}
+    cameraPosition={[4, 8, 8]}
+  />
+</ContentBlock>
+
+## Eigenschaften von Einheitsvektoren
+
+### Betrag eines Einheitsvektors
+
+Ein Einheitsvektor hat immer den Betrag <InlineMath math="1" />. Für das Beispiel lässt sich das direkt nachrechnen:
+
+<BlockMath math="|\hat{v}| = \sqrt{\left(\frac{3}{\sqrt{61}}\right)^2 + \left(\frac{6}{\sqrt{61}}\right)^2 + \left(\frac{4}{\sqrt{61}}\right)^2} = \sqrt{\frac{9 + 36 + 16}{61}} = \sqrt{\frac{61}{61}} = 1" />
+
+### Einheitsvektoren auf Koordinatenachsen
+
+Im dreidimensionalen Koordinatensystem gibt es drei Standardeinheitsvektoren, die jeweils in die positive Richtung einer Koordinatenachse zeigen:
+
+- <InlineMath math="\hat{\imath}" /> ist der Einheitsvektor in positiver <InlineMath math="x" />-Richtung
+- <InlineMath math="\hat{\jmath}" /> ist der Einheitsvektor in positiver <InlineMath math="y" />-Richtung
+- <InlineMath math="\hat{k}" /> ist der Einheitsvektor in positiver <InlineMath math="z" />-Richtung
+
+Jeder Vektor in <InlineMath math="\mathbb{R}^3" /> kann als lineare Kombination dieser drei Einheitsvektoren ausgedrückt werden.
+
+<Vector3d
+  title="Standard-Einheitsvektoren"
+  description="Standardeinheitsvektoren auf den Koordinatenachsen."
+  vectors={[
+    {
+      from: [0, 0, 0],
+      to: [1, 0, 0],
+      color: "#e11d48",
+      label: <InlineMath math="\hat{\imath}" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [0, 1, 0],
+      color: "#7c3aed",
+      label: <InlineMath math="\hat{\jmath}" />,
+      labelPosition: "end",
+    },
+    {
+      from: [0, 0, 0],
+      to: [0, 0, 1],
+      color: "#ea580c",
+      label: <InlineMath math="\hat{k}" />,
+      labelPosition: "end",
+    },
+  ]}
+  cameraPosition={[3, 3, 3]}
+/>
+
+## Anwendungen von Einheitsvektoren
+
+### Eine Richtung angeben
+
+Einheitsvektoren beschreiben eine Richtung unabhängig vom Betrag. In der Physik geben sie zum Beispiel die Richtung einer Kraft, Geschwindigkeit oder Beschleunigung an.
+
+### Physikalische Berechnungen
+
+Einheitsvektoren helfen außerdem dabei, einen Vektor in seine Komponenten zu zerlegen. Eine Kraft lässt sich so in Anteile entlang der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse aufteilen.

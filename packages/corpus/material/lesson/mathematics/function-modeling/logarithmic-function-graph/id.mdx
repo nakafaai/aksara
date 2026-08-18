@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Mengenal Grafik Fungsi Logaritma
 
-Pernahkah kalian memperhatikan bagaimana suara berkurang intensitasnya saat kita menjauh dari sumbernya? Atau bagaimana pH larutan berubah? Fenomena-fenomena ini dapat dimodelkan dengan grafik fungsi logaritma. Mari kita pelajari karakteristik dan cara menggambar grafik fungsi logaritma.
+Grafik logaritma berubah cepat di dekat asimtot vertikalnya, lalu berubah semakin lambat ketika nilai input membesar. Bentuk ini muncul ketika suatu keluaran menyatakan logaritma dari rasio positif, misalnya pada skala taraf bunyi dan pH. Di sini kita akan melihat bagaimana basis menentukan bentuk grafik dan bagaimana transformasi menggesernya.
 
 ## Karakteristik Grafik Logaritma
 
@@ -187,7 +187,7 @@ Mari kita bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
       }),
       color: "#e11d48",
       labels: [
-        { text: <><InlineMath math="y=\log_{0.5} x" /> (turun)</>, at: 40, offset: [0.5, -0.5, 0] },
+        { text: <><InlineMath math="y=\log_{0{,}5} x" /> (turun)</>, at: 40, offset: [0.5, -0.5, 0] },
       ],
       showPoints: false,
     },
@@ -324,7 +324,7 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
 
 4. Sketsa grafik <InlineMath math="y = \log_3 x + 2" /> dan tentukan titik potong dengan sumbu <InlineMath math="y" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. Tabel nilai:
 
@@ -338,7 +338,11 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
    |-------------------------|-------------------------------------|------------------------------------|----|----|----|
    | <InlineMath math="y" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> |
 
+   Plot setiap pasangan berurutan, lalu buat kurva halus yang tetap berada di sebelah kanan asimtot vertikal <InlineMath math="x=0" />. Grafik berbasis <InlineMath math="3" /> naik, sedangkan grafik berbasis <InlineMath math="\frac{1}{2}" /> turun.
+
 2. Untuk <InlineMath math="f(x) = \log_5 (x + 3)" />:
+
+   Logaritma hanya terdefinisi ketika argumennya positif. Batas dari syarat tersebut menjadi asimtot vertikal:
 
    - Domain: <InlineMath math="x + 3 > 0 \Rightarrow x > -3" />
    - Range: Semua bilangan real
@@ -346,13 +350,19 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
 
 3. Untuk <InlineMath math="g(x) = \log_2 (x - 4)" />:
 
+   Mengganti <InlineMath math="x" /> dengan <InlineMath math="x-4" /> menggeser grafik ke kanan. Bentuk yang sama juga harus tetap positif:
+
    - Pergeseran: <InlineMath math="4 \text{ satuan}" /> ke kanan
    - Domain: <InlineMath math="x - 4 > 0 \Rightarrow x > 4" />
 
 4. Untuk <InlineMath math="y = \log_3 x + 2" />:
 
+   Penambahan <InlineMath math="2" /> di luar logaritma menggeser semua titik secara vertikal tanpa mengubah domain atau asimtot:
+
    - Grafik <InlineMath math="y = \log_3 x" /> digeser <InlineMath math="2 \text{ satuan}" /> ke atas
    - Tidak ada titik potong dengan sumbu <InlineMath math="y" /> karena domain adalah <InlineMath math="x > 0" />
+
+   Secara khusus, titik potong dengan sumbu <InlineMath math="y" /> memerlukan <InlineMath math="x=0" />, padahal logaritma tidak terdefinisi di sana. Grafik berikut menegaskan bahwa kurva mendekati, tetapi tidak pernah mencapai, sumbu <InlineMath math="y" />.
 
    <ContentBlock>
      <LineEquation
@@ -395,15 +405,6 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
              { text: <InlineMath math="(1,2)" />, at: 2, offset: [0, 1, 0] },
              { text: <InlineMath math="(3,3)" />, at: 3, offset: [0, 0.5, 0] },
            ],
-         },
-         {
-           points: [
-             { x: -0.5, y: 2, z: 0 },
-             { x: 10, y: 2, z: 0 },
-           ],
-           color: "#9333ea",
-           labels: [{ text: <InlineMath math="y=2" />, at: 0, offset: [-0.5, 0.3, 0] }],
-           showPoints: false,
          },
          {
            points: [

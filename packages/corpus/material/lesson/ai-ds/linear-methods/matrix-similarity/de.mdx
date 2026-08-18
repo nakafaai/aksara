@@ -1,0 +1,121 @@
+export const metadata = {
+    title: "Matrixähnlichkeit",
+    description: "Matrixähnlichkeit als Basiswechsel verstehen. Determinante, charakteristisches Polynom, Eigenwerte und Spur bleiben dabei erhalten.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-16",
+    subject: "Lineare Methoden der KI",
+};
+
+## Definition der Matrixähnlichkeit
+
+In der linearen Algebra erklärt die Matrixähnlichkeit, wie zwei verschiedene Matrizen dieselbe lineare Transformation in unterschiedlichen Basen darstellen können. Die Einträge ändern sich mit den Koordinaten, die zugrunde liegende Transformation jedoch nicht.
+
+Zwei Matrizen <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> heißen **ähnlich**, wenn es eine invertierbare Matrix <InlineMath math="S \in \mathbb{K}^{n \times n}" /> gibt, so dass:
+
+<BlockMath math="B = S^{-1} \cdot A \cdot S" />
+
+Die Matrix <InlineMath math="S" /> wird in diesem Fall Ähnlichkeitstransformationsmatrix genannt.
+
+## Basistransformation und Koordinatendarstellung
+
+Der Zusammenhang wird durch einen Basiswechsel sichtbar. Sei <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> die kanonische Basis und <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> eine weitere Basis von <InlineMath math="\mathbb{K}^n" />.
+
+Wenn <InlineMath math="S" /> eine invertierbare Matrix mit den Spalten <InlineMath math="v_k" /> ist:
+
+<BlockMath math="S = (v_1 \quad \ldots \quad v_n) \in \mathbb{K}^{n \times n}" />
+
+Dann haben wir <InlineMath math="v_k = S \cdot e_k" /> oder <InlineMath math="e_k = S^{-1} \cdot v_k" /> für <InlineMath math="k = 1, \ldots, n" />. Die Matrix <InlineMath math="S" /> stellt die **Basistransformation** dar.
+
+Ein Vektor <InlineMath math="x \in \mathbb{K}^n" /> kann in der kanonischen Basis durch die Koordinaten <InlineMath math="x_k" /> und in der Basis <InlineMath math="v_1, \ldots, v_n" /> durch die Koordinaten <InlineMath math="\xi_k" /> ausgedrückt werden:
+
+<MathContainer>
+<BlockMath math="x = \sum_{k=1}^n x_k \cdot e_k" />
+<BlockMath math="= \sum_{k=1}^n \xi_k \cdot v_k = S \cdot \xi" />
+<BlockMath math="\xi = \begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix} = S^{-1} \cdot x" />
+</MathContainer>
+
+Die Matrix <InlineMath math="S^{-1}" /> repräsentiert die **Koordinatentransformation**.
+
+## Lineare Transformation in verschiedenen Basen
+
+Betrachten Sie nun die lineare Transformation <InlineMath math="y = A \cdot x" />. In der kanonischen Basis wird <InlineMath math="y" /> durch die Koordinaten <InlineMath math="y_k" /> ausgedrückt, während in der Basis <InlineMath math="v_1, \ldots, v_n" /> durch die Koordinaten <InlineMath math="\eta_k" /> ausgedrückt wird:
+
+<MathContainer>
+<BlockMath math="y = \sum_{k=1}^n y_k \cdot e_k" />
+<BlockMath math="= \sum_{k=1}^n \eta_k \cdot v_k = S \cdot \eta" />
+<BlockMath math="\eta = \begin{pmatrix} \eta_1 \\ \vdots \\ \eta_n \end{pmatrix} = S^{-1} \cdot y" />
+</MathContainer>
+
+Deshalb:
+
+<MathContainer>
+<BlockMath math="S \cdot \eta = y = A \cdot x" />
+<BlockMath math="= A \cdot S \cdot \xi" />
+</MathContainer>
+
+oder mit anderen Worten:
+
+<BlockMath math="\eta = S^{-1} \cdot A \cdot S \cdot \xi" />
+
+In der Basis <InlineMath math="v_1, \ldots, v_n" /> wird die lineare Transformation <InlineMath math="y = A \cdot x" /> durch <InlineMath math="\eta = B \cdot \xi" /> mit der Matrix dargestellt:
+
+<BlockMath math="B = S^{-1} \cdot A \cdot S" />
+
+Somit beschreiben ähnliche Matrizen ein und dieselbe lineare Transformation bezüglich verschiedener Basen von <InlineMath math="\mathbb{K}^n" />.
+
+## Durchgerechnetes Basiswechselbeispiel
+
+Es seien
+
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&0\\0&3\end{pmatrix}" />
+<BlockMath math="S=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad S^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}" />
+</MathContainer>
+
+Dieselbe Transformation besitzt in der von den Spalten von <InlineMath math="S" /> gebildeten Basis die Matrix
+
+<BlockMath math="B=S^{-1}AS=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />
+
+Obwohl die Einträge verschieden sind, haben beide Matrizen das charakteristische Polynom <InlineMath math="(t-2)(t-3)" />, die Spur <InlineMath math="5" /> und die Determinante <InlineMath math="6" />.
+
+## Invariante Eigenschaften ähnlicher Matrizen
+
+Da ähnliche Matrizen dieselbe Transformation in verschiedenen Koordinaten beschreiben, bleiben ihre basisunabhängigen Eigenschaften erhalten. Sie besitzen dasselbe charakteristische Polynom, dieselbe Determinante, Spur und denselben Rang sowie dieselben Eigenwerte mit algebraischer Vielfachheit, dasselbe Minimalpolynom und dieselben Jordan-Blockgrößen.
+
+Sie besitzen jedoch nicht zwingend dieselben Einträge, Eigenvektorkoordinaten, dieselbe euklidische Norm, Symmetrie oder Orthogonalität. Diese Eigenschaften können von der gewählten Basis abhängen. Ein unitärer oder orthogonaler Basiswechsel erhält mehr geometrische Struktur als eine allgemeine Ähnlichkeitstransformation.
+
+| Unter Ähnlichkeit erhalten | Nicht allgemein erhalten |
+| --- | --- |
+| Charakteristisches Polynom und Minimalpolynom | Matrixeinträge |
+| Eigenwerte und Jordan-Blockgrößen | Koordinatenvektoren der Eigenvektoren |
+| Determinante, Spur und Rang | Euklidische Norm und Symmetrie |
+
+### Beweis der Determinantengleichheit
+
+Für die Determinante können wir zeigen:
+
+<MathContainer>
+<BlockMath math="\det(B) = \det(S^{-1} \cdot A \cdot S)" />
+<BlockMath math="= \det(S^{-1}) \cdot \det(A) \cdot \det(S)" />
+</MathContainer>
+
+Aus <InlineMath math="\det(S^{-1}) = \frac{1}{\det(S)}" /> folgt:
+
+<MathContainer>
+<BlockMath math="\det(B) = \frac{1}{\det(S)} \cdot \det(A) \cdot \det(S)" />
+<BlockMath math="= \det(A)" />
+</MathContainer>
+
+### Korrespondenz der Eigenwerte
+
+Wenn <InlineMath math="v \in \mathbb{K}^n" /> ein Eigenvektor von <InlineMath math="A" /> mit dem Eigenwert <InlineMath math="\lambda \in \mathbb{K}" /> ist, so dass <InlineMath math="A \cdot v = \lambda \cdot v" />, dann ist <InlineMath math="w = S^{-1} \cdot v" /> ein Eigenvektor von <InlineMath math="B" /> mit demselben Eigenwert:
+
+<MathContainer>
+<BlockMath math="B \cdot w = S^{-1} \cdot A \cdot S \cdot w" />
+<BlockMath math="= S^{-1} \cdot A \cdot v" />
+<BlockMath math="= S^{-1} \cdot \lambda \cdot v" />
+<BlockMath math="= \lambda \cdot w" />
+</MathContainer>
+
+Damit bleibt das Spektrum unter einem Basiswechsel unverändert. Der Koordinatenvektor eines Eigenvektors ändert sich von <InlineMath math="v" /> zu <InlineMath math="S^{-1}v" />, während die dargestellte geometrische Richtung zur selben zugrunde liegenden Transformation gehört.

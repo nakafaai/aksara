@@ -1,0 +1,117 @@
+
+export const metadata = {
+  title: "Determinationskoeffizient",
+  description: "Lerne anhand von Streudiagrammen und Formeln, welchen Anteil der beobachteten Streuung ein lineares Regressionsmodell erfasst.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-30",
+  subject: "Statistik",
+};
+
+## Was ist der Determinationskoeffizient?
+
+Nachdem wir eine lineare Regressionsgerade angepasst haben, stellt sich die nächste Frage: **Wie viel von der beobachteten Streuung erfasst dieses Modell?**
+
+Das passende Maß heißt **Determinationskoeffizient** und wird meist mit <InlineMath math="R^2" /> bezeichnet. Für die einfache lineare Regression mit einem Prädiktor und einem Achsenabschnitt, die wir hier betrachten, gilt <InlineMath math="R^2=r^2" />. Wir können den Wert also berechnen, indem wir den Pearson-Korrelationskoeffizienten quadrieren.
+
+Der Wert <InlineMath math="r^2" /> gibt den **Anteil oder Prozentsatz** der beobachteten Streuung der abhängigen Variablen <InlineMath math="Y" /> an, den das angepasste lineare Modell mithilfe von <InlineMath math="X" /> erfasst.
+
+## Bestimmtheitskoeffizient aus einem Streudiagramm
+
+Der Wert von <InlineMath math="r^2" /> lässt sich im Streudiagramm daran erkennen, wie dicht die Datenpunkte an der Regressionsgeraden liegen:
+
+1. **Hohes <InlineMath math="r^2" /> (nahe <InlineMath math="1" /> oder <InlineMath math="100\%" />)**
+
+   <ScatterDiagram
+     title={
+       <>
+         Hohes <InlineMath math="r^2" />
+       </>
+     }
+     description="Datenpunkte liegen sehr nahe an der Regressionslinie."
+     xAxisLabel="Variable X"
+     yAxisLabel="Variable Y"
+     datasets={[
+       {
+         name: "Daten",
+         color: "var(--chart-1)",
+         points: [
+           { x: 1, y: 2 },
+           { x: 2, y: 3.1 },
+           { x: 3, y: 3.9 },
+           { x: 4, y: 5.2 },
+           { x: 5, y: 6.1 },
+           { x: 6, y: 6.8 },
+           { x: 7, y: 8.1 },
+           { x: 8, y: 9.0 },
+         ],
+       },
+     ]}
+     calculateRegressionLine
+     showResiduals
+     regressionLineStyle={{ color: "var(--chart-4)" }}
+   />
+
+   Für diese Punkte ergibt die Rechnung <InlineMath math="R^2\approx0{,}997" />, also <InlineMath math="99{,}7\%" />. Die dichte Lage an der Regressionsgeraden passt zu diesem Wert: Das Modell erfasst fast die gesamte beobachtete Streuung von <InlineMath math="Y" />.
+
+2. **Niedriges <InlineMath math="r^2" /> (nahe <InlineMath math="0" /> oder <InlineMath math="0\%" />)**
+
+   <ScatterDiagram
+     title={
+       <>
+         Niedriges <InlineMath math="r^2" />
+       </>
+     }
+     description="Datenpunkte sind weit von der Regressionslinie entfernt."
+     xAxisLabel="Variable X"
+     yAxisLabel="Variable Y"
+     datasets={[
+       {
+         name: "Daten",
+         color: "var(--chart-2)",
+         points: [
+           { x: 1, y: 2 },
+           { x: 2, y: 8 },
+           { x: 3, y: 3 },
+           { x: 4, y: 6 },
+           { x: 5, y: 1 },
+           { x: 6, y: 9 },
+           { x: 7, y: 4 },
+           { x: 8, y: 7 },
+         ],
+       },
+     ]}
+     calculateRegressionLine
+     showResiduals
+     regressionLineStyle={{ color: "var(--chart-4)" }}
+   />
+
+   Für den zweiten Datensatz gilt <InlineMath math="R^2\approx0{,}078" />, also <InlineMath math="7{,}8\%" />. Die längeren Residuen passen zu diesem niedrigen Wert: Das lineare Modell erfasst nur einen kleinen Teil der beobachteten Streuung von <InlineMath math="Y" />.
+
+## Den Determinationskoeffizienten berechnen
+
+Im einfachen linearen Modell erhalten wir <InlineMath math="r^2" />, indem wir den bereits bekannten **Korrelationskoeffizienten <InlineMath math="r" /> quadrieren**.
+
+<BlockMath math="r^2 = (r)^2" />
+
+Wenn <InlineMath math="r" /> schon bekannt ist, quadrieren wir den Wert, um <InlineMath math="r^2" /> zu erhalten.
+
+Für einen definierten Korrelationskoeffizienten gilt <InlineMath math="-1 \le r \le 1" />. Sein Quadrat liegt daher zwischen null und eins:
+
+<BlockMath math="0 \le r^2 \le 1" />
+
+**Berechnung mit Abweichungssummen:**
+
+Wir können <InlineMath math="r^2" /> auch direkt aus denselben Abweichungssummen berechnen, die in der Formel für <InlineMath math="r" /> vorkommen:
+
+<BlockMath math="r^2 = \frac{(SS_{xy})^2}{SS_{xx} SS_{yy}}" />
+
+Dieses Verhältnis setzt Streuung in beiden Variablen voraus, also <InlineMath math="SS_{xx}>0" /> und <InlineMath math="SS_{yy}>0" />. Sind alle <InlineMath math="y" />-Werte identisch, ist die Gesamtstreuung null und das übliche Verhältnis für den Determinationskoeffizienten nicht definiert.
+
+## Interpretation als Prozentsatz
+
+Zur leichteren Deutung wird <InlineMath math="r^2" /> häufig durch Multiplikation mit <InlineMath math="100" /> in Prozent angegeben.
+
+- Bei <InlineMath math="r^2 = 0{,}81" /> erfasst das lineare Regressionsmodell **<InlineMath math="81\%" />** der beobachteten Streuung von <InlineMath math="Y" /> mithilfe von <InlineMath math="X" />.
+- Die übrige Streuung, hier <InlineMath math="1 - r^2" /> beziehungsweise <InlineMath math="19\%" />, wird von diesem linearen Modell **nicht erfasst**. Dahinter können nicht berücksichtigte Variablen, ein nichtlinearer Zusammenhang, Messfehler oder zufällige Schwankungen stehen. Aus <InlineMath math="r^2" /> allein lässt sich die Ursache nicht ablesen.
+
+Ein höheres <InlineMath math="r^2" /> bedeutet, dass dieses Modell mehr von der beobachteten Streuung in <InlineMath math="Y" /> erfasst. Es beweist weder einen Ursache-Wirkungs-Zusammenhang noch automatisch zuverlässige Vorhersagen. Dafür müssen wir zusätzlich die Residuen, den Datenbereich und die Angemessenheit eines linearen Modells prüfen.

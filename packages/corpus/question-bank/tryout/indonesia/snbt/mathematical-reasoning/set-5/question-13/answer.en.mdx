@@ -4,9 +4,7 @@ export const metadata = {
   date: "2026-02-09",
 };
 
-The core of this problem lies in the principle of **fair transaction**: we only pay for what we actually consume (the soybeans), not the packaging (the sack). In social arithmetic, this concept is known as **Net Weight (Netto)**.
-
-Netto is the clean weight of the goods without packaging. Since the price of soybeans is calculated per kilogram, we must first find the net weight of the soybeans by subtracting the packaging weight (tare) from the gross weight (bruto).
+The stated <InlineMath math="100\text{ kg}" /> is the gross weight, which includes the sack. Because soybeans are priced by weight, we first remove the tare and calculate the net weight of the soybeans.
 
 <MathContainer>
   <BlockMath math="\text{Netto} = \text{Bruto} \times (100\% - \% \text{Tare})" />
@@ -14,14 +12,14 @@ Netto is the clean weight of the goods without packaging. Since the price of soy
   <BlockMath math="\text{Netto} = 100 \times 0.985 = 98.5 \text{ kg}" />
 </MathContainer>
 
-After knowing the actual net weight of the soybeans we are buying, we calculate the total price before the discount.
+Multiply the net weight by the price per kilogram to obtain the price before the discount.
 
 <MathContainer>
   <BlockMath math="\text{Gross Price} = \text{Netto} \times \text{Price per kg}" />
   <BlockMath math="\text{Gross Price} = 98.5 \times 4{,}000 = 394{,}000" />
 </MathContainer>
 
-The entrepreneur receives a discount of <InlineMath math="5\%" />. This means they only need to pay <InlineMath math="95\%" /> of the total price. Let's calculate the final amount:
+A discount of <InlineMath math="5\%" /> means the buyer pays <InlineMath math="95\%" /> of that price:
 
 <MathContainer>
   <BlockMath math="\text{Payment} = \text{Gross Price} \times (1 - \% \text{Discount})" />
@@ -30,4 +28,4 @@ The entrepreneur receives a discount of <InlineMath math="5\%" />. This means th
   <BlockMath math="\text{Payment} = 374{,}300" />
 </MathContainer>
 
-Thus, the money that must be paid by the entrepreneur is <InlineMath math="\text{Rp}374{,}300.00" />.
+The amount to be paid is therefore <InlineMath math="\text{Rp}374{,}300.00" />.

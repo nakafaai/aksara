@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Perbedaan Konvergen dan Divergen",
-  description: "Pahami kapan deret tak hingga konvergen atau divergen, termasuk contoh deret geometri dan harmonik.",
+  description: "Bedakan konvergensi dan divergensi melalui jumlah parsial, lalu klasifikasikan contoh deret geometri, aritmetika, dan harmonik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-08",
   subject: "Barisan dan Deret",
@@ -8,28 +8,52 @@ export const metadata = {
 
 ## Apa Itu Deret Konvergen dan Divergen?
 
-Dalam matematika, ketika kita menjumlahkan suku-suku suatu barisan tak hingga, kita mendapatkan sebuah **deret tak hingga**. Pertanyaan pentingnya adalah: apakah hasil penjumlahan tak hingga ini menuju suatu angka tertentu (**konvergen**) atau tidak (**divergen**)?
+Penjumlahan suku-suku suatu barisan tak hingga membentuk **deret tak hingga**. Perilakunya ditentukan melalui jumlah parsial: jika jumlah parsial mendekati bilangan berhingga, deretnya **konvergen**; jika tidak, deretnya **divergen**.
+
+## Konvergensi Barisan
+
+Suatu barisan <InlineMath math="(a_n)" /> konvergen menuju <InlineMath math="L" /> jika suku-sukunya dapat dibuat sedekat mungkin dengan <InlineMath math="L" /> dengan mengambil <InlineMath math="n" /> yang cukup besar. Kita menulis:
+
+<BlockMath math="\lim_{n\to\infty}a_n=L" />
+
+Jika tidak ada limit berhingga, barisan tersebut divergen. Divergensi dapat terjadi dalam beberapa bentuk:
+
+- <InlineMath math="a_n=n" /> bertambah tanpa batas.
+- <InlineMath math="a_n=-n" /> berkurang tanpa batas.
+- <InlineMath math="a_n=(-1)^n" /> berosilasi di antara dua nilai.
+
+## Dari Barisan ke Deret
+
+Untuk deret tak hingga:
+
+<BlockMath math="\sum_{k=1}^{\infty}a_k" />
+
+kita mempelajari jumlah parsialnya:
+
+<BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
+
+Deret tersebut konvergen tepat ketika barisan jumlah parsial <InlineMath math="(S_n)" /> konvergen. Limit suku <InlineMath math="a_n" /> saja tidak cukup untuk menentukan apakah deret itu konvergen.
 
 ## Deret Konvergen
 
-Sebuah deret disebut **konvergen** jika jumlah suku-sukunya semakin lama semakin mendekati sebuah nilai _terbatas_ tertentu. Bayangkan seperti bola memantul, total lintasannya berhenti di satu angka, tidak terus bertambah tanpa batas.
+Sebuah deret disebut **konvergen** jika jumlah parsialnya mendekati nilai _berhingga_. Dalam model ideal bola memantul, misalnya, lintasan yang makin pendek dapat memiliki panjang total yang berhingga.
 
 ### Ciri Khas Deret Konvergen
 
 - Jumlah parsialnya (jumlah <InlineMath math="n" /> suku pertama, <InlineMath math="S_n" />) mendekati suatu nilai <InlineMath math="L" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} S_n = L" />, dimana <InlineMath math="L" /> adalah bilangan real).
-- Syarat perlu (tapi tidak cukup): suku ke-<InlineMath math="n" /> nya (<InlineMath math="u_n" />) harus mendekati <InlineMath math="0" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} u_n = 0" />).
+- Syarat perlu (tetapi tidak cukup): suku ke-<InlineMath math="n" /> (<InlineMath math="u_n" />) harus mendekati <InlineMath math="0" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} u_n = 0" />).
 
 ### Contoh Deret Konvergen
 
 - **Deret Geometri dengan <InlineMath math="|r| < 1" />**: Ini adalah contoh paling umum.
 
-  Misalnya: <InlineMath math="1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots" />. Jumlahnya mendekati 2.
+  Misalnya: <InlineMath math="1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots" />. Jumlahnya mendekati <InlineMath math="2" />.
 
   <BlockMath math="S_\infty = \frac{a}{1 - r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2" />
 
 ## Deret Divergen
 
-Sebuah deret disebut **divergen** jika jumlah suku-sukunya tidak mendekati nilai terbatas tertentu. Jumlahnya bisa jadi:
+Sebuah deret disebut **divergen** jika jumlah parsialnya tidak mendekati nilai berhingga. Jumlah parsialnya dapat:
 
 - Terus membesar menuju tak hingga positif (<InlineMath math="\infty" />).
 - Terus mengecil menuju tak hingga negatif (<InlineMath math="-\infty" />).
@@ -38,30 +62,69 @@ Sebuah deret disebut **divergen** jika jumlah suku-sukunya tidak mendekati nilai
 ### Ciri Khas Deret Divergen
 
 - Jumlah parsialnya (<InlineMath math="S_n" />) tidak mendekati satu nilai <InlineMath math="L" /> tertentu saat <InlineMath math="n" /> mendekati tak hingga.
-- Jika <InlineMath math="\lim_{n \to \infty} u_n \neq 0" /> (suku ke-<InlineMath math="n" /> tidak menuju <InlineMath math="0" />), maka deretnya _pasti_ divergen.
+- Jika <InlineMath math="u_n\not\to 0" />, deretnya _pasti_ divergen. Kondisi ini mencakup limit suku yang bukan nol maupun barisan suku yang tidak memiliki limit.
 
 ### Contoh Deret Divergen
 
-- **Deret Aritmetika (selain <InlineMath math="0 + 0 + \dots" />)**: Jumlahnya pasti menuju <InlineMath math="\infty" /> atau <InlineMath math="-\infty" />.
+- **Deret Aritmetika (selain <InlineMath math="0 + 0 + \dots" />)**: Jumlah parsialnya bertambah menuju <InlineMath math="\infty" /> atau berkurang menuju <InlineMath math="-\infty" />.
 
   Misalnya: <InlineMath math="1 + 2 + 3 + 4 + \dots" /> (menuju <InlineMath math="\infty" />)
 
 - **Deret Geometri dengan <InlineMath math="|r| \ge 1" />**:
 
-  - Jika <InlineMath math="r \ge 1" />, jumlahnya menuju <InlineMath math="\pm \infty" /> (tergantung tanda suku pertama).
+  - Jika <InlineMath math="r \ge 1" />, jumlah parsialnya menuju <InlineMath math="\pm \infty" />, bergantung pada tanda suku pertama.
 
     Contoh: <InlineMath math="2 + 4 + 8 + 16 + \dots" /> (menuju <InlineMath math="\infty" />)
 
-  - Jika <InlineMath math="r \le -1" />, jumlahnya berosilasi.
+  - Jika <InlineMath math="r \le -1" />, jumlah parsialnya berosilasi.
 
     Contoh: <InlineMath math="1 - 2 + 4 - 8 + \dots" /> (Jumlah parsialnya: <InlineMath math="1, -1, 3, -5, \dots" /> tidak menuju satu nilai)
 
-- **Deret Harmonik**: <InlineMath math="1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots" />. Ini contoh menarik. Meskipun suku ke-<InlineMath math="n" /> nya (<InlineMath math="u_n = \frac{1}{n}" />) mendekati <InlineMath math="0" />, jumlah deretnya tetap menuju tak hingga (<InlineMath math="\infty" />). Ini menunjukkan bahwa syarat <InlineMath math="u_n \to 0" /> saja tidak cukup untuk menjamin konvergensi.
+- **Deret Harmonik**: Pada <InlineMath math="1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots" />, suku ke-<InlineMath math="n" />, yaitu <InlineMath math="u_n = \frac{1}{n}" />, mendekati <InlineMath math="0" />, tetapi jumlah parsialnya tetap bertambah menuju tak hingga <InlineMath math="\infty" />. Jadi, <InlineMath math="u_n \to 0" /> merupakan syarat perlu, bukan syarat yang cukup untuk konvergensi.
+
+## Klasifikasi Lengkap Deret Geometri
+
+Perhatikan deret:
+
+<BlockMath math="a+ar+ar^2+\dots" />
+
+Untuk <InlineMath math="a\ne0" />, setiap kemungkinan rasio masuk ke salah satu kasus berikut:
+
+- Jika <InlineMath math="|r|<1" />, deret konvergen menuju <InlineMath math="a/(1-r)" />.
+- Jika <InlineMath math="r=1" />, jumlah parsialnya adalah <InlineMath math="na" /> dan deret divergen.
+- Jika <InlineMath math="r=-1" />, jumlah parsialnya bergantian di antara dua nilai.
+- Jika <InlineMath math="|r|>1" />, suku-sukunya bahkan tidak mendekati nol.
+
+Jadi, deret divergen tidak selalu mempunyai nilai <InlineMath math="\infty" />. Osilasi dan penurunan tanpa batas merupakan bentuk divergensi yang berbeda.
+
+## Monoton dan Terbatas
+
+Setiap barisan yang monoton dan terbatas pasti konvergen. Kriteria ini berguna ketika limit sulit dibaca langsung dari suatu rumus.
+
+Jumlah parsial dari deret dengan suku-suku tak negatif selalu naik. Jika jumlah parsial tersebut juga memiliki batas atas, deretnya konvergen.
 
 ## Ringkasan Perbedaan Utama
 
 | Fitur                               | Deret Konvergen                                                                                | Deret Divergen                                                                                                       |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **Jumlah**                          | Menuju nilai _terbatas_ tertentu (<InlineMath math="L" />); <InlineMath math="S_\infty = L" /> | Tidak menuju nilai terbatas; <InlineMath math="\pm \infty" /> atau berosilasi                                        |
-| **Suku ke-<InlineMath math="n" />** | <InlineMath math="\lim_{n \to \infty} u_n = 0" /> (Syarat perlu)                               | <InlineMath math="\lim_{n \to \infty} u_n \neq 0" /> (Pasti divergen) atau bisa juga <InlineMath math="u_n \to 0" /> |
-| **Contoh**                          | Deret geometri <InlineMath math="\|r\| < 1" />                                                 | Deret aritmetika, geometri <InlineMath math="\|r\| \geq 1" />, harmonik                                              |
+| **Suku ke-<InlineMath math="n" />** | <InlineMath math="u_n\to0" /> merupakan syarat perlu | Jika <InlineMath math="u_n\not\to0" />, deret pasti divergen; meskipun demikian, <InlineMath math="u_n\to0" /> juga dapat terjadi |
+| **Contoh**                          | Deret geometri <InlineMath math="\lvert r\rvert < 1" />                                                 | Deret aritmetika, geometri <InlineMath math="\lvert r\rvert \geq 1" />, harmonik                                              |
+
+## Latihan
+
+Tentukan apakah setiap deret berikut konvergen atau divergen:
+
+1. <InlineMath math="\sum_{k=0}^{\infty}3(1/4)^k" />
+2. <InlineMath math="\sum_{k=1}^{\infty}1" />
+3. <InlineMath math="\sum_{k=0}^{\infty}(-1)^k" />
+
+### Penyelesaian
+
+1. Deret pertama merupakan deret geometri dengan <InlineMath math="|r|=1/4<1" />, sehingga deretnya konvergen:
+
+   <BlockMath math="\frac{3}{1-1/4}=4" />
+
+2. Suku-suku deret kedua tidak mendekati nol, sehingga deretnya divergen.
+
+3. Jumlah parsial deret ketiga bergantian di antara dua nilai, sehingga deretnya divergen karena osilasi, bukan karena bertambah menuju tak hingga.

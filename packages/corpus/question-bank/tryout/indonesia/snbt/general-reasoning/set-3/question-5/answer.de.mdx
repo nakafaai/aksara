@@ -1,0 +1,32 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-17",
+};
+
+Um die Zahl der möglichen Kartennummern zu bestimmen, zerlegen wir zunächst ihre <InlineMath math="12" /> Stellen.
+
+Gegeben:
+1.  **Präfix (erste <InlineMath math="4" /> Ziffern)**: fest vorgegeben als <InlineMath math="0844" />.
+2.  **Suffix (letzte <InlineMath math="4" /> Ziffern)**: fest vorgegeben als <InlineMath math="1221" />.
+3.  **Mittlere Ziffern**: diese vier Stellen werden frei gewählt.
+
+Die Anzahl der anzuordnenden Ziffern beträgt:
+
+<MathContainer>
+  <BlockMath math="\text{Gesamtzahl der Ziffern} - \text{Präfix} - \text{Suffix} = 12 - 4 - 4 = 4\ \text{Ziffern}" />
+</MathContainer>
+
+Die zum Füllen dieser <InlineMath math="4" /> mittleren Ziffern verfügbaren Ziffern sind <InlineMath math="\{2, 3, 4, 5, 7, 8, 9\}" />.
+Die Gesamtzahl der verfügbaren Ziffern beträgt <InlineMath math="7" />.
+
+Da die Aufgabe Wiederholungen ausdrücklich erlaubt, kann jede der <InlineMath math="4" /> mittleren Stellen unabhängig mit einer der <InlineMath math="7" /> verfügbaren Ziffern besetzt werden.
+
+Die Berechnung lautet wie folgt:
+
+<MathContainer>
+  <BlockMath math="\text{Anzahl der Nummern} = 7 \times 7 \times 7 \times 7 = 7^4" />
+  <BlockMath math="7^4 = 2401" />
+</MathContainer>
+
+Somit beträgt die Anzahl der Kartennummern, die erstellt werden können, <InlineMath math="2401" />.

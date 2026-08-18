@@ -1,0 +1,361 @@
+
+
+export const metadata = {
+  title: "Darstellungsformen komplexer Zahlen",
+  description: "Kartesische, polare und exponentielle Form komplexer Zahlen sowie die sichere Umrechnung zwischen diesen Darstellungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-01",
+  subject: "Komplexe Zahlen",
+};
+
+## Kartesische Form (rechteckig)
+
+Eine komplexe Zahl hat die Form <InlineMath math="z = x + iy" />, wobei <InlineMath math="x" /> der Realteil und <InlineMath math="y" /> der Imaginärteil ist. Diese Form <InlineMath math="z = x + iy" /> wird als **kartesische Form** oder rechteckige Form bezeichnet.
+
+<BlockMath math="z = x + iy" />
+
+- <InlineMath math="x = \text{Re}(z)" /> (Realteil)
+- <InlineMath math="y = \text{Im}(z)" /> (Imaginärteil)
+
+Die komplexe Zahl <InlineMath math="z = x + iy" /> kann auch als geordnetes Paar <InlineMath math="(x, y)" /> aufgefasst werden. Die zugehörige Koordinatenebene heißt **komplexe Ebene** oder Argand-Diagramm.
+
+- Die horizontale Achse (<InlineMath math="x" />-Achse) stellt den **Realteil** dar.
+- Die vertikale Achse (<InlineMath math="y" />-Achse) stellt den **Imaginärteil** dar.
+
+### Visualisierung auf der komplexen Ebene
+
+Jede komplexe Zahl <InlineMath math="z = x + iy" /> kann als Punkt <InlineMath math="(x, y)" /> in der komplexen Ebene eingetragen werden. Der Ortsvektor vom Ursprung <InlineMath math="(0, 0)" /> zu diesem Punkt stellt dieselbe Zahl geometrisch dar.
+
+<LineEquation
+  title="Komplexe Zahlen auf der komplexen Ebene"
+  description="Visualisierung mehrerer komplexer Zahlen als Punkte und Vektoren auf der komplexen Ebene."
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 2, z: 0 },
+      ],
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="z_1=3+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -1, y: -1, z: 0 },
+      ],
+      color: "#059669",
+      labels: [{ text: <InlineMath math="z_2=-1-i" />, at: 1, offset: [-1, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 0, z: 0 },
+      ],
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="z_3=2" />, at: 1, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 1, z: 0 },
+      ],
+      color: "#d97706",
+      labels: [{ text: <InlineMath math="z_4=i" />, at: 1, offset: [-1, 0.5, 0] }],
+    },
+  ]}
+/>
+
+## Polarform
+
+Neben der kartesischen Form gibt es eine zweite wichtige Darstellung: die **Polarform**. Sie beschreibt eine komplexe Zahl durch:
+
+1.  **Betrag (<InlineMath math="r" />):** Der Abstand vom Ursprung <InlineMath math="(0, 0)" /> zum Punkt <InlineMath math="(x, y)" /> in der komplexen Ebene. Er ist stets nicht negativ.
+2.  **Argument (<InlineMath math="\theta" />):** Der Winkel, den die Linie vom Ursprung zum Punkt <InlineMath math="(x, y)" /> mit der positiven realen Achse bildet. Dieser Winkel wird normalerweise im Bogenmaß oder Grad gemessen.
+
+Für <InlineMath math="z=0" /> ist der Betrag <InlineMath math="0" />, aber keine Richtung festgelegt. Null besitzt deshalb kein Argument und muss in Polar- oder Exponentialform gesondert betrachtet werden.
+
+Die Beziehung zwischen der kartesischen Form (<InlineMath math="x, y" />) und der Polarform (<InlineMath math="r, \theta" />) lässt sich anhand der grundlegenden Trigonometrie erkennen:
+
+<MathContainer>
+  <BlockMath math="x = r \cos \theta" />
+  <BlockMath math="y = r \sin \theta" />
+</MathContainer>
+
+Daraus lassen sich <InlineMath math="r" /> und <InlineMath math="\theta" /> bestimmen, wenn <InlineMath math="x" /> und <InlineMath math="y" /> bekannt sind:
+
+<MathContainer>
+  <BlockMath math="r = |z| = \sqrt{x^2 + y^2}" />
+  <BlockMath math="\tan \theta = \frac{y}{x} \quad (x \neq 0)" />
+</MathContainer>
+
+Beim Bestimmen von <InlineMath math="\theta" /> aus <InlineMath math="\tan \theta" /> muss auch der Quadrant des Punktes <InlineMath math="(x, y)" /> berücksichtigt werden, denn der Tangenswert allein legt den Winkel nicht eindeutig fest.
+
+Durch Einsetzen von <InlineMath math="x" /> und <InlineMath math="y" /> in die kartesische Form erhalten wir die **Polarform**:
+
+<MathContainer>
+  <BlockMath math="z = x + iy = (r \cos \theta) + i(r \sin \theta)" />
+  <BlockMath math="z = r (\cos \theta + i \sin \theta)" />
+</MathContainer>
+
+Manchmal wird die Form <InlineMath math="(\cos \theta + i \sin \theta)" /> als <InlineMath math="\text{cis } \theta" /> abgekürzt.
+
+<BlockMath math="z = r \text{ cis} \theta" />
+
+### Beispiel: Umrechnung in die Polarform
+
+Gegeben sei <InlineMath math="z = 1 + i" />.
+
+- Realteil <InlineMath math="x = 1" />.
+- Imaginärteil <InlineMath math="y = 1" />.
+
+Zuerst bestimmen wir <InlineMath math="r" />:
+
+<BlockMath math="r = \sqrt{1^2 + 1^2} = \sqrt{2}" />
+
+Danach bestimmen wir <InlineMath math="\theta" />:
+
+<BlockMath math="\tan \theta = \frac{1}{1} = 1" />
+
+Da <InlineMath math="x" /> und <InlineMath math="y" /> positiv sind, liegt der Punkt <InlineMath math="(1, 1)" /> im Quadranten <InlineMath math="I" />. Dort hat <InlineMath math="\tan" /> den Wert <InlineMath math="1" />. Im Quadranten <InlineMath math="I" /> gehört dazu der Winkel <InlineMath math="45^\circ" /> beziehungsweise <InlineMath math="\pi/4" /> im Bogenmaß.
+
+Die Polarform ist also:
+
+<BlockMath math="z = \sqrt{2} (\cos 45^\circ + i \sin 45^\circ)" />
+
+### Übung zur Polarform
+
+Gib die folgenden komplexen Zahlen in Polarform an:
+
+1.  <InlineMath math="z = 1 + i\sqrt{3}" />
+2.  <InlineMath math="z = -i" />
+
+**Ausführliche Lösungen:**
+
+1.  Für <InlineMath math="z = 1 + i\sqrt{3}" />:
+
+    - Hier sind <InlineMath math="x = 1" /> und <InlineMath math="y = \sqrt{3}" />.
+    - Berechne den Betrag <InlineMath math="r" />:
+
+      <BlockMath math="r = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{1 + 3} = \sqrt{4} = 2" />
+
+    - Bestimme das Argument <InlineMath math="\theta" />:
+
+      <BlockMath math="\tan \theta = \frac{\sqrt{3}}{1} = \sqrt{3}" />
+
+      Da <InlineMath math="x" /> und <InlineMath math="y" /> positiv sind, gilt:
+      Der Punkt <InlineMath math="(1, \sqrt{3})" /> liegt im Quadranten <InlineMath math="I" />
+      , daher ist <InlineMath math="\theta = 60^\circ" />.
+    - Polarform:
+
+      <BlockMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
+
+2.  Für <InlineMath math="z = -i" />:
+    - Hier sind <InlineMath math="x = 0" /> und <InlineMath math="y = -1" />.
+    - Berechne den Betrag <InlineMath math="r" />:
+
+      <BlockMath math="r = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
+
+    - Bestimme das Argument <InlineMath math="\theta" />:
+      Der Punkt <InlineMath math="(0, -1)" /> liegt auf der negativen imaginären Achse. Sein Hauptargument ist daher <InlineMath math="\theta = -90^\circ" />.
+    - Polarform mit dem Hauptargument:
+
+      <BlockMath math="z = 1(\cos (-90^\circ) + i \sin (-90^\circ))" />
+
+      Der koterminale Winkel <InlineMath math="270^\circ" /> liefert die gleichwertige Form:
+
+      <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
+
+## Exponentielle Form
+
+Es gibt noch eine weitere wichtige Form: die **Exponentialform**. Aus **Eulers Formel** folgt:
+
+<BlockMath math="e^{i\theta} = \cos \theta + i \sin \theta" />
+
+Hier ist <InlineMath math="e \approx 2{,}71828\ldots" /> die Eulersche Zahl, die Basis des natürlichen Logarithmus.
+
+Wenn wir die Eulersche Formel in die Polarform <InlineMath math="z = r(\cos \theta + i \sin \theta)" /> einsetzen, erhalten wir die **Exponentialform**:
+
+<BlockMath math="z = r e^{i\theta}" />
+
+Für Faktoren ungleich null macht diese Form aus der Multiplikation das Multiplizieren der Beträge und Addieren der Argumente; bei der Division werden die Beträge dividiert und die Argumente subtrahiert.
+
+### Beispiel: Umrechnung in die Exponentialform
+
+Betrachten wir die beiden vorigen Beispiele:
+
+1.  Für <InlineMath math="z = 1 + i" /> haben wir bereits die Polarform <InlineMath math="\sqrt{2}(\cos 45^\circ + i \sin 45^\circ)" />.
+
+    - Betrag <InlineMath math="r = \sqrt{2}" />.
+    - Argument <InlineMath math="\theta = 45^\circ = \pi/4" /> Bogenmaß.
+    - Exponentialform:
+
+      <BlockMath math="z = r e^{i\theta} = \sqrt{2} e^{i \pi/4}" />
+
+2.  Für <InlineMath math="z = \sqrt{2}(\cos 315^\circ + i \sin 315^\circ)" />:
+    - Betrag <InlineMath math="r = \sqrt{2}" />.
+    - Argument <InlineMath math="\theta = 315^\circ" />. Umrechnung ins Bogenmaß:
+
+      <BlockMath math="315^\circ = 315 \times \frac{\pi}{180} = \frac{7 \times 45 \times \pi}{4 \times 45} = \frac{7\pi}{4}" />
+
+      Gleichwertig kann der negative Winkel <InlineMath math="315^\circ - 360^\circ = -45^\circ = -\pi/4" /> verwendet werden.
+    - Exponentialform mit einer der beiden Winkeldarstellungen:
+
+      <BlockMath math="z = \sqrt{2} e^{i 7\pi/4}" />
+
+      oder
+
+      <BlockMath math="z = \sqrt{2} e^{-i \pi/4}" />
+
+### Übung zur Exponentialform
+
+Gib die folgenden komplexen Zahlen in Exponentialform an. Verwende Winkel im Bogenmaß.
+
+1.  <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
+2.  <InlineMath math="z = \cos 15^\circ + i \sin 15^\circ" />
+
+**Ausführliche Lösungen:**
+
+1.  Für <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />:
+    - Betrag <InlineMath math="r = 2" />.
+    - Argument <InlineMath math="\theta = 60^\circ" />. Umrechnung ins Bogenmaß:
+
+      <BlockMath math="\theta = 60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3}" />
+
+    - Exponentialform:
+
+      <BlockMath math="z = 2 e^{i \pi/3}" />
+
+2.  Für <InlineMath math="z = \cos 15^\circ + i \sin 15^\circ" />:
+    - Betrag <InlineMath math="r = 1" />, da vor <InlineMath math="\cos" /> und <InlineMath math="\sin" /> kein anderer Faktor steht.
+    - Argument <InlineMath math="\theta = 15^\circ" />. Umrechnung ins Bogenmaß:
+
+      <BlockMath math="\theta = 15^\circ = 15 \times \frac{\pi}{180} = \frac{\pi}{12}" />
+
+    - Exponentialform:
+
+      <BlockMath math="z = e^{i \pi/12}" />
+
+## Eine geeignete Form wählen
+
+Die kartesische Form ist normalerweise die klarste Wahl für Addition und Subtraktion. Die Polar- oder Exponentialform erleichtert Multiplikation, Division, Potenzen und Wurzeln, da Beträge und Argumente direkt kombiniert werden können.
+
+Für den Rückweg von der Polarform zur kartesischen Form werden Sinus und Cosinus ausgewertet. Zum Beispiel:
+
+<BlockMath math="w=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right)=-2\sqrt{3}+2i" />
+
+Das Ändern der Form ist daher eine Entscheidung zur Problemlösung und kein separater Vorgang an der Zahl.
+
+## Gleichheit zweier komplexer Zahlen
+
+Zwei komplexe Zahlen <InlineMath math="z_1 = x_1 + iy_1" /> und <InlineMath math="z_2 = x_2 + iy_2" /> sind genau dann **gleich**, wenn sowohl ihre Realteile als auch ihre Imaginärteile übereinstimmen.
+
+<BlockMath math="z_1 = z_2 \quad \iff \quad x_1 = x_2 \text{und} y_1 = y_2" />
+
+### Beispiel zur Gleichheit
+
+- <InlineMath math="z_1 = 3 - 2i" /> und <InlineMath math="z_2 = 4 + 2i" /> sind **unterschiedlich**.
+
+  weil <InlineMath math="\text{Re}(z_1) = 3 \neq \text{Re}(z_2) = 4" /> (obwohl <InlineMath math="|\text{Im}(z_1)| = |-2| = 2 = |\text{Im}(z_2)| = |2|" />, unterscheiden sich ihre imaginären Vorzeichen).
+
+- <InlineMath math="z_1 = -1 + i" /> und <InlineMath math="z_2 = i - 1" /> sind **gleich**.
+
+  weil <InlineMath math="\text{Re}(z_1) = -1 = \text{Re}(z_2) = -1" /> und <InlineMath math="\text{Im}(z_1) = 1 = \text{Im}(z_2) = 1" />.
+
+### Übung zur Gleichheit
+
+Entscheide, ob die folgenden Paare komplexer Zahlen gleich oder verschieden sind:
+
+1.  <InlineMath math="z_1 = 4 - (-2i)" /> und <InlineMath math="z_2 = 4 + 2i" />
+2.  <InlineMath math="z_1 = i" /> und <InlineMath math="z_2 = 1 - i" />
+3.  <InlineMath math="z_1 = -1 + i" /> und <InlineMath math="z_2 = i + 1" />
+
+**Ausführliche Lösungen:**
+
+1.  <InlineMath math="z_1 = 4 - (-2i) = 4 + 2i" />.
+
+    Somit ist <InlineMath math="z_1" /> **gleich** zu <InlineMath math="z_2 = 4 + 2i" />.
+
+2.  <InlineMath math="z_1 = 0 + 1i" /> und <InlineMath math="z_2 = 1 - 1i" />.
+
+    Die Realteile sind unterschiedlich (<InlineMath math="0 \neq 1" />) und die Imaginärteile sind unterschiedlich (<InlineMath math="1 \neq -1" />).
+
+    Somit ist <InlineMath math="z_1" /> **verschieden** von <InlineMath math="z_2" />.
+
+3.  <InlineMath math="z_1 = -1 + 1i" /> und <InlineMath math="z_2 = 1 + 1i" />.
+
+    Die Realteile sind unterschiedlich (<InlineMath math="-1 \neq 1" />).
+
+    Somit ist <InlineMath math="z_1" /> **verschieden** von <InlineMath math="z_2" />.
+
+## Übungen
+
+1.  **Richtig oder falsch.** Jede reelle Zahl ist eine komplexe Zahl.
+2.  **Richtig oder falsch.** Die drei hier verwendeten Standardformen sind die kartesische, die exponentielle und die logarithmische Form.
+3.  **Richtig oder falsch.** Wenn die komplexe Zahl <InlineMath math="z = 1 - 3i" /> in die komplexe Ebene eingetragen wird, liegt sie im dritten Quadranten.
+4.  Gib die komplexe Zahl <InlineMath math="2+2i" /> in Polar- und Exponentialform an.
+5.  Bestimme <InlineMath math="x" /> und <InlineMath math="y" /> so, dass für <InlineMath math="z_1 = x + 3i" /> und <InlineMath math="z_2 = 3 - yi" /> die Gleichheit <InlineMath math="z_1 = z_2" /> gilt.
+6.  Löse die quadratische Gleichung <InlineMath math="x^2 - 2x + 6 = 0" />.
+7.  Bestimme die quadratische Gleichung mit den Lösungen <InlineMath math="x_1 = 1 + i" /> und <InlineMath math="x_2 = 1 - i" />.
+
+### Ausführliche Lösungen
+
+1.  **Richtig.** Eine reelle Zahl <InlineMath math="a" /> kann als <InlineMath math="a + 0i" /> geschrieben werden.
+2.  **Falsch.** Die drei hier verwendeten Standardformen sind die kartesische, die polare und die exponentielle Form. Ein Logarithmus ist eine Operation auf einer komplexen Zahl und kein Ersatz für die in der Liste fehlende Polarform.
+3.  **Falsch.** <InlineMath math="z = 1 - 3i" /> hat einen positiven Realteil (<InlineMath math="x=1" />) und einen negativen Imaginärteil (<InlineMath math="y=-3" />). Der Punkt <InlineMath math="(1, -3)" /> liegt im **vierten Quadranten**.
+4.  Für <InlineMath math="z = 2 + 2i" />:
+    - Berechne den Betrag <InlineMath math="r" />:
+
+      <BlockMath math="r = \sqrt{x^2+y^2} = \sqrt{2^2+2^2} = \sqrt{4+4} = \sqrt{8} = 2\sqrt{2}" />
+
+    - Berechne das Argument <InlineMath math="\theta" />:
+
+      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{2}{2} = 1" />
+
+      Da <InlineMath math="x=2" /> und <InlineMath math="y=2" /> beide positiv sind,
+      liegt der Punkt im ersten Quadranten. Daher ist <InlineMath math="\theta = 45^\circ" /> beziehungsweise <InlineMath math="\pi/4" /> im Bogenmaß.
+    - Polarform:
+
+      <BlockMath math="z = r(\cos \theta + i \sin \theta) = 2\sqrt{2}(\cos 45^\circ + i \sin 45^\circ)" />
+
+    - Exponentialform:
+
+      <BlockMath math="z = r e^{i\theta} = 2\sqrt{2} e^{i \pi/4}" />
+
+5.  Damit <InlineMath math="z_1 = x + 3i" /> gleich <InlineMath math="z_2 = 3 - yi" /> ist, müssen die Realteile gleich und die Imaginärteile gleich sein:
+    - Realteil: <InlineMath math="x = 3" />
+    - Imaginärteil: <InlineMath math="3 = -y \implies y = -3" />
+      Also <InlineMath math="x=3" /> und <InlineMath math="y=-3" />.
+6.  Zum Lösen von <InlineMath math="x^2 - 2x + 6 = 0" /> verwenden wir die quadratische Lösungsformel:
+
+    <BlockMath math="x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}" />
+
+    Hier gilt <InlineMath math="a=1, b=-2, c=6" />:
+
+    <MathContainer>
+      <BlockMath math="x = \frac{-(-2) \pm \sqrt{(-2)^2 - 4(1)(6)}}{2(1)}" />
+      <BlockMath math="x = \frac{2 \pm \sqrt{4 - 24}}{2}" />
+      <BlockMath math="x = \frac{2 \pm \sqrt{-20}}{2}" />
+      <BlockMath math="x = \frac{2 \pm i\sqrt{20}}{2}" />
+      <BlockMath math="x = \frac{2 \pm 2\sqrt{5}i}{2}" />
+      <BlockMath math="x = 1 \pm i\sqrt{5}" />
+    </MathContainer>
+
+    Die Lösungen sind <InlineMath math="x_1 = 1 + i\sqrt{5}" /> und <InlineMath math="x_2 = 1 - i\sqrt{5}" />
+    .
+7.  Wenn die Wurzeln einer quadratischen Gleichung <InlineMath math="x_1 = 1 + i" /> und <InlineMath math="x_2 = 1 - i" /> sind, kann die Gleichung aus <InlineMath math="(x - x_1)(x - x_2) = 0" /> oder <InlineMath math="x^2 - (x_1 + x_2)x + (x_1 x_2) = 0" /> gebildet werden.
+    - Berechne die Summe der Lösungen:
+
+      <BlockMath math="x_1 + x_2 = (1+i) + (1-i) = 1 + i + 1 - i = 2" />
+
+    - Berechne das Produkt der Lösungen:
+
+      <BlockMath math="x_1 x_2 = (1+i)(1-i) = 1^2 - i^2 = 1 - (-1) = 1 + 1 = 2" />
+
+    - Stelle daraus die quadratische Gleichung auf:
+
+      <MathContainer>
+        <BlockMath math="x^2 - (2)x + (2) = 0" />
+        <BlockMath math="x^2 - 2x + 2 = 0" />
+      </MathContainer>

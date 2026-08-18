@@ -1,0 +1,61 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-23",
+};
+
+Wir berechnen die Gesamtkosten, die über diese spezielle Ratenzahlungsregelung zu zahlen sind, und vergleichen sie mit dem ursprünglichen Preis des Laptops.
+
+#### Ratenmuster
+
+Die gezahlten Raten bilden eine absteigende arithmetische Folge:
+- Die erste Rate (<InlineMath math="a" />) beträgt <InlineMath math="2{.}000{.}000" />
+- Die zweite Rate ist <InlineMath math="1{.}800{.}000" />
+- Differenz (<InlineMath math="b" />) ist <InlineMath math="1{.}800{.}000 - 2{.}000{.}000 = -200{.}000" />
+
+Die Rate sinkt jeden Monat um <InlineMath math="200{.}000" /> Rupiah. Da die Folge laut Aufgabe bis null fortgesetzt wird, beträgt die letzte positive Rate <InlineMath math="200{.}000" /> Rupiah; der nächste Wert ist null.
+
+Damit können wir die Anzahl der positiven Raten (<InlineMath math="n" />) mit <InlineMath math="U_n = 200{.}000" /> bestimmen:
+
+<MathContainer>
+  <BlockMath math="U_n = a + (n-1)b" />
+  <BlockMath math="200{.}000 = 2{.}000{.}000 + (n-1)(-200{.}000)" />
+</MathContainer>
+
+Zur Vereinfachung dividieren wir beide Seiten durch <InlineMath math="200{.}000" />:
+
+<MathContainer>
+  <BlockMath math="1 = 10 + (n-1)(-1)" />
+  <BlockMath math="1 = 10 - n + 1" />
+  <BlockMath math="n = 10" />
+</MathContainer>
+
+Es gibt also <InlineMath math="10" /> Raten.
+
+#### Berechnung der Gesamtzahlung
+
+Die Gesamtzahlung ist die Summe der arithmetischen Reihe (<InlineMath math="S_{10}" />):
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
+  <BlockMath math="S_{10} = \frac{10}{2}(2{.}000{.}000 + 200{.}000)" />
+  <BlockMath math="S_{10} = 5(2{.}200{.}000)" />
+  <BlockMath math="S_{10} = 11{.}000{.}000" />
+</MathContainer>
+
+Der gezahlte Gesamtbetrag beträgt <InlineMath math="\text{Rp}11{.}000{.}000{,}00" />.
+
+#### Berechnung des Preiserhöhungsprozentsatzes
+
+Der anfängliche Preis des Laptops der Serie <InlineMath math="B" /> beträgt <InlineMath math="\text{Rp}10{.}000{.}000{,}00" />.
+Der Preisunterschied beträgt <InlineMath math="11{.}000{.}000 - 10{.}000{.}000 = 1{.}000{.}000" />.
+
+Prozentuale Preiserhöhung:
+
+<MathContainer>
+  <BlockMath math="\text{Prozentsatz} = \frac{\text{Unterschied}}{\text{Anfangspreis}} \times 100\%" />
+  <BlockMath math="\text{Prozentsatz} = \frac{1{.}000{.}000}{10{.}000{.}000} \times 100\%" />
+  <BlockMath math="\text{Prozentsatz} = 10\%" />
+</MathContainer>
+
+Daher ist der Preis des Laptops der Serie <InlineMath math="B" /> **<InlineMath math="10\%" />** teurer als der ursprüngliche Preis.

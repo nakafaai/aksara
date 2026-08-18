@@ -8,18 +8,18 @@ export const metadata = {
 
 ## Pengenalan NumPy
 
-NumPy membantu Python mengolah data numerik secara efisien. Sementara list Python bisa menampung data tipe campuran, array NumPy menyimpan data homogen dalam struktur yang dioptimalkan. Pilihan desain ini membuat operasi matematika pada banyak data berjalan jauh lebih cepat daripada list Python biasa.
+NumPy membantu Python mengolah data numerik secara efisien. List Python dapat menampung tipe campuran, sedangkan array NumPy biasanya menyimpan nilai bertipe sama dalam struktur yang ringkas. Untuk operasi numerik tervectorisasi pada banyak nilai, susunan ini sering lebih cepat daripada loop Python yang setara.
 
-Objek inti `ndarray` merepresentasikan array n-dimensi dengan ukuran tetap dan tipe data identik di seluruh elemen. Batasan ini membuat NumPy dapat melakukan vektorisasi, yaitu memproses seluruh array dengan satu perintah. [Dokumentasi resmi NumPy](https://numpy.org/doc/stable/) menyediakan tutorial dan contoh untuk mempelajari fitur ini lebih lanjut.
+Objek inti `ndarray` merepresentasikan wadah n-dimensi berukuran tetap yang seluruh elemennya memiliki satu tipe data. Desain ini memungkinkan operasi tervectorisasi, yaitu satu ekspresi yang menjelaskan pekerjaan pada seluruh array. [Dokumentasi resmi NumPy](https://numpy.org/doc/stable/) menyediakan tutorial dan contoh lanjutan.
 
 NumPy menyediakan beberapa keunggulan penting untuk pemrograman ilmiah:
 
-1. **Efisiensi tinggi** karena diimplementasikan dalam bahasa C yang terkompilasi
+1. **Loop numerik yang efisien** karena dijalankan dalam kode native terkompilasi
 2. **Vektorisasi** memungkinkan operasi pada seluruh array tanpa loop eksplisit
-3. **Konsumsi memori lebih kecil** dibandingkan list Python
+3. **Penyimpanan yang ringkas** untuk nilai numerik homogen
 4. **Operasi matematika yang lengkap** dan siap dipakai
 
-Vektorisasi adalah kemampuan untuk menerapkan operasi tunggal pada seluruh array sekaligus. Ini seperti memberi perintah kepada seluruh barisan tentara sekaligus, bukan satu per satu.
+Vektorisasi berarti menyatakan operasi untuk seluruh array tanpa menulis loop Python secara eksplisit bagi setiap elemen. NumPy tetap memproses elemen-elemen tersebut secara internal, tetapi loop-nya berjalan dalam kode terkompilasi yang telah dioptimalkan.
 
 <CodeBlock
   data={[
@@ -91,7 +91,7 @@ print("Total elemen:", a.size)  # Output: Total elemen: 4`
   ]}
 />
 
-Array tiga dimensi dapat diilustrasikan sebagai tumpukan tabel. Bayangkan seperti beberapa lembar kertas yang ditumpuk, di mana setiap lembar berisi tabel data.
+Array tiga dimensi dapat dibayangkan sebagai tumpukan tabel. Setiap lapisan memiliki baris dan kolom, sedangkan sumbu tambahan memilih lapisannya.
 
 <CodeBlock
   data={[
@@ -155,11 +155,11 @@ print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: flo
 
 ## Fungsi Pembuat Array
 
-NumPy menyediakan berbagai fungsi khusus untuk membuat array dengan pola atau nilai tertentu. Ini seperti memiliki cetakan khusus untuk membuat kue dengan bentuk yang konsisten.
+NumPy menyediakan fungsi-fungsi khusus untuk membuat array dengan shape dan nilai yang dapat diprediksi.
 
 ### Fungsi Nilai Konstan
 
-Fungsi `np.ones()` membuat array yang diisi dengan angka <InlineMath math="1" />. Berguna ketika kamu perlu inisialisasi dengan nilai dasar.
+Fungsi `np.ones()` membuat array yang seluruh elemennya bernilai <InlineMath math="1" />. Fungsi ini berguna ketika setiap elemen memerlukan nilai awal yang sama.
 
 <CodeBlock
   data={[
@@ -307,7 +307,7 @@ print(b)
   ]}
 />
 
-Fungsi `np.empty` membuat array tanpa menginisialisasi nilai elemennya. Ini berguna ketika kamu akan mengisi array dengan nilai nanti dan ingin menghemat waktu inisialisasi.
+Fungsi `np.empty` mengalokasikan array tanpa menginisialisasi nilai elemennya. Isi memori yang terlihat bersifat sembarang, sehingga setiap elemen harus diberi nilai sebelum dibaca. Gunakan fungsi ini hanya jika array akan segera diisi.
 
 <CodeBlock
   data={[
@@ -338,7 +338,7 @@ NumPy menyediakan fungsi khusus untuk membuat array dari urutan nilai dengan pol
 
 ### Fungsi np.arange
 
-Fungsi `np.arange` adalah versi NumPy dari `range()` Python, tetapi dapat menghasilkan array dengan tipe data floating-point dan mengalokasikan memori langsung untuk elemen.
+Fungsi `np.arange` menyerupai `range()` milik Python, tetapi mengembalikan array dan menerima argumen floating-point. Untuk step noninteger, pembulatan floating-point dapat membuat nilai akhir kurang mudah diprediksi. Karena itu, `np.linspace` sering lebih jelas ketika jumlah titik yang diinginkan sudah diketahui.
 
 <CodeBlock
   data={[
@@ -404,7 +404,7 @@ print("arange: jarak diketahui, jumlah elemen dihitung")`
 | Parameter utama | start, stop, step | start, stop, num |
 | Kontrol | Jarak antar elemen | Jumlah total elemen |
 | Endpoint | Dikecualikan | Disertakan (default) |
-| Tipe data | Mengikuti input | Selalu float (default) |
+| Tipe data | Disimpulkan dari input | Floating-point secara default; dapat diatur dengan `dtype` |
 | Kegunaan | Sequence dengan jarak tetap | Pembagian rentang merata |
 
 ## Operasi Dasar

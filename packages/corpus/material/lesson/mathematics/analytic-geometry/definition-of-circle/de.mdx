@@ -1,0 +1,337 @@
+export const metadata = {
+  title: "Definition des Kreises",
+  description: "Lerne die geometrische Bedeutung von Mittelpunkt, Radius und Standardgleichung eines Kreises kennen und leite die Gleichung anhand von Beispielen her.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Kreis verstehen
+
+Ein Kreis ist die Menge aller Punkte einer Ebene, die von einem festen Punkt den gleichen Abstand haben. Dieser feste Punkt heißt **Kreismittelpunkt**. Der gemeinsame Abstand vom Mittelpunkt zu jedem Punkt auf dem Kreis heißt **Radius**.
+
+Das lässt sich mit einer Schnur veranschaulichen: Ein Ende wird an einem Nagel befestigt, die Schnur straff gezogen und das andere Ende einmal um den Nagel geführt. Die gezeichnete Kurve ist der Kreis, der Nagel sein Mittelpunkt und die Schnurlänge sein Radius.
+
+<LineEquation
+  title="Kreis mit Mittelpunkt und Radius"
+  description="Alle Punkte auf dem Kreis haben den gleichen Abstand vom Mittelpunkt."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = 0; // horizontal radius
+        return {
+          x: center.x + i * radius * Math.cos(angle),
+          y: center.y + i * radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P" />, at: 0, offset: [-0.3, -0.3, 0] },
+        { text: <InlineMath math="r" />, at: 1, offset: [-1, -0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = Math.PI / 4; // 45 degree radius
+        return {
+          x: center.x + i * radius * Math.cos(angle),
+          y: center.y + i * radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r" />, at: 1, offset: [-1, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = Math.PI; // 180 degree radius (left)
+        return {
+          x: center.x + i * radius * Math.cos(angle),
+          y: center.y + i * radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r" />, at: 1, offset: [1, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = 0; // Punkt A bei 0 Grad
+        return {
+          x: center.x + radius * Math.cos(angle),
+          y: center.y + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = Math.PI / 4; // Punkt B bei 45 Grad
+        return {
+          x: center.x + radius * Math.cos(angle),
+          y: center.y + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = Math.PI; // Punkt C bei 180 Grad
+        return {
+          x: center.x + radius * Math.cos(angle),
+          y: center.y + radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 0, offset: [-0.5, 0, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+In der Darstellung ist <InlineMath math="P" /> der Mittelpunkt. Die Punkte <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> liegen auf dem Kreis. Die drei Abstände <InlineMath math="PA" />, <InlineMath math="PB" /> und <InlineMath math="PC" /> sind jeweils gleich <InlineMath math="r" />. Genau diese gemeinsame Entfernung legt alle drei Punkte auf denselben Kreis.
+
+## Mathematische Definition
+
+Nun formulieren wir den Gedanken präzise. Ein Kreis mit Mittelpunkt <InlineMath math="P(a, b)" /> und Radius <InlineMath math="r" /> ist die Menge aller Punkte <InlineMath math="(x, y)" />, für die gilt:
+
+<BlockMath math="d(P, (x,y)) = r" />
+
+Dabei ist <InlineMath math="d(P, (x,y))" /> der Abstand vom Mittelpunkt <InlineMath math="P" /> zum Punkt <InlineMath math="(x, y)" /> auf dem Kreis.
+
+Mit der Abstandsformel im kartesischen Koordinatensystem wird daraus:
+
+<BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
+
+## Kreisgleichung
+
+Aus der obigen mathematischen Definition können wir die **Kreisgleichung** durch Quadrieren beider Seiten ableiten:
+
+<MathContainer>
+  <BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
+  <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+</MathContainer>
+
+Dies ist die **Standardform der Kreisgleichung** mit Mittelpunkt <InlineMath math="(a, b)" /> und Radius <InlineMath math="r" />. Mit ihr lässt sich auch direkt prüfen, ob ein Punkt innerhalb, außerhalb oder genau auf dem Kreis liegt.
+
+<LineEquation
+  title="Kreis im Koordinatensystem"
+  description={<>Kreis mit dem Mittelpunkt <InlineMath math="(2, 1)" /> und dem Radius <InlineMath math="2" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 2 + 2 * Math.cos(angle),
+          y: 1 + 2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const center = { x: 2, y: 1 };
+        const radius = 2;
+        const angle = 0; // horizontaler Radius nach rechts
+        return {
+          x: center.x + i * radius * Math.cos(angle),
+          y: center.y + i * radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="(2,1)" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="r=2" />, at: 1, offset: [0, -0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -1;
+        const xMax = 5;
+        const y = 0; // <InlineMath math="x" />-axis
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -2;
+        const yMax = 4;
+        const x = 0; // <InlineMath math="y" />-axis
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 1 }, () => {
+        // Ursprung bei (0, 0)
+        return {
+          x: 0,
+          y: 0,
+          z: 0,
+        };
+      }),
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+Für den Kreis in der obigen Visualisierung lautet die Gleichung:
+
+<BlockMath math="(x-2)^2 + (y-1)^2 = 4" />
+
+### Sonderform der Kreisgleichung
+
+Liegt der Mittelpunkt im Ursprung <InlineMath math="(0, 0)" />, entfallen beide Verschiebungsterme und die Gleichung wird zu:
+
+<BlockMath math="x^2 + y^2 = r^2" />
+
+Diese kürzere Form gilt immer dann, wenn der Mittelpunkt bereits als Ursprung feststeht.
+
+## Wichtige Kreiselemente
+
+Drei geometrische Elemente tauchen in Kreisaufgaben immer wieder auf:
+
+1. **Kreismittelpunkt** ist der feste Punkt, der als Referenz für alle Punkte auf dem Kreis dient. Alle Punkte auf dem Kreis haben den gleichen Abstand zu diesem Mittelpunkt.
+
+2. **Radius** ist der Abstand vom Mittelpunkt des Kreises zu einem beliebigen Punkt auf dem Kreis. In einem Kreis haben alle Radien die gleiche Länge.
+
+3. **Durchmesser** ist eine Strecke, die zwei Punkte auf dem Kreis verbindet und durch den Mittelpunkt verläuft. Ihre Länge ist doppelt so groß wie der Radius, also <InlineMath math="d = 2r" />.
+
+Die Darstellung zeigt, dass Radius und Durchmesser durch denselben Mittelpunkt verlaufen:
+
+<LineEquation
+  title="Kreiselemente"
+  description="Visualisierung von Mittelpunkt, Radius und Durchmesser."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = 0; // horizontal radius showing radius
+        return {
+          x: center.x + i * radius * Math.cos(angle),
+          y: center.y + i * radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] },
+        { text: "Radius", at: 1, offset: [-1, -0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const center = { x: 0, y: 0 };
+        const radius = 3;
+        const angle = 0; // horizontal diameter
+        // i=0: linker Punkt, i=1: rechter Punkt
+        const direction = i === 0 ? -1 : 1;
+        return {
+          x: center.x + direction * radius * Math.cos(angle),
+          y: center.y + direction * radius * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
+        { text: "Durchmesser", at: 1, offset: [-3, 1, 0] },
+      ],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## Anwendungsbeispiel
+
+Wenden wir die Definition einmal vollständig an.
+
+**Beispiel**: Bestimme die Gleichung eines Kreises mit Mittelpunkt <InlineMath math="(3, -2)" /> und Radius <InlineMath math="5" />.
+
+**Lösung**:
+Wir setzen Mittelpunkt und Radius in die Standardform ein:
+
+<MathContainer>
+  <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+  <BlockMath math="(x-3)^2 + (y-(-2))^2 = 5^2" />
+  <BlockMath math="(x-3)^2 + (y+2)^2 = 25" />
+</MathContainer>
+
+Die Kreisgleichung lautet also <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.

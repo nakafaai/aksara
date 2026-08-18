@@ -4,59 +4,24 @@ export const metadata = {
   date: "2025-11-26",
 };
 
-We will determine the number of possible passwords using the multiplication rule of combinatorics.
+The positions alternate in the pattern <InlineMath math="\text{Digit} - \text{Letter} - \text{Digit} - \text{Letter}" />. Count the valid choices at each position before multiplying them.
 
-Password structure: <InlineMath math="\text{Digit} - \text{Letter} - \text{Digit} - \text{Letter}" /> (starts with a digit and alternates).
+#### First Digit
 
-#### Counting Choices for Position One (First Digit)
+The first digit can be any odd digit in <InlineMath math="1, 3, 5, 7, 9" />, giving <InlineMath math="5" /> choices.
 
-The first digit is an odd number (<InlineMath math="1, 3, 5, 7, 9" />).
+#### First Letter
 
-Number of choices is <InlineMath math="5" />.
+The second letter is fixed as <InlineMath math="O" />. Because letters may not repeat, the first letter can be neither <InlineMath math="A" /> nor <InlineMath math="O" />. The valid vowels are therefore <InlineMath math="E, I, U" />, giving <InlineMath math="3" /> choices.
 
-#### Counting Choices for Position Two (First Letter)
+#### Second Digit and Second Letter
 
-Vowels: <InlineMath math="A, E, I, O, U" /> (total <InlineMath math="5" /> vowels).
+The second digit is chosen from <InlineMath math="2, 4, 6, 8" />, giving <InlineMath math="4" /> choices. It cannot repeat the first digit because the first digit is odd and the second is even. The final letter is fixed, so it contributes <InlineMath math="1" /> choice.
 
-The first letter is not the letter <InlineMath math="A" />, so the remaining choices are: <InlineMath math="E, I, O, U" />.
+#### Total
 
-Number of choices is <InlineMath math="4" />.
+By the multiplication rule:
 
-#### Counting Choices for Position Three (Second Digit)
+<BlockMath math="\text{Total Passwords} = 5 \times 3 \times 4 \times 1 = 60" />
 
-The second digit is chosen from <InlineMath math="2, 4, 6, 8" /> (total <InlineMath math="4" /> choices).
-
-Since digits cannot repeat, we must ensure the second digit is different from the first digit. However, the first digit is odd and the second digit is even, so they automatically do not repeat.
-
-Number of choices is <InlineMath math="4" />.
-
-#### Counting Choices for Position Four (Second Letter)
-
-The second letter is the letter <InlineMath math="O" /> (fixed).
-
-Number of choices is <InlineMath math="1" />.
-
-#### Calculating Total Passwords
-
-Using the multiplication rule:
-
-<MathContainer>
-  <BlockMath math="\text{Total Passwords} = 5 \times 4 \times 4 \times 1 = 80" />
-</MathContainer>
-
-However, we need to check if letters can repeat. From the problem, letters cannot repeat. Let's check the case where the first letter is <InlineMath math="O" /> (same as the second letter).
-
-If the first letter is <InlineMath math="O" />, then there is letter repetition. Valid choices for the first letter are <InlineMath math="E, I, U" /> (cannot be <InlineMath math="A" /> and cannot be <InlineMath math="O" /> because <InlineMath math="O" /> is already used in the second position).
-
-So:
-
-*   First digit is <InlineMath math="5" /> choices.
-*   First letter is <InlineMath math="3" /> choices (<InlineMath math="E, I, U" />).
-*   Second digit is <InlineMath math="4" /> choices.
-*   Second letter is <InlineMath math="1" /> choice (<InlineMath math="O" />).
-
-<MathContainer>
-  <BlockMath math="\text{Total Passwords} = 5 \times 3 \times 4 \times 1 = 60" />
-</MathContainer>
-
-So, the number of passwords that can be formed is <InlineMath math="60" />.
+Therefore, <InlineMath math="60" /> passwords satisfy every rule.

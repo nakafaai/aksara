@@ -1,0 +1,46 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 14",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Gesucht ist eine genaue Bedingung dafür, wann <InlineMath math="a_n" /> durch <InlineMath math="5" /> teilbar ist. Einige Anfangsglieder lassen zwar ein Muster erkennen, beweisen aber noch nicht, dass es sich fortsetzt. Deshalb leiten wir eine Formel für die gesamte Folge her.
+
+#### Das erste Folgenglied bestimmen
+
+Ausgehend von <InlineMath math="a_4 = 85" /> rechnen wir rückwärts:
+
+<MathContainer>
+  <BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
+  <BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+  <BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
+</MathContainer>
+
+#### Eine Formel für jedes Folgenglied herleiten
+
+Wir multiplizieren die Rekursion mit <InlineMath math="3" /> und addieren <InlineMath math="1" />. Dadurch entsteht eine geometrische Rekursion:
+
+<MathContainer>
+  <BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+  <BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
+</MathContainer>
+
+Wegen <InlineMath math="3a_1 + 1 = 4" /> folgt durch wiederholte Multiplikation mit <InlineMath math="4" />:
+
+<MathContainer>
+  <BlockMath math="3a_n + 1 = 4^n" />
+  <BlockMath math="a_n = \frac{4^n - 1}{3}" />
+</MathContainer>
+
+#### Die Teilbarkeit durch fünf prüfen
+
+Modulo <InlineMath math="5" /> gilt <InlineMath math="4 \equiv -1" />. Damit erhalten wir
+
+<BlockMath math="3a_n \equiv (-1)^n - 1 \pmod{5}" />
+
+- Für gerades <InlineMath math="n" /> ist <InlineMath math="(-1)^n - 1 = 0" /> und somit <InlineMath math="a_n \equiv 0 \pmod{5}" />.
+- Für ungerades <InlineMath math="n" /> ist <InlineMath math="(-1)^n - 1 \equiv 3 \pmod{5}" /> und somit <InlineMath math="a_n \equiv 1 \pmod{5}" />.
+
+Der Faktor <InlineMath math="3" /> darf gekürzt werden, weil <InlineMath math="3" /> modulo <InlineMath math="5" /> ein multiplikatives Inverses besitzt. Also ist <InlineMath math="a_n" /> genau dann durch <InlineMath math="5" /> teilbar, wenn <InlineMath math="n" /> gerade ist.
+
+Unter <InlineMath math="1, 29, 73, 364" /> und <InlineMath math="473" /> ist nur <InlineMath math="364" /> gerade. Daher lautet der gesuchte Wert <InlineMath math="n = 364" />.

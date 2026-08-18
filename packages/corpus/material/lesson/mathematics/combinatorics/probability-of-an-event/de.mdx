@@ -1,0 +1,164 @@
+export const metadata = {
+   title: "Wahrscheinlichkeit eines Ereignisses",
+   description: "Ein Ereignis im Ergebnisraum beschreiben, seine Wahrscheinlichkeit berechnen und das Ergebnis sinnvoll deuten.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Wahrscheinlichkeit verstehen
+
+Wird es heute regnen? Gewinnt eine Mannschaft ihr nächstes Spiel? Beides ist ungewiss. Mit einer **Wahrscheinlichkeit** können wir diese Unsicherheit trotzdem genau beschreiben.
+
+Die **Wahrscheinlichkeit** eines Ereignisses liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />:
+- Wahrscheinlichkeit <InlineMath math="0" /> bedeutet, dass das Ereignis **unmöglich** ist
+- Wahrscheinlichkeit <InlineMath math="1" /> bedeutet, dass das Ereignis **sicher** ist
+- Wahrscheinlichkeit <InlineMath math="0{,}5" /> bedeutet, dass das Ereignis und sein Komplement **gleich wahrscheinlich** sind
+
+Eine Wahrscheinlichkeit sagt kein einzelnes Ergebnis sicher voraus. Sie hilft uns vielmehr, viele Wiederholungen einzuschätzen und Entscheidungen zu treffen, bei denen die Unsicherheit sichtbar bleibt.
+
+## Ergebnisraum und Ereignis
+
+Bevor wir eine Wahrscheinlichkeit berechnen, brauchen wir zwei Begriffe:
+
+Der **Ergebnisraum (S)** ist die Menge aller möglichen Ergebnisse eines Zufallsexperiments. Werden zum Beispiel zwei Würfel geworfen, ist jedes Ergebnis ein geordnetes Paar von Augenzahlen.
+
+Ein **Ereignis (A)** ist eine Teilmenge des Ergebnisraums. Es enthält genau die Ergebnisse, die wir untersuchen möchten.
+
+**Konkretes Beispiel:** Bei zwei Münzwürfen verwenden wir die üblichen Kürzel <InlineMath math="H" /> für Kopf und <InlineMath math="T" /> für Zahl. Der Ergebnisraum ist <InlineMath math="\{HH, HT, TH, TT\}" />. Das Ereignis „mindestens einmal Zahl“ lautet <InlineMath math="A = \{HT, TH, TT\}" />.
+
+## Wahrscheinlichkeitsformel
+
+Für ein Ereignis mit gleich wahrscheinlichen Ergebnissen verwenden wir die **klassische Wahrscheinlichkeitsformel**:
+
+<BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
+
+dabei gilt:
+- <InlineMath math="P(A)" /> = Wahrscheinlichkeit des Ereignisses <InlineMath math="A" />
+- <InlineMath math="n(A)" /> = Anzahl der günstigen Ergebnisse im Ereignis <InlineMath math="A" />
+- <InlineMath math="n(S)" /> = Anzahl aller möglichen Ergebnisse im Ergebnisraum
+
+**Wichtige Bedingung:** Diese Zählformel gilt nur, wenn alle Ergebnisse im Stichprobenraum **gleich wahrscheinlich** sind.
+
+**Grundlegende Eigenschaften:**
+- <InlineMath math="0 \leq P(A) \leq 1" /> (jede Wahrscheinlichkeit liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />)
+- <InlineMath math="P(A) + P(A') = 1" />, wobei <InlineMath math="A'" /> das **Gegenereignis** zu <InlineMath math="A" /> bezeichnet
+
+**Gegenereignis:** Das Gegenereignis zu <InlineMath math="A" /> enthält jedes Ergebnis des Ergebnisraums, das **nicht** zu <InlineMath math="A" /> gehört. Bedeutet <InlineMath math="A" /> etwa „eine gerade Zahl würfeln“, so steht <InlineMath math="A'" /> für „eine ungerade Zahl würfeln“.
+
+## Durchgerechnete Beispiele
+
+**Zwei Würfel untersuchen:**
+
+Zwei faire Würfel liefern <InlineMath math="6 \times 6 = 36" /> gleich wahrscheinliche geordnete Paare. Gesucht ist die Wahrscheinlichkeit für die Summe <InlineMath math="9" />.
+
+**Systematische Lösung:**
+
+1. Zuerst sammeln wir alle Möglichkeiten für die Summe <InlineMath math="9" />:
+   - Erster Würfel <InlineMath math="3" />, zweiter Würfel <InlineMath math="6" />: <InlineMath math="(3,6)" />
+   - Erster Würfel <InlineMath math="4" />, zweiter Würfel <InlineMath math="5" />: <InlineMath math="(4,5)" />
+   - Erster Würfel <InlineMath math="5" />, zweiter Würfel <InlineMath math="4" />: <InlineMath math="(5,4)" />
+   - Erster Würfel <InlineMath math="6" />, zweiter Würfel <InlineMath math="3" />: <InlineMath math="(6,3)" />
+
+2. Damit gibt es <InlineMath math="n(A) = 4" /> günstige Ergebnisse.
+
+3. Nun setzen wir die beiden Anzahlen in die Formel ein:
+
+    <BlockMath math="P(\text{Summe} = 9) = \frac{4}{36} = \frac{1}{9} \approx 0{,}111" />
+
+**Wahrscheinlichkeitsbasierte Marketingstrategie:**
+
+Ein Getränkeunternehmen legt manchen Getränkekartons Gewinncoupons bei. Aus bisherigen Daten wird die Wahrscheinlichkeit, in einem gekauften Karton einen Gewinn zu finden, auf <InlineMath math="\frac{3}{32}" /> geschätzt.
+
+**Praktische Interpretation:** Bei sehr vielen Käufen ist im Mittel in etwa <InlineMath math="3" /> von <InlineMath math="32" /> Kartons ein Gewinn zu erwarten. Diese Schätzung kann dem Unternehmen helfen:
+- das Werbebudget zu planen
+- die Reaktion der Kundschaft abzuschätzen
+- realistische Verkaufsziele festzulegen
+
+**Würfelsummen vergleichen:**
+
+Bei zwei fairen Würfeln hat die Summe <InlineMath math="7" /> mehr günstige geordnete Paare als jede andere Summe:
+
+Möglichkeiten für die Summe <InlineMath math="7" />: <InlineMath math="(1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6 \text{Wege}" />
+
+<BlockMath math="P(\text{Summe} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0{,}167" />
+
+Das ist die größte Wahrscheinlichkeit unter allen möglichen Summen. Trotzdem muss der nächste Wurf nicht <InlineMath math="7" /> ergeben. Die Rechnung beschreibt das langfristige Modell, nicht den nächsten Einzelfall.
+
+## Übungsaufgaben
+
+Versuchen Sie jede Aufgabe selbst, bevor Sie die ausführliche Lösung lesen. Notieren Sie zuerst den Ergebnisraum und das Ereignis. Setzen Sie erst danach Zahlen in die Formel ein.
+
+1. Bestimme beim Werfen zweier Würfel die Wahrscheinlichkeit für eine gerade Summe.
+
+2. Eine Schachtel enthält <InlineMath math="5 \text{rote Kugeln}" />, <InlineMath math="3 \text{blaue Kugeln}" /> und <InlineMath math="2 \text{grüne Kugeln}" />. Eine Kugel wird zufällig gezogen. Bestimme die Wahrscheinlichkeit dafür, dass sie nicht rot ist.
+
+3. Drei faire Münzen werden unabhängig voneinander geworfen. Bestimme die Wahrscheinlichkeit dafür, genau zweimal Zahl zu erhalten.
+
+4. Eine Qualitätskontrolle findet genau <InlineMath math="50" /> fehlerhafte Produkte in einer Charge von <InlineMath math="1000 \text{Einheiten}" />. Wie groß ist bei einer gleichverteilten Zufallsauswahl die Wahrscheinlichkeit für ein fehlerfreies Produkt?
+
+### Ausführliche Lösungen
+
+1. **Antwort: <InlineMath math="\frac{1}{2}" />**
+
+   **Schrittweise Lösung:**
+
+   Der Ergebnisraum beim Werfen zweier Würfel hat <InlineMath math="n(S) = 36" /> Ergebnisse.
+
+   **Identifizieren Sie alle geraden Summen und Möglichkeiten, sie zu erhalten:**
+   - Summe <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> Weg
+   - Summe <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{Wege}" />
+   - Summe <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{Wege}" />
+   - Summe <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{Wege}" />
+   - Summe <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{Wege}" />
+   - Summe <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> Weg
+
+   **Günstige Ergebnisse insgesamt:** <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
+
+   **Wahrscheinlichkeitsberechnung:**
+
+   <BlockMath math="P(\text{gerade Summe}) = \frac{18}{36} = \frac{1}{2} = 0{,}5" />
+
+2. **Antwort: <InlineMath math="\frac{1}{2}" />**
+
+   **Lösungsschritte:**
+
+   **Gesamtzahl der Kugeln:** <InlineMath math="5 + 3 + 2 = 10" /> Kugeln
+
+   **Nicht rote Kugeln:** <InlineMath math="3 \text{blau} + 2 \text{grün} = 5" /> Kugeln
+
+   **Wahrscheinlichkeitsberechnung:**
+
+   <BlockMath math="P(\text{nicht rot}) = \frac{5}{10} = \frac{1}{2} = 0{,}5" />
+
+3. **Antwort: <InlineMath math="\frac{3}{8}" />**
+
+   **Lösungsschritte:**
+
+   **Ergebnisraum für drei Münzwürfe:** <InlineMath math="\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}" />
+
+   **Gesamtmöglichkeiten:** <InlineMath math="n(S) = 2^3 = 8" />
+
+   **Ereignis „genau zweimal Zahl“:** <InlineMath math="\{HTT, THT, TTH\}" />
+
+   **Anzahl der günstigen Ergebnisse:** <InlineMath math="n(A) = 3" />
+
+   **Wahrscheinlichkeitsberechnung:**
+
+   <BlockMath math="P(\text{genau 2-mal Zahl}) = \frac{3}{8} = 0{,}375" />
+
+4. **Antwort: <InlineMath math="\frac{19}{20}" /> oder <InlineMath math="95\%" />**
+
+   **Lösungsschritte:**
+
+   **Gesamtmenge:** <InlineMath math="1000 \text{Einheiten}" />
+
+   **Fehlerhafte Produkte:** <InlineMath math="5\% \times 1000 = 50 \text{Einheiten}" />
+
+   **Fehlerfreie Produkte:** <InlineMath math="1000 - 50 = 950 \text{Einheiten}" />
+
+   **Wahrscheinlichkeitsberechnung:**
+
+   <BlockMath math="P(\text{nicht defekt}) = \frac{950}{1000} = \frac{19}{20} = 0{,}95 = 95\%" />
+
+   **Interpretation:** Ein zufällig gekauftes Exemplar ist mit einer Wahrscheinlichkeit von <InlineMath math="95\%" /> fehlerfrei. Das ist eine Aussage über das Zufallsmodell, keine Garantie für einen einzelnen Kauf.

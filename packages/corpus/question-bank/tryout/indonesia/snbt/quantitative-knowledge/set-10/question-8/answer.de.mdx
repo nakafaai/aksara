@@ -1,0 +1,48 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 8",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-27",
+};
+
+Ausgangspunkt ist die Ungleichung:
+
+<MathContainer>
+  <BlockMath math="x^2 + x - 6 > 0" />
+</MathContainer>
+
+Faktorisiere die linke Seite:
+
+<MathContainer>
+  <BlockMath math="(x - 2)(x + 3) > 0" />
+</MathContainer>
+
+Die beiden Faktoren werden an folgenden Randpunkten null:
+
+<MathContainer>
+  <BlockMath math="x = 2 \quad \text{oder} \quad x = -3" />
+</MathContainer>
+
+Diese Punkte teilen den Zahlenstrahl in drei Intervalle. Prüfe aus jedem Intervall einen Wert:
+
+<Set10Question8Graph
+  title="Zahlenstrahl"
+  description="Visualisierung des Ungleichheitslösungsbereichs."
+/>
+
+-   Für <InlineMath math="x < -3" /> (z. B. <InlineMath math="-4" />): <InlineMath math="(-4-2)(-4+3) = (-6)(-1) = 6" /> (Positiv)
+-   Für <InlineMath math="-3 < x < 2" /> (z. B. <InlineMath math="0" />): <InlineMath math="(0-2)(0+3) = (-2)(3) = -6" /> (Negativ)
+-   Für <InlineMath math="x > 2" /> (z. B. <InlineMath math="3" />): <InlineMath math="(3-2)(3+3) = (1)(6) = 6" /> (Positiv)
+
+Das Produkt soll positiv sein. Daher gehören das erste und das dritte Intervall zur Lösung:
+
+<MathContainer>
+  <BlockMath math="x < -3 \quad \text{oder} \quad x > 2" />
+</MathContainer>
+
+Vergleiche dieses Ergebnis mit den vier Aussagen:
+1.  <InlineMath math="x > 2" /> (trifft zu)
+2.  <InlineMath math="-3 < x < 2" /> (Trifft nicht zu)
+3.  <InlineMath math="x < -3" /> (trifft zu)
+4.  <InlineMath math="x > -3" /> (Trifft nicht zu)
+
+Damit beschreiben die Aussagen <InlineMath math="1" /> und <InlineMath math="3" /> die Lösungsmenge.

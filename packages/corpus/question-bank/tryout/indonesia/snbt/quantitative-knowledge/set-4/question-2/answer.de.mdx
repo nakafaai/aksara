@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 2",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-26",
+};
+
+Ermitteln wir zunächst die Summe der Anfangsdaten.
+
+<MathContainer>
+  <BlockMath math="1 + 2 + 3 + 4 + 5 + 6 + 7 = 28" />
+</MathContainer>
+
+Sei <InlineMath math="x" /> der Datenwert, der durch <InlineMath math="34" /> ersetzt wird. Dann lautet die neue Datensumme:
+
+<MathContainer>
+  <BlockMath math="\text{Neue Summe} = 28 - x + 34 = 62 - x" />
+</MathContainer>
+
+Die Anzahl der Datenpunkte (<InlineMath math="n" />) bleibt <InlineMath math="7" />. Die Formel für den neuen Durchschnitt (<InlineMath math="\bar{x}_{\text{neu}}" />) lautet:
+
+<MathContainer>
+  <BlockMath math="\bar{x}_{\text{neu}} = \frac{62 - x}{7}" />
+</MathContainer>
+
+Gegeben ist, dass der neue Durchschnitt dem Doppelten des neuen Medians entspricht (<InlineMath math="\bar{x}_{\text{neu}} = 2 \times \operatorname{Median}_{\text{neu}}" />). Deshalb prüfen wir die möglichen Werte des neuen Medians.
+
+Die Anfangsdaten sind geordnet: <InlineMath math="1, 2, 3, 4, 5, 6, 7" />. Der anfängliche Median beträgt <InlineMath math="4" />.
+Der neue Wert <InlineMath math="34" /> steht anschließend an letzter Stelle, weil er der größte ist.
+
+**Fall <InlineMath math="1" />: Der ersetzte Wert ist <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> oder <InlineMath math="4" />**
+
+Wenn wir beispielsweise <InlineMath math="1" /> ersetzen, werden die Daten zu <InlineMath math="2, 3, 4, 5, 6, 7, 34" />. Der Median wird zu <InlineMath math="5" />.
+Das Gleiche gilt, wenn wir <InlineMath math="2, 3" /> oder <InlineMath math="4" /> ersetzen. Die Daten werden verschoben, sodass der Median zu <InlineMath math="5" /> wird.
+
+Testen wir das in der Gleichung:
+
+<MathContainer>
+  <BlockMath math="\frac{62 - x}{7} = 2 \times 5" />
+  <BlockMath math="62 - x = 70" />
+  <BlockMath math="x = -8" />
+</MathContainer>
+
+Das Ergebnis <InlineMath math="x = -8" /> ist **ungültig**, da die Daten aus dem Anfangssatz (<InlineMath math="1" /> bis <InlineMath math="7" />) stammen müssen.
+
+**Fall <InlineMath math="2" />: Der ersetzte Wert ist <InlineMath math="5" />, <InlineMath math="6" /> oder <InlineMath math="7" />**
+
+Wenn wir beispielsweise <InlineMath math="7" /> ersetzen, werden die Daten zu <InlineMath math="1, 2, 3, 4, 5, 6, 34" />. Der Median bleibt <InlineMath math="4" />.
+Das Gleiche gilt, wenn wir <InlineMath math="5" /> oder <InlineMath math="6" /> ersetzen. Der Median bleibt <InlineMath math="4" />.
+
+Testen wir das in der Gleichung:
+
+<MathContainer>
+  <BlockMath math="\frac{62 - x}{7} = 2 \times 4" />
+  <BlockMath math="62 - x = 56" />
+  <BlockMath math="x = 6" />
+</MathContainer>
+
+Das Ergebnis <InlineMath math="x = 6" /> ist **gültig**, da <InlineMath math="6" /> in den Anfangsdaten enthalten ist.
+
+Der ersetzte Datenwert ist also <InlineMath math="6" />.
+Also <InlineMath math="P = 6" /> und <InlineMath math="Q = 6" />.
+
+Also, <InlineMath math="P = Q" />.

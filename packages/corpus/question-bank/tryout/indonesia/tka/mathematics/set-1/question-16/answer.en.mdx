@@ -4,36 +4,27 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-The path is calculated from the box to <InlineMath math="B10" />, forming an arithmetic sequence of distances <InlineMath math="10, 18, 26, 34, \ldots" />
+The distances form an arithmetic sequence:
 
-#### Determining Sequence Parameters
+<BlockMath math="10,18,26,34,\ldots" />
 
-From the series <InlineMath math="10, 18, 26, 34, \ldots" />, we get
+Its first term is <InlineMath math="a=10" />, its common difference is <InlineMath math="d=8" />, and it has <InlineMath math="n=10" /> terms.
 
-- First term <InlineMath math="a = 10" />
-- Common difference <InlineMath math="b = 18 - 10 = 8" />
-- Number of terms <InlineMath math="n = 10" /> (from box to <InlineMath math="B10" />)
-
-#### Calculating the Requested Term
-
-The formula for the general term of an arithmetic series
+#### Find the final distance
 
 <MathContainer>
-<BlockMath math="U_n = a + (n - 1)b" />
-<BlockMath math="U_{10} = 10 + (10 - 1) \cdot 8" />
-<BlockMath math="= 10 + 9 \cdot 8" />
-<BlockMath math="= 10 + 72 = 82" />
+<BlockMath math="U_n=a+(n-1)d" />
+<BlockMath math="U_{10}=10+(10-1)(8)=82" />
 </MathContainer>
 
-#### Calculating the Sum of the Sequence
+Thus, <InlineMath math="B_{10}" /> alone is <InlineMath math="82\text{ m}" /> from the box. The question asks for the sum of all ten distances, not just this final distance.
 
-The sum of distances from the box to <InlineMath math="B10" />
+#### Add all ten distances
 
 <MathContainer>
-<BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
-<BlockMath math="S_{10} = \frac{10}{2}(a + U_{10})" />
-<BlockMath math="= 5(10 + 82)" />
-<BlockMath math="= 5 \cdot 92 = 460" />
+<BlockMath math="S_n=\frac{n}{2}(a+U_n)" />
+<BlockMath math="S_{10}=\frac{10}{2}(10+82)" />
+<BlockMath math="S_{10}=5(92)=460" />
 </MathContainer>
 
-Therefore, the distance from the start to the box is <InlineMath math="460 \text{ meters}" />
+Therefore, the sum is <InlineMath math="460\text{ m}" />.

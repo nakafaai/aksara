@@ -1,0 +1,93 @@
+
+export const metadata = {
+  title: "Lösung zu Aufgabe 16",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Die Bedingung dafür, dass die Ungleichung erfüllt ist, ist
+
+<MathContainer>
+<BlockMath math="x^2 - x > 0" />
+<BlockMath math="x(x - 1) > 0" />
+<BlockMath math="x = 0 \cup x = 1" />
+</MathContainer>
+
+Erstellen Sie seinen Zahlenstrahl
+
+<NumberLine
+  title={<>Zahlenlinienbedingung</>}
+  description={<>Die Lösung von <InlineMath math="x^2 - x > 0" /> ist <InlineMath math="x < 0" /> oder <InlineMath math="x > 1" />.</>}
+  segments={[
+    {
+      start: Number.NEGATIVE_INFINITY,
+      end: 0,
+      endLabel: <InlineMath math="0" />,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 0,
+      end: 1,
+      startLabel: <InlineMath math="0" />,
+      endLabel: <InlineMath math="1" />,
+      shaded: false,
+      label: <InlineMath math="-" />,
+    },
+    {
+      start: 1,
+      end: Number.POSITIVE_INFINITY,
+      startLabel: <InlineMath math="1" />,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+  ]}
+/>
+
+Die Lösung ist also <InlineMath math="\{x < 0 \cup x > 1\}" />. Während die allgemeine Lösung der Ungleichung lautet
+
+<MathContainer>
+<BlockMath math="\log_2(x^2 - x) \leq 1" />
+<BlockMath math="\log_2(x^2 - x) \leq \log_2 2" />
+<BlockMath math="x^2 - x \leq 2" />
+<BlockMath math="x^2 - x - 2 \leq 0" />
+<BlockMath math="(x + 1)(x - 2) \leq 0" />
+<BlockMath math="x = -1 \cup x = 2" />
+</MathContainer>
+
+Zweiter Zahlenstrahl
+
+<NumberLine
+  title={<>Zahlengeraden-Lösung</>}
+  description={<>Die Lösung von <InlineMath math="x^2 - x - 2 \leq 0" /> ist <InlineMath math="-1 \leq x \leq 2" />.</>}
+  segments={[
+    {
+      start: Number.NEGATIVE_INFINITY,
+      end: -1,
+      endLabel: <InlineMath math="-1" />,
+      shaded: false,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: -1,
+      end: 2,
+      startLabel: <InlineMath math="-1" />,
+      endLabel: <InlineMath math="2" />,
+      startInclusive: true,
+      endInclusive: true,
+      shaded: true,
+      label: <InlineMath math="-" />,
+    },
+    {
+      start: 2,
+      end: Number.POSITIVE_INFINITY,
+      startLabel: <InlineMath math="2" />,
+      shaded: false,
+      label: <InlineMath math="+" />,
+    },
+  ]}
+/>
+
+Die Lösung ist <InlineMath math="\{-1 \leq x \leq 2\}" />. Dann ist die kombinierte Lösung
+
+<BlockMath math="\{x < 0 \cup x > 1\} \cap \{-1 \leq x \leq 2\} = \{-1 \leq x < 0 \cup 1 < x \leq 2\}" />

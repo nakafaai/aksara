@@ -1,0 +1,630 @@
+export const metadata = {
+    title: "String-Methoden",
+  description: "Lerne Python-String-Methoden für Umwandlung, Suche, Zeichenklassifikation und klar begrenzte Textverarbeitung kennen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-17",
+    subject: "KI-Programmierung",
+};
+
+## Unveränderlichkeit von Strings
+
+Python-Strings sind immutable: Der Wert eines String-Objekts lässt sich nicht direkt bearbeiten. Eine Operation kann einen neuen String erzeugen und eine Variable kann anschließend auf dieses neue Objekt verweisen. Das ursprüngliche String-Objekt bleibt dabei unverändert.
+
+Eine Zuweisung an eine Zeichenposition führt deshalb zu einem `TypeError`. Listen verhalten sich anders, weil ihre Elemente direkt ersetzt werden können.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "immutable_string.py",
+      code: `# Demonstration der unveränderlichen String-Natur
+s = "hello"
+print(f"Anfangszeichenfolge: {s}")
+
+# Versuch, ein Zeichen direkt zu ändern
+try:
+    s[1] = "a"  # Dies führt zu einem Fehler
+except TypeError as e:
+    print(f"Fehler: {e}")
+
+# Der richtige Weg: Neue Zeichenfolge erstellen
+s_new = s[:1] + "a" + s[2:]
+print(f"Neue Zeichenfolge: {s_new}")
+
+# Die ursprüngliche Zeichenfolge bleibt unverändert
+print(f"Ursprünglicher String: {s}")`
+    }
+  ]}
+/>
+
+Mit Slicing und Verkettung kannst du aus einem vorhandenen String einen neuen aufbauen. Der Operator `+` hängt nichts an das ursprüngliche Objekt an.
+
+## Stringlänge messen
+
+Bei einem Python-String zählt `len()` die Unicode-Codepoints. Ein gewöhnlicher lateinischer Buchstabe, ein Leerzeichen oder ein Satzzeichen zählt meist eins. Ein einziges sichtbares Graphem kann jedoch aus mehreren Codepoints bestehen, etwa bei manchen Emojis oder kombinierenden Zeichen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "string_length.py",
+      code: `# Länge verschiedener Strings messen
+strings = [
+    "hello",
+    "Hello World!",
+    "Python-Programmierung",
+    "",  # leerer String
+    "   ",  # String mit drei Leerzeichen
+    "123456"
+]
+
+for s in strings:
+    print(f"„{s}“ hat die Länge: {len(s)}")
+
+# Stringlänge mit Sonderzeichen
+special = "Hello\\nWorld\\t!"
+print(f"String mit Escape-Sequenz: {len(special)} Zeichen")
+print(f"String-Anzeige: {repr(special)}")
+
+raw_newline = r"\\n"
+print(f"Raw-Schreibweise \\n: {len(raw_newline)} Codepoints")`
+    }
+  ]}
+/>
+
+In einem normalen Stringliteral werden die Quellschreibweisen `\n` und `\t` jeweils zu einem Newline- oder Tab-Codepoint. In einem Raw String wie `r"\n"` bleiben Backslash und `n` zwei getrennte Codepoints.
+
+## String-Transformationsmethoden
+
+### Ändern der Groß-/Kleinschreibung
+
+Python bietet mehrere Methoden zur Umwandlung der Groß- und Kleinschreibung. Jede liefert einen neuen String und folgt den Unicode-Regeln für die Schreibweise.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "case_transformation.py",
+      code: `# Beispiel für eine Groß-/Kleinschreibungstransformation bei Zeichenfolgen
+text = "Python Programming Language"
+
+# In Großbuchstaben umwandeln
+upper_text = text.upper()
+print(f"Großbuchstaben: {upper_text}")
+
+# In Kleinbuchstaben umwandeln
+lower_text = text.lower()
+print(f"Kleinbuchstaben: {lower_text}")
+
+# Groß- und Kleinschreibung des Titels: Der erste Buchstabe jedes Wortes wird großgeschrieben
+title_text = text.title()
+print(f"Titel-Schreibweise: {title_text}")
+
+# Beispiel mit gemischter Groß- und Kleinschreibung
+mixed = "hELLo WoRLd PyThOn"
+print(f"Original: {mixed}")
+print(f"Titel-Schreibweise: {mixed.title()}")
+
+# Titel-Schreibweise bei Zahlen und Symbolen
+complex_text = "python3.9 is-awesome!"
+print(f"Komplexer Titel: {complex_text.title()}")`
+    }
+  ]}
+/>
+
+`title()` folgt einer mechanischen Großschreibungsregel. Für einfache Anzeigebezeichnungen kann das passen, für Personennamen oder redaktionelle Titel ist es jedoch nicht zuverlässig. Dort solltest du die maßgebliche Schreibweise erhalten oder fachliche Regeln anwenden.
+
+### Zeichen am Anfang und Ende entfernen
+
+Ohne Argument entfernen `strip()`, `lstrip()` und `rstrip()` umgebenden Whitespace. Ein Argument `chars` gilt als Menge einzelner Zeichen, die am jeweiligen Rand wiederholt entfernt werden, nicht als ein vollständiges Präfix oder Suffix.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "strip_methods.py",
+      code: `# Demonstration verschiedener Strip-Methoden
+text = "   Hello World   "
+print(f"Original: '{text}'")
+
+# Leerzeichen auf beiden Seiten entfernen
+stripped = text.strip()
+print(f"Strip: '{stripped}'")
+
+# Leerzeichen nur links entfernen
+left_stripped = text.lstrip()
+print(f"Links bereinigt: '{left_stripped}'")
+
+# Leerzeichen nur rechts entfernen
+right_stripped = text.rstrip()
+print(f"Rechts bereinigt: '{right_stripped}'")
+
+# Benutzerdefinierte Zeichen entfernen
+special_text = "+++Hello World+++"
+custom_stripped = special_text.strip("+")
+print(f"Benutzerdefiniert bereinigt: '{custom_stripped}'")
+
+# Mehrere verschiedene Zeichen entfernen
+messy_text = "---+++Hello World+++---"
+clean_text = messy_text.strip("-+")
+print(f"Mehrere Zeichen entfernt: '{clean_text}'")
+
+# Genau ein Suffix entfernen
+filename = "bericht.txt"
+print(f"Ergebnis ohne Suffix: '{filename.removesuffix('.txt')}'")`
+    }
+  ]}
+/>
+
+Möchtest du genau ein Token entfernen, verwendest du `removeprefix()` oder `removesuffix()`. So kann eine Zeichenmenge nicht versehentlich mehr entfernen als beabsichtigt.
+
+## Such- und Validierungsmethoden
+
+### Teilstring-Position ermitteln
+
+`index()` und `find()` suchen die Position eines Teilstrings. Sie unterscheiden sich darin, wie sie einen fehlenden Treffer melden.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "substring_search.py",
+      code: `# Teilstringsuche mit verschiedenen Methoden
+text = "Python ist eine leistungsfähige Programmiersprache"
+
+# Bei Verwendung von index() wird ein Fehler angezeigt, wenn es nicht gefunden wird
+try:
+    pos = text.index("leistungsfähig")
+    print(f"'leistungsfähig' gefunden an Position: {pos}")
+
+    # Suche nach nicht vorhandener Teilzeichenfolge
+    pos_not_found = text.index("Java")
+except ValueError as e:
+    print(f"Fehler mit index(): {e}")
+
+# Bei Verwendung von find() wird -1 zurückgegeben, wenn es nicht gefunden wird
+pos_find = text.find("leistungsfähig")
+print(f"find('leistungsfähig'): {pos_find}")
+
+pos_not_found = text.find("Java")
+print(f"find('Java'): {pos_not_found}")
+
+# Den Membership-Test verwenden, wenn nur das Vorkommen zählt
+print(f"Enthält 'Python': {'Python' in text}")
+
+# Suche mit Start- und Endparametern
+substring = "Programmiersprache"
+start_pos = text.find(substring, 20)  # Start ab Position 20
+print(f"'{substring}' nach Position 20: {start_pos}")
+
+# Vorkommen eines Teilstrings zählen
+count = text.count("a")
+print(f"Der Buchstabe „a“ kommt {count}-mal vor")`
+    }
+  ]}
+/>
+
+Wähle die Methode passend zum Fehlervertrag: `find()` gibt `-1` zurück, `index()` löst dagegen einen `ValueError` aus. Wenn du nur wissen möchtest, ob der Teilstring vorkommt, ist der Operator `in` klarer als beide Positionsmethoden.
+
+### Zeichenklassen prüfen
+
+Python bietet Prädikate zur Klassifikation der Codepoints in einem String. Sie beantworten Fragen zu Zeichenkategorien, nicht zur vollständigen Gültigkeit eines fachlichen Formats.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "character_validation.py",
+      code: `# Beispiel für die Validierung verschiedener Zeichentypen
+test_strings = [
+    "Python",
+    "Python3",
+    "12345",
+    "Hello World",
+    "hello123",
+    "UPPERCASE",
+    "lowercase",
+    "",
+    "   "
+]
+
+print("String\\t\\tBuchstaben\\tZiffern\\tAlnum\\tGroß\\tKlein")
+print("-" * 60)
+
+for s in test_strings:
+    alpha = s.isalpha()
+    digit = s.isdigit()
+    alnum = s.isalnum()
+    upper = s.isupper()
+    lower = s.islower()
+
+    print(f"'{s:<10}'\\t{alpha}\\t{digit}\\t{alnum}\\t{upper}\\t{lower}")
+
+# Praxisbeispiel zur Eingabevalidierung
+def validate_username(username):
+    if not username:
+        return "Der Benutzername darf nicht leer sein"
+    if not username.isascii() or not username.isalnum():
+        return "Der Benutzername darf nur ASCII-Buchstaben und -Ziffern enthalten"
+    if len(username) < 3:
+        return "Der Benutzername muss mindestens 3 Zeichen umfassen"
+    return "Der Benutzername ist gültig"
+
+# Validierung testen
+usernames = ["user123", "user@123", "ab", "ValidUser"]
+for username in usernames:
+    result = validate_username(username)
+    print(f"'{username}': {result}")`
+    }
+  ]}
+/>
+
+Methoden wie `isdigit()` und `isalnum()` berücksichtigen Unicode, und für den leeren String liefern sie `False`. Telefonnummern, Postleitzahlen und Benutzernamen brauchen trotzdem eindeutige Regeln für Alphabet, Länge, Trennzeichen, Präfixe und weitere fachliche Grenzen.
+
+## Präfix- und Suffix-Suchmethoden
+
+Mit `startswith()` und `endswith()` prüfst du, ob ein String mit einem bestimmten Teilstring beginnt oder endet.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "prefix_suffix.py",
+      code: `# Beispiel für die Verwendung von „startswith“ und „endswith“.
+files = [
+    "document.pdf",
+    "image.jpg",
+    "script.py",
+    "data.csv",
+    "README.md",
+    "backup.zip"
+]
+
+# Dateierweiterungen prüfen
+print("Dateien mit bestimmten Erweiterungen:")
+for file in files:
+    if file.endswith(".py"):
+        print(f"Python-Datei: {file}")
+    elif file.endswith((".jpg", ".png", ".gif")):
+        print(f"Bilddatei: {file}")
+    elif file.endswith(".pdf"):
+        print(f"PDF-Datei: {file}")
+
+# Präfixe prüfen
+urls = [
+    "https://www.google.com",
+    "http://example.com",
+    "ftp://files.example.com",
+    "mailto:user@example.com"
+]
+
+print("\\nURL-Analyse:")
+for url in urls:
+    if url.startswith("https://"):
+        print(f"Sichere Website: {url}")
+    elif url.startswith("http://"):
+        print(f"Website: {url}")
+    elif url.startswith("ftp://"):
+        print(f"FTP: {url}")
+    elif url.startswith("mailto:"):
+        print(f"E-Mail: {url}")
+
+# Tupel für mehrere Präfixe/Suffixe verwenden
+text = "Hello World"
+print(f"\\nBeginnt mit einer Begrüßung: {text.startswith(('Hi', 'Hello', 'Hey'))}")`
+    }
+  ]}
+/>
+
+Beide Methoden unterstützen Tupel als Parameter und ermöglichen die gleichzeitige Prüfung mehrerer Präfixe oder Suffixe.
+
+## Replace- und Split-Methoden
+
+### Teilstrings ersetzen
+
+`replace()` ersetzt Vorkommen eines Teilstrings durch einen neuen String.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "replace_method.py",
+      code: `# Beispiel für die Verwendung der Ersetzungsmethode
+text = "Python ist vielseitig. Python ist leistungsfähig. Python ist leicht zu lernen."
+print(f"Original: {text}")
+
+# Alle Vorkommen ersetzen
+replaced = text.replace("Python", "Java")
+print(f"Alle ersetzt: {replaced}")
+
+# Durch Zähllimit ersetzen
+limited_replace = text.replace("Python", "Java", 2)
+print(f"Die ersten zwei ersetzt: {limited_replace}")
+
+# Durch leere Zeichenfolge ersetzen (entfernen)
+no_dots = text.replace(".", "")
+print(f"Punkte entfernt: {no_dots}")
+
+# Verkettung von Ersetzungen für mehrere Ersetzungen
+sentence = "Ich mag Katzen und Hunde"
+animal_replace = sentence.replace("Katzen", "Vögel").replace("Hunde", "Fische")
+print(f"Verkettete Ersetzung: {animal_replace}")
+
+# Groß- und Kleinschreibung beachten
+case_text = "Hello hello HELLO"
+case_replace = case_text.replace("hello", "hi")
+print(f"Groß- und Kleinschreibung beachtet: {case_replace}")
+
+# Praxisbeispiel: Telefonnummer reinigen
+phone = "+62-812-3456-7890"
+clean_phone = phone.replace("-", "").replace("+", "")
+print(f"Bereinigte Telefonnummer: {clean_phone}")`
+    }
+  ]}
+/>
+
+`replace()` unterscheidet Groß- und Kleinschreibung. Ohne dritten Parameter ersetzt die Methode alle Vorkommen, mit diesem Parameter höchstens die angegebene Anzahl.
+
+### Strings aufteilen
+
+`split()` zerlegt einen String an einem angegebenen Trennzeichen und gibt die Teile als Liste zurück. Ohne Trennzeichen behandelt die Methode aufeinanderfolgenden Whitespace als einen Separator und lässt leere Felder an den Rändern weg.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "split_method.py",
+      code: `# Verschiedene Möglichkeiten, split() zu verwenden
+text = "apple,banana,orange,grape"
+print(f"Original: {text}")
+
+# Mit Kommatrennzeichen teilen
+fruits = text.split(",")
+print(f"Am Komma geteilt: {fruits}")
+
+# Ohne Parameter teilen (Standard-Leerzeichen)
+sentence = "Python ist eine vielseitige Sprache"
+words = sentence.split()
+print(f"An Leerzeichen geteilt: {words}")
+
+# Mit Limit teilen
+limited_split = text.split(",", 2)
+print(f"Höchstens zweimal geteilt: {limited_split}")
+
+# Mit mehreren Leerzeichen teilen
+messy_text = "word1    word2\\t\\tword3\\n\\nword4"
+clean_split = messy_text.split()
+print(f"Bereinigte Aufteilung: {clean_split}")
+
+# Einfache kommagetrennte Felder ohne Anführungszeichen
+csv_line = "John,25,Ingenieur,Berlin"
+data = csv_line.split(",")
+name, age, job, city = data
+print(f"Name: {name}, Alter: {age}, Beruf: {job}, Stadt: {city}")
+
+# Trennen mit einem nicht vorhandenen Trennzeichen
+no_delimiter = "no-delimiter-here"
+result = no_delimiter.split(",")
+print(f"Kein Trennzeichen gefunden: {result}")
+
+# Mit join() wieder verbinden
+joined = " | ".join(fruits)
+print(f"Mit senkrechtem Strich verbunden: {joined}")`
+    }
+  ]}
+/>
+
+Verwende `split()` nur bei wirklich einfachen Trennregeln. Die Methode versteht weder zitierte CSV-Felder noch Escaping oder plattformabhängige Dateipfade. Für CSV gibt es das Modul `csv`, für Dateipfade `pathlib`.
+
+## String-Methodenverkettung
+
+Da String-Methoden neue Strings zurückgeben, kannst du mehrere Umwandlungen in einem Ausdruck verketten. Halte die Kette so kurz, dass jeder Schritt klar bleibt. Wenn dazwischen eine Prüfung oder Erklärung nötig ist, gib dem Zwischenergebnis einen Namen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "method_chaining.py",
+      code: `# Beispiel für die Methodenverkettung auf Strings
+messy_input = "   +++ Python-Programmierung für Anfänger +++   "
+print(f"Eingabe: '{messy_input}'")
+
+# Mehrere Methoden verketten
+clean_result = (messy_input
+                .strip()  # Leerzeichen am Anfang und Ende entfernen
+                .strip("+-")  # Plus- und Minuszeichen entfernen
+                .lower()  # In Kleinbuchstaben umwandeln
+                .replace("anfänger", "fortgeschrittene"))  # Wort ersetzen
+
+print(f"Bereinigtes Ergebnis: '{clean_result}'")
+
+# Beispielverkettung zur Formatierung von Anzeigebezeichnungen
+labels = ["  ERSTE SCHRITTE  ", "  array GRUNDLAGEN  ", "  DATEN bereinigen  "]
+formatted_labels = []
+
+for label in labels:
+    formatted = label.strip().title()
+    formatted_labels.append(formatted)
+
+print("Formatierte Bezeichnungen:")
+for label in formatted_labels:
+    print(f"- {label}")
+
+# Verkettung in einer Listenkomprehension
+sentences = [
+    "  hallo WELT  ",
+    "  PYTHON programmierung  ",
+    "  DATA science  "
+]
+
+processed = [s.strip().title() for s in sentences]
+print(f"Verarbeitete Sätze: {processed}")
+
+# Die Domain normalisieren, ohne ungültigen Whitespace still zu löschen
+def normalize_email(email):
+    cleaned = email.strip()
+    if any(char.isspace() for char in cleaned) or cleaned.count("@") != 1:
+        raise ValueError("Die E-Mail braucht genau ein @ und darf keinen Whitespace enthalten")
+
+    local, domain = cleaned.split("@", 1)
+    if not local or not domain:
+        raise ValueError("Die E-Mail braucht einen lokalen Teil und eine Domain")
+
+    return f"{local}@{domain.lower()}"
+
+emails = ["  USER@EXAMPLE.COM  ", "Test.User@Gmail.com", "admin@site.org"]
+for email in emails:
+    processed = normalize_email(email)
+    print(f"'{email}' -> '{processed}'")`
+    }
+  ]}
+/>
+
+Methodenverkettung passt zu einer kurzen, linearen Bereinigung. Sie ist nicht automatisch klarer als benannte Schritte.
+
+## Praktische Anwendungen von String-Methoden
+
+Die folgenden begrenzten Beispiele verbinden String-Methoden mit ausdrücklich genannten Annahmen. Sie zeigen die Mechanik, nicht universell einsetzbare Produktionsvalidatoren oder Parser.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_applications.py",
+      code: `# Praktische Anwendungen der String-Methode in verschiedenen Szenarien
+
+# 1. Telefonnummernvalidierung und -formatierung
+def format_phone_number(phone):
+    # Nur ASCII-Ziffern und die hier unterstützten Trennzeichen zulassen
+    allowed_separators = {" ", "-", "(", ")", "+"}
+    if any(char not in "0123456789" and char not in allowed_separators for char in phone):
+        return "Die Telefonnummer enthält ein ungültiges Zeichen"
+
+    digits_only = "".join(char for char in phone if char in "0123456789")
+
+    # Format nach indonesischem Standard
+    if len(digits_only) == 13 and digits_only.startswith("62"):
+        return f"+{digits_only[:2]}-{digits_only[2:5]}-{digits_only[5:9]}-{digits_only[9:]}"
+    elif len(digits_only) == 12 and digits_only.startswith("08"):
+        return f"{digits_only[:4]}-{digits_only[4:8]}-{digits_only[8:]}"
+    else:
+        return "Ungültiges Telefonnummernformat"
+
+phone_numbers = ["081234567890", "+6281234567890", "0812-3456-7890"]
+for phone in phone_numbers:
+    formatted = format_phone_number(phone)
+    print(f"'{phone}' -> '{formatted}'")
+
+# 2. Informationen aus einem Dateinamen extrahieren
+def analyze_filename(filename):
+    # Namen und Erweiterung trennen
+    if "." in filename:
+        name, ext = filename.rsplit(".", 1)
+        ext = ext.lower()
+    else:
+        name, ext = filename, ""
+
+    # Dateityp analysieren
+    image_exts = ["jpg", "jpeg", "png", "gif", "bmp"]
+    doc_exts = ["pdf", "doc", "docx", "txt"]
+    code_exts = ["py", "js", "html", "css", "java"]
+
+    if ext in image_exts:
+        file_type = "Bild"
+    elif ext in doc_exts:
+        file_type = "Dokument"
+    elif ext in code_exts:
+        file_type = "Quellcode"
+    else:
+        file_type = "Unbekannt"
+
+    return {
+        "name": name,
+        "extension": ext,
+        "type": file_type,
+        "length": len(filename)
+    }
+
+files = ["photo.jpg", "report.pdf", "script.py", "data", "image.PNG"]
+for file in files:
+    info = analyze_filename(file)
+    print(f"{file}: {info}")
+
+# 3. Einfacher Protokolldatei-Parser
+def parse_log_entry(log_line):
+    # Format: [TIMESTAMP] LEVEL: MESSAGE
+    if not log_line.strip():
+        return None
+
+    # Zeitstempel extrahieren
+    if log_line.startswith("[") and "]" in log_line:
+        end_bracket = log_line.index("]")
+        timestamp = log_line[1:end_bracket]
+        rest = log_line[end_bracket + 1:].strip()
+    else:
+        timestamp = "Unbekannt"
+        rest = log_line.strip()
+
+    # Ebene extrahieren
+    if ":" in rest:
+        level, message = rest.split(":", 1)
+        level = level.strip()
+        message = message.strip()
+    else:
+        level = "INFO"
+        message = rest
+
+    return {
+        "timestamp": timestamp,
+        "level": level,
+        "message": message
+    }
+
+log_entries = [
+    "[2023-09-17 10:30:15] ERROR: Datenbankverbindung fehlgeschlagen",
+    "[2023-09-17 10:30:16] INFO: Erneuter Verbindungsversuch",
+    "WARNING: Wenig Speicherplatz",
+    ""
+]
+
+print("\\nErgebnisse der Log-Analyse:")
+for entry in log_entries:
+    parsed = parse_log_entry(entry)
+    if parsed:
+        print(f"Zeit: {parsed['timestamp']}, Ebene: {parsed['level']}, Meldung: {parsed['message']}")
+
+# 4. URL-Slug-Generator aus dem Titel
+def create_slug(title):
+    # In Kleinbuchstaben umwandeln und Leerzeichen durch Bindestriche ersetzen
+    slug = title.lower()
+
+    # Nicht alphanumerische Zeichen durch Bindestriche ersetzen
+    clean_slug = ""
+    for char in slug:
+        if char.isalnum():
+            clean_slug += char
+        else:
+            if clean_slug and clean_slug[-1] != "-":
+                clean_slug += "-"
+
+    # Bindestriche am Anfang und Ende entfernen
+    return clean_slug.strip("-")
+
+titles = [
+    "Python für Einsteiger lernen",
+    "Tipps und Tricks zum Programmieren",
+    "Data Science: Vollständiger Leitfaden",
+    "Maschinelles Lernen 101"
+]
+
+print("\\nSlug-Erzeugung:")
+for title in titles:
+    slug = create_slug(title)
+    print(f"'{title}' -> '{slug}'")`
+    }
+  ]}
+/>
+
+Diese vier Beispiele verbinden Klassifikation, Suche, Aufteilung und Ersetzung unter kleinen, klar angegebenen Formaten. Ein produktiver Telefon-, Dateinamen- oder Log-Parser sowie ein Slug-Generator benötigen zusätzlich einen Fachvertrag, eine Fehlerstrategie und Tests für mehrdeutige Eingaben.
+
+Entscheidend ist, jede Methode nach ihrer genauen Semantik einzusetzen und eine bequeme String-Operation nicht mit vollständiger Validierung zu verwechseln.

@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Properties of Indefinite Integral",
-    description: "Learn indefinite integral rules: power rule, constant multiples, sum/difference rules, and u-substitution techniques with worked examples.",
+    description: "Apply the power, constant-multiple, sum, difference, and substitution rules to indefinite integrals with worked solutions.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Integrals",
@@ -8,13 +8,15 @@ export const metadata = {
 
 ## Power Rule
 
-This is one of the most basic and important rules in integration. If you encounter an integral in power form, use this formula:
+For a power of the integration variable, use:
 
 <BlockMath math="\int x^n \, dx = \frac{1}{n+1}x^{n+1} + C, \quad \text{where } n \neq -1" />
 
-Simply put, add one to the exponent, then divide by that new exponent.
+Increase the exponent by one, then divide by that new exponent.
 
-For example, let's solve <InlineMath math="\int x^5 \, dx" />.
+The value <InlineMath math="n=-1" /> is excluded because it would make the denominator zero. That case follows the logarithmic rule <InlineMath math="\int x^{-1}\,dx=\ln|x|+C" />.
+
+For example, evaluate <InlineMath math="\int x^5 \, dx" />.
 
 Here, <InlineMath math="n=5" />, so:
 
@@ -25,15 +27,15 @@ Here, <InlineMath math="n=5" />, so:
 
 ## Constant Multiple Rule
 
-If the function to be integrated has a coefficient or constant, you can "pull" that constant out of the integral to simplify the calculation.
+A constant factor can be moved outside an integral:
 
 <BlockMath math="\int a \cdot f(x) \, dx = a \int f(x) \, dx" />
 
-> Remember, <InlineMath math="a" /> is a constant number. This property is very useful for simplifying an integral before solving it.
+> The rule requires <InlineMath math="a" /> to be constant with respect to the integration variable.
 
 ## Sum and Difference Rule
 
-What if we have to integrate two functions that are added or subtracted? Easy, we can separate them into two different integrals.
+A sum or difference can be integrated term by term.
 
 <BlockMath math="\int [f(x) \pm g(x)] \, dx = \int f(x) \, dx \pm \int g(x) \, dx" />
 
@@ -45,11 +47,11 @@ For example, to solve <InlineMath math="\int (x^4 - x^3) \, dx" />, we first sep
 <BlockMath math="= \frac{1}{5}x^5 - \frac{1}{4}x^4 + C" />
 </MathContainer>
 
-Don't forget to add only one constant **C** at the end. Technically, each integral would produce its own constant (e.g., <InlineMath math="C_1" /> and <InlineMath math="C_2" />). However, since all these constants are of an indeterminate value, their sum or difference will also result in a new indeterminate constant. Therefore, we just write it as a single **C** at the end.
+Write one constant **<InlineMath math="C" />** at the end. Formally, the two antiderivatives could carry <InlineMath math="C_1" /> and <InlineMath math="C_2" />, but their sum or difference is again an arbitrary constant. A single **<InlineMath math="C" />** therefore represents the complete family.
 
 ## Substitution Rule
 
-For integrals that look complicated, like the product of two functions where one is the derivative of the other (or a multiple of it), we can use the **substitution rule**. The basic idea is to simplify the integral by replacing part of the function with a new variable, usually **u**.
+When an integrand contains a composite expression together with its derivative or a constant multiple of it, **substitution** can expose a simpler form. Replace the inner expression with a new variable, usually **<InlineMath math="u" />**.
 
 <BlockMath math="\int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du" />
 
@@ -61,7 +63,7 @@ This is often called **u-substitution**. This method is useful for solving integ
 2.  Find the result of <InlineMath math="\int (3x^2 + 2x - 5) \, dx" />!
 3.  Solve the integral <InlineMath math="\int 2x(x^2 + 3)^4 \, dx" /> using the substitution rule!
 
-### Answer Key
+### Worked Solutions
 
 1.  To solve <InlineMath math="\int 6x^2 \, dx" />, we can use the **Constant Multiple Rule** and the **Power Rule**.
 

@@ -1,0 +1,178 @@
+export const metadata = {
+  title: "Exponentielles Wachstum",
+  description:
+    "Exponentielles Wachstum aus einem wiederholten Faktor aufbauen, Tabellen und Graphen mit dem Modell verbinden und vollständige Beispiele lösen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-02",
+  subject: "Potenzen und Logarithmen",
+};
+
+## Definition des exponentiellen Wachstums
+
+Exponentielles Wachstum liegt vor, wenn eine positive Größe in jedem gleich langen Intervall mit demselben Faktor größer als <InlineMath math="1" /> multipliziert wird. Ein Wachstumsmodell hat die Form:
+
+<BlockMath math="f(x)=P_0a^x" />
+
+mit:
+
+- <InlineMath math="P_0>0" />, dem Anfangswert
+- <InlineMath math="a>1" />, dem Wachstumsfaktor pro Intervall
+- <InlineMath math="x" />, der Anzahl der Intervalle
+
+Bei diskreten Ereignissen wie abgeschlossenen Zellteilungen ist <InlineMath math="x" /> eine nichtnegative ganze Zahl. Ein kontinuierlicher Graph erweitert dieselbe Formel auf reelle Werte von <InlineMath math="x" /> und ist als Interpolation des Modells zu verstehen.
+
+## Ein Modell aus einer Tabelle entwickeln
+
+### Idealisiertes Bakterienwachstum
+
+Eine Kultur beginnt mit <InlineMath math="30" /> Bakterien. Jedes Bakterium teilt sich alle <InlineMath math="30\text{ Minuten}" /> in zwei. Todesfälle und begrenzte Ressourcen bleiben im Modell unberücksichtigt, damit der wiederholte Faktor im Mittelpunkt steht.
+
+Die Variable <InlineMath math="x" /> zählt abgeschlossene Intervalle von dreißig Minuten:
+
+| Intervall | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| --------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Bakterien | <InlineMath math="30" /> | <InlineMath math="60" /> | <InlineMath math="120" /> | <InlineMath math="240" /> | <InlineMath math="480" /> | <InlineMath math="960" /> |
+
+Jeder Wert ist der Anfangsbestand multipliziert mit einer Potenz von <InlineMath math="2" />:
+
+- <InlineMath math="f(0)=30\cdot2^0=30" />
+- <InlineMath math="f(1)=30\cdot2^1=60" />
+- <InlineMath math="f(2)=30\cdot2^2=120" />
+- <InlineMath math="f(3)=30\cdot2^3=240" />
+- <InlineMath math="f(4)=30\cdot2^4=480" />
+
+Das Modell lautet daher:
+
+<BlockMath math="f(x)=30\cdot2^x" />
+
+### Tabelle und Graph verbinden
+
+Die Tabelle enthält diskrete Beobachtungen. Die Kurve von <InlineMath math="f(x)=30\cdot2^x" /> zeigt, wie sich dieselbe Regel zwischen diesen ganzzahligen Eingaben verhält:
+
+<FunctionChart
+  p={30}
+  a={2}
+  title="Idealisiertes Bakterienwachstum"
+  description={
+    <>
+      Der Bestand verdoppelt sich alle <InlineMath math="30\text{ Minuten}" />.
+    </>
+  }
+/>
+
+Die Kurve wird steiler, weil jede Verdopplung auf eine größere Menge wirkt. Das bedeutet nicht, dass eine echte Kultur unbegrenzt wachsen kann.
+
+### Zeit in Intervalle umrechnen
+
+Fünf Stunden enthalten zehn Intervalle von dreißig Minuten:
+
+<BlockMath math="x=\frac{5\cdot60}{30}=10" />
+
+Nun setzen wir die Anzahl der Intervalle in das Modell ein:
+
+<BlockMath math="f(10)=30\cdot2^{10}=30\cdot1{.}024=30{.}720" />
+
+Nach dem idealisierten Modell enthält die Kultur nach <InlineMath math="5\text{ Stunden}" /> genau <InlineMath math="30{.}720" /> Bakterien.
+
+## Den Anfangswert ändern oder bestimmen
+
+Bei einem festen Wachstumsfaktor <InlineMath math="a" /> skaliert eine Änderung von <InlineMath math="P_0" /> alle Funktionswerte:
+
+<BlockMath math="f(x)=P_0a^x" />
+
+Bei einem Verdopplungsfaktor gilt zum Beispiel:
+
+- <InlineMath math="P_0=50" /> ergibt <InlineMath math="f(x)=50\cdot2^x" />
+- <InlineMath math="P_0=100" /> ergibt <InlineMath math="f(x)=100\cdot2^x" />
+- <InlineMath math="P_0=200" /> ergibt <InlineMath math="f(x)=200\cdot2^x" />
+
+### Einen unbekannten Anfangswert bestimmen
+
+Eine Kultur enthält nach <InlineMath math="2" /> Verdopplungsintervallen <InlineMath math="8{.}000" /> Bakterien. <InlineMath math="P_0" /> bezeichnet den unbekannten Anfangsbestand:
+
+<MathContainer>
+  <BlockMath math="8{.}000=P_0\cdot2^2" />
+  <BlockMath math="8{.}000=4P_0" />
+  <BlockMath math="P_0=\frac{8{.}000}{4}" />
+  <BlockMath math="P_0=2{.}000" />
+</MathContainer>
+
+Die Kultur begann mit <InlineMath math="2{.}000" /> Bakterien.
+
+### Dasselbe Intervallmodell fortsetzen
+
+Nach <InlineMath math="10" /> Verdopplungsintervallen enthält dieselbe Kultur:
+
+<MathContainer>
+  <BlockMath math="f(10)=2{.}000\cdot2^{10}" />
+  <BlockMath math="f(10)=2{.}000\cdot1{.}024" />
+  <BlockMath math="f(10)=2{.}048{.}000" />
+</MathContainer>
+
+Welche Zeit diese zehn Intervalle darstellen, hängt von der Intervalllänge ab. Dauert ein Intervall dreißig Minuten, entsprechen zehn Intervalle fünf Stunden.
+
+## Übungen
+
+1. Eine idealisierte Bakterienkultur beginnt mit <InlineMath math="50" /> Zellen und verdoppelt sich alle <InlineMath math="15\text{ Minuten}" />.
+
+   1. Erstelle eine Tabelle und einen Graphen von Intervall <InlineMath math="0" /> bis Intervall <InlineMath math="5" />.
+   2. Stelle die Wachstumsfunktion auf.
+   3. Prognostiziere den Bestand nach <InlineMath math="3\text{ Stunden}" /> und nach <InlineMath math="4\text{ Stunden}" />.
+
+2. Eine hypothetische Region hat <InlineMath math="36{.}000{.}000" /> Einwohner. Ihre Bevölkerung soll in den nächsten fünf Jahren konstant um <InlineMath math="2\%" /> pro Jahr wachsen. Welche Bevölkerung sagt das Modell nach fünf Jahren voraus?
+
+### Ausführliche Lösungen
+
+1. Der Anfangswert ist <InlineMath math="50" />, der Wachstumsfaktor ist <InlineMath math="2" />.
+
+   1. Die ersten sechs Werte lauten:
+
+      | Intervall | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+      | --------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+      | Bakterien | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1{.}600" /> |
+
+      <FunctionChart
+        p={50}
+        a={2}
+        n={7}
+        title="Idealisiertes Bakterienwachstum"
+        description={
+          <>
+            Der Bestand verdoppelt sich alle <InlineMath math="15\text{ Minuten}" />.
+          </>
+        }
+      />
+
+   2. Wird <InlineMath math="x" /> in Fünfzehn-Minuten-Intervallen gemessen, gilt:
+
+      <BlockMath math="f(x)=50\cdot2^x" />
+
+   3. Drei Stunden enthalten <InlineMath math="\frac{3\cdot60}{15}=12" /> Intervalle:
+
+      <MathContainer>
+        <BlockMath math="f(12)=50\cdot2^{12}" />
+        <BlockMath math="f(12)=50\cdot4{.}096" />
+        <BlockMath math="f(12)=204{.}800" />
+      </MathContainer>
+
+      Vier Stunden enthalten <InlineMath math="\frac{4\cdot60}{15}=16" /> Intervalle:
+
+      <MathContainer>
+        <BlockMath math="f(16)=50\cdot2^{16}" />
+        <BlockMath math="f(16)=50\cdot65{.}536" />
+        <BlockMath math="f(16)=3{.}276{.}800" />
+      </MathContainer>
+
+2. Eine Zunahme um <InlineMath math="2\%" /> entspricht dem jährlichen Faktor <InlineMath math="1{,}02" />:
+
+   <MathContainer>
+     <BlockMath math="P(t)=36{.}000{.}000(1{,}02)^t" />
+     <BlockMath math="P(5)=36{.}000{.}000(1{,}02)^5" />
+     <BlockMath math="P(5)\approx39{.}746{.}909" />
+   </MathContainer>
+
+   Das Modell sagt nach fünf Jahren etwa <InlineMath math="39{,}75\text{ Millionen Menschen}" /> voraus.
+
+## Grenzen des Modells
+
+Exponentielles Wachstum kommt bei Zinseszins, idealisierten Bevölkerungsmodellen, frühen Übertragungsmodellen und unbeschränktem Laborwachstum vor. Anfangswert, Faktor und Intervall müssen immer ausdrücklich benannt werden. In realen Systemen verändern sich Raten, Ressourcen werden knapp oder weitere Beschränkungen treten auf. Eine Exponentialfunktion sollte daher nur so weit fortgesetzt werden, wie ihre Annahmen sinnvoll bleiben.

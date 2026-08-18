@@ -1,0 +1,190 @@
+export const metadata = {
+  title: "Sektor",
+  description: "Verstehe, wie zwei Radien und ein Kreisbogen einen Sektor begrenzen, wie der Mittelpunktswinkel seine Größe bestimmt und wie sich kleine und große Sektoren unterscheiden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+## Sektoren verstehen
+
+Ein Kreissektor ist der Bereich eines Kreises, der von zwei Radien und einem der Bögen zwischen ihren Endpunkten begrenzt wird. Ein vom Mittelpunkt aus geschnittenes Stück eines runden Kuchens ist ein anschauliches Modell: Die beiden geraden Seiten stehen für Radien, die gekrümmte Seite für den Kreisbogen.
+
+Jeder Sektor besteht aus drei Hauptkomponenten, die miteinander verbunden sind. Erstens sind es die beiden Radien, die sich in der Mitte des Kreises treffen. Zweitens ist der Bogen, der die Endpunkte beider Radien verbindet. Drittens ist die Fläche, die sowohl von den Radien als auch vom Bogen umschlossen wird.
+
+<LineEquation
+  title={<>Kreissektor im Kreis</>}
+  description="Zwei Radien und der orangefarbene Kreisbogen markieren den Rand eines Sektors."
+  data={[
+    {
+      kind: "circle-outline", radius: 3,
+      color: "#0891b2",
+      showPoints: false,
+      smooth: true
+    },
+    {
+      kind: "circle-radius", radius: 3, degrees: 45,
+      color: "#9333ea",
+      showPoints: false,
+      lineWidth: 3,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.3, 0] }
+      ]
+    },
+    {
+      kind: "circle-radius", radius: 3, degrees: 135,
+      color: "#9333ea",
+      showPoints: false,
+      lineWidth: 3,
+      labels: [
+        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }
+      ]
+    },
+    { kind: "circle-arc", radius: 3,
+      startDegrees: 45,
+      sweepDegrees: 90,
+      segments: 25,
+      color: "#ea580c",
+      lineWidth: 4,
+      label: { text: "Sektor", offset: [0.5, 0.5, 0] } }
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+## Merkmale eines Sektors
+
+Der Scheitelpunkt eines Sektors liegt im Mittelpunkt des Kreises. Dort treffen sich die beiden Radien und bilden den Mittelpunktswinkel. Der verbindende Kreisbogen schließt den Rand des Sektors.
+
+Bei einem festen Kreis bestimmt der Mittelpunktswinkel, welcher Anteil des Kreises zum Sektor gehört. Ein größerer Winkel wählt einen größeren Anteil aus, ein kleinerer Winkel einen kleineren.
+
+Ist der gewählte Mittelpunktswinkel kleiner als <InlineMath math="180^\circ" />, heißt der begrenzte Bereich kleiner Sektor. Ist er größer als <InlineMath math="180^\circ" />, heißt der Bereich großer Sektor. Ein Winkel von genau <InlineMath math="180^\circ" /> ergibt einen Halbkreis.
+
+Im selben Kreis sind sowohl Bogenlänge als auch Sektorfläche proportional zum Mittelpunktswinkel. Gleiche Mittelpunktswinkel bestimmen dort also gleiche Bogenlängen und gleiche Sektorflächen.
+
+## Beziehung zwischen Mittelpunktswinkel und Sektor
+
+Der Mittelpunktswinkel wird im Mittelpunkt des Kreises zwischen den beiden begrenzenden Radien gemessen. Er kann in Grad oder Radiant angegeben werden.
+
+Zum Beispiel entspricht <InlineMath math="90^\circ" /> einem Viertel einer vollen Umdrehung. Der zugehörige Sektor besitzt daher ein Viertel der Kreisfläche. Ein Sektor mit <InlineMath math="180^\circ" /> besitzt die Hälfte der Kreisfläche.
+
+<LineEquation
+  title={<>Vergleich von Sektoren mit verschiedenen Mittelpunktswinkeln</>}
+  description={<>Sektoren mit Mittelpunktswinkeln von <InlineMath math="60^\circ" />, <InlineMath math="90^\circ" /> und <InlineMath math="120^\circ" /> im selben Kreis.</>}
+  data={[
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#0d9488",
+      showPoints: false,
+      smooth: true
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      lineWidth: 2,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
+      ]
+    },
+    {
+      kind: "circle-radius", radius: 4, degrees: 60,
+      color: "#7c3aed",
+      showPoints: false,
+      lineWidth: 2
+    },
+    { kind: "circle-arc", radius: 4,
+      startDegrees: 0,
+      sweepDegrees: 60,
+      segments: 20,
+      color: "#d97706",
+      lineWidth: 3,
+      label: { text: <InlineMath math="60^\circ" />, offset: [0.5, 0.3, 0] } },
+    {
+      points: [
+        { x: 0, y: 0, z: 2 },
+        { x: 4, y: 0, z: 2 }
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 2 },
+        { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 2 }
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2
+    },
+    {
+      points: Array.from({ length: 26 }, (_, i) => {
+        const angle = (i / 25) * (Math.PI / 2);
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 2
+        };
+      }),
+      color: "#65a30d",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 3,
+      labels: [
+        { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.3, 0.5, 0] }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 4 },
+        { x: 4, y: 0, z: 4 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 4 },
+        { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3), z: 4 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const angle = (i / 30) * (2 * Math.PI / 3);
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 4
+        };
+      }),
+      color: "#c026d3",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 3,
+      labels: [
+        { text: <InlineMath math="120^\circ" />, at: 15, offset: [0.2, 0.6, 0] }
+      ]
+    }
+  ]}
+  showZAxis={true}
+/>
+
+Der Zusammenhang ist ein Verhältnis von Teil zu Ganzem. Ist der Mittelpunktswinkel <InlineMath math="\theta" /> in Grad angegeben, beträgt das Verhältnis von Sektorfläche zu Kreisfläche <InlineMath math="\frac{\theta}{360^\circ}" />. Ist <InlineMath math="\theta" /> in Radiant angegeben, lautet das Verhältnis <InlineMath math="\frac{\theta}{2\pi}" />.
+
+## Sektoren in verschiedenen Zusammenhängen erkennen
+
+Die Geometrie eines Sektors kann einen Bereich beschreiben, der um einen bestimmten Winkel überstrichen wird. Ein idealisierter Rasensprenger mit Reichweite <InlineMath math="r" /> und Schwenkwinkel <InlineMath math="\theta" /> deckt beispielsweise einen Sektor ab, bevor Hindernisse, Wind und eine ungleichmäßige Wasserverteilung berücksichtigt werden.
+
+Sektoren erscheinen auch in Kreisdiagrammen und radialen Schablonen. Das Verhältnis des Mittelpunktswinkels bestimmt den zugehörigen Anteil der gesamten Kreisscheibe. Die Geometrie allein bestimmt jedoch weder die Belastung noch den Wirkungsgrad einer Maschine.
+
+Auf einem gleichmäßig eingeteilten Zifferblatt begrenzen zwei benachbarte Stundenmarkierungen einen von <InlineMath math="12" /> gleich großen Sektoren. Jeder besitzt einen Mittelpunktswinkel von <InlineMath math="30^\circ" />. Ein vom Mittelpunkt aus geschnittenes Stück einer runden Pizza oder eines Kuchens ist ein weiteres vertrautes Modell.

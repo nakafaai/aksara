@@ -1,0 +1,134 @@
+export const metadata = {
+  title: "Komplexe Lösungen quadratischer Gleichungen",
+  description: "Quadratische Gleichungen auf komplexe Zahlen erweitern, bei negativer Diskriminante konjugierte Lösungen bestimmen und mit dem reellen Graphen verbinden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratische Funktionen",
+};
+
+## Über die reellen Zahlen hinaus
+
+Die Gleichung
+
+<BlockMath math="x^2+1=0" />
+
+verlangt <InlineMath math="x^2=-1" />. Keine reelle Zahl hat ein negatives Quadrat. Deshalb besitzt diese Gleichung keine reelle Lösung. Um sie dennoch zu lösen, erweitern wir den Zahlbereich um die imaginäre Einheit <InlineMath math="i" />, die durch
+
+<BlockMath math="i^2=-1" />
+
+definiert ist. Eine komplexe Zahl hat die Form
+
+<BlockMath math="z=a+bi\qquad(a,b\in\mathbb R)" />
+
+Die Zahl <InlineMath math="2+5i" /> ist komplex. Sie ist nicht rein imaginär, weil ihr Realteil nicht null ist. Eine Zahl wie <InlineMath math="3i" /> ist dagegen rein imaginär.
+
+## Eine negative Diskriminante
+
+Für eine quadratische Gleichung <InlineMath math="ax^2+bx+c=0" /> mit reellen Koeffizienten lautet die Diskriminante
+
+<BlockMath math="D=b^2-4ac" />
+
+Ist <InlineMath math="D<0" />, hat die Gleichung keine reellen Nullstellen. Sie besitzt zwei verschiedene nichtreelle komplexe Nullstellen, die ein konjugiertes Paar bilden.
+
+Wir beginnen weiterhin mit der Lösungsformel:
+
+<BlockMath math="x=\frac{-b\pm\sqrt{D}}{2a}" />
+
+Wegen <InlineMath math="D<0" /> schreiben wir <InlineMath math="D=-|D|" />. Dann gilt
+
+<MathContainer>
+  <BlockMath math="\sqrt D=\sqrt{-|D|}=i\sqrt{|D|}" />
+  <BlockMath math="x=\frac{-b\pm i\sqrt{|D|}}{2a}" />
+</MathContainer>
+
+## Ausführliche Beispiele
+
+### Beispiel 1: Beide Nullstellen bestimmen
+
+Löse
+
+<BlockMath math="x^2+4x+5=0" />
+
+Die Koeffizienten sind <InlineMath math="a=1" />, <InlineMath math="b=4" /> und <InlineMath math="c=5" />. Zuerst berechnen wir die Diskriminante:
+
+<BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
+
+Da <InlineMath math="D=-4<0" /> gilt, sind die Nullstellen nicht reell. Wir setzen die Werte in die Lösungsformel ein:
+
+<MathContainer>
+  <BlockMath math="x=\frac{-4\pm\sqrt{-4}}{2\cdot1}" />
+  <BlockMath math="x=\frac{-4\pm2i}{2}=-2\pm i" />
+</MathContainer>
+
+Damit erhalten wir
+
+<BlockMath math="x_1=-2+i\qquad\text{und}\qquad x_2=-2-i" />
+
+Eine Nullstelle lässt sich direkt prüfen:
+
+<MathContainer>
+  <BlockMath math="(-2+i)^2+4(-2+i)+5" />
+  <BlockMath math="=4-4i+i^2-8+4i+5=0" />
+</MathContainer>
+
+Die zweite Nullstelle entsteht durch den Vorzeichenwechsel im Imaginärteil.
+
+### Beispiel 2: Nullstellen einordnen und bestimmen
+
+Betrachten wir
+
+<BlockMath math="2x^2+x+3=0" />
+
+Hier sind <InlineMath math="a=2" />, <InlineMath math="b=1" /> und <InlineMath math="c=3" />. Die Diskriminante beträgt
+
+<BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
+
+Die negative Diskriminante zeigt, dass die Gleichung zwei nichtreelle komplexe Nullstellen besitzt. Ihre exakten Werte sind
+
+<MathContainer>
+  <BlockMath math="x=\frac{-1\pm\sqrt{-23}}{2\cdot2}" />
+  <BlockMath math="x=\frac{-1\pm i\sqrt{23}}4" />
+</MathContainer>
+
+Also gilt
+
+<BlockMath math="x_1=\frac{-1+i\sqrt{23}}4\qquad\text{und}\qquad x_2=\frac{-1-i\sqrt{23}}4" />
+
+## Was der reelle Graph zeigt
+
+Die Gleichung aus dem ersten Beispiel lässt sich umformen zu
+
+<BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
+
+Für jedes reelle <InlineMath math="x" /> ist <InlineMath math="(x+2)^2" /> nichtnegativ, also gilt <InlineMath math="f(x)\ge1" />. Der Graph liegt vollständig oberhalb der <InlineMath math="x" />-Achse und hat keine reellen Schnittpunkte mit ihr. Die komplexen Nullstellen sind keine zusätzlichen Punkte in diesem reellen Graphen. Sie gehören zum erweiterten Zahlbereich.
+
+## Warum die Nullstellen konjugiert auftreten
+
+Bei reellen Koeffizienten enthält die Lösungsformel den Ausdruck
+
+<BlockMath math="-b\pm i\sqrt{|D|}" />
+
+Die beiden Vorzeichen ändern nur den Imaginärteil. So entstehen <InlineMath math="u+vi" /> und <InlineMath math="u-vi" />, die komplex konjugiert heißen. Ist eine Zahl Nullstelle eines Polynoms mit reellen Koeffizienten, dann ist auch ihre konjugierte Zahl eine Nullstelle.
+
+## Übungsaufgabe
+
+Löse <InlineMath math="2x^2+2x+5=0" /> über den komplexen Zahlen.
+
+### Ausführliche Lösung
+
+Wir beginnen mit der Diskriminante:
+
+<BlockMath math="D=2^2-4\cdot2\cdot5=4-40=-36" />
+
+Da <InlineMath math="D<0" /> gilt, setzen wir <InlineMath math="\sqrt{-36}=6i" /> in die Lösungsformel ein:
+
+<MathContainer>
+  <BlockMath math="x=\frac{-2\pm\sqrt{-36}}{2\cdot2}" />
+  <BlockMath math="x=\frac{-2\pm6i}{4}=-\frac12\pm\frac32i" />
+</MathContainer>
+
+Das konjugierte Nullstellenpaar lautet somit
+
+<BlockMath math="x_1=-\frac12+\frac32i\qquad\text{und}\qquad x_2=-\frac12-\frac32i" />
+
+Ihre Summe ist <InlineMath math="-1=-\frac ba" /> und ihr Produkt <InlineMath math="\frac52=\frac ca" />. Beides stimmt mit den Formeln von Vieta überein und bestätigt das Ergebnis.

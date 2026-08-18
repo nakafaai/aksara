@@ -1,0 +1,101 @@
+export const metadata = {
+    title: "Komplexe Matrix",
+    description: "Arbeite mit komplexen Matrizen, berechne konjugiert transponierte Matrizen und miss komplexe Vektoren korrekt mit dem hermiteschen Skalarprodukt.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-12",
+    subject: "Lineare Methoden der KI",
+};
+
+## Definition einer Matrix mit komplexen Einträgen
+
+Komplexe Matrizen folgen denselben Regeln für Zeilen, Spalten, Addition und Multiplikation wie reelle Matrizen. Der Unterschied besteht darin, dass jeder Eintrag einen Realteil und einen Imaginärteil besitzen kann.
+
+Ein rechteckiges Schema komplexer Zahlen mit <InlineMath math="m \in \mathbb{N}" /> Zeilen und <InlineMath math="n \in \mathbb{N}" /> Spalten wird als komplexe <InlineMath math="m \times n" />-Matrix bezeichnet:
+
+<BlockMath math="A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = (a_{ij})_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}}" />
+
+mit **Koeffizienten** <InlineMath math="a_{ij} \in \mathbb{C}" /> für <InlineMath math="i = 1, \ldots, m" /> und <InlineMath math="j = 1, \ldots, n" />. Die Menge aller komplexen <InlineMath math="m \times n" />-Matrizen wird als <InlineMath math="\mathbb{C}^{m \times n}" /> geschrieben.
+
+Einträge wie <InlineMath math="2+3i" /> und <InlineMath math="-1-4i" /> gehören beispielsweise zu <InlineMath math="\mathbb C" />. Da die Konjugation für Längen und Winkel entscheidend ist, eignet sich die gewöhnliche Transposition nicht mehr für jede geometrische Rechnung.
+
+## Adjungierte Matrix
+
+Bei komplexen Matrizen ist die **Adjungierte**, auch konjugiert transponierte Matrix genannt, das geometrische Gegenstück zur Transposition. Dabei wird die Matrix transponiert und jeder Eintrag komplex konjugiert.
+
+Sei <InlineMath math="A \in \mathbb{C}^{m \times n}" /> eine komplexe <InlineMath math="m \times n" />-Matrix. Die **adjungierte Matrix** (komplexe konjugierte Transponierungsmatrix) <InlineMath math="A^H" /> von <InlineMath math="A" /> ist die komplexe <InlineMath math="n \times m" />-Matrix, die man erhält, indem man die Zeilen und Spalten von <InlineMath math="A" /> vertauscht und die komplexe Konjugierte jedes Eintrags nimmt:
+
+<BlockMath math="A^H = \overline{A^T} = \overline{A}^T = \begin{pmatrix} \overline{a_{11}} & \cdots & \overline{a_{m1}} \\ \vdots & & \vdots \\ \overline{a_{1n}} & \cdots & \overline{a_{mn}} \end{pmatrix} \in \mathbb{C}^{n \times m}" />
+
+Zum Beispiel gilt
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}1+i&2\\-i&3-2i\end{pmatrix}" />
+<BlockMath math="A^H=\begin{pmatrix}1-i&i\\2&3+2i\end{pmatrix}" />
+</MathContainer>
+
+Der Eintrag in Zeile <InlineMath math="j" /> und Spalte <InlineMath math="i" /> von <InlineMath math="A^H" /> ist somit <InlineMath math="\overline{a_{ij}}" />.
+
+## Eigenschaften der adjungierten Matrix
+
+Die adjungierte Matrix verfügt über mehrere wichtige Eigenschaften, die bei Berechnungen nützlich sind. Hier sind die grundlegenden Eigenschaften, die immer gelten:
+
+### Grundlegende Eigenschaften
+
+1. **Beziehung zur echten Transponierung**: Für <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" /> gilt <InlineMath math="A^H = A^T" />
+
+Dies ist sinnvoll, denn wenn die Matrix nur reelle Einträge enthält, ändert das komplexe Konjugierte seinen Wert nicht.
+
+2. **Involution**: <InlineMath math="(A^H)^H = A" />
+
+Wenn wir den Adjungierten eines Adjungierten nehmen, kehren wir zur ursprünglichen Matrix zurück.
+
+### Eigenschaften der linearen Operation
+
+3. **Linearität der Addition**: <InlineMath math="(A + B)^H = A^H + B^H" />
+
+4. **Konjugierte Linearität bezüglich eines Skalars**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
+
+Beachten Sie, dass wir für die Skalarmultiplikation das Konjugierte des Skalars <InlineMath math="\lambda" /> nehmen müssen.
+
+### Multiplikationseigenschaften
+
+5. **Umkehrung der Produktreihenfolge**: <InlineMath math="(A \cdot B)^H = B^H \cdot A^H" />
+
+Diese Regel ist keine Antikommutativität. Sie besagt, dass das Adjungieren eines Produkts die Reihenfolge seiner Faktoren umkehrt, genau wie die Transposition bei reellen Matrizen.
+
+## Euklidische Norm für komplexe Räume
+
+Für <InlineMath math="v,w\in\mathbb C^n" /> lautet das hermitesche Standardskalarprodukt
+
+<BlockMath math="\langle v,w\rangle=v^Hw=\sum_{i=1}^n\overline{v_i}w_i" />
+
+Die Konjugation im ersten Argument stellt sicher, dass das Skalarprodukt eines Vektors mit sich selbst reell und nicht negativ ist.
+
+Für <InlineMath math="v \in \mathbb{C}^n" /> definieren wir:
+
+<BlockMath math="v^H v = \sum_{i=1}^n \overline{v_i} v_i = \sum_{i=1}^n |v_i|^2 \in \mathbb{R}_{\geq0}" />
+
+Die **Euklidische Norm** wird wie folgt berechnet:
+
+<BlockMath math="\|v\|_2 = \sqrt{v^H v}" />
+
+Für <InlineMath math="v=(1+i,2-i)^T" /> ist die Rechnung unmittelbar:
+
+<MathContainer>
+<BlockMath math="v^Hv=|1+i|^2+|2-i|^2=2+5=7" />
+<BlockMath math="\|v\|_2=\sqrt7" />
+</MathContainer>
+
+Deshalb wäre <InlineMath math="v^Tv" /> in einem komplexen Raum falsch: Ohne Konjugation muss das Ergebnis weder reell noch positiv sein.
+
+### Eigenschaften der euklidischen Norm
+
+Die euklidische Norm erfüllt die folgenden Eigenschaften:
+
+**Homogenität**: <InlineMath math="\|\alpha v\|_2 = |\alpha| \|v\|_2" />
+
+**Positiv definit**: <InlineMath math="\|v\|_2 \geq 0" /> und <InlineMath math="\|v\|_2 = 0 \Leftrightarrow v = 0" />
+
+**Dreiecksungleichung**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
+
+Diese Eigenschaften machen <InlineMath math="\|\cdot\|_2" /> zu einer echten Norm. Die Adjungierte ist also keine bloße Schreibweise: Sie sorgt dafür, dass komplexe Längen, Orthogonalität und Projektionen mit ihren reellen Gegenstücken übereinstimmen.

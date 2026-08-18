@@ -1,46 +1,52 @@
-
 export const metadata = {
-  title: "Function Definition",
-  description: "Learn exponential function definition f(x)=a^x with domain, range & properties. Understand base conditions and real-world applications.",
+  title: "Defining Exponential Functions",
+  description:
+    "Understand the domain, range, intercepts, and monotonic behavior of exponential functions and distinguish valid bases from excluded cases.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-02",
   subject: "Exponents and Logarithms",
 };
 
-## Exponential Function
+## The Standard Exponential Function
 
-An exponential function is a function expressed in the form:
+An exponential function places its variable in the exponent:
 
-<BlockMath math="f(x) = n \times a^x" />
+<BlockMath math="f(x)=a^x" />
 
-with the conditions:
+For a real-valued exponential function on all real inputs, the base must satisfy:
 
-- <InlineMath math="a" /> is the base number, where <InlineMath math="a > 0" /> and <InlineMath math="a \neq 1" />
-- <InlineMath math="n" /> is a non-zero real number
-- <InlineMath math="x" /> is any real number
+<BlockMath math="a>0\qquad\text{and}\qquad a\neq1" />
 
-Exponential functions have a special characteristic where the variable <InlineMath math="x" /> is in the exponent position. This is what distinguishes exponential functions from ordinary algebraic functions. In exponential functions, small changes in the value of <InlineMath math="x" /> can result in very large changes in the function's output.
+The restriction <InlineMath math="a>0" /> keeps <InlineMath math="a^x" /> real for every real <InlineMath math="x" />. Excluding <InlineMath math="a=1" /> separates genuine growth or decay from a constant function.
 
-## Properties of Exponential Functions
+A scaled exponential function has the form:
 
-The exponential function <InlineMath math="f(x) = a^x" /> (for <InlineMath math="n = 1" />) has several important properties:
+<BlockMath math="g(x)=k\,a^x" />
 
-1. The domain of the function is all real numbers (<InlineMath math="\mathbb{R}" />)
-2. The range of the function is all positive numbers (<InlineMath math="\mathbb{R}^+" />)
-3. It intersects the vertical axis at point <InlineMath math="(0, 1)" /> because <InlineMath math="a^0 = 1" />
-4. The function is always positive for all values of <InlineMath math="x" /> because <InlineMath math="a > 0" />
-5. If <InlineMath math="a > 1" />, the function increases (monotonically increasing)
-6. If <InlineMath math="0 < a < 1" />, the function decreases (monotonically decreasing)
+where <InlineMath math="k\neq0" /> is a vertical scale factor. The base controls growth or decay, while <InlineMath math="k" /> controls the initial value and the side of the <InlineMath math="x" />-axis on which the graph lies.
 
-## Special Cases of Exponential Functions
+## Domain, Range, and Intercept
 
-### When the Base Is One
+For the standard function <InlineMath math="f(x)=a^x" />:
 
-If <InlineMath math="a = 1" />, then:
+1. The domain is <InlineMath math="\mathbb{R}" />.
+2. The range is <InlineMath math="(0,\infty)" />.
+3. The graph crosses the <InlineMath math="y" />-axis at <InlineMath math="(0,1)" /> because <InlineMath math="a^0=1" />.
+4. The graph never crosses the <InlineMath math="x" />-axis because <InlineMath math="a^x>0" />.
+5. If <InlineMath math="a>1" />, the function is strictly increasing.
+6. If <InlineMath math="0<a<1" />, the function is strictly decreasing.
 
-<BlockMath math="f(x) = n \times 1^x = n" />
+For <InlineMath math="g(x)=k\,a^x" />, the <InlineMath math="y" />-intercept is <InlineMath math="(0,k)" />. If <InlineMath math="k>0" />, its range is <InlineMath math="(0,\infty)" />. If <InlineMath math="k<0" />, the graph is reflected across the <InlineMath math="x" />-axis and its range is <InlineMath math="(-\infty,0)" />.
 
-The value of <InlineMath math="1^x" /> is always <InlineMath math="1" /> for any value of <InlineMath math="x" />. As a result, the function becomes a constant function <InlineMath math="f(x) = n" />, no longer an exponential function. Its graph will be a horizontal line intersecting the vertical axis at point <InlineMath math="(0, n)" />.
+## Why Two Bases Are Excluded
+
+### Base One
+
+If <InlineMath math="a=1" />, then:
+
+<BlockMath math="g(x)=k\cdot1^x=k" />
+
+The output never changes, so this is a constant function rather than an exponential growth or decay function.
 
 <FunctionChart
   a={1}
@@ -48,63 +54,48 @@ The value of <InlineMath math="1^x" /> is always <InlineMath math="1" /> for any
   title="Constant Function"
   description={
     <>
-      Line is always horizontal constant at <InlineMath math="y = 1" />.
+      Every input gives <InlineMath math="y=1" />.
     </>
   }
 />
 
-### When the Base Is Zero
+### Base Zero
 
-If <InlineMath math="a = 0" />, then:
+The expression <InlineMath math="0^x" /> does not define a real-valued function on all real inputs:
 
-<BlockMath math="f(x) = n \times 0^x" />
+<MathContainer>
+  <BlockMath math="0^x=0\qquad\text{for }x>0" />
+  <BlockMath math="0^x\text{ is undefined for }x<0" />
+</MathContainer>
 
-- For <InlineMath math="x > 0" />, the value of <InlineMath math="0^x = 0" /> so <InlineMath math="f(x) = 0" />
-- For <InlineMath math="x = 0" />, the value of <InlineMath math="0^0" /> is undefined
-- For <InlineMath math="x < 0" />, the value of <InlineMath math="0^x" /> is undefined
+At <InlineMath math="x=0" />, the expression <InlineMath math="0^0" /> is not assigned a value in this function definition. Therefore, base zero cannot satisfy the required domain <InlineMath math="\mathbb{R}" />.
 
-This function is no longer an exponential function but rather constant at <InlineMath math="f(x) = 0" /> for <InlineMath math="x > 0" />. Then, because <InlineMath math="0^0" /> and <InlineMath math="0^x" /> for <InlineMath math="x < 0" /> are undefined, this function does not meet the definition of an exponential function.
+## Reading Examples
+
+1. <InlineMath math="f(x)=4^x" /> has <InlineMath math="a=4>1" />, so it is increasing. Its first values include <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" />, and <InlineMath math="f(2)=16" />.
+
+2. <InlineMath math="f(x)=3^{x+1}" /> can be rewritten as <InlineMath math="f(x)=3\cdot3^x" />. The factor <InlineMath math="3" /> changes the <InlineMath math="y" />-intercept from <InlineMath math="1" /> to <InlineMath math="3" />.
+
+3. <InlineMath math="f(x)=5^{2x-1}" /> is increasing because the exponent <InlineMath math="2x-1" /> increases with <InlineMath math="x" />. For example, <InlineMath math="f(0)=5^{-1}=\frac15" /> and <InlineMath math="f(1)=5" />.
+
+4. <InlineMath math="f(x)=0.5^x" /> has <InlineMath math="0<a<1" />, so it is decreasing. Its first values include <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=0.5" />, and <InlineMath math="f(2)=0.25" />.
 
 <FunctionChart
-  a={0}
+  a={0.5}
   p={1}
-  title="Constant Function"
+  title="Exponential Decay"
   description={
     <>
-      Line is always horizontal constant at <InlineMath math="y = 0" />, but
-      undefined for <InlineMath math="x = 0" />.
+      The factor <InlineMath math="0.5" /> halves the output for every increase of <InlineMath math="1" /> in <InlineMath math="x" />.
     </>
   }
 />
 
-## Examples of Exponential Functions
+## Common Models
 
-Here are some examples of exponential functions:
+1. **Repeated doubling**: <InlineMath math="P(t)=P_0\,2^{t/d}" />, where <InlineMath math="d" /> is the doubling time.
+2. **Compound growth**: <InlineMath math="A(t)=P(1+r)^t" />, where <InlineMath math="r" /> is the rate per compounding interval.
+3. **Half-life**: <InlineMath math="A(t)=A_0\left(\frac12\right)^{t/h}" />, where <InlineMath math="h" /> is the half-life.
+4. **Early transmission**: <InlineMath math="C(n)=C_0R^n" />, where <InlineMath math="R" /> is an assumed average factor per cycle.
 
-1. <InlineMath math="f(x) = 4^x" />
-
-   This function has base number <InlineMath math="a = 4" /> and <InlineMath math="n = 1" />. Since <InlineMath math="a > 1" />, this function is monotonically increasing. The function value will get larger as <InlineMath math="x" /> increases. For example, <InlineMath math="f(0) = 4^0 = 1" />, <InlineMath math="f(1) = 4^1 = 4" />, <InlineMath math="f(2) = 4^2 = 16" />.
-
-2. <InlineMath math="f(x) = 3^{x+1}" />
-
-   This function can be rewritten as <InlineMath math="f(x) = 3 \times 3^x" /> with base number <InlineMath math="a = 3" /> and <InlineMath math="n = 3" />. The graph of this function is also monotonically increasing, and the function value will get larger as <InlineMath math="x" /> increases. For example, <InlineMath math="f(0) = 3^{0+1} = 3^1 = 3" />, <InlineMath math="f(1) = 3^{1+1} = 3^2 = 9" />.
-
-3. <InlineMath math="f(x) = 5^{2x-1}" />
-
-   This function has base number <InlineMath math="a = 5" /> with exponent <InlineMath math="2x-1" />. The function value will change more rapidly because the coefficient of <InlineMath math="x" /> is <InlineMath math="2" />. For example, <InlineMath math="f(0) = 5^{2(0)-1} = 5^{-1} = \frac{1}{5}" />, <InlineMath math="f(1) = 5^{2(1)-1} = 5^1 = 5" />.
-
-4. <InlineMath math="f(x) = 0.5^x" />
-
-   This function has base number <InlineMath math="a = 0.5" /> where <InlineMath math="0 < a < 1" />. This function is monotonically decreasing. The function value will get smaller as <InlineMath math="x" /> increases. For example, <InlineMath math="f(0) = 0.5^0 = 1" />, <InlineMath math="f(1) = 0.5^1 = 0.5" />, <InlineMath math="f(2) = 0.5^2 = 0.25" />.
-
-## Applications of Exponential Functions
-
-Exponential functions are widely used in everyday life and various fields:
-
-1. **Population Growth**: The number of bacteria reproducing can be modeled with an exponential function <InlineMath math="P(t) = P_0 \times 2^{t/n}" /> where <InlineMath math="P_0" /> is the initial number, <InlineMath math="t" /> is time, and <InlineMath math="n" /> is the time required for the population to double.
-
-2. **Compound Interest**: If someone saves money with compound interest, the amount of savings after <InlineMath math="t \text{ years}" /> can be calculated with <InlineMath math="A(t) = P \times (1 + r)^t" /> where <InlineMath math="P" /> is the initial principal and <InlineMath math="r" /> is the interest rate.
-
-3. **Radioactive Decay**: The amount of radioactive substance remaining after <InlineMath math="t \text{ years}" /> can be calculated with <InlineMath math="A(t) = A_0 \times 0.5^{t/h}" /> where <InlineMath math="A_0" /> is the initial amount and <InlineMath math="h" /> is the half-life.
-
-4. **Virus Spread**: The spread of disease in a population often follows an exponential model in the early phase.
+Each formula is meaningful only after its variables, units, interval, and assumptions have been stated. The same exponential shape can describe different contexts, but the symbols do not acquire real-world meaning by themselves.

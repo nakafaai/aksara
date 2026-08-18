@@ -1,20 +1,20 @@
 export const metadata = {
-   title: "Permutasi dengan Objek yang Sama",
-   description: "Pelajari permutasi dengan objek yang sama menggunakan rumus multinomial. Pelajari perhitungan susunan berbeda saat objek tidak dapat dibedakan.",
+   title: "Permutasi dengan Objek Identik",
+   description: "Hitung susunan berbeda ketika beberapa objek tidak dapat dibedakan. Contoh bertahap menurunkan rumus multinomial dan menerapkannya pada huruf, warna, serta digit.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    date: "2025-05-26",
    subject: "Kombinatorik",
 };
 
-## Pengertian Permutasi dengan Objek yang Sama
+## Mengapa objek identik mengubah hasil hitung?
 
-**Permutasi dengan objek yang sama** adalah susunan objek dimana terdapat beberapa objek yang identik atau sama. Ketika ada objek yang sama, jumlah susunan yang berbeda akan berkurang karena **pertukaran objek yang identik tidak menghasilkan susunan baru**.
+**Permutasi dengan objek identik** menghitung susunan ketika beberapa objek tidak dapat dibedakan satu sama lain. Hasilnya lebih sedikit daripada permutasi biasa karena **menukar objek yang identik tidak menghasilkan susunan baru**.
 
-Bayangkan menyusun huruf dari kata "MAMA". Walaupun ada <InlineMath math="4" /> huruf, kita tidak bisa membedakan antara huruf <InlineMath math="M" /> yang pertama dengan <InlineMath math="M" /> yang kedua, atau <InlineMath math="A" /> yang pertama dengan <InlineMath math="A" /> yang kedua. Akibatnya, susunan yang terlihat berbeda tetapi menggunakan huruf yang sama di posisi berbeda dianggap identik.
+Perhatikan huruf-huruf dalam kata "MAMA". Ada <InlineMath math="4" /> huruf, tetapi kedua huruf <InlineMath math="M" /> tidak dapat dibedakan, begitu pula kedua huruf <InlineMath math="A" />. Jika setiap salinan diberi label sementara, pertukaran label akan terhitung sebagai permutasi lain meskipun kata yang terlihat tetap sama.
 
 ## Rumus Permutasi Objek Identik
 
-Untuk permutasi <InlineMath math="n" /> objek dimana terdapat objek yang sama, **rumus yang digunakan** adalah:
+Untuk <InlineMath math="n" /> objek yang terbagi menjadi beberapa kelompok objek identik, **banyak susunan berbeda** adalah:
 
 <MathContainer>
 <BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3! \times \cdots \times r_k!}" />
@@ -25,8 +25,9 @@ Untuk permutasi <InlineMath math="n" /> objek dimana terdapat objek yang sama, *
 - <InlineMath math="n" /> = jumlah total objek
 - <InlineMath math="r_1, r_2, r_3, \ldots, r_k" /> = banyaknya objek yang sama pada setiap kelompok
 - <InlineMath math="k" /> = banyaknya kelompok objek yang identik
+- Seluruh frekuensi mencakup semua objek, sehingga <InlineMath math="r_1 + r_2 + \cdots + r_k = n" />
 
-**Cara mengidentifikasi objek yang sama**: Hitung berapa kali setiap objek muncul dalam seluruh susunan, bukan hanya melihat objek yang berbeda.
+**Cara mengidentifikasi kelompok:** Hitung frekuensi setiap objek yang berbeda. Pembagian dengan setiap <InlineMath math="r_i!" /> menghapus penghitungan berulang akibat pertukaran salinan dalam kelompok tersebut.
 
 ## Penerapan pada Kata dan Huruf
 
@@ -39,7 +40,7 @@ Tulis huruf satu per satu: K-A-L-I-M-A-N-T-A-N
 
 Total huruf: <InlineMath math="10" />
 
-Identifikasi huruf: K muncul <InlineMath math="1 \text{ kali}" />, A muncul <InlineMath math="3 \text{ kali}" /> (posisi ke-<InlineMath math="2" />, ke-<InlineMath math="6" />, ke-<InlineMath math="9" />), L muncul <InlineMath math="1 \text{ kali}" />, I muncul <InlineMath math="1 \text{ kali}" />, M muncul <InlineMath math="1 \text{ kali}" />, N muncul <InlineMath math="2 \text{ kali}" /> (posisi ke-<InlineMath math="7" />, ke-<InlineMath math="10" />), T muncul <InlineMath math="1 \text{ kali}" />
+Identifikasi huruf: <InlineMath math="K" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="A" /> muncul <InlineMath math="3 \text{ kali}" /> (posisi <InlineMath math="2, 6, 9" />), <InlineMath math="L" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="I" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="M" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="N" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="7, 10" />), dan <InlineMath math="T" /> muncul <InlineMath math="1 \text{ kali}" />
 
 **Perhitungan:**
 
@@ -59,14 +60,14 @@ Sederhanakan pecahan dengan membatalkan faktor yang sama:
 Hitung langkah demi langkah:
 - Bagi <InlineMath math="10" /> dengan <InlineMath math="2" />: <InlineMath math="\frac{10}{2} = 5" />
 - Jadi: <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4" />
-- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302.400" />
+- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
 
 ### Contoh Kata PALAPA
 
 Untuk kata "PALAPA" dengan <InlineMath math="6" /> huruf:
 Tulis huruf satu per satu: P-A-L-A-P-A
 
-**Identifikasi huruf:** P muncul <InlineMath math="2 \text{ kali}" /> (posisi ke-<InlineMath math="1" />, ke-<InlineMath math="5" />), A muncul <InlineMath math="3 \text{ kali}" /> (posisi ke-<InlineMath math="2" />, ke-<InlineMath math="4" />, ke-<InlineMath math="6" />), L muncul <InlineMath math="1 \text{ kali}" />
+**Identifikasi huruf:** <InlineMath math="P" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="1, 5" />), <InlineMath math="A" /> muncul <InlineMath math="3 \text{ kali}" /> (posisi <InlineMath math="2, 4, 6" />), dan <InlineMath math="L" /> muncul <InlineMath math="1 \text{ kali}" />
 
 Hitung setiap faktorial:
 - <InlineMath math="6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" />
@@ -116,9 +117,9 @@ Mari kita terapkan langkah-langkah ini untuk mencari susunan kata "BANANA":
 3. **Hitung frekuensi**
 
    Hitung berapa kali setiap huruf muncul:
-   - B muncul <InlineMath math="1 \text{ kali}" />
-   - A muncul <InlineMath math="3 \text{ kali}" />
-   - N muncul <InlineMath math="2 \text{ kali}" />
+   - <InlineMath math="B" /> muncul <InlineMath math="1 \text{ kali}" />
+   - <InlineMath math="A" /> muncul <InlineMath math="3 \text{ kali}" />
+   - <InlineMath math="N" /> muncul <InlineMath math="2 \text{ kali}" />
 
 4. **Terapkan rumus**
 
@@ -144,7 +145,7 @@ Mari kita terapkan langkah-langkah ini untuk mencari susunan kata "BANANA":
    - Bagi <InlineMath math="6" /> dengan <InlineMath math="2" />: <InlineMath math="\frac{6}{2} = 3" />
    - Jadi: <InlineMath math="3 \times 5 \times 4 = 60" />
 
-Jadi, kata "BANANA" dapat disusun dalam **<InlineMath math="60 \text{ cara}" /> yang berbeda**.
+Jadi, kata "BANANA" dapat disusun dalam **<InlineMath math="60" /> cara berbeda**.
 
 ## Perbedaan dengan Permutasi Biasa
 
@@ -172,7 +173,7 @@ Objek yang sama **mengurangi** jumlah susunan karena pertukaran objek identik ti
 
 1. Berapa banyak susunan huruf yang dapat dibuat dari kata "MATEMATIKA"?
 
-2. Sebuah toko bunga memiliki <InlineMath math="8" /> bunga mawar dimana <InlineMath math="3" /> berwarna merah, <InlineMath math="3" /> berwarna putih, dan <InlineMath math="2" /> berwarna kuning. Berapa banyak cara menyusun bunga tersebut dalam satu barisan?
+2. Sebuah toko bunga menyusun <InlineMath math="8" /> mawar dalam satu barisan. Hanya warnanya yang dibedakan: <InlineMath math="3" /> merah, <InlineMath math="3" /> putih, dan <InlineMath math="2" /> kuning. Berapa banyak susunan warna yang mungkin?
 
 3. Dari angka <InlineMath math="1, 1, 2, 2, 2, 3" />, berapa banyak bilangan <InlineMath math="6" /> digit yang dapat dibentuk?
 
@@ -184,7 +185,7 @@ Objek yang sama **mengurangi** jumlah susunan karena pertukaran objek identik ti
 
    **Huruf satu per satu:** M-A-T-E-M-A-T-I-K-A
 
-   **Identifikasi huruf:** M muncul <InlineMath math="2 \text{ kali}" /> (posisi ke-<InlineMath math="1" />, ke-<InlineMath math="5" />), A muncul <InlineMath math="3 \text{ kali}" /> (posisi ke-<InlineMath math="2" />, ke-<InlineMath math="6" />, ke-<InlineMath math="10" />), T muncul <InlineMath math="2 \text{ kali}" /> (posisi ke-<InlineMath math="3" />, ke-<InlineMath math="7" />), E muncul <InlineMath math="1 \text{ kali}" />, I muncul <InlineMath math="1 \text{ kali}" />, K muncul <InlineMath math="1 \text{ kali}" />
+   **Identifikasi huruf:** <InlineMath math="M" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="1, 5" />), <InlineMath math="A" /> muncul <InlineMath math="3 \text{ kali}" /> (posisi <InlineMath math="2, 6, 10" />), <InlineMath math="T" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="3, 7" />), <InlineMath math="E" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="I" /> muncul <InlineMath math="1 \text{ kali}" />, dan <InlineMath math="K" /> muncul <InlineMath math="1 \text{ kali}" />
 
    Sederhanakan pecahan dengan membatalkan faktor yang sama:
 
@@ -196,10 +197,10 @@ Objek yang sama **mengurangi** jumlah susunan karena pertukaran objek identik ti
    </MathContainer>
 
    Hitung dengan penyederhanaan:
-   - Perhitungan lengkap: <InlineMath math="10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 604.800" />
-   - Bagi dengan <InlineMath math="4" />: <InlineMath math="\frac{604.800}{4} = 151.200 \text{ susunan}" />
+   - Perhitungan lengkap: <InlineMath math="10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 604\,800" />
+   - Bagi dengan <InlineMath math="4" />: <InlineMath math="\frac{604\,800}{4} = 151\,200 \text{ susunan}" />
 
-2. Total <InlineMath math="8" /> bunga dengan merah <InlineMath math="3" />, putih <InlineMath math="3" />, kuning <InlineMath math="2" />
+2. Ada <InlineMath math="8" /> posisi warna: merah muncul <InlineMath math="3" /> kali, putih muncul <InlineMath math="3" /> kali, dan kuning muncul <InlineMath math="2" /> kali.
 
    Sederhanakan pecahan dengan membatalkan faktor yang sama:
 
@@ -237,7 +238,7 @@ Objek yang sama **mengurangi** jumlah susunan karena pertukaran objek identik ti
 
    **Huruf satu per satu:** I-N-D-O-N-E-S-I-A
 
-   **Identifikasi huruf:** I muncul <InlineMath math="2 \text{ kali}" /> (posisi ke-<InlineMath math="1" />, ke-<InlineMath math="8" />), N muncul <InlineMath math="2 \text{ kali}" /> (posisi ke-<InlineMath math="2" />, ke-<InlineMath math="5" />), D muncul <InlineMath math="1 \text{ kali}" />, O muncul <InlineMath math="1 \text{ kali}" />, E muncul <InlineMath math="1 \text{ kali}" />, S muncul <InlineMath math="1 \text{ kali}" />, A muncul <InlineMath math="1 \text{ kali}" />
+   **Identifikasi huruf:** <InlineMath math="I" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="1, 8" />), <InlineMath math="N" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="2, 5" />), <InlineMath math="D" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="O" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="E" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="S" /> muncul <InlineMath math="1 \text{ kali}" />, dan <InlineMath math="A" /> muncul <InlineMath math="1 \text{ kali}" />
 
    Sederhanakan pecahan dengan membatalkan faktor yang sama:
 
@@ -251,4 +252,4 @@ Objek yang sama **mengurangi** jumlah susunan karena pertukaran objek identik ti
    Hitung dengan penyederhanaan:
    - Bagi dengan <InlineMath math="2" />: <InlineMath math="\frac{8}{2} = 4" />
    - Jadi: <InlineMath math="9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3" />
-   - <InlineMath math="= 9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3 = 90.720 \text{ susunan}" />
+   - <InlineMath math="= 9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3 = 90\,720 \text{ susunan}" />

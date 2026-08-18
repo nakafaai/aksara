@@ -1,0 +1,88 @@
+export const metadata = {
+  title: "Polynomfunktion",
+  description: "Polynomfunktionen in allgemeiner Form lesen und Grad, Leitterm, Leitkoeffizient sowie konstantes Glied sicher bestimmen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-04",
+  subject: "Polynom",
+};
+
+## Polynomfunktionen verstehen
+
+Eine Polynomfunktion ordnet jedem zulässigen Wert der Variablen mithilfe eines Polynoms einen Funktionswert zu.
+
+## Allgemeine Form einer Polynomfunktion
+
+Eine Polynomfunktion in der Variablen <InlineMath math="x" /> wird im Allgemeinen in der Form geschrieben:
+
+<BlockMath math="P(x) = a_n x^n + a_{n-1} x^{n-1} + a_{n-2} x^{n-2} + \dots + a_1 x + a_0" />
+
+Die Bestandteile dieser allgemeinen Form haben jeweils eine feste Bedeutung:
+
+- **<InlineMath math="P(x)" />**:
+
+  Funktionsnotation: „P von x“ bedeutet, dass der Wert der Funktion vom Wert von <InlineMath math="x" /> abhängt.
+
+- **<InlineMath math="x" />**:
+
+  Die Variable der Polynomfunktion.
+
+- **<InlineMath math="n" />**:
+
+  Der höchste Exponent der Variablen <InlineMath math="x" />. Der Wert <InlineMath math="n" /> muss eine **nichtnegative ganze Zahl** aus <InlineMath math="0, 1, 2, 3, \dots" /> sein. Zugleich ist <InlineMath math="n" /> der **Grad** der Polynomfunktion.
+
+- **<InlineMath math="a_n, a_{n-1}, \dots, a_1, a_0" />**:
+
+  Die Koeffizienten der Polynomfunktion. In dieser Lektion betrachten wir **reelle Polynomfunktionen**, daher sind die Koeffizienten reelle Zahlen. Polynome lassen sich auch über anderen Zahlenbereichen untersuchen, etwa über den komplexen Zahlen.
+
+- **<InlineMath math="a_n x^n" />**:
+
+  Der Term mit der höchsten Potenz. Er heißt **Leitterm**.
+
+- **<InlineMath math="a_n" />**:
+
+  Der **Leitkoeffizient** <InlineMath math="a_n" /> muss **ungleich null** sein, also <InlineMath math="a_n \neq 0" />, damit die Funktion den Grad <InlineMath math="n" /> hat.
+
+- **<InlineMath math="a_0" />**:
+
+  Das Glied ohne die Variable <InlineMath math="x" />. Man kann es auch als <InlineMath math="a_0 x^0" /> schreiben. Es heißt **konstantes Glied** oder **Konstante**.
+
+## Beispiel einer Polynomfunktion
+
+Betrachten wir die Funktion <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />.
+
+- Dies ist eine Polynomfunktion in der Variablen <InlineMath math="x" />.
+- Ihr Grad ist <InlineMath math="3" />, also der höchste Exponent von <InlineMath math="x" />.
+- Ihr Leitterm ist <InlineMath math="5x^3" />.
+- Ihr Leitkoeffizient ist <InlineMath math="5" />, also <InlineMath math="a_3 = 5" />.
+- Weitere Koeffizienten sind <InlineMath math="a_2 = -2" /> und <InlineMath math="a_1 = 7" />.
+- Ihr konstantes Glied ist <InlineMath math="-1" />, also <InlineMath math="a_0 = -1" />.
+
+Eine Funktion ist also genau dann eine Polynomfunktion, wenn die Exponenten ihrer Variablen nichtnegative ganze Zahlen sind und der Leitkoeffizient nicht null ist.
+
+## Übung
+
+Gegeben ist
+
+<BlockMath math="p(t)=-2t^4+3t^2-t+8" />
+
+Bestimme den Grad, den Leitterm, den Leitkoeffizienten, den Koeffizienten von <InlineMath math="t^3" /> und das konstante Glied. Berechne anschließend <InlineMath math="p(2)" />.
+
+### Ausführliche Lösung
+
+Zuerst schreiben wir die fehlende Potenz mit einem Nullkoeffizienten:
+
+<BlockMath math="p(t)=-2t^4+0t^3+3t^2-t+8" />
+
+- Grad: <InlineMath math="4" />
+- Leitterm: <InlineMath math="-2t^4" />
+- Leitkoeffizient: <InlineMath math="-2" />
+- Koeffizient von <InlineMath math="t^3" />: <InlineMath math="0" />
+- Konstantes Glied: <InlineMath math="8" />
+
+Nun setzen wir <InlineMath math="t=2" /> ein:
+
+<MathContainer>
+  <BlockMath math="p(2)=-2(2)^4+3(2)^2-2+8" />
+  <BlockMath math="=-32+12-2+8" />
+  <BlockMath math="=-14" />
+</MathContainer>

@@ -4,37 +4,22 @@ export const metadata = {
   date: "2026-01-19",
 };
 
-Untuk menentukan kombinasi mana yang paling mungkin didapatkan, kita perlu menghitung peluang dari setiap pilihan jawaban.
-
-Pertama, mari kita hitung total mainan di setiap kotak:
+Kotak <InlineMath math="1" /> berisi <InlineMath math="16" /> mainan dan Kotak <InlineMath math="2" /> berisi <InlineMath math="15" /> mainan. Karena itu, setiap hasil pengambilan memiliki penyebut yang sama:
 
 <MathContainer>
-  <BlockMath math="\text{Total Kotak 1} = 3 + 4 + 5 + 4 = 16" />
-  <BlockMath math="\text{Total Kotak 2} = 4 + 3 + 4 + 4 = 15" />
+  <BlockMath math="16\times15=240" />
 </MathContainer>
 
-Peluang mengambil satu mainan tertentu adalah jumlah mainan tersebut dibagi dengan total mainan di kotaknya. Karena pengambilan dari Kotak <InlineMath math="1" /> dan Kotak <InlineMath math="2" /> adalah kejadian yang saling bebas, kita mengalikan peluangnya.
+Untuk pasangan yang terdiri atas dua jenis mainan berbeda, kedua penempatan kotak harus dihitung. Sebagai contoh, "bola dan boneka Barbie" mencakup bola dari Kotak <InlineMath math="1" /> dengan boneka Barbie dari Kotak <InlineMath math="2" />, serta penempatan sebaliknya.
 
-Mari kita analisis setiap pilihan:
+#### Bandingkan Kelima Kejadian
 
-#### Analisis Peluang
+| Pasangan | Banyak hasil yang sesuai | Peluang |
+| :--- | :---: | :---: |
+| Dua boneka beruang | <InlineMath math="3\times4=12" /> | <InlineMath math="\frac{12}{240}" /> |
+| Dua kelereng | <InlineMath math="4\times4=16" /> | <InlineMath math="\frac{16}{240}" /> |
+| Satu bola dan satu boneka Barbie | <InlineMath math="5\times3+4\times4=31" /> | <InlineMath math="\frac{31}{240}" /> |
+| Satu boneka Barbie dan satu kelereng | <InlineMath math="4\times4+4\times3=28" /> | <InlineMath math="\frac{28}{240}" /> |
+| Satu boneka beruang dan satu bola | <InlineMath math="3\times4+5\times4=32" /> | <InlineMath math="\frac{32}{240}" /> |
 
-| Pilihan | Perhitungan Peluang | Hasil |
-| :--- | :--- | :---: |
-| **<InlineMath math="2" /> Boneka Beruang** | <InlineMath math="\frac{3}{16} \times \frac{4}{15}" /> | <InlineMath math="\frac{12}{240}" /> |
-| **<InlineMath math="2" /> Kelereng** | <InlineMath math="\frac{4}{16} \times \frac{4}{15}" /> | <InlineMath math="\frac{16}{240}" /> |
-| **<InlineMath math="1" /> Bola & <InlineMath math="1" /> Barbie** | <InlineMath math="(\frac{5}{16} \times \frac{3}{15}) + (\frac{4}{16} \times \frac{4}{15})" /> | <InlineMath math="\frac{15+16}{240} = \frac{31}{240}" /> |
-| **<InlineMath math="1" /> Barbie & <InlineMath math="1" /> Kelereng** | <InlineMath math="(\frac{4}{16} \times \frac{4}{15}) + (\frac{4}{16} \times \frac{3}{15})" /> | <InlineMath math="\frac{16+12}{240} = \frac{28}{240}" /> |
-| **<InlineMath math="1" /> Beruang & <InlineMath math="1" /> Bola** | <InlineMath math="(\frac{3}{16} \times \frac{4}{15}) + (\frac{5}{16} \times \frac{4}{15})" /> | <InlineMath math="\frac{12+20}{240} = \frac{32}{240}" /> |
-
-> Untuk kombinasi dua jenis mainan berbeda (misalnya Bola dan Barbie), ada dua kemungkinan: Bola dari Kotak <InlineMath math="1" /> & Barbie dari Kotak <InlineMath math="2" />, ATAU Barbie dari Kotak <InlineMath math="1" /> & Bola dari Kotak <InlineMath math="2" />.
-
-#### Kesimpulan
-
-Dari perhitungan di atas, kita membandingkan pembilangnya karena penyebutnya sama (<InlineMath math="240" />):
-
-<MathContainer>
-  <BlockMath math="12 < 16 < 28 < 31 < 32" />
-</MathContainer>
-
-Peluang terbesar adalah **<InlineMath math="\frac{32}{240}" />**, yaitu untuk kombinasi **<InlineMath math="1" /> boneka beruang dan <InlineMath math="1" /> bola**.
+Semua penyebut sama, sehingga pembilang terbesar menentukan pasangan yang paling mungkin. Karena <InlineMath math="32" /> adalah pembilang terbesar, jawabannya ialah **satu boneka beruang dan satu bola**.

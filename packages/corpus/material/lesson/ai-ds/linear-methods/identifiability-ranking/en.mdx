@@ -1,85 +1,98 @@
 export const metadata = {
-    title: "Identifiability and Ranking Capability",
-    description: "Explore matrix identifiability through singular value decomposition: determine parameter uniqueness, assess rank deficiency, and solve systems.",
+    title: "Identifiability and Matrix Rank",
+    description: "Connect parameter identifiability with matrix rank, singular values, conditioning, and stable rank-revealing factorizations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-15",
     subject: "Linear Methods of AI",
 };
 
-## Definition of Identifiability
+## Identifiability in a Linear Model
 
-Identifiability determines whether all parameters in a model can be uniquely determined from available data. Imagine a detective trying to identify suspects from available clues. If the clues are sufficient and not contradictory, identification can be done with certainty.
+Identifiability asks whether the available data determine a model parameter uniquely. Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, and <InlineMath math="m \geq n" />. The linear least-squares problem is
 
-For matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" />, vector <InlineMath math="b \in \mathbb{R}^m" />, with <InlineMath math="m \geq n" />, the least squares problem
+<BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
-<BlockMath math="\min_x \|Ax - b\|_2^2" />
+and its normal equations are
 
-aims to estimate parameter <InlineMath math="x \in \mathbb{R}^n" /> through the corresponding normal equation system
+<BlockMath math="A^T A x = A^T b" />
 
-<BlockMath math="A^T x = A^T b" />
+The parameter vector <InlineMath math="x" /> is uniquely identifiable exactly when <InlineMath math="A" /> has full column rank:
 
-When this system has a unique solution, all parameters can be identified.
+<MathContainer>
+<BlockMath math="\operatorname{rank}(A)=n" />
+<BlockMath math="\ker(A)=\{0\}" />
+</MathContainer>
 
-## Full Identifiability Condition
+These statements are equivalent. If <InlineMath math="z \in \ker(A)" /> is nonzero, then
 
-All parameters can be identified precisely when matrix <InlineMath math="A" /> has full rank <InlineMath math="n" />.
+<BlockMath math="A(x+z)=Ax" />
 
-Mathematically, this condition can be written as
+so the data cannot distinguish <InlineMath math="x" /> from <InlineMath math="x+z" />. If the kernel is trivial, <InlineMath math="A^TA" /> is positive definite and the least-squares minimizer is unique.
 
-<BlockMath math="\text{Rank}(A) = \min(m, n) = n" />
+## Uniqueness Is Not the Same as Stability
 
-The full rank condition is like ensuring that each parameter provides truly new and non-overlapping information. Similar to a detective case where there are sufficient independent clues to identify each suspect without confusion. Each parameter provides information that cannot be obtained from other parameters, making the estimation unique and stable.
+Full column rank guarantees a unique exact solution, but not a numerically reliable one. A very small nonzero singular value can make the estimate highly sensitive to small changes in the data.
 
-## Matrix Rank Determination
+| Question | Diagnostic | Meaning |
+| --- | --- | --- |
+| Is the parameter structurally identifiable? | <InlineMath math="\operatorname{rank}(A)=n" /> | No two parameter vectors produce the same prediction. |
+| Is the estimate numerically well determined? | <InlineMath math="\sigma_n" /> is not tiny relative to <InlineMath math="\sigma_1" /> | Small perturbations do not cause large parameter changes. |
+| How sensitive is the problem? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | A large condition number signals strong sensitivity. |
 
-The rank of matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> can be obtained during the computational process of QR decomposition or LU decomposition of matrix <InlineMath math="A" />. However, a more computationally expensive but numerically more stable approach is to determine the rank using singular value decomposition of <InlineMath math="A" />.
+This distinction matters in applied models: structural identifiability is an exact algebraic property, while practical identifiability depends on scale, noise, and the numerical tolerance used.
 
-The difference between these two approaches is like comparing measurement with a regular ruler versus measurement with a high-precision instrument. Singular value decomposition provides more detailed and stable information about the numerical structure of matrices, especially for cases approaching singularity.
+## Rank-Revealing Factorizations
+
+Two common tools expose rank without relying on fragile determinant calculations:
+
+| Method | Strength | Typical use |
+| --- | --- | --- |
+| QR factorization with column pivoting | Usually cheaper than a full SVD | Fast least-squares solving and practical rank detection |
+| Singular value decomposition | Most direct view of all independent directions and their scales | Robust diagnostics near rank deficiency |
+
+Plain LU factorization is primarily a square-system tool. For a rectangular design matrix, pivoted QR or SVD is the more natural rank-revealing choice.
 
 ## Singular Value Decomposition
 
-For matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> with <InlineMath math="\text{Rank}(A) = r" />, there exist orthogonal matrices <InlineMath math="U \in \mathbb{R}^{m \times m}" /> and <InlineMath math="V \in \mathbb{R}^{n \times n}" /> as well as matrix <InlineMath math="S = (s_{ij})_{i=1,\ldots,m}" /> with <InlineMath math="s_{ij} = 0" /> for all <InlineMath math="i \neq j" /> and non-negative diagonal entries <InlineMath math="s_{11} \geq s_{22} \geq \cdots \geq 0" />, such that
+Let <InlineMath math="q=\min(m,n)" />. Every matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> has a singular value decomposition
 
-<BlockMath math="A = USV^T" />
+<BlockMath math="A=U\Sigma V^T" />
 
-This representation is called the singular value decomposition of <InlineMath math="A" />. The values <InlineMath math="\sigma_i = s_{ii}" /> are called singular values of <InlineMath math="A" />. Matrices <InlineMath math="U" /> and <InlineMath math="V" /> are not uniquely determined.
+where <InlineMath math="U \in \mathbb{R}^{m \times m}" /> and <InlineMath math="V \in \mathbb{R}^{n \times n}" /> are orthogonal, and <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> has nonnegative diagonal entries
 
-This decomposition is like dismantling a complex machine into its basic components. We can see how the matrix transforms vector space, including the main transformation directions and how much scaling occurs in each direction.
+<BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
-## Relationship Between Singular Values and Rank
+The exact rank is the number of positive singular values:
 
-The number of non-zero singular values of matrix <InlineMath math="A" /> equals <InlineMath math="\text{Rank}(A)" />.
+<BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
-Mathematically, this means
+For <InlineMath math="m \geq n" />, full column rank is therefore equivalent to <InlineMath math="\sigma_n>0" />. Right singular vectors associated with zero singular values span <InlineMath math="\ker(A)" /> and reveal parameter directions that the data cannot identify.
 
-<BlockMath math="\text{Rank}(A) = \#\{\sigma_i : \sigma_i > 0\}" />
+## Exact Rank and Numerical Rank
 
-where <InlineMath math="\#" /> denotes the number of elements in the set.
+If the exact rank is <InlineMath math="r" /> with <InlineMath math="0<r<q" />, then
 
-This fundamental property provides a numerically stable way to determine matrix rank. Very small singular values are like weak radio signals, still present but barely detectable.
+<BlockMath math="\sigma_r>0=\sigma_{r+1}=\cdots=\sigma_q" />
 
-### Rank-Deficient Condition
+Floating-point data rarely contain exact zeros. A numerical rank instead counts singular values above a scale-aware threshold <InlineMath math="\tau" />:
 
-The term "rank-deficient" refers to the condition when a matrix does not have full rank. That is, <InlineMath math="\text{Rank}(A) < \min(m, n)" />. In this context, some rows or columns of the matrix are linearly dependent.
+<MathContainer>
+<BlockMath math="\tau=c\,\max(m,n)\,\varepsilon_{\mathrm{mach}}\,\sigma_1" />
+<BlockMath math="\operatorname{rank}_{\tau}(A)=\#\{i:\sigma_i>\tau\}" />
+</MathContainer>
 
-When a matrix is rank-deficient, some singular values become zero or very close to zero
+The factor <InlineMath math="c" /> reflects the application and noise model, so there is no universal decimal cutoff. If <InlineMath math="A" /> is rank deficient, the least-squares minimum still exists, but the minimizing parameter vector is not unique. The Moore-Penrose pseudoinverse selects the minimum-norm solution:
 
-<BlockMath math="\sigma_r > \sigma_{r+1} = \sigma_{r+2} = \cdots = \sigma_{\min(m,n)} = 0" />
+<BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
 
-This condition indicates that the equation system has more than one solution or may not even have a unique solution. In numerical practice, we often use a threshold <InlineMath math="\epsilon" /> to determine whether a singular value is considered zero
+## Computing the Decomposition Safely
 
-<BlockMath math="\sigma_i \leq \epsilon \cdot \sigma_1" />
+The identity
 
-where <InlineMath math="\epsilon" /> typically ranges between <InlineMath math="10^{-12}" /> to <InlineMath math="10^{-16}" /> depending on computational precision.
+<BlockMath math="A^TA=V\Sigma^2V^T" />
 
-## Singular Value Decomposition Computation
+explains why squared singular values are eigenvalues of <InlineMath math="A^TA" />. It is useful for theory, but explicitly forming <InlineMath math="A^TA" /> squares the condition number:
 
-Singular value decomposition can be computed using eigenvalues and eigenvectors of <InlineMath math="A^T A" />. The mathematical relationship is
+<BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 
-<BlockMath math="A^T A = V \Sigma^2 V^T" />
-
-where <InlineMath math="\Sigma^2 = \text{diag}(\sigma_1^2, \sigma_2^2, \ldots, \sigma_n^2)" /> is a diagonal matrix that has values <InlineMath math="\sigma_i^2" /> on the main diagonal and zeros elsewhere
-
-<BlockMath math="\Sigma^2 = \begin{pmatrix} \sigma_1^2 & 0 & \cdots & 0 \\ 0 & \sigma_2^2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \sigma_n^2 \end{pmatrix}" />
-
-In numerical libraries, special functions are available for this computation called SVD (singular value decomposition). SVD implementations in modern numerical libraries use highly efficient and stable algorithms, making them reliable tools for various applications in matrix analysis and scientific computing.
+Numerical software therefore uses dedicated SVD or rank-revealing QR algorithms rather than forming <InlineMath math="A^TA" /> merely to estimate rank. This preserves more information in the directions that are already close to unidentifiable.

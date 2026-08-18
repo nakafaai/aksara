@@ -1,0 +1,44 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Gegeben:
+
+- Die Grundmenge <InlineMath math="S" /> umfasst <InlineMath math="300" /> Jugendliche.
+- Die Sportmenge <InlineMath math="O" /> enthält <InlineMath math="135" /> Jugendliche.
+- Die Naturmenge <InlineMath math="C" /> enthält <InlineMath math="255" /> Jugendliche.
+
+Gesucht ist die Differenz zwischen der größtmöglichen Anzahl <InlineMath math="B" /> und der kleinstmöglichen Anzahl <InlineMath math="A" /> in der Schnittmenge <InlineMath math="O \cap C" />.
+
+#### Kleinstmögliche Schnittmenge
+
+Die Schnittmenge ist am kleinsten, wenn die Vereinigung möglichst groß ist. Sie kann höchstens alle <InlineMath math="300" /> Befragten umfassen. Dieser Grenzfall ist erreichbar, wenn jede Person an mindestens einer der beiden Aktivitäten teilnimmt.
+
+<MathContainer>
+  <BlockMath math="n(O \cup C) = n(O) + n(C) - n(O \cap C)" />
+  <BlockMath math="300 = 135 + 255 - A" />
+  <BlockMath math="300 = 390 - A" />
+  <BlockMath math="A = 390 - 300" />
+  <BlockMath math="A = 90" />
+</MathContainer>
+
+#### Größtmögliche Schnittmenge
+
+Die Schnittmenge ist am größten, wenn die kleinere Menge vollständig in der größeren liegt. Dann nehmen alle Sportteilnehmenden auch an den Naturaktivitäten teil.
+
+<MathContainer>
+  <BlockMath math="B = \min(n(O), n(C))" />
+  <BlockMath math="B = \min(135, 255)" />
+  <BlockMath math="B = 135" />
+</MathContainer>
+
+#### Berechnung der Differenz
+
+<MathContainer>
+  <BlockMath math="B - A = 135 - 90" />
+  <BlockMath math="B - A = 45" />
+</MathContainer>
+
+Damit beträgt die Differenz zwischen <InlineMath math="B" /> und <InlineMath math="A" /> genau <InlineMath math="45\text{ Jugendliche}" />.

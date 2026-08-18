@@ -11,15 +11,15 @@ export const metadata = {
 
 ## Pengertian Lingkaran
 
-Lingkaran adalah himpunan semua titik pada bidang datar yang memiliki jarak yang sama terhadap suatu titik tetap. Titik tetap tersebut disebut **pusat lingkaran**, sedangkan jarak yang sama tersebut disebut **jari-jari**.
+Lingkaran adalah himpunan semua titik pada bidang datar yang berjarak tetap dari satu titik. Titik itu disebut **pusat lingkaran**, sedangkan jarak tetapnya disebut **jari-jari**.
 
-Secara matematis, lingkaran dengan pusat <InlineMath math="O(a,b)" /> dan jari-jari <InlineMath math="r" /> dapat dinyatakan dengan persamaan:
+Jika pusatnya <InlineMath math="O(a,b)" /> dan jari-jarinya <InlineMath math="r" />, rumus jarak menghasilkan persamaan baku:
 
 <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
 
 ### Unsur-unsur Lingkaran
 
-Bagaimana visualisasi dari persamaan lingkaran tersebut?
+Diagram berikut menghubungkan definisi tersebut dengan unsur-unsur yang dipakai dalam perhitungan:
 
 <LineEquation
   title="Unsur-unsur Lingkaran"
@@ -56,7 +56,7 @@ Bagaimana visualisasi dari persamaan lingkaran tersebut?
         { x: 3, y: 0, z: 0 },
       ],
       color: "#0891b2",
-      labels: [{ text: "diameter", at: 0, offset: [0, -0.5, 0] }],
+      labels: [{ text: "diameter", at: 0, offset: [1.25, -0.5, 0] }],
     },
     {
       points: [
@@ -71,12 +71,12 @@ Bagaimana visualisasi dari persamaan lingkaran tersebut?
   showZAxis={false}
 />
 
-**Unsur-unsur penting lingkaran:**
+**Empat unsur yang perlu dikenali terlebih dahulu:**
 
-- **Pusat lingkaran (O)**: Titik tetap yang menjadi acuan lingkaran
-- **Jari-jari (r)**: Jarak dari pusat ke setiap titik pada lingkaran
-- **Diameter (d)**: Tali busur yang melalui pusat lingkaran, <InlineMath math="d = 2r" />
-- **Tali busur**: Ruas garis yang menghubungkan dua titik pada lingkaran
+- **Pusat (<InlineMath math="O" />)**: titik tetap yang menjadi acuan setiap jari-jari
+- **Jari-jari (<InlineMath math="r" />)**: ruas garis dari pusat ke satu titik pada lingkaran
+- **Diameter (<InlineMath math="d" />)**: tali busur yang melalui pusat, sehingga <InlineMath math="d = 2r" />
+- **Tali busur**: ruas garis yang menghubungkan dua titik pada lingkaran
 
 ## Busur Lingkaran
 
@@ -149,11 +149,11 @@ Busur lingkaran adalah bagian dari keliling lingkaran yang dibatasi oleh dua tit
   showZAxis={false}
 />
 
-**Jenis busur berdasarkan panjangnya:**
+**Pengelompokan busur berdasarkan panjangnya:**
 
-- **Busur minor**: Busur yang panjangnya kurang dari setengah keliling lingkaran
-- **Busur mayor**: Busur yang panjangnya lebih dari setengah keliling lingkaran
-- **Setengah lingkaran**: Busur yang panjangnya tepat setengah keliling lingkaran
+- **Busur minor**: lebih pendek daripada setengah keliling lingkaran
+- **Busur mayor**: lebih panjang daripada setengah keliling lingkaran
+- **Setengah lingkaran**: panjangnya tepat setengah keliling lingkaran
 
 ## Sudut Pusat dan Sudut Keliling
 
@@ -233,10 +233,10 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-
   showZAxis={false}
 />
 
-**Sifat sudut pusat:**
+**Fakta utama tentang sudut pusat:**
 
-- Besar sudut pusat sama dengan besar busur yang menghadapnya
-- Jika sudut pusat adalah <InlineMath math="\alpha" />, maka busur = <InlineMath math="\alpha" />
+- Sudut pusat dan busur yang dihadapinya memiliki ukuran sudut yang sama.
+- Jadi, jika sudut pusat besarnya <InlineMath math="\alpha" />, ukuran sudut busurnya juga <InlineMath math="\alpha" />.
 
 ### Sudut Keliling
 
@@ -365,7 +365,7 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 0.78, y: 2.9, z: 0 },
+        { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
       ],
       color: "#ea580c",
       showPoints: true,
@@ -382,7 +382,7 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
     },
     {
       points: [
-        { x: 0.78, y: 2.9, z: 0 },
+        { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
         { x: -2.12, y: -2.12, z: 0 },
       ],
       color: "#0891b2",
@@ -401,7 +401,7 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
       showPoints: false,
     },
     {
-      points: Array.from({ length: 20 }, (_, i) => {
+      points: Array.from({ length: 21 }, (_, i) => {
         const angle = (i * 4 * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -422,7 +422,7 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
 
 ### Panjang Busur
 
-Panjang busur berbanding lurus dengan besar sudut pusat yang menghadapnya.
+Panjang busur mengambil bagian keliling yang sama dengan bagian satu putaran yang ditempuh sudut pusatnya. Untuk sudut pusat <InlineMath math="\alpha" /> derajat:
 
 <MathContainer>
   <BlockMath math="\text{Panjang busur} = \frac{\alpha}{360^\circ} \times 2\pi r" />
@@ -437,14 +437,14 @@ Di mana:
 
 ### Luas Juring
 
-Juring adalah daerah yang dibatasi oleh dua jari-jari dan busur lingkaran.
+Juring adalah daerah yang dibatasi oleh dua jari-jari dan busur di antaranya. Bagian luasnya sama dengan bagian satu putaran yang ditempuh sudut pusatnya.
 
 <MathContainer>
   <BlockMath math="\text{Luas juring} = \frac{\alpha}{360^\circ} \times \pi r^2" />
   <BlockMath math="L = \frac{\alpha}{360^\circ} \times \pi r^2" />
 </MathContainer>
 
-Kita dapat memvisualisasikan luas juring dengan menggunakan persamaan di atas.
+Diagram berikut menunjukkan dua jari-jari, busur yang dihadapinya, dan juring yang dibatasi ketiganya.
 
 <LineEquation
   title="Juring Lingkaran"
@@ -552,13 +552,34 @@ Diketahui: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 9
 
 3. Dua buah sudut keliling menghadap busur yang sama. Jika salah satu sudut keliling besarnya <InlineMath math="45^\circ" />, tentukan besar sudut keliling yang lain!
 
-### Kunci Jawaban
+### Pembahasan
 
-1. <InlineMath math="\text{Sudut pusat} = 2 \times \text{sudut keliling} = 2 \times 30^\circ = 60^\circ" />
+#### 1. Menentukan sudut pusat
 
-2. Diketahui: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
+Diameter tidak diperlukan untuk menjawab soal ini. Informasi yang menentukan adalah kedua sudut menghadap busur yang sama. Sudut pusat besarnya dua kali sudut keliling:
 
-- Panjang busur <InlineMath math="AB = \frac{120^\circ}{360^\circ} \times 2\pi \times 21 = \frac{1}{3} \times 42\pi = 14\pi \text{ cm} \approx 43{,}98 \text{ cm}" />
-- Luas juring <InlineMath math="AOB = \frac{120^\circ}{360^\circ} \times \pi \times 21^2 = \frac{1}{3} \times 441\pi = 147\pi \text{ cm}^2 \approx 461{,}81 \text{ cm}^2" />
+<BlockMath math="\text{sudut pusat}=2(30^\circ)=60^\circ" />
 
-3. Sudut keliling yang menghadap busur yang sama memiliki besar yang sama, jadi sudut keliling yang lain adalah <InlineMath math="45^\circ" />
+Jadi, besar sudut pusat adalah <InlineMath math="60^\circ" />.
+
+#### 2. Menentukan panjang busur dan luas juring
+
+Sudut <InlineMath math="120^\circ" /> mencakup sepertiga putaran penuh karena <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Terapkan pecahan itu pada keliling, lalu pada luas lingkaran.
+
+<MathContainer>
+  <BlockMath math="l=\frac{120^\circ}{360^\circ}(2\pi)(21)=14\pi\text{ cm}\approx43{,}98\text{ cm}" />
+  <BlockMath math="L=\frac{120^\circ}{360^\circ}\pi(21)^2=147\pi\text{ cm}^2\approx461{,}81\text{ cm}^2" />
+</MathContainer>
+
+Jadi, panjang busurnya <InlineMath math="14\pi\text{ cm}" /> dan luas juringnya <InlineMath math="147\pi\text{ cm}^2" />.
+
+#### 3. Membandingkan dua sudut keliling
+
+Sudut keliling yang menghadap busur yang sama memiliki besar yang sama. Karena sudut pertama <InlineMath math="45^\circ" />, sudut kedua juga <InlineMath math="45^\circ" />.
+
+## Sumber
+
+- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)
+- [OpenStax Precalculus 2e: Key Equations](https://openstax.org/books/precalculus-2e/pages/5-key-equations)
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)

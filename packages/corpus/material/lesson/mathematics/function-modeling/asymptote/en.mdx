@@ -10,9 +10,9 @@ export const metadata = {
 
 ## What is an Asymptote?
 
-Have you ever noticed a function graph that approaches a line but never touches it? Well, that line is called an **asymptote**!
+An asymptote is a line that a graph approaches in a particular limiting process. Near a vertical asymptote, the function grows without bound. Near a horizontal or oblique asymptote, the distance between the graph and the line tends to zero as the input grows in magnitude.
 
-An asymptote is a straight line that is approached by a function graph when its variable value approaches infinity or approaches a certain value. Imagine like you're walking towards a wall but never actually touching it, that's the concept of an asymptote.
+A graph may cross a horizontal or oblique asymptote at a finite input. The asymptote describes end behavior, not a barrier that the graph is forbidden to touch.
 
 ## Types of Asymptotes
 
@@ -22,33 +22,36 @@ There are three types of asymptotes you need to know:
 
 A vertical asymptote is a vertical line that the graph approaches when the function value approaches positive or negative infinity.
 
-**Definition:** The line <InlineMath math="x = a" /> is a vertical asymptote if:
+**Definition:** The line <InlineMath math="x = a" /> is a vertical asymptote if at least one of these one-sided limits is infinite:
 
 - When <InlineMath math="x" /> approaches <InlineMath math="a" /> from the left, <InlineMath math="f(x) \to \pm\infty" />
 - When <InlineMath math="x" /> approaches <InlineMath math="a" /> from the right, <InlineMath math="f(x) \to \pm\infty" />
 
-**How to find:** For rational functions, vertical asymptotes occur when <InlineMath math="\text{denominator} = 0" /> and <InlineMath math="\text{numerator} \neq 0" />, or when <InlineMath math="Q(x) = 0" /> and <InlineMath math="P(x) \neq 0" />.
+**How to find:** First cancel any common polynomial factors. In the simplified rational function, a vertical asymptote occurs when <InlineMath math="Q(x) = 0" /> while <InlineMath math="P(x) \neq 0" />. A canceled factor creates a hole instead of a vertical asymptote.
 
 ### Horizontal Asymptote
 
-A horizontal asymptote is a horizontal line that the graph approaches when <InlineMath math="x" /> approaches positive or negative infinity.
+A horizontal asymptote is a horizontal line that the graph approaches as <InlineMath math="x" /> tends toward positive infinity, negative infinity, or both.
 
-**Definition:** The line <InlineMath math="y = b" /> is a horizontal asymptote if:
+**Definition:** The line <InlineMath math="y = b" /> is a horizontal asymptote in each direction where the corresponding limit holds:
 
 - <InlineMath math="\lim_{x \to \infty} f(x) = b" />
 - <InlineMath math="\lim_{x \to -\infty} f(x) = b" />
 
-### Oblique Asymptote (Oblique)
+### Oblique Asymptote
 
-An oblique asymptote is a slanted line that the graph approaches when <InlineMath math="x" /> approaches infinity.
+An oblique asymptote is a slanted line that the graph approaches as <InlineMath math="x" /> tends toward positive infinity, negative infinity, or both.
 
-**Definition:** The line <InlineMath math="y = mx + c" /> is an oblique asymptote if:
+**Definition:** The line <InlineMath math="y = mx + c" /> is an oblique asymptote in a direction where the difference tends to zero:
 
-<BlockMath math="\lim_{x \to \pm\infty} [f(x) - (mx + c)] = 0" />
+<MathContainer>
+  <BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
+  <BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
+</MathContainer>
 
 ## Asymptotes in Rational Functions
 
-Let's focus on rational functions <InlineMath math="f(x) = \frac{P(x)}{Q(x)}" /> where <InlineMath math="P(x)" /> and <InlineMath math="Q(x)" /> are polynomials.
+Consider rational functions <InlineMath math="f(x) = \frac{P(x)}{Q(x)}" /> where <InlineMath math="P(x)" /> and <InlineMath math="Q(x)" /> are polynomials.
 
 ### Finding Vertical Asymptotes
 
@@ -66,7 +69,7 @@ Let's focus on rational functions <InlineMath math="f(x) = \frac{P(x)}{Q(x)}" />
 - When <InlineMath math="x = 2" />, numerator is <InlineMath math="2 + 3 = 5 \neq 0" />
 - Therefore, vertical asymptote: <InlineMath math="x = 2" />
 
-Let's look at the function behavior around the vertical asymptote:
+The following values show the function's behavior around the vertical asymptote:
 
 | <InlineMath math="x" />    | <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />                       | Description                              |
 | -------------------------- | ---------------------------------------------------------------------- | ---------------------------------------- |
@@ -91,22 +94,28 @@ Let's look at the function behavior around the vertical asymptote:
   data={[
     {
       points: [
-        { x: -2, y: 0.25, z: 0 },
-        { x: -1, y: 0.67, z: 0 },
-        { x: 0, y: 1.5, z: 0 },
-        { x: 1, y: 4, z: 0 },
-        { x: 1.5, y: 9, z: 0 },
-        { x: 1.8, y: 29, z: 0 },
-        { x: 1.9, y: 49, z: 0 },
+        { x: -2, y: -0.25, z: 0 },
+        { x: -1, y: -0.67, z: 0 },
+        { x: 0, y: -1.5, z: 0 },
+        { x: 1, y: -4, z: 0 },
+        { x: 1.5, y: -9, z: 0 },
+        { x: 1.8, y: -24, z: 0 },
+        { x: 1.9, y: -49, z: 0 },
       ],
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x → 2^{-}" />, at: 1, offset: [-1, 0.5, 0] }],
+      labels: [
+        {
+          text: <InlineMath math="x \to 2^{-}" />,
+          at: 1,
+          offset: [-1, 0.5, 0],
+        },
+      ],
     },
     {
       points: [
         { x: 2.1, y: 51, z: 0 },
-        { x: 2.2, y: 31, z: 0 },
+        { x: 2.2, y: 26, z: 0 },
         { x: 2.5, y: 11, z: 0 },
         { x: 3, y: 6, z: 0 },
         { x: 4, y: 3.5, z: 0 },
@@ -115,7 +124,13 @@ Let's look at the function behavior around the vertical asymptote:
       ],
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x → 2^{+}" />, at: 6, offset: [0.5, -0.5, 0] }],
+      labels: [
+        {
+          text: <InlineMath math="x \to 2^{+}" />,
+          at: 6,
+          offset: [0.5, -0.5, 0],
+        },
+      ],
     },
     {
       points: [
@@ -156,13 +171,13 @@ Let the degree of numerator is <InlineMath math="m" /> and degree of denominator
 
    The numerator degree is <InlineMath math="= 2" /> and the denominator degree is <InlineMath math="= 2" />. Since the degrees are equal, the horizontal asymptote is <InlineMath math="y = \frac{3}{2}" />.
 
-Let's see how the function approaches the horizontal asymptote:
+The following values show how the function approaches the horizontal asymptote:
 
 | <InlineMath math="x" />    | <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" />                              | Approaches                |
 | -------------------------- | ----------------------------------------------------------------------------------- | ------------------------- |
 | <InlineMath math="10" />   | <InlineMath math="\frac{3(100) - 1}{2(100) + 5} = \frac{299}{205} \approx 1.459" /> | <InlineMath math="1.5" /> |
-| <InlineMath math="100" />  | <InlineMath math="\frac{29999}{20005} \approx 1.4997" />                            | <InlineMath math="1.5" /> |
-| <InlineMath math="1000" /> | <InlineMath math="\frac{2999999}{2000005} \approx 1.49997" />                       | <InlineMath math="1.5" /> |
+| <InlineMath math="100" />  | <InlineMath math="\frac{29999}{20005} \approx 1.4996" />                            | <InlineMath math="1.5" /> |
+| <InlineMath math="1000" /> | <InlineMath math="\frac{2999999}{2000005} \approx 1.499996" />                      | <InlineMath math="1.5" /> |
 
 <LineEquation
   title={
@@ -213,9 +228,7 @@ Oblique asymptotes appear when <InlineMath math="\text{degree of numerator} = \t
 **Solution:**
 Using polynomial division:
 
-<MathContainer>
-  <BlockMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1} = x + 3 + \frac{2}{x - 1}" />
-</MathContainer>
+<BlockMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1} = x + 3 + \frac{2}{x - 1}" />
 
 When <InlineMath math="x \to \pm\infty" />, the term <InlineMath math="\frac{2}{x - 1} \to 0" />
 
@@ -311,7 +324,7 @@ Asymptotes are very helpful in drawing function graphs. Here are the steps:
 
 | <InlineMath math="x" />  | <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />                  | Description                      |
 | ------------------------ | ----------------------------------------------------------------- | -------------------------------- |
-| <InlineMath math="-3" /> | <InlineMath math="\frac{-3 + 1}{-3 - 2} = \frac{-2}{-5} = 0.4" /> | Point in quadrant I              |
+| <InlineMath math="-3" /> | <InlineMath math="\frac{-3 + 1}{-3 - 2} = \frac{-2}{-5} = 0.4" /> | Point in quadrant II             |
 | <InlineMath math="-1" /> | <InlineMath math="\frac{-1 + 1}{-1 - 2} = \frac{0}{-3} = 0" />    | <InlineMath math="x" />-axis intercept |
 | <InlineMath math="0" />  | <InlineMath math="\frac{0 + 1}{0 - 2} = \frac{1}{-2} = -0.5" />   | <InlineMath math="y" />-axis intercept |
 | <InlineMath math="1" />  | <InlineMath math="\frac{1 + 1}{1 - 2} = \frac{2}{-1} = -2" />     | Approaching vertical asymptote   |
@@ -395,38 +408,44 @@ Asymptotes are very helpful in drawing function graphs. Here are the steps:
 
 2. Determine the asymptotes of <InlineMath math="g(x) = \frac{x^2 - 4}{x^2 - 9}" />
 
-3. The average cost function of a product is <InlineMath math="C(x) = \frac{500 + 3x}{x}" />. Determine the minimum cost per unit that can be achieved.
+3. The average cost function of a product is <InlineMath math="C(x) = \frac{500 + 3x}{x}" />. Determine the limiting cost per unit as production grows without bound.
 
 4. Draw a sketch of the graph <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> complete with its asymptotes.
 
-### Answer Key
+### Worked Solutions
 
-**Answer** <InlineMath math="1" />:
+**Problem** <InlineMath math="1" />:
 
-- <InlineMath math="\text{degree of numerator }(2) = \text{degree of denominator }(1) + 1" />
-- There is an oblique asymptote. By division: <InlineMath math="f(x) = 2x + 3 + \frac{10}{x - 3}" />
-- Vertical asymptote: <InlineMath math="x = 3" />
-- Oblique asymptote: <InlineMath math="y = 2x + 3" />
+The denominator is zero at <InlineMath math="x = 3" />, while the numerator there is <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Because the numerator does not vanish, <InlineMath math="x = 3" /> is a vertical asymptote.
 
-**Answer** <InlineMath math="2" />:
+Polynomial division separates the long-term linear behavior from the remainder:
 
-- Vertical asymptote: <InlineMath math="x^2 - 9 = 0" />, so <InlineMath math="x = 3" /> and <InlineMath math="x = -3" />
-- But when <InlineMath math="x = 2" />, <InlineMath math="\text{numerator} = 0" />, so <InlineMath math="x = 2" /> is not an asymptote
-- When <InlineMath math="x = -2" />, <InlineMath math="\text{numerator} = 0" />, so <InlineMath math="x = -2" /> is not an asymptote
-- Horizontal asymptote: <InlineMath math="y = 1" /> (same degree, ratio <InlineMath math="= 1/1" />)
+<BlockMath math="\frac{2x^2 - 3x + 1}{x - 3} = 2x + 3 + \frac{10}{x - 3}" />
 
-**Answer** <InlineMath math="3" />:
+As <InlineMath math="x \to \pm\infty" />, the remainder <InlineMath math="\frac{10}{x - 3} \to 0" />. Therefore the oblique asymptote is <InlineMath math="y = 2x + 3" />.
+
+**Problem** <InlineMath math="2" />:
+
+Factor both polynomials before classifying their zeros:
+
+<MathContainer>
+  <BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
+  <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+</MathContainer>
+
+There is no common factor to cancel. The denominator zeros <InlineMath math="x = -3" /> and <InlineMath math="x = 3" /> are therefore vertical asymptotes. The numerator zeros <InlineMath math="x = -2" /> and <InlineMath math="x = 2" /> are <InlineMath math="x" />-intercepts. Since numerator and denominator have the same degree and both leading coefficients are <InlineMath math="1" />, the horizontal asymptote is <InlineMath math="y = 1" />.
+
+**Problem** <InlineMath math="3" />:
 
 <BlockMath math="C(x) = \frac{500 + 3x}{x} = \frac{500}{x} + 3" />
 
-When <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />
-So minimum cost per unit <InlineMath math="= 3" />
+When <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Therefore <InlineMath math="C(x) \to 3" />. The cost approaches <InlineMath math="3" /> per unit but does not equal that value for any finite positive <InlineMath math="x" />.
 
-**Answer** <InlineMath math="4" />:
+**Problem** <InlineMath math="4" />:
 
-- Vertical asymptotes: <InlineMath math="x = 1" /> and <InlineMath math="x = -1" />
-- Horizontal asymptote: <InlineMath math="y = 0" /> (degree of numerator is less than degree of denominator)
-- The graph has three separate parts due to two vertical asymptotes
+Factor the denominator as <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Neither factor cancels with the numerator, so the vertical asymptotes are <InlineMath math="x = -1" /> and <InlineMath math="x = 1" />. Because the numerator degree is smaller than the denominator degree, <InlineMath math="h(x) \to 0" /> as <InlineMath math="x \to \pm\infty" />; hence the horizontal asymptote is <InlineMath math="y = 0" />.
+
+The asymptotes split the domain into three intervals. The sign of <InlineMath math="h(x)" /> is negative on <InlineMath math="x < -1" />, positive on <InlineMath math="-1 < x < 0" />, negative on <InlineMath math="0 < x < 1" />, and positive on <InlineMath math="x > 1" />. These signs, together with the intercept <InlineMath math="(0,0)" />, determine the placement of all three branches.
 
 Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
 

@@ -41,7 +41,7 @@ except IndexError:
   ]}
 />
 
-Ketika kamu menggunakan indeks yang melebihi panjang string atau list, Python akan menampilkan error IndexError. Ini adalah mekanisme perlindungan untuk mencegah akses ke memori yang tidak valid.
+Indeks di luar rentang yang valid menghasilkan `IndexError`. Sequence Python melakukan pemeriksaan batas ini dan tidak mengembalikan nilai sembarang.
 
 ## Konsep Slicing
 
@@ -112,7 +112,7 @@ Slicing memiliki beberapa properti penting yang perlu dipahami untuk menghindari
 
 ### Panjang Hasil Slicing
 
-Panjang hasil slicing dapat dihitung dengan rumus sederhana. Untuk slicing positif `s[i:j]`, panjangnya adalah `j - i` jika kedua nilai positif dan `j > i`.
+Untuk kasus sederhana <InlineMath math="0 \le i \le j \le n" /> dengan step positif bawaan, panjang `s[i:j]` adalah <InlineMath math="j-i" />. Slice umum dapat memiliki batas kosong, negatif, atau di luar rentang serta step berbeda. Python menormalisasinya terhadap panjang sequence. Jumlah persisnya adalah `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -143,7 +143,7 @@ Salah satu keunggulan slicing adalah tidak akan menyebabkan error meskipun indek
 
 ## Slicing sebagai Loop
 
-Slicing dapat dipahami sebagai bentuk singkat dari loop for. Setiap operasi slicing sebenarnya equivalent dengan loop yang mengiterasi indeks tertentu.
+Indeks yang dipilih sebuah slice dapat dimodelkan dengan `range()`. Model ini menjelaskan hasilnya tanpa menganggap setiap tipe sequence mengimplementasikan slicing sebagai loop Python.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ print(f"Manual: '{result_negative}'")`
   ]}
 />
 
-Pemahaman hubungan antara slicing dan loop membantu kamu memahami bagaimana Python memproses operasi slicing secara internal.
+Membandingkan slice dengan model `range()` memperlihatkan aturan start, stop, dan step, terutama ketika step bernilai negatif.
 
 ## Variasi Slicing
 
@@ -201,7 +201,7 @@ print(s[:3])     # Output: 'Hel'
 # Mengambil karakter dari indeks 3 sampai akhir
 print(s[3:])     # Output: 'lo'
 
-# Mengambil semua karakter (menyalin string)
+# Mengambil semua karakter
 print(s[:])      # Output: 'Hello'
 
 # Contoh praktis dengan list
@@ -241,10 +241,12 @@ nama_belakang = "Wijaya"
 nama_terbalik = (nama_depan + " " + nama_belakang)[::-1]
 print(f"Nama terbalik: {nama_terbalik}")
 
-# 2. Mengambil ekstensi file
+# 2. Mengambil ekstensi file dengan aman
+from pathlib import Path
+
 nama_file = "dokumen_penting.pdf"
-ekstensi = nama_file[-3:]  # 3 karakter terakhir
-print(f"Ekstensi: .{ekstensi}")
+ekstensi = Path(nama_file).suffix
+print(f"Ekstensi: {ekstensi}")
 
 # 3. Memformat nomor telepon
 nomor = "081234567890"
@@ -256,13 +258,12 @@ nama_lengkap = "Siti Nurhaliza Binti Ahmad"
 kata_kata = nama_lengkap.split()
 inisial = ""
 for kata in kata_kata:
-    if kata[0].isupper():  # Hanya ambil kata yang dimulai huruf besar
-        inisial += kata[0]
+    inisial += kata[0]
 print(f"Inisial: {inisial}")
 
 # 5. Palindrome checker
 def is_palindrome(text):
-    cleaned = text.lower().replace(" ", "")
+    cleaned = "".join(character for character in text.casefold() if character.isalnum())
     return cleaned == cleaned[::-1]
 
 print(f"'katak' palindrome? {is_palindrome('katak')}")
@@ -271,8 +272,8 @@ print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
   ]}
 />
 
-Dari kelima contoh aplikasi ini, terlihat bahwa operasi indexing dan slicing dapat menggantikan logika pemrograman yang kompleks. Misalnya, membalik string dengan `[::-1]` jauh lebih ringkas dibandingkan menggunakan loop manual, dan mengambil ekstensi file dengan `[-3:]` lebih intuitif daripada mencari posisi titik terakhir.
+Contoh-contoh ini memakai indexing ketika posisinya diketahui dan slicing ketika yang dibutuhkan adalah subsequence berurutan atau berjarak tetap. Membalik sequence dengan `[::-1]` memang ringkas. Ekstensi file berbeda karena panjangnya bervariasi, sehingga `Path.suffix` menyatakan aturan domain itu lebih andal daripada slice tetap.
 
-Keunggulan utama teknik ini terletak pada kemampuannya menangani data berurutan tanpa risiko IndexError pada slicing. Ketika kamu melakukan `s[10:]` pada string pendek, Python tidak akan crash melainkan mengembalikan string kosong. Fleksibilitas ini membuat kode lebih aman, terutama ketika bekerja dengan data yang panjangnya tidak dapat diprediksi.
+Batas slice dipotong ke rentang sequence, sehingga `s[10:]` pada string yang lebih pendek menghasilkan `""`, bukan `IndexError`. Indexing langsung seperti `s[10]` tetap menghasilkan error. Pilih berdasarkan apakah elemen yang tidak ada merupakan kesalahan atau subsequence kosong memang bermakna.
 
 Penguasaan indeks negatif memberikan perspektif baru dalam mengakses data. Alih-alih menghitung dari depan, kamu bisa langsung mengambil elemen dari belakang dengan `s[-1]` untuk elemen terakhir atau `s[-3:]` untuk tiga elemen terakhir. Pendekatan ini sangat berguna dalam pemrosesan file, parsing teks, dan manipulasi dataset di mana posisi relatif dari akhir lebih penting daripada posisi absolut dari awal.

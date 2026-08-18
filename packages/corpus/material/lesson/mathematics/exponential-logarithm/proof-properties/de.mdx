@@ -1,0 +1,142 @@
+export const metadata = {
+  title: "Potenzgesetze beweisen",
+  description:
+    "Beweise sieben Potenzgesetze mit korrekten Definitionsbedingungen und wende sie anschließend in vollständig gerechneten Beispielen an.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-01",
+  subject: "Exponenten und Logarithmen",
+};
+
+## Vor jeder Regel den Definitionsbereich angeben
+
+Potenzgesetze hängen von der Art des Exponenten und vom Vorzeichen der Basis ab. Die folgenden sieben Identitäten sind nützlich, doch ihre Bedingungen gehören jeweils zur Aussage.
+
+| Gesetz | Identität | Hier verwendete Bedingungen |
+| ------ | --------- | --------------------------- |
+| Produkt gleicher Basen | <InlineMath math="a^m a^n=a^{m+n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Quotient gleicher Basen | <InlineMath math="\frac{a^m}{a^n}=a^{m-n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Potenz einer Potenz | <InlineMath math="(a^m)^n=a^{mn}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Potenz eines Produkts | <InlineMath math="(ab)^m=a^m b^m" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Potenz eines Quotienten | <InlineMath math="\left(\frac ab\right)^m=\frac{a^m}{b^m}" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Rationale Potenzen mit gleichem Nenner | <InlineMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p\in\mathbb{Z}" />, <InlineMath math="n\neq0" /> |
+| Allgemeine rationale Potenzen | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
+
+Die Regeln für ganzzahlige Exponenten lassen sich teilweise auf andere Bereiche erweitern. Solche Erweiterungen benötigen jedoch zusätzliche Bedingungen. Mit den hier angegebenen Voraussetzungen sind alle Ausdrücke dieses Kapitels über den reellen Zahlen eindeutig.
+
+## Beweise für ganzzahlige Exponenten
+
+### Produkt gleicher Basen
+
+Für positive ganze Zahlen <InlineMath math="m" /> und <InlineMath math="n" /> wird jede Potenz als wiederholte Multiplikation geschrieben:
+
+<MathContainer>
+  <BlockMath math="a^m=\underbrace{a\cdot a\cdots a}_{m\text{ Faktoren}}" />
+  <BlockMath math="a^n=\underbrace{a\cdot a\cdots a}_{n\text{ Faktoren}}" />
+  <BlockMath math="a^m a^n=\underbrace{a\cdot a\cdots a}_{m+n\text{ Faktoren}}=a^{m+n}" />
+</MathContainer>
+
+Der Fall null folgt aus <InlineMath math="a^0=1" />. Negative ganzzahlige Exponenten folgen aus <InlineMath math="a^{-k}=\frac1{a^k}" />. Deshalb muss <InlineMath math="a" /> ungleich null sein.
+
+### Quotient gleicher Basen
+
+Bei <InlineMath math="m\geq n" /> kürzt die Division <InlineMath math="n" /> Faktoren aus dem Zähler:
+
+<BlockMath math="\frac{a^m}{a^n}=\frac{\overbrace{a\cdots a}^{m\text{ Faktoren}}}{\underbrace{a\cdots a}_{n\text{ Faktoren}}}=a^{m-n}" />
+
+Bei <InlineMath math="m<n" /> bleiben die nicht gekürzten Faktoren im Nenner. Die Definition negativer Exponenten führt zum selben Ergebnis:
+
+<BlockMath math="\frac{a^m}{a^n}=\frac1{a^{n-m}}=a^{-(n-m)}=a^{m-n}" />
+
+### Potenz einer Potenz
+
+Für positives <InlineMath math="n" /> tritt der Faktor <InlineMath math="a^m" /> genau <InlineMath math="n" />-mal auf:
+
+<BlockMath math="(a^m)^n=\underbrace{a^m a^m\cdots a^m}_{n\text{ Faktoren}}=a^{m+m+\cdots+m}=a^{mn}" />
+
+Wie zuvor folgt <InlineMath math="n=0" /> aus der Nullpotenz. Negatives <InlineMath math="n" /> folgt durch Bildung des Kehrwerts.
+
+### Potenz eines Produkts und Quotienten
+
+Für positives <InlineMath math="m" /> ergibt das Umgruppieren der Faktoren:
+
+<MathContainer>
+  <BlockMath math="(ab)^m=\underbrace{(ab)(ab)\cdots(ab)}_{m\text{ Faktoren}}=a^m b^m" />
+  <BlockMath math="\left(\frac ab\right)^m=\underbrace{\frac ab\cdot\frac ab\cdots\frac ab}_{m\text{ Faktoren}}=\frac{a^m}{b^m}" />
+</MathContainer>
+
+Die Fälle null und negativ folgen erneut aus <InlineMath math="x^0=1" /> und <InlineMath math="x^{-k}=\frac1{x^k}" />. Nicht verschwindende Basen stellen sicher, dass alle benötigten Kehrwerte definiert sind.
+
+## Beweise für rationale Exponenten
+
+Für rationale Exponenten wird eine positive Basis verwendet, damit jede reelle Wurzel einheitlich definiert ist.
+
+### Gleiche Nenner
+
+Wende das Produktgesetz für gleiche Basen an und addiere anschließend die Brüche:
+
+<MathContainer>
+  <BlockMath math="a^{m/n}a^{p/n}=a^{m/n+p/n}" />
+  <BlockMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" />
+</MathContainer>
+
+### Verschiedene Nenner
+
+Bringe die Exponenten zuerst auf den gemeinsamen Nenner <InlineMath math="nq" />:
+
+<MathContainer>
+  <BlockMath math="a^{m/n}a^{p/q}=a^{m/n+p/q}" />
+  <BlockMath math="a^{m/n}a^{p/q}=a^{mq/(nq)+pn/(nq)}" />
+  <BlockMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" />
+</MathContainer>
+
+## Durchgerechnete Beispiele
+
+### Einen unbekannten Exponenten bestimmen
+
+1. Bestimme <InlineMath math="p" /> in <InlineMath math="(3^4)^2=3^p" />.
+
+    <MathContainer>
+      <BlockMath math="(3^4)^2=3^{4\cdot2}=3^8" />
+      <BlockMath math="p=8" />
+    </MathContainer>
+
+2. Überprüfe <InlineMath math="b^4 b^5=b^9" /> für <InlineMath math="b\neq0" />.
+
+    <MathContainer>
+      <BlockMath math="b^4 b^5=b^{4+5}" />
+      <BlockMath math="b^{4+5}=b^9" />
+    </MathContainer>
+
+    Beide Seiten besitzen dieselbe Basis und denselben Exponenten. Damit ist die Identität bestätigt.
+
+3. Bestimme <InlineMath math="p" /> in <InlineMath math="(3\pi)^p=27\pi^3" />.
+
+    <MathContainer>
+      <BlockMath math="27\pi^3=3^3\pi^3=(3\pi)^3" />
+      <BlockMath math="p=3" />
+    </MathContainer>
+
+### Ausdrücke vereinfachen
+
+1. Vereinfache <InlineMath math="\left(\frac{2^4 3^6}{2^3 3^2}\right)^3" />.
+
+    <MathContainer>
+      <BlockMath math="\left(\frac{2^4 3^6}{2^3 3^2}\right)^3=\left(2^{4-3}3^{6-2}\right)^3" />
+      <BlockMath math="=\left(2\cdot3^4\right)^3" />
+      <BlockMath math="=2^3 3^{12}" />
+    </MathContainer>
+
+2. Vereinfache <InlineMath math="(3u^3v^5)(9u^4v)" />.
+
+    <MathContainer>
+      <BlockMath math="(3u^3v^5)(9u^4v)=27u^{3+4}v^{5+1}" />
+      <BlockMath math="=27u^7v^6" />
+    </MathContainer>
+
+3. Vereinfache für <InlineMath math="n\neq0" /> und <InlineMath math="r\neq0" /> den Ausdruck <InlineMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2" />.
+
+    <MathContainer>
+      <BlockMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2=\left(\frac{n^{-1-(-6)}r^{4-(-4)}}5\right)^2" />
+      <BlockMath math="=\left(\frac{n^5r^8}{5}\right)^2" />
+      <BlockMath math="=\frac{n^{10}r^{16}}{25}" />
+    </MathContainer>

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Persamaan Lingkaran",
-  description: "Pelajari persamaan lingkaran dari (x-h)² + (y-k)² = r² ke bentuk umum. Pelajari cara mencari pusat, jari-jari, dan konversi bentuk dengan latihan soal.",
+  description: "Pelajari hubungan bentuk baku dan bentuk umum persamaan lingkaran, lalu cari pusat dan jari-jari serta ubah kedua bentuk tersebut.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Geometri Analitik",
@@ -10,13 +10,13 @@ export const metadata = {
 
 ## Memahami Persamaan Lingkaran
 
-Persamaan lingkaran adalah formula matematika yang menggambarkan semua titik yang membentuk lingkaran pada bidang koordinat. Bayangkan kamu punya kompas dan ingin menggambar lingkaran di kertas berkoordinat. Nah, persamaan lingkaran ini yang memberitahu kita koordinat mana saja yang akan dilalui ujung pensil kompas tersebut.
+Persamaan lingkaran menggambarkan setiap titik pada lingkaran di bidang koordinat. Bayangkan menggambar dengan jangka pada kertas berpetak: jarum jangka menetapkan pusat, bukaannya menetapkan jari-jari, dan pensilnya menelusuri tepat semua titik yang memenuhi persamaan.
 
 Kenapa ini berguna? Karena dengan mengetahui persamaan lingkaran, kita bisa langsung tahu di mana **pusat lingkaran** berada dan berapa **jari-jarinya** tanpa harus menggambar lingkarannya dulu.
 
 ## Lingkaran Berpusat di Titik Asal
 
-Kita mulai dari kasus yang paling gampang dulu ya: lingkaran yang pusatnya ada di titik asal <InlineMath math="O(0,0)" />.
+Kita mulai dari kasus paling sederhana, yaitu lingkaran yang berpusat di titik asal <InlineMath math="O(0,0)" />.
 
 Kalau kita punya lingkaran dengan pusat di <InlineMath math="O(0,0)" /> dan jari-jari <InlineMath math="r" />, maka setiap titik <InlineMath math="(x,y)" /> pada lingkaran tersebut punya jarak yang sama dari pusat, yaitu sebesar <InlineMath math="r" />.
 
@@ -24,11 +24,11 @@ Pakai rumus jarak, kita dapatkan:
 
 <BlockMath math="\sqrt{x^2 + y^2} = r" />
 
-Kalau kita kuadratkan kedua ruas, daperoleh persamaan lingkaran dengan pusat di titik asal:
+Jika kedua ruas dikuadratkan, kita memperoleh persamaan lingkaran dengan pusat di titik asal:
 
 <BlockMath math="x^2 + y^2 = r^2" />
 
-Coba kita visualisasi dulu ya.
+Grafik berikut memperlihatkan batasan jari-jari tersebut.
 
 <LineEquation
   title="Lingkaran dengan Pusat di Titik Asal"
@@ -103,17 +103,17 @@ Untuk lingkaran di atas, persamaannya adalah <InlineMath math="x^2 + y^2 = 9" />
 
 ## Lingkaran dengan Pusat Sembarang
 
-Sekarang gimana kalau pusatnya bukan di titik asal? Misalnya pusat lingkaran ada di titik <InlineMath math="P(a,b)" /> dengan jari-jari <InlineMath math="r" />.
+Bagaimana jika pusatnya bukan di titik asal? Misalkan pusat lingkaran berada di titik <InlineMath math="P(a,b)" /> dengan jari-jari <InlineMath math="r" />.
 
 Setiap titik <InlineMath math="(x,y)" /> pada lingkaran ini harus punya jarak yang sama dengan <InlineMath math="r" /> dari pusat <InlineMath math="P(a,b)" />. Pakai rumus jarak:
 
 <BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
 
-Setelah dikuadratkan, kita peroleh **persamaan umum lingkaran**:
+Setelah dikuadratkan, kita memperoleh **persamaan baku lingkaran dengan pusat sembarang**:
 
 <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
 
-Kalau kita visualisasi, maka akan terlihat seperti ini:
+Pergeseran pusatnya terlihat pada grafik berikut.
 
 <LineEquation
   title="Lingkaran dengan Pusat Sembarang"
@@ -188,7 +188,7 @@ Persamaan lingkaran di atas adalah <InlineMath math="(x-2)^2 + (y+1)^2 = 4" /> k
 
 ## Bentuk Umum Persamaan Lingkaran
 
-Kadang kita nemuin persamaan lingkaran yang udah dikembangkan jadi bentuk umum. Misalnya dari persamaan <InlineMath math="(x-1)^2 + (y-2)^2 = 9" />, kalau kita kembangkan:
+Kadang persamaan lingkaran sudah dikembangkan menjadi bentuk umum. Misalnya, kita dapat mengembangkan <InlineMath math="(x-1)^2 + (y-2)^2 = 9" /> sebagai berikut:
 
 <MathContainer>
   <BlockMath math="(x-1)^2 + (y-2)^2 = 9" />
@@ -201,17 +201,25 @@ Bentuk terakhir ini disebut **bentuk umum persamaan lingkaran**:
 
 <BlockMath math="x^2 + y^2 + Dx + Ey + F = 0" />
 
-Kalau kita punya persamaan dalam bentuk umum, kita bisa ubah lagi ke bentuk baku dengan teknik **melengkapkan kuadrat sempurna**.
+Persamaan dalam bentuk umum dapat diubah kembali ke bentuk baku dengan teknik **melengkapkan kuadrat sempurna**.
 
-> Tidak semua persamaan berbentuk <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> itu persamaan lingkaran lho. Syaratnya adalah <InlineMath math="D^2 + E^2 - 4F > 0" />. Kalau nilai ini nol, maka cuma berupa satu titik aja, dan kalau negatif, berarti ga ada kurva sama sekali.
+> Tidak semua persamaan berbentuk <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> menghasilkan lingkaran nyata. Syaratnya adalah <InlineMath math="D^2 + E^2 - 4F > 0" />. Jika nilainya nol, lokusnya hanya satu titik. Jika nilainya negatif, tidak ada titik nyata yang memenuhi persamaan.
+
+Langkah melengkapkan kuadrat menunjukkan asal rumus pusat dan jari-jari:
+
+<MathContainer>
+  <BlockMath math="x^2 + Dx = \left(x + \frac{D}{2}\right)^2 - \frac{D^2}{4}" />
+  <BlockMath math="y^2 + Ey = \left(y + \frac{E}{2}\right)^2 - \frac{E^2}{4}" />
+  <BlockMath math="\left(x + \frac{D}{2}\right)^2 + \left(y + \frac{E}{2}\right)^2 = \frac{D^2 + E^2 - 4F}{4}" />
+</MathContainer>
 
 ## Menentukan Pusat dan Jari-jari
 
-Dari bentuk baku <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" />, kita langsung bisa tau:
+Dari bentuk baku <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" />, kita langsung dapat membaca:
 
 Pusat lingkarannya di <InlineMath math="(a,b)" /> dan jari-jarinya <InlineMath math="r" /> (yang didapat dari <InlineMath math="r = \sqrt{r^2}" />).
 
-Sedangkan dari bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, kita bisa tentukan:
+Sementara itu, dari bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, kita dapat menentukan:
 
 <MathContainer>
   <BlockMath math="\text{Pusat lingkaran: } \left(-\frac{D}{2}, -\frac{E}{2}\right)" />
@@ -228,7 +236,7 @@ Sedangkan dari bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, ki
 
 4. Tentukan persamaan lingkaran yang mempunyai diameter dengan ujung-ujung di <InlineMath math="A(1,3)" /> dan <InlineMath math="B(7,-1)" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian**:
 

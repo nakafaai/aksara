@@ -1,0 +1,46 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+#### Von den Mittelwerten zu den Gesamtgewichten
+
+Wir nennen die beiden Gruppen <InlineMath math="A" /> und <InlineMath math="B" />. Da jede Gruppe <InlineMath math="4" /> Kinder hat, erhalten wir ihr Gesamtgewicht, indem wir den jeweiligen Mittelwert mit <InlineMath math="4" /> multiplizieren:
+
+<MathContainer>
+  <BlockMath math="\sum x_A = n_A \cdot \bar{x}_A = 4 \cdot 30 = 120" />
+  <BlockMath math="\sum x_B = n_B \cdot \bar{x}_B = 4 \cdot 33 = 132" />
+</MathContainer>
+
+#### Den Tausch beschreiben
+
+Die beiden ausgetauschten Kinder wiegen <InlineMath math="x_A" /> beziehungsweise <InlineMath math="x_B" />, wobei <InlineMath math="x_A" /> aus Gruppe <InlineMath math="A" /> stammt. Nach dem Tausch bestehen beide Gruppen weiterhin aus vier Kindern. Gleiche Mittelwerte bedeuten deshalb auch gleiche Gesamtgewichte.
+
+Neues Gesamtgewicht der Gruppe <InlineMath math="A" /> (<InlineMath math="\sum x_A'" />):
+
+<BlockMath math="\sum x_A' = \sum x_A - x_A + x_B = 120 - x_A + x_B" />
+
+Neues Gesamtgewicht der Gruppe <InlineMath math="B" /> (<InlineMath math="\sum x_B'" />):
+
+<BlockMath math="\sum x_B' = \sum x_B - x_B + x_A = 132 - x_B + x_A" />
+
+#### Den Gewichtsunterschied bestimmen
+
+Da die neuen Durchschnittswerte gleich sind, sind auch die neuen Gesamtsummen gleich:
+
+<MathContainer>
+  <BlockMath math="\sum x_A' = \sum x_B'" />
+  <BlockMath math="120 - x_A + x_B = 132 - x_B + x_A" />
+</MathContainer>
+
+Wir bringen die Gewichte der beiden Kinder auf eine Seite:
+
+<MathContainer>
+  <BlockMath math="x_B + x_B - x_A - x_A = 132 - 120" />
+  <BlockMath math="2x_B - 2x_A = 12" />
+  <BlockMath math="2(x_B - x_A) = 12" />
+  <BlockMath math="x_B - x_A = 6" />
+</MathContainer>
+
+Somit beträgt der Gewichtsunterschied zwischen den beiden ausgetauschten Kindern <InlineMath math="6 \text{ kg}" />.

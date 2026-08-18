@@ -1,0 +1,501 @@
+export const metadata = {
+  title: "Parabel",
+  description: "Verstehe Parabeln über Scheitelpunkt, Brennpunkt und Leitlinie und leite ihre Gleichungen in vollständig gelösten Beispielen her.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Parabel verstehen
+
+Wenn wir den Luftwiderstand vernachlässigen und die Erdbeschleunigung als konstant annehmen, verläuft die Flugbahn eines Basketballs **parabelförmig**. Der Wasserbogen eines Springbrunnens vermittelt ein ähnliches erstes Bild.
+
+Ihre Form ist auch technisch nützlich. Parabolantennen bündeln Signale, Scheinwerferreflektoren lenken Licht und parabolische Bögen erscheinen in Brücken und moderner Architektur.
+
+Besonders wichtig ist die **Reflexionseigenschaft**. Strahlen, die parallel zur Symmetrieachse eintreffen, werden durch einen parabolischen Spiegel zum **Brennpunkt** reflektiert. Umgekehrt verlassen Strahlen aus dem Brennpunkt den Spiegel parallel zur Achse. Deshalb eignen sich Parabeln zum Sammeln oder gezielten Aussenden von Energie.
+
+<LineEquation
+  title={<>Die Parabel <InlineMath math="y = ax^2" /> in Anwendungen</>}
+  description={<>Darstellung einer Parabel mit Brennpunkt <InlineMath math="F(0, \frac{1}{4a})" /> und Leitlinie <InlineMath math="y = -\frac{1}{4a}" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const x = (i - 50) / 10; // x from -5 to 5
+        const y = 0.2 * x * x; // parabola y = 0.2x²
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: "Parabel", at: 80, offset: [1, 1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 1.25, z: 0 }], // focus at (0, 1/(4*0.2)) = (0, 1.25)
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: "Brennpunkt", at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }], // vertex of parabola
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: "Scheitelpunkt", at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = -6 + i * 12;
+        const y = -1.25; // directrix at y = -1/(4*0.2) = -1.25
+        return { x, y, z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Leitlinie", at: 1, offset: [0, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -6;
+        const xMax = 6;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -2;
+        const yMax = 6;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+## Mathematische Definition
+
+Mathematisch ist eine Parabel **die Menge aller Punkte, die von einem festen Punkt und einer festen Geraden den gleichen Abstand haben**. Der feste Punkt heißt **Brennpunkt**, die feste Gerade **Leitlinie**.
+
+Beginnen wir also mit einem Brennpunkt und einer Leitlinie. Jeder Punkt, dessen Abstand zum Brennpunkt genauso groß ist wie sein senkrechter Abstand zur Leitlinie, liegt auf der Parabel.
+
+Diese Definition gilt unabhängig davon, wo die Kurve liegt und in welche Richtung sie geöffnet ist. Entscheidend bleibt allein die Gleichheit der beiden Abstände.
+
+> Für jeden Parabelpunkt ist der Abstand zum Brennpunkt genauso groß wie der senkrechte Abstand zur Leitlinie.
+
+## Standardparabelgleichungen
+
+Zunächst betrachten wir eine Parabel mit Scheitelpunkt im Ursprung <InlineMath math="O(0,0)" />. Je nach Öffnungsrichtung entstehen vier Standardformen.
+
+<LineEquation
+  title={<>Vier Standardparabelformen mit Scheitelpunkt <InlineMath math="O(0,0)" /></>}
+  description={<>Standardparabeln <InlineMath math="x^2 = 4py" /> (vertikal) und <InlineMath math="y^2 = 4px" /> (horizontal).</>}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const x = (i - 30) / 10; // x from -3 to 3
+        const y = 0.25 * x * x; // Parabel x² = 4py mit p=1
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <><InlineMath math="x^2=4py" /> (aufwärts)</>, at: 11, offset: [-3, 2, 0] }],
+    },
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const x = (i - 30) / 10; // x from -3 to 3
+        const y = -0.25 * x * x; // Parabel x² = -4py mit p=1
+        return { x, y, z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <><InlineMath math="x^2=-4py" /> (nach unten)</>, at: 50, offset: [3, -2.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const y = (i - 30) / 10; // y from -3 to 3
+        const x = 0.25 * y * y; // Parabel y² = 4px mit p=1
+        return { x, y, z: 0 };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <><InlineMath math="y^2=4px" /> (nach rechts)</>, at: 50, offset: [3, 1.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 61 }, (_, i) => {
+        const y = (i - 30) / 10; // y from -3 to 3
+        const x = -0.25 * y * y; // Parabel y² = -4px mit p=1
+        return { x, y, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <><InlineMath math="y^2=-4px" /> (nach links)</>, at: 11, offset: [-3, -1.5, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }], // vertex of all parabolas at O(0,0)
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -4;
+        const xMax = 4;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -3;
+        const yMax = 3;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+Die beiden achsenparallelen Standardgleichungen verwenden einen vorzeichenbehafteten Parameter <InlineMath math="p" />:
+
+<MathContainer>
+  <BlockMath math="y^2 = 4px \quad \text{(horizontale Achse)}" />
+  <BlockMath math="x^2 = 4py \quad \text{(vertikale Achse)}" />
+</MathContainer>
+
+Für <InlineMath math="p > 0" /> öffnet sich die Parabel nach rechts oder oben, für <InlineMath math="p < 0" /> nach links oder unten. Der **Abstand vom Scheitelpunkt zum Brennpunkt** ist <InlineMath math="|p|" />. Je größer <InlineMath math="|p|" /> ist, desto weiter öffnet sich die Parabel.
+
+Für die nach rechts geöffnete Parabel <InlineMath math="y^2 = 4px" /> gilt beispielsweise:
+
+<MathContainer>
+  <BlockMath math="\text{Scheitelpunkt:} (0, 0)" />
+  <BlockMath math="\text{Brennpunkt:} (p, 0)" />
+  <BlockMath math="\text{Leitlinie:} x = -p" />
+  <BlockMath math="\text{Symmetrieachse: } y = 0" />
+</MathContainer>
+
+## Parabel mit beliebigem Scheitelpunkt
+
+Eine Parabel muss nicht im Ursprung liegen. Befindet sich ihr Scheitelpunkt bei <InlineMath math="(h, k)" />, verwenden wir die **verschobene Standardform**.
+
+<LineEquation
+  title={<>Parabel <InlineMath math="(x-h)^2 = 4p(y-k)" /> mit Scheitelpunkt <InlineMath math="(h,k)" /></>}
+  description={<>Parabel mit Scheitelpunkt <InlineMath math="(2, 1)" /> und Parameter <InlineMath math="p = 0{,}5" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 81 }, (_, i) => {
+        const x = (i - 40) / 10; // x from -4 to 4
+        const h = 2, k = 1, p = 0.5;
+        const y = k + (1/(4*p)) * Math.pow(x - h, 2); // parabola with vertex (h,k)
+        return { x, y, z: 0 };
+      }),
+      color: "#4f46e5",
+      showPoints: false,
+      labels: [{ text: "Parabel", at: 60, offset: [3, 1, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }], // vertex
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <>Scheitelpunkt <InlineMath math="(2,1)" /></>, at: 0, offset: [-1, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1.5, z: 0 }], // focus at (h, k+p) = (2, 1+0.5)
+      color: "#65a30d",
+      showPoints: true,
+      labels: [{ text: <>Fokus <InlineMath math="(2;1{,}5)" /></>, at: 0, offset: [0.5, 1, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = -2 + i * 8;
+        const y = 0.5; // directrix at y = k-p = 1-0.5 = 0.5
+        return { x, y, z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <>Leitlinie <InlineMath math="y=0{,}5" /></>, at: 1, offset: [0, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -1;
+        const yMax = 5;
+        const x = 2; // axis of symmetry
+        return { x, y: yMin + i * (yMax - yMin), z: 0 };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both" },
+      labels: [{ text: <>Symmetrieachse <InlineMath math="x=2" /></>, at: 1, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -3;
+        const xMax = 7;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -2;
+        const yMax = 6;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+Für einen Scheitelpunkt <InlineMath math="(h, k)" /> lauten die beiden Grundformen:
+
+<MathContainer>
+  <BlockMath math="(y-k)^2 = 4p(x-h) \quad \text{(horizontal)}" />
+  <BlockMath math="(x-h)^2 = 4p(y-k) \quad \text{(vertikal)}" />
+</MathContainer>
+
+Für die vertikale Parabel <InlineMath math="(x-h)^2 = 4p(y-k)" /> gilt:
+
+<MathContainer>
+  <BlockMath math="\text{Scheitelpunkt:} (h, k)" />
+  <BlockMath math="\text{Brennpunkt:} (h, k+p)" />
+  <BlockMath math="\text{Leitlinie:} y = k-p" />
+  <BlockMath math="\text{Symmetrieachse:} x = h" />
+</MathContainer>
+
+Für die horizontale Parabel <InlineMath math="(y-k)^2 = 4p(x-h)" /> gilt:
+
+<MathContainer>
+  <BlockMath math="\text{Scheitelpunkt:} (h, k)" />
+  <BlockMath math="\text{Brennpunkt:} (h+p, k)" />
+  <BlockMath math="\text{Leitlinie:} x = h-p" />
+  <BlockMath math="\text{Symmetrieachse:} y = k" />
+</MathContainer>
+
+> Das Vorzeichen von <InlineMath math="p" /> bestimmt die Öffnungsrichtung. In der horizontalen Form bedeutet ein positives Vorzeichen rechts und ein negatives links. In der vertikalen Form bedeutet ein positives Vorzeichen oben und ein negatives unten.
+
+## Bestimmung von Parabelelementen
+
+Aus einer Parabelgleichung lassen sich Scheitelpunkt, Brennpunkt, Leitlinie und Öffnungsrichtung systematisch bestimmen. Zuerst erkennen wir **die Ausrichtung der Parabel**:
+
+- Ist <InlineMath math="x" /> quadriert, ist die Parabel **vertikal** und öffnet sich nach oben oder unten.
+- Ist <InlineMath math="y" /> quadriert, ist die Parabel **horizontal** und öffnet sich nach links oder rechts.
+
+Das folgende Beispiel zeigt das vollständige Vorgehen.
+
+**Beispiel**: Gegeben sei eine Parabel mit der Gleichung <InlineMath math="x^2 - 4x - 8y + 12 = 0" />
+
+Durch quadratische Ergänzung bringen wir die Gleichung in Standardform:
+
+<MathContainer>
+  <BlockMath math="x^2 - 4x - 8y + 12 = 0" />
+  <BlockMath math="x^2 - 4x = 8y - 12" />
+  <BlockMath math="x^2 - 4x + 4 = 8y - 12 + 4" />
+  <BlockMath math="(x-2)^2 = 8y - 8" />
+  <BlockMath math="(x-2)^2 = 8(y-1)" />
+</MathContainer>
+
+Aus <InlineMath math="(x-2)^2 = 8(y-1)" /> lesen wir ab:
+
+- <InlineMath math="h = 2" />, <InlineMath math="k = 1" />
+- <InlineMath math="4p = 8" />, also <InlineMath math="p = 2" />
+
+Damit stehen die Parabelelemente fest:
+
+<LineEquation
+  title={<>Parabelanalyse <InlineMath math="(x-2)^2 = 8(y-1)" /></>}
+  description={<>Scheitelpunkt <InlineMath math="(2,1)" />, Brennpunkt <InlineMath math="(2,3)" />, Leitlinie <InlineMath math="y = -1" /> und <InlineMath math="p = 2" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 81 }, (_, i) => {
+        const x = (i - 40) / 8; // x from -5 to 5
+        const h = 2, k = 1, p = 2;
+        const y = k + (1/(4*p)) * Math.pow(x - h, 2); // (x-h)² = 4p(y-k)
+        return { x, y, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="(x-2)^2=8(y-1)" />, at: 60, offset: [2, 1.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }], // vertex (h,k)
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <>Scheitelpunkt <InlineMath math="(2,1)" /></>, at: 0, offset: [-1, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 3, z: 0 }], // focus (h, k+p) = (2, 1+2)
+      color: "#65a30d",
+      showPoints: true,
+      labels: [{ text: <>Fokus <InlineMath math="(2,3)" /></>, at: 0, offset: [0.8, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = -2 + i * 8;
+        const y = -1; // directrix y = k-p = 1-2 = -1
+        return { x, y, z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <>Leitlinie <InlineMath math="y=-1" /></>, at: 1, offset: [0, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -2;
+        const yMax = 6;
+        const x = 2; // axis of symmetry x = h = 2
+        return { x, y: yMin + i * (yMax - yMin), z: 0 };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both" },
+      labels: [{ text: <>Symmetrieachse <InlineMath math="x=2" /></>, at: 1, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const xMin = -3;
+        const xMax = 7;
+        const y = 0;
+        return {
+          x: xMin + i * (xMax - xMin),
+          y: y,
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const yMin = -3;
+        const yMax = 7;
+        const x = 0;
+        return {
+          x: x,
+          y: yMin + i * (yMax - yMin),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+Aus dieser Analyse erhalten wir:
+
+<MathContainer>
+  <BlockMath math="\text{Scheitelpunkt:} (2, 1)" />
+  <BlockMath math="\text{Brennpunkt:} (2, 3)" />
+  <BlockMath math="\text{Leitlinie:} y = -1" />
+  <BlockMath math="\text{Symmetrieachse:} x = 2" />
+  <BlockMath math="\text{Öffnungsrichtung: nach oben, da } p = 2 > 0\text{ gilt}" />
+</MathContainer>
+
+## Beispiele mit vollständiger Lösung
+
+Zwei Aufgaben verbinden nun die Standardform mit Scheitelpunkt und Brennpunkt.
+
+**Aufgabe** <InlineMath math="1" />: Bestimme die Gleichung einer Parabel mit Scheitelpunkt <InlineMath math="(1, -2)" /> und Brennpunkt <InlineMath math="(4, -2)" />.
+
+**Lösung**:
+
+Da Scheitelpunkt und Fokus die gleiche <InlineMath math="y" />-Koordinate haben, ist diese Parabel **horizontal**.
+
+<MathContainer>
+  <BlockMath math="\text{Scheitelpunkt:} (h, k) = (1, -2)" />
+  <BlockMath math="\text{Fokus:} (h+p, k) = (4, -2)" />
+</MathContainer>
+
+Aus der Brennpunktbedingung folgt <InlineMath math="h + p = 4" />. Mit <InlineMath math="h = 1" /> erhalten wir:
+
+<BlockMath math="1 + p = 4 \Rightarrow p = 3" />
+
+Die Gleichung für eine horizontale Parabel lautet <InlineMath math="(y-k)^2 = 4p(x-h)" />:
+
+<MathContainer>
+  <BlockMath math="(y-(-2))^2 = 4(3)(x-1)" />
+  <BlockMath math="(y+2)^2 = 12(x-1)" />
+</MathContainer>
+
+**Aufgabe** <InlineMath math="2" />: Bestimme für die Parabel <InlineMath math="y^2 - 6y - 4x + 13 = 0" /> die Koordinaten von Scheitelpunkt und Brennpunkt.
+
+**Lösung**:
+
+Wir ergänzen den Term in <InlineMath math="y" /> zu einem vollständigen Quadrat:
+
+<MathContainer>
+  <BlockMath math="y^2 - 6y - 4x + 13 = 0" />
+  <BlockMath math="y^2 - 6y = 4x - 13" />
+  <BlockMath math="y^2 - 6y + 9 = 4x - 13 + 9" />
+  <BlockMath math="(y-3)^2 = 4x - 4" />
+  <BlockMath math="(y-3)^2 = 4(x-1)" />
+</MathContainer>
+
+Aus <InlineMath math="(y-3)^2 = 4(x-1)" /> lesen wir ab:
+
+<MathContainer>
+  <BlockMath math="h = 1, \quad k = 3" />
+  <BlockMath math="4p = 4 \Rightarrow p = 1" />
+</MathContainer>
+
+Damit folgt:
+
+<MathContainer>
+  <BlockMath math="\text{Scheitelpunkt:} (h, k) = (1, 3)" />
+  <BlockMath math="\text{Brennpunkt:} (h+p, k) = (1+1, 3) = (2, 3)" />
+</MathContainer>

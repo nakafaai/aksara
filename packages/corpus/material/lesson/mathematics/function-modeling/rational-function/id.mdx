@@ -1,193 +1,203 @@
 export const metadata = {
   title: "Fungsi Rasional",
-  description: "Pelajari fungsi rasional dengan contoh nyata, cara mencari domain, teknik penyederhanaan, dan operasi. Pahami melalui masalah praktis seperti desain kandang ayam.",
+  description: "Pelajari fungsi rasional melalui batasan domain, penyederhanaan yang ekuivalen, operasi hitung, serta model nyata seperti luas dan waktu tempuh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Fungsi dan Pemodelannya",
 };
 
-## Apa itu Fungsi Rasional?
+## Apa Itu Fungsi Rasional?
 
-Pernahkah kamu melihat pecahan dalam matematika? Nah, fungsi rasional itu mirip dengan pecahan, tapi lebih menarik karena melibatkan variabel!
+Fungsi rasional adalah hasil bagi dua polinomial. Bentuk umumnya
 
-Fungsi rasional adalah fungsi yang berbentuk pecahan, di mana pembilang dan penyebutnya adalah fungsi polinomial. Secara sederhana, fungsi rasional bisa ditulis sebagai:
+<BlockMath math="f(x)=\frac{P(x)}{Q(x)}" />
 
-<BlockMath math="f(x) = \frac{P(x)}{Q(x)}" />
+dengan <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> berupa polinomial, serta <InlineMath math="Q(x)" /> bukan polinomial nol.
 
-Di mana:
+Penyebut membawa satu aturan penting: setiap input yang membuat <InlineMath math="Q(x)=0" /> harus dikeluarkan dari domain. Batasan itu tetap menjadi bagian dari fungsi meskipun suatu faktor persekutuan kemudian habis dicoret.
 
-- <InlineMath math="P(x)" /> adalah polinomial di pembilang
-- <InlineMath math="Q(x)" /> adalah polinomial di penyebut
-- <InlineMath math="Q(x) \neq 0" /> (penyebut tidak boleh nol)
+## Model Rasional dari Luas
 
-## Contoh Fungsi Rasional dalam Kehidupan
-
-Mari kita lihat contoh nyata untuk memahami fungsi rasional lebih baik.
-
-**Masalah Kandang Ayam:**
-
-Pak Budi ingin membuat kandang ayam berbentuk persegi panjang dengan luas <InlineMath math="100 \text{ m}^2" />. Dia ingin tahu hubungan antara panjang dan lebar kandang.
-
-Jika panjang kandang adalah <InlineMath math="x \text{ meter}" />, maka:
-
-- <InlineMath math="\text{Luas} = \text{panjang} \times \text{lebar} = 100" />
-- <InlineMath math="x \times \text{lebar} = 100" />
-- Lebar adalah <InlineMath math="\frac{100}{x}" />
-
-Fungsi <InlineMath math="f(x) = \frac{100}{x}" /> adalah contoh fungsi rasional!
-
-## Bentuk-bentuk Fungsi Rasional
-
-### Fungsi Rasional Sederhana
-
-Bentuk paling sederhana dari fungsi rasional:
-
-<BlockMath math="f(x) = \frac{k}{x}" />
-
-Di mana <InlineMath math="k" /> adalah konstanta. Contoh: <InlineMath math="f(x) = \frac{5}{x}" />
-
-### Fungsi Rasional Linear
-
-Pembilang dan penyebutnya adalah fungsi linear:
-
-<BlockMath math="f(x) = \frac{ax + b}{cx + d}" />
-
-Contoh: <InlineMath math="f(x) = \frac{2x + 3}{x - 1}" />
-
-### Fungsi Rasional Kuadrat
-
-Melibatkan fungsi kuadrat di pembilang atau penyebut:
-
-<BlockMath math="f(x) = \frac{x^2 + 2x + 1}{x - 3}" />
-
-## Domain Fungsi Rasional
-
-Domain fungsi rasional adalah semua nilai <InlineMath math="x" /> yang membuat fungsi terdefinisi. Ingat, penyebut tidak boleh nol!
-
-**Cara mencari domain:**
-
-1. Cari nilai <InlineMath math="x" /> yang membuat penyebut <InlineMath math="= 0" />
-2. Domain adalah semua bilangan real kecuali nilai-nilai tersebut
-
-**Contoh:** Tentukan domain dari <InlineMath math="f(x) = \frac{x + 2}{x - 3}" />
-
-**Penyelesaian:**
-
-- Penyebut nol ketika: <InlineMath math="x - 3 = 0" />
-- Jadi: <InlineMath math="x = 3" />
-- Domain: <InlineMath math="D_f = \{x | x \neq 3, x \in \mathbb{R}\}" />
-
-## Menyederhanakan Fungsi Rasional
-
-Fungsi rasional bisa disederhanakan dengan mencari faktor persekutuan pembilang dan penyebut.
-
-### Tanpa Pemfaktoran
-
-Sederhanakan: <InlineMath math="f(x) = \frac{6x^2}{3x}" />
-
-**Penyelesaian:**
+Pak Budi merencanakan kandang ayam berbentuk persegi panjang dengan luas <InlineMath math="100\text{ m}^2" />. Misalkan panjangnya <InlineMath math="x\text{ m}" /> dan lebarnya <InlineMath math="w\text{ m}" />. Maka
 
 <MathContainer>
-  <BlockMath math="f(x) = \frac{6x^2}{3x}" />
-  <BlockMath math="= \frac{6x \cdot x}{3x}" />
-  <BlockMath math="= \frac{6x}{3} \cdot \frac{x}{x}" />
-  <BlockMath math="= 2x" />
+  <BlockMath math="xw=100" />
+  <BlockMath math="w(x)=\frac{100}{x}" />
 </MathContainer>
 
-### Dengan Pemfaktoran
+Rumus ini merupakan fungsi rasional karena variabel muncul pada penyebut. Dalam situasi nyata, kedua ukuran harus positif. Jadi, domain yang bermakna secara fisik adalah <InlineMath math="x>0" />, bukan sekadar <InlineMath math="x\neq 0" />.
 
-Sederhanakan: <InlineMath math="f(x) = \frac{x^2 - 4}{x - 2}" />
+Model ini juga menunjukkan hubungan timbal balik: jika kandang dibuat lebih panjang, lebarnya harus mengecil agar luasnya tetap.
 
-**Penyelesaian:**
+## Bentuk yang Sering Dijumpai
+
+### Bentuk Kebalikan
+
+Bentuk kebalikan yang paling dasar adalah
+
+<BlockMath math="f(x)=\frac{k}{x}" />
+
+dengan <InlineMath math="k" /> suatu konstanta. Sebagai contoh, <InlineMath math="f(x)=\frac{5}{x}" /> memiliki domain <InlineMath math="x\neq 0" />.
+
+### Bentuk Linear per Linear
+
+Jika pembilang dan penyebutnya linear,
+
+<BlockMath math="f(x)=\frac{ax+b}{cx+d}" />
+
+syarat penyebutnya adalah <InlineMath math="cx+d\neq 0" />. Contohnya, <InlineMath math="f(x)=\frac{2x+3}{x-1}" /> memiliki domain yang tidak memuat <InlineMath math="x=1" />.
+
+### Bentuk Berderajat Lebih Tinggi
+
+Salah satu atau kedua polinomial dapat berderajat dua atau lebih. Sebagai contoh,
+
+<BlockMath math="f(x)=\frac{x^2+2x+1}{x-3}" />
+
+tetap merupakan fungsi rasional, dengan <InlineMath math="x=3" /> dikeluarkan dari domain.
+
+## Menentukan Domain
+
+Untuk menentukan domain real suatu fungsi rasional:
+
+1. Samakan penyebut awal dengan nol.
+2. Cari semua nilai yang membuatnya nol.
+3. Keluarkan nilai-nilai tersebut dari himpunan bilangan real.
+
+Untuk
+
+<BlockMath math="f(x)=\frac{x+2}{x-3}," />
+
+penyebut bernilai nol ketika
 
 <MathContainer>
-  <BlockMath math="f(x) = \frac{x^2 - 4}{x - 2}" />
-  <BlockMath math="= \frac{(x + 2)(x - 2)}{x - 2}" />
-  <BlockMath math="= x + 2" />
+  <BlockMath math="x-3=0" />
+  <BlockMath math="x=3." />
 </MathContainer>
 
-Catatan: <InlineMath math="x \neq 2" /> (dari domain awal)
+Jadi,
 
-## Operasi pada Fungsi Rasional
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq 3\}." />
+
+## Menyederhanakan Tanpa Kehilangan Domain
+
+Faktor persekutuan hanya boleh dicoret pada nilai yang membuat faktor itu tidak nol. Bentuk sederhana memberikan keluaran yang sama pada domain awal, tetapi tidak mengembalikan input yang sudah dikeluarkan.
+
+### Mencoret Faktor Monomial
+
+Sederhanakan
+
+<BlockMath math="f(x)=\frac{6x^2}{3x}." />
+
+Penyebut awal mensyaratkan <InlineMath math="x\neq 0" />. Pada domain itu,
+
+<MathContainer>
+  <BlockMath math="\frac{6x^2}{3x}=\frac{3x\cdot 2x}{3x}" />
+  <BlockMath math="=2x,\qquad x\neq 0." />
+</MathContainer>
+
+Walaupun bentuk <InlineMath math="2x" /> terdefinisi saat <InlineMath math="x=0" />, fungsi rasional semula tidak terdefinisi di sana.
+
+### Mencoret Setelah Memfaktorkan
+
+Sederhanakan
+
+<BlockMath math="g(x)=\frac{x^2-4}{x-2}." />
+
+Catat dahulu <InlineMath math="x\neq 2" />, lalu faktorkan selisih dua kuadrat:
+
+<MathContainer>
+  <BlockMath math="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}" />
+  <BlockMath math="=x+2,\qquad x\neq 2." />
+</MathContainer>
+
+Grafiknya sama dengan garis <InlineMath math="y=x+2" />, kecuali terdapat lubang pada <InlineMath math="x=2" />.
+
+## Operasi pada Bentuk Rasional
 
 ### Penjumlahan dan Pengurangan
 
-Sama seperti pecahan biasa, kita perlu samakan penyebutnya dulu!
-
-**Contoh:** <InlineMath math="\frac{2}{x} + \frac{3}{x + 1}" />
-
-**Penyelesaian:**
+Gunakan penyebut bersama dan pertahankan semua batasan dari penyebut awal.
 
 <MathContainer>
-  <BlockMath math="\frac{2}{x} + \frac{3}{x + 1}" />
-  <BlockMath math="= \frac{2(x + 1)}{x(x + 1)} + \frac{3x}{x(x + 1)}" />
-  <BlockMath math="= \frac{2(x + 1) + 3x}{x(x + 1)}" />
-  <BlockMath math="= \frac{2x + 2 + 3x}{x(x + 1)}" />
-  <BlockMath math="= \frac{5x + 2}{x(x + 1)}" />
+  <BlockMath math="\frac{2}{x}+\frac{3}{x+1}" />
+  <BlockMath math="=\frac{2(x+1)+3x}{x(x+1)}" />
+  <BlockMath math="=\frac{5x+2}{x(x+1)},\qquad x\neq 0,-1." />
 </MathContainer>
 
 ### Perkalian
 
-Kalikan pembilang dengan pembilang, penyebut dengan penyebut:
+Kalikan pembilang dengan pembilang dan penyebut dengan penyebut, lalu faktorkan sebelum mencoret:
 
-<BlockMath math="\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}" />
+<MathContainer>
+  <BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}" />
+  <BlockMath math="=\frac{2x(x+1)}{x(x-1)}" />
+  <BlockMath math="=\frac{2(x+1)}{x-1},\qquad x\neq 0,1." />
+</MathContainer>
 
-**Contoh:** <InlineMath math="\frac{x + 1}{x} \times \frac{2x}{x - 1}" />
-
-**Penyelesaian:**
-
-<BlockMath math="\frac{x + 1}{x} \times \frac{2x}{x - 1} = \frac{2x(x + 1)}{x(x - 1)} = \frac{2(x + 1)}{x - 1}" />
+Habisnya faktor <InlineMath math="x" /> tidak menghapus batasan awal <InlineMath math="x\neq 0" />.
 
 ### Pembagian
 
-Ingat, membagi berarti mengalikan dengan kebalikannya:
+Membagi dengan pecahan berarti mengalikan dengan kebalikannya:
 
-<BlockMath math="\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c} = \frac{ad}{bc}" />
+<BlockMath math="\frac{a}{b}\div\frac{c}{d}=\frac{a}{b}\cdot\frac{d}{c}=\frac{ad}{bc}." />
+
+Operasi ini memerlukan <InlineMath math="b\neq 0" /> dan <InlineMath math="d\neq 0" /> agar kedua pecahan awal terdefinisi, serta <InlineMath math="c\neq 0" /> agar pembaginya tidak bernilai nol.
 
 ## Latihan
 
-1. Tentukan domain dari <InlineMath math="f(x) = \frac{x + 3}{x^2 - 9}" />
+1. Tentukan domain <InlineMath math="f(x)=\frac{x+3}{x^2-9}" />.
 
-2. Sederhanakan <InlineMath math="f(x) = \frac{x^2 - 1}{x + 1}" />
+2. Sederhanakan <InlineMath math="g(x)=\frac{x^2-1}{x+1}" /> dan pertahankan batasan awalnya.
 
-3. Hitung <InlineMath math="\frac{1}{x - 1} - \frac{2}{x + 1}" />
+3. Hitung <InlineMath math="\frac{1}{x-1}-\frac{2}{x+1}" /> dan nyatakan batasan domainnya.
 
-4. Sebuah mobil menempuh jarak <InlineMath math="300 \text{ km}" />. Jika kecepatan rata-rata <InlineMath math="v \text{ km/jam}" />, tuliskan fungsi waktu tempuh dalam <InlineMath math="v" />.
+4. Sebuah mobil menempuh jarak <InlineMath math="300\text{ km}" /> dengan kecepatan rata-rata <InlineMath math="v\text{ km/jam}" />. Tuliskan waktu tempuh sebagai fungsi <InlineMath math="v" /> dan nyatakan domain yang bermakna secara fisik.
 
-### Kunci Jawaban
+### Pembahasan
 
-**Jawaban** <InlineMath math="1" />:
+#### 1. Domain
 
-<MathContainer>
-  <BlockMath math="x^2 - 9 = 0" />
-  <BlockMath math="(x + 3)(x - 3) = 0" />
-  <BlockMath math="x = -3 \text{ atau} x = 3" />
-</MathContainer>
-
-Domain: <InlineMath math="D_f = \{x | x \neq -3, x \neq 3, x \in \mathbb{R}\}" />
-
-**Jawaban** <InlineMath math="2" />:
+Pembilang tidak menentukan domain. Faktorkan penyebut:
 
 <MathContainer>
-  <BlockMath math="f(x) = \frac{x^2 - 1}{x + 1}" />
-  <BlockMath math="= \frac{(x + 1)(x - 1)}{x + 1}" />
-  <BlockMath math="= x - 1" />
+  <BlockMath math="x^2-9=(x-3)(x+3)" />
+  <BlockMath math="(x-3)(x+3)=0\Longrightarrow x=3\text{ atau }x=-3." />
 </MathContainer>
 
-Dengan syarat <InlineMath math="x \neq -1" />
+Kedua nilai membuat penyebut awal bernilai nol. Jadi,
 
-**Jawaban** <InlineMath math="3" />:
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq -3,\ x\neq 3\}." />
+
+#### 2. Penyederhanaan
+
+Penyebut awal memberikan syarat <InlineMath math="x\neq -1" />. Faktorkan dan coret hanya pada domain tersebut:
 
 <MathContainer>
-  <BlockMath math="\frac{1}{x - 1} - \frac{2}{x + 1}" />
-  <BlockMath math="= \frac{(x + 1) - 2(x - 1)}{(x - 1)(x + 1)}" />
-  <BlockMath math="= \frac{x + 1 - 2x + 2}{(x - 1)(x + 1)}" />
-  <BlockMath math="= \frac{-x + 3}{(x - 1)(x + 1)}" />
+  <BlockMath math="\frac{x^2-1}{x+1}=\frac{(x-1)(x+1)}{x+1}" />
+  <BlockMath math="=x-1,\qquad x\neq -1." />
 </MathContainer>
 
-**Jawaban** <InlineMath math="4" />:
+Rumus sederhana itu tetap memiliki lubang pada input <InlineMath math="x=-1" />.
+
+#### 3. Pengurangan
+
+Penyebut awal mensyaratkan <InlineMath math="x\neq 1" /> dan <InlineMath math="x\neq -1" />. Dengan <InlineMath math="(x-1)(x+1)" /> sebagai penyebut bersama,
 
 <MathContainer>
-  <BlockMath math="\text{Waktu} = \frac{\text{Jarak}}{\text{Kecepatan}}" />
-  <BlockMath math="t(v) = \frac{300}{v}" />
+  <BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}" />
+  <BlockMath math="=\frac{x+1-2(x-1)}{(x-1)(x+1)}" />
+  <BlockMath math="=\frac{x+1-2x+2}{(x-1)(x+1)}" />
+  <BlockMath math="=\frac{3-x}{(x-1)(x+1)},\qquad x\neq -1,1." />
 </MathContainer>
+
+#### 4. Model Waktu Tempuh
+
+Waktu sama dengan jarak dibagi kecepatan:
+
+<MathContainer>
+  <BlockMath math="\text{waktu}=\frac{\text{jarak}}{\text{kecepatan}}" />
+  <BlockMath math="t(v)=\frac{300}{v}." />
+</MathContainer>
+
+Secara aljabar, <InlineMath math="v\neq 0" />. Untuk mobil yang sedang bergerak, kecepatan harus positif. Jadi, model fisiknya memakai <InlineMath math="v>0" />.

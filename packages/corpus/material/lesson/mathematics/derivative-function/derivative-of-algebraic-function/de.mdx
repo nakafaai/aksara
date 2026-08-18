@@ -1,0 +1,114 @@
+export const metadata = {
+  title: "Ableitungen algebraischer Funktionen",
+  description: "Algebraische Funktionen mit Potenz-, Produkt- und Quotientenregel ableiten und die passende Methode für Polynome, Wurzeln und rationale Funktionen auswählen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Ableitungsfunktionen",
+};
+
+## Anwendung der Ableitungsregeln
+
+Nachdem wir die verschiedenen [Ableitungsregeln](/de/faecher/mathematik/ableitungen/ableitungsregeln) kennengelernt haben, wenden wir sie nun auf algebraische Funktionen an. Ob Polynom, rationale Funktion oder Wurzelfunktion: Entscheidend ist, die Struktur zu erkennen und die passende Regel zu wählen. Die folgenden Beispiele zeigen diese Strategie Schritt für Schritt.
+
+## Ableitungsregeln auf algebraische Funktionen anwenden
+
+Jedes Beispiel behandelt eine andere algebraische Form und begründet die Wahl der Methode.
+
+### Differenzieren eines Polynoms
+
+Bestimme die erste Ableitung von <InlineMath math="y = 4x^2 + x + 2" />.
+
+**Lösung:**
+
+Wir können jeden Term einzeln differenzieren, indem wir die Potenzregel und die Konstantenregel verwenden.
+
+<MathContainer>
+  <BlockMath math="y' = (4 \cdot 2)x^{2-1} + (1 \cdot 1)x^{1-1} + 0" />
+  <BlockMath math="y' = 8x^1 + 1x^0" />
+  <BlockMath math="y' = 8x + 1 \quad (\text{da} x^0=1)" />
+</MathContainer>
+
+### Funktionen mit Wurzeln ableiten
+
+Bestimme für <InlineMath math="x>0" /> die erste Ableitung von <InlineMath math="y = x\sqrt{x^3}" />.
+
+**Lösung:**
+
+Es gibt zwei Möglichkeiten, dieses Problem zu lösen.
+
+**Methode <InlineMath math="1" />: Produktregel**
+
+Zuerst wandeln wir die Wurzelform in einen Exponenten um: <InlineMath math="y = x \cdot x^{3/2}" />.
+
+Seien <InlineMath math="u(x) = x" /> und <InlineMath math="v(x) = x^{3/2}" />. Dann <InlineMath math="u'(x)=1" /> und <InlineMath math="v'(x) = \frac{3}{2}x^{1/2}" />.
+
+<MathContainer>
+  <BlockMath math="y' = u'(x)v(x) + u(x)v'(x)" />
+  <BlockMath math="y' = (1)(x^{3/2}) + (x)(\frac{3}{2}x^{1/2})" />
+  <BlockMath math="y' = x^{3/2} + \frac{3}{2}x^{3/2}" />
+  <BlockMath math="y' = \frac{5}{2}x^{3/2}" />
+</MathContainer>
+
+**Methode <InlineMath math="2" />: Zuerst vereinfachen**
+
+Wir können die Funktion vereinfachen, bevor wir sie differenzieren.
+
+<MathContainer>
+  <BlockMath math="y = x \cdot x^{3/2} = x^{1 + 3/2} = x^{5/2}" />
+  <BlockMath math="y' = \frac{5}{2}x^{5/2 - 1} = \frac{5}{2}x^{3/2}" />
+</MathContainer>
+
+> Beide Methoden liefern dasselbe Ergebnis. Das Vereinfachen ist hier kürzer, während die Produktregel nachvollziehbar macht, weshalb das Ergebnis stimmt. Als reellwertige Funktion hat der ursprüngliche Ausdruck den Definitionsbereich <InlineMath math="x \ge 0" />; die Ableitung oben wird im Inneren dieses Bereichs, also für <InlineMath math="x>0" />, bestimmt.
+
+### Rationale Funktionen ableiten
+
+Bestimme im Definitionsbereich <InlineMath math="x\ne0" /> die erste Ableitung von <InlineMath math="y = 2\left(\frac{x^2+2}{x}\right)" />.
+
+**Lösung:**
+
+Wir verwenden die Quotientenregel. Seien <InlineMath math="u(x) = x^2+2" /> und <InlineMath math="v(x) = x" />. Dann <InlineMath math="u'(x) = 2x" /> und <InlineMath math="v'(x) = 1" />.
+
+<MathContainer>
+  <BlockMath math="y' = 2 \cdot \left(\frac{u'(x)v(x) - u(x)v'(x)}{[v(x)]^2}\right)" />
+  <BlockMath math="y' = 2 \cdot \left(\frac{(2x)(x) - (x^2+2)(1)}{x^2}\right)" />
+  <BlockMath math="y' = 2 \cdot \left(\frac{2x^2 - x^2 - 2}{x^2}\right)" />
+  <BlockMath math="y' = 2 \cdot \left(\frac{x^2 - 2}{x^2}\right)" />
+  <BlockMath math="y' = 2 \cdot \left(\frac{x^2}{x^2} - \frac{2}{x^2}\right) = 2 \cdot \left(1 - \frac{2}{x^2}\right) = 2 - \frac{4}{x^2}" />
+</MathContainer>
+
+Die Einschränkung <InlineMath math="x\ne0" /> gehört weiterhin zum Definitionsbereich der Ableitung.
+
+## Übungen
+
+1.  Bestimme für <InlineMath math="x>0" /> die erste Ableitung von <InlineMath math="y = \frac{\sqrt{x} + x^2}{2x}" />.
+
+### Ausführliche Lösung
+
+1.  Am einfachsten ist es, die Funktion vor dem Ableiten zu vereinfachen.
+
+    **Schritt** <InlineMath math="1" />: Bruch aufteilen
+
+    Zur Vereinfachung können wir den Bruch in zwei separate Teile aufteilen.
+
+    <BlockMath math="y = \frac{\sqrt{x}}{2x} + \frac{x^2}{2x}" />
+
+    **Schritt** <InlineMath math="2" />: Jeden Term vereinfachen
+
+    Schreibe die Quadratwurzel als Potenz <InlineMath math="x^{1/2}" /> und vereinfache jeden Term mit den Potenzgesetzen.
+
+    <MathContainer>
+      <BlockMath math="y = \frac{x^{1/2}}{2x^1} + \frac{x^2}{2x^1}" />
+      <BlockMath math="y = \frac{1}{2}x^{1/2 - 1} + \frac{1}{2}x^{2-1}" />
+      <BlockMath math="y = \frac{1}{2}x^{-1/2} + \frac{1}{2}x" />
+    </MathContainer>
+
+    **Schritt** <InlineMath math="3" />: Potenzregel anwenden
+
+    Sobald die Funktion vereinfacht ist, können wir sie Term für Term direkt differenzieren.
+
+    <MathContainer>
+      <BlockMath math="y' = \frac{1}{2}\left(-\frac{1}{2}x^{-1/2 - 1}\right) + \frac{1}{2}(1)" />
+      <BlockMath math="y' = -\frac{1}{4}x^{-3/2} + \frac{1}{2}" />
+    </MathContainer>
+
+    Die erste Ableitung ist also <InlineMath math="\frac{1}{2} - \frac{1}{4}x^{-3/2}" />.

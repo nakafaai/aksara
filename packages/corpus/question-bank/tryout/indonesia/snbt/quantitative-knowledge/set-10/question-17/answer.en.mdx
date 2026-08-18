@@ -4,7 +4,7 @@ export const metadata = {
   date: "2025-12-27",
 };
 
-Let's define the events as follows:
+Define the sample space and events:
 - <InlineMath math="S" /> = Sample space (total eggs)
 - <InlineMath math="D" /> = Event of picking a duck egg
 - <InlineMath math="C" /> = Event of picking a chicken egg
@@ -26,13 +26,13 @@ The total number of broken eggs (<InlineMath math="n(B)" />) is:
   <BlockMath math="n(B) = 5 + 5 = 10" />
 </MathContainer>
 
-We are asked to find the probability of picking a duck egg **or** a broken egg (<InlineMath math="D \cup B" />). The formula for the probability of the union of two events is:
+The event "duck egg or broken egg" is the union <InlineMath math="D \cup B" />:
 
 <MathContainer>
   <BlockMath math="P(D \cup B) = \frac{n(D \cup B)}{n(S)}" />
 </MathContainer>
 
-Where <InlineMath math="n(D \cup B)" /> can be calculated using the inclusion-exclusion principle:
+Use inclusion-exclusion to avoid counting the broken duck eggs twice:
 
 <MathContainer>
   <BlockMath math="n(D \cup B) = n(D) + n(B) - n(D \cap B)" />
@@ -40,7 +40,7 @@ Where <InlineMath math="n(D \cup B)" /> can be calculated using the inclusion-ex
 
 - <InlineMath math="n(D) = 10" /> (number of duck eggs)
 - <InlineMath math="n(B) = 10" /> (total number of broken eggs)
-- <InlineMath math="n(D \cap B)" /> is the number of eggs that are both duck eggs **and** broken. From the calculation above, there are <InlineMath math="5" /> broken duck eggs.
+- <InlineMath math="n(D \cap B)" /> counts eggs that are both duck eggs and broken. There are <InlineMath math="5" /> such eggs.
 
 Thus:
 

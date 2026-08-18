@@ -1,0 +1,41 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-25",
+};
+
+Zunächst vereinfachen wir <InlineMath math="P" />.
+Wegen <InlineMath math="4^x = (2^2)^x = (2^x)^2" /> ist <InlineMath math="4^x - 1" /> eine Differenz zweier Quadrate. Sie lässt sich als <InlineMath math="(2^x - 1)(2^x + 1)" /> faktorisieren.
+
+<MathContainer>
+  <BlockMath math="P = \frac{4^x - 1}{2^x - 1}" />
+  <BlockMath math="P = \frac{(2^x - 1)(2^x + 1)}{2^x - 1}" />
+  <BlockMath math="P = 2^x + 1" />
+</MathContainer>
+
+Nun betrachten wir <InlineMath math="Q" />:
+
+<MathContainer>
+  <BlockMath math="Q = \frac{2^x + 1}{2^x}" />
+</MathContainer>
+
+Die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> ergibt sich, wenn wir <InlineMath math="P = 2^x + 1" /> in die Formel für <InlineMath math="Q" /> einsetzen:
+
+<MathContainer>
+  <BlockMath math="Q = \frac{P}{2^x}" />
+  <BlockMath math="P = Q \cdot 2^x" />
+</MathContainer>
+
+Für <InlineMath math="0 < x < 1" /> untersuchen wir den Wertebereich von <InlineMath math="2^x" />:
+- Aus <InlineMath math="x > 0" /> folgt <InlineMath math="2^x > 2^0 \implies 2^x > 1" />.
+- Aus <InlineMath math="x < 1" /> folgt <InlineMath math="2^x < 2^1 \implies 2^x < 2" />.
+
+Also <InlineMath math="1 < 2^x < 2" />.
+
+In <InlineMath math="P = Q \cdot 2^x" /> ist der Faktor <InlineMath math="2^x > 1" />. Außerdem ist <InlineMath math="Q" /> positiv, weil <InlineMath math="2^x > 0" />. Die Multiplikation von <InlineMath math="Q" /> mit einem Faktor größer als <InlineMath math="1" /> ergibt daher einen größeren Wert als <InlineMath math="Q" /> selbst.
+
+<MathContainer>
+  <BlockMath math="P > Q" />
+</MathContainer>
+
+Daher ist die korrekte Beziehung <InlineMath math="P > Q" />.

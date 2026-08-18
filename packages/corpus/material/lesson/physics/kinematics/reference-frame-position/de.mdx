@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Bezugssystem und Position",
+  description:
+    "Beschreibe die Position eines Objekts mithilfe eines Bezugssystems, eines Richtungszeichens und einer eindimensionalen Koordinate.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Eine Position braucht einen Bezug
+
+Der Satz „Ich bin <InlineMath math="30 \text{ m}" /> vom Geschäft entfernt“ lässt eine Frage offen: In welcher Richtung? Auch „Ich bin im Osten“ reicht nicht aus, denn dann fehlt die Entfernung.
+
+In der Physik beschreibt die **Position** den Ort eines Objekts in einem gewählten **Bezugssystem**. Das Bezugssystem legt ein Koordinatensystem und eine positive Richtung fest. Ein Geschäft, ein Haus, ein Fahnenmast oder eine Startlinie kann darin als **Bezugspunkt**, also als Koordinatenursprung, dienen.
+
+> Eine vollständige Positionsangabe nennt Bezugspunkt, Wert, Einheit und Richtung.
+
+Wenn die Bewegung entlang einer geraden Linie erfolgt, können wir eine Richtung als positiv wählen. Im Straßenbeispiel ist Osten positiv und Westen negativ.
+
+<BlockMath math="x'=x_{\text{Objekt}}-x_{\text{Ursprung}}" />
+
+Diese Gleichung bewegt das Objekt nicht. Sie verschiebt den Koordinatenursprung, während die Achse und ihre positive Richtung unverändert bleiben.
+
+## Position bei verschiedenen Ursprüngen
+
+Ein Objekt liegt bei der Koordinate <InlineMath math="30 \text{ m}" />, wenn das Geschäft als Nullpunkt dient. Wird der Ursprung zu Ranis Haus bei <InlineMath math="20 \text{ m}" /> verschoben, lautet die neue Koordinate des Objekts <InlineMath math="+10 \text{ m}" />.
+
+Das Objekt bewegt sich nicht, wenn sich der Ursprung ändert. Nur seine Koordinate ändert sich. Wird der Ursprung nach rechts verschoben, kann aus einer großen positiven Koordinate eine kleinere positive Koordinate, null oder eine negative Koordinate werden.
+
+## Vorzeichen und Richtung lesen
+
+Das Vorzeichen einer Position sagt uns, auf welcher Seite des Bezugspunkts sich das Objekt befindet. Im Straßenbeispiel wird Osten positiv gewählt. Ein positiver Wert bedeutet also, dass sich das Objekt östlich des Bezugspunkts befindet, während ein negativer Wert bedeutet, dass sich das Objekt westlich davon befindet.
+
+| Ursprung im selben Bezugssystem | Objektkoordinate auf der Straßenachse | Koordinate relativ zum Ursprung |
+| :-------------- | :------------------------------------------------ | :--------- |
+| Geschäft bei <InlineMath math="0 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> östlich |
+| Ranis Haus bei <InlineMath math="20 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="+10 \text{ m}" /> östlich |
+| Nayas Haus bei <InlineMath math="50 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> oder <InlineMath math="20 \text{ m}" /> westlich |
+
+Der Wert <InlineMath math="-20 \text{ m}" /> bedeutet nicht, dass der Abstand negativ ist. Das negative Vorzeichen gibt nur die Richtung relativ zum Bezugspunkt an.
+
+## Ein Positionssatz, der klar bleibt
+
+Ein Positionssatz besteht aus vier Teilen. Fehlt ein Teil, kann eine andere Person den Standort des Objekts vom falschen Bezugspunkt aus ablesen.
+
+<Mermaid
+  title="Eine eindeutige Positionsangabe aufbauen"
+  description="Diese Reihenfolge verhindert, dass die Position vom falschen Bezugspunkt aus gelesen wird."
+  chart={`flowchart LR
+    A["Beobachtetes Objekt"] --> B["Ursprung und positive Richtung"]
+    B --> C["Koordinatenwert und Einheit"]
+    C --> D["Position relativ zum Ursprung"]`}
+/>
+
+Ein vollständiger Satz lautet: „Das Objekt liegt <InlineMath math="10 \text{ m}" /> östlich von Ranis Haus.“ Dieser Satz ist klar, weil er das Objekt, den Ursprung, den Betrag der Koordinate, die Einheit und die Richtung benennt.
+
+Der Satz „Das Objekt ist in der Nähe des Hauses“ reicht für die Physik nicht aus. In der Nähe welches Hauses? Wie viele Meter entfernt? Östlich oder westlich? Diese Angaben sind wichtig, weil in der Kinematik mit eindeutig bestimmten Positionen gerechnet wird.
+
+## Eine Positionsangabe relativ zum Geschäft
+
+Mit dem Geschäft als Ursprung befindet sich eine Markierung an der Koordinate <InlineMath math="40 \text{ m}" />. Dimas' Haus liegt im selben Bezugssystem bei <InlineMath math="30 \text{ m}" />. Wird der Ursprung zu Dimas' Haus verschoben, lautet die Koordinate der Markierung:
+
+<BlockMath math="\begin{aligned}
+x'
+&=x_{\text{Markierung}}-x_{\text{Dimas}} \\
+&=40 \text{ m}-30 \text{ m} \\
+&=+10 \text{ m}
+\end{aligned}" />
+
+Die Markierung liegt also <InlineMath math="10 \text{ m}" /> östlich von Dimas' Haus. Mit dem Geschäft als Ursprung lautet ihre Koordinate <InlineMath math="40 \text{ m}" />. Mit Dimas' Haus als Ursprung lautet sie <InlineMath math="+10 \text{ m}" />. Beide Aussagen sind richtig, weil sie verschiedene Ursprünge in einem eindeutig beschriebenen Bezugssystem verwenden.

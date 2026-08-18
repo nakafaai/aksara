@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Deret Geometri",
-  description: "Pelajari rumus deret geometri untuk menghitung jumlah suku dengan efisien. Selesaikan masalah produksi, pola COVID-19, dan pelajari penerapannya.",
+  description: "Turunkan rumus jumlah deret geometri berhingga, tangani rasio khusus, lalu selesaikan masalah produksi kumulatif secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-08",
   subject: "Barisan dan Deret",
@@ -8,22 +8,22 @@ export const metadata = {
 
 ## Konsep Deret Geometri
 
-Perhatikan data jumlah pasien terinfeksi Covid-19 dalam tabel berikut:
+Misalkan sebuah persemaian menyiapkan bibit baru setiap bulan mengikuti pola ideal berikut:
 
-| Bulan         | Januari | Februari | Maret | April | Mei |
-| :------------ | :------ | :------- | :---- | :---- | :-- |
-| Jumlah pasien | <InlineMath math="4" /> | <InlineMath math="12" /> | <InlineMath math="36" /> | <InlineMath math="108" /> | <InlineMath math="324" /> |
+| Bulan                   | Januari | Februari | Maret | April | Mei |
+| :---------------------- | :------ | :------- | :---- | :---- | :-- |
+| Bibit baru yang disiapkan | <InlineMath math="4" /> | <InlineMath math="12" /> | <InlineMath math="36" /> | <InlineMath math="108" /> | <InlineMath math="324" /> |
 
-Data di atas menunjukkan pola peningkatan jumlah pasien setiap bulannya. Jika kita jumlahkan jumlah pasien dari bulan pertama hingga bulan tertentu, kita akan membentuk sebuah **Deret Geometri**.
+Jumlah bibit yang disiapkan tiap bulan membentuk barisan geometri. Penjumlahan seluruh bibit baru dari bulan pertama hingga bulan tertentu membentuk **deret geometri**. Karena setiap kelompok merupakan bibit yang baru disiapkan, penjumlahan ini tidak menghitung bibit yang sama dua kali.
 
-Deret Geometri adalah jumlahan suku-suku dari suatu barisan geometri. Barisan geometri adalah barisan bilangan yang perbandingan antara dua suku berurutan selalu tetap (konstan). Perbandingan ini disebut **rasio** (dilambangkan dengan <InlineMath math="r" />).
+Deret geometri adalah jumlahan suku-suku dari suatu barisan geometri. Pada barisan tersebut, setiap suku diperoleh dengan mengalikan suku sebelumnya dengan **faktor tetap** <InlineMath math="r" />. Jika suku sebelumnya tidak nol, faktor ini juga merupakan hasil bagi kedua suku berurutan tersebut.
 
-Pada data pasien Covid-19:
+Pada data bibit tersebut:
 
 - Suku pertama (<InlineMath math="a" /> atau <InlineMath math="U_1" />) adalah <InlineMath math="4" />.
 - Rasio <InlineMath math="(r) = \frac{12}{4} = \frac{36}{12} = \frac{108}{36} = \frac{324}{108} = 3" />.
 
-Jadi, barisan jumlah pasiennya adalah <InlineMath math="4, 12, 36, 108, 324" />.
+Jadi, barisan jumlah bibit bulanannya adalah <InlineMath math="4, 12, 36, 108, 324" />.
 Deret geometrinya adalah jumlahan suku-suku barisan tersebut:
 
 - Jumlah <InlineMath math="2 \text{ bulan}" /> pertama <InlineMath math="(S_2) = 4 + 12 = 16" />
@@ -33,7 +33,7 @@ Deret geometrinya adalah jumlahan suku-suku barisan tersebut:
 
 ## Menemukan Rumus Jumlah Suku Pertama
 
-Bagaimana cara menghitung jumlah <InlineMath math="n" /> suku pertama <InlineMath math="(S_n)" /> tanpa harus menjumlahkan satu per satu? Mari kita temukan rumusnya.
+Bagaimana cara menghitung jumlah <InlineMath math="n" /> suku pertama <InlineMath math="(S_n)" /> tanpa menjumlahkannya satu per satu? Perhitungan berikut menurunkan rumus tersebut.
 
 Perhatikan tabel ini yang menunjukkan proses menemukan kembali rumus jumlah deret geometri:
 
@@ -45,7 +45,7 @@ Perhatikan tabel ini yang menunjukkan proses menemukan kembali rumus jumlah dere
 | <InlineMath math="\vdots" /> | <InlineMath math="\dots" />                   | <InlineMath math="\dots" />                                             | <InlineMath math="\dots" />                             |
 | <InlineMath math="S_n" />    | <InlineMath math="\dots" />                   | <InlineMath math="\dots" />                                             | <InlineMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" /> |
 
-Dari kanan bawah di tabel, kita dapatkan bentuk umum:
+Untuk <InlineMath math="r\ne1" />, bagian kanan bawah tabel memberikan bentuk umum:
 
 <BlockMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" />
 
@@ -59,15 +59,29 @@ Substitusikan <InlineMath math="U_{n+1} = ar^n" /> dan <InlineMath math="U_1 = a
 
 Ini adalah rumus jumlah <InlineMath math="n" /> suku pertama deret geometri.
 
+Hasil yang sama dapat diturunkan dengan mengalikan jumlah tersebut dengan <InlineMath math="r" />, kemudian mengurangkannya:
+
+<MathContainer>
+  <BlockMath math="S_n=a+ar+ar^2+\cdots+ar^{n-1}" />
+  <BlockMath math="rS_n=ar+ar^2+\cdots+ar^n" />
+  <BlockMath math="(1-r)S_n=a(1-r^n)" />
+</MathContainer>
+
+Suku-suku di bagian tengah saling menghapus. Inilah alasan rumus akhirnya hanya memuat suku pertama dan pangkat sesudah suku terakhir.
+
 ## Rumus Deret Geometri
 
 Secara umum, rumus untuk menghitung jumlah <InlineMath math="n" /> suku pertama deret geometri adalah:
 
-<BlockMath math="S_n = \frac{a(r^n - 1)}{r - 1}, \text{ untuk} r > 1" />
+<BlockMath math="S_n=\frac{a(r^n-1)}{r-1},\quad r\ne1" />
 
-atau
+Bentuk yang setara adalah
 
-<BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}, \text{ untuk} r < 1" />
+<BlockMath math="S_n=\frac{a(1-r^n)}{1-r},\quad r\ne1" />
+
+Kedua bentuk berlaku untuk rasio positif maupun negatif selama <InlineMath math="r\ne1" />. Jika <InlineMath math="r=1" />, semua suku sama dengan <InlineMath math="a" />, sehingga:
+
+<BlockMath math="S_n=na" />
 
 **Keterangan:**
 
@@ -78,20 +92,20 @@ atau
 
 ## Contoh Penerapan
 
-Sebuah perusahaan sepeda pada tahun <InlineMath math="2020" /> meningkat setiap bulannya dan membentuk barisan geometri. Produksi pada bulan Januari sebanyak <InlineMath math="120 \text{ unit}" />. Pada bulan April, hasil produksi mencapai <InlineMath math="3.240 \text{ unit}" />. Berapakah total hasil produksi sepeda hingga bulan Mei?
+Dalam rencana produksi sederhana tahun <InlineMath math="2020" />, jumlah sepeda yang baru diproduksi sebuah perusahaan setiap bulan membentuk barisan geometri. Produksi Januari sebanyak <InlineMath math="120 \text{ unit}" />, sedangkan produksi April mencapai <InlineMath math="3{.}240 \text{ unit}" />. Berapa total produksi dari Januari sampai Mei?
 
 **Penyelesaian:**
 
 - Produksi Januari <InlineMath math="(U_1) = a = 120" />
-- Produksi April <InlineMath math="(U_4) = 3.240" />
+- Produksi April <InlineMath math="(U_4) = 3{.}240" />
 - Ditanya: Total produksi hingga Mei <InlineMath math="(S_5)" />
 
 **Langkah** <InlineMath math="1" />: Cari rasio <InlineMath math="(r)" />
 
 <MathContainer>
   <BlockMath math="U_4 = ar^{4-1} = ar^3" />
-  <BlockMath math="3.240 = 120 \cdot r^3" />
-  <BlockMath math="r^3 = \frac{3.240}{120}" />
+  <BlockMath math="3{.}240 = 120 \cdot r^3" />
+  <BlockMath math="r^3 = \frac{3{.}240}{120}" />
   <BlockMath math="r^3 = 27" />
   <BlockMath math="r = \sqrt[3]{27} = 3" />
 </MathContainer>
@@ -104,7 +118,24 @@ Sebuah perusahaan sepeda pada tahun <InlineMath math="2020" /> meningkat setiap 
   <BlockMath math="S_5 = \frac{120(243 - 1)}{2}" />
   <BlockMath math="S_5 = \frac{120(242)}{2}" />
   <BlockMath math="S_5 = 60 \cdot 242" />
-  <BlockMath math="S_5 = 14.520" />
+  <BlockMath math="S_5 = 14{.}520" />
 </MathContainer>
 
-Jadi, total hasil produksi sepeda hingga bulan Mei adalah <InlineMath math="14.520 \text{ unit}" />.
+Jadi, total hasil produksi sepeda hingga bulan Mei adalah <InlineMath math="14{.}520 \text{ unit}" />.
+
+Penjumlahan ini bermakna karena setiap nilai bulanan menyatakan sepeda yang baru diproduksi. Jika yang dijumlahkan adalah pengukuran berulang atas persediaan yang sama, benda yang sama justru akan terhitung lebih dari sekali.
+
+## Latihan: Rasio Negatif
+
+Hitung jumlah berhingga berikut:
+
+<BlockMath math="81-27+9-3+1" />
+
+Suku pertamanya <InlineMath math="a=81" />, rasionya <InlineMath math="r=-\frac13" />, dan banyak sukunya <InlineMath math="n=5" />. Jadi:
+
+<MathContainer>
+  <BlockMath math="S_5=81\left(\frac{1-(-1/3)^5}{1-(-1/3)}\right)" />
+  <BlockMath math="S_5=81\left(\frac{244/243}{4/3}\right)=61" />
+</MathContainer>
+
+Periksa dengan penjumlahan langsung: <InlineMath math="81-27+9-3+1=61" />.

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Identitas Fungsi Logaritma",
-  description: "Pelajari identitas logaritma meliputi rumus perkalian, pembagian, perpangkatan, dan perubahan basis. Selesaikan persamaan dengan contoh aplikasi nyata.",
+  description: "Gunakan identitas perkalian, pembagian, perpangkatan, dan perubahan basis untuk menyederhanakan bentuk, menyelesaikan persamaan, dan membaca model logaritmik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Fungsi dan Pemodelannya",
@@ -8,124 +8,126 @@ export const metadata = {
 
 ## Pengertian Identitas Logaritma
 
-Identitas logaritma adalah sifat-sifat khusus yang berlaku untuk semua fungsi logaritma. Sifat-sifat ini sangat membantu kita dalam menyederhanakan perhitungan dan menyelesaikan persamaan logaritma yang rumit.
+Identitas logaritma mengubah perkalian menjadi penjumlahan, pembagian menjadi pengurangan, dan pangkat menjadi koefisien. Perubahan ini mempermudah banyak bentuk dan persamaan logaritma.
 
-Sebelum membahas identitas logaritma, mari ingat kembali bahwa logaritma adalah kebalikan dari eksponen. Jika <InlineMath math="b^x = a" />, maka <InlineMath math="^b\log a = x" />.
+Ingat bahwa logaritma membalikkan perpangkatan. Jika <InlineMath math="b^x = a" />, maka <InlineMath math="\log_b a = x" />. Dalam materi ini, setiap argumen logaritma bernilai positif dan basisnya memenuhi <InlineMath math="b>0" /> serta <InlineMath math="b\neq1" />.
 
 ## Identitas Dasar Logaritma
 
 ### Identitas Perkalian
 
-<BlockMath math="^b\log(MN) = {^b\log M} + {^b\log N}" />
+<BlockMath math="\log_b(MN) = {\log_b M} + {\log_b N}" />
 
 Logaritma dari perkalian sama dengan penjumlahan logaritma masing-masing bilangan.
 
 **Contoh:**
 
-<BlockMath math="^2\log(8 \times 4) = {^2\log 8} + {^2\log 4} = 3 + 2 = 5" />
+<BlockMath math="\log_2(8 \times 4) = {\log_2 8} + {\log_2 4} = 3 + 2 = 5" />
 
 ### Identitas Pembagian
 
-<BlockMath math="^b\log\left(\frac{M}{N}\right) = {^b\log M} - {^b\log N}" />
+<BlockMath math="\log_b\left(\frac{M}{N}\right) = {\log_b M} - {\log_b N}" />
 
 Logaritma dari pembagian sama dengan pengurangan logaritma pembilang dengan logaritma penyebut.
 
 **Contoh:**
 
-<BlockMath math="^3\log\left(\frac{81}{9}\right) = {^3\log 81} - {^3\log 9} = 4 - 2 = 2" />
+<BlockMath math="\log_3\left(\frac{81}{9}\right) = {\log_3 81} - {\log_3 9} = 4 - 2 = 2" />
 
 ### Identitas Perpangkatan
 
-<BlockMath math="^b\log(M^p) = p \cdot {^b\log M}" />
+<BlockMath math="\log_b(M^p) = p \cdot {\log_b M}" />
 
 Logaritma dari suatu bilangan berpangkat sama dengan pangkat dikali logaritma bilangan tersebut.
 
 **Contoh:**
 
-<BlockMath math="^2\log(4^3) = 3 \cdot {^2\log 4} = 3 \times 2 = 6" />
+<BlockMath math="\log_2(4^3) = 3 \cdot {\log_2 4} = 3 \times 2 = 6" />
 
 ## Identitas Khusus Logaritma
 
 ### Perubahan Basis
 
-<BlockMath math="^b\log M = \frac{^a\log M}{^a\log b}" />
+<BlockMath math="\log_b M = \frac{\log_a M}{\log_a b}" />
 
 Identitas ini memungkinkan kita mengubah basis logaritma sesuai kebutuhan.
 
 **Contoh:**
 
-<BlockMath math="^3\log 9 = \frac{^{10}\log 9}{^{10}\log 3} = \frac{0{,}954}{0{,}477} = 2" />
+Karena <InlineMath math="9=3^2" />, pembilangnya tepat dua kali penyebutnya:
+
+<BlockMath math="\log_3 9 = \frac{\log_{10} 9}{\log_{10} 3} = \frac{2\log_{10}3}{\log_{10}3} = 2" />
 
 ### Identitas Kesamaan
 
-Jika <InlineMath math="^b\log M = {^b\log N}" />, maka <InlineMath math="M = N" />
+Jika <InlineMath math="\log_b M = {\log_b N}" />, maka <InlineMath math="M = N" />
 
 Dua bilangan yang memiliki nilai logaritma sama (dengan basis sama) pasti merupakan bilangan yang sama.
 
 ### Identitas Ketaksamaan
 
-- Jika <InlineMath math="b > 1" /> dan <InlineMath math="^b\log M < {^b\log N}" />, maka <InlineMath math="M < N" />
-- Jika <InlineMath math="0 < b < 1" /> dan <InlineMath math="^b\log M < {^b\log N}" />, maka <InlineMath math="M > N" />
+- Jika <InlineMath math="b > 1" /> dan <InlineMath math="\log_b M < {\log_b N}" />, maka <InlineMath math="M < N" />
+- Jika <InlineMath math="0 < b < 1" /> dan <InlineMath math="\log_b M < {\log_b N}" />, maka <InlineMath math="M > N" />
 
 ## Penerapan Identitas Logaritma
 
 ### Menyederhanakan Ekspresi
 
-Sederhanakan <InlineMath math="^2\log 32 + {^2\log 8} - {^2\log 4}" />
+Sederhanakan <InlineMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
 
 **Penyelesaian:**
 
 <MathContainer>
-  <BlockMath math="^2\log 32 + {^2\log 8} - {^2\log 4}" />
-  <BlockMath math="= {^2\log(32 \times 8)} - {^2\log 4}" />
-  <BlockMath math="= {^2\log 256} - {^2\log 4}" />
-  <BlockMath math="= {^2\log\left(\frac{256}{4}\right)}" />
-  <BlockMath math="= {^2\log 64} = 6" />
+  <BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
+  <BlockMath math="= {\log_2(32 \times 8)} - {\log_2 4}" />
+  <BlockMath math="= {\log_2 256} - {\log_2 4}" />
+  <BlockMath math="= {\log_2\left(\frac{256}{4}\right)}" />
+  <BlockMath math="= {\log_2 64} = 6" />
 </MathContainer>
 
 ### Menyelesaikan Persamaan
 
-Tentukan nilai <InlineMath math="x" /> jika <InlineMath math="^3\log x + {^3\log 9} = {^3\log 81}" />
+Tentukan nilai <InlineMath math="x" /> jika <InlineMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
 
 **Penyelesaian:**
 
 <MathContainer>
-  <BlockMath math="^3\log x + {^3\log 9} = {^3\log 81}" />
-  <BlockMath math="^3\log(x \times 9) = {^3\log 81}" />
+  <BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
+  <BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
   <BlockMath math="x \times 9 = 81" />
   <BlockMath math="x = \frac{81}{9} = 9" />
 </MathContainer>
 
-## Aplikasi dalam Kehidupan Nyata
+## Penerapan dalam Model
 
-### Skala Richter
+### Skala Magnitudo Logaritmik
 
-Kekuatan gempa bumi diukur menggunakan skala Richter yang berbasis logaritma:
+Dalam model magnitudo sederhana, amplitudo gelombang seismik terukur <InlineMath math="A" /> dibandingkan dengan amplitudo acuan <InlineMath math="A_0" />:
 
-<BlockMath math="R = \log\left(\frac{I}{I_0}\right)" />
+<BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
 
 Di mana:
 
-- <InlineMath math="R" /> = nilai skala Richter
-- <InlineMath math="I" /> = intensitas gempa
-- <InlineMath math="I_0" /> = intensitas referensi (tingkat nol)
+- <InlineMath math="M" /> adalah magnitudo dalam model sederhana ini
+- <InlineMath math="A" /> adalah amplitudo terukur
+- <InlineMath math="A_0" /> adalah amplitudo acuan
 
-**Contoh:** Gempa bumi yang terjadi di Haiti pada tahun <InlineMath math="2010" /> memiliki intensitas <InlineMath math="10^7\text{ kali}" /> dibandingkan gempa bumi tingkat nol. Berapa skala Richter kekuatan gempa tersebut?
+**Contoh:** Misalkan amplitudo terukur bernilai <InlineMath math="10^7" /> kali amplitudo acuan. Berapa magnitudo yang diberikan oleh model sederhana tersebut?
 
 **Penyelesaian:**
 
 <MathContainer>
-  <BlockMath math="R = \log\left(\frac{I}{I_0}\right)" />
-  <BlockMath math="= \log\left(\frac{10^7 I_0}{I_0}\right)" />
+  <BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+  <BlockMath math="= \log\left(\frac{10^7 A_0}{A_0}\right)" />
   <BlockMath math="= \log(10^7)" />
   <BlockMath math="= 7" />
 </MathContainer>
 
-Jadi, gempa bumi di Haiti pada tahun <InlineMath math="2010" /> tersebut memiliki kekuatan <InlineMath math="7" /> skala Richter.
+Rasio amplitudo tersebut setara dengan magnitudo <InlineMath math="7" /> dalam model sederhana ini. Perhitungan magnitudo gempa sebenarnya juga memperhitungkan instrumen, jenis gelombang, dan jarak sumber.
 
 ### Pengisian Baterai
 
-Waktu pengisian baterai dapat dihitung dengan rumus logaritma:
+Dalam model pengisian orde pertama yang disederhanakan, waktu untuk mencapai suatu bagian dari kapasitas maksimum adalah:
 
 <BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
 
@@ -148,17 +150,17 @@ Di mana:
   <BlockMath math="\approx 115{,}13" />
 </MathContainer>
 
-Jadi, waktu pengisian daya tersebut ialah sekitar <InlineMath math="115 \text{ menit}" />.
+Dalam model sederhana ini, pengisian hingga <InlineMath math="90\%" /> memerlukan sekitar <InlineMath math="115 \text{ menit}" />. Sistem pengisian nyata dapat mengubah lajunya saat kapasitas hampir penuh.
 
 ### Depresiasi Harga Mobil
 
-Fungsi logaritma juga digunakan untuk pemodelan peluruhan/penurunan nilai dengan formula:
+Jika laju penurunan nilai sesaat sebanding dengan nilai mobil saat itu, model eksponensialnya berbentuk:
 
 <BlockMath math="H(t) = ce^{kt}" />
 
 dengan <InlineMath math="H(t)" /> adalah nilai pada saat waktu <InlineMath math="t" />.
 
-**Contoh:** Pada setiap saat, harga sebuah mobil setelah digunakan tidak sebanding dengan harga saat itu. Jika harga mobil baru adalah <InlineMath math="200 \text{ juta rupiah}" /> dan setelah <InlineMath math="5 \text{ tahun}" /> menjadi <InlineMath math="100 \text{ juta rupiah}" />, tentukan harga mobil setelah <InlineMath math="10 \text{ tahun}" /> digunakan.
+**Contoh:** Harga mobil baru adalah <InlineMath math="200 \text{ juta rupiah}" /> dan nilai dalam model setelah <InlineMath math="5 \text{ tahun}" /> menjadi <InlineMath math="100 \text{ juta rupiah}" />. Jika laju penurunan eksponensial yang sama berlanjut, tentukan nilai dalam model setelah <InlineMath math="10 \text{ tahun}" />.
 
 **Penyelesaian:**
 
@@ -166,53 +168,65 @@ dengan <InlineMath math="H(t)" /> adalah nilai pada saat waktu <InlineMath math=
   <BlockMath math="H(0) = 200 \text{ juta, maka} 200 = ce^0 = c" />
   <BlockMath math="H(5) = 100 \text{ juta, maka} 100 = 200e^{5k}" />
   <BlockMath math="e^{5k} = \frac{1}{2} \text{, sehingga } 5k = \ln\left(\frac{1}{2}\right)" />
-  <BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) = -0{,}1386" />
+  <BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0{,}1386" />
 </MathContainer>
 
 Dari hasil tersebut, diperoleh harga mobil setiap saat <InlineMath math="t" /> adalah:
 
-<BlockMath math="H(t) = 200e^{-0{,}1386t}" />
+<BlockMath math="H(t) = 200e^{\frac{\ln(1/2)}{5}t} \approx 200e^{-0{,}1386t}" />
 
 Jadi, harga mobil setelah <InlineMath math="10 \text{ tahun}" /> digunakan adalah:
 
-<BlockMath math="H(10) = 200e^{-0{,}1386(10)} = 200e^{-1{,}386} \approx 50 \text{ juta rupiah}" />
+<BlockMath math="H(10) = 200e^{2\ln(1/2)} = 200\left(\frac{1}{2}\right)^2 = 50 \text{ juta rupiah}" />
 
 ## Latihan
 
 **Soal** <InlineMath math="1" />
 
-Sederhanakan: <InlineMath math="^5\log 125 + {^5\log 25} - {^5\log 5}" />
+Sederhanakan: <InlineMath math="\log_5 125 + {\log_5 25} - {\log_5 5}" />
 
 **Soal** <InlineMath math="2" />
 
-Jika <InlineMath math="^2\log x = 3" /> dan <InlineMath math="^2\log y = 5" />, tentukan nilai <InlineMath math="^2\log(xy)" />
+Jika <InlineMath math="\log_2 x = 3" /> dan <InlineMath math="\log_2 y = 5" />, tentukan nilai <InlineMath math="\log_2(xy)" />
 
 **Soal** <InlineMath math="3" />
 
-Tentukan nilai <InlineMath math="x" /> jika <InlineMath math="^4\log(x-1) = {^4\log 16} - {^4\log 2}" />
+Tentukan nilai <InlineMath math="x" /> jika <InlineMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
 
-### Kunci Jawaban
+### Pembahasan
 
 **Jawaban** <InlineMath math="1" />
 
+Setiap bilangan merupakan pangkat dari <InlineMath math="5" />. Hitung ketiga logaritma sebelum menggabungkannya:
+
 <MathContainer>
-  <BlockMath math="^5\log 125 + {^5\log 25} - {^5\log 5}" />
-  <BlockMath math="= 3 + 2 - 1 = 4" />
+  <BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
+  <BlockMath math="\log_5 125 + {\log_5 25} - {\log_5 5}=3+2-1=4" />
 </MathContainer>
+
+Nilai bentuk yang telah disederhanakan adalah <InlineMath math="4" />.
 
 **Jawaban** <InlineMath math="2" />
 
+Gunakan identitas perkalian karena bentuk yang ditanyakan memuat <InlineMath math="xy" />:
+
 <MathContainer>
-  <BlockMath math="^2\log(xy) = {^2\log x} + {^2\log y}" />
+  <BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
   <BlockMath math="= 3 + 5 = 8" />
 </MathContainer>
 
+Jadi, <InlineMath math="\log_2(xy)=8" />.
+
 **Jawaban** <InlineMath math="3" />
 
+Gunakan identitas pembagian di ruas kanan, lalu gunakan kesamaan dua logaritma dengan basis yang sama:
+
 <MathContainer>
-  <BlockMath math="^4\log(x-1) = {^4\log 16} - {^4\log 2}" />
-  <BlockMath math="^4\log(x-1) = {^4\log\left(\frac{16}{2}\right)}" />
-  <BlockMath math="^4\log(x-1) = {^4\log 8}" />
+  <BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
+  <BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
+  <BlockMath math="\log_4(x-1) = {\log_4 8}" />
   <BlockMath math="x - 1 = 8" />
   <BlockMath math="x = 9" />
 </MathContainer>
+
+Logaritma mensyaratkan <InlineMath math="x-1>0" />. Karena <InlineMath math="9-1=8>0" />, penyelesaiannya valid.

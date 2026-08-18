@@ -1,0 +1,162 @@
+export const metadata = {
+    title: "Laplacescher Entwicklungssatz",
+    description: "Lerne den Laplaceschen Entwicklungssatz kennen: systematische Determinantenberechnung mit Minoren und Kofaktoren, flexibler Zeilen- oder Spaltenwahl und der Regel von Sarrus.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-10",
+    subject: "Lineare Methoden der KI",
+};
+
+## Was ist der Laplace-Entwicklungssatz?
+
+Der Laplace-Entwicklungssatz bietet eine Möglichkeit, die Determinante einer Matrix zu berechnen, indem sie in Determinanten kleinerer Matrizen zerlegt wird. Diese Methode ist sehr nützlich, da sie es uns ermöglicht, Determinanten großer Matrizen systematisch zu berechnen.
+
+Dieser Satz bietet Flexibilität bei der Auswahl der für die Erweiterung zu verwendenden Zeile oder Spalte, sodass wir die vorteilhafteste für die Berechnung auswählen können.
+
+## Satzerklärung
+
+Für die Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> kann die Determinante auf zwei Arten berechnet werden:
+
+Dabei bezeichnet <InlineMath math="A_{ij}" /> die <InlineMath math="(n-1) \times (n-1)" />-Matrix, die entsteht, wenn man aus <InlineMath math="A" /> die Zeile <InlineMath math="i" /> und die Spalte <InlineMath math="j" /> streicht. Ihr vorzeichenbehafteter Beitrag ist der Kofaktor
+
+<BlockMath math="C_{ij}=(-1)^{i+j}\det A_{ij}" />
+
+### Entwicklung nach einer Spalte
+
+Die Entwicklung nach einer beliebigen Spalte <InlineMath math="j" /> ergibt
+
+<MathContainer>
+<BlockMath math="\det A = \sum_{i=1}^{n} (-1)^{i+j} \cdot a_{ij} \cdot \det A_{ij}" />
+</MathContainer>
+
+für eine beliebige Spalte <InlineMath math="j \in \{1, 2, \ldots, n\}" />.
+
+### Entwicklung nach einer Zeile
+
+Die Determinante kann auch anhand der Zeile <InlineMath math="i" /> berechnet werden:
+
+<MathContainer>
+<BlockMath math="\det A = \sum_{j=1}^{n} (-1)^{i+j} \cdot a_{ij} \cdot \det A_{ij}" />
+</MathContainer>
+
+für jede beliebige Zeile <InlineMath math="i \in \{1, 2, \ldots, n\}" />.
+
+## Erweiterungsbeispiele
+
+### Zwei-mal-Zwei-Matrix
+
+Für eine Matrix der Größe <InlineMath math="n = 2" />:
+
+<BlockMath math="A = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}" />
+
+Entwicklung nach der ersten Zeile:
+
+<MathContainer>
+<BlockMath math="\det A = a_{11} \cdot \det(a_{22}) - a_{12} \cdot \det(a_{21})" />
+<BlockMath math="= a_{11} \cdot a_{22} - a_{12} \cdot a_{21}" />
+</MathContainer>
+
+### Drei-mal-Drei-Matrix
+
+Für eine Matrix der Größe <InlineMath math="n = 3" />:
+
+<BlockMath math="A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}" />
+
+Entwicklung nach der ersten Zeile:
+
+<MathContainer>
+<BlockMath math="\det A = a_{11} \cdot \det \begin{pmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{pmatrix}" />
+<BlockMath math="- a_{12} \cdot \det \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix}" />
+<BlockMath math="+ a_{13} \cdot \det \begin{pmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix}" />
+</MathContainer>
+
+Nach der Berechnung der <InlineMath math="2 \times 2" /> Determinanten:
+
+<MathContainer>
+<BlockMath math="= a_{11} \cdot (a_{22} \cdot a_{33} - a_{23} \cdot a_{32})" />
+<BlockMath math="- a_{12} \cdot (a_{21} \cdot a_{33} - a_{23} \cdot a_{31})" />
+<BlockMath math="+ a_{13} \cdot (a_{21} \cdot a_{32} - a_{22} \cdot a_{31})" />
+</MathContainer>
+
+Wenn wir es vollständig erweitern:
+
+<MathContainer>
+<BlockMath math="= a_{11} \cdot a_{22} \cdot a_{33} - a_{11} \cdot a_{23} \cdot a_{32}" />
+<BlockMath math="- a_{12} \cdot a_{21} \cdot a_{33} + a_{12} \cdot a_{23} \cdot a_{31}" />
+<BlockMath math="+ a_{13} \cdot a_{21} \cdot a_{32} - a_{13} \cdot a_{22} \cdot a_{31}" />
+</MathContainer>
+
+## Sarrus-Regel
+
+Das Ergebnis der obigen <InlineMath math="3 \times 3" />-Matrixerweiterung entspricht der **Sarrus-Regel**. Diese Regel bietet eine visuelle Möglichkeit, <InlineMath math="3 \times 3" />-Determinanten durch diagonale Muster zu berechnen.
+
+Sarrus-Formel für <InlineMath math="3 \times 3" />-Matrizen:
+
+<MathContainer>
+<BlockMath math="\det A = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}" />
+<BlockMath math="- a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
+</MathContainer>
+
+Die Sarrus-Regel verwendet diagonale Muster, um zu bestimmen, welche Terme addiert und welche subtrahiert werden.
+
+Die Regel von Sarrus gilt ausschließlich für <InlineMath math="3 \times 3" />-Matrizen. Bei größeren Matrizen verwendet man die Kofaktorentwicklung oder ein faktorisierungsbasiertes Verfahren, statt das Diagonalmuster fortzusetzen.
+
+## Rechenaufwand
+
+Bei einer dichten <InlineMath math="n \times n" />-Matrix berechnet eine direkte rekursive Implementierung auf jeder Stufe <InlineMath math="n" /> Determinanten der Größe <InlineMath math="n-1" />. Der Aufwand erfüllt daher die Rekursion
+
+<MathContainer>
+<BlockMath math="T(n)=nT(n-1)+O(n)" />
+<BlockMath math="T(n)=\Theta(n!)" />
+</MathContainer>
+
+Das faktorielle Wachstum macht die rekursive Laplace-Entwicklung für große dichte Matrizen unpraktisch. Mit dem Gauß-Verfahren oder einer LU-Zerlegung lässt sich eine Determinante in <InlineMath math="O(n^3)" /> Rechenoperationen bestimmen.
+
+## Nutzung von Nullelementen
+
+Enthält eine Matrix viele Nulleinträge, wählt man eine Zeile oder Spalte mit möglichst vielen Nullen. Jeder Term verschwindet, dessen ausgewählter Koeffizient <InlineMath math="a_{ij}" /> null ist, sodass sein Minor nicht berechnet werden muss.
+
+### Optimierungsbeispiel
+
+Angenommen, wir haben eine Matrix:
+
+<BlockMath math="A = \begin{pmatrix} 0 & 3 & 3 \\ 2 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}" />
+
+Entwicklung nach der ersten Zeile:
+
+<MathContainer>
+<BlockMath math="\det A = 0 \cdot \det(\ldots) - 3 \cdot \det \begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}" />
+<BlockMath math="+ 3 \cdot \det \begin{pmatrix} 2 & 2 \\ 1 & 0 \end{pmatrix}" />
+</MathContainer>
+
+Da das erste Element Null ist, lautet die Berechnung:
+
+<MathContainer>
+<BlockMath math="= -3 \cdot (2 \cdot 1 - 0 \cdot 1) + 3 \cdot (2 \cdot 0 - 2 \cdot 1)" />
+<BlockMath math="= -3 \cdot 2 + 3 \cdot (-2)" />
+<BlockMath math="= -6 - 6 = -12" />
+</MathContainer>
+
+Durch die Auswahl von Zeilen oder Spalten mit vielen Nullen können wir Berechnungen einsparen.
+
+## Determinante der Transponierungsmatrix
+
+Eine wichtige Eigenschaft im Zusammenhang mit dem Laplace-Theorem ist:
+
+<BlockMath math="\det A^T = \det A" />
+
+Das bedeutet, dass die Determinante einer Matrix gleich der Determinante ihrer Transponierten ist.
+
+### Konsequenzen für Zeilen und Spalten
+
+Aufgrund dieser Transpositionseigenschaft gelten alle Determinanteneigenschaften, die für Zeilen der Matrix <InlineMath math="A" /> gelten, auch für Spalten der Matrix <InlineMath math="A" />.
+
+Zum Beispiel:
+- Wenn zwei Zeilen identisch sind, ist die Determinante Null, ebenso wenn zwei Spalten identisch sind
+- Das Vertauschen zweier Zeilen ändert das Vorzeichen der Determinante, ebenso das Vertauschen zweier Spalten
+- Entsprechende elementare Zeilen- und Spaltenoperationen folgen analogen Determinantenregeln
+
+## Größere Matrizen
+
+Für Matrizen der Größe <InlineMath math="n = 4" /> und größer gilt weiterhin das Prinzip der Laplace-Entwicklung. Der Rechenaufwand wird jedoch sehr hoch, sodass in der Praxis häufig andere effizientere Methoden wie die Gaußsche Eliminierung verwendet werden.
+
+Der Laplacesche Entwicklungssatz bietet eine solide theoretische Grundlage für das Verständnis der Determinantenstruktur, wird in praktischen Berechnungen jedoch oft durch effizientere Algorithmen ersetzt.

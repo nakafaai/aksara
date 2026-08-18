@@ -1,0 +1,419 @@
+export const metadata = {
+    title: "Variablen",
+    description: "Verstehe Python-Namensbindungen, Objektidentität, dynamische Typisierung, Identifier und reservierte Schlüsselwörter anhand überprüfbarer Beispiele.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-16",
+    subject: "KI-Programmierung",
+};
+
+## Grundlegendes Konzept von Variablen in Python
+
+In Python ist eine Variable ein Name, der an ein Objekt gebunden ist. Der Name ist keine typisierte Speicherbox: Eine Zuweisung kann ihn an ein anderes Objekt binden, während weitere Namen weiterhin auf das ursprüngliche Objekt verweisen können.
+
+Wenn Python `x = 2` ausführt, wertet es den Ausdruck <InlineMath math="2" /> aus und bindet den Namen `x` an das entstehende Integer-Objekt. Allokation, Wiederverwendung und physischer Speicherort des Objekts sind Implementierungsdetails, auf die sich ein Programm nicht verlassen darf.
+
+## Wie Variablen und Speicher funktionieren
+
+Das Built-in `id()` liefert eine ganze Zahl, die ein Objekt während seiner Lebensdauer eindeutig identifiziert. CPython leitet sie häufig aus einer Speicheradresse ab, doch Python garantiert diese Deutung nicht für jede Implementierung.
+
+<Mermaid
+  title="Ein Name verweist auf ein Objekt"
+  description="Verfolge einen Namen bis zu seinem Objekt, damit eine Zuweisung nicht mit einer festen Speicherbox verwechselt wird."
+  chart={`graph TB
+    subgraph "Memory"
+        M1["Objekt A: int 2"]
+        M2["Objekt B: str 'Hello'"]
+        M3["Objekt C: list [1, 2, 3]"]
+    end
+
+    subgraph "Variables"
+        V1["x"]
+        V2["y"]
+        V3["z"]
+        V4["text"]
+        V5["numbers"]
+    end
+
+    V1 --> M1
+    V2 --> M1
+    V3 --> M1
+    V4 --> M2
+    V5 --> M3`}
+/>
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "variable_memory.py",
+      code: `# Variable x mit dem Wert 2 erstellen
+x = 2
+print(x)        # Ausgabe: 2
+print(id(x))    # Implementierungsabhängige Objektidentität
+
+# Erstellen einer Variablen y, die auf die Variable x verweist
+y = x
+print(y)        # Ausgabe: 2
+print(y is x)   # Ausgabe: True
+
+# Variable z mit demselben Wert erstellen
+z = 2
+print(z)        # Ausgabe: 2
+print(z == x)   # Ausgabe: True (gleicher Wert)
+# Verlasse dich nie auf z is x; Objektwiederverwendung ist ein Implementierungsdetail`
+    }
+  ]}
+/>
+
+Die Zuweisung `y = x` garantiert, dass beide Namen in diesem Moment auf dasselbe Objekt verweisen. Ein weiterer gleicher Wert garantiert nur Gleichheit, nicht Identität. Manche Python-Implementierungen verwenden unveränderliche Objekte wieder, doch korrekter Code hängt nicht von dieser Optimierung ab.
+
+## Python-Variableneigenschaften
+
+Python verfügt über mehrere einzigartige Merkmale im Umgang mit Variablen, die es von anderen Programmiersprachen unterscheiden.
+
+### Keine Variablendeklaration
+
+Anders als Sprachen mit separater Variablendeklaration bindet Python einen Namen, sobald eine Zuweisung ausgeführt wird. Objekte besitzen Typen, und `type(value)` meldet den Typ des Objekts, das gerade an einen Namen gebunden ist.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "no_declaration.py",
+      code: `# Für Python ist keine Variablendeklaration erforderlich
+nama = "Budi"           # String
+umur = 25               # Integer
+tinggi = 175.5          # Float
+aktif = True            # Boolean
+
+# Python bestimmt den Datentyp automatisch
+print(type(nama))       # Ausgabe: <class 'str'>
+print(type(umur))       # Ausgabe: <class 'int'>
+print(type(tinggi))     # Ausgabe: <class 'float'>
+print(type(aktif))      # Ausgabe: <class 'bool'>`
+    }
+  ]}
+/>
+
+### Dynamische Datentypen
+
+Python ist dynamisch typisiert: Jedes Objekt besitzt einen Typ, während derselbe Name im Programmverlauf an Objekte verschiedener Typen neu gebunden werden kann.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dynamic_typing.py",
+      code: `# Variable mit dynamischen Datentypen
+data = 42               # Integer
+print(f"Wert: {data}, Typ: {type(data)}")
+
+data = "Hello World"    # String
+print(f"Wert: {data}, Typ: {type(data)}")
+
+data = [1, 2, 3]        # List
+print(f"Wert: {data}, Typ: {type(data)}")
+
+data = 3.14             # Float
+print(f"Wert: {data}, Typ: {type(data)}")`
+    }
+  ]}
+/>
+
+## Variablenbenennungsregeln
+
+Python hat feste Syntaxregeln für Identifier. Zusätzlich sorgen Namenskonventionen dafür, dass Code für andere Menschen verständlich bleibt.
+
+### Variablennamenskomponenten
+
+Ein Identifier beginnt mit einem Unterstrich oder einem Unicode-Buchstaben. Danach dürfen Identifier-Buchstaben, Unterstriche und Ziffern wie <InlineMath math="0,1,2,\dots,9" /> folgen. Python akzeptiert viele Nicht-ASCII-Identifier, doch aussagekräftige ASCII-Namen in `snake_case` lassen sich meist leichter tippen, suchen und werkzeugübergreifend teilen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "valid_names.py",
+      code: `# Gültige Variablennamen
+student_name = "Ahmad"      # Verwendung von Buchstaben und Unterstrichen
+score1 = 85                 # Verwendung von Buchstaben und Zahlen
+_total = 100                # Beginnend mit Unterstrich
+MAX_SIZE = 1000             # Alle Großbuchstaben
+camelCase = "valid"         # CamelCase-Stil
+snake_case = "valid"        # snake_case-Stil
+
+print(student_name, score1, _total, MAX_SIZE, camelCase, snake_case)`
+    }
+  ]}
+/>
+
+### Pflichtregeln
+
+Ein Variablenname darf nicht mit einer Ziffer beginnen und kein reserviertes Schlüsselwort sein. Ein ungültiger Identifier führt bereits beim Parsen zu einem `SyntaxError`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "naming_rules.py",
+      code: `# RICHTIGE Variablennamen
+data1 = "valid"
+data_2 = "valid"
+_data3 = "valid"
+
+# FALSCHE Variablennamen (verursacht Fehler)
+# 1data = "invalid"     # SyntaxError
+# 2nilai = "invalid"    # SyntaxError
+# 9test = "invalid"     # SyntaxError
+
+print(data1, data_2, _data3)`
+    }
+  ]}
+/>
+
+### Groß-/Kleinschreibung
+
+Python unterscheidet bei Variablennamen zwischen Groß- und Kleinbuchstaben. Das bedeutet, dass `nama`, `Nama` und `NAMA` drei verschiedene Variablen sind.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "case_sensitive.py",
+      code: `# Python unterscheidet Groß- und Kleinschreibung
+nama = "budi"
+Nama = "Siti"
+NAMA = "Ahmad"
+
+print(f"nama: {nama}")      # Ausgabe: nama: budi
+print(f"Nama: {Nama}")      # Ausgabe: Nama: Siti
+print(f"NAMA: {NAMA}")      # Ausgabe: NAMA: Ahmad
+
+# Diese drei Variablen unterscheiden sich voneinander
+print(nama == Nama)         # Ausgabe: False
+print(Nama == NAMA)         # Ausgabe: False`
+    }
+  ]}
+/>
+
+## Schlüsselwörter, die nicht verwendet werden können
+
+Python verfügt über eine Liste von Schlüsselwörtern, die nicht als Variablennamen verwendet werden können, da diese Wörter in der Python-Sprache spezielle Funktionen haben.
+
+### Python-Schlüsselwortliste
+
+Hier sind die Schlüsselwörter, die nicht als Variablennamen verwendet werden können. Die erste Gruppe umfasst `and`, `as`, `assert`, `async`, `await`, `break`, `class`, `continue`, `def`, `del`, `elif`, `else`. Die zweite Gruppe umfasst `except`, `finally`, `for`, `from`, `global`, `if`, `import`, `in`, `is`, `lambda`, `nonlocal`, `not`. Die dritte Gruppe besteht aus `or`, `pass`, `raise`, `return`, `try`, `while`, `with`, `yield`, `False`, `True`, `None`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "keywords_example.py",
+      code: `# Beispiele für FALSCHE Verwendung (verursacht Fehler)
+# if = 10          # SyntaxError: invalid syntax
+# for = "hello"    # SyntaxError: invalid syntax
+# def = 25         # SyntaxError: invalid syntax
+# class = "test"   # SyntaxError: invalid syntax
+
+# RICHTIGER Weg für ähnliche Variablennamen
+kondisi_if = 10
+loop_for = "hello"
+fungsi_def = 25
+kelas_class = "test"
+
+print(kondisi_if, loop_for, fungsi_def, kelas_class)`
+    }
+  ]}
+/>
+
+### Überprüfen von Schlüsselwörtern
+
+Python stellt das Modul `keyword` zur Verfügung, um zu prüfen, ob ein Wort ein Schlüsselwort ist oder nicht.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "check_keywords.py",
+      code: `import keyword
+
+# Alle Python-Schlüsselwörter anzeigen
+print("Anzahl der Schlüsselwörter:", len(keyword.kwlist))
+print("Schlüsselwortliste:")
+for i, kw in enumerate(keyword.kwlist, 1):
+    print(f"{i:2d}. {kw}")
+
+# Prüfen, ob ein Wort ein Schlüsselwort ist
+print(f"\\nIst „if“ ein Schlüsselwort? {keyword.iskeyword('if')}")
+print(f"Ist „nama“ ein Schlüsselwort? {keyword.iskeyword('nama')}")
+print(f"Ist „class“ ein Schlüsselwort? {keyword.iskeyword('class')}")`
+    }
+  ]}
+/>
+
+## Bewährte Vorgehensweisen für Variablennamen
+
+Obwohl Python bei der Benennung von Variablen viel Freiheit bietet, helfen einige bewährte Vorgehensweisen dabei, den Code lesbar und wartbar zu halten.
+
+### Bedeutungsvolle Namen
+
+Wähle Variablennamen, die den gebundenen Wert oder seine Rolle im Programm erklären. Aussagekräftige Namen helfen dir und allen späteren Lesenden, den Code schneller zu verstehen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "meaningful_names.py",
+      code: `# SCHLECHTE Variablennamen
+h = 175
+w = 70
+a = 25
+
+# GUTE Variablennamen
+body_height = 175
+body_weight = 70
+age = 25
+
+# BMI mit aussagekräftigen Variablennamen berechnen
+bmi = body_weight / ((body_height / 100) ** 2)
+print(f"BMI: {bmi:.2f}")
+
+# Die Bedeutung jeder Variablen ist leichter zu verstehen
+print(f"Höhe: {body_height} cm")
+print(f"Gewicht: {body_weight} kg")
+print(f"Alter: {age} Jahre")`
+    }
+  ]}
+/>
+
+### Angemessene Namenslänge
+
+Ein Name sollte so kurz wie möglich und so konkret wie nötig sein. Zu lange Namen verdecken den Ausdruck, während ein einzelner Buchstabe außerhalb eines kleinen lokalen Kontexts kaum Bedeutung trägt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "name_length.py",
+      code: `# Name zu lang (SCHLECHT)
+student_height_class_12_science_odd_semester = 175
+
+# Name zu kurz (SCHLECHT)
+h = 175
+
+# Passender Name (GUT)
+student_height = 175
+height = 175  # Wenn der Kontext bereits klar ist
+
+# Für Zählervariablen sind Kurznamen akzeptabel
+for i in range(10):
+    print(f"Iteration {i}")
+
+# Für komplexere Daten klare Namen verwenden
+student_count = 30
+average_score = 85.5`
+    }
+  ]}
+/>
+
+### Konsistenter Schreibstil
+
+Python verwendet den Snake_case-Stil für Variablennamen, wobei Wörter durch Unterstriche getrennt werden und alle Buchstaben Kleinbuchstaben verwenden.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "naming_style.py",
+      code: `# snake_case-Stil (EMPFOHLEN für Python)
+full_name = "Ahmad Budi"
+birth_date = "1995-05-15"
+home_address = "Jl. Merdeka No. 123"
+
+# CamelCase-Stil (häufiger in JavaScript/Java)
+fullName = "Ahmad Budi"  # Nicht falsch, aber weniger Python-ähnlich
+
+# PascalCase-Stil (normalerweise für Klassennamen)
+FullName = "Ahmad Budi"  # Für Variablen nicht empfohlen
+
+# Konsistenz innerhalb eines Programms
+math_score = 90
+physics_score = 85
+chemistry_score = 88
+average_score = (math_score + physics_score + chemistry_score) / 3
+
+print(f"Durchschnittliche Punktzahl: {average_score:.2f}")`
+    }
+  ]}
+/>
+
+### Verwechslungen vermeiden
+
+Vermeide Zeichen, die leicht mit Ziffern verwechselt werden, wenn der kurze Name keinen etablierten mathematischen Kontext hat.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "avoid_confusion.py",
+      code: `# Verwirrende Zeichen (VERMEIDEN)
+# l = 1 # Der Buchstabe „l“ sieht aus wie die Zahl „1“.
+# I = 1 # Der Buchstabe „I“ sieht aus wie die Zahl „1“.
+# O = 0 # Der Buchstabe „O“ sieht aus wie die Zahl „0“.
+
+# Klarere Alternativen
+length = 1      # Klares Wort statt mehrdeutigem Zeichen
+index = 1       # Oder aussagekräftigere Namen
+empty = 0       # Namen, die die Bedeutung erklären
+
+# Beispielhafte Verwendung im klaren Kontext
+item_count = 10
+for number in range(1, item_count + 1):
+    print(f"Elementnummer {number}")
+
+# Boolesche Variablen mit eindeutigen Namen
+is_active = True
+has_permission = False
+can_edit = True`
+    }
+  ]}
+/>
+
+## Beispiel für Variablen in einem Programm
+
+Wir betrachten, wie Variablen in einem einfachen Programm verwendet werden, das die Fläche und den Umfang eines Rechtecks berechnet.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "rectangle_calculator.py",
+      code: `# Programm zur Berechnung der Fläche und des Umfangs eines Rechtecks
+print("=== Rechteckrechner ===")
+
+# Benutzereingabe
+length = float(input("Länge (cm) eingeben: "))
+width = float(input("Breite (cm) eingeben: "))
+
+# Berechnungen
+area = length * width
+perimeter = 2 * (length + width)
+
+# Ergebnisse anzeigen
+print(f"\\nBerechnungsergebnisse:")
+print(f"Länge: {length} cm")
+print(f"Breite: {width} cm")
+print(f"Fläche: {area} cm²")
+print(f"Umfang: {perimeter} cm")
+
+# Eingabevalidierung
+if length <= 0 or width <= 0:
+    print("\\nWarnung: Länge und Breite müssen größer als 0 sein!")
+else:
+    print("\\nBerechnung ist gültig.")`
+    }
+  ]}
+/>
+
+Das obige Beispielprogramm zeigt die Verwendung von Variablen mit aussagekräftigen Namen, mathematische Berechnungen und Datenvalidierung. Jede Variable hat einen klaren Zweck und einen Namen, der ihren Inhalt erklärt.
+
+Namensbindung, Identifier-Regeln und klare Konventionen bilden gemeinsam die Grundlage für lesbaren Python-Code. Wenn du Gleichheit, Identität und Neuzuweisung auseinanderhalten kannst, werden spätere Themen wie Mutability, Funktionsargumente und Objektmodelle deutlich leichter.

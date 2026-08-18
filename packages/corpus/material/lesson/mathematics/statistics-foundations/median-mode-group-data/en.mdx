@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Median and Modal Class for Grouped Data",
-  description: "Learn to find median and modal class in grouped data with formula practice. Learn frequency tables and cumulative calculations for statistics.",
+  description: "Find the modal class and estimate the median of grouped data from a frequency table.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistics",
@@ -8,11 +8,11 @@ export const metadata = {
 
 ## Modal Class for Grouped Data
 
-For grouped data, we usually don't find a specific Mode value, but instead, we focus on finding the **Modal Class**.
+When data are grouped into intervals, the original observations are no longer visible. We can still identify the **modal class**, but not necessarily one exact mode.
 
-The **Modal Class** is the class interval that has the **highest frequency**. Simply put, just find the group with the most data points.
+The **modal class** is the class interval with the **highest frequency**. In other words, it is the interval containing the most observations.
 
-**Example:**
+**Worked example:**
 
 Store A's shoe size data:
 
@@ -24,90 +24,90 @@ Store A's shoe size data:
 | <InlineMath math="46\text{-}48" /> | <InlineMath math="1" />               |
 | **Total**                  | <InlineMath math="30" />              |
 
-Look at the frequency column. The highest frequency is <InlineMath math="16" />. The class interval with this frequency is <InlineMath math="43\text{-}45" />.
+The highest frequency is <InlineMath math="16" />, so the modal class is <InlineMath math="43\text{-}45" />.
 
-Thus, the **Modal Class** for this data is <InlineMath math="43\text{-}45" />. This means the most frequently sold shoe size is likely within this range.
+This tells us that the most frequently sold shoe sizes lie in that interval. Because the data are grouped, the table does not reveal which individual size occurs most often.
 
 ## Median for Grouped Data
 
-Finding the Median (middle value) for grouped data is a bit more complex than finding the modal class. Since the data is grouped, we need to use an estimation formula to find approximately where the middle value lies.
+The median splits ordered data into two equal halves. With grouped data, the exact middle observation is hidden inside an interval, so we estimate its position within the median class.
 
 ### How to Find the Median for Grouped Data
 
-1.  **Calculate Median Position:**
+1.  **Calculate the median position:**
 
-    First, find the position of the middle data point using the formula <InlineMath math="n/2" />, where <InlineMath math="n" /> is the total number of data points.
+    Locate the middle of the data with <InlineMath math="n/2" />, where <InlineMath math="n" /> is the total frequency.
 
-2.  **Create Cumulative Frequency:**
+2.  **Create the cumulative frequency:**
 
-    Add a column to the frequency distribution table for Cumulative Frequency (<InlineMath math="F_k" />). Cumulative frequency is the sum of frequencies from the first class up to the current class.
+    Add a cumulative-frequency column (<InlineMath math="F_k" />). Each entry is the sum of all frequencies from the first class through the current class.
 
-3.  **Determine the Median Class:**
+3.  **Determine the median class:**
 
-    Find the class interval where the <InlineMath math="n/2" />-th data point lies. Look at the Cumulative Frequency column. The Median Class is the first class whose Cumulative Frequency is **equal to or greater than** <InlineMath math="n/2" />.
+    The median class is the first class whose cumulative frequency is **equal to or greater than** <InlineMath math="n/2" />.
 
-4.  **Use the Median Formula:**
+4.  **Use the median formula:**
 
-    Once the Median Class is found, use the following formula:
+    Once the median class is known, estimate the median with:
 
-    <BlockMath math="Me = L + \left( \frac{\frac{n}{2} - F}{f_{me}} \right) \times c" />
+    <BlockMath math="\operatorname{Me} = L + \left( \frac{\frac{n}{2} - F}{f_{\mathrm{Me}}} \right) \times c" />
 
-    Where:
+    where:
 
-    - <InlineMath math="Me" /> = Median of the grouped data
-    - <InlineMath math="L" /> = **Lower Boundary of the Median Class**. This is the
-      true lower limit of the class where the median lies. Calculated as:{" "}
+    - <InlineMath math="\operatorname{Me}" /> = estimated median of the grouped data
+    - <InlineMath math="L" /> = **lower boundary of the median class**. For adjacent
+      integer-valued classes, calculate it with:
 
       <BlockMath math="L = \text{Lower Limit of Median Class} - 0.5" />
 
-    - <InlineMath math="n" /> = Total number of data points (total frequency)
-    - <InlineMath math="F" /> = **Cumulative Frequency BEFORE** the Median Class
-    - <InlineMath math="f_{me}" /> = **Frequency of the Median Class** (the frequency
-      of the class containing the median)
-    - <InlineMath math="c" /> = **Class Width**. This is the width of each class
-      interval. Common calculation method:
+    - <InlineMath math="n" /> = total frequency
+    - <InlineMath math="F" /> = cumulative frequency **before** the median class
+    - <InlineMath math="f_{\mathrm{Me}}" /> = frequency of the median class
+    - <InlineMath math="c" /> = class width, calculated with:
 
       <BlockMath math="c = \text{Upper Class Boundary} - \text{Lower Class Boundary}" />
 
-      (where <InlineMath math="\text{Upper Boundary} = \text{Upper Limit} + 0.5" />).
+      Here, the <InlineMath math="0.5" /> correction applies because the shoe sizes are recorded as consecutive integers.
 
-**Example:**
+    The interpolation also assumes that observations are distributed uniformly within the median class. The result is therefore a model-based estimate, not a recovered observation.
 
-Let's use Store A's shoe size data.
+**Worked example:**
+
+Use Store A's shoe size data from the table below.
 
 | Shoe Size | Frequency (<InlineMath math="f_i" />) | Cumulative Frequency (<InlineMath math="F_k" />) |
 | :-------- | :------------------------------------ | :----------------------------------------------- |
 | <InlineMath math="37 - 39" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
 | <InlineMath math="40 - 42" /> | <InlineMath math="11" /> | <InlineMath math="2 + 11 = 13" /> |
-| <InlineMath math="43 - 45" /> | <InlineMath math="16" /> (<InlineMath math="f_{me}" />) | <InlineMath math="13 + 16 = 29" /> |
+| <InlineMath math="43 - 45" /> | <InlineMath math="16" /> (<InlineMath math="f_{\mathrm{Me}}" />) | <InlineMath math="13 + 16 = 29" /> |
 | <InlineMath math="46 - 48" /> | <InlineMath math="1" /> | <InlineMath math="29 + 1 = 30" /> |
 | Total     | <InlineMath math="n = 30" />          |                                                  |
 
-1.  **Median Position:** <InlineMath math="n/2 = 30/2 = 15" />. We are looking for the <InlineMath math="15" />th data point.
-2.  **Cumulative Frequency:** Already created in the table.
-3.  **Median Class:** Look at <InlineMath math="F_k" />. Where does the <InlineMath math="15" />th data point fall? The <InlineMath math="F_k" /> of the first class (<InlineMath math="2" />) is not enough. The <InlineMath math="F_k" /> of the second class (<InlineMath math="13" />) is also not enough. The <InlineMath math="F_k" /> of the third class (<InlineMath math="29" />) exceeds <InlineMath math="15" />. So, the median class is <InlineMath math="43\text{-}45" />.
-4.  **Calculate Formula Components:**
+1.  **Median position:** <InlineMath math="n/2 = 30/2 = 15" />. We need the observation at position <InlineMath math="15" />.
+2.  **Cumulative frequency:** The table already includes it.
+3.  **Median class:** The cumulative frequency reaches <InlineMath math="13" /> after the second class and <InlineMath math="29" /> after the third. Position <InlineMath math="15" /> therefore lies in <InlineMath math="43\text{-}45" />.
+4.  **Formula components:**
 
-    - Median Class is <InlineMath math="43\text{-}45" />
-    - <InlineMath math="L" /> (Lower Boundary) is <InlineMath math="43 - 0.5 = 42.5" />
+    - Median class: <InlineMath math="43\text{-}45" />
+    - Lower boundary: <InlineMath math="L = 43 - 0.5 = 42.5" />
     - <InlineMath math="n/2 = 30/2 = 15" />
-    - <InlineMath math="F" /> (<InlineMath math="F_k" /> before median class) = <InlineMath math="13" />
-    - <InlineMath math="f_{me}" /> (Frequency of median class) = <InlineMath math="16" />
-    - <InlineMath math="c" /> (Class width) = <InlineMath math="\text{Upper Boundary} - \text{Lower Boundary}" />
+    - Cumulative frequency before the median class: <InlineMath math="F = 13" />
+    - Median-class frequency: <InlineMath math="f_{\mathrm{Me}} = 16" />
+    - Class width: <InlineMath math="c = \text{Upper Boundary} - \text{Lower Boundary}" />
 
       <BlockMath math="c = (45 + 0.5) - (43 - 0.5) = 45.5 - 42.5 = 3" />
 
-5.  **Plug into the Median Formula:**
+5.  **Substitute into the median formula:**
 
     <MathContainer>
-      <BlockMath math="Me = 42.5 + \left( \frac{15 - 13}{16} \right) \times 3" />
-      <BlockMath math="Me = 42.5 + \left( \frac{2}{16} \right) \times 3" />
-      <BlockMath math="Me = 42.5 + \left( \frac{1}{8} \right) \times 3" />
-      <BlockMath math="Me = 42.5 + \frac{3}{8}" />
-      <BlockMath math="Me = 42.5 + 0.375" />
-      <BlockMath math="Me = 42.875" />
+      <BlockMath math="\operatorname{Me} = 42.5 + \left( \frac{15 - 13}{16} \right) \times 3" />
+      <BlockMath math="\operatorname{Me} = 42.5 + \left( \frac{2}{16} \right) \times 3" />
+      <BlockMath math="\operatorname{Me} = 42.5 + \left( \frac{1}{8} \right) \times 3" />
+      <BlockMath math="\operatorname{Me} = 42.5 + \frac{3}{8}" />
+      <BlockMath math="\operatorname{Me} = 42.5 + 0.375" />
+      <BlockMath math="\operatorname{Me} = 42.875" />
     </MathContainer>
 
-**So, the Median of the shoe size data is approximately <InlineMath math="42.875" />.** This means if all the data were sorted, the middle value is estimated to be <InlineMath math="42.875" />.
+**The estimated median shoe size is <InlineMath math="42.875" />.** It falls inside the median class <InlineMath math="43\text{-}45" /> once the continuous class boundaries are used.
 
-Remember, just like the [Mean for grouped data](/en/subjects/mathematics/statistics-foundations/mean-group-data), the Median for grouped data is also an **estimation** of the true middle value.
+This is an **estimate**, not a recovered raw observation. Grouping discards the exact values inside each interval. The [mean for grouped data](/en/subjects/mathematics/statistics-foundations/mean-group-data) has the same limitation.

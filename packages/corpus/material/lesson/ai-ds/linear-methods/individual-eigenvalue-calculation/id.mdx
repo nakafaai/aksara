@@ -1,86 +1,90 @@
 export const metadata = {
-    title: "Perhitungan Nilai Eigen Individu",
-    description: "Pelajari tiga metode perhitungan nilai eigen: iterasi invers dengan shift, von Mises untuk eigen dominan, dan teknik mencari eigen terkecil.",
+    title: "Menghitung Nilai Eigen Terpilih",
+    description: "Gunakan iterasi pangkat, iterasi invers bergeser, hasil bagi Rayleigh, dan pemeriksaan residu untuk menghitung pasangan eigen terpilih.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-17",
     subject: "Metode Linear AI",
 };
 
-## Metode Iterasi Invers dengan Pergeseran
+## Iterasi Invers Bergeser
 
-Metode iterasi invers dengan pergeseran dirancang untuk menghitung nilai eigen spesifik yang mendekati tebakan awal. Algoritma ini menggunakan parameter pergeseran <InlineMath math="\mu" /> sebagai panduan pencarian menuju nilai eigen tertentu.
+Iterasi invers bergeser menargetkan nilai eigen yang paling dekat dengan pergeseran <InlineMath math="\mu" />. Kita mulai dengan matriks simetris real <InlineMath math="A \in \mathbb{R}^{n \times n}" />, yang memiliki nilai eigen real dan gambaran konvergensi yang lebih jelas.
 
-Bayangkan kamu mencari stasiun radio di tengah banyak frekuensi. Tanpa pergeseran, kamu mendengar semua stasiun sekaligus (tidak jelas). Dengan pergeseran, kamu mengarahkan dial ke frekuensi tertentu untuk mendapatkan satu stasiun yang jernih.
+Pilih <InlineMath math="\mu" /> yang bukan nilai eigen dan vektor awal satuan <InlineMath math="q_0" /> yang memiliki komponen tak nol pada arah vektor eigen tujuan. Faktorkan <InlineMath math="A-\mu I" /> sekali, lalu gunakan kembali faktorisasi tersebut.
 
-Algoritma dimulai dengan matriks <InlineMath math="A \in \mathbb{R}^{n \times n}" /> dan parameter pergeseran <InlineMath math="\mu \in \mathbb{R}" />. Vektor awal <InlineMath math="w_0 \in \mathbb{R}^n" /> dinormalisasi menjadi <InlineMath math="\hat{w}_0 := w_0/\|w_0\|" /> dan iterasi dimulai dari <InlineMath math="k := 0" />.
+### Satu Langkah Iterasi
 
-### Dekomposisi LU dan Iterasi
-
-Langkah pertama adalah menghitung dekomposisi LU dari matriks <InlineMath math="A - \mu \cdot I" />. Dekomposisi ini dilakukan sekali di awal dan digunakan berulang dalam setiap iterasi untuk efisiensi komputasi.
+Untuk <InlineMath math="k=0,1,2,\ldots" />, lakukan:
 
 <MathContainer>
-<BlockMath math="w_{k+1} := (A - \mu \cdot I)^{-1} \cdot \hat{w}_k" />
+<BlockMath math="(A-\mu I)y_{k+1}=q_k" />
+<BlockMath math="q_{k+1}=\frac{y_{k+1}}{\|y_{k+1}\|_2}" />
+<BlockMath math="\rho_{k+1}=q_{k+1}^T A q_{k+1}" />
+<BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
 </MathContainer>
 
-Praktiknya, alih-alih menghitung invers matriks langsung, kita menyelesaikan sistem persamaan linear menggunakan dekomposisi LU
+Hasil bagi Rayleigh <InlineMath math="\rho_{k+1}" /> memperkirakan nilai eigen. Aturan penghentian yang memperhatikan skala memeriksa residu, bukan sekadar membandingkan dua estimasi berurutan:
+
+<BlockMath math="\|r_{k+1}\|_2 \leq \tau\bigl(\|A\|_2+|\rho_{k+1}|\bigr)" />
+
+Jika <InlineMath math="Av_i=\lambda_i v_i" />, maka
+
+<BlockMath math="(A-\mu I)^{-1}v_i=\frac{1}{\lambda_i-\mu}v_i" />
+
+sehingga nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> menghasilkan magnitudo transformasi terbesar. Dalam implementasi, kita menyelesaikan sistem linear. Kita tidak membentuk <InlineMath math="(A-\mu I)^{-1}" /> secara eksplisit.
+
+## Iterasi Pangkat
+
+Iterasi pangkat menargetkan nilai eigen dengan nilai absolut terbesar. Mulai dari vektor satuan <InlineMath math="q_0" />, ulangi:
 
 <MathContainer>
-<BlockMath math="(A - \mu \cdot I) \cdot w_{k+1} = \hat{w}_k" />
+<BlockMath math="y_{k+1}=Aq_k" />
+<BlockMath math="q_{k+1}=\frac{y_{k+1}}{\|y_{k+1}\|_2}" />
+<BlockMath math="\rho_{k+1}=q_{k+1}^T A q_{k+1}" />
+<BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
 </MathContainer>
 
-### Normalisasi dan Konvergensi
+Untuk matriks simetris, konvergensi menuju vektor eigen dominan dapat diharapkan ketika
 
-Setelah memperoleh <InlineMath math="w_{k+1}" />, lakukan normalisasi untuk mencegah pertumbuhan tak terkendali
+<BlockMath math="|\lambda_1|>|\lambda_2|" />
+
+dan vektor awal memiliki komponen tak nol pada arah vektor eigen untuk <InlineMath math="\lambda_1" />. Faktor konvergensi asimtotiknya sekitar <InlineMath math="|\lambda_2/\lambda_1|" />. Magnitudo dominan yang sama atau sangat berdekatan dapat memperlambat atau menggagalkan konvergensi satu vektor.
+
+## Nilai Eigen Mana yang Ditemukan?
+
+Kata “terkecil” bersifat ambigu, sehingga target harus selalu dinyatakan secara tepat.
+
+| Metode | Target |
+| --- | --- |
+| Iterasi pangkat pada <InlineMath math="A" /> | Nilai eigen dengan nilai absolut terbesar |
+| Iterasi invers dengan <InlineMath math="\mu=0" /> | Nilai eigen tak nol dengan nilai absolut terkecil |
+| Iterasi invers bergeser | Nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> |
+| Iterasi invers pada matriks definit positif | Nilai eigen aljabar terkecil, yang juga terkecil secara absolut |
+
+Pada matriks tak definit, nilai eigen dengan nilai absolut terkecil belum tentu merupakan nilai eigen paling negatif. Pembedaan ini mencegah kesalahan tafsir yang umum.
+
+## Contoh Iterasi Invers Bergeser
+
+Perhatikan
 
 <MathContainer>
-<BlockMath math="\hat{w}_{k+1} := w_{k+1}/\|w_{k+1}\|" />
+<BlockMath math="A=\begin{pmatrix}2&0\\0&5\end{pmatrix}" />
+<BlockMath math="\mu=1,\qquad q_0=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix}" />
 </MathContainer>
 
-Estimasi nilai eigen menggunakan rasio komponen vektor. Untuk indeks <InlineMath math="j" /> dengan <InlineMath math="(\hat{w}_k)_j \neq 0" />
+Sistem bergeser pada iterasi pertama menghasilkan
 
 <MathContainer>
-<BlockMath math="\lambda := (w_{k+1})_j / (\hat{w}_k)_j" />
+<BlockMath math="y_1=(A-I)^{-1}q_0=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1/4\end{pmatrix}" />
+<BlockMath math="q_1=\frac{1}{\sqrt{17}}\begin{pmatrix}4\\1\end{pmatrix}" />
+<BlockMath math="\rho_1=q_1^TAq_1=\frac{37}{17}\approx2{,}176" />
 </MathContainer>
 
-Iterasi berlanjut hingga memenuhi kriteria konvergensi <InlineMath math="|1/\lambda - 1/\lambda_{\text{lama}}| \leq \text{toleransi}" />. Parameter toleransi adalah nilai ambang batas yang menentukan seberapa akurat hasil yang diinginkan, misalnya <InlineMath math="10^{-6}" /> untuk akurasi enam digit desimal.
+Karena <InlineMath math="2" /> lebih dekat ke pergeseran <InlineMath math="1" /> daripada <InlineMath math="5" />, iterasi berikutnya mendorong komponen kedua menuju nol dan <InlineMath math="\rho_k" /> menuju <InlineMath math="2" />.
 
-Bayangkan seperti mengukur tinggi badan dengan penggaris. Toleransi menentukan seberapa presisi pengukuran yang kamu terima (apakah cukup akurat sampai centimeter, atau perlu sampai milimeter). Semakin kecil nilai toleransi, semakin akurat hasilnya, tetapi memerlukan lebih banyak iterasi.
+## Pemeriksaan Praktis
 
-Hasil akhir memberikan nilai eigen <InlineMath math="1/\lambda + \mu" /> dan vektor eigen <InlineMath math="\hat{w}_k" />.
-
-## Metode von Mises untuk Nilai Eigen Dominan
-
-Metode iterasi vektor von Mises menemukan nilai eigen dengan magnitudo terbesar (nilai eigen dominan). Algoritma ini menggunakan proses iterasi sederhana dengan perkalian matriks berulang.
-
-Algoritma dimulai dengan vektor awal <InlineMath math="w_0 \in \mathbb{R}^n" /> yang dinormalisasi <InlineMath math="\hat{w}_0 := w_0/\|w_0\|" /> dan iterasi dimulai dari <InlineMath math="k := 0" />.
-
-### Iterasi dan Konvergensi
-
-Setiap iterasi melakukan dua operasi utama
-
-<MathContainer>
-<BlockMath math="w_{k+1} := A \cdot \hat{w}_k" />
-<BlockMath math="\hat{w}_{k+1} := w_{k+1}/\|w_{k+1}\|" />
-</MathContainer>
-
-Estimasi nilai eigen menggunakan rasio komponen untuk indeks <InlineMath math="j" /> dengan <InlineMath math="(\hat{w}_k)_j \neq 0" />
-
-<MathContainer>
-<BlockMath math="\lambda := (w_{k+1})_j / (\hat{w}_k)_j" />
-</MathContainer>
-
-Iterasi berlanjut hingga <InlineMath math="|\lambda - \lambda_{\text{lama}}| \leq \text{toleransi}" />. Nilai toleransi menentukan tingkat ketelitian yang dibutuhkan, biasanya berkisar antara <InlineMath math="10^{-8}" /> hingga <InlineMath math="10^{-12}" /> untuk perhitungan presisi tinggi. Hasil akhir adalah nilai eigen dominan <InlineMath math="\lambda" /> dan vektor eigen <InlineMath math="\hat{w}_k" />.
-
-Metode ini berhasil jika <InlineMath math="|\lambda_1| > |\lambda_2|" /> dan vektor awal <InlineMath math="w_0" /> memiliki komponen tidak nol dalam arah vektor eigen dominan. Dengan asumsi tersebut, iterasi konvergen ke nilai eigen dominan <InlineMath math="\lambda_1" /> dan vektor eigen terkait.
-
-## Teknik Mencari Nilai Eigen Terkecil
-
-Untuk matriks yang dapat diinvertibel, terdapat hubungan penting antara nilai eigen matriks dan inversnya. Jika <InlineMath math="A \cdot v_n = \lambda_n \cdot v_n" />, maka berlaku
-
-<MathContainer>
-<BlockMath math="A^{-1} \cdot v_n = \frac{1}{\lambda_n} \cdot v_n" />
-</MathContainer>
-
-Artinya, nilai eigen terkecil dari <InlineMath math="A" /> menjadi nilai eigen terbesar dari <InlineMath math="A^{-1}" />. Dengan menerapkan iterasi vektor pada <InlineMath math="A^{-1}" />, kita memperoleh nilai eigen terkecil dari matriks asli.
-
-Praktiknya, setiap iterasi menyelesaikan sistem linear <InlineMath math="A \cdot w_{k+1} = \hat{w}_k" /> menggunakan dekomposisi LU, menghindari perhitungan invers eksplisit yang tidak efisien.
+1. Faktorkan matriks bergeser dengan metode yang stabil dan pivoting jika diperlukan. Jika pergeseran tepat mengenai nilai eigen, matriks bergeser menjadi singular sehingga penyelesaian harus ditangani atau pergeserannya disesuaikan.
+2. Hentikan berdasarkan norma residu. Perubahan kecil antara dua estimasi nilai eigen belum membuktikan bahwa pasangan eigennya akurat.
+3. Tanda vektor eigen bebas dipilih: <InlineMath math="q" /> dan <InlineMath math="-q" /> mewakili arah eigen yang sama.
+4. Untuk nilai eigen berkelompok atau matriks nonnormal umum, gunakan algoritma multivektor atau bentuk Schur, seperti penyelesai eigen berbasis Lanczos, Arnoldi, atau QR.

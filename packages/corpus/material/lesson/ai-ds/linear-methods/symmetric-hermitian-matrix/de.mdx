@@ -1,0 +1,132 @@
+export const metadata = {
+    title: "Symmetrische und hermitesche Matrizen",
+    description: "Lernen Sie symmetrische und hermitesche Matrizen, einschließlich reeller Eigenwerte, orthogonale Eigenvektoren, quadratische Formen und Diagonalisierung.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-12",
+    subject: "Lineare Methoden der KI",
+};
+
+## Definitionen und Bedeutung der Einträge
+
+Eine reelle quadratische Matrix <InlineMath math="A\in\mathbb{R}^{n\times n}" /> heißt **symmetrisch**, wenn
+
+<BlockMath math="A^T=A" />
+
+oder eintragsweise <InlineMath math="a_{ji}=a_{ij}" /> gilt. Zum Beispiel ist
+
+<BlockMath math="A=\begin{pmatrix}1&2&3\\2&4&5\\3&5&6\end{pmatrix}" />
+
+symmetrisch, weil die Einträge auf beiden Seiten der Hauptdiagonalen übereinstimmen.
+
+Eine komplexe quadratische Matrix <InlineMath math="H\in\mathbb{C}^{n\times n}" /> heißt **hermitesch**, wenn
+
+<BlockMath math="H^H=H" />
+
+also <InlineMath math="h_{ji}=\overline{h_{ij}}" /> gilt. Ein Beispiel mit tatsächlich komplexen Einträgen ist
+
+<BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
+
+> Jede reelle symmetrische Matrix ist über <InlineMath math="\mathbb{C}" /> betrachtet hermitesch. Die Umkehrung gilt nicht, denn eine hermitesche Matrix darf außerhalb der Diagonalen komplexe Einträge besitzen.
+
+Auf der Diagonalen liefert die hermitesche Bedingung <InlineMath math="h_{ii}=\overline{h_{ii}}" />. Daher ist jeder Diagonaleintrag reell.
+
+## Reelle und komplexe Skalarprodukte
+
+Transponieren und konjugiertes Transponieren dürfen nicht verwechselt werden. Für <InlineMath math="x\in\mathbb{R}^n" /> gilt
+
+<BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
+
+und für <InlineMath math="x\in\mathbb{C}^n" /> gilt
+
+<BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
+
+Im jeweiligen Körper ist der passende Ausdruck genau dann null, wenn <InlineMath math="x=0" /> ist. Für einen komplexen Vektor muss <InlineMath math="x^Tx" /> nicht einmal reell sein. Deshalb verwendet die komplexe Geometrie <InlineMath math="x^Hx" />.
+
+## Quadratische und hermitesche Formen
+
+Eine reelle symmetrische Matrix definiert die quadratische Form
+
+<MathContainer>
+<BlockMath math="q:\mathbb{R}^n\to\mathbb{R}" />
+<BlockMath math="q(x)=x^TAx" />
+</MathContainer>
+
+Eine hermitesche Matrix definiert die reellwertige hermitesche Form
+
+<MathContainer>
+<BlockMath math="q:\mathbb{C}^n\to\mathbb{R}" />
+<BlockMath math="q(x)=x^HHx" />
+</MathContainer>
+
+Um zu beweisen, dass ihr Wert reell ist, konjugieren wir den Skalar:
+
+<MathContainer>
+<BlockMath math="\overline{x^HHx}=(x^HHx)^H" />
+<BlockMath math="=x^HH^Hx=x^HHx" />
+</MathContainer>
+
+Ein Skalar ist genau dann gleich seinem komplex Konjugierten, wenn er reell ist. Im reellen Fall trägt der schiefsymmetrische Anteil einer beliebigen Matrix nichts zur quadratischen Form bei:
+
+<BlockMath math="x^TBx=x^T\left(\frac{B+B^T}{2}\right)x" />
+
+denn <InlineMath math="x^T(B-B^T)x=0" />. Quadratische Formen hängen somit nur vom symmetrischen Anteil ab.
+
+## Warum hermitesche Eigenwerte reell sind
+
+Sei <InlineMath math="Hv=\lambda v" /> mit <InlineMath math="v\neq0" />. Aus der hermiteschen Symmetrie folgt
+
+<MathContainer>
+<BlockMath math="\lambda v^Hv=v^HHv" />
+<BlockMath math="=v^HH^Hv=(Hv)^Hv=\overline{\lambda}v^Hv" />
+</MathContainer>
+
+Da <InlineMath math="v^Hv>0" /> gilt, folgt <InlineMath math="\lambda=\overline{\lambda}" /> und damit <InlineMath math="\lambda\in\mathbb{R}" />. Für reelle symmetrische Matrizen gilt dieselbe Folgerung.
+
+## Warum verschiedene Eigenräume orthogonal sind
+
+Seien <InlineMath math="Hv=\lambda v" /> und <InlineMath math="Hw=\mu w" /> mit <InlineMath math="\lambda\neq\mu" />. Da beide Eigenwerte reell sind,
+
+<MathContainer>
+<BlockMath math="\lambda w^Hv=w^HHv" />
+<BlockMath math="=w^HH^Hv=(Hw)^Hv=\mu w^Hv" />
+</MathContainer>
+
+Daher gilt <InlineMath math="(\lambda-\mu)w^Hv=0" /> und somit <InlineMath math="w^Hv=0" />. Bei einem mehrfachen Eigenwert müssen beliebige Eigenvektoren innerhalb desselben Eigenraums nicht orthogonal sein. Mit Gram-Schmidt lässt sich dort jedoch eine Orthonormalbasis wählen.
+
+## Spektralzerlegung und Geometrie quadratischer Formen
+
+Der Spektralsatz fasst diese Tatsachen zu einer vollständigen Zerlegung zusammen:
+
+<MathContainer>
+<BlockMath math="A=A^T\in\mathbb{R}^{n\times n}:\qquad A=Q\Lambda Q^T" />
+<BlockMath math="H=H^H\in\mathbb{C}^{n\times n}:\qquad H=U\Lambda U^H" />
+</MathContainer>
+
+Die Spalten von <InlineMath math="Q" /> oder <InlineMath math="U" /> bilden eine orthonormale Eigenbasis, und jeder Diagonaleintrag von <InlineMath math="\Lambda" /> ist reell. Sind <InlineMath math="u_1,\ldots,u_n" /> die Spalten von <InlineMath math="U" />, dann gilt
+
+<BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
+
+Diese Formel zeigt unmittelbar, dass <InlineMath math="H" /> genau dann positiv definit ist, wenn alle Eigenwerte positiv sind.
+
+## Vollständig gerechnete hermitesche Diagonalisierung
+
+Für die zuvor betrachtete Matrix
+
+<BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
+
+lautet das charakteristische Polynom
+
+<BlockMath math="\det(H-\lambda I)=(2-\lambda)(3-\lambda)-2=(\lambda-1)(\lambda-4)" />
+
+Normierte Eigenvektoren zu <InlineMath math="\lambda_1=1" /> und <InlineMath math="\lambda_2=4" /> sind
+
+<MathContainer>
+<BlockMath math="u_1=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}" />
+<BlockMath math="u_2=\frac1{\sqrt6}\begin{pmatrix}1+i\\2\end{pmatrix}" />
+</MathContainer>
+
+Sie erfüllen <InlineMath math="u_1^Hu_2=0" />. Mit <InlineMath math="U=(u_1\quad u_2)" /> gilt
+
+<BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
+
+und der abstrakte Satz liefert eine unmittelbar überprüfbare unitäre Diagonalisierung.

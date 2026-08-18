@@ -1,0 +1,106 @@
+
+
+export const metadata = {
+  title: "Vektoreigenschaften",
+  description:
+    "Gleiche Vektoren, Gegenvektoren und Nullvektoren sowie den Einfluss der Skalarmultiplikation auf Betrag und Richtung verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Vektor",
+};
+
+## Gleiche Vektoren sind nicht an einen Ort gebunden
+
+Zwei Vektoren sind gleich, wenn sie denselben Betrag und dieselbe Richtung besitzen. Im Diagramm dürfen ihre Pfeile an verschiedenen Stellen liegen. Diese Gleichheit vergleicht die Vektoren selbst. Bei einer Kraft kann der Angriffspunkt trotzdem die Drehwirkung verändern, obwohl der Kraftvektor gleich bleibt.
+
+> Zwei Vektoren sind gleich, weil Betrag und Richtung übereinstimmen, nicht weil ihre Fußpunkte am selben Ort liegen.
+
+<Vector3d
+  title={<>Gleiche und entgegengesetzte Vektoren</>}
+  description={
+    <>
+      Die Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" />
+      sind gleich: Sie sind parallel, gleichgerichtet und gleich lang. Der Vektor
+      <InlineMath math="-\vec{a}" /> zeigt in die entgegengesetzte Richtung.
+    </>
+  }
+  vectors={(() => {
+    const a = [4, 2, 0];
+    const bShift = [0, 0, 2];
+    const negativeShift = [0, 0, -2];
+    const b = a.map((component, index) => component + bShift.at(index));
+    const negativeA = a.map(
+      (component, index) => -component + negativeShift.at(index)
+    );
+
+    return [
+      {
+        from: [0, 0, 0],
+        to: a,
+        color: "#0d9488",
+        label: <InlineMath math="a" />,
+        labelAnchorX: "center",
+        labelProgress: 3 / 5,
+        labelOffset: [0.15, 0.45, 0],
+      },
+      {
+        from: bShift,
+        to: b,
+        color: "#0d9488",
+        label: <InlineMath math="b" />,
+        labelAnchorX: "center",
+        labelProgress: 3 / 5,
+        labelOffset: [0.15, 0.45, 0.15],
+      },
+      {
+        from: negativeShift,
+        to: negativeA,
+        color: "#7c3aed",
+        label: <InlineMath math="-a" />,
+        labelAnchorX: "center",
+        labelProgress: 1 / 2,
+        labelOffset: [0.1, -0.55, 0],
+      },
+    ];
+  })()}
+  cameraPosition={[8, 6, 10]}
+  cameraTarget={[0, -1.8, 0]}
+/>
+
+In der Darstellung liegen <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> nicht auf derselben Geraden. Als Vektoren sind sie trotzdem gleich, denn das Verschieben eines Pfeils ändert weder seinen Betrag noch seine Richtung.
+
+Die freie Verschiebung eines abstrakten Vektors in einer Zeichnung bedeutet nicht, dass jeder physikalische Angriffspunkt austauschbar ist. Eine Kraft kann an einem anderen Punkt ein anderes Drehmoment erzeugen.
+
+## Ein Gegenvektor kehrt die Richtung um
+
+Der Gegenvektor zu <InlineMath math="\vec{a}" /> wird als <InlineMath math="-\vec{a}" /> geschrieben. Er hat denselben Betrag wie <InlineMath math="\vec{a}" />, zeigt aber in die entgegengesetzte Richtung.
+
+<MathContainer>
+  <BlockMath math="\lvert-\vec{a}\rvert=\lvert\vec{a}\rvert" />
+  <BlockMath math="\vec{a}+(-\vec{a})=\vec{0}" />
+</MathContainer>
+
+Eine Kraft von <InlineMath math="12\text{ N}" /> nach rechts und eine Kraft von <InlineMath math="12\text{ N}" /> nach links bilden zum Beispiel ein Paar entgegengesetzter Vektoren. Wirken beide entlang derselben Geraden auf denselben Körper, ist ihre Resultierende der Nullvektor.
+
+## Die Skalarmultiplikation ändert Betrag und Richtung
+
+Ein Skalar ist eine gewöhnliche Zahl ohne Richtung. Wird ein Vektor mit dem Skalar <InlineMath math="k" /> multipliziert, ändert sich sein Betrag um den Faktor <InlineMath math="\lvert k\rvert" />.
+
+| Form | Betrag des Ergebnisses | Richtung des Ergebnisses |
+| :--- | :--------------------- | :----------------------- |
+| <InlineMath math="2\vec{a}" /> | doppelt so groß wie <InlineMath math="\vec{a}" /> | wie <InlineMath math="\vec{a}" /> |
+| <InlineMath math="\frac{1}{2}\vec{a}" /> | halb so groß wie <InlineMath math="\vec{a}" /> | wie <InlineMath math="\vec{a}" /> |
+| <InlineMath math="-3\vec{a}" /> | dreimal so groß wie <InlineMath math="\vec{a}" /> | entgegengesetzt zu <InlineMath math="\vec{a}" /> |
+| <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | wird zum Nullvektor |
+
+Ein negativer Skalar macht den Betrag nicht negativ. Sein Minuszeichen kehrt die Richtung des Vektors um.
+
+## Der Nullvektor als Ergebnis einer Aufhebung
+
+Der Nullvektor wird als <InlineMath math="\vec{0}" /> geschrieben. Sein Betrag ist <InlineMath math="0" />, und seine Richtung ist nicht definiert, weil Fußpunkt und Spitze zusammenfallen.
+
+Ein Nullvektor entsteht häufig, wenn sich Vektoren gegenseitig aufheben. Ziehen zum Beispiel zwei Schüler mit gleich großen Kräften in entgegengesetzte Richtungen an einer Kiste, ergibt sich bei exakt gleicher Wirkungslinie keine resultierende Kraft nach rechts oder links.
+
+<BlockMath math="\vec{F}_1+\vec{F}_2=\vec{0}" />
+
+Dieser Gedanke ist für das Gleichgewicht entscheidend: Ein Körper kann in Ruhe bleiben, obwohl Kräfte auf ihn wirken, wenn ihre Resultierende null ist.

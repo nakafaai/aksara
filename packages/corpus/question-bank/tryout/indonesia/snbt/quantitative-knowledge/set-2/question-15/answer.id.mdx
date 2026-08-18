@@ -1,49 +1,35 @@
 export const metadata = {
-    title: "Pembahasan Soal 15",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-11-22",
+  title: "Pembahasan Soal 15",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
 };
 
-Kita diminta mencari angka yang habis membagi selisih dua suku berurutan, yaitu <InlineMath math="a_{2025} - a_{2024}" />.
+Kita memerlukan bentuk eksak dari selisih dua suku berurutan. Dari <InlineMath math="a_4 = 85" />, hitung mundur untuk memperoleh
 
-Agar lebih mudah, mari kita cari pola selisih antar suku berurutan terlebih dahulu dengan mencari nilai suku-suku awal.
+<MathContainer>
+  <BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
+  <BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+  <BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
+</MathContainer>
 
-Diketahui <InlineMath math="a_4 = 85" /> dan rumus <InlineMath math="a_{n+1} = 4a_n + 1" />. Kita bisa mencari suku sebelumnya dengan membalik rumus:
+#### Menurunkan Rumus Selisih
 
-<BlockMath math="a_n = \frac{a_{n+1} - 1}{4}" />
+Kalikan relasi rekursif dengan <InlineMath math="3" />, lalu tambahkan <InlineMath math="1" />:
 
-#### Mencari nilai suku-suku awal
+<MathContainer>
+  <BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+  <BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
+</MathContainer>
 
-- **Mencari <InlineMath math="a_3" />**:
+Karena <InlineMath math="3a_1 + 1 = 4" />, diperoleh <InlineMath math="3a_n + 1 = 4^n" />. Dari relasi rekursif semula,
 
-  <BlockMath math="a_3 = \frac{a_4 - 1}{4} = \frac{85 - 1}{4} = \frac{84}{4} = 21" />
+<MathContainer>
+  <BlockMath math="a_{n+1} - a_n = 4a_n + 1 - a_n" />
+  <BlockMath math="a_{n+1} - a_n = 3a_n + 1 = 4^n" />
+</MathContainer>
 
-- **Mencari <InlineMath math="a_2" />**:
+Untuk <InlineMath math="n = 2024" />,
 
-  <BlockMath math="a_2 = \frac{a_3 - 1}{4} = \frac{21 - 1}{4} = \frac{20}{4} = 5" />
+<BlockMath math="a_{2025} - a_{2024} = 4^{2024} = 2^{4048}" />
 
-- **Mencari <InlineMath math="a_1" />**:
-
-  <BlockMath math="a_1 = \frac{a_2 - 1}{4} = \frac{5 - 1}{4} = \frac{4}{4} = 1" />
-
-#### Mengamati pola selisih antar suku
-
-Mari kita hitung selisih antara suku yang berdekatan:
-
-- <InlineMath math="a_2 - a_1 = 5 - 1 = 4 = 4^1" />
-- <InlineMath math="a_3 - a_2 = 21 - 5 = 16 = 4^2" />
-- <InlineMath math="a_4 - a_3 = 85 - 21 = 64 = 4^3" />
-
-Dari pola di atas, kita bisa melihat bahwa selisih suku ke-<InlineMath math="(n+1)" /> dan ke-<InlineMath math="n" /> adalah pangkat dari <InlineMath math="4" />:
-
-<BlockMath math="a_{n+1} - a_n = 4^n" />
-
-#### Menentukan pembagi
-
-Berdasarkan pola yang kita temukan, selisih <InlineMath math="a_{2025} - a_{2024}" /> adalah:
-
-<BlockMath math="a_{2025} - a_{2024} = 4^{2024}" />
-
-Nilai <InlineMath math="4^{2024}" /> adalah bilangan perpangkatan dari <InlineMath math="4" />. Oleh karena itu, bilangan ini pasti habis dibagi oleh <InlineMath math="4" />.
-
-Jadi, angka yang habis membagi <InlineMath math="a_{2025} - a_{2024}" /> adalah <InlineMath math="4" />.
+Bilangan ini tidak memiliki faktor prima selain <InlineMath math="2" />. Di antara <InlineMath math="3, 4, 5, 6," /> dan <InlineMath math="7" />, hanya <InlineMath math="4 = 2^2" /> yang membaginya. Jadi, bilangan yang diminta adalah <InlineMath math="4" />.

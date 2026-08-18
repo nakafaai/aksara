@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Concept of Limit Function",
-    description: "Understand function limits through intuitive examples and value tables. Learn left/right limits, formal definitions, and solve indeterminate forms.",
+    description: "Understand limits through value tables, one-sided behavior, the epsilon-delta definition, and fully worked examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Limits",
@@ -8,9 +8,9 @@ export const metadata = {
 
 ## Understanding Limits Intuitively
 
-Imagine you are walking towards your house door. The closer you get to the door, the clearer you can see the details of the door. In mathematics, **limits** work in a similar way. Limits describe the value that a function approaches when its input variable approaches a certain value.
+A **limit** asks what nearby output values are doing as the input approaches a chosen point. It does **not** begin by asking for the value at that point. This distinction lets us describe a removable hole, a jump, or a vertical asymptote without pretending that the function must be defined there.
 
-The concept of limits is very fundamental in calculus because it becomes the foundation for understanding derivatives, integrals, and function continuity. Limits help us understand function behavior around certain points, even when the function is not defined exactly at that point.
+Limits provide the language used to define continuity, derivatives, and definite integrals. We will first read the behavior from a value table, then connect that intuition to one-sided limits and the precise epsilon-delta definition.
 
 ## Approach Through Value Tables
 
@@ -22,15 +22,15 @@ To understand limits more concretely, let's see how function values change when 
 
 From the table above, we can see that when <InlineMath math="x" /> approaches <InlineMath math="3" /> from the left (values <InlineMath math="x < 3" />) and from the right (values <InlineMath math="x > 3" />), the value of <InlineMath math="f(x)" /> approaches <InlineMath math="5" />. **This approaching value is called the limit**.
 
-## Formal Definition of Limits
+## Notation, One-Sided Limits, and Formal Meaning
 
-Mathematically, limits can be defined as follows:
+The standard notation is:
 
 <BlockMath math="\lim_{x \to c} f(x) = L" />
 
-This definition is read as "**the limit of <InlineMath math="f(x)" /> as <InlineMath math="x" /> approaches <InlineMath math="c" /> equals <InlineMath math="L" />**".
+This is read as "**the limit of <InlineMath math="f(x)" /> as <InlineMath math="x" /> approaches <InlineMath math="c" /> equals <InlineMath math="L" />**".
 
-The conditions for this limit to exist are:
+When <InlineMath math="c" /> is an interior point and the function is defined on both sides near <InlineMath math="c" />, the two-sided limit exists exactly when:
 - **Left limit** and **right limit** must exist
 - Left limit must be **equal to** the right limit
 - The limit value is <InlineMath math="L" />
@@ -42,7 +42,13 @@ More formally, left and right limits can be written as:
 <BlockMath math="\lim_{x \to c^+} f(x) = L \quad \text{(right limit: } x \text{ approaches} c \text{ from the right)}" />
 </MathContainer>
 
-If both limits are equal, then <InlineMath math="\lim_{x \to c} f(x) = L" />. If they are different, then the limit does not exist.
+If both limits are equal, then <InlineMath math="\lim_{x \to c} f(x) = L" />. If they are different, then the two-sided limit does not exist. At an endpoint of a domain, only the one-sided limit from within the domain is relevant.
+
+The precise epsilon-delta definition gives mathematical meaning to "approaches":
+
+<BlockMath math="\forall \varepsilon>0\;\exists\delta>0:\quad 0<|x-c|<\delta\;\Longrightarrow\;|f(x)-L|<\varepsilon" />
+
+In words, for every requested output tolerance <InlineMath math="\varepsilon>0" />, however small, we can choose an input tolerance <InlineMath math="\delta>0" /> that keeps <InlineMath math="f(x)" /> within <InlineMath math="\varepsilon" /> of <InlineMath math="L" /> whenever <InlineMath math="x" /> is within <InlineMath math="\delta" /> of <InlineMath math="c" /> but not equal to it. The condition <InlineMath math="0<|x-c|" /> is why the value <InlineMath math="f(c)" /> **does not determine the limit by itself**.
 
 ## Application of Limits
 
@@ -69,7 +75,7 @@ If we substitute <InlineMath math="x = 2" /> directly, we get the indeterminate 
 <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
 </MathContainer>
 
-Since we are calculating the limit when <InlineMath math="x" /> **approaches** <InlineMath math="2" /> (not **equals** <InlineMath math="2" />), then <InlineMath math="x \neq 2" /> and we can cancel <InlineMath math="(x - 2)" />:
+Since a limit concerns nearby values with <InlineMath math="x \neq 2" />, we may cancel <InlineMath math="(x - 2)" /> before evaluating the simplified expression:
 
 <BlockMath math="= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
@@ -99,7 +105,7 @@ Some important properties that facilitate limit calculations:
 
 4. If <InlineMath math="f(x) = \begin{cases} x + 1, & x < 2 \\ 3x - 2, & x \geq 2 \end{cases}" />, find <InlineMath math="\lim_{x \to 2} f(x)" />
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution:**
 
@@ -116,7 +122,7 @@ Some important properties that facilitate limit calculations:
    <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
    </MathContainer>
 
-   Since <InlineMath math="x" /> approaches <InlineMath math="1" /> (not equal to <InlineMath math="1" />), then <InlineMath math="x \neq 1" /> and we can cancel <InlineMath math="(x - 1)" />:
+   Since the limit uses nearby values with <InlineMath math="x \neq 1" />, we may cancel <InlineMath math="(x - 1)" /> before evaluating the simplified expression:
 
    <BlockMath math="= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
 
@@ -136,7 +142,7 @@ Some important properties that facilitate limit calculations:
 
    <BlockMath math="\lim_{x \to 2^-} f(x) = \lim_{x \to 2^-} (x + 1) = 2 + 1 = 3" />
 
-   **Right limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the right, so <InlineMath math="x \geq 2" />):
+   **Right limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the right, so nearby inputs satisfy <InlineMath math="x > 2" />):
 
    <BlockMath math="\lim_{x \to 2^+} f(x) = \lim_{x \to 2^+} (3x - 2) = 3(2) - 2 = 6 - 2 = 4" />
 

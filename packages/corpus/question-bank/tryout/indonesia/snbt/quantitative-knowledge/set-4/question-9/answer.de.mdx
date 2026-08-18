@@ -1,0 +1,47 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-26",
+};
+
+Gegeben ist die rekursive Formel <InlineMath math="b_{n+2} = b_{n+1} - 3b_n" />.
+Wir kennen auch die Werte <InlineMath math="b_4 = 5" /> und <InlineMath math="b_5 = -1" />.
+Gesucht ist <InlineMath math="b_2" />. Dazu rechnen wir die Rekursion von <InlineMath math="b_5" /> über <InlineMath math="b_3" /> bis <InlineMath math="b_2" /> rückwärts.
+
+#### Das vorherige Glied bestimmen
+
+Für <InlineMath math="n = 3" /> gilt:
+
+<MathContainer>
+  <BlockMath math="b_{3+2} = b_{3+1} - 3b_3" />
+  <BlockMath math="b_5 = b_4 - 3b_3" />
+</MathContainer>
+
+Setzen wir <InlineMath math="b_5 = -1" /> und <InlineMath math="b_4 = 5" /> ein:
+
+<MathContainer>
+  <BlockMath math="-1 = 5 - 3b_3" />
+  <BlockMath math="3b_3 = 5 + 1" />
+  <BlockMath math="3b_3 = 6" />
+  <BlockMath math="b_3 = 2" />
+</MathContainer>
+
+#### Den gewünschten Glied finden
+
+Für <InlineMath math="n = 2" /> gilt:
+
+<MathContainer>
+  <BlockMath math="b_{2+2} = b_{2+1} - 3b_2" />
+  <BlockMath math="b_4 = b_3 - 3b_2" />
+</MathContainer>
+
+Setzen wir <InlineMath math="b_4 = 5" /> und <InlineMath math="b_3 = 2" /> ein:
+
+<MathContainer>
+  <BlockMath math="5 = 2 - 3b_2" />
+  <BlockMath math="3b_2 = 2 - 5" />
+  <BlockMath math="3b_2 = -3" />
+  <BlockMath math="b_2 = -1" />
+</MathContainer>
+
+Der Wert von <InlineMath math="b_2" /> ist also <InlineMath math="-1" />.

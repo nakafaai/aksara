@@ -1,0 +1,108 @@
+export const metadata = {
+    title: "Eigenwerte von Diagonal- und Dreiecksmatrizen",
+    description: "Eigenwerte aus den Diagonaleinträgen von Diagonal- und Dreiecksmatrizen ablesen und mit Determinante und Spur prüfen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-12",
+    subject: "Lineare Methoden der KI",
+};
+
+## Diagonalmatrizen und ihre besonderen Eigenschaften
+
+Bei Diagonal- und Dreiecksmatrizen lässt sich jeder Eigenwert zusammen mit seiner algebraischen Multiplizität direkt von der Hauptdiagonale ablesen. Die Matrix kann eine der folgenden Formen haben:
+
+Die Eigenwerte einer quadratischen Diagonalmatrix oder Dreiecksmatrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />
+
+<MathContainer>
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & * & \cdots & * \\ 0 & a_{22} & \cdots & * \\ \vdots & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & a_{nn} \end{pmatrix}" />
+<BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ * & a_{22} & \ddots & \vdots \\ \vdots & \vdots & \ddots & 0 \\ * & * & \cdots & a_{nn} \end{pmatrix}" />
+</MathContainer>
+
+sind seine wichtigsten diagonalen Einträge:
+
+<BlockMath math="\lambda_1 = a_{11}, \ldots, \lambda_n = a_{nn}" />
+
+Warum ist das wahr? Da <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{11} - t) \cdots (a_{nn} - t)" /> mit Wurzeln <InlineMath math="a_{11}, \ldots, a_{nn}" />.
+
+Damit sind für eine Dreiecksmatrix weder eine vollständige Determinantenentwicklung noch ein Verfahren zur Nullstellensuche nötig.
+
+## Obere und untere Dreiecksmatrizen
+
+Dreiecksmatrizen haben die gleichen Eigenschaften wie Diagonalmatrizen. Sowohl für obere als auch für untere Dreiecksmatrizen sind die Eigenwerte immer noch die wichtigsten Diagonaleinträge.
+
+Dies liegt daran, dass bei der Berechnung von <InlineMath math="\det(A - tI)" /> die Einträge oberhalb oder unterhalb der Hauptdiagonale keinen Einfluss auf die Determinantenberechnung haben. Die Dreiecksstruktur ermöglicht die Berechnung der Determinante als Produkt diagonaler Einträge.
+
+## Beispiele für direkte Berechnungen
+
+Die Diagonalregel gilt speziell für Dreiecksmatrizen. Zum Vergleich müssen wir bei den folgenden nicht dreieckigen Matrizen jeweils das charakteristische Polynom berechnen.
+
+### Komplexe Eigenwerte
+
+Angenommen <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />. Sein charakteristisches Polynom ist:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -1 \\ 1 & 1-t \end{pmatrix}" />
+<BlockMath math="= (1-t) \cdot (1-t) - 1 \cdot (-1) = t^2 - 2t + 2" />
+</MathContainer>
+
+welches Wurzeln <InlineMath math="\lambda_1 = 1 + i" /> und <InlineMath math="\lambda_2 = 1 - i" /> hat.
+
+### Null-Eigenwerte
+
+Für <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> ist das charakteristische Polynom:
+
+<MathContainer>
+<BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -i \\ i & 1-t \end{pmatrix}" />
+<BlockMath math="= (1-t) \cdot (1-t) - i \cdot (-i) = t^2 - 2t" />
+</MathContainer>
+
+mit Wurzeln <InlineMath math="\lambda_1 = 2" /> und <InlineMath math="\lambda_2 = 0" />.
+
+## Charakteristische Polynomfaktorisierung
+
+Hat <InlineMath math="A \in \mathbb{C}^{n \times n}" /> die mit algebraischer Multiplizität gezählten Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_n" />, dann faktorisiert das charakteristische Polynom als:
+
+<BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
+
+Mit <InlineMath math="\sigma(A)" /> bezeichnen wir die endliche Menge der verschiedenen Eigenwerte von <InlineMath math="A" />. Ihre algebraischen Multiplizitäten summieren sich zu <InlineMath math="n" />:
+
+<BlockMath math="\sum_{\lambda \in \sigma(A)} \mu_A(\lambda) = n" />
+
+In kompakterer Form:
+
+<BlockMath math="\chi_A(t) = \prod_{\lambda \in \sigma(A)} (\lambda - t)^{\mu_A(\lambda)}" />
+
+Diese Eigenschaft gilt natürlich für komplexe Eigenwerte von Matrizen mit reellen Einträgen. Eigenwerte können reelle Zahlen oder komplex konjugierte Paare sein.
+
+## Beziehung zwischen Determinante und Spur
+
+Es besteht eine grundlegende Beziehung zwischen Eigenwerten und der Determinante und Spur einer Matrix. Wenn das charakteristische Polynom <InlineMath math="\chi_A(t)" /> linear in <InlineMath math="\mathbb{K}" /> faktorisiert werden kann, was bedeutet, dass die Matrix <InlineMath math="A" /> <InlineMath math="n" /> Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" /> hat, dann:
+
+<MathContainer>
+<BlockMath math="\det A = \prod_{i=1}^n \lambda_i" />
+<BlockMath math="\text{tr} A = \sum_{i=1}^n \lambda_i" />
+</MathContainer>
+
+**Die Determinante ist das Produkt** aller Eigenwerte und **die Spur ist die Summe** aller Eigenwerte.
+
+Prüfen wir anhand unserer vorherigen Beispiele:
+
+Für <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" /> mit <InlineMath math="\lambda_1 = 1 + i" />, <InlineMath math="\lambda_2 = 1 - i" />:
+
+<MathContainer>
+<BlockMath math="\det A = 1 \cdot 1 - 1 \cdot (-1) = 2 = \lambda_1 \cdot \lambda_2" />
+<BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
+</MathContainer>
+
+Für <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> mit <InlineMath math="\lambda_1 = 2" />, <InlineMath math="\lambda_2 = 0" />:
+
+<MathContainer>
+<BlockMath math="\det A = 1 \cdot 1 - i \cdot (-i) = 0 = \lambda_1 \cdot \lambda_2" />
+<BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
+</MathContainer>
+
+Diese beiden Identitäten eignen sich zur Ergebniskontrolle, bestimmen für eine allgemeine Matrix mit <InlineMath math="n > 2" /> aber noch nicht alle Eigenwerte. Eine unmittelbare Folgerung lautet:
+
+<BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
+
+Eine quadratische Matrix ist also genau dann singulär, wenn null einer ihrer Eigenwerte ist.

@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Definition of Central Angle
 
-A central angle is an angle formed by two radii of a circle with its vertex located at the center of the circle. Imagine it like a slice of pizza, where the pointed tip of the pizza is exactly at the center of the circle. Both sides of this central angle are radii that connect the center of the circle to the edge of the circle.
+A central angle is formed by two radii and has its vertex at the center of the circle. A slice of pizza gives the same shape: its pointed tip lies at the center, and its two straight edges follow radii.
 
-In a circle with center <InlineMath math="O" />, if we have points <InlineMath math="A" /> and <InlineMath math="B" /> on the circumference of the circle, then <InlineMath math="\angle AOB" /> is a central angle. This angle faces arc <InlineMath math="AB" /> which is the part of the circle's circumference between points <InlineMath math="A" /> and <InlineMath math="B" />.
+In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and <InlineMath math="B" /> lie on the circumference. Then <InlineMath math="\angle AOB" /> is a central angle, and it subtends the arc <InlineMath math="AB" /> between those two points.
 
 <LineEquation
   title={<>Central Angle Visualization <InlineMath math="\angle AOB" /></>}
@@ -27,19 +27,21 @@ In a circle with center <InlineMath math="O" />, if we have points <InlineMath m
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(Math.PI / 6), y: 1.5 * Math.sin(Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(Math.PI / 6), y: 3 * Math.sin(Math.PI / 6), z: 0 },
       ],
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="OA" />, at: 0.5, offset: [0.3, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="OA" />, at: 1, offset: [0.3, 0.3, 0] }],
       showPoints: true,
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 1.5 * Math.sin(5 * Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(5 * Math.PI / 6), y: 3 * Math.sin(5 * Math.PI / 6), z: 0 },
       ],
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="OB" />, at: 0.5, offset: [-0.3, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="OB" />, at: 1, offset: [-0.3, 0.3, 0] }],
       showPoints: true,
     },
     {
@@ -91,11 +93,11 @@ In a circle with center <InlineMath math="O" />, if we have points <InlineMath m
 
 ## Relationship Between Central Angle and Arc
 
-The fundamental relationship between a central angle and the arc it faces is very simple yet important. The measure of a central angle in degrees equals the measure of the arc it faces in degrees. This is like a direct relationship between a bottle opener and the bottle cap being opened.
+A central angle and its intercepted arc have the same degree measure. A <InlineMath math="60^\circ" /> central angle therefore intercepts a <InlineMath math="60^\circ" /> arc.
 
-<BlockMath math="\text{Central angle measure} = \text{Arc measure faced}" />
+<BlockMath math="\text{central angle measure} = \text{intercepted arc measure}" />
 
-If the central angle <InlineMath math="\angle AOB = 60^\circ" />, then arc <InlineMath math="AB" /> also measures <InlineMath math="60^\circ" />. This concept applies because an arc is defined based on the central angle that faces it.
+If <InlineMath math="\angle AOB = 60^\circ" />, then arc <InlineMath math="AB" /> also measures <InlineMath math="60^\circ" />. This equality concerns degree measure, not arc length.
 
 ## Types of Arcs Based on Central Angle
 
@@ -103,19 +105,19 @@ Based on the measure of their central angles, arcs can be classified into three 
 
 ### Minor Arc
 
-A minor arc is an arc faced by a central angle less than <InlineMath math="180^\circ" />. This is an arc shorter than half a circle. Like a piece of cake smaller than half the whole cake.
+A minor arc is subtended by a central angle less than <InlineMath math="180^\circ" />. It is shorter than half the circumference.
 
 ### Semicircle Arc
 
-A semicircle arc is faced by a central angle of exactly <InlineMath math="180^\circ" />. This central angle is formed by the diameter of the circle, so the arc is half the circumference of the circle.
+A semicircular arc is subtended by a central angle of exactly <InlineMath math="180^\circ" />. Its endpoints lie on a diameter, so its length is half the circle's circumference.
 
 ### Major Arc
 
-A major arc is an arc faced by a central angle greater than <InlineMath math="180^\circ" />. This is an arc longer than half a circle. To calculate the measure of a major arc, we use:
+A major arc is subtended by a reflex central angle greater than <InlineMath math="180^\circ" />. It is longer than half the circumference. Its degree measure is the remainder of the full turn after subtracting the corresponding minor arc measure:
 
 <ContentStack>
 
-<BlockMath math="\text{Major arc} = 360^\circ - \text{Minor arc}" />
+<BlockMath math="\text{major arc measure} = 360^\circ - \text{minor arc measure}" />
 
 <LineEquation
   title="Comparison of Arc Types"
@@ -230,7 +232,7 @@ Arc length can be calculated using the ratio between the central angle and the f
 
 <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-Where:
+with:
 - <InlineMath math="s" /> = arc length
 - <InlineMath math="\theta" /> = central angle measure in degrees
 - <InlineMath math="r" /> = radius of the circle
@@ -239,11 +241,11 @@ If the central angle is expressed in radians, the formula becomes simpler:
 
 <BlockMath math="s = \theta \times r" />
 
-Where <InlineMath math="\theta" /> is in radians.
+Here <InlineMath math="\theta" /> must be measured in radians.
 
 ## Example Application
 
-Let's apply this concept in a concrete example. Suppose we have a circle with radius <InlineMath math="r = 6 \text{ cm}" /> and central angle <InlineMath math="\theta = 120^\circ" />.
+Consider a circle with radius <InlineMath math="r = 6 \text{ cm}" /> and central angle <InlineMath math="\theta = 120^\circ" />.
 
 First step, we calculate the arc length:
 
@@ -262,19 +264,21 @@ So the arc length faced by the central angle <InlineMath math="120^\circ" /> is 
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
         { x: 6, y: 0, z: 0 },
       ],
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 0.5, offset: [0, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [0, -0.5, 0] }],
       showPoints: true,
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
+        { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3), z: 0 },
         { x: 6 * Math.cos(2 * Math.PI / 3), y: 6 * Math.sin(2 * Math.PI / 3), z: 0 },
       ],
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 0.5, offset: [-0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [-0.5, 0.3, 0] }],
       showPoints: true,
     },
     {
@@ -324,11 +328,11 @@ So the arc length faced by the central angle <InlineMath math="120^\circ" /> is 
   showZAxis={false}
 />
 
-## Applications in Daily Life
+## Models and Applications
 
-The concept of central angles on arcs has many practical applications. In gear design, central angles determine the distance between teeth. On analog clocks, clock hands move forming central angles that indicate time. Architects use this concept to design bridge arches or building domes.
+Equal angular pitches place repeated features evenly around a circular gear or dial; converting that angle into an arc length also requires the radius. On an analog clock, the hands sweep central angles as time passes. Circular-arc geometry can likewise specify the idealized outline of an arch or dome, although structural design requires additional information.
 
-In navigation, aircraft pilots use the concept of circular arcs to calculate travel distance when flying along curved paths on Earth's surface. The larger the central angle traversed, the farther the distance traveled.
+If Earth is approximated as a sphere, a route along a great circle has length <InlineMath math="s=r\theta" /> for central angle <InlineMath math="\theta" /> in radians. This is a mathematical model; precise navigation uses an Earth model and route data appropriate to the required accuracy.
 
 ## Exercises
 
@@ -336,11 +340,11 @@ In navigation, aircraft pilots use the concept of circular arcs to calculate tra
 
 2. Given that the arc length of a circle is <InlineMath math="10\pi \text{ cm}" /> and its radius is <InlineMath math="15 \text{ cm}" />. Determine the measure of the central angle facing that arc.
 
-3. In a circle with center <InlineMath math="O" />, there is a central angle <InlineMath math="\angle AOB = 72^\circ" />. If the circle's radius is <InlineMath math="5 \text{ cm}" />, determine the length of arc <InlineMath math="AB" /> and express the result in terms of <InlineMath math="\pi" />.
+3. In a circle with center <InlineMath math="O" />, there is a central angle <InlineMath math="\angle AOB = 72^\circ" />. If the circle's radius is <InlineMath math="r = 5 \text{ cm}" />, determine the length of arc <InlineMath math="AB" /> and express the result in terms of <InlineMath math="\pi" />.
 
-4. A bicycle wheel has a radius of <InlineMath math="30 \text{ cm}" />. If the wheel rotates forming a central angle of <InlineMath math="150^\circ" />, what distance is traveled by a point on the wheel's edge?
+4. A bicycle wheel with radius <InlineMath math="30 \text{ cm}" /> rotates about a fixed axle through <InlineMath math="150^\circ" />. How far does a point on its rim move along its circular path?
 
-### Answer Key
+### Worked Solutions
 
 1. **Solution:**
 
@@ -384,7 +388,7 @@ In navigation, aircraft pilots use the concept of circular arcs to calculate tra
 
    <BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
 
-   **Step** <InlineMath math="4" />: Isolate θ
+   **Step** <InlineMath math="4" />: Isolate <InlineMath math="\theta" />
 
    <BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
 
@@ -440,4 +444,4 @@ In navigation, aircraft pilots use the concept of circular arcs to calculate tra
 
    <BlockMath math="s = 25\pi \text{ cm}" />
 
-   Therefore, the distance traveled by a point on the wheel's edge is <InlineMath math="25\pi \text{ cm}" /> or approximately <InlineMath math="78.54 \text{ cm}" />.
+   Therefore, the point moves <InlineMath math="25\pi \text{ cm}" /> along its circular path, or approximately <InlineMath math="78.54 \text{ cm}" />.

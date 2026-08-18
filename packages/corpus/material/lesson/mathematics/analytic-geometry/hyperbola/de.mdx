@@ -1,0 +1,622 @@
+export const metadata = {
+  title: "Hyperbel",
+  description: "Lerne Brennpunkte, Asymptoten, Standardgleichungen, Exzentrizität und Scheitelpunkte einer Hyperbel anhand ausgearbeiteter Beispiele kennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Analytische Geometrie",
+};
+
+
+
+## Was ist eine Hyperbel?
+
+Der senkrechte Umriss eines Kühlturms erinnert oft an eine Hyperbel. Auch die kegelförmige Stoßwelle eines Überschallflugzeugs kann dort, wo sie auf den Boden trifft, eine hyperbolische Kurve bilden. Diese Beispiele geben uns ein erstes Bild der Kurve.
+
+Geometrisch entsteht eine Hyperbel, wenn eine Ebene beide Hälften eines Doppelkegels schneidet. Anders als die geschlossene Ellipse hat sie **zwei getrennte Äste**, die sich in entgegengesetzte Richtungen öffnen.
+
+Eine Hyperbel ist die Ortskurve aller Punkte, für die **der Betrag der Differenz der Abstände zu zwei festen Punkten konstant ist**. Diese beiden festen Punkte heißen **Brennpunkte**. Für jeden Punkt <InlineMath math="P" /> auf der Hyperbel gilt <InlineMath math="|PF_1 - PF_2| = 2a" />. Bei einer [Ellipse](/de/faecher/mathematik/analytische-geometrie/ellipse) ist dagegen die Summe der Abstände konstant: <InlineMath math="PF_1 + PF_2 = 2a" />.
+
+<LineEquation
+  title="Grundkonzept der Hyperbel"
+  description="Hyperbel mit zwei Brennpunkten, die einen konstanten Abstandsunterschied aufweisen"
+  data={[
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+
+        // Rechter Ast der Hyperbel
+        for (let t = -2; t <= 2; t += 0.1) {
+          const x = a * Math.cosh(t);
+          const y = b * Math.sinh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2;
+
+        // Linker Ast der Hyperbel
+        for (let t = -2; t <= 2; t += 0.1) {
+          const x = -a * Math.cosh(t);
+          const y = b * Math.sinh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: c, y: 0, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, -0.5, 0] }
+      ],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const t = 0.7;
+        return [{
+          x: a * Math.cosh(t),
+          y: b * Math.sinh(t),
+          z: 0,
+        }];
+      })(),
+      color: "#65a30d",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        const t = 0.7;
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [-1, 0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        const t = 0.7;
+        return [
+          { x: c, y: 0, z: 0 },
+          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
+        ];
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_2" />, at: 0, offset: [0.5, 1, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 0, z: 0 },
+        { x: 6, y: 0, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Die Darstellung zeigt beide Äste, die beiden Brennpunkte und einen Punkt <InlineMath math="P" /> auf der Kurve. Die beiden Strecken haben die Längen <InlineMath math="r_1=PF_1" /> und <InlineMath math="r_2=PF_2" />. Wenn <InlineMath math="P" /> auf einem der Äste wandert, ändern sich beide Längen, ihr absoluter Unterschied bleibt jedoch <InlineMath math="|r_1-r_2|=2a" />.
+
+## Komponenten einer Hyperbel
+
+Bevor wir die Formeln verwenden, betrachten wir die Teile, die Form und Lage der Kurve bestimmen.
+
+<LineEquation
+  title="Teile einer Hyperbel"
+  description="Wichtige Bestandteile einer Hyperbel mit horizontaler Transversalachse."
+  data={[
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2.5;
+
+        // Right branch
+        for (let t = -1.5; t <= 1.5; t += 0.1) {
+          const x = a * Math.cosh(t);
+          const y = b * Math.sinh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#4f46e5",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2.5;
+
+        // Left branch
+        for (let t = -1.5; t <= 1.5; t += 0.1) {
+          const x = -a * Math.cosh(t);
+          const y = b * Math.sinh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#4f46e5",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: "Mitte", at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2.5;
+        const c = Math.sqrt(a * a + b * b);
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: c, y: 0, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -6, y: -5, z: 0 },
+        { x: 6, y: 5, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Asymptote", at: 1, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 5, z: 0 },
+        { x: 6, y: -5, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Asymptote", at: 0, offset: [-0.5, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+Die Grafik lässt sich anhand von fünf Merkmalen lesen:
+
+1. **Das Zentrum der Hyperbel** ist der Mittelpunkt zwischen den beiden Brennpunkten und wird normalerweise mit <InlineMath math="O" /> bezeichnet.
+
+2. **Brennpunkte** (<InlineMath math="F_1" /> und <InlineMath math="F_2" />) sind die beiden festen Punkte in der Definition einer Hyperbel. Bezeichnet <InlineMath math="c" /> den Abstand vom Mittelpunkt zu einem Brennpunkt, dann beträgt der Abstand zwischen beiden Brennpunkten <InlineMath math="2c" />.
+
+3. **Scheitelpunkte** (<InlineMath math="A_1" /> und <InlineMath math="A_2" />) sind die Punkte der beiden Äste, die dem Mittelpunkt am nächsten liegen. Beide liegen auf der Transversalachse.
+
+4. **Transversalachse** ist die Strecke durch den Mittelpunkt, deren Endpunkte die beiden Scheitelpunkte sind. Die Brennpunkte liegen auf der Geraden, die diese Strecke enthält.
+
+5. **Asymptoten** sind Linien, denen sich die Äste der Hyperbel nähern, wenn sie sich ins Unendliche erstrecken. Die Hyperbel berührt nie ihre Asymptoten, aber je weiter sie vom Zentrum entfernt ist, desto näher kommt die Kurve den Asymptotenlinien.
+
+> Der Hauptunterschied zwischen einer Hyperbel und einer Ellipse: Eine Hyperbel hat Asymptoten und besteht aus zwei separaten Zweigen, während eine Ellipse eine geschlossene Kurve ohne Asymptoten ist.
+
+## Gleichung einer Hyperbel
+
+Die Standardgleichung hängt von der Öffnungsrichtung der Äste und von der Lage des Mittelpunkts ab. Wir betrachten zwei Fälle.
+
+### Mittelpunkt im Ursprung
+
+Liegt der Mittelpunkt der Hyperbel bei <InlineMath math="O(0,0)" />, gibt es zwei mögliche Orientierungen:
+
+<LineEquation
+  title="Horizontale Transversalachse"
+  description={<>Hyperbel <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> mit horizontaler Transversalachse.</>}
+  data={[
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2;
+
+        // Right branch
+        for (let t = -1.8; t <= 1.8; t += 0.1) {
+          const x = a * Math.cosh(t);
+          const y = b * Math.sinh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#7c3aed",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2;
+
+        // Left branch
+        for (let t = -1.8; t <= 1.8; t += 0.1) {
+          const x = -a * Math.cosh(t);
+          const y = b * Math.sinh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#7c3aed",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        return [
+          { x: -c, y: 0, z: 0 },
+          { x: c, y: 0, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -6, y: -4, z: 0 },
+        { x: 6, y: 4, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -6, y: 4, z: 0 },
+        { x: 6, y: -4, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Wenn die Transversalachse parallel zur <InlineMath math="x" />-Achse verläuft, lautet die Gleichung der Hyperbel:
+
+<BlockMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />
+
+Die entsprechende vertikale Grafik ist unten dargestellt:
+
+<LineEquation
+  title="Vertikale Transversalachse"
+  description={<>Hyperbel <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> mit vertikaler Transversalachse.</>}
+  data={[
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2;
+
+        // Top branch
+        for (let t = -1.8; t <= 1.8; t += 0.1) {
+          const x = b * Math.sinh(t);
+          const y = a * Math.cosh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: (() => {
+        const points = [];
+        const a = 3;
+        const b = 2;
+
+        // Bottom branch
+        for (let t = -1.8; t <= 1.8; t += 0.1) {
+          const x = b * Math.sinh(t);
+          const y = -a * Math.cosh(t);
+          points.push({ x, y, z: 0 });
+        }
+        return points;
+      })(),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const c = Math.sqrt(a * a + b * b);
+        return [
+          { x: 0, y: -c, z: 0 },
+          { x: 0, y: c, z: 0 }
+        ];
+      })(),
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: -3, z: 0 },
+        { x: 0, y: 3, z: 0 }
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A_1" />, at: 0, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -4, y: -6, z: 0 },
+        { x: 4, y: 6, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -4, y: 6, z: 0 },
+        { x: 4, y: -6, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+Wenn die Transversalachse parallel zur <InlineMath math="y" />-Achse verläuft, lautet die Gleichung der Hyperbel:
+
+<BlockMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" />
+
+### Verschobenes Zentrum
+
+Liegt der Mittelpunkt der Hyperbel nicht im Ursprung, sondern im Punkt <InlineMath math="(h, k)" />, lautet die Gleichung:
+
+<MathContainer>
+  <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1 \quad \text{(horizontale Transversalachse)}" />
+  <BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1 \quad \text{(vertikale Transversalachse)}" />
+</MathContainer>
+
+## Wichtige Eigenschaften der Hyperbel
+
+Die drei Parameter jeder Hyperbel erfüllen:
+
+<BlockMath math="c^2 = a^2 + b^2" />
+
+Dabei gilt:
+- <InlineMath math="a" /> ist der Abstand vom Mittelpunkt zum Scheitelpunkt (reelle Halbachse oder halbe Transversalachse)
+- <InlineMath math="b" /> ist die konjugierte Halbachse, die die Steigungen der Asymptoten bestimmt
+- <InlineMath math="c" /> ist der Abstand vom Mittelpunkt zum Brennpunkt
+
+Diese Beziehung unterscheidet sich von einer Ellipse, die <InlineMath math="c^2 = a^2 - b^2" /> verwendet.
+
+**Exzentrizität** einer Hyperbel ist definiert als:
+
+<BlockMath math="e = \frac{c}{a}" />
+
+Die Exzentrizität einer Hyperbel erfüllt stets <InlineMath math="e > 1" />, denn aus <InlineMath math="c^2 = a^2 + b^2" /> folgt <InlineMath math="c > a" />. Genauer gilt <InlineMath math="e^2 = 1 + \frac{b^2}{a^2}" />. Mit wachsendem <InlineMath math="e" /> wächst daher auch das Verhältnis <InlineMath math="b/a" />, das zugleich die Steigungen der Asymptoten bestimmt. Zum Vergleich: Ein Kreis hat <InlineMath math="e = 0" />, eine Ellipse hat <InlineMath math="0 < e < 1" />, eine Parabel hat <InlineMath math="e = 1" /> und eine Hyperbel hat <InlineMath math="e > 1" />.
+
+**Asymptotengleichungen** für eine Hyperbel mit Mittelpunkt bei <InlineMath math="(0,0)" />:
+
+<MathContainer>
+  <BlockMath math="y = \pm \frac{b}{a}x \quad \text{(horizontale Transversalachse)}" />
+  <BlockMath math="y = \pm \frac{a}{b}x \quad \text{(vertikale Transversalachse)}" />
+</MathContainer>
+
+> Die Asymptoten beschreiben die Grenzrichtungen der beiden Äste. Mit wachsendem Abstand vom Mittelpunkt nähert sich jeder Ast einer Asymptote, ohne sie zu schneiden.
+
+## Übungen
+
+1. Bestimme die Gleichung einer Hyperbel mit dem Mittelpunkt <InlineMath math="(0,0)" />, den Scheitelpunkten <InlineMath math="(\pm 2, 0)" /> und den Brennpunkten <InlineMath math="(\pm 3, 0)" />.
+
+2. Gegeben ist die Hyperbel <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />. Bestimme die Brennpunkte, die Exzentrizität und die Gleichungen der Asymptoten.
+
+3. Eine Hyperbel hat den Mittelpunkt <InlineMath math="(1, -2)" />, eine horizontale Transversalachse sowie <InlineMath math="a = 3" /> und <InlineMath math="b = 4" />. Bestimme ihre Gleichung.
+
+4. Bestimme die Gleichungen der Asymptoten für <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />.
+
+### Ausführliche Lösungen
+
+1. **Lösung**:
+
+   Gegeben sind:
+   - Mittelpunkt <InlineMath math="(0,0)" />
+   - Scheitelpunkte <InlineMath math="(\pm 2, 0)" />, also <InlineMath math="a = 2" />
+   - Brennpunkte bei <InlineMath math="(\pm 3, 0)" />, also <InlineMath math="c = 3" />
+   - Horizontale Transversalachse (da Scheitelpunkte und Brennpunkte auf der <InlineMath math="x" />-Achse liegen)
+
+   Mit <InlineMath math="c^2 = a^2 + b^2" /> erhalten wir:
+
+   <MathContainer>
+     <BlockMath math="3^2 = 2^2 + b^2" />
+     <BlockMath math="9 = 4 + b^2" />
+     <BlockMath math="b^2 = 5" />
+   </MathContainer>
+
+   Gleichung einer Hyperbel mit horizontaler Transversalachse:
+
+   <BlockMath math="\frac{x^2}{4} - \frac{y^2}{5} = 1" />
+
+2. **Lösung**:
+
+   Aus der Gleichung <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />:
+   - <InlineMath math="a^2 = 25" />, also <InlineMath math="a = 5" />
+   - <InlineMath math="b^2 = 9" />, also <InlineMath math="b = 3" />
+
+   Da die Gleichung die Form <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> hat, ist die Transversalachse horizontal.
+
+   Zuerst bestimmen wir <InlineMath math="c" />:
+
+   <MathContainer>
+     <BlockMath math="c^2 = a^2 + b^2 = 25 + 9 = 34" />
+     <BlockMath math="c = \sqrt{34} \approx 5{,}831" />
+   </MathContainer>
+
+   Koordinaten der Brennpunkte: <InlineMath math="(\pm \sqrt{34}, 0)" />
+
+   Exzentrizität:
+
+   <BlockMath math="e = \frac{c}{a} = \frac{\sqrt{34}}{5} \approx \frac{5{,}831}{5} \approx 1{,}166" />
+
+   Asymptotengleichungen (horizontale Transversalachse):
+
+   <BlockMath math="y = \pm \frac{b}{a}x = \pm \frac{3}{5}x" />
+
+3. **Lösung**:
+
+   Gegeben sind:
+   - Mittelpunkt: <InlineMath math="(h,k) = (1, -2)" />
+   - Horizontale Transversalachse
+   - <InlineMath math="a = 3" />, also <InlineMath math="a^2 = 9" />
+   - <InlineMath math="b = 4" />, also <InlineMath math="b^2 = 16" />
+
+   Gleichung einer Hyperbel mit Mittelpunkt <InlineMath math="(h,k)" /> und horizontaler Transversalachse:
+
+   <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
+
+   Einsetzen liefert:
+
+   <BlockMath math="\frac{(x-1)^2}{9} - \frac{(y+2)^2}{16} = 1" />
+
+4. **Lösung**:
+
+   Aus der Gleichung <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />:
+   - Mittelpunkt: <InlineMath math="(h,k) = (2, -1)" />
+   - <InlineMath math="a^2 = 4" />, also <InlineMath math="a = 2" />
+   - <InlineMath math="b^2 = 9" />, also <InlineMath math="b = 3" />
+   - Vertikale Transversalachse (da die Gleichung die Form <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" /> hat)
+
+   Für eine Hyperbel mit Mittelpunkt <InlineMath math="(h,k)" /> und vertikaler Transversalachse gelten die Asymptotengleichungen:
+
+   <BlockMath math="y - k = \pm \frac{a}{b}(x - h)" />
+
+   Einsetzen liefert:
+
+   <MathContainer>
+     <BlockMath math="y - (-1) = \pm \frac{2}{3}(x - 2)" />
+     <BlockMath math="y + 1 = \pm \frac{2}{3}(x - 2)" />
+     <BlockMath math="y = -1 \pm \frac{2}{3}(x - 2)" />
+   </MathContainer>
+
+    Die Asymptotengleichungen lauten also:
+
+    <MathContainer>
+       <BlockMath math="y = -1 + \frac{2}{3}(x - 2)" />
+       <BlockMath math="y = -1 - \frac{2}{3}(x - 2)" />
+     </MathContainer>

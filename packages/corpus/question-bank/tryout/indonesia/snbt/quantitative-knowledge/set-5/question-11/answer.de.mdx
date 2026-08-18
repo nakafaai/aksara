@@ -1,0 +1,36 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Gegeben sind:
+- insgesamt <InlineMath math="700" /> Studierende,
+- <InlineMath math="350" /> Teilnehmende am Sportangebot,
+- <InlineMath math="450" /> Teilnehmende am Kunstangebot.
+
+Gesucht sind die größtmögliche Schnittmenge <InlineMath math="P" /> und die kleinstmögliche Schnittmenge <InlineMath math="Q" />.
+
+1. **<InlineMath math="P" /> bestimmen**
+   Die Schnittmenge ist am größten, wenn alle Mitglieder der kleineren Gruppe zugleich zur größeren Gruppe gehören.
+
+   <MathContainer>
+     <BlockMath math="P = \min(350, 450) = 350 \text{ Studenten}" />
+   </MathContainer>
+
+2. **<InlineMath math="Q" /> bestimmen**
+   Die Schnittmenge ist am kleinsten, wenn die Vereinigung beider Gruppen möglichst alle <InlineMath math="700" /> Studierenden umfasst. Mit dem Inklusions-Exklusions-Prinzip folgt:
+
+   <MathContainer>
+     <BlockMath math="\text{Schnittmenge} = (\text{Sport} + \text{Kunst}) - \text{Gesamtzahl}" />
+     <BlockMath math="Q = (350 + 450) - 700" />
+     <BlockMath math="Q = 800 - 700 = 100 \text{ Studenten}" />
+   </MathContainer>
+
+3. **Differenz berechnen**
+
+   <MathContainer>
+     <BlockMath math="P - Q = 350 - 100 = 250 \text{ Studenten}" />
+   </MathContainer>
+
+Die Differenz zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> beträgt <InlineMath math="250" /> Studierende.

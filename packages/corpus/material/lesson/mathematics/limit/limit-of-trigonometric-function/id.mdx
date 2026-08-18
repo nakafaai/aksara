@@ -8,13 +8,13 @@ export const metadata = {
 
 ## Memahami Limit Fungsi Trigonometri
 
-Bayangkan kamu mengamati bandul jam yang berayun sangat lambat mendekati titik keseimbangan. Gerakan ini mirip dengan perilaku fungsi trigonometri ketika variabelnya mendekati nilai tertentu. **Limit fungsi trigonometri** mengkaji bagaimana nilai fungsi sinus, cosinus, dan tangen berperilaku ketika input mendekati titik kritis.
+**Limit trigonometri** mengajukan pertanyaan lokal yang sama dengan limit aljabar: nilai apa yang didekati suatu bentuk di sekitar input tertentu? Sinus dan cosinus kontinu pada setiap bilangan real, sedangkan tangen kontinu ketika cosinus tidak nol. Jadi, substitusi langsung tetap berlaku jika bentuk yang dihasilkan terdefinisi.
 
-Berbeda dengan limit fungsi aljabar yang sering dapat diselesaikan dengan substitusi langsung, fungsi trigonometri memiliki karakteristik khusus karena sifat periodik dan osilasi mereka. Hal ini membuat kita perlu menggunakan **teorema dan sifat khusus** untuk menyelesaikan limit trigonometri.
+Langkah khusus diperlukan ketika substitusi menghasilkan bentuk tak tentu seperti <InlineMath math="\frac{0}{0}" />. Di sekitar nol, satu **limit sinus fundamental** dan identitas trigonometri yang sudah dikenal membantu kita mengubah bentuk tersebut menjadi bentuk yang dapat dinilai.
 
 ## Teorema Fundamental Limit Trigonometri
 
-Fondasi paling penting dalam limit trigonometri adalah teorema yang menyatakan bahwa fungsi sinus mendekati gradiennya ketika sudut mendekati nol.
+Dasar terpenting limit trigonometri adalah teorema yang menyatakan bahwa perbandingan sinus suatu sudut dengan sudut itu sendiri mendekati satu ketika sudut mendekati nol.
 
 ### Limit Dasar Sine
 
@@ -32,8 +32,15 @@ Dari limit fundamental di atas, kita dapat menurunkan beberapa limit penting lai
 
 <MathContainer>
 <BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1 \quad \text{(karena } \tan x = \frac{\sin x}{\cos x} \text{ dan} \cos x \to 1\text{)}" />
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0 \quad \text{(gunakan L'Hôpital atau ekspansi Taylor)}" />
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0 \quad \text{(identitas } 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
 <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2} \quad \text{(identitas } 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
+</MathContainer>
+
+Identitas tersebut langsung menghasilkan kedua limit cosinus tanpa memakai aturan turunan yang baru dipelajari pada tahap berikutnya:
+
+<MathContainer>
+<BlockMath math="\frac{1-\cos x}{x}=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\longrightarrow\;0\cdot 1=0" />
+<BlockMath math="\frac{1-\cos x}{x^2}=\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\;\longrightarrow\;\frac{1}{2}" />
 </MathContainer>
 
 ## Sifat Limit Trigonometri
@@ -42,7 +49,7 @@ Berdasarkan teorema fundamental, kita dapat membangun serangkaian sifat yang san
 
 ### Perbandingan Trigonometri
 
-Untuk konstanta <InlineMath math="a \neq 0" /> dan <InlineMath math="b \neq 0" />, dan **semua limit berikut ketika <InlineMath math="x \to 0" />**:
+Untuk konstanta real <InlineMath math="a" /> dan <InlineMath math="b \neq 0" />, **semua limit berikut diambil ketika <InlineMath math="x \to 0" />**:
 
 | Limit | Hasil | Catatan |
 |-------|-------|---------|
@@ -131,7 +138,7 @@ Menggunakan definisi cotangen:
 
 5. Hitung <InlineMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Penyelesaian:**
 

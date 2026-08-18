@@ -1,0 +1,135 @@
+
+export const metadata = {
+  title: "Atomsymbol",
+  description:
+    "Ordnungszahl, Massenzahl sowie die Anzahl von Protonen, Neutronen und Elektronen sicher aus einem Atomsymbol ablesen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-29",
+  subject: "Atomstruktur",
+};
+
+## Ein Ausweis für das Atom
+
+Ein Atomsymbol fasst die Identität eines Atoms kompakt zusammen. Ähnlich wie ein Schülerausweis einen Namen und eine Kennnummer trägt, enthält es das **Elementsymbol**, die **Ordnungszahl** und die **Massenzahl**.
+
+OpenStax erklärt im Abschnitt [Atomic Structure and Symbolism](https://openstax.org/books/chemistry-atoms-first-2e/pages/2-3-atomic-structure-and-symbolism): Die Ordnungszahl gibt die Protonenzahl an, die Massenzahl zählt Protonen und Neutronen zusammen.
+
+Die in der Grundlagenchemie üblicherweise verwendete Notation ist:
+
+<BlockMath math="{}^{A}_{Z}\mathrm{X}" />
+
+Die Zeichen bedeuten:
+
+- <InlineMath math="\mathrm{X}" /> ist das Elementsymbol
+- <InlineMath math="Z" /> ist die Ordnungszahl
+- <InlineMath math="A" /> ist die Massenzahl
+
+## Die Zahlen anhand ihrer Position lesen
+
+Wähle unten ein Atom und achte auf die Position der beiden Zahlen. Die Zahl oben links ist kein Exponent, die Zahl unten links kein Teiler. Ihre Position zeigt vielmehr, welche Teilchenzahl gemeint ist.
+
+<AtomSymbolLab
+  title={<>Atomsymbolleser</>}
+  description={
+    <>
+      Wechsle das Beispiel und gleiche die Zahlen oben und unten links mit den
+      angezeigten Teilchenzahlen ab.
+    </>
+  }
+  labels={{
+    chooseAtom: "Atombeispiel auswählen",
+    massNumber: "Massenzahl",
+    atomicNumber: "Ordnungszahl",
+    elementSymbol: "Elementsymbol",
+    protonCount: "Protonen",
+    neutronCount: "Neutronen",
+    electronCount: "Elektronen",
+    neutralAtom: "in einem neutralen Atom",
+    samples: {
+      "carbon-12": {
+        tab: "Kohlenstoff",
+        ariaName: "Kohlenstoff-12",
+        name: <InlineMath math="{}^{12}_{6}\mathrm{C}" />,
+      },
+      "oxygen-16": {
+        tab: "Sauerstoff",
+        ariaName: "Sauerstoff-16",
+        name: <InlineMath math="{}^{16}_{8}\mathrm{O}" />,
+      },
+      "sodium-23": {
+        tab: "Natrium",
+        ariaName: "Natrium-23",
+        name: <InlineMath math="{}^{23}_{11}\mathrm{Na}" />,
+      },
+      "chlorine-35": {
+        tab: "Chlor",
+        ariaName: "Chlor-35",
+        name: <InlineMath math="{}^{35}_{17}\mathrm{Cl}" />,
+      },
+    },
+  }}
+/>
+
+## Drei grundlegende Teilchenzahlen
+
+Die Ordnungszahl wird als <InlineMath math="Z" /> geschrieben. Diese Zahl entspricht der Anzahl der Protonen im Kern.
+
+<BlockMath math="Z = p^+" />
+
+Bei einem neutralen Atom ist die Elektronenzahl gleich der Protonenzahl. Neutral bedeutet, dass sich die gesamte positive und negative Ladung ausgleicht.
+
+<BlockMath math="\text{neutrales Atom} \Rightarrow e^- = p^+ = Z" />
+
+Die Massenzahl wird als <InlineMath math="A" /> geschrieben. Diese Zahl zählt Protonen und Neutronen im Kern.
+
+<BlockMath math="A = p^+ + n^0" />
+
+Sind Massenzahl und Ordnungszahl bekannt, ergibt sich die Neutronenzahl aus ihrer Differenz:
+
+<BlockMath math="n^0 = A - Z" />
+
+## Beispiel mit Kohlenstoff
+
+Für ein Kohlenstoffatom mit der Massenzahl <InlineMath math="12" /> lautet das Symbol:
+
+<BlockMath math="{}^{12}_{6}\mathrm{C}" />
+
+Aus dem Symbol lässt sich ablesen:
+
+<BlockMath math="\begin{aligned}
+Z &= 6 \Rightarrow p^+ = 6 \\
+A &= 12 \Rightarrow p^+ + n^0 = 12 \\
+n^0 &= 12 - 6 = 6
+\end{aligned}" />
+
+Ist dieses <InlineMath math="{}^{12}_{6}\mathrm{C}" />-Atom neutral, besitzt es außerdem <InlineMath math="6" /> Elektronen.
+
+## Nicht mit der mittleren Atommasse verwechseln
+
+Im Periodensystem stehen häufig Dezimalwerte, etwa die relative Atommasse von Kohlenstoff mit ungefähr <InlineMath math="12{,}01" />. Diese Dezimalzahl ist nicht die Massenzahl eines bestimmten Kohlenstoffatoms.
+
+Die NIST-Spaltenhinweise erklären, dass die relative Atommasse eines Elements von den Isotopenmassen und der Isotopenzusammensetzung abhängt. Die [NIST-Hinweise](https://www.physics.nist.gov/PhysRefData/Compositions/notes.html) erläutern außerdem, dass diese Zusammensetzung je nach Herkunft und Behandlung des Materials variieren kann.
+
+Die beiden Größen müssen deshalb getrennt bleiben:
+
+| Gelesene Größe | Typische Form | Bedeutung |
+| :------------ | :---------- | :------ |
+| Massenzahl | Eine ganze Zahl, etwa <InlineMath math="12" /> in <InlineMath math="{}^{12}_{6}\mathrm{C}" /> | Die Anzahl der Protonen plus Neutronen in einem bestimmten Atom. |
+| Relative Atommasse | Oftmals dezimal, etwa <InlineMath math="12{,}01" /> für Kohlenstoff | Eine nach der Isotopenzusammensetzung des dargestellten Materials gewichtete Masse. |
+
+Diese Unterscheidung verbindet drei häufige Fälle: Atomsymbole geben Protonen- und Neutronenzahl an, bei Ionen ändert sich die Elektronenzahl, bei Isotopen die Neutronenzahl. Die Identität des Elements bleibt durch die Protonenzahl bestimmt.
+
+## Elementsymbole erfordern eine genaue Großschreibung
+
+Elementsymbole bestehen normalerweise aus einem oder zwei Buchstaben. Der erste Buchstabe ist immer ein Großbuchstabe und der zweite Buchstabe, falls vorhanden, ein Kleinbuchstabe.
+
+| Schreibweise | Lesart |
+| :------ | :------------- |
+| <InlineMath math="\mathrm{C}" /> | Kohlenstoff |
+| <InlineMath math="\mathrm{Cl}" /> | Chlor |
+| <InlineMath math="\mathrm{Co}" /> | Kobalt |
+| <InlineMath math="\mathrm{CO}" /> | Kein einzelnes Element, sondern die Formel für Kohlenmonoxid |
+
+OpenStax nutzt genau diesen Unterschied als Beispiel: <InlineMath math="\mathrm{Co}" /> steht für Kobalt, <InlineMath math="\mathrm{CO}" /> für die Verbindung Kohlenmonoxid. Groß- und Kleinschreibung ist hier keine Dekoration. Ein einziger Buchstabe kann die chemische Bedeutung verändern.
+
+Das [Periodensystem der Elemente der IUPAC](https://iupac.org/what-we-do/periodic-table-of-elements/) führt die offiziell geprüften Elementsymbole und relativen Atommassen auf.

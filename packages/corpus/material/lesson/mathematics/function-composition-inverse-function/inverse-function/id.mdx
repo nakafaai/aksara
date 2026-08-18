@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Fungsi Invers",
-  description: "Pelajari fungsi invers bertahap: definisi, syarat bijektif, mencari rumus, dan refleksi grafik. Pelajari f⁻¹(x) dengan contoh jelas.",
+  description: "Pelajari fungsi invers secara bertahap, mulai dari syarat bijektif dan penentuan rumus hingga pencerminan grafiknya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Fungsi Komposisi dan Fungsi Invers",
@@ -12,6 +12,8 @@ export const metadata = {
 Kalian pasti sering menerjemahkan kata atau kalimat dari Bahasa Inggris ke Bahasa Indonesia, misalnya saat menonton film atau membaca berita. Proses menerjemahkan ini mirip dengan cara kerja sebuah fungsi: ada masukan (kata Bahasa Inggris) dan keluaran (kata Bahasa Indonesia).
 
 Perhatikan ilustrasi berikut:
+
+Penerjemahan bahasa sebenarnya dapat memiliki lebih dari satu makna. Di sini kita sengaja memakai kamus kecil yang memasangkan setiap kata terpilih dengan tepat satu terjemahan.
 
 <InverseFunctionIllustration
   title="Mesin Penerjemah"
@@ -40,12 +42,18 @@ Dengan kata lain, jika <InlineMath math="f" /> mengubah <InlineMath math="x" /> 
 
 ## Syarat Fungsi Memiliki Invers
 
-Tidak semua fungsi memiliki fungsi invers. Agar suatu fungsi <InlineMath math="f" /> memiliki fungsi invers <InlineMath math="f^{-1}" />, fungsi <InlineMath math="f" /> tersebut haruslah **fungsi bijektif**. Fungsi bijektif adalah fungsi yang bersifat **injektif** (satu-ke-satu) dan **surjektif** (pada) sekaligus.
+Agar fungsi <InlineMath math="f:A\to B" /> memiliki invers dua arah <InlineMath math="f^{-1}:B\to A" />, fungsi <InlineMath math="f" /> harus **bijektif**. Fungsi bijektif bersifat **injektif** (satu-ke-satu) dan **surjektif** (pada) sekaligus.
 
 - **Injektif (Satu-ke-satu):** Setiap elemen berbeda di domain dipetakan ke elemen yang berbeda di kodomain. Tidak ada dua input berbeda yang menghasilkan output yang sama.
 - **Surjektif (Pada):** Setiap elemen di kodomain merupakan hasil pemetaan dari setidaknya satu elemen di domain. Semua output mungkin terjadi.
 
-Jika fungsi <InlineMath math="f" /> bukan bijektif, maka relasi kebalikannya mungkin ada, tetapi relasi tersebut bukanlah sebuah fungsi.
+Domain dan kodomain yang dipilih ikut menentukan. Jika <InlineMath math="f" /> injektif tetapi tidak menjangkau seluruh <InlineMath math="B" />, kita dapat mengganti kodomainnya dengan daerah hasil yang sebenarnya. Dengan menulis daerah hasil itu sebagai <InlineMath math="\operatorname{Im}(f)" />, fungsi <InlineMath math="f:A\to \operatorname{Im}(f)" /> menjadi bijektif dan memiliki invers <InlineMath math="f^{-1}:\operatorname{Im}(f)\to A" />. Jika <InlineMath math="f" /> tidak injektif, pembalikan pasangan akan mengirim satu output ke lebih dari satu input. Relasi balik itu bukan fungsi, kecuali domain fungsi semula dibatasi.
+
+Sebagai contoh, <InlineMath math="q(x)=x^2" /> tidak injektif pada <InlineMath math="\mathbb{R}" /> karena <InlineMath math="q(2)=q(-2)=4" />. Dengan membatasi domain dan kodomain, kita memperoleh fungsi bijektif
+
+<BlockMath math="q:[0,\infty)\to[0,\infty),\qquad q(x)=x^2" />
+
+yang memiliki invers <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
 
 ## Menentukan Rumus Fungsi Invers
 
@@ -58,7 +66,7 @@ Untuk mencari rumus fungsi invers <InlineMath math="f^{-1}(x)" /> dari suatu fun
 
 **Contoh:**
 
-Tentukan fungsi invers dari <InlineMath math="f(x) = 2x + 3" />.
+Misalkan <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> didefinisikan oleh <InlineMath math="f(x) = 2x + 3" />. Tentukan fungsi inversnya.
 
 1.  Ganti <InlineMath math="f(x)" /> dengan <InlineMath math="y" />:
 
@@ -110,7 +118,7 @@ Sebagai contoh, mari kita lihat grafik dari <InlineMath math="f(x) = 2x + 3" />,
       color: "#ea580c",
       labels: [
         {
-          text: <InlineMath math="f(x)=2x+3" />,
+          text: <InlineMath math="f(x)=2x + 3" />,
           at: 5,
           offset: [-2.5, 0, 0],
         },
@@ -125,7 +133,7 @@ Sebagai contoh, mari kita lihat grafik dari <InlineMath math="f(x) = 2x + 3" />,
       color: "#059669",
       labels: [
         {
-          text: <InlineMath math="f^{-1}(x)=(x-3)/2" />,
+          text: <InlineMath math="f^{-1}(x)=\frac{x-3}{2}" />,
           at: 10,
           offset: [0.5, 0.5, 0],
         },
@@ -148,3 +156,30 @@ Sebagai contoh, mari kita lihat grafik dari <InlineMath math="f(x) = 2x + 3" />,
     },
   ]}
 />
+
+## Cek Pemahaman
+
+Misalkan <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> didefinisikan oleh <InlineMath math="r(x)=3x-5" />.
+
+1. Tentukan <InlineMath math="r^{-1}(x)" />.
+2. Verifikasi kedua komposisi <InlineMath math="r^{-1}(r(x))" /> dan <InlineMath math="r(r^{-1}(x))" />.
+3. Nyatakan domain dan daerah hasil kedua fungsi.
+
+### Pembahasan
+
+Mulai dari <InlineMath math="y=3x-5" />, tukar kedua variabel, lalu selesaikan untuk <InlineMath math="y" />:
+
+<MathContainer>
+  <BlockMath math="x=3y-5" />
+  <BlockMath math="x+5=3y" />
+  <BlockMath math="r^{-1}(x)=\frac{x+5}{3}" />
+</MathContainer>
+
+Sekarang verifikasi kedua arah:
+
+<MathContainer>
+  <BlockMath math="r^{-1}(r(x))=\frac{(3x-5)+5}{3}=x" />
+  <BlockMath math="r(r^{-1}(x))=3\left(\frac{x+5}{3}\right)-5=x" />
+</MathContainer>
+
+Fungsi <InlineMath math="r" /> dan <InlineMath math="r^{-1}" /> sama-sama memiliki domain <InlineMath math="\mathbb{R}" /> dan daerah hasil <InlineMath math="\mathbb{R}" />. Kedua identitas tersebut membuktikan bahwa keduanya saling membatalkan pada seluruh domainnya.

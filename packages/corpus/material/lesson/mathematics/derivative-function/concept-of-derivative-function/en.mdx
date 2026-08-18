@@ -10,30 +10,31 @@ export const metadata = {
 
 ## The Idea Behind Derivatives
 
-Imagine you're riding a bicycle on a hilly road. Sometimes the road is steep, and other times it's flat. The **slope** of the road changes at every point you pass. In mathematics, the graph of a function can be thought of as this hilly road.
+Picture a bicycle moving along a hilly road. Some stretches climb steeply, while others are almost flat. The road's **slope** changes from point to point. A curved function graph behaves in much the same way.
 
 For a straight line, the slope is always the same at every point. However, for a curved line, the slope is constantly changing. A **derivative** lets us find the precise slope or rate of change at **one specific point** on a curve.
 
 ## Gradient of a Secant Line
 
-To understand the concept of a derivative, let's start with something simpler: a **secant line** (or a cutting line). A secant line is a straight line that intersects a curve at two different points.
+We begin with a **secant line**, a straight line through two different points of a curve.
 
-Suppose we have a curve from the function <InlineMath math="y = f(x)" />. We pick two points on that curve, let's call them point <InlineMath math="P(x, f(x))" /> and point <InlineMath math="Q(x+\Delta x, f(x+\Delta x))" />. Here, <InlineMath math="\Delta x" /> (read "delta x") represents a small change in the value of <InlineMath math="x" />.
+Suppose the curve represents <InlineMath math="y = f(x)" />. Choose two distinct points, <InlineMath math="P(x, f(x))" /> and <InlineMath math="Q(x+\Delta x, f(x+\Delta x))" />, on that curve. Here, <InlineMath math="\Delta x" /> (read "delta x") is the horizontal change from <InlineMath math="P" /> to <InlineMath math="Q" />, so <InlineMath math="\Delta x \ne 0" />.
 
-The slope (gradient) of the secant line passing through points <InlineMath math="P" /> and <InlineMath math="Q" /> can be calculated with a formula we already know:
+The slope of the secant line through <InlineMath math="P" /> and <InlineMath math="Q" /> is:
 
-<BlockMath math="m_{\text{secant}} = \frac{\text{change in } y}{\text{change in } x} = \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
+<BlockMath math="m_{\text{secant}} = \frac{\Delta y}{\Delta x} = \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
 
-The gradient of this secant line gives us an idea of the **average rate of change** of the function <InlineMath math="f(x)" /> between points <InlineMath math="P" /> and <InlineMath math="Q" />.
+This slope is the **average rate of change** of <InlineMath math="f(x)" /> between <InlineMath math="P" /> and <InlineMath math="Q" />.
 
 <LineEquation
   title="Secant and Tangent Line Visualization"
   description={
     <>
-      Notice how the secant line connects two points on the curve{" "}
-      <InlineMath math="y=x^2" />, while the tangent line just
-      touches the curve at a single point. The tangent line shows the slope of the curve
-      at that point.
+      The secant line connects two distinct points on the curve{" "}
+      <InlineMath math="y=x^2" />, while the tangent line captures the curve's
+      local direction at <InlineMath math="P" />. In this example, the tangent
+      meets the parabola at <InlineMath math="P" />. In general, a tangent line
+      may intersect the same curve elsewhere.
     </>
   }
   showZAxis={false}
@@ -90,22 +91,22 @@ The gradient of this secant line gives us an idea of the **average rate of chang
 
 ## From Secant Line to Tangent Line
 
-Now, what happens if we move point <InlineMath math="Q" /> closer and closer to point <InlineMath math="P" />? The distance between them, which is <InlineMath math="\Delta x" />, will become very small, approaching zero.
+Next, move <InlineMath math="Q" /> closer and closer to <InlineMath math="P" />. The horizontal distance <InlineMath math="\Delta x" /> becomes smaller and approaches zero.
 
-When <InlineMath math="\Delta x \to 0" /> (read "delta x approaches zero"), the secant line we have will gradually transform into a **tangent line**. A tangent line is a line that touches the curve at exactly one point (in this case, point <InlineMath math="P" />).
+As <InlineMath math="\Delta x \to 0" /> (read "delta x approaches zero"), the secant lines approach the **tangent line** at <InlineMath math="P" />. The tangent line captures the curve's local direction at that point. It need not intersect the entire curve only once; what matters is its local behavior near <InlineMath math="P" />.
 
-The slope of this tangent line is what truly represents the **slope of the curve** at point <InlineMath math="P" />. To find it, we use the concept of a **limit**.
+The tangent's slope is the **instantaneous rate of change** of the curve at <InlineMath math="P" />. We find it with a **limit**:
 
 <BlockMath math="m_{\text{tangent}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
 
 ## Definition of the Derivative
 
-The limit of the gradient of the secant line as <InlineMath math="\Delta x" /> approaches zero is so important that it is given a special name: the **derivative**.
+The limit of the secant slopes as <InlineMath math="\Delta x" /> approaches zero is called the **derivative**.
 
 The derivative of a function <InlineMath math="f(x)" />, denoted as <InlineMath math="f'(x)" /> (read "f prime x"), is defined as:
 
 <BlockMath math="f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
 
-The process of finding this derivative is called **differentiation**.
+Finding a derivative is called **differentiation**.
 
-> The derivative <InlineMath math="f'(x)" /> is essentially a new function that tells us the **instantaneous rate of change** (or the slope of the tangent line) of the original function <InlineMath math="f(x)" /> at every point <InlineMath math="x" /> where the limit exists. This is the foundation of differential calculus.
+> The derivative <InlineMath math="f'(x)" /> is a new function. At every value of <InlineMath math="x" /> where the limit exists, it gives the **instantaneous rate of change** of <InlineMath math="f(x)" />, which is also the slope of the tangent line there. This idea is the foundation of differential calculus.

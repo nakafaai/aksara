@@ -8,18 +8,18 @@ export const metadata = {
 
 ## Konsep Dasar dan Kontrol Lebar
 
-Pemformatan string mengatur tampilan data dalam program Python. Bayangkan menyusun data dalam tabel yang rapi, setiap kolom memiliki lebar konsisten. Python menyediakan metode `format()` dan f-strings untuk mengontrol tampilan output.
+Pemformatan string mengubah nilai menjadi keluaran teks yang terencana. Kamu dapat meratakan kolom tabel, memilih notasi angka, mengatur presisi, dan menyusun pesan yang mudah dibaca. Python menyediakan metode `str.format()` dan f-string untuk pekerjaan ini.
 
-Sintaks dasar replacement field adalah `{name : width}`, dimana `name` menentukan argumen dan `width` mengatur lebar minimum output. Ketika width lebih kecil dari panjang string asli, Python tetap menampilkan string lengkap.
+Replacement field dasar berbentuk `{field_name:format_spec}`. Nilai lebar di dalam spesifikasi format menetapkan lebar minimum, bukan maksimum. Jika nilai yang diformat memerlukan ruang lebih besar, Python tetap menampilkan nilai lengkap tanpa memotongnya.
 
 ### Tipe Format untuk Sistem Bilangan
 
 | Tipe format | Simbol | Contoh input | Output | Kegunaan |
 |-------------|---------|--------------|--------|----------|
-| Desimal | `d` | `45` | `45` | Default untuk integer |
+| Desimal | `d` | `45` | `45` | Bilangan bulat desimal |
 | Biner | `b` | `45` | `101101` | Representasi bit |
-| Oktal | `o` | `45` | `55` | Sistem Unix |
-| Heksadesimal | `x/X` | `45` | `2d/2D` | Pemrograman tingkat rendah |
+| Oktal | `o` | `45` | `55` | Representasi basis delapan |
+| Heksadesimal | `x/X` | `45` | `2d/2D` | Basis enam belas dengan huruf kecil atau besar |
 
 <CodeBlock
   data={[
@@ -44,7 +44,7 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 <Mermaid
   title="Lebar Format Menentukan Posisi Teks"
-  description="Bandingkan rata kiri, kanan, dan tengah saat teks yang sama ditempatkan dalam lebar tetap."
+  description="Bandingkan perataan kiri, kanan, dan tengah untuk string yang sama di dalam bidang berlebar tetap."
   chart={`
     flowchart TD
         A["String masukan: 'xxx'"] --> B["Pilihan perataan"]
@@ -61,13 +61,13 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 | Simbol | Nama | Perilaku | Default untuk |
 |--------|------|----------|---------------|
-| `<` | Rata kiri | Teks di kiri, padding di kanan | String, objek |
+| `<` | Rata kiri | Teks di kiri, padding di kanan | String |
 | `>` | Rata kanan | Teks di kanan, padding di kiri | Angka |
 | `^` | Tengah | Teks di tengah, padding merata | - |
 
 ### Karakter Pengisi dan Format Lanjutan
 
-Karakter pengisi menentukan karakter untuk mengisi ruang kosong. Default-nya adalah spasi, tetapi bisa diganti dengan karakter apa pun kecuali `{` dan `}`.
+Karakter pengisi menempati ruang yang tidak terpakai di dalam bidang. Nilai bawaannya adalah spasi dan penulisannya tepat sebelum simbol perataan. Pada `str.format()` dan f-string, karakter literal `{` atau `}` tidak dapat dipakai sebagai pengisi.
 
 <CodeBlock
   data={[
@@ -94,7 +94,7 @@ print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
 
 ## Metode Referensi Argumen
 
-Python menyediakan tiga cara mereferensikan argumen dalam replacement fields, masing-masing dengan aturan berbeda.
+Replacement field dapat memilih argumen posisi berdasarkan indeks, argumen kata kunci berdasarkan nama, atau argumen posisi melalui penomoran otomatis.
 
 <Mermaid
   title="Placeholder Memilih Nilai dari Argumen"
@@ -117,7 +117,7 @@ Python menyediakan tiga cara mereferensikan argumen dalam replacement fields, ma
 
 | Metode | Sintaks | Kelebihan | Batasan |
 |--------|---------|-----------|---------|
-| Numbered | `{0}, {1}` | Kontrol eksplisit, bisa diulang | Harus sesuai jumlah argumen |
+| Numbered | `{0}, {1}` | Kontrol eksplisit, bisa diulang | Setiap indeks yang dirujuk harus tersedia |
 | Keyword | `{name}, {age}` | Mudah dibaca, fleksibel | Nama harus cocok |
 | Automatic | `{}, {}` | Sintaks sederhana | Tidak bisa dicampur dengan numbered |
 
@@ -156,7 +156,7 @@ except IndexError as e:
 
 ### Presisi untuk Angka Desimal
 
-Presisi mengontrol jumlah digit desimal atau digit signifikan dalam tampilan angka.
+Arti presisi bergantung pada tipe penyajian. Untuk `f` dan `e`, presisi menentukan jumlah digit setelah tanda desimal. Untuk `g`, presisi menentukan jumlah digit signifikan.
 
 | Tipe format | Perilaku presisi | Contoh |
 |-------------|-------------------|--------|
@@ -207,8 +207,8 @@ print('Default:', ['{:d}'.format(n) for n in numbers])
 # Output: Default: ['-100', '200', '-300']
 print('Always sign:', ['{:+d}'.format(n) for n in numbers])
 # Output: Always sign: ['-100', '+200', '-300']
-print('Space positive:', ['{: d}'.format(n) for n in numbers])
-# Output: Space positive: ['-100', ' 200', '-300']
+print('Spasi untuk bilangan positif:', ['{: d}'.format(n) for n in numbers])
+# Output: Spasi untuk bilangan positif: ['-100', ' 200', '-300']
 
 # Rounding behavior
 print('Tiny number f: {0:12f}'.format(1.1e-10))  # Output: Tiny number f:     0.000000
@@ -221,11 +221,11 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 
 ### F-Strings dan Versi Python
 
-F-strings tersedia sejak Python `3.6+` dan menyediakan sintaks paling sederhana dengan evaluasi ekspresi langsung. Lebih cepat dan mudah dibaca dibandingkan `format()`.
+F-string tersedia sejak Python 3.6. Ekspresi dievaluasi langsung di dalam replacement field, sehingga pemformatan lokal sering lebih mudah dibaca daripada daftar argumen `format()` yang terpisah.
 
 ### Template Format Dinamis
 
-Template format dapat menggunakan variabel untuk specification, berguna ketika format ditentukan secara dinamis.
+Replacement field bertingkat dapat memasok bagian spesifikasi format, seperti lebar, pengisi, atau perataan. Cara ini berguna ketika pilihan tersebut baru diketahui saat program berjalan.
 
 <CodeBlock
   data={[
@@ -261,7 +261,7 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
 
 <Mermaid
   title="Urutan di Dalam Spesifikasi Format"
-  description="Baca urutan fill, align, width, precision, dan type agar mini-language format tidak terlihat acak."
+  description="Baca subset yang umum dipakai dari pengisi hingga tipe penyajian agar setiap bagian memiliki tempat yang jelas."
   chart={`
     flowchart TD
         A["Spesifikasi format"] --> B["Urutan komponen"]
@@ -275,8 +275,8 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
         H --> I["type (tipe: d b o x f e g)"]
 
         J["Contoh Lengkap"] --> K["{nilai:*^+10.2f}"]
-        K --> L["komponen format"]
+        K --> L["satu replacement field lengkap"]
   `}
 />
 
-Format specification mengikuti pola `{name:fill align sign width .prec type}` dimana setiap komponen opsional dan memiliki fungsi spesifik untuk mengontrol tampilan output.
+Untuk subset yang dibahas di sini, baca `{nilai:*^+10.2f}` sebagai nama bidang `nilai`, pengisi `*`, perataan tengah `^`, tanda eksplisit `+`, lebar minimum `10`, presisi `2`, dan tipe titik tetap `f`. Mini-language pemformatan Python yang lengkap juga mendukung opsi seperti pengelompokan digit dan bentuk alternatif, jadi rujuk dokumentasinya ketika kebutuhanmu melampaui pola inti ini.

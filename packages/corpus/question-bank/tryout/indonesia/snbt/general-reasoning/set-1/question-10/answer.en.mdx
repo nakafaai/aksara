@@ -4,32 +4,32 @@ export const metadata = {
   date: "2026-01-01",
 };
 
-We can solve this problem by calculating the total volume of water and dividing it by the combined flow rate of the three taps.
+The draining time depends on two quantities: the volume of water in the full tank and the combined flow rate of the taps.
 
-#### Calculating the Water Tank Volume
+#### Find the water volume
 
-The water tank is cubic with a side length of <InlineMath math="4 \text{ dm}" />. The volume of the tank is:
+The tank is a cube with side length <InlineMath math="4\text{ dm}" />:
 
 <MathContainer>
   <BlockMath math="V = s \times s \times s = 4 \times 4 \times 4 = 64 \text{ dm}^3" />
 </MathContainer>
 
-Recall that <InlineMath math="1 \text{ dm}^3 = 1 \text{ liter}" />, so the volume of water in the tank is <InlineMath math="64\text{ liters}" />.
+Because <InlineMath math="1\text{ dm}^3 = 1\text{ liter}" />, the full tank contains <InlineMath math="64\text{ liters}" /> of water.
 
-#### Calculating the Combined Flow Rate
+#### Add the flow rates
 
-Since all three taps are opened simultaneously, we sum the flow rates of each tap:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} Q_{total} &= Q_1 + Q_2 + Q_3 \\ Q_{total} &= 4 + 3 + 1 \\ Q_{total} &= 8 \text{ liters/minute} \end{aligned}" />
-</MathContainer>
-
-#### Calculating the Time
-
-The time required (<InlineMath math="t" />) for the water to run out is the volume divided by the total flow rate:
+All three taps drain the tank at the same time, so their rates add:
 
 <MathContainer>
-  <BlockMath math="t = \frac{V}{Q_{total}} = \frac{64}{8} = 8 \text{ minutes}" />
+  <BlockMath math="\begin{aligned} Q_{\text{total}} &= Q_1 + Q_2 + Q_3 \\ Q_{\text{total}} &= 4 + 3 + 1 \\ Q_{\text{total}} &= 8 \text{ liters/minute} \end{aligned}" />
 </MathContainer>
 
-Thus, the water in the tank will run out in **<InlineMath math="8 \text{ minutes}" />**.
+#### Find the draining time
+
+Divide the volume by the combined flow rate:
+
+<MathContainer>
+  <BlockMath math="t = \frac{V}{Q_{\text{total}}} = \frac{64}{8} = 8 \text{ minutes}" />
+</MathContainer>
+
+The tank will be empty after <InlineMath math="8\text{ minutes}" />.

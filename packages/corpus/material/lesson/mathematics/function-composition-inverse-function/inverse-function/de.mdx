@@ -1,0 +1,185 @@
+
+export const metadata = {
+  title: "Umkehrfunktion",
+  description: "Verstehe Umkehrfunktionen Schritt für Schritt: Definition, Bijektivität, Formelbestimmung und Spiegelung des Graphen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-27",
+  subject: "Funktionszusammensetzung und Umkehrfunktion",
+};
+
+## Umkehrfunktionen verstehen
+
+Beim Übersetzen wird einem englischen Wort ein indonesisches Wort zugeordnet. Dieser Vorgang lässt sich als Funktion betrachten: Das englische Wort ist die Eingabe, das indonesische Wort die Ausgabe.
+
+Betrachten Sie die folgende Abbildung:
+
+Reale Übersetzungen können mehrdeutig sein. Hier verwenden wir bewusst ein kleines Wörterbuch, in dem jedes ausgewählte Wort genau einer Übersetzung zugeordnet ist.
+
+<InverseFunctionIllustration
+  title="Übersetzungsmaschine"
+  description="Die Übersetzungsmaschine wandelt Wörter oder Sätze vom Englischen ins Indonesische um."
+  machineLabel="Übersetzungsmaschine"
+  content={{ input: "Mathematics", output: "Matematika" }}
+/>
+
+Die „Übersetzungsmaschine“ ordnet hier dem englischen Wort „Mathematics“ die indonesische Übersetzung „Matematika“ zu.
+
+Was geschieht, wenn wir die Richtung umkehren und von „Matematika“ zurück zu „Mathematics“ gehen?
+
+Dieser umgekehrte Prozess ist die Grundlage des Konzepts der **Umkehrfunktion**.
+
+## Definition der Umkehrfunktion
+
+Eine Umkehrfunktion kehrt die Zuordnung der ursprünglichen Funktion um. Ordnet <InlineMath math="f" /> einem Element <InlineMath math="x" /> aus der Definitionsmenge <InlineMath math="A" /> das Element <InlineMath math="y" /> in der Zielmenge <InlineMath math="B" /> zu, dann ordnet <InlineMath math="f^{-1}" /> (gesprochen „f invers“) dem Wert <InlineMath math="y" /> aus <InlineMath math="B" /> wieder den Wert <InlineMath math="x" /> in <InlineMath math="A" /> zu.
+
+Mathematisch:
+
+<BlockMath math="y = f(x) \iff x = f^{-1}(y)" />
+
+Kurz gesagt: Wenn <InlineMath math="f" /> aus <InlineMath math="x" /> den Wert <InlineMath math="y" /> erzeugt, führt <InlineMath math="f^{-1}" /> von <InlineMath math="y" /> wieder zu <InlineMath math="x" /> zurück.
+
+**Wichtig:** Die Notation <InlineMath math="f^{-1}(x)" /> bedeutet **nicht** <InlineMath math="\frac{1}{f(x)}" /> (multiplikativ invers oder reziprok). Es handelt sich um eine spezielle Notation für die Umkehrfunktion.
+
+## Voraussetzung für eine Umkehrfunktion
+
+Damit eine Funktion <InlineMath math="f:A\to B" /> eine beidseitige Umkehrfunktion <InlineMath math="f^{-1}:B\to A" /> besitzt, muss <InlineMath math="f" /> **bijektiv** sein. Eine bijektive Funktion ist sowohl **injektiv** (eins zu eins) als auch **surjektiv**.
+
+- **Injektiv (eins zu eins):** Verschiedene Eingaben erzeugen verschiedene Ausgaben.
+- **Surjektiv:** Jedes Element der Zielmenge wird von mindestens einer Eingabe erreicht.
+
+Die festgelegte Definitionsmenge und Zielmenge sind dabei entscheidend. Ist <InlineMath math="f" /> injektiv, erreicht aber nicht ganz <InlineMath math="B" />, kann man die Zielmenge durch die tatsächliche Bildmenge ersetzen. Schreiben wir diese als <InlineMath math="\operatorname{Im}(f)" />, dann ist <InlineMath math="f:A\to \operatorname{Im}(f)" /> bijektiv und besitzt eine Umkehrfunktion <InlineMath math="f^{-1}:\operatorname{Im}(f)\to A" />. Ist <InlineMath math="f" /> nicht injektiv, ordnet die umgekehrte Relation einer Ausgabe mehrere Eingaben zu. Sie ist dann keine Funktion, sofern man die ursprüngliche Definitionsmenge nicht einschränkt.
+
+Zum Beispiel ist <InlineMath math="q(x)=x^2" /> auf <InlineMath math="\mathbb{R}" /> nicht injektiv, denn <InlineMath math="q(2)=q(-2)=4" />. Durch die Einschränkung von Definitionsmenge und Zielmenge erhält man die bijektive Funktion
+
+<BlockMath math="q:[0,\infty)\to[0,\infty),\qquad q(x)=x^2" />
+
+mit der Umkehrfunktion <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
+
+## Bestimmen der Formel für eine Umkehrfunktion
+
+Um die Formel für die Umkehrfunktion <InlineMath math="f^{-1}(x)" /> aus einer Funktion <InlineMath math="f(x)" /> zu finden, können Sie die folgenden Schritte ausführen:
+
+1.  Ersetzen Sie <InlineMath math="f(x)" /> durch <InlineMath math="y" />.
+2.  Vertauschen Sie die Positionen der Variablen <InlineMath math="x" /> und <InlineMath math="y" /> in der Gleichung.
+3.  Lösen Sie die Gleichung für <InlineMath math="y" /> anhand von <InlineMath math="x" /> auf.
+4.  Ersetzen Sie <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />, um die Umkehrfunktionsformel zu erhalten.
+
+**Beispiel:**
+
+Sei <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="f(x) = 2x + 3" /> definiert. Bestimme die Umkehrfunktion.
+
+1.  Ersetzen Sie <InlineMath math="f(x)" /> durch <InlineMath math="y" />:
+
+    <BlockMath math="y = 2x + 3" />
+
+2.  <InlineMath math="x" /> und <InlineMath math="y" /> vertauschen:
+
+    <BlockMath math="x = 2y + 3" />
+
+3.  Nach <InlineMath math="y" /> auflösen:
+
+    <MathContainer>
+      <BlockMath math="x - 3 = 2y" />
+      <BlockMath math="\frac{x - 3}{2} = y" />
+    </MathContainer>
+
+4.  Ersetzen Sie <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />:
+
+    <BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
+
+Die Umkehrfunktion von <InlineMath math="f(x) = 2x + 3" /> ist also <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />.
+
+## Graph einer Funktion und ihrer Umkehrung
+
+Der Graph der Umkehrfunktion <InlineMath math="f^{-1}(x)" /> entsteht durch Spiegelung des Graphen von <InlineMath math="f(x)" /> an der Geraden <InlineMath math="y = x" />.
+
+Betrachten wir zum Beispiel den Graphen von <InlineMath math="f(x) = 2x + 3" />, seine Umkehrung <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" /> und die Identitätslinie <InlineMath math="y=x" />.
+
+<LineEquation
+  title={
+    <>
+      Graphen von <InlineMath math="f(x)" /> und der Umkehrfunktion
+    </>
+  }
+  description={
+    <>
+      Die Grafik zeigt <InlineMath math="f(x)" />, die Umkehrfunktion{" "}
+      <InlineMath math="f^{-1}(x)" /> und die Gerade <InlineMath math="y=x" /> als
+      Spiegelachse.
+    </>
+  }
+  data={[
+    {
+      // f(x) = 2x + 3
+      points: Array.from({ length: 11 }, (_, i) => {
+        const x = i - 5;
+        return { x, y: 2 * x + 3, z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [
+        {
+          text: <InlineMath math="f(x)=2x + 3" />,
+          at: 5,
+          offset: [-2.5, 0, 0],
+        },
+      ],
+    },
+    {
+      // f⁻¹(x) = (x - 3) / 2
+      points: Array.from({ length: 11 }, (_, i) => {
+        const x = i - 5;
+        return { x, y: (x - 3) / 2, z: 0 };
+      }),
+      color: "#059669",
+      labels: [
+        {
+          text: <InlineMath math="f^{-1}(x)=\frac{x-3}{2}" />,
+          at: 10,
+          offset: [0.5, 0.5, 0],
+        },
+      ],
+    },
+    {
+      // y = x (Identitätsgerade)
+      points: Array.from({ length: 11 }, (_, i) => {
+        const x = i - 5;
+        return { x, y: x, z: 0 };
+      }),
+      color: "#db2777",
+      labels: [
+        {
+          text: <InlineMath math="y=x" />,
+          at: 10,
+          offset: [0.5, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+## Verständnis prüfen
+
+Sei <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="r(x)=3x-5" /> definiert.
+
+1. Bestimme <InlineMath math="r^{-1}(x)" />.
+2. Überprüfe beide Verkettungen <InlineMath math="r^{-1}(r(x))" /> und <InlineMath math="r(r^{-1}(x))" />.
+3. Gib Definitionsmenge und Bildmenge beider Funktionen an.
+
+### Lösung
+
+Beginne mit <InlineMath math="y=3x-5" />, vertausche die Variablen und löse nach <InlineMath math="y" /> auf:
+
+<MathContainer>
+  <BlockMath math="x=3y-5" />
+  <BlockMath math="x+5=3y" />
+  <BlockMath math="r^{-1}(x)=\frac{x+5}{3}" />
+</MathContainer>
+
+Überprüfe nun beide Richtungen:
+
+<MathContainer>
+  <BlockMath math="r^{-1}(r(x))=\frac{(3x-5)+5}{3}=x" />
+  <BlockMath math="r(r^{-1}(x))=3\left(\frac{x+5}{3}\right)-5=x" />
+</MathContainer>
+
+Sowohl <InlineMath math="r" /> als auch <InlineMath math="r^{-1}" /> haben die Definitionsmenge <InlineMath math="\mathbb{R}" /> und die Bildmenge <InlineMath math="\mathbb{R}" />. Die beiden Identitäten bestätigen, dass sich die Funktionen auf ihren vollständigen Definitionsmengen gegenseitig aufheben.

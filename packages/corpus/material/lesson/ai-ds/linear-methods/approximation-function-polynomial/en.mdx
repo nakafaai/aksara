@@ -1,53 +1,83 @@
 export const metadata = {
     title: "Best Approximation in Function and Polynomial Spaces",
-    description: "Learn Gauss approximation techniques for function modeling with polynomial and trigonometric spaces, Euclidean norms, and scalar products.",
+    description: "Use inner products and orthogonal projection to find the best polynomial or trigonometric approximation to a function in the L2 norm.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-15",
     subject: "Linear Methods of AI",
 };
 
-## Best Approximation in Function Spaces
+## Why Approximate a Function?
 
-Our goal is to perform approximation of a specific function within an appropriate subspace of function space using a certain norm with optimal results.
+A function may be expensive to evaluate or too complicated for a later calculation. We then choose a simpler family of functions and ask a precise question: which member of that family is closest to the original function?
 
-The set <InlineMath math="C([a; b])" /> of continuous functions <InlineMath math="f : [a; b] \to \mathbb{R}" /> forms an infinite-dimensional real vector space. Imagine this space like a massive library containing all possible continuous functions on the interval <InlineMath math="[a; b]" />.
+Let <InlineMath math="C([a,b])" /> denote the real vector space of continuous functions on <InlineMath math="[a,b]" />. We will measure the error over the whole interval, not at only one point.
 
-## Scalar Product and Euclidean Space
+## Inner Product and L2 Error
 
-With the scalar product defined as
+For <InlineMath math="f,g\in C([a,b])" />, define
 
-<BlockMath math="\langle f, g \rangle = \int_a^b f(x) g(x) \, dx" />
+<MathContainer>
+<BlockMath math="\langle f,g\rangle=\int_a^b f(x)g(x)\,dx" />
+<BlockMath math="\|f\|_2=\sqrt{\langle f,f\rangle}=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2}" />
+</MathContainer>
 
-then <InlineMath math="C([a; b])" /> becomes a Euclidean vector space. The corresponding norm is the quadratic mean
+This inner product turns <InlineMath math="C([a,b])" /> into an inner-product space. The displayed norm is the <InlineMath math="L^2" /> norm. It is not the root-mean-square value unless it is divided by the square root of the interval length:
 
-<BlockMath math="\|f\| = \sqrt{\langle f, f \rangle} = \left( \int_a^b f(x)^2 \, dx \right)^{\frac{1}{2}}" />
+<BlockMath math="\operatorname{RMS}(f)=\frac{1}{\sqrt{b-a}}\|f\|_2" />
 
-This scalar product is like a way to measure similarity between two functions, similar to calculating how similar two songs are based on their harmonic resonance. While the norm provides a measure of the "magnitude" of a function in the quadratic sense, like measuring the average volume of a piece of music.
+The quantity <InlineMath math="\|f-g\|_2" /> combines the error across the interval. Positive and negative errors cannot cancel because the difference is squared inside the integral.
 
-## Definition of Best Approximation
+## Best Approximation as an Orthogonal Projection
 
-Let <InlineMath math="S \subset C([a; b])" /> be a finite-dimensional vector subspace and <InlineMath math="f \in C([a; b])" />. Our task is to determine <InlineMath math="g \in S" /> such that
+Let <InlineMath math="S\subset C([a,b])" /> be a finite-dimensional subspace. The best approximation of <InlineMath math="f" /> in <InlineMath math="S" /> is the unique function <InlineMath math="g\in S" /> satisfying
 
-<BlockMath math="\|f - g\| = \min_{\varphi \in S} \|f - \varphi\|" />
+<BlockMath math="\|f-g\|_2=\min_{\varphi\in S}\|f-\varphi\|_2" />
 
-A function <InlineMath math="g \in S" /> with this property is called a Gauss approximation. Such <InlineMath math="g \in S" /> with this property is called the best approximation of <InlineMath math="f" /> in <InlineMath math="S" /> with respect to the norm <InlineMath math="\| \cdot \|" />.
+Geometrically, <InlineMath math="g" /> is the orthogonal projection of <InlineMath math="f" /> onto <InlineMath math="S" />. The residual <InlineMath math="r=f-g" /> must be orthogonal to every function in the approximation space:
 
-Like searching for the photo that most closely resembles the original from a limited photo collection, the best approximation provides the function that most closely matches the original function within the available space.
+<BlockMath math="\langle f-g,s\rangle=0\qquad\text{for every }s\in S" />
 
-## Polynomial Spaces
+If <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> is a basis of <InlineMath math="S" /> and <InlineMath math="g=\sum_{j=0}^n c_j\phi_j" />, these orthogonality conditions become the normal equations
 
-Next, we will examine
+<BlockMath math="\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle,\qquad i=0,\ldots,n" />
 
-<BlockMath math="S = P_n([a; b])" />
+## Worked Example: Approximating a Quadratic by a Line
 
-which is the set of all polynomials of maximum degree <InlineMath math="n" />. Polynomial space is like a mathematical toolbox containing various simple curves to approximate more complex function shapes. The higher the degree <InlineMath math="n" />, the more "tools" are available to form more flexible curves.
+Approximate <InlineMath math="f(x)=x^2" /> on <InlineMath math="[-1,1]" /> by a function in <InlineMath math="S=\operatorname{span}\{1,x\}" />. Write <InlineMath math="g(x)=c_0+c_1x" />. Orthogonality to the two basis functions gives
 
-## Trigonometric Polynomials
+<MathContainer>
+<BlockMath math="\int_{-1}^{1}\left(x^2-c_0-c_1x\right)\,dx=0" />
+<BlockMath math="\int_{-1}^{1}x\left(x^2-c_0-c_1x\right)\,dx=0" />
+</MathContainer>
 
-Another possibility is the set of all trigonometric polynomials
+The odd terms integrate to zero on the symmetric interval. The second equation gives <InlineMath math="c_1=0" />, and the first gives <InlineMath math="c_0=1/3" />. Therefore
 
-<BlockMath math="S = T_n(\omega) = \left\{ \frac{a_0}{2} + \sum_{i=1}^n \left( a_i \cos\left(\frac{2\pi i x}{\omega}\right) + b_i \sin\left(\frac{2\pi i x}{\omega}\right) \right) : a_i, b_i \in \mathbb{R} \right\}" />
+<MathContainer>
+<BlockMath math="g(x)=\frac13" />
+<BlockMath math="\|f-g\|_2^2=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx=\frac8{45}" />
+</MathContainer>
 
-for approximation of periodic functions <InlineMath math="f : \mathbb{R} \to \mathbb{R}" /> with period <InlineMath math="\omega > 0" />.
+The best line is horizontal. That conclusion is not a guess: the symmetry of <InlineMath math="x^2" /> forces the coefficient of the odd basis function <InlineMath math="x" /> to vanish.
 
-These trigonometric polynomials are like a mathematical orchestra where sine and cosine functions serve as musical instruments that harmonize to create the melody of repeating functions. Each term in this series adds a different harmonic frequency, just like musical instruments playing fundamental notes and their harmonics.
+## Polynomial Approximation Spaces
+
+For algebraic polynomials of degree at most <InlineMath math="n" />, use
+
+<BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
+
+Increasing <InlineMath math="n" /> enlarges the approximation space, so the smallest possible <InlineMath math="L^2" /> error cannot increase. In computation, orthogonal polynomial bases are often preferable to raw powers because they produce better-conditioned systems.
+
+## Trigonometric Approximation Spaces
+
+For a periodic function with period <InlineMath math="\omega>0" />, a useful space is
+
+<BlockMath math="T_n(\omega)=\left\{\frac{a_0}{2}+\sum_{i=1}^n\left[a_i\cos\left(\frac{2\pi ix}{\omega}\right)+b_i\sin\left(\frac{2\pi ix}{\omega}\right)\right]:a_i,b_i\in\mathbb{R}\right\}" />
+
+Over one full period, these sine and cosine basis functions are mutually orthogonal. Their coefficients can therefore be computed by projecting the target function onto each basis function, which is the finite-dimensional idea behind Fourier approximation.
+
+| Choice of <InlineMath math="S" /> | Best suited for | What determines the coefficients |
+|---|---|---|
+| <InlineMath math="P_n([a,b])" /> | Smooth behavior on a finite interval | Orthogonality of the residual to polynomial basis functions |
+| <InlineMath math="T_n(\omega)" /> | Periodic behavior | Orthogonality of the residual to sine and cosine basis functions |
+
+> A best approximation is not merely a visually close curve. It is the orthogonal projection defined by a chosen function space, interval, and norm.

@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "Peluang Kejadian Majemuk Saling Bebas Bersyarat",
-    description: "Pelajari konsep peluang bersyarat dan independen melalui rumus, contoh nyata, dan hubungan antar kejadian.",
+    title: "Peluang Bersyarat dan Kebebasan Kejadian",
+    description: "Gunakan peluang bersyarat dengan tepat, bedakan kebergantungan dari kebebasan, dan selesaikan soal pemilihan bertahap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Kombinatorik",
@@ -8,76 +8,78 @@ export const metadata = {
 
 ## Memahami Konsep Dasar
 
-Bayangkan kamu sedang bermain kartu dengan teman. Kamu mengambil satu kartu dari deck, lalu temanmu mengambil kartu berikutnya. Apakah peluang temanmu mendapat kartu tertentu bergantung pada kartu yang kamu ambil sebelumnya? **Tentu saja!** Inilah yang disebut peluang bersyarat pada kejadian yang saling bebas.
+Bayangkan kamu mengambil satu kartu sebelum temanmu mengambil kartu berikutnya. Apakah kartumu mengubah peluang kartu yang dapat diambil temanmu? Jika kartu tidak dikembalikan, sering kali iya. **Peluang bersyarat** membantu kita menghitung peluang kedua berdasarkan informasi yang sudah diketahui.
 
-**Peluang kejadian majemuk saling bebas bersyarat** adalah perhitungan peluang suatu kejadian terjadi dengan mempertimbangkan bahwa kejadian lain telah terjadi sebelumnya, di mana kedua kejadian tersebut pada dasarnya independen namun saling mempengaruhi dalam urutan kejadian.
+**Peluang bersyarat** kejadian <InlineMath math="B" /> jika kejadian <InlineMath math="A" /> diketahui terjadi menanyakan: di antara semua hasil yang memenuhi <InlineMath math="A" />, berapa bagian yang juga memenuhi <InlineMath math="B" />? Jawabannya dapat berubah setelah <InlineMath math="A" />, yang menandakan kebergantungan, atau tetap sama, yang menandakan kebebasan.
 
-Konsep ini berbeda dengan peluang biasa karena kita harus mempertimbangkan **kondisi yang sudah terjadi** sebelum menghitung peluang kejadian berikutnya.
+Kuncinya adalah memperbarui semua hasil yang mungkin berdasarkan **kondisi yang sudah diketahui** sebelum menghitung peluang berikutnya.
 
 ## Rumus dan Notasi Matematis
 
-Untuk dua kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> yang saling bebas namun berurutan, rumus peluang bersyarat adalah:
+Untuk kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> dengan <InlineMath math="P(A) > 0" />, peluang bersyarat didefinisikan sebagai:
 
 <BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
 
-Di mana:
-- <InlineMath math="P(B|A)" /> adalah peluang kejadian <InlineMath math="B" /> terjadi setelah kejadian <InlineMath math="A" /> terjadi
-- <InlineMath math="P(A \cap B)" /> adalah peluang kedua kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> terjadi bersamaan
-- <InlineMath math="P(A)" /> adalah peluang kejadian <InlineMath math="A" /> terjadi
+di mana:
+- <InlineMath math="P(B|A)" /> adalah peluang <InlineMath math="B" /> dengan syarat <InlineMath math="A" /> telah terjadi
+- <InlineMath math="P(A \cap B)" /> adalah peluang <InlineMath math="A" /> dan <InlineMath math="B" /> terjadi bersama
+- <InlineMath math="P(A)" /> adalah peluang kejadian syarat <InlineMath math="A" />
 
-Karena kejadian saling bebas, kita dapat menuliskan:
-
-<BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
-
-Sehingga untuk peluang gabungan kedua kejadian:
+Dengan menyusun ulang definisi tersebut, kita memperoleh aturan perkalian umum:
 
 <BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
+
+Jika kedua kejadian saling bebas, informasi tentang <InlineMath math="A" /> tidak mengubah peluang <InlineMath math="B" />:
+
+<BlockMath math="P(B|A) = P(B)" />
 
 ## Penerapan pada Pengambilan Kartu
 
-### Skenario Kartu Merah dan Hati
+### Skenario Kartu As dan King
 
-Sebuah deck kartu standar memiliki <InlineMath math="52 \text{ kartu}" />. Terdapat <InlineMath math="26 \text{ kartu}" /> merah dan <InlineMath math="13 \text{ kartu}" /> hati. Jika kita mengambil dua kartu secara berurutan tanpa pengembalian, bagaimana menghitung peluang mendapat kartu merah pertama dan kartu hati kedua?
+Satu set kartu standar berisi <InlineMath math="52 \text{ kartu}" />. Di dalamnya terdapat <InlineMath math="4 \text{ kartu As}" /> dan <InlineMath math="4 \text{ kartu King}" />. Dua kartu diambil tanpa pengembalian. Berapa peluang mendapat As terlebih dahulu dan King pada pengambilan kedua?
 
 **Analisis langkah demi langkah:**
 
 Misalkan:
-- Kejadian <InlineMath math="C" /> adalah mendapat kartu merah pada pengambilan pertama
-- Kejadian <InlineMath math="D" /> adalah mendapat kartu hati pada pengambilan kedua
+- Kejadian <InlineMath math="C" /> adalah mendapat As pada pengambilan pertama
+- Kejadian <InlineMath math="D" /> adalah mendapat King pada pengambilan kedua
 
 Perhitungan peluang:
 
 <MathContainer>
-<BlockMath math="P(C) = \frac{26}{52} = \frac{1}{2}" />
-<BlockMath math="P(D|C) = \frac{13}{51}" />
-<BlockMath math="P(C \cap D) = P(C) \times P(D|C) = \frac{26}{52} \times \frac{13}{51} = \frac{1}{2} \times \frac{13}{51} = \frac{13}{102}" />
+<BlockMath math="P(C) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(D|C) = \frac{4}{51}" />
+<BlockMath math="P(C \cap D) = P(C) \times P(D|C) = \frac{4}{52} \times \frac{4}{51} = \frac{1}{13} \times \frac{4}{51} = \frac{4}{663}" />
 </MathContainer>
 
-Setelah mengambil satu kartu merah, tersisa <InlineMath math="51 \text{ kartu}" /> total. Jumlah kartu hati tetap <InlineMath math="13 \text{ kartu}" /> karena kartu hati merupakan bagian dari kartu merah, sehingga peluang mengambil kartu hati menjadi <InlineMath math="\frac{13}{51}" />.
+Setelah satu As diambil, tersisa <InlineMath math="51 \text{ kartu}" />. Seluruh <InlineMath math="4 \text{ kartu King}" /> masih ada, sehingga peluang bersyarat mendapat King adalah <InlineMath math="\frac{4}{51}" />.
 
 ### Perhitungan Khusus Kartu Hati
 
-Jika fokus pada pengambilan kartu hati secara berurutan, maka:
+Untuk melihat perubahan jumlah hasil yang diinginkan, perhatikan pengambilan dua kartu Hati berturut-turut:
 
 - Pengambilan pertama: <InlineMath math="P(A) = \frac{13}{52} = \frac{1}{4}" />
 - Pengambilan kedua setelah mendapat hati: <InlineMath math="P(B|A) = \frac{12}{51}" />
 
-Maka, peluang mendapat kartu hati kedua adalah:
+Jadi, peluang kedua kartu yang terambil sama-sama Hati adalah:
 
 <BlockMath math="P(A \cap B) = \frac{13}{52} \times \frac{12}{51} = \frac{156}{2652} = \frac{1}{17}" />
 
 ## Aplikasi dalam Seleksi Manajemen
 
-Sebuah perusahaan multinasional sedang melakukan **audit internal** untuk mengevaluasi distribusi manajer berdasarkan gender dan tingkat jabatan. Data yang diperoleh dari departemen SDM menunjukkan komposisi sebagai berikut:
+Anggap sebuah perusahaan hipotetis meninjau distribusi manajer berdasarkan gender dan tingkat jabatan. Datanya memiliki komposisi berikut:
 
-| Posisi Manajemen | Laki-laki (L) | Perempuan (P) | Total |
+| Posisi Manajemen | Laki-laki | Perempuan | Total |
 |------------------|---------------|---------------|-------|
 | Senior (S)       | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
 | Menengah (M)     | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
 | Junior (J)       | <InlineMath math="44" /> | <InlineMath math="156" /> | <InlineMath math="200" /> |
 | **Total**        | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="600" /> |
 
-Dari data ini, perusahaan ingin menganalisis peluang dalam proses **seleksi acak** untuk komite khusus yang akan dibentuk. Jika dipilih dua manajer secara acak tanpa pengembalian, peluang mendapat manajer laki-laki pada pemilihan pertama dan kedua adalah:
+Misalkan <InlineMath math="L" /> menyatakan kejadian bahwa manajer yang terpilih adalah laki-laki.
+
+Perusahaan memilih dua manajer secara acak tanpa pengembalian untuk sebuah komite. Peluang keduanya laki-laki adalah:
 
 <MathContainer>
 <BlockMath math="P(L_1) = \frac{200}{600} = \frac{1}{3}" />
@@ -91,7 +93,7 @@ Setelah memilih satu manajer laki-laki, tersisa <InlineMath math="599" /> manaje
 
 ### Langkah Sistematis
 
-Untuk menyelesaikan soal peluang bersyarat independen:
+Untuk menyelesaikan soal peluang bersyarat:
 
 1. **Identifikasi kejadian** pertama dan kedua dengan jelas
 2. **Tentukan kondisi** setelah kejadian pertama terjadi
@@ -101,9 +103,9 @@ Untuk menyelesaikan soal peluang bersyarat independen:
 
 ### Perbedaan dengan Peluang Biasa
 
-**Peluang bersyarat** mempertimbangkan perubahan kondisi setelah kejadian pertama, sedangkan **peluang independen biasa** tidak mempertimbangkan urutan kejadian.
+Pada **kejadian saling bebas**, kondisi tidak mengubah peluang berikutnya. Pada **kejadian tidak saling bebas**, hasil yang diketahui mengubah jumlah hasil yang diinginkan, jumlah seluruh hasil, atau keduanya.
 
-**Contoh Konkret: Mengambil Dua Kartu As**
+**Contoh konkret: mengambil dua kartu As**
 
 Misalkan kita ingin menghitung peluang mendapat dua kartu As berturut-turut dari deck standar (<InlineMath math="52 \text{ kartu}" />, <InlineMath math="4" /> As).
 
@@ -117,7 +119,7 @@ Misalkan kita ingin menghitung peluang mendapat dua kartu As berturut-turut dari
     <BlockMath math="P(As_1 \cap As_2) = \frac{4}{52} \times \frac{4}{52} = \frac{1}{13} \times \frac{1}{13} = \frac{1}{169}" />
     </MathContainer>
 
-2. **Peluang Bersyarat (Tanpa Pengembalian):**
+2. **Pengambilan Tidak Bebas (Tanpa Pengembalian):**
 
     Jika kartu pertama tidak dikembalikan:
 
@@ -128,10 +130,10 @@ Misalkan kita ingin menghitung peluang mendapat dua kartu As berturut-turut dari
     </MathContainer>
 
 **Perbandingan Hasil:**
-- Peluang independen: <InlineMath math="\frac{1}{169} = 0.00592" />
-- Peluang bersyarat: <InlineMath math="\frac{1}{221} = 0.00452" />
+- Peluang independen: <InlineMath math="\frac{1}{169} = 0{,}00592" />
+- Peluang bersyarat: <InlineMath math="\frac{1}{221} = 0{,}00452" />
 
-Peluang bersyarat memberikan hasil yang **lebih kecil** karena setelah mengambil satu As, jumlah As yang tersisa berkurang dari <InlineMath math="4" /> menjadi <InlineMath math="3" />, sementara total kartu juga berkurang dari <InlineMath math="52" /> menjadi <InlineMath math="51" />.
+Pada contoh ini, pengambilan tanpa pengembalian memberi hasil yang **lebih kecil** karena jumlah As yang tersisa berkurang dari <InlineMath math="4" /> menjadi <InlineMath math="3" />, sementara total kartu berkurang dari <InlineMath math="52" /> menjadi <InlineMath math="51" />.
 
 ## Latihan
 
@@ -139,7 +141,9 @@ Peluang bersyarat memberikan hasil yang **lebih kecil** karena setelah mengambil
 
 2. Sebuah deck kartu dikocok acak. Tiga kartu diambil berturut-turut tanpa pengembalian. Berapa peluang mendapat kartu As pada pengambilan pertama, kartu King pada pengambilan kedua, dan kartu Queen pada pengambilan ketiga?
 
-### Kunci Jawaban
+Coba kerjakan setiap latihan sebelum membaca pembahasannya. Pada setiap pengambilan, tulis jumlah hasil yang diinginkan dan jumlah seluruh hasil yang baru sebelum mengalikan peluang.
+
+### Pembahasan
 
 1. **Penyelesaian:**
 
@@ -159,7 +163,7 @@ Peluang bersyarat memberikan hasil yang **lebih kecil** karena setelah mengambil
 
    Misalkan <InlineMath math="A" /> adalah mendapat As pertama, <InlineMath math="K" /> adalah mendapat King kedua, dan <InlineMath math="Q" /> adalah mendapat Queen ketiga
 
-   Deck standar memiliki <InlineMath math="52 \text{ kartu}" /> dengan masing-masing: <InlineMath math="4" /> As, <InlineMath math="4" /> King, <InlineMath math="4" /> Queen
+   Satu set kartu standar memiliki <InlineMath math="52 \text{ kartu}" />, termasuk <InlineMath math="4" /> As, <InlineMath math="4" /> King, dan <InlineMath math="4" /> Queen.
 
    <MathContainer>
    <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
@@ -168,4 +172,4 @@ Peluang bersyarat memberikan hasil yang **lebih kecil** karena setelah mengambil
    <BlockMath math="P(A \cap K \cap Q) = \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} = \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} = \frac{8}{16575}" />
    </MathContainer>
 
-   Setiap pengambilan mengurangi total kartu (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />), namun jumlah As, King, dan Queen masing-masing tetap <InlineMath math="4" /> karena jenis kartu yang diambil berbeda pada setiap langkah.
+   Setiap pengambilan mengurangi jumlah total kartu (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). Peringkat kartu yang dibutuhkan berikutnya masih tersedia lengkap sebanyak <InlineMath math="4" /> kartu: mengambil As tidak mengurangi King, dan mengambil King tidak mengurangi Queen.

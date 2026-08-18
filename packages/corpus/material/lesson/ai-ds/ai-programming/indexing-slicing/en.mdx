@@ -41,7 +41,7 @@ except IndexError:
   ]}
 />
 
-When you use an index that exceeds the length of a string or list, Python will display an IndexError. This is a protection mechanism to prevent access to invalid memory.
+An index outside the valid range raises `IndexError`. Python sequences perform this bounds check instead of returning an arbitrary value.
 
 ## Slicing Concept
 
@@ -112,7 +112,7 @@ Slicing has several important properties that need to be understood to avoid err
 
 ### Length of Slicing Result
 
-The length of slicing result can be calculated with a simple formula. For positive slicing `s[i:j]`, the length is `j - i` if both values are positive and `j > i`.
+For the simple case <InlineMath math="0 \le i \le j \le n" /> with the default positive step, `s[i:j]` has length <InlineMath math="j-i" />. General slices may contain omitted, negative, or out-of-range bounds and a different step. Python first normalizes them against the sequence length. The exact count is `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -143,7 +143,7 @@ One advantage of slicing is that it won't cause an error even if indices exceed 
 
 ## Slicing as Loop
 
-Slicing can be understood as a short form of for loop. Every slicing operation is actually equivalent to a loop that iterates specific indices.
+The indices selected by a slice can be modeled with a `range()`. This explains the result without claiming that every sequence type implements slicing as a Python-level loop.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ print(f"Manual: '{result_negative}'")`
   ]}
 />
 
-Understanding the relationship between slicing and loops helps you understand how Python processes slicing operations internally.
+Comparing the slice with its `range()` model makes the start, stop, and step rules visible, especially when the step is negative.
 
 ## Slicing Variations
 
@@ -201,7 +201,7 @@ print(s[:3])     # Output: 'Hel'
 # Taking characters from index 3 to end
 print(s[3:])     # Output: 'lo'
 
-# Taking all characters (copying string)
+# Taking all characters
 print(s[:])      # Output: 'Hello'
 
 # Practical example with list
@@ -241,10 +241,12 @@ last_name = "Wijaya"
 reversed_name = (first_name + " " + last_name)[::-1]
 print(f"Reversed name: {reversed_name}")
 
-# 2. Getting file extension
+# 2. Getting a file extension safely
+from pathlib import Path
+
 filename = "important_document.pdf"
-extension = filename[-3:]  # Last 3 characters
-print(f"Extension: .{extension}")
+extension = Path(filename).suffix
+print(f"Extension: {extension}")
 
 # 3. Formatting phone number
 number = "081234567890"
@@ -256,13 +258,12 @@ full_name = "Siti Nurhaliza Binti Ahmad"
 words = full_name.split()
 initials = ""
 for word in words:
-    if word[0].isupper():  # Only take words starting with capital letter
-        initials += word[0]
+    initials += word[0]
 print(f"Initials: {initials}")
 
 # 5. Palindrome checker
 def is_palindrome(text):
-    cleaned = text.lower().replace(" ", "")
+    cleaned = "".join(character for character in text.casefold() if character.isalnum())
     return cleaned == cleaned[::-1]
 
 print(f"'katak' palindrome? {is_palindrome('katak')}")
@@ -271,8 +272,8 @@ print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
   ]}
 />
 
-From these five application examples, it's clear that indexing and slicing operations can replace complex programming logic. For instance, reversing a string with `[::-1]` is much more concise compared to using manual loops, and getting file extension with `[-3:]` is more intuitive than searching for the last dot position.
+These examples use indexing where a position is known and slicing where a contiguous or stepped subsequence is intended. Reversing a sequence with `[::-1]` is concise. File extensions are different: their length varies, so `Path.suffix` expresses that domain rule more reliably than a fixed slice.
 
-The main advantage of this technique lies in its ability to handle sequential data without the risk of IndexError in slicing. When you perform `s[10:]` on a short string, Python won't crash but will return an empty string. This flexibility makes code safer, especially when working with data whose length cannot be predicted.
+Slice bounds are clipped to the sequence, so `s[10:]` on a shorter string returns `""` rather than raising `IndexError`. Direct indexing such as `s[10]` still raises. Choose between them according to whether an absent element is an error or an empty subsequence is meaningful.
 
 Mastering negative indices provides a new perspective in accessing data. Instead of counting from the front, you can directly take elements from the back with `s[-1]` for the last element or `s[-3:]` for the last three elements. This approach is very useful in file processing, text parsing, and dataset manipulation where relative position from the end is more important than absolute position from the start.

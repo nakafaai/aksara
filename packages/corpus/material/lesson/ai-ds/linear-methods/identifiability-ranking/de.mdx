@@ -1,0 +1,98 @@
+export const metadata = {
+    title: "Identifizierbarkeit und Matrixrang",
+    description: "Parameteridentifizierbarkeit mit Matrixrang, Singulärwerten, Kondition und stabilen rangoffenlegenden Faktorisierungen verbinden.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-15",
+    subject: "Lineare Methoden der KI",
+};
+
+## Identifizierbarkeit in einem linearen Modell
+
+Identifizierbarkeit fragt, ob die verfügbaren Daten einen Modellparameter eindeutig bestimmen. Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" /> und <InlineMath math="m \geq n" /> gegeben. Das lineare Ausgleichsproblem lautet
+
+<BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
+
+und seine Normalgleichungen sind
+
+<BlockMath math="A^T A x = A^T b" />
+
+Der Parametervektor <InlineMath math="x" /> ist genau dann eindeutig identifizierbar, wenn <InlineMath math="A" /> vollen Spaltenrang hat:
+
+<MathContainer>
+<BlockMath math="\operatorname{rank}(A)=n" />
+<BlockMath math="\ker(A)=\{0\}" />
+</MathContainer>
+
+Diese Aussagen sind äquivalent. Gibt es ein <InlineMath math="z \in \ker(A)" /> ungleich null, dann gilt
+
+<BlockMath math="A(x+z)=Ax" />
+
+und die Daten können <InlineMath math="x" /> nicht von <InlineMath math="x+z" /> unterscheiden. Ist der Kern trivial, dann ist <InlineMath math="A^TA" /> positiv definit und der Minimierer des Ausgleichsproblems eindeutig.
+
+## Eindeutigkeit ist nicht dasselbe wie Stabilität
+
+Voller Spaltenrang garantiert eine eindeutige exakte Lösung, aber noch keine numerisch verlässliche. Ein sehr kleiner positiver Singulärwert kann die Schätzung gegenüber kleinen Datenänderungen äußerst empfindlich machen.
+
+| Frage | Diagnose | Bedeutung |
+| --- | --- | --- |
+| Ist der Parameter strukturell identifizierbar? | <InlineMath math="\operatorname{rank}(A)=n" /> | Keine zwei Parametervektoren erzeugen dieselbe Vorhersage. |
+| Ist die Schätzung numerisch gut bestimmt? | <InlineMath math="\sigma_n" /> ist im Verhältnis zu <InlineMath math="\sigma_1" /> nicht sehr klein | Kleine Störungen bewirken keine großen Parameteränderungen. |
+| Wie empfindlich ist das Problem? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Eine große Konditionszahl weist auf hohe Empfindlichkeit hin. |
+
+Diese Unterscheidung ist für angewandte Modelle wichtig: Strukturelle Identifizierbarkeit ist eine exakte algebraische Eigenschaft. Praktische Identifizierbarkeit hängt dagegen von Skalierung, Rauschen und numerischer Toleranz ab.
+
+## Rangoffenlegende Faktorisierungen
+
+Zwei verbreitete Werkzeuge legen den Rang offen, ohne sich auf empfindliche Determinantenberechnungen zu stützen:
+
+| Methode | Stärke | Typischer Einsatz |
+| --- | --- | --- |
+| QR-Zerlegung mit Spaltenpivotisierung | Meist günstiger als eine vollständige SVD | Schnelle Ausgleichsrechnung und praktische Rangbestimmung |
+| Singulärwertzerlegung | Zeigt alle unabhängigen Richtungen und ihre Skalen unmittelbar | Robuste Diagnose nahe einem Rangdefizit |
+
+Die gewöhnliche LU-Zerlegung ist vor allem ein Werkzeug für quadratische Systeme. Für eine rechteckige Entwurfsmatrix sind pivotisiertes QR oder SVD die natürlicheren rangoffenlegenden Verfahren.
+
+## Singulärwertzerlegung
+
+Sei <InlineMath math="q=\min(m,n)" />. Jede Matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> besitzt eine Singulärwertzerlegung
+
+<BlockMath math="A=U\Sigma V^T" />
+
+wobei <InlineMath math="U \in \mathbb{R}^{m \times m}" /> und <InlineMath math="V \in \mathbb{R}^{n \times n}" /> orthogonal sind und <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> nichtnegative Diagonaleinträge hat:
+
+<BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
+
+Der exakte Rang ist die Anzahl der positiven Singulärwerte:
+
+<BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
+
+Für <InlineMath math="m \geq n" /> ist voller Spaltenrang daher äquivalent zu <InlineMath math="\sigma_n>0" />. Die zu Singulärwert null gehörenden rechten Singulärvektoren spannen <InlineMath math="\ker(A)" /> auf und zeigen Parameterrichtungen, die sich aus den Daten nicht identifizieren lassen.
+
+## Exakter und numerischer Rang
+
+Ist der exakte Rang <InlineMath math="r" /> mit <InlineMath math="0<r<q" />, dann gilt
+
+<BlockMath math="\sigma_r>0=\sigma_{r+1}=\cdots=\sigma_q" />
+
+Gleitkommadaten enthalten nur selten exakte Nullen. Ein numerischer Rang zählt stattdessen die Singulärwerte oberhalb eines skalenabhängigen Schwellenwerts <InlineMath math="\tau" />:
+
+<MathContainer>
+<BlockMath math="\tau=c\,\max(m,n)\,\varepsilon_{\mathrm{mach}}\,\sigma_1" />
+<BlockMath math="\operatorname{rank}_{\tau}(A)=\#\{i:\sigma_i>\tau\}" />
+</MathContainer>
+
+Der Faktor <InlineMath math="c" /> richtet sich nach Anwendung und Rauschmodell. Deshalb gibt es keinen universellen Dezimalgrenzwert. Ist <InlineMath math="A" /> rangdefizient, existiert das Minimum des Ausgleichsproblems weiterhin, aber der minimierende Parametervektor ist nicht eindeutig. Die Moore-Penrose-Pseudoinverse wählt die Lösung mit minimaler Norm:
+
+<BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
+
+## Die Zerlegung sicher berechnen
+
+Die Identität
+
+<BlockMath math="A^TA=V\Sigma^2V^T" />
+
+erklärt, warum die quadrierten Singulärwerte Eigenwerte von <InlineMath math="A^TA" /> sind. Für die Theorie ist das nützlich. Das explizite Bilden von <InlineMath math="A^TA" /> quadriert jedoch die Konditionszahl:
+
+<BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
+
+Numerische Software verwendet deshalb direkte SVD- oder rangoffenlegende QR-Verfahren, statt <InlineMath math="A^TA" /> nur zur Rangschätzung zu bilden. Dadurch bleiben mehr Informationen in den bereits nahezu unidentifizierbaren Richtungen erhalten.

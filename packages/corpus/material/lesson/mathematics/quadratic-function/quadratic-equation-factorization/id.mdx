@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Faktorisasi Persamaan Kuadrat",
-  description: "Pelajari faktorisasi persamaan kuadrat ke bentuk (x-p)(x-q). Pelajari langkah sistematis, metode pengelompokan, dan kasus khusus dengan contoh terarah dan latihan soal.",
+  description: "Faktorkan persamaan kuadrat dengan sifat hasil kali nol, pengelompokan, dan pola khusus, lalu periksa hasilnya melalui contoh serta latihan dengan pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-19",
   subject: "Persamaan dan Fungsi Kuadrat",
@@ -8,11 +8,9 @@ export const metadata = {
 
 ## Apa itu Faktorisasi Persamaan Kuadrat?
 
-<Youtube videoId="CVuDCWTxqBA" />
+Faktorisasi menulis ulang persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> sebagai suatu perkalian. Jika persamaan dapat ditulis sebagai <InlineMath math="a(x - p)(x - q) = 0" />, bilangan <InlineMath math="p" /> dan <InlineMath math="q" /> adalah akar-akarnya.
 
-Faktorisasi persamaan kuadrat adalah proses mengubah bentuk persamaan dari <InlineMath math="ax^2 + bx + c = 0" /> menjadi bentuk <InlineMath math="a(x - p)(x - q) = 0" />, dimana <InlineMath math="p" /> dan <InlineMath math="q" /> adalah akar-akar persamaan kuadrat tersebut.
-
-Perhatikan bahwa akar-akar persamaan kuadrat adalah nilai-nilai <InlineMath math="x" /> yang membuat persamaan tersebut bernilai nol. Ketika kita mengubah persamaan ke bentuk faktor, maka kita dapat dengan mudah menemukan akar-akarnya.
+Akar persamaan adalah nilai <InlineMath math="x" /> yang membuat persamaan bernilai nol. Bentuk perkalian memperlihatkan nilai tersebut karena setiap faktor dapat disamakan dengan nol.
 
 ## Prinsip Dasar Faktorisasi
 
@@ -22,7 +20,7 @@ Persamaan kuadrat dalam bentuk standar ditulis sebagai:
 
 dimana <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> adalah konstanta dan <InlineMath math="a \neq 0" />.
 
-Faktorisasi berdasarkan pada sifat berikut: Jika suatu perkalian bernilai nol, maka salah satu atau kedua faktornya harus bernilai nol.
+Faktorisasi menggunakan sifat hasil kali nol: jika suatu perkalian bernilai nol, setidaknya satu faktornya harus bernilai nol.
 
 Ini berarti jika <InlineMath math="(x - p)(x - q) = 0" />, maka:
 
@@ -31,11 +29,11 @@ Ini berarti jika <InlineMath math="(x - p)(x - q) = 0" />, maka:
 
 ## Langkah-Langkah Faktorisasi Persamaan Kuadrat
 
-Berikut adalah langkah-langkah umum untuk memfaktorkan persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" />:
+Untuk persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> dengan koefisien bulat, faktorisasi melalui pengelompokan mengikuti langkah berikut:
 
 1. Pastikan persamaan sudah dalam bentuk standar dengan ruas kanan bernilai nol
 2. Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac" /> dan jika dijumlahkan menghasilkan <InlineMath math="b" />
-3. Tulis persamaan dalam bentuk faktor-faktor
+3. Pecah suku tengah dengan kedua bilangan tersebut, lalu faktorkan melalui pengelompokan
 4. Tentukan akar-akar persamaan dari faktor-faktor tersebut
 
 ### Contoh memfaktorkan persamaan kuadrat
@@ -209,7 +207,7 @@ Akar-akar persamaan adalah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMat
 
 2. Bentuk <InlineMath math="ax^2 - c = 0" />
 
-   Untuk persamaan tanpa suku <InlineMath math="x" />, kita dapat menggunakan pola selisih kuadrat:
+   Untuk persamaan tanpa suku <InlineMath math="x" />, pisahkan dahulu <InlineMath math="x^2" />. Di dalam bilangan real, langkah penarikan akar mensyaratkan <InlineMath math="\frac{c}{a}\ge0" />:
 
    <MathContainer>
      <BlockMath math="ax^2 - c = 0" />
@@ -217,6 +215,10 @@ Akar-akar persamaan adalah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMat
      <BlockMath math="x^2 = \frac{c}{a}" />
      <BlockMath math="x = \pm \sqrt{\frac{c}{a}}" />
    </MathContainer>
+
+   - Jika <InlineMath math="\frac{c}{a}>0" />, terdapat dua akar real berbeda dan bentuk tersebut dapat difaktorkan menjadi faktor-faktor linear real.
+   - Jika <InlineMath math="\frac{c}{a}=0" />, <InlineMath math="x=0" /> merupakan akar kembar.
+   - Jika <InlineMath math="\frac{c}{a}<0" />, tidak ada akar real maupun faktorisasi menjadi faktor-faktor linear real. Di dalam bilangan kompleks, akar-akarnya adalah <InlineMath math="x=\pm i\sqrt{-\frac{c}{a}}" />.
 
    **Contoh:** <InlineMath math="2x^2 - 18 = 0" />
 
@@ -229,13 +231,13 @@ Akar-akar persamaan adalah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMat
 
    Akar-akarnya adalah <InlineMath math="x = 3" /> dan <InlineMath math="x = -3" />.
 
-## Persamaan Kuadrat yang Tidak Dapat Difaktorkan
+## Ketika Pasangan Faktor Bulat Tidak Ditemukan
 
-Tidak semua persamaan kuadrat dapat difaktorkan dengan mudah menggunakan bilangan-bilangan rasional. Dalam kasus tersebut, kita dapat menggunakan rumus kuadrat:
+Tidak semua persamaan kuadrat mempunyai faktor rasional. Jika tidak ada pasangan faktor yang sesuai, gunakan metode lain seperti rumus kuadrat:
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
-Suatu persamaan kuadrat dapat difaktorkan dengan bilangan rasional jika diskriminan <InlineMath math="b^2 - 4ac" /> merupakan bilangan kuadrat sempurna.
+Untuk koefisien bulat, persamaan kuadrat mempunyai akar rasional tepat ketika diskriminan <InlineMath math="b^2 - 4ac" /> merupakan bilangan kuadrat sempurna yang tidak negatif.
 
 ## Latihan Soal
 
@@ -247,7 +249,7 @@ Faktorkan persamaan-persamaan kuadrat berikut:
 4. <InlineMath math="2x^2 - 8x + 6 = 0" />
 5. <InlineMath math="x^2 - 9 = 0" />
 
-### Kunci Jawaban
+### Pembahasan Lengkap
 
 1. <InlineMath math="x^2 + 6x + 5 = 0" />
 

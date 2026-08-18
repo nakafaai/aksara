@@ -9,7 +9,7 @@ export const metadata = {
 
 ## What Is Product Moment Correlation?
 
-Product Moment Correlation, often called **Pearson Correlation** or simply denoted by **<InlineMath math="r" />**, is the most commonly used statistical measure to determine how strong and in what direction the **linear relationship** (straight-line pattern) is between two quantitative variables (numbers).
+Product moment correlation, often called **Pearson correlation** and denoted by **<InlineMath math="r" />**, is a common statistical measure of the direction and strength of the **linear relationship** between two quantitative variables.
 
 The value of <InlineMath math="r" /> tells us whether the two variables tend to move in the same direction (positive), opposite directions (negative), or if there is no linear relationship at all.
 
@@ -65,14 +65,14 @@ move in the same direction, but not very strongly.
       name: "Data",
       color: "var(--chart-2)",
       points: [
-        { x: 1, y: 1 },
-        { x: 2, y: 4 },
-        { x: 3, y: 2 },
+        { x: 1, y: 2 },
+        { x: 2, y: 8 },
+        { x: 3, y: 3 },
         { x: 4, y: 6 },
-        { x: 5, y: 5 },
-        { x: 6, y: 8 },
-        { x: 7, y: 6 },
-        { x: 8, y: 9 },
+        { x: 5, y: 1 },
+        { x: 6, y: 9 },
+        { x: 7, y: 4 },
+        { x: 8, y: 7 },
       ],
     },
   ]}
@@ -81,7 +81,7 @@ move in the same direction, but not very strongly.
   regressionLineStyle={{ color: "var(--chart-4)" }}
 />
 
-If the points still show an upward trend but are more scattered like this, the <InlineMath math="r" /> value is positive but smaller (closer to <InlineMath math="0" />).
+For these eight points, the calculation gives <InlineMath math="r\approx0.279" />. The upward linear tendency is positive, but weak, and the scatter plot makes that weakness visible.
 
 ### Strong Negative Correlation
 
@@ -118,7 +118,7 @@ If the points fall from top left to bottom right and are very tightly clustered,
 
 ### No Linear Correlation
 
-<InlineMath math="r" /> approaching 0 means the two variables have no linear relationship.
+<InlineMath math="r" /> approaching <InlineMath math="0" /> means the two variables show little or no linear relationship.
 
 <ScatterDiagram
   title="Example of No Linear Correlation"
@@ -150,33 +150,33 @@ When the points are scattered randomly without a clear linear pattern, the <Inli
 
 ## How Is the Correlation Coefficient Calculated?
 
-The Pearson correlation coefficient (<InlineMath math="r" />) essentially measures how **synchronously** two variables (<InlineMath math="X" /> and <InlineMath math="Y" />) move relative to their own variations.
+The Pearson correlation coefficient (<InlineMath math="r" />) compares the paired deviations of two variables, <InlineMath math="X" /> and <InlineMath math="Y" />, with the variation in each variable.
 
-**Imagine this:**
+The calculation has three parts:
 
 1.  **Individual Variation:**
 
-    Each variable (<InlineMath math="X" /> and <InlineMath math="Y" />) has its own variability. Some values fluctuate a lot (large variation), while others are stable (small variation). This is measured by <InlineMath math="SS_{xx}" /> for X and <InlineMath math="SS_{yy}" /> for Y (formulas below).
+    Each variable (<InlineMath math="X" /> and <InlineMath math="Y" />) has its own variability. Some values fluctuate a lot (large variation), while others are stable (small variation). This is measured by <InlineMath math="SS_{xx}" /> for <InlineMath math="X" /> and <InlineMath math="SS_{yy}" /> for <InlineMath math="Y" /> (formulas below).
 
-2.  **Joint Variation (Covariance):**
+2.  **Joint Variation (Cross-deviation):**
 
-    We also need to know how <InlineMath math="X" /> and <InlineMath math="Y" /> vary _together_. When X increases, does Y also tend to increase? Or decrease? This measure of joint variation is called **covariance**, calculated using <InlineMath math="SS_{xy}" />.
+    We also need to know how <InlineMath math="X" /> and <InlineMath math="Y" /> vary _together_. When <InlineMath math="X" /> increases, does <InlineMath math="Y" /> also tend to increase or decrease? The sum <InlineMath math="SS_{xy}" /> measures these paired cross-deviations. It is the numerator used to calculate covariance; covariance additionally divides by <InlineMath math="n" /> or <InlineMath math="n-1" />, depending on the convention.
 
-    - If <InlineMath math="SS_{xy}" /> is large and positive: <InlineMath math="X" /> and <InlineMath math="Y" /> often move in the same direction.
-    - If <InlineMath math="SS_{xy}" /> is large and negative: <InlineMath math="X" /> and <InlineMath math="Y" /> often move in opposite directions.
-    - If <InlineMath math="SS_{xy}" /> is close to zero: No clear pattern of joint movement.
+    - If <InlineMath math="SS_{xy}" /> is positive, paired deviations tend to have the same sign.
+    - If <InlineMath math="SS_{xy}" /> is negative, paired deviations tend to have opposite signs.
+    - If <InlineMath math="SS_{xy}" /> is close to zero, there is little net linear co-variation.
 
 3.  **Standardizing the Measure:**
 
-    The problem is that the value of <InlineMath math="SS_{xy}" /> (covariance) is heavily influenced by the units of the data. For example, the covariance between height (cm) and weight (kg) will have a different value if we measure height in meters and weight in grams, even if the relationship is the same.
+    The value of <InlineMath math="SS_{xy}" /> is heavily influenced by the units of the data. For example, the cross-deviation sum for height and weight changes if height is measured in meters instead of centimeters, even though the underlying relationship is unchanged.
 
-    To overcome this, we need to **standardize** the covariance measure. This is done by **dividing the covariance (<InlineMath math="SS_{xy}" />) by a measure of the individual variations** (adjusted using square roots: <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />).
+    To overcome this, we **standardize** the cross-deviation sum by dividing <InlineMath math="SS_{xy}" /> by the geometric combination of the two individual variation measures, <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />.
 
     <BlockMath math="r = \frac{\text{How much X and Y vary together}}{\text{Standardized measure of individual X and Y variations}} = \frac{SS_{xy}}{\sqrt{SS_{xx} SS_{yy}}}" />
 
-The result of this division is **<InlineMath math="r" />**, the Pearson Correlation Coefficient. Because it's standardized, its value will always be between <InlineMath math="-1" /> and <InlineMath math="+1" />, regardless of the original data units. This allows us to compare the strength of linear relationships between different pairs of variables.
+The result of this division is **<InlineMath math="r" />**, the Pearson correlation coefficient. Provided both variables have nonzero variation, standardization constrains its value to the interval from <InlineMath math="-1" /> to <InlineMath math="+1" />, regardless of the original units. This allows us to compare linear associations across different pairs of variables.
 
-So, the value of <InlineMath math="r" /> is determined by comparing how strongly <InlineMath math="X" /> and <InlineMath math="Y" /> move together relative to how much they move individually.
+Thus, <InlineMath math="r" /> compares the paired deviations of <InlineMath math="X" /> and <InlineMath math="Y" /> with the separate variation in each variable.
 
 ## Product Moment Correlation Formula
 
@@ -212,9 +212,11 @@ Key:
 
 By calculating these three <InlineMath math="SS" /> values and plugging them into the formula for <InlineMath math="r" />, we get the Product Moment Correlation Coefficient.
 
+The formula requires <InlineMath math="SS_{xx}>0" /> and <InlineMath math="SS_{yy}>0" />. If either variable is constant, the denominator is zero and Pearson's <InlineMath math="r" /> is undefined.
+
 ## Interpreting the Correlation Coefficient
 
-Once we have the value of <InlineMath math="r" />, we can interpret its strength and direction using the following general guidelines:
+Once we have the value of <InlineMath math="r" />, we can use the following rough descriptive guidelines. These cutoffs are conventions, not universal laws. Their practical meaning depends on the field, measurement quality, sample size, and context, so always inspect the scatter plot as well.
 
 | Value of <InlineMath math="r" />      | Correlation Strength  | Description                                        |
 | :------------------------------------ | :-------------------- | :------------------------------------------------- |
@@ -222,7 +224,7 @@ Once we have the value of <InlineMath math="r" />, we can interpret its strength
 | <InlineMath math="0.7 \le r < 1" />   | Strong Positive       | Clear and strong positive linear relationship.     |
 | <InlineMath math="0.3 < r < 0.7" />   | Moderate Positive     | Moderately visible positive linear relationship.   |
 | <InlineMath math="0 < r \le 0.3" />   | Weak Positive         | Very low positive linear relationship.             |
-| <InlineMath math="0" />               | No Linear Correlation | No linear relationship at all.                     |
+| <InlineMath math="0" />               | No Linear Correlation | No linear pattern; a nonlinear relationship may still exist. |
 | <InlineMath math="-0.3 \le r < 0" />  | Weak Negative         | Very low negative linear relationship.             |
 | <InlineMath math="-0.7 < r < -0.3" /> | Moderate Negative     | Moderately visible negative linear relationship.   |
 | <InlineMath math="-1 < r \le -0.7" /> | Strong Negative       | Clear and strong negative linear relationship.     |

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Matrix Equality",
-  description: "Learn matrix equality conditions: same order and matching corresponding elements through examples, variable problems, and practice exercises.",
+  description: "Decide when two matrices are equal by comparing their dimensions and corresponding elements, then solve for unknown entries.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-06-05",
   subject: "Matrix",
@@ -8,11 +8,11 @@ export const metadata = {
 
 ## Definition of Matrix Equality
 
-In the world of matrices, we often need to compare two or more matrices. One important concept in this comparison is matrix equality. Two matrices are said to be equal if they meet certain conditions.
+Matrix equality compares both structure and content. Matching values are not enough if they occupy different positions or if the matrices have different dimensions.
 
-Two matrices, let's say matrix <InlineMath math="A" /> and matrix <InlineMath math="B" />, are said to be **equal** (written as <InlineMath math="A=B" />) if and only if both of the following conditions are met:
+Matrices <InlineMath math="A" /> and <InlineMath math="B" /> are **equal**, written <InlineMath math="A=B" />, if and only if both conditions below hold:
 
-1.  **Same Order**: Matrix <InlineMath math="A" /> and matrix <InlineMath math="B" /> must have the same order (number of rows and columns). If matrix <InlineMath math="A" /> has an order of <InlineMath math="m \times n" />, then matrix <InlineMath math="B" /> must also have an order of <InlineMath math="m \times n" />.
+1.  **Same dimensions**: Matrix <InlineMath math="A" /> and matrix <InlineMath math="B" /> must have the same number of rows and columns. If <InlineMath math="A" /> has dimensions <InlineMath math="m \times n" />, then <InlineMath math="B" /> must also have dimensions <InlineMath math="m \times n" />.
 2.  **Corresponding Elements are Equal**: Every corresponding element (located in the same row and column position) in matrix <InlineMath math="A" /> and matrix <InlineMath math="B" /> must have the same value. If <InlineMath math="A = [a_{ij}]" /> and <InlineMath math="B = [b_{ij}]" />, then <InlineMath math="a_{ij} = b_{ij}" /> for all values of <InlineMath math="i" /> (row index) and <InlineMath math="j" /> (column index).
 
 If one of these two conditions is not met, then matrix <InlineMath math="A" /> is not equal to matrix <InlineMath math="B" /> (written as <InlineMath math="A \neq B" />).
@@ -34,13 +34,13 @@ Matrix <InlineMath math="P" /> and matrix <InlineMath math="Q" /> are equal (<In
   , <InlineMath math="p_{21} = q_{21} = 3" />, <InlineMath math="p_{22} = q_{22} = 4" />
   .
 
-### Unequal Matrices (Different Order)
+### Unequal Matrices with Different Dimensions
 
 Given two matrices:
 
 <BlockMath math="R = \begin{bmatrix} 4 & -9 \\ 7 & 1 \end{bmatrix} \quad \text{and} \quad C = \begin{bmatrix} 4 & -9 \\ 7 & 1 \\ 0 & 0 \end{bmatrix}" />
 
-Matrix <InlineMath math="R" /> is not equal to matrix <InlineMath math="C" /> (<InlineMath math="R \neq C" />) because the order of matrix <InlineMath math="R" /> is <InlineMath math="2 \times 2" />, while the order of matrix <InlineMath math="C" /> is <InlineMath math="3 \times 2" />.
+Matrix <InlineMath math="R" /> is not equal to matrix <InlineMath math="C" /> (<InlineMath math="R \neq C" />) because <InlineMath math="R" /> has dimensions <InlineMath math="2 \times 2" />, while <InlineMath math="C" /> has dimensions <InlineMath math="3 \times 2" />.
 
 ### Unequal Matrices (Different Corresponding Elements)
 
@@ -48,7 +48,7 @@ Given two matrices:
 
 <BlockMath math="S = \begin{bmatrix} 5 & 0 \\ -2 & 8 \end{bmatrix} \quad \text{and} \quad T = \begin{bmatrix} 5 & 0 \\ 2 & 8 \end{bmatrix}" />
 
-Although matrix <InlineMath math="S" /> and matrix <InlineMath math="T" /> have the same order (<InlineMath math="2 \times 2" />), they are not equal (<InlineMath math="S \neq T" />) because the element in the <InlineMath math="2" />nd row and <InlineMath math="1" />st column is not the same (<InlineMath math="s_{21} = -2" /> while <InlineMath math="t_{21} = 2" />).
+Although matrix <InlineMath math="S" /> and matrix <InlineMath math="T" /> have the same dimensions, <InlineMath math="2 \times 2" />, they are not equal (<InlineMath math="S \neq T" />). Their entries in row <InlineMath math="2" />, column <InlineMath math="1" /> differ: <InlineMath math="s_{21} = -2" />, whereas <InlineMath math="t_{21} = 2" />.
 
 ### Determining Variable Values from Matrix Equality
 
@@ -71,20 +71,20 @@ Thus, the values are <InlineMath math="x=1" />, <InlineMath math="y=-2" />, and 
 
 Answer the following questions with **True** or **False**.
 
-1.  Two matrices having the same order is one of the conditions for the two matrices to be equal.
-2.  Two different matrices always have different orders.
+1.  Having the same dimensions is one condition that two equal matrices must satisfy.
+2.  Two unequal matrices always have different dimensions.
 3.  If given matrix <InlineMath math="K = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}" /> and matrix <InlineMath math="L = \begin{bmatrix} 2 & 0 \\ 0 & 2 \\ 0 & 0 \end{bmatrix}" />, then matrix <InlineMath math="K" /> is equal to matrix <InlineMath math="L" />.
 4.  Given matrices <InlineMath math="P = \begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix}" /> and <InlineMath math="Q = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />. If <InlineMath math="P=Q" />, determine the values of <InlineMath math="x" /> and <InlineMath math="y" />.
-5.  If matrix <InlineMath math="A = \begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix}" /> and <InlineMath math="I" /> is the identity matrix of order <InlineMath math="2 \times 2" />. If <InlineMath math="A = I" />, determine the value of <InlineMath math="x+y" />.
+5.  Matrix <InlineMath math="I" /> is the <InlineMath math="2 \times 2" /> identity matrix, and <InlineMath math="A = \begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix}" />. If <InlineMath math="A = I" />, determine the value of <InlineMath math="x+y" />.
 6.  Calculate the value of <InlineMath math="a+b+c+d" /> that satisfies the following matrix equality:
 
     <BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
 
-### Answer Key
+### Worked Solutions
 
-1.  **True**. Having the same order is the first condition for two matrices to be equal.
-2.  **False**. Two different matrices can have the same order, but their corresponding elements are different (see Example <InlineMath math="3" />).
-3.  **False**. Matrix <InlineMath math="K" /> has an order of <InlineMath math="2 \times 2" /> while matrix <InlineMath math="L" /> has an order of <InlineMath math="3 \times 2" />. Since their orders are different, the two matrices are not equal.
+1.  **True**. Equal matrices must have the same dimensions, although that condition alone is not sufficient.
+2.  **False**. Two unequal matrices can have the same dimensions while differing in one or more corresponding entries, as in Example <InlineMath math="3" />.
+3.  **False**. Matrix <InlineMath math="K" /> has dimensions <InlineMath math="2 \times 2" />, while matrix <InlineMath math="L" /> has dimensions <InlineMath math="3 \times 2" />. Matrices with different dimensions cannot be equal.
 4.  Given <InlineMath math="P=Q" />:
 
     <BlockMath math="\begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
@@ -96,7 +96,7 @@ Answer the following questions with **True** or **False**.
 
       Thus, <InlineMath math="x=-5" /> and <InlineMath math="y=-1" />.
 
-5.  The identity matrix <InlineMath math="I" /> of order <InlineMath math="2 \times 2" /> is <InlineMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />.
+5.  The <InlineMath math="2 \times 2" /> identity matrix <InlineMath math="I" /> is <InlineMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />.
 
     Given <InlineMath math="A=I" />:
 
@@ -116,7 +116,7 @@ Answer the following questions with **True** or **False**.
       <BlockMath math="x = 2y \quad \text{(Equation 2')}" />
     </MathContainer>
 
-    Substitute Equation <InlineMath math="2" />' into Equation <InlineMath math="1" />:
+    Substitute Equation <InlineMath math="2'" /> into Equation <InlineMath math="1" />:
 
     <MathContainer>
       <BlockMath math="-(2y)-3y = 1" />
@@ -168,7 +168,7 @@ Answer the following questions with **True** or **False**.
       <BlockMath math="4a+2b = -6 \quad \text{(2')}" />
     </MathContainer>
 
-    Subtract equation (<InlineMath math="1" />) from equation (<InlineMath math="2" />'):
+    Subtract equation (<InlineMath math="1" />) from equation (<InlineMath math="2'" />):
 
     <MathContainer>
       <BlockMath math="(4a+2b) - (a+2b) = -6 - 3" />

@@ -4,64 +4,38 @@ export const metadata = {
   date: "2025-12-24",
 };
 
-Kita akan menyusun sandi dengan pola <InlineMath math="\text{Huruf} - \text{Angka} - \text{Huruf} - \text{Angka}" />.
-
-Misalkan slot untuk sandi tersebut adalah:
+Keempat posisi mengikuti pola <InlineMath math="L_1-D_1-L_2-D_2" />:
 
 <MathContainer>
-  <BlockMath math="\underline{H_1} \times \underline{A_1} \times \underline{H_2} \times \underline{A_2}" />
+  <BlockMath math="\underline{L_1}\;\underline{D_1}\;\underline{L_2}\;\underline{D_2}" />
 </MathContainer>
 
-Diketahui himpunan yang tersedia:
-- Huruf Vokal: <InlineMath math="\{A, I, U, E, O\}" /> (<InlineMath math="5" /> huruf).
-- Angka Ganjil untuk <InlineMath math="A_1" />: <InlineMath math="\{1, 3, 5, 7, 9\}" /> (<InlineMath math="5" /> angka).
-- Angka Pilihan untuk <InlineMath math="A_2" />: <InlineMath math="\{0, 1, 2, 4, 6\}" /> (<InlineMath math="5" /> angka).
+Huruf vokal yang tersedia adalah <InlineMath math="\{A,I,U,E,O\}" />. Angka pertama dipilih dari <InlineMath math="\{1,3,5,7,9\}" />, sedangkan angka kedua dipilih dari <InlineMath math="\{0,1,2,4,6\}" />.
 
-Aturan dan Batasan:
-1. <InlineMath math="H_1 \neq A" />.
-2. <InlineMath math="H_2 = O" />.
-3. Tidak boleh ada pengulangan huruf maupun angka.
+#### Memilih Huruf
 
-Karena <InlineMath math="A_1" /> harus ganjil dan <InlineMath math="A_2" /> dipilih dari himpunan tertentu, terdapat irisan pada angka <InlineMath math="1" />. Kita perlu membagi kasus berdasarkan nilai <InlineMath math="A_2" />.
+Huruf kedua sudah ditetapkan oleh <InlineMath math="L_2=O" />. Karena huruf tidak boleh berulang dan huruf pertama tidak boleh A, pilihan huruf pertama adalah <InlineMath math="L_1\in\{I,U,E\}" />. Jadi, ada <InlineMath math="3" /> susunan huruf.
 
-#### Angka Kedua Adalah Satu
+#### Memilih Angka
 
-Jika kita memilih angka <InlineMath math="1" /> untuk posisi <InlineMath math="A_2" />:
-1. <InlineMath math="H_2" /> (Huruf kedua): Harus <InlineMath math="O" /> (<InlineMath math="1" /> cara).
-2. <InlineMath math="A_2" /> (Angka kedua): Harus <InlineMath math="1" /> (<InlineMath math="1" /> cara).
-3. <InlineMath math="H_1" /> (Huruf pertama): Vokal selain <InlineMath math="A" /> dan selain <InlineMath math="O" /> (karena <InlineMath math="O" /> sudah dipakai di <InlineMath math="H_2" />).
-   - Pilihan: <InlineMath math="\{I, U, E\}" /> (<InlineMath math="3" /> cara).
-4. <InlineMath math="A_1" /> (Angka pertama): Angka ganjil selain <InlineMath math="1" /> (karena <InlineMath math="1" /> sudah dipakai di <InlineMath math="A_2" />).
-   - Pilihan: <InlineMath math="\{3, 5, 7, 9\}" /> (<InlineMath math="4" /> cara).
+Kedua himpunan angka hanya beririsan pada <InlineMath math="1" />, sehingga perhitungannya dibagi menjadi dua kasus.
 
-Total cara untuk Kasus <InlineMath math="1" />:
+1. Jika <InlineMath math="D_2=1" />, maka <InlineMath math="D_1\in\{3,5,7,9\}" />. Banyak pasangan angka adalah
 
-<MathContainer>
-  <BlockMath math="3 \times 4 \times 1 \times 1 = 12 \text{ cara}" />
-</MathContainer>
+   <BlockMath math="1\times4=4" />
 
-#### Angka Kedua Bukan Satu
+2. Jika <InlineMath math="D_2\in\{0,2,4,6\}" />, nilainya tidak mungkin sama dengan pilihan ganjil <InlineMath math="D_1\in\{1,3,5,7,9\}" />. Banyak pasangan angka adalah
 
-Jika kita memilih angka selain <InlineMath math="1" /> untuk posisi <InlineMath math="A_2" /> (yaitu genap):
-1. <InlineMath math="H_2" /> (Huruf kedua): Harus <InlineMath math="O" /> (<InlineMath math="1" /> cara).
-2. <InlineMath math="A_2" /> (Angka kedua): Dipilih dari <InlineMath math="\{0, 2, 4, 6\}" /> (<InlineMath math="4" /> cara).
-3. <InlineMath math="H_1" /> (Huruf pertama): Vokal selain <InlineMath math="A" /> dan selain <InlineMath math="O" />.
-   - Pilihan: <InlineMath math="\{I, U, E\}" /> (<InlineMath math="3" /> cara).
-4. <InlineMath math="A_1" /> (Angka pertama): Angka ganjil <InlineMath math="\{1, 3, 5, 7, 9\}" />. Karena <InlineMath math="A_2" /> adalah genap, tidak ada konflik. Semua angka ganjil bisa dipilih.
-   - Pilihan: <InlineMath math="5" /> cara.
+   <BlockMath math="4\times5=20" />
 
-Total cara untuk Kasus <InlineMath math="2" />:
+Jadi, jumlah seluruh pasangan angka yang sah adalah
 
-<MathContainer>
-  <BlockMath math="3 \times 5 \times 1 \times 4 = 60 \text{ cara}" />
-</MathContainer>
+<BlockMath math="4+20=24" />
 
-#### Total Kombinasi
+#### Menghitung Seluruh Sandi
 
-Jumlahkan hasil dari kedua kasus tersebut:
+Kalikan pilihan huruf dan angka yang saling bebas:
 
-<MathContainer>
-  <BlockMath math="12 + 60 = 72" />
-</MathContainer>
+<BlockMath math="3\times24=72" />
 
-Jadi, banyak sandi yang dapat dibentuk adalah <InlineMath math="72" />.
+Jadi, ada <InlineMath math="72" /> sandi yang dapat dibentuk.

@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Reading Files
 
-In Python, reading files is the process of retrieving data from files stored in the system. Think of it like opening a book and reading its contents, Python can open files and access the information within them.
+Python reads and writes files through file objects. In text mode, the file object decodes stored bytes into strings using a chosen encoding. In binary mode, it exposes the bytes unchanged.
 
 ### Reading Entire File Content
 
@@ -19,10 +19,9 @@ The simplest way to read a file is to take all its contents at once into memory.
     {
       language: "python",
       filename: "read_entire_file.py",
-      code: `# Reading entire file content at once
-f = open('file.txt', 'r')
-txt = f.read()
-f.close()
+      code: `# Read the entire UTF-8 text file at once
+with open('file.txt', 'r', encoding='utf-8') as f:
+    txt = f.read()
 
 print(txt)
 # Output: [complete file content will be displayed]`
@@ -30,7 +29,7 @@ print(txt)
   ]}
 />
 
-This process involves three main steps. First, open the file with the `open()` function. Second, read its contents with the `read()` method. Third, close the file with the `close()` method to free system resources.
+`open()` creates the file object, `read()` consumes its text, and the `with` block closes the file automatically when the block ends, including when an exception interrupts the operation.
 
 ### Reading File Line by Line
 
@@ -41,11 +40,10 @@ For large files, reading line by line is more efficient because it doesn't load 
     {
       language: "python",
       filename: "read_line_by_line.py",
-      code: `# Reading file line by line
-f = open('file.txt', 'r')
-for line in f:
-    print(line, end='')
-f.close()
+      code: `# Read a UTF-8 text file line by line
+with open('file.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        print(line, end='')
 
 # Note: each line retains its newline character
 # Parameter end='' prevents adding additional newline`
@@ -53,7 +51,7 @@ f.close()
   ]}
 />
 
-When reading line by line, each line retains the newline character (`\n`) at the end. The `end=''` parameter in the `print()` function prevents adding an additional newline.
+Each line retains its ending newline when one exists. The final line may have no newline. Setting `end=''` prevents `print()` from adding a second one.
 
 ## Writing to Files
 
@@ -66,11 +64,10 @@ Writing files allows programs to save data or calculation results into files for
     {
       language: "python",
       filename: "write_string_to_file.py",
-      code: `# Writing strings to file
-f = open('file.txt', 'w')
-for i in range(1, 11):
-    f.write(f'Line {i}\n')
-f.close()
+      code: `# Write strings to a UTF-8 text file
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 11):
+        f.write(f'Line {i}\\n')
 
 # File will contain:
 # Line 1
@@ -90,11 +87,10 @@ You can redirect the output of the `print()` function directly to a file using t
     {
       language: "python",
       filename: "redirect_print_output.py",
-      code: `# Redirecting print output to file
-f = open('file.txt', 'w')
-for i in range(1, 21):
-    print("Line", i, file=f)
-f.close()
+      code: `# Redirect print output to a UTF-8 text file
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 21):
+        print("Line", i, file=f)
 
 # File will contain redirected print output
 # Line 1
@@ -104,7 +100,7 @@ f.close()
   ]}
 />
 
-This method is very useful when you want to save program output results to a file without changing the existing code structure.
+The `file` argument reuses `print()` formatting while directing the resulting text to the chosen file object.
 
 ## File Opening Modes
 
@@ -118,15 +114,15 @@ Python provides various modes for opening files according to the needs of the op
         A[File Modes] --> B[Text Mode]
         A --> C[Binary Mode]
 
-        B --> B1[r - read only]
-        B --> B2[w - write new]
-        B --> B3[a - append end]
-        B --> B4[r+ - read and write]
+        B --> B1[r - read existing]
+        B --> B2[w - create or truncate]
+        B --> B3[a - create or append]
+        B --> B4[r+ - read and write existing]
 
         C --> C1[rb - read binary]
-        C --> C2[wb - write binary]
-        C --> C3[ab - append binary]
-        C --> C4[rb+ - read write binary]
+        C --> C2[wb - create or truncate binary]
+        C --> C3[ab - create or append binary]
+        C --> C4[rb+ - read write existing binary]
   `}
 />
 
@@ -137,27 +133,26 @@ Python provides various modes for opening files according to the needs of the op
     {
       language: "python",
       filename: "file_opening_syntax.py",
-      code: `# Basic file opening syntax
-f = open('file_name', 'mode')
-# File operations
-f.close()
+      code: `# Read an existing text file
+with open('data.txt', 'r', encoding='utf-8') as f:
+    first_line = f.readline()
 
-# Examples of various modes
-f_read = open('data.txt', 'r')      # Read only (default)
-f_write = open('output.txt', 'w')   # Write (overwrite if exists)
-f_append = open('log.txt', 'a')     # Append to end of file
-f_read_write = open('data.txt', 'r+')  # Read and write
+# Create a file or truncate its previous content
+with open('output.txt', 'w', encoding='utf-8') as f:
+    f.write('new content')
 
-# Don't forget to close files
-f_read.close()
-f_write.close()
-f_append.close()
-f_read_write.close()`
+# Create a file or append after its existing content
+with open('log.txt', 'a', encoding='utf-8') as f:
+    f.write('next event\\n')
+
+# Read and write an existing file without truncating it on open
+with open('data.txt', 'r+', encoding='utf-8') as f:
+    original = f.read()`
     }
   ]}
 />
 
-The `mode` parameter determines how the file will be accessed. Mode `r` for reading, `w` for writing (overwrites old file), `a` for appending to the end of file, and `r+` for reading and writing.
+The mode controls whether a file must already exist, whether opening it truncates existing content, and which operations are allowed. `r` and `r+` require an existing file. `w` creates or truncates, while `a` creates or appends. Adding `b` selects binary mode, where `encoding` is not used.
 
 ## File Reading Methods
 
@@ -170,59 +165,51 @@ Python provides several methods to read files in different ways according to nee
     {
       language: "python",
       filename: "read_methods.py",
-      code: `# Various file reading methods
-f = open('file.txt', 'r')
+      code: `# Explore several text-reading methods
+with open('file.txt', 'r', encoding='utf-8') as f:
+    # Read at most 10 characters
+    s = f.read(10)
+    print("10 characters:", s)
 
-# Reading n characters from file
-s = f.read(10)  # Read first 10 characters
-print("10 characters:", s)
+    # Return to the beginning and read the rest of the file
+    f.seek(0)
+    s = f.read()
+    print("Entire file:", s)
 
-# Reading entire file
-f.seek(0)  # Return to beginning of file
-s = f.read()  # Read entire file
-print("Entire file:", s)
-
-# Reading one line including newline
-f.seek(0)  # Return to beginning of file
-s = f.readline()  # Read one line
-print("One line:", repr(s))
-
-f.close()`
+    # Return again and read one line, including its newline if present
+    f.seek(0)
+    s = f.readline()
+    print("One line:", repr(s))`
     }
   ]}
 />
 
 ### File Position and Reading
 
-When you open a file, the file position starts from the beginning. Each reading operation advances the file position according to the amount of data read.
+A newly opened file starts at its initial stream position. Reading advances that position. In text mode, `tell()` can return an opaque position cookie rather than a simple character index, so store and reuse positions instead of calculating byte offsets yourself.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "file_position.py",
-      code: `# File position demonstration
-f = open('sample.txt', 'r')
+      code: `# File-position demonstration
+with open('sample.txt', 'r', encoding='utf-8') as f:
+    first_read = f.read(5)   # Read at most 5 characters
+    saved_position = f.tell()
+    print("First read:", first_read)
 
-# Initial position at character 0
-first_read = f.read(5)  # Read 5 characters
-print("First read:", first_read)
+    second_read = f.read(3)  # Continue from the current position
+    print("Second read:", second_read)
 
-# Position now at character 5
-second_read = f.read(3)  # Read next 3 characters
-print("Second read:", second_read)
-
-# Using seek() to set position
-f.seek(0)  # Return to beginning of file
-third_read = f.read(2)  # Read 2 characters from start
-print("Third read:", third_read)
-
-f.close()`
+    f.seek(saved_position)   # Return to the saved text-stream position
+    repeated = f.read(3)
+    print("Repeated read:", repeated)`
     }
   ]}
 />
 
-Each reading method returns the string that was read. When reaching the end of the file, reading methods return an empty string.
+In text mode, `read()` and `readline()` return strings and return `''` when no more text is available. In binary mode they return `bytes` and use `b''` at end of file. Iteration stops automatically at the end.
 
 ## Safe File Handling
 
@@ -234,19 +221,19 @@ Python provides the `with` statement for safer and automatic file handling.
       language: "python",
       filename: "safe_file_handling.py",
       code: `# Using with statement for safe file handling
-with open('file.txt', 'r') as f:
+with open('file.txt', 'r', encoding='utf-8') as f:
     content = f.read()
     print(content)
 # File automatically closed after exiting with block
 
 # Writing with with statement
-with open('output.txt', 'w') as f:
+with open('output.txt', 'w', encoding='utf-8') as f:
     f.write("Hello World!")
-    f.write("\nSecond line")
+    f.write("\\nSecond line")
 # File automatically closed and saved
 
 # Reading and writing simultaneously
-with open('input.txt', 'r') as input_file, open('output.txt', 'w') as output_file:
+with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 'w', encoding='utf-8') as output_file:
     data = input_file.read()
     output_file.write(data.upper())
 # Both files automatically closed`

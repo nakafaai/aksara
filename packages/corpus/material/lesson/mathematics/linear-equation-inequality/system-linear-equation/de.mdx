@@ -1,0 +1,280 @@
+
+
+export const metadata = {
+  title: "Lineare Gleichungssysteme",
+  description: "Löse lineare Gleichungssysteme durch Substitution und Elimination und deute ausgearbeitete Beispiele sowie grafische Modelle.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-18",
+  subject: "Systeme linearer Gleichungen und Ungleichungen",
+};
+
+## Lineare Gleichungssysteme verstehen
+
+Ein Gesamtpreis kann durch verschiedene Warenkombinationen entstehen. Eine zweite Beziehung, etwa die Gesamtzahl der Waren, schränkt die Möglichkeiten ein. Ein lineares Gleichungssystem hält diese Beziehungen zusammen, sodass seine Lösung jede Gleichung gleichzeitig erfüllen muss.
+
+### Was ist ein lineares Gleichungssystem?
+
+Ein lineares Gleichungssystem ist eine Sammlung von zwei oder mehr linearen Gleichungen, die gleichzeitig erfüllt sein müssen. Jede lineare Gleichung hat die Form:
+
+<BlockMath math="a_1x_1 + a_2x_2 + \ldots + a_nx_n = b" />
+
+Dabei sind <InlineMath math="a_1, a_2, \ldots, a_n" /> Koeffizienten, <InlineMath math="x_1, x_2, \ldots, x_n" /> Variablen und <InlineMath math="b" /> eine Konstante.
+
+### Zweivariable lineare Gleichungssysteme
+
+Ein lineares Gleichungssystem mit zwei Variablen besteht aus zwei Gleichungen mit zwei Variablen (normalerweise <InlineMath math="x" /> und <InlineMath math="y" />). Die allgemeine Form ist:
+
+<BlockMath math="\begin{cases} a_1x + b_1y = c_1 \\ a_2x + b_2y = c_2 \end{cases}" />
+
+**Beispiel**:
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
+
+Die Lösung dieses Systems ist das Wertepaar <InlineMath math="(x,y)" />, das beide Gleichungen erfüllt.
+
+### Dreivariable lineare Gleichungssysteme
+
+Ein System kann beliebig viele Gleichungen enthalten. Um jedoch eindeutige Werte für <InlineMath math="x,y,z" /> zu bestimmen, müssen die Gleichungen drei unabhängige Bedingungen liefern. Eine übliche quadratische Form ist:
+
+<BlockMath math="\begin{cases} a_1x + b_1y + c_1z = d_1 \\ a_2x + b_2y + c_2z = d_2 \\ a_3x + b_3y + c_3z = d_3 \end{cases}" />
+
+**Beispiel**:
+
+<BlockMath math="\begin{cases} x + 2y + 3z = 27 \\ x + y + z = 16 \\ x = 6 \end{cases}" />
+
+## Lösen linearer Gleichungssysteme
+
+### Substitutionsmethode
+
+Bei der Substitutionsmethode wird eine Variable durch eine andere ersetzt. Lösen wir das folgende Beispiel:
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
+
+**Schritt** <InlineMath math="1" />: Drücke eine Variable mithilfe der einfacheren Gleichung aus.
+
+Aus der Gleichung (<InlineMath math="2" />): <InlineMath math="x + y = 10" /> drücken wir <InlineMath math="x" /> durch <InlineMath math="y" /> aus:
+
+<BlockMath math="x = 10 - y \ldots (3)" />
+
+**Schritt** <InlineMath math="2" />: In die andere Gleichung einsetzen.
+
+Gleichung (<InlineMath math="3" />) in Gleichung (<InlineMath math="1" />) einfügen:
+
+<BlockMath math="2(10 - y) + 3y = 21" />
+
+**Schritt** <InlineMath math="3" />: Löse die entstandene Gleichung.
+
+<MathContainer>
+  <BlockMath math="20 - 2y + 3y = 21" />
+  <BlockMath math="20 + y = 21" />
+  <BlockMath math="y = 1 \ldots (4)" />
+</MathContainer>
+
+**Schritt** <InlineMath math="4" />: Rückwärtsersetzen, um die andere Variable zu finden.
+
+Setze den Wert <InlineMath math="y = 1" /> aus Gleichung (<InlineMath math="4" />) in Gleichung (<InlineMath math="3" />) ein:
+
+<BlockMath math="x = 10 - y = 10 - 1 = 9" />
+
+Daher ist die Lösung <InlineMath math="x = 9" /> und <InlineMath math="y = 1" />.
+
+### Eliminationsmethode
+
+Bei der Eliminierungsmethode wird eine Variable eliminiert. Lösen wir das gleiche Beispiel:
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
+
+**Schritt** <InlineMath math="1" />: Gleiche die Koeffizienten einer Variablen an.
+
+Multipliziere Gleichung (<InlineMath math="2" />) mit <InlineMath math="2" />, damit beide Gleichungen denselben Koeffizienten vor <InlineMath math="x" /> haben:
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ 2x + 2y = 20 & \ldots (3) \end{cases}" />
+
+**Schritt** <InlineMath math="2" />: Eliminiere die Variable, indem du die Gleichungen subtrahierst.
+
+<MathContainer>
+  <BlockMath math="(1) - (3): (2x + 3y) - (2x + 2y) = 21 - 20" />
+  <BlockMath math="y = 1 \ldots (4)" />
+</MathContainer>
+
+**Schritt** <InlineMath math="3" />: Bestimme mit dem Wert von <InlineMath math="y" /> nun <InlineMath math="x" />.
+
+Setze den Wert <InlineMath math="y = 1" /> aus Gleichung (<InlineMath math="4" />) in Gleichung (<InlineMath math="2" />) ein:
+
+<MathContainer>
+  <BlockMath math="x + 1 = 10" />
+  <BlockMath math="x = 9" />
+</MathContainer>
+
+Daher ist die Lösung <InlineMath math="x = 9" /> und <InlineMath math="y = 1" />.
+
+Probe:
+
+- Gleichung (<InlineMath math="1" />): <InlineMath math="2(9) + 3(1) = 18 + 3 = 21" /> ✓
+- Gleichung (<InlineMath math="2" />): <InlineMath math="9 + 1 = 10" /> ✓
+
+## Verständnis prüfen
+
+Löse das System:
+
+<BlockMath math="\begin{cases} 3x+2y=16 \\ x-y=2 \end{cases}" />
+
+### Ausführliche Lösung
+
+Aus der zweiten Gleichung folgt <InlineMath math="x=y+2" />. Setze diesen Ausdruck in die erste Gleichung ein:
+
+<MathContainer>
+  <BlockMath math="3(y+2)+2y=16" />
+  <BlockMath math="5y+6=16" />
+  <BlockMath math="5y=10" />
+  <BlockMath math="y=2" />
+</MathContainer>
+
+Setze das Ergebnis wieder in <InlineMath math="x=y+2" /> ein:
+
+<BlockMath math="x=2+2=4" />
+
+Beide Ausgangsgleichungen bestätigen das Ergebnis:
+
+<MathContainer>
+  <BlockMath math="3(4)+2(2)=16" />
+  <BlockMath math="4-2=2" />
+</MathContainer>
+
+Die Lösung ist also <InlineMath math="(x,y)=(4,2)" />.
+
+## Anwendungen im Alltag
+
+### Mathematische Modellierung
+
+Mathematische Modellierung ist der Prozess der Umwandlung realer Probleme in mathematische Form. Für lineare Gleichungssysteme gilt:
+
+1. Lege die gesuchten Größen als Variablen fest
+2. Übersetze die gegebenen Beziehungen in Gleichungen
+3. Prüfe, ob ein lineares Gleichungssystem entstanden ist
+4. Löse das System mit einer geeigneten Methode
+5. Deute die Lösung im Kontext der ursprünglichen Aufgabe
+
+### Basketball-Punktzahl
+
+Im Basketball gibt es drei Arten von Schüssen mit unterschiedlichen Punktwerten: Freiwürfe (<InlineMath math="1" />-Punkt), Zweipunktschüsse (<InlineMath math="2" />-Punkte) und Dreipunktschüsse (<InlineMath math="3" />-Punkte).
+
+Definieren wir:
+
+- <InlineMath math="a" /> = Anzahl der <InlineMath math="1" />-Punkt-Schüsse
+- <InlineMath math="b" /> = Anzahl der <InlineMath math="2" />-Punkt-Schüsse
+- <InlineMath math="c" /> = Anzahl der <InlineMath math="3" />-Punkt-Schüsse
+
+Wenn Wijaya <InlineMath math="27" /> Punkte erzielte, insgesamt <InlineMath math="16" /> Schüsse machte, davon <InlineMath math="6" /> Freiwürfe, dann:
+
+<BlockMath math="\begin{cases} a + 2b + 3c = 27 &amp; \text{(Gesamtpunktzahl)} \\ a + b + c = 16 &amp; \text{(Gesamtschüsse)} \\ a = 6 &amp; \text{(Freiwürfe)} \end{cases}" />
+
+Setze <InlineMath math="a = 6" /> in die zweite Gleichung ein:
+
+<MathContainer>
+  <BlockMath math="6 + b + c = 16" />
+  <BlockMath math="b + c = 10" />
+</MathContainer>
+
+Setze den Wert auch in die erste Gleichung ein:
+
+<MathContainer>
+  <BlockMath math="6 + 2b + 3c = 27" />
+  <BlockMath math="2b + 3c = 21" />
+</MathContainer>
+
+Aus diesen beiden Gleichungen:
+
+<BlockMath math="\begin{cases} 2b + 3c = 21 \\ b + c = 10 \end{cases}" />
+
+Durch Eliminierung oder Substitution erhalten wir <InlineMath math="b = 9" /> und <InlineMath math="c = 1" />.
+
+Daher machte Wijaya <InlineMath math="6" /> Freiwürfe, <InlineMath math="9" /> <InlineMath math="2" />-Punktwürfe und <InlineMath math="1" /> <InlineMath math="3" />-Punktwürfe.
+
+## Lösungen interpretieren
+
+Lineare Gleichungssysteme haben drei mögliche Lösungstypen:
+
+1. **Genau eine Lösung**: Wenn sich die Linien in einem einzigen Punkt schneiden (oder sich Ebenen in einem einzigen Punkt schneiden)
+2. **Keine Lösung**: Wenn die Linien parallel sind (oder Ebenen sich nicht schneiden)
+3. **Unendlich viele Lösungen**: Wenn die Linien zusammenfallen (oder sich Ebenen entlang einer Linie oder Ebene schneiden)
+
+In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschiedene, nicht parallele Ebenen schneiden sich in einer Geraden. Bei drei oder mehr Ebenen kann die gemeinsame Lösungsmenge ein Punkt, eine Gerade, eine Ebene oder leer sein.
+
+### Visualisierung linearer Gleichungssysteme
+
+<ContentStack>
+  <LineEquation
+    title="Lineares Gleichungssystem mit einer Lösung"
+    description="Zwei Geraden, die sich in einem Punkt schneiden."
+    data={[
+      {
+        points: [
+          { x: -3, y: 9, z: 0 },
+          { x: 3, y: 5, z: 0 },
+          { x: 9, y: 1, z: 0 },
+        ],
+        labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [-1, -1, 0] }],
+        color: "#ea580c",
+      },
+      {
+        points: [
+          { x: -5, y: 15, z: 0 },
+          { x: 5, y: 5, z: 0 },
+          { x: 15, y: -5, z: 0 },
+        ],
+        labels: [{ text: <InlineMath math="x+y=10" />, offset: [1, 1, 0] }],
+        color: "#9333ea",
+      },
+    ]}
+  />
+  <LineEquation
+    title="Lineares Gleichungssystem ohne Lösung"
+    description="Zwei parallele Linien (kein Schnittpunkt)."
+    data={[
+      {
+        points: [
+          { x: -3, y: -4, z: 0 },
+          { x: 1, y: 2, z: 0 },
+          { x: 5, y: 8, z: 0 },
+        ],
+        labels: [{ text: <InlineMath math="3x-2y=-1" />, offset: [-2, 0, 0] }],
+        color: "#db2777",
+      },
+      {
+        points: [
+          { x: -3, y: -5, z: 0 },
+          { x: 1, y: 1, z: 0 },
+          { x: 5, y: 7, z: 0 },
+        ],
+        labels: [{ text: <InlineMath math="6x-4y=2" />, offset: [2, 0, 0] }],
+        color: "#ca8a04",
+      },
+    ]}
+  />
+  <LineEquation
+    title="Lineares Gleichungssystem mit unendlich vielen Lösungen"
+    description="Zwei zusammenfallende Linien (identische Linien)."
+    data={[
+      {
+        points: [
+          { x: -1, y: 1, z: 0 },
+          { x: 2, y: -1, z: 0 },
+          { x: 5, y: -3, z: 0 },
+        ],
+        labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
+        color: "#7c3aed",
+      },
+      {
+        points: [
+          { x: -1, y: 1, z: 0 },
+          { x: 2, y: -1, z: 0 },
+          { x: 5, y: -3, z: 0 },
+        ],
+        labels: [{ text: <InlineMath math="4x+6y=2" />, offset: [2, 1, 0] }],
+        color: "#0891b2",
+      },
+    ]}
+    cameraPosition={[6, 4, 6]}
+  />
+</ContentStack>

@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 3",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-26",
+};
+
+Wir bezeichnen die vier Aussagen wie folgt:
+
+- <InlineMath math="P" />: Die planmäßige Reinigung wird ausgelassen.
+- <InlineMath math="Q" />: Auf dem Sensor bleiben Rückstände zurück.
+- <InlineMath math="R" />: Am Sensor tritt eine Störung auf.
+- <InlineMath math="S" />: Die Warnlampe leuchtet.
+
+Das Protokoll liefert diese Implikationskette:
+
+<MathContainer>
+  <BlockMath math="P \rightarrow Q \rightarrow R \rightarrow S" />
+  <BlockMath math="P \rightarrow S" />
+</MathContainer>
+
+Heute leuchtete die Warnlampe nicht. Somit gilt <InlineMath math="\neg S" />. Wenden wir den Modus Tollens auf <InlineMath math="P \rightarrow S" /> an, folgt:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} P &\rightarrow S \\ \neg S &\\ \hline \therefore\ \neg P &\end{aligned}" />
+</MathContainer>
+
+Die planmäßige tägliche Reinigung wurde also **nicht** ausgelassen. Richtig ist die zweite Antwort.

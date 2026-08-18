@@ -1,0 +1,193 @@
+export const metadata = {
+   title: "Grenzwerte trigonometrischer Funktionen",
+   description: "Trigonometrische Grenzwerte mit dem grundlegenden Sinusgrenzwert, passenden Identitäten und gezielten Substitutionen berechnen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Grenzwerte",
+};
+
+## Trigonometrische Grenzwerte verstehen
+
+**Trigonometrische Grenzwerte** stellen dieselbe lokale Frage wie algebraische Grenzwerte: Welchem Wert nähert sich ein Ausdruck in der Umgebung einer bestimmten Eingabe? Sinus und Kosinus sind überall stetig, Tangens überall dort, wo der Kosinus nicht null ist. Direktes Einsetzen funktioniert daher weiterhin, wenn der entstehende Ausdruck definiert ist.
+
+Besondere Schritte sind nötig, wenn das Einsetzen eine unbestimmte Form wie <InlineMath math="\frac{0}{0}" /> ergibt. In der Umgebung von null lassen sich solche Ausdrücke mit einem **grundlegenden Sinusgrenzwert** und bekannten trigonometrischen Identitäten umformen.
+
+## Der grundlegende trigonometrische Grenzwert
+
+Die wichtigste Grundlage trigonometrischer Grenzwerte ist der Satz, dass das Verhältnis aus dem Sinus eines Winkels und dem Winkel selbst gegen eins geht, wenn sich der Winkel null nähert.
+
+### Sinusgrenzwert
+
+Es gilt:
+
+<BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
+
+Direktes Einsetzen liefert nur <InlineMath math="\frac{0}{0}" /> und beweist den Satz daher nicht. Ein geometrischer Beweis verwendet den Einheitskreis und den Einschließungssatz.
+
+> Hier muss <InlineMath math="x" /> im **Bogenmaß** stehen. Für Gradmaß gilt dieser Grenzwert nicht in derselben Form.
+
+### Folgen der Grundgrenze
+
+Aus diesem Grenzwert folgen weitere wichtige Ergebnisse:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1 \quad \text{(weil} \tan x = \frac{\sin x}{\cos x} \text{und} \cos x \to 1\text{)}" />
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0 \quad \text{(Identität } 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2} \quad \text{(Identität} 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
+</MathContainer>
+
+Die Identität liefert beide Kosinusgrenzwerte direkt, ohne Ableitungsregeln vorwegzunehmen, die erst später entwickelt werden:
+
+<MathContainer>
+<BlockMath math="\frac{1-\cos x}{x}=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\longrightarrow\;0\cdot 1=0" />
+<BlockMath math="\frac{1-\cos x}{x^2}=\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\;\longrightarrow\;\frac{1}{2}" />
+</MathContainer>
+
+## Eigenschaften trigonometrischer Grenzwerte
+
+Damit lassen sich mehrere nützliche Verhältnisgrenzwerte herleiten:
+
+### Trigonometrische Verhältnisse
+
+Für reelle Konstanten <InlineMath math="a" /> und <InlineMath math="b \neq 0" /> werden **alle folgenden Grenzwerte für <InlineMath math="x \to 0" />** betrachtet:
+
+| Grenzwert | Ergebnis | Begründung |
+|-------|--------|-------|
+| <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Auf die Grundform zurückführen |
+| <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Denn <InlineMath math="\tan ax = \frac{\sin ax}{\cos ax}" /> |
+| <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{\sin bx}" /> | <InlineMath math="\frac{a}{b}" /> | Kombination zweier Sinusgrenzen |
+| <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{\tan bx}" /> | <InlineMath math="\frac{a}{b}" /> | Zwei Tangensgrenzwerte verbinden |
+
+### Trigonometrische Kombinationen
+
+Die Verhältnisgrenzwerte lassen sich auch miteinander verbinden:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{\sin ax}{\sin bx} = \frac{a}{b}" />
+<BlockMath math="\lim_{x \to 0} \frac{\tan ax}{\sin bx} = \frac{a}{b}" />
+</MathContainer>
+
+## Rechentechniken
+
+### Auf die Grundform zurückführen
+
+Wir formen den Ausdruck so um, dass der grundlegende Sinusgrenzwert sichtbar wird.
+
+**Berechne:** <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
+
+Wir ergänzen den passenden Faktor:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} = \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x}" />
+<BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+</MathContainer>
+
+### Trigonometrische Identitäten einsetzen
+
+Trigonometrische Identitäten können einen Ausdruck vereinfachen. Prüfe vorher, ob die Funktion an der betrachteten Stelle definiert ist.
+
+**Berechne:** <InlineMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
+
+Da <InlineMath math="\sin(\frac{\pi}{4}) = \frac{\sqrt{2}}{2} \neq 0" />, ist der Nenner bei <InlineMath math="x = \frac{\pi}{4}" /> nicht Null.
+
+Direktes Einsetzen:
+
+<MathContainer>
+<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
+<BlockMath math="= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} = \frac{2 \cdot \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} = \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} = \sqrt{2} \cdot \frac{2}{\sqrt{2}} = 2" />
+</MathContainer>
+
+### Eine neue Variable einführen
+
+Bei einem Ausdruck der Form <InlineMath math="\frac{0}{0}" /> kann eine geeignete Substitution die Grundform sichtbar machen.
+
+**Berechne:** <InlineMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2(x - \frac{\pi}{2})}{x(x - \frac{\pi}{2})}" />
+
+Sei <InlineMath math="u = x - \frac{\pi}{2}" />, dann haben wir für <InlineMath math="x \to \frac{\pi}{2}" /> <InlineMath math="u \to 0" /> und <InlineMath math="x = u + \frac{\pi}{2}" />.
+
+<MathContainer>
+<BlockMath math="\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} = \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}}" />
+<BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
+<BlockMath math="= 1^2 \cdot \lim_{u \to 0} \frac{u}{\frac{\pi}{2} + u} = 1 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
+</MathContainer>
+
+## Grenzwerte mit Winkelidentitäten
+
+### Summen- und Differenzformeln
+
+Enthält ein Ausdruck eine Winkelsumme oder Winkeldifferenz, helfen die passenden trigonometrischen Identitäten.
+
+**Berechne:** <InlineMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
+
+Wir schreiben den Kotangens als Quotienten:
+
+<MathContainer>
+<BlockMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} = \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} = \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}" />
+<BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
+</MathContainer>
+
+## Übungen
+
+1. Berechne <InlineMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
+
+2. Berechne <InlineMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
+
+3. Berechne <InlineMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
+
+4. Berechne <InlineMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
+
+5. Berechne <InlineMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
+
+### Ausführliche Lösungen
+
+1. **Lösung:**
+
+   Forme den Ausdruck in die Grundform um:
+
+   <MathContainer>
+   <BlockMath math="\lim_{x \to 0} \frac{\sin 3x}{4x} = \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} = \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x}" />
+   <BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
+   </MathContainer>
+
+2. **Lösung:**
+
+   Verwende die trigonometrischen Verhältnisgrenzwerte:
+
+   <MathContainer>
+   <BlockMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} = \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x}" />
+   <BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5}" />
+   <BlockMath math="= 1 \cdot 1 \cdot \frac{2}{5} = \frac{2}{5}" />
+   </MathContainer>
+
+3. **Lösung:**
+
+   Verwende die Identität <InlineMath math="1 - \cos ax = 2\sin^2\frac{ax}{2}" />:
+
+   <MathContainer>
+   <BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
+   <BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
+   <BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
+   </MathContainer>
+
+4. **Lösung:**
+
+   Sei <InlineMath math="h = x - \frac{\pi}{6}" />, dann <InlineMath math="x = h + \frac{\pi}{6}" /> und wenn <InlineMath math="x \to \frac{\pi}{6}" />, haben wir <InlineMath math="h \to 0" />:
+
+   <MathContainer>
+   <BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
+   <BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
+   <BlockMath math="= \lim_{h \to 0} \frac{\sin h \cdot \frac{\sqrt{3}}{2} + \cos h \cdot \frac{1}{2} - \frac{1}{2}}{h}" />
+   <BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
+   <BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h}" />
+   <BlockMath math="= \frac{\sqrt{3}}{2} \cdot 1 + \frac{1}{2} \cdot 0 = \frac{\sqrt{3}}{2}" />
+   </MathContainer>
+
+5. **Lösung:**
+
+   Verwende die Identität <InlineMath math="\sin x \cos x = \frac{1}{2}\sin 2x" />:
+
+   <MathContainer>
+   <BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
+   <BlockMath math="= \frac{1}{2} \lim_{x \to 0} \frac{\sin 2x}{x} = \frac{1}{2} \lim_{x \to 0} \frac{2 \sin 2x}{2x}" />
+   <BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
+   </MathContainer>

@@ -1,0 +1,66 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 7",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+**Gleichungen bilden**
+
+Der Gewinn steigt um einen konstanten Betrag, es handelt sich also um eine arithmetische Folge. Der Gesamtgewinn bis zum <InlineMath math="n" />-ten Tag wird als <InlineMath math="S_n" /> bezeichnet.
+
+Gegeben:
+1. Der Gesamtgewinn bis zum <InlineMath math="4" />-ten Tag (<InlineMath math="S_4" />) beträgt <InlineMath math="\text{Rp}700{.}000{,}00" />.
+2. Der Gesamtgewinn bis zum <InlineMath math="10" />-ten Tag (<InlineMath math="S_{10}" />) beträgt <InlineMath math="\text{Rp}2{.}200{.}000{,}00" />.
+
+Formel für die Summe der <InlineMath math="n" /> Terme:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{n}{2}(2a + (n-1)b)" />
+</MathContainer>
+
+Von <InlineMath math="S_4 = 700{.}000" />:
+
+<MathContainer>
+  <BlockMath math="\frac{4}{2}(2a + 3b) = 700{.}000" />
+  <BlockMath math="2(2a + 3b) = 700{.}000" />
+  <BlockMath math="2a + 3b = 350{.}000 \quad \dots (1)" />
+</MathContainer>
+
+Von <InlineMath math="S_{10} = 2{.}200{.}000" />:
+
+<MathContainer>
+  <BlockMath math="\frac{10}{2}(2a + 9b) = 2{.}200{.}000" />
+  <BlockMath math="5(2a + 9b) = 2{.}200{.}000" />
+  <BlockMath math="2a + 9b = 440{.}000 \quad \dots (2)" />
+</MathContainer>
+
+**Elimination und Substitution**
+
+Eliminierung der Gleichungen <InlineMath math="(1)" /> und <InlineMath math="(2)" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} 2a + 9b &= 440{.}000 \\ 2a + 3b &= 350{.}000 \\ \hline 6b &= 90{.}000 \\ b &= 15{.}000 \end{aligned}" />
+</MathContainer>
+
+Einsetzen von <InlineMath math="b = 15{.}000" /> in die Gleichung <InlineMath math="(1)" />:
+
+<MathContainer>
+  <BlockMath math="2a + 3(15{.}000) = 350{.}000" />
+  <BlockMath math="2a + 45{.}000 = 350{.}000" />
+  <BlockMath math="2a = 305{.}000" />
+  <BlockMath math="a = 152{.}500" />
+</MathContainer>
+
+**Berechnung des Gesamtgewinns für Tag <InlineMath math="20" />**
+
+Wir berechnen <InlineMath math="S_{20}" />:
+
+<MathContainer>
+  <BlockMath math="S_{20} = \frac{20}{2}(2a + 19b)" />
+  <BlockMath math="S_{20} = 10(305{.}000 + 19(15{.}000))" />
+  <BlockMath math="S_{20} = 10(305{.}000 + 285{.}000)" />
+  <BlockMath math="S_{20} = 10(590{.}000)" />
+  <BlockMath math="S_{20} = \text{Rp}5{.}900{.}000{,}00" />
+</MathContainer>
+
+Somit beträgt der Gesamtgewinn bis zum <InlineMath math="20" />-ten Tag <InlineMath math="\text{Rp}5{.}900{.}000{,}00" />.

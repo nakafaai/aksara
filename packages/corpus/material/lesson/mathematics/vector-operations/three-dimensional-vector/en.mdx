@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Three-Dimensional Vector",
-  description: "Learn three-dimensional vectors with interactive visualizations. Learn 3D vector operations, dot & cross products, and real-world applications.",
+  description: "Learn three-dimensional vectors through interactive visualizations, then explore their components, magnitude, operations, dot product, and cross product.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
   subject: "Vector and Operations",
@@ -44,21 +44,16 @@ Three-dimensional vectors can be notated in various ways:
 
 ### Components of Three-Dimensional Vectors
 
-A vector in three-dimensional space consists of three components that represent the projection of the vector on each coordinate axis:
+A vector in three-dimensional space has three scalar coordinate components. Multiplying each scalar by its axis unit vector gives the corresponding vector projection:
 
 <BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
 where:
 
-- <InlineMath math="a_x" /> is the vector component on the <InlineMath math="x" />
-  -axis
-- <InlineMath math="a_y" /> is the vector component on the <InlineMath math="y" />
-  -axis
-- <InlineMath math="a_z" /> is the vector component on the <InlineMath math="z" />
-  -axis
-- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> are the unit vectors on the <InlineMath math="x" />
-  ,
-  <InlineMath math="y" />, and <InlineMath math="z" /> axes
+- <InlineMath math="a_x" /> is the scalar component along the <InlineMath math="x" />-axis, while <InlineMath math="a_x\vec{i}" /> is its vector projection
+- <InlineMath math="a_y" /> is the scalar component along the <InlineMath math="y" />-axis, while <InlineMath math="a_y\vec{j}" /> is its vector projection
+- <InlineMath math="a_z" /> is the scalar component along the <InlineMath math="z" />-axis, while <InlineMath math="a_z\vec{k}" /> is its vector projection
+- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> are the unit vectors on the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes
 
 <ContentBlock>
   <Vector3d
@@ -161,7 +156,7 @@ If <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> and <InlineMath math="\vec{b}
 
 ### Scalar Multiplication of Vectors
 
-Multiplying a scalar <InlineMath math="k" /> with a vector <InlineMath math="\vec{a}" /> produces a new vector with the same direction (if <InlineMath math="k > 0" />) or opposite direction (if <InlineMath math="k < 0" />) and a magnitude <InlineMath math="|k|\text{ times}" /> the magnitude of <InlineMath math="\vec{a}" />.
+Multiplying a scalar <InlineMath math="k" /> by a vector <InlineMath math="\vec{a}" /> scales its magnitude by <InlineMath math="|k|" />. If <InlineMath math="\vec{a}" /> is nonzero, the direction stays the same when <InlineMath math="k > 0" /> and reverses when <InlineMath math="k < 0" />.
 
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
 
@@ -170,7 +165,7 @@ Multiplying a scalar <InlineMath math="k" /> with a vector <InlineMath math="\ve
     title="Scalar Multiplication of a Vector"
     description={
       <>
-        Visualization of scalar multiplication <InlineMath math="k\text{ times}" />
+        Visualization of scalar multiplication by <InlineMath math="k" /> for
         vector <InlineMath math="a" />, where <InlineMath math="k = 2" />.
       </>
     }
@@ -203,13 +198,14 @@ where <InlineMath math="\theta" /> is the angle between the two vectors.
 The dot product has the following properties:
 
 1. <InlineMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" /> (commutative)
-2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> if and only if <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> are
-   perpendicular (orthogonal)
+2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> if and only if <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> are orthogonal; if both are nonzero, their geometric directions are perpendicular
 3. <InlineMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
 
 ### Cross Product
 
-The cross product between two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> produces a new vector <InlineMath math="\vec{c}" /> that is perpendicular to both vectors.
+The cross product between two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> produces a vector whose dot product with each factor is zero:
+
+<BlockMath math="(\vec{a}\times\vec{b})\cdot\vec{a}=(\vec{a}\times\vec{b})\cdot\vec{b}=0" />
 
 <BlockMath math="\vec{a} \times \vec{b} = (a_y b_z - a_z b_y, a_z b_x - a_x b_z, a_x b_y - a_y b_x)" />
 
@@ -219,9 +215,11 @@ The magnitude of the cross product is:
 
 where <InlineMath math="\theta" /> is the angle between the two vectors.
 
+When <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, its direction is perpendicular to both factors and follows the right-hand rule from <InlineMath math="\vec{a}" /> toward <InlineMath math="\vec{b}" />. If either factor is zero or the factors are parallel, the cross product is <InlineMath math="\vec{0}" /> and therefore has no geometric direction.
+
 <Vector3d
   title="Cross Product of Vectors"
-  description={<>Visualization of the cross product of vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> producing vector <InlineMath math="\vec{c}" /> that is perpendicular to both.</>}
+  description={<>The right-hand-rule direction of <InlineMath math="\vec{a}\times\vec{b}" />, perpendicular to both nonparallel vectors.</>}
   vectors={[
     {
       from: [0, 0, 0],

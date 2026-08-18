@@ -1,0 +1,130 @@
+export const metadata = {
+  title: "Unterschied zwischen Konvergenz und Divergenz",
+  description: "Unterscheide Konvergenz und Divergenz bei Folgen und Reihen, arbeite mit Partialsummen und prüfe geometrische sowie harmonische Beispiele.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Folgen und Reihen",
+};
+
+## Was sind konvergente und divergente Reihen?
+
+Werden die Glieder einer unendlichen Folge addiert, entsteht eine **unendliche Reihe**. Entscheidend ist nicht eine vermeintlich letzte Summe, sondern die Folge ihrer Partialsummen: Nähert sie sich einer endlichen Zahl, ist die Reihe **konvergent**. Andernfalls ist sie **divergent**.
+
+## Konvergenz von Folgen
+
+Eine Folge <InlineMath math="(a_n)" /> konvergiert gegen <InlineMath math="L" />, wenn ihre Glieder beliebig nahe an <InlineMath math="L" /> liegen, sobald <InlineMath math="n" /> hinreichend groß ist. Man schreibt:
+
+<BlockMath math="\lim_{n\to\infty}a_n=L" />
+
+Wenn kein endlicher Grenzwert existiert, divergiert die Folge. Divergenz kann verschiedene Formen annehmen:
+
+- <InlineMath math="a_n=n" /> wächst unbegrenzt.
+- <InlineMath math="a_n=-n" /> nimmt unbegrenzt ab.
+- <InlineMath math="a_n=(-1)^n" /> pendelt zwischen zwei Werten.
+
+## Von einer Folge zu einer Reihe
+
+Für eine unendliche Reihe:
+
+<BlockMath math="\sum_{k=1}^{\infty}a_k" />
+
+Untersucht werden die Partialsummen:
+
+<BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
+
+Die Reihe konvergiert genau dann, wenn die Folge der Partialsummen <InlineMath math="(S_n)" /> konvergiert. Der Grenzwert der Glieder <InlineMath math="a_n" /> allein entscheidet noch nicht über die Konvergenz der Reihe.
+
+## Konvergente Reihen
+
+Eine Reihe heißt **konvergent**, wenn ihre Partialsummen gegen einen _endlichen_ Wert streben. Bei einem idealisierten springenden Ball können etwa die zurückgelegten Teilstrecken immer kleiner werden, sodass die gesamte Weglänge einen endlichen Grenzwert besitzt.
+
+### Eigenschaften konvergenter Reihen
+
+- Die Summe der ersten <InlineMath math="n" /> Glieder, also <InlineMath math="S_n" />, nähert sich einem Wert <InlineMath math="L" />, wenn <InlineMath math="n" /> gegen unendlich geht: <InlineMath math="\lim_{n \to \infty} S_n = L" />, wobei <InlineMath math="L" /> eine reelle Zahl ist.
+- Eine notwendige, aber nicht hinreichende Bedingung lautet: Das <InlineMath math="n" />-te Glied <InlineMath math="u_n" /> muss gegen <InlineMath math="0" /> streben, wenn <InlineMath math="n" /> gegen unendlich geht: <InlineMath math="\lim_{n \to \infty} u_n = 0" />.
+
+### Beispiel für eine konvergente Reihe
+
+- **Geometrische Reihe mit <InlineMath math="|r| < 1" />**: Dies ist das häufigste Beispiel.
+
+  Die Reihe <InlineMath math="1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots" /> besitzt den Grenzwert <InlineMath math="2" />.
+
+  <BlockMath math="S_\infty = \frac{a}{1 - r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2" />
+
+## Divergente Reihen
+
+Eine Reihe heißt **divergent**, wenn ihre Partialsummen keinen endlichen Grenzwert besitzen. Die Partialsummen können:
+
+- gegen positive Unendlichkeit <InlineMath math="\infty" /> wachsen,
+- gegen negative Unendlichkeit <InlineMath math="-\infty" /> fallen oder
+- zwischen verschiedenen Werten schwanken, ohne sich einem Grenzwert zu nähern.
+
+### Eigenschaften divergenter Reihen
+
+- Die Partialsummen <InlineMath math="S_n" /> nähern sich keinem bestimmten Wert <InlineMath math="L" />, wenn <InlineMath math="n" /> gegen unendlich geht.
+- Gilt <InlineMath math="u_n\not\to 0" />, dann ist die Reihe _sicher_ divergent. Das umfasst sowohl einen von null verschiedenen Grenzwert als auch eine Gliederfolge ohne Grenzwert. Die Umkehrung gilt nicht.
+
+### Beispiele für divergente Reihen
+
+- **Arithmetische Reihen außer <InlineMath math="0 + 0 + \dots" />**: Ihre Partialsummen wachsen gegen <InlineMath math="\infty" /> oder fallen gegen <InlineMath math="-\infty" />.
+
+  Zum Beispiel strebt <InlineMath math="1 + 2 + 3 + 4 + \dots" /> gegen <InlineMath math="\infty" />.
+
+- **Geometrische Reihe mit <InlineMath math="|r| \ge 1" />**:
+
+  - Für <InlineMath math="r \ge 1" /> wachsen die Partialsummen je nach Vorzeichen des ersten Gliedes gegen <InlineMath math="\pm \infty" />.
+
+    Beispiel: <InlineMath math="2 + 4 + 8 + 16 + \dots" /> strebt gegen <InlineMath math="\infty" />.
+
+  - Für <InlineMath math="r \le -1" /> oszillieren die Partialsummen.
+
+    Beispiel: Die Reihe <InlineMath math="1 - 2 + 4 - 8 + \dots" /> besitzt die Partialsummen <InlineMath math="1, -1, 3, -5, \dots" />. Sie nähern sich keinem Wert.
+
+- **Harmonische Reihe**: Bei <InlineMath math="1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots" /> strebt zwar das <InlineMath math="n" />-te Glied <InlineMath math="u_n = \frac{1}{n}" /> gegen <InlineMath math="0" />, die Partialsummen wachsen jedoch gegen <InlineMath math="\infty" />. Die Bedingung <InlineMath math="u_n \to 0" /> reicht allein also nicht für Konvergenz aus.
+
+## Vollständige Klassifizierung geometrischer Reihen
+
+Betrachten wir die Reihe:
+
+<BlockMath math="a+ar+ar^2+\dots" />
+
+Für <InlineMath math="a\ne0" /> gehört jeder mögliche Wert des Quotienten zu genau einem der folgenden Fälle:
+
+- Wenn <InlineMath math="|r|<1" />, konvergiert die Reihe gegen <InlineMath math="a/(1-r)" />.
+- Wenn <InlineMath math="r=1" />, sind die Partialsummen <InlineMath math="na" /> und divergieren.
+- Wenn <InlineMath math="r=-1" />, wechseln die Partialsummen zwischen zwei Werten.
+- Wenn <InlineMath math="|r|>1" />, streben bereits die Glieder nicht gegen Null.
+
+Eine divergente Reihe hat deshalb nicht einfach den Wert <InlineMath math="\infty" />. Oszillation und unbegrenztes negatives Wachstum sind ebenfalls Formen der Divergenz.
+
+## Monotonie und Begrenztheit
+
+Jede monotone und beschränkte Folge konvergiert. Dieses Kriterium ist nützlich, wenn ein Grenzwert nur schwer direkt aus einer Formel abzulesen ist.
+
+Die Partialsummen einer Reihe mit nichtnegativen Gliedern nehmen zu. Sind sie zugleich nach oben beschränkt, konvergiert die Reihe.
+
+## Zusammenfassung der wichtigsten Unterschiede
+
+| Merkmal | Konvergente Reihe | Divergente Reihe |
+| ------------ | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Partialsummen** | Nähern sich einem _endlichen_ Wert <InlineMath math="L" />; <InlineMath math="S_\infty = L" /> | Nähern sich keinem endlichen Wert; sie können gegen <InlineMath math="\pm \infty" /> streben oder oszillieren |
+| **<InlineMath math="n" />-tes Glied** | <InlineMath math="u_n\to0" /> ist notwendig | Aus <InlineMath math="u_n\not\to0" /> folgt sicher Divergenz; dennoch kann auch <InlineMath math="u_n\to0" /> gelten |
+| **Beispiele** | Geometrische Reihe mit <InlineMath math="\lvert r\rvert < 1" /> | Nichttriviale arithmetische Reihe, geometrische Reihe mit <InlineMath math="\lvert r\rvert \geq 1" />, harmonische Reihe |
+
+## Übung
+
+Entscheide für jede Reihe, ob sie konvergiert oder divergiert:
+
+1. <InlineMath math="\sum_{k=0}^{\infty}3(1/4)^k" />
+2. <InlineMath math="\sum_{k=1}^{\infty}1" />
+3. <InlineMath math="\sum_{k=0}^{\infty}(-1)^k" />
+
+### Lösung
+
+1. Die erste Reihe ist geometrisch mit <InlineMath math="|r|=1/4<1" />, also konvergiert sie:
+
+   <BlockMath math="\frac{3}{1-1/4}=4" />
+
+2. Die Glieder der zweiten Reihe nähern sich nicht Null. Daher divergiert die Reihe.
+
+3. Die Partialsummen der dritten Reihe wechseln zwischen zwei Werten. Die Reihe divergiert durch Oszillation und wächst nicht gegen Unendlich.

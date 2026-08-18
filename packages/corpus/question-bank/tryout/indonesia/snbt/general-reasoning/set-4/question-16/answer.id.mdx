@@ -4,37 +4,27 @@ export const metadata = {
   date: "2026-01-20",
 };
 
-Kita dapat menyelesaikan masalah ini dengan metode pengisian tempat (*filling slots*) untuk <InlineMath math="4" /> digit kode sandi.
+#### Hitung pilihan untuk setiap posisi
 
-Angka yang tersedia adalah bilangan asli kurang dari <InlineMath math="7" />, yaitu:
-
-<MathContainer>
-  <BlockMath math="S = \{1, 2, 3, 4, 5, 6\}" />
-</MathContainer>
-
-Berikut analisis kemungkinan untuk setiap posisi digit:
-
-| Posisi | Syarat | Pilihan | Banyak Cara |
-| :--- | :--- | :--- | :--- |
-| **Digit** <InlineMath math="1" /> | Faktor dari <InlineMath math="7" /> | Hanya angka <InlineMath math="1" /> (karena <InlineMath math="7" /> tidak masuk dalam <InlineMath math="S" />) | <InlineMath math="1" /> |
-| **Digit** <InlineMath math="3" /> | Angka <InlineMath math="3" /> atau <InlineMath math="4" /> | <InlineMath math="\{3, 4\}" /> | <InlineMath math="2" /> |
-| **Digit** <InlineMath math="4" /> | Huruf konsonan "Dito" | <InlineMath math="\{\text{D}, \text{T}\}" /> | <InlineMath math="2" /> |
-| **Digit** <InlineMath math="2" /> | Angka tersisa | Dari <InlineMath math="6" /> angka, sudah terpakai <InlineMath math="2" /> angka (di Digit <InlineMath math="1" /> dan <InlineMath math="3" />) | <InlineMath math="4" /> |
-
-#### Penjelasan Tambahan untuk Digit Kedua
-
-Karena kode harus terdiri dari kombinasi angka yang **berbeda**, maka kita harus mengurangi total angka yang tersedia dengan angka yang sudah digunakan di posisi lain.
-- Total angka tersedia: <InlineMath math="6" />
-- Terpakai di Digit <InlineMath math="1" />: <InlineMath math="1" /> angka
-- Terpakai di Digit <InlineMath math="3" />: <InlineMath math="1" /> angka
-- Sisa pilihan: <InlineMath math="6 - 1 - 1 = 4" /> angka.
-
-#### Perhitungan Total
-
-Banyaknya kode sandi maksimum adalah hasil perkalian dari banyak cara di setiap posisi:
+Angka yang boleh dipakai adalah:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} \text{Total} &= (\text{Digit 1}) \times (\text{Digit 2}) \times (\text{Digit 3}) \times (\text{Digit 4}) \\ &= 1 \times 4 \times 2 \times 2 \\ &= 16 \end{aligned}" />
+  <BlockMath math="S=\{1,2,3,4,5,6\}" />
 </MathContainer>
 
-Jadi, Dito harus mencoba maksimum <InlineMath math="16" /> kode sandi.
+| Posisi | Syarat | Banyak pilihan |
+| :--- | :--- | :---: |
+| Pertama | Faktor dari <InlineMath math="7" /> yang terdapat dalam <InlineMath math="S" />: hanya <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Ketiga | <InlineMath math="3" /> atau <InlineMath math="4" /> | <InlineMath math="2" /> |
+| Kedua | Angka dalam <InlineMath math="S" /> selain dua angka yang telah digunakan | <InlineMath math="4" /> |
+| Keempat | Konsonan dalam nama "Dito": D atau T | <InlineMath math="2" /> |
+
+Posisi kedua selalu memiliki empat pilihan karena posisi pertama dan ketiga memakai dua angka berbeda dari himpunan enam angka.
+
+#### Kalikan pilihan yang bebas
+
+<MathContainer>
+  <BlockMath math="1\times2\times4\times2=16" />
+</MathContainer>
+
+Jadi, Dito mungkin perlu mencoba paling banyak **<InlineMath math="16" /> kode sandi**.

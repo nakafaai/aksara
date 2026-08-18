@@ -1,0 +1,389 @@
+export const metadata = {
+  title: "Quadratwurzelfunktion",
+  description: "Untersuche Quadratwurzelfunktionen anhand von Definitions- und Wertebereich, Graphtransformationen, Gleichungen, Ungleichungen und einem Höhenmodell.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Definition der Quadratwurzelfunktion
+
+Eine Quadratwurzelfunktion wendet die Hauptquadratwurzel auf einen Ausdruck an. Es hat die Form <InlineMath math="f(x) = \sqrt{g(x)}" />, wobei <InlineMath math="g(x)" /> der Radikand ist, der Ausdruck unter dem Radikalzeichen.
+
+Die Grundfunktion ist <InlineMath math="f(x) = \sqrt{x}" />. Sie ordnet jeder nicht negativen Eingabe ihre nicht negative Quadratwurzel zu.
+
+### Eigenschaften von Quadratwurzelfunktionen
+
+Drei Merkmale bilden die Grundlage für den Rest dieser Lektion:
+
+1. **Eingeschränkter Definitionsbereich**: Im Bereich der reellen Zahlen ist die Quadratwurzel negativer Zahlen nicht definiert. Zulässig sind deshalb nur Eingaben, für die der Ausdruck unter der Wurzel nicht negativ ist.
+
+2. **Erkennbarer Grundgraph**: Der Graph von <InlineMath math="y=\sqrt{x}" /> beginnt bei <InlineMath math="(0,0)" /> und steigt mit zunehmendem <InlineMath math="x" /> immer langsamer. Transformationen können diese Form verschieben, strecken oder spiegeln.
+
+3. **Nichtnegative Hauptwurzel**: Der Wert von <InlineMath math="\sqrt{g(x)}" /> selbst ist immer nicht negativ. Ein vorgelagerter Faktor oder eine Verschiebung kann eine transformierte Funktion dennoch negativ machen.
+
+## Definitions- und Wertebereich von Quadratwurzelfunktionen
+
+Der Definitionsbereich beschreibt die zulässigen Eingaben. Der Wertebereich enthält die Ausgaben, die die Funktion tatsächlich annehmen kann.
+
+### Definitionsbereich bestimmen
+
+Der Definitionsbereich einer Quadratwurzelfunktion <InlineMath math="f(x) = \sqrt{g(x)}" /> umfasst alle Werte von <InlineMath math="x" />, die <InlineMath math="g(x) \geq 0" /> ergeben.
+
+**Schritte zum Ermitteln des Definitionsbereichs:**
+
+| Schritt | Erklärung | Beispiel: <InlineMath math="f(x) = \sqrt{x-2}" /> |
+| ---- | ------------------------------------------------------- | ----------------------------------------------------------------- |
+| <InlineMath math="1" /> | Identifizieren Sie den Ausdruck innerhalb der Quadratwurzel | <InlineMath math="g(x) = x-2" /> |
+| <InlineMath math="2" /> | Erstellen Sie die Ungleichung <InlineMath math="g(x) \geq 0" /> | <InlineMath math="x-2 \geq 0" /> |
+| <InlineMath math="3" /> | Lösen Sie die Ungleichung | <InlineMath math="x \geq 2" /> |
+| <InlineMath math="4" /> | Definitionsbereich angeben | <InlineMath math="D_f = \{x \mid x \geq 2, x \in \mathbb{R}\}" /> |
+
+### Wertebereich bestimmen
+
+Der Wertebereich einer Quadratwurzelfunktion umfasst alle Ausgabewerte, die bei zulässigen Eingaben tatsächlich entstehen.
+
+Für <InlineMath math="f(x) = \sqrt{x-2}" /> kann der Radikand jeden Wert ab Null annehmen. Die Hauptquadratwurzel hat daher den Wertebereich
+
+<BlockMath math="R_f = \{y \mid y \geq 0, y \in \mathbb{R}\}" />
+
+## Graph der grundlegenden Quadratwurzelfunktion
+
+Visualisieren wir die grundlegende Quadratwurzelfunktion <InlineMath math="f(x) = \sqrt{x}" />.
+
+<LineEquation
+  title={
+    <>
+      Grundlegende Quadratwurzelfunktion: <InlineMath math="f(x) = \sqrt{x}" />
+    </>
+  }
+  description={
+    <>
+      Der Graph der grundlegenden Quadratwurzelfunktion beginnt mit dem Punkt <InlineMath math="(0,0)" /> und steigt immer langsamer an.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.5;
+        return { x, y: Math.sqrt(x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="f(x)=\sqrt{x}" />,
+          at: 5,
+          offset: [0, 1, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+/>
+
+## Transformationen von Quadratwurzelfunktionen
+
+Transformationen verändern die Form und Lage des Graphen einer Quadratwurzelfunktion.
+
+### Horizontale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = \sqrt{x-h}" /> verschiebt den Graphen der grundlegenden Quadratwurzelfunktion um <InlineMath math="h \text{Einheiten}" /> nach rechts (wenn <InlineMath math="h > 0" />) oder nach links (wenn <InlineMath math="h < 0" />).
+
+<LineEquation
+  title="Horizontale Verschiebung von Quadratwurzelfunktionen"
+  description={
+    <>
+      Vergleich von <InlineMath math="f(x) = \sqrt{x}" />,{" "}
+      <InlineMath math="g(x) = \sqrt{x-2}" />, und{" "}
+      <InlineMath math="h(x) = \sqrt{x+2}" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.5;
+        return { x, y: Math.sqrt(x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x}" />,
+          at: 5,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = 2 + i * 0.5;
+        return { x, y: Math.sqrt(x - 2), z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x-2}" />,
+          at: 10,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = -2 + i * 0.5;
+        return { x, y: Math.sqrt(x + 2), z: 0 };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x+2}" />,
+          at: 10,
+          offset: [0, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+/>
+
+### Vertikale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = \sqrt{x} + k" /> verschiebt den Graphen der grundlegenden Quadratwurzelfunktion um <InlineMath math="k \text{Einheiten}" /> nach oben (wenn <InlineMath math="k > 0" />) oder nach unten (wenn <InlineMath math="k < 0" />).
+
+| Funktion | Transformation | Definitionsbereich | Wertebereich |
+| ----------------------------------------- | ---------------------- | --------------- | ---------------- |
+| <InlineMath math="f(x) = \sqrt{x}" /> | Grundfunktion | <InlineMath math="x \geq 0" /> | <InlineMath math="y \geq 0" /> |
+| <InlineMath math="f(x) = \sqrt{x} + 2" /> | <InlineMath math="2 \text{Einheiten}" /> nach oben verschieben | <InlineMath math="x \geq 0" /> | <InlineMath math="y \geq 2" /> |
+| <InlineMath math="f(x) = \sqrt{x} - 3" /> | <InlineMath math="3 \text{Einheiten}" /> nach unten verschieben | <InlineMath math="x \geq 0" /> | <InlineMath math="y \geq -3" /> |
+
+### Vertikale Streckung und Stauchung
+
+Für <InlineMath math="f(x) = a\sqrt{x}" /> streckt <InlineMath math="|a|>1" /> den Graphen vertikal, während <InlineMath math="0<|a|<1" /> ihn vertikal staucht. Ein negatives <InlineMath math="a" /> spiegelt den Graphen zusätzlich an der <InlineMath math="x" />-Achse.
+
+<LineEquation
+  title="Vertikale Streckung und Stauchung"
+  description={
+    <>
+      Vergleich von <InlineMath math="f(x) = \sqrt{x}" />,{" "}
+      <InlineMath math="g(x) = 2\sqrt{x}" />, und{" "}
+      <InlineMath math="h(x) = \frac{1}{2}\sqrt{x}" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.5;
+        return { x, y: Math.sqrt(x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x}" />,
+          at: 5,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.5;
+        return { x, y: 2 * Math.sqrt(x), z: 0 };
+      }),
+      color: "#059669",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="2\sqrt{x}" />,
+          at: 10,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.5;
+        return { x, y: 0.5 * Math.sqrt(x), z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\frac{1}{2}\sqrt{x}" />,
+          at: 10,
+          offset: [0, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[10, 6, 10]}
+/>
+
+## Allgemeine Form von Quadratwurzelfunktionen
+
+Für den nicht entarteten Fall <InlineMath math="a\neq 0" /> und <InlineMath math="b\neq 0" /> hat die transformierte Quadratwurzelfunktion die Form:
+
+<BlockMath math="f(x) = a\sqrt{b(x-h)} + k" />
+
+Hier:
+
+- <InlineMath math="a" /> bestimmt die vertikale Skalierung und bei <InlineMath math="a<0" /> die Spiegelung an der <InlineMath math="x" />-Achse
+- <InlineMath math="b" /> bestimmt die horizontale Skalierung und bei <InlineMath math="b<0" /> die horizontale Spiegelung
+- <InlineMath math="h" /> bestimmt die horizontale Verschiebung
+- <InlineMath math="k" /> bestimmt die vertikale Verschiebung
+
+Der reelle Definitionsbereich folgt aus <InlineMath math="b(x-h)\geq 0" />. Das Vorzeichen von <InlineMath math="a" /> bestimmt anschließend, ob sich der Wertebereich von <InlineMath math="y=k" /> aus nach oben oder unten erstreckt.
+
+**Schritte zum Zeichnen des Graphen:**
+
+| Schritt | Aktion | Beispiel: <InlineMath math="f(x) = 2\sqrt{x-1} + 3" /> |
+| ---- | ------------------------- | ----------------------------------------------------------------- |
+| <InlineMath math="1" /> | Startpunkt bestimmen | <InlineMath math="x-1 = 0 \Rightarrow x = 1" />, <InlineMath math="f(1) = 3" />, Punkt: <InlineMath math="(1, 3)" /> |
+| <InlineMath math="2" /> | Definitionsbereich bestimmen | <InlineMath math="x-1 \geq 0 \Rightarrow x \geq 1" /> |
+| <InlineMath math="3" /> | Wertetabelle erstellen | Wählen Sie mehrere Werte <InlineMath math="x \geq 1" /> |
+| <InlineMath math="4" /> | Funktionswerte berechnen | Für <InlineMath math="x = 2" />: <InlineMath math="f(2) = 2\sqrt{1} + 3 = 5" /> |
+| <InlineMath math="5" /> | Punkte eintragen | Tragen Sie <InlineMath math="(1,3)" />, <InlineMath math="(2,5)" />, <InlineMath math="(5,7)" /> usw. ein |
+| <InlineMath math="6" /> | Punkte verbinden | Zeichnen Sie eine glatte Kurve durch die Punkte |
+
+## Quadratwurzelfunktionsgleichungen
+
+Um eine Gleichung mit einer Quadratwurzel zu lösen, isolieren Sie die Wurzel, quadrieren Sie beide Seiten und prüfen anschließend jeden Lösungskandidaten in der ursprünglichen Gleichung. Das Quadrieren ist für beliebige reelle Ausdrücke nicht umkehrbar und kann deshalb Scheinlösungen erzeugen.
+
+| Schritt | Erklärung | Beispiel: <InlineMath math="\sqrt{2x+3} = 5" /> |
+| ---- | --------- | ----------------------------------------------------- |
+| <InlineMath math="1" /> | Isolieren Sie die Quadratwurzel | Bereits isoliert |
+| <InlineMath math="2" /> | Beide Seiten quadrieren | <InlineMath math="(\sqrt{2x+3})^2 = 5^2" /> |
+| <InlineMath math="3" /> | Vereinfachen | <InlineMath math="2x+3 = 25" /> |
+| <InlineMath math="4" /> | Lösen | <InlineMath math="2x = 22 \Rightarrow x = 11" /> |
+| <InlineMath math="5" /> | Überprüfen | <InlineMath math="\sqrt{2(11)+3} = \sqrt{25} = 5" /> ✓ |
+
+## Quadratwurzelfunktionsungleichungen
+
+Für eine Quadratwurzelungleichung erzwingen Sie zunächst den Definitionsbereich. Überprüfen Sie vor dem Quadrieren auch das Vorzeichen der anderen Seite, damit der Vergleich gleich bleibt.
+
+**Beispiel:** Lösen Sie <InlineMath math="\sqrt{x-1} < 3" />
+
+<MathContainer>
+  <BlockMath math="\text{Bedingung:} x-1 \geq 0 \Rightarrow x \geq 1" />
+  <BlockMath math="\sqrt{x-1} < 3" />
+  <BlockMath math="x-1 < 9" />
+  <BlockMath math="x < 10" />
+</MathContainer>
+
+Da beide Seiten im Definitionsbereich nicht negativ sind, bleibt die Ungleichung beim Quadrieren äquivalent. Zusammen mit <InlineMath math="x\geq 1" /> und <InlineMath math="x<10" /> ergibt sich <InlineMath math="1 \leq x < 10" />.
+
+## Übungsaufgaben
+
+1. Bestimmen Sie den Definitionsbereich und den Wertebereich der Funktion <InlineMath math="f(x) = \sqrt{3x-6}" />
+
+2. Zeichnen Sie den Graphen der Funktion <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+
+3. Lösen Sie die Gleichung <InlineMath math="\sqrt{x+5} + \sqrt{x} = 5" />
+
+4. Eine Rakete wird senkrecht gestartet. Das Modell <InlineMath math="h(t) = 100\sqrt{t} \text{Meter}" /> beschreibt ihre Höhe nach <InlineMath math="t \text{Sekunden}" />. Wie hoch ist die Rakete nach <InlineMath math="9 \text{Sekunden}" />?
+
+5. Bestimmen Sie alle Werte von <InlineMath math="x" />, für die <InlineMath math="2\sqrt{x-3} \geq 6" /> gilt.
+
+### Ausführliche Lösungen
+
+1. Der Radikand darf nicht negativ sein:
+
+   <MathContainer>
+     <BlockMath math="3x-6\geq 0" />
+     <BlockMath math="x\geq 2." />
+   </MathContainer>
+
+   Damit ist <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. Wenn <InlineMath math="x" /> diesen Definitionsbereich durchläuft, nimmt <InlineMath math="3x-6" /> jeden nicht negativen Wert an. Folglich gilt <InlineMath math="R_f=\{y\in\mathbb{R}\mid y\geq 0\}" />.
+
+2. **Graph von** <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+
+   **Schritte zum Zeichnen:**
+
+   | Schritt | Erklärung | Details für <InlineMath math="g(x) = -\sqrt{x+4} + 2" /> |
+   | ---- | ------------------------ | --------------------------------------------------------------------------------------------------------- |
+| <InlineMath math="1" /> | Transformationen identifizieren | <InlineMath math="a = -1" /> (Spiegelung entlang der <InlineMath math="x" />-Achse), <InlineMath math="h = -4" /> (Verschiebung <InlineMath math="4 \text{Einheiten}" /> nach links), <InlineMath math="k = 2" /> (Verschiebung <InlineMath math="2 \text{Einheiten}" /> nach oben) |
+| <InlineMath math="2" /> | Startpunkt bestimmen | <InlineMath math="x+4 = 0 \Rightarrow x = -4" />, <InlineMath math="g(-4) = 0 + 2 = 2" />, Startpunkt: <InlineMath math="(-4, 2)" /> |
+   | <InlineMath math="3" /> | Definitionsbereich bestimmen | <InlineMath math="x+4 \geq 0 \Rightarrow x \geq -4" /> |
+   | <InlineMath math="4" /> | Wertebereich bestimmen | Da <InlineMath math="a = -1 < 0" />, fällt der Graph vom Startpunkt aus. Deshalb gilt <InlineMath math="y \leq 2" />. |
+   | <InlineMath math="5" /> | Wertetabelle erstellen | Wählen Sie Werte <InlineMath math="x \geq -4" /> |
+
+   **Wertetabelle:**
+
+   | <InlineMath math="x" /> | <InlineMath math="x+4" /> | <InlineMath math="\sqrt{x+4}" /> | <InlineMath math="-\sqrt{x+4}" /> | <InlineMath math="g(x) = -\sqrt{x+4} + 2" /> |
+   | --------- | ------------------------- | -------------------------------- | --------------------------------- | -------------------------------------------- |
+   | <InlineMath math="-4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="2" /> |
+   | <InlineMath math="-3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> |
+   | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="0" /> |
+   | <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+   | <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="4" /> | <InlineMath math="-4" /> | <InlineMath math="-2" /> |
+
+   <LineEquation
+     title={
+       <>
+         Graph von <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+       </>
+     }
+     description={<>Der Graph wird an der <InlineMath math="x" />-Achse gespiegelt und anschließend verschoben.</>}
+     data={[
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = -4 + i * 0.8;
+           const y = -Math.sqrt(x + 4) + 2;
+           return { x, y, z: 0 };
+         }),
+         color: "#7c3aed",
+         showPoints: false,
+         labels: [
+           {
+             text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
+             at: 8,
+             offset: [0, -1, 0],
+           },
+           {
+             text: <InlineMath math="(-4,2)" />,
+             at: 0,
+             offset: [0.5, 0.5, 0],
+           },
+         ],
+       },
+     ]}
+     showZAxis={false}
+     cameraPosition={[10, 6, 10]}
+   />
+
+   Der Graph beginnt bei <InlineMath math="(-4,2)" />. Das negative Vorzeichen spiegelt den Grundgraphen an der <InlineMath math="x" />-Achse, sodass die Kurve nach rechts fällt und ihre Funktionswerte höchstens <InlineMath math="2" /> betragen.
+
+3. Der Definitionsbereich erfordert <InlineMath math="x\geq 0" />. Isolieren Sie einen Wurzelausdruck:
+
+   <MathContainer>
+     <BlockMath math="\sqrt{x+5}=5-\sqrt{x}" />
+     <BlockMath math="x+5=25-10\sqrt{x}+x" />
+     <BlockMath math="10\sqrt{x}=20" />
+     <BlockMath math="\sqrt{x}=2" />
+     <BlockMath math="x=4." />
+   </MathContainer>
+
+   Überprüfen Sie die Originalgleichung: <InlineMath math="\sqrt{4+5}+\sqrt{4}=3+2=5" />. Somit ist <InlineMath math="x=4" /> gültig.
+
+4. Ersetzen Sie <InlineMath math="t=9" /> im Modell:
+
+   <BlockMath math="h(9)=100\sqrt{9}=100\cdot 3=300\text{ m}." />
+
+   Das Modell verwendet <InlineMath math="t\geq 0" />, und <InlineMath math="9" /> liegt in diesem Definitionsbereich. Die modellierte Höhe beträgt <InlineMath math="300\text{ m}" />.
+
+5. Halten Sie zunächst den Definitionsbereich fest: Aus <InlineMath math="x-3\geq 0" /> folgt <InlineMath math="x\geq 3" />. Teilen Sie durch die positive Zahl <InlineMath math="2" /> und quadrieren Sie anschließend die nicht negativen Seiten:
+
+   <MathContainer>
+     <BlockMath math="2\sqrt{x-3}\geq 6" />
+     <BlockMath math="\sqrt{x-3}\geq 3" />
+     <BlockMath math="x-3\geq 9" />
+     <BlockMath math="x\geq 12." />
+   </MathContainer>
+
+   Der Schnitt mit dem Definitionsbereich ergibt weiterhin <InlineMath math="x\geq 12" />.

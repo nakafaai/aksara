@@ -1,7 +1,7 @@
 
 export const metadata = {
-  title: "Circle and Tangent Line",
-  description: "Learn tangent lines to circles, including equations, properties, external points, and common tangents.",
+  title: "Tangents to Circles",
+  description: "Build tangent equations from the perpendicular radius, then solve external-point and common-tangent problems step by step.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Circle",
@@ -174,7 +174,7 @@ showZAxis={false}
 
 ### Length of Tangent Line
 
-If <InlineMath math="P(x_1, y_1)" /> is a point outside the circle with center <InlineMath math="O(a, b)" /> and radius <InlineMath math="r" />, then the length of the tangent line from P to the circle is:
+If <InlineMath math="P(x_1, y_1)" /> is a point outside the circle with center <InlineMath math="O(a, b)" /> and radius <InlineMath math="r" />, then the length of the tangent segment from <InlineMath math="P" /> to the point of tangency is:
 
 <BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
 
@@ -239,12 +239,12 @@ External common tangent lines are lines that touch both circles and do not inter
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
         // Tangent points on first circle
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 - alpha);
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 + alpha);
 
         // Tangent points on second circle
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 - alpha);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 - alpha);
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 + alpha);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 + alpha);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -277,12 +277,12 @@ External common tangent lines are lines that touch both circles and do not inter
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
         // Tangent points on first circle
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 + alpha);
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 - alpha);
 
         // Tangent points on second circle
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 + alpha);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 + alpha);
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 - alpha);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 - alpha);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -311,6 +311,8 @@ Length of external common tangent line:
 <BlockMath math="l = \sqrt{d^2 - (r_1 - r_2)^2}" />
 
 where <InlineMath math="d" /> is the distance between the two circle centers.
+
+This positive-length external tangent segment exists only when <InlineMath math="d>|r_1-r_2|" />. Equality describes internal tangency, where the segment between the two contact points collapses to length zero.
 
 ### Internal Common Tangent Lines
 
@@ -444,6 +446,8 @@ Length of internal common tangent line:
 
 <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
 
+This positive-length internal tangent segment exists only when <InlineMath math="d>r_1+r_2" />. At equality, the circles touch externally and the segment between the contact points has length zero.
+
 ## Determining Tangent Line Equations
 
 ### Determining Tangent Line Through a Point on the Circle
@@ -514,7 +518,7 @@ Circle center <InlineMath math="O(0, 0)" /> and radius <InlineMath math="r = 5" 
 
 5. Find the equation of the tangent line to circle <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" /> that passes through point <InlineMath math="(8, -2)" />!
 
-### Answer Key
+### Worked Solutions
 
 1.  **Tangent line equation at a point on the circle**
 
@@ -546,7 +550,7 @@ Circle center <InlineMath math="O(0, 0)" /> and radius <InlineMath math="r = 5" 
       <BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
     </MathContainer>
 
-    Therefore: <InlineMath math="x - 2y - 4 \pm 5\sqrt{5} = 0" />
+    Therefore: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
 
 3.  **Tangent line from external point**
 
@@ -556,7 +560,17 @@ Circle center <InlineMath math="O(0, 0)" /> and radius <InlineMath math="r = 5" 
         <BlockMath math="AT = \sqrt{10^2 + 0^2 - 36} = \sqrt{100 - 36} = \sqrt{64} = 8" />
       </MathContainer>
 
-    - Coordinates of tangent points can be found using the tangent line equation from external point.
+    - To find the tangent points, let <InlineMath math="T(x,y)" /> be one of them. Since radius <InlineMath math="OT" /> is perpendicular to tangent <InlineMath math="AT" />, their direction vectors have zero dot product:
+
+      <MathContainer>
+        <BlockMath math="(A-T)\cdot T=0" />
+        <BlockMath math="(10-x)x-y^2=0" />
+        <BlockMath math="10x-(x^2+y^2)=0" />
+        <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
+        <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
+      </MathContainer>
+
+      Therefore, the tangent points are <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> and <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
 
 4.  **External common tangent line**
 
@@ -565,17 +579,17 @@ Circle center <InlineMath math="O(0, 0)" /> and radius <InlineMath math="r = 5" 
       <BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2} = \sqrt{64 - 1} = \sqrt{63} = 3\sqrt{7}" />
     </MathContainer>
 
-5.  **Tangent line through external point**
+5.  **Tangent line through a point on the circle**
 
     Circle: <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />
 
     Center <InlineMath math="(3, -2)" />, radius <InlineMath math="r = 5" />
 
-    Verify point <InlineMath math="(8, -2)" /> outside circle:
+    Verify that point <InlineMath math="(8, -2)" /> lies on the circle:
 
     <BlockMath math="(8-3)^2 + (-2+2)^2 = 25 + 0 = 25" />
 
-    Point is exactly on the circle! Therefore the tangent line equation is:
+    The left side equals <InlineMath math="r^2=25" />, so the point lies on the circle. Therefore the tangent line equation is:
 
     <MathContainer>
       <BlockMath math="(8-3)(x-3) + (-2+2)(y+2) = 25" />
@@ -583,3 +597,9 @@ Circle center <InlineMath math="O(0, 0)" /> and radius <InlineMath math="r = 5" 
       <BlockMath math="x - 3 = 5" />
       <BlockMath math="x = 8" />
     </MathContainer>
+
+## Sources
+
+- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
+- [Wolfram MathWorld: Circle-Circle Tangents](https://mathworld.wolfram.com/Circle-CircleTangents.html)
+- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)

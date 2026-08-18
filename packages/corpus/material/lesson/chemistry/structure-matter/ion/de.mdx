@@ -1,0 +1,138 @@
+
+export const metadata = {
+  title: "Ionen",
+  description:
+    "Verstehen, wie Atome zu Ionen werden, Kationen und Anionen unterscheiden und die Elektronenzahl aus der Ionenladung berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-29",
+  subject: "Atomstruktur",
+};
+
+## Wenn ein Atom nicht mehr neutral ist
+
+Ein neutrales Atom besitzt gleich viele Protonen und Elektronen. Ein **Ion** entsteht, wenn ein Atom oder eine Atomgruppe eine elektrische Gesamtladung trägt. Hier betrachten wir zunächst einatomige Ionen.
+
+OpenStax erklärt in [Atomic Structure and Symbolism](https://openstax.org/books/chemistry-atoms-first-2e/pages/2-3-atomic-structure-and-symbolism), dass ein Ion entsteht, sobald Elektronen- und Protonenzahl nicht mehr übereinstimmen.
+
+Protonen sitzen im Kern und werden bei einfachen chemischen Vorgängen nicht ausgetauscht. **Elektronen** sind die Teilchen, deren Zahl sich verändert. Die Protonenzahl bestimmt daher weiterhin das Element, während die Differenz zwischen Protonen und Elektronen die Ionenladung bestimmt.
+
+Eine einfache Möglichkeit, die Ladung abzulesen, ist das Vorzeichen. Protonen erhöhen den positiven Wert, während Elektronen den negativen Wert erhöhen. Wenn die Zählungen übereinstimmen, ist das Ergebnis <InlineMath math="0" /> oder neutral. Wenn die Elektronen abnehmen, bleibt die positive Ladung bestehen. Wenn die Elektronenzahl zunimmt, bleibt die negative Ladung bestehen.
+
+## Kationen und Anionen
+
+Ein positiv geladenes Ion heißt **Kation**. Es entsteht, wenn ein Atom Elektronen abgibt.
+
+Ein negativ geladenes Ion heißt **Anion**. Es entsteht, wenn ein Atom Elektronen aufnimmt.
+
+Das [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/I03158) definiert ein Ion als atomares oder molekulares Teilchen mit elektrischer Nettoladung.
+
+<IonLab
+  title={<>Simulator zur Ionenbildung</>}
+  description={
+    <>
+      Folge dem Weg von links nach rechts: Ein neutrales Atom gibt Elektronen
+      ab oder nimmt sie auf und wird zum Kation oder Anion. Protonen und
+      Neutronen bleiben unverändert.
+    </>
+  }
+  labels={{
+    beforeChange: "Vorher",
+    electronChange: "Elektronen verändern sich",
+    afterChange: "Nachher",
+    chooseIon: "Ionenbeispiel auswählen",
+    neutralAtom: "Neutrales Atom",
+    protons: "Protonen",
+    neutrons: "Neutronen",
+    electrons: "Elektronen",
+    charge: "Ladung",
+    samples: {
+      "sodium-cation": {
+        name: "Natriumion",
+        type: "Kation",
+        action: <>Gibt <InlineMath math="1" /> Elektron ab</>,
+      },
+      "fluoride-anion": {
+        name: "Fluoridion",
+        type: "Anion",
+        action: <>Nimmt <InlineMath math="1" /> Elektron auf</>,
+      },
+      "lithium-cation": {
+        name: "Lithium-Ion",
+        type: "Kation",
+        action: <>Gibt <InlineMath math="1" /> Elektron ab</>,
+      },
+      "oxide-anion": {
+        name: "Oxidion",
+        type: "Anion",
+        action: <>Nimmt <InlineMath math="2" /> Elektronen auf</>,
+      },
+    },
+  }}
+/>
+
+## Die Ladung ergibt sich aus der Differenz
+
+Die sicherste Formel zum Ablesen der Ionenladung lautet:
+
+<BlockMath math="q = p^+ - e^-" />
+
+Das Symbol <InlineMath math="q" /> ist die Ionenladung, <InlineMath math="p^+" /> ist die Anzahl der Protonen und <InlineMath math="e^-" /> ist die Anzahl der Elektronen.
+
+Für die Elektronenzahl eines Ions wird dieselbe Formel umgestellt:
+
+<BlockMath math="e^- = p^+ - q" />
+
+Beispiel für Natrium:
+
+<BlockMath math="\begin{aligned}
+{}^{23}_{11}\mathrm{Na}^{+} &: p^+ = 11,\ q = +1 \\
+e^- &= 11 - (+1) \\
+&= 10
+\end{aligned}" />
+
+Fluorid-Beispiel:
+
+<BlockMath math="\begin{aligned}
+{}^{19}_{9}\mathrm{F}^{-} &: p^+ = 9,\ q = -1 \\
+e^- &= 9 - (-1) \\
+&= 10
+\end{aligned}" />
+
+Das negative Vorzeichen in <InlineMath math="\mathrm{F}^{-}" /> bedeutet, dass es mehr Elektronen als Protonen gibt. Deshalb wird <InlineMath math="9 - (-1)" /> zu <InlineMath math="10" />.
+
+## Was sich ändert und was bleibt
+
+Wenn ein Atom zum Ion wird, darf nicht jede Zahl verändert werden. Jede Teilchenart wird einzeln betrachtet.
+
+| Teil zum Lesen | Wenn sich ein Ion bildet | Wirkung |
+| :----------- | :---------------- | :----- |
+| Protonen | Bleiben gleich | Das Element ändert sich nicht. |
+| Neutronen | Bleiben beim selben Isotop gleich | Die Massenzahl ändert sich nicht. |
+| Elektronen | Ändern sich | Die Ionenladung ändert sich. |
+
+<InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{Na}^{+}" /> sind deshalb beide Natrium: Ihre Protonenzahl bleibt <InlineMath math="11" />. <InlineMath math="\mathrm{Na}^{+}" /> besitzt jedoch nur <InlineMath math="10" /> statt <InlineMath math="11" /> Elektronen.
+
+## Ausgearbeitete Tabelle für Ionenzählungen
+
+Die Tabelle zeigt die vollständige Rechnung. Von links nach rechts gelesen liefert die Ordnungszahl <InlineMath math="Z" /> die Protonenzahl, <InlineMath math="A - Z" /> die Neutronenzahl und <InlineMath math="q = p^+ - e^-" /> den Zusammenhang zwischen Ladung und Elektronenzahl.
+
+| Symbol | Ordnungszahl | Massenzahl | Ladung | Protonen | Elektronen | Neutronen |
+| :----- | :------------ | :---------- | :----- | :------ | :-------- | :------- |
+| <InlineMath math="{}^{7}_{3}\mathrm{Li}" /> | <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
+| <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" /> | <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="+1" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+| <InlineMath math="{}^{16}_{8}\mathrm{O}" /> | <InlineMath math="8" /> | <InlineMath math="16" /> | <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="8" /> | <InlineMath math="8" /> |
+| <InlineMath math="{}^{16}_{8}\mathrm{O}^{2-}" /> | <InlineMath math="8" /> | <InlineMath math="16" /> | <InlineMath math="-2" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="8" /> |
+| <InlineMath math="{}^{27}_{13}\mathrm{Al}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="0" /> | <InlineMath math="13" /> | <InlineMath math="13" /> | <InlineMath math="14" /> |
+| <InlineMath math="{}^{27}_{13}\mathrm{Al}^{3+}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="+3" /> | <InlineMath math="13" /> | <InlineMath math="10" /> | <InlineMath math="14" /> |
+
+### Die Lithiumzeile überprüfen
+
+Nehmen wir <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Die Ordnungszahl <InlineMath math="3" /> bedeutet <InlineMath math="3" /> Protonen. Bei der Ladung <InlineMath math="+1" /> ergibt sich folgende Elektronenzahl:
+
+<BlockMath math="e^- = 3 - (+1) = 2" />
+
+Seine Neutronenzahl ergibt sich aus der Massenzahl:
+
+<BlockMath math="n^0 = 7 - 3 = 4" />
+
+Bei Unsicherheit hilft die Ladungsrechnung als Ausgangspunkt. Kationen besitzen weniger Elektronen als Protonen, Anionen dagegen mehr.

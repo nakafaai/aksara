@@ -1,0 +1,66 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Wir beginnen mit der quadratischen Gleichung
+
+<BlockMath math="x^2 - (2k + 4)x + (3k + 4) = 0" />
+
+Bei den Wurzeln <InlineMath math="x_1" /> und <InlineMath math="x_2" /> beträgt das Produkt der Wurzeln
+
+<MathContainer>
+<BlockMath math="x_1 \cdot x_2 = \frac{c}{a}" />
+<BlockMath math="x_1 \cdot x_2 = \frac{3k + 4}{1}" />
+<BlockMath math="x_1 \cdot x_2 = 3k + 4" />
+</MathContainer>
+
+Bei drei aufeinanderfolgenden Gliedern einer geometrischen Folge ist das Quadrat des mittleren Glieds gleich dem Produkt seiner Nachbarn. Daher gilt
+
+<MathContainer>
+<BlockMath math="k^2 = x_1 \cdot x_2" />
+<BlockMath math="k^2 = 3k + 4" />
+<BlockMath math="k^2 - 3k - 4 = 0" />
+</MathContainer>
+
+Wir faktorisieren die Gleichung.
+
+<MathContainer>
+<BlockMath math="(k - 4)(k + 1) = 0" />
+<BlockMath math="k = 4 \vee k = -1" />
+</MathContainer>
+
+Nun prüfen wir beide Kandidaten unter der Voraussetzung, dass <InlineMath math="x_1" /> und <InlineMath math="x_2" /> ganzzahlig sind. Für <InlineMath math="k = 4" /> gilt:
+
+<MathContainer>
+<BlockMath math="x^2 - (2 \cdot 4 + 4)x + (3 \cdot 4 + 4) = 0" />
+<BlockMath math="x^2 - 12x + 16 = 0" />
+<BlockMath math="\Delta = (-12)^2 - 4(1)(16) = 80" />
+<BlockMath math="x = 6 \pm 2\sqrt{5}" />
+</MathContainer>
+
+Diese Nullstellen sind nicht ganzzahlig, also scheidet <InlineMath math="k = 4" /> aus. Für <InlineMath math="k = -1" /> gilt:
+
+<MathContainer>
+<BlockMath math="x^2 - (2(-1) + 4)x + (3(-1) + 4) = 0" />
+<BlockMath math="x^2 - 2x + 1 = 0" />
+<BlockMath math="(x - 1)(x - 1) = 0" />
+<BlockMath math="x = 1 \vee x = 1" />
+</MathContainer>
+
+Daher ist die Reihenfolge
+
+<BlockMath math="x_1, k, x_2 = 1, -1, 1" />
+
+Das Verhältnis zwischen den Gliedern ist
+
+<BlockMath math="r = \frac{u_2}{u_1} = \frac{-1}{1} = -1" />
+
+Dann ist der <InlineMath math="n" />-te Term der Folge
+
+<MathContainer>
+<BlockMath math="u_n = ar^{n-1}" />
+<BlockMath math="u_n = (1)(-1)^{n-1}" />
+<BlockMath math="u_n = \frac{(-1)^n}{(-1)} = -(-1)^n" />
+</MathContainer>

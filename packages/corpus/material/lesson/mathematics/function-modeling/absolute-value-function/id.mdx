@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Pengertian Fungsi Nilai Mutlak
 
-Fungsi nilai mutlak adalah fungsi yang menghasilkan nilai positif atau nol dari setiap input, tanpa memperhatikan tanda asli dari input tersebut. Secara geometris, nilai mutlak dapat dipahami sebagai jarak suatu bilangan dari titik nol pada garis bilangan.
+Fungsi induk nilai mutlak memetakan setiap bilangan real ke jaraknya dari nol pada garis bilangan. Karena jarak tidak mungkin negatif, <InlineMath math="f(x)=|x|" /> selalu menghasilkan nilai nonnegatif. Transformasi dapat menggeser atau mencerminkan grafik induk ini, sehingga hasil fungsi yang sudah ditransformasi tidak selalu nonnegatif.
 
 ### Definisi Matematika
 
@@ -19,7 +19,7 @@ Untuk sebarang bilangan real <InlineMath math="x" />, fungsi nilai mutlak didefi
 
 **Komponen fungsi nilai mutlak:**
 
-- Simbol <InlineMath math="|x|" /> dibaca "nilai mutlak x"
+- Simbol <InlineMath math="|x|" /> dibaca nilai mutlak dari <InlineMath math="x" />.
 - Hasil fungsi selalu non-negatif (<InlineMath math="|x| \geq 0" />)
 - Fungsi ini bersifat genap: <InlineMath math="|-x| = |x|" />
 
@@ -80,7 +80,7 @@ Berikut adalah visualisasi fungsi nilai mutlak dasar:
 
 | <InlineMath math="x" /> | <InlineMath math="-4" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
 | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| <InlineMath math="f(x) = x " /> | <InlineMath math="x" /> | <InlineMath math="x" /> | <InlineMath math="x" /> | <InlineMath math="x" /> | <InlineMath math="x" /> | <InlineMath math="x" /> | <InlineMath math="x" /> | <InlineMath math="x" /> | <InlineMath math="x" /> |
+| <InlineMath math="f(x) = \lvert x \rvert" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
 
 ## Transformasi Fungsi Nilai Mutlak
 
@@ -188,18 +188,18 @@ Fungsi <InlineMath math="f(x) = |x - h|" /> menggeser grafik ke kanan (jika <Inl
 
 Fungsi <InlineMath math="f(x) = a|x|" /> mengubah kemiringan grafik:
 
-- Jika <InlineMath math="a > 1" />: grafik menjadi lebih curam
-- Jika <InlineMath math="0 < a < 1" />: grafik menjadi lebih landai
-- Jika <InlineMath math="a < 0" />: grafik terbalik (refleksi terhadap sumbu <InlineMath math="x" />)
+- Jika <InlineMath math="|a| > 1" />: grafik menjadi lebih curam
+- Jika <InlineMath math="0 < |a| < 1" />: grafik menjadi lebih landai
+- Jika <InlineMath math="a < 0" />: grafik juga dicerminkan terhadap sumbu <InlineMath math="x" />
 
-Supaya lebih mudah dipahami, mari kita lihat contoh berikut:
+Perbandingan berikut memperlihatkan perubahan tersebut pada grafik:
 
 <LineEquation
   title={<>Peregangan dan Penyusutan</>}
   description={
     <>
       Perbandingan <InlineMath math="f(x) = |x|" /> dengan{" "}
-      <InlineMath math="g(x) = 2|x|" /> dan <InlineMath math="h(x) = 0.5|x|" />.
+      <InlineMath math="g(x) = 2|x|" /> dan <InlineMath math="h(x) = 0{,}5|x|" />.
     </>
   }
   data={[
@@ -231,7 +231,7 @@ Supaya lebih mudah dipahami, mari kita lihat contoh berikut:
       color: "#e11d48",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="h(x)=0.5|x|" />, at: 12, offset: [3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=0{,}5|x|" />, at: 12, offset: [3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 15]}
@@ -255,9 +255,9 @@ dengan:
 
 | Parameter                       | Nilai       | Efek pada Grafik    |
 | ------------------------------- | ----------- | ------------------- |
-| <InlineMath math="a > 1" />     | Positif, <InlineMath math="> 1" /> | Grafik lebih curam  |
-| <InlineMath math="0 < a < 1" /> | Positif, <InlineMath math="< 1" /> | Grafik lebih landai |
-| <InlineMath math="a < 0" />     | Negatif     | Grafik terbalik     |
+| <InlineMath math="\lvert a \rvert > 1" />     | Besar <InlineMath math="> 1" /> | Grafik lebih curam  |
+| <InlineMath math="0 < \lvert a \rvert < 1" /> | Besar <InlineMath math="< 1" /> | Grafik lebih landai |
+| <InlineMath math="a < 0" />        | Negatif | Grafik juga dicerminkan terhadap sumbu <InlineMath math="x" /> |
 | <InlineMath math="h > 0" />     | Positif     | Geser ke kanan      |
 | <InlineMath math="h < 0" />     | Negatif     | Geser ke kiri       |
 | <InlineMath math="k > 0" />     | Positif     | Geser ke atas       |
@@ -303,7 +303,7 @@ Untuk <InlineMath math="|x| > a" /> dengan <InlineMath math="a > 0" />:
 
 5. Jarak antara dua kota adalah <InlineMath math="150 \text{ km}" />. Jika kota <InlineMath math="A" /> berada di koordinat <InlineMath math="-50 \text{ km}" />, di mana letak kota <InlineMath math="B" />?
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Menghitung nilai fungsi untuk berbagai input:**
 

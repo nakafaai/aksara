@@ -130,6 +130,10 @@ For continuity at <InlineMath math="x = 2" />:
 
 Discontinuous piecewise functions have "jumps" or "holes" at certain points.
 
+For example, the two rules below meet at <InlineMath math="x=1" /> but approach different output values:
+
+<BlockMath math="f(x)=\begin{cases}x+2,&\text{if }x<1\\2x-3,&\text{if }x\geq1\end{cases}" />
+
 <LineEquation
   title="Discontinuous Piecewise Function"
   description={
@@ -140,8 +144,8 @@ Discontinuous piecewise functions have "jumps" or "holes" at certain points.
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = -2 + i * 0.1;
+      points: Array.from({ length: 20 }, (_, i) => {
+        const x = -1 + i * 0.1;
         return { x, y: x + 2, z: 0 };
       }),
       color: "#e11d48",
@@ -172,9 +176,9 @@ Many real-world situations can be modeled with piecewise functions because their
 
 An electricity company applies tiered rates:
 
-- <InlineMath math="0\text{-}50 \text{ kWh}" />: <InlineMath math="\text{Rp }1{,}000/\text{kWh}" />
-- <InlineMath math="51\text{-}100 \text{ kWh}" />: <InlineMath math="\text{Rp }1{,}500/\text{kWh}" />
-- <InlineMath math=">100 \text{ kWh}" />: <InlineMath math="\text{Rp }2{,}000/\text{kWh}" />
+- <InlineMath math="0\leq x\leq50" /> kWh: <InlineMath math="\text{Rp }1{,}000/\text{kWh}" />
+- <InlineMath math="50<x\leq100" /> kWh: <InlineMath math="\text{Rp }1{,}500/\text{kWh}" />
+- <InlineMath math="x>100" /> kWh: <InlineMath math="\text{Rp }2{,}000/\text{kWh}" />
 
 The mathematical model:
 
@@ -241,7 +245,7 @@ Piecewise function:
 
 2. An online taxi company applies the following rates:
 
-   The base fare is <InlineMath math="\text{Rp }10{,}000" /> for the first <InlineMath math="2 \text{ km}" />. Km <InlineMath math="3\text{-}10" /> costs <InlineMath math="\text{Rp }4{,}000/\text{km}" />. Above <InlineMath math="10 \text{ km}" />, the additional rate becomes <InlineMath math="\text{Rp }3{,}000/\text{km}" />.
+   The base fare is <InlineMath math="\text{Rp }10{,}000" /> for the first <InlineMath math="2 \text{ km}" />. The distance above <InlineMath math="2 \text{ km}" /> through <InlineMath math="10 \text{ km}" /> costs <InlineMath math="\text{Rp }4{,}000/\text{km}" />. Above <InlineMath math="10 \text{ km}" />, the additional rate becomes <InlineMath math="\text{Rp }3{,}000/\text{km}" />.
 
    Create a piecewise function model for the total cost!
 
@@ -255,9 +259,9 @@ Piecewise function:
 
 5. A worker is paid with the following system:
 
-   The first <InlineMath math="8 \text{ hours}" /> are paid at <InlineMath math="\text{Rp }50{,}000/\text{hour}" />. Overtime from the <InlineMath math="9" />th hour onward is paid at <InlineMath math="\text{Rp }75{,}000/\text{hour}" />.
+   The first <InlineMath math="8 \text{ hours}" /> are paid at <InlineMath math="\text{Rp }50{,}000/\text{hour}" />. Each additional hour is paid at <InlineMath math="\text{Rp }75{,}000/\text{hour}" />.
 
-   If the maximum work is <InlineMath math="12 \text{ hours/day}" />, create a daily wage function!
+   If the employee may work at most <InlineMath math="12 \text{ hours/day}" />, create a daily wage function.
 
 ### Answer Key
 
@@ -353,11 +357,11 @@ Piecewise function:
    Let <InlineMath math="t" /> be the working hours, then:
 
    <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{if } 0 < t \leq 8 \\ 400000 + 75000(t-8), & \text{if } 8 < t \leq 12 \end{cases}" />
+     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{if } 0 \leq t \leq 8 \\ 400000 + 75000(t-8), & \text{if } 8 < t \leq 12 \end{cases}" />
    </MathContainer>
 
    Or simplified:
 
    <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{if } 0 < t \leq 8 \\ 75000t - 200000, & \text{if } 8 < t \leq 12 \end{cases}" />
+     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{if } 0 \leq t \leq 8 \\ 75000t - 200000, & \text{if } 8 < t \leq 12 \end{cases}" />
    </MathContainer>

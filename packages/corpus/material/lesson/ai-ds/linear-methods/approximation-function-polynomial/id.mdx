@@ -1,53 +1,83 @@
 export const metadata = {
-    title: "Perkiraan Terbaik dalam Fungsi dan Ruang Polinomial",
-    description: "Aproksimasi Gauss untuk mencari model fungsi terbaik pada ruang polinomial dan trigonometrik dengan norma Euklidean.",
+    title: "Aproksimasi Terbaik dalam Ruang Fungsi dan Polinom",
+    description: "Gunakan produk skalar dan proyeksi ortogonal untuk mencari aproksimasi polinom atau trigonometri terbaik terhadap suatu fungsi dalam norma L2.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-15",
     subject: "Metode Linear AI",
 };
 
-## Pendekatan Terbaik dalam Ruang Fungsi
+## Mengapa Fungsi Perlu Diaproksimasi?
 
-Tujuan kita adalah melakukan pendekatan terhadap fungsi tertentu dalam subruang yang sesuai dari ruang fungsi menggunakan norma tertentu dengan hasil yang optimal.
+Sebuah fungsi mungkin mahal untuk dihitung atau terlalu rumit untuk perhitungan berikutnya. Kita lalu memilih keluarga fungsi yang lebih sederhana dan mengajukan pertanyaan yang tepat: anggota mana dari keluarga tersebut yang paling dekat dengan fungsi semula?
 
-Himpunan <InlineMath math="C([a; b])" /> dari fungsi kontinu <InlineMath math="f : [a; b] \to \mathbb{R}" /> membentuk ruang vektor real berdimensi tak hingga. Bayangkan ruang ini seperti perpustakaan raksasa yang berisi semua fungsi kontinu yang mungkin ada pada interval <InlineMath math="[a; b]" />.
+Misalkan <InlineMath math="C([a,b])" /> menyatakan ruang vektor real yang terdiri atas fungsi kontinu pada <InlineMath math="[a,b]" />. Galat akan diukur di seluruh interval, bukan hanya pada satu titik.
 
-## Produk Skalar dan Ruang Euklidean
+## Produk Skalar dan Galat L2
 
-Dengan produk skalar yang didefinisikan sebagai
+Untuk <InlineMath math="f,g\in C([a,b])" />, definisikan
 
-<BlockMath math="\langle f, g \rangle = \int_a^b f(x) g(x) \, dx" />
+<MathContainer>
+<BlockMath math="\langle f,g\rangle=\int_a^b f(x)g(x)\,dx" />
+<BlockMath math="\|f\|_2=\sqrt{\langle f,f\rangle}=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2}" />
+</MathContainer>
 
-maka <InlineMath math="C([a; b])" /> menjadi ruang vektor euklidean. Norma yang bersesuaian adalah rata-rata kuadratik
+Produk skalar ini menjadikan <InlineMath math="C([a,b])" /> sebuah ruang berproduk skalar. Norma yang ditampilkan adalah norma <InlineMath math="L^2" />. Nilainya bukan akar rata-rata kuadrat kecuali dibagi dengan akar panjang interval:
 
-<BlockMath math="\|f\| = \sqrt{\langle f, f \rangle} = \left( \int_a^b f(x)^2 \, dx \right)^{\frac{1}{2}}" />
+<BlockMath math="\operatorname{RMS}(f)=\frac{1}{\sqrt{b-a}}\|f\|_2" />
 
-Produk skalar ini seperti cara mengukur kemiripan antara dua fungsi, mirip dengan menghitung seberapa serupa dua lagu berdasarkan harmonisasi nadanya. Sedangkan norma memberikan ukuran "besarnya" suatu fungsi dalam arti kuadratik, seperti mengukur volume suara rata-rata dari sebuah musik.
+Besaran <InlineMath math="\|f-g\|_2" /> menggabungkan galat di seluruh interval. Galat positif dan negatif tidak dapat saling meniadakan karena selisihnya dikuadratkan di dalam integral.
 
-## Definisi Aproksimasi Terbaik
+## Aproksimasi Terbaik sebagai Proyeksi Ortogonal
 
-Misalkan <InlineMath math="S \subset C([a; b])" /> adalah subruang vektor berdimensi hingga dan <InlineMath math="f \in C([a; b])" />. Tugas kita adalah menentukan <InlineMath math="g \in S" /> sedemikian rupa sehingga
+Misalkan <InlineMath math="S\subset C([a,b])" /> adalah subruang berdimensi hingga. Aproksimasi terbaik terhadap <InlineMath math="f" /> di dalam <InlineMath math="S" /> adalah fungsi tunggal <InlineMath math="g\in S" /> yang memenuhi
 
-<BlockMath math="\|f - g\| = \min_{\varphi \in S} \|f - \varphi\|" />
+<BlockMath math="\|f-g\|_2=\min_{\varphi\in S}\|f-\varphi\|_2" />
 
-Fungsi <InlineMath math="g \in S" /> dengan sifat ini disebut pendekatan Gauss. Suatu <InlineMath math="g \in S" /> dengan sifat tersebut dinamakan pendekatan terbaik dari <InlineMath math="f" /> dalam <InlineMath math="S" /> terhadap norma <InlineMath math="\| \cdot \|" />.
+Secara geometris, <InlineMath math="g" /> adalah proyeksi ortogonal <InlineMath math="f" /> pada <InlineMath math="S" />. Residual <InlineMath math="r=f-g" /> harus ortogonal terhadap setiap fungsi dalam ruang aproksimasi:
 
-Seperti mencari foto yang paling mirip dengan aslinya dari koleksi foto terbatas, pendekatan terbaik memberikan fungsi yang paling mendekati fungsi asli dalam ruang yang tersedia.
+<BlockMath math="\langle f-g,s\rangle=0\qquad\text{untuk setiap }s\in S" />
 
-## Ruang Polinomial
+Jika <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> adalah basis <InlineMath math="S" /> dan <InlineMath math="g=\sum_{j=0}^n c_j\phi_j" />, syarat ortogonalitas tersebut menjadi persamaan normal
 
-Selanjutnya kita akan meninjau
+<BlockMath math="\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle,\qquad i=0,\ldots,n" />
 
-<BlockMath math="S = P_n([a; b])" />
+## Contoh Kerja: Mengaproksimasi Fungsi Kuadrat dengan Garis
 
-yaitu himpunan semua polinomial berderajat maksimal <InlineMath math="n" />. Ruang polinomial adalah seperti kotak perkakas matematika yang berisi berbagai macam kurva sederhana untuk mendekati bentuk fungsi yang lebih rumit. Semakin tinggi derajat <InlineMath math="n" />, semakin banyak "alat" yang tersedia untuk membentuk kurva yang lebih fleksibel.
+Aproksimasikan <InlineMath math="f(x)=x^2" /> pada <InlineMath math="[-1,1]" /> dengan fungsi di dalam <InlineMath math="S=\operatorname{span}\{1,x\}" />. Tulis <InlineMath math="g(x)=c_0+c_1x" />. Ortogonalitas terhadap kedua fungsi basis menghasilkan
 
-## Polinomial Trigonometrik
+<MathContainer>
+<BlockMath math="\int_{-1}^{1}\left(x^2-c_0-c_1x\right)\,dx=0" />
+<BlockMath math="\int_{-1}^{1}x\left(x^2-c_0-c_1x\right)\,dx=0" />
+</MathContainer>
 
-Kemungkinan lain adalah himpunan semua polinomial trigonometrik
+Suku ganjil berintegral nol pada interval simetris. Persamaan kedua menghasilkan <InlineMath math="c_1=0" />, sedangkan persamaan pertama menghasilkan <InlineMath math="c_0=1/3" />. Jadi,
 
-<BlockMath math="S = T_n(\omega) = \left\{ \frac{a_0}{2} + \sum_{i=1}^n \left( a_i \cos\left(\frac{2\pi i x}{\omega}\right) + b_i \sin\left(\frac{2\pi i x}{\omega}\right) \right) : a_i, b_i \in \mathbb{R} \right\}" />
+<MathContainer>
+<BlockMath math="g(x)=\frac13" />
+<BlockMath math="\|f-g\|_2^2=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx=\frac8{45}" />
+</MathContainer>
 
-untuk pendekatan fungsi periodik <InlineMath math="f : \mathbb{R} \to \mathbb{R}" /> dengan periode <InlineMath math="\omega > 0" />.
+Garis terbaiknya mendatar. Kesimpulan ini bukan tebakan: kesimetrian <InlineMath math="x^2" /> memaksa koefisien fungsi basis ganjil <InlineMath math="x" /> bernilai nol.
 
-Polinomial trigonometrik ini seperti orkestra matematika dimana fungsi sinus dan kosinus berperan sebagai instrumen musik yang berharmoni untuk menciptakan melodi fungsi yang berulang. Setiap suku dalam deret ini menambahkan frekuensi harmonik yang berbeda, sama seperti instrumen musik yang memainkan nada dasar dan harmonik-harmoniknya.
+## Ruang Aproksimasi Polinom
+
+Untuk polinom aljabar berderajat paling tinggi <InlineMath math="n" />, gunakan
+
+<BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
+
+Peningkatan <InlineMath math="n" /> memperbesar ruang aproksimasi, sehingga galat <InlineMath math="L^2" /> terkecil tidak mungkin bertambah. Dalam komputasi, basis polinom ortogonal sering lebih baik daripada pangkat biasa karena menghasilkan sistem dengan kondisi numerik yang lebih baik.
+
+## Ruang Aproksimasi Trigonometri
+
+Untuk fungsi periodik dengan periode <InlineMath math="\omega>0" />, salah satu ruang yang berguna adalah
+
+<BlockMath math="T_n(\omega)=\left\{\frac{a_0}{2}+\sum_{i=1}^n\left[a_i\cos\left(\frac{2\pi ix}{\omega}\right)+b_i\sin\left(\frac{2\pi ix}{\omega}\right)\right]:a_i,b_i\in\mathbb{R}\right\}" />
+
+Pada satu periode penuh, fungsi basis sinus dan kosinus tersebut saling ortogonal. Koefisiennya dapat dihitung dengan memproyeksikan fungsi sasaran pada setiap fungsi basis. Inilah gagasan berdimensi hingga yang mendasari aproksimasi Fourier.
+
+| Pilihan <InlineMath math="S" /> | Cocok untuk | Penentu koefisien |
+|---|---|---|
+| <InlineMath math="P_n([a,b])" /> | Perilaku mulus pada interval hingga | Residual ortogonal terhadap fungsi basis polinom |
+| <InlineMath math="T_n(\omega)" /> | Perilaku periodik | Residual ortogonal terhadap fungsi basis sinus dan kosinus |
+
+> Aproksimasi terbaik bukan sekadar kurva yang tampak mirip. Aproksimasi tersebut adalah proyeksi ortogonal yang ditentukan oleh ruang fungsi, interval, dan norma yang dipilih.

@@ -8,13 +8,13 @@ export const metadata = {
 
 ## What is Syntactic Sugar
 
-Syntactic sugar is a feature in programming languages that makes code easier to read and write without changing its underlying functionality. Think of it like adding sugar to coffee - you still get the same coffee but with a sweeter and more pleasant taste.
+Syntactic sugar is a concise notation for behavior that could also be expressed more explicitly. It can remove repetitive ceremony, but shorter syntax is useful only when the reader can still see what the code does.
 
-In Python, syntactic sugar allows you to write more concise and elegant code. This feature can be removed without affecting the final program results, but its presence makes the coding process more efficient and the code easier to understand.
+Python offers several compact forms for common patterns. They do not automatically make a program run faster, and they are not interchangeable in every detail. The goal is clearer intent, not the fewest possible characters.
 
 ## List Comprehension
 
-List comprehension is one of the most popular forms of syntactic sugar in Python. This feature allows you to create new lists based on existing lists in a very concise way.
+A list comprehension creates a new list from any iterable. It can transform values, filter them, or combine both operations in one expression.
 
 List comprehension has several syntax forms:
 
@@ -49,10 +49,10 @@ Let's see how list comprehension works in practice:
       code: `# Initial data
 x = [1, 2, 3, 4, 5, 6]
 
-# List comprehension with if condition
-x2 = [i*2 if i%2 else 2*i for i in x]
-print(x2)
-# Output: [2, 4, 6, 8, 10, 12]
+# Conditional expression inside a list comprehension
+parity = ["odd" if i % 2 else "even" for i in x]
+print(parity)
+# Output: ['odd', 'even', 'odd', 'even', 'odd', 'even']
 
 # Another example with condition
 numbers = [1, 2, 3, 4, 5, 6]
@@ -91,15 +91,15 @@ print(y_standard)
   ]}
 />
 
-List comprehension has several advantages over traditional loops. First, it's more concise as it significantly reduces the number of lines of code. Second, it generally has better performance compared to regular loops. Third, once you get used to it, the syntax is very intuitive and easy to read. Fourth, it resembles mathematical notation, similar to set notation.
+List comprehensions can express a simple transformation or filter compactly. They are often efficient, but clarity matters more than saving lines: use an ordinary loop when the expression becomes difficult to read. Their notation resembles mathematical set-builder notation, although a Python list preserves order and duplicate values while a mathematical set does not.
 
 For example, `[i**2 for i in x]` can be read as "square of i for each i in x", which is very similar to mathematical notation <InlineMath math="\{i^2 : i \in X\}" />.
 
 ## Lambda Functions
 
-Lambda is an anonymous function in Python that allows you to create simple functions without having to define them formally with the `def` keyword.
+A lambda expression creates a function object without a `def` statement. It is most useful for a small function passed directly as an argument.
 
-Lambda has several special characteristics. First, lambda is an anonymous function that has no name. Second, lambda returns a function object that can be stored in a variable. Third, the lambda body must be an expression, not a statement. Fourth, lambda cannot contain statements like `print`, `return`, or assignment.
+The body contains exactly one expression, and that expression becomes the return value. It may call a function such as `print()`, but it cannot contain statement forms such as `return`, a regular assignment, `for`, or `while`. A lambda can be assigned to a variable, but a named `def` is usually clearer when the function will be reused.
 
 ### How to Use Lambda
 
@@ -131,7 +131,7 @@ def add_normal(x, y):
 
 ### Lambda with Built-in Functions
 
-Lambda is very useful when used together with built-in functions like `map()`, `filter()`, and `sorted()`:
+Short lambdas work well as callbacks, especially a `key` function passed to `sorted()`. `map()` and `filter()` also accept them, although an equivalent comprehension may be easier to read:
 
 <CodeBlock
   data={[
@@ -157,7 +157,7 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 ## Other Syntactic Sugar Features
 
-Python has various other forms of syntactic sugar that make code more pythonic and efficient.
+Python has other compact syntax for common operations. These forms can improve readability, but they do not guarantee better runtime performance.
 
 ### Assignment Operators
 
@@ -184,6 +184,8 @@ print(a)  # Output: 9.0`
     }
   ]}
 />
+
+For immutable numbers, these examples produce the same values as their expanded forms. For mutable or user-defined objects, `+=` can perform an in-place operation, so it is not always behaviorally identical to rebinding with `a = a + value`.
 
 ### Negative Indexing
 
@@ -249,4 +251,4 @@ To understand the advantages of syntactic sugar, let's compare different ways of
 | Assignment | `a = a + 5` | `a += 5` |
 | Access last element | `data[len(data) - 1]` | `data[-1]` |
 
-This table shows how syntactic sugar makes code more concise and readable without changing the basic functionality.
+Choose the compact form when it makes the operation easier to recognize. If it hides control flow or side effects, the explicit form is the better explanation and often the better program.

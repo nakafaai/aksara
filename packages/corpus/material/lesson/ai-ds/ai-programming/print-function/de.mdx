@@ -1,0 +1,257 @@
+export const metadata = {
+    title: "Die Funktion print()",
+    description: "Python-Druckausgabe, sep- und end-Parameter sowie Formatierungstechniken für eine präzise Ausgabesteuerung.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-17",
+    subject: "KI-Programmierung",
+};
+
+## Einführung in `print()`
+
+Die eingebaute Funktion `print()` schreibt die Textdarstellung von Werten in einen Stream. Standardmäßig ist das `sys.stdout`, dessen Inhalt ein Terminal gewöhnlich auf dem Bildschirm zeigt. Die Ausgabe kann aber auch in eine Datei oder an ein anderes Ziel umgeleitet werden.
+
+Wie `len()`, `abs()` und `round()` ist `print()` bereits in Python enthalten. Du musst dafür kein zusätzliches Modul importieren.
+
+## Grundlegende Syntax von `print()`
+
+Mehrere Parameter steuern, welche Werte `print()` ausgibt und wie diese Ausgabe formatiert wird.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "print_syntax.py",
+      code: `# Vollständige Syntax der print-Funktion
+# print(*objects, sep=' ', end='\\n', file=sys.stdout, flush=False)
+
+# Grundlegendes Anwendungsbeispiel
+print("Hallo, Welt!")
+
+# Mehrere Objekte ausgeben
+print("Name:", "Ahmad", "Alter:", 25)
+
+# Berechnungsergebnisse anzeigen
+x = 10
+y = 5
+print("Additionsergebnis", x, "+", y, "=", x + y)`
+    }
+  ]}
+/>
+
+Die Schreibweise `*objects` bedeutet, dass `print()` null oder mehr positionale Objekte annimmt. Zwischen zwei benachbarten Objekten schreibt die Funktion das mit `sep` festgelegte Trennzeichen.
+
+## Trennparameter (sep)
+
+Der Parameter `sep` bestimmt, welche Zeichenfolge mehrere Objekte in einem Aufruf voneinander trennt. Der Standardwert ist ein einzelnes Leerzeichen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "separator_param.py",
+      code: `# Beispiele für die Verwendung des sep-Parameters
+x = 8
+
+# Standardtrennzeichen (Leerzeichen)
+print("Löse", 2, "x =", x, "nach x auf")
+
+# Benutzerdefiniertes Trennzeichen mit leerer Zeichenfolge
+print("Löse", 2, "x =", x, "nach x auf", sep="")
+
+# Benutzerdefiniertes Trennzeichen mit Bindestrich
+print("Löse", 2, "x =", x, "nach x auf", sep="-")
+
+# Benutzerdefiniertes Trennzeichen mit Komma und Leerzeichen
+print("Ahmad", "Budi", "Citra", sep=", ")
+
+# Trennzeichen aus mehreren Zeichen
+print("Python", "Java", "JavaScript", sep=" | ")
+
+# Trennzeichen mit Sonderzeichen
+print("Data", "Science", "Machine", "Learning", sep="\\t")  # Tabulator
+print("Erste", "Zeile", "Zweite", "Zeile", sep="\\n")    # Zeilenumbruch`
+    }
+  ]}
+/>
+
+Wähle das Trennzeichen passend zum Ausgabeformat, etwa ein Komma für eine einfache Aufzählung oder einen Tabulator für grob ausgerichtete Terminaldaten.
+
+## Parameter `end`
+
+Der Parameter `end` legt fest, welches Zeichen oder welche Zeichenfolge am Ende der Ausgabe steht. Standardmäßig ist das ein Zeilenumbruch (`\n`), sodass der nächste Aufruf in einer neuen Zeile beginnt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "end_parameter.py",
+      code: `# Beispiele für den Parameter end
+
+# Standardwert von end: Zeilenumbruch
+print("Erste Zeile")
+print("Zweite Zeile")
+
+print()  # Leere Zeile als Trennzeichen ausgeben
+
+# Benutzerdefiniertes Ende mit leerer Zeichenfolge
+print("Erstes Wort", end="")
+print("Zweites Wort")
+
+print()  # Leere Zeile als Trennzeichen ausgeben
+
+# Benutzerdefiniertes Ende mit Leerzeichen
+print("Nummer:", end=" ")
+print(42)
+
+print()  # Leere Zeile als Trennzeichen ausgeben
+
+# Benutzerdefiniertes Ende mit Sonderzeichen
+print("Lädt", end="")
+for i in range(5):
+    print(".", end="")
+print(" Erledigt!")
+
+print()  # Leere Zeile als Trennzeichen ausgeben
+
+# Kombination aus sep und end
+print("A", "B", "C", sep="-", end=" | ")
+print("D", "E", "F", sep="-", end="\\n")`
+    }
+  ]}
+/>
+
+Mit einem anderen `end` können mehrere Aufrufe in derselben Zeile fortfahren. Soll die Ausgabe sofort sichtbar werden, statt zunächst in einem Puffer zu warten, verwendest du zusätzlich `flush=True`.
+
+## Anzeige verschiedener Datentypen
+
+`print()` akzeptiert Objekte verschiedener Typen und ermittelt vor dem Schreiben ihre lesbare String-Darstellung. Eigene Klassen können diese Darstellung mit `__str__()` festlegen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_types_print.py",
+      code: `# Verschiedene Datentypen ausgeben
+integer_num = 42
+decimal_num = 3.14159
+string_text = "Python Programming"
+boolean_value = True
+list_data = [1, 2, 3, 4, 5]
+dict_data = {"name": "Ahmad", "age": 25}
+
+print("Ganzzahl:", integer_num)
+print("Gleitkommazahl:", decimal_num)
+print("String:", string_text)
+print("Boolescher Wert:", boolean_value)
+print("Liste:", list_data)
+print("Wörterbuch:", dict_data)
+
+# Lesbarer formatieren
+print("\\nBessere Formatierung:")
+print(f"Name: {dict_data['name']}")
+print(f"Alter: {dict_data['age']} Jahre")
+print(f"Pi: {decimal_num:.2f}")
+
+# Mehrere Datentypen in einer Zeile ausgeben
+print("Ergebnis:", integer_num, "+", decimal_num, "=", integer_num + decimal_num)`
+    }
+  ]}
+/>
+
+Die Fähigkeit von print, verschiedene Datentypen zu verarbeiten, macht es sehr flexibel beim Debuggen und Anzeigen von Programminformationen.
+
+## Ausgabeformatierungstechniken
+
+### Ausgabe mit f-Strings
+
+Ein f-String wertet Ausdrücke in geschweiften Klammern aus und kann optionale Formatangaben anwenden. Wert und umgebender Text bleiben dadurch in einem gut lesbaren Ausdruck zusammen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "fstring_formatting.py",
+      code: `# Beispiele für die Formatierung mit f-Strings
+name = "Sari"
+age = 23
+score = 87.5
+
+# Grundlegende Formatierung mit f-Strings
+print(f"Name: {name}")
+print(f"Alter: {age} Jahre")
+print(f"Ergebnis: {score}")
+
+# f-String mit mathematischen Operationen
+x = 10
+y = 3
+print(f"{x} + {y} = {x + y}")
+print(f"{x} / {y} = {x / y:.2f}")
+
+# f-String mit Methodenaufrufen
+text = "python programming"
+print(f"Original: {text}")
+print(f"Titel-Schreibweise: {text.title()}")
+print(f"Länge: {len(text)} Zeichen")
+
+# f-String mit einer Bedingung
+score = 85
+status = "Bestanden" if score >= 70 else "Nicht bestanden"
+print(f"Ergebnis: {score}, Status: {status}")
+
+# f-String mit Zahlenformatierung
+pi = 3.14159265359
+print(f"Pi mit 2-Dezimalstellen: {pi:.2f}")
+print(f"Pi mit 4-Dezimalstellen: {pi:.4f}")
+completion = 0.875
+print(f"Fortschritt: {completion:.1%}")  # 87.5%`
+    }
+  ]}
+/>
+
+Mit f-Strings lassen sich Text, Variablen und Berechnungsergebnisse übersichtlich kombinieren.
+
+### Ausgabe ohne Zeilenumbruch
+
+Wenn eine Ausgabe schrittweise in einer Zeile erscheinen soll, verhindert ein angepasstes `end` den automatischen Zeilenumbruch.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "print_no_newline.py",
+      code: `# Beispiele für Ausgaben ohne Zeilenumbruch
+import time
+
+# Ladesimulation mit Punkten
+print("Verarbeitung", end="")
+for i in range(5):
+    time.sleep(0.5)  # Eine halbe Sekunde Verzögerung
+    print(".", end="", flush=True)
+print(" Erledigt!")
+
+# Erstellen eines einfachen Fortschrittsbalkens
+print("\\nProgress: [", end="")
+for i in range(10):
+    time.sleep(0.2)
+    print("#", end="", flush=True)
+print("] 100%")
+
+# Zähler in einer Zeile drucken
+print("\\nCountdown: ", end="")
+for i in range(5, 0, -1):
+    print(i, end=" ", flush=True)
+    time.sleep(1)
+print("Start!")
+
+# Daten im Tabellenformat anzeigen
+print("\\nDatentabelle:")
+print("Name", "Alter", "Stadt", sep="\\t")
+print("-" * 30)
+print("Ahmad", 25, "Jakarta", sep="\\t")
+print("Budi", 30, "Bandung", sep="\\t")
+print("Citra", 28, "Surabaya", sep="\\t")`
+    }
+  ]}
+/>
+
+`end` hält jede Aktualisierung in der aktuellen Zeile. `flush=True` fordert Python auf, gepufferte Ausgabe sofort zu schreiben. Eine echte Fortschrittsanzeige sollte außerdem die Fähigkeiten des Terminals berücksichtigen und nicht voraussetzen, dass Tabulatoren oder Zeichenbreiten überall gleich dargestellt werden.

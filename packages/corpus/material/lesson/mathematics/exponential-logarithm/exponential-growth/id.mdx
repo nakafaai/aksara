@@ -1,201 +1,178 @@
-
 export const metadata = {
-    title: "Pertumbuhan Eksponen",
-    description: "Pelajari pertumbuhan eksponen melalui perkalian bakteri, dinamika populasi, dan contoh perhitungan fungsi yang naik semakin cepat.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-04-02",
-    subject: "Eksponen dan Logaritma",
+  title: "Pertumbuhan Eksponensial",
+  description:
+    "Bangun pertumbuhan eksponensial dari faktor berulang, hubungkan tabel dan grafik dengan model, lalu selesaikan contoh bakteri dan populasi secara lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-02",
+  subject: "Eksponen dan Logaritma",
 };
 
-## Definisi Fungsi Pertumbuhan Eksponen
+## Definisi Pertumbuhan Eksponensial
 
-Pertumbuhan eksponen adalah jenis pertumbuhan di mana **tingkat perubahan berbanding lurus dengan nilai kuantitasnya**. Pada pertumbuhan ini, nilai akan bertambah semakin cepat seiring berjalannya waktu.
+Pertumbuhan eksponensial terjadi ketika suatu besaran positif dikalikan dengan faktor tetap yang lebih besar dari <InlineMath math="1" /> pada setiap interval yang sama. Model pertumbuhan berbentuk:
 
-Fungsi pertumbuhan eksponen ditulis dengan:
+<BlockMath math="f(x)=P_0a^x" />
 
-<InlineMath math="f(x) = a^x" /> dengan <InlineMath math="a > 1" />
+dengan:
 
-Di mana:
+- <InlineMath math="P_0>0" /> adalah nilai awal
+- <InlineMath math="a>1" /> adalah faktor pertumbuhan per interval
+- <InlineMath math="x" /> adalah jumlah interval
 
-- <InlineMath math="a" /> adalah basis (konstanta pertumbuhan)
-- <InlineMath math="x" /> adalah variabel (waktu)
+Untuk peristiwa diskret seperti pembelahan sel yang telah selesai, <InlineMath math="x" /> adalah bilangan bulat tak negatif. Grafik kontinu memperluas rumus yang sama ke nilai real <InlineMath math="x" /> dan perlu dipahami sebagai interpolasi model.
 
-## Contoh Pertumbuhan Eksponen
+## Membangun Model dari Tabel
 
-Pertumbuhan eksponen sering ditemukan dalam kehidupan nyata, seperti pertumbuhan bakteri yang membelah menjadi dua dalam interval waktu tertentu.
+### Pertumbuhan Bakteri Ideal
 
-### Pertumbuhan Bakteri
+Anggap suatu kultur dimulai dengan <InlineMath math="30" /> bakteri dan setiap bakteri membelah menjadi dua setiap <InlineMath math="30\text{ menit}" />. Model ini mengabaikan kematian dan batas sumber daya agar kita dapat berfokus pada faktor berulangnya.
 
-Seorang peneliti mengamati pertumbuhan bakteri pada inang dengan kondisi awal <InlineMath math="30 \text{ bakteri}" />. Bakteri tersebut membelah menjadi dua setiap <InlineMath math="30 \text{ menit}" />.
+Misalkan <InlineMath math="x" /> menghitung interval tiga puluh menit yang telah selesai:
 
-Jika <InlineMath math="x" /> adalah fase pertumbuhan bakteri setiap <InlineMath math="30 \text{ menit}" />, maka:
+| Interval | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Bakteri | <InlineMath math="30" /> | <InlineMath math="60" /> | <InlineMath math="120" /> | <InlineMath math="240" /> | <InlineMath math="480" /> | <InlineMath math="960" /> |
 
-| Fase (<InlineMath math="30 \text{ menit}" />) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
-| --------------- | --- | --- | --- | --- | --- | --- |
-| Banyak bakteri | <InlineMath math="30" /> | <InlineMath math="60" /> | <InlineMath math="120" /> | <InlineMath math="240" /> | <InlineMath math="480" /> | <InlineMath math="960" /> |
+Setiap nilai adalah jumlah awal yang dikalikan dengan suatu pangkat dari <InlineMath math="2" />:
 
-Dapat diamati bahwa:
+- <InlineMath math="f(0)=30\cdot2^0=30" />
+- <InlineMath math="f(1)=30\cdot2^1=60" />
+- <InlineMath math="f(2)=30\cdot2^2=120" />
+- <InlineMath math="f(3)=30\cdot2^3=240" />
+- <InlineMath math="f(4)=30\cdot2^4=480" />
 
-- Untuk <InlineMath math="x = 0" />, banyak bakteri adalah <InlineMath math="30" />
-- Untuk <InlineMath math="x = 1" />, banyak bakteri adalah <InlineMath math="60" />
-- Untuk <InlineMath math="x = 2" />, banyak bakteri adalah <InlineMath math="120 = 2^2 \cdot 30" />
-- Untuk <InlineMath math="x = 3" />, banyak bakteri adalah <InlineMath math="240 = 2^3 \cdot 30" />
-- Untuk <InlineMath math="x = 4" />, banyak bakteri adalah <InlineMath math="480 = 2^4 \cdot 30" />
+Jadi, modelnya adalah:
 
-Dari pola tersebut, pertumbuhan bakteri dapat dimodelkan dengan fungsi eksponen:
+<BlockMath math="f(x)=30\cdot2^x" />
 
-<BlockMath math="f(x) = 30 \cdot (2^x)" />
+### Menghubungkan Tabel dan Grafik
 
-### Visualisasi Grafik Pertumbuhan Eksponen
-
-Grafik fungsi <InlineMath math="f(x) = 30 \cdot (2^x)" /> menunjukkan pertumbuhan yang semakin cepat seiring bertambahnya nilai <InlineMath math="x" />. Ciri khas grafik pertumbuhan eksponen adalah kurvanya yang semakin curam.
+Tabel memuat pengamatan diskret. Kurva <InlineMath math="f(x)=30\cdot2^x" /> menunjukkan perilaku aturan yang sama di antara masukan bilangan bulat tersebut:
 
 <FunctionChart
   p={30}
   a={2}
-  title="Pertumbuhan Bakteri"
+  title="Pertumbuhan Bakteri Ideal"
   description={
     <>
-      Pertumbuhan bakteri yang membelah menjadi dua setiap <InlineMath math="30 \text{ menit}" />.
+      Jumlahnya menjadi dua kali lipat setiap <InlineMath math="30\text{ menit}" />.
     </>
   }
 />
 
-### Perhitungan Jumlah Bakteri pada Waktu Tertentu
+Kurva semakin curam karena setiap penggandaan bekerja pada jumlah yang lebih besar. Hal ini tidak berarti kultur nyata dapat tumbuh tanpa batas.
 
-Jika ingin menghitung jumlah bakteri pada jam ke-<InlineMath math="5" />, perlu diketahui bahwa jam ke-<InlineMath math="5" /> terjadi pada fase ke-<InlineMath math="10" /> (karena setiap fase adalah <InlineMath math="30 \text{ menit}" />):
+### Mengubah Waktu menjadi Interval
 
-<BlockMath math="f(10) = 30 \cdot (2^{10}) = 30 \cdot 1024 = 30.720" />
+Lima jam memuat sepuluh interval tiga puluh menit:
 
-Jadi, pada jam ke-<InlineMath math="5" /> terdapat <InlineMath math="30.720 \text{ bakteri}" />.
+<BlockMath math="x=\frac{5\cdot60}{30}=10" />
 
-## Variasi Nilai Awal
+Sekarang substitusikan jumlah interval ke dalam model:
 
-Pertumbuhan eksponen dapat memiliki nilai awal yang berbeda-beda. Secara umum, jika nilai awal adalah <InlineMath math="P_0" />, maka fungsi pertumbuhan eksponen menjadi:
+<BlockMath math="f(10)=30\cdot2^{10}=30\cdot1{.}024=30{.}720" />
 
-<BlockMath math="f(x) = P_0 \cdot (a^x)" />
+Menurut model ideal, kultur tersebut berisi <InlineMath math="30{.}720" /> bakteri setelah <InlineMath math="5\text{ jam}" />.
 
-Misalnya:
+## Mengubah atau Menentukan Nilai Awal
 
-- Jika banyak bakteri awal adalah <InlineMath math="50" />, maka <InlineMath math="f(x) = 50 \cdot (2^x)" />
-- Jika banyak bakteri awal adalah <InlineMath math="100" />, maka <InlineMath math="f(x) = 100 \cdot (2^x)" />
-- Jika banyak bakteri awal adalah <InlineMath math="200" />, maka <InlineMath math="f(x) = 200 \cdot (2^x)" />
+Untuk faktor pertumbuhan tetap <InlineMath math="a" />, perubahan <InlineMath math="P_0" /> mengalikan setiap keluaran dengan skala yang sama:
 
-### Menentukan Nilai Awal
+<BlockMath math="f(x)=P_0a^x" />
 
-Terkadang kita perlu menentukan nilai awal <InlineMath math="x_0" /> dari suatu pertumbuhan eksponen jika diketahui nilainya pada waktu tertentu.
+Sebagai contoh, untuk faktor penggandaan:
 
-**Contoh kasus**:
+- <InlineMath math="P_0=50" /> memberi <InlineMath math="f(x)=50\cdot2^x" />
+- <InlineMath math="P_0=100" /> memberi <InlineMath math="f(x)=100\cdot2^x" />
+- <InlineMath math="P_0=200" /> memberi <InlineMath math="f(x)=200\cdot2^x" />
 
-Misalkan kita mengetahui bahwa jumlah bakteri pada fase ke-<InlineMath math="2" /> adalah <InlineMath math="8.000" /> dan bakteri membelah menjadi dua setiap interval waktu. Berapakah jumlah bakteri awal?
+### Menentukan Nilai Awal yang Belum Diketahui
 
-Kita dapat menggunakan persamaan <InlineMath math="x_2 = a^2 \cdot x_0" /> dengan <InlineMath math="a = 2" />:
-
-<MathContainer>
-  <BlockMath math="x_2 = a^2 \cdot x_0" />
-  <BlockMath math="8000 = 2^2 \cdot x_0" />
-  <BlockMath math="8000 = 4 \cdot x_0" />
-  <BlockMath math="\frac{8000}{4} = x_0" />
-  <BlockMath math="x_0 = 2000" />
-</MathContainer>
-
-Jadi, banyaknya bakteri mula-mula adalah <InlineMath math="2.000 \text{ bakteri}" />.
-
-### Menghitung Pertumbuhan Jangka Panjang
-
-Untuk menghitung jumlah bakteri setelah waktu yang lebih lama, kita tetap menggunakan model yang sama. Misalnya, untuk menghitung jumlah bakteri setelah <InlineMath math="10 \text{ jam}" />:
-
-<BlockMath math="x_{10} = a^{10} \cdot x_0" />
-
-Substitusikan nilai <InlineMath math="a = 2" /> dan <InlineMath math="x_0 = 2.000" />:
+Anggap suatu kultur berisi <InlineMath math="8{.}000" /> bakteri setelah <InlineMath math="2" /> interval penggandaan. Misalkan <InlineMath math="P_0" /> adalah jumlah awal yang belum diketahui:
 
 <MathContainer>
-  <BlockMath math="x_{10} = 2^{10} \cdot 2.000" />
-  <BlockMath math="x_{10} = 1.024 \cdot 2.000" />
-  <BlockMath math="x_{10} = 2.048.000" />
+  <BlockMath math="8{.}000=P_0\cdot2^2" />
+  <BlockMath math="8{.}000=4P_0" />
+  <BlockMath math="P_0=\frac{8{.}000}{4}" />
+  <BlockMath math="P_0=2{.}000" />
 </MathContainer>
 
-Jadi, banyaknya bakteri setelah <InlineMath math="10 \text{ jam}" /> adalah <InlineMath math="2.048.000 \text{ bakteri}" />.
+Kultur tersebut dimulai dengan <InlineMath math="2{.}000" /> bakteri.
+
+### Memperpanjang Model Interval yang Sama
+
+Setelah <InlineMath math="10" /> interval penggandaan, kultur yang sama memiliki:
+
+<MathContainer>
+  <BlockMath math="f(10)=2{.}000\cdot2^{10}" />
+  <BlockMath math="f(10)=2{.}000\cdot1{.}024" />
+  <BlockMath math="f(10)=2{.}048{.}000" />
+</MathContainer>
+
+Waktu yang diwakili sepuluh interval tersebut bergantung pada panjang interval. Jika satu interval berlangsung tiga puluh menit, sepuluh interval sama dengan lima jam.
 
 ## Latihan
 
-1. Bakteri E.coli menyebabkan penyakit diare pada manusia. Seorang peneliti mengamati pertumbuhan <InlineMath math="50 \text{ bakteri}" /> ini pada sepotong makanan dan menemukan bahwa bakteri ini membelah menjadi <InlineMath math="2" /> setiap seperempat jam.
+1. Suatu kultur bakteri ideal dimulai dengan <InlineMath math="50" /> sel dan menjadi dua kali lipat setiap <InlineMath math="15\text{ menit}" />.
 
-    1. Gambarkanlah tabel dan grafik yang menunjukkan pertumbuhan bakteri ini dari fase <InlineMath math="0" /> sampai fase <InlineMath math="5" />.
+   1. Buat tabel dan grafik dari interval <InlineMath math="0" /> hingga interval <InlineMath math="5" />.
+   2. Tuliskan fungsi pertumbuhannya.
+   3. Prediksi jumlahnya setelah <InlineMath math="3\text{ jam}" /> dan setelah <InlineMath math="4\text{ jam}" />.
 
-    2. Modelkan fungsi yang menggambarkan pertumbuhan bakteri E.coli setiap seperempat jam.
+2. Suatu wilayah hipotetis memiliki populasi <InlineMath math="36{.}000{.}000" />. Anggap populasinya tumbuh tetap sebesar <InlineMath math="2\%" /> per tahun selama lima tahun berikutnya. Berapa populasi yang diprediksi model setelah lima tahun?
 
-    3. Prediksi berapa banyaknya bakteri setelah <InlineMath math="3 \text{ jam}" /> dan <InlineMath math="4 \text{ jam}" /> pertama.
+### Pembahasan
 
-2. Pada tahun <InlineMath math="2015" />, kasus positif HIV-AIDS berjumlah sekitar <InlineMath math="36 \text{ juta jiwa}" />. Jumlah ini meningkat rata-rata <InlineMath math="2\%" /> setiap tahun dari tahun <InlineMath math="2010" /> hingga <InlineMath math="2015" />. Jika peningkatan kasus positif HIV di tahun-tahun berikutnya diprediksi bertambah secara eksponen pada peningkatan <InlineMath math="2\%" /> setiap tahun, berapa banyak kasus yang terjadi pada tahun <InlineMath math="2020" />?
+1. Nilai awalnya <InlineMath math="50" /> dan faktor pertumbuhannya <InlineMath math="2" />.
 
-### Kunci Jawaban
+   1. Enam nilai pertamanya adalah:
 
-1. Bakteri E.coli dengan jumlah awal <InlineMath math="50 \text{ bakteri}" /> yang membelah menjadi dua setiap <InlineMath math="15 \text{ menit}" />.
+      | Interval | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+      | -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+      | Bakteri | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1{.}600" /> |
 
-    1. Pertumbuhan Bakteri:
+      <FunctionChart
+        p={50}
+        a={2}
+        n={7}
+        title="Pertumbuhan Bakteri Ideal"
+        description={
+          <>
+            Jumlahnya menjadi dua kali lipat setiap <InlineMath math="15\text{ menit}" />.
+          </>
+        }
+      />
 
-        | Fase (<InlineMath math="15 \text{ menit}" />) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
-        | --------------- | --- | --- | --- | --- | --- | ----- |
-        | Banyak bakteri | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1.600" /> |
+   2. Dengan <InlineMath math="x" /> diukur dalam interval lima belas menit:
 
-        <FunctionChart
-          p={50}
-          a={2}
-          n={7}
-          title="Pertumbuhan Bakteri"
-          description={
-            <>
-              Pertumbuhan bakteri yang membelah menjadi dua setiap <InlineMath math="15 \text{ menit}" />.
-            </>
-          }
-        />
+      <BlockMath math="f(x)=50\cdot2^x" />
 
-    2. Fungsi pertumbuhan bakteri E.coli dapat dimodelkan dengan:
+   3. Tiga jam memuat <InlineMath math="\frac{3\cdot60}{15}=12" /> interval:
 
-        <BlockMath math="f(x) = 50 \cdot (2^x)" />
+      <MathContainer>
+        <BlockMath math="f(12)=50\cdot2^{12}" />
+        <BlockMath math="f(12)=50\cdot4{.}096" />
+        <BlockMath math="f(12)=204{.}800" />
+      </MathContainer>
 
-    3. Setelah <InlineMath math="3 \text{ jam}" /> pertama berarti fase ke-<InlineMath math="12" /> (bakteri membelah setiap <InlineMath math="15 \text{ menit}" />):
+      Empat jam memuat <InlineMath math="\frac{4\cdot60}{15}=16" /> interval:
 
-        <MathContainer>
-          <BlockMath math="f(12) = 50 \cdot (2^{12})" />
-          <BlockMath math="f(12) = 50 \cdot 4.096" />
-          <BlockMath math="f(12) = 204.800" />
-        </MathContainer>
+      <MathContainer>
+        <BlockMath math="f(16)=50\cdot2^{16}" />
+        <BlockMath math="f(16)=50\cdot65{.}536" />
+        <BlockMath math="f(16)=3{.}276{.}800" />
+      </MathContainer>
 
-        Setelah <InlineMath math="4 \text{ jam}" /> pertama berarti fase ke-<InlineMath math="16" /> (bakteri membelah setiap <InlineMath math="15 \text{ menit}" />):
-
-        <MathContainer>
-          <BlockMath math="f(16) = 50 \cdot (2^{16})" />
-          <BlockMath math="f(16) = 50 \cdot 65.536" />
-          <BlockMath math="f(16) = 3.276.800" />
-        </MathContainer>
-
-2. Kasus HIV-AIDS:
-
-   Jumlah kasus pada tahun <InlineMath math="2015" /> adalah <InlineMath math="36.000.000 \text{ jiwa}" /> dengan peningkatan <InlineMath math="2\%" /> per tahun.
-
-   Model matematika:
-
-   <BlockMath math="f(x) = 36.000.000 \cdot (1 + 0{,}02)^x" />
-
-   Untuk menghitung kasus pada tahun <InlineMath math="2020" /> (<InlineMath math="5 \text{ tahun}" /> setelah <InlineMath math="2015" />):
+2. Kenaikan <InlineMath math="2\%" /> bersesuaian dengan faktor tahunan <InlineMath math="1{,}02" />:
 
    <MathContainer>
-     <BlockMath math="f(5) = 36.000.000 \cdot (1{,}02)^5" />
-     <BlockMath math="f(5) = 36.000.000 \cdot 1{,}1040808" />
-     <BlockMath math="f(5) = 39.746.908" />
+     <BlockMath math="P(t)=36{.}000{.}000(1{,}02)^t" />
+     <BlockMath math="P(5)=36{.}000{.}000(1{,}02)^5" />
+     <BlockMath math="P(5)\approx39{.}746{.}909" />
    </MathContainer>
 
-   Jadi, prediksi jumlah kasus HIV-AIDS pada tahun <InlineMath math="2020" /> adalah sekitar <InlineMath math="39.746.908 \text{ jiwa}" />.
+   Model tersebut memprediksi sekitar <InlineMath math="39{,}75\text{ juta orang}" /> setelah lima tahun.
 
-## Penerapan Lain Pertumbuhan Eksponen
+## Batas Model
 
-Pertumbuhan eksponen juga ditemukan dalam konteks lain seperti:
-
-- Bunga majemuk dalam investasi
-- Pertumbuhan populasi makhluk hidup
-- Peluruhan radioaktif (pertumbuhan negatif)
-- Penyebaran penyakit menular
-
-Pertumbuhan eksponen sangat penting dalam berbagai bidang seperti biologi, keuangan, dan fisika karena menggambarkan banyak fenomena di dunia nyata.
+Pertumbuhan eksponensial muncul dalam bunga majemuk, model populasi ideal, model penularan awal, dan pertumbuhan laboratorium tanpa kendala. Selalu tentukan nilai awal, faktor, dan intervalnya. Sistem nyata biasanya memiliki laju yang berubah, sumber daya terbatas, atau kendala lain. Karena itu, aturan eksponensial hanya layak diperpanjang selama asumsinya masih masuk akal.

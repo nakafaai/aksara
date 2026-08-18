@@ -1,0 +1,58 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 1",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+**Lieferzeitanalyse**
+
+April <InlineMath math="2023" /> hat insgesamt <InlineMath math="30\text{ Tage}" />. Die erste Lieferung erfolgte am <InlineMath math="1" /> April, was dem Tag <InlineMath math="1" /> entspricht. Wir müssen berechnen, wie oft die Lieferanten <InlineMath math="A" /> und <InlineMath math="B" /> Waren innerhalb dieses Zeitraums von <InlineMath math="30" /> Tagen geliefert haben.
+
+Der Lieferplan folgt einem arithmetischen Progressionsmuster, wobei der erste Term <InlineMath math="a = 1" /> (erster Liefertermin) und die gemeinsame Differenz <InlineMath math="b" /> dem Intervall jedes Lieferanten entsprechen. Die Bedingung für den Liefertermin ist <InlineMath math="U_n \le 30" />.
+
+**Speiseöl <InlineMath math="A" /> Volumen**
+
+Der Lieferant <InlineMath math="A" /> liefert alle <InlineMath math="3\text{ Tage}" />.
+
+<MathContainer>
+  <BlockMath math="1 + (n_A - 1)3 \le 30" />
+  <BlockMath math="(n_A - 1)3 \le 29" />
+  <BlockMath math="n_A - 1 \le 9{,}66..." />
+  <BlockMath math="n_A \le 10{,}66..." />
+</MathContainer>
+
+Lieferant <InlineMath math="A" /> liefert somit <InlineMath math="10\text{-mal}" />.
+
+Gesamtvolumen <InlineMath math="A" />:
+
+<MathContainer>
+  <BlockMath math="10 \times 10 = 100 \text{ Liter}" />
+</MathContainer>
+
+**Speiseöl <InlineMath math="B" /> Volumen**
+
+Der Lieferant <InlineMath math="B" /> liefert alle <InlineMath math="4\text{ Tage}" />.
+
+<MathContainer>
+  <BlockMath math="1 + (n_B - 1)4 \le 30" />
+  <BlockMath math="(n_B - 1)4 \le 29" />
+  <BlockMath math="n_B - 1 \le 7{,}25" />
+  <BlockMath math="n_B \le 8{,}25" />
+</MathContainer>
+
+Lieferant <InlineMath math="B" /> liefert somit <InlineMath math="8\text{-mal}" />.
+
+Gesamtvolumen <InlineMath math="B" />:
+
+<MathContainer>
+  <BlockMath math="8 \times 15 = 120 \text{ Liter}" />
+</MathContainer>
+
+**Kombiniertes Gesamtvolumen**
+
+<MathContainer>
+  <BlockMath math="\text{Gesamt} = \text{Volumen A} + \text{Volumen B}" />
+  <BlockMath math="\text{Insgesamt} = 100 + 120 = 220 \text{ Liter}" />
+</MathContainer>
+
+Daher beträgt die Gesamtmenge der erhaltenen Speiseölmarken <InlineMath math="A" /> und <InlineMath math="B" /> <InlineMath math="220\text{ Liter}" />.

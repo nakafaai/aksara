@@ -8,22 +8,22 @@ export const metadata = {
 
 ## Basic Concept of Variables in Python
 
-Variables in Python are names that refer to specific objects in computer memory. Think of variables like labels or nicknames that you give to a storage box. The box contains values or data, while the label makes it easy for you to find and use the contents of the box whenever needed.
+In Python, a variable is a name bound to an object. The name is not a typed storage box: assignment can bind it to another object, while other names may still refer to the original object.
 
-When you write `x = 2`, Python does three important things. First, Python creates an object with the value <InlineMath math="2" /> in memory. Second, Python stores that object at a specific memory address. Third, Python connects the variable name `x` to that memory address.
+When Python executes `x = 2`, it evaluates the expression <InlineMath math="2" /> and binds the name `x` to the resulting integer object. Object allocation, reuse, and physical memory placement are implementation details, not behavior your program should assume.
 
 ## How Variables and Memory Work
 
-Every time you create a new variable, Python allocates space in computer memory to store that value. Each memory location has a unique address that you can see using the `id()` function.
+The built-in `id()` returns an integer that uniquely identifies an object during that object's lifetime. CPython commonly derives it from a memory address, but Python does not promise that interpretation across implementations.
 
 <Mermaid
   title="A Name Points to an Object"
   description="Trace a variable name to an object in memory so assignment is not mistaken for a fixed storage box."
   chart={`graph TB
     subgraph "Memory"
-        M1["1004: int 2"]
-        M2["2008: str 'Hello'"]
-        M3["3012: list [1, 2, 3]"]
+        M1["Object A: int 2"]
+        M2["Object B: str 'Hello'"]
+        M3["Object C: list [1, 2, 3]"]
     end
 
     subgraph "Variables"
@@ -49,25 +49,23 @@ Every time you create a new variable, Python allocates space in computer memory 
       code: `# Creating variable x with value 2
 x = 2
 print(x)        # Output: 2
-print(id(x))    # Output: 1004 (memory address)
-
-# id() function displays object memory address
-print(id(2))    # Output: 1004 (same address)
+print(id(x))    # Implementation-specific object identity
 
 # Creating variable y that refers to variable x
 y = x
 print(y)        # Output: 2
-print(id(y))    # Output: 1004 (same address as x)
+print(y is x)   # Output: True
 
 # Creating variable z with the same value
 z = 2
 print(z)        # Output: 2
-print(id(z))    # Output: 1004 (same address)`
+print(z == x)   # Output: True (equal value)
+# Never rely on z is x; object reuse is implementation-specific`
     }
   ]}
 />
 
-The example above shows an important concept in Python. When multiple variables have the same value, Python often makes them refer to the same object in memory. This is an optimization that Python performs to save memory usage, especially for frequently used objects like small numbers and short strings.
+Assignment `y = x` guarantees that both names refer to the same object at that moment. Creating another equal value only guarantees equality, not identity. Some Python implementations reuse immutable objects, but correct code never depends on that optimization.
 
 ## Python Variable Characteristics
 
@@ -75,7 +73,7 @@ Python has several unique characteristics in variable handling that distinguish 
 
 ### No Variable Declaration
 
-Unlike programming languages such as C or Java, Python does not require explicit variable declaration. You don't need to specify the variable's data type before using it. Python will automatically determine the data type based on the given value.
+Unlike languages that require a separate variable declaration, Python binds a name when an assignment runs. Objects have types, and `type(value)` reports the type of the object currently bound to a name.
 
 <CodeBlock
   data={[
@@ -99,7 +97,7 @@ print(type(aktif))      # Output: <class 'bool'>`
 
 ### Dynamic Data Types
 
-Python uses a dynamic data type system, which means variable data types can change while the program is running. One variable can store an integer at one time, then be changed to a string at another time.
+Python is dynamically typed: each object has a type, while the same name can be rebound to objects of different types as the program runs.
 
 <CodeBlock
   data={[
@@ -128,7 +126,7 @@ Python has strict rules for variable naming that you must follow for code to run
 
 ### Variable Name Components
 
-Variable names in Python can consist of three main components. First are letters, both lowercase (`a`, `b`, `c`, ..., `z`) and uppercase (`A`, `B`, `C`, ..., `Z`). Second are numbers (<InlineMath math="0, 1, 2, \dots, 9" />). Third is the underscore character (_).
+An identifier starts with an underscore or a Unicode letter and may continue with identifier letters, underscores, and digits such as <InlineMath math="0,1,2,\dots,9" />. Python accepts many non-ASCII identifiers, but descriptive ASCII `snake_case` names are often easier to type, search, and share across tools.
 
 <CodeBlock
   data={[

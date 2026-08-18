@@ -1,72 +1,122 @@
 export const metadata = {
   title: "Principal Component Analysis",
-  description: "Learn PCA through covariance matrix diagonalization, eigenvalue analysis, coordinate transformation, and geometric visualization for data science.",
+  description: "Derive PCA from centered data, covariance eigenvectors, and the singular value decomposition. Interpret explained variance and low-rank reconstruction geometrically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-07-17",
   subject: "Linear Methods of AI",
 };
 
+## Start with Centered Data
 
-
-## Principal Component Analysis Example
-
-Imagine you have a random vector <InlineMath math="x \in \mathbb{R}^n" /> that is normally distributed. This vector has a zero expected value <InlineMath math="0 \in \mathbb{R}^n" /> and a positive definite covariance matrix <InlineMath math="C \in \mathbb{R}^{n \times n}" />. We can write it as a normal distribution like this:
+Let <InlineMath math="X\in\mathbb{R}^{m\times n}" /> contain <InlineMath math="m" /> observations of <InlineMath math="n" /> features. PCA begins by subtracting each feature mean:
 
 <MathContainer>
-<BlockMath math="x \sim N(0, C)" />
+<BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
+<BlockMath math="X_c=X-\mathbf{1}\mu^T" />
 </MathContainer>
 
-Each individual parameter <InlineMath math="x_i" /> represents characteristics of the process we are observing. In practice, almost all entries of the covariance matrix <InlineMath math="C" /> can be non-zero. This means these parameters are strongly correlated due to covariances in the off-diagonal elements.
+The sample covariance matrix is
 
-Through principal component analysis, we can determine the main influence factors that affect the process.
+<BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
 
-## Covariance Matrix Diagonalization
+It is symmetric positive semidefinite. It may be singular when features are linearly dependent or when <InlineMath math="n>m-1" />.
 
-To identify the main influence factors, we need to perform diagonalization on the covariance matrix <InlineMath math="C" />. Let <InlineMath math="\lambda_1 \geq \ldots \geq \lambda_n > 0" /> be the eigenvalues of <InlineMath math="C" /> with corresponding orthonormal eigenvectors <InlineMath math="v_1, \ldots, v_n" />.
+Centering is mandatory. Standardizing each feature to unit variance is a separate modeling choice that is often appropriate when features use incomparable units. It changes the question from directions of largest absolute variance to directions of largest standardized variance.
 
-Based on the spectral theorem, we can form the diagonal matrix and eigenvector matrix:
+## Principal Directions
+
+By the spectral theorem,
 
 <MathContainer>
-<BlockMath math="\Lambda = \begin{pmatrix} \lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_n \end{pmatrix}" />
-<BlockMath math="S = (v_1 \quad \ldots \quad v_n)" />
+<BlockMath math="Cv_i=\lambda_i v_i" />
+<BlockMath math="\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_n\ge0" />
+<BlockMath math="V=(v_1\ \,\cdots\ \,v_n),\qquad V^TV=I" />
+<BlockMath math="C=V\Lambda V^T" />
 </MathContainer>
 
-Then the fundamental relationship holds:
+The first principal direction solves
+
+<BlockMath math="v_1=\underset{\|v\|_2=1}{\operatorname{argmax}}\;v^TCv" />
+
+Each later direction maximizes the same variance subject to being orthogonal to all earlier directions. The transformed coordinates, or scores, are
+
+<BlockMath math="Z=X_cV" />
+
+and their sample covariance is diagonal:
+
+<BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
+
+The principal components are therefore uncorrelated. They are not generally independent. Independence follows in special models, including a jointly Gaussian distribution.
+
+## Explained Variance and Dimension Reduction
+
+The proportion of total sample variance explained by component <InlineMath math="j" /> is
+
+<BlockMath math="\operatorname{EVR}_j=\frac{\lambda_j}{\sum_{i=1}^n\lambda_i}=\frac{\lambda_j}{\operatorname{tr}(C)}" />
+
+Keeping the first <InlineMath math="k" /> eigenvectors in <InlineMath math="V_k" /> gives the scores and reconstruction
 
 <MathContainer>
-<BlockMath math="\Lambda = S^T \cdot C \cdot S" />
+<BlockMath math="Z_k=X_cV_k" />
+<BlockMath math="\widehat{X}_c=Z_kV_k^T=X_cV_kV_k^T" />
+<BlockMath math="\widehat{X}=\widehat{X}_c+\mathbf{1}\mu^T" />
 </MathContainer>
 
-## Transformation to New Coordinates
+Among all rank-<InlineMath math="k" /> linear reconstructions, this choice minimizes squared reconstruction error. With the sample-covariance convention above,
 
-In relation to the basis <InlineMath math="v_1, \ldots, v_n" />, new coordinates are defined as <InlineMath math="y = S^T x" />. What's interesting is that the variables <InlineMath math="y_i" /> become independent and normally distributed with variance <InlineMath math="\lambda_i" />:
+<BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
+
+## Equivalent SVD Computation
+
+Compute the thin singular value decomposition
+
+<BlockMath math="X_c=U\Sigma V^T" />
+
+Then the right singular vectors are the principal directions and
+
+<BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
+
+Using the SVD avoids explicitly forming <InlineMath math="X_c^TX_c" />, whose condition number is squared. It is also the natural route when <InlineMath math="X_c" /> is rectangular or rank deficient.
+
+## Worked Two-Dimensional Covariance
+
+Consider a covariance ellipse rotated by
+
+<BlockMath math="\theta=\frac{\pi}{6}" />
+
+with variances <InlineMath math="9" /> and <InlineMath math="2.25" /> along its principal axes. Let
 
 <MathContainer>
-<BlockMath math="y_i \sim N(0, \lambda_i), \quad i = 1, \ldots, n" />
+<BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
+<BlockMath math="C=R\begin{pmatrix}9&0\\0&2.25\end{pmatrix}R^T" />
+<BlockMath math="C=\frac1{16}\begin{pmatrix}117&27\sqrt3\\27\sqrt3&63\end{pmatrix}" />
 </MathContainer>
 
-These variables <InlineMath math="y_i" /> are called the **principal components** of <InlineMath math="x" />. The principal component with the largest variance <InlineMath math="\lambda_i" /> describes the main influence factor of the observed process.
+The principal directions are the columns of <InlineMath math="R" />:
 
-Picture cloud movement in the sky. Many factors affect that movement, but westerly winds might have the greatest influence. The first principal component is like the main wind direction that contributes most to the cloud movement pattern.
+<MathContainer>
+<BlockMath math="v_1=\begin{pmatrix}\sqrt3/2\\1/2\end{pmatrix},\qquad\lambda_1=9" />
+<BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2.25" />
+</MathContainer>
 
-## Geometric Visualization
+The first component explains
 
-Geometrically, principal component analysis can be understood as a way to find the most optimal direction to represent data. Imagine data scattered like a cloud of points in two-dimensional space. Principal components show the direction where data has maximum variability.
+<BlockMath math="\frac{9}{9+2.25}=0.8=80\%" />
+
+of the total variance.
 
 <LineEquation
-  title={<>Principal Component Analysis Visualization in <InlineMath math="\mathbb{R}^2" /></>}
-  description="Transformation from original coordinates to principal factor directions that capture maximum data variability."
+  title={<>Covariance ellipse and principal directions <InlineMath math="v_1,v_2" /></>}
+  description={<>The cyan ellipse has semiaxis lengths <InlineMath math="\sqrt{\lambda_1}=3" /> and <InlineMath math="\sqrt{\lambda_2}=1.5" />. The orange directions are its eigenvectors.</>}
   data={[
     {
-      points: Array.from({ length: 100 }, (_, i) => {
-        const angle = (i / 99) * 2 * Math.PI;
-        const a = 3;
-        const b = 1.5;
+      points: Array.from({ length: 100 }, (_, index) => {
+        const angle = (index / 99) * 2 * Math.PI;
+        const localX = 3 * Math.cos(angle);
+        const localY = 1.5 * Math.sin(angle);
         const rotation = Math.PI / 6;
-        const x_local = a * Math.cos(angle);
-        const y_local = b * Math.sin(angle);
-        const x = x_local * Math.cos(rotation) - y_local * Math.sin(rotation);
-        const y = x_local * Math.sin(rotation) + y_local * Math.cos(rotation);
+        const x = localX * Math.cos(rotation) - localY * Math.sin(rotation);
+        const y = localX * Math.sin(rotation) + localY * Math.cos(rotation);
         return { x, y, z: 0 };
       }),
       color: "#0891b2",
@@ -74,74 +124,62 @@ Geometrically, principal component analysis can be understood as a way to find t
       showPoints: false
     },
     {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
+      points: [{ x: -4, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
       color: "#7c3aed",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Variable 1",
-          at: 1,
-          offset: [0.3, -0.5, 0]
-        }
-      ]
+      labels: [{
+        text: <>Original axis <InlineMath math="x_1" /></>,
+        at: 1,
+        offset: [0.3, -0.5, 0]
+      }]
     },
     {
-      points: [
-        { x: 0, y: -3, z: 0 },
-        { x: 0, y: 3, z: 0 }
-      ],
+      points: [{ x: 0, y: -3, z: 0 }, { x: 0, y: 3, z: 0 }],
       color: "#7c3aed",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Variable 2",
-          at: 1,
-          offset: [0.8, 0.3, 0]
-        }
-      ]
+      labels: [{
+        text: <>Original axis <InlineMath math="x_2" /></>,
+        at: 1,
+        offset: [0.8, 0.3, 0]
+      }]
     },
     {
-      points: [
-        { x: -3.5, y: -2, z: 0 },
-        { x: 3.5, y: 2, z: 0 }
-      ],
+      points: [{ x: -3.464, y: -2, z: 0 }, { x: 3.464, y: 2, z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Factor 1",
-          at: 1,
-          offset: [0.3, 0.3, 0]
-        }
-      ]
+      labels: [{
+        text: <>Principal direction <InlineMath math="v_1" /></>,
+        at: 1,
+        offset: [0.3, 0.3, 0]
+      }]
     },
     {
-      points: [
-        { x: -1.5, y: 2.6, z: 0 },
-        { x: 1.5, y: -2.6, z: 0 }
-      ],
+      points: [{ x: -1.5, y: 2.598, z: 0 }, { x: 1.5, y: -2.598, z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        {
-          text: "Factor 2",
-          at: 0,
-          offset: [-0.8, 0.3, 0]
-        }
-      ]
+      labels: [{
+        text: <>Principal direction <InlineMath math="v_2" /></>,
+        at: 0,
+        offset: [-0.8, 0.3, 0]
+      }]
     }
   ]}
   cameraPosition={[0, 0, 15]}
   showZAxis={false}
 />
 
-In the visualization above, Variable <InlineMath math="1" /> and Variable <InlineMath math="2" /> represent the original coordinates of your data. Meanwhile, Factor <InlineMath math="1" /> and Factor <InlineMath math="2" /> show the new principal component directions. Notice how the factor directions are not aligned with the original axes, but rather follow the actual data distribution pattern.
+## Interpretation Boundaries
 
-Factor <InlineMath math="1" /> shows the direction with the greatest variability in the data, while Factor <InlineMath math="2" /> shows the direction with the second greatest variability that is perpendicular to Factor <InlineMath math="1" />. This transformation allows us to better understand the data structure because principal components capture the variability patterns that actually exist in the data.
+| Check | Why it matters |
+| --- | --- |
+| Center with training-set means only | prevents data leakage and preserves the learned coordinate system |
+| Review feature units and scaling | high numerical variance can otherwise dominate for the wrong reason |
+| Choose <InlineMath math="k" /> from validation needs, not one fixed threshold | explained variance does not measure predictive relevance |
+| Remember eigenvector signs are arbitrary | <InlineMath math="v_j" /> and <InlineMath math="-v_j" /> define the same component |
+| Inspect nonlinear structure and outliers | PCA is a linear, variance-based summary and can be sensitive to both |
+
+PCA finds directions of variance, not causal factors. A principal component may combine many original features, and a low-variance direction can still matter for a downstream task.

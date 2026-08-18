@@ -1,0 +1,88 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-22",
+};
+
+Der Grundraum <InlineMath math="S" /> enthält alle Auswahlen von <InlineMath math="3" /> Zahlen aus <InlineMath math="\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}" />. Die Ausgangsmenge hat <InlineMath math="n = 10" /> Elemente, also insgesamt <InlineMath math="10" /> Zahlen.
+
+Die Anzahl der Möglichkeiten, <InlineMath math="3" /> Zahlen aus <InlineMath math="10" /> auszuwählen, beträgt:
+
+<BlockMath math="n(S) = C(10, 3) = \frac{10 \times 9 \times 8}{3 \times 2 \times 1} = 120" />
+
+Prüfen wir jede Aussage.
+
+#### Aussage eins
+
+Menge gerader Zahlen: <InlineMath math="\{0, 2, 4, 6, 8\}" /> (<InlineMath math="5" /> Zahlen).
+Anzahl der Möglichkeiten, <InlineMath math="3" /> gerade Zahlen aus <InlineMath math="5" /> auszuwählen:
+
+<BlockMath math="n(A) = C(5, 3) = \frac{5 \times 4 \times 3}{3 \times 2 \times 1} = 10" />
+
+Wahrscheinlichkeit:
+
+<BlockMath math="P(A) = \frac{10}{120} = \frac{1}{12}" />
+
+Ist <InlineMath math="\frac{1}{12} > \frac{1}{20}" />?
+
+<BlockMath math="\frac{1}{12} = \frac{5}{60}, \quad \frac{1}{20} = \frac{3}{60}" />
+
+Da <InlineMath math="\frac{5}{60} > \frac{3}{60}" /> gilt, ist Aussage <InlineMath math="1" /> **wahr**.
+
+#### Aussage zwei
+
+Die Zahl <InlineMath math="3" /> ist fest ausgewählt. Dazu kommen <InlineMath math="2" /> Zahlen aus den übrigen <InlineMath math="9" /> Zahlen.
+
+<BlockMath math="n(B) = C(9, 2) = \frac{9 \times 8}{2 \times 1} = 36" />
+
+Wahrscheinlichkeit:
+
+<BlockMath math="P(B) = \frac{36}{120} = \frac{3}{10}" />
+
+Aussage <InlineMath math="2" /> ist **wahr**.
+
+#### Aussage drei
+
+Die Teiler von <InlineMath math="9" /> in der Ausgangsmenge sind <InlineMath math="\{1, 3, 9\}" /> (<InlineMath math="3" /> Zahlen).
+Zahlen, die keine Faktoren von <InlineMath math="9" /> sind, sind <InlineMath math="\{0, 2, 4, 5, 6, 7, 8\}" /> (<InlineMath math="7" /> Zahlen).
+
+Die Wahrscheinlichkeit, dass mindestens ein Faktor von <InlineMath math="9" /> ausgewählt wird, ist <InlineMath math="1" /> minus der Wahrscheinlichkeit, dass kein Faktor von <InlineMath math="9" /> ausgewählt wird.
+
+Die Anzahl der Möglichkeiten, <InlineMath math="3" /> Zahlen auszuwählen, die keine Teiler von <InlineMath math="9" /> sind, beträgt:
+
+<BlockMath math="n(\text{Nicht Faktor 9}) = C(7, 3) = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = 35" />
+
+Wahrscheinlichkeit ohne Faktor von <InlineMath math="9" />:
+
+<BlockMath math="P(\text{Keine}) = \frac{35}{120} = \frac{7}{24}" />
+
+Wahrscheinlichkeit von mindestens einem:
+
+<BlockMath math="P(\text{Mindestens einer}) = 1 - \frac{7}{24} = \frac{17}{24}" />
+
+Ist <InlineMath math="\frac{17}{24} < \frac{1}{2}" />?
+<InlineMath math="\frac{1}{2} = \frac{12}{24}" />.
+Da <InlineMath math="\frac{17}{24} > \frac{12}{24}" /> gilt, ist Aussage <InlineMath math="3" /> **falsch**.
+
+#### Aussage vier
+
+Ungerade Primzahlen in der Menge: <InlineMath math="\{3, 5, 7\}" /> (<InlineMath math="3" /> Zahlen).
+Zahlen, die **keine** ungeraden Primzahlen sind: <InlineMath math="\{0, 1, 2, 4, 6, 8, 9\}" /> (<InlineMath math="7" /> Zahlen).
+
+Das Ereignis, dass keine ausgewählte Zahl eine ungerade Primzahl ist, bedeutet, dass alle drei Zahlen aus der Menge der nicht ungeraden Primzahlen stammen.
+
+Die Anzahl der Möglichkeiten, <InlineMath math="3" /> Zahlen aus den <InlineMath math="7" /> nicht ungeraden Primzahlen auszuwählen, beträgt:
+
+<BlockMath math="n(D) = C(7, 3) = 35" />
+
+Wahrscheinlichkeit:
+
+<BlockMath math="P(D) = \frac{35}{120} = \frac{7}{24}" />
+
+Ist <InlineMath math="\frac{7}{24} < \frac{1}{3}" />?
+<InlineMath math="\frac{1}{3} = \frac{8}{24}" />.
+Da <InlineMath math="\frac{7}{24} < \frac{8}{24}" /> gilt, ist Aussage <InlineMath math="4" /> **wahr**.
+
+#### Fazit
+
+Die richtigen Aussagen sind <InlineMath math="1, 2, 4" />. Es gibt <InlineMath math="3" /> wahre Aussagen.

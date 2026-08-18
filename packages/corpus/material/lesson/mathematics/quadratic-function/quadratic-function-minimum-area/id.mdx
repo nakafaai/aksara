@@ -1,143 +1,172 @@
 export const metadata = {
-    title: "Menentukan Luas Minimum",
-    description: "Menggunakan fungsi kuadrat untuk mencari luas dan biaya minimum lewat model sederhana dan interpretasi titik puncak.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-04-19",
-    subject: "Persamaan dan Fungsi Kuadrat",
+  title: "Menentukan Luas Minimum",
+  description: "Menyusun model kuadrat untuk luas yang dibatasi, menentukan nilai minimumnya, lalu memeriksa apakah hasilnya sah dalam masalah semula.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Fungsi Kuadrat",
 };
 
-## Apa itu Luas Minimum?
+## Mengubah kendala menjadi nilai minimum
 
-Selain mencari yang paling besar, fungsi kuadrat juga bisa dipakai buat mencari nilai _paling kecil_ (minimum). Kapan ya kita butuh cari luas minimum? Misalnya, kita punya bahan terbatas tapi harus membuat sesuatu dengan luas tertentu, dan kita mau pakai bahan sesedikit mungkin.
+Sebagian masalah optimasi meminta nilai sekecil mungkin. Produsen mungkin mencari biaya terendah, atau suatu rancangan membutuhkan jumlah luas terkecil dengan syarat geometri tertentu. Tujuannya berbeda, tetapi proses pemodelannya tetap sama: terjemahkan kendala, susun fungsi dengan satu variabel, lalu tafsirkan titik puncaknya.
 
-## Kenalan Lagi Sama Fungsi Kuadrat
+Mencari minimum bukan berarti langsung memilih nol. Masalah semula menentukan nilai mana yang diperbolehkan, dan minimum harus berada di dalam domain tersebut.
 
-Ingat kan, fungsi kuadrat itu bisa senyum (<InlineMath math="ax^2 + bx + c" /> kalau <InlineMath math="a > 0" />) atau cemberut (<InlineMath math="ax^2 + bx + c" /> kalau <InlineMath math="a < 0" />).
+## Mengapa fungsi kuadrat terbuka ke atas memiliki minimum
 
-Nah, kalau kita mau cari nilai _paling kecil_ (minimum), kita pakai yang bentuknya senyum, jadi nilai <InlineMath math="a" /> nya positif (<InlineMath math="a > 0" />).
+Fungsi kuadrat memiliki bentuk
 
-Bentuk umumnya tetap sama:
+<BlockMath math="f(x)=ax^2+bx+c,\qquad a\neq0" />
 
-<BlockMath math="f(x) = ax^2 + bx + c" />
+Ketika <InlineMath math="a>0" />, grafiknya terbuka ke atas. Titik puncak menjadi titik terendah pada grafik. Jika titik puncak berada di dalam domain yang diperbolehkan, nilai fungsinya merupakan nilai minimum.
 
-(<InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" /> itu angka, <InlineMath math="a \neq 0" />).
+### Menentukan titik puncak
 
-## Cara Cari Titik Paling Bawah (Lembah)
+Untuk <InlineMath math="f(x)=ax^2+bx+c" />, gunakan
 
-Nilai paling kecil itu ada di titik paling bawah dari grafik yang senyum tadi. Titik ini juga namanya titik puncak atau vertex (tapi posisinya di bawah).
+<MathContainer>
+  <BlockMath math="x_v=-\frac{b}{2a}" />
+  <BlockMath math="y_v=f(x_v)" />
+</MathContainer>
 
-Rumus mencarinya sama persis dengan mencari titik paling atas!
+Bentuk ekuivalen yang menggunakan diskriminan adalah
 
-Untuk mencari _posisi_ titik lembah (nilai <InlineMath math="x" /> nya):
+<MathContainer>
+  <BlockMath math="\Delta=b^2-4ac" />
+  <BlockMath math="y_v=-\frac{\Delta}{4a}" />
+</MathContainer>
 
-<BlockMath math="x_p = -\frac{b}{2a}" />
+Setelah menghitung titik puncak, selalu kembali ke konteks. Periksa domain, satuan, dan apakah variabel harus berupa bilangan bulat.
 
-Untuk mencari _nilai paling kecilnya_ (nilai <InlineMath math="y" /> atau <InlineMath math="f(x)" /> nya):
+## Contoh terurai: satu kawat, dua persegi
 
-<BlockMath math="y_p = f(x_p) = a(x_p)^2 + b(x_p) + c" />
+Kawat sepanjang <InlineMath math="40\text{ cm}" /> dipotong menjadi dua bagian. Setiap bagian dibentuk menjadi sebuah persegi. Di mana kawat harus dipotong agar jumlah luas kedua persegi sekecil mungkin?
 
-Atau pakai rumus cepat diskriminan:
+1. **Namai panjang sisi.** Misalkan sisi persegi pertama <InlineMath math="x\text{ cm}" /> dan sisi persegi kedua <InlineMath math="y\text{ cm}" />.
+2. **Terjemahkan kendala panjang kawat.**
 
-<BlockMath math="y_p = -\frac{D}{4a}" />
+   <MathContainer>
+     <BlockMath math="4x+4y=40" />
+     <BlockMath math="x+y=10" />
+     <BlockMath math="y=10-x" />
+   </MathContainer>
 
-dengan <InlineMath math="D = b^2 - 4ac" />.
+3. **Susun fungsi jumlah luas.**
 
-## Contoh Biar Ngerti
+   <MathContainer>
+     <BlockMath math="A=x^2+y^2" />
+     <BlockMath math="A(x)=x^2+(10-x)^2" />
+     <BlockMath math="A(x)=x^2+(100-20x+x^2)" />
+     <BlockMath math="A(x)=2x^2-20x+100" />
+   </MathContainer>
 
-Misalnya, kita punya seutas kawat panjangnya <InlineMath math="40 \text{ cm}" />. Kawat ini mau dipotong jadi dua bagian. Bagian pertama dibentuk jadi persegi, bagian kedua juga dibentuk jadi persegi. Berapa ukuran potongan agar _jumlah luas_ kedua persegi itu paling kecil (minimum)?
+4. **Nyatakan domain yang diperbolehkan.** Kedua persegi harus memiliki sisi positif, sehingga <InlineMath math="0<x<10" />. Karena <InlineMath math="a=2>0" />, grafiknya terbuka ke atas.
+5. **Tentukan titik puncak.**
 
-1.  **Bikin Nama:** Misal sisi persegi pertama <InlineMath math="x \text{ cm}" />, sisi persegi kedua <InlineMath math="y \text{ cm}" />.
-2.  **Hubungan Panjang Kawat:**
+   <BlockMath math="x_v=-\frac{-20}{2(2)}=\frac{20}{4}=5" />
 
-    - Kawat untuk persegi pertama: Kelilingnya <InlineMath math="4x \text{ cm}" />.
-    - Kawat untuk persegi kedua: Kelilingnya <InlineMath math="4y \text{ cm}" />.
-    - Total panjang kawat:
+6. **Tentukan sisi kedua dan hitung jumlah luas.**
 
-      <BlockMath math="4x + 4y = 40" />
+   <MathContainer>
+     <BlockMath math="y=10-x=10-5=5" />
+     <BlockMath math="A(5)=5^2+5^2=50" />
+   </MathContainer>
 
-      Sederhanakan (bagi <InlineMath math="4" />):
+7. **Tafsirkan potongannya.** Setiap persegi membutuhkan keliling <InlineMath math="4(5)=20\text{ cm}" />, sehingga kawat dipotong menjadi dua bagian sepanjang <InlineMath math="20\text{ cm}" />. Seluruh kawat <InlineMath math="40\text{ cm}" /> tetap digunakan. Yang diminimalkan hanya jumlah luas yang dikelilingi.
 
-      <BlockMath math="x + y = 10" />
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Model jumlah luas <InlineMath math="A(x)=2x^2-20x+100" />
+      </>
+    }
+    description={
+      <>
+        Grafik ditampilkan untuk <InlineMath math="0\le x\le10" />. Di dalam selang yang memenuhi syarat, yaitu <InlineMath math="0<x<10" />, grafik mencapai titik terendah di <InlineMath math="(5,50)" />.
+      </>
+    }
+    showZAxis={false}
+    cameraPosition={[5, 24, 30]}
+    data={[
+      {
+        points: Array.from({ length: 11 }, (_, x) => ({
+          x,
+          y: 2 * x * x - 20 * x + 100,
+          z: 0,
+        })),
+        color: "#7c3aed",
+        labels: [
+          {
+            text: "Titik minimum",
+            at: 5,
+            offset: [0, -4, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
 
-      Artinya:
+Jumlah luas minimum adalah <InlineMath math="50\text{ cm}^2" />, yang diperoleh ketika kedua persegi memiliki sisi <InlineMath math="5\text{ cm}" />.
 
-      <BlockMath math="y = 10 - x" />
+## Membaca model secara ringkas
 
-3.  **Rumus Jumlah Luas:** Jumlah luas kedua persegi adalah <InlineMath math="A = \text{Luas}_1 + \text{Luas}_2" />.
+| Bagian masalah | Pernyataan matematika | Makna |
+| -------------- | --------------------- | ----- |
+| Panjang kawat tetap | <InlineMath math="4x+4y=40" /> | Keliling kedua persegi memakai seluruh kawat sepanjang <InlineMath math="40\text{ cm}" />. |
+| Model satu variabel | <InlineMath math="A(x)=2x^2-20x+100" /> | Setiap sisi pertama yang diperbolehkan menentukan satu nilai jumlah luas. |
+| Domain | <InlineMath math="0<x<10" /> | Kedua persegi tetap memiliki sisi positif. |
+| Titik puncak | <InlineMath math="(5,50)" /> | Sisi yang sama panjang menghasilkan jumlah luas terkecil. |
 
-    <BlockMath math="A(x) = x^2 + y^2" />
+## Penerapan lain: biaya produksi
 
-    Ganti <InlineMath math="y" /> dengan <InlineMath math="10 - x" />:
+Misalkan biaya produksi <InlineMath math="x" /> barang, dalam ribuan rupiah, dinyatakan oleh
 
-    <MathContainer>
-      <BlockMath math="A(x) = x^2 + (10 - x)^2" />
-      <BlockMath math="A(x) = x^2 + (100 - 20x + x^2)" />
-      <BlockMath math="A(x) = 2x^2 - 20x + 100" />
-    </MathContainer>
+<BlockMath math="C(x)=3x^2-60x+500" />
 
-4.  **Bentuk Fungsi Kuadrat:** Kita sudah dapat <InlineMath math="A(x) = 2x^2 - 20x + 100" />.
+Karena <InlineMath math="a=3>0" />, model ini memiliki minimum:
 
-    Ini fungsi kuadrat dengan <InlineMath math="a = 2" />, <InlineMath math="b = -20" />, <InlineMath math="c = 100" />. Karena <InlineMath math="a" /> positif, grafiknya senyum, jadi ada nilai minimum.
+<MathContainer>
+  <BlockMath math="x_v=-\frac{-60}{2(3)}=10" />
+  <BlockMath math="C(10)=3(10)^2-60(10)+500=300-600+500=200" />
+</MathContainer>
 
-5.  **Cari Sisi x untuk Luas Minimum:** Pakai rumus <InlineMath math="x_p = -b / (2a)" />:
-
-    <BlockMath math="x_p = -\frac{-20}{2 \times 2} = \frac{20}{4} = 5" />
-
-    Jadi, sisi persegi pertama harus <InlineMath math="5 \text{ cm}" /> agar jumlah luasnya minimal.
-
-6.  **Cari Sisi y dan Luas Minimum:**
-
-    - Sisi persegi kedua: <InlineMath math="y = 10 - x = 10 - 5 = 5 \text{ cm}" />.
-    - Jumlah Luas Minimum: Masukkan <InlineMath math="x = 5" /> ke <InlineMath math="A(x)" />:
-
-      <BlockMath math="A(5) = 2(5)^2 - 20(5) + 100 = 2(25) - 100 + 100 = 50" />
-
-      Jumlah luas minimumnya adalah <InlineMath math="50 \text{ cm}^2" />.
-
-7.  **Kesimpulan:** Agar jumlah luas kedua persegi minimal (<InlineMath math="50 \text{ cm}^2" />), kawat harus dipotong sehingga kedua persegi memiliki sisi yang sama, yaitu <InlineMath math="5 \text{ cm}" />. (Artinya kawat dipotong jadi dua bagian sama panjang, <InlineMath math="20 \text{ cm}" /> dan <InlineMath math="20 \text{ cm}" />).
-
-## Dipakai Dimana Aja Sih?
-
-### Bisnis & Ekonomi
-
-**Contoh:**
-
-Biaya produksi <InlineMath math="x \text{ unit}" /> barang (dalam ribu rupiah) adalah <InlineMath math="C(x) = 3x^2 - 60x + 500" />. Berapa unit harus diproduksi agar biaya minimum?
-
-- Fungsi biaya: <InlineMath math="C(x) = 3x^2 - 60x + 500" /> (<InlineMath math="a=3, b=-60" />). <InlineMath math="a>0" />, jadi ada minimum.
-- Jumlah unit untuk biaya min: <InlineMath math="x_p = -b / (2a) = -(-60) / (2 \times 3) = 60 / 6 = 10 \text{ unit}" />.
-- Biaya minimum: <InlineMath math="C(10) = 3(10)^2 - 60(10) + 500 = 3(100) - 600 + 500 = 300 - 600 + 500 = 200" /> ribu rupiah (atau <InlineMath math="\text{Rp }200.000" />).
+Model tersebut memprediksi biaya minimum sebesar <InlineMath math="\text{Rp }200\,000" /> pada produksi <InlineMath math="10" /> barang. Keputusan produksi nyata juga perlu memeriksa apakah domain model dan kendala operasional memperbolehkan jumlah tersebut.
 
 ## Latihan
 
-Jumlah dua bilangan positif adalah <InlineMath math="16" />. Tentukan kedua bilangan tersebut agar jumlah kuadratnya minimum, dan hitung jumlah kuadrat minimumnya!
+Jumlah dua bilangan positif adalah <InlineMath math="16" />. Tentukan kedua bilangan yang meminimalkan jumlah kuadratnya, lalu hitung jumlah minimum tersebut.
 
-### Kunci Jawaban
+### Pembahasan lengkap
 
-1.  Misal bilangan pertama <InlineMath math="x" />, bilangan kedua <InlineMath math="y" />. (<InlineMath math="x > 0, y > 0" />).
-2.  Hubungan: <InlineMath math="x + y = 16" />. Maka <InlineMath math="y = 16 - x" />.
-3.  Jumlah Kuadrat: <InlineMath math="J = x^2 + y^2" />.
+1. Misalkan bilangan pertama <InlineMath math="x" /> dan bilangan kedua <InlineMath math="y" />.
+2. Terjemahkan kendala jumlah.
 
-    <MathContainer>
-      <BlockMath math="J(x) = x^2 + (16 - x)^2" />
-      <BlockMath math="J(x) = x^2 + (256 - 32x + x^2)" />
-      <BlockMath math="J(x) = 2x^2 - 32x + 256" />
-    </MathContainer>
+   <MathContainer>
+     <BlockMath math="x+y=16" />
+     <BlockMath math="y=16-x" />
+   </MathContainer>
 
-4.  Fungsi Jumlah Kuadrat: <InlineMath math="J(x) = 2x^2 - 32x + 256" />.
+3. Susun fungsi tujuan.
 
-    (<InlineMath math="a = 2, b = -32" />). Karena <InlineMath math="a > 0" />, ada nilai minimum.
+   <MathContainer>
+     <BlockMath math="S=x^2+y^2" />
+     <BlockMath math="S(x)=x^2+(16-x)^2" />
+     <BlockMath math="S(x)=x^2+(256-32x+x^2)" />
+     <BlockMath math="S(x)=2x^2-32x+256" />
+   </MathContainer>
 
-5.  Nilai <InlineMath math="x" /> untuk jumlah kuadrat min:
+4. Domain yang diperbolehkan adalah <InlineMath math="0<x<16" />, dan <InlineMath math="a=2>0" />, sehingga titik puncak memberi nilai minimum.
+5. Tentukan bilangan pertama pada titik puncak.
 
-    <BlockMath math="x_p = -b / (2a) = -(-32) / (2 \times 2) = 32 / 4 = 8" />
+   <BlockMath math="x_v=-\frac{-32}{2(2)}=\frac{32}{4}=8" />
 
-6.  Nilai <InlineMath math="y" />:
+6. Tentukan bilangan kedua dan hitung nilai fungsi tujuan.
 
-    <BlockMath math="y = 16 - x = 16 - 8 = 8" />
+   <MathContainer>
+     <BlockMath math="y=16-x=16-8=8" />
+     <BlockMath math="S(8)=8^2+8^2=128" />
+   </MathContainer>
 
-7.  Jumlah Kuadrat Minimum:
-
-    <BlockMath math="J(8) = 2(8)^2 - 32(8) + 256 = 2(64) - 256 + 256 = 128" />
-
-Jadi, kedua bilangan tersebut adalah <InlineMath math="8" /> dan <InlineMath math="8" /> agar jumlah kuadratnya minimum (yaitu <InlineMath math="128" />).
+Kedua bilangan tersebut adalah <InlineMath math="8" /> dan <InlineMath math="8" />, sedangkan jumlah kuadrat minimumnya adalah <InlineMath math="128" />.

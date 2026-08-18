@@ -8,11 +8,19 @@ export const metadata = {
 
 ## Pengertian Deret Bilangan
 
-Pernahkah kalian berpikir bagaimana cara menjumlahkan suku-suku dari suatu barisan bilangan? Misalnya, menjumlahkan <InlineMath math="1 + 2 + 3 + \cdots" /> dan seterusnya? Nah, inilah yang disebut **deret bilangan**.
+Bagaimana suku-suku suatu barisan dapat diakumulasikan? Bentuk seperti <InlineMath math="1+2+3+\cdots" /> disebut **deret**.
 
-Jadi, **deret bilangan** adalah hasil penjumlahan berurutan dari suku-suku suatu barisan bilangan. Sama seperti barisan, ada dua jenis deret utama: **deret aritmetika** (penjumlahan suku-suku barisan aritmetika) dan **deret geometri** (penjumlahan suku-suku barisan geometri). Tapi tenang, kita akan bahas detail rumusnya nanti ya.
+**Deret bilangan** dibentuk dengan menjumlahkan suku-suku suatu barisan sesuai urutannya. Dua contoh yang umum adalah **deret aritmetika**, yang sukunya berasal dari barisan aritmetika, dan **deret geometri**, yang sukunya berasal dari barisan geometri.
 
-Sekarang, mari kita lihat contoh nyata konsep deret melalui sebuah eksplorasi sederhana.
+Masalah jabat tangan membuat konsep ini lebih konkret.
+
+## Jumlah Parsial Menghubungkan Barisan dan Deret
+
+Untuk barisan <InlineMath math="(U_n)" />, jumlah <InlineMath math="n" /> suku pertamanya disebut jumlah parsial ke-<InlineMath math="n" />:
+
+<BlockMath math="S_n=U_1+U_2+\cdots+U_n=\sum_{k=1}^{n}U_k" />
+
+Soal berhingga meminta satu jumlah parsial tertentu. Untuk deret tak hingga, kita mengkaji apakah barisan <InlineMath math="(S_n)" /> mendekati satu limit berhingga ketika <InlineMath math="n" /> bertambah.
 
 ## Banyaknya Jabat Tangan
 
@@ -36,10 +44,34 @@ Perhatikan polanya! Banyaknya jabat tangan yang terjadi membentuk suatu penjumla
 
 Penjumlahan seperti <InlineMath math="1+2+3+4" /> ini adalah contoh **deret bilangan**. Dalam kasus ini, deret yang terbentuk berasal dari penjumlahan suku-suku barisan bilangan asli <InlineMath math="(1, 2, 3, 4, ...)" />.
 
+Setiap pasangan harus dihitung tepat sekali. Jika jabat tangan setiap orang dihitung secara terpisah, setiap pasangan akan terhitung dua kali, satu kali dari sudut pandang masing-masing orang.
+
+### Cara Menghitung yang Kedua
+
+Satu jabat tangan merupakan satu pasangan orang yang urutannya tidak diperhatikan. Banyak pasangan yang dapat dipilih dari <InlineMath math="n" /> orang adalah:
+
+<BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
+
+Untuk <InlineMath math="n=5" />, diperoleh <InlineMath math="\binom52=10" />, sama dengan hasil penjumlahan berurutan.
+
 ### Apakah Ini Membentuk Barisan?
 
 Pertanyaan menarik: apakah banyaknya jabat tangan <InlineMath math="(1, 3, 6, 10, ...)" /> itu sendiri membentuk barisan aritmetika atau geometri? Jawabannya tidak. Barisan ini tidak memiliki beda atau rasio yang tetap antar sukunya (<InlineMath math="3-1=2" />, <InlineMath math="6-3=3" />, <InlineMath math="10-6=4" />).
 
-Namun, **uraian** dari banyaknya jabat tangan (<InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath math="1+2+3" />, <InlineMath math="1+2+3+4" />) jelas merupakan bentuk penjumlahan dari suku-suku suatu barisan (yaitu barisan bilangan asli). Inilah inti dari konsep **deret**.
+Namun, **uraian** banyaknya jabat tangan (<InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath math="1+2+3" />, <InlineMath math="1+2+3+4" />) merupakan penjumlahan suku-suku barisan bilangan asli. Inilah inti dari konsep **deret**.
 
 Jadi, eksplorasi jabat tangan ini menunjukkan bagaimana konsep deret muncul dari penjumlahan suku-suku suatu pola atau barisan bilangan dalam situasi sehari-hari.
+
+## Latihan
+
+Berapa banyak jabat tangan yang terjadi di antara <InlineMath math="12 \text{ orang}" /> jika setiap pasangan berjabat tangan tepat sekali?
+
+Cara penjumlahan berurutan memberi:
+
+<BlockMath math="S_{11}=1+2+\cdots+11" />
+
+Rumus banyak pasangan memberi hasil yang sama secara langsung:
+
+<BlockMath math="S_{11}=\frac{12\cdot11}{2}=66" />
+
+Jadi, terdapat <InlineMath math="66 \text{ jabat tangan}" />.

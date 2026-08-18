@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Quartiles for Ungrouped Data",
-  description: "Calculate Q1, Q2, Q3 quartiles for ungrouped data with simple position formulas. Learn to divide sorted data into four equal parts one step at a time.",
+  description: "Calculate Q1, Q2, and Q3 for ungrouped data with one declared interpolation convention and a complete worked example.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistics",
@@ -8,44 +8,46 @@ export const metadata = {
 
 ## What Are Quartiles?
 
-The median is like a ruler that divides data into two equal parts, right in the middle (<InlineMath math="50\%" />). Well, there's another friend of the median, called **quartiles**.
+The median marks the middle of an ordered dataset at <InlineMath math="50\%" />. **Quartiles** extend that idea by marking three positions across the ordered data.
 
-If the median divides data into two, quartiles are even better; they divide the sorted data into **four** equal parts! Imagine you have a chocolate bar, and you break it into four equal pieces. Quartiles are the breaking points.
+Those positions divide the distribution by rank into **four** parts, each representing about one quarter of the observations. With a finite dataset or tied values, the parts need not contain four visibly distinct sets of equal size.
 
-There are three quartile breaking points:
+There are three quartile boundaries:
 
-1.  **Lower Quartile (<InlineMath math="Q_1" />):** This is the first break. It separates the smallest <InlineMath math="25\%" /> of the data from the rest. Like the first quarter of the chocolate.
-2.  **Middle Quartile (<InlineMath math="Q_2" />):** This is the **median**! It's exactly in the middle, dividing the data in half (<InlineMath math="50\%" /> left, <InlineMath math="50\%" /> right). Like the break in the middle of the chocolate.
-3.  **Upper Quartile (<InlineMath math="Q_3" />):** This is the last break. It separates the smallest <InlineMath math="75\%" /> of the data from the largest <InlineMath math="25\%" />. Like the boundary after three-quarters of the chocolate.
+1.  **Lower Quartile (<InlineMath math="Q_1" />):** The boundary at approximately the <InlineMath math="25\%" /> rank.
+2.  **Middle Quartile (<InlineMath math="Q_2" />):** The **median**, at approximately the <InlineMath math="50\%" /> rank.
+3.  **Upper Quartile (<InlineMath math="Q_3" />):** The boundary at approximately the <InlineMath math="75\%" /> rank.
 
-So, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> divide our data into four small groups with the same number of data points (<InlineMath math="25\%" /> each).
+Together, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> describe the lower quarter, center, and upper quarter of an ordered distribution.
 
 ## How to Find the Position of Quartiles
 
-Okay, now how do we know the position (rank) of <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> in our ordered data?
+How do we find the rank positions of <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> in ordered data?
 
 Assume we have <InlineMath math="n" /> data points that we have sorted from smallest to largest.
 
+Quartiles can be defined by several valid ranking conventions, so software packages may return slightly different values for the same small dataset. This lesson consistently uses the interpolated position <InlineMath math="p(n+1)" />, where <InlineMath math="p" /> is <InlineMath math="\frac14" />, <InlineMath math="\frac12" />, or <InlineMath math="\frac34" />. A position below <InlineMath math="1" /> is clamped to the minimum and a position above <InlineMath math="n" /> to the maximum. State the convention when comparing results.
+
 ### Lower Quartile
 
-The formula is simple:
+For the lower quartile:
 
 <BlockMath math="\text{Position of } Q_1 = \text{Data point at }\frac{1}{4}(n+1)" />
 
-- **If the result is a whole number**, for example <InlineMath math="5" />, then <InlineMath math="Q_1" /> is the value of the <InlineMath math="5^{\text{th}}" /> data point.
-- **If the result has a decimal**, for example <InlineMath math="5.25" />, then <InlineMath math="Q_1" /> lies between the <InlineMath math="5^{\text{th}}" /> and <InlineMath math="6^{\text{th}}" /> data points. (There's a way to calculate its value later, but for now, we're just finding the position).
+- **If the result is a whole number**, for example <InlineMath math="5" />, then <InlineMath math="Q_1" /> is the value at position <InlineMath math="5" />.
+- **If the result has a decimal**, for example <InlineMath math="5.25" />, then <InlineMath math="Q_1" /> lies between positions <InlineMath math="5" /> and <InlineMath math="6" />. We will calculate its interpolated value later; for now, we are only locating it.
 
-**Simple Example:**
+**Example:**
 
 Suppose we have <InlineMath math="20" /> data points (<InlineMath math="n=20" />).
 
 The position of <InlineMath math="Q_1" /> is the data point at <InlineMath math="\frac{1}{4}(20+1)" />, which is data point <InlineMath math="\frac{21}{4}" /> or <InlineMath math="5.25" />.
 
-This means <InlineMath math="Q_1" /> is between the <InlineMath math="5^{\text{th}}" /> and <InlineMath math="6^{\text{th}}" /> data points.
+This means <InlineMath math="Q_1" /> lies between positions <InlineMath math="5" /> and <InlineMath math="6" />.
 
 ### Middle Quartile
 
-This is the median, so the formula is:
+The middle quartile is the median:
 
 <BlockMath math="\text{Position of } Q_2 = \text{Data point at }\frac{1}{2}(n+1)" />
 
@@ -54,7 +56,7 @@ The rules are the same as for <InlineMath math="Q_1" />:
 - **If the result is a whole number**, say <InlineMath math="10" />, <InlineMath math="Q_2" /> is the value of data point <InlineMath math="10" />.
 - **If the result has a decimal**, say <InlineMath math="10.5" />, <InlineMath math="Q_2" /> is between data points <InlineMath math="10" /> and <InlineMath math="11" />.
 
-**Simple Example (<InlineMath math="n=20" />):**
+**Example (<InlineMath math="n=20" />):**
 
 The position of <InlineMath math="Q_2" /> is the data point at <InlineMath math="\frac{1}{2}(20+1)" />, which is data point <InlineMath math="\frac{21}{2}" /> or <InlineMath math="10.5" />.
 
@@ -66,22 +68,24 @@ The formula is similar again:
 
 <BlockMath math="\text{Position of } Q_3 = \text{Data point at }\frac{3}{4}(n+1)" />
 
-The rules are exactly the same:
+The same interpolation rule applies:
 
 - **If the result is a whole number**, say <InlineMath math="15" />, <InlineMath math="Q_3" /> is the value of data point <InlineMath math="15" />.
 - **If the result has a decimal**, say <InlineMath math="15.75" />, <InlineMath math="Q_3" /> is between data points <InlineMath math="15" /> and <InlineMath math="16" />.
 
-**Simple Example (<InlineMath math="n=20" />):**
+**Example (<InlineMath math="n=20" />):**
 
 The position of <InlineMath math="Q_3" /> is the data point at <InlineMath math="\frac{3}{4}(20+1)" />, which is data point <InlineMath math="\frac{63}{4}" /> or <InlineMath math="15.75" />.
 
 This means <InlineMath math="Q_3" /> is between data points <InlineMath math="15" /> and <InlineMath math="16" />.
 
-## Exercise
+## Worked exercise
 
 Try to find the position of <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> from the math test scores of these <InlineMath math="7" /> children:
 
 **Scores:** <InlineMath math="7, 5, 8, 6, 9, 7, 10" />
+
+Try the problem yourself first. Then compare your reasoning with the complete solution below.
 
 **Step** <InlineMath math="1" />: Sort the data first!
 

@@ -4,12 +4,15 @@ export const metadata = {
   date: "2026-01-26",
 };
 
-Let's analyze the premises given in the text:
-1.  **Premise** <InlineMath math="1" />: If the avocado is ready to harvest (<InlineMath math="P" />), then it tastes sweet and has a soft texture (<InlineMath math="Q" />).
-2.  **Fact**: Andi's avocado is not sweet and not soft (<InlineMath math="\sim Q" />).
+Let:
 
-Based on **Modus Tollens** logic (<InlineMath math="P \rightarrow Q" />, and <InlineMath math="\sim Q" />, then <InlineMath math="\sim P" />), we can conclude with certainty that Andi's avocado is **not ready to harvest** (<InlineMath math="\sim P" />).
+- <InlineMath math="A" />: The batch is approved for shipment.
+- <InlineMath math="S" />: The batch passes the sweetness test.
+- <InlineMath math="F" />: The batch passes the softness test.
+- <InlineMath math="L" />: The batch will be sold at a low price.
 
-The conclusion proposed in the question states that "Andi's avocado is **ready to harvest**". This statement directly contradicts the valid logical result.
+The warehouse rule is <InlineMath math="A \rightarrow (S \land F)" />. Andi's batch satisfies <InlineMath math="\neg S \land \neg F" />, so it certainly does not satisfy <InlineMath math="S \land F" />. Modus tollens therefore gives <InlineMath math="\neg A" />.
 
-Therefore, the quality of the conclusion is **definitely false**.
+The proposed conclusion is <InlineMath math="A \land L" />. A conjunction can be true only if both parts are true. Because <InlineMath math="A" /> is false, the entire conjunction is false regardless of whether the selling price is known.
+
+Therefore, the proposed conclusion is **definitely false**.

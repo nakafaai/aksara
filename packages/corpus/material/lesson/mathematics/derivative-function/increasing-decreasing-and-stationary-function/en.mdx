@@ -1,8 +1,8 @@
 
 
 export const metadata = {
-  title: "Increasing, Decreasing, and Stationary Functions",
-  description: "Learn identifying increasing, decreasing, and stationary functions using derivatives. Learn to analyze function behavior and determine monotonicity intervals.",
+  title: "Increasing and Decreasing Functions",
+  description: "Use the sign of the first derivative to identify increasing and decreasing intervals and interpret stationary points.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Derivative Functions",
@@ -10,17 +10,17 @@ export const metadata = {
 
 ## Behavior of a Function and Its Derivative
 
-Have you ever noticed how the graph of a function can move up, down, or even flatten out for a moment? This behavior, called the **monotonicity of a function**, is closely related to its first derivative.
+As we read a graph from left to right, its curve may rise, fall, or briefly become flat. This behavior is called the function's **monotonicity**, and its first derivative tells us how to classify it.
 
-Imagine you are walking along the curve of a graph from left to right.
+The sign of the slope provides a useful picture:
 
--   When you are **climbing**, it means the function is **increasing**.
+-   A positive slope means the function is **increasing**.
 
--   When you are **descending into a valley**, it means the function is **decreasing**.
+-   A negative slope means the function is **decreasing**.
 
--   When you are at the top of a hill or the bottom of a valley, you are at a **stationary** point.
+-   A zero slope marks a **stationary point**, although that point need not be a maximum or minimum.
 
-Geometrically, the first derivative, <InlineMath math="f'(x)" />, is the gradient of the tangent line to the curve at that point. So, we can determine the function's behavior by looking at the sign of its gradient.
+Geometrically, <InlineMath math="f'(x)" /> is the slope of the tangent line. Its sign therefore describes the curve's local direction.
 
 ## Properties of Monotonicity
 
@@ -34,11 +34,11 @@ Suppose the function <InlineMath math="y = f(x)" /> is continuous and differenti
 
 -   If <InlineMath math="f'(x) = 0" /> at a specific point, then <InlineMath math="f(x)" /> has a **stationary point** there.
 
-These stationary points are the key to finding where a function changes from increasing to decreasing, or vice versa.
+Stationary points divide the domain into intervals that we can test. They are candidates for a change in monotonicity, but the derivative must change sign for the function to switch from increasing to decreasing or vice versa.
 
 ## Analyzing Function Intervals
 
-Let's break down a case to see how to determine the intervals where a function is increasing or decreasing.
+The following example shows the complete sign-analysis process.
 
 Determine the intervals for which the function <InlineMath math="f(x) = x^3 - 3x" /> is increasing and decreasing.
 
@@ -174,9 +174,9 @@ Based on the tests, we can conclude:
 
 1.  Determine the intervals where the function is increasing and decreasing for the curve <InlineMath math="f(x) = x^3 - 3x^2 - 15" />.
 
-2.  If the function <InlineMath math="f(x) = ax^3 + x^2 + 5" /> is always increasing on the interval <InlineMath math="0 < x < 2" />, determine the value of the coefficient <InlineMath math="a" />!
+2.  If <InlineMath math="f(x) = ax^3 + x^2 + 5" /> is increasing throughout <InlineMath math="0 < x < 2" />, determine the possible values of <InlineMath math="a" />.
 
-3.  Determine the intervals where the function is increasing and decreasing if the curve is given by <InlineMath math="f(x) = \sin 2x \cos 2x" />!
+3.  Determine the intervals where <InlineMath math="f(x) = \sin 2x \cos 2x" /> is increasing and decreasing.
 
 ### Answer Key
 
@@ -202,7 +202,7 @@ Based on the tests, we can conclude:
 
 2.  **Solution:**
 
-    For a function to be *always increasing* on an interval, its first derivative must be non-negative (<InlineMath math="f'(x) \ge 0" />) for every point within that interval.
+    For this function to increase throughout the interval, it is enough to require <InlineMath math="f'(x) \ge 0" /> at every point in the interval.
 
     <BlockMath math="f'(x) = 3ax^2 + 2x = x(3ax + 2)" />
 
@@ -210,13 +210,13 @@ Based on the tests, we can conclude:
 
     <BlockMath math="3ax + 2 \ge 0" />
 
-    This inequality must hold for all values of <InlineMath math="x" /> in the interval <InlineMath math="0 < x < 2" />. Since <InlineMath math="h(x) = 3ax + 2" /> is a linear function, its behavior is monotonic. We only need to ensure it is non-negative at the most "critical" endpoint of the interval.
+    This inequality must hold for every <InlineMath math="x" /> in <InlineMath math="0 < x < 2" />. Since <InlineMath math="h(x) = 3ax + 2" /> is linear, its smallest limiting value occurs toward one end of the interval.
 
-    -   If <InlineMath math="a \ge 0" />, then <InlineMath math="3ax" /> is also non-negative, so <InlineMath math="3ax+2" /> will definitely be positive. This condition is met.
+    -   If <InlineMath math="a \ge 0" />, then <InlineMath math="3ax \ge 0" />, so <InlineMath math="3ax+2" /> is positive throughout the interval.
 
-    -   If <InlineMath math="a < 0" />, then <InlineMath math="h(x)" /> is a decreasing function. Its smallest value will be at the right end of the interval (<InlineMath math="x=2" />). For <InlineMath math="h(x)" /> to always be non-negative, we just need to ensure its minimum value is greater than or equal to zero.
+    -   If <InlineMath math="a < 0" />, then <InlineMath math="h(x)" /> decreases. Because <InlineMath math="x=2" /> is not included, <InlineMath math="h" /> has no minimum there, but its infimum is the boundary value approached as <InlineMath math="x \to 2^-" />. Requiring that boundary value to be non-negative gives the exact condition.
 
-    We test at the critical boundary <InlineMath math="x=2" />:
+    Evaluate the limiting boundary condition at <InlineMath math="x=2" />:
 
     <MathContainer>
         <BlockMath math="3a(2) + 2 \ge 0" />
@@ -224,7 +224,7 @@ Based on the tests, we can conclude:
         <BlockMath math="a \ge -1/3" />
     </MathContainer>
 
-    Combining both cases, the condition for the function to be always increasing on the given interval is <InlineMath math="a \ge -1/3" />.
+    Combining both cases, the function increases throughout the given interval precisely when <InlineMath math="a \ge -1/3" />.
 
 3.  **Solution:**
 
@@ -236,7 +236,7 @@ Based on the tests, we can conclude:
 
     <BlockMath math="f'(x) = \frac{1}{2} \cdot \cos(4x) \cdot 4 = 2\cos(4x)" />
 
-    -   **The function is increasing** when <InlineMath math="f'(x) > 0" />, which is <InlineMath math="2\cos(4x) > 0" /> or <InlineMath math="\cos(4x) > 0" />. This occurs in the first and fourth quadrants.
+    -   **The function is increasing** when <InlineMath math="f'(x) > 0" />, which is <InlineMath math="2\cos(4x) > 0" /> or <InlineMath math="\cos(4x) > 0" />. This occurs in quadrants <InlineMath math="\mathrm{I}" /> and <InlineMath math="\mathrm{IV}" />.
 
         <MathContainer>
             <BlockMath math="-\frac{\pi}{2} + 2k\pi < 4x < \frac{\pi}{2} + 2k\pi" />
@@ -245,7 +245,7 @@ Based on the tests, we can conclude:
 
         This interval is valid for any integer <InlineMath math="k" />.
 
-    -   **The function is decreasing** when <InlineMath math="f'(x) < 0" />, which is <InlineMath math="\cos(4x) < 0" />. This occurs in the second and third quadrants.
+    -   **The function is decreasing** when <InlineMath math="f'(x) < 0" />, which is <InlineMath math="\cos(4x) < 0" />. This occurs in quadrants <InlineMath math="\mathrm{II}" /> and <InlineMath math="\mathrm{III}" />.
 
         <MathContainer>
             <BlockMath math="\frac{\pi}{2} + 2k\pi < 4x < \frac{3\pi}{2} + 2k\pi" />

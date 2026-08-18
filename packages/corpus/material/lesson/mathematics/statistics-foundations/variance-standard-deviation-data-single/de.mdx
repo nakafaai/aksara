@@ -1,0 +1,148 @@
+export const metadata = {
+  title: "Varianz und Standardabweichung bei Einzeldaten",
+  description: "Berechne und deute Varianz und Standardabweichung einer Grundgesamtheit aus Einzeldaten.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Streuung mit Varianz und Standardabweichung messen
+
+Zwei gängige Streuungsmaße sind **Varianz** und **Standardabweichung**.
+
+Die Varianz mittelt die **quadrierten** Abstände vom Mittelwert. Die Standardabweichung zieht daraus die Quadratwurzel und hat dadurch wieder dieselbe Einheit wie die ursprünglichen Daten.
+
+- Eine **kleine** Varianz oder Standardabweichung bedeutet, dass die Beobachtungen **nah** am Mittelwert liegen.
+- Ein **großer** Wert bedeutet, dass die Beobachtungen **weiter** vom Mittelwert abweichen.
+
+## Formeln für Varianz und Standardabweichung
+
+1.  **Varianz (<InlineMath math="\sigma^2" />)**
+
+    Ziehe von jedem Beobachtungswert den Mittelwert ab, quadriere jede Differenz und bilde anschließend den Mittelwert dieser Quadrate.
+
+    Die Formel lautet:
+
+    <BlockMath math="\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n}" />
+
+    Dabei gilt:
+
+    - <InlineMath math="\sigma^2" /> = Populationsvarianz
+    - <InlineMath math="x_i" /> = beobachteter Wert
+    - <InlineMath math="\bar{x}" /> = arithmetisches Mittel
+    - <InlineMath math="n" /> = Anzahl der Beobachtungen
+    - <InlineMath math="\sum" /> = Summe aller angegebenen Terme
+
+2.  **Standardabweichung (<InlineMath math="\sigma" />)**
+
+    Die Standardabweichung ist die Quadratwurzel der Varianz. Im Gegensatz zur Varianz hat sie dieselbe Einheit wie die Originaldaten.
+
+    Die Formel lautet:
+
+    <BlockMath math="\sigma = \sqrt{\sigma^2} = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n}}" />
+
+Diese Formeln verwenden die Symbole der Grundgesamtheit und teilen durch die vollständige Anzahl der Beobachtungen. Für eine Stichprobe ist die entsprechende Stichprobenvarianz zu verwenden.
+
+## Vergleich der Varianz in zwei Altersgruppen
+
+Betrachte zwei Gruppen von Alterswerten. Beide haben den **gleichen Mittelwert (<InlineMath math="\bar{x}" />), nämlich <InlineMath math="16" />**, unterscheiden sich aber deutlich in ihrer Streuung.
+
+- **Gruppe Eins (<InlineMath math="n=12" />):** <InlineMath math="13, 14, 15, 15, 16, 16, 17, 17, 17, 17, 17, 18" />
+- **Gruppe Zwei (<InlineMath math="n=12" />):** <InlineMath math="1, 3, 4, 5, 7, 8, 12, 27, 28, 29, 32, 36" />
+
+Wir berechnen die Populationsvarianz und Standardabweichung jeder Gruppe.
+
+### Berechnung für Gruppe Eins
+
+Berechne <InlineMath math="(x_i - \bar{x})^2" /> für jeden Wert in Gruppe <InlineMath math="1" />, wobei <InlineMath math="\bar{x}=16" /> gilt:
+
+- <InlineMath math="(13-16)^2 = (-3)^2 = 9" />
+- <InlineMath math="(14-16)^2 = (-2)^2 = 4" />
+- <InlineMath math="(15-16)^2 = (-1)^2 = 1" /> (<InlineMath math="2 \text{ Werte}" />)
+- <InlineMath math="(16-16)^2 = (0)^2 = 0" /> (<InlineMath math="2 \text{ Werte}" />)
+- <InlineMath math="(17-16)^2 = (1)^2 = 1" /> (<InlineMath math="5 \text{ Werte}" />)
+- <InlineMath math="(18-16)^2 = (2)^2 = 4" />
+
+Addiere die quadrierten Differenzen <InlineMath math="\sum(x_i - \bar{x})^2" />:
+
+<BlockMath math="9 + 4 + (1 \times 2) + (0 \times 2) + (1 \times 5) + 4 = 9 + 4 + 2 + 0 + 5 + 4 = 24" />
+
+Berechne die Varianz:
+
+<BlockMath math="\sigma^2_{\text{Gruppe 1}} = \frac{\sum(x_i - \bar{x})^2}{n} = \frac{24}{12} = 2" />
+
+Berechne die Standardabweichung:
+
+<BlockMath math="\sigma_{\text{Gruppe 1}} = \sqrt{2} \approx 1{,}41" />
+
+### Berechnung für Gruppe Zwei
+
+Wiederhole die Berechnung von <InlineMath math="(x_i - \bar{x})^2" /> für Gruppe <InlineMath math="2" />, wieder mit <InlineMath math="\bar{x}=16" />:
+
+- <InlineMath math="(1-16)^2 = (-15)^2 = 225" />
+- <InlineMath math="(3-16)^2 = (-13)^2 = 169" />
+- <InlineMath math="(4-16)^2 = (-12)^2 = 144" />
+- <InlineMath math="(5-16)^2 = (-11)^2 = 121" />
+- <InlineMath math="(7-16)^2 = (-9)^2 = 81" />
+- <InlineMath math="(8-16)^2 = (-8)^2 = 64" />
+- <InlineMath math="(12-16)^2 = (-4)^2 = 16" />
+- <InlineMath math="(27-16)^2 = (11)^2 = 121" />
+- <InlineMath math="(28-16)^2 = (12)^2 = 144" />
+- <InlineMath math="(29-16)^2 = (13)^2 = 169" />
+- <InlineMath math="(32-16)^2 = (16)^2 = 256" />
+- <InlineMath math="(36-16)^2 = (20)^2 = 400" />
+
+Addiere die quadrierten Differenzen <InlineMath math="\sum(x_i - \bar{x})^2" />:
+
+<BlockMath math="225 + 169 + 144 + 121 + 81 + 64 + 16 + 121 + 144 + 169 + 256 + 400 = 1910" />
+
+Berechne die Varianz:
+
+<BlockMath math="\sigma^2_{\text{Gruppe 2}} = \frac{\sum(x_i - \bar{x})^2}{n} = \frac{1910}{12} \approx 159{,}17" />
+
+Berechne die Standardabweichung:
+
+<BlockMath math="\sigma_{\text{Gruppe 2}} = \sqrt{159{,}17} \approx 12{,}62" />
+
+### Interpretation der Ergebnisse
+
+- Die Varianz von Gruppe <InlineMath math="1" /> (<InlineMath math="\sigma^2 = 2" />) ist **viel kleiner** als die von Gruppe <InlineMath math="2" /> (<InlineMath math="\sigma^2 \approx 159{,}17" />).
+- Die Standardabweichung von Gruppe <InlineMath math="1" /> (<InlineMath math="\sigma \approx 1{,}41" />) ist ebenfalls **viel kleiner** als die von Gruppe <InlineMath math="2" /> (<InlineMath math="\sigma \approx 12{,}62" />).
+
+Die Werte in **Gruppe <InlineMath math="1" /> liegen dicht** um den Mittelwert <InlineMath math="16" />. Die Werte in **Gruppe <InlineMath math="2" /> streuen deutlich weiter** um denselben Mittelwert <InlineMath math="16" />.
+
+## Alternative Formel für Varianz
+
+Eine äquivalente Rechenformel kann für einen Taschenrechner oder Computer praktisch sein:
+
+<BlockMath math="\sigma^2 = \frac{\sum x_i^2}{n} - \left( \frac{\sum x_i}{n} \right)^2" />
+
+Teile zuerst die Summe der quadrierten Werte <InlineMath math="\sum x_i^2" /> durch <InlineMath math="n" />. Ziehe anschließend das Quadrat des Mittelwerts <InlineMath math="(\bar{x})^2 = (\frac{\sum x_i}{n})^2" /> ab.
+
+Berechne mit dieser Formel die Varianz von Gruppe <InlineMath math="1" /> noch einmal:
+
+1.  Berechne <InlineMath math="\sum x_i^2" /> für Gruppe <InlineMath math="1" />:
+
+    <MathContainer>
+      <BlockMath math="13^2 + 14^2 + 15^2 + 15^2 + 16^2 + 16^2 + 17^2 + 17^2 + 17^2 + 17^2 + 17^2 + 18^2" />
+      <BlockMath math="= 169 + 196 + 225 + 225 + 256 + 256 + 289 + 289 + 289 + 289 + 289 + 324 = 3096" />
+    </MathContainer>
+
+2.  Berechne <InlineMath math="\sum x_i" /> für Gruppe <InlineMath math="1" />:
+
+    <MathContainer>
+      <BlockMath math="13 + 14 + 15 + 15 + 16 + 16 + 17 + 17 + 17 + 17 + 17 + 18" />
+      <BlockMath math="= 192" />
+    </MathContainer>
+
+    Wir kennen auch <InlineMath math="n=12" />.
+
+3.  Setze die Werte in die alternative Formel ein:
+
+    <MathContainer>
+      <BlockMath math="\sigma^2 = \frac{3096}{12} - \left( \frac{192}{12} \right)^2" />
+      <BlockMath math="\sigma^2 = 258 - (16)^2" />
+      <BlockMath math="\sigma^2 = 258 - 256 = 2" />
+    </MathContainer>
+
+Das Ergebnis stimmt genau mit der ersten Methode überein: <InlineMath math="\sigma^2 = 2" />.

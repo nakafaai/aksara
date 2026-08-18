@@ -1,0 +1,215 @@
+export const metadata = {
+  title: "Matrixaddition",
+  description: "Matrizen gleichen Formats eintragsweise addieren und dabei Kommutativität, Assoziativität, Nullmatrix und Gegenmatrix anwenden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-05",
+  subject: "Matrix",
+};
+
+## Was ist Matrixaddition?
+
+Bei der Matrixaddition werden die Einträge mehrerer Matrizen positionsweise zusammengezählt. Das ist nur möglich, wenn alle beteiligten Matrizen gleich viele Zeilen und Spalten haben.
+
+Das Ergebnis ist eine neue Matrix desselben Formats. Jeder ihrer Einträge ist die Summe der Einträge an derselben Position in den Ausgangsmatrizen.
+
+## Formale Definition der Matrixaddition
+
+Zwei Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> können genau dann addiert werden, wenn sie dasselbe Format haben.
+
+Matrix <InlineMath math="A" /> habe das Format <InlineMath math="m \times n" /> und die Einträge <InlineMath math="a_{ij}" />. Dabei bezeichnet <InlineMath math="i" /> die Zeile und <InlineMath math="j" /> die Spalte. Matrix <InlineMath math="B" /> habe ebenfalls das Format <InlineMath math="m \times n" /> und die Einträge <InlineMath math="b_{ij}" />.
+
+Ihre Summe nennen wir Matrix <InlineMath math="C" /> und schreiben <InlineMath math="C = A + B" />. Matrix <InlineMath math="C" /> hat ebenfalls das Format <InlineMath math="m \times n" />. Ihre Einträge <InlineMath math="c_{ij}" /> sind definiert durch:
+
+<BlockMath math="c_{ij} = a_{ij} + b_{ij}" />
+
+Die Formel addiert also für jede Position den Eintrag aus <InlineMath math="A" /> und den entsprechenden Eintrag aus <InlineMath math="B" />.
+
+Symbolisch folgt aus <InlineMath math="A\in\mathbb{R}^{m\times n}" /> und <InlineMath math="B\in\mathbb{R}^{m\times n}" />, dass <InlineMath math="A+B\in\mathbb{R}^{m\times n}" /> gilt. Zu jedem Ergebniseintrag <InlineMath math="c_{ij}" /> gehört daher in beiden Matrizen genau ein Eintrag an derselben Position.
+
+## Matrixaddition Schritt für Schritt
+
+So werden zwei Matrizen addiert:
+
+1.  **Format prüfen**: Beide Matrizen müssen gleich viele Zeilen und Spalten haben. Andernfalls ist ihre Summe nicht definiert.
+2.  **Entsprechende Einträge addieren**: Addiere jeweils die Einträge an derselben Zeilen- und Spaltenposition.
+3.  **Ergebnismatrix bilden**: Trage die Summen an ihren Positionen in eine neue Matrix desselben Formats ein.
+
+### Beispiel einer Matrixaddition
+
+Angenommen, wir haben zwei Matrizen, <InlineMath math="P" /> und <InlineMath math="Q" />, wie folgt:
+
+<MathContainer>
+  <BlockMath math="P = \begin{bmatrix} 1 & 5 \\ -2 & 0 \\ 4 & 7 \end{bmatrix}" />
+  <BlockMath math="Q = \begin{bmatrix} 6 & -3 \\ 8 & 1 \\ -2 & 9 \end{bmatrix}" />
+</MathContainer>
+
+Beide Matrizen haben das Format <InlineMath math="3 \times 2" />, also <InlineMath math="3" /> Zeilen und <InlineMath math="2" /> Spalten. Daher können sie addiert werden.
+
+Dann ist <InlineMath math="P+Q" />:
+
+<MathContainer>
+  <BlockMath math="P+Q = \begin{bmatrix} 1 & 5 \\ -2 & 0 \\ 4 & 7 \end{bmatrix} + \begin{bmatrix} 6 & -3 \\ 8 & 1 \\ -2 & 9 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1+6 & 5+(-3) \\ -2+8 & 0+1 \\ 4+(-2) & 7+9 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 7 & 2 \\ 6 & 1 \\ 2 & 16 \end{bmatrix}" />
+</MathContainer>
+
+Somit ist die Summe aus Matrix <InlineMath math="P" /> und Matrix <InlineMath math="Q" /> die Matrix <InlineMath math="\begin{bmatrix} 7 & 2 \\ 6 & 1 \\ 2 & 16 \end{bmatrix}" />.
+
+### Matrizen, die nicht addiert werden können
+
+Angenommen, Matrix <InlineMath math="X = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}" /> und Matrix <InlineMath math="Y = \begin{bmatrix} 5 & 6 & 7 \\ 8 & 9 & 10 \end{bmatrix}" />.
+
+Matrix <InlineMath math="X" /> hat das Format <InlineMath math="2 \times 2" />, Matrix <InlineMath math="Y" /> dagegen das Format <InlineMath math="2 \times 3" />. Wegen der unterschiedlichen Spaltenzahlen ist <InlineMath math="X+Y" /> nicht definiert.
+
+## Eigenschaften der Matrixaddition
+
+Die Matrixaddition besitzt dieselben grundlegenden Rechengesetze wie die Addition reeller Zahlen. Seien <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> Matrizen desselben Formats. <InlineMath math="O" /> bezeichne die gleich große Nullmatrix, deren Einträge alle null sind.
+
+1.  **Kommutative Eigenschaft**: Die Reihenfolge der Matrixaddition hat keinen Einfluss auf das Ergebnis.
+
+    <BlockMath math="A + B = B + A" />
+
+    Ob <InlineMath math="A" /> zu <InlineMath math="B" /> oder <InlineMath math="B" /> zu <InlineMath math="A" /> addiert wird, ändert das Ergebnis nicht.
+
+2.  **Assoziative Eigenschaft**: Die Gruppierung bei der Addition von drei oder mehr Matrizen hat keinen Einfluss auf das Ergebnis.
+
+    <BlockMath math="(A + B) + C = A + (B + C)" />
+
+    Man kann zuerst <InlineMath math="A" /> und <InlineMath math="B" /> addieren
+    und danach <InlineMath math="C" />, oder zuerst
+    <InlineMath math="B" /> und <InlineMath math="C" /> und danach <InlineMath math="A" />.
+    Beide Gruppierungen liefern dieselbe Matrix.
+
+3.  **Neutrales Element (Nullmatrix)**: Für die Matrixaddition ist die Nullmatrix <InlineMath math="O" /> das neutrale Element.
+
+    <BlockMath math="A + O = O + A = A" />
+
+    Addiert man zu einer Matrix die gleich große Nullmatrix, bleibt die Matrix unverändert.
+
+    Diese Nullmatrix spielt bei der Addition von Zahlen eine ähnliche Rolle wie die Zahl <InlineMath math="0" />.
+
+4.  **Additives Inverses (Gegenmatrix)**: Jede Matrix <InlineMath math="A" /> besitzt ein additives Inverses <InlineMath math="-A" />. Wird es zu <InlineMath math="A" /> addiert, ergibt sich die Nullmatrix <InlineMath math="O" />.
+
+    <BlockMath math="A + (-A) = O" />
+
+    In <InlineMath math="-A" /> hat jeder Eintrag das entgegengesetzte Vorzeichen des entsprechenden Eintrags in <InlineMath math="A" />.
+
+    Wenn beispielsweise <InlineMath math="a_{ij}" /> ein Element von <InlineMath math="A" /> ist, dann ist <InlineMath math="-a_{ij}" /> ein Element von <InlineMath math="-A" />.
+
+## Übungen
+
+**Problem** <InlineMath math="1" />
+
+Gegeben sind die folgenden Matrizen:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 3 & -1 & 7 \\ 0 & 5 & 2 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} -2 & 9 & -4 \\ 6 & -3 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Berechne <InlineMath math="A+B" /> und <InlineMath math="B+A" />. Entscheide anschließend, ob <InlineMath math="A+C" /> definiert ist, und begründe die Entscheidung.
+
+**Problem** <InlineMath math="2" />
+
+Bestimme aus der folgenden Matrixgleichung die Werte von <InlineMath math="x, y," /> und <InlineMath math="z" />:
+
+<BlockMath math="\begin{bmatrix} 2x & 5 \\ -1 & 3y \end{bmatrix} + \begin{bmatrix} 4 & -2 \\ z & 7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+
+**Problem** <InlineMath math="3" />
+
+Wenn <InlineMath math="P = \begin{bmatrix} 1 & -2 \\ 3 & 0 \end{bmatrix}" /> gilt, bestimme das additive Inverse <InlineMath math="-P" /> von <InlineMath math="P" /> und weise <InlineMath math="P + (-P) = O" /> nach. Dabei ist <InlineMath math="O" /> die gleich große Nullmatrix.
+
+### Ausführliche Lösungen
+
+**Problem** <InlineMath math="1" />
+
+Gegeben sind:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 3 & -1 & 7 \\ 0 & 5 & 2 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} -2 & 9 & -4 \\ 6 & -3 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Zuerst berechnen wir <InlineMath math="A" /> plus <InlineMath math="B" /> (<InlineMath math="A+B" />):
+
+<MathContainer>
+  <BlockMath math="A+B = \begin{bmatrix} 3 & -1 & 7 \\ 0 & 5 & 2 \end{bmatrix} + \begin{bmatrix} -2 & 9 & -4 \\ 6 & -3 & 1 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 3+(-2) & -1+9 & 7+(-4) \\ 0+6 & 5+(-3) & 2+1 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1 & 8 & 3 \\ 6 & 2 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Danach vertauschen wir die Summanden und berechnen <InlineMath math="B" /> plus <InlineMath math="A" /> (<InlineMath math="B+A" />):
+
+<MathContainer>
+  <BlockMath math="B+A = \begin{bmatrix} -2 & 9 & -4 \\ 6 & -3 & 1 \end{bmatrix} + \begin{bmatrix} 3 & -1 & 7 \\ 0 & 5 & 2 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} -2+3 & 9+(-1) & -4+7 \\ 6+0 & -3+5 & 1+2 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1 & 8 & 3 \\ 6 & 2 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Damit bestätigt das Beispiel das Kommutativgesetz: <InlineMath math="A+B = B+A" />.
+
+Für <InlineMath math="A" /> plus <InlineMath math="C" /> (<InlineMath math="A+C" />) prüfen wir zuerst die Formate:
+
+Die Summe ist nicht definiert. Matrix <InlineMath math="A" /> hat das Format <InlineMath math="2 \times 3" />, Matrix <InlineMath math="C" /> dagegen das Format <InlineMath math="2 \times 2" />. Wegen der unterschiedlichen Spaltenzahlen kann <InlineMath math="A+C" /> nicht gebildet werden.
+
+**Problem** <InlineMath math="2" />
+
+Gegeben sei die Matrixaddition:
+
+<BlockMath math="\begin{bmatrix} 2x & 5 \\ -1 & 3y \end{bmatrix} + \begin{bmatrix} 4 & -2 \\ z & 7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+
+Wir addieren zunächst die Matrizen auf der linken Seite:
+
+<MathContainer>
+  <BlockMath math="\begin{bmatrix} 2x+4 & 5+(-2) \\ -1+z & 3y+7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+  <BlockMath math="\begin{bmatrix} 2x+4 & 3 \\ -1+z & 3y+7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Aus der Gleichheit zweier Matrizen folgt, dass die entsprechenden Einträge übereinstimmen müssen:
+
+Für das Element in Zeile <InlineMath math="1" />, Spalte <InlineMath math="1" />: <InlineMath math="2x+4 = 10" />
+
+<MathContainer>
+  <BlockMath math="2x = 10-4" />
+  <BlockMath math="2x = 6" />
+  <BlockMath math="x = 3" />
+</MathContainer>
+
+Für das Element in Zeile <InlineMath math="1" />, Spalte <InlineMath math="2" />: <InlineMath math="3 = 3" /> (bereits konsistent).
+
+Für das Element in Zeile <InlineMath math="2" />, Spalte <InlineMath math="1" />: <InlineMath math="-1+z = 6" />
+
+<MathContainer>
+  <BlockMath math="z = 6+1" />
+  <BlockMath math="z = 7" />
+</MathContainer>
+
+Für das Element in Zeile <InlineMath math="2" />, Spalte <InlineMath math="2" />: <InlineMath math="3y+7 = 1" />
+
+<MathContainer>
+  <BlockMath math="3y = 1-7" />
+  <BlockMath math="3y = -6" />
+  <BlockMath math="y = -2" />
+</MathContainer>
+
+Somit sind die Werte <InlineMath math="x=3" />, <InlineMath math="y=-2" /> und <InlineMath math="z=7" />.
+
+**Problem** <InlineMath math="3" />
+
+Gegeben ist die Matrix <InlineMath math="P = \begin{bmatrix} 1 & -2 \\ 3 & 0 \end{bmatrix}" />.
+
+Das additive Inverse von <InlineMath math="P" />, also <InlineMath math="-P" />, ist:
+
+<BlockMath math="-P = \begin{bmatrix} -1 & -(-2) \\ -3 & -0 \end{bmatrix} = \begin{bmatrix} -1 & 2 \\ -3 & 0 \end{bmatrix}" />
+
+Zur Kontrolle addieren wir <InlineMath math="P + (-P) = O" />:
+
+<MathContainer>
+  <BlockMath math="P + (-P) = \begin{bmatrix} 1 & -2 \\ 3 & 0 \end{bmatrix} + \begin{bmatrix} -1 & 2 \\ -3 & 0 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1+(-1) & -2+2 \\ 3+(-3) & 0+0 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}" />
+</MathContainer>
+
+Das Ergebnis ist die Nullmatrix <InlineMath math="O" /> im Format <InlineMath math="2 \times 2" />. Damit ist die Behauptung gezeigt.

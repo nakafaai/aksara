@@ -1,0 +1,555 @@
+export const metadata = {
+  title: "Kreissegmente",
+  description: "Kreissegmente erkennen und ihre Fläche als Differenz aus Sektor- und Dreiecksfläche berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+## Grundidee des Kreissegments
+
+Schneidet eine gerade Linie ein Stück von einer kreisförmigen Fläche ab, entsteht die Form eines Kreissegments. Man sieht sie etwa am Rand eines angeschnittenen runden Kuchens.
+
+Eine Sehne und einer der beiden Bögen zwischen ihren Endpunkten begrenzen ein Kreissegment. Der kleine Bogen begrenzt das kleine Kreissegment, der verbleibende große Bogen das große Kreissegment. Ein Durchmesser ist der Grenzfall, in dem beide Segmente Halbkreise sind.
+
+## Unterschied zwischen Bogen und Segment
+
+Zuerst trennen wir zwei Begriffe, die leicht verwechselt werden:
+
+<ContentStack>
+
+<LineEquation
+  title="Kreisbogen"
+  description={<>Ein Bogen ist eine gekrümmte Linie am Umfang eines Kreises, die zwei Punkte verbindet. Ein Bogen hat nur in einer Dimension eine Länge und keine Fläche.</>}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      kind: "circle-chord", radius: 4,
+        startDegrees: 30,
+        sweepDegrees: 120,
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: "Sehne",
+          at: 1,
+          offset: [0, -0.8, 0],
+        },
+      ],
+    },
+    { kind: "circle-arc", color: "#ea580c",
+      lineWidth: 4,
+      label: {
+        text: "Bogen (gekrümmte Linie)",
+        offset: [0, 0.8, 0],
+      },
+      radius: 4,
+      startDegrees: 30,
+      sweepDegrees: 120 },
+  ]}
+/>
+
+<LineEquation
+  title="Kreissegment"
+  description={<>Ein Segment ist ein Bereich (Fläche) innerhalb eines Kreises, der durch einen Bogen und eine Sehne begrenzt wird. Ein Segment hat eine Fläche in zwei Dimensionen und kann mit Farbe gefüllt werden.</>}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      kind: "circle-chord", radius: 4,
+        startDegrees: 30,
+        sweepDegrees: 120,
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: "Sehne",
+          at: 1,
+          offset: [0, -0.8, 0],
+        },
+      ],
+    },
+    { kind: "circle-arc", color: "#ea580c",
+      lineWidth: 2,
+      radius: 4,
+      startDegrees: 30,
+      sweepDegrees: 120 },
+    { kind: "circle-segment", color: "#65a30d",
+      radius: 4,
+      startDegrees: 30,
+      sweepDegrees: 120,
+      label: {
+        text: "Kreissegment (Fläche)",
+        offset: [0, 0.8, 0],
+      } },
+  ]}
+/>
+
+</ContentStack>
+
+**Der entscheidende Unterschied:**
+- **Bogen**: Gekrümmte Linie auf dem Umfang eines Kreises (hat nur Länge, keine Fläche)
+- **Kreissegment**: Von Bogen und Sehne begrenzter Bereich (besitzt eine Fläche)
+
+## Kleines und großes Kreissegment
+
+Je nachdem, welcher der beiden Bögen zur Sehne gehört, entsteht ein kleines oder ein großes Kreissegment:
+
+<ContentStack>
+
+<LineEquation
+  title={<>Kleines Kreissegment (<InlineMath math="\theta < 180^\circ" />)</>}
+  description={<>Bei einem Mittelpunktswinkel unter <InlineMath math="180^\circ" /> ist das Segment kleiner als ein Halbkreis. Hier beträgt der Winkel <InlineMath math="120^\circ" />.</>}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    // Hauptkreis
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    // Mittelpunkt O
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      smooth: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: <InlineMath math="O" />,
+          at: 0,
+          offset: [-0.4, -0.4, 0],
+        },
+      ],
+    },
+    // Radius OA
+    {
+      kind: "circle-radius", radius: 4, degrees: 30,
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: <InlineMath math="A" />,
+          at: 1,
+          offset: [0.4, 0.2, 0],
+        },
+      ],
+    },
+    // Radius OB
+    {
+      kind: "circle-radius", radius: 4, degrees: 150,
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: <InlineMath math="B" />,
+          at: 1,
+          offset: [-0.4, 0.2, 0],
+        },
+      ],
+    },
+    // Mittelpunktswinkelbogen zur Darstellung von 120°
+    { kind: "circle-arc", color: "#d97706",
+      lineWidth: 3,
+      label: {
+        text: <InlineMath math="120^\circ" />,
+        offset: [0, -0.5, 0],
+      },
+      radius: 1.5,
+      startDegrees: 30,
+      sweepDegrees: 120 },
+    // Sehne AB
+    {
+      kind: "circle-chord", radius: 4,
+        startDegrees: 30,
+        sweepDegrees: 120,
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 3,
+    },
+    // Segment (schraffierte Fläche)
+    { kind: "circle-segment", color: "#ea580c",
+      radius: 4,
+      startDegrees: 30,
+      sweepDegrees: 120,
+      label: {
+        text: "kleines Segment",
+        offset: [0, 0.8, 0],
+      } },
+  ]}
+/>
+
+<LineEquation
+  title={<>Großes Kreissegment (<InlineMath math="\theta > 180^\circ" />)</>}
+  description={<>Bei einem Mittelpunktswinkel über <InlineMath math="180^\circ" /> ist das Segment größer als ein Halbkreis. Hier beträgt der Winkel <InlineMath math="240^\circ" />.</>}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    // Hauptkreis
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    // Mittelpunkt O
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      smooth: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: <InlineMath math="O" />,
+          at: 0,
+          offset: [-0.4, -0.4, 0],
+        },
+      ],
+    },
+    // Radius OA mit einem anderen Winkel für das große Segment
+    {
+      kind: "circle-radius", radius: 4, degrees: 45,
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: <InlineMath math="A" />,
+          at: 1,
+          offset: [0.4, 0.2, 0],
+        },
+      ],
+    },
+    // Radius OB
+    {
+      kind: "circle-radius", radius: 4, degrees: 285,
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: <InlineMath math="B" />,
+          at: 1,
+          offset: [0.4, -0.4, 0],
+        },
+      ],
+    },
+    // Großer Mittelpunktswinkelbogen zur Darstellung von 240°
+    { kind: "circle-arc", color: "#d97706",
+      lineWidth: 3,
+      label: {
+        progress: 7 / 8,
+        text: <InlineMath math="240^\circ" />,
+        offset: [0.5, -0.5, 0],
+      },
+      radius: 1.2,
+      startDegrees: 45,
+      sweepDegrees: 240 },
+    // Sehne AB
+    {
+      kind: "circle-chord", radius: 4,
+        startDegrees: 45,
+        sweepDegrees: 240,
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 3,
+    },
+    // Großes Segment (schraffierte Fläche)
+    { kind: "circle-segment", color: "#65a30d",
+      radius: 4,
+      startDegrees: 45,
+      sweepDegrees: 240,
+      label: {
+        progress: 1 / 2,
+        text: "großes Segment",
+        offset: [2.2, 0, 0],
+      } },
+  ]}
+/>
+
+</ContentStack>
+
+**Kurz zusammengefasst:**
+- **Kleines Segment**: Mittelpunktswinkel <InlineMath math="< 180^\circ" />, Segmentfläche <InlineMath math="< \frac{1}{2}\pi r^2" />
+- **Großes Segment**: Mittelpunktswinkel <InlineMath math="> 180^\circ" />, Segmentfläche <InlineMath math="> \frac{1}{2}\pi r^2" />
+
+## Segmentflächenformel
+
+Das kleine Kreissegment entsteht, wenn wir vom Kreissektor das Dreieck aus den beiden Radien und der Sehne abziehen.
+
+**Warum ist das nicht die Bogenlängenformel?**
+- **Bogenlänge** ist <InlineMath math="\frac{\alpha}{360^\circ} \times 2\pi r" /> (Einheiten: cm, m usw.)
+- **Segmentfläche** <InlineMath math="\neq" /> Bogenlänge (da das Segment eine <InlineMath math="2\text{D}" />-Fläche und keine <InlineMath math="1\text{D}" />-Linie ist)
+
+    <MathContainer>
+    <BlockMath math="\text{Segmentfläche} = \text{Sektorfläche} - \text{Dreiecksfläche}" />
+    </MathContainer>
+
+    Setzen wir beide Flächenformeln ein, ergibt sich:
+
+    <MathContainer>
+    <BlockMath math="\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+    </MathContainer>
+
+    Dabei ist <InlineMath math="0^\circ < \alpha < 180^\circ" /> der kleine Mittelpunktswinkel in Grad und <InlineMath math="r" /> der Kreisradius.
+
+    Für ein großes Kreissegment verwenden wir zunächst den ergänzenden kleinen Winkel <InlineMath math="\beta=360^\circ-\alpha" /> und ziehen dann die kleine Segmentfläche von der gesamten Kreisfläche ab:
+
+    <MathContainer>
+    <BlockMath math="\beta=360^\circ-\alpha" />
+    <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
+    </MathContainer>
+
+**Die Einheiten zeigen den Unterschied:**
+- Bogenlänge: <InlineMath math="\text{cm}" />, <InlineMath math="\text{m}" /> (Längeneinheiten)
+- Segmentfläche: <InlineMath math="\text{cm}^2" />, <InlineMath math="\text{m}^2" /> (Flächeneinheiten)
+
+## Visualisierung der Segmentbildung
+
+Die Darstellung zeigt Sektor, Dreieck und das dazwischen verbleibende Segment:
+
+<ContentStack>
+
+<LineEquation
+  title="Komponenten der Segmentbildung"
+  description={
+    <>
+    Das Segment entsteht aus Sektor <InlineMath math="AOB" /> minus Dreieck{" "}
+      <InlineMath math="AOB" />. Der Mittelpunktswinkel beträgt{" "}
+      <InlineMath math="90^\circ" />, der Radius{" "}
+      <InlineMath math="4 \text{ Einheiten}" />.
+    </>
+  }
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline", radius: 4,
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: true,
+      lineWidth: 1,
+    },
+    {
+      kind: "circle-radius", radius: 4, degrees: 0,
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: <InlineMath math="O" />,
+          at: 0,
+          offset: [-0.3, -0.3, 0],
+        },
+        {
+          text: <InlineMath math="A" />,
+          at: 1,
+          offset: [0.3, -0.3, 0],
+        },
+      ],
+    },
+    {
+      kind: "circle-radius", radius: 4, degrees: 90,
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 2,
+      labels: [
+        {
+          text: <InlineMath math="B" />,
+          at: 1,
+          offset: [-0.3, 0.3, 0],
+        },
+      ],
+    },
+    {
+      kind: "circle-chord", radius: 4,
+        startDegrees: 0,
+        sweepDegrees: 90,
+      color: "#65a30d",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: <>Sehne <InlineMath math="AB" /></>,
+          at: 1,
+          offset: [2.5, 0.5, 0],
+        },
+      ],
+    },
+    { kind: "circle-arc", color: "#c026d3",
+      lineWidth: 4,
+      label: {
+        text: <>Bogen <InlineMath math="\widehat{AB}\;(90^\circ)" /></>,
+        offset: [2, 0.5, 0],
+      },
+      radius: 4,
+      startDegrees: 0,
+      sweepDegrees: 90 },
+  ]}
+/>
+
+</ContentStack>
+
+## Segmentflächenberechnung
+
+Wir berechnen nun die Segmentfläche für <InlineMath math="\alpha = 90^\circ" /> und <InlineMath math="r = 10 \text{ cm}" />.
+
+**Schritt** <InlineMath math="1" />: Sektorfläche berechnen
+
+<MathContainer>
+<BlockMath math="\text{Sektorfläche} = \frac{90^\circ}{360^\circ} \times \pi r^2" />
+<BlockMath math="= \frac{1}{4} \times \pi \times 10^2" />
+<BlockMath math="= \frac{1}{4} \times \pi \times 100" />
+<BlockMath math="= 25\pi \text{ cm}^2 \approx 78{,}5398 \text{ cm}^2" />
+</MathContainer>
+
+**Schritt** <InlineMath math="2" />: Dreiecksfläche berechnen
+
+Für einen Winkel <InlineMath math="90^\circ" /> ist das gebildete Dreieck ein rechtwinkliges Dreieck, bei dem beide senkrechten Seiten Radien sind:
+
+<MathContainer>
+<BlockMath math="\text{Dreiecksfläche} = \frac{1}{2} \times r^2 \times \sin 90^\circ" />
+<BlockMath math="= \frac{1}{2} \times 10^2 \times 1" />
+<BlockMath math="= \frac{1}{2} \times 100 \times 1" />
+<BlockMath math="= 50 \text{ cm}^2" />
+</MathContainer>
+
+**Schritt** <InlineMath math="3" />: Segmentfläche berechnen
+
+<MathContainer>
+<BlockMath math="\text{Segmentfläche} = \text{Sektorfläche} - \text{Dreiecksfläche}" />
+<BlockMath math="= 25\pi - 50" />
+<BlockMath math="\approx 78{,}5398 - 50" />
+<BlockMath math="\approx 28{,}5398 \text{ cm}^2" />
+</MathContainer>
+
+## Übungen
+
+1. Ein Kreis hat den Radius <InlineMath math="7 \text{ cm}" />. Bestimme die Fläche des Segments zu einem Mittelpunktswinkel von <InlineMath math="60^\circ" />.
+
+2. Ein kleines Kreissegment hat in einem Kreis mit Radius <InlineMath math="5 \text{ cm}" /> eine Fläche von ungefähr <InlineMath math="15{,}3546 \text{ cm}^2" />. Bestimme den zugehörigen kleinen Mittelpunktswinkel.
+
+3. Ein liegender zylindrischer Tank mit Radius <InlineMath math="2 \text{ m}" /> ist vom Boden aus bis zu einer Höhe von <InlineMath math="1{,}5 \text{ m}" /> mit Wasser gefüllt. Bestimme die vom Wasser eingenommene Querschnittsfläche.
+
+### Ausführliche Lösungen
+
+1. **Lösungsschritte:**
+
+   Gegeben: <InlineMath math="r = 7 \text{ cm}" />, <InlineMath math="\alpha = 60^\circ" />
+
+   Sektorfläche berechnen:
+
+   <MathContainer>
+   <BlockMath math="\text{Sektorfläche} = \frac{60^\circ}{360^\circ} \times \pi \times 7^2" />
+   <BlockMath math="= \frac{1}{6} \times \pi \times 49" />
+   <BlockMath math="= \frac{49\pi}{6} \text{ cm}^2" />
+   </MathContainer>
+
+   Dreiecksfläche berechnen:
+
+   <MathContainer>
+   <BlockMath math="\text{Dreiecksfläche} = \frac{1}{2} r^2 \sin 60^\circ" />
+   <BlockMath math="= \frac{1}{2} \times 49 \times \frac{\sqrt{3}}{2}" />
+   <BlockMath math="= \frac{49\sqrt{3}}{4} \text{ cm}^2" />
+   </MathContainer>
+
+   Segmentfläche berechnen:
+
+   <MathContainer>
+   <BlockMath math="\text{Segmentfläche} = \frac{49\pi}{6} - \frac{49\sqrt{3}}{4}" />
+   <BlockMath math="\approx 25{,}6563 - 21{,}2176 = 4{,}4387 \text{ cm}^2" />
+   </MathContainer>
+
+2. **Lösungsschritte:**
+
+   Gegeben: Segmentfläche <InlineMath math="\approx 15{,}3546 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
+
+   Verwendet wird: <InlineMath math="\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+
+   Löse die Gleichung numerisch im Intervall für kleine Winkel <InlineMath math="0^\circ<\alpha<180^\circ" />. Das ergibt:
+   <InlineMath math="\alpha \approx 120^\circ" />
+
+   Überprüfung:
+
+   <MathContainer>
+   <BlockMath math="\text{Sektorfläche} = \frac{120^\circ}{360^\circ} \times \pi \times 25 = \frac{25\pi}{3}" />
+   <BlockMath math="\text{Dreiecksfläche} = \frac{1}{2} \times 25 \times \sin 120^\circ = \frac{25\sqrt{3}}{4}" />
+   <BlockMath math="\text{Segmentfläche} = \frac{25\pi}{3} - \frac{25\sqrt{3}}{4} \approx 26{,}1799 - 10{,}8253 = 15{,}3546 \text{ cm}^2" />
+   </MathContainer>
+
+   Das stimmt nach dem Runden mit der angegebenen Fläche überein. Der Mittelpunktswinkel beträgt daher ungefähr <InlineMath math="120^\circ" />.
+
+3. **Lösungsschritte:**
+
+   Gegeben: Tankradius = <InlineMath math="2 \text{ m}" />, Wasserhöhe = <InlineMath math="1{,}5 \text{ m}" />
+
+   Da die Wasserhöhe (<InlineMath math="1{,}5 \text{ m}" />) kleiner als der Radius (<InlineMath math="2 \text{ m}" />) ist, bildet der gefüllte Teil des Kreisquerschnitts ein kleines Kreissegment.
+
+   Für einen liegenden Zylinder verwenden wir die Kreissegmentformel mit der Segmenthöhe.
+
+   Die Segmenthöhe vom Tankboden ist:
+
+   <MathContainer>
+   <BlockMath math="h = 1{,}5 \text{ m (Wasserhöhe vom Boden)}" />
+   </MathContainer>
+
+   Für die gefüllte Querschnittsfläche gilt:
+
+   <MathContainer>
+   <BlockMath math="\text{Fläche} = r^2 \times \left[\arccos\left(\frac{r-h}{r}\right) - \frac{r-h}{r} \times \sqrt{1-\left(\frac{r-h}{r}\right)^2}\right]" />
+   </MathContainer>
+
+   Der von <InlineMath math="\arccos" /> gelieferte Winkel wird dabei im Bogenmaß eingesetzt, wie es die Flächenformel verlangt.
+
+   Ersatzwerte:
+
+   <MathContainer>
+   <BlockMath math="\frac{r-h}{r} = \frac{2-1{,}5}{2} = 0{,}25" />
+   <BlockMath math="\arccos(0{,}25) \approx 1{,}3181 \text{ rad}" />
+   <BlockMath math="\sqrt{1-0{,}25^2} = \sqrt{0{,}9375} \approx 0{,}9682" />
+   </MathContainer>
+
+   Gefüllte Querschnittsfläche berechnen:
+
+   <MathContainer>
+   <BlockMath math="\text{Fläche} = 4 \times [\arccos(0{,}25) - 0{,}25\sqrt{0{,}9375}]" />
+   <BlockMath math="\approx 4 \times 1{,}0760546" />
+   <BlockMath math="\approx 4{,}3042 \text{ m}^2" />
+   </MathContainer>

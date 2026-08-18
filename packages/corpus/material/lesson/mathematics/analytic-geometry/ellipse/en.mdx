@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Ellipse",
-  description: "Learn ellipse properties, foci, and equations, then solve x²/a² + y²/b² = 1 problems with worked examples.",
+  description: "Learn the properties, foci, and standard equations of ellipses through visualizations and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Analytic Geometry",
@@ -10,9 +10,9 @@ export const metadata = {
 
 ## What is an Ellipse?
 
-Ever seen the shape of planets orbiting the sun? Or the shadow of a circle when viewed from the side? Well, shapes like those are called **ellipses**! An ellipse isn't just a "flattened" circle, but there's a cool mathematical definition behind it.
+Planetary orbits and the oblique shadow of a circle both suggest the same shape: an **ellipse**. An ellipse is more than a "flattened" circle because it satisfies a precise geometric condition.
 
-So here's the thing, an ellipse is a collection of points where **the sum of distances to two specific points is always the same**. These two specific points are called **foci**. Just imagine you have two nails and a string. If you tie the string to both nails, then pull a pencil until the string is tight and draw a complete curve, the curve formed is an ellipse!
+An ellipse is the set of all points for which **the sum of the distances to two fixed points is constant**. Those fixed points are the **foci**. This definition can be modeled with two nails, a closed loop of string, and a pencil. Anchor the string at the nails, pull it taut with the pencil, and trace a full curve. The result is an ellipse.
 
 <LineEquation
   title="Basic Ellipse Concept"
@@ -127,11 +127,11 @@ So here's the thing, an ellipse is a collection of points where **the sum of dis
   showZAxis={false}
 />
 
-From the visualization above, notice point <InlineMath math="P" />. The distance from <InlineMath math="P" /> to focus <InlineMath math="F_1" /> (which we call <InlineMath math="r_1" />) plus the distance from <InlineMath math="P" /> to focus <InlineMath math="F_2" /> (which we call <InlineMath math="r_2" />) will always be the same for all points on the ellipse. This is the **fundamental characteristic of an ellipse**!
+In the visualization, <InlineMath math="P" /> lies on the ellipse. Its distance to <InlineMath math="F_1" />, labeled <InlineMath math="r_1" />, plus its distance to <InlineMath math="F_2" />, labeled <InlineMath math="r_2" />, has the same value for every point on the curve. This is the **defining property of an ellipse**.
 
 ## Ellipse Components
 
-Before we discuss the formulas, let's get familiar with the important parts of an ellipse. Each part has its own role in determining the shape of the ellipse.
+Before using the formulas, identify the parts that determine an ellipse's position and shape.
 
 <LineEquation
   title="Ellipse Components"
@@ -224,11 +224,11 @@ Before we discuss the formulas, let's get familiar with the important parts of a
   showZAxis={false}
 />
 
-Here are the components you need to know:
+The main components are:
 
 1. **Ellipse center** is the midpoint of the ellipse, usually written with letter <InlineMath math="O" />. All measurements in the ellipse refer to this point.
 
-2. **Foci** (<InlineMath math="F_1" /> and <InlineMath math="F_2" />) are two fixed points that serve as reference for the ellipse definition. The distance between the two foci is called the focal distance.
+2. **Foci** (<InlineMath math="F_1" /> and <InlineMath math="F_2" />) are two fixed points that define the ellipse. Their distance from each other is <InlineMath math="2c" />.
 
 3. **Major axis** is the longest line that passes through the ellipse center and both foci. Its endpoints are points <InlineMath math="A_1" /> and <InlineMath math="A_2" />.
 
@@ -238,11 +238,11 @@ Here are the components you need to know:
 
 6. **Semi-minor** (<InlineMath math="b" />) is half the length of the minor axis, which is the distance from center to the minor axis endpoint.
 
-> Remember, in an ellipse we always have <InlineMath math="a > b" />. If <InlineMath math="a = b" />, the shape becomes a circle!
+> A noncircular ellipse satisfies <InlineMath math="a > b" />. In the limiting case <InlineMath math="a = b" />, the two semiaxes are equal and the curve is a circle.
 
 ## Ellipse Equations
 
-Now, let's get into the fun part: how to write an ellipse in mathematical equation form. There are several forms depending on position and orientation.
+The equation form depends on the center and on whether the major axis is horizontal or vertical.
 
 ### Center at Origin
 
@@ -333,7 +333,7 @@ If the ellipse center is at <InlineMath math="O(0,0)" />, there are two possible
   showZAxis={false}
 />
 
-When the major axis is parallel to the <InlineMath math="X" /> axis (horizontal), the ellipse equation is:
+When the major axis is parallel to the <InlineMath math="x" /> axis (horizontal), the ellipse equation is:
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
@@ -424,7 +424,7 @@ with the condition <InlineMath math="a > b" />.
   showZAxis={false}
 />
 
-When the major axis is parallel to the <InlineMath math="Y" /> axis (vertical), the ellipse equation is:
+When the major axis is parallel to the <InlineMath math="y" /> axis (vertical), the ellipse equation is:
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
@@ -530,7 +530,7 @@ Visualization:
 
 ## Important Relationships
 
-There's a formula that always applies to every ellipse:
+The three characteristic lengths satisfy:
 
 <BlockMath math="c^2 = a^2 - b^2" />
 
@@ -540,7 +540,7 @@ where <InlineMath math="c" /> is the distance from center to focus.
 
 <BlockMath math="e = \frac{c}{a}" />
 
-The eccentricity value of an ellipse is always <InlineMath math="0 < e < 1" />. The closer to <InlineMath math="0" />, the more circular the ellipse becomes. The closer to <InlineMath math="1" />, the more elongated the ellipse becomes.
+For a noncircular ellipse, <InlineMath math="0 < e < 1" />. As <InlineMath math="e" /> approaches <InlineMath math="0" />, the ellipse becomes more circular. As <InlineMath math="e" /> approaches <InlineMath math="1" />, it becomes more elongated. The limiting circle has <InlineMath math="e = 0" />.
 
 ## Exercises
 
@@ -552,7 +552,7 @@ The eccentricity value of an ellipse is always <InlineMath math="0 < e < 1" />. 
 
 4. Find the equation of an ellipse that passes through points <InlineMath math="(4, 3)" /> and <InlineMath math="(6, 2)" /> with center at <InlineMath math="(0, 0)" /> and horizontal major axis.
 
-### Answer Key
+### Solutions
 
 1. **Solution**:
 
@@ -589,7 +589,7 @@ The eccentricity value of an ellipse is always <InlineMath math="0 < e < 1" />. 
 
    Eccentricity:
 
-   <BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0{.}6" />
+   <BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0.6" />
 
 3. **Solution**:
 
@@ -604,7 +604,7 @@ The eccentricity value of an ellipse is always <InlineMath math="0 < e < 1" />. 
 
    so <InlineMath math="2c = 6" />, thus <InlineMath math="c = 3" />
 
-   Calculate <InlineMath math="a" />:
+   Use <InlineMath math="c^2 = a^2-b^2" /> to calculate <InlineMath math="a" />:
 
    <MathContainer>
      <BlockMath math="c^2 = a^2 - b^2" />

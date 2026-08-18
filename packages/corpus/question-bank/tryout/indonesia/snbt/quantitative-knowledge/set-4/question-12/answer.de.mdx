@@ -1,0 +1,46 @@
+export const metadata = {
+    title: "Lösung zu Aufgabe 12",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-11-26",
+};
+
+Gegeben:
+
+- Gesamtzahl der Schüler: <InlineMath math="S = 800" />
+- Schüler, die Mathematik mögen: <InlineMath math="M = 400" />
+- Schüler, die Physik mögen: <InlineMath math="F = 500" />
+
+Gesucht sind der größte Wert <InlineMath math="x" /> und der kleinste Wert <InlineMath math="y" /> für die Schnittmenge, also für die Schüler, die beide Fächer mögen.
+
+#### Größtmögliche Schnittmenge
+
+Die Zahl der Schüler, die beide Fächer mögen, ist am größten, wenn die kleinere Menge vollständig in der größeren liegt.
+Da <InlineMath math="400" /> Schüler Mathematik mögen und <InlineMath math="500" /> Physik, ist die Mathematikgruppe die kleinere Menge.
+Die größte mögliche Schnittmenge entspricht daher der Größe dieser kleineren Gruppe.
+
+<MathContainer>
+  <BlockMath math="x = 400" />
+</MathContainer>
+
+#### Kleinstmögliche Schnittmenge
+
+Die Schnittmenge ist am kleinsten, wenn die Vereinigung beider Mengen möglichst groß ist. Da die Schule nur <InlineMath math="800" /> Schüler hat, kann <InlineMath math="n(M \cup F)" /> den Wert <InlineMath math="800" /> nicht überschreiten.
+
+Mit <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" /> liegt die kleinste mögliche Schnittmenge vor, wenn die Vereinigung diese Obergrenze erreicht. Das ist möglich, wenn jeder Schüler mindestens eines der beiden Fächer mag.
+
+<MathContainer>
+  <BlockMath math="800 = 400 + 500 - y" />
+  <BlockMath math="800 = 900 - y" />
+  <BlockMath math="y = 900 - 800" />
+  <BlockMath math="y = 100" />
+</MathContainer>
+
+#### Berechnung der Differenz
+
+Abschließend berechnen wir die Differenz zwischen Maximal- und Minimalwert.
+
+<MathContainer>
+  <BlockMath math="x - y = 400 - 100 = 300" />
+</MathContainer>
+
+Der Wert von <InlineMath math="x - y" /> ist also <InlineMath math="300\text{ Schüler}" />.

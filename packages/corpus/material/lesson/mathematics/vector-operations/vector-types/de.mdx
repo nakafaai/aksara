@@ -1,0 +1,225 @@
+
+export const metadata = {
+  title: "Vektortypen",
+  description: "Vergleiche Betrag und Richtung von Vektoren und lerne Gegenvektoren, Nullvektoren und gleiche Vektoren anhand von Diagrammen kennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-08",
+  subject: "Vektoren und ihre Operationen",
+};
+
+## Betrag und Richtung eines Vektors
+
+Jeder Vektor, der nicht der Nullvektor ist, besitzt zwei kennzeichnende Eigenschaften: **Betrag** und **Richtung**. Der Nullvektor ist der Sonderfall, den wir später betrachten.
+
+Betrachte den Vektor <InlineMath math="\overrightarrow{CD}" /> in der folgenden Abbildung.
+
+<VectorChart
+  title={
+    <>
+      Vektor <InlineMath math="CD" />
+    </>
+  }
+  description={
+    <>
+      Vektor <InlineMath math="CD" /> mit dem Betrag{" "}
+      <InlineMath math="4 \text{ cm}" /> und einem Winkel von{" "}
+      <InlineMath math="45^\circ" /> zur Waagerechten.
+    </>
+  }
+  vectors={[
+    {
+      id: "cd",
+      name: "CD",
+      points: [
+        { x: 0, y: 0 },
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) },
+      ],
+    },
+  ]}
+/>
+
+- Der **Betrag des Vektors** <InlineMath math="\overrightarrow{CD}" /> ist <InlineMath math="4 \text{ cm}" />. Er gibt die Größe des Vektors an. Den Betrag eines Vektors <InlineMath math="\vec{v}" /> schreibt man als <InlineMath math="|\vec{v}|" />. Somit gilt <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
+- Die **Richtung des Vektors** <InlineMath math="\overrightarrow{CD}" /> bildet mit der Waagerechten einen Winkel von <InlineMath math="45^\circ" />. Gerade die Richtung unterscheidet Vektoren von skalaren Größen, die nur einen Betrag besitzen. Wir können eine Richtung zum Beispiel durch einen Winkel, eine Himmelsrichtung oder einen anderen Bezug angeben.
+
+## Negativer Vektor (entgegengesetzter Vektor)
+
+Für einen Vektor ungleich null hat sein negativer Vektor, auch Gegenvektor genannt, **denselben Betrag**, aber die **entgegengesetzte Richtung**.
+
+Stell dir vor, Andi geht <InlineMath math="100 \text{ m}" /> in einem Winkel von <InlineMath math="30^\circ" />. Wir nennen diese Verschiebung <InlineMath math="\vec{A}" />. Geht Andi anschließend auf demselben Weg direkt zurück, ist die Rückbewegung der Gegenvektor von <InlineMath math="\vec{A}" />. Wir schreiben ihn als <InlineMath math="-\vec{A}" />.
+
+<VectorChart
+  title="Vektor und Gegenvektor"
+  description={
+    <>
+      Vektor <InlineMath math="A" /> und Vektor <InlineMath math="-A" /> haben
+      denselben Betrag, aber entgegengesetzte Richtungen.
+    </>
+  }
+  vectors={[
+    {
+      id: "A",
+      name: "A",
+      points: [
+        { x: 0, y: 0 },
+        { x: 5, y: 2 },
+      ],
+    },
+    {
+      id: "-A",
+      name: "-A",
+      points: [
+        { x: 0, y: 0.5 },
+        { x: 5, y: 2.5 },
+      ],
+      direction: "backward",
+    },
+  ]}
+/>
+
+- Die Vektoren <InlineMath math="\vec{A}" /> und <InlineMath math="-\vec{A}" /> haben denselben Betrag: <InlineMath math="|\vec{A}| = |-\vec{A}|" />.
+- Die Richtung von <InlineMath math="-\vec{A}" /> ist der Richtung von <InlineMath math="\vec{A}" /> genau entgegengesetzt. Zeigt <InlineMath math="\vec{A}" /> in eine Richtung, zeigt <InlineMath math="-\vec{A}" /> in die Gegenrichtung. Der Richtungsunterschied beträgt <InlineMath math="180^\circ" />.
+
+## Nullvektor
+
+Der Nullvektor ist ein besonderer Vektor mit dem **Betrag null**. Da seine Länge null ist, besitzt er **keine eindeutig bestimmte Richtung**.
+
+Wir können den Nullvektor als einen Punkt darstellen, an dem Anfangs- und Endpunkt zusammenfallen. Üblicherweise schreiben wir ihn als <InlineMath math="\vec{0}" />.
+
+**Beispiel**:
+
+Geht Andi <InlineMath math="100 \text{ m}" /> nach Osten und anschließend <InlineMath math="100 \text{ m}" /> auf demselben Weg nach Westen zurück, ist die gesamte Verschiebung null. Sie wird durch den Nullvektor <InlineMath math="\vec{0}" /> dargestellt.
+
+## Äquivalente Vektoren (gleiche Vektoren)
+
+Zwei Vektoren sind **gleich**, wenn ihre entsprechenden Komponenten gleich sind. Ihre Anfangspunkte dürfen dabei verschieden sein. Für Vektoren ungleich null ist dies gleichbedeutend mit demselben **Betrag und derselben Richtung**. Die Komponentendefinition erfasst auch den Nullvektor, dessen Richtung nicht definiert ist.
+
+Die folgende Abbildung zeigt drei gleiche Vektoren: <InlineMath math="\overrightarrow{CD}" />, <InlineMath math="\overrightarrow{EF}" /> und <InlineMath math="\overrightarrow{KL}" />.
+
+<VectorChart
+  title="Äquivalente Vektoren"
+  description={
+    <>
+      Die Vektoren <InlineMath math="CD" />, <InlineMath math="EF" /> und{" "}
+      <InlineMath math="KL" /> haben denselben Betrag und dieselbe Richtung.
+    </>
+  }
+  vectors={[
+    {
+      id: "CD",
+      name: "CD",
+      points: [
+        { x: 2, y: 1 }, // C
+        { x: 5, y: 3 }, // D
+      ],
+    },
+    {
+      id: "EF",
+      name: "EF",
+      points: [
+        { x: 4, y: 2 }, // E
+        { x: 7, y: 4 }, // F
+      ],
+    },
+    {
+      id: "KL",
+      name: "KL",
+      points: [
+        { x: 3, y: 0 }, // K
+        { x: 6, y: 2 }, // L
+      ],
+    },
+  ]}
+/>
+
+Die drei Vektoren haben denselben Betrag und dieselbe Richtung. Deshalb können wir schreiben:
+
+<BlockMath math="\overrightarrow{CD} = \overrightarrow{EF} = \overrightarrow{KL}" />
+
+Ihre Anfangspunkte unterscheiden sich, doch jeder Pfeil führt drei Einheiten nach rechts und zwei Einheiten nach oben. Alle drei haben daher denselben Komponentenvektor <InlineMath math="(3, 2)" />.
+
+## Übung
+
+Betrachte die beiden folgenden Vektoren:
+
+<VectorChart
+  title={
+    <>
+      Vergleich von Vektor <InlineMath math="A" /> und Vektor{" "}
+      <InlineMath math="B" />
+    </>
+  }
+  description={
+    <>
+      Vergleich von Vektor <InlineMath math="A" /> und Vektor{" "}
+      <InlineMath math="B" />
+    </>
+  }
+  vectors={[
+    {
+      id: "A",
+      name: "A",
+      points: [
+        { x: 1, y: 4 },
+        { x: 0, y: 0 },
+      ],
+      direction: "backward",
+    },
+    {
+      id: "B",
+      name: "B",
+      points: [
+        { x: 1, y: 4 },
+        { x: 5, y: 5 },
+      ],
+    },
+  ]}
+/>
+
+Ist der Vektor <InlineMath math="\vec{A}" /> der Gegenvektor von <InlineMath math="\vec{B}" />?
+
+**Antwort:**
+
+Der Vektor <InlineMath math="\vec{A}" /> ist **nicht** der Gegenvektor von <InlineMath math="\vec{B}" />. Prüfen wir die beiden notwendigen Bedingungen:
+
+1.  **Die Beträge müssen gleich sein:** Aus der Abbildung folgen <InlineMath math="\vec{A} = (-1, -4)" /> und <InlineMath math="\vec{B} = (4, 1)" />. Deshalb gilt <InlineMath math="|\vec{A}| = |\vec{B}| = \sqrt{17}" />. Diese Bedingung ist erfüllt.
+2.  **Die Richtungen müssen genau entgegengesetzt sein, also einen Winkel von <InlineMath math="180^\circ" /> bilden:** Der Gegenvektor von <InlineMath math="\vec{A}" /> ist <InlineMath math="-\vec{A} = (1, 4)" /> und nicht <InlineMath math="\vec{B} = (4, 1)" />. Diese Bedingung ist nicht erfüllt.
+
+Weil die zweite Bedingung nicht erfüllt ist, ist <InlineMath math="\vec{A}" /> nicht der Gegenvektor von <InlineMath math="\vec{B}" />.
+
+**Wie werden <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> zu Gegenvektoren?**
+
+Wenn <InlineMath math="\vec{A}" /> unverändert bleibt, wird <InlineMath math="\vec{B}" /> durch eine Änderung des Endpunkts von <InlineMath math="\vec{B}" /> zum Gegenvektor:
+
+<VectorChart
+  title={
+    <>
+      Gegenvektoren <InlineMath math="A" /> und <InlineMath math="B" />
+    </>
+  }
+  description={
+    <>
+      Vektor <InlineMath math="A" /> und Vektor <InlineMath math="B" /> sind
+      Gegenvektoren.
+    </>
+  }
+  vectors={[
+    {
+      id: "A",
+      name: "A",
+      points: [
+        { x: 1, y: 4 },
+        { x: 0, y: 0 },
+      ],
+      direction: "backward",
+    },
+    {
+      id: "B",
+      name: "B",
+      points: [
+        { x: 1, y: 4 },
+        { x: 2, y: 8 },
+      ],
+      direction: "forward",
+    },
+  ]}
+/>

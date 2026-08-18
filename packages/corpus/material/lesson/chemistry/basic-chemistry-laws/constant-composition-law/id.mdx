@@ -18,7 +18,7 @@ Kata **senyawa murni** penting. Campuran air gula bisa dibuat lebih manis atau l
 
 ## Rasio Air Tidak Ikut Berubah
 
-Rumus air adalah <InlineMath math="\mathrm{H_2O}" />. Artinya, setiap satuan air tersusun dari <InlineMath math="2" /> atom hidrogen dan <InlineMath math="1" /> atom oksigen. Dengan massa atom relatif sederhana <InlineMath math="A_r\mathrm{(H)} = 1" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, perbandingan massa hidrogen dan oksigen dalam air adalah:
+Rumus air adalah <InlineMath math="\mathrm{H_2O}" />. Artinya, setiap molekul air tersusun dari <InlineMath math="2" /> atom hidrogen dan <InlineMath math="1" /> atom oksigen. Dengan massa atom relatif sederhana <InlineMath math="A_r\mathrm{(H)} = 1" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, perbandingan massa hidrogen dan oksigen dalam air adalah:
 
 <BlockMath math="\begin{aligned}
 m_{\mathrm{H}} : m_{\mathrm{O}}
@@ -27,11 +27,17 @@ m_{\mathrm{H}} : m_{\mathrm{O}}
   &= 1 : 8
 \end{aligned}" />
 
-Jadi, kalau air yang terbentuk massanya berbeda, perbandingan massa hidrogen terhadap oksigen yang benar-benar bereaksi tetap <InlineMath math="1:8" />. PubChem mencatat rumus air sebagai <InlineMath math="\mathrm{H_2O}" /> dan massa molekulnya sekitar <InlineMath math="18{,}015\ \mathrm{g/mol}" /> di [water property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula,MolecularWeight/JSON).
+Jadi, kalau air yang terbentuk massanya berbeda, perbandingan massa hidrogen terhadap oksigen yang benar-benar bereaksi tetap <InlineMath math="1:8" /> dengan nilai pembulatan yang dipakai di atas. PubChem mencatat rumus <InlineMath math="\mathrm{H_2O}" /> di [water property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON). [Bobot atom standar ringkas CIAAW 2024](https://www.ciaaw.org/abridged-atomic-weights.htm), yaitu <InlineMath math="A_r\mathrm{(H)}=1{,}0080" /> dan <InlineMath math="A_r\mathrm{(O)}=15{,}999" />, memberi massa molar yang lebih teliti:
+
+<BlockMath math="M(\mathrm{H_2O})=2(1{,}0080)+15{,}999=18{,}015\ \mathrm{g\,mol^{-1}}" />
 
 ## Reaktan Berlebih Tetap Tersisa
 
 Ubah massa awal pada model berikut. Yang berubah adalah ada atau tidaknya zat sisa. Yang tidak berubah adalah rasio hidrogen dan oksigen yang masuk ke senyawa air.
+
+Model ini dipakai untuk menghitung massa, bukan untuk menggambarkan mekanisme molekuler secara harfiah. Label <InlineMath math="\mathrm{H}" /> dan <InlineMath math="\mathrm{O}" /> menunjukkan massa unsur yang sedang dihitung. Dalam persamaan pembentukan setara, hidrogen dan oksigen unsur ditulis sebagai <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="\mathrm{O_2}" />:
+
+<BlockMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow 2\mathrm{H_2O}" />
 
 <ConstantCompositionLab
   title={<>Gerbang Rasio Air</>}
@@ -58,8 +64,8 @@ Ubah massa awal pada model berikut. Yang berubah adalah ada atau tidaknya zat si
             mengikuti rasio <InlineMath math="1:8" />.
           </>
         ),
-        readoutBefore: <InlineMath math="2\\,\\mathrm{g}\\,\\mathrm{H}+16\\,\\mathrm{g}\\,\\mathrm{O}" />,
-        readoutAfter: <InlineMath math="18\\,\\mathrm{g}\\,\\mathrm{H_2O}" />,
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}" />,
         ratio: (
           <>
             <InlineMath math="2:16 = 1:8" />, sama dengan rasio massa air.
@@ -80,8 +86,8 @@ Ubah massa awal pada model berikut. Yang berubah adalah ada atau tidaknya zat si
             hidrogen di luar rasio itu tersisa.
           </>
         ),
-        readoutBefore: <InlineMath math="3\\,\\mathrm{g}\\,\\mathrm{H}+16\\,\\mathrm{g}\\,\\mathrm{O}" />,
-        readoutAfter: <InlineMath math="18\\,\\mathrm{g}\\,\\mathrm{H_2O}+1\\,\\mathrm{g}\\,\\mathrm{H}" />,
+        readoutBefore: <InlineMath math="3\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+1\,\mathrm{g}\,\mathrm{H}" />,
         ratio: (
           <>
             Yang bereaksi hanya <InlineMath math="2:16 = 1:8" />.
@@ -107,8 +113,8 @@ Ubah massa awal pada model berikut. Yang berubah adalah ada atau tidaknya zat si
             oksigen di luar rasio itu tersisa.
           </>
         ),
-        readoutBefore: <InlineMath math="2\\,\\mathrm{g}\\,\\mathrm{H}+20\\,\\mathrm{g}\\,\\mathrm{O}" />,
-        readoutAfter: <InlineMath math="18\\,\\mathrm{g}\\,\\mathrm{H_2O}+4\\,\\mathrm{g}\\,\\mathrm{O}" />,
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+20\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+4\,\mathrm{g}\,\mathrm{O}" />,
         ratio: (
           <>
             Yang bereaksi tetap <InlineMath math="2:16 = 1:8" />.
@@ -129,7 +135,7 @@ Hukum ini sering keliru dibaca sebagai "semua zat awal pasti habis". Bukan begit
 
 ## Menguji Data Kalsium Oksida
 
-Sekarang baca data seperti peneliti. Kalsium oksida memiliki rumus <InlineMath math="\mathrm{CaO}" />. PubChem mencatat rumus itu dan massa molekul <InlineMath math="56{,}08\ \mathrm{g/mol}" /> di [calcium oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20oxide/property/MolecularFormula,MolecularWeight/JSON).
+Sekarang baca data seperti peneliti. PubChem mencatat kalsium oksida sebagai <InlineMath math="\mathrm{CaO}" /> di [calcium oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20oxide/property/MolecularFormula/JSON). Nilai CIAAW <InlineMath math="A_r\mathrm{(Ca)}=40{,}078" /> dan <InlineMath math="A_r\mathrm{(O)}=15{,}999" /> memberi <InlineMath math="M(\mathrm{CaO})=56{,}077\ \mathrm{g\,mol^{-1}}" />, yang dibulatkan menjadi <InlineMath math="56{,}08\ \mathrm{g\,mol^{-1}}" />.
 
 Misalkan dua percobaan memberi data berikut.
 
@@ -149,7 +155,7 @@ Kedua percobaan menghasilkan massa senyawa yang berbeda, tetapi rasio massa kals
 
 ## Menghitung Massa dari Rumus
 
-Untuk senyawa besi(III) oksida, rumusnya <InlineMath math="\mathrm{Fe_2O_3}" />. Data PubChem untuk ferric oxide juga mencatat rumus <InlineMath math="\mathrm{Fe_2O_3}" /> di [ferric oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ferric%20oxide/property/MolecularFormula,MolecularWeight/JSON).
+Untuk senyawa besi(III) oksida, rumusnya <InlineMath math="\mathrm{Fe_2O_3}" />. Data PubChem untuk ferric oxide juga mencatat rumus <InlineMath math="\mathrm{Fe_2O_3}" /> di [ferric oxide property record](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ferric%20oxide/property/MolecularFormula/JSON).
 
 Dengan <InlineMath math="A_r\mathrm{(Fe)} = 56" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, rasio massa besi terhadap oksigen adalah:
 

@@ -1,0 +1,102 @@
+
+export const metadata = {
+  title: "Chemische Reaktionen schreiben",
+  description:
+    "Eine Reaktionsbeschreibung Schritt für Schritt in eine chemische Gleichung mit Reaktanten, Produkten, Koeffizienten und Zustandssymbolen übertragen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-01",
+  subject: "Grundgesetze der Chemie",
+};
+
+## Von der Geschichte zur Gleichung
+
+Eine chemische Reaktionsgleichung hält kompakt fest, welche Ausgangsstoffe reagieren, welche Produkte entstehen und in welchem stöchiometrischen Mengenverhältnis sie beteiligt sind. Das IUPAC Gold Book beschreibt Reaktanten auf der linken Seite, Produkte auf der rechten Seite und Reaktionszeichen wie den Pfeil im Eintrag zur [chemischen Reaktionsgleichung](https://goldbook.iupac.org/terms/view/C01034).
+
+Das Grundmuster sieht so aus.
+
+<BlockMath math="\text{Reaktanten} \rightarrow \text{Produkte}" />
+
+Der Pfeil wird als „ergibt“ gelesen. Ein Pluszeichen trennt mehrere Stoffe auf derselben Seite.
+
+## Ein vollständiges Methanbeispiel
+
+Ausgangspunkt ist ein gewöhnlicher Satz: Methan reagiert mit Sauerstoff zu Kohlendioxid und Wasser. Daraus werden zuerst die Stoffnamen und anschließend die Formeln auf beiden Seiten des Pfeils.
+
+| Schritt | Reaktionsform |
+| :--- | :------------ |
+| Reaktionssatz | Methan + Sauerstoff <InlineMath math="\rightarrow" /> Kohlendioxid + Wasser |
+| Startformeln | <InlineMath math="\mathrm{CH_4} + \mathrm{O_2} \rightarrow \mathrm{CO_2} + \mathrm{H_2O}" /> |
+| Ausgeglichene Gleichung | <InlineMath math="\mathrm{CH_4} + 2\mathrm{O_2} \rightarrow \mathrm{CO_2} + 2\mathrm{H_2O}" /> |
+
+Die erste Gleichung ist noch nicht ausgeglichen: Links stehen <InlineMath math="2" /> Sauerstoffatome, rechts aber <InlineMath math="3" />. Erst die passenden Koeffizienten bringen die Atomzahlen auf beiden Seiten zur Deckung.
+
+| Element | Links | Rechts |
+| :------ | :--- | :---- |
+| <InlineMath math="\mathrm{C}" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="\mathrm{H}" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="\mathrm{O}" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
+
+Die Koeffizienten bilden das Verhältnis <InlineMath math="1:2:1:2" />. Da alle vier Stoffe in diesem Beispiel molekular sind, lässt sich das Verhältnis unmittelbar als Molekülzahl darstellen: <InlineMath math="1" /> Methanmolekül reagiert mit <InlineMath math="2" /> Sauerstoffmolekülen zu <InlineMath math="1" /> Kohlendioxidmolekül und <InlineMath math="2" /> Wassermolekülen. Im Labor geben dieselben Koeffizienten das Stoffmengenverhältnis in Mol an.
+
+<MethaneCombustionEquationLab
+  title={<>Koeffizienten zeigen das Teilchenverhältnis</>}
+  description={
+    <>
+      In der Ausgangsansicht stehen die Reaktanten links und die Produkte rechts
+      in der ausgeglichenen Gleichung.
+    </>
+  }
+  labels={{
+    moleculeView: "Modell der Methanverbrennungsgleichung",
+    reactants: "Reaktanten",
+    products: "Produkte",
+    equation: (
+      <>
+        Reaktanten: <InlineMath math="\mathrm{CH_4} + 2\mathrm{O_2}" />. Produkte: <InlineMath math="\mathrm{CO_2} + 2\mathrm{H_2O}" />. Die Anzahlen der <InlineMath math="\mathrm{C}" />-, <InlineMath math="\mathrm{H}" />- und <InlineMath math="\mathrm{O}" />-Atome sind auf beiden Seiten gleich.
+      </>
+    ),
+  }}
+/>
+
+Das Molekülbild gilt nicht unverändert für jeden Stoff. Bei einem ionischen Feststoff oder einem Netzwerkfeststoff beschreibt der Koeffizient eine stöchiometrische Menge oder ein Verhältnis von Formeleinheiten, nicht eine Molekülzahl. Für makroskopische Reaktionen geben Koeffizienten immer relative Stoffmengen an.
+
+## Koeffizienten ändern Formeln nicht
+
+OpenStax Chemistry 2e erklärt beim [Schreiben und Ausgleichen chemischer Gleichungen](https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations), dass sich die Atomzahl aus Koeffizient mal Index ergibt. Koeffizienten dürfen verändert werden, weil sie nur die relative Stoffmenge angeben.
+
+<BlockMath math="\mathrm{CH_4} + 2\mathrm{O_2} \rightarrow \mathrm{CO_2} + 2\mathrm{H_2O}" />
+
+Der Koeffizient <InlineMath math="2" /> vor <InlineMath math="\mathrm{O_2}" /> bedeutet zwei Sauerstoffmoleküle. Der Index in <InlineMath math="\mathrm{O_2}" /> ist Teil der Sauerstoffformel und darf daher nicht in <InlineMath math="\mathrm{O_4}" /> geändert werden.
+
+## Zustandssymbole stehen hinter der Formel
+
+Ist der Aggregatzustand bekannt, steht sein Symbol direkt hinter der jeweiligen Formel. Bei der hohen Temperatur einer Methanflamme liegt das Wasserprodukt als Dampf vor. Die Gleichung kann daher so geschrieben werden:
+
+<BlockMath math="\mathrm{CH_4(g)} + 2\mathrm{O_2(g)} \rightarrow \mathrm{CO_2(g)} + 2\mathrm{H_2O(g)}" />
+
+Zustandssymbole verändern die Atomzahl nicht. Sie zeigen, in welchem Zustand ein Stoff unter den genannten Bedingungen vorliegt. Kühlt das Produktgemisch so weit ab, dass Wasser kondensiert, wird das Wasser stattdessen als <InlineMath math="\mathrm{H_2O(l)}" /> geschrieben.
+
+| Symbol | Lesen als | Beispiel |
+| :----- | :------ | :------ |
+| <InlineMath math="\mathrm{(s)}" /> | fest | <InlineMath math="\mathrm{AgCl(s)}" /> |
+| <InlineMath math="\mathrm{(l)}" /> | flüssig | <InlineMath math="\mathrm{H_2O(l)}" /> |
+| <InlineMath math="\mathrm{(g)}" /> | Gas | <InlineMath math="\mathrm{CO_2(g)}" /> |
+| <InlineMath math="\mathrm{(aq)}" /> | in Wasser gelöst | <InlineMath math="\mathrm{NaCl(aq)}" /> |
+
+## Ein Niederschlagsbeispiel lesen
+
+Auch zwei klare Lösungen können beim Mischen einen Feststoff bilden. So reagiert Silbernitratlösung mit Natriumchloridlösung, wobei ein Niederschlag aus Silberchlorid entsteht.
+
+<BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
+
+Mit dem Koeffizientenverhältnis <InlineMath math="1:1:1:1" /> ist diese Gleichung bereits ausgeglichen. Das <InlineMath math="\mathrm{(s)}" /> hinter <InlineMath math="\mathrm{AgCl(s)}" /> kennzeichnet dieses Produkt als Feststoff.
+
+## Sichere Schreibreihenfolge
+
+1. Namen der Reaktanten links und Namen der Produkte rechts notieren.
+2. Jeden Stoffnamen in die richtige chemische Formel übertragen.
+3. Die Atome jedes Elements links und rechts zählen.
+4. Koeffizienten anpassen, bis alle Atomzahlen übereinstimmen.
+5. Zustandssymbole ergänzen, sofern die Zustände bekannt sind.
+
+Der folgenschwerste Fehler passiert meist im zweiten Schritt. Ist eine Stoffformel falsch, bleibt auch eine scheinbar ausgeglichene Gleichung chemisch falsch.

@@ -4,34 +4,24 @@ export const metadata = {
   date: "2025-06-11",
 };
 
-#### Position Vector of the Tangency Point
+A point on the line through <InlineMath math="A" /> can be written as
 
-Let the position vector of point <InlineMath math="A" /> be <InlineMath math="\mathbf{a}" />
+<BlockMath math="\mathbf{x}(s)=\mathbf{a}+s\mathbf{t}" />
 
-Since <InlineMath math="A" /> lies on a circle with center <InlineMath math="O" />, the vector <InlineMath math="\overrightarrow{OA} = \mathbf{a}" /> is the radius of the circle.
+The circle consists of all vectors whose squared length is <InlineMath math="r^2" />. Because <InlineMath math="A" /> lies on the circle, <InlineMath math="\mathbf{a}\cdot\mathbf{a}=r^2" />.
 
-#### Tangent Line at the Given Point
+#### Test the line against the circle
 
-The tangent line at point <InlineMath math="A" /> is a line that touches the circle at point <InlineMath math="A" /> and is perpendicular to the radius <InlineMath math="OA" /> at that point.
+Substitute <InlineMath math="\mathbf{x}(s)" /> into the circle equation:
 
-#### Direction Vector of Tangent Line
+<MathContainer>
+<BlockMath math="(\mathbf{a}+s\mathbf{t})\cdot(\mathbf{a}+s\mathbf{t})=r^2" />
+<BlockMath math="\mathbf{a}\cdot\mathbf{a}+2s(\mathbf{a}\cdot\mathbf{t})+s^2(\mathbf{t}\cdot\mathbf{t})=r^2" />
+<BlockMath math="s\left(2\mathbf{a}\cdot\mathbf{t}+s\lVert\mathbf{t}\rVert^2\right)=0" />
+</MathContainer>
 
-Let the direction vector of the tangent line at point <InlineMath math="A" /> be <InlineMath math="\mathbf{t}" />
+The root <InlineMath math="s=0" /> represents point <InlineMath math="A" />. If <InlineMath math="\mathbf{a}\cdot\mathbf{t}\neq0" />, the equation has a second root, so the line crosses the circle at another point. A tangent has only the contact point, which requires
 
-Since the tangent line is perpendicular to the radius <InlineMath math="OA" /> (vector <InlineMath math="\mathbf{a}" />), the direction vector of the tangent line <InlineMath math="\mathbf{t}" /> must be perpendicular to vector <InlineMath math="\mathbf{a}" />
+<BlockMath math="\mathbf{a}\cdot\mathbf{t}=0" />
 
-#### Perpendicular Vector Condition
-
-Two vectors are perpendicular if and only if their dot product is zero
-
-<BlockMath math="\mathbf{a} \cdot \mathbf{t} = 0" />
-
-#### Conclusion
-
-Therefore, to prove that the tangent line at <InlineMath math="A" /> is perpendicular to the radius <InlineMath math="OA" />, we need to show that the dot product of vector <InlineMath math="\mathbf{a}" /> and vector <InlineMath math="\mathbf{t}" /> is zero
-
-<BlockMath math="\mathbf{a} \cdot \mathbf{t} = 0" />
-
-This is the vector representation to prove that the tangent line of the circle at point <InlineMath math="A" /> is perpendicular to the radius <InlineMath math="OA" />
-
-So, the appropriate vector representation is to show that the dot product of the position vector of point <InlineMath math="A" /> and the direction vector of the tangent line at point <InlineMath math="A" /> is zero.
+A zero dot product means <InlineMath math="\mathbf{a}\perp\mathbf{t}" />. Thus, the tangent direction is perpendicular to the radius <InlineMath math="OA" />, so the third choice is correct.

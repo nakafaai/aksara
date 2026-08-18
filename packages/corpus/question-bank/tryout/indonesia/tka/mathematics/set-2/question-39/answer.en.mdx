@@ -6,36 +6,33 @@ export const metadata = {
 
 Given the matrices
 
-<BlockMath math="\begin{bmatrix} \tan x & 1 \\ 1 & \tan x \end{bmatrix} \begin{bmatrix} \cos^2 x \\ \sin x \cos x \end{bmatrix} = \begin{bmatrix} a \\ b \end{bmatrix}" />
+<BlockMath math="\begin{bmatrix} \tan x & 1 \\ 1 & \tan x \end{bmatrix} \begin{bmatrix} \cos^2 x \\ \sin x \cos x \end{bmatrix} = \frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix}" />
 
 #### Multiply the matrices
 
 This is matrix multiplication, so
 
-<BlockMath math="\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \tan x \cdot \cos^2 x + \sin x \cdot \cos x \\ \cos^2 x + \tan x \cdot \sin x \cos x \end{bmatrix}" />
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \tan x \cdot \cos^2 x + \sin x \cdot \cos x \\ \cos^2 x + \tan x \cdot \sin x \cos x \end{bmatrix}" />
 
 Change <InlineMath math="\tan x = \frac{\sin x}{\cos x}" />, to
 
-<BlockMath math="\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \left(\frac{\sin x}{\cos x}\right) \cdot \cos^2 x + \sin x \cdot \cos x \\ \cos^2 x + \left(\frac{\sin x}{\cos x}\right) \cdot \sin x \cos x \end{bmatrix}" />
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \left(\frac{\sin x}{\cos x}\right) \cdot \cos^2 x + \sin x \cdot \cos x \\ \cos^2 x + \left(\frac{\sin x}{\cos x}\right) \cdot \sin x \cos x \end{bmatrix}" />
 
 Simplify to
 
 <MathContainer>
-<BlockMath math="\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \sin x \cdot \cos x + \sin x \cdot \cos x \\ \cos^2 x + \sin^2 x \end{bmatrix}" />
-<BlockMath math="\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} 2 \sin x \cdot \cos x \\ \sin^2 x + \cos^2 x \end{bmatrix}" />
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \sin x \cdot \cos x + \sin x \cdot \cos x \\ \cos^2 x + \sin^2 x \end{bmatrix}" />
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \sin 2x \\ 1 \end{bmatrix}" />
 </MathContainer>
 
-We know that the value <InlineMath math="2 \sin x \cdot \cos x = \sin 2x" /> and the value <InlineMath math="\sin^2 x + \cos^2 x = 1" />, then
-
-<BlockMath math="\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \sin 2x \\ 1 \end{bmatrix}" />
-
-Therefore, the value <InlineMath math="a = \sin 2x" /> and <InlineMath math="b = 1" />.
+Thus <InlineMath math="a=2\sin 2x" /> and <InlineMath math="b=2" />. The tangent in the original matrix also requires <InlineMath math="\cos x\neq0" />.
 
 #### Substitute into the given condition
 
-Substitute <InlineMath math="b = 1" /> into <InlineMath math="b = 2a" /> to get <InlineMath math="a = \frac{1}{2}" />.
-
-Then, substitute <InlineMath math="a = \frac{1}{2}" /> into <InlineMath math="a = \sin 2x" /> to get <InlineMath math="\sin 2x = \frac{1}{2}" />.
+<MathContainer>
+<BlockMath math="2=2(2\sin 2x)" />
+<BlockMath math="\sin 2x=\frac{1}{2}" />
+</MathContainer>
 
 The values of <InlineMath math="2x" /> that satisfy are
 

@@ -1,0 +1,190 @@
+export const metadata = {
+   title: "Spektralsatz für komplexe Matrizen",
+   description: "Lernen Sie die unitäre Diagonalisierung normaler Matrizen kennen und beweisen Sie die Äquivalenz zwischen Normalität und Eigenvektorbasen mithilfe mathematischer Induktion.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-07-16",
+   subject: "Lineare Methoden der KI",
+};
+
+## Charakterisierung der unitären Diagonalisierung
+
+Der komplexe Spektralsatz charakterisiert genau, wann Eigenvektoren orthonormal gewählt werden können. Er verbindet die Geometrie einer unitären Basis mit der algebraischen Bedingung der Normalität.
+
+Für <InlineMath math="A\in\mathbb{C}^{n\times n}" /> sind die folgenden Aussagen äquivalent:
+
+1. Es gibt eine Orthonormalbasis von <InlineMath math="\mathbb{C}^n" />, die aus Eigenvektoren von <InlineMath math="A" /> besteht.
+2. Die Matrix ist normal: <InlineMath math="A^HA=AA^H" />.
+3. Es gibt eine unitäre Matrix <InlineMath math="U" /> und eine Diagonalmatrix <InlineMath math="\Lambda" /> mit <InlineMath math="A=U\Lambda U^H" />.
+
+Der Satz ist stärker als gewöhnliche Diagonalisierbarkeit. Eine diagonalisierbare Matrix kann eine schlecht konditionierte Eigenvektorbasis besitzen, während eine unitäre Basis Normen und Winkel erhält.
+
+## Beweis der ersten Richtung
+
+Nehmen wir zunächst an, dass eine Orthonormalbasis aus Eigenvektoren existiert. Daraus zeigen wir direkt, dass die Matrix normal ist.
+
+Sei <InlineMath math="v_1, \ldots, v_n" /> eine Orthonormalbasis bestehend aus Eigenvektoren der Matrix <InlineMath math="A" />. Für jedes <InlineMath math="j = 1, \ldots, n" /> haben wir <InlineMath math="Av_j = \lambda_j v_j" />.
+
+Da es sich um eine Orthonormalbasis handelt, haben wir die folgende Berechnungsfolge:
+
+<MathContainer>
+<BlockMath math="(A^H v_i)^H v_j = v_i^H (Av_j) = v_i^H (\lambda_j v_j)" />
+<BlockMath math="= \lambda_j v_i^H v_j = \lambda_j \delta_{ij}" />
+</MathContainer>
+
+Das bedeutet <InlineMath math="A^H v_i = \overline{\lambda_i} v_i" />, sodass:
+
+<MathContainer>
+<BlockMath math="AA^H v_i = A(\overline{\lambda_i} v_i) = \overline{\lambda_i} \lambda_i v_i" />
+<BlockMath math="= \lambda_i \overline{\lambda_i} v_i = \lambda_i (A^H v_i) = A^H (\lambda_i v_i) = A^H A v_i" />
+</MathContainer>
+
+Da dies für alle Basisvektoren gilt, ist <InlineMath math="AA^H = A^H A" />, was bedeutet, dass <InlineMath math="A" /> normal ist.
+
+## Beweis von der Normalität zur Diagonalisierung
+
+Nun beweisen wir die Gegenrichtung durch mathematische Induktion. Der Basisschritt beginnt das Argument; im Induktionsschritt wird eine <InlineMath math="n \times n" />-Matrix auf einen normalen <InlineMath math="(n-1) \times (n-1)" />-Block zurückgeführt.
+
+### Mathematische Induktionsstruktur
+
+1. **Basisschritt**
+   Für <InlineMath math="n = 0" /> (leere Matrix) ist die Aussage eindeutig wahr.
+
+2. **Induktionshypothese**
+   Nehmen Sie an, dass die Aussage für alle Normalmatrizen der Größe <InlineMath math="(n-1) \times (n-1)" /> wahr ist.
+
+3. **Induktionsschritt**
+   Sei <InlineMath math="A \in \mathbb{C}^{n \times n}" /> normal. Nach dem Fundamentalsatz der Algebra besitzt <InlineMath math="A" /> einen Eigenwert <InlineMath math="\lambda_1 \in \mathbb{C}" />. Sei <InlineMath math="v_1 \in \mathbb{C}^n" /> ein zugehöriger Eigenvektor mit <InlineMath math="v_1^H v_1 = 1" />.
+
+   Es gilt <InlineMath math="Av_1 = \lambda_1 v_1" />. Das folgende Lemma zeigt, dass außerdem <InlineMath math="A^H v_1 = \overline{\lambda_1} v_1" /> gilt.
+
+### Warum die Adjungierte denselben Eigenvektor besitzt
+
+Sei <InlineMath math="B=A-\lambda_1I" />. Da <InlineMath math="A" /> normal ist, ist auch <InlineMath math="B" /> normal. Deshalb gilt
+
+<MathContainer>
+<BlockMath math="\|B^Hv_1\|_2^2=v_1^HBB^Hv_1" />
+<BlockMath math="=v_1^HB^HBv_1=\|Bv_1\|_2^2=0" />
+</MathContainer>
+
+Also ist <InlineMath math="B^Hv_1=0" /> und damit genau <InlineMath math="A^Hv_1=\overline{\lambda_1}v_1" />. Dieser Zwischenschritt sorgt dafür, dass das orthogonale Komplement von <InlineMath math="v_1" /> invariant ist.
+
+### Bildung des invarianten Unterraums
+
+Vervollständigen Sie <InlineMath math="v_1" /> zu einer Orthonormalbasis von <InlineMath math="\mathbb{C}^n" /> mit den Vektoren <InlineMath math="v_2, \ldots, v_n" />. Definieren:
+
+<BlockMath math="W = \operatorname{span}(v_2, \ldots, v_n)" />
+
+Die lineare Hülle der Vektoren <InlineMath math="v_2, \ldots, v_n" /> ist die Menge aller ihrer Linearkombinationen. Mit anderen Worten: <InlineMath math="W" /> enthält genau die Vektoren, die sich als <InlineMath math="a_2 v_2 + a_3 v_3 + \cdots + a_n v_n" /> mit <InlineMath math="a_2, a_3, \ldots, a_n \in \mathbb{C}" /> schreiben lassen.
+
+Für jeweils <InlineMath math="w \in W" /> haben wir:
+
+<MathContainer>
+<BlockMath math="(Aw)^H v_1 = w^H (A^H v_1) = w^H (\overline{\lambda_1} v_1)" />
+<BlockMath math="= \overline{\lambda_1} w^H v_1 = 0" />
+</MathContainer>
+
+Also <InlineMath math="Aw \in W" />, was bedeutet:
+
+<BlockMath math="A(W) = \{Aw \mid w \in W\} \subset W" />
+
+Mit anderen Worten ist <InlineMath math="W" /> unter <InlineMath math="A" /> invariant: Wendet man <InlineMath math="A" /> auf einen Vektor aus <InlineMath math="W" /> an, liegt das Ergebnis wieder in <InlineMath math="W" />.
+
+### Unitäre Transformation und Bewahrung der Normalität
+
+Sei <InlineMath math="T \in \mathbb{C}^{n \times n}" /> eine unitäre Matrix mit den Spalten <InlineMath math="v_1, \ldots, v_n" />. Dann <InlineMath math="T \cdot T^H = T \cdot T^{-1} = I" />.
+
+Diese Transformation ergibt eine elegante Blockform:
+
+<MathContainer>
+<BlockMath math="T^H \cdot A \cdot T = T^{-1} \cdot A \cdot T" />
+<BlockMath math="= \begin{pmatrix} \lambda_1 & 0^T \\ 0 & A' \end{pmatrix}" />
+</MathContainer>
+
+mit:
+
+<BlockMath math="A' \in \mathbb{C}^{(n-1) \times (n-1)}" />
+
+Da unitäre Ähnlichkeitstransformationen die Normalität bewahren, gilt:
+
+<MathContainer>
+<BlockMath math="(T^H \cdot A \cdot T) \cdot (T^H \cdot A \cdot T)^H" />
+<BlockMath math="= T^H \cdot A \cdot T \cdot T^H \cdot A^H \cdot T" />
+<BlockMath math="= T^H \cdot A \cdot A^H \cdot T" />
+<BlockMath math="= T^H \cdot A^H \cdot A \cdot T" />
+<BlockMath math="= (T^H \cdot A \cdot T)^H \cdot (T^H \cdot A \cdot T)" />
+</MathContainer>
+
+Daher ist auch die Blockdiagonalmatrix normal, was bedeutet, dass auch <InlineMath math="A'" /> normal ist.
+
+## Konstruktion einer vollständigen orthonormalen Basis
+
+Nach der Induktionshypothese besitzt <InlineMath math="A'" /> eine Orthonormalbasis <InlineMath math="v'_2, \ldots, v'_n" /> aus Eigenvektoren. Sei <InlineMath math="S'" /> die unitäre Matrix mit diesen Spalten, wobei:
+
+<BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
+
+damit:
+
+<BlockMath math="S'^H \cdot A' \cdot S' = \begin{pmatrix} \lambda_2 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}" />
+
+mit Eigenwerten <InlineMath math="\lambda_2, \ldots, \lambda_n" /> von <InlineMath math="A'" />.
+
+Jetzt definieren wir:
+
+<BlockMath math="S = T \cdot \begin{pmatrix} 1 & 0^T \\ 0 & S' \end{pmatrix}" />
+
+Dann ist <InlineMath math="S" /> eine unitäre Matrix mit:
+
+<BlockMath math="S \in \mathbb{C}^{n \times n}" />
+
+und:
+
+<MathContainer>
+<BlockMath math="S^H \cdot A \cdot S = \begin{pmatrix} 1 & 0^T \\ 0 & S'^H \end{pmatrix} \cdot T^H \cdot A \cdot T" />
+<BlockMath math="\cdot \begin{pmatrix} 1 & 0^T \\ 0 & S' \end{pmatrix}" />
+<BlockMath math="= \begin{pmatrix} \lambda_1 & 0^T \\ 0 & S'^H A' S' \end{pmatrix}" />
+<BlockMath math="= \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}" />
+</MathContainer>
+
+Die Spalten von <InlineMath math="S" /> bilden eine Orthonormalbasis der Eigenvektoren der Matrix <InlineMath math="A" />.
+
+## Reeller Matrixfall
+
+Bei reellen Matrizen ist entscheidend, ob die benötigten Eigenwerte und Eigenvektoren reell bleiben. Eine reelle Matrix:
+
+<BlockMath math="A \in \mathbb{R}^{n \times n}" />
+
+heißt normal, wenn:
+
+<BlockMath math="A \cdot A^T = A^T \cdot A" />
+
+Reelle normale Matrizen sind über <InlineMath math="\mathbb{C}" /> weiterhin unitär diagonalisierbar, ihre Eigenwerte und Eigenvektoren müssen jedoch nicht reell sein. Über <InlineMath math="\mathbb{R}" /> führt ein orthogonaler Basiswechsel zu einer Blockdiagonalmatrix mit reellen Eigenwertblöcken <InlineMath math="(\lambda)" /> und Blöcken
+
+<BlockMath math="\begin{pmatrix}a&-b\\b&a\end{pmatrix}" />
+
+für konjugierte Eigenwertpaare <InlineMath math="a\pm bi" />. Eine reelle normale Matrix ist über <InlineMath math="\mathbb{R}" /> genau dann orthogonal diagonalisierbar, wenn alle Eigenwerte reell sind.
+
+Symmetrische Matrizen und orthogonale Matrizen sind immer normal. Für eine symmetrische Matrix <InlineMath math="A^T = A" /> ist klar:
+
+<BlockMath math="A \cdot A^T = A \cdot A = A^T \cdot A" />
+
+Für eine orthogonale Matrix <InlineMath math="A^T = A^{-1}" /> gilt:
+
+<MathContainer>
+<BlockMath math="A \cdot A^T = A \cdot A^{-1} = I" />
+<BlockMath math="= A^{-1} \cdot A = A^T \cdot A" />
+</MathContainer>
+
+### Rotationsbeispiel
+
+Die Matrix einer Vierteldrehung
+
+<BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
+
+ist reell und orthogonal, also normal. Ihre Eigenwerte sind <InlineMath math="i" /> und <InlineMath math="-i" /> mit den normierten Eigenvektoren
+
+<MathContainer>
+<BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />
+<BlockMath math="U=(u_+\quad u_-),\qquad U^HRU=\operatorname{diag}(i,-i)" />
+</MathContainer>
+
+Damit ist <InlineMath math="R" /> über <InlineMath math="\mathbb{C}" /> unitär diagonalisierbar, kann aber nicht durch eine reelle orthogonale Matrix diagonalisiert werden. Über <InlineMath math="\mathbb{R}" /> ist die Rotationsmatrix selbst der benötigte <InlineMath math="2\times2" />-Block.

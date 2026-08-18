@@ -1,0 +1,194 @@
+export const metadata = {
+  title: "Tägliche chemische Prozesse",
+  description:
+    "Alltägliche chemische Prozesse über Atome, Elemente, Moleküle und Reaktionsgleichungen lesen und anschließend mit den Prinzipien der grünen Chemie beurteilen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-02",
+  subject: "Grüne Chemie",
+};
+
+## Zuerst den Prozess lesen
+
+Bevor wir eine Aktivität als „grün“ oder „nicht grün“ beurteilen, müssen wir wissen, welcher chemische Prozess abläuft. Beim Verbrennen von Abfällen, beim Waschen von Kleidung, beim Kompostieren, beim Kochen, bei der Photosynthese in Pflanzen und beim Rosten von Eisen verändern sich Substanzen oder interagieren miteinander.
+
+Grüne Chemie fragt nicht, ob ein Prozess natürlich aussieht. Entscheidend ist, ob er von Anfang an so gestaltet wurde, dass Gefahren, Abfall, unnötiger Energieverbrauch, Einwegmaterialien und Unfallrisiken sinken. Die EPA fasst diese Idee in den [Grundlagen der grünen Chemie](https://www.epa.gov/greenchemistry/basics-green-chemistry) als Gestaltung chemischer Produkte und Prozesse zusammen, die den Einsatz oder die Entstehung gefährlicher Stoffe verringern.
+
+Beim Untersuchen eines Prozesses hilft diese Reihenfolge:
+
+| Was zu lesen ist | Frage |
+| :----------- | :------- |
+| Ausgangsstoffe | Welche Stoffe gelangen in den Prozess? |
+| Veränderung | Vermischen sich die Stoffe nur, oder entstehen neue Stoffe? |
+| Produkte | Welche Stoffe entstehen nach Ablauf des Prozesses? |
+| Auswirkungen | Gibt es Abfall, überschüssige Hitze, gefährliches Gas oder schwer abbaubares Material? |
+
+## Atome, Elemente und Moleküle
+
+Das Periodensystem hilft uns beim Lesen von Elementsymbolen, aber Symbole allein reichen nicht aus. Wir müssen wissen, ob wir ein Atom, ein Element, ein elementares Molekül oder ein zusammengesetztes Molekül lesen.
+
+Laut IUPAC Gold Book ist ein [**Atom**](https://goldbook.iupac.org/terms/view/A00493) das kleinste Teilchen, das noch ein chemisches Element charakterisiert. Ein [**chemisches Element**](https://goldbook.iupac.org/terms/view/C01022) ist eine Atomsorte mit derselben Protonenzahl. Ein [**Molekül**](https://goldbook.iupac.org/terms/view/M04002) ist eine elektrisch neutrale Einheit aus mehr als einem Atom.
+
+<MatterParticleReaderLab
+  title={<>Modell für Atome und Moleküle</>}
+  description={
+    <>
+      Drehe das Modell und unterscheide ein Atom, ein Element, ein
+      Elementmolekül und ein Verbindungsmolekül, bevor du Reaktionsgleichungen liest.
+    </>
+  }
+  labels={{
+    chooseMode: "Stoffart auswählen",
+    particleView: "Atom-, Element- und Molekülmodell",
+    categoryLabel: "Was gerade dargestellt ist",
+    readingLabel: "Wie man es liest",
+    modes: {
+      atom: {
+        tab: "Atom",
+        tabLabel: "Atom",
+        helperCaption: (
+          <>Ein einzelnes Teilchen lesen wir als Atom, nicht als Molekül.</>
+        ),
+        category: (
+          <>
+            Ein <InlineMath math="\mathrm{C}" />-Atom.
+          </>
+        ),
+        reading: <>Ein Teilchen, das weiterhin das Element Kohlenstoff kennzeichnet.</>,
+      },
+      element: {
+        tab: "Element",
+        tabLabel: "Element",
+        helperCaption: (
+          <>Mehrere gleichartige Atome gehören weiterhin zum selben Element.</>
+        ),
+        category: (
+          <>
+            Das Element Kohlenstoff, geschrieben als <InlineMath math="\mathrm{C}" />.
+          </>
+        ),
+        reading: <>Alle Teilchen haben dieselbe atomare Identität.</>,
+      },
+      "elemental-molecule": {
+        tab: "Elementarmolekül",
+        tabLabel: "Elementares Molekül",
+        helperCaption: (
+          <>Die Atome können gebunden sein, gehören aber weiterhin zum selben Element.</>
+        ),
+        category: (
+          <>
+            <InlineMath math="\mathrm{O_2}" /> und{" "}
+            <InlineMath math="\mathrm{N_2}" />.
+          </>
+        ),
+        reading: <>Jedes Molekül besteht aus nur einer Elementsorte.</>,
+      },
+      "compound-molecule": {
+        tab: "Zusammengesetztes Molekül",
+        tabLabel: "Zusammengesetztes Molekül",
+        helperCaption: (
+          <>Sobald verschiedene Elemente gebunden sind, liegt eine Verbindung vor.</>
+        ),
+        category: (
+          <>
+            <InlineMath math="\mathrm{H_2O}" /> und{" "}
+            <InlineMath math="\mathrm{CO_2}" />.
+          </>
+        ),
+        reading: <>Jedes Molekül enthält gebundene Atome verschiedener Elemente.</>,
+      },
+    },
+  }}
+/>
+
+Für diese Lektion genügt zunächst folgende Einordnung.
+
+| Begriff | Wie man es liest | Beispiel |
+| :--- | :------------- | :------ |
+| Atom | Ein Teilchen eines Elements. | ein <InlineMath math="\mathrm{C}" />-Atom oder ein <InlineMath math="\mathrm{O}" />-Atom |
+| Element | Eine Substanz, deren atomare Identität durch die Protonenzahl festgelegt wird. | Eisen, Kohlenstoff, Sauerstoff |
+| Elementares Molekül | Ein Molekül, das aus Atomen desselben Elements besteht. | <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{S_8}" /> |
+| Zusammengesetztes Molekül | Ein Molekül, das aus Atomen verschiedener Elemente besteht. | <InlineMath math="\mathrm{H_2O}" />, <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{C_6H_{12}O_6}" /> |
+
+Wichtiger Hinweis: Nicht jede Verbindung existiert als separate Moleküle. Kochsalz beispielsweise wird üblicherweise als ionische Anordnung und nicht als einzelnes Molekül gelesen. Die Beispiele auf dieser Seite verwenden Moleküle, weil wir einfache Reaktionsgleichungen üben.
+
+## Gleichungen als Karten
+
+Eine chemische Reaktionsgleichung ist eine kompakte Karte. Die Stoffe links vom Pfeil sind **Reaktanten**, die Stoffe rechts davon sind **Produkte**. Der Pfeil bedeutet „ergibt“, und die Zahlen vor den Formeln heißen **Koeffizienten**.
+
+OpenStax erklärt, dass Reaktanten auf der linken Seite, Produkte auf der rechten Seite, Pluszeichen getrennte Substanzen und Koeffizienten relative Mengen in [Schreiben und Balancieren chemischer Gleichungen](https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations) angeben.
+
+Das Grundmuster ist:
+
+<BlockMath math="\text{Reaktanten} \rightarrow \text{Produkte}" />
+
+Zustandssymbole werden nach der Formel geschrieben.
+
+| Symbol | Bedeutung |
+| :----- | :------ |
+| <InlineMath math="\mathrm{(s)}" /> | fest |
+| <InlineMath math="\mathrm{(l)}" /> | flüssig |
+| <InlineMath math="\mathrm{(g)}" /> | Gas |
+| <InlineMath math="\mathrm{(aq)}" /> | in Wasser gelöst |
+
+Zum Ausgleichen einer Reaktion dürfen wir die Koeffizienten ändern. Die tiefgestellten Zahlen in einer Formel dürfen wir dagegen nicht beliebig verändern, denn sie bestimmen den Stoff. <InlineMath math="\mathrm{H_2O}" /> bezeichnet Wasser, <InlineMath math="\mathrm{H_2O_2}" /> dagegen Wasserstoffperoxid.
+
+## Photosynthese lesen
+
+Photosynthese wird oft als summarische Reaktion geschrieben. Der eigentliche Prozess besteht aus vielen Schritten, aber die zusammenfassende Gleichung hilft uns zu sehen, wie Atome neu angeordnet werden. OpenStax Concepts of Biology erklärt in [Überblick über die Photosynthese](https://openstax.org/books/concepts-biology/pages/5-1-overview-of-photosynthesis), dass die Photosynthese Kohlendioxid und Wasser verwendet, um Zucker und Sauerstoff zu produzieren.
+
+Eine unausgeglichene Gleichung kann wie folgt geschrieben werden:
+
+<BlockMath math="\mathrm{CO_2(g)} + \mathrm{H_2O(l)} \rightarrow \mathrm{C_6H_{12}O_6} + \mathrm{O_2(g)}" />
+
+Wenn wir Atome zählen, stimmen die beiden Seiten nicht überein.
+
+| Element | Links | Rechts |
+| :------ | :--- | :---- |
+| <InlineMath math="\mathrm{C}" /> | <InlineMath math="1" /> | <InlineMath math="6" /> |
+| <InlineMath math="\mathrm{H}" /> | <InlineMath math="2" /> | <InlineMath math="12" /> |
+| <InlineMath math="\mathrm{O}" /> | <InlineMath math="3" /> | <InlineMath math="8" /> |
+
+Die richtigen Koeffizienten sorgen dafür, dass die Atomzahl übereinstimmt:
+
+<BlockMath math="6\mathrm{CO_2(g)} + 6\mathrm{H_2O(l)} \xrightarrow{\text{Licht}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2(g)}" />
+
+Dies ist eine formale Zusammenfassung und keine einzelne Elementarreaktion. Deshalb steht die Kohlenhydratformel ohne Zustandssymbol.
+
+Nun ist die Gleichung ausgeglichen.
+
+| Element | Links | Rechts |
+| :------ | :--- | :---- |
+| <InlineMath math="\mathrm{C}" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
+| <InlineMath math="\mathrm{H}" /> | <InlineMath math="12" /> | <InlineMath math="12" /> |
+| <InlineMath math="\mathrm{O}" /> | <InlineMath math="18" /> | <InlineMath math="18" /> |
+
+Es geht nicht darum, die Koeffizienten der Photosynthese auswendig zu lernen. Wichtig ist die Methode: Formeln bleiben unverändert, Koeffizienten werden angepasst und anschließend werden die Atome auf beiden Seiten gezählt.
+
+## Von der Reaktion zum grünen Urteil
+
+Nachdem wir eine Reaktion ablesen können, können wir beurteilen, ob der Prozess den Prinzipien der grünen Chemie entspricht. Ein Prozess kann nützlich, aber dennoch nicht umweltfreundlich sein, wenn er Schadstoffe erzeugt, unnötig gefährliche Stoffe verwendet oder zu viel Energie benötigt.
+
+| Alltagsprozess | Chemische Lektüre | Grüne Chemie-Notiz |
+| :--------------- | :--------------- | :------------------- |
+| Verbrennen von Plastikmüll | Organische Stoffe in Kunststoff reagieren mit Sauerstoff und Hitze. | Nicht ausgerichtet, da sich gefährlicher Rauch bilden kann und Abfall nicht an der Quelle verhindert wird. |
+| Reiniger in der richtigen Menge verwenden | Reinigungsmittel helfen dabei, Schmutz ohne übermäßigen Gebrauch zu entfernen. | Näher an der Abfallvermeidung, aber Gefahrenkennzeichnungen sind immer noch wichtig. |
+| Essensreste kompostieren | Mikroorganismen zerlegen organische Materialien in einfachere Materialien. | Kann organische Abfälle reduzieren, wenn es ohne Geruch, Sickerwasser oder Schädlinge bewirtschaftet wird. |
+| Haushaltsreiniger wahllos mischen | Stoffe, die einzeln sicher verwendbar sind, können miteinander reagieren und gefährliche Gase bilden. | Nicht vereinbar, weil das Unfallrisiko steigt. Reinigungsmittel nur nach ausdrücklicher Herstelleranweisung mischen. |
+
+Die CDC warnt ausdrücklich davor, Haushaltsbleiche oder Desinfektionsmittel mit anderen Reinigern zu mischen. Dabei können Dämpfe entstehen, deren Einatmen gefährlich ist. Beachte die Produktkennzeichnung und die Hinweise zur Belüftung unter [Cleaning and Disinfecting with Bleach](https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html).
+
+„Natürlich“ und „grün“ bedeuten nicht automatisch dasselbe. Kompostierung kann helfen, bei schlechter Durchführung aber weiterhin Gerüche, Sickerwasser oder Schädlinge verursachen. Umgekehrt kann ein hergestellter Reiniger sicherer sein, wenn seine Zusammensetzung bekannt ist, die Dosierung stimmt und weniger Abfall entsteht.
+
+## Beurteilung von Prozessen anhand von Stoffen und Auswirkungen
+
+Vergleichen wir drei Möglichkeiten, mit trockenem Laub im Garten umzugehen.
+
+| Option | Was passiert | Urteil |
+| :----- | :----------- | :------- |
+| Verbrenne sie | Blätter reagieren mit Sauerstoff und erzeugen Rauch. | Für grüne Chemie nicht geeignet, da Verschmutzung entsteht. |
+| In den Restmüll werfen | Das Laub reagiert nicht sofort, muss aber zusammen mit anderem Abfall behandelt werden. | Besser als Verbrennen, verhindert den Abfall aber nicht. |
+| Richtig kompostieren | Organisches Material wird langsam zu Kompost abgebaut. | Für diese Entsorgungsfrage die beste Wahl, weil Verbrennung vermieden und organisches Material weiter genutzt wird. Kompostierung allein ist jedoch noch kein Design eines chemischen Produkts oder Verfahrens. |
+
+Unter diesen drei Möglichkeiten der Abfallbehandlung ist **richtiges Kompostieren** die beste Wahl. Nicht weil Kompost natürlich klingt, sondern weil dieser Weg die Verbrennung vermeidet, weniger Material im Restmüll landet und vorhandene organische Stoffe weiter genutzt werden. Das ist verantwortungsvolle Abfallwirtschaft. Von grüner Chemie könnten wir erst sprechen, wenn zusätzlich ein chemisches Produkt oder Verfahren gezielt neu gestaltet wird, nicht allein deshalb, weil ein Abbauprozess stattfindet.
+
+Das Lesen alltäglicher chemischer Prozesse beginnt immer bei den Stoffen: Was dringt ein, was verändert sich, was tritt aus und welche Gefahren können von vornherein verhindert werden.

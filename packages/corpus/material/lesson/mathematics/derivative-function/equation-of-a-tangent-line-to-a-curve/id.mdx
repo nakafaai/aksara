@@ -10,36 +10,36 @@ export const metadata = {
 
 ## Hubungan Turunan dan Garis Singgung
 
-Kamu tentu sudah tahu kalau turunan bisa memberi tahu kita banyak hal tentang sifat sebuah fungsi. Salah satu kegunaan paling keren dari turunan adalah untuk menemukan **kemiringan** atau **gradien** dari sebuah garis singgung pada kurva.
+Turunan menjelaskan perubahan fungsi pada suatu nilai masukan. Secara geometris, perubahan tersebut tampak sebagai **gradien** garis singgung pada grafik.
 
-Bayangkan kamu "memperbesar" sebuah titik pada kurva terus-menerus. Lama-kelamaan, kurva yang melengkung itu akan terlihat seperti garis lurus, kan? Nah, garis lurus imajiner itulah yang kita sebut **garis singgung**. Gradien dari garis singgung di titik <InlineMath math="x=a" /> pada kurva <InlineMath math="y=f(x)" /> nilainya sama persis dengan turunan fungsi di titik itu, yaitu <InlineMath math="m = f'(a)" />.
+Jika kurva mulus diperbesar di sekitar satu titik, bagian yang sangat kecil akan tampak hampir lurus. Garis yang menunjukkan arah lokal ini disebut **garis singgung**. Pada <InlineMath math="x=a" /> di kurva <InlineMath math="y=f(x)" />, gradiennya sama dengan nilai turunan pada masukan tersebut: <InlineMath math="m=f'(a)" />.
 
 ## Menentukan Persamaan Garis Singgung
 
-Untuk membuat persamaan garis lurus, kita butuh dua hal utama: sebuah titik yang dilewati garis dan gradien garis itu sendiri. Dalam konteks ini:
+Untuk menentukan persamaan garis lurus, kita memerlukan satu titik pada garis dan gradiennya. Pada garis singgung, keduanya adalah:
 
 1.  **Titik Singgung:** Sebuah titik <InlineMath math="P(a, b)" /> tempat garis menyentuh kurva.
 2.  **Gradien (m):** Kemiringan garis di titik tersebut, yang kita dapatkan dari turunan, <InlineMath math="m = f'(a)" />.
 
-Setelah punya keduanya, kita bisa langsung masukkan ke dalam rumus dasar persamaan garis yang sudah kamu kenal:
+Substitusikan kedua nilai tersebut ke bentuk titik-gradien:
 
 <BlockMath math="y - b = m(x - a)" />
 
-> Singkatnya, untuk menemukan persamaan garis singgung, cari dulu gradiennya dengan menurunkan fungsi, lalu masukkan titik singgung dan gradien ke dalam rumus persamaan garis.
+> Turunkan fungsi, hitung nilai turunannya di titik singgung, lalu gunakan gradien dan titik tersebut dalam persamaan titik-gradien.
 
-## Membedah Kasus
+## Contoh Bertahap
 
-Mari kita lihat cara kerjanya lewat sebuah contoh. Tentukan persamaan garis singgung pada parabola <InlineMath math="y = 2 - 4x^2" /> di titik <InlineMath math="(1, -2)" />.
+Tentukan persamaan garis singgung pada parabola <InlineMath math="y = 2 - 4x^2" /> di titik <InlineMath math="(1, -2)" />.
 
 **Penyelesaian:**
 
 **Langkah** <InlineMath math="1" />: Cari gradien garis singgung
 
-Pertama, kita turunkan fungsi <InlineMath math="f(x) = 2 - 4x^2" /> untuk mendapatkan ekspresi gradiennya.
+Turunkan <InlineMath math="f(x) = 2 - 4x^2" /> untuk memperoleh gradien pada setiap nilai masukan.
 
 <BlockMath math="f'(x) = -8x" />
 
-Karena kita mau mencari gradien di titik yang absisnya <InlineMath math="x=1" />, substitusikan nilai ini ke dalam turunan.
+Titik singgung memiliki <InlineMath math="x=1" />, sehingga kita menghitung nilai turunan di sana.
 
 <BlockMath math="m = f'(1) = -8(1) = -8" />
 
@@ -47,11 +47,11 @@ Jadi, gradien garis singgungnya adalah <InlineMath math="-8" />.
 
 **Langkah** <InlineMath math="2" />: Susun persamaannya
 
-Sekarang kita punya semua yang dibutuhkan:
+Titik dan gradien yang diperlukan sudah diketahui:
 -   Titik singgung <InlineMath math="(a, b) = (1, -2)" />
 -   Gradien <InlineMath math="m = -8" />
 
-Masukkan ke dalam rumus persamaan garis:
+Substitusikan keduanya ke persamaan titik-gradien:
 
 <MathContainer>
     <BlockMath math="y - b = m(x - a)" />
@@ -83,7 +83,7 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
       showPoints: false,
       labels: [
         {
-          text: <InlineMath math="y=2-4x^2" />,
+          text: <InlineMath math="y=2 - 4x^2" />,
           at: 5,
           offset: [-2, 3, 0],
         },
@@ -99,7 +99,7 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
       showPoints: false,
       labels: [
         {
-          text: <InlineMath math="y=-8x+6" />,
+          text: <InlineMath math="y=-8x + 6" />,
           at: 0,
           offset: [2.5, -2.5, 0],
         },
@@ -111,7 +111,7 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
       showPoints: true,
       labels: [
         {
-          text: <InlineMath math="(1,-2)" />,
+          text: <InlineMath math="(1, -2)" />,
           offset: [1.5, -0.5, 0],
         },
       ],
@@ -123,13 +123,13 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
 
 1.  Carilah persamaan garis singgung kurva <InlineMath math="y = x^2 - 6\frac{1}{5}x + 14\frac{1}{2}" /> yang sejajar dengan garis <InlineMath math="x + 2y + 3 = 0" />.
 
-2.  Tentukan persamaan garis singgung parabola <InlineMath math="y = 2x^2 - 3x + 5" /> pada titik yang berordinat <InlineMath math="4" />.
+2.  Tentukan persamaan garis singgung parabola <InlineMath math="y = 2x^2 - 3x + 5" /> pada titik-titik dengan koordinat <InlineMath math="y" /> sebesar <InlineMath math="4" />.
 
-3.  Suatu kurva <InlineMath math="y = 3x - \frac{3}{x^2}" /> memotong sumbu <InlineMath math="x" /> di P. Carilah persamaan garis singgung kurva tersebut pada titik <InlineMath math="P" />!
+3.  Kurva <InlineMath math="y = 3x - \frac{3}{x^2}" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="P" />. Tentukan persamaan garis singgung kurva di titik tersebut.
 
-4.  Kurva <InlineMath math="y = (x^2 + 2)^2" /> memotong sumbu <InlineMath math="y" /> pada titik <InlineMath math="A" />. Tunjukkan bahwa garis singgung pada kurva tersebut melalui titik <InlineMath math="A" /> sejajar sumbu <InlineMath math="x" /> dan berjarak <InlineMath math="4 \text{ satuan}" /> terhadap titik pusat koordinat!
+4.  Kurva <InlineMath math="y = (x^2 + 2)^2" /> memotong sumbu <InlineMath math="y" /> di <InlineMath math="A" />. Tunjukkan bahwa garis singgung di <InlineMath math="A" /> sejajar sumbu <InlineMath math="x" /> dan berjarak <InlineMath math="4 \text{ satuan}" /> dari titik asal.
 
-5.  Tentukan koordinat titik pada kurva <InlineMath math="y = 2x^2 - 7x + 1" />, jika garis singgung kurva melalui titik tersebut dan membentuk sudut <InlineMath math="45^\circ" /> terhadap sumbu <InlineMath math="x" /> positif. Tentukan pula persamaan garis singgung kurva yang melalui titik tersebut!
+5.  Tentukan titik pada kurva <InlineMath math="y = 2x^2 - 7x + 1" /> tempat garis singgung membentuk sudut <InlineMath math="45^\circ" /> terhadap arah positif sumbu <InlineMath math="x" />. Tentukan pula persamaan garis singgung tersebut.
 
 ### Kunci Jawaban
 
@@ -152,7 +152,7 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
 
     <BlockMath math="f'(x) = 2x - \frac{31}{5}" />
 
-    Kemudian, kita samakan nilai turunan ini dengan gradien yang sudah kita ketahui (<InlineMath math="m = -1/2" />) untuk menemukan absis (<InlineMath math="x" />) dari titik singgung.
+    Kemudian, kita samakan nilai turunan ini dengan gradien yang sudah kita ketahui (<InlineMath math="m = -\frac{1}{2}" />) untuk menemukan absis (<InlineMath math="x" />) dari titik singgung.
 
     <MathContainer>
         <BlockMath math="2x - \frac{31}{5} = -\frac{1}{2}" />
@@ -160,7 +160,7 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
         <BlockMath math="x = \frac{57}{20}" />
     </MathContainer>
 
-    Setelah mendapatkan absis <InlineMath math="x=\frac{57}{20}" />, kita substitusikan nilai ini kembali ke persamaan kurva *awal* untuk menemukan ordinatnya (<InlineMath math="y" />).
+    Setelah mendapatkan koordinat <InlineMath math="x" /> sebesar <InlineMath math="x=\frac{57}{20}" />, kita substitusikan nilai ini kembali ke persamaan kurva *awal* untuk menemukan ordinatnya (<InlineMath math="y" />).
 
     <BlockMath math="y = (\frac{57}{20})^2 - \frac{31}{5}(\frac{57}{20}) + \frac{29}{2} = \frac{3249}{400} - \frac{1767}{100} + \frac{29}{2} = \frac{3249 - 7068 + 5800}{400} = \frac{1981}{400}" />
 
@@ -222,9 +222,9 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
         <BlockMath math="3x = \frac{3}{x^2} \implies 3x^3 = 3 \implies x^3 = 1 \implies x=1" />
     </MathContainer>
 
-    Jadi, titik potong P adalah <InlineMath math="(1, 0)" />.
+    Jadi, titik potong <InlineMath math="P" /> adalah <InlineMath math="(1, 0)" />.
 
-    **Langkah** <InlineMath math="2" />: Cari gradien di P.
+    **Langkah** <InlineMath math="2" />: Cari gradien di <InlineMath math="P" />.
 
     Kita ubah dulu fungsinya menjadi <InlineMath math="f(x) = 3x - 3x^{-2}" /> agar mudah diturunkan.
 
@@ -246,7 +246,7 @@ Jadi, persamaan garis singgungnya adalah <InlineMath math="y = -8x + 6" />.
 
     <BlockMath math="y = (0^2 + 2)^2 = 4" />
 
-    Jadi, titik potong A adalah <InlineMath math="(0, 4)" />.
+    Jadi, titik potong <InlineMath math="A" /> adalah <InlineMath math="(0, 4)" />.
 
     **Langkah <InlineMath math="2" />: Buktikan garis singgung sejajar sumbu <InlineMath math="x" />.**
 

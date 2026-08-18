@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Komponen Vektor",
-  description: "Pelajari cara menguraikan vektor menjadi komponen x, y, z, menghitung panjang vektor dengan teorema Pythagoras, dan membuat vektor satuan arah.",
+  description: "Uraikan vektor menjadi komponen koordinat, hitung kembali besarnya dengan teorema Pythagoras, dan bentuk vektor satuan arah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-11",
   subject: "Vektor dan Operasinya",
@@ -10,35 +10,35 @@ export const metadata = {
 
 ## Pengertian Komponen Vektor
 
-Dalam mempelajari vektor, kita perlu memahami bahwa setiap vektor dapat diuraikan menjadi komponen-komponennya. Komponen vektor merupakan bagian dari vektor yang searah dengan sumbu koordinat.
+Setiap vektor pada bidang koordinat dapat diuraikan sepanjang kedua sumbu koordinat. Dalam <InlineMath math="\vec{v}=a\mathbf{i}+b\mathbf{j}" />, bilangan bertanda <InlineMath math="a" /> dan <InlineMath math="b" /> adalah komponen skalar. Vektor <InlineMath math="a\mathbf{i}" /> dan <InlineMath math="b\mathbf{j}" /> adalah komponen vektor yang bersesuaian, yaitu proyeksi ortogonal pada kedua sumbu.
 
-Komponen vektor adalah nilai-nilai yang menunjukkan seberapa jauh suatu vektor bergerak pada arah sumbu <InlineMath math="x" /> dan sumbu <InlineMath math="y" />. Setiap vektor di bidang datar dapat dinyatakan sebagai kombinasi linear dari vektor satuan <InlineMath math="i" /> dan <InlineMath math="j" />.
+Komponen skalar menunjukkan seberapa jauh dan ke arah bertanda mana vektor membentang sepanjang sumbu <InlineMath math="x" /> dan <InlineMath math="y" />. Setiap vektor pada bidang merupakan kombinasi linear dari vektor satuan <InlineMath math="\mathbf{i}" /> dan <InlineMath math="\mathbf{j}" />.
 
 <Vector3d
   title="Visualisasi Vektor dan Komponennya"
   description={
     <>
-      Vector <InlineMath math="AB" /> and its components on the{" "}
-      <InlineMath math="x" />, <InlineMath math="y" />, and{" "}
-      <InlineMath math="z" /> axes.
+      Vektor <InlineMath math="AB" /> dan komponennya pada sumbu{" "}
+      <InlineMath math="x" /> dan <InlineMath math="y" />, dengan komponen{" "}
+      <InlineMath math="z" /> bernilai nol.
     </>
   }
   vectors={[
     {
       from: [0, 0, 0],
-      to: [4, 6, 0],
+      to: [6, 8, 0],
       color: "#e11d48",
       label: <InlineMath math="AB" />,
     },
     {
       from: [0, 0, 0],
-      to: [4, 0, 0],
+      to: [6, 0, 0],
       color: "#0d9488",
       label: <>Komponen <InlineMath math="x" /></>,
     },
     {
       from: [0, 0, 0],
-      to: [0, 6, 0],
+      to: [0, 8, 0],
       color: "#65a30d",
       label: <>Komponen <InlineMath math="y" /></>,
     },
@@ -47,22 +47,22 @@ Komponen vektor adalah nilai-nilai yang menunjukkan seberapa jauh suatu vektor b
 
 Jika kita memiliki vektor <InlineMath math="\overrightarrow{AB}" />, maka:
 
-<BlockMath math="\overrightarrow{AB} = a\cdot i + b\cdot j" />
+<BlockMath math="\overrightarrow{AB} = a\mathbf{i} + b\mathbf{j}" />
 
-dimana:
+dengan:
 
-- <InlineMath math="a" /> adalah komponen vektor pada sumbu <InlineMath math="x" /> (horizontal)
-- <InlineMath math="b" /> adalah komponen vektor pada sumbu <InlineMath math="y" /> (vertikal)
-- <InlineMath math="i" /> adalah vektor satuan arah sumbu <InlineMath math="x" />
-- <InlineMath math="j" /> adalah vektor satuan arah sumbu <InlineMath math="y" />
+- <InlineMath math="a" /> adalah komponen skalar horizontal, sedangkan <InlineMath math="a\mathbf{i}" /> adalah proyeksi vektor yang bersesuaian
+- <InlineMath math="b" /> adalah komponen skalar vertikal, sedangkan <InlineMath math="b\mathbf{j}" /> adalah proyeksi vektor yang bersesuaian
+- <InlineMath math="\mathbf{i}" /> adalah vektor satuan arah sumbu <InlineMath math="x" />
+- <InlineMath math="\mathbf{j}" /> adalah vektor satuan arah sumbu <InlineMath math="y" />
 
 ### Contoh Komponen Vektor
 
 Perhatikan vektor <InlineMath math="\overrightarrow{AB}" /> pada diagram. Vektor ini dapat ditulis sebagai:
 
-<BlockMath math="\overrightarrow{AB} = 6i + 8j" />
+<BlockMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />
 
-Ini berarti vektor <InlineMath math="\overrightarrow{AB}" /> memiliki komponen horizontal sebesar <InlineMath math="6 \text{ satuan}" /> ke arah kanan dan komponen vertikal sebesar <InlineMath math="8 \text{ satuan}" /> ke arah atas.
+Ini berarti <InlineMath math="\overrightarrow{AB}" /> memiliki komponen skalar <InlineMath math="6" /> dan <InlineMath math="8" />, dengan proyeksi vektor <InlineMath math="6\mathbf{i}" /> ke kanan dan <InlineMath math="8\mathbf{j}" /> ke atas.
 
 ## Panjang Vektor dari Komponen-komponennya
 
@@ -72,11 +72,11 @@ Panjang vektor <InlineMath math="\overrightarrow{AB}" /> dilambangkan dengan <In
 
 <BlockMath math="|\overrightarrow{AB}| = \sqrt{a^2 + b^2}" />
 
-dimana <InlineMath math="a" /> dan <InlineMath math="b" /> adalah komponen-komponen vektor tersebut.
+dengan <InlineMath math="a" /> dan <InlineMath math="b" /> sebagai komponen-komponen vektor tersebut.
 
 ### Contoh Perhitungan Panjang Vektor
 
-Untuk vektor <InlineMath math="\overrightarrow{AB} = 6i + 8j" />, panjang vektornya adalah:
+Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />, panjang vektornya adalah:
 
 <BlockMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10" />
 
@@ -120,33 +120,33 @@ Vektor tidak hanya terbatas pada bidang datar (dua dimensi), tetapi juga dapat d
 
 Dalam ruang tiga dimensi, sebuah vektor memiliki tiga komponen: komponen x, komponen y, dan komponen z. Vektor di ruang tiga dimensi dapat dinyatakan sebagai:
 
-<BlockMath math="\overrightarrow{v} = ai + bj + ck" />
+<BlockMath math="\vec{v} = a\mathbf{i} + b\mathbf{j} + c\mathbf{k}" />
 
-dimana:
+dengan:
 
-- <InlineMath math="a" /> adalah komponen vektor pada sumbu <InlineMath math="x" />
-- <InlineMath math="b" /> adalah komponen vektor pada sumbu <InlineMath math="y" />
-- <InlineMath math="c" /> adalah komponen vektor pada sumbu <InlineMath math="z" />
-- <InlineMath math="i" />, <InlineMath math="j" />, dan <InlineMath math="k" /> adalah
+- <InlineMath math="a" /> adalah komponen skalar sepanjang sumbu <InlineMath math="x" />, sedangkan <InlineMath math="a\mathbf{i}" /> adalah proyeksi vektornya
+- <InlineMath math="b" /> adalah komponen skalar sepanjang sumbu <InlineMath math="y" />, sedangkan <InlineMath math="b\mathbf{j}" /> adalah proyeksi vektornya
+- <InlineMath math="c" /> adalah komponen skalar sepanjang sumbu <InlineMath math="z" />, sedangkan <InlineMath math="c\mathbf{k}" /> adalah proyeksi vektornya
+- <InlineMath math="\mathbf{i}" />, <InlineMath math="\mathbf{j}" />, dan <InlineMath math="\mathbf{k}" /> adalah
   vektor satuan arah sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />
 
 Panjang vektor dalam ruang tiga dimensi dihitung dengan rumus:
 
-<BlockMath math="|\overrightarrow{v}| = \sqrt{a^2 + b^2 + c^2}" />
+<BlockMath math="|\vec{v}| = \sqrt{a^2 + b^2 + c^2}" />
 
 ## Vektor Satuan Arah
 
-Untuk menentukan arah dari suatu vektor, kita dapat menggunakan vektor satuan. Vektor satuan adalah vektor yang panjangnya <InlineMath math="1 \text{ satuan}" />. Untuk mendapatkan vektor satuan dari sebuah vektor, kita membagi vektor tersebut dengan panjangnya.
+Untuk menyatakan arah vektor tak nol, kita dapat menggunakan vektor satuan. Vektor satuan memiliki besar <InlineMath math="1 \text{ satuan}" />. Kita memperolehnya dengan membagi vektor tak nol tersebut dengan besarnya.
 
-Vektor satuan arah dari <InlineMath math="\overrightarrow{AB}" /> dilambangkan dengan <InlineMath math="\hat{AB}" /> dan dihitung dengan:
+Vektor satuan arah dari <InlineMath math="\overrightarrow{AB}" /> kita lambangkan dengan <InlineMath math="\mathbf{u}_{AB}" /> dan dihitung dengan:
 
-<BlockMath math="\hat{AB} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}" />
+<BlockMath math="\mathbf{u}_{AB} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}" />
 
 ### Contoh Vektor Satuan Arah
 
-Untuk vektor <InlineMath math="\overrightarrow{AB} = 6i + 8j" /> dengan panjang <InlineMath math="10" />, vektor satuan arahnya adalah:
+Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> dengan besar <InlineMath math="10" />, vektor satuan arahnya adalah:
 
-<BlockMath math="\hat{AB} = \frac{6i + 8j}{10} = \frac{6}{10}i + \frac{8}{10}j = 0.6i + 0.8j" />
+<BlockMath math="\mathbf{u}_{AB} = \frac{6\mathbf{i} + 8\mathbf{j}}{10} = \frac{6}{10}\mathbf{i} + \frac{8}{10}\mathbf{j} = 0{,}6\mathbf{i} + 0{,}8\mathbf{j}" />
 
 Vektor satuan ini menunjukkan arah dari vektor <InlineMath math="\overrightarrow{AB}" /> tanpa memperhatikan besarnya.
 

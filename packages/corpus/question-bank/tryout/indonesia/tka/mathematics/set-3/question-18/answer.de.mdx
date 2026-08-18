@@ -1,0 +1,45 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-10-11",
+};
+
+Setze <InlineMath math="a = \log_3 x" /> und <InlineMath math="b = \log_2 y" />. Wenn wir die erste Gleichung zur Basis <InlineMath math="2" /> umschreiben, folgt:
+
+<MathContainer>
+<BlockMath math="\log_3 x + \log_4 y^2 = 5" />
+<BlockMath math="\log_3 x + \log_{2^2} y^2 = 5" />
+<BlockMath math="\log_3 x + \frac{2}{2} \log_2 y = 5" />
+<BlockMath math="\log_3 x + \log_2 y = 5" />
+<BlockMath math="a + b = 5" />
+<BlockMath math="a = 5 - b \tag{1}" />
+</MathContainer>
+
+Zu maximieren ist <InlineMath math="\log_3 x \cdot \log_2 y = ab" />. Wir setzen Gleichung <InlineMath math="(1)" /> ein:
+
+<MathContainer>
+<BlockMath math="ab = (5 - b)b" />
+<BlockMath math="f(b) = 5b - b^2" />
+</MathContainer>
+
+Damit wird der gesuchte Ausdruck zur nach unten geöffneten quadratischen Funktion <InlineMath math="f(b) = 5b - b^2" />. Ihr Maximum liegt bei <InlineMath math="f'(b) = 0" />:
+
+<MathContainer>
+<BlockMath math="f'(b) = 0" />
+<BlockMath math="5 - 2b = 0" />
+<BlockMath math="2b = 5" />
+<BlockMath math="b = \frac{5}{2}" />
+</MathContainer>
+
+Mit Gleichung <InlineMath math="(1)" /> bestimmen wir <InlineMath math="a" />:
+
+<MathContainer>
+<BlockMath math="a = 5 - b" />
+<BlockMath math="a = 5 - \frac{5}{2}" />
+<BlockMath math="a = \frac{10}{2} - \frac{5}{2}" />
+<BlockMath math="a = \frac{5}{2}" />
+</MathContainer>
+
+Damit ist <InlineMath math="ab" /> maximal für <InlineMath math="a = \frac{5}{2}" /> und <InlineMath math="b = \frac{5}{2}" />. Das Produkt lautet:
+
+<BlockMath math="ab = \frac{5}{2} \cdot \frac{5}{2} = \frac{25}{4}" />

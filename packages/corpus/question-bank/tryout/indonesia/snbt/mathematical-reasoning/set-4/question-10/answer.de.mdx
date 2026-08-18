@@ -1,0 +1,29 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-26",
+};
+
+Da jedes Ehepaar zusammenbleiben muss und die Sitzordnung keine Rolle spielt, behandeln wir jedes Paar als eine Einheit. Die beiden Autos sind verschieden. Eine Gruppe in Auto <InlineMath math="A" /> zu setzen ist daher eine andere Verteilung, als dieselbe Gruppe in Auto <InlineMath math="B" /> zu setzen.
+
+Jedes Auto fasst <InlineMath math="6" /> Personen, also höchstens <InlineMath math="3" /> Paare. Kein Auto darf daher mehr als <InlineMath math="3" /> Paare aufnehmen. Für Auto <InlineMath math="A" /> und Auto <InlineMath math="B" /> sind nur diese Verteilungen möglich:
+1. Auto <InlineMath math="A" /> befördert <InlineMath math="3" /> Paare, Auto <InlineMath math="B" /> befördert <InlineMath math="2" /> Paare.
+2. Auto <InlineMath math="A" /> befördert <InlineMath math="2" /> Paare, Auto <InlineMath math="B" /> befördert <InlineMath math="3" /> Paare.
+
+Im ersten Fall wählen wir <InlineMath math="3" /> der <InlineMath math="5" /> Paare für Auto <InlineMath math="A" />. Die übrigen Paare fahren automatisch in Auto <InlineMath math="B" />.
+
+<MathContainer>
+  <BlockMath math="C(5, 3) = \frac{5!}{3!(5-3)!} = \frac{5 \times 4 \times 3!}{3! \times 2 \times 1} = 10 \text{ Möglichkeiten}" />
+</MathContainer>
+
+Im zweiten Fall wählen wir <InlineMath math="2" /> der <InlineMath math="5" /> Paare für Auto <InlineMath math="A" />.
+
+<MathContainer>
+  <BlockMath math="C(5, 2) = \frac{5!}{2!(5-2)!} = \frac{5 \times 4 \times 3!}{2 \times 1 \times 3!} = 10 \text{ Möglichkeiten}" />
+</MathContainer>
+
+Wir addieren beide Fälle:
+
+<MathContainer>
+  <BlockMath math="10 + 10 = 20 \text{ Möglichkeiten}" />
+</MathContainer>

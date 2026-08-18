@@ -1,0 +1,251 @@
+
+export const metadata = {
+  title: "Exponentialfunktion",
+  description: "Exponentielles Wachstum und exponentiellen Zerfall an Graphen, Bevölkerungsmodellen, Halbwertszeiten und Zinseszins verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Exponentialfunktionen verstehen
+
+Bei einer Exponentialfunktion steht die unabhängige Variable im Exponenten. Für die Wachstums- und Zerfallsmodelle in dieser Lektion gilt die allgemeine Form <InlineMath math="f(x) = a \cdot b^x" /> mit <InlineMath math="a > 0" />, <InlineMath math="b > 0" /> und <InlineMath math="b \neq 1" />.
+
+**Komponenten von Exponentialfunktionen:**
+
+In der Funktion <InlineMath math="f(x) = a \cdot b^x" />:
+
+- <InlineMath math="a" /> ist der Anfangswert der Funktion.
+- <InlineMath math="b" /> ist die Basis und bestimmt Wachstum oder Zerfall.
+- <InlineMath math="x" /> ist die unabhängige Variable im Exponenten.
+
+## Eigenschaften von Exponentialfunktionen
+
+Exponentialfunktionen haben mehrere besondere Eigenschaften, die sie von anderen Funktionen unterscheiden:
+
+### Grundlegende Eigenschaften
+
+<MathContainer>
+  <BlockMath math="f(0) = a \cdot b^0 = a \cdot 1 = a" />
+  <BlockMath math="f(x_1 + x_2) = a \cdot b^{x_1 + x_2} = a \cdot b^{x_1} \cdot b^{x_2}" />
+  <BlockMath math="f(x_1 - x_2) = a \cdot b^{x_1 - x_2} = \frac{a \cdot b^{x_1}}{b^{x_2}}" />
+</MathContainer>
+
+### Typen von Exponentialfunktionen
+
+**Exponentielle Wachstumsfunktion** (<InlineMath math="b > 1" />):
+
+- Funktionswerte erhöhen sich mit zunehmendem <InlineMath math="x" />
+- Der Graph steigt von links nach rechts
+- Beispiel: <InlineMath math="f(x) = 2^x" />
+
+**Exponentielle Zerfallsfunktion** (<InlineMath math="0 < b < 1" />):
+
+- Funktionswerte nehmen mit zunehmendem <InlineMath math="x" /> ab
+- Der Graph fällt von links nach rechts
+- Beispiel: <InlineMath math="f(x) = (0{,}5)^x" />
+
+## Graphen exponentieller Funktionen
+
+Die beiden Grundformen lassen sich im selben Koordinatensystem direkt vergleichen:
+
+<LineEquation
+  title={<>Vergleich von Exponentialfunktionen</>}
+  description={
+    <>
+      Der Graph von <InlineMath math="f(x) = 2^x" /> zeigt Wachstum, der Graph
+      von <InlineMath math="g(x) = (0{,}5)^x" /> zeigt Zerfall.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.2 - 2;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 15, offset: [2, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.2 - 2;
+        return { x, y: Math.pow(0.5, x), z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g(x)=(0{,}5)^x" />, at: 5, offset: [-2, -0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+/>
+
+Vergleich der Funktionswerte <InlineMath math="f(x) = 2^x" /> und <InlineMath math="g(x) = (0{,}5)^x" />:
+
+| <InlineMath math="x" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| ------------------------------------ | ---- | --- | --- | --- | ---- | ----- |
+| <InlineMath math="f(x) = 2^x" /> | <InlineMath math="0{,}25" /> | <InlineMath math="0{,}5" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
+| <InlineMath math="g(x) = (0{,}5)^x" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0{,}5" /> | <InlineMath math="0{,}25" /> | <InlineMath math="0{,}125" /> |
+
+## Transformationen von Exponentialfunktionen
+
+Exponentialfunktionen können auf verschiedene Arten transformiert werden:
+
+### Vertikale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = a \cdot b^x + c" /> verschiebt den Graphen nach oben (wenn <InlineMath math="c > 0" />) oder nach unten (wenn <InlineMath math="c < 0" />).
+
+<LineEquation
+  title={<>Vertikale Verschiebung</>}
+  description={
+    <>
+    Vergleich von <InlineMath math="f(x) = 2^x" /> mit{" "}
+      <InlineMath math="g(x) = 2^x + 2" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.2 - 2;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 15, offset: [1.5, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i * 0.2 - 2;
+        return { x, y: Math.pow(2, x) + 2, z: 0 };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 15, offset: [0, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[8, 5, 8]}
+  showZAxis={false}
+/>
+
+### Horizontale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = a \cdot b^{x-h}" /> verschiebt den Graphen nach rechts (wenn <InlineMath math="h > 0" />) oder nach links (wenn <InlineMath math="h < 0" />).
+
+## Anwendungen von Exponentialfunktionen
+
+Exponentialfunktionen werden im täglichen Leben häufig verwendet:
+
+### Bevölkerungswachstum
+
+Wenn eine Population eine konstante proportionale Wachstumsrate hat und die Bedingungen unverändert bleiben, kann ein exponentielles Modell ihr Wachstum beschreiben. Wenn die Anfangspopulation <InlineMath math="P_0" /> beträgt und die Wachstumsrate <InlineMath math="r" /> pro Zeitraum beträgt, gilt:
+
+<BlockMath math="P(t) = P_0 \cdot (1 + r)^t" />
+
+**Beispiel:** Bakterienpopulation, die sich jede Stunde mit einer Rate von <InlineMath math="20\%" /> vermehrt:
+
+- Anfangspopulation: <InlineMath math="1000 \text{Bakterien}" />
+- Wachstumsrate: <InlineMath math="r = 0{,}2" />
+- Funktion: <InlineMath math="P(t) = 1000 \cdot (1{,}2)^t" />
+
+### Wachstumstabelle der Bakterienkultur
+
+| Zeit (Stunden) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| ------------ | ---- | ---- | ---- | ---- | ---- | ---- |
+| Bevölkerung | <InlineMath math="1000" /> | <InlineMath math="1200" /> | <InlineMath math="1440" /> | <InlineMath math="1728" /> | <InlineMath math="2074" /> | <InlineMath math="2488" /> |
+
+Das Modell liefert nach <InlineMath math="4" /> beziehungsweise <InlineMath math="5" /> Stunden <InlineMath math="2073{,}6" /> und <InlineMath math="2488{,}32" />. Die Tabelle rundet beide Werte auf die nächste ganze Bakterienzahl.
+
+### Radioaktiver Zerfall
+
+Radioaktive Stoffe zerfallen nach Exponentialfunktionen. Wenn die Anfangsmasse <InlineMath math="M_0" /> und die Halbwertszeit <InlineMath math="t_{1/2}" /> beträgt, dann:
+
+<BlockMath math="M(t) = M_0 \cdot \left(\frac{1}{2}\right)^{t/t_{1/2}}" />
+
+### Zinseszins
+
+Anlagen mit Zinseszins wachsen exponentiell. Wenn <InlineMath math="P" /> das Anfangskapital, <InlineMath math="r" /> der jährliche Zinssatz und <InlineMath math="t \text{Jahre}" /> die Laufzeit ist, gilt:
+
+<BlockMath math="A = P \cdot \left(1 + \frac{r}{n}\right)^{nt}" />
+
+Dabei ist <InlineMath math="n" /> die Häufigkeit der Zinsaufzinsung pro Jahr.
+
+## Exponentielle Gleichungen
+
+Eine Exponentialgleichung ist eine Gleichung, deren Exponent eine Variable enthält. Allgemeine Form:
+
+<BlockMath math="b^x = c" />
+
+**Methode <InlineMath math="1" />: Basen ausgleichen**
+
+Wenn <InlineMath math="b^{f(x)} = b^{g(x)}" />, dann <InlineMath math="f(x) = g(x)" />
+
+**Beispiel:** Lösen Sie <InlineMath math="2^{x+1} = 8" />
+
+<MathContainer>
+  <BlockMath math="2^{x+1} = 8" />
+  <BlockMath math="2^{x+1} = 2^3" />
+  <BlockMath math="x + 1 = 3" />
+  <BlockMath math="x = 2" />
+</MathContainer>
+
+**Methode <InlineMath math="2" />: Logarithmen verwenden**
+
+Für <InlineMath math="b>0" />, <InlineMath math="b\neq1" /> und <InlineMath math="c>0" /> lässt sich <InlineMath math="b^x = c" /> mit Logarithmen lösen:
+
+<BlockMath math="x = \log_b c = \frac{\log c}{\log b}" />
+
+## Übungen
+
+1. Bestimmen Sie den Wert von <InlineMath math="f(3)" />, wenn <InlineMath math="f(x) = 5 \cdot 2^x" />
+
+2. Lösen Sie die Gleichung <InlineMath math="3^{2x-1} = 27" />
+
+3. Die Bevölkerung einer Stadt beträgt <InlineMath math="50{.}000 \text{Menschen}" /> und wächst um <InlineMath math="3\%" /> pro Jahr. Wie groß ist die Bevölkerung nach <InlineMath math="10 \text{Jahren}" /> laut diesem Modell?
+
+4. Eine radioaktive Substanz hat eine Halbwertszeit von <InlineMath math="5 \text{Jahren}" />. Wenn die Anfangsmasse <InlineMath math="100 \text{Gramm}" /> beträgt, wie viel Masse bleibt nach <InlineMath math="15 \text{Jahren}" /> übrig?
+
+### Ausführliche Lösungen
+
+#### Funktionswert berechnen
+
+Setzen Sie <InlineMath math="x = 3" /> in <InlineMath math="f(x) = 5 \cdot 2^x" /> ein. Berechnen Sie zuerst die Potenz und multiplizieren Sie anschließend mit dem Anfangsfaktor.
+
+<BlockMath math="f(3) = 5 \cdot 2^3 = 5 \cdot 8 = 40" />
+
+Damit ist <InlineMath math="f(3) = 40" />.
+
+#### Gleiche Basen verwenden
+
+Schreiben Sie <InlineMath math="27" /> als <InlineMath math="3^3" />. Bei gleichen positiven Basen müssen die Exponenten übereinstimmen.
+
+<MathContainer>
+  <BlockMath math="3^{2x-1} = 3^3" />
+  <BlockMath math="2x - 1 = 3" />
+  <BlockMath math="x = 2" />
+</MathContainer>
+
+Die Probe ergibt <InlineMath math="3^{2(2)-1} = 3^3 = 27" />. Die Lösung ist also korrekt.
+
+#### Bevölkerungswachstum modellieren
+
+Die Anfangsbevölkerung beträgt <InlineMath math="P_0 = 50{.}000" />, die jährliche Wachstumsrate <InlineMath math="r = 0{,}03" /> und die Zeit <InlineMath math="t = 10" /> Jahre. Der jährliche Wachstumsfaktor ist <InlineMath math="1 + r = 1{,}03" />.
+
+<MathContainer>
+  <BlockMath math="P(10) = 50{.}000 \cdot (1{,}03)^{10}" />
+  <BlockMath math="P(10) \approx 50{.}000 \cdot 1{,}343916 = 67{.}195{,}82" />
+  <BlockMath math="P(10) \approx 67{.}196 \text{ Menschen}" />
+</MathContainer>
+
+Die Bevölkerungszahl wird auf die nächste ganze Person gerundet.
+
+#### Halbwertszeit anwenden
+
+Fünfzehn Jahre entsprechen <InlineMath math="15/5 = 3" /> Halbwertszeiten. Die Masse wird daher dreimal mit <InlineMath math="1/2" /> multipliziert.
+
+<MathContainer>
+  <BlockMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^3" />
+  <BlockMath math="M(15) = 100 \cdot \frac{1}{8} = 12{,}5 \text{ Gramm}" />
+</MathContainer>
+
+Nach <InlineMath math="15 \text{ Jahren}" /> bleiben <InlineMath math="12{,}5 \text{ Gramm}" /> übrig.

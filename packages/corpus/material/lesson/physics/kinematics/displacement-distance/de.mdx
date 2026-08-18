@@ -1,0 +1,106 @@
+
+export const metadata = {
+  title: "Verschiebung und Wegstrecke",
+  description:
+    "Unterscheide die Wegstrecke als Länge des zurückgelegten Weges von der Verschiebung als Änderung der Position.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Zwei Möglichkeiten, eine Reise zu lesen
+
+Wenn sich ein Objekt von einem Startpunkt zu einem Endpunkt bewegt, können zwei Größen ähnlich klingen, aber unterschiedliche Bedeutungen haben: **Wegstrecke** und **Verschiebung**.
+
+Die **Wegstrecke** ist die Gesamtlänge des zurückgelegten Weges. Macht der Weg eine Kurve, zählt jeder Abschnitt dieser Kurve mit. Die **Verschiebung** ist dagegen die Positionsänderung vom Anfang bis zum Ende. Sie hängt nur von Startpunkt, Endpunkt und Richtung ab.
+
+<BlockMath math="\begin{aligned}
+s&=\text{Weglänge} \\
+\Delta \vec{r}&=\vec{r}_{\text{Ende}}-\vec{r}_{\text{Start}}
+\end{aligned}" />
+
+Dabei bedeutet <InlineMath math="s" /> die gesamte Weglänge, während <InlineMath math="\Delta \vec{r}" /> die Positionsänderung vom Anfang bis zum Ende bedeutet.
+
+Bei einer zweidimensionalen Bewegung wird die Verschiebung als gerade Linie vom Startpunkt zum Endpunkt gezeichnet.
+
+> Für die Wegstrecke werden alle tatsächlich zurückgelegten Abschnitte addiert. Die Verschiebung misst nur die Änderung vom Startpunkt zum Endpunkt.
+
+<DisplacementDistanceLab
+  title={<>Pfadlänge und Verschiebung</>}
+  description={
+    <>
+    Wähle eine Route und vergleiche den zurückgelegten Weg mit der geradlinigen
+    Verschiebung vom Start zum Ziel.
+  </>
+  }
+  labels={{
+    chooseCase: "Route wählen",
+    modeLabels: {
+      straight: <>Gerade</>,
+      turn: <>Kurve</>,
+      return: <>Zurück zum Start</>,
+    },
+    factLabels: {
+      distance: <>Zurückgelegte Wegstrecke</>,
+      displacement: <>Größe der Verschiebung</>,
+      vector: <>Verschiebungsvektor</>,
+      meaning: <>Was ändert sich</>,
+    },
+    meanings: {
+      straight: <>Wegstrecke und Betrag der Verschiebung sind gleich.</>,
+      turn: <>Die Wegstrecke ist länger, weil das Auto der Kurve folgt.</>,
+      return: <>Das Auto legt einen Weg zurück, endet aber dort, wo es begonnen hat.</>,
+    },
+    viewLabel: "Visueller Vergleich von Wegstrecke und Verschiebung",
+  }}
+/>
+
+## Umwege verändern die Wegstrecke
+
+Vergleiche zwei Wege, auf denen ein Objekt vom selben Startpunkt zum selben Ziel gelangt. Auf der geraden Route ist die Wegstrecke genauso groß wie der Betrag der Verschiebung. Ein Umweg verlängert die Wegstrecke, während die Verschiebung weiterhin durch die Gerade vom Start zum Ziel bestimmt wird.
+
+Die Route mit Umweg hat eine größere Wegstrecke, weil das Objekt einen längeren Weg zurücklegt. Die Verschiebung bleibt jedoch gleich, solange Start- und Endpunkt unverändert sind.
+
+Entscheidend ist also die Fragestellung: Die Wegstrecke beschreibt, wie viel Weg zurückgelegt wurde. Die Verschiebung beschreibt, wo das Objekt im Verhältnis zu seinem Startpunkt endet.
+
+## Die Wegstrecke hat keine Richtung
+
+Die Wegstrecke ist immer null oder positiv. Sie beantwortet die Frage: „Wie lang ist der zurückgelegte Weg?“ Eine Richtung gehört daher nicht zu ihr.
+
+Wenn sich ein Objekt um <InlineMath math="4 \text{ m}" /> nach Osten und dann um <InlineMath math="3 \text{ m}" /> nach Süden bewegt, beträgt die Wegstrecke:
+
+<BlockMath math="s=4 \text{ m}+3 \text{ m}=7 \text{ m}" />
+
+Das Symbol <InlineMath math="s" /> wird häufig für die zurückgelegte Strecke verwendet.
+
+## Die Verschiebung hat eine Richtung
+
+Verschiebung ist eine Vektorgröße. Das bedeutet, dass die Verschiebung Betrag und Richtung hat. Für das Beispiel <InlineMath math="4 \text{ m}" /> nach Osten und dann <InlineMath math="3 \text{ m}" /> nach Süden ist der Verschiebungsbetrag die Länge der geraden Verbindung vom Anfang bis zum Ende:
+
+<BlockMath math="|\Delta \vec{r}|=\sqrt{4^2+3^2}=5 \text{ m}" />
+
+Die Richtung der Verschiebung folgt nicht den Kurven des Weges. Sie zeigt geradlinig vom Startpunkt zum Endpunkt.
+
+## Rückkehr zum Ausgangspunkt
+
+Wenn ein Objekt eine Runde zurücklegt und zum Startpunkt zurückkehrt, ist die Wegstrecke nicht null, da ein Weg zurückgelegt wurde. Die Verschiebung ist jedoch null, weil Anfangs- und Endposition gleich sind.
+
+| Fahrt | Wegstrecke | Verschiebung |
+| :--- | :------- | :----------- |
+| Vom Anfang bis zum Ziel auf geradem Weg | gleich der Geraden | Linie von Anfang bis Ende |
+| Vom Anfang bis zum Ziel auf Umwegen | länger | immer noch die Linie von Anfang bis Ende |
+| Rund um eine Schleife zurück zum Start | nicht Null | <InlineMath math="0" /> |
+
+Die Wegstrecke gibt somit die Länge des tatsächlich zurückgelegten Weges an, während die Verschiebung die gesamte Positionsänderung beschreibt.
+
+## Kurvenreiche Route mit geradem Ergebnis
+
+Ein Schüler geht <InlineMath math="8 \text{ m}" /> nach Osten und dann <InlineMath math="6 \text{ m}" /> nach Norden. Die zurückgelegte Strecke beträgt:
+
+<BlockMath math="s=8 \text{ m}+6 \text{ m}=14 \text{ m}" />
+
+Der Verschiebungsbetrag beträgt:
+
+<BlockMath math="|\Delta \vec{r}|=\sqrt{8^2+6^2}=10 \text{ m}" />
+
+Die Wegstrecke beträgt <InlineMath math="14 \text{ m}" />, der Betrag der Verschiebung dagegen <InlineMath math="10 \text{ m}" />. Die Werte unterscheiden sich, weil der tatsächlich zurückgelegte Weg nicht mit der geraden Verbindung vom Start zum Ziel übereinstimmt.

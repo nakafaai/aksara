@@ -1,0 +1,125 @@
+export const metadata = {
+  title: "Sarrus-Methode",
+  description: "So berechnest du die Determinante einer 3-mal-3-Matrix mit den positiven und negativen Diagonalen der Sarrus-Methode.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-05",
+  subject: "Matrix",
+};
+
+## Grundkonzept der Sarrus-Methode
+
+Die Sarrus-Methode ist ein schnelles Verfahren für die Determinante einer <InlineMath math="3 \times 3" />-Matrix. Um ihr Vorzeichenmuster zu verstehen, erinnern wir uns zunächst an die Determinante einer <InlineMath math="2 \times 2" />-Matrix.
+
+Für eine <InlineMath math="2 \times 2" />-Matrix gilt:
+
+<BlockMath math="M = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
+
+Ihre Determinante <InlineMath math="\det(M)" /> oder <InlineMath math="|M|" /> wird so berechnet:
+
+<BlockMath math="\det(M) = ad - bc" />
+
+Wir ziehen also das Produkt der Gegendiagonale (<InlineMath math="bc" />) vom Produkt der Hauptdiagonale (<InlineMath math="ad" />) ab. Die Sarrus-Methode überträgt dieses Vorzeichenmuster auf <InlineMath math="3 \times 3" />-Matrizen.
+
+## Determinante mit der Sarrus-Methode berechnen
+
+Wir beginnen mit einer <InlineMath math="3 \times 3" />-Matrix <InlineMath math="A" />:
+
+<BlockMath math="A = \begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}" />
+
+Das Element <InlineMath math="a_{ij}" /> steht in der <InlineMath math="i" />-ten Zeile und <InlineMath math="j" />-ten Spalte.
+
+**Schritt** <InlineMath math="1" />: Die ersten beiden Spalten wiederholen
+
+Wir schreiben die ersten beiden Spalten der Matrix <InlineMath math="A" /> noch einmal rechts neben die dritte Spalte:
+
+<BlockMath math="\begin{array}{|ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
+
+Dadurch werden die sechs Diagonalen sichtbar, deren Elemente wir multiplizieren.
+
+**Schritt** <InlineMath math="2" />: Produkte der positiven Diagonalen addieren
+
+Wir multiplizieren die Elemente auf den drei Diagonalen von links oben nach rechts unten und addieren die Produkte. Diese Summe nennen wir <InlineMath math="D_{\text{positiv}}" />.
+
+<MathContainer>
+  <BlockMath math="D_{\text{positiv}} = (a_{11} \cdot a_{22} \cdot a_{33}) + (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32})" />
+</MathContainer>
+
+Der erste Term ist das Produkt der Hauptdiagonale. Der zweite und dritte Term sind Produkte paralleler Diagonalen mit Elementen aus den kopierten Spalten.
+
+**Schritt** <InlineMath math="3" />: Produkte der negativen Diagonalen addieren
+
+Danach multiplizieren wir die Elemente auf den drei Diagonalen von rechts oben nach links unten und addieren diese Produkte. Die Summe heißt <InlineMath math="D_{\text{negativ}}" />.
+
+<MathContainer>
+  <BlockMath math="D_{\text{negativ}} = (a_{13} \cdot a_{22} \cdot a_{31}) + (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33})" />
+</MathContainer>
+
+Der erste Term ist das Produkt der Gegendiagonale. Der zweite und dritte Term stammen von den parallelen Diagonalen, die durch die wiederholten Spalten entstehen.
+
+**Schritt** <InlineMath math="4" />: Die Determinante bilden
+
+Die Determinante der Matrix <InlineMath math="A" />, <InlineMath math="\det(A)" />, ist die Differenz zwischen <InlineMath math="D_{\text{positiv}}" /> und <InlineMath math="D_{\text{negativ}}" />:
+
+<BlockMath math="\det(A) = D_{\text{positiv}} - D_{\text{negativ}}" />
+
+Wir setzen <InlineMath math="D_{\text{positiv}}" /> und <InlineMath math="D_{\text{negativ}}" /> ein:
+
+<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+
+Nach dem Auflösen der Klammer erhalten wir:
+
+<BlockMath math="\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
+
+### Vollständig gerechnetes Zahlenbeispiel
+
+Berechne die Determinante der Matrix <InlineMath math="P" />:
+
+<BlockMath math="P=\begin{bmatrix}1&3&2\\2&6&2\\5&9&4\end{bmatrix}" />
+
+Wir halten die beiden Diagonalsummen bis zur letzten Subtraktion getrennt. So lässt sich das Vorzeichen leichter prüfen:
+
+<MathContainer>
+  <BlockMath math="D_+=(1)(6)(4)+(3)(2)(5)+(2)(2)(9)=24+30+36=90" />
+  <BlockMath math="D_-=(2)(6)(5)+(1)(2)(9)+(3)(2)(4)=60+18+24=102" />
+  <BlockMath math="\det(P)=D_+-D_-=90-102=-12" />
+</MathContainer>
+
+Die Determinante ist <InlineMath math="-12" />. Eine Kofaktorentwicklung derselben Matrix liefert denselben Wert und dient als unabhängige Kontrolle.
+
+### Das Diagonalmuster auf einen Blick
+
+Das vollständige Diagonalmuster lässt sich so darstellen:
+
+<BlockMath math="\det(A) = \left| \begin{matrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{matrix} \right|" />
+
+Wir wiederholen die ersten beiden Spalten und markieren die sechs Produkte:
+
+<MathContainer>
+  <BlockMath math="\begin{array}{ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
+  <BlockMath math="\begin{array}{l} \text{Positive Diagonalen} (\searrow): \\ \quad + (a_{11} \cdot a_{22} \cdot a_{33}) \\ \quad + (a_{12} \cdot a_{23} \cdot a_{31}) \\ \quad + (a_{13} \cdot a_{21} \cdot a_{32}) \end{array}" />
+  <BlockMath math="\begin{array}{l} \text{Negative Diagonalen} (\swarrow): \\ \quad - (a_{13} \cdot a_{22} \cdot a_{31}) \\ \quad - (a_{11} \cdot a_{23} \cdot a_{32}) \quad (\text{aus } a_{11} \text{, Spalte 4}) \\ \quad - (a_{12} \cdot a_{21} \cdot a_{33}) \quad (\text{aus } a_{12} \text{, Spalte 5}) \end{array}" />
+</MathContainer>
+
+Damit lautet die vollständige Formel:
+
+<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+
+## Wichtige Einschränkung der Sarrus-Methode
+
+Die Sarrus-Methode gilt **nur für <InlineMath math="3 \times 3" />-Matrizen**. Die Rechnung für <InlineMath math="2 \times 2" /> oben erinnert lediglich an das Vorzeichenmuster der Diagonalen und ist kein weiterer Fall der Sarrus-Methode. Für größere Matrizen, etwa eine <InlineMath math="4 \times 4" />-Matrix, verwenden wir stattdessen die Kofaktorentwicklung oder eine Zeilenreduktion.
+
+## Übung mit vollständiger Lösung
+
+Berechne mit der Sarrus-Methode die Determinante von:
+
+<BlockMath math="B=\begin{bmatrix}2&-1&3\\0&4&5\\1&2&-2\end{bmatrix}" />
+
+Berechne zuerst beide Diagonalsummen und ziehe dann die negative von der positiven Diagonalsumme ab:
+
+<MathContainer>
+  <BlockMath math="D_+=(2)(4)(-2)+(-1)(5)(1)+(3)(0)(2)=-16-5+0=-21" />
+  <BlockMath math="D_-=(3)(4)(1)+(2)(5)(2)+(-1)(0)(-2)=12+20+0=32" />
+  <BlockMath math="\det(B)=D_+-D_-=-21-32=-53" />
+</MathContainer>
+
+Damit gilt <InlineMath math="\det(B)=-53" />.

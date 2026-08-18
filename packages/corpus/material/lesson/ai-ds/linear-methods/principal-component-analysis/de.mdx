@@ -1,0 +1,185 @@
+export const metadata = {
+  title: "Hauptkomponentenanalyse",
+  description: "Leite die PCA aus zentrierten Daten, Kovarianzeigenvektoren und der Singulärwertzerlegung her. Deute erklärte Varianz und niedrig-rangige Rekonstruktion geometrisch.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-17",
+  subject: "Lineare Methoden der KI",
+};
+
+## Mit zentrierten Daten beginnen
+
+Sei <InlineMath math="X\in\mathbb{R}^{m\times n}" /> eine Matrix mit <InlineMath math="m" /> Beobachtungen und <InlineMath math="n" /> Merkmalen. Die PCA beginnt damit, von jedem Merkmal seinen Mittelwert abzuziehen:
+
+<MathContainer>
+<BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
+<BlockMath math="X_c=X-\mathbf{1}\mu^T" />
+</MathContainer>
+
+Die Stichprobenkovarianzmatrix lautet
+
+<BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
+
+Sie ist symmetrisch positiv semidefinit. Sie kann singulär sein, wenn Merkmale linear abhängig sind oder <InlineMath math="n>m-1" /> gilt.
+
+Die Zentrierung ist zwingend. Jedes Merkmal auf Varianz eins zu standardisieren ist eine eigene Modellierungsentscheidung, die bei nicht vergleichbaren Einheiten oft sinnvoll ist. Dadurch ändert sich die Frage von den Richtungen größter absoluter Varianz zu den Richtungen größter standardisierter Varianz.
+
+## Hauptkomponentenrichtungen
+
+Nach dem Spektralsatz gilt
+
+<MathContainer>
+<BlockMath math="Cv_i=\lambda_i v_i" />
+<BlockMath math="\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_n\ge0" />
+<BlockMath math="V=(v_1\ \,\cdots\ \,v_n),\qquad V^TV=I" />
+<BlockMath math="C=V\Lambda V^T" />
+</MathContainer>
+
+Die erste Hauptkomponentenrichtung löst
+
+<BlockMath math="v_1=\underset{\|v\|_2=1}{\operatorname{argmax}}\;v^TCv" />
+
+Jede weitere Richtung maximiert dieselbe Varianz unter der Bedingung, zu allen vorherigen Richtungen orthogonal zu sein. Die transformierten Koordinaten oder Scores sind
+
+<BlockMath math="Z=X_cV" />
+
+und ihre Stichprobenkovarianz ist diagonal:
+
+<BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
+
+Die Hauptkomponenten sind daher unkorreliert. Im Allgemeinen sind sie nicht unabhängig. Unabhängigkeit folgt in besonderen Modellen, darunter eine gemeinsame Gauß-Verteilung.
+
+## Erklärte Varianz und Dimensionsreduktion
+
+Der Anteil der gesamten Stichprobenvarianz, den Komponente <InlineMath math="j" /> erklärt, ist
+
+<BlockMath math="\operatorname{EVR}_j=\frac{\lambda_j}{\sum_{i=1}^n\lambda_i}=\frac{\lambda_j}{\operatorname{tr}(C)}" />
+
+Behält man die ersten <InlineMath math="k" /> Eigenvektoren in <InlineMath math="V_k" />, erhält man Scores und Rekonstruktion
+
+<MathContainer>
+<BlockMath math="Z_k=X_cV_k" />
+<BlockMath math="\widehat{X}_c=Z_kV_k^T=X_cV_kV_k^T" />
+<BlockMath math="\widehat{X}=\widehat{X}_c+\mathbf{1}\mu^T" />
+</MathContainer>
+
+Unter allen linearen Rekonstruktionen vom Rang <InlineMath math="k" /> minimiert diese Wahl den quadratischen Rekonstruktionsfehler. Mit der obigen Konvention für die Stichprobenkovarianz gilt
+
+<BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
+
+## Gleichwertige Berechnung mit der SVD
+
+Berechne die dünne Singulärwertzerlegung
+
+<BlockMath math="X_c=U\Sigma V^T" />
+
+Dann sind die rechten Singulärvektoren die Hauptkomponentenrichtungen und
+
+<BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
+
+Die SVD vermeidet die explizite Bildung von <InlineMath math="X_c^TX_c" />, die die Konditionszahl quadriert. Sie ist außerdem der natürliche Weg, wenn <InlineMath math="X_c" /> rechteckig ist oder keinen vollen Rang besitzt.
+
+## Beispiel einer zweidimensionalen Kovarianz
+
+Betrachte eine Kovarianzellipse, die um
+
+<BlockMath math="\theta=\frac{\pi}{6}" />
+
+gedreht ist und entlang ihrer Hauptachsen die Varianzen <InlineMath math="9" /> und <InlineMath math="2{,}25" /> besitzt. Sei
+
+<MathContainer>
+<BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
+<BlockMath math="C=R\begin{pmatrix}9&0\\0&2{,}25\end{pmatrix}R^T" />
+<BlockMath math="C=\frac1{16}\begin{pmatrix}117&27\sqrt3\\27\sqrt3&63\end{pmatrix}" />
+</MathContainer>
+
+Die Hauptkomponentenrichtungen sind die Spalten von <InlineMath math="R" />:
+
+<MathContainer>
+<BlockMath math="v_1=\begin{pmatrix}\sqrt3/2\\1/2\end{pmatrix},\qquad\lambda_1=9" />
+<BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2{,}25" />
+</MathContainer>
+
+Die erste Komponente erklärt
+
+<BlockMath math="\frac{9}{9+2{,}25}=0{,}8=80\%" />
+
+der Gesamtvarianz.
+
+<LineEquation
+  title={<>Kovarianzellipse und Hauptkomponentenrichtungen <InlineMath math="v_1,v_2" /></>}
+  description={<>Die cyanfarbene Ellipse hat die Halbachsenlängen <InlineMath math="\sqrt{\lambda_1}=3" /> und <InlineMath math="\sqrt{\lambda_2}=1{,}5" />. Die orangefarbenen Richtungen sind ihre Eigenvektoren.</>}
+  data={[
+    {
+      points: Array.from({ length: 100 }, (_, index) => {
+        const angle = (index / 99) * 2 * Math.PI;
+        const localX = 3 * Math.cos(angle);
+        const localY = 1.5 * Math.sin(angle);
+        const rotation = Math.PI / 6;
+        const x = localX * Math.cos(rotation) - localY * Math.sin(rotation);
+        const y = localX * Math.sin(rotation) + localY * Math.cos(rotation);
+        return { x, y, z: 0 };
+      }),
+      color: "#0891b2",
+      smooth: true,
+      showPoints: false
+    },
+    {
+      points: [{ x: -4, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [{
+        text: <>Ursprüngliche Achse <InlineMath math="x_1" /></>,
+        at: 1,
+        offset: [0.3, -0.5, 0]
+      }]
+    },
+    {
+      points: [{ x: 0, y: -3, z: 0 }, { x: 0, y: 3, z: 0 }],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [{
+        text: <>Ursprüngliche Achse <InlineMath math="x_2" /></>,
+        at: 1,
+        offset: [0.8, 0.3, 0]
+      }]
+    },
+    {
+      points: [{ x: -3.464, y: -2, z: 0 }, { x: 3.464, y: 2, z: 0 }],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{
+        text: <>Hauptrichtung <InlineMath math="v_1" /></>,
+        at: 1,
+        offset: [0.3, 0.3, 0]
+      }]
+    },
+    {
+      points: [{ x: -1.5, y: 2.598, z: 0 }, { x: 1.5, y: -2.598, z: 0 }],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{
+        text: <>Hauptrichtung <InlineMath math="v_2" /></>,
+        at: 0,
+        offset: [-0.8, 0.3, 0]
+      }]
+    }
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+## Grenzen der Interpretation
+
+| Prüfung | Warum sie wichtig ist |
+| --- | --- |
+| Nur mit Mittelwerten der Trainingsdaten zentrieren | verhindert Datenleckage und erhält das gelernte Koordinatensystem |
+| Einheiten und Skalierung der Merkmale prüfen | große numerische Varianz kann sonst aus dem falschen Grund dominieren |
+| <InlineMath math="k" /> nach dem Validierungsziel statt nach einer festen Schwelle wählen | erklärte Varianz misst keine prädiktive Relevanz |
+| Beliebiges Vorzeichen der Eigenvektoren beachten | <InlineMath math="v_j" /> und <InlineMath math="-v_j" /> definieren dieselbe Komponente |
+| Nichtlineare Struktur und Ausreißer untersuchen | PCA ist eine lineare, varianzbasierte Zusammenfassung und gegenüber beiden empfindlich |
+
+PCA findet Varianzrichtungen und keine kausalen Faktoren. Eine Hauptkomponente kann viele ursprüngliche Merkmale mischen. Eine Richtung mit kleiner Varianz kann für eine nachgelagerte Aufgabe trotzdem wichtig sein.

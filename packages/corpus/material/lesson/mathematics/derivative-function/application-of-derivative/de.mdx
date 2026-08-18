@@ -1,0 +1,86 @@
+export const metadata = {
+  title: "Anwendungen der Ableitung",
+  description: "Ableitungen auf Bewegungsprobleme anwenden und Geschwindigkeit, Beschleunigung sowie maximale Höhe schrittweise berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Ableitungsfunktionen",
+};
+
+## Bewegung mithilfe von Ableitungen verstehen
+
+Ableitungen sind nicht nur ein abstraktes Konzept. Sie beschreiben, wie sich eine Größe verändert. Eine besonders anschauliche Anwendung ist die Bewegung eines Körpers: Aus seiner Ortsfunktion lassen sich die momentane Geschwindigkeit und anschließend die Beschleunigung bestimmen.
+
+## Momentangeschwindigkeit aus der Ortsfunktion
+
+Während ein Auto fährt, ändert sich sein Ort mit der Zeit. Die **Geschwindigkeit** ist die Änderungsrate dieses Ortes. Beschreibt <InlineMath math="s(t)" /> den Ort, dann ist die Momentangeschwindigkeit <InlineMath math="v(t)" /> zur Zeit <InlineMath math="t" /> die erste Ableitung der Ortsfunktion.
+
+<BlockMath math="v(t) = s'(t) = \frac{ds}{dt}" />
+
+Zu jeder Zeit, an der <InlineMath math="s" /> differenzierbar ist, liefert diese Ableitung die Momentangeschwindigkeit und nicht nur den Durchschnitt über ein Zeitintervall.
+
+### Bestimmen der Geschwindigkeitsfunktion
+
+Die Bewegung eines Teilchens sei durch <InlineMath math="s(t) = t^3 - 6t^2 + 9t" /> beschrieben. Dabei wird <InlineMath math="s" /> in Metern und <InlineMath math="t" /> in Sekunden gemessen. Für die Geschwindigkeitsfunktion leiten wir <InlineMath math="s(t)" /> nach <InlineMath math="t" /> ab.
+
+<MathContainer>
+  <BlockMath math="v(t) = \frac{d}{dt}(t^3 - 6t^2 + 9t)" />
+  <BlockMath math="v(t) = 3t^2 - 12t + 9" />
+</MathContainer>
+
+Für <InlineMath math="t = 1 \text{ Sekunde}" /> gilt <InlineMath math="v(1) = 3(1)^2 - 12(1) + 9 = 0 \text{ m/s}" />. Die Geschwindigkeit null bedeutet, dass das Teilchen momentan ruht. Sie beweist für sich allein jedoch noch keinen Richtungswechsel. Wir faktorisieren die Geschwindigkeitsfunktion und prüfen ihr Vorzeichen auf beiden Seiten von <InlineMath math="t=1" />:
+
+<BlockMath math="v(t)=3(t-1)(t-3)" />
+
+Für <InlineMath math="0<t<1" /> sind beide Faktoren negativ, also gilt <InlineMath math="v(t)>0" />. Für <InlineMath math="1<t<3" /> haben die Faktoren verschiedene Vorzeichen, also gilt <InlineMath math="v(t)<0" />. Damit wechselt die Geschwindigkeit bei <InlineMath math="t=1" /> ihr Vorzeichen. Das Teilchen kehrt dort nachweislich seine Bewegungsrichtung um.
+
+## Beschleunigung aus der Geschwindigkeit
+
+Auch die Geschwindigkeit kann sich ändern, etwa beim Beschleunigen oder Bremsen eines Autos. Diese Änderung heißt **Beschleunigung**. Die Funktion <InlineMath math="a(t)" /> ist die erste Ableitung der Geschwindigkeit und damit zugleich die zweite Ableitung des Ortes.
+
+<BlockMath math="a(t) = v'(t) = s''(t) = \frac{dv}{dt} = \frac{d^2s}{dt^2}" />
+
+### Bestimmung der Beschleunigungsfunktion
+
+Im vorherigen Beispiel lautet die Geschwindigkeitsfunktion <InlineMath math="v(t) = 3t^2 - 12t + 9" />. Durch erneutes Ableiten von <InlineMath math="v(t)" /> erhalten wir die Beschleunigungsfunktion.
+
+<MathContainer>
+  <BlockMath math="a(t) = \frac{d}{dt}(3t^2 - 12t + 9)" />
+  <BlockMath math="a(t) = 6t - 12" />
+</MathContainer>
+
+Für <InlineMath math="t = 3 \text{ Sekunden}" /> beträgt die Beschleunigung beispielsweise <InlineMath math="a(3) = 6(3) - 12 = 6 \text{ m/s}^2" />.
+
+## Maximale Höhe bei einer senkrechten Bewegung
+
+Ein Ball wird direkt nach oben geworfen. Seine Höhe, <InlineMath math="h(t)" /> in Metern, nach <InlineMath math="t \text{Sekunden}" /> wird durch die Gleichung <InlineMath math="h(t) = 50t - 5t^2" /> angegeben.
+
+Zuerst bestimmen wir die Geschwindigkeits- und die Beschleunigungsfunktion.
+
+Geschwindigkeitsfunktion:
+
+<BlockMath math="v(t) = h'(t) = 50 - 10t" />
+
+Beschleunigungsfunktion:
+
+<BlockMath math="a(t) = v'(t) = -10" />
+
+> Dieses Unterrichtsmodell wählt die Richtung nach oben als positiv, vernachlässigt den Luftwiderstand und verwendet nahe der Erdoberfläche die konstante Beschleunigung <InlineMath math="-10 \text{ m/s}^2" />. Das negative Vorzeichen kennzeichnet die Richtung nach unten. Als Näherung wird meist <InlineMath math="-9{,}8 \text{ m/s}^2" /> verwendet; hier ist der Wert auf <InlineMath math="-10 \text{ m/s}^2" /> gerundet.
+
+Wegen <InlineMath math="h(0)=0" /> und <InlineMath math="h(10)=0" /> reicht der modellierte Flug vom Abwurf bei <InlineMath math="t=0" /> bis zur Rückkehr auf die Ausgangshöhe bei <InlineMath math="t=10" />.
+
+Nun bestimmen wir, **wann der Ball seine maximale Höhe erreicht**.
+
+Am höchsten Punkt kommt der Ball für einen Augenblick zum Stillstand und ändert danach seine Bewegungsrichtung. Deshalb setzen wir seine Geschwindigkeit gleich null.
+
+<MathContainer>
+    <BlockMath math="v(t) = 0" />
+    <BlockMath math="50 - 10t = 0" />
+    <BlockMath math="10t = 50" />
+    <BlockMath math="t = 5" />
+</MathContainer>
+
+Der Ball erreicht seinen höchsten Punkt nach <InlineMath math="5 \text{ Sekunden}" />. Für die maximale Höhe setzen wir <InlineMath math="t=5" /> in die ursprüngliche Höhenfunktion ein.
+
+<BlockMath math="h(5) = 50(5) - 5(5)^2 = 250 - 125 = 125" />
+
+Die maximale Höhe beträgt somit **<InlineMath math="125 \text{ Meter}" />**. Die Rechnung bildet eine vollständige Kette: Ortsfunktion ableiten, die Nullstelle der Geschwindigkeit im physikalischen Zeitintervall bestimmen und diesen Zeitpunkt in die ursprüngliche Höhenfunktion einsetzen.

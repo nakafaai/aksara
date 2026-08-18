@@ -1,0 +1,46 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 39",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-11",
+};
+
+Gegeben sind die Matrizen
+
+<BlockMath math="\begin{bmatrix} \tan x & 1 \\ 1 & \tan x \end{bmatrix} \begin{bmatrix} \cos^2 x \\ \sin x \cos x \end{bmatrix} = \frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix}" />
+
+#### Multiplizieren Sie die Matrizen
+
+Das ist also eine Matrixmultiplikation
+
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \tan x \cdot \cos^2 x + \sin x \cdot \cos x \\ \cos^2 x + \tan x \cdot \sin x \cos x \end{bmatrix}" />
+
+Ändern Sie <InlineMath math="\tan x = \frac{\sin x}{\cos x}" /> in
+
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \left(\frac{\sin x}{\cos x}\right) \cdot \cos^2 x + \sin x \cdot \cos x \\ \cos^2 x + \left(\frac{\sin x}{\cos x}\right) \cdot \sin x \cos x \end{bmatrix}" />
+
+Vereinfachen Sie zu
+
+<MathContainer>
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \sin x \cdot \cos x + \sin x \cdot \cos x \\ \cos^2 x + \sin^2 x \end{bmatrix}" />
+<BlockMath math="\frac{1}{2}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} \sin 2x \\ 1 \end{bmatrix}" />
+</MathContainer>
+
+Damit gelten <InlineMath math="a=2\sin 2x" /> und <InlineMath math="b=2" />. Wegen des Tangens in der Ausgangsmatrix muss außerdem <InlineMath math="\cos x\neq0" /> gelten.
+
+#### In den gegebenen Zustand einsetzen
+
+<MathContainer>
+<BlockMath math="2=2(2\sin 2x)" />
+<BlockMath math="\sin 2x=\frac{1}{2}" />
+</MathContainer>
+
+Die Werte von <InlineMath math="2x" />, die erfüllen, sind
+
+<MathContainer>
+<BlockMath math="2x_1 = \frac{\pi}{6} + k \cdot 2\pi \quad \text{oder} \quad 2x_2 = \frac{5\pi}{6} + k \cdot 2\pi" />
+<BlockMath math="x_1 = \frac{\pi}{12} + k\pi \quad \text{oder} \quad x_2 = \frac{5\pi}{12} + k\pi" />
+</MathContainer>
+
+Die Werte von <InlineMath math="x" />, die erfüllt sind, sind <InlineMath math="\frac{\pi}{12}" /> oder <InlineMath math="\frac{5\pi}{12}" />.
+
+Die richtigen Aussagen sind daher die zweite und vierte.

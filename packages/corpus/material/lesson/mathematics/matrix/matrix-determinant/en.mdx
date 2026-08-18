@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Understanding Matrix Determinants
 
-The determinant of a matrix is a scalar value (a single number) that can be calculated from the elements of a square matrix. The concept of a determinant is very important in linear algebra, one of its uses being to help solve systems of linear equations. Every square matrix has a unique determinant value.
+The determinant assigns one scalar value to each square matrix. That value tells us, among other things, whether the matrix is invertible and whether a linear system has a unique solution.
 
 ## Calculating the Determinant of an Order-Two Matrix
 
@@ -16,7 +16,7 @@ A <InlineMath math="2 \times 2" /> order matrix is a matrix that has two rows an
 
 <BlockMath math="A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
 
-The determinant of matrix <InlineMath math="A" />, usually written as <InlineMath math="\det(A)" /> or <InlineMath math="|A|" />, is calculated by subtracting the product of the elements of the main diagonal from the product of the elements of the second diagonal.
+The determinant of matrix <InlineMath math="A" />, usually written as <InlineMath math="\det(A)" /> or <InlineMath math="|A|" />, is the product along the main diagonal minus the product along the other diagonal.
 
 The formula is:
 
@@ -43,11 +43,11 @@ Then, the determinant of matrix <InlineMath math="B" /> is:
 
 So, the determinant value of matrix <InlineMath math="B" /> is <InlineMath math="26" />.
 
-## Solving Systems of Linear Equations with Two Variables (SPLDV) using Determinants
+## Solving Systems of Two Linear Equations Using Determinants
 
 One important application of determinants is to solve systems of linear equations. This method is often called Cramer's Rule.
 
-Consider the following system of linear equations with two variables (SPLDV):
+Consider the following system of two linear equations:
 
 <MathContainer>
   <BlockMath math="a_{11}x + a_{12}y = b_1" />
@@ -91,7 +91,9 @@ After obtaining the values of <InlineMath math="D" />, <InlineMath math="D_x" />
 
 These formulas are only valid if <InlineMath math="D \neq 0" />.
 
-### Solving SPLDV with Determinants
+If <InlineMath math="D=0" />, the fractions in Cramer's Rule are undefined. That does not by itself distinguish between no solution and infinitely many solutions, so use elimination or row reduction to classify the system.
+
+### Solving a Linear System with Determinants
 
 Determine the solution of the following system of linear equations:
 
@@ -136,7 +138,7 @@ So, the solution set of the system of linear equations is <InlineMath math="x=2"
 
     <BlockMath math="\begin{cases} 2x - y = 8 \\ x + 3y = -10 \end{cases}" />
 
-### Answer Key
+### Worked Solutions
 
 1.  For matrix <InlineMath math="M = \begin{bmatrix} 9 & x \\ 8 & -7 \end{bmatrix}" />, its determinant is:
 

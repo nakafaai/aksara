@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Variance and Standard Deviation for Grouped Data",
-  description: "Learn to calculate variance and standard deviation for grouped frequency data with worked examples. Learn statistical formulas for class intervals.",
+  description: "Estimate population variance and standard deviation from grouped frequency data and class midpoints.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistics",
@@ -8,31 +8,33 @@ export const metadata = {
 
 ## Calculating Spread for Grouped Data
 
-How do we measure the spread of data presented in a grouped frequency table? For example, data on phone battery duration grouped into hour intervals (<InlineMath math="6\text{-}10 \text{ hours}" />, <InlineMath math="11\text{-}15 \text{ hours}" />, etc.).
+A grouped frequency table can show how often phone-battery durations fall within intervals such as <InlineMath math="6\text{-}10 \text{ hours}" /> and <InlineMath math="11\text{-}15 \text{ hours}" />. We still want to describe how widely those durations vary.
 
-Since we don't know the exact value of each data point within a class interval (e.g., in the <InlineMath math="11\text{-}15 \text{ hours}" /> class, we don't know if the duration was exactly <InlineMath math="11 \text{ hours}" />, <InlineMath math="12 \text{ hours}" />, or something else), we need to make an assumption.
+The table no longer contains each exact observation. Within <InlineMath math="11\text{-}15 \text{ hours}" />, for example, we cannot tell whether a battery lasted <InlineMath math="11 \text{ hours}" />, <InlineMath math="12 \text{ hours}" />, or another duration.
 
-The most common assumption is that all data within a class interval are evenly distributed. Therefore, we can **represent** all data in that class using the **midpoint** (<InlineMath math="x_i" />) of that class.
+To estimate the spread, we **represent** every observation in a class by that class's **midpoint** <InlineMath math="x_i" />. This is a modeling approximation, so the resulting variance and standard deviation estimate the values we would obtain from the ungrouped observations.
 
 ## Formulas for Variance and Standard Deviation of Grouped Data
 
-Using the midpoint (<InlineMath math="x_i" />) and frequency (<InlineMath math="f" />) of each class, the formulas are slightly different:
+We weight each midpoint <InlineMath math="x_i" /> by its class frequency <InlineMath math="f" />. The formulas below treat the table as the complete population; a sample requires the corresponding sample-variance formula.
 
 1.  **Variance (<InlineMath math="\sigma^2" />)**
+
     The commonly used (and easier to compute) formula is the computational formula adapted for grouped data:
 
     <BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
 
-    This formula essentially calculates the average of the squared midpoints weighted by frequency, minus the square of the average midpoint weighted by frequency (the mean of the grouped data).
+    The first term is the frequency-weighted mean of the squared midpoints. The second is the square of the frequency-weighted mean. Their difference is the estimated population variance.
 
 2.  **Standard Deviation (<InlineMath math="\sigma" />)**
+
     Just like with ungrouped data, the standard deviation is the square root of the variance:
 
     <BlockMath math="\sigma = \sqrt{\sigma^2}" />
 
 ## Calculating Variance and Standard Deviation of Phone Battery Duration
 
-Suppose a study on phone battery duration yielded the following data:
+Suppose a study records phone-battery duration in the following intervals:
 
 | Battery duration (hours) | Frequency (<InlineMath math="f" />) |
 | :----------------------: | :---------------------------------: |
@@ -42,11 +44,11 @@ Suppose a study on phone battery duration yielded the following data:
 | <InlineMath math="21\text{-}25" /> | <InlineMath math="45" /> |
 | <InlineMath math="26\text{-}30" /> | <InlineMath math="5" />  |
 
-Let's determine the variance and standard deviation for this battery duration data.
+We will estimate the population variance and standard deviation of these durations.
 
 ### Create a Helper Table
 
-We need to calculate the midpoint (<InlineMath math="x_i" />) for each class, then compute <InlineMath math="f \cdot x_i" /> and <InlineMath math="f \cdot x_i^2" />.
+For each class, calculate the midpoint <InlineMath math="x_i" />, then calculate <InlineMath math="f \cdot x_i" /> and <InlineMath math="f \cdot x_i^2" />.
 
 | Battery duration (hours) |   Midpoint, <InlineMath math="x_i" />    |  Frequency, <InlineMath math="f" />   |     <InlineMath math="f \cdot x_i" />      |      <InlineMath math="f \cdot x_i^2" />      |
 | :----------------------: | :--------------------------------------: | :-----------------------------------: | :----------------------------------------: | :-------------------------------------------: |
@@ -69,7 +71,7 @@ Plug the total values from the table into the variance formula:
   <BlockMath math="\sigma^2 \approx 19.37" />
 </MathContainer>
 
-So, the variance of the battery duration data is approximately <InlineMath math="19.37" /> (in units of hours squared).
+The estimated variance is <InlineMath math="19.37" /> square hours. Variance uses squared units because every distance from the mean is squared before averaging.
 
 ### Calculate Standard Deviation
 
@@ -77,6 +79,6 @@ Take the square root of the variance:
 
 <BlockMath math="\sigma = \sqrt{19.37} \approx 4.4" />
 
-The standard deviation of the phone battery duration is approximately <InlineMath math="4.4 \text{ hours}" />. This gives us an idea that the average deviation of battery duration from the mean (which can be calculated as <InlineMath math="\frac{1645}{80} \approx 20.56 \text{ hours}" />) is about <InlineMath math="4.4 \text{ hours}" />.
+The estimated standard deviation is <InlineMath math="4.4 \text{ hours}" />. Around the estimated mean of <InlineMath math="\frac{1645}{80} \approx 20.56 \text{ hours}" />, durations differ by about <InlineMath math="4.4 \text{ hours}" /> in the root-mean-square sense.
 
-The smaller the standard deviation, the more uniform the phone battery durations were in the study.
+When datasets use the same unit and a comparable scale, a smaller standard deviation indicates that values are clustered more tightly around their mean.

@@ -1,57 +1,75 @@
 export const metadata = {
-    title: "All Eigenvalues Calculation",
-    description: "Learn the QR method for calculating all eigenvalues through iterative matrix decomposition. Learn convergence properties and diagonal elements.",
+    title: "Computing All Eigenvalues with QR Iteration",
+    description: "Follow QR iteration from orthogonal factorization to Schur form, then read real and complex eigenvalues without forming a characteristic polynomial.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-07-17",
     subject: "Linear Methods of AI",
 };
 
-## QR Method for All Eigenvalues
+## From a Matrix to Its Eigenvalues
 
-Using the QR method, you can calculate all eigenvalues of matrix <InlineMath math="A" />. This process is carried out through iterations that gradually change the matrix form, like sharpening a knife repeatedly until it's sharp. Each iteration round makes the matrix increasingly approach a form that makes it easier for us to read its eigenvalues.
+The QR algorithm computes all eigenvalues of a square matrix by repeatedly changing its basis. It does not change the eigenvalues. Instead, it moves the matrix toward a form in which those eigenvalues are easier to read.
 
-## QR Algorithm
+The version below is the unshifted QR iteration. It exposes the central idea clearly. Production eigensolvers add shifts, reduce the matrix to Hessenberg form first, and deflate converged blocks so that the same idea runs faster and more reliably.
 
-1. **Initial step** is to set <InlineMath math="A_0 := A" /> and <InlineMath math="k := 0" />
+## One QR Iteration
 
-2. **Iteration process** that is repeated continuously. In each round, perform QR decomposition on matrix <InlineMath math="A_k" />
+1. Start with <InlineMath math="A_0=A" />.
 
-   <MathContainer>
-   <BlockMath math="Q_k \cdot R_k = A_k" />
-   </MathContainer>
+2. Factor the current matrix into a unitary or orthogonal factor <InlineMath math="Q_k" /> and an upper triangular factor <InlineMath math="R_k" />:
 
-   After that, construct a new matrix by multiplying <InlineMath math="R_k" /> and <InlineMath math="Q_k" /> in reverse order
+   <BlockMath math="A_k=Q_kR_k" />
 
-   <MathContainer>
-   <BlockMath math="A_{k+1} := R_k \cdot Q_k" />
-   </MathContainer>
+3. Reverse the order of the factors to obtain the next iterate:
 
-   Add one to the value of <InlineMath math="k" /> and check whether the iteration has reached a stable state
+   <BlockMath math="A_{k+1}=R_kQ_k" />
 
-   <MathContainer>
-   <BlockMath math="\max_{j=1,\ldots,n} |(A_k)_{jj} - (A_{k-1})_{jj}| \leq \text{tolerance}" />
-   </MathContainer>
+4. Repeat the factorization and reverse multiplication. A small subdiagonal entry can be set to zero when it is negligible relative to its neighboring diagonal entries. That split, called **deflation**, isolates a converged eigenvalue or block.
 
-   The iteration stops when the largest change in diagonal elements is already very small.
+   <BlockMath math="|(A_k)_{j+1,j}|\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right)" />
 
-## Similarity Properties in Iteration
+Here <InlineMath math="\tau" /> is a tolerance chosen for the numerical precision and scale of the problem. Merely observing small changes in the diagonal is not a sufficient stopping test because the matrix can still have significant entries below the diagonal.
 
-Every matrix <InlineMath math="A_k" /> that appears in the QR iteration has similar properties to the initial matrix <InlineMath math="A" />. This means the eigenvalues do not change during the iteration process.
+## Why the Eigenvalues Stay the Same
 
-Like assembling the same puzzle in different ways. The puzzle pieces remain the same, but their arrangement can change. Likewise with our matrix, its mathematical content remains the same even though its structural form changes.
-
-## Diagonal Element Convergence
-
-If the condition <InlineMath math="|\lambda_1| > |\lambda_2| > \cdots > |\lambda_n|" /> holds, then the elements on the main diagonal of matrix <InlineMath math="A_k" /> will approach the corresponding eigenvalues
+Because <InlineMath math="Q_k" /> is unitary, <InlineMath math="Q_k^{*}Q_k=I" />. Substituting <InlineMath math="R_k=Q_k^{*}A_k" /> into the reverse product gives
 
 <MathContainer>
-<BlockMath math="\lim_{k \to \infty} (A_k)_{jj} = \lambda_j, \quad j = 1, 2, \ldots, n" />
+<BlockMath math="A_{k+1}=R_kQ_k" />
+<BlockMath math="A_{k+1}=Q_k^{*}A_kQ_k" />
 </MathContainer>
 
-This process is like water flowing to the lowest place. The eigenvalues "fall" and occupy their respective diagonal positions according to their magnitude order.
+Thus <InlineMath math="A_{k+1}" /> is unitarily similar to <InlineMath math="A_k" />. Similar matrices have the same characteristic polynomial and therefore the same eigenvalues. QR iteration changes coordinates, not the underlying linear transformation.
 
-## Non-Diagonal Element Convergence
+## What the Iteration Converges To
 
-If matrix <InlineMath math="A" /> is symmetric, all elements outside the main diagonal will approach zero when <InlineMath math="k \to \infty" />.
+The final form depends on the matrix and the number system used.
 
-Conversely, if the matrix is not symmetric, only the elements below the main diagonal approach zero, while those above do not. Imagine it like organizing a closet. If the closet is symmetric, all items can be neatly arranged. But if it's not symmetric, some parts remain messy.
+| Matrix | Converged form | How to read the eigenvalues |
+|---|---|---|
+| Real symmetric or complex Hermitian | Diagonal matrix | The diagonal entries are the real eigenvalues |
+| General complex | Upper triangular Schur form | The diagonal entries are the eigenvalues |
+| General real | Quasi-upper-triangular real Schur form | Each <InlineMath math="1\times1" /> block gives a real eigenvalue; each <InlineMath math="2\times2" /> block gives a complex-conjugate pair |
+
+The eigenvalues need not appear in a prescribed order. Repeated eigenvalues and special eigenvalue arrangements also require more care than a simple strict-magnitude condition suggests.
+
+## Worked Symmetric Example
+
+Consider the symmetric matrix
+
+<BlockMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />
+
+One QR factorization and reverse multiplication give
+
+<MathContainer>
+<BlockMath math="Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad R_0=\begin{pmatrix}\sqrt5&\frac4{\sqrt5}\\0&\frac3{\sqrt5}\end{pmatrix}" />
+<BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
+</MathContainer>
+
+The off-diagonal magnitude has already fallen from <InlineMath math="1" /> to <InlineMath math="3/5" />. Further iterations drive both off-diagonal entries toward zero:
+
+<BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
+
+The limiting diagonal reveals the eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />. Since every iterate is similar to <InlineMath math="A_0" />, these are the eigenvalues of the original matrix, not approximations created by changing the problem.
+
+> QR iteration is a similarity process. For symmetric matrices it approaches a diagonal form; for general real matrices it approaches a real Schur form that may contain essential <InlineMath math="2\times2" /> blocks.

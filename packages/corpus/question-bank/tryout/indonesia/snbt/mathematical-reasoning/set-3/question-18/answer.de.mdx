@@ -1,0 +1,55 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-08",
+};
+
+Wir ermitteln die Höhe des Hubschraubers vom Hubschrauberlandeplatz (<InlineMath math="DC" />) mithilfe trigonometrischer Verhältnisse in rechtwinkligen Dreiecken.
+
+Schauen wir uns zuerst die Lösungsskizze an:
+
+<Set3Question18GraphSolution
+  title="Lösungsskizze"
+  description={
+    <>
+      Lösungsdarstellung mit Punkten <InlineMath math="A" />,{" "}
+      <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />,{" "}
+      <InlineMath math="E" /> und Abstandsmaße.
+    </>
+  }
+  labels={{ helicopter: "Hubschrauber", observer: "Beobachter", building: "Gebäude" }}
+/>
+
+Aus der Skizze lesen wir ab:
+- <InlineMath math="AD = 16\text{ m}" /> (Gebäudehöhe).
+- <InlineMath math="AB" /> ist der Abstand vom Gebäude zur Schattenspitze.
+- <InlineMath math="AE = 32\text{ m}" /> und <InlineMath math="BE = x" />. Daher gilt <InlineMath math="AB = 32 - x" />.
+- Der Höhenwinkel zur Gebäudespitze beträgt <InlineMath math="30^\circ" /> und zum Helikopter <InlineMath math="45^\circ" />.
+
+Zuerst berechnen wir den Abstand <InlineMath math="AB" /> mithilfe von <InlineMath math="\tan(30^\circ)" /> im Dreieck <InlineMath math="ABD" />.
+
+<MathContainer>
+  <BlockMath math="\tan(30^\circ) = \frac{AD}{AB}" />
+  <BlockMath math="\frac{1}{\sqrt{3}} = \frac{16}{AB}" />
+  <BlockMath math="AB = 16\sqrt{3}" />
+</MathContainer>
+
+Damit passen auch die Angaben zum Schatten zusammen: <InlineMath math="x = 32 - 16\sqrt{3}" />. Dieser Wert ist positiv, denn <InlineMath math="16\sqrt{3} < 32" />. Für die gesuchte Höhe des Hubschraubers müssen wir <InlineMath math="x" /> jedoch nicht weiter ausrechnen.
+
+Nun verwenden wir <InlineMath math="AB" />, um mit <InlineMath math="\tan(45^\circ)" /> im Dreieck <InlineMath math="ABC" /> die Gesamthöhe des Hubschraubers über dem Boden (<InlineMath math="AC" />) zu bestimmen.
+
+<MathContainer>
+  <BlockMath math="\tan(45^\circ) = \frac{AC}{AB}" />
+  <BlockMath math="1 = \frac{AC}{16\sqrt{3}}" />
+  <BlockMath math="AC = 16\sqrt{3}" />
+</MathContainer>
+
+Die Höhe des Hubschraubers vom Hubschrauberlandeplatz ist die Differenz zwischen der Gesamthöhe und der Gebäudehöhe.
+
+<MathContainer>
+  <BlockMath math="DC = AC - AD" />
+  <BlockMath math="DC = 16\sqrt{3} - 16" />
+  <BlockMath math="DC = 16(\sqrt{3} - 1)" />
+</MathContainer>
+
+Somit beträgt die Höhe des Hubschraubers vom Hubschrauberlandeplatz <InlineMath math="16(\sqrt{3} - 1)\text{ Meter}" />.

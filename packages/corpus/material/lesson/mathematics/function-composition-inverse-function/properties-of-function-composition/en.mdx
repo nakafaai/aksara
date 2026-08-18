@@ -16,6 +16,10 @@ Function composition, which involves combining functions sequentially, has sever
   <BlockMath math="h(x) = \frac{1}{x+1}" />
 </MathContainer>
 
+Their domains are:
+
+<BlockMath math="D_f=D_g=\mathbb{R}\qquad D_h=\mathbb{R}\setminus\{-1\}" />
+
 ### Non-Commutative Property
 
 The first and most common property is that the order in which functions are composed **matters**. Changing the order of functions usually results in a different composite function.
@@ -40,11 +44,15 @@ Let's compare <InlineMath math="(g \circ f)(x)" /> and <InlineMath math="(f \cir
       <BlockMath math="f(x^2+4) = 2(x^2+4) + 1 = (2x^2 + 8) + 1 = 2x^2 + 9" />
     </MathContainer>
 
-Since <InlineMath math="4x^2 + 4x + 5 \neq 2x^2 + 9" />, it is proven that <InlineMath math="(g \circ f)(x) \neq (f \circ g)(x)" />. This property also applies to other compositions, for example <InlineMath math="(f \circ h)(x) \neq (h \circ f)(x)" /> and <InlineMath math="(g \circ h)(x) \neq (h \circ g)(x)" />.
+The two polynomial expressions have different coefficients, so they are not the same function. A single input also gives a direct counterexample:
+
+<BlockMath math="(g\circ f)(0)=5\neq9=(f\circ g)(0)" />
+
+Therefore, <InlineMath math="g\circ f\neq f\circ g" /> as functions. Other pairs must be checked in the same way; composition is not commutative in general.
 
 ### Associative Property
 
-If we compose three or more functions, the order of **performing** the composition does not affect the final result, as long as the order of the **functions** remains the same.
+If three functions have compatible domains and codomains, changing only the grouping does not change the result. The order of the **functions** must remain the same, and both sides are compared on inputs for which the compositions are defined.
 
 Mathematically, for functions <InlineMath math="f" />, <InlineMath math="g" />, and <InlineMath math="h" />, the following holds:
 
@@ -81,26 +89,26 @@ Let's check if <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h)
       <BlockMath math="f\left(\frac{1}{(x+1)^2} + 4\right) = 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 = \frac{2}{(x+1)^2} + 8 + 1 = \frac{2}{(x+1)^2} + 9" />
     </MathContainer>
 
-Since both results are the same (<InlineMath math="\frac{2}{(x+1)^2} + 9" />), the associative property is proven to hold: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
+Since both results are the same (<InlineMath math="\frac{2}{(x+1)^2} + 9" />) for <InlineMath math="x\neq-1" />, the associative property holds on their common domain: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
 This associative property also applies to other combinations of function order, such as <InlineMath math="((h \circ f) \circ g)(x) = (h \circ (f \circ g))(x)" /> and <InlineMath math="((g \circ f) \circ h)(x) = (g \circ (f \circ h))(x)" />.
 
 ### Identity Element
 
-There is a special function called the **identity function**, denoted by <InlineMath math="I(x)" />, which is defined as <InlineMath math="I(x) = x" />. This function does not change its input.
+An **identity function** maps every element of a set to itself. For <InlineMath math="f:A\to B" />, let <InlineMath math="I_A" /> be the identity on <InlineMath math="A" /> and <InlineMath math="I_B" /> the identity on <InlineMath math="B" />.
 
-If a function <InlineMath math="f" /> is composed with the identity function <InlineMath math="I" /> (from either the left or the right), the result is the function <InlineMath math="f" /> itself.
+Composing with the identity for the matching set leaves <InlineMath math="f" /> unchanged:
 
 <MathContainer>
-  <BlockMath math="(f \circ I)(x) = f(I(x)) = f(x)" />
-  <BlockMath math="(I \circ f)(x) = I(f(x)) = f(x)" />
+  <BlockMath math="(f\circ I_A)(x)=f(I_A(x))=f(x)" />
+  <BlockMath math="(I_B\circ f)(x)=I_B(f(x))=f(x)" />
 </MathContainer>
 
 **Example:**
 
-With <InlineMath math="f(x) = 2x + 1" />:
+With <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> and <InlineMath math="f(x) = 2x + 1" />:
 
-- <InlineMath math="(f \circ I)(x) = f(I(x)) = f(x) = 2x + 1" />
-- <InlineMath math="(I \circ f)(x) = I(f(x)) = I(2x+1) = 2x + 1" />
+- <InlineMath math="(f\circ I_{\mathbb{R}})(x)=f(I_{\mathbb{R}}(x))=2x+1" />
+- <InlineMath math="(I_{\mathbb{R}}\circ f)(x)=I_{\mathbb{R}}(f(x))=2x+1" />
 
 Both result in the function <InlineMath math="f(x)" /> again.

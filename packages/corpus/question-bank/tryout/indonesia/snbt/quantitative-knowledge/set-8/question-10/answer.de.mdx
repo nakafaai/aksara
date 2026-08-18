@@ -1,0 +1,46 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-25",
+};
+
+Ausgangspunkt ist die Ungleichung:
+
+<BlockMath math="(2m + 1)x^2 - 4(m + 1)x + m > -4" />
+
+Wir bringen <InlineMath math="-4" /> auf die linke Seite:
+
+<BlockMath math="(2m + 1)x^2 - 4(m + 1)x + (m + 4) > 0" />
+
+Damit dieser quadratische Ausdruck für jedes reelle <InlineMath math="x" /> positiv ist, muss sein Graph vollständig über der <InlineMath math="x" />-Achse liegen. Dafür gelten zwei Bedingungen:
+
+1. Der Koeffizient von <InlineMath math="x^2" /> muss positiv sein (<InlineMath math="a > 0" />).
+2. Die Diskriminante muss negativ sein (<InlineMath math="D < 0" />).
+
+**Bedingung <InlineMath math="1" />: <InlineMath math="a > 0" />**
+
+<BlockMath math="\begin{aligned} 2m + 1 &> 0 \\ 2m &> -1 \\ m &> -\frac{1}{2} \quad \dots \text{(1)} \end{aligned}" />
+
+**Bedingung <InlineMath math="2" />: <InlineMath math="D < 0" />**
+
+Mit <InlineMath math="D = b^2 - 4ac" />, <InlineMath math="a = 2m + 1" />, <InlineMath math="b = -4(m + 1)" /> und <InlineMath math="c = m + 4" /> folgt:
+
+<BlockMath math="\begin{aligned} (-4(m + 1))^2 - 4(2m + 1)(m + 4) &< 0 \\ 16(m^2 + 2m + 1) - 4(2m^2 + 9m + 4) &< 0 \end{aligned}" />
+
+Nach Division durch <InlineMath math="4" /> vereinfacht sich die Ungleichung zu:
+
+<BlockMath math="\begin{aligned} 4(m^2 + 2m + 1) - (2m^2 + 9m + 4) &< 0 \\ 4m^2 + 8m + 4 - 2m^2 - 9m - 4 &< 0 \\ 2m^2 - m &< 0 \\ m(2m - 1) &< 0 \end{aligned}" />
+
+Die Randwerte sind <InlineMath math="m = 0" /> und <InlineMath math="m = \frac{1}{2}" />. Da das Produkt negativ sein soll, liegt die Lösung zwischen diesen Werten:
+
+<BlockMath math="0 < m < \frac{1}{2} \quad \dots \text{(2)}" />
+
+**Schlussfolgerung**
+
+Nun bilden wir den Schnitt der Bedingungen <InlineMath math="(1)" /> und <InlineMath math="(2)" />:
+- Bedingung <InlineMath math="(1)" />: <InlineMath math="m > -\frac{1}{2}" />
+- Bedingung <InlineMath math="(2)" />: <InlineMath math="0 < m < \frac{1}{2}" />
+
+Beide Bedingungen sind genau für folgende Werte erfüllt:
+
+<BlockMath math="0 < m < \frac{1}{2}" />

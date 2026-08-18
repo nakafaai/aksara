@@ -1,0 +1,92 @@
+
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-11-23",
+};
+
+Wir werden den Wertesatz für <InlineMath math="x" /> bestimmen, der die Bedingung erfüllt, dass der Quader reale (positive) Abmessungen hat.
+
+#### Quadermaße ermitteln
+
+Aus der vorherigen Frage und den gegebenen Informationen:
+- Länge (<InlineMath math="p" />) ist <InlineMath math="5 - x" />
+- Breite (<InlineMath math="l" />) ist <InlineMath math="4x - 5" />
+- Höhe (<InlineMath math="t" />) ist <InlineMath math="5 - \frac{1}{3}x" />
+
+#### Positive Dimensionsbedingungen
+
+Damit der Quader real ist, müssen alle seine Abmessungen positiv sein (<InlineMath math="> 0" />).
+
+**Bedingung <InlineMath math="1" />: <InlineMath math="p > 0" />**
+
+<MathContainer>
+  <BlockMath math="p > 0" />
+  <BlockMath math="5 - x > 0" />
+  <BlockMath math="5 > x" />
+  <BlockMath math="x < 5" />
+</MathContainer>
+
+**Bedingung <InlineMath math="2" />: <InlineMath math="l > 0" />**
+
+<MathContainer>
+  <BlockMath math="l > 0" />
+  <BlockMath math="4x - 5 > 0" />
+  <BlockMath math="4x > 5" />
+  <BlockMath math="x > \frac{5}{4}" />
+</MathContainer>
+
+**Bedingung <InlineMath math="3" />: <InlineMath math="t > 0" />**
+
+<MathContainer>
+  <BlockMath math="t > 0" />
+  <BlockMath math="5 - \frac{1}{3}x > 0" />
+  <BlockMath math="5 > \frac{1}{3}x" />
+  <BlockMath math="15 > x" />
+  <BlockMath math="x < 15" />
+</MathContainer>
+
+#### Bestimmen des Schnittpunkts
+
+Wir finden den Schnittpunkt dieser drei Bedingungen:
+1. <InlineMath math="x < 5" />
+2. <InlineMath math="x > \frac{5}{4}" /> (oder <InlineMath math="1{,}25" />)
+3. <InlineMath math="x < 15" />
+
+Von den Bedingungen <InlineMath math="1" /> und <InlineMath math="3" /> nehmen wir die strengere, nämlich <InlineMath math="x < 5" />. In Kombination mit der Bedingung <InlineMath math="2" /> erhalten wir den Bereich:
+
+<ContentStack>
+  <BlockMath math="\frac{5}{4} < x < 5" />
+
+  <NumberLine
+    title="Lösungssatz A"
+    description={<>Der Schnittpunkt aller positiven Dimensionsbedingungen ist <InlineMath math="\frac{5}{4} < x < 5" />.</>}
+    segments={[
+      {
+        start: Number.NEGATIVE_INFINITY,
+        end: 1.25,
+        label: <InlineMath math="-" />,
+        backgroundColor: "transparent"
+      },
+      {
+        start: 1.25,
+        end: 5,
+        label: <InlineMath math="A" />,
+        startLabel: <InlineMath math="\frac{5}{4}" />,
+        endLabel: <InlineMath math="5" />,
+        startInclusive: false,
+        endInclusive: false
+      },
+      {
+        start: 5,
+        end: Number.POSITIVE_INFINITY,
+        label: <InlineMath math="-" />,
+        backgroundColor: "transparent"
+      }
+    ]}
+  />
+</ContentStack>
+
+Die Menge <InlineMath math="A" /> ist also:
+
+<BlockMath math="A = \left\{ x \mid \frac{5}{4} < x < 5, x \in \mathbb{R} \right\}" />

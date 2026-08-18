@@ -1,0 +1,293 @@
+export const metadata = {
+  title: "Vertikale Verschiebung",
+  description: "Verschiebe Funktionsgraphen nach oben oder unten und verfolge dabei Koordinaten, Asymptoten und Wertebereiche.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Funktionstransformation",
+};
+
+
+
+## Grundlegende Konzepte der vertikalen Verschiebung
+
+Eine vertikale Verschiebung bewegt den Graphen einer Funktion entlang der <InlineMath math="y" />-Achse nach oben oder unten, ohne seine Form zu verändern. Wie bei einem angehobenen Gegenstand ändert sich nur die Position.
+
+Aus der Funktion <InlineMath math="f(x)" /> entsteht die verschobene Funktion <InlineMath math="g(x) = f(x) + k" />. Die Zahl <InlineMath math="k" /> gibt Richtung und Länge der Verschiebung an.
+
+### Regeln der vertikalen Verschiebung
+
+Für jede Funktion <InlineMath math="f(x)" /> gilt:
+
+<BlockMath math="g(x) = f(x) + k" />
+
+Dabei gilt:
+- Für <InlineMath math="k > 0" /> verschiebt sich der Graph **nach oben**, und zwar um <InlineMath math="k \text{Einheiten}" />.
+- Für <InlineMath math="k < 0" /> verschiebt sich der Graph **nach unten**, und zwar um <InlineMath math="|k| \text{Einheiten}" />.
+- Für <InlineMath math="k = 0" /> bleibt der Graph unverändert.
+
+## Visualisierung der vertikalen Verschiebung
+
+Die lineare Funktion <InlineMath math="f(x) = 2x" /> zeigt, dass sich die Steigung bei einer vertikalen Verschiebung nicht ändert.
+
+<LineEquation
+  title={<>Vertikale Verschiebung der linearen Funktion <InlineMath math="f(x) = 2x" /></>}
+  description={<>Die drei Geraden haben dieselbe Steigung und unterschiedliche <InlineMath math="y" />-Achsenabschnitte.</>}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * x, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * x + 3, z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 2 * x - 2, z: 0 };
+      }),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Die Visualisierung zeigt:
+- Die ursprüngliche Funktion <InlineMath math="f(x) = 2x" /> verläuft durch den Ursprung
+- Die Funktion <InlineMath math="g(x) = 2x + 3" /> ist das Ergebnis der Verschiebung nach oben um <InlineMath math="3 \text{Einheiten}" />
+- Die Funktion <InlineMath math="h(x) = 2x - 2" /> ist um <InlineMath math="2 \text{Einheiten}" /> nach unten verschoben.
+
+## Vertikale Verschiebung quadratischer Funktionen
+
+Wenden wir nun dasselbe Konzept auf die quadratische Funktion <InlineMath math="f(x) = x^2" /> an.
+
+<LineEquation
+  title={<>Vertikale Verschiebung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
+  description="Die Parabelform bleibt gleich, nur ihre vertikale Position ändert sich."
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x + 4, z: 0 };
+      }),
+      color: "#d97706",
+      labels: [{ text: <InlineMath math="g(x)=x^2+4" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x - 3, z: 0 };
+      }),
+      color: "#0891b2",
+      labels: [{ text: <InlineMath math="h(x)=x^2-3" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+An den Scheitelpunkten ist die Verschiebung direkt ablesbar:
+- Der Scheitelpunkt der ursprünglichen Parabel <InlineMath math="f(x) = x^2" /> liegt bei <InlineMath math="(0, 0)" />
+- Nach der vertikalen Verschiebung <InlineMath math="+4" /> liegt der Scheitelpunkt von <InlineMath math="g(x) = x^2 + 4" /> bei <InlineMath math="(0, 4)" />
+- Nach der vertikalen Verschiebung <InlineMath math="-3" /> liegt der Scheitelpunkt von <InlineMath math="h(x) = x^2 - 3" /> bei <InlineMath math="(0, -3)" />
+
+## Wichtige Eigenschaften der vertikalen Verschiebung
+
+### Die Graphenform bleibt unverändert
+
+Eine vertikale Verschiebung erhält die Form des Graphen. Jeder Punkt bewegt sich um dieselbe vertikale Strecke, seine Abszisse bleibt unverändert.
+
+### Wirkung auf Koordinatenpunkte
+
+Liegt der Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, liegt nach der Verschiebung um <InlineMath math="k" /> der Punkt <InlineMath math="(a, b + k)" /> auf dem Graphen von <InlineMath math="f(x) + k" />.
+
+### Definitions- und Wertebereich
+
+- **Definitionsbereich**: Bleibt bei einer vertikalen Verschiebung unverändert.
+- **Wertebereich**: Verschiebt sich um <InlineMath math="k \text{Einheiten}" />.
+
+Ist der Wertebereich der ursprünglichen Funktion <InlineMath math="[c, d]" />, wird er nach der Verschiebung um <InlineMath math="k" /> zu <InlineMath math="[c + k, d + k]" />.
+
+## Anwendungsbeispiele
+
+### Beispiel mit einer Exponentialfunktion
+
+Nun wird die Exponentialfunktion <InlineMath math="f(x) = 2^x" /> vertikal verschoben.
+
+<LineEquation
+  title={<>Vertikale Verschiebung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
+  description="Die Exponentialkurve behält ihre Eigenschaften nach der vertikalen Verschiebung bei."
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.2;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.2;
+        return { x, y: Math.pow(2, x) + 2, z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const x = (i - 15) * 0.2;
+        return { x, y: Math.pow(2, x) - 1, z: 0 };
+      }),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
+
+Für Exponentialfunktionen:
+- Die horizontale Asymptote <InlineMath math="y = 0" /> von <InlineMath math="f(x) = 2^x" /> wird zur Geraden <InlineMath math="y = k" /> der Funktion <InlineMath math="f(x) + k" />.
+- Der <InlineMath math="y" />-Achsenabschnitt verschiebt sich von <InlineMath math="(0, 1)" /> nach <InlineMath math="(0, 1 + k)" />
+
+## Übungen
+
+1. Gegeben ist die Funktion <InlineMath math="f(x) = x^2 + 4x + 3" />. Bestimme die Gleichung nach einer vertikalen Verschiebung um <InlineMath math="5 \text{Einheiten}" /> nach oben.
+
+2. Der Graph der Funktion <InlineMath math="g(x) = 3x + 2" /> wird um <InlineMath math="7 \text{Einheiten}" /> vertikal nach unten verschoben. Bestimme:
+   - die Gleichung der verschobenen Funktion
+   - den <InlineMath math="y" />-Achsenabschnitt nach der Verschiebung
+
+3. Die Funktion <InlineMath math="h(x) = \sqrt{x}" /> wird so verschoben, dass der Punkt <InlineMath math="(4, 2)" /> auf <InlineMath math="(4, 5)" /> abgebildet wird. Bestimme die Verschiebungskonstante und die Gleichung der verschobenen Funktion.
+
+### Lösungen
+
+1. Vertikale Verschiebung nach oben um <InlineMath math="5 \text{Einheiten}" />: <InlineMath math="f'(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="f(x) = x^2 + 4x + 3" /> und verschobener Graph</>}
+     description={
+       <>
+         Ursprüngliche quadratische Funktion und Verschiebung um
+         <InlineMath math="5 \text{Einheiten}" /> nach oben.
+       </>
+     }
+     showZAxis={false}
+     data={[
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x + 4 * x + 3, z: 0 };
+         }),
+         color: "#9333ea",
+         labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, at: 10, offset: [0, 1.5, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 41 }, (_, i) => {
+           const x = (i - 20) * 0.25;
+           return { x, y: x * x + 4 * x + 3 + 5, z: 0 };
+         }),
+         color: "#ea580c",
+         labels: [{ text: <InlineMath math="f'(x)=x^2+4x+8" />, at: 10, offset: [0, -0.5, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+2. Gleichung der verschobenen Funktion:
+
+   - Verschiebung nach unten um <InlineMath math="7 \text{Einheiten}" />: <InlineMath math="g'(x) = g(x) - 7 = 3x + 2 - 7 = 3x - 5" />
+   - <InlineMath math="y" />-Achsenabschnitt: Setze <InlineMath math="x = 0" /> in <InlineMath math="g'(x) = 3(0) - 5 = -5" /> ein. Der Schnittpunkt ist <InlineMath math="(0, -5)" />.
+
+   Visualisierung:
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="g(x) = 3x + 2" /> und verschobener Graph</>}
+     description={
+       <>
+         Ursprüngliche lineare Funktion und Verschiebung um
+         <InlineMath math="7 \text{Einheiten}" /> nach unten.
+       </>
+     }
+     showZAxis={false}
+     data={[
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = (i - 10) * 0.5;
+           return { x, y: 3 * x + 2, z: 0 };
+         }),
+         color: "#7c3aed",
+         labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = (i - 10) * 0.5;
+           return { x, y: 3 * x + 2 - 7, z: 0 };
+         }),
+         color: "#0d9488",
+         labels: [{ text: <InlineMath math="g'(x)=3x-5" />, offset: [1, 0.5, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />
+
+3. Punkt <InlineMath math="(4, 2)" /> auf <InlineMath math="h(x) = \sqrt{x}" /> wird zu <InlineMath math="(4, 5)" />, was eine vertikale Verschiebung um <InlineMath math="k = 5 - 2 = 3 \text{Einheiten}" /> nach oben bedeutet.
+   Die verschobene Funktion lautet <InlineMath math="h'(x) = \sqrt{x} + 3" />.
+
+   <LineEquation
+     title={<>Funktion <InlineMath math="h(x) = \sqrt{x}" /> und verschobener Graph</>}
+     description={
+       <>
+         Ursprüngliche Quadratwurzelfunktion und Verschiebung um
+         <InlineMath math="3 \text{Einheiten}" /> nach oben.
+       </>
+     }
+     showZAxis={false}
+     data={[
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25;
+           return { x, y: Math.sqrt(x), z: 0 };
+         }),
+         color: "#4f46e5",
+         labels: [{ text: <InlineMath math="h(x)=\sqrt{x}" />, offset: [1, 1, 0] }],
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 21 }, (_, i) => {
+           const x = i * 0.25;
+           return { x, y: Math.sqrt(x) + 3, z: 0 };
+         }),
+         color: "#059669",
+         labels: [{ text: <InlineMath math="h'(x)=\sqrt{x}+3" />, offset: [1, 1, 0] }],
+         showPoints: false,
+       },
+     ]}
+   />

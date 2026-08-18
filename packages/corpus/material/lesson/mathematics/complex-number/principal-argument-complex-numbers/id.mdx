@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Argumen Utama Bilangan Kompleks",
-  description: "Temukan argumen utama Arg(z) unik dalam rentang [0°,360°). Ubah kemungkinan sudut tak hingga menjadi satu nilai standar untuk kesamaan kompleks.",
+  description: "Tentukan argumen utama unik bilangan kompleks tak nol dalam interval dari negatif pi sampai pi dan reduksi sudut koterminal ke wakil tersebut.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Bilangan Kompleks",
@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Memahami Argumen Utama
 
-Argumen <InlineMath math="\theta" /> dari bilangan kompleks <InlineMath math="z = x + iy" /> adalah sudut yang dibentuk vektor <InlineMath math="z" /> terhadap sumbu riil positif.
+Argumen <InlineMath math="\theta" /> dari bilangan kompleks tak nol <InlineMath math="z = x + iy" /> adalah sudut yang dibentuk vektor <InlineMath math="z" /> terhadap sumbu riil positif. Vektor nol tidak memiliki arah, sehingga <InlineMath math="\text{Arg}(0)" /> tidak terdefinisi.
 
-Namun, ada satu hal penting, argumen bukanlah nilai tunggal!
+Satu sudut bukanlah satu-satunya argumen untuk arah tersebut.
 
 Jika <InlineMath math="\theta" /> adalah argumen dari <InlineMath math="z" />, maka <InlineMath math="\theta + 2\pi k" /> (dengan <InlineMath math="k" /> bilangan bulat: <InlineMath math="0, \pm 1, \pm 2, \ldots" />) juga merupakan argumen dari <InlineMath math="z" />, karena menambahkan kelipatan <InlineMath math="360^\circ" /> atau <InlineMath math="2\pi" /> radian akan menghasilkan sudut yang sama pada bidang kompleks.
 
@@ -24,17 +24,17 @@ Karena ada tak hingga banyaknya argumen untuk satu bilangan kompleks, kita serin
 
 ## Definisi Argumen Utama
 
-Argumen Utama dari bilangan kompleks <InlineMath math="z = r(\cos \theta + i\sin \theta)" /> adalah nilai unik dari argumen <InlineMath math="\theta" /> yang memenuhi rentang tertentu.
+Argumen Utama dari bilangan kompleks tak nol <InlineMath math="z = r(\cos \theta + i\sin \theta)" />, dengan <InlineMath math="r>0" />, adalah nilai unik dari argumen <InlineMath math="\theta" /> yang memenuhi rentang tertentu.
 
-**Argumen Utama** (dinotasikan <InlineMath math="\text{Arg}(z)" />) didefinisikan sebagai argumen <InlineMath math="\theta" /> yang memenuhi:
+Dalam materi ini, **Argumen Utama** (dinotasikan <InlineMath math="\text{Arg}(z)" />) didefinisikan sebagai argumen <InlineMath math="\theta" /> yang memenuhi:
 
-<BlockMath math="0 \leq \theta < 2\pi \quad \text{atau} \quad 0^\circ \leq \theta < 360^\circ" />
+<BlockMath math="-\pi < \theta \leq \pi \quad \text{atau} \quad -180^\circ < \theta \leq 180^\circ" />
 
-Definisi lain terkadang menggunakan rentang <InlineMath math="(-\pi, \pi]" /> atau <InlineMath math="(-180^\circ, 180^\circ]" />. Penting untuk selalu memeriksa definisi yang digunakan dalam konteks tertentu.
+Sebagian referensi memakai <InlineMath math="[0, 2\pi)" />. Kedua konvensi memilih satu sudut dari setiap keluarga sudut koterminal, tetapi semua contoh dalam materi ini memakai <InlineMath math="(-\pi, \pi]" /> secara konsisten.
 
 ## Menentukan Argumen Utama
 
-Cara menentukan Argumen Utama sama seperti mencari argumen biasa, namun kita perlu memastikan hasil akhirnya berada dalam rentang <InlineMath math="[0, 2\pi)" /> atau <InlineMath math="[0^\circ, 360^\circ)" />.
+Tentukan salah satu argumen terlebih dahulu, lalu tambahkan atau kurangkan putaran penuh sampai hasilnya berada dalam <InlineMath math="(-\pi, \pi]" /> atau <InlineMath math="(-180^\circ, 180^\circ]" />.
 
 ### Mencari Argumen Utama
 
@@ -47,7 +47,7 @@ Cara menentukan Argumen Utama sama seperti mencari argumen biasa, namun kita per
       <BlockMath math="\theta = \arctan(1) = 45^\circ" />
     </MathContainer>
 
-    Karena <InlineMath math="45^\circ" /> sudah berada dalam rentang <InlineMath math="[0^\circ, 360^\circ)" />, maka Argumen Utama adalah:
+    Karena <InlineMath math="45^\circ" /> sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" />, Argumen Utamanya adalah:
 
     <BlockMath math="\text{Arg}(z) = 45^\circ \text{ atau} \frac{\pi}{4} \text{ radian}" />
 
@@ -60,7 +60,7 @@ Cara menentukan Argumen Utama sama seperti mencari argumen biasa, namun kita per
       <BlockMath math="\theta = \arctan\left(\frac{1}{\sqrt{3}}\right) = 30^\circ" />
     </MathContainer>
 
-    Karena <InlineMath math="30^\circ" /> sudah berada dalam rentang <InlineMath math="[0^\circ, 360^\circ)" />, maka Argumen Utama adalah:
+    Karena <InlineMath math="30^\circ" /> sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" />, Argumen Utamanya adalah:
 
     <BlockMath math="\text{Arg}(z) = 30^\circ \text{ atau} \frac{\pi}{6} \text{ radian}" />
 
@@ -69,10 +69,9 @@ Cara menentukan Argumen Utama sama seperti mencari argumen biasa, namun kita per
     title="Visualisasi Argumen Utama"
     description={
       <>
-        Menampilkan vektor untuk <InlineMath math="z_1=1+i" /> dan
-        <InlineMath math="z_2=\sqrt{3}+i" />, beserta Argumen Utamanya (<InlineMath math="45^\circ" />
-        dan <InlineMath math="30^\circ" />
-        ).
+        Vektor <InlineMath math="z_1=1+i" /> dan
+        <InlineMath math="z_2=\sqrt{3}+i" /> ditampilkan bersama Argumen Utamanya,
+        yaitu <InlineMath math="45^\circ" /> dan <InlineMath math="30^\circ" />.
       </>
     }
     cameraPosition={[0, 0, 8]}
@@ -110,7 +109,7 @@ Cara menentukan Argumen Utama sama seperti mencari argumen biasa, namun kita per
 
 ## Kesamaan Dua Bilangan Kompleks dalam Bentuk Polar
 
-Dua bilangan kompleks <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> dan <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" /> dikatakan **sama** jika dan hanya jika:
+Dua bilangan kompleks tak nol <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> dan <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />, dengan <InlineMath math="r_1>0" /> dan <InlineMath math="r_2>0" />, dikatakan **sama** jika dan hanya jika:
 
 1.  Modulusnya sama:
 
@@ -121,7 +120,7 @@ Dua bilangan kompleks <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1
     <InlineMath math="\theta_1 = \theta_2 + 2k\pi" /> atau <InlineMath math="\theta_1 - \theta_2 = 2k\pi" /> untuk
     suatu bilangan bulat <InlineMath math="k" />.
 
-Jika kita menggunakan **Argumen Utama** (dengan rentang <InlineMath math="[0, 2\pi)" />), syarat kedua menjadi lebih sederhana: <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
+Jika kita menggunakan **Argumen Utama** dalam <InlineMath math="(-\pi, \pi]" />, syarat kedua menjadi <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
 
 ### Pengecekan Kesamaan
 
@@ -156,7 +155,7 @@ Tentukan Argumen Utama (dalam derajat) untuk bilangan kompleks berikut:
 1.  <InlineMath math="1 + \sqrt{3}i" />
 2.  <InlineMath math="-i" />
 
-### Kunci Jawaban
+### Pembahasan
 
 1.  **Untuk <InlineMath math="z = 1 + \sqrt{3}i" />:**
 
@@ -167,17 +166,10 @@ Tentukan Argumen Utama (dalam derajat) untuk bilangan kompleks berikut:
       <BlockMath math="\theta = \arctan(\sqrt{3}) = 60^\circ" />
     </MathContainer>
 
-    Karena <InlineMath math="60^\circ \in [0^\circ, 360^\circ)" />, maka <InlineMath math="\text{Arg}(z) = 60^\circ" />.
+    Karena <InlineMath math="60^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}(z) = 60^\circ" />.
 
 2.  **Untuk <InlineMath math="z = -i" />:**
 
-    Dapat ditulis <InlineMath math="z = 0 - 1i" />. Titik <InlineMath math="(0, -1)" /> berada pada sumbu imajiner negatif.
+    Tuliskan sebagai <InlineMath math="z = 0 - 1i" />. Titik <InlineMath math="(0, -1)" /> tepat berada pada sumbu imajiner negatif, sehingga kita tidak perlu membagi dengan <InlineMath math="x=0" />.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-1}{0} = \infty" />
-      <BlockMath math="\theta = \arctan\left(\infty\right) = 90^\circ" />
-    </MathContainer>
-
-    Argumennya adalah <InlineMath math="270^\circ" /> (atau <InlineMath math="-90^\circ" />).
-
-    Karena kita mencari Argumen Utama dalam rentang <InlineMath math="[0^\circ, 360^\circ)" />, maka <InlineMath math="\text{Arg}(z) = 270^\circ" />.
+    <BlockMath math="\text{Arg}(z) = -90^\circ = -\frac{\pi}{2}" />

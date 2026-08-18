@@ -11,7 +11,9 @@ export const metadata = {
 
 When one object is measured several times, the results can differ slightly. That is normal. A hand can press the tool with a different force, an eye can read the scale from a slightly different angle, and the object can shift a little.
 
-**Measurement uncertainty** is an estimate of how far a measurement result may reasonably be from the value we report. For repeated measurements, uncertainty mainly reads the spread of the data.
+**Measurement uncertainty** is a nonnegative parameter that characterizes the dispersion of quantity values attributed to the measurand, based on the available information. For repeated measurements, a Type A evaluation obtains an uncertainty component from statistical analysis of the observations.
+
+This lesson first uses the sample standard deviation <InlineMath math="s" /> to describe the spread of individual readings. The standard uncertainty of the mean is a different quantity and appears later.
 
 > Repeated measurements help reveal random error, meaning small changes that move up and down from one reading to another. Systematic error, such as a tool that does not start at zero or a damaged scale, still needs tool checking or calibration.
 
@@ -85,40 +87,40 @@ Sometimes the measured data is diameter, but the required result is the area of 
 
 <BlockMath math="A=\frac{1}{4}\pi d^2" />
 
-Because area depends on diameter, each diameter reading gives a slightly different area. Use <InlineMath math="\pi \approx 3.14" /> for this example calculation, and keep guard digits during the calculation.
+Because area depends on diameter, each diameter reading gives a slightly different area. Use the calculator value of <InlineMath math="\pi" /> and keep the unrounded area values during the calculation. The table displays only <InlineMath math="4" /> decimal places for readability.
 
 | Data | Diameter | Area from the diameter |
 | :--- | :------- | :--------------------- |
-| <InlineMath math="1" /> | <InlineMath math="3.12 \text{ cm}" /> | <InlineMath math="7.6415 \text{ cm}^2" /> |
-| <InlineMath math="2" /> | <InlineMath math="3.14 \text{ cm}" /> | <InlineMath math="7.7398 \text{ cm}^2" /> |
-| <InlineMath math="3" /> | <InlineMath math="3.15 \text{ cm}" /> | <InlineMath math="7.7892 \text{ cm}^2" /> |
-| <InlineMath math="4" /> | <InlineMath math="3.11 \text{ cm}" /> | <InlineMath math="7.5926 \text{ cm}^2" /> |
-| <InlineMath math="5" /> | <InlineMath math="3.14 \text{ cm}" /> | <InlineMath math="7.7398 \text{ cm}^2" /> |
+| <InlineMath math="1" /> | <InlineMath math="3.12 \text{ cm}" /> | <InlineMath math="7.6454 \text{ cm}^2" /> |
+| <InlineMath math="2" /> | <InlineMath math="3.14 \text{ cm}" /> | <InlineMath math="7.7437 \text{ cm}^2" /> |
+| <InlineMath math="3" /> | <InlineMath math="3.15 \text{ cm}" /> | <InlineMath math="7.7931 \text{ cm}^2" /> |
+| <InlineMath math="4" /> | <InlineMath math="3.11 \text{ cm}" /> | <InlineMath math="7.5964 \text{ cm}^2" /> |
+| <InlineMath math="5" /> | <InlineMath math="3.14 \text{ cm}" /> | <InlineMath math="7.7437 \text{ cm}^2" /> |
 
 The mean area is:
 
-<BlockMath math="\bar A=\frac{7.6415+7.7398+7.7892+7.5926+7.7398}{5}\text{ cm}^2=7.7006 \text{ cm}^2" />
+<BlockMath math="\bar A=\frac{1}{5}\sum_{i=1}^{5}A_i=7.7045 \text{ cm}^2" />
 
 The area spread is:
 
-<BlockMath math="s_A=0.0807 \text{ cm}^2" />
+<BlockMath math="s_A=0.0808 \text{ cm}^2" />
 
 The result can be reported as:
 
 <BlockMath math="A=(7.70 \pm 0.08)\text{ cm}^2" />
 
-Do not round the area column too early and then square the shortened values. Rounding in the middle of the calculation can change the final uncertainty.
+The displayed table is not the calculation input. Rounding intermediate area values can change the final spread, so the mean and standard deviation above use the unrounded values.
 
-## A Percentage Shows the Size of the Risk
+## A Percentage Shows the Relative Size
 
-Relative uncertainty compares the uncertainty with the reported value.
+Relative spread compares the sample standard deviation with the magnitude of the mean.
 
-<BlockMath math="\varepsilon_r=\frac{\Delta x}{|\bar x|}\times 100\%" />
+<BlockMath math="\varepsilon_r=\frac{s_x}{|\bar x|}\times 100\,\%" />
 
 For the bottle cap area:
 
-<BlockMath math="\varepsilon_r=\frac{0.0807}{7.7006}\times 100\%=1.05\%" />
+<BlockMath math="\varepsilon_r=\frac{0.0808}{7.7045}\times 100\,\%\approx 1.05\,\%" />
 
-This means the spread of the data is about <InlineMath math="1.05\%" /> of the reported area. That is small enough for <InlineMath math="7.70 \text{ cm}^2" /> to be reasonable, but real enough that the uncertainty should still be written with the result.
+This means the sample spread is about <InlineMath math="1.05\,\%" /> of the mean area. Whether that is adequate depends on the intended use and target uncertainty, so the percentage should not be called "small enough" without a stated requirement.
 
 The uncertainty references used here are NIST Technical Note <InlineMath math="1297" /> for Type A evaluation and the JCGM GUM document from BIPM. NIST's Type A evaluation page can be opened through [this source link](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty), while BIPM's JCGM GUM document can be opened through [this source link](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf).

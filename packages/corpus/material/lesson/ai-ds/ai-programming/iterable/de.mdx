@@ -1,0 +1,337 @@
+export const metadata = {
+    title: "Iterables",
+    description: "Lerne, wie Python-Iterables Schleifen, Mitgliedschaftstests, Wahrheitsprüfungen und Positionsentpackung ermöglichen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-18",
+    subject: "KI-Programmierung",
+};
+
+## Grundlegende iterierbare Konzepte
+
+In Python ist ein Iterable ein Objekt, das einer Schleife oder einem anderen Verbraucher nacheinander Elemente liefern kann. Strings, Listen, Tupel, Mengen, Dictionaries, Dateien und Generatoren sind alle iterierbar, obwohl sie ihre Elemente unterschiedlich ordnen und erzeugen.
+
+Ein Iterable muss weder geordnet noch indizierbar, wiederverwendbar oder endlich sein. Seine eigentliche Zusage ist enger: `iter()` kann einen Iterator erhalten, der Elemente liefert, bis er erschöpft ist.
+
+### Typen von Iterables
+
+Python stellt viele Arten von Iterables bereit, die dir in gewöhnlichen Programmen begegnen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "iterable_examples.py",
+      code: `# String als iterierbar
+text = "hello"
+print("Zeichen in der Zeichenfolge:")
+for char in text:
+    print(char)
+# Ausgabe:
+# Zeichen in der Zeichenfolge:
+# h
+# e
+# l
+# l
+# o
+
+print()
+
+# Als iterierbar auflisten
+numbers = [1, 2, 3, 4, 5]
+print("Elemente in der Liste:")
+for num in numbers:
+    print(num)
+# Ausgabe:
+# Elemente in der Liste:
+# 1
+# 2
+# 3
+# 4
+# 5
+
+print()
+
+# Tupel als iterierbar
+coordinates = (10, 20, 30)
+print("Elemente im Tupel:")
+for coord in coordinates:
+    print(coord)
+# Ausgabe:
+# Elemente im Tupel:
+# 10
+# 20
+# 30`
+    }
+  ]}
+/>
+
+Der String liefert Zeichen in Textreihenfolge. Listen und Tupel liefern ihre gespeicherten Elemente in Positionsreihenfolge. Andere Iterable-Typen können anderen Ordnungsregeln folgen.
+
+## Mitgliedschaftsoperatoren
+
+Die Operatoren `in` und `not in` fragen, ob ein Container einen bestimmten Wert enthält. Die genaue Mitgliedschaftsregel gehört zum jeweiligen Container-Typ.
+
+### Verwendung von `in` und `not in`
+
+Eingebaute Sequenzen durchsuchen ihre Elemente bis zu einem Treffer oder bis zum Ende. Mengen und Dictionaries verwenden ihr eigenes Suchverhalten, wobei ein Mitgliedschaftstest bei Dictionaries die Schlüssel und nicht die Werte prüft.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "membership_operators.py",
+      code: `# Mitgliedschaft in einer Liste prüfen
+fruits = ["Apfel", "Orange", "Mango"]
+
+# Den Operator in verwenden
+if "Apfel" in fruits:
+    print("Apfel ist in der Obstliste verfügbar")
+# Ausgabe: Apfel ist in der Obstliste verfügbar
+
+# Den Operator not in verwenden
+if "durian" not in fruits:
+    print("Durian ist in der Obstliste nicht verfügbar")
+# Ausgabe: Durian ist in der Obstliste nicht verfügbar
+
+print()
+
+# Mitgliedschaft in einem String prüfen
+message = "Python ist eine Programmiersprache"
+
+# Suche nach Teilzeichenfolge in Zeichenfolge
+if "Python" in message:
+    print("Python-Wort in Nachricht gefunden")
+# Ausgabe: Python-Wort in Nachricht gefunden
+
+if "Java" not in message:
+    print("Java-Wort in der Nachricht nicht gefunden")
+# Ausgabe: Java-Wort in der Nachricht nicht gefunden`
+    }
+  ]}
+/>
+
+### Sonderfälle in Strings
+
+Bei Strings darf der linke Operand ein einzelnes Zeichen oder ein längerer Teilstring sein. Der Test unterscheidet Groß- und Kleinschreibung und sucht nach einem zusammenhängenden Vorkommen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "string_membership.py",
+      code: `# Zeichen in einem String suchen
+text = "programming"
+
+# Suche nach einzelnen Zeichen
+print("g" in text)        # Ausgabe: True
+print("z" in text)        # Ausgabe: False
+
+print()
+
+# Suche nach Teilzeichenfolge in Zeichenfolge
+print("gram" in text)     # Ausgabe: True
+print("program" in text)  # Ausgabe: True
+print("java" in text)     # Ausgabe: False
+
+# Nur Markierungen prüfen, keine vollständige E-Mail-Validierung
+email = "user@example.com"
+if "@" in email and ".com" in email:
+    print("Enthält grundlegende E-Mail-Markierungen")
+# Ausgabe: Enthält grundlegende E-Mail-Markierungen`
+    }
+  ]}
+/>
+
+Die letzte Prüfung demonstriert nur zwei Markierungen. Sie reicht nicht als E-Mail-Validierung, weil viele ungültige Adressen sowohl `@` als auch `.com` enthalten und viele gültige Adressen eine andere Domainendung verwenden.
+
+## Die Funktionen any() und all()
+
+Die eingebauten Funktionen `any()` und `all()` verbrauchen ein Iterable und prüfen den Wahrheitswert seiner Elemente. Beide stoppen, sobald das Ergebnis feststeht. Generatorausdrücke vermeiden deshalb eine unnötige Zwischenliste.
+
+### any()-Funktion
+
+`any()` gibt nach dem ersten wahren Element `True` zurück. Nur wenn alle Elemente falsch sind oder das Iterable leer ist, lautet das Ergebnis `False`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "any_function.py",
+      code: `# Beispiel mit any()
+grades = [60, 75, 45, 80]
+
+# Prüfen Sie, ob Werte über 70 vorhanden sind
+print("Hohe Noten vorhanden:", any(grade > 70 for grade in grades))
+# Ausgabe: Hohe Noten vorhanden: True
+
+# Beispiel mit direktem booleschen Wert
+conditions = [False, False, True, False]
+print("Mindestens eine Bedingung ist wahr:", any(conditions))
+# Ausgabe: Mindestens eine Bedingung ist wahr: True
+
+# Beispiel mit leerer Liste
+empty_list = []
+print("any() für eine leere Liste:", any(empty_list))
+# Ausgabe: any() für eine leere Liste: False
+
+# Praxisbeispiel
+numbers = [0, 0, 5, 0]
+if any(numbers):
+    print("In der Liste sind Zahlen ungleich Null vorhanden")
+# Ausgabe: In der Liste sind Zahlen ungleich Null vorhanden`
+    }
+  ]}
+/>
+
+### all()-Funktion
+
+`all()` gibt nach dem ersten falschen Element `False` zurück. Endet die Iteration ohne ein solches Element, lautet das Ergebnis `True`. Das erklärt auch den leeren Fall: Es gibt kein Element, das die Bedingung verletzt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "all_function.py",
+      code: `# Beispiel mit all()
+scores = [85, 90, 78, 92]
+
+# Überprüfen Sie, ob alle Werte über 70 liegen
+print("Alle Noten bestehen:", all(score >= 70 for score in scores))
+# Ausgabe: Alle Noten bestehen: True
+
+# Beispiel mit direktem booleschen Wert
+conditions = [True, True, True, True]
+print("Alle Bedingungen wahr:", all(conditions))
+# Ausgabe: Alle Bedingungen wahr: True
+
+# Beispiel mit einer falschen Bedingung
+mixed_conditions = [True, True, False, True]
+print("Alle Bedingungen wahr:", all(mixed_conditions))
+# Ausgabe: Alle Bedingungen wahr: False
+
+# Praxisbeispiel
+ages = [18, 21, 25, 30]
+if all(age >= 18 for age in ages):
+    print("Alle Teilnehmer sind Erwachsene")
+# Ausgabe: Alle Teilnehmer sind Erwachsene`
+    }
+  ]}
+/>
+
+## Entpackoperator
+
+In einem Funktionsaufruf erweitert ein vorangestelltes Sternchen (`*`) ein Iterable zu Positionsargumenten. Die Anzahl der entstandenen Argumente muss weiterhin zur aufgerufenen Funktion passen.
+
+### Problem ohne Entpackoperator
+
+Eine Funktion, die getrennte Koordinaten erwartet, erhält eine Liste als einziges Argument, wenn du sie nicht entpackst. Manuelle Indizes funktionieren bei einer festen Form, wiederholen aber die Containerstruktur an jeder Aufrufstelle.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "unpacking_problem.py",
+      code: `import math
+
+# Problem: Die math.hypot-Funktion benötigt separate Argumente
+coordinates = [3, 4]
+
+# Falscher Weg - führt zu einem Fehler
+try:
+    result = math.hypot(coordinates)
+    print(result)
+except TypeError as e:
+    print("Error:", e)
+# Ausgabe: Error: must be real number, not list
+
+# Manueller Weg, der für viele Argumente mühsam ist
+result = math.hypot(coordinates[0], coordinates[1])
+print("Manuelles Ergebnis:", result)
+# Ausgabe: Manuelles Ergebnis: 5.0
+
+# Beispiel mit mehr Argumenten
+points = [1, 1, 1, 1]
+# Der manuelle Weg wird sehr mühsam
+result = math.hypot(points[0], points[1], points[2], points[3])
+print("Ergebnis mit vier Argumenten:", result)
+# Ausgabe: Ergebnis mit vier Argumenten: 2.0`
+    }
+  ]}
+/>
+
+### Lösung mit dem Entpackoperator
+
+Ein `*` vor dem Iterable im Aufruf übergibt jedes erzeugte Element als eigenes Positionsargument.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "unpacking_solution.py",
+      code: `import math
+
+# Lösung mit Auspackoperator
+coordinates = [3, 4]
+result = math.hypot(*coordinates)
+print("Abstand vom Ursprung:", result)
+# Ausgabe: Abstand vom Ursprung: 5.0
+
+# Beispiel mit Tupel
+point_3d = (1, 2, 2)
+distance = math.hypot(*point_3d)
+print("3D-Abstand:", distance)
+# Ausgabe: 3D-Abstand: 3.0
+
+# Beispiel mit vielen Argumenten
+dimensions = [2, 3, 6, 1, 4]
+euclidean_distance = math.hypot(*dimensions)
+print("Euklidischer Abstand:", euclidean_distance)
+# Ausgabe: Euklidischer Abstand: 8.12403840463596
+
+# Weiteres praktisches Beispiel
+def calculate_average(a, b, c):
+    return (a + b + c) / 3
+
+grades = [85, 90, 78]
+average = calculate_average(*grades)
+print("Durchschnittsnote:", average)
+# Ausgabe: Durchschnittsnote: 84.33333333333333`
+    }
+  ]}
+/>
+
+### Praktische Anwendungen des Auspackens
+
+Dieselbe Syntax funktioniert in Funktionsaufrufen und Collection-Darstellungen. Verwende sie, wenn die Erweiterung zur vorgesehenen Schnittstelle gehört, nicht wenn eine Funktion bereits ein einzelnes Iterable annimmt.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "unpacking_practical.py",
+      code: `# Entpacken für die print-Funktion
+items = ["Apfel", "Orange", "Mango"]
+print("Früchte:", *items)
+# Ausgabe: Früchte: Apfel Orange Mango
+
+# Feste Argumente für range() entpacken
+bounds = [2, 10, 2]
+print("Gerade Werte:", list(range(*bounds)))
+# Ausgabe: Gerade Werte: [2, 4, 6, 8]
+
+# Auspacken, um Listen zu kombinieren
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined = [*list1, *list2]
+print("Kombinierte Liste:", combined)
+# Ausgabe: Kombinierte Liste: [1, 2, 3, 4, 5, 6]
+
+# Funktion zum Entpacken im String-Format
+template = "Name: {}, Alter: {}, Stadt: {}"
+data = ["Alice", 25, "Jakarta"]
+formatted = template.format(*data)
+print(formatted)
+# Ausgabe: Name: Alice, Alter: 25, Stadt: Jakarta`
+    }
+  ]}
+/>

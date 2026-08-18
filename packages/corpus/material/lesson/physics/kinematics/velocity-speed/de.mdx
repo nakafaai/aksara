@@ -1,0 +1,116 @@
+
+export const metadata = {
+  title: "Schnelligkeit und Geschwindigkeit",
+  description:
+    "Schnelligkeit als zurückgelegten Weg pro Zeit und Geschwindigkeit als gerichtete Ortsänderung unterscheiden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Kinematik",
+};
+
+## Zwei Größen für die Bewegungsrate
+
+Wenn sich ein Objekt bewegt, können wir zwei verschiedene Fragen stellen. Wie schnell wird der Weg zurückgelegt? Das beschreibt die **Schnelligkeit**. Wie schnell und in welche Richtung ändert sich der Ort? Das beschreibt die **Geschwindigkeit**.
+
+Die Schnelligkeit ist eine skalare Größe und besitzt nur einen Betrag. Die Geschwindigkeit ist eine vektorielle Größe mit Betrag und Richtung.
+
+  <BlockMath math="\begin{aligned}
+\text{mittlere Schnelligkeit} &amp;= \frac{s}{\Delta t} \\
+\bar{v} &amp;= \frac{\Delta x}{\Delta t}
+\end{aligned}" />
+
+Das Symbol <InlineMath math="s" /> steht für die zurückgelegte Strecke, <InlineMath math="\Delta x" /> für die Verschiebung auf einer Geraden und <InlineMath math="\Delta t" /> für das Zeitintervall. Über eine ganze Bewegung liefern die Formeln die mittlere Schnelligkeit beziehungsweise die mittlere Geschwindigkeit.
+
+> Die Schnelligkeit berücksichtigt den gesamten zurückgelegten Weg. Die Geschwindigkeit verwendet die gerichtete Verschiebung mit ihrem Vorzeichen.
+
+<VelocitySpeedLab
+  title={<>Autobewegung auf einer Linie</>}
+  description={
+    <>
+      Wähle eine Fahrt aus und vergleiche den grünen zurückgelegten Weg mit der
+      violetten Verschiebung zwischen Start- und Endposition.
+    </>
+  }
+  labels={{
+    chooseCase: "Fahrt wählen",
+    modeLabels: {
+      forward: <>Vorwärts</>,
+      partialReturn: <>Teilweise zurück</>,
+      backToStart: <>Zurück zum Start</>,
+    },
+    factLabels: {
+      distance: <>Zurückgelegte Strecke</>,
+      displacement: <>Verschiebung</>,
+      speed: <>Mittlere Schnelligkeit</>,
+      velocity: <>Mittlere Geschwindigkeit</>,
+    },
+    viewLabel: "Autobewegung zum Vergleich von Schnelligkeit und Geschwindigkeit",
+  }}
+/>
+
+## Weglänge und Ortsänderung sind nicht dasselbe
+
+Für die Unterscheidung betrachten wir sowohl den gesamten Weg als auch die Ortsänderung vom Start bis zum Ende. Die Schnelligkeit wird aus der Weglänge berechnet, die Geschwindigkeit aus der Verschiebung pro Zeit.
+
+Bei einer geradlinigen Bewegung ohne Richtungswechsel können Schnelligkeit und Betrag der Geschwindigkeit gleich sein. Kehrt das Objekt um, wird die Weglänge größer als der Betrag der Verschiebung.
+
+| Objektbewegung | Zurückgelegte Strecke | Verschiebung |
+| :------------ | :---------------- | :----------- |
+| Bewegt sich direkt von <InlineMath math="0 \text{ m}" /> nach <InlineMath math="8 \text{ m}" /> | <InlineMath math="8 \text{ m}" /> | <InlineMath math="+8 \text{ m}" /> |
+| Bewegt sich von <InlineMath math="0 \text{ m}" /> zu <InlineMath math="8 \text{ m}" /> und dann zurück zu <InlineMath math="4 \text{ m}" /> | <InlineMath math="12 \text{ m}" /> | <InlineMath math="+4 \text{ m}" /> |
+| Bewegt sich von <InlineMath math="0 \text{ m}" /> zu <InlineMath math="8 \text{ m}" /> und dann zurück zu <InlineMath math="0 \text{ m}" /> | <InlineMath math="16 \text{ m}" /> | <InlineMath math="0 \text{ m}" /> |
+
+Die letzte Zeile zeigt den Unterschied besonders deutlich: Das Objekt legt <InlineMath math="16 \text{ m}" /> zurück, seine Verschiebung ist dennoch null, weil es zum Startpunkt zurückkehrt.
+
+## Die mittlere Schnelligkeit beruht auf der Weglänge
+
+Angenommen, ein Objekt bewegt sich von der Position <InlineMath math="0 \text{ m}" /> nach <InlineMath math="8 \text{ m}" /> und kehrt dann in <InlineMath math="4 \text{ s}" /> zur Position <InlineMath math="4 \text{ m}" /> zurück.
+
+Die zurückgelegte Strecke beträgt:
+
+<BlockMath math="s=8 \text{ m}+4 \text{ m}=12 \text{ m}" />
+
+Die mittlere Schnelligkeit beträgt:
+
+<BlockMath math="\text{mittlere Schnelligkeit}=\frac{12 \text{ m}}{4 \text{ s}}=3 \text{ m/s}" />
+
+Dieser Wert gibt an, wie schnell sich das Objekt entlang seines Weges bewegt hat. Eine Richtung enthält er nicht.
+
+Die Schnelligkeit ist daher nie negativ. Solange sich das Objekt bewegt, wächst die insgesamt zurückgelegte Weglänge.
+
+## Die mittlere Geschwindigkeit berücksichtigt die Richtung
+
+Für das gleiche Beispiel beträgt die Verschiebung:
+
+<BlockMath math="\Delta x=4 \text{ m}-0 \text{ m}=+4 \text{ m}" />
+
+Die mittlere Geschwindigkeit beträgt:
+
+<BlockMath math="\bar{v}=\frac{+4 \text{ m}}{4 \text{ s}}=+1 \text{ m/s}" />
+
+Das positive Vorzeichen bedeutet, dass die Geschwindigkeit nach rechts gerichtet ist. Ein negatives Ergebnis würde eine Bewegung nach links anzeigen.
+
+Geschwindigkeit ist also nicht einfach Schnelligkeit mit einem angehängten Vorzeichen. Das Vorzeichen erhält seine Bedeutung erst durch die festgelegte positive Richtung und die daraus bestimmte Verschiebung.
+
+## Wenn Schnelligkeit und Geschwindigkeit verschieden sind
+
+Stell dir nun vor, das Objekt bewegt sich von <InlineMath math="0 \text{ m}" /> nach <InlineMath math="8 \text{ m}" /> und kehrt dann in <InlineMath math="4 \text{ s}" /> zu <InlineMath math="0 \text{ m}" /> zurück.
+
+Die zurückgelegte Strecke beträgt <InlineMath math="16 \text{ m}" />, die mittlere Schnelligkeit ist also:
+
+<BlockMath math="\text{mittlere Schnelligkeit}=\frac{16 \text{ m}}{4 \text{ s}}=4 \text{ m/s}" />
+
+Die Verschiebung beträgt <InlineMath math="0 \text{ m}" />, daher beträgt die Geschwindigkeit:
+
+<BlockMath math="\bar{v}=\frac{0 \text{ m}}{4 \text{ s}}=0 \text{ m/s}" />
+
+Die Schnelligkeit kann also ungleich null sein, obwohl die mittlere Geschwindigkeit null ist. Das ist kein Widerspruch: Die Schnelligkeit beruht auf der Weglänge, die Geschwindigkeit auf der Ortsänderung zwischen Anfang und Ende.
+
+## Die Wahl der richtigen Formel
+
+| Größe | Berechnung beruht auf | Besitzt eine Richtung? | Beispieleinheit |
+| :------- | :------- | :------------- | :----------- |
+| Mittlere Schnelligkeit | Zurückgelegte Strecke | Nein | <InlineMath math="\text{m/s}" /> |
+| Mittlere Geschwindigkeit | Verschiebung | Ja | <InlineMath math="\text{m/s}" /> nach rechts |
+
+Geht es darum, wie schnell ein Weg zurückgelegt wird, verwenden wir Weglänge und Schnelligkeit. Geht es um die gerichtete Ortsänderung, verwenden wir Verschiebung und Geschwindigkeit.

@@ -6,9 +6,9 @@ export const metadata = {
     subject: "Metode Linear AI",
 };
 
-## Apa itu Sistem Persamaan Normal
+## Apa itu Sistem Persamaan Normal?
 
-Bayangkan kamu punya masalah optimasi yang rumit, tapi ternyata ada jalan pintas yang elegan. Dalam masalah kuadrat terkecil, alih-alih melakukan optimasi langsung, kita bisa mengubahnya menjadi sistem persamaan yang lebih mudah diselesaikan.
+Persamaan normal mengubah syarat optimalitas orde pertama dari masalah kuadrat terkecil linear menjadi sistem persamaan linear.
 
 Ketika kita ingin meminimumkan
 
@@ -18,7 +18,7 @@ ternyata solusinya dapat ditemukan dengan menyelesaikan sistem persamaan berikut
 
 <BlockMath math="A^T A \cdot x = A^T b" />
 
-Persamaan ini disebut **sistem persamaan normal** karena melibatkan konsep ortogonalitas atau keadaan "normal" (tegak lurus) dalam ruang vektor.
+Persamaan ini disebut **persamaan normal** karena residual pada titik minimum bersifat normal, atau tegak lurus, terhadap ruang kolom <InlineMath math="A" />.
 
 ## Hubungan Fundamental
 
@@ -66,32 +66,42 @@ Karena <InlineMath math="\hat{x}" /> memenuhi sistem persamaan normal, maka <Inl
 
 Ketidaksamaan ini membuktikan bahwa <InlineMath math="\hat{x}" /> memang memberikan nilai minimum.
 
-## Kapan Sistem Persamaan Normal Dapat Diselesaikan
+## Eksistensi dan keunikan
 
-Tidak semua sistem persamaan normal dapat diselesaikan dengan mudah. Ada kondisi khusus yang harus dipenuhi.
+Persamaan normal konsisten untuk setiap matriks <InlineMath math="A \in \mathbb{R}^{m\times n}" /> dan setiap vektor <InlineMath math="b \in \mathbb{R}^m" /> karena peminimum kuadrat terkecil selalu ada dalam dimensi hingga. Peminimumnya unik tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh:
 
-Untuk matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> dengan <InlineMath math="m \geq n" />, matriks simetrik <InlineMath math="A^T A \in \mathbb{R}^{n \times n}" /> dapat diinversi jika dan hanya jika matriks <InlineMath math="A" /> memiliki peringkat penuh, yaitu <InlineMath math="\text{Peringkat}(A) = n" />.
+<BlockMath math="\operatorname{rank}(A)=n" />
 
-Kondisi ini sangat penting karena menentukan apakah sistem persamaan normal memiliki solusi yang unik. Ketika <InlineMath math="A^T A" /> dapat diinversi, solusi dapat ditulis secara eksplisit sebagai
+Dalam kondisi tersebut, <InlineMath math="A^{\mathsf T}A" /> dapat diinverskan dan
 
-<BlockMath math="\hat{x} = (A^T A)^{-1} A^T b" />
+<BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
 
-## Pembuktian Kondisi Invertible
+Jika <InlineMath math="A" /> rank-deficient, persamaan normal tetap memiliki solusi, tetapi solusinya tidak unik. Untuk sembarang solusi khusus <InlineMath math="\hat{x}" />, himpunan lengkapnya adalah
 
-Untuk memahami kapan <InlineMath math="A^T A" /> dapat diinversi, kita perlu melihat hubungan antara ruang nul (kernel) dan peringkat.
+<BlockMath math="\hat{x}+\ker(A)" />
 
-Jika <InlineMath math="A^T A" /> dapat diinversi, maka ruang nul dari <InlineMath math="A^T A" /> hanya berisi vektor nol. Karena ruang nul dari <InlineMath math="A^T A" /> mencakup ruang nul dari <InlineMath math="A" />, maka <InlineMath math="A" /> juga hanya memiliki vektor nol dalam ruang nulnya. Ini berarti <InlineMath math="\text{Peringkat}(A) = n" />.
+Semua vektor parameter tersebut menghasilkan vektor hasil pencocokan <InlineMath math="A\hat{x}" /> yang sama.
 
-Sebaliknya, jika <InlineMath math="\text{Peringkat}(A) = n" />, maka persamaan <InlineMath math="Ax = 0" /> hanya memiliki solusi <InlineMath math="x = 0" />. Untuk melihat bahwa <InlineMath math="A^T A" /> dapat diinversi, perhatikan bahwa jika <InlineMath math="A^T Ax = 0" />, maka
+## Pembuktian ruang nul dan sifat definit
 
-<BlockMath math="0 = \langle x, A^T Ax \rangle = x^T A^T Ax = \langle Ax, Ax \rangle" />
+Untuk setiap <InlineMath math="z\in\mathbb{R}^n" />,
 
-Karena perkalian dalam hanya bernilai nol jika <InlineMath math="Ax = 0" />, dan kita tahu bahwa ini hanya terjadi ketika <InlineMath math="x = 0" />, maka <InlineMath math="A^T A" /> memang dapat diinversi.
+<BlockMath math="z^{\mathsf T}A^{\mathsf T}Az=\|Az\|_2^2\ge0" />
 
-## Sifat Positif Definit
+sehingga <InlineMath math="A^{\mathsf T}A" /> selalu simetris positif semidefinit. Selain itu,
 
-Lebih dari sekadar dapat diinversi, matriks <InlineMath math="A^T A" /> memiliki sifat khusus. Ketika <InlineMath math="\text{Peringkat}(A) = n" /> dan <InlineMath math="x \neq 0" />, kita memiliki <InlineMath math="Ax \neq 0" /> dan
+<BlockMath math="A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad z^{\mathsf T}A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad Az=0" />
 
-<BlockMath math="x^T A^T A x = \langle Ax, Ax \rangle > 0" />
+Jadi,
 
-Ini menunjukkan bahwa <InlineMath math="A^T A" /> adalah matriks **positif definit**. Properti ini menjamin bahwa sistem persamaan normal tidak hanya memiliki solusi unik, tetapi juga stabil secara numerik ketika diselesaikan dengan metode komputasi. Algoritma seperti dekomposisi Cholesky dapat digunakan dengan aman untuk menyelesaikan sistem ini.
+<BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
+
+dan <InlineMath math="A^{\mathsf T}A" /> positif definit tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh.
+
+## Peringatan numerik
+
+Sifat positif definit memberikan keunikan dan memungkinkan penyelesaian Cholesky, tetapi tidak menjamin kondisi numerik yang baik. Untuk matriks berperingkat kolom penuh,
+
+<BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
+
+Pembentukan <InlineMath math="A^{\mathsf T}A" /> secara eksplisit dapat memperbesar sensitivitas dan efek pembulatan. Rumus invers adalah identitas aljabar, bukan perintah untuk membentuk invers di dalam perangkat lunak. Gunakan QR untuk kuadrat terkecil berperingkat penuh yang ditentukan dengan baik dan SVD ketika kekurangan peringkat atau kondisi yang sangat buruk perlu diperhitungkan.

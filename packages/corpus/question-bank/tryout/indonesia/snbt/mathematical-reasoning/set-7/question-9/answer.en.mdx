@@ -6,10 +6,10 @@ export const metadata = {
 
 #### Position Equation
 
-The collision event occurs when the position function with respect to time, for both the rocket and the ship, has the same value.
+The two objects meet when their position functions have the same value.
 
 <MathContainer>
-  <BlockMath math="s(t) = s(t)" />
+  <BlockMath math="s_D(t) = s_R(t)" />
   <BlockMath math="60t = 4000 - t^2" />
   <BlockMath math="t^2 + 60t - 4000 = 0" />
 </MathContainer>
@@ -22,4 +22,4 @@ Factor the quadratic equation:
   <BlockMath math="t = 40 \quad \text{or} \quad t = -100" />
 </MathContainer>
 
-Since time cannot be negative, the positive value is used. This means they collide when <InlineMath math="t = 40\text{ seconds}" />.
+Because the model requires <InlineMath math="t \ge 0" />, the negative root is rejected. The drone and robot meet at <InlineMath math="t = 40\text{ seconds}" />.

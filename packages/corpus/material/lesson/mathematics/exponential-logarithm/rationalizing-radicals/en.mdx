@@ -1,159 +1,148 @@
 export const metadata = {
-  title: "Rationalizing Radicals",
-  description: "Eliminate radicals from denominators using conjugate multiplication for monomial and binomial cases.",
+  title: "Rationalizing Radical Expressions",
+  description:
+    "Remove radicals from denominators by multiplying by one, using either a matching radical factor or a conjugate, with complete worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-04",
-  subject: "Exponential and Logarithm",
+  subject: "Exponents and Logarithms",
 };
 
-## Basic Concepts
+## What Rationalizing Changes
 
-Rationalizing radical forms is the process of transforming mathematical expressions that have radicals in the denominator into simpler forms without radicals in the denominator. This is done by multiplying both the numerator and denominator by an appropriate form.
+Rationalizing a denominator rewrites a fraction in an equivalent form whose denominator contains no radical. The value does not change because the numerator and denominator are multiplied by the same nonzero expression.
 
-- Rationalizing the Form <InlineMath math="\frac{a}{\sqrt{b}}" />
+For a two-term denominator, the key identity is:
 
-  To rationalize the form <InlineMath math="\frac{a}{\sqrt{b}}" />, we multiply by its conjugate <InlineMath math="\frac{\sqrt{b}}{\sqrt{b}}" />:
+<BlockMath math="(u+v)(u-v)=u^2-v^2" />
 
-  <BlockMath math="\frac{a}{\sqrt{b}} = \frac{a}{\sqrt{b}} \times \frac{\sqrt{b}}{\sqrt{b}} = \frac{a\sqrt{b}}{\sqrt{b} \times \sqrt{b}} = \frac{a\sqrt{b}}{b}" />
+The expressions <InlineMath math="u+v" /> and <InlineMath math="u-v" /> are conjugates. Their product removes the middle terms.
 
-  Example:
+### One Radical in the Denominator
 
-  <BlockMath math="\frac{5}{\sqrt{3}} = \frac{5}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{5\sqrt{3}}{3}" />
+For <InlineMath math="b>0" />, multiply by the factor <InlineMath math="\frac{\sqrt b}{\sqrt b}=1" />:
 
-- Rationalizing the Form <InlineMath math="\frac{c}{\sqrt{a} + \sqrt{b}}" />
+<MathContainer>
+  <BlockMath math="\frac a{\sqrt b}\cdot\frac{\sqrt b}{\sqrt b}=\frac{a\sqrt b}{b}" />
+  <BlockMath math="\frac5{\sqrt3}\cdot\frac{\sqrt3}{\sqrt3}=\frac{5\sqrt3}{3}" />
+</MathContainer>
 
-  To rationalize the form <InlineMath math="\frac{c}{\sqrt{a} + \sqrt{b}}" />, we multiply by its conjugate <InlineMath math="\frac{\sqrt{a} - \sqrt{b}}{\sqrt{a} - \sqrt{b}}" />:
+The matching radical factor is a form of one. It is not called a conjugate because it has only one term.
 
-  <BlockMath math="\frac{c}{\sqrt{a} + \sqrt{b}} = \frac{c}{\sqrt{a} + \sqrt{b}} \times \frac{\sqrt{a} - \sqrt{b}}{\sqrt{a} - \sqrt{b}} = \frac{c(\sqrt{a} - \sqrt{b})}{(\sqrt{a})^2 - (\sqrt{b})^2} = \frac{c(\sqrt{a} - \sqrt{b})}{a - b}" />
+### A Sum or Difference of Two Radicals
 
-  Example:
+Assume <InlineMath math="a,b\geq0" /> and <InlineMath math="a\neq b" />. Multiply by the conjugate of the denominator:
 
-  <BlockMath math="\frac{4}{\sqrt{7} + \sqrt{3}} = \frac{4}{\sqrt{7} + \sqrt{3}} \times \frac{\sqrt{7} - \sqrt{3}}{\sqrt{7} - \sqrt{3}} = \frac{4(\sqrt{7} - \sqrt{3})}{7 - 3} = \frac{4(\sqrt{7} - \sqrt{3})}{4} = \sqrt{7} - \sqrt{3}" />
+<MathContainer>
+  <BlockMath math="\frac c{\sqrt a+\sqrt b}\cdot\frac{\sqrt a-\sqrt b}{\sqrt a-\sqrt b}=\frac{c(\sqrt a-\sqrt b)}{a-b}" />
+  <BlockMath math="\frac c{\sqrt a-\sqrt b}\cdot\frac{\sqrt a+\sqrt b}{\sqrt a+\sqrt b}=\frac{c(\sqrt a+\sqrt b)}{a-b}" />
+</MathContainer>
 
-- Rationalizing the Form <InlineMath math="\frac{c}{\sqrt{a} - \sqrt{b}}" />
+For example:
 
-  To rationalize the form <InlineMath math="\frac{c}{\sqrt{a} - \sqrt{b}}" />, we multiply by its conjugate <InlineMath math="\frac{\sqrt{a} + \sqrt{b}}{\sqrt{a} + \sqrt{b}}" />:
+<MathContainer>
+  <BlockMath math="\frac4{\sqrt7+\sqrt3}=\frac{4(\sqrt7-\sqrt3)}{7-3}=\sqrt7-\sqrt3" />
+  <BlockMath math="\frac2{\sqrt5-\sqrt2}=\frac{2(\sqrt5+\sqrt2)}{5-2}=\frac{2(\sqrt5+\sqrt2)}3" />
+</MathContainer>
 
-  <BlockMath math="\frac{c}{\sqrt{a} - \sqrt{b}} = \frac{c}{\sqrt{a} - \sqrt{b}} \times \frac{\sqrt{a} + \sqrt{b}}{\sqrt{a} + \sqrt{b}} = \frac{c(\sqrt{a} + \sqrt{b})}{(\sqrt{a})^2 - (\sqrt{b})^2} = \frac{c(\sqrt{a} + \sqrt{b})}{a - b}" />
+### A Rational Term and a Radical Term
 
-  Example:
+Assume <InlineMath math="b\geq0" /> and <InlineMath math="a^2\neq b" />. The conjugate again creates a difference of squares:
 
-  <BlockMath math="\frac{2}{\sqrt{5} - \sqrt{2}} = \frac{2}{\sqrt{5} - \sqrt{2}} \times \frac{\sqrt{5} + \sqrt{2}}{\sqrt{5} + \sqrt{2}} = \frac{2(\sqrt{5} + \sqrt{2})}{5 - 2} = \frac{2(\sqrt{5} + \sqrt{2})}{3}" />
+<MathContainer>
+  <BlockMath math="\frac c{a+\sqrt b}\cdot\frac{a-\sqrt b}{a-\sqrt b}=\frac{c(a-\sqrt b)}{a^2-b}" />
+  <BlockMath math="\frac c{a-\sqrt b}\cdot\frac{a+\sqrt b}{a+\sqrt b}=\frac{c(a+\sqrt b)}{a^2-b}" />
+</MathContainer>
 
-- Rationalizing the Form <InlineMath math="\frac{c}{a + \sqrt{b}}" />
+For example:
 
-  To rationalize the form <InlineMath math="\frac{c}{a + \sqrt{b}}" />, we multiply by its conjugate <InlineMath math="\frac{a - \sqrt{b}}{a - \sqrt{b}}" />:
+<MathContainer>
+  <BlockMath math="\frac6{4+\sqrt3}=\frac{6(4-\sqrt3)}{16-3}=\frac{6(4-\sqrt3)}{13}" />
+  <BlockMath math="\frac3{2-\sqrt5}=\frac{3(2+\sqrt5)}{4-5}=-3(2+\sqrt5)" />
+</MathContainer>
 
-  <BlockMath math="\frac{c}{a + \sqrt{b}} = \frac{c}{a + \sqrt{b}} \times \frac{a - \sqrt{b}}{a - \sqrt{b}} = \frac{c(a - \sqrt{b})}{a^2 - b} = \frac{c(a - \sqrt{b})}{a^2 - b}" />
+## Simplifying Radical and Exponent Expressions
 
-  Example:
+Assume the variables in the following exercises are positive. This lets us use fractional exponent rules without introducing absolute-value cases.
 
-  <BlockMath math="\frac{6}{4 + \sqrt{3}} = \frac{6}{4 + \sqrt{3}} \times \frac{4 - \sqrt{3}}{4 - \sqrt{3}} = \frac{6(4 - \sqrt{3})}{16 - 3} = \frac{6(4 - \sqrt{3})}{13}" />
+1. Simplify:
 
-- Rationalizing the Form <InlineMath math="\frac{c}{a - \sqrt{b}}" />
+   <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-1/4}}\right)^{1/2}" />
 
-  To rationalize the form <InlineMath math="\frac{c}{a - \sqrt{b}}" />, we multiply by its conjugate <InlineMath math="\frac{a + \sqrt{b}}{a + \sqrt{b}}" />:
+2. Simplify:
 
-  <BlockMath math="\frac{c}{a - \sqrt{b}} = \frac{c}{a - \sqrt{b}} \times \frac{a + \sqrt{b}}{a + \sqrt{b}} = \frac{c(a + \sqrt{b})}{a^2 - b} = \frac{c(a + \sqrt{b})}{a^2 - b}" />
+   <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]x\right)" />
 
-  Example:
+3. Simplify:
 
-  <BlockMath math="\frac{3}{2 - \sqrt{5}} = \frac{3}{2 - \sqrt{5}} \times \frac{2 + \sqrt{5}}{2 + \sqrt{5}} = \frac{3(2 + \sqrt{5})}{4 - 5} = \frac{3(2 + \sqrt{5})}{-1} = -3(2 + \sqrt{5})" />
+   <BlockMath math="\left(\frac{p^5q^{-10}}{p^5q^{-4}}\right)^{1/2}\left(\frac{p^{1/4}q^{-1/2}}{p^{-1/2}q^{-1/2}}\right)^{1/2}" />
 
-## Simplification Exercises
+### Worked Solutions
 
-1. Simplify the following expression:
-
-   <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-\frac{1}{4}}}\right)^{\frac{1}{2}}" />
-
-2. Simplify the following expression:
-
-   <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]{x}\right)" />
-
-3. Simplify the following expression:
-
-   <BlockMath math="\left(\frac{p^5q^{-10}}{p^5q^{-4}}\right)^{\frac{1}{2}}\left(\frac{p^{\frac{1}{4}}q^{-\frac{1}{2}}}{p^{-\frac{1}{2}}q^{-\frac{1}{2}}}\right)^{\frac{1}{2}}" />
-
-### Answer Key for Simplification
-
-1. Answer:
+1. Combine the coefficient and each exponent before taking the square root:
 
    <MathContainer>
-     <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-\frac{1}{4}}}\right)^{\frac{1}{2}} = \frac{\left(2^3\right)^{\frac{1}{2}}\left(x^5\right)^{\frac{1}{2}}\left(y^{-4}\right)^{\frac{1}{2}}}{\left(2^4\right)^{\frac{1}{2}}\left(y^{-\frac{1}{4}}\right)^{\frac{1}{2}}}" />
-     <BlockMath math="= \frac{\left(2\right)^{\frac{3}{2}}\left(x\right)^{\frac{5}{2}}\left(y\right)^{-2}}{2^2\left(y\right)^{-\frac{1}{8}}}" />
-     <BlockMath math="= \left(2\right)^{\frac{3}{2}-2}\left(x\right)^{\frac{5}{2}}\left(y\right)^{-2+\frac{1}{8}}" />
-     <BlockMath math="= \frac{\left(x\right)^{\frac{5}{2}}}{\left(2\right)^{\frac{1}{2}}\left(y\right)^{\frac{15}{8}}}" />
+     <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-1/4}}\right)^{1/2}=\left(\frac12x^5y^{-15/4}\right)^{1/2}" />
+     <BlockMath math="=2^{-1/2}x^{5/2}y^{-15/8}" />
+     <BlockMath math="=\frac{x^{5/2}}{\sqrt2\,y^{15/8}}" />
    </MathContainer>
 
-2. Answer:
+2. Convert both radicals to fractional exponents:
 
    <MathContainer>
-     <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]{x}\right) = \left(5x^{\frac{5}{2}}\right)\left(3x^{\frac{1}{3}}\right)" />
-     <BlockMath math="= 15x^{\frac{5}{2}+\frac{1}{3}}" />
-     <BlockMath math="= 15x^{\frac{15+2}{6}}" />
-     <BlockMath math="= 15x^{\frac{17}{6}}" />
-     <BlockMath math="= 15x^{2\frac{5}{6}}" />
-     <BlockMath math="= 15x^2\sqrt[6]{x^5}" />
+     <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]x\right)=15x^{5/2}x^{1/3}" />
+     <BlockMath math="=15x^{15/6+2/6}=15x^{17/6}" />
+     <BlockMath math="=15x^2\sqrt[6]{x^5}" />
    </MathContainer>
 
-3. Answer:
+3. Simplify each parenthesis before multiplying:
 
    <MathContainer>
-     <BlockMath math="\left(\frac{p^5q^{-10}}{p^5q^{-4}}\right)^{\frac{1}{2}}\left(\frac{p^{\frac{1}{4}}q^{-\frac{1}{2}}}{p^{-\frac{1}{2}}q^{-\frac{1}{2}}}\right)^{\frac{1}{2}} = \left(\frac{p^{5-5}q^{-10-(-4)}}{1}\right)^{\frac{1}{2}}\left(\frac{p^{\frac{1}{4}-(-\frac{1}{2})}q^{-\frac{1}{2}-(-\frac{1}{2})}}{1}\right)^{\frac{1}{2}}" />
-     <BlockMath math="= \left(p^0q^{-6}\right)^{\frac{1}{2}}\left(p^{\frac{3}{4}}q^0\right)^{\frac{1}{2}}" />
-     <BlockMath math="= \left(p^0q^{-3}\right)\left(p^{\frac{3}{8}}\cdot 1\right)" />
-     <BlockMath math="= \left(1 \cdot q^{-3}\right)\left(p^{\frac{3}{8}} \cdot 1\right)" />
-     <BlockMath math="= \frac{p^{\frac{3}{8}}}{q^3}" />
-     <BlockMath math="= \frac{\sqrt[8]{p^3}}{q^3}" />
+     <BlockMath math="\left(q^{-6}\right)^{1/2}\left(p^{3/4}\right)^{1/2}=q^{-3}p^{3/8}" />
+     <BlockMath math="=\frac{p^{3/8}}{q^3}" />
+     <BlockMath math="=\frac{\sqrt[8]{p^3}}{q^3}" />
    </MathContainer>
 
 ## Rationalization Exercises
 
-1. Rationalize the following expression:
+1. For <InlineMath math="b>0" />, rationalize:
 
-   <BlockMath math="\frac{2}{\sqrt{b^3}}" />
+   <BlockMath math="\frac2{\sqrt{b^3}}" />
 
-2. Rationalize the following expression:
+2. Rationalize:
 
-   <BlockMath math="\frac{2}{\sqrt{3} + \sqrt{5}}" />
+   <BlockMath math="\frac2{\sqrt3+\sqrt5}" />
 
-3. Rationalize the following expression:
+3. For <InlineMath math="m\geq0" /> and <InlineMath math="m\neq n^2" />, rationalize:
 
-   <BlockMath math="\frac{m}{\sqrt{m} + n}" />
+   <BlockMath math="\frac m{\sqrt m+n}" />
 
-### Answer Key for Rationalization
+### Worked Solutions
 
-1. Answer:
-
-   <MathContainer>
-     <BlockMath math="\frac{2}{\sqrt{b^3}} = \frac{2}{\sqrt{b^3}} \times \frac{\sqrt{b}}{\sqrt{b}}" />
-     <BlockMath math="= \frac{2\sqrt{b}}{\sqrt{b^4}}" />
-     <BlockMath math="= \frac{2\sqrt{b}}{b^2}" />
-   </MathContainer>
-
-2. Answer:
+1. Because <InlineMath math="\sqrt{b^3}\sqrt b=\sqrt{b^4}=b^2" /> for <InlineMath math="b>0" />:
 
    <MathContainer>
-     <BlockMath math="\frac{2}{\sqrt{3} + \sqrt{5}} = \frac{2}{\sqrt{3} + \sqrt{5}} \times \frac{\sqrt{3} - \sqrt{5}}{\sqrt{3} - \sqrt{5}}" />
-     <BlockMath math="= \frac{2(\sqrt{3} - \sqrt{5})}{(\sqrt{3})^2 - (\sqrt{5})^2}" />
-     <BlockMath math="= \frac{2(\sqrt{3} - \sqrt{5})}{3 - 5}" />
-     <BlockMath math="= \frac{2(\sqrt{3} - \sqrt{5})}{-2}" />
-     <BlockMath math="= -(\sqrt{3} - \sqrt{5})" />
-     <BlockMath math="= \sqrt{5} - \sqrt{3}" />
+     <BlockMath math="\frac2{\sqrt{b^3}}\cdot\frac{\sqrt b}{\sqrt b}=\frac{2\sqrt b}{\sqrt{b^4}}" />
+     <BlockMath math="=\frac{2\sqrt b}{b^2}" />
    </MathContainer>
 
-3. Answer:
+2. Multiply by the conjugate:
 
    <MathContainer>
-     <BlockMath math="\frac{m}{\sqrt{m} + n} = \frac{m}{\sqrt{m} + n} \times \frac{\sqrt{m} - n}{\sqrt{m} - n}" />
-     <BlockMath math="= \frac{m(\sqrt{m} - n)}{(\sqrt{m})^2 - n^2}" />
-     <BlockMath math="= \frac{m(\sqrt{m} - n)}{m - n^2}" />
+     <BlockMath math="\frac2{\sqrt3+\sqrt5}\cdot\frac{\sqrt3-\sqrt5}{\sqrt3-\sqrt5}=\frac{2(\sqrt3-\sqrt5)}{3-5}" />
+     <BlockMath math="=\sqrt5-\sqrt3" />
    </MathContainer>
 
-## Benefits of Rationalizing Radical Forms
+3. The denominator's conjugate is <InlineMath math="\sqrt m-n" />:
 
-Rationalizing radical forms has several benefits:
+   <MathContainer>
+     <BlockMath math="\frac m{\sqrt m+n}\cdot\frac{\sqrt m-n}{\sqrt m-n}=\frac{m(\sqrt m-n)}{m-n^2}" />
+     <BlockMath math="=\frac{m\sqrt m-mn}{m-n^2}" />
+   </MathContainer>
 
-1. Simplifying mathematical expressions
-2. Facilitating approximation calculations
-3. Eliminating radicals in the denominator to avoid errors in calculations
+## How to Judge the Final Form
+
+- The denominator should contain no radical.
+- Every multiplying factor must equal one and must be defined under the stated conditions.
+- An equivalent exact form is the goal. Rationalizing does not automatically make a decimal approximation more accurate.
+
+These checks explain both the procedure and its limits, so the manipulation remains valid rather than becoming a pattern followed blindly.

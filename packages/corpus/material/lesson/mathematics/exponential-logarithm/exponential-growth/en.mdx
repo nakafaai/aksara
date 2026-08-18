@@ -1,201 +1,178 @@
-
 export const metadata = {
   title: "Exponential Growth",
-  description: "Explore exponential growth through bacterial multiplication and population dynamics. Learn accelerating functions with worked calculations.",
+  description:
+    "Build exponential growth from a repeated factor, connect tables and graphs to a model, and solve complete bacterial and population examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-02",
   subject: "Exponents and Logarithms",
 };
 
-## Definition of Exponential Growth Function
+## Definition of Exponential Growth
 
-Exponential growth is a type of growth where **the rate of change is proportional to its quantity**. In this growth, the value increases more rapidly over time.
+Exponential growth occurs when a positive quantity is multiplied by the same factor greater than <InlineMath math="1" /> during each equal interval. A growth model has the form:
 
-The exponential growth function is written as:
+<BlockMath math="f(x)=P_0a^x" />
 
-<InlineMath math="f(x) = a^x" /> where <InlineMath math="a > 1" />
+where:
 
-Where:
+- <InlineMath math="P_0>0" /> is the initial value
+- <InlineMath math="a>1" /> is the growth factor per interval
+- <InlineMath math="x" /> is the number of intervals
 
-- <InlineMath math="a" /> is the base (growth constant)
-- <InlineMath math="x" /> is the variable (time)
+For discrete events such as completed cell divisions, <InlineMath math="x" /> is a nonnegative integer. A continuous graph extends the same formula to real values of <InlineMath math="x" /> and should be understood as an interpolation of the model.
 
-## Examples of Exponential Growth
+## Building a Model from a Table
 
-Exponential growth is often found in real life, such as the growth of bacteria that divide into two at regular time intervals.
+### Idealized Bacterial Growth
 
-### Bacterial Growth
+Suppose a culture starts with <InlineMath math="30" /> bacteria and every bacterium divides into two every <InlineMath math="30\text{ minutes}" />. The model ignores deaths and resource limits so that we can focus on the repeated factor.
 
-A researcher observes bacterial growth on a host with an initial condition of <InlineMath math="30 \text{ bacteria}" />. These bacteria divide into two every <InlineMath math="30 \text{ minutes}" />.
+Let <InlineMath math="x" /> count completed thirty-minute intervals:
 
-If <InlineMath math="x" /> is the growth phase of bacteria every <InlineMath math="30 \text{ minutes}" />, then:
+| Interval | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Bacteria | <InlineMath math="30" /> | <InlineMath math="60" /> | <InlineMath math="120" /> | <InlineMath math="240" /> | <InlineMath math="480" /> | <InlineMath math="960" /> |
 
-| Phase (<InlineMath math="30 \text{ minutes}" />) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
-| ------------------ | --- | --- | --- | --- | --- | --- |
-| Number of bacteria | <InlineMath math="30" /> | <InlineMath math="60" /> | <InlineMath math="120" /> | <InlineMath math="240" /> | <InlineMath math="480" /> | <InlineMath math="960" /> |
+Each value is the initial count multiplied by a power of <InlineMath math="2" />:
 
-It can be observed that:
+- <InlineMath math="f(0)=30\cdot2^0=30" />
+- <InlineMath math="f(1)=30\cdot2^1=60" />
+- <InlineMath math="f(2)=30\cdot2^2=120" />
+- <InlineMath math="f(3)=30\cdot2^3=240" />
+- <InlineMath math="f(4)=30\cdot2^4=480" />
 
-- For <InlineMath math="x = 0" />, the number of bacteria is <InlineMath math="30" />
-- For <InlineMath math="x = 1" />, the number of bacteria is <InlineMath math="60" />
-- For <InlineMath math="x = 2" />, the number of bacteria is <InlineMath math="120 = 2^2 \cdot 30" />
-- For <InlineMath math="x = 3" />, the number of bacteria is <InlineMath math="240 = 2^3 \cdot 30" />
-- For <InlineMath math="x = 4" />, the number of bacteria is <InlineMath math="480 = 2^4 \cdot 30" />
+Therefore, the model is:
 
-From this pattern, bacterial growth can be modeled with an exponential function:
+<BlockMath math="f(x)=30\cdot2^x" />
 
-<BlockMath math="f(x) = 30 \cdot (2^x)" />
+### Connecting the Table and Graph
 
-### Visualization of Exponential Growth Graph
-
-The graph of the function <InlineMath math="f(x) = 30 \cdot (2^x)" /> shows growth that gets faster as the value of <InlineMath math="x" /> increases. A characteristic feature of exponential growth graphs is their increasingly steep curve.
+The table contains discrete observations. The curve of <InlineMath math="f(x)=30\cdot2^x" /> shows how the same rule behaves between those integer inputs:
 
 <FunctionChart
   p={30}
   a={2}
-  title="Bacterial Growth"
+  title="Idealized Bacterial Growth"
   description={
     <>
-      Growth of bacteria that divide into two every <InlineMath math="30 \text{ minutes}" />.
+      The count doubles every <InlineMath math="30\text{ minutes}" />.
     </>
   }
 />
 
-### Calculating the Number of Bacteria at a Specific Time
+The curve becomes steeper because each doubling acts on a larger quantity. It does not mean a real culture can grow without limit.
 
-If we want to calculate the number of bacteria at hour <InlineMath math="5" />, we need to know that hour <InlineMath math="5" /> occurs at phase <InlineMath math="10" /> (because each phase is <InlineMath math="30 \text{ minutes}" />):
+### Converting Time to Intervals
 
-<BlockMath math="f(10) = 30 \cdot (2^{10}) = 30 \cdot 1024 = 30{,}720" />
+Five hours contain ten thirty-minute intervals:
 
-So, at hour <InlineMath math="5" />, there are <InlineMath math="30{,}720 \text{ bacteria}" />.
+<BlockMath math="x=\frac{5\cdot60}{30}=10" />
 
-## Variations in Initial Value
+Now substitute the interval count into the model:
 
-Exponential growth can have different initial values. In general, if the initial value is <InlineMath math="P_0" />, then the exponential growth function becomes:
+<BlockMath math="f(10)=30\cdot2^{10}=30\cdot1{,}024=30{,}720" />
 
-<BlockMath math="f(x) = P_0 \cdot (a^x)" />
+Under the idealized model, the culture contains <InlineMath math="30{,}720" /> bacteria after <InlineMath math="5\text{ hours}" />.
 
-For example:
+## Changing or Recovering the Initial Value
 
-- If the initial number of bacteria is <InlineMath math="50" />, then <InlineMath math="f(x) = 50 \cdot (2^x)" />
-- If the initial number of bacteria is <InlineMath math="100" />, then <InlineMath math="f(x) = 100 \cdot (2^x)" />
-- If the initial number of bacteria is <InlineMath math="200" />, then <InlineMath math="f(x) = 200 \cdot (2^x)" />
+For a fixed growth factor <InlineMath math="a" />, changing <InlineMath math="P_0" /> scales every output:
 
-### Determining the Initial Value
+<BlockMath math="f(x)=P_0a^x" />
 
-Sometimes we need to determine the initial value <InlineMath math="x_0" /> of an exponential growth if we know its value at a certain time.
+For example, with a doubling factor:
 
-**Example case**:
+- <InlineMath math="P_0=50" /> gives <InlineMath math="f(x)=50\cdot2^x" />
+- <InlineMath math="P_0=100" /> gives <InlineMath math="f(x)=100\cdot2^x" />
+- <InlineMath math="P_0=200" /> gives <InlineMath math="f(x)=200\cdot2^x" />
 
-Suppose we know that the number of bacteria at phase <InlineMath math="2" /> is <InlineMath math="8{,}000" /> and the bacteria divide into two at each time interval. What is the initial number of bacteria?
+### Recovering an Unknown Initial Value
 
-We can use the equation <InlineMath math="x_2 = a^2 \cdot x_0" /> with <InlineMath math="a = 2" />:
-
-<MathContainer>
-  <BlockMath math="x_2 = a^2 \cdot x_0" />
-  <BlockMath math="8000 = 2^2 \cdot x_0" />
-  <BlockMath math="8000 = 4 \cdot x_0" />
-  <BlockMath math="\frac{8000}{4} = x_0" />
-  <BlockMath math="x_0 = 2000" />
-</MathContainer>
-
-So, the initial number of bacteria is <InlineMath math="2{,}000 \text{ bacteria}" />.
-
-### Calculating Long-Term Growth
-
-To calculate the number of bacteria after a longer time, we still use the same model. For example, to calculate the number of bacteria after <InlineMath math="10 \text{ hours}" />:
-
-<BlockMath math="x_{10} = a^{10} \cdot x_0" />
-
-Substitute the values <InlineMath math="a = 2" /> and <InlineMath math="x_0 = 2{,}000" />:
+Suppose a culture contains <InlineMath math="8{,}000" /> bacteria after <InlineMath math="2" /> doubling intervals. Let <InlineMath math="P_0" /> be the unknown initial count:
 
 <MathContainer>
-  <BlockMath math="x_{10} = 2^{10} \cdot 2{,}000" />
-  <BlockMath math="x_{10} = 1{,}024 \cdot 2{,}000" />
-  <BlockMath math="x_{10} = 2{,}048{,}000" />
+  <BlockMath math="8{,}000=P_0\cdot2^2" />
+  <BlockMath math="8{,}000=4P_0" />
+  <BlockMath math="P_0=\frac{8{,}000}{4}" />
+  <BlockMath math="P_0=2{,}000" />
 </MathContainer>
 
-So, the number of bacteria after <InlineMath math="10 \text{ hours}" /> is <InlineMath math="2{,}048{,}000 \text{ bacteria}" />.
+The culture started with <InlineMath math="2{,}000" /> bacteria.
+
+### Extending the Same Interval Model
+
+After <InlineMath math="10" /> doubling intervals, the same culture has:
+
+<MathContainer>
+  <BlockMath math="f(10)=2{,}000\cdot2^{10}" />
+  <BlockMath math="f(10)=2{,}000\cdot1{,}024" />
+  <BlockMath math="f(10)=2{,}048{,}000" />
+</MathContainer>
+
+The time represented by those ten intervals depends on the interval length. If one interval is thirty minutes, ten intervals equal five hours.
 
 ## Exercises
 
-1. E.coli bacteria cause diarrhea in humans. A researcher observed the growth of <InlineMath math="50" /> of these bacteria on a piece of food and found that these bacteria divide into <InlineMath math="2" /> every quarter of an hour.
+1. An idealized bacterial culture starts with <InlineMath math="50" /> cells and doubles every <InlineMath math="15\text{ minutes}" />.
 
-    1. Draw a table and graph showing the growth of these bacteria from phase <InlineMath math="0" /> to phase <InlineMath math="5" />.
+   1. Make a table and graph from interval <InlineMath math="0" /> through interval <InlineMath math="5" />.
+   2. Write the growth function.
+   3. Predict the count after <InlineMath math="3\text{ hours}" /> and after <InlineMath math="4\text{ hours}" />.
 
-    2. Model the function that describes the growth of E.coli bacteria every quarter of an hour.
+2. A hypothetical region has a population of <InlineMath math="36{,}000{,}000" />. Assume it grows by a constant <InlineMath math="2\%" /> per year for the next five years. What population does the model predict after five years?
 
-    3. Predict how many bacteria will be present after the first <InlineMath math="3 \text{ hours}" /> and <InlineMath math="4 \text{ hours}" />.
+### Worked Solutions
 
-2. In <InlineMath math="2015" />, positive HIV-AIDS cases totaled about <InlineMath math="36 \text{ million people}" />. This number increased by an average of <InlineMath math="2\%" /> each year from <InlineMath math="2010" /> to <InlineMath math="2015" />. If the increase in positive HIV cases in subsequent years is predicted to increase exponentially at <InlineMath math="2\%" /> each year, how many cases will occur in <InlineMath math="2020" />?
+1. The initial value is <InlineMath math="50" /> and the growth factor is <InlineMath math="2" />.
 
-### Answer Key
+   1. The first six values are:
 
-1. E.coli bacteria with an initial count of <InlineMath math="50 \text{ bacteria}" /> that divide into two every <InlineMath math="15 \text{ minutes}" />.
+      | Interval | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+      | -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+      | Bacteria | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1{,}600" /> |
 
-    1. Bacterial Growth:
+      <FunctionChart
+        p={50}
+        a={2}
+        n={7}
+        title="Idealized Bacterial Growth"
+        description={
+          <>
+            The count doubles every <InlineMath math="15\text{ minutes}" />.
+          </>
+        }
+      />
 
-        | Phase (<InlineMath math="15 \text{ minutes}" />) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
-        | ------------------ | --- | --- | --- | --- | --- | ----- |
-        | Number of bacteria | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1{,}600" /> |
+   2. With <InlineMath math="x" /> measured in fifteen-minute intervals:
 
-        <FunctionChart
-          p={50}
-          a={2}
-          n={7}
-          title="Bacterial Growth"
-          description={
-            <>
-              Growth of bacteria that divide into two every <InlineMath math="15 \text{ minutes}" />.
-            </>
-          }
-        />
+      <BlockMath math="f(x)=50\cdot2^x" />
 
-    2. The E.coli bacterial growth function can be modeled as:
+   3. Three hours contain <InlineMath math="\frac{3\cdot60}{15}=12" /> intervals:
 
-        <BlockMath math="f(x) = 50 \cdot (2^x)" />
+      <MathContainer>
+        <BlockMath math="f(12)=50\cdot2^{12}" />
+        <BlockMath math="f(12)=50\cdot4{,}096" />
+        <BlockMath math="f(12)=204{,}800" />
+      </MathContainer>
 
-    3. After the first <InlineMath math="3 \text{ hours}" /> means phase <InlineMath math="12" /> (bacteria divide every <InlineMath math="15 \text{ minutes}" />):
+      Four hours contain <InlineMath math="\frac{4\cdot60}{15}=16" /> intervals:
 
-        <MathContainer>
-          <BlockMath math="f(12) = 50 \cdot (2^{12})" />
-          <BlockMath math="f(12) = 50 \cdot 4{,}096" />
-          <BlockMath math="f(12) = 204{,}800" />
-        </MathContainer>
+      <MathContainer>
+        <BlockMath math="f(16)=50\cdot2^{16}" />
+        <BlockMath math="f(16)=50\cdot65{,}536" />
+        <BlockMath math="f(16)=3{,}276{,}800" />
+      </MathContainer>
 
-        After the first <InlineMath math="4 \text{ hours}" /> means phase <InlineMath math="16" /> (bacteria divide every <InlineMath math="15 \text{ minutes}" />):
-
-        <MathContainer>
-          <BlockMath math="f(16) = 50 \cdot (2^{16})" />
-          <BlockMath math="f(16) = 50 \cdot 65{,}536" />
-          <BlockMath math="f(16) = 3{,}276{,}800" />
-        </MathContainer>
-
-2. HIV-AIDS cases:
-
-   The number of cases in <InlineMath math="2015" /> was <InlineMath math="36{,}000{,}000 \text{ people}" /> with a <InlineMath math="2\%" /> annual increase.
-
-   Mathematical model:
-
-   <BlockMath math="f(x) = 36{,}000{,}000 \cdot (1 + 0.02)^x" />
-
-   To calculate cases in <InlineMath math="2020" /> (<InlineMath math="5 \text{ years}" /> after <InlineMath math="2015" />):
+2. A <InlineMath math="2\%" /> increase corresponds to the annual factor <InlineMath math="1.02" />:
 
    <MathContainer>
-     <BlockMath math="f(5) = 36{,}000{,}000 \cdot (1.02)^5" />
-     <BlockMath math="f(5) = 36{,}000{,}000 \cdot 1.1040808" />
-     <BlockMath math="f(5) = 39{,}746{,}908" />
+     <BlockMath math="P(t)=36{,}000{,}000(1.02)^t" />
+     <BlockMath math="P(5)=36{,}000{,}000(1.02)^5" />
+     <BlockMath math="P(5)\approx39{,}746{,}909" />
    </MathContainer>
 
-   Therefore, the predicted number of HIV-AIDS cases in <InlineMath math="2020" /> is approximately <InlineMath math="39{,}746{,}908 \text{ people}" />.
+   The model predicts about <InlineMath math="39.75\text{ million people}" /> after five years.
 
-## Other Applications of Exponential Growth
+## Model Boundaries
 
-Exponential growth is also found in other contexts such as:
-
-- Compound interest in investments
-- Population growth of living organisms
-- Radioactive decay (negative growth)
-- Spread of infectious diseases
-
-Exponential growth is very important in various fields such as biology, finance, and physics because it describes many real-world phenomena.
+Exponential growth appears in compound interest, idealized population models, early transmission models, and unconstrained laboratory growth. Always identify the initial value, factor, and interval. Real systems usually introduce changing rates, limited resources, or other constraints, so an exponential rule should only be extended as far as its assumptions remain reasonable.

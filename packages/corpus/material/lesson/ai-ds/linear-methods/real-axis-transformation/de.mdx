@@ -1,0 +1,392 @@
+export const metadata = {
+  title: "Hauptachsentransformation",
+  description: "Quadratische Formen durch einen orthogonalen Koordinatenwechsel diagonalisieren, quadratisch ergänzen und Kegelschnitte anhand ihrer Eigenwerte klassifizieren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-16",
+  subject: "Lineare Methoden der KI",
+};
+
+## Quadratische Formen mit symmetrischen Matrizen
+
+Der gemischte Term einer quadratischen Gleichung kann ihre Geometrie verdecken. In Matrixform wird die symmetrische Matrix sichtbar, welche die Hauptachsen bestimmt. In zwei Dimensionen sei
+
+<MathContainer>
+<BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
+</MathContainer>
+
+Da <InlineMath math="A" /> reell und symmetrisch ist, besitzt die Matrix reelle Eigenwerte <InlineMath math="\lambda_1,\lambda_2" /> und eine Orthonormalbasis aus Eigenvektoren <InlineMath math="v_1,v_2" />. Wir setzen <InlineMath math="S=(v_1\quad v_2)" />. Dann gelten <InlineMath math="S^TS=I" /> und <InlineMath math="S^TAS=\operatorname{diag}(\lambda_1,\lambda_2)" />.
+
+Für die Gleichung <InlineMath math="x^TAx+p^Tx+f=0" /> verwenden wir die gedrehten Koordinaten <InlineMath math="\xi=S^Tx" /> und den gedrehten linearen Koeffizienten <InlineMath math="(\delta,\epsilon)^T=S^Tp" />. Dadurch verschwindet der gemischte Term:
+
+<MathContainer>
+<BlockMath math="\lambda_1 \xi_1^2 + \lambda_2 \xi_2^2 + \delta \xi_1 + \epsilon \xi_2 + f = 0" />
+</MathContainer>
+
+## Quadratische Ergänzung
+
+Für beide Variablen mit <InlineMath math="\lambda_1, \lambda_2 \neq 0" /> wird die Vervollständigung des Quadratprozesses separat durchgeführt:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} 0 &= \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} \\ &\quad + \lambda_2 \left( \xi_2^2 + 2 \frac{\epsilon}{2\lambda_2} \xi_2 + \frac{\epsilon^2}{4\lambda_2^2} \right) - \frac{\epsilon^2}{4\lambda_2} + f \end{aligned}" />
+</MathContainer>
+
+Nach dem Zusammenfassen erhalten wir
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &\quad + \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+</MathContainer>
+
+Wir definieren den Mittelpunkt in den gedrehten Koordinaten und die verschobene Konstante durch
+
+<MathContainer>
+<BlockMath math="(m_1,m_2)=\left(-\frac{\delta}{2\lambda_1},-\frac{\epsilon}{2\lambda_2}\right)" />
+<BlockMath math="\gamma=\frac{\delta^2}{4\lambda_1}+\frac{\epsilon^2}{4\lambda_2}-f" />
+</MathContainer>
+
+Damit gilt
+
+<MathContainer>
+<BlockMath math="\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma = 0" />
+</MathContainer>
+
+Die Vorzeichen von <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" /> und <InlineMath math="\gamma" /> entscheiden, ob die reelle Lösungsmenge eine Ellipse, Hyperbel, Parabel, ein entarteter Kegelschnitt oder leer ist. Die nächsten beiden Fälle setzen <InlineMath math="\gamma>0" /> voraus.
+
+## Kurvenklassifizierung
+
+### Beide Eigenwerte positiv
+
+Wenn <InlineMath math="\lambda_1 > 0" /> und <InlineMath math="\lambda_2 > 0" />, dann ist der gebildete Kegelschnitt eine **Ellipse**:
+
+<MathContainer>
+<BlockMath math="\frac{(\xi_1 - m_1)^2}{r_1^2} + \frac{(\xi_2 - m_2)^2}{r_2^2} = 1" />
+</MathContainer>
+
+Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> in Richtung <InlineMath math="v_1" /> und <InlineMath math="r_2 = \sqrt{\frac{\gamma}{\lambda_2}}" /> in Richtung <InlineMath math="v_2" />.
+
+<LineEquation
+  title={<>Ellipse in den Koordinaten <InlineMath math="\xi_1,\xi_2" /></>}
+  description="Ellipsenkurve mit positiven Eigenwerten und Hauptachsen, die an den Eigenvektorrichtungen ausgerichtet sind."
+  data={[
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const t = (i / 99) * 2 * Math.PI;
+        const lambda1 = 2; // λ₁ > 0
+        const lambda2 = 1; // λ₂ > 0
+        const gamma = 16; // γ > 0
+        const m1 = 0; // δ/(2λ₁) = 0
+        const m2 = 0; // ε/(2λ₂) = 0
+        const r1 = Math.sqrt(gamma / lambda1);
+        const r2 = Math.sqrt(gamma / lambda2);
+        const x = Math.cos(t) * r1 + m1;
+        const y = Math.sin(t) * r2 + m2;
+        return { x, y, z: 0 };
+      }),
+      color: "#0891b2",
+      smooth: true,
+      showPoints: false
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#059669",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\xi_1" />,
+          at: 1,
+          offset: [0.3, -0.3, 0]
+        }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: -3, z: 0 },
+        { x: 0, y: 3, z: 0 }
+      ],
+      color: "#059669",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\xi_2" />,
+          at: 1,
+          offset: [0.3, 0.3, 0]
+        }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#e11d48",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        {
+          text: <>Zentrum <InlineMath math="(m_1,m_2)" /></>,
+          at: 0,
+          offset: [0.4, 0.4, 0]
+        }
+      ]
+    }
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+### Eigenwerte mit entgegengesetzten Vorzeichen
+
+Wenn <InlineMath math="\lambda_1 > 0" /> und <InlineMath math="\lambda_2 < 0" />, ist der gebildete Kegelschnitt eine **Hyperbel**:
+
+<MathContainer>
+<BlockMath math="\frac{(\xi_1 - m_1)^2}{r_1^2} - \frac{(\xi_2 - m_2)^2}{r_2^2} = 1" />
+</MathContainer>
+
+Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> in Richtung <InlineMath math="v_1" /> und <InlineMath math="r_2 = \sqrt{\frac{\gamma}{-\lambda_2}}" /> in Richtung <InlineMath math="v_2" />.
+
+<LineEquation
+  title={<>Hyperbel in den Koordinaten <InlineMath math="\xi_1,\xi_2" /></>}
+  description="Hyperbelkurve mit an Eigenvektorrichtungen ausgerichteten Hauptachsen und Zentrumstransformation."
+  data={[
+    {
+      points: Array.from({ length: 60 }, (_, i) => {
+        const t = (i / 29 - 1) * 2.5;
+        const lambda1 = 2; // λ₁ > 0
+        const lambda2 = -1; // λ₂ < 0
+        const gamma = 3; // γ > 0
+        const r1 = Math.sqrt(gamma / lambda1);
+        const r2 = Math.sqrt(gamma / (-lambda2));
+        const x = Math.cosh(t) * r1;
+        const y = Math.sinh(t) * r2;
+        return { x, y, z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: true,
+      showPoints: false
+    },
+    {
+      points: Array.from({ length: 60 }, (_, i) => {
+        const t = (i / 29 - 1) * 2.5;
+        const lambda1 = 2;
+        const lambda2 = -1;
+        const gamma = 3;
+        const r1 = Math.sqrt(gamma / lambda1);
+        const r2 = Math.sqrt(gamma / (-lambda2));
+        const x = -Math.cosh(t) * r1;
+        const y = Math.sinh(t) * r2;
+        return { x, y, z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: true,
+      showPoints: false
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const lambda1 = 2;
+        const lambda2 = -1;
+        const gamma = 3;
+        const r1 = Math.sqrt(gamma / lambda1);
+        const r2 = Math.sqrt(gamma / (-lambda2));
+        const slope = r2 / r1; // positive Asymptotensteigung
+        const x = (i - 0.5) * 6; // von -3 bis 3
+        const y = slope * x;
+        return { x, y, z: 0 };
+      }),
+      color: "#0284c7",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="r_1" />,
+          at: 1,
+          offset: [0.5, -0.5, 0]
+        }
+      ]
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const lambda1 = 2;
+        const lambda2 = -1;
+        const gamma = 3;
+        const r1 = Math.sqrt(gamma / lambda1);
+        const r2 = Math.sqrt(gamma / (-lambda2));
+        const slope = -r2 / r1; // negative Asymptotensteigung
+        const x = (i - 0.5) * 6; // von -3 bis 3
+        const y = slope * x;
+        return { x, y, z: 0 };
+      }),
+      color: "#0284c7",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="r_2" />,
+          at: 0,
+          offset: [-0.5, -0.5, 0]
+        }
+      ]
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 }
+      ],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\xi_1" />,
+          at: 1,
+          offset: [0.3, -0.3, 0]
+        }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: -3, z: 0 },
+        { x: 0, y: 3, z: 0 }
+      ],
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\xi_2" />,
+          at: 1,
+          offset: [0.3, 0.3, 0]
+        }
+      ]
+    }
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+### Ein Eigenwert Null
+
+Ein Sonderfall liegt bei <InlineMath math="\lambda_1\neq0" />, <InlineMath math="\lambda_2=0" /> und <InlineMath math="\epsilon\neq0" /> vor. Die quadratische Ergänzung ergibt
+
+<MathContainer>
+<BlockMath math="0 = \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} + \epsilon \xi_2 + f" />
+<BlockMath math="= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 + \left( f - \frac{\delta^2}{4\lambda_1} \right)" />
+<BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
+</MathContainer>
+
+Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die Parabelform unmittelbar erkennbar:
+
+<MathContainer>
+<BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
+</MathContainer>
+
+<LineEquation
+  title={<>Parabel in den Koordinaten <InlineMath math="\xi_1,\xi_2" /></>}
+  description="Parabelkurve mit einem Null-Eigenwert und an Eigenvektoren ausgerichteter Koordinatenachsentransformation."
+  data={[
+    {
+      points: Array.from({ length: 50 }, (_, i) => {
+        const t = (i / 49 - 0.5) * 6;
+        const lambda1 = 1; // λ₁ ≠ 0
+        const epsilon = -2; // ε ≠ 0
+        const gamma = 2; // γ
+        const m1 = 0; // δ/(2λ₁) = 0
+        const x = t;
+        const y = -(lambda1 / epsilon) * Math.pow(x - m1, 2) + (gamma / epsilon);
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: true,
+      showPoints: false
+    },
+    {
+      points: [
+        { x: -3.5, y: 0, z: 0 },
+        { x: 3.5, y: 0, z: 0 }
+      ],
+      color: "#0891b2",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\xi_1" />,
+          at: 1,
+          offset: [0.3, -0.3, 0]
+        }
+      ]
+    },
+    {
+      points: [
+        { x: 0, y: -0.5, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#0891b2",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\xi_2" />,
+          at: 1,
+          offset: [0.3, 0.3, 0]
+        }
+      ]
+    }
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## Vollständig gerechnetes Beispiel
+
+Wir betrachten die Gleichung
+
+<MathContainer>
+<BlockMath math="5x_1^2+4x_1x_2+2x_2^2-6x_1-9=0" />
+<BlockMath math="A=\begin{pmatrix}5&2\\2&2\end{pmatrix},\qquad p=\begin{pmatrix}-6\\0\end{pmatrix}" />
+</MathContainer>
+
+Die Eigenpaare lauten
+
+<MathContainer>
+<BlockMath math="\lambda_1=6,\quad v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix},\qquad \lambda_2=1,\quad v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix}" />
+<BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
+</MathContainer>
+
+Der Mittelpunkt in den ursprünglichen Koordinaten ist <InlineMath math="h=(1,-1)^T" />, denn <InlineMath math="2Ah+p=0" />. In den gedrehten Koordinaten gilt <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. Mit <InlineMath math="\eta=\xi-m" /> wird die Gleichung zu
+
+<MathContainer>
+<BlockMath math="6\eta_1^2+\eta_2^2=12" />
+<BlockMath math="\frac{\eta_1^2}{2}+\frac{\eta_2^2}{12}=1" />
+</MathContainer>
+
+Die Kurve ist eine Ellipse mit Mittelpunkt <InlineMath math="(1,-1)" />. Ihre Halbachsen haben die Längen <InlineMath math="\sqrt2" /> in Richtung <InlineMath math="v_1" /> und <InlineMath math="2\sqrt3" /> in Richtung <InlineMath math="v_2" />. Setzt man den Mittelpunkt in die ursprüngliche Gleichung ein, erhält man <InlineMath math="-12" />, passend zur rechten Seite nach der Verschiebung.
+
+## Quadratische Flächen und Transformation
+
+Für eine symmetrische Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, einen Vektor <InlineMath math="b \in \mathbb{R}^n" /> und einen Skalar <InlineMath math="c \in \mathbb{R}" /> ist die **quadratische Oberfläche** <InlineMath math="Q" /> als Lösungsmenge der allgemeinen quadratischen Gleichung definiert:
+
+<MathContainer>
+<BlockMath math="x^T A x + b^T x + c = 0" />
+</MathContainer>
+
+Äquivalent dazu gilt
+
+<MathContainer>
+<BlockMath math="Q = \left\{ x \in \mathbb{R}^n : x^T A x + b^T x + c = 0 \right\}" />
+<BlockMath math="= \left\{ x \in \mathbb{R}^n : \sum_{j=1}^n \sum_{k=1}^n x_j a_{jk} x_k + \sum_{j=1}^n b_j x_j + c = 0 \right\}" />
+</MathContainer>
+
+Wenn <InlineMath math="A \in \mathbb{R}^{n \times n}" /> symmetrisch und <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> eine Orthonormalbasis von Eigenvektoren mit <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> ist, dann ermöglicht die Orthonormalmatrix <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> die Diagonalisierung <InlineMath math="A \cdot S = S \cdot \Lambda" /> oder <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
+
+In der neuen Koordinatenbasis <InlineMath math="\xi = S^T x" /> und <InlineMath math="\mu = S^T b" /> hat die quadratische Fläche Diagonalform:
+
+<MathContainer>
+<BlockMath math="Q = \left\{ \xi \in \mathbb{R}^n : \xi^T S^T A S \xi + b^T S \xi + c = 0 \right\}" />
+<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \xi^T \Lambda \xi + \mu^T \xi + c = 0 \right\}" />
+<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \sum_{j=1}^n \lambda_j \xi_j^2 + \sum_{j=1}^n \mu_j \xi_j + c = 0 \right\}" />
+<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \sum_{j=1}^n (\lambda_j \xi_j^2 + \mu_j \xi_j) = -c \right\}" />
+</MathContainer>
+
+In der Orthonormalbasis von Eigenvektoren hat die quadratische Form eine Diagonalstruktur. Diese Transformation wird **Hauptachsentransformation** genannt, da die neuen Koordinatenachsen an den Richtungen der Matrixeigenvektoren ausgerichtet sind.

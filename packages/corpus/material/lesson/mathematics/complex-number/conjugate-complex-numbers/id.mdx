@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: "Konjugat Bilangan Kompleks",
-  description: "Pelajari konjugat bilangan kompleks, pencerminan geometrisnya, sifatnya, dan alasan z×z̄ menghasilkan bilangan real.",
+  description: "Tentukan konjugat bilangan kompleks, tafsirkan sebagai pencerminan terhadap sumbu real, dan terapkan sifat-sifat aljabarnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-01",
   subject: "Bilangan Kompleks",
@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Apa itu Konjugat Bilangan Kompleks?
 
-Setiap bilangan kompleks <InlineMath math="z = x + iy" /> memiliki "pasangan" yang disebut **konjugat** (atau sekawan). Konjugat dari <InlineMath math="z" /> ditulis dengan simbol <InlineMath math="\bar{z}" />.
+Setiap bilangan kompleks <InlineMath math="z = x + iy" /> memiliki **konjugat** (atau sekawan), yang ditulis dengan simbol <InlineMath math="\bar{z}" />.
 
-Cara mendapatkan konjugat sangat mudah: **ubah tanda bagian imajinernya saja**.
+Konjugat diperoleh dengan **membalik tanda bagian imajiner**.
 
 ## Definisi Formal
 
@@ -24,7 +24,7 @@ Artinya, bagian real (<InlineMath math="x" />) tetap, sedangkan tanda bagian ima
 
 ## Contoh Mencari Konjugat
 
-Mari kita lihat beberapa contoh:
+Terapkan definisi tersebut pada beberapa bentuk bilangan kompleks:
 
 1.  **Jika** <InlineMath math="z = 2 + i" />
 
@@ -67,8 +67,8 @@ Secara geometris, konjugat <InlineMath math="\bar{z}" /> adalah **pencerminan** 
   }
   description={
     <>
-      Perhatikan bagaimana <InlineMath math="z" /> dan{" "}
-      <InlineMath math="\bar{z}" /> seperti cermin terhadap sumbu real.
+      Titik <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> merupakan
+      bayangan cermin terhadap sumbu real.
     </>
   }
   cameraPosition={[0, 0, 10]}
@@ -103,13 +103,13 @@ Secara geometris, konjugat <InlineMath math="\bar{z}" /> adalah **pencerminan** 
   ]}
 />
 
-## Kekongruenan Bilangan Kompleks
+## Kesamaan dengan Konjugat
 
 Mungkinkah sebuah bilangan kompleks <InlineMath math="z=x+iy" /> sama dengan konjugatnya <InlineMath math="\bar{z}=x-iy" />? Jika iya, apa syaratnya?
 
-**Jawaban:**
+**Penurunan:**
 
-Ya, mungkin. Agar <InlineMath math="z = \bar{z}" />, maka:
+Mulai dari <InlineMath math="z = \bar{z}" />:
 
 <BlockMath math="x+iy = x-iy" />
 
@@ -121,7 +121,7 @@ Jadi, suatu bilangan kompleks sama dengan konjugatnya **jika dan hanya jika bagi
 
 ## Sifat-Sifat Operasi Konjugat
 
-Operasi konjugat memiliki beberapa sifat menarik yang berguna dalam perhitungan. Misalkan <InlineMath math="z, z_1," /> dan <InlineMath math="z_2" /> adalah sembarang bilangan kompleks.
+Misalkan <InlineMath math="z, z_1," /> dan <InlineMath math="z_2" /> adalah bilangan kompleks. Operasi konjugat memenuhi aturan berikut.
 
 ### Penjumlahan dan Pengurangan
 
@@ -145,7 +145,7 @@ Konjugat dari hasil perkalian (atau pembagian) dua bilangan kompleks sama dengan
 
 Konjugat dari invers suatu bilangan kompleks sama dengan invers dari konjugatnya.
 
-<BlockMath math="\overline{z^{-1}} = (\bar{z})^{-1}" />
+<BlockMath math="\overline{z^{-1}} = (\bar{z})^{-1}, \quad z \neq 0" />
 
 ### Ganda
 
@@ -155,7 +155,7 @@ Mengambil konjugat dua kali akan mengembalikan bilangan kompleks ke bentuk aslin
 
 ### Hubungan dengan Bagian Real dan Imajiner
 
-Penjumlahan dan pengurangan bilangan kompleks dengan konjugatnya menghasilkan hubungan menarik dengan bagian real dan imajinernya:
+Penjumlahan dan pengurangan bilangan kompleks dengan konjugatnya memisahkan bagian real dan imajiner:
 
 <MathContainer>
   <BlockMath math="z + \bar{z} = 2 \text{Re}(z)" />
@@ -170,13 +170,13 @@ Perkalian suatu bilangan kompleks dengan konjugatnya menghasilkan kuadrat dari m
 
 ## Latihan
 
-Tentukan sekawan (konjugat) dari setiap bilangan kompleks berikut!
+Tentukan konjugat dari setiap bilangan kompleks berikut.
 
 1. <InlineMath math="2+i^2" />
 2. <InlineMath math="1+\frac{1}{i}" />
 3. <InlineMath math="1+2i" />
 
-### Kunci Jawaban
+### Pembahasan
 
 1. Pertama, sederhanakan bilangan kompleksnya:
 
@@ -188,7 +188,7 @@ Tentukan sekawan (konjugat) dari setiap bilangan kompleks berikut!
 
 2. Sederhanakan dulu:
 
-   Ingat bahwa
+   Rasionalkan penyebut dengan mengalikannya dengan <InlineMath math="-i" />:
 
    <BlockMath math="\frac{1}{i} = \frac{1}{i} \times \frac{-i}{-i} = \frac{-i}{-i^2} = \frac{-i}{-(-1)} = \frac{-i}{1} = -i" />
 

@@ -1,159 +1,148 @@
 export const metadata = {
-  title: "Merasionalkan Akar",
-  description: "Cara menghilangkan akar dari penyebut dengan perkalian sekawan pada bentuk monomial dan binomial.",
+  title: "Merasionalkan Bentuk Akar",
+  description:
+    "Hilangkan bentuk akar dari penyebut dengan mengalikan satu, memakai faktor akar yang sesuai atau bentuk sekawan, disertai pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-04",
   subject: "Eksponen dan Logaritma",
 };
 
-## Konsep Dasar
+## Perubahan yang Terjadi Saat Merasionalkan
 
-Merasionalkan bentuk akar adalah proses mengubah ekspresi matematika yang memiliki akar di penyebut menjadi bentuk yang lebih sederhana tanpa akar di penyebut. Hal ini dilakukan dengan mengalikan pembilang dan penyebut dengan bentuk yang sesuai.
+Merasionalkan penyebut berarti menulis ulang pecahan ke bentuk setara yang penyebutnya tidak memuat bentuk akar. Nilainya tidak berubah karena pembilang dan penyebut dikalikan dengan bentuk tidak nol yang sama.
 
-- Merasionalkan Bentuk <InlineMath math="\frac{a}{\sqrt{b}}" />
+Untuk penyebut dengan dua suku, identitas utamanya adalah:
 
-  Untuk merasionalkan bentuk <InlineMath math="\frac{a}{\sqrt{b}}" />, kita kalikan dengan sekawannya yaitu <InlineMath math="\frac{\sqrt{b}}{\sqrt{b}}" />:
+<BlockMath math="(u+v)(u-v)=u^2-v^2" />
 
-  <BlockMath math="\frac{a}{\sqrt{b}} = \frac{a}{\sqrt{b}} \times \frac{\sqrt{b}}{\sqrt{b}} = \frac{a\sqrt{b}}{\sqrt{b} \times \sqrt{b}} = \frac{a\sqrt{b}}{b}" />
+Bentuk <InlineMath math="u+v" /> dan <InlineMath math="u-v" /> disebut sekawan. Hasil kalinya menghilangkan suku tengah.
 
-  Contoh:
+### Satu Bentuk Akar pada Penyebut
 
-  <BlockMath math="\frac{5}{\sqrt{3}} = \frac{5}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{5\sqrt{3}}{3}" />
+Untuk <InlineMath math="b>0" />, kalikan dengan faktor <InlineMath math="\frac{\sqrt b}{\sqrt b}=1" />:
 
-- Merasionalkan Bentuk <InlineMath math="\frac{c}{\sqrt{a} + \sqrt{b}}" />
+<MathContainer>
+  <BlockMath math="\frac a{\sqrt b}\cdot\frac{\sqrt b}{\sqrt b}=\frac{a\sqrt b}{b}" />
+  <BlockMath math="\frac5{\sqrt3}\cdot\frac{\sqrt3}{\sqrt3}=\frac{5\sqrt3}{3}" />
+</MathContainer>
 
-  Untuk merasionalkan bentuk <InlineMath math="\frac{c}{\sqrt{a} + \sqrt{b}}" />, kita kalikan dengan sekawannya <InlineMath math="\frac{\sqrt{a} - \sqrt{b}}{\sqrt{a} - \sqrt{b}}" />:
+Faktor akar yang sama merupakan bentuk lain dari satu. Faktor ini tidak disebut sekawan karena hanya terdiri atas satu suku.
 
-  <BlockMath math="\frac{c}{\sqrt{a} + \sqrt{b}} = \frac{c}{\sqrt{a} + \sqrt{b}} \times \frac{\sqrt{a} - \sqrt{b}}{\sqrt{a} - \sqrt{b}} = \frac{c(\sqrt{a} - \sqrt{b})}{(\sqrt{a})^2 - (\sqrt{b})^2} = \frac{c(\sqrt{a} - \sqrt{b})}{a - b}" />
+### Penjumlahan atau Pengurangan Dua Bentuk Akar
 
-  Contoh:
+Anggap <InlineMath math="a,b\geq0" /> dan <InlineMath math="a\neq b" />. Kalikan dengan bentuk sekawan penyebut:
 
-  <BlockMath math="\frac{4}{\sqrt{7} + \sqrt{3}} = \frac{4}{\sqrt{7} + \sqrt{3}} \times \frac{\sqrt{7} - \sqrt{3}}{\sqrt{7} - \sqrt{3}} = \frac{4(\sqrt{7} - \sqrt{3})}{7 - 3} = \frac{4(\sqrt{7} - \sqrt{3})}{4} = \sqrt{7} - \sqrt{3}" />
+<MathContainer>
+  <BlockMath math="\frac c{\sqrt a+\sqrt b}\cdot\frac{\sqrt a-\sqrt b}{\sqrt a-\sqrt b}=\frac{c(\sqrt a-\sqrt b)}{a-b}" />
+  <BlockMath math="\frac c{\sqrt a-\sqrt b}\cdot\frac{\sqrt a+\sqrt b}{\sqrt a+\sqrt b}=\frac{c(\sqrt a+\sqrt b)}{a-b}" />
+</MathContainer>
 
-- Merasionalkan Bentuk <InlineMath math="\frac{c}{\sqrt{a} - \sqrt{b}}" />
+Sebagai contoh:
 
-  Untuk merasionalkan bentuk <InlineMath math="\frac{c}{\sqrt{a} - \sqrt{b}}" />, kita kalikan dengan sekawannya <InlineMath math="\frac{\sqrt{a} + \sqrt{b}}{\sqrt{a} + \sqrt{b}}" />:
+<MathContainer>
+  <BlockMath math="\frac4{\sqrt7+\sqrt3}=\frac{4(\sqrt7-\sqrt3)}{7-3}=\sqrt7-\sqrt3" />
+  <BlockMath math="\frac2{\sqrt5-\sqrt2}=\frac{2(\sqrt5+\sqrt2)}{5-2}=\frac{2(\sqrt5+\sqrt2)}3" />
+</MathContainer>
 
-  <BlockMath math="\frac{c}{\sqrt{a} - \sqrt{b}} = \frac{c}{\sqrt{a} - \sqrt{b}} \times \frac{\sqrt{a} + \sqrt{b}}{\sqrt{a} + \sqrt{b}} = \frac{c(\sqrt{a} + \sqrt{b})}{(\sqrt{a})^2 - (\sqrt{b})^2} = \frac{c(\sqrt{a} + \sqrt{b})}{a - b}" />
+### Suku Rasional dan Suku Bentuk Akar
 
-  Contoh:
+Anggap <InlineMath math="b\geq0" /> dan <InlineMath math="a^2\neq b" />. Bentuk sekawan kembali menghasilkan selisih kuadrat:
 
-  <BlockMath math="\frac{2}{\sqrt{5} - \sqrt{2}} = \frac{2}{\sqrt{5} - \sqrt{2}} \times \frac{\sqrt{5} + \sqrt{2}}{\sqrt{5} + \sqrt{2}} = \frac{2(\sqrt{5} + \sqrt{2})}{5 - 2} = \frac{2(\sqrt{5} + \sqrt{2})}{3}" />
+<MathContainer>
+  <BlockMath math="\frac c{a+\sqrt b}\cdot\frac{a-\sqrt b}{a-\sqrt b}=\frac{c(a-\sqrt b)}{a^2-b}" />
+  <BlockMath math="\frac c{a-\sqrt b}\cdot\frac{a+\sqrt b}{a+\sqrt b}=\frac{c(a+\sqrt b)}{a^2-b}" />
+</MathContainer>
 
-- Merasionalkan Bentuk <InlineMath math="\frac{c}{a + \sqrt{b}}" />
+Sebagai contoh:
 
-  Untuk merasionalkan bentuk <InlineMath math="\frac{c}{a + \sqrt{b}}" />, kita kalikan dengan sekawannya <InlineMath math="\frac{a - \sqrt{b}}{a - \sqrt{b}}" />:
+<MathContainer>
+  <BlockMath math="\frac6{4+\sqrt3}=\frac{6(4-\sqrt3)}{16-3}=\frac{6(4-\sqrt3)}{13}" />
+  <BlockMath math="\frac3{2-\sqrt5}=\frac{3(2+\sqrt5)}{4-5}=-3(2+\sqrt5)" />
+</MathContainer>
 
-  <BlockMath math="\frac{c}{a + \sqrt{b}} = \frac{c}{a + \sqrt{b}} \times \frac{a - \sqrt{b}}{a - \sqrt{b}} = \frac{c(a - \sqrt{b})}{a^2 - b} = \frac{c(a - \sqrt{b})}{a^2 - b}" />
+## Menyederhanakan Bentuk Akar dan Eksponen
 
-  Contoh:
+Anggap semua variabel pada latihan berikut bernilai positif. Dengan syarat ini, sifat pangkat pecahan dapat digunakan tanpa menambahkan kasus nilai mutlak.
 
-  <BlockMath math="\frac{6}{4 + \sqrt{3}} = \frac{6}{4 + \sqrt{3}} \times \frac{4 - \sqrt{3}}{4 - \sqrt{3}} = \frac{6(4 - \sqrt{3})}{16 - 3} = \frac{6(4 - \sqrt{3})}{13}" />
+1. Sederhanakan:
 
-- Merasionalkan Bentuk <InlineMath math="\frac{c}{a - \sqrt{b}}" />
+   <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-1/4}}\right)^{1/2}" />
 
-  Untuk merasionalkan bentuk <InlineMath math="\frac{c}{a - \sqrt{b}}" />, kita kalikan dengan sekawannya <InlineMath math="\frac{a + \sqrt{b}}{a + \sqrt{b}}" />:
+2. Sederhanakan:
 
-  <BlockMath math="\frac{c}{a - \sqrt{b}} = \frac{c}{a - \sqrt{b}} \times \frac{a + \sqrt{b}}{a + \sqrt{b}} = \frac{c(a + \sqrt{b})}{a^2 - b} = \frac{c(a + \sqrt{b})}{a^2 - b}" />
+   <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]x\right)" />
 
-  Contoh:
+3. Sederhanakan:
 
-  <BlockMath math="\frac{3}{2 - \sqrt{5}} = \frac{3}{2 - \sqrt{5}} \times \frac{2 + \sqrt{5}}{2 + \sqrt{5}} = \frac{3(2 + \sqrt{5})}{4 - 5} = \frac{3(2 + \sqrt{5})}{-1} = -3(2 + \sqrt{5})" />
+   <BlockMath math="\left(\frac{p^5q^{-10}}{p^5q^{-4}}\right)^{1/2}\left(\frac{p^{1/4}q^{-1/2}}{p^{-1/2}q^{-1/2}}\right)^{1/2}" />
 
-## Latihan Menyederhanakan
+### Pembahasan
 
-1. Sederhanakan bentuk berikut:
-
-   <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-\frac{1}{4}}}\right)^{\frac{1}{2}}" />
-
-2. Sederhanakan bentuk berikut:
-
-   <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]{x}\right)" />
-
-3. Sederhanakan bentuk berikut:
-
-   <BlockMath math="\left(\frac{p^5q^{-10}}{p^5q^{-4}}\right)^{\frac{1}{2}}\left(\frac{p^{\frac{1}{4}}q^{-\frac{1}{2}}}{p^{-\frac{1}{2}}q^{-\frac{1}{2}}}\right)^{\frac{1}{2}}" />
-
-### Kunci Jawaban Menyederhanakan
-
-1. Jawaban:
+1. Gabungkan koefisien dan setiap pangkat sebelum mengambil akar kuadrat:
 
    <MathContainer>
-     <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-\frac{1}{4}}}\right)^{\frac{1}{2}} = \frac{\left(2^3\right)^{\frac{1}{2}}\left(x^5\right)^{\frac{1}{2}}\left(y^{-4}\right)^{\frac{1}{2}}}{\left(2^4\right)^{\frac{1}{2}}\left(y^{-\frac{1}{4}}\right)^{\frac{1}{2}}}" />
-     <BlockMath math="= \frac{\left(2\right)^{\frac{3}{2}}\left(x\right)^{\frac{5}{2}}\left(y\right)^{-2}}{2^2\left(y\right)^{-\frac{1}{8}}}" />
-     <BlockMath math="= \left(2\right)^{\frac{3}{2}-2}\left(x\right)^{\frac{5}{2}}\left(y\right)^{-2+\frac{1}{8}}" />
-     <BlockMath math="= \frac{\left(x\right)^{\frac{5}{2}}}{\left(2\right)^{\frac{1}{2}}\left(y\right)^{\frac{15}{8}}}" />
+     <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-1/4}}\right)^{1/2}=\left(\frac12x^5y^{-15/4}\right)^{1/2}" />
+     <BlockMath math="=2^{-1/2}x^{5/2}y^{-15/8}" />
+     <BlockMath math="=\frac{x^{5/2}}{\sqrt2\,y^{15/8}}" />
    </MathContainer>
 
-2. Jawaban:
+2. Ubah kedua bentuk akar menjadi pangkat pecahan:
 
    <MathContainer>
-     <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]{x}\right) = \left(5x^{\frac{5}{2}}\right)\left(3x^{\frac{1}{3}}\right)" />
-     <BlockMath math="= 15x^{\frac{5}{2}+\frac{1}{3}}" />
-     <BlockMath math="= 15x^{\frac{15+2}{6}}" />
-     <BlockMath math="= 15x^{\frac{17}{6}}" />
-     <BlockMath math="= 15x^{2\frac{5}{6}}" />
-     <BlockMath math="= 15x^2\sqrt[6]{x^5}" />
+     <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]x\right)=15x^{5/2}x^{1/3}" />
+     <BlockMath math="=15x^{15/6+2/6}=15x^{17/6}" />
+     <BlockMath math="=15x^2\sqrt[6]{x^5}" />
    </MathContainer>
 
-3. Jawaban:
+3. Sederhanakan setiap bentuk di dalam tanda kurung sebelum mengalikannya:
 
    <MathContainer>
-     <BlockMath math="\left(\frac{p^5q^{-10}}{p^5q^{-4}}\right)^{\frac{1}{2}}\left(\frac{p^{\frac{1}{4}}q^{-\frac{1}{2}}}{p^{-\frac{1}{2}}q^{-\frac{1}{2}}}\right)^{\frac{1}{2}} = \left(\frac{p^{5-5}q^{-10-(-4)}}{1}\right)^{\frac{1}{2}}\left(\frac{p^{\frac{1}{4}-(-\frac{1}{2})}q^{-\frac{1}{2}-(-\frac{1}{2})}}{1}\right)^{\frac{1}{2}}" />
-     <BlockMath math="= \left(p^0q^{-6}\right)^{\frac{1}{2}}\left(p^{\frac{3}{4}}q^0\right)^{\frac{1}{2}}" />
-     <BlockMath math="= \left(p^0q^{-3}\right)\left(p^{\frac{3}{8}}\cdot 1\right)" />
-     <BlockMath math="= \left(1 \cdot q^{-3}\right)\left(p^{\frac{3}{8}} \cdot 1\right)" />
-     <BlockMath math="= \frac{p^{\frac{3}{8}}}{q^3}" />
-     <BlockMath math="= \frac{\sqrt[8]{p^3}}{q^3}" />
+     <BlockMath math="\left(q^{-6}\right)^{1/2}\left(p^{3/4}\right)^{1/2}=q^{-3}p^{3/8}" />
+     <BlockMath math="=\frac{p^{3/8}}{q^3}" />
+     <BlockMath math="=\frac{\sqrt[8]{p^3}}{q^3}" />
    </MathContainer>
 
 ## Latihan Merasionalkan
 
-1. Merasionalkan bentuk berikut:
+1. Untuk <InlineMath math="b>0" />, rasionalkan:
 
-   <BlockMath math="\frac{2}{\sqrt{b^3}}" />
+   <BlockMath math="\frac2{\sqrt{b^3}}" />
 
-2. Merasionalkan bentuk berikut:
+2. Rasionalkan:
 
-   <BlockMath math="\frac{2}{\sqrt{3} + \sqrt{5}}" />
+   <BlockMath math="\frac2{\sqrt3+\sqrt5}" />
 
-3. Merasionalkan bentuk berikut:
+3. Untuk <InlineMath math="m\geq0" /> dan <InlineMath math="m\neq n^2" />, rasionalkan:
 
-   <BlockMath math="\frac{m}{\sqrt{m} + n}" />
+   <BlockMath math="\frac m{\sqrt m+n}" />
 
-### Kunci Jawaban Merasionalkan
+### Pembahasan
 
-1. Jawaban:
-
-   <MathContainer>
-     <BlockMath math="\frac{2}{\sqrt{b^3}} = \frac{2}{\sqrt{b^3}} \times \frac{\sqrt{b}}{\sqrt{b}}" />
-     <BlockMath math="= \frac{2\sqrt{b}}{\sqrt{b^4}}" />
-     <BlockMath math="= \frac{2\sqrt{b}}{b^2}" />
-   </MathContainer>
-
-2. Jawaban:
+1. Karena <InlineMath math="\sqrt{b^3}\sqrt b=\sqrt{b^4}=b^2" /> untuk <InlineMath math="b>0" />:
 
    <MathContainer>
-     <BlockMath math="\frac{2}{\sqrt{3} + \sqrt{5}} = \frac{2}{\sqrt{3} + \sqrt{5}} \times \frac{\sqrt{3} - \sqrt{5}}{\sqrt{3} - \sqrt{5}}" />
-     <BlockMath math="= \frac{2(\sqrt{3} - \sqrt{5})}{(\sqrt{3})^2 - (\sqrt{5})^2}" />
-     <BlockMath math="= \frac{2(\sqrt{3} - \sqrt{5})}{3 - 5}" />
-     <BlockMath math="= \frac{2(\sqrt{3} - \sqrt{5})}{-2}" />
-     <BlockMath math="= -(\sqrt{3} - \sqrt{5})" />
-     <BlockMath math="= \sqrt{5} - \sqrt{3}" />
+     <BlockMath math="\frac2{\sqrt{b^3}}\cdot\frac{\sqrt b}{\sqrt b}=\frac{2\sqrt b}{\sqrt{b^4}}" />
+     <BlockMath math="=\frac{2\sqrt b}{b^2}" />
    </MathContainer>
 
-3. Jawaban:
+2. Kalikan dengan bentuk sekawan:
 
    <MathContainer>
-     <BlockMath math="\frac{m}{\sqrt{m} + n} = \frac{m}{\sqrt{m} + n} \times \frac{\sqrt{m} - n}{\sqrt{m} - n}" />
-     <BlockMath math="= \frac{m(\sqrt{m} - n)}{(\sqrt{m})^2 - n^2}" />
-     <BlockMath math="= \frac{m(\sqrt{m} - n)}{m - n^2}" />
+     <BlockMath math="\frac2{\sqrt3+\sqrt5}\cdot\frac{\sqrt3-\sqrt5}{\sqrt3-\sqrt5}=\frac{2(\sqrt3-\sqrt5)}{3-5}" />
+     <BlockMath math="=\sqrt5-\sqrt3" />
    </MathContainer>
 
-## Manfaat Merasionalkan Bentuk Akar
+3. Bentuk sekawan penyebut adalah <InlineMath math="\sqrt m-n" />:
 
-Merasionalkan bentuk akar memiliki beberapa manfaat:
+   <MathContainer>
+     <BlockMath math="\frac m{\sqrt m+n}\cdot\frac{\sqrt m-n}{\sqrt m-n}=\frac{m(\sqrt m-n)}{m-n^2}" />
+     <BlockMath math="=\frac{m\sqrt m-mn}{m-n^2}" />
+   </MathContainer>
 
-1. Menyederhanakan bentuk ekspresi matematika
-2. Memudahkan perhitungan nilai pendekatan
-3. Menghilangkan bentuk akar di penyebut untuk menghindari kesalahan dalam perhitungan
+## Menilai Bentuk Akhir
+
+- Penyebut tidak boleh memuat bentuk akar.
+- Setiap faktor pengali harus bernilai satu dan terdefinisi berdasarkan syarat yang dinyatakan.
+- Tujuannya adalah bentuk eksak yang setara. Merasionalkan tidak otomatis membuat pendekatan desimal lebih akurat.
+
+Pemeriksaan ini menjelaskan prosedur beserta batasnya, sehingga manipulasi tetap sah dan tidak berubah menjadi pola yang diikuti tanpa memahami alasannya.

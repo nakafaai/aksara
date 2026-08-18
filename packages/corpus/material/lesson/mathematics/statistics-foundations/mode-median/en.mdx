@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Mode and Median",
-  description: "Learn mode and median calculations with simple examples. Find middle values and the most frequent data points in a small dataset.",
+  description: "Find the median, mode, and range of a data set through complete examples for odd and even sample sizes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-22",
   subject: "Statistics",
@@ -8,30 +8,28 @@ export const metadata = {
 
 ## Measures of Central Tendency
 
-In statistics, we often want to know where the "center" of our data lies. Mode and Median are two ways to see this center or tendency of the data.
+Measures of central tendency describe where a data set is centered. The median and mode capture that center in different ways.
 
 ## Median: The Middle Value
 
-The median is simply the **data value that is exactly in the middle** after all data has been sorted from smallest to largest.
+The median is the **middle value of an ordered data set**.
 
-**How to Find the Median:**
+**How to find the median:**
 
-<MathContainer>
-  <BlockMath math="\text{1. Sort Data: From smallest to largest}" />
-  <BlockMath math="\text{2. Find the Middle Position}" />
-</MathContainer>
+1. Sort the data from smallest to largest.
+2. Find the middle position or positions.
 
 - **If the number of data points is odd (<InlineMath math="n" /> is odd):**
 
   <BlockMath math="\text{Median} = \text{Value at position } \frac{n+1}{2}" />
 
-  **Example (Odd Data):**
+  **Example with an odd number of values:**
 
-  Suppose the test scores of <InlineMath math="5 \text{ students}" /> are: <InlineMath math="7, 8, 6, 9, 7" />
+  Suppose the scores of <InlineMath math="5 \text{ students}" /> are <InlineMath math="7, 8, 6, 9, 7" />.
 
   Sort: <InlineMath math="6, 7, 7, 8, 9" /> (there are <InlineMath math="5" /> data points, <InlineMath math="n=5" />)
 
-  Middle position: <InlineMath math="(5+1)/2 = 3" />. The data at the <InlineMath math="3^{\text{rd}}" /> position is <InlineMath math="7" />.
+  Middle position: <InlineMath math="(5+1)/2 = 3" />. The data at position <InlineMath math="3" /> is <InlineMath math="7" />.
 
   So, <InlineMath math="\text{Median} = 7" />.
 
@@ -39,9 +37,9 @@ The median is simply the **data value that is exactly in the middle** after all 
 
   <BlockMath math="\text{Median} = \frac{\text{Value at position }(n/2) + \text{Value at position }((n/2)+1)}{2}" />
 
-  **Example (Even Data):**
+  **Example with an even number of values:**
 
-  Suppose the test scores of <InlineMath math="6 \text{ students}" /> are: <InlineMath math="7, 8, 6, 9, 7, 10" />
+  Suppose the scores of <InlineMath math="6 \text{ students}" /> are <InlineMath math="7, 8, 6, 9, 7, 10" />.
 
   Sort: <InlineMath math="6, 7, 7, 8, 9, 10" /> (there are <InlineMath math="6" /> data points, <InlineMath math="n=6" />)
 
@@ -51,24 +49,22 @@ The median is simply the **data value that is exactly in the middle** after all 
 
   Median is the average of <InlineMath math="7" /> and <InlineMath math="8" />: <InlineMath math="(7+8)/2 = 7.5" />.
 
-  So, Median is <InlineMath math="7.5" />.
+  So, the median is <InlineMath math="7.5" />.
 
-The median is useful because it is not heavily affected by extremely large or small values (outliers) at the ends of the data.
+Because it depends on position rather than magnitude, the median is not strongly affected by extremely large or small values at the ends of the data.
 
 ## Mode: The Most Frequent Value
 
-The mode is even simpler. The mode is the **data value that appears most often** or has the highest frequency.
+The mode is the **value that appears most often**, meaning the value with the highest frequency.
 
-**How to Find the Mode:**
+**How to find the mode:**
 
-<MathContainer>
-  <BlockMath math="\text{1. Count the frequency of each data value}" />
-  <BlockMath math="\text{2. Find the data value with the highest frequency}" />
-</MathContainer>
+1. Count how often each value appears.
+2. Identify the value or values with the highest frequency.
 
 **Example:**
 
-Test scores data:
+Test scores:
 
 <BlockMath math="7, 8, 6, 9, 7, 8, 7" />
 
@@ -81,18 +77,18 @@ The most frequent score is <InlineMath math="7" /> (appears <InlineMath math="3 
 
 So, the mode is <InlineMath math="7" />.
 
-**Important Notes about Mode:**
+**Important notes about the mode:**
 
-- A dataset might have **no mode** (if all values appear with the same frequency).
+- If every value has the same frequency, no value is uniquely most frequent. Under the convention used here, the dataset is reported as having **no mode**.
 - It can have **one mode** (unimodal).
 - It can have **two modes** (bimodal), if there are two values with the same highest frequency.
 - It can have **more than two modes** (multimodal).
 
-Like the median, the mode is also not affected by extreme values (outliers).
+A single isolated extreme value usually does not change the mode because its frequency is only one.
 
 ## Range Shows Data Spread
 
-Besides looking at the center of the data with mode and median, sometimes we also need to know how **spread out** our data is. One of the simplest ways is to look at the **Range**.
+Besides locating the center with the median and mode, we may also want to know how **spread out** the data is. The **range** provides one quick measure.
 
 The range is the **difference between the largest and smallest data values**.
 
@@ -108,6 +104,6 @@ Smallest data <InlineMath math="= 6" />
 
 Range <InlineMath math="= 10 - 6 = 4" />
 
-The range gives us a quick idea of how far our data spreads from end to end.
+The range shows the distance between the two endpoints, but it does not describe how values are distributed between them.
 
-So, Median and Mode focus on the "center" of the data, while Range focuses on the "spread" of the data.
+The median and mode describe the center of a data set, while the range describes its overall width.

@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 2",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-31",
+};
+
+Gesucht ist die Fläche einer Parzelle an den drei Standorten A, B und C. An jedem Standort soll die **gleiche größtmögliche Anzahl von Parzellen** entstehen, wobei jede Parzelle eine positive ganzzahlige Fläche hat.
+
+Die größtmögliche gemeinsame Anzahl ist der **größte gemeinsame Teiler (ggT)** der Flächen <InlineMath math="120" />, <InlineMath math="180" /> und <InlineMath math="240" />.
+
+Führen wir eine Primfaktorzerlegung für die drei Zahlen durch:
+
+<MathContainer>
+  <BlockMath math="120 = 2^3 \times 3 \times 5" />
+  <BlockMath math="180 = 2^2 \times 3^2 \times 5" />
+  <BlockMath math="240 = 2^4 \times 3 \times 5" />
+</MathContainer>
+
+Der GCD wird durch Multiplikation der gemeinsamen Primfaktoren mit dem niedrigsten Exponenten erhalten:
+- Faktor <InlineMath math="2" />: Der niedrigste Exponent ist <InlineMath math="2^2" />.
+- Faktor <InlineMath math="3" />: Der niedrigste Exponent ist <InlineMath math="3^1" /> (oder <InlineMath math="3" />).
+- Faktor <InlineMath math="5" />: Der niedrigste Exponent ist <InlineMath math="5^1" /> (oder <InlineMath math="5" />).
+
+<MathContainer>
+  <BlockMath math="\text{ggT} = 2^2 \times 3 \times 5 = 4 \times 3 \times 5 = 60" />
+</MathContainer>
+
+An jedem Standort entstehen also **<InlineMath math="60" /> Parzellen**.
+
+Nun teilen wir jede Gesamtfläche durch die Anzahl der Parzellen (<InlineMath math="60" />):
+
+**Standort A:**
+
+<MathContainer>
+  <BlockMath math="\frac{120\text{ m}^2}{60} = 2\text{ m}^2" />
+</MathContainer>
+
+**Standort B:**
+
+<MathContainer>
+  <BlockMath math="\frac{180\text{ m}^2}{60} = 3\text{ m}^2" />
+</MathContainer>
+
+**Standort C:**
+
+<MathContainer>
+  <BlockMath math="\frac{240\text{ m}^2}{60} = 4\text{ m}^2" />
+</MathContainer>
+
+Eine Parzelle hat an den drei Standorten somit jeweils eine Fläche von <InlineMath math="2\text{ m}^2" />, <InlineMath math="3\text{ m}^2" /> und <InlineMath math="4\text{ m}^2" />.

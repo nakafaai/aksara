@@ -1,0 +1,178 @@
+
+export const metadata = {
+  title: "Grundlagen der Trigonometrie",
+  description: "Baue Trigonometrie aus rechtwinkligen Dreiecken, Ähnlichkeit, dem Satz des Pythagoras, sechs Verhältnissen und einem geprüften Schattenmodell auf.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-13",
+  subject: "Trigonometrie",
+};
+
+## Was ist Trigonometrie?
+
+Das Wort Trigonometrie ist aus griechischen Wörtern für Dreieck und Maß gebildet. Rechtwinklige Dreiecke sind ein natürlicher Ausgangspunkt, weil ihre Seitenverhältnisse durch die Winkel bestimmt werden. Später erweitert die Trigonometrie diese Ideen auf den Einheitskreis, periodische Funktionen und viele Situationen außerhalb von Dreiecken.
+
+### Erinnerung an den Satz des Pythagoras
+
+Für ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="a" /> und <InlineMath math="b" /> sowie der Hypotenuse <InlineMath math="c" /> gilt:
+
+<BlockMath math="a^2 + b^2 = c^2" />
+
+Die Hypotenuse liegt dem rechten Winkel gegenüber. Der Satz verbindet alle drei Seitenlängen und bildet die Grundlage für die später verwendeten Werte besonderer Dreiecke.
+
+### Verhältnisse und Proportionen verstehen
+
+Trigonometrische Funktionen beginnen als Verhältnisse von Seitenlängen. Ein Verhältnis vergleicht zwei Größen. Eine Proportion sagt aus, dass zwei Verhältnisse gleich sind.
+
+Ein senkrechtes Lineal und ein senkrechter Baum stehen auf demselben ebenen Boden. Ihre Schatten werden zur gleichen Zeit gemessen. Paralleles Sonnenlicht macht die beiden Höhen-Schatten-Dreiecke ähnlich. Das Lineal sei <InlineMath math="6 \text{ cm}" /> hoch, sein Schatten <InlineMath math="3 \text{ cm}" /> lang und der Baumschatten <InlineMath math="150 \text{ cm}" /> lang. Für die Baumhöhe <InlineMath math="h" /> gilt dann:
+
+<MathContainer>
+  <BlockMath math="\frac{\text{Linealhöhe}}{\text{Linealschatten}} = \frac{\text{Baumhöhe}}{\text{Baumschatten}}" />
+  <BlockMath math="\frac{6}{3}=\frac{h}{150}" />
+  <BlockMath math="h=\frac{6}{3}\cdot150\text{ cm}=300\text{ cm}=3\text{ m}" />
+</MathContainer>
+
+Die Proportion gilt, weil die beiden Dreiecke dieselben beiden spitzen Winkel haben, nicht allein deshalb, weil beide Objekte einen Schatten werfen.
+
+## Ähnliche Dreiecke
+
+Ähnliche Dreiecke haben gleiche entsprechende Winkel und proportionale entsprechende Seiten. Jedes der folgenden Kriterien reicht aus, um Ähnlichkeit zu beweisen:
+
+| Kriterium | Ausreichende Angaben |
+| --- | --- |
+| WW | Zwei Paare entsprechender Winkel sind gleich. Das dritte Paar ist dann automatisch gleich. |
+| SSS | Alle drei Paare entsprechender Seiten sind proportional. |
+| SWS | Zwei Paare entsprechender Seiten sind proportional und ihre eingeschlossenen Winkel sind gleich. |
+
+Ähnliche Dreiecke haben dieselbe Form, auch wenn ihre Größen verschieden sind. Jede entsprechende Länge wird mit demselben Maßstabsfaktor multipliziert.
+
+### Anwendungen ähnlicher Dreiecke
+
+Das Konzept ähnlicher Dreiecke wird im Alltag häufig verwendet:
+
+1. **Höhenmessung**: Schatten oder Sichtlinien können ähnliche Dreiecke für schwer direkt messbare Objekte bilden.
+
+2. **Maßstäbliche Zeichnungen**: Ein Plan oder Modell behält seine Proportionen, wenn jede Länge mit demselben Maßstabsfaktor vergrößert oder verkleinert wird.
+
+3. **Geometrie und Konstruktion**: Indirekte Messungen lassen sich über entsprechende Winkel und proportionale Seiten prüfen.
+
+## Trigonometrische Verhältnisse
+
+Trigonometrische Verhältnisse vergleichen die Seiten eines rechtwinkligen Dreiecks relativ zu einem gewählten spitzen Winkel.
+
+Stell dir ein rechtwinkliges Dreieck mit einem Winkel <InlineMath math="\theta" /> (Theta) vor. Wir nennen seine Seiten wie folgt:
+
+- **Hypotenuse**: die Seite gegenüber dem rechten Winkel
+- **Gegenkathete**: die Seite gegenüber dem Winkel <InlineMath math="\theta" />.
+- **Ankathete**: die Seite neben dem Winkel <InlineMath math="\theta" /> außer der Hypotenuse.
+
+<ContentBlock>
+  <Triangle
+    title="Rechtes Dreieck"
+    description={
+      <>
+        Rechtwinkliges Dreieck mit Winkel <InlineMath math="\theta" />.
+      </>
+    }
+    angle={45}
+    labels={{
+      opposite: "Gegenkathete",
+      adjacent: "Ankathete",
+      hypotenuse: "Hypotenuse",
+    }}
+  />
+</ContentBlock>
+
+Aus diesen drei Seiten entstehen sechs grundlegende trigonometrische Verhältnisse. Für einen spitzen Winkel in einem nicht entarteten rechtwinkligen Dreieck sind alle drei Seitenlängen positiv, daher sind alle folgenden Verhältnisse definiert:
+
+1. **Sinus** (<InlineMath math="\sin" />):
+
+   <BlockMath math="\sin \theta = \frac{\text{Gegenkathete}}{\text{Hypotenuse}}" />
+
+2. **Kosinus** (<InlineMath math="\cos" />):
+
+   <BlockMath math="\cos \theta = \frac{\text{Ankathete}}{\text{Hypotenuse}}" />
+
+3. **Tangens** (<InlineMath math="\tan" />):
+
+   <BlockMath math="\tan \theta = \frac{\text{Gegenkathete}}{\text{Ankathete}}" />
+
+4. **Kosekans** (<InlineMath math="\csc" />):
+
+   <BlockMath math="\csc \theta = \frac{1}{\sin \theta} = \frac{\text{Hypotenuse}}{\text{Gegenkathete}}" />
+
+5. **Sekans** (<InlineMath math="\sec" />):
+
+   <BlockMath math="\sec \theta = \frac{1}{\cos \theta} = \frac{\text{Hypotenuse}}{\text{Ankathete}}" />
+
+6. **Kotangens** (<InlineMath math="\cot" />):
+
+   <BlockMath math="\cot \theta = \frac{1}{\tan \theta} = \frac{\text{Ankathete}}{\text{Gegenkathete}}" />
+
+### Warum hat jeder Winkel feste Verhältnisse?
+
+Zwei rechtwinklige Dreiecke mit demselben spitzen Winkel, zum Beispiel <InlineMath math="\theta=30^\circ" />, haben auch denselben rechten Winkel. Nach dem WW-Kriterium sind sie ähnlich. Werden alle Seiten mit demselben Faktor skaliert, bleiben die Quotienten entsprechender Seitenlängen unverändert.
+
+Einfaches Beispiel:
+
+- Das Dreieck <InlineMath math="A" /> hat eine Gegenkathete von <InlineMath math="3 \text{ cm}" /> und eine Hypotenuse von <InlineMath math="6 \text{ cm}" />.
+- Das Dreieck <InlineMath math="B" /> hat eine Gegenkathete von <InlineMath math="5 \text{ cm}" /> und eine Hypotenuse von <InlineMath math="10 \text{ cm}" />.
+
+Wenn wir <InlineMath math="\sin \theta" /> für beide Dreiecke berechnen:
+
+- <InlineMath math="\sin \theta" /> für das Dreieck <InlineMath math="A" /> ist <InlineMath math="\frac{3}{6} = 0{,}5" />.
+- <InlineMath math="\sin \theta" /> für das Dreieck <InlineMath math="B" /> ist <InlineMath math="\frac{5}{10} = 0{,}5" />.
+
+Obwohl die Dreiecke verschieden groß sind, bleibt <InlineMath math="\sin \theta" /> gleich. Dieselbe Begründung gilt für die anderen Seitenverhältnisse.
+
+<UnitCircle
+  title="Visualisierung trigonometrischer Verhältnisse"
+  description="Verschiebe den Winkel und beobachte, wie Sinus und Kosinus durch den Punkt auf dem Einheitskreis bestimmt werden."
+  angle={30}
+/>
+
+Auf dem Einheitskreis hat der zu <InlineMath math="\theta" /> gehörende Punkt die Koordinaten <InlineMath math="(\cos \theta,\sin \theta)" />. Diese Definition erweitert Sinus und Kosinus über die spitzen Winkel eines rechtwinkligen Dreiecks hinaus.
+
+Für spitze Winkel stimmen die Seitenverhältnisse im rechtwinkligen Dreieck mit den Koordinaten des Einheitskreises überein. Daher gelten dieselben Werte für Dreiecke verschiedener Größe.
+
+## Anwendungen der Trigonometrie im wirklichen Leben
+
+Trigonometrie verbindet Winkel mit Längen und periodischen Veränderungen. Deshalb tritt sie in Messung, Navigation, Konstruktion und Wellenmodellen auf.
+
+### Messen der Höhe mithilfe von Schatten
+
+Für nahe beieinanderstehende senkrechte Objekte auf ebenem Boden ist Höhe geteilt durch Schattenlänge gleich, wenn alle Schatten zur selben Zeit gemessen werden. Das folgt aus parallelem Sonnenlicht und ähnlichen Dreiecken.
+
+Vor mehr als <InlineMath math="2200 \text{ Jahren}" /> schätzte Eratosthenes den Erdumfang, indem er den Sonnenwinkel an zwei Orten verglich und die Winkeldifferenz mit der Entfernung zwischen diesen Orten verband. Die Entfernung war unverzichtbar; die Schatten allein reichten nicht aus.
+
+### Navigation
+
+Die alten Seeleute nutzten die Trigonometrie zur Navigation, indem sie den Winkel zwischen dem Horizont und den Sternen maßen.
+
+### Architektur und Bauwesen
+
+Architekten nutzen die Trigonometrie zur Berechnung von Dachneigungen, Turmhöhen und vielen strukturellen Aspekten von Gebäuden.
+
+### Elektronik und Wellen
+
+Schallwellen, Radiowellen und elektrische Wechselströme können mithilfe von Sinus- und Kosinusfunktionen modelliert werden.
+
+## Einfaches Experiment
+
+Wähle nahe beieinanderstehende senkrechte Objekte auf ebenem Boden und miss ihre Schatten fast gleichzeitig. Dann kann der Sonnenwinkel als gleich betrachtet werden.
+
+1. Miss eine Bezugshöhe <InlineMath math="h_r" /> und ihre waagerechte Schattenlänge <InlineMath math="s_r" />.
+
+2. Berechne das gemeinsame Verhältnis <InlineMath math="k=h_r/s_r" />.
+
+3. Miss die Schattenlänge <InlineMath math="s" /> eines anderen Objekts und schätze seine Höhe mit <InlineMath math="h=ks" />.
+
+4. Berechne bei Bedarf den Sonnenhöhenwinkel mit <InlineMath math="\theta=\arctan k" />.
+
+Wirft ein <InlineMath math="1{,}5 \text{ m}" /> hohes Bezugsobjekt einen <InlineMath math="2{,}0 \text{ m}" /> langen Schatten, dann ist <InlineMath math="k=0{,}75" />. Für ein Objekt mit <InlineMath math="8{,}0 \text{ m}" /> Schattenlänge ergibt sich
+
+<MathContainer>
+  <BlockMath math="h=0{,}75\times8{,}0\text{ m}=6{,}0\text{ m}" />
+  <BlockMath math="\theta=\arctan(0{,}75)\approx36{,}87^\circ" />
+</MathContainer>
+
+Ist der Boden geneigt, steht ein Objekt nicht senkrecht oder liegen die Messzeiten weit auseinander, gilt dieses einfache Modell nicht ohne Anpassung.

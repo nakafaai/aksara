@@ -4,39 +4,34 @@ export const metadata = {
   date: "2025-12-26",
 };
 
-Given <InlineMath math="1 < x < y < 2" />. We want to find the range of values for <InlineMath math="z = x - y" />.
+We determine the lower and upper bounds of <InlineMath math="z = x-y" /> separately.
 
-Since <InlineMath math="x < y" />, the difference <InlineMath math="x - y" /> must be negative (<InlineMath math="z < 0" />).
+#### Upper Bound
 
-Let's analyze the limits of <InlineMath math="z" />:
+Because <InlineMath math="x < y" />, we have:
 
-1.  **Maximum value of <InlineMath math="z" />**
+<MathContainer>
+  <BlockMath math="x-y < 0" />
+  <BlockMath math="z < 0" />
+</MathContainer>
 
-    The value of <InlineMath math="z" /> will be maximum (closest to <InlineMath math="0" />) when the difference between <InlineMath math="x" /> and <InlineMath math="y" /> is as small as possible.
+The difference can be arbitrarily close to <InlineMath math="0" />, but it cannot equal <InlineMath math="0" /> because <InlineMath math="x \neq y" />.
 
-    Since <InlineMath math="x" /> and <InlineMath math="y" /> are in the interval <InlineMath math="(1, 2)" /> and <InlineMath math="x < y" />, their difference can be arbitrarily close to <InlineMath math="0" /> but never reaches <InlineMath math="0" /> (because <InlineMath math="x \neq y" />).
+#### Lower Bound
 
-    Thus, the upper bound of <InlineMath math="z" /> is <InlineMath math="0" />.
+We also know that <InlineMath math="x > 1" /> and <InlineMath math="y < 2" />. Therefore:
 
-2.  **Minimum value of <InlineMath math="z" />**
+<MathContainer>
+  <BlockMath math="x-y > 1-2" />
+  <BlockMath math="z > -1" />
+</MathContainer>
 
-    The value of <InlineMath math="z" /> will be minimum (most negative) when <InlineMath math="x" /> is as small as possible and <InlineMath math="y" /> is as large as possible.
+The value <InlineMath math="-1" /> is not attained either because both endpoints are excluded from the open interval.
 
-    -   <InlineMath math="x" /> approaches <InlineMath math="1" /> (lower bound).
-    -   <InlineMath math="y" /> approaches <InlineMath math="2" /> (upper bound).
+Combining both bounds gives:
 
-    Therefore:
+<MathContainer>
+  <BlockMath math="-1 < z < 0" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="z \approx 1 - 2 = -1" />
-    </MathContainer>
-
-    Thus, the lower bound of <InlineMath math="z" /> is <InlineMath math="-1" />.
-
-**Conclusion**
-
-The value of <InlineMath math="z" /> is between <InlineMath math="-1" /> and <InlineMath math="0" />.
-
-In mathematical notation: <InlineMath math="-1 < z < 0" />.
-
-Therefore, <InlineMath math="z" /> is between the values <InlineMath math="-1" /> and <InlineMath math="0" />.
+Thus, <InlineMath math="z" /> lies between <InlineMath math="-1" /> and <InlineMath math="0" />.

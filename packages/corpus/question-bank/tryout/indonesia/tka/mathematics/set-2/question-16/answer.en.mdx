@@ -4,20 +4,17 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Let <InlineMath math="3^a = p > 0" /> then we can transform the equation into
+The condition <InlineMath math="3^a - 8 > 0" /> allows us to apply the power rule for logarithms. Using change of base,
 
 <MathContainer>
 <BlockMath math="\log_{a^2}(3^a - 8)^{-4} \cdot \log_3 \sqrt{a} = a - 2" />
-<BlockMath math="\log_3 \sqrt{a} \cdot \log_{a^2}(3^a - 8)^{-4} = a - 2" />
 <BlockMath math="\log_3 a^{\frac{1}{2}} \cdot \log_{a^2}(3^a - 8)^{-4} = a - 2" />
 <BlockMath math="\frac{1}{2}\log_3 a \cdot \frac{-4}{2}\log_a(3^a - 8) = a - 2" />
-<BlockMath math="\frac{1}{2} \cdot \frac{-4}{2}\log_3 a \cdot \log_a(3^a - 8) = a - 2" />
 <BlockMath math="-\log_3(3^a - 8) = a - 2" />
-<BlockMath math="\log_3(3^a - 8) = -(a - 2)" />
 <BlockMath math="\log_3(3^a - 8) = 2 - a" />
 </MathContainer>
 
-Convert logarithmic form to exponential form
+Set <InlineMath math="p = 3^a" />. The given condition also tells us that <InlineMath math="p > 8" />. Converting the logarithmic equation to exponential form gives
 
 <MathContainer>
 <BlockMath math="3^a - 8 = 3^{2-a}" />
@@ -26,11 +23,10 @@ Convert logarithmic form to exponential form
 <BlockMath math="p^2 - 8p = 9" />
 <BlockMath math="p^2 - 8p - 9 = 0" />
 <BlockMath math="(p + 1)(p - 9) = 0" />
-<BlockMath math="p + 1 = 0 \cup p - 9 = 0" />
 <BlockMath math="p = -1 \cup p = 9" />
 </MathContainer>
 
-Substitute the value <InlineMath math="p = 9" />
+Only <InlineMath math="p = 9" /> satisfies <InlineMath math="p > 8" />. Therefore,
 
 <MathContainer>
 <BlockMath math="p = 9" />
@@ -38,6 +34,6 @@ Substitute the value <InlineMath math="p = 9" />
 <BlockMath math="a = 2" />
 </MathContainer>
 
-Therefore
+Finally,
 
 <BlockMath math="\log_a\left(\frac{1}{8}\right) = \log_2\left(\frac{1}{2^3}\right) = \log_2 2^{-3} = -3" />

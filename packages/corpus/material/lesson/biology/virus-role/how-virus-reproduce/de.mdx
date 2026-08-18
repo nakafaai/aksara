@@ -1,0 +1,115 @@
+
+export const metadata = {
+  title: "Wie vermehren sich Viren?",
+  description:
+    "Verstehen, wie Viren Wirtszellen für ihre Vermehrung nutzen und wie sich lytischer und lysogener Zyklus vom Andocken bis zur Freisetzung unterscheiden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-22",
+  subject: "Viren und ihre Rolle",
+};
+
+## Viren teilen sich nicht wie Zellen
+
+Zellen können sich durch Teilung vermehren. Viren sind dazu nicht in der Lage. Erst wenn ihr Erbgut eine geeignete Wirtszelle dazu bringt, Virusbestandteile herzustellen, können neue Virionen entstehen. Deshalb beginnt die Abfolge mit dem Kontakt zu einer passenden Zelle.
+
+### Virale Replikation nutzt die Maschinerie einer Zelle
+
+Bakterien können aus einer Zelle zwei Tochterzellen bilden. Viren vermehren sich anders. Ein Virus bringt sein Genom in eine Wirtszelle ein und lenkt deren Maschinerie so um, dass sie neue Virusbestandteile herstellt.
+
+Stell dir die Wirtszelle als Werkstatt mit Personal, Werkzeugen und Material vor. Das Virus liefert den Bauplan. Sobald dieser Bauplan in der Zelle vorliegt, kann die Werkstatt Kapside herstellen, das Virusgenom kopieren, neue Virionen zusammensetzen und sie freisetzen.
+
+Bevor eine Infektion weitergehen kann, muss das Virus meist an einen passenden Rezeptor der Wirtszelle binden. [OpenStax Biology 2e](https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts) erläutert diesen Zusammenhang zwischen Virus, Wirt und Infektion.
+
+Die Einzelheiten unterscheiden sich je nach Virus. Ein Bakteriophage kann nur sein Genom injizieren, während viele tierische Viren als vollständiges Partikel in die Zelle gelangen. Auch die Enzyme für die Genomkopie können von der Wirtszelle, vom Virus oder von beiden stammen. Die entscheidende Gemeinsamkeit bleibt: Virale Replikation braucht eine geeignete Wirtszelle.
+
+### Der lytische oder lysogene Weg eines Bakteriophagen beginnt mit dem Genom
+
+In der Mikrobiologie hilft die Replikationsweise auch dabei, virulente von temperenten Phagen zu unterscheiden. Ein temperenter Phage zerstört seine Wirtszelle nicht unbedingt sofort. [OpenStax Microbiology](https://openstax.org/books/microbiology/pages/6-2-the-viral-life-cycle) erklärt, wie sein Genom in das Wirtschromosom eingebaut und mitkopiert werden kann, bevor es wieder aktiv wird. Die Lysogenie ist daher keine leere Pause.
+
+Der lytische und der lysogene Zyklus sind hier Modelle für Bakteriophagen, kein allgemeines Zwei-Wege-Schema für alle Viren. Tierische Viren nutzen vielfältigere Replikationsstrategien. Latenz oder persistierende Infektion dürfen deshalb nicht einfach Lysogenie genannt werden.
+
+<VirusReplicationLab
+  title={<>Zwei Wege der Bakteriophagenvermehrung</>}
+  description={
+    <>
+      Vergleiche den lytischen Zyklus, der eine Zelle rasch zur Bildung neuer
+      Virionen umlenkt, mit dem lysogenen Zyklus, der das Virusgenom zunächst
+      im Erbgut des Wirts bewahrt.
+    </>
+  }
+  labels={{
+    chooseMode: "Wähle einen Replikationsweg",
+    focusLabel: "Entscheidendes Ereignis",
+    takeawayLabel: "So liest du das Modell",
+    viewLabel: "Modell der Virusvermehrung",
+    items: [
+      {
+        tab: "Lytisch",
+        caption: <>Der Phage bindet an die Oberfläche der Wirtszelle. Der rote Weg zeigt, wie sein Genom eindringt und die Zelle anschließend zur Bildung neuer Virionen umgelenkt wird.</>,
+        focus: <>Achte darauf, dass zunächst das Virusgenom in die Zelle gelangt, nicht der gesamte Phage.</>,
+        takeaway: <>Im lytischen Zyklus übernimmt das Virusgenom die Zellmaschinerie, bis neue Virusbestandteile zusammengesetzt werden können.</>,
+        callouts: [
+          { id: "host-cell", label: "Wirtszelle" },
+          { id: "viral-genome", label: "Virusgenom" },
+        ],
+      },
+      {
+        tab: "Lysogen",
+        caption: <>Die Wirts-DNA ist als orangefarbener Strang dargestellt. Der rote Abschnitt markiert das eingefügte Virusgenom, das zusammen mit der Wirts-DNA kopiert wird.</>,
+        focus: <>In dieser Phase entstehen nicht sofort zahlreiche neue Virionen.</>,
+        takeaway: <>Bei der Lysogenie kann die Virusinformation in der Wirtszelle fortbestehen und später in den lytischen Zyklus wechseln.</>,
+        callouts: [
+          { id: "host-dna", label: "Wirts-DNA" },
+          { id: "viral-genome", label: "Virusgenom" },
+        ],
+      },
+    ],
+  }}
+/>
+
+## Den lytischen Phagenzyklus vom Eintritt aus lesen
+
+Der lytische Zyklus lässt sich als Arbeitskette lesen, an deren Ende neu zusammengesetzte Virionen die Wirtszelle verlassen. Jeder Schritt beantwortet eine andere Frage, von der Erkennung der Zelle bis zur Freisetzung.
+
+### Adsorption entscheidet, welche Zelle passt
+
+Der lytische Zyklus beginnt mit der **Adsorption**, also dem Andocken des Virus an die Wirtszelle. Dafür müssen Virusproteine und Zellrezeptoren zueinander passen. Passt der biologische Schlüssel nicht ins Schloss, kann die Replikation kaum beginnen.
+
+Auf die Adsorption folgt die **Penetration**: Das Virus bringt sein Genom oder einen anderen wesentlichen Bestandteil in die Zelle ein. Während der **Synthese** kopiert die Wirtszelle Virusgenome und stellt Kapsidproteine her. Sind die Bestandteile vorhanden, werden sie bei der **Assemblierung** zu neuen Virionen zusammengesetzt. In vielen lytischen Beispielen folgt die **Lyse**. Dabei bricht die Zelle auf und setzt die neuen Virionen frei.
+
+### Synthese ist nicht dasselbe wie Assemblierung
+
+Die Reihenfolge ist wichtig, weil jede Phase ein anderes Ereignis beschreibt. Die Adsorption zeigt, welche Zelle passt. Die Synthese zeigt, wo Virusbestandteile entstehen. Die Assemblierung zeigt, wie daraus ein vollständiges Virion wird. Die Freisetzung erklärt, wie die Viren weitere Zellen erreichen.
+
+| Phase des lytischen Phagenzyklus | Was geschieht | Häufige Verwechslung |
+| --- | --- | --- |
+| Adsorption | Das Virus bindet an einen passenden Rezeptor der Wirtszelle | Das Andocken ist noch keine Vermehrung |
+| Penetration | Das Virusgenom oder ein anderer wesentlicher Bestandteil gelangt hinein | Nicht bei jedem Virus tritt die gesamte äußere Hülle ein |
+| Synthese | Virusgenome und Proteine werden hergestellt | Die Bestandteile entstehen, sind aber noch nicht zusammengesetzt |
+| Assemblierung und Freisetzung | Neue Virionen werden zusammengesetzt und verlassen die Zelle | Neue Viren entstehen aus Bestandteilen, nicht durch Teilung eines Virus |
+
+> Viren teilen sich nicht wie Bakterien. Die Wirtszelle stellt zunächst virale Teile her, dann werden diese Teile zu neuen Virionen zusammengesetzt.
+
+<Mermaid
+  title="Vom Virusbestandteil zum vollständigen Virion"
+  description="Unterscheide die Herstellung einzelner Bestandteile von ihrer Assemblierung zu neuen Viruspartikeln."
+  chart={`flowchart LR
+    A(["Adsorption"]) --> B(["Penetration"])
+    B --> C(["Synthese"])
+    C --> D(["Assemblierung"])
+    D --> E(["Lyse"])`}
+/>
+
+## Lysogenie bedeutet nicht, dass das Virus verschwunden ist
+
+Im lysogenen Zyklus veranlasst das Virusgenom die Zelle nicht sofort, zahlreiche Virionen herzustellen. Das Genom kann in das Erbgut des Wirts eingebaut oder zusammen mit ihm weitergegeben werden. Teilt sich die Wirtszelle, wird auch die Virusinformation kopiert.
+
+Die Lysogenie wirkt deshalb ruhig, doch das Virusgenom ist nicht verschwunden. Bestimmte Bedingungen können es aktivieren und den Wechsel in den lytischen Zyklus auslösen. Stell es dir wie eine Anweisung im genetischen Archiv der Zelle vor: Sie wird nicht sofort ausgeführt, bleibt aber erhalten.
+
+Ein integriertes Phagengenom heißt **Prophage**. Sein Übergang zurück in den lytischen Zyklus wird **Induktion** genannt. Auch tierische Viren können lang andauernde oder inaktive Infektionen hervorrufen. Begriffe wie Latenz und persistierende Infektion beschreiben jedoch andere biologische Vorgänge und sind keine genauen Synonyme für einen Prophagen im Bakterienchromosom.
+
+## Replikation folgt einer Abfolge
+
+Besonders leicht werden Synthese und Assemblierung verwechselt. Während der Synthese kopiert die Wirtszelle Genome und produziert Kapsidproteine. Erst bei der Assemblierung werden diese Bestandteile zu neuen Virionen zusammengesetzt.
+
+Stell dir also nicht vor, dass ein Virus wächst und sich anschließend teilt. Bei der viralen Replikation entstehen zuerst einzelne Bestandteile, die danach zusammengesetzt werden. Das erklärt, warum sich Viren rasch vermehren können, sobald sie die Maschinerie einer Wirtszelle übernommen haben.

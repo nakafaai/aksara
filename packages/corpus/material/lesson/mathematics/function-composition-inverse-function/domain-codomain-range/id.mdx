@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Domain, Kodomain, dan Range",
-  description: "Pelajari konsep domain, kodomain, dan range fungsi dengan contoh praktis. Pahami batasan input dan himpunan output dalam fungsi matematika.",
+  description:
+    "Bedakan masukan yang diizinkan, himpunan sasaran yang ditetapkan, dan keluaran yang benar-benar dicapai fungsi melalui contoh konkret.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Fungsi Komposisi dan Fungsi Invers",
@@ -8,19 +9,19 @@ export const metadata = {
 
 ## Domain
 
-Domain itu seperti daftar tamu VIP untuk mesin fungsi kita. Ini adalah **kumpulan semua nilai input yang boleh dimasukkan** ke dalam fungsi. Kalau suatu nilai tidak ada di daftar (domain), dia tidak bisa masuk ke mesin fungsi.
+**Domain** adalah himpunan semua masukan yang membuat suatu fungsi terdefinisi. Masukan di luar himpunan ini tidak dapat dihitung oleh fungsi tersebut.
 
 ### Contoh Mencari Domain
 
-Misalkan kita punya fungsi seperti ini:
+Perhatikan fungsi berikut:
 
 <BlockMath math="f(x) = \frac{1}{x}" />
 
-Mesin ini bekerja dengan cara membagi <InlineMath math="1" /> dengan angka yang kamu masukkan. Bolehkah kita memasukkan semua angka? Coba masukkan angka <InlineMath math="0" />.
+Aturannya membagi <InlineMath math="1" /> dengan masukan. Pengujian <InlineMath math="0" /> menunjukkan batasannya:
 
 <BlockMath math="f(0) = \frac{1}{0}" />
 
-Wah, kita tidak bisa membagi dengan nol! Itu tidak boleh dalam matematika. Jadi, angka <InlineMath math="0" /> tidak termasuk dalam daftar tamu (domain) fungsi ini. Semua angka lain boleh masuk.
+Pembagian dengan nol tidak terdefinisi. Karena itu, <InlineMath math="0" /> dikeluarkan dari domain, sedangkan semua bilangan real lainnya diperbolehkan.
 
 Jadi, domain fungsi <InlineMath math="f(x) = \frac{1}{x}" /> adalah semua bilangan nyata kecuali <InlineMath math="0" />.
 
@@ -28,17 +29,17 @@ Contoh lain:
 
 <BlockMath math="g(x) = \sqrt{x}" />
 
-Mesin ini mencari akar kuadrat dari input. Bolehkah kita memasukkan angka negatif, misalnya <InlineMath math="-4" />?
+Aturan ini mengambil akar kuadrat dari masukan. Pengujian <InlineMath math="-4" /> menghasilkan:
 
 <BlockMath math="g(-4) = \sqrt{-4}" />
 
-Di dunia bilangan nyata, kita tidak bisa mengakarkuadratkan bilangan negatif. Jadi, semua bilangan negatif tidak boleh masuk. Hanya angka <InlineMath math="0" /> dan angka positif yang boleh.
+Pada bilangan real, akar kuadrat memerlukan bilangan di dalam akar yang tidak negatif. Jadi, hanya <InlineMath math="0" /> dan masukan positif yang diperbolehkan.
 
 Jadi, domain fungsi <InlineMath math="g(x) = \sqrt{x}" /> adalah semua bilangan nyata yang lebih besar dari atau sama dengan <InlineMath math="0" /> (<InlineMath math="x \ge 0" />).
 
 ## Kodomain
 
-Kodomain itu seperti **katalog semua kemungkinan output** yang bisa dikeluarkan oleh mesin fungsi. Ini adalah kumpulan nilai tempat kita _mengharapkan_ outputnya berada. Kita yang menentukan katalog ini saat mendefinisikan fungsi.
+**Kodomain** adalah himpunan sasaran yang ditetapkan sebagai bagian dari definisi fungsi. Setiap output harus menjadi anggota himpunan ini, tetapi fungsi tidak harus mencapai setiap anggotanya.
 
 Misalnya, kita definisikan sebuah fungsi <InlineMath math="f(x) = 2x" />.
 
@@ -46,17 +47,17 @@ Kita tentukan **Domain** (input) adalah himpunan bilangan asli:
 
 <BlockMath math="\{1, 2, 3, ...\}" />
 
-Lalu, kita tentukan **Kodomain** (kemungkinan output) adalah himpunan bilangan bulat:
+Lalu, kita tentukan **kodomain** sebagai himpunan bilangan bulat:
 
 <BlockMath math="\{..., -2, -1, 0, 1, 2, ...\}" />
 
-Dengan menentukan kodomain sebagai bilangan bulat, kita menyatakan bahwa kita _berharap_ hasil dari fungsi <InlineMath math="f(x)=2x" /> ini adalah bilangan bulat. Meskipun kita tahu bahwa jika inputnya bilangan asli, outputnya pasti bilangan genap positif (yang merupakan Range):
+Dengan memilih bilangan bulat sebagai kodomain, kita menetapkan himpunan tempat setiap nilai <InlineMath math="f(x)=2x" /> harus berada. Untuk input bilangan asli, fungsi ini sebenarnya hanya menghasilkan bilangan genap positif. Nilai yang tercapai tersebut membentuk range:
 
 <BlockMath math="\{2, 4, 6, ...\}" />
 
-Kodomain yang kita tentukan (bilangan bulat) tetap valid karena semua hasil aktualnya (range) termasuk dalam kodomain tersebut.
+Kodomain yang dipilih tetap sah karena setiap hasil aktual dalam range merupakan bilangan bulat.
 
-Kodomain memberi tahu kita 'jenis' nilai apa yang mungkin keluar, bahkan jika tidak semua nilai dalam kodomain itu benar-benar muncul sebagai hasil.
+Jadi, kodomain menjelaskan ruang sasaran yang diizinkan. Kodomain bukan daftar nilai yang pasti dihasilkan fungsi.
 
 ## Range
 
@@ -95,7 +96,7 @@ Tidak semua anggota kodomain menjadi bagian dari range.
 
 ## Kenapa Ini Penting?
 
-Memahami domain, kodomain, dan range sangat penting karena membantu kita mendefinisikan fungsi dengan benar dan memahami batasan-batasannya. Tanpa domain yang jelas, kita mungkin mencoba memasukkan nilai yang "merusak" fungsi (seperti membagi dengan nol). Tanpa kodomain dan range, kita tidak tahu persis seperti apa output yang bisa diharapkan.
+Domain, kodomain, dan range menjawab pertanyaan yang berbeda. Domain mencegah input tidak sah seperti pembagian dengan nol. Kodomain menetapkan ruang sasaran, sedangkan range menunjukkan nilai yang benar-benar dicapai fungsi.
 
 ## Hubungan Matematis
 
@@ -111,4 +112,24 @@ Hubungan penting antara ketiganya adalah bahwa Range selalu merupakan himpunan b
 
 <BlockMath math="R \subseteq K" />
 
-Artinya, semua nilai yang benar-benar keluar dari fungsi (Range) pasti termasuk dalam kumpulan nilai yang _mungkin_ keluar (Kodomain), tetapi tidak semua nilai dalam Kodomain harus menjadi hasil.
+Setiap nilai yang benar-benar dicapai fungsi harus termasuk dalam kodomain. Arah sebaliknya tidak wajib: suatu anggota kodomain mungkin tidak pernah muncul sebagai output.
+
+## Periksa Pemahamanmu
+
+Diberikan <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> dengan <InlineMath math="h(x)=\frac1{x-2}" />.
+
+1. Mengapa <InlineMath math="2" /> dikeluarkan dari domain?
+2. Apakah <InlineMath math="0" /> dapat menjadi anggota range?
+3. Nyatakan range <InlineMath math="h" />.
+
+### Pembahasan
+
+1. Pada <InlineMath math="x=2" />, penyebutnya bernilai nol:
+
+   <BlockMath math="h(2)=\frac1{2-2}=\frac10" />
+
+   Ekspresi tersebut tidak terdefinisi. Jadi, <InlineMath math="2" /> tidak dapat menjadi anggota domain.
+2. Tidak. Pecahan dengan pembilang <InlineMath math="1" /> tidak mungkin bernilai <InlineMath math="0" />.
+3. Setiap nilai real selain nol dapat dicapai. Untuk <InlineMath math="y\neq0" />, pilih <InlineMath math="x=2+\frac1y" /> sehingga <InlineMath math="h(x)=y" />. Jadi:
+
+   <BlockMath math="R_h=\mathbb{R}\setminus\{0\}" />

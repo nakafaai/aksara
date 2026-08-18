@@ -4,24 +4,18 @@ export const metadata = {
   date: "2025-10-11",
 };
 
-Let <InlineMath math="y = x - \frac{\pi}{2}" /> then <InlineMath math="x = y + \frac{\pi}{2}" />. Solve the limit with the above substitution.
+Let <InlineMath math="y=x-\frac{\pi}{2}" />, so <InlineMath math="x=y+\frac{\pi}{2}" /> and <InlineMath math="y\to0" />.
 
 <MathContainer>
-<BlockMath math="= \lim_{y \to 0} \frac{\sec 2\left(y + \frac{\pi}{2}\right) + 2}{\tan 2\left(y + \frac{\pi}{2}\right)}" />
-<BlockMath math="= \lim_{y \to 0} \frac{-\sec 2y + 2}{\tan 2y}" />
-<BlockMath math="= \lim_{y \to 0} \frac{-\frac{1}{\cos 2y} + 2}{\frac{\sin 2y}{\cos 2y}}" />
-<BlockMath math="= \lim_{y \to 0} \frac{\frac{-1 + 2 \cos 2y}{\cos 2y}}{\frac{\sin 2y}{\cos 2y}}" />
-<BlockMath math="= \lim_{y \to 0} \frac{-1 + 2 \cos 2y}{\sin 2y}" />
+<BlockMath math="\lim_{y\to0}\frac{\sec(2y+\pi)+1}{\tan(2y+\pi)}" />
+<BlockMath math="=\lim_{y\to0}\frac{-\sec 2y+1}{\tan 2y}" />
+<BlockMath math="=\lim_{y\to0}\frac{\cos 2y-1}{\sin 2y}" />
 </MathContainer>
 
-Use L'Hôpital's rule
+Use <InlineMath math="\cos 2y-1=-2\sin^2 y" /> and <InlineMath math="\sin 2y=2\sin y\cos y" />.
 
 <MathContainer>
-<BlockMath math="= \lim_{y \to 0} \frac{-4 \sin 2y}{2 \cos 2y}" />
-<BlockMath math="= \lim_{y \to 0} -2 \frac{\sin 2y}{\cos 2y}" />
-<BlockMath math="= \lim_{y \to 0} -2 \tan 2y" />
-<BlockMath math="= -2 \tan(2 \cdot 0)" />
-<BlockMath math="= -2 \tan 0" />
-<BlockMath math="= -2 \cdot 0" />
-<BlockMath math="= 0" />
+<BlockMath math="\lim_{y\to0}\frac{-2\sin^2 y}{2\sin y\cos y}" />
+<BlockMath math="=\lim_{y\to0}(-\tan y)" />
+<BlockMath math="=0" />
 </MathContainer>

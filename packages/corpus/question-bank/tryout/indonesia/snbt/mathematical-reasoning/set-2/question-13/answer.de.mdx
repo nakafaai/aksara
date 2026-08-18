@@ -1,0 +1,45 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-01-31",
+};
+
+**Analyse der Strecke**
+
+Die Rundbahn folgt der Kontrollpunktfolge <InlineMath math="A \to B \to C \to D \to A" />. Weil alle Abstände gleich sind, können wir die zurückgelegten Abschnitte direkt zählen. Vom Punkt <InlineMath math="A" /> aus hat der Läufer den Kontrollpunkt <InlineMath math="C" /> bereits <InlineMath math="3\text{-mal}" /> passiert.
+
+1.  Erreichen von <InlineMath math="C" /> zum <InlineMath math="1" />sten Mal: <InlineMath math="A \to B \to C" /> (<InlineMath math="2\text{ Segmente}" />).
+2.  Erreichen von <InlineMath math="C" /> zum <InlineMath math="2" />-ten Mal: <InlineMath math="C \to D \to A \to B \to C" /> (<InlineMath math="4\text{ Segmente}" />).
+3.  Erreichen von <InlineMath math="C" /> zum <InlineMath math="3" />ten Mal: <InlineMath math="C \to D \to A \to B \to C" /> (<InlineMath math="4\text{ Segmente}" />).
+
+Die insgesamt durchlaufenen Segmente sind die Summe dieser Etappen.
+
+<MathContainer>
+  <BlockMath math="\text{Gesamtsegmente} = 2 + 4 + 4 = 10 \text{ Segmente}" />
+</MathContainer>
+
+**Berechnung der Zeit pro Segment**
+
+Es ist bekannt, dass die zum Abdecken von <InlineMath math="10\text{ Segmente}" /> erforderliche Zeit <InlineMath math="12\text{ Minuten}" /> beträgt. Wir können die Zeit ermitteln, die für ein Segment benötigt wird.
+
+<MathContainer>
+  <BlockMath math="\text{Zeit pro Segment} = \frac{12}{10} = 1{,}2 \text{ Minuten}" />
+</MathContainer>
+
+**Berechnung der Gesamtzeit für die <InlineMath math="4" />-te Ankunft in C**
+
+Um den Kontrollpunkt <InlineMath math="C" /> zum vierten Mal zu erreichen, muss der Läufer eine weitere volle Runde von seiner letzten Position (am <InlineMath math="3" /> <InlineMath math="C" />) absolvieren. Der zusätzliche Pfad ist <InlineMath math="C \to D \to A \to B \to C" />, der aus <InlineMath math="4\text{ Segmente}" /> besteht.
+
+Der zusätzliche Zeitaufwand beträgt:
+
+<MathContainer>
+  <BlockMath math="\text{Zusätzliche Zeit} = 4 \times 1{,}2 = 4{,}8 \text{ Minuten}" />
+</MathContainer>
+
+Somit ist die Gesamtzeit vom Start bis zum Erreichen des Kontrollpunkts <InlineMath math="C" /> zum vierten Mal die Summe aus der Anfangszeit und der zusätzlichen Zeit.
+
+<MathContainer>
+  <BlockMath math="\text{Gesamtzeit} = 12 + 4{,}8 = 16{,}8 \text{ Minuten}" />
+</MathContainer>
+
+Daher beträgt die erforderliche Zeit <InlineMath math="16{,}8\text{ Minuten}" />.

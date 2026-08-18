@@ -1,0 +1,255 @@
+export const metadata = {
+   title: "Permutationen mit identischen Objekten",
+   description: "Sind einige Objekte nicht unterscheidbar, zählt die Multinomialformel nur die sichtbaren Anordnungen. Beispiele mit Buchstaben, Farben und Ziffern zeigen den vollständigen Rechenweg.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Warum identische Objekte die Anzahl ändern
+
+Eine **Permutation mit identischen Objekten** zählt Anordnungen, bei denen sich einige Objekte nicht voneinander unterscheiden lassen. Ihre Anzahl ist kleiner als bei einer gewöhnlichen Permutation, denn **der Austausch identischer Objekte erzeugt keine neue Anordnung**.
+
+Das Wort „MAMA“ zeigt den Grund. Es besteht aus <InlineMath math="4" /> Buchstaben, aber die beiden <InlineMath math="M" /> sind ebenso wenig unterscheidbar wie die beiden <InlineMath math="A" />. Würden wir die Kopien vorübergehend beschriften, zählte ein Tausch der Beschriftungen als neue Permutation, obwohl das sichtbare Wort unverändert bliebe.
+
+## Formel für Permutationen mit identischen Objekten
+
+Sind <InlineMath math="n" /> Objekte in Gruppen identischer Objekte aufgeteilt, ergibt sich **die Anzahl der verschiedenen Anordnungen** aus:
+
+<MathContainer>
+<BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3! \times \cdots \times r_k!}" />
+</MathContainer>
+
+**Erklärung:**
+
+- <InlineMath math="n" /> = Gesamtzahl der Objekte
+- <InlineMath math="r_1, r_2, r_3, \ldots, r_k" /> = Anzahl identischer Objekte in jeder Gruppe
+- <InlineMath math="k" /> = Anzahl der Gruppen identischer Objekte
+- Die Häufigkeiten umfassen jedes Objekt, also <InlineMath math="r_1 + r_2 + \cdots + r_k = n" />
+
+**So bestimmen wir die Gruppen:** Wir zählen, wie oft jedes unterschiedliche Objekt vorkommt. Die Division durch <InlineMath math="r_i!" /> entfernt dann die mehrfach gezählten Beschriftungen innerhalb der jeweiligen Gruppe.
+
+## Anwendung auf Wörter und Buchstaben
+
+### Beispielwort KALIMANTAN
+
+Am Wort „KALIMANTAN“ lässt sich der Rechenweg vollständig verfolgen.
+
+**Buchstaben erfassen:**
+Zuerst schreiben wir alle Buchstaben auf: K-A-L-I-M-A-N-T-A-N
+
+Gesamtzahl der Buchstaben: <InlineMath math="10" />
+
+Häufigkeiten: <InlineMath math="K" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="A" /> kommt <InlineMath math="3 \text{ Mal}" /> vor (Positionen <InlineMath math="2, 6, 9" />), <InlineMath math="L" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="I" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="M" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="N" /> kommt <InlineMath math="2 \text{ Mal}" /> vor (Positionen <InlineMath math="7, 10" />) und <InlineMath math="T" /> kommt <InlineMath math="1 \text{ Mal}" /> vor.
+
+**Berechnung:**
+
+<MathContainer>
+<BlockMath math="P = \frac{10!}{1! \times 3! \times 1! \times 1! \times 1! \times 2! \times 1!}" />
+<BlockMath math="= \frac{10!}{3! \times 2!}" />
+</MathContainer>
+
+Zuerst kürzen wir die gemeinsamen Faktoren:
+
+<MathContainer>
+<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3!}{3! \times 2!}" />
+<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2!}" />
+<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2}" />
+</MathContainer>
+
+Nun rechnen wir schrittweise:
+- Zuerst teilen wir <InlineMath math="10" /> durch <InlineMath math="2" />: <InlineMath math="\frac{10}{2} = 5" />
+- Es bleibt: <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4" />
+- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
+
+### Beispielwort PALAPA
+
+Das Wort „PALAPA“ hat <InlineMath math="6" /> Buchstaben:
+Wir schreiben sie der Reihe nach auf: P-A-L-A-P-A
+
+**Häufigkeiten:** <InlineMath math="P" /> kommt <InlineMath math="2 \text{ Mal}" /> vor (Positionen <InlineMath math="1, 5" />), <InlineMath math="A" /> kommt <InlineMath math="3 \text{ Mal}" /> vor (Positionen <InlineMath math="2, 4, 6" />) und <InlineMath math="L" /> kommt <InlineMath math="1 \text{ Mal}" /> vor.
+
+Die benötigten Fakultäten sind:
+- <InlineMath math="6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" />
+- <InlineMath math="2! = 2 \times 1 = 2" />
+- <InlineMath math="3! = 3 \times 2 \times 1 = 6" />
+
+Die Berechnung lautet also:
+
+<MathContainer>
+<BlockMath math="P = \frac{6!}{2! \times 3! \times 1!}" />
+<BlockMath math="= \frac{6 \times 5 \times 4 \times 3!}{2! \times 3! \times 1!}" />
+<BlockMath math="= \frac{6 \times 5 \times 4}{2 \times 1}" />
+<BlockMath math="= \frac{6 \times 5 \times 4}{2}" />
+</MathContainer>
+
+Wir vereinfachen, indem wir <InlineMath math="6" /> durch <InlineMath math="2" /> teilen:
+- <InlineMath math="\frac{6}{2} = 3" />
+- Damit erhalten wir <InlineMath math="3 \times 5 \times 4 = 60 \text{ Anordnungen}" />.
+
+## Systematische Berechnungsschritte
+
+Für Aufgaben mit identischen Objekten hilft dieses feste Vorgehen:
+
+1. **Gesamtzahl bestimmen**: Lies den Wert von <InlineMath math="n" /> ab.
+2. **Identische Objekte gruppieren**: Fasse gleiche Objekte zusammen.
+3. **Häufigkeiten zählen**: Bestimme, wie oft jedes Objekt vorkommt.
+4. **Formel einsetzen**: Übertrage die Häufigkeiten in die Permutationsformel.
+5. **Fakultäten berechnen**: Kürze zuerst und rechne dann sorgfältig aus.
+
+### Wort BANANA
+
+Nun wenden wir die Schritte auf das Wort „BANANA“ an:
+
+1. **Gesamtzahl der Objekte**
+
+   Wir schreiben die Buchstaben der Reihe nach auf: B-A-N-A-N-A
+
+   Gesamtzahl der Buchstaben: <InlineMath math="n = 6" />
+
+2. **Identische Objekte gruppieren**
+
+   Gleiche Buchstaben gehören in dieselbe Gruppe:
+   - B-Gruppe: B
+   - A-Gruppe: A, A, A
+   - N-Gruppe: N, N
+
+3. **Häufigkeiten zählen**
+
+   Nun zählen wir jede Gruppe:
+   - <InlineMath math="B" /> kommt <InlineMath math="1 \text{ Mal}" /> vor.
+   - <InlineMath math="A" /> kommt <InlineMath math="3 \text{ Mal}" /> vor.
+   - <InlineMath math="N" /> kommt <InlineMath math="2 \text{ Mal}" /> vor.
+
+4. **Formel anwenden**
+
+   Wir setzen die Häufigkeiten in die Formel ein:
+
+   <MathContainer>
+   <BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3!}" />
+   <BlockMath math="P = \frac{6!}{1! \times 3! \times 2!}" />
+   </MathContainer>
+
+5. **Fakultät berechnen**
+
+   Zuerst vereinfachen wir den Bruch:
+
+   <MathContainer>
+   <BlockMath math="P = \frac{6!}{1! \times 3! \times 2!}" />
+   <BlockMath math="= \frac{6 \times 5 \times 4 \times 3!}{1! \times 3! \times 2!}" />
+   <BlockMath math="= \frac{6 \times 5 \times 4}{1 \times 2!}" />
+   <BlockMath math="= \frac{6 \times 5 \times 4}{2}" />
+   </MathContainer>
+
+   Nach dem Kürzen rechnen wir aus:
+   - Wir teilen <InlineMath math="6" /> durch <InlineMath math="2" />: <InlineMath math="\frac{6}{2} = 3" />
+   - Es bleibt: <InlineMath math="3 \times 5 \times 4 = 60" />
+
+Das Wort „BANANA“ besitzt also **<InlineMath math="60" /> verschiedene Anordnungen**.
+
+## Unterschied zur gewöhnlichen Permutation
+
+**Gewöhnliche Permutation**: Alle Objekte sind verschieden; die Formel lautet <InlineMath math="n!" />.
+
+**Permutation mit identischen Objekten**: Gleiche Objekte erzeugen keine neue sichtbare Anordnung; die Formel lautet:
+
+<MathContainer>
+<BlockMath math="\frac{n!}{r_1! \times r_2! \times \cdots \times r_k!}" />
+</MathContainer>
+
+**Vergleichsbeispiel:**
+
+Die verschiedenen Buchstaben A, B, C, D lassen sich auf <InlineMath math="4! = 24 \text{ Arten}" /> anordnen.
+
+Bei den Buchstaben <InlineMath math="A, A, B, C" /> sind zwei Objekte identisch:
+
+<MathContainer>
+<BlockMath math="\frac{4!}{2!} = \frac{24}{2} = 12 \text{ Anordnungen}" />
+</MathContainer>
+
+Identische Objekte **verringern** die Anzahl, weil ihr Austausch keine neue sichtbare Anordnung erzeugt.
+
+## Übungen
+
+1. Wie viele Buchstabenanordnungen können aus dem Wort „MATEMATIKA“ gebildet werden?
+
+2. Ein Blumenladen ordnet <InlineMath math="8" /> Rosen in einer Reihe. Nur die Farbe zählt: <InlineMath math="3" /> sind rot, <InlineMath math="3" /> sind weiß und <InlineMath math="2" /> sind gelb. Wie viele Farbanordnungen sind möglich?
+
+3. Wie viele Zahlen lassen sich aus den Ziffern <InlineMath math="1, 1, 2, 2, 2, 3" /> als <InlineMath math="6" />-stellige Zahlen bilden?
+
+4. Wie viele verschiedene Buchstabenanordnungen hat das Wort „INDONESIA“?
+
+### Lösungen
+
+1. Das Wort „MATEMATIKA“ hat <InlineMath math="10" /> Buchstaben
+
+   **Buchstaben nacheinander:** M-A-T-E-M-A-T-I-K-A
+
+   **Häufigkeiten:** <InlineMath math="M" /> kommt <InlineMath math="2 \text{ Mal}" /> vor (Positionen <InlineMath math="1, 5" />), <InlineMath math="A" /> kommt <InlineMath math="3 \text{ Mal}" /> vor (Positionen <InlineMath math="2, 6, 10" />), <InlineMath math="T" /> kommt <InlineMath math="2 \text{ Mal}" /> vor (Positionen <InlineMath math="3, 7" />), <InlineMath math="E" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="I" /> kommt <InlineMath math="1 \text{ Mal}" /> vor und <InlineMath math="K" /> kommt <InlineMath math="1 \text{ Mal}" /> vor.
+
+   Wir kürzen zunächst die gemeinsamen Faktoren:
+
+   <MathContainer>
+   <BlockMath math="P = \frac{10!}{2! \times 3! \times 2! \times 1! \times 1! \times 1!}" />
+   <BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3!}{2! \times 3! \times 2!}" />
+   <BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2! \times 2!}" />
+   <BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{4}" />
+   </MathContainer>
+
+   Danach rechnen wir aus:
+   - Das Produkt ist <InlineMath math="10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 604\,800" />.
+   - Durch <InlineMath math="4" /> geteilt ergibt das <InlineMath math="\frac{604\,800}{4} = 151\,200 \text{ Anordnungen}" />.
+
+2. Es gibt <InlineMath math="8" /> Farbpositionen: Rot kommt <InlineMath math="3" />-mal vor, Weiß <InlineMath math="3" />-mal und Gelb <InlineMath math="2" />-mal.
+
+   Wir kürzen zunächst die gemeinsamen Faktoren:
+
+   <MathContainer>
+   <BlockMath math="P = \frac{8!}{3! \times 3! \times 2!}" />
+   <BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4 \times 3!}{3! \times 3! \times 2!}" />
+   <BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4}{3! \times 2!}" />
+   <BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4}{6 \times 2}" />
+   <BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4}{12}" />
+   </MathContainer>
+
+   Danach rechnen wir weiter:
+   - Wir kürzen <InlineMath math="6" /> gegen <InlineMath math="12" />: <InlineMath math="\frac{6}{12} = \frac{1}{2}" />.
+   - Es bleibt: <InlineMath math="8 \times 7 \times \frac{1}{2} \times 5 \times 4" />.
+   - <InlineMath math="= 4 \times 7 \times 5 \times 4 = 560 \text{ Anordnungen}" />
+
+3. Ziffern <InlineMath math="1, 1, 2, 2, 2, 3" /> (insgesamt <InlineMath math="6" /> Ziffern)
+
+   **Häufigkeiten:** Die Ziffer <InlineMath math="1" /> kommt <InlineMath math="2 \text{ Mal}" /> vor, die Ziffer <InlineMath math="2" /> kommt <InlineMath math="3 \text{ Mal}" /> vor und die Ziffer <InlineMath math="3" /> kommt <InlineMath math="1 \text{ Mal}" /> vor.
+
+   Wir kürzen zunächst die gemeinsamen Faktoren:
+
+   <MathContainer>
+   <BlockMath math="P = \frac{6!}{2! \times 3! \times 1!}" />
+   <BlockMath math="= \frac{6 \times 5 \times 4 \times 3!}{2! \times 3!}" />
+   <BlockMath math="= \frac{6 \times 5 \times 4}{2!}" />
+   <BlockMath math="= \frac{6 \times 5 \times 4}{2}" />
+   </MathContainer>
+
+   Danach rechnen wir aus:
+   - Wir teilen <InlineMath math="6" /> durch <InlineMath math="2" />: <InlineMath math="\frac{6}{2} = 3" />.
+   - Damit erhalten wir <InlineMath math="3 \times 5 \times 4 = 60 \text{ Zahlen}" />.
+
+4. Das Wort „INDONESIA“ hat <InlineMath math="9" /> Buchstaben
+
+   **Buchstaben nacheinander:** I-N-D-O-N-E-S-I-A
+
+   **Häufigkeiten:** <InlineMath math="I" /> kommt <InlineMath math="2 \text{ Mal}" /> vor (Positionen <InlineMath math="1, 8" />), <InlineMath math="N" /> kommt <InlineMath math="2 \text{ Mal}" /> vor (Positionen <InlineMath math="2, 5" />), <InlineMath math="D" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="O" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="E" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="S" /> kommt <InlineMath math="1 \text{ Mal}" /> vor und <InlineMath math="A" /> kommt <InlineMath math="1 \text{ Mal}" /> vor.
+
+   Wir kürzen zunächst die gemeinsamen Faktoren:
+
+   <MathContainer>
+   <BlockMath math="P = \frac{9!}{2! \times 2! \times 1! \times 1! \times 1! \times 1! \times 1!}" />
+   <BlockMath math="= \frac{9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2!}{2! \times 2!}" />
+   <BlockMath math="= \frac{9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3}{2!}" />
+   <BlockMath math="= \frac{9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3}{2}" />
+   </MathContainer>
+
+   Danach rechnen wir aus:
+   - Wir teilen durch <InlineMath math="2" />: <InlineMath math="\frac{8}{2} = 4" />.
+   - Es bleibt: <InlineMath math="9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3" />.
+   - <InlineMath math="= 9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3 = 90\,720 \text{ Anordnungen}" />

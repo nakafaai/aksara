@@ -1,0 +1,105 @@
+
+export const metadata = {
+  title: "Methode der kleinsten Quadrate",
+  description: "Lerne, wie die Methode der kleinsten Quadrate eine Regressionsgerade durch die Minimierung quadrierter Residuen bestimmt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-30",
+  subject: "Statistik",
+};
+
+## Was ist die Methode der kleinsten Quadrate?
+
+Angenommen, Beobachtungs- oder Versuchsdaten bestehen aus Wertepaaren <InlineMath math="(x, y)" />. Folgt ihr Streudiagramm einem annähernd geradlinigen Trend, lassen sich viele verschiedene Geraden durch die Punktwolke legen.
+
+Nun gibt es viele Geraden, die wir durch die Punktwolke legen könnten. Welche davon beschreibt den gesamten Datensatz **am besten**?
+
+Die **Methode der kleinsten Quadrate** beantwortet diese Frage mit einem eindeutigen Kriterium: Die Summe der quadrierten vertikalen Residuen soll möglichst klein sein. Die dadurch bestimmte Steigung ist eindeutig, solange die beobachteten <InlineMath math="x" />-Werte nicht alle gleich sind.
+
+## Minimierung quadrierter Residuen
+
+Die angepasste Gerade wird über das vertikale **Residuum** an jedem beobachteten Punkt festgelegt:
+
+1.  **Vorhersagegerade:** Wir betrachten eine Gerade der Form <InlineMath math="\hat{y} = a + bx" />.
+2.  **Residuum:** Für jeden beobachteten Wert <InlineMath math="y_i" /> liefert die Gerade einen vorhergesagten Wert <InlineMath math="\hat{y}_i" />. Ihre vorzeichenbehaftete vertikale Differenz heißt **Residuum**:
+
+    <BlockMath math="e_i = y_i - \hat{y}_i" />
+
+3.  **Quadratsumme minimieren:** Gesucht ist die Gerade, für die die **Summe aller quadrierten Residuen** <InlineMath math="\sum e_i^2" /> **so klein wie möglich** wird. Daher stammt der Name der Methode.
+
+**Warum die Residuen quadrieren?**
+
+- Durch das Quadrieren können sich positive und negative Residuen nicht gegenseitig aufheben.
+- Große Residuen gehen wegen der Quadrierung besonders stark in die Summe ein.
+
+## Visualisierungsbeispiel
+
+Ein Unternehmen untersucht beispielsweise den Zusammenhang zwischen Werbekosten in Millionen Rupiah und Verkaufszahlen in Tausend Stück. Das Streudiagramm zeigt die erhobenen Daten, die Regressionsgerade und die vertikalen Residuen.
+
+<ScatterDiagram
+  title="Regressionsgerade für Werbekosten und Verkaufszahlen"
+  description="Die Gerade beschreibt den linearen Trend und minimiert die Summe der quadrierten vertikalen Residuen."
+  xAxisLabel="Werbekosten (Millionen Rupiah)"
+  yAxisLabel="Produktverkäufe (in Tausend Einheiten)"
+  datasets={[
+    {
+      name: "Marketingdaten",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 50 },
+        { x: 3, y: 65 },
+        { x: 4, y: 42 },
+        { x: 4.5, y: 75 },
+        { x: 5, y: 70 },
+        { x: 6, y: 90 },
+        { x: 7, y: 85 },
+        { x: 7.5, y: 65 },
+        { x: 8, y: 112 },
+        { x: 9, y: 115 },
+        { x: 10, y: 105 },
+        { x: 11, y: 125 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{
+    color: "var(--chart-4)",
+  }}
+/>
+
+Die eingezeichnete Gerade ist die mit der Methode der kleinsten Quadrate bestimmte _Regressionsgerade_. Sie fasst den allgemeinen linearen Trend zusammen. Die gestrichelten Strecken sind die Residuen, deren Quadratsumme minimiert wird.
+
+## Mathematische Basis
+
+Mathematisch suchen wir eine Gerade der Form:
+
+<BlockMath math="\hat{y} = a + bx" />
+
+Der Achsenabschnitt <InlineMath math="a" /> und die Steigung <InlineMath math="b" /> werden so gewählt, dass
+
+<BlockMath math="\sum e_i^2 = \sum (y_i - \hat{y}_i)^2 = \sum (y_i - (a + bx_i))^2" />
+
+möglichst klein wird.
+
+Mit Differenzialrechnung lassen sich daraus Formeln für <InlineMath math="a" /> und <InlineMath math="b" /> ableiten. Die Herleitung benötigen wir an dieser Stelle noch nicht:
+
+<MathContainer>
+  <BlockMath math="b = \frac{n(\sum xy) - (\sum x)(\sum y)}{n(\sum x^2) - (\sum x)^2}" />
+  <BlockMath math="a = \bar{y} - b\bar{x}" />
+</MathContainer>
+
+Dabei bedeutet:
+
+- <InlineMath math="n" /> = Anzahl der Datenpaare.
+- <InlineMath math="\sum x" />, <InlineMath math="\sum y" /> = Summe aller <InlineMath math="x" />- beziehungsweise
+  <InlineMath math="y" />-Werte.
+- <InlineMath math="\sum xy" /> = Summe der Produkte der zusammengehörigen <InlineMath math="x" />- und <InlineMath math="y" />-Werte.
+- <InlineMath math="\sum x^2" /> = Summe der quadrierten <InlineMath math="x" />-Werte.
+- <InlineMath math="\bar{x}" /> = Mittelwert von <InlineMath math="x" /> (<InlineMath math="\frac{\sum x}{n}" />
+  ).
+- <InlineMath math="\bar{y}" /> = Mittelwert von <InlineMath math="y" /> (<InlineMath math="\frac{\sum y}{n}" />
+  ).
+
+Die Methode der kleinsten Quadrate bestimmt damit systematisch die Gerade, die den linearen Trend nach einem klaren Kriterium am besten beschreibt: Ihre Summe quadrierter Residuen ist minimal.
+
+Sind alle <InlineMath math="x" />-Werte gleich, gilt dagegen <InlineMath math="n(\sum x^2)-(\sum x)^2=0" />. Der Nenner der Steigungsformel ist dann null, und die Daten bestimmen keine eindeutige Regressionssteigung.

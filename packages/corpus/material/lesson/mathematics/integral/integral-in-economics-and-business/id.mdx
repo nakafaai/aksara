@@ -20,7 +20,7 @@ Mari kita pelajari bagaimana integral dapat membantu menganalisis penjualan suat
 
 Setelah melakukan riset pasar, mereka menemukan bahwa laju penjualan per bulan dapat dimodelkan dengan fungsi <InlineMath math="f(t) = 2000\sqrt{t + 1} + 800 \text{ unit}" /> per bulan, di mana <InlineMath math="t" /> adalah waktu dalam bulan setelah peluncuran.
 
-Nah, sekarang pertanyaannya: berapa **total penjualan** dalam <InlineMath math="3 \text{ bulan}" /> pertama? Di sinilah integral berperan. Kita perlu mengintegralkan fungsi laju penjualan:
+Berapa **total penjualan** dalam <InlineMath math="3 \text{ bulan}" /> pertama? Karena yang diketahui adalah lajunya, kita perlu mengintegralkan fungsi tersebut:
 
 <BlockMath math="S = \int_{0}^{3} (2000\sqrt{t + 1} + 800) \, dt" />
 
@@ -36,61 +36,63 @@ Untuk integral yang mengandung akar, kita bisa gunakan substitusi. Misalkan <Inl
 <MathContainer>
 <BlockMath math="S = 2000 \int_{1}^{4} u^{1/2} \, du + 2400" />
 <BlockMath math="S = 2000 \left[\frac{2}{3}u^{3/2}\right]_{1}^{4} + 2400" />
-<BlockMath math="S = \frac{4000}{3}(8 - 1) + 2400 = \frac{28000}{3} + 2400" />
+<BlockMath math="S = \frac{4000}{3}(8 - 1) + 2400 = \frac{28000}{3} + \frac{7200}{3} = \frac{35200}{3}" />
 </MathContainer>
 
-Hasil akhirnya adalah <InlineMath math="S = 9333 + 2400 = 11733 \text{ unit}" /> smartphone terjual dalam <InlineMath math="3 \text{ bulan}" /> pertama.
+Model kontinu tersebut memprediksi <InlineMath math="S = \frac{35200}{3} \approx 11733{,}33" /> unit smartphone dalam <InlineMath math="3 \text{ bulan}" /> pertama. Jika dinyatakan sebagai jumlah perangkat utuh, hasilnya sekitar <InlineMath math="11733" /> smartphone.
 
-## Analisis Keuntungan dan Pendapatan
+## Analisis Pertumbuhan Pendapatan
 
-Sekarang mari kita lihat contoh yang berbeda. Misalkan sebuah startup teknologi memiliki laju pertumbuhan pendapatan yang mengikuti pola eksponensial <InlineMath math="R'(t) = 5000e^{0.1t}" /> ribu rupiah per bulan, di mana <InlineMath math="t" /> adalah waktu dalam bulan.
+Sekarang mari kita lihat contoh yang berbeda. Misalkan sebuah startup teknologi memiliki laju pertumbuhan pendapatan yang mengikuti pola eksponensial <InlineMath math="R'(t) = 5000e^{0{,}1t}" /> ribu rupiah per bulan, di mana <InlineMath math="t" /> adalah waktu dalam bulan.
 
 Untuk menghitung **total peningkatan pendapatan** dalam <InlineMath math="6 \text{ bulan}" /> pertama, kita integralkan fungsi laju pertumbuhan:
 
 <MathContainer>
-<BlockMath math="R = \int_{0}^{6} 5000e^{0.1t} \, dt" />
-<BlockMath math="R = 5000 \int_{0}^{6} e^{0.1t} \, dt" />
-<BlockMath math="R = 5000 \left[\frac{e^{0.1t}}{0.1}\right]_{0}^{6}" />
-<BlockMath math="R = 50000(e^{0.6} - 1)" />
+<BlockMath math="R = \int_{0}^{6} 5000e^{0{,}1t} \, dt" />
+<BlockMath math="R = 5000 \int_{0}^{6} e^{0{,}1t} \, dt" />
+<BlockMath math="R = 5000 \left[\frac{e^{0{,}1t}}{0{,}1}\right]_{0}^{6}" />
+<BlockMath math="R = 50000(e^{0{,}6} - 1)" />
 </MathContainer>
 
-Dengan <InlineMath math="e^{0.6} \approx 1.822" />, maka total peningkatan pendapatan adalah sekitar <InlineMath math="50000 \times 0.822 = 41100 \text{ ribu rupiah}" /> atau <InlineMath math="41{,}1 \text{ juta rupiah}" />.
+Dengan <InlineMath math="e^{0{,}6} \approx 1{,}822" />, maka total peningkatan pendapatan adalah sekitar <InlineMath math="50000 \times 0{,}822 = 41100" /> ribu rupiah atau <InlineMath math="41{,}1 \text{ juta rupiah}" />.
 
 ## Total Biaya Produksi
 
-Dalam bisnis, perusahaan sering perlu memperkirakan biaya produksi. Misalkan biaya marginal untuk memproduksi suatu barang adalah <InlineMath math="MC(x) = 0.3x^2 - 12x + 200" /> ribu rupiah per unit, di mana <InlineMath math="x" /> adalah jumlah unit yang diproduksi.
+Dalam bisnis, perusahaan sering perlu memperkirakan biaya produksi. Misalkan biaya marginal untuk memproduksi suatu barang adalah <InlineMath math="MC(x) = 0{,}3x^2 - 12x + 200" /> ribu rupiah per unit, di mana <InlineMath math="x" /> adalah jumlah unit yang diproduksi.
 
-Nah, jika perusahaan ingin mengetahui **total biaya variabel** untuk memproduksi <InlineMath math="20 \text{ unit}" /> pertama, mereka tinggal mengintegralkan fungsi biaya marginal:
+Untuk mengetahui **total biaya variabel** dalam memproduksi <InlineMath math="20 \text{ unit}" /> pertama, perusahaan mengintegralkan fungsi biaya marginal:
 
-<BlockMath math="VC = \int_{0}^{20} (0.3x^2 - 12x + 200) \, dx" />
+<BlockMath math="VC = \int_{0}^{20} (0{,}3x^2 - 12x + 200) \, dx" />
 
 Setelah kita integralkan dan evaluasi, diperoleh:
 
 <MathContainer>
-<BlockMath math="VC = \left[0.1x^3 - 6x^2 + 200x\right]_{0}^{20}" />
+<BlockMath math="VC = \left[0{,}1x^3 - 6x^2 + 200x\right]_{0}^{20}" />
 <BlockMath math="VC = 800 - 2400 + 4000 = 2400" />
 </MathContainer>
 
-Jadi, total biaya variabel untuk memproduksi <InlineMath math="20 \text{ unit}" /> adalah <InlineMath math="2{,}4 \text{ juta rupiah}" />.
+Dengan asumsi <InlineMath math="VC(0)=0" />, total biaya variabel untuk memproduksi <InlineMath math="20 \text{ unit}" /> adalah <InlineMath math="2{,}4 \text{ juta rupiah}" />. Biaya tetap terpisah dan tidak termasuk dalam integral ini.
 
 > Dalam aplikasi ekonomi, integral membantu mengubah konsep marginal (laju perubahan) menjadi konsep total (akumulasi). Ini sangat berguna untuk pengambilan keputusan bisnis yang tepat.
 
 ## Analisis Surplus Konsumen
 
-Konsep surplus konsumen juga dapat dihitung menggunakan integral. Bayangkan ada pasar dengan fungsi permintaan <InlineMath math="P = 100 - 0.5Q" /> dan harga keseimbangan adalah <InlineMath math="60 \text{ rupiah per unit}" />.
+Surplus konsumen juga dapat dihitung dengan integral. Misalkan suatu pasar memiliki fungsi permintaan <InlineMath math="P = 100 - 0{,}5Q" /> dan harga keseimbangan <InlineMath math="60 \text{ rupiah per unit}" />. Kuantitas keseimbangan pada kurva permintaan tersebut diperoleh dari:
 
-Surplus konsumen menunjukkan total manfaat yang diperoleh konsumen di atas harga yang mereka bayar. Kita bisa menghitungnya dengan:
+<BlockMath math="60=100-0{,}5Q\qquad\Longrightarrow\qquad Q=80" />
 
-<BlockMath math="CS = \int_{0}^{80} (100 - 0.5Q - 60) \, dQ = \int_{0}^{80} (40 - 0.5Q) \, dQ" />
+Surplus konsumen menjumlahkan, untuk <InlineMath math="80" /> unit yang diperdagangkan, selisih antara kesediaan membayar pembeli menurut kurva permintaan dan harga pasar yang benar-benar mereka bayar:
+
+<BlockMath math="CS = \int_{0}^{80} (100 - 0{,}5Q - 60) \, dQ = \int_{0}^{80} (40 - 0{,}5Q) \, dQ" />
 
 Setelah dievaluasi:
 
 <MathContainer>
-<BlockMath math="CS = \left[40Q - 0.25Q^2\right]_{0}^{80}" />
+<BlockMath math="CS = \left[40Q - 0{,}25Q^2\right]_{0}^{80}" />
 <BlockMath math="CS = 3200 - 1600 = 1600" />
 </MathContainer>
 
-Surplus konsumen sebesar <InlineMath math="1600 \text{ unit}" /> menunjukkan total manfaat yang diperoleh konsumen di atas harga keseimbangan.
+Surplus konsumen sebesar <InlineMath math="1600 \text{ rupiah}" /> mengukur manfaat moneter total yang diperoleh konsumen di atas harga keseimbangan.
 
 ## Latihan
 
@@ -98,9 +100,9 @@ Surplus konsumen sebesar <InlineMath math="1600 \text{ unit}" /> menunjukkan tot
 
 2. Jika biaya marginal suatu produk adalah <InlineMath math="MC(x) = 2x + 50" /> ribu rupiah per unit, berapa total biaya variabel untuk memproduksi <InlineMath math="25 \text{ unit}" />?
 
-3. Fungsi laju pertumbuhan investasi adalah <InlineMath math="I'(t) = 2000e^{0.05t}\text{ juta}" /> rupiah per tahun. Hitunglah total pertumbuhan investasi dalam <InlineMath math="4 \text{ tahun}" />!
+3. Fungsi laju pertumbuhan investasi adalah <InlineMath math="I'(t) = 2000e^{0{,}05t}\text{ juta}" /> rupiah per tahun. Hitunglah total pertumbuhan investasi dalam <InlineMath math="4 \text{ tahun}" />!
 
-### Kunci Jawaban
+### Pembahasan
 
 1. **Menghitung total penjualan**
 
@@ -115,7 +117,7 @@ Surplus konsumen sebesar <InlineMath math="1600 \text{ unit}" /> menunjukkan tot
    <BlockMath math="S = 6000 + 9000 = 15000" />
    </MathContainer>
 
-   Total penjualan dalam <InlineMath math="6 \text{ bulan}" /> adalah <InlineMath math="15{,}000 \text{ unit}" />.
+   Total penjualan dalam <InlineMath math="6 \text{ bulan}" /> adalah <InlineMath math="15{.}000 \text{ unit}" />.
 
 2. **Menghitung biaya variabel**
 
@@ -130,19 +132,19 @@ Surplus konsumen sebesar <InlineMath math="1600 \text{ unit}" /> menunjukkan tot
    <BlockMath math="VC = 625 + 1250 = 1875" />
    </MathContainer>
 
-   Total biaya variabel adalah <InlineMath math="1875 \text{ ribu rupiah}" /> atau <InlineMath math="1{,}875 \text{ juta rupiah}" />.
+   Total biaya variabel adalah <InlineMath math="1{,}875" /> ribu rupiah atau <InlineMath math="1{,}875 \text{ juta rupiah}" />.
 
 3. **Menghitung pertumbuhan investasi**
 
    Untuk fungsi eksponensial, kita integralkan:
 
-   <BlockMath math="I = \int_{0}^{4} 2000e^{0.05t} \, dt" />
+   <BlockMath math="I = \int_{0}^{4} 2000e^{0{,}05t} \, dt" />
 
    Hasilnya adalah:
 
    <MathContainer>
-   <BlockMath math="I = 2000 \left[\frac{e^{0.05t}}{0.05}\right]_{0}^{4}" />
-   <BlockMath math="I = 40000(e^{0.2} - 1) \approx 40000(0.221) = 8856" />
+   <BlockMath math="I = 2000 \left[\frac{e^{0{,}05t}}{0{,}05}\right]_{0}^{4}" />
+   <BlockMath math="I = 40000(e^{0{,}2} - 1) \approx 40000(0{,}2214) \approx 8856" />
    </MathContainer>
 
-   Total pertumbuhan investasi dalam <InlineMath math="4 \text{ tahun}" /> adalah sekitar <InlineMath math="8.86 \text{ miliar}" /> rupiah.
+   Total pertumbuhan investasi dalam <InlineMath math="4 \text{ tahun}" /> adalah sekitar <InlineMath math="8{,}86 \text{ miliar}" /> rupiah.

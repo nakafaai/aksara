@@ -1,0 +1,467 @@
+export const metadata = {
+  title: "Kreisbogen",
+  description: "Beziehungen zwischen Kreisbogen und Sehne, Sagitta-Berechnungen und parametrische Gleichungen an technischen Anwendungen verstehen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-26",
+  subject: "Kreisbögen und Sektoren",
+};
+
+
+
+## Beziehung zwischen Kreisbogen und Sehne
+
+Jeder Kreisbogen gehört zu einer Sehne, die seine beiden Endpunkte verbindet. Die Sehne ist die gerade Strecke zwischen den Endpunkten, der Bogen der gekrümmte Weg entlang des Kreisumfangs. Als Modell dient ein gespannter Bogen: Die Schnur entspricht der Sehne, das gebogene Holz dem Kreisbogen.
+
+Bei kleinen Bögen desselben Kreises erzeugt ein größerer Mittelpunktswinkel sowohl einen längeren Bogen als auch eine längere Sehne. Der Zusammenhang ist jedoch nicht linear. Oberhalb von <InlineMath math="180^\circ" /> wird der große Bogen länger, während seine Sehne kürzer wird, denn dieselbe Sehne gehört auch zum ergänzenden kleinen Bogen.
+
+<LineEquation
+  title="Beziehung zwischen Kreisbogen und Sehne"
+  description="Vergleich von Bogen und Sehne bei verschiedenen Mittelpunktswinkeln."
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const angle = i * (Math.PI / 3) / 20;
+        return {
+          x: 5 * Math.cos(angle),
+          y: 5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      lineWidth: 4,
+      showPoints: false,
+      labels: [{ text: <>Bogen <InlineMath math="60^\circ" /></>, at: 10, offset: [1.5, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 5, y: 0, z: 0 },
+        { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2, z: 0 },
+        { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
+      ],
+      color: "#ea580c",
+      lineWidth: 3,
+      showPoints: false,
+      labels: [{ text: <>Sehne <InlineMath math="60^\circ" /></>, at: 1, offset: [0.8, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 5, y: 0, z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A" />, at: 0, offset: [0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const angle = Math.PI + (i * (2 * Math.PI / 3) / 30);
+        return {
+          x: 5 * Math.cos(angle),
+          y: 5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#e11d48",
+      lineWidth: 4,
+      showPoints: false,
+      labels: [{ text: <>Bogen <InlineMath math="120^\circ" /></>, at: 15, offset: [-1.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: (-5 + 5 * Math.cos(5 * Math.PI / 3)) / 2, y: (5 * Math.sin(5 * Math.PI / 3)) / 2, z: 0 },
+        { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
+      ],
+      color: "#d97706",
+      lineWidth: 3,
+      showPoints: false,
+      labels: [{ text: <>Sehne <InlineMath math="120^\circ" /></>, at: 1, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 0, offset: [-0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
+      ],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="D" />, at: 0, offset: [-0.3, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="O" /> (Mitte)</>, at: 0, offset: [0, -0.8, 0] }],
+    },
+    {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const angle = i * (2 * Math.PI / 100);
+        return {
+          x: 5 * Math.cos(angle),
+          y: 5 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      lineWidth: 1,
+      showPoints: false,
+      smooth: true,
+    },
+  ]}
+  cameraPosition={[0, 0, 14]}
+  showZAxis={false}
+/>
+
+## Formel für die Sehnenlänge
+
+Die Sehnenlänge kann mithilfe einer trigonometrischen Formel unter Einbeziehung des Mittelpunktswinkels und des Kreisradius berechnet werden:
+
+<BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
+
+Dabei gilt:
+- <InlineMath math="c" /> = Sehnenlänge
+- <InlineMath math="r" /> = Kreisradius
+- <InlineMath math="\theta" /> = Mittelpunktswinkel; verwende für Grad das Gradmaß und für Radiant das Bogenmaß
+
+Die Formel bestimmt die Sehnenlänge aus Radius und Mittelpunktswinkel eines Kreisbogens. Damit lässt sich die Geometrie eines idealisierten Rundfensters, Bogens oder einer anderen kreisförmigen Kontur festlegen. Bei einem realen Bauwerk müssen Lasten, Werkstoffe und Auflager getrennt untersucht werden.
+
+## Bogenhöhe und Sagitta
+
+Die Bogenhöhe, auch Sagitta genannt, ist der senkrechte Abstand vom Mittelpunkt der Sehne zum Mittelpunkt des zugehörigen kleinen Kreisbogens. Zusammen mit der Sehne legt sie die Form eines idealisierten Kreisbogens fest.
+
+<BlockMath math="h = r - r\cos\left(\frac{\theta}{2}\right) = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+
+Dabei gilt:
+- <InlineMath math="h" /> = Bogenhöhe (Sagitta)
+- <InlineMath math="r" /> = Kreisradius
+- <InlineMath math="\theta" /> = Mittelpunktswinkel; berechne den Kosinus in derselben Winkeleinheit wie <InlineMath math="\theta" />
+
+Betrachte die folgende Darstellung:
+
+<LineEquation
+  title="Visualisierung der Bogenhöhe"
+  description="Bogenhöhe (Sagitta) bei verschiedenen Mittelpunktswinkeln."
+  data={[
+    {
+      points: Array.from({ length: 31 }, (_, i) => {
+        const angle = (-Math.PI / 6) + (i * (Math.PI / 3) / 30);
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      lineWidth: 4,
+      showPoints: false,
+      labels: [{ text: <>Bogen <InlineMath math="60^\circ" /></>, at: 15, offset: [1.5, 1, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
+        { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
+      ],
+      color: "#ea580c",
+      lineWidth: 3,
+      showPoints: false,
+      labels: [{ text: "Sehne", at: 1, offset: [0, -0.8, 0] }],
+    },
+    {
+      points: [
+        { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <><InlineMath math="M" /> (Mittelpunkt)</>, at: 0, offset: [1.2, -1.2, 0] }],
+    },
+    {
+      points: [
+        { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
+        { x: 4 * Math.cos(0), y: 4 * Math.sin(0), z: 0 },
+      ],
+      color: "#e11d48",
+      lineWidth: 4,
+      showPoints: false,
+      labels: [{ text: <>Bogenhöhe <InlineMath math="(h)" /></>, offset: [0.8, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
+      ],
+      color: "#9333ea",
+      lineWidth: 2,
+      showPoints: false,
+      labels: [{ text: "Radius", offset: [-2, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
+      ],
+      color: "#9333ea",
+      lineWidth: 2,
+      showPoints: false,
+      labels: [{ text: "Radius", offset: [-2, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
+      ],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
+      ],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [-0.3, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const angle = i * (2 * Math.PI / 100);
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      lineWidth: 1,
+      showPoints: false,
+      smooth: true,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## Bogen im Koordinatensystem
+
+Im kartesischen Koordinatensystem kann ein Bogen durch parametrische Gleichungen dargestellt werden:
+
+<MathContainer>
+<BlockMath math="x = r\cos(t)" />
+<BlockMath math="y = r\sin(t)" />
+</MathContainer>
+
+Dabei ist <InlineMath math="t" /> ein Parameter, der vom Anfangswinkel bis zum Endwinkel des Bogens variiert.
+
+<LineEquation
+  title="Bogen in kartesischen Koordinaten"
+  description="Bogendarstellung mithilfe parametrischer Gleichungen."
+  data={[
+    {
+      points: Array.from({ length: 41 }, (_, i) => {
+        const t = (Math.PI / 4) + (i * (Math.PI / 2) / 40);
+        return {
+          x: 3 * Math.cos(t),
+          y: 3 * Math.sin(t),
+          z: 0,
+        };
+      }),
+      color: "#7c3aed",
+      lineWidth: 4,
+      showPoints: false,
+      labels: [{ text: "Parametrischer Bogen", at: 20, offset: [1.5, 1, 0] }],
+    },
+    {
+      points: [
+        { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t_1=\frac{\pi}{4} (45^\circ)" />, at: 0, offset: [2, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t_2=\frac{3\pi}{4} (135^\circ)" />, at: 0, offset: [-2, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      color: "#9333ea",
+      lineWidth: 2,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r=3" />, at: 1, offset: [0.3, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 1.5 * Math.cos(3 * Math.PI / 4), y: 1.5 * Math.sin(3 * Math.PI / 4), z: 0 },
+        { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
+      ],
+      color: "#9333ea",
+      lineWidth: 2,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r=3" />, at: 1, offset: [-0.3, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: true,
+      labels: [{ text: <>Ursprung <InlineMath math="(0,0)" /></>, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const angle = i * (2 * Math.PI / 100);
+        return {
+          x: 3 * Math.cos(angle),
+          y: 3 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      lineWidth: 1,
+      showPoints: false,
+      smooth: true,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+## Beispiel eines idealisierten Kreisbogens
+
+Betrachte den idealisierten kreisförmigen Querschnitt eines Bogens. Sein Radius beträgt <InlineMath math="25 \text{ Meter}" />, sein Mittelpunktswinkel <InlineMath math="120^\circ" />. Wir können die von der Sehne dargestellte Spannweite und die von der Sagitta dargestellte Höhe bestimmen.
+
+**Berechnung der Sehnenlänge:**
+
+<MathContainer>
+<BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="c = 2 \times 25 \times \sin\left(\frac{120^\circ}{2}\right)" />
+<BlockMath math="c = 50 \times \sin(60^\circ)" />
+<BlockMath math="c = 50 \times \frac{\sqrt{3}}{2} = 25\sqrt{3} \text{ Meter}" />
+</MathContainer>
+
+**Bogenhöhe berechnen:**
+
+<MathContainer>
+<BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+<BlockMath math="h = 25\left(1 - \cos(60^\circ)\right)" />
+<BlockMath math="h = 25\left(1 - \frac{1}{2}\right) = 12{,}5 \text{ Meter}" />
+</MathContainer>
+
+## Übungen
+
+1. Ein idealisierter Kreisbogen hat einen Radius von <InlineMath math="30 \text{ m}" /> und einen Mittelpunktswinkel von <InlineMath math="90^\circ" />. Berechne seine Sehnenlänge und Bogenhöhe.
+
+2. Bei einem idealisierten kreisförmigen Querschnitt einer Kuppel beträgt die Bogenhöhe <InlineMath math="8 \text{ m}" /> und der Kreisradius <InlineMath math="15 \text{ m}" />. Bestimme den Mittelpunktswinkel des Bogens.
+
+3. Ein kleiner Kreisbogen hat eine Sehnenlänge von <InlineMath math="24 \text{ m}" /> und einen Radius von <InlineMath math="15 \text{ m}" />. Berechne seinen kleinen Mittelpunktswinkel und seine Bogenhöhe.
+
+4. In einem Koordinatensystem beginnt ein Bogen am Punkt <InlineMath math="(4, 0)" /> und endet am Punkt <InlineMath math="(0, 4)" /> auf einem Kreis mit Mittelpunkt im Ursprung. Bestimme eine übliche Parametrisierung des kleinen Bogens im Bogenmaß.
+
+### Ausführliche Lösungen
+
+1. **Lösung:**
+
+   Gegeben: <InlineMath math="r = 30 \text{ m}" /> und <InlineMath math="\theta = 90^\circ" />
+
+   **Sehnenlänge:**
+
+   <MathContainer>
+   <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right) = 2 \times 30 \times \sin(45^\circ)" />
+   <BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42{,}43 \text{ m}" />
+   </MathContainer>
+
+   **Bogenhöhe:**
+
+   <MathContainer>
+   <BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) = 30\left(1 - \cos(45^\circ)\right)" />
+   <BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8{,}79 \text{ m}" />
+   </MathContainer>
+
+2. **Lösung:**
+
+   Gegeben: <InlineMath math="h = 8 \text{ m}" /> und <InlineMath math="r = 15 \text{ m}" />
+
+   **Schritt** <InlineMath math="1" />: Verwende die Bogenhöhenformel
+
+   <BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+
+   **Schritt** <InlineMath math="2" />: Stelle nach <InlineMath math="\cos" /> um
+
+   <MathContainer>
+   <BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
+   <BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
+   </MathContainer>
+
+   **Schritt** <InlineMath math="3" />: Winkel berechnen
+
+   <MathContainer>
+   <BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62{,}18^\circ" />
+   <BlockMath math="\theta \approx 124{,}36^\circ" />
+   </MathContainer>
+
+3. **Lösung:**
+
+   Gegeben: <InlineMath math="c = 24 \text{ m}" /> und <InlineMath math="r = 15 \text{ m}" />
+
+   **Schritt** <InlineMath math="1" />: Verwende die Sehnenformel
+
+   <MathContainer>
+   <BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
+   <BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0{,}8" />
+   </MathContainer>
+
+   **Schritt** <InlineMath math="2" />: Berechne den kleinen Mittelpunktswinkel
+
+   <MathContainer>
+   <BlockMath math="\frac{\theta}{2} = \arcsin(0{,}8) \approx 53{,}13^\circ" />
+   <BlockMath math="\theta \approx 106{,}26^\circ" />
+   </MathContainer>
+
+   **Schritt** <InlineMath math="3" />: Berechne die Bogenhöhe
+
+   <BlockMath math="h = 15\left(1 - \cos(53{,}13^\circ)\right) = 15(1 - 0{,}6) = 6 \text{ m}" />
+
+4. **Lösung:**
+
+   - Ausgangspunkt: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
+   - Endpunkt: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
+   - Radius: <InlineMath math="r = 4" />
+
+   **Parametrische Gleichungen:**
+
+   <MathContainer>
+   <BlockMath math="x = 4\cos(t)" />
+   <BlockMath math="y = 4\sin(t)" />
+   <BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
+   </MathContainer>

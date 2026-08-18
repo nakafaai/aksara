@@ -1,0 +1,108 @@
+
+
+export const metadata = {
+  title: "Lösung zu Aufgabe 35",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+Für die Fläche des begrenzten Bereichs brauchen wir zuerst die Schnittpunkte der Parabel und der Geraden.
+
+#### Schnittpunkte finden
+
+Die Schnittpunkte erhält man durch Gleichsetzung beider Gleichungen
+
+<MathContainer>
+<BlockMath math="x^2 - 4x + 3 = 3 - x" />
+<BlockMath math="x^2 - 3x = 0" />
+<BlockMath math="x(x - 3) = 0" />
+</MathContainer>
+
+Damit gilt <InlineMath math="x_1 = 0" /> oder <InlineMath math="x_2 = 3" />.
+
+#### Bestimmung der Ober- und Unterkurve
+
+Im Intervall zwischen <InlineMath math="x = 0" /> und <InlineMath math="x = 3" /> liegt die Gerade <InlineMath math="y = 3 - x" /> über der Parabel <InlineMath math="y = x^2 - 4x + 3" />.
+
+#### Diagrammvisualisierung
+
+<LineEquation
+  title={<>Diagramm von <InlineMath math="y = x^2 - 4x + 3" /> und <InlineMath math="y = 3 - x" /></>}
+  description="Visualisierung beider Kurven, die einen begrenzten Bereich mit Schnittpunkten bilden."
+  showZAxis={false}
+  cameraPosition={[0, 0, 15]}
+  data={[
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const x = -1 + (i / 99) * 5;
+        const y = x * x - 4 * x + 3;
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: true,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=x^2 - 4x + 3" />,
+          at: 85,
+          offset: [1.5, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 100 }, (_, i) => {
+        const x = -1 + (i / 99) * 5;
+        const y = 3 - x;
+        return { x, y, z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: true,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=3 - x" />,
+          at: 10,
+          offset: [2.5, 0, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 3, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#0891b2",
+      smooth: false,
+      showPoints: true,
+      lineWidth: 0,
+      labels: [
+        {
+          text: <InlineMath math="(0, 3)" />,
+          at: 0,
+          offset: [-1, 0, 0],
+        },
+        {
+          text: <InlineMath math="(3, 0)" />,
+          at: 1,
+          offset: [0, -1.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
+
+#### Berechnen der Fläche
+
+Die Fläche der Region wird durch Integration berechnet
+
+<MathContainer>
+<BlockMath math="L = \int_{x_1}^{x_2} (y_{\text{oben}} - y_{\text{unten}}) dx" />
+<BlockMath math="= \int_0^3 [(3 - x) - (x^2 - 4x + 3)] dx" />
+<BlockMath math="= \int_0^3 (-x^2 + 3x) dx" />
+<BlockMath math="= \left[-\frac{1}{3}x^3 + \frac{3}{2}x^2\right]_0^3" />
+<BlockMath math="= \left(-\frac{1}{3}(3)^3 + \frac{3}{2}(3)^2\right) - \left(-\frac{1}{3}(0)^3 + \frac{3}{2}(0)^2\right)" />
+<BlockMath math="= -9 + \frac{27}{2}" />
+<BlockMath math="= \frac{9}{2}" />
+</MathContainer>
+
+Daher beträgt die Fläche des Bereichs zwischen den beiden Kurven <InlineMath math="\frac{9}{2}" /> Quadrateinheiten.

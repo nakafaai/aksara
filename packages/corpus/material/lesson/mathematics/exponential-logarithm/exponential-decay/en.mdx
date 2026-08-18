@@ -1,169 +1,147 @@
-
 export const metadata = {
   title: "Exponential Decay",
-  description: "Learn exponential decay through drug elimination, radioactive decay, and bouncing ball examples.",
+  description:
+    "Model repeated proportional decrease, read a decay graph, and solve worked examples involving half-life, radioactive decay, and bounce height.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-04",
-  subject: "Exponential and Logarithm",
+  subject: "Exponents and Logarithms",
 };
 
 ## Definition of Exponential Decay
 
-Exponential functions don't only represent significant growth, but also consistent decline over specific periods of time. This consistent decline is called **exponential decay**.
+Exponential decay occurs when a positive quantity is multiplied by the same factor between <InlineMath math="0" /> and <InlineMath math="1" /> during every equal interval. A discrete decay model has the form:
 
-Exponential decay is the process of value reduction at a consistent rate. Mathematically, an exponential decay function can be written as:
+<BlockMath math="f(x)=C\,a^x" />
 
-<BlockMath math="f(x) = n \times a^x" />
+with:
 
-With the conditions:
+- <InlineMath math="C>0" />, the initial value
+- <InlineMath math="0<a<1" />, the decay factor per interval
+- <InlineMath math="x" />, the number of intervals
 
-- <InlineMath math="0 < a < 1" /> (base)
-- <InlineMath math="n" /> is a non-zero real number (coefficient)
-- <InlineMath math="x" /> is any real number (variable)
+The factor describes what remains, not what is lost. For example, a <InlineMath math="15\%" /> decrease leaves <InlineMath math="85\%" />, so the decay factor is <InlineMath math="a=0.85" />.
 
-When <InlineMath math="0 < a < 1" />, the value of <InlineMath math="a^x" /> becomes smaller as the value of <InlineMath math="x" /> increases, causing the function graph to decrease.
+## Reading an Exponential Decay Graph
 
-## Characteristics of Exponential Decay Graph
+As <InlineMath math="x" /> increases, <InlineMath math="a^x" /> becomes smaller. The graph falls quickly at first and then flattens because each decrease is the same proportion of a progressively smaller amount.
 
-The graph of an exponential decay function shows a decreasing rate of decline. Initially, the function value decreases rapidly, then the rate of decrease slows down as it approaches zero but never actually reaches zero.
+For <InlineMath math="f(x)=50\left(\frac12\right)^x" />, the initial value is <InlineMath math="50" /> and every interval leaves half of the previous value:
 
-Unlike exponential growth graphs that rise at an increasing rate, exponential decay graphs fall at a decreasing rate.
-
-The graph below shows an exponential decay function with base <InlineMath math="a = 0.5" /> and coefficient <InlineMath math="n = 50" />, which can be expressed as:
-
-<BlockMath math="f(x) = 50 \times \left(\frac{1}{2}\right)^x" />
+<BlockMath math="f(x)=50\left(\frac12\right)^x" />
 
 <ContentBlock>
   <FunctionChart
     a={0.5}
     p={50}
-    title="Exponential Decay Graph"
-    description="Graph decreases at a progressively slower rate."
+    title="Exponential Decay"
+    description={
+      <>
+        Each interval leaves <InlineMath math="\frac12" /> of the previous value.
+      </>
+    }
   />
 </ContentBlock>
 
-## Applications of Exponential Decay
+The graph approaches the horizontal asymptote <InlineMath math="y=0" /> but never reaches it for any finite real <InlineMath math="x" />.
 
-Exponential decay has many applications in real life. Here are some examples:
+## Applications
 
-### Drug Elimination in the Body
+### A Half-Life Model
 
-A patient receives a <InlineMath math="50 \text{ microgram}" /> dose of pain medication. Every hour, half of the remaining drug dose will decay and be eliminated from the body.
+Suppose a hypothetical medicine starts at <InlineMath math="50\,\mu\text{g}" /> in the body and half of the remaining amount is eliminated every hour. If <InlineMath math="x" /> is measured in hours, then:
 
-If we model the amount of drug remaining after <InlineMath math="x \text{ hours}" /> as <InlineMath math="f(x)" />, then:
+<BlockMath math="f(x)=50\left(\frac12\right)^x" />
 
-<BlockMath math="f(x) = 50 \times \left(\frac{1}{2}\right)^x" />
+The first values show that the model always halves the current amount:
 
-Calculating the remaining dose:
+- <InlineMath math="f(0)=50\,\mu\text{g}" />
+- <InlineMath math="f(1)=25\,\mu\text{g}" />
+- <InlineMath math="f(2)=12.5\,\mu\text{g}" />
+- <InlineMath math="f(3)=6.25\,\mu\text{g}" />
 
-- Initial dose: <InlineMath math="f(0) = 50 \text{ micrograms}" />
-- After <InlineMath math="1 \text{ hour}" />: <InlineMath math="f(1) = 50 \times \frac{1}{2} = 25 \text{ micrograms}" />
-- After <InlineMath math="2 \text{ hours}" />: <InlineMath math="f(2) = 25 \times \frac{1}{2} = 12.5 \text{ micrograms}" />
-- After <InlineMath math="3 \text{ hours}" />: <InlineMath math="f(3) = 12.5 \times \frac{1}{2} = 6.25 \text{ micrograms}" />
-
-With this pattern, we can calculate that after <InlineMath math="9 \text{ hours}" />, the amount of the drug in the patient's body will be less than <InlineMath math="0.1 \text{ micrograms}" />.
+After <InlineMath math="9" /> hours, <InlineMath math="f(9)=50\left(\frac12\right)^9\approx0.0977\,\mu\text{g}" />, which is below <InlineMath math="0.1\,\mu\text{g}" />.
 
 ### Radioactive Decay
 
-Radioactive substances decay at a certain rate, typically expressed as a percentage per unit of time. If we have an initial mass <InlineMath math="M_0" /> and a decay rate <InlineMath math="r" /> per unit time, then the mass remaining after time <InlineMath math="t" /> can be expressed as:
+If a sample loses the same fraction <InlineMath math="r" /> during each time interval, then the fraction remaining is <InlineMath math="1-r" />. For <InlineMath math="0<r<1" />:
 
-<BlockMath math="M(t) = M_0 \times (1-r)^t" />
+<BlockMath math="M(t)=M_0(1-r)^t" />
 
-### Ball Bounce
+Here, <InlineMath math="M_0" /> is the initial mass and <InlineMath math="t" /> counts equal time intervals. This model assumes the stated proportional rate remains constant over the interval being studied.
 
-When a ball is dropped, each time it bounces, the bounce height reaches a portion of its previous height. If the initial height is <InlineMath math="h_0" /> and each bounce reaches a proportion <InlineMath math="p" /> of the previous height, then the height of the <InlineMath math="n" />-th bounce is:
+### Bounce Height
 
-<BlockMath math="h_n = h_0 \times p^n" />
+Suppose a ball is dropped from height <InlineMath math="h_0" /> and each rebound reaches the fixed proportion <InlineMath math="0<p<1" /> of the previous height. The height after rebound <InlineMath math="n" /> is:
 
-For example, if a basketball is dropped from a height of <InlineMath math="3 \text{ meters}" /> and each bounce reaches <InlineMath math="\frac{3}{5}" /> of the previous height, then:
+<BlockMath math="h_n=h_0p^n" />
 
-- Initial height: <InlineMath math="h_0 = 300 \text{ cm}" />
-- First bounce: <InlineMath math="h_1 = 300 \times \frac{3}{5} = 180 \text{ cm}" />
-- Second bounce: <InlineMath math="h_2 = 180 \times \frac{3}{5} = 108 \text{ cm}" />
-- Third bounce: <InlineMath math="h_3 = 108 \times \frac{3}{5} = 64.8 \text{ cm}" />
+For <InlineMath math="h_0=300\text{ cm}" /> and <InlineMath math="p=\frac35" />:
 
-The bounce height function can be expressed as:
+- <InlineMath math="h_0=300\text{ cm}" />
+- <InlineMath math="h_1=300\left(\frac35\right)=180\text{ cm}" />
+- <InlineMath math="h_2=300\left(\frac35\right)^2=108\text{ cm}" />
+- <InlineMath math="h_3=300\left(\frac35\right)^3=64.8\text{ cm}" />
 
-<BlockMath math="h(n) = 300 \times \left(\frac{3}{5}\right)^n" />
-
-The ball will eventually stop bouncing when the bounce height becomes very small, around <InlineMath math="0.65 \text{ cm}" /> at the <InlineMath math="12" />th bounce.
+The mathematical model never reaches zero. A practical stopping statement therefore needs a threshold, such as “below <InlineMath math="1\text{ cm}" />.”
 
 ## Exercises
 
-Here are some practice problems to deepen your understanding of exponential decay:
+1. A hypothetical substance starts at <InlineMath math="200\text{ mg}" /> and half of the remaining amount is eliminated every hour. How much remains after <InlineMath math="5" /> hours?
 
-1. Two hundred mg of a substance is injected into the body of a patient suffering from lung cancer. The substance is excreted from the body through the kidneys every hour. If <InlineMath math="50\%" /> of the substance is eliminated from the patient's body every hour, how many mg of the substance remains in the patient's body after <InlineMath math="5 \text{ hours}" />?
+2. A radioactive sample has mass <InlineMath math="0.3\text{ kg}" /> at the start of an observation. It loses <InlineMath math="15\%" /> of its mass each hour. How much remains after <InlineMath math="8" /> hours?
 
-2. The mass of a radioactive substance is <InlineMath math="0.3 \text{ kg}" /> at <InlineMath math="10" /> am. The decay rate of the radioactive substance is <InlineMath math="15\%" /> per hour. How much radioactive substance will remain <InlineMath math="8 \text{ hours}" /> later?
+3. A ball is dropped from <InlineMath math="3\text{ m}" /> and each rebound reaches <InlineMath math="\frac35" /> of the previous height.
 
-3. A basketball is dropped from a height of <InlineMath math="3 \text{ meters}" />. The ball hits the ground and then bounces back to a height of <InlineMath math="\frac{3}{5}" /> of its previous height. The ball continues to bounce with the same height ratio until it finally stops bouncing and falls to the ground.
+   1. Draw the discrete rebound-height graph.
+   2. If the ball is treated as stopped once its rebound is below <InlineMath math="1\text{ cm}" />, find the first rebound that meets the threshold.
 
-    1. Draw a graph of the function showing the change in bounce height until the ball finally touches the ground.
-    2. At which bounce does the ball finally stop bouncing?
+### Worked Solutions
 
-### Answer Key
+1. The decay factor is <InlineMath math="\frac12" />. After five hourly intervals:
 
-1. Let <InlineMath math="f(x)" /> be the amount of substance remaining after <InlineMath math="x \text{ hours}" />. We have:
+   <MathContainer>
+     <BlockMath math="f(x)=200\left(\frac12\right)^x" />
+     <BlockMath math="f(5)=200\left(\frac12\right)^5=200\left(\frac1{32}\right)=6.25" />
+   </MathContainer>
 
-   <BlockMath math="f(x) = 200 \times \left(\frac{1}{2}\right)^x" />
+   Therefore, <InlineMath math="6.25\text{ mg}" /> remains.
 
-   After <InlineMath math="5 \text{ hours}" />:
+2. Losing <InlineMath math="15\%" /> leaves the factor <InlineMath math="0.85" />:
 
-   <BlockMath math="f(5) = 200 \times \left(\frac{1}{2}\right)^5 = 200 \times 0.03125 = 6.25" />
+   <MathContainer>
+     <BlockMath math="M(t)=0.3(0.85)^t" />
+     <BlockMath math="M(8)=0.3(0.85)^8\approx0.08175\text{ kg}" />
+     <BlockMath math="0.08175\text{ kg}\approx81.75\text{ g}" />
+   </MathContainer>
 
-   So, the substance remaining after <InlineMath math="5 \text{ hours}" /> is <InlineMath math="6.25 \text{ mg}" />.
+3. With height measured in centimetres, the model is:
 
-2. Let <InlineMath math="f(x)" /> be the mass of the radioactive substance after <InlineMath math="x \text{ hours}" />. We have:
+   <BlockMath math="h_n=300\left(\frac35\right)^n" />
 
-   <BlockMath math="f(x) = 0.3 \times (0.85)^x" />
+   <ContentBlock>
+     <FunctionChart
+       a={3 / 5}
+       p={300}
+       title="Rebound Height"
+       description={
+         <>
+           Discrete heights with ratio <InlineMath math="\frac35" />.
+         </>
+       }
+     />
+   </ContentBlock>
 
-   After <InlineMath math="8 \text{ hours}" />:
+   The values near the threshold are:
 
-   <BlockMath math="f(8) = 0.3 \times (0.85)^8 \approx 0.083 \text{ kg} \text{ or about} 83 \text{ grams}." />
+   | Rebound | Height in centimetres |
+   | ------- | --------------------- |
+   | <InlineMath math="n=9" /> | <InlineMath math="3.023309" /> |
+   | <InlineMath math="n=10" /> | <InlineMath math="1.813985" /> |
+   | <InlineMath math="n=11" /> | <InlineMath math="1.088391" /> |
+   | <InlineMath math="n=12" /> | <InlineMath math="0.653035" /> |
 
-3. For the basketball:
+   Rebound <InlineMath math="11" /> is still above <InlineMath math="1\text{ cm}" />, while rebound <InlineMath math="12" /> is below it. Therefore, the first rebound meeting the stated stopping rule is <InlineMath math="n=12" />.
 
-    1. The bounce height function is:
+## Model Boundaries
 
-        <BlockMath math="h(n) = 300 \times \left(\frac{3}{5}\right)^n" />
-
-        <ContentBlock>
-          <FunctionChart
-            a={3 / 5}
-            p={300}
-            title="Exponential Decay Graph"
-            description="Graph decreases at a progressively slower rate."
-          />
-        </ContentBlock>
-
-    2. The ball will stop bouncing when its height approaches zero. Based on calculations, at the <InlineMath math="12" />th bounce, the ball's height reaches <InlineMath math="0.653035 \text{ cm}" />, which is small enough to consider the ball has stopped bouncing. However, considering the ball's mass, it might have stopped bouncing by the <InlineMath math="10" />th bounce, when its height is about <InlineMath math="1.8 \text{ cm}" />.
-
-        | Bounce                       | Height                         |
-        | ---------------------------- | ------------------------------ |
-        | <InlineMath math="n = 0" />  | <InlineMath math="300" />      |
-        | <InlineMath math="n = 1" />  | <InlineMath math="180" />      |
-        | <InlineMath math="n = 2" />  | <InlineMath math="108" />      |
-        | <InlineMath math="n = 3" />  | <InlineMath math="64.8" />     |
-        | <InlineMath math="n = 4" />  | <InlineMath math="38.88" />    |
-        | <InlineMath math="n = 5" />  | <InlineMath math="23.328" />   |
-        | <InlineMath math="n = 6" />  | <InlineMath math="13.9968" />  |
-        | <InlineMath math="n = 7" />  | <InlineMath math="8.39808" />  |
-        | <InlineMath math="n = 8" />  | <InlineMath math="5.038848" /> |
-        | <InlineMath math="n = 9" />  | <InlineMath math="3.023309" /> |
-        | <InlineMath math="n = 10" /> | <InlineMath math="1.813985" /> |
-        | <InlineMath math="n = 11" /> | <InlineMath math="1.088391" /> |
-        | <InlineMath math="n = 12" /> | <InlineMath math="0.653035" /> |
-   | <InlineMath math="n = 13" /> | <InlineMath math="0.391821" /> |
-   | <InlineMath math="n = 14" /> | <InlineMath math="0.235092" /> |
-   | <InlineMath math="n = 15" /> | <InlineMath math="0.141055" /> |
-
-## Application of Concepts in Life
-
-In mathematical modeling, exponential decay is used to model various phenomena such as:
-
-- Radioactive decay
-- Cooling of hot objects
-- Depreciation of goods
-- Drug elimination in the body
-
-Beyond scientific applications, exponential concepts can also be found in social contexts. For example, the relationship between charity (giving) and blessing (receiving) can be illustrated with an exponential growth function. The more we share with others in need, the more goodness will return, at an increasingly faster rate.
+Exponential decay is used for phenomena such as radioactive decay, depreciation, cooling approximations, and elimination models. In every application, identify the interval, the factor that remains, and the conditions under which that factor can be treated as constant. A model is a bounded description of a situation, not a guarantee that the same pattern continues forever.

@@ -1,8 +1,8 @@
 
 
 export const metadata = {
-  title: "Titik Ekstrim, Nilai Balik Maksimum dan Minimum",
-  description: "Pelajari cara mencari ekstrem dengan turunan pertama dan kedua, titik kritis, serta nilai maksimum dan minimum melalui contoh visual.",
+  title: "Nilai Ekstrem dan Uji Turunan Pertama serta Kedua",
+  description: "Gunakan turunan pertama dan kedua untuk mencari dan mengklasifikasikan titik stasioner, lalu hitung nilai maksimum dan minimum lokal melalui contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Turunan Fungsi",
@@ -12,7 +12,7 @@ export const metadata = {
 
 Dalam kehidupan sehari-hari, kita sering mencari nilai "terbaik", misalnya keuntungan terbesar, biaya terkecil, atau jarak terdekat. Dalam matematika, nilai-nilai optimal ini dikenal sebagai **nilai ekstrim**, yang terdiri dari **nilai maksimum** dan **nilai minimum**. Titik di mana nilai-nilai ini terjadi disebut **titik ekstrim**.
 
-Titik ekstrim ini sangat erat kaitannya dengan titik stasioner, yaitu titik di mana gradien kurva sama dengan nol (<InlineMath math="f'(x)=0" />). Ada dua cara utama untuk menguji dan menentukan jenis titik stasioner, yaitu Uji Turunan Pertama dan Uji Turunan Kedua.
+Ekstrem lokal di bagian dalam domain fungsi yang dapat diturunkan merupakan **titik stasioner**, yaitu titik dengan <InlineMath math="f'(x)=0" />. Secara lebih umum, ekstrem lokal juga dapat terjadi ketika turunannya tidak terdefinisi atau pada ujung domain. Karena itu, titik stasioner hanyalah kandidat, bukan jaminan, untuk ekstrem lokal. Materi ini berfokus pada titik stasioner yang dapat diturunkan dan mengklasifikasikannya dengan Uji Turunan Pertama serta Uji Turunan Kedua.
 
 ## Uji Turunan Pertama
 
@@ -22,16 +22,16 @@ Metode ini berfokus pada perubahan perilaku fungsi, yaitu naik atau turun, di se
 
 -   **Nilai Balik Minimum:** Terjadi jika fungsi berubah dari **turun menjadi naik**. Tanda <InlineMath math="f'(x)" /> berubah dari **negatif (-) menjadi positif (+)**. Ini seperti dasar sebuah lembah.
 
--   **Titik Belok Horizontal:** Terjadi jika fungsi tidak berubah arah (tetap naik atau tetap turun). Tanda <InlineMath math="f'(x)" /> tidak berubah (positif ke positif atau negatif ke negatif).
+-   **Bukan Ekstrem Lokal:** Jika tanda <InlineMath math="f'(x)" /> tidak berubah, titik stasioner tersebut bukan maksimum maupun minimum lokal. Titik itu mungkin merupakan titik belok horizontal, tetapi kita tetap perlu memeriksa apakah kecekungannya berubah.
 
-Perhatikan visualisasi di bawah ini untuk memahami konsep titik balik.
+Visualisasi berikut menunjukkan garis singgung horizontal pada maksimum dan minimum lokal.
 
 <LineEquation
   title={<>Visualisasi Uji Turunan Pertama</>}
   description={
     <>
-      Visualisasi konsep titik balik. Garis bantu horizontal menunjukkan gradien
-      nol pada titik maksimum dan minimum.
+      Garis bantu horizontal menunjukkan tempat gradien bernilai nol pada
+      maksimum dan minimum lokal.
     </>
   }
   showZAxis={false}
@@ -118,13 +118,13 @@ Titik stasioner terjadi pada <InlineMath math="x = 1" /> dan <InlineMath math="x
 
 **Langkah** <InlineMath math="4" />: Tentukan nilai stasioner
 
-Untuk mendapatkan nilai balik (nilai <InlineMath math="y" />), substitusikan absis titik stasioner (<InlineMath math="x=1" /> dan <InlineMath math="x=3" />) kembali ke fungsi *awal* <InlineMath math="f(x)" />.
+Untuk mendapatkan nilai balik (nilai <InlineMath math="y" />), substitusikan koordinat <InlineMath math="x" /> titik stasioner (<InlineMath math="x=1" /> dan <InlineMath math="x=3" />) kembali ke fungsi *awal* <InlineMath math="f(x)" />.
 
--   Nilai maksimum: <InlineMath math="f(1) = 1(1-3)^2 = 4" />.
+-   Nilai maksimum lokal: <InlineMath math="f(1) = 1(1-3)^2 = 4" />.
 
--   Nilai minimum: <InlineMath math="f(3) = 3(3-3)^2 = 0" />.
+-   Nilai minimum lokal: <InlineMath math="f(3) = 3(3-3)^2 = 0" />.
 
-Jadi, nilai balik maksimum fungsi adalah <InlineMath math="4" /> yang terjadi di titik <InlineMath math="(1,4)" />, dan nilai balik minimumnya adalah <InlineMath math="0" /> yang terjadi di titik <InlineMath math="(3,0)" />.
+Jadi, nilai maksimum lokalnya adalah <InlineMath math="4" /> di <InlineMath math="(1,4)" />, sedangkan nilai minimum lokalnya adalah <InlineMath math="0" /> di <InlineMath math="(3,0)" />.
 
 <LineEquation
   title={<>Visualisasi Titik Ekstrim</>}
@@ -183,13 +183,13 @@ Jadi, nilai balik maksimum fungsi adalah <InlineMath math="4" /> yang terjadi di
 
 Metode ini seringkali lebih cepat karena tidak memerlukan pengujian interval. Uji ini menggunakan turunan kedua, <InlineMath math="f''(x)" />, untuk menentukan kecekungan kurva pada titik stasioner.
 
-Misalkan <InlineMath math="f'(c) = 0" />.
+Misalkan <InlineMath math="f'(c) = 0" /> dan <InlineMath math="f''" /> kontinu pada suatu selang yang memuat <InlineMath math="c" />.
 
--   Jika <InlineMath math="f''(c) < 0" />, maka <InlineMath math="f(c)" /> adalah **nilai balik maksimum**. Artinya, di titik itu kurva cekung ke bawah, seperti mangkuk terbalik.
+-   Jika <InlineMath math="f''(c) < 0" />, maka <InlineMath math="f(c)" /> adalah **nilai maksimum lokal**. Di titik itu, kurva cekung ke bawah seperti mangkuk terbalik.
 
--   Jika <InlineMath math="f''(c) > 0" />, maka <InlineMath math="f(c)" /> adalah **nilai balik minimum**. Artinya, di titik itu kurva cekung ke atas, seperti mangkuk terbuka.
+-   Jika <InlineMath math="f''(c) > 0" />, maka <InlineMath math="f(c)" /> adalah **nilai minimum lokal**. Di titik itu, kurva cekung ke atas seperti mangkuk terbuka.
 
--   Jika <InlineMath math="f''(c) = 0" />, uji ini **gagal** dan kita harus kembali menggunakan Uji Turunan Pertama. Titik ini kemungkinan adalah titik belok.
+-   Jika <InlineMath math="f''(c) = 0" />, hasil uji ini **belum menentukan jenis titiknya**. Gunakan Uji Turunan Pertama atau argumen lain; titik tersebut bisa berupa maksimum, minimum, titik belok, atau bukan ketiganya.
 
 Tentukan nilai-nilai ekstrim dari <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /> dengan uji turunan kedua.
 
@@ -213,17 +213,17 @@ Titik stasioner terjadi pada <InlineMath math="x = 3" /> dan <InlineMath math="x
 
 **Langkah** <InlineMath math="3" />: Uji titik stasioner ke turunan kedua
 
--   Untuk <InlineMath math="x = 3" />: <InlineMath math="f''(3) = 2(3) - 2 = 4" />. Karena <InlineMath math="4 > 0" />, ini adalah **nilai balik minimum**.
+-   Untuk <InlineMath math="x = 3" />: <InlineMath math="f''(3) = 2(3) - 2 = 4" />. Karena <InlineMath math="4 > 0" />, titik ini merupakan **minimum lokal**.
 
--   Untuk <InlineMath math="x = -1" />: <InlineMath math="f''(-1) = 2(-1) - 2 = -4" />. Karena <InlineMath math="-4 < 0" />, ini adalah **nilai balik maksimum**.
+-   Untuk <InlineMath math="x = -1" />: <InlineMath math="f''(-1) = 2(-1) - 2 = -4" />. Karena <InlineMath math="-4 < 0" />, titik ini merupakan **maksimum lokal**.
 
 **Langkah** <InlineMath math="4" />: Hitung nilai ekstrim
 
 Substitusikan <InlineMath math="x=3" /> dan <InlineMath math="x=-1" /> ke fungsi awal untuk mendapatkan nilai ekstrimnya.
 
--   Nilai minimum: <InlineMath math="f(3) = \frac{1}{3}(3)^3 - (3)^2 - 3(3) + 2 = 9 - 9 - 9 + 2 = -7" />.
+-   Nilai minimum lokal: <InlineMath math="f(3) = \frac{1}{3}(3)^3 - (3)^2 - 3(3) + 2 = 9 - 9 - 9 + 2 = -7" />.
 
--   Nilai maksimum: <InlineMath math="f(-1) = \frac{1}{3}(-1)^3 - (-1)^2 - 3(-1) + 2 = -\frac{1}{3} - 1 + 3 + 2 = \frac{11}{3}" />.
+-   Nilai maksimum lokal: <InlineMath math="f(-1) = \frac{1}{3}(-1)^3 - (-1)^2 - 3(-1) + 2 = -\frac{1}{3} - 1 + 3 + 2 = \frac{11}{3}" />.
 
 Jika kita perhatikan pada visualisasi di bawah ini, kurva cekung ke bawah di titik <InlineMath math="x=-1" /> dan cekung ke atas di titik <InlineMath math="x=3" />.
 
@@ -232,8 +232,9 @@ Jika kita perhatikan pada visualisasi di bawah ini, kurva cekung ke bawah di tit
   description={
     <>
       Grafik <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" />. Garis
-      bantu menandai titik maksimum, di mana kurva cekung ke bawah, dan
-      minimum, di mana kurva cekung ke atas.
+      bantu menandai titik maksimum di <InlineMath math="x=-1" />, tempat kurva
+      cekung ke bawah, dan titik minimum di <InlineMath math="x=3" />, tempat
+      kurva cekung ke atas.
     </>
   }
   showZAxis={false}
@@ -285,7 +286,7 @@ Jika kita perhatikan pada visualisasi di bawah ini, kurva cekung ke bawah di tit
 
 1. Tentukan titik stasioner untuk fungsi <InlineMath math="y = x^2 + 2x - 3" />.
 
-### Kunci Jawaban
+### Pembahasan
 
 1.  **Penyelesaian:**
 

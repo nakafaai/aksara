@@ -1,100 +1,134 @@
 export const metadata = {
-  title: "Akar Tidak Nyata atau Imajiner",
-  description: "Pelajari kapan persamaan kuadrat memiliki akar imajiner, cara mengidentifikasi dengan diskriminan, dan menyelesaikan bilangan kompleks bertahap.",
+  title: "Akar Tak Real Persamaan Kuadrat",
+  description: "Perluas persamaan kuadrat ke bilangan kompleks, gunakan diskriminan negatif untuk menemukan akar konjugat, lalu hubungkan hasilnya dengan grafik real.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-19",
   subject: "Persamaan dan Fungsi Kuadrat",
 };
 
-## Apa itu Akar Tidak Nyata?
+## Memperluas Bilangan Real
 
-Persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> kadang-kadang punya jawaban yang tidak bisa kita temukan di bilangan biasa. Jawaban seperti ini disebut "akar tidak nyata" atau "akar imajiner".
+Persamaan
 
-Bayangkan kita sedang mencari angka yang kalau dikali dengan dirinya sendiri hasilnya negatif. Apa ada angka seperti itu? Tidak ada! Karena bilangan apapun kalau dikali dengan dirinya sendiri pasti hasilnya positif atau nol. Inilah yang menjadi awal mula kita mengenal bilangan imajiner.
+<BlockMath math="x^2+1=0" />
 
-## Bilangan Imajiner
+mensyaratkan <InlineMath math="x^2=-1" />. Tidak ada bilangan real yang kuadratnya negatif, sehingga persamaan ini tidak mempunyai solusi dalam bilangan real. Agar dapat menyelesaikannya, kita memperluas sistem bilangan dengan satuan imajiner <InlineMath math="i" /> yang didefinisikan oleh
 
-Bilangan imajiner adalah bilangan yang mengandung <InlineMath math="i" />, di mana <InlineMath math="i = \sqrt{-1}" />. Ini berarti <InlineMath math="i^2 = -1" />.
+<BlockMath math="i^2=-1" />
 
-Contoh bilangan imajiner:
+Bilangan kompleks berbentuk
 
-- <InlineMath math="3i" /> (dibaca: "tiga i")
-- <InlineMath math="2 + 5i" /> (dibaca: "dua plus lima i")
-- <InlineMath math="-4i" /> (dibaca: "negatif empat i")
+<BlockMath math="z=a+bi\qquad(a,b\in\mathbb R)" />
 
-Bilangan seperti <InlineMath math="2 + 5i" /> disebut bilangan kompleks, karena merupakan gabungan dari bilangan real <InlineMath math="2" /> dan bilangan imajiner <InlineMath math="5i" />.
+Bilangan <InlineMath math="2+5i" /> merupakan bilangan kompleks. Bilangan itu tidak murni imajiner karena bagian realnya tidak nol. Sementara itu, bilangan seperti <InlineMath math="3i" /> murni imajiner.
 
-## Kapan Persamaan Kuadrat Punya Akar Imajiner?
+## Diskriminan Negatif
 
-Persamaan kuadrat punya akar imajiner ketika nilai diskriminannya negatif. Diskriminan adalah <InlineMath math="D = b^2 - 4ac" />.
+Untuk persamaan kuadrat <InlineMath math="ax^2+bx+c=0" /> dengan koefisien real, diskriminannya adalah
 
-Jika <InlineMath math="D < 0" />, maka persamaan kuadrat akan memiliki dua akar imajiner yang berbeda.
+<BlockMath math="D=b^2-4ac" />
 
-## Cara Mencari Akar Imajiner
+Jika <InlineMath math="D<0" />, persamaan tidak mempunyai akar real. Persamaan tersebut mempunyai dua akar kompleks tak real yang berbeda dan keduanya membentuk pasangan konjugat.
 
-Untuk mencari akar imajiner, kita tetap menggunakan rumus:
+Kita tetap memulai dengan rumus kuadrat:
 
-<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+<BlockMath math="x=\frac{-b\pm\sqrt{D}}{2a}" />
 
-Karena <InlineMath math="b^2 - 4ac" /> bernilai negatif, kita bisa tulis ulang sebagai:
+Karena <InlineMath math="D<0" />, tulis <InlineMath math="D=-|D|" />. Dengan demikian,
 
 <MathContainer>
-  <BlockMath math="x = \frac{-b \pm \sqrt{-(4ac - b^2)}}{2a}" />
-  <BlockMath math="x = \frac{-b \pm i\sqrt{4ac - b^2}}{2a}" />
+  <BlockMath math="\sqrt D=\sqrt{-|D|}=i\sqrt{|D|}" />
+  <BlockMath math="x=\frac{-b\pm i\sqrt{|D|}}{2a}" />
 </MathContainer>
 
-### Contoh Soal Pertama
+## Contoh dengan Pembahasan
 
-Mari kita cari akar-akar dari persamaan <InlineMath math="x^2 + 4x + 5 = 0" />.
+### Contoh 1: Menentukan Kedua Akar
 
-**Langkah** <InlineMath math="1" />: Identifikasi nilai <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />.
+Selesaikan
 
-- <InlineMath math="a = 1" />
-- <InlineMath math="b = 4" />
-- <InlineMath math="c = 5" />
+<BlockMath math="x^2+4x+5=0" />
 
-**Langkah** <InlineMath math="2" />: Hitung diskriminan.
+Koefisiennya adalah <InlineMath math="a=1" />, <InlineMath math="b=4" />, dan <InlineMath math="c=5" />. Hitung diskriminannya terlebih dahulu:
 
-<BlockMath math="D = b^2 - 4ac = 4^2 - 4 \cdot 1 \cdot 5 = 16 - 20 = -4" />
+<BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
 
-Karena <InlineMath math="D = -4 < 0" />, persamaan ini memiliki akar-akar imajiner.
-
-**Langkah** <InlineMath math="3" />: Gunakan rumus akar-akar persamaan kuadrat.
+Karena <InlineMath math="D=-4<0" />, kedua akarnya tak real. Substitusikan nilainya ke rumus kuadrat:
 
 <MathContainer>
-  <BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a} = \frac{-4 \pm \sqrt{-4}}{2 \cdot 1}" />
-  <BlockMath math="x = \frac{-4 \pm 2i}{2} = -2 \pm i" />
+  <BlockMath math="x=\frac{-4\pm\sqrt{-4}}{2\cdot1}" />
+  <BlockMath math="x=\frac{-4\pm2i}{2}=-2\pm i" />
 </MathContainer>
 
-Jadi, akar-akar dari persamaan <InlineMath math="x^2 + 4x + 5 = 0" /> adalah <InlineMath math="x_1 = -2 + i" /> dan <InlineMath math="x_2 = -2 - i" />.
+Jadi,
 
-### Contoh Soal Kedua
+<BlockMath math="x_1=-2+i\qquad\text{dan}\qquad x_2=-2-i" />
 
-Tentukan jenis akar-akar dari persamaan <InlineMath math="2x^2 + x + 3 = 0" />.
-
-**Langkah** <InlineMath math="1" />: Identifikasi nilai <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />.
-
-- <InlineMath math="a = 2" />
-- <InlineMath math="b = 1" />
-- <InlineMath math="c = 3" />
-
-**Langkah** <InlineMath math="2" />: Hitung diskriminan.
-
-<BlockMath math="D = b^2 - 4ac = 1^2 - 4 \cdot 2 \cdot 3 = 1 - 24 = -23" />
-
-Karena <InlineMath math="D = -23 < 0" />, persamaan ini memiliki akar-akar imajiner.
-
-**Langkah** <InlineMath math="3" />: Cari akar-akar persamaan.
+Kita dapat memeriksa salah satu akar secara langsung:
 
 <MathContainer>
-  <BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a} = \frac{-1 \pm \sqrt{-23}}{2 \cdot 2}" />
-  <BlockMath math="x = \frac{-1 \pm i\sqrt{23}}{4}" />
+  <BlockMath math="(-2+i)^2+4(-2+i)+5" />
+  <BlockMath math="=4-4i+i^2-8+4i+5=0" />
 </MathContainer>
 
-Jadi, akar-akar persamaan adalah <InlineMath math="x_1 = \frac{-1 + i\sqrt{23}}{4}" /> dan <InlineMath math="x_2 = \frac{-1 - i\sqrt{23}}{4}" />.
+Akar lainnya diperoleh dengan mengubah tanda bagian imajinernya.
 
-## Mengapa Akar Imajiner Selalu Berpasangan?
+### Contoh 2: Mengelompokkan dan Menentukan Akar
 
-Akar-akar imajiner selalu muncul berpasangan dalam bentuk <InlineMath math="a + bi" /> dan <InlineMath math="a - bi" />. Pasangan ini disebut "konjugat kompleks".
+Perhatikan persamaan
 
-Ini terjadi karena rumus persamaan kuadrat melibatkan <InlineMath math="\pm\sqrt{D}" />. Ketika <InlineMath math="D < 0" />, kita mendapatkan <InlineMath math="\pm i\sqrt{|D|}" />, yang memberikan pasangan konjugat kompleks.
+<BlockMath math="2x^2+x+3=0" />
+
+Di sini <InlineMath math="a=2" />, <InlineMath math="b=1" />, dan <InlineMath math="c=3" />. Diskriminannya adalah
+
+<BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
+
+Diskriminan negatif menunjukkan bahwa persamaan mempunyai dua akar kompleks tak real. Nilai eksaknya adalah
+
+<MathContainer>
+  <BlockMath math="x=\frac{-1\pm\sqrt{-23}}{2\cdot2}" />
+  <BlockMath math="x=\frac{-1\pm i\sqrt{23}}4" />
+</MathContainer>
+
+Dengan demikian,
+
+<BlockMath math="x_1=\frac{-1+i\sqrt{23}}4\qquad\text{dan}\qquad x_2=\frac{-1-i\sqrt{23}}4" />
+
+## Makna pada Grafik Real
+
+Persamaan pada contoh pertama dapat ditulis ulang sebagai
+
+<BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
+
+Untuk setiap <InlineMath math="x" /> real, nilai <InlineMath math="(x+2)^2" /> tidak negatif, sehingga <InlineMath math="f(x)\ge1" />. Grafik selalu berada di atas sumbu <InlineMath math="x" /> dan tidak memotongnya. Akar kompleks bukan titik potong tambahan pada grafik real ini. Akar tersebut berada dalam sistem bilangan yang lebih luas.
+
+## Mengapa Akar Membentuk Pasangan Konjugat
+
+Untuk koefisien real, rumus kuadrat memuat
+
+<BlockMath math="-b\pm i\sqrt{|D|}" />
+
+Kedua pilihan tanda hanya mengubah bagian imajiner. Hasilnya berbentuk <InlineMath math="u+vi" /> dan <InlineMath math="u-vi" /> yang disebut konjugat kompleks. Jika salah satunya merupakan akar polinom berkoefisien real, konjugatnya juga merupakan akar.
+
+## Latihan
+
+Selesaikan <InlineMath math="2x^2+2x+5=0" /> dalam bilangan kompleks.
+
+### Pembahasan Lengkap
+
+Mulai dari diskriminan:
+
+<BlockMath math="D=2^2-4\cdot2\cdot5=4-40=-36" />
+
+Karena <InlineMath math="D<0" />, gunakan <InlineMath math="\sqrt{-36}=6i" /> dalam rumus kuadrat:
+
+<MathContainer>
+  <BlockMath math="x=\frac{-2\pm\sqrt{-36}}{2\cdot2}" />
+  <BlockMath math="x=\frac{-2\pm6i}{4}=-\frac12\pm\frac32i" />
+</MathContainer>
+
+Jadi, pasangan akar konjugatnya adalah
+
+<BlockMath math="x_1=-\frac12+\frac32i\qquad\text{dan}\qquad x_2=-\frac12-\frac32i" />
+
+Jumlah kedua akar adalah <InlineMath math="-1=-\frac ba" /> dan hasil kalinya <InlineMath math="\frac52=\frac ca" />. Keduanya sesuai dengan rumus Vieta sehingga hasilnya terkonfirmasi.

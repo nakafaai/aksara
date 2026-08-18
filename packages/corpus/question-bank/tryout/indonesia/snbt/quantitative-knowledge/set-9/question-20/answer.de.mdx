@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-26",
+};
+
+Zuerst bestimmen wir die Wahrscheinlichkeit, zwei blaue Kugeln zu ziehen. Die Gesamtzahl der Kugeln ist die Summe der gelben und blauen Kugeln.
+
+<MathContainer>
+  <BlockMath math="n(S) = 8 + 3 = 11" />
+</MathContainer>
+
+Die Anzahl der Möglichkeiten, <InlineMath math="2" /> aus insgesamt <InlineMath math="11" /> Kugeln auszuwählen, berechnen wir mit Kombinationen:
+
+<MathContainer>
+  <BlockMath math="C^{11}_2 = \frac{11!}{2!(11-2)!} = \frac{11 \times 10 \times 9!}{2 \times 1 \times 9!} = \frac{110}{2} = 55" />
+</MathContainer>
+
+Nun berechnen wir die Anzahl der Möglichkeiten, <InlineMath math="2" /> aus den <InlineMath math="3" /> blauen Kugeln auszuwählen:
+
+<MathContainer>
+  <BlockMath math="n(A) = C^3_2 = \frac{3!}{2!(3-2)!} = \frac{3 \times 2!}{2! \times 1!} = 3" />
+</MathContainer>
+
+Die Wahrscheinlichkeit für zwei blaue Kugeln <InlineMath math="P(2B)" /> ist das Verhältnis der günstigen zu allen möglichen Paaren:
+
+<MathContainer>
+  <BlockMath math="P(2B) = \frac{n(A)}{n(S)} = \frac{3}{55}" />
+</MathContainer>
+
+Die erwartete Häufigkeit <InlineMath math="F_h" /> ist das Produkt aus der Ereigniswahrscheinlichkeit und der Anzahl von <InlineMath math="110" /> Versuchen:
+
+<MathContainer>
+  <BlockMath math="F_h = P(2B) \times N" />
+  <BlockMath math="F_h = \frac{3}{55} \times 110" />
+  <BlockMath math="F_h = 3 \times 2 = 6" />
+</MathContainer>
+
+Somit ist im Mittel <InlineMath math="6" />-mal mit zwei blauen Kugeln zu rechnen.

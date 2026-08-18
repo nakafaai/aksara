@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Scalar Vector Multiplication",
-  description: "Learn scalar multiplication of vectors: scale magnitude, change direction with negative values. Learn properties, calculations, and physics applications.",
+  title: "Scalar Multiplication of Vectors",
+  description: "Learn how scalar multiplication changes a vector's magnitude and direction, then apply it in calculations, physics, and geometry.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-12",
   subject: "Vector and Operations",
@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Definition of Scalar Multiplication of Vectors
 
-Scalar multiplication of a vector is an operation involving multiplication between a real number (scalar) and a vector <InlineMath math="\vec{v}" />. The result of this multiplication is a new vector with a length modified according to the scalar value, while its direction may remain the same or opposite depending on the sign of the scalar.
+Scalar multiplication combines a real number, called a scalar, with a vector <InlineMath math="\vec{v}" />. The result is a new vector whose magnitude is scaled by the scalar's absolute value. For a nonzero original vector, the sign determines whether the direction stays the same or reverses.
 
 If <InlineMath math="k" /> is a real number (scalar) and <InlineMath math="\vec{v}" /> is a vector, then the scalar multiplication of a vector is denoted as <InlineMath math="k \cdot \vec{v}" /> and results in a new vector.
 
@@ -16,19 +16,23 @@ If <InlineMath math="k" /> is a real number (scalar) and <InlineMath math="\vec{
 
 Scalar multiplication of vectors has several important properties:
 
-1. If <InlineMath math="k > 0" /> (positive), then the resulting vector has the same direction as the original vector.
-2. If <InlineMath math="k < 0" /> (negative), then the resulting vector has a direction opposite to the original vector.
+1. If <InlineMath math="k > 0" /> and the original vector is nonzero, the resulting vector has the same direction.
+2. If <InlineMath math="k < 0" /> and the original vector is nonzero, the resulting vector points in the opposite direction.
 3. If <InlineMath math="k = 0" />, then the resulting vector is a zero vector.
-4. The magnitude (length) of the resulting vector is <InlineMath math="|k|\text{ times}" /> the magnitude of the original vector.
+4. The resulting magnitude is the original magnitude multiplied by the factor <InlineMath math="|k|" />.
 
 ## Representation of Scalar Multiplication of Vectors
 
 ### Geometrically
 
-Geometrically, scalar multiplication of a vector changes the length (magnitude) of the vector by <InlineMath math="|k|\text{ times}" />. The direction of the vector depends on the sign of <InlineMath math="k" />:
+Geometrically, scalar multiplication changes a vector's magnitude by the factor <InlineMath math="|k|" />. For a nonzero vector, its direction depends on the sign of <InlineMath math="k" />:
 
 - If <InlineMath math="k > 0" />, the direction of the vector remains unchanged
-- If <InlineMath math="k < 0" />, the direction of the vector is opposite to the original vector <InlineMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
+- If <InlineMath math="k < 0" />, the direction of the vector is opposite to the original vector
+
+In both cases, and also when <InlineMath math="k=0" />, the magnitude satisfies:
+
+<BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
 
 ### Algebraically
 
@@ -76,9 +80,9 @@ Scalar multiplication of vectors has many applications in physics and mathematic
 
 1. **Force and Acceleration**: If an object with mass <InlineMath math="m" /> experiences acceleration <InlineMath math="\vec{a}" />, then the force acting on the object is <InlineMath math="\vec{F} = m\vec{a}" />.
 
-2. **Velocity**: If an object moves with velocity <InlineMath math="\vec{v}" /> for a time <InlineMath math="t" />, then the displacement of the object is <InlineMath math="\vec{s} = t\vec{v}" />.
+2. **Velocity**: If an object moves with constant velocity <InlineMath math="\vec{v}" /> for a time <InlineMath math="t" />, then its displacement is <InlineMath math="\vec{s} = t\vec{v}" />.
 
-3. **Scaling in Computer Graphics**: To change the size of objects in computer graphics, the coordinates of points on the object are multiplied by a scale factor.
+3. **Scaling in Computer Graphics**: Multiplying every position vector by <InlineMath math="k" /> scales an object about the coordinate origin. To scale about another center <InlineMath math="\vec{c}" />, each point <InlineMath math="\vec{p}" /> must be translated, scaled, and translated back according to <InlineMath math="\vec{p}'=\vec{c}+k(\vec{p}-\vec{c})" />.
 
 ## Practice Problems
 
@@ -86,7 +90,7 @@ Scalar multiplication of vectors has many applications in physics and mathematic
 
 2. Vectors <InlineMath math="\vec{u} = (2, -5, 1)" /> and <InlineMath math="\vec{v} = (-4, 3, 6)" />. Determine the vector <InlineMath math="2\vec{u} - 3\vec{v}" />.
 
-3. Given the vector <InlineMath math="\overrightarrow{BR} = 3.4 \text{ cm}" />. If <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" /> and <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />, prove that all three vectors have the same direction.
+3. Given <InlineMath math="|\overrightarrow{BR}| = 3.4 \text{ cm}" />. If <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" /> and <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />, prove that all three vectors have the same direction.
 
 4. Vector <InlineMath math="\vec{p}" /> has a length of <InlineMath math="5 \text{ units}" /> and vector <InlineMath math="\vec{q} = 3\vec{p}" />. Determine the length of vector <InlineMath math="\vec{q}" />.
 
@@ -126,7 +130,7 @@ Therefore, the vector <InlineMath math="2\vec{u} - 3\vec{v}" /> is <InlineMath m
 
 ### Third Problem
 
-Given the vector <InlineMath math="\overrightarrow{BR} = 3.4 \text{ cm}" />. If <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" /> and <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />, prove that all three vectors have the same direction.
+Given <InlineMath math="|\overrightarrow{BR}| = 3.4 \text{ cm}" />. If <InlineMath math="\overrightarrow{BU} = 0.65 \cdot \overrightarrow{BR}" /> and <InlineMath math="\overrightarrow{UR} = 0.35 \cdot \overrightarrow{BR}" />, prove that all three vectors have the same direction.
 
 **Solution:**
 To prove that all three vectors have the same direction, we need to show that they are positive scalar multiples of the same vector.

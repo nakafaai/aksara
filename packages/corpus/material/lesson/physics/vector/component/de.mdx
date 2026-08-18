@@ -1,0 +1,137 @@
+
+
+export const metadata = {
+  title: "Vektorkomponenten",
+  description:
+    "Einen Vektor mithilfe von Einheitsvektoren in Komponenten entlang der x-, y- und z-Achse zerlegen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Vektor",
+};
+
+## Warum Vektoren in Komponenten aufgeteilt werden
+
+Ein schräg verlaufender Vektor ist schwer zu berechnen, solange wir ihn nur als einen Pfeil betrachten. Deshalb zerlegen wir ihn in Teile, die parallel zu den Koordinatenachsen verlaufen. Diese Teile heißen **Vektorkomponenten**.
+
+Die horizontale Komponente gibt den Anteil des Vektors entlang der <InlineMath math="x" />-Achse an. Die vertikale Komponente beschreibt entsprechend den Anteil entlang der <InlineMath math="y" />-Achse. Im dreidimensionalen Raum kommt eine dritte Komponente entlang der <InlineMath math="z" />-Achse hinzu.
+
+> Vektorkomponenten zerlegen einen schrägen Pfeil in achsenparallele Teile.
+
+## Komponenten in der Ebene lesen
+
+In einer Ebene lässt sich der Vektor <InlineMath math="\vec{A}" /> als Summe seiner <InlineMath math="x" />- und <InlineMath math="y" />-Komponente schreiben.
+
+<BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
+
+Dabei ist <InlineMath math="\hat{i}" /> der Einheitsvektor in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang der beiden Achsen an; ihr Vorzeichen kennzeichnet die jeweilige Achsenrichtung.
+
+Beispielsweise bedeutet <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" />, dass der Vektor <InlineMath math="6" /> Einheiten in positive <InlineMath math="x" />-Richtung und <InlineMath math="8" /> Einheiten in positive <InlineMath math="y" />-Richtung zeigt.
+
+<BlockMath math="\lvert\vec{A}\rvert=\sqrt{6^2+8^2}=10" />
+
+Der Betrag des Vektors folgt aus dem Satz des Pythagoras, weil die <InlineMath math="x" />- und <InlineMath math="y" />-Komponente senkrecht aufeinander stehen.
+
+## Komponenten im dreidimensionalen Raum
+
+Im dreidimensionalen Raum benötigt ein Vektor drei Komponenten. Die allgemeine Form ist:
+
+<BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}" />
+
+Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft nicht auf eine Ebene beschränkt ist, etwa bei einer Drohne, die sich gleichzeitig nach Osten, nach Norden und nach oben bewegt.
+
+<Vector3d
+  title={<>Komponenten von <InlineMath math="\vec{A}" /></>}
+  description={
+    <>
+      Der Vektor <InlineMath math="\vec{A}=4\hat{i}+3\hat{j}+2\hat{k}" /> wird in
+      drei zueinander senkrechte Komponenten zerlegt.
+    </>
+  }
+  vectors={(() => {
+    const components = [
+      [4, 0, 0],
+      [0, 3, 0],
+      [0, 0, 2],
+    ];
+    const points = components.reduce(
+      (path, component) => [
+        ...path,
+        path.at(-1).map((value, index) => value + component.at(index)),
+      ],
+      [[0, 0, 0]]
+    );
+    const resultant = components.reduce(
+      (sum, component) =>
+        sum.map((value, index) => value + component.at(index)),
+      [0, 0, 0]
+    );
+
+    return [
+      {
+        from: [0, 0, 0],
+        to: resultant,
+        color: "#7c3aed",
+        label: <InlineMath math="A" />,
+        labelAnchorX: "center",
+        labelProgress: 3 / 5,
+        labelOffset: [0.35, 0.55, 0.3],
+      },
+      {
+        from: points[0],
+        to: points[1],
+        color: "#0d9488",
+        label: <InlineMath math="A_x" />,
+        labelAnchorX: "center",
+        labelProgress: 1 / 2,
+        labelOffset: [0, -0.45, 0],
+      },
+      {
+        from: points[1],
+        to: points[2],
+        color: "#d97706",
+        label: <InlineMath math="A_y" />,
+        labelAnchorX: "center",
+        labelProgress: 1 / 2,
+        labelOffset: [0.55, 0, 0.15],
+      },
+      {
+        from: points[2],
+        to: points[3],
+        color: "#0891b2",
+        label: <InlineMath math="A_z" />,
+        labelAnchorX: "center",
+        labelProgress: 1 / 2,
+        labelOffset: [0.65, -0.25, 0.15],
+      },
+    ];
+  })()}
+  cameraPosition={[8, 6, 9]}
+  cameraTarget={[2, -0.5, 1]}
+/>
+
+Die Darstellung setzt die Komponenten nacheinander zusammen: zuerst entlang der <InlineMath math="x" />-Achse, dann entlang der <InlineMath math="y" />-Achse und schließlich entlang der <InlineMath math="z" />-Achse. Der so erreichte Endpunkt stimmt mit dem Endpunkt des Vektors <InlineMath math="\vec{A}" /> überein.
+
+## Positive und negative Vorzeichen
+
+Komponenten können positiv oder negativ sein. Das Vorzeichen zeigt die Richtung relativ zur Referenzachse an, keinen negativen Vektorbetrag.
+
+| Komponente | Positives Vorzeichen | Negatives Vorzeichen |
+| :--------- | :------------------- | :------------------- |
+| <InlineMath math="A_x" /> | in positiver <InlineMath math="x" />-Richtung | in negativer <InlineMath math="x" />-Richtung |
+| <InlineMath math="A_y" /> | in positiver <InlineMath math="y" />-Richtung | in negativer <InlineMath math="y" />-Richtung |
+| <InlineMath math="A_z" /> | in positiver <InlineMath math="z" />-Richtung | in negativer <InlineMath math="z" />-Richtung |
+
+Für <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" /> zeigt die Komponente mit dem Betrag <InlineMath math="5" /> in negativer <InlineMath math="x" />-Richtung. Die Komponente mit dem Betrag <InlineMath math="2" /> zeigt dagegen in positiver <InlineMath math="y" />-Richtung.
+
+## Eine Verschiebung in Komponenten schreiben
+
+Ein Schüler geht <InlineMath math="3\text{ m}" /> nach Osten und anschließend <InlineMath math="4\text{ m}" /> nach Norden. Wird Osten als positive <InlineMath math="x" />-Richtung und Norden als positive <InlineMath math="y" />-Richtung festgelegt, lautet der Verschiebungsvektor:
+
+<MathContainer>
+  <BlockMath math="\vec{s}=3\hat{i}+4\hat{j}" />
+  <BlockMath math="\lvert\vec{s}\rvert=\sqrt{3^2+4^2}=5\text{ m}" />
+</MathContainer>
+
+Die Komponentenform hält die Rechnung übersichtlich, weil jede Richtung auf ihrer eigenen Achse behandelt wird.
+
+Aus der Komponentenform ist sofort erkennbar, dass die resultierende Verschiebung zugleich nach Osten und nach Norden zeigt. Ihr Betrag von <InlineMath math="5\text{ m}" /> ergibt sich aus einem rechtwinkligen Dreieck mit den Kathetenlängen <InlineMath math="3\text{ m}" /> und <InlineMath math="4\text{ m}" />.

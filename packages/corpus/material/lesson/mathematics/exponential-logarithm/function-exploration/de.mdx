@@ -1,0 +1,88 @@
+export const metadata = {
+  title: "Exponentialfunktionen erkunden",
+  description:
+    "Mit einem idealisierten Übertragungsbaum neue und kumulierte Fälle unterscheiden, Funktionsfamilien vergleichen und Modellgrenzen prüfen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-02",
+  subject: "Potenzen und Logarithmen",
+};
+
+## Ein idealisierter Übertragungsbaum
+
+Ein Ausgangsfall soll genau <InlineMath math="3" /> neue Fälle verursachen. Jeder neue Fall verursacht in der nächsten Phase wiederum genau <InlineMath math="3" /> weitere Fälle. Kontakte überschneiden sich nicht, niemand erholt sich während des Modells und der Faktor verändert sich nicht.
+
+Diese Annahmen sind bewusst unrealistisch. Sie erzeugen ein übersichtliches Verzweigungsmuster zum Untersuchen von Exponentialfunktionen, keine Vorhersage für einen echten Ausbruch.
+
+## Neue Fälle in jeder Phase
+
+Die folgenden Werte zählen **neue Fälle in der jeweiligen Phase**, nicht die kumulierte Gesamtzahl:
+
+- **Phase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> neue Fälle
+- **Phase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> neue Fälle
+- **Phase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> neue Fälle
+- **Phase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> neue Fälle
+- **Phase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> neue Fälle
+
+Bezeichnet <InlineMath math="N(x)" /> die Zahl der neuen Fälle in Phase <InlineMath math="x" />, dann gilt:
+
+<BlockMath math="N(x)=3^x" />
+
+Die kumulierte Zahl der neuen Fälle von Phase eins bis Phase <InlineMath math="x" /> ist eine geometrische Summe:
+
+<BlockMath math="S(x)=3+3^2+\cdots+3^x=\frac{3^{x+1}-3}{2}" />
+
+Die Trennung beider Größen verhindert einen häufigen Modellierungsfehler: <InlineMath math="N(x)" /> beschreibt eine einzelne Phase, <InlineMath math="S(x)" /> addiert alle abgeschlossenen Phasen.
+
+## Funktionsfamilien vergleichen
+
+Das Diagramm vergleicht drei Formeln für dieselben Phasenwerte:
+
+1. **Exponentiell**: <InlineMath math="y=3^x" />
+2. **Linear**: <InlineMath math="y=3x" />
+3. **Logarithmisch**: <InlineMath math="y=20\ln(x+1)" />
+
+Nur die Exponentialkurve entspricht der Regel „in jeder Phase mit drei multiplizieren“. Die beiden anderen Kurven dienen als Formvergleich und sind keine alternativen Aussagen über eine Übertragung.
+
+<FunctionExplorationVirusChart
+  labels={{
+    title: "Idealisiertes Übertragungsmodell",
+    description: "Neue Fälle pro Phase unter einer festen Verzweigungsregel.",
+    exponential: "Exponentiell",
+    linear: "Linear",
+    logarithmic: "Logarithmisch",
+    yLabel: "Neue Fälle in der Phase",
+    caption:
+      "Die Exponentialkurve entspricht dem festen Faktor drei; reale Übertragung behält diese Annahmen nicht unbegrenzt bei.",
+    phase: "Phase",
+  }}
+/>
+
+## Ausführliche Antworten
+
+1. Wie viele neue Fälle erzeugt das Modell in Phase <InlineMath math="20" />?
+
+   <BlockMath math="N(20)=3^{20}=3{.}486{.}784{.}401" />
+
+2. Wie viele neue Fälle haben sich von Phase <InlineMath math="1" /> bis Phase <InlineMath math="20" /> angesammelt?
+
+   <BlockMath math="S(20)=\frac{3^{21}-3}{2}=5{.}230{.}176{.}600" />
+
+3. Warum entspricht die Exponentialkurve und nicht die lineare Kurve der hypothetischen Regel?
+
+   Das Exponentialmodell multipliziert die vorherige Phase mit <InlineMath math="3" />. Ein lineares Modell würde in jeder Phase denselben Betrag addieren. Die Multiplikation mit einem festen Faktor und die Addition eines festen Betrags sind unterschiedliche Prozesse.
+
+Die sehr großen Ergebnisse zeigen, dass die Annahmen nicht beliebig weit fortgesetzt werden dürfen. Es handelt sich nicht um plausible Fallprognosen.
+
+## Sichtbare Eigenschaften der Exponentialfunktion
+
+Für <InlineMath math="f(x)=a^x" /> mit <InlineMath math="a>0" /> und <InlineMath math="a\neq1" /> gilt:
+
+1. Die Definitionsmenge ist <InlineMath math="\mathbb{R}" />, die Wertemenge <InlineMath math="(0,\infty)" />.
+2. Der Graph verläuft durch <InlineMath math="(0,1)" />, weil <InlineMath math="a^0=1" /> gilt.
+3. Für <InlineMath math="a>1" /> ist die Funktion steigend.
+4. Für <InlineMath math="0<a<1" /> ist die Funktion fallend.
+5. Der Abstand von <InlineMath math="a" /> zu <InlineMath math="1" /> beeinflusst, wie schnell sich der Funktionswert verändert. Exponentielles Verhalten ist nicht automatisch „extrem schnell“.
+
+## Einsatzbereiche exponentieller Modelle
+
+Exponentialfunktionen können Zinseszins, radioaktiven Zerfall, wiederholte Verdopplung und kurze Phasen von Bevölkerungs- oder Übertragungsänderungen modellieren. Vor dem Einsatz muss geprüft werden, ob der Prozess in gleichen Intervallen tatsächlich einen annähernd konstanten **Faktor** verwendet. Ändern sich Rate, Ressourcen oder Wechselwirkungen, muss sich auch das Modell ändern.

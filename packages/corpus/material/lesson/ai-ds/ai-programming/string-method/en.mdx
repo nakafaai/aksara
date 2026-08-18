@@ -6,11 +6,11 @@ export const metadata = {
     subject: "AI Programming",
 };
 
-## Immutable String Nature
+## String Immutability
 
-Strings in Python have a special property called immutable, meaning that after a string is created, its contents cannot be changed directly. Imagine a string like a book that has already been printed, you cannot change words in it without reprinting the entire page.
+Python strings are immutable: the value stored in a string object cannot be edited in place. An operation may create another string, and a variable may then be rebound to that new object, but the original string object remains unchanged.
 
-When you try to change characters in a string directly, Python will display a TypeError. This is different from lists which can be modified element by element.
+Assigning to a character position therefore raises `TypeError`. Lists are different because their elements can be replaced in place.
 
 <CodeBlock
   data={[
@@ -37,11 +37,11 @@ print(f"Original string still: {s}")`
   ]}
 />
 
-Although strings cannot be changed directly, you can create new strings based on old strings. Operations like concatenation with the `+` operator will produce new strings, not modify existing ones.
+Slicing and concatenation are two ways to build a new string from an existing one. The `+` operator does not append to the original object.
 
 ## Measuring String Length
 
-The `len()` function is used to find out the number of characters in a string. Every character, including spaces and punctuation, is counted as one unit.
+For a Python string, `len()` counts Unicode code points. An ordinary Latin letter, space, or punctuation mark usually contributes one, but a single visible grapheme can contain several code points, as happens with some emoji and combining marks.
 
 <CodeBlock
   data={[
@@ -64,18 +64,21 @@ for s in strings:
 # String length with special characters
 special = "Hello\\nWorld\\t!"
 print(f"String with escape sequence: {len(special)} characters")
-print(f"String display: {repr(special)}")`
+print(f"String display: {repr(special)}")
+
+raw_newline = r"\\n"
+print(f"Raw \\n spelling: {len(raw_newline)} code points")`
     }
   ]}
 />
 
-It's important to understand that escape sequences like `\n` and `\t` are counted as one character even though they are written with two symbols.
+In a normal string literal, the source spellings `\n` and `\t` each become one newline or tab code point. In a raw string such as `r"\n"`, the backslash and `n` remain two separate code points.
 
 ## String Transformation Methods
 
 ### Changing Letter Case
 
-Python provides several methods to change the letter format in strings. Each method produces a new string with the desired format.
+Python provides several case-conversion methods. Each returns a new string and applies Unicode casing rules.
 
 <CodeBlock
   data={[
@@ -109,11 +112,11 @@ print(f"Complex title: {complex_text.title()}")`
   ]}
 />
 
-The `title()` method is very useful for formatting names or titles, where each word starts with a capital letter.
+The `title()` method follows a mechanical casing rule. It can be convenient for display labels, but it is not a reliable formatter for people's names or editorial titles. Preserve authoritative spelling or apply domain-specific rules for those values.
 
 ### Removing Characters at Start and End
 
-Strip methods are useful for cleaning strings from unwanted characters at the beginning or end of strings.
+With no argument, `strip()`, `lstrip()`, and `rstrip()` remove surrounding whitespace. A `chars` argument is treated as a set of individual characters to remove repeatedly from the relevant ends, not as one exact prefix or suffix.
 
 <CodeBlock
   data={[
@@ -144,12 +147,16 @@ print(f"Custom strip: '{custom_stripped}'")
 # Strip multiple characters
 messy_text = "---+++Hello World+++---"
 clean_text = messy_text.strip("-+")
-print(f"Multiple char strip: '{clean_text}'")`
+print(f"Multiple char strip: '{clean_text}'")
+
+# Remove one exact suffix
+filename = "report.txt"
+print(f"Exact suffix removal: '{filename.removesuffix('.txt')}'")`
     }
   ]}
 />
 
-Strip methods are very useful in data processing, especially when reading input from users or files that may contain extra spaces.
+Use `removeprefix()` or `removesuffix()` when you need to remove one exact token. This distinction prevents a character set from stripping more than intended.
 
 ## Search and Validation Methods
 
@@ -182,6 +189,9 @@ print(f"find('powerful'): {pos_find}")
 pos_not_found = text.find("Java")
 print(f"find('Java'): {pos_not_found}")
 
+# Use membership when only presence matters
+print(f"Contains 'Python': {'Python' in text}")
+
 # Search with start and end parameters
 substring = "programming"
 start_pos = text.find(substring, 20)  # start from position 20
@@ -194,11 +204,11 @@ print(f"Letter 'a' appears {count} times")`
   ]}
 />
 
-Use `find()` when you're not sure if the substring exists in the string, and use `index()` when you're certain the substring definitely exists.
+Choose the method according to the failure contract: `find()` returns `-1`, while `index()` raises `ValueError`. If you only need a yes-or-no answer, the `in` operator is clearer than either position method.
 
 ### String Character Validation
 
-Python provides several methods to validate character types in strings.
+Python provides predicates that classify the code points in a string. They answer questions about character categories, not whether the value satisfies a complete business format.
 
 <CodeBlock
   data={[
@@ -234,8 +244,8 @@ for s in test_strings:
 def validate_username(username):
     if not username:
         return "Username cannot be empty"
-    if not username.isalnum():
-        return "Username can only contain letters and numbers"
+    if not username.isascii() or not username.isalnum():
+        return "Username can only contain ASCII letters and numbers"
     if len(username) < 3:
         return "Username must be at least 3 characters"
     return "Username is valid"
@@ -249,7 +259,7 @@ for username in usernames:
   ]}
 />
 
-These validation methods are very useful for verifying user input formats, such as phone numbers, postal codes, or usernames.
+Methods such as `isdigit()` and `isalnum()` are Unicode-aware, and the empty string makes them return `False`. A phone number, postal code, or username still needs explicit rules for alphabet, length, separators, prefixes, and any other domain constraints.
 
 ## Prefix and Suffix Search Methods
 
@@ -357,7 +367,7 @@ The `replace()` method is case-sensitive and replaces all occurrences unless lim
 
 ### Splitting Strings
 
-The `split()` method breaks a string into a list based on a specified delimiter.
+The `split()` method breaks a string into a list around a specified delimiter. With no delimiter, it treats consecutive whitespace as one separator and omits leading or trailing empty fields.
 
 <CodeBlock
   data={[
@@ -386,7 +396,7 @@ messy_text = "word1    word2\\t\\tword3\\n\\nword4"
 clean_split = messy_text.split()
 print(f"Clean split: {clean_split}")
 
-# Practical example: parsing CSV data
+# Simple comma-separated fields without quoting
 csv_line = "John,25,Engineer,New York"
 data = csv_line.split(",")
 name, age, job, city = data
@@ -404,11 +414,11 @@ print(f"Joined with pipe: {joined}")`
   ]}
 />
 
-The `split()` method is very useful for processing structured data like CSV, parsing user input, or breaking file paths.
+Use `split()` only when the delimiter rules are genuinely simple. It does not understand quoted CSV fields, escaping, or platform-specific paths. Use Python's `csv` module for CSV and `pathlib` for filesystem paths.
 
 ## String Method Chaining
 
-Since each string method returns a new string, you can combine multiple methods in one expression. This is called method chaining.
+Because string methods return new strings, several transformations can be chained in one expression. Keep a chain short enough that each step remains obvious; name intermediate values when validation or explanation belongs between steps.
 
 <CodeBlock
   data={[
@@ -428,17 +438,17 @@ clean_result = (messy_input
 
 print(f"Clean result: '{clean_result}'")
 
-# Example chaining for name formatting
-names = ["  JOHN DOE  ", "  jane SMITH  ", "  BOB johnson  "]
-formatted_names = []
+# Example chaining for display-label formatting
+labels = ["  GETTING STARTED  ", "  array BASICS  ", "  DATA cleaning  "]
+formatted_labels = []
 
-for name in names:
-    formatted = name.strip().title()
-    formatted_names.append(formatted)
+for label in labels:
+    formatted = label.strip().title()
+    formatted_labels.append(formatted)
 
-print("Formatted names:")
-for name in formatted_names:
-    print(f"- {name}")
+print("Formatted labels:")
+for label in formatted_labels:
+    print(f"- {label}")
 
 # Chaining in list comprehension
 sentences = [
@@ -450,23 +460,31 @@ sentences = [
 processed = [s.strip().title() for s in sentences]
 print(f"Processed sentences: {processed}")
 
-# Example chaining for validation and formatting
-def process_email(email):
-    return email.strip().lower().replace(" ", "")
+# Normalize the domain without silently deleting invalid whitespace
+def normalize_email(email):
+    cleaned = email.strip()
+    if any(char.isspace() for char in cleaned) or cleaned.count("@") != 1:
+        raise ValueError("Email must contain one @ and no whitespace")
 
-emails = ["  USER@EXAMPLE.COM  ", "Test User@Gmail.com", "admin@site.org"]
+    local, domain = cleaned.split("@", 1)
+    if not local or not domain:
+        raise ValueError("Email needs both local and domain parts")
+
+    return f"{local}@{domain.lower()}"
+
+emails = ["  USER@EXAMPLE.COM  ", "Test.User@Gmail.com", "admin@site.org"]
 for email in emails:
-    processed = process_email(email)
+    processed = normalize_email(email)
     print(f"'{email}' -> '{processed}'")`
     }
   ]}
 />
 
-Method chaining makes code more concise and readable, especially when you need to perform several transformations consecutively on strings.
+Method chaining works well for a short linear cleanup. It is not automatically clearer than named steps.
 
 ## Practical String Method Applications
 
-String methods are often used in real programming scenarios to process and validate text data.
+The following bounded examples combine string methods with explicit assumptions. They illustrate mechanics, not universal production validators or parsers.
 
 <CodeBlock
   data={[
@@ -477,11 +495,12 @@ String methods are often used in real programming scenarios to process and valid
 
 # 1. Phone number validation and formatting
 def format_phone_number(phone):
-    # Remove all non-digit characters
-    digits_only = ""
-    for char in phone:
-        if char.isdigit():
-            digits_only += char
+    # Accept only ASCII digits and the separators supported here
+    allowed_separators = {" ", "-", "(", ")", "+"}
+    if any(char not in "0123456789" and char not in allowed_separators for char in phone):
+        return "Invalid character in phone number"
+
+    digits_only = "".join(char for char in phone if char in "0123456789")
 
     # Format according to Indonesian standard
     if len(digits_only) == 13 and digits_only.startswith("62"):
@@ -584,7 +603,7 @@ def create_slug(title):
     for char in slug:
         if char.isalnum():
             clean_slug += char
-        elif char == " " or not char.isalnum():
+        else:
             if clean_slug and clean_slug[-1] != "-":
                 clean_slug += "-"
 
@@ -606,6 +625,6 @@ for title in titles:
   ]}
 />
 
-These four application examples show how string methods can be combined to solve real problems. Method chaining enables longer string transformations in a single line of code, while the immutable nature of strings keeps operations predictable.
+These four examples combine classification, searching, splitting, and replacement under small, stated formats. A production phone parser, filename parser, log parser, or slug generator also needs a domain contract, error policy, and tests for ambiguous input.
 
-After learning these methods, you can build applications that handle input validation, data parsing, and text transformation efficiently.
+The key is to match each method to its exact semantics instead of treating a convenient string operation as complete validation.

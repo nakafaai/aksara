@@ -1,0 +1,150 @@
+export const metadata = {
+   title: "Integrale in Wirtschaft und Unternehmen",
+   description: "Wende Integrale auf wirtschaftliche Situationen an und berechne Absatz, Umsatzänderungen, Produktionskosten und Konsumentenrente.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Integrale",
+};
+
+## Anwendung von Integralen in der Wirtschaftswissenschaft
+
+Viele wirtschaftliche Größen werden als Änderungsrate angegeben, etwa verkaufte Stück pro Monat oder zusätzliche Kosten pro produzierter Einheit. Ein Integral summiert solche kleinen Änderungen zu einer Gesamtgröße über einen Zeitraum oder eine Produktionsmenge.
+
+Ist beispielsweise eine Absatzrate als Funktion der Zeit bekannt, liefert ihr Integral die insgesamt verkaufte Stückzahl im betrachteten Zeitraum.
+
+Dieses Konzept ähnelt der Berechnung der Fläche unter einer Kurve, wobei die horizontale Achse die Zeit und die vertikale Achse die Änderungsrate einer Wirtschaftsgröße darstellt.
+
+## Verkaufsanalyse mit Integralen
+
+Ein Technologieunternehmen bringt ein neues Smartphone auf den Markt. Das Analyseteam modelliert die Absatzentwicklung nach der Markteinführung.
+
+Die monatliche Absatzrate wird durch <InlineMath math="f(t) = 2000\sqrt{t + 1} + 800 \text{ Einheiten}" /> pro Monat beschrieben. Dabei ist <InlineMath math="t" /> die Zeit in Monaten seit der Markteinführung.
+
+Gesucht ist der **Gesamtabsatz** in den ersten <InlineMath math="3 \text{ Monaten}" />. Dazu integrieren wir die Absatzrate:
+
+<BlockMath math="S = \int_{0}^{3} (2000\sqrt{t + 1} + 800) \, dt" />
+
+Zunächst wird das Integral in zwei Summanden zerlegt:
+
+<MathContainer>
+<BlockMath math="S = \int_{0}^{3} 2000\sqrt{t + 1} \, dt + \int_{0}^{3} 800 \, dt" />
+<BlockMath math="S = 2000 \int_{0}^{3} (t + 1)^{1/2} \, dt + 800t \Big|_{0}^{3}" />
+</MathContainer>
+
+Für den Wurzelausdruck eignet sich die Substitution <InlineMath math="u = t + 1" /> mit <InlineMath math="du = dt" />. Die Integrationsgrenzen werden dabei ebenfalls in die neue Variable umgerechnet.
+
+<MathContainer>
+<BlockMath math="S = 2000 \int_{1}^{4} u^{1/2} \, du + 2400" />
+<BlockMath math="S = 2000 \left[\frac{2}{3}u^{3/2}\right]_{1}^{4} + 2400" />
+<BlockMath math="S = \frac{4000}{3}(8 - 1) + 2400 = \frac{28000}{3} + \frac{7200}{3} = \frac{35200}{3}" />
+</MathContainer>
+
+Das kontinuierliche Modell liefert für die ersten <InlineMath math="3 \text{ Monate}" /> den Wert <InlineMath math="S = \frac{35200}{3} \approx 11733{,}33" />. Als ganze Geräte sind das ungefähr <InlineMath math="11733" /> Smartphones.
+
+## Analyse des Umsatzwachstums
+
+Betrachten wir nun ein anderes Beispiel. Angenommen, ein Technologie-Startup weist eine Umsatzwachstumsrate auf, die einem exponentiellen Muster von <InlineMath math="R'(t) = 5000e^{0{,}1t}" /> Tausend Dollar pro Monat folgt, wobei <InlineMath math="t" /> die Zeit in Monaten ist.
+
+Um die **gesamte Umsatzsteigerung** in den ersten <InlineMath math="6 \text{ Monaten}" /> zu berechnen, integrieren wir die Wachstumsrate:
+
+<MathContainer>
+<BlockMath math="R = \int_{0}^{6} 5000e^{0{,}1t} \, dt" />
+<BlockMath math="R = 5000 \int_{0}^{6} e^{0{,}1t} \, dt" />
+<BlockMath math="R = 5000 \left[\frac{e^{0{,}1t}}{0{,}1}\right]_{0}^{6}" />
+<BlockMath math="R = 50000(e^{0{,}6} - 1)" />
+</MathContainer>
+
+Mit <InlineMath math="e^{0{,}6} \approx 1{,}822" /> beträgt die gesamte Umsatzsteigerung ungefähr <InlineMath math="50000 \times 0{,}822 = 41100" /> Tausend Dollar, also <InlineMath math="41{,}1 \text{ Millionen}" /> Dollar.
+
+## Gesamtproduktionskosten
+
+In der Wirtschaft müssen Unternehmen häufig die Produktionskosten schätzen. Angenommen, die Grenzkosten für die Herstellung eines Gutes betragen <InlineMath math="MC(x) = 0{,}3x^2 - 12x + 200" /> Tausend Dollar pro Einheit, wobei <InlineMath math="x" /> die Anzahl der produzierten Einheiten ist.
+
+Wenn das Unternehmen nun die **variablen Gesamtkosten** für die Produktion des ersten <InlineMath math="20 \text{Einheiten}" /> wissen möchte, integriert es einfach die Grenzkostenfunktion:
+
+<BlockMath math="VC = \int_{0}^{20} (0{,}3x^2 - 12x + 200) \, dx" />
+
+Nach der Integration und Auswertung erhalten wir:
+
+<MathContainer>
+<BlockMath math="VC = \left[0{,}1x^3 - 6x^2 + 200x\right]_{0}^{20}" />
+<BlockMath math="VC = 800 - 2400 + 4000 = 2400" />
+</MathContainer>
+
+Unter der Annahme <InlineMath math="VC(0)=0" /> betragen die variablen Gesamtkosten für <InlineMath math="20 \text{ Einheiten}" /> somit <InlineMath math="2{,}4 \text{ Millionen}" /> Dollar. Fixkosten sind davon getrennt und in diesem Integral nicht enthalten.
+
+> In wirtschaftlichen Anwendungen wandeln Integrale Grenzgrößen oder Änderungsraten in Gesamtgrößen um. So wird aus Grenzkosten beispielsweise die Änderung der Gesamtkosten.
+
+## Analyse der Konsumentenrente
+
+Auch die Konsumentenrente lässt sich mit einem Integral bestimmen. Gegeben sind die Nachfragefunktion <InlineMath math="P = 100 - 0{,}5Q" /> und der Gleichgewichtspreis <InlineMath math="60 \text{ Dollar pro Einheit}" />. Die zugehörige Gleichgewichtsmenge auf dieser Nachfragekurve folgt aus:
+
+<BlockMath math="60=100-0{,}5Q\qquad\Longrightarrow\qquad Q=80" />
+
+Die Konsumentenrente summiert für die <InlineMath math="80" /> gehandelten Einheiten die Differenz zwischen der Zahlungsbereitschaft laut Nachfragekurve und dem tatsächlich gezahlten Marktpreis:
+
+<BlockMath math="CS = \int_{0}^{80} (100 - 0{,}5Q - 60) \, dQ = \int_{0}^{80} (40 - 0{,}5Q) \, dQ" />
+
+Nach der Auswertung:
+
+<MathContainer>
+<BlockMath math="CS = \left[40Q - 0{,}25Q^2\right]_{0}^{80}" />
+<BlockMath math="CS = 3200 - 1600 = 1600" />
+</MathContainer>
+
+Die Konsumentenrente von <InlineMath math="1600 \text{ Dollar}" /> misst den gesamten monetären Vorteil der Käufer gegenüber dem Gleichgewichtspreis.
+
+## Übungen
+
+1. Ein Unternehmen hat die Absatzrate <InlineMath math="f(t) = 1000 + 500t \text{ Einheiten}" /> pro Monat. Berechne den Gesamtabsatz in den ersten <InlineMath math="6 \text{ Monate}" />.
+
+2. Die Grenzkosten eines Produkts betragen <InlineMath math="MC(x) = 2x + 50" /> Tausend Dollar pro Einheit. Bestimme die variablen Gesamtkosten für <InlineMath math="25 \text{ Einheiten}" />.
+
+3. Die Investitionswachstumsrate lautet <InlineMath math="I'(t) = 2000e^{0{,}05t}\text{ Millionen}" /> Dollar pro Jahr. Berechne das gesamte Investitionswachstum in <InlineMath math="4 \text{ Jahren}" />.
+
+### Ausführliche Lösungen
+
+1. **Berechnung des Gesamtabsatzes**
+
+   Da die Absatzrate gegeben ist, integrieren wir sie über die ersten sechs Monate:
+
+   <BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
+
+   Das Ergebnis ist:
+
+   <MathContainer>
+   <BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
+   <BlockMath math="S = 6000 + 9000 = 15000" />
+   </MathContainer>
+
+   Der Gesamtabsatz in <InlineMath math="6 \text{ Monaten}" /> beträgt <InlineMath math="15{.}000 \text{ Einheiten}" />.
+
+2. **Variable Kosten berechnen**
+
+   Die variablen Gesamtkosten sind das Integral der Grenzkostenfunktion:
+
+   <BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
+
+   Nach der Auswertung:
+
+   <MathContainer>
+   <BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
+   <BlockMath math="VC = 625 + 1250 = 1875" />
+   </MathContainer>
+
+   Die gesamten variablen Kosten betragen <InlineMath math="1{,}875" /> Tausend Dollar oder <InlineMath math="1{,}875 \text{ Millionen}" /> Dollar.
+
+3. **Berechnung des Investitionswachstums**
+
+   Für Exponentialfunktionen integrieren wir:
+
+   <BlockMath math="I = \int_{0}^{4} 2000e^{0{,}05t} \, dt" />
+
+   Das Ergebnis ist:
+
+   <MathContainer>
+   <BlockMath math="I = 2000 \left[\frac{e^{0{,}05t}}{0{,}05}\right]_{0}^{4}" />
+   <BlockMath math="I = 40000(e^{0{,}2} - 1) \approx 40000(0{,}2214) \approx 8856" />
+   </MathContainer>
+
+   Das gesamte Investitionswachstum in <InlineMath math="4 \text{ Jahren}" /> beträgt ungefähr <InlineMath math="8{,}86 \text{ Milliarden Dollar}" />.

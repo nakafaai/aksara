@@ -8,15 +8,15 @@ export const metadata = {
 
 ## Introduction to Escape Sequences
 
-An escape sequence is a combination of special characters that starts with a backslash (`\`) followed by specific characters. Imagine when you want to write quotation marks inside a string that already uses the same quotation marks. The computer will be confused about which marks indicate the beginning and end of the string.
+An escape sequence starts with a backslash (`\`) followed by one or more characters that Python interprets specially. It lets a string literal represent characters such as a line break or a quote that would otherwise end the literal.
 
-Escape sequences provide a way to solve this problem by using special symbols that tell the computer that the next character has a special meaning, not its usual meaning.
+The backslash changes how Python parses the following characters. It is part of the source notation, while the resulting string contains the character represented by that notation.
 
 ## Problems in String Writing
 
 ### Quote Conflicts
 
-When you write strings in programming, sometimes you need to insert quotation marks inside the string itself. This creates a conflict because the computer doesn't know which quotation marks mark the beginning/end of the string and which are part of the text.
+When the same quote character both delimits a string and appears inside it, an unescaped inner quote closes the literal too early. The remaining characters are then parsed as invalid Python code.
 
 <CodeBlock
   data={[
@@ -85,7 +85,7 @@ The escape sequence for a new line is \\n.`
   ]}
 />
 
-Raw string (with prefix `r`) tells Python not to interpret escape sequences, so backslashes are treated as regular characters.
+A raw string prefix such as `r` preserves most backslashes instead of interpreting them as escape sequences. Quotes still have to fit the literal's delimiter rules, and a raw string cannot end with an odd number of backslashes.
 
 ## Escape Sequence Reference
 
@@ -100,21 +100,23 @@ Here are escape sequences commonly used in programming:
 | `\t` | Horizontal tab |
 | `\b` | Backspace |
 | `\\` | Backslash character (\) |
-| `\u`, `\U`, `\N{}` | Unicode character |
-| `\x` | Hexadecimal encoded byte |
+| `\uxxxx` | Unicode character with a four-digit hexadecimal code point |
+| `\Uxxxxxxxx` | Unicode character with an eight-digit hexadecimal code point |
+| `\N{name}` | Unicode character by its registered name |
+| `\xhh` | Character with a two-digit hexadecimal value |
 
 Each escape sequence has a specific function to control the display or format of text in programs.
 
-### String Formatting and Curly Braces
+### Escaping Curly Braces in Format Strings
 
-In string formatting, curly braces have special meaning. To display curly braces as regular characters, you need to use special escape sequences.
+In `str.format()` and f-strings, curly braces delimit replacement fields. Doubling a brace escapes it for the formatting syntax. This is separate from backslash escape sequences in string literals.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "escape_braces.py",
-      code: `# Escape sequence for curly braces: {{ }}
+      code: `# Escaped curly braces in a format string: {{ }}
 >>> '{{}}'.format('text')
 '{}'
 
@@ -125,7 +127,7 @@ In string formatting, curly braces have special meaning. To display curly braces
   ]}
 />
 
-To display a single curly brace, you need to write two curly braces consecutively. The escape sequence `{{}}` tells Python that those curly braces are regular characters, not replacement field markers.
+Write `{{` to produce `{` and `}}` to produce `}`. In `'{{{}}}'`, the outer doubled braces become literal braces while the middle `{}` remains a replacement field.
 
 ## Practical Implementation
 
@@ -155,4 +157,4 @@ print("First line\\nSecond line\\t(with tab)\\nThird line")`
 
 In this example, `\t` creates neat columns, `\n` separates lines, and `\\` displays Windows file paths correctly.
 
-Escape sequences are important tools in programming that allow you to control text formatting and display special characters precisely. By understanding how they work, you can create programs that produce more professional and readable output.
+The key distinction is between source notation and the resulting string. `\n`, for example, occupies two characters in the source but represents one newline character in the string.

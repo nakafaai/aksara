@@ -1,0 +1,341 @@
+export const metadata = {
+  title: "Markdown- und Befehlszeilenschnittstellen",
+  description: "Schreibe Markdown und nutze sichere Kommandozeilenabläufe, um Dokumentation zu prüfen, umzuwandeln und zu versionieren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-26",
+  subject: "KI-Programmierung",
+};
+
+## Einführung in Markdown
+
+Markdown ist eine leichtgewichtige Auszeichnungssprache, die Dokumentstruktur in Klartext ausdrückt. Überschriften, Listen, Links, Codeblöcke und Tabellen bleiben im Quelltext lesbar und lassen sich als HTML oder in anderen Formaten darstellen.
+
+Dieser lesbare Quelltext ist der wichtigste Vorteil von Markdown. Du kannst Änderungen Zeile für Zeile prüfen, sie in Git speichern und die endgültige Typografie einem Renderer überlassen, ohne das Dokument hinter Formatierungsschaltflächen zu verstecken.
+
+### Grundlegende Markdown-Syntax
+
+Das folgende Beispiel sammelt häufige Syntax in einer Datei. Eine Raute leitet eine Überschrift ein, während umschließende Zeichen Hervorhebungen, Links, Code und weitere Strukturen ausdrücken:
+
+<CodeBlock
+  data={[{
+    language: "markdown",
+    filename: "basic-syntax.md",
+    code: `# Überschrift Ebene 1
+## Überschrift Ebene Zwei
+### Überschrift Ebene drei
+
+**Fetter Text**
+*Kursiver Text*
+~~Durchgestrichener Text~~
+
+> Blockzitat für einen wichtigen Hinweis
+
+1. Erster Eintrag einer geordneten Liste
+2. Zweiter Eintrag einer geordneten Liste
+3. Dritter Eintrag einer geordneten Liste
+
+- Eintrag einer ungeordneten Liste
+- Noch ein Eintrag
+- Letzter Eintrag
+
+[Linktext](https://example.com)
+![Alternativtext](image.jpg)
+
+\`inline code\`
+
+\`\`\`python
+# Codeblock
+def hello_world():
+    print("Hallo, Welt!")
+\`\`\`
+
+---
+
+| Spalte 1 | Spalte 2 | Spalte 3 |
+|----------|----------|----------|
+| Wert A   | Wert B   | Wert C   |
+| Wert D   | Wert E   | Wert F   |`
+  }]}
+/>
+
+### Markdown-Workflow
+
+Behalte die Quelldatei als geprüften Inhalt und behandle gerenderte Dateien als reproduzierbare Ausgabe. Ein kurzer Ablauf genügt: erstellen, bearbeiten, validieren, umwandeln und ansehen.
+
+Erstelle eine Datei mit der Endung `.md`, schreibe ihren Inhalt und wandle sie mit einem installierten Werkzeug wie Pandoc um. HTML ist mit `--standalone` eigenständig. Für PDF-Ausgabe braucht dein Rechner zusätzlich eine kompatible PDF-Engine.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "markdown-workflow.sh",
+    code: `# Neue Markdown-Datei erstellen
+touch document.md
+
+# Mit Texteditor bearbeiten
+nano document.md
+
+# Mit Pandoc in HTML konvertieren
+pandoc document.md -o document.html
+
+# In PDF konvertieren, wenn eine unterstützte PDF-Engine installiert ist
+pandoc document.md -o document.pdf
+
+# Vorschau unter macOS; Linux-Desktops verwenden häufig xdg-open
+open document.html`
+  }]}
+/>
+
+## Grundlagen der Befehlszeilenschnittstelle
+
+Eine Befehlszeilenschnittstelle oder CLI nimmt Textbefehle über eine Shell entgegen. Jeder Befehl besteht aus einem Programmnamen, optionalen Schaltern und Argumenten wie Pfaden.
+
+CLI-Arbeit ist wertvoll, weil sich Befehle prüfen, wiederholen, skripten und begutachten lassen. Diese Stärke macht genaue Pfade und destruktive Schalter besonders wichtig: Die Shell führt aus, was du geschrieben hast, nicht was du gemeint hast.
+
+### Verzeichnisnavigation und -erkundung
+
+Bevor du Dateien änderst, bestätige das aktuelle Verzeichnis, untersuche seinen Inhalt und wechsle mit einem ausdrücklichen Pfad:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "navigation-commands.sh",
+    code: `# Aktuelles Arbeitsverzeichnis anzeigen
+pwd
+
+# Verzeichnisinhalte auflisten
+ls
+ls -l    # detailliertes Format
+ls -la   # einschließlich versteckter Dateien
+
+# Verzeichnis wechseln
+cd "$HOME/documents"
+cd ..    # eine Ebene höher gehen
+cd ~     # Zum Home-Verzeichnis wechseln
+cd -     # Zum vorherigen Verzeichnis zurückkehren
+
+# Neues Verzeichnis erstellen
+mkdir new_project
+mkdir -p project/src/components  # Verzeichnishierarchie erstellen`
+  }]}
+/>
+
+### Datei- und Verzeichnisoperationen
+
+Dateibefehle wirken sofort auf reale Pfade. Prüfe ein Ziel vor dem Löschen, setze Pfade mit möglichen Leerzeichen in Anführungszeichen und vermeide rekursive Force-Schalter, solange das genaue Verzeichnis nicht nachweislich entbehrlich ist.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "file-operations.sh",
+    code: `# Dateien kopieren
+cp source.txt destination.txt
+cp -r source_folder/ destination_folder/
+
+# Dateien verschieben oder umbenennen
+mv old_name.txt new_name.txt
+mv file.txt /path/to/new/location/
+
+# Vor dem Löschen prüfen
+pwd
+ls -la unwanted_folder
+rm unwanted_file.txt
+rm -r unwanted_folder  # rekursiv und nicht rückgängig zu machen; diesen Pfad zuerst prüfen
+
+# Dateiinhalte anzeigen
+cat file.txt        # gesamte Inhalte anzeigen
+head -10 file.txt   # erste 10-Zeilen
+tail -10 file.txt   # letzten 10-Zeilen
+less file.txt       # Ansicht mit Navigation`
+  }]}
+/>
+
+### Integration von Markdown mit CLI
+
+Ein kleines Build-Skript macht die Umwandlung wiederholbar. Es sollte bei einem fehlgeschlagenen Befehl abbrechen, sein Ausgabeverzeichnis selbst anlegen, jeden Pfad zitieren und den Fall ohne Quelldatei behandeln:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "markdown-cli-workflow.sh",
+    code: `# Markdown-Projekt einrichten
+mkdir my-documentation
+cd my-documentation
+
+# Verzeichnisstruktur
+mkdir -p {src,build,images,assets}
+
+# Markdown-Dateien erstellen
+touch src/index.md src/getting-started.md src/api-reference.md
+
+# Build mit einem Skript automatisieren
+cat << 'EOF' > build.sh
+#!/bin/bash
+set -eu
+
+echo "Dokumentation wird erstellt..."
+mkdir -p build
+
+# Alle Markdown-Dateien in HTML umwandeln
+for file in src/*.md; do
+    [ -e "$file" ] || continue
+    basename=$(basename "$file" .md)
+    pandoc "$file" -o "build/$basename.html" --standalone
+    echo "Konvertiert: $file -> build/$basename.html"
+done
+
+echo "Build abgeschlossen!"
+EOF
+
+# Skript ausführbar machen
+chmod +x build.sh
+
+# Build ausführen
+./build.sh`
+  }]}
+/>
+
+### CLI-Tools für Markdown
+
+Nutze die offiziellen Installationswege der Werkzeuge und prüfe anschließend die installierten Befehle, bevor ein Skript von ihnen abhängt. Pandoc wandelt Dokumente um, ein Markdown-Linter prüft die Konventionen des Quelltexts:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "markdown-tools.sh",
+    code: `# Benötigte Werkzeuge prüfen
+command -v pandoc
+command -v markdownlint
+
+# Markdown-Quellen prüfen
+markdownlint "docs/**/*.md"
+
+# Markdown in verschiedene Formate konvertieren
+pandoc input.md -o output.pdf
+pandoc input.md -o output.docx
+pandoc input.md -o output.epub
+
+# Mit benutzerdefinierter Vorlage
+pandoc input.md -o output.html --template=custom.html`
+  }]}
+/>
+
+### Bewährte Vorgehensweisen für CLI und Markdown
+
+Speichere verfasstes Markdown in der Versionsverwaltung, validiere es vor der Umwandlung, baue in ein ersetzbares Ausgabeverzeichnis und prüfe den Diff vor dem Commit:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "best-practices.sh",
+    code: `# Wiederholbarer lokaler Dokumentations-Build
+cat << 'EOF' > update-docs.sh
+#!/bin/bash
+set -eu
+
+SOURCE_DIR="docs"
+OUTPUT_DIR="site"
+STAGING_DIR=$(mktemp -d)
+trap 'rm -rf "$STAGING_DIR"' EXIT
+
+mapfile -d '' source_files < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
+if [ "\${#source_files[@]}" -eq 0 ]; then
+    echo "Keine Markdown-Quellen gefunden" >&2
+    exit 1
+fi
+
+markdownlint "\${source_files[@]}"
+
+for file in "\${source_files[@]}"; do
+    relative_path=\${file#"$SOURCE_DIR"/}
+    output_file="$STAGING_DIR/\${relative_path%.md}.html"
+    mkdir -p "$(dirname "$output_file")"
+    pandoc "$file" -o "$output_file" --standalone
+done
+
+[ ! -e "$OUTPUT_DIR" ] || rm -r -- "$OUTPUT_DIR"
+mv "$STAGING_DIR" "$OUTPUT_DIR"
+trap - EXIT
+EOF
+
+chmod +x update-docs.sh
+./update-docs.sh
+
+# Änderungen am Quelltext vor dem Commit prüfen
+git diff --check
+git diff -- docs`
+  }]}
+/>
+
+### Echtes Projektbeispiel
+
+Das letzte Beispiel erstellt vier Quellseiten und verbindet sie zu einem eigenständigen HTML-Dokument. Jeder Eingabepfad ist ausdrücklich genannt. Eine fehlende Seite lässt den Build deshalb scheitern, statt unbemerkt zu fehlen:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "project-example.sh",
+    code: `# Projektstruktur einrichten
+mkdir ai-project-docs
+cd ai-project-docs
+
+# Verzeichnisstruktur erstellen
+mkdir -p docs/api docs/tutorials docs/guides scripts build
+
+# Zentrale Dokumentationsdatei erstellen
+cat << 'EOF' > docs/README.md
+# Dokumentation des KI-Projekts
+
+## Überblick
+Vollständige Dokumentation für ein KI-Programmierprojekt.
+
+## Struktur
+- [API-Referenz](api/README.md)
+- [Tutorials](tutorials/README.md)
+- [Benutzerhandbücher](guides/README.md)
+EOF
+
+# Verknüpfte Seiten erstellen
+cat << 'EOF' > docs/api/README.md
+# API-Referenz
+
+Beschreibe jede öffentliche Schnittstelle und ergänze ein geprüftes Beispiel.
+EOF
+
+cat << 'EOF' > docs/tutorials/README.md
+# Tutorials
+
+Führe den Leser durch eine vollständige Aufgabe.
+EOF
+
+cat << 'EOF' > docs/guides/README.md
+# Benutzerleitfäden
+
+Erkläre wiederkehrende Abläufe und ihre Sicherheitsgrenzen.
+EOF
+
+# Automatisiertes Build-Skript erstellen
+cat << 'EOF' > scripts/build-docs.sh
+#!/bin/bash
+set -eu
+
+mkdir -p build
+
+pandoc \
+    docs/README.md \
+    docs/api/README.md \
+    docs/tutorials/README.md \
+    docs/guides/README.md \
+    --standalone \
+    --output build/index.html
+
+echo "Dokumentations-Build abgeschlossen!"
+EOF
+
+chmod +x scripts/build-docs.sh
+
+# Build ausführen
+./scripts/build-docs.sh`
+  }]}
+/>
+
+Markdown hält die Dokumentstruktur in der Versionsverwaltung lesbar, während die CLI Validierung und Umwandlung wiederholbar macht. Ein verlässlicher Ablauf bewahrt diese Grenze: Bearbeite die Quelle, prüfe Befehle und Pfade, erzeuge die Ausgabe neu und begutachte die entstandenen Änderungen.

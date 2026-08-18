@@ -4,64 +4,38 @@ export const metadata = {
   date: "2025-12-24",
 };
 
-We need to form a code with the pattern <InlineMath math="\text{Letter} - \text{Digit} - \text{Letter} - \text{Digit}" />.
-
-Let the slots for the code be:
+The four positions follow the pattern <InlineMath math="L_1-D_1-L_2-D_2" />:
 
 <MathContainer>
-  <BlockMath math="\underline{L_1} \times \underline{D_1} \times \underline{L_2} \times \underline{D_2}" />
+  <BlockMath math="\underline{L_1}\;\underline{D_1}\;\underline{L_2}\;\underline{D_2}" />
 </MathContainer>
 
-Available sets:
-- Vowels: <InlineMath math="\{A, I, U, E, O\}" /> (<InlineMath math="5" /> letters).
-- Odd digits for <InlineMath math="D_1" />: <InlineMath math="\{1, 3, 5, 7, 9\}" /> (<InlineMath math="5" /> digits).
-- Choice digits for <InlineMath math="D_2" />: <InlineMath math="\{0, 1, 2, 4, 6\}" /> (<InlineMath math="5" /> digits).
+The available vowels are <InlineMath math="\{A,I,U,E,O\}" />. The first digit comes from <InlineMath math="\{1,3,5,7,9\}" />, while the second digit comes from <InlineMath math="\{0,1,2,4,6\}" />.
 
-Rules and Constraints:
-1. <InlineMath math="L_1 \neq A" />.
-2. <InlineMath math="L_2 = O" />.
-3. No repetition of letters or digits is allowed.
+#### Choose the letters
 
-Since <InlineMath math="D_1" /> must be odd and <InlineMath math="D_2" /> is chosen from a specific set, there is an overlap at the digit <InlineMath math="1" />. We need to split the calculation into cases based on the value of <InlineMath math="D_2" />.
+The second letter is fixed by <InlineMath math="L_2=O" />. Because letters may not repeat and the first letter may not be A, the choices for the first letter are <InlineMath math="L_1\in\{I,U,E\}" />. This gives <InlineMath math="3" /> letter arrangements.
 
-#### The Second Digit Is One
+#### Choose the digits
 
-If we choose the digit <InlineMath math="1" /> for position <InlineMath math="D_2" />:
-1. <InlineMath math="L_2" /> (Second letter): Must be <InlineMath math="O" /> (<InlineMath math="1" /> way).
-2. <InlineMath math="D_2" /> (Second digit): Must be <InlineMath math="1" /> (<InlineMath math="1" /> way).
-3. <InlineMath math="L_1" /> (First letter): Vowel other than <InlineMath math="A" /> and other than <InlineMath math="O" /> (since <InlineMath math="O" /> is used in <InlineMath math="L_2" />).
-   - Choices: <InlineMath math="\{I, U, E\}" /> (<InlineMath math="3" /> ways).
-4. <InlineMath math="D_1" /> (First digit): Odd digit other than <InlineMath math="1" /> (since <InlineMath math="1" /> is used in <InlineMath math="D_2" />).
-   - Choices: <InlineMath math="\{3, 5, 7, 9\}" /> (<InlineMath math="4" /> ways).
+The two digit sets overlap only at <InlineMath math="1" />, so we split the count into two cases.
 
-Total ways for Case <InlineMath math="1" />:
+1. If <InlineMath math="D_2=1" />, then <InlineMath math="D_1\in\{3,5,7,9\}" />. The number of digit pairs is
 
-<MathContainer>
-  <BlockMath math="3 \times 4 \times 1 \times 1 = 12 \text{ ways}" />
-</MathContainer>
+   <BlockMath math="1\times4=4" />
 
-#### The Second Digit Is Not One
+2. If <InlineMath math="D_2\in\{0,2,4,6\}" />, it cannot equal any odd choice for <InlineMath math="D_1\in\{1,3,5,7,9\}" />. The number of digit pairs is
 
-If we choose a digit other than <InlineMath math="1" /> for position <InlineMath math="D_2" /> (which means it is even):
-1. <InlineMath math="L_2" /> (Second letter): Must be <InlineMath math="O" /> (<InlineMath math="1" /> way).
-2. <InlineMath math="D_2" /> (Second digit): Chosen from <InlineMath math="\{0, 2, 4, 6\}" /> (<InlineMath math="4" /> ways).
-3. <InlineMath math="L_1" /> (First letter): Vowel other than <InlineMath math="A" /> and other than <InlineMath math="O" />.
-   - Choices: <InlineMath math="\{I, U, E\}" /> (<InlineMath math="3" /> ways).
-4. <InlineMath math="D_1" /> (First digit): Odd digit <InlineMath math="\{1, 3, 5, 7, 9\}" />. Since <InlineMath math="D_2" /> is even, there is no conflict. All odd digits can be chosen.
-   - Choices: <InlineMath math="5" /> ways.
+   <BlockMath math="4\times5=20" />
 
-Total ways for Case <InlineMath math="2" />:
+Therefore, the total number of valid digit pairs is
 
-<MathContainer>
-  <BlockMath math="3 \times 5 \times 1 \times 4 = 60 \text{ ways}" />
-</MathContainer>
+<BlockMath math="4+20=24" />
 
-#### Total Combinations
+#### Count all codes
 
-Sum the results from both cases:
+Multiplying the independent letter and digit choices gives
 
-<MathContainer>
-  <BlockMath math="12 + 60 = 72" />
-</MathContainer>
+<BlockMath math="3\times24=72" />
 
-Therefore, the number of codes that can be formed is <InlineMath math="72" />.
+Thus, <InlineMath math="72" /> codes can be formed.

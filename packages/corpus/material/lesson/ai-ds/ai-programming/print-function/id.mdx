@@ -8,7 +8,7 @@ export const metadata = {
 
 ## Pengenalan Fungsi Print
 
-Fungsi `print()` adalah salah satu fungsi bawaan Python yang paling sering digunakan untuk menampilkan output ke layar. Bayangkan fungsi print seperti pengeras suara yang mengumumkan informasi kepada semua orang. Setiap kali kamu ingin menunjukkan hasil perhitungan, pesan, atau data kepada pengguna, fungsi print menjadi jembatan komunikasi antara program dan manusia.
+Fungsi bawaan `print()` menulis representasi teks suatu nilai ke stream. Secara default stream tersebut adalah `sys.stdout`, yang biasanya ditampilkan terminal di layar. Output juga dapat dialihkan ke file atau tujuan lain.
 
 Fungsi print termasuk dalam kategori built-in function, sama seperti `len()`, `abs()`, dan `round()`. Artinya kamu tidak perlu mengimpor modul tambahan untuk menggunakannya.
 
@@ -38,7 +38,7 @@ print("Hasil penjumlahan", x, "+", y, "=", x + y)`
   ]}
 />
 
-Parameter `*objects` memungkinkan fungsi print menerima jumlah argumen yang tidak terbatas. Setiap argumen akan dipisahkan dengan karakter yang ditentukan oleh parameter `sep`.
+Notasi `*objects` berarti `print()` menerima nol atau lebih objek posisional. Separator yang ditentukan oleh `sep` ditulis di antara dua objek yang berdekatan.
 
 ## Parameter Separator (sep)
 
@@ -120,11 +120,11 @@ print("D", "E", "F", sep="-", end="\\n")`
   ]}
 />
 
-Mengubah parameter `end` sangat berguna ketika kamu ingin menggabungkan output dari beberapa pemanggilan print dalam satu baris atau memberikan format khusus.
+Mengubah `end` memungkinkan beberapa pemanggilan melanjutkan output pada baris yang sama. Jika output harus langsung terlihat tanpa menunggu buffer, gunakan juga `flush=True`.
 
 ## Menampilkan Berbagai Tipe Data
 
-Fungsi print dapat menampilkan berbagai tipe data Python secara otomatis. Python akan mengkonversi setiap object menjadi representasi string sebelum menampilkannya.
+`print()` menerima objek dari berbagai tipe dan mengambil representasi string yang mudah dibaca sebelum menulisnya. Class buatan sendiri dapat mengatur representasi tersebut melalui `__str__()`.
 
 <CodeBlock
   data={[
@@ -164,7 +164,7 @@ Kemampuan print untuk menangani berbagai tipe data membuatnya sangat fleksibel u
 
 ### Print dengan F-String
 
-F-string adalah cara modern dan efisien untuk memformat output dalam Python. Teknik ini memungkinkan penyisipan variabel langsung dalam string.
+F-string mengevaluasi ekspresi di dalam kurung kurawal dan dapat menerapkan format specification. Nilai dan teks yang mengelilinginya tetap berada dalam satu ekspresi yang mudah dibaca.
 
 <CodeBlock
   data={[
@@ -202,7 +202,8 @@ print(f"Nilai: {score}, Status: {status}")
 pi = 3.14159265359
 print(f"Pi dengan 2 desimal: {pi:.2f}")
 print(f"Pi dengan 4 desimal: {pi:.4f}")
-print(f"Pi dalam persen: {pi:.1%}")`
+completion = 0.875
+print(f"Penyelesaian: {completion:.1%}")  # 87.5%`
     }
   ]}
 />
@@ -225,20 +226,20 @@ import time
 print("Memproses", end="")
 for i in range(5):
     time.sleep(0.5)  # Delay setengah detik
-    print(".", end="")
+    print(".", end="", flush=True)
 print(" Selesai!")
 
 # Membuat progress bar sederhana
 print("\\nProgress: [", end="")
 for i in range(10):
     time.sleep(0.2)
-    print("#", end="")
+    print("#", end="", flush=True)
 print("] 100%")
 
 # Print counter dalam satu baris
 print("\\nCountdown: ", end="")
 for i in range(5, 0, -1):
-    print(i, end=" ")
+    print(i, end=" ", flush=True)
     time.sleep(1)
 print("Start!")
 
@@ -253,4 +254,4 @@ print("Citra", 28, "Surabaya", sep="\\t")`
   ]}
 />
 
-Teknik ini sangat berguna untuk membuat interface yang interaktif atau menampilkan progress dari operasi yang memakan waktu.
+Argumen `end` menahan setiap pembaruan pada baris yang sama, sedangkan `flush=True` meminta Python segera menulis output yang masih berada di buffer. Untuk progress display sungguhan, perhatikan juga kemampuan terminal dan jangan menganggap tab atau lebar karakter selalu dirender sama.

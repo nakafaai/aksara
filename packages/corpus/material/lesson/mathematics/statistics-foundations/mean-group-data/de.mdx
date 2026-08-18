@@ -1,0 +1,83 @@
+export const metadata = {
+  title: "Mittelwert für gruppierte Daten",
+  description: "Schätze das arithmetische Mittel gruppierter Daten aus Klassenmitten und Häufigkeiten anhand eines vollständig gerechneten Beispiels.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Mittelwert für gruppierte Daten
+
+Bei ungruppierten Daten addieren wir alle Werte und teilen die Summe durch ihre Anzahl.
+
+<BlockMath math="\bar{x} = \frac{\sum x_i}{n}" />
+
+In einer Häufigkeitstabelle können die Werte dagegen als **Gruppen** oder **Intervalle** vorliegen, zum Beispiel <InlineMath math="70\text{-}79" />, <InlineMath math="80\text{-}89" /> und <InlineMath math="90\text{-}99" />.
+
+Nach der Gruppierung kennen wir **nicht mehr jeden Einzelwert**. Wenn <InlineMath math="5" /> Schülerinnen und Schüler zum Intervall <InlineMath math="70\text{-}79" /> gehören, wissen wir nicht, ob ihre tatsächlichen Ergebnisse <InlineMath math="70" />, <InlineMath math="72" />, <InlineMath math="75" /> oder andere Werte aus diesem Bereich waren.
+
+## Klassenmitte als Näherung
+
+Da die Einzelwerte fehlen, benötigen wir eine **Näherung**: Die Klassenmitte **steht stellvertretend für alle Werte** des jeweiligen Intervalls.
+
+Die Klassenmitte <InlineMath math="x_i" /> berechnet sich aus:
+
+<BlockMath math="x_i = \frac{\text{Untere Klassengrenze} + \text{Obere Klassengrenze}}{2}" />
+
+## Formel für den Mittelwert gruppierter Daten
+
+Sind alle Klassenmitten bekannt, ergibt sich das geschätzte arithmetische Mittel aus:
+
+<BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i}" />
+
+dabei gilt:
+
+- <InlineMath math="\bar{x}" /> ist das geschätzte arithmetische Mittel der gruppierten Daten.
+- <InlineMath math="f_i" /> ist die Häufigkeit der Klasse <InlineMath math="i" />.
+- <InlineMath math="x_i" /> ist der Mittelpunkt der Klasse <InlineMath math="i" />.
+- <InlineMath math="\sum (f_i \times x_i)" /> ist die Summe aller Produkte aus Klassenhäufigkeit und Klassenmitte.
+- <InlineMath math="\sum f_i" /> ist die Summe aller Häufigkeiten, gleich der Gesamtzahl der Werte <InlineMath math="n" />.
+
+## Beispiel: Durchschnittliche Schuhgröße
+
+Ein Geschäft hat seine verkauften Schuhgrößen in Klassen zusammengefasst:
+
+| Schuhgröße (Klassenintervall) | Häufigkeit (<InlineMath math="f_i" />) |
+| :----------- | :------------------------------------ |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="16" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="1" /> |
+| **Gesamt** | **<InlineMath math="n=30" />** |
+
+**Berechnung:**
+
+1.  **Bestimme die Klassenmitte (<InlineMath math="x_i" />) jeder Klasse:**
+
+    - Klasse <InlineMath math="37\text{-}39" />: <InlineMath math="x_1 = (37+39)/2 = 38" />
+    - Klasse <InlineMath math="40\text{-}42" />: <InlineMath math="x_2 = (40+42)/2 = 41" />
+    - Klasse <InlineMath math="43\text{-}45" />: <InlineMath math="x_3 = (43+45)/2 = 44" />
+    - Klasse <InlineMath math="46\text{-}48" />: <InlineMath math="x_4 = (46+48)/2 = 47" />
+
+2.  **Multipliziere jede Häufigkeit mit der zugehörigen Klassenmitte (<InlineMath math="f_i \times x_i" />):**
+
+    - Klasse <InlineMath math="37\text{-}39" />: <InlineMath math="2 \times 38 = 76" />
+    - Klasse <InlineMath math="40\text{-}42" />: <InlineMath math="11 \times 41 = 451" />
+    - Klasse <InlineMath math="43\text{-}45" />: <InlineMath math="16 \times 44 = 704" />
+    - Klasse <InlineMath math="46\text{-}48" />: <InlineMath math="1 \times 47 = 47" />
+
+3.  **Addiere alle Produkte (<InlineMath math="\sum (f_i \times x_i)" />):**
+
+    <BlockMath math="\sum (f_i \times x_i) = 76 + 451 + 704 + 47 = 1278" />
+
+4.  **Addiere alle Häufigkeiten (<InlineMath math="\sum f_i" />):**
+
+    <BlockMath math="\sum f_i = 2 + 11 + 16 + 1 = 30" />
+
+5.  **Berechne das arithmetische Mittel (<InlineMath math="\bar{x}" />):**
+
+    <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i} = \frac{1278}{30} = 42{,}6" />
+
+**Die geschätzte durchschnittliche Schuhgröße der Verkäufe beträgt somit <InlineMath math="42{,}6" />.**
+
+Das Ergebnis ist eine **Schätzung**, weil die Klassenmitte alle Einzelwerte ihres Intervalls ersetzt. Genau dieses Verfahren verwenden wir, wenn nur gruppierte Häufigkeiten vorliegen.

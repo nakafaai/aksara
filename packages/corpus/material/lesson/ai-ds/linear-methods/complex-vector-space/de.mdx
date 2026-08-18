@@ -1,0 +1,98 @@
+export const metadata = {
+    title: "Komplexer Vektorraum",
+    description: "Baue komplexe Vektorräume aus dem Körper der komplexen Zahlen auf und erkenne, wie der Skalarkörper Dimension und Linearität verändert.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-12",
+    subject: "Lineare Methoden der KI",
+};
+
+## Einführung in komplexe Zahlen
+
+Die imaginäre Einheit <InlineMath math="i" /> erfüllt <InlineMath math="i^2=-1" />. Eine komplexe Zahl verbindet eine reelle und eine imaginäre Koordinate. Dadurch kann ein einziger Skalar sowohl eine Streckung als auch eine Drehung ausdrücken.
+
+Die Menge der komplexen Zahlen ist als <InlineMath math="\mathbb{C} := \{z = x + iy : x, y \in \mathbb{R}\}" /> definiert. In jeder komplexen Zahl <InlineMath math="z = x + iy" /> wird der Teil <InlineMath math="x = \text{Re}(z)" /> **Realteil** und der Teil <InlineMath math="y = \text{Im}(z)" /> **Imaginärteil** genannt.
+
+Addition, Subtraktion, Multiplikation und Division durch eine Zahl ungleich null bleiben in <InlineMath math="\mathbb C" />. Mit diesen Operationen bildet <InlineMath math="(\mathbb{C}, +, \cdot)" /> einen **Körper**, dessen Elemente als Skalare eines Vektorraums dienen können.
+
+### Konjugation und Betrag
+
+Für <InlineMath math="z=x+iy" /> ist die **komplex konjugierte Zahl** <InlineMath math="\overline z=x-iy" />. Da <InlineMath math="z\overline z=x^2+y^2" /> gilt, können wir mit der Konjugation sowohl Beträge als auch Kehrwerte berechnen, zum Beispiel <InlineMath math="z^{-1}=\overline z/|z|^2" /> für <InlineMath math="z\neq0" />.
+
+Der **Betrag** einer komplexen Zahl wird mit der Formel berechnet:
+
+<BlockMath math="|z| = \sqrt{z \cdot \overline{z}} = \sqrt{x^2 + y^2}" />
+
+Dieser Betrag ist der Abstand der komplexen Zahl vom Ursprung in der komplexen Ebene.
+
+## Fundamentalsatz der Algebra
+
+Der Fundamentalsatz der Algebra besagt, dass jedes nichtkonstante Polynom mit komplexen Koeffizienten eine komplexe Nullstelle besitzt.
+
+Betrachten wir nun ein sehr wichtiges Ergebnis. Jedes nicht konstante Polynom
+
+<BlockMath math="p(z) = a_n z^n + a_{n-1} z^{n-1} + \cdots + a_1 z + a_0, \quad z \in \mathbb{C}" />
+
+mit Grad <InlineMath math="n \geq 1" /> und komplexen Koeffizienten <InlineMath math="a_k \in \mathbb{C}" /> für <InlineMath math="k = 0, 1, \ldots, n" /> mit <InlineMath math="a_n \neq 0" />, hat mindestens eine komplexe Wurzel. Das bedeutet, dass es eine Zahl <InlineMath math="z_* \in \mathbb{C}" /> mit <InlineMath math="p(z_*) = 0" /> gibt.
+
+Wiederholtes Anwenden des Satzes zeigt, dass ein Polynom vom Grad <InlineMath math="n" /> über <InlineMath math="\mathbb C" /> vollständig zerfällt:
+
+<BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
+
+Es besitzt also genau <InlineMath math="n" /> komplexe Nullstellen, wenn Vielfachheiten mitgezählt werden. Die Voraussetzung "nichtkonstant" ist wichtig: Ein von null verschiedenes konstantes Polynom hat keine Nullstelle.
+
+## Definition und Axiome des komplexen Vektorraums
+
+Ein komplexer Vektorraum verwendet Zahlen aus <InlineMath math="\mathbb C" /> als Skalare. Seine beiden Operationen müssen in den angegebenen Mengen abgeschlossen sein und dieselben algebraischen Verträglichkeitsregeln wie bei einem reellen Vektorraum erfüllen.
+
+Eine Menge <InlineMath math="V" /> mit einer Additionsoperation
+
+<BlockMath math="+ : V \times V \to V : (x, y) \mapsto x + y" />
+
+und eine Skalarmultiplikationsoperation
+
+<BlockMath math="\cdot : \mathbb{C} \times V \to V : (\lambda, x) \mapsto \lambda \cdot x" />
+
+wird ein **komplexer Vektorraum** genannt, wenn er die folgenden Axiome erfüllt:
+
+### Vektoradditionsaxiome
+
+1. **Assoziativ**: <InlineMath math="(x + y) + z = x + (y + z)" /> für alle <InlineMath math="x, y, z \in V" />
+
+2. **Kommutativ**: <InlineMath math="x + y = y + x" /> für alle <InlineMath math="x, y \in V" />
+
+3. **Identitätselement**: Es gibt ein Element <InlineMath math="0 \in V" />, so dass <InlineMath math="x + 0 = x = 0 + x" /> für alle <InlineMath math="x \in V" />
+
+4. **Inverses Element**: Zu jedem <InlineMath math="x \in V" /> gibt es ein Element <InlineMath math="-x \in V" /> mit <InlineMath math="x + (-x) = 0 = (-x) + x" />
+
+### Skalare Multiplikationsaxiome
+
+5. **Assoziative Multiplikation**: <InlineMath math="(\lambda \mu) \cdot x = \lambda \cdot (\mu \cdot x)" /> für alle <InlineMath math="\lambda, \mu \in \mathbb{C}, x \in V" />
+
+6. **Einheitselement**: <InlineMath math="1 \cdot x = x" /> für alle <InlineMath math="x \in V" />
+
+### Distributive Axiome
+
+7. **Verteilend über Vektoraddition**: <InlineMath math="\lambda \cdot (x + y) = \lambda \cdot x + \lambda \cdot y" /> für alle <InlineMath math="\lambda \in \mathbb{C}, x, y \in V" />
+
+8. **Verteilung über skalare Addition**: <InlineMath math="(\lambda + \mu) \cdot x = \lambda \cdot x + \mu \cdot x" /> für alle <InlineMath math="\lambda, \mu \in \mathbb{C}, x \in V" />
+
+Die Elemente <InlineMath math="x \in V" /> werden **Vektoren** genannt, und die Elemente <InlineMath math="\lambda \in \mathbb{C}" /> werden **Skalare** genannt.
+
+## Ein konkretes Beispiel
+
+Die Menge <InlineMath math="V=\mathbb C^2" /> ist mit komponentenweisen Operationen ein komplexer Vektorraum. Zum Beispiel gilt
+
+<BlockMath math="(1+i)\begin{pmatrix}1\\-i\end{pmatrix}=\begin{pmatrix}1+i\\1-i\end{pmatrix}" />
+
+Der Skalarkörper verändert die Dimension. Die Menge <InlineMath math="\mathbb C" /> besitzt als komplexer Vektorraum die Basis <InlineMath math="\{1\}" />, als reeller Vektorraum dagegen die Basis <InlineMath math="\{1,i\}" />:
+
+| Gleiche Vektormenge | Zulässige Skalare | Dimension |
+|---|---|---|
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb C" /> | <InlineMath math="1" /> |
+| <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb R" /> | <InlineMath math="2" /> |
+
+## Unterschiede zu realen Vektorräumen
+
+Rein algebraische Ergebnisse aus den Vektorraumaxiomen gelten sowohl über <InlineMath math="\mathbb R" /> als auch über <InlineMath math="\mathbb C" />. Ergebnisse, die eine Ordnung oder ein rein reelles Skalarprodukt verwenden, benötigen angepasste Voraussetzungen. Komplexe Skalarprodukte verwenden beispielsweise die Konjugation, und die komplexen Zahlen besitzen keine mit ihrer Arithmetik verträgliche Körperordnung.
+
+Der Skalarkörper entscheidet außerdem, welche Abbildungen linear sind. Die komplexe Konjugation ist über <InlineMath math="\mathbb R" /> linear, über <InlineMath math="\mathbb C" /> jedoch nicht, denn <InlineMath math="\overline{iz}=-i\overline z" /> statt <InlineMath math="i\overline z" />. Vor Aussagen über Basis, Dimension oder lineare Abbildungen muss der Skalarkörper deshalb immer feststehen.

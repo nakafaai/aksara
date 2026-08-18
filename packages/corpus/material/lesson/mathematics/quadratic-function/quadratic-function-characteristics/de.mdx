@@ -1,0 +1,317 @@
+
+
+export const metadata = {
+  title: "Eigenschaften quadratischer Funktionen",
+  description: "Quadratische Graphen anhand von Leitkoeffizient, Scheitel, Symmetrieachse, Achsenschnittpunkten und Wertebereich untersuchen und zeichnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratische Funktionen",
+};
+
+## Der Graph einer quadratischen Funktion
+
+Der Graph einer quadratischen Funktion ist eine Parabel. Der Leitkoeffizient <InlineMath math="a" /> bestimmt ihre Öffnungsrichtung und wie schmal oder breit sie erscheint.
+
+## Wie der Leitkoeffizient die Parabel verändert
+
+### Positiver Leitkoeffizient
+
+Für <InlineMath math="a > 0" /> öffnet sich die Parabel nach oben und besitzt einen Tiefpunkt.
+
+Beispiele für Funktionen mit <InlineMath math="a > 0" />:
+
+- <InlineMath math="f(x) = x^2" />, das einfachste Beispiel mit <InlineMath math="a = 1" />
+- <InlineMath math="f(x) = 2x^2 + 1" />, ein Beispiel mit <InlineMath math="a = 2" />
+
+Das Vorzeichen von <InlineMath math="a" /> bestimmt die Öffnungsrichtung. Der Betrag bestimmt die Breite: Im Vergleich zu <InlineMath math="y=x^2" /> ist der Graph für <InlineMath math="|a|>1" /> schmaler und für <InlineMath math="0<|a|<1" /> breiter.
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph einer quadratischen Funktion mit <InlineMath math="a > 0" />
+      </>
+    }
+    description="Die Parabel öffnet sich nach oben und besitzt einen Tiefpunkt."
+    cameraPosition={[5, 5, 12]}
+    data={[
+      {
+        points: Array.from({ length: 7 }, (_, i) => {
+          const x = i - 3; // x-Werte von -3 bis 3
+          return { x, y: x * x, z: 0 };
+        }),
+        color: "#4f46e5",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=x^2" />,
+            at: 5,
+            offset: [1, -1, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+### Negativer Leitkoeffizient
+
+Für <InlineMath math="a < 0" /> öffnet sich die Parabel nach unten und besitzt einen Hochpunkt.
+
+Beispiele für Funktionen mit <InlineMath math="a < 0" />:
+
+- <InlineMath math="f(x) = -x^2" /> mit <InlineMath math="a = -1" />
+- <InlineMath math="f(x) = -3x^2 - 12x - 15" /> mit <InlineMath math="a = -3" />
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph einer quadratischen Funktion mit <InlineMath math="a < 0" />
+      </>
+    }
+    description="Die Parabel öffnet sich nach unten und besitzt einen Hochpunkt."
+    cameraPosition={[2, 2, 12]}
+    data={[
+      {
+        points: Array.from({ length: 7 }, (_, i) => {
+          const x = i - 3; // x-Werte von -3 bis 3
+          return { x, y: -x * x, z: 0 };
+        }),
+        color: "#e11d48",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=-x^2" />,
+            at: 4,
+            offset: [2, 0, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+### Warum der Leitkoeffizient nicht null sein darf
+
+Für <InlineMath math="a = 0" /> bleibt <InlineMath math="f(x) = bx + c" />. Das ist eine lineare und keine quadratische Funktion. Deshalb muss <InlineMath math="a \neq 0" /> gelten, damit die höchste Potenz von <InlineMath math="x" /> gleich <InlineMath math="2" /> ist.
+
+## Wichtige Eigenschaften quadratischer Funktionen
+
+### Scheitelpunkt
+
+Der Scheitel ist für <InlineMath math="a < 0" /> der höchste und für <InlineMath math="a > 0" /> der niedrigste Punkt des Graphen. Seine Koordinaten sind <InlineMath math="(-\frac{b}{2a}, f(-\frac{b}{2a}))" />.
+
+### Symmetrieachse
+
+Die Symmetrieachse ist eine vertikale Linie, die die Parabel in zwei symmetrische Teile teilt. Die Gleichung der Symmetrieachse lautet <InlineMath math="x = -\frac{b}{2a}" />.
+
+### Schnittpunkt mit der vertikalen Achse
+
+Den Schnittpunkt mit der <InlineMath math="y" />-Achse erhalten wir für <InlineMath math="x = 0" />. Sein Funktionswert ist <InlineMath math="f(0) = c" />.
+
+### Schnittpunkte mit der horizontalen Achse
+
+Die Schnittpunkte mit der <InlineMath math="x" />-Achse entstehen für <InlineMath math="f(x) = 0" />, also durch <InlineMath math="ax^2 + bx + c = 0" />. Die Lösungen liefert die quadratische Formel:
+
+<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+
+## Schritte zum Zeichnen einer quadratischen Funktion
+
+1. Bestimme, ob sich die Parabel nach oben (<InlineMath math="a > 0" />) oder nach unten (<InlineMath math="a < 0" />) öffnet.
+2. Berechne die Koordinaten des Scheitels <InlineMath math="(-\frac{b}{2a}, f(-\frac{b}{2a}))" />.
+3. Berechne den Schnittpunkt mit der <InlineMath math="y" />-Achse: <InlineMath math="(0, c)" />.
+4. Berechne die Schnittpunkte mit der <InlineMath math="x" />-Achse, falls sie existieren.
+5. Wähle weitere <InlineMath math="x" />-Werte und berechne die zugehörigen <InlineMath math="y" />-Werte.
+6. Trage alle Punkte in das Koordinatensystem ein.
+7. Verbinde die Punkte zu einer Parabel.
+
+## Quadratische Funktionsgraphen zeichnen
+
+### Beispiel einer nach oben öffnenden Parabel
+
+Wir zeichnen die Funktion <InlineMath math="f(x) = x^2 - 2x - 3" />:
+
+1. Koeffizient <InlineMath math="a = 1 > 0" />, also öffnet sich die Parabel nach oben.
+2. Scheitelpunkt:
+
+   <MathContainer>
+     <BlockMath math="x = -\frac{b}{2a} = -\frac{-2}{2 \cdot 1} = 1" />
+     <BlockMath math="f(1) = 1^2 - 2 \cdot 1 - 3 = 1 - 2 - 3 = -4" />
+   </MathContainer>
+
+   Der Scheitelpunkt liegt also bei <InlineMath math="(1, -4)" />.
+
+3. <InlineMath math="y" />-Achsenabschnitt:
+
+   <BlockMath math="f(0) = 0^2 - 2 \cdot 0 - 3 = -3" />
+
+   Der <InlineMath math="y" />-Achsenabschnitt liegt also bei <InlineMath math="(0, -3)" />.
+
+4. Schnittpunkte auf der <InlineMath math="x" />-Achse: <InlineMath math="f(x) = 0" /> oder <InlineMath math="x^2 - 2x - 3 = 0" />
+
+   Mit der quadratischen Formel folgt:
+
+   <MathContainer>
+     <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} = \frac{2 \pm \sqrt{4 + 12}}{2} = \frac{2 \pm \sqrt{16}}{2} = \frac{2 \pm 4}{2}" />
+     <BlockMath math="x = \frac{2 + 4}{2} = 3 \text{ oder } x = \frac{2 - 4}{2} = -1" />
+   </MathContainer>
+
+   Die Schnittpunkte auf der <InlineMath math="x" />-Achse sind also <InlineMath math="(-1, 0)" /> und <InlineMath math="(3, 0)" />.
+
+5. Für die Form des Graphen berechnen wir zwei weitere Punkte:
+
+   <MathContainer>
+     <BlockMath math="f(-2) = (-2)^2 - 2 \cdot (-2) - 3 = 4 + 4 - 3 = 5" />
+     <BlockMath math="f(2) = 2^2 - 2 \cdot 2 - 3 = 4 - 4 - 3 = -3" />
+   </MathContainer>
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph von <InlineMath math="f(x) = x^2 - 2x - 3" />
+      </>
+    }
+    description={
+      <>
+        Die Parabel öffnet sich nach oben. Ihr Scheitel liegt bei{" "}
+        <InlineMath math="(1, -4)" /> und ihre Schnittpunkte mit der <InlineMath math="x" />-Achse bei{" "}
+        <InlineMath math="(-1, 0)" /> und
+        <InlineMath math="(3, 0)" />.
+      </>
+    }
+    cameraPosition={[2, 1, 15]}
+    data={[
+      {
+        points: Array.from({ length: 7 }, (_, i) => {
+          const x = i - 2; // x-Werte von -2 bis 4
+          return { x, y: x * x - 2 * x - 3, z: 0 };
+        }),
+        color: "#0d9488",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
+            at: 5,
+            offset: [3, 2, 0],
+          },
+          {
+            text: <>Scheitelpunkt <InlineMath math="(1,-4)" /></>,
+            at: 3,
+            offset: [0, -0.5, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+### Beispiel einer nach unten öffnenden Parabel
+
+Wir zeichnen die Funktion <InlineMath math="f(x) = -x^2" />:
+
+1. Koeffizient <InlineMath math="a = -1 < 0" />, also öffnet sich die Parabel nach unten.
+2. Scheitelpunkt:
+
+   <MathContainer>
+     <BlockMath math="x = -\frac{b}{2a} = -\frac{0}{2 \cdot (-1)} = 0" />
+     <BlockMath math="f(0) = -(0)^2 = 0" />
+   </MathContainer>
+
+   Der Scheitelpunkt liegt also bei <InlineMath math="(0, 0)" />.
+
+3. <InlineMath math="y" />-Achsenabschnitt:
+
+   <BlockMath math="f(0) = 0" />
+
+   Der <InlineMath math="y" />-Achsenabschnitt liegt also bei <InlineMath math="(0, 0)" />.
+
+4. Schnittpunkte auf der <InlineMath math="x" />-Achse: <InlineMath math="f(x) = 0" /> oder <InlineMath math="-x^2 = 0" />
+
+   <MathContainer>
+     <BlockMath math="x^2 = 0" />
+     <BlockMath math="x = 0" />
+   </MathContainer>
+
+   Der <InlineMath math="x" />-Achsenabschnitt liegt also bei <InlineMath math="(0, 0)" />.
+
+5. Für die Form des Graphen berechnen wir weitere Punkte:
+
+   <MathContainer>
+     <BlockMath math="f(-2) = -((-2)^2) = -4" />
+     <BlockMath math="f(-1) = -((-1)^2) = -1" />
+     <BlockMath math="f(1) = -(1^2) = -1" />
+     <BlockMath math="f(2) = -(2^2) = -4" />
+   </MathContainer>
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph von <InlineMath math="f(x) = -x^2" />
+      </>
+    }
+    description={
+      <>
+        Die Parabel öffnet sich nach unten. Ihr Scheitel liegt bei{" "}
+        <InlineMath math="(0, 0)" />.
+      </>
+    }
+    cameraPosition={[2, 2, 12]}
+    data={[
+      {
+        points: Array.from({ length: 7 }, (_, i) => {
+          const x = i - 3; // x-Werte von -3 bis 3
+          return { x, y: -x * x, z: 0 };
+        }),
+        color: "#ea580c",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=-x^2" />,
+            at: 4,
+            offset: [2, 0, 0],
+          },
+          {
+            text: <>Scheitelpunkt <InlineMath math="(0,0)" /></>,
+            at: 3,
+            offset: [0, 0.5, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+## Die Form auf einen Blick
+
+Der Scheitel werde als <InlineMath math="(x_v,y_v)" /> mit <InlineMath math="y_v=f(x_v)" /> geschrieben.
+
+| Bedingung | Öffnung | Extremwert | Wertebereich |
+| ------------- | -------- | ------------ | -------------------------------------- |
+| <InlineMath math="a > 0" /> | Nach oben | Minimum | <InlineMath math="[y_v,\infty)" /> |
+| <InlineMath math="a < 0" /> | Nach unten | Maximum | <InlineMath math="(-\infty,y_v]" /> |
+
+## Übungsaufgabe
+
+Untersuche den Graphen von <InlineMath math="g(x)=-2(x+1)^2+8" />. Bestimme Öffnungsrichtung, Scheitel, Symmetrieachse, Achsenschnittpunkte und Wertebereich.
+
+### Ausführliche Lösung
+
+Die Funktion liegt bereits in der Scheitelpunktform <InlineMath math="a(x-h)^2+k" /> vor. Hier gilt <InlineMath math="a=-2" />, <InlineMath math="h=-1" /> und <InlineMath math="k=8" />.
+
+- Wegen <InlineMath math="a<0" /> öffnet sich die Parabel nach unten.
+- Der Scheitelpunkt ist <InlineMath math="(-1,8)" />, daher ist sein Maximalwert <InlineMath math="8" />.
+- Die Symmetrieachse ist <InlineMath math="x=-1" />.
+
+Für den Schnittpunkt mit der <InlineMath math="y" />-Achse setzen wir <InlineMath math="x=0" /> ein:
+
+<BlockMath math="g(0)=-2(0+1)^2+8=6" />
+
+Der Graph schneidet die <InlineMath math="y" />-Achse also bei <InlineMath math="(0,6)" />. Für die Schnittpunkte mit der <InlineMath math="x" />-Achse lösen wir <InlineMath math="g(x)=0" />:
+
+<MathContainer>
+  <BlockMath math="-2(x+1)^2+8=0" />
+  <BlockMath math="(x+1)^2=4" />
+  <BlockMath math="x+1=\pm2" />
+  <BlockMath math="x=-3\quad\text{oder}\quad x=1" />
+</MathContainer>
+
+Die Schnittpunkte sind <InlineMath math="(-3,0)" /> und <InlineMath math="(1,0)" />. Da sich die Parabel vom Maximum <InlineMath math="8" /> nach unten öffnet, ist ihr Wertebereich <InlineMath math="(-\infty,8]" />.

@@ -4,7 +4,7 @@ export const metadata = {
   date: "2026-01-17",
 };
 
-Untuk memecahkan kode ini, kita perlu mencari pola hubungan antara huruf-huruf tersebut dengan nama bilangan dalam bahasa Indonesia.
+Kode ini merupakan substitusi satu-ke-satu pada huruf-huruf nama bilangan dalam bahasa Indonesia. Huruf kode yang berulang harus mewakili huruf biasa yang berulang, sedangkan dua huruf kode yang berbeda tidak boleh mewakili huruf biasa yang sama.
 
 #### Analisis Pola Kata Pertama
 
@@ -16,11 +16,11 @@ Perhatikan kata <InlineMath math="ABQBO" />:
 - Terdiri dari <InlineMath math="5" /> huruf.
 - Huruf ke-<InlineMath math="2" /> dan ke-<InlineMath math="4" /> sama (huruf <InlineMath math="B" />).
 
-Cari nama bilangan yang memiliki pola serupa (<InlineMath math="5" /> huruf, huruf ke-<InlineMath math="2" /> dan ke-<InlineMath math="4" /> sama):
-- <InlineMath math="\text{TUJUH}" /> (<InlineMath math="5" /> huruf, huruf <InlineMath math="U" /> ada di posisi ke-<InlineMath math="2" /> dan ke-<InlineMath math="4" />).
+Di antara nama bilangan nol sampai sembilan, <InlineMath math="\text{TUJUH}" /> memiliki tepat pola lima huruf tersebut: huruf kedua dan keempat sama-sama <InlineMath math="\text{U}" />, sedangkan posisi lainnya berbeda. Jadi:
 
-Jika kita asumsikan <InlineMath math="ABQBO = \text{TUJUH}" />, maka nilainya adalah <InlineMath math="7" />.
-Mapping huruf:
+<BlockMath math="ABQBO = \text{TUJUH} = 7" />
+
+Pemetaan hurufnya adalah:
 - <InlineMath math="A = T" />
 - <InlineMath math="B = U" />
 - <InlineMath math="Q = J" />
@@ -35,15 +35,14 @@ Dari persamaan:
   <BlockMath math="APNH = 3" />
 </MathContainer>
 
-Kita cari nama bilangan yang bernilai <InlineMath math="3" /> (<InlineMath math="\text{TIGA}" />):
-- Terdiri dari <InlineMath math="4" /> huruf.
-- Huruf pertama <InlineMath math="T" /> (cocok dengan <InlineMath math="A = T" />).
-- Huruf terakhir <InlineMath math="A" /> (cocok dengan <InlineMath math="H = A" />).
+Nama bilangan <InlineMath math="3" /> adalah <InlineMath math="\text{TIGA}" />. Kata ini terdiri dari empat huruf berbeda dan berawal dengan <InlineMath math="\text{T}" />, sesuai dengan pemetaan <InlineMath math="A = T" /> yang sudah diketahui. Jadi:
+
+<BlockMath math="APNH = \text{TIGA} = 3" />
 
 Mapping huruf tambahan dari <InlineMath math="APNH = \text{TIGA}" />:
 - <InlineMath math="P = I" />
 - <InlineMath math="N = G" />
-- <InlineMath math="H = A" /> (Konsisten dengan <InlineMath math="ABQBO" /> dimana <InlineMath math="O = H" />, dan di sini <InlineMath math="H" /> adalah huruf baru yang mewakili <InlineMath math="A" />)
+- <InlineMath math="H = A" />
 
 #### Menghitung Pertanyaan
 
@@ -54,14 +53,15 @@ Ditanya:
 1. **Mencari Nilai KBH**
    - Pola: <InlineMath math="K - B - H" />
    - Substitusi huruf yang diketahui: <InlineMath math="K - U - A" /> (karena <InlineMath math="B = U" />, <InlineMath math="H = A" />)
-   - Bilangan <InlineMath math="3" /> huruf yang berakhiran "<InlineMath math="\text{UA}" />" adalah <InlineMath math="\text{DUA}" /> (<InlineMath math="2" />).
+   - Nama bilangan tiga huruf yang berakhiran <InlineMath math="\text{UA}" /> adalah <InlineMath math="\text{DUA}" /> (<InlineMath math="2" />).
    - Jadi, <InlineMath math="KBH = 2" />.
 
 2. **Mencari Nilai SPTH**
    - Pola: <InlineMath math="S - P - T - H" />
    - Substitusi huruf yang diketahui: <InlineMath math="S - I - T - A" /> (karena <InlineMath math="P = I" />, <InlineMath math="H = A" />)
-   - Bilangan <InlineMath math="4" /> huruf dengan pola "<InlineMath math="\_ \ I \ \_ \ A" />" adalah <InlineMath math="\text{LIMA}" /> (<InlineMath math="5" />).
-   - Jadi, <InlineMath math="SPTH = 5" />.
+   - <InlineMath math="\text{TIGA}" /> dan <InlineMath math="\text{LIMA}" /> sama-sama cocok dengan pola yang terlihat, yaitu <InlineMath math="\_\text{I}\_\text{A}" />.
+   - Namun, <InlineMath math="\text{TIGA}" /> memakai huruf biasa yang sudah diwakili oleh kode <InlineMath math="A" /> dan <InlineMath math="N" />. Karena <InlineMath math="S" /> dan <InlineMath math="T" /> adalah huruf kode yang berbeda, keduanya tidak boleh mewakili huruf biasa yang sama.
+   - Jadi, satu-satunya penguraian yang sah adalah <InlineMath math="SPTH = \text{LIMA} = 5" />.
 
 #### Hasil Akhir
 

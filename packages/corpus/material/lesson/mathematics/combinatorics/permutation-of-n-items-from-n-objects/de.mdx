@@ -1,0 +1,139 @@
+export const metadata = {
+   title: "Permutation aller Objekte",
+   description: "Lernen Sie die Permutation aller Objekte mithilfe von Fakultätsformeln. Ordnen Sie alle Objekte mit ausgearbeiteten Beispielen und praktischen Übungen.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   date: "2025-05-26",
+   subject: "Kombinatorik",
+};
+
+## Permutation aller Objekte verstehen
+
+**Permutation aller Objekte** ist eine Anordnung aller verfügbaren Objekte, nämlich <InlineMath math="n" /> Elemente aus <InlineMath math="n" /> Objekten, wobei jedes Objekt genau einmal verwendet wird und **die Reihenfolge der Anordnung sehr wichtig ist**. In diesem Fall nutzen wir alle verfügbaren Objekte, ohne dass etwas übrig bleibt.
+
+Stellen Sie sich vor, Sie richten eine Fotolinie für <InlineMath math="5 \text{Studenten}" /> ein. Alle fünf Schüler werden in einer Reihe platziert. Jeder Schüler bekommt eine Position, keiner sitzt auf der Ersatzbank und Andis Position vorne oder hinten führt zu unterschiedlichen Ergebnissen.
+
+## Vollständige Permutationsformel
+
+Für die Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="n" /> Objekten lautet **die verwendete Formel**:
+
+<MathContainer>
+<BlockMath math="nP_n = \frac{n!}{(n-n)!} = \frac{n!}{0!}" />
+</MathContainer>
+
+**Erklärung, warum diese Formel einfach wird:**
+- <InlineMath math="(n-n) = 0" />, also wird der Nenner zu <InlineMath math="0!" />
+- Nach der mathematischen Definition gilt <InlineMath math="0! = 1" />
+- Daher: <InlineMath math="\frac{n!}{0!} = \frac{n!}{1} = n!" />
+
+Die Formel lautet also:
+
+<MathContainer>
+<BlockMath math="nP_n = n!" />
+</MathContainer>
+
+## Fakultätskonzept
+
+**Fakultät** ist die fortlaufende Multiplikation positiver Ganzzahlen. Die Fakultät einer Zahl <InlineMath math="n" /> wird als <InlineMath math="n!" /> geschrieben und definiert als:
+
+<MathContainer>
+<BlockMath math="n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1" />
+</MathContainer>
+
+**Sonderregeln** für Fakultät:
+- <InlineMath math="0! = 1" /> (nach mathematischer Definition)
+- <InlineMath math="1! = 1" />
+
+## Anwendung im täglichen Leben
+
+### Schulorganisation
+
+Angenommen, es gibt <InlineMath math="4 \text{Studenten}" />, die <InlineMath math="4" /> Positionen in einem Studentenausschuss besetzen: Präsident, Vizepräsident, Sekretär und Schatzmeister. Jeder Student kann nur eine Position bekleiden.
+
+Die Anzahl der Möglichkeiten, die Führung zu organisieren, ist:
+
+<MathContainer>
+<BlockMath math="4P_4 = 4! = 4 \times 3 \times 2 \times 1 = 24 \text{Wege}" />
+</MathContainer>
+
+### Sitzordnung
+
+Für ein Familienfoto sitzt eine Familie aus <InlineMath math="6" /> Mitgliedern in einer Reihe auf einem Sofa. Es gibt folgende Möglichkeiten, sie zu arrangieren:
+
+<MathContainer>
+<BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{Wege}" />
+</MathContainer>
+
+## Systematische Berechnungsschritte
+
+Um die Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="n" /> Objekten zu berechnen, gehen Sie folgendermaßen vor:
+
+1. **Identifizieren Sie die Anzahl der Objekte**: Stellen Sie sicher, dass alle Objekte verwendet werden
+2. **Wenden Sie die Formel an**: Verwenden Sie <InlineMath math="n!" />
+3. **Fakultät berechnen**: Kontinuierlich von <InlineMath math="n" /> bis <InlineMath math="1" /> multiplizieren
+4. **Überprüfen Sie das Ergebnis**: Stellen Sie sicher, dass die Berechnung korrekt ist
+
+### Detaillierte Berechnung
+
+<InlineMath math="5!" /> berechnen mit klaren Schritten:
+
+<MathContainer>
+<BlockMath math="5! = 5 \times 4 \times 3 \times 2 \times 1" />
+<BlockMath math="= 20 \times 3 \times 2 \times 1" />
+<BlockMath math="= 60 \times 2 \times 1" />
+<BlockMath math="= 120 \times 1 = 120" />
+</MathContainer>
+
+## Differenz zur partiellen Permutation
+
+**Vollständige Permutation (<InlineMath math="n" /> aus <InlineMath math="n" /> Objekten)**: Verwendet alle verfügbaren Objekte.
+**Partielle Permutation (<InlineMath math="r" /> aus <InlineMath math="n" /> Objekten)**: Verwendet nur einige Objekte.
+
+**Konkretes Beispiel**:
+- Vollständige Permutation: Die Anordnung von <InlineMath math="5 \text{Bücher}" /> in <InlineMath math="5 \text{Positionen}" /> auf einem Regal ergibt <InlineMath math="5! = 120 \text{Wege}" />
+- Teilpermutation: Das Auswählen und Anordnen von <InlineMath math="3 \text{Bücher}" /> aus <InlineMath math="5 \text{verfügbare Bücher}" /> ergibt <InlineMath math="5P_3 = 60 \text{Wege}" />
+
+**Detaillierte Berechnung für Teilpermutation**:
+
+<MathContainer>
+<BlockMath math="5P_3 = \frac{5!}{(5-3)!} = \frac{5!}{2!}" />
+<BlockMath math="= \frac{5 \times 4 \times 3 \times 2 \times 1}{2 \times 1}" />
+<BlockMath math="= \frac{120}{2} = 60 \text{Wege}" />
+</MathContainer>
+
+Bei der Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="n" /> Objekten bleiben **keine Objekte übrig** und **alle Positionen müssen besetzt sein**.
+
+## Übungen
+
+1. Ein Fototeam möchte <InlineMath math="7 \text{Modelle}" /> für eine Fotosession in einer Zeile aufbringen. Auf wie viele verschiedene Arten können sie die sieben Modelle anordnen?
+
+2. Bei einem Laufwettbewerb gibt es <InlineMath math="5 \text{Teilnehmer}" />, die alle ins Ziel kommen müssen. Wie viele verschiedene Finishing-Reihenfolge-Möglichkeiten gibt es?
+
+3. Ein Koch möchte <InlineMath math="6 \text{verschiedene Arten von Lebensmitteln}" /> in einer geraden Linie auf einem Tisch anordnen. Auf wie viele verschiedene Arten kann er das Essen anrichten?
+
+4. Eine Bibliothek hat <InlineMath math="8 \text{verschiedene Bücher}" />, die in einem Regal angeordnet werden. Wenn alle Bücher in diesem Regal platziert werden müssen, wie viele mögliche Anordnungen gibt es?
+
+### Antwortschlüssel
+
+1. Gegeben: <InlineMath math="7 \text{Modelle}" /> wird in einer Zeile angeordnet (alle verwendeten Modelle)
+
+   <MathContainer>
+   <BlockMath math="7P_7 = 7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5040 \text{Wege}" />
+   </MathContainer>
+
+2. Gegeben: <InlineMath math="5 \text{Laufteilnehmer}" /> mit unterschiedlicher Zielreihenfolge (alle Teilnehmer kommen ins Ziel)
+
+   <MathContainer>
+   <BlockMath math="5P_5 = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120 \text{mögliche Bestellungen}" />
+   </MathContainer>
+
+3. Gegeben: <InlineMath math="6 \text{Arten von Lebensmitteln}" /> werden in einer geraden Linie angeordnet (alle Lebensmittel angeordnet)
+
+   <MathContainer>
+   <BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{Wege}" />
+   </MathContainer>
+
+4. Gegeben: <InlineMath math="8 \text{verschiedene Bücher}" /> werden auf einem Regal angeordnet (alle Bücher geordnet)
+
+   <MathContainer>
+   <BlockMath math="8P_8 = 8! = 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 40320 \text{Wege}" />
+   </MathContainer>

@@ -1,0 +1,870 @@
+export const metadata = {
+  title: "Winkelsätze im Kreis",
+  description: "Winkelsätze im Kreis mit anschaulichen Begründungen: Umfangswinkel, Satz des Thales und Sehnenvierecke.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Kreis",
+};
+
+
+
+## Umfangswinkel über demselben Bogen
+
+Umfangswinkel über demselben Bogen sind gleich groß, wenn ihre Scheitelpunkte auf demselben verbleibenden Bogen liegen, also im selben Kreissegment.
+
+<LineEquation
+  title="Umfangswinkel über demselben Bogen"
+  description="Umfangswinkel im selben Kreissegment über demselben Bogen sind gleich groß."
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        {
+          x: 4 * Math.cos((5 * Math.PI) / 4),
+          y: 4 * Math.sin((5 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        {
+          x: 4 * Math.cos((5 * Math.PI) / 4),
+          y: 4 * Math.sin((5 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        {
+          x: 4 * Math.cos((3 * Math.PI) / 4),
+          y: 4 * Math.sin((3 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, 0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        {
+          x: 4 * Math.cos((3 * Math.PI) / 4),
+          y: 4 * Math.sin((3 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 46 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+**Eigenschaft:** <InlineMath math="\angle ACB = \angle ADB" />
+
+Die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen auf derselben Seite der Sehne <InlineMath math="AB" />. Deshalb überspannen <InlineMath math="\angle ACB" /> und <InlineMath math="\angle ADB" /> denselben Bogen aus demselben Kreissegment und sind gleich groß.
+
+## Mittelpunktswinkel und Umfangswinkel
+
+Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel über demselben Bogen.
+
+<LineEquation
+  title="Mittelpunktswinkel und Umfangswinkel"
+  description={
+    <>
+    Mittelpunktswinkel <InlineMath math="= 2 \times" /> Umfangswinkel für die
+    gleichen Bogen.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        {
+          x: 4 * Math.cos((5 * Math.PI) / 4),
+          y: 4 * Math.sin((5 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        {
+          x: 4 * Math.cos((5 * Math.PI) / 4),
+          y: 4 * Math.sin((5 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 16 }, (_, i) => {
+        const angle = (((i * 45) / 15) * Math.PI) / 180;
+        return {
+          x: 1.2 * Math.cos(angle),
+          y: 1.2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="2\theta" />, at: 7, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: (() => {
+        const C = {
+          x: 4 * Math.cos((5 * Math.PI) / 4),
+          y: 4 * Math.sin((5 * Math.PI) / 4),
+        };
+        const A = { x: 4, y: 0 };
+        const B = {
+          x: 4 * Math.cos(Math.PI / 4),
+          y: 4 * Math.sin(Math.PI / 4),
+        };
+
+        // Winkel ACB am Punkt C berechnen
+        const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
+        const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
+
+        return Array.from({ length: 16 }, (_, i) => {
+          const t = i / 15;
+          const angle = angleCA + t * (angleCB - angleCA);
+          return {
+            x: C.x + 0.8 * Math.cos(angle),
+            y: C.y + 0.8 * Math.sin(angle),
+            z: 0,
+          };
+        });
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\theta" />, at: 7, offset: [0.5, 0.5, 0] }],
+    },
+
+]}
+cameraPosition={[0, 0, 12]}
+showZAxis={false}
+/>
+
+**Eigenschaft:** <InlineMath math="\angle AOB = 2 \times \angle ACB" />
+
+## Umfangswinkel über einem Durchmesser
+
+Jeder Umfangswinkel über einem Kreisdurchmesser ist ein rechter Winkel mit <InlineMath math="90^\circ" />.
+
+<LineEquation
+  title="Umfangswinkel über einem Durchmesser"
+  description={<>Ein Umfangswinkel über einem Durchmesser beträgt immer <InlineMath math="90^\circ" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
+    },
+    {
+      points: (() => {
+        const C = { x: 0, y: 4 };
+        const A = { x: -4, y: 0 };
+        const B = { x: 4, y: 0 };
+
+        // Winkel ACB am Punkt C berechnen (should be 90°)
+        const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
+        const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
+
+        return Array.from({ length: 16 }, (_, i) => {
+          const t = i / 15;
+          const angle = angleCA + t * (angleCB - angleCA);
+          return {
+            x: C.x + 0.8 * Math.cos(angle),
+            y: C.y + 0.8 * Math.sin(angle),
+            z: 0,
+          };
+        });
+      })(),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [-0.3, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        {
+          x: 4 * Math.cos((5 * Math.PI) / 4),
+          y: 4 * Math.sin((5 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        {
+          x: 4 * Math.cos((5 * Math.PI) / 4),
+          y: 4 * Math.sin((5 * Math.PI) / 4),
+          z: 0,
+        },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+    },
+
+]}
+cameraPosition={[0, 0, 12]}
+showZAxis={false}
+/>
+
+**Eigenschaft:** Wenn <InlineMath math="AB" /> ein Durchmesser ist, dann <InlineMath math="\angle ACB = \angle ADB = 90^\circ" />
+
+Dieser Zusammenhang ist als **Satz des Thales** bekannt.
+
+## Winkel im Sehnenviereck
+
+Ein Sehnenviereck hat vier Eckpunkte auf einer Kreislinie. Je zwei gegenüberliegende Winkel ergänzen sich zu <InlineMath math="180^\circ" />.
+
+<LineEquation
+  title="Zyklisches Viereck"
+  description={<>Die Summe der entgegengesetzten Winkel ist <InlineMath math="180^\circ" />.</>}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+        { x: -4, y: 0, z: 0 },
+        { x: 0, y: -4, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] },
+        { text: <InlineMath math="C" />, at: 2, offset: [-0.5, 0, 0] },
+        { text: <InlineMath math="D" />, at: 3, offset: [0, -0.5, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 16 }, (_, i) => {
+        const angle = ((135 + (i * 90) / 15) * Math.PI) / 180;
+        return {
+          x: 4 + 0.8 * Math.cos(angle),
+          y: 0.8 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\alpha" />, at: 7, offset: [0.3, 0.2, 0] }],
+    },
+    {
+      points: Array.from({ length: 16 }, (_, i) => {
+        const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
+        return {
+          x: -4 + 0.8 * Math.cos(angle),
+          y: 0.8 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\gamma" />, at: 7, offset: [-0.3, -0.2, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+/>
+
+**Eigenschaft:** <InlineMath math="\alpha + \gamma = 180^\circ" /> und <InlineMath math="\beta + \delta = 180^\circ" />
+
+## Außenwinkel und gegenüberliegender Innenwinkel
+
+In einem Sehnenviereck ist ein Außenwinkel genauso groß wie der gegenüberliegende Innenwinkel.
+
+<LineEquation
+  title="Außenwinkel eines Sehnenvierecks"
+  description={
+    <>
+    Außenwinkel <InlineMath math="=" /> gegenüberliegender Innenwinkel.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+        { x: -4, y: 0, z: 0 },
+        { x: 0, y: -4, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] },
+        { text: <InlineMath math="C" />, at: 2, offset: [-0.5, 0, 0] },
+        { text: <InlineMath math="D" />, at: 3, offset: [0, -0.5, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 6, y: -2, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="E" />, at: 1, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 16 }, (_, i) => {
+        const angle = ((225 + (i * 90) / 15) * Math.PI) / 180;
+        return {
+          x: 4 + 0.8 * Math.cos(angle),
+          y: 0 + 0.8 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\angle DAE" />, at: 7, offset: [0.8, -0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 16 }, (_, i) => {
+        const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
+        return {
+          x: -4 + 0.8 * Math.cos(angle),
+          y: 0 + 0.8 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\angle BCD" />, at: 7, offset: [-0.8, 0.5, 0] }],
+    },
+
+]}
+cameraPosition={[0, 0, 12]}
+showZAxis={false}
+/>
+
+**Eigenschaft:** <InlineMath math="\angle DAE = \angle BCD" /> (Außenwinkel bei <InlineMath math="A" /> entspricht Innenwinkel bei <InlineMath math="C" />)
+
+## Winkelsätze anwenden
+
+### Winkelmaße bestimmen
+
+In einem Kreis mit Mittelpunkt <InlineMath math="O" /> beträgt der Mittelpunktswinkel <InlineMath math="\angle AOB = 100^\circ" />. Gesucht ist der Umfangswinkel <InlineMath math="\angle ACB" /> über demselben Bogen.
+
+**Lösung:**
+
+Wir nutzen den Zusammenhang zwischen Mittelpunktswinkel und Umfangswinkel:
+
+<MathContainer>
+  <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 100^\circ" />
+  <BlockMath math="\angle ACB = 50^\circ" />
+</MathContainer>
+
+### Gegenüberliegende Winkel bestimmen
+
+Im Sehnenviereck <InlineMath math="ABCD" /> ist <InlineMath math="\angle A = 75^\circ" /> gegeben. Bestimme <InlineMath math="\angle C" />.
+
+**Lösung:**
+
+Wir nutzen die Winkelsumme im Sehnenviereck:
+
+<MathContainer>
+  <BlockMath math="\angle A + \angle C = 180^\circ" />
+  <BlockMath math="75^\circ + \angle C = 180^\circ" />
+  <BlockMath math="\angle C = 180^\circ - 75^\circ" />
+  <BlockMath math="\angle C = 105^\circ" />
+</MathContainer>
+
+### Satz des Thales anwenden
+
+Der Punkt <InlineMath math="C" /> liegt auf einem Kreis mit dem Durchmesser <InlineMath math="AB" />. Bestimme <InlineMath math="\angle ACB" />.
+
+**Lösung:**
+
+Da <InlineMath math="AB" /> ein Durchmesser ist und <InlineMath math="C" /> auf dem Kreis liegt, gilt nach dem Satz des Thales:
+
+<BlockMath math="\angle ACB = 90^\circ" />
+
+## Übungsaufgaben
+
+1. In einem Kreis mit Mittelpunkt <InlineMath math="O" /> gehört zum Mittelpunktswinkel <InlineMath math="\angle AOB = 140^\circ" /> der kleine Bogen <InlineMath math="AB" />. Die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen auf dem großen Bogen <InlineMath math="AB" />. Bestimme:
+
+   - Das Winkelmaß <InlineMath math="\angle ACB" />
+   - Das Winkelmaß <InlineMath math="\angle ADB" />
+
+2. Im Sehnenviereck <InlineMath math="PQRS" /> gilt:
+
+   <MathContainer>
+     <BlockMath math="\angle P = 85^\circ" />
+     <BlockMath math="\angle Q = 110^\circ" />
+   </MathContainer>
+
+   Bestimme <InlineMath math="\angle R" /> und <InlineMath math="\angle S" />.
+
+3. Die Punkte <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> liegen auf einem Kreis. Dabei ist <InlineMath math="AB" /> ein Durchmesser und es gilt <InlineMath math="BC = AC" />. Bestimme <InlineMath math="\angle BAC" />.
+
+4. Der Umfangswinkel beträgt <InlineMath math="\angle APB = 35^\circ" />. Bestimme den Mittelpunktswinkel <InlineMath math="\angle AOB" /> über demselben Bogen.
+
+5. Im Sehnenviereck <InlineMath math="KLMN" /> beträgt der Außenwinkel bei <InlineMath math="K" /> <InlineMath math="65^\circ" />. Bestimme den Innenwinkel bei <InlineMath math="M" />.
+
+### Ausführliche Lösungen
+
+1. **Umfangswinkel über demselben Bogen bestimmen**
+
+   <LineEquation
+     title="Visualisierung"
+     description={<>Der Mittelpunktswinkel <InlineMath math="\angle AOB = 140^\circ" /> und die Umfangswinkel stehen über demselben Bogen <InlineMath math="AB" />.</>}
+     data={[
+       {
+         points: Array.from({ length: 361 }, (_, i) => {
+           const angle = (i * Math.PI) / 180;
+           return {
+             x: 4 * Math.cos(angle),
+             y: 4 * Math.sin(angle),
+             z: 0,
+           };
+         }),
+         color: "#9333ea",
+         showPoints: false,
+       },
+       {
+         points: [
+           { x: 0, y: 0, z: 0 },
+           { x: 4, y: 0, z: 0 },
+         ],
+         color: "#ea580c",
+         showPoints: true,
+         labels: [
+           { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
+           { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+         ],
+       },
+       {
+         points: [
+           { x: 0, y: 0, z: 0 },
+           {
+             x: 4 * Math.cos((140 * Math.PI) / 180),
+             y: 4 * Math.sin((140 * Math.PI) / 180),
+             z: 0,
+           },
+         ],
+         color: "#ea580c",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.5, 0] }],
+       },
+       {
+         points: [
+           { x: 4, y: 0, z: 0 },
+           {
+             x: 4 * Math.cos((5 * Math.PI) / 4),
+             y: 4 * Math.sin((5 * Math.PI) / 4),
+             z: 0,
+           },
+         ],
+         color: "#0891b2",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
+       },
+       {
+         points: [
+           {
+             x: 4 * Math.cos((140 * Math.PI) / 180),
+             y: 4 * Math.sin((140 * Math.PI) / 180),
+             z: 0,
+           },
+           {
+             x: 4 * Math.cos((5 * Math.PI) / 4),
+             y: 4 * Math.sin((5 * Math.PI) / 4),
+             z: 0,
+           },
+         ],
+         color: "#0891b2",
+         showPoints: false,
+       },
+       {
+         points: [
+           { x: 4, y: 0, z: 0 },
+           {
+             x: 4 * Math.cos((7 * Math.PI) / 4),
+             y: 4 * Math.sin((7 * Math.PI) / 4),
+             z: 0,
+           },
+         ],
+         color: "#0d9488",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.5, 0] }],
+       },
+       {
+         points: [
+           {
+             x: 4 * Math.cos((140 * Math.PI) / 180),
+             y: 4 * Math.sin((140 * Math.PI) / 180),
+             z: 0,
+           },
+           {
+             x: 4 * Math.cos((7 * Math.PI) / 4),
+             y: 4 * Math.sin((7 * Math.PI) / 4),
+             z: 0,
+           },
+         ],
+         color: "#0d9488",
+         showPoints: false,
+       },
+       {
+         points: Array.from({ length: 16 }, (_, i) => {
+           const angle = (((i * 140) / 15) * Math.PI) / 180;
+           return {
+             x: 1.2 * Math.cos(angle),
+             y: 1.2 * Math.sin(angle),
+             z: 0,
+           };
+         }),
+         color: "#db2777",
+         showPoints: false,
+         labels: [{ text: <InlineMath math="140^\circ" />, at: 7, offset: [0.3, 0.5, 0] }],
+       },
+     ]}
+     cameraPosition={[0, 0, 12]}
+     showZAxis={false}
+   />
+
+   **Lösung:**
+
+   Wir nutzen den Zusammenhang zwischen Mittelpunktswinkel und Umfangswinkel:
+
+   <MathContainer>
+     <BlockMath math="\text{Umfangswinkel} = \frac{1}{2} \times \text{Mittelpunktswinkel}" />
+     <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
+     <BlockMath math="\angle ACB = \frac{1}{2} \times 140^\circ" />
+     <BlockMath math="\angle ACB = 70^\circ" />
+   </MathContainer>
+
+   Da Umfangswinkel über demselben Bogen gleich groß sind:
+
+   <BlockMath math="\angle ADB = \angle ACB = 70^\circ" />
+
+2. **Winkel im Sehnenviereck bestimmen**
+
+   **Lösung:**
+
+   In einem Sehnenviereck gilt <InlineMath math="\text{Summe der entgegengesetzten Winkel} = 180^\circ" />
+
+   Für Winkel <InlineMath math="R" /> (entgegengesetzt zu <InlineMath math="P" />):
+
+   <MathContainer>
+     <BlockMath math="\angle P + \angle R = 180^\circ" />
+     <BlockMath math="85^\circ + \angle R = 180^\circ" />
+     <BlockMath math="\angle R = 180^\circ - 85^\circ" />
+     <BlockMath math="\angle R = 95^\circ" />
+   </MathContainer>
+
+   Für Winkel <InlineMath math="S" /> (entgegengesetzt zu <InlineMath math="Q" />):
+
+   <MathContainer>
+     <BlockMath math="\angle Q + \angle S = 180^\circ" />
+     <BlockMath math="110^\circ + \angle S = 180^\circ" />
+     <BlockMath math="\angle S = 180^\circ - 110^\circ" />
+     <BlockMath math="\angle S = 70^\circ" />
+   </MathContainer>
+
+3. **Winkel im gleichschenkligen Dreieck mit Durchmesser bestimmen**
+
+   <LineEquation
+     title="Visualisierung"
+     description={
+       <>
+         <InlineMath math="AB" /> ist ein Durchmesser,{" "}
+         <InlineMath math="BC = AC" /> (gleichschenkliges Dreieck).
+       </>
+     }
+     data={[
+       {
+         points: Array.from({ length: 361 }, (_, i) => {
+           const angle = (i * Math.PI) / 180;
+           return {
+             x: 4 * Math.cos(angle),
+             y: 4 * Math.sin(angle),
+             z: 0,
+           };
+         }),
+         color: "#9333ea",
+         showPoints: false,
+       },
+       {
+         points: [
+           { x: -4, y: 0, z: 0 },
+           { x: 4, y: 0, z: 0 },
+         ],
+         color: "#ea580c",
+         showPoints: true,
+         labels: [
+           { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
+           { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
+         ],
+       },
+       {
+         points: [
+           { x: -4, y: 0, z: 0 },
+           { x: 0, y: 4, z: 0 },
+         ],
+         color: "#0891b2",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
+       },
+       {
+         points: [
+           { x: 4, y: 0, z: 0 },
+           { x: 0, y: 4, z: 0 },
+         ],
+         color: "#0891b2",
+         showPoints: false,
+       },
+       {
+         points: [{ x: 0, y: 0, z: 0 }],
+         color: "#d97706",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
+       },
+       {
+         points: (() => {
+           const C = { x: 0, y: 4 };
+           const A = { x: -4, y: 0 };
+           const B = { x: 4, y: 0 };
+
+           // Winkel ACB am Punkt C berechnen (should be 90°)
+           const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
+           const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
+
+           return Array.from({ length: 16 }, (_, i) => {
+             const t = i / 15;
+             const angle = angleCA + t * (angleCB - angleCA);
+             return {
+               x: C.x + 0.8 * Math.cos(angle),
+               y: C.y + 0.8 * Math.sin(angle),
+               z: 0,
+             };
+           });
+         })(),
+         color: "#db2777",
+         showPoints: false,
+         labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [-0.3, -0.5, 0] }],
+       },
+     ]}
+     cameraPosition={[0, 0, 12]}
+     showZAxis={false}
+   />
+
+   **Lösung:**
+
+   Da <InlineMath math="AB" /> ein Durchmesser ist, gilt nach dem Satz von Thales:
+
+   <BlockMath math="\angle ACB = 90^\circ" />
+
+   Da <InlineMath math="BC = AC" /> gilt, ist das Dreieck <InlineMath math="ABC" /> ein
+   rechtes gleichschenkliges Dreieck.
+
+   In einem rechtwinkligen gleichschenkligen Dreieck sind beide Grundwinkel gleich:
+
+   <MathContainer>
+     <BlockMath math="\angle BAC + \angle ABC + \angle ACB = 180^\circ" />
+     <BlockMath math="\angle BAC + \angle ABC + 90^\circ = 180^\circ" />
+     <BlockMath math="\angle BAC + \angle ABC = 90^\circ" />
+   </MathContainer>
+
+   Da <InlineMath math="\angle BAC = \angle ABC" /> (Basiswinkel des gleichschenkligen Dreiecks):
+
+   <MathContainer>
+     <BlockMath math="2 \times \angle BAC = 90^\circ" />
+     <BlockMath math="\angle BAC = 45^\circ" />
+   </MathContainer>
+
+4. **Mittelpunktswinkel aus dem Umfangswinkel bestimmen**
+
+   **Lösung:**
+
+   Wir nutzen den Zusammenhang zwischen Mittelpunktswinkel und Umfangswinkel:
+
+   <MathContainer>
+     <BlockMath math="\text{Mittelpunktswinkel} = 2 \times \text{Umfangswinkel}" />
+     <BlockMath math="\angle AOB = 2 \times \angle APB" />
+     <BlockMath math="\angle AOB = 2 \times 35^\circ" />
+     <BlockMath math="\angle AOB = 70^\circ" />
+   </MathContainer>
+
+5. **Innenwinkel aus dem Außenwinkel bestimmen**
+
+   **Lösung:**
+
+   In einem Sehnenviereck ist ein Außenwinkel genauso groß wie der gegenüberliegende Innenwinkel.
+
+   Wenn der Außenwinkel bei <InlineMath math="K" /> <InlineMath math="65^\circ" /> beträgt, dann:
+
+   <BlockMath math="\angle M = 65^\circ" />
+
+   Das gilt, weil die Eckpunkte <InlineMath math="K" /> und <InlineMath math="M" /> im Sehnenviereck <InlineMath math="KLMN" /> einander gegenüberliegen.
+
+## Quellen
+
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)
+- [GeoGebra: Inscribed Angle Theorem](https://www.geogebra.org/m/nbepfdzb)
+- [OpenStax Precalculus 2e: Angles](https://openstax.org/books/precalculus-2e/pages/5-1-angles)

@@ -1,0 +1,91 @@
+export const metadata = {
+  title: "Wissenschaftliche Schreibweise",
+  description:
+    "Schreibe sehr große und sehr kleine Messwerte übersichtlich, erhalte ihre signifikanten Stellen und rechne Einheiten ohne Bedeutungsverlust um.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-25",
+  subject: "Messen in der Naturwissenschaft",
+};
+
+## Wenn Nullen im Weg stehen
+
+In der Physik begegnen uns Werte, die für die gewöhnliche Dezimalschreibweise unhandlich groß oder klein sind. Eine Fläche von <InlineMath math="0{,}000764 \text{m}^2" /> ist noch lesbar. Bei einer Elektronenmasse von ungefähr <InlineMath math="0{,}000000000000000000000000000000911 \text{kg}" /> verliert man dagegen schnell eine Null.
+
+Die **wissenschaftliche Schreibweise** zerlegt einen Wert in einen Koeffizienten und eine Potenz von <InlineMath math="10" />.
+
+<BlockMath math="a \times 10^n" />
+
+Für positive Werte gilt die Standardform:
+
+<BlockMath math="1 \le a &lt; 10 \quad \text{und} \quad n \in \mathbb{Z}" />
+
+Der Koeffizient <InlineMath math="a" /> enthält die signifikanten Stellen. Der Exponent <InlineMath math="n" /> gibt die Größenordnung an.
+
+## Das Komma wandert, der Wert bleibt gleich
+
+Verschiebe das Dezimalkomma so weit, bis der Koeffizient zwischen <InlineMath math="1" /> und <InlineMath math="10" /> liegt. Die Anzahl der Stellen bestimmt den Exponenten.
+
+| Ausgangswert | Verschiebung des Kommas | Wissenschaftliche Schreibweise |
+| :------------- | :--------------- | :------------------ |
+| <InlineMath math="7\,640\,000 \text{ m}" /> | <InlineMath math="6" /> Stellen nach links | <InlineMath math="7{,}64 \times 10^6 \text{m}" /> |
+| <InlineMath math="0{,}000764 \text{m}^2" /> | <InlineMath math="4" /> Stellen nach rechts | <InlineMath math="7{,}64 \times 10^{-4} \text{m}^2" /> |
+| <InlineMath math="0{,}000000911 \text{kg}" /> | <InlineMath math="7" /> Stellen nach rechts | <InlineMath math="9{,}11 \times 10^{-7} \text{kg}" /> |
+
+Wandert das Komma nach links, ist der Exponent positiv. Wandert es nach rechts, ist der Exponent negativ.
+
+<BlockMath math="\begin{aligned}
+7\,640\,000 &= 7{,}64 \times 10^6 \\
+0{,}000764 &= 7{,}64 \times 10^{-4}
+\end{aligned}" />
+
+## Der Exponent zählt nicht als signifikante Stelle
+
+Die Anzahl der signifikanten Stellen liest man am Koeffizienten ab, nicht an der Potenz von <InlineMath math="10" />.
+
+| Wissenschaftliche Schreibweise | Signifikante Stellen | Begründung |
+| :------------------ | :------------------ | :----- |
+| <InlineMath math="7{,}64 \times 10^{-4} \text{m}^2" /> | <InlineMath math="3" /> | Der Koeffizient beträgt <InlineMath math="7{,}64" /> |
+| <InlineMath math="1{,}0 \times 10^{-7} \text{m}" /> | <InlineMath math="2" /> | Die Null nach dem Komma in <InlineMath math="1{,}0" /> ist gewollt |
+| <InlineMath math="1 \times 10^3 \text{ m}" /> | <InlineMath math="1" /> | Der Koeffizient beträgt nur <InlineMath math="1" /> |
+| <InlineMath math="1{,}000 \times 10^3 \text{m}" /> | <InlineMath math="4" /> | Die Nullen in <InlineMath math="1{,}000" /> geben die Genauigkeit an |
+
+Genau deshalb ist die wissenschaftliche Schreibweise für Messwerte nützlich. Der Wert <InlineMath math="1000 \text{ m}" /> ist mehrdeutig. <InlineMath math="1{,}000 \times 10^3 \text{m}" /> zeigt dagegen eindeutig <InlineMath math="4" /> signifikante Stellen.
+
+## Rundungsreserve bis zur endgültigen Angabe behalten
+
+Die wissenschaftliche Schreibweise darf keine frühe Rundung erzwingen. Rechne und konvertiere mit zusätzlichen Stellen und runde den endgültigen Berichtswert genau einmal.
+
+<BlockMath math="\text{mit zusätzlichen Stellen rechnen} \to \text{mit exakten Faktoren umrechnen} \to \text{einmal runden} \to \text{wissenschaftlich schreiben}" />
+
+Ein Flaschendeckel mit dem Durchmesser <InlineMath math="3{,}12 \text{cm}" /> hat die folgende berechnete Fläche, wenn der Rechnerwert von <InlineMath math="\pi" /> beibehalten wird:
+
+<BlockMath math="A=\frac{1}{4}\pi(3{,}12 \text{cm})^2=7{,}645379881\ldots \text{cm}^2" />
+
+Verwende die exakte Zehnerpotenz zur Umrechnung in das Internationale Einheitensystem, kurz SI, bevor du die zusätzlichen Stellen entfernst.
+
+<BlockMath math="\begin{aligned}
+1 \text{cm} &= 10^{-2} \text{m} \\
+1 \text{cm}^2 &= (10^{-2} \text{m})^2 = 10^{-4} \text{m}^2 \\
+7{,}645379881\ldots \text{cm}^2 &= 7{,}645379881\ldots \times 10^{-4} \text{m}^2
+\end{aligned}" />
+
+Der gemessene Durchmesser trägt <InlineMath math="3" /> signifikante Stellen. Das endgültige SI-Ergebnis lautet daher <InlineMath math="7{,}65 \times 10^{-4} \text{m}^2" />.
+
+> Bei potenzierten Einheiten wird auch der Umrechnungsfaktor potenziert. Von <InlineMath math="\text{cm}" /> zu <InlineMath math="\text{m}" /> beträgt der Faktor <InlineMath math="10^{-2}" />, von <InlineMath math="\text{cm}^2" /> zu <InlineMath math="\text{m}^2" /> dagegen <InlineMath math="10^{-4}" />.
+
+## Rechnen ohne lange Nullenketten
+
+Auch beim Rechnen schafft die wissenschaftliche Schreibweise Ordnung, weil sich Potenzen von <InlineMath math="10" /> getrennt zusammenfassen lassen.
+
+Angenommen, ein sehr kleines Objekt hat die Länge <InlineMath math="2{,}5 \times 10^{-6} \text{m}" /> und die Breite <InlineMath math="4{,}0 \times 10^{-7} \text{m}" />.
+
+<BlockMath math="\begin{aligned}
+A &= (2{,}5 \times 10^{-6})(4{,}0 \times 10^{-7}) \text{m}^2 \\
+&= (2{,}5 \times 4{,}0) \times 10^{-6+(-7)} \text{m}^2 \\
+&= 10{,}0 \times 10^{-13} \text{m}^2 \\
+&= 1{,}0 \times 10^{-12} \text{m}^2
+\end{aligned}" />
+
+Der letzte Schritt erfüllt zwei Aufgaben. Der Koeffizient <InlineMath math="10{,}0" /> gehört nicht zur Standardform, weil er nicht kleiner als <InlineMath math="10" /> ist. Außerdem tragen beide gemessenen Längen nur <InlineMath math="2" /> signifikante Stellen. Deshalb wird das Ergebnis als <InlineMath math="1{,}0 \times 10^{-12}" /> angegeben.
+
+Weiterführende Regeln bieten die NIST-Abschnitte zu [Schreibregeln](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) und [Umrechnungsverfahren](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors) sowie OpenStax im Abschnitt [Significant Figures](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures).

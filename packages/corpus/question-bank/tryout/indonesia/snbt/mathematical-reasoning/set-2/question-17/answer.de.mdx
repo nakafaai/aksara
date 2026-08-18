@@ -1,0 +1,40 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-02-01",
+};
+
+**Erste Gesamtgewichtsanalyse**
+
+Berechnen wir zunächst das Gesamtkörpergewicht jeder Gruppe vor dem Tausch. Gruppe A hat <InlineMath math="4" /> Mitglieder mit einem Durchschnitt von <InlineMath math="30\text{ kg}" />. Gruppe B hat <InlineMath math="4" /> Mitglieder mit einem Durchschnitt von <InlineMath math="33\text{ kg}" />.
+
+<MathContainer>
+  <BlockMath math="\text{Summe A} = 4 \times 30 = 120\text{ kg}" />
+  <BlockMath math="\text{Summe B} = 4 \times 33 = 132\text{ kg}" />
+</MathContainer>
+
+**Der Swap-Prozess**
+
+Das Kind, das Gruppe A verlässt, sei <InlineMath math="x_A" /> und das Kind, das Gruppe B verlässt, sei <InlineMath math="x_B" />. Nach dem Tausch tritt <InlineMath math="x_A" /> Gruppe B und <InlineMath math="x_B" /> Gruppe A bei.
+
+> Damit die Durchschnittswerte beider Gruppen nach dem Tausch gleich sind (bei gleichbleibender Mitgliederzahl), muss auch das **Gesamtkörpergewicht beider Gruppen gleich sein**.
+
+Wir können diese neue Bilanzgleichung wie folgt schreiben:
+
+<MathContainer>
+  <BlockMath math="\text{Neue Summe A} = \text{Neue Summe B}" />
+  <BlockMath math="120 - x_A + x_B = 132 - x_B + x_A" />
+</MathContainer>
+
+**Berechnung der Differenz**
+
+Unser Ziel ist es, den Unterschied im Körpergewicht zwischen den beiden getauschten Kindern zu ermitteln, der <InlineMath math="|x_B - x_A|" /> beträgt. Wir gruppieren die Glieder:
+
+<MathContainer>
+  <BlockMath math="x_B + x_B - x_A - x_A = 132 - 120" />
+  <BlockMath math="2x_B - 2x_A = 12" />
+  <BlockMath math="2(x_B - x_A) = 12" />
+  <BlockMath math="x_B - x_A = 6" />
+</MathContainer>
+
+Somit beträgt der Unterschied im Körpergewicht zwischen den beiden getauschten Kindern <InlineMath math="6\text{ kg}" />.

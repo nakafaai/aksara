@@ -1,0 +1,209 @@
+export const metadata = {
+    title: "Newtonscher Binomialsatz",
+  description: "Der binomische Lehrsatz entwickelt Potenzen einer Summe. Beispiele und Aufgaben zeigen, wie man bestimmte und konstante Terme über ihre Koeffizienten findet.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-05-26",
+    subject: "Kombinatorik",
+};
+
+## Was besagt der binomische Lehrsatz?
+
+<InlineMath math="(x + y)^{10}" /> durch wiederholtes Ausmultiplizieren zu berechnen, wäre mühsam. Der **binomische Lehrsatz** schreibt <InlineMath math="(x + y)^n" /> direkt als Summe einfacherer Terme.
+
+Die Koeffizienten folgen einem festen Muster. Wer dieses Muster verstanden hat, kann dieselbe Formel für jede nichtnegative ganzzahlige Potenz verwenden.
+
+Für die ersten Potenzen sieht das Muster so aus:
+
+<MathContainer>
+<BlockMath math="(x + y)^0 = 1" />
+<BlockMath math="(x + y)^1 = x + y" />
+<BlockMath math="(x + y)^2 = x^2 + 2xy + y^2" />
+<BlockMath math="(x + y)^3 = x^3 + 3x^2y + 3xy^2 + y^3" />
+<BlockMath math="(x + y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4" />
+</MathContainer>
+
+Die Koeffizienten ändern sich mit der Potenz, ihre Positionen folgen jedoch immer derselben Regel.
+
+## Allgemeine Formel und Binomialkoeffizienten
+
+Die allgemeine Formel lautet:
+
+<BlockMath math="(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k" />
+
+Dabei ist <InlineMath math="\binom{n}{k}" /> der **Binomialkoeffizient**, der mit der Formel berechnet wird:
+
+<BlockMath math="\binom{n}{k} = \frac{n!}{k!(n-k)!}" />
+
+Der Binomialkoeffizient wird als „<InlineMath math="n" /> über <InlineMath math="k" />“ gelesen. Er zählt, wie viele Möglichkeiten es gibt, <InlineMath math="k" /> Objekte aus <InlineMath math="n" /> Objekten auszuwählen.
+
+Ausgeschrieben hat die Entwicklung die Form:
+
+<BlockMath math="(x + y)^n = \binom{n}{0}x^n + \binom{n}{1}x^{n-1}y + \binom{n}{2}x^{n-2}y^2 + \cdots + \binom{n}{n}y^n" />
+
+Jeder Term der Entwicklung hat die Struktur <InlineMath math="\binom{n}{k}x^{n-k}y^k" />. Die Exponenten von <InlineMath math="x" /> und <InlineMath math="y" /> ergeben zusammen stets <InlineMath math="n" />.
+
+## Einen bestimmten Koeffizienten bestimmen
+
+Mit dem binomischen Lehrsatz lässt sich der Koeffizient eines bestimmten Terms bestimmen, ohne die gesamte Potenz auszumultiplizieren.
+
+Gesucht ist der Koeffizient von <InlineMath math="x^2" /> in der Entwicklung von <InlineMath math="(1 - x)^{2014}" />.
+
+Zuerst schreiben wir den Ausdruck mit <InlineMath math="a = 1" />, <InlineMath math="b = -x" /> und <InlineMath math="n = 2014" /> in der Standardform:
+
+<BlockMath math="(1 + (-x))^{2014} = \sum_{k=0}^{2014} \binom{2014}{k} (1)^{2014-k} (-x)^k" />
+
+Damit der Term <InlineMath math="x^2" /> enthält, muss <InlineMath math="k = 2" /> gelten:
+
+<BlockMath math="\binom{2014}{2} (1)^{2012} (-x)^2 = \binom{2014}{2} \cdot 1 \cdot x^2 = \binom{2014}{2} x^2" />
+
+Nun berechnen wir den Binomialkoeffizienten:
+
+<MathContainer>
+<BlockMath math="\binom{2014}{2} = \frac{2014!}{2!(2014-2)!} = \frac{2014 \times 2013}{2 \times 1}" />
+<BlockMath math="= \frac{4{.}054{.}182}{2} = 2{.}027{.}091" />
+</MathContainer>
+
+Der gesuchte Koeffizient von <InlineMath math="x^2" /> ist also <InlineMath math="2{.}027{.}091" />.
+
+## Den konstanten Term finden
+
+Ein konstanter Term enthält keine Variable. Wir suchen deshalb den Term, bei dem der Exponent jeder Variablen null ist.
+
+**Beispiel:** Bestimme den konstanten Term von <InlineMath math="\left(3x^3 - \frac{2}{x}\right)^8" />.
+
+Wir schreiben den Ausdruck mit <InlineMath math="a = 3x^3" /> und <InlineMath math="b = -\frac{2}{x}" /> in Binomialform:
+
+<BlockMath math="\left(3x^3 - \frac{2}{x}\right)^8 = \sum_{k=0}^{8} \binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k" />
+
+Der allgemeine Term lautet:
+
+<MathContainer>
+<BlockMath math="\binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k = \binom{8}{k} \cdot (3)^{8-k} \cdot (x^3)^{8-k} \cdot (-2)^k \cdot (x^{-1})^k" />
+<BlockMath math="= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{3(8-k)} \cdot x^{-k}" />
+<BlockMath math="= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-3k-k} = \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-4k}" />
+</MathContainer>
+
+Für den konstanten Term muss die Potenz von <InlineMath math="x" /> Null sein:
+
+<BlockMath math="24 - 4k = 0 \Rightarrow 4k = 24 \Rightarrow k = 6" />
+
+Setzen wir <InlineMath math="k = 6" /> ein:
+
+<MathContainer>
+<BlockMath math="\binom{8}{6} \cdot 3^{8-6} \cdot (-2)^6 \cdot x^0 = \binom{8}{6} \cdot 3^2 \cdot (-2)^6" />
+<BlockMath math="= \frac{8!}{6! \cdot 2!} \cdot 9 \cdot 64 = \frac{8 \times 7}{2 \times 1} \cdot 9 \cdot 64" />
+<BlockMath math="= 28 \cdot 9 \cdot 64 = 252 \cdot 64 = 16{.}128" />
+</MathContainer>
+
+Hier gilt <InlineMath math="(-2)^6 = 64" />: Eine negative Zahl mit geradem Exponenten ergibt einen positiven Wert, ebenso wie <InlineMath math="(+2)^6 = 64" />.
+
+Der konstante Term ist somit <InlineMath math="16{.}128" />.
+
+## Problemlösungsstrategie
+
+Bei Aufgaben zum binomischen Lehrsatz helfen vier klare Schritte:
+
+1. **Bestimme die Bestandteile** der Form <InlineMath math="(a + b)^n" /> und lies <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="n" /> sorgfältig ab.
+
+2. **Kläre, was gesucht ist:** ein bestimmter Koeffizient, ein konstanter Term oder ein Term mit vorgegebenem Exponenten.
+
+3. **Setze die allgemeine Termformel ein:** <InlineMath math="\binom{n}{k} a^{n-k} b^k" />. Bestimme anschließend den passenden Index aus der gesuchten Potenz.
+
+4. **Rechne sorgfältig** und prüfe dabei Vorzeichen, Potenzen und den Binomialkoeffizienten.
+
+**Beispiel zur Strategie:**
+
+Bestimme den Koeffizienten von <InlineMath math="x^5" /> in der Entwicklung von <InlineMath math="(2x + 3)^8" />.
+
+1. **Bestandteile bestimmen**
+
+    Aus <InlineMath math="(2x + 3)^8" /> erhalten wir:
+    - <InlineMath math="a = 2x" />
+    - <InlineMath math="b = 3" />
+    - <InlineMath math="n = 8" />
+
+2. **Gesuchten Term bestimmen**
+
+    Gesucht ist der Koeffizient des Terms mit <InlineMath math="x^5" />.
+
+3. **Allgemeine Termformel verwenden**
+
+    Allgemeiner Term: <InlineMath math="\binom{8}{k} (2x)^{8-k} (3)^k" />
+
+    Ausmultipliziert ergibt der allgemeine Term:
+
+    <BlockMath math="\binom{8}{k} (2x)^{8-k} (3)^k = \binom{8}{k} \cdot 2^{8-k} \cdot x^{8-k} \cdot 3^k = \binom{8}{k} \cdot 2^{8-k} \cdot 3^k \cdot x^{8-k}" />
+
+    Für <InlineMath math="x^5" /> muss <InlineMath math="8-k = 5" /> gelten. Daher ist <InlineMath math="k = 3" />.
+
+4. **Koeffizienten berechnen**
+
+    Wir setzen <InlineMath math="k = 3" /> ein:
+
+    <MathContainer>
+    <BlockMath math="\binom{8}{3} \cdot 2^{8-3} \cdot 3^3 \cdot x^5 = \binom{8}{3} \cdot 2^5 \cdot 3^3 \cdot x^5" />
+    <BlockMath math="= \frac{8!}{3! \cdot 5!} \cdot 32 \cdot 27 \cdot x^5" />
+    <BlockMath math="= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \cdot 32 \cdot 27 \cdot x^5" />
+    <BlockMath math="= 56 \cdot 32 \cdot 27 \cdot x^5" />
+    <BlockMath math="= 1{.}792 \cdot 27 \cdot x^5 = 48{.}384x^5" />
+    </MathContainer>
+
+    Der Koeffizient von <InlineMath math="x^5" /> ist <InlineMath math="48{.}384" />.
+
+Zwei Kontrollen helfen, Rechenfehler zu finden: **Jeder Term der Entwicklung** hat den Gesamtgrad <InlineMath math="n" />, und die Binomialkoeffizienten sind symmetrisch: <InlineMath math="\binom{n}{k} = \binom{n}{n-k}" />.
+
+## Übungen
+
+1. Bestimme den Koeffizienten von <InlineMath math="x^4" /> in der Entwicklung von <InlineMath math="(2x - 3)^7" />.
+
+2. Berechne den konstanten Term von <InlineMath math="\left(x^2 + \frac{1}{x}\right)^9" />.
+
+3. Bestimme in der Entwicklung von <InlineMath math="(1 + 2x)^{10}" /> den Term, der <InlineMath math="x^3" /> enthält.
+
+### Lösungen
+
+1. **Lösung:**
+
+   Schreibe den Ausdruck mit <InlineMath math="a = 2x" />, <InlineMath math="b = -3" /> und <InlineMath math="n = 7" /> in Binomialform.
+
+   Allgemeiner Term: <InlineMath math="\binom{7}{k} (2x)^{7-k} (-3)^k = \binom{7}{k} \cdot 2^{7-k} \cdot (-3)^k \cdot x^{7-k}" />
+
+   Für den Koeffizienten von <InlineMath math="x^4" /> muss <InlineMath math="7-k = 4" /> gelten. Somit ist <InlineMath math="k = 3" />.
+
+   <MathContainer>
+   <BlockMath math="\binom{7}{3} \cdot 2^{7-3} \cdot (-3)^3 = \binom{7}{3} \cdot 2^4 \cdot (-3)^3" />
+   <BlockMath math="= \frac{7!}{3! \cdot 4!} \cdot 16 \cdot (-27)" />
+   <BlockMath math="= \frac{7 \times 6 \times 5}{3 \times 2 \times 1} \cdot 16 \cdot (-27)" />
+   <BlockMath math="= 35 \cdot 16 \cdot (-27) = 560 \cdot (-27) = -15{.}120" />
+   </MathContainer>
+
+   Der Koeffizient von <InlineMath math="x^4" /> ist <InlineMath math="-15{.}120" />.
+
+2. **Lösung:**
+
+   Schreibe den Ausdruck mit <InlineMath math="a = x^2" />, <InlineMath math="b = \frac{1}{x}" /> und <InlineMath math="n = 9" /> in Binomialform.
+
+   <MathContainer>
+   <BlockMath math="\text{Allgemeiner Term: } \binom{9}{k} (x^2)^{9-k} \left(\frac{1}{x}\right)^k = \binom{9}{k} \cdot x^{2(9-k)} \cdot x^{-k}" />
+   <BlockMath math="= \binom{9}{k} \cdot x^{18-2k} \cdot x^{-k} = \binom{9}{k} \cdot x^{18-2k-k} = \binom{9}{k} \cdot x^{18-3k}" />
+   </MathContainer>
+
+   Für den konstanten Term muss die Potenz von <InlineMath math="x" /> Null sein: <InlineMath math="18-3k = 0" />, also <InlineMath math="k = 6" />.
+
+   <BlockMath math="\binom{9}{6} = \binom{9}{3} = \frac{9!}{3! \cdot 6!} = \frac{9 \times 8 \times 7}{3 \times 2 \times 1} = 84" />
+
+   Der konstante Term ist <InlineMath math="84" />.
+
+3. **Lösung:**
+
+   Schreibe den Ausdruck mit <InlineMath math="a = 1" />, <InlineMath math="b = 2x" /> und <InlineMath math="n = 10" /> in Binomialform.
+
+   Allgemeiner Term: <InlineMath math="\binom{10}{k} (1)^{10-k} (2x)^k = \binom{10}{k} \cdot 2^k \cdot x^k" />
+
+   Für den Term mit <InlineMath math="x^3" /> gilt <InlineMath math="k = 3" />.
+
+   <MathContainer>
+   <BlockMath math="\binom{10}{3} \cdot 2^3 \cdot x^3 = 120 \cdot 8 \cdot x^3 = 960x^3" />
+   </MathContainer>
+
+   Der gesuchte Term mit <InlineMath math="x^3" /> ist <InlineMath math="960x^3" />.

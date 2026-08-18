@@ -1,7 +1,7 @@
 
 export const metadata = {
-  title: "Circle and Chord",
-  description: "Explore circle and chord relationships. Understand theorems, properties, and solve chord length problems with clear examples and worked solutions.",
+  title: "Chords of a Circle",
+  description: "Relate chord length to radius, central angle, and distance from the center, then apply the chord theorems in fully worked problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-18",
   subject: "Circle",
@@ -219,9 +219,6 @@ A line drawn from the center of a circle perpendicular to a chord divides the ch
     },
     {
       points: (() => {
-        const midAngle = (Math.PI / 4 + (3 * Math.PI) / 4) / 2;
-        const midX = 5 * Math.cos(midAngle);
-        const midY = 5 * Math.sin(midAngle);
         const chordMidX =
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
@@ -242,8 +239,6 @@ A line drawn from the center of a circle perpendicular to a chord divides the ch
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
           (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
-        const perpX = chordMidX + 0.5;
-        const perpY = chordMidY;
         return [
           { x: chordMidX - 0.3, y: chordMidY, z: 0 },
           { x: chordMidX - 0.3, y: chordMidY + 0.3, z: 0 },
@@ -272,7 +267,7 @@ To calculate the length of a chord, we can use the formula:
 Where:
 
 - <InlineMath math="r" /> = radius of the circle
-- <InlineMath math="\theta" /> = central angle subtending the chord (in radians)
+- <InlineMath math="\theta" /> = the smaller central angle subtending the chord; use the calculator mode that matches the angle unit
 
 The relationship between central angle and chord length can be visualized as follows:
 
@@ -474,16 +469,16 @@ showZAxis={false}
 
 In the figure above, the following holds: <InlineMath math="PA \times PB = PC \times PD" />
 
-## Inscribed Angles Subtending the Same Chord
+## Inscribed Angles in the Same Segment
 
-Inscribed angles that subtend the same chord have equal measures.
+Inscribed angles that subtend the same chord have equal measures when their vertices lie on the same side of that chord.
 
 <LineEquation
-  title="Inscribed Angles Subtending the Same Chord"
+  title="Inscribed Angles in the Same Segment"
   description={
     <>
-      Inscribed angles subtending chord <InlineMath math="AB" /> have equal
-      measures.
+      These two inscribed angles subtend chord <InlineMath math="AB" /> from
+      the same side, so they have equal measures.
     </>
   }
   data={[
@@ -554,15 +549,15 @@ Inscribed angles that subtend the same chord have equal measures.
   showZAxis={false}
 />
 
-In the figure above, <InlineMath math="\angle ACB = \angle ADB" /> because both subtend the same chord <InlineMath math="AB" />.
+In the figure above, <InlineMath math="\angle ACB = \angle ADB" /> because both vertices lie on the same side of chord <InlineMath math="AB" /> and both angles subtend that chord.
 
 ## Apothem
 
-An apothem is the shortest distance from the center of a circle to a chord, which is the perpendicular line from the center to the chord.
+The apothem of a chord is the perpendicular segment from the center of the circle to the chord. Its length is the shortest distance between the center and the chord.
 
 <LineEquation
   title="Apothem of a Chord"
-  description="Apothem is the perpendicular line from the center to the chord."
+  description="The apothem is perpendicular to the chord and measures its distance from the center."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -608,7 +603,7 @@ An apothem is the shortest distance from the center of a circle to a chord, whic
       smooth: false,
       labels: [
         { text: <InlineMath math="M" />, at: 1, offset: [0.5, 0, 0] },
-        { text: "apothem", at: 0.5, offset: [1.2, 0, 0] },
+        { text: "apothem", at: 0, offset: [1.2, 1.5, 0] },
       ],
     },
     {
@@ -753,7 +748,7 @@ If <InlineMath math="AB \parallel CD" />, then arc <InlineMath math="AC" /> equa
 
 5. Prove that the longest chord in a circle is the diameter.
 
-### Answer Key
+### Worked Solutions
 
 1. **Calculating chord length and its distance from center**
 
@@ -806,7 +801,7 @@ If <InlineMath math="AB \parallel CD" />, then arc <InlineMath math="AC" /> equa
 
 5. **Proof that diameter is the longest chord**
 
-   For any chord with central angle <InlineMath math="\theta" />:
+   For any chord, take <InlineMath math="\theta" /> to be the smaller central angle, so <InlineMath math="0^\circ\leq\theta\leq180^\circ" />:
 
    <MathContainer>
      <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
@@ -817,7 +812,13 @@ If <InlineMath math="AB \parallel CD" />, then arc <InlineMath math="AC" /> equa
    When <InlineMath math="\theta = 180^\circ" />, the chord passes through the center of the circle (diameter) with length:
 
    <MathContainer>
-     <BlockMath math="l_{max} = 2r \times 1 = 2r" />
+     <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
    </MathContainer>
 
    Therefore, the diameter is the longest chord.
+
+## Sources
+
+- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
+- [GeoGebra: Intersecting Chords Theorem](https://www.geogebra.org/m/JWQjwAgw)
+- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)

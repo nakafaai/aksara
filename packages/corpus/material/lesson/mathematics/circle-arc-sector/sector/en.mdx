@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Sector",
-  description: "Learn circle sectors, their components, and central angle relationships. Explore minor and major sectors with applications in architecture and engineering.",
+  description: "Learn how two radii and an arc bound a sector, how central angle determines its size, and how minor and major sectors differ.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Circle Arcs and Sectors",
@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Understanding Sectors
 
-A sector is an area within a circle bounded by two radii and one arc. Imagine a slice of pizza or cake cut from the center to the edge of the circle. The area formed is what we call a sector.
+A sector is the region of a circle bounded by two radii and one of the arcs between their endpoints. A slice cut from the center of a round cake is a useful model: its two straight sides represent radii, and its curved edge represents the arc.
 
 Every sector has three main components that are interconnected. First are the two radii that meet at the center of the circle. Second is the arc that connects the endpoints of both radii. Third is the area enclosed by both radii and the arc.
 
 <LineEquation
   title={<>Sector Visualization in a Circle</>}
-  description="The sector is shown as a colored area bounded by two radii and one arc."
+  description="Two radii and the orange arc mark the boundary of a sector."
   data={[
     {
       kind: "circle-outline", radius: 3,
@@ -56,17 +56,19 @@ Every sector has three main components that are interconnected. First are the tw
 
 ## Characteristics of Sectors
 
-Sectors have special properties that distinguish them from other circle elements. A sector always forms a slice shape with one vertex point at the center of the circle. This point becomes the meeting place of both radii that form the central angle.
+A sector has its vertex at the circle's center. The two radii meet there and form the central angle, while the connecting arc completes the boundary.
 
-The size of a sector is determined by the central angle formed by the two radii. The larger the central angle, the wider the sector area formed. Conversely, a small central angle will produce a narrow sector.
+For a fixed circle, the central angle determines what fraction of the circle belongs to the sector. A larger central angle selects a larger fraction; a smaller angle selects a smaller fraction.
 
-Every sector also has an arc that forms its curved boundary. The length of this arc is proportional to the size of the central angle. In one circle, sectors with the same central angle will have the same area.
+If the chosen central angle is less than <InlineMath math="180^\circ" />, the bounded region is the minor sector. If it is greater than <InlineMath math="180^\circ" />, the region is the major sector. An angle of exactly <InlineMath math="180^\circ" /> gives a semicircle.
+
+Within the same circle, arc length and sector area are both proportional to the central angle. Consequently, equal central angles in that circle determine equal arc lengths and equal sector areas.
 
 ## Relationship Between Central Angle and Sector
 
-The central angle is the main determining factor in sector formation. This angle is measured from the center of the circle and formed by two radii that bound the sector. Measurement units can use degrees or radians.
+The central angle is measured at the circle's center between the two bounding radii. It can be expressed in degrees or radians.
 
-When the central angle increases, the sector will become wider. For example, a sector with a central angle of <InlineMath math="90^\circ" /> will have an area equal to one-quarter of the total circle area. Meanwhile, a sector with a central angle of <InlineMath math="180^\circ" /> will have an area equal to half the circle.
+For example, <InlineMath math="90^\circ" /> is one quarter of a full turn, so its sector has one quarter of the circle's area. A <InlineMath math="180^\circ" /> sector has half of the circle's area.
 
 <LineEquation
   title={<>Comparison of Sectors with Different Central Angles</>}
@@ -106,6 +108,15 @@ When the central angle increases, the sector will become wider. For example, a s
     {
       points: [
         { x: 0, y: 0, z: 2 },
+        { x: 4, y: 0, z: 2 }
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 2 },
         { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 2 }
       ],
       color: "#4f46e5",
@@ -128,6 +139,15 @@ When the central angle increases, the sector will become wider. For example, a s
       labels: [
         { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.3, 0.5, 0] }
       ]
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 4 },
+        { x: 4, y: 0, z: 4 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2
     },
     {
       points: [
@@ -159,12 +179,12 @@ When the central angle increases, the sector will become wider. For example, a s
   showZAxis={true}
 />
 
-The mathematical relationship between central angle and sector can be expressed in a simple ratio. If the central angle is <InlineMath math="θ" /> in degrees, then the ratio of sector area to circle area is <InlineMath math="\frac{θ}{360^\circ}" />. For angles in radians, the ratio becomes <InlineMath math="\frac{θ}{2π}" />.
+The relationship is a part-to-whole ratio. If the central angle is <InlineMath math="\theta" /> in degrees, then the ratio of sector area to circle area is <InlineMath math="\frac{\theta}{360^\circ}" />. If <InlineMath math="\theta" /> is measured in radians, the ratio is <InlineMath math="\frac{\theta}{2\pi}" />.
 
-## Applications of Sectors in Life
+## Recognizing Sectors in Context
 
-The concept of sectors is widely applied in various practical fields. In architecture, sectors are used to design curved roofs, arched windows, or circular decorative elements. Sector shapes provide an elegant and proportional impression to buildings.
+Sector geometry can describe a region swept through a fixed angle. For example, an idealized sprinkler with range <InlineMath math="r" /> and sweep angle <InlineMath math="\theta" /> covers a sector before obstacles, wind, and uneven water distribution are considered.
 
-In engineering, sectors become the basis for calculations in gears, fans, and rotating machine components. Engineers use sector principles to determine load distribution and rotational efficiency.
+It also appears in circular diagrams and radial templates. The central-angle ratio determines the corresponding fraction of the full disk, but geometry alone does not determine a machine's load or efficiency.
 
-In daily life, we often encounter sectors on wall clocks. Each hour number divides the circle into <InlineMath math="12" /> equal sectors, each with a central angle of <InlineMath math="30^\circ" />. Pizza slices or cake pieces are also real examples of sector applications in culinary arts.
+On an evenly marked clock face, adjacent hour marks bound one of <InlineMath math="12" /> equal sectors, each with a central angle of <InlineMath math="30^\circ" />. A slice cut from the center of a round pizza or cake is another familiar model, provided its sides follow radii.

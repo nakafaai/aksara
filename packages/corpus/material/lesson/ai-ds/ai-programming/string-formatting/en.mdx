@@ -8,18 +8,18 @@ export const metadata = {
 
 ## Basic Concepts and Width Control
 
-String formatting controls data display in Python programs. Imagine arranging data in a neat table where each column has consistent width. Python provides `format()` method and f-strings to control output display.
+String formatting turns values into deliberate text output. It lets you align table columns, choose a numeric notation, control precision, and build readable messages. Python provides the `str.format()` method and f-strings for this work.
 
-The basic replacement field syntax is `{name : width}`, where `name` determines the argument and `width` sets the minimum output width. When width is smaller than the original string length, Python still displays the complete string.
+The basic replacement field has the form `{field_name:format_spec}`. A width inside the format specification sets a minimum field width, not a maximum. If the formatted value needs more room, Python keeps the complete value instead of truncating it.
 
 ### Format Types for Number Systems
 
 | Format Type | Symbol | Example Input | Output | Usage |
 |-------------|---------|--------------|--------|-------|
-| Decimal | `d` | `45` | `45` | Default for integer |
+| Decimal | `d` | `45` | `45` | Decimal integer |
 | Binary | `b` | `45` | `101101` | Bit representation |
-| Octal | `o` | `45` | `55` | Unix systems |
-| Hexadecimal | `x/X` | `45` | `2d/2D` | Low-level programming |
+| Octal | `o` | `45` | `55` | Base-eight representation |
+| Hexadecimal | `x/X` | `45` | `2d/2D` | Lowercase or uppercase base sixteen |
 
 <CodeBlock
   data={[
@@ -44,7 +44,7 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 <Mermaid
   title="How Width Places Text"
-  description="Compare left, right, and center alignment as the same string is placed inside a fixed width."
+  description="Compare left, right, and center alignment for the same string inside a fixed-width field."
   chart={`
     flowchart TD
         A["Input String: 'xxx'"] --> B["Alignment Choice"]
@@ -61,13 +61,13 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 | Symbol | Name | Behavior | Default for |
 |--------|------|----------|-------------|
-| `<` | Left | Text on left, padding on right | String, objects |
+| `<` | Left | Text on left, padding on right | Strings |
 | `>` | Right | Text on right, padding on left | Numbers |
 | `^` | Center | Text in center, even padding | - |
 
 ### Fill Characters and Advanced Formatting
 
-Fill character determines the character to fill empty space. Default uses space, but can be replaced with any character except `{` and `}`.
+The fill character occupies unused space in the field. It defaults to a space and appears immediately before an alignment symbol. In `str.format()` and f-strings, a literal `{` or `}` cannot be used as the fill character.
 
 <CodeBlock
   data={[
@@ -94,7 +94,7 @@ print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
 
 ## Argument Reference Methods
 
-Python provides three ways to reference arguments in replacement fields, each with different rules.
+Replacement fields can select positional arguments by index, keyword arguments by name, or positional arguments through automatic numbering.
 
 <Mermaid
   title="How Placeholders Pick Values"
@@ -117,7 +117,7 @@ Python provides three ways to reference arguments in replacement fields, each wi
 
 | Method | Syntax | Advantages | Limitations |
 |--------|---------|-----------|-------------|
-| Numbered | `{0}, {1}` | Explicit control, can repeat | Must match argument count |
+| Numbered | `{0}, {1}` | Explicit control, can repeat | Every referenced index must exist |
 | Keyword | `{name}, {age}` | Easy to read, flexible | Names must match |
 | Automatic | `{}, {}` | Simple syntax | Cannot mix with numbered |
 
@@ -156,7 +156,7 @@ except IndexError as e:
 
 ### Precision for Decimal Numbers
 
-Precision controls the number of decimal places or significant digits in number display.
+Precision has a different meaning for each presentation type. For `f` and `e`, it sets digits after the decimal point. For `g`, it sets significant digits.
 
 | Format Type | Precision Behavior | Example |
 |-------------|-------------------|---------|
@@ -221,11 +221,11 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 
 ### F-Strings and Python Version
 
-F-strings have been available since Python `3.6+` and provide the simplest syntax with direct expression evaluation. Faster and more readable compared to `format()`.
+F-strings have been available since Python 3.6. They evaluate expressions directly inside replacement fields, which often makes local formatting easier to read than a separate `format()` argument list.
 
 ### Dynamic Format Templates
 
-Format templates can use variables for specification, useful when format is determined dynamically.
+Nested replacement fields can supply parts of a format specification, such as width, fill, or alignment. This is useful when those choices are known only at runtime.
 
 <CodeBlock
   data={[
@@ -261,7 +261,7 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
 
 <Mermaid
   title="Order Inside a Format Specifier"
-  description="Read the format slots from fill, alignment, width, precision, and type so the mini-language does not feel random."
+  description="Read this commonly used subset from fill through presentation type so each slot has a clear place."
   chart={`
     flowchart TD
         A["Format Specification"] --> B["Component Order"]
@@ -275,8 +275,8 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
         H --> I["type (type: d b o x f e g)"]
 
         J["Complete Example"] --> K["{value:*^+10.2f}"]
-        K --> L["format parts"]
+        K --> L["one complete replacement field"]
   `}
 />
 
-Format specification follows the pattern `{name:fill align sign width .prec type}` where each component is optional and has a specific function to control output display.
+For the subset covered here, read `{value:*^+10.2f}` as field name `value`, fill `*`, center alignment `^`, explicit sign `+`, minimum width `10`, precision `2`, and fixed-point type `f`. Python's full formatting mini-language also supports options such as grouping and alternate forms, so consult it when you need more than this core pattern.

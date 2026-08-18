@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-27",
+};
+
+Definiere die Ereignisse:
+
+-   <InlineMath math="A" />: Der Bau wird pünktlich fertig.
+-   <InlineMath math="B" />: Es kommt zu einem Protest.
+-   <InlineMath math="B^c" />: Es kommt zu keinem Protest.
+
+Die Fälle <InlineMath math="B" /> und <InlineMath math="B^c" /> schließen sich gegenseitig aus und decken alle Möglichkeiten ab. Daher gilt der Satz von der totalen Wahrscheinlichkeit:
+
+<MathContainer>
+  <BlockMath math="P(A) = P(B)P(A\mid B) + P(B^c)P(A\mid B^c)" />
+</MathContainer>
+
+Setze die gegebenen Wahrscheinlichkeiten ein:
+
+<MathContainer>
+  <BlockMath math="P(B) = 0{,}7, \quad P(B^c) = 1 - 0{,}7 = 0{,}3" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="P(A\mid B^c) = 0{,}8, \quad P(A\mid B) = 0{,}4" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="P(A) = (0{,}7)(0{,}4) + (0{,}3)(0{,}8)" />
+  <BlockMath math="P(A) = 0{,}28 + 0{,}24 = 0{,}52" />
+</MathContainer>
+
+Der Bau wird also mit der Wahrscheinlichkeit <InlineMath math="0{,}52" /> pünktlich fertig.

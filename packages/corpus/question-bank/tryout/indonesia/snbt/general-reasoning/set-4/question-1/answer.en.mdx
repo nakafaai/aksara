@@ -4,27 +4,24 @@ export const metadata = {
   date: "2026-01-19",
 };
 
-To determine the number of possible password arrangements, we can use the multiplication rule (filling slots). The password consists of <InlineMath math="5" /> digits with the pattern <InlineMath math="\text{Number} - \text{Number} - \text{Letter} - \text{Number} - \text{Letter}" />.
+Each position is chosen independently, so the multiplication principle applies. First list the valid choices instead of guessing from the answer options.
 
-Let's analyze the number of possibilities for each position using the following table:
+#### Count the Choices for Each Position
 
-#### Position Analysis
+| Position | Valid choices | Count |
+| :---: | :--- | :---: |
+| <InlineMath math="1" /> | <InlineMath math="\{2,3,5,7\}" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="\{1,3,5\}" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="\{A\}" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="\{0,4,6\}" /> | <InlineMath math="3" /> |
+| <InlineMath math="5" /> | <InlineMath math="\{F,Z\}" /> | <InlineMath math="2" /> |
 
-| Position | Condition Description | Satisfying Set | Number of Possibilities |
-| :--- | :--- | :--- | :---: |
-| <InlineMath math="1" /> (Number) | Single-digit prime number | <InlineMath math="\{2, 3, 5, 7\}" /> | <InlineMath math="4" /> |
-| <InlineMath math="2" /> (Number) | Odd number less than <InlineMath math="7" /> | <InlineMath math="\{1, 3, 5\}" /> | <InlineMath math="3" /> |
-| <InlineMath math="3" /> (Letter) | Vowel from the name "Faza" | <InlineMath math="\{A\}" /> | <InlineMath math="1" /> |
-| <InlineMath math="4" /> (Number) | Chosen from set <InlineMath math="\{0, 4, 6\}" /> | <InlineMath math="\{0, 4, 6\}" /> | <InlineMath math="3" /> |
-| <InlineMath math="5" /> (Letter) | Consonant from the name "Faza" | <InlineMath math="\{F, Z\}" /> | <InlineMath math="2" /> |
+The two occurrences of the letter A in "FAZA" do not create two different character choices. The distinct vowel available for the third position is still only A.
 
-#### Total Calculation
-
-Based on the multiplication rule, the total number of password arrangements is the product of the possibilities at each position:
+#### Multiply the Counts
 
 <MathContainer>
-  <BlockMath math="\text{Total} = 4 \times 3 \times 1 \times 3 \times 2" />
-  <BlockMath math="\text{Total} = 72" />
+  <BlockMath math="4\times3\times1\times3\times2=72" />
 </MathContainer>
 
-Thus, the number of password arrangements that can be formed is **<InlineMath math="72" />**.
+Therefore, Faza can create **<InlineMath math="72" /> different passwords**.

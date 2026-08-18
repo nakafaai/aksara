@@ -1,0 +1,121 @@
+export const metadata = {
+  title: "Interquartilsabstand",
+  description: "Berechne den Interquartilsabstand, vergleiche ihn mit der Spannweite und deute die Streuung der mittleren Hälfte eines Datensatzes.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-22",
+  subject: "Statistik",
+};
+
+## Was ist der Interquartilsabstand?
+
+Das [arithmetische Mittel](/de/faecher/mathematik/grundlagen-der-statistik/arithmetisches-mittel) beschreibt die Mitte eines Datensatzes, aber nicht seine Streuung. Zwei Gruppen können dasselbe Durchschnittsalter besitzen, obwohl ihre Alterswerte sehr unterschiedlich verteilt sind.
+
+Der **Interquartilsabstand** (<InlineMath math="\mathrm{IQR}" />) misst diese Streuung anhand der **mittleren <InlineMath math="50\%" /> der Daten** nach dem Sortieren.
+
+Sehr kleine oder große Werte können die Spannweite dominieren. Einige gelten nach einer ausdrücklich genannten Regel oder aufgrund fachlicher Beurteilung als Ausreißer. Der <InlineMath math="\mathrm{IQR}" /> reagiert weniger empfindlich auf solche Extremwerte, weil er nur die Mitte des Datensatzes betrachtet.
+
+Die Formel lautet:
+
+<BlockMath math="\mathrm{IQR} = Q_3 - Q_1" />
+
+- <InlineMath math="Q_3" /> ist das obere Quartil und begrenzt die unteren <InlineMath math="75\%" /> der Daten.
+- <InlineMath math="Q_1" /> ist das untere Quartil und begrenzt die unteren <InlineMath math="25\%" /> der Daten.
+
+Der <InlineMath math="\mathrm{IQR}" /> ist somit die Differenz zwischen oberem und unterem Quartil.
+
+## Altersverteilungen vergleichen
+
+Betrachten wir zwei Gruppen mit gleichem Mittelwert, aber sehr unterschiedlicher Streuung.
+
+Jede Gruppe besteht aus <InlineMath math="12 \text{Personen}" />. Die Alterswerte sind bereits sortiert:
+
+| Position | Gruppe Eins | Gruppe Zwei |
+| :----------: | :-------: | :-------: |
+| <InlineMath math="1" /> | <InlineMath math="13" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="14" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="15" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="15" /> | <InlineMath math="5" /> |
+| <InlineMath math="5" /> | <InlineMath math="16" /> | <InlineMath math="7" /> |
+| <InlineMath math="6" /> | <InlineMath math="16" /> | <InlineMath math="8" /> |
+| <InlineMath math="7" /> | <InlineMath math="17" /> | <InlineMath math="12" /> |
+| <InlineMath math="8" /> | <InlineMath math="17" /> | <InlineMath math="27" /> |
+| <InlineMath math="9" /> | <InlineMath math="17" /> | <InlineMath math="28" /> |
+| <InlineMath math="10" /> | <InlineMath math="17" /> | <InlineMath math="29" /> |
+| <InlineMath math="11" /> | <InlineMath math="17" /> | <InlineMath math="32" /> |
+| <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="36" /> |
+
+Wir vergleichen Mittelwert, Quartile, Spannweite und Interquartilsabstand.
+
+### Mittelwert und Quartile berechnen
+
+1.  **Mittelwert (Durchschnitt):**
+
+    In beiden Gruppen ist das Durchschnittsalter **genau gleich** und beträgt <InlineMath math="16 \text{Jahre}" />.
+
+    Gruppe <InlineMath math="1" />:
+
+    <BlockMath math="\frac{13+14+15+15+16+16+17+17+17+17+17+18}{12} = \frac{192}{12} = 16" />
+
+    Gruppe <InlineMath math="2" />:
+
+    <BlockMath math="\frac{1+3+4+5+7+8+12+27+28+29+32+36}{12} = \frac{192}{12} = 16" />
+
+2.  **Quartile (<InlineMath math="Q_1" /> und <InlineMath math="Q_3" />):**
+
+    Da die Werte bereits sortiert sind, können wir die Quartilpositionen direkt bestimmen.
+
+    **Gruppe Eins (<InlineMath math="n=12" />):**
+    Die Position von <InlineMath math="Q_1" /> ist <InlineMath math="\frac{1}{4}(12+1) = 3{,}25" />. Damit liegt <InlineMath math="Q_1" /> zwischen Position <InlineMath math="3" /> mit dem Wert <InlineMath math="15" /> und Position <InlineMath math="4" /> mit dem Wert <InlineMath math="15" />. Weil beide Werte gleich sind, gilt
+
+    <BlockMath math="Q_1 = 15" />
+
+    Die Position von <InlineMath math="Q_3" /> ist <InlineMath math="\frac{3}{4}(12+1) = 9{,}75" />. Damit liegt <InlineMath math="Q_3" /> zwischen Position <InlineMath math="9" /> mit dem Wert <InlineMath math="17" /> und Position <InlineMath math="10" /> mit dem Wert <InlineMath math="17" />. Weil beide Werte gleich sind, gilt
+
+    <BlockMath math="Q_3 = 17" />
+
+    **Gruppe Zwei (<InlineMath math="n=12" />):**
+    Die Position von <InlineMath math="Q_1" /> ist <InlineMath math="3{,}25" />. Sie liegt ein Viertel des Weges von Position <InlineMath math="3" /> mit dem Wert <InlineMath math="4" /> zu Position <InlineMath math="4" /> mit dem Wert <InlineMath math="5" />. Deshalb interpolieren wir mit dem Gewicht <InlineMath math="0{,}25" />:
+
+    <BlockMath math="Q_1 = 4 + 0{,}25(5-4) = 4{,}25" />
+
+    Die Position von <InlineMath math="Q_3" /> ist <InlineMath math="9{,}75" />. Sie liegt drei Viertel des Weges von Position <InlineMath math="9" /> mit dem Wert <InlineMath math="28" /> zu Position <InlineMath math="10" /> mit dem Wert <InlineMath math="29" />. Das Interpolationsgewicht beträgt daher <InlineMath math="0{,}75" />:
+
+    <BlockMath math="Q_3 = 28 + 0{,}75(29-28) = 28{,}75" />
+
+### Spannweite und Interquartilsabstand berechnen
+
+Nun berechnen wir die beiden Streuungsmaße.
+
+1.  **Spannweite:**
+
+    <InlineMath math="\text{Spannweite} = \text{Maximum} - \text{Minimum}" />
+
+    - Die Spannweite von Gruppe Eins ist <InlineMath math="18 - 13 = 5" />.
+    - Die Spannweite von Gruppe Zwei ist <InlineMath math="36 - 1 = 35" />.
+
+      Die vollständigen Bereiche zeigen bereits, dass Gruppe Zwei in den Extremen viel stärker gestreut ist.
+
+2.  **Interquartilsabstand** (<InlineMath math="\mathrm{IQR}" />):
+
+    <InlineMath math="\mathrm{IQR} = Q_3 - Q_1" />
+
+    - Der <InlineMath math="\mathrm{IQR}" /> von Gruppe Eins ist <InlineMath math="17 - 15 = 2" />.
+    - Der <InlineMath math="\mathrm{IQR}" /> von Gruppe Zwei ist <InlineMath math="28{,}75 - 4{,}25 = 24{,}5" />.
+
+      Auch die mittleren Hälften der beiden Gruppen sind sehr unterschiedlich breit gestreut.
+
+### Interpretation der Ergebnisse
+
+Die wichtigsten Werte im Überblick:
+
+| Gruppe | Mittelwert | <InlineMath math="Q_1"/> | <InlineMath math="Q_3"/> | Spannweite | Interquartilsabstand (<InlineMath math="\mathrm{IQR}" />) |
+| :---: | :--: | :----------------------: | :----------------------: | :---: | :---------: |
+|  Eins | <InlineMath math="16" /> | <InlineMath math="15" /> | <InlineMath math="17" /> | <InlineMath math="5" /> | <InlineMath math="2" /> |
+|  Zwei | <InlineMath math="16" /> | <InlineMath math="4{,}25" /> | <InlineMath math="28{,}75" /> | <InlineMath math="35" /> | <InlineMath math="24{,}5" /> |
+
+- Beide Gruppen haben dasselbe **Durchschnittsalter**, nämlich <InlineMath math="16" />.
+- **Spannweite** und <InlineMath math="\mathrm{IQR}" /> sind dagegen **sehr unterschiedlich**.
+- **Gruppe Eins** besitzt eine kleine Spannweite (<InlineMath math="5" />) und einen kleinen <InlineMath math="\mathrm{IQR}" /> (<InlineMath math="2" />). Die Alterswerte liegen deshalb **nah beieinander**. Besonders die mittleren <InlineMath math="50\%" /> unterscheiden sich nur um <InlineMath math="2 \text{Jahre}" /> (<InlineMath math="Q_1=15, Q_3=17" />). Die Daten sind um den Mittelwert **gebündelt**.
+- **Gruppe Zwei** besitzt eine große Spannweite (<InlineMath math="35" />) und einen großen <InlineMath math="\mathrm{IQR}" /> (<InlineMath math="24{,}5" />). Die Alterswerte sind **deutlich breiter gestreut**. Schon die mittleren <InlineMath math="50\%" /> erstrecken sich über <InlineMath math="24{,}5 \text{Jahre}" /> (<InlineMath math="Q_1=4{,}25, Q_3=28{,}75" />). Die Daten sind **weniger stark gebündelt** als in Gruppe Eins.
+
+Ein gleicher Mittelwert bedeutet also nicht, dass zwei Datensätze ähnlich verteilt sind. Der <InlineMath math="\mathrm{IQR}" /> zeigt, wie breit die mittlere Hälfte streut, und ergänzt damit Mittelwert und Spannweite besonders dann, wenn Extremwerte vorkommen.

@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Perkalian dan Pembagian Fungsi",
-  description: "Pelajari perkalian dan pembagian fungsi: aturan domain, batasan nol, dan contoh praktis. Selesaikan (f·g)(x) dan (f/g)(x) dengan mudah.",
+  description: "Pelajari fungsi hasil kali dan hasil bagi, aturan domainnya, serta alasan nilai yang membuat penyebut nol harus dikecualikan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-27",
   subject: "Fungsi Komposisi dan Fungsi Invers",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Perkalian Dua Fungsi
 
-Mengalikan dua fungsi, <InlineMath math="f" /> dan <InlineMath math="g" />, sama mudahnya seperti mengalikan dua bilangan. Kita tinggal kalikan saja hasil <InlineMath math="f(x)" /> dengan <InlineMath math="g(x)" /> untuk nilai <InlineMath math="x" /> yang sama. Hasilnya adalah fungsi baru <InlineMath math="(f \cdot g)" />.
+Fungsi hasil kali mengalikan <InlineMath math="f(x)" /> dan <InlineMath math="g(x)" /> pada masukan <InlineMath math="x" /> yang sama. Operasi ini menghasilkan fungsi baru <InlineMath math="(f\cdot g)" />.
 
 <ContentStack>
   <LineEquation
@@ -52,7 +52,7 @@ Mengalikan dua fungsi, <InlineMath math="f" /> dan <InlineMath math="g" />, sama
 
 </ContentStack>
 
-Sama seperti penjumlahan dan pengurangan, mesin perkalian <InlineMath math="(f \cdot g)" /> ini hanya bisa mengolah bahan baku (nilai <InlineMath math="x" />) yang bisa diolah oleh _kedua_ mesin asli, <InlineMath math="f" /> dan <InlineMath math="g" />. Jadi, domainnya adalah irisan dari domain <InlineMath math="f" /> dan domain <InlineMath math="g" />.
+Seperti fungsi jumlah atau selisih, fungsi hasil kali hanya terdefinisi saat kedua fungsi asal terdefinisi. Domainnya adalah irisan kedua domain.
 
 <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
 
@@ -91,13 +91,13 @@ Pembagian fungsi <InlineMath math="f" /> oleh fungsi <InlineMath math="g" /> jug
 
 <BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)}" />
 
-Nah, di sini ada **aturan tambahan yang sangat penting!** Kita tahu bahwa pembagian dengan nol itu tidak boleh. Jadi, selain nilai <InlineMath math="x" /> harus ada di domain <InlineMath math="f" /> dan <InlineMath math="g" />, nilai <InlineMath math="g(x)" /> (fungsi pembagi) **tidak boleh sama dengan nol**.
+Pada pembagian ada satu syarat tambahan. Selain harus berada dalam domain <InlineMath math="f" /> dan <InlineMath math="g" />, masukan <InlineMath math="x" /> harus memenuhi <InlineMath math="g(x)\neq0" /> agar penyebut tidak nol.
 
 Oleh karena itu, domain dari fungsi pembagian <InlineMath math="(\frac{f}{g})" /> adalah irisan domain <InlineMath math="D_f" /> dan <InlineMath math="D_g" />, tetapi kita harus _membuang_ semua nilai <InlineMath math="x" /> yang menyebabkan <InlineMath math="g(x) = 0" />.
 
-<BlockMath math="D_{\frac{f}{g}} = D_f \cap D_g - \{x | g(x) = 0\}" />
+<BlockMath math="D_{\frac{f}{g}}=(D_f\cap D_g)\setminus\{x\mid g(x)=0\}" />
 
-Tanda <InlineMath math="-" /> di sini artinya "dikurangi" atau "dikecualikan".
+Simbol <InlineMath math="\setminus" /> menyatakan selisih himpunan: keluarkan input yang tercantum dari irisan domain.
 
 ### Contoh Pembagian
 
@@ -126,7 +126,7 @@ Kedua, kita cari nilai <InlineMath math="x" /> yang membuat <InlineMath math="g(
 
 Ketiga, kita kecualikan nilai <InlineMath math="x=1" /> dari irisan domain:
 
-<BlockMath math="D_{\frac{f}{g}} = \{x | x \in \mathbb{R}\} - \{1\}" />
+<BlockMath math="D_{\frac{f}{g}}=\{x\mid x\in\mathbb{R}\}\setminus\{1\}" />
 
 Atau bisa ditulis juga sebagai:
 
@@ -182,7 +182,7 @@ Diketahui fungsi <InlineMath math="f(x) = \sqrt{x+4}" /> dengan <InlineMath math
 
     Kecualikan <InlineMath math="x=3" /> dan <InlineMath math="x=-3" /> dari irisan domain:
 
-    <BlockMath math="D_{\frac{f}{g}} = \{x | x \ge -4, x \in \mathbb{R}\} - \{-3, 3\}" />
+    <BlockMath math="D_{\frac{f}{g}}=\{x\mid x\geq-4,\ x\in\mathbb{R}\}\setminus\{-3,3\}" />
 
     Atau bisa ditulis:
 

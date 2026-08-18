@@ -16,9 +16,13 @@ Teorema ini memberikan fleksibilitas dalam memilih baris atau kolom mana yang ak
 
 Untuk matriks <InlineMath math="A \in \mathbb{R}^{n \times n}" />, determinan dapat dihitung dengan dua cara:
 
+Misalkan <InlineMath math="A_{ij}" /> adalah matriks <InlineMath math="(n-1) \times (n-1)" /> yang diperoleh dengan menghapus baris <InlineMath math="i" /> dan kolom <InlineMath math="j" /> dari <InlineMath math="A" />. Kontribusi bertandanya disebut kofaktor
+
+<BlockMath math="C_{ij}=(-1)^{i+j}\det A_{ij}" />
+
 ### Pengembangan Berdasarkan Kolom
 
-Selain pengembangan berdasarkan kolom ke-<InlineMath math="j" />, determinan dapat dihitung dengan rumus:
+Pengembangan sepanjang sembarang kolom <InlineMath math="j" /> memberikan
 
 <MathContainer>
 <BlockMath math="\det A = \sum_{i=1}^{n} (-1)^{i+j} \cdot a_{ij} \cdot \det A_{ij}" />
@@ -94,20 +98,22 @@ Rumus Sarrus untuk matriks <InlineMath math="3 \times 3" />:
 
 Aturan Sarrus menggunakan pola diagonal untuk menentukan suku-suku mana yang dijumlahkan dan mana yang dikurangkan.
 
+Aturan Sarrus hanya berlaku untuk matriks <InlineMath math="3 \times 3" />. Untuk matriks yang lebih besar, gunakan pengembangan kofaktor atau metode berbasis faktorisasi, bukan memperpanjang pola diagonal tersebut.
+
 ## Kompleksitas Komputasi
 
-Kompleksitas perhitungan determinan menggunakan pengembangan Laplace sangat tinggi. Untuk matriks berukuran <InlineMath math="n \times n" />, jumlah operasi perkalian yang diperlukan adalah:
+Untuk matriks padat berukuran <InlineMath math="n \times n" />, implementasi rekursif langsung menghitung <InlineMath math="n" /> determinan berukuran <InlineMath math="n-1" /> pada setiap tingkat. Beban komputasinya mengikuti rekurensi
 
 <MathContainer>
-<BlockMath math="n \cdot (n-1) \cdot (n-2) \cdot \ldots \cdot 2 \cdot 1 \cdot (n-1)" />
-<BlockMath math="= n! \cdot (n-1)" />
+<BlockMath math="T(n)=nT(n-1)+O(n)" />
+<BlockMath math="T(n)=\Theta(n!)" />
 </MathContainer>
 
-Ini menunjukkan bahwa kompleksitas algoritma adalah faktorial, yang sangat tidak efisien untuk matriks berukuran besar.
+Pertumbuhan faktorial membuat pengembangan Laplace rekursif tidak praktis untuk matriks padat berukuran besar. Eliminasi Gauss atau faktorisasi LU menghitung determinan dalam <InlineMath math="O(n^3)" /> operasi aritmetika.
 
 ## Pemanfaatan Elemen Nol
 
-Ketika matriks memiliki banyak elemen nol, kita dapat memilih pengembangan sedemikian rupa sehingga subdeterminan dengan elemen nol tidak perlu dihitung. Hal ini dapat mengurangi beban perhitungan secara signifikan.
+Ketika matriks memiliki banyak entri nol, pilih baris atau kolom yang memuat nol sebanyak mungkin. Setiap suku dengan koefisien terpilih <InlineMath math="a_{ij}" /> bernilai nol akan lenyap, sehingga minornya tidak perlu dihitung.
 
 ### Contoh Optimisasi
 
@@ -147,7 +153,7 @@ Karena sifat transpos ini, semua sifat determinan yang berlaku untuk baris matri
 Misalnya:
 - Jika dua baris identik maka determinan nol, demikian juga jika dua kolom identik
 - Menukar dua baris mengubah tanda determinan, begitu pula menukar dua kolom
-- Operasi baris elementer dan operasi kolom elementer memiliki efek yang sama terhadap determinan
+- Operasi baris dan kolom elementer yang bersesuaian mengikuti aturan determinan yang sepadan
 
 ## Matriks Berukuran Lebih Besar
 

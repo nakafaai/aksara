@@ -1,0 +1,511 @@
+export const metadata = {
+  title: "Quadratische Funktionen aufstellen",
+  description: "Stelle quadratische Funktionen aus drei Punkten, einem Scheitelpunkt, Nullstellen, Symmetrie und äquivalenten Formen auf.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-19",
+  subject: "Quadratische Funktionen",
+};
+
+## Quadratische Funktionsgleichungen aufstellen
+
+Eine quadratische Funktion aufzustellen bedeutet, <InlineMath math="f(x) = ax^2 + bx + c" /> aus den gegebenen Informationen zu bestimmen. Welche Methode am schnellsten zum Ziel führt, hängt davon ab, ob Punkte, ein Scheitelpunkt, Nullstellen oder eine Symmetrie bekannt sind.
+
+## Formen quadratischer Funktionen
+
+In diesem Kapitel werden drei äquivalente Formen verwendet:
+
+1. **Allgemeine Form**: <InlineMath math="f(x) = ax^2 + bx + c" />
+2. **Produktform**: <InlineMath math="f(x) = a(x - p)(x - q)" />, wenn die reellen Nullstellen <InlineMath math="p" /> und <InlineMath math="q" /> existieren
+3. **Scheitelpunktform**: <InlineMath math="f(x) = a(x - h)^2 + k" />, wobei <InlineMath math="(h, k)" /> der Scheitelpunkt ist
+
+Diese drei Formen beschreiben dieselbe Funktion und lassen sich ineinander umformen.
+
+## Methoden zur Konstruktion quadratischer Funktionen
+
+### Drei Punkte
+
+Drei Punkte mit verschiedenen <InlineMath math="x" />-Koordinaten bestimmen genau ein Polynom vom Grad höchstens <InlineMath math="2" />. Es ist nur dann eine quadratische Funktion, wenn der berechnete Koeffizient <InlineMath math="a\neq0" /> erfüllt.
+
+Für die Punkte <InlineMath math="(x_1, y_1)" />, <InlineMath math="(x_2, y_2)" /> und <InlineMath math="(x_3, y_3)" /> werden die Koordinaten in die allgemeine Form eingesetzt. So entsteht ein lineares Gleichungssystem für <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />.
+
+<MathContainer>
+  <BlockMath math="y_1 = ax_1^2 + bx_1 + c" />
+  <BlockMath math="y_2 = ax_2^2 + bx_2 + c" />
+  <BlockMath math="y_3 = ax_3^2 + bx_3 + c" />
+</MathContainer>
+
+**Beispiel**:
+
+Bestimme die quadratische Funktion, deren Graph durch <InlineMath math="K(-1, 0)" />, <InlineMath math="L(0, -3)" /> und <InlineMath math="M(1, -4)" /> verläuft.
+
+Die Koordinaten in die allgemeine Form einsetzen:
+
+<MathContainer>
+  <BlockMath math="K(-1, 0): 0 = a(-1)^2 + b(-1) + c" />
+  <BlockMath math="L(0, -3): -3 = a(0)^2 + b(0) + c" />
+  <BlockMath math="M(1, -4): -4 = a(1)^2 + b(1) + c" />
+</MathContainer>
+
+Die Gleichungen vereinfachen:
+
+<MathContainer>
+  <BlockMath math="0 = a - b + c" />
+  <BlockMath math="-3 = c" />
+  <BlockMath math="-4 = a + b + c" />
+</MathContainer>
+
+<InlineMath math="c = -3" /> in die erste und dritte Gleichung einsetzen:
+
+<MathContainer>
+  <BlockMath math="0 = a - b - 3" />
+  <BlockMath math="-4 = a + b - 3" />
+</MathContainer>
+
+Die beiden Gleichungen vereinfachen und addieren, um <InlineMath math="a" /> zu bestimmen:
+
+<MathContainer>
+  <BlockMath math="a - b = 3" />
+  <BlockMath math="a + b = -1" />
+  <BlockMath math="2a = 2" />
+  <BlockMath math="a = 1" />
+</MathContainer>
+
+Den ermittelten Wert von <InlineMath math="a" /> in <InlineMath math="a - b = 3" /> einsetzen, um <InlineMath math="b" /> zu bestimmen:
+
+<MathContainer>
+  <BlockMath math="1 - b = 3" />
+  <BlockMath math="b = -2" />
+</MathContainer>
+
+Damit lautet die quadratische Funktion:
+
+<BlockMath math="f(x) = x^2 - 2x - 3" />
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph von <InlineMath math="f(x) = x^2 - 2x - 3" />
+      </>
+    }
+    description={
+      <>
+        Parabel durch die Punkte <InlineMath math="K(-1, 0)" />,{" "}
+        <InlineMath math="L(0, -3)" /> und <InlineMath math="M(1, -4)" />.
+      </>
+    }
+    cameraPosition={[2, 3, 8]}
+    data={[
+      {
+        points: Array.from({ length: 7 }, (_, i) => {
+          const x = i - 3; // x-Werte von -3 bis 3
+          return { x, y: x * x - 2 * x - 3, z: 0 };
+        }),
+        color: "#0d9488",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
+            at: 5,
+            offset: [2, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="L(0, -3)" />,
+            at: 3,
+            offset: [-1, 0, 0],
+          },
+          {
+            text: <InlineMath math="M(1, -4)" />,
+            at: 4,
+            offset: [0, -0.5, 0],
+          },
+          {
+            text: <InlineMath math="K(-1, 0)" />,
+            at: 2,
+            offset: [-1, 0.3, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+### Scheitelpunkt und ein weiterer Punkt
+
+Sind der Scheitelpunkt <InlineMath math="(h, k)" /> und ein weiterer Punkt <InlineMath math="(p, q)" /> auf dem Graphen bekannt, kann mit der Scheitelpunktform <InlineMath math="f(x) = a(x - h)^2 + k" /> der Streckfaktor <InlineMath math="a" /> bestimmt werden.
+
+**Beispiel**:
+
+Bestimme die quadratische Funktion mit Scheitelpunkt <InlineMath math="(2, 0)" />, deren Graph durch <InlineMath math="(4, 4)" /> verläuft.
+
+In der Scheitelpunktform <InlineMath math="f(x) = a(x - h)^2 + k" /> gilt <InlineMath math="h = 2" /> und <InlineMath math="k = 0" />.
+
+<BlockMath math="f(x) = a(x - 2)^2 + 0 = a(x - 2)^2" />
+
+Den Punkt <InlineMath math="(4, 4)" /> einsetzen, um <InlineMath math="a" /> zu bestimmen:
+
+<MathContainer>
+  <BlockMath math="4 = a(4 - 2)^2" />
+  <BlockMath math="4 = 4a" />
+  <BlockMath math="a = 1" />
+</MathContainer>
+
+Damit lautet die quadratische Funktion:
+
+<BlockMath math="f(x) = (x - 2)^2 = x^2 - 4x + 4" />
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph von <InlineMath math="f(x) = (x - 2)^2" />
+      </>
+    }
+    description={
+      <>
+        Parabel mit Scheitelpunkt <InlineMath math="(2, 0)" /> durch den Punkt
+        <InlineMath math="(4, 4)" />.
+      </>
+    }
+    cameraPosition={[6, 6, 8]}
+    data={[
+      {
+        points: Array.from({ length: 9 }, (_, i) => {
+          const x = i - 1; // x-Werte von -1 bis 7
+          return { x, y: Math.pow(x - 2, 2), z: 0 };
+        }),
+        color: "#4f46e5",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=(x - 2)^2" />,
+            at: 7,
+            offset: [0.3, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(2, 0)" />,
+            at: 3,
+            offset: [0, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(4, 4)" />,
+            at: 5,
+            offset: [0.3, 0.3, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+### Nullstellen und ein weiterer Punkt
+
+Sind die Nullstellen, also die Schnittpunkte mit der <InlineMath math="x" />-Achse, <InlineMath math="p" /> und <InlineMath math="q" /> sowie ein weiterer Punkt <InlineMath math="(r, s)" /> mit <InlineMath math="r\neq p" />, <InlineMath math="r\neq q" /> und <InlineMath math="s\neq0" /> bekannt, lässt sich <InlineMath math="a" /> mit der Produktform <InlineMath math="f(x) = a(x - p)(x - q)" /> bestimmen.
+
+**Beispiel**:
+
+Bestimme die quadratische Funktion mit den Nullstellen <InlineMath math="x = -2" /> und <InlineMath math="x = 3" />, deren Graph durch <InlineMath math="(1, -6)" /> verläuft.
+
+In der Produktform <InlineMath math="f(x) = a(x - p)(x - q)" /> gilt <InlineMath math="p = -2" /> und <InlineMath math="q = 3" />.
+
+<BlockMath math="f(x) = a(x - (-2))(x - 3) = a(x + 2)(x - 3)" />
+
+Den Punkt <InlineMath math="(1, -6)" /> einsetzen, um <InlineMath math="a" /> zu bestimmen:
+
+<MathContainer>
+  <BlockMath math="-6 = a(1 + 2)(1 - 3)" />
+  <BlockMath math="-6 = a(3)(-2)" />
+  <BlockMath math="-6 = -6a" />
+  <BlockMath math="a = 1" />
+</MathContainer>
+
+Damit lautet die quadratische Funktion:
+
+<BlockMath math="f(x) = (x + 2)(x - 3) = x^2 - x - 6" />
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph von <InlineMath math="f(x) = (x + 2)(x - 3)" />
+      </>
+    }
+    description={
+      <>
+        Parabel mit den Nullstellen <InlineMath math="x = -2" /> und{" "}
+        <InlineMath math="x = 3" /> durch den Punkt{" "}
+        <InlineMath math="(1, -6)" />.
+      </>
+    }
+    cameraPosition={[4, 5, 10]}
+    data={[
+      {
+        points: Array.from({ length: 11 }, (_, i) => {
+          const x = i - 4; // x-Werte von -4 bis 6
+          return { x, y: (x + 2) * (x - 3), z: 0 };
+        }),
+        color: "#ea580c",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=(x + 2)(x - 3)" />,
+            at: 6,
+            offset: [3, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(-2, 0)" />,
+            at: 2,
+            offset: [0.3, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(3, 0)" />,
+            at: 7,
+            offset: [0.3, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(1, -6)" />,
+            at: 5,
+            offset: [0.3, -0.3, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+### Symmetrieachse und Diskriminante
+
+Aus der Symmetrieachse, also der <InlineMath math="x" />-Koordinate des Scheitelpunkts, und der Diskriminante lässt sich eine Familie quadratischer Funktionen bestimmen.
+
+**Beispiel**:
+
+Bestimme eine quadratische Funktion mit der Symmetrieachse <InlineMath math="x = 1" /> und der Diskriminante <InlineMath math="D = 16" />.
+
+Aus <InlineMath math="x = 1" /> folgt <InlineMath math="-\frac{b}{2a} = 1" /> und damit <InlineMath math="b = -2a" />.
+
+Aus <InlineMath math="D = 16" /> folgt außerdem <InlineMath math="b^2 - 4ac = 16" />.
+
+<InlineMath math="b = -2a" /> in die Gleichung der Diskriminante einsetzen:
+
+<MathContainer>
+  <BlockMath math="(-2a)^2 - 4ac = 16" />
+  <BlockMath math="4a^2 - 4ac = 16" />
+  <BlockMath math="4a(a - c) = 16" />
+  <BlockMath math="a(a - c) = 4" />
+</MathContainer>
+
+Viele Paare von <InlineMath math="a" /> und <InlineMath math="c" /> erfüllen diese Gleichung. Die Angaben bestimmen also keine eindeutige Funktion. Für ein einfaches Beispiel wird <InlineMath math="a = 1" /> gewählt.
+
+<MathContainer>
+  <BlockMath math="1(1 - c) = 4" />
+  <BlockMath math="1 - c = 4" />
+  <BlockMath math="c = -3" />
+</MathContainer>
+
+Mit <InlineMath math="a = 1" />, <InlineMath math="b = -2" /> und <InlineMath math="c = -3" /> erhält man:
+
+<BlockMath math="f(x) = x^2 - 2x - 3" />
+
+### Symmetrisch liegende Punkte
+
+Auch symmetrisch liegende Punkte können zur Bestimmung einer quadratischen Funktion genutzt werden.
+
+**Beispiel**:
+
+Bestimme die quadratische Funktion, deren Graph durch <InlineMath math="(0, 0)" />, <InlineMath math="(4, 1)" /> und <InlineMath math="(-4, 1)" /> verläuft.
+
+Die Punkte <InlineMath math="(4, 1)" /> und <InlineMath math="(-4, 1)" /> haben denselben <InlineMath math="y" />-Wert und liegen gleich weit von der <InlineMath math="y" />-Achse entfernt. Der Graph ist daher zur <InlineMath math="y" />-Achse symmetrisch. Seine Symmetrieachse ist <InlineMath math="x = 0" />, und der Scheitelpunkt liegt bei <InlineMath math="(0, 0)" />.
+
+In der Scheitelpunktform <InlineMath math="f(x) = a(x - h)^2 + k" /> gilt <InlineMath math="h = 0" /> und <InlineMath math="k = 0" />.
+
+<BlockMath math="f(x) = ax^2" />
+
+Den Punkt <InlineMath math="(4, 1)" /> einsetzen, um <InlineMath math="a" /> zu bestimmen:
+
+<MathContainer>
+  <BlockMath math="1 = a(4)^2" />
+  <BlockMath math="1 = 16a" />
+  <BlockMath math="a = \frac{1}{16}" />
+</MathContainer>
+
+Damit lautet die quadratische Funktion:
+
+<BlockMath math="f(x) = \frac{1}{16}x^2" />
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Graph von <InlineMath math="f(x) = \frac{1}{16}x^2" />
+      </>
+    }
+    description={
+      <>
+        Parabel durch die Punkte <InlineMath math="(0, 0)" />,{" "}
+        <InlineMath math="(4, 1)" /> und <InlineMath math="(-4, 1)" />.
+      </>
+    }
+    cameraPosition={[0, 0.5, 8]}
+    data={[
+      {
+        points: Array.from({ length: 13 }, (_, i) => {
+          const x = i - 6; // x-Werte von -6 bis 6
+          return { x, y: (1 / 16) * x * x, z: 0 };
+        }),
+        color: "#0d9488",
+        labels: [
+          {
+            text: <InlineMath math="f(x)=\frac{1}{16}x^2" />,
+            at: 11,
+            offset: [-2, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(0, 0)" />,
+            at: 6,
+            offset: [0.3, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(4, 1)" />,
+            at: 10,
+            offset: [0.3, 0.3, 0],
+          },
+          {
+            text: <InlineMath math="(-4, 1)" />,
+            at: 2,
+            offset: [0.3, 0.3, 0],
+          },
+        ],
+      },
+    ]}
+  />
+</ContentBlock>
+
+## Zwischen den Darstellungsformen wechseln
+
+### Allgemeine Form in Scheitelpunktform
+
+Um <InlineMath math="f(x) = ax^2 + bx + c" /> in die Scheitelpunktform <InlineMath math="f(x) = a(x - h)^2 + k" /> umzuwandeln:
+
+1. Die <InlineMath math="x" />-Koordinate des Scheitelpunkts bestimmen: <InlineMath math="h = -\frac{b}{2a}" />
+2. Den Funktionswert am Scheitelpunkt berechnen: <InlineMath math="k = f(h) = f(-\frac{b}{2a})" />
+3. Alternativ direkt verwenden: <InlineMath math="k = c - \frac{b^2}{4a}" />
+
+### Allgemeine Form in Produktform
+
+Um <InlineMath math="f(x) = ax^2 + bx + c" /> über den reellen Zahlen in die Produktform umzuwandeln, wird zuerst geprüft, ob die Diskriminante nichtnegativ ist:
+
+1. Die Nullstellen der Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit der Lösungsformel bestimmen:
+
+   <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+
+2. Für <InlineMath math="D\ge0" /> und die reellen Nullstellen <InlineMath math="p" /> und <InlineMath math="q" /> gilt:
+
+   <BlockMath math="f(x) = a(x - p)(x - q)" />
+
+Für <InlineMath math="D<0" /> besitzt die Funktion keine reellen Nullstellen und lässt sich nicht in reelle Linearfaktoren zerlegen.
+
+### Produktform in allgemeine Form
+
+Die Produktform <InlineMath math="f(x) = a(x - p)(x - q)" /> wird durch Ausmultiplizieren in die allgemeine Form <InlineMath math="f(x) = ax^2 + bx + c" /> umgewandelt:
+
+<MathContainer>
+  <BlockMath math="f(x) = a(x - p)(x - q)" />
+  <BlockMath math="f(x) = a(x^2 - qx - px + pq)" />
+  <BlockMath math="f(x) = a(x^2 - (p+q)x + pq)" />
+  <BlockMath math="f(x) = ax^2 - a(p+q)x + apq" />
+</MathContainer>
+
+Der Vergleich mit der allgemeinen Form liefert:
+
+- <InlineMath math="b = -a(p+q)" />
+- <InlineMath math="c = apq" />
+
+## Aufgaben und ausführliche Lösungen
+
+### Erste Aufgabe
+
+Bestimme die quadratische Funktion, deren Graph durch <InlineMath math="(-2, 4)" />, <InlineMath math="(1, -5)" /> und <InlineMath math="(3, 7)" /> verläuft.
+
+**Ausführliche Lösung**:
+
+Die Punkte in die allgemeine Form einsetzen:
+
+<MathContainer>
+  <BlockMath math="4 = a(-2)^2 + b(-2) + c = 4a - 2b + c" />
+  <BlockMath math="-5 = a(1)^2 + b(1) + c = a + b + c" />
+  <BlockMath math="7 = a(3)^2 + b(3) + c = 9a + 3b + c" />
+</MathContainer>
+
+Aus der zweiten Gleichung folgt <InlineMath math="c = -5 - a - b" />.
+Diesen Ausdruck in die erste Gleichung einsetzen:
+
+<MathContainer>
+  <BlockMath math="4 = 4a - 2b + (-5 - a - b)" />
+  <BlockMath math="9 = 3a - 3b" />
+  <BlockMath math="3 = a - b" />
+  <BlockMath math="a = 3 + b" />
+</MathContainer>
+
+Anschließend in die dritte Gleichung einsetzen:
+
+<MathContainer>
+  <BlockMath math="7 = 9(3 + b) + 3b + (-5 - (3 + b) - b)" />
+  <BlockMath math="7 = 19 + 10b" />
+  <BlockMath math="b = -\frac{12}{10} = -\frac{6}{5}" />
+</MathContainer>
+
+Danach die verbleibenden Koeffizienten berechnen:
+
+<MathContainer>
+  <BlockMath math="a = 3 + (-\frac{6}{5}) = \frac{9}{5}" />
+  <BlockMath math="c = -5 - \frac{9}{5} - (-\frac{6}{5}) = -\frac{28}{5}" />
+</MathContainer>
+
+Die gesuchte quadratische Funktion lautet:
+
+<BlockMath math="f(x) = \frac{9}{5}x^2 - \frac{6}{5}x - \frac{28}{5}" />
+
+### Zweite Aufgabe
+
+Bestimme die quadratische Funktion mit Scheitelpunkt <InlineMath math="(-1, 4)" />, deren Graph durch <InlineMath math="(2, -5)" /> verläuft.
+
+**Ausführliche Lösung**:
+
+In der Scheitelpunktform gilt <InlineMath math="h = -1" /> und <InlineMath math="k = 4" />:
+
+<BlockMath math="f(x) = a(x - (-1))^2 + 4 = a(x + 1)^2 + 4" />
+
+Den Punkt <InlineMath math="(2, -5)" /> einsetzen:
+
+<MathContainer>
+  <BlockMath math="-5 = a(2 + 1)^2 + 4" />
+  <BlockMath math="-5 = 9a + 4" />
+  <BlockMath math="-9 = 9a" />
+  <BlockMath math="a = -1" />
+</MathContainer>
+
+Die gesuchte quadratische Funktion lautet:
+
+<BlockMath math="f(x) = -(x + 1)^2 + 4 = -x^2 - 2x + 3" />
+
+### Dritte Aufgabe
+
+Bestimme die quadratische Funktion mit den Nullstellen <InlineMath math="x = -3" /> und <InlineMath math="x = 2" /> sowie dem Maximalwert <InlineMath math="4" />.
+
+**Ausführliche Lösung**:
+
+In der Produktform gilt <InlineMath math="p = -3" /> und <InlineMath math="q = 2" />:
+
+<BlockMath math="f(x) = a(x - (-3))(x - 2) = a(x + 3)(x - 2)" />
+
+Da die Funktion einen Maximalwert besitzt, muss <InlineMath math="a < 0" /> gelten.
+
+Der Scheitelpunkt liegt bei <InlineMath math="x = \frac{p + q}{2} = \frac{-3 + 2}{2} = -\frac{1}{2}" />.
+
+<InlineMath math="x = -\frac{1}{2}" /> in die Produktform einsetzen und den Maximalwert <InlineMath math="4" /> verwenden:
+
+<MathContainer>
+  <BlockMath math="f(-\frac{1}{2}) = a(-\frac{1}{2} + 3)(-\frac{1}{2} - 2) = -a\frac{25}{4} = 4" />
+  <BlockMath math="a = -\frac{16}{25}" />
+</MathContainer>
+
+Die gesuchte quadratische Funktion lautet:
+
+<BlockMath math="f(x) = -\frac{16}{25}(x + 3)(x - 2) = -\frac{16}{25}x^2 - \frac{16}{25}x + \frac{96}{25}" />

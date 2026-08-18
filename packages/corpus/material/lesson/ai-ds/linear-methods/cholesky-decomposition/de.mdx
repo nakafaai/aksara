@@ -1,0 +1,114 @@
+export const metadata = {
+    title: "Cholesky-Zerlegung",
+    description: "Lerne die Cholesky-Zerlegung für positiv definite Matrizen anhand des Algorithmus, eines durchgerechneten Beispiels und einer korrekten Aufwandsschätzung.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-07-13",
+    subject: "Lineare Methoden der KI",
+};
+
+## LU-Zerlegung für positiv definite Matrizen
+
+Sei <InlineMath math="A\in\mathbb{R}^{n\times n}" /> symmetrisch positiv definit, also
+
+<BlockMath math="x^TAx>0\qquad\text{für jedes }x\neq0" />
+
+Diese Bedingung sorgt für eine besonders gutartige Faktorisierung. Die [LU-Zerlegung](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/lu-zerlegung) kommt ohne Zeilenvertauschung aus, und jeder Pivot der exakten Gauß-Elimination ist positiv.
+
+Dies bedeutet, dass wir eine Faktorisierung in der Form <InlineMath math="A = L \cdot U" /> erhalten, wobei die Diagonalelemente von <InlineMath math="U" /> positive Pivotelemente für alle Diagonalindizes sind.
+
+Aus <InlineMath math="A = A^T" /> folgt außerdem:
+
+<MathContainer>
+<BlockMath math="A = A^T = (L \cdot U)^T = (L \cdot D \cdot \tilde{U})^T = \tilde{U}^T \cdot D \cdot L^T" />
+</MathContainer>
+
+wobei <InlineMath math="\tilde{U}" /> eine Matrix ist, deren Hauptdiagonale auf <InlineMath math="1" /> normiert ist, und <InlineMath math="D" /> eine Diagonalmatrix ist:
+
+<MathContainer>
+<BlockMath math="\tilde{U} = \begin{pmatrix} 1 & u_{12}/u_{11} & \cdots & u_{1n}/u_{11} \\ & \ddots & \ddots & \vdots \\ & & 1 & u_{n-1,n}/u_{n-1,n-1} \\ 0 & & & 1 \end{pmatrix}" />
+<BlockMath math="D = \begin{pmatrix} u_{11} & & 0 \\ & \ddots & \\ 0 & & u_{nn} \end{pmatrix}" />
+</MathContainer>
+
+Wenn <InlineMath math="L" /> und <InlineMath math="\tilde U" /> Einsen auf der Diagonale besitzen, ist diese LU-Zerlegung eindeutig. Der Vergleich der beiden Faktorisierungen ergibt
+
+<MathContainer>
+<BlockMath math="A = L \cdot U = \tilde{U}^T \cdot (D \cdot L^T)" />
+<BlockMath math="L = \tilde{U}^T \quad \text{und} \quad U = D \cdot L^T" />
+</MathContainer>
+
+Wenn wir definieren:
+
+<BlockMath math="D^{\frac{1}{2}} = \begin{pmatrix} \sqrt{u_{11}} & & 0 \\ & \ddots & \\ 0 & & \sqrt{u_{nn}} \end{pmatrix}" />
+
+dann <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
+
+## Cholesky-Zerlegung
+
+Jede reelle symmetrische positiv definite Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> besitzt einen eindeutigen Cholesky-Faktor mit positiven Diagonaleinträgen:
+
+<BlockMath math="A = L \cdot D \cdot L^T = \tilde{L} \cdot \tilde{L}^T" />
+
+Dabei ist <InlineMath math="\tilde{L} = L \cdot D^{\frac{1}{2}}" /> eine invertierbare untere Dreiecksmatrix. Die positiven Quadratwurzeln der Pivots legen die Vorzeichen der Diagonale fest und machen den Faktor eindeutig.
+
+Die Berechnung der Matrix <InlineMath math="\tilde{L}" /> erfolgt mit:
+
+<BlockMath math="\tilde{L} = \begin{pmatrix} \tilde{l}_{11} & 0 \\ \vdots & \ddots \\ \tilde{l}_{n1} & \cdots & \tilde{l}_{nn} \end{pmatrix}" />
+
+aus der Beziehung <InlineMath math="\tilde{L} \cdot \tilde{L}^T = A" />. Der folgende Algorithmus erzeugt den Cholesky-Faktor.
+
+## Cholesky-Algorithmus
+
+Gegeben sei eine positiv definite Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />.
+
+<MathContainer>
+<BlockMath math="\tilde{l}_{11} := \sqrt{a_{11}}" />
+<BlockMath math="\tilde{l}_{j1} := \frac{a_{j1}}{\tilde{l}_{11}}, \quad j = 2, \ldots, n" />
+</MathContainer>
+
+Für <InlineMath math="i = 2, \ldots, n" />:
+
+<MathContainer>
+<BlockMath math="\tilde{l}_{ii} := \sqrt{a_{ii} - \tilde{l}_{i1}^2 - \tilde{l}_{i2}^2 - \ldots - \tilde{l}_{i,i-1}^2}" />
+<BlockMath math="\tilde{l}_{ji} := \tilde{l}_{ii}^{-1} \cdot \left( a_{ji} - \tilde{l}_{j1}\tilde{l}_{i1} - \tilde{l}_{j2}\tilde{l}_{i2} - \ldots - \tilde{l}_{j,i-1}\tilde{l}_{i,i-1} \right)" />
+</MathContainer>
+
+für <InlineMath math="j = i + 1, \ldots, n" />.
+
+Der Ausdruck unter jeder Quadratwurzel muss positiv bleiben. Ein Wert von null oder kleiner darf nicht durch einen Betrag kaschiert werden: Er zeigt, dass die Eingabe nicht positiv definit ist oder dass die Rechnung mit endlicher Genauigkeit eine sorgfältigere numerische Behandlung verlangt.
+
+Nach dem Algorithmus erhalten wir den unteren Dreiecksfaktor von Cholesky:
+
+<BlockMath math="\tilde{L} = \begin{pmatrix} \tilde{l}_{11} & 0 \\ \vdots & \ddots \\ \tilde{l}_{n1} & \cdots & \tilde{l}_{nn} \end{pmatrix}" />
+
+## Durchgerechnetes Beispiel
+
+Wir faktorisieren die Matrix
+
+<BlockMath math="A=\begin{pmatrix}4&2\\2&5\end{pmatrix}" />
+
+Die Einträge des unteren Dreiecksfaktors folgen unmittelbar aus dem Algorithmus:
+
+<MathContainer>
+<BlockMath math="\tilde l_{11}=\sqrt4=2" />
+<BlockMath math="\tilde l_{21}=\frac2{\tilde l_{11}}=1" />
+<BlockMath math="\tilde l_{22}=\sqrt{5-\tilde l_{21}^2}=2" />
+</MathContainer>
+
+Damit gilt
+
+<MathContainer>
+<BlockMath math="\tilde L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />
+<BlockMath math="\tilde L\tilde L^T=\begin{pmatrix}2&0\\1&2\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}4&2\\2&5\end{pmatrix}=A" />
+</MathContainer>
+
+Ist der Faktor bekannt, lösen wir <InlineMath math="Ax=b" /> mit zwei Dreieckssystemen statt mit einer Inversen: zuerst <InlineMath math="\tilde Ly=b" />, danach <InlineMath math="\tilde L^Tx=y" />.
+
+## Cholesky-Algorithmus-Komplexität
+
+Der Cholesky-Algorithmus zur Berechnung des Cholesky-Faktors <InlineMath math="\tilde{L}" /> aus <InlineMath math="A \in \mathbb{R}^{n \times n}" /> erfordert:
+
+<BlockMath math="\frac{1}{3}n^3 + O(n^2)\quad\text{flops}" />
+
+Gleitkommaoperationen.
+
+Der führende Term enthält ungefähr <InlineMath math="n^3/6" /> Multiplikationen und <InlineMath math="n^3/6" /> Additionen. Zusammen sind das etwa <InlineMath math="n^3/3" /> Gleitkommaoperationen und damit ungefähr die Hälfte des führenden Aufwands <InlineMath math="2n^3/3" /> einer LU-Zerlegung für eine allgemeine dichte Matrix. Cholesky spart Arbeit, weil die Symmetrie genutzt und nur eine Dreieckshälfte der Faktorisierung gespeichert wird.

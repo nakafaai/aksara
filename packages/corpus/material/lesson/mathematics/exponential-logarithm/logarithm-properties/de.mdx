@@ -1,0 +1,203 @@
+export const metadata = {
+  title: "Logarithmengesetze",
+  description:
+    "Verstehe acht Logarithmengesetze, ihre Herleitung und ihre Anwendung in Gleichungen und Wachstumsmodellen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-04-04",
+  subject: "Exponenten und Logarithmen",
+};
+
+## Acht Regeln aus den Potenzgesetzen
+
+Logarithmengesetze sind keine voneinander losgelösten Formeln, die ohne Zusammenhang auswendig gelernt werden müssen. Jedes Gesetz folgt aus dem entsprechenden Potenzgesetz.
+
+In diesem Kapitel gelten die Voraussetzungen:
+
+<BlockMath math="a>0\qquad a\neq1\qquad b>0\qquad c>0\qquad n\in\mathbb{R}" />
+
+Wenn <InlineMath math="m" /> oder <InlineMath math="b" /> als Logarithmusbasis verwendet wird, muss auch diese Basis positiv und ungleich eins sein.
+
+| Gesetz | Identität |
+| ------ | --------- |
+| Logarithmus der Basis | <InlineMath math="\log_a a=1" /> |
+| Logarithmus von eins | <InlineMath math="\log_a 1=0" /> |
+| Umkehrbeziehung | <InlineMath math="\log_a(a^n)=n" /> |
+| Produkt | <InlineMath math="\log_a(bc)=\log_a b+\log_a c" /> |
+| Quotient | <InlineMath math="\log_a\left(\frac bc\right)=\log_a b-\log_a c" /> |
+| Potenz | <InlineMath math="\log_a(b^n)=n\log_a b" /> |
+| Basiswechsel | <InlineMath math="\log_a b=\frac{\log_m b}{\log_m a}=\frac1{\log_b a}" /> |
+| Kette | <InlineMath math="(\log_a b)(\log_b c)=\log_a c" /> |
+
+Die ersten drei Gesetze folgen unmittelbar aus <InlineMath math="a^1=a" />, <InlineMath math="a^0=1" /> und der Umkehrbeziehung zwischen Logarithmen und Potenzen. Die folgenden Abschnitte erklären die Gesetze, die mehrere Werte miteinander verknüpfen.
+
+## Warum die Gesetze gelten
+
+### Produktgesetz
+
+Setze:
+
+<MathContainer>
+  <BlockMath math="x=\log_a b\quad\Longleftrightarrow\quad b=a^x" />
+  <BlockMath math="y=\log_a c\quad\Longleftrightarrow\quad c=a^y" />
+</MathContainer>
+
+Beim Multiplizieren von <InlineMath math="b" /> und <InlineMath math="c" /> werden ihre Exponenten addiert:
+
+<BlockMath math="bc=a^x a^y=a^{x+y}" />
+
+Der Logarithmus zur Basis <InlineMath math="a" /> ergibt:
+
+<BlockMath math="\log_a(bc)=x+y=\log_a b+\log_a c" />
+
+### Quotientengesetz
+
+Mit denselben Substitutionen führt die Division zur Subtraktion der Exponenten:
+
+<BlockMath math="\frac bc=\frac{a^x}{a^y}=a^{x-y}" />
+
+Daraus folgt:
+
+<BlockMath math="\log_a\left(\frac bc\right)=x-y=\log_a b-\log_a c" />
+
+### Potenzgesetz
+
+Setze <InlineMath math="y=\log_a b" />, also <InlineMath math="b=a^y" />. Für jedes reelle <InlineMath math="n" /> ist <InlineMath math="b^n" /> wegen <InlineMath math="b>0" /> definiert:
+
+<MathContainer>
+  <BlockMath math="b^n=(a^y)^n=a^{ny}" />
+  <BlockMath math="\log_a(b^n)=ny=n\log_a b" />
+</MathContainer>
+
+Dieser Beweis gilt unmittelbar für reelle Exponenten. Eine Erklärung durch wiederholtes Multiplizieren würde nur positive ganzzahlige Exponenten erfassen.
+
+### Basiswechsel und Kehrwertgesetz
+
+Setze <InlineMath math="x=\log_a b" />, also <InlineMath math="b=a^x" />. Logarithmiere beide Seiten mit einer beliebigen zulässigen Basis <InlineMath math="m" />:
+
+<MathContainer>
+  <BlockMath math="\log_m b=\log_m(a^x)" />
+  <BlockMath math="\log_m b=x\log_m a" />
+  <BlockMath math="x=\frac{\log_m b}{\log_m a}" />
+</MathContainer>
+
+Da <InlineMath math="x=\log_a b" /> gilt, ist damit die Basiswechselformel bewiesen. Die Wahl <InlineMath math="m=b" /> liefert die Kehrwertbeziehung:
+
+<BlockMath math="\log_a b=\frac{\log_b b}{\log_b a}=\frac1{\log_b a}" />
+
+### Kettengesetz
+
+Schreibt man beide Logarithmen mit derselben zulässigen Basis, wird die Kürzung sichtbar:
+
+<BlockMath math="(\log_a b)(\log_b c)=\frac{\log_m b}{\log_m a}\cdot\frac{\log_m c}{\log_m b}=\frac{\log_m c}{\log_m a}=\log_a c" />
+
+## Durchgerechnetes Beispiel
+
+Berechne <InlineMath math="\log_5 125" />.
+
+Wegen <InlineMath math="125=5^3" /> liefern das Potenzgesetz und die Umkehrbeziehung:
+
+<MathContainer>
+  <BlockMath math="\log_5 125=\log_5(5^3)" />
+  <BlockMath math="\log_5(5^3)=3\log_5 5=3" />
+</MathContainer>
+
+Das Ergebnis beantwortet zugleich die ursprüngliche Exponentenfrage: <InlineMath math="5^3=125" />.
+
+## Übungen
+
+1. Vereinfache jeden Ausdruck.
+
+    1. <InlineMath math="\log_9 81" />
+
+    2. <InlineMath math="\log_2 64-\log_2 16" />
+
+    3. <InlineMath math="\log_4(16^{10})" />
+
+2. Es gelte <InlineMath math="\log_5 4=m" /> und <InlineMath math="\log_4 3=n" />. Drücke <InlineMath math="\log_{12}100" /> durch <InlineMath math="m" /> und <InlineMath math="n" /> aus.
+
+3. Eine Stadt hat <InlineMath math="300{.}000" /> Einwohner. Das Modell nimmt ein Wachstum von <InlineMath math="6\%" /> am Ende jedes Jahres an. Nach wie vielen vollständigen Jahren erreicht die Einwohnerzahl in diesem Modell erstmals mindestens <InlineMath math="1{.}000{.}000" />?
+
+4. Dini legt <InlineMath math="\text{Rp}\,2{.}000{.}000" /> auf einem Konto mit jährlich verzinsten <InlineMath math="12\%" /> an. Weitere Einzahlungen, Abhebungen, Gebühren und Zinsänderungen werden ausgeschlossen. Nach wie vielen vollständigen Jahren erreicht das Guthaben erstmals mindestens <InlineMath math="\text{Rp}\,6{.}500{.}000" />?
+
+### Ausführliche Lösungen
+
+#### 1. Ausdrücke vereinfachen
+
+1. Wegen <InlineMath math="81=9^2" />:
+
+    <MathContainer>
+      <BlockMath math="\log_9 81=\log_9(9^2)" />
+      <BlockMath math="\log_9(9^2)=2" />
+    </MathContainer>
+
+2. Verwende das Quotientengesetz:
+
+    <MathContainer>
+      <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
+      <BlockMath math="\log_2 4=2" />
+    </MathContainer>
+
+3. Wegen <InlineMath math="16=4^2" />:
+
+    <MathContainer>
+      <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
+      <BlockMath math="\log_4(4^{20})=20" />
+    </MathContainer>
+
+#### 2. Basiswechselbeziehungen verknüpfen
+
+Verwende die Basis <InlineMath math="4" /> in Zähler und Nenner:
+
+<MathContainer>
+  <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
+  <BlockMath math="\log_4 100=\log_4(4\cdot25)=1+2\log_4 5" />
+  <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
+</MathContainer>
+
+Das Kehrwertgesetz liefert <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Somit gilt:
+
+<BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
+
+#### 3. Einen Schwellenwert der Einwohnerzahl deuten
+
+Das Modell mit konstanter Wachstumsrate lautet:
+
+<BlockMath math="P(x)=300{.}000(1{,}06)^x" />
+
+Löse zunächst die kontinuierliche Gleichung:
+
+<MathContainer>
+  <BlockMath math="1{.}000{.}000=300{.}000(1{,}06)^x" />
+  <BlockMath math="x=\frac{\ln(10/3)}{\ln(1{,}06)}\approx20{,}662354" />
+</MathContainer>
+
+Da das Modell nach vollständigen Jahren aktualisiert wird, müssen die benachbarten ganzen Zahlen geprüft werden:
+
+<MathContainer>
+  <BlockMath math="P(20)\approx962{.}141<1{.}000{.}000" />
+  <BlockMath math="P(21)\approx1{.}019{.}869>1{.}000{.}000" />
+</MathContainer>
+
+Die Einwohnerzahl erreicht das Ziel erstmals nach <InlineMath math="21\text{ vollständigen Jahren}" />. Das Ergebnis ist eine mathematische Projektion unter den genannten Annahmen einer konstanten Wachstumsrate, keine demografische Vorhersage.
+
+#### 4. Einen jährlichen Sparschwellenwert deuten
+
+Das Modell mit jährlicher Verzinsung lautet:
+
+<BlockMath math="B(x)=2{.}000{.}000(1{,}12)^x" />
+
+Löse die kontinuierliche Gleichung:
+
+<MathContainer>
+  <BlockMath math="6{.}500{.}000=2{.}000{.}000(1{,}12)^x" />
+  <BlockMath math="x=\frac{\ln(3{,}25)}{\ln(1{,}12)}\approx10{,}400324" />
+</MathContainer>
+
+Die Zinsen werden erst nach jedem vollständigen Jahr gutgeschrieben. Deshalb werden die Jahre <InlineMath math="10" /> und <InlineMath math="11" /> verglichen:
+
+<MathContainer>
+  <BlockMath math="B(10)\approx6{.}211{.}696<6{.}500{.}000" />
+  <BlockMath math="B(11)\approx6{.}957{.}100>6{.}500{.}000" />
+</MathContainer>
+
+Das Guthaben erreicht das Ziel erstmals nach <InlineMath math="11\text{ vollständigen Jahren}" />.

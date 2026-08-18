@@ -1,0 +1,160 @@
+
+export const metadata = {
+  title: "Elektronenkonfiguration",
+  description:
+    "Die Verteilung von Elektronen auf Schalen herleiten, ihren Zusammenhang mit Linienspektren verstehen und die Grenzen des Bohr-Modells erkennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-04-29",
+  subject: "Atomstruktur",
+};
+
+## Flammenfarben geben einen Hinweis
+
+Wenn Salze wie <InlineMath math="\mathrm{NaCl}" /> oder <InlineMath math="\mathrm{KCl}" /> in einem Flammentest erhitzt werden, ist die sichtbare Farbe nicht zufällig. Wärmeenergie kann Elektronen vorübergehend in einen höheren Energiezustand versetzen. Wenn die Elektronen in einen niedrigeren Zustand zurückkehren, emittiert das Atom oder Ion Licht.
+
+OpenStax zeigt im Abschnitt [The Bohr Model](https://openstax.org/books/chemistry-atoms-first-2e/pages/3-2-the-bohr-model), wie das Bohr-Modell mit diskreten Energieniveaus das Linienspektrum von Wasserstoff erklärt.
+
+**Diskret** bedeutet, dass nicht jeder beliebige Energiewert möglich ist. Eine Treppe liefert das passende Bild: Man kann auf der ersten, zweiten oder dritten Stufe stehen, nicht aber frei im Raum dazwischen. Auch Elektronen dürfen im Atom nur bestimmte Energieniveaus einnehmen.
+
+<Mermaid
+  title="Flammenfarbe weist auf Elektronenenergie hin"
+  description="Die Anregung eines Elektrons mit dem ausgesandten Licht verbinden und die Flammenfarbe als Hinweis auf das Element lesen."
+  chart={`flowchart LR
+    A["Energie wird zugeführt"] --> B["Elektron wird angeregt"]
+    B --> C["Elektron kehrt zurück"]
+    C --> D["Licht wird ausgesendet"]
+    D --> E["Linienspektrum"]`}
+/>
+
+**Anregung** bedeutet, dass ein Elektron Energie aufnimmt und vorübergehend auf ein höheres Energieniveau wechselt. Beim Zurückkehren wird Energie als Licht frei. Ein echter Flammentest gehört wegen des Erhitzens von Chemikalien nur unter fachgerechter Aufsicht und mit passender Schutzausrüstung durchgeführt.
+
+## Was Elektronenkonfiguration bedeutet
+
+Die **Elektronenkonfiguration** beschreibt, wie die Elektronen eines Atoms verteilt sind. Hier verwenden wir ein **vereinfachtes Schalenmodell**, das sie den Schalen <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" /> und <InlineMath math="\mathrm{N}" /> zuordnet.
+
+Für ein neutrales Atom:
+
+<BlockMath math="e^- = Z" />
+
+Das Symbol <InlineMath math="e^-" /> steht für die Elektronenzahl, <InlineMath math="Z" /> für die Ordnungszahl und damit die Protonenzahl. Ein neutrales Natriumatom mit <InlineMath math="Z = 11" /> besitzt also <InlineMath math="11" /> Elektronen.
+
+Dieses vereinfachte Schalenmodell beschränkt sich auf leichte Elemente bis Calcium, also auf <InlineMath math="Z \le 20" />. Für schwerere Elemente braucht die moderne Chemie Unterschalen und Orbitale. OpenStax behandelt dieses genauere Modell in [Electronic Structure and Electron Configurations](https://openstax.org/books/chemistry-atoms-first-2e/pages/3-4-electronic-structure-of-atoms-electron-configurations).
+
+## Interaktives Elektronenschalenmodell
+
+Wähle unten ein neutrales Atom. Lies zuerst seine Ordnungszahl und verfolge dann die Elektronen von der innersten bis zur äußersten Schale.
+
+<ElectronConfigurationLab
+  title={<>Elektronenkonfigurationsmodell</>}
+  description={
+    <>
+      Wähle ein neutrales Atom und lies seine Elektronenzahl im vereinfachten
+      Schalenmodell für {" "}
+      <InlineMath math="\mathrm{K}" />{", "}
+      <InlineMath math="\mathrm{L}" />{", "}
+      <InlineMath math="\mathrm{M}" />{" und "}
+      <InlineMath math="\mathrm{N}" /> ab.
+    </>
+  }
+  labels={{
+    chooseAtom: "Neutrales Atom auswählen",
+    atomicNumber: "Ordnungszahl",
+    electronTotal: "Elektronenzahl",
+    configuration: "Konfiguration",
+    outerShell: "Äußerste Schale",
+    samples: {
+      hydrogen: {
+        name: "Wasserstoff",
+        note: <>Wasserstoff besitzt nur <InlineMath math="1" /> Elektron. Es befindet sich in der Schale <InlineMath math="\mathrm{K}" />.</>,
+      },
+      helium: {
+        name: "Helium",
+        note: <>Die Schale <InlineMath math="\mathrm{K}" /> ist mit <InlineMath math="2" /> Elektronen gefüllt.</>,
+      },
+      carbon: {
+        name: "Kohlenstoff",
+        note: <>Nachdem die Schale <InlineMath math="\mathrm{K}" /> gefüllt ist, kommen die übrigen Elektronen in die Schale <InlineMath math="\mathrm{L}" />.</>,
+      },
+      neon: {
+        name: "Neon",
+        note: <>Die Konfiguration lautet <InlineMath math="2, 8" />. Damit sind die ersten beiden Schalen gefüllt.</>,
+      },
+      sodium: {
+        name: "Natrium",
+        note: <>Nach der Belegung <InlineMath math="2, 8" /> bleibt <InlineMath math="1" /> Elektron für die nächste Schale übrig.</>,
+      },
+      magnesium: {
+        name: "Magnesium",
+        note: <>Beim neutralen Atom lautet die Konfiguration <InlineMath math="2, 8, 2" />.</>,
+      },
+      chlorine: {
+        name: "Chlor",
+        note: <>Die äußerste Schale besitzt in diesem Modell <InlineMath math="7" /> Elektronen.</>,
+      },
+      calcium: {
+        name: "Calcium",
+        note: <>Für Calcium ergibt das vereinfachte Schalenmodell <InlineMath math="2, 8, 8, 2" />.</>,
+      },
+    },
+  }}
+/>
+
+## Die Reihenfolge der Schalenbelegung lesen
+
+Im vereinfachten Schalenmodell für die ersten Elemente bis Calcium werden kernnahe Schalen zuerst besetzt. Daraus ergibt sich folgende Reihenfolge:
+
+| Schale | Höchstzahl in diesem Modell | Lesart |
+| :---- | :---------------- | :------------- |
+| <InlineMath math="\mathrm{K}" /> | <InlineMath math="2" /> | Erste Schale, dem Kern am nächsten. |
+| <InlineMath math="\mathrm{L}" /> | <InlineMath math="8" /> | Wird nach der Schale <InlineMath math="\mathrm{K}" /> gefüllt. |
+| <InlineMath math="\mathrm{M}" /> | <InlineMath math="8" /> in diesem Einstiegsmuster | Wird nach der Schale <InlineMath math="\mathrm{L}" /> gefüllt. |
+| <InlineMath math="\mathrm{N}" /> | Beginnt in diesem Muster bei <InlineMath math="Z = 19" /> bis <InlineMath math="20" /> | Nimmt die Elektronen nach der Belegung <InlineMath math="2, 8, 8" /> auf. |
+
+Wichtig: In weiterführender Chemie wird die Schale <InlineMath math="\mathrm{M}" /> genauer behandelt. Das Muster <InlineMath math="2, 8, 8, 2" /> dient hier als Einstieg für leichte Elemente, nicht als vollständige Füllregel für jedes Element.
+
+Beispiel für Natrium:
+
+<BlockMath math="\begin{aligned}
+\mathrm{Na}: Z &= 11 \\
+e^- &= 11 \\
+\text{Konfiguration} &= 2, 8, 1
+\end{aligned}" />
+
+Beispiel Chlor:
+
+<BlockMath math="\begin{aligned}
+\mathrm{Cl}: Z &= 17 \\
+e^- &= 17 \\
+\text{Konfiguration} &= 2, 8, 7
+\end{aligned}" />
+
+## Konfiguration und Spektrum verbinden
+
+Die Elektronenkonfiguration zeigt die Anordnung der Elektronen im Grundzustand, also im üblichen stabilen Energiezustand. Ein Linienspektrum entsteht, wenn ein Elektron Energie erhält und dann auf ein niedrigeres Energieniveau zurückkehrt.
+
+Die Energie des emittierten Lichts kann wie folgt geschrieben werden:
+
+<BlockMath math="E_{\text{Photon}} = E_{\text{hoch}} - E_{\text{niedrig}} = h\nu = \frac{hc}{\lambda}" />
+
+Das Symbol <InlineMath math="h" /> bezeichnet das Plancksche Wirkungsquantum, <InlineMath math="\nu" /> die Frequenz des Lichts, <InlineMath math="c" /> die Lichtgeschwindigkeit und <InlineMath math="\lambda" /> die Wellenlänge. NIST führt die exakten Werte <InlineMath math="h = 6{,}62607015 \times 10^{-34}\ \mathrm{J\,s}" /> und <InlineMath math="c = 2{,}99792458 \times 10^8\ \mathrm{m\,s^{-1}}" /> in der Liste [Fundamental Physical Constants](https://physics.nist.gov/cuu/Constants/Table/allascii.txt).
+
+Die Hauptidee reicht hier aus: Elektronen haben bestimmte Energieniveaus, Änderungen zwischen Energieniveaus erzeugen spezifisches Licht und die Anordnung der Elektronen hilft uns, das Verhalten von Atomen zu verstehen.
+
+## Elektronen aus der Ordnungszahl lesen
+
+Für eine einfache Elektronenkonfiguration hilft immer dieselbe Reihenfolge:
+
+- Zuerst klären, ob das Teilchen ein neutrales Atom oder ein Ion ist.
+- Wenn es neutral ist, entspricht die Elektronenzahl der Ordnungszahl.
+- Die Schalen im verwendeten Modell von innen nach außen füllen.
+- Die Elektronenzahl jeder Schale durch Kommas getrennt notieren.
+
+Für neutrales Magnesium:
+
+<BlockMath math="\begin{aligned}
+Z &= 12 \\
+e^- &= 12 \\
+\text{Konfiguration} &= 2, 8, 2
+\end{aligned}" />
+
+Die Elektronenkonfiguration von neutralem Magnesium ist also <InlineMath math="2, 8, 2" />. Von der Ordnungszahl auszugehen ist sicherer als der Versuch, sich direkt eine Konfigurationsliste zu merken.

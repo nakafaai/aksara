@@ -1,0 +1,160 @@
+export const metadata = {
+    title: "Escape-Sequenzen",
+    description: "Python-Escape-Sequenzen mit Backslash-Notation für Anführungszeichen, Zeilenumbrüche, Tabulatoren und Sonderzeichen in Zeichenfolgen.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-17",
+    subject: "KI-Programmierung",
+};
+
+## Einführung in Escape-Sequenzen
+
+Eine Escape-Sequenz beginnt mit einem Backslash (`\`), auf den ein oder mehrere Zeichen folgen. Python wertet diese Folge besonders aus. Dadurch kann ein Stringliteral etwa einen Zeilenumbruch oder ein Anführungszeichen enthalten, das das Literal sonst beenden würde.
+
+Der Backslash verändert also, wie Python die folgenden Zeichen liest. Er gehört zur Schreibweise im Quellcode. Der fertige String enthält dagegen das Zeichen, für das diese Schreibweise steht.
+
+## Probleme beim Schreiben von Strings
+
+### Zitatkonflikte
+
+Wird dasselbe Anführungszeichen als Begrenzung und innerhalb des Strings verwendet, beendet ein nicht maskiertes inneres Zeichen das Literal zu früh. Python liest den restlichen Text dann als ungültigen Code.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "quote_problem.py",
+      code: `# Problem: Einfaches Anführungszeichen innerhalb der Zeichenfolge
+>>> 'I'm Bob.'
+SyntaxError: invalid syntax
+
+# Lösung: Verwenden Sie doppelte Anführungszeichen für die Zeichenfolge
+>>> "I'm Bob."
+"I'm Bob."
+
+# Problem: beide Arten von Anführungszeichen im String
+>>> 'He said: "I'm Bob."'
+SyntaxError: invalid syntax`
+    }
+  ]}
+/>
+
+Im ersten Beispiel endet das Stringliteral deshalb bereits vor dem `m`. Der übrige Ausdruck ergibt keinen gültigen Python-Code.
+
+### Lösung mit Backslash
+
+Ein Backslash (`\`) vor dem inneren Anführungszeichen maskiert es. Python behandelt das Zeichen dadurch als Teil des Strings und nicht als dessen Ende.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "escape_solution.py",
+      code: `# Verwendung einer Escape-Sequenz für einfache Anführungszeichen
+>>> 'He said: "I\\'m Bob."'
+'He said: "I\\'m Bob."'
+
+# Beim Drucken wird die Escape-Sequenz interpretiert
+>>> print('He said: "I\\'m Bob."')
+He said: "I'm Bob."`
+    }
+  ]}
+/>
+
+In diesem Beispiel teilt `\'` Python mit, dass das einfache Anführungszeichen Teil des Textes und nicht die Endmarkierung der Zeichenfolge ist.
+
+### Anzeigen von Backslash-Zeichen
+
+Da der Backslash selbst die Escape-Sequenz einleitet, wird ein Backslash im fertigen String als `\\` geschrieben.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "escape_backslash.py",
+      code: `# Backslash in einem String anzeigen
+>>> print('Die Escape-Sequenz für einen Zeilenumbruch ist \\\\n.')
+Die Escape-Sequenz für einen Zeilenumbruch ist \\n.
+
+# Einen Raw-String mit dem Präfix r verwenden
+>>> text = r'Die Escape-Sequenz für einen Zeilenumbruch ist \\n.'
+>>> text
+'Die Escape-Sequenz für einen Zeilenumbruch ist \\\\n.'
+>>> print(text)
+Die Escape-Sequenz für einen Zeilenumbruch ist \\n.`
+    }
+  ]}
+/>
+
+Ein Raw-String mit einem Präfix wie `r` bewahrt die meisten Backslashes, statt sie als Escape-Sequenzen auszuwerten. Anführungszeichen müssen trotzdem zu den Begrenzern des Literals passen. Außerdem kann ein Raw-String nicht mit einer ungeraden Anzahl von Backslashes enden.
+
+## Escape-Sequenz-Referenz
+
+Hier sind Escape-Sequenzen, die häufig in der Programmierung verwendet werden:
+
+| Escape-Sequenz | Bedeutung |
+|---|---|
+| `\'` | Einfaches Anführungszeichen (') |
+| `\"` | Doppeltes Anführungszeichen (") |
+| `\n` | Neue Zeile (newline) |
+| `\r` | Wagenrücklauf |
+| `\t` | Horizontaler Tabulator |
+| `\b` | Rücktaste |
+| `\\` | Backslash-Zeichen (\) |
+| `\uxxxx` | Unicode-Zeichen mit vierstelliger hexadezimaler Codepoint-Angabe |
+| `\Uxxxxxxxx` | Unicode-Zeichen mit achtstelliger hexadezimaler Codepoint-Angabe |
+| `\N{name}` | Unicode-Zeichen anhand seines registrierten Namens |
+| `\xhh` | Zeichen mit zweistelligem Hexadezimalwert |
+
+Jede Escape-Sequenz hat eine bestimmte Funktion zur Steuerung der Anzeige oder des Formats von Text in Programmen.
+
+### Geschweifte Klammern in Format-Strings maskieren
+
+In `str.format()` und f-Strings begrenzen geschweifte Klammern die Ersetzungsfelder. Doppelte Klammern maskieren sie für die Formatierungssyntax. Dieser Mechanismus ist von den Backslash-Escape-Sequenzen in Stringliteralen zu unterscheiden.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "escape_braces.py",
+      code: `# Maskierte geschweifte Klammern in einem Format-String: {{ }}
+>>> '{{}}'.format('text')
+'{}'
+
+# Text mit geschweiften Klammern anzeigen
+>>> '{{{}}}'.format('text')
+'{text}'`
+    }
+  ]}
+/>
+
+`{{` ergibt eine öffnende und `}}` eine schließende geschweifte Klammer. In `'{{{}}}'` werden die äußeren Klammerpaare zu wörtlichen Zeichen, während das mittlere `{}` ein Ersetzungsfeld bleibt.
+
+## Praktische Umsetzung
+
+Im folgenden Beispiel steuern Escape-Sequenzen Abstände, Zeilenumbrüche und wörtliche Backslashes.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_example.py",
+      code: `# Erstellen einer formatierten Ausgabe mit Tabulator und Zeilenumbruch
+print("Name\\t: John Doe")
+print("Alter\\t: 25 Jahre")
+print("Adresse\\t: Jakarta\\n")
+
+# Dialog mit Anführungszeichen anzeigen
+print('Er sagte: „Heute ist schönes Wetter!“')
+
+# Dateipfad mit Backslash anzeigen
+print("Datei gespeichert unter: C:\\\\Users\\\\Documents\\\\data.txt")
+
+# Kombination verschiedener Escape-Sequenzen
+print("Erste Zeile\\nZweite Zeile\\t(mit Tabulator)\\nDritte Zeile")`
+    }
+  ]}
+/>
+
+In diesem Beispiel erstellt `\t` übersichtliche Spalten, `\n` trennt Zeilen und `\\` zeigt Windows-Dateipfade korrekt an.
+
+Entscheidend ist der Unterschied zwischen der Schreibweise im Quellcode und dem fertigen String. `\n` besteht im Quellcode beispielsweise aus zwei Zeichen, steht im String aber für genau einen Zeilenumbruch.

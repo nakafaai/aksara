@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Dilatasi Horizontal",
-  description: "Pahami dilatasi horizontal pada fungsi dengan contoh jelas. Pelajari cara meregangkan atau menekan grafik horizontal dan terapkan pada berbagai fungsi.",
+  description: "Pahami bagaimana pengali masukan pada fungsi menentukan skala horizontal, lalu terapkan aturannya pada grafik, domain, dan contoh terbahas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-05-26",
   subject: "Transformasi Fungsi",
@@ -10,31 +10,36 @@ export const metadata = {
 
 ## Konsep Dasar Dilatasi Horizontal
 
-Dilatasi horizontal adalah transformasi geometri yang mengubah ukuran grafik fungsi secara horizontal, seperti menarik atau menekan karet gelang ke kiri dan ke kanan. Bayangkan memegang foto dengan kedua tangan di sisi kiri dan kanan, lalu meregangkan atau menekannya secara horizontal tanpa mengubah tinggi foto tersebut.
+Dilatasi horizontal mengubah lebar grafik fungsi tanpa mengubah tingginya. Bayangkan sebuah foto ditarik dari tepi kiri dan kanan atau ditekan ke arah tengah.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(kx)" /> dimana <InlineMath math="k" /> adalah faktor skala yang menentukan seberapa besar perubahan ukuran horizontal.
+Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(kx)" />. Di sini, <InlineMath math="k \ne 0" /> adalah pengali masukan. Besar skala horizontal yang sebenarnya adalah <InlineMath math="s = \frac{1}{|k|}" />.
 
 ### Aturan Dilatasi Horizontal
 
-Untuk setiap fungsi <InlineMath math="f(x)" />, dilatasi horizontal didefinisikan sebagai:
+Untuk setiap fungsi <InlineMath math="f(x)" /> dan pengali masukan tak nol <InlineMath math="k" />, dilatasi horizontal didefinisikan sebagai:
 
-<BlockMath math="g(x) = f(kx)" />
+<MathContainer>
+  <BlockMath math="g(x) = f(kx)" />
+  <BlockMath math="s = \frac{1}{|k|}" />
+</MathContainer>
 
-Dimana <InlineMath math="k" /> adalah faktor skala yang mempengaruhi transformasi:
-- Jika <InlineMath math="k > 1" />, grafik ditekan secara horizontal (diperkecil)
-- Jika <InlineMath math="0 < k < 1" />, grafik diregangkan secara horizontal (diperbesar)
+Pengali masukan <InlineMath math="k" /> menentukan transformasi:
+- Jika <InlineMath math="k > 1" />, lebar grafik menjadi <InlineMath math="\frac{1}{k}" /> dari lebar semula
+- Jika <InlineMath math="0 < k < 1" />, lebar grafik menjadi <InlineMath math="\frac{1}{k}" /> kali lebar semula
 - Jika <InlineMath math="k = 1" />, grafik tidak berubah
-- Jika <InlineMath math="k < 0" />, grafik mengalami refleksi sekaligus dilatasi
+- Jika <InlineMath math="k < 0" />, grafik juga dicerminkan terhadap sumbu <InlineMath math="y" />
 
-Perhatikan bahwa efek dilatasi horizontal berlawanan dengan intuisi: faktor skala yang lebih besar justru menekan grafik.
+Nilai <InlineMath math="k = 0" /> tidak termasuk: <InlineMath math="f(0x) = f(0)" /> menjadi konstan jika nilainya terdefinisi, sehingga grafiknya runtuh dan bukan mengalami penskalaan horizontal.
+
+Hubungan kebalikan ini penting: pengali masukan yang lebih besar membuat grafik lebih sempit, sedangkan skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />.
 
 ## Visualisasi Dilatasi Horizontal
 
-Mari kita lihat bagaimana dilatasi horizontal bekerja pada fungsi kuadrat <InlineMath math="f(x) = x^2" /> dengan berbagai faktor skala.
+Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan hubungan kebalikan tersebut untuk beberapa pengali masukan.
 
 <LineEquation
   title={<>Dilatasi Horizontal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
-  description="Perhatikan bagaimana grafik ditekan atau diregangkan secara horizontal dengan faktor skala yang berbeda."
+  description="Bandingkan perubahan lebar grafik akibat beberapa pengali masukan."
   showZAxis={false}
   data={[
     {
@@ -61,25 +66,25 @@ Mari kita lihat bagaimana dilatasi horizontal bekerja pada fungsi kuadrat <Inlin
         return { x, y: (0.5 * x) * (0.5 * x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=(0.5x)^2" />, offset: [4, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=(0{,}5x)^2" />, offset: [4, 1, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-Dari visualisasi di atas, kita dapat mengamati:
+Grafik tersebut menunjukkan:
 - Fungsi asli <InlineMath math="f(x) = x^2" /> sebagai referensi
-- Fungsi <InlineMath math="g(x) = (2x)^2" /> ditekan horizontal dengan faktor <InlineMath math="2" />
-- Fungsi <InlineMath math="h(x) = (0.5x)^2" /> diregangkan horizontal dengan faktor <InlineMath math="0.5" />
+- Fungsi <InlineMath math="g(x) = (2x)^2" /> memakai pengali masukan <InlineMath math="2" />, sehingga skala horizontalnya <InlineMath math="\frac{1}{2}" />
+- Fungsi <InlineMath math="h(x) = (0{,}5x)^2" /> memakai pengali masukan <InlineMath math="0{,}5" />, sehingga skala horizontalnya <InlineMath math="2" />
 - Semua grafik memiliki titik puncak yang sama di <InlineMath math="(0, 0)" />
 
 ## Dilatasi Horizontal pada Fungsi Linear
 
-Sekarang mari kita terapkan konsep yang sama pada fungsi linear <InlineMath math="f(x) = x + 2" />.
+Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
 
 <LineEquation
   title={<>Dilatasi Horizontal Fungsi Linear <InlineMath math="f(x) = x + 2" /></>}
-  description="Garis hasil dilatasi memiliki kemiringan yang berubah sesuai faktor skala."
+  description={<>Pengali masukan mengubah gradien, tetapi mempertahankan titik potong sumbu <InlineMath math="y" />.</>}
   showZAxis={false}
   data={[
     {
@@ -106,16 +111,16 @@ Sekarang mari kita terapkan konsep yang sama pada fungsi linear <InlineMath math
         return { x, y: (0.5 * x) + 2, z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0.5x+2" />, offset: [3, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=0{,}5x+2" />, offset: [3, -0.5, 0] }],
       showPoints: false,
     },
   ]}
 />
 
-Perhatikan bahwa:
+Ketiga garis menunjukkan:
 - Fungsi asli <InlineMath math="f(x) = x + 2" /> memiliki kemiringan <InlineMath math="1" />
 - Fungsi <InlineMath math="g(x) = f(2x) = 2x + 2" /> memiliki kemiringan <InlineMath math="2" /> (ditekan horizontal)
-- Fungsi <InlineMath math="h(x) = f(0.5x) = 0.5x + 2" /> memiliki kemiringan <InlineMath math="0.5" /> (diregangkan horizontal)
+- Fungsi <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> memiliki kemiringan <InlineMath math="0{,}5" /> (diregangkan horizontal)
 - Semua garis memotong sumbu <InlineMath math="y" /> di titik yang sama <InlineMath math="(0, 2)" />
 
 ## Sifat Penting Dilatasi Horizontal
@@ -126,25 +131,25 @@ Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x
 
 ### Domain dan Range
 
-- **Domain**: Berubah sesuai dengan faktor skala <InlineMath math="k" />
+- **Domain**: Koordinat horizontalnya dibagi dengan pengali masukan <InlineMath math="k" />
 - **Range**: Tidak berubah setelah dilatasi horizontal
 
-Jika domain fungsi asli adalah <InlineMath math="[c, d]" />, maka domain setelah dilatasi horizontal dengan faktor <InlineMath math="k > 0" /> menjadi <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
+Jika domain fungsi asli adalah <InlineMath math="[c, d]" />, maka domain setelah dilatasi horizontal dengan pengali masukan <InlineMath math="k > 0" /> menjadi <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
 
 ### Titik Potong Sumbu
 
-- **Titik potong sumbu <InlineMath math="x" />**: Berubah sesuai faktor skala
+- **Titik potong sumbu <InlineMath math="x" />**: Koordinatnya dibagi dengan pengali masukan
 - **Titik potong sumbu <InlineMath math="y" />**: Tidak berubah
 
 ## Contoh Penerapan
 
 ### Fungsi Eksponensial
 
-Mari kita lihat dilatasi horizontal pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />.
+Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, pengali masukan mengubah seberapa cepat grafik naik.
 
 <LineEquation
   title={<>Dilatasi Horizontal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
-  description="Kurva eksponensial mengalami perubahan lebar sesuai faktor skala."
+  description="Pengali masukan mengubah seberapa cepat kurva eksponensial naik."
   showZAxis={false}
   cameraPosition={[8, 6, 8]}
   data={[
@@ -172,15 +177,15 @@ Mari kita lihat dilatasi horizontal pada fungsi eksponensial <InlineMath math="f
 Pada fungsi eksponensial:
 - Asimtot horizontal tetap di <InlineMath math="y = 0" /> untuk kedua fungsi
 - Titik potong dengan sumbu <InlineMath math="y" /> tetap sama di <InlineMath math="(0, 1)" />
-- Laju pertumbuhan fungsi berubah sesuai faktor skala
+- Laju pertumbuhan fungsi berubah sesuai pengali masukan
 
-## Dilatasi Horizontal dengan Faktor Negatif
+## Dilatasi Horizontal dengan Pengali Masukan Negatif
 
-Mari kita lihat apa yang terjadi ketika faktor skala bernilai negatif.
+Pengali masukan negatif menggabungkan penskalaan horizontal dengan pencerminan.
 
 <LineEquation
-  title={<>Dilatasi Horizontal dengan Faktor Negatif <InlineMath math="f(x) = x^2 + 1" /></>}
-  description="Faktor skala negatif menyebabkan refleksi sekaligus dilatasi."
+  title={<>Dilatasi Horizontal dengan Pengali Masukan Negatif pada <InlineMath math="f(x) = x^2 + 1" /></>}
+  description="Nilai absolutnya menentukan skala horizontal, sedangkan tandanya menyebabkan refleksi."
   showZAxis={false}
   cameraPosition={[10, 6, 10]}
   data={[
@@ -205,31 +210,31 @@ Mari kita lihat apa yang terjadi ketika faktor skala bernilai negatif.
   ]}
 />
 
-Ketika faktor skala negatif:
+Ketika pengali masukan negatif:
 - Grafik mengalami refleksi terhadap sumbu <InlineMath math="y" />
-- Sekaligus mengalami dilatasi sesuai nilai absolut faktor skala
+- Besar skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />
 - Bentuk grafik tetap sama karena fungsi kuadrat simetris
 
 ## Latihan
 
-1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 2x + 1" />. Tentukan persamaan fungsi hasil dilatasi horizontal dengan faktor skala <InlineMath math="3" />.
+1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 2x + 1" />. Tentukan persamaan fungsi yang dihasilkan oleh pengali masukan <InlineMath math="3" />.
 
-2. Jika grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi horizontal dengan faktor <InlineMath math="\frac{1}{2}" />, tentukan:
+2. Jika grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi horizontal dengan pengali masukan <InlineMath math="\frac{1}{2}" />, tentukan:
    - Persamaan fungsi hasil dilatasi
    - Domain fungsi setelah dilatasi
 
-3. Fungsi <InlineMath math="h(x) = |x - 2|" /> mengalami dilatasi horizontal dengan faktor <InlineMath math="-1" />. Tentukan titik puncak dari fungsi hasil dilatasi.
+3. Fungsi <InlineMath math="h(x) = |x - 2|" /> mengalami dilatasi horizontal dengan pengali masukan <InlineMath math="-1" />. Tentukan titik puncak fungsi hasilnya.
 
 ### Kunci Jawaban
 
-1. Dilatasi horizontal dengan faktor <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
+1. Dilatasi horizontal dengan pengali masukan <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
 
    <LineEquation
      title={<>Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /> dan Hasil Dilatasinya</>}
      description={
        <>
-         Parabola asli ditekan horizontal dengan faktor <InlineMath math="3" />{" "}
-         menghasilkan parabola yang lebih sempit.
+         Pengali masukan <InlineMath math="3" /> menghasilkan skala horizontal{" "}
+         <InlineMath math="\frac{1}{3}" />, sehingga parabola menjadi lebih sempit.
        </>
      }
      showZAxis={false}
@@ -259,7 +264,7 @@ Ketika faktor skala negatif:
 2. Persamaan fungsi hasil dilatasi:
 
    - Dilatasi horizontal: <InlineMath math="g'(x) = g(\frac{1}{2}x) = \sqrt{\frac{1}{2}x} = \sqrt{\frac{x}{2}}" />
-   - Domain setelah dilatasi: <InlineMath math="[0, \infty)" /> menjadi <InlineMath math="[0, \infty)" /> (tidak berubah karena faktor skala positif)
+   - Domain setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" /> karena pengali masukannya positif
 
    Visualisasi:
 
@@ -267,8 +272,8 @@ Ketika faktor skala negatif:
      title={<>Fungsi <InlineMath math="g(x) = \sqrt{x}" /> dan Hasil Dilatasinya</>}
      description={
        <>
-         Kurva akar kuadrat diregangkan horizontal dengan faktor{" "}
-         <InlineMath math="0{,}5" /> menghasilkan kurva yang lebih lebar.
+         Pengali masukan <InlineMath math="0{,}5" /> menghasilkan skala horizontal{" "}
+         <InlineMath math="2" />, sehingga kurva akar kuadrat menjadi dua kali lebih lebar.
        </>
      }
      showZAxis={false}
@@ -295,11 +300,11 @@ Ketika faktor skala negatif:
    />
 
 3. Fungsi asli <InlineMath math="h(x) = |x - 2|" /> memiliki titik puncak di <InlineMath math="(2, 0)" />.
-   Setelah dilatasi horizontal dengan faktor <InlineMath math="-1" />: <InlineMath math="h'(x) = |-x - 2| = |-(x + 2)| = |x + 2|" />, titik puncak menjadi <InlineMath math="(-2, 0)" />.
+   Setelah dilatasi horizontal dengan pengali masukan <InlineMath math="-1" />: <InlineMath math="h'(x) = |-x - 2| = |-(x + 2)| = |x + 2|" />, titik puncaknya menjadi <InlineMath math="(-2, 0)" />.
 
    <LineEquation
      title={<>Fungsi <InlineMath math="h(x) = |x - 2|" /> dan Hasil Dilatasinya</>}
-     description={<>Fungsi nilai mutlak mengalami refleksi dan dilatasi dengan faktor <InlineMath math="-1" />.</>}
+     description={<>Pengali masukan <InlineMath math="-1" /> mencerminkan fungsi nilai mutlak terhadap sumbu <InlineMath math="y" /> tanpa mengubah skala horizontalnya.</>}
      showZAxis={false}
      cameraPosition={[10, 6, 10]}
      data={[

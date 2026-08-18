@@ -6,30 +6,33 @@ export const metadata = {
 
 Let <InlineMath math="A" /> be the event that the number of green balls drawn is twice the number of white balls drawn.
 
-**Given:**
-
-There are <InlineMath math="9" /> balls in a box (<InlineMath math="1 \text{ red} + 6 \text{ green} + 2 \text{ white} = 9" />).
-<InlineMath math="7" /> balls will be drawn at random. The total number of ways to draw the balls is:
+There are <InlineMath math="9" /> balls in the box:
 
 <MathContainer>
-  <BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = \frac{9 \times 8}{2 \times 1} = 36" />
+  <BlockMath math="1 \text{ red} + 6 \text{ green} + 2 \text{ white} = 9" />
 </MathContainer>
 
-We want to find the probability that the number of green balls is twice the number of white balls. We divide this into two cases.
+Because <InlineMath math="7" /> balls are drawn simultaneously, every unordered selection of seven balls is equally likely. The number of possible selections is:
 
-**Case** <InlineMath math="1" />
+<MathContainer>
+  <BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = 36" />
+</MathContainer>
 
-If <InlineMath math="1" /> white ball is drawn, then there must be <InlineMath math="2" /> green balls (since green is <InlineMath math="2 \text{ times }" /> white).
-To reach a total of <InlineMath math="7" /> balls drawn, the remaining balls to be drawn must be <InlineMath math="7 - 1 - 2 = 4" /> balls. These must be red balls.
-However, there is only <InlineMath math="1" /> red ball available. Therefore, **Case <InlineMath math="1" /> is impossible**.
+Let <InlineMath math="w" />, <InlineMath math="g" />, and <InlineMath math="r" /> denote the numbers of white, green, and red balls drawn. The condition is <InlineMath math="g=2w" />, while <InlineMath math="r+g+w=7" />. Since at most two white balls are available, we check <InlineMath math="w=0" />, <InlineMath math="w=1" />, and <InlineMath math="w=2" />.
 
-**Case <InlineMath math="2" />**
+#### Case <InlineMath math="w=0" />
 
-If <InlineMath math="2" /> white balls are drawn, then there must be <InlineMath math="4" /> green balls.
-To reach a total of <InlineMath math="7" /> balls drawn, the remaining balls to be drawn must be <InlineMath math="7 - 2 - 4 = 1" /> ball. This must be a red ball.
-This case is possible because there are <InlineMath math="2" /> white balls, <InlineMath math="6" /> green balls, and <InlineMath math="1" /> red ball available.
+Then <InlineMath math="g=0" /> and <InlineMath math="r=7" />. This is impossible because only <InlineMath math="1" /> red ball is available.
 
-The number of ways to draw for this case is:
+#### Case <InlineMath math="w=1" />
+
+Then <InlineMath math="g=2" /> and <InlineMath math="r=7-1-2=4" />. This is also impossible because only <InlineMath math="1" /> red ball is available.
+
+#### Case <InlineMath math="w=2" />
+
+Then <InlineMath math="g=4" /> and <InlineMath math="r=7-2-4=1" />. This case is possible within the available numbers of each color.
+
+The number of favorable selections is:
 
 <MathContainer>
   <BlockMath math="n(A) = C^2_2 \cdot C^6_4 \cdot C^1_1" />
@@ -37,12 +40,10 @@ The number of ways to draw for this case is:
   <BlockMath math="= 15" />
 </MathContainer>
 
-**Conclusion**
-
-Thus, the probability of event <InlineMath math="A" /> is:
+Therefore:
 
 <MathContainer>
   <BlockMath math="P(A) = \frac{n(A)}{n(S)} = \frac{15}{36} = \frac{5}{12}" />
 </MathContainer>
 
-Therefore, the probability that the number of green balls drawn is twice the number of white balls drawn is <InlineMath math="\frac{5}{12}" />.
+The required probability is <InlineMath math="\frac{5}{12}" />.

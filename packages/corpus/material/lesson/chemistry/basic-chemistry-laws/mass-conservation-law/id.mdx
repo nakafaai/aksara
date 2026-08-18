@@ -27,11 +27,11 @@ Science History Institute merangkum peran Lavoisier sebagai ilmuwan yang menetap
 Pilih sistem tertutup dan terbuka. Perhatikan bahwa hukum yang benar selalu menghitung semua zat, bukan hanya bagian yang masih terlihat di wadah.
 
 <MassConservationLab
-  title={<>Neraca Sistem Tertutup</>}
+  title={<>Neraca Sistem</>}
   description={
     <>
-      Bandingkan apa yang dibaca neraca saat semua zat tetap di wadah dan saat
-      sebagian zat keluar dari batas sistem.
+      Bandingkan pembacaan neraca saat seluruh belerang tetap di wadah dengan
+      saat satu bagian model melewati batas sebelum bereaksi.
     </>
   }
   labels={{
@@ -50,8 +50,8 @@ Pilih sistem tertutup dan terbuka. Perhatikan bahwa hukum yang benar selalu meng
             bagian yang ditimbang.
           </>
         ),
-        readoutBefore: <InlineMath math="12{,}00\\,\\mathrm{g}" />,
-        readoutAfter: <InlineMath math="12{,}00\\,\\mathrm{g}" />,
+        readoutBefore: <InlineMath math="12{,}00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="12{,}00\,\mathrm{g}" />,
         system: <>Wadah, produk, dan sisa reaktan dihitung sebagai satu sistem.</>,
         calculation: (
           <>
@@ -64,17 +64,18 @@ Pilih sistem tertutup dan terbuka. Perhatikan bahwa hukum yang benar selalu meng
         tab: "Terbuka",
         helperCaption: (
           <>
-            Dalam sistem terbuka, gas yang keluar membuat massa bagian yang
-            ditimbang tampak berkurang.
+            Dalam model terbuka, uap belerang melewati batas, sehingga neraca
+            tidak lagi menimbang seluruh sistem awal.
           </>
         ),
-        readoutBefore: <InlineMath math="12{,}00\\,\\mathrm{g}" />,
-        readoutAfter: <InlineMath math="<12{,}00\\,\\mathrm{g}" />,
-        system: <>Hukum tetap berlaku jika gas yang keluar juga ikut dihitung.</>,
+        readoutBefore: <InlineMath math="12{,}00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="11{,}00\,\mathrm{g}" />,
+        system: <>Wadah yang ditimbang adalah volume kendali terbuka. Sistem yang diperluas juga mencakup belerang yang keluar.</>,
         calculation: (
           <>
-            Massa terbaca turun karena batas sistemnya salah, bukan karena massa
-            hilang.
+            <InlineMath math="12{,}00 - 1{,}00 = 11{,}00\ \mathrm{g}" /> tetap
+            berada di neraca, sedangkan <InlineMath math="11{,}00 + 1{,}00 = 12{,}00\ \mathrm{g}" />
+            jika belerang yang keluar ikut dihitung.
           </>
         ),
       },
@@ -82,13 +83,28 @@ Pilih sistem tertutup dan terbuka. Perhatikan bahwa hukum yang benar selalu meng
   }}
 />
 
+## Yang Dihitung pada Tampilan Terbuka
+
+Tampilan terbuka dimulai dengan <InlineMath math="10{,}00\ \mathrm{g}" /> seng dan <InlineMath math="2{,}00\ \mathrm{g}" /> belerang yang sama. Model kemudian memperlihatkan <InlineMath math="1{,}00\ \mathrm{g}" /> belerang melewati batas sebagai uap sebelum bereaksi. Dengan [bobot atom standar ringkas CIAAW 2024](https://www.ciaaw.org/abridged-atomic-weights.htm), yaitu <InlineMath math="A_r(\mathrm{Zn})=65{,}38" /> dan <InlineMath math="A_r(\mathrm{S})=32{,}06" />, belerang yang tersisa bereaksi dengan sekitar <InlineMath math="2{,}04\ \mathrm{g}" /> seng.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{ZnS}} &\approx 2{,}04 + 1{,}00 = 3{,}04\ \mathrm{g} \\
+m_{\mathrm{Zn\ tersisa}} &\approx 10{,}00 - 2{,}04 = 7{,}96\ \mathrm{g} \\
+m_{\mathrm{di\ neraca}} &\approx 3{,}04 + 7{,}96 = 11{,}00\ \mathrm{g} \\
+m_{\mathrm{sistem\ diperluas}} &= 11{,}00 + 1{,}00 = 12{,}00\ \mathrm{g}
+\end{aligned}" />
+
+Pembacaan neraca berubah karena materi melintasi batas yang dipilih. Batas itu tidak salah dan hukumnya tidak gagal. Kita hanya perlu menyatakan dengan jelas sistem mana yang dijelaskan oleh angka tersebut.
+
 ## Contoh Seng dan Belerang
 
 Seorang siswa memanaskan <InlineMath math="10{,}00\ \mathrm{g}" /> seng dengan <InlineMath math="2{,}00\ \mathrm{g}" /> belerang. Setelah reaksi, terbentuk <InlineMath math="6{,}08\ \mathrm{g}" /> seng sulfida dan masih ada <InlineMath math="5{,}92\ \mathrm{g}" /> seng yang tidak bereaksi.
 
-Persamaan sederhananya:
+Notasi singkat stoikiometri pada tingkat partikel adalah:
 
 <BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
+
+Notasi ini melacak satu atom seng untuk setiap atom belerang yang masuk ke seng sulfida. Ini adalah model komposisi untuk perhitungan, bukan pernyataan bahwa belerang unsur dalam jumlah besar tersusun dari atom-atom terpisah.
 
 Produk tidak harus sama dengan jumlah semua zat awal kalau ada reaktan yang tersisa. Hitung dulu seng yang benar-benar bereaksi.
 

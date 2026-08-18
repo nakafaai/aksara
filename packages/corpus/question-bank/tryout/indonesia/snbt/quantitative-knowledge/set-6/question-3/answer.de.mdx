@@ -1,0 +1,41 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 3",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-12-23",
+};
+
+Wir verwenden <InlineMath math="B" /> für einen Jungen und <InlineMath math="G" /> für ein Mädchen. Nach den Annahmen aus der Aufgabe sind alle geordneten Geburtsfolgen gleich wahrscheinlich.
+
+Bevor wir die Bedingung berücksichtigen, enthält der Ergebnisraum <InlineMath math="2^3 = 8" /> Möglichkeiten:
+
+<MathContainer>
+  <BlockMath math="S_{\text{alle}} = \{BBB, BBG, BGB, BGG, GBB, GBG, GGB, GGG\}" />
+</MathContainer>
+
+Mindestens ein Kind ist ein Mädchen. Deshalb entfällt aus dem bedingten Ergebnisraum nur der Fall „alle Kinder sind Jungen“ (<InlineMath math="BBB" />).
+
+Der bedingte Ergebnisraum <InlineMath math="S" /> besteht somit aus allen Möglichkeiten außer <InlineMath math="BBB" />:
+
+<MathContainer>
+  <BlockMath math="S = \{BBG, BGB, BGG, GBB, GBG, GGB, GGG\}" />
+</MathContainer>
+
+Er enthält <InlineMath math="n(S) = 7" /> gleich wahrscheinliche Ergebnisse.
+
+Das gesuchte Ereignis <InlineMath math="A" /> besteht aus genau <InlineMath math="2" /> Mädchen und <InlineMath math="1" /> Jungen.
+
+Im Ergebnisraum <InlineMath math="S" /> erfüllen die folgenden Ergebnisse diese Bedingung:
+
+<MathContainer>
+  <BlockMath math="A = \{BGG, GBG, GGB\}" />
+</MathContainer>
+
+Es gibt <InlineMath math="n(A) = 3" /> günstige Ergebnisse.
+
+Da die <InlineMath math="7" /> Ergebnisse gleich wahrscheinlich sind, beträgt die gesuchte Wahrscheinlichkeit:
+
+<MathContainer>
+  <BlockMath math="P(A) = \frac{n(A)}{n(S)} = \frac{3}{7}" />
+</MathContainer>
+
+Daher beträgt die Wahrscheinlichkeit, dass die Familie <InlineMath math="2" /> Mädchen und <InlineMath math="1" /> Jungen hat, <InlineMath math="\frac{3}{7}" />.

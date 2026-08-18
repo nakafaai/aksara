@@ -46,15 +46,15 @@ This process applies to all combinations of rows and columns that are removed.
 
 ## Cofactor Expansion
 
-The most common method for calculating determinants is cofactor expansion. For matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> with <InlineMath math="n > 1" />, the determinant can be calculated using the formula:
+The most common direct method for calculating determinants is cofactor expansion. We may expand along any fixed row <InlineMath math="i" />:
 
-<MathContainer>
-<BlockMath math="\det A = \sum_{i=1}^{n} (-1)^{i+j} \cdot a_{ij} \cdot \det A_{ij}" />
-</MathContainer>
+<BlockMath math="\det A = \sum_{j=1}^{n} (-1)^{i+j} a_{ij}\det A_{ij}" />
 
-for a fixed and freely chosen column <InlineMath math="j" />.
+Alternatively, we may expand along any fixed column <InlineMath math="j" />:
 
-In this formula, the term <InlineMath math="(-1)^{i+j} \cdot \det A_{ij}" /> is called the **cofactor** of element <InlineMath math="a_{ij}" />. The sign <InlineMath math="(-1)^{i+j}" /> provides a checkerboard pattern to determine positive or negative signs.
+<BlockMath math="\det A = \sum_{i=1}^{n} (-1)^{i+j} a_{ij}\det A_{ij}" />
+
+The term <InlineMath math="(-1)^{i+j}\det A_{ij}" /> is the **cofactor** of <InlineMath math="a_{ij}" />. The factor <InlineMath math="(-1)^{i+j}" /> creates the alternating checkerboard pattern of signs. Choosing a row or column with many zeros reduces the number of minors we need to evaluate.
 
 ### Example of Third-Order Cofactor Expansion
 
@@ -125,25 +125,25 @@ Its determinant is:
 
 Elementary matrices are matrices obtained from the identity matrix with one elementary row operation. The determinants of elementary matrices have values that are easy to calculate:
 
-1. **Scalar matrix** <InlineMath math="S_i(\lambda)" /> that multiplies row i by <InlineMath math="\lambda" />:
+1. **Row-scaling matrix** <InlineMath math="S_i(\lambda)" />, with <InlineMath math="\lambda \neq 0" />, that multiplies row <InlineMath math="i" /> by <InlineMath math="\lambda" />:
 
     <BlockMath math="\det S_i(\lambda) = \lambda" />
 
-2. **Permutation matrix** <InlineMath math="Q_i^j(\lambda)" /> that swaps row i and j:
+2. **Row-swap matrix** <InlineMath math="Q_i^j" /> that swaps rows <InlineMath math="i" /> and <InlineMath math="j" />:
 
-    <BlockMath math="\det Q_i^j(\lambda) = 1" />
+    <BlockMath math="\det Q_i^j = -1" />
 
-3. **Transvection matrix** <InlineMath math="P_i^j" /> that adds a multiple of row <InlineMath math="j" /> to row <InlineMath math="i" />:
+3. **Transvection matrix** <InlineMath math="P_i^j(\lambda)" /> that performs <InlineMath math="R_i \leftarrow R_i + \lambda R_j" />:
 
-    <BlockMath math="\det P_i^j = -1" />
+    <BlockMath math="\det P_i^j(\lambda) = 1" />
 
-Note that permutation matrices have determinant <InlineMath math="1" />, not <InlineMath math="-1" /> as often mistaken. The negative sign appears when we **perform** row swap operations on other matrices.
+A single row swap changes the sign of the determinant, while adding a multiple of one row to another leaves the determinant unchanged.
 
 ## Gaussian Elimination for Determinant Calculation
 
-One of the most efficient methods for calculating determinants is using Gaussian elimination. The process is to transform the matrix into upper triangular form, then multiply the diagonal elements.
+One of the most efficient methods for a dense matrix is Gaussian elimination, or equivalently an LU factorization. We transform the matrix into upper triangular form and then multiply the diagonal elements.
 
-When matrix <InlineMath math="A" /> is transformed into upper triangular form <InlineMath math="R" /> through Gaussian elimination, we need to count how many row swaps are performed. If there are <InlineMath math="p" /> row swaps, then:
+Suppose we use only row additions and row swaps to transform <InlineMath math="A" /> into an upper triangular matrix <InlineMath math="R" />. If there are <InlineMath math="p" /> row swaps, then:
 
 <BlockMath math="\det A = (-1)^p \cdot \det R" />
 
@@ -157,11 +157,13 @@ Therefore:
 <BlockMath math="\det A = (-1)^p \cdot r_{11} \cdot r_{22} \cdot \ldots \cdot r_{nn}" />
 </MathContainer>
 
+If an algorithm scales a row during elimination, that scale factor must also be recorded and removed from the final product. In numerical computation, partial pivoting is normally used to avoid a zero pivot and reduce the effect of roundoff errors.
+
 ### Method Efficiency
 
-Gaussian elimination has time complexity <InlineMath math="O(\frac{1}{3}n^3)" />, which is much more efficient compared to cofactor expansion which has complexity <InlineMath math="O(n!)" />.
+For a dense <InlineMath math="n \times n" /> matrix, the elimination or LU factorization requires about <InlineMath math="\frac{2}{3}n^3 + O(n^2)" /> floating-point operations. Multiplying the resulting diagonal entries requires only <InlineMath math="O(n)" /> additional work. A naive recursive cofactor expansion can grow like <InlineMath math="O(n!)" />.
 
-For large unstructured matrices, Gaussian elimination is the most practical and reliable method.
+For large unstructured matrices, elimination with pivoting is therefore much more practical than recursive cofactor expansion.
 
 ## Complete Calculation Example
 
@@ -169,15 +171,15 @@ Let's look at an example of determinant calculation using Gaussian elimination:
 
 <BlockMath math="A = \begin{pmatrix} 0 & 3 & 3 \\ 2 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}" />
 
-**Step** <InlineMath math="1" />: Swap rows <InlineMath math="1" /> and <InlineMath math="3" /> to get a non-zero pivot:
+**Step <InlineMath math="1" />:** Swap rows <InlineMath math="1" /> and <InlineMath math="3" /> to get a nonzero pivot:
 
 <BlockMath math="\begin{pmatrix} 1 & 0 & 1 \\ 2 & 2 & 0 \\ 0 & 3 & 3 \end{pmatrix}" />
 
-**Step <InlineMath math="2" />**: Eliminate the first column by subtracting <InlineMath math="2" /> times row <InlineMath math="1" /> from row <InlineMath math="2" />:
+**Step <InlineMath math="2" />:** Eliminate the first column by subtracting <InlineMath math="2" /> times row <InlineMath math="1" /> from row <InlineMath math="2" />:
 
 <BlockMath math="\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & -2 \\ 0 & 3 & 3 \end{pmatrix}" />
 
-**Step <InlineMath math="3" />**: Eliminate the second column by subtracting <InlineMath math="1.5" /> times row <InlineMath math="2" /> from row <InlineMath math="3" />:
+**Step <InlineMath math="3" />:** Eliminate the second column by subtracting <InlineMath math="1.5" /> times row <InlineMath math="2" /> from row <InlineMath math="3" />:
 
 <BlockMath math="\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & -2 \\ 0 & 0 & 6 \end{pmatrix} = R" />
 

@@ -1,7 +1,7 @@
 
 export const metadata = {
   title: "Vector Types",
-  description: "Learn zero, negative, and equivalent vectors, including their magnitude, direction, properties, and example exercises.",
+  description: "Compare magnitudes and directions, then study opposite, zero, and equivalent vectors through diagrams and a worked exercise.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   date: "2025-04-08",
   subject: "Vector Operations",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Vector Magnitude and Direction
 
-Every vector has two main components: **magnitude (length)** and **direction**.
+Every nonzero vector has two defining features: **magnitude** and **direction**. The zero vector is the special case discussed later.
 
 Consider the example vector <InlineMath math="\overrightarrow{CD}" /> below.
 
@@ -37,14 +37,14 @@ Consider the example vector <InlineMath math="\overrightarrow{CD}" /> below.
   ]}
 />
 
-- The **magnitude of vector** <InlineMath math="\overrightarrow{CD}" /> is <InlineMath math="4 \text{ cm}" />. This indicates the _size_ or _value_ of the vector. The magnitude of a vector <InlineMath math="\vec{v}" /> is usually denoted as <InlineMath math="|\vec{v}|" />. So, <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
+- The **magnitude of vector** <InlineMath math="\overrightarrow{CD}" /> is <InlineMath math="4 \text{ cm}" />. It tells us the vector's _size_, not its _direction_. The magnitude of a vector <InlineMath math="\vec{v}" /> is denoted by <InlineMath math="|\vec{v}|" />. Therefore, <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
 - The **direction of vector** <InlineMath math="\overrightarrow{CD}" /> is <InlineMath math="45^\circ" /> relative to the horizontal line. This direction is crucial and distinguishes vectors from scalar quantities (which only have magnitude). Direction can be expressed using angles, compass points (like Northeast), or other references.
 
 ## Negative Vector (Opposite Vector)
 
-A negative vector or opposite vector is a vector that has the **same magnitude** but **opposite direction** to the original vector.
+For a nonzero vector, its negative or opposite vector has the **same magnitude** but the **opposite direction**.
 
-Imagine Andi walks <InlineMath math="100 \text{ m}" /> in a direction of <InlineMath math="30^\circ" /> (let's call this displacement vector <InlineMath math="\vec{A}" />). Then, Andi returns to the starting position. This second displacement is the opposite vector of <InlineMath math="\vec{A}" />, which we write as <InlineMath math="-\vec{A}" />.
+Imagine Andi walks <InlineMath math="100 \text{ m}" /> at an angle of <InlineMath math="30^\circ" />. Call this displacement <InlineMath math="\vec{A}" />. If Andi then walks directly back along the same route, the return displacement is the opposite vector of <InlineMath math="\vec{A}" />, written as <InlineMath math="-\vec{A}" />.
 
 <VectorChart
   title="Vector and Opposite Vector"
@@ -90,7 +90,7 @@ If Andi walks <InlineMath math="100 \text{ m}" /> east, then walks back <InlineM
 
 ## Equivalent Vectors (Equal Vectors)
 
-Two or more vectors are said to be **equivalent** or **equal** if they have the **same magnitude (length) and direction**, even if their starting points are different.
+Two vectors are **equivalent** or **equal** when their corresponding components are equal, even if their starting points differ. For nonzero vectors, this is equivalent to having the same **magnitude and direction**. The component definition also covers the zero vector, whose direction is undefined.
 
 Consider the graph below showing three equivalent vectors: <InlineMath math="\overrightarrow{CD}" />, <InlineMath math="\overrightarrow{EF}" />, and <InlineMath math="\overrightarrow{KL}" />.
 
@@ -134,7 +134,7 @@ The three vectors above have the same magnitude and direction, so they are equiv
 
 <BlockMath math="\overrightarrow{CD} = \overrightarrow{EF} = \overrightarrow{KL}" />
 
-A vector is said to be equivalent to another vector if it has the same magnitude and direction as the other vector.
+Their initial points differ, but each arrow moves three units to the right and two units upward. They therefore have the same component vector <InlineMath math="(3, 2)" />.
 
 ## Exercise
 
@@ -178,16 +178,16 @@ Is vector <InlineMath math="\vec{A}" /> the opposite vector of <InlineMath math=
 
 **Answer:**
 
-Vector <InlineMath math="\vec{A}" /> is **not** the opposite vector of <InlineMath math="\vec{B}" />. To be an opposite vector, two conditions must be met:
+Vector <InlineMath math="\vec{A}" /> is **not** the opposite vector of <InlineMath math="\vec{B}" />. Let us check the two required conditions:
 
-1.  **They must have the same magnitude:** Visually, <InlineMath math="|\vec{A}| \neq |\vec{B}|" /> (their lengths appear different).
-2.  **Their directions must be exactly opposite (<InlineMath math="180^\circ" /> apart):** The direction of <InlineMath math="\vec{A}" /> is not opposite to the direction of <InlineMath math="\vec{B}" />.
+1.  **They must have the same magnitude:** The diagram gives <InlineMath math="\vec{A} = (-1, -4)" /> and <InlineMath math="\vec{B} = (4, 1)" />, so <InlineMath math="|\vec{A}| = |\vec{B}| = \sqrt{17}" />. This condition is satisfied.
+2.  **Their directions must be exactly opposite (<InlineMath math="180^\circ" /> apart):** The opposite of <InlineMath math="\vec{A}" /> is <InlineMath math="-\vec{A} = (1, 4)" />, not <InlineMath math="\vec{B} = (4, 1)" />. This condition is not satisfied.
 
-Since these two conditions are not met, <InlineMath math="\vec{A}" /> is not the opposite vector of <InlineMath math="\vec{B}" />.
+Because the second condition fails, <InlineMath math="\vec{A}" /> is not the opposite vector of <InlineMath math="\vec{B}" />.
 
 **How to make vectors <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> opposite?**
 
-To make vectors <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> opposite, you could define them like this:
+Keeping <InlineMath math="\vec{A}" /> fixed, we can make <InlineMath math="\vec{B}" /> its opposite by changing the endpoint of <InlineMath math="\vec{B}" />:
 
 <VectorChart
   title={
@@ -215,7 +215,7 @@ To make vectors <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> 
       name: "B",
       points: [
         { x: 1, y: 4 },
-        { x: 4, y: 8 },
+        { x: 2, y: 8 },
       ],
       direction: "forward",
     },

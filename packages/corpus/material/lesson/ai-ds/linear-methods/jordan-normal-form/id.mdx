@@ -1,49 +1,97 @@
 export const metadata = {
-    title: "Trigonalisasi dan Bentuk Normal Jordan",
-    description: "Pelajari Bentuk Normal Jordan dan trigonalisasi matriks: dekomposisi kanonik untuk matriks tak dapat didiagonalisasi dengan blok Jordan dan nilai eigen.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    date: "2025-07-17",
-    subject: "Metode Linear AI",
+  title: "Trigonalisasi dan Bentuk Normal Jordan",
+  description: "Pahami trigonalisasi, blok Jordan, rantai vektor eigen tergeneralisasi, dan informasi yang diberikan bentuk Jordan tentang matriks yang tidak dapat didiagonalisasi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-07-17",
+  subject: "Metode Linear AI",
 };
 
-## Trigonalisasi Matriks
+## Ketika diagonalisasi tidak dapat dilakukan
 
-Meskipun matriks <InlineMath math="A" /> tidak dapat didiagonalisasi, masih berlaku teorema berikut ini.
-
-Untuk matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" />, jika polinomial karakteristik dari <InlineMath math="A" /> dapat dipecah menjadi faktor-faktor linear, maka <InlineMath math="A" /> serupa dengan matriks segitiga atas <InlineMath math="R \in \mathbb{K}^{n \times n}" />. Entri-entri pada diagonal matriks segitiga atas ini adalah semua nilai eigen dari <InlineMath math="A" />.
-
-Hubungan keserupaan ini dinyatakan dengan:
+Diagonalisasi membutuhkan basis yang seluruhnya terdiri dari vektor eigen. Basis seperti ini tidak selalu ada. Namun, masih tersedia hasil yang lebih lemah: jika polinomial karakteristik <InlineMath math="A \in \mathbb{K}^{n \times n}" /> terurai menjadi faktor-faktor linear atas <InlineMath math="\mathbb{K}" />, matriks yang dapat diinverskan <InlineMath math="S" /> akan mengubah <InlineMath math="A" /> menjadi matriks segitiga atas.
 
 <MathContainer>
-<BlockMath math="R = S^{-1} \cdot A \cdot S" />
+<BlockMath math="R=S^{-1}AS" />
+<BlockMath math="R=\begin{pmatrix}\lambda_1&*&\cdots&*\\0&\lambda_2&\cdots&*\\\vdots&\ddots&\ddots&\vdots\\0&\cdots&0&\lambda_n\end{pmatrix}" />
 </MathContainer>
 
-dengan <InlineMath math="S \in \mathbb{K}^{n \times n}" /> adalah matriks yang dapat diinverskan.
+Entri diagonalnya adalah nilai-nilai eigen, yang diulang menurut multiplisitas aljabarnya. Atas <InlineMath math="\mathbb{C}" />, setiap polinomial karakteristik dapat terurai. Atas <InlineMath math="\mathbb{R}" />, syarat ini dapat gagal ketika terdapat nilai eigen nonreal.
 
-Bentuk segitiga atas ini dapat dijelaskan secara lebih tepat melalui Bentuk Normal Jordan.
+Bentuk normal Jordan mempertajam deskripsi segitiga ini. Bentuk ini tidak hanya mencatat nilai eigen, tetapi juga menunjukkan secara tepat kekurangan vektor eigen yang tersedia untuk membentuk sebuah basis.
 
-## Bentuk Normal Jordan
+## Satu blok Jordan
 
-Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dengan polinomial karakteristik:
+Blok Jordan berukuran <InlineMath math="s" /> untuk nilai eigen <InlineMath math="\lambda" /> adalah
 
 <MathContainer>
-<BlockMath math="\chi_A(t) = (\lambda_1 - t)^{r_1} \cdot \ldots \cdot (\lambda_k - t)^{r_k}" />
+<BlockMath math="J_s(\lambda)=\begin{pmatrix}\lambda&1&0&\cdots&0\\0&\lambda&1&\ddots&\vdots\\\vdots&\ddots&\ddots&\ddots&0\\0&\cdots&0&\lambda&1\\0&\cdots&\cdots&0&\lambda\end{pmatrix}" />
+<BlockMath math="J_s(\lambda)=\lambda I_s+N_s,\qquad N_s^s=0" />
 </MathContainer>
 
-dengan nilai eigen yang saling berbeda <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" />. Maka terdapat matriks yang dapat diinverskan <InlineMath math="S \in \mathbb{K}^{n \times n}" /> sedemikian sehingga:
+Matriks nilpoten <InlineMath math="N_s" /> memiliki angka satu pada superdiagonal dan nol di tempat lain. Blok berukuran <InlineMath math="1" /> hanyalah <InlineMath math="(\lambda)" />. Blok yang lebih besar menandakan bahwa satu vektor eigen harus diperluas dengan vektor-vektor eigen tergeneralisasi.
+
+## Rantai vektor eigen tergeneralisasi
+
+Vektor <InlineMath math="v_1,\ldots,v_s" /> membentuk rantai Jordan untuk <InlineMath math="\lambda" /> jika
 
 <MathContainer>
-<BlockMath math="S^{-1} \cdot A \cdot S = \begin{pmatrix} \lambda_1 \cdot I_{r_1} + N_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_k \cdot I_{r_k} + N_k \end{pmatrix}" />
+<BlockMath math="(A-\lambda I)v_1=0" />
+<BlockMath math="(A-\lambda I)v_{j+1}=v_j,\qquad j=1,\ldots,s-1" />
 </MathContainer>
 
-Bentuk ini menunjukkan bagaimana matriks dapat diorganisasi menjadi blok-blok yang lebih sederhana, dimana setiap blok dikaitkan dengan satu nilai eigen tertentu.
+Vektor pertama adalah vektor eigen biasa. Setelah dikenai <InlineMath math="A-\lambda I" />, setiap vektor berikutnya dipetakan ke vektor sebelumnya. Dalam basis terurut <InlineMath math="(v_1,\ldots,v_s)" />, pembatasan <InlineMath math="A" /> pada rantai ini direpresentasikan oleh <InlineMath math="J_s(\lambda)" />.
 
-## Struktur Blok Jordan
+## Bentuk Jordan lengkap
 
-Untuk setiap <InlineMath math="i = 1, \ldots, k" />, blok Jordan <InlineMath math="\lambda_i \cdot I_{r_i} + N_i" /> memiliki struktur yang sangat khas. Bayangkan seperti tangga yang hampir sempurna, dimana setiap anak tangga memiliki nilai yang sama (yaitu nilai eigen <InlineMath math="\lambda_i" />), tetapi terdapat "penghubung" berupa angka <InlineMath math="1" /> di posisi tertentu yang membuat struktur ini unik.
+Misalkan
+
+<BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(t-\lambda_i)^{a_i}" />
+
+terurai atas <InlineMath math="\mathbb{K}" />, dengan nilai eigen berbeda <InlineMath math="\lambda_1,\ldots,\lambda_k" />. Terdapat matriks yang dapat diinverskan <InlineMath math="S" /> sehingga
+
+<BlockMath math="S^{-1}AS=J=\operatorname{diag}\bigl(J_{s_{11}}(\lambda_1),\ldots,J_{s_{1q_1}}(\lambda_1),\ldots,J_{s_{k1}}(\lambda_k),\ldots,J_{s_{kq_k}}(\lambda_k)\bigr)" />
+
+Untuk setiap nilai eigen, ukuran blok memenuhi
+
+<BlockMath math="s_{i1}+\cdots+s_{iq_i}=a_i" />
+
+Jumlah blok untuk <InlineMath math="\lambda_i" /> sama dengan multiplisitas geometris <InlineMath math="\dim\ker(A-\lambda_iI)" />. Ukuran blok ditentukan secara unik oleh <InlineMath math="A" />, meskipun urutannya pada diagonal tidak unik.
+
+| Pertanyaan | Informasi dari blok Jordan |
+| --- | --- |
+| Apakah <InlineMath math="A" /> dapat didiagonalisasi? | Ya, tepat ketika setiap blok Jordan berukuran <InlineMath math="1" />. |
+| Berapa banyak vektor eigen bebas linear untuk <InlineMath math="\lambda_i" />? | Satu untuk setiap blok Jordan yang terkait dengan <InlineMath math="\lambda_i" />. |
+| Mengapa nilai eigen berulang belum menentukan diagonalisabilitas? | Multiplisitas aljabar yang sama dapat terbagi menjadi blok-blok dengan ukuran berbeda. |
+
+## Contoh terurai
+
+Perhatikan
+
+<BlockMath math="A=\begin{pmatrix}1&1&0\\0&1&0\\0&0&2\end{pmatrix}=J_2(1)\oplus J_1(2)" />
+
+Polinomial karakteristiknya adalah
+
+<BlockMath math="\chi_A(t)=(t-1)^2(t-2)" />
+
+Untuk <InlineMath math="\lambda=1" />,
 
 <MathContainer>
-<BlockMath math="\lambda_i \cdot I_{r_i} + N_i = \begin{pmatrix} \lambda_i & 1 & & & \\ & \ddots & \ddots & & \\ & & \ddots & 1 & \\ & & & \lambda_i & 0 \\ & & & & \lambda_i & 1 \\ & & & & & \ddots & \ddots \\ & & & & & & \ddots & 1 \\ & & & & & & & \lambda_i & 0 \\ & & & & & & & & \ddots & \ddots \\ & & & & & & & & & \ddots & 0 \\ & & & & & & & & & & \lambda_i \end{pmatrix} \in \mathbb{K}^{r_i \times r_i}" />
+<BlockMath math="A-I=\begin{pmatrix}0&1&0\\0&0&0\\0&0&1\end{pmatrix}" />
+<BlockMath math="\ker(A-I)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}\right\}" />
 </MathContainer>
 
-Dalam struktur ini, nilai eigen <InlineMath math="\lambda_i" /> mendominasi diagonal utama, sementara angka <InlineMath math="1" /> muncul pada posisi tertentu di atas diagonal (disebut superdiagonal). Posisi angka <InlineMath math="0" /> dan <InlineMath math="1" /> pada superdiagonal menentukan bagaimana blok Jordan terbagi menjadi sub-blok yang lebih kecil. Struktur ini memberikan informasi lengkap tentang bagaimana transformasi linear bekerja pada ruang vektor yang terkait dengan nilai eigen tersebut.
+Nilai eigen <InlineMath math="1" /> memiliki multiplisitas aljabar <InlineMath math="2" />, tetapi hanya satu vektor eigen bebas linear. Jadi, <InlineMath math="A" /> tidak dapat didiagonalisasi. Vektor
+
+<BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
+
+membentuk sebuah rantai karena <InlineMath math="(A-I)v_1=0" /> dan <InlineMath math="(A-I)v_2=v_1" />. Nilai eigen <InlineMath math="2" /> menghasilkan blok terpisah <InlineMath math="J_1(2)" />.
+
+## Kegunaan bentuk Jordan
+
+Penulisan <InlineMath math="J_s(\lambda)=\lambda I+N" /> dengan <InlineMath math="N^s=0" /> membuat perpangkatan dapat dihitung secara eksplisit:
+
+<BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{s-1}\binom{m}{j}\lambda^{m-j}N^j" />
+
+Rumus ini menjelaskan mengapa pangkat matriks yang tidak dapat didiagonalisasi mengandung faktor polinomial dalam <InlineMath math="m" />, selain pangkat nilai eigennya. Hasil ini berguna untuk menganalisis relasi rekurensi dan persamaan diferensial secara eksak.
+
+Bentuk Jordan terutama digunakan sebagai klasifikasi aljabar eksak. Bentuk ini sangat sensitif terhadap gangguan numerik kecil, sehingga perangkat lunak numerik biasanya menghitung dekomposisi Schur, bukan bentuk Jordan.

@@ -1,0 +1,360 @@
+
+export const metadata = {
+  title: "Absolutwertfunktion",
+  description: "Absolutwerte als Abstände verstehen, Graphen gezielt transformieren und Gleichungen sowie Ungleichungen Schritt für Schritt lösen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-05-18",
+  subject: "Funktionen und ihre Modellierung",
+};
+
+## Absolutwertfunktionen verstehen
+
+Die Absolutwert-Grundfunktion ordnet jeder reellen Zahl ihren Abstand von null auf der Zahlengeraden zu. Da ein Abstand nie negativ ist, liefert <InlineMath math="f(x)=|x|" /> stets einen nichtnegativen Wert. Transformationen können den Grundgraphen verschieben oder spiegeln, sodass die Ausgaben einer transformierten Absolutwertfunktion nicht immer nichtnegativ sein müssen.
+
+### Mathematische Definition
+
+Für jede reelle Zahl <InlineMath math="x" /> ist die Absolutwertfunktion wie folgt definiert:
+
+<BlockMath math="f(x) = |x| = \begin{cases} x, &amp; \text{wenn} x \geq 0 \\ -x, &amp; \text{wenn} x &lt; 0 \end{cases}" />
+
+**Komponenten von Absolutwertfunktionen:**
+
+- Das Symbol <InlineMath math="|x|" /> liest man als Absolutwert von <InlineMath math="x" />.
+- Der Funktionswert ist immer nichtnegativ: <InlineMath math="|x| \geq 0" />.
+- Die Funktion ist gerade: <InlineMath math="|-x| = |x|" />.
+
+## Eigenschaften von Absolutwertfunktionen
+
+Aus der Deutung als Abstand folgen diese grundlegenden Eigenschaften:
+
+**Grundlegende Eigenschaften:**
+
+<MathContainer>
+  <BlockMath math="|x| \geq 0 \text{für alle} x \in \mathbb{R}" />
+  <BlockMath math="|-x| = |x|" />
+  <BlockMath math="|x|^2 = x^2" />
+  <BlockMath math="|xy| = |x| \cdot |y|" />
+  <BlockMath math="\left|\frac{x}{y}\right| = \frac{|x|}{|y|}, \text{mit} y \neq 0" />
+</MathContainer>
+
+**Eigenschaften der Dreiecksungleichung:**
+
+<MathContainer>
+  <BlockMath math="|x + y| \leq |x| + |y|" />
+  <BlockMath math="||x| - |y|| \leq |x - y|" />
+</MathContainer>
+
+## Graphen von Absolutwertfunktionen
+
+Der Graph der Grundfunktion macht die Abstandsidee sichtbar:
+
+<LineEquation
+  title={
+    <>
+    Funktionsgraph <InlineMath math="f(x) = |x|" />
+    </>
+  }
+  description={
+    <>
+      Der Graph ist V-förmig und hat seinen Scheitelpunkt im Ursprung.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 15, offset: [1, -1, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+**Wertetabelle für Funktion <InlineMath math="f(x) = |x|" />:**
+
+| <InlineMath math="x" /> | <InlineMath math="-4" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| <InlineMath math="f(x) = \lvert x \rvert" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
+
+## Transformationen von Absolutwertfunktionen
+
+Absolutwertfunktionen können auf verschiedene Arten transformiert werden:
+
+### Vertikale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = |x| + k" /> verschiebt den Graphen nach oben (wenn <InlineMath math="k > 0" />) oder nach unten (wenn <InlineMath math="k < 0" />).
+
+<LineEquation
+  title={<>Vertikale Verschiebung</>}
+  description={
+    <>
+    Vergleich von <InlineMath math="f(x) = |x|" /> mit{" "}
+      <InlineMath math="g(x) = |x| + 2" /> und{" "}
+      <InlineMath math="h(x) = |x| - 2" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 12, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x) + 2, z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="g(x)=|x|+2" />, at: 12, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x) - 2, z: 0 };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="h(x)=|x|-2" />, at: 12, offset: [1, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+### Horizontale Verschiebung
+
+Die Funktion <InlineMath math="f(x) = |x - h|" /> verschiebt den Graphen nach rechts (wenn <InlineMath math="h > 0" />) oder nach links (wenn <InlineMath math="h < 0" />).
+
+<LineEquation
+  title={<>Horizontale Verschiebung</>}
+  description={
+    <>
+    Vergleich von <InlineMath math="f(x) = |x|" /> mit{" "}
+      <InlineMath math="g(x) = |x - 3|" /> und{" "}
+      <InlineMath math="h(x) = |x + 3|" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 12, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x - 3), z: 0 };
+      }),
+      color: "#db2777",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="g(x)=|x-3|" />, at: 12, offset: [3, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x + 3), z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="h(x)=|x+3|" />, at: 12, offset: [1, 0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+### Streckung und Stauchung
+
+Die Funktion <InlineMath math="f(x) = a|x|" /> verändert je nach Faktor die Steilheit und gegebenenfalls die Orientierung des Graphen:
+
+- Für <InlineMath math="|a| > 1" /> wird der Graph steiler.
+- Für <InlineMath math="0 < |a| < 1" /> wird der Graph flacher.
+- Für <InlineMath math="a < 0" /> wird der Graph zusätzlich an der <InlineMath math="x" />-Achse gespiegelt.
+
+Der direkte Vergleich zeigt den Einfluss des Faktors:
+
+<LineEquation
+  title={<>Streckung und Stauchung</>}
+  description={
+    <>
+      Vergleich von <InlineMath math="f(x) = |x|" /> mit{" "}
+      <InlineMath math="g(x) = 2|x|" /> und <InlineMath math="h(x) = 0{,}5|x|" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: Math.abs(x), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 12, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: 2 * Math.abs(x), z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="g(x)=2|x|" />, at: 12, offset: [1, 1, 0] }],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = i - 10;
+        return { x, y: 0.5 * Math.abs(x), z: 0 };
+      }),
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="h(x)=0{,}5|x|" />, at: 12, offset: [3, 0.2, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+/>
+
+## Allgemeine Form von Absolutwertfunktionen
+
+Die allgemeine Form einer Absolutwertfunktion ist:
+
+<BlockMath math="f(x) = a|x - h| + k" />
+
+Dabei gilt:
+
+- <InlineMath math="a" /> steuert Streckung, Stauchung und Spiegelung.
+- <InlineMath math="h" /> bestimmt die horizontale Verschiebung.
+- <InlineMath math="k" /> bestimmt die vertikale Verschiebung.
+- Der Scheitelpunkt liegt bei <InlineMath math="(h, k)" />
+
+**Transformationstabelle:**
+
+| Parameter | Wert | Auswirkung auf den Graphen |
+| ---------------- | ------------ | --------------------- |
+| <InlineMath math="\lvert a \rvert > 1" /> | Betrag <InlineMath math="> 1" /> | Graph wird steiler |
+| <InlineMath math="0 < \lvert a \rvert < 1" /> | Betrag <InlineMath math="< 1" /> | Graph wird flacher |
+| <InlineMath math="a < 0" /> | Negativ | Graph wird zusätzlich an der <InlineMath math="x" />-Achse gespiegelt |
+| <InlineMath math="h > 0" /> | Positiv | Nach rechts verschieben |
+| <InlineMath math="h < 0" /> | Negativ | Nach links verschieben |
+| <InlineMath math="k > 0" /> | Positiv | Nach oben verschieben |
+| <InlineMath math="k < 0" /> | Negativ | Nach unten verschieben |
+
+## Absolutwertgleichungen und Ungleichungen
+
+**Absolutwertgleichungen lösen:**
+
+So lösen Sie <InlineMath math="|x| = a" /> mit <InlineMath math="a \geq 0" />:
+
+<MathContainer>
+  <BlockMath math="|x| = a \Rightarrow x = a \text{oder} x = -a" />
+</MathContainer>
+
+**Beispiel:** Lösen Sie <InlineMath math="|x - 3| = 5" />
+
+<MathContainer>
+  <BlockMath math="|x - 3| = 5" />
+  <BlockMath math="x - 3 = 5 \text{oder} x - 3 = -5" />
+  <BlockMath math="x = 8 \text{oder} x = -2" />
+</MathContainer>
+
+**Absolutwertungleichungen lösen:**
+
+Für <InlineMath math="|x| < a" /> mit <InlineMath math="a > 0" />:
+
+<BlockMath math="|x| < a \Rightarrow -a < x < a" />
+
+Für <InlineMath math="|x| > a" /> mit <InlineMath math="a > 0" />:
+
+<BlockMath math="|x| &gt; a \Rightarrow x &lt; -a \text{oder} x &gt; a" />
+
+## Übungen
+
+1. Bestimmen Sie den Wert von <InlineMath math="f(x) = |2x - 6|" /> für <InlineMath math="x = -1, 0, 3, 5" />
+
+2. Lösen Sie die Gleichung <InlineMath math="|3x + 1| = 7" />
+
+3. Lösen Sie die Ungleichung <InlineMath math="|x - 2| < 4" />
+
+4. Bestimmen Sie den Scheitelpunkt der Funktion <InlineMath math="f(x) = 2|x - 3| + 1" />
+
+5. Die Entfernung zwischen zwei Städten beträgt <InlineMath math="150 \text{ km}" />. Wenn sich die Stadt <InlineMath math="A" /> an der Koordinate <InlineMath math="-50 \text{ km}" /> befindet, wo befindet sich dann die Stadt <InlineMath math="B" />?
+
+### Ausführliche Lösungen
+
+1. **Funktionswerte für verschiedene Eingaben berechnen:**
+
+   Ersetzen Sie jeden Wert von <InlineMath math="x" /> in der Funktion <InlineMath math="f(x) = |2x - 6|" />:
+
+   <MathContainer>
+     <BlockMath math="f(-1) = |2(-1) - 6| = |-2 - 6| = |-8| = 8" />
+     <BlockMath math="f(0) = |2(0) - 6| = |0 - 6| = |-6| = 6" />
+     <BlockMath math="f(3) = |2(3) - 6| = |6 - 6| = |0| = 0" />
+     <BlockMath math="f(5) = |2(5) - 6| = |10 - 6| = |4| = 4" />
+   </MathContainer>
+
+2. **Absolutwertgleichungen lösen:**
+
+   Für die Gleichung <InlineMath math="|3x + 1| = 7" /> verwenden wir die Definition des Absolutwerts, die zwei Möglichkeiten ergibt:
+
+   <MathContainer>
+     <BlockMath math="3x + 1 = 7 \quad \text{oder} \quad 3x + 1 = -7" />
+     <BlockMath math="3x = 6 \quad \text{oder} \quad 3x = -8" />
+     <BlockMath math="x = 2 \quad \text{oder} \quad x = -\frac{8}{3}" />
+   </MathContainer>
+
+3. **Absolutwertungleichungen lösen:**
+
+   Für <InlineMath math="|x - 2| < 4" /> verwenden wir die Eigenschaft, dass <InlineMath math="|a| < b" /> äquivalent zu <InlineMath math="-b < a < b" /> ist:
+
+   <MathContainer>
+     <BlockMath math="-4 < x - 2 < 4" />
+     <BlockMath math="-4 + 2 < x < 4 + 2" />
+     <BlockMath math="-2 < x < 6" />
+   </MathContainer>
+
+   Die Lösungsmenge ist also <InlineMath math="x \in (-2, 6)" />.
+
+4. **Bestimmung des Scheitelpunkts:**
+
+   Anhand der Funktion <InlineMath math="f(x) = 2|x - 3| + 1" /> können wir die Parameter identifizieren:
+
+   - <InlineMath math="a = 2" /> (Streckfaktor)
+   - <InlineMath math="h = 3" /> (horizontale Verschiebung)
+   - <InlineMath math="k = 1" /> (vertikale Verschiebung)
+
+   Der Scheitelpunkt liegt bei <InlineMath math="(h, k) = (3, 1)" />.
+
+5. **Mögliche Positionen aus dem Abstand bestimmen:**
+
+   Der Abstand zwischen den Städten <InlineMath math="A" /> und <InlineMath math="B" /> beträgt <InlineMath math="150 \text{ km}" />. Stadt <InlineMath math="A" /> liegt bei <InlineMath math="-50 \text{ km}" />; die Koordinate von Stadt <InlineMath math="B" /> nennen wir <InlineMath math="x_B" />:
+
+   <MathContainer>
+     <BlockMath math="|-50 - x_B| = 150" />
+     <BlockMath math="-50 - x_B = 150 \quad \text{oder} \quad -50 - x_B = -150" />
+     <BlockMath math="x_B = -50 - 150 = -200 \quad \text{oder} \quad x_B = -50 + 150 = 100" />
+   </MathContainer>
+
+   Die Stadt <InlineMath math="B" /> kann also an der Koordinate <InlineMath math="100 \text{ km}" /> oder <InlineMath math="-200 \text{ km}" /> liegen.

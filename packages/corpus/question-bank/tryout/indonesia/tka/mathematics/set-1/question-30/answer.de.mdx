@@ -1,0 +1,67 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 30",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2025-06-11",
+};
+
+Ein Grundstück wird mit einem Zaun aus Stacheldraht abgegrenzt
+
+<Set1Question30Illustration
+  labels={{
+    wall: "Wand",
+    landArea: "Landfläche",
+    fence: "Zaun",
+    fenceShape: "Zaunform",
+    barbedWire: "Stacheldraht"
+  }}
+/>
+
+#### Bestimmen von Variablen
+
+Sei die Länge der Landfläche <InlineMath math="= x" /> und die Breite der Landfläche <InlineMath math="= y" />
+
+#### Drahtbeschränkung
+
+Beachten Sie, dass die Zaunform aus <InlineMath math="4" /> Schichten besteht. Das bedeutet
+
+<MathContainer>
+<BlockMath math="800 \text{ m} : 4 \text{ Schichten} = 200 \text{ m/Schicht}" />
+</MathContainer>
+
+Daher kann das eingezäunte Land wie folgt ausgedrückt werden:
+
+<MathContainer>
+<BlockMath math="x + 2y = 200" />
+<BlockMath math="x = 200 - 2y" />
+</MathContainer>
+
+#### Flächenfunktion
+
+Wenn die Landfläche <InlineMath math="= xy" />, dann
+
+<MathContainer>
+<BlockMath math="L = (200 - 2y) \cdot y" />
+<BlockMath math="= 200y - 2y^2" />
+</MathContainer>
+
+#### Maximale Fläche
+
+Um die maximale Fläche zu ermitteln, differenzieren Sie <InlineMath math="L" /> nach <InlineMath math="y" /> und setzen Sie sie gleich <InlineMath math="0" />.
+
+<MathContainer>
+<BlockMath math="L' = 0" />
+<BlockMath math="200 - 4y = 0" />
+<BlockMath math="4y = 200" />
+<BlockMath math="y = 50" />
+</MathContainer>
+
+Ersetzen Sie <InlineMath math="y = 50" /> in der Bereichsfunktion
+
+<MathContainer>
+<BlockMath math="L = 200y - 2y^2" />
+<BlockMath math="= 200(50) - 2(50)^2" />
+<BlockMath math="= 10{.}000 - 5{.}000" />
+<BlockMath math="= 5{.}000" />
+</MathContainer>
+
+Daher beträgt die maximale Fläche des umzäunten Landes (in <InlineMath math="\text{m}^2" />) <InlineMath math="5{.}000 \text{ m}^2" />

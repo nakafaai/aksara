@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Teorema Dasar Kalkulus",
-    description: "Pelajari bagaimana Teorema Dasar Kalkulus menghubungkan turunan, integral, dan antiturunan.",
+    description: "Hubungkan turunan, fungsi akumulasi, dan integral tentu melalui kedua bagian Teorema Dasar Kalkulus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     date: "2025-05-26",
     subject: "Integral",
@@ -8,19 +8,19 @@ export const metadata = {
 
 ## Jembatan Antara Turunan dan Integral
 
-Teorema Dasar Kalkulus (TDK) adalah penghubung utama antara dua konsep dalam kalkulus: **turunan** dan **integral**. Teorema ini memberikan cara yang lebih sederhana untuk menghitung integral tentu tanpa harus melalui proses limit Jumlahan Riemann yang panjang. Teorema ini terbagi menjadi dua bagian penting.
+Teorema Dasar Kalkulus (TDK) menghubungkan **turunan** dan **integral**. Teorema ini menjelaskan mengapa turunan fungsi akumulasi mengembalikan lajunya dan mengapa antiturunan dapat dipakai untuk mengevaluasi integral tentu tanpa menghitung ulang limit jumlahan Riemann.
 
-Kedua bagian ini saling melengkapi: bagian pertama menunjukkan bahwa diferensiasi dan integrasi adalah operasi kebalikan, sedangkan bagian kedua memberikan cara praktis untuk menghitung integral tentu menggunakan antiturunan. Teorema ini dibangun atas dasar **Teorema Nilai Rata-rata untuk Integral**, yang menjamin keberadaan titik tertentu dalam interval integrasi.
+Anggap <InlineMath math="f" /> kontinu pada interval yang dibahas. Bagian Pertama menurunkan integral yang batas atasnya berubah, sedangkan Bagian Kedua mengevaluasi integral berbatas tetap dengan sembarang antiturunan integrannya. Kekontinuan merupakan **syarat cukup** yang memastikan kedua pernyataan berlaku di sini.
 
 ## Diferensiasi Sebuah Fungsi Integral
 
-Bagian pertama dari TDK mengungkapkan bahwa proses integrasi dan diferensiasi adalah operasi yang saling berlawanan. Secara formal, teorema ini menyatakan:
+Bagian Pertama menyatakan bahwa mengakumulasi suatu laju kontinu lalu menurunkannya akan mengembalikan laju semula:
 
 <BlockMath math="F(x) = \int_{a}^{x} f(t) \, dt \implies F'(x) = f(x)" />
 
 Ini berarti turunan dari suatu fungsi yang didefinisikan sebagai integral adalah fungsi di dalam integral itu sendiri.
 
-> Bayangkan <InlineMath math="f(t)" /> adalah kecepatan air yang mengalir ke dalam ember pada waktu <InlineMath math="t" />. Maka, <InlineMath math="F(x)" /> adalah total volume air di dalam ember pada waktu <InlineMath math="x" />. Teorema ini mengatakan bahwa laju perubahan volume air pada saat itu (<InlineMath math="F'(x)" />) sama persis dengan kecepatan aliran air pada saat itu (<InlineMath math="f(x)" />).
+> Jika <InlineMath math="f(t)" /> adalah laju aliran masuk pada waktu <InlineMath math="t" />, maka <InlineMath math="F(x)" /> adalah volume yang masuk sejak waktu awal hingga waktu <InlineMath math="x" />. Laju perubahan sesaatnya, <InlineMath math="F'(x)" />, sama dengan laju aliran <InlineMath math="f(x)" />.
 
 **Contoh:**
 
@@ -28,19 +28,19 @@ Tentukan turunan dari <InlineMath math="F(x) = \int_{1}^{x} \sqrt{2+t} \, dt" />
 
 **Penyelesaian:**
 
-Berdasarkan TDK Bagian Pertama, kita tidak perlu mengintegralkan fungsinya. Kita cukup mengganti variabel <InlineMath math="t" /> dalam integran dengan batas atas <InlineMath math="x" />.
+Menurut TDK Bagian Pertama, turunan diperoleh dengan mengevaluasi integran pada batas atas yang berubah: ganti <InlineMath math="t" /> dengan <InlineMath math="x" />.
 
 <BlockMath math="\frac{d}{dx} \left( \int_{1}^{x} \sqrt{2+t} \, dt \right) = \sqrt{2+x}" />
 
-Prosesnya sesederhana itu. Turunannya adalah fungsi aslinya, dievaluasi pada batas atas.
+Hasilnya adalah integran semula yang dievaluasi pada batas atas.
 
 ## Evaluasi Integral dengan Antiturunan
 
-Bagian kedua, yang juga dikenal sebagai **Teorema Evaluasi**, memberikan kita metode praktis untuk menghitung nilai pasti dari sebuah integral tentu. Teorema ini menyatakan:
+**Bentuk evaluasi TDK** memberikan cara praktis untuk menghitung integral tentu. Jika <InlineMath math="F'(x)=f(x)" />, maka:
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = F(b) - F(a)" />
 
-Di mana <InlineMath math="F(x)" /> adalah **antiturunan** (integral tak tentu) dari <InlineMath math="f(x)" />. Artinya, untuk mencari luas di bawah kurva <InlineMath math="f(x)" /> dari <InlineMath math="a" /> sampai <InlineMath math="b" />, kita hanya perlu mencari antiturunannya, lalu menghitung selisih nilainya pada kedua batas tersebut.
+Di sini <InlineMath math="F(x)" /> adalah **antiturunan** dari <InlineMath math="f(x)" />. Selisih nilai pada kedua batas memberikan akumulasi bertanda <InlineMath math="f(x)" /> dari <InlineMath math="a" /> sampai <InlineMath math="b" />. Jika integrannya tidak negatif, nilai itu juga merupakan luas geometris.
 
 Untuk menuliskannya, kita sering menggunakan notasi kurung siku <InlineMath math="[F(x)]_{a}^{b}" /> yang berarti <InlineMath math="F(b) - F(a)" />.
 

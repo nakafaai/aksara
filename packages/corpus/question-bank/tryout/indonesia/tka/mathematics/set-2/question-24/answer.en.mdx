@@ -22,7 +22,7 @@ Let's solve the inequality
 
 <MathContainer>
 <BlockMath math="\log|x + 1| \geq \log 3 + \log|2x - 1|" />
-<BlockMath math="\log|x + 1| \geq \log 3|2x - 1|" />
+<BlockMath math="\log|x + 1| \geq \log\left(3|2x - 1|\right)" />
 <BlockMath math="\log|x + 1| \geq \log|6x - 3|" />
 <BlockMath math="|x + 1| \geq |6x - 3|" />
 </MathContainer>
@@ -39,7 +39,7 @@ The number line
 
 <NumberLine
   title={<>Solution Number Line</>}
-  description={<>Interval <InlineMath math="\left[\frac{2}{7}, \frac{4}{5}\right]" /> indicates both endpoints are included in the solution set.</>}
+  description={<>The endpoints <InlineMath math="\frac{2}{7}" /> and <InlineMath math="\frac{4}{5}" /> are included, while <InlineMath math="\frac{1}{2}" /> is excluded by the logarithm domain.</>}
   segments={[
     {
       start: Number.NEGATIVE_INFINITY,
@@ -50,10 +50,20 @@ The number line
     },
     {
       start: 2/7,
-      end: 4/5,
+      end: 1/2,
       startLabel: <InlineMath math="\frac{2}{7}" />,
-      endLabel: <InlineMath math="\frac{4}{5}" />,
+      endLabel: <InlineMath math="\frac{1}{2}" />,
       startInclusive: true,
+      endInclusive: false,
+      shaded: true,
+      label: <InlineMath math="+" />,
+    },
+    {
+      start: 1/2,
+      end: 4/5,
+      startLabel: <InlineMath math="\frac{1}{2}" />,
+      endLabel: <InlineMath math="\frac{4}{5}" />,
+      startInclusive: false,
       endInclusive: true,
       shaded: true,
       label: <InlineMath math="+" />,

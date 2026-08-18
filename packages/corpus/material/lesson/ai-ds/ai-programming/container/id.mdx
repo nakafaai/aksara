@@ -8,12 +8,12 @@ export const metadata = {
 
 ## Konsep Container dalam Python
 
-Container adalah tipe data yang dapat menyimpan kumpulan item atau elemen. Bayangkan container seperti kotak penyimpanan yang bisa menampung berbagai macam barang. Python menyediakan beberapa jenis container yang berbeda cara pengorganisasian dan manipulasi datanya.
+Container mengelompokkan nilai dan menentukan cara kode mengaksesnya. Sequence mempertahankan posisi, mapping menghubungkan kunci dengan nilai, sedangkan set merepresentasikan anggota unik. Memilihnya berarti memilih perilaku, bukan sekadar bentuk kurung.
 
-Container dalam Python memiliki karakteristik utama yaitu dapat menyimpan berbagai jenis objek dalam satu wadah. Setiap jenis container memiliki keunggulan tersendiri tergantung kebutuhan program.
+Sebagian container dapat mencampur tipe objek, tetapi masing-masing memiliki batasan. Kunci dictionary dan anggota set harus hashable, string berisi teks, dan sifat mutability berbeda antar-container.
 
 
-Python menyediakan lima jenis container utama dengan karakteristik berbeda:
+Pelajaran ini membandingkan lima bentuk collection bawaan:
 
 - **String** - urutan karakter yang tidak dapat diubah
 - **List** - urutan item yang dapat diubah dan diindeks
@@ -23,9 +23,9 @@ Python menyediakan lima jenis container utama dengan karakteristik berbeda:
 
 ## Pengenalan List
 
-List adalah container yang paling fleksibel dalam Python. List memiliki tiga karakteristik penting yaitu ordered (berurutan), heterogeneous (dapat menampung berbagai tipe data), dan mutable (dapat diubah).
+List adalah sequence yang terurut dan mutable. List dapat memuat nilai dari tipe berbeda, walaupun collection dengan bentuk elemen yang jelas biasanya lebih mudah dipahami.
 
-List dalam Python mirip dengan array dalam bahasa C atau vector dalam C++, namun dengan kemampuan lebih fleksibel karena dapat menampung objek dengan tipe data berbeda dalam satu list yang sama.
+Berbeda dengan array tingkat rendah yang ukurannya tetap, list Python dapat bertambah dan berkurang. List menyimpan rujukan ke objek Python, sehingga mutasi objek bersarang dapat terlihat melalui setiap rujukan ke objek tersebut.
 
 
 ### Karakteristik List
@@ -133,7 +133,7 @@ print('x[::-1] =', x[::-1])                  # Output: x[::-1] = [5, 4, 3, 2, 1,
   ]}
 />
 
-Slicing seperti memotong roti tawar. Jika kamu punya <InlineMath math="6" /> lembar roti (indeks <InlineMath math="0\text{-}5" />), maka `x[1:4]` berarti mengambil lembar ke-<InlineMath math="2" /> sampai ke-<InlineMath math="4" /> (tidak termasuk lembar ke-<InlineMath math="5" />). Sedangkan `x[1:4:2]` berarti mengambil lembar ke-<InlineMath math="2" /> dan ke-<InlineMath math="4" /> saja (melompati <InlineMath math="1" /> lembar).
+Slicing memilih bagian list yang berurutan atau berjarak tetap. Untuk `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` mengambil elemen pada indeks <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Indeks akhir <InlineMath math="4" /> tidak ikut diambil. Jika langkah ditambahkan melalui `x[1:4:2]`, Python mengambil setiap indeks kedua, yaitu indeks <InlineMath math="1" /> dan <InlineMath math="3" />.
 
 ## Operasi dan Kesamaan dengan String
 
@@ -292,7 +292,7 @@ print('Nested structure:', nested)`
   ]}
 />
 
-List bersarang sangat berguna untuk merepresentasikan data terstruktur seperti tabel, matriks, atau data hierarkis lainnya. Pengaksesan elemen dalam list bersarang menggunakan multiple indexing seperti `nested[1][2]` untuk mengakses elemen pada level yang lebih dalam.
+List bersarang dapat merepresentasikan baris, tree, atau struktur kecil yang menyerupai tabel. Bentuknya tidak otomatis menjadi matriks persegi panjang, dan rujukan berulang dapat menunjuk inner list yang sama. Multiple indexing seperti `nested[1][2]` mengikuti satu container pada setiap langkah.
 
 ## Container Lainnya
 
@@ -351,7 +351,7 @@ print('After modifying inner list:', t)     # Output: After modifying inner list
 
 ### Dictionary
 
-Dictionary menyimpan data dalam bentuk pasangan kunci-nilai (key-value pairs). Setiap kunci harus unik dan digunakan untuk mengakses nilai yang terkait. Dictionary menggunakan tanda kurung kurawal `{}`.
+Dictionary menyimpan pasangan kunci-nilai. Setiap kunci harus unik dan hashable, sedangkan nilainya boleh berulang dan mutable. Literal dictionary memakai `{}` dengan titik dua di antara setiap kunci dan nilai.
 
 <CodeBlock
   data={[
@@ -376,7 +376,7 @@ print('After adding David:', kontak)
 
 ### Set
 
-Set adalah koleksi elemen yang unik dan tidak berurutan. Set otomatis menghilangkan duplikasi dan mendukung operasi himpunan matematika. Set menggunakan tanda kurung kurawal `{}` tanpa pasangan kunci-nilai.
+Set menyimpan elemen unik yang hashable dan mendukung operasi himpunan matematika. Set tidak memiliki posisi semantik atau jaminan urutan insertion. Literal set yang tidak kosong memakai `{}`, sedangkan set kosong harus dibuat dengan `set()` karena `{}` menghasilkan dictionary kosong.
 
 <CodeBlock
   data={[
@@ -385,18 +385,19 @@ Set adalah koleksi elemen yang unik dan tidak berurutan. Set otomatis menghilang
       filename: "set_examples.py",
       code: `# Membuat set
 angka = {1, 2, 3, 4, 5}
-print('angka =', angka)                      # Output: angka = {1, 2, 3, 4, 5}
+print('angka =', sorted(angka))              # Output: angka = [1, 2, 3, 4, 5]
 
 # Menambahkan elemen ke set
 angka.add(6)
-print('After adding 6:', angka)              # Output: After adding 6: {1, 2, 3, 4, 5, 6}
+print('Setelah menambah 6:', sorted(angka))  # Output: Setelah menambah 6: [1, 2, 3, 4, 5, 6]
 
 # Operasi himpunan
 genap = {2, 4, 6, 8}
 ganjil = {1, 3, 5, 7}
 
 # Union (gabungan)
-print('genap | ganjil =', genap | ganjil)    # Output: genap | ganjil = {1, 2, 3, 4, 5, 6, 7, 8}
+print('genap | ganjil =', sorted(genap | ganjil))
+# Output: genap | ganjil = [1, 2, 3, 4, 5, 6, 7, 8]
 
 # Intersection (irisan)
 print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
@@ -413,4 +414,4 @@ print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
 | **Dictionary** | `{'a': 1}` | Ya* | Ya | Tidak (kunci) | Mapping kunci-nilai |
 | **Set** | `{1, 2, 3}` | Tidak | Ya | Tidak | Elemen unik, operasi himpunan |
 
-> Dictionary mempertahankan urutan insertion sejak Python `3.7+`
+> Iterasi dictionary mempertahankan urutan insertion sebagai jaminan bahasa sejak Python `3.7`. Memperbarui kunci yang ada mempertahankan posisinya; menghapus lalu memasukkannya kembali menempatkan kunci itu di akhir.

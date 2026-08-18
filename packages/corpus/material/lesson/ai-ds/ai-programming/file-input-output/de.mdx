@@ -1,0 +1,244 @@
+export const metadata = {
+    title: "Dateieingabe und -ausgabe",
+    description: "Lerne, wie Python Text- und Binärdateien sicher liest und schreibt, Öffnungsmodi auswählt und Streampositionen verwaltet.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    date: "2025-09-18",
+    subject: "KI-Programmierung",
+};
+
+## Dateien lesen
+
+Python liest und schreibt Dateien über Dateiobjekte. Im Textmodus dekodiert das Objekt die gespeicherten Bytes mit einer gewählten Zeichenkodierung zu Strings. Im Binärmodus stellt es die Bytes unverändert bereit.
+
+### Gesamten Dateiinhalt lesen
+
+Der einfachste Weg, eine Datei zu lesen, besteht darin, ihren gesamten Inhalt auf einmal in den Speicher zu übernehmen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "read_entire_file.py",
+      code: `# Die gesamte UTF-8-Textdatei auf einmal lesen
+with open('file.txt', 'r', encoding='utf-8') as f:
+    txt = f.read()
+
+print(txt)
+# Ausgabe: [Der vollständige Dateiinhalt wird angezeigt]`
+    }
+  ]}
+/>
+
+`open()` erzeugt das Dateiobjekt, `read()` liest seinen Text und der `with`-Block schließt die Datei automatisch. Das gilt auch dann, wenn eine Exception den Vorgang unterbricht.
+
+### Datei Zeile für Zeile lesen
+
+Bei großen Dateien ist das zeilenweise Lesen effizienter, da nicht die gesamte Datei auf einmal in den Speicher geladen wird.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "read_line_by_line.py",
+      code: `# Eine UTF-8-Textdatei Zeile für Zeile lesen
+with open('file.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        print(line, end='')
+
+# Hinweis: Jede Zeile behält ihr Zeilenumbruchzeichen
+# Der Parameter end='' verhindert das Hinzufügen zusätzlicher Zeilenumbrüche`
+    }
+  ]}
+/>
+
+Jede Zeile behält ihren abschließenden Zeilenumbruch, sofern einer vorhanden ist. Die letzte Zeile kann ohne Zeilenumbruch enden. Mit `end=''` fügt `print()` keinen zweiten hinzu.
+
+## Schreiben in Dateien
+
+Durch das Schreiben von Dateien können Programme Daten oder Berechnungsergebnisse zur späteren Verwendung in Dateien speichern.
+
+### Strings in Dateien schreiben
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "write_string_to_file.py",
+      code: `# Strings in eine UTF-8-Textdatei schreiben
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 11):
+        f.write(f'Zeile {i}\\n')
+
+# Die Datei enthält:
+# Zeile 1
+# Zeile 2
+# Zeile 3
+# ... (bis Zeile 10)`
+    }
+  ]}
+/>
+
+### Druckausgabe in eine Datei umleiten
+
+Mit dem Parameter `file` kannst du die Ausgabe von `print()` direkt in eine Datei umleiten.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "redirect_print_output.py",
+      code: `# print-Ausgabe in eine UTF-8-Textdatei umleiten
+with open('file.txt', 'w', encoding='utf-8') as f:
+    for i in range(1, 21):
+        print("Zeile", i, file=f)
+
+# Die Datei enthält eine umgeleitete Druckausgabe
+# Zeile 1
+# Zeile 2
+# ... (bis Zeile 20)`
+    }
+  ]}
+/>
+
+Das Argument `file` verwendet die Formatierung von `print()` weiter, leitet den fertigen Text aber an das gewählte Dateiobjekt.
+
+## Dateiöffnungsmodi
+
+Python bietet verschiedene Modi zum Öffnen von Dateien entsprechend den Anforderungen der auszuführenden Vorgänge.
+
+<Mermaid
+  title="Wähle den Modus vor dem Öffnen"
+  description="Vergleiche Lese-, Schreib-, Anhänge- und Binärmodi, damit eine Datei nicht versehentlich ihren Inhalt verliert."
+  chart={`
+    flowchart LR
+        A[Dateimodi] --> B[Textmodus]
+        A --> C[Binärmodus]
+
+        B --> B1[r - vorhandene Datei lesen]
+        B --> B2[w - erstellen oder leeren]
+        B --> B3[a - erstellen oder anhängen]
+        B --> B4[r+ - vorhandene Datei lesen und schreiben]
+
+        C --> C1[rb - vorhandene Binärdatei lesen]
+        C --> C2[wb - Binärdatei erstellen oder leeren]
+        C --> C3[ab - Binärdatei erstellen oder anhängen]
+        C --> C4[rb+ - vorhandene Binärdatei lesen und schreiben]
+  `}
+/>
+
+### Dateiöffnungssyntax
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "file_opening_syntax.py",
+      code: `# Eine vorhandene Textdatei lesen
+with open('data.txt', 'r', encoding='utf-8') as f:
+    first_line = f.readline()
+
+# Eine Datei erstellen oder ihren bisherigen Inhalt leeren
+with open('output.txt', 'w', encoding='utf-8') as f:
+    f.write('neuer Inhalt')
+
+# Eine Datei erstellen oder an ihren Inhalt anhängen
+with open('log.txt', 'a', encoding='utf-8') as f:
+    f.write('nächstes Ereignis\\n')
+
+# Eine vorhandene Datei lesen und schreiben, ohne sie beim Öffnen zu leeren
+with open('data.txt', 'r+', encoding='utf-8') as f:
+    original = f.read()`
+    }
+  ]}
+/>
+
+Der Modus bestimmt, ob die Datei bereits existieren muss, ob ihr alter Inhalt beim Öffnen gelöscht wird und welche Operationen erlaubt sind. `r` und `r+` benötigen eine vorhandene Datei. `w` erstellt oder leert sie, während `a` sie erstellt oder Daten anhängt. Das Suffix `b` wählt den Binärmodus, in dem keine `encoding`-Angabe verwendet wird.
+
+## Methoden zum Lesen von Dateien
+
+Python bietet verschiedene Methoden, um Dateien je nach Bedarf auf unterschiedliche Weise zu lesen.
+
+### read()-Methode mit Parametern
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "read_methods.py",
+      code: `# Mehrere Methoden zum Lesen von Text ausprobieren
+with open('file.txt', 'r', encoding='utf-8') as f:
+    # Höchstens 10 Zeichen lesen
+    s = f.read(10)
+    print("10 Zeichen:", s)
+
+    # Zum Anfang zurückkehren und die gesamte Datei lesen
+    f.seek(0)
+    s = f.read()
+    print("Gesamte Datei:", s)
+
+    # Erneut zurückkehren und eine Zeile samt Zeilenumbruch lesen
+    f.seek(0)
+    s = f.readline()
+    print("Eine Zeile:", repr(s))`
+    }
+  ]}
+/>
+
+### Dateiposition und -lesung
+
+Eine neu geöffnete Datei beginnt an ihrer ersten Streamposition. Durch das Lesen bewegt sich diese Position weiter. Im Textmodus kann `tell()` ein undurchsichtiges Positions-Cookie statt eines einfachen Zeichenindex liefern. Speichere und verwende solche Positionen erneut, anstatt Byte-Offsets selbst zu berechnen.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "file_position.py",
+      code: `# Dateiposition demonstrieren
+with open('sample.txt', 'r', encoding='utf-8') as f:
+    first_read = f.read(5)  # Höchstens 5 Zeichen lesen
+    saved_position = f.tell()
+    print("Erste Ausgabe:", first_read)
+
+    second_read = f.read(3)  # Von der aktuellen Position weiterlesen
+    print("Zweite Ausgabe:", second_read)
+
+    f.seek(saved_position)  # Zur gespeicherten Textstream-Position zurückkehren
+    repeated = f.read(3)
+    print("Wiederholte Ausgabe:", repeated)`
+    }
+  ]}
+/>
+
+Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr vorhanden, liefern sie `''`. Im Binärmodus geben sie `bytes` zurück und verwenden am Dateiende `b''`. Eine Iteration endet dort automatisch.
+
+## Sicherer Umgang mit Dateien
+
+Python bietet die `with`-Anweisung für eine sicherere und automatische Dateiverarbeitung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "safe_file_handling.py",
+      code: `# Verwendung der with-Anweisung zur sicheren Dateiverarbeitung
+with open('file.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
+    print(content)
+# Datei wird nach Beenden mit Block automatisch geschlossen
+
+# Mit einer with-Anweisung schreiben
+with open('output.txt', 'w', encoding='utf-8') as f:
+    f.write("Hello World!")
+    f.write("\\nZweite Zeile")
+# Datei automatisch geschlossen und gespeichert
+
+# Gleichzeitiges Lesen und Schreiben
+with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 'w', encoding='utf-8') as output_file:
+    data = input_file.read()
+    output_file.write(data.upper())
+# Beide Dateien wurden automatisch geschlossen`
+    }
+  ]}
+/>
+
+Die `with`-Anweisung stellt sicher, dass Dateien immer ordnungsgemäß geschlossen werden, auch wenn im Programm ein Fehler auftritt. Dadurch wird verhindert, dass Dateien geöffnet bleiben und Systemressourcen verbrauchen.

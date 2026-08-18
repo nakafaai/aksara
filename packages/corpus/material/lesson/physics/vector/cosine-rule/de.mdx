@@ -1,0 +1,71 @@
+export const metadata = {
+  title: "Den Betrag der Resultierenden mit dem Kosinussatz bestimmen",
+  description:
+    "Den Betrag der Resultierenden zweier Vektoren mit bekanntem Zwischenwinkel mithilfe des Kosinussatzes bestimmen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-31",
+  subject: "Vektor",
+};
+
+## Wenn zwei Vektoren einen Winkel bilden
+
+Zeigen zwei Vektoren in dieselbe Richtung, werden ihre Beträge einfach addiert. Zeigen sie in entgegengesetzte Richtungen, ergibt sich die Differenz ihrer Beträge. Viele Kräfte und Verschiebungen schließen jedoch einen anderen Winkel ein. Dann lässt sich der Betrag der Resultierenden mit dem **Kosinussatz** bestimmen.
+
+Der Kosinussatz eignet sich, wenn die Beträge der beiden Vektoren <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> sowie ihr Zwischenwinkel <InlineMath math="\theta" /> bekannt sind.
+
+<BlockMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}" />
+
+> Der Winkel <InlineMath math="\theta" /> ist der Winkel zwischen den beiden Vektoren, wenn ihre Fußpunkte zusammenliegen.
+
+## Warum der Kosinus vorkommt
+
+Der Kosinussatz kommt ins Spiel, weil die beiden Vektoren und ihre Resultierende ein Dreieck mit zwei bekannten Seiten bilden. Bei einem kleinen Zwischenwinkel verstärken sich die Vektoren stark. Nähert sich der Winkel <InlineMath math="180^\circ" />, heben sich ihre Wirkungen zunehmend auf.
+
+Der Wert von <InlineMath math="\cos\theta" /> bildet diesen Übergang ab:
+
+| Zwischenwinkel | Wert von <InlineMath math="\cos\theta" /> | Physikalische Bedeutung |
+| :------------- | :----------------------------------------- | :----------------------- |
+| <InlineMath math="0^\circ" /> | <InlineMath math="1" /> | Die Vektoren zeigen in dieselbe Richtung und verstärken sich vollständig. |
+| <InlineMath math="90^\circ" /> | <InlineMath math="0" /> | Die Vektoren stehen senkrecht aufeinander. |
+| <InlineMath math="180^\circ" /> | <InlineMath math="-1" /> | Die Vektoren zeigen in entgegengesetzte Richtungen. |
+
+Für <InlineMath math="\theta=90^\circ" /> geht der Kosinussatz in den Satz des Pythagoras über, weil <InlineMath math="\cos90^\circ=0" /> gilt.
+
+## Beispiel: Resultierende zweier Kräfte
+
+An einem Punkt wirken zwei Kräfte. Die erste hat den Betrag <InlineMath math="10\text{ N}" />, die zweite den Betrag <InlineMath math="8\text{ N}" />. Der Winkel zwischen ihnen beträgt <InlineMath math="60^\circ" />. Gesucht ist der Betrag der Resultierenden.
+
+Einsetzen in den Kosinussatz ergibt:
+
+<BlockMath math="\begin{aligned}
+R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
+&=\sqrt{10^2+8^2+2(10)(8)\cos60^\circ} \\
+&=\sqrt{100+64+160(0{,}5)} \\
+&=\sqrt{244} \\
+&\approx15{,}6\text{ N}
+\end{aligned}" />
+
+Die Resultierende ist kleiner als <InlineMath math="18\text{ N}" />, weil die beiden Kräfte nicht genau gleichgerichtet sind. Sie ist aber größer als jede einzelne Kraft, da beide noch in hinreichend ähnliche Richtungen zeigen.
+
+## Überprüfung mit Grenzfällen
+
+Grenzfälle zeigen, ob ein Ergebnis plausibel ist. Für <InlineMath math="0^\circ" /> muss die Formel <InlineMath math="A+B" /> liefern.
+
+<BlockMath math="R=\sqrt{A^2+B^2+2AB}=\sqrt{(A+B)^2}=A+B" />
+
+Für <InlineMath math="180^\circ" /> muss sie die Differenz der Beträge liefern.
+
+<BlockMath math="R=\sqrt{A^2+B^2-2AB}=\sqrt{(A-B)^2}=\lvert A-B\rvert" />
+
+Diese Prüfung verbindet den Kosinussatz mit den einfacheren Fällen gleichgerichteter, entgegengesetzter und senkrechter Vektoren.
+
+## Wann ist der Kosinussatz sinnvoll?
+
+Der Kosinussatz ist geeignet, wenn:
+
+- genau zwei Vektoren vorliegen;
+- die Beträge beider Vektoren bekannt sind;
+- der Zwischenwinkel bekannt ist;
+- der Betrag der Resultierenden gesucht ist.
+
+Bei mehr als zwei Vektoren oder bei Winkeln, die gegenüber Koordinatenachsen angegeben sind, ist die Komponentenmethode meist übersichtlicher. Der Kosinussatz passt am besten zu zwei Vektoren mit genau einem bekannten Zwischenwinkel.

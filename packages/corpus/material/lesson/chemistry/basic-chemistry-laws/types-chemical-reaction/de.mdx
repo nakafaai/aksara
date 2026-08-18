@@ -1,0 +1,167 @@
+
+export const metadata = {
+  title: "Arten chemischer Reaktionen",
+  description:
+    "Verbrennungs-, Rost-, Niederschlags- und Gasbildungsreaktionen anhand sichtbarer Veränderungen und ausgeglichener Gleichungen erkennen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  date: "2026-05-01",
+  subject: "Grundgesetze der Chemie",
+};
+
+## Reaktionen haben Muster
+
+Wenn Substanzen reagieren, bemerken wir nicht nur Hinweise wie Hitze, Farbe, Ausfällungen oder Gas. Wir können den **Reaktionstyp** auch aus dem Muster der Reaktanten und Produkte ablesen.
+
+In dieser Lektion werden vier gängige Beispiele verwendet: Verbrennung, Rost, Niederschlag und Gasbildung. OpenStax Chemistry 2e gruppiert Reaktionen auch anhand von Beispielen wie Fällung, Säure-Base-Reaktionen und Oxidations-Reduktion in der [Klassifizierung chemischer Reaktionen](https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions).
+
+Diese vier Bezeichnungen bilden kein einziges System aus gegenseitig ausschließenden Kategorien. Verbrennung und Rosten sind Kontexte von Redoxreaktionen, während Niederschlag und Gasbildung das beobachtbare Verhalten eines Produkts beschreiben. Eine Reaktion kann deshalb zu mehreren sinnvollen Beschreibungen passen.
+
+## Reaktionstypen im Modell
+
+Wähle einen Reaktionstyp aus. Beobachte zuerst die sichtbare Veränderung und ordne sie anschließend mithilfe der chemischen Gleichung ein.
+
+<ChemicalReactionTypesLab
+  title={<>Reaktionstypen erkennen</>}
+  description={
+    <>
+      Die Verbrennungsansicht zählt jedes Phosphor- und Sauerstoffatom. Die
+      übrigen Ansichten betonen das beobachtbare Muster, während die Gleichung
+      die genauen Formeln und Koeffizienten liefert.
+    </>
+  }
+  labels={{
+    chooseType: "Reaktionstyp auswählen",
+    before: "Reaktanten",
+    after: "Produkte",
+    reactionView: "Dreidimensionales Modell chemischer Reaktionstypen",
+    equationLabel: "Ausgeglichene Gleichung",
+    visibleCueLabel: "Sichtbarer Hinweis",
+    readingLabel: "Einordnung",
+    checkLabel: "Schnellprüfung",
+    types: {
+      combustion: {
+        tab: "Verbrennung",
+        helperCaption: (
+          <>
+            Vier Phosphoratome und fünf Sauerstoffmoleküle bilden eine Einheit
+            <InlineMath math="\mathrm{P_4O_{10}}" /> und setzen dabei Wärme und
+            Licht frei.
+          </>
+        ),
+        equation: (
+          <InlineMath math="\mathrm{P_4} + 5\mathrm{O_2} \rightarrow \mathrm{P_4O_{10}}" />
+        ),
+        visibleCue: <>Wärme und Licht treten auf.</>,
+        reading: (
+          <>
+            Der Reaktant verbindet sich mit <InlineMath math="\mathrm{O_2}" />.
+          </>
+        ),
+        check: <>Die Atome links und rechts müssen übereinstimmen.</>,
+      },
+      rust: {
+        tab: "Rosten",
+        helperCaption: <>Die Oberflächenansicht zeigt Sauerstoff und Wasser am Eisen, bevor sich eine gemischte Rostschicht bildet.</>,
+        equation: (
+          <InlineMath math="4\mathrm{Fe} + 3\mathrm{O_2} + 2x\mathrm{H_2O} \rightarrow 2\mathrm{Fe_2O_3} \cdot x\mathrm{H_2O}" />
+        ),
+        visibleCue: <>Die Oberflächenfarbe ändert sich.</>,
+        reading: <>Eisen wird zu einem Gemisch aus hydratisierten Oxiden und Oxyhydroxiden oxidiert, das als Rost bezeichnet wird.</>,
+        check: (
+          <>
+            Die dargestellte Gleichung ist ein Zusammensetzungsmodell auf
+            Schulniveau. Echter Rost besitzt keine einzige feste Formel.
+          </>
+        ),
+      },
+      precipitate: {
+        tab: "Niederschlag",
+        helperCaption: <>Die Becheransicht hebt den Übergang gelöster Teilchen zu einem Feststoff hervor; die Gleichung enthält die genauen Formeln und Zustände.</>,
+        equation: (
+          <InlineMath math="\mathrm{Ca(OH)_2(aq)} + \mathrm{NaHCO_3(aq)} \rightarrow \mathrm{CaCO_3(s)} + \mathrm{NaOH(aq)} + \mathrm{H_2O(l)}" />
+        ),
+        visibleCue: <>Ein neuer Feststoff entsteht.</>,
+        reading: (
+          <>
+            Das Produkt <InlineMath math="\mathrm{CaCO_3}" /> ist schwer löslich
+            und erscheint deshalb als Niederschlag.
+          </>
+        ),
+        check: <>Entsteht aus einer Lösung ein neuer Feststoff, liegt vermutlich eine Fällungsreaktion vor.</>,
+      },
+      gas: {
+        tab: "Gas",
+        helperCaption: <>Die Becheransicht hebt die Blasen hervor; die Gleichung gibt die genaue Stöchiometrie der alkoholischen Gärung an.</>,
+        equation: (
+          <InlineMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}" />
+        ),
+        visibleCue: <>Es bilden sich Gasblasen.</>,
+        reading: (
+          <>
+            Eines der Produkte ist <InlineMath math="\mathrm{CO_2}" />.
+          </>
+        ),
+        check: <>Ist ein Produkt gasförmig, können Blasen entstehen oder Gas kann aus dem Gemisch entweichen.</>,
+      },
+    },
+  }}
+/>
+
+## Vier Beispiele zum Erkennen
+
+Die folgenden vier Beispiele zeigen unterschiedliche Hinweise: Energiefreisetzung, Metallveränderung, Feststoffbildung und Gasbildung.
+
+### Verbrennung
+
+In den hier behandelten Beispielen einer Verbrennung mit Sauerstoff reagiert ein Stoff mit Sauerstoff und setzt Energie als Wärme oder Licht frei. Die Verbrennung von weißem Phosphor wird so dargestellt:
+
+<BlockMath math="\mathrm{P_4} + 5\mathrm{O_2} \rightarrow \mathrm{P_4O_{10}}" />
+
+Der [PubChem-Stoffdatensatz](https://pubchem.ncbi.nlm.nih.gov/compound/P4O10) führt <InlineMath math="\mathrm{P_4O_{10}}" /> als Molekülformel von Phosphorpentoxid und weist darauf hin, dass <InlineMath math="\mathrm{P_2O_5}" /> die häufig verwendete empirische Formel ist. Hier wird die Molekülform verwendet, weil das 3D-Teilchenmodell genau <InlineMath math="4" /> Phosphoratome und <InlineMath math="10" /> Sauerstoffatome zählt.
+
+### Rosten
+
+Rosten ist ein elektrochemischer Korrosionsprozess, an dem Eisen, Sauerstoff und Wasser beteiligt sind. Rost ist keine einzelne reine Verbindung, sondern ein Gemisch aus Eisenoxiden und Oxyhydroxiden, dessen Zusammensetzung von den Bedingungen abhängt. Der folgende Ausdruck ist ein nützliches Zusammensetzungsmodell auf Schulniveau, aber keine eindeutige Molekülformel für jede Rostprobe.
+
+<BlockMath math="4\mathrm{Fe} + 3\mathrm{O_2} + 2x\mathrm{H_2O} \rightarrow 2\mathrm{Fe_2O_3} \cdot x\mathrm{H_2O}" />
+
+Der Buchstabe <InlineMath math="x" /> macht die veränderliche Hydratation sichtbar. Da das Produkt den Koeffizienten <InlineMath math="2" /> hat, steht links <InlineMath math="2x\mathrm{H_2O}" />, damit dieser vereinfachte Ausdruck ausgeglichen bleibt. [NIST Technical Note 2377](https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.2377.pdf) beschreibt die Korrosionsprodukte ebenfalls als mehrere Eisenoxide und Oxyhydroxide statt als eine universelle Formel.
+
+### Niederschlag
+
+Ein Niederschlag entsteht, wenn die Bedingungen in einer Lösung einen Stoff mit geringer Löslichkeit hervorbringen. Beispielsweise kann Kalkwasser mit gelöstem Natriumhydrogencarbonat reagieren und Calciumcarbonat als weißen Niederschlag bilden.
+
+<BlockMath math="\mathrm{Ca(OH)_2(aq)} + \mathrm{NaHCO_3(aq)} \rightarrow \mathrm{CaCO_3(s)} + \mathrm{NaOH(aq)} + \mathrm{H_2O(l)}" />
+
+Das Produkt <InlineMath math="\mathrm{CaCO_3}" /> ist wichtig, da diese Verbindung als Feststoff erscheint. Ein Niederschlag ist ein neu gebildetes Produkt mit geringer Löslichkeit und nicht nur Material, das zu Boden fällt.
+
+### Gasbildung
+
+Bei der alkoholischen Gärung kann Hefe Glukose in Ethanol und Kohlendioxid umwandeln. Die Blasen sind der sichtbare Hinweis, während die Gleichung das gasförmige Produkt kennzeichnet.
+
+<BlockMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}" />
+
+Der Koeffizient <InlineMath math="2" /> vor Ethanol und Kohlendioxid darf nicht weggelassen werden. Ohne ihn wären die Zahlen der Kohlenstoff-, Wasserstoff- und Sauerstoffatome nicht ausgeglichen.
+
+## Koeffizienten ändern Formeln nicht
+
+Ein Koeffizient ist die Zahl, die einer chemischen Formel vorangestellt wird. Wir können die Koeffizienten ändern, damit die Anzahl der Atome vor und nach der Reaktion übereinstimmt.
+
+<BlockMath math="\mathrm{P_4} + 5\mathrm{O_2} \rightarrow \mathrm{P_4O_{10}}" />
+
+In dieser Gleichung ist <InlineMath math="5" /> vor <InlineMath math="\mathrm{O_2}" /> ein Koeffizient. Die Indizes in <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{O_2}" /> und <InlineMath math="\mathrm{P_4O_{10}}" /> gehören zu den Stoffformeln und dürfen nicht geändert werden, nur um einen Ausgleich zu erzwingen.
+
+## Der Name hilft, die Belege entscheiden
+
+Namen wie Verbrennung, Niederschlag oder Gasbildung helfen dabei, ein Reaktionsmuster vorherzusagen. Eine ausgeglichene Gleichung prüft die Atomerhaltung. Für die Einordnung können zusätzlich Zustandssymbole, Reaktionsbedingungen und Beobachtungen nötig sein. Kein einzelner Hinweis trägt die gesamte Schlussfolgerung.
+
+Für eine schnelle Prüfung genügt folgende Übersicht.
+
+| Reaktionstyp | Beobachtbarer Hinweis | Was zu prüfen ist |
+| :------------ | :---------- | :------------ |
+| Verbrennung | <InlineMath math="\mathrm{O_2}" /> ist ein Reaktant und Energie wird frei. | Produkte, Bedingungen und ausgeglichene Atomzahlen prüfen. |
+| Rosten | Auf einer Eisenoberfläche bildet sich eine Rostschicht. | Eisen, Sauerstoff, Wasser und das Gemisch der Korrosionsprodukte prüfen. |
+| Niederschlag | Aus der Lösung entsteht ein neuer Feststoff. | Prüfen, ob Reaktanten mit <InlineMath math="\mathrm{(aq)}" /> ein schwer lösliches Produkt mit <InlineMath math="\mathrm{(s)}" /> bilden. |
+| Gasbildung | Blasen oder Gas verlassen die Mischung. | Ein Gasprodukt wie <InlineMath math="\mathrm{CO_2(g)}" /> nachweisen und Sieden ausschließen. |
+
+Ist der Reaktionstyp erkannt, wird die Gleichung sauber notiert: Reaktanten links, Produkte rechts. Anschließend werden die Koeffizienten angepasst, bis die Atomzahlen auf beiden Seiten übereinstimmen.
