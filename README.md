@@ -115,7 +115,12 @@ pnpm build
 pnpm verify:consumer
 pnpm status
 pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
+pnpm dev -- --document packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question.en.mdx --app-locale de
 ```
+
+Pass `--app-locale de` when previewing an assessed-language prompt in the
+German shell. The prompt and choices stay in the language being assessed,
+while the shell and German answer remain bound to the selected app locale.
 
 `pnpm status` reads the authoritative publication slots using publication
 credentials only; it does not sign, stage, activate, or mutate a release.

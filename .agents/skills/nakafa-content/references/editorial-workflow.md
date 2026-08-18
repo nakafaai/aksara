@@ -24,8 +24,9 @@ For every authored target document or localized metadata record:
 
 1. Identify the exact target path, app locale, delivery language, and source
    paths.
-2. Audit every existing locale sibling that owns the reviewed meaning for
-   factual, citation, structural, terminology, and artificial-writing problems.
+2. Audit every canonical source sibling for factual, citation, structural,
+   terminology, and artificial-writing problems. No sibling that contributes
+   reviewed meaning may be skipped.
 3. Read and apply the complete Humanizer skill to the source. Correct the source
    only when evidence supports the change.
 4. Record the corrected document's ordered teaching units: concepts, sections,
@@ -66,10 +67,10 @@ For every authored target document or localized metadata record:
 - Localized explanatory shell copy is authored content and follows the authored
   workflow separately.
 
-## Locale terminology
+## Locale terminology and routes
 
-Create or review the target locale glossary before translating a scope. Use it
-consistently for education levels, subjects, mathematics, science, Quran,
-account, accessibility, and try-out terms. Derive route slugs from the
-contract-owned locale policy, then validate collisions and stable cross-locale
-identity instead of adding spelling redirects.
+Create and review one glossary for each target locale before translating a
+scope. Use it consistently for education levels, subjects, mathematics,
+science, Quran, account, accessibility, and try-out terms. Route slugs use the
+contract-owned normalization policy. Validate collisions and stable
+cross-locale identity rather than adding spelling redirects.

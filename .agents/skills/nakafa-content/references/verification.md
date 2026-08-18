@@ -49,15 +49,20 @@ typed blockers, never fallback conditions.
   token in a React-node-capable title, description, caption, or label must use
   `<InlineMath />`; reject plain strings such as `y-axis`, `x = 2`, `(3, 4)`,
   or `5 m` when they carry mathematical meaning.
-- Inspect every touched graph and 3D model in Nakafa's real renderer. Confirm
-  labels remain legible and attached to the correct object through camera orbit,
-  zoom, theme changes, narrow layout, and intentional depth occlusion. Compare
-  every locale view so one translation does not lose a point, branch, object,
-  label, or relationship.
 - Compare every locale sibling for the same formulas,
   conditions, units, significant steps, and conclusions. Natural phrasing may
   differ, but mathematical meaning and instructional support may not.
+- Verify every localized number against its source meaning and calculation.
+  Confirm that the digit sequence and numerical value are unchanged while the
+  decimal and thousands separators follow the target locale. Treat assessed
+  source text and programming literals according to their owned language and
+  syntax rather than rewriting them mechanically.
 - Confirm the document compiles and renders without console or network errors.
+- For every graph, diagram, simulation, or three-dimensional component, compare
+  representative rendered points and relationships with an independent
+  calculation. Inspect all branches, boundaries, signs, axes, labels, legends,
+  camera framing, clipping, and supported interactions in Nakafa's real
+  renderer. Repeat the visual check for every locale with localized labels.
 - Confirm localized route identity has no collision.
 - Confirm every new authored translation completed both Humanizer passes.
 - Compare each translated document with every audited source sibling. The
